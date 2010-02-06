@@ -385,6 +385,7 @@ I na á banye...',
 'extlink_sample'  => 'http://www.di-ka-nká.com ishi jikodo',
 'headline_sample' => 'Ahiri ishi mkpurụ edemede',
 'headline_tip'    => 'Larri 2 ishiahiri',
+'nowiki_tip'      => 'É gekwàlà otu wiki shi edé',
 'image_tip'       => 'Njikota édé a pọrọgwụla',
 'media_tip'       => 'Jikodo njikota èdè',
 

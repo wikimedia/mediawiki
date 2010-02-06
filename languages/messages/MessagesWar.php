@@ -9,6 +9,7 @@
  *
  * @author Estudyante
  * @author Harvzsf
+ * @author JinJian
  * @author לערי ריינהארט
  */
 
@@ -458,9 +459,22 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # Special:NewFiles
 'ilsubmit' => 'Bilnga',
 
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'ngatanan',
+'imagelistall'     => 'ngatanan',
+'watchlistall2'    => 'ngatanan',
+'namespacesall'    => 'ngatanan',
+'monthsall'        => 'ngatanan',
+'limitall'         => 'ngatanan',
+
+# Delete conflict
+'recreate' => 'Himo-a utro',
+
 # Multipage image navigation
 'imgmultipageprev' => '← naha-una nga pakli',
 'imgmultipagenext' => 'sunod nga pakli →',
+'imgmultigo'       => 'Pakadto!',
+'imgmultigoto'     => 'Pakadto ha pakli $1',
 
 # Table pager
 'table_pager_next'         => 'Sunod nga pakli',
@@ -478,5 +492,15 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 
 # Special:SpecialPages
 'specialpages' => 'Mga Ispisyal nga Pakli',
+
+# Special:BlankPage
+'blankpage'              => 'Blanko nga pakli',
+'intentionallyblankpage' => 'Ini nga pakli gintuyo pagpabilin nga blanko.',
+
+# Database error messages
+'dberr-header' => 'Ini nga wiki mayda problema',
+
+# HTML forms
+'htmlform-reset' => 'Igbalik an mga pinamalyuan',
 
 );

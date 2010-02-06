@@ -876,19 +876,27 @@ HTML tags جانچئے.',
 'prefs-dateformat'              => 'شکلبندِ تاریخ',
 
 # User rights
-'userrights'               => 'حقوقِ صارف کی نظامت',
-'userrights-lookup-user'   => 'گروہائے صارف کا انتظام',
-'userrights-user-editname' => 'کوئی اسم‌صارف داخل کیجئے:',
-'editinguser'              => "تبدیلئ حقوق برائے صارف '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-groupsmember'  => 'رکنِ:',
-'userrights-reason'        => 'وجہ:',
+'userrights'                  => 'حقوقِ صارف کی نظامت',
+'userrights-lookup-user'      => 'گروہائے صارف کا انتظام',
+'userrights-user-editname'    => 'کوئی اسم‌صارف داخل کیجئے:',
+'editinguser'                 => "تبدیلئ حقوق برائے صارف '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-groupsmember'     => 'رکنِ:',
+'userrights-reason'           => 'وجہ:',
+'userrights-no-interwiki'     => 'دوسرے ویکیوں پر حقوقِ صارف میں ترمیم کی آپ کو اجازت نہیں ہے.',
+'userrights-changeable-col'   => 'مجموعات جو آپ تبدیل کرسکتے ہیں',
+'userrights-unchangeable-col' => 'مجموعات جو آپ تبدیل نہیں کرسکتے',
 
 # Groups
-'group'      => 'گروہ:',
-'group-user' => 'صارفین',
-'group-all'  => '(تمام)',
+'group'       => 'گروہ:',
+'group-user'  => 'صارفین',
+'group-bot'   => 'روبالات',
+'group-sysop' => 'منتظمین',
+'group-all'   => '(تمام)',
 
-'group-bot-member' => 'خودکار صارف',
+'group-user-member'          => 'صارف',
+'group-autoconfirmed-member' => 'خودتصدیق شدہ صارف',
+'group-bot-member'           => 'خودکار صارف',
+'group-sysop-member'         => 'منتظم',
 
 'grouppage-sysop' => '{{ns:project}}:منتظمین',
 

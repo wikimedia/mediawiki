@@ -760,6 +760,7 @@ Ste argumende onne state luete.",
 'post-expand-template-argument-category'  => 'Pàggene ca condenene template cu quacche argomende zumbete',
 'parser-template-loop-warning'            => "Amme acchiete 'nu cicle de template: [[$1]]",
 'parser-template-recursion-depth-warning' => "Ha state supranete 'u limite di ricorsione de le template ($1)",
+'language-converter-depth-warning'        => "'U convertitore de lènghe ha subranate 'u limite de profonnetà ($1)",
 
 # "Undo" feature
 'undo-success' => "'U cangiamende pò essere annullate.
@@ -826,6 +827,7 @@ Cumme a 'n'amministratore tu a puè vedè angore; stonne cchiù 'mbormaziune jnd
 Cumme a 'n'amministratore tu puè vedè; puè acchijà cchiù 'mbormaziune sus a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} l'archivije de le soppressiune].",
 'rev-deleted-no-diff'         => "Tu non ge piè vedè sta differenze purcè une de le revisiune ha state '''scangellate'''.
 Pò essere ca jacchie quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde].",
+'rev-suppressed-no-diff'      => "Tu non ge puè vedè sta differenze purcé une de le revisiune ha state '''scangellate'''.",
 'rev-deleted-unhide-diff'     => "Une de le revisiune de sta differenza ha state '''scangellate'''.
 Pò essere ca iacchije quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde]..
 Cumme a 'n'amministratore tu puè angore [$1 vedè sta differenze] ce tu proprie si inderessate.",
@@ -1477,9 +1479,11 @@ Pe 'na securezze a uerre proprie, img_auth.php jè disabbilitate.",
 
 # HTTP errors
 'http-invalid-url'      => 'URL invalide: $1',
+'http-invalid-scheme'   => 'Le URL cu le "$1" scheme non ge sonde supportate.',
 'http-request-error'    => "Richieste HTTP fallite pe 'n'errore scanusciute.",
 'http-read-error'       => "Errore jndr'à letture de l' HTTP",
 'http-timed-out'        => 'Richieste HTTP fore timbe.',
+'http-curl-error'       => "Errore analizzanne l'URL: $1",
 'http-host-unreachable' => "Non ge riesche a raggiungere l'URL",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2245,6 +2249,7 @@ Pò essere ca ha state già sbloccate.",
 'ipb_blocked_as_range'            => "Errore: l'IP $1 non g'à state bloccate direttamende e non ge pò essere sbloccate.
 Jidde ha state bloccate cumme parte de l'indervalle $2, ca pò essere sbloccate.",
 'ip_range_invalid'                => "L'indervalle de l'IP non g'è valide.",
+'ip_range_toolarge'               => 'Le indervalle de le blocche cchiù larie de /$1 non ge sonde permesse.',
 'blockme'                         => 'Bloccheme',
 'proxyblocker'                    => 'Bloccaore de proxy',
 'proxyblocker-disabled'           => "'A funzione ha state disabbilitete.",
@@ -2356,8 +2361,10 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'imageinvalidfilename'         => "'U nome d'u file de destinazzione jè invalide",
 'fix-double-redirects'         => "Aggiorne ogne redirezionamende ca apponde a 'u titele origginale",
 'move-leave-redirect'          => "Lasse 'nu ridirezionamende rréte",
-'protectedpagemovewarning'     => "'''Attenziò:''' Sta pàgene ha state bloccate accussì sulamende l'utinde cu le deritte d'amministratore 'a ponne spustà.",
-'semiprotectedpagemovewarning' => "'''Vide Bbuène:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrate 'a ponne spustà.",
+'protectedpagemovewarning'     => "'''Attenziò:''' Sta pàgene ha state bloccate accussì sulamende l'utinde cu le deritte d'amministratore 'a ponne spustà.
+L'urteme archivije de le trasute ha state mise aqquà sotte pe referimende:",
+'semiprotectedpagemovewarning' => "'''Vide Bbuène:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrate 'a ponne spustà.
+L'urteme archivije de le trasute ha state mise aqquà sotte pe referimende:",
 'move-over-sharedrepo'         => "== 'U file esiste ==
 [[:$1]] esiste sus a 'n'archivie condivise. Spustanne 'u file sus a stu titele tu vè sovrascrive 'u file condivise.",
 'file-exists-sharedrepo'       => "'U nome d'u file ca è scacchiate jè già ausate sus a 'n'archivie condivise.

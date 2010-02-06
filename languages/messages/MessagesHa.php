@@ -32,6 +32,17 @@ $messages = array(
 'tog-watchdefault'            => 'A daɗa shafunan da na gyara a cikin jerina na kan ido',
 'tog-watchmoves'              => 'A daɗa shafunan da na gusar a cikin jerina na kan ido',
 'tog-watchdeletion'           => 'A daɗa shafunan da na shafe a cikin jerina na kan ido',
+'tog-minordefault'            => 'A alamta gyare-gyarena a matsayin ƙanana bisa manufa',
+'tog-previewontop'            => 'A nuna filin rigya-gani sama ga filin gyare-gyare',
+'tog-previewonfirst'          => 'A nuna rigya-gani tun gyaran farin',
+'tog-nocache'                 => 'A tsayar da kacin shafi',
+'tog-enotifwatchlistpages'    => 'A shaida mani ta Imel idan wani shafin jeerina na bin-sau ya sauya',
+'tog-enotifusertalkpages'     => 'A shaida mani ta Imel idan shafina na muhawara ya sauya',
+'tog-enotifminoredits'        => 'A shaida mani ta Imel game da ko da ƙaramin gyara ne',
+'tog-enotifrevealaddr'        => "A bayyana Imel kina a cikin sak'wanni na shaidarwa",
+'tog-shownumberswatching'     => "A nuna adadin ma'aikata masu bin sawun wannan shafi",
+'tog-oldsig'                  => 'Rigya-ganin sa-hannu da ake da shi',
+'tog-fancysig'                => 'A ɗauki matanin sa-hannu a matsayin matanin Wiki (ba tare da mahaɗin otomatik ba)',
 
 # Dates
 'january'       => 'Janairu',

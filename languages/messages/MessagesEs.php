@@ -1321,25 +1321,26 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'prefs-diffs'                   => 'Diferencias',
 
 # User rights
-'userrights'                  => 'Configuración de permisos de usuarios',
-'userrights-lookup-user'      => 'Configurar grupos de usuarios',
-'userrights-user-editname'    => 'Escriba un nombre de usuario:',
-'editusergroup'               => 'Modificar grupos de usuarios',
-'editinguser'                 => "Cambiando los derechos del usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] {{int:pipe-separator}} [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Modificar grupos de usuarios',
-'saveusergroups'              => 'Guardar grupos de usuarios',
-'userrights-groupsmember'     => 'Miembro de:',
-'userrights-groups-help'      => 'Puedes modificar los grupos a los que pertenece este usuario:
+'userrights'                   => 'Configuración de permisos de usuarios',
+'userrights-lookup-user'       => 'Configurar grupos de usuarios',
+'userrights-user-editname'     => 'Escriba un nombre de usuario:',
+'editusergroup'                => 'Modificar grupos de usuarios',
+'editinguser'                  => "Cambiando los derechos del usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] {{int:pipe-separator}} [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Modificar grupos de usuarios',
+'saveusergroups'               => 'Guardar grupos de usuarios',
+'userrights-groupsmember'      => 'Miembro de:',
+'userrights-groupsmember-auto' => 'Miembro implícito de:',
+'userrights-groups-help'       => 'Puedes modificar los grupos a los que pertenece este usuario:
 * Un recuadro marcado significa que el usuario está en ese grupo.
 * Un recuadro no marcado significa que el usuario no está en ese grupo.
 * Un * indica que no podrás retirar el grupo una vez que lo concedas, o viceversa.',
-'userrights-reason'           => 'Motivo:',
-'userrights-no-interwiki'     => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
-'userrights-nodatabase'       => 'La base de datos $1 no existe o no es local.',
-'userrights-nologin'          => 'Debes [[Special:UserLogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
-'userrights-notallowed'       => 'No tienes permiso para realizar cambios de grupos a usuarios.',
-'userrights-changeable-col'   => 'Grupos que puedes cambiar',
-'userrights-unchangeable-col' => 'Grupos que no puedes cambiar',
+'userrights-reason'            => 'Motivo:',
+'userrights-no-interwiki'      => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
+'userrights-nodatabase'        => 'La base de datos $1 no existe o no es local.',
+'userrights-nologin'           => 'Debes [[Special:UserLogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
+'userrights-notallowed'        => 'No tienes permiso para realizar cambios de grupos a usuarios.',
+'userrights-changeable-col'    => 'Grupos que puedes cambiar',
+'userrights-unchangeable-col'  => 'Grupos que no puedes cambiar',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1643,9 +1644,13 @@ Para optima seguridad, img_auth.php está deshabilitado.',
 'img-auth-noread'       => 'Usuario no tiene acceso para leer "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'URL inválida: $1',
-'http-invalid-scheme' => 'Las URLs con el esquema "$1" no son compatibles',
-'http-request-error'  => 'solicitu de HTTP fallida debido a un error desconocido.',
+'http-invalid-url'      => 'URL inválida: $1',
+'http-invalid-scheme'   => 'Las URLs con el esquema "$1" no son compatibles',
+'http-request-error'    => 'solicitu de HTTP fallida debido a un error desconocido.',
+'http-read-error'       => 'Error de lectura HTTP.',
+'http-timed-out'        => 'La solicitud HTTP ha expirado.',
+'http-curl-error'       => 'Error al recuperar URL: $ 1',
+'http-host-unreachable' => 'No fue posible acceder a la URL.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No se pudo alcanzar la URL',

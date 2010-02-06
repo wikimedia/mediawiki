@@ -1354,25 +1354,26 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'prefs-diffs'                   => 'Beda',
 
 # User rights
-'userrights'                  => 'Manajemen hak pengguna',
-'userrights-lookup-user'      => 'Mengatur kelompok pengguna',
-'userrights-user-editname'    => 'Masukkan nama pengguna:',
-'editusergroup'               => 'Sunting kelompok pengguna',
-'editinguser'                 => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Sunting kelompok pengguna',
-'saveusergroups'              => 'Simpan kelompok pengguna',
-'userrights-groupsmember'     => 'Anggota dari:',
-'userrights-groups-help'      => 'Anda dapat mengubah kelompok pengguna ini:
+'userrights'                   => 'Manajemen hak pengguna',
+'userrights-lookup-user'       => 'Mengatur kelompok pengguna',
+'userrights-user-editname'     => 'Masukkan nama pengguna:',
+'editusergroup'                => 'Sunting kelompok pengguna',
+'editinguser'                  => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Sunting kelompok pengguna',
+'saveusergroups'               => 'Simpan kelompok pengguna',
+'userrights-groupsmember'      => 'Anggota dari:',
+'userrights-groupsmember-auto' => 'Anggota implisit dari:',
+'userrights-groups-help'       => 'Anda dapat mengubah kelompok pengguna ini:
 * Kotak dengan tanda cek merupakan kelompok pengguna yang bersangkutan
 * Kotak tanpa tanda cek berarti pengguna ini bukan anggota kelompok tersebut
 * Tanda * menandai bahwa Anda tidak dapat membatalkan kelompok tersebut bila Anda telah menambahkannya, atau sebaliknya.',
-'userrights-reason'           => 'Alasan:',
-'userrights-no-interwiki'     => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
-'userrights-nodatabase'       => 'Basis data $1 tidak ada atau bukan lokal.',
-'userrights-nologin'          => 'Anda harus [[Special:UserLogin|masuk log]] dengan menggunakan akun pengurus untuk dapat mengubah hak pengguna.',
-'userrights-notallowed'       => 'Anda tidak berhak untuk mengubah hak pengguna',
-'userrights-changeable-col'   => 'Kelompok yang dapat Anda ubah',
-'userrights-unchangeable-col' => 'Kelompok yang tidak dapat Anda ubah',
+'userrights-reason'            => 'Alasan:',
+'userrights-no-interwiki'      => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
+'userrights-nodatabase'        => 'Basis data $1 tidak ada atau bukan lokal.',
+'userrights-nologin'           => 'Anda harus [[Special:UserLogin|masuk log]] dengan menggunakan akun pengurus untuk dapat mengubah hak pengguna.',
+'userrights-notallowed'        => 'Anda tidak berhak untuk mengubah hak pengguna',
+'userrights-changeable-col'    => 'Kelompok yang dapat Anda ubah',
+'userrights-unchangeable-col'  => 'Kelompok yang tidak dapat Anda ubah',
 
 # Groups
 'group'               => 'Kelompok:',
@@ -1673,9 +1674,12 @@ Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 'img-auth-noread'       => 'Pengguna tidak memiliki akses untuk membaca "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'URL tidak sah: $1',
-'http-invalid-scheme' => ' URL dengan skema "$ 1" tidak didukung',
-'http-request-error'  => 'Permintaan HTTP gagal karena kesalahan yang tidak diketahui.',
+'http-invalid-url'      => 'URL tidak sah: $1',
+'http-invalid-scheme'   => ' URL dengan skema "$ 1" tidak didukung',
+'http-request-error'    => 'Permintaan HTTP gagal karena kesalahan yang tidak diketahui.',
+'http-read-error'       => 'Kesalahan pembacaan HTTP',
+'http-curl-error'       => 'Kesalahan saat mengambil URL: $ 1',
+'http-host-unreachable' => 'Tidak dapat mencapai URL.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL tidak dapat dihubungi',

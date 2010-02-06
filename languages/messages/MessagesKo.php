@@ -1651,9 +1651,10 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
 'img-auth-noread'       => '‘$1’ 파일을 볼 권한이 없습니다.',
 
 # HTTP errors
-'http-invalid-url'   => '잘못된 URL: $1',
-'http-request-error' => '요청 전송 오류:',
-'http-timed-out'     => 'HTTP 요청 시간 초과.',
+'http-invalid-url'      => '잘못된 URL: $1',
+'http-request-error'    => '요청 전송 오류:',
+'http-timed-out'        => 'HTTP 요청 시간 초과.',
+'http-host-unreachable' => 'URL에 접근하지 못했습니다.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL 접근 불가',
@@ -2074,6 +2075,9 @@ $NEWPAGE
 주시문서 설정을 바꾸려면 다음을 사용하세요:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
+주시문서에서 이 문서를 지우려면 이곳을 방문해주세요:
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 도움을 얻거나 피드백 하기:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -2489,8 +2493,10 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'imageinvalidfilename'         => '새 파일 이름이 잘못되었습니다.',
 'fix-double-redirects'         => '기존 이름을 가리키는 넘겨주기를 갱신',
 'move-leave-redirect'          => '이동 후 넘겨주기를 남기기',
-'protectedpagemovewarning'     => "'''경고:''' 이 문서는 관리자만이 이동할 수 있도록 잠겨 있습니다.",
-'semiprotectedpagemovewarning' => "'''알림:''' 이 문서는 등록된 사용자만이 이동할 수 있도록 잠겨 있습니다.",
+'protectedpagemovewarning'     => "'''경고:''' 이 문서는 관리자만이 이동할 수 있도록 잠겨 있습니다.
+최근의 기록을 참조용으로 제공합니다:",
+'semiprotectedpagemovewarning' => "'''알림:''' 이 문서는 등록된 사용자만이 이동할 수 있도록 잠겨 있습니다.
+최근 기록 내용이 참조용으로 제공됩니다:",
 'move-over-sharedrepo'         => '== 파일이 존재합니다 ==
 [[:$1]] 파일이 공용 저장소에 있습니다. 이 이름으로 파일을 옮기면 공용의 파일을 덮어쓰게 될 것입니다.',
 'file-exists-sharedrepo'       => '당신이 선택한 파일 이름은 공용 저장소에서 사용 중입니다.

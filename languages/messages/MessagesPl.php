@@ -224,7 +224,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Podkreślenie linków',
+'tog-underline'               => 'Podkreślenie linków:',
 'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa – dołączany znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu stron',
 'tog-hideminor'               => 'Ukryj drobne zmiany w ostatnich zmianach',
@@ -1322,25 +1322,26 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-diffs'                   => 'Zmiany',
 
 # User rights
-'userrights'                  => 'Zarządzaj uprawnieniami użytkowników',
-'userrights-lookup-user'      => 'Zarządzaj grupami użytkownika',
-'userrights-user-editname'    => 'Wprowadź nazwę użytkownika',
-'editusergroup'               => 'Edytuj grupy użytkownika',
-'editinguser'                 => "Zmiana uprawnień użytkownika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Edytuj grupy użytkownika',
-'saveusergroups'              => 'Zapisz',
-'userrights-groupsmember'     => 'Należy do:',
-'userrights-groups-help'      => 'Możesz zmienić przynależność tego użytkownika do podanych grup.
+'userrights'                   => 'Zarządzaj uprawnieniami użytkowników',
+'userrights-lookup-user'       => 'Zarządzaj grupami użytkownika',
+'userrights-user-editname'     => 'Wprowadź nazwę użytkownika',
+'editusergroup'                => 'Edytuj grupy użytkownika',
+'editinguser'                  => "Zmiana uprawnień użytkownika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Edytuj grupy użytkownika',
+'saveusergroups'               => 'Zapisz',
+'userrights-groupsmember'      => 'Należy do:',
+'userrights-groupsmember-auto' => 'Na stałe należy do:',
+'userrights-groups-help'       => 'Możesz zmienić przynależność tego użytkownika do podanych grup.
 * Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
 * Niezaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
 * Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
-'userrights-reason'           => 'Powód',
-'userrights-no-interwiki'     => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
-'userrights-nodatabase'       => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
-'userrights-nologin'          => 'Musisz [[Special:UserLogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
-'userrights-notallowed'       => 'Nie masz dostępu do nadawania uprawnień użytkownikom.',
-'userrights-changeable-col'   => 'Grupy, które możesz wybrać',
-'userrights-unchangeable-col' => 'Grupy, których nie możesz wybrać',
+'userrights-reason'            => 'Powód',
+'userrights-no-interwiki'      => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
+'userrights-nodatabase'        => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
+'userrights-nologin'           => 'Musisz [[Special:UserLogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
+'userrights-notallowed'        => 'Nie masz dostępu do nadawania uprawnień użytkownikom.',
+'userrights-changeable-col'    => 'Grupy, które możesz wybrać',
+'userrights-unchangeable-col'  => 'Grupy, których nie możesz wybrać',
 
 # Groups
 'group'               => 'Grupa',

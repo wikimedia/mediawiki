@@ -1301,25 +1301,26 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'prefs-diffs'                   => 'Diferenzas',
 
 # User rights
-'userrights'                  => 'Xestión dos dereitos de usuario',
-'userrights-lookup-user'      => 'Administrar os grupos do usuario',
-'userrights-user-editname'    => 'Escriba un nome de usuario:',
-'editusergroup'               => 'Editar os grupos do usuario',
-'editinguser'                 => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Editar os grupos do usuario',
-'saveusergroups'              => 'Gardar os grupos do usuario',
-'userrights-groupsmember'     => 'Membro de:',
-'userrights-groups-help'      => 'Pode cambiar os grupos aos que o usuario pertence:
+'userrights'                   => 'Xestión dos dereitos de usuario',
+'userrights-lookup-user'       => 'Administrar os grupos do usuario',
+'userrights-user-editname'     => 'Escriba un nome de usuario:',
+'editusergroup'                => 'Editar os grupos do usuario',
+'editinguser'                  => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Editar os grupos do usuario',
+'saveusergroups'               => 'Gardar os grupos do usuario',
+'userrights-groupsmember'      => 'Membro de:',
+'userrights-groupsmember-auto' => 'Membro implícito de:',
+'userrights-groups-help'       => 'Pode cambiar os grupos aos que o usuario pertence:
 * Se a caixa ten un sinal (✓) significa que o usuario pertence a ese grupo.
 * Se, pola contra, non o ten, significa que non pertence.
 * Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e viceversa.',
-'userrights-reason'           => 'Motivo:',
-'userrights-no-interwiki'     => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
-'userrights-nodatabase'       => 'A base de datos $1 non existe ou non é local.',
-'userrights-nologin'          => 'Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.',
-'userrights-notallowed'       => 'A súa conta non dispón dos permisos necesarios para asignar dereitos de usuario.',
-'userrights-changeable-col'   => 'Os grupos que pode cambiar',
-'userrights-unchangeable-col' => 'Os grupos que non pode cambiar',
+'userrights-reason'            => 'Motivo:',
+'userrights-no-interwiki'      => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
+'userrights-nodatabase'        => 'A base de datos $1 non existe ou non é local.',
+'userrights-nologin'           => 'Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.',
+'userrights-notallowed'        => 'A súa conta non dispón dos permisos necesarios para asignar dereitos de usuario.',
+'userrights-changeable-col'    => 'Os grupos que pode cambiar',
+'userrights-unchangeable-col'  => 'Os grupos que non pode cambiar',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1510,7 +1511,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
 'uploadtext'                  => "Use o formulario de embaixo para cargar ficheiros.
-Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:FileList|lista de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de carga]], e as eliminacións no [[Special:Log/delete|rexistro de borrado]].
+Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:FileList|lista de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de cargas]] e as eliminacións no [[Special:Log/delete|rexistro de borrados]].
 
 Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar a versión completa do ficheiro
@@ -1645,9 +1646,13 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 'img-auth-noread'       => 'O usuario non ten acceso á lectura de "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'URL non válido: $1',
-'http-invalid-scheme' => 'Os enderezos URL co esquema "$1" non están soportados',
-'http-request-error'  => 'Erro descoñecido ao enviar a solicitude.',
+'http-invalid-url'      => 'URL non válido: $1',
+'http-invalid-scheme'   => 'Os enderezos URL co esquema "$1" non están soportados',
+'http-request-error'    => 'Erro descoñecido ao enviar a solicitude.',
+'http-read-error'       => 'Erro de lectura HTTP.',
+'http-timed-out'        => 'O pedido HTTP expirou.',
+'http-curl-error'       => 'Ocorreu un erro ao acceder ao URL: $1',
+'http-host-unreachable' => 'Non se puido acceder ao URL.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non se logrou acceder a ese URL',

@@ -1664,11 +1664,12 @@ PICT # різні
 'img-auth-noread'       => 'Користувач не має доступу до перегляду "$1".',
 
 # HTTP errors
-'http-invalid-url'    => 'Непрацездатний URL: $1',
-'http-invalid-scheme' => 'URL-адреси схеми "$1" не підтримуються',
-'http-request-error'  => 'HTTP-запит не вдався через невідому помилку.',
-'http-read-error'     => 'HTTP-помилка читання.',
-'http-timed-out'      => 'Перевищення часу очікування HTTP-запиту.',
+'http-invalid-url'      => 'Непрацездатний URL: $1',
+'http-invalid-scheme'   => 'URL-адреси схеми "$1" не підтримуються',
+'http-request-error'    => 'HTTP-запит не вдався через невідому помилку.',
+'http-read-error'       => 'HTTP-помилка читання.',
+'http-timed-out'        => 'Перевищення часу очікування HTTP-запиту.',
+'http-host-unreachable' => 'Неможливо досягнути вказану URL-адресу.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Неможливо досягнути вказану адресу.',
