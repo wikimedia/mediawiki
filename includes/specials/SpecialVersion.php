@@ -307,7 +307,7 @@ class SpecialVersion extends SpecialPage {
 		}
 		$author = isset ( $extension['author'] ) ? $extension['author'] : array();
 		$extDescAuthor = "<td>$description</td>
-			<td>" . $this->listToText( (array)$author ) . "</td>
+			<td>" . $this->listToText( (array)$author, false ) . "</td>
 			</tr>\n";
 		return $extNameVer . $extDescAuthor;
 	}
@@ -369,9 +369,10 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * @param array $list
+	 * @param bool $sort
 	 * @return string
 	 */
-	function listToText( $list ) {
+	function listToText( $list, $sort = true ) {
 		$cnt = count( $list );
 
 		if ( $cnt == 1 ) {
@@ -381,7 +382,9 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		} else {
 			global $wgLang;
-			sort( $list );
+			if ( $sort ) {
+				sort( $list );
+			}
 			return $wgLang->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
 		}
 	}
