@@ -1,8 +1,8 @@
 <?php
 
-require_once( "MediaWikiAPI_TestCase.php" );
+require_once( "MediaWikiAPI_Setup.php" );
 
-class MediaWikiAPITest extends MediaWikiAPI_TestCase {
+class MediaWikiAPITest extends MediaWikiAPI_Setup {
 
 	function setup() {
 		parent::setup();

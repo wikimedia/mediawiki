@@ -1,11 +1,11 @@
 <?php
 
-require_once( 'MediaWiki_TestCase.php' );
+require_once( 'MediaWiki_Setup.php' );
 
 /** @todo document
  */
 
-class SearchEngineTest extends MediaWiki_TestCase {
+class SearchEngineTest extends MediaWiki_Setup {
 	var $db, $search;
 
 	function insertSearchData() {
