@@ -3112,6 +3112,65 @@ pst title=[[Ns:Somearticle (IGNORED), Context]]
 [[Ns:Article, Context|Article]]
 !! end
 
+!! test
+pre-save transform: context links ("pipe trick") with url escaped page names
+!! options
+pst
+!! input
+[[Hello wo%52ld|]]
+[[Hello wo%52ld (again)|]]
+!! result
+[[Hello wo%52ld|Hello woRld]]
+[[Hello wo%52ld (again)|Hello woRld]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with variables are not pre-empted
+!! options
+pst title=[[Test (page)]]
+!! input
+[[{{{1|}}}|]]
+[[|{{{1|}}}]]
+[[{{subst:PAGENAME}}|]]
+!! result
+[[{{{1|}}}|]]
+[[|{{{1|}}}]]
+[[Test (page)|Test]]
+!! end
+
+!! article
+Template:pipetest
+!! text
+[[{{{1}}}|]]
+!! endarticle
+
+!! article
+Template:testpipe
+!! text
+[[|{{{1}}}]]
+!! endarticle
+
+!! test
+("pipe trick") should work outside PST
+!!options
+title=[[Help:hello (world)]]
+!! input 
+{{pipetest|hi (world)}}
+{{pipetest|hi (world), world}}
+{{pipetest|Help:hi (world), world}}
+{{pipetest|:Help:hi (world), world}}
+{{testpipe|hi}}
+[[{{PAGENAME}}|]]
+!! result
+<p><a href="/index.php?title=Hi_(world)&amp;action=edit&amp;redlink=1" class="new" title="Hi (world) (page does not exist)">hi</a>
+<a href="/index.php?title=Hi_(world),_world&amp;action=edit&amp;redlink=1" class="new" title="Hi (world), world (page does not exist)">hi</a>
+<a href="/index.php?title=Help:Hi_(world),_world&amp;action=edit&amp;redlink=1" class="new" title="Help:Hi (world), world (page does not exist)">hi</a>
+<a href="/index.php?title=Help:Hi_(world),_world&amp;action=edit&amp;redlink=1" class="new" title="Help:Hi (world), world (page does not exist)">hi</a>
+<a href="/index.php?title=Hi_(world)&amp;action=edit&amp;redlink=1" class="new" title="Hi (world) (page does not exist)">hi</a>
+<a href="/index.php?title=Hello_(world)&amp;action=edit&amp;redlink=1" class="new" title="Hello (world) (page does not exist)">Hello</a>
+</p>
+!! end
+
 
 ###
 ### Message transform tests
