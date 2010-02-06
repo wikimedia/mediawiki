@@ -1053,6 +1053,7 @@ $1",
 'userrights-editusergroup'       => '治社',
 'saveusergroups'                 => '定之',
 'userrights-groupsmember'        => '有員：',
+'userrights-groupsmember-auto'   => '固有員：',
 'userrights-groups-help'         => '足下可為者有二︰
 
 *賦其權，此其一也；
@@ -1335,13 +1336,26 @@ $1",
 'img-auth-noread'       => '簿無權讀「$1」也。',
 
 # HTTP errors
-'http-invalid-url'    => '無效之網址：$1',
-'http-invalid-scheme' => '有「$1」之網址無持也',
-'http-request-error'  => '未知之錯令HTTP求時錯之。',
+'http-invalid-url'      => '無效之網址：$1',
+'http-invalid-scheme'   => '有「$1」之網址無持也',
+'http-request-error'    => '未知之錯令HTTP求時錯之。',
+'http-read-error'       => 'HTTP讀錯。',
+'http-timed-out'        => 'HTTP求之過時也。',
+'http-curl-error'       => '取網址現錯之：$1',
+'http-host-unreachable' => '無達網址之。',
 
-'license'           => '權：',
-'license-header'    => '權',
-'license-nopreview' => '（謝草覽）',
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => '無達網址也',
+'upload-curl-error6-text'  => '無達所指之網址也。再試其正，乃正常也。',
+'upload-curl-error28'      => '貢超時也',
+'upload-curl-error28-text' => '網站應之長也。再試其而行之。乃以閑以試之。',
+
+'license'            => '權：',
+'license-header'     => '權',
+'nolicense'          => '無選',
+'license-nopreview'  => '（謝草覽）',
+'upload_source_url'  => '（乃一公共可達之網址）',
+'upload_source_file' => '（本機之件）'
 
 # Special:ListFiles
 'listfiles-summary'     => '此奇頁示檔之全呈也。
