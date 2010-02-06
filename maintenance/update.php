@@ -34,7 +34,7 @@ print "Going to run database updates for ".wfWikiID()."\n";
 print "Depending on the size of your database this may take a while!\n";
 
 if( !isset( $options['quick'] ) ) {
-	print "Abort with control-c in the next five seconds... ";
+	print "Abort with control-c in the next five seconds (and skip this countdown with --quick) ... ";
 	wfCountDown( 5 );
 }
 
