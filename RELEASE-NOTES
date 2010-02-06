@@ -741,6 +741,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21593) Special:UserRights now lists automatic groups membership
 * (bug 22364) Setting $wgUseExternalEditor to false no longer hides the reupload
   link from file pages
+* Fix bug introduced in MediaWiki 1.12: The author field in
+  $wgExtensionCredits is no longer sorted with sort() but rather used
+  as it appears in extensions as was the case before r30117 where it
+  was unintentionally sorted along with other fields.
 
 == API changes in 1.16 ==
 
