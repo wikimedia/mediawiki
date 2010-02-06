@@ -982,8 +982,8 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'search-mwsuggest-enabled'         => 'con sugeriment',
 'search-mwsuggest-disabled'        => 'gnun sugeriment',
 'search-relatedarticle'            => 'Corelà',
-'mwsuggest-disable'                => 'Disabìlita ij sugeriment AJAX',
-'searcheverything-enable'          => 'Serca ant tùit ij namespace',
+'mwsuggest-disable'                => 'Disabilité ij sugeriment AJAX',
+'searcheverything-enable'          => 'Sërché ant tùit jë spassi nominaj',
 'searchrelated'                    => 'corelà',
 'searchall'                        => 'tuti',
 'showingresults'                   => "Ambelessì sota a treuva fin a {{PLURAL:$1|'''1'''|'''$1'''}} arzultà, a parte dal nùmer #'''$2'''.",
@@ -1129,7 +1129,7 @@ Ti it peule ëdcò serne ëd lassé che j'àutri at contato al sël tò utent o 
 'userrights-editusergroup'     => "Modìfiché le partìe dj'utent",
 'saveusergroups'               => "Salva le partìe d'utent",
 'userrights-groupsmember'      => "A l'é andrinta a:",
-'userrights-groupsmember-auto' => 'Mémber amplìssit ëd:',
+'userrights-groupsmember-auto' => 'Mèmber amplìssit ëd:',
 'userrights-groups-help'       => "It peule cambié i grup anté st'utent-sì a l'é an:
 * Na casela signà a veul dì che l'utent a l'é an col grup.
 * Na casela pa signà a veul dì che l'utent a l'é pa an col grup.
@@ -1469,7 +1469,7 @@ Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 'http-invalid-scheme'   => 'J\'adrësse dl\'aragnà con lë schema "$1" a son pa sostnùe',
 'http-request-error'    => "Arcesta Http falìa për n'eror pa conossù.",
 'http-read-error'       => 'Eror ëd letura HTTP.',
-'http-timed-out'        => 'Arcesta HTTP an timeout.',
+'http-timed-out'        => "L'arcesta HTTP a l'ha finì ël temp.",
 'http-curl-error'       => "Eror an sërcand l'URL: $1.",
 'http-host-unreachable' => "L'anliura a l'arspond pa",
 

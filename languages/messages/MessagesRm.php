@@ -349,6 +349,7 @@ Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].'
 'nav-login-createaccount'    => "T'annunziar / registrar",
 'loginprompt'                => "Ti stos avair '''activà ils cookies''' per pudair t'annunziar tar {{SITENAME}}.",
 'userlogin'                  => "T'annunziar / registrar",
+'userloginnocreate'          => "T'annunziar",
 'logout'                     => 'Sortir',
 'userlogout'                 => 'Sortir',
 'notloggedin'                => "Betg s'annunzià",
@@ -500,7 +501,8 @@ Ti garanteschas che ti has scrit tez quai u copià dad ina funtauna ch'è 'publi
 han forsa problems cun editar artitgels da la grondezza 32 kb u pli grond. 
 Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. '''",
 'longpageerror'                    => "'''SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. '''",
-'protectedpagewarning'             => "'''ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. '''",
+'protectedpagewarning'             => "'''ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. '''
+Sco infurmaziun vegn mussada sutvart l'ultima endataziun dal cudesch da log:",
 'templatesused'                    => '{{PLURAL:$1|In model utilisà|Models utilisads}} sin questa pagina:',
 'templatesusedpreview'             => '{{PLURAL:$1|In model utilisà|Models utilisads}} per questa prevista:',
 'templatesusedsection'             => '{{PLURAL:$1|In model|Models}} utilisads en quest chapitel:',
@@ -1113,7 +1115,7 @@ Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan
 # Delete
 'deletepage'            => 'Stizzar la pagina',
 'confirm'               => 'Confermar',
-'historywarning'        => "'''Attenziun:''' L'artitgel che ti vuls stizzar ha ina cronologia cun {{PLURAL:$1|ina versiun|$1 versiuns}}:",
+'historywarning'        => "'''Attenziun:''' L'artitgel che ti vuls stizzar ha ina cronologia cun circa {{PLURAL:$1|ina versiun|$1 versiuns}}:",
 'confirmdeletetext'     => 'Ti es vidlonder da stizzar permanentamain in artitgel u in maletg e tut las versiuns pli veglias ord la datoteca. <br /> 
 Conferma per plaschair che ti ta es conscient da las consequenzas e che ti ageschas tenor las [[{{MediaWiki:Policy-url}}|directivas da {{SITENAME}}]].',
 'actioncomplete'        => "L' acziun è terminada.",
@@ -1534,6 +1536,11 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 'version-extensions'   => 'Extensiuns installadas',
 'version-specialpages' => 'Paginas spezialas',
 
+# Special:FilePath
+'filepath'        => 'Percurs da la datoteca',
+'filepath-page'   => 'Datoteca:',
+'filepath-submit' => 'Percurs',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Num da datoteca:',
 'fileduplicatesearch-submit'   => 'Tschertgar',
@@ -1545,6 +1552,10 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 'specialpages-group-login'     => "T'annunziar / registrar",
 'specialpages-group-pages'     => 'Glistas da paginas',
 'specialpages-group-redirects' => 'Paginas specialas che renvieschan',
+
+# Database error messages
+'dberr-problems' => 'Stgisa!
+Questa pagina ha actualmain difficultads tecnicas.',
 
 # HTML forms
 'htmlform-submit'              => 'Trametter',

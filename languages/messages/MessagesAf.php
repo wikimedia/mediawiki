@@ -1277,25 +1277,26 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'prefs-diffs'                   => 'Verskille',
 
 # User rights
-'userrights'                  => 'Bestuur gebruikersregte',
-'userrights-lookup-user'      => 'Beheer gebruikersgroepe',
-'userrights-user-editname'    => 'Voer gebruikersnaam in:',
-'editusergroup'               => 'Wysig gebruikersgroepe',
-'editinguser'                 => "Besig om gebruikersregte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
-'userrights-editusergroup'    => 'wysig gebruikersgroepe',
-'saveusergroups'              => 'Stoor gebruikersgroepe',
-'userrights-groupsmember'     => 'Lid van:',
-'userrights-groups-help'      => "U kan die groepe waarvan die gebruiker 'n lid is verander. 
+'userrights'                   => 'Bestuur gebruikersregte',
+'userrights-lookup-user'       => 'Beheer gebruikersgroepe',
+'userrights-user-editname'     => 'Voer gebruikersnaam in:',
+'editusergroup'                => 'Wysig gebruikersgroepe',
+'editinguser'                  => "Besig om gebruikersregte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
+'userrights-editusergroup'     => 'wysig gebruikersgroepe',
+'saveusergroups'               => 'Stoor gebruikersgroepe',
+'userrights-groupsmember'      => 'Lid van:',
+'userrights-groupsmember-auto' => 'Implisiete lid van:',
+'userrights-groups-help'       => "U kan die groepe waarvan die gebruiker 'n lid is verander. 
 * 'n Geselekteerde boks beteken dat die gebruiker lid is van die groep.
 * 'n Ongeselekteerde boks beteken dat die gebruiker nie 'n lid van die groep is nie.
 * 'n Ster (*) beteken dat u nie die gebruiker uit 'n groep kan verwyder as hy eers daaraan behoort nie, of vice versa.",
-'userrights-reason'           => 'Rede:',
-'userrights-no-interwiki'     => 'U het nie toestemming om gebruikersregte op ander wikis te verander nie.',
-'userrights-nodatabase'       => 'Databasis $1 bestaan nie of is nie hier beskikbaar nie.',
-'userrights-nologin'          => "U moet [[Special:UserLogin|aanteken]] as 'n administrateur om gebruikersregte te mag toeken.",
-'userrights-notallowed'       => 'U het nie die toestemming om gebruikersregte toe te ken nie.',
-'userrights-changeable-col'   => 'Groepe wat u kan verander',
-'userrights-unchangeable-col' => 'Groepe wat u nie kan verander nie',
+'userrights-reason'            => 'Rede:',
+'userrights-no-interwiki'      => 'U het nie toestemming om gebruikersregte op ander wikis te verander nie.',
+'userrights-nodatabase'        => 'Databasis $1 bestaan nie of is nie hier beskikbaar nie.',
+'userrights-nologin'           => "U moet [[Special:UserLogin|aanteken]] as 'n administrateur om gebruikersregte te mag toeken.",
+'userrights-notallowed'        => 'U het nie die toestemming om gebruikersregte toe te ken nie.',
+'userrights-changeable-col'    => 'Groepe wat u kan verander',
+'userrights-unchangeable-col'  => 'Groepe wat u nie kan verander nie',
 
 # Groups
 'group'               => 'Groep:',
@@ -1618,9 +1619,13 @@ Vir veiligheidsredes is img_auth.php gedeaktiveer.",
 'img-auth-noread'       => 'Gebruiker het nie toegang om "$1" te lees nie.',
 
 # HTTP errors
-'http-invalid-url'    => 'Ongeldige URL: $1',
-'http-invalid-scheme' => 'URL\'s met die "$1"-skema word nie ondersteun nie',
-'http-request-error'  => "'n Onbekende fout het tydens die stuur van die versoek voorgekom.",
+'http-invalid-url'      => 'Ongeldige URL: $1',
+'http-invalid-scheme'   => 'URL\'s met die "$1"-skema word nie ondersteun nie',
+'http-request-error'    => "'n Onbekende fout het tydens die stuur van die versoek voorgekom.",
+'http-read-error'       => 'Fout met die lees van HTTP.',
+'http-timed-out'        => 'HTTP-versoek se tyd is verstreke.',
+'http-curl-error'       => 'Fout met die ophaal van URL: $1',
+'http-host-unreachable' => 'Die URL is nie bereikbaar nie.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon nie die URL bereik nie',

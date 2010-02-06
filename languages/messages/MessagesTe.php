@@ -17,6 +17,7 @@
  * @author Veeven
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author לערי ריינהארט
+ * @author రాకేశ్వర
  * @author వైజాసత్య
  */
 
@@ -333,7 +334,7 @@ $messages = array(
 'history_short'     => 'చరిత్ర',
 'updatedmarker'     => 'నేను కిందటిసారి వచ్చిన తరువాత జరిగిన మార్పులు',
 'info_short'        => 'సమాచారం',
-'printableversion'  => 'ముద్రణా సంచిక',
+'printableversion'  => 'ముద్రించదగ సంచిక',
 'permalink'         => 'శాశ్వత లింకు',
 'print'             => 'ముద్రించు',
 'edit'              => 'మార్చు',

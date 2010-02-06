@@ -671,6 +671,7 @@ $2',
 Проверете изписването или [[Special:UserLogin/signup|създайте нова сметка]].',
 'nosuchusershort'            => 'Не съществува потребител с името „<nowiki>$1</nowiki>“. Проверете изписването.',
 'nouserspecified'            => 'Необходимо е да се посочи потребителско име.',
+'login-userblocked'          => 'Този потребител е блокиран. Не се позволява влизане.',
 'wrongpassword'              => 'Въведената парола е невалидна. Опитайте отново.',
 'wrongpasswordempty'         => 'Въведената парола е празна. Опитайте отново.',
 'passwordtooshort'           => 'Необходимо е паролата да съдържа поне {{PLURAL:$1|1 знак|$1 знака}}.',
@@ -1613,7 +1614,9 @@ $1",
 'img-auth-noread'       => 'Потребителят няма достъп за четене на „$1“.',
 
 # HTTP errors
-'http-invalid-url' => 'Невалиден адрес: $1',
+'http-invalid-url'   => 'Невалиден адрес: $1',
+'http-request-error' => 'HTTP заявката пропадна поради неизвестна грешка.',
+'http-read-error'    => 'HTTP грешка при четене.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не е възможно достигането на указания URL адрес',

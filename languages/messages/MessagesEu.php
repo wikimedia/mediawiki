@@ -873,6 +873,7 @@ Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{ful
 Administratzaile bezala ikus dezakezu; xehetasun gehiagorako [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ezabapen erregistrora joan].",
 'rev-deleted-no-diff'         => "Ezin duzu ezberdintasun hau ikusi, berrikuspenetako bat '''ezabatua''' izan delako.
 Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] aurki ditzakezu.",
+'rev-suppressed-no-diff'      => "Ezin duzu ezberdintasunik ikusi berrikuspenen bat '''ezabatua''' izan delako.",
 'rev-delundel'                => 'erakutsi/ezkutatu',
 'rev-showdeleted'             => 'erakutsi',
 'revisiondelete'              => 'Berrikuspenak ezabatu/leheneratu',
@@ -1455,6 +1456,11 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'img-auth-nofile'       => 'Ez dago "$1" fitxategirik.',
 'img-auth-streaming'    => '"$1" sekuentziatzen.',
 'img-auth-noread'       => 'Erabiltzaileak ez du "$1" irakurtzeko sarbiderik.',
+
+# HTTP errors
+'http-invalid-url'      => 'URL baliogabea: $1',
+'http-read-error'       => 'HTTP irakurketa-akatsa.',
+'http-host-unreachable' => 'Ezin da URL-a atzeman.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ezin izan da URLa eskuratu',
