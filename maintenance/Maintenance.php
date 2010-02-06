@@ -356,7 +356,7 @@ abstract class Maintenance {
 	 * Do some sanity checking and basic setup
 	 */
 	public function setup() {
-		global $IP, $wgCommandLineMode, $wgUseNormalUser, $wgRequestTime;
+		global $IP, $wgCommandLineMode, $wgRequestTime;
 
 		# Abort if called from a web server
 		if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
@@ -405,10 +405,6 @@ abstract class Maintenance {
 		$wgCommandLineMode = true;
 		# Turn off output buffering if it's on
 		@ob_end_flush();
-
-		if ( !isset( $wgUseNormalUser ) ) {
-			$wgUseNormalUser = false;
-		}
 
 		$this->loadParamsAndArgs();
 		$this->maybeHelp();
@@ -603,7 +599,7 @@ abstract class Maintenance {
 	 * Handle some last-minute setup here.
 	 */
 	public function finalSetup() {
-		global $wgCommandLineMode, $wgUseNormalUser, $wgShowSQLErrors;
+		global $wgCommandLineMode, $wgShowSQLErrors;
 		global $wgTitle, $wgProfiling, $IP, $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
@@ -620,7 +616,7 @@ abstract class Maintenance {
 		if( $this->mDbPass )
 			$wgDBadminpassword = $this->mDbPass;
 
-		if ( empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
+		if ( $this->getDbType() == self::DB_ADMIN && isset( $wgDBadminuser ) ) {
 			$wgDBuser = $wgDBadminuser;
 			$wgDBpassword = $wgDBadminpassword;
 
