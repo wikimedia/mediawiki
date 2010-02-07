@@ -2,9 +2,9 @@
 
 require_once( 'MediaWiki_Setup.php' );
 
-/** @todo document
+/**
+ * @group Stub
  */
-
 class SearchEngineTest extends MediaWiki_Setup {
 	var $db, $search;
 

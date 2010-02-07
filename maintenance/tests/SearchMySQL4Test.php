@@ -16,7 +16,7 @@ class SearchMySQL4Test extends SearchEngineTest {
 
 	function tearDown() {
 		if( !is_null( $this->db ) ) {
-			$this->db->close();
+			wfGetLB()->closeConnecton( $this->db );
 		}
 		unset( $this->db );
 		unset( $this->search );
