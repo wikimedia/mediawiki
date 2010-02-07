@@ -1434,9 +1434,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization бетге къара.'
 'img-auth-noread'       => 'Къоушулуучуну «$1» файлыны окъургъа эркинлиги джокъду.',
 
 # HTTP errors
-'http-invalid-url'    => 'Терс URL: $1',
-'http-invalid-scheme' => '«$1» схемалы адресле тутулмайла',
-'http-request-error'  => 'Соруу ийгенни халаты.',
+'http-invalid-url'      => 'Терс URL: $1',
+'http-invalid-scheme'   => '«$1» схемалы адресле тутулмайла',
+'http-request-error'    => 'Соруу ийгенни халаты.',
+'http-read-error'       => 'HTTP окъууну халаты.',
+'http-timed-out'        => 'HTTP сорууну заманы ётдю.',
+'http-curl-error'       => 'Бу URL-ны элтиуде халат: $1',
+'http-host-unreachable' => 'URL-ге джетелмеди',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-ге джетилелимеди',
