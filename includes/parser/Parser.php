@@ -15,7 +15,7 @@
  * (which in turn the browser understands, and can display).
  *
  * <pre>
- * There are five main entry points into the Parser class:
+ * There are six main entry points into the Parser class:
  * parse()
  *   produces HTML output
  * preSaveTransform().
@@ -26,6 +26,8 @@
  *   Cleans a signature before saving it to preferences
  * extractSections()
  *   Extracts sections from an article for section editing
+ * getTransclusionText()
+ *   Extracts the text of a template with only <includeonly>, etc., parsed
  *
  * Globals used:
  *    objects:   $wgLang, $wgContLang
@@ -82,6 +84,7 @@ class Parser
 	const OT_WIKI = 2;
 	const OT_PREPROCESS = 3;
 	const OT_MSG = 3;
+	const OT_INCLUDES = 4;
 
 	// Marker Suffix needs to be accessible staticly.
 	const MARKER_SUFFIX = "-QINU\x7f";
@@ -500,7 +503,13 @@ class Parser
 	 *
 	 * This is not called by the parser itself, see braceSubstitution for its transclusion. 
 	 */
-	public function getTransclusionText( $title ) {
+	public function getTransclusionText( $title, $options ) {
+		// Must initialize first
+		$this->clearState();
+		$this->setOutputType( self::OT_INCLUDES );
+		$this->mOptions = $options;
+		$this->setTitle( new FakeTitle ); 
+
 		list( $text, $title ) = $this->getTemplateDom( $title );
 		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
 		return $this->getPreprocessor()->newFrame()->expand( $text, $flags );

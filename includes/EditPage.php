@@ -227,13 +227,13 @@ class EditPage {
 	 * @return string The contents of the page.
 	 */
 	protected function getPreloadedText( $preload ) {
-		global $wgParser;
+		global $wgParser, $wgUser;
 		if ( !empty( $this->mPreloadText ) ) {
 			return $this->mPreloadText;
 		} else {
 			$preloadTitle = Title::newFromText( $preload );
 			if ( isset( $preloadTitle ) && $preloadTitle->userCanRead() ) {
-				return $wgParser->getTransclusionText( $preloadTitle );
+				return $wgParser->getTransclusionText( $preloadTitle, ParserOptions::newFromUser( $wgUser ) );
 			}
 		}
 	}
