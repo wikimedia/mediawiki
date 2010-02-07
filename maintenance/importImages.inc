@@ -91,22 +91,22 @@ function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 
 # FIXME: Access the api in a saner way and performing just one query (preferably batching files too).
 function getFileCommentFromSourceWiki($wiki_host, $file) {
-    $url = $wiki_host . '/api.php?action=query&format=xml&titles=File:' . $file . '&prop=imageinfo&&iiprop=comment';
+    $url = $wiki_host . '/api.php?action=query&format=xml&titles=File:' . rawurlencode( $file ) . '&prop=imageinfo&&iiprop=comment';
     $body = file_get_contents($url);
     if (preg_match('#<ii comment="([^"]*)" />#', $body, $matches) == 0) {
         return false;
     }
 
-    return $matches[1];
+    return html_entity_decode( $matches[1] );
 }
 
 function getFileUserFromSourceWiki($wiki_host, $file) {
-    $url = $wiki_host . '/api.php?action=query&format=xml&titles=File:' . $file . '&prop=imageinfo&&iiprop=user';
+    $url = $wiki_host . '/api.php?action=query&format=xml&titles=File:' . rawurlencode( $file ) . '&prop=imageinfo&&iiprop=user';
     $body = file_get_contents($url);
     if (preg_match('#<ii user="([^"]*)" />#', $body, $matches) == 0) {
         return false;
     }
 
-    return $matches[1];
+    return html_entity_decode( $matches[1] );
 }
 
