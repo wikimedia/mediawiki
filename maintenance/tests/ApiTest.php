@@ -1,8 +1,8 @@
 <?php
 
-require_once( "MediaWikiAPI_Setup.php" );
+require_once( "ApiSetup.php" );
 
-class MediaWikiAPITest extends MediaWikiAPI_Setup {
+class ApiTest extends ApiSetup {
 
 	function setup() {
 		parent::setup();
@@ -62,12 +62,12 @@ class MediaWikiAPITest extends MediaWikiAPI_Setup {
 
 		$req = HttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 									array( "method" => "POST",
-										  "postData" => array(
+										   "postData" => array(
 											  "lgname" => self::$userName,
 											  "lgpassword" => self::$passWord ) ) );
 		$req->execute();
 		$cj = $req->getCookieJar();
-
+		$this->markTestIncomplete("Need to make sure cookie/domain handling is correct");
 		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$userName . '; .*Token=/',
 							 $cj->serializeToHttpRequest( $wgScriptPath, $wgServerName ) );
 	}

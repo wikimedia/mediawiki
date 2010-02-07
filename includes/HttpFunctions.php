@@ -386,10 +386,10 @@ class HttpRequest {
 	 * Parse the cookies in the response headers and store them in the cookie jar.
 	 */
 	protected function parseCookies() {
+		if( !$this->cookieJar ) {
+			$this->cookieJar = new CookieJar;
+		}
 		if( isset( $this->respHeaders['set-cookie'] ) ) {
-			if( !$this->cookieJar ) {
-				$this->cookieJar = new CookieJar;
-			}
 			$url = parse_url( $this->getFinalUrl() );
 			foreach( $this->respHeaders['set-cookie'] as $cookie ) {
 				$this->cookieJar->parseCookieResponseHeader( $cookie, $url['host'] );
@@ -453,10 +453,23 @@ class Cookie {
 			$this->path = "/";
 		}
 		if( isset( $attr['domain'] ) ) {
-			$this->domain = $attr['domain'];
+			$this->domain = self::parseCookieDomain( $attr['domain'] );
 		} else {
 			throw new MWException("You must specify a domain.");
 		}
+	}
+
+	public static function parseCookieDomain( $domain ) {
+		/* If domain is given, it has to contain at least two dots */
+		if ( strrpos( $domain, '.' ) === false
+			 || strrpos( $domain, '.' ) === strpos( $domain, '.' ) ) {
+			return;
+		}
+		if ( substr( $domain, 0, 1 ) === '.' ) {
+			$domain = substr( $domain, 1 );
+		}
+
+		return $domain;
 	}
 
 	/**
@@ -560,14 +573,6 @@ class CookieJar {
 			if( !isset( $attr['domain'] ) ) {
 				$attr['domain'] = $domain;
 			} else {
-				/* If domain is given, it has to contain at least two dots */
-				if ( strrpos( $attr['domain'], '.' ) === false
-					 || strrpos( $attr['domain'], '.' ) === strpos( $attr['domain'], '.' ) ) {
-					return;
-				}
-				if ( substr( $attr['domain'], 0, 1 ) === '.' ) {
-					$attr['domain'] = substr( $attr['domain'], 1 );
-				}
 				if ( strlen( $attr['domain'] ) < strlen( $domain )
 					 && substr_compare( $domain, $attr['domain'], -strlen( $attr['domain'] ),
 										strlen( $attr['domain'] ), TRUE ) != 0 ) {
