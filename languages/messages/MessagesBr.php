@@ -1508,8 +1508,10 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'img-auth-noread'       => 'N\'eo ket aotreet an implijer da lenn "$1"',
 
 # HTTP errors
-'http-invalid-url'   => 'URL direizh : $1',
-'http-request-error' => "Ur fazi dianavezet 'zo bet pa veze kaset ar reked.",
+'http-invalid-url'      => 'URL direizh : $1',
+'http-request-error'    => "Ur fazi dianavezet 'zo bet pa veze kaset ar reked.",
+'http-read-error'       => 'Fazi lenn HTTP.',
+'http-host-unreachable' => "N'eus ket bet gallet tizhout an URL.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "N'eus ket bet gallet tizhout an URL",
@@ -1932,7 +1934,11 @@ Gallout a rit nevesaat doare ar pennadoù evezhiet ganeoc\'h en ho rollad evezhi
             Ho reizhiad kemenn {{SITENAME}} muiañ karet
 
 --
-A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh {{fullurl:{{#special:Watchlist}}/edit}}
+A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh 
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+A-benn dilemel ar bajenn eus ho rollad evezhiañ, sellit ouzh 
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Evezhiadennoù ha skoazell pelloc\'h :
 {{fullurl:{{MediaWiki:Helppage}}}}',

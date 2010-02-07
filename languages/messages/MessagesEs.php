@@ -1649,7 +1649,7 @@ Para optima seguridad, img_auth.php está deshabilitado.',
 'http-request-error'    => 'solicitu de HTTP fallida debido a un error desconocido.',
 'http-read-error'       => 'Error de lectura HTTP.',
 'http-timed-out'        => 'La solicitud HTTP ha expirado.',
-'http-curl-error'       => 'Error al recuperar URL: $ 1',
+'http-curl-error'       => 'Error al recuperar el URL: $1',
 'http-host-unreachable' => 'No fue posible acceder a la URL.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -1471,6 +1471,8 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 'imagelinks'                => "Fampiasan'io rakitra io",
 'linkstoimage'              => "Ireto avy no {{PLURAL:$1|pejy mirohy|pejy mirohy}} ($1) amin'io rakitra io:",
 'nolinkstoimage'            => "Tsy misy pejy mirohy amin'ity sary ity.",
+'morelinkstoimage'          => "Hijery [[Special:WhatLinksHere/$1|rohy fanampiny]] makany amin'io rakitra io.",
+'redirectstofile'           => "Ny rakitra fihodinana manaraka dia mitondra any amin'ity rakitra ity {{PLURAL:$1||}}:",
 'sharedupload'              => "Mety ho rakitra itambarana amin'ny tetikasa hafa ny rakitra $1.",
 'uploadnewversion-linktext' => "Andefa version vaovao n'ity rakitra ity",
 'shared-repo-from'          => "avy amin'ny $1",
@@ -1493,6 +1495,7 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 'filedelete-success'          => "voafafa '''$1'''.",
 'filedelete-success-old'      => "Voafafa ny santiônan'ny '''[[Media:$1|$1]]''' tamin'ny $2 tamin'ny $3.",
 'filedelete-nofile'           => "Tsy misy '''$1'''.",
+'filedelete-nofile-old'       => "Tsy nisy santiôna voatahirin'i '''$1''' miaraka amin'ny mahasamihafa naseho.",
 'filedelete-otherreason'      => 'Antony fanampiny :',
 'filedelete-reason-otherlist' => 'Antony hafa',
 'filedelete-edit-reasonlist'  => 'Hanova ny antom-pamafàna',
@@ -1550,6 +1553,7 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 'brokenredirects-edit'   => 'ovao',
 'brokenredirects-delete' => 'fafao',
 
+'withoutinterwiki'        => 'Pejy tsy manan-drohi-piteny',
 'withoutinterwiki-legend' => 'Tovona',
 'withoutinterwiki-submit' => 'Aseho',
 
@@ -1600,11 +1604,11 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 'listusers-creationsort'  => "Afantina amin'ny daty fanokafana",
 'usereditcount'           => 'fanovana $1 {{PLURAL:}}',
 'newpages'                => 'pejy Vaovao',
+'newpages-username'       => 'Solonanarana:',
 'ancientpages'            => 'Ireo pejy tranainy indrindra',
 'move'                    => 'Afindrao',
 'movethispage'            => 'Afindrao ity pejy ity',
-'unusedimagestext'        => "
-<p>Mariho tsara aloha fa mety misy sehatra hafa mampiasa ireto sary ireto
+'unusedimagestext'        => "<p>Mariho tsara aloha fa mety misy sehatra hafa mampiasa ireto sary ireto
 ka mety ho antony tokony hamelana azy eto izany na dia tsy miasa ato anatin'ity
 wiki ity aza izy.</p>",
 'unusedcategoriestext'    => 'Ireto sokajy manaraka ireto dia noforonina kanefa tsy misy pejy na dia iray aza mampiasa azy akory.',
@@ -1642,11 +1646,22 @@ mampihena ny tantaran'asa miseho eto.",
 'allpagesprefix'    => "Asehoy ny pejy miantomboka amin'ny:",
 
 # Special:Categories
-'categories'         => 'Sokajy',
-'categoriespagetext' => "Ireto no sokajy misy eto amin'ity wiki ity.",
+'categories'                  => 'Sokajy',
+'categoriespagetext'          => "Ireto no sokajy misy eto amin'ity wiki ity.",
+'special-categories-sort-abc' => 'famantinana ara-abidy',
+
+# Special:DeletedContributions
+'deletedcontributions'       => "Fandraisan'anjara voafafa",
+'deletedcontributions-title' => "fandraisan'anjara voafafa",
 
 # Special:LinkSearch
-'linksearch' => 'Rohy ivelany',
+'linksearch'    => 'Rohy ivelany',
+'linksearch-ns' => 'Anaran-tsehatra :',
+'linksearch-ok' => 'Fikarohana',
+
+# Special:ListUsers
+'listusers-submit'   => 'Aseho',
+'listusers-noresult' => 'Tsy nahitana mpikambana.',
 
 # Special:Log/newusers
 'newuserlogpage'              => "Tantaran'asa ny fampidiran'ny mpikambana vaovao",

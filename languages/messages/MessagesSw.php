@@ -704,8 +704,9 @@ Tafadhali jumlisha maelezo yote ya juu kwenye kila ulizo utakalolifanya.',
 'whitelistedittext'                => 'Inabidi $1 ili uweze kuhariri kurasa.',
 'confirmedittext'                  => 'Lazima uthibitishe anwani ya barua pepe yako kabla ya kuhariri kurasa.
 Tafadhali thibitisha anwani ya barua pepe yako kupitia [[Special:Preferences|mapendekezo yako ya mtumiaji]].',
-'nosuchsectiontitle'               => 'Fungu hili hamna',
-'nosuchsectiontext'                => 'Umejaribu kuhariri sehemu ambayo haipo.',
+'nosuchsectiontitle'               => 'Fungu hili halipatikani',
+'nosuchsectiontext'                => 'Umejaribu kuhariri sehemu ambayo haipo.
+Labda ilihamishwa au ilifutwa endapo unatazama ukurasa.',
 'loginreqtitle'                    => 'Unatakiwa kuingia au kujisajili',
 'loginreqlink'                     => 'uingie',
 'loginreqpagetext'                 => 'Inabidi $1 ili uweze kutazama kurasa zingine.',
@@ -784,10 +785,13 @@ Hayawezi kuhifadhiwa.",
 Unaweza kukata-na-kabandika maandishi yako kwenye faili na kulihifadhi kwa ajili ya baadaye.
 
 Msimamizi aliyefunga ametoa maelezo haya: $1",
-'protectedpagewarning'             => "'''ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.'''",
-'semiprotectedpagewarning'         => "'''Ilani:''' Ukurasa huu umefungwa kwa hiyo watumiaji waliojisajili tu ndiyo wanaweza kuuhariri.",
+'protectedpagewarning'             => "'''ILANI: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri.'''
+Rejea kumbukumbu ya mwisho inayoandikwa chini:",
+'semiprotectedpagewarning'         => "'''Ilani:''' Ukurasa huu umefungwa kwa hiyo watumiaji waliojisajili tu ndiyo wanaweza kuuhariri.
+Rejea kumbukumbu ya mwisho inayoandikwa chini:",
 'cascadeprotectedwarning'          => "'''Ilani:''' Ukurasa huu umefungwa kwa hiyo watumia wenye haki za usimamizi tu ndiyo wanaweza kuuhariri, kwa sababu umejumlishwa kwenye kurasa zingine zenye {{PLURAL:$1|page|kulindwa}}:",
-'titleprotectedwarning'            => "'''Ilani: Ukurasa umefungwa kwa hiyo [[Special:ListGroupRights|haki maalumu]] zinahitajika ili kuanzisha ukurasa huu.'''",
+'titleprotectedwarning'            => "'''Ilani: Ukurasa umefungwa, kwa hiyo [[Special:ListGroupRights|haki maalumu]] zinahitajika ili kuuanzisha ukurasa huu.'''
+Rejea kumbukumbu ya mwisho inayoandikwa chini:",
 'templatesused'                    => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} kwenye ukurasa huu:',
 'templatesusedpreview'             => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} katika mandhari haya:',
 'templatesusedsection'             => '{{PLURAL:$1|Kigezo kilichotumika|Vigezo vilivyotumika}} katika sehemu hii:',
@@ -837,6 +841,7 @@ Ukurasa wa jina hilo unapatikana tayari.',
 'histlegend'             => "Chagua tofauti: tia alama katika vitufe redio kulinganisha matoleo, na bonyeza \"enter\" au kitufe hapo chini.<br />
 Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = tofauti na toleo lililotangulia, '''({{int:minoreditletter}})''' = badiliko dogo.",
 'history-fieldset-title' => 'Fungua historia',
+'history-show-deleted'   => 'Zilizofutwa tu',
 'histfirst'              => 'Mwanzoni',
 'histlast'               => 'Mwishoni',
 'historysize'            => '({{PLURAL:$1|baiti}}) $1',
@@ -858,6 +863,7 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'revdelete-show-file-submit' => 'Ndiyo',
 'revdelete-radio-same'       => '(isibadilishwe)',
 'revdelete-radio-set'        => 'Ndiyo',
+'revdelete-radio-unset'      => 'Siyo',
 'revdelete-log'              => 'Sababu ya kufuta',
 'revdel-restore'             => 'badilisha mwonekano',
 'pagehist'                   => 'Historia ya ukurasa',
@@ -1065,12 +1071,14 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'right-delete'        => 'Kufuta kurasa',
 
 # User rights log
-'rightslog' => 'Kumbukumbu ya vyeo vya watumiaji',
+'rightslog'  => 'Kumbukumbu ya vyeo vya watumiaji',
+'rightsnone' => '(hana)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'       => 'kusoma ukurasa huu',
 'action-edit'       => 'kuhariri ukurasa huu',
 'action-createpage' => 'kuanzisha kurasa',
+'action-minoredit'  => 'kutia alama ya badiliko dogo',
 'action-move'       => 'kusogeza ukurasa huu',
 'action-movefile'   => 'kusogeza faili hili',
 'action-delete'     => 'kufuta ukurasa huu',
@@ -1083,6 +1091,7 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'recentchangestext'              => 'Orodha ya mabadilisho yaliyofanywa katika {{SITENAME}} siku zilizopita.',
 'recentchanges-feed-description' => 'Tumia tawanyiko hili kufuatilia mabadiliko yote ya hivi karibuni katika Wiki.',
 'recentchanges-legend-newpage'   => '$1 - ukurasa upya',
+'recentchanges-label-minor'      => 'Hili ni badiliko dogo',
 'rcnote'                         => "Yanayofuata ni {{PLURAL:$1|badiliko '''1'''|mabadiliko '''$1''' ya mwisho}} kutoka katika {{PLURAL:$2|siku iliyopita|siku '''$2''' zilizopita}}, hadi $5, $4.",
 'rcnotefrom'                     => "Hapo chini yaonekana mabadiliko tangu '''$2''' (tunaonyesha hadi '''$1''').",
 'rclistfrom'                     => 'Onyesha mabadiliko mapya kuanzia $1',
@@ -1147,14 +1156,18 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'upload-description'  => 'Elezo la faili',
 'watchthisupload'     => 'Kufuatilia faili hili',
 
+'upload-file-error'   => 'Hitilafu ya ndani',
+'upload-misc-error'   => 'Hitilafu ya kupakia isiyojulikana',
 'upload-unknown-size' => 'Ukubwa haujulikani',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'KISARA (URL) haikupatikana',
 
-'license'        => 'Hatimiliki:',
-'license-header' => 'Hatimiliki',
-'nolicense'      => 'Haikuchaguliwa',
+'license'            => 'Hatimiliki:',
+'license-header'     => 'Hatimiliki',
+'nolicense'          => 'Haikuchaguliwa',
+'license-nopreview'  => '(Hakikisho hakipatikani)',
+'upload_source_file' => ' (faili kwenye kompyuta yako)',
 
 # Special:ListFiles
 'imgfile'               => 'faili',
@@ -1404,42 +1417,50 @@ $PAGEEDITOR $CHANGEDORCREATED ukurasa wa $PAGETITLE kwenye {{SITENAME}} saa $PAG
 
 $NEWPAGE
 
-Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
+Muhtasari wa mhariri: $PAGESUMMARY $PAGEMINOREDIT
 
-Contact the editor:
-mail: $PAGEEDITOR_EMAIL
+Uwasiliane na mhariri kwa njia hizi:
+barua pepe: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further changes unless you visit this page.
-You could also reset the notification flags for all your watched pages on your watchlist.
+Hutapata taarifa za mabadiliko mengine yatakayotokea kwenye ukurasa huu hadi utakapotazama ukurasa. 
+Au unaweza kuweka upya maombi ya kupewa taarifa kwa ajili ya kurasa zote zilizopo kwenye orodha yako ya maangalizi.
 
-             Your friendly {{SITENAME}} notification system
+             Kutoka kwa {{SITENAME}}
 
 --
-To change your watchlist settings, visit
+Ukitaka kubadilisha mapendekezo yako yanayohusika orodha ya maangalizi yako, nenda
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Feedback and further assistance:
+Ukitaka kutoa ukurasa huu kwenye orodha ya maangalizi yako, nenda
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+Kutoa maoni yako au kupata msaada mwingine:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'            => 'Futa ukurasa',
-'delete-legend'         => 'Futa',
-'historywarning'        => "'''Ilani:''' Ukurasa unaotaka kufuta una historia ya {{PLURAL:$1|sahihisho|masahihisho}} $1:",
-'confirmdeletetext'     => 'Wewe unategemea kufuta ukurasa pamoja na historia yake yote.
+'deletepage'             => 'Futa ukurasa',
+'excontent'              => "iliyokuwemo: '$1'",
+'exblank'                => 'ukurasa ulikuwa tupu',
+'delete-confirm'         => 'Futa "$1"',
+'delete-legend'          => 'Futa',
+'historywarning'         => "'''Ilani:''' Ukurasa unaotaka kufuta una historia ya {{PLURAL:$1|sahihisho|masahihisho}} $1 hivi:",
+'confirmdeletetext'      => 'Wewe unategemea kufuta ukurasa pamoja na historia yake yote.
 Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo yake, na kwamba unafuata [[{{MediaWiki:Policy-url}}|sera]].',
-'actioncomplete'        => 'Kitendo kimekwisha',
-'deletedtext'           => '"<nowiki>$1</nowiki>" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
-'deletedarticle'        => 'alifuta "[[$1]]"',
-'dellogpage'            => 'Kumbukumbu ya ufutaji',
-'reverted'              => 'Ilirejeshwa hadi sahihisho la zamani',
-'deletecomment'         => 'Sababu ya kufuta',
-'deleteotherreason'     => 'Sababu nyingine:',
-'deletereasonotherlist' => 'Sababu nyingine',
-'deletereason-dropdown' => '*Sababu za kawaida za ufutaji
+'actioncomplete'         => 'Kitendo kimekwisha',
+'deletedtext'            => '"<nowiki>$1</nowiki>" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
+'deletedarticle'         => 'alifuta "[[$1]]"',
+'dellogpage'             => 'Kumbukumbu ya ufutaji',
+'deletionlog'            => 'kumbukumbu za kufuta',
+'reverted'               => 'Ilirejeshwa hadi sahihisho la zamani',
+'deletecomment'          => 'Sababu ya kufuta',
+'deleteotherreason'      => 'Sababu nyingine:',
+'deletereasonotherlist'  => 'Sababu nyingine',
+'deletereason-dropdown'  => '*Sababu za kawaida za ufutaji
 ** Ombi la mmiliki
 ** Ukiukaji wa hakimiliki
 ** Uharabu',
+'delete-edit-reasonlist' => 'Uhariri sababu za kufuta',
 
 # Rollback
 'rollback'         => 'Rejesha masahihisho',
@@ -1471,6 +1492,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-level-sysop'         => 'Wakabidhi tu',
 'protect-summary-cascade'     => 'ulindaji kwa kurasa chini yake',
 'protect-expiring'            => 'itakwisha $1 (UTC)',
+'protect-expiry-indefinite'   => 'bila mwisho',
 'protect-cascade'             => 'Linda kurasa zinazozingatiwa chini ya ukurasa huu',
 'protect-cantedit'            => 'Huwezi kubadilisha kiwango cha ulindaji wa ukurasa huu, kwa sababu huruhusiwi kuuhariri.',
 'protect-othertime'           => 'Kipindi kingine:',
@@ -1568,6 +1590,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'ipbwatchuser'             => 'Fuatilia kurasa za mtumiaji na majadiliano ya mtumiaji huyu.',
 'ipballowusertalk'         => 'Ruhusu mtumiaji huyu kuhariri ukurasa wake mwenyewe wa majadiliano wakati kazuiliwa',
 'ipblocklist'              => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
+'ipblocklist-submit'       => 'Tafuta',
 'emailblock'               => 'barua pepe imezuiliwa',
 'blocklink'                => 'zuia',
 'unblocklink'              => 'acha kuzuia',
@@ -1635,6 +1658,10 @@ Chagua jina lengine.',
 # Thumbnails
 'thumbnail-more'  => 'Kuza',
 'thumbnail_error' => 'Hitilafu kutengeneza picha ndogo: $1',
+
+# Special:Import
+'import-upload-filename' => 'Jina la faili:',
+'import-comment'         => 'Maelezo:',
 
 # Import log
 'importlogpage' => 'Kumbukumbu ya kuingizwa',
@@ -1848,7 +1875,8 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'specialpages-group-pages'   => 'Orodha za kurasa',
 
 # Special:BlankPage
-'blankpage' => 'Ukurasa tupu',
+'blankpage'              => 'Ukurasa tupu',
+'intentionallyblankpage' => 'Ukurasa huu umeachwa tupu kwa makusudi.',
 
 # Special:Tags
 'tag-filter'        => 'Chujio cha [[Special:Tags|tagi]]:',
@@ -1857,7 +1885,11 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'tags-edit'         => 'hariri',
 
 # Database error messages
-'dberr-header' => 'Wiki imekuta tatizo',
+'dberr-header'   => 'Wiki imekuta tatizo',
+'dberr-problems' => 'Kumradhi!
+Tovuti hii inapata matatatizo wakati huu.',
+'dberr-again'    => 'Jaribu tena baada ya kusubiri dakika chache.',
+'dberr-info'     => '(Hamna mawasiliano na seva ya hifadhidata: $1)',
 
 # HTML forms
 'htmlform-reset'               => 'Tengua mabadiliko',

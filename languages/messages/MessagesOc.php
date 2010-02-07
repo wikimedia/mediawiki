@@ -1694,11 +1694,13 @@ Per una seguretat optimala, img_auth.php es desactivat.",
 'img-auth-noread'       => "L'utilizaire a pas lo drech en lectura sus « $1 ».",
 
 # HTTP errors
-'http-invalid-url'    => 'URL incorrècta : $1',
-'http-invalid-scheme' => 'Las URLs amb l"esquèma « $1 » son pas suportadas',
-'http-request-error'  => 'Error desconeguda al moment del mandadís de la requèsta.',
-'http-read-error'     => 'HTTP Error de lectura.',
-'http-timed-out'      => 'HTTP request timed out.',
+'http-invalid-url'      => 'URL incorrècta : $1',
+'http-invalid-scheme'   => 'Las URLs amb l"esquèma « $1 » son pas suportadas',
+'http-request-error'    => 'Error desconeguda al moment del mandadís de la requèsta.',
+'http-read-error'       => 'HTTP Error de lectura.',
+'http-timed-out'        => 'HTTP request timed out.',
+'http-curl-error'       => "Error al moment de la recuperacion de l'URL : $1",
+'http-host-unreachable' => "Impossible d'aténher l'URL",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Pòt pas aténher l’URL',
@@ -2098,25 +2100,29 @@ Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associ
 'enotif_lastvisited'           => 'Consultatz $1 per totes los cambiaments dempuèi vòstra darrièra visita.',
 'enotif_lastdiff'              => 'Consultatz $1 per veire aquesta modificacion.',
 'enotif_anon_editor'           => 'utilizaire anonim $1',
-'enotif_body'                  => 'Car $WATCHINGUSERNAME,
+'enotif_body'                  => 'Car(a) $WATCHINGUSERNAME,
 
-La pagina « $PAGETITLE » de {{SITENAME}} es estada $CHANGEDORCREATED lo $PAGEEDITDATE per « $PAGEEDITOR », vejatz $PAGETITLE_URL per la version actuala.
+La pagina « $PAGETITLE » de {{SITENAME}} es estada $CHANGEDORCREATED lo $PAGEEDITDATE per « $PAGEEDITOR », visitatz $PAGETITLE_URL per visualizar la version actuala.
 
 $NEWPAGE
 
 Resumit del contributor : $PAGESUMMARY $PAGEMINOREDIT
 
 Contactatz aqueste contributor :
-corrièr electronic : $PAGEEDITOR_EMAIL
+corrièl : $PAGEEDITOR_EMAIL
 wiki : $PAGEEDITOR_WIKI
 
-I aurà pas de notificacions mai en cas de cambiaments ulteriors, levat se visitatz aquesta pagina.
-Tanben podètz reïnicializar las bandièras de notificacion per totas las paginas de vòstra lista de seguiment.
+I aurà pas d’autras notificacions en cas de cambiaments ulteriors, levat se visitatz aquela pagina.
+Podètz tanben reïnicializar las bandièras de notificacion per totas las paginas de vòstra lista de seguiment.
 
              Vòstre sistèma de notificacion de {{SITENAME}}
+
 --
 Per modificar los paramètres de vòstra lista de seguiment, visitatz
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Per suprimir la pagina de vòstra lista de seguiment, visitatz
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Retorn e assisténcia :
 {{fullurl:{{MediaWiki:Helppage}}}}',

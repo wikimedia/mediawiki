@@ -1406,24 +1406,25 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'prefs-diffs'                   => 'Versionsvergleich',
 
 # User rights
-'userrights'                  => 'Benutzerrechteverwaltung',
-'userrights-lookup-user'      => 'Gruppenzugehörigkeit verwalten',
-'userrights-user-editname'    => 'Benutzername:',
-'editusergroup'               => 'Benutzerrechte bearbeiten',
-'editinguser'                 => "Ändere Benutzerrechte von '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
-'saveusergroups'              => 'Gruppenzugehörigkeit ändern',
-'userrights-groupsmember'     => 'Mitglied von:',
-'userrights-groups-help'      => 'Du kannst die Gruppenzugehörigkeit für diesen Benutzer ändern:
+'userrights'                   => 'Benutzerrechteverwaltung',
+'userrights-lookup-user'       => 'Gruppenzugehörigkeit verwalten',
+'userrights-user-editname'     => 'Benutzername:',
+'editusergroup'                => 'Benutzerrechte bearbeiten',
+'editinguser'                  => "Ändere Benutzerrechte von '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
+'saveusergroups'               => 'Gruppenzugehörigkeit ändern',
+'userrights-groupsmember'      => 'Mitglied von:',
+'userrights-groupsmember-auto' => 'Einschließlich Mitglied von:',
+'userrights-groups-help'       => 'Du kannst die Gruppenzugehörigkeit für diesen Benutzer ändern:
 * Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist
 * Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
-'userrights-reason'           => 'Grund:',
-'userrights-no-interwiki'     => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
-'userrights-nodatabase'       => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
-'userrights-nologin'          => 'Du musst dich mit einem Administrator-Benutzerkonto [[Special:UserLogin|anmelden]], um Benutzerrechte zu ändern.',
-'userrights-notallowed'       => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
-'userrights-changeable-col'   => 'Gruppenzugehörigkeit, die du ändern kannst',
-'userrights-unchangeable-col' => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
+'userrights-reason'            => 'Grund:',
+'userrights-no-interwiki'      => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
+'userrights-nodatabase'        => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
+'userrights-nologin'           => 'Du musst dich mit einem Administrator-Benutzerkonto [[Special:UserLogin|anmelden]], um Benutzerrechte zu ändern.',
+'userrights-notallowed'        => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
+'userrights-changeable-col'    => 'Gruppenzugehörigkeit, die du ändern kannst',
+'userrights-unchangeable-col'  => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1744,9 +1745,13 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'img-auth-noread'       => 'Benutzer hat keine Berechtigung, „$1“ zu lesen.',
 
 # HTTP errors
-'http-invalid-url'    => 'Ungültige URL: $1',
-'http-invalid-scheme' => 'URLs mit dem Schema „$1“ werden nicht unterstützt',
-'http-request-error'  => 'Fehler beim Senden der Anfrage.',
+'http-invalid-url'      => 'Ungültige URL: $1',
+'http-invalid-scheme'   => 'URLs mit dem Schema „$1“ werden nicht unterstützt',
+'http-request-error'    => 'Fehler beim Senden der Anfrage.',
+'http-read-error'       => 'HTTP-Lesefehler.',
+'http-timed-out'        => 'Zeitüberschreitung bei der HTTP-Anfrage.',
+'http-curl-error'       => 'Fehler beim Abruf der URL: $1',
+'http-host-unreachable' => 'URL konnte nicht erreicht werden.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ist nicht erreichbar',
