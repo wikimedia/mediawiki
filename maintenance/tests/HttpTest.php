@@ -353,7 +353,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 								 "path" => "/path/",
 							 ) );
 
-		$this->assertFalse($c->canServeDomain("example.com"));
+		$this->assertTrue($c->canServeDomain("example.com"));
 		$this->assertFalse($c->canServeDomain("www.example.net"));
 		$this->assertTrue($c->canServeDomain("www.example.com"));
 
@@ -372,7 +372,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 						 array(
 							 "domain" => ".example.com",
 							 "path" => "/path/",
-							 "expires" => "January 1, 1990",
+							 "expires" => "-1 day",
 						 ) );
 		$this->assertFalse($c->isUnExpired());
 		$this->assertEquals("", $c->serializeToHttpRequest("/path/", "www.example.com"));
@@ -381,12 +381,10 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 						 array(
 							 "domain" => ".example.com",
 							 "path" => "/path/",
-							 "expires" => "January 1, 2999",
+							 "expires" => "+1 day",
 						 ) );
 		$this->assertTrue($c->isUnExpired());
 		$this->assertEquals("name=value", $c->serializeToHttpRequest("/path/", "www.example.com"));
-
-
 	}
 
 	function testCookieJarSetCookie() {
@@ -415,7 +413,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 						 array(
 							 "domain" => ".example.net",
 							 "path" => "/path/",
-							 "expires" => "January 1, 1999",
+							 "expires" => "-1 day",
 						 ) );
 
 		$this->assertEquals("name4=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
@@ -426,7 +424,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 						 array(
 							 "domain" => ".example.net",
 							 "path" => "/path/",
-							 "expires" => "January 1, 2999",
+							 "expires" => "+1 day",
 						 ) );
 		$this->assertEquals("name4=value; name5=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
 
@@ -434,7 +432,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 						 array(
 							 "domain" => ".example.net",
 							 "path" => "/path/",
-							 "expires" => "January 1, 1999",
+							 "expires" => "-1 day",
 						 ) );
 		$this->assertEquals("name5=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
 	}
@@ -442,20 +440,20 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	function testParseResponseHeader() {
 		$cj = new CookieJar;
 
-		$h[] = "Set-Cookie: name4=value; domain=.example.com; path=/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$h[] = "Set-Cookie: name4=value; domain=.example.com; path=/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[0], "www.example.com" );
 		$this->assertEquals("name4=value", $cj->serializeToHttpRequest("/", "www.example.com"));
 
-		$h[] = "name4=value2; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$h[] = "name4=value2; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[1], "www.example.com" );
 		$this->assertEquals("", $cj->serializeToHttpRequest("/", "www.example.com"));
 		$this->assertEquals("name4=value2", $cj->serializeToHttpRequest("/path/", "www.example.com"));
 
-		$h[] = "name5=value3; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$h[] = "name5=value3; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[2], "www.example.com" );
 		$this->assertEquals("name4=value2; name5=value3", $cj->serializeToHttpRequest("/path/", "www.example.com"));
 
-		$h[] = "name6=value3; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$h[] = "name6=value3; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[3], "www.example.com" );
 		$this->assertEquals("", $cj->serializeToHttpRequest("/path/", "www.example.net"));
 
@@ -463,7 +461,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		$cj->parseCookieResponseHeader( $h[4], "www.example.net" );
 		$this->assertEquals("", $cj->serializeToHttpRequest("/path/", "www.example.net"));
 
-		$h[] = "name6=value4; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2999 13:46:00 GMT";
+		$h[] = "name6=value4; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[5], "www.example.net" );
 		$this->assertEquals("name6=value4", $cj->serializeToHttpRequest("/path/", "www.example.net"));
 	}
