@@ -2022,6 +2022,21 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
+Magic Word: {{#PIPETRICK:}}
+!! options
+title=[[Some (page)]]
+!! input
+{{#pipetrick:Hello (one)}}
+{{#pipetrick:World, hi|}}
+{{#pipetrick:|Other}}
+!! result
+<p>Hello
+World
+Other (page)
+</p>
+!! end
+
+!! test
 Magic Word: {{REVISIONID}}
 !! input
 {{REVISIONID}}

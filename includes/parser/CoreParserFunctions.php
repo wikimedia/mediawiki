@@ -67,7 +67,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'talkpagenamee',    array( __CLASS__, 'talkpagenamee'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectpagename',  array( __CLASS__, 'subjectpagename'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pipetrick',        array( __CLASS__, 'pipetrick'        ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'pipetrick',        array( __CLASS__, 'pipetrick'        ) );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',		  array( __CLASS__, 'formatDate'	   ) );
 
@@ -441,8 +441,11 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Performs the pipe trick. Can be used in three ways:
-	 * {{pipetrick:title}} == {{pipetrick:title|}} != {{pipetrick:|title}}
+	 * Performs the pipe trick in the same manner as [[title|]] or [[|title]].
+	 * {{#pipetrick:title}} == {{#pipetrick:title|}} -> Parser::getPipeTrickText
+	 * {{#pipetrick:|title}} -> Parser::getPipeTrickLink (rarer)
+	 * See http://en.wikipedia.org/wiki/Help:Pipe_trick and the Parser documentation
+	 * for more information.
 	 */
 	static function pipetrick( $parser, $link = '', $text = '' ) {
 		if ($link)
