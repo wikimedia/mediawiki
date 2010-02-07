@@ -6,8 +6,9 @@
  * @ingroup Skins
  */
 
-if( !defined( 'MEDIAWIKI' ) )
+if( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
+}
 
 /**
  * @todo document
@@ -40,10 +41,14 @@ class SkinNostalgia extends Skin {
 		$s .= $this->pageTitleLinks();
 
 		$ol = $this->otherLanguages();
-		if( $ol ) $s .= '<br />' . $ol;
+		if( $ol ) {
+			$s .= '<br />' . $ol;
+		}
 
 		$cat = $this->getCategoryLinks();
-		if( $cat ) $s .= '<br />' . $cat;
+		if( $cat ) {
+			$s .= '<br />' . $cat;
+		}
 
 		$s .= "<br clear='all' /></div><hr />\n</div>\n";
 		$s .= "\n<div id='article'>";
@@ -104,8 +109,8 @@ class SkinNostalgia extends Skin {
 		$s .= $this->bottomLinks();
 		$s .= "\n<br />" . $this->pageStats();
 		$s .= "\n<br />" . $this->mainPageLink()
-		  . " | " . $this->aboutLink()
-		  . " | " . $this->searchForm();
+				. ' | ' . $this->aboutLink()
+				. ' | ' . $this->searchForm();
 
 		$s .= "\n</div>\n</div>\n";
 

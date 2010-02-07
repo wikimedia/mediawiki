@@ -6,21 +6,15 @@
  * @ingroup Skins
  */
 
-if( !defined( 'MEDIAWIKI' ) )
+if( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
+}
 
 /**
  * @todo document
  * @ingroup Skins
  */
 class SkinStandard extends Skin {
-	/*
-	 * OutputPage
-	 */
-	function outputPage( OutputPage $out ) {
-		global $wgStylePath;
-		parent::outputPage( $out );
-	}
 
 	/**
 	 *
@@ -28,7 +22,7 @@ class SkinStandard extends Skin {
 	function setupSkinUserCss( OutputPage $out ){
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$out->addStyle( 'common/quickbar.css' );
-		} else if ( 4 == $this->qbSetting() ) { # Floating right
+		} elseif ( 4 == $this->qbSetting() ) { # Floating right
 			$out->addStyle( 'common/quickbar-right.css' );
 		}
 		parent::setupSkinUserCss( $out );
@@ -43,15 +37,15 @@ class SkinStandard extends Skin {
 
 		if ( 2 == $qb ) { # Right
 			$s .= "#quickbar { position: absolute; top: 4px; right: 4px; " .
-			  "border-left: 2px solid #000000; }\n" .
-			  "#article, #mw-data-after-content { margin-left: 4px; margin-right: 152px; }\n";
-		} else if ( 1 == $qb || 3 == $qb ) {
+				"border-left: 2px solid #000000; }\n" .
+				"#article, #mw-data-after-content { margin-left: 4px; margin-right: 152px; }\n";
+		} elseif ( 1 == $qb || 3 == $qb ) {
 			$s .= "#quickbar { position: absolute; top: 4px; left: 4px; " .
-			  "border-right: 1px solid gray; }\n" .
-			  "#article, #mw-data-after-content { margin-left: 152px; margin-right: 4px; }\n";
-		} else if ( 4 == $qb) {
+				"border-right: 1px solid gray; }\n" .
+				"#article, #mw-data-after-content { margin-left: 152px; margin-right: 4px; }\n";
+		} elseif ( 4 == $qb ) {
 			$s .= "#quickbar { border-right: 1px solid gray; }\n" .
-			  "#article, #mw-data-after-content { margin-right: 152px; margin-left: 4px; }\n";
+				"#article, #mw-data-after-content { margin-right: 152px; margin-left: 4px; }\n";
 		}
 		return $s;
 	}
@@ -71,10 +65,12 @@ class SkinStandard extends Skin {
 		$qb = $this->qbSetting();
 		$shove = ( $qb != 0 );
 		$left = ( $qb == 1 || $qb == 3 );
-		if( $wgContLang->isRTL() ) $left = !$left;
+		if( $wgContLang->isRTL() ) {
+			$left = !$left;
+		}
 
 		if ( $shove && $left ) { # Left
-				$s .= $this->getQuickbarCompensator();
+			$s .= $this->getQuickbarCompensator();
 		}
 		wfProfileOut( __METHOD__ . '-2' );
 		wfProfileIn( __METHOD__ . '-3' );
@@ -87,7 +83,7 @@ class SkinStandard extends Skin {
 			$this->aboutLink(),
 			$this->specialLink( 'recentchanges' ),
 			$this->searchForm() ) )
-		  . '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
+			. '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
 		$s .= '</td>';
 		if ( $shove && !$left ) { # Right
@@ -229,14 +225,14 @@ class SkinStandard extends Skin {
 			article with "Watch this article" checkbox disabled, the article is transparently
 			unwatched. Therefore we do not show the "Watch this page" link in edit mode
 			*/
-			if ( $wgUser->isLoggedIn() && $articleExists) {
-				if( $action != 'edit' && $action != 'submit' ){
+			if ( $wgUser->isLoggedIn() && $articleExists ) {
+				if( $action != 'edit' && $action != 'submit' ) {
 					$s .= $sep . $this->watchThisPage();
 				}
 				if ( $this->mTitle->userCan( 'edit' ) )
 					$s .= $sep . $this->moveThisPage();
 			}
-			if ( $wgUser->isAllowed( 'delete' ) and $articleExists ) {
+			if ( $wgUser->isAllowed( 'delete' ) && $articleExists ) {
 				$s .= $sep . $this->deleteThisPage() .
 				$sep . $this->protectThisPage();
 			}
@@ -244,14 +240,16 @@ class SkinStandard extends Skin {
 			if( $articleExists && $action != 'history' ) {
 				$s .= $sep . $this->historyLink();
 			}
-			$s.= $sep . $this->whatLinksHere();
+			$s .= $sep . $this->whatLinksHere();
 
 			if( $wgOut->isArticleRelated() ) {
 				$s .= $sep . $this->watchPageLinksLink();
 			}
 
-			if ( NS_USER == $this->mTitle->getNamespace()
-				|| $this->mTitle->getNamespace() == NS_USER_TALK ) {
+			if (
+				NS_USER == $this->mTitle->getNamespace() ||
+				$this->mTitle->getNamespace() == NS_USER_TALK
+			) {
 
 				$id = User::idFromName( $this->mTitle->getText() );
 				$ip = User::isIP( $this->mTitle->getText() );

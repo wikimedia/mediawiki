@@ -7,8 +7,9 @@
  * @ingroup Skins
  */
 
-if( !defined( 'MEDIAWIKI' ) )
+if( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
+}
 
 /**
  * @todo document
@@ -46,7 +47,9 @@ class SkinCologneBlue extends Skin {
 		$s .= '<font size="-1"><span id="langlinks">';
 		$s .= str_replace( '<br />', '', $this->otherLanguages() );
 		$cat = $this->getCategoryLinks();
-		if( $cat ) $s .= "<br />$cat\n";
+		if( $cat ) {
+			$s .= "<br />$cat\n";
+		}
 		$s .= '<br />' . $this->pageTitleLinks();
 		$s .= '</span></font>';
 
@@ -110,20 +113,20 @@ class SkinCologneBlue extends Skin {
 
 		if ( 2 == $qb ) { # Right
 			$s .= "#quickbar { position: absolute; right: 4px; }\n" .
-			  "#article { margin-left: 4px; margin-right: 148px; }\n";
-		} else if ( 1 == $qb ) {
+				"#article { margin-left: 4px; margin-right: 148px; }\n";
+		} elseif ( 1 == $qb ) {
 			$s .= "#quickbar { position: absolute; left: 4px; }\n" .
-			  "#article { margin-left: 148px; margin-right: 4px; }\n";
-		} else if ( 3 == $qb ) { # Floating left
+				"#article { margin-left: 148px; margin-right: 4px; }\n";
+		} elseif ( 3 == $qb ) { # Floating left
 			$s .= "#quickbar { position:absolute; left:4px } \n" .
-			  "#topbar { margin-left: 148px }\n" .
-			  "#article { margin-left:148px; margin-right: 4px; } \n" .
-			  "body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;} \n"; # Hides from IE
-		} else if ( 4 == $qb ) { # Floating right
+				"#topbar { margin-left: 148px }\n" .
+				"#article { margin-left:148px; margin-right: 4px; } \n" .
+				"body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;} \n"; # Hides from IE
+		} elseif ( 4 == $qb ) { # Floating right
 			$s .= "#quickbar { position: fixed; right: 4px; } \n" .
-			  "#topbar { margin-right: 148px }\n" .
-			  "#article { margin-right: 148px; margin-left: 4px; } \n" .
-			  "body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto ;bottom:4px;} \n"; # Hides from IE
+				"#topbar { margin-right: 148px }\n" .
+				"#article { margin-right: 148px; margin-left: 4px; } \n" .
+				"body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto ;bottom:4px;} \n"; # Hides from IE
 		}
 		return $s;
 	}
@@ -242,8 +245,8 @@ class SkinCologneBlue extends Skin {
 
 			$s .= $this->menuHead( 'qbpageoptions' );
 			$s .= $this->talkLink()
-			  . $sep . $this->commentLink()
-			  . $sep . $this->printableLink();
+					. $sep . $this->commentLink()
+					. $sep . $this->printableLink();
 			if ( $wgUser->isLoggedIn() ) {
 				$s .= $sep . $this->watchThisPage();
 			}
@@ -251,9 +254,9 @@ class SkinCologneBlue extends Skin {
 			$s .= $sep;
 
 			$s .= $this->menuHead( 'qbpageinfo' )
-			  . $this->historyLink()
-			  . $sep . $this->whatLinksHere()
-			  . $sep . $this->watchPageLinksLink();
+					. $this->historyLink()
+					. $sep . $this->whatLinksHere()
+					. $sep . $this->watchPageLinksLink();
 
 			if( $tns == NS_USER || $tns == NS_USER_TALK ) {
 				$id = User::idFromName( $this->mTitle->getText() );
@@ -278,35 +281,33 @@ class SkinCologneBlue extends Skin {
 				array( 'known', 'noclasses' )
 			);
 			if ( $wgUser->getNewtalk() ) {
-				$tl .= " *";
+				$tl .= ' *';
 			}
 
 			$s .= $this->link(
-				$wgUser->getUserPage(),
-				wfMsg( 'mypage' ),
-				array(),
-				array(),
-				array( 'known', 'noclasses' )
-			  )
-			  . $sep . $tl
-			  . $sep . $this->specialLink( 'watchlist' )
-			  . $sep . $this->link(
-				SpecialPage::getSafeTitleFor( 'Contributions', $wgUser->getName() ),
-				wfMsg( 'mycontris' ),
-				array(),
-				array(),
-				array( 'known', 'noclasses' )
-			  )
-			  . $sep . $this->specialLink( 'preferences' )
-			  . $sep . $this->specialLink( 'userlogout' );
+					$wgUser->getUserPage(),
+					wfMsg( 'mypage' ),
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
+				) . $sep . $tl . $sep . $this->specialLink( 'watchlist' )
+					. $sep .
+				$this->link(
+					SpecialPage::getSafeTitleFor( 'Contributions', $wgUser->getName() ),
+					wfMsg( 'mycontris' ),
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
+				) . $sep . $this->specialLink( 'preferences' )
+				. $sep . $this->specialLink( 'userlogout' );
 		} else {
 			$s .= $this->specialLink( 'userlogin' );
 		}
 
 		$s .= $this->menuHead( 'qbspecialpages' )
-		  . $this->specialLink( 'newpages' )
-		  . $sep . $this->specialLink( 'listfiles' )
-		  . $sep . $this->specialLink( 'statistics' );
+			. $this->specialLink( 'newpages' )
+			. $sep . $this->specialLink( 'listfiles' )
+			. $sep . $this->specialLink( 'statistics' );
 		if ( $wgUser->isLoggedIn() && $wgEnableUploads ) {
 			$s .= $sep . $this->specialLink( 'upload' );
 		}
@@ -315,7 +316,7 @@ class SkinCologneBlue extends Skin {
 
 		if( $wgSiteSupportPage ) {
 			$s .= $sep . '<a href="' . htmlspecialchars( $wgSiteSupportPage ) . '" class="internal">'
-			      . wfMsg( 'sitesupport' ) . '</a>';
+					. wfMsg( 'sitesupport' ) . '</a>';
 		}
 
 		$s .= $sep . $this->link(
@@ -330,12 +331,12 @@ class SkinCologneBlue extends Skin {
 		return $s;
 	}
 
-	function menuHead( $key ){
+	function menuHead( $key ) {
 		$s = "\n<h6>" . wfMsg( $key ) . "</h6>";
 		return $s;
 	}
 
-	function searchForm( $label = '' ){
+	function searchForm( $label = '' ) {
 		global $wgRequest, $wgUseTwoButtonsSearchForm;
 
 		$search = $wgRequest->getText( 'search' );
@@ -346,13 +347,14 @@ class SkinCologneBlue extends Skin {
 		}
 
 		$s .= "<input type='text' id=\"searchInput{$this->searchboxes}\" class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
-		  . htmlspecialchars( substr( $search, 0, 256 ) ) . "\" /><br />"
-		  . "<input type='submit' id=\"searchGoButton{$this->searchboxes}\" class=\"searchButton\" name=\"go\" value=\"" . htmlspecialchars( wfMsg( 'searcharticle' ) ) . "\" />";
+			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" /><br />"
+			. "<input type='submit' id=\"searchGoButton{$this->searchboxes}\" class=\"searchButton\" name=\"go\" value=\"" . htmlspecialchars( wfMsg( 'searcharticle' ) ) . "\" />";
 
-		if( $wgUseTwoButtonsSearchForm )
+		if( $wgUseTwoButtonsSearchForm ) {
 			$s .= "<input type='submit' id=\"mw-searchButton{$this->searchboxes}\" class=\"searchButton\" name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( 'search' ) ) . "\" />\n";
-		else
+		} else {
 			$s .= '<div><a href="' . $action . '" rel="search">' . wfMsg( 'powersearch-legend' ) . "</a></div>\n";
+		}
 
 		$s .= '</form>';
 
