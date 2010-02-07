@@ -1917,7 +1917,8 @@ class Parser
 	 * From the [[title|]] return link-text as though the used typed [[title|link-text]]
 	 *
 	 * For most links this be as though the user typed [[ns:title|title]]
-	 * However [[ns:title (context)]], [[ns:title, context]] and [[ns:title (context), context]]
+	 * However [[ns:title (context)|]], [[ns:title, context|]] and [[ns:title (context), context|]]
+	 * [[#title (context)|]] [[../context/title (context), context|]]
 	 * all return the |title]] with no context or indicative punctuation.
 	 */
 	function getPipeTrickText( $link ) {
@@ -1926,8 +1927,8 @@ class Parser
 			list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
 			$rexps = array (
 				# try this first, to turn "[[A, B (C)|]]" into "A, B"
-			        "/^(:?$nc+:|:|)($tc+?)( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
-				"/^(:?$nc+:|:|)($tc+?)( \\($tc+\\)|)(, $tc+|)$/"  # [[ns:page (context), context|]]
+				"/^(:?$nc+:|[:#\/]|$tc+\\/|)($tc+?)( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
+				"/^(:?$nc+:|[:#\/]|$tc+\\/|)($tc+?)( \\($tc+\\)| （$tc+）|)((?:,|，) $tc+|)$/",  # [[ns:page (context), context|]]
 			);  
 		}
 		$text = urldecode( $link );
@@ -1951,8 +1952,8 @@ class Parser
 		if( !$rexps ) {
 			list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
 			$rexps = array (
-				"/^($nc+:|)$tc+?( \\($tc+\\))$/", # [[ns:page (context)]]
-				"/^($nc+:|)$tc+?(, $tc+|)$/"      # [[ns:page, context]]
+				"/^($nc+:|)$tc+?( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
+				"/^($nc+:|)$tc+?(?:(?: \\($tc+\\)| （$tc+）|)((?:,|，) $tc+|))$/"  # [[ns:page (context), context|]]
 			);
 		}
 
@@ -4062,9 +4063,10 @@ class Parser
 		) );
 
 		# Links of the form [[|<blah>]] or [[<blah>|]] perform pipe tricks
+		# Note this only allows the # in the one position it works.
 		list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
-		$pipeTrickRe = "/\[\[(?:(\\|)($tc+)|($tc+)\\|)\]\]/";
-		$text = preg_replace_callback( $pipeTrickRe, array( $this, 'pstPipeTrickCallback' ), $text);
+		$pipeTrickRe = "/\[\[(?:(\\|)($tc+)|(#?$tc+)\\|)\]\]/";
+		$text = preg_replace_callback( $pipeTrickRe, array( $this, 'pstPipeTrickCallback' ), $text );
 
 		# Trim trailing whitespace
 		$text = rtrim( $text );
@@ -4078,7 +4080,7 @@ class Parser
 	 *
 	 * @param Array ("|" or "", text, link) $m
 	 */
-	function pstPipeTrickCallback($m)
+	function pstPipeTrickCallback( $m )
 	{
 		if( $m[1] ) { # [[|<blah>]]
 			$text = $m[2];

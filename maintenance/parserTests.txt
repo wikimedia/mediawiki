@@ -2999,6 +2999,36 @@ pst
 !! end
 
 !! test
+pre-save transform: context links ("pipe trick") based on current page
+!! options
+pst
+!! input
+[[#section|]]
+[[#section (context)|]]
+[[/relative|]]
+[[../context/relative|]]
+[[../context/relative (extra)|]]
+!! result
+[[#section|section]]
+[[#section (context)|section]]
+[[/relative|relative]]
+[[../context/relative|relative]]
+[[../context/relative (extra)|relative]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with full-width characters
+!! options
+pst
+!! input
+[[title， context|]]
+[[title （context）|]]
+!! result
+[[title， context|title]]
+[[title （context）|title]]
+!! end
+
+!! test
 pre-save transform: context links ("pipe trick") with interwiki prefix
 !! options
 pst
