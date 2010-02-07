@@ -6,6 +6,7 @@
  * @file
  * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
+ * @author Mij <mij@bitchx.it>
  */
 
 /**
@@ -87,3 +88,25 @@ function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 
 	return false;
 }
+
+# FIXME: Access the api in a saner way and performing just one query (preferably batching files too).
+function getFileCommentFromSourceWiki($wiki_host, $file) {
+    $url = $wiki_host . '/api.php?action=query&format=xml&titles=File:' . $file . '&prop=imageinfo&&iiprop=comment';
+    $body = file_get_contents($url);
+    if (preg_match('#<ii comment="([^"]*)" />#', $body, $matches) == 0) {
+        return false;
+    }
+
+    return $matches[1];
+}
+
+function getFileUserFromSourceWiki($wiki_host, $file) {
+    $url = $wiki_host . '/api.php?action=query&format=xml&titles=File:' . $file . '&prop=imageinfo&&iiprop=user';
+    $body = file_get_contents($url);
+    if (preg_match('#<ii user="([^"]*)" />#', $body, $matches) == 0) {
+        return false;
+    }
+
+    return $matches[1];
+}
+
