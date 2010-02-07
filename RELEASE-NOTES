@@ -835,6 +835,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 845)   [[#foo|]], [[/bar|]] should be equivalent to [[#foo|foo]], [[/bar|bar]] (new use of "pipe trick")
 * (bug 21660) Support full-width commas for pipe trick
 * (bug 7264)  Magic word to give Page Title as if pipe-trick performed on it {{pipetrick:}}
+* (bug 20339) Allow using the pipe trick in log reasons
 
 === Languages updated in 1.16 ===
 

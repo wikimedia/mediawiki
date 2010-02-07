@@ -1086,6 +1086,11 @@ class Linker {
 		# Handle link renaming [[foo|text]] will show link as "text"
 		if( $match[3] != "" ) {
 			$text = $match[3];
+			if( $match[1] === "" && $this->commentContextTitle ) {
+				$match[1] = Linker::getPipeTrickLink( $text, $this->commentContextTitle );
+			}
+		} elseif( $match[2] == "|" ) {
+			$text = Linker::getPipeTrickText( $match[1] );
 		} else {
 			$text = $match[1];
 		}
@@ -1203,6 +1208,79 @@ class Linker {
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
+	}
+
+	/**
+	 * Returns valid title characters and namespace characters for pipe trick.
+	 *
+	 * FIXME: the namespace characters should not be specified like this...
+	 */
+	static function getPipeTrickCharacterClasses() {
+		global $wgLegalTitleChars;
+		return  array( "[$wgLegalTitleChars]", '[ _0-9A-Za-z\x80-\xff-]' );
+	}
+
+	/**
+	 * From the [[title|]] return link-text as though the used typed [[title|link-text]]
+	 *
+	 * For most links this be as though the user typed [[ns:title|title]]
+	 * However [[ns:title (context)|]], [[ns:title, context|]] and [[ns:title (context), context|]]
+	 * [[#title (context)|]] [[../context/title (context), context|]]
+	 * all return the |title]] with no context or indicative punctuation.
+	 *
+	 * @param string $link from [[$link|]]
+	 * @return string $text for [[$link|$text]]
+	 */
+	static function getPipeTrickText( $link ) {
+		static $rexps = FALSE;
+		if( !$rexps ) {
+			list( $tc, $nc ) = Linker::getPipeTrickCharacterClasses();
+			$rexps = array (
+				# try this first, to turn "[[A, B (C)|]]" into "A, B"
+				"/^(:?$nc+:|[:#\/]|$tc+\\/|)($tc+?)( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
+				"/^(:?$nc+:|[:#\/]|$tc+\\/|)($tc+?)( \\($tc+\\)| （$tc+）|)((?:,|，) $tc+|)$/",  # [[ns:page (context), context|]]
+			);  
+		}
+		$text = urldecode( $link );
+
+		for( $i = 0; $i < count( $rexps ); $i++) {
+			if( preg_match( $rexps[$i], $text, $m ) ) 
+				return $m[2];
+		}
+		return $text;
+	}
+
+	/**
+	 * From the [[|link-text]] return the title as though the user typed [[title|link-text]]
+	 *
+	 * On most pages this will return link-text or "" if the link-text is not a valid title
+	 * On pages like [[ns:title (context)]] and [[ns:title, context]] it will act like
+	 * [[ns:link-text (context)|link-text]] and [[ns:link-text, context|link-text]]
+	 *
+	 * @param string $text from [[|$text]]
+	 * @param Title $title to resolve the link against
+	 * @return string $link for [[$link|$text]]
+	 */
+	static function getPipeTrickLink( $text, $title ) {
+		static $rexps = FALSE, $tc;
+		if( !$rexps ) {
+			list( $tc, $nc ) = Linker::getPipeTrickCharacterClasses();
+			$rexps = array (
+				"/^($nc+:|)$tc+?( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
+				"/^($nc+:|)$tc+?(?:(?: \\($tc+\\)| （$tc+）|)((?:,|，) $tc+|))$/"  # [[ns:page (context), context|]]
+			);
+		}
+
+		if( !preg_match( "/^$tc+$/", $text ) )
+			return '';
+
+		$t = $title->getText();
+
+		for( $i = 0; $i < count( $rexps ); $i++) {
+			if( preg_match( $rexps[$i], $t, $m ) )
+				return "$m[1]$text$m[2]";
+		}
+		return $text;
 	}
 
 	/**

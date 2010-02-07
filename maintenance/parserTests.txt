@@ -7713,6 +7713,17 @@ title=[[Main Page]]
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
 !! end
 
+!! test
+Edit comment with pipe trick
+!! options
+comment
+title=[[Article (context)]]
+!! input
+[[Hello (World)|]] [[|Entry]]
+!! result
+<a href="/index.php?title=Hello_(World)&amp;action=edit&amp;redlink=1" class="new" title="Hello (World) (page does not exist)">Hello</a> <a href="/index.php?title=Entry_(context)&amp;action=edit&amp;redlink=1" class="new" title="Entry (context) (page does not exist)">Entry</a>
+!! end
+
 !!article
 MediaWiki:bad image list
 !!text
@@ -7737,6 +7748,7 @@ Bar foo
 </p><p>Bar foo
 </p>
 !! end
+
 
 
 TODO:

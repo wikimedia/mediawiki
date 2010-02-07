@@ -1913,69 +1913,22 @@ class Parser
 	}
 
 	/**
-	 * Returns valid title characters and namespace characters for pipe trick.
-	 *
-	 * FIXME: the namespace characters should not be specified like this...
-	 */
-	static function getPipeTrickCharacterClasses() {
-		global $wgLegalTitleChars;
-		return  array( "[$wgLegalTitleChars]", '[ _0-9A-Za-z\x80-\xff-]' );
-	}
-
-	/**
 	 * From the [[title|]] return link-text as though the used typed [[title|link-text]]
-	 *
-	 * For most links this be as though the user typed [[ns:title|title]]
-	 * However [[ns:title (context)|]], [[ns:title, context|]] and [[ns:title (context), context|]]
-	 * [[#title (context)|]] [[../context/title (context), context|]]
-	 * all return the |title]] with no context or indicative punctuation.
+	 * @param string $link from [[$link|]]
+	 * @return string $text for [[$link|$text]]
 	 */
 	function getPipeTrickText( $link ) {
-		static $rexps = FALSE;
-		if( !$rexps ) {
-			list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
-			$rexps = array (
-				# try this first, to turn "[[A, B (C)|]]" into "A, B"
-				"/^(:?$nc+:|[:#\/]|$tc+\\/|)($tc+?)( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
-				"/^(:?$nc+:|[:#\/]|$tc+\\/|)($tc+?)( \\($tc+\\)| （$tc+）|)((?:,|，) $tc+|)$/",  # [[ns:page (context), context|]]
-			);  
-		}
-		$text = urldecode( $link );
-
-		for( $i = 0; $i < count( $rexps ); $i++) {
-			if( preg_match( $rexps[$i], $text, $m ) ) 
-				return $m[2];
-		}
-		return $text;
+		return Linker::getPipeTrickText( $link );
 	}
 
 	/**
 	 * From the [[|link-text]] return the title as though the user typed [[title|link-text]]
-	 *
-	 * On most pages this will return link-text or "" if the link-text is not a valid title
-	 * On pages like [[ns:title (context)]] and [[ns:title, context]] it will act like
-	 * [[ns:link-text (context)|link-text]] and [[ns:link-text, context|link-text]]
+	 * @param string $text from [[|$text]]
+	 * @param Title $title to resolve the link against
+	 * @return string $link for [[$link|$text]]
 	 */
 	function getPipeTrickLink( $text ) {
-		static $rexps = FALSE, $tc;
-		if( !$rexps ) {
-			list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
-			$rexps = array (
-				"/^($nc+:|)$tc+?( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
-				"/^($nc+:|)$tc+?(?:(?: \\($tc+\\)| （$tc+）|)((?:,|，) $tc+|))$/"  # [[ns:page (context), context|]]
-			);
-		}
-
-		if( !preg_match( "/^$tc+$/", $text ) )
-			return '';
-
-		$t = $this->mTitle->getText();
-
-		for( $i = 0; $i < count( $rexps ); $i++) {
-			if( preg_match( $rexps[$i], $t, $m ) )
-				return "$m[1]$text$m[2]";
-		}
-		return $text;
+		return Linker::getPipeTrickLink( $text, $this->mTitle );
 	}
 
 	/**#@+
@@ -4073,8 +4026,8 @@ class Parser
 
 		# Links of the form [[|<blah>]] or [[<blah>|]] perform pipe tricks
 		# Note this only allows the # in the one position it works.
-		list( $tc, $nc ) = Parser::getPipeTrickCharacterClasses();
-		$pipeTrickRe = "/\[\[(?:(\\|)($tc+)|(#?$tc+)\\|)\]\]/";
+		global $wgLegalTitleChars;
+		$pipeTrickRe = "/\[\[(?:(\\|)([$wgLegalTitleChars]+)|(#?[$wgLegalTitleChars]+)\\|)\]\]/";
 		$text = preg_replace_callback( $pipeTrickRe, array( $this, 'pstPipeTrickCallback' ), $text );
 
 		# Trim trailing whitespace
