@@ -11,6 +11,7 @@
   <groups>
     <exclude>
       <group>Broken</group>
+      <group>Stub</group>
     </exclude>
   </groups>
 </phpunit>
