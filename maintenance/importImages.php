@@ -2,16 +2,24 @@
 
 /**
  * Maintenance script to import one or more images from the local file system into
- * the wiki without using the web-based interface
+ * the wiki without using the web-based interface.
+ *
+ * "Smart import" additions:
+ * - aim: preserve the essential metadata (user, description) when importing medias from an existing wiki
+ * - process:
+ *      - interface with the source wiki, don't use bare files only (see --source-wiki-url).
+ *      - fetch metadata from source wiki for each file to import.
+ *      - commit the fetched metadata to the destination wiki while submitting.
  *
  * @file
  * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
+ * @author Mij <mij@bitchx.it>
  */
 
-$optionsWithArgs = array( 'extensions', 'comment', 'comment-file', 'comment-ext', 'user', 'license', 'sleep', 'limit', 'from' );
+$optionsWithArgs = array( 'extensions', 'comment', 'comment-file', 'comment-ext', 'user', 'license', 'sleep', 'limit', 'from', 'source-wiki-url' );
 require_once( dirname(__FILE__) . '/commandLine.inc' );
-require_once( 'importImages.inc' );
+require_once( dirname(__FILE__) . '/importImages.inc.php' );
 $processed = $added = $ignored = $skipped = $overwritten = $failed = 0;
 
 echo( "Import Images\n\n" );
@@ -141,36 +149,51 @@ if (isset($options['protect']) && $options['protect'] == 1)
 				$svar = 'added';
 			}
 
-			# Find comment text
-			$commentText = false;
+            if (isset( $options['source-wiki-url'])) {
+                /* find comment text directly from source wiki, through MW's API */
+                $real_comment = getFileCommentFromSourceWiki($options['source-wiki-url'], $base);
+                if ($real_comment === false)
+                    $commentText = $comment;
+                else
+                    $commentText = $real_comment;
 
-			if ( $commentExt ) {
-				$f = findAuxFile( $file, $commentExt );
-				if ( !$f ) {
-					echo( " No comment file with extension {$commentExt} found for {$file}. " );
-					$commentText = $comment;
-				} else {
-					$commentText = file_get_contents( $f );
-					if ( !$f ) {
-						echo( " Failed to load comment file {$f}. " );
-						$commentText = $comment;
-					} else if ( $comment ) {
-						$commentText = trim( $commentText ) . "\n\n" . trim( $comment );
-					}
-				}
-			}
+                /* find user directly from source wiki, through MW's API */
+                $real_user = getFileUserFromSourceWiki($options['source-wiki-url'], $base);
+                if ($real_user === false) {
+                    $wgUser = $user;
+                } else {
+                    $wgUser = User::newFromName($real_user);
+                    if ($wgUser === false) {
+                        # user does not exist in target wiki
+                        echo ("failed: user '$real_user' does not exist in target wiki.");
+                        continue;
+                    }
+                }
+            } else {
+                # Find comment text
+                $commentText = false;
 
-			if ( !$commentText ) {
-				$commentText = $comment;
-			}
+                if ( $commentExt ) {
+                    $f = findAuxFile( $file, $commentExt );
+                    if ( !$f ) {
+                        echo( " No comment file with extension {$commentExt} found for {$file}, using default comment. " );
+                    } else {
+                        $commentText = file_get_contents( $f );
+                        if ( !$f ) {
+                            echo( " Failed to load comment file {$f}, using default comment. " );
+                        }
+                    }
+                }
 
-			if ( !$commentText ) {
-				$commentText = 'Importing image file';
-			}
+                if ( !$commentText ) {
+                    $commentText = $comment;
+                }
+            }
+
 
 			# Import the file	
 			if ( isset( $options['dry'] ) ) {
-				echo( " publishing {$file}... " );
+				echo( " publishing {$file} by '" . $wgUser->getName() . "', comment '$commentText'... " );
 			} else {
 				$archive = $image->publish( $file );
 				if( WikiError::isError( $archive ) || !$archive->isGood() ) {
@@ -282,6 +305,8 @@ Options:
 --dry			Dry run, don't import anything
 --protect=<protect>     Specify the protect value (autoconfirmed,sysop)
 --unprotect             Unprotects all uploaded images
+--source-wiki-url   if specified, take User and Comment data for each imported file from this URL.
+                    For example, --source-wiki-url="http://en.wikipedia.org/"
 
 TEXT;
 	exit(1);
