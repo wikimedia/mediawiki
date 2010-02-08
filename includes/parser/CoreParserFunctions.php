@@ -459,7 +459,7 @@ class CoreParserFunctions {
 	 * Performs the pipetrick and then url encodes the result
 	 */
 	static function pipetricke( $parser, $link = '', $text = '' ) {
-		return wfUrlEncode( str_replace( ' ', '_', CoreParserFunctions::pipetrick( &$parser, $link, $text ) ) );
+		return wfUrlEncode( str_replace( ' ', '_', self::pipetrick( $parser, $link, $text ) ) );
 	}
 
 	/**
