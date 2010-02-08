@@ -4147,6 +4147,10 @@ $wgUniversalEditButton = true;
  * Should we allow a broader set of characters in id attributes, per HTML5?  If
  * not, use only HTML 4-compatible IDs.  This option is for testing -- when the
  * functionality is ready, it will be on by default with no option.
+ *
+ * Currently this appears to work fine in Chrome 4 and 5, Firefox 3.5 and 3.6, IE6
+ * and 8, and Opera 10.50, but it fails in Opera 10.10: Unicode IDs don't seem
+ * to work as anchors.  So not quite ready for general use yet.
  */
 $wgExperimentalHtmlIds = false;
 
