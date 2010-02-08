@@ -970,7 +970,7 @@ class Linker {
 		$comment = Sanitizer::escapeHtmlAllowEntities( $comment );
 
 		# Render autocomments and make links:
-		$comment = $this->formatAutoComments( $comment, $title, $local );
+		$comment = $this->formatAutocomments( $comment, $title, $local );
 		$comment = $this->formatLinksInComment( $comment, $title, $local );
 
 		wfProfileOut( __METHOD__ );
