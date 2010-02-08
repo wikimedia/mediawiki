@@ -453,23 +453,69 @@ class Cookie {
 			$this->path = "/";
 		}
 		if( isset( $attr['domain'] ) ) {
-			$this->domain = self::parseCookieDomain( $attr['domain'] );
+			if( self::validateCookieDomain( $attr['domain'] ) ) {
+				$this->domain = $attr['domain'];
+			}
 		} else {
 			throw new MWException("You must specify a domain.");
 		}
 	}
 
-	public static function parseCookieDomain( $domain ) {
-		/* If domain is given, it has to contain at least two dots */
-		if ( strrpos( $domain, '.' ) === false
-			 || strrpos( $domain, '.' ) === strpos( $domain, '.' ) ) {
-			return;
-		}
-		if ( substr( $domain, 0, 1 ) === '.' ) {
-			$domain = substr( $domain, 1 );
+	/**
+	 * Return the true if the cookie is valid is valid.  Otherwise,
+	 * false.  The uses a method similar to IE cookie security
+	 * described here:
+	 * http://kuza55.blogspot.com/2008/02/understanding-cookie-security.html
+	 * A better method might be to use a blacklist like
+	 * http://publicsuffix.org/
+	 *
+	 * @param $domain string the domain to validate
+	 * @param $originDomain string (optional) the domain the cookie originates from
+	 * @return bool
+	 */
+	public static function validateCookieDomain( $domain, $originDomain = null) {
+		// Don't allow a trailing dot
+		if( substr( $domain, -1 ) == "." ) return false;
+
+		$dc = explode(".", $domain);
+
+		// Don't allow cookies for "localhost", "ls" or other dot-less hosts
+		if( count($dc) < 2 ) return false;
+
+		// Only allow full, valid IP addresses
+		if( preg_match( '/^[0-9.]+$/', $domain ) ) {
+			if( count( $dc ) != 4 ) return false;
+
+			if( ip2long( $domain ) === false ) return false;
+
+			if( $originDomain == null || $originDomain == $domain ) return true;
+
 		}
 
-		return $domain;
+		// Don't allow cookies for "co.uk" or "gov.uk", etc, but allow "supermarket.uk"
+		if( strrpos( $domain, "." ) - strlen( $domain )  == -3 ) {
+			if( (count($dc) == 2 && strlen( $dc[0] ) <= 2 )
+				|| (count($dc) == 3 && strlen( $dc[0] ) == "" && strlen( $dc[1] ) <= 2 ) ) {
+				return false;
+			}
+			if( (count($dc) == 2 || (count($dc) == 3 && $dc[0] == "") )
+				&& preg_match( '/(com|net|org|gov|edu)\...$/', $domain) ) {
+				return false;
+			}
+		}
+
+		if( $originDomain != null ) {
+			if( substr( $domain, 0, 1 ) != "." && $domain != $originDomain ) {
+				return false;
+			}
+			if( substr( $domain, 0, 1 ) == "."
+				&& substr_compare( $originDomain, $domain, -strlen( $domain ),
+								   strlen( $domain ), TRUE ) != 0 ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -491,8 +537,10 @@ class Cookie {
 	}
 
 	protected function canServeDomain( $domain ) {
-		if( $this->domain && substr_compare( $domain, $this->domain, -strlen( $this->domain ),
-											 strlen( $this->domain ), TRUE ) == 0 ) {
+		if( $domain == $this->domain
+			|| ( substr( $this->domain, 0, 1) == "."
+				 && substr_compare( $domain, $this->domain, -strlen( $this->domain ),
+									strlen( $this->domain ), TRUE ) == 0 ) ) {
 			return true;
 		}
 		return false;
@@ -572,13 +620,10 @@ class CookieJar {
 
 			if( !isset( $attr['domain'] ) ) {
 				$attr['domain'] = $domain;
-			} else {
-				if ( strlen( $attr['domain'] ) < strlen( $domain )
-					 && substr_compare( $domain, $attr['domain'], -strlen( $attr['domain'] ),
-										strlen( $attr['domain'] ), TRUE ) != 0 ) {
-					return; /* silently reject a bad cookie */
-				}
+			} elseif ( !Cookie::validateCookieDomain( $attr['domain'], $domain ) ) {
+				return null;
 			}
+
 			$this->setCookie( $name, $value, $attr );
 		}
 	}
