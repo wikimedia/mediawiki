@@ -2493,6 +2493,14 @@ class Parser
 				$subjPage = $this->mTitle->getSubjectPage();
 				$value = $subjPage->getPrefixedUrl();
 				break;
+			case 'pipetrick':
+				$text = $this->mTitle->getText();
+				$value = $this->getPipeTrickText( $text );
+				break;
+			case 'pipetricke':
+				$text = $this->mTitle->getText();
+				$value = wfUrlEncode( str_replace( ' ', '_', $this->getPipeTrickText( $text ) ) );
+				break;
 			case 'revisionid':
 				// Let the edit saving system know we should parse the page
 				// *after* a revision ID has been assigned.
