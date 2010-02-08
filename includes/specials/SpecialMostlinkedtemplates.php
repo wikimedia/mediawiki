@@ -16,7 +16,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	/**
 	 * Name of the report
 	 *
-	 * @return string
+	 * @return String
 	 */
 	public function getName() {
 		return 'Mostlinkedtemplates';
@@ -25,7 +25,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	/**
 	 * Is this report expensive, i.e should it be cached?
 	 *
-	 * @return bool
+	 * @return Boolean
 	 */
 	public function isExpensive() {
 		return true;
@@ -34,7 +34,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	/**
 	 * Is there a feed available?
 	 *
-	 * @return bool
+	 * @return Boolean
 	 */
 	public function isSyndicated() {
 		return false;
@@ -43,7 +43,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	/**
 	 * Sort the results in descending order?
 	 *
-	 * @return bool
+	 * @return Boolean
 	 */
 	public function sortDescending() {
 		return true;
@@ -52,7 +52,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	/**
 	 * Generate SQL for the report
 	 *
-	 * @return string
+	 * @return String
 	 */
 	public function getSql() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -70,8 +70,8 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	/**
 	 * Pre-cache page existence to speed up link generation
 	 *
-	 * @param Database $dbr Database connection
-	 * @param int $res Result pointer
+	 * @param $db Database connection
+	 * @param $res ResultWrapper
 	 */
 	public function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch();
@@ -86,9 +86,9 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	/**
 	 * Format a result row
 	 *
-	 * @param Skin $skin Skin to use for UI elements
-	 * @param object $result Result row
-	 * @return string
+	 * @param $skin Skin to use for UI elements
+	 * @param $result Result row
+	 * @return String
 	 */
 	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
@@ -102,10 +102,10 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	/**
 	 * Make a "what links here" link for a given title
 	 *
-	 * @param Title $title Title to make the link for
-	 * @param Skin $skin Skin to use
-	 * @param object $result Result row
-	 * @return string
+	 * @param $title Title to make the link for
+	 * @param $skin Skin to use
+	 * @param $result Result row
+	 * @return String
 	 */
 	private function makeWlhLink( $title, $skin, $result ) {
 		global $wgLang;
@@ -119,7 +119,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 /**
  * Execution function
  *
- * @param mixed $par Parameters passed to the page
+ * @param $par Mixed: parameters passed to the page
  */
 function wfSpecialMostlinkedtemplates( $par = false ) {
 	list( $limit, $offset ) = wfCheckLimits();
