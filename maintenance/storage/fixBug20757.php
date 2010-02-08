@@ -159,7 +159,7 @@ class FixBug20757 extends Maintenance {
 
 				// Find the page_id and rev_id
 				// The page is probably the same as the page of the secondary row
-				$pageId = $this->bt_page;
+				$pageId = $trackRow->bt_page;
 				if ( $pageId === null ) {
 					$revId = null;
 				} else {
