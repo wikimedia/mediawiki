@@ -133,7 +133,7 @@ $linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'లింకుల కింద గీతగీయి:',
+'tog-underline'               => 'లంకె క్రీగీత:',
 'tog-highlightbroken'         => 'తెగిపోయిన లింకులను <a href="" class="new">ఇలా చూపించు</a> (ఇంకో పధ్ధతి: <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'పేరాలను ఇరు పక్కలా సమానంగా సర్దు',
 'tog-hideminor'               => 'ఇటీవలి మార్పులలో చిన్న మార్పులను దాచిపెట్టు',
@@ -1200,25 +1200,26 @@ $1",
 'prefs-diffs'                   => 'తేడాలు',
 
 # User rights
-'userrights'                  => 'వాడుకరి హక్కుల నిర్వహణ',
-'userrights-lookup-user'      => 'వాడుకరి సమూహాలను సంభాళించండి',
-'userrights-user-editname'    => 'సభ్యనామాన్ని ఇవ్వండి:',
-'editusergroup'               => 'వాడుకరి గుంపులను మార్చు',
-'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) అనే పేరుగల సభ్యునికి హక్కులను మారుస్తున్నాము.",
-'userrights-editusergroup'    => 'వాడుకరి సమూహాలను మార్చండి',
-'saveusergroups'              => 'వాడుకరి గుంపులను భద్రపరచు',
-'userrights-groupsmember'     => 'సభ్యులు:',
-'userrights-groups-help'      => 'ఈ వాడుకరి ఏయే గుంపులలో ఉండవచ్చో మీరు మార్చవచ్చు.
+'userrights'                   => 'వాడుకరి హక్కుల నిర్వహణ',
+'userrights-lookup-user'       => 'వాడుకరి సమూహాలను సంభాళించండి',
+'userrights-user-editname'     => 'సభ్యనామాన్ని ఇవ్వండి:',
+'editusergroup'                => 'వాడుకరి గుంపులను మార్చు',
+'editinguser'                  => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) అనే పేరుగల సభ్యునికి హక్కులను మారుస్తున్నాము.",
+'userrights-editusergroup'     => 'వాడుకరి సమూహాలను మార్చండి',
+'saveusergroups'               => 'వాడుకరి గుంపులను భద్రపరచు',
+'userrights-groupsmember'      => 'సభ్యులు:',
+'userrights-groupsmember-auto' => 'సంభావిత సభ్యులు:',
+'userrights-groups-help'       => 'ఈ వాడుకరి ఏయే గుంపులలో ఉండవచ్చో మీరు మార్చవచ్చు.
 * టిక్కు పెట్టివుంటే ఆ గుంపులో ఈ వాడుకరి ఉన్నట్టు.
 * టిక్కు లేకుంటే ఆ గుంపులో ఈ వాడుకరి లేనట్టు.
 * <nowiki>*</nowiki> ఉంటే ఒకసారి ఆ గుంపుని చేర్చాకా మీరు తీసివేయలేరు, లేదా తీసివేసాకా తిరిగి చేర్చలేరు.',
-'userrights-reason'           => 'కారణం:',
-'userrights-no-interwiki'     => 'ఇతర వికీలలో వాడుకరి హక్కులను మార్చడానికి మీకు అనుమతి లేదు.',
-'userrights-nodatabase'       => '$1 అనే డేటాబేసు లేదు లేదా అది స్థానికం కాదు.',
-'userrights-nologin'          => 'వాడుకరి హక్కులను ఇవ్వడానికి మీరు తప్పనిసరిగా ఓ నిర్వాహక ఖాతాతో [[Special:UserLogin|లోనికి ప్రవేశించాలి]].',
-'userrights-notallowed'       => 'వాడుకరి హక్కులను మార్చగలిగే అనుమతి మీ ఖాతాకు లేదు.',
-'userrights-changeable-col'   => 'మీరు మార్చదగిన గుంపులు',
-'userrights-unchangeable-col' => 'మీరు మార్చలేని గుంపులు',
+'userrights-reason'            => 'కారణం:',
+'userrights-no-interwiki'      => 'ఇతర వికీలలో వాడుకరి హక్కులను మార్చడానికి మీకు అనుమతి లేదు.',
+'userrights-nodatabase'        => '$1 అనే డేటాబేసు లేదు లేదా అది స్థానికం కాదు.',
+'userrights-nologin'           => 'వాడుకరి హక్కులను ఇవ్వడానికి మీరు తప్పనిసరిగా ఓ నిర్వాహక ఖాతాతో [[Special:UserLogin|లోనికి ప్రవేశించాలి]].',
+'userrights-notallowed'        => 'వాడుకరి హక్కులను మార్చగలిగే అనుమతి మీ ఖాతాకు లేదు.',
+'userrights-changeable-col'    => 'మీరు మార్చదగిన గుంపులు',
+'userrights-unchangeable-col'  => 'మీరు మార్చలేని గుంపులు',
 
 # Groups
 'group'               => 'గుంపు:',
@@ -1520,9 +1521,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'img-auth-noread'       => '"$1"ని చూడడానికి వాడుకరికి అనుమతి లేదు.',
 
 # HTTP errors
-'http-invalid-url'    => 'తప్పుడు URL: $1',
-'http-invalid-scheme' => '"$1" ప్రణాళికలో ఉన్న URLలకు తోడ్పాటులేదు',
-'http-request-error'  => 'తెలియని పొరపాటు వల్ల HTTP అభ్యర్థన విఫలమైంది.',
+'http-invalid-url'      => 'తప్పుడు URL: $1',
+'http-invalid-scheme'   => '"$1" ప్రణాళికలో ఉన్న URLలకు తోడ్పాటులేదు',
+'http-request-error'    => 'తెలియని పొరపాటు వల్ల HTTP అభ్యర్థన విఫలమైంది.',
+'http-read-error'       => 'HTTP చదువుటలో పొరపాటు.',
+'http-timed-out'        => 'HTTP అభ్యర్థనకి కాలం చెల్లింది.',
+'http-curl-error'       => 'URLని తేవడంలో పొరపాటు: $1',
+'http-host-unreachable' => 'URLని చేరలేకపోయాం.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL కు వెళ్ళలేకపోయాం',

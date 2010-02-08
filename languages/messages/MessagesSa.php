@@ -12,6 +12,7 @@
  * @author Mahitgar
  * @author Naveen Sankar
  * @author Omnipaedista
+ * @author రాకేశ్వర
  */
 
 $fallback = 'hi';
@@ -325,7 +326,7 @@ $messages = array(
 'sat'           => 'शनिः',
 'january'       => 'जनवरीमासः',
 'february'      => 'फेब्रुवरीमासः',
-'march'         => 'मार्चमासः',
+'march'         => 'मार्चमासस्य',
 'april'         => 'एप्रिलमासः',
 'may_long'      => 'मेमासः',
 'june'          => 'जूनमासः',
@@ -335,18 +336,18 @@ $messages = array(
 'october'       => 'अक्टूबरमासः',
 'november'      => 'नवम्बरमासः',
 'december'      => 'डेसेम्बरमासः',
-'january-gen'   => 'जनवरीमासः',
-'february-gen'  => 'फेब्रुवरीमासः',
-'march-gen'     => 'मार्चमासः',
-'april-gen'     => 'एप्रिलमासः',
-'may-gen'       => 'मेमासः',
-'june-gen'      => 'जूनमासः',
-'july-gen'      => 'जुलाइमासः',
-'august-gen'    => 'आगस्टमासः',
-'september-gen' => 'सेप्टेंबरमासः',
-'october-gen'   => 'अक्टूबरमासः',
-'november-gen'  => 'नवंबरमासः',
-'december-gen'  => 'डेसेंबरमासः',
+'january-gen'   => 'जनवरीमासस्य',
+'february-gen'  => 'फेब्रुवरीमासस्य',
+'march-gen'     => 'मार्चमासस्य',
+'april-gen'     => 'एप्रिलमासस्य',
+'may-gen'       => 'मेमासस्य',
+'june-gen'      => 'जूनमासस्य',
+'july-gen'      => 'जुलाइमासस्य',
+'august-gen'    => 'आगस्टमासस्य',
+'september-gen' => 'सेप्टेंबरमासस्य',
+'october-gen'   => 'अक्टूबरमासस्य',
+'november-gen'  => 'नवंबरमासस्य',
+'december-gen'  => 'डेसेंबरमासस्य',
 'jan'           => 'जन.',
 'feb'           => 'फेब्रु.',
 'mar'           => 'मार्च.',
