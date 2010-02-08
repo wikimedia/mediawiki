@@ -225,7 +225,7 @@ class ChangesList {
 		}
 	}
 
-	protected function insertMove( &$s, $rc ) {
+	public function insertMove( &$s, $rc ) {
 		# Diff
 		$s .= '(' . $this->message['diff'] . ') (';
 		# Hist
@@ -257,7 +257,7 @@ class ChangesList {
 		);
 	}
 
-	protected function insertDateHeader( &$s, $rc_timestamp ) {
+	public function insertDateHeader( &$s, $rc_timestamp ) {
 		global $wgLang;
 		# Make date header if necessary
 		$date = $wgLang->date( $rc_timestamp, true, true );
@@ -271,7 +271,7 @@ class ChangesList {
 		}
 	}
 
-	protected function insertLog( &$s, $title, $logtype ) {
+	public function insertLog( &$s, $title, $logtype ) {
 		$logname = LogPage::logName( $logtype );
 		$s .= '(' . $this->skin->link(
 			$title,
@@ -282,7 +282,7 @@ class ChangesList {
 		) . ')';
 	}
 
-	protected function insertDiffHist( &$s, &$rc, $unpatrolled ) {
+	public function insertDiffHist( &$s, &$rc, $unpatrolled ) {
 		# Diff link
 		if( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$diffLink = $this->message['diff'];
@@ -322,7 +322,7 @@ class ChangesList {
 		$s .= ') . . ';
 	}
 
-	protected function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
+	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
 		global $wgContLang;
 		# If it's a new article, there is no diff link, but if it hasn't been
 		# patrolled yet, we need to give users a way to do so
@@ -363,7 +363,7 @@ class ChangesList {
 		$s .= " $articlelink";
 	}
 
-	protected function insertTimestamp( &$s, $rc ) {
+	public function insertTimestamp( &$s, $rc ) {
 		global $wgLang;
 		$s .= $this->message['semicolon-separator'] . 
 			$wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
@@ -380,7 +380,7 @@ class ChangesList {
 	}
 
 	/** insert a formatted action */
-	protected function insertAction( &$s, &$rc ) {
+	public function insertAction( &$s, &$rc ) {
 		if( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			if( $this->isDeleted( $rc, LogPage::DELETED_ACTION ) ) {
 				$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-event' ) . '</span>';
@@ -392,7 +392,7 @@ class ChangesList {
 	}
 
 	/** insert a formatted comment */
-	protected function insertComment( &$s, &$rc ) {
+	public function insertComment( &$s, &$rc ) {
 		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
 			if( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
 				$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
