@@ -2022,19 +2022,39 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
-Magic Word: {{#PIPETRICK:}}
+Magic Word: {{PIPETRICK}}
 !! options
 title=[[Some (page)]]
 !! input
-{{#pipetrick:Hello (one)}}
-{{#pipetrick:World, hi|}}
-{{#pipetrick:|Other}}
+{{PIPETRICK}}
+{{PIPETRICK:Hello (one)}}
+{{PIPETRICK:World, hi|}}
+{{PIPETRICK:|Other}}
 !! result
-<p>Hello
+<p>Some
+Hello
 World
 Other (page)
 </p>
 !! end
+
+!! test
+Magic Word: {{PIPETRICKE}}
+!! options
+title=[[Some other (page)]]
+!! input
+{{PIPETRICKE}}
+{{PIPETRICKE:User:Ævar Arnfjörð Bjarmason}}
+{{PIPETRICKE:#Something to do|}}
+{{PIPETRICKE:|The?last}}
+!! result
+<p>Some_other
+%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+Something_to_do
+The%3Flast_(page)
+</p>
+!! end
+
 
 !! test
 Magic Word: {{REVISIONID}}

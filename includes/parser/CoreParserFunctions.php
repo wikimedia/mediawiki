@@ -67,7 +67,8 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'talkpagenamee',    array( __CLASS__, 'talkpagenamee'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectpagename',  array( __CLASS__, 'subjectpagename'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pipetrick',        array( __CLASS__, 'pipetrick'        ) );
+		$parser->setFunctionHook( 'pipetrick',        array( __CLASS__, 'pipetrick'        ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'pipetricke',       array( __CLASS__, 'pipetricke'       ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',		  array( __CLASS__, 'formatDate'	   ) );
 
@@ -452,6 +453,13 @@ class CoreParserFunctions {
 			return $parser->getPipeTrickText( $link );
 		else
 			return $parser->getPipeTrickLink( $text );
+	}
+
+	/**
+	 * Performs the pipetrick and then url encodes the result
+	 */
+	static function pipetricke( $parser, $link = '', $text = '' ) {
+		return wfUrlEncode( str_replace( ' ', '_', CoreParserFunctions::pipetrick( &$parser, $link, $text ) ) );
 	}
 
 	/**

@@ -84,6 +84,8 @@ class MagicWord {
 		'revisionuser',
 		'subpagename',
 		'subpagenamee',
+		'pipetrick',
+		'pipetricke',
 		'talkspace',
 		'talkspacee',
 		'subjectspace',
