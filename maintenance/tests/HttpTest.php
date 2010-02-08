@@ -346,15 +346,56 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	function testIsValidUrl() {
 	}
 
-	function testSetCookie() {
+	function testValidateCookieDomain() {
+		$this->assertFalse( Cookie::validateCookieDomain( "co.uk" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( ".co.uk" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "gov.uk" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( ".gov.uk" ) );
+		$this->assertTrue( Cookie::validateCookieDomain( "supermarket.uk" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "uk" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( ".uk" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "127.0.0." ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "127." ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "127.0.0.1." ) );
+		$this->assertTrue( Cookie::validateCookieDomain( "127.0.0.1" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "333.0.0.1" ) );
+		$this->assertTrue( Cookie::validateCookieDomain( "example.com" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "example.com." ) );
+		$this->assertTrue( Cookie::validateCookieDomain( ".example.com" ) );
+
+		$this->assertTrue( Cookie::validateCookieDomain( ".example.com", "www.example.com" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "example.com", "www.example.com" ) );
+		$this->assertTrue( Cookie::validateCookieDomain( "127.0.0.1", "127.0.0.1" ) );
+		$this->assertFalse( Cookie::validateCookieDomain( "127.0.0.1", "localhost" ) );
+
+
+	}
+
+	function testSetCooke() {
+		$c = new MockCookie( "name", "value",
+							 array(
+								 "domain" => "ac.th",
+								 "path" => "/path/",
+							 ) );
+		$this->assertFalse($c->canServeDomain("ac.th"));
+
+		$c = new MockCookie( "name", "value",
+							 array(
+								 "domain" => "example.com",
+								 "path" => "/path/",
+							 ) );
+
+		$this->assertTrue($c->canServeDomain("example.com"));
+		$this->assertFalse($c->canServeDomain("www.example.com"));
+
 		$c = new MockCookie( "name", "value",
 							 array(
 								 "domain" => ".example.com",
 								 "path" => "/path/",
 							 ) );
 
-		$this->assertTrue($c->canServeDomain("example.com"));
 		$this->assertFalse($c->canServeDomain("www.example.net"));
+		$this->assertFalse($c->canServeDomain("example.com"));
 		$this->assertTrue($c->canServeDomain("www.example.com"));
 
 		$this->assertFalse($c->canServePath("/"));
@@ -367,6 +408,15 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		$this->assertEquals("", $c->serializeToHttpRequest("/path/", "www.example.net"));
 		$this->assertEquals("", $c->serializeToHttpRequest("/", "www.example.com"));
 		$this->assertEquals("name=value", $c->serializeToHttpRequest("/path/", "www.example.com"));
+
+		$c = new MockCookie( "name", "value",
+							 array(
+								 "domain" => "www.example.com",
+								 "path" => "/path/",
+							 ) );
+		$this->assertFalse($c->canServeDomain("example.com"));
+		$this->assertFalse($c->canServeDomain("www.example.net"));
+		$this->assertTrue($c->canServeDomain("www.example.com"));
 
 		$c = new MockCookie( "name", "value",
 						 array(
