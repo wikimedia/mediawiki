@@ -23,8 +23,6 @@ class UncategorizedTemplatesPage extends UncategorizedPagesPage {
 
 /**
  * Main execution point
- *
- * @param mixed $par Parameter passed to the page
  */
 function wfSpecialUncategorizedtemplates() {
 	list( $limit, $offset ) = wfCheckLimits();
