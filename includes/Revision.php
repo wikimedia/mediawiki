@@ -750,7 +750,9 @@ class Revision {
 			}
 
 			global $wgLegacyEncoding;
-			if( $wgLegacyEncoding && !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags ) ) {
+			if( $text !== false && $wgLegacyEncoding 
+				&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags ) ) 
+			{
 				# Old revisions kept around in a legacy encoding?
 				# Upconvert on demand.
 				# ("utf8" checked for compatibility with some broken
