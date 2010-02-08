@@ -252,7 +252,7 @@ $messages = array(
 'lastmodifiedat'    => 'ይህ ገጽ መጨረሻ የተቀየረው እ.ኣ.አ በ$2፣ $1 ዓ.ም. ነበር።',
 'viewcount'         => 'ይህ ገጽ {{PLURAL:$1|አንዴ|$1 ጊዜ}} ታይቷል።',
 'protectedpage'     => 'የተቆለፈ ገጽ',
-'jumpto'            => 'ዘልለው ለመሐድ፦',
+'jumpto'            => 'ዘልለው ለመሔድ፦',
 'jumptonavigation'  => 'የማውጫ ቁልፎች',
 'jumptosearch'      => 'ፍለጋ',
 

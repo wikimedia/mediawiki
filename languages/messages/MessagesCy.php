@@ -1463,6 +1463,11 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'img-auth-nofile'       => 'Nid oes ffeil a\'r enw "$1" ar gael.',
 'img-auth-noread'       => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
 
+# HTTP errors
+'http-invalid-url'      => 'URL annilys: $1',
+'http-read-error'       => 'Cafwyd gwall wrth ddarllen yr HTTP.',
+'http-host-unreachable' => 'Wedi methu cyrraedd yr URL.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Wedi methu cyrraedd yr URL',
 'upload-curl-error6-text'  => 'Ni chyrhaeddwyd yr URL a roddwyd.

@@ -1696,7 +1696,7 @@ PICT # その他
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' の $2 $3 版は削除されています。",
 'filedelete-nofile'           => "'''$1''' は存在しません。",
 'filedelete-nofile-old'       => "指定された属性を持つ'''$1'''の古い版は存在しません。",
-'filedelete-otherreason'      => 'その他の理由・追加の理由:',
+'filedelete-otherreason'      => '他の、または追加の理由:',
 'filedelete-reason-otherlist' => 'その他の理由',
 'filedelete-reason-dropdown'  => '*よくある削除理由
 ** 著作権侵害
@@ -2046,7 +2046,7 @@ $NEWPAGE
 'deletionlog'            => '削除記録',
 'reverted'               => '以前の版への差し戻し',
 'deletecomment'          => '削除理由:',
-'deleteotherreason'      => 'その他の理由・追加の理由:',
+'deleteotherreason'      => '他の、または追加の理由:',
 'deletereasonotherlist'  => 'その他の理由',
 'deletereason-dropdown'  => '*よくある削除理由
 ** 投稿者依頼

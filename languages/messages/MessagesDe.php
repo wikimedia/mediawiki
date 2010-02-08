@@ -36,6 +36,7 @@
  * @author Spacebirdy
  * @author Srhat
  * @author Tbleher
+ * @author The Evil IP address
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
  * @author UV
  * @author Umherirrender
@@ -2535,7 +2536,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'cant-move-user-page'          => 'Du hast keine Berechtigung, Benutzerhauptseiten zu verschieben.',
 'cant-move-to-user-page'       => 'Du hast nicht die Berechtigung, Seiten auf eine Benutzerseite zu verschieben (mit Ausnahme von Benutzerunterseiten).',
 'newtitle'                     => 'Ziel:',
-'move-watch'                   => 'Diese Seite beobachten',
+'move-watch'                   => 'Quell- und Zielseite beobachten',
 'movepagebtn'                  => 'Seite verschieben',
 'pagemovedsub'                 => 'Verschiebung erfolgreich',
 'movepage-moved'               => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>",

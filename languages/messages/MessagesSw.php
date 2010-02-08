@@ -790,7 +790,7 @@ Rejea kumbukumbu ya mwisho inayoandikwa chini:",
 'semiprotectedpagewarning'         => "'''Ilani:''' Ukurasa huu umefungwa kwa hiyo watumiaji waliojisajili tu ndiyo wanaweza kuuhariri.
 Rejea kumbukumbu ya mwisho inayoandikwa chini:",
 'cascadeprotectedwarning'          => "'''Ilani:''' Ukurasa huu umefungwa kwa hiyo watumia wenye haki za usimamizi tu ndiyo wanaweza kuuhariri, kwa sababu umejumlishwa kwenye kurasa zingine zenye {{PLURAL:$1|page|kulindwa}}:",
-'titleprotectedwarning'            => "'''Ilani: Ukurasa umefungwa, kwa hiyo [[Special:ListGroupRights|haki maalumu]] zinahitajika ili kuuanzisha ukurasa huu.'''
+'titleprotectedwarning'            => "'''Ilani: Ukurasa umefungwa, kwa hiyo [[Special:ListGroupRights|wezo maalumu]] zinahitajika ili kuuanzisha ukurasa huu.'''
 Rejea kumbukumbu ya mwisho inayoandikwa chini:",
 'templatesused'                    => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} kwenye ukurasa huu:',
 'templatesusedpreview'             => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} katika mandhari haya:',
@@ -801,6 +801,8 @@ Rejea kumbukumbu ya mwisho inayoandikwa chini:",
 'nocreatetitle'                    => 'Si wote wanaoweza kuanzisha ukurasa',
 'nocreatetext'                     => '{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya. Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:UserLogin|ingia au anza akaunti]].',
 'nocreate-loggedin'                => 'Huna ruhusa ya kuazisha kurasa mpya.',
+'sectioneditnotsupported-title'    => 'Kutoweza kuhariri sehemu kwa sehemu',
+'sectioneditnotsupported-text'     => 'Haiwezikani kuhariri ukurasa huu sehemu kwa sehemu.',
 'permissionserrors'                => 'Hitilafu za ruhusa',
 'permissionserrorstext'            => 'Huna ruhusa ya kufanya hivyo, kwa ajili ya sababu {{PLURAL:$1|ifuatayo|zifuatazo}}:',
 'permissionserrorstext-withaction' => 'Huruhusiwi $2, kwa sababu {{PLURAL:$1|hiyo|hizo}}:',
@@ -826,6 +828,7 @@ Ukurasa wa jina hilo unapatikana tayari.',
 
 # History pages
 'viewpagelogs'           => 'Tazama kumbukumbu kwa ukurasa huu',
+'nohistory'              => 'Hakuna historia ya kuhariri kwa ajili ya ukurasa huu.',
 'currentrev'             => 'Toleo la sasa',
 'currentrev-asof'        => 'Toleo lililopo $1',
 'revisionasof'           => 'Sahihisho kutoka $1',
@@ -1071,7 +1074,7 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'right-delete'        => 'Kufuta kurasa',
 
 # User rights log
-'rightslog'  => 'Kumbukumbu ya vyeo vya watumiaji',
+'rightslog'  => 'Kumbukumbu za vyeo vya watumiaji',
 'rightsnone' => '(hana)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1514,12 +1517,16 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'restriction-upload' => 'Kupakia',
 
 # Undelete
+'undelete'                  => 'Kuzitazama kurasa zilizofutwa',
 'viewdeletedpage'           => 'Tazama kurasa zilizofutwa',
 'undeletebtn'               => 'Rudisha',
 'undeletelink'              => 'onyesha/rejesha',
 'undeleteviewlink'          => 'tazama',
 'undeletecomment'           => 'Sababu:',
 'undeletedarticle'          => 'alirudisha "[[$1]]"',
+'undelete-header'           => 'Tazama [[Special:Log/delete|kumbukumbu za ufutaji]] ili kujua kurasa zipi zilizofutwa hivi karibuni.',
+'undelete-search-box'       => 'Tafuta kwenye kurasa zilizofutwa',
+'undelete-search-prefix'    => 'Onyesha kurasa kuanzia na:',
 'undelete-search-submit'    => 'Tafuta',
 'undelete-show-file-submit' => 'Ndiyo',
 
@@ -1864,15 +1871,21 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'fileduplicatesearch-submit'   => 'Tafuta',
 
 # Special:SpecialPages
-'specialpages'               => 'Kurasa maalum',
-'specialpages-note'          => '----
+'specialpages'                   => 'Kurasa maalum',
+'specialpages-note'              => '----
 * Kurasa maalum ya kawaida.
 * <strong class="mw-specialpagerestricted">Kurasa maalum zisizoonekana na wote.</strong>',
-'specialpages-group-other'   => 'Kurasa maalum nyingine',
-'specialpages-group-login'   => 'Ingia / sajili akounti',
-'specialpages-group-changes' => 'Mabadiliko ya karibuni na kumbukumbu',
-'specialpages-group-highuse' => 'Kurasa zinazotumika sana',
-'specialpages-group-pages'   => 'Orodha za kurasa',
+'specialpages-group-maintenance' => 'Ripoti za kurekebisha na kutunza kurasa',
+'specialpages-group-other'       => 'Kurasa maalum zingine',
+'specialpages-group-login'       => 'Ingia / sajili akounti',
+'specialpages-group-changes'     => 'Mabadiliko ya karibuni na kumbukumbu',
+'specialpages-group-media'       => 'Ripoti za mafaili na kuyapakia',
+'specialpages-group-users'       => 'Watumiaji na wezo zao',
+'specialpages-group-highuse'     => 'Kurasa zinazotumika sana',
+'specialpages-group-pages'       => 'Orodha za kurasa',
+'specialpages-group-pagetools'   => 'Zana za kuushughulika ukurasa',
+'specialpages-group-wiki'        => 'Zana na data za wiki',
+'specialpages-group-redirects'   => 'Kurasa maalum za kuelekeza',
 
 # Special:BlankPage
 'blankpage'              => 'Ukurasa tupu',
@@ -1885,17 +1898,20 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'tags-edit'         => 'hariri',
 
 # Database error messages
-'dberr-header'   => 'Wiki imekuta tatizo',
-'dberr-problems' => 'Kumradhi!
+'dberr-header'    => 'Wiki imekuta tatizo',
+'dberr-problems'  => 'Kumradhi!
 Tovuti hii inapata matatatizo wakati huu.',
-'dberr-again'    => 'Jaribu tena baada ya kusubiri dakika chache.',
-'dberr-info'     => '(Hamna mawasiliano na seva ya hifadhidata: $1)',
+'dberr-again'     => 'Jaribu tena baada ya kusubiri dakika chache.',
+'dberr-info'      => '(Hamna mawasiliano na seva ya hifadhidata: $1)',
+'dberr-usegoogle' => 'Unaposubiri unaweza kujaribu kutafuta kwa kutumia Google.',
 
 # HTML forms
 'htmlform-reset'               => 'Tengua mabadiliko',
 'htmlform-selectorother-other' => 'Nyingine',
 
 # Add categories per AJAX
+'ajax-add-category'            => 'Ongeza jamii',
+'ajax-add-category-submit'     => 'Ongeza',
 'ajax-confirm-save'            => 'Hifadhi',
 'ajax-remove-category-summary' => 'Ondoa jamii ya "$1"',
 'ajax-confirm-actionsummary'   => 'Chagua kitendo:',
