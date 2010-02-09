@@ -748,6 +748,16 @@ comment from another wiki.
   as it appears in extensions as was the case before r30117 where it
   was unintentionally sorted along with other fields.
 * (bug 19334) Textarea no longer jumps when editing longer articles in IE8
+* (bug 5210)  preload parser should parse <noinclude> (as well as <includeonly>)
+* (bug 8785)  Pipe trick should work with colon functions 
+* (bug 4099)  Pipe trick doesn't work when emptiness is only provided by empty
+  template parameter
+* (bug 845)   [[#foo|]], [[/bar|]] should be equivalent to [[#foo|foo]],
+  [[/bar|bar]] (new use of "pipe trick")
+* (bug 21660) Support full-width commas for pipe trick
+* (bug 7264)  Magic word to give Page Title as if pipe-trick performed on it
+  {{pipetrick:}}
+* (bug 20339) Allow using the pipe trick in log reasons
 
 == API changes in 1.16 ==
 
@@ -832,16 +842,6 @@ comment from another wiki.
 * (bug 18758) API read of watchlist's wl_notificationtimestamp
 * (bug 20809) Expose EditFormPreloadText via the API
 * (bug 18427) Comment (edit summary) parser option for API
-* (bug 5210)  preload parser should parse <noinclude> (as well as <includeonly>)
-* (bug 8785)  Pipe trick should work with colon functions 
-* (bug 4099)  Pipe trick doesn't work when emptiness is only provided by empty
-  template parameter
-* (bug 845)   [[#foo|]], [[/bar|]] should be equivalent to [[#foo|foo]],
-  [[/bar|bar]] (new use of "pipe trick")
-* (bug 21660) Support full-width commas for pipe trick
-* (bug 7264)  Magic word to give Page Title as if pipe-trick performed on it
-  {{pipetrick:}}
-* (bug 20339) Allow using the pipe trick in log reasons
 
 === Languages updated in 1.16 ===
 
