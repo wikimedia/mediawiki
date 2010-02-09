@@ -112,6 +112,11 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 		$r = HTTP::get( "http://www.example.com/this-file-does-not-exist", $timeout);
 		$this->assertFalse($r, "False on 404s");
+
+
+		$r = HttpRequest::factory( "http://www.example.com/this-file-does-not-exist" );
+		$er = $r->execute();
+		$this->assertRegexp("/404 Not Found/", $er->getWikiText());
 	}
 
 	function testFailureDefault() {
@@ -550,5 +555,4 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		Http::$httpEngine = 'curl';
 		self::runCookieRequests();
 	}
-
 }
