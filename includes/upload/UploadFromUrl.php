@@ -36,7 +36,7 @@ class UploadFromUrl extends UploadBase {
 		global $wgTmpDirectory;
 
 		$localFile = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
-		parent::initialize( $name, $localFile, 0, true );
+		$this->initializePathInfo( $name, $localFile, 0, true );
 
 		$this->mUrl = trim( $url );
 	}

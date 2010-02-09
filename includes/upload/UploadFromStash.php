@@ -35,7 +35,7 @@ class UploadFromStash extends UploadBase {
 			 * an opaque key to the user agent.
 			 */
 
-			parent::initialize( $name,
+			$this->initializePathInfo( $name,
 				$this->getRealPath ( $sessionData['mTempPath'] ),
 				$sessionData['mFileSize'],
 				false
@@ -62,7 +62,7 @@ class UploadFromStash extends UploadBase {
 		return true;
 	}
 
-	
+
 	/**
 	 * There is no need to stash the image twice
 	 */
