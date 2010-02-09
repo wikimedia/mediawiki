@@ -1657,7 +1657,7 @@ Extensions making use of it:
 'license-nopreview' => 'Error message when a certain license does not exist',
 
 # HTTP errors
-'http-bad-status'       => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)'
+'http-bad-status'       => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
 
 # Special:ListFiles
 'listfiles-summary'     => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
