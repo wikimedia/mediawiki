@@ -129,23 +129,14 @@ class HistoryPage {
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 		/**
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
-		 * Note that this can run a *long* time if there are many revisions to look at.
-		 * We use "isBigDeletion" to determine if the history is too big to go through.
-		 * Additionally, only users with 'deleterevision' right can filter for deleted edits.
 		 */
-		if ( $this->title->userCan( 'deleterevision' )
-			&& ( !$this->article->isBigDeletion() || $this->title->userCan( 'bigdelete' ) ) )
-		{
-			$conds = ( $wgRequest->getBool( 'deleted' ) )
-				? array("rev_deleted != '0'")
-				: array();
-			$checkDeleted = Xml::checkLabel( wfMsg( 'history-show-deleted' ),
-				'deleted', 'mw-show-deleted-only', $wgRequest->getBool( 'deleted' ) ) . "\n";
-		}
-		else { # Don't filter and don't add the checkbox for filtering
+		if ( $wgRequest->getBool( 'deleted' ) ) {
+			$conds = array("rev_deleted != '0'");
+		} else {
 			$conds = array();
-			$checkDeleted = '';
 		}
+		$checkDeleted = Xml::checkLabel( wfMsg( 'history-show-deleted' ),
+			'deleted', 'mw-show-deleted-only', $wgRequest->getBool( 'deleted' ) ) . "\n";
 
 		$action = htmlspecialchars( $wgScript );
 		$wgOut->addHTML(
@@ -323,6 +314,14 @@ class HistoryPager extends ReverseChronologicalPager {
 	// For hook compatibility...
 	function getArticle() {
 		return $this->historyPage->getArticle();
+	}
+
+	function getSqlComment() {
+		if ( $this->conds ) {
+			return 'history page filtered'; // potentially slow, see CR r58153
+		} else {
+			return 'history page unfiltered';
+		}
 	}
 
 	function getQueryInfo() {
