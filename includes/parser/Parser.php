@@ -4033,9 +4033,9 @@ class Parser
 		) );
 
 		# Links of the form [[|<blah>]] or [[<blah>|]] perform pipe tricks
-		# Note this only allows the # in the one position it works.
+		# Note this only allows the # in the position it works.
 		global $wgLegalTitleChars;
-		$pipeTrickRe = "/\[\[(?:(\\|)([$wgLegalTitleChars]+)|(#?[$wgLegalTitleChars]+)\\|)\]\]/";
+		$pipeTrickRe = "/\[\[(?:(\\|)([$wgLegalTitleChars]+)|([#$wgLegalTitleChars]+)\\|)\]\]/";
 		$text = preg_replace_callback( $pipeTrickRe, array( $this, 'pstPipeTrickCallback' ), $text );
 
 		# Trim trailing whitespace

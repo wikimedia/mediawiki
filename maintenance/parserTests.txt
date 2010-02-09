@@ -3052,6 +3052,18 @@ pst
 !! end
 
 !! test
+pre-save transform: context links ("pipe trick") to sections on other pages
+!! options
+pst
+!! input
+[[other#page|]]
+[[Help:Somewhere/completely (wierd)#section (two)|]]
+!! result
+[[other#page|page]]
+[[Help:Somewhere/completely (wierd)#section (two)|section]]
+!! end
+
+!! test
 pre-save transform: context links ("pipe trick") with full-width characters
 !! options
 pst
