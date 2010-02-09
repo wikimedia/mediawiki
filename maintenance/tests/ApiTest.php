@@ -61,14 +61,32 @@ class ApiTest extends ApiSetup {
 		global $wgScriptPath, $wgServerName;
 
 		$req = HttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
-									array( "method" => "POST",
-										   "postData" => array(
-											  "lgname" => self::$userName,
-											  "lgpassword" => self::$passWord ) ) );
+									 array( "method" => "POST",
+											"postData" => array( "lgname" => self::$userName,
+																 "lgpassword" => self::$passWord ) ) );
 		$req->execute();
 		$cj = $req->getCookieJar();
-		$this->markTestIncomplete("Need to make sure cookie/domain handling is correct");
 		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$userName . '; .*Token=/',
 							 $cj->serializeToHttpRequest( $wgScriptPath, $wgServerName ) );
+
+
+		return $cj;
+	}
+
+	/**
+	 * @depends testApiGotCookie
+	 */
+	function testApiListPages(CookieJar $cj) {
+		$this->markTestIncomplete("Not done with this yet");
+
+		$req = HttpRequest::factory( self::$apiUrl . "?action=query&format=xml&prop=revisions&".
+									 "titles=Main%20Page&rvprop=timestamp|user|comment|content" );
+		$req->setCookieJar($cj);
+		$req->execute();
+		libxml_use_internal_errors( true );
+		$sxe = simplexml_load_string( $req->getContent() );
+		$this->assertNotType( "bool", $sxe );
+		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
+		$a = $sxe->query[0]->pages[0]->page[0]->attributes();
 	}
 }

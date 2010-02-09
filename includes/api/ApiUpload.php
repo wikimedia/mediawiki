@@ -3,7 +3,7 @@
  * Created on Aug 21, 2008
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2008 - 2009 Bryan Tong Minh <Bryan.TongMinh@Gmail.com>
+ * Copyright (C) 2008 - 2010 Bryan Tong Minh <Bryan.TongMinh@Gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,8 +93,7 @@ class ApiUpload extends ApiBase {
 				);
 
 				if ( !$this->mUpload->status->isOK() ) {
-					return $this->dieUsageMsg( $this->mUpload->status->getWikiText(),
-						'chunked-error' );
+					return $this->dieUsageMsg( $this->mUpload->status->getErrorsArray() );
 				}
 			} elseif ( isset( $this->mParams['file'] ) ) {
 				$this->mUpload = new UploadFromFile();
