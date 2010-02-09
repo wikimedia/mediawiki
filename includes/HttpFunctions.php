@@ -140,7 +140,7 @@ class HttpRequest {
 
 	protected $headerList = array();
 	protected $respVersion = "0.9";
-	protected $respStatus = "0.1";
+	protected $respStatus = "200 Ok";
 	protected $respHeaders = array();
 
 	public $status;
@@ -258,8 +258,8 @@ class HttpRequest {
 
 		if( $this->cookieJar ) {
 			$this->reqHeaders['Cookie'] =
-				$this->cookieJar->serializeToHttpRequest($this->parsedURL['path'],
-														 $this->parsedURL['host']);
+				$this->cookieJar->serializeToHttpRequest($this->parsedUrl['path'],
+														 $this->parsedUrl['host']);
 		}
 		foreach($this->reqHeaders as $name => $value) {
 			$list[] = "$name: $value";
@@ -333,6 +333,9 @@ class HttpRequest {
 			}
 		}
 
+		if((int)$this->respStatus !== 200) {
+			$this->status->fatal('Not Ok');
+		}
 		$this->parseCookies();
 	}
 
@@ -707,6 +710,7 @@ class CurlHttpRequest extends HttpRequest {
 
 		curl_close( $curlHandle );
 
+		$this->parseHeader();
 		return $this->status;
 	}
 }
@@ -720,7 +724,7 @@ class PhpHttpRequest extends HttpRequest {
 
 	public function execute() {
 		if ( $this->parsedUrl['scheme'] != 'http' ) {
-			$this->status->fatal( 'http-invalid-scheme', $this->parsedURL['scheme'] );
+			$this->status->fatal( 'http-invalid-scheme', $this->parsedUrl['scheme'] );
 		}
 
 		parent::execute();
@@ -795,6 +799,7 @@ class PhpHttpRequest extends HttpRequest {
 		}
 		fclose( $fh );
 
+		$this->parseHeader();
 		return $this->status;
 	}
 }
