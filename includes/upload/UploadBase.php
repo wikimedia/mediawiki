@@ -110,9 +110,14 @@ abstract class UploadBase {
 	public function __construct() {}
 
 	/**
-	 * Do the real variable initialization
+	 * Initialize the path information
+	 * @param $name string the desired destination name
+	 * @param $tempPath string the temporary path
+	 * @param $fileSize int the file size
+	 * @param $removeTempFile bool (false) remove the temporary file?
+	 * @return null
 	 */
-	public function initialize( $name, $tempPath, $fileSize, $removeTempFile = false ) {
+	public function initializePathInfo( $name, $tempPath, $fileSize, $removeTempFile = false ) {
 		$this->mDesiredDestName = $name;
 		$this->mTempPath = $tempPath;
 		$this->mFileSize = $fileSize;
