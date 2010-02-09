@@ -334,8 +334,10 @@ class HttpRequest {
 		}
 
 		if((int)$this->respStatus !== 200) {
-			$this->status->fatal("http-bad-status", explode(" ", $this->respStatus, 2));
+			list( $code, $message ) = explode(" ", $this->respStatus, 2);
+			$this->status->fatal("http-bad-status", $code, $message );
 		}
+
 		$this->parseCookies();
 	}
 
@@ -753,6 +755,7 @@ class PhpHttpRequest extends HttpRequest {
 
 		$options['method'] = $this->method;
 		$options['timeout'] = $this->timeout;
+		$options['ignore_errors'] = true; /* the only way to get 404s, etc */
 		$options['header'] = implode("\r\n", $this->getHeaderList());
 		// Note that at some future point we may want to support
 		// HTTP/1.1, but we'd have to write support for chunking
@@ -787,19 +790,21 @@ class PhpHttpRequest extends HttpRequest {
 		}
 		$this->headerList = $result['wrapper_data'];
 
-		while ( !feof( $fh ) ) {
-			$buf = fread( $fh, 8192 );
-			if ( $buf === false ) {
-				$this->status->fatal( 'http-read-error' );
-				break;
-			}
-			if ( strlen( $buf ) ) {
-				call_user_func( $this->callback, $fh, $buf );
+		$this->parseHeader();
+		if($this->status->isOK()) {
+			while ( !feof( $fh ) ) {
+				$buf = fread( $fh, 8192 );
+				if ( $buf === false ) {
+					$this->status->fatal( 'http-read-error' );
+					break;
+				}
+				if ( strlen( $buf ) ) {
+					call_user_func( $this->callback, $fh, $buf );
+				}
 			}
 		}
 		fclose( $fh );
 
-		$this->parseHeader();
 		return $this->status;
 	}
 }
