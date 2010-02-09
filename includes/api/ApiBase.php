@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright (C) 2006, 2010 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -342,7 +342,7 @@ abstract class ApiBase {
 		} else
 			return false;
 	}
-	
+
 	/**
 	 * Callback for preg_replace_callback() call in makeHelpMsg().
 	 * Replaces a source file name with a link to ViewVC
@@ -353,14 +353,14 @@ abstract class ApiBase {
 			$file = $wgAutoloadLocalClasses[get_class( $this )];
 		else if ( isset( $wgAutoloadClasses[get_class( $this )] ) )
 			$file = $wgAutoloadClasses[get_class( $this )];
-		
+
 		// Do some guesswork here
 		$path = strstr( $file, 'includes/api/' );
 		if ( $path === false )
 			$path = strstr( $file, 'extensions/' );
 		else
 			$path = 'phase3/' . $path;
-		
+
 		// Get the filename from $matches[2] instead of $file
 		// If they're not the same file, they're assumed to be in the
 		// same directory
@@ -409,7 +409,7 @@ abstract class ApiBase {
 	protected function getParamDescription() {
 		return false;
 	}
-	
+
 	/**
 	 * Get final list of parameters, after hooks have had a chance to
 	 * tweak it as needed.
@@ -472,7 +472,7 @@ abstract class ApiBase {
 		$paramSettings = $params[$paramName];
 		return $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 	}
-	
+
 	/**
 	 * Die if none or more than one of a certain set of parameters is set
 	 * @param $params array of parameter names
@@ -480,7 +480,7 @@ abstract class ApiBase {
 	public function requireOnlyOneParameter( $params ) {
 		$required = func_get_args();
 		array_shift( $required );
-		
+
 		$intersection = array_intersect( array_keys( array_filter( $params,
 				create_function( '$x', 'return !is_null($x);' )
 			) ), $required );
@@ -721,7 +721,7 @@ abstract class ApiBase {
 			}
 		}
 	}
-	
+
 	/**
 	 * Truncate an array to a certain length.
 	 * @param $arr array Array to truncate
@@ -885,6 +885,8 @@ abstract class ApiBase {
 		// uploadMsgs
 		'invalid-session-key' => array( 'code' => 'invalid-session-key', 'info' => 'Not a valid session key' ),
 		'nouploadmodule' => array( 'code' => 'nouploadmodule', 'info' => 'No upload module set' ),
+		'uploaddisabled' => array( 'code' => 'uploaddisabled', 'info' => 'Uploads are not enabled.  Make sure $wgEnableUploads is set to true in LocalSettings.php and the PHP ini setting file_uploads is true' ),
+		'chunked-error' => array( 'code' => 'chunked-error', 'info' => 'There was a problem initializing the chunked upload.' ),
 	);
 
 	/**
@@ -904,7 +906,7 @@ abstract class ApiBase {
 		$parsed = $this->parseMsg( $error );
 		$this->dieUsage( $parsed['info'], $parsed['code'] );
 	}
-	
+
 	/**
 	 * Return the error message related to a certain array
 	 * @param $error array Element of a getUserPermissionsErrors()-style array

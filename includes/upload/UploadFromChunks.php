@@ -51,7 +51,6 @@ class UploadFromChunks extends UploadBase {
 		} else if ( $this->sessionKey && $done ) {
 			$this->chunkMode = self::DONE;
 		}
-
 		if ( $this->chunkMode == self::CHUNK || $this->chunkMode == self::DONE ) {
 			$this->mTempPath = $path;
 			$this->fileSize += $fileSize;
@@ -90,8 +89,7 @@ class UploadFromChunks extends UploadBase {
 	protected function initFromSessionKey( $sessionKey, $sessionData ) {
 		// testing against null because we don't want to cause obscure
 		// bugs when $sessionKey is full of "0"
-		if ( $sessionKey !== null ) {
-			$this->status = Status::newFromFatal( 'import-token-mismatch' );
+		if ( $sessionKey === null ) {
 			return;
 		}
 		$this->sessionKey = $sessionKey;
@@ -106,7 +104,7 @@ class UploadFromChunks extends UploadBase {
 			$this->repoPath = $sessionData[$this->sessionKey]['repoPath'];
 			$this->mDesiredDestName = $sessionData[$this->sessionKey]['mDesiredDestName'];
 		} else {
-			$this->status = Status::newFromFatal( 'Missing session data.' );
+			$this->status = Status::newFatal( 'invalid-session-key' );
 		}
 	}
 
