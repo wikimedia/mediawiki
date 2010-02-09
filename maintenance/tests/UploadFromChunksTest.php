@@ -11,6 +11,17 @@ class UploadFromChunksTest extends ApiSetup {
 		ini_set('file_loads', true);
 	}
 
+	function testGetTitle() {
+		$filename = tempnam( wfTempDir(), "" );
+		$c = new UploadFromChunks();
+		$c->initialize(false, "temp.txt", null, $filename, 0, null);
+		$this->assertEquals(null, $c->getTitle());
+
+		$c = new UploadFromChunks();
+		$c->initialize(false, "temp.png", null, $filename, 0, null);
+		$this->assertEquals(Title::makeTitleSafe(NS_FILE, "Temp.png"), $c->getTitle());
+	}
+
 	function testGetEditToken() {
 	}
 
@@ -58,7 +69,7 @@ class UploadFromChunksTest extends ApiSetup {
 		$req = new FauxRequest(
 			array('action' => 'upload',
 				  'enablechunks' => '1',
-				  'filename' => 'test.txt',
+				  'filename' => 'test.png',
 				  'token' => $token,
 			));
 		$module = new ApiMain($req, true);
@@ -75,7 +86,7 @@ class UploadFromChunksTest extends ApiSetup {
 		$req = new FauxRequest(
 			array('action' => 'upload',
 				  'enablechunks' => '1',
-				  'filename' => 'test.txt',
+				  'filename' => 'test.png',
 				  'token' => $token,
 			));
 		$module = new ApiMain($req, true);
