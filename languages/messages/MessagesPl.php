@@ -947,6 +947,7 @@ Argument ten będzie pominięty.',
 'post-expand-template-argument-category'  => 'Strony, w których użyto szablon z pominięciem argumentów',
 'parser-template-loop-warning'            => 'Wykryto pętlę w szablonie [[$1]]',
 'parser-template-recursion-depth-warning' => 'Przekroczno limit głębokości rekurencji szablonu ($1)',
+'language-converter-depth-warning'        => 'Przekroczono ograniczenie ($1) głębokości zagnieżdżenia konwersji językowej',
 
 # "Undo" feature
 'undo-success' => 'Edycja może zostać wycofana. Porównaj ukazane poniżej różnice między wersjami, a następnie zapisz zmiany.',
@@ -1664,7 +1665,14 @@ Ponieważ ta wiki została skonfigurowana jako publiczna dla zapewnienia optymal
 'img-auth-noread'       => 'Użytkownik nie ma dostępu do odczytu „$1”.',
 
 # HTTP errors
-'http-invalid-url' => 'Niepoprawny adres URL: $1',
+'http-invalid-url'      => 'Niepoprawny adres URL: $1',
+'http-invalid-scheme'   => 'Adresy „$1“ nie są obsługiwane.',
+'http-request-error'    => 'Nieudane żądanie HTTP ze względu na nieznany błąd.',
+'http-read-error'       => 'Błąd odczytu HTTP.',
+'http-timed-out'        => 'Przekroczony czas żądania HTTP.',
+'http-curl-error'       => 'Błąd pobierania z adresu $1',
+'http-host-unreachable' => 'Adres jest nieosiągalny.',
+'http-bad-status'       => 'Wystąpił problem z realizacją żądania HTTP $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Adres URL jest nieosiągalny',
@@ -2081,11 +2089,16 @@ wiki – $PAGEEDITOR_WIKI
 W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony.
 Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
 
+$NEWPAGE
+
 	Wiadomość z systemu powiadomień {{GRAMMAR:D.lp|{{SITENAME}}}}
 
 --
 W celu zmiany ustawień swojej listy obserwowanych odwiedź
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Usunięcie strony z listy obserwowanych możliwe jest na stronie
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Pomoc
 {{fullurl:{{MediaWiki:Helppage}}}}',

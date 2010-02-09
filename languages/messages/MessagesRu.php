@@ -1340,25 +1340,26 @@ $1",
 'prefs-diffs'                   => 'Разница версий',
 
 # User rights
-'userrights'                  => 'Управление правами участника',
-'userrights-lookup-user'      => 'Управление группами участников',
-'userrights-user-editname'    => 'Введите имя участника:',
-'editusergroup'               => 'Изменить группы участника',
-'editinguser'                 => "Изменение прав участника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Изменить группы участника',
-'saveusergroups'              => 'Сохранить группы участника',
-'userrights-groupsmember'     => 'Член групп:',
-'userrights-groups-help'      => 'Вы можете изменить группы, в которые входит этот участник.
+'userrights'                   => 'Управление правами участника',
+'userrights-lookup-user'       => 'Управление группами участников',
+'userrights-user-editname'     => 'Введите имя участника:',
+'editusergroup'                => 'Изменить группы участника',
+'editinguser'                  => "Изменение прав участника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Изменить группы участника',
+'saveusergroups'               => 'Сохранить группы участника',
+'userrights-groupsmember'      => 'Член групп:',
+'userrights-groupsmember-auto' => 'Неявный член:',
+'userrights-groups-help'       => 'Вы можете изменить группы, в которые входит этот участник.
 * Если около названия группы стоит отметка, значит участник входит в эту группу.
 * Если отметка не стоит — участник не относится к соответствующей группе.
 * Знак * отмечает, что вы не можете удалить из группы участника, если добавите его в неё или наоборот.',
-'userrights-reason'           => 'Причина:',
-'userrights-no-interwiki'     => 'У вас нет разрешения изменять права участников на других вики.',
-'userrights-nodatabase'       => 'База данных $1 не существует или не является локальной.',
-'userrights-nologin'          => 'Вы должны [[Special:UserLogin|представиться системе]] с учётной записи администратора, чтобы присваивать права участникам.',
-'userrights-notallowed'       => 'С вашей учётной записи не разрешено присваивать права участникам.',
-'userrights-changeable-col'   => 'Группы, которые вы можете изменять',
-'userrights-unchangeable-col' => 'Группы, которые вы не можете изменять',
+'userrights-reason'            => 'Причина:',
+'userrights-no-interwiki'      => 'У вас нет разрешения изменять права участников на других вики.',
+'userrights-nodatabase'        => 'База данных $1 не существует или не является локальной.',
+'userrights-nologin'           => 'Вы должны [[Special:UserLogin|представиться системе]] с учётной записи администратора, чтобы присваивать права участникам.',
+'userrights-notallowed'        => 'С вашей учётной записи не разрешено присваивать права участникам.',
+'userrights-changeable-col'    => 'Группы, которые вы можете изменять',
+'userrights-unchangeable-col'  => 'Группы, которые вы не можете изменять',
 
 # Groups
 'group'               => 'Группа:',
@@ -1678,9 +1679,14 @@ PICT # различные
 'img-auth-noread'       => 'Участник не имеет доступа на чтение к «$1».',
 
 # HTTP errors
-'http-invalid-url'    => 'Ошибочный URL: $1',
-'http-invalid-scheme' => 'Не поддерживаются адреса со схемой «$1»',
-'http-request-error'  => 'Сбой HTTP-запроса из-за неизвестной ошибки.',
+'http-invalid-url'      => 'Ошибочный URL: $1',
+'http-invalid-scheme'   => 'Не поддерживаются адреса со схемой «$1»',
+'http-request-error'    => 'Сбой HTTP-запроса из-за неизвестной ошибки.',
+'http-read-error'       => 'Ошибка чтения HTTP.',
+'http-timed-out'        => 'Истекло время ожидания HTTP-запроса.',
+'http-curl-error'       => 'Ошибка обращения к URL: $1',
+'http-host-unreachable' => 'Невозможно обратить к URL.',
+'http-bad-status'       => 'Во время обработки HTTP-запроса обнаружена проблема: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Невозможно обратить по указанному адресу.',

@@ -2840,7 +2840,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-yresolution'                 => 'ലംബ റെസലൂഷന്‍',
 'exif-stripoffsets'                => 'ചിത്രത്തിന്റെ വിവര സ്ഥാനം',
 'exif-rowsperstrip'                => 'ഓരോ സ്‌ട്രിപ്പിലുമുള്ള വരികളുടെ എണ്ണം',
+'exif-stripbytecounts'             => 'ഓരോ ചുരുക്കപ്പെട്ട ഖണ്ഡത്തിലുമുള്ള ബൈറ്റുകൾ',
 'exif-jpeginterchangeformatlength' => 'JPEG ഡാറ്റയുടെ ബൈറ്റ്സുകള്‍',
+'exif-transferfunction'            => 'കൈമാറ്റ രീതി',
 'exif-datetime'                    => 'പ്രമാണത്തിന് മാറ്റം വരുത്തിയ തീയതിയും സമയവും',
 'exif-imagedescription'            => 'ചിത്രത്തിന്റെ തലക്കെട്ട്',
 'exif-make'                        => 'ഛായാഗ്രാഹി നിര്‍മ്മാതാവ്',
@@ -2852,6 +2854,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-flashpixversion'             => 'പിന്തുണയുള്ള ഫ്ലാഷ്‌‌പിക്സ് പതിപ്പ്',
 'exif-colorspace'                  => 'കളര്‍ സ്പേസ്',
 'exif-componentsconfiguration'     => 'ഓരോ ഘടകത്തിന്റേയും അര്‍ത്ഥം',
+'exif-compressedbitsperpixel'      => 'ചിത്രം ചുരുക്കുവാനുപയോഗിച്ചിരിക്കുന്ന മാർഗ്ഗം',
 'exif-pixelydimension'             => 'ചിത്രത്തിന്റെ സാധുവായ വീതി',
 'exif-pixelxdimension'             => 'ചിത്രത്തിന്റെ സാധുവായ ഉയരം',
 'exif-makernote'                   => 'നിര്‍മ്മാതാക്കളുടെ കുറിപ്പുകള്‍',
@@ -2859,6 +2862,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-relatedsoundfile'            => 'ഇതുമായി ബന്ധമുള്ള ഓഡിയോ പ്രമാണം',
 'exif-datetimeoriginal'            => 'ഡാറ്റ സൃഷ്ടിക്കപ്പെട്ട തീയതിയും സമയവും',
 'exif-datetimedigitized'           => 'ഡിജിറ്റൈസ് ചെയ്ത തീയതിയും സമയവും',
+'exif-subsectime'                  => 'തീയതി-സമയം ഉപസെക്കന്റുകൾ',
+'exif-subsectimeoriginal'          => 'തീയതി-സമയം-യഥാർത്ഥ ഉപസെക്കന്റുകൾ',
+'exif-subsectimedigitized'         => 'തീയതി-സമയം-ഡിജിറ്റൽവത്കരിച്ച ഉപസെക്കന്റുകൾ',
 'exif-exposuretime'                => 'തുറന്നിരിക്കപ്പെട്ട സമയം',
 'exif-exposuretime-format'         => '$1 സെക്കന്റ് ($2)',
 'exif-fnumber'                     => 'F സംഖ്യ',
@@ -2919,6 +2925,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-gpsprocessingmethod'         => 'ജി.പി.എസ്. പ്രക്രിയയുടെ പേര്',
 'exif-gpsareainformation'          => 'GPS പ്രദേശത്തിന്റെ പേര്‌',
 'exif-gpsdatestamp'                => 'GPS തീയ്യതി',
+
+# EXIF attributes
+'exif-compression-1' => 'ചുരുക്കാത്തത്',
 
 'exif-unknowndate' => 'തീയ്യതി അജ്ഞാതം',
 

@@ -828,7 +828,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'whitelistedittitle'               => '편집하려면 로그인 필요',
 'whitelistedittext'                => '문서를 편집하려면 $1해야 합니다.',
 'confirmedittext'                  => '문서를 고치려면 이메일 인증 절차가 필요합니다. [[Special:Preferences|사용자 환경 설정]]에서 이메일 주소를 입력하고 이메일 주소 인증을 해 주시기 바랍니다.',
-'nosuchsectiontitle'               => '해당 부분 없음',
+'nosuchsectiontitle'               => '단락을 찾을 수 없음',
 'nosuchsectiontext'                => '편집하려는 문단이 존재하지 않습니다.',
 'loginreqtitle'                    => '로그인 필요',
 'loginreqlink'                     => '로그인',
@@ -1652,7 +1652,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
 
 # HTTP errors
 'http-invalid-url'      => '잘못된 URL: $1',
-'http-request-error'    => '요청 전송 오류:',
+'http-request-error'    => '알 수 없는 오류로 HTTP 요청에 실패했습니다.',
 'http-timed-out'        => 'HTTP 요청 시간 초과.',
 'http-host-unreachable' => 'URL에 접근하지 못했습니다.',
 
