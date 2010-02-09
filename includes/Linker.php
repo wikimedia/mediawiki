@@ -1237,8 +1237,8 @@ class Linker {
 			list( $tc, $nc ) = Linker::getPipeTrickCharacterClasses();
 			$rexps = array (
 				# try this first, to turn "[[A, B (C)|]]" into "A, B"
-				"/^(:?$nc+:|[:#\/]|$tc+\\/|)($tc+?)( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
-				"/^(:?$nc+:|[:#\/]|$tc+\\/|)($tc+?)( \\($tc+\\)| （$tc+）|)((?:,|，) $tc+|)$/",  # [[ns:page (context), context|]]
+				"/^(:?$nc+:|[:#\/]|$tc+[\\/#]|)($tc+?)( \\($tc+\\)| （$tc+）)$/", # [[ns:page (context)|]]
+				"/^(:?$nc+:|[:#\/]|$tc+[\\/#]|)($tc+?)( \\($tc+\\)| （$tc+）|)((?:,|，) $tc+|)$/",  # [[ns:page (context), context|]]
 			);  
 		}
 		$text = urldecode( $link );
