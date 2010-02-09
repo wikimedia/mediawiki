@@ -1,0 +1,9 @@
+/**
+ * Fixes textarea scrolling bug (bug #19334)
+ */
+#wpTextbox1 {
+	height: 390px;
+	width: 500px;
+	min-width: 100%;
+	max-width: 100%;
+}

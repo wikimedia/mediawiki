@@ -747,6 +747,7 @@ comment from another wiki.
   $wgExtensionCredits is no longer sorted with sort() but rather used
   as it appears in extensions as was the case before r30117 where it
   was unintentionally sorted along with other fields.
+* (bug 19334) Textarea no longer jumps when editing longer articles in IE8
 
 == API changes in 1.16 ==
 
