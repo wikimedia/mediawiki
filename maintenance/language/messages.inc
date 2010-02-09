@@ -1279,6 +1279,7 @@ $wgMessageStructure = array(
 		'http-timed-out',
 		'http-curl-error',
 		'http-host-unreachable',
+		'http-bad-status',
 	),
 
 	'upload-curl-errors' => array(

@@ -334,7 +334,7 @@ class HttpRequest {
 		}
 
 		if((int)$this->respStatus !== 200) {
-			$this->status->fatal('Not Ok');
+			$this->status->fatal("http-bad-status", explode(" ", $this->respStatus, 2));
 		}
 		$this->parseCookies();
 	}
