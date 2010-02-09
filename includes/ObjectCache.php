@@ -34,7 +34,7 @@ $wgCaches = array();
 
 /**
  * Get a cache object.
- * @param int $inputType cache type, one the the CACHE_* constants. 
+ * @param $inputType Integer: cache type, one the the CACHE_* constants. 
  */
 function &wfGetCache( $inputType ) {
 	global $wgCaches, $wgMemCachedServers, $wgMemCachedDebug, $wgMemCachedPersistent;
