@@ -552,11 +552,6 @@ $user: the user who did the block (not the one being blocked)
 'BookInformation': Before information output on Special:Booksources
 $isbn: ISBN to show information for
 $output: OutputPage object in use
-
-'CacheHeadersAfterSet': after cache headers have been set in 
-OutputPage::sendCacheControl, so they can be overridden without 
-disabling output method
-$out: OutputPage instance
  
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
