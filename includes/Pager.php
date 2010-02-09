@@ -234,6 +234,13 @@ abstract class IndexPager implements Pager {
 	}
 
 	/**
+	 * Get some text to go in brackets in the "function name" part of the SQL comment
+	 */
+	function getSqlComment() {
+		return get_class( $this );
+	}
+
+	/**
 	 * Do a query with specified parameters, rather than using the object
 	 * context
 	 *
@@ -243,7 +250,7 @@ abstract class IndexPager implements Pager {
 	 * @return ResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
-		$fname = __METHOD__ . ' (' . get_class( $this ) . ')';
+		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 		$info = $this->getQueryInfo();
 		$tables = $info['tables'];
 		$fields = $info['fields'];
