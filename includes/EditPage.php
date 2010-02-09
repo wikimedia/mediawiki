@@ -364,7 +364,7 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !wfRunHooks( 'AlternateEdit', array( $this ) ) ) {
 			return;
@@ -392,6 +392,11 @@ class EditPage {
 		}
 
 		$wgOut->addScriptFile( 'edit.js' );
+		
+		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
+			$wgOut->includeJQuery();
+			$wgOut->addScriptFile( 'preview.js' );
+		}
 
 		$permErrors = $this->getEditPermissionErrors();
 		if ( $permErrors ) {
