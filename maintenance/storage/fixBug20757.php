@@ -159,14 +159,14 @@ class FixBug20757 extends Maintenance {
 
 				// Find the page_id and rev_id
 				// The page is probably the same as the page of the secondary row
-				$pageId = $trackRow->bt_page;
-				if ( $pageId === null ) {
-					$revId = null;
+				$pageId = intval( $trackRow->bt_page );
+				if ( !$pageId ) {
+					$revId = $pageId = 0;
 				} else {
 					$revId = $this->findTextIdInPage( $pageId, $primaryId );
-					if ( $revId === null ) {
+					if ( !$revId ) {
 						// Actually an orphan
-						$pageId = null;
+						$pageId = $revId = 0;
 					}
 				}
 
@@ -189,7 +189,7 @@ class FixBug20757 extends Maintenance {
 					// without needing to run trackBlobs.php again
 					$dbw->insert( 'blob_tracking',
 						array(
-							'bt_page' => $trackRow->bt_page,
+							'bt_page' => $pageId,
 							'bt_rev_id' => $revId,
 							'bt_text_id' => $primaryId,
 							'bt_cluster' => $trackRow->bt_cluster,
