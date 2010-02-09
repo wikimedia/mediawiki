@@ -57,11 +57,15 @@ function mwSetupToolbar() {
 		// No toolbar if we can't find any textarea
 		return false;
 	}
-	if ( !( document.selection && document.selection.createRange )
-		&& textboxes[0].selectionStart === null ) {
-		return false;
+	// Only check for selection capability if the textarea is visible - errors will occur otherwise - just because
+	// the textarea is not visible, doesn't mean we shouldn't build out the toolbar though - it might have been replaced
+	// with some other kind of control
+	if ( textboxes[0].style.display != 'none' ) {
+		if ( !( document.selection && document.selection.createRange )
+			&& textboxes[0].selectionStart === null ) {
+			return false;
+		}
 	}
-
 	for ( var i = 0; i < mwEditButtons.length; i++ ) {
 		mwInsertEditButton( toolbar, mwEditButtons[i] );
 	}
@@ -74,6 +78,12 @@ function mwSetupToolbar() {
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
 function insertTags( tagOpen, tagClose, sampleText ) {
+	if ( typeof $j.fn.textSelection != 'undefined' ) {
+		$j( '#wpTextbox1' ).textSelection(
+			'encapsulateSelection', { 'pre': tagOpen, 'peri': sampleText, 'post': tagClose }
+		);
+		return;
+	}
 	var txtarea;
 	if ( document.editform ) {
 		txtarea = currentFocused;
