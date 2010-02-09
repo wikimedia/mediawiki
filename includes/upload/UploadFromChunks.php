@@ -40,6 +40,8 @@ class UploadFromChunks extends UploadBase {
 	public function initialize( $done, $filename, $sessionKey, $path,
 		$fileSize, $sessionData )
 	{
+		$this->status = new Status;
+
 		$this->initFromSessionKey( $sessionKey, $sessionData );
 
 		if ( !$this->sessionKey && !$done ) {
@@ -127,7 +129,6 @@ class UploadFromChunks extends UploadBase {
 			// b) should only happen over POST
 			// c) we need the token to validate chunks are coming from a non-xss request
 			$token = urlencode( $wgUser->editToken() );
-			ob_clean();
 			echo FormatJson::encode( array(
 				'uploadUrl' => wfExpandUrl( wfScript( 'api' ) ) . "?action=upload&" .
 				"token={$token}&format=json&enablechunks=true&chunksessionkey=" .
@@ -141,7 +142,6 @@ class UploadFromChunks extends UploadBase {
 			// return success:
 			// firefogg expects a specific result
 			// http://www.firefogg.org/dev/chunk_post.html
-			ob_clean();
 			echo FormatJson::encode(
 				array( 'result' => 1, 'filesize' => $this->fileSize )
 			);
@@ -164,7 +164,6 @@ class UploadFromChunks extends UploadBase {
 
 			// firefogg expects a specific result
 			// http://www.firefogg.org/dev/chunk_post.html
-			ob_clean();
 			echo FormatJson::encode( array(
 				'result' => 1,
 				'done' => 1,
@@ -172,6 +171,8 @@ class UploadFromChunks extends UploadBase {
 			);
 			$wgOut->disable();
 		}
+
+		return Status::newGood();
 	}
 
 	/**
@@ -215,7 +216,7 @@ class UploadFromChunks extends UploadBase {
 
 	public function verifyUpload() {
 		if ( $this->chunkMode != self::DONE ) {
-			return Status::newGood();
+			return array('status' => UploadBase::OK);
 		}
 		return parent::verifyUpload();
 	}
