@@ -78,7 +78,7 @@ function mwSetupToolbar() {
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
 function insertTags( tagOpen, tagClose, sampleText ) {
-	if ( typeof $j.fn.textSelection != 'undefined' ) {
+	if ( typeof $j != 'undefined' && typeof $j.fn.textSelection != 'undefined' ) {
 		$j( '#wpTextbox1' ).textSelection(
 			'encapsulateSelection', { 'pre': tagOpen, 'peri': sampleText, 'post': tagClose }
 		);
