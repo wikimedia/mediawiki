@@ -40,14 +40,11 @@ class ChangesFeed {
 	 *
 	 * @param $feed ChannelFeed subclass object (generally the one returned by getFeedObject())
 	 * @param $rows ResultWrapper object with rows in recentchanges table
-	 * @param $limit Integer: number of rows in $rows (only used for the cache key)
-	 * @param $hideminor Boolean: whether to hide minor edits (only used for the cache key)
 	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table (only used for the cache key)
-	 * @param $target String: target's name; for Special:RecentChangesLinked (only used for the cache key)
-	 * @param $namespace Integer: namespace id (only used for the cache key)
+	 * @param $opts FormOptions as in SpecialRecentChanges::getDefaultOptions()
 	 * @return null or true
 	 */
-	public function execute( $feed, $rows, $limit=0, $hideminor=false, $lastmod=false, $target='', $namespace='' ) {
+	public function execute( $feed, $rows, $lastmod, $opts ) {
 		global $messageMemc, $wgFeedCacheTimeout;
 		global $wgSitename, $wgLang;
 
@@ -56,7 +53,8 @@ class ChangesFeed {
 		}
 
 		$timekey = wfMemcKey( $this->type, $this->format, 'timestamp' );
-		$key = wfMemcKey( $this->type, $this->format, $limit, $hideminor, $target, $wgLang->getCode(), $namespace );
+		$optionsHash = md5( serialize( $opts->getAllValues() ) );
+		$key = wfMemcKey( $this->type, $this->format, $wgLang->getCode(), $optionsHash );
 
 		FeedUtils::checkPurge($timekey, $key);
 

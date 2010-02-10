@@ -5,6 +5,8 @@
  * @ingroup SpecialPage
  */
 class SpecialRecentChanges extends SpecialPage {
+	var $rcOptions, $rcSubpage;
+
 	public function __construct() {
   		parent::__construct( 'Recentchanges' );
 		$this->includable( true );
@@ -40,7 +42,7 @@ class SpecialRecentChanges extends SpecialPage {
 	}
 
 	/**
-	 * Get a FormOptions object with options as specified by the user
+	 * Create a FormOptions object with options as specified by the user
 	 *
 	 * @return FormOptions
 	 */
@@ -60,7 +62,7 @@ class SpecialRecentChanges extends SpecialPage {
 	}
 
 	/**
-	 * Get a FormOptions object sepcific for feed requests
+	 * Create a FormOptions object specific for feed requests and return it
 	 *
 	 * @return FormOptions
 	 */
@@ -74,12 +76,26 @@ class SpecialRecentChanges extends SpecialPage {
 	}
 
 	/**
+	 * Get the current FormOptions for this request
+	 */
+	public function getOptions() {
+		if ( $this->rcOptions === null ) {
+			global $wgRequest;
+			$feedFormat = $wgRequest->getVal( 'feed' );
+			$this->rcOptions = $feedFormat ? $this->feedSetup() : $this->setup( $this->rcSubpage );
+		}
+		return $this->rcOptions;
+	}
+
+
+	/**
 	 * Main execution point
 	 *
-	 * @param $parameters string
+	 * @param $subpage string
 	 */
-	public function execute( $parameters ) {
+	public function execute( $subpage ) {
 		global $wgRequest, $wgOut;
+		$this->rcSubpage = $subpage;
 		$feedFormat = $wgRequest->getVal( 'feed' );
 
 		# 10 seconds server-side caching max
@@ -90,12 +106,11 @@ class SpecialRecentChanges extends SpecialPage {
 			return;
 		}
 
-		$opts = $feedFormat ? $this->feedSetup() : $this->setup( $parameters );
+		$opts = $this->getOptions();
 		$this->setHeaders();
 		$this->outputHeader();
 
 		// Fetch results, prepare a batch link existence check query
-		$rows = array();
 		$conds = $this->buildMainQueryConds( $opts );
 		$rows = $this->doMainQuery( $conds, $opts );
 		if( $rows === false ){
@@ -114,10 +129,9 @@ class SpecialRecentChanges extends SpecialPage {
 			}
 			$batch->execute();
 		}
-		$target = isset($opts['target']) ? $opts['target'] : ''; // RCL has targets
 		if( $feedFormat ) {
-			list( $feed, $feedObj ) = $this->getFeedObject( $feedFormat );
-			$feed->execute( $feedObj, $rows, $opts['limit'], $opts['hideminor'], $lastmod, $target, $opts['namespace'] );
+			list( $changesFeed, $formatter ) = $this->getFeedObject( $feedFormat );
+			$changesFeed->execute( $formatter, $rows, $lastmod, $opts );
 		} else {
 			$this->webOutput( $rows, $opts );
 		}
@@ -131,12 +145,12 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @return array
 	 */
 	public function getFeedObject( $feedFormat ){
-		$feed = new ChangesFeed( $feedFormat, 'rcfeed' );
-		$feedObj = $feed->getFeedObject(
+		$changesFeed = new ChangesFeed( $feedFormat, 'rcfeed' );
+		$formatter = $changesFeed->getFeedObject(
 			wfMsgForContent( 'recentchanges' ),
 			wfMsgForContent( 'recentchanges-feed-description' )
 		);
-		return array( $feed, $feedObj );
+		return array( $changesFeed, $formatter );
 	}
 
 	/**
@@ -355,7 +369,7 @@ class SpecialRecentChanges extends SpecialPage {
 		}
 
 		// And now for the content
-		$wgOut->setSyndicated( true );
+		$wgOut->setFeedAppendQuery( $this->getFeedQuery() );
 
 		if( $wgAllowCategorizedRecentChanges ) {
 			$this->filterByCategories( $rows, $opts );
@@ -400,6 +414,14 @@ class SpecialRecentChanges extends SpecialPage {
 		}
 		$s .= $list->endRecentChangesList();
 		$wgOut->addHTML( $s );
+	}
+
+	/**
+	 * Get the query string to append to feed link URLs.
+	 * This is overridden by RCL to add the target parameter
+	 */
+	public function getFeedQuery() {
+		return false;
 	}
 
 	/**
