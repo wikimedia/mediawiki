@@ -5,6 +5,7 @@
  * @ingroup SpecialPage
  */
 class SpecialRecentchangeslinked extends SpecialRecentchanges {
+	var $rclTargetTitle;
 
 	function __construct(){
 		SpecialPage::SpecialPage( 'Recentchangeslinked' );
@@ -26,7 +27,6 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 	public function feedSetup() {
 		global $wgRequest;
 		$opts = parent::feedSetup();
-		# Feed is cached on limit,hideminor,target; other params would randomly not work
 		$opts['target'] = $wgRequest->getVal( 'target' );
 		return $opts;
 	}
@@ -34,7 +34,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 	public function getFeedObject( $feedFormat ){
 		$feed = new ChangesFeed( $feedFormat, false );
 		$feedObj = $feed->getFeedObject(
-			wfMsgForContent( 'recentchangeslinked-title', $this->mTargetTitle->getPrefixedText() ),
+			wfMsgForContent( 'recentchangeslinked-title', $this->getTargetTitle()->getPrefixedText() ),
 			wfMsgForContent( 'recentchangeslinked-feed' )
 		);
 		return array( $feed, $feedObj );
@@ -55,7 +55,6 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 			$wgOut->wrapWikiMsg( "<div class=\"errorbox\">\n$1</div><br style=\"clear: both\" />", 'allpagesbadtitle' );
 			return false;
 		}
-		$this->mTargetTitle = $title;
 
 		$wgOut->setPageTitle( wfMsg( 'recentchangeslinked-title', $title->getPrefixedText() ) );
 
@@ -197,18 +196,37 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 		return $extraOpts;
 	}
 
+	function getTargetTitle() {
+		if ( $this->rclTargetTitle === null ) {
+			$opts = $this->getOptions();
+			if ( isset( $opts['target'] ) && $opts['target'] !== '' ) {
+				$this->rclTargetTitle = Title::newFromText( $opts['target'] );
+			} else {
+				$this->rclTargetTitle = false;
+			}
+		}
+		return $this->rclTargetTitle;
+	}
+
 	function setTopText( OutputPage $out, FormOptions $opts ) {
 		global $wgUser;
 		$skin = $wgUser->getSkin();
-		if( isset( $this->mTargetTitle ) && is_object( $this->mTargetTitle ) )
-			$out->setSubtitle( wfMsg( 'recentchangeslinked-backlink', $skin->link( $this->mTargetTitle,
-				$this->mTargetTitle->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
+		$target = $this->getTargetTitle();
+		if( $target )
+			$out->setSubtitle( wfMsg( 'recentchangeslinked-backlink', $skin->link( $target,
+				$target->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
 	}
 
-	function setBottomText( OutputPage $out, FormOptions $opts ){
-		if( isset( $this->mTargetTitle ) && is_object( $this->mTargetTitle ) ){
-			$out->setFeedAppendQuery( "target=" . urlencode( $this->mTargetTitle->getPrefixedDBkey() ) );
+	public function getFeedQuery() {
+		$target = $this->getTargetTitle();
+		if( $target ) {
+			return "target=" . urlencode( $target->getPrefixedDBkey() );
+		} else {
+			return false;
 		}
+	}
+
+	function setBottomText( OutputPage $out, FormOptions $opts ) {
 		if( isset( $this->mResultEmpty ) && $this->mResultEmpty ){
 			$out->addWikiMsg( 'recentchangeslinked-noresult' );	
 		}
