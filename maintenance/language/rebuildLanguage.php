@@ -17,7 +17,7 @@ require_once( 'writeMessagesArray.inc' );
  * @param $code The language code.
  * @param $write Write to the messages file?
  * @param $listUnknown List the unknown messages?
- * @param $removeUnKnown Remove the unknown messages?
+ * @param $removeUnknown Remove the unknown messages?
  * @param $removeDupes Remove the duplicated messages?
  * @param $dupeMsgSource The source file intended to remove from the array.
  */

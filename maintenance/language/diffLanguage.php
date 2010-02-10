@@ -69,7 +69,7 @@ function ucfirstlcrest($string) {
 
 /**
  * Return a $wgAllmessages array shipped in MediaWiki
- * @param string $languageCode Formated language code
+ * @param $languageCode String: formated language code
  * @return array The MediaWiki default $wgAllMessages array requested
  */
 function getMediawikiMessages($languageCode = 'En') {
@@ -93,8 +93,8 @@ function getMediawikiMessages($languageCode = 'En') {
 /**
  * Return a $wgAllmessages array in a given file. Language of the array
  * need to be given cause we can not detect which language it provides
- * @param string $filename Filename of the file containing a message array
- * @param string $languageCode Language of the external array
+ * @param $filename String: filename of the file containing a message array
+ * @param $languageCode String: language of the external array
  * @return array A $wgAllMessages array from an external file.
  */
 function getExternalMessages($filename, $languageCode) {
