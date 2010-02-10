@@ -1723,6 +1723,7 @@ PICT # misc.
 'http-timed-out'        => 'HTTP-барањето истече.',
 'http-curl-error'       => 'Грешка при добивањето на URL: $1',
 'http-host-unreachable' => 'Не можев да пристапам до URL-адресата',
+'http-bad-status'       => 'Се појави проблем во текот на обработката на HTTP-барањето: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не може да се пристапи до URL-то',

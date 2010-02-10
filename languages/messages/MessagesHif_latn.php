@@ -463,6 +463,7 @@ Aapan spelling check karo nai to [[Special:UserLogin/signup|nawaa account banao]
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" naam ke koi sadasya nai hai. 
 Aapan spelling check karo.',
 'nouserspecified'            => 'Aap ke aapan username de ke parri.',
+'login-userblocked'          => 'Ii sadasya ke rok dewa gais hae.  Login kare ke ijajat nai hae.',
 'wrongpassword'              => 'Galat password likha gais hai. Fir se kosis karo.',
 'wrongpasswordempty'         => 'Koi password nai likha gais hai. Fir se kosis karo.',
 'passwordtooshort'           => 'Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.',
@@ -1112,25 +1113,26 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'prefs-diffs'                   => 'Farka',
 
 # User rights
-'userrights'                  => 'Sadasya ke adhikaar ke chalao',
-'userrights-lookup-user'      => 'Sadasya ke group ke manage karo',
-'userrights-user-editname'    => 'Ek Username ke enter karo:',
-'editusergroup'               => 'User groups ke badlo',
-'editinguser'                 => "'''[[User:$1|$1]]''' ke user rights badaltaa hai ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'User groupske badlo',
-'saveusergroups'              => 'User groups ke save karo',
-'userrights-groupsmember'     => 'Iske member hai:',
-'userrights-groups-help'      => 'Aap jon group me ii sadasya hai ke badle sakta hai:
+'userrights'                   => 'Sadasya ke adhikaar ke chalao',
+'userrights-lookup-user'       => 'Sadasya ke group ke manage karo',
+'userrights-user-editname'     => 'Ek Username ke enter karo:',
+'editusergroup'                => 'User groups ke badlo',
+'editinguser'                  => "'''[[User:$1|$1]]''' ke user rights badaltaa hai ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'User groupske badlo',
+'saveusergroups'               => 'User groups ke save karo',
+'userrights-groupsmember'      => 'Iske member hai:',
+'userrights-groupsmember-auto' => 'Hian ke bhi member hae:',
+'userrights-groups-help'       => 'Aap jon group me ii sadasya hai ke badle sakta hai:
 * Ek checked box ke matlab hai ki sadasya ii group me hai.
 * Ek unchecked box ke matlab hai ki sadasya ii group me nai hai.
 * Ek * ke matlab hai ki aap group ke jorre ke baad hatae nai sakta hai, nai to hatae ke baad jorre nai sakta hai.',
-'userrights-reason'           => 'Kaaran:',
-'userrights-no-interwiki'     => 'Aap ke duusra wiki me user rights ke badle ke adhikaar nai hai.',
-'userrights-nodatabase'       => 'Database $1 abhi hai nai, nai to local nai hai.',
-'userrights-nologin'          => 'Sadasya ke user rights de ke khatir, ap ke chaahi ki aap [[Special:UserLogin|log in]] karo ek administrator ke account se.',
-'userrights-notallowed'       => 'Aap ke account ke user rights de ke adhikar nai hai.',
-'userrights-changeable-col'   => 'Groups jiske aap badle sakta hai',
-'userrights-unchangeable-col' => 'Groups jiske aap badle nai sakta hai',
+'userrights-reason'            => 'Kaaran:',
+'userrights-no-interwiki'      => 'Aap ke duusra wiki me user rights ke badle ke adhikaar nai hai.',
+'userrights-nodatabase'        => 'Database $1 abhi hai nai, nai to local nai hai.',
+'userrights-nologin'           => 'Sadasya ke user rights de ke khatir, ap ke chaahi ki aap [[Special:UserLogin|log in]] karo ek administrator ke account se.',
+'userrights-notallowed'        => 'Aap ke account ke user rights de ke adhikar nai hai.',
+'userrights-changeable-col'    => 'Groups jiske aap badle sakta hai',
+'userrights-unchangeable-col'  => 'Groups jiske aap badle nai sakta hai',
 
 # Groups
 'group'               => 'Jhund:',
@@ -1439,6 +1441,16 @@ Khaali file me jaawe ke ijajat hae',
 Ii wiki ek public wiki hae.
 Puura surakchha ke khatir, img_auth.php ke band kar dewa gais hae.',
 'img-auth-noread'       => 'Sadasya ke "$1" parrhe ke ijajat nai hae.',
+
+# HTTP errors
+'http-invalid-url'      => 'URL kharaab hae: $1',
+'http-invalid-scheme'   => 'URL, jisme "$1" scheme hae ke support nai karaa jaawe hae.',
+'http-request-error'    => 'HTTP ke maang puura nai hoe sakaa, patanahi kon galti ke kaaran.',
+'http-read-error'       => 'HTTP ke parrhe me galti hae',
+'http-timed-out'        => 'HTTP ke khatir time nai hae.',
+'http-curl-error'       => 'URL ke laawe me galti hoe gais hae: $1',
+'http-host-unreachable' => 'URL pahunche nai sakaa hae',
+'http-bad-status'       => 'HTTP ke maange ke time kuch garrbarr hoe gais hae: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL pe pahunche nai paya hai',
@@ -1863,6 +1875,10 @@ Aap aapan dhyan suchi me sab dhyan me rakha gais panna pe notification flags ke 
 --
 Aapan dhyan ke settings ke badle ke khatir, jaao
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Aapan dhyan suchi se panna ke mitae ke khatir, jaao
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 
 Aapan bichar de ke khatir aur aage ke sahaeta:
 {{fullurl:{{MediaWiki:Helppage}}}}',

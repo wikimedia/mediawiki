@@ -733,6 +733,7 @@ Ellenőrizd, hogy helyesen írtad-e be, vagy [[Special:UserLogin/signup|hozz lé
 'nosuchusershort'            => 'Nem létezik „<nowiki>$1</nowiki>” nevű szerkesztő.
 Ellenőrizd, hogy helyesen írtad-e be.',
 'nouserspecified'            => 'Meg kell adnod a felhasználói nevet.',
+'login-userblocked'          => 'Ez a szerkesztő blokkolva van, a bejelentkezés nem engedélyezett.',
 'wrongpassword'              => 'A megadott jelszó érvénytelen. Próbáld meg újra.',
 'wrongpasswordempty'         => 'Nem adtál meg jelszót. Próbáld meg újra.',
 'passwordtooshort'           => 'A jelszónak legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia.',
@@ -1365,24 +1366,25 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'prefs-diffs'                   => 'Eltérések (diffek)',
 
 # User rights
-'userrights'                  => 'Szerkesztői jogok beállítása',
-'userrights-lookup-user'      => 'Szerkesztőcsoportok beállítása',
-'userrights-user-editname'    => 'Add meg a szerkesztő nevét:',
-'editusergroup'               => 'Szerkesztőcsoportok módosítása',
-'editinguser'                 => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Szerkesztőcsoportok módosítása',
-'saveusergroups'              => 'Szerkesztőcsoportok mentése',
-'userrights-groupsmember'     => 'Csoporttag:',
-'userrights-groups-help'      => 'Beállíthatod, hogy a szerkesztő mely csoportokba tartozik.
+'userrights'                   => 'Szerkesztői jogok beállítása',
+'userrights-lookup-user'       => 'Szerkesztőcsoportok beállítása',
+'userrights-user-editname'     => 'Add meg a szerkesztő nevét:',
+'editusergroup'                => 'Szerkesztőcsoportok módosítása',
+'editinguser'                  => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Szerkesztőcsoportok módosítása',
+'saveusergroups'               => 'Szerkesztőcsoportok mentése',
+'userrights-groupsmember'      => 'Csoporttag:',
+'userrights-groupsmember-auto' => 'Alapértelmezetten tagja:',
+'userrights-groups-help'       => 'Beállíthatod, hogy a szerkesztő mely csoportokba tartozik.
 * A bepipált doboz azt jelenti, hogy a szerkesztő benne van a csoportban, az üres azt, hogy nem.
 * A * az olyan csoportokat jelöli, amelyeket ha egyszer hozzáadtál, nem távolíthatod el, vagy nem adhatod hozzá.',
-'userrights-reason'           => 'Ok:',
-'userrights-no-interwiki'     => 'Nincs jogod a szerkesztők jogainak módosításához más wikiken.',
-'userrights-nodatabase'       => '$1 adatbázis nem létezik vagy nem helyi.',
-'userrights-nologin'          => '[[Special:UserLogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy szerkesztői jogokat adhass.',
-'userrights-notallowed'       => 'A fiókoddal nincs jogod felhasználói jogokat osztani.',
-'userrights-changeable-col'   => 'Megváltoztatható csoportok',
-'userrights-unchangeable-col' => 'Nem megváltoztatható csoportok',
+'userrights-reason'            => 'Ok:',
+'userrights-no-interwiki'      => 'Nincs jogod a szerkesztők jogainak módosításához más wikiken.',
+'userrights-nodatabase'        => '$1 adatbázis nem létezik vagy nem helyi.',
+'userrights-nologin'           => '[[Special:UserLogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy szerkesztői jogokat adhass.',
+'userrights-notallowed'        => 'A fiókoddal nincs jogod felhasználói jogokat osztani.',
+'userrights-changeable-col'    => 'Megváltoztatható csoportok',
+'userrights-unchangeable-col'  => 'Nem megváltoztatható csoportok',
 
 # Groups
 'group'               => 'Csoport:',
@@ -1696,6 +1698,16 @@ Lásd a http://www.mediawiki.org/wiki/Manual:Image_Authorization lapot.',
 'img-auth-public'       => 'Az img_auth.php funkciója az, hogy fájlokat közvetítsen egy privát wikiből.
 Ez a wiki publikus, így a biztonság miatt az img_auth.php ki van kapcsolva.',
 'img-auth-noread'       => 'A szerkesztő nem jogosult a(z) „$1” olvasására.',
+
+# HTTP errors
+'http-invalid-url'      => 'Érvénytelen URL-cím: $1',
+'http-invalid-scheme'   => 'A(z) „$1” sémájú URL-ek nem támogatottak.',
+'http-request-error'    => 'A HTTP-kérés nem sikerült egy ismeretlen hiba miatt.',
+'http-read-error'       => 'HTTP-olvasási hiba.',
+'http-timed-out'        => 'A HTTP-kérés túllépte a határidőt.',
+'http-curl-error'       => 'Hiba történt az URL lekérésekor: $1',
+'http-host-unreachable' => 'Nem sikerült elérni az URL-t.',
+'http-bad-status'       => 'Probléma történt a HTTP-kérés közben: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nem érhető el az URL',
