@@ -397,6 +397,13 @@ abstract class FileRepo {
 	 */
 	abstract function storeTemp( $originalName, $srcPath );
 
+
+	/**
+	 * Append the contents of the source path to the given file.
+	 * @param $srcPath string location of the source file
+	 * @param $toAppendPath string path to append to.
+	 * @return mixed Status or false
+	 */
 	abstract function append( $srcPath, $toAppendPath );
 
 	/**
