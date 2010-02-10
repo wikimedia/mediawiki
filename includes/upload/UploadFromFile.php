@@ -2,9 +2,9 @@
 /**
  * @file
  * @ingroup upload
- * 
+ *
  * @author Bryan Tong Minh
- * 
+ *
  * Implements regular file uploads
  */
 class UploadFromFile extends UploadBase {
@@ -14,7 +14,7 @@ class UploadFromFile extends UploadBase {
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if( !$desiredDestName )
 			$desiredDestName = $request->getText( 'wpUploadFile' );
-		return $this->initialize(
+		return $this->initializePathInfo(
 			$desiredDestName,
 			$request->getFileTempName( 'wpUploadFile' ),
 			$request->getFileSize( 'wpUploadFile' )
