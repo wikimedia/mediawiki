@@ -624,7 +624,8 @@ class WebRequest {
 	public function response() {
 		/* Lazy initialization of response object for this request */
 		if ( !is_object( $this->_response ) ) {
-			$this->_response = new WebResponse;
+			$class = ( $this instanceof FauxRequest ) ? 'FauxResponse' : 'WebResponse';
+			$this->_response = new $class();
 		}
 		return $this->_response;
 	}
@@ -778,13 +779,5 @@ class FauxRequest extends WebRequest {
 
 	public function isPathInfoBad() {
 		return false;
-	}
-
-	public function response() {
-		/* Lazy initialization of response object for this request */
-		if ( !is_object( $this->response ) ) {
-			$this->response = new FauxResponse;
-		}
-		return $this->response;
 	}
 }
