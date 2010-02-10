@@ -84,6 +84,7 @@ $wgAutoloadLocalClasses = array(
 	'FakeTitle' => 'includes/FakeTitle.php',
 	'FakeMemCachedClient' => 'includes/ObjectCache.php',
 	'FauxRequest' => 'includes/WebRequest.php',
+	'FauxResponse' => 'includes/WebResponse.php',
 	'FeedItem' => 'includes/Feed.php',
 	'FeedUtils' => 'includes/FeedUtils.php',
 	'FileDeleteForm' => 'includes/FileDeleteForm.php',

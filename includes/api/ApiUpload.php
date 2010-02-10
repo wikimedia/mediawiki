@@ -40,6 +40,10 @@ class ApiUpload extends ApiBase {
 	public function execute() {
 		global $wgUser, $wgAllowCopyUploads;
 
+		// Check whether upload is enabled
+		if ( !UploadBase::isEnabled() )
+			$this->dieUsageMsg( array( 'uploaddisabled' ) );
+
 		$this->getMain()->isWriteMode();
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
@@ -53,15 +57,27 @@ class ApiUpload extends ApiBase {
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 
-		// Check whether upload is enabled
-		if ( !UploadBase::isEnabled() )
-			$this->dieUsageMsg( array( 'uploaddisabled' ) );
-
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
 			'sessionkey', 'file', 'url', 'enablechunks' );
 
-		if ( $this->mParams['sessionkey'] ) {
+		// Initialize $this->mUpload
+		if ( $this->mParams['enablechunks'] ) {
+			$this->mUpload = new UploadFromChunks();
+
+			$this->mUpload->initialize(
+				$request->getVal( 'done', null ),
+				$request->getVal( 'filename', null ),
+				$request->getVal( 'chunksession', null ),
+				$request->getFileTempName( 'chunk' ),
+				$request->getFileSize( 'chunk' ),
+				$request->getSessionData( 'wsUploadData' )
+			);
+
+			if ( !$this->mUpload->status->isOK() ) {
+				return $this->dieUsageMsg( $this->mUpload->status->getErrorsArray() );
+			}
+		} elseif ( $this->mParams['sessionkey'] ) {
 			/**
 			 * Upload stashed in a previous request
 			 */
@@ -72,30 +88,13 @@ class ApiUpload extends ApiBase {
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
 				$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
-		} else {
+		} elseif ( isset( $this->mParams['filename'] ) ) {
 			/**
 			 * Upload from url, etc
 			 * Parameter filename is required
 			 */
-			if ( !isset( $this->mParams['filename'] ) )
-				$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
 
-			// Initialize $this->mUpload
-			if ( $this->mParams['enablechunks'] ) {
-				$this->mUpload = new UploadFromChunks();
-				$this->mUpload->initialize(
-					$request->getVal( 'done', null ),
-					$request->getVal( 'filename', null ),
-					$request->getVal( 'chunksessionkey', null ),
-					$request->getFileTempName( 'chunk' ),
-					$request->getFileSize( 'chunk' ),
-					$request->getSessionData( 'wsUploadData' )
-				);
-
-				if ( !$this->mUpload->status->isOK() ) {
-					return $this->dieUsageMsg( $this->mUpload->status->getErrorsArray() );
-				}
-			} elseif ( isset( $this->mParams['file'] ) ) {
+			if ( isset( $this->mParams['file'] ) ) {
 				$this->mUpload = new UploadFromFile();
 				$this->mUpload->initialize(
 					$this->mParams['filename'],
@@ -120,7 +119,7 @@ class ApiUpload extends ApiBase {
 					return $this->dieUsage( $status->getWikiText(),  'fetchfileerror' );
 				}
 			}
-		}
+		} else $this->dieUsageMsg( array( 'missingparam', 'filename' ) );
 
 		if ( !isset( $this->mUpload ) )
 			$this->dieUsage( 'No upload module set', 'nomodule' );
@@ -242,6 +241,8 @@ class ApiUpload extends ApiBase {
 			$this->getResult()->setIndexedTagName( $result['details'], 'error' );
 
 			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
+		} elseif( isset($status->value->uploadUrl) ) {
+			return $status->value;
 		}
 
 		$file = $this->mUpload->getLocalFile();
@@ -272,7 +273,7 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => false,
 			'file' => null,
 			'enablechunks' => false,
-			'chunksessionkey' => null,
+			'chunksession' => null,
 			'chunk' => null,
 			'done' => false,
 			'url' => null,
@@ -295,7 +296,7 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'enablechunks' => 'Set to use chunk mode; see http://firefogg.org/dev/chunk_post.html for protocol',
-			'chunksessionkey' => 'The session key, established on the first contact during the chunked upload',
+			'chunksession' => 'The session key, established on the first contact during the chunked upload',
 			'chunk' => 'The data in this chunk of a chunked upload',
 			'done' => 'Set to 1 on the last chunk of a chunked upload',
 			'url' => 'Url to fetch the file from',

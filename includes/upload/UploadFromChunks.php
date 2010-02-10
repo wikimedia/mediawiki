@@ -22,7 +22,6 @@ class UploadFromChunks extends UploadBase {
 	protected $chunkMode; // INIT, CHUNK, DONE
 	protected $sessionKey;
 	protected $comment;
-	protected $fileSize = 0;
 	protected $repoPath;
 	protected $pageText;
 	protected $watch;
@@ -37,9 +36,8 @@ class UploadFromChunks extends UploadBase {
 		throw new MWException( 'not implemented' );
 	}
 
-	public function initialize( $done, $filename, $sessionKey, $path,
-		$fileSize, $sessionData )
-	{
+	public function initialize( $done, $filename, $sessionKey, $path, $fileSize, $sessionData ) {
+		global $wgTmpDirectory;
 		$this->status = new Status;
 
 		$this->initFromSessionKey( $sessionKey, $sessionData );
@@ -47,7 +45,7 @@ class UploadFromChunks extends UploadBase {
 		if ( !$this->sessionKey && !$done ) {
 			// session key not set, init the chunk upload system:
 			$this->chunkMode = self::INIT;
-			$this->mDesiredDestName = $filename;
+			$this->initializePathInfo( $filename, $path, 0, true);
 		} else if ( $this->sessionKey && !$done ) {
 			$this->chunkMode = self::CHUNK;
 		} else if ( $this->sessionKey && $done ) {
@@ -55,7 +53,7 @@ class UploadFromChunks extends UploadBase {
 		}
 		if ( $this->chunkMode == self::CHUNK || $this->chunkMode == self::DONE ) {
 			$this->mTempPath = $path;
-			$this->fileSize += $fileSize;
+			$this->mFileSize += $fileSize;
 		}
 	}
 
@@ -128,24 +126,25 @@ class UploadFromChunks extends UploadBase {
 			// a) the user must have requested the token to get here and
 			// b) should only happen over POST
 			// c) we need the token to validate chunks are coming from a non-xss request
-			$token = urlencode( $wgUser->editToken() );
-			echo FormatJson::encode( array(
-				'uploadUrl' => wfExpandUrl( wfScript( 'api' ) ) . "?action=upload&" .
-				"token={$token}&format=json&enablechunks=true&chunksessionkey=" .
-				$this->setupChunkSession( $comment, $pageText, $watch ) ) );
-			$wgOut->disable();
+			return Status::newGood(
+				array('uploadUrl' => wfExpandUrl( wfScript( 'api' ) ) . "?" .
+					  wfArrayToCGI(array('action' => 'upload',
+										 'token' => $wgUser->editToken(),
+										 'format' => 'json',
+										 'filename' => $pageText,
+										 'enablechunks' => 'true',
+										 'chunksession' => $this->setupChunkSession( $comment, $pageText, $watch ) ) ) ) );
 		} else if ( $this->chunkMode == self::CHUNK ) {
-			$status = $this->appendChunk();
-			if ( !$status->isOK() ) {
-				return $status;
+			$this->appendChunk();
+			if ( !$this->status->isOK() ) {
+				return $this->status;
 			}
 			// return success:
 			// firefogg expects a specific result
 			// http://www.firefogg.org/dev/chunk_post.html
-			echo FormatJson::encode(
-				array( 'result' => 1, 'filesize' => $this->fileSize )
+			return Status::newGood(
+				array( 'result' => 1, 'filesize' => $this->mFileSize )
 			);
-			$wgOut->disable();
 		} else if ( $this->chunkMode == self::DONE ) {
 			if ( !$comment )
 				$comment = $this->comment;
@@ -164,12 +163,9 @@ class UploadFromChunks extends UploadBase {
 
 			// firefogg expects a specific result
 			// http://www.firefogg.org/dev/chunk_post.html
-			echo FormatJson::encode( array(
-				'result' => 1,
-				'done' => 1,
-				'resultUrl' => $file->getDescriptionUrl() )
+			return Status::newGood(
+				array('result' => 1, 'done' => 1, 'resultUrl' => $file->getDescriptionUrl() )
 			);
-			$wgOut->disable();
 		}
 
 		return Status::newGood();
@@ -199,18 +195,18 @@ class UploadFromChunks extends UploadBase {
 		if ( !$this->repoPath ) {
 			$this->status = $this->saveTempUploadedFile( $this->mDesiredDestName, $this->mTempPath );
 
-			if ( $status->isOK() ) {
-				$this->repoPath = $status->value;
+			if ( $this->status->isOK() ) {
+				$this->repoPath = $this->status->value;
 				$_SESSION['wsUploadData'][$this->sessionKey]['repoPath'] = $this->repoPath;
 			}
-			return $status;
+			return;
 		}
 		if ( $this->getRealPath( $this->repoPath ) ) {
 			$this->status = $this->appendToUploadFile( $this->repoPath, $this->mTempPath );
 		} else {
 			$this->status = Status::newFatal( 'filenotfound', $this->repoPath );
 		}
-		if ( $this->fileSize >	$wgMaxUploadSize )
+		if ( $this->mFileSize >	$wgMaxUploadSize )
 			$this->status = Status::newFatal( 'largefileserver' );
 	}
 
