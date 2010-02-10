@@ -28,13 +28,11 @@ require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class RunJobs extends Maintenance {
 	public function __construct() {
-		global $wgUseNormalUser;
 		parent::__construct();
 		$this->mDescription = "Run pending jobs";
 		$this->addOption( 'maxjobs', 'Maximum number of jobs to run', false, true );
 		$this->addOption( 'type', 'Type of job to run', false, true );
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
-		$wgUseNormalUser = true;
 	}
 	
 	public function memoryLimit() {
