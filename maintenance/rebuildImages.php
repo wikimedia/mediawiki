@@ -104,7 +104,7 @@ class ImageBuilder extends FiveUpgrade {
 		$result = $this->dbr->query( $sql, $fname );
 
 		while( $row = $this->dbr->fetchObject( $result ) ) {
-			$update = call_user_func( $callback, $row );
+			$update = call_user_func( $callback, $row, null );
 			if( $update ) {
 				$this->progress( 1 );
 			} else {
@@ -120,7 +120,7 @@ class ImageBuilder extends FiveUpgrade {
 		$this->buildTable( 'image', 'img_name', $callback );
 	}
 
-	function imageCallback( $row ) {
+	function imageCallback( $row, $copy ) {
 		// Create a File object from the row
 		// This will also upgrade it
 		$file = $this->getRepo()->newFileFromRow( $row );
@@ -132,7 +132,7 @@ class ImageBuilder extends FiveUpgrade {
 			array( &$this, 'oldimageCallback' ) );
 	}
 
-	function oldimageCallback( $row ) {
+	function oldimageCallback( $row, $copy ) {
 		// Create a File object from the row
 		// This will also upgrade it
 		if ( $row->oi_archive_name == '' ) {
