@@ -1208,7 +1208,7 @@ class Article {
 	public function showMissingArticle() {
 		global $wgOut, $wgRequest, $wgUser;
 
-		# Show info in user (talk) namespace. Does the user exist?
+		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
 		if ( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
 			$parts = explode( '/', $this->mTitle->getText() );
 			$rootPart = $parts[0];
@@ -1217,6 +1217,21 @@ class Article {
 			if ( $id == 0 && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1</div>",
 					array( 'userpage-userdoesnotexist-view', $rootPart ) );
+			} else if (User::newFromId($id)->isBlocked()) { # Show log extract if the user is currently blocked
+				LogEventsList::showLogExtract(
+					$wgOut,
+					'block',
+					$this->mTitle->getSubjectPage()->getPrefixedText(),
+					'',
+					array(
+						'lim' => 1,
+						'showIfEmpty' => false,
+						'msgKey' => array(
+							'sp-contributions-blocked-notice',
+							$this->mTitle->getSubjectPage()->getPrefixedText() # Support GENDER in notice
+						)
+					)
+				);
 			}
 		}
 		wfRunHooks( 'ShowMissingArticle', array( $this ) );

@@ -765,15 +765,31 @@ class EditPage {
 			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1</div>", 'editinginterface' );
 		}
 
-		# Show a warning message when someone creates/edits a user (talk) page but the user does not exists
+		# Show a warning message when someone creates/edits a user (talk) page but the user does not exist
+		# Show log extract when the user is currently blocked
 		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
 			$parts = explode( '/', $this->mTitle->getText(), 2 );
 			$username = $parts[0];
 			$id = User::idFromName( $username );
 			$ip = User::isIP( $username );
-			if ( $id == 0 && !$ip ) {
+			if ( $id == 0 && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1</div>",
 					array( 'userpage-userdoesnotexist', $username ) );
+			} else if (User::newFromId($id)->isBlocked()) { # Show log extract if the user is currently blocked
+				LogEventsList::showLogExtract(
+					$wgOut,
+					'block',
+					$this->mTitle->getSubjectPage()->getPrefixedText(),
+					'',
+					array(
+						'lim' => 1,
+						'showIfEmpty' => false,
+						'msgKey' => array(
+							'sp-contributions-blocked-notice',
+							$this->mTitle->getSubjectPage()->getPrefixedText() # Support GENDER in notice
+						)
+					)
+				);
 			}
 		}
 		# Try to add a custom edit intro, or use the standard one if this is not possible.
