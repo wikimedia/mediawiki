@@ -6,7 +6,7 @@
  */
 class WebResponse {
 
-	/** 
+	/**
 	 * Output a HTTP header, wrapper for PHP's
 	 * header()
 	 * @param $string String: header to output
@@ -55,6 +55,34 @@ class WebResponse {
 				$wgCookiePath,
 				$wgCookieDomain,
 				$wgCookieSecure );
+		}
+	}
+}
+
+
+class FauxResponse extends WebResponse {
+	private $headers;
+	private $cookies;
+
+	public function header($string, $replace=true) {
+		list($key, $val) = explode(":", $string, 2);
+
+		if($replace || !isset($this->headers[$key])) {
+			$this->headers[$key] = $val;
+		}
+	}
+
+	public function getheader($key) {
+		return $this->headers[$key];
+	}
+
+	public function setcookie( $name, $value, $expire = 0 ) {
+		$this->cookies[$name] = $value;
+	}
+
+	public function getcookie( $name )  {
+		if ( isset($this->cookies[$name]) ) {
+			return $this->cookies[$name];
 		}
 	}
 }
