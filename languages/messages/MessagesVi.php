@@ -264,7 +264,7 @@ $messages = array(
 'tog-justify'                 => 'Căn đều hai bên đoạn văn',
 'tog-hideminor'               => 'Ẩn sửa đổi nhỏ trong thay đổi gần đây',
 'tog-hidepatrolled'           => 'Ẩn sửa đổi đã tuần tra trong trang thay đổi gần đây',
-'tog-newpageshidepatrolled'   => 'Ẩn trang đã tuần trang trong danh sách các trang mới',
+'tog-newpageshidepatrolled'   => 'Ẩn trang đã tuần tra trong danh sách các trang mới',
 'tog-extendwatchlist'         => 'Mở rộng danh sách theo dõi để hiển thị tất cả các thay đổi, chứ không chỉ các thay đổi gần đây',
 'tog-usenewrc'                => 'Sử dụng Thay đổi gần đây nâng cao (cần JavaScript)',
 'tog-numberheadings'          => 'Tự động đánh số các đề mục',
@@ -1673,6 +1673,7 @@ Vì lý do bảo mật, img_auth.php đã bị tắt.',
 'http-timed-out'        => 'Hết thời gian yêu cầu HTTP.',
 'http-curl-error'       => 'Có lỗi khi truy xuất URL: $1',
 'http-host-unreachable' => 'Không thể truy cập URL',
+'http-bad-status'       => 'Có vấn đề khi yêu cầu HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Không thể truy cập URL',

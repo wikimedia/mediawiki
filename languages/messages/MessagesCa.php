@@ -598,6 +598,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'nav-login-createaccount'    => 'Inicia una sessió / crea un compte',
 'loginprompt'                => 'Heu de tenir les galetes habilitades per a poder iniciar una sessió a {{SITENAME}}.',
 'userlogin'                  => 'Inicia una sessió / crea un compte',
+'userloginnocreate'          => 'Inici de sessió',
 'logout'                     => 'Finalitza la sessió',
 'userlogout'                 => 'Finalitza la sessió',
 'notloggedin'                => 'No us heu identificat',
@@ -620,6 +621,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 Reviseu-ne l'ortografia (recordeu que es distingeixen les majúscules i minúscules), o [[Special:UserLogin/signup|creeu un compte d'usuari nou]].",
 'nosuchusershort'            => 'No hi ha cap usuari anomenat «<nowiki>$1</nowiki>». Comproveu que ho hàgiu escrit correctament.',
 'nouserspecified'            => "Heu d'especificar un nom d'usuari.",
+'login-userblocked'          => 'Aquest usuari està bloquejat. Inici de sessió no permès.',
 'wrongpassword'              => 'La contrasenya que heu introduït és incorrecta. Torneu-ho a provar.',
 'wrongpasswordempty'         => "La contrasenya que s'ha introduït estava en blanc. Torneu-ho a provar.",
 'passwordtooshort'           => "La contrasenya ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}}.",
@@ -750,8 +752,9 @@ El número d'identificació de la vostra adreça IP és $3, i l'ID del bloqueig 
 'whitelistedittitle'               => 'Cal iniciar una sessió per a poder modificar el contingut',
 'whitelistedittext'                => 'Heu de $1 per modificar pàgines.',
 'confirmedittext'                  => "Heu de confirmar la vostra adreça electrònica abans de poder modificar les pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
-'nosuchsectiontitle'               => 'No hi ha cap secció',
-'nosuchsectiontext'                => 'Esteu intentant modificar una secció que no existeix.',
+'nosuchsectiontitle'               => 'No es pot trobar la secció',
+'nosuchsectiontext'                => 'Heu intentat editar una secció que no existeix.
+Potser ha estat moguda o eliminada mentre estàveu veient la pàgina.',
 'loginreqtitle'                    => 'Cal que inicieu una sessió',
 'loginreqlink'                     => 'inicia una sessió',
 'loginreqpagetext'                 => 'Heu de ser $1 per a visualitzar altres pàgines.',
@@ -821,10 +824,13 @@ i no podeu desar les vostres contribucions en aquests moments. Podeu retallar i 
 en un fitxer de text i desar-lo més tard.'''
 
 L'administrador que l'ha tancada n'ha donat aquesta justificació: $1",
-'protectedpagewarning'             => "'''ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris administradors.'''",
-'semiprotectedpagewarning'         => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.",
+'protectedpagewarning'             => "'''ATENCIÓ: Aquesta pàgina està bloquejada i només els usuaris amb drets d'administrador la poden modificar.
+A continuació es mostra la darrera entrada del registre com a referència:",
+'semiprotectedpagewarning'         => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.
+A continuació es mostra la darrera entrada del registre com a referència:",
 'cascadeprotectedwarning'          => "'''Atenció:''' Aquesta pàgina està protegida de forma que només la poden modificar els administradors, ja que està inclosa a {{PLURAL:$1|la següent pàgina|les següents pàgines}} amb l'opció de «protecció en cascada» activada:",
-'titleprotectedwarning'            => "'''ATENCIÓ: Aquesta pàgina està protegida de tal manera que es necessiten uns [[Special:ListGroupRights|drets específics]] per a poder crear-la.'''",
+'titleprotectedwarning'            => "'''ATENCIÓ: Aquesta pàgina està protegida de tal manera que es necessiten uns [[Special:ListGroupRights|drets específics]] per a poder crear-la.'''
+A continuació es mostra la darrera entrada del registre com a referència:",
 'templatesused'                    => 'Aquesta pàgina fa servir {{PLURAL:$1|la següent plantilla|les següents plantilles}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Plantilla usada|Plantilles usades}} en aquesta previsualització:',
 'templatesusedsection'             => '{{PLURAL:$1|Plantilla usada|Plantilles usades}} en aquesta secció:',
@@ -870,6 +876,7 @@ Se n'han omès els arguments.",
 'post-expand-template-argument-category'  => "Pàgines que contenen arguments de plantilla que s'han omès",
 'parser-template-loop-warning'            => "S'ha detectat un bucle de plantilla: [[$1]]",
 'parser-template-recursion-depth-warning' => "S'ha excedit el límit de recursivitat de plantilles ($1)",
+'language-converter-depth-warning'        => "El límit de la profunditat del conversor d'idiomes ha excedit ($1)",
 
 # "Undo" feature
 'undo-success' => "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",
@@ -934,6 +941,7 @@ Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Speci
 Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-no-diff'         => "No podeu veure aquesta comparativa perquè una de les versions ha estat '''esborrada'''.
 Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-suppressed-no-diff'      => "No podeu veure aquesta diferència perquè una de les revisions ha estat '''esborrada'''.",
 'rev-deleted-unhide-diff'     => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
 Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
@@ -1242,25 +1250,26 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'prefs-diffs'                   => 'Difs',
 
 # User rights
-'userrights'                  => "Gestió dels permisos d'usuari",
-'userrights-lookup-user'      => "Gestiona els grups d'usuari",
-'userrights-user-editname'    => "Introduïu un nom d'usuari:",
-'editusergroup'               => "Edita els grups d'usuaris",
-'editinguser'                 => "S'està canviant els permisos de l'usuari '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => "Edita els grups d'usuaris",
-'saveusergroups'              => "Desa els grups d'usuari",
-'userrights-groupsmember'     => 'Membre de:',
-'userrights-groups-help'      => "Podeu modificar els grups als quals pertany aquest usuari.
+'userrights'                   => "Gestió dels permisos d'usuari",
+'userrights-lookup-user'       => "Gestiona els grups d'usuari",
+'userrights-user-editname'     => "Introduïu un nom d'usuari:",
+'editusergroup'                => "Edita els grups d'usuaris",
+'editinguser'                  => "S'està canviant els permisos de l'usuari '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => "Edita els grups d'usuaris",
+'saveusergroups'               => "Desa els grups d'usuari",
+'userrights-groupsmember'      => 'Membre de:',
+'userrights-groupsmember-auto' => 'Membre implícit de:',
+'userrights-groups-help'       => "Podeu modificar els grups als quals pertany aquest usuari.
 * Els requadres marcats indiquen que l'usuari és dins del grup.
 * Els requadres sense marcar indiquen que l'usuari no hi pertany.
 * Un asterisc (*) indica que no el podreu treure del grup una vegada l'hàgiu afegit o viceversa.",
-'userrights-reason'           => 'Raó:',
-'userrights-no-interwiki'     => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
-'userrights-nodatabase'       => 'La base de dades $1 no existeix o no és local.',
-'userrights-nologin'          => "Heu [[Special:UserLogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
-'userrights-notallowed'       => "El vostre compte no té permisos per a assignar permisos d'usuari.",
-'userrights-changeable-col'   => 'Grups que podeu canviar',
-'userrights-unchangeable-col' => 'Grups que no podeu canviar',
+'userrights-reason'            => 'Raó:',
+'userrights-no-interwiki'      => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
+'userrights-nodatabase'        => 'La base de dades $1 no existeix o no és local.',
+'userrights-nologin'           => "Heu [[Special:UserLogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
+'userrights-notallowed'        => "El vostre compte no té permisos per a assignar permisos d'usuari.",
+'userrights-changeable-col'    => 'Grups que podeu canviar',
+'userrights-unchangeable-col'  => 'Grups que no podeu canviar',
 
 # Groups
 'group'               => 'Grup:',
@@ -1558,6 +1567,15 @@ Només està permès l'accés a arxius.",
 Aquest wiki està configurat com a wiki públic.
 Per seguretat, img_auth.php està desactivat.",
 'img-auth-noread'       => 'L\'usuari no té accés a la lectura de "$1".',
+
+# HTTP errors
+'http-invalid-url'      => 'URL incorrecta: $1',
+'http-invalid-scheme'   => 'Les URLs amb l\'esquema "$1" no són compatibles.',
+'http-request-error'    => 'La petició HTTP ha fallat per un error desconegut.',
+'http-read-error'       => 'Error de lectura HTTP.',
+'http-timed-out'        => 'La petició HTTP ha expirat.',
+'http-curl-error'       => "Error en recuperar l'URL: $1",
+'http-host-unreachable' => "No s'ha pogut accedir a l'URL.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "No s'ha pogut accedir a l'URL",
@@ -1962,23 +1980,26 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'enotif_anon_editor'           => 'usuari anònim $1',
 'enotif_body'                  => 'Benvolgut $WATCHINGUSERNAME,
 
-La pàgina $PAGETITLE del projecte {{SITENAME}} ha estat $CHANGEDORCREATED el dia $PAGEEDITDATE per $PAGEEDITOR, vegeu $PAGETITLE_URL per la versió actual.
+La pàgina $PAGETITLE del projecte {{SITENAME}} ha estat $CHANGEDORCREATED el dia $PAGEEDITDATE per $PAGEEDITOR, vegeu la versió actual a $PAGETITLE_URL.
 
 $NEWPAGE
 
-Resum ofert per l\'editor: $PAGESUMMARY $PAGEMINOREDIT
+Resum de l\'editor: $PAGESUMMARY $PAGEMINOREDIT
 
 Contacteu amb l\'editor:
 correu: $PAGEEDITOR_EMAIL
-pàgina d\'usuari: $PAGEEDITOR_WIKI
+wiki: $PAGEEDITOR_WIKI
 
 No rebreu més notificacions de futurs canvis si no visiteu la pàgina. També podeu canviar el mode de notificació de les pàgines que vigileu en la vostra llista de seguiment.
 
              El servei de notificacions del projecte {{SITENAME}}
 
 --
-Per a canviar les opcions de la vostra llista de seguiment aneu a:
+Per a canviar les opcions de la vostra llista de seguiment aneu a 
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Per eliminar la pàgina de la vostra llista de seguiment aneu a
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Suggeriments i ajuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2411,8 +2432,10 @@ La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer
 'imageinvalidfilename'         => 'El nom de fitxer indicat no és vàlid',
 'fix-double-redirects'         => "Actualitza també les redireccions que apuntin a l'article original",
 'move-leave-redirect'          => 'Deixar enrera una redirecció',
-'protectedpagemovewarning'     => "'''AVÍS: Aquesta pàgina està blocada i només els usuaris que tenen drets d'administrador la poden reanomenar.",
-'semiprotectedpagemovewarning' => "'''Nota:''' Aquesta pàgina està bloquejada i només els usuaris registrats la poden moure.",
+'protectedpagemovewarning'     => "'''AVÍS: Aquesta pàgina està bloquejada i només els usuaris que tenen drets d'administrador la poden reanomenar.
+A continuació es mostra la darrera entrada del registre com a referència:",
+'semiprotectedpagemovewarning' => "'''Nota:''' Aquesta pàgina està bloquejada i només els usuaris registrats la poden moure.
+A continuació es mostra la darrera entrada del registre com a referència:",
 'move-over-sharedrepo'         => "== El fitxer ja existeix ==
 [[:$1]] ja existeix al dipòsit compartit. Moure un fitxer a aquest títol impedirà d'ús del fitxer compartit.",
 'file-exists-sharedrepo'       => "El nom de fitxer escollit ja s'utilitza al dipòsit compartit. Escolliu un altre nom.",
@@ -2645,7 +2668,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'markaspatrolleddiff'                 => 'Marca com a supervisat',
 'markaspatrolledtext'                 => 'Marca la pàgina com a supervisada',
 'markedaspatrolled'                   => 'Marca com a supervisat',
-'markedaspatrolledtext'               => "S'ha marcat la revisió seleccionada com supervisada.",
+'markedaspatrolledtext'               => 'La revisió seleccionada de [[:$1]] ha estat marcada com a patrullada.',
 'rcpatroldisabled'                    => "S'ha inhabilitat la supervisió dels canvis recents",
 'rcpatroldisabledtext'                => 'La funció de supervisió de canvis recents està actualment inhabilitada.',
 'markedaspatrollederror'              => 'No es pot marcar com a supervisat',

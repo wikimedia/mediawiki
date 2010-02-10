@@ -1097,7 +1097,7 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'userrights-editusergroup'       => 'Къошулуучу къауумну тюрлендир',
 'saveusergroups'                 => 'Къошулуучу къауммланы сакъла',
 'userrights-groupsmember'        => 'Къауумланы члени:',
-'userrights-groupsmember-auto'   => 'Ачыкъ болмагъан члени:',
+'userrights-groupsmember-auto'   => 'Джангы член:',
 'userrights-groups-help'         => 'Бу къошулуучу ичинде болгъан къауумланы тюрлендирирге боллукъсуз:
 * Къауумну атыны къатында белгичик бар эсе, къошулуучу бу къауумгъа киреди
 * Белгичик джокъ эсе, къошулуучу кирмейди бу къауумгъа.
@@ -1262,7 +1262,7 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'rcshowhideliu'                     => 'кирген къошулуучуланы $1',
 'rcshowhideanons'                   => 'анонимлени $1',
 'rcshowhidepatr'                    => '$1 патруль этилиннген тюзетиуле',
-'rcshowhidemine'                    => 'кесими тюзетиулерим $1',
+'rcshowhidemine'                    => 'кесими тюзетиулерими $1',
 'rclinks'                           => 'Ахыр $2 кюнню ичинде этилиннген $1 тюрлениуню кёргюз;<br /> $3',
 'diff'                              => 'башх.',
 'hist'                              => 'тарих',
@@ -1439,8 +1439,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization бетге къара.'
 'http-invalid-scheme'   => '«$1» схемалы адресле тутулмайла',
 'http-request-error'    => 'Соруу ийгенни халаты.',
 'http-read-error'       => 'HTTP окъууну халаты.',
-'http-timed-out'        => 'HTTP сорууну заманы ётдю.',
-'http-curl-error'       => 'Бу URL-ны элтиуде халат: $1',
+'http-timed-out'        => 'HTTP-сорууну сакълау заман ётдю.',
+'http-curl-error'       => 'Бу URL-гъа сорууну халаты: $1',
 'http-host-unreachable' => 'URL-ге джетелмеди',
 'http-bad-status'       => 'HTTP-соруу ишлеген заманында проблема чыкъгъанды: $1 $2',
 

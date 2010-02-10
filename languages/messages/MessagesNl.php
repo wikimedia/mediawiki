@@ -1797,6 +1797,7 @@ Om beveiligingsreden is img_auth.php uitgeschakeld.',
 'http-timed-out'        => 'Timeout bij het HTTP-verzoek.',
 'http-curl-error'       => 'Fout bij het ophalen van URL: $1',
 'http-host-unreachable' => 'De URL is niet bereikbaar.',
+'http-bad-status'       => 'Er is een probleem opgetreden bij het HTTP-verzoek: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon de URL niet bereiken',

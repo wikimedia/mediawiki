@@ -442,7 +442,8 @@ $1',
 Kadé bisi salah ketik atawa nuturkeun tumbu nu salah.
 Hal ieu bisa ogé kulantaran ayana kutu (bug) dina sopwér nu dipaké ku {{SITENAME}}.',
 'nosuchspecialpage' => 'Teu aya kaca husus nu kitu',
-'nospecialpagetext' => 'Anjeun geus ménta kaca husus nu teu dipikawanoh ku wiki.',
+'nospecialpagetext' => '<strong>Anjeun ménta kaca husus nu teu dipikawanoh.</strong>
+Kaca husus anu bener bisa ditempo béréndélanana dina [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Kasalahan',
@@ -516,8 +517,8 @@ Pikeun alihbasa, mangga sumping ka [http://translatewiki.net/wiki/Main_Page?setl
 # Login and logout pages
 'logouttext'                 => "'''Anjeun ayeuna geus kaluar log.'''
 
-Anjeun bisa neruskeun migunakeun {{SITENAME}} bari anonim, atawa bisa asup log deui maké pamaké nu sarua atawa nu béda.
-Perlu dicatet yén sababaraha kaca bakal terus némbongan saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun sindangan panyungsi anjeun.",
+Anjeun bisa tetep migunakeun {{SITENAME}} bari anonim, atawa bisa [[Special:UserLogin|asup log deui]] salaku pamaké nu sarua atawa nu séjén deui.
+Mangkahadé, sababaraha kaca bakal tetep némbongkeun saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun ''cache'' panyungsi anjeun.",
 'welcomecreation'            => '==Wilujeng sumping, $1!==
 Rekening anjeun geus dijieun. 
 Tong hilap ngarobih [[Special:Preferences|{{SITENAME}} préferénsi]] anjeun.',
@@ -531,6 +532,7 @@ Tong hilap ngarobih [[Special:Preferences|{{SITENAME}} préferénsi]] anjeun.',
 'nav-login-createaccount'    => 'Nyieun rekening atawa asup log',
 'loginprompt'                => "Anjeun kudu boga ''cookies'' sangkan bisa asup log ka {{SITENAME}}.",
 'userlogin'                  => 'Asup log / jieun rekening',
+'userloginnocreate'          => 'Asup log',
 'logout'                     => 'Kaluar log',
 'userlogout'                 => 'Kaluar log',
 'notloggedin'                => 'Can asup log',
@@ -555,6 +557,7 @@ Ngaran pamaké ngabedakeun hurup kapital.
 Pariksa éjahanana, atawa paké formulir di handap pikeun [[Special:UserLogin/signup|nyieun rekening anyar]].',
 'nosuchusershort'            => 'Taya pamaké nu ngaranna "<nowiki>$1</nowiki>", pariksa éjahanana!',
 'nouserspecified'            => 'Anjeun kudu ngeusian ngaran landihan.',
+'login-userblocked'          => 'Ieu pamaké keur dipeungpeuk, teu diwenangkeun asup log.',
 'wrongpassword'              => 'Sandi nu diasupkeun teu cocog. Mangga cobian deui.',
 'wrongpasswordempty'         => 'Sandina can kaeusian. Cobaan deui!',
 'passwordtooshort'           => 'Sandina kudu diwangun ku sahanteuna {{PLURAL:$1|1 karakter|$1 karakter}}.',
@@ -683,7 +686,7 @@ Mangga sebatkeun éta ID dina pamundut-pamundut anjeun.',
 'whitelistedittext'                => 'Anjeun kudu asup $1 sangkan bisa ngédit.',
 'confirmedittext'                  => 'Saméméh ngédit, kompirmasikeun heula alamat surélék anjeun.
 Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[Special:Preferences|préferénsi pamaké]].',
-'nosuchsectiontitle'               => 'Subbab éta teu aya',
+'nosuchsectiontitle'               => 'Bab teu kapanggih',
 'nosuchsectiontext'                => 'Anjeun geus nyoba ngarobah bab $1 nu sabenerna euweuh, ku kituna robahan anjeun teu bisa disimpen.',
 'loginreqtitle'                    => 'Kudu asup log',
 'loginreqlink'                     => 'asup log',
@@ -754,7 +757,7 @@ kuncén nu ngonci pangkalan data mikeun kajelasan : $1",
 'titleprotectedwarning'            => "'''Awas: ieu kaca geus dikonci, ku kituna kudu aya [[Special:ListGroupRights|hak husus]] pikeun nyieunna.'''",
 'templatesused'                    => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu kaca:',
 'templatesusedpreview'             => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu pramidang:',
-'templatesusedsection'             => 'Citakan nu dipaké dina ieu bab:',
+'templatesusedsection'             => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu bab:',
 'template-protected'               => '(dikunci)',
 'template-semiprotected'           => '(semi-dikonci)',
 'hiddencategories'                 => 'Ieu kaca kaasup {{PLURAL:$1|1 kategori nyumput|$1 kategori nyumput}}:',
@@ -856,6 +859,9 @@ Salaku kuncen, mun perlu, anjeun bisa kénéh [$1 nempo bédana].",
 'revisiondelete'              => 'Hapus/bolay ngahapus révisi',
 'revdelete-nooldid-title'     => 'Udagan révisi salah',
 'revdelete-nooldid-text'      => 'Anjeun can nangtukeun atawa méré révisi pikeun ngajalankeun ieu fungsi, révisi nu di tangtukeun can aya, atawa anjeun nyoba nyumputkeun  révisi kiwari.',
+'revdelete-nologtype-text'    => 'Anjeun can nangtukeun tipeu log pikeun ieu peta.',
+'revdelete-nologid-title'     => 'Éntri log teu bener',
+'revdelete-no-file'           => 'Berkas anu ditujul teu kapanggih.',
 'revdelete-show-file-confirm' => 'Anjeun yakin rék nempo révisi anu geus dihapus dina koropak "<nowiki>$1</nowiki>" ti $2 nepi ka $3?',
 'revdelete-show-file-submit'  => 'Enya',
 'revdelete-selected'          => "'''{{PLURAL:$2|Révisi pilihan|Révisi pilihan}} pikeun '''$1''''''",
@@ -1070,6 +1076,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'timezoneregion-antarctica'     => 'Antartika',
 'timezoneregion-arctic'         => 'Arktik',
 'timezoneregion-asia'           => 'Asia',
+'timezoneregion-atlantic'       => 'Samudra Atlantik',
 'timezoneregion-australia'      => 'Australia',
 'timezoneregion-europe'         => 'Éropah',
 'timezoneregion-indian'         => 'Samudra Indonésia',
@@ -1188,6 +1195,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'right-patrolmarks'      => 'Tempo panandaan patroli nuanyar robah',
 'right-mergehistory'     => 'Ngagabungkeun jujutan kaca',
 'right-userrights'       => 'Édit kabeh hak pamaké',
+'right-sendemail'        => 'Kirim surélék ka pamaké séjén',
 
 # User rights log
 'rightslog'      => 'Log hak pamaké',
@@ -1219,6 +1227,9 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'action-suppressionlog'   => 'nempo ieu log pribadi',
 'action-block'            => 'meungpeuk ieu pamaké tina ngédit',
 'action-protect'          => 'ngarobah hambalan konci ieu kaca',
+'action-unwatchedpages'   => 'témbongkeun béréndélan kaca nu teu diawaskeun',
+'action-mergehistory'     => 'ngagabungkeun jujutan ieu kaca',
+'action-userrights'       => 'Édit hak sakabéh pamaké',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|parobahan|parobahan}}',
@@ -1228,6 +1239,8 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'recentchanges-feed-description'    => 'Manggihan parobahan panganyarna dina wiki di asupan ieu.',
 'recentchanges-legend-newpage'      => '$1 - kaca anyar',
 'recentchanges-legend-minor'        => '$1 - éditan minor',
+'recentchanges-label-minor'         => 'Ieu éditan minor',
+'recentchanges-legend-bot'          => '$1 - robahan bot',
 'rcnote'                            => "Di handap ieu {{PLURAL:$1|'''1''' parobahan| '''$1''' parobahan anyar}} dina  {{PLURAL:$2|poé|'''$2''' poé}} ahir, nepi $5, $4.",
 'rcnotefrom'                        => 'Di handap ieu parobahan saprak <b>$2</b> (nu ditémbongkeun nepi ka <b>$1</b>).',
 'rclistfrom'                        => 'Témbongkeun nu anyar robah nepi ka $1',
@@ -1292,6 +1305,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'filename'                    => 'Ngaran koropak',
 'filedesc'                    => 'Ringkesna',
 'fileuploadsummary'           => 'Ringkesan:',
+'filereuploadsummary'         => 'Parobahan berkas:',
 'filestatus'                  => 'Status hak cipta:',
 'filesource'                  => 'Sumber:',
 'uploadedfiles'               => 'Koropak nu geus dimuat',
@@ -1340,6 +1354,11 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 # img_auth script messages
 'img-auth-noread' => 'Pamaké teu boga kawenangan maca "$1".',
 
+# HTTP errors
+'http-invalid-url'      => 'URL teu bener: $1',
+'http-invalid-scheme'   => 'URL anu skémana "$ 1" teu karojong',
+'http-host-unreachable' => 'URL teu kahontal.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'URL teu kahontal',
 'upload-curl-error28' => 'Seep waktos kanggo muatkeun',
@@ -1360,6 +1379,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'listfiles_user'        => 'Pamaké',
 'listfiles_size'        => 'Badagna',
 'listfiles_description' => 'Pedaran',
+'listfiles_count'       => 'Vérsi',
 
 # File description page
 'file-anchor-link'          => 'Gambar',
@@ -1443,8 +1463,11 @@ Saméméh ngahapus, pariksa heula bisi aya tumbu ka ieu citakan.',
 'statistics-header-edits' => 'Statistik éditan',
 'statistics-header-views' => 'Statistik pidangan',
 'statistics-header-users' => 'Statistik pamaké',
+'statistics-header-hooks' => 'Statistika lianna',
 'statistics-articles'     => 'Halaman eusi',
 'statistics-pages'        => 'Kaca',
+'statistics-pages-desc'   => 'Sakabéh kaca di ieu wiki, kaasup kaca obrolan, alihan, jeung nu lianna.',
+'statistics-files'        => 'Koropak nu geus dimuat',
 'statistics-users-active' => 'Pamaké getol',
 'statistics-mostpopular'  => 'Kaca nu pangmindengna dibuka',
 
