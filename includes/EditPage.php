@@ -1565,7 +1565,7 @@ HTML
 		$inputAttrs = ( is_array($inputAttrs) ? $inputAttrs : array() ) + array(
 			'id' => 'wpSummary',
 			'maxlength' => '200',
-			'tabindex' => '2',
+			'tabindex' => '1',
 			'size' => 60,
 			'spellcheck' => 'true',
 		);
