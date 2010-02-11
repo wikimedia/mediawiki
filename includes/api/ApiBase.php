@@ -973,15 +973,16 @@ abstract class ApiBase {
 		$ret = array();
 		
 		if ( $this->mustBePosted() ) {
-			$ret = array_merge( $ret, array( array ( 'mustbeposted', $this->getModuleName() ) ) );
+			$ret[] = array ( 'mustbeposted', $this->getModuleName() );
 		}
 		
 		if ( $this->isReadMode() ) {
-			$ret = array_merge( $ret, array( array ( 'readrequired' ) ) );
+			$ret[] = array ( 'readrequired' );
 		}
 		
 		if ( $this->isWriteMode() ) {
-			$ret = array_merge( $ret, array( array ( 'writerequired' ), array( 'writedisabled' ) ) );
+			$ret[] = array ( 'writerequired' );
+			$ret[] = array ( 'writedisabled' );
 		}
 		
 		return $ret;
