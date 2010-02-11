@@ -967,6 +967,7 @@ abstract class ApiBase {
 
 	/**
 	* Returns a list of all possible errors returned by the module
+	* @return array in the format of array( key, param1, param2, ... ) or array( 'code' => ..., 'info' => ... )
 	*/
 	public function getPossibleErrors() {
 		$ret = array( array( 'readrequired' ) );
@@ -979,7 +980,9 @@ abstract class ApiBase {
 	}
 	
 	/**
-	* 
+	* Parses a list of errors into a standardised format
+	* @param $errors array List of errors. Items can be in the for array( key, param1, param2, ... ) or array( 'code' => ..., 'info' => ... )
+	* @return array Parsed list of errors with items in the form array( 'code' => ..., 'info' => ... )
 	*/
 	public function parseErrors( $errors ) {
 		$ret = array();
