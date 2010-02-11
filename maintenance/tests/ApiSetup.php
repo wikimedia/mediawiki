@@ -10,10 +10,6 @@ abstract class ApiSetup extends PHPUnit_Framework_TestCase {
 		global $wgServerName, $wgServer, $wgContLang, $wgAuth, $wgScriptPath,
 			$wgScriptExtension, $wgMemc, $wgRequest;
 
-		if($wgServerName == "localhost" || $wgServer == "http://localhost") {
-			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
-									  'be set in LocalSettings.php');
-		}
 		self::$apiUrl = $wgServer.$wgScriptPath."/api".$wgScriptExtension;
 
 		$wgMemc = new FakeMemCachedClient;

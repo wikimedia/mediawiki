@@ -115,8 +115,7 @@ class UploadFromChunksTest extends ApiSetup {
 				  'token' => $token,
 			));
 
-		$this->assertArrayHasKey("upload", $data);
-		$this->assertArrayHasKey("uploadUrl", $data['upload']);
+		$this->assertArrayHasKey("uploadUrl", $data);
 
 		return array('data' => $data, 'session' => $_SESSION, 'token' => $token);
 	}
@@ -131,7 +130,7 @@ class UploadFromChunksTest extends ApiSetup {
 		$wgUser = User::newFromName(self::$userName);
 		$token = $wgUser->editToken();
 
-		$url = $data['upload']['uploadUrl'];
+		$url = $data['uploadUrl'];
 		$params = wfCgiToArray(substr($url, strpos($url, "?")));
 
 		for($i=0;$i<10;$i++) {
