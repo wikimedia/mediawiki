@@ -968,7 +968,7 @@ abstract class ApiBase {
 	/**
 	* Returns a list of all possible errors returned by the module
 	*/
-	public function possibleErrors() {
+	public function getPossibleErrors() {
 		$ret = array( array( 'readrequired' ) );
 		
 		if ( $this->mustBePosted() ) {
