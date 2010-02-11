@@ -864,6 +864,7 @@ abstract class ApiBase {
 		'import-unknownerror' => array( 'code' => 'import-unknownerror', 'info' => "Unknown error on import: ``\$1''" ),
 		'cantoverwrite-sharedfile' => array( 'code' => 'cantoverwrite-sharedfile', 'info' => 'The target file exists on a shared repository and you do not have permission to override it' ),
 		'sharedfile-exists' => array( 'code' => 'fileexists-sharedrepo-perm', 'info' => 'The target file exists on a shared repository. Use the ignorewarnings parameter to override it.' ),
+		'mustbeposted' => array( 'code' => 'mustbeposted', 'info' => "The \$1 module requires a POST request" ),
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array( 'code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects" ),
@@ -971,9 +972,9 @@ abstract class ApiBase {
 		$ret = array( array( 'readrequired' ) );
 		
 		if ( $this->mustBePosted() ) {
-			$ret = array_merge( $ret, array( array( 'code' => 'mustbeposted', 'info' => 'The {$this->mAction} module requires a POST request' ) ) );
+			$ret = array_merge( $ret, array( array ('mustbeposted', $this->mModuleName ) ) );
 		}
-			
+		
 		return $ret;
 	}
 	
