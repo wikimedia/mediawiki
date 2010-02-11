@@ -158,8 +158,8 @@ class ApiBlock extends ApiBase {
 		);
 	}
 	
-	public function possibleErrors() {
-		return array_merge( parent::possibleErrors(), array(
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'user' ),
 			array( 'missingparam', 'token' ),
 			array( 'sessionfailure' ),
