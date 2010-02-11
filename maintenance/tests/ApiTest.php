@@ -5,6 +5,10 @@ require_once( "ApiSetup.php" );
 class ApiTest extends ApiSetup {
 
 	function setup() {
+		if($wgServerName == "localhost" || $wgServer == "http://localhost") {
+			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
+									  'be set in LocalSettings.php');
+		}
 		parent::setup();
 	}
 

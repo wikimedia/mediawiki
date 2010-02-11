@@ -138,7 +138,15 @@ class ApiUpload extends ApiBase {
 
 		// Cleanup any temporary mess
 		$this->mUpload->cleanupTempFile();
-		$this->getResult()->addValue( null, $this->getModuleName(), $result );
+
+		if( $this->mParams['enablechunks'] ) {
+			foreach ($result as $key => $value) {
+				if($value === null) $value = "";
+				$this->getResult()->addValue( null, $key, $value );
+			}
+		} else {
+			$this->getResult()->addValue( null, $this->getModuleName(), $result );
+		}
 	}
 
 	protected function performUpload() {
