@@ -184,7 +184,7 @@ if($this->data['copyrightico']) { ?>
 <?php
 			foreach( $validFooterLinks as $aLink ) {
 				if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
-?>			<li id="<?php echo $aLink ?>"><?php $this->html($aLink) ?></li>
+?>		<li id="<?php echo $aLink ?>"><?php $this->html($aLink) ?></li>
 <?php 			}
 			}
 ?>
