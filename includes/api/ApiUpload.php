@@ -44,7 +44,6 @@ class ApiUpload extends ApiBase {
 		if ( !UploadBase::isEnabled() )
 			$this->dieUsageMsg( array( 'uploaddisabled' ) );
 
-		$this->getMain()->isWriteMode();
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
 
