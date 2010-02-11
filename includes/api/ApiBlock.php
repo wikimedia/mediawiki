@@ -159,14 +159,14 @@ class ApiBlock extends ApiBase {
 	}
 	
 	public function possibleErrors() {
-		return array (
-			$this->parseMsg( array( 'missingparam', 'user' ) ),
-			$this->parseMsg( array( 'missingparam', 'token' ) ),
-			$this->parseMsg( array( 'sessionfailure' ) ),
-			$this->parseMsg( array( 'cantblock' ) ),
-			$this->parseMsg( array( 'canthide' ) ),
-			$this->parseMsg( array( 'cantblock-email' ) ),
-        );
+		return array_merge( parent::possibleErrors(), array(
+			array( 'missingparam', 'user' ),
+			array( 'missingparam', 'token' ),
+			array( 'sessionfailure' ),
+			array( 'cantblock' ),
+			array( 'canthide' ),
+			array( 'cantblock-email' ),
+        ) );
 	}
 
 	protected function getExamples() {

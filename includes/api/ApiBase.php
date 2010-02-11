@@ -968,7 +968,31 @@ abstract class ApiBase {
 	* Returns a list of all possible errors returned by the module
 	*/
 	public function possibleErrors() {
-		return array();
+		$ret = array( array( 'readrequired' ) );
+		
+		if ( $this->mustBePosted() ) {
+			$ret = array_merge( $ret, array( array( 'code' => 'mustbeposted', 'info' => 'The {$this->mAction} module requires a POST request' ) ) );
+		}
+			
+		return $ret;
+	}
+	
+	/**
+	* 
+	*/
+	public function parseErrors( $errors ) {
+		$ret = array();
+		
+		foreach ( $errors as $row )
+		{	
+			if ( isset( $row['code'] ) && isset( $row['info'] ) ) {
+				$ret[] = $row;
+			}
+			else {
+				$ret[] = $this->parseMsg( $row );
+			}
+		}
+		return $ret;
 	}
 
 	/**
