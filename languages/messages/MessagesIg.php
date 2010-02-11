@@ -46,6 +46,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Zonari orü bot fwuör ndetu ihem ne lé',
 'tog-watchlisthideminor'      => 'Zonari orü ntakịrị fwuör ndetu ihem ne lé',
 'tog-watchlisthideliu'        => 'Zonari orü ndi na banife nke ndi banyèrè a banyé, fwuör ndetu ihem ne lé',
+'tog-ccmeonemails'            => 'Sipu iye e-mail m na sipu ndi ozor',
 'tog-showhiddencats'          => 'Zi ébéonọr zonari a zonari',
 
 'underline-always'  => 'Ngbẹowula',
@@ -122,6 +123,8 @@ $messages = array(
 'listingcontinuesabbrev'   => 'mewá.',
 'index-category'           => 'Ẹdẹle Ihü',
 'noindex-category'         => 'Ihü ẹdẹlebu',
+
+'mainpagetext' => "<big>'''MediaWiki a banyélé nke oma.'''</big>",
 
 'about'         => 'Abwátà',
 'article'       => 'Ihü iheníle',
@@ -255,6 +258,8 @@ $1',
 'privacypage'          => 'Project:Iwu maka ndi ichi ichie',
 
 'badaccess' => 'Nsogbu ébé ha na nyé ike I bàtá',
+
+'versionrequired' => 'MediaWiki nke $1 gi nọkwạ',
 
 'ok'                      => 'Ngwanu',
 'retrievedfrom'           => "Wefụtàrà ya shí ''$1''",
@@ -403,6 +408,7 @@ I na á banye...',
 'subject-preview'        => 'Ihe gbasara/Ishi ahiri I hütü ntakịrị:',
 'blockedtitle'           => 'Há gbachiri onye á ezí',
 'blockednoreason'        => 'amaghi ihe omẹrẹ ya maka',
+'blockedoriginalsource'  => "Nkpurụ '''$1''' zịrị na alạ:",
 'whitelistedittitle'     => 'I kweshiri banyé I chori rüwa nga',
 'nosuchsectiontitle'     => 'Aná a hu nkeji',
 'loginreqtitle'          => 'I kweshiri banyé eba',

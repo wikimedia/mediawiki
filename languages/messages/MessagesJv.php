@@ -602,7 +602,7 @@ ID pamblokiran panjenengan iku #$5 lan alamat IP panjenengan iku $3. Tulung sert
 'whitelistedittitle'               => 'Prelu log mlebu kanggo nyunting',
 'whitelistedittext'                => 'Panjenengan kudu $1 supaya bisa nyunting artikel.',
 'confirmedittext'                  => 'Panjenengan kudu ndhedhes alamat e-mail dhisik sadurungé pareng nyunting sawijining kaca. Mangga nglebokaké lan validasi alamat e-mail panjenengan sadurungé nglakoni panyuntingan. Alamat e-mail sawisé bisa diowahi liwat [[Special:Preferences|kaca préférènsi]]',
-'nosuchsectiontitle'               => 'Subbagian iku ora bisa ditemokaké',
+'nosuchsectiontitle'               => 'Bagéan ora ditemokaké',
 'nosuchsectiontext'                => 'Panjenengan nyoba nyunting sawijining sing ora ana.',
 'loginreqtitle'                    => 'Mangga mlebu log',
 'loginreqlink'                     => 'mlebu log',
@@ -1258,13 +1258,13 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 'upload_directory_missing'    => 'Direktori pamunggahan ($1) ora ditemokaké lan ora bisa digawé déning server wèb.',
 'upload_directory_read_only'  => 'Dirèktori pangunggahan ($1) ora bisa ditulis déning server wèb.',
 'uploaderror'                 => 'Kaluputan pangunggahan berkas',
-'uploadtext'                  => "Anggonen formulir ing ngisor iki kanggo ngunggahaké berkas. 
-Kanggo mirsani utawa nggolèki berkas sing wis diunggah sadurungé pigunakaké [[Special:FileList|dhaftar berkas sing wis diunggah]], berkas sing diunggah ulang uga kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
+'uploadtext'                  => "Anggé formulir ing ngandhap punika kanggé nginggahaké gambar. 
+Kanggé mirsani utawi madosi gambar ingkang sampun dipununggah sakdèrèngipun pigunakaken [[Special:FileList|dhaftar berkas sing wis diunggah]], gambar ingkang dipununggah ulang ugi kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
 
-Kanggo nyertakaké berkas ing sawijining kaca, pigunakaké pranala salah siji saka format ing ngisor iki:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' kanggo migunakaké versi pepak berkas
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></tt>''' kanggo migunakaké berkas ambané 200 piksel jroning kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' kanggo nggandhèng langsung menyang berkas tanpa nampilaké berkas",
+Kanggé nyertakaken gambar ing satunggiling kaca, pigunakaken pranala salah setunggal saking format ing ngandhap punika:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' kanggé migunakaken versi pepak gambar
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></tt>''' kanggé migunakaken gambar wiyaripun 200 piksel ing kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' kanggé nggandhèng langsung dhumateng gambar tanpi nampilaké gambar",
 'upload-permitted'            => 'Jenis berkas sing diidinaké: $1.',
 'upload-preferred'            => 'Jenis berkas sing disaranaké: $1.',
 'upload-prohibited'           => 'Jenis berkas sing dilarang: $1.',
@@ -1781,7 +1781,7 @@ Umpan balik lan pitulung sabanjuré:
 'exblank'                => 'kaca kosong',
 'delete-confirm'         => 'Busak "$1"',
 'delete-legend'          => 'Busak',
-'historywarning'         => "'''Pènget''': Kaca sing bakal panjenengan busak ana sajarahé $1 {{PLURAL:$1|révisi|révisi}}:",
+'historywarning'         => "'''Pènget''': Kaca sing bakal panjenengan busak ana sajarahé kanthi $1 {{PLURAL:$1|révisi|révisi}}:",
 'confirmdeletetext'      => 'Panjenengan bakal mbusak kaca utawa berkas iki minangka permanèn karo kabèh sajarahé saka basis data. Pastèkna dhisik menawa panjenengan pancèn nggayuh iki, ngerti kabèh akibat lan konsekwènsiné, lan apa sing bakal panjenengan tumindak iku cocog karo [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].',
 'actioncomplete'         => 'Proses tuntas',
 'actionfailed'           => 'Tindakan gagal',
@@ -2174,7 +2174,8 @@ Apa panjenengan kersa mbusak iku supaya kacané bisa dialihaké?',
 'imageinvalidfilename'         => 'Jeneng berkas tujuan ora sah',
 'fix-double-redirects'         => 'Dandani kabèh pangalihan gandha sing tumuju marang irah-irahan asli',
 'move-leave-redirect'          => 'Gawé pangalihan menyang irah-irahan anyar',
-'protectedpagemovewarning'     => "'''Pènget:''' Kaca iki wis direksa saéngga mung pangurus sing bisa mindhahaké.",
+'protectedpagemovewarning'     => "'''Pènget:''' Kaca iki wis dikunci dadi mung panganggo sing nduwé hak aksès pangurus baé sing bisa mindhahaké.
+Cathetan entri pungkasan disadiakaké ing ngisor kanggo referensi:",
 'semiprotectedpagemovewarning' => "'''Cathetan:''' Kaca iki wis direksa saéngga mung panganggo kadhaptar sing bisa mindhahaké.",
 
 # Export

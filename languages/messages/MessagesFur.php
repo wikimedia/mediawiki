@@ -129,7 +129,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Modifiche une sezion fracant cul tast diestri<br /> sui titui des sezions (JavaScript)',
 'tog-showtoc'                 => 'Mostre la tabele dai contignûts pes pagjinis cun plui di 3 sezions',
 'tog-rememberpassword'        => 'Visiti tes prossimis sessions',
-'tog-editwidth'               => 'Il spazi pe modifiche al è larc il plui pussibil',
+'tog-editwidth'               => 'Slargje il spazi de modifiche par jemplâ dut il visôr',
 'tog-watchdefault'            => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
 'tog-minordefault'            => 'Imposte come opzion predeterminade ducj i cambiaments come piçui',
 'tog-previewontop'            => 'Mostre anteprime parsore dal spazi pe modifiche',
@@ -140,7 +140,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mandimi une email ancje pai piçui cambiaments ae pagjine',
 'tog-enotifrevealaddr'        => 'Distapone fûr il gno recapit email tai messaçs di notifiche',
 'tog-shownumberswatching'     => 'Mostre il numar di utents che a stan tignint di voli',
-'tog-fancysig'                => 'Firmis crudis (cence leam automatic)',
+'tog-fancysig'                => 'Interprete lis firmis come test wiki (cence un leam automatic)',
 'tog-externaleditor'          => 'Dopre editôr esterni come opzion predeterminade',
 'tog-externaldiff'            => 'Dopre editôr difarencis esterni come opzion predeterminade',
 'tog-watchlisthideown'        => 'Plate i miei cambiaments inte liste des pagjinis tignudis di voli',
@@ -243,6 +243,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-delete'       => 'Elimine',
+'vector-action-protect'      => 'Protêç',
 'vector-namespace-category'  => 'Categorie',
 'vector-namespace-mediawiki' => 'Messaç',
 'vector-namespace-template'  => 'Model',
@@ -408,6 +409,7 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'nav-login-createaccount' => 'Regjistriti o jentre',
 'loginprompt'             => 'Tu âs di vê abilitâts i cookies par jentrâ in {{SITENAME}}.',
 'userlogin'               => 'Regjistriti o jentre',
+'userloginnocreate'       => 'Jentre',
 'logout'                  => 'Jes',
 'userlogout'              => 'Jes',
 'notloggedin'             => 'No tu sês jentrât',
@@ -420,6 +422,7 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'badretype'               => 'Lis peraulis clâfs inseridis no son compagnis.',
 'userexists'              => 'Il non utent inserît al è za doprât. Sielç par plasê un non diferent.',
 'loginerror'              => 'Erôr te jentrade',
+'createaccounterror'      => "No si à podût creâ l'identitât: $1",
 'nocookiesnew'            => "L'identitât utent e je stade creade, ma no tu sês jentrât. {{SITENAME}} al dopre i cookies par visâsi dai utents, e tu tu ju âs disabilitâts. Par plasê abilitiju, dopo jentre cul to gnûf non utent e password.",
 'nocookieslogin'          => '{{SITENAME}} e dopre i cookies par visâsi dai utents, e tu tu ju âs disabilitâts. Par plasê abilitiju e torne a provâ.',
 'noname'                  => 'No tu âs inserît un non utent valit.',
@@ -1502,10 +1505,15 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 # Special:Version
 'version'                  => 'Version',
 'version-version'          => '(Version $1)',
+'version-license'          => 'Licence',
 'version-software-version' => 'Version',
 
 # Special:FilePath
 'filepath-page' => 'Non dal file:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Non dal file:',
+'fileduplicatesearch-submit'   => 'Cîr',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pagjinis speciâls',
@@ -1527,5 +1535,17 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # Special:BlankPage
 'blankpage' => 'Pagjine vueide',
+
+# Special:Tags
+'tag-filter-submit' => 'Filtre',
+
+# Database error messages
+'dberr-problems' => 'Nus displâs, chest sît web al è daûr a vê dificoltâts tecnichis.',
+
+# Add categories per AJAX
+'ajax-confirm-title' => "Conferme l'azion",
+'ajax-confirm-save'  => 'Salve',
+'ajax-error-title'   => 'Erôr',
+'ajax-error-dismiss' => 'Va ben',
 
 );
