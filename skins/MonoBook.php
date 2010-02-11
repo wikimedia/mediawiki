@@ -73,7 +73,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>
 	<div id="bodyContent">
 		<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
-		<div id="contentSub" <?php $this->html('userlangattributes')  ?>><?php $this->html('subtitle') ?></div>
+		<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
 <?php if($this->data['undelete']) { ?>
 		<div id="contentSub2"><?php $this->html('undelete') ?></div>
 <?php } ?><?php if($this->data['newtalk'] ) { ?>
@@ -89,7 +89,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<div class="visualClear"></div>
 	</div>
 </div></div>
-<div id="column-one" <?php $this->html('userlangattributes')  ?>>
+<div id="column-one"<?php $this->html('userlangattributes')  ?>>
 	<div id="p-cactions" class="portlet">
 		<h5><?php $this->msg('views') ?></h5>
 		<div class="pBody">
@@ -122,7 +122,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<div class="portlet" id="p-personal">
 		<h5><?php $this->msg('personaltools') ?></h5>
 		<div class="pBody">
-			<ul <?php $this->html('userlangattributes') ?>>
+			<ul<?php $this->html('userlangattributes') ?>>
 <?php 			foreach($this->data['personal_urls'] as $key => $item) { ?>
 				<li id="<?php echo Sanitizer::escapeId( "pt-$key" ) ?>"<?php
 					if ($item['active']) { ?> class="active"<?php } ?>><a href="<?php
@@ -159,7 +159,7 @@ class MonoBookTemplate extends QuickTemplate {
 ?>
 </div><!-- end of the left (by default at least) column -->
 <div class="visualClear"></div>
-<div id="footer" <?php $this->html('userlangattributes') ?>>
+<div id="footer"<?php $this->html('userlangattributes') ?>>
 <?php
 if($this->data['poweredbyico']) { ?>
 	<div id="f-poweredbyico"><?php $this->html('poweredbyico') ?></div>
@@ -300,7 +300,7 @@ if($this->data['copyrightico']) { ?>
 		if( $this->data['language_urls'] ) {
 ?>
 	<div id="p-lang" class="portlet">
-		<h5 <?php $this->html('userlangattributes') ?>><?php $this->msg('otherlanguages') ?></h5>
+		<h5<?php $this->html('userlangattributes') ?>><?php $this->msg('otherlanguages') ?></h5>
 		<div class="pBody">
 			<ul>
 <?php		foreach($this->data['language_urls'] as $langlink) { ?>

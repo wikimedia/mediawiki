@@ -106,7 +106,7 @@ class ModernTemplate extends QuickTemplate {
 	     for the margins -->
 	<div id="mw_contentholder" <?php $this->html("specialpageattributes") ?>>
 		<div class='mw-topboxes'>
-			<div id="mw-js-message" style="display:none;" <?php $this->html('userlangattributes')?>></div>
+			<div id="mw-js-message" style="display:none;"<?php $this->html('userlangattributes')?>></div>
 			<div class="mw-topbox" id="siteSub"><?php $this->msg('tagline') ?></div>
 			<?php if($this->data['newtalk'] ) {
 				?><div class="usermessage mw-topbox"><?php $this->html('newtalk')  ?></div>
@@ -116,7 +116,7 @@ class ModernTemplate extends QuickTemplate {
 			<?php } ?>
 		</div>
 
-		<div id="contentSub" <?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
+		<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
 
 		<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
 		<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#mw_portlets"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
@@ -129,7 +129,7 @@ class ModernTemplate extends QuickTemplate {
 	</div><!-- mw_content -->
 	</div><!-- mw_contentwrapper -->
 
-	<div id="mw_portlets" <?php $this->html("userlangattributes") ?>>
+	<div id="mw_portlets"<?php $this->html("userlangattributes") ?>>
 
 	<!-- portlets -->
 	<?php
@@ -177,7 +177,7 @@ class ModernTemplate extends QuickTemplate {
 
 
 	<!-- footer -->
-	<div id="footer" <?php $this->html('userlangattributes') ?>>
+	<div id="footer"<?php $this->html('userlangattributes') ?>>
 			<ul id="f-list">
 <?php
 		$footerlinks = array(

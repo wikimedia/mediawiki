@@ -453,7 +453,7 @@ class VectorTemplate extends QuickTemplate {
 		<!-- content -->
 		<div id="content" <?php $this->html('specialpageattributes') ?>>
 			<a id="top"></a>
-			<div id="mw-js-message" style="display:none;" <?php $this->html('userlangattributes') ?>></div>
+			<div id="mw-js-message" style="display:none;"<?php $this->html('userlangattributes') ?>></div>
 			<?php if ( $this->data['sitenotice'] ): ?>
 			<!-- sitenotice -->
 			<div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
@@ -468,7 +468,7 @@ class VectorTemplate extends QuickTemplate {
 				<h3 id="siteSub"><?php $this->msg( 'tagline' ) ?></h3>
 				<!-- /tagline -->
 				<!-- subtitle -->
-				<div id="contentSub" <?php $this->html('userlangattributes') ?>><?php $this->html( 'subtitle' ) ?></div>
+				<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html( 'subtitle' ) ?></div>
 				<!-- /subtitle -->
 				<?php if ( $this->data['undelete'] ): ?>
 				<!-- undelete -->
@@ -526,7 +526,7 @@ class VectorTemplate extends QuickTemplate {
 			</div>
 		<!-- /panel -->
 		<!-- footer -->
-		<div id="footer" <?php $this->html('userlangattributes') ?>>
+		<div id="footer"<?php $this->html('userlangattributes') ?>>
 			<?php foreach( $validFooterLinks as $category => $links ): ?>
 				<?php if ( count( $links ) > 0 ): ?>
 				<ul id="footer-<?php echo $category ?>">
@@ -579,7 +579,7 @@ class VectorTemplate extends QuickTemplate {
 				case 'TOOLBOX':
 ?>
 <div class="portal" id="p-tb">
-	<h5 <?php $this->html('userlangattributes') ?>><?php $this->msg( 'toolbox' ) ?></h5>
+	<h5<?php $this->html('userlangattributes') ?>><?php $this->msg( 'toolbox' ) ?></h5>
 	<div class="body">
 		<ul>
 		<?php if( $this->data['notspecialpage'] ): ?>
@@ -622,7 +622,7 @@ class VectorTemplate extends QuickTemplate {
 					if ( $this->data['language_urls'] ) {
 ?>
 <div class="portal" id="p-lang">
-	<h5 <?php $this->html('userlangattributes') ?>><?php $this->msg( 'otherlanguages' ) ?></h5>
+	<h5<?php $this->html('userlangattributes') ?>><?php $this->msg( 'otherlanguages' ) ?></h5>
 	<div class="body">
 		<ul>
 		<?php foreach ( $this->data['language_urls'] as $langlink ): ?>
@@ -637,7 +637,7 @@ class VectorTemplate extends QuickTemplate {
 				default:
 ?>
 <div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo $this->skin->tooltip( 'p-' . $name ) ?>>
-	<h5 <?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $name ); if ( wfEmptyMsg( $name, $out ) ) echo htmlspecialchars( $name ); else echo htmlspecialchars( $out ); ?></h5>
+	<h5<?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $name ); if ( wfEmptyMsg( $name, $out ) ) echo htmlspecialchars( $name ); else echo htmlspecialchars( $out ); ?></h5>
 	<div class="body">
 		<?php if ( is_array( $content ) ): ?>
 		<ul>
@@ -680,7 +680,7 @@ class VectorTemplate extends QuickTemplate {
 ?>
 <div id="p-namespaces" class="vectorTabs<?php if ( count( $this->data['namespace_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('namespaces') ?></h5>
-	<ul <?php $this->html('userlangattributes') ?>>
+	<ul<?php $this->html('userlangattributes') ?>>
 		<?php foreach ($this->data['namespace_urls'] as $key => $link ): ?>
 			<li <?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><span><?php echo htmlspecialchars( $link['text'] ) ?></span></a></li>
 		<?php endforeach; ?>
@@ -693,7 +693,7 @@ class VectorTemplate extends QuickTemplate {
 <div id="p-variants" class="vectorMenu<?php if ( count( $this->data['variant_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><span><?php $this->msg('variants') ?></span><a href="#"></a></h5>
 	<div class="menu">
-		<ul <?php $this->html('userlangattributes') ?>>
+		<ul<?php $this->html('userlangattributes') ?>>
 			<?php foreach ($this->data['variant_urls'] as $key => $link ): ?>
 				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 			<?php endforeach; ?>
@@ -706,7 +706,7 @@ class VectorTemplate extends QuickTemplate {
 ?>
 <div id="p-views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('views') ?></h5>
-	<ul <?php $this->html('userlangattributes') ?>>
+	<ul<?php $this->html('userlangattributes') ?>>
 		<?php foreach ($this->data['view_urls'] as $key => $link ): ?>
 			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo (array_key_exists('img',$link) ?  '<img src="'.$link['img'].'" alt="'.$link['text'].'" />' : '<span>'.htmlspecialchars( $link['text'] ).'</span>') ?></a></li>
 		<?php endforeach; ?>
@@ -719,7 +719,7 @@ class VectorTemplate extends QuickTemplate {
 <div id="p-cactions" class="vectorMenu<?php if ( count( $this->data['action_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><span><?php $this->msg('actions') ?></span><a href="#"></a></h5>
 	<div class="menu">
-		<ul <?php $this->html('userlangattributes') ?>>
+		<ul<?php $this->html('userlangattributes') ?>>
 			<?php foreach ($this->data['action_urls'] as $key => $link ): ?>
 				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 			<?php endforeach; ?>
@@ -732,7 +732,7 @@ class VectorTemplate extends QuickTemplate {
 ?>
 <div id="p-personal" class="<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('personaltools') ?></h5>
-	<ul <?php $this->html('userlangattributes') ?>>
+	<ul<?php $this->html('userlangattributes') ?>>
 		<?php foreach($this->data['personal_urls'] as $key => $item): ?>
 			<li <?php echo $item['attributes'] ?>><a href="<?php echo htmlspecialchars($item['href']) ?>"<?php echo $item['key'] ?><?php if(!empty($item['class'])): ?> class="<?php echo htmlspecialchars($item['class']) ?>"<?php endif; ?>><?php echo htmlspecialchars($item['text']) ?></a></li>
 		<?php endforeach; ?>
@@ -743,7 +743,7 @@ class VectorTemplate extends QuickTemplate {
 				case 'SEARCH':
 ?>
 <div id="p-search">
-	<h5 <?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
+	<h5<?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
 	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 		<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
 		<?php if ( $wgVectorUseSimpleSearch ): ?>
