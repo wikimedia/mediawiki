@@ -973,7 +973,7 @@ abstract class ApiBase {
 		$ret = array( array( 'readrequired' ) );
 		
 		if ( $this->mustBePosted() ) {
-			$ret = array_merge( $ret, array( array ('mustbeposted', $this->mModuleName ) ) );
+			$ret = array_merge( $ret, array( array ('mustbeposted', $this->getModuleName() ) ) );
 		}
 		
 		return $ret;
