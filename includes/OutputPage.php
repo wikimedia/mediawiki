@@ -2113,7 +2113,7 @@ class OutputPage {
 			foreach($wgXhtmlNamespaces as $tag => $ns) {
 				$ret .= "xmlns:{$tag}=\"{$ns}\" ";
 			}
-			$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
+			$ret .= "lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
 		}
 
 		$ret .= "<head>\n";
