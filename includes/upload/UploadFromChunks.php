@@ -164,7 +164,7 @@ class UploadFromChunks extends UploadBase {
 			// firefogg expects a specific result
 			// http://www.firefogg.org/dev/chunk_post.html
 			return Status::newGood(
-				array('result' => 1, 'done' => 1, 'resultUrl' => $file->getDescriptionUrl() )
+				array('result' => 1, 'done' => 1, 'resultUrl' => wfExpandUrl( $file->getDescriptionUrl() ) )
 			);
 		}
 

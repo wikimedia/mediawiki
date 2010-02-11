@@ -249,7 +249,7 @@ class ApiUpload extends ApiBase {
 			$this->getResult()->setIndexedTagName( $result['details'], 'error' );
 
 			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
-		} elseif( isset($status->value->uploadUrl) ) {
+		} elseif( $this->mParams['enablechunks'] ) {
 			return $status->value;
 		}
 
