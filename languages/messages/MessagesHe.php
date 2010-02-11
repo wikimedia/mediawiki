@@ -117,6 +117,8 @@ $magicWords = array(
 	'talkpagenamee'         => array( '1', 'שם דף השיחה מקודד', 'TALKPAGENAMEE' ),
 	'subjectpagename'       => array( '1', 'שם דף הנושא', 'שם הערך', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
 	'subjectpagenamee'      => array( '1', 'שם דף הנושא מקודד', 'שם הערך מקודד', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
+	'pipetrick'             => array( '1', 'קיצור הקו האנכי', 'PIPETRICK' ),
+	'pipetricke'            => array( '1', 'קיצור הקו האנכי מקודד', 'PIPETRICKE' ),
 	'msg'                   => array( '0', 'הכללה:', 'MSG:' ),
 	'subst'                 => array( '0', 'ס:', 'SUBST:' ),
 	'safesubst'             => array( '0', 'ס בטוח:', 'SAFESUBST:' ),
@@ -1738,6 +1740,7 @@ PICT # שונות
 'http-timed-out'        => 'עבר זמן ההמתנה של בקשת ה־HTTP.',
 'http-curl-error'       => 'שגיאה בקבלת כתובת ה־URL: $1',
 'http-host-unreachable' => 'לא ניתן להגיע לכתובת ה־URL.',
+'http-bad-status'       => 'הייתה בעיה בשליחת בקשת ה־HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'לא ניתן להגיע ל־URL',
