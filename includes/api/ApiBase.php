@@ -970,10 +970,18 @@ abstract class ApiBase {
 	* @return array in the format of array( key, param1, param2, ... ) or array( 'code' => ..., 'info' => ... )
 	*/
 	public function getPossibleErrors() {
-		$ret = array( array( 'readrequired' ) );
+		$ret = array();
 		
 		if ( $this->mustBePosted() ) {
-			$ret = array_merge( $ret, array( array ('mustbeposted', $this->getModuleName() ) ) );
+			$ret = array_merge( $ret, array( array ( 'mustbeposted', $this->getModuleName() ) ) );
+		}
+		
+		if ( $this->isReadMode() ) {
+			$ret = array_merge( $ret, array( array ( 'readrequired' ) ) );
+		}
+		
+		if ( $this->isWriteMode() ) {
+			$ret = array_merge( $ret, array( array ( 'writerequired' ), array( 'writedisabled' ) ) );
 		}
 		
 		return $ret;
