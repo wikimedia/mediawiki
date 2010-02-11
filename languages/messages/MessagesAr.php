@@ -1871,6 +1871,11 @@ PICT # متنوع
 لتأمين إضافي، img_auth.php تم تعطيلها.',
 'img-auth-noread'       => 'لا يملك المستخدم صلاحية قراءة "$1".',
 
+# HTTP errors
+'http-invalid-url'      => 'مسار غير صالح: $1',
+'http-read-error'       => 'خطأ قراءة HTTP.',
+'http-host-unreachable' => 'تعذّر الوصول إلى المسار.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'لم يتمكن من الوصول للمسار',
 'upload-curl-error6-text'  => 'لم يمكن الوصول إلى المسار الذي حددته.

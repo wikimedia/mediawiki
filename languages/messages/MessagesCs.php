@@ -1732,6 +1732,7 @@ Z bezpečnostních důvodů je img_auth.php vypnuto.',
 'http-timed-out'        => 'Čas pro HTTP požadavek vypršel.',
 'http-curl-error'       => 'Chyba při čtení z URL: $1',
 'http-host-unreachable' => 'Nepodařilo se kontaktovat URL',
+'http-bad-status'       => 'Při provádění HTTP požadavku nastal problém: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Z URL nelze číst',
