@@ -96,6 +96,7 @@ class ApiParamInfo extends ApiBase {
 		$retval['description'] = implode( "\n", (array)$obj->getDescription() );
 		$retval['version'] = implode( "\n", (array)$obj->getVersion() );
 		$retval['prefix'] = $obj->getModulePrefix();
+
 		if ( $obj->isReadMode() )
 			$retval['readrights'] = '';
 		if ( $obj->isWriteMode() )
@@ -104,9 +105,11 @@ class ApiParamInfo extends ApiBase {
 			$retval['mustbeposted'] = '';
 		if ( $obj instanceof ApiQueryGeneratorBase )
 			$retval['generator'] = '';
+
 		$allowedParams = $obj->getFinalParams();
 		if ( !is_array( $allowedParams ) )
 			return $retval;
+	
 		$retval['parameters'] = array();
 		$paramDesc = $obj->getFinalParamDescription();
 		foreach ( $allowedParams as $n => $p )
@@ -167,6 +170,11 @@ class ApiParamInfo extends ApiBase {
 			$retval['parameters'][] = $a;
 		}
 		$result->setIndexedTagName( $retval['parameters'], 'param' );
+		
+		// Errors		
+		$retval['errors'] = $obj->possibleErrors();
+		$result->setIndexedTagName( $retval['errors'], 'error' );
+		
 		return $retval;
 	}
 
