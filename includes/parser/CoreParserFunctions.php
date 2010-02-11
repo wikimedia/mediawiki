@@ -70,7 +70,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'pipetrick',        array( __CLASS__, 'pipetrick'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pipetricke',       array( __CLASS__, 'pipetricke'       ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate',		  array( __CLASS__, 'formatDate'	   ) );
+		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -95,16 +95,16 @@ class CoreParserFunctions {
 	static function formatDate( $parser, $date, $defaultPref = null ) {
 		$df = DateFormatter::getInstance();
 
-		$date = trim($date);
+		$date = trim( $date );
 
 		$pref = $parser->mOptions->getDateFormat();
 
 		// Specify a different default date format other than the the normal default
 		// iff the user has 'default' for their setting
-		if ($pref == 'default' && $defaultPref)
+		if ( $pref == 'default' && $defaultPref )
 			$pref = $defaultPref;
 
-		$date = $df->reformat( $pref, $date, array('match-whole') );
+		$date = $df->reformat( $pref, $date, array( 'match-whole' ) );
 		return $date;
 	}
 
@@ -121,7 +121,7 @@ class CoreParserFunctions {
 			return array( 'found' => false );
 		}
 	}
-	
+
 	static function nse( $parser, $part1 = '' ) {
 		return wfUrlencode( str_replace( ' ', '_', self::ns( $parser, $part1 ) ) );
 	}
@@ -209,7 +209,7 @@ class CoreParserFunctions {
 		// allow prefix.
 		$title = Title::newFromText( $user );
 
-		if (is_object( $title ) && $title->getNamespace() == NS_USER)
+		if ( is_object( $title ) && $title->getNamespace() == NS_USER )
 			$user = $title->getText();
 
 		// check parameter, or use $wgUser if in interface message
@@ -224,8 +224,8 @@ class CoreParserFunctions {
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
-	static function plural( $parser, $text = '') {
-		$forms = array_slice( func_get_args(), 2);
+	static function plural( $parser, $text = '' ) {
+		$forms = array_slice( func_get_args(), 2 );
 		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
 		return $parser->getFunctionLang()->convertPlural( $text, $forms );
 	}
@@ -330,37 +330,37 @@ class CoreParserFunctions {
 	 */
 	static function mwnamespace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return str_replace( '_', ' ', $t->getNsText() );
 	}
 	static function namespacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return wfUrlencode( $t->getNsText() );
 	}
 	static function talkspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() )
 			return '';
 		return str_replace( '_', ' ', $t->getTalkNsText() );
 	}
 	static function talkspacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() )
 			return '';
 		return wfUrlencode( $t->getTalkNsText() );
 	}
 	static function subjectspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return str_replace( '_', ' ', $t->getSubjectNsText() );
 	}
 	static function subjectspacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return wfUrlencode( $t->getSubjectNsText() );
 	}
@@ -370,73 +370,73 @@ class CoreParserFunctions {
 	*/
 	static function pagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return wfEscapeWikiText( $t->getText() );
 	}
 	static function pagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return $t->getPartialURL();
 	}
 	static function fullpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() )
 			return '';
 		return wfEscapeWikiText( $t->getPrefixedText() );
 	}
 	static function fullpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() )
 			return '';
 		return $t->getPrefixedURL();
 	}
 	static function subpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return $t->getSubpageText();
 	}
 	static function subpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return $t->getSubpageUrlForm();
 	}
 	static function basepagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return $t->getBaseText();
 	}
 	static function basepagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return wfUrlEncode( str_replace( ' ', '_', $t->getBaseText() ) );
 	}
 	static function talkpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() )
 			return '';
 		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedText() );
 	}
 	static function talkpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() )
 			return '';
 		return $t->getTalkPage()->getPrefixedUrl();
 	}
 	static function subjectpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedText() );
 	}
 	static function subjectpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null($t) )
+		if ( is_null( $t ) )
 			return '';
 		return $t->getSubjectPage()->getPrefixedUrl();
 	}
@@ -449,7 +449,7 @@ class CoreParserFunctions {
 	 * for more information.
 	 */
 	static function pipetrick( $parser, $link = '', $text = '' ) {
-		if ($link)
+		if ( $link )
 			return $parser->getPipeTrickText( $link );
 		else
 			return $parser->getPipeTrickLink( $text );
@@ -501,7 +501,7 @@ class CoreParserFunctions {
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
 		static $cache = array();
-		$title = Title::newFromText($page);
+		$title = Title::newFromText( $page );
 
 		if( !is_object( $title ) ) {
 			$cache[$page] = 0;
@@ -515,7 +515,7 @@ class CoreParserFunctions {
 		if( isset( $cache[$page] ) ) {
 			$length = $cache[$page];
 		} elseif( $parser->incrementExpensiveFunctionCount() ) {
-			$rev = Revision::newFromTitle($title);
+			$rev = Revision::newFromTitle( $title );
 			$id = $rev ? $rev->getPage() : 0;
 			$length = $cache[$page] = $rev ? $rev->getSize() : 0;
 
