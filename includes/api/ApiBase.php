@@ -964,6 +964,12 @@ abstract class ApiBase {
 		return false;
 	}
 
+	/**
+	* Returns a list of all possible errors returned by the module
+	*/
+	public function possibleErrors() {
+		return array();
+	}
 
 	/**
 	 * Profiling: total module execution time
