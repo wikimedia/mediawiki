@@ -635,7 +635,7 @@ class MessageCache {
 			$message = $revision->getText();
 			if ($this->mUseCache) {
 				$this->mCache[$code][$title] = ' ' . $message;
-				$this->mMemc->set( $titleKey, $message, $this->mExpiry );
+				$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
 			}
 		} else {
 			# Negative caching
