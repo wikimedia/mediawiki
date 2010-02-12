@@ -189,7 +189,6 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	 * @param $text string
 	 */
 	public function printText( $text ) {
-		error_log($text);
 		if ( $this->mBufferResult ) {
 			$this->mBuffer = $text;
 		} elseif ( $this->getIsHtml() ) {
