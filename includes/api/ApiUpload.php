@@ -138,8 +138,8 @@ class ApiUpload extends ApiBase {
 		// Cleanup any temporary mess
 		$this->mUpload->cleanupTempFile();
 
-		if( $this->mParams['enablechunks'] ) {
-			foreach ($result as $key => $value) {
+		if( isset($result['chunked-output']) ) {
+			foreach ($result['chunked-output'] as $key => $value) {
 				if($value === null) $value = "";
 				$this->getResult()->addValue( null, $key, $value );
 			}
@@ -249,7 +249,7 @@ class ApiUpload extends ApiBase {
 
 			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 		} elseif( $this->mParams['enablechunks'] ) {
-			return $status->value;
+			return array("chunked-output" => $status->value);
 		}
 
 		$file = $this->mUpload->getLocalFile();
@@ -279,7 +279,7 @@ class ApiUpload extends ApiBase {
 			'watch' => false,
 			'ignorewarnings' => false,
 			'file' => null,
-			'enablechunks' => false,
+			'enablechunks' => null, /* must be null to work with requireOnlyOneParameter */
 			'chunksession' => null,
 			'chunk' => null,
 			'done' => false,
