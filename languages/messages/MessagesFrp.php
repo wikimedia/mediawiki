@@ -752,6 +752,7 @@ Controlâd l’ortografia, ou ben [[Special:UserLogin/signup|féte un compto nov
 'nosuchusershort'            => 'Y at gins de contributor avouéc lo nom « <nowiki>$1</nowiki> ».
 Volyéd controlar l’ortografia.',
 'nouserspecified'            => 'Vos dête buchiér un nom d’utilisator.',
+'login-userblocked'          => 'Ceti utilisator est blocâ. Branchement pas ôtorisâ.',
 'wrongpassword'              => 'Lo mot de pâssa est fôx.
 Volyéd tornar èprovar.',
 'wrongpasswordempty'         => 'Vos éd pas buchiê de mot de pâssa.
@@ -1038,6 +1039,7 @@ Aprés èxtension, ceti arêt balyê un rèsultat trop long, il at vêr pas ét�
 'post-expand-template-argument-category'  => 'Pâges que contegnont u muens yon paramètre de modèlo pas encllu',
 'parser-template-loop-warning'            => 'Modèlo en boclla dècelâ : [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limita de provondior des apèls de modèlos dèpassâ ($1)',
+'language-converter-depth-warning'        => 'Limita de provondior du convèrtissor de lengoua dèpassâ ($1)',
 
 # "Undo" feature
 'undo-success' => 'Ceti changement vôt étre dèfêt.
@@ -1419,25 +1421,26 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'prefs-diffs'                   => 'Difèrences',
 
 # User rights
-'userrights'                  => 'Administracion des drêts d’utilisator',
-'userrights-lookup-user'      => 'Administracion a les tropes d’utilisators',
-'userrights-user-editname'    => 'Buchiéd un nom d’utilisator :',
-'editusergroup'               => 'Changiér les tropes a l’utilisator',
-'editinguser'                 => "Changement des drêts d’utilisator a '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Changement a les tropes a l’utilisator',
-'saveusergroups'              => 'Sôvar les tropes a l’utilisator',
-'userrights-groupsmember'     => 'Membro de :',
-'userrights-groups-help'      => 'Vos pouede changiér les tropes a lesquintes apartint ceti utilisator.
+'userrights'                   => 'Administracion des drêts d’utilisator',
+'userrights-lookup-user'       => 'Administracion a les tropes d’utilisators',
+'userrights-user-editname'     => 'Buchiéd un nom d’utilisator :',
+'editusergroup'                => 'Changiér les tropes a l’utilisator',
+'editinguser'                  => "Changement des drêts d’utilisator a '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Changement a les tropes a l’utilisator',
+'saveusergroups'               => 'Sôvar les tropes a l’utilisator',
+'userrights-groupsmember'      => 'Membro de :',
+'userrights-groupsmember-auto' => 'Membro emplicito de :',
+'userrights-groups-help'       => 'Vos pouede changiér les tropes a lesquintes apartint ceti utilisator.
 * Una câsa pouentâ vôt dére que l’utilisator sè trove dens cela tropa.
 * Una câsa pas pouentâ vôt dére qu’y sè trove pas.
 * Una ètêla (*) endique que vos porréd pas enlevar cela tropa setout que vos l’aréd apondua et l’un l’ôtro.',
-'userrights-reason'           => 'Rêson :',
-'userrights-no-interwiki'     => 'Vos avéd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
-'userrights-nodatabase'       => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas locala.',
-'userrights-nologin'          => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’utilisator.',
-'userrights-notallowed'       => 'Voutron compto at pas la pèrmission de balyér des drêts d’utilisator.',
-'userrights-changeable-col'   => 'Les tropes que vos pouede changiér',
-'userrights-unchangeable-col' => 'Les tropes que vos pouede pas changiér',
+'userrights-reason'            => 'Rêson :',
+'userrights-no-interwiki'      => 'Vos avéd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
+'userrights-nodatabase'        => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas locala.',
+'userrights-nologin'           => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’utilisator.',
+'userrights-notallowed'        => 'Voutron compto at pas la pèrmission de balyér des drêts d’utilisator.',
+'userrights-changeable-col'    => 'Les tropes que vos pouede changiér',
+'userrights-unchangeable-col'  => 'Les tropes que vos pouede pas changiér',
 
 # Groups
 'group'               => 'Tropa :',
@@ -1768,6 +1771,9 @@ Solament l’accès ux fichiérs est pèrmês.',
 Ceti vouiqui est configurâ coment un vouiqui publico.
 Por una sècuritât parfèta, img_auth.php est dèsactivâ.',
 'img-auth-noread'       => 'L’utilisator at pas lo drêt en lèctura dessus « $1 ».',
+
+# HTTP errors
+'http-invalid-url' => 'URL fôssa : $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL pas juentâbla',

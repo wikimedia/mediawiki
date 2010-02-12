@@ -1233,7 +1233,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 # User rights log
 'rightslog'      => 'Ulanyjy hukuklarynyň gündeligi',
 'rightslogtext'  => 'Ulanyjy hukuklaryndaky üýtgeşmeler gündeligi.',
-'rightslogentry' => '$1 üçin topar agzalygyny $2 toparyndan $3 toparyna üýtgetmäge',
+'rightslogentry' => '$1 üçin topar agzalygyny $2 toparyndan $3 toparyna üýtgetdi',
 'rightsnone'     => '(hiç biri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
