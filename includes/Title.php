@@ -2890,13 +2890,15 @@ class Title {
 	 *  Ignored if the user doesn't have the suppressredirect right
 	 */
 	private function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUseSquid, $wgUser;
+		global $wgUseSquid, $wgUser, $wgContLang;
 
 		$comment = wfMsgForContent( '1movedto2_redir', $this->getPrefixedText(), $nt->getPrefixedText() );
 
 		if ( $reason ) {
 			$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
 		}
+		# Truncate for whole multibyte characters. +5 bytes for ellipsis
+		$comment = $wgContLang->truncate( $comment, 250 );
 
 		$now = wfTimestampNow();
 		$newid = $nt->getArticleID();
@@ -3004,7 +3006,7 @@ class Title {
 	 *  Ignored if the user doesn't have the suppressredirect right
 	 */
 	private function moveToNewTitle( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUseSquid, $wgUser;
+		global $wgUseSquid, $wgUser, $wgContLang;
 
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		if ( $reason ) {
@@ -3012,6 +3014,8 @@ class Title {
 				array( 'escapenoentities', 'content' ) );
 			$comment .= $reason;
 		}
+		# Truncate for whole multibyte characters. +5 bytes for ellipsis
+		$comment = $wgContLang->truncate( $comment, 250 );
 
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
