@@ -1656,6 +1656,7 @@ $1",
 'http-timed-out'        => 'Скончыўся час чаканьня HTTP-запыту.',
 'http-curl-error'       => 'Памылка выбаркі URL-адрасу: $1',
 'http-host-unreachable' => 'Немагчыма дасягнуць URL-адрас',
+'http-bad-status'       => 'Адбылася памылка пад час выкананьня HTTP-запыту: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Немагчыма дасягнуць URL-адрас',

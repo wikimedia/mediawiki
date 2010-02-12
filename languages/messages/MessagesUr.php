@@ -9,6 +9,7 @@
  *
  * @author Chris H
  * @author Meno25
+ * @author O.bangash
  * @author Wisesabre
  * @author לערי ריינהארט
  * @author محبوب عالم
@@ -756,6 +757,7 @@ $1",
 'searchresulttext'               => 'ویکیپیڈیا میں تلاش کے بارے میں مزید معلومات کے لیۓ، ویکیپیڈیا میں تلاش کا صفحہ دیکھیۓ۔',
 'searchsubtitle'                 => 'آپ کی تلاش برائے \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" سے شروع ہونے والے تمام صفحات]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" سے مربوط تمام صفحات]])',
 'searchsubtitleinvalid'          => "آپ کی تلاش براۓ '''$1'''",
+'notitlematches'                 => 'کوئی بھی مماثل عنوان صفحہ نہیں ملا',
 'notextmatches'                  => 'کوئی بھی مماثل متن موجود نہیں',
 'prevn'                          => 'پچھلے {{PLURAL:$1|$1}}',
 'nextn'                          => 'اگلے {{PLURAL:$1|$1}}',
@@ -914,6 +916,9 @@ HTML tags جانچئے.',
 
 'grouppage-sysop' => '{{ns:project}}:منتظمین',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'اس صفحہ میں ترمیم کریں',
+
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}}',
 'recentchanges'     => 'حالیہ تبدیلیاں',
@@ -933,6 +938,7 @@ HTML tags جانچئے.',
 'minoreditletter'   => 'م',
 'newpageletter'     => 'نیا ..',
 'boteditletter'     => ' خودکار',
+'rc-enhanced-hide'  => 'تفصیلات چھپائیے',
 
 # Recent changes linked
 'recentchangeslinked'         => 'متعلقہ تبدیلیاں',
@@ -1024,6 +1030,7 @@ HTML tags جانچئے.',
 'brokenredirects' => 'نامکمل متبادل ربط',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|لکمہ|لکمہ جات}}',
 'ncategories'             => '{{PLURAL:$1|زمرہ|زمرہ جات}} $1',
 'lonelypages'             => 'يتيم صفحات',
 'lonelypagestext'         => 'مندرجہ ذیل صفحات وہ صفحات ہیں جنھیں اس وکی میں موجود صفحوں سے کوئی ربط حاصل نہیں ہوپارہا۔',
@@ -1221,6 +1228,7 @@ HTML tags جانچئے.',
 'tooltip-pt-userpage'            => 'آپ کا صارفی صفحہ',
 'tooltip-pt-mytalk'              => 'آپ کا صفحۂ گفتگو',
 'tooltip-pt-preferences'         => 'آپ کی ترجیحات',
+'tooltip-pt-watchlist'           => 'اُن صفحات کی فہرست جن کی تبدیلیاں آپ کی زیرِنظر ہیں',
 'tooltip-pt-mycontris'           => 'آپ کے مساہمات کی فہرست',
 'tooltip-pt-login'               => 'آپ کیلئے داخلِ نوشتہ ہونا اچھا ہے؛ تاہم، یہ ضروری نہیں',
 'tooltip-ca-talk'                => 'مضمون بارے تبادلۂ خیال',

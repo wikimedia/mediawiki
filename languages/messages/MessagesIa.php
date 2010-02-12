@@ -2426,6 +2426,7 @@ per favor assecura te de haber comprendite le consequentias de isto ante de cont
 
 Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate.",
 'movearticle'                  => 'Renominar pagina:',
+'moveuserpage-warning'         => "'''Attention:''' Tu es super le puncto de renominar un pagina de usator. Nota ben que solmente le pagina, e ''non'' le usator, essera renominate.",
 'movenologin'                  => 'Tu non ha aperite un session',
 'movenologintext'              => 'Tu debe esser un usator registrate e [[Special:UserLogin|aperir un session]] pro poter renominar un pagina.',
 'movenotallowed'               => 'Tu non ha le permission de renominar paginas.',

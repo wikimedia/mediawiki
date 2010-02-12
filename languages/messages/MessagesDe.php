@@ -1753,6 +1753,7 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'http-timed-out'        => 'Zeitüberschreitung bei der HTTP-Anfrage.',
 'http-curl-error'       => 'Fehler beim Abruf der URL: $1',
 'http-host-unreachable' => 'URL konnte nicht erreicht werden.',
+'http-bad-status'       => 'Während der HTTP-Anfrage ist ein Fehler aufgetreten: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ist nicht erreichbar',

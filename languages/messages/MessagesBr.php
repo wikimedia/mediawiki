@@ -1511,7 +1511,9 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'http-invalid-url'      => 'URL direizh : $1',
 'http-request-error'    => "Ur fazi dianavezet 'zo bet pa veze kaset ar reked.",
 'http-read-error'       => 'Fazi lenn HTTP.',
+'http-timed-out'        => 'Erru eo termen ar reked HTTP.',
 'http-host-unreachable' => "N'eus ket bet gallet tizhout an URL.",
+'http-bad-status'       => 'Ur gudenn a zo bet e-pad ar reked HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "N'eus ket bet gallet tizhout an URL",

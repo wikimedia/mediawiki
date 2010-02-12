@@ -691,6 +691,7 @@ $messages = array(
 'statistics-users-active-desc' => 'Пытартыш {{PLURAL:$1|кечыште|$1 кечыште}} иктаж-мом ыштыше пайаланыше-влак',
 'statistics-mostpopular'       => 'Эн чӱчкыдын ончымо лаштык-влак',
 
+'brokenredirects'        => 'Пудыртымо вес верек колтымаш-влак',
 'brokenredirects-edit'   => 'тӧрлаташ',
 'brokenredirects-delete' => 'шӧраш',
 
@@ -1066,6 +1067,10 @@ $messages = array(
 'table_pager_prev'         => 'Ончычсо лаштык',
 'table_pager_limit_submit' => 'Кай',
 
+# Auto-summaries
+'autoredircomment' => '[[$1]] лаштыкыш колтымаш',
+'autosumm-new'     => "У лаштык '$1' дене тӱҥалеш",
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Келшыше тӧрлатымаш-влакым ончалаш',
 'watchlisttools-edit' => 'Эскерыме лӱмерым ончалаш да тӧрлаташ',
@@ -1078,8 +1083,14 @@ $messages = array(
 'filepath-page' => 'Файл:',
 
 # Special:SpecialPages
-'specialpages'             => 'Лӱмын ыштыме лаштык-влак',
-'specialpages-group-login' => 'Пурымаш / регистрацийым эрташ',
+'specialpages'                 => 'Лӱмын ыштыме лаштык-влак',
+'specialpages-group-other'     => 'Весе лӱмын ыштыме лаштык-влак',
+'specialpages-group-login'     => 'Пурымаш / регистрацийым эрташ',
+'specialpages-group-users'     => 'Пайдаланыше-влак да нунын йӧн-влак',
+'specialpages-group-highuse'   => 'Чӱчкыдын пайдалын кучылтышо лаштык-влак',
+'specialpages-group-pages'     => 'Лаштык лӱмер-влак',
+'specialpages-group-pagetools' => 'Лаштык ӱзгар-влак',
+'specialpages-group-redirects' => 'Вес верек колтышо лӱмын ыштыме лаштык-влак',
 
 # Add categories per AJAX
 'ajax-error-dismiss' => 'Йӧра',

@@ -1706,6 +1706,7 @@ Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
 'http-timed-out'        => 'Vyhradený čas požiadavky HTTP vypršal.',
 'http-curl-error'       => 'Chyba pri sťahovaní URL: $1',
 'http-host-unreachable' => 'URL nie je dostupný',
+'http-bad-status'       => 'Počas požiadavky HTTP nastal problém: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nedostupný URL',
@@ -2498,6 +2499,7 @@ ubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojh
 
 V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlúčiť stránku ručne.",
 'movearticle'                  => 'Presunúť stránku',
+'moveuserpage-warning'         => "'''Upozornenie:''' Chystáte sa presunúť používateľskú stránku. Pamätajte, že týmto presuniete iba stránku a používateľ ''nebude'' premenovaný.",
 'movenologin'                  => 'Nie ste prihlásený',
 'movenologintext'              => 'Musíte byť registrovaný používateľ a [[Special:UserLogin|prihlásený]], aby ste mohli presunúť stránku.',
 'movenotallowed'               => 'Nemáte povolenie presúvať stránky.',
