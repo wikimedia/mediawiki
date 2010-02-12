@@ -131,6 +131,9 @@ class MovePageForm {
 				</tr>";
 			$err = '';
 		} else {
+			if ($this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
+				$wgOut->addWikiMsg( 'moveuserpage-warning' );
+			}
 			$wgOut->addWikiMsg( 'movepagetext' );
 			$movepagebtn = wfMsg( 'movepagebtn' );
 			$submitVar = 'wpMove';

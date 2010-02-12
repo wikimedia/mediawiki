@@ -3039,6 +3039,7 @@ please be sure you understand the consequences of this before proceeding.",
 
 In those cases, you will have to move or merge the page manually if desired.",
 'movearticle'                  => 'Move page:',
+'moveuserpage-warning'         => "'''Warning:''' You are about to move a user page. Please note that only the page will be moved and the user will ''not'' be renamed.",
 'movenologin'                  => 'Not logged in',
 'movenologintext'              => 'You must be a registered user and [[Special:UserLogin|logged in]] to move a page.',
 'movenotallowed'               => 'You do not have permission to move pages.',
