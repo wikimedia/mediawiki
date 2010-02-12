@@ -758,6 +758,8 @@ comment from another wiki.
 * (bug 8785)  Pipe trick should work with colon functions 
 * (bug 4099)  Pipe trick doesn't work when emptiness is only provided by empty
   template parameter
+* Truncate summary of page moves in revision comment field to avoid broken
+  multibyte characters
 
 == API changes in 1.16 ==
 
