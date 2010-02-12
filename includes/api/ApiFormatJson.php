@@ -42,7 +42,7 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function getMimeType() {
 		$params = $this->extractRequestParams();
-		// callback: 		
+		// callback:
 		if ( $params['callback'] ) {
 			return 'text/javascript';
 		}
@@ -52,7 +52,7 @@ class ApiFormatJson extends ApiFormatBase {
 	public function getNeedsRawData() {
 		return $this->mIsRaw;
 	}
-	
+
 	public function getWantsHelp() {
 		// Help is always ugly in JSON
 		return false;

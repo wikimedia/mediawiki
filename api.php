@@ -23,8 +23,8 @@
  * @file
  */
 
-/** 
- * This file is the entry point for all API queries. It begins by checking 
+/**
+ * This file is the entry point for all API queries. It begins by checking
  * whether the API is enabled on this wiki; if not, it informs the user that
  * s/he should set $wgEnableAPI to true and exits. Otherwise, it constructs
  * a new ApiMain using the parameter passed to it as an argument in the URL
