@@ -91,7 +91,7 @@ class ApiResult extends ApiBase {
 	public function getData() {
 		return $this->mData;
 	}
-	
+
 	/**
 	 * Get the 'real' size of a result item. This means the strlen() of the item,
 	 * or the sum of the strlen()s of the elements if the item is an array.
@@ -116,7 +116,7 @@ class ApiResult extends ApiBase {
 	public function getSize() {
 		return $this->mSize;
 	}
-	
+
 	/**
 	 * Disable size checking in addValue(). Don't use this unless you
 	 * REALLY know what you're doing. Values added while size checking
@@ -125,7 +125,7 @@ class ApiResult extends ApiBase {
 	public function disableSizeCheck() {
 		$this->mCheckingSize = false;
 	}
-	
+
 	/**
 	 * Re-enable size checking in addValue()
 	 */

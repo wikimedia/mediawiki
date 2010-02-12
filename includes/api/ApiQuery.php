@@ -171,7 +171,7 @@ class ApiQuery extends ApiBase {
 	function getModules() {
 		return array_merge( $this->mQueryPropModules, $this->mQueryListModules, $this->mQueryMetaModules );
 	}
-	
+
 	public function getCustomPrinter() {
 		// If &exportnowrap is set, use the raw formatter
 		if ( $this->getParameter( 'export' ) &&

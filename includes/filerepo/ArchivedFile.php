@@ -49,18 +49,18 @@ class ArchivedFile
 		$this->deleted = 0;
 		$this->dataLoaded = false;
 		$this->exists = false;
-		
+
 		if( is_object($title) ) {
 			$this->title = $title;
 			$this->name = $title->getDBkey();
 		}
-		
+
 		if ($id)
 			$this->id = $id;
-		
+
 		if ($key)
 			$this->key = $key;
-		
+
 		if (!$id && !$key && !is_object($title))
 			throw new MWException( "No specifications provided to ArchivedFile constructor." );
 	}
@@ -74,19 +74,19 @@ class ArchivedFile
 			return true;
 		}
 		$conds = array();
-		
+
 		if( $this->id > 0 )
 			$conds['fa_id'] = $this->id;
 		if( $this->key ) {
-			$conds['fa_storage_group'] = $this->group;	
+			$conds['fa_storage_group'] = $this->group;
 			$conds['fa_storage_key'] = $this->key;
 		}
 		if( $this->title )
 			$conds['fa_name'] = $this->title->getDBkey();
-			
+
 		if( !count($conds))
 			throw new MWException( "No specific information for retrieving archived file" );
-		
+
 		if( !$this->title || $this->title->getNamespace() == NS_FILE ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'filearchive',
@@ -195,7 +195,7 @@ class ArchivedFile
 		$this->load();
 		return $this->id;
 	}
-	
+
 	public function exists() {
 		$this->load();
 		return $this->exists;

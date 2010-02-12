@@ -971,23 +971,23 @@ abstract class ApiBase {
 	*/
 	public function getPossibleErrors() {
 		$ret = array();
-		
+
 		if ( $this->mustBePosted() ) {
 			$ret[] = array ( 'mustbeposted', $this->getModuleName() );
 		}
-		
+
 		if ( $this->isReadMode() ) {
 			$ret[] = array ( 'readrequired' );
 		}
-		
+
 		if ( $this->isWriteMode() ) {
 			$ret[] = array ( 'writerequired' );
 			$ret[] = array ( 'writedisabled' );
 		}
-		
+
 		return $ret;
 	}
-	
+
 	/**
 	* Parses a list of errors into a standardised format
 	* @param $errors array List of errors. Items can be in the for array( key, param1, param2, ... ) or array( 'code' => ..., 'info' => ... )
@@ -995,9 +995,9 @@ abstract class ApiBase {
 	*/
 	public function parseErrors( $errors ) {
 		$ret = array();
-		
+
 		foreach ( $errors as $row )
-		{	
+		{
 			if ( isset( $row['code'] ) && isset( $row['info'] ) ) {
 				$ret[] = $row;
 			}
