@@ -619,7 +619,7 @@ class AutoLoader {
 	/**
 	 * autoload - take a class name and attempt to load it
 	 *
-	 * @param string $className Name of class we're looking for.
+	 * @param $className String: name of class we're looking for.
 	 * @return bool Returning false is important on failure as
 	 * it allows Zend to try and look in other registered autoloaders
 	 * as well.
