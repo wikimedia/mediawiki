@@ -1071,7 +1071,7 @@ class Preferences {
 			}
 
 			$idCnt = 0;
-			$epoch = '20010115161234'; # Wikipedia day
+			$epoch = wfTimestampNow();
 			foreach( $dateopts as $key ) {
 				if( $key == 'default' ) {
 					$formatted = wfMsgHtml( 'datedefault' );
