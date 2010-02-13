@@ -148,6 +148,12 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'List all files that are duplicates of the given file(s).';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (	'api.php?action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles',
