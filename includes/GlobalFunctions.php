@@ -262,15 +262,6 @@ function wfArrayDiff2_cmp( $a, $b ) {
 }
 
 /**
- * Wrapper for clone(), for compatibility with PHP4-friendly extensions.
- * PHP 5 won't let you declare a 'clone' function, even conditionally,
- * so it has to be a wrapper with a different name.
- */
-function wfClone( $object ) {
-	return clone( $object );
-}
-
-/**
  * Seed Mersenne Twister
  * No-op for compatibility; only necessary in PHP < 4.2.0
  */
