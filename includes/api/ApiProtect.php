@@ -182,7 +182,7 @@ class ApiProtect extends ApiBase {
 			array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ) ),
 			array( 'create-titleexists' ),
 			array( 'missingtitle-createonly' ),
-			array( 'protect-invalidaction', 'action'] ),
+			array( 'protect-invalidaction', 'action' ),
 			array( 'protect-invalidlevel', 'level' ),
 			array( 'invalidexpiry', 'expiry' ),
 			array( 'pastexpiry', 'expiry' ),
