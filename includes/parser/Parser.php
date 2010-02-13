@@ -374,25 +374,26 @@ class Parser
 
 		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
 
-//!JF Move to its own function
+		if ( $this->mTransparentTagHooks ) {
+			//!JF Move to its own function
+			$uniq_prefix = $this->mUniqPrefix;
+			$matches = array();
+			$elements = array_keys( $this->mTransparentTagHooks );
+			$text = self::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
 
-		$uniq_prefix = $this->mUniqPrefix;
-		$matches = array();
-		$elements = array_keys( $this->mTransparentTagHooks );
-		$text = self::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
-
-		foreach( $matches as $marker => $data ) {
-			list( $element, $content, $params, $tag ) = $data;
-			$tagName = strtolower( $element );
-			if( isset( $this->mTransparentTagHooks[$tagName] ) ) {
-				$output = call_user_func_array( $this->mTransparentTagHooks[$tagName],
-					array( $content, $params, $this ) );
-			} else {
-				$output = $tag;
+			foreach( $matches as $marker => $data ) {
+				list( $element, $content, $params, $tag ) = $data;
+				$tagName = strtolower( $element );
+				if( isset( $this->mTransparentTagHooks[$tagName] ) ) {
+					$output = call_user_func_array( $this->mTransparentTagHooks[$tagName],
+						array( $content, $params, $this ) );
+				} else {
+					$output = $tag;
+				}
+				$this->mStripState->general->setPair( $marker, $output );
 			}
-			$this->mStripState->general->setPair( $marker, $output );
+			$text = $this->mStripState->unstripGeneral( $text );
 		}
-		$text = $this->mStripState->unstripGeneral( $text );
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
@@ -4243,7 +4244,9 @@ class Parser
 		return $oldVal;
 	}
 
+	/* An old work-around for bug 2257 - deprecated 2010-02-13 */
 	function setTransparentTagHook( $tag, $callback ) {
+		wfDeprecated( __METHOD__ );
 		$tag = strtolower( $tag );
 		$oldVal = isset( $this->mTransparentTagHooks[$tag] ) ? $this->mTransparentTagHooks[$tag] : null;
 		$this->mTransparentTagHooks[$tag] = $callback;
