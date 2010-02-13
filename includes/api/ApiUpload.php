@@ -326,6 +326,21 @@ class ApiUpload extends ApiBase {
 			'log out and then log back in). Also you must get and send an edit token before doing any upload stuff.'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'uploaddisabled' ),
+			array( 'missingparam', 'token' ),
+			array( 'sessionfailure' ),
+			array( 'invalid-session-key' ),
+			array( 'uploaddisabled' ),
+			array( 'badaccess-groups' ),
+			array( 'missingparam', 'filename' ),
+			array( 'mustbeloggedin', 'upload' ),
+			array( 'badaccess-groups' ),
+			array( 'badaccess-groups' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array(

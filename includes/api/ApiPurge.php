@@ -102,6 +102,13 @@ class ApiPurge extends ApiBase {
 			'Purge the cache for the given titles.'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'cantpurge' ),
+			array( 'missingparam', 'titles' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array(

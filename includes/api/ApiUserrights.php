@@ -105,6 +105,14 @@ class ApiUserrights extends ApiBase {
 			'Add/remove a user to/from groups',
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'user' ),
+			array( 'missingparam', 'token' ),
+			array( 'sessionfailure' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (

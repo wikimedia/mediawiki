@@ -108,6 +108,16 @@ class ApiUnblock extends ApiBase {
 			'Unblock a user.'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'unblock-notarget' ),
+			array( 'unblock-idanduser' ),
+			array( 'missingparam', 'token' ),
+			array( 'sessionfailure' ),
+			array( 'cantunblock' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (
