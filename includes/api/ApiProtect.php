@@ -179,7 +179,7 @@ class ApiProtect extends ApiBase {
 			array( 'missingparam', 'protections' ),
 			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'title' ),
-			array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ) ),
+			array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ),
 			array( 'create-titleexists' ),
 			array( 'missingtitle-createonly' ),
 			array( 'protect-invalidaction', 'action' ),
