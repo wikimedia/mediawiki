@@ -116,6 +116,12 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	public function getDescription() {
 		return 'Returns all interlanguage links from the given page(s)';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (
