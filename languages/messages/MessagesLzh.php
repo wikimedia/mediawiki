@@ -1343,6 +1343,7 @@ $1",
 'http-timed-out'        => 'HTTP求之過時也。',
 'http-curl-error'       => '取網址現錯之：$1',
 'http-host-unreachable' => '無達網址之。',
+'http-bad-status'       => 'HTTP求時現問：$1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '無達網址也',
@@ -2067,6 +2068,7 @@ $1已被禁矣。爾是否改此置？',
 <b>警示</b>
 膾炙遷焉，禍生不測；戒慎行之。",
 'movearticle'                  => '遷文：',
+'moveuserpage-warning'         => "'''警：'''爾將遷頁齋。注之遷齋後之簿名乃為''無''變也。",
 'movenologin'                  => '未登簿',
 'movenologintext'              => '遷文須[[Special:UserLogin|登簿]]。',
 'movenotallowed'               => '無准遷檔也。',

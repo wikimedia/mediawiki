@@ -1531,6 +1531,7 @@ $1",
 'http-timed-out'        => 'HTTP請求已過時。',
 'http-curl-error'       => '擷取URL嗰陣出錯：$1',
 'http-host-unreachable' => '到唔到URL。',
+'http-bad-status'       => '當做緊HTTP請求嗰陣出現咗問題：$1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '唔可以到嗰個URL',
@@ -2300,6 +2301,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 
 喺呢啲情況下，需要嘅話你唯有手動搬同合併個頁。",
 'movearticle'                  => '搬頁:',
+'moveuserpage-warning'         => "'''警告：'''你將會搬一個用戶版。請留意嗰版搬咗之後個用戶係''唔會''改名。",
 'movenologin'                  => '未登入',
 'movenologintext'              => '你要係註冊用戶而且要[[Special:UserLogin|登入]]咗先可以搬頁',
 'movenotallowed'               => '你並無權限去搬版。',

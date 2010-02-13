@@ -1567,6 +1567,7 @@ $1",
 'http-timed-out'        => 'HTTP请求已过时。',
 'http-curl-error'       => '撷取URL时出错：$1',
 'http-host-unreachable' => '无法到达URL。',
+'http-bad-status'       => '进行HTTP请求时出现问题：$1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '无法访问URL',
@@ -2355,6 +2356,7 @@ $1已经被封锁。您是否想更改这个设置？',
 
 在这些情况下，您在必要时必须手工移动或合并页面。",
 'movearticle'                  => '移动页面：',
+'moveuserpage-warning'         => "'''警告：'''您将会移动一个用户页面。请留意该页面在移动后该用户的名字是''不会''变更的。",
 'movenologin'                  => '未登录',
 'movenologintext'              => '您必须是一名登记用户并且[[Special:UserLogin|登录]]
 后才可移动一个页面。',

@@ -1574,6 +1574,7 @@ $1",
 'http-timed-out'        => 'HTTP請求已過時。',
 'http-curl-error'       => '擷取URL時出錯：$1',
 'http-host-unreachable' => '無法到達URL。',
+'http-bad-status'       => '進行HTTP請求時出現問題：$1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '無法訪問 URL',
@@ -2363,6 +2364,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 
 在這些情況下，您在必要時必須手工移動或合併頁面。",
 'movearticle'                  => '移動頁面:',
+'moveuserpage-warning'         => "'''警告：'''您將會移動一個用戶頁面。請留意該頁面在移動後該用戶的名字是''不會''變更的。",
 'movenologin'                  => '未登入',
 'movenologintext'              => '您必須是一名登記用戶並且[[Special:UserLogin|登入]]
 後才可移動一個頁面。',
