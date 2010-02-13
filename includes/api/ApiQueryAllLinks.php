@@ -188,6 +188,15 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'Enumerate all links that point to a given namespace';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'params', 'info' => $this->getModuleName() . ' cannot be used as a generator in unique links mode' ),
+			array( 'code' => 'params', 'info' => $this->getModuleName() . ' cannot return corresponding page ids in unique links mode' ),
+			array( 'code' => 'params', 'info' => 'alcontinue and alfrom cannot be used together' ),
+			array( 'code' => 'badcontinue', 'info' => 'Invalid continue parameter' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (
