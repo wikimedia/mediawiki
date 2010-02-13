@@ -392,8 +392,12 @@ class Parser
 				}
 				$this->mStripState->general->setPair( $marker, $output );
 			}
-			$text = $this->mStripState->unstripGeneral( $text );
 		}
+
+		# This was originally inserted for transparent tag hooks (now deprecated)
+		# but some extensions (notably <poem>) rely on the extra unstripGeneral()
+		# after unstripNoWiki() so they can modify the contents of <nowiki> tags.
+		$text = $this->mStripState->unstripGeneral( $text );
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
