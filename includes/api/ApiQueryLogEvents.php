@@ -284,8 +284,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		
 		return $vals;
 	}
-
-
+	
 	public function getAllowedParams() {
 		global $wgLogTypes;
 		return array (
@@ -349,6 +348,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getDescription() {
 		return 'Get events from logs.';
+	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'param_user', 'info' => 'User name $user not found' ),
+			array( 'code' => 'param_title', 'info' => 'Bad title value \'title\'' ),
+		) );
 	}
 
 	protected function getExamples() {

@@ -484,7 +484,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'includeAllDenied', 'info' => 'Cannot view all servers info unless $wgShowHostnames is true',  ),
+			array( 'code' => 'includeAllDenied', 'info' => 'Cannot view all servers info unless $wgShowHostnames is true' ),
 		) );
 	}
 

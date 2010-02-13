@@ -561,6 +561,12 @@ class ApiQuery extends ApiBase {
 			'All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.'
 		);
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'badgenerator', 'info' => 'Module $generatorName cannot be used as a generator' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (

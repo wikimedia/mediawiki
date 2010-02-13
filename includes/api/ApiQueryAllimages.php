@@ -192,6 +192,13 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'Enumerate all images sequentially';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'params', 'info' => 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator' ),
+			array( 'code' => 'unsupportedrepo', 'info' => 'Local file repository does not support querying all images' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (

@@ -260,6 +260,13 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'Enumerate all pages sequentially in a given namespace';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'params', 'info' => 'Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator' ),
+			array( 'code' => 'params', 'info' => 'prlevel may not be used without prtype' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (

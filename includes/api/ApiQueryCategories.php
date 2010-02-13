@@ -217,6 +217,12 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'List all categories the page(s) belong to';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (
