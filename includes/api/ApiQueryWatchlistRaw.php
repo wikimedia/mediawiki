@@ -170,6 +170,13 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return "Get all pages on the logged in user's watchlist";
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
+			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (

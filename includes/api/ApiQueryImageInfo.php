@@ -318,6 +318,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return array (
 			'Returns image information and upload history'
 		);
+	}	
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'iiurlwidth', 'info' => 'iiurlheight cannot be used without iiurlwidth' ),
+		) );
 	}
 
 	protected function getExamples() {

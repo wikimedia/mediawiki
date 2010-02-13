@@ -202,6 +202,12 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'Enumerate pages that contain a given URL';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'bad_query', 'info' => 'Invalid query' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (
