@@ -116,7 +116,6 @@ class ApiFeedWatchlist extends ApiBase {
 			$feedFormat = isset( $params['feedformat'] ) ? $params['feedformat'] : 'rss';
 			$feed = new $wgFeedClasses[$feedFormat] ( $feedTitle, htmlspecialchars( wfMsgForContent( 'watchlist' ) ), $feedUrl );
 
-
 			if ( $e instanceof UsageException ) {
 				$errorCode = $e->getCodeString();
 			} else {

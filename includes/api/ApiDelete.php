@@ -209,6 +209,16 @@ class ApiDelete extends ApiBase {
 			'Delete a page.'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'token' ),
+			array( 'invalidtitle', 'title' ),
+			array( 'nosuchpageid', 'pageid' ),
+			array( 'notanarticle' ),
+			array( 'hookaborted', 'error' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (

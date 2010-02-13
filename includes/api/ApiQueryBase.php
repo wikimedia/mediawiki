@@ -407,6 +407,13 @@ abstract class ApiQueryBase extends ApiBase {
 	public function keyPartToTitle( $keyPart ) {
 		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'invalidtitle', 'title' ),
+			array( 'invalidtitle', 'key' ),
+        ) );
+	}
 
 	/**
 	 * Get version string for use in the API help output

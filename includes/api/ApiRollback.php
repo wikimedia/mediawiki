@@ -113,6 +113,17 @@ class ApiRollback extends ApiBase {
 				'they will all be rolled back.'
 			);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'title' ),
+			array( 'missingparam', 'user' ),
+			array( 'missingparam', 'token' ),
+			array( 'invalidtitle', 'title' ),
+			array( 'notanarticle' ),
+			array( 'invaliduser', 'user' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (

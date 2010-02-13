@@ -345,6 +345,46 @@ class ApiEditPage extends ApiBase {
 	protected function getDescription() {
 		return 'Create and edit pages.';
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'title' ),
+			array( 'missingtext' ),
+			array( 'missingparam', 'token' ),
+			array( 'sessionfailure' ),
+			array( 'invalidtitle', 'title' ),
+			array( 'createonly-exists' ),
+			array( 'nocreate-missing' ),
+			array( 'nosuchrevid', 'undo' ),
+			array( 'nosuchrevid', 'undoafter' ),
+			array( 'revwrongpage', 'id', 'text' ),
+			array( 'revwrongpage', 'id', 'text' ),
+			array( 'undo-failure' ),
+			array( 'hashcheckfailed' ),
+			array( 'hookaborted' ),
+			array( 'hookaborted' ),
+			array( 'noimageredirect-anon' ),
+			array( 'noimageredirect-logged' ),
+			array( 'spamdetected', 'spam' ),
+			array( 'filtered' ),
+			array( 'blockedtext' ),
+			array( 'contenttoobig', $this->getMaxArticleSize() ),
+			array( 'noedit-anon' ),
+			array( 'noedit' ),
+			array( 'actionthrottledtext' ),
+			array( 'wasdeleted' ),
+			array( 'nocreate-loggedin' ),
+			array( 'blankpage' ),
+			array( 'editconflict' ),
+			array( 'emptynewsection' ),
+			array( 'unknownerror', 'retval' ),
+        ) );
+	}
+
+	private function getMaxArticleSize() {
+		global $wgMaxArticleSize;
+		return $wgMaxArticleSize;
+	}
 
 	protected function getAllowedParams() {
 		return array (

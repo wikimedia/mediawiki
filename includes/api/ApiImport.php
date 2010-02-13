@@ -140,6 +140,18 @@ class ApiImport extends ApiBase {
 			'Import a page from another wiki, or an XML file'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'cantimport' ),
+			array( 'missingparam', 'token' ),
+			array( 'sessionfailure' ),
+			array( 'missingparam', 'interwikipage' ),
+			array( 'cantimport-upload' ),
+			array( 'import-unknownerror', 'source' ),
+			array( 'import-unknownerror', 'result' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array(

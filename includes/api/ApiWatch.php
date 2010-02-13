@@ -91,6 +91,14 @@ class ApiWatch extends ApiBase {
 			'Add or remove a page from/to the current user\'s watchlist'
 		);
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
+			array( 'invalidtitle', 'title' ),
+			array( 'hookaborted' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array(
