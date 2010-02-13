@@ -3276,8 +3276,7 @@ Please try again.',
 'tooltip-pt-anonlogin'            => 'You are encouraged to log in; however, it is not mandatory',
 'tooltip-pt-logout'               => 'Log out',
 'tooltip-ca-talk'                 => 'Discussion about the content page',
-'tooltip-ca-edit'                 => 'You can edit this page.
-Please use the preview button before saving',
+'tooltip-ca-edit'                 => 'You can edit this page. Please use the preview button before saving',
 'tooltip-ca-addsection'           => 'Start a new section',
 'tooltip-ca-viewsource'           => 'This page is protected.
 You can view its source',
