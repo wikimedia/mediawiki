@@ -333,7 +333,8 @@ class ImportReporter {
 			$article->updateRevisionOn( $dbw, $nullRevision );
 			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest, $wgUser) );
 		} else {
-			$wgOut->addHTML( '<li>' . wfMsgHtml( 'import-nonewrevisions' ) . '</li>' );
+			$wgOut->addHTML( "<li>" . $skin->linkKnown( $title ) . " " .
+				wfMsgHtml( 'import-nonewrevisions' ) . "</li>\n" );
 		}
 	}
 
