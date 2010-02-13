@@ -34,7 +34,7 @@ class ImageListPager extends TablePager {
 		}
 		$search = $wgRequest->getText( 'ilsearch' );
 		if ( $search != '' && !$wgMiserMode ) {
-			$nt = Title::newFromUrl( $search );
+			$nt = Title::newFromURL( $search );
 			if( $nt ) {
 				$dbr = wfGetDB( DB_SLAVE );
 				$this->mQueryConds = array( 'LOWER(img_name)' . $dbr->buildLike( $dbr->anyString(), 

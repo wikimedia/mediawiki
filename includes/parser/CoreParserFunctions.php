@@ -170,7 +170,7 @@ class CoreParserFunctions {
 		# and the variable will fail. If we can't get a decent title from the first
 		# attempt, url-decode and try for a second.
 		if( is_null( $title ) )
-			$title = Title::newFromUrl( urldecode( $s ) );
+			$title = Title::newFromURL( urldecode( $s ) );
 		if( !is_null( $title ) ) {
 			# Convert NS_MEDIA -> NS_FILE
 			if( $title->getNamespace() == NS_MEDIA ) {
