@@ -1533,6 +1533,7 @@ Par na major sicuressa, img_auth.php el xe disabilità.',
 'http-timed-out'        => 'Richiesta HTTP scadùa.',
 'http-curl-error'       => "Eror nel recupero de l'URL: $1",
 'http-host-unreachable' => 'URL mìa ragiungibile',
+'http-bad-status'       => 'Ghe xe stà un problema durante la richiesta HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL mìa ragiungibile',
@@ -2307,6 +2308,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 * In corispondenza del novo titoło ghe xe xà na pàxena de discussion (mìa voda)
 * La caseła chi soto la xè stà desełezionà.",
 'movearticle'                  => 'Sposta la pàxena:',
+'moveuserpage-warning'         => "'''Ocio:''' Te sì drio spostar na pagina utente. Par piaser tien conto che vegnarà spostà solo la pagina e l'utente no'l vegnarà ''mia'' rinominà.",
 'movenologin'                  => 'No te ghè efetuà el login',
 'movenologintext'              => 'Te ghè da èssar un utente registrà ed aver efetuà el [[Special:UserLogin|login]] par poder spostar na pàxena.',
 'movenotallowed'               => 'No te ghè i parmessi necessari al spostamento de le pagine.',

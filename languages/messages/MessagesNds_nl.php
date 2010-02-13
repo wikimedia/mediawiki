@@ -310,10 +310,10 @@ $messages = array(
 'tog-showtoc'                 => 'Samenvatting van de onderwarpen laoten zien (mit meer as dree onderwarpen)',
 'tog-rememberpassword'        => 'Vanzelf anmelden',
 'tog-editwidth'               => 'Bewarkingsveld over volle breedte',
-'tog-watchcreations'          => 'Artikels dee-j anmaken an volglieste toevoegen',
-'tog-watchdefault'            => 'Artikels dee-j wiezigen an volglieste toevoegen',
-'tog-watchmoves'              => "Pagina's dee-k herneume op mien volglieste zetten",
-'tog-watchdeletion'           => 'Voeg pagina dee-k vortdo an mien volglieste toe',
+'tog-watchcreations'          => "Pagina's dee-k anmaak op de volglieste zetten",
+'tog-watchdefault'            => "Pagina's dee-k wiezig op de volglieste zetten",
+'tog-watchmoves'              => "Pagina's dee-k herneume op de volglieste zetten",
+'tog-watchdeletion'           => "Pagina's dee-k vortdo op de volglieste zetten",
 'tog-minordefault'            => "Markeer alle veraanderingen as 'kleine wieziging'",
 'tog-previewontop'            => "De naokiekpagina boven 't bewarkingsveld zetten",
 'tog-previewonfirst'          => 'Naokieken bie eerste wieziging',
@@ -455,7 +455,7 @@ $messages = array(
 'faqpage'        => 'Project:Vragen dee vake esteld wonnen',
 
 # Vector skin
-'vector-action-addsection'   => 'Onderwarp toevoegen',
+'vector-action-addsection'   => 'Niej onderwarp',
 'vector-action-delete'       => 'Vortdoon',
 'vector-action-move'         => 'Herneumen',
 'vector-action-protect'      => 'Beveiligen',
@@ -738,6 +738,8 @@ Gebrukersnamen bin heuflettergeveulig.
 Kiek de schriefwieze effen nao of [[Special:UserLogin/signup|maak een nieje gebruker an]].',
 'nosuchusershort'            => 'Der is gien gebruker mit de naam "$1". Kiek de spelling nao.',
 'nouserspecified'            => 'Vul asjeblief een naam in',
+'login-userblocked'          => 'Disse gebruker is eblokkeerd.
+Je kunnen neet anmelden.',
 'wrongpassword'              => "verkeerd wachwoord, prebeer 't opniej.",
 'wrongpasswordempty'         => "Gien wachwoord in-evoerd. Prebeer 't opniej.",
 'passwordtooshort'           => 'Wachwoorden mutten uut teminsen {{PLURAL:$1|$1 teken|$1 tekens}} bestaon.',
@@ -957,7 +959,7 @@ De leste logboekregel steet hieronder:",
 'template-protected'               => '(beveilig)',
 'template-semiprotected'           => '(semibeveilig)',
 'hiddencategories'                 => 'Disse pagina vuilt in de volgende verbörgen {{PLURAL:$1|kattegerie|kattegerieën}}:',
-'edittools'                        => '<!-- Disse tekse wonnen weer-egeven onder bewarkings- en bestaanstoevoegingsformelieren. -->',
+'edittools'                        => '<!-- Disse tekse steet onder bewarkings- en bestaanstoevoegingsformelieren. -->',
 'nocreatetitle'                    => "'t Anmaken van pagina's is beteund",
 'nocreatetext'                     => "Disse webstee hef de meugelijkheid um nieje pagina's an te maken beteund. Je kunnen pagina's dee al bestaon wiezigen of je kunnen je [[Special:UserLogin|anmelden of een gebrukerspagina anmaken]].",
 'nocreate-loggedin'                => "Je hemmen gien toestemming um nieje pagina's an te maken.",
@@ -994,6 +996,7 @@ Sommigen mallen wönnen neet in-evoeg.',
 'post-expand-template-argument-category'  => "Pagina's mit ontbrekende malelementen",
 'parser-template-loop-warning'            => 'Der is een kringloop in mallen waor-eneumen: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Der is over de recursiediepte veur mallen is hinne gaon ($1)',
+'language-converter-depth-warning'        => "Je bin over 't dieptelimiet veur de taalumzetter hinne ($1)",
 
 # "Undo" feature
 'undo-success' => 'De bewarking kan weerummedreid wonnen. Kiek de vergelieking hieronder nao um der wisse van de ween dat alles goed is, en slao de de pagina op um de bewarking weerumme te dreien.',
@@ -1302,7 +1305,7 @@ Je kunnen oek disse egenereren standardcode gebruken: $1",
 'timezoneuseoffset'             => 'Aanders (tiedverschil angeven)',
 'timezoneoffset'                => 'Tiedverschil¹:',
 'servertime'                    => 'Tied op de server:',
-'guesstimezone'                 => 'Vanuut webkieker toevoegen',
+'guesstimezone'                 => 'Vanuut webkieker overnemen',
 'timezoneregion-africa'         => 'Afrika',
 'timezoneregion-america'        => 'Amerika',
 'timezoneregion-antarctica'     => 'Antarctica',
@@ -1363,25 +1366,26 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'prefs-diffs'                   => 'Verschillen',
 
 # User rights
-'userrights'                  => 'Gebrukersrechenbeheer',
-'userrights-lookup-user'      => 'Beheer gebrukersgroepen',
-'userrights-user-editname'    => 'Vul een gebrukersnaam in:',
-'editusergroup'               => 'Bewark gebrukersgroepen',
-'editinguser'                 => "Doonde mit 't wiezigen van de gebrukersrechen van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Bewark gebrukersgroep',
-'saveusergroups'              => 'Gebrukergroepen opslaon',
-'userrights-groupsmember'     => 'Lid van:',
-'userrights-groups-help'      => 'Je kunnen de groepen wiezigen waor as de gebruker lid van is.
+'userrights'                   => 'Gebrukersrechenbeheer',
+'userrights-lookup-user'       => 'Beheer gebrukersgroepen',
+'userrights-user-editname'     => 'Vul een gebrukersnaam in:',
+'editusergroup'                => 'Bewark gebrukersgroepen',
+'editinguser'                  => "Doonde mit 't wiezigen van de gebrukersrechen van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Bewark gebrukersgroep',
+'saveusergroups'               => 'Gebrukergroepen opslaon',
+'userrights-groupsmember'      => 'Lid van:',
+'userrights-groupsmember-auto' => 'Lid van:',
+'userrights-groups-help'       => 'Je kunnen de groepen wiezigen waor as de gebruker lid van is.
 * Een an-evink vakjen betekent dat de gebruker lid is van de groep.
 * Een neet an-evink vakjen betekent dat de gebruker gien lid is van de groep.
 * Een "*" betekent da-j een gebruker neet uut een groep vort kunnen haolen naodat e deran toe-evoeg is, of aandersumme.',
-'userrights-reason'           => 'Reden:',
-'userrights-no-interwiki'     => "Je hemmen gien rechen um gebrukersrechen op aandere wiki's te wiezigen.",
-'userrights-nodatabase'       => 'Databanke $1 besteet neet of is gien plaoselijke databanke.',
-'userrights-nologin'          => 'Je mutten [[Special:UserLogin|an-emeld]] ween en as gebruker de juuste rechen hemmen um gebrukersrechen toe te kunnen wiezen.',
-'userrights-notallowed'       => 'Je hemmen gien rechen um gebrukersrechen toe te kunnen wiezen.',
-'userrights-changeable-col'   => 'Groepen dee-j beheren kunnen',
-'userrights-unchangeable-col' => 'Groepen dee-j neet beheren kunnen',
+'userrights-reason'            => 'Reden:',
+'userrights-no-interwiki'      => "Je hemmen gien rechen um gebrukersrechen op aandere wiki's te wiezigen.",
+'userrights-nodatabase'        => 'Databanke $1 besteet neet of is gien plaoselijke databanke.',
+'userrights-nologin'           => 'Je mutten [[Special:UserLogin|an-emeld]] ween en as gebruker de juuste rechen hemmen um gebrukersrechen toe te kunnen wiezen.',
+'userrights-notallowed'        => 'Je hemmen gien rechen um gebrukersrechen toe te kunnen wiezen.',
+'userrights-changeable-col'    => 'Groepen dee-j beheren kunnen',
+'userrights-unchangeable-col'  => 'Groepen dee-j neet beheren kunnen',
 
 # Groups
 'group'               => 'Groep:',
@@ -1686,10 +1690,20 @@ Disse wiki is in-esteld as peblieke wiki.
 Um beveiligingsredens is img_auth.php uut-eschakeld.",
 'img-auth-noread'       => 'De gebruker hef gien leestoegang tot "$1".',
 
+# HTTP errors
+'http-invalid-url'      => 'Ongeldig webadres: $1',
+'http-invalid-scheme'   => 'Webadressen mit de opmaak "$1" wönnen neet ondersteund.',
+'http-request-error'    => "Fout bie 't verzenden van 't verzeuk.",
+'http-read-error'       => "Fout bie 't lezen van HTTP",
+'http-timed-out'        => "Wachtied bie 't HTTP verzeuk",
+'http-curl-error'       => "Fout bie 't ophaolen van 't webadres: $1",
+'http-host-unreachable' => 'Kon webadres neet bereiken.',
+'http-bad-status'       => "Der is een prebleem mit 't HTTP-verzeuk: $1 $2",
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon webadres neet bereiken',
 'upload-curl-error6-text'  => "'t Webadres kon neet bereik wönnen. Kiek effen nao o-j 't goeie adres in-evoerd hemmen en of de webstee bereikbaor is.",
-'upload-curl-error28'      => "Tiedsoverschriejing bie 't toevoegen van 't bestaand",
+'upload-curl-error28'      => "Wachtied veur 't versturen van 't bestaand",
 'upload-curl-error28-text' => "'t Duren te lange veurdat de webstee reageren. Kiek effen nao of de webstee bereikbaor is, wach effen en prebeer 't daornao weer. Prebeer 't aanders as 't wat rustiger is.",
 
 'license'            => 'Licentie',
@@ -2085,7 +2099,7 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'enotif_lastvisited'           => 'Zie $1 veur alle wiezigingen sins joew leste bezeuk.',
 'enotif_lastdiff'              => 'Zie $1 um disse wieziging te bekieken.',
 'enotif_anon_editor'           => 'annenieme gebruker $1',
-'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
+'enotif_body'                  => 'Huj $WATCHINGUSERNAME,
 
 De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE deur $PAGEEDITOR, zie $PAGETITLE_URL veur de leste versie.
 
@@ -2097,9 +2111,10 @@ Kontakgevevens van de auteur:
 Netpos: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Je kriegen veerder gien berichen, behalve a-j disse pagina bezeuken. Op joew volglieste ku-j veur alle pagina\'s dee-j volgen de waorschuwingsinstellingen derof haolen.
+Je kriegen veerder gien berichen, behalve a-j disse pagina bezeuken. 
+Op joew volglieste ku-j veur alle pagina\'s dee-j volgen de waorschuwingsinstellingen derof haolen.
 
-             Groeten van \'t {{SITENAME}}-waorschuwingssysteem.
+Groeten van \'t {{SITENAME}}-waorschuwingssysteem.
 
 --
 Je kunnen de instellingen van joew volglieste wiezigen op:
@@ -2469,6 +2484,7 @@ Zörg derveur da-j de gevolgen overzien veurda-j veerder gaon.",
 * As der al een neet-lege overlegpagina besteet onder de aandere naam
 * A-j 't onderstaonde vinkjen vorthaolen",
 'movearticle'                  => 'Herneum',
+'moveuserpage-warning'         => "'''Waorschuwing:''' Je staon op 't punt um een gebrukerspagina te herneumen. Allinnig disse pagina zal herneumd wönnen, '''neet''' de gebruker.",
 'movenologin'                  => 'Neet an-emeld.',
 'movenologintext'              => 'Je mutten [[Special:UserLogin|an-emeld]] ween um de naam van een pagina te wiezigen.',
 'movenotallowed'               => "Je hemmen gien rechen um pagina's te herneumen.",

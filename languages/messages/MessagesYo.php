@@ -51,6 +51,7 @@ $messages = array(
 'tog-editondblclick'          => "Ṣ'àtúnṣe àwọn ojúewé ní kíkàn lẹ́mẹjì (JavaScript)",
 'tog-editsection'             => 'Jọ̀wọ́ àtúnṣe abala láti inú àwọn ìjápọ̀',
 'tog-editsectiononrightclick' => 'Ìgbàláyè àtúnṣe abala nípa klííkì ọ̀tún lórí àkọlé abala (JavaScript pọndandan)',
+'tog-showtoc'                 => 'Àfihàn tábìlì àkóónú (fún àwọn ojúewé tó ní ju orí ọ̀rọ̀ 3 lọ)',
 'tog-rememberpassword'        => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
 'tog-watchcreations'          => "Ṣ'àfikún ojúewé tí mo dá mọ́ ìmójútó mi",
 'tog-watchdefault'            => "S'àfikún ojúewé tí mo s'àtúnse mọ́ ìmójútó mi",
@@ -72,6 +73,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe kéékèké nínú ìmójútó',
 'tog-watchlisthideliu'        => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe àwọn oníṣe tó ti wọlé nínú ìmójútó',
 'tog-ccmeonemails'            => 'Ìṣèránṣẹ́ sími àwọn àwòkọ àwọn e-mail tí mo firánṣẹ́ sí àwọn oníṣe míràn',
+'tog-diffonly'                => 'Kò gbọdọ̀ ṣàfihàn àkóónú ojúewé lábẹ́ àwọn ìyàtọ̀',
 'tog-showhiddencats'          => "Ṣ'àfihàn àwọn ẹ̀ka pípamọ́",
 
 'underline-always' => 'Nígbà gbogbo',
@@ -588,12 +590,17 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 Ẹ jọ̀wọ́ ẹ rò ó wò bóyá ẹ lè fọ́ ojúewé ọ̀ún sí abala kéékèké.'''",
 'longpageerror'                    => "'''Àsìṣe: Ìkọ̀wé tí ẹ fisílẹ̀ gùn tó $1 Kilobytes, èyí gùn ju $2 kilobytes lọ tó jẹ́ àjà.''' 
 Kò ṣe é múpamọ́.",
+'protectedpagewarning'             => "'''Ìkìlọ̀: Ojúewé yìí ti jẹ́ títìpa, nítoríẹ̀ àwọn alámòjútó nìkan ni wọ́n ní ẹ̀tọ́ láti ṣàtúnṣe rẹ̀.'''
+Àkọọ́lẹ̀ àìpẹ́ nìyí nísàlẹ̀ fún ìtọ́kasí:",
+'semiprotectedpagewarning'         => "'''Àkíyèsí:''' Ojúewé yìí ti jẹ́ títìpa nítoríẹ̀ àwọn oníṣe tí wọ́n ti forúkọsílẹ̀ nìkan ni wọ́n le ṣàtúnṣe rẹ̀.
+Àkọọ́lẹ̀ àìpẹ́ nìyí nísàlẹ̀ fún ìtọ́kasí.",
 'templatesused'                    => '{{Àdàkọ|Àwọn àdàkọ|PLURAL:$1}} tí a lò lórí ojúewé yìí:',
 'templatesusedpreview'             => '{{Àdàkọ|Àwọn àdàkọ|PLURAL:$1}} tí a lò nìnú àgbéyẹ́wò yìí:',
 'templatesusedsection'             => '{{Àdàkọ|Àwọn àdàkọ|PLURAL:$1}} tí a lò nínú abala yìí:',
 'template-protected'               => '(aláàbò)',
 'template-semiprotected'           => '(aláàbò díẹ̀)',
 'hiddencategories'                 => 'Ojúewé yìí jẹ́ ọmọ ẹgbẹ́ {{PLURAL:$1|ẹ̀ka pípamọ́ 1|àwọn ẹ̀ka pípamọ́ $1}}:',
+'nocreatetitle'                    => 'Ìdènà ìdá ojúewé',
 'nocreatetext'                     => "{{SITENAME}} ti pààlà ààyè láti ṣ'èdá ojúewé tuntun.
 Ẹ le padà sẹ́yìn kí ẹ ṣ'àtúnṣe ojúewé tó wà, tàbí [[Special:UserLogin|kí ẹ wọlé tàbí kí ẹ ṣ'èdá àpamọ́]].",
 'nocreate-loggedin'                => "Ẹ kò ní ìyọ̀nda láti ṣe'dá ojúewé tuntun.",
@@ -728,6 +735,8 @@ Kò ṣe àlàyé kankan.',
 'searchresulttext'                 => 'Fún ẹ̀kúnrẹ́rẹ́ nípa ṣíṣe ìwárí {{SITENAME}}, ẹ̀ wo [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Ẹ ṣ\'àwáàrí fun \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|gbogbo ojúewé tó bẹ̀rẹ̀ pẹ̀lu "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|gbogbo ojúewé tó jápọ̀ mọ́ "$1"]])',
 'searchsubtitleinvalid'            => "Ẹ ti ṣ'àwáàrí fun '''$1'''",
+'toomanymatches'                   => 'Àwọn ìbáramu ti pọ̀jù, ẹ jọ̀wọ́ ẹ gbìyànjú lọ́nà mìíràn',
+'titlematches'                     => 'Àkọlé ojúewé báramu',
 'notitlematches'                   => 'Kò sí àkọlé ojúewé tóbáramu',
 'textmatches'                      => 'Ọ̀rọ̀ ojúewé tóbáramu:',
 'notextmatches'                    => 'Kò sí ọ̀rọ̀ ojúewé tóbáramu',

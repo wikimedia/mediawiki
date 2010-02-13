@@ -1828,6 +1828,7 @@ adfirma te consequentias intellegere antequam procedis.",
 
 Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movearticle'               => 'Paginam movere:',
+'moveuserpage-warning'      => "'''Monitio:''' Si paginam usoris moves, solum pagina movetur, usor '''non''' renominatur.",
 'movenologin'               => 'Conventum non est apertum',
 'movenologintext'           => 'Rationem usoris habere et [[Special:UserLogin|conventum aperire]] debes ad movendum paginam.',
 'movenotallowed'            => 'Tibi non licet paginas movere.',

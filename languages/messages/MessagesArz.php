@@ -747,6 +747,7 @@ $2',
 'nosuchusershort'            => 'مافيش يوزر باسم <nowiki>$1</nowiki>".
 اتاكد من تهجية الاسم.',
 'nouserspecified'            => 'لازم تحدد اسم يوزر.',
+'login-userblocked'          => 'اليوزر دا ممنوع من الدخول.',
 'wrongpassword'              => 'كلمة السر اللى كتبتها مش صحيحه. من فضلك حاول تانى.',
 'wrongpasswordempty'         => 'كلمة السر المدخله كانت فاضيه.
 من فضلك حاول تانى.',
@@ -1009,6 +1010,7 @@ $2',
 'post-expand-template-argument-category'  => 'صفحات فيها مناقشات القالب المحذوفة',
 'parser-template-loop-warning'            => 'لووب القالب المحدد: [[$1]]',
 'parser-template-recursion-depth-warning' => 'حد عمق الريكيرشيون بتاع القالب اتعدى  ($1)',
+'language-converter-depth-warning'        => 'حد عمق محول اللغه اتعدى ($1)',
 
 # "Undo" feature
 'undo-success' => 'ممكن ترجع فى التعديل.
@@ -1073,6 +1075,7 @@ $2',
 'rev-suppressed-text-view'    => "نسخه الصفحه دى '''اتخبت'''.
 كسيسوب ممكن تشوفها؛ ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل التخبيه].",
 'rev-deleted-no-diff'         => "انت ماينفعش تشوف الفرق دا علشان واحده من المراجعات '''اتمسحت'''. ممكن يكون فيه تفاصيل فى[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل المسح].",
+'rev-suppressed-no-diff'      => "'''انت ما تقدرش تستعرض التغيير دا لان واحده من التعديلات''' اتمسحت.",
 'rev-deleted-unhide-diff'     => "واحده من مراجعات الفرق ده  '''اتمسحت'''. ممكن تلاقى تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الكبت].
 انتا لو ادارى ممكن [$1 تشوف الفرق دا] لو كانت عايز تستمر",
 'rev-suppressed-unhide-diff'  => "واحده من نسخ الفرق ده '''اتخبت'''.
@@ -1387,25 +1390,26 @@ $1",
 'prefs-diffs'                   => 'التغيير',
 
 # User rights
-'userrights'                  => 'إدارة الحقوق بتاعة اليوزر',
-'userrights-lookup-user'      => 'إدارة مجموعات اليوزر',
-'userrights-user-editname'    => 'دخل اسم يوزر:',
-'editusergroup'               => 'تعديل مجموعات اليوزر',
-'editinguser'                 => "تغيير حقوق االيوزر بتاعة اليوزر'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'تعديل مجموعات اليوزر',
-'saveusergroups'              => 'حفظ مجموعات اليوزر',
-'userrights-groupsmember'     => 'عضو في:',
-'userrights-groups-help'      => 'إنت ممكن تغير المجموعات اللى اليوزر دا عضو فيها .
+'userrights'                   => 'إدارة الحقوق بتاعة اليوزر',
+'userrights-lookup-user'       => 'إدارة مجموعات اليوزر',
+'userrights-user-editname'     => 'دخل اسم يوزر:',
+'editusergroup'                => 'تعديل مجموعات اليوزر',
+'editinguser'                  => "تغيير حقوق االيوزر بتاعة اليوزر'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'تعديل مجموعات اليوزر',
+'saveusergroups'               => 'حفظ مجموعات اليوزر',
+'userrights-groupsmember'      => 'عضو في:',
+'userrights-groupsmember-auto' => 'عضو ضمنى فى :',
+'userrights-groups-help'       => 'إنت ممكن تغير المجموعات اللى اليوزر دا عضو فيها .
 * صندوق متعلم يعنى اليوزر دا عضو فى المجموعة دي.
 * صندوق مش متعلم يعنى  اليوزر دا مش عضو فى المجموعة دي.
 * علامة * يعنى انك مش ممكن تشيل المجموعات بعد ما تضيفها و العكس بالعكس.',
-'userrights-reason'           => 'السبب:',
-'userrights-no-interwiki'     => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
-'userrights-nodatabase'       => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
-'userrights-nologin'          => 'انت لازم [[Special:UserLogin|تسجيل الدخول]] بحساب  مدير لتعديل حقوق اليوزر.',
-'userrights-notallowed'       => 'حسابك  ماعندوش  إذن لتعديل حقوق اليوزر.',
-'userrights-changeable-col'   => 'المجموعات اللى تقدر تغييرها',
-'userrights-unchangeable-col' => 'المجموعات اللى مش ممكن انك تغيرها',
+'userrights-reason'            => 'السبب:',
+'userrights-no-interwiki'      => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
+'userrights-nodatabase'        => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
+'userrights-nologin'           => 'انت لازم [[Special:UserLogin|تسجيل الدخول]] بحساب  مدير لتعديل حقوق اليوزر.',
+'userrights-notallowed'        => 'حسابك  ماعندوش  إذن لتعديل حقوق اليوزر.',
+'userrights-changeable-col'    => 'المجموعات اللى تقدر تغييرها',
+'userrights-unchangeable-col'  => 'المجموعات اللى مش ممكن انك تغيرها',
 
 # Groups
 'group'               => 'المجموعة:',
@@ -1730,6 +1734,9 @@ PICT # misc.
 الويكى ده مضبوط على إنه ويكى علني.
 علشان أمن افضل، img_auth.php متعطله.',
 'img-auth-noread'       => 'اليوزر معندوش صلاحية قرايه "$1".',
+
+# HTTP errors
+'http-invalid-url' => 'مش صحيح URL: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'ما قدرناش نوصل لليو أر إل',

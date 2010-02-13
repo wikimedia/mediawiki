@@ -1773,7 +1773,13 @@ Por una sècuritât parfèta, img_auth.php est dèsactivâ.',
 'img-auth-noread'       => 'L’utilisator at pas lo drêt en lèctura dessus « $1 ».',
 
 # HTTP errors
-'http-invalid-url' => 'URL fôssa : $1',
+'http-invalid-url'      => 'URL fôssa : $1',
+'http-invalid-scheme'   => 'Les URLs avouéc lo plan « $1 » sont pas recognues.',
+'http-request-error'    => 'Èrror encognua pendent l’èxpèdicion de la requéta.',
+'http-read-error'       => 'Èrror de lèctura HTTP.',
+'http-timed-out'        => 'La requéta HTTP at èxpirâ.',
+'http-curl-error'       => 'Èrror pendent la rècupèracion de l’URL : $1',
+'http-host-unreachable' => 'URL pas juentâbla.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL pas juentâbla',
@@ -2200,6 +2206,9 @@ Vos pouede asse-ben tornar inicialisar los drapéls de notificacion por totes le
 --
 Por changiér los paramètres de voutra lista de survelyence, visitâd
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Por suprimar la pâge de voutra lista de survelyence, visitâd
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Retôrn et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',

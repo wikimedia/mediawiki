@@ -107,9 +107,11 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|Sumut atassuseq|Sunut atassusit}}',
-'category_header' => 'Quppernerit sumut atassusermi "$1"-miittut',
-'subcategories'   => 'Sunut atassuserni ataaniittut',
+'pagecategories'         => '{{PLURAL:$1|Sumut atassuseq|Sunut atassusit}}',
+'category_header'        => 'Quppernerit sumut atassusermi "$1"-miittut',
+'subcategories'          => 'Sunut atassuserni ataaniittut',
+'category-subcat-count'  => '{{PLURAL:$2|Una sumut atassuseq ataatsimik ataani ilaqarpoq.|Una sumut atassuseq imarivai {{PLURAL:$1|sumut atassuseq ataaniittoq|$1 sunut atassusit ataaniittut}}, $2-suni.}}',
+'category-article-count' => 'Una sumut atassuseq imarivaa {{PLURAL:$2|qupperneq ataaseq ataaniittoq|{{PLURAL:$1|qupperneq ataaseq ataaniittoq|quppernerit ataaniittut $1-it}} $2-suni.}}',
 
 'about'         => 'Pillugu',
 'newwindow'     => '(nutaamut ammassaaq)',
