@@ -2503,6 +2503,7 @@ Přejmenování oblíbené stránky může být drastická a nečekaná změna; 
 
 V těchto případech musíte přesunout nebo sloučit stránky manuálně, jestliže si to přejete.",
 'movearticle'                  => 'Přesunout stránku:',
+'moveuserpage-warning'         => "'''Upozornění:''' Chystáte se přesunout uživatelskou stránku. Uvědomte si, že bude přesunuta pouze ona stránka, uživatel ''nebude'' přejmenován.",
 'movenologin'                  => 'Nejste přihlášen(a)!',
 'movenologintext'              => 'Pro přesouvání stránek se musíte [[Special:UserLogin|přihlásit]].',
 'movenotallowed'               => 'Nemáte oprávnění k přesunu stránek.',

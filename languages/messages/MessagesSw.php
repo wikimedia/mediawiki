@@ -267,7 +267,7 @@ $messages = array(
 'mypage'        => 'Ukurasa wangu',
 'mytalk'        => 'Majadiliano yangu',
 'anontalk'      => 'Majadiliano ya IP hii',
-'navigation'    => 'Safari',
+'navigation'    => 'Urambazaji',
 'and'           => '&#32;na',
 
 # Cologne Blue skin
@@ -1843,6 +1843,9 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'table_pager_last'         => 'Ukurasa wa mwisho',
 'table_pager_limit_submit' => 'Nenda',
 'table_pager_empty'        => 'Hakuna matokeo',
+
+# Live preview
+'livepreview-loading' => 'Inapakizwa...',
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Vichwa:',

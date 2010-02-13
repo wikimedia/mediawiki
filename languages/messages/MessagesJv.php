@@ -660,10 +660,13 @@ Panjenengan uga janji menawa apa-apa sing katulis ing kéné, iku karyané panje
 'readonlywarning'                  => "'''PÈNGET: Basis data lagi dikunci amerga ana pangopènan, dadi saiki panjenengan ora bisa nyimpen kasil panyuntingan panjenengan. Panjenengan mbokmenawa prelu mindhahaké kasil panyuntingan panjenengan iki menyang panggonan liya kanggo disimpen bésuk.'''
 
 Pangurus sing ngunci basis data mènèhi katrangan kaya mengkéné: $1",
-'protectedpagewarning'             => "'''PÈNGET:  Kaca iki wis dikunci dadi namung panganggo sing nduwé hak aksès pangurus baé sing bisa nyunting.'''",
-'semiprotectedpagewarning'         => "'''Cathetan:''' Kaca iki lagi direksa, dadi namung panganggo kadaftar sing bisa nyunting.",
+'protectedpagewarning'             => "'''PÈNGET:  Kaca iki wis dikunci dadi namung panganggo sing nduwé hak aksès pangurus baé sing bisa nyunting.'''
+Entri cathetan pungkasan disadiakake ing ngisor kanggo referensi:",
+'semiprotectedpagewarning'         => "'''Cathetan:''' Kaca iki lagi pinuju direksa, dadi namung panganggo kadaftar sing bisa nyunting.
+Entri cathetan pungkasan disadiakake ing ngisor kanggo referensi:",
 'cascadeprotectedwarning'          => "'''PÈNGET:''' Kaca iki wis dikunci dadi namung panganggo mawa hak aksès pangurus waé sing bisa nyunting, amerga kalebu {{PLURAL:$1|kaca|kaca-kaca}} ing ngisor iki sing wis direksa mawa opsi 'pangreksan runtun' diaktifaké:",
-'titleprotectedwarning'            => "'''Pènget: Kaca iki wis dikunci saéngga [[Special:ListGroupRights|hak mligi]] dibutuhaké kanggo gawéné.'''",
+'titleprotectedwarning'            => "'''Pènget: Kaca iki wis dikunci saéngga perlu [[Special:ListGroupRights|hak mligi]] kanggo gawéné.'''
+Entri cathetan pungkasan disadiakake ing ngisor kanggo referensi:",
 'templatesused'                    => '{{PLURAL:$1|Cithakan|Cithakan}} sing dienggo ing kaca iki:',
 'templatesusedpreview'             => '{{PLURAL:$1|Cithakan|Cithakan-cithakan}} sing dienggo ing pratilik iki:',
 'templatesusedsection'             => '{{PLURAL:$1|Cithakan}} sing dienggo ding bagian iki:',
@@ -1067,7 +1070,7 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 * Kothak sing dicenthang tegesé panganggo iki ana sajroné grup iku.
 * Kothak sing ora dicenthang tegesé panganggo iku ora ana ing grup iku.
 * Tandha bintang * tegesé panjenengan ora bisa ngilangi grup iku yèn wis tau nambah, utawa sawalikané.',
-'userrights-reason'           => 'Alesané ngowahi:',
+'userrights-reason'           => 'Alesan:',
 'userrights-no-interwiki'     => 'Panjenengan ora ana hak kanggo ngowahi hak panganggo ing wiki liyané.',
 'userrights-nodatabase'       => 'Basis data $1 ora ana utawa ora lokal.',
 'userrights-nologin'          => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] mawa nganggo akun utawa rékening pangurus supaya bisa ngowahi hak panganggo.',
@@ -2177,7 +2180,8 @@ Apa panjenengan kersa mbusak iku supaya kacané bisa dialihaké?',
 'move-leave-redirect'          => 'Gawé pangalihan menyang irah-irahan anyar',
 'protectedpagemovewarning'     => "'''Pènget:''' Kaca iki wis dikunci dadi mung panganggo sing nduwé hak aksès pangurus baé sing bisa mindhahaké.
 Cathetan entri pungkasan disadiakaké ing ngisor kanggo referensi:",
-'semiprotectedpagemovewarning' => "'''Cathetan:''' Kaca iki wis direksa saéngga mung panganggo kadhaptar sing bisa mindhahaké.",
+'semiprotectedpagemovewarning' => "'''Cathetan:''' Kaca iki wis direksa saéngga mung panganggo kadhaptar sing bisa mindhahaké.
+Entri cathetan pungkasan disadiakake ing ngisor kanggo referensi:",
 
 # Export
 'export'            => 'Ekspor kaca',
@@ -2393,7 +2397,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'markaspatrolleddiff'                 => 'Tandhanana wis dipatroli',
 'markaspatrolledtext'                 => 'Tandhanana artikel iki wis dipatroli',
 'markedaspatrolled'                   => 'Ditandhani wis dipatroli',
-'markedaspatrolledtext'               => 'Révisi sing dipilih wis ditandhani minangka dipatroli.',
+'markedaspatrolledtext'               => 'Révisi sing dipilih ngenani [:$1]] wis ditandhani minangka dipatroli.',
 'rcpatroldisabled'                    => 'Patroli owah-owahan pungkasan dipatèni',
 'rcpatroldisabledtext'                => 'Fitur patroli owah-owahan pungkasan lagi dipatèni.',
 'markedaspatrollederror'              => 'Ora bisa awèh tandha wis dipatroli',
