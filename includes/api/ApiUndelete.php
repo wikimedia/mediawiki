@@ -117,6 +117,18 @@ class ApiUndelete extends ApiBase {
 			'retrieved through list=deletedrevs'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'title' ),
+			array( 'missingparam', 'token' ),
+			array( 'permdenied-undelete' ),
+			array( 'blockedtext' ),
+			array( 'sessionfailure' ),
+			array( 'invalidtitle', 'title' ),
+			array( 'cannotundelete' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (

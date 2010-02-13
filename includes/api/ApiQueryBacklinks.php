@@ -453,6 +453,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				ApiBase :: dieDebug( __METHOD__, 'Unknown module name' );
 		}
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'invalidtitle', 'title' ),
+			array( 'missingparam', 'title' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		static $examples = array (

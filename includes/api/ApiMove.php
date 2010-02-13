@@ -209,6 +209,19 @@ class ApiMove extends ApiBase {
 			'Move a page.'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'to' ),
+			array( 'missingparam', 'token' ),
+			array( 'sessionfailure' ),
+			array( 'invalidtitle', 'from' ),
+			array( 'nosuchpageid', 'fromid' ),
+			array( 'notanarticle' ),
+			array( 'invalidtitle', 'to' ),
+			array( 'sharedfile-exists' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (

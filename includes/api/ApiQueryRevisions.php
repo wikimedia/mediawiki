@@ -560,6 +560,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'All parameters marked as (enum) may only be used with a single page (#2).'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'nosuchrevid', 'diffto' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (

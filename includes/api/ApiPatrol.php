@@ -89,6 +89,15 @@ class ApiPatrol extends ApiBase {
 			'Patrol a page or revision. '
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'token' ),
+			array( 'missingparam', 'rcid' ),
+			array( 'sessionfailure' ),
+			array( 'nosuchrcid', 'rcid' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array(

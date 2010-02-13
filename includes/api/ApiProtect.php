@@ -171,6 +171,23 @@ class ApiProtect extends ApiBase {
 			'Change the protection level of a page.'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'title' ),
+			array( 'missingparam', 'token' ),
+			array( 'missingparam', 'protections' ),
+			array( 'sessionfailure' ),
+			array( 'invalidtitle', 'title' ),
+			array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ) ),
+			array( 'create-titleexists' ),
+			array( 'missingtitle-createonly' ),
+			array( 'protect-invalidaction', 'action'] ),
+			array( 'protect-invalidlevel', 'level' ),
+			array( 'invalidexpiry', 'expiry' ),
+			array( 'pastexpiry', 'expiry' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (
