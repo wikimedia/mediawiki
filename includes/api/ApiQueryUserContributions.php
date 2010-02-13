@@ -417,6 +417,15 @@ class ApiQueryContributions extends ApiQueryBase {
 	public function getDescription() {
 		return 'Get all edits by a user';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'param_user', 'info' => 'User parameter may not be empty.' ),
+			array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
+			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (

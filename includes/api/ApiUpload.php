@@ -339,6 +339,14 @@ class ApiUpload extends ApiBase {
 			array( 'mustbeloggedin', 'upload' ),
 			array( 'badaccess-groups' ),
 			array( 'badaccess-groups' ),
+			array( 'code' => 'fetchfileerror', 'info' => '' ),
+			array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
+			array( 'code' => 'empty-file', 'info' => 'The file you submitted was empty' ),
+			array( 'code' => 'filetype-missing', 'info' => 'The file is missing an extension' ),
+			array( 'code' => 'filename-tooshort', 'info' => 'The filename is too short' ),
+			array( 'code' => 'overwrite', 'info' => 'Overwriting an existing file is not allowed' ),
+			array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
+			array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
         ) );
 	}
 

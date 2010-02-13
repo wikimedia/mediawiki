@@ -275,6 +275,14 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'List all pages in a given category';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'notitle', 'info' => 'The cmtitle parameter is required' ),
+			array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
+			array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (

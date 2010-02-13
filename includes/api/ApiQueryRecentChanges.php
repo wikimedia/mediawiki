@@ -526,6 +526,14 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	public function getDescription() {
 		return 'Enumerate recent changes';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
+			array( 'code' => 'user-excludeuser', 'info' => 'user and excludeuser cannot be used together' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (
