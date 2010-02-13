@@ -71,18 +71,18 @@ abstract class MediaHandler {
 	 * Get an image size array like that returned by getimagesize(), or false if it
 	 * can't be determined.
 	 *
-	 * @param Image $image The image object, or false if there isn't one
-	 * @param string $fileName The filename
-	 * @return array
+	 * @param $image File: the image object, or false if there isn't one
+	 * @param $fileName String: the filename
+	 * @return Array
 	 */
 	abstract function getImageSize( $image, $path );
 
 	/**
 	 * Get handler-specific metadata which will be saved in the img_metadata field.
 	 *
-	 * @param Image $image The image object, or false if there isn't one
-	 * @param string $fileName The filename
-	 * @return string
+	 * @param $image File: the image object, or false if there isn't one
+	 * @param $path String: the filename
+	 * @return String
 	 */
 	function getMetadata( $image, $path ) { return ''; }
 
@@ -114,10 +114,10 @@ abstract class MediaHandler {
 	 * Get a MediaTransformOutput object representing the transformed output. Does not
 	 * actually do the transform.
 	 *
-	 * @param Image $image The image object
-	 * @param string $dstPath Filesystem destination path
-	 * @param string $dstUrl Destination URL to use in output HTML
-	 * @param array $params Arbitrary set of parameters validated by $this->validateParam()
+	 * @param $image File: the image object
+	 * @param $dstPath String: filesystem destination path
+	 * @param $dstUrl String: Destination URL to use in output HTML
+	 * @param $params Array: Arbitrary set of parameters validated by $this->validateParam()
 	 */
 	function getTransform( $image, $dstPath, $dstUrl, $params ) {
 		return $this->doTransform( $image, $dstPath, $dstUrl, $params, self::TRANSFORM_LATER );
@@ -127,11 +127,11 @@ abstract class MediaHandler {
 	 * Get a MediaTransformOutput object representing the transformed output. Does the
 	 * transform unless $flags contains self::TRANSFORM_LATER.
 	 *
-	 * @param Image $image The image object
-	 * @param string $dstPath Filesystem destination path
-	 * @param string $dstUrl Destination URL to use in output HTML
-	 * @param array $params Arbitrary set of parameters validated by $this->validateParam()
-	 * @param integer $flags A bitfield, may contain self::TRANSFORM_LATER
+	 * @param $image File: the image object
+	 * @param $dstPath String: filesystem destination path
+	 * @param $dstUrl String: destination URL to use in output HTML
+	 * @param $params Array: arbitrary set of parameters validated by $this->validateParam()
+	 * @param $flags Integer: a bitfield, may contain self::TRANSFORM_LATER
 	 */
 	abstract function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 );
 
@@ -384,8 +384,8 @@ abstract class ImageHandler extends MediaHandler {
 	/**
 	 * Validate thumbnail parameters and fill in the correct height
 	 *
-	 * @param integer &$width Specified width (input/output)
-	 * @param integer &$height Height (output only)
+	 * @param $width Integer: specified width (input/output)
+	 * @param $height Integer: height (output only)
 	 * @return false to indicate that an error should be returned to the user.
 	 */
 	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
