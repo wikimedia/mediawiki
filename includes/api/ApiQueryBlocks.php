@@ -257,6 +257,15 @@ class ApiQueryBlocks extends ApiQueryBase {
 	public function getDescription() {
 		return 'List all blocked users and IP addresses.';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'usersandip', 'info' => 'bkusers and bkip cannot be used together' ),
+			array( 'code' => 'cidrtoobroad', 'info' => 'CIDR ranges broader than /16 are not accepted' ),
+			array( 'code' => 'param_user', 'info' => 'User parameter may not be empty' ),
+			array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (	'api.php?action=query&list=blocks',

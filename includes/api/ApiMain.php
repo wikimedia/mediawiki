@@ -543,6 +543,10 @@ class ApiMain extends ApiBase {
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'readonlytext' ),
+			array( 'code' => 'unknown_format', 'info' => 'Unrecognized format: format' ),
+			array( 'code' => 'unknown_action', 'info' => 'The API requires a valid action parameter' ),
+			array( 'code' => 'maxlag', 'info' => 'Waiting for host: x seconds lagged' ),
+			array( 'code' => 'maxlag', 'info' => 'Waiting for a database server: x seconds lagged' ),
         ) );
 	}
 

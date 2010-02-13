@@ -306,6 +306,15 @@ class ApiParse extends ApiBase {
 	public function getDescription() {
 		return 'This module parses wikitext and returns parser output';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'params', 'info' => 'The page parameter cannot be used together with the text and title parameters' ),
+			array( 'code' => 'missingrev', 'info' => 'There is no revision ID oldid' ),
+			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revisions' ),
+			array( 'code' => 'missingtitle', 'info' => 'The page you specified doesn\'t exist' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (
