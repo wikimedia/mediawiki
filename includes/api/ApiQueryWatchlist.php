@@ -372,6 +372,18 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return "Get all recent changes to pages in the logged in user's watchlist";
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'bad_wlowner', 'info' => 'Specified user does not exist' ),
+			array( 'code' => 'bad_wltoken', 'info' => 'Incorrect watchlist token provided -- please set a correct token in Special:Preferences' ),
+			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
+			array( 'code' => 'patrol', 'info' => 'patrol property is not available' ),
+			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
+			array( 'code' => 'user-excludeuser', 'info' => 'user and excludeuser cannot be used together' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (

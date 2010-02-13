@@ -314,6 +314,15 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				'For instance, a parameter marked (1) only applies to mode 1 and is ignored in modes 2 and 3.',
 		);
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision information' ),
+			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
+			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision content' ),
+			array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (
