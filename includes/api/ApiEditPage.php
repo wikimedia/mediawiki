@@ -378,7 +378,7 @@ class ApiEditPage extends ApiBase {
 			array( 'editconflict' ),
 			array( 'emptynewsection' ),
 			array( 'unknownerror', 'retval' ),
-			array( 'code' => 'nosuchsection', 'info' => '' ), "There is no section section.", ''
+			array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
 			array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
         ) );
 	}
