@@ -332,7 +332,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			
 				$pageInfo['preload'] = $text;
 			}
-		}		
+		}
 		return $pageInfo;
 	}
 

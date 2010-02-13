@@ -138,9 +138,9 @@ class ApiUpload extends ApiBase {
 		// Cleanup any temporary mess
 		$this->mUpload->cleanupTempFile();
 
-		if( isset($result['chunked-output']) ) {
-			foreach ($result['chunked-output'] as $key => $value) {
-				if($value === null) $value = "";
+		if ( isset( $result['chunked-output'] ) ) {
+			foreach ( $result['chunked-output'] as $key => $value ) {
+				if ( $value === null ) $value = "";
 				$this->getResult()->addValue( null, $key, $value );
 			}
 		} else {
@@ -248,8 +248,8 @@ class ApiUpload extends ApiBase {
 			$this->getResult()->setIndexedTagName( $result['details'], 'error' );
 
 			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
-		} elseif( $this->mParams['enablechunks'] ) {
-			return array("chunked-output" => $status->value);
+		} elseif ( $this->mParams['enablechunks'] ) {
+			return array( "chunked-output" => $status->value );
 		}
 
 		$file = $this->mUpload->getLocalFile();

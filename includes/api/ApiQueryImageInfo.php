@@ -318,7 +318,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return array (
 			'Returns image information and upload history'
 		);
-	}	
+	}
 	
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
