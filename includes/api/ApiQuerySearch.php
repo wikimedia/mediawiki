@@ -216,6 +216,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'Perform a full text search';
 	}
+	
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'param-search', 'info' => 'empty search string is not allowed' ),
+			array( 'code' => 'search-text-disabled', 'info' => 'text search is disabled' ),
+			array( 'code' => 'search-title-disabled', 'info' => 'title search is disabled' ),
+		) );
+	}
 
 	protected function getExamples() {
 		return array (

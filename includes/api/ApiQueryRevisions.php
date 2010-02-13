@@ -564,6 +564,13 @@ class ApiQueryRevisions extends ApiQueryBase {
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'nosuchrevid', 'diffto' ),
+			array( 'code' => 'revids', 'info' => 'The revids= parameter may not be used with the list options (limit, startid, endid, dirNewer, start, end).' ),
+			array( 'code' => 'multpages', 'info' => 'titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start and end parameters may only be used on a single page.' ),
+			array( 'code' => 'diffto', 'info' => 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"' ),
+			array( 'code' => 'badparams', 'info' => 'start and startid cannot be used together' ),
+			array( 'code' => 'badparams', 'info' => 'end and endid cannot be used together' ),
+			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
+			array( 'code' => 'nosuchsection', 'info' => 'There is no section section in rID' ),
         ) );
 	}
 
