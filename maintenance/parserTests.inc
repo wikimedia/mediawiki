@@ -1562,7 +1562,7 @@ class TestFileIterator implements Iterator {
 		global $IP;
 
 		$this->file = $file;
-    	$this->fh = fopen($this->file, "r");
+    	$this->fh = fopen($this->file, "rt");
         if( !$this->fh ) {
 			wfDie( "Couldn't open file '$file'\n" );
 		}
