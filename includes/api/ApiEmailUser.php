@@ -103,6 +103,15 @@ class ApiEmailUser extends ApiBase {
 			'Email a user.'
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'usermaildisabled' ),
+			array( 'missingparam', 'target' ),
+			array( 'missingparam', 'text' ),
+			array( 'missingparam', 'token' ),
+        ) );
+	}
 
 	protected function getExamples() {
 		return array (

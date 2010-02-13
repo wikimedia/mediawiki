@@ -539,6 +539,12 @@ class ApiMain extends ApiBase {
 			'',
 		);
 	}
+	
+    public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'readonlytext' ),
+        ) );
+	}
 
 	/**
 	 * Returns an array of strings with credits for the API

@@ -190,7 +190,6 @@ class ApiFormatXml extends ApiFormatBase {
 		);
 	}
 
-
 	public function getDescription() {
 		return 'Output data in XML format' . parent :: getDescription();
 	}
