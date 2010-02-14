@@ -2075,6 +2075,11 @@ $wgEnableMWSuggest = false;
 $wgEnableOpenSearchSuggest = true;
 
 /**
+ * Expiry time for search suggestion responses
+ */
+$wgSearchSuggestCacheExpiry = 1200;
+
+/**
  *  Template for internal MediaWiki suggestion engine, defaults to API action=opensearch
  *
  *  Placeholders: {searchTerms}, {namespaces}, {dbname}
