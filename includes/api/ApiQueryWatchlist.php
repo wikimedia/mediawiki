@@ -151,7 +151,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					|| ( isset ( $show['anon'] ) && isset ( $show['!anon'] ) )
 					|| ( isset ( $show['patrolled'] ) && isset ( $show['!patrolled'] ) ) ) {
 
-				$this->dieUsageMsg( 'show' );
+				$this->dieUsageMsg( array( 'show' ) );
 			}
 			
 			// Check permissions.  FIXME: should this check $user instead of $wgUser?

@@ -93,7 +93,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) )
-			$this->dieUsageMsg( 'show' );
+			$this->dieUsageMsg( array( 'show' ) );
 		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) )
 		{
 			$this->addOption( 'STRAIGHT_JOIN' );

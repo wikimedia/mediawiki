@@ -132,7 +132,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					|| ( isset ( $show['redirect'] ) && isset ( $show['!redirect'] ) )
 					|| ( isset ( $show['patrolled'] ) && isset ( $show['!patrolled'] ) ) ) {
 
-				$this->dieUsageMsg( 'show' );
+				$this->dieUsageMsg( array( 'show' ) );
 			}
 			
 			// Check permissions

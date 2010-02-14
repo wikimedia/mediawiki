@@ -185,7 +185,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$show = array_flip( $show );
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
 			   		|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) ) )
-				$this->dieUsageMsg( 'show' );
+				$this->dieUsageMsg( array( 'show' ) );
 
 			$this->addWhereIf( 'rev_minor_edit = 0', isset( $show['!minor'] ) );
 			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
