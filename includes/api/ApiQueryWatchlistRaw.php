@@ -59,7 +59,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$prop = array_flip( (array)$params['prop'] );
 		$show = array_flip( (array)$params['show'] );
 		if ( isset( $show['changed'] ) && isset( $show['!changed'] ) )
-			$this->dieUsage( "Incorrect parameter - mutually exclusive values may not be supplied", 'show' );
+			$this->dieUsageMsg( 'show' );
 
 		$this->addTables( 'watchlist' );
 		$this->addFields( array( 'wl_namespace', 'wl_title' ) );
@@ -174,7 +174,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
-			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+			array( 'show' ),
 		) );
 	}
 
