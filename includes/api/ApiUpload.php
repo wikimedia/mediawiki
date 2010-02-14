@@ -48,8 +48,6 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 
 		// Do token checks:
-		if ( is_null( $this->mParams['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 		if ( !$wgUser->matchEditToken( $this->mParams['token'] ) )
 			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
@@ -330,7 +328,6 @@ class ApiUpload extends ApiBase {
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'uploaddisabled' ),
-			array( 'missingparam', 'token' ),
 			array( 'sessionfailure' ),
 			array( 'invalid-session-key' ),
 			array( 'uploaddisabled' ),
@@ -348,6 +345,10 @@ class ApiUpload extends ApiBase {
 			array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
 			array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
         ) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {

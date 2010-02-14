@@ -46,8 +46,6 @@ class ApiMove extends ApiBase {
 		$this->requireOnlyOneParameter( $params, 'from', 'fromid' );
 		if ( !isset( $params['to'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'to' ) );
-		if ( !isset( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 		if ( !$wgUser->matchEditToken( $params['token'] ) )
 			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
@@ -215,7 +213,6 @@ class ApiMove extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'to' ),
-			array( 'missingparam', 'token' ),
 			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'from' ),
 			array( 'nosuchpageid', 'fromid' ),
@@ -223,6 +220,10 @@ class ApiMove extends ApiBase {
 			array( 'invalidtitle', 'to' ),
 			array( 'sharedfile-exists' ),
 		) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {

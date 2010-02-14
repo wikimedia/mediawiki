@@ -51,8 +51,6 @@ class ApiDelete extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-		if ( !isset( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 
 		if ( isset( $params['title'] ) )
 		{
@@ -214,12 +212,15 @@ class ApiDelete extends ApiBase {
 	
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'token' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'nosuchpageid', 'pageid' ),
 			array( 'notanarticle' ),
 			array( 'hookaborted', 'error' ),
 		) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {

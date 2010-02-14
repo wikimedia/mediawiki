@@ -44,8 +44,6 @@ class ApiRollback extends ApiBase {
 			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
 		if ( !isset( $params['user'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
-		if ( !isset( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj )
@@ -118,11 +116,14 @@ class ApiRollback extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingparam', 'user' ),
-			array( 'missingparam', 'token' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'notanarticle' ),
 			array( 'invaliduser', 'user' ),
 		) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {

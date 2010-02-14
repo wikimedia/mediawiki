@@ -378,10 +378,14 @@ class ApiMain extends ApiBase {
 		if ( !is_string( $this->mAction ) ) {
 			$this->dieUsage( "The API requires a valid action parameter", 'unknown_action' );
 		}
-
+		
 		// Instantiate the module requested by the user
 		$module = new $this->mModules[$this->mAction] ( $this, $this->mAction );
 		$this->mModule = $module;
+
+		//Die if token required, but not provided (unless there is a gettoken parameter)
+		if ( $module->requiresToken() && is_null( $params['token'] ) && !is_null( $params['gettoken'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			// Check for maxlag

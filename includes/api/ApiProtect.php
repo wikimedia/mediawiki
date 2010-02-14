@@ -43,8 +43,6 @@ class ApiProtect extends ApiBase {
 		$titleObj = null;
 		if ( !isset( $params['title'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
-		if ( !isset( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 		if ( empty( $params['protections'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'protections' ) );
 
@@ -177,7 +175,6 @@ class ApiProtect extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
-			array( 'missingparam', 'token' ),
 			array( 'missingparam', 'protections' ),
 			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'title' ),
@@ -189,6 +186,10 @@ class ApiProtect extends ApiBase {
 			array( 'invalidexpiry', 'expiry' ),
 			array( 'pastexpiry', 'expiry' ),
 		) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {
