@@ -93,7 +93,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) )
-			$this->dieUsage( "Incorrect parameter - mutually exclusive values may not be supplied", 'show' );
+			$this->dieUsageMsg( 'show' );
 		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) )
 		{
 			$this->addOption( 'STRAIGHT_JOIN' );
@@ -220,7 +220,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+			array( 'show' ),
 		) );
 	}
 

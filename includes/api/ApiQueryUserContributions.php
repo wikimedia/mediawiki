@@ -185,7 +185,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$show = array_flip( $show );
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
 			   		|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) ) )
-				$this->dieUsage( "Incorrect parameter - mutually exclusive values may not be supplied", 'show' );
+				$this->dieUsageMsg( 'show' );
 
 			$this->addWhereIf( 'rev_minor_edit = 0', isset( $show['!minor'] ) );
 			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
@@ -422,7 +422,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'param_user', 'info' => 'User parameter may not be empty.' ),
 			array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
-			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+			array( 'show' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
 		) );
 	}

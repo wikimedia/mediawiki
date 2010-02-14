@@ -151,7 +151,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					|| ( isset ( $show['anon'] ) && isset ( $show['!anon'] ) )
 					|| ( isset ( $show['patrolled'] ) && isset ( $show['!patrolled'] ) ) ) {
 
-				$this->dieUsage( "Incorrect parameter - mutually exclusive values may not be supplied", 'show' );
+				$this->dieUsageMsg( 'show' );
 			}
 			
 			// Check permissions.  FIXME: should this check $user instead of $wgUser?
@@ -379,7 +379,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			array( 'code' => 'bad_wltoken', 'info' => 'Incorrect watchlist token provided -- please set a correct token in Special:Preferences' ),
 			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
 			array( 'code' => 'patrol', 'info' => 'patrol property is not available' ),
-			array( 'code' => 'show', 'info' => 'Incorrect parameter - mutually exclusive values may not be supplied' ),
+			array( 'show' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
 			array( 'code' => 'user-excludeuser', 'info' => 'user and excludeuser cannot be used together' ),
 		) );
