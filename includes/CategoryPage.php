@@ -5,7 +5,7 @@
  *
  */
 
-if( !defined( 'MEDIAWIKI' ) )
+if ( !defined( 'MEDIAWIKI' ) )
 	die( 1 );
 
 /**
@@ -20,7 +20,7 @@ class CategoryPage extends Article {
 		if ( isset( $diff ) && $diffOnly )
 			return Article::view();
 
-		if( !wfRunHooks( 'CategoryPageView', array( &$this ) ) )
+		if ( !wfRunHooks( 'CategoryPageView', array( &$this ) ) )
 			return;
 
 		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
@@ -33,18 +33,17 @@ class CategoryPage extends Article {
 			$this->closeShowCategory();
 		}
 	}
-	
+
 	/**
 	 * Don't return a 404 for categories in use.
 	 */
 	function hasViewableContent() {
-		if( parent::hasViewableContent() ) {
+		if ( parent::hasViewableContent() ) {
 			return true;
 		} else {
 			$cat = Category::newFromTitle( $this->mTitle );
 			return $cat->getId() != 0;
 		}
-			
 	}
 
 	function openShowCategory() {
@@ -99,7 +98,7 @@ class CategoryViewer {
 			$this->getPagesSection() .
 			$this->getImageSection();
 
-		if( $r == '' ) {
+		if ( $r == '' ) {
 			// If there is no category content to display, only
 			// show the top part of the navigation links.
 			// FIXME: cannot be completely suppressed because it
@@ -118,7 +117,7 @@ class CategoryViewer {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $wgContLang->convert($r);
+		return $wgContLang->convert( $r );
 	}
 
 	function clearCategoryState() {
@@ -126,7 +125,7 @@ class CategoryViewer {
 		$this->articles_start_char = array();
 		$this->children = array();
 		$this->children_start_char = array();
-		if( $this->showGallery ) {
+		if ( $this->showGallery ) {
 			$this->gallery = new ImageGallery();
 			$this->gallery->setHideBadImages();
 		}
@@ -149,7 +148,7 @@ class CategoryViewer {
 	}
 
 	/**
-	 * Add a subcategory to the internal lists, using a title object 
+	 * Add a subcategory to the internal lists, using a title object
 	 * @deprecated kept for compatibility, please use addSubcategoryObject instead
 	 */
 	function addSubcategory( $title, $sortkey, $pageLength ) {
@@ -175,7 +174,7 @@ class CategoryViewer {
 	function getSubcategorySortChar( $title, $sortkey ) {
 		global $wgContLang;
 
-		if( $title->getPrefixedText() == $sortkey ) {
+		if ( $title->getPrefixedText() == $sortkey ) {
 			$firstChar = $wgContLang->firstChar( $title->getDBkey() );
 		} else {
 			$firstChar = $wgContLang->firstChar( $sortkey );
@@ -189,7 +188,7 @@ class CategoryViewer {
 	 */
 	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
 		if ( $this->showGallery ) {
-			if( $this->flip ) {
+			if ( $this->flip ) {
 				$this->gallery->insert( $title );
 			} else {
 				$this->gallery->add( $title );
@@ -218,7 +217,7 @@ class CategoryViewer {
 	}
 
 	function finaliseCategoryState() {
-		if( $this->flip ) {
+		if ( $this->flip ) {
 			$this->children            = array_reverse( $this->children );
 			$this->children_start_char = array_reverse( $this->children_start_char );
 			$this->articles            = array_reverse( $this->articles );
@@ -228,16 +227,17 @@ class CategoryViewer {
 
 	function doCategoryQuery() {
 		$dbr = wfGetDB( DB_SLAVE, 'category' );
-		if( $this->from != '' ) {
+		if ( $this->from != '' ) {
 			$pageCondition = 'cl_sortkey >= ' . $dbr->addQuotes( $this->from );
 			$this->flip = false;
-		} elseif( $this->until != '' ) {
+		} elseif ( $this->until != '' ) {
 			$pageCondition = 'cl_sortkey < ' . $dbr->addQuotes( $this->until );
 			$this->flip = true;
 		} else {
 			$pageCondition = '1 = 1';
 			$this->flip = false;
 		}
+
 		$res = $dbr->select(
 			array( 'page', 'categorylinks', 'category' ),
 			array( 'page_title', 'page_namespace', 'page_len', 'page_is_redirect', 'cl_sortkey',
@@ -253,8 +253,9 @@ class CategoryViewer {
 
 		$count = 0;
 		$this->nextPage = null;
-		while( $x = $dbr->fetchObject ( $res ) ) {
-			if( ++$count > $this->limit ) {
+
+		while ( $x = $dbr->fetchObject ( $res ) ) {
+			if ( ++$count > $this->limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
 				$this->nextPage = $x->cl_sortkey;
@@ -263,10 +264,10 @@ class CategoryViewer {
 
 			$title = Title::makeTitle( $x->page_namespace, $x->page_title );
 
-			if( $title->getNamespace() == NS_CATEGORY ) {
+			if ( $title->getNamespace() == NS_CATEGORY ) {
 				$cat = Category::newFromRow( $x, $title );
 				$this->addSubcategoryObject( $cat, $x->cl_sortkey, $x->page_len );
-			} elseif( $this->showGallery && $title->getNamespace() == NS_FILE ) {
+			} elseif ( $this->showGallery && $title->getNamespace() == NS_FILE ) {
 				$this->addImage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
 			} else {
 				$this->addPage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
@@ -287,7 +288,8 @@ class CategoryViewer {
 		$rescnt = count( $this->children );
 		$dbcnt = $this->cat->getSubcatCount();
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'subcat' );
-		if( $rescnt > 0 ) {
+
+		if ( $rescnt > 0 ) {
 			# Showing subcategories
 			$r .= "<div id=\"mw-subcategories\">\n";
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
@@ -312,7 +314,7 @@ class CategoryViewer {
 		$rescnt = count( $this->articles );
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'article' );
 
-		if( $rescnt > 0 ) {
+		if ( $rescnt > 0 ) {
 			$r = "<div id=\"mw-pages\">\n";
 			$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
 			$r .= $countmsg;
@@ -323,7 +325,7 @@ class CategoryViewer {
 	}
 
 	function getImageSection() {
-		if( $this->showGallery && ! $this->gallery->isEmpty() ) {
+		if ( $this->showGallery && ! $this->gallery->isEmpty() ) {
 			$dbcnt = $this->cat->getFileCount();
 			$rescnt = $this->gallery->count();
 			$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
@@ -337,9 +339,9 @@ class CategoryViewer {
 	}
 
 	function getCategoryBottom() {
-		if( $this->until != '' ) {
+		if ( $this->until != '' ) {
 			return $this->pagingLinks( $this->title, $this->nextPage, $this->until, $this->limit );
-		} elseif( $this->nextPage != '' || $this->from != '' ) {
+		} elseif ( $this->nextPage != '' || $this->from != '' ) {
 			return $this->pagingLinks( $this->title, $this->from, $this->nextPage, $this->limit );
 		} else {
 			return '';
@@ -359,7 +361,7 @@ class CategoryViewer {
 	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
 		if ( count ( $articles ) > $cutoff ) {
 			return $this->columnList( $articles, $articles_start_char );
-		} elseif ( count($articles) > 0) {
+		} elseif ( count( $articles ) > 0 ) {
 			// for short lists of articles in categories.
 			return $this->shortList( $articles, $articles_start_char );
 		}
@@ -384,7 +386,7 @@ class CategoryViewer {
 	function columnList( $articles, $articles_start_char ) {
 		$columns = array_combine( $articles, $articles_start_char );
 		# Split into three columns
-		$columns = array_chunk( $columns, ceil( count( $columns )/3 ), true /* preserve keys */ );
+		$columns = array_chunk( $columns, ceil( count( $columns ) / 3 ), true /* preserve keys */ );
 
 		$ret = '<table width="100%"><tr valign="top"><td>';
 		$prevchar = null;
@@ -435,10 +437,10 @@ class CategoryViewer {
 	 */
 	function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
-		$r .= '<ul><li>'.$articles[0].'</li>';
-		for ($index = 1; $index < count($articles); $index++ )
+		$r .= '<ul><li>' . $articles[0] . '</li>';
+		for ( $index = 1; $index < count( $articles ); $index++ )
 		{
-			if ($articles_start_char[$index] != $articles_start_char[$index - 1])
+			if ( $articles_start_char[$index] != $articles_start_char[$index - 1] )
 			{
 				$r .= "</ul><h3>" . htmlspecialchars( $articles_start_char[$index] ) . "</h3>\n<ul>";
 			}
@@ -464,7 +466,8 @@ class CategoryViewer {
 		$limitText = $wgLang->formatNum( $limit );
 
 		$prevLink = wfMsgExt( 'prevn', array( 'escape', 'parsemag' ), $limitText );
-		if( $first != '' ) {
+
+		if ( $first != '' ) {
 			$prevQuery = $query;
 			$prevQuery['until'] = $first;
 			$prevLink = $sk->linkKnown(
@@ -474,8 +477,10 @@ class CategoryViewer {
 				$prevQuery
 			);
 		}
+
 		$nextLink = wfMsgExt( 'nextn', array( 'escape', 'parsemag' ), $limitText );
-		if( $last != '' ) {
+
+		if ( $last != '' ) {
 			$lastQuery = $query;
 			$lastQuery['from'] = $last;
 			$nextLink = $sk->linkKnown(
@@ -516,12 +521,14 @@ class CategoryViewer {
 		#      know the right figure.
 		#   3) We have no idea.
 		$totalrescnt = count( $this->articles ) + count( $this->children ) +
-			($this->showGallery ? $this->gallery->count() : 0);
-		if($dbcnt == $rescnt || (($totalrescnt == $this->limit || $this->from
-		|| $this->until) && $dbcnt > $rescnt)){
+			( $this->showGallery ? $this->gallery->count() : 0 );
+
+		if ( $dbcnt == $rescnt || ( ( $totalrescnt == $this->limit || $this->from
+			|| $this->until ) && $dbcnt > $rescnt ) )
+		{
 			# Case 1: seems sane.
 			$totalcnt = $dbcnt;
-		} elseif($totalrescnt < $this->limit && !$this->from && !$this->until){
+		} elseif ( $totalrescnt < $this->limit && !$this->from && !$this->until ) {
 			# Case 2: not sane, but salvageable.  Use the number of results.
 			# Since there are fewer than 200, we can also take this opportunity
 			# to refresh the incorrect category table entry -- which should be
@@ -530,10 +537,14 @@ class CategoryViewer {
 			$this->cat->refreshCounts();
 		} else {
 			# Case 3: hopeless.  Don't give a total count at all.
-			return wfMsgExt("category-$type-count-limited", 'parse',
+			return wfMsgExt( "category-$type-count-limited", 'parse',
 				$wgLang->formatNum( $rescnt ) );
 		}
-		return wfMsgExt( "category-$type-count", 'parse', $wgLang->formatNum( $rescnt ),
-			$wgLang->formatNum( $totalcnt ) );
+		return wfMsgExt(
+			"category-$type-count",
+			'parse',
+			$wgLang->formatNum( $rescnt ),
+			$wgLang->formatNum( $totalcnt )
+		);
 	}
 }

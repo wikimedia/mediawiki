@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This class stores an arbitrary value along with its dependencies.
  * Users should typically only use DependencyWrapper::getFromCache(), rather
@@ -108,7 +107,7 @@ abstract class CacheDependency {
 	/**
 	 * Hook to perform any expensive pre-serialize loading of dependency values.
 	 */
-	function loadDependencyValues() {}
+	function loadDependencyValues() { }
 }
 
 /**
@@ -213,6 +212,7 @@ class TitleDependency extends CacheDependency {
 
 	function isExpired() {
 		$touched = $this->getTitle()->getTouched();
+
 		if ( $this->touched === false ) {
 			if ( $touched === false ) {
 				# Still missing
@@ -251,6 +251,7 @@ class TitleListDependency extends CacheDependency {
 	function calculateTimestamps() {
 		# Initialise values to false
 		$timestamps = array();
+
 		foreach ( $this->getLinkBatch()->data as $ns => $dbks ) {
 			if ( count( $dbks ) > 0 ) {
 				$timestamps[$ns] = array();
@@ -264,9 +265,13 @@ class TitleListDependency extends CacheDependency {
 		if ( count( $timestamps ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$where = $this->getLinkBatch()->constructSet( 'page', $dbr );
-			$res = $dbr->select( 'page',
+			$res = $dbr->select(
+				'page',
 				array( 'page_namespace', 'page_title', 'page_touched' ),
-				$where, __METHOD__ );
+				$where,
+				__METHOD__
+			);
+
 			while ( $row = $dbr->fetchObject( $res ) ) {
 				$timestamps[$row->page_namespace][$row->page_title] = $row->page_touched;
 			}
@@ -283,7 +288,7 @@ class TitleListDependency extends CacheDependency {
 	}
 
 	function getLinkBatch() {
-		if ( !isset( $this->linkBatch ) ){
+		if ( !isset( $this->linkBatch ) ) {
 			$this->linkBatch = new LinkBatch;
 			$this->linkBatch->setArray( $this->timestamps );
 		}
@@ -295,6 +300,7 @@ class TitleListDependency extends CacheDependency {
 		foreach ( $this->timestamps as $ns => $dbks ) {
 			foreach ( $dbks as $dbk => $oldTimestamp ) {
 				$newTimestamp = $newTimestamps[$ns][$dbk];
+
 				if ( $oldTimestamp === false ) {
 					if ( $newTimestamp === false ) {
 						# Still missing

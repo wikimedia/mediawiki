@@ -54,7 +54,7 @@ abstract class BagOStuff {
 	abstract public function get( $key );
 
 	/**
-	 * Set an item. 
+	 * Set an item.
 	 * @param $key string
 	 * @param $value mixed
 	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
@@ -87,9 +87,11 @@ abstract class BagOStuff {
 	/* Better performance can likely be got with custom written versions */
 	public function get_multi( $keys ) {
 		$out = array();
+
 		foreach ( $keys as $key ) {
 			$out[$key] = $this->get( $key );
 		}
+
 		return $out;
 	}
 
@@ -140,7 +142,7 @@ abstract class BagOStuff {
 	}
 
 	public function decr( $key, $value = 1 ) {
-		return $this->incr( $key, -$value );
+		return $this->incr( $key, - $value );
 	}
 
 	public function debug( $text ) {
@@ -159,7 +161,6 @@ abstract class BagOStuff {
 		}
 	}
 }
-
 
 /**
  * Functional versions!
@@ -254,10 +255,10 @@ class SqlBagOStuff extends BagOStuff {
 			$this->debug( "get: key has expired, deleting" );
 			try {
 				$db->begin();
-				# Put the expiry time in the WHERE condition to avoid deleting a 
+				# Put the expiry time in the WHERE condition to avoid deleting a
 				# newly-inserted value
-				$db->delete( 'objectcache', 
-					array( 
+				$db->delete( 'objectcache',
+					array(
 						'keyname' => $key,
 						'exptime' => $row->exptime
 					), __METHOD__ );
@@ -284,8 +285,8 @@ class SqlBagOStuff extends BagOStuff {
 		try {
 			$db->begin();
 			$db->delete( 'objectcache', array( 'keyname' => $key ), __METHOD__ );
-			$db->insert( 'objectcache', 
-				array( 
+			$db->insert( 'objectcache',
+				array(
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $this->serialize( $value ) ),
 					'exptime' => $encExpiry
@@ -458,7 +459,7 @@ class SqlBagOStuff extends BagOStuff {
 /**
  * Backwards compatibility alias
  */
-class MediaWikiBagOStuff extends SqlBagOStuff {}
+class MediaWikiBagOStuff extends SqlBagOStuff { }
 
 /**
  * This is a wrapper for Turck MMCache's shared memory functions.
@@ -533,13 +534,12 @@ class APCBagOStuff extends BagOStuff {
 		$info = apc_cache_info( 'user' );
 		$list = $info['cache_list'];
 		$keys = array();
-		foreach( $list as $entry ) {
+		foreach ( $list as $entry ) {
 			$keys[] = $entry['info'];
 		}
 		return $keys;
 	}
 }
-
 
 /**
  * This is a wrapper for eAccelerator's shared memory functions.
@@ -624,13 +624,12 @@ class XCacheBagOStuff extends BagOStuff {
 		xcache_unset( $key );
 		return true;
 	}
-
 }
 
 /**
- * Cache that uses DBA as a backend. 
- * Slow due to the need to constantly open and close the file to avoid holding 
- * writer locks. Intended for development use only,  as a memcached workalike 
+ * Cache that uses DBA as a backend.
+ * Slow due to the need to constantly open and close the file to avoid holding
+ * writer locks. Intended for development use only,  as a memcached workalike
  * for systems that don't have it.
  *
  * @ingroup Cache
@@ -669,7 +668,7 @@ class DBABagOStuff extends BagOStuff {
 			return array(
 				unserialize( substr( $blob, 11 ) ),
 				intval( substr( $blob, 0, 10 ) )
-		   	);
+			);
 		}
 	}
 
