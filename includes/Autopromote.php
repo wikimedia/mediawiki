@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This class checks if user can get extra rights
  * because of conditions specified in $wgAutopromote

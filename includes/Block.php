@@ -34,7 +34,7 @@ class Block {
 		$this->mUser = $user;
 		$this->mBy = $by;
 		$this->mReason = $reason;
-		$this->mTimestamp = wfTimestamp(TS_MW,$timestamp);
+		$this->mTimestamp = wfTimestamp( TS_MW, $timestamp );
 		$this->mAuto = $auto;
 		$this->mAnonOnly = $anonOnly;
 		$this->mCreateAccount = $createAccount;
@@ -54,7 +54,7 @@ class Block {
 	 * Load a block from the database, using either the IP address or
 	 * user ID. Tries the user ID first, and if that doesn't work, tries
 	 * the address.
-	 * 
+	 *
 	 * @param $address String: IP address of user/anon
 	 * @param $user Integer: user id of user
 	 * @param $killExpired Boolean: delete expired blocks on load
@@ -130,6 +130,7 @@ class Block {
 	 */
 	protected function &getDBOptions( &$options ) {
 		global $wgAntiLockFlags;
+
 		if ( $this->mForUpdate || $this->mFromMaster ) {
 			$db = wfGetDB( DB_MASTER );
 			if ( !$this->mForUpdate || ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) ) {
@@ -180,12 +181,13 @@ class Block {
 		if ( $address ) {
 			$conds = array( 'ipb_address' => $address, 'ipb_auto' => 0 );
 			$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
+
 			if ( $this->loadFromResult( $res, $killExpired ) ) {
 				if ( $user && $this->mAnonOnly ) {
 					# Block is marked anon-only
 					# Whitelist this IP address against autoblocks and range blocks
 					# (but not account creation blocks -- bug 13611)
-					if( !$this->mCreateAccount ) {
+					if ( !$this->mCreateAccount ) {
 						$this->clear();
 					}
 					return false;
@@ -199,7 +201,7 @@ class Block {
 		if ( $this->loadRange( $address, $killExpired, $user ) ) {
 			if ( $user && $this->mAnonOnly ) {
 				# Respect account creation blocks on logged-in users -- bug 13611
-				if( !$this->mCreateAccount ) {
+				if ( !$this->mCreateAccount ) {
 					$this->clear();
 				}
 				return false;
@@ -211,10 +213,13 @@ class Block {
 		# Try autoblock
 		if ( $address ) {
 			$conds = array( 'ipb_address' => $address, 'ipb_auto' => 1 );
+
 			if ( $user ) {
 				$conds['ipb_anon_only'] = 0;
 			}
+
 			$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
+
 			if ( $this->loadFromResult( $res, $killExpired ) ) {
 				return true;
 			}
@@ -234,6 +239,7 @@ class Block {
 	 */
 	protected function loadFromResult( ResultWrapper $res, $killExpired = true ) {
 		$ret = false;
+
 		if ( 0 != $res->numRows() ) {
 			# Get first block
 			$row = $res->fetchObject();
@@ -274,6 +280,7 @@ class Block {
 	 */
 	public function loadRange( $address, $killExpired = true, $user = 0 ) {
 		$iaddr = IP::toHex( $address );
+
 		if ( $iaddr === false ) {
 			# Invalid address
 			return false;
@@ -309,7 +316,7 @@ class Block {
 	public function initFromRow( $row ) {
 		$this->mAddress = $row->ipb_address;
 		$this->mReason = $row->ipb_reason;
-		$this->mTimestamp = wfTimestamp(TS_MW,$row->ipb_timestamp);
+		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
 		$this->mUser = $row->ipb_user;
 		$this->mBy = $row->ipb_by;
 		$this->mAuto = $row->ipb_auto;
@@ -321,17 +328,19 @@ class Block {
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
 		$this->mExpiry = self::decodeExpiry( $row->ipb_expiry );
+
 		if ( isset( $row->user_name ) ) {
 			$this->mByName = $row->user_name;
 		} else {
 			$this->mByName = $row->ipb_by_text;
 		}
+
 		$this->mRangeStart = $row->ipb_range_start;
 		$this->mRangeEnd = $row->ipb_range_end;
 	}
 
 	/**
-	 * Once $mAddress has been set, get the range they came from. 
+	 * Once $mAddress has been set, get the range they came from.
 	 * Wrapper for IP::parseRange
 	 */
 	protected function initialiseRange() {
@@ -352,6 +361,7 @@ class Block {
 		if ( wfReadOnly() ) {
 			return false;
 		}
+
 		if ( !$this->mId ) {
 			throw new MWException( "Block::delete() now requires that the mId member be filled\n" );
 		}
@@ -377,8 +387,9 @@ class Block {
 		# Don't collide with expired blocks
 		Block::purgeExpired();
 
-		$ipb_id = $dbw->nextSequenceValue('ipblocks_ipb_id_seq');
-		$dbw->insert( 'ipblocks',
+		$ipb_id = $dbw->nextSequenceValue( 'ipblocks_ipb_id_seq' );
+		$dbw->insert(
+			'ipblocks',
 			array(
 				'ipb_id' => $ipb_id,
 				'ipb_address' => $this->mAddress,
@@ -386,7 +397,7 @@ class Block {
 				'ipb_by' => $this->mBy,
 				'ipb_by_text' => $this->mByName,
 				'ipb_reason' => $this->mReason,
-				'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
+				'ipb_timestamp' => $dbw->timestamp( $this->mTimestamp ),
 				'ipb_auto' => $this->mAuto,
 				'ipb_anon_only' => $this->mAnonOnly,
 				'ipb_create_account' => $this->mCreateAccount,
@@ -397,7 +408,9 @@ class Block {
 				'ipb_deleted'	=> $this->mHideName,
 				'ipb_block_email' => $this->mBlockEmail,
 				'ipb_allow_usertalk' => $this->mAllowUsertalk
-			), 'Block::insert', array( 'IGNORE' )
+			),
+			'Block::insert',
+			array( 'IGNORE' )
 		);
 		$affected = $dbw->affectedRows();
 
@@ -417,13 +430,14 @@ class Block {
 
 		$this->validateBlockParams();
 
-		$dbw->update( 'ipblocks',
+		$dbw->update(
+			'ipblocks',
 			array(
 				'ipb_user' => $this->mUser,
 				'ipb_by' => $this->mBy,
 				'ipb_by_text' => $this->mByName,
 				'ipb_reason' => $this->mReason,
-				'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
+				'ipb_timestamp' => $dbw->timestamp( $this->mTimestamp ),
 				'ipb_auto' => $this->mAuto,
 				'ipb_anon_only' => $this->mAnonOnly,
 				'ipb_create_account' => $this->mCreateAccount,
@@ -433,13 +447,15 @@ class Block {
 				'ipb_range_end' => $this->mRangeEnd,
 				'ipb_deleted'	=> $this->mHideName,
 				'ipb_block_email' => $this->mBlockEmail,
-				'ipb_allow_usertalk' => $this->mAllowUsertalk ),
+				'ipb_allow_usertalk' => $this->mAllowUsertalk
+			),
 			array( 'ipb_id' => $this->mId ),
-			'Block::update' );
+			'Block::update'
+		);
 
 		return $dbw->affectedRows();
 	}
-	
+
 	/**
 	 * Make sure all the proper members are set to sane values
 	 * before adding/updating a block
@@ -459,8 +475,8 @@ class Block {
 		if ( !$this->mUser && $this->mAnonOnly ) {
 			$this->mBlockEmail = 0;
 		}
-		if( !$this->mByName ) {
-			if( $this->mBy ) {
+		if ( !$this->mByName ) {
+			if ( $this->mBy ) {
 				$this->mByName = User::whoIs( $this->mBy );
 			} else {
 				global $wgUser;
@@ -481,7 +497,7 @@ class Block {
 		# - stolen shamelessly from CheckUser_body.php
 
 		if ( $this->mEnableAutoblock && $this->mUser ) {
-			wfDebug("Doing retroactive autoblocks for " . $this->mAddress . "\n");
+			wfDebug( "Doing retroactive autoblocks for " . $this->mAddress . "\n" );
 
 			$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
 			$conds = array( 'rc_user_text' => $this->mAddress );
@@ -500,7 +516,7 @@ class Block {
 
 			if ( !$dbr->numRows( $res ) ) {
 				# No results, don't autoblock anything
-				wfDebug("No IP found to retroactively autoblock\n");
+				wfDebug( "No IP found to retroactively autoblock\n" );
 			} else {
 				while ( $row = $dbr->fetchObject( $res ) ) {
 					if ( $row->rc_ip )
@@ -528,9 +544,9 @@ class Block {
 			$wgMemc->set( $key, $lines, 3600 * 24 );
 		}
 
-		wfDebug("Checking the autoblock whitelist..\n");
+		wfDebug( "Checking the autoblock whitelist..\n" );
 
-		foreach( $lines as $line ) {
+		foreach ( $lines as $line ) {
 			# List items only
 			if ( substr( $line, 0, 1 ) !== '*' ) {
 				continue;
@@ -539,11 +555,11 @@ class Block {
 			$wlEntry = substr( $line, 1 );
 			$wlEntry = trim( $wlEntry );
 
-			wfDebug("Checking $ip against $wlEntry...");
+			wfDebug( "Checking $ip against $wlEntry..." );
 
 			# Is the IP in this range?
 			if ( IP::isInRange( $ip, $wlEntry ) ) {
-				wfDebug(" IP $ip matches $wlEntry, not autoblocking\n");
+				wfDebug( " IP $ip matches $wlEntry, not autoblocking\n" );
 				return true;
 			} else {
 				wfDebug( " No match\n" );
@@ -570,8 +586,8 @@ class Block {
 		if ( Block::isWhitelistedFromAutoblocks( $autoblockIP ) ) {
 			return;
 		}
-		
-		## Allow hooks to cancel the autoblock.
+
+		# # Allow hooks to cancel the autoblock.
 		if ( !wfRunHooks( 'AbortAutoblock', array( $autoblockIP, &$this ) ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
 			return false;
@@ -612,7 +628,7 @@ class Block {
 		$ipblock->mAllowUsertalk = $this->mAllowUsertalk;
 		# If the user is already blocked with an expiry date, we don't
 		# want to pile on top of that!
-		if( $this->mExpiry ) {
+		if ( $this->mExpiry ) {
 			$ipblock->mExpiry = min( $this->mExpiry, Block::getAutoblockExpiry( $this->mTimestamp ) );
 		} else {
 			$ipblock->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
@@ -661,7 +677,7 @@ class Block {
 	}
 
 	/**
-	 * Update the timestamp on autoblocks. 
+	 * Update the timestamp on autoblocks.
 	 */
 	public function updateTimestamp() {
 		if ( $this->mAuto ) {
@@ -727,7 +743,7 @@ class Block {
 	/**
 	 * Encode expiry for DB
 	 *
-	 * @param $expiry String: timestamp for expiry, or 
+	 * @param $expiry String: timestamp for expiry, or
 	 * @param $db Database object
 	 * @return String
 	 */
@@ -809,7 +825,7 @@ class Block {
 
 	/**
 	 * Get a value to insert into expiry field of the database when infinite expiry
-	 * is desired. In principle this could be DBMS-dependant, but currently all 
+	 * is desired. In principle this could be DBMS-dependant, but currently all
 	 * supported DBMS's support the string "infinity", so we just use that.
 	 *
 	 * @return String
@@ -829,10 +845,10 @@ class Block {
 	public static function formatExpiry( $encoded_expiry ) {
 		static $msg = null;
 
-		if( is_null( $msg ) ) {
+		if ( is_null( $msg ) ) {
 			$msg = array();
 			$keys = array( 'infiniteblock', 'expiringblock' );
-			foreach( $keys as $key ) {
+			foreach ( $keys as $key ) {
 				$msg[$key] = wfMsgHtml( $key );
 			}
 		}
@@ -859,6 +875,7 @@ class Block {
 			$expiry = 'infinity';
 		} else {
 			$expiry = strtotime( $expiry_input );
+
 			if ( $expiry < 0 || $expiry === false ) {
 				return false;
 			}

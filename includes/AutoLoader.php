@@ -1,5 +1,4 @@
 <?php
-
 /* This defines autoloading handler for whole MediaWiki framework */
 
 # Locations of core classes

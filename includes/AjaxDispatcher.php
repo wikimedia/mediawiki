@@ -7,7 +7,7 @@
  * Handle ajax requests and send them to the proper handler.
  */
 
-if( !(defined( 'MEDIAWIKI' ) && $wgUseAjax ) ) {
+if ( !( defined( 'MEDIAWIKI' ) && $wgUseAjax ) ) {
 	die( 1 );
 }
 
@@ -33,11 +33,11 @@ class AjaxDispatcher {
 
 		$this->mode = "";
 
-		if (! empty($_GET["rs"])) {
+		if ( ! empty( $_GET["rs"] ) ) {
 			$this->mode = "get";
 		}
 
-		if (!empty($_POST["rs"])) {
+		if ( !empty( $_POST["rs"] ) ) {
 			$this->mode = "post";
 		}
 
@@ -45,7 +45,7 @@ class AjaxDispatcher {
 
 		case 'get':
 			$this->func_name = isset( $_GET["rs"] ) ? $_GET["rs"] : '';
-			if (! empty($_GET["rsargs"])) {
+			if ( ! empty( $_GET["rsargs"] ) ) {
 				$this->args = $_GET["rsargs"];
 			} else {
 				$this->args = array();
@@ -54,7 +54,7 @@ class AjaxDispatcher {
 
 		case 'post':
 			$this->func_name = isset( $_POST["rs"] ) ? $_POST["rs"] : '';
-			if (! empty($_POST["rsargs"])) {
+			if ( ! empty( $_POST["rsargs"] ) ) {
 				$this->args = $_POST["rsargs"];
 			} else {
 				$this->args = array();
@@ -65,7 +65,7 @@ class AjaxDispatcher {
 			wfProfileOut( __METHOD__ );
 			return;
 			# Or we could throw an exception:
-			#throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
+			# throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
 
 		}
 
@@ -83,9 +83,10 @@ class AjaxDispatcher {
 		if ( empty( $this->mode ) ) {
 			return;
 		}
+
 		wfProfileIn( __METHOD__ );
 
-		if (! in_array( $this->func_name, $wgAjaxExportList ) ) {
+		if ( ! in_array( $this->func_name, $wgAjaxExportList ) ) {
 			wfDebug( __METHOD__ . ' Bad Request for unknown function ' . $this->func_name . "\n" );
 
 			wfHttpError( 400, 'Bad Request',
@@ -99,11 +100,11 @@ class AjaxDispatcher {
 				$func = $this->func_name;
 			}
 			try {
-				$result = call_user_func_array($func, $this->args);
+				$result = call_user_func_array( $func, $this->args );
 
 				if ( $result === false || $result === null ) {
-					wfDebug( __METHOD__ . ' ERROR while dispatching ' 
-							. $this->func_name . "(" . var_export( $this->args, true ) . "): " 
+					wfDebug( __METHOD__ . ' ERROR while dispatching '
+							. $this->func_name . "(" . var_export( $this->args, true ) . "): "
 							. "no data returned\n" );
 
 					wfHttpError( 500, 'Internal Error',
@@ -111,7 +112,7 @@ class AjaxDispatcher {
 				}
 				else {
 					if ( is_string( $result ) ) {
-						$result= new AjaxResponse( $result );
+						$result = new AjaxResponse( $result );
 					}
 
 					$result->sendHeaders();
@@ -120,12 +121,12 @@ class AjaxDispatcher {
 					wfDebug( __METHOD__ . ' dispatch complete for ' . $this->func_name . "\n" );
 				}
 
-			} catch (Exception $e) {
-				wfDebug( __METHOD__ . ' ERROR while dispatching ' 
-						. $this->func_name . "(" . var_export( $this->args, true ) . "): " 
-						. get_class($e) . ": " . $e->getMessage() . "\n" );
+			} catch ( Exception $e ) {
+				wfDebug( __METHOD__ . ' ERROR while dispatching '
+						. $this->func_name . "(" . var_export( $this->args, true ) . "): "
+						. get_class( $e ) . ": " . $e->getMessage() . "\n" );
 
-				if (!headers_sent()) {
+				if ( !headers_sent() ) {
 					wfHttpError( 500, 'Internal Error',
 						$e->getMessage() );
 				} else {
