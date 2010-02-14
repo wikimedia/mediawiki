@@ -170,15 +170,15 @@ class ApiLogin extends ApiBase {
 	
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array (
-            array( 'code' => 'NoName', 'info' => 'You didn\'t set the lgname parameter' ),
-            array( 'code' => 'Illegal', 'info' => ' You provided an illegal username' ),
-            array( 'code' => 'NotExists', 'info' => ' The username you provided doesn\'t exist' ),
-            array( 'code' => 'EmptyPass', 'info' => ' You didn\'t set the lgpassword parameter or you left it empty' ),
-            array( 'code' => 'WrongPass', 'info' => ' The password you provided is incorrect' ),
-            array( 'code' => 'WrongPluginPass', 'info' => 'Same as `WrongPass", returned when an authentication plugin rather than MediaWiki itself rejected the password' ),
-            array( 'code' => 'CreateBlocked', 'info' => 'The wiki tried to automatically create a new account for you, but your IP address has been blocked from account creation' ),
-            array( 'code' => 'Throttled', 'info' => 'You\'ve logged in too many times in a short time' ),
-            array( 'code' => 'Blocked', 'info' => 'User is blocked' ),
+			array( 'code' => 'NoName', 'info' => 'You didn\'t set the lgname parameter' ),
+			array( 'code' => 'Illegal', 'info' => ' You provided an illegal username' ),
+			array( 'code' => 'NotExists', 'info' => ' The username you provided doesn\'t exist' ),
+			array( 'code' => 'EmptyPass', 'info' => ' You didn\'t set the lgpassword parameter or you left it empty' ),
+			array( 'code' => 'WrongPass', 'info' => ' The password you provided is incorrect' ),
+			array( 'code' => 'WrongPluginPass', 'info' => 'Same as `WrongPass", returned when an authentication plugin rather than MediaWiki itself rejected the password' ),
+			array( 'code' => 'CreateBlocked', 'info' => 'The wiki tried to automatically create a new account for you, but your IP address has been blocked from account creation' ),
+			array( 'code' => 'Throttled', 'info' => 'You\'ve logged in too many times in a short time' ),
+			array( 'code' => 'Blocked', 'info' => 'User is blocked' ),
         ) );
 ;
 	}
