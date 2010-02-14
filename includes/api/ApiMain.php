@@ -126,6 +126,8 @@ class ApiMain extends ApiBase {
 	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest;
 	private $mInternalMode, $mSquidMaxage, $mModule;
 
+	private $mCacheControl = array( 'must-revalidate' => true );
+
 	/**
 	* Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	*
@@ -214,7 +216,19 @@ class ApiMain extends ApiBase {
 	 * Set how long the response should be cached.
 	 */
 	public function setCacheMaxAge( $maxage ) {
-		$this->mSquidMaxage = $maxage;
+		$this->setCacheControl( array(
+			'max-age' => $maxage,
+			's-maxage' => $maxage
+		) );
+	}
+
+	/**
+	 * Set directives (key/value pairs) for the Cache-Control header.
+	 * Boolean values will be formatted as such, by including or omitting
+	 * without an equals sign.
+	 */
+	public function setCacheControl( $directives ) {
+		$this->mCacheControl = $directives + $this->mCacheControl;
 	}
 
 	/**
@@ -282,21 +296,35 @@ class ApiMain extends ApiBase {
 			$this->printResult( true );
 		}
 
-		if ( $this->mSquidMaxage == - 1 )
-		{
-			// Nobody called setCacheMaxAge(), use the (s)maxage parameters
-			$smaxage = $this->getParameter( 'smaxage' );
-			$maxage = $this->getParameter( 'maxage' );
+		// If nobody called setCacheMaxAge(), use the (s)maxage parameters
+		if ( !isset( $this->mCacheControl['s-maxage'] ) ) {
+			$this->mCacheControl['s-maxage'] = $this->getParameter( 'smaxage' );
 		}
-		else
-			$smaxage = $maxage = $this->mSquidMaxage;
+		if ( !isset( $this->mCacheControl['max-age'] ) ) {
+			$this->mCacheControl['max-age'] = $this->getParameter( 'maxage' );
+		}
 
 		// Set the cache expiration at the last moment, as any errors may change the expiration.
 		// if $this->mSquidMaxage == 0, the expiry time is set to the first second of unix epoch
-		$exp = min( $smaxage, $maxage );
+		$exp = min( $this->mCacheControl['s-maxage'], $this->mCacheControl['max-age'] );
 		$expires = ( $exp == 0 ? 1 : time() + $exp );
 		header( 'Expires: ' . wfTimestamp( TS_RFC2822, $expires ) );
-		header( 'Cache-Control: s-maxage=' . $smaxage . ', must-revalidate, max-age=' . $maxage );
+
+		// Construct the Cache-Control header
+		$ccHeader = '';
+		$separator = '';
+		foreach ( $this->mCacheControl as $name => $value ) {
+			if ( is_bool( $value ) ) {
+				if ( $value ) {
+					$ccHeader .= $separator . $name;
+				}
+			} else {
+				$ccHeader .= $separator . "$name=$value";
+			}
+			$separator = ', ';
+		}
+			
+		header( "Cache-Control: $ccHeader" );
 
 		if ( $this->mPrinter->getIsHtml() )
 			echo wfReportTime();
