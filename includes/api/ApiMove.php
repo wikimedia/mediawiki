@@ -210,7 +210,7 @@ class ApiMove extends ApiBase {
 		);
 	}
 	
-    public function getPossibleErrors() {
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'to' ),
 			array( 'missingparam', 'token' ),
@@ -220,7 +220,7 @@ class ApiMove extends ApiBase {
 			array( 'notanarticle' ),
 			array( 'invalidtitle', 'to' ),
 			array( 'sharedfile-exists' ),
-        ) );
+		) );
 	}
 
 	protected function getExamples() {

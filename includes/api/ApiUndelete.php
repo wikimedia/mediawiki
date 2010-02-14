@@ -118,7 +118,7 @@ class ApiUndelete extends ApiBase {
 		);
 	}
 	
-    public function getPossibleErrors() {
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingparam', 'token' ),
@@ -127,7 +127,7 @@ class ApiUndelete extends ApiBase {
 			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'cannotundelete' ),
-        ) );
+		) );
 	}
 
 	protected function getExamples() {

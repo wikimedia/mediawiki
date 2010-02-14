@@ -141,7 +141,7 @@ class ApiImport extends ApiBase {
 		);
 	}
 	
-    public function getPossibleErrors() {
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'cantimport' ),
 			array( 'missingparam', 'token' ),
@@ -150,7 +150,7 @@ class ApiImport extends ApiBase {
 			array( 'cantimport-upload' ),
 			array( 'import-unknownerror', 'source' ),
 			array( 'import-unknownerror', 'result' ),
-        ) );
+		) );
 	}
 
 	protected function getExamples() {

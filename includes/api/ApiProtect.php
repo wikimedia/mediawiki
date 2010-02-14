@@ -172,7 +172,7 @@ class ApiProtect extends ApiBase {
 		);
 	}
 	
-    public function getPossibleErrors() {
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingparam', 'token' ),
@@ -186,7 +186,7 @@ class ApiProtect extends ApiBase {
 			array( 'protect-invalidlevel', 'level' ),
 			array( 'invalidexpiry', 'expiry' ),
 			array( 'pastexpiry', 'expiry' ),
-        ) );
+		) );
 	}
 
 	protected function getExamples() {

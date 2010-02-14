@@ -561,7 +561,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		);
 	}
 	
-    public function getPossibleErrors() {
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'nosuchrevid', 'diffto' ),
 			array( 'code' => 'revids', 'info' => 'The revids= parameter may not be used with the list options (limit, startid, endid, dirNewer, start, end).' ),
@@ -571,7 +571,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			array( 'code' => 'badparams', 'info' => 'end and endid cannot be used together' ),
 			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
 			array( 'code' => 'nosuchsection', 'info' => 'There is no section section in rID' ),
-        ) );
+		) );
 	}
 
 	protected function getExamples() {
