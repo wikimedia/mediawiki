@@ -845,6 +845,7 @@ comment from another wiki.
 * (bug 20809) Expose EditFormPreloadText via the API
 * (bug 18427) Comment (edit summary) parser option for API
 * (bug 18608) API should provide list of CSS styles to apply to rendered output
+* (bug 18771) List possible errors in action=paraminfo
 
 === Languages updated in 1.16 ===
 
