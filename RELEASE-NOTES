@@ -872,6 +872,7 @@ changes to languages because of MediaZilla reports.
 * Palembang (plm) (removed)
 * Megleno-Romanian (Greek script) (ruq-grek) (removed)
 * Tamazight (tzm) (removed)
+* Laz (lzz) (new)
 
 * (bug 18474) Sorani (ckb - Central Kurdish) (renamed from ku-arab)
 * Add PLURAL function for Scots Gaelic (gd)
