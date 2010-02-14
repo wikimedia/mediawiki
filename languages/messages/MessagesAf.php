@@ -1626,6 +1626,7 @@ Vir veiligheidsredes is img_auth.php gedeaktiveer.",
 'http-timed-out'        => 'HTTP-versoek se tyd is verstreke.',
 'http-curl-error'       => 'Fout met die ophaal van URL: $1',
 'http-host-unreachable' => 'Die URL is nie bereikbaar nie.',
+'http-bad-status'       => "Daar was 'n probleem tydens die HTTP-versoek: $1 $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon nie die URL bereik nie',
@@ -2428,6 +2429,8 @@ maak asseblief seker dat u die gevolge van hierdie aksie verstaan voordat u voor
 
 Indien wel sal u self die blad moet skuif of versmelt (indien nodig).",
 'movearticle'                  => 'Skuif bladsy',
+'moveuserpage-warning'         => "'''Waarskuwing:''' U gaan 'n gebruikersblad skuif.
+Let daarop dat slegs die bladsy geskuif sal word. Die gebruiker self sal ''nie'' hernoem word ''nie''.",
 'movenologin'                  => 'Nie ingeteken nie',
 'movenologintext'              => "U moet 'n geregistreerde gebruiker wees en [[Special:UserLogin|ingeteken]]
 wees om 'n bladsy te skuif.",

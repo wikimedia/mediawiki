@@ -1177,7 +1177,7 @@ Bitte prüfe die Logbücher.',
 'revdelete-reason-dropdown'   => '*Allgemeine Löschgründe
 ** Urheberrechtsverletzung
 ** Unangebrachte persönliche Informationen',
-'revdelete-otherreason'       => 'Andere/zusätzliche Begründung:',
+'revdelete-otherreason'       => 'Anderer/ergänzender Grund:',
 'revdelete-reasonotherlist'   => 'Anderer Grund',
 'revdelete-edit-reasonlist'   => 'Löschgründe bearbeiten',
 'revdelete-offender'          => 'Autor der Version:',

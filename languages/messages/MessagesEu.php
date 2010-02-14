@@ -815,6 +815,7 @@ Eztabaidak aipatu gabe utzi dira.',
 'post-expand-template-argument-category'  => 'Kontuan hartu ez diren txantiloiak dituzten orrialdeak',
 'parser-template-loop-warning'            => 'Txantiloiaren itzul-biraketa aurkitu da: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Txantiloaren rekurtsio sakoneraren muga gainditu da ($1)',
+'language-converter-depth-warning'        => 'Hizkuntza-bihurgailuaren sakonerak ($1) muga gainditu du',
 
 # "Undo" feature
 'undo-success' => 'Aldaketa desegin daiteke.
@@ -909,6 +910,8 @@ Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaket
 'revdelete-logentry'          => '[[$1]](r)entzako berriskupen ikusgaitasuna aldatu da',
 'logdelete-logentry'          => '[[$1]]en gertakarien ikusgarritasuna aldatu da',
 'revdelete-success'           => "'''Berrikuspenen ikusgarritasuna eguneratu da.'''",
+'revdelete-failure'           => "'''Ezin da berrikuspenaren ikuspena eguneratu:'''
+$1",
 'logdelete-success'           => "'''Log ikusgarritasuna ondo ezarri da.'''",
 'revdel-restore'              => 'Ikusgarritasuna aldatu',
 'pagehist'                    => 'Orriaren historia',

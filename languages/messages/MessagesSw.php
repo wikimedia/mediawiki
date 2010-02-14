@@ -567,6 +567,7 @@ Kumbuka kwamba programu inatofautishana kati ya herufi kubwa na ndogo.
 Labda umeandika vibaya, au [[Special:UserLogin/signup|sajili akaunti mpya]].',
 'nosuchusershort'            => 'Hakuna mtumiaji mwenye jina "<nowiki>$1</nowiki>". Labda umeandika vibaya.',
 'nouserspecified'            => 'Lazima uandike jina la mtumiaji.',
+'login-userblocked'          => 'Mtumiaji huyu amezuiwa. Hawezi kuingia.',
 'wrongpassword'              => 'Umeingiza nywila ya makosa. Jaribu tena.',
 'wrongpasswordempty'         => 'Nywila ilikuwa tupu. Jaribu tena.',
 'passwordtooshort'           => 'Ni lazima nywila iwe na {{PLURAL:#1|herufi}} $1 au zaidi.',
@@ -707,7 +708,7 @@ Tafadhali thibitisha anwani ya barua pepe yako kupitia [[Special:Preferences|map
 'nosuchsectiontitle'               => 'Fungu hili halipatikani',
 'nosuchsectiontext'                => 'Umejaribu kuhariri sehemu ambayo haipo.
 Labda ilihamishwa au ilifutwa endapo unatazama ukurasa.',
-'loginreqtitle'                    => 'Unatakiwa kuingia au kujisajili',
+'loginreqtitle'                    => 'Unatakiwa kuingia kwanza',
 'loginreqlink'                     => 'uingie',
 'loginreqpagetext'                 => 'Inabidi $1 ili uweze kutazama kurasa zingine.',
 'accmailtitle'                     => 'Neno la siri limeshakutumia.',
@@ -825,6 +826,9 @@ Ukurasa wa jina hilo unapatikana tayari.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kushindwa kusajili akaunti',
+'cantcreateaccount-text' => "Kusajili akaunti kwa kutumia anwani ya IP hii ('''$1''') imezuiwa na [[User:$3|$3]].
+
+Sababu iliyotolewa na $3 ni ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Tazama kumbukumbu kwa ukurasa huu',

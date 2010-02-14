@@ -330,7 +330,8 @@ Droëneuh   h’an jeuët neunguy alat 'Kirém surat-e ureuëng nguy nyoë' keuc
 Alamat IP Droëneuh nakeuh $3, ngön ID neutheun nakeuh $5. Tulông peuseureuta salah saboh atawa ban duwa beurita nyoë bak tiëp teunanyöng nyang neupeugöt.",
 'newarticle'                       => '(Barô)',
 'newarticletext'                   => "Droëneuh   ka neuseutot u ôn nyang goh na. Keu peugöt ôn nyan, neukeutik asoë ôn di  kutak di yup nyoë (ngiëng [[{{MediaWiki:Helppage}}|ôn bantu]] keu beurita leubèh lanjut). Meunyo Droëneuh  hana neusaja ka trôk keunoë, teugon '''back''' nyang na bak layeuë.",
-'noarticletext'                    => 'Hana naseukah jinoë lam ôn nyoë. Ji Droëneuh jeuët [[Special:Search/{{PAGENAME}}|neumita keu nan ôn nyoë]] bak ôn-ôn la’én atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} andam ôn nyoë].',
+'noarticletext'                    => 'Hana naseukah jinoë lam ôn nyoë.
+Ji Droëneuh jeuët [[Special:Search/{{PAGENAME}}|neumita keu nan ôn nyoë]] bak ôn-ôn la’én, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log nyang na hubôngan], atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} neu\'andam ôn nyoë]</span>.',
 'updated'                          => '(Seubarô)',
 'note'                             => "'''Ceunatat:'''",
 'previewnote'                      => "'''Beuneuingat meunyo nyoë goh lom neukeubah!'''",

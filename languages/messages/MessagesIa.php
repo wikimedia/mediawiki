@@ -2185,7 +2185,7 @@ Es possibile que le adresse URL es invalide, o que le version ha essite restaura
 'undeletebtn'                  => 'Restaurar',
 'undeletelink'                 => 'vider/restaurar',
 'undeleteviewlink'             => 'vider',
-'undeletereset'                => 'Reinitiar',
+'undeletereset'                => 'Reinitialisar',
 'undeleteinvert'               => 'Inverter selection',
 'undeletecomment'              => 'Commento:',
 'undeletedarticle'             => 'restaurava "[[$1]]"',

@@ -2612,6 +2612,8 @@ Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 * De overlegpagina onder de nieuwe naam al bestaat;
 * U het onderstaande vinkje deselecteert.",
 'movearticle'                  => 'Te hernoemen pagina:',
+'moveuserpage-warning'         => "'' 'Waarschuwing:''' U gaat een gebruikerspagina hernoemen.
+Houd er rekening mee dat alleen de pagina wordt hernoemd, ''niet'' de gebruiker.",
 'movenologin'                  => 'Niet aangemeld',
 'movenologintext'              => 'U moet [[Special:UserLogin|aangemeld]] zijn om een pagina te hernoemen.',
 'movenotallowed'               => "U hebt geen rechten om pagina's te hernoemen.",

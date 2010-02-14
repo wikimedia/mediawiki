@@ -3346,7 +3346,7 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'ajax-confirm-title'           => 'Confirmar acción',
 'ajax-confirm-prompt'          => 'Puedes proveer un resumen de edición abajo.
 Haz click en "Grabar" para grabar tu edición.',
-'ajax-confirm-save'            => 'Grabar',
+'ajax-confirm-save'            => 'Guardar',
 'ajax-add-category-summary'    => 'Agregar categoría "$1"',
 'ajax-remove-category-summary' => 'Eliminar categoría "$1"',
 'ajax-confirm-actionsummary'   => 'Acción a tomar:',
