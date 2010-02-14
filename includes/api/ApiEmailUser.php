@@ -72,7 +72,9 @@ class ApiEmailUser extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 	
-	public function mustBePosted() { return true; }
+	public function mustBePosted() {
+		return true;
+	}
 
 	public function isWriteMode() {
 		return true;

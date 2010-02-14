@@ -136,7 +136,9 @@ class ApiLogin extends ApiBase {
 		$this->getResult()->addValue( null, 'login', $result );
 	}
 
-	public function mustBePosted() { return true; }
+	public function mustBePosted() {
+		return true;
+	}
 
 	public function isReadMode() {
 		return false;

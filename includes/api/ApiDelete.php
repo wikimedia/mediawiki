@@ -172,7 +172,9 @@ class ApiDelete extends ApiBase {
 		return array();
 	}
 	
-	public function mustBePosted() { return true; }
+	public function mustBePosted() {
+		return true;
+	}
 
 	public function isWriteMode() {
 		return true;

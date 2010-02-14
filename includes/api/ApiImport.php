@@ -98,7 +98,9 @@ class ApiImport extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $resultData );
 	}
 
-	public function mustBePosted() { return true; }
+	public function mustBePosted() {
+		return true;
+	}
 
 	public function isWriteMode() {
 		return true;

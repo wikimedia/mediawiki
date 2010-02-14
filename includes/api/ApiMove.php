@@ -164,7 +164,9 @@ class ApiMove extends ApiBase {
 		return $retval;
 	}
 
-	public function mustBePosted() { return true; }
+	public function mustBePosted() {
+		return true;
+	}
 
 	public function isWriteMode() {
 		return true;
