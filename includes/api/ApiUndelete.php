@@ -43,8 +43,6 @@ class ApiUndelete extends ApiBase {
 		$titleObj = null;
 		if ( !isset( $params['title'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
-		if ( !isset( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 
 		if ( !$wgUser->isAllowed( 'undelete' ) )
 			$this->dieUsageMsg( array( 'permdenied-undelete' ) );
@@ -123,13 +121,16 @@ class ApiUndelete extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
-			array( 'missingparam', 'token' ),
 			array( 'permdenied-undelete' ),
 			array( 'blockedtext' ),
 			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'cannotundelete' ),
 		) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {

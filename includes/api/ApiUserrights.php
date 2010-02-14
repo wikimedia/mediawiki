@@ -41,8 +41,6 @@ class ApiUserrights extends ApiBase {
 		$params = $this->extractRequestParams();
 		if ( is_null( $params['user'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
-		if ( is_null( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 
 		$form = new UserrightsPage;
 		$user = $form->fetchUser( $params['user'] );
@@ -109,9 +107,12 @@ class ApiUserrights extends ApiBase {
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'user' ),
-			array( 'missingparam', 'token' ),
 			array( 'sessionfailure' ),
         ) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {

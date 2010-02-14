@@ -53,9 +53,6 @@ class ApiEditPage extends ApiBase {
 				$params['undo'] == 0 )
 			$this->dieUsageMsg( array( 'missingtext' ) );
 
-		if ( is_null( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
-
 		if ( !$wgUser->matchEditToken( $params['token'] ) )
 			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
@@ -350,7 +347,6 @@ class ApiEditPage extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingtext' ),
-			array( 'missingparam', 'token' ),
 			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'createonly-exists' ),
@@ -465,6 +461,10 @@ class ApiEditPage extends ApiBase {
 			'undo' => 'Undo this revision. Overrides text, prependtext and appendtext',
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
 		);
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {

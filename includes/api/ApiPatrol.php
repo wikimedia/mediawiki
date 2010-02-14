@@ -44,8 +44,6 @@ class ApiPatrol extends ApiBase {
 		global $wgUser;
 		$params = $this->extractRequestParams();
 		
-		if ( !isset( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 		if ( !isset( $params['rcid'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'rcid' ) );
 		if ( !$wgUser->matchEditToken( $params['token'] ) )
@@ -92,11 +90,14 @@ class ApiPatrol extends ApiBase {
 	
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'token' ),
 			array( 'missingparam', 'rcid' ),
 			array( 'sessionfailure' ),
 			array( 'nosuchrcid', 'rcid' ),
         ) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {

@@ -965,6 +965,14 @@ abstract class ApiBase {
 	public function mustBePosted() {
 		return false;
 	}
+	
+	/**
+	* Indicates whether this module needs a token to preform the request
+	* @returns bool
+	*/
+	public function requiresToken() {
+		return false;
+	}
 
 	/**
 	* Returns a list of all possible errors returned by the module
@@ -984,6 +992,10 @@ abstract class ApiBase {
 		if ( $this->isWriteMode() ) {
 			$ret[] = array ( 'writerequired' );
 			$ret[] = array ( 'writedisabled' );
+		}
+		
+		if ( $this->requiresToken() ) {
+			$ret[] = array( 'missingparam', 'token' );
 		}
 
 		return $ret;

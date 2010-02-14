@@ -48,8 +48,6 @@ class ApiEmailUser extends ApiBase {
 			$this->dieUsageMsg( array( 'missingparam', 'target' ) );
 		if ( !isset( $params['text'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'text' ) );
-		if ( !isset( $params['token'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 		
 		// Validate target 
 		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
@@ -111,8 +109,11 @@ class ApiEmailUser extends ApiBase {
 			array( 'usermaildisabled' ),
 			array( 'missingparam', 'target' ),
 			array( 'missingparam', 'text' ),
-			array( 'missingparam', 'token' ),
         ) );
+	}
+	
+	public function requiresToken() {
+		return true;
 	}
 
 	protected function getExamples() {
