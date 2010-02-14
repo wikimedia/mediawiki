@@ -234,9 +234,9 @@ class CoreParserFunctions {
 	 * Override the title of the page when viewed, provided we've been given a
 	 * title which will normalise to the canonical title
 	 *
-	 * @param Parser $parser Parent parser
-	 * @param string $text Desired title text
-	 * @return string
+	 * @param $parser Parser: parent parser
+	 * @param $text String: desired title text
+	 * @return String
 	 */
 	static function displaytitle( $parser, $text = '' ) {
 		global $wgRestrictDisplayTitle;
@@ -492,11 +492,11 @@ class CoreParserFunctions {
 	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
 	 * expensive parser function and can't be called too many times per page.
 	 *
-	 * @FIXME This doesn't work correctly on preview for getting the size of
-	 *   the current page.
-	 * @FIXME Title::getLength() documentation claims that it adds things to
-	 *   the link cache, so the local cache here should be unnecessary, but in
-	 *   fact calling getLength() repeatedly for the same $page does seem to
+	 * @todo Fixme: This doesn't work correctly on preview for getting the size
+	 *   of the current page.
+	 * @todo Fixme: Title::getLength() documentation claims that it adds things
+	 *   to the link cache, so the local cache here should be unnecessary, but
+	 *   in fact calling getLength() repeatedly for the same $page does seem to
 	 *   run one query for each call?
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
