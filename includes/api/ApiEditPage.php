@@ -346,7 +346,7 @@ class ApiEditPage extends ApiBase {
 		return 'Create and edit pages.';
 	}
 	
-    public function getPossibleErrors() {
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingtext' ),
@@ -380,7 +380,7 @@ class ApiEditPage extends ApiBase {
 			array( 'unknownerror', 'retval' ),
 			array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
 			array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
-        ) );
+		) );
 	}
 
 	private function getMaxArticleSize() {

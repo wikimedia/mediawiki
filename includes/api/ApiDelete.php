@@ -210,14 +210,14 @@ class ApiDelete extends ApiBase {
 		);
 	}
 	
-    public function getPossibleErrors() {
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'token' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'nosuchpageid', 'pageid' ),
 			array( 'notanarticle' ),
 			array( 'hookaborted', 'error' ),
-        ) );
+		) );
 	}
 
 	protected function getExamples() {

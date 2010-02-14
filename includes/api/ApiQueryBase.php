@@ -408,11 +408,11 @@ abstract class ApiQueryBase extends ApiBase {
 		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
 	}
 	
-    public function getPossibleErrors() {
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'invalidtitle', 'title' ),
 			array( 'invalidtitle', 'key' ),
-        ) );
+		) );
 	}
 
 	/**
