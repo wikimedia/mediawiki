@@ -854,7 +854,7 @@ Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 'rev-deleted-comment'         => '(sylwad wedi ei ddiddymu)',
 'rev-deleted-user'            => '(enw defnyddiwr wedi ei ddiddymu)',
 'rev-deleted-event'           => '(tynnwyd gweithred y lòg)',
-'rev-deleted-user-contribs'   => '[tynnwyd enw defnyddiwr neu gyfeiriad IP - cuddiwyd y golygiad ar y rhestr cyfraniadau]',
+'rev-deleted-user-contribs'   => '[tynnwyd enw defnyddiwr neu gyfeiriad IP i ffwrdd - ni ddangosir y golygiad ar y rhestr cyfraniadau]',
 'rev-deleted-text-permission' => "'''Dilewyd''' y diwygiad hon o'r dudalen.
 Hwyrach bod manylion pellach ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileu].",
 'rev-deleted-text-unhide'     => "Cafodd y diwygiad hwn o'r dudalen ei '''ddileu'''.
@@ -1277,7 +1277,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'action-movefile'             => 'symud y ffeil hon',
 'action-upload'               => "uwchlwytho'r ffeil",
 'action-reupload'             => 'trosysgrifo ffeil sydd eisoes ar gael',
-'action-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil ar y storfa cyfrannol",
+'action-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil yn y storfa gyfrannol",
 'action-upload_by_url'        => "uuchlwytho'r ffeil o gyfeiriad URL",
 'action-writeapi'             => "defnyddio'r API i ysgrifennu a thrin y tudalennau",
 'action-delete'               => "dileu'r dudalen",
@@ -2315,6 +2315,10 @@ nid yw'n bosib cyflawnu'r symud.",
 Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 'semiprotectedpagemovewarning' => "'''Sylwer:''' Clowyd y dudalen ac felly dim ond defnyddwyr mewngofnodedig sy'n gallu ei symud.
 Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
+'move-over-sharedrepo'         => "== Y ffeil ar gael ==
+Mae'r ffeil [[:$1]] ar gael mewn storfa gyfrannol. Pe byddech yn symud y ffeil i'r teitl hwn, yna byddai'r ffeil o'r storfa gyfrannol yn cael ei disodli.",
+'file-exists-sharedrepo'       => "Mae'r enw y dewisoch ar y ffeil yn cael ei ddefnyddio'n barod ar storfa gyfrannol.
+Dewiswch enw arall os gwelwch yn dda.",
 
 # Export
 'export'            => 'Allforio tudalennau',

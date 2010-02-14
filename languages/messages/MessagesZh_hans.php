@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -927,7 +927,7 @@ $2',
 'rev-deleted-user'            => '（用户名已移除）',
 'rev-deleted-event'           => '（日志动作已移除）',
 'rev-deleted-user-contribs'   => '[用户名或IP地址已移除 - 从贡献中隐藏编辑]',
-'rev-deleted-text-permission' => "该页面修订已经被'''删除'''。
+'rev-deleted-text-permission' => "该页面修订已被'''删除'''。
 在[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 删除日志]中可以找到详细的信息。",
 'rev-deleted-text-unhide'     => "该页面修订已经被'''删除'''。
 在[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 删除日志]中可以找到详细的信息。
@@ -939,7 +939,7 @@ $2',
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到详细的信息。",
 'rev-suppressed-text-view'    => "该页面修订已经被'''废止'''。作为管理员，您可以查看它；
 在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 废止日志]中可以找到详细的信息。",
-'rev-deleted-no-diff'         => "因为其中一次修订'''删除'''，您不可以查看这个差异。
+'rev-deleted-no-diff'         => "因为其中一次修订已被'''删除'''，您不可以查看这个差异。
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到更多的信息。",
 'rev-suppressed-no-diff'      => "该页面的其中一次修订已经被'''删除'''，你不可以查看这次的修订。",
 'rev-deleted-unhide-diff'     => "该页面的其中一次修订已经被'''删除'''。
@@ -2042,7 +2042,7 @@ $NEWPAGE
 
 该页最后的编辑者是[[User:$3|$3]]（[[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment'       => '编辑摘要："<i>$1</i>"。',
-'revertpage'        => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后修订版本',
+'revertpage'        => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后一个修订版本',
 'revertpage-nouser' => '恢复由（移除了的用户名）的编辑到[[User:$1|$1]]的最后一个修订版本',
 'rollback-success'  => '已恢复$1的编辑；更改回$2的最后修订版本。',
 'sessionfailure'    => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',

@@ -2606,7 +2606,7 @@ impossible de renommer une page sur elle-même.',
 'fix-double-redirects'         => 'Mettre à jour les redirections pointant vers le titre original',
 'move-leave-redirect'          => 'Laisser une redirection vers le nouveau titre',
 'protectedpagemovewarning'     => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d'administrateur puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
-'semiprotectedpagemovewarning' => "'''Note:''' Cette page a été bloqué afin que seul les utilisateurs enregistrés puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
+'semiprotectedpagemovewarning' => "'''Note:''' Cette page a été protégée afin que seuls les utilisateurs enregistrés puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
 'move-over-sharedrepo'         => '== Le fichier existe ==
 [[:$1]] existe déjà sur un dépôt partagé. Renommer ce fichier rendra le fichier sur le dépôt partage inaccessible.',
 'file-exists-sharedrepo'       => 'Le nom choisi est déjà utilisé par un fichier sur un dépôt partagé.
