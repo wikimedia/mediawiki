@@ -7781,7 +7781,30 @@ Bar foo
 </p>
 !! end
 
+!! test
+Verify that displaytitle works (bug #22501) no displaytitle
+!! options
+showtitle
+!! input
+this is not the the title
+!! result
 
+<p>this is not the the title
+</p>
+!! end
+
+!! test
+Verify that displaytitle works (bug #22501)
+!! options
+showtitle
+!! input
+this is not the the title
+{{DISPLAYTITLE:screen}}
+!! result
+screen
+<p>this is not the the title
+</p>
+!! end
 
 TODO:
 more images

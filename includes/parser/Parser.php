@@ -365,13 +365,6 @@ class Parser
 		// won't pick it up.  This is probably expected behavior.
 		if ( $wgContLang->getConvRuleTitle() ) {
 			$this->mOutput->setTitleText( $wgContLang->getConvRuleTitle() );
-		} elseif ( !( $wgDisableLangConversion
-					  || isset( $this->mDoubleUnderscores['notitleconvert'] ) ) ) {
-			if ( $title->getNamespace() == NS_SPECIAL ) {
-				$this->setTitle( $wgContLang->convert( $title ) );
-			} else {
-				$this->mOutput->setTitleText( $wgContLang->convert( $title->getPrefixedText() ) );
-			}
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
