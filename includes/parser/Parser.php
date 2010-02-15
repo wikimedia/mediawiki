@@ -94,7 +94,7 @@ class Parser
 	 */
 	# Persistent:
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
-		$mSubsts, $mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex,
+		$mSubstWords, $mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex,
 		$mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols, $mDefaultStripList,
 		$mVarCache, $mConf, $mFunctionTagHooks;
 
@@ -2690,7 +2690,7 @@ class Parser
 		$substIDs = MagicWord::getSubstIDs();
 
 		$this->mVariables = new MagicWordArray( $variableIDs );
-		$this->mSubsts = new MagicWordArray( $substIDs );
+		$this->mSubstWords = new MagicWordArray( $substIDs );
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -2862,14 +2862,25 @@ class Parser
 		wfProfileIn( __METHOD__.'-modifiers' );
 		if ( !$found ) {
 
-			$substMatch = $this->mSubsts->matchStartAndRemove( $part1 );
+			$substMatch = $this->mSubstWords->matchStartAndRemove( $part1 );
 
 			# Possibilities for substMatch: "subst", "safesubst" or FALSE
-			# Whether to include depends also on whether we are in the pre-save-transform
-			#
-			# safesubst || (subst && PST) || (false && !PST) => transclude (skip the if)
-			# (false && PST) || (subst && !PST)  => return input (handled by if)
-			if ( $substMatch != 'safesubst' && ($substMatch == 'subst' xor $this->ot['wiki']) ) {
+			# Decide whether to expand template or keep wikitext as-is.
+			if ( $this->ot['wiki'] )
+			{
+				if ( $substMatch === false ) {
+					$literal = true;  # literal when in PST with no prefix
+				} else {
+					$literal = false; # expand when in PST with subst: or safesubst:
+				}
+			} else {
+				if ( $substMatch == 'subst' ) {
+					$literal = true;  # literal when not in PST with plain subst:
+				} else {
+					$literal = false; # expand when not in PST with safesubst: or no prefix
+				}
+			}
+			if ( $literal ) {
 				$text = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
 				$isLocalObj = true;
 				$found = true;
