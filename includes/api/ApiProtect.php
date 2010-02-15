@@ -46,9 +46,6 @@ class ApiProtect extends ApiBase {
 		if ( empty( $params['protections'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'protections' ) );
 
-		if ( !$wgUser->matchEditToken( $params['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
-
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj )
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
@@ -176,7 +173,6 @@ class ApiProtect extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingparam', 'protections' ),
-			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ),
 			array( 'create-titleexists' ),
@@ -188,8 +184,8 @@ class ApiProtect extends ApiBase {
 		) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {

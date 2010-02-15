@@ -970,10 +970,10 @@ abstract class ApiBase {
 	}
 	
 	/**
-	* Indicates whether this module needs a token to preform the request
+	* Returns the token salt if there is one, null if the module doesn't require a salt, else false if the module doesn't need a token
 	* @returns bool
 	*/
-	public function requiresToken() {
+	public function getTokenSalt() {
 		return false;
 	}
 
@@ -997,7 +997,7 @@ abstract class ApiBase {
 			$ret[] = array ( 'writedisabled' );
 		}
 		
-		if ( $this->requiresToken() ) {
+		if ( $this->getTokenSalt() != false ) {
 			$ret[] = array( 'missingparam', 'token' );
 		}
 

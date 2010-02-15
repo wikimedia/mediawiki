@@ -53,9 +53,6 @@ class ApiEditPage extends ApiBase {
 				$params['undo'] == 0 )
 			$this->dieUsageMsg( array( 'missingtext' ) );
 
-		if ( !$wgUser->matchEditToken( $params['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
-
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj || $titleObj->isExternal() )
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
@@ -347,7 +344,6 @@ class ApiEditPage extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingtext' ),
-			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'createonly-exists' ),
 			array( 'nocreate-missing' ),
@@ -463,8 +459,8 @@ class ApiEditPage extends ApiBase {
 		);
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {

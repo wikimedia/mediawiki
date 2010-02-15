@@ -61,8 +61,6 @@ class ApiBlock extends ApiBase {
 
 		if ( is_null( $params['user'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
-		if ( !$wgUser->matchEditToken( $params['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
 		if ( !$wgUser->isAllowed( 'block' ) )
 			$this->dieUsageMsg( array( 'cantblock' ) );
 		if ( $params['hidename'] && !$wgUser->isAllowed( 'hideuser' ) )
@@ -161,15 +159,14 @@ class ApiBlock extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'user' ),
-			array( 'sessionfailure' ),
 			array( 'cantblock' ),
 			array( 'canthide' ),
 			array( 'cantblock-email' ),
         ) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {

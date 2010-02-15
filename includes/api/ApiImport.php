@@ -44,8 +44,6 @@ class ApiImport extends ApiBase {
 		if ( !$wgUser->isAllowed( 'import' ) )
 			$this->dieUsageMsg( array( 'cantimport' ) );
 		$params = $this->extractRequestParams();
-		if ( !$wgUser->matchEditToken( $params['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
 		$source = null;
 		$isUpload = false;
@@ -144,7 +142,6 @@ class ApiImport extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'cantimport' ),
-			array( 'sessionfailure' ),
 			array( 'missingparam', 'interwikipage' ),
 			array( 'cantimport-upload' ),
 			array( 'import-unknownerror', 'source' ),
@@ -152,8 +149,8 @@ class ApiImport extends ApiBase {
 		) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {

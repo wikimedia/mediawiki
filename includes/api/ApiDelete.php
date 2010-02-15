@@ -47,7 +47,8 @@ class ApiDelete extends ApiBase {
 	 * result object.
 	 */
 	public function execute() {
-		global $wgUser;
+	global $wgUser;
+	
 		$params = $this->extractRequestParams();
 
 		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
@@ -78,7 +79,7 @@ class ApiDelete extends ApiBase {
 			
 			if ( count( $retval ) )
 				$this->dieUsageMsg( reset( $retval ) ); // We don't care about multiple errors, just report one of them
-
+				
 			if ( $params['watch'] || $wgUser->getOption( 'watchdeletion' ) )
 				$articleObj->doWatch();
 			else if ( $params['unwatch'] )
@@ -95,10 +96,7 @@ class ApiDelete extends ApiBase {
 		// Check permissions
 		$errors = $title->getUserPermissionsErrors( 'delete', $wgUser );
 		if ( count( $errors ) > 0 ) return $errors;
-		
-		// Check token
-		if ( !$wgUser->matchEditToken( $token ) )
-			return array( array( 'sessionfailure' ) );
+
 		return array();
 	}
 
@@ -219,8 +217,8 @@ class ApiDelete extends ApiBase {
 		) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {

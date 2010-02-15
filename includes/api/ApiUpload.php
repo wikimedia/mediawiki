@@ -47,10 +47,6 @@ class ApiUpload extends ApiBase {
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
 
-		// Do token checks:
-		if ( !$wgUser->matchEditToken( $this->mParams['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
-
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 
@@ -328,7 +324,6 @@ class ApiUpload extends ApiBase {
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'uploaddisabled' ),
-			array( 'sessionfailure' ),
 			array( 'invalid-session-key' ),
 			array( 'uploaddisabled' ),
 			array( 'badaccess-groups' ),
@@ -347,8 +342,8 @@ class ApiUpload extends ApiBase {
         ) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {

@@ -50,9 +50,6 @@ class ApiUndelete extends ApiBase {
 		if ( $wgUser->isBlocked() )
 			$this->dieUsageMsg( array( 'blockedtext' ) );
 
-		if ( !$wgUser->matchEditToken( $params['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
-
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj )
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
@@ -123,14 +120,13 @@ class ApiUndelete extends ApiBase {
 			array( 'missingparam', 'title' ),
 			array( 'permdenied-undelete' ),
 			array( 'blockedtext' ),
-			array( 'sessionfailure' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'cannotundelete' ),
 		) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {
