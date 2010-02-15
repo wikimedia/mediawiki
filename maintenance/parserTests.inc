@@ -556,6 +556,8 @@ class ParserTest {
 			'wgHtml5' => true,
 			'wgWellFormedXml' => true,
 			'wgAllowMicrodataAttributes' => true,
+			'wgAllowDisplayTitle' => true,
+			'wgRestrictDisplayTitle' => false,
 		);
 
 		if ($config) {
