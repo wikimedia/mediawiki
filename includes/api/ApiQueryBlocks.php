@@ -64,10 +64,12 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$data = array();
 
 		$this->addTables( 'ipblocks' );
+		$this->addFields( 'ipb_auto' );
+
 		if ( $fld_id )
 			$this->addFields( 'ipb_id' );
 		if ( $fld_user )
-			$this->addFields( array( 'ipb_address', 'ipb_user', 'ipb_auto' ) );
+			$this->addFields( array( 'ipb_address', 'ipb_user' ) );
 		if ( $fld_by )
 		{
 			$this->addTables( 'user' );
@@ -83,7 +85,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		if ( $fld_range )
 			$this->addFields( array( 'ipb_range_start', 'ipb_range_end' ) );
 		if ( $fld_flags )
-			$this->addFields( array( 'ipb_auto', 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock', 'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ) );
+			$this->addFields( array( 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock', 'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ) );
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addWhereRange( 'ipb_timestamp', $params['dir'], $params['start'], $params['end'] );
