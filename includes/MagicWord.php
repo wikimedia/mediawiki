@@ -572,7 +572,7 @@ class MagicWordArray {
 	}
 
 	/**
-	 * Get an unanchored regex
+	 * Get an unanchored regex that does not match parameters
 	 */
 	function getRegex() {
 		if ( is_null( $this->regex ) ) {
@@ -589,29 +589,29 @@ class MagicWordArray {
 	}
 
 	/**
-	 * Get a regex for matching variables
+	 * Get a regex for matching variables with parameters
 	 */
 	function getVariableRegex() {
 		return str_replace( "\\$1", "(.*?)", $this->getRegex() );
 	}
 
 	/**
-	 * Get a regex for matching a prefix. Does not match parameters.
+	 * Get a regex anchored to the start of the string that does not match parameters
 	 */
 	function getRegexStart() {
 		$base = $this->getBaseRegex();
 		$newRegex = array( '', '' );
 		if ( $base[0] !== '' ) {
-			$newRegex[0] = str_replace( "\\$1", "", "/^(?:{$base[0]})/iuS" );
+			$newRegex[0] = "/^(?:{$base[0]})/iuS";
 		}
 		if ( $base[1] !== '' ) {
-			$newRegex[1] = str_replace( "\\$1", "", "/^(?:{$base[1]})/S" );
+			$newRegex[1] = "/^(?:{$base[1]})/S"; 
 		}
 		return $newRegex;
 	}
 
 	/**
-	 * Get an anchored regex for matching variables
+	 * Get an anchored regex for matching variables with parameters
 	 */
 	function getVariableStartToEndRegex() {
 		$base = $this->getBaseRegex();
@@ -710,22 +710,24 @@ class MagicWordArray {
 	}
 
 	/**
-	 * Returns the magic word id removed from the start, or false
-	 * does not match parameters.
+	 * Return the ID of the magic word at the start of $text, and remove
+	 * the prefix from $text.
+	 * Return false if no match found and $text is not modified.
+	 * Does not match parameters.
 	 */
 	public function matchStartAndRemove( &$text ) {
-		$found = FALSE;
 		$regexes = $this->getRegexStart();
 		foreach ( $regexes as $regex ) {
 			if ( $regex === '' ) {
 				continue;
 			}
-			preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
-			foreach ( $matches as $m ) {
-				list( $found, $param ) = $this->parseMatch( $m );
+			preg_match( $regex, $text, $match );
+			if ( $match ) {
+				list( $found, $param ) = $this->parseMatch( $match );
+				$text = substr( $text, strlen( $found ) + 1 );
+				return $found;
 			}
-			$text = preg_replace( $regex, '', $text );
 		}
-		return $found;
+		return false;
 	}
 }
