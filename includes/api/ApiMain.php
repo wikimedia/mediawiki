@@ -412,7 +412,7 @@ class ApiMain extends ApiBase {
 		$this->mModule = $module;
 
 		//Die if token required, but not provided (unless there is a gettoken parameter)
-		if ( $module->requiresToken() && is_null( $params['token'] ) && !is_null( $params['gettoken'] ) )
+		if ( $module->requiresToken() && !isset( $params['token'] ) && isset( $params['gettoken'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
