@@ -339,53 +339,53 @@ class ApiMain extends ApiBase {
 	 */
 	protected function substituteResultWithError( $e ) {
 
-			// Printer may not be initialized if the extractRequestParams() fails for the main module
-			if ( !isset ( $this->mPrinter ) ) {
-				// The printer has not been created yet. Try to manually get formatter value.
-				$value = $this->getRequest()->getVal( 'format', self::API_DEFAULT_FORMAT );
-				if ( !in_array( $value, $this->mFormatNames ) )
-					$value = self::API_DEFAULT_FORMAT;
+		// Printer may not be initialized if the extractRequestParams() fails for the main module
+		if ( !isset ( $this->mPrinter ) ) {
+			// The printer has not been created yet. Try to manually get formatter value.
+			$value = $this->getRequest()->getVal( 'format', self::API_DEFAULT_FORMAT );
+			if ( !in_array( $value, $this->mFormatNames ) )
+				$value = self::API_DEFAULT_FORMAT;
 
-				$this->mPrinter = $this->createPrinterByName( $value );
-				if ( $this->mPrinter->getNeedsRawData() )
-					$this->getResult()->setRawMode();
-			}
+			$this->mPrinter = $this->createPrinterByName( $value );
+			if ( $this->mPrinter->getNeedsRawData() )
+				$this->getResult()->setRawMode();
+		}
 
-			if ( $e instanceof UsageException ) {
-				//
-				// User entered incorrect parameters - print usage screen
-				//
-				$errMessage = $e->getMessageArray();
+		if ( $e instanceof UsageException ) {
+			//
+			// User entered incorrect parameters - print usage screen
+			//
+			$errMessage = $e->getMessageArray();
 
-				// Only print the help message when this is for the developer, not runtime
-				if ( $this->mPrinter->getWantsHelp() || $this->mAction == 'help' )
-					ApiResult :: setContent( $errMessage, $this->makeHelpMsg() );
+			// Only print the help message when this is for the developer, not runtime
+			if ( $this->mPrinter->getWantsHelp() || $this->mAction == 'help' )
+				ApiResult :: setContent( $errMessage, $this->makeHelpMsg() );
 
+		} else {
+			global $wgShowSQLErrors, $wgShowExceptionDetails;
+			//
+			// Something is seriously wrong
+			//
+			if ( ( $e instanceof DBQueryError ) && !$wgShowSQLErrors ) {
+				$info = "Database query error";
 			} else {
-				global $wgShowSQLErrors, $wgShowExceptionDetails;
-				//
-				// Something is seriously wrong
-				//
-				if ( ( $e instanceof DBQueryError ) && !$wgShowSQLErrors ) {
-					$info = "Database query error";
-				} else {
-					$info = "Exception Caught: {$e->getMessage()}";
-				}
-
-				$errMessage = array (
-					'code' => 'internal_api_error_' . get_class( $e ),
-					'info' => $info,
-				);
-				ApiResult :: setContent( $errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : "" );
+				$info = "Exception Caught: {$e->getMessage()}";
 			}
 
-			$this->getResult()->reset();
-			$this->getResult()->disableSizeCheck();
-			// Re-add the id
-			$requestid = $this->getParameter( 'requestid' );
-			if ( !is_null( $requestid ) )
-				$this->getResult()->addValue( null, 'requestid', $requestid );
-			$this->getResult()->addValue( null, 'error', $errMessage );
+			$errMessage = array (
+				'code' => 'internal_api_error_' . get_class( $e ),
+				'info' => $info,
+			);
+			ApiResult :: setContent( $errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : "" );
+		}
+
+		$this->getResult()->reset();
+		$this->getResult()->disableSizeCheck();
+		// Re-add the id
+		$requestid = $this->getParameter( 'requestid' );
+		if ( !is_null( $requestid ) )
+			$this->getResult()->addValue( null, 'requestid', $requestid );
+		$this->getResult()->addValue( null, 'error', $errMessage );
 
 		return $errMessage['code'];
 	}
