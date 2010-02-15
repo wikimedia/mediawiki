@@ -42,15 +42,15 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgEnableOpenSearchSuggest, $wgSearchSuggestCacheExpiry, $wgGroupPermissions, $wgUser;
+		global $wgEnableOpenSearchSuggest, $wgSearchSuggestCacheExpiry;
 		$params = $this->extractRequestParams();
 		$search = $params['search'];
 		$limit = $params['limit'];
 		$namespaces = $params['namespace'];
 		$suggest = $params['suggest'];
 
-		// MWSuggest or similar hit, or hit without read rights
-		if ( ( $suggest && !$wgEnableOpenSearchSuggest ) || ( !$wgGroupPermissions['*']['read'] && !$wgUser->isAllowed( 'read' ) ) )
+		// MWSuggest or similar hit
+		if ( $suggest && !$wgEnableOpenSearchSuggest )
 			$srchres = array();
 		else {
 			// Open search results may be stored for a very long
@@ -107,9 +107,5 @@ class ApiOpenSearch extends ApiBase {
 
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
-	}
-
-	public function isReadMode() {
-		return false;
 	}
 }

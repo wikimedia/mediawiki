@@ -432,8 +432,8 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		global $wgUser;
-		if ( $module->isReadMode() && !$wgUser->isAllowed( 'read' ) )
+		global $wgUser, $wgGroupPermissions;
+		if ( $module->isReadMode() && !$wgGroupPermissions['*']['read'] && !$wgUser->isAllowed( 'read' ) )
 			$this->dieUsageMsg( array( 'readrequired' ) );
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite )
