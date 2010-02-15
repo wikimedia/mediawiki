@@ -1029,7 +1029,7 @@ class ParserTest {
 
 		$aid = $title->getArticleID( GAID_FOR_UPDATE );
 		if ($aid != 0) {
-			wfDie( "duplicate article at line $line\n" );
+			wfDie( "duplicate article '$name' at line $line\n" );
 		}
 
 		$art = new Article($title);
