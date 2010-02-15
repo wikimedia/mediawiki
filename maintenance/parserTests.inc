@@ -25,7 +25,7 @@
  */
 
 /** */
-$options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record'. 'run-disabled' );
+$options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled' );
 $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 
 if ( !defined( "NO_COMMAND_LINE" ) ) {
