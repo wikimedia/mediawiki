@@ -67,7 +67,7 @@ class ArchivedFile
 
 	/**
 	 * Loads a file object from the filearchive table
-	 * @return ResultWrapper
+	 * @return true on success or null
 	 */
 	public function load() {
 		if ( $this->dataLoaded ) {
@@ -150,7 +150,7 @@ class ArchivedFile
 
 	/**
 	 * Loads a file object from the filearchive table
-	 * @return ResultWrapper
+	 * @return ArchivedFile
 	 */
 	public static function newFromRow( $row ) {
 		$file = new ArchivedFile( Title::makeTitle( NS_FILE, $row->fa_name ) );
@@ -178,7 +178,6 @@ class ArchivedFile
 
 	/**
 	 * Return the associated title object
-	 * @public
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -249,7 +248,6 @@ class ArchivedFile
 
 	/**
 	 * Return the size of the image file, in bytes
-	 * @public
 	 */
 	public function getSize() {
 		$this->load();
@@ -258,7 +256,6 @@ class ArchivedFile
 
 	/**
 	 * Return the bits of the image file, in bytes
-	 * @public
 	 */
 	public function getBits() {
 		$this->load();
@@ -360,8 +357,9 @@ class ArchivedFile
 	}
 
 	/**
-	 * int $field one of DELETED_* bitfield constants
 	 * for file or revision rows
+	 *
+	 * @param $field Integer: one of DELETED_* bitfield constants
 	 * @return bool
 	 */
 	public function isDeleted( $field ) {
@@ -372,7 +370,7 @@ class ArchivedFile
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
-	 * @param int $field
+	 * @param $field Integer
 	 * @return bool
 	 */
 	public function userCan( $field ) {
