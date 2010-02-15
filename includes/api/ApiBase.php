@@ -474,7 +474,7 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Die if none or more than one of a certain set of parameters is set
+	 * Die if none or more than one of a certain set of parameters is set and not false.
 	 * @param $params array of parameter names
 	 */
 	public function requireOnlyOneParameter( $params ) {
@@ -482,7 +482,7 @@ abstract class ApiBase {
 		array_shift( $required );
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
-				create_function( '$x', 'return !is_null($x);' )
+				create_function( '$x', 'return !is_null($x) && $x !== false;' )
 			) ), $required );
 		if ( count( $intersection ) > 1 ) {
 			$this->dieUsage( 'The parameters ' . implode( ', ', $intersection ) . ' can not be used together', 'invalidparammix' );
