@@ -277,7 +277,7 @@ class ApiUpload extends ApiBase {
 			'watch' => false,
 			'ignorewarnings' => false,
 			'file' => null,
-			'enablechunks' => null, /* must be null to work with requireOnlyOneParameter */
+			'enablechunks' => false,
 			'chunksession' => null,
 			'chunk' => null,
 			'done' => false,
