@@ -35,8 +35,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryAllmessages extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'am' );
+	public function __construct( $query, $moduleName) {
+		parent :: __construct( $query, $moduleName, 'am');
 	}
 
 	public function execute() {
@@ -82,7 +82,20 @@ class ApiQueryAllmessages extends ApiQueryBase {
 
 			if ( !$skip ) {
 				$a = array( 'name' => $message );
-				$msg = wfMsgGetKey( $message, true, false, false );
+				$args = null;
+				if ( isset( $params['args'] ) && count( $params['args'] ) != 0 ) {
+					$args = $params['args'];
+				}
+				// Check if the parser is enabled:
+				if ( $params[ 'enableparser' ] ){
+					$msg = wfMsgExt( $message, array( 'parsemag' ), $args );
+				} else if ( $args ) {
+					$msgString = wfMsgGetKey( $message, true, false, false );
+					$msg = wfMsgReplaceArgs( $msgString, $args );
+				} else {
+					$msg = wfMsgGetKey( $message, true, false, false );
+				}
+
 				if ( wfEmptyMsg( $message, $msg ) )
 					$a['missing'] = '';
 				else {
@@ -119,6 +132,10 @@ class ApiQueryAllmessages extends ApiQueryBase {
 					'default'
 				)
 			),
+			'enableparser' => false,
+			'args' => array(
+				ApiBase :: PARAM_ISMULTI => true
+			),
 			'filter' => array(),
 			'lang' => null,
 			'from' => null,
@@ -129,6 +146,9 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		return array (
 			'messages' => 'Which messages to output. "*" means all messages',
 			'prop' => 'Which properties to get',
+			'enableparser' => array('Set to enable parser, will parses the wikitext of message',
+							  'Will substitute magic words, handle templates etc'),
+			'args' => 'Arguments to be substituted into message',
 			'filter' => 'Return only messages that contain this string',
 			'lang' => 'Return messages in this language',
 			'from' => 'Return messages starting at this message',
