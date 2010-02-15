@@ -764,7 +764,7 @@ class ParserTest {
 	}
 
 	private function teardownDatabase() {
-		global $wgDBprefix, $wgDBtype;
+		global $wgDBtype;
 		if ( !$this->databaseSetupDone ) {
 			return;
 		}
@@ -1241,7 +1241,7 @@ class DbTestPreviewer extends TestRecorder  {
 	 * and all that fun stuff
 	 */
 	function start() {
-		global $wgDBtype, $wgDBprefix;
+		global $wgDBtype;
 		parent::start();
 
 		if( ! $this->db->tableExists( 'testrun' )
@@ -1414,7 +1414,7 @@ class DbTestRecorder extends DbTestPreviewer  {
 	 * and all that fun stuff
 	 */
 	function start() {
-		global $wgDBtype, $wgDBprefix, $options;
+		global $wgDBtype, $options;
 		$this->db->begin();
 
 		if( ! $this->db->tableExists( 'testrun' )
