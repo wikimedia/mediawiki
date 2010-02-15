@@ -141,17 +141,38 @@ $messages = array(
 'site-rss-feed'      => 'Ebale RSS ya $1',
 'site-atom-feed'     => 'Ebale Atom ya $1',
 'page-rss-feed'      => 'Ebale RSS ya « $1 »',
+'red-link-title'     => '$1 (lonkásá  ezalí tɛ̂)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'ekakoli',
-'nstab-image'    => 'elilingi',
-'nstab-template' => 'Emekoli',
-'nstab-help'     => 'Bosálisi',
-'nstab-category' => 'loléngé',
+'nstab-main'      => 'lonkásá',
+'nstab-user'      => 'lonkásá ya mosáleli',
+'nstab-media'     => 'Mediá',
+'nstab-special'   => 'Lonkásá gudi',
+'nstab-project'   => 'Etalí',
+'nstab-image'     => 'Kásá',
+'nstab-mediawiki' => 'Liyébísí',
+'nstab-template'  => 'Emekoli',
+'nstab-help'      => 'Lonkásá ya lisálisi',
+'nstab-category'  => 'Katégori',
+
+# Main script and global functions
+'nosuchaction'      => 'Ekelá eyébani tɛ̂',
+'nosuchspecialpage' => 'Lonkásá gudi yangó ezalí tɛ̂',
+'nospecialpagetext' => '<strong>Otúní lonkásá gudi kasi yangó ezalí tɛ̂.</strong>
+
+Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error'         => 'Mbéba',
-'viewsourcefor' => 'na $1',
+'error'              => 'Mbéba',
+'databaseerror'      => 'Zíko ya litákoli ya kabo',
+'laggedslavemode'    => "'''Likébisi''' : lonkásá óyo ekokí kokwa mbóngwana ya nsúka nyɔ́nsɔ tɛ̂",
+'readonly'           => 'Litákoli ya kabo efúngámí',
+'enterlockreason'    => 'Ópésa ntína mpé ntángo ya kokanisa ya bofúngi ya litákoli ya kabo',
+'internalerror'      => 'Zíko ya káti',
+'internalerror_info' => 'Zíko ya káti : $1',
+'perfcached'         => 'Bipeseli byangó bizalí o mobómbisi-lombángu mpé bikokí kozala ya lɛlɔ́ tɛ̂.',
+'perfcachedts'       => 'Bipeseli byangó bizalí o mobómbisi-lombángu mpé bikokí kozala ya lɛlɔ́ tɛ̂. Bizalí bya $1.',
+'viewsourcefor'      => 'na $1',
 
 # Login and logout pages
 'yourname'                => 'Nkómbó ya ekitoli :',
