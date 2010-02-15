@@ -212,9 +212,6 @@ abstract class UploadBase {
 	/**
 	 * Verifies that it's ok to include the uploaded file
 	 *
-	 * FIXME: this function seems to intermixes tmpfile and $this->mTempPath .. no idea why this is
-	 *
-	 * @param string $tmpfile the full path of the temporary file to verify
 	 * @return mixed true of the file is verified, a string or array otherwise.
 	 */
 	protected function verifyFile() {
