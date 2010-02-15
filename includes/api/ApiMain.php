@@ -400,7 +400,7 @@ class ApiMain extends ApiBase {
 			$this->getResult()->addValue( null, 'requestid', $requestid );
 
 		$params = $this->extractRequestParams();
-
+			
 		$this->mShowVersions = $params['version'];
 		$this->mAction = $params['action'];
 
@@ -412,9 +412,22 @@ class ApiMain extends ApiBase {
 		$module = new $this->mModules[$this->mAction] ( $this, $this->mAction );
 		$this->mModule = $module;
 
+		$moduleParams = $module->extractRequestParams();
+		
 		//Die if token required, but not provided (unless there is a gettoken parameter)
-		if ( $module->requiresToken() && !isset( $params['token'] ) && isset( $params['gettoken'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+		$salt = $module->getTokenSalt();
+		if ( $salt != false )
+		{
+			if ( !isset( $moduleParams['token'] ) && !isset( $moduleParams['gettoken'] ) ) {
+				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+			} else {
+				global $wgUser;
+				if ( ( $salt != null /*&& !$wgUser->matchEditToken( $moduleParams['token'], $salt )*/ )
+					/*|| !$wgUser->matchEditToken( $moduleParams['token'] )*/ ) {
+					$this->dieUsageMsg( array( 'sessionfailure' ) );
+				}
+			}
+		}
 
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			// Check for maxlag

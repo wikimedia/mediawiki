@@ -41,13 +41,10 @@ class ApiPatrol extends ApiBase {
 	 * Patrols the article or provides the reason the patrol failed.
 	 */
 	public function execute() {
-		global $wgUser;
 		$params = $this->extractRequestParams();
 		
 		if ( !isset( $params['rcid'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'rcid' ) );
-		if ( !$wgUser->matchEditToken( $params['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
 		$rc = RecentChange::newFromID( $params['rcid'] );
 		if ( !$rc instanceof RecentChange )
@@ -91,13 +88,12 @@ class ApiPatrol extends ApiBase {
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'rcid' ),
-			array( 'sessionfailure' ),
 			array( 'nosuchrcid', 'rcid' ),
         ) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {

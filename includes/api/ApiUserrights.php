@@ -37,19 +37,11 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser;
 		$params = $this->extractRequestParams();
-		if ( is_null( $params['user'] ) )
-			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
-
+		
+		//User already validated in call to getTokenSalt from Main
 		$form = new UserrightsPage;
 		$user = $form->fetchUser( $params['user'] );
-		if ( $user instanceof WikiErrorMsg )
-			$this->dieUsageMsg( array_merge(
-				(array)$user->getMessageKey(), $user->getMessageArgs() ) );
-
-		if ( !$wgUser->matchEditToken( $params['token'], $user->getName() ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
 		
 		$r['user'] = $user->getName();
 		list( $r['added'], $r['removed'] ) =
@@ -107,12 +99,21 @@ class ApiUserrights extends ApiBase {
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'user' ),
-			array( 'sessionfailure' ),
         ) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		$params = $this->extractRequestParams();
+		if ( is_null( $params['user'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
+
+		$form = new UserrightsPage;
+		$user = $form->fetchUser( $params['user'] );
+		if ( $user instanceof WikiErrorMsg )
+			$this->dieUsageMsg( array_merge(
+				(array)$user->getMessageKey(), $user->getMessageArgs() ) );
+
+		return $user->getName();
 	}
 
 	protected function getExamples() {

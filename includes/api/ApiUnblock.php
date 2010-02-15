@@ -57,8 +57,7 @@ class ApiUnblock extends ApiBase {
 			$this->dieUsageMsg( array( 'unblock-notarget' ) );
 		if ( !is_null( $params['id'] ) && !is_null( $params['user'] ) )
 			$this->dieUsageMsg( array( 'unblock-idanduser' ) );
-		if ( !$wgUser->matchEditToken( $params['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
+
 		if ( !$wgUser->isAllowed( 'block' ) )
 			$this->dieUsageMsg( array( 'cantunblock' ) );
 
@@ -113,13 +112,12 @@ class ApiUnblock extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'unblock-notarget' ),
 			array( 'unblock-idanduser' ),
-			array( 'sessionfailure' ),
 			array( 'cantunblock' ),
         ) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {

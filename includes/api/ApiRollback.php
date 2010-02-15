@@ -122,8 +122,8 @@ class ApiRollback extends ApiBase {
 		) );
 	}
 	
-	public function requiresToken() {
-		return true;
+	public function getTokenSalt() {
+		return null;
 	}
 
 	protected function getExamples() {
