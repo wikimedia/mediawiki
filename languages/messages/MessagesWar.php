@@ -342,6 +342,9 @@ Nagbalik hin sayop an database nga "$3: $4"',
 'loginerror'              => 'Sayop hin pagsakob',
 'loginlanguagelabel'      => 'Yinaknan: $1',
 
+# Edit pages
+'watchthis' => 'Bantayi ini nga pakli',
+
 # History pages
 'viewpagelogs' => 'Kitaa an mga log para hini nga pakli',
 'next'         => 'sunod',
@@ -350,11 +353,14 @@ Nagbalik hin sayop an database nga "$3: $4"',
 'page_last'    => 'kataposan',
 
 # Search results
-'prevn'          => 'naha-una nga $1',
-'nextn'          => 'sunod nga {{PLURAL:$1|$1}}',
-'viewprevnext'   => 'Kitaa an ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Sulod',
-'powersearch'    => 'Bilnga',
+'prevn'                    => 'naha-una nga {{PLURAL:$1|$1}}',
+'nextn'                    => 'sunod nga {{PLURAL:$1|$1}}',
+'viewprevnext'             => 'Kitaa an ($1 {{int:pipe-separator}} $2) ($3)',
+'searchhelp-url'           => 'Help:Sulod',
+'search-suggest'           => 'Buot sidngon mo ba: $1',
+'search-interwiki-caption' => 'Mga bugto nga proyekto',
+'search-interwiki-default' => '$1 nga resulta:',
+'powersearch'              => 'Bilnga',
 
 # Preferences page
 'preferences'       => 'Mga karuyag',
@@ -388,8 +394,8 @@ Nagbalik hin sayop an database nga "$3: $4"',
 # File description page
 'file-anchor-link'        => 'Fayl',
 'filehist-datetime'       => 'Pitsa/Oras',
-'imagelinks'              => 'Mga sumpay',
-'linkstoimage'            => 'Nasumpay hini nga fayl an mga nasunod nga mga pakli:',
+'imagelinks'              => 'Mga sumpay hin fayl',
+'linkstoimage'            => 'An nasunod nga {{PLURAL:$1|pakli nasumpay|$1 mga pakli nasumpay}} hini nga fayl:',
 'nolinkstoimage'          => 'Waray mga pakli nga nasumpay hini nga fayl.',
 'sharedupload'            => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.',
 'sharedupload-desc-there' => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.
@@ -405,10 +411,18 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'statistics' => 'Mga estadistika',
 
 # Miscellaneous special pages
-'unusedcategories' => 'Waray kagamit nga mga kaarangay',
-'unusedimages'     => 'Waray kagamit nga mga fayl',
-'longpages'        => 'Haglaba nga mga pakli',
-'move'             => 'Balhina',
+'nbytes'            => '$1 {{PLURAL:$1|nga byte|nga mga byte}}',
+'ncategories'       => '$1 {{PLURAL:$1|nga kaarangay|nga mga kaarangay}}',
+'nlinks'            => '$1 {{PLURAL:$1|nga sumpay|nga mga sumpay}}',
+'nmembers'          => '$1 {{PLURAL:$1|nga api|nga mga api}}',
+'nrevisions'        => '$1 {{PLURAL:$1|nga pagliwat|nga mga pagliwat}}',
+'nviews'            => '$1 {{PLURAL:$1|nga pangita|nga mga pangita}}',
+'specialpage-empty' => 'Waray mga resulta para hini nga report.',
+'lonelypages'       => 'Mga nahibulag nga mga pakli',
+'unusedcategories'  => 'Waray kagamit nga mga kaarangay',
+'unusedimages'      => 'Waray kagamit nga mga fayl',
+'longpages'         => 'Haglaba nga mga pakli',
+'move'              => 'Balhina',
 
 # Book sources
 'booksources-go' => 'Kadto-a',
@@ -453,8 +467,34 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # Block/unblock
 'ipblocklist-submit' => 'Bilnga',
 
+# Thumbnails
+'thumbnail-more' => 'Padako-a',
+
 # Tooltip help for the actions
-'tooltip-pt-logout' => 'gawas',
+'tooltip-pt-logout'             => 'gawas',
+'tooltip-ca-move'               => 'Balhina ini nga pakli',
+'tooltip-t-whatlinkshere'       => 'Talaan han ngatanan nga wiki nga mga pakli nga nasumpay dinhe',
+'tooltip-t-recentchangeslinked' => 'Mga bag-o nga kabag-ohan ha mga pakli nga nahasumpay tikang hini nga pakli',
+'tooltip-feed-rss'              => 'RSS nga pangarga para hini nga pakli',
+'tooltip-feed-atom'             => 'Atom nga pangarga para hini nga pakli',
+'tooltip-t-contributions'       => 'Kitaa an talaan hin mga amot hini nga nágámit',
+'tooltip-t-emailuser'           => 'Padad-i hin e-mail ini nga nágámit',
+'tooltip-t-upload'              => 'Pagkarga hin mga fayl',
+'tooltip-t-specialpages'        => 'Talaan hin mga ispisyal nga pakli',
+'tooltip-t-print'               => 'Maipapatik nga bersyon hini nga pakli',
+'tooltip-t-permalink'           => 'Sumpay nga unob ha hini nga pagliwat han pakli',
+'tooltip-ca-nstab-main'         => 'Kitaa an sulod nga pakli',
+'tooltip-ca-nstab-user'         => 'Kitaa an pakli han nágámit',
+'tooltip-ca-nstab-media'        => 'Kitaa an pakli hin media',
+'tooltip-ca-nstab-special'      => 'Ispisyal nga pakli ini, diri ka makaliwat han pakli ngahaw',
+'tooltip-ca-nstab-project'      => 'Kitaa an pakli han proyekto',
+'tooltip-ca-nstab-image'        => 'Kitaa an pakli han fayl',
+'tooltip-ca-nstab-mediawiki'    => 'Kitaa an mensahe han sistema',
+'tooltip-ca-nstab-template'     => 'Kitaa an plantilya',
+'tooltip-ca-nstab-help'         => 'Kitaa an pakli hin bulig',
+'tooltip-ca-nstab-category'     => 'Kitaa an pakli hin kaarangay',
+'tooltip-minoredit'             => 'Tigamni ini nga gamay nga pagliwat',
+'tooltip-save'                  => 'Ig-seyb an imo mga pagbabag-o',
 
 # Special:NewFiles
 'ilsubmit' => 'Bilnga',

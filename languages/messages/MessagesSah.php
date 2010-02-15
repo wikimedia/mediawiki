@@ -1460,11 +1460,14 @@ PICT # misc.
 'img-auth-noread'       => 'Кыттааччы «$1» ааҕарга көҥүлэ суох.',
 
 # HTTP errors
-'http-invalid-url'    => 'Алҕастаах URL: $1',
-'http-invalid-scheme' => 'Маннык схемалаах аадырыстар өйөммөттөр "$1"',
-'http-request-error'  => 'HTTP-көрдөбүл биллибэт алҕастаан сылтаан ылыныллыбата.',
-'http-read-error'     => 'HTTP ааҕыытын алҕаһа.',
-'http-timed-out'      => 'HTTP-көрдөбүл толоруллуохтаах болдьоҕо ааста.',
+'http-invalid-url'      => 'Алҕастаах URL: $1',
+'http-invalid-scheme'   => 'Маннык схемалаах аадырыстар өйөммөттөр "$1"',
+'http-request-error'    => 'HTTP-көрдөбүл биллибэт алҕастаан сылтаан ылыныллыбата.',
+'http-read-error'       => 'HTTP ааҕыытын алҕаһа.',
+'http-timed-out'        => 'HTTP-көрдөбүл толоруллуохтаах болдьоҕо ааста.',
+'http-curl-error'       => 'URL-га тахсыы алҕаһа: $1',
+'http-host-unreachable' => 'URL-га тахсыы сатаммата.',
+'http-bad-status'       => 'HTTP-ыйытыгы көрүү кэмигэр туох эрэ сатаммата: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Бу URL-га кыайан тахсыбата',
@@ -1710,7 +1713,7 @@ PICT # misc.
 
 # Special:AllPages
 'allpages'          => 'Сирэйдэр барыта',
-'alphaindexline'    => 'мантан $1 манна $2',
+'alphaindexline'    => 'мантан $1 маныаха дылы $2',
 'nextpage'          => 'Аныгыскы сирэй ($1)',
 'prevpage'          => 'Бу иннинээҕи сирэй ($1)',
 'allpagesfrom'      => 'Мантан саҕаланар сирэйдэри көрдөр:',

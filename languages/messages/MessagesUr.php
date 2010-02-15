@@ -1059,6 +1059,7 @@ HTML tags جانچئے.',
 'newpages'                => 'جدید صفحات',
 'ancientpages'            => 'قدیم ترین صفحات',
 'move'                    => 'منتقـل',
+'movethispage'            => 'یہ صفحہ منتقل کیجئے',
 
 # Book sources
 'booksources'    => 'کتابی وسائل',
@@ -1088,6 +1089,9 @@ HTML tags جانچئے.',
 'newuserlogpage'          => 'نوشتۂ آمد صارف',
 'newuserlogpagetext'      => 'یہ نۓ صارفوں کی آمد کا نوشتہ ہے',
 'newuserlog-create-entry' => 'صارف جدید',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(اراکین کی فہرست)',
 
 # E-mail user
 'mailnologintext' => 'دیگر ارکان کو برقی خط ارسال کرنے کیلیۓ لازم ہے کہ آپ [[Special:UserLogin|داخل شدہ]] حالت میں ہوں اور آپ کی [[Special:Preferences|ترجیحات]] ایک درست برقی خط کا پتا درج ہو۔',
@@ -1146,8 +1150,8 @@ HTML tags جانچئے.',
 'protectedarticle'    => '"[[$1]]" کومحفوظ کردیا',
 'unprotectedarticle'  => '"[[$1]]" کوغیر محفوظ کیا',
 'prot_1movedto2'      => '[[$1]] بجانب [[$2]] منتقل',
-'protectcomment'      => 'محفوظ کرنے کی وجہ',
-'protect-default'     => '(طے شدہ)',
+'protectcomment'      => 'وجہ:',
+'protect-default'     => 'تمام صارفین کو اہل بناؤ',
 'protect-level-sysop' => 'صرف منتظمین',
 
 # Undelete
@@ -1173,6 +1177,7 @@ HTML tags جانچئے.',
 'sp-contributions-blocklog'   => 'نوشتۂ پابندی',
 'sp-contributions-talk'       => 'گفتگو',
 'sp-contributions-userrights' => 'صارف کے حقوق کا انتظام',
+'sp-contributions-username'   => 'آئی.پی پتہ یا اسمِ صارف:',
 
 # What links here
 'whatlinkshere' => 'ادھر کس کا جوڑ ہے',
@@ -1184,7 +1189,7 @@ HTML tags جانچئے.',
 'blockip'           => 'داخلہ ممنوع براۓ صارف',
 'ipbreason'         => 'وجہ',
 'ipbsubmit'         => 'اس صارف کا داخلہ ممنوع کریں',
-'ipblocklist'       => 'فہرست ممنوع صارفین',
+'ipblocklist'       => 'ممنوع آئی.پی پتے اور اسم ہائے صارفین',
 'blocklink'         => 'پابندی لگائیں',
 'contribslink'      => 'شـراکـت',
 'blocklogpage'      => 'نوشتۂ پابندی',
@@ -1313,6 +1318,7 @@ latex، dvips، gs کی صحیح تنصیب کی جانچ کرنے کے بعد �
 'recentchangesall' => 'تمام',
 'watchlistall2'    => 'تمام',
 'namespacesall'    => 'تمام',
+'monthsall'        => 'تمام',
 
 # Delete conflict
 'deletedwhileediting' => 'انتباہ: آپ کے ترمیم شروع کرنے کے بعد یہ صفحہ حذف کیا جا چکا ہے!',

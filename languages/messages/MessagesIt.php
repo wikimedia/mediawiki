@@ -37,6 +37,7 @@
  * @author SabineCretella
  * @author Stefano-c
  * @author Tonyfroio
+ * @author Trixt
  * @author Xpensive
  * @author לערי ריינהארט
  */
@@ -1604,7 +1605,7 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 'upload-curl-error28'      => "Tempo scaduto per l'upload",
 'upload-curl-error28-text' => 'Il sito remoto ha impiegato troppo tempo a rispondere. Verificare che il sito sia attivo, attendere qualche minuto e provare di nuovo, eventualmente in un momento di minore traffico.',
 
-'license'            => "Licenza d'uso:",
+'license'            => 'Licenza:',
 'license-header'     => "Licenza d'uso",
 'nolicense'          => 'Nessuna licenza indicata',
 'license-nopreview'  => '(Anteprima non disponibile)',

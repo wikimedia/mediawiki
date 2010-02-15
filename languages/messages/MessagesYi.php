@@ -356,7 +356,7 @@ $messages = array(
 'printableversion'  => 'ווערסיע פֿאַר פּרינטן',
 'permalink'         => 'שטענדיגער לינק',
 'print'             => 'דרוק',
-'edit'              => 'ענדערן',
+'edit'              => 'רעדאַקטירן',
 'create'            => 'שאפֿן',
 'editthispage'      => 'ענדערן דעם בלאט',
 'create-this-page'  => 'שאַפֿן דעם בלאַט',
@@ -436,7 +436,7 @@ $1',
 'newmessagesdifflink'     => 'לעצטע ענדערונג',
 'youhavenewmessagesmulti' => 'איר האט נייע מעלדונגען אין $1',
 'editsection'             => 'באַאַרבעטן',
-'editold'                 => 'ענדערן',
+'editold'                 => 'רעדאַקטירן',
 'viewsourceold'           => 'ווײַזן מקור',
 'editlink'                => 'רעדאַקטירן',
 'viewsourcelink'          => 'ווײַזן מקור',
@@ -1364,62 +1364,63 @@ $1",
 'recentchangeslinked-to'       => 'צייג ענדערונגען צו בלעטער פארבינדן צו דעם בלאט אנשטאט',
 
 # Upload
-'upload'              => 'אַרױפֿלאָדן בילדער/טעקעס',
-'uploadbtn'           => 'אַרױפֿלאָדן טעקע',
-'uploadnologin'       => 'נישט אַרײַנלאגירט',
-'uploadnologintext'   => 'איר מוזט זײַן [[Special:UserLogin| אַרײַנלאָָגירט]] כדי ארויפֿצולאָדן טעקעס',
-'uploaderror'         => 'אַרויפֿלאָדן פֿעלער',
-'uploadtext'          => "באניצט דעם פֿארעם אַרויפֿצולאָדן טעקעס.
+'upload'                => 'אַרױפֿלאָדן בילדער/טעקעס',
+'uploadbtn'             => 'אַרױפֿלאָדן טעקע',
+'uploadnologin'         => 'נישט אַרײַנלאגירט',
+'uploadnologintext'     => 'איר מוזט זײַן [[Special:UserLogin| אַרײַנלאָָגירט]] כדי ארויפֿצולאָדן טעקעס',
+'uploaderror'           => 'אַרויפֿלאָדן פֿעלער',
+'uploadtext'            => "באניצט דעם פֿארעם אַרויפֿצולאָדן טעקעס.
 כדי צו זען אדער זוכן טעקעס וואס זענען שוין אַרויפֿגעלאָדן ווענדט זיך צו דער [[Special:FileList|ליסטע פֿון אַרויפֿגעלאָדענע טעקעס]]; (ווידער)אַרויפֿלאָדונגען ווערן אויך לאגירט אינעם  [[Special:Log/upload| אַרויפֿלאָדן לאג-בוך]], אויסמעקונגען אינעם [[Special:Log/delete|אויסמעקן לאג-בוך]].
 
 כדי אײַנשליסן א טעקע אין א בלאַט, באניצט א לינק אין איינעם פון די פֿאלגנדע פֿארעמען:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' צו ניצן די פֿולע ווערסיע פֿון דער טעקע
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|טעקסט קעפל]]</nowiki></tt>''' צו ניצן א 200 פיקסל ברייט ווערסיע אין א קעסטל אויף דער לינקער זײַט, מיט דער שילדערונג 'טעקסט קעפל'
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' פֿאר א גראָדער פֿאַרבינדונג צו דער טעקע אָן צו ווײַזן זי",
-'upload-permitted'    => 'ערלויבטע טעקע טיפן: $1.',
-'upload-preferred'    => 'פרעפֿרירטע טעקע טיפן: $1.',
-'upload-prohibited'   => 'פֿאַרווערענע טעקע טיפן: $1.',
-'uploadlog'           => 'ארויפלאָדן לאָגבוך',
-'uploadlogpage'       => 'ארויפֿלאדן לאג',
-'uploadlogpagetext'   => 'פֿאָלגנד איז אַ ליסטע פֿון די לעצטע אַרױפֿגעלאָדענע טעקעס.
+'upload-permitted'      => 'ערלויבטע טעקע טיפן: $1.',
+'upload-preferred'      => 'פרעפֿרירטע טעקע טיפן: $1.',
+'upload-prohibited'     => 'פֿאַרווערענע טעקע טיפן: $1.',
+'uploadlog'             => 'ארויפלאָדן לאָגבוך',
+'uploadlogpage'         => 'ארויפֿלאדן לאג',
+'uploadlogpagetext'     => 'פֿאָלגנד איז אַ ליסטע פֿון די לעצטע אַרױפֿגעלאָדענע טעקעס.
 זעט די  [[Special:NewFiles|גאלאריע פֿון נײַע טעקעס]] פֿאַר א מער וויזועלע איבערבליק.',
-'filename'            => 'טעקע נאמען',
-'filedesc'            => 'רעזומע',
-'fileuploadsummary'   => 'רעזומע:',
-'filereuploadsummary' => 'טעקע ענדערונגען:',
-'filestatus'          => 'קאפירעכט סטאַטוס:',
-'filesource'          => 'מקור:',
-'uploadedfiles'       => 'ארויפֿגעלאדעטע טעקעס',
-'ignorewarning'       => 'איגנאָרירן ווארענונג און אויפֿהיטן טעקע סיי ווי סיי',
-'ignorewarnings'      => 'איגנארירן וואָרענונגען',
-'minlength1'          => 'א טעקע נאמען מוז האבן כאטש איין אות.',
-'badfilename'         => 'טעקע נאמען איז געטוישט צו "$1".',
-'filetype-missing'    => 'די טעקע האט נישט קיין פארברייטערונג (למשל ".jpg").',
-'large-file'          => 'רעקאמענדירט אז טעקעס זאל נישט זײַן גרעסער פֿון$1;
+'filename'              => 'טעקע נאמען',
+'filedesc'              => 'רעזומע',
+'fileuploadsummary'     => 'רעזומע:',
+'filereuploadsummary'   => 'טעקע ענדערונגען:',
+'filestatus'            => 'קאפירעכט סטאַטוס:',
+'filesource'            => 'מקור:',
+'uploadedfiles'         => 'ארויפֿגעלאדעטע טעקעס',
+'ignorewarning'         => 'איגנאָרירן ווארענונג און אויפֿהיטן טעקע סיי ווי סיי',
+'ignorewarnings'        => 'איגנארירן וואָרענונגען',
+'minlength1'            => 'א טעקע נאמען מוז האבן כאטש איין אות.',
+'badfilename'           => 'טעקע נאמען איז געטוישט צו "$1".',
+'filetype-missing'      => 'די טעקע האט נישט קיין פארברייטערונג (למשל ".jpg").',
+'large-file'            => 'רעקאמענדירט אז טעקעס זאל נישט זײַן גרעסער פֿון$1;
 די טעקע איז $2.',
-'emptyfile'           => 'די טעקע וואס איר האט ארויפֿלגעלאָדן איז ליידיג.
+'emptyfile'             => 'די טעקע וואס איר האט ארויפֿלגעלאָדן איז ליידיג.
 עס קען זיין אז די סיבה איז פשוט א טייפא. 
 ביטע קוקט איבער צי איר ווילט ארויפֿלאדן  די דאזיקע טעקע.',
-'fileexists'          => "א טעקע מיט דעם נאָמען עקזיסטירט שוין, ביטע זײַט בודק '''<tt>[[:$1]]</tt>''' ווען איר זענט נישט זיכער אַז איר ווילט זי ענדערן.
+'fileexists'            => "א טעקע מיט דעם נאָמען עקזיסטירט שוין, ביטע זײַט בודק '''<tt>[[:$1]]</tt>''' ווען איר זענט נישט זיכער אַז איר ווילט זי ענדערן.
 [[$1|thumb]]",
-'successfulupload'    => 'דערפֿאלגרייכער ארויפֿלאָד',
-'uploadwarning'       => 'אַרויפֿלאָדן וואָרענונג',
-'uploadwarning-text'  => 'זײַט אַזוי גוט מאדיפֿיצירן די טעקע באַשרייבונג און פרובירט נאכאַמאָל.',
-'savefile'            => 'טעקע אױפֿהיטן',
-'uploadedimage'       => 'אַרױפֿגעלאָדן "[[$1]]"',
-'overwroteimage'      => 'אַרויפֿגעלאָדן א נײַע ווערסיע פון "[[$1]]"',
-'uploaddisabled'      => 'אַרויפֿלאָדן טעקעס מבוטל',
-'uploaddisabledtext'  => 'אַרויפֿלאָדן טעקעס נישט דערמעגלעכט אצינד.',
-'uploadscripted'      => 'די טעקע האט א סקריפט אדער HTML קאד וואס קען ווערן פֿאלש אויסגעטייטשט דורך א בלעטערער',
-'uploadvirus'         => 'די טעקע האָט אַ ווירוס! פרטים: <div style="direction:rtl;">$1</div>',
-'upload-source'       => 'מקור טעקע',
-'sourcefilename'      => 'מקור טעקע נאמען:',
-'sourceurl'           => 'מקור URL:',
-'destfilename'        => 'ציל טעקע נאמען:',
-'upload-maxfilesize'  => 'מאַקסימום טעקע גרייס: $1',
-'upload-description'  => 'טעקע שילדערונג',
-'upload-options'      => "אַרויפֿלאָדן ברירה'ס",
-'watchthisupload'     => 'אויפֿפאַסן דעם בלאט',
+'file-exists-duplicate' => 'די טעקע איז א דופליקאַט פון די פֿאלגנדע {{PLURAL:$1|טעקע|טעקעס}}:',
+'successfulupload'      => 'דערפֿאלגרייכער ארויפֿלאָד',
+'uploadwarning'         => 'אַרויפֿלאָדן וואָרענונג',
+'uploadwarning-text'    => 'זײַט אַזוי גוט מאדיפֿיצירן די טעקע באַשרייבונג און פרובירט נאכאַמאָל.',
+'savefile'              => 'טעקע אױפֿהיטן',
+'uploadedimage'         => 'אַרױפֿגעלאָדן "[[$1]]"',
+'overwroteimage'        => 'אַרויפֿגעלאָדן א נײַע ווערסיע פון "[[$1]]"',
+'uploaddisabled'        => 'אַרויפֿלאָדן טעקעס מבוטל',
+'uploaddisabledtext'    => 'אַרויפֿלאָדן טעקעס נישט דערמעגלעכט אצינד.',
+'uploadscripted'        => 'די טעקע האט א סקריפט אדער HTML קאד וואס קען ווערן פֿאלש אויסגעטייטשט דורך א בלעטערער',
+'uploadvirus'           => 'די טעקע האָט אַ ווירוס! פרטים: <div style="direction:rtl;">$1</div>',
+'upload-source'         => 'מקור טעקע',
+'sourcefilename'        => 'מקור טעקע נאמען:',
+'sourceurl'             => 'מקור URL:',
+'destfilename'          => 'ציל טעקע נאמען:',
+'upload-maxfilesize'    => 'מאַקסימום טעקע גרייס: $1',
+'upload-description'    => 'טעקע שילדערונג',
+'upload-options'        => "אַרויפֿלאָדן ברירה'ס",
+'watchthisupload'       => 'אויפֿפאַסן דעם בלאט',
 
 'upload-proto-error'        => 'פאלשער פראטאקאל',
 'upload-file-error'         => 'אינערליכער פעלער',
@@ -1474,6 +1475,9 @@ $1",
 'filehist-missing'          => 'טעקע פעלט',
 'imagelinks'                => 'פֿאַרבינדונגען צום בילד',
 'linkstoimage'              => '{{PLURAL:$1|דער פאלגנדער בלאט ניצט|די פאלגנדע בלעטער ניצן}} דאס דאזיגע בילד:',
+'linkstoimage-more'         => "מער ווי $1 {{PLURAL:$1|בלאַט פֿאַרבינדט|בלעטער פֿאַרבינדן}} צו דער דאזיגער טעקע.
+די פֿאלגנדע ליסטע ווײַזט  {{PLURAL:$1|דעם ערשטן בלאַט לינק|די ערשטע $1 בלאַט לינקען}} צו דער טעקע.
+ס'איז פֿאַראַן[[Special:WhatLinksHere/$2|פֿולע רשימה]].",
 'nolinkstoimage'            => 'נישטא קיין בלעטער וואס ניצן דאס דאזיגע בילד.',
 'morelinkstoimage'          => 'באַקוקן  [[Special:WhatLinksHere/$1|מער לינקען]] צו דער טעקע.',
 'redirectstofile'           => 'די פֿאלגנדע {{PLURAL:$1|טעקע פֿירט אריבער|$1 טעקעס פֿירן אריבער}} צו דער דאזיגער טעקע:',
@@ -1487,6 +1491,7 @@ $1",
 'filepage-nofile-link'      => 'עס עקזיסטירט נישט קיין טעקע מיט דעם נאמען, אבער איר קענט זי [$1 ארויפֿלאָדן].',
 'uploadnewversion-linktext' => 'ארויפֿלאדן א נײַע ווערסיע פֿוו דער טעקע',
 'shared-repo-from'          => 'פֿון $1',
+'shared-repo'               => 'א געמיינזאַמער זאַפאַס',
 
 # File reversion
 'filerevert'                => 'צוריקדרייען $1',
@@ -1507,6 +1512,9 @@ $1",
 'filedelete-nofile'           => "'''$1''' עקזיסטירט נישט.",
 'filedelete-otherreason'      => 'אנדער/נאך א סיבה:',
 'filedelete-reason-otherlist' => 'אַנדער אורזאַך',
+'filedelete-reason-dropdown'  => '*אַלגעמיינע אויסמעקן סיבות
+** קאפירעכט פֿאַרלעצונג
+** דופליקאַט',
 'filedelete-edit-reasonlist'  => 'רעדאַקטירן אויסמעקן סיבות',
 
 # MIME search
@@ -1909,7 +1917,7 @@ $NEWPAGE
 'pagesize'                    => '(בייטן)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'רעדאקטירן',
+'restriction-edit'   => 'רעדאַקטירן',
 'restriction-move'   => 'באוועגן',
 'restriction-create' => 'שאַפֿן',
 'restriction-upload' => 'אַרויפֿלאָדן',
@@ -2685,6 +2693,7 @@ $5
 'watchlistedit-normal-submit' => 'אַראָפנעמען בלעטער',
 'watchlistedit-raw-titles'    => 'טיטלען:',
 'watchlistedit-raw-submit'    => 'דערהיינטיג אויפפאסונג ליסטע',
+'watchlistedit-raw-done'      => 'אייער אויפֿפאַסונג ליסטע איז געווארן דערהײַנטיקט',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ווייזן שייכדיגע ענדערונגען',
@@ -2722,16 +2731,22 @@ $5
 'hebrew-calendar-m11-gen' => 'אב',
 'hebrew-calendar-m12-gen' => 'אלול',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'ווארענונג:\'\'\' גרונט סארטשליסל "$2" פֿאָרט איבערן פֿריערדיגן גרונט סארטשליסל "$1".',
+
 # Special:Version
-'version'              => 'ווערסיע',
-'version-specialpages' => 'ספעציעלע בלעטער',
-'version-other'        => 'אנדער',
-'version-version'      => '(ווערסיע $1)',
+'version'                  => 'ווערסיע',
+'version-specialpages'     => 'ספעציעלע בלעטער',
+'version-variables'        => 'וואַריאַבלען',
+'version-other'            => 'אנדער',
+'version-version'          => '(ווערסיע $1)',
+'version-software-version' => 'ווערסיע',
 
 # Special:FilePath
 'filepath-page' => 'טעקע:',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch-legend'   => 'זוכן א דופליקאַט',
 'fileduplicatesearch-filename' => 'טעקע:',
 'fileduplicatesearch-submit'   => 'זוכן',
 
@@ -2759,7 +2774,10 @@ $5
 
 # Special:Tags
 'tag-filter-submit' => 'פֿילטער',
+'tags-title'        => 'טאַגן',
+'tags-tag'          => 'טאַג נאָמען',
 'tags-edit'         => 'רעדאַקטירן',
+'tags-hitcount'     => ' {{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
 
 # Database error messages
 'dberr-header'   => 'די וויקי האט א פראבלעם',
@@ -2768,6 +2786,7 @@ $5
 # HTML forms
 'htmlform-float-invalid'       => 'דער ווערט וואָס איר האט ספעציפֿירט איז נישט קיין צאל.',
 'htmlform-submit'              => 'איינגעבן',
+'htmlform-reset'               => 'צוריקשטעלן ענדערונגען',
 'htmlform-selectorother-other' => 'אנדער',
 
 # Add categories per AJAX
