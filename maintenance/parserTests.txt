@@ -7794,9 +7794,44 @@ this is not the the title
 !! end
 
 !! test
-Verify that displaytitle works (bug #22501)
+Verify that displaytitle works (bug #22501) RestrictDisplayTitle=false
 !! options
 showtitle
+title=[[Screen]]
+!! config
+wgRestrictDisplayTitle=false
+!! input
+this is not the the title
+{{DISPLAYTITLE:whatever}}
+!! result
+whatever
+<p>this is not the the title
+</p>
+!! end
+
+!! test
+Verify that displaytitle works (bug #22501) RestrictDisplayTitle=true mismatch
+!! options
+showtitle
+title=[[Screen]]
+!! config
+wgRestrictDisplayTitle=true
+!! input
+this is not the the title
+{{DISPLAYTITLE:whatever}}
+!! result
+
+<p>this is not the the title
+</p>
+!! end
+
+!! test
+Verify that displaytitle works (bug #22501) RestrictDisplayTitle=true matching
+!! options
+showtitle
+title=[[Screen]]
+!! config
+wgRestrictDisplayTitle=true
 !! input
 this is not the the title
 {{DISPLAYTITLE:screen}}
@@ -7805,6 +7840,39 @@ screen
 <p>this is not the the title
 </p>
 !! end
+
+!! test
+Verify that displaytitle works (bug #22501) AllowDisplayTitle=false
+!! options
+showtitle
+title=[[Screen]]
+!! config
+wgAllowDisplayTitle=false
+!! input
+this is not the the title
+{{DISPLAYTITLE:screen}}
+!! result
+
+<p>this is not the the title
+<a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
+</p>
+!! end
+
+!! test
+Verify that displaytitle works (bug #22501) AllowDisplayTitle=false no DISPLAYTITLE
+!! options
+showtitle
+title=[[Screen]]
+!! config
+wgAllowDisplayTitle=false
+!! input
+this is not the the title
+!! result
+
+<p>this is not the the title
+</p>
+!! end
+
 
 TODO:
 more images
