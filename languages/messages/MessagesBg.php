@@ -210,7 +210,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'Ботове' ),
 	'Popularpages'              => array( 'Най-посещавани страници' ),
 	'Search'                    => array( 'Търсене' ),
-	'Resetpass'                 => array( 'Изтриване на парола' ),
+	'Resetpass'                 => array( 'Промяна на парола' ),
 	'Withoutinterwiki'          => array( 'Без междууикита' ),
 	'MergeHistory'              => array( 'История на сливането' ),
 	'Filepath'                  => array( 'Път към файл' ),
@@ -218,6 +218,8 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Празна страница' ),
 	'LinkSearch'                => array( 'Търсене на външни препратки' ),
 	'DeletedContributions'      => array( 'Изтрити приноси' ),
+	'Tags'                      => array( 'Етикети' ),
+	'Activeusers'               => array( 'Активни потребители' ),
 );
 
 $linkTrail = '/^([a-zабвгдежзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu';

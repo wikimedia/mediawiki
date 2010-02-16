@@ -75,7 +75,7 @@ $specialPageAliases = array(
 	'Mypage'                    => array( 'OwFolen' ),
 	'Mytalk'                    => array( 'OwHows' ),
 	'Mycontributions'           => array( 'OwHevrohow' ),
-	'Search'                    => array( 'Hwilas' ),
+	'Search'                    => array( 'Hwilans' ),
 );
 
 $messages = array(

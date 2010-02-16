@@ -13,6 +13,7 @@
  */
 
 $namespaceNames = array(
+	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Ýörite',
 	NS_TALK             => 'Çekişme',
 	NS_USER             => 'Ulanyjy',
