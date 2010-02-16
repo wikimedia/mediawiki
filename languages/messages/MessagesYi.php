@@ -128,6 +128,7 @@ $magicWords = array(
 	'nogallery'             => array( '0', '__קיין_גאלעריע__', '__ללא_גלריה__', '__NOGALLERY__' ),
 	'toc'                   => array( '0', '__אינהאלט__', '__תוכן_עניינים__', '__תוכן__', '__TOC__' ),
 	'noeditsection'         => array( '0', '__נישט_רעדאקטירן__', '__ללא_עריכה__', '__NOEDITSECTION__' ),
+	'numberofarticles'      => array( '1', 'צאל ארטיקלען', 'מספר ערכים', 'NUMBEROFARTICLES' ),
 	'pagename'              => array( '1', 'בלאטנאמען', 'שם הדף', 'PAGENAME' ),
 	'namespace'             => array( '1', 'נאמענטייל', 'מרחב השם', 'NAMESPACE' ),
 	'fullpagename'          => array( '1', 'פולבלאטנאמען', 'שם הדף המלא', 'FULLPAGENAME' ),

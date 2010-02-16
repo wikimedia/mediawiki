@@ -215,7 +215,7 @@ $magicWords = array(
 	'subjectpagename'       => array( '1', 'ലേഖനതാളിന്റെപേര്‌', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
 	'subjectpagenamee'      => array( '1', 'ലേഖനതാളിന്റെപേര്‌സമഗ്രം', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'msg'                   => array( '0', 'സന്ദേശം:', 'MSG:' ),
-	'subst'                 => array( '0', 'ബദല്‍:', 'SUBST:' ),
+	'subst'                 => array( '0', 'ബദൽ:', 'ബദല്‍:', 'SUBST:' ),
 	'msgnw'                 => array( '0', 'മൂലരൂപം:', 'MSGNW:' ),
 	'img_thumbnail'         => array( '1', 'ലഘുചിത്രം', 'ലഘു', 'thumbnail', 'thumb' ),
 	'img_manualthumb'       => array( '1', 'ലഘുചിത്രം=$1', 'ലഘു=$1', 'thumbnail=$1', 'thumb=$1' ),

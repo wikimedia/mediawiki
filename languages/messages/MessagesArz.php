@@ -123,7 +123,7 @@ $magicWords = array(
 	'img_none'              => array( '1', 'بدون', 'بلا', 'none' ),
 	'img_width'             => array( '1', '$1بك', '$1عن', '$1px' ),
 	'img_center'            => array( '1', 'مركز', 'center', 'centre' ),
-	'img_framed'            => array( '1', 'إطار', 'framed', 'enframed', 'frame' ),
+	'img_framed'            => array( '1', 'إطار', 'بإطار', 'framed', 'enframed', 'frame' ),
 	'img_frameless'         => array( '1', 'لاإطار', 'frameless' ),
 	'img_page'              => array( '1', 'صفحة=$1', 'صفحة $1', 'page=$1', 'page $1' ),
 	'img_upright'           => array( '1', 'معدول', 'معدول=$1', 'معدول $1', 'upright', 'upright=$1', 'upright $1' ),

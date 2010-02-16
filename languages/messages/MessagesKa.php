@@ -99,6 +99,12 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#გადამისამართება', '#REDIRECT' ),
+	'nogallery'             => array( '0', '__უგალერეო__', '__NOGALLERY__' ),
+	'subst'                 => array( '0', 'მიდგმ:', 'SUBST:' ),
+	'img_thumbnail'         => array( '1', 'მინიატიურა', 'მინი', 'thumbnail', 'thumb' ),
+	'img_right'             => array( '1', 'მარჯვნივ', 'right' ),
+	'img_left'              => array( '1', 'მარცხნივ', 'left' ),
+	'img_center'            => array( '1', 'ცენტრი', 'center', 'centre' ),
 );
 
 $linkPrefixExtension = true;
