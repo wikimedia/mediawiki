@@ -192,6 +192,7 @@ class ParserOutput
 		if( $t === '' ) {
 			return false;
 		}
+		return $t;
 	}
 
 	/**
