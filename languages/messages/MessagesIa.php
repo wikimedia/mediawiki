@@ -15,9 +15,8 @@
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
-
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => 'Multimedia',
 	NS_SPECIAL          => 'Special',
 	NS_TALK             => 'Discussion',
 	NS_USER             => 'Usator',

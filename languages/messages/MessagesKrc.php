@@ -15,6 +15,25 @@
 
 $fallback = 'ru';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Къуллукъ',
+	NS_TALK             => 'Сюзюу',
+	NS_USER             => 'Къошулуучу',
+	NS_USER_TALK        => 'Къошулуучуну сюзюу',
+	NS_PROJECT_TALK     => '$1 сюзюу',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файлны сюзюу',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-ни сюзюу',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Шаблонну сюзюу',
+	NS_HELP             => 'Болушлукъ',
+	NS_HELP_TALK        => 'Болушлукъну сюзюу',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Категорияны сюзюу',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Джибериулени тюблерин сызыу',

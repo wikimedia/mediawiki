@@ -38,8 +38,8 @@ $namespaceNames = array(
 	NS_PROJECT_TALK     => '$1_tartışma',
 	NS_FILE             => 'Dosya',
 	NS_FILE_TALK        => 'Dosya_tartışma',
-	NS_MEDIAWIKI        => 'MedyaViki',
-	NS_MEDIAWIKI_TALK   => 'MedyaViki_tartışma',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_tartışma',
 	NS_TEMPLATE         => 'Şablon',
 	NS_TEMPLATE_TALK    => 'Şablon_tartışma',
 	NS_HELP             => 'Yardım',
@@ -51,6 +51,8 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Resim' => NS_FILE,
 	'Resim_tartışma' => NS_FILE_TALK,
+	'MedyaViki' => NS_MEDIAWIKI,
+	'MedyaViki_tartışma' => NS_MEDIAWIKI_TALK,
 );
 
 $specialPageAliases = array(

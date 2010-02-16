@@ -32,10 +32,10 @@ $namespaceNames = array(
 	NS_FILE_TALK        => 'Discussion_file',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Discussion_MediaWiki',
-	NS_TEMPLATE         => 'Template',
-	NS_TEMPLATE_TALK    => 'Discussion_template',
-	NS_HELP             => 'Aiuto',
-	NS_HELP_TALK        => 'Discussion_aiuto',
+	NS_TEMPLATE         => 'Modèl',
+	NS_TEMPLATE_TALK    => 'Discussion_modèl',
+	NS_HELP             => 'Ajuto',
+	NS_HELP_TALK        => 'Discussion_ajuto',
 	NS_CATEGORY         => 'Categoria',
 	NS_CATEGORY_TALK    => 'Discussion_categoria',
 );
@@ -43,6 +43,9 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Imagine' => NS_FILE,
 	'Discussion_imagine' => NS_FILE_TALK,
+	'Discussion_template' => NS_TEMPLATE_TALK,
+	'Aiuto' => NS_HELP,
+	'Discussion_aiuto' => NS_HELP_TALK,
 );
 
 $specialPageAliases = array(

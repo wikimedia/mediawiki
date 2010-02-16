@@ -48,17 +48,23 @@ $namespaceNames = array(
 	NS_MAIN             => '',
 	NS_TALK             => 'لێدوان',
 	NS_USER             => 'بەکارھێنەر',
-	NS_USER_TALK        => 'قسەی_بەکارھێنەر',
+	NS_USER_TALK        => 'لێدوانی_بەکارھێنەر',
 	NS_PROJECT_TALK     => 'لێدوانی_$1',
 	NS_FILE             => 'پەڕگە',
 	NS_FILE_TALK        => 'لێدوانی_پەڕگە',
 	NS_MEDIAWIKI_TALK   => 'لێدوانی_میدیاویکی',
-	NS_TEMPLATE         => 'قاڵب',
-	NS_TEMPLATE_TALK    => 'لێدوانی_قاڵب',
+	NS_TEMPLATE         => 'داڕێژە',
+	NS_TEMPLATE_TALK    => 'لێدوانی_داڕێژە',
 	NS_HELP             => 'یارمەتی',
 	NS_HELP_TALK        => 'لێدوانی_یارمەتی',
 	NS_CATEGORY         => 'پۆل',
 	NS_CATEGORY_TALK    => 'لێدوانی_پۆل',
+);
+
+$namespaceAliases = array(
+	'قسەی_بەکارھێنەر' => NS_USER_TALK,
+	'قاڵب' => NS_TEMPLATE,
+	'لێدوانی_قاڵب' => NS_TEMPLATE_TALK,
 );
 
 $specialPageAliases = array(

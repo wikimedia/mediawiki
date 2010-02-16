@@ -12,11 +12,6 @@
  * @author Spacebirdy
  */
 
-$magicWords = array(
-	'redirect'              => array( '0', '#بور', '#تغییرمسیر', '#REDIRECT' ),
-	'numberofpages'         => array( '1', 'تعدادصفحه‌ها', 'تعداد_صفحه‌ها', 'ولگ‌ئون نمره', 'وألگ‌ئون نومره', 'NUMBEROFPAGES' ),
-);
-
 $fallback = 'fa';
 
 $linkPrefixExtension = true;
@@ -39,35 +34,43 @@ $namespaceNames = array(
 	NS_PROJECT_TALK     => '$1 گپ',
 	NS_FILE             => 'پرونده',
 	NS_FILE_TALK        => 'پرونده گپ',
-	NS_MEDIAWIKI        => 'مه‌دیا ویکی',
-	NS_MEDIAWIKI_TALK   => 'مه‌دیا ویکی گپ',
+	NS_MEDIAWIKI        => 'مه‌دیاویکی',
+	NS_MEDIAWIKI_TALK   => 'مه‌دیاویکی گپ',
 	NS_TEMPLATE         => 'شابلون',
 	NS_TEMPLATE_TALK    => 'شابلون گپ',
 	NS_HELP             => 'رانه‌ما',
-	NS_HELP_TALK        => 'رانه‌مای گپ',
+	NS_HELP_TALK        => 'رانه‌مائه گپ',
 	NS_CATEGORY         => 'رج',
 	NS_CATEGORY_TALK    => 'رج گپ',
 );
 
 $namespaceAliases = array(
-	'مدیا' => NS_MEDIA,
-	'ویژه' => NS_SPECIAL,
-	'بحث' => NS_TALK,
-	'کاربر' => NS_USER,
-	'بحث_کاربر' => NS_USER_TALK,
-	'بحث_$1' => NS_PROJECT_TALK,
-	'تصویر' => NS_FILE,
-	'بحث_تصویر' => NS_FILE_TALK,
-	'پرونده' => NS_FILE,
-	'بحث_پرونده' => NS_FILE_TALK,
-	'مدیاویکی' => NS_MEDIAWIKI,
-	'بحث_مدیاویکی' => NS_MEDIAWIKI_TALK,
-	'الگو' => NS_TEMPLATE,
-	'بحث_الگو' => NS_TEMPLATE_TALK,
-	'راهنما' => NS_HELP,
-	'بحث_راهنما' => NS_HELP_TALK,
-	'رده' => NS_CATEGORY,
-	'بحث_رده' => NS_CATEGORY_TALK
+	'مدیا'          => NS_MEDIA,
+	'ویژه'          => NS_SPECIAL,
+	'بحث'            => NS_TALK,
+	'کاربر'         => NS_USER,
+	'بحث_کاربر'      => NS_USER_TALK,
+	'بحث_$1'         => NS_PROJECT_TALK,
+	'تصویر'         => NS_FILE,
+	'پرونده'        => NS_FILE,
+	'بحث_تصویر'      => NS_FILE_TALK,
+	'بحث_پرونده'     => NS_FILE_TALK,
+	'مدیاویکی'      => NS_MEDIAWIKI,
+	'مه‌دیا ویکی'    => NS_MEDIAWIKI,
+	'بحث_مدیاویکی'   => NS_MEDIAWIKI_TALK,
+	'مه‌دیا ویکی گپ' => NS_MEDIAWIKI_TALK,
+	'الگو'          => NS_TEMPLATE,
+	'بحث_الگو'       => NS_TEMPLATE_TALK,
+	'راهنما'        => NS_HELP,
+	'بحث_راهنما'     => NS_HELP_TALK,
+	'رانه‌مای گپ'    => NS_HELP_TALK,
+	'رده'           => NS_CATEGORY,
+	'بحث_رده'        => NS_CATEGORY_TALK,
+);
+
+$magicWords = array(
+	'redirect'              => array( '0', '#بور', '#تغییرمسیر', '#REDIRECT' ),
+	'numberofpages'         => array( '1', 'تعدادصفحه‌ها', 'تعداد_صفحه‌ها', 'ولگ‌ئون نمره', 'وألگ‌ئون نومره', 'NUMBEROFPAGES' ),
 );
 
 $messages = array(
