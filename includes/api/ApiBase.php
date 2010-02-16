@@ -999,6 +999,7 @@ abstract class ApiBase {
 		
 		if ( $this->getTokenSalt() != false ) {
 			$ret[] = array( 'missingparam', 'token' );
+			$ret[] = array( 'sessionfailure' );
 		}
 
 		return $ret;
