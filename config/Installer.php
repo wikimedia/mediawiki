@@ -503,11 +503,6 @@ if( $memlimit == -1 ) {
 	print "</li>\n";
 }
 
-$conf->turck = function_exists( 'mmcache_get' );
-if ( $conf->turck ) {
-	print "<li><a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> installed</li>\n";
-}
-
 $conf->xcache = function_exists( 'xcache_get' );
 if( $conf->xcache )
 	print "<li><a href=\"http://trac.lighttpd.net/xcache/\">XCache</a> installed</li>\n";
@@ -519,15 +514,13 @@ if ($conf->apc ) {
 
 $conf->eaccel = function_exists( 'eaccelerator_get' );
 if ( $conf->eaccel ) {
-	$conf->turck = 'eaccelerator';
 	print "<li><a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> installed</li>\n";
 }
 
 $conf->dba = function_exists( 'dba_open' );
 
-if( !( $conf->turck || $conf->eaccel || $conf->apc || $conf->xcache ) ) {
-	echo( '<li>Couldn\'t find <a href="http://turck-mmcache.sourceforge.net">Turck MMCache</a>,
-		<a href="http://eaccelerator.sourceforge.net">eAccelerator</a>,
+if( !( $conf->eaccel || $conf->apc || $conf->xcache ) ) {
+	echo( '<li>Couldn\'t find <a href="http://eaccelerator.sourceforge.net">eAccelerator</a>,
 		<a href="http://www.php.net/apc">APC</a> or <a href="http://trac.lighttpd.net/xcache/">XCache</a>;
 		cannot use these for object caching.</li>' );
 }
@@ -1459,11 +1452,6 @@ if( count( $errs ) ) {
 		<ul class="plain">
 		<li><?php aField( $conf, "Shm", "No caching", "radio", "none" ); ?></li>
 		<?php
-			if ( $conf->turck ) {
-				echo "<li>";
-				aField( $conf, "Shm", "Turck MMCache", "radio", "turck" );
-				echo "</li>\n";
-			}
 			if( $conf->xcache ) {
 				echo "<li>";
 				aField( $conf, 'Shm', 'XCache', 'radio', 'xcache' );
@@ -1493,7 +1481,7 @@ if( count( $errs ) ) {
 		An object caching system such as memcached will provide a significant performance boost,
 		but needs to be installed. Provide the server addresses and ports in a comma-separated list.
 		<br /><br />
-		MediaWiki can also detect and support eAccelerator, Turck MMCache, APC, and XCache, but
+		MediaWiki can also detect and support eAccelerator, APC, and XCache, but
 		these should not be used if the wiki will be running on multiple application servers.
 		<br /><br />
 		DBA (Berkeley-style DB) is generally slower than using no cache at all, and is only
@@ -1805,7 +1793,6 @@ function writeLocalSettings( $conf ) {
 			$cacheType = 'CACHE_MEMCACHED';
 			$mcservers = var_export( $conf->MCServerArray, true );
 			break;
-		case 'turck':
 		case 'xcache':
 		case 'apc':
 		case 'eaccel':

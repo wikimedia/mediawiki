@@ -462,51 +462,6 @@ class SqlBagOStuff extends BagOStuff {
 class MediaWikiBagOStuff extends SqlBagOStuff { }
 
 /**
- * This is a wrapper for Turck MMCache's shared memory functions.
- *
- * You can store objects with mmcache_put() and mmcache_get(), but Turck seems
- * to use a weird custom serializer that randomly segfaults. So we wrap calls
- * with serialize()/unserialize().
- *
- * The thing I noticed about the Turck serialized data was that unlike ordinary
- * serialize(), it contained the names of methods, and judging by the amount of
- * binary data, perhaps even the bytecode of the methods themselves. It may be
- * that Turck's serializer is faster, so a possible future extension would be
- * to use it for arrays but not for objects.
- *
- * @ingroup Cache
- */
-class TurckBagOStuff extends BagOStuff {
-	public function get( $key ) {
-		$val = mmcache_get( $key );
-		if ( is_string( $val ) ) {
-			$val = unserialize( $val );
-		}
-		return $val;
-	}
-
-	public function set( $key, $value, $exptime = 0 ) {
-		mmcache_put( $key, serialize( $value ), $exptime );
-		return true;
-	}
-
-	public function delete( $key, $time = 0 ) {
-		mmcache_rm( $key );
-		return true;
-	}
-
-	public function lock( $key, $waitTimeout = 0 ) {
-		mmcache_lock( $key );
-		return true;
-	}
-
-	public function unlock( $key ) {
-		mmcache_unlock( $key );
-		return true;
-	}
-}
-
-/**
  * This is a wrapper for APC's shared memory functions
  *
  * @ingroup Cache
@@ -544,7 +499,7 @@ class APCBagOStuff extends BagOStuff {
 /**
  * This is a wrapper for eAccelerator's shared memory functions.
  *
- * This is basically identical to the Turck MMCache version,
+ * This is basically identical to the deceased Turck MMCache version,
  * mostly because eAccelerator is based on Turck MMCache.
  *
  * @ingroup Cache

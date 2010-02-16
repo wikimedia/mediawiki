@@ -326,6 +326,7 @@ comment from another wiki.
 * (bug 7264)  Magic word to give Page Title as if pipe-trick performed on it
   {{pipetrick:}}
 * (bug 20339) Allow using the pipe trick in log reasons
+* Support for Turck MMCache was removed
 
 === Bug fixes in 1.16 ===
 
