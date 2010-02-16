@@ -1,7 +1,7 @@
 <?php
 require_once( 'SearchEngineTest.php' );
 
-class SearchMySQL4Test extends SearchEngineTest {
+class SearchMySQLTest extends SearchEngineTest {
 	var $db;
 
 	function setUp() {
@@ -11,7 +11,7 @@ class SearchMySQL4Test extends SearchEngineTest {
 		if( $this->db ) {
 			$this->insertSearchData();
 		}
-		$this->search = new SearchMySQL4( $this->db );
+		$this->search = new SearchMySQL( $this->db );
 	}
 
 	function tearDown() {
@@ -21,7 +21,6 @@ class SearchMySQL4Test extends SearchEngineTest {
 		unset( $this->db );
 		unset( $this->search );
 	}
-
 }
 
 
