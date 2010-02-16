@@ -7,7 +7,7 @@ class SearchMySQLTest extends SearchEngineTest {
 	function setUp() {
 		$GLOBALS['wgContLang'] = new Language;
 		$this->db = $this->buildTestDatabase(
-			array( 'page', 'revision', 'text', 'searchindex' ) );
+			array( 'page', 'revision', 'text', 'searchindex', 'user' ) );
 		if( $this->db ) {
 			$this->insertSearchData();
 		}
