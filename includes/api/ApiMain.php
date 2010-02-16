@@ -422,8 +422,8 @@ class ApiMain extends ApiBase {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
 				global $wgUser;
-				if ( ( $salt != null /*&& !$wgUser->matchEditToken( $moduleParams['token'], $salt )*/ )
-					/*|| !$wgUser->matchEditToken( $moduleParams['token'] )*/ ) {
+				if ( ( $salt != null && !$wgUser->matchEditToken( $moduleParams['token'], $salt ) )
+					|| !$wgUser->matchEditToken( $moduleParams['token'] ) ) {
 					$this->dieUsageMsg( array( 'sessionfailure' ) );
 				}
 			}
