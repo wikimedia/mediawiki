@@ -7785,10 +7785,13 @@ Bar foo
 Verify that displaytitle works (bug #22501) no displaytitle
 !! options
 showtitle
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=false
 !! input
 this is not the the title
 !! result
-
+Parser test
 <p>this is not the the title
 </p>
 !! end
@@ -7799,6 +7802,7 @@ Verify that displaytitle works (bug #22501) RestrictDisplayTitle=false
 showtitle
 title=[[Screen]]
 !! config
+wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=false
 !! input
 this is not the the title
@@ -7815,12 +7819,13 @@ Verify that displaytitle works (bug #22501) RestrictDisplayTitle=true mismatch
 showtitle
 title=[[Screen]]
 !! config
+wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=true
 !! input
 this is not the the title
 {{DISPLAYTITLE:whatever}}
 !! result
-
+Screen
 <p>this is not the the title
 </p>
 !! end
@@ -7831,6 +7836,7 @@ Verify that displaytitle works (bug #22501) RestrictDisplayTitle=true matching
 showtitle
 title=[[Screen]]
 !! config
+wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=true
 !! input
 this is not the the title
@@ -7852,7 +7858,7 @@ wgAllowDisplayTitle=false
 this is not the the title
 {{DISPLAYTITLE:screen}}
 !! result
-
+Screen
 <p>this is not the the title
 <a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
 </p>
@@ -7868,7 +7874,7 @@ wgAllowDisplayTitle=false
 !! input
 this is not the the title
 !! result
-
+Screen
 <p>this is not the the title
 </p>
 !! end

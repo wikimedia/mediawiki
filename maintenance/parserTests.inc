@@ -371,7 +371,8 @@ class ParserTest {
 			$out = $output->getText();
 
 			if ( isset( $opts['showtitle'] ) ) {
-				$out = $output->getTitleText() . "\n$out";
+				if($output->getTitleText()) $title = $output->getTitleText();
+				$out = "$title\n$out";
 			}
 			if (isset( $opts['ill'] ) ) {
 				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
@@ -556,8 +557,6 @@ class ParserTest {
 			'wgHtml5' => true,
 			'wgWellFormedXml' => true,
 			'wgAllowMicrodataAttributes' => true,
-			'wgAllowDisplayTitle' => true,
-			'wgRestrictDisplayTitle' => false,
 		);
 
 		if ($config) {
