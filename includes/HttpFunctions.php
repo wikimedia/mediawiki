@@ -156,7 +156,7 @@ class HttpRequest {
 		$this->parsedUrl = parse_url( $url );
 
 		if ( !Http::isValidURI( $this->url ) ) {
-			$this->status = Status::newFromFatal('http-invalid-url');
+			$this->status = Status::newFatal('http-invalid-url');
 		} else {
 			$this->status = Status::newGood( 100 ); // continue
 		}
