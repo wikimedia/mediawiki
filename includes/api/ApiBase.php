@@ -970,7 +970,7 @@ abstract class ApiBase {
 	}
 	
 	/**
-	* Returns the token salt if there is one, null if the module doesn't require a salt, else false if the module doesn't need a token
+	* Returns the token salt if there is one, '' if the module doesn't require a salt, else false if the module doesn't need a token
 	* @returns bool
 	*/
 	public function getTokenSalt() {
@@ -997,7 +997,7 @@ abstract class ApiBase {
 			$ret[] = array ( 'writedisabled' );
 		}
 		
-		if ( $this->getTokenSalt() != false ) {
+		if ( $this->getTokenSalt() !== false ) {
 			$ret[] = array( 'missingparam', 'token' );
 			$ret[] = array( 'sessionfailure' );
 		}
