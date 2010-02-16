@@ -231,7 +231,6 @@ $wgAutoloadLocalClasses = array(
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
 	'TitleListDependency' => 'includes/CacheDependency.php',
 	'TransformParameterError' => 'includes/MediaTransformOutput.php',
-	'TurckBagOStuff' => 'includes/BagOStuff.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'UploadBase' => 'includes/upload/UploadBase.php',
 	'UploadFromStash' => 'includes/upload/UploadFromStash.php',

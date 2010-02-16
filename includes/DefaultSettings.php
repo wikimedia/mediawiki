@@ -1280,7 +1280,7 @@ $wgDevelopmentWarnings = false;
 $wgUseCategoryBrowser   = false;
 
 /**
- * Keep parsed pages in a cache (objectcache table, turck, or memcached)
+ * Keep parsed pages in a cache (objectcache table or memcached)
  * to speed up output of the same page viewed by another user with the
  * same options.
  *
