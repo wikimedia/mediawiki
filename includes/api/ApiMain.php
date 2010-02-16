@@ -416,14 +416,13 @@ class ApiMain extends ApiBase {
 		
 		//Die if token required, but not provided (unless there is a gettoken parameter)
 		$salt = $module->getTokenSalt();
-		if ( $salt != false )
+		if ( $salt !== false )
 		{
 			if ( !isset( $moduleParams['token'] ) && !isset( $moduleParams['gettoken'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
 				global $wgUser;
-				if ( ( $salt != null && !$wgUser->matchEditToken( $moduleParams['token'], $salt ) )
-					|| !$wgUser->matchEditToken( $moduleParams['token'] ) ) {
+				if ( !$wgUser->matchEditToken( $moduleParams['token'], $salt ) ) {
 					$this->dieUsageMsg( array( 'sessionfailure' ) );
 				}
 			}
