@@ -222,6 +222,7 @@ $magicWords = array(
 	'servername'            => array( '0', 'TJENERNAVN', 'SERVERNAME' ),
 	'grammar'               => array( '0', 'GRAMMATIKK:', 'GRAMMAR:' ),
 	'gender'                => array( '0', 'KJØNN:', 'GENDER:' ),
+	'special'               => array( '0', 'spesial', 'special' ),
 	'filepath'              => array( '0', 'FILSTI:', 'FILEPATH:' ),
 );
 
