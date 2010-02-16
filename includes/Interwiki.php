@@ -26,9 +26,9 @@ class Interwiki {
 
 	/**
 	 * Check whether an interwiki prefix exists
-	 * 
-	 * @return bool Whether it exists
-	 * @param $prefix string Interwiki prefix to use
+	 *
+	 * @param $prefix String: interwiki prefix to use
+	 * @return Boolean: whether it exists
 	 */
 	static public function isValidInterwiki( $prefix ) {
 		$result = self::fetch( $prefix );
@@ -37,9 +37,9 @@ class Interwiki {
 
 	/**
 	 * Fetch an Interwiki object
-	 * 
+	 *
+	 * @param $prefix String: interwiki prefix to use
 	 * @return Interwiki Object, or null if not valid
-	 * @param $prefix string Interwiki prefix to use
 	 */
 	static public function fetch( $prefix ) {
 		global $wgContLang;
@@ -72,8 +72,8 @@ class Interwiki {
 	 *
 	 * @note More logic is explained in DefaultSettings.
 	 *
-	 * @param $prefix \type{\string} Interwiki prefix
-	 * @return \type{\Interwiki} An interwiki object
+	 * @param $prefix String: interwiki prefix
+	 * @return Interwiki object
 	 */
 	protected static function getInterwikiCached( $prefix ) {
 		$value = self::getInterwikiCacheEntry( $prefix );
@@ -95,8 +95,8 @@ class Interwiki {
 	 *
 	 * @note More logic is explained in DefaultSettings.
 	 *
-	 * @param $prefix \type{\string} Database key
-	 * @return \type{\string) The entry
+	 * @param $prefix String: database key
+	 * @return String: the entry
 	 */
 	protected static function getInterwikiCacheEntry( $prefix ) {
 		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
@@ -133,8 +133,7 @@ class Interwiki {
 	 * Load the interwiki, trying first memcached then the DB
 	 *
 	 * @param $prefix The interwiki prefix
-	 * @return bool The prefix is valid
-	 * @static
+	 * @return Boolean: the prefix is valid
 	 */
 	protected static function load( $prefix ) {
 		global $wgMemc, $wgInterwikiExpiry;
@@ -165,9 +164,8 @@ class Interwiki {
 	/**
 	 * Fill in member variables from an array (e.g. memcached result, Database::fetchRow, etc)
 	 *
-	 * @return bool Whether everything was there
-	 * @param $res ResultWrapper Row from the interwiki table
-	 * @static
+	 * @param $mc Associative array: row from the interwiki table
+	 * @return Boolean: whether everything was there
 	 */
 	protected static function loadFromArray( $mc ) {
 		if( isset( $mc['iw_url'] ) && isset( $mc['iw_local'] ) && isset( $mc['iw_trans'] ) ) {
@@ -183,8 +181,8 @@ class Interwiki {
 	/**
 	 * Get the URL for a particular title (or with $1 if no title given)
 	 * 
-	 * @param $title string What text to put for the article name
-	 * @return string The URL
+	 * @param $title String: what text to put for the article name
+	 * @return String: the URL
 	 */
 	public function getURL( $title = null ) {
 		$url = $this->mURL;
@@ -197,7 +195,8 @@ class Interwiki {
 	/**
 	 * Is this a local link from a sister project, or is
 	 * it something outside, like Google
-	 * @return bool
+	 *
+	 * @return Boolean
 	 */
 	public function isLocal() {
 		return $this->mLocal;
@@ -206,7 +205,8 @@ class Interwiki {
 	/**
 	 * Can pages from this wiki be transcluded?
 	 * Still requires $wgEnableScaryTransclusion
-	 * @return bool
+	 *
+	 * @return Boolean
 	 */
 	public function isTranscludable() {
 		return $this->mTrans;
@@ -214,6 +214,7 @@ class Interwiki {
 
 	/**
 	 * Get the name for the interwiki site
+	 *
 	 * @return String
 	 */
 	public function getName() {
@@ -224,6 +225,7 @@ class Interwiki {
 
 	/**
 	 * Get a description for this interwiki
+	 *
 	 * @return String
 	 */
 	public function getDescription() {
