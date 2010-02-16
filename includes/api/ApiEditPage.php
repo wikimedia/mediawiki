@@ -341,6 +341,8 @@ class ApiEditPage extends ApiBase {
 	}
 	
 	public function getPossibleErrors() {
+		global $wgMaxArticleSize;
+	
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingtext' ),
@@ -358,7 +360,7 @@ class ApiEditPage extends ApiBase {
 			array( 'spamdetected', 'spam' ),
 			array( 'filtered' ),
 			array( 'blockedtext' ),
-			array( 'contenttoobig', $this->getMaxArticleSize() ),
+			array( 'contenttoobig', $wgMaxArticleSize ),
 			array( 'noedit-anon' ),
 			array( 'noedit' ),
 			array( 'actionthrottledtext' ),
@@ -371,11 +373,6 @@ class ApiEditPage extends ApiBase {
 			array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
 			array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
 		) );
-	}
-
-	private function getMaxArticleSize() {
-		global $wgMaxArticleSize;
-		return $wgMaxArticleSize;
 	}
 
 	protected function getAllowedParams() {
