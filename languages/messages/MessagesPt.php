@@ -294,7 +294,7 @@ $messages = array(
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver um clique duplo (JavaScript)',
-'tog-editsection'             => 'Possibilitar a edição de secções através de uma ligação [editar]',
+'tog-editsection'             => 'Possibilitar a edição de secções com ligações [editar]',
 'tog-editsectiononrightclick' => 'Possibilitar a edição de secções por clique com o botão direito no título da secção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar índice (para páginas com mais de três secções)',
 'tog-rememberpassword'        => 'Recordar a minha palavra-chave entre sessões',
@@ -1747,6 +1747,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'http-timed-out'        => 'O pedido HTTP expirou.',
 'http-curl-error'       => 'Ocorreu um erro ao aceder à URL: $1',
 'http-host-unreachable' => 'Não foi possível aceder à URL',
+'http-bad-status'       => 'Ocorreu um problema durante o pedido HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível aceder à URL',
@@ -2541,6 +2542,7 @@ por favor, certifique-se de que compreende as consequências da mudança antes d
 
 Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la com a existente, se assim desejar.",
 'movearticle'                  => 'Mover página',
+'moveuserpage-warning'         => "'''Aviso:''' Está prestes a mover uma página de utilizador. Note que a página será apenas movida, ''sem'' alterar o nome do utilizador.",
 'movenologin'                  => 'Não autenticado',
 'movenologintext'              => 'Precisa de ser um utilizador registado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
 'movenotallowed'               => 'Não possui permissão para mover páginas.',

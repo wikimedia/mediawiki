@@ -635,8 +635,13 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 Escolla un nome diferente.',
 'loginerror'                 => 'Erro ao acceder ao sistema',
 'createaccounterror'         => 'Non se puido crear a conta: $1',
-'nocookiesnew'               => "A conta de usuario foi creada, pero non está rexistrado. {{SITENAME}} usa ''cookies'' para o rexistro. Vostede ten deshabilitadas as ''cookies''. Por favor, habilíteas, e logo rexístrese co seu novo nome de usuario e contrasinal.",
-'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios. Vostede ten as cookies deshabilitadas. Por favor, habilíteas e ténteo de novo.',
+'nocookiesnew'               => 'A conta de usuario foi creada, pero non accedeu ao sistema.
+{{SITENAME}} para rexistrar os usuarios.
+Vostede ten as cookies deshabilitadas.
+Por favor, habilíteas e logo acceda ao sistema co seu novo nome de usuario e contrasinal.',
+'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios.
+Vostede ten as cookies deshabilitadas.
+Por favor, habilíteas e inténteo de novo.',
 'noname'                     => 'Non especificou un nome de usuario válido.',
 'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
@@ -851,8 +856,8 @@ Pode mesturar os seus cambios co texto existente.
 '''Só''' se gardará o texto na área superior cando prema \"Gardar a páxina\".",
 'yourtext'                         => 'O seu texto',
 'storedversion'                    => 'Versión gardada',
-'nonunicodebrowser'                => "'''ATENCIÓN: o seu navegador non soporta Unicode.
-Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.'''",
+'nonunicodebrowser'                => "'''ATENCIÓN: o seu navegador non soporta Unicode.'''
+Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.",
 'editingold'                       => "'''ATENCIÓN: está editando unha revisión non actualizada desta páxina.
 Se a garda, perderanse os cambios realizados tras esta revisión.'''",
 'yourdiff'                         => 'Diferenzas',
@@ -1653,6 +1658,7 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 'http-timed-out'        => 'O pedido HTTP expirou.',
 'http-curl-error'       => 'Ocorreu un erro ao acceder ao URL: $1',
 'http-host-unreachable' => 'Non se puido acceder ao URL.',
+'http-bad-status'       => 'Houbo un problema durante a solicitude HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non se logrou acceder a ese URL',
@@ -1844,11 +1850,11 @@ As entradas <s>riscadas</s> xa foron resoltas.',
 'wantedpages-badtitle'    => 'Título inválido fixado nos resultados: $1',
 'wantedfiles'             => 'Ficheiros requiridos',
 'wantedtemplates'         => 'Modelos requiridos',
-'mostlinked'              => 'Páxinas máis enlazadas',
+'mostlinked'              => 'Páxinas máis ligadas',
 'mostlinkedcategories'    => 'Categorías máis ligadas',
 'mostlinkedtemplates'     => 'Modelos máis enlazados',
 'mostcategories'          => 'Artigos con máis categorías',
-'mostimages'              => 'Ficheiros máis enlazados',
+'mostimages'              => 'Ficheiros máis usados',
 'mostrevisions'           => 'Artigos con máis revisións',
 'prefixindex'             => 'Todas as páxinas coas iniciais',
 'shortpages'              => 'Páxinas curtas',
@@ -2452,6 +2458,7 @@ por favor, asegúrese de que entende as consecuencias disto antes de proseguir."
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movearticle'                  => 'Mover esta páxina:',
+'moveuserpage-warning'         => "'''Aviso:''' está a piques de mover unha páxina de usuario. Por favor, teña en conta que só se trasladará a páxina e que o usuario '''non''' será renomeado.",
 'movenologin'                  => 'Non accedeu ao sistema',
 'movenologintext'              => 'Debe ser un usuario rexistrado e [[Special:UserLogin|acceder ao sistema]] para mover unha páxina.',
 'movenotallowed'               => 'Non ten os permisos necesarios para mover páxinas.',
@@ -2481,7 +2488,7 @@ Por favor, escolla outro nome.',
 '1movedto2_redir'              => 'moveu "[[$1]]" a "[[$2]]" sobre unha redirección',
 'move-redirect-suppressed'     => 'redirección suprimida',
 'movelogpage'                  => 'Rexistro de traslados',
-'movelogpagetext'              => 'Abaixo móstrase unha lista de páxinas trasladadas.',
+'movelogpagetext'              => 'A continuación móstrase a lista con todas as páxinas trasladadas.',
 'movesubpage'                  => '{{PLURAL:$1|Subpáxina|Subpáxinas}}',
 'movesubpagetext'              => 'Esta páxina ten $1 {{PLURAL:$1|subpáxina|subpáxinas}}.',
 'movenosubpage'                => 'Esta páxina non ten subpáxinas.',
@@ -2794,7 +2801,7 @@ O seu sistema pode quedar comprometido se o executa.<hr />",
 
 # Special:NewFiles
 'newimages'             => 'Galería de imaxes novas',
-'imagelisttext'         => "Abaixo amósase unha lista de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
+'imagelisttext'         => "A continuación amósase unha lista de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
 'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente.',
 'newimages-legend'      => 'Filtro',
 'newimages-label'       => 'Nome do ficheiro (ou parte del):',

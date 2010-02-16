@@ -345,7 +345,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'login'                   => 'ܥܘܠ',
 'nav-login-createaccount' => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
 'userlogin'               => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
-'logout'                  => 'ܦܠܛܐ',
+'logout'                  => 'ܦܠܘܛ',
 'userlogout'              => 'ܦܠܘܛ',
 'notloggedin'             => 'ܠܐ ܥܠܝܠܐ',
 'nologin'                 => "ܠܝܬ ܠܟ ܚܘܫܒܢܐ؟ '''$1'''.",
