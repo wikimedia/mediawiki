@@ -70,6 +70,7 @@ $specialPageAliases = array(
 	'Uncategorizedtemplates'    => array( 'অবিন্যস্ত সাঁচবোৰ' ),
 	'Unusedcategories'          => array( 'অব্যৱহৃত শ্ৰেণীসমূহ' ),
 	'Unusedimages'              => array( 'অব্যৱহৃত চিত্ৰবোৰ' ),
+	'Wantedpages'               => array( 'আকাংক্ষিত পৃষ্ঠাসমূহ' ),
 	'Wantedcategories'          => array( 'আকাংক্ষিত শ্ৰেণীসমূহ' ),
 	'Allpages'                  => array( 'সকলোবোৰ পৃষ্ঠা' ),
 	'Specialpages'              => array( 'বিশেষ পৃষ্ঠাবোৰ' ),
