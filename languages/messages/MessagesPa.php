@@ -522,7 +522,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'userrights-editusergroup' => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
 'saveusergroups'           => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੰਭਾਲੋ',
 'userrights-groupsmember'  => 'ਇਸ ਦਾ ਮੈਂਬਰ:',
-'userrights-reason'        => 'ਬਦਲਣ ਦੇ ਕਾਰਨ:',
+'userrights-reason'        => 'ਕਾਰਨ:',
 
 # Groups
 'group'      => 'ਗਰੁੱਪ:',

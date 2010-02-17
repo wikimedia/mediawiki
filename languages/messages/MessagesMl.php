@@ -2876,6 +2876,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-fnumber'                     => 'F സംഖ്യ',
 'exif-exposureprogram'             => 'എക്സ്പോഷര്‍ പ്രോഗ്രാം',
 'exif-spectralsensitivity'         => 'വർണ്ണരാജി സംവേദനത്വം',
+'exif-oecf'                        => 'ഒപ്റ്റോഇലക്ട്രോണിക് പരിവർത്തന ഘടകം',
 'exif-shutterspeedvalue'           => 'ഷട്ടര്‍ സ്പീഡ്',
 'exif-aperturevalue'               => 'അപ്പെര്‍ച്ചര്‍',
 'exif-brightnessvalue'             => 'ബ്രൈറ്റ്നെസ്സ്',

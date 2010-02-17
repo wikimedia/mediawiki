@@ -2476,6 +2476,7 @@ Upewnij się co do konsekwencji tej operacji, zanim się na nią zdecydujesz.",
 
 W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'movearticle'                  => 'Przeniesienie strony',
+'moveuserpage-warning'         => "'''Uwaga!''' Masz zamiar przenieść stronę użytkownika. Miej na uwadze, że zostanie przeniesiona tylko strona, a '''nazwa użytkownika pozostanie niezmieniona'''.",
 'movenologin'                  => 'Nie jesteś zalogowany',
 'movenologintext'              => 'Przenoszenie stron jest możliwe dopiero po zarejestrowaniu się i [[Special:UserLogin|zalogowaniu]].',
 'movenotallowed'               => 'Nie masz uprawnień do przenoszenia stron.',
