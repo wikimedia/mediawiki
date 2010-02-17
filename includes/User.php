@@ -435,7 +435,7 @@ class User {
 	 */
 	static function whoIs( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'user_name', array( 'user_id' => $id ), 'User::whoIs' );
+		return $dbr->selectField( 'user', 'user_name', array( 'user_id' => $id ), __METHOD__ );
 	}
 
 	/**
