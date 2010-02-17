@@ -19,6 +19,7 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.16 ===
+
 * (bug 18222) $wgMinimalPasswordLength default is now 1
 * $wgSessionHandler can be used to configure session.save_handler
 * $wgLocalFileRepo/$wgForeignFileRepos now have a 'fileMode' parameter to
