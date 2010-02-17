@@ -480,6 +480,7 @@ $wgMessageStructure = array(
 		'resetpass_forbidden',
 		'resetpass-no-info',
 		'resetpass-submit-loggedin',
+		'resetpass-submit-cancel',
 		'resetpass-wrong-oldpass',
 		'resetpass-temp-password',
 	),
