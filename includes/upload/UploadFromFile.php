@@ -20,7 +20,12 @@ class UploadFromFile extends UploadBase {
 			$request->getFileSize( 'wpUploadFile' )
 		);
 	}
-
+	/**
+	 * Entry point for upload from file.
+	 */
+	function initialize( $name, $tempPath, $fileSize ) {
+		 return $this->initializePathInfo( $name, $tempPath, $fileSize );
+	}
 	static function isValidRequest( $request ) {
 		return (bool)$request->getFileTempName( 'wpUploadFile' );
 	}
