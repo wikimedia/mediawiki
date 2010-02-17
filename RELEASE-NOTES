@@ -763,6 +763,8 @@ comment from another wiki.
 * Truncate summary of page moves in revision comment field to avoid broken
   multibyte characters
 * (bug 22540) ForeignApiRepos no longer try to store thumbnails that don't exist
+* (bug 22551) Special:Resetpass now has a "Cancel" button that sends the user to 
+  the page set in the &returnto parameter.
 
 == API changes in 1.16 ==
 
