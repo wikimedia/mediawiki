@@ -45,7 +45,8 @@ class LoginForm {
 
 	/**
 	 * Constructor
-	 * @param WebRequest $request A WebRequest object passed by reference
+	 * @param $request WebRequest: a WebRequest object passed by reference
+	 * @param $par String: subpage parameter
 	 */
 	function LoginForm( &$request, $par = '' ) {
 		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;
@@ -708,11 +709,11 @@ class LoginForm {
 
 
 	/**
-	 * @param object user
-	 * @param bool throttle
-	 * @param string message name of email title
-	 * @param string message name of email text
-	 * @return mixed true on success, WikiError on failure
+	 * @param $u User object
+	 * @param $throttle Boolean
+	 * @param $emailTitle String: message name of email title
+	 * @param $emailText String: message name of email text
+	 * @return Mixed: true on success, WikiError on failure
 	 * @private
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
