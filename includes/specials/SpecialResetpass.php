@@ -37,6 +37,11 @@ class SpecialResetpass extends SpecialPage {
 			return;
 		}
 
+		if( $wgRequest->wasPosted() && $wgRequest->getBool( 'wpCancel' ) ) {
+			$this->doReturnTo();
+			return;
+		}
+
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal('token') ) ) {
 			try {
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
@@ -54,16 +59,21 @@ class SpecialResetpass extends SpecialPage {
 					$login = new LoginForm( new FauxRequest( $data, true ) );
 					$login->execute();
 				}
-				$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
-				if ( !$titleObj instanceof Title ) {
-					$titleObj = Title::newMainPage();
-				}
-				$wgOut->redirect( $titleObj->getFullURL() );
+				$this->doReturnTo();
 			} catch( PasswordError $e ) {
 				$this->error( $e->getMessage() );
 			}
 		}
 		$this->showForm();
+	}
+	
+	function doReturnTo() {
+		global $wgRequest, $wgOut;
+		$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
+		if ( !$titleObj instanceof Title ) {
+			$titleObj = Title::newMainPage();
+		}
+		$wgOut->redirect( $titleObj->getFullURL() );
 	}
 
 	function error( $msg ) {
@@ -119,6 +129,7 @@ class SpecialResetpass extends SpecialPage {
 				"<td></td>\n" .
 				'<td class="mw-input">' .
 					Xml::submitButton( wfMsg( $submitMsg ) ) .
+					Xml::submitButton( wfMsg( 'resetpass-submit-cancel' ), array( 'name' => 'wpCancel' ) ) .
 				"</td>\n" .
 			"</tr>\n" .
 			Xml::closeElement( 'table' ) .
