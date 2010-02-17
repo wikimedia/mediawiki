@@ -151,6 +151,7 @@ $messages = array(
 'toolbox'          => 'Oxmaronepe',
 'otherlanguages'   => 'Majurani nenapes',
 'redirectedfrom'   => '($1 sayfaşen moxtu)',
+'redirectpagesub'  => "Redirekt'iş sayfa",
 'lastmodifiedat'   => 'Am sayfa enni sonni $2, $1 tarixis iktirinu.',
 'jumpto'           => 'İdi do:',
 'jumptonavigation' => 'ixmari',
@@ -165,6 +166,7 @@ $messages = array(
 'disclaimerpage'       => "Project:Mtelot k'abuli na var ixvenu şeyepe",
 'edithelp'             => "Muç'oşi iktirinen?",
 'edithelppage'         => "Help:T'aba muç'oşi iktirinen?",
+'helppage'             => 'Help:Doloxe na renanpe',
 'mainpage'             => "Dudi But'k'a",
 'mainpage-description' => "Dudi But'k'a",
 'privacy'              => "Şinaxeri Hak'epe",
@@ -198,25 +200,29 @@ $messages = array(
 'nstab-project'   => 'Projeşi sayfa-taba',
 'nstab-image'     => 'Dosya',
 'nstab-mediawiki' => 'Mesaji',
+'nstab-template'  => "T'empleit'i",
 'nstab-category'  => "K'at'egori",
 
 # General errors
-'missing-article' => "Dat'abeizik, na igoren \"\$1\" \$2 coxoni sayfaşi tekst'i var az'iru.
+'missing-article'    => "Dat'abeizik, na igoren \"\$1\" \$2 coxoni sayfaşi tekst'i var az'iru.
 
 Muşeni? Çunki am sayfa(taba), jileri na ren a sayfaşi(tabaşi) golaxteri versiyoni ren.
 
 Eger sebebi aya na va renna, p'rogramis ar xat'a(çilata) z'irit.
 Mu iqven! Aya, a [[Special:ListUsers/sysop|administ'rat'oris]], URL-ti ç'areli şekilite rap'ort'i doç'arit.",
-'viewsource'      => "K'aynağis o3'k'edi",
+'missingarticle-rev' => '(revizyoni#: $1)',
+'viewsource'         => "K'aynağis o3'k'edi",
 
 # Login and logout pages
+'yourname'                => 'Skani maxmare-coxo:',
 'yourpassword'            => "P'arola-skani:",
 'remembermypassword'      => 'Parola-skani goişini',
 'login'                   => 'Siteşa amaxti',
-'nav-login-createaccount' => "Amaxti / K'ayit'i iqvi",
-'userlogin'               => "Amaxti / K'ayit'i iqvi",
+'nav-login-createaccount' => "Amaxti / ik'ayit'i",
+'userlogin'               => "Amaxti / ik'ayit'i",
 'logout'                  => 'Siteşen Kogamaxti',
 'userlogout'              => 'Siteşen Kogamaxti',
+'nologinlink'             => "Hesabi dok'idi.",
 'mailmypassword'          => "Ağne p'arola-çkimi moncğoni",
 
 # Password reset dialog
@@ -231,16 +237,18 @@ Mu iqven! Aya, a [[Special:ListUsers/sysop|administ'rat'oris]], URL-ti ç'areli 
 'math_tip'      => "Mat'emat'ikuri formuli (LaTeX)",
 
 # Edit pages
-'subject'          => "Tema/St'at'ia:",
-'savearticle'      => "T'abas k'ayit'i qvi",
-'showdiff'         => "Oktirobape ko3'iri",
-'newarticle'       => '(Ağani)',
-'noarticletext'    => "A3'i am t'aba boşi ren.
+'subject'                          => "Tema/St'at'ia:",
+'savearticle'                      => "T'abas ik'ayit'i",
+'showdiff'                         => "Oktirobape ko3'iri",
+'newarticle'                       => '(Ağani)',
+'newarticletext'                   => "Daha na va ren ar sayfaşa na geidven ar k'ont'akt'is atxozit. Am sayfa ok'idu şeni tude na ren t'eksboksi ixmarit. Çkina şeni [[{{MediaWiki:Helppage}}|meşvelaşi sayfas]] o3'k'edit. Ak çilataten moxtit na, p'rogramişi '''Uk'uni''' t'uşis geibaz'git.",
+'noarticletext'                    => "A3'i am t'aba boşi ren.
 Am t'abaş dudi-coxo majurani t'abapes [[Special:Search/{{PAGENAME}}|gagoren]],
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} alak'ali na renan ndğerepe gagoren],
 varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
-'templatesused'    => "Am t'abas na ixmarinen {{PLURAL:$1|temp'leit'i|temp'leit'epe}}:",
-'hiddencategories' => "Am sayfa(taba) {{PLURAL:$1|1 şinaxeri k'at'egori|$1 şinaxeri k'at'egori}}şi ren:",
+'templatesused'                    => "Am t'abas na ixmarinen {{PLURAL:$1|temp'leit'i|temp'leit'epe}}:",
+'hiddencategories'                 => "Am sayfa(taba) {{PLURAL:$1|1 şinaxeri k'at'egori|$1 şinaxeri k'at'egori}}şi ren:",
+'permissionserrorstext-withaction' => "Tude na çars {{PLURAL:$1|sebebi|sebebepe}} na ren şeni $2 yet'k'i var giğun:",
 
 # History pages
 'viewpagelogs'           => "Am sayfa şeni k'ayit'epe ko3'iri",
@@ -280,7 +288,9 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'nextn'                     => 'mendi {{PLURAL:$1|$1}}',
 'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 tkvala|$2 tkvala}})',
+'search-redirect'           => "(redirekt'i $1)",
 'search-section'            => '(burme $1)',
+'search-suggest'            => "Aya ç'ari-i: $1",
 'search-interwiki-caption'  => 'Cuma projepe',
 'search-interwiki-default'  => '$1 sonucepe:',
 'search-interwiki-more'     => '(çkva)',
@@ -289,6 +299,7 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'powersearch'               => 'Mordineri ogoru',
 'powersearch-legend'        => 'Mordineri ogoru',
 'powersearch-ns'            => 'Svacoxo-s mgori:',
+'powersearch-redir'         => "Redirekt'epe ilist'eli",
 'powersearch-field'         => 'Mgori:',
 
 # Preferences page
@@ -316,16 +327,19 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'right-delete' => 'Am sayfape jili',
 
 # User rights log
+'rightslog'  => "Maxmareş hak'işi k'ayit'epe",
 'rightsnone' => '(Va ren)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'   => "am sayfa ik'itxi",
+'action-edit'   => 'am sayfa oktiruşa',
 'action-delete' => 'am sayfa dokosi',
 
 # Recent changes
 'nchanges'             => '$1 {{PLURAL:$1|oktiroba|oktiroba}}',
 'recentchanges'        => 'Çodinaşi oktirobape',
 'recentchanges-legend' => 'Çodinaşi oktirobape tercihepe',
+'rcnote'               => "$4 tarixi do saat'i $5 şakis, çodinaşi {{PLURAL:$2|1 ndğas|'''$2''' ndğas}} na ixvenu, {{PLURAL:$1|'''1''' oktiroba|'''$1''' oktiroba}}, tude ren.",
 'rcshowhidebots'       => "bot'epe $1",
 'rcshowhideliu'        => "meç'areri maxmarepe $1",
 'rcshowhideanons'      => 'anonimuri maxmarepe $1',
@@ -374,6 +388,7 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|byte|byte}}',
 'nmembers'      => "{{PLURAL:$1|mak'ature|mak'aturepe}}",
+'prefixindex'   => "P'refiksi k'ala mteli t'abape",
 'newpages'      => 'Ağani sayfape(tabalepe)',
 'pager-newer-n' => '{{PLURAL:$1|çkva ağani 1|çkva ağani $1}}',
 'pager-older-n' => '{{PLURAL:$1|çkva mcveşi 1|çkva mcveşi $1}}',
@@ -389,6 +404,7 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 # Special:AllPages
 'allpages'       => 'Mteli sayfape-tabape',
 'alphaindexline' => '$1 sayfa-muşişen $2 sayfa-muşişa',
+'allpagesfrom'   => "Olist'eluşa na geiç'k'asen harfepe:",
 'allpagesto'     => "Aşoten na içodu sayfape ko3'iri:",
 'allarticles'    => 'Mteli sayfape',
 'allpagessubmit' => 'İgzali',
@@ -397,6 +413,7 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'linksearch' => "Galeni k'ontakt'epe",
 
 # Special:Log/newusers
+'newuserlogpage'          => "Ağani maxmareş k'ayit'epe",
 'newuserlog-create-entry' => 'Ağani maxmare',
 
 # Special:ListGroupRights
@@ -409,11 +426,17 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'watchlist'         => "çkimi gotxozu list'e",
 'mywatchlist'       => "Çkimi gotxozu list'e",
 'watchlistfor'      => "('''$1''' şeni)",
+'addedwatch'        => "Skani gotxozu list'eşa ik'ayit'inu.",
+'removedwatch'      => "Skani gotxozu list'eşen nijilu",
+'removedwatchtext'  => '"[[:$1]]" t\'aba [[Special:Watchlist|skani gotxozu list\'eşen]] nijilu.',
 'wlshowlast'        => "Çodinaşi $1 saat'i $2 ndğa ko3'iri $3",
 'watchlist-options' => "Gotxozu list'eşi tercihepe",
 
 # Delete
 'deletepage'            => 'Sayfa jili',
+'actioncomplete'        => 'Aksiyoni içodinu.',
+'deletedtext'           => '"<nowiki>$1</nowiki>" nijilu.
+Xolosi oras jileri na renanpe oz\'iru şeni: $2.',
 'deletedarticle'        => '"[[$1]]" aya nijilu',
 'dellogpage'            => "Ojiluşi k'ayit'epe",
 'deletecomment'         => 'Ojiluşi sebebi:',
@@ -421,14 +444,18 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'deletereasonotherlist' => 'Majurani sebebepe',
 
 # Protect
+'modifiedarticleprotection'   => '"[[$1]]" şeni oçvaluşi derece iktirinu',
 'protectcomment'              => 'Sebebi:',
 'protectexpiry'               => 'Am tarixis içoden:',
 'protect_expiry_invalid'      => 'Am tarixis var içoden, mtini va ren.',
 'protect_expiry_old'          => 'Golaxteris soni oxmaruşi ora.',
+'protect-locked-access'       => "Sayfaşi oçvalu derecepe oktiru şeni maxmare-hesabi skanis yet'k'i var uğun.
+'''$1''' sayfa-muşişi maartani tercihepe antepe renan:",
 'protect-default'             => 'Mteli maxmarepes izni komeçi',
 'protect-fallback'            => '"$1" izni unon',
 'protect-level-autoconfirmed' => "Ağani do k'ayit'oni na va renan k'oçepes bloği qvi",
 'protect-level-sysop'         => "Xvala Administ'rat'orepe şeni",
+'protect-summary-cascade'     => 'k’ademoni',
 'protect-expiring'            => 'çodinaşi tarixi $1 (UTC)',
 'protect-cantedit'            => "Am sayfaşi oçvaluşi derece-muşi va gaktirinen, çunki yetk'i var giğun.",
 'restriction-type'            => 'İzini:',
@@ -458,31 +485,41 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'sp-contributions-submit'   => 'Mgori',
 
 # What links here
-'whatlinkshere'         => "Sayfaşa na-ixvenu k'ont'aktepe",
-'whatlinkshere-page'    => "T'aba:",
-'isimage'               => "dosyaşi k'ont'akt'i",
-'whatlinkshere-prev'    => "{{PLURAL:$1|uk'uni|uk'uni $1}}",
-'whatlinkshere-next'    => '{{PLURAL:$1|mendi|mendi $1}}',
-'whatlinkshere-links'   => "← k'ontakt'epe",
-'whatlinkshere-filters' => "Filit'repe",
+'whatlinkshere'            => "Sayfaşa na-ixvenu k'ont'aktepe",
+'whatlinkshere-page'       => "T'aba:",
+'istemplate'               => "ok'atu",
+'isimage'                  => "dosyaşi k'ont'akt'i",
+'whatlinkshere-prev'       => "{{PLURAL:$1|uk'uni|uk'uni $1}}",
+'whatlinkshere-next'       => '{{PLURAL:$1|mendi|mendi $1}}',
+'whatlinkshere-links'      => "← k'ontakt'epe",
+'whatlinkshere-hideredirs' => "redirekt'epe $1",
+'whatlinkshere-filters'    => "Filit'repe",
 
 # Block/unblock
+'blockip'          => 'Maxmares bloği qvi',
 'ipboptions'       => "2 saat'i:2 hours,1 ndğa:1 day,3 ndğa:3 days,1 doloni:1 week,2 doloni:2 weeks,1 tuta:1 month,3 tuta:3 months,6 tuta:6 months,1 3'ana:1 year,p'anda:infinite",
 'ipblocklist'      => 'Bloği na ixvenu na renan IP adresepe do maxmareş coxope',
 'blocklink'        => 'buloği qvi',
 'unblocklink'      => 'ğoberi(blok) kezdi',
 'change-blocklink' => 'ğoberi(bloği) doktiri',
 'contribslink'     => 'Meşvelape',
+'unblocklogentry'  => '$1 maxmareşi bloği kaizdinu',
 
 # Move page
-'movearticle'    => 'Mcveşi coxo:',
-'newtitle'       => 'Ağani coxo:',
-'movepagebtn'    => 'Coxo-muşi doktiri',
-'movepage-moved' => '<big>\'\'\'"$1",  "$2" sayfa muşişa itirinu\'\'\'</big>',
-'movedto'        => 'itirinu:',
-'1movedto2'      => '[[$1]] sayfa-muşişi ağani coxo: [[$2]]',
-'movereason'     => 'Muşen:',
-'revertmove'     => 'komoiği',
+'movepagetalktext' => "Ok’ok’atineri na ren oğarğaluşi sayfati (eger korenna) ot'omatikurot ağani coxos itirinasen. Mara am situa3yonepes '''var itirinen''':
+
+*Ağani coxos ar oğarğaluşi sayfa zaten korenna,
+*Tude na ren ç'ut'a boksi va ixmarit na.
+
+Am situa3yonepes, sayfa skanişk'elen otiruşi ren.",
+'movearticle'      => 'Mcveşi coxo:',
+'newtitle'         => 'Ağani coxo:',
+'movepagebtn'      => 'Coxo-muşi doktiri',
+'movepage-moved'   => '<big>\'\'\'"$1",  "$2" sayfa muşişa itirinu\'\'\'</big>',
+'movedto'          => 'itirinu:',
+'1movedto2'        => '[[$1]] sayfa-muşişi ağani coxo: [[$2]]',
+'movereason'       => 'Muşen:',
+'revertmove'       => 'komoiği',
 
 # Thumbnails
 'thumbnail-more' => 'Didi qvi',
@@ -496,11 +533,12 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'tooltip-pt-login'               => "Ginon na sit'eşa amaxti, mecburi va re",
 'tooltip-pt-logout'              => 'Siteşen Kogamaxti',
 'tooltip-ca-talk'                => "Sayfaş doloxe na iç'aren şeyepe şeni ğarğali",
-'tooltip-ca-edit'                => "Am sayfa kodogaktiren. Mu iqven! ipti \"Oğeneşen i3'k'edi\" t'uşi ixmari do k'ont'roli iqvi, uk'ule k'ayit'i iqvi.",
+'tooltip-ca-edit'                => "Am sayfa kodogaktiren. Mu iqven! ipti \"Oğeneşen i3'k'edi\" t'uşi ixmari do k'ont'roli iqvi, uk'ule ik'ayit'i.",
 'tooltip-ca-addsection'          => "Ağani burme dok'idi.",
 'tooltip-ca-history'             => 'Am sayfaşi na golaxtu versiyonepe',
 'tooltip-ca-delete'              => 'Am sayfa jili',
 'tooltip-ca-move'                => "T'abaşi coxo doktiri",
+'tooltip-ca-watch'               => "Am sayfa, skani gotxozu list'eşa ik'ati.",
 'tooltip-ca-unwatch'             => "Skani gotxozu list'eşen jili am t'aba",
 'tooltip-search'                 => "{{SITENAME}}'iş doloxe mgori",
 'tooltip-search-go'              => 'Eger korenna, am coxos na uğun a sayfaşa idi',
@@ -517,6 +555,7 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'tooltip-feed-rss'               => "Am t'aba şeni RSS'iş feedi",
 'tooltip-feed-atom'              => "Am t'aba şeni at'om-iş feedi",
 'tooltip-t-contributions'        => "Maxmareşi meşvela list'e-muşi koz'iri",
+'tooltip-t-emailuser'            => 'Maxmareşa e-maili oncğoni',
 'tooltip-t-upload'               => 'Dosyape doloxe kamaxvi',
 'tooltip-t-specialpages'         => "Mteli doxmeli sayfapeş list'e mutepeşi ko3'iri",
 'tooltip-t-print'                => "Am sayfaşi kart'alis ç'areli na ren versiyoni",
@@ -527,7 +566,7 @@ varna am t'aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.",
 'tooltip-ca-nstab-image'         => "Dosyaşi taba-sayfa ko3'iri",
 'tooltip-ca-nstab-template'      => "T'emp'leit'i ko3'iri",
 'tooltip-ca-nstab-category'      => "K'at'egorişi sayfa-taba ko3'iri",
-'tooltip-save'                   => "Oktirobape k'ayit'i qvi",
+'tooltip-save'                   => "Oktirobape ik'ayit'i",
 
 # Media information
 'file-info-size' => '($1 × $2 pikseli, dosyaşi didinoba: $3, MIME type: $4)',
@@ -544,6 +583,15 @@ Ukaçxe na mulunan k'ont'akt'epe ist'isna oqopinot k’abuli ixvenen. Mesela: do
 'metadata'          => 'Metadata',
 'metadata-expand'   => "Detayepe ko3'iri",
 'metadata-collapse' => 'Detayepe doşinaxi',
+'metadata-fields'   => "Am sayfas na ilist'elinen EXIF metadataş burmepe, resimi oz'iramuşi sayfapes metadata t'ablo na ğuru oras ixmarinen. Majuranepeti maartani oqopinot işinaxasen.
+
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'mteli',

@@ -2692,6 +2692,8 @@ $5
 'watchlistedit-normal-title'  => 'רעדאַקטירן די אויפֿפאַסונג ליסטע',
 'watchlistedit-normal-legend' => 'אַראָפנעמען בלעטער פון דער אויפֿפאסן ליסטע',
 'watchlistedit-normal-submit' => 'אַראָפנעמען בלעטער',
+'watchlistedit-raw-title'     => 'רעדאַקטירן די רויע אויפֿפאַסונג ליסטע',
+'watchlistedit-raw-legend'    => 'רעדאַקטירן די רויע אויפֿפאַסונג ליסטע',
 'watchlistedit-raw-titles'    => 'טיטלען:',
 'watchlistedit-raw-submit'    => 'דערהיינטיג אויפפאסונג ליסטע',
 'watchlistedit-raw-done'      => 'אייער אויפֿפאַסונג ליסטע איז געווארן דערהײַנטיקט',
@@ -2741,12 +2743,14 @@ $5
 'version-variables'        => 'וואַריאַבלען',
 'version-other'            => 'אנדער',
 'version-version'          => '(ווערסיע $1)',
+'version-software-product' => 'פראדוקט',
 'version-software-version' => 'ווערסיע',
 
 # Special:FilePath
 'filepath-page' => 'טעקע:',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'זוכן דופליקאַטע טעקעס',
 'fileduplicatesearch-legend'   => 'זוכן א דופליקאַט',
 'fileduplicatesearch-filename' => 'טעקע:',
 'fileduplicatesearch-submit'   => 'זוכן',
@@ -2783,6 +2787,7 @@ $5
 # Database error messages
 'dberr-header'   => 'די וויקי האט א פראבלעם',
 'dberr-problems' => 'אנטשולדיגט! דער דאזיקער סייט האט טעכנישע פראבלעמען.',
+'dberr-again'    => 'וואַרט א פאָר מינוט און לאָדנט אָן ווידער.',
 
 # HTML forms
 'htmlform-float-invalid'       => 'דער ווערט וואָס איר האט ספעציפֿירט איז נישט קיין צאל.',

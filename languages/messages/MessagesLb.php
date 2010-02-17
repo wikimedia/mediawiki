@@ -1541,6 +1541,7 @@ Fir eng oprimal Sécherheet ass img_auth.php ausgeschalt.",
 'http-invalid-url'    => 'Net-valabel URL: $1',
 'http-invalid-scheme' => 'URLe mam Schema "$1" ginn net ënnerstëtzt',
 'http-request-error'  => "D'HTTP-Ufro huet wéinst engem onbekannte Feeler net fonctionnéiert.",
+'http-read-error'     => 'HTTP-Feeler beim Liesen.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL ass net z'erreechen",

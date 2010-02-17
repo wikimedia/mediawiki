@@ -2269,6 +2269,7 @@ Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima ch
 *a l'ha deselessionà ël quadrèt ëd conferma ambelessì sota.
 Ant costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
 'movearticle'                  => "Cang-je nòm a l'artìcol",
+'moveuserpage-warning'         => "'''Atension:''' I të stas për tramudé na pàgina utent. Për piasì nòta che a sarà tramudà mach la pàgina e che l'utent a sarà \"pa\" arnomà.",
 'movenologin'                  => "Che a varda che chiel (chila) a l'è pa rintrà ant ël sistema",
 'movenologintext'              => "A venta esse n'Utent registrà e esse [[Special:UserLogin|rintrà ant ël sistema]]
 për podej tramudé na pàgina.",

@@ -140,9 +140,10 @@ $messages = array(
 'dec'           => 'дє҃к',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|Катигорі́ꙗ|Катигорі́и|Катигорі́ѩ|Катигорі́ѩ}}',
-'category_header' => 'катигорі́ѩ ⁖ $1 ⁖ страни́цѧ',
-'subcategories'   => 'соубкатигорі́ѩ',
+'pagecategories'         => '{{PLURAL:$1|Катигорі́ꙗ|Катигорі́и|Катигорі́ѩ|Катигорі́ѩ}}',
+'category_header'        => 'катигорі́ѩ ⁖ $1 ⁖ страни́цѧ',
+'subcategories'          => 'соубкатигорі́ѩ',
+'listingcontinuesabbrev' => '· вѧ́щє',
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
 
@@ -196,6 +197,7 @@ $messages = array(
 'aboutsite'            => 'О {{grammar:instrumental|{{SITENAME}}}}',
 'aboutpage'            => 'Project:О сѥ́мь опꙑтьствова́нии',
 'copyright'            => 'по́дъ прощє́ниѥмь $1 пьса́но ѥ́стъ',
+'copyrightpage'        => '{{ns:project}}:Творь́цъ права́',
 'currentevents'        => 'сѫ́щѧѩ вѣ́щи',
 'currentevents-url'    => 'Project:Сѫ́щѧѩ вѣ́щи',
 'edithelppage'         => 'Help:Исправлѥ́ниѥ страни́цѧ',
@@ -252,6 +254,7 @@ $messages = array(
 # Edit page toolbar
 'link_sample'    => 'съвѧ́ꙁи и́мѧ',
 'extlink_sample' => 'http://www.example.com съвѧ́ꙁи и́мѧ',
+'math_tip'       => 'маѳиматїчьна формоула (LaTeX)',
 
 # Edit pages
 'summary'            => 'опьса́ниѥ :',
@@ -285,6 +288,7 @@ $messages = array(
 
 # Search results
 'searchresults'            => 'иска́ниꙗ ито́гъ',
+'searchresults-title'      => 'иска́ниꙗ ⁖ $1 ⁖ ито́гъ',
 'searchprofile-images'     => 'дѣ́ла',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
 'search-redirect'          => '(прѣнаправлє́ниѥ $1)',
@@ -336,6 +340,7 @@ $messages = array(
 'rcnote'          => "нижѣ {{PLURAL:$1|'''1''' послѣ́дьнѭ мѣ́нѫ|'''$1''' послѣ́дьни мѣ́нꙑ|'''$1''' послѣ́дьнъ мѣ́нъ|'''$1''' послѣ́дьнъ мѣ́нъ}} ꙁа {{PLURAL:$2|дьнь|'''$2''' дьнꙗ|'''$2''' дьнъ|'''$2''' дьнъ}} · ꙗко нꙑнѣ $5 · $4 лѣ́та",
 'rcshowhideminor' => '$1 ма́лꙑ мѣ́нꙑ',
 'rcshowhidebots'  => '$1 аѵтома́тъ',
+'rcshowhideanons' => '$1 анонѷмьнъ по́льꙃєватєлъ мѣ́нꙑ',
 'rcshowhidemine'  => '$1 моꙗ́ мѣ́нꙑ',
 'diff'            => 'ра҃ꙁн',
 'hist'            => 'їс҃т',
@@ -494,6 +499,7 @@ $messages = array(
 'undelete-search-submit' => 'ищи́',
 
 # Namespace form on various pages
+'namespace'      => 'имє́нъ просто́ръ:',
 'blanknamespace' => '(гла́вьно)',
 
 # Contributions
@@ -543,21 +549,23 @@ $messages = array(
 'allmessagesname' => 'и́мѧ',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'твоꙗ́ по́льꙃєватєл҄ьска страни́ца',
-'tooltip-pt-mytalk'       => 'твоꙗ́ бєсѣ́дꙑ страни́ца',
-'tooltip-pt-preferences'  => 'твоꙗ́ строи',
-'tooltip-pt-logout'       => 'ис̾хо́дъ',
-'tooltip-ca-viewsource'   => 'си страни́ца ꙁабранєна́ ѥ́стъ ⁙
+'tooltip-pt-userpage'            => 'твоꙗ́ по́льꙃєватєл҄ьска страни́ца',
+'tooltip-pt-mytalk'              => 'твоꙗ́ бєсѣ́дꙑ страни́ца',
+'tooltip-pt-preferences'         => 'твоꙗ́ строи',
+'tooltip-pt-logout'              => 'ис̾хо́дъ',
+'tooltip-ca-viewsource'          => 'си страни́ца ꙁабранєна́ ѥ́стъ ⁙
 ѥѩ исто́чьнъ о́браꙁъ ви́дєти мо́жєщи',
-'tooltip-ca-protect'      => 'си страни́цѧ ꙁабранє́ниѥ',
-'tooltip-ca-delete'       => 'си страни́цѧ поничьжє́ниѥ',
-'tooltip-ca-move'         => 'си страни́цѧ прѣимєнова́ниѥ',
-'tooltip-ca-watch'        => 'си страни́цѧ блюдє́ниѥ',
-'tooltip-p-logo'          => 'гла́вьна страни́ца',
-'tooltip-n-recentchanges' => 'послѣ́дьнъ мѣ́нъ ката́логъ',
-'tooltip-t-upload'        => 'положє́ниѥ дѣ́лъ',
-'tooltip-t-specialpages'  => 'вьсѣѩ наро́чьнъ страни́цѧ ката́логъ',
-'tooltip-watch'           => 'си страни́цѧ блюдє́ниѥ',
+'tooltip-ca-protect'             => 'си страни́цѧ ꙁабранє́ниѥ',
+'tooltip-ca-delete'              => 'си страни́цѧ поничьжє́ниѥ',
+'tooltip-ca-move'                => 'си страни́цѧ прѣимєнова́ниѥ',
+'tooltip-ca-watch'               => 'си страни́цѧ блюдє́ниѥ',
+'tooltip-p-logo'                 => 'гла́вьна страни́ца',
+'tooltip-n-mainpage'             => 'ви́ждь гла́вьнѫ страни́цѫ',
+'tooltip-n-mainpage-description' => 'ви́ждь гла́вьнѫ страни́цѫ',
+'tooltip-n-recentchanges'        => 'послѣ́дьнъ мѣ́нъ ката́логъ',
+'tooltip-t-upload'               => 'положє́ниѥ дѣ́лъ',
+'tooltip-t-specialpages'         => 'вьсѣѩ наро́чьнъ страни́цѧ ката́логъ',
+'tooltip-watch'                  => 'си страни́цѧ блюдє́ниѥ',
 
 # Media information
 'file-info-size' => '($1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3 · MIME тѵ́пъ : $4)',
