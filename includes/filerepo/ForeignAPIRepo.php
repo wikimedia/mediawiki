@@ -175,7 +175,7 @@ class ForeignAPIRepo extends FileRepo {
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
 			'prop' => 'imageinfo' ) );
-		if( $info ) {
+		if( $info && $info['thumburl'] ) {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
 			return $info['thumburl'];
 		} else {
@@ -197,7 +197,15 @@ class ForeignAPIRepo extends FileRepo {
 		}
 		else {
 			$foreignUrl = $this->getThumbUrl( $name, $width, $height );
-
+			if( !$foreignUrl ) {
+				wfDebug( __METHOD__ . " Could not find thumburl\n" );
+				return false;
+			}
+			$thumb = Http::get( $foreignUrl );
+			if( !$thumb ) {
+				wfDebug( __METHOD__ . " Could not download thumb\n" );
+				return false;
+			}
 			// We need the same filename as the remote one :)
 			$fileName = rawurldecode( pathinfo( $foreignUrl, PATHINFO_BASENAME ) );
 			$path = 'thumb/' . $this->getHashPath( $name ) . $name . "/";
@@ -205,7 +213,6 @@ class ForeignAPIRepo extends FileRepo {
 				wfMkdirParents($wgUploadDirectory . '/' . $path);
 			}
 			$localUrl =  $wgServer . $wgUploadPath . '/' . $path . $fileName;
-			$thumb = Http::get( $foreignUrl );
 			# FIXME: Delete old thumbs that aren't being used. Maintenance script?
 			if( !file_put_contents($wgUploadDirectory . '/' . $path . $fileName, $thumb ) ) {
 				wfDebug( __METHOD__ . " could not write to thumb path\n" );
