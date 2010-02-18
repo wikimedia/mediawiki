@@ -819,6 +819,7 @@ $2',
 'resetpass_forbidden'       => 'לא ניתן לשנות סיסמאות.',
 'resetpass-no-info'         => 'עליכם להיכנס לחשבון כדי לגשת לדף זה באופן ישיר.',
 'resetpass-submit-loggedin' => 'שינוי סיסמה',
+'resetpass-submit-cancel'   => 'ביטול',
 'resetpass-wrong-oldpass'   => 'הסיסמה הזמנית או הנוכחית אינה תקינה.
 ייתכן שכבר שיניתם את סיסמתכם או שכבר ביקשתם סיסמה זמנית חדשה.',
 'resetpass-temp-password'   => 'סיסמה זמנית:',
