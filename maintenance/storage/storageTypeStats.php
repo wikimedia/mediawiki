@@ -33,7 +33,7 @@ class StorageTypeStats extends Maintenance {
 						)
 					)
 				),
-				IF(old_flags = 'object',
+				IF(old_flags LIKE '%object%',
 					TRIM('"' FROM SUBSTRING_INDEX(SUBSTRING_INDEX(old_text, ':', 3), ':', -1)),
 					'[none]'
 				)
