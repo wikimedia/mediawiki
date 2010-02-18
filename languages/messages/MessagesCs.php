@@ -826,6 +826,7 @@ Počkejte chvíli, než to zkusíte znovu.',
 'resetpass_forbidden'       => 'Hesla nelze změnit.',
 'resetpass-no-info'         => 'K této stránce mají přímý přístup jen přihlášení uživatelé.',
 'resetpass-submit-loggedin' => 'Změnit heslo',
+'resetpass-submit-cancel'   => 'Storno',
 'resetpass-wrong-oldpass'   => 'Nesprávné dočasné nebo aktuální heslo.
 Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',

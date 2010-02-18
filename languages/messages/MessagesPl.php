@@ -732,6 +732,7 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass_forbidden'       => 'Hasła nie mogą zostać zmienione',
 'resetpass-no-info'         => 'Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.',
 'resetpass-submit-loggedin' => 'Zmień hasło',
+'resetpass-submit-cancel'   => 'Anuluj',
 'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
 Być może właśnie {{GENDER:|zmieniłeś|zmieniłaś}} swoje hasło lub {{GENDER:|poprosiłeś|poprosiłaś}} o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',

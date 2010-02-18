@@ -639,6 +639,7 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'resetpass_forbidden'       => 'Passwierder kënnen net geännert ginn.',
 'resetpass-no-info'         => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
 'resetpass-submit-loggedin' => 'Passwuert änneren',
+'resetpass-submit-cancel'   => 'Annulléieren',
 'resetpass-wrong-oldpass'   => 'Net valabelt temporärt oder aktuellt Passwuert.
 Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuert ugefrot.',
 'resetpass-temp-password'   => 'Temporärt Passwuert:',
@@ -1538,10 +1539,12 @@ Fir eng oprimal Sécherheet ass img_auth.php ausgeschalt.",
 'img-auth-noread'       => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
 
 # HTTP errors
-'http-invalid-url'    => 'Net-valabel URL: $1',
-'http-invalid-scheme' => 'URLe mam Schema "$1" ginn net ënnerstëtzt',
-'http-request-error'  => "D'HTTP-Ufro huet wéinst engem onbekannte Feeler net fonctionnéiert.",
-'http-read-error'     => 'HTTP-Feeler beim Liesen.',
+'http-invalid-url'      => 'Net-valabel URL: $1',
+'http-invalid-scheme'   => 'URLe mam Schema "$1" ginn net ënnerstëtzt',
+'http-request-error'    => "D'HTTP-Ufro huet wéinst engem onbekannte Feeler net fonctionnéiert.",
+'http-read-error'       => 'HTTP-Feeler beim Liesen.',
+'http-host-unreachable' => "D'URL konnt net erreecht ginn.",
+'http-bad-status'       => 'Et gouf e Problem bäi der HTTP-Ufro: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL ass net z'erreechen",
@@ -2334,6 +2337,7 @@ verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
 
 An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéieren.",
 'movearticle'                  => 'Säit réckelen:',
+'moveuserpage-warning'         => "'''Opgepasst:''' Dir sidd am gaang eng Benotzersäit ze réckelen. Denkt w.e.g. dorunn datt just d'Säit geréckelt gëtt an datt de Benotzer ''net'' ëmbenannt gëtt.",
 'movenologin'                  => 'Net ageloggt',
 'movenologintext'              => 'Dir musst e registréierte Benotzer an [[Special:UserLogin|ageloggt]] sinn, fir eng Säit ze réckelen.',
 'movenotallowed'               => 'Dir hutt net déi néideg Rechter fir Säiten ze réckelen.',

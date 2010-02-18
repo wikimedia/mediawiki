@@ -381,8 +381,8 @@ $1',
 'privacypage'          => 'Project:Polisi preifatrwydd',
 
 'badaccess'        => 'Gwall caniatâd',
-'badaccess-group0' => 'Ni chaniateir i chi wneud y weithred y ceisiasoch amdani.',
-'badaccess-groups' => "Dim ond defnyddwyr o blith y {{PLURAL:$2|grwp|grwp|grwpiau|grwpiau|grwpiau|grwpiau}} $1 sy'n cael gwneud y weithred y gofynwyd amdani.",
+'badaccess-group0' => 'Ni chaniateir i chi wneud y weithred y gwnaethoch gais amdani.',
+'badaccess-groups' => "Dim ond defnyddwyr o blith y {{PLURAL:$2|grwp|grwp|grwpiau|grwpiau|grwpiau|grwpiau}} $1 sy'n cael gwneud y weithred y gwnaethoch gais amdani.",
 
 'versionrequired'     => 'Mae angen fersiwn $1 y meddalwedd MediaWiki',
 'versionrequiredtext' => "Mae angen fersiwn $1 y meddalwedd MediaWiki er mwyn gwneud defnydd o'r dudalen hon. Gweler y dudalen am y [[Special:Version|fersiwn]].",
@@ -602,6 +602,7 @@ Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
 'resetpass_forbidden'       => 'Ni ellir newid cyfrineiriau',
 'resetpass-no-info'         => 'Ni allwch fynd at y dudalen hon yn uniongyrchol heblaw eich bod wedi mewngofnodi.',
 'resetpass-submit-loggedin' => 'Newidier y cyfrinair',
+'resetpass-submit-cancel'   => 'Diddymu',
 'resetpass-wrong-oldpass'   => "Mae'r cyfrinair dros dro neu gyfredol yn annilys.
 Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gofyn am gyfrinair dros dro newydd.",
 'resetpass-temp-password'   => 'Cyfrinair dros dro:',
@@ -860,8 +861,13 @@ Hwyrach bod manylion pellach ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FU
 'rev-deleted-text-unhide'     => "Cafodd y diwygiad hwn o'r dudalen ei '''ddileu'''.
 Gweler cofnod y dileu ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].
 Gan eich bod yn weinyddwr gallwch [$1 weld y diwygiad] os y mynnwch.",
+'rev-suppressed-text-unhide'  => "Mae’r diwygiad hwn o’r dudalen wedi cael ei '''guddio'''.
+Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].
+Gan eich bod yn weinyddwr cewch [$1 weld y golygiad] o hyd os y dymunwch.",
 'rev-deleted-text-view'       => "'''Dilewyd''' y diwygiad hwn o'r dudalen.
 Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileu].",
+'rev-suppressed-text-view'    => "Mae’r diwygiad hwn o’r dudalen wedi cael ei '''guddio'''.
+Gan eich bod yn weinyddwr cewch weld y golygiad;  mae'r manylion ar gael ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].",
 'rev-delundel'                => 'dangos/cuddio',
 'rev-showdeleted'             => 'dangos',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
@@ -1152,25 +1158,26 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'prefs-display'                 => 'Dangos y dewisiadau',
 
 # User rights
-'userrights'                  => 'Rheoli galluoedd defnyddwyr',
-'userrights-lookup-user'      => 'Rheoli grwpiau defnyddiwr',
-'userrights-user-editname'    => 'Rhowch enw defnyddiwr:',
-'editusergroup'               => 'Golygu Grwpiau Defnyddwyr',
-'editinguser'                 => "Newid galluoedd y defnyddiwr '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Golygu grwpiau defnyddwyr',
-'saveusergroups'              => "Cadw'r Grwpiau Defnyddwyr",
-'userrights-groupsmember'     => 'Yn aelod o:',
-'userrights-groups-help'      => 'Gallwch newid y grwpiau y perthyn y defnyddiwr hwn iddynt:
+'userrights'                   => 'Rheoli galluoedd defnyddwyr',
+'userrights-lookup-user'       => 'Rheoli grwpiau defnyddiwr',
+'userrights-user-editname'     => 'Rhowch enw defnyddiwr:',
+'editusergroup'                => 'Golygu Grwpiau Defnyddwyr',
+'editinguser'                  => "Newid galluoedd y defnyddiwr '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Golygu grwpiau defnyddwyr',
+'saveusergroups'               => "Cadw'r Grwpiau Defnyddwyr",
+'userrights-groupsmember'      => 'Yn aelod o:',
+'userrights-groupsmember-auto' => 'Ac ynghlwm wrth aelodaeth y grwpiau uchod, yn aelod o:',
+'userrights-groups-help'       => 'Gallwch newid y grwpiau y perthyn y defnyddiwr hwn iddynt:
 * Mae defnyddiwr yn perthyn i grŵp pan mae tic yn y bocs.
 * Nid yw defnyddiwr yn perthyn i grŵp pan nad oes tic yn y bocs.
 * Mae * yn golygu na fyddwch yn gallu dad-wneud unrhyw newid yn y grŵp hwnnw.',
-'userrights-reason'           => 'Rheswm:',
-'userrights-no-interwiki'     => "Nid yw'r gallu ganddoch i newid galluoedd defnyddwyr ar wicïau eraill.",
-'userrights-nodatabase'       => "Nid yw'r bas data $1 yn bod neu nid yw'n un lleol.",
-'userrights-nologin'          => 'Rhaid i chi [[Special:UserLogin|fewngofnodi]] ar gyfrif gweinyddwr er mwyn pennu galluoedd defnyddwyr.',
-'userrights-notallowed'       => "Nid yw'r gallu i bennu galluoedd defnyddwyr ynghlwm wrth eich cyfrif defnyddiwr.",
-'userrights-changeable-col'   => 'Grwpiau y gallwch eu newid',
-'userrights-unchangeable-col' => 'Grwpiau na allwch eu newid',
+'userrights-reason'            => 'Rheswm:',
+'userrights-no-interwiki'      => "Nid yw'r gallu ganddoch i newid galluoedd defnyddwyr ar wicïau eraill.",
+'userrights-nodatabase'        => "Nid yw'r bas data $1 yn bod neu nid yw'n un lleol.",
+'userrights-nologin'           => 'Rhaid i chi [[Special:UserLogin|fewngofnodi]] ar gyfrif gweinyddwr er mwyn pennu galluoedd defnyddwyr.',
+'userrights-notallowed'        => "Nid yw'r gallu i bennu galluoedd defnyddwyr ynghlwm wrth eich cyfrif defnyddiwr.",
+'userrights-changeable-col'    => 'Grwpiau y gallwch eu newid',
+'userrights-unchangeable-col'  => 'Grwpiau na allwch eu newid',
 
 # Groups
 'group'               => 'Grŵp:',
@@ -1462,12 +1469,16 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'img-auth-accessdenied' => 'Ni chaniatawyd mynediad',
 'img-auth-nologinnWL'   => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
 'img-auth-nofile'       => 'Nid oes ffeil a\'r enw "$1" ar gael.',
+'img-auth-isdir'        => 'Rydych yn ceisio cyrchu cyfeiriadur o\'r enw "$1".
+Dim ond ffeiliau y cewch eu cyrchu.',
 'img-auth-noread'       => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL annilys: $1',
-'http-request-error'    => 'Methodd y gofyniad HTTP oherwydd gwall anhysbys.',
+'http-request-error'    => 'Methodd y cais HTTP oherwydd gwall anhysbys.',
 'http-read-error'       => 'Cafwyd gwall wrth ddarllen yr HTTP.',
+'http-timed-out'        => 'Goroedi wedi digwydd ar y cais HTTP.',
+'http-curl-error'       => 'Cafwyd gwall wrth nôl yr URL: $1',
 'http-host-unreachable' => 'Wedi methu cyrraedd yr URL.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
