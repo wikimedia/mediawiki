@@ -23,6 +23,9 @@ $linkPrefixExtension = true;
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'Kotíya sulimá na bikangisi :',
+
 # Dates
 'monday'        => 'mokɔlɔ ya libosó',
 'tuesday'       => 'mokɔlɔ ya míbalé',
@@ -96,19 +99,19 @@ $messages = array(
 'searchbutton'     => 'Boluki',
 'go'               => 'kokɛndɛ',
 'searcharticle'    => 'Kɛndɛ́',
-'history'          => 'Makambo ya lokásá',
+'history'          => 'Makambo ya lonkásá',
 'history_short'    => 'likambo',
 'printableversion' => 'Mpɔ̂ na kofínela',
 'permalink'        => 'Ekangeli ya ntángo yɔ́nsɔ',
 'print'            => 'kobimisa nkomá',
 'edit'             => 'Kobimisela',
 'create'           => 'Kokela',
-'editthispage'     => 'Kokoma lokásá loye',
+'editthispage'     => 'Kobɔngisa lonkásá óyo',
 'create-this-page' => 'Kokela lokásá yango',
 'delete'           => 'Kolímwisa',
 'protect'          => 'Kobátela',
 'unprotect'        => 'Kobátela tɛ̂',
-'newpage'          => 'Lokásá ya sika',
+'newpage'          => 'Lonkásá ya sika',
 'talkpagelinktext' => 'Ntembe',
 'personaltools'    => 'Bisáleli ya moto-mɛ́i',
 'talk'             => 'Ntembe',
@@ -118,14 +121,16 @@ $messages = array(
 'redirectedfrom'   => '(Eyendísí útá $1)',
 'redirectpagesub'  => 'Lokásá la boyendisi',
 'jumpto'           => 'Kokɛndɛ na:',
+'jumptonavigation' => 'bolúki',
 'jumptosearch'     => 'boluki',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'elɔ́kɔ elobí {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Mikokisi',
 'currentevents'        => 'Elɔ́kɔ ya sika',
+'disclaimers'          => 'Ndelo ya boyanoli',
 'edithelp'             => 'Kobimisela bosálisi',
-'mainpage'             => 'Lokásá ya libosó',
+'mainpage'             => 'Lonkásá ya libosó',
 'mainpage-description' => 'Lokásá ya libosó',
 'portal'               => 'Bísó na bísó',
 
@@ -134,6 +139,7 @@ $messages = array(
 'newmessageslink'    => 'nsango ya sika',
 'editsection'        => 'kobimisela',
 'editold'            => 'kokoma',
+'editlink'           => 'kobɔngisa',
 'editsectionhint'    => 'Kobimisela sɛksíɔ : $1',
 'toc'                => 'Etápe',
 'showtoc'            => 'komɔ́nisa',
@@ -201,14 +207,14 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'summary'                => 'Likwé ya mokusé:',
 'subject'                => 'Mokonza/litɛ́mɛ:',
 'minoredit'              => 'Ezalí mbóngwana ya mokɛ́',
-'watchthis'              => 'Kolanda lokásá loye',
-'savearticle'            => 'kobómbisa ekakoli',
+'watchthis'              => 'Kolanda lonkásá óyo',
+'savearticle'            => 'kobómbisa lonkásá',
 'preview'                => 'Botáli',
 'newarticle'             => '(Sika)',
 'editing'                => 'Kobimisela « $1 »',
 'editingcomment'         => 'Kokoma « $1 » (ndimbola)',
 'yourtext'               => 'Nkomá na yɔ̌',
-'templatesused'          => 'Bimekoli na mosálá o lokásá loye :',
+'templatesused'          => '{{PLURAL:$1|Emekoli esálélí|Bimekoli bisálélí}} o lonkásá óyo :',
 'templatesusedpreview'   => 'Bimekoli na mosálá o botáli boye :',
 'template-protected'     => '(na bobáteli)',
 'template-semiprotected' => '(na bobáteli ya ndámbo)',
@@ -232,10 +238,15 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'editundo'      => 'kozóngela',
 
 # Search results
-'prevn'        => '{{PLURAL:$1|$1}} ya libosó',
-'nextn'        => 'bolɛngɛli {{PLURAL:$1|$1}}',
-'viewprevnext' => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
-'powersearch'  => 'Boluki',
+'prevn'               => '{{PLURAL:$1|$1}} ya libosó',
+'nextn'               => 'bolɛngɛli {{PLURAL:$1|$1}}',
+'viewprevnext'        => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
+'search-result-size'  => '$1 ({{PLURAL:$2|lokomá 1|nkomá $2}})',
+'search-result-score' => 'Ntína : $1%',
+'search-redirect'     => '(bopengoli útá $1)',
+'search-section'      => '(sɛksió ya $1)',
+'search-suggest'      => 'Ómeka na lokomá : $1',
+'powersearch'         => 'Boluki',
 
 # Preferences page
 'preferences'       => 'Malúli',
@@ -328,7 +339,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'allpages'       => 'Nkásá ínsɔ',
 'alphaindexline' => '$1 kina $2',
 'nextpage'       => 'Lokásá ya nsima ($1)',
-'prevpage'       => 'Lokasá ya libosó ($1)',
+'prevpage'       => 'Lonkasá o libosó ($1)',
 'allpagesprev'   => '< ya libosó',
 'allpagesnext'   => 'bolɛngɛli >',
 'allpagessubmit' => 'kokɛndɛ',
@@ -350,9 +361,9 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'mywatchlist'       => 'Nkásá nalandí',
 'watchlistfor'      => "(mpɔ̂ na moto '''$1''')",
 'watch'             => 'Kolanda',
-'watchthispage'     => 'Kolanda lokásá loye',
+'watchthispage'     => 'Kolanda lonkásá óyo',
 'unwatch'           => 'Kolanda tɛ́',
-'watchlist-details' => '{{PLURAL:$1|Lokásá $1 lolandámí|Nkásá $1 ilandámí}}, longola nkásá ya ntembe.',
+'watchlist-details' => '{{PLURAL:$1|Lonkásá $1 elandámí|Nkásá $1 bilandámí}}, longola nkásá ya ntembe.',
 'wlnote'            => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana ya nsúka|izalí mbóngwana '''$1''' ya nsúka}} o {{PLURAL:$2|ngonga|ngonga '''$2'''}} ya nsúka.",
 'wlshowlast'        => 'Komɔ́nisa ngónga $1 ya nsúka, mikɔ́lɔ $2 mya nsúka tǒ $3',
 
@@ -384,12 +395,15 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 
 # What links here
 'whatlinkshere'       => 'Ekangísí áwa',
-'isredirect'          => 'Lokásá ya boyendisi',
+'isredirect'          => 'Lonkásá ya bopengoli',
 'whatlinkshere-links' => '← ekangisi',
+
+# Block/unblock
+'contribslink' => 'bíteni ya mosálá',
 
 # Move page
 'movearticle'             => 'Kobóngola nkómbó ya ekakoli :',
-'move-watch'              => 'Kolánda lokásá loye',
+'move-watch'              => 'Kolánda lonkásá ya líziba mpé lonkásá ya tíndamelo',
 'movepagebtn'             => 'Kobóngola lokásá',
 'movedto'                 => 'nkómbó ya sika',
 'revertmove'              => 'kozóngela',
@@ -408,18 +422,25 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'import' => 'koútisa...',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'Lokásá la ngáí',
-'tooltip-pt-mytalk'         => 'Lokásá ntembe la ngáí',
-'tooltip-pt-preferences'    => 'Malúli ma ngáí',
-'tooltip-pt-watchlist'      => 'Nkásá nalandí mpɔ̂ na mbóngwana',
-'tooltip-pt-mycontris'      => 'Nkásá nakomí',
-'tooltip-pt-logout'         => 'Ombémbóí',
-'tooltip-search'            => 'Boluki {{SITENAME}}',
-'tooltip-p-logo'            => 'Lokásá ya libosó',
-'tooltip-n-mainpage'        => 'Kokɛndɛ na Lokásá ya libosó',
-'tooltip-n-help'            => 'Lisálisi',
-'tooltip-ca-nstab-template' => 'Komɔ́nisela emekoli',
-'tooltip-ca-nstab-category' => 'Komɔ́nisela lokásá ya loléngé',
+'tooltip-pt-userpage'            => 'Lonkásá na ngáí',
+'tooltip-pt-mytalk'              => 'Lokásá ntembe la ngáí',
+'tooltip-pt-preferences'         => 'Malúli ma ngáí',
+'tooltip-pt-watchlist'           => 'Nkásá nalandí mpɔ̂ na mbóngwana',
+'tooltip-pt-mycontris'           => 'Nkásá nakomí',
+'tooltip-pt-logout'              => 'Ombémbóí',
+'tooltip-ca-move'                => 'Kobóngola nkómbó ya lonkásá óyo',
+'tooltip-ca-watch'               => 'Kobakisa na nkásá olandaka',
+'tooltip-ca-unwatch'             => 'Kolongola na nkásá olandaka',
+'tooltip-search'                 => 'Boluki {{SITENAME}}',
+'tooltip-search-go'              => 'Kokɛndɛ na lonkásá na nkómbó óyo sɔ́kí ezalí',
+'tooltip-search-fulltext'        => 'Koluka nkásá na nkomá yangó.',
+'tooltip-p-logo'                 => 'Lokásá ya libosó',
+'tooltip-n-mainpage'             => 'Kokɛndɛ na Lonkásá ya libosó',
+'tooltip-n-mainpage-description' => 'Kokɛndɛ na lonkásá ya libosó',
+'tooltip-n-portal'               => "etalí ''projet'' óyo",
+'tooltip-n-help'                 => 'Lisálisi',
+'tooltip-ca-nstab-template'      => 'Komɔ́nisela emekoli',
+'tooltip-ca-nstab-category'      => 'Komɔ́nisela lonkásá ya katégori',
 
 # Browsing diffs
 'previousdiff' => '← diff ya libosó',

@@ -539,6 +539,7 @@ Për piasì speta prima ëd prové torna.",
 'resetpass_forbidden'       => 'Le ciav as peulo pa cambiesse',
 'resetpass-no-info'         => 'It deve esse intrà për andé diretament a sta pàgina.',
 'resetpass-submit-loggedin' => 'Cambia ciav',
+'resetpass-submit-cancel'   => 'Scancela',
 'resetpass-wrong-oldpass'   => "Ciav a temp o corenta nen bon-a.
 Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
 'resetpass-temp-password'   => 'Ciav a temp:',
@@ -1001,7 +1002,7 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'powersearch-toggleall'            => 'Tùit',
 'powersearch-togglenone'           => 'Gnun',
 'search-external'                  => 'Arserca esterna',
-'searchdisabled'                   => "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a present che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
+'searchdisabled'                   => "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a da ment che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
 
 # Quickbar
 'qbsettings'               => 'Regolassion dla bara dij menù',
@@ -1014,7 +1015,7 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 # Preferences page
 'preferences'                   => 'Mè gust',
 'mypreferences'                 => 'mè gust',
-'prefs-edits'                   => 'Modìfiche faite:',
+'prefs-edits'                   => 'Nùmer ëd modìfiche fàite:',
 'prefsnologin'                  => "A l'é ancó pa rintrà ant ël sistema",
 'prefsnologintext'              => 'It deuve esse <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logà ant ël sistema]</span> për amposté ij tò gust.',
 'changepassword'                => 'Cambia ciav',
@@ -2269,7 +2270,7 @@ Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima ch
 *a l'ha deselessionà ël quadrèt ëd conferma ambelessì sota.
 Ant costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
 'movearticle'                  => "Cang-je nòm a l'artìcol",
-'moveuserpage-warning'         => "'''Atension:''' I të stas për tramudé na pàgina utent. Për piasì nòta che a sarà tramudà mach la pàgina e che l'utent a sarà \"pa\" arnomà.",
+'moveuserpage-warning'         => "'''Atension:''' A sta për tramudé na pàgina d'utent. Për piasì ch'a nòta che a sarà tramudà mach la pàgina e che l'utent a sarà \"pa\" arnominà.",
 'movenologin'                  => "Che a varda che chiel (chila) a l'è pa rintrà ant ël sistema",
 'movenologintext'              => "A venta esse n'Utent registrà e esse [[Special:UserLogin|rintrà ant ël sistema]]
 për podej tramudé na pàgina.",

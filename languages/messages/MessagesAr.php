@@ -870,6 +870,7 @@ $2',
 'nosuchusershort'            => 'لا يوجد مستخدم باسم <nowiki>$1</nowiki>".
 تأكد من إملاء الاسم.',
 'nouserspecified'            => 'يجب عليك تحديد اسم مستخدم.',
+'login-userblocked'          => 'هذا المستخدم ممنوع. لا يسمح بالولوج.',
 'wrongpassword'              => 'كلمة السر التي أدخلتها غير صحيحة.
 من فضلك حاول مرة أخرى.',
 'wrongpasswordempty'         => 'كلمة السر المدخلة كانت فارغة.
@@ -929,6 +930,7 @@ $2',
 'resetpass_forbidden'       => 'كلمات السر لا يمكن تغييرها',
 'resetpass-no-info'         => 'يجب أن تكون مسجل الدخول للوصول إلى هذه الصفحة مباشرة.',
 'resetpass-submit-loggedin' => 'تغيير كلمة السر',
+'resetpass-submit-cancel'   => 'ألغِ',
 'resetpass-wrong-oldpass'   => 'كلمة سر حالية أو مؤقتة غير صحيحة.
 ربما تكون غيرت كلمة السر الخاصة بك بنجاح أو طلبت كلمة سر مؤقتة جديدة.',
 'resetpass-temp-password'   => 'كلمة سر مؤقتة:',
@@ -1874,7 +1876,9 @@ PICT # متنوع
 # HTTP errors
 'http-invalid-url'      => 'مسار غير صالح: $1',
 'http-read-error'       => 'خطأ قراءة HTTP.',
+'http-curl-error'       => 'فشل جلب المسار: $1',
 'http-host-unreachable' => 'تعذّر الوصول إلى المسار.',
+'http-bad-status'       => 'ثمة مشكلة أثناء طلب HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'لم يتمكن من الوصول للمسار',
