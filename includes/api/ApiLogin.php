@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Sep 19, 2006
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006-2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com,
+ * Copyright © 2006-2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com,
  * Daniel Cannon (cannon dot danielc at gmail dot com)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -26,7 +26,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiBase.php' );
+	require_once( 'ApiBase.php' );
 }
 
 /**
@@ -37,7 +37,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiLogin extends ApiBase {
 
 	public function __construct( $main, $action ) {
-		parent :: __construct( $main, $action, 'lg' );
+		parent::__construct( $main, $action, 'lg' );
 	}
 
 	/**
@@ -48,15 +48,13 @@ class ApiLogin extends ApiBase {
 	 * user, or any other reason, the host is cached with an expiry
 	 * and no log-in attempts will be accepted until that expiry
 	 * is reached. The expiry is $this->mLoginThrottle.
-	 *
-	 * @access public
 	 */
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$result = array ();
+		$result = array();
 
-		$req = new FauxRequest( array (
+		$req = new FauxRequest( array(
 			'wpName' => $params['name'],
 			'wpPassword' => $params['password'],
 			'wpDomain' => $params['domain'],
@@ -70,7 +68,7 @@ class ApiLogin extends ApiBase {
 
 		$loginForm = new LoginForm( $req );
 		switch ( $authRes = $loginForm->authenticateUserData() ) {
-			case LoginForm :: SUCCESS :
+			case LoginForm::SUCCESS:
 				global $wgUser, $wgCookiePrefix;
 
 				$wgUser->setOption( 'rememberpassword', 1 );
@@ -89,48 +87,48 @@ class ApiLogin extends ApiBase {
 				$result['sessionid'] = session_id();
 				break;
 
-			case LoginForm :: NO_NAME :
+			case LoginForm::NO_NAME:
 				$result['result'] = 'NoName';
 				break;
 
-			case LoginForm :: ILLEGAL :
+			case LoginForm::ILLEGAL:
 				$result['result'] = 'Illegal';
 				break;
 
-			case LoginForm :: WRONG_PLUGIN_PASS :
+			case LoginForm::WRONG_PLUGIN_PASS:
 				$result['result'] = 'WrongPluginPass';
 				break;
 
-			case LoginForm :: NOT_EXISTS :
+			case LoginForm::NOT_EXISTS:
 				$result['result'] = 'NotExists';
 				break;
-	
-			case LoginForm :: RESET_PASS : // bug 20223 - Treat a temporary password as wrong. Per SpecialUserLogin - "The e-mailed temporary password should not be used for actual logins;"
-			case LoginForm :: WRONG_PASS :
+
+			case LoginForm::RESET_PASS: // bug 20223 - Treat a temporary password as wrong. Per SpecialUserLogin - "The e-mailed temporary password should not be used for actual logins;"
+			case LoginForm::WRONG_PASS:
 				$result['result'] = 'WrongPass';
 				break;
 
-			case LoginForm :: EMPTY_PASS :
+			case LoginForm::EMPTY_PASS:
 				$result['result'] = 'EmptyPass';
 				break;
 
-			case LoginForm :: CREATE_BLOCKED :
+			case LoginForm::CREATE_BLOCKED:
 				$result['result'] = 'CreateBlocked';
 				$result['details'] = 'Your IP address is blocked from account creation';
 				break;
 
-			case LoginForm :: THROTTLED :
+			case LoginForm::THROTTLED:
 				global $wgPasswordAttemptThrottle;
 				$result['result'] = 'Throttled';
 				$result['wait'] = intval( $wgPasswordAttemptThrottle['seconds'] );
 				break;
-			
-			case LoginForm :: USER_BLOCKED :
+
+			case LoginForm::USER_BLOCKED:
 				$result['result'] = 'Blocked';
 				break;
 
-			default :
-				ApiBase :: dieDebug( __METHOD__, "Unhandled case value: {$authRes}" );
+			default:
+				ApiBase::dieDebug( __METHOD__, "Unhandled case value: {$authRes}" );
 		}
 
 		$this->getResult()->addValue( null, 'login', $result );
@@ -145,7 +143,7 @@ class ApiLogin extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'name' => null,
 			'password' => null,
 			'domain' => null
@@ -153,7 +151,7 @@ class ApiLogin extends ApiBase {
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'name' => 'User Name',
 			'password' => 'Password',
 			'domain' => 'Domain (optional)'
@@ -161,7 +159,7 @@ class ApiLogin extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array (
+		return array(
 			'This module is used to login and get the authentication tokens. ',
 			'In the event of a successful log-in, a cookie will be attached',
 			'to your session. In the event of a failed log-in, you will not ',
@@ -169,9 +167,9 @@ class ApiLogin extends ApiBase {
 			'This is to prevent password guessing by automated password crackers.'
 		);
 	}
-	
+
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array (
+		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'NoName', 'info' => 'You didn\'t set the lgname parameter' ),
 			array( 'code' => 'Illegal', 'info' => ' You provided an illegal username' ),
 			array( 'code' => 'NotExists', 'info' => ' The username you provided doesn\'t exist' ),
@@ -181,8 +179,7 @@ class ApiLogin extends ApiBase {
 			array( 'code' => 'CreateBlocked', 'info' => 'The wiki tried to automatically create a new account for you, but your IP address has been blocked from account creation' ),
 			array( 'code' => 'Throttled', 'info' => 'You\'ve logged in too many times in a short time' ),
 			array( 'code' => 'Blocked', 'info' => 'User is blocked' ),
-        ) );
-;
+		) );
 	}
 
 	protected function getExamples() {
