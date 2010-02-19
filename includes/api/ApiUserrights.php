@@ -39,7 +39,7 @@ class ApiUserrights extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		
-		//User already validated in call to getTokenSalt from Main
+		// User already validated in call to getTokenSalt from Main
 		$form = new UserrightsPage;
 		$user = $form->fetchUser( $params['user'] );
 		

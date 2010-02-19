@@ -75,13 +75,17 @@ class ApiFeedWatchlist extends ApiBase {
 				'wllimit' => ( 50 > $wgFeedLimit ) ? $wgFeedLimit : 50
 			);
 
-			if ( !is_null( $params['wlowner'] ) )
+			if ( !is_null( $params['wlowner'] ) ) {
 				$fauxReqArr['wlowner'] = $params['wlowner'];
-			if ( !is_null( $params['wltoken'] ) )
+			}
+			if ( !is_null( $params['wltoken'] ) ) {
 				$fauxReqArr['wltoken'] = $params['wltoken'];
+			}
 
 			// Check for 'allrev' parameter, and if found, show all revisions to each page on wl.
-			if ( ! is_null ( $params['allrev'] ) )  $fauxReqArr['wlallrev'] = '';
+			if ( !is_null ( $params['allrev'] ) ) {
+				$fauxReqArr['wlallrev'] = '';
+			}
 
 			// Create the request
 			$fauxReq = new FauxRequest ( $fauxReqArr );
@@ -93,7 +97,7 @@ class ApiFeedWatchlist extends ApiBase {
 			// Get data array
 			$data = $module->getResultData();
 
-			$feedItems = array ();
+			$feedItems = array();
 			foreach ( (array)$data['query']['watchlist'] as $info ) {
 				$feedItems[] = $this->createFeedItem( $info );
 			}
