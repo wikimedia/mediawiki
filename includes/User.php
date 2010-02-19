@@ -345,7 +345,8 @@ class User {
 	 *    User::getCanonicalName(), except that true is accepted as an alias
 	 *    for 'valid', for BC.
 	 *
-	 * @return \type{User} The User object, or null if the username is invalid. If the
+	 * @return \type{User} The User object, or false if the username is invalid 
+	 *    (e.g. if it contains illegal characters or is an IP address). If the
 	 *    username is not present in the database, the result will be a user object
 	 *    with a name, zero user ID and default settings.
 	 */
