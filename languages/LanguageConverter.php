@@ -41,16 +41,13 @@ class LanguageConverter {
 	 * Constructor
 	 *
 	 * @param $langobj The Language Object
-	 * @param string $maincode the main language code of this language
-	 * @param array $variants the supported variants of this language
-	 * @param array $variantfallback the fallback language of each variant
-	 * @param array $markup array defining the markup used for manual conversion
-	 * @param array $flags array defining the custom strings that maps to the
-	 *              flags
-	 * @param array $manualLevel limit for supported variants
-	 * @public
+	 * @param $maincode String: the main language code of this language
+	 * @param $variants Array: the supported variants of this language
+	 * @param $variantfallbacks Array: the fallback language of each variant
+	 * @param $flags Array: defining the custom strings that maps to the flags
+	 * @param $manualLevel Array: limit for supported variants
 	 */
-	function __construct( $langobj, $maincode,
+	public function __construct( $langobj, $maincode,
 								$variants = array(),
 								$variantfallbacks = array(),
 								$flags = array(),
@@ -1035,11 +1032,10 @@ class ConverterRule {
 	/**
 	 * Constructor
 	 *
-	 * @param string $text the text between -{ and }-
-	 * @param object $converter a  LanguageConverter object
-	 * @access public
+	 * @param $text String: the text between -{ and }-
+	 * @param $converter LanguageConverter object
 	 */
-	function __construct( $text, $converter ) {
+	public function __construct( $text, $converter ) {
 		$this->mText = $text;
 		$this->mConverter = $converter;
 	}
@@ -1047,11 +1043,10 @@ class ConverterRule {
 	/**
 	 * Check if variants array in convert array.
 	 *
-	 * @param string $variant Variant language code
-	 * @return string Translated text
-	 * @public
+	 * @param $variants Array or string: variant language code
+	 * @return String: translated text
 	 */
-	function getTextInBidtable( $variants ) {
+	public function getTextInBidtable( $variants ) {
 		$variants = (array)$variants;
 		if ( !$variants ) {
 			return false;
