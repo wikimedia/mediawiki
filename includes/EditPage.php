@@ -779,23 +779,23 @@ class EditPage {
 		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
 			$parts = explode( '/', $this->mTitle->getText(), 2 );
 			$username = $parts[0];
-			$id = User::idFromName( $username );
+			$user = User::newFromName( $username, false /* allow IP users*/ );
 			$ip = User::isIP( $username );
-			if ( $id == 0 && !$ip ) { # User does not exist
+			if ( !$user->isLoggedIn() && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1</div>",
 					array( 'userpage-userdoesnotexist', $username ) );
-			} else if (User::newFromId($id)->isBlocked()) { # Show log extract if the user is currently blocked
+			} else if ( $user->isBlocked() ) { # Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
 					$wgOut,
 					'block',
-					$this->mTitle->getSubjectPage()->getPrefixedText(),
+					$user->getUserPage()->getPrefixedText(),
 					'',
 					array(
 						'lim' => 1,
 						'showIfEmpty' => false,
 						'msgKey' => array(
-							'sp-contributions-blocked-notice',
-							$this->mTitle->getSubjectPage()->getPrefixedText() # Support GENDER in notice
+							'blocked-notice-logextract',
+							$user->getName() # Support GENDER in notice
 						)
 					)
 				);
