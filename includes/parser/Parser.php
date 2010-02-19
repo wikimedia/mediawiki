@@ -15,7 +15,7 @@
  * (which in turn the browser understands, and can display).
  *
  * <pre>
- * There are six main entry points into the Parser class:
+ * There are five main entry points into the Parser class:
  * parse()
  *   produces HTML output
  * preSaveTransform().
@@ -26,8 +26,6 @@
  *   Cleans a signature before saving it to preferences
  * extractSections()
  *   Extracts sections from an article for section editing
- * getTransclusionText()
- *   Extracts the text of a template with only <includeonly>, etc., parsed
  *
  * Globals used:
  *    objects:   $wgLang, $wgContLang
@@ -84,7 +82,6 @@ class Parser
 	const OT_WIKI = 2;
 	const OT_PREPROCESS = 3;
 	const OT_MSG = 3;
-	const OT_INCLUDES = 4;
 
 	// Marker Suffix needs to be accessible staticly.
 	const MARKER_SUFFIX = "-QINU\x7f";
@@ -371,29 +368,24 @@ class Parser
 
 		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
 
-		if ( $this->mTransparentTagHooks ) {
-			//!JF Move to its own function
-			$uniq_prefix = $this->mUniqPrefix;
-			$matches = array();
-			$elements = array_keys( $this->mTransparentTagHooks );
-			$text = self::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
+//!JF Move to its own function
 
-			foreach( $matches as $marker => $data ) {
-				list( $element, $content, $params, $tag ) = $data;
-				$tagName = strtolower( $element );
-				if( isset( $this->mTransparentTagHooks[$tagName] ) ) {
-					$output = call_user_func_array( $this->mTransparentTagHooks[$tagName],
-						array( $content, $params, $this ) );
-				} else {
-					$output = $tag;
-				}
-				$this->mStripState->general->setPair( $marker, $output );
+		$uniq_prefix = $this->mUniqPrefix;
+		$matches = array();
+		$elements = array_keys( $this->mTransparentTagHooks );
+		$text = self::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
+
+		foreach( $matches as $marker => $data ) {
+			list( $element, $content, $params, $tag ) = $data;
+			$tagName = strtolower( $element );
+			if( isset( $this->mTransparentTagHooks[$tagName] ) ) {
+				$output = call_user_func_array( $this->mTransparentTagHooks[$tagName],
+					array( $content, $params, $this ) );
+			} else {
+				$output = $tag;
 			}
+			$this->mStripState->general->setPair( $marker, $output );
 		}
-
-		# This was originally inserted for transparent tag hooks (now deprecated)
-		# but some extensions (notably <poem>) rely on the extra unstripGeneral()
-		# after unstripNoWiki() so they can modify the contents of <nowiki> tags.
 		$text = $this->mStripState->unstripGeneral( $text );
 
 		$text = Sanitizer::normalizeCharReferences( $text );
@@ -495,26 +487,6 @@ class Parser
 		$text = $this->mStripState->unstripBoth( $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
-	}
-
-	/**
-	 * Get the wikitext of a page as though it was transcluded.
-	 *
-	 * Specifically <includeonly> etc. are parsed, redirects are followed, comments
-	 * are removed, but templates arguments and parser functions are untouched.
-	 *
-	 * This is not called by the parser itself, see braceSubstitution for its transclusion. 
-	 */
-	public function getTransclusionText( $title, $options ) {
-		// Must initialize first
-		$this->clearState();
-		$this->setOutputType( self::OT_INCLUDES );
-		$this->mOptions = $options;
-		$this->setTitle( new FakeTitle ); 
-
-		list( $text, $title ) = $this->getTemplateDom( $title );
-		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
-		return $this->getPreprocessor()->newFrame()->expand( $text, $flags );
 	}
 
 	/**
@@ -1522,7 +1494,7 @@ class Parser
 		if ( !$tc ) {
 			$tc = Title::legalChars() . '#%';
 			# Match a link having the form [[namespace:link|alternate]]trail
-			$e1 = "/^([{$tc}]*)(\\|.*?)?]](.*)\$/sD";
+			$e1 = "/^([{$tc}]+)(?:\\|(.+?))?]](.*)\$/sD";
 			# Match cases where there is no "]]", which might still be images
 			$e1_img = "/^([{$tc}]+)\\|(.*)\$/sD";
 		}
@@ -1602,15 +1574,7 @@ class Parser
 
 			wfProfileIn( __METHOD__."-e1" );
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
-
-				if( $m[2] === '' ) {
-					$text = '';
-				} elseif( $m[2] === '|' ) { 
-					$text = $this->getPipeTrickText( $m[1] );
-				} else {
-					$text = substr( $m[2], 1 );
-				}
-
+				$text = $m[2];
 				# If we get a ] at the beginning of $m[3] that means we have a link that's something like:
 				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
 				# the real problem is with the $e1 regex
@@ -1627,20 +1591,18 @@ class Parser
 					$text .= ']'; # so that replaceExternalLinks($text) works later
 					$m[3] = substr( $m[3], 1 );
 				}
-
-				# Handle pipe-trick for [[|<blah>]]
-				$lnk = $m[1] === '' ? $this->getPipeTrickLink( $text ) : $m[1];
 				# fix up urlencoded title texts
-				if( strpos( $lnk, '%' ) !== false ) {
+				if( strpos( $m[1], '%' ) !== false ) {
 					# Should anchors '#' also be rejected?
-					$lnk = str_replace( array('<', '>'), array('&lt;', '&gt;'), urldecode($lnk) );
+					$m[1] = str_replace( array('<', '>'), array('&lt;', '&gt;'), urldecode($m[1]) );
 				}
-
 				$trail = $m[3];
 			} elseif( preg_match($e1_img, $line, $m) ) { # Invalid, but might be an image with a link in its caption
 				$might_be_img = true;
 				$text = $m[2];
-				$lnk = strpos( $m[1], '%' ) === false ? $m[1] : urldecode( $m[1] );
+				if ( strpos( $m[1], '%' ) !== false ) {
+					$m[1] = urldecode($m[1]);
+				}
 				$trail = "";
 			} else { # Invalid form; output directly
 				$s .= $prefix . '[[' . $line ;
@@ -1653,7 +1615,7 @@ class Parser
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if ( preg_match( '/^\b(?:' . wfUrlProtocols() . ')/', $lnk ) ) {
+			if ( preg_match( '/^\b(?:' . wfUrlProtocols() . ')/', $m[1] ) ) {
 				$s .= $prefix . '[[' . $line ;
 				wfProfileOut( __METHOD__."-misc" );
 				continue;
@@ -1661,12 +1623,12 @@ class Parser
 
 			# Make subpage if necessary
 			if ( $useSubpages ) {
-				$link = $this->maybeDoSubpageLink( $lnk, $text );
+				$link = $this->maybeDoSubpageLink( $m[1], $text );
 			} else {
-				$link = $lnk;
+				$link = $m[1];
 			}
 
-			$noforce = (substr( $lnk, 0, 1 ) !== ':');
+			$noforce = (substr( $m[1], 0, 1 ) !== ':');
 			if (!$noforce) {
 				# Strip off leading ':'
 				$link = substr( $link, 1 );
@@ -1912,25 +1874,6 @@ class Parser
 	 */
 	function maybeDoSubpageLink($target, &$text) {
 		return Linker::normalizeSubpageLink( $this->mTitle, $target, $text );
-	}
-
-	/**
-	 * From the [[title|]] return link-text as though the used typed [[title|link-text]]
-	 * @param string $link from [[$link|]]
-	 * @return string $text for [[$link|$text]]
-	 */
-	function getPipeTrickText( $link ) {
-		return Linker::getPipeTrickText( $link );
-	}
-
-	/**
-	 * From the [[|link-text]] return the title as though the user typed [[title|link-text]]
-	 * @param string $text from [[|$text]]
-	 * @param Title $title to resolve the link against
-	 * @return string $link for [[$link|$text]]
-	 */
-	function getPipeTrickLink( $text ) {
-		return Linker::getPipeTrickLink( $text, $this->mTitle );
 	}
 
 	/**#@+
@@ -2494,14 +2437,6 @@ class Parser
 			case 'subjectpagenamee':
 				$subjPage = $this->mTitle->getSubjectPage();
 				$value = $subjPage->getPrefixedUrl();
-				break;
-			case 'pipetrick':
-				$text = $this->mTitle->getText();
-				$value = $this->getPipeTrickText( $text );
-				break;
-			case 'pipetricke':
-				$text = $this->mTitle->getText();
-				$value = wfUrlEncode( str_replace( ' ', '_', $this->getPipeTrickText( $text ) ) );
 				break;
 			case 'revisionid':
 				// Let the edit saving system know we should parse the page
@@ -4045,35 +3980,37 @@ class Parser
 			'~~~' => $sigText
 		) );
 
-		# Links of the form [[|<blah>]] or [[<blah>|]] perform pipe tricks
-		# Note this only allows the # in the position it works.
+		# Context links: [[|name]] and [[name (context)|]]
+		#
 		global $wgLegalTitleChars;
-		$pipeTrickRe = "/\[\[(?:(\\|)([$wgLegalTitleChars]+)|([#$wgLegalTitleChars]+)\\|)\]\]/";
-		$text = preg_replace_callback( $pipeTrickRe, array( $this, 'pstPipeTrickCallback' ), $text );
+		$tc = "[$wgLegalTitleChars]";
+		$nc = '[ _0-9A-Za-z\x80-\xff-]'; # Namespaces can use non-ascii!
+
+		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( \\($tc+\\))\\|]]/";		# [[ns:page (context)|]]
+		$p4 = "/\[\[(:?$nc+:|:|)($tc+?)(（$tc+）)\\|]]/";		# [[ns:page（context）|]]
+		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( \\($tc+\\)|)(, $tc+|)\\|]]/";	# [[ns:page (context), context|]]
+		$p2 = "/\[\[\\|($tc+)]]/";					# [[|page]]
+
+		# try $p1 first, to turn "[[A, B (C)|]]" into "[[A, B (C)|A, B]]"
+		$text = preg_replace( $p1, '[[\\1\\2\\3|\\2]]', $text );
+		$text = preg_replace( $p4, '[[\\1\\2\\3|\\2]]', $text );
+		$text = preg_replace( $p3, '[[\\1\\2\\3\\4|\\2]]', $text );
+
+		$t = $this->mTitle->getText();
+		$m = array();
+		if ( preg_match( "/^($nc+:|)$tc+?( \\($tc+\\))$/", $t, $m ) ) {
+			$text = preg_replace( $p2, "[[$m[1]\\1$m[2]|\\1]]", $text );
+		} elseif ( preg_match( "/^($nc+:|)$tc+?(, $tc+|)$/", $t, $m ) && "$m[1]$m[2]" != '' ) {
+			$text = preg_replace( $p2, "[[$m[1]\\1$m[2]|\\1]]", $text );
+		} else {
+			# if there's no context, don't bother duplicating the title
+			$text = preg_replace( $p2, '[[\\1]]', $text );
+		}
 
 		# Trim trailing whitespace
 		$text = rtrim( $text );
 
 		return $text;
-	}
-
-	/**
-	 * Called from pstPass2 to perform the pipe trick on links.
-	 * Original was either [[|text]] or [[link|]]
-	 *
-	 * @param Array ("|" or "", text, link) $m
-	 */
-	function pstPipeTrickCallback( $m )
-	{
-		if( $m[1] ) { # [[|<blah>]]
-			$text = $m[2];
-			$link = $this->getPipeTrickLink( $text );
-		} else { # [[<blah>|]]
-			$link = $m[3];
-			$text = $this->getPipeTrickText( $link );
-		}
-
-		return $link === $text ? "[[$link]]" : "[[$link|$text]]";
 	}
 
 	/**
@@ -4256,9 +4193,7 @@ class Parser
 		return $oldVal;
 	}
 
-	/* An old work-around for bug 2257 - deprecated 2010-02-13 */
 	function setTransparentTagHook( $tag, $callback ) {
-		wfDeprecated( __METHOD__ );
 		$tag = strtolower( $tag );
 		$oldVal = isset( $this->mTransparentTagHooks[$tag] ) ? $this->mTransparentTagHooks[$tag] : null;
 		$this->mTransparentTagHooks[$tag] = $callback;

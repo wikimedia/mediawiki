@@ -67,8 +67,6 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'talkpagenamee',    array( __CLASS__, 'talkpagenamee'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectpagename',  array( __CLASS__, 'subjectpagename'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pipetrick',        array( __CLASS__, 'pipetrick'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pipetricke',       array( __CLASS__, 'pipetricke'       ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
 
@@ -439,27 +437,6 @@ class CoreParserFunctions {
 		if ( is_null( $t ) )
 			return '';
 		return $t->getSubjectPage()->getPrefixedUrl();
-	}
-
-	/**
-	 * Performs the pipe trick in the same manner as [[title|]] or [[|title]].
-	 * {{#pipetrick:title}} == {{#pipetrick:title|}} -> Parser::getPipeTrickText
-	 * {{#pipetrick:|title}} -> Parser::getPipeTrickLink (rarer)
-	 * See http://en.wikipedia.org/wiki/Help:Pipe_trick and the Parser documentation
-	 * for more information.
-	 */
-	static function pipetrick( $parser, $link = '', $text = '' ) {
-		if ( $link )
-			return $parser->getPipeTrickText( $link );
-		else
-			return $parser->getPipeTrickLink( $text );
-	}
-
-	/**
-	 * Performs the pipetrick and then url encodes the result
-	 */
-	static function pipetricke( $parser, $link = '', $text = '' ) {
-		return wfUrlEncode( str_replace( ' ', '_', self::pipetrick( $parser, $link, $text ) ) );
 	}
 
 	/**
