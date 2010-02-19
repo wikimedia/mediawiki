@@ -548,6 +548,7 @@ $wgMessageStructure = array(
 		'noarticletextanon',
 		'userpage-userdoesnotexist',
 		'userpage-userdoesnotexist-view',
+		'blocked-notice-logextract',
 		'clearyourcache',
 		'usercssyoucanpreview',
 		'userjsyoucanpreview',

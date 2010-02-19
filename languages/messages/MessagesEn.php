@@ -1264,6 +1264,8 @@ or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
 'userpage-userdoesnotexist-view'   => 'User account "$1" is not registered.',
+'blocked-notice-logextract'        => 'This user is currently blocked.
+The latest block log entry is provided below for reference:',
 'clearyourcache'                   => "'''Note: After saving, you may have to bypass your browser's cache to see the changes.'''
 '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);
 '''Konqueror: '''click ''Reload'' or press ''F5'';
