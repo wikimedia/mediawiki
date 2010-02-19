@@ -414,7 +414,7 @@ class ApiMain extends ApiBase {
 
 		$moduleParams = $module->extractRequestParams();
 		
-		//Die if token required, but not provided (unless there is a gettoken parameter)
+		// Die if token required, but not provided (unless there is a gettoken parameter)
 		$salt = $module->getTokenSalt();
 		if ( $salt !== false )
 		{
