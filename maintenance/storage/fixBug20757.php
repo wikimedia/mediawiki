@@ -12,6 +12,7 @@ class FixBug20757 extends Maintenance {
 		parent::__construct();
 		$this->mDescription = 'Script to fix bug 20757 assuming that blob_tracking is intact';
 		$this->addOption( 'dry-run', 'Report only' );
+		$this->addOption( 'start', 'old_id to start at', false, true );
 	}
 	
 	function execute() {
@@ -23,7 +24,7 @@ class FixBug20757 extends Maintenance {
 			print "Dry run only.\n";
 		}
 
-		$startId = 0;
+		$startId = $this->getOption( 'start', 0 );
 		$numGood = 0;
 		$numFixed = 0;
 		$numBad = 0;
@@ -38,7 +39,7 @@ class FixBug20757 extends Maintenance {
 				array( 'old_id', 'old_flags', 'old_text' ),
 				array( 
 					'old_id > ' . intval( $startId ),
-					'old_flags' => 'object'
+					'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'object', $dbr->anyString )
 				),
 				__METHOD__,
 				array( 
@@ -69,14 +70,6 @@ class FixBug20757 extends Maintenance {
 					print "{$row->old_id}: unrecoverable: unserialized to type " . 
 						gettype( $obj ) . ", possible double-serialization\n";
 					++$numBad;
-					continue;
-				}
-
-				// Check if it really is broken
-				$text = Revision::getRevisionText( $row );
-				if ( $text !== false ) {
-					// Not broken yet
-					++$numGood;
 					continue;
 				}
 
@@ -122,6 +115,7 @@ class FixBug20757 extends Maintenance {
 			foreach ( $stubs as $primaryId => $stub ) {
 				$secondaryId = $stub['secondaryId'];
 				if ( !isset( $trackedBlobs[$secondaryId] ) ) {
+					// No tracked blob. Work out what went wrong
 					$secondaryRow = $dbr->selectRow( 
 						'text', 
 						array( 'old_flags', 'old_text' ),
@@ -130,12 +124,18 @@ class FixBug20757 extends Maintenance {
 					);
 					if ( !$secondaryRow ) {
 						print "$primaryId: unrecoverable: secondary row is missing\n";
+						++$numBad;
+					} elseif ( $this->isUnbrokenStub( $stub, $secondaryRow ) ) {
+						// Not broken yet, and not in the tracked clusters so it won't get 
+						// broken by the current RCT run.
+						++$numGood;
 					} elseif ( strpos( $secondaryRow->old_flags, 'external' ) !== false ) {
 						print "$primaryId: unrecoverable: secondary gone to {$secondaryRow->old_text}\n";
+						++$numBad;
 					} else {
 						print "$primaryId: unrecoverable: miscellaneous corruption of secondary row\n";
+						++$numBad;
 					}
-					++$numBad;
 					unset( $stubs[$primaryId] );
 					continue;
 				}
@@ -212,7 +212,7 @@ class FixBug20757 extends Maintenance {
 		print "\n";
 		print "Fixed: $numFixed\n";
 		print "Unrecoverable: $numBad\n";
-		print "Not yet broken: $numGood\n";
+		print "Good stubs: $numGood\n";
 	}
 
 	function waitForSlaves() {
@@ -258,6 +258,43 @@ class FixBug20757 extends Maintenance {
 		return $this->mapCache[$pageId];
 	}
 
+	/**
+	 * This is based on part of HistoryBlobStub::getText().
+	 * Determine if the text can be retrieved from the row in the normal way.
+	 */
+	function isUnbrokenStub( $stub, $secondaryRow ) {
+		$flags = explode( ',', $secondaryRow->old_flags );
+		if( in_array( 'external', $flags ) ) {
+			$url = $secondaryRow->old_text;
+			@list( /* $proto */ , $path ) = explode( '://', $url, 2 );
+			if ( $path == "" ) {
+				return false;
+			}
+			$secondaryRow->old_text = ExternalStore::fetchFromUrl( $url );
+		}
+		if( !in_array( 'object', $flags ) ) {
+			return false;
+		}
+
+		if( in_array( 'gzip', $flags ) ) {
+			$obj = unserialize( gzinflate( $secondaryRow->old_text ) );
+		} else {
+			$obj = unserialize( $secondaryRow->old_text );
+		}
+
+		if( !is_object( $obj ) ) {
+			// Correct for old double-serialization bug.
+			$obj = unserialize( $obj );
+		}
+
+		if ( !is_object( $obj ) ) {
+			return false;
+		}
+
+		$obj->uncompress();
+		$text = $obj->getItem( $stub['hash'] );
+		return $text !== false;
+	}
 }
 
 $maintClass = 'FixBug20757';
