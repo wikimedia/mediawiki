@@ -16,15 +16,16 @@ function doLivePreview( e ) {
 	// Hide active diff, used templates, old preview if shown
 	var copyElements = ['#wikiPreview', '.templatesUsed', '.hiddencats',
 						'#catlinks'];
+	var copySelector = copyElements.join(',');
 
-	$j.each( copyElements, function(k,v) { $j(v).fadeOut(); } );
+	$j.each( copyElements, function(k,v) { $j(v).fadeOut('fast'); } );
 	
 	// Display a loading graphic
 	var loadSpinner = $j('<div class="mw-ajax-loader"/>');
 	$j('#wikiPreview').before( loadSpinner );
 	
-	var page = $j('<html/>');
-	page.load( wgScript+'?action=submit',
+	var page = $j('<div/>');
+	page.load( wgScript+'?action=submit '+copySelector,
 				postData,
 		function() {
 			
