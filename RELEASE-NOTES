@@ -322,6 +322,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * importImages.php maintenance script can now use the original uploader and 
 comment from another wiki.
 * Support for Turck MMCache was removed
+* (bug 14592) Warn users when they try to move their user page that their
+  account will not be renamed
+* Show block log on non-existing user (talk) pages of currently blocked users
 
 === Bug fixes in 1.16 ===
 
