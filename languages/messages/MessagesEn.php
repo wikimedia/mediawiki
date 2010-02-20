@@ -800,9 +800,6 @@ XHTML id names.
 'namespaces'                 => 'Namespaces',
 'variants'                   => 'Variants',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Return to $1.',
 'tagline'           => 'From {{SITENAME}}',

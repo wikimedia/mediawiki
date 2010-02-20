@@ -101,6 +101,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for controlling debug output.
 * New $wgBlockDisablesLogin when set to true disallows blocked users from
   logging in.
+* (bug 8790) Metadata edition ($wgUseMetadataEdit) has been moved to a separate
+  extension "MetadataEdit".
 
 === New features in 1.16 ===
 
