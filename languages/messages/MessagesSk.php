@@ -775,6 +775,7 @@ Prosím, počkajte predtým, než to skúsite znova.',
 'resetpass_forbidden'       => 'Heslá nie je možné zmeniť',
 'resetpass-no-info'         => 'Aby ste mohli priamo pristupovať k tejto stránke, musíte sa prihlásiť.',
 'resetpass-submit-loggedin' => 'Zmeniť heslo',
+'resetpass-submit-cancel'   => 'Zrušiť',
 'resetpass-wrong-oldpass'   => 'Neplatné dočasné alebo aktuálne heslo. 
 Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si vyžiadali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',
@@ -881,6 +882,8 @@ Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte 
 alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si pozrieť súvisiace záznamy]</span>.',
 'userpage-userdoesnotexist'        => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
 'userpage-userdoesnotexist-view'   => 'Používateľský účet „$1“ nie je registrovaný.',
+'blocked-notice-logextract'        => 'Tento používateľ je momentálne zablokovaný.
+Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'clearyourcache'                   => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
 '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Macintosh); '''Konqueror:''': kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; '''Opera''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''; '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5'';",
 'usercssyoucanpreview'             => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.",

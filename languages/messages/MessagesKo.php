@@ -755,6 +755,7 @@ $2',
 'resetpass_forbidden'       => '비밀번호 변경 불가',
 'resetpass-no-info'         => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',
 'resetpass-submit-loggedin' => '비밀번호 변경',
+'resetpass-submit-cancel'   => '취소',
 'resetpass-wrong-oldpass'   => '비밀번호가 잘못되었거나 현재의 비밀번호와 같습니다.
 당신은 이미 비밀번호를 성공적으로 변경하였거나 새 임시 비밀번호를 발급받았을 수 있습니다.',
 'resetpass-temp-password'   => '임시 비밀번호:',
@@ -2440,6 +2441,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 
 이 경우에는 문서를 직접 이동하거나 두 문서를 합쳐야 합니다.",
 'movearticle'                  => '문서 이동하기',
+'moveuserpage-warning'         => "'''경고:''' 당신은 사용자 문서를 옮기려 하고 있습니다. 사용자 문서만 이동되며 계정 이름이 바뀌지 않는다는 점을 명심해주시기 바랍니다.",
 'movenologin'                  => '로그인하지 않음',
 'movenologintext'              => '[[Special:UserLogin|로그인]]해야만 문서를 이동할 수 있습니다.',
 'movenotallowed'               => '문서를 이동할 권한이 없습니다.',

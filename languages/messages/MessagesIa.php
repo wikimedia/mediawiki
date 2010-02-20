@@ -754,6 +754,8 @@ Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in alter
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].',
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'userpage-userdoesnotexist-view'   => 'Le conto de usator "$1" non es registrate.',
+'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
+Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove CSS ante de publicar lo.",
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove JS ante de publicar lo.",

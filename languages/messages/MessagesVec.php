@@ -634,6 +634,7 @@ Spèta un tocheto prima de proàr da novo.',
 'resetpass_forbidden'       => 'No se pol modificar le password',
 'resetpass-no-info'         => "Te ghè da ver fato l'acesso per poder entrar in sta pàxena.",
 'resetpass-submit-loggedin' => 'Cànbia password',
+'resetpass-submit-cancel'   => 'Anùla',
 'resetpass-wrong-oldpass'   => 'Password corente o tenporanea mia valida.
 Forse te ghè zà canbià la to password o te ghè domandà na password tenporanea nova.',
 'resetpass-temp-password'   => 'Password tenporanea:',

@@ -837,6 +837,7 @@ Bitte warte, bevor du es erneut probierst.',
 'resetpass_forbidden'       => 'Das Passwort kann nicht geändert werden.',
 'resetpass-no-info'         => 'Du musst dich anmelden, um auf diese Seite direkt zuzugreifen.',
 'resetpass-submit-loggedin' => 'Passwort ändern',
+'resetpass-submit-cancel'   => 'Abbrechen',
 'resetpass-wrong-oldpass'   => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
 'resetpass-temp-password'   => 'Temporäres Passwort:',
@@ -937,6 +938,8 @@ Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|such
 oder in den zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen].</span>',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'userpage-userdoesnotexist-view'   => 'Benutzerkonto „$1“ existiert nicht.',
+'blocked-notice-logextract'        => 'Dieser Benutzer ist zur Zeit gesperrt.
+Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
 'usercssyoucanpreview'             => "'''Tipp:''' Benutze den Vorschau-Button, um dein neues CSS vor dem Speichern zu testen.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benutze den Vorschau-Button, um dein neues JS vor dem Speichern zu testen.",

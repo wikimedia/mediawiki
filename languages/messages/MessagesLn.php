@@ -126,6 +126,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'elɔ́kɔ elobí {{SITENAME}}',
+'aboutpage'            => 'Project:Etalí',
 'copyrightpage'        => '{{ns:project}}:Mikokisi',
 'currentevents'        => 'Elɔ́kɔ ya sika',
 'disclaimers'          => 'Ndelo ya boyanoli',
@@ -135,6 +136,7 @@ $messages = array(
 'portal'               => 'Bísó na bísó',
 
 'ok'                 => 'Nandimi',
+'retrievedfrom'      => 'Ezwámí úta « $1 »',
 'youhavenewmessages' => 'Nazweí $1 ($2).',
 'newmessageslink'    => 'nsango ya sika',
 'editsection'        => 'kobimisela',
@@ -306,7 +308,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'unusedtemplates' => 'Bimekoli na mosálá tɛ̂',
 
 # Random page
-'randompage' => 'Lokásá epɔní tɛ́',
+'randompage' => 'Lonkásá na mbɛsɛ',
 
 # Statistics
 'statistics' => 'Mitúya',
@@ -438,6 +440,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'tooltip-n-mainpage'             => 'Kokɛndɛ na Lonkásá ya libosó',
 'tooltip-n-mainpage-description' => 'Kokɛndɛ na lonkásá ya libosó',
 'tooltip-n-portal'               => "etalí ''projet'' óyo",
+'tooltip-n-randompage'           => 'Tómbisa lonkásá na mbɛsɛ',
 'tooltip-n-help'                 => 'Lisálisi',
 'tooltip-ca-nstab-template'      => 'Komɔ́nisela emekoli',
 'tooltip-ca-nstab-category'      => 'Komɔ́nisela lonkásá ya katégori',
