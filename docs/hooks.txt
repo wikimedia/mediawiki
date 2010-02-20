@@ -638,6 +638,10 @@ new pages
 &$text: Text to preload with
 &$title: Title object representing the page being created
 
+'EditFormInitialText': Allows modifying the edit form when editing existing
+pages
+$editPage: EditPage	object
+
 'EditPage::attemptSave': called before an article is
 saved, that is before insertNewArticle() is called
 $editpage_Obj: the current EditPage object
@@ -688,6 +692,15 @@ textarea in the edit form
 'EditPageCopyrightWarning': Allow for site and per-namespace customization of contribution/copyright notice.
 $title: title of page being edited
 &$msg: localization message name, overridable. Default is either 'copyrightwarning' or 'copyrightwarning2'
+
+'EditPageGetDiffText': Allow modifying the wikitext that will be used in
+"Show changes"
+$editPage: EditPage object
+&$newtext: wikitext that will be used as "your version"
+
+'EditPageGetPreviewText': Allow modifying the wikitext that will be previewed
+$editPage: EditPage object
+&$toparse: wikitext that will be parsed
 
 'EditPageNoSuchSection': When a section edit request is given for an non-existent section
 &$editpage: The current EditPage object

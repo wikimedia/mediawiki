@@ -45,7 +45,6 @@ class EditPage {
 	var $mArticle;
 	var $mTitle;
 	var $action;
-	var $mMetaData = '';
 	var $isConflict = false;
 	var $isCssJsSubpage = false;
 	var $isCssSubpage = false;
@@ -247,95 +246,6 @@ class EditPage {
 		}
 	}
 
-	/**
-	 * This is the function that extracts metadata from the article body on the first view.
-	 * To turn the feature on, set $wgUseMetadataEdit = true ; in LocalSettings
-	 *  and set $wgMetadataWhitelist to the *full* title of the template whitelist
-	 */
-	function extractMetaDataFromArticle () {
-		global $wgUseMetadataEdit, $wgMetadataWhitelist, $wgContLang;
-		$this->mMetaData = '';
-		if ( !$wgUseMetadataEdit ) return;
-		if ( $wgMetadataWhitelist == '' ) return;
-		$s = '';
-		$t = $this->getContent();
-
-		# MISSING : <nowiki> filtering
-
-		# Categories and language links
-		$t = explode( "\n" , $t );
-		$catlow = strtolower( $wgContLang->getNsText( NS_CATEGORY ) );
-		$cat = $ll = array();
-		foreach ( $t as $key => $x ) {
-			$y = trim( strtolower ( $x ) );
-			while ( substr( $y , 0 , 2 ) == '[[' ) {
-				$y = explode( ']]' , trim ( $x ) );
-				$first = array_shift( $y );
-				$first = explode( ':' , $first );
-				$ns = array_shift( $first );
-				$ns = trim( str_replace( '[' , '' , $ns ) );
-				if ( $wgContLang->getLanguageName( $ns ) || strtolower( $ns ) == $catlow ) {
-					$add = '[[' . $ns . ':' . implode( ':' , $first ) . ']]';
-					if ( strtolower( $ns ) == $catlow ) $cat[] = $add;
-					else $ll[] = $add;
-					$x = implode( ']]', $y );
-					$t[$key] = $x;
-					$y = trim( strtolower( $x ) );
-				} else {
-					$x = implode( ']]' , $y );
-					$y = trim( strtolower( $x ) );
-				}
-			}
-		}
-		if ( count( $cat ) ) $s .= implode( ' ' , $cat ) . "\n";
-		if ( count( $ll ) ) $s .= implode( ' ' , $ll ) . "\n";
-		$t = implode( "\n" , $t );
-
-		# Load whitelist
-		$sat = array () ; # stand-alone-templates; must be lowercase
-		$wl_title = Title::newFromText( $wgMetadataWhitelist );
-		$wl_article = new Article ( $wl_title );
-		$wl = explode ( "\n" , $wl_article->getContent() );
-		foreach ( $wl AS $x ) {
-			$isentry = false;
-			$x = trim ( $x );
-			while ( substr ( $x , 0 , 1 ) == '*' ) {
-				$isentry = true;
-				$x = trim ( substr ( $x , 1 ) );
-			}
-			if ( $isentry ) {
-				$sat[] = strtolower ( $x );
-			}
-
-		}
-
-		# Templates, but only some
-		$t = explode( '{{' , $t );
-		$tl = array() ;
-		foreach ( $t as $key => $x ) {
-			$y = explode( '}}' , $x , 2 );
-			if ( count( $y ) == 2 ) {
-				$z = $y[0];
-				$z = explode( '|' , $z );
-				$tn = array_shift( $z );
-				if ( in_array( strtolower( $tn ) , $sat ) ) {
-					$tl[] = '{{' . $y[0] . '}}';
-					$t[$key] = $y[1];
-					$y = explode( '}}' , $y[1] , 2 );
-				}
-				else $t[$key] = '{{' . $x;
-			}
-			else if ( $key != 0 ) $t[$key] = '{{' . $x;
-			else $t[$key] = $x;
-		}
-		if ( count( $tl ) ) $s .= implode( ' ' , $tl );
-		$t = implode( '' , $t );
-
-		$t = str_replace( "\n\n\n", "\n", $t );
-		$this->mArticle->mContent = $t;
-		$this->mMetaData = $s;
-	}
-
 	/*
 	 * Check if a page was deleted while the user was editing it, before submit.
 	 * Note that we rely on the logging table, which hasn't been always there,
@@ -427,7 +337,6 @@ class EditPage {
 				if ( $this->previewOnOpen() ) {
 					$this->formtype = 'preview';
 				} else {
-					$this->extractMetaDataFromArticle () ;
 					$this->formtype = 'initial';
 				}
 			}
@@ -495,6 +404,8 @@ class EditPage {
 			}
 			if ( !$this->mTitle->getArticleId() )
 				wfRunHooks( 'EditFormPreloadText', array( &$this->textbox1, &$this->mTitle ) );
+			else
+				wfRunHooks( 'EditFormInitialText', array( $this ) );
 		}
 
 		$this->showEditForm();
@@ -620,7 +531,7 @@ class EditPage {
 					$this->textbox1 = $textbox1;
 				wfProfileOut( get_class($this)."::importContentFormData" );
 			}
-			$this->mMetaData = rtrim( $request->getText( 'metadata' ) );
+
 			# Truncate for whole multibyte characters. +5 bytes for ellipsis
 			$this->summary = $wgLang->truncate( $request->getText( 'wpSummary' ), 250, '' );
 
@@ -690,7 +601,6 @@ class EditPage {
 			# Not a posted form? Start with nothing.
 			wfDebug( __METHOD__ . ": Not a posted form.\n" );
 			$this->textbox1  = '';
-			$this->mMetaData = '';
 			$this->summary   = '';
 			$this->edittime  = '';
 			$this->starttime = wfTimestampNow();
@@ -852,8 +762,7 @@ class EditPage {
 		wfProfileIn( __METHOD__  );
 		wfProfileIn( __METHOD__ . '-checks' );
 
-		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) )
-		{
+		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			return self::AS_HOOK_ERROR;
 		}
@@ -868,10 +777,6 @@ class EditPage {
 					return self::AS_IMAGE_REDIRECT_LOGGED;
 				}
 		}
-
-		# Reintegrate metadata
-		if ( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
-		$this->mMetaData = '' ;
 
 		# Check for spam
 		$match = self::matchSummarySpamRegex( $this->summary );
@@ -1392,10 +1297,6 @@ HTML
 		if ( isset($this->editFormTextAfterWarn) && $this->editFormTextAfterWarn !== '' )
 			$wgOut->addHTML( $this->editFormTextAfterWarn );
 
-		global $wgUseMetadataEdit;
-		if ( $wgUseMetadataEdit )
-			$this->showMetaData();
-
 		$this->showStandardInputs();
 
 		$this->showFormAfterText();
@@ -1749,15 +1650,6 @@ INPUTS
 
 		$wgOut->addHTML( Html::textarea( $name, $wikitext, $attribs ) );
 	}
-	
-	protected function showMetaData() {
-		global $wgOut, $wgContLang, $wgUser;
-		$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $this->mMetaData ) );
-		$ew = $wgUser->getOption( 'editwidth' ) ? ' style="width:100%"' : '';
-		$cols = $wgUser->getIntOption( 'cols' );
-		$metadata = wfMsgWikiHtml( 'metadata_help' ) . "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
-		$wgOut->addHTML( $metadata );
-	}
 
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
 		global $wgOut;
@@ -1969,10 +1861,10 @@ INPUTS
 			# If we're adding a comment, we need to show the
 			# summary as the headline
 			if ( $this->section == "new" && $this->summary != "" ) {
-				$toparse="== {$this->summary} ==\n\n" . $toparse;
+				$toparse = "== {$this->summary} ==\n\n" . $toparse;
 			}
 
-			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData;
+			wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
 
 			// Parse mediawiki messages with correct target language
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
@@ -2496,6 +2388,9 @@ INPUTS
 		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
+
+		wfRunHooks( 'EditPageGetDiffText', array( $this, &$newtext ) );
+
 		$newtext = $this->mArticle->preSaveTransform( $newtext );
 		$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
 		$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );

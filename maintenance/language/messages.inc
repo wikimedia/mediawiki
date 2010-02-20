@@ -201,9 +201,6 @@ $wgMessageStructure = array(
 		'namespaces',
 		'variants',
 	),
-	'metadata_help' => array(
-		'metadata_help',
-	),
 	'miscellaneous2' => array(
 		'errorpagetitle',
 		'returnto',
@@ -3156,7 +3153,6 @@ XHTML id names.",
 	'miscellaneous1'      => '',
 	'cologneblue'         => 'Cologne Blue skin',
 	'vector'              => 'Vector skin',
-	'metadata_help'       => 'Metadata in edit box',
 	'miscellaneous2'      => '',
 	'links'               => 'All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).',
 	'badaccess'           => '',
