@@ -1543,6 +1543,7 @@ Fir eng oprimal Sécherheet ass img_auth.php ausgeschalt.",
 'http-invalid-scheme'   => 'URLe mam Schema "$1" ginn net ënnerstëtzt',
 'http-request-error'    => "D'HTTP-Ufro huet wéinst engem onbekannte Feeler net fonctionnéiert.",
 'http-read-error'       => 'HTTP-Feeler beim Liesen.',
+'http-curl-error'       => 'Feeler beim Ofruff vun der URL: $1',
 'http-host-unreachable' => "D'URL konnt net erreecht ginn.",
 'http-bad-status'       => 'Et gouf e Problem bäi der HTTP-Ufro: $1 $2',
 

@@ -640,6 +640,8 @@ It peule [[Special:Search/{{PAGENAME}}|sërché sto tìtol ëd pàgina-sì]] an 
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sërché j\'argistrassion colegà]</span>.',
 'userpage-userdoesnotexist'        => 'Lë stranòm "$1" a l\'é pa registrà. Për piasì ch\'a varda se da bon a veul creé/modifiché sta pàgina.',
 'userpage-userdoesnotexist-view'   => 'Ël cont utent "$1" a l\'é pa registrà.',
+'blocked-notice-logextract'        => "S'utent a l'é al moment blocà.
+'Me arferiment, sì-sota a-i é la dariera anotassion da l'argistr dij blocagi.",
 'clearyourcache'                   => "'''Nòta:''' na vira che a l'ha salvà, a peul esse che a-j fasa da manca da passé via la memorisassion (cache) dël sò programa ëd navigassion (browser) për podèj ës-ciairé le modìfiche.
 *'''Mozilla / Firefox / Safari:''' Che a ten-a sgnacà ''Shift'' antramentr che a sgnaca col rat ansima a ''Reload'', ò pura che a sgnaca tut ansema ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ansima a j'Apple Mac);
 *'''IE:''' che a ten-a sgnacà ''Ctrl'' antramentr che a sgnaca col rat ansima a ''Refresh'', ò pura che a sgnaca tut ansema ''Ctrl-F5'';
@@ -1017,18 +1019,18 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'mypreferences'                 => 'mè gust',
 'prefs-edits'                   => 'Nùmer ëd modìfiche fàite:',
 'prefsnologin'                  => "A l'é ancó pa rintrà ant ël sistema",
-'prefsnologintext'              => 'It deuve esse <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logà ant ël sistema]</span> për amposté ij tò gust.',
-'changepassword'                => 'Cambia ciav',
+'prefsnologintext'              => 'A deuv esse <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} intrà ant ël sistema]</span> për amposté ij sò gust.',
+'changepassword'                => 'Cangé la ciav',
 'prefs-skin'                    => 'Facia',
 'skin-preview'                  => 'Preuva',
 'prefs-math'                    => 'Fòrmule ëd matemàtica',
-'datedefault'                   => "franch l'istess",
+'datedefault'                   => "Franch l'istess",
 'prefs-datetime'                => 'Data e ora',
 'prefs-personal'                => "Profil dl'utent",
 'prefs-rc'                      => 'Ùltime modìfiche',
 'prefs-watchlist'               => 'Ròba che as ten sot euj',
 'prefs-watchlist-days'          => 'Vàire dì che a veul ës-ciairé an soa lista ëd lòn che as ten sot euj:',
-'prefs-watchlist-days-max'      => '(al pì 7 di)',
+'prefs-watchlist-days-max'      => 'Al pì 7 di',
 'prefs-watchlist-edits'         => 'Vàire modìfiche che a veul ës-ciairé con le funsion avansà:',
 'prefs-watchlist-edits-max'     => '(nùmer massim: 1000)',
 'prefs-watchlist-token'         => 'Token ëd lòn che as ten sot euj:',

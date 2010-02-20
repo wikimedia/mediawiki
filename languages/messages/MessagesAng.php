@@ -169,6 +169,7 @@ $messages = array(
 'redirectedfrom'    => '(Edlǣded of $1)',
 'redirectpagesub'   => 'Edlǣdungtramet',
 'protectedpage'     => 'Geweardod tramet',
+'jumpto'            => 'Forðgangan on:',
 'jumptosearch'      => 'sēcan',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

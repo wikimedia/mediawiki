@@ -1024,6 +1024,7 @@ $1",
 'prefs-help-watchlist-token'  => 'Юыл юлды серле асҡыс менән тултырыу, күҙәтеү исемлегегеҙ өсөн RSS-таҫма яһаясаҡ.
 Был юлдағы асҡысты белгән һәр кем, күҙәтеү исемлегегеҙҙе уҡый аласаҡ, шуның өсөн ышаныслы ҡиммәт һайлағыҙ.
 Осраҡлы рәүештә һайланған ҡиммәтте лә ҡуллана алаһығыҙ: $1',
+'savedprefs'                  => 'Һеҙҙең көйләүҙәрегеҙ һаҡланды.',
 'timezonelegend'              => 'Ваҡыт бүлкәте:',
 'localtime'                   => 'Урындағы ваҡыт:',
 'timezoneuseserverdefault'    => 'Сервер көйләүҙәрен ҡулланырға:',
@@ -1056,6 +1057,7 @@ $1",
 'youremail'                   => 'Электрон почта *',
 'username'                    => 'Ҡулланыусы исеме:',
 'uid'                         => 'Ҡатнашыусының идентификаторы:',
+'prefs-registration'          => 'Теркәлеү ваҡыты:',
 'yourrealname'                => 'Һеҙҙең ысын исемегеҙ (*)',
 'yourlanguage'                => 'Тышҡы күренештә ҡулланылған тел:',
 'yourvariant'                 => 'Тел төрө',
@@ -1128,12 +1130,14 @@ $1",
 'grouppage-suppress'      => '{{ns:project}}:Тикшереүселәр',
 
 # Rights
-'right-read'       => 'Биттәрҙе ҡарау',
-'right-edit'       => 'Биттәрҙә мөхәррирләү',
-'right-createtalk' => 'фекер алышыу битен яһау',
-'right-move'       => 'Биттәрҙең исемен үҙгәртеү',
-'right-movefile'   => 'файл исемдәрен үҙгәртеү',
-'right-delete'     => 'Биттәрҙе юйырға',
+'right-read'          => 'Биттәрҙе ҡарау',
+'right-edit'          => 'Биттәрҙә мөхәррирләү',
+'right-createtalk'    => 'фекер алышыу битен яһау',
+'right-createaccount' => 'Ҡатнашыусыларҙың яңы иҫәп яҙыуҙарын булдырыу',
+'right-move'          => 'Биттәрҙең исемен үҙгәртеү',
+'right-move-subpages' => 'Ҡушымталары менән бергә биттәрҙең исемен алыштырыу',
+'right-movefile'      => 'файл исемдәрен үҙгәртеү',
+'right-delete'        => 'Биттәрҙе юйырға',
 
 # User rights log
 'rightslog'      => 'Ҡулланыусының хоҡуҡтары көндәлеге',
@@ -1154,6 +1158,10 @@ $1",
 'action-movefile'           => 'файлдың исемен үҙгәртеү',
 'action-upload'             => 'был файлды тейәү',
 'action-reupload'           => 'булған файлдың өҫтөнә яҙыу',
+'action-delete'             => 'Был битте юйырға',
+'action-deleterevision'     => 'Биттең был версияһын юйырға',
+'action-deletedhistory'     => 'Был биттең юйҙырыуҙар тарихын ҡарау',
+'action-browsearchive'      => 'Юйылған биттәрҙҙе эҙләү',
 
 # Recent changes
 'nchanges'                         => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
@@ -1185,6 +1193,7 @@ $1",
 'minoreditletter'                  => 'ә',
 'newpageletter'                    => 'Я',
 'boteditletter'                    => 'б',
+'rc_categories_any'                => 'Һәр',
 'rc-enhanced-expand'               => 'Ваҡлыҡтарҙы күрһәтергә (JavaScript кәрәкле)',
 'rc-enhanced-hide'                 => 'Ваҡлыҡтарҙы йәшерергә',
 
@@ -1200,6 +1209,8 @@ $1",
 
 # Upload
 'upload'                 => 'Файл күсереү',
+'uploadbtn'              => 'Файл күсереү',
+'uploadnologin'          => 'Танылмағанһығыҙ',
 'uploaderror'            => 'Тейәү хатаһы',
 'uploadtext'             => "Файл тейәү өсөн түбәндәге форманы ҡулланығыҙ.
 Элек тейәлгән файлдарҙы байҡар өсөн [[Special:FileList|тейәлгән файлдар исемлеген]] ҡарағыҙ. Файл тейәүҙәр шулай уҡ [[Special:Log/upload|тейәү яҙмаларына]], юйыуҙар иһә [[Special:Log/delete|юйыу яҙмаларына]] яҙылып баралар.
@@ -1228,6 +1239,7 @@ $1",
 {{PLURAL:\$3|Уңайлы файл тибы|Уңайлы файл типтары:}} \$2.",
 'filetype-banned-type'   => "'''\".\$1\"''' — тыйылған файл тибы.
 {{PLURAL:\$3|Рөхсәт ителгән файл тибы|Рөхсәт ителгән файл типтары:}} \$2.",
+'savefile'               => 'Файлды яҙҙырып ҡуйырға',
 'uploadedimage'          => '«[[$1]]» тейәлгән',
 'upload-source'          => 'Сығанаҡ файл',
 'sourcefilename'         => 'Файлдың сығанаҡ исеме:',
@@ -1238,7 +1250,12 @@ $1",
 'upload-options'         => 'Тейәү көйләүҙәре',
 'watchthisupload'        => 'Файлды күҙәтергә',
 
+'license'        => 'Лицензиялау:',
+'license-header' => 'Лицензиялау',
+'nolicense'      => 'Бер нимә лә һайланмаған',
+
 # Special:ListFiles
+'listfiles_search_for'  => 'Файл исеме буйынса эҙләү:',
 'imgfile'               => 'файл',
 'listfiles'             => 'Файлдар исемлеге',
 'listfiles_date'        => 'Дата',
@@ -1270,11 +1287,27 @@ $1",
 'sharedupload'              => 'Был файл $1 базаһынан һәм башҡа проектарҙа ҡулланылырға мөмкин.',
 'uploadnewversion-linktext' => 'Был файлдың яңы версияһын тейәргә',
 
+# File reversion
+'filerevert-comment' => 'Иҫкәрмә:',
+'filerevert-submit'  => 'Кире алырға',
+
+# File deletion
+'filedelete'                  => '$1 юйырға',
+'filedelete-legend'           => 'Файлды юйырға',
+'filedelete-comment'          => 'Юйыу сәбәбе:',
+'filedelete-submit'           => 'Юйырға',
+'filedelete-otherreason'      => 'Башҡа/өҫтәмә сәбәп:',
+'filedelete-reason-otherlist' => 'Башҡа сәбәп',
+'filedelete-edit-reasonlist'  => 'Сәбәптәр исемлеген мөхәррирләргә',
+
 # MIME search
 'mimesearch' => 'MIME буйынса эҙләү',
 
 # Unwatched pages
 'unwatchedpages' => 'Бер кем дә күҙәтмәгән биттәр',
+
+# Unused templates
+'unusedtemplateswlh' => 'Башҡа һылтанмалар',
 
 # Random page
 'randompage' => 'Осраҡлы мәҡәлә',
@@ -1288,6 +1321,13 @@ $1",
 'statistics-header-hooks' => 'Башҡа статистика',
 'statistics-articles'     => 'Мәҡәләләр',
 'statistics-pages'        => 'Биттәр',
+'statistics-users-active' => 'Әүҙем ҡатнашыусылар',
+
+'brokenredirects'        => 'Өҙөлгән юнәлтеүҙәр',
+'brokenredirects-edit'   => 'төҙәтеү',
+'brokenredirects-delete' => 'юйырға',
+
+'withoutinterwiki-submit' => 'Күрһәтергә',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт}}',
@@ -1303,6 +1343,7 @@ $1",
 'wantedpages'             => 'Кәрәкле биттәр',
 'wantedfiles'             => 'Кәрәкле файлдар',
 'wantedtemplates'         => 'Кәрәкле ҡалыптар',
+'mostcategories'          => 'Күп категорияларға кертелгән биттәр',
 'prefixindex'             => 'Бит исемдәренә буйынса күрһәткес',
 'listusers'               => 'Ҡатнашыусылар исемлеге',
 'newpages'                => 'Яңы биттәр',
@@ -1650,6 +1691,20 @@ $NEWPAGE
 * fnumber
 * isospeedratings
 * focallength',
+
+# EXIF tags
+'exif-gpslatituderef'  => 'Киңлек индексы',
+'exif-gpslatitude'     => 'Киңлек',
+'exif-gpslongituderef' => 'Оҙонлоҡ индексы',
+'exif-gpslongitude'    => 'Оҙонлоҡ',
+'exif-gpsaltituderef'  => 'Бейеклек индексы',
+'exif-gpsaltitude'     => 'Бейеклек',
+'exif-gpsspeedref'     => 'Тиҙлек берәмеге',
+
+'exif-unknowndate' => 'Билдәһеҙ көн',
+
+'exif-meteringmode-0'   => 'Билдәһеҙ',
+'exif-meteringmode-255' => 'Икенсе',
 
 # External editor support
 'edit-externally'      => 'Был файлды тышҡы программа ҡулланып мөхәррирләргә',

@@ -598,6 +598,7 @@ Gortozit a-raok klask en-dro.",
 'resetpass_forbidden'       => "N'haller ket cheñch ar gerioù-termen",
 'resetpass-no-info'         => "Ret eo deoc'h bezañ kevreet a-benn mont d'ar bajenn-se war-eeun.",
 'resetpass-submit-loggedin' => 'Cheñch ger-tremen',
+'resetpass-submit-cancel'   => 'Nullañ',
 'resetpass-wrong-oldpass'   => "Direizh eo ar ger-tremen a-vremañ pe da c'hortoz.",
 'resetpass-temp-password'   => "Ger-tremen da c'hortoz :",
 

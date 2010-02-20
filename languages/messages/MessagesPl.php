@@ -841,6 +841,8 @@ lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist'        => 'Użytkownik „$1” nie jest zarejestrowany.
 Upewnij się, czy na pewno {{GENDER:|zamierzałeś|zamierzałaś}} utworzyć lub zmodyfikować właśnie tę stronę.',
 'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
+'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
+Ostatni wpis rejestru blokad jest pokazany poniżej.',
 'clearyourcache'                   => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
 *'''Mozilla, Firefox lub Safari –''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5'' lub ''Ctrl‐R'' (''Cmd‐Shift‐R'' na Macintoshu)
 *'''Konqueror –''' kliknij przycisk ''Odśwież'' lub wciśnij ''F5''

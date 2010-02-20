@@ -458,7 +458,7 @@ Rhoddwyd y côd gwall "$3: $4<".',
 Rhoddwyd y rheswm canlynol gan y gweinyddwr a'i glodd: $1",
 'missing-article'      => 'Ni lwyddodd y databas i ddod o hyd i destun tudalen yr oedd disgwyl iddo ei gael, sef "$1" $2.
 
-Fe ddigwydd gan amlaf wrth ddilyn hen gyswllt "gwah" (gwahaniaeth rhwng tudalennau) neu hanes at dudalen sydd eisoes wedi ei dileu.
+Fe ddigwydd gan amlaf wrth ddilyn hen gyswllt "gwahan" (gwahaniaeth rhwng tudalennau) neu hanes at dudalen sydd eisoes wedi ei dileu.
 
 Onid dyma\'r achos, gall fod i chi ddod o hyd i fyg yn y meddalwedd.
 A fyddech gystal â gwneud adroddiad ar hwn at [[Special:ListUsers/sysop|weinyddwr]], gan nodi\'r URL dan sylw.',
@@ -856,7 +856,7 @@ Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 'rev-deleted-user'            => '(enw defnyddiwr wedi ei ddiddymu)',
 'rev-deleted-event'           => '(tynnwyd gweithred y lòg)',
 'rev-deleted-user-contribs'   => '[tynnwyd enw defnyddiwr neu gyfeiriad IP i ffwrdd - ni ddangosir y golygiad ar y rhestr cyfraniadau]',
-'rev-deleted-text-permission' => "'''Dilewyd''' y diwygiad hon o'r dudalen.
+'rev-deleted-text-permission' => "'''Dilewyd''' y diwygiad hwn o'r dudalen.
 Hwyrach bod manylion pellach ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileu].",
 'rev-deleted-text-unhide'     => "Cafodd y diwygiad hwn o'r dudalen ei '''ddileu'''.
 Gweler cofnod y dileu ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].
@@ -868,6 +868,19 @@ Gan eich bod yn weinyddwr cewch [$1 weld y golygiad] o hyd os y dymunwch.",
 Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileu].",
 'rev-suppressed-text-view'    => "Mae’r diwygiad hwn o’r dudalen wedi cael ei '''guddio'''.
 Gan eich bod yn weinyddwr cewch weld y golygiad;  mae'r manylion ar gael ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].",
+'rev-deleted-no-diff'         => "Ni allwch gymharu'r diwygiadau oherwydd bod un ohonynt wedi cael ei '''ddileu'''.
+Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].",
+'rev-suppressed-no-diff'      => "Ni allwch gymharu'r diwygiadau oherwydd bod un ohonynt wedi cael ei '''ddileu'''.",
+'rev-deleted-unhide-diff'     => "Cafodd un o'r diwygiadau yr ydych am eu cymharu ei '''ddileu'''.
+Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].
+Gan eich bod yn weinyddwr gallwch [$1 weld y gwahaniaeth] rhyngddynt o hyd, os y dymunwch.",
+'rev-suppressed-unhide-diff'  => "Cafodd un o'r diwygiadau yr ydych am eu cymharu ei '''guddio'''.
+Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].
+Gan eich bod yn weinyddwr gallwch [$1 weld y gwahaniaeth] rhyngddynt o hyd, os y dymunwch.",
+'rev-deleted-diff-view'       => "Cafodd un o'r diwygiadau yr ydych am eu cymharu ei '''ddileu'''.
+Gan eich bod yn weinyddwr gallwch eu cymharu o hyd; cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].",
+'rev-suppressed-diff-view'    => "Cafodd un o'r diwygiadau yr ydych am eu cymharu ei '''guddio'''.
+Gan eich bod yn weinyddwr gallwch eu cymharu o hyd; cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].",
 'rev-delundel'                => 'dangos/cuddio',
 'rev-showdeleted'             => 'dangos',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
@@ -924,6 +937,11 @@ $1",
 'logdelete-log-message'       => '$1 $2 {{PLURAL:$2||digywddiad|ddigwyddiad|digwyddiad|digwyddiad|digwyddiad}}',
 'revdelete-hide-current'      => "Cafwyd gwall wrth geisio cuddio'r eitem a'r dyddiad $2, $1 arno: hwn yw'r diwygiad presennol.
 Ni ellir ei guddio.",
+'revdelete-show-no-access'    => 'Cafwyd gwall wrth geisio newid yr eitem gyda\'r dyddiad $2, $1: mae marc "cyfyngedig" arno.
+Ni allwch ei weld.',
+'revdelete-modify-no-access'  => 'Cafwyd gwall wrth geisio newid yr eitem gyda\'r dyddiad $2, $1: mae marc "cyfyngedig" arno.
+Ni allwch fynd ato.',
+'revdelete-modify-missing'    => "Cafwyd gwall wrth geisio newid yr eitem gyda'r cyfeirnod $1: mae'n eisiau o'r bas data!",
 'revdelete-reason-dropdown'   => '*Rhesymau cyffredin dros ddileu
 ** Torri hawlfraint
 ** Gwybodaeth bersonol anaddas',
@@ -1156,6 +1174,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'prefs-advancedsearchoptions'   => 'Dewisiadau uwch',
 'prefs-advancedwatchlist'       => 'Dewisiadau uwch',
 'prefs-display'                 => 'Dangos y dewisiadau',
+'prefs-diffs'                   => "Cymharu golygiadau ('gwahan')",
 
 # User rights
 'userrights'                   => 'Rheoli galluoedd defnyddwyr',
@@ -1320,6 +1339,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'recentchanges-label-minor'         => 'Mân olygiad',
 'recentchanges-legend-bot'          => '$1 - golygiad gan fot',
 'recentchanges-label-bot'           => 'Golygwyd gan fot',
+'recentchanges-legend-unpatrolled'  => '$1 - golygiad heb dderbyn ymweliad patrôl eto',
 'recentchanges-label-unpatrolled'   => "Nid yw'r golygiad hwn wedi derbyn ymweliad patrôl eto",
 'rcnote'                            => "Isod mae'r '''$1''' newid diweddaraf yn ystod y {{PLURAL:$2|diwrnod|diwrnod|deuddydd|tridiau|'''$2''' diwrnod|'''$2''' diwrnod}} diwethaf, hyd at $5, $4.",
 'rcnotefrom'                        => "Isod rhestrir pob newid ers '''$2''' (hyd at '''$1''' ohonynt).",
@@ -1467,10 +1487,14 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Ni chaniatawyd mynediad',
+'img-auth-badtitle'     => 'Ddim yn gallu gwneud teitl dilys o "$1".',
 'img-auth-nologinnWL'   => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
 'img-auth-nofile'       => 'Nid oes ffeil a\'r enw "$1" ar gael.',
 'img-auth-isdir'        => 'Rydych yn ceisio cyrchu cyfeiriadur o\'r enw "$1".
 Dim ond ffeiliau y cewch eu cyrchu.',
+'img-auth-public'       => "Gwaith img_auth.php yw allbynnu ffeiliau o wici preifat.
+Mae'r wici hwn wedi ei osod yn wici gyhoeddus.
+Er mwyn sicrhau'r diogelwch gorau posib, analluogwyd img_auth.php.",
 'img-auth-noread'       => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
 
 # HTTP errors
@@ -1480,6 +1504,7 @@ Dim ond ffeiliau y cewch eu cyrchu.',
 'http-timed-out'        => 'Goroedi wedi digwydd ar y cais HTTP.',
 'http-curl-error'       => 'Cafwyd gwall wrth nôl yr URL: $1',
 'http-host-unreachable' => 'Wedi methu cyrraedd yr URL.',
+'http-bad-status'       => 'Cafwyd trafferth yn ystod y cais HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Wedi methu cyrraedd yr URL',
@@ -2269,6 +2294,7 @@ gnewch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
 
 Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei hun.",
 'movearticle'                  => 'Symud y dudalen:',
+'moveuserpage-warning'         => "'''Sylwer:''' Yr ydych ar fin symud tudalen defnyddiwr. Sylwch mai'r dudalen yn unig a gaiff ei symud ac ''na fydd'' y defnyddiwr yn cael ei ail-enwi.",
 'movenologin'                  => 'Nid ydych wedi mewngofnodi',
 'movenologintext'              => "Mae'n rhaid bod yn ddefnyddiwr cofrestredig a'ch bod wedi [[Special:UserLogin|mewngofnodi]] cyn medru symud tudalen.",
 'movenotallowed'               => 'Nid oes caniatâd gennych i symud tudalennau.',
@@ -3128,6 +3154,12 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 
 # HTML forms
 'htmlform-invalid-input'       => "Mae problemau gyda pheth o'ch mewnbwn",
+'htmlform-select-badoption'    => "Nid yw'r gwerth a bennwyd gennych yn ddewis dilys.",
+'htmlform-int-invalid'         => "Nid yw'r gwerth a bennwyd gennych yn gyfanrif.",
+'htmlform-float-invalid'       => "Nid yw'r gwerth a bennwyd gennych yn rif.",
+'htmlform-int-toolow'          => "Mae'r gwerth a bennwyd gennych yn llai na'r isafswm $1",
+'htmlform-int-toohigh'         => "Mae'r gwerth a bennwyd gennych yn fwy na'r uchafswm $1",
+'htmlform-submit'              => 'Gosoder',
 'htmlform-reset'               => 'Datod y newidiadau',
 'htmlform-selectorother-other' => 'Arall',
 

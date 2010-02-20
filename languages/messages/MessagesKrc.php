@@ -626,6 +626,8 @@ $2',
 неда <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналлада джазылгъанланы]</span> табаргъа боллукъсуз.',
 'userpage-userdoesnotexist'        => '«$1» аккоунт джокъду. Къураргъа/тюрлендирирге излеймисиз бу бетни?',
 'userpage-userdoesnotexist-view'   => '«$1» аккоунт джокъду.',
+'blocked-notice-logextract'        => 'Бу къошулуучу бусагъатда блокланыб турады. 
+Тюбюнде блокланыуланы журналындан ахыр джазыу бериледи:',
 'clearyourcache'                   => "'''Эслегиз:''' Бетде сакъланнгандан сора тюзетиуле кёрюнюрча браузеригизни кэшин ариулатыгъыз:
 '''Mozilla / Firefox''': ''Ctrl+Shift+R'', 
 '''IE:''' ''Ctrl+F5'', 
