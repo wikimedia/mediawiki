@@ -1777,9 +1777,6 @@ function writeLocalSettings( $conf ) {
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 	$hashedUploads = $conf->safeMode ? '' : '# ';
 	$sqliteDataDir = escapePhpString( realpath($conf->SQLiteDataDir) );
-	if ( substr_compare( $conf->IP, $sqliteDataDir, 0 ) ) {
-		$sqliteDataDir = substr_replace( $sqliteDataDir, '$IP', 0, strlen($conf->IP) );
-	}
 
 	if ( $conf->ShellLocale ) {
 		$locale = '';
