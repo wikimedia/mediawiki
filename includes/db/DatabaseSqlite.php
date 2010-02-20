@@ -522,19 +522,29 @@ class DatabaseSqlite extends DatabaseBase {
 			// CREATE TABLE hacks to allow schema file sharing with MySQL
 
 			// binary/varbinary column type -> blob
-			$s = preg_replace( '/\b(var)?binary(\(\d+\))/i', 'blob\1', $s );
+			$s = preg_replace( '/\b(var)?binary(\(\d+\))/i', 'BLOB', $s );
 			// no such thing as unsigned
-			$s = preg_replace( '/\bunsigned\b/i', '', $s );
-			// INT -> INTEGER for primary keys
-			$s = preg_replacE( '/\bint\b/i', 'integer', $s );
+			$s = preg_replace( '/\b(un)?signed\b/i', '', $s );
+			// INT -> INTEGER
+			$s = preg_replace( '/\b(tiny|small|medium|big|)int\b/i', 'INTEGER', $s );
+			// varchar -> TEXT
+			$s = preg_replace( '/\bvarchar\(\d+\)/i', 'TEXT', $s );
+			// TEXT normalization
+			$s = preg_replace( '/\b(tiny|medium|long)text\b/i', 'TEXT', $s );
+			// BLOB normalization
+			$s = preg_replace( '/\b(tiny|small|medium|long|)blob\b/i', 'BLOB', $s );
+			// BOOL -> INTEGER
+			$s = preg_replace( '/\bbool(ean)?\b/i', 'INTEGER', $s );
+			// DATETIME -> TEXT
+			$s = preg_replace( '/\b(datetime|timestamp)\b/i', 'TEXT', $s );
 			// No ENUM type
-			$s = preg_replace( '/enum\([^)]*\)/i', 'blob', $s );
+			$s = preg_replace( '/enum\([^)]*\)/i', 'BLOB', $s );
 			// binary collation type -> nothing
 			$s = preg_replace( '/\bbinary\b/i', '', $s );
 			// auto_increment -> autoincrement
-			$s = preg_replace( '/\bauto_increment\b/i', 'autoincrement', $s );
+			$s = preg_replace( '/\bauto_increment\b/i', 'AUTOINCREMENT', $s );
 			// No explicit options
-			$s = preg_replace( '/\)[^)]*$/', ')', $s );
+			$s = preg_replace( '/\)[^);]*(;?)\s*$/', ')\1', $s );
 		} elseif ( preg_match( '/^\s*CREATE (\s*(?:UNIQUE|FULLTEXT)\s+)?INDEX/i', $s ) ) {
 			// No truncated indexes
 			$s = preg_replace( '/\(\d+\)/', '', $s );
@@ -553,7 +563,11 @@ class DatabaseSqlite extends DatabaseBase {
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseSqlite::duplicateTableStructure' ) {
 		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name='$oldName' AND type='table'", $fname );
-		$sql = $this->fetchObject( $res )->sql;
+		$obj = $this->fetchObject( $res );
+		if ( !$obj ) {
+			throw new MWException( "Couldn't retrieve structure for table $oldName" );
+		}
+		$sql = $obj->sql;
 		$sql = preg_replace( '/\b' . preg_quote( $oldName ) . '\b/', $newName, $sql, 1 );
 		return $this->query( $sql, $fname );
 	}
