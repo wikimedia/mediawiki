@@ -43,10 +43,7 @@ class ForeignAPIFile extends File {
 				$this->getName(),
 				isset( $params['width'] ) ? $params['width'] : -1,
 				isset( $params['height'] ) ? $params['height'] : -1 );
-		if( $thumbUrl ) {
-			return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );;
-		}
-		return false;
+		return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );;
 	}
 
 	// Info we can get from API...
