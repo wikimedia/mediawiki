@@ -283,9 +283,9 @@ class DatabaseOracle extends DatabaseBase {
 
 	function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
-		if ( !mb_check_encoding( $sql ) ) {
-			throw new MWException( "SQL encoding is invalid\n$sql" );
-		}
+        if ( !mb_check_encoding( $sql ) ) {
+            throw new MWException( "SQL encoding is invalid\n$sql" );
+        }
 
 		// handle some oracle specifics
 		// remove AS column/table/subquery namings
@@ -1024,6 +1024,7 @@ class DatabaseOracle extends DatabaseBase {
 		if (is_array($table)) {
 			$table = array_map( array( &$this, 'tableName' ), $table );
 		}
+		$table = $this->tableName($table);
 		
 		$conds2 = array();
 		$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
