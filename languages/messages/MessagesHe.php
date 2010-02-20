@@ -117,8 +117,6 @@ $magicWords = array(
 	'talkpagenamee'         => array( '1', 'שם דף השיחה מקודד', 'TALKPAGENAMEE' ),
 	'subjectpagename'       => array( '1', 'שם דף הנושא', 'שם הערך', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
 	'subjectpagenamee'      => array( '1', 'שם דף הנושא מקודד', 'שם הערך מקודד', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
-	'pipetrick'             => array( '1', 'קיצור הקו האנכי', 'PIPETRICK' ),
-	'pipetricke'            => array( '1', 'קיצור הקו האנכי מקודד', 'PIPETRICKE' ),
 	'msg'                   => array( '0', 'הכללה:', 'MSG:' ),
 	'subst'                 => array( '0', 'ס:', 'SUBST:' ),
 	'safesubst'             => array( '0', 'ס בטוח:', 'SAFESUBST:' ),
@@ -513,9 +511,6 @@ $messages = array(
 'actions'                    => 'פעולות',
 'namespaces'                 => 'מרחבי שם',
 'variants'                   => 'גרסאות שפה',
-
-# Metadata in edit box
-'metadata_help' => 'מטא־דטה:',
 
 'errorpagetitle'    => 'שגיאה',
 'returnto'          => 'חזרה לדף $1.',
@@ -919,6 +914,8 @@ $2',
 'userpage-userdoesnotexist'        => 'חשבון המשתמש "$1" אינו רשום.
 אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
 'userpage-userdoesnotexist-view'   => 'חשבון המשתמש "$1" אינו רשום.',
+'blocked-notice-logextract'        => 'משתמש זה חסום כרגע.
+פעולת יומן החסימות האחרונה מוצגת להלן:',
 'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זכרון המטמון (Cache) של הדפדפן על־מנת להבחין בשינויים.
 * ב'''מוזילה''', ב'''פיירפוקס''' או ב'''ספארי''', לחצו על מקש ה־Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו Ctrl+Shift+R (או Cmd+Shift+R במקינטוש של אפל).
 * ב'''אינטרנט אקספלורר''', לחצו על מקש ה־Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על Ctrl+F5.
