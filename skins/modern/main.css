@@ -153,18 +153,10 @@ textarea {
 }
 
 #searchInput {
-	display: block;
+	width: 85%;
 	margin-left: auto;
 	margin-right: auto;
 }
-
-/** safari and chrome specific hack for search box (bug #19194) **/
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    #searchInput {
-        display: inline;
-    }
-}
-
 
 #p-search #searchform div div {
 	margin-top: .4em;
