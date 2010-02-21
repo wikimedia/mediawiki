@@ -113,8 +113,6 @@ class UserrightsPage extends SpecialPage {
 						$reason
 					);
 
-					global $wgOut;
-
 					$url = $this->getSuccessURL();
 					$wgOut->redirect( $url );
 					return;
