@@ -192,9 +192,6 @@ Pāusai en kategōrijai "$1"',
 'namespaces'                 => 'Tītelin plattibis',
 'variants'                   => 'Warjāntai',
 
-# Metadata in edit box
-'metadata_help' => 'Metadātan:',
-
 'errorpagetitle'    => 'Blānda',
 'returnto'          => 'Etwartinnais si en pāusan $1.',
 'tagline'           => 'Iz {{SITENAME}}',

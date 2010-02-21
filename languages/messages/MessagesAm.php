@@ -198,9 +198,6 @@ $messages = array(
 'vector-namespace-image'    => 'ፋይል',
 'vector-namespace-talk'     => 'ውይይት',
 
-# Metadata in edit box
-'metadata_help' => 'ተጨማሪ መረጃ:',
-
 'errorpagetitle'    => 'ስህተት',
 'returnto'          => '(ወደ $1 ለመመለስ)',
 'tagline'           => 'ከ{{SITENAME}}',

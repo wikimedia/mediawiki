@@ -220,9 +220,6 @@ $messages = array(
 'actions'                    => 'செயல்கள்',
 'namespaces'                 => 'பெயர்வெளிகள்',
 
-# Metadata in edit box
-'metadata_help' => 'மேல்நிலைத் தரவு:',
-
 'errorpagetitle'    => 'தவறு',
 'returnto'          => '$1 பக்கத்துக்குத் திரும்பு.',
 'tagline'           => '{{SITENAME}} தளத்திலிருந்து',

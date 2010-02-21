@@ -447,9 +447,6 @@ $messages = array(
 'namespaces'                 => 'Không gian tên',
 'variants'                   => 'Biến thể',
 
-# Metadata in edit box
-'metadata_help' => 'Đặc tính hình:',
-
 'errorpagetitle'    => 'Lỗi',
 'returnto'          => 'Quay lại $1.',
 'tagline'           => 'Từ {{SITENAME}}',

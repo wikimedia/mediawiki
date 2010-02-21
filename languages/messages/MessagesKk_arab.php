@@ -546,9 +546,6 @@ $messages = array(
 'faq'            => 'ٴجىيى قويىلعان ساۋالدار',
 'faqpage'        => 'Project:ٴجىيى قويىلعان ساۋالدار',
 
-# Metadata in edit box
-'metadata_help' => 'قوسىمشا دەرەكتەر:',
-
 'errorpagetitle'    => 'قاتەلىك',
 'returnto'          => '$1 دەگەنگە قايتا كەلۋ.',
 'tagline'           => '{{GRAMMAR:ablative|{{SITENAME}}}}',

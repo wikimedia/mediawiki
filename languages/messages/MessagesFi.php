@@ -486,9 +486,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'namespaces'                 => 'Nimiavaruudet',
 'variants'                   => 'Muuttujat',
 
-# Metadata in edit box
-'metadata_help' => 'Sisältökuvaukset:',
-
 'errorpagetitle'    => 'Virhe',
 'returnto'          => 'Palaa sivulle $1.',
 'tagline'           => '{{SITENAME}}',

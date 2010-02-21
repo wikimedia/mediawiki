@@ -425,9 +425,6 @@ $messages = array(
 'namespaces'                 => 'Простори назв',
 'variants'                   => 'Варіанти',
 
-# Metadata in edit box
-'metadata_help' => 'Метадані:',
-
 'errorpagetitle'    => 'Помилка',
 'returnto'          => 'Повернення до сторінки «$1».',
 'tagline'           => 'Матеріал з {{grammar:genitive|{{SITENAME}}}}',

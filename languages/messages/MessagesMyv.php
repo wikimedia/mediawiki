@@ -337,9 +337,6 @@ $messages = array(
 'namespaces'                 => 'Лемпотмот',
 'variants'                   => 'Вариантт',
 
-# Metadata in edit box
-'metadata_help' => 'Метадата:',
-
 'errorpagetitle'    => 'Ильведькс',
 'returnto'          => 'Велявтомс $1 лопантень.',
 'tagline'           => '{{SITENAME}} -нь пельде',

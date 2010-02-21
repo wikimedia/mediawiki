@@ -508,9 +508,6 @@ $messages = array(
 'faq'            => 'Jïi qoýılğan sawaldar',
 'faqpage'        => 'Project:Jïi qoýılğan sawaldar',
 
-# Metadata in edit box
-'metadata_help' => 'Qosımşa derekter:',
-
 'errorpagetitle'    => 'Qatelik',
 'returnto'          => '$1 degenge qaýta kelw.',
 'tagline'           => '{{GRAMMAR:ablative|{{SITENAME}}}}',

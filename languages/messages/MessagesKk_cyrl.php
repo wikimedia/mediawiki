@@ -505,9 +505,6 @@ $messages = array(
 'faq'            => 'Жиі қойылған сауалдар',
 'faqpage'        => 'Project:Жиі қойылған сауалдар',
 
-# Metadata in edit box
-'metadata_help' => 'Қосымша деректер:',
-
 'errorpagetitle'    => 'Қателік',
 'returnto'          => '$1 дегенге қайта келу.',
 'tagline'           => '{{GRAMMAR:ablative|{{SITENAME}}}}',

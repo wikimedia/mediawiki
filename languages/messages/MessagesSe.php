@@ -131,9 +131,6 @@ $messages = array(
 'qbmyoptions'    => 'Ásahusat',
 'qbspecialpages' => 'Doaibmasiiddut',
 
-# Metadata in edit box
-'metadata_help' => 'Sisdoallogovvádusat:',
-
 'errorpagetitle'    => 'Feaila',
 'returnto'          => 'Máhcat siidui $1.',
 'tagline'           => '{{SITENAME}}',

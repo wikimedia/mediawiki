@@ -184,9 +184,6 @@ ausghenn, mr mus dâdsuu ufm ajchnen rächnâr was âjrichdn ghenn)',
 'namespaces'                 => 'Nôômsrajm',
 'variants'                   => 'Warjandn',
 
-# Metadata in edit box
-'metadata_help' => 'Medha-daadn:',
-
 'errorpagetitle'    => 'Feelr',
 'returnto'          => 'Dsrig dsur sajdn $1.',
 'tagline'           => 'Aus {{SITENAME}}',

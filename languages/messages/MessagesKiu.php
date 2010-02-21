@@ -201,9 +201,6 @@ href="" class="internal"}?{/a}) basne.',
 'namespaces'                 => 'Caê namey',
 'variants'                   => 'Varyanti',
 
-# Metadata in edit box
-'metadata_help' => 'Daê meta:',
-
 'errorpagetitle'    => 'Xeta',
 'returnto'          => 'Peyser so $1.',
 'tagline'           => '{{SITENAME}} ra',

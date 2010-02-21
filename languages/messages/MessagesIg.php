@@ -175,9 +175,6 @@ $messages = array(
 'namespaces'                 => 'Ámááhà',
 'variants'                   => 'Nke ichè ichè',
 
-# Metadata in edit box
-'metadata_help' => 'Ómárí nso:',
-
 'errorpagetitle'    => 'Nsogbú',
 'returnto'          => 'Ganata na $1.',
 'tagline'           => 'Oshị {{SITENAME}}',
@@ -367,6 +364,7 @@ Biko meríáríá ya.',
 'wrongpasswordempty'      => 'Mkpurụ okwu ejị a gafẹ á dighi.
 Biko meríáríá ya.',
 'mailmypassword'          => 'Me e-mail mkpurụ okwu ejị a gafẹ nke ohúrù',
+'mailerror'               => 'Nsogbú mẹrẹ mgbe ozi nke chorí gá: $1',
 'emailconfirmlink'        => 'Lé ka I hü ma ihià bu ézíbóté e-mail gi',
 'accountcreated'          => 'Ndoté è mepólé',
 'loginlanguagelabel'      => 'Asụsụ: $1',

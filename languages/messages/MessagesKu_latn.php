@@ -181,9 +181,6 @@ $messages = array(
 'faq'            => 'Pirs û Bersîv (FAQ)',
 'faqpage'        => 'Project:Pirs û Bersîv',
 
-# Metadata in edit box
-'metadata_help' => "Data'yên meta:",
-
 'errorpagetitle'    => 'Çewtî (Error)',
 'returnto'          => 'Bizivire $1.',
 'tagline'           => 'Ji {{SITENAME}}',

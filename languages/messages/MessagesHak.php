@@ -147,9 +147,6 @@ $messages = array(
 'faq'            => 'Sòng-kien mun-thì kié-tap',
 'faqpage'        => 'Project:Sòng-kien mun-thì kié-tap',
 
-# Metadata in edit box
-'metadata_help' => 'Ngièn sṳ-kí:',
-
 'errorpagetitle'    => 'Chho-ngu',
 'returnto'          => 'Fán-fì to $1.',
 'tagline'           => 'Chhut-chhṳ {{SITENAME}}',

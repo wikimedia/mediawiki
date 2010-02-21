@@ -419,9 +419,6 @@ I seguenti collegamenti sono in lingua inglese:
 'namespaces'                 => 'Namespace',
 'variants'                   => 'Varianti',
 
-# Metadata in edit box
-'metadata_help' => 'Metadati:',
-
 'errorpagetitle'    => 'Errore',
 'returnto'          => 'Torna a $1.',
 'tagline'           => 'Da {{SITENAME}}.',

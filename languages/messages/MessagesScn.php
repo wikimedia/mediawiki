@@ -319,9 +319,6 @@ $messages = array(
 'namespaces'                 => 'Namespace',
 'variants'                   => 'Varianti',
 
-# Metadata in edit box
-'metadata_help' => 'Metadati:',
-
 'errorpagetitle'    => 'Erruri',
 'returnto'          => 'Ritorna a $1.',
 'tagline'           => 'Di {{SITENAME}}',

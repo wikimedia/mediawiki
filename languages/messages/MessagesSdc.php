@@ -259,9 +259,6 @@ Li sighenti cullegamenti so in linga ingrese:
 'vector-view-edit'          => 'Mudifigga',
 'vector-view-view'          => 'Leggi',
 
-# Metadata in edit box
-'metadata_help' => 'Metadati:',
-
 'errorpagetitle'    => 'Errori',
 'returnto'          => 'Turra a $1.',
 'tagline'           => 'Da {{SITENAME}}.',

@@ -314,9 +314,6 @@ $messages = array(
 'namespaces'                 => 'فضانامان',
 'variants'                   => 'گوشگان',
 
-# Metadata in edit box
-'metadata_help' => 'متادیتا',
-
 'errorpagetitle'    => 'حطا',
 'returnto'          => 'تررگ به $1.',
 'tagline'           => 'چه {{SITENAME}}',

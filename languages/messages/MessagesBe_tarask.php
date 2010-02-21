@@ -431,9 +431,6 @@ $messages = array(
 'namespaces'                 => 'Прасторы назваў',
 'variants'                   => 'Варыянты',
 
-# Metadata in edit box
-'metadata_help' => 'Мэтазьвесткі:',
-
 'errorpagetitle'    => 'Памылка',
 'returnto'          => 'Вярнуцца да старонкі $1.',
 'tagline'           => 'Зьвесткі зь {{GRAMMAR:родны|{{SITENAME}}}}',

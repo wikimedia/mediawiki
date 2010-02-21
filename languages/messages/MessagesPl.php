@@ -411,9 +411,6 @@ $messages = array(
 'namespaces'                 => 'Przestrzenie nazw',
 'variants'                   => 'Warianty',
 
-# Metadata in edit box
-'metadata_help' => 'Metadane:',
-
 'errorpagetitle'    => 'Błąd',
 'returnto'          => 'Wróć do strony $1.',
 'tagline'           => 'Z {{GRAMMAR:D.lp|{{SITENAME}}}}',

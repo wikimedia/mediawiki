@@ -321,9 +321,6 @@ $messages = array(
 'namespaces'                 => 'నేంస్పేసులు',
 'variants'                   => 'వైవిధ్యాలు',
 
-# Metadata in edit box
-'metadata_help' => 'మెటాడేటా:',
-
 'errorpagetitle'    => 'లోపం',
 'returnto'          => 'తిరిగి $1 పేజీకి వెళ్లు.',
 'tagline'           => '{{SITENAME}} నుండి',

@@ -387,9 +387,6 @@ Dat es och all op Änglesch:
 'namespaces'                 => 'Appachtemangs',
 'variants'                   => 'Variante',
 
-# Metadata in edit box
-'metadata_help' => 'Metta-Daate:',
-
 'errorpagetitle'    => 'Fähler',
 'returnto'          => 'Jangk widder noh: „$1“.',
 'tagline'           => 'Us de {{SITENAME}}',

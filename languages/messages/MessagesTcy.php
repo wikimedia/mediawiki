@@ -159,9 +159,6 @@ $messages = array(
 'faq'            => 'ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 'faqpage'        => 'Project:ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 
-# Metadata in edit box
-'metadata_help' => 'ಮೂಲಮಾಹಿತಿ:',
-
 'errorpagetitle'    => 'ದೋಷ',
 'returnto'          => '$1 ಗ್ ಪಿರ ಪೋಲೆ.',
 'tagline'           => '{{SITENAME}} ರ್ದ್',

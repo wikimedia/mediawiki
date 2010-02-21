@@ -545,6 +545,7 @@ Am but'k'aşi oçvuşi sinori gaktirinen; mara am oktiroba, k'ademeli oçvuşa m
 
 # Undelete
 'undeletelink'              => "i3'k'edi/komoiği",
+'undeletedarticle'          => '[[$1]] goiktu.',
 'undelete-search-submit'    => 'Mgori',
 'undelete-show-file-submit' => 'Ho',
 

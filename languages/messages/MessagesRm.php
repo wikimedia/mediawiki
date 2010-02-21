@@ -162,9 +162,6 @@ $messages = array(
 'namespaces'                 => 'Tip da pagina',
 'variants'                   => 'Variantas',
 
-# Metadata in edit box
-'metadata_help' => 'Datas da meta:',
-
 'errorpagetitle'    => 'Errur',
 'returnto'          => 'Enavos tar $1.',
 'tagline'           => 'Ord {{SITENAME}}',

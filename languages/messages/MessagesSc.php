@@ -191,9 +191,6 @@ $messages = array(
 'vector-view-history'       => 'Càstia istòria',
 'vector-view-viewsource'    => 'Càstia mitza',
 
-# Metadata in edit box
-'metadata_help' => 'Metadatos:',
-
 'errorpagetitle'    => 'Faddina',
 'returnto'          => 'Torra a $1.',
 'tagline'           => 'Dae {{SITENAME}}',

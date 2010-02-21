@@ -125,9 +125,6 @@ $messages = array(
 'qbmyoptions'    => 'میرے صفحے',
 'qbspecialpages' => 'خاص صفحے',
 
-# Metadata in edit box
-'metadata_help' => 'میٹا ڈیٹا:',
-
 'errorpagetitle'    => 'مسئلہ',
 'returnto'          => 'واپس $1 چلو',
 'tagline'           => 'سے {{SITENAME}}',

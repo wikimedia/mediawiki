@@ -224,9 +224,6 @@ $messages = array(
 'namespaces'                 => 'Аат даллара',
 'variants'                   => 'Барыллар',
 
-# Metadata in edit box
-'metadata_help' => 'Мета дааннайдар:',
-
 'errorpagetitle'    => 'Сыыһа',
 'returnto'          => 'Төттөрү $1 сирэйгэ.',
 'tagline'           => '{{SITENAME}} диэн сиртэн ылыллыбыт',

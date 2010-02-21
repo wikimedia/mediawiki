@@ -256,9 +256,6 @@ $messages = array(
 'namespaces'                 => 'Фазоҳои ном',
 'variants'                   => 'Вариантҳо',
 
-# Metadata in edit box
-'metadata_help' => 'Метадода:',
-
 'errorpagetitle'    => 'Хато',
 'returnto'          => 'Бозгашт ба $1.',
 'tagline'           => 'Аз {{SITENAME}}',

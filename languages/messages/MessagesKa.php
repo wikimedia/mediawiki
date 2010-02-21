@@ -299,9 +299,6 @@ $messages = array(
 'namespaces'                 => 'სახელთა სივრცე',
 'variants'                   => 'ვარიანტები',
 
-# Metadata in edit box
-'metadata_help' => 'მეტამონაცემები:',
-
 'errorpagetitle'    => 'შეცდომა',
 'returnto'          => 'დაბრუნდი $1-ზე.',
 'tagline'           => '{{SITENAME}} გვერდიდან',

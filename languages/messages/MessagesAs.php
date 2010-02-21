@@ -267,9 +267,6 @@ $messages = array(
 'namespaces'                 => 'নামস্থান',
 'variants'                   => 'বিকল্পসমূহ',
 
-# Metadata in edit box
-'metadata_help' => 'মেটাডাটা:',
-
 'errorpagetitle'    => 'ভুল',
 'returnto'          => '$1 লৈ ঘুৰি যাঁওক ।',
 'tagline'           => '{{SITENAME}} -ৰ পৰা',

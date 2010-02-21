@@ -442,9 +442,6 @@ $messages = array(
 'faq'            => 'नेहमीची प्रश्नावली',
 'faqpage'        => 'Project:प्रश्नावली',
 
-# Metadata in edit box
-'metadata_help' => 'मेटाडाटा:',
-
 'errorpagetitle'    => 'चुक',
 'returnto'          => '$1 कडे परत चला.',
 'tagline'           => '{{SITENAME}} कडून',

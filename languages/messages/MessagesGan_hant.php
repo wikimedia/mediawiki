@@ -240,9 +240,6 @@ $messages = array(
 'namespaces'                 => '空間名',
 'variants'                   => '變換',
 
-# Metadata in edit box
-'metadata_help' => '元數據:',
-
 'errorpagetitle'    => '錯誤',
 'returnto'          => '回到$1。',
 'tagline'           => '出自{{SITENAME}}',

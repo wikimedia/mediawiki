@@ -455,9 +455,6 @@ $messages = array(
 'namespaces'                 => 'Անվանատարածքներ',
 'variants'                   => 'Տարբերակներ',
 
-# Metadata in edit box
-'metadata_help' => 'Մետատվյալներ․',
-
 'errorpagetitle'    => 'Սխալ',
 'returnto'          => 'Վերադառնալ $1։',
 'tagline'           => '{{SITENAME}}յից՝ ազատ հանրագիտարանից',

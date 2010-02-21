@@ -425,9 +425,6 @@ $messages = array(
 'namespaces'                 => 'नामाकाशानि',
 'variants'                   => 'प्रकीर्णत्वेन',
 
-# Metadata in edit box
-'metadata_help' => 'अधिदत्तम् (मेटाडाटा):',
-
 'errorpagetitle'    => 'विभ्रमः',
 'returnto'          => '$1 इत्येतद् प्रति निवर्तताम्।',
 'tagline'           => '{{SITENAME}} इत्यस्मात्',

@@ -380,9 +380,6 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'vector-view-view'           => 'Lesen',
 'vector-view-viewsource'     => 'Borntext bekieken',
 
-# Metadata in edit box
-'metadata_help' => 'Metadaten:',
-
 'errorpagetitle'    => 'Fehler',
 'returnto'          => 'Trüch to $1.',
 'tagline'           => 'Vun {{SITENAME}}',

@@ -297,9 +297,6 @@ $messages = array(
 'namespaces'                 => 'Parthau',
 'variants'                   => 'Amrywiolion',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Gwall',
 'returnto'          => 'Dychwelyd at $1.',
 'tagline'           => 'Oddi ar {{SITENAME}}',

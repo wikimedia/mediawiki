@@ -283,9 +283,6 @@ $messages = array(
 'faq'            => "Mga malimit itanong (''FAQ'')",
 'faqpage'        => "Project:Mga malimit itanong (''FAQ'')",
 
-# Metadata in edit box
-'metadata_help' => 'Metadata ("mga datong nasa likuran"):',
-
 'errorpagetitle'    => 'Pagkakamali',
 'returnto'          => 'Bumalik sa $1.',
 'tagline'           => 'Mula sa {{SITENAME}}',

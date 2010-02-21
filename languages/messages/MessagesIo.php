@@ -268,9 +268,6 @@ $messages = array(
 'vector-view-viewsource'     => 'Vidar fonto',
 'namespaces'                 => 'Nomari',
 
-# Metadata in edit box
-'metadata_help' => 'Metadonaji:',
-
 'errorpagetitle'    => 'Eroro',
 'returnto'          => 'Retrovenar a $1.',
 'tagline'           => 'De {{SITENAME}}',

@@ -211,9 +211,6 @@ $messages = array(
 'namespaces'                 => 'Нернә ус',
 'variants'                   => 'Суңһлтс',
 
-# Metadata in edit box
-'metadata_help' => 'Мета өггцн:',
-
 'errorpagetitle'    => 'Эндү',
 'returnto'          => '«$1» тал хәрү ирх.',
 'tagline'           => '{{grammar:genitive|{{SITENAME}}}} гидг һазрас өггцн',

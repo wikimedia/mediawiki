@@ -77,9 +77,6 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'   => 'Éro',
 'returnto'         => 'Lisu ri $1.',
 'tagline'          => 'Polé {{SITENAME}}',

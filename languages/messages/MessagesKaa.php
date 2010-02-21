@@ -297,9 +297,6 @@ $messages = array(
 'faq'            => 'KBS',
 'faqpage'        => 'Project:KBS',
 
-# Metadata in edit box
-'metadata_help' => "Metamag'lıwmat:",
-
 'errorpagetitle'    => 'Qatelik',
 'returnto'          => '$1 betine qaytıw.',
 'tagline'           => "{{SITENAME}} mag'lıwmatı",

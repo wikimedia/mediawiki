@@ -209,9 +209,6 @@ $messages = array(
 'namespaces'                 => 'Noamensraum:',
 'variants'                   => 'Varianta',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fehler',
 'returnto'          => 'Zurück zur Seite $1.',
 'tagline'           => 'Aus {{SITENAME}}',

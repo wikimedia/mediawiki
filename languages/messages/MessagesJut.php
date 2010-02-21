@@ -147,9 +147,6 @@ $messages = array(
 'faq'            => 'VSF',
 'faqpage'        => 'Project:Vøl stellen fråĝer (VSF)',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fejl',
 'returnto'          => 'Tilbage til $1.',
 'tagline'           => 'Frå {{SITENAME}}',

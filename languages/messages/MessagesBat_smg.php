@@ -191,9 +191,6 @@ $messages = array(
 'faq'            => 'DOK',
 'faqpage'        => 'Project:DOK',
 
-# Metadata in edit box
-'metadata_help' => 'Metadoumenīs:',
-
 'errorpagetitle'    => 'Klaida',
 'returnto'          => 'Grīžtė i $1.',
 'tagline'           => 'Straipsnis ėš {{SITENAME}}.',

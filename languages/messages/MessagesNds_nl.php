@@ -481,9 +481,6 @@ $messages = array(
 'namespaces'                 => 'Naamruumten',
 'variants'                   => 'Variaanten',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Foutmelding',
 'returnto'          => 'Weerumme naor $1.',
 'tagline'           => 'Van {{SITENAME}}',

@@ -263,9 +263,6 @@ $messages = array(
 'namespaces'                 => 'Barabu tur',
 'variants'                   => 'Wuute',
 
-# Metadata in edit box
-'metadata_help' => 'Jégginjoxe :',
-
 'errorpagetitle'    => 'Njuumte',
 'returnto'          => 'Dellu ci wii xët $1.',
 'tagline'           => 'Jóge  {{SITENAME}}.',

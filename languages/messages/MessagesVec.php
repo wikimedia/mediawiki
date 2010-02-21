@@ -327,9 +327,6 @@ I seguenti cołegamenti i xe en lengua inglese:
 'namespaces'                 => 'Namespace',
 'variants'                   => 'Varianti',
 
-# Metadata in edit box
-'metadata_help' => 'Metadati:',
-
 'errorpagetitle'    => 'Erór',
 'returnto'          => 'Torna a $1.',
 'tagline'           => 'Da {{SITENAME}}',

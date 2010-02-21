@@ -203,9 +203,6 @@ $messages = array(
 'namespaces'                 => 'Cayê namey',
 'variants'                   => 'Varyanti',
 
-# Metadata in edit box
-'metadata_help' => 'Daê seri:',
-
 'errorpagetitle'    => 'Xeta',
 'returnto'          => 'Peyser şo $1.',
 'tagline'           => '{{SITENAME}} ra',

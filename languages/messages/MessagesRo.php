@@ -469,9 +469,6 @@ pe titlul secţiunii (JavaScript)',
 'namespaces'                 => 'Spaţii de nume',
 'variants'                   => 'Variante',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Eroare',
 'returnto'          => 'Înapoi la $1.',
 'tagline'           => 'De la {{SITENAME}}',

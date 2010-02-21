@@ -247,9 +247,6 @@ $messages = array(
 'namespaces'                 => 'Mga ngalang espasyo',
 'variants'                   => 'Mga baryant',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Sayop',
 'returnto'          => 'Balik sa $1.',
 'tagline'           => 'Gikan sa {{SITENAME}}',

@@ -395,9 +395,6 @@ $messages = array(
 'namespaces'                 => 'Imenski prostori',
 'variants'                   => 'Varijante',
 
-# Metadata in edit box
-'metadata_help' => 'Metapodaci:',
-
 'errorpagetitle'    => 'Greška',
 'returnto'          => 'Povratak na $1.',
 'tagline'           => 'Iz projekta {{SITENAME}}',

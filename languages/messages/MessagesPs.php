@@ -312,9 +312,6 @@ $messages = array(
 'actions'                    => 'کړنې',
 'namespaces'                 => 'نوم-تشيالونه',
 
-# Metadata in edit box
-'metadata_help' => 'مېټاډاټا:',
-
 'errorpagetitle'    => 'تېروتنه',
 'returnto'          => 'بېرته $1 ته وګرځه.',
 'tagline'           => 'د {{SITENAME}} لخوا',

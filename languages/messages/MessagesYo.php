@@ -205,9 +205,6 @@ $messages = array(
 'actions'                    => 'Àwọn ìgbéṣẹ̀',
 'namespaces'                 => 'Àwọn orúkọàyè',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Àsìṣe',
 'returnto'          => 'Padà sí $1.',
 'tagline'           => "Lát'ọwọ́ {{SITENAME}}",

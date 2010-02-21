@@ -188,9 +188,6 @@ $messages = array(
 'namespaces'                 => 'Περιοχάς',
 'variants'                   => 'Παραλλαγάς',
 
-# Metadata in edit box
-'metadata_help' => 'Μεταδογμένα:',
-
 'errorpagetitle'    => 'Λάθος',
 'returnto'          => 'Επιστροφήν σο $1.',
 'tagline'           => 'Ασό {{SITENAME}}',

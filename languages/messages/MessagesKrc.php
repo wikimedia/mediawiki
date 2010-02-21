@@ -221,9 +221,6 @@ $messages = array(
 'namespaces'                 => 'Атланы аламы',
 'variants'                   => 'Вариантла',
 
-# Metadata in edit box
-'metadata_help' => 'Мета-информация:',
-
 'errorpagetitle'    => 'Хата',
 'returnto'          => '$1 бетге къайт',
 'tagline'           => '{{SITENAME}} сайтдан',

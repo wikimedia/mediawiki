@@ -297,9 +297,6 @@ $messages = array(
 'namespaces'                 => 'Namensryym',
 'variants'                   => 'Variante',
 
-# Metadata in edit box
-'metadata_help' => 'Metadate:',
-
 'errorpagetitle'    => 'Fähler',
 'returnto'          => 'Zruck zur Syte $1.',
 'tagline'           => 'Us {{SITENAME}}',

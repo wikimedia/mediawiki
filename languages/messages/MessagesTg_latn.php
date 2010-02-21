@@ -198,9 +198,6 @@ $messages = array(
 'namespaces'                 => 'Fazohoi nom',
 'variants'                   => 'Variantho',
 
-# Metadata in edit box
-'metadata_help' => 'Metadoda:',
-
 'errorpagetitle'    => 'Xato',
 'returnto'          => 'Bozgaşt ba $1.',
 'tagline'           => 'Az {{SITENAME}}',

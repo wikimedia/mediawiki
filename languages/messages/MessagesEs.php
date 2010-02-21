@@ -330,7 +330,7 @@ $messages = array(
 'tog-minordefault'            => 'Marcar todas las ediciones como menores por defecto',
 'tog-previewontop'            => 'Mostrar la previsualización antes de la caja de edición en lugar de después',
 'tog-previewonfirst'          => 'Mostrar previsualización al comenzar a editar',
-'tog-nocache'                 => "Inhabilitar la ''caché'' de páginas",
+'tog-nocache'                 => 'Deshabilitar la caché de páginas',
 'tog-enotifwatchlistpages'    => 'Envíame un correo cuando haya cambios en una página vigilada',
 'tog-enotifusertalkpages'     => 'Notifícame cuando cambia mi página de discusión de usuario',
 'tog-enotifminoredits'        => 'Notifícame también los cambios menores de página',
@@ -494,9 +494,6 @@ $messages = array(
 'actions'                    => 'Acciones',
 'namespaces'                 => 'Espacios de nombres',
 'variants'                   => 'Variantes',
-
-# Metadata in edit box
-'metadata_help' => 'Metadatos:',
 
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Volver a $1.',
@@ -911,6 +908,8 @@ Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras p
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'userpage-userdoesnotexist-view'   => 'Cuenta de usuario "$1" no está registrada.',
+'blocked-notice-logextract'        => 'Este usuario está actualmente bloqueado.
+La última entrada del registro de bloqueos es provista debajo para mayor referencia:',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
 
 *'''Mozilla / Firefox / Safari:''' pulsa ''Mayúsculas.'' mientras haces click en el botón ''Recargar,'' o pulsa si no ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' en un Macintosh)

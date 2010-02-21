@@ -243,9 +243,6 @@ $messages = array(
 'vector-view-edit'      => 'Liwatón',
 'vector-view-view'      => 'Basáhon',
 
-# Metadata in edit box
-'metadata_help' => 'Mga Metadatos:',
-
 'errorpagetitle'    => 'Salâ',
 'returnto'          => 'Magbwelta sa $1.',
 'tagline'           => 'Halì sa {{SITENAME}}',

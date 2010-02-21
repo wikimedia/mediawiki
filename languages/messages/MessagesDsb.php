@@ -340,9 +340,6 @@ $messages = array(
 'namespaces'                 => 'Mjenjowe rumy',
 'variants'                   => 'Warianty',
 
-# Metadata in edit box
-'metadata_help' => 'Metadaty:',
-
 'errorpagetitle'    => 'Zmólka',
 'returnto'          => 'Slědk k boku $1.',
 'tagline'           => 'Z {{GRAMMAR:genitiw|{{SITENAME}}}}',

@@ -469,9 +469,6 @@ $messages = array(
 'namespaces'                 => 'നാമമേഖല',
 'variants'                   => 'ചരങ്ങള്‍',
 
-# Metadata in edit box
-'metadata_help' => 'മെറ്റാഡാറ്റ:',
-
 'errorpagetitle'    => 'പിഴവ്',
 'returnto'          => '$1 എന്ന താളിലേക്ക് തിരിച്ചുപോവുക.',
 'tagline'           => '{{SITENAME}} സംരംഭത്തില്‍ നിന്ന്',

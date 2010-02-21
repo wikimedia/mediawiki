@@ -270,9 +270,6 @@ $messages = array(
 'namespaces'                 => 'Nimiavaruded',
 'variants'                   => 'Variantad',
 
-# Metadata in edit box
-'metadata_help' => 'Metaandmused:',
-
 'errorpagetitle'    => 'Petuz',
 'returnto'          => 'Pörttas lehtpolele $1.',
 'tagline'           => '{{SITENAME}}',

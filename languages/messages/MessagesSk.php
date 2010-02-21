@@ -462,9 +462,6 @@ $messages = array(
 'namespaces'                 => 'Menné priestory',
 'variants'                   => 'Varianty',
 
-# Metadata in edit box
-'metadata_help' => 'Metadáta:',
-
 'errorpagetitle'    => 'Chyba',
 'returnto'          => 'Späť na $1.',
 'tagline'           => 'Z {{GRAMMAR:genitív|{{SITENAME}}}}',

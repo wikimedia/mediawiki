@@ -453,9 +453,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'namespaces'                 => 'Nimeruumid',
 'variants'                   => 'Variandid',
 
-# Metadata in edit box
-'metadata_help' => 'Metaandmed:',
-
 'errorpagetitle'    => 'Viga',
 'returnto'          => 'Naase lehele $1',
 'tagline'           => 'Allikas: {{SITENAME}}',

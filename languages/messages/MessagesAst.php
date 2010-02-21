@@ -200,9 +200,6 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:Entrugues más frecuentes',
 
-# Metadata in edit box
-'metadata_help' => 'Metadatos:',
-
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Vuelve a $1.',
 'tagline'           => 'De {{SITENAME}}',

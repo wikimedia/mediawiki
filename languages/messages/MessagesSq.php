@@ -323,9 +323,6 @@ $messages = array(
 'faq'            => 'Pyetje e Përgjigje',
 'faqpage'        => 'Project:Pyetje e Përgjigje',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Gabim',
 'returnto'          => 'Kthehu tek $1.',
 'tagline'           => 'Nga {{SITENAME}}',

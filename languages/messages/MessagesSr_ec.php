@@ -402,9 +402,6 @@ $messages = array(
 'namespaces'                 => 'Именски простори',
 'variants'                   => 'Варијанте',
 
-# Metadata in edit box
-'metadata_help' => 'Метаподаци:',
-
 'errorpagetitle'    => 'Грешка',
 'returnto'          => 'Повратак на $1.',
 'tagline'           => 'Из {{SITENAME}}',

@@ -189,9 +189,6 @@ $messages = array(
 'actions'                    => 'Actions',
 'namespaces'                 => 'Namespaces',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Return tae $1.',
 'tagline'           => 'Frae {{SITENAME}}',

@@ -315,9 +315,6 @@ $messages = array(
 'namespaces'                 => 'નામાવકાશો',
 'variants'                   => 'ભિન્ન રૂપો',
 
-# Metadata in edit box
-'metadata_help' => 'મેટાડેટા:',
-
 'errorpagetitle'    => 'ત્રુટિ',
 'returnto'          => '$1 પર પાછા જાઓ.',
 'tagline'           => '{{SITENAME}} થી',

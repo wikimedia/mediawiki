@@ -87,9 +87,6 @@ $messages = array(
 'qbmyoptions'    => 'Meina seidos',
 'qbspecialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
 
-# Metadata in edit box
-'metadata_help' => 'Ufardata:',
-
 'errorpagetitle'    => 'Faírina dwalis',
 'returnto'          => 'Gawandjan at $1.',
 'tagline'           => 'Fram {{SITENAME}}',

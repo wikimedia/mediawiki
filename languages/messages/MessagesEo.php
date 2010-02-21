@@ -358,9 +358,6 @@ $messages = array(
 'namespaces'                 => 'Nomspacoj',
 'variants'                   => 'Variantoj',
 
-# Metadata in edit box
-'metadata_help' => 'Metadatenoj:',
-
 'errorpagetitle'    => 'Eraro',
 'returnto'          => 'Reiri al $1.',
 'tagline'           => 'El {{SITENAME}}',

@@ -211,9 +211,6 @@ $messages = array(
 'namespaces'                 => 'नेमस्पेस',
 'variants'                   => 'बहुरुपहरु',
 
-# Metadata in edit box
-'metadata_help' => 'मेटाडेटा:',
-
 'errorpagetitle'    => 'त्रुटि',
 'returnto'          => '$1 मा फर्कनुहोस् ।',
 'tagline'           => '{{SITENAME}}बाट',

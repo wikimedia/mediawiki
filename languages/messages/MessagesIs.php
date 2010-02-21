@@ -389,9 +389,6 @@ $messages = array(
 'vector-view-viewsource'     => 'Sýna frumkóða',
 'namespaces'                 => 'Nafnrými',
 
-# Metadata in edit box
-'metadata_help' => 'Lýsigögn:',
-
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Aftur á: $1.',
 'tagline'           => 'Úr {{SITENAME}}',

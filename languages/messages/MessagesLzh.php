@@ -254,9 +254,6 @@ $messages = array(
 'namespaces'                 => '名集',
 'variants'                   => '變字',
 
-# Metadata in edit box
-'metadata_help' => '衍意：',
-
 'errorpagetitle'    => '誤',
 'returnto'          => '返$1。',
 'tagline'           => '語出{{SITENAME}}',

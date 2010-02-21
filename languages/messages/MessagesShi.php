@@ -136,9 +136,6 @@ $messages = array(
 'actions'                    => 'Imskarn',
 'namespaces'                 => 'Ismawn n tɣula',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Laffut',
 'returnto'          => 'Urri s $1.',
 'tagline'           => 'Ž {{SITENAME}}',

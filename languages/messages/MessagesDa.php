@@ -347,9 +347,6 @@ $messages = array(
 'namespaces'                 => 'Navnerum',
 'variants'                   => 'Varianter',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fejl',
 'returnto'          => 'Tilbage til $1.',
 'tagline'           => 'Fra {{SITENAME}}',

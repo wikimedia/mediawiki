@@ -482,9 +482,6 @@ $messages = array(
 'namespaces'                 => 'Ruang nama',
 'variants'                   => 'Varian',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Kesalahan',
 'returnto'          => 'Kembali ke $1.',
 'tagline'           => 'Dari {{SITENAME}}',
