@@ -428,7 +428,6 @@ class Parser
 
 		# Information on include size limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
-			global $wgExpensiveParserFunctionLimit;
 			$max = $this->mOptions->getMaxIncludeSize();
 			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/$wgExpensiveParserFunctionLimit\n";
 			$limitReport =
