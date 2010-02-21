@@ -182,9 +182,6 @@ $messages = array(
 'faq'            => 'ЫйХу',
 'faqpage'        => 'Project:ЫйХу',
 
-# Metadata in edit box
-'metadata_help' => 'Метаданнăйсем:',
-
 'errorpagetitle'    => 'Йăнăш',
 'returnto'          => '$1 страницăна таврăн.',
 'tagline'           => '{{GRAMMAR:genitive|{{SITENAME}}}}ри материал',

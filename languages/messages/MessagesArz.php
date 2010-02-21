@@ -484,9 +484,6 @@ $messages = array(
 'namespaces'                 => 'النطاقات',
 'variants'                   => 'المتغيرات',
 
-# Metadata in edit box
-'metadata_help' => 'ميتا داتا:',
-
 'errorpagetitle'    => 'غلطه',
 'returnto'          => 'ارجع ل $1.',
 'tagline'           => 'من ويكيبيديا, الموسوعه الحره',
@@ -1593,7 +1590,7 @@ $1",
 'recentchangeslinked-to'       => 'إظهارالتغييرات للصفحات الموصولة للصفحة اللى انت اديتها',
 
 # Upload
-'upload'                      => 'ارفع فايل (upload file)',
+'upload'                      => 'حمل فايل (upload file)',
 'uploadbtn'                   => 'حمل الملف',
 'reuploaddesc'                => 'إلغى التحميل وارجع لاستمارة التحميل',
 'upload-tryagain'             => 'نفذ وصف الملف المتعدل',
@@ -1683,7 +1680,7 @@ $1",
 'upload-description'          => 'وصف الملف',
 'upload-options'              => 'أوبشنات الرفع',
 'watchthisupload'             => 'حط الملف دا تحت المراقبه',
-'filewasdeleted'              => 'فى ملف بنفس الاسم دا تحمل قبل كدا و بعدين اتمسح.
+'filewasdeleted'              => 'فيه ملف بنفس الاسم دا تحمل قبل كدا و بعدين اتمسح.
 لو سمحت تراجع $1 قبل ما تحمله كمان مرة.',
 'upload-wasdeleted'           => "'''تحذير: انت بتحمل ملف اتمسح قبل كدا.'''
 

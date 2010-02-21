@@ -282,9 +282,6 @@ $messages = array(
 'vector-action-delete'  => 'Borrar',
 'vector-namespace-help' => "Pachina d'aduya",
 
-# Metadata in edit box
-'metadata_help' => 'Metadatos:',
-
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Tornar ta $1.',
 'tagline'           => 'De {{SITENAME}}',

@@ -148,9 +148,6 @@ $messages = array(
 'faq'            => 'Questions Communes',
 'faqpage'        => 'Project:Questions Communes',
 
-# Metadata in edit box
-'metadata_help' => 'Meta-information:',
-
 'errorpagetitle'    => 'Erreur',
 'returnto'          => 'Retourner back à la page $1.',
 'tagline'           => 'Un article de {{SITENAME}}',

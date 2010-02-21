@@ -328,9 +328,6 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'namespaces'                 => 'Imenski prostori',
 'variants'                   => 'Različice',
 
-# Metadata in edit box
-'metadata_help' => 'Metapodatki:',
-
 'errorpagetitle'    => 'Napaka',
 'returnto'          => 'Vrnitev na: $1.',
 'tagline'           => 'Iz {{GRAMMAR:rodilnik|{{SITENAME}}}}',

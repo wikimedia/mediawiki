@@ -309,9 +309,6 @@ $messages = array(
 'namespaces'                 => 'Izen-tarteak',
 'variants'                   => 'Aldaerak',
 
-# Metadata in edit box
-'metadata_help' => 'Metadatuak:',
-
 'errorpagetitle'    => 'Errorea',
 'returnto'          => '$1(e)ra itzuli.',
 'tagline'           => '{{SITENAME}}(e)tik',
@@ -623,6 +620,7 @@ Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'resetpass_forbidden'       => 'Ezin dira pasahitzak aldatu',
 'resetpass-no-info'         => 'Orrialde honetara zuzenean sartzeko izena eman behar duzu.',
 'resetpass-submit-loggedin' => 'Pasahitza aldatu',
+'resetpass-submit-cancel'   => 'Bertan behera utzi',
 'resetpass-wrong-oldpass'   => 'Behin-behineko edo oraintxuko pasahitza ez da baliagarria. 
 Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat eskatu duzu.',
 'resetpass-temp-password'   => 'Behin-behineko pasahitza:',

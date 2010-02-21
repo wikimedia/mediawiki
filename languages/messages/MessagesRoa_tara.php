@@ -208,9 +208,6 @@ $messages = array(
 'namespaces'                 => 'Namespace',
 'variants'                   => 'Variande',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Errore',
 'returnto'          => 'Tuerne a $1.',
 'tagline'           => 'Da {{SITENAME}}',
@@ -539,6 +536,7 @@ Pe spiccià 'a procedure de collegamende, tu a 'mbostà 'na password nove aqquà
 'resetpass_forbidden'       => 'Le Password non ge ponne cangià',
 'resetpass-no-info'         => 'Tu a essere colleghete pe accedere a sta pàgene direttamende.',
 'resetpass-submit-loggedin' => "Cange 'a password",
+'resetpass-submit-cancel'   => 'Annulle',
 'resetpass-wrong-oldpass'   => "'A password temboranea o quedda corrende jè invalide.
 Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea nove.",
 'resetpass-temp-password'   => 'Password temboranea:',
@@ -647,6 +645,8 @@ o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist'        => '\'U cunde utende "$1" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'userpage-userdoesnotexist-view'   => '\'U cunde utende "$1" non g\'è reggistrate.',
+'blocked-notice-logextract'        => "Stu utende jè correndemende bloccate.<br />
+L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
 *'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboranemende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sus a 'nu Macintosh);
 *'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
@@ -1485,6 +1485,7 @@ Pe 'na securezze a uerre proprie, img_auth.php jè disabbilitate.",
 'http-timed-out'        => 'Richieste HTTP fore timbe.',
 'http-curl-error'       => "Errore analizzanne l'URL: $1",
 'http-host-unreachable' => "Non ge riesche a raggiungere l'URL",
+'http-bad-status'       => "Ha state 'nu probbleme duranne 'a richieste HTTP: $1, $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "Non ge riesche a raggiungere l'URL",
@@ -2307,6 +2308,7 @@ pe piacere a essere secure-secure de le conseguenze prime de procedere.",
 
 Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u codenute sue.",
 'movearticle'                  => 'Spuèste:',
+'moveuserpage-warning'         => "'''Attenziò:''' Tu stè spuèste 'na pàgene utende. Vide bbuène ca sulamende 'a pàgene avène spustate ma l'utende ''non'' g'avene renomenate.",
 'movenologin'                  => 'Non ge sinde colleghete',
 'movenologintext'              => "Tu a essere 'n'utende reggistrete e [[Special:UserLogin|colleghete]] pe spustà 'na pàgene.",
 'movenotallowed'               => "Tu non ge tìne 'u permesse pe spustà le pàggene.",

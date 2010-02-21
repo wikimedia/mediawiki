@@ -488,9 +488,6 @@ $messages = array(
 'namespaces'                 => 'Èspâços de noms',
 'variants'                   => 'Variantes',
 
-# Metadata in edit box
-'metadata_help' => 'Mètabalyês :',
-
 'errorpagetitle'    => 'Èrror',
 'returnto'          => 'Tornar a la pâge $1.',
 'tagline'           => 'De {{SITENAME}}.',

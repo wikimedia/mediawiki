@@ -291,9 +291,6 @@ $messages = array(
 'vector-namespace-category' => 'Kategori',
 'vector-namespace-help'     => 'Èd',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Erè',
 'returnto'          => 'Ritounen nan paj $1.',
 'tagline'           => 'Yon atik de {{SITENAME}}.',

@@ -225,9 +225,6 @@ $messages = array(
 'actions'                    => 'Darbības',
 'variants'                   => 'Varianti',
 
-# Metadata in edit box
-'metadata_help' => 'Metadati:',
-
 'errorpagetitle'    => 'Kļūda',
 'returnto'          => 'Atgriezties: $1.',
 'tagline'           => "No ''{{grammar:ģenitīvs|{{SITENAME}}}}''",

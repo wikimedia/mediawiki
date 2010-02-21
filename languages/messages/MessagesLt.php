@@ -357,9 +357,6 @@ $messages = array(
 'namespaces'                 => 'Vardų sritys',
 'variants'                   => 'Variantai',
 
-# Metadata in edit box
-'metadata_help' => 'Metaduomenys:',
-
 'errorpagetitle'    => 'Klaida',
 'returnto'          => 'Grįžti į $1.',
 'tagline'           => 'Iš {{SITENAME}}.',

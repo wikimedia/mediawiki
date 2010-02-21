@@ -199,9 +199,6 @@ $messages = array(
 'qbmyoptions'    => 'Mes pådjes',
 'qbspecialpages' => 'Pådjes sipeciåles',
 
-# Metadata in edit box
-'metadata_help' => 'Meta-dnêyes :',
-
 'errorpagetitle'    => 'Aroke',
 'returnto'          => 'Rivni al pådje «$1».',
 'tagline'           => 'Èn årtike di {{SITENAME}}.',

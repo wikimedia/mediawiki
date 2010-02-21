@@ -221,9 +221,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'namespaces'                 => 'At giňişlikleri',
 'variants'                   => 'Wariantlar',
 
-# Metadata in edit box
-'metadata_help' => 'Meta-maglumat:',
-
 'errorpagetitle'    => 'Säwlik',
 'returnto'          => '$1.',
 'tagline'           => '{{SITENAME}} saýtyndan',

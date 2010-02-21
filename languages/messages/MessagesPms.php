@@ -227,9 +227,6 @@ dj'artìcoj ancó pa scrit",
 'namespaces'                 => 'Spassi nominaj',
 'variants'                   => 'Variant',
 
-# Metadata in edit box
-'metadata_help' => 'Metadat:',
-
 'errorpagetitle'    => 'Eror',
 'returnto'          => 'Torna andré a $1.',
 'tagline'           => 'Da {{SITENAME}}.',

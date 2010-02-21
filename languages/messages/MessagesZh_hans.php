@@ -387,9 +387,6 @@ $messages = array(
 'namespaces'                 => '名字空间',
 'variants'                   => '变换',
 
-# Metadata in edit box
-'metadata_help' => '元数据：',
-
 'errorpagetitle'    => '错误',
 'returnto'          => '返回到$1。',
 'tagline'           => '出自{{SITENAME}}',

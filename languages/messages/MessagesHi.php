@@ -242,9 +242,6 @@ $messages = array(
 'namespaces'                 => 'नामस्थान',
 'variants'                   => 'संस्करण',
 
-# Metadata in edit box
-'metadata_help' => 'मेटाडाटा:',
-
 'errorpagetitle'    => 'त्रुटि',
 'returnto'          => 'लौटें $1.',
 'tagline'           => 'विकिपीडिया, एक मुक्त ज्ञानकोष से',

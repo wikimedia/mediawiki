@@ -172,9 +172,6 @@ $messages = array(
 'faq'     => 'आपालं न्यनिगु न्ह्यसः (FAQ)',
 'faqpage' => 'Project:आपालं न्यनिगु न्ह्यसःत (FAQ)',
 
-# Metadata in edit box
-'metadata_help' => 'मेटाडेटा:',
-
 'returnto'         => '$1य् लिहाँझासँ।',
 'tagline'          => '{{SITENAME}}नं',
 'help'             => 'ग्वहालि',

@@ -171,9 +171,6 @@ $messages = array(
 'vector-view-view'           => 'Lhaih',
 'vector-view-viewsource'     => 'Jeeagh er bun',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Marranys',
 'returnto'          => 'Goll er ash gys $1.',
 'tagline'           => 'Ass {{SITENAME}}.',

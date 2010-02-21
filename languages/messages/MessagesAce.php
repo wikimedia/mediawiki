@@ -141,9 +141,6 @@ $messages = array(
 'vector-view-viewsource'     => 'Eu nè',
 'variants'                   => 'Varian',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata',
-
 'errorpagetitle'   => 'Seunalah',
 'returnto'         => 'Gisa u $1.',
 'tagline'          => 'Nibak {{SITENAME}}',

@@ -438,9 +438,6 @@ $messages = array(
 'namespaces'                 => 'ប្រភេទ',
 'variants'                   => 'អថេរ',
 
-# Metadata in edit box
-'metadata_help' => 'ទិន្នន័យមេតា៖',
-
 'errorpagetitle'    => 'មានបញ្ហា',
 'returnto'          => 'ត្រឡប់ទៅ $1 វិញ ។',
 'tagline'           => 'ដោយ{{SITENAME}}',

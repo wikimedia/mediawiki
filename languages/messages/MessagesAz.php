@@ -247,9 +247,6 @@ $messages = array(
 'namespaces'                 => 'Adlar fəzası',
 'variants'                   => 'Variantlar',
 
-# Metadata in edit box
-'metadata_help' => 'Metaməlumatlar:',
-
 'errorpagetitle'    => 'Xəta',
 'returnto'          => '$1 səhifəsinə qayıt.',
 'tagline'           => '{{SITENAME}} saytından',

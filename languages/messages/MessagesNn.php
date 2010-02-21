@@ -456,9 +456,6 @@ $messages = array(
 'namespaces'                 => 'Namnerom',
 'variants'                   => 'Variantar',
 
-# Metadata in edit box
-'metadata_help' => 'Utvida informasjon:',
-
 'errorpagetitle'    => 'Feil',
 'returnto'          => 'Attende til $1.',
 'tagline'           => 'Frå {{SITENAME}}',

@@ -220,9 +220,6 @@ $messages = array(
 'vector-view-view'           => 'ಓದು',
 'vector-view-viewsource'     => 'ಆಕರ ವೀಕ್ಷಿಸು',
 
-# Metadata in edit box
-'metadata_help' => 'ಮೂಲಮಾಹಿತಿ:',
-
 'errorpagetitle'    => 'ದೋಷ',
 'returnto'          => '$1 ಗೆ ಹಿಂತಿರುಗಿ.',
 'tagline'           => '{{SITENAME}} ಇಂದ',

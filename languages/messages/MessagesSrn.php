@@ -295,9 +295,6 @@ $messages = array(
 'faq'            => 'FAQ (Sani di ben aksi furu)',
 'faqpage'        => 'Project:Sani di ben aksi furu',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fowtu',
 'returnto'          => 'Drai baka go na $1.',
 'tagline'           => 'Fu {{SITENAME}}',

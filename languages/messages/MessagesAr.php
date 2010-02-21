@@ -603,9 +603,6 @@ $messages = array(
 'namespaces'                 => 'النطاقات',
 'variants'                   => 'المتغيرات',
 
-# Metadata in edit box
-'metadata_help' => 'بيانات ميتا:',
-
 'errorpagetitle'    => 'خطأ',
 'returnto'          => 'ارجع إلى $1.',
 'tagline'           => 'من {{SITENAME}}',

@@ -144,9 +144,6 @@ $messages = array(
 'qbmyoptions'    => "'E ppaggene mie",
 'qbspecialpages' => 'Pàggene speciàle',
 
-# Metadata in edit box
-'metadata_help' => 'Metadate:',
-
 'errorpagetitle'    => 'Sbaglio',
 'returnto'          => 'Torna a $1.',
 'help'              => 'Ajùto',

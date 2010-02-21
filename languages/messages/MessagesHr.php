@@ -483,9 +483,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'namespaces'                 => 'Imenski prostori',
 'variants'                   => 'Inačice',
 
-# Metadata in edit box
-'metadata_help' => 'Metapodaci:',
-
 'errorpagetitle'    => 'Pogreška',
 'returnto'          => 'Vrati se na $1.',
 'tagline'           => 'Izvor: {{SITENAME}}',

@@ -219,9 +219,6 @@ $messages = array(
 'namespaces'                 => 'Нэрний зайнууд',
 'variants'                   => 'Хувилбарууд',
 
-# Metadata in edit box
-'metadata_help' => 'Зургийн тухай мэдээлэл:',
-
 'errorpagetitle'    => 'Aлдаа',
 'returnto'          => '$1 руу буцах.',
 'tagline'           => '{{SITENAME}}-с',

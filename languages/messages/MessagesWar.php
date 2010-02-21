@@ -184,9 +184,6 @@ $messages = array(
 'vector-view-view'          => 'Basaha',
 'vector-view-viewsource'    => 'Kitaa an ginkuhaan',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Sayop',
 'returnto'          => 'Balik ngadto ha $1.',
 'tagline'           => 'Tikang ha {{SITENAME}}',

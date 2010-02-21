@@ -190,9 +190,6 @@ $messages = array(
 'namespaces'                 => 'Espáciu nombris',
 'variants'                   => 'Variantis',
 
-# Metadata in edit box
-'metadata_help' => 'Metadatus:',
-
 'errorpagetitle'    => 'Marru',
 'returnto'          => 'Gorvel a $1.',
 'tagline'           => 'Dendi {{SITENAME}}',

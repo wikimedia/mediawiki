@@ -478,9 +478,6 @@ $messages = array(
 'namespaces'                 => 'Névterek',
 'variants'                   => 'Változók',
 
-# Metadata in edit box
-'metadata_help' => 'Metaadatok:',
-
 'errorpagetitle'    => 'Hiba',
 'returnto'          => 'Vissza a(z) $1 laphoz.',
 'tagline'           => 'A {{SITENAME}} wikiből',

@@ -199,9 +199,6 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
-# Metadata in edit box
-'metadata_help' => 'Metatlahcuilōlli:',
-
 'errorpagetitle'    => 'Ahcuallōtl',
 'returnto'          => 'Timocuepāz īhuīc $1.',
 'tagline'           => 'Īhuīcpa {{SITENAME}}',

@@ -201,9 +201,6 @@ $messages = array(
 'namespaces'                 => 'Naam',
 'variants'                   => 'Antar',
 
-# Metadata in edit box
-'metadata_help' => 'Jaankari ke baare me jaankaari:',
-
 'errorpagetitle'    => 'Galti',
 'returnto'          => '$1 pe lauto.',
 'tagline'           => '{{SITENAME}} se',

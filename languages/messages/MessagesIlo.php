@@ -157,9 +157,6 @@ $messages = array(
 'vector-action-protect' => 'Saluadan',
 'vector-view-create'    => 'Parnuayen',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Biddut',
 'returnto'          => 'Agsubli iti $1.',
 'tagline'           => 'Manipud iti {{SITENAME}}',

@@ -199,9 +199,6 @@ $messages = array(
 'namespaces'                 => 'Espasyo sang pangalan',
 'variants'                   => 'Mga variant',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata',
-
 'errorpagetitle'    => 'Sala/Error',
 'returnto'          => 'Balik sa $1.',
 'tagline'           => 'Halin sa {{SITENAME}}',

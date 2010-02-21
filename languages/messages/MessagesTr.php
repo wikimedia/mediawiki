@@ -472,9 +472,6 @@ $messages = array(
 'namespaces'                 => 'Ad alanları',
 'variants'                   => 'Varyantlar',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Hata',
 'returnto'          => '$1 sayfasına dön.',
 'tagline'           => '{{SITENAME}} sitesinden',
@@ -782,6 +779,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass_forbidden'       => 'Parolalar değiştirilememektedir',
 'resetpass-no-info'         => 'Bu sayfaya doğrudan erişmek için oturum açmanız gereklidir.',
 'resetpass-submit-loggedin' => 'Parolayı değiştir',
+'resetpass-submit-cancel'   => 'İptal',
 'resetpass-wrong-oldpass'   => 'Geçersiz geçici veya güncel şifre.
 Şifrenizi zaten başarıyla değiştirdiniz ya da yeni bir geçici şifre istediniz.',
 'resetpass-temp-password'   => 'Geçici parola:',
@@ -881,6 +879,8 @@ Bu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]]
 ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili günlükleri tarayabilirsiniz].</span>',
 'userpage-userdoesnotexist'        => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
 'userpage-userdoesnotexist-view'   => '"$1" kullanıcı hesabı kayıtlı değil.',
+'blocked-notice-logextract'        => 'Bu kullancı şuanda engellenmiş.
+Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
 'usercssyoucanpreview'             => "'''İpucu:''' Sayfayı kaydetmeden önce '''önizlemeyi göster''''e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
 'userjsyoucanpreview'              => "'''İpucu:''' Sayfayı kaydetmeden önce '''önizlemeyi göster''''e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
@@ -1692,9 +1692,14 @@ En uygun güvenlik için, img_auth.php devre dışı bırakıldı.",
 'img-auth-noread'       => 'Kullanıcının "$1" dosyasını okumaya erişimi yok.',
 
 # HTTP errors
-'http-invalid-url'    => 'Geçersiz URL: $1',
-'http-invalid-scheme' => '"$1" şemasına sahip URLler desteklenmiyor',
-'http-request-error'  => 'HTTP isteği bilinmeyen bir nedenle başarısız oldu.',
+'http-invalid-url'      => 'Geçersiz URL: $1',
+'http-invalid-scheme'   => '"$1" şemasına sahip URLler desteklenmiyor',
+'http-request-error'    => 'HTTP isteği bilinmeyen bir nedenle başarısız oldu.',
+'http-read-error'       => 'HTTP okuma hatası.',
+'http-timed-out'        => 'HTTP isteği zaman aşımına uğradı.',
+'http-curl-error'       => 'URL alınırken hata: $1',
+'http-host-unreachable' => "URL'ye ulaşılamıyor.",
+'http-bad-status'       => 'HTTP isteği sırasında bir sorun oluştu: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL'ye ulaşılamadı",
@@ -2487,6 +2492,7 @@ Bu değişim popüler bir sayfa için beklenmeyen sonuçlar doğurabilir; lütfe
 
 Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'movearticle'                  => 'Eski isim',
+'moveuserpage-warning'         => "'''Uyarı:''' Bir kullanıcı sayfasını taşımak üzeresiniz. Lütfen sadece sayfanın taşınacağına, ancak kullanıcının yeniden ''adlandırılmayacağına'' dikkat edin.",
 'movenologin'                  => 'Sistemde değilsiniz.',
 'movenologintext'              => 'Sayfanın adını değiştirebilmek için kayıtlı ve [[Special:UserLogin|sisteme]] giriş yapmış olmanız gerekmektedir.',
 'movenotallowed'               => 'Sayfaları taşımaya izniniz yok.',

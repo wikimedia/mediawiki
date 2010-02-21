@@ -223,9 +223,6 @@ $messages = array(
 'namespaces'                 => 'Исем арауыҡтары',
 'variants'                   => 'Варианттар',
 
-# Metadata in edit box
-'metadata_help' => 'Мета-мәғлүмәттәр:',
-
 'errorpagetitle'    => 'Хата',
 'returnto'          => '$1 битенә ҡайтыу.',
 'tagline'           => '{{SITENAME}} проектынан',

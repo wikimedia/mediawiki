@@ -368,9 +368,6 @@ $messages = array(
 'namespaces'                 => 'Espais de noms',
 'variants'                   => 'Variants',
 
-# Metadata in edit box
-'metadata_help' => 'Metadades:',
-
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Torna cap a $1.',
 'tagline'           => 'De {{SITENAME}}',
@@ -675,6 +672,7 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'resetpass_forbidden'       => 'No poden canviar-se les contrasenyes',
 'resetpass-no-info'         => "Heu d'estar registrats en un compte per a poder accedir directament a aquesta pàgina.",
 'resetpass-submit-loggedin' => 'Canvia la contrasenya',
+'resetpass-submit-cancel'   => 'Canceŀla',
 'resetpass-wrong-oldpass'   => 'Contrasenya actual o temporal no vàlida.
 Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya temporal.',
 'resetpass-temp-password'   => 'Contrasenya temporal:',
@@ -2379,6 +2377,7 @@ assegureu-vos d'entendre les conseqüències que comporta abans de seguir endava
 
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
 'movearticle'                  => 'Reanomena la pàgina',
+'moveuserpage-warning'         => "'''Atenció:''' Esteu a punt de moure una pàgina d'usuari. Tingueu en compte que només la pàgina es desplaçarà i que el compte d'usuari ''no'' canviarà de nom.",
 'movenologin'                  => "No sou a dins d'una sessió",
 'movenologintext'              => "Heu de ser un usuari registrat i estar [[Special:UserLogin|dintre d'una sessió]]
 per reanomenar una pàgina.",

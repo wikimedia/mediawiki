@@ -288,9 +288,6 @@ $messages = array(
 'namespaces'                 => 'Esaouennoù anv',
 'variants'                   => 'Adstummoù',
 
-# Metadata in edit box
-'metadata_help' => 'Metaroadennoù :',
-
 'errorpagetitle'    => 'Fazi',
 'returnto'          => "Distreiñ d'ar bajenn $1.",
 'tagline'           => 'Eus {{SITENAME}}',
@@ -1655,11 +1652,11 @@ Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
 'statistics-users-active-desc' => "Implijerien o deus degaset da nebeutañ ur c'hemm {{PLURAL:$1|an deiz paseet|e-kerzh an $1 deiz diwezhañ}}",
 'statistics-mostpopular'       => 'Pajennoù muiañ sellet',
 
-'disambiguations'      => 'Pajennoù digejañ',
+'disambiguations'      => 'Pajennoù disheñvelout',
 'disambiguationspage'  => 'Project:Liammoù_ouzh_ar_pajennoù_disheñvelaat',
-'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn digejañ'''.
+'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn disheñvelout'''.
 Padal e tlefent kas war-eeun d'an danvez anezho.<br />
-Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom liammet ouzh [[MediaWiki:Disambiguationspage]]",
+Sellet e vez ouzh ur bajenn evel ouzh ur bajenn disheñvelout ma ra gant ur patrom liammet ouzh [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Adkasoù doubl',
 'doubleredirectstext'        => 'Rollañ a ra ar bajenn-mañ ar pajennoù a adkas da bajennoù adkas all.

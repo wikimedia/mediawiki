@@ -445,9 +445,6 @@ $messages = array(
 'namespaces'                 => 'Пространства имён',
 'variants'                   => 'Варианты',
 
-# Metadata in edit box
-'metadata_help' => 'Метаданные:',
-
 'errorpagetitle'    => 'Ошибка',
 'returnto'          => 'Возврат к странице $1.',
 'tagline'           => 'Материал из {{grammar:genitive|{{SITENAME}}}}',

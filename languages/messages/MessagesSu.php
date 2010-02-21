@@ -307,9 +307,6 @@ $messages = array(
 'namespaces'                 => 'Spasi ngaran',
 'variants'                   => 'Varian',
 
-# Metadata in edit box
-'metadata_help' => 'Métadata:',
-
 'errorpagetitle'    => 'Kasalahan',
 'returnto'          => 'Balik deui ka $1.',
 'tagline'           => 'Ti {{SITENAME}}',

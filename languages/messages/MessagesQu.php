@@ -448,9 +448,6 @@ $messages = array(
 'namespaces'                 => "Suti k'itikuna",
 'variants'                   => "Ñawra rikch'akuykuna",
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Pantasqa',
 'returnto'          => '$1-man kutimuy.',
 'tagline'           => '{{SITENAME}}manta',

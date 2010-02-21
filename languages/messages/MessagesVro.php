@@ -187,9 +187,6 @@ $messages = array(
 'faq'            => 'Sagõhõhe küsüdüq küsümiseq',
 'faqpage'        => 'Project:KKK',
 
-# Metadata in edit box
-'metadata_help' => 'Metateedüs:',
-
 'errorpagetitle'    => 'Viga',
 'returnto'          => 'Tagasi lehe manoq $1.',
 'tagline'           => 'Läteq: {{SITENAME}}',

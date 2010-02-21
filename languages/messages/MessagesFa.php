@@ -586,9 +586,6 @@ $messages = array(
 'namespaces'                 => 'فضاهای نام',
 'variants'                   => 'گویش‌ها',
 
-# Metadata in edit box
-'metadata_help' => 'متاداده:',
-
 'errorpagetitle'    => 'خطا',
 'returnto'          => 'بازگشت به $1.',
 'tagline'           => 'از {{SITENAME}}',

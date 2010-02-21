@@ -211,9 +211,6 @@ $messages = array(
 # Vector skin
 'vector-view-view' => 'Чытаць',
 
-# Metadata in edit box
-'metadata_help' => 'Метазвесткі:',
-
 'errorpagetitle'    => 'Памылка',
 'returnto'          => 'Вярнуцца да $1.',
 'tagline'           => 'З пляцоўкі {{SITENAME}}.',

@@ -324,9 +324,6 @@ $messages = array(
 'namespaces'                 => 'Nammeromten',
 'variants'                   => 'Farianten',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Werom nei "$1".',
 'tagline'           => 'Ut {{SITENAME}}',

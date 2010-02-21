@@ -186,9 +186,6 @@ $messages = array(
 'faq'            => 'FAQ (veehestelde vraehen)',
 'faqpage'        => 'Project:Veehestelde vraehen',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Trug nae $1.',
 'tagline'           => 'Uut {{SITENAME}}',

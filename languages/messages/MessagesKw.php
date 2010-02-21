@@ -183,9 +183,6 @@ $messages = array(
 'vector-view-view'           => 'Redya',
 'vector-view-viewsource'     => 'Gweles pennfenten',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Gwall',
 'tagline'           => 'Dhyworth {{SITENAME}}',
 'help'              => 'Gweres',

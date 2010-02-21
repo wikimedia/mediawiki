@@ -453,9 +453,6 @@ $messages = array(
 'namespaces'                 => '이름공간',
 'variants'                   => '변수',
 
-# Metadata in edit box
-'metadata_help' => '메타데이터:',
-
 'errorpagetitle'    => '오류',
 'returnto'          => '$1(으)로 돌아갑니다.',
 'tagline'           => '{{SITENAME}}',

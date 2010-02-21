@@ -149,9 +149,6 @@ $messages = array(
 'qbmyoptions'    => 'Påhina-hu siha',
 'qbspecialpages' => 'Manespesiat na påhina',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Linachi',
 'returnto'          => 'Hånao tåtte para $1.',
 'tagline'           => 'Ginen {{SITENAME}}',

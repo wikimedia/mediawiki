@@ -148,9 +148,6 @@ $messages = array(
 'faq'            => 'SSS',
 'faqpage'        => 'Project:SSS',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Yannış',
 'returnto'          => '$1 dön.',
 'tagline'           => '{{SITENAME}} saydından',

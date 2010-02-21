@@ -181,9 +181,6 @@ $messages = array(
 'faq'            => 'كۆپ كۆرۈلىدىغان مەسىلىلەر',
 'faqpage'        => 'Project:كۆپ كۆرۈلىدىغان مەسىلىلەر',
 
-# Metadata in edit box
-'metadata_help' => 'مېتا سانلىق مەلۇماتى:',
-
 'errorpagetitle'    => 'خاتالىق',
 'returnto'          => '$1 غا قايت.',
 'tagline'           => 'ئورنى {{SITENAME}}',

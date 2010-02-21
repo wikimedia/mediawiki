@@ -365,9 +365,6 @@ $messages = array(
 'namespaces'                 => 'เนมสเปซ',
 'variants'                   => 'สิ่งที่แตกต่าง',
 
-# Metadata in edit box
-'metadata_help' => 'เมทาเดทา:',
-
 'errorpagetitle'    => 'มีข้อผิดพลาด',
 'returnto'          => 'กลับไปสู่ $1',
 'tagline'           => 'จาก {{SITENAME}}',

@@ -339,9 +339,6 @@ $messages = array(
 'namespaces'                 => 'נאָמענטיילן',
 'variants'                   => 'װאַריאַנטן',
 
-# Metadata in edit box
-'metadata_help' => 'מעטאַ־דאַטן:',
-
 'errorpagetitle'    => 'פֿעלער',
 'returnto'          => 'צוריקקערן צו $1.',
 'tagline'           => 'פֿון {{SITENAME}}',

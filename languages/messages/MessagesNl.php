@@ -495,9 +495,6 @@ $messages = array(
 'namespaces'                 => 'Naamruimten',
 'variants'                   => 'Varianten',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Ga naar $1.',
 'tagline'           => 'Uit {{SITENAME}}',
@@ -832,6 +829,7 @@ Bezig met aanmelden…',
 'resetpass_forbidden'       => 'Wachtwoorden kunnen niet gewijzigd worden',
 'resetpass-no-info'         => 'U dient aangemeld zijn voordat u deze pagina kunt gebruiken.',
 'resetpass-submit-loggedin' => 'Wachtwoord wijzigen',
+'resetpass-submit-cancel'   => 'Annuleren',
 'resetpass-wrong-oldpass'   => 'Het huidige of tijdelijke wachtwoord is ongeldig.
 Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
 'resetpass-temp-password'   => 'Tijdelijk wachtwoord:',

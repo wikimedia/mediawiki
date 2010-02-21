@@ -286,9 +286,6 @@ $messages = array(
 'namespaces'                 => 'İsim fezaları',
 'variants'                   => 'Variantlar',
 
-# Metadata in edit box
-'metadata_help' => 'Meta malümatı:',
-
 'errorpagetitle'    => 'Hata',
 'returnto'          => '$1.',
 'tagline'           => '{{GRAMMAR:ablative|{{SITENAME}}}}',

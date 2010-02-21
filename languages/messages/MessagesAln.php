@@ -241,9 +241,6 @@ $messages = array(
 'namespaces'                 => 'Hapësinat',
 'variants'                   => 'Variantet',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Gabim',
 'returnto'          => 'Kthehu te $1.',
 'tagline'           => 'Nga {{SITENAME}}',

@@ -234,9 +234,6 @@ $messages = array(
 'namespaces'                 => 'নাঙরলাম',
 'variants'                   => 'ভেরিয়েন্টহানি',
 
-# Metadata in edit box
-'metadata_help' => 'মেটাডাটা:',
-
 'errorpagetitle'    => 'লাল',
 'returnto'          => '$1-ত আলথকে যাগা।',
 'tagline'           => 'মুক্ত বিশ্বকোষ উইকিপিডিয়াত্ত',

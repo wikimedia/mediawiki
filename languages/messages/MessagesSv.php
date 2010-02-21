@@ -486,9 +486,6 @@ $messages = array(
 'namespaces'                 => 'Namnrymder',
 'variants'                   => 'Varianter',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fel',
 'returnto'          => 'Tillbaka till $1.',
 'tagline'           => 'Från {{SITENAME}}',

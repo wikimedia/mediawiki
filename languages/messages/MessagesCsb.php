@@ -161,9 +161,6 @@ $messages = array(
 'qbmyoptions'    => 'Mòje òptacëje',
 'qbspecialpages' => 'Specjalné starnë',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Brida',
 'returnto'          => 'Wôrcë sã do starnë: $1.',
 'tagline'           => 'Z {{SITENAME}}',

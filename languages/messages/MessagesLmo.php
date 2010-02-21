@@ -268,9 +268,6 @@ süi titul dai sezziún (JavaScript)',
 'namespaces'                 => 'Namespace',
 'variants'                   => 'Variant',
 
-# Metadata in edit box
-'metadata_help' => 'Metadat:',
-
 'errorpagetitle'    => 'Erur',
 'returnto'          => 'Turna indré a $1.',
 'tagline'           => 'De {{SITENAME}}',

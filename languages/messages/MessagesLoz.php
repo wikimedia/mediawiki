@@ -132,9 +132,6 @@ $messages = array(
 'faq'            => 'Alabile',
 'faqpage'        => 'Project:Alabile',
 
-# Metadata in edit box
-'metadata_help' => 'Meta ngesi:',
-
 'errorpagetitle'    => 'Bufosi',
 'returnto'          => 'Kutezi $1.',
 'tagline'           => 'Di {{SITENAME}}',

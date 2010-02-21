@@ -320,9 +320,6 @@ $messages = array(
 'namespaces'                 => 'Mjenowe rumy',
 'variants'                   => 'Warianty',
 
-# Metadata in edit box
-'metadata_help' => 'Metadaty:',
-
 'errorpagetitle'    => 'Zmylk',
 'returnto'          => 'Wróćo k stronje $1.',
 'tagline'           => 'z {{GRAMMAR:genitiw|{{SITENAME}}}}',

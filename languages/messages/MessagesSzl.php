@@ -174,9 +174,6 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
-# Metadata in edit box
-'metadata_help' => 'Metadane:',
-
 'errorpagetitle'    => 'Feler',
 'returnto'          => 'Nazod do zajty $1.',
 'tagline'           => 'S {{GRAMMAR:D.lp|{{SITENAME}}}}',

@@ -414,9 +414,6 @@ $messages = array(
 'namespaces'                 => 'Navnerom',
 'variants'                   => 'Varianter',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Feil',
 'returnto'          => 'Tilbake til $1.',
 'tagline'           => 'Fra {{SITENAME}}',
@@ -718,6 +715,7 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'resetpass_forbidden'       => 'Passord kan ikke endres',
 'resetpass-no-info'         => 'Du må være logget inn for å gå til denne siden direkte',
 'resetpass-submit-loggedin' => 'Endre passord',
+'resetpass-submit-cancel'   => 'Avbryt',
 'resetpass-wrong-oldpass'   => 'Feil midlertidig eller nåværende passord.
 Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.',
 'resetpass-temp-password'   => 'Midlertidig passord:',
@@ -818,6 +816,8 @@ Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, <span cl
 Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] i andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
 'userpage-userdoesnotexist'        => 'Brukerkontoen «$1» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
 'userpage-userdoesnotexist-view'   => 'Kontoen «$1» er ikke registrert.',
+'blocked-notice-logextract'        => 'Denne brukeren er for tiden blokkert.
+Siste blokkeringsloggelement kan sees nedenfor.',
 'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
 'usercssyoucanpreview'             => "'''Tips:''' Bruk «Forhåndsvisning»-knappen for å teste din nye CSS før du lagrer.",
 'userjsyoucanpreview'              => "'''Tips:''' Bruk «Forhåndsvisning»-knappen for å teste din nye JS før du lagrer.",
@@ -1289,6 +1289,7 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'userrights-editusergroup'       => 'Rediger brukergrupper',
 'saveusergroups'                 => 'Lagre brukergrupper',
 'userrights-groupsmember'        => 'Medlem av:',
+'userrights-groupsmember-auto'   => 'Implisitt medlem av:',
 'userrights-groups-help'         => 'Du kan endre hvilke grupper denne brukeren er medlem av.
 * En avkrysset boks betyr at brukeren er medlem av gruppen.
 * En uavkrysset boks betyr at brukeren ikke er medlem av gruppen.
@@ -1618,9 +1619,14 @@ For best mulig sikkerhet er img_auth.php slått av.',
 'img-auth-noread'       => 'Brukeren har ikke tilgang til å lese «$1».',
 
 # HTTP errors
-'http-invalid-url'    => 'Ugyldig internettadresse: $1',
-'http-invalid-scheme' => 'Internettadresser med «$1»-formen støttes ikke',
-'http-request-error'  => 'HTTP-forespørselen feilet på grunn av en ukjent feil.',
+'http-invalid-url'      => 'Ugyldig internettadresse: $1',
+'http-invalid-scheme'   => 'Internettadresser med «$1»-formen støttes ikke',
+'http-request-error'    => 'HTTP-forespørselen feilet på grunn av en ukjent feil.',
+'http-read-error'       => 'HTTP-lesefeil.',
+'http-timed-out'        => 'Tidsavbrudd på HTTP-forespørsel.',
+'http-curl-error'       => 'Feil under henting av adresse: $1',
+'http-host-unreachable' => 'Kunne ikke nå adressen.',
+'http-bad-status'       => 'Det var et problem under HTTP-forespørselen: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikke nå adressen',
@@ -2397,6 +2403,7 @@ vær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 
 I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt.",
 'movearticle'                  => 'Flytt side:',
+'moveuserpage-warning'         => "'''Advarsel:''' Du er i ferd med å flytte en brukerside. Merk at kun siden vil bli flyttet; brukernavnet vil ''ikke'' bli endret.",
 'movenologin'                  => 'Ikke logget inn',
 'movenologintext'              => 'Du må være registrert bruker og være [[Special:UserLogin|logget på]] for å flytte en side.',
 'movenotallowed'               => 'Du har ikke tillatelse til å flytte sider.',

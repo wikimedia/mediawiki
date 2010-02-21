@@ -143,9 +143,6 @@ $messages = array(
 'faq'            => 'Cocmíiit cmaa',
 'faqpage'        => 'Project:Cocmíiit cmaa',
 
-# Metadata in edit box
-'metadata_help' => 'Datade Meta:',
-
 'errorpagetitle'    => 'Römj',
 'returnto'          => 'Jumpöx $1.',
 'tagline'           => "{{SITENAME}} iti'ab",

@@ -217,9 +217,6 @@ $messages = array(
 'namespaces'                 => 'Noomeruume',
 'variants'                   => 'Variante',
 
-# Metadata in edit box
-'metadata_help' => 'Metadoatäie:',
-
 'errorpagetitle'    => 'Failer',
 'returnto'          => 'Tourääch tou Siede $1.',
 'tagline'           => 'Uut {{SITENAME}}',

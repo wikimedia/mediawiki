@@ -326,9 +326,6 @@ $messages = array(
 'namespaces'                 => 'Namespace',
 'variants'                   => "Ny ''skin'' Voasintona",
 
-# Metadata in edit box
-'metadata_help' => 'Metadata :',
-
 'errorpagetitle'    => 'Tsy fetezana',
 'returnto'          => "Hiverina any amin'ny $1.",
 'tagline'           => "Avy amin'i {{SITENAME}}",

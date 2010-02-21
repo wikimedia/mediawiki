@@ -305,9 +305,6 @@ $messages = array(
 'faq'            => 'FAQ (väölgesjtèlde vraoge)',
 'faqpage'        => 'Project:Väölgestjèlde vraoge',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Truuk nao $1.',
 'tagline'           => 'Van {{SITENAME}}',

@@ -448,9 +448,6 @@ $messages = array(
 'namespaces'                 => 'Spazji tal-isem',
 'variants'                   => 'Varjanti',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Problema',
 'returnto'          => "Erġa' lura lejn $1.",
 'tagline'           => 'Minn {{SITENAME}}',

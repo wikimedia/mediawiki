@@ -298,9 +298,6 @@ $messages = array(
 'namespaces'                 => 'بۆشایی‌ناوەکان',
 'variants'                   => 'شێوەزارەکان',
 
-# Metadata in edit box
-'metadata_help' => 'دراوه‌ی مێتا:',
-
 'errorpagetitle'    => 'هه‌ڵه‌',
 'returnto'          => 'بگه‌ڕێوه‌ بۆ $1.',
 'tagline'           => 'لە {{SITENAME}}',

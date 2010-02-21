@@ -155,9 +155,6 @@ $messages = array(
 'vector-view-view'           => 'Lire',
 'vector-view-viewsource'     => "Vir l'source",
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Bérlure',
 'returnto'          => 'Értrouve $1.',
 'tagline'           => 'Cha vient éd {{SITENAME}}',

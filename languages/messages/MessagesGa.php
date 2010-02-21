@@ -246,9 +246,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'vector-namespace-mediawiki' => 'Teachtaireacht',
 'vector-view-view'           => 'Léigh',
 
-# Metadata in edit box
-'metadata_help' => 'Meiteasonraí:',
-
 'errorpagetitle'    => 'Earráid',
 'returnto'          => 'Fill ar ais go $1.',
 'tagline'           => 'Ó {{SITENAME}}.',

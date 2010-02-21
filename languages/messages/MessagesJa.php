@@ -477,9 +477,6 @@ $messages = array(
 'namespaces'                 => '名前空間',
 'variants'                   => '変種',
 
-# Metadata in edit box
-'metadata_help' => 'メタデータ:',
-
 'errorpagetitle'    => 'エラー',
 'returnto'          => '$1 に戻る。',
 'tagline'           => '提供: {{SITENAME}}',
@@ -767,6 +764,7 @@ $2',
 'resetpass_forbidden'       => 'パスワードの変更は許可されていません',
 'resetpass-no-info'         => 'このページに直接アクセスするためにはログインしている必要があります。',
 'resetpass-submit-loggedin' => 'パスワードを変更',
+'resetpass-submit-cancel'   => '中止',
 'resetpass-wrong-oldpass'   => '仮パスワードまたは現在のパスワードが無効です。
 すでにパスワード変更を行っているか、新しい仮パスワードの発行を依頼していませんか。',
 'resetpass-temp-password'   => '仮パスワード:',
@@ -857,6 +855,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'noarticletext-nopermission'       => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]</span>ことができます。',
 'userpage-userdoesnotexist'        => '「$1」という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'userpage-userdoesnotexist-view'   => '利用者アカウント「$1」は登録されていません。',
+'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
+参考のために最新のブロック記録を以下に表示します。',
 'clearyourcache'                   => "'''注意:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
 * '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Ctrl]-[F5] か [Ctrl]-[R] (Macintoshでは [Cmd]-[Shift]-[R])
 * '''IE:''' [Ctrl] を押しながら [更新] をクリック、または [Ctrl]-[F5]
@@ -1617,6 +1617,7 @@ PICT # その他
 'http-timed-out'        => 'HTTPリクエストにタイムアウトしました。',
 'http-curl-error'       => 'フェッチに失敗したURL: $1',
 'http-host-unreachable' => 'URLに到達できません',
+'http-bad-status'       => 'HTTPリクエスト時に問題が発生しました: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URLに到達できませんでした',
@@ -2367,6 +2368,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 これらの場合、ノートページを移動する場合には、別に作業する必要があります。',
 'movearticle'                  => '移動するページ',
+'moveuserpage-warning'         => "'''警告:''' あなたは利用者ページを移動させようとしています。移動を行った場合、ページだけが移動され、利用者名は''変更されない''点に注意してください。",
 'movenologin'                  => 'ログインしていません',
 'movenologintext'              => 'ページを移動するためには、アカウント作成の上、[[Special:UserLogin|ログイン]]している必要があります。',
 'movenotallowed'               => 'あなたにはページを移動する権限がありません。',

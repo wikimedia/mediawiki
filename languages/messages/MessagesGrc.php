@@ -220,9 +220,6 @@ $messages = array(
 'namespaces'                 => 'Ὀνοματεῖα',
 'variants'                   => 'Παραλλαγαί',
 
-# Metadata in edit box
-'metadata_help' => 'Μεταδεδομένα:',
-
 'errorpagetitle'    => 'Σφάλμα',
 'returnto'          => 'Ἐπανιέναι εἰς $1.',
 'tagline'           => 'Ἀπὸ {{SITENAME}}',

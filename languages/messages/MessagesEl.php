@@ -523,9 +523,6 @@ $messages = array(
 'namespaces'                 => 'Περιοχές ονομάτων',
 'variants'                   => 'Παραλλαγές',
 
-# Metadata in edit box
-'metadata_help' => 'Μεταδεδομένα:',
-
 'errorpagetitle'    => 'Σφάλμα',
 'returnto'          => 'Επιστροφή στη σελίδα $1.',
 'tagline'           => 'Από {{SITENAME}}',

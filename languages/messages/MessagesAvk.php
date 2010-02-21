@@ -234,9 +234,6 @@ $messages = array(
 'faq'            => 'NEB',
 'faqpage'        => 'Project:FAQ',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Rokla',
 'returnto'          => 'Dimgrablera va $1 bu.',
 'tagline'           => 'Teliz mal {{SITENAME}}.',

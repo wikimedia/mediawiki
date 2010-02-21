@@ -10,6 +10,7 @@
  * @author Asiri wiki
  * @author Calcey
  * @author Chandana
+ * @author Jiro Ono
  * @author Meno25
  * @author චතුනි අලහප්පෙරුම
  * @author දසනැබළයෝ
@@ -358,9 +359,6 @@ $messages = array(
 'namespaces'                 => 'නාමඅවකාශයන්',
 'variants'                   => 'ප්‍රභේද්‍යයන්',
 
-# Metadata in edit box
-'metadata_help' => 'පාරදත්ත:',
-
 'errorpagetitle'    => 'දෝෂය',
 'returnto'          => '$1 ට නැවත යන්න.',
 'tagline'           => '{{SITENAME}} වෙතින්',
@@ -686,6 +684,7 @@ $2',
 'resetpass_forbidden'       => 'මුර-පදයන් වෙනස් කිරීම  සිදු කල නොහැක',
 'resetpass-no-info'         => 'මෙම පිටුව සෘජු ලෙස පරිශීලනය කෙරුමට ඔබ පළමු ප්‍රවිෂ්ට විය යුතුය.',
 'resetpass-submit-loggedin' => 'මුර-පදය වෙනස්කරන්න',
+'resetpass-submit-cancel'   => 'අත් හරින්න',
 'resetpass-wrong-oldpass'   => 'තාවකාලික හෝ වත්මන් මුර-පදය අනීතිකයි. 
 ඔබ දැනටමත් සාර්ථක ලෙස ඔබගේ මුර-පදය වෙනස් කොට හෝ නව තාවකාලික මුර-පදයක් ඉල්ලා සිට හෝ ඇතිවා විය හැක.',
 'resetpass-temp-password'   => 'තාවකාලික මුර-පදය:',
@@ -793,6 +792,8 @@ $2',
 'userpage-userdoesnotexist'        => '"$1" යන පරිශීලක ගිණුම ලේඛනගත කොට නොමැත.
 ඔබ හට මෙම පිටුව තැනීමට/සංස්කරණය කිරීමට ඇවැසිද යන බව විමසා බලන්න.',
 'userpage-userdoesnotexist-view'   => '"$1" පරිශීලක ගිණුම ලියාපදිංචි කර නොමැත.',
+'blocked-notice-logextract'        => 'මෙම පරිශීලකයා දැනට අවහිර කරනු ලැබ ඇත.
+ආශ්‍රය තකා නවතම අවහිර කිරීම් ලඝු-සටහන පහත සැපයේ:',
 'clearyourcache'                   => "'''සටහන - සුරැකීමෙන් පසුව, වෙනස්වීම් දැකීම සඳහා, බ්‍රවුසරයෙහි පූර්වාක්ෂේපිත සංචිතය (කෑෂය)  මගහැරීමට ඔබ හට සිදුවනවා ඇත.'''
 '''Mozilla / Firefox / Safari:''' ''යළිපූරණය'' ක්ලික් කරමින් ''ෂිෆ්ට්'' ඔබන්න, නැතහොත් ‘‘Ctrl-F5'' හෝ ''Ctrl-R’’ ඔබන්න (මැකිංටොෂ් සඳහා ''Command-R'');
 '''Konqueror: ''' ''යළිපූරණය'' ක්ලික් කරන්න නැතහොත් ''F5'' ඔබන්න;
@@ -1642,6 +1643,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'http-timed-out'        => 'HTTP අයැදුම සඳහා වූ කාලය ඉක්මව ඇත.',
 'http-curl-error'       => 'අන්තර්ජාල ලිපිනය පමුණුවාගෙන ඒමේ දෝෂය : $1',
 'http-host-unreachable' => 'අන්තර්ජාල ලිපිනය වෙත සේන්දු විය නොහැකි විය',
+'http-bad-status'       => 'HTTP ආයාචනයෙහිදී ගැටළුවක් පැන නැගුනි: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'කලාප ලිපිනය ( URL) වෙත සේන්දුවිය නොහැකි විය',
@@ -2461,6 +2463,7 @@ $1 දැනටමත් වාරණය කොට ඇත. පරිස්ථි
 
 මෙවන් අවස්ථා වලදී, අවශ්‍යතාවය පැන නගී නම්, හස්තීය ලෙස ගෙන යාම හෝ ඒකාබද්ධ කිරීම හෝ සිදු කිරීමට ඔබ හට සිදුවේ.",
 'movearticle'                  => 'පිටුව ගෙනයන්න:',
+'moveuserpage-warning'         => "'''අවවාදයයි:''' ඔබ යත්න දරමින් සිටිනුයේ පරිශීලක පිටුවක් ගෙන යෑමටයි. පිටුව ගෙන යෑම පමණක් සිදුවන බවද පරිශීලකයා යළි-නම්කෙරුම සිදු ''නොවන'' බවද කරුණාවෙන් සිහි තබා ගන්න.",
 'movenologin'                  => 'ප්‍රවිෂ්ටවී නොමැත',
 'movenologintext'              => 'පිටුවක් ගෙනයෑමට පෙර, ඔබ ලේඛනගත පරිශීලකයෙකු වී [[Special:UserLogin|ප්‍රවිෂ්ට වී]] සිටිය යුතුය.',
 'movenotallowed'               => 'පිටු ගෙනයෑමට ඔබ හට අවසර නොමැත.',

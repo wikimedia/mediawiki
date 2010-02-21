@@ -380,9 +380,6 @@ $messages = array(
 'namespaces'                 => 'Naamruimtes',
 'variants'                   => 'Variante',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Keer terug na $1.',
 'tagline'           => 'Vanuit {{SITENAME}}',

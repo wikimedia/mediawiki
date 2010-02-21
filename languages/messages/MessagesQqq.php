@@ -328,9 +328,6 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'namespaces'                 => '{{Identical|Namespace}}',
 'variants'                   => 'Used by the Vector skin.',
 
-# Metadata in edit box
-'metadata_help' => '{{Identical|Metadata}}',
-
 'errorpagetitle'    => 'Message shown in browser title bar when encountering error operation.
 
 {{Identical|Error}}',
