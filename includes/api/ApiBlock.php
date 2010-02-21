@@ -1,10 +1,10 @@
 <?php
 
-/*
+/**
  * Created on Sep 4, 2007
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2007 Roan Kattouw <Firstname>.<Lastname>@home.nl
+ * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( "ApiBase.php" );
+	require_once( "ApiBase.php" );
 }
 
 /**
@@ -39,7 +39,7 @@ class ApiBlock extends ApiBase {
 	 * Std ctor.
 	 */
 	public function __construct( $main, $action ) {
-		parent :: __construct( $main, $action );
+		parent::__construct( $main, $action );
 	}
 
 	/**
@@ -52,21 +52,24 @@ class ApiBlock extends ApiBase {
 		global $wgUser, $wgBlockAllowsUTEdit;
 		$params = $this->extractRequestParams();
 
-		if ( $params['gettoken'] )
-		{
+		if ( $params['gettoken'] ) {
 			$res['blocktoken'] = $wgUser->editToken();
 			$this->getResult()->addValue( null, $this->getModuleName(), $res );
 			return;
 		}
 
-		if ( is_null( $params['user'] ) )
+		if ( is_null( $params['user'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
-		if ( !$wgUser->isAllowed( 'block' ) )
+		}
+		if ( !$wgUser->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( array( 'cantblock' ) );
-		if ( $params['hidename'] && !$wgUser->isAllowed( 'hideuser' ) )
+		}
+		if ( $params['hidename'] && !$wgUser->isAllowed( 'hideuser' ) ) {
 			$this->dieUsageMsg( array( 'canthide' ) );
-		if ( $params['noemail'] && !IPBlockForm::canBlockEmail( $wgUser ) )
+		}
+		if ( $params['noemail'] && !IPBlockForm::canBlockEmail( $wgUser ) ) {
 			$this->dieUsageMsg( array( 'cantblock-email' ) );
+		}
 
 		$form = new IPBlockForm( '' );
 		$form->BlockAddress = $params['user'];
@@ -84,26 +87,33 @@ class ApiBlock extends ApiBase {
 
 		$userID = $expiry = null;
 		$retval = $form->doBlock( $userID, $expiry );
-		if ( count( $retval ) )
+		if ( count( $retval ) ) {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg( $retval );
+		}
 
 		$res['user'] = $params['user'];
 		$res['userID'] = intval( $userID );
 		$res['expiry'] = ( $expiry == Block::infinity() ? 'infinite' : wfTimestamp( TS_ISO_8601, $expiry ) );
 		$res['reason'] = $params['reason'];
-		if ( $params['anononly'] )
+		if ( $params['anononly'] ) {
 			$res['anononly'] = '';
-		if ( $params['nocreate'] )
+		}
+		if ( $params['nocreate'] ) {
 			$res['nocreate'] = '';
-		if ( $params['autoblock'] )
+		}
+		if ( $params['autoblock'] ) {
 			$res['autoblock'] = '';
-		if ( $params['noemail'] )
+		}
+		if ( $params['noemail'] ) {
 			$res['noemail'] = '';
-		if ( $params['hidename'] )
+		}
+		if ( $params['hidename'] ) {
 			$res['hidename'] = '';
-		if ( $params['allowusertalk'] )
+		}
+		if ( $params['allowusertalk'] ) {
 			$res['allowusertalk'] = '';
+		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
@@ -117,7 +127,7 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'user' => null,
 			'token' => null,
 			'gettoken' => false,
@@ -134,7 +144,7 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'user' => 'Username, IP address or IP range you want to block',
 			'token' => 'A block token previously obtained through the gettoken parameter or prop=info',
 			'gettoken' => 'If set, a block token will be returned, and no other action will be taken',
@@ -162,7 +172,7 @@ class ApiBlock extends ApiBase {
 			array( 'cantblock' ),
 			array( 'canthide' ),
 			array( 'cantblock-email' ),
-        ) );
+		) );
 	}
 	
 	public function getTokenSalt() {
@@ -170,7 +180,7 @@ class ApiBlock extends ApiBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=block&user=123.5.5.12&expiry=3%20days&reason=First%20strike',
 			'api.php?action=block&user=Vandal&expiry=never&reason=Vandalism&nocreate&autoblock&noemail'
 		);
