@@ -209,6 +209,7 @@ class Preferences {
 				);
 
 		if( $wgAuth->allowPasswordChange() ) {
+			global $wgUser; // For skin.
 			$link = $wgUser->getSkin()->link( SpecialPage::getTitleFor( 'Resetpass' ),
 				wfMsgHtml( 'prefs-resetpass' ), array(),
 				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' ) ) );
