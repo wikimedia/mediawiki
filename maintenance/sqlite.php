@@ -31,6 +31,14 @@ class SqliteMaintenance extends Maintenance {
 		$this->addOption( 'backup-to', 'Backup database to the given file', false, true );
 	}
 
+	/**
+	 * While we use database connection, this simple lie prevents useless --dbpass and
+	 * --dbuser options from appearing in help message for this script.
+	 */
+	protected function getDbType() {
+		return Maintenance::DB_NONE;
+	}
+
 	public function execute() {
 		global $wgDBtype;
 		
