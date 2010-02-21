@@ -32,7 +32,7 @@ if( php_sapi_name() != 'cli' ) {
 
 /** */
 require_once( 'UtfNormal.php' );
-require_once( '../DifferenceEngine.php' );
+require_once( '../diff/DifferenceEngine.php' );
 
 dl('php_utfnormal.so' );
 
