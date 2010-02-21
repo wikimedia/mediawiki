@@ -66,6 +66,7 @@ class DeleteOldRevisions extends Maintenance {
 		$this->output( "done.\n" );
 	
 		# Get all revisions that aren't in this set
+		$old = array();
 		$this->output( "Searching for inactive revisions..." );
 		$set = implode( ', ', $cur );
 		$res = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_id NOT IN ( $set ){$revPageClause}" );
