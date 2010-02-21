@@ -883,7 +883,7 @@ class UndeleteForm {
 	}
 
 	private function diffHeader( $rev, $prefix ) {
-		global $wgUser, $wgLang, $wgLang;
+		global $wgUser, $wgLang;
 		$sk = $wgUser->getSkin();
 		$isDeleted = !( $rev->getId() && $rev->getTitle() );
 		if( $isDeleted ) {
