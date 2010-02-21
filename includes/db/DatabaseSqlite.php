@@ -518,7 +518,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	protected function replaceVars( $s ) {
 		$s = parent::replaceVars( $s );
-		if ( preg_match( '/^\s*CREATE TABLE/i', $s ) ) {
+		if ( preg_match( '/^\s*(CREATE|ALTER) TABLE/i', $s ) ) {
 			// CREATE TABLE hacks to allow schema file sharing with MySQL
 
 			// binary/varbinary column type -> blob
@@ -526,7 +526,7 @@ class DatabaseSqlite extends DatabaseBase {
 			// no such thing as unsigned
 			$s = preg_replace( '/\b(un)?signed\b/i', '', $s );
 			// INT -> INTEGER
-			$s = preg_replace( '/\b(tiny|small|medium|big|)int\b/i', 'INTEGER', $s );
+			$s = preg_replace( '/\b(tiny|small|medium|big|)int(\([\s\d]*\)|\b)/i', 'INTEGER', $s );
 			// varchar -> TEXT
 			$s = preg_replace( '/\bvarchar\(\d+\)/i', 'TEXT', $s );
 			// TEXT normalization

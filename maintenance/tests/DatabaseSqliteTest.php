@@ -36,9 +36,9 @@ class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'foo', $this->replaceVars( 'foo' ), "Don't break anything accidentally" );
 
 		$this->assertEquals( "CREATE TABLE /**/foo (foo_key INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
-			. "foo_name TEXT NOT NULL DEFAULT '');",
+			. "foo_name TEXT NOT NULL DEFAULT '', foo_int INTEGER, foo_int2 INTEGER );",
 			$this->replaceVars( "CREATE TABLE /**/foo (foo_key int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-			foo_name varchar(255) binary NOT NULL DEFAULT '') ENGINE=MyISAM;" )
+			foo_name varchar(255) binary NOT NULL DEFAULT '', foo_int tinyint( 8 ), foo_int2 int(16) ) ENGINE=MyISAM;" )
 			);
 
 		$this->assertEquals( "CREATE TABLE foo ( foo_binary1 BLOB, foo_binary2 BLOB );",
@@ -48,6 +48,10 @@ class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( "CREATE TABLE text ( text_foo TEXT );",
 			$this->replaceVars( "CREATE TABLE text ( text_foo tinytext );" ),
 			'Table name changed'
+			);
+		
+		$this->assertEquals( "ALTER TABLE foo ADD COLUMN foo_bar INTEGER DEFAULT 42",
+			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42")
 			);
 	}
 }
