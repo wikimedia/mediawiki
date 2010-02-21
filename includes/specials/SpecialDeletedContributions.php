@@ -258,7 +258,7 @@ class DeletedContributionsPage extends SpecialPage {
 			return;
 		}
 
-		global $wgUser, $wgOut, $wgLang, $wgRequest;
+		global $wgOut, $wgLang, $wgRequest;
 
 		$wgOut->setPageTitle( wfMsgExt( 'deletedcontributions-title', array( 'parsemag' ) ) );
 
