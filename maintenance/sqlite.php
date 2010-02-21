@@ -28,6 +28,7 @@ class SqliteMaintenance extends Maintenance {
 		$this->mDescription = "Performs some operations specific to SQLite database backend";
 		$this->addOption( 'vacuum', 'Clean up database by removing deleted pages. Decreases database file size' );
 		$this->addOption( 'integrity', 'Check database for integrity' );
+		$this->addOption( 'backup-to', 'Backup database to the given file', false, true );
 	}
 
 	public function execute() {
@@ -40,11 +41,17 @@ class SqliteMaintenance extends Maintenance {
 
 		$this->db = wfGetDB( DB_MASTER );
 
-		if ( $this->hasOption( 'vacuum' ) )
+		if ( $this->hasOption( 'vacuum' ) ) {
 			$this->vacuum();
+		}
 
-		if ( $this->hasOption( 'integrity' ) )
+		if ( $this->hasOption( 'integrity' ) ) {
 			$this->integrityCheck();
+		}
+
+		if ( $this->hasOption( 'backup-to' ) ) {
+			$this->backup( $this->getOption( 'backup-to' ) );
+		}
 	}
 
 	private function vacuum() {
@@ -76,6 +83,21 @@ class SqliteMaintenance extends Maintenance {
 		foreach ( $res as $row ) {
 			$this->output( $row->integrity_check );
 		}
+	}
+
+	private function backup( $fileName ) {
+		$this->output( "Backing up database:\n   Locking..." );
+		$this->db->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
+		$ourFile = $this->db->mDatabaseFile;
+		$this->output( "   Copying database file $ourFile to $fileName... " );
+		wfSuppressWarnings( false );
+		if ( !copy( $ourFile, $fileName ) ) {
+			$err = error_get_last();
+			$this->error( "      {$err['message']}" );
+		}
+		wfSuppressWarnings( true );
+		$this->output( "   Releasing lock...\n" );
+		$this->db->query( 'COMMIT TRANSACTION', __METHOD__ );
 	}
 }
 
