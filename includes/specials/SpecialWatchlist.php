@@ -12,7 +12,6 @@
 function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
-	global $wgEnotifWatchlist;
 	
 	// Add feed links
 	$wlToken = $wgUser->getOption( 'watchlisttoken' );
