@@ -137,7 +137,7 @@ class Html {
 	 * tag (and the self-closing / in XML mode for empty elements).
 	 */
 	public static function openElement( $element, $attribs = array() ) {
-		global $wgHtml5, $wgWellFormedXml;
+		global $wgHtml5;
 		$attribs = (array)$attribs;
 		# This is not required in HTML5, but let's do it anyway, for
 		# consistency and better compression.
@@ -376,8 +376,9 @@ class Html {
 					"\t" => '&#9;'
 				);
 				if ( $wgWellFormedXml ) {
-					# '<' must be escaped in attributes for XML for some
-					# reason, per spec: http://www.w3.org/TR/xml/#NT-AttValue
+					# This is allowed per spec: <http://www.w3.org/TR/xml/#NT-AttValue>
+					# But reportedly it breaks some XML tools?  FIXME: is this
+					# really true?
 					$map['<'] = '&lt;';
 				}
 				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
