@@ -1198,8 +1198,9 @@ class Language {
 	 *       http://en.wikipedia.org/wiki/Minguo_calendar
 	 *       http://en.wikipedia.org/wiki/Japanese_era_name
 	 *
-	 * @param $ts String: 14-character timestamp, calender name
-	 * @return array converted year, month, day
+	 * @param $ts String: 14-character timestamp
+	 * @param $cName String: calender name
+	 * @return Array: converted year, month, day
 	 */
 	private static function tsToYear( $ts, $cName ) {
 		$gy = substr( $ts, 0, 4 );
@@ -2372,7 +2373,7 @@ class Language {
 	 *
 	 * @param $link String: the name of the link
 	 * @param $nt Mixed: the title object of the link
-	 * @param boolean $ignoreOtherCond: to disable other conditions when
+	 * @param $ignoreOtherCond Boolean: to disable other conditions when
 	 *      we need to transclude a template or update a category's link
 	 * @return null the input parameters may be modified upon return
 	 */
