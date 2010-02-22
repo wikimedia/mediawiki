@@ -486,6 +486,8 @@ Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente 
 'readonly_lag'         => 'Le base de datos ha essite automaticamente blocate durante que le servitores de base de datos secundari se synchronisa con le servitor principal.',
 'internalerror'        => 'Error interne',
 'internalerror_info'   => 'Error interne: $1',
+'fileappenderrorread'  => 'Non poteva leger "$1" durante le adjunction.',
+'fileappenderror'      => 'Non poteva adjunger "$1" a "$2".',
 'filecopyerror'        => 'Impossibile copiar file "$1" a "$2".',
 'filerenameerror'      => 'Impossibile renominar file "$1" a "$2".',
 'filedeleteerror'      => 'Impossibile deler file "$1".',
@@ -1482,6 +1484,7 @@ Vide le [[Special:NewFiles|galeria de nove files]] pro un presentation plus visu
 'illegalfilename'             => 'Le nomine de file "$1" contine characteres que non es permittite in le titulos de paginas.
 Per favor renomina le file e tenta re-incargar lo.',
 'badfilename'                 => 'Le nomine del imagine esseva cambiate a "$1".',
+'filetype-mime-mismatch'      => 'Le extension del nomine del file non corresponde al typo MIME.',
 'filetype-badmime'            => 'Non es permittite incargar files del typo MIME "$1".',
 'filetype-bad-ie-mime'        => 'Non pote incargar iste file proque Internet Explorer lo detegerea como "$1", le qual es un typo de file prohibite e potentialmente periculose.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' es un typo de file non desirate.

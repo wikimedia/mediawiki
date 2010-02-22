@@ -623,6 +623,7 @@ Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|administraatorit]], ed
 'readonly_lag'         => "Andmebaas on automaatselt lukustatud, seniks kuni ''slave''-andmebaasid on uuendatud.",
 'internalerror'        => 'Sisemine viga',
 'internalerror_info'   => 'Sisemine viga: $1',
+'fileappenderror'      => 'Faili "$1" ei saanud lisada failile "$2".',
 'filecopyerror'        => 'Ei saanud faili "$1" kopeerida nimega "$2".',
 'filerenameerror'      => 'Ei saanud faili "$1" failiks "$2" ümber nimetada.',
 'filedeleteerror'      => 'Faili nimega "$1" ei ole võimalik kustutada.',
@@ -762,6 +763,7 @@ Sisselogimise lõpetamiseks pead siia uue parooli sisestama:',
 'resetpass_forbidden'       => 'Paroole ei saa muuta',
 'resetpass-no-info'         => 'Pead olema sisselogitud, et sellele lehele pääseda.',
 'resetpass-submit-loggedin' => 'Muuda parool',
+'resetpass-submit-cancel'   => 'Loobu',
 'resetpass-wrong-oldpass'   => 'Vigane ajutine või praegune salasõna.
 Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist salasõna.',
 'resetpass-temp-password'   => 'Ajutine parool:',
@@ -866,6 +868,8 @@ või <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}
 'userpage-userdoesnotexist'        => 'Kasutajakontot "$1" pole olemas.
 Palun mõtle järele, kas soovid seda lehte luua või muuta.',
 'userpage-userdoesnotexist-view'   => 'Kasutajakonto "$1" pole registreeritud.',
+'blocked-notice-logextract'        => 'See kasutaja on praegu blokeeritud.
+Allpool on toodud viimane blokeerimislogi sissekanne:',
 'clearyourcache'                   => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'usercssyoucanpreview'             => "'''Vihje:''' Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
 'userjsyoucanpreview'              => "'''Vihje:''' Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",

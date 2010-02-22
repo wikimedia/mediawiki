@@ -259,10 +259,10 @@ $messages = array(
 'hidden-categories'              => '{{PLURAL:$1|Sokajy misitrika|Sokajy misitrika}} $1',
 'hidden-category-category'       => 'Sokajy misitrika',
 'category-subcat-count'          => '{{PLURAL:$2|Ity sokajy ity|Ireo sokajy ireo}} dia manana {{PLURAL:$1|zana-tsokajy|zana-tsokajy}} $1 . Ny taotaliny dia $2',
-'category-subcat-count-limited'  => 'Misy zana-tsokajy $1 ity sokajy ity.',
+'category-subcat-count-limited'  => 'Misy zana-tsokajy $1 ity sokajy ity.{{PLURAL:}}',
 'category-article-count'         => "{{PLURAL:$2|Misy pejy $1 ity sokajy ity|Misy pejy $1 ity sokajy ity}}. Pejy $2 no anatin'ity sokajy ity",
-'category-article-count-limited' => "Anatin'ity sokajy ity ireo pejy ireo pejy ireo ($1 ny tontaliny)",
-'category-file-count'            => 'Misy rakitra $1 (tontaliny : rakitra $2) ireo ity sokajy ity',
+'category-article-count-limited' => "Anatin'ity sokajy ity ireo pejy ireo pejy ireo ($1 ny tontaliny){{PLURAL:}}",
+'category-file-count'            => 'Misy rakitra $1 (tontaliny : rakitra $2) ireo ity sokajy ity{{PLURAL:}}',
 'category-file-count-limited'    => "Anatin'ity sokajy ity ireo rakitra ireo. ($1 no aseho) {{PLURAL:}}",
 'listingcontinuesabbrev'         => ' manaraka.',
 'index-category'                 => 'pejy voasokajy',
@@ -493,6 +493,7 @@ Andana teneno ny [[Special:ListUsers/sysop|mpandrindra]]n-ity wiki ity. Aza adin
 Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tompony",
 'internalerror'        => "Tsy fetezana anatin'ny rindrankajy",
 'internalerror_info'   => 'Tsy fetezana ety anatiny : $1',
+'fileappenderror'      => "Tsy afaka ampiana amin'ny « $2 »  « $1 ».",
 'filecopyerror'        => 'Tsy voadika ho "$2" ilay rakitra"$1".',
 'filerenameerror'      => 'Tsy voaova ho "$2" ny anaran\'ilay rakitra "$1".',
 'filedeleteerror'      => 'Tsy voafafa ilay rakitra "$1".',
@@ -593,7 +594,7 @@ Lany andro anatin\'ny $5 andro ny tenimiafinao
 
 Raha olon-kafa io nangataka io, na tadidinao ihany ny tenimiafinao taloha ka
 tsy irinao hovana intsony, dia fafao fotsiny ity hafatra ity dia ilay 
-tenimiafina taloha ihany no ampiasao.',
+tenimiafina taloha ihany no ampiasao.{{PLURAL:}}',
 'noemail'                    => 'Tsy nanome adiresy imailaka i "$1".',
 'noemailcreate'              => 'Tsy maintsy misy ny adiresy imailaka ho atsofokao',
 'passwordsent'               => 'Nandefasana tenimiafina vaovao any amin\'ny adiresy imailak\'i "$1".
@@ -603,9 +604,9 @@ Azafady midira rehefa voarainao io imailaka io.',
 Efa nandefasana imailaka fanamarinana ilay adiresy nomenao.
 Alohan'ny handraisanao imailaka hafa, dia araho ny torolalana ao anatin'io imailaka io,
 mba hanaporofoana fa anao io kaonty io.",
-'throttled-mailpassword'     => "Nandefa imailaka mety mampatadidy anao ny tenimiafinao izahay nandrintra ny $1 ora farany. Mba tsy hanararaotra, imailaka iray ihany no azo alefa isakin'ny ady ny $1",
+'throttled-mailpassword'     => "Nandefa imailaka mety mampatadidy anao ny tenimiafinao izahay nandrintra ny $1 ora farany. Mba tsy hanararaotra, imailaka iray ihany no azo alefa isakin'ny ady ny $1{{PLURAL:}}",
 'mailerror'                  => "Nisy olana tamin'ny fandefasana imailaka: $1",
-'acct_creation_throttle_hit' => 'Miala tsiny, efa nanokatra kaonty miisa $1 ianao, ka tsy afaka mamorona hafa intsony.',
+'acct_creation_throttle_hit' => 'Miala tsiny, efa nanokatra kaonty miisa $1 ianao, ka tsy afaka mamorona hafa intsony.{{PLURAL:}}',
 'emailauthenticated'         => "Voamarina tamin'ny $2 $3 ny adiresy imailakao.",
 'emailnotauthenticated'      => "Tsy mbola voamarina ny adiresinao. Tsy mbola afaka mandefa hafatra ianao amin'ireto zavatra azo atao manaraka ireto.",
 'noemailprefs'               => 'Manomeza adiresy imailaka raha hampiasa ireo fitaovana ireo ianao.',
@@ -719,7 +720,7 @@ Ampidiro sy Checkeo ny adiresy imailakao amin'ny [[Special:preferences|safidinao
 'nosuchsectiontext'                => "Nanandrana nanova fizarana « $1 » tsy nisy angamba ianao.
 Mety efa nakisaka angamba izy, na voafafa tamin' ianareo namaky ity pejy ity farany.",
 'loginreqtitle'                    => 'Mila fidirana',
-'loginreqlink'                     => 'hiditra',
+'loginreqlink'                     => 'miditra',
 'loginreqpagetext'                 => 'Tokony $1 ianao raha te hijery pejy hafa.',
 'accmailtitle'                     => 'Lasa ny tenimiafina.',
 'accmailtext'                      => 'Lasa any amin\'i $2 ny tenimiafin\'i "$1".',
@@ -727,7 +728,7 @@ Mety efa nakisaka angamba izy, na voafafa tamin' ianareo namaky ity pejy ity far
 'newarticletext'                   => "Mbola tsy misy ity takelaka ity koa azonao atao ny mamorona azy eto ambany. Jereo ny [[{{MediaWiki:Helppage}}|Fanoroana]] raha misy fanazavana ilainao.
 
 Raha toa moa ka tsy nieritreritra ny hamorona ity takelaka ity ianao dia miverena etsy amin'ny fandraisana.",
-'anontalkpagetext'                 => "----''Eto no sehatra iresahana ho an'ny mpikambana tsy mitonona anarana, izany hoe tsy nisoratra anarana na tsy mampiasa ny solonanarany. Voatery noho izany isika mampiasa ny adiresy IP ho marika hanondroana azy. Io adiresy IP io dia mety hikambanana amin'ny olona maro hafa. Raha tsy mitonona anarana ianao ary mahatsapa fa misy fanamarihana tsy miantefa aminao loatra voarainao, dia iangaviana ianao mba [[Special:UserLogin|hisoratra anarana ho mpikambana na hiditra]] mba tsy hifangaroanao amin'ny mpikambana tsy mitonona anarana hafa intsony.''",
+'anontalkpagetext'                 => "----''Eto no sehatra iresahana ho an'ny mpikambana tsy mitonona anarana, izany hoe tsy nisoratra anarana na tsy mampiasa ny solonanarany. Voatery noho izany isika mampiasa ny adiresy IP ho marika hanondroana azy. Io adiresy IP io dia mety hikambanana amin'ny olona maro hafa. Raha tsy mitonona anarana ianao ary mahatsapa fa misy fanamarihana tsy miantefa aminao loatra voarainao, dia iangaviana ianao mba [[Special:UserLogin/signup|hisoratra anarana ho mpikambana na hiditra]] mba tsy hifangaroanao amin'ny mpikambana tsy mitonona anarana hafa intsony.''",
 'noarticletext'                    => "'''Tsy mbola nisy namorona io lahatsoratra io.
 Azonao atao ny [[Special:Search/{{PAGENAME}}||Tadiavo ny momba ny {{PAGENAME}}]].'''
 * '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Na forony eto ny lahatsoratra momba ny {{PAGENAME}}]'''.",
@@ -792,7 +793,7 @@ ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.'''
 Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 'protectedpagewarning'             => "'''FAMPITANDREMANA:  Voaaro ity pejy ity ka ny mpikambana manana ny fahazoan-dàlana sysop ihany no afaka manova azy.'''",
 'semiprotectedpagewarning'         => "'''Naoty''' : Voaaro ity pejy ity, ny mpikambana nanokatra kaonty tato ihany no afaka manova azy.",
-'cascadeprotectedwarning'          => "'''Tandremo : ''' Voaaro ity pejy ity ary ny mpandrindra ihany no afaka manova azy. Natao ny fiarovana satria ao anatina pejy voaaro mampiasa ny « fiarovana an-driana (protection en cascade) »",
+'cascadeprotectedwarning'          => "'''Tandremo : ''' Voaaro ity pejy ity ary ny mpandrindra ihany no afaka manova azy. Natao ny fiarovana satria ao anatina pejy voaaro mampiasa ny « fiarovana an-driana (protection en cascade) » {{PLURAL:$1}}",
 'titleprotectedwarning'            => "'''TANDREMO''' : Ny mpikambana manana [[Special:ListGroupRights|alàlana manokana]] ihany no afaka manova ity pejy ity.",
 'templatesused'                    => "endrika{{PLURAL:$1||}} miasa eto amin'ity pejy ity:",
 'templatesusedpreview'             => "endrika{{PLURAL:$1||}} ampiasaina anatin'ity topi-maso ity :",
@@ -1111,7 +1112,7 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'youremail'                   => 'Imailaka:',
 'username'                    => 'Solonanarana:',
 'uid'                         => "Laharan'ny mpikambana:",
-'prefs-memberingroups'        => "mpikamban'ny gropy :",
+'prefs-memberingroups'        => "mpikamban'ny gropy{{PLURAL:}} $1 :",
 'yourrealname'                => 'Tena anarana marina:',
 'yourlanguage'                => 'Tenim-pirenena:',
 'yournick'                    => 'Anaram-bositra:',
@@ -1122,7 +1123,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'gender-unknown'              => 'Tsy voalaza',
 'gender-male'                 => 'Lehilahy',
 'gender-female'               => 'Vehivavy',
-'prefs-help-gender'           => "Ankifidy : Ampiasaina mba hifanaraka amin'ny lahi-vavy. Ho sarababem-bahoaka io fampandrenesana io.",
+'prefs-help-gender'           => "Ankifidy : Ampiasaina mba hifanaraka amin'ny lahi-vavy. Ho sarababem-bahoaka io fampahalalàna io.",
 'email'                       => 'Imailaka',
 'prefs-help-realname'         => "Anarana marina (afaka tsy fenoina): raha fenoinao ity dia hampiasaina hanomezana anao tambin'ny asa izay efainao eto.",
 'prefs-help-email'            => "Imailaka (afaka tsy asiana): Hahafahan'ny olona mifandray aminao amin'ny alalan'ny pejinao manokana na ny pejin-dresakao, nefa tsy aseho azy ny anaranao.",
@@ -1433,9 +1434,11 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 'upload-curl-error28'      => 'Nihoatra ny fotoana fampidiran-drakitra',
 'upload-curl-error28-text' => "Ela loatra ilay sehatra vao mamaly. Marino raha an-tranonkala ilay sehatra, miandraza kely ary avereno indray. Afaka mamerina amin'ny ora tsy itsidihana azy matetika ianao.",
 
-'license'           => 'Lisansy:',
-'nolicense'         => 'Tsy misy safidy',
-'license-nopreview' => '(Topi-maso tsy misy)',
+'license'            => 'Lisansy:',
+'nolicense'          => 'Tsy misy safidy',
+'license-nopreview'  => '(Topi-maso tsy misy)',
+'upload_source_url'  => " (URL misy ary azo vangian'ny daholobe)",
+'upload_source_file' => " (rakitra eo amin'ny milinao)",
 
 # Special:ListFiles
 'listfiles_search_for'  => 'Hitady anarana media :',
@@ -1609,23 +1612,30 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 ka mety ho antony tokony hamelana azy eto izany na dia tsy miasa ato anatin'ity
 wiki ity aza izy.</p>",
 'unusedcategoriestext'    => 'Ireto sokajy manaraka ireto dia noforonina kanefa tsy misy pejy na dia iray aza mampiasa azy akory.',
+'notargettitle'           => 'Tsy misy tanjona',
 'notargettext'            => 'Tsy nofaritanao ny pejy na solonanarana mpikambana hanaovana io asa io.',
+'nopagetitle'             => "Tsy misy pejy tanjona tahak' izany",
+'nopagetext'              => 'Tsy misy ny pejy tanjona nolazainareo.',
 'pager-newer-n'           => '$1 {{PLURAL:$1|vao haingana|vao haingana}}',
 'pager-older-n'           => '$1 {{PLURAL:$1|taloha|taloha}}',
+'suppress'                => 'Hitondra',
 
 # Book sources
 'booksources'               => 'boky tsiahy',
 'booksources-search-legend' => "hikaroka anatin'ny boky todika",
 'booksources-go'            => 'Ataovy lisitra',
+'booksources-invalid-isbn'  => 'Ny ISBN nomena dia mety diso ; marino raha diso ianao teo am-pandikanana ny loharano fotony.',
 
 # Special:Log
 'specialloguserlabel'  => 'Mpikambana:',
 'speciallogtitlelabel' => 'Lohateny:',
 'log'                  => "Tantaran'asa",
+'all-logs-page'        => "Ny tantaran'asa sarababem-bahoaka",
 'alllogstext'          => "Fisehon'ny tantaran'asa (logs) rehetra eto amin'ny {{SITENAME}} momba ny upload, famafana, fiarovana, fisakanana, ary sysop.
 Mifidiana karazana tantaran'asa (log type), Solonanarana mpikambana, na ny pejy voakasik'izany mba hahafahanao
 mampihena ny tantaran'asa miseho eto.",
 'logempty'             => 'Tsy nahitana.',
+'log-title-wildcard'   => "Hitady amin'ny lohateny manomboka amin'io soratra io",
 
 # Special:AllPages
 'allpages'          => 'Pejy rehetra',
@@ -1643,58 +1653,79 @@ mampihena ny tantaran'asa miseho eto.",
 'allpagesprefix'    => "Asehoy ny pejy miantomboka amin'ny:",
 
 # Special:Categories
-'categories'                  => 'Sokajy',
-'categoriespagetext'          => "Ireto no sokajy misy eto amin'ity wiki ity.",
-'special-categories-sort-abc' => 'famantinana ara-abidy',
+'categories'                    => 'Sokajy',
+'categoriespagetext'            => "Ireto no sokajy misy eto amin'ity wiki ity.",
+'categoriesfrom'                => "Haneho ny sokajy manomboka amin'ny :",
+'special-categories-sort-count' => "afantina amin'ny isan-javatra",
+'special-categories-sort-abc'   => 'famantinana ara-abidy',
 
 # Special:DeletedContributions
 'deletedcontributions'       => "Fandraisan'anjara voafafa",
 'deletedcontributions-title' => "fandraisan'anjara voafafa",
 
 # Special:LinkSearch
-'linksearch'    => 'Rohy ivelany',
-'linksearch-ns' => 'Anaran-tsehatra :',
-'linksearch-ok' => 'Fikarohana',
+'linksearch'       => 'Rohy ivelany',
+'linksearch-pat'   => 'Volana tadiavina :',
+'linksearch-ns'    => 'Anaran-tsehatra :',
+'linksearch-ok'    => 'Fikarohana',
+'linksearch-line'  => "$1 dia voarohy amin'ny $2",
+'linksearch-error' => "Ny soratra joker dia ampiasaina anatin'ny fanombohan'ny anaran-tsehatry ny milina hôte ihany.",
 
 # Special:ListUsers
+'listusersfrom'      => "Haneho ny mpikambana manomboka amin'ny :",
 'listusers-submit'   => 'Aseho',
 'listusers-noresult' => 'Tsy nahitana mpikambana.',
 
 # Special:Log/newusers
 'newuserlogpage'              => "Tantaran'asa ny fampidiran'ny mpikambana vaovao",
+'newuserlogpagetext'          => "Ity pejy ity dia maneho ny tantaran'asan'ny fampidirana mpikambana vaovao.",
+'newuserlog-byemail'          => 'tenimiafina nalefa imailaka',
 'newuserlog-create-entry'     => 'Mpikambana vaovao',
+'newuserlog-create2-entry'    => 'namorona ny kaonty vaovao $1',
 'newuserlog-autocreate-entry' => 'Kaonty namboarina ho azy',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(lisitra ny mpikambana)',
+'listgrouprights'                 => "Fahefan'ny vondrom-pikambana",
+'listgrouprights-group'           => 'Vondrona/Gropy',
+'listgrouprights-rights'          => 'Fahefana miaraka aminy',
+'listgrouprights-helppage'        => "Help:Fahefan'ny vondrona",
+'listgrouprights-members'         => '(lisitra ny mpikambana)',
+'listgrouprights-addgroup'        => '{{PLURAL:$2}}Manampy ny mpikambana : $1',
+'listgrouprights-removegroup'     => "Manala ny mpikambana {{PLURAL:$2}}amin'ny gropy : $1",
+'listgrouprights-addgroup-all'    => 'Manampy mpikambana anaty vondrona rehetra',
+'listgrouprights-removegroup-all' => 'Manala mpikambana anaty gropy rehetra',
 
 # E-mail user
 'mailnologin'     => 'Tsy misy adiresy handefasana ny tenimiafina',
 'mailnologintext' => "Mila [[Special:UserLogin|miditra]] ianao sady manana imailaka mandeha sy voamarina ao amin'ny [[Special:Preferences|mombamomba anao]] vao afaka mandefa imailaka amin'ny mpikambana hafa.",
 'emailuser'       => 'Andefaso imailaka io mpikambana io',
 'emailpage'       => 'Andefaso imailaka io mpikambana io',
-'emailpagetext'   => "
-Raha nametraka adiresy tena miasa tao amin'ny mombamomba azy io mpikambana io,
+'emailpagetext'   => "Raha nametraka adiresy tena miasa tao amin'ny [[Special:Preferences|mombamomba azy io mpikambana io]],
 dia ahafahana mandefa hafatra tokana ho any aminy ity fisy eto ambany ity.
 Ny adiresy imailakao napetrakao tao amin'ny mombamomba anao no hiseho hoe 
 adiresin'ny mpandefa izany imailaka izany, koa afaka hovaliany izay hafatra alefanao.",
 'usermailererror' => "Misy tsy mety amin'ny lohatenin'ny imailaka:",
 'defemailsubject' => "imailaka avy amin'ny sehatra {{SITENAME}}",
-'noemailtext'     => "
-Na tsy nanome adiresy imailaka voamarina io mpikambana io, 
+'noemailtitle'    => 'Tsy misy adiresy imailaka',
+'noemailtext'     => "Na tsy nanome adiresy imailaka voamarina io mpikambana io, 
 na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'emailfrom'       => "Avy tamin'i",
 'emailto'         => "Ho an'i",
+'emailsubject'    => 'Lohateny :',
 'emailmessage'    => 'Hafatra',
 'emailsend'       => 'Alefaso',
+'emailccme'       => "Andefaso tahak' ity hafatra ity ahy.",
+'emailccsubject'  => "Tahaka ny hafatrao nalefa tany amin'i $1 : $2",
 'emailsent'       => 'Lasa',
 'emailsenttext'   => 'Lasa soa aman-tsara ny imailaka nalefanao.',
+'emailuserfooter' => "Ity imailaka ity dia nalefan'i « $1 » tany amin'i « $2 » tamin'ny alalan'ny « Handefa Imailaka » an'i {{SITENAME}}.",
 
 # Watchlist
 'watchlist'            => 'Narahiko maso',
 'mywatchlist'          => 'Pejy arahako-maso',
 'watchlistfor'         => "(ho an'ny/i '''$1''')",
 'nowatchlist'          => "Tsy misy n'inon'inona ao amin'ny lisitry ny pejy arahinao maso.",
+'watchlistanontext'    => "Andana $1 ianao mba hahita na hanova zavatra ao amin'ny pejy arahanao.",
 'watchnologin'         => 'Tsy tafiditra',
 'watchnologintext'     => 'Mila [[Special:UserLogin|miditra/misoratra anarana]] aloha ianao vao afaka manova ny lisitry ny pejy arahinao maso.',
 'addedwatch'           => "Tafiditra amin'ny lisitry ny pejy arahi-maso akaiky",
@@ -1711,6 +1742,7 @@ Aoriana, raha irinao ny hanaisotra azy ao amin'ny PejyArahiMaso-nao, dia tsindri
 'unwatch'              => 'Aza arahi-maso intsony',
 'unwatchthispage'      => 'Aza arahi-maso intsony',
 'notanarticle'         => 'Tsy votoatim-pejy',
+'notvisiblerev'        => 'Voafafa ilay santiôna',
 'watchnochange'        => 'Tsy misy niova nandritra ny fotoana voafaritra ny pejy arahinao maso.',
 'watchlist-details'    => 'Lisitra ny pejy{{PLURAL:$1||}} $1 arahanao-maso, tsy miisa eto ny pejin-dresaka.',
 'wlheader-enotif'      => "* Mandeha ny fampilazana amin'ny imailaka.",
@@ -1761,6 +1793,9 @@ Hevitrao sy fanampiana:
 'confirm'               => 'Antero',
 'excontent'             => "votoatiny: '$1'",
 'excontentauthor'       => "votoatiny: '$1' (ary i '[[Special:Contributions/$2|$2]]' irery ihany no nikitika azy)",
+'exblank'               => 'tsy nisy na inona na inona ilay pejy',
+'delete-confirm'        => 'Hamafa ny « $1 »',
+'delete-legend'         => 'Fafao',
 'historywarning'        => 'Fampitandremana: Manana tantara io pejy hofafanao io (izany hoe farafaharatsiny indray mandeha niova):',
 'confirmdeletetext'     => "Handeha hamafa tanteraka ny pejy na sary miaraka amin'ny tantarany rehetra 
 ao anatin'ny toby ianao. Azafady mba hamafiso fa irinao tokoa izany, 
@@ -1770,6 +1805,7 @@ fantatrao ny vokany ary mahalala ianao fa tsy mifanipaka amin'ny
 'deletedtext'           => 'Voafafa i "<nowiki>$1</nowiki>".
 Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
 'deletedarticle'        => 'voafafa "[[$1]]"',
+'suppressedarticle'     => 'namafa « [[$1]] »',
 'dellogpage'            => "Tantaran'asa ny famafàna pejy",
 'dellogpagetext'        => 'Eto ambany eto ny lisitry ny famafana pejy/sary faramparany.',
 'deletionlog'           => "famafana tatitr'asa",
@@ -1820,35 +1856,54 @@ Ity ny réglage ny pejy '''$1''' :",
 'protect-expiry-indefinite'   => 'tsiefa',
 'protect-cascade'             => "Miaro ny pejy ao anatin'ity pejy ity (cascading protection)",
 'protect-cantedit'            => "Tsy afaka manolo ny sokaji-piarovan'ity pejy ity ianao satria tsy manana ny sata ilaina",
+'protect-othertime'           => 'Daty hafa :',
+'protect-othertime-op'        => 'daty hafa',
+'protect-existing-expiry'     => "Datin'ny fanalana ilay sazy : $2 amin'ny $3",
 'protect-otherreason'         => 'Antony hafa miampy :',
 'protect-dropdown'            => "*Anton'ny fiarovana
 ** Misy be mpanimba
 ** Misy be mpametraka spam
 ** Misy adim-panontana
 ** Misy olona maro no mandalo eo",
-'protect-expiry-options'      => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite',
+'protect-edit-reasonlist'     => 'Hanova ny antony famafana',
+'protect-expiry-options'      => '1 ora:1 hour,1 andro:1 day,1 herinandro:1 week,tapa-bolana:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite',
 'restriction-type'            => 'Sata ilaina :',
 'restriction-level'           => 'Sokajy ny fanerena :',
+'minimum-size'                => 'Hnageza fara-fahakeliny',
+'maximum-size'                => 'Hangeza farany',
+'pagesize'                    => '(oktety)',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Hanova',
+'restriction-move'   => 'Hamindra',
+'restriction-create' => 'Mamorona',
+'restriction-upload' => 'Mampiditra',
+
+# Restriction levels
+'restriction-level-sysop'         => 'voaaro manontolo',
+'restriction-level-autoconfirmed' => 'fiarovana an-tàpany',
+'restriction-level-all'           => 'ambaratonga rehetra',
 
 # Undelete
-'undelete'               => 'Jereo ny pejy voafafa',
-'undeletepage'           => 'Hijery sy hamerina ny pejy efa voafafa',
-'viewdeletedpage'        => 'Hijery ny pejy efa nofafana',
-'undeletepagetext'       => "
+'undelete'                => 'Jereo ny pejy voafafa',
+'undeletepage'            => 'Hijery sy hamerina ny pejy efa voafafa',
+'viewdeletedpage'         => 'Hijery ny pejy efa nofafana',
+'undeletepagetext'        => "
 Ireto pejy ireto dia efa voafafa nefa mbola voatahiry ao amin'ny arsiva ihany,
 ary mbola afaka averina, mandra-pifafan'ny arsiva. Mety ho voafafa matetitetika
 ihany ny arsiva.",
-'undeleterevisions'      => "{{PLURAL:$1|fanovana|fanovana}} $1 voatahiry any amin'ny arsiva",
-'undeletehistory'        => "
+'undelete-fieldset-title' => 'Hamerina ny santiôna',
+'undeleterevisions'       => "{{PLURAL:$1|fanovana|fanovana}} $1 voatahiry any amin'ny arsiva",
+'undeletehistory'         => "
 Raha averinao ity pejy ity dia hiverina hiaraka aminy koa ny tantaran'ny 
 fanovana rehetra natao taminy. Raha efa misy pejy mitondra io anarana io
 noforonina taorian'ny namafana azy, dia hitambatra amin'ny tantaran'io
 pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
-'undeletehistorynoadmin' => "Efa voafafa io lahatsoratra io. Ny antony namafana azy dia io miseho ambangovangony eo ambany eo io, miaraka amin'ny fampahalalana antsipirihany momba ny mpikambana nikitika io pejy io talohan'ny namafana azy. Ny votoatin'ny pejy izay efa nofafana ireo dia ny mpitantana ihany no afaka mahita azy ankehitriny.",
-'undeletebtn'            => 'Avereno!',
-'undeletelink'           => 'Topi-maso/averina',
-'undeletedarticle'       => 'namerina ny « [[$1]] »',
-'undeletedrevisions'     => 'voaverina ny {{PLURAL:$1|fanovana|fanovana}} $1',
+'undeletehistorynoadmin'  => "Efa voafafa io lahatsoratra io. Ny antony namafana azy dia io miseho ambangovangony eo ambany eo io, miaraka amin'ny fampahalalana antsipirihany momba ny mpikambana nikitika io pejy io talohan'ny namafana azy. Ny votoatin'ny pejy izay efa nofafana ireo dia ny mpitantana ihany no afaka mahita azy ankehitriny.",
+'undeletebtn'             => 'Avereno!',
+'undeletelink'            => 'Topi-maso/averina',
+'undeletedarticle'        => 'namerina ny « [[$1]] »',
+'undeletedrevisions'      => 'voaverina ny {{PLURAL:$1|fanovana|fanovana}} $1',
 
 # Namespace form on various pages
 'namespace'      => 'Anaran-tsehatra :',
@@ -1891,52 +1946,74 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 'whatlinkshere-filters'    => 'sivana',
 
 # Block/unblock
-'blockip'                     => 'Sakano ny mpikambana',
-'blockiptext'                 => "Ampiasao ity formulaire ity hisakanana ny fahazoan-dàlana hanoratra
+'blockip'                      => 'Sakano ny mpikambana',
+'blockiptext'                  => "Ampiasao ity formulaire ity hisakanana ny fahazoan-dàlana hanoratra
 ananan'ny adiresy IP iray na solonanarana iray.
 Tokony ho antony fisorohana ny fisomparana ihany, ary mifanaraka amin'ny [[{{MediaWiki:Policy-url}}|fepetra]]
 ihany no hanaovana ny fisakanana.
 Fenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
-'ipaddress'                   => 'Adiresy IP',
-'ipadressorusername'          => 'Adiresy IP na solonanarana',
-'ipbexpiry'                   => 'Fahataperana',
-'ipbreason'                   => 'Antony',
-'ipbsubmit'                   => 'Sakano',
-'ipbother'                    => 'Hafa',
-'ipboptions'                  => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite',
-'ipbotheroption'              => 'hafa',
-'badipaddress'                => 'Tsy mety ny adiresy IP (invalid)',
-'blockipsuccesssub'           => 'Vita soa aman-tsara ny sakana',
-'blockipsuccesstext'          => 'Voasakana i [[Special:Contributions/$1|$1]].
+'ipaddress'                    => 'Adiresy IP',
+'ipadressorusername'           => 'Adiresy IP na solonanarana',
+'ipbexpiry'                    => 'Fahataperana',
+'ipbreason'                    => 'Antony',
+'ipbenableautoblock'           => "Manakana ny IP farany ampiasain'ity mpikambana ity, ary ny IP-ny taloha mety ho andramnay",
+'ipbsubmit'                    => 'Sakano',
+'ipbother'                     => 'Hafa',
+'ipboptions'                   => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite',
+'ipbotheroption'               => 'hafa',
+'ipbotherreason'               => 'Antony hafa na fanampiny :',
+'ipbhidename'                  => "Hanitrika ny anaram-pikambana anatin'ny fanovana sy anaty lisitra",
+'ipbwatchuser'                 => "Hanaraka ny pejim-pikambana sy pejin-dresak'ity mpikambana ity",
+'ipballowusertalk'             => "Afahan'ity mpikambana ity manova ny pejin-dresany mandritry ny sakany",
+'ipb-change-block'             => "Hanakana io mpikambana io amin'ireto parametatra ireto.",
+'badipaddress'                 => 'Tsy mety ny adiresy IP (invalid)',
+'blockipsuccesssub'            => 'Vita soa aman-tsara ny sakana',
+'blockipsuccesstext'           => 'Voasakana i [[Special:Contributions/$1|$1]].
 <br />Jereo ny [[Special:IPBlockList|lisitry ny IP voasakana]] raha hanala ny sakana efa misy.',
-'unblockip'                   => "Esory ny sakana amin'io mpikambana io",
-'unblockiptext'               => "
+'ipb-edit-dropdown'            => 'Hanova ny antony fanakanana tsipalotra',
+'ipb-unblock-addr'             => "Hanala ny sakan' i $1",
+'unblockip'                    => "Esory ny sakana amin'io mpikambana io",
+'unblockiptext'                => "
 Ampiasao ity fisy eto ambany ity hanalana ny sakana 
 mihatra amin'ny adiresy IP na solonanarana iray.",
-'ipusubmit'                   => 'Esory ny sakana',
-'ipblocklist'                 => 'Lisitry ny adiresy IP sy mpikambana voasakana',
-'blocklistline'               => '$1, $2 nisakana $3 ($4)',
-'infiniteblock'               => 'mandrakizay',
-'expiringblock'               => "tapitra amin'ny $1 $2",
-'blocklink'                   => 'sakano',
-'unblocklink'                 => 'esory ny sakana',
-'change-blocklink'            => 'ovay ny fanakanana',
-'contribslink'                => "fandraisan'anjara",
-'autoblocker'                 => "Voasakana satria ny adiresy IP-nao dia vao avy nampiasain'i \"[[User:\$1|\$1]]\". Ny anton'ny fanakanana dia: \"'''\$2'''\"",
-'blocklogpage'                => "Tantaran'ny sakana",
-'blocklogentry'               => 'voasakana i "[[$1]]" mandritra ny $2 ; antony : $3',
-'blocklogtext'                => "Eto no ahitana ny tantaran'ny hetsika momba ny fisakanana sy ny fanafoanana fisakanana mpandray anjara. 
+'ipusubmit'                    => 'Esory ny sakana',
+'ipblocklist'                  => 'Lisitry ny adiresy IP sy mpikambana voasakana',
+'ipblocklist-sh-userblocks'    => '$1 ny fanakanan-kaonty',
+'ipblocklist-sh-tempblocks'    => '$1 ny fanakanana miserana',
+'ipblocklist-sh-addressblocks' => '$1 ny fanakanana adiresy IP mitokana',
+'ipblocklist-submit'           => 'Fikarohana',
+'blocklistline'                => '$1, $2 nisakana $3 ($4)',
+'infiniteblock'                => 'mandrakizay',
+'expiringblock'                => "tapitra amin'ny $1 $2",
+'anononlyblock'                => 'mpikambana tsy nisoratra anarana ihany',
+'noautoblockblock'             => 'fanakanana mande ho azy nesorina',
+'createaccountblock'           => 'tsy mahazo manokatra kaonty',
+'emailblock'                   => 'imailaka voasakana',
+'blocklist-nousertalk'         => 'Tsy afaka manova ny pejin-dresany',
+'ipblocklist-empty'            => 'Ny lisitra ny IP voasakana dia tsy misy votoatiny ankehitriny.',
+'ipblocklist-no-results'       => 'Ilay adiresy IP na ilay mpikambana dia mbola tsy voasakana.',
+'blocklink'                    => 'sakano',
+'unblocklink'                  => 'esory ny sakana',
+'change-blocklink'             => 'ovay ny fanakanana',
+'contribslink'                 => "fandraisan'anjara",
+'autoblocker'                  => "Voasakana satria ny adiresy IP-nao dia vao avy nampiasain'i \"[[User:\$1|\$1]]\". Ny anton'ny fanakanana dia: \"'''\$2'''\"",
+'blocklogpage'                 => "Tantaran'ny sakana",
+'blocklogentry'                => 'voasakana i "[[$1]]" mandritra ny $2 ; antony : $3',
+'blocklogtext'                 => "Eto no ahitana ny tantaran'ny hetsika momba ny fisakanana sy ny fanafoanana fisakanana mpandray anjara. 
 Ireo adiresy IP voasakana ho azy dia tsy miseho eto. Jereo ao amin'ny [[Special:IPBlockList|lisitry ny IP voasakana]]
 ny lisitry ny fisakanana sy fandrar� na tanteraka misy ankehitriny.",
-'unblocklogentry'             => "voaaisotra ny sakana an'i $1",
-'block-log-flags-nocreate'    => 'tsy mahazo manokatra kaonty',
-'ipb_expiry_invalid'          => "Tsy mety ilay fotoana hahataperan'ny sakana.",
-'ip_range_invalid'            => 'Tsy mety io IP io.',
-'proxyblocker'                => 'Mpisakana proxy',
-'proxyblockreason'            => "Voasakana ny adiresy IP-nao satria adiresy proxy malalaka izy io. Azafady mba lazao amin'ny mpanome internet anao io olana io.",
-'proxyblocksuccess'           => 'Vita.',
-'sorbsreason'                 => "Voakilasin'i DNSBL ho ao anatin'ny proxy midanadana ny adiresy IP-nao.",
-'sorbs_create_account_reason' => "Voakilasy ho isan'ny proxy midanadana ao amin'ny DNSBL ny adiresy IP-nao. Ireo IP ireo dia ahiana ho fitaovana azon'ny mpandefa spam ampiasaina. Tsy afaka manokatra kaonty ianao",
+'unblocklogentry'              => "voaaisotra ny sakana an'i $1",
+'block-log-flags-anononly'     => 'mpikambana tsy nisoratra anarana ihany',
+'block-log-flags-nocreate'     => 'tsy mahazo manokatra kaonty',
+'block-log-flags-noautoblock'  => 'fanakanana ny IP nesorina',
+'block-log-flags-noemail'      => 'voarara ny fandefasana imailaka',
+'ipb_expiry_invalid'           => "Tsy mety ilay fotoana hahataperan'ny sakana.",
+'ip_range_invalid'             => 'Tsy mety io IP io.',
+'proxyblocker'                 => 'Mpisakana proxy',
+'proxyblockreason'             => "Voasakana ny adiresy IP-nao satria adiresy proxy malalaka izy io. Azafady mba lazao amin'ny mpanome internet anao io olana io.",
+'proxyblocksuccess'            => 'Vita.',
+'sorbsreason'                  => "Voakilasin'i DNSBL ho ao anatin'ny proxy midanadana ny adiresy IP-nao.",
+'sorbs_create_account_reason'  => "Voakilasy ho isan'ny proxy midanadana ao amin'ny DNSBL ny adiresy IP-nao. Ireo IP ireo dia ahiana ho fitaovana azon'ny mpandefa spam ampiasaina. Tsy afaka manokatra kaonty ianao",
 
 # Developer tools
 'lockdb'              => 'Fanidiana ny banky angona',
