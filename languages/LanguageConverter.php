@@ -106,12 +106,11 @@ class LanguageConverter {
 	 * when zh-sg is preferred but not defined, we will pick zh-hans
 	 * in this case. Right now this is only used by zh.
 	 *
-	 * @param string $v The language code of the variant
+	 * @param $v String: the language code of the variant
 	 * @return string array The code of the fallback language or false if there
 	 *                      is no fallback
-	 * @public
 	 */
-	function getVariantFallbacks( $v ) {
+	public function getVariantFallbacks( $v ) {
 		if ( isset( $this->mVariantFallbacks[$v] ) ) {
 			return $this->mVariantFallbacks[$v];
 		}
@@ -120,7 +119,7 @@ class LanguageConverter {
 
 	/**
 	 * Get the title produced by the conversion rule.
-	 * @returns string
+	 * @returns String
 	 */
 	function getConvRuleTitle() {
 		return $this->mConvRuleTitle;
@@ -128,12 +127,11 @@ class LanguageConverter {
 
 	/**
 	 * Get preferred language variants.
-	 * @param boolean $fromUser Get it from $wgUser's preferences
-	 * @param boolean $fromHeader Get it from Accept-Language
-	 * @return string the preferred language code
-	 * @public
+	 * @param $fromUser Boolean: get it from $wgUser's preferences
+	 * @param $fromHeader Boolean: get it from Accept-Language
+	 * @return String: the preferred language code
 	 */
-	function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
+	public function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
 		global $wgDefaultLanguageVariant;
 
 		$req = $this->getURLVariant();
@@ -162,8 +160,8 @@ class LanguageConverter {
 
 	/**
 	 * Validate the variant
-	 * @param string $v the variant to validate
-	 * @returns mixed returns the variant if it is valid, null otherwise
+	 * @param $v String: the variant to validate
+	 * @return Mixed: returns the variant if it is valid, null otherwise
 	 */
 	function validateVariant( $v = null ) {
 		if ( $v !== null && in_array( $v, $this->mVariants ) ) {
@@ -175,7 +173,7 @@ class LanguageConverter {
 	/**
 	 * Get the variant specified in the URL
 	 *
-	 * @returns mixed variant if one found, false otherwise.
+	 * @return Mixed: variant if one found, false otherwise.
 	 */
 	function getURLVariant() {
 		global $wgRequest;
@@ -198,7 +196,7 @@ class LanguageConverter {
 	/**
 	 * Determine if the user has a variant set.
 	 *
-	 * @returns mixed variant if one found, false otherwise.
+	 * @return Mixed: variant if one found, false otherwise.
 	 */
 	function getUserVariant() {
 		global $wgUser;
@@ -228,7 +226,7 @@ class LanguageConverter {
 	/**
 	 * Determine the language variant from the Accept-Language header.
 	 *
-	 * @returns mixed variant if one found, false otherwise.
+	 * @return Mixed: variant if one found, false otherwise.
 	 */
 	function getHeaderVariant() {
 		global $wgRequest;
@@ -302,7 +300,7 @@ class LanguageConverter {
 	 * To convert text in "title" or "alt", like '<img alt="text" ... '
 	 * or '<span title="text" ... '
 	 *
-	 * @return string like ' alt="yyyy"' or ' title="yyyy"'
+	 * @return String like ' alt="yyyy"' or ' title="yyyy"'
 	 * @private
 	 */
 	function captionConvert( $matches ) {
@@ -319,9 +317,9 @@ class LanguageConverter {
 	/**
 	 * Dictionary-based conversion.
 	 *
-	 * @param string $text the text to be converted
-	 * @param string $toVariant the target language code
-	 * @return string the converted text
+	 * @param $text String: the text to be converted
+	 * @param $toVariant String: the target language code
+	 * @return String: the converted text
 	 * @private
 	 */
 	function autoConvert( $text, $toVariant = false ) {
@@ -406,9 +404,9 @@ class LanguageConverter {
 	 * Doesn't process markup or do any of that other stuff, for that use
 	 * convert().
 	 *
-	 * @param string $text Text to convert
-	 * @param string $variant Variant language code
-	 * @return string Translated text
+	 * @param $text String: text to convert
+	 * @param $variant String: variant language code
+	 * @return String: translated text
 	 * @private
 	 */
 	function translate( $text, $variant ) {
@@ -428,11 +426,10 @@ class LanguageConverter {
 	/**
 	 * Convert text to all supported variants.
 	 *
-	 * @param string $text the text to be converted
-	 * @return array of string
-	 * @public
+	 * @param $text String: the text to be converted
+	 * @return Array of string
 	 */
-	function autoConvertToAllVariants( $text ) {
+	public function autoConvertToAllVariants( $text ) {
 		$fname = 'LanguageConverter::autoConvertToAllVariants';
 		wfProfileIn( $fname );
 		if ( !$this->mTablesLoaded ) {
@@ -451,11 +448,10 @@ class LanguageConverter {
 	/**
 	 * Convert link text to all supported variants.
 	 *
-	 * @param string $text the text to be converted
-	 * @return array of string
-	 * @public
+	 * @param $text String: the text to be converted
+	 * @return Array of string
 	 */
-	function convertLinkToAllVariants( $text ) {
+	public function convertLinkToAllVariants( $text ) {
 		if ( !$this->mTablesLoaded ) {
 			$this->loadTables();
 		}
@@ -521,8 +517,8 @@ class LanguageConverter {
 
 	/**
 	 * Convert namespace.
-	 * @param string $title the title included namespace
-	 * @return array of string
+	 * @param $title String: the title included namespace
+	 * @return Array of string
 	 * @private
 	 */
 	function convertNamespace( $title, $variant ) {
@@ -548,11 +544,10 @@ class LanguageConverter {
 	 * -{flags|code1:text1;code2:text2;...}-  or
 	 * -{text}- in which case no conversion should take place for text
 	 *
-	 * @param string $text text to be converted
-	 * @return string converted text
-	 * @public
+	 * @param $text String: text to be converted
+	 * @return String: converted text
 	 */
-	function convert( $text ) {
+	public function convert( $text ) {
 		global $wgDisableLangConversion;
 		if ( $wgDisableLangConversion ) return $text;
 
@@ -663,14 +658,13 @@ class LanguageConverter {
 	 * actually exists in another variant. This function
 	 * tries to find it. See e.g. LanguageZh.php
 	 *
-	 * @param string $link the name of the link
-	 * @param mixed $nt the title object of the link
-	 * @param boolean $ignoreOtherCond: to disable other conditions when
-	 *	we need to transclude a template or update a category's link
-	 * @return null the input parameters may be modified upon return
-	 * @public
+	 * @param $link String: the name of the link
+	 * @param $nt Mixed: the title object of the link
+	 * @param $ignoreOtherCond Boolean: to disable other conditions when
+	 *        we need to transclude a template or update a category's link
+	 * @return Null, the input parameters may be modified upon return
 	 */
-	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		# If the article has already existed, there is no need to
 		# check it again, otherwise it may cause a fault.
 		if ( is_object( $nt ) && $nt->exists() ) {
@@ -733,10 +727,8 @@ class LanguageConverter {
 
     /**
 	 * Returns language specific hash options.
-	 *
-	 * @public
 	 */
-	function getExtraHashOptions() {
+	public function getExtraHashOptions() {
 		$variant = $this->getPreferredVariant();
 		return '!' . $variant ;
 	}
@@ -924,11 +916,11 @@ class LanguageConverter {
 	 * Enclose a string with the "no conversion" tag. This is used by
 	 * various functions in the Parser.
 	 *
-	 * @param string $text text to be tagged for no conversion
-	 * @return string the tagged text
-	 * @public
+	 * @param $text String: text to be tagged for no conversion
+	 * @param $noParse Unused (?)
+	 * @return String: the tagged text
 	 */
-	function markNoConversion( $text, $noParse = false ) {
+	public function markNoConversion( $text, $noParse = false ) {
 		# don't mark if already marked
 		if ( strpos( $text, '-{' ) || strpos( $text, '}-' ) ) {
 			return $text;
@@ -970,9 +962,8 @@ class LanguageConverter {
 	/**
 	 * Armour rendered math against conversion.
 	 * Wrap math into rawoutput -{R| math }- syntax.
-	 * @public
 	 */
-	function armourMath( $text ) {
+	public function armourMath( $text ) {
 		// we need to convert '-{' and '}-' to '-&#123;' and '&#125;-'
 		// to avoid a unwanted '}-' appeared after the math-image.
 		$text = strtr( $text, array( '-{' => '-&#123;', '}-' => '&#125;-' ) );
