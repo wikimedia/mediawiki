@@ -114,7 +114,7 @@ class Preferences {
 	}
 
 	static function profilePreferences( $user, &$defaultPreferences ) {
-		global $wgLang;
+		global $wgLang, $wgUser;
 		## User info #####################################
 		// Information panel
 		$defaultPreferences['username'] =
@@ -209,7 +209,6 @@ class Preferences {
 				);
 
 		if( $wgAuth->allowPasswordChange() ) {
-			global $wgUser; // For skin.
 			$link = $wgUser->getSkin()->link( SpecialPage::getTitleFor( 'Resetpass' ),
 				wfMsgHtml( 'prefs-resetpass' ), array(),
 				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' ) ) );
@@ -362,7 +361,6 @@ class Preferences {
 						$disableEmailPrefs = false;
 					} else {
 						$disableEmailPrefs = true;
-						global $wgUser; // wgUser is okay here, it's for display
 						$skin = $wgUser->getSkin();
 						$emailauthenticated = wfMsgExt( 'emailnotauthenticated', 'parseinline' ) . '<br />' .
 							$skin->link(
