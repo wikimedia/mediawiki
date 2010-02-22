@@ -378,6 +378,8 @@ class LogPage {
 			$params = array( $params );
 		}
 
+		if ( $comment === null ) $comment = "";
+
 		$this->action = $action;
 		$this->target = $target;
 		$this->comment = $comment;

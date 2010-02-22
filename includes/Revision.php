@@ -835,6 +835,8 @@ class Revision {
 			$this->mTextId = $dbw->insertId();
 		}
 
+		if ( $this->mComment === null ) $this->mComment = "";
+
 		# Record the edit in revisions
 		$rev_id = isset( $this->mId )
 			? $this->mId

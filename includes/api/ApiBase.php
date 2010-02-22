@@ -921,6 +921,7 @@ abstract class ApiBase {
 		'nouploadmodule' => array( 'code' => 'nouploadmodule', 'info' => 'No upload module set' ),
 		'uploaddisabled' => array( 'code' => 'uploaddisabled', 'info' => 'Uploads are not enabled.  Make sure $wgEnableUploads is set to true in LocalSettings.php and the PHP ini setting file_uploads is true' ),
 		'chunked-error' => array( 'code' => 'chunked-error', 'info' => 'There was a problem initializing the chunked upload.' ),
+		'chunk-init-error' => array( 'code' => 'chunk-init-error', 'info' => 'Insufficient information for initialization.' ),
 	);
 
 	/**

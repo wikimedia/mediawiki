@@ -402,9 +402,11 @@ abstract class FileRepo {
 	 * Append the contents of the source path to the given file.
 	 * @param $srcPath string location of the source file
 	 * @param $toAppendPath string path to append to.
+	 * @param $flags Bitfield, may be FileRepo::DELETE_SOURCE to indicate
+	 *        that the source file should be deleted if possible
 	 * @return mixed Status or false
 	 */
-	abstract function append( $srcPath, $toAppendPath );
+	abstract function append( $srcPath, $toAppendPath, $flags );
 
 	/**
 	 * Remove a temporary file or mark it for garbage collection

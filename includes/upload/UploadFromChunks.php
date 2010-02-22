@@ -37,23 +37,26 @@ class UploadFromChunks extends UploadBase {
 	}
 
 	public function initialize( $done, $filename, $sessionKey, $path, $fileSize, $sessionData ) {
-		global $wgTmpDirectory;
-		$this->status = new Status;
+		$this->status = Status::newGood();
 
-		$this->initFromSessionKey( $sessionKey, $sessionData );
+		$this->initializePathInfo( $filename, $path, 0, true );
+		if ( $sessionKey !== null ) {
+			$this->initFromSessionKey( $sessionKey, $sessionData, $fileSize );
 
-		if ( !$this->sessionKey && !$done ) {
+			if ( $done ) {
+				$this->chunkMode = self::DONE;
+			} else {
+				$this->mTempPath = $path;
+				$this->chunkMode = self::CHUNK;
+			}
+		} else {
 			// session key not set, init the chunk upload system:
 			$this->chunkMode = self::INIT;
-			$this->initializePathInfo( $filename, $path, 0, true);
-		} else if ( $this->sessionKey && !$done ) {
-			$this->chunkMode = self::CHUNK;
-		} else if ( $this->sessionKey && $done ) {
-			$this->chunkMode = self::DONE;
 		}
-		if ( $this->chunkMode == self::CHUNK || $this->chunkMode == self::DONE ) {
-			$this->mTempPath = $path;
-			$this->mFileSize += $fileSize;
+
+		if ( $this->status->isOk()
+			&& ( $this->mDesiredDestName === null || $this->mFileSize === null ) ) {
+			$this->status = Status::newFatal( 'chunk-init-error' );
 		}
 	}
 
@@ -66,16 +69,26 @@ class UploadFromChunks extends UploadBase {
 	 * @returns string the session key for this chunked upload
 	 */
 	protected function setupChunkSession( $comment, $pageText, $watch ) {
-		$this->sessionKey = $this->getSessionKey();
-		$_SESSION['wsUploadData'][$this->sessionKey] = array(
-			'comment' => $comment,
-			'pageText' => $pageText,
-			'watch' => $watch,
-			'mFilteredName' => $this->mFilteredName,
-			'repoPath' => null,
-			'mDesiredDestName' => $this->mDesiredDestName,
-			'version' => self::SESSION_VERSION,
-		);
+		if ( !isset( $this->sessionKey ) ) {
+			$this->sessionKey = $this->getSessionKey();
+		}
+		foreach ( array( 'mFilteredName', 'repoPath', 'mFileSize', 'mDesiredDestName' )
+				as $key ) {
+			if ( isset( $this->$key ) ) {
+				$_SESSION['wsUploadData'][$this->sessionKey][$key] = $this->$key;
+			}
+		}
+		if ( isset( $comment ) ) {
+			$_SESSION['wsUploadData'][$this->sessionKey]['commment'] = $comment;
+		}
+		if ( isset( $pageText ) ) {
+			$_SESSION['wsUploadData'][$this->sessionKey]['pageText'] = $pageText;
+		}
+		if ( isset( $watch ) ) {
+			$_SESSION['wsUploadData'][$this->sessionKey]['watch'] = $watch;
+		}
+		$_SESSION['wsUploadData'][$this->sessionKey]['version'] = self::SESSION_VERSION;
+
 		return $this->sessionKey;
 	}
 
@@ -83,26 +96,26 @@ class UploadFromChunks extends UploadBase {
 	 * Initialize a continuation of a chunked upload from a session key
 	 * @param $sessionKey string
 	 * @param $request WebRequest
+	 * @param $fileSize int Size of this chunk
 	 *
 	 * @returns void
 	 */
-	protected function initFromSessionKey( $sessionKey, $sessionData ) {
+	protected function initFromSessionKey( $sessionKey, $sessionData, $fileSize ) {
 		// testing against null because we don't want to cause obscure
 		// bugs when $sessionKey is full of "0"
-		if ( $sessionKey === null ) {
-			return;
-		}
 		$this->sessionKey = $sessionKey;
 
 		if ( isset( $sessionData[$this->sessionKey]['version'] )
 			&& $sessionData[$this->sessionKey]['version'] == self::SESSION_VERSION )
 		{
-			$this->comment = $sessionData[$this->sessionKey]['comment'];
-			$this->pageText = $sessionData[$this->sessionKey]['pageText'];
-			$this->watch = $sessionData[$this->sessionKey]['watch'];
-			$this->mFilteredName = $sessionData[$this->sessionKey]['mFilteredName'];
-			$this->repoPath = $sessionData[$this->sessionKey]['repoPath'];
-			$this->mDesiredDestName = $sessionData[$this->sessionKey]['mDesiredDestName'];
+			foreach ( array( 'comment', 'pageText', 'watch', 'mFilteredName', 'repoPath', 'mFileSize', 'mDesiredDestName' )
+					as $key ) {
+				if ( isset( $sessionData[$this->sessionKey][$key] ) ) {
+					$this->$key = $sessionData[$this->sessionKey][$key];
+				}
+			}
+
+			$this->mFileSize += $fileSize;
 		} else {
 			$this->status = Status::newFatal( 'invalid-session-key' );
 		}
@@ -127,14 +140,17 @@ class UploadFromChunks extends UploadBase {
 			// b) should only happen over POST
 			// c) we need the token to validate chunks are coming from a non-xss request
 			return Status::newGood(
-				array('uploadUrl' => wfExpandUrl( wfScript( 'api' ) ) . "?" .
-					  wfArrayToCGI(array('action' => 'upload',
-										 'token' => $wgUser->editToken(),
-										 'format' => 'json',
-										 'filename' => $pageText,
-										 'enablechunks' => 'true',
-										 'chunksession' => $this->setupChunkSession( $comment, $pageText, $watch ) ) ) ) );
+				array( 'uploadUrl' => wfExpandUrl( wfScript( 'api' ) ) . "?" .
+					wfArrayToCGI( array(
+						'action' => 'upload',
+						'token' => $wgUser->editToken(),
+						'format' => 'json',
+						'filename' => $this->mDesiredDestName,
+						'enablechunks' => 'true',
+						'chunksession' =>
+						$this->setupChunkSession( $comment, $pageText, $watch ) ) ) ) );
 		} else if ( $this->chunkMode == self::CHUNK ) {
+			$this->setupChunkSession();
 			$this->appendChunk();
 			if ( !$this->status->isOK() ) {
 				return $this->status;
@@ -146,16 +162,10 @@ class UploadFromChunks extends UploadBase {
 				array( 'result' => 1, 'filesize' => $this->mFileSize )
 			);
 		} else if ( $this->chunkMode == self::DONE ) {
-			if ( !$comment )
-				$comment = $this->comment;
+			$this->finalizeFile();
+			// We ignore the passed-in parameters because these were set on the first contact.
+			$status = parent::performUpload( $this->comment, $this->pageText, $this->watch, $user );
 
-			if ( !$pageText )
-				$pageText = $this->pageText;
-
-			if ( !$watch )
-				$watch = $this->watch;
-
-			$status = parent::performUpload( $comment, $pageText, $watch, $user );
 			if ( !$status->isGood() ) {
 				return $status;
 			}
@@ -164,7 +174,7 @@ class UploadFromChunks extends UploadBase {
 			// firefogg expects a specific result
 			// http://www.firefogg.org/dev/chunk_post.html
 			return Status::newGood(
-				array('result' => 1, 'done' => 1, 'resultUrl' => wfExpandUrl( $file->getDescriptionUrl() ) )
+				array( 'result' => 1, 'done' => 1, 'resultUrl' => wfExpandUrl( $file->getDescriptionUrl() ) )
 			);
 		}
 
@@ -203,16 +213,27 @@ class UploadFromChunks extends UploadBase {
 		}
 		if ( $this->getRealPath( $this->repoPath ) ) {
 			$this->status = $this->appendToUploadFile( $this->repoPath, $this->mTempPath );
+
+			if ( $this->mFileSize >	$wgMaxUploadSize )
+				$this->status = Status::newFatal( 'largefileserver' );
+
 		} else {
 			$this->status = Status::newFatal( 'filenotfound', $this->repoPath );
 		}
-		if ( $this->mFileSize >	$wgMaxUploadSize )
-			$this->status = Status::newFatal( 'largefileserver' );
+	}
+
+	/**
+	 * Append the final chunk and ready file for parent::performUpload()
+	 * @return void
+	 */
+	protected function finalizeFile() {
+		$this->appendChunk();
+		$this->mTempPath = $this->getRealPath( $this->repoPath );
 	}
 
 	public function verifyUpload() {
 		if ( $this->chunkMode != self::DONE ) {
-			return array('status' => UploadBase::OK);
+			return array( 'status' => UploadBase::OK );
 		}
 		return parent::verifyUpload();
 	}
