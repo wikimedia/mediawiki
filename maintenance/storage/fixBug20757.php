@@ -39,7 +39,8 @@ class FixBug20757 extends Maintenance {
 				array( 'old_id', 'old_flags', 'old_text' ),
 				array( 
 					'old_id > ' . intval( $startId ),
-					'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'object', $dbr->anyString )
+					'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\'',
+					'LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
 				),
 				__METHOD__,
 				array( 
@@ -80,10 +81,19 @@ class FixBug20757 extends Maintenance {
 					continue;
 				}
 
+				// Process flags
+				$flags = explode( ',', $row->old_flags );
+				if ( in_array( 'utf-8', $flags ) || in_array( 'utf8', $flags ) ) {
+					$legacyEncoding = false;
+				} else {
+					$legacyEncoding = true;
+				}
+
 				// Queue the stub for future batch processing
 				$id = intval( $obj->mOldId );
 				$secondaryIds[] = $id;
 				$stubs[$row->old_id] = array(
+					'legacyEncoding' => $legacyEncoding,
 					'secondaryId' => $id,
 					'hash' => $obj->mHash,
 				);
@@ -101,7 +111,6 @@ class FixBug20757 extends Maintenance {
 				'*',
 				array(
 					'bt_text_id' => $secondaryIds,
-					'bt_moved' => 1,
 				),
 				__METHOD__
 			);
@@ -170,6 +179,8 @@ class FixBug20757 extends Maintenance {
 					}
 				}
 
+				$newFlags = $stub['legacyEncoding'] ? 'external' : 'external,utf-8';
+
 				if ( !$dryRun ) {
 					// Reset the text row to point to the original copy
 					$dbw->begin();
@@ -177,7 +188,7 @@ class FixBug20757 extends Maintenance {
 						'text',
 						// SET
 						array(
-							'old_flags' => 'external', // use legacy encoding
+							'old_flags' => $newFlags,
 							'old_text' => $url
 						),
 						// WHERE
@@ -264,22 +275,23 @@ class FixBug20757 extends Maintenance {
 	 */
 	function isUnbrokenStub( $stub, $secondaryRow ) {
 		$flags = explode( ',', $secondaryRow->old_flags );
+		$text = $secondaryRow->old_text;
 		if( in_array( 'external', $flags ) ) {
-			$url = $secondaryRow->old_text;
+			$url = $text;
 			@list( /* $proto */ , $path ) = explode( '://', $url, 2 );
 			if ( $path == "" ) {
 				return false;
 			}
-			$secondaryRow->old_text = ExternalStore::fetchFromUrl( $url );
+			$text = ExternalStore::fetchFromUrl( $url );
 		}
 		if( !in_array( 'object', $flags ) ) {
 			return false;
 		}
 
 		if( in_array( 'gzip', $flags ) ) {
-			$obj = unserialize( gzinflate( $secondaryRow->old_text ) );
+			$obj = unserialize( gzinflate( $text ) );
 		} else {
-			$obj = unserialize( $secondaryRow->old_text );
+			$obj = unserialize( $text );
 		}
 
 		if( !is_object( $obj ) ) {
