@@ -218,7 +218,7 @@ Eger sebebi aya na va renna, p'rogramis ar xat'a(çilata) z'irit.
 Mu iqven! Aya, a [[Special:ListUsers/sysop|adminis]], URL-ti ç'areli şekilite rap'ort'i doç'arit.",
 'missingarticle-rev' => '(revizyoni#: $1)',
 'badtitletext'       => "Na iç'aren but'k'aşi coxo ya çilatoni ren ya boşi ren varna inter-nena do inter-vik'işi k'ont'akt'is na uğut'u şeni mtini varen. 
-St'at'iapes oxmaruşi yasaği na ren ar, varna daha dido k'arak't'eris uğun.",
+St'at'iapes oxmaruşi yasaği na ren ar, varna daha dido k'arak't'eri uğun.",
 'viewsource'         => "K'aynağis o3'k'edi",
 
 # Login and logout pages
@@ -442,7 +442,7 @@ Ogoruşi dudis '''all:''' p'refiksi ok'atute doloç'areli na ren iri şeyi (oğa
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|byte|byte}}',
 'nmembers'      => "{{PLURAL:$1|mak'ature|mak'aturepe}}",
-'prefixindex'   => "P'refiksi k'ala mteli t'abape",
+'prefixindex'   => "P'refiksi k'ala mteli but'k'ape",
 'newpages'      => "Ağani but'k'ape",
 'move'          => 'Komendiği',
 'pager-newer-n' => '{{PLURAL:$1|çkva ağani 1|çkva ağani $1}}',
@@ -461,7 +461,7 @@ Ogoruşi dudis '''all:''' p'refiksi ok'atute doloç'areli na ren iri şeyi (oğa
 'alphaindexline' => "$1 but'k'a muşişen $2 but'k'a muşişa",
 'prevpage'       => "İptineri but'k'a ($1)",
 'allpagesfrom'   => "Olist'eluşa na geiç'k'asen harfepe:",
-'allpagesto'     => "Aşoten na içodu but'k'ape ko3'iri:",
+'allpagesto'     => "Amu k'ala na içodu but'k'ape ko3'iri:",
 'allarticles'    => "Mteli but'k'ape",
 'allpagessubmit' => 'İgzali',
 
@@ -530,8 +530,8 @@ Xolosi oras jileri na renanpe oz\'iru şeni: $2.',
 'protect-text'                => "'''<nowiki>$1</nowiki>''' but'k'aşi oçvaluşi sinori akolen gaz'iren do gaktirinen.",
 'protect-locked-access'       => "But'k'aşi oçvalu sinorepe oktiru şeni maxmare-hesabi skanis yet'k'i var uğun.
 '''$1''' but'k'aşi maartani tercihepe antepe renan:",
-'protect-cascadeon'           => "Am but'k'a, \"k’ademeli oçvuşi sistemi\" muşi akt'ifi xveneri na rt'u şeni do tude na ren {{PLURAL:\$1|\$1 but'k'as|\$1 but'k'as}} na ixmarinet’u şeni a3'i içven.
-Am but'k'aşi oçvuşi sinori gaktirinen; mara am oktiroba, k'ademeli oçvuşa mutu va ikips.",
+'protect-cascadeon'           => "Am but'k'a, \"k’ademeli oçvuşi sistemi\" akt'ifi na ixvenu do tude na ren {{PLURAL:\$1|\$1 but'k'as|\$1 but'k'as}} na ixmarinet’u şeni a3'i içven.
+Am but'k'aşi oçvuşi sinori gaktirinen; ama am oktiroba, k'ademeli oçvuşa mutu va ikips.",
 'protect-default'             => 'Mteli maxmarepes izni komeçi',
 'protect-fallback'            => '"$1" izni unon',
 'protect-level-autoconfirmed' => "Ağani do k'ayit'oni na va renan k'oçepes bloği qvi",
