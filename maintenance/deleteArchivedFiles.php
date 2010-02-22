@@ -38,7 +38,7 @@ class DeleteArchivedFiles extends Maintenance {
 			$this->output( "Use --delete to actually confirm this script\n" );
 			return;
 		}
-		$force = $this->hasOption( 'force ');
+		$force = $this->hasOption( 'force' );
 		# Data should come off the master, wrapped in a transaction
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
