@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Oct 05, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( "ApiBase.php" );
+	require_once( "ApiBase.php" );
 }
 
 /**
@@ -38,7 +38,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiExpandTemplates extends ApiBase {
 
 	public function __construct( $main, $action ) {
-		parent :: __construct( $main, $action );
+		parent::__construct( $main, $action );
 	}
 
 	public function execute() {
@@ -46,18 +46,18 @@ class ApiExpandTemplates extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// Create title for parser
-		$title_obj = Title :: newFromText( $params['title'] );
-		if ( !$title_obj )
-			$title_obj = Title :: newFromText( "API" ); // default
+		$title_obj = Title::newFromText( $params['title'] );
+		if ( !$title_obj ) {
+			$title_obj = Title::newFromText( 'API' ); // default
+		}
 
 		$result = $this->getResult();
 
 		// Parse text
 		global $wgParser;
 		$options = new ParserOptions();
-		
-		if ( $params['generatexml'] )
-		{
+
+		if ( $params['generatexml'] ) {
 			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
 			$dom = $wgParser->preprocessToDom( $params['text'] );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
@@ -78,9 +78,9 @@ class ApiExpandTemplates extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'title' => array(
-				ApiBase :: PARAM_DFLT => 'API',
+				ApiBase::PARAM_DFLT => 'API',
 			),
 			'text' => null,
 			'generatexml' => false,
@@ -88,7 +88,7 @@ class ApiExpandTemplates extends ApiBase {
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'text' => 'Wikitext to convert',
 			'title' => 'Title of page',
 			'generatexml' => 'Generate XML parse tree',
@@ -100,7 +100,7 @@ class ApiExpandTemplates extends ApiBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=expandtemplates&text={{Project:Sandbox}}'
 		);
 	}
