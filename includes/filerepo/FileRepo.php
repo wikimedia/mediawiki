@@ -406,7 +406,7 @@ abstract class FileRepo {
 	 *        that the source file should be deleted if possible
 	 * @return mixed Status or false
 	 */
-	abstract function append( $srcPath, $toAppendPath, $flags );
+	abstract function append( $srcPath, $toAppendPath, $flags = 0 );
 
 	/**
 	 * Remove a temporary file or mark it for garbage collection
