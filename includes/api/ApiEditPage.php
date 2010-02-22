@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on August 16, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2007 Iker Labarga <Firstname><Lastname>@gmail.com
+ * Copyright © 2007 Iker Labarga <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
-    // Eclipse helper - will be ignored in production
-    require_once ( "ApiBase.php" );
+	// Eclipse helper - will be ignored in production
+	require_once( "ApiBase.php" );
 }
 
 /**
@@ -38,40 +38,48 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiEditPage extends ApiBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName );
+		parent::__construct( $query, $moduleName );
 	}
 
 	public function execute() {
 		global $wgUser;
 		$params = $this->extractRequestParams();
-		
-		if ( is_null( $params['title'] ) )
+
+		if ( is_null( $params['title'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
+		}
 
 		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
 				is_null( $params['prependtext'] ) &&
 				$params['undo'] == 0 )
+		{
 			$this->dieUsageMsg( array( 'missingtext' ) );
+		}
 
 		$titleObj = Title::newFromText( $params['title'] );
-		if ( !$titleObj || $titleObj->isExternal() )
+		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
-			
+		}
+
 		// Some functions depend on $wgTitle == $ep->mTitle
 		global $wgTitle;
 		$wgTitle = $titleObj;
 
-		if ( $params['createonly'] && $titleObj->exists() )
+		if ( $params['createonly'] && $titleObj->exists() ) {
 			$this->dieUsageMsg( array( 'createonly-exists' ) );
-		if ( $params['nocreate'] && !$titleObj->exists() )
+		}
+		if ( $params['nocreate'] && !$titleObj->exists() ) {
 			$this->dieUsageMsg( array( 'nocreate-missing' ) );
+		}
 
 		// Now let's check whether we're even allowed to do this
 		$errors = $titleObj->getUserPermissionsErrors( 'edit', $wgUser );
-		if ( !$titleObj->exists() )
+		if ( !$titleObj->exists() ) {
 			$errors = array_merge( $errors, $titleObj->getUserPermissionsErrors( 'create', $wgUser ) );
-		if ( count( $errors ) )
+		}
+		if ( count( $errors ) ) {
 			$this->dieUsageMsg( $errors[0] );
+		}
 
 		$articleObj = new Article( $titleObj );
 		$toMD5 = $params['text'];
@@ -81,103 +89,123 @@ class ApiEditPage extends ApiBase {
 			// returns an interface message rather than ''
 			// We do want getContent()'s behavior for non-existent
 			// MediaWiki: pages, though
-			if ( $articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI )
+			if ( $articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI ) {
 				$content = '';
-			else
+			} else {
 				$content = $articleObj->getContent();
-			
-			if ( !is_null( $params['section'] ) )
-			{
+			}
+
+			if ( !is_null( $params['section'] ) ) {
 				// Process the content for section edits
 				global $wgParser;
 				$section = intval( $params['section'] );
 				$content = $wgParser->getSection( $content, $section, false );
-				if ( $content === false )
+				if ( $content === false ) {
 					$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
+				}
 			}
 			$params['text'] = $params['prependtext'] . $content . $params['appendtext'];
 			$toMD5 = $params['prependtext'] . $params['appendtext'];
 		}
-		
-		if ( $params['undo'] > 0 )
-		{
-			if ( $params['undoafter'] > 0 )
-			{
-				if ( $params['undo'] < $params['undoafter'] )
+
+		if ( $params['undo'] > 0 ) {
+			if ( $params['undoafter'] > 0 ) {
+				if ( $params['undo'] < $params['undoafter'] ) {
 					list( $params['undo'], $params['undoafter'] ) =
 					array( $params['undoafter'], $params['undo'] );
+				}
 				$undoafterRev = Revision::newFromID( $params['undoafter'] );
 			}
 			$undoRev = Revision::newFromID( $params['undo'] );
 			if ( is_null( $undoRev ) || $undoRev->isDeleted( Revision::DELETED_TEXT ) )
+			{
 				$this->dieUsageMsg( array( 'nosuchrevid', $params['undo'] ) );
+			}
 
-			if ( $params['undoafter'] == 0 )
+			if ( $params['undoafter'] == 0 ) {
 				$undoafterRev = $undoRev->getPrevious();
+			}
 			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( Revision::DELETED_TEXT ) )
+			{
 				$this->dieUsageMsg( array( 'nosuchrevid', $params['undoafter'] ) );
+			}
 
-			if ( $undoRev->getPage() != $articleObj->getID() )
+			if ( $undoRev->getPage() != $articleObj->getID() ) {
 				$this->dieUsageMsg( array( 'revwrongpage', $undoRev->getID(), $titleObj->getPrefixedText() ) );
-			if ( $undoafterRev->getPage() != $articleObj->getID() )
+			}
+			if ( $undoafterRev->getPage() != $articleObj->getID() ) {
 				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getID(), $titleObj->getPrefixedText() ) );
-				
+			}
+
 			$newtext = $articleObj->getUndoText( $undoRev, $undoafterRev );
-			if ( $newtext === false )
+			if ( $newtext === false ) {
 				$this->dieUsageMsg( array( 'undo-failure' ) );
+			}
 			$params['text'] = $newtext;
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
 			if ( is_null( $params['summary'] ) && $titleObj->getNextRevisionID( $undoafterRev->getID() ) == $params['undo'] )
+			{
 				$params['summary'] = wfMsgForContent( 'undo-summary', $params['undo'], $undoRev->getUserText() );
+			}
 		}
 
 		// See if the MD5 hash checks out
-		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] )
+		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] ) {
 			$this->dieUsageMsg( array( 'hashcheckfailed' ) );
-		
+		}
+
 		$ep = new EditPage( $articleObj );
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable
-		$reqArr = array( 'wpTextbox1' => $params['text'],
-				'wpEditToken' => $params['token'],
-				'wpIgnoreBlankSummary' => ''
+		$reqArr = array(
+			'wpTextbox1' => $params['text'],
+			'wpEditToken' => $params['token'],
+			'wpIgnoreBlankSummary' => ''
 		);
 
-		if ( !is_null( $params['summary'] ) )
+		if ( !is_null( $params['summary'] ) ) {
 			$reqArr['wpSummary'] = $params['summary'];
+		}
 
 		// Watch out for basetimestamp == ''
 		// wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
 		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' )
+		{
 			$reqArr['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
-		else
+		} else {
 			$reqArr['wpEdittime'] = $articleObj->getTimestamp();
+		}
 
 		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' )
+		{
 			$reqArr['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
-		else
+		} else {
 			$reqArr['wpStarttime'] = $reqArr['wpEdittime'];	// Fake wpStartime
+		}
 
 		if ( $params['minor'] || ( !$params['notminor'] && $wgUser->getOption( 'minordefault' ) ) )
-			$reqArr['wpMinoredit'] = '';
-
-		if ( $params['recreate'] )
-			$reqArr['wpRecreate'] = '';
-
-		if ( !is_null( $params['section'] ) )
 		{
+			$reqArr['wpMinoredit'] = '';
+		}
+
+		if ( $params['recreate'] ) {
+			$reqArr['wpRecreate'] = '';
+		}
+
+		if ( !is_null( $params['section'] ) ) {
 			$section = intval( $params['section'] );
 			if ( $section == 0 && $params['section'] != '0' && $params['section'] != 'new' )
+			{
 				$this->dieUsage( "The section parameter must be set to an integer or 'new'", "invalidsection" );
+			}
 			$reqArr['wpSection'] = $params['section'];
-		}
-		else
+		} else {
 			$reqArr['wpSection'] = '';
+		}
 
 		// Handle watchlist settings
-		switch ( $params['watchlist'] )
-		{
+		switch ( $params['watchlist'] ) {
 			case 'watch':
 				$watch = true;
 				break;
@@ -185,23 +213,26 @@ class ApiEditPage extends ApiBase {
 				$watch = false;
 				break;
 			case 'preferences':
-				if ( $titleObj->exists() )
+				if ( $titleObj->exists() ) {
 					$watch = $wgUser->getOption( 'watchdefault' ) || $titleObj->userIsWatching();
-				else
+				} else {
 					$watch = $wgUser->getOption( 'watchcreations' );
+				}
 				break;
 			case 'nochange':
 			default:
 				$watch = $titleObj->userIsWatching();
 		}
 		// Deprecated parameters
-		if ( $params['watch'] )
+		if ( $params['watch'] ) {
 			$watch = true;
-		elseif ( $params['unwatch'] )
+		} elseif ( $params['unwatch'] ) {
 			$watch = false;
-		
-		if ( $watch )
+		}
+
+		if ( $watch ) {
 			$reqArr['wpWatchthis'] = '';
+		}
 
 		$req = new FauxRequest( $reqArr, true );
 		$ep->importFormData( $req );
@@ -209,22 +240,23 @@ class ApiEditPage extends ApiBase {
 		// Run hooks
 		// Handle CAPTCHA parameters
 		global $wgRequest;
-		if ( !is_null( $params['captchaid'] ) )
+		if ( !is_null( $params['captchaid'] ) ) {
 			$wgRequest->setVal( 'wpCaptchaId', $params['captchaid'] );
-		if ( !is_null( $params['captchaword'] ) )
+		}
+		if ( !is_null( $params['captchaword'] ) ) {
 			$wgRequest->setVal( 'wpCaptchaWord', $params['captchaword'] );
+		}
 
 		$r = array();
 		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $ep->textbox1, &$r ) ) )
 		{
-			if ( count( $r ) )
-			{
-				$r['result'] = "Failure";
+			if ( count( $r ) ) {
+				$r['result'] = 'Failure';
 				$this->getResult()->addValue( null, $this->getModuleName(), $r );
 				return;
-			}
-			else
+			} else {
 				$this->dieUsageMsg( array( 'hookaborted' ) );
+			}
 		}
 
 		// Do the actual save
@@ -237,8 +269,7 @@ class ApiEditPage extends ApiBase {
 
 		$retval = $ep->internalAttemptSave( $result, $wgUser->isAllowed( 'bot' ) && $params['bot'] );
 		$wgRequest = $oldRequest;
-		switch( $retval )
-		{
+		switch( $retval ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
 				$this->dieUsageMsg( array( 'hookaborted' ) );
@@ -294,7 +325,7 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = '';
 			case EditPage::AS_SUCCESS_UPDATE:
-				$r['result'] = "Success";
+				$r['result'] = 'Success';
 				$r['pageid'] = intval( $titleObj->getArticleID() );
 				$r['title'] = $titleObj->getPrefixedText();
 				// HACK: We create a new Article object here because getRevIdFetched()
@@ -303,10 +334,9 @@ class ApiEditPage extends ApiBase {
 				// don't want to do.
 				$newArticle = new Article( $titleObj );
 				$newRevId = $newArticle->getRevIdFetched();
-				if ( $newRevId == $oldRevId )
+				if ( $newRevId == $oldRevId ) {
 					$r['nochange'] = '';
-				else
-				{
+				} else {
 					$r['oldrevid'] = intval( $oldRevId );
 					$r['newrevid'] = intval( $newRevId );
 					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
@@ -316,10 +346,10 @@ class ApiEditPage extends ApiBase {
 
 			case EditPage::AS_END:
 				// This usually means some kind of race condition
-				// or DB weirdness occurred. Fall through to throw an unknown 
+				// or DB weirdness occurred. Fall through to throw an unknown
 				// error.
 
-				// This needs fixing higher up, as Article::doEdit should be 
+				// This needs fixing higher up, as Article::doEdit should be
 				// used rather than Article::updateArticle, so that specific
 				// error conditions can be returned
 			default:
@@ -339,10 +369,10 @@ class ApiEditPage extends ApiBase {
 	protected function getDescription() {
 		return 'Create and edit pages.';
 	}
-	
+
 	public function getPossibleErrors() {
 		global $wgMaxArticleSize;
-	
+
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'title' ),
 			array( 'missingtext' ),
@@ -376,7 +406,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	protected function getAllowedParams() {
-		return array (
+		return array(
 			'title' => null,
 			'section' => null,
 			'text' => null,
@@ -393,16 +423,16 @@ class ApiEditPage extends ApiBase {
 			'captchaword' => null,
 			'captchaid' => null,
 			'watch' => array(
-				ApiBase :: PARAM_DFLT => false,
-				ApiBase :: PARAM_DEPRECATED => true,
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
 			),
 			'unwatch' => array(
-				ApiBase :: PARAM_DFLT => false,
-				ApiBase :: PARAM_DEPRECATED => true,
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
 			),
 			'watchlist' => array(
-				ApiBase :: PARAM_DFLT => 'preferences',
-				ApiBase :: PARAM_TYPE => array(
+				ApiBase::PARAM_DFLT => 'preferences',
+				ApiBase::PARAM_TYPE => array(
 					'watch',
 					'unwatch',
 					'preferences',
@@ -413,16 +443,16 @@ class ApiEditPage extends ApiBase {
 			'prependtext' => null,
 			'appendtext' => null,
 			'undo' => array(
-				ApiBase :: PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'undoafter' => array(
-				ApiBase :: PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer'
 			),
 		);
 	}
 
 	protected function getParamDescription() {
-		return array (
+		return array(
 			'title' => 'Page title',
 			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
 			'text' => 'Page content',
@@ -453,19 +483,19 @@ class ApiEditPage extends ApiBase {
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
 		);
 	}
-	
+
 	public function getTokenSalt() {
 		return '';
 	}
 
 	protected function getExamples() {
-		return array (
-			"Edit a page (anonymous user):",
-			"    api.php?action=edit&title=Test&summary=test%20summary&text=article%20content&basetimestamp=20070824123454&token=%2B\\",
-			"Prepend __NOTOC__ to a page (anonymous user):",
-			"    api.php?action=edit&title=Test&summary=NOTOC&minor&prependtext=__NOTOC__%0A&basetimestamp=20070824123454&token=%2B\\",
-			"Undo r13579 through r13585 with autosummary(anonymous user):",
-			"    api.php?action=edit&title=Test&undo=13585&undoafter=13579&basetimestamp=20070824123454&token=%2B\\",
+		return array(
+			'Edit a page (anonymous user):',
+			'    api.php?action=edit&title=Test&summary=test%20summary&text=article%20content&basetimestamp=20070824123454&token=%2B\\',
+			'Prepend __NOTOC__ to a page (anonymous user):',
+			'    api.php?action=edit&title=Test&summary=NOTOC&minor&prependtext=__NOTOC__%0A&basetimestamp=20070824123454&token=%2B\\',
+			'Undo r13579 through r13585 with autosummary (anonymous user):',
+			'    api.php?action=edit&title=Test&undo=13585&undoafter=13579&basetimestamp=20070824123454&token=%2B\\',
 		);
 	}
 
