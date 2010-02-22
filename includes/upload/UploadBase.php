@@ -239,6 +239,11 @@ abstract class UploadBase {
 		# check mime type, if desired
 		global $wgVerifyMimeType;
 		if ( $wgVerifyMimeType ) {
+			wfDebug ( "\n\nmime: <$mime> extension: <{$this->mFinalExtension}>\n\n");
+			if ( !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
+				return array( 'filetype-mime-mismatch' );
+			}
+
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
 				return array( 'filetype-badmime', $mime );
