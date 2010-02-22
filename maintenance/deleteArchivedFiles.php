@@ -37,6 +37,10 @@ class DeleteArchivedFiles extends Maintenance {
 			$this->output( "Use --delete to actually confirm this script\n" );
 			return;
 		}
+		$force = false;
+		if( $this->hasOption('force') ) {
+			$force = true;
+		}
 		# Data should come off the master, wrapped in a transaction
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
@@ -65,6 +69,10 @@ class DeleteArchivedFiles extends Maintenance {
 				$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
 			} else {
 				$this->output( "Notice - file '$key' not found in group '$group'\n" );
+				if ( $force ) {
+					$this->output( "Got --force, deleting DB entry\n" );
+					$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
+				}
 			}
 		}
 		$dbw->commit();
