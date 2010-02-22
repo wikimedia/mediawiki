@@ -2793,8 +2793,7 @@ class Parser
 
 			# Possibilities for substMatch: "subst", "safesubst" or FALSE
 			# Decide whether to expand template or keep wikitext as-is.
-			if ( $this->ot['wiki'] )
-			{
+			if ( $this->ot['wiki'] ) {
 				if ( $substMatch === false ) {
 					$literal = true;  # literal when in PST with no prefix
 				} else {

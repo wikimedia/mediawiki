@@ -719,11 +719,14 @@ class MagicWordArray {
 			if ( $regex === '' ) {
 				continue;
 			}
-			preg_match( $regex, $text, $match );
-			if ( $match ) {
-				list( $found, $param ) = $this->parseMatch( $match );
-				$text = substr( $text, strlen( $found ) + 1 );
-				return $found;
+			if ( preg_match( $regex, $text, $m ) ) {
+				list( $id, $param ) = $this->parseMatch( $m );
+				if ( strlen( $m[0] ) >= strlen( $text ) ) {
+					$text = '';
+				} else {
+					$text = substr( $text, strlen( $m[0] ) );
+				}
+				return $id;
 			}
 		}
 		return false;
