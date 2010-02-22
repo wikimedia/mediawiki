@@ -225,6 +225,8 @@ class HttpRequest {
 			$this->proxy = 'http://localhost:80/';
 		} elseif ( $wgHTTPProxy ) {
 			$this->proxy = $wgHTTPProxy ;
+		} elseif ( getenv( "http_proxy" ) ) {
+			$this->proxy = getenv( "http_proxy" );
 		}
 	}
 
@@ -318,6 +320,12 @@ class HttpRequest {
 		}
 	}
 
+	/**
+	 * Parses the headers, including the HTTP status code and any
+	 * Set-Cookie headers.  This function expectes the headers to be
+	 * found in an array in the member variable headerList.
+	 * @returns nothing
+	 */
 	protected function parseHeader() {
 		$lastname = "";
 		foreach( $this->headerList as $header ) {
@@ -333,12 +341,40 @@ class HttpRequest {
 			}
 		}
 
+		$this->parseCookies();
+	}
+
+	/**
+	 * Sets the member variable status to a fatal status if the HTTP
+	 * status code was not 200.
+	 * @returns nothing
+	 */
+	protected function setStatus() {
+		if( !$this->respHeaders ) {
+			$this->parseHeader();
+		}
+
 		if((int)$this->respStatus !== 200) {
 			list( $code, $message ) = explode(" ", $this->respStatus, 2);
 			$this->status->fatal("http-bad-status", $code, $message );
 		}
+	}
 
-		$this->parseCookies();
+
+	/**
+	 * Returns true if the last status code was a redirect.
+	 * @return bool
+	 */
+	public function isRedirect() {
+		if( !$this->respHeaders ) {
+			$this->parseHeader();
+		}
+
+		$status = (int)$this->respStatus;
+		if ( $status >= 300 && $status < 400 ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -353,6 +389,22 @@ class HttpRequest {
 			$this->parseHeader();
 		}
 		return $this->respHeaders;
+	}
+
+	/**
+	 * Returns the value of the given response header.
+	 * @param $header string
+	 * @return string
+	 */
+	public function getResponseHeader($header) {
+		if( !$this->respHeaders ) {
+			$this->parseHeader();
+		}
+		if ( isset( $this->respHeaders[strtolower ( $header ) ] ) ) {
+			$v = $this->respHeaders[strtolower ( $header ) ];
+			return $v[count( $v ) - 1];
+		}
+		return null;
 	}
 
 	/**
@@ -407,13 +459,12 @@ class HttpRequest {
 	 * @returns string
 	 */
 	public function getFinalUrl() {
-		$finalUrl = $this->url;
-		if ( isset( $this->respHeaders['location'] ) ) {
-			$redir = $this->respHeaders['location'];
-			$finalUrl = $redir[count($redir) - 1];
+		$location = $this->getResponseHeader("Location");
+		if ( $location ) {
+			return $location;
 		}
 
-		return $finalUrl;
+		return $this->url;
 	}
 }
 
@@ -543,7 +594,8 @@ class Cookie {
 
 	protected function canServeDomain( $domain ) {
 		if( $domain == $this->domain
-			|| ( substr( $this->domain, 0, 1) == "."
+			|| ( strlen( $domain) > strlen( $this->domain )
+				 && substr( $this->domain, 0, 1) == "."
 				 && substr_compare( $domain, $this->domain, -strlen( $this->domain ),
 									strlen( $this->domain ), TRUE ) == 0 ) ) {
 			return true;
@@ -713,11 +765,14 @@ class CurlHttpRequest extends HttpRequest {
 		curl_close( $curlHandle );
 
 		$this->parseHeader();
+		$this->setStatus();
 		return $this->status;
 	}
 }
 
 class PhpHttpRequest extends HttpRequest {
+	protected $manuallyRedirect = false;
+
 	protected function urlToTcp( $url ) {
 		$parsedUrl = parse_url( $url );
 
@@ -725,13 +780,16 @@ class PhpHttpRequest extends HttpRequest {
 	}
 
 	public function execute() {
-		if ( $this->parsedUrl['scheme'] != 'http' ) {
-			$this->status->fatal( 'http-invalid-scheme', $this->parsedUrl['scheme'] );
+		parent::execute();
+
+		// At least on Centos 4.8 with PHP 5.1.6, using max_redirects to follow redirects
+		// causes a segfault
+		if ( version_compare( '5.1.7', phpversion(), '>' ) ) {
+			$this->manuallyRedirect = true;
 		}
 
-		parent::execute();
-		if ( !$this->status->isOK() ) {
-			return $this->status;
+		if ( $this->parsedUrl['scheme'] != 'http' ) {
+			$this->status->fatal( 'http-invalid-scheme', $this->parsedUrl['scheme'] );
 		}
 
 		$this->reqHeaders['Accept'] = "*/*";
@@ -747,20 +805,22 @@ class PhpHttpRequest extends HttpRequest {
 			$options['request_fulluri'] = true;
 		}
 
-		if ( !$this->followRedirects ) {
+		if ( !$this->followRedirects || $this->manuallyRedirect ) {
 			$options['max_redirects'] = 0;
 		} else {
 			$options['max_redirects'] = $this->maxRedirects;
 		}
 
 		$options['method'] = $this->method;
-		$options['timeout'] = $this->timeout;
-		$options['ignore_errors'] = true; /* the only way to get 404s, etc */
 		$options['header'] = implode("\r\n", $this->getHeaderList());
 		// Note that at some future point we may want to support
 		// HTTP/1.1, but we'd have to write support for chunking
 		// in version of PHP < 5.3.1
 		$options['protocol_version'] = "1.0";
+
+		// This is how we tell PHP we want to deal with 404s (for example) ourselves.
+		// Only works on 5.2.10+
+		$options['ignore_errors'] = true;
 
 		if ( $this->postData ) {
 			$options['content'] = $this->postData;
@@ -769,28 +829,46 @@ class PhpHttpRequest extends HttpRequest {
 		$oldTimeout = false;
 		if ( version_compare( '5.2.1', phpversion(), '>' ) ) {
 			$oldTimeout = ini_set('default_socket_timeout', $this->timeout);
+		} else {
+			$options['timeout'] = $this->timeout;
 		}
 
 		$context = stream_context_create( array( 'http' => $options ) );
-		wfSuppressWarnings();
-		$fh = fopen( $this->url, "r", false, $context );
-		wfRestoreWarnings();
+
+		$this->headerList = array();
+		$reqCount = 0;
+		$url = $this->url;
+		do {
+			$again = false;
+			$reqCount++;
+			wfSuppressWarnings();
+			$fh = fopen( $url, "r", false, $context );
+			wfRestoreWarnings();
+			if ( $fh ) {
+				$result = stream_get_meta_data( $fh );
+				$this->headerList = $result['wrapper_data'];
+				$this->parseHeader();
+				$url = $this->getResponseHeader("Location");
+				$again = $this->manuallyRedirect && $this->followRedirects && $url
+					&& $this->isRedirect() && $this->maxRedirects > $reqCount;
+			}
+		} while ( $again );
+
 		if ( $oldTimeout !== false ) {
 			ini_set('default_socket_timeout', $oldTimeout);
 		}
+		$this->setStatus();
+
 		if ( $fh === false ) {
 			$this->status->fatal( 'http-request-error' );
 			return $this->status;
 		}
 
-		$result = stream_get_meta_data( $fh );
 		if ( $result['timed_out'] ) {
 			$this->status->fatal( 'http-timed-out', $this->url );
 			return $this->status;
 		}
-		$this->headerList = $result['wrapper_data'];
 
-		$this->parseHeader();
 		if($this->status->isOK()) {
 			while ( !feof( $fh ) ) {
 				$buf = fread( $fh, 8192 );

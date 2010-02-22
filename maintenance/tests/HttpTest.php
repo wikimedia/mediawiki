@@ -116,7 +116,11 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 		$r = HttpRequest::factory( "http://www.example.com/this-file-does-not-exist" );
 		$er = $r->execute();
-		$this->assertRegexp("/404 Not Found/", $er->getWikiText());
+		if ( is_a($r, 'PhpHttpRequest') && version_compare( '5.2.10', phpversion(), '>' ) ) {
+			$this->assertRegexp("/HTTP request failed/", $er->getWikiText());
+		} else {
+			$this->assertRegexp("/404 Not Found/", $er->getWikiText());
+		}
 	}
 
 	function testFailureDefault() {
@@ -529,9 +533,14 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		$r->execute();
 
 		$jar = $r->getCookieJar();
-
 		$this->assertThat( $jar, $this->isInstanceOf( 'CookieJar' ) );
-		$this->assertRegExp( '/^COUNTRY=.*; LAST_LANG=.*$/', $jar->serializeToHttpRequest( "/search?q=test", "www.php.net" ) );
+
+		if ( is_a($r, 'PhpHttpRequest') && version_compare( '5.1.7', phpversion(), '>' ) ) {
+			$this->markTestSkipped( 'Redirection fails or crashes PHP on 5.1.6 and prior' );
+		}
+		$serialized = $jar->serializeToHttpRequest( "/search?q=test", "www.php.net" );
+		$this->assertRegExp( '/\bCOUNTRY=[^=;]+/', $serialized );
+		$this->assertRegExp( '/\bLAST_LANG=[^=;]+/', $serialized );
 		$this->assertEquals( '', $jar->serializeToHttpRequest( "/search?q=test", "www.php.com" ) );
 	}
 
