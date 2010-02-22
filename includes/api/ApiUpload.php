@@ -68,7 +68,7 @@ class ApiUpload extends ApiBase {
 			);
 
 			if ( !$this->mUpload->status->isOK() ) {
-				return $this->dieUsageMsg( $this->mUpload->status->getErrorsArray() );
+				$this->dieUsageMsg( $this->mUpload->status->getErrorsArray() );
 			}
 		} elseif ( $this->mParams['sessionkey'] ) {
 			/**
@@ -76,7 +76,7 @@ class ApiUpload extends ApiBase {
 			 */
 			// Check the session key
 			if ( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) )
-				return $this->dieUsageMsg( array( 'invalid-session-key' ) );
+				$this->dieUsageMsg( array( 'invalid-session-key' ) );
 
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
@@ -109,7 +109,7 @@ class ApiUpload extends ApiBase {
 
 				$status = $this->mUpload->fetchFile();
 				if ( !$status->isOK() ) {
-					return $this->dieUsage( $status->getWikiText(),  'fetchfileerror' );
+					$this->dieUsage( $status->getWikiText(),  'fetchfileerror' );
 				}
 			}
 		} else $this->dieUsageMsg( array( 'missingparam', 'filename' ) );

@@ -14,7 +14,7 @@ class NullRepo extends FileRepo {
 	function storeTemp( $originalName, $srcPath ) {
 		return false;
 	}
-	function append( $srcPath, $toAppendPath ){
+	function append( $srcPath, $toAppendPath, $flags = 0 ){
 		return false;
 	}
 	function publishBatch( $triplets, $flags = 0 ) {
