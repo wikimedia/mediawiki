@@ -400,7 +400,7 @@ class ApiMain extends ApiBase {
 			$this->getResult()->addValue( null, 'requestid', $requestid );
 
 		$params = $this->extractRequestParams();
-			
+
 		$this->mShowVersions = $params['version'];
 		$this->mAction = $params['action'];
 
@@ -584,7 +584,7 @@ class ApiMain extends ApiBase {
 			'',
 		);
 	}
-	
+
     public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'readonlytext' ),

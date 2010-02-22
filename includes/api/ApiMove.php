@@ -68,7 +68,7 @@ class ApiMove extends ApiBase {
 		if ( !$toTitle )
 			$this->dieUsageMsg( array( 'invalidtitle', $params['to'] ) );
 		$toTalk = $toTitle->getTalkPage();
-		
+
 		if ( $toTitle->getNamespace() == NS_FILE
 			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $toTitle )
 			&& wfFindFile( $toTitle ) )
@@ -79,7 +79,7 @@ class ApiMove extends ApiBase {
 				$this->dieUsageMsg( array( 'cantoverwrite-sharedfile' ) );
 			}
 		}
-		
+
 		// Move the page
 		$hookErr = null;
 		$retval = $fromTitle->moveTo( $toTitle, true, $params['reason'], !$params['noredirect'] );
@@ -135,7 +135,7 @@ class ApiMove extends ApiBase {
 		}
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
-	
+
 	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect )
 	{
 		$retval = array();
@@ -218,7 +218,7 @@ class ApiMove extends ApiBase {
 			array( 'sharedfile-exists' ),
 		) );
 	}
-	
+
 	public function getTokenSalt() {
 		return '';
 	}
