@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Feb 2, 2009
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2009 Roan Kattouw <Firstname>.<Lastname>@home.nl
+ * Copyright © 2009 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiFormatBase.php' );
+	require_once( 'ApiFormatBase.php' );
 }
 
 /**
@@ -40,32 +40,34 @@ class ApiFormatRaw extends ApiFormatBase {
 	 * @param $errorFallback Formatter object to fall back on for errors
 	 */
 	public function __construct( $main, $errorFallback ) {
-		parent :: __construct( $main, 'raw' );
+		parent::__construct( $main, 'raw' );
 		$this->mErrorFallback = $errorFallback;
 	}
 
 	public function getMimeType() {
 		$data = $this->getResultData();
 
-		if ( isset( $data['error'] ) )
+		if ( isset( $data['error'] ) ) {
 			return $this->mErrorFallback->getMimeType();
+		}
 
-		if ( !isset( $data['mime'] ) )
-			ApiBase::dieDebug( __METHOD__, "No MIME type set for raw formatter" );
-	
+		if ( !isset( $data['mime'] ) ) {
+			ApiBase::dieDebug( __METHOD__, 'No MIME type set for raw formatter' );
+		}
+
 		return $data['mime'];
 	}
 
 	public function execute() {
 		$data = $this->getResultData();
-		if ( isset( $data['error'] ) )
-		{
+		if ( isset( $data['error'] ) ) {
 			$this->mErrorFallback->execute();
 			return;
 		}
-		
-		if ( !isset( $data['text'] ) )
-			ApiBase::dieDebug( __METHOD__, "No text given for raw formatter" );
+
+		if ( !isset( $data['text'] ) ) {
+			ApiBase::dieDebug( __METHOD__, 'No text given for raw formatter' );
+		}
 		$this->printText( $data['text'] );
 	}
 
