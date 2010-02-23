@@ -155,10 +155,13 @@ function wfSpecialWatchlist( $par ) {
 		return;
 	}
 
+	# Possible where conditions
+	$conds = array();
+
 	if( $days <= 0 ) {
 		$andcutoff = '';
 	} else {
-		$andcutoff = "rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
+		$conds[] = "rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
 	}
 
 	# If the watchlist is relatively short, it's simplest to zip
@@ -170,21 +173,32 @@ function wfSpecialWatchlist( $par ) {
 	# Up estimate of watched items by 15% to compensate for talk pages...
 
 	# Toggles
-	$andHideOwn   = $hideOwn   ? "rc_user != $uid" : '';
-	$andHideBots  = $hideBots  ? "rc_bot = 0" : '';
-	$andHideMinor = $hideMinor ? "rc_minor = 0" : '';
-	$andHideLiu   = $hideLiu   ? "rc_user = 0" : '';
-	$andHideAnons = $hideAnons ? "rc_user != 0" : '';
-	$andHidePatrolled = $wgUser->useRCPatrol() && $hidePatrolled ? "rc_patrolled != 1" : '';
+	if( $hideOwn ) {
+		$conds[] = "rc_user != $uid";
+	}
+	if( $hideBots ) {
+		$conds[] = 'rc_bot = 0';
+	}
+	if( $hideMinor ) {
+		$conds[] = 'rc_minor = 0';
+	}
+	if( $hideLiu ) {
+		$conds[] = 'rc_user = 0';
+	}
+	if( $hideAnons ) {
+		$conds[] = 'rc_user != 0';
+	}
+	if ( $wgUser->useRCPatrol() && $hidePatrolled ) {
+		$conds[] = 'rc_patrolled != 1';
+	}
 
 	# Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
-		$andLatest='';
  		$limitWatchlist = intval( $wgUser->getOption( 'wllimit' ) );
 		$usePage = false;
 	} else {
 	# Top log Ids for a page are not stored
-		$andLatest = 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG;
+		$conds[] = 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG;
 		$limitWatchlist = 0;
 		$usePage = true;
 	}
@@ -215,7 +229,6 @@ function wfSpecialWatchlist( $par ) {
 	
 	$tables = array( 'recentchanges', 'watchlist' );
 	$fields = array( "{$recentchanges}.*" );
-	$conds = array();
 	$join_conds = array(
 		'watchlist' => array('INNER JOIN',"wl_user='{$uid}' AND wl_namespace=rc_namespace AND wl_title=rc_title"),
 	);
@@ -226,15 +239,6 @@ function wfSpecialWatchlist( $par ) {
 	if( $limitWatchlist ) {
 		$options['LIMIT'] = $limitWatchlist;
 	}
-	if( $andcutoff ) $conds[] = $andcutoff;
-	if( $andLatest ) $conds[] = $andLatest;
-	if( $andHideOwn ) $conds[] = $andHideOwn;
-	if( $andHideBots ) $conds[] = $andHideBots;
-	if( $andHideMinor ) $conds[] = $andHideMinor;
-	if( $andHideLiu ) $conds[] = $andHideLiu;
-	if( $andHideAnons ) $conds[] = $andHideAnons;
-	if( $andHidePatrolled ) $conds[] = $andHidePatrolled;
-	if( $nameSpaceClause ) $conds[] = $nameSpaceClause;
 
 	$rollbacker = $wgUser->isAllowed('rollback');
 	if ( $usePage || $rollbacker ) {
