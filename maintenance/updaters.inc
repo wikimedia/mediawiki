@@ -194,7 +194,7 @@ $wgUpdates = array(
 		array( 'add_index', 'change_tag',    'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
 		array( 'add_field', 'redirect',      'rd_interwiki',     'patch-rd_interwiki.sql' ),
 		array( 'do_update_transcache_field' ),
-
+		array( 'do_update_mime_minor_field' ),
 		// version-independent searchindex setup, added in 1.16
 		array( 'sqlite_setup_searchindex' ),
 	),
@@ -1355,6 +1355,15 @@ function do_update_transcache_field() {
 		wfOut( "ok\n" );
 	}
 }
+
+function do_update_mime_minor_field() {
+	global $wgDatabase;
+	wfOut( "Altering all *_mime_minor fields to 100 bytes in size ... " );
+	$wgDatabase->sourceFile( archive( 'patch-mime_minor_length.sql' ) );
+	wfOut( "ok\n" );
+}
+
+
 
 /***********************************************************************
  * Start PG stuff

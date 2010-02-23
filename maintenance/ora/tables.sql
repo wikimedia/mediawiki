@@ -253,7 +253,7 @@ CREATE TABLE &mw_prefix.image (
   img_bits         NUMBER,
   img_media_type   VARCHAR2(32),
   img_major_mime   VARCHAR2(32) DEFAULT 'unknown',
-  img_minor_mime   VARCHAR2(32) DEFAULT 'unknown',
+  img_minor_mime   VARCHAR2(100) DEFAULT 'unknown',
   img_description  VARCHAR2(255),
   img_user         NUMBER       NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
   img_user_text    VARCHAR2(255)      NOT NULL,
@@ -281,7 +281,7 @@ CREATE TABLE &mw_prefix.oldimage (
   oi_metadata      CLOB,
   oi_media_type    VARCHAR2(32) DEFAULT NULL,
   oi_major_mime    VARCHAR2(32) DEFAULT 'unknown',
-  oi_minor_mime    VARCHAR2(32) DEFAULT 'unknown',
+  oi_minor_mime    VARCHAR2(100) DEFAULT 'unknown',
   oi_deleted       NUMBER DEFAULT 0 NOT NULL,
   oi_sha1          VARCHAR2(32)
 );
@@ -308,7 +308,7 @@ CREATE TABLE &mw_prefix.filearchive (
   fa_bits               NUMBER,
   fa_media_type         VARCHAR2(32) DEFAULT NULL,
   fa_major_mime         VARCHAR2(32) DEFAULT 'unknown',
-  fa_minor_mime         VARCHAR2(32) DEFAULT 'unknown',
+  fa_minor_mime         VARCHAR2(100) DEFAULT 'unknown',
   fa_description        VARCHAR2(255),
   fa_user               NUMBER          NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
   fa_user_text          VARCHAR2(255)         NOT NULL,
