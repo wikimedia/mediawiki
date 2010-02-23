@@ -734,7 +734,6 @@ class DatabaseOracle extends DatabaseBase {
 
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
-		$table = $this->tableName( $table );
 		$fieldInfoData = $this->fieldInfo( $table, $field);
 		if ( $fieldInfoData->type == "varchar" ) {
 			$size = $row->size - 4;
@@ -834,6 +833,7 @@ class DatabaseOracle extends DatabaseBase {
 		$tableWhere = '';
 		$field = strtoupper($field);
 		if (is_array($table)) {
+			$table = array_map( array( &$this, 'tableName' ), $table );
 			$tableWhere = 'IN (';
 			foreach($table as &$singleTable) {
 				$singleTable = strtoupper(trim( $singleTable, '"' ));
@@ -844,7 +844,7 @@ class DatabaseOracle extends DatabaseBase {
 			}
 			$tableWhere = rtrim($tableWhere, ',').')';
 		} else {
-			$table = strtoupper(trim( $table, '"' ));
+			$table = strtoupper(trim( $this->tableName($table), '"' ));
 			if (isset($this->mFieldInfoCache["$table.$field"])) {
 				return $this->mFieldInfoCache["$table.$field"];
 			}
@@ -1021,11 +1021,6 @@ class DatabaseOracle extends DatabaseBase {
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
 		global $wgLang;
 
-		if (is_array($table)) {
-			$table = array_map( array( &$this, 'tableName' ), $table );
-		}
-		$table = $this->tableName($table);
-		
 		$conds2 = array();
 		$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
 		foreach ( $conds as $col => $val ) {
@@ -1089,10 +1084,6 @@ class DatabaseOracle extends DatabaseBase {
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
 		global $wgLang;
 
-		if (is_array($table)) {
-			$table = array_map( array( &$this, 'tableName' ), $table );
-		}
-		
 		if ( $wgLang != null ) {
 			$conds2 = array();
 			$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
