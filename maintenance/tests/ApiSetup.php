@@ -27,12 +27,10 @@ abstract class ApiSetup extends PHPUnit_Framework_TestCase {
 			self::$user = User::newFromName(self::$userName);
 			if ( !self::$user->getID() ) {
 				self::$user = User::createNew(self::$userName, array(
-					"password" => self::$passWord,
 					"email" => "test@example.com",
 					"real_name" => "Test User"));
-			} else {
-				self::$user->setPassword(self::$passWord);
 			}
+			self::$user->setPassword(self::$passWord);
 			self::$user->saveSettings();
 		}
 	}
