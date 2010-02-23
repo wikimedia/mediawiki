@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Sep 2, 2008
  *
  * API for MediaWiki 1.14+
  *
- * Copyright (C) 2008 Soxred93 soxred93@gmail.com,
+ * Copyright © 2008 Soxred93 soxred93@gmail.com,
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiPatrol extends ApiBase {
 
 	public function __construct( $main, $action ) {
-		parent :: __construct( $main, $action );
+		parent::__construct( $main, $action );
 	}
 
 	/**
@@ -42,18 +42,21 @@ class ApiPatrol extends ApiBase {
 	 */
 	public function execute() {
 		$params = $this->extractRequestParams();
-		
-		if ( !isset( $params['rcid'] ) )
+
+		if ( !isset( $params['rcid'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'rcid' ) );
+		}
 
 		$rc = RecentChange::newFromID( $params['rcid'] );
-		if ( !$rc instanceof RecentChange )
+		if ( !$rc instanceof RecentChange ) {
 			$this->dieUsageMsg( array( 'nosuchrcid', $params['rcid'] ) );
+		}
 		$retval = RecentChange::markPatrolled( $params['rcid'] );
-			
-		if ( $retval )
+
+		if ( $retval ) {
 			$this->dieUsageMsg( reset( $retval ) );
-		
+		}
+
 		$result = array( 'rcid' => intval( $rc->getAttribute( 'rc_id' ) ) );
 		ApiQueryBase::addTitleInfo( $result, $rc->getTitle() );
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
@@ -64,34 +67,34 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'token' => null,
 			'rcid' => array(
-				ApiBase :: PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer'
 			),
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'token' => 'Patrol token obtained from list=recentchanges',
 			'rcid' => 'Recentchanges ID to patrol',
 		);
 	}
 
 	public function getDescription() {
-		return array (
+		return array(
 			'Patrol a page or revision. '
 		);
 	}
-	
-    public function getPossibleErrors() {
+
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'rcid' ),
 			array( 'nosuchrcid', 'rcid' ),
-        ) );
+		) );
 	}
-	
+
 	public function getTokenSalt() {
 		return '';
 	}
