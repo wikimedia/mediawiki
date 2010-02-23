@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Oct 13, 2006
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( "ApiBase.php" );
+	require_once( "ApiBase.php" );
 }
 
 /**
@@ -34,7 +34,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiOpenSearch extends ApiBase {
 
 	public function __construct( $main, $action ) {
-		parent :: __construct( $main, $action );
+		parent::__construct( $main, $action );
 	}
 
 	public function getCustomPrinter() {
@@ -50,9 +50,9 @@ class ApiOpenSearch extends ApiBase {
 		$suggest = $params['suggest'];
 
 		// MWSuggest or similar hit
-		if ( $suggest && !$wgEnableOpenSearchSuggest )
+		if ( $suggest && !$wgEnableOpenSearchSuggest ) {
 			$srchres = array();
-		else {
+		} else {
 			// Open search results may be stored for a very long
 			// time
 			$this->getMain()->setCacheMaxAge( $wgSearchSuggestCacheExpiry );
@@ -68,26 +68,26 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'search' => null,
 			'limit' => array(
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX => 100,
-				ApiBase :: PARAM_MAX2 => 100
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => 100,
+				ApiBase::PARAM_MAX2 => 100
 			),
 			'namespace' => array(
-				ApiBase :: PARAM_DFLT => NS_MAIN,
-				ApiBase :: PARAM_TYPE => 'namespace',
-				ApiBase :: PARAM_ISMULTI => true
+				ApiBase::PARAM_DFLT => NS_MAIN,
+				ApiBase::PARAM_TYPE => 'namespace',
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'suggest' => false,
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'search' => 'Search string',
 			'limit' => 'Maximum amount of results to return',
 			'namespace' => 'Namespaces to search',
@@ -100,7 +100,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=opensearch&search=Te'
 		);
 	}
