@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Oct 22, 2006
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiFormatBase.php' );
+	require_once( 'ApiFormatBase.php' );
 }
 
 /**
@@ -34,7 +34,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiFormatWddx extends ApiFormatBase {
 
 	public function __construct( $main, $format ) {
-		parent :: __construct( $main, $format );
+		parent::__construct( $main, $format );
 	}
 
 	public function getMimeType() {
@@ -53,8 +53,8 @@ class ApiFormatWddx extends ApiFormatBase {
 		} else {
 			// Don't do newlines and indentation if we weren't asked
 			// for pretty output
-			$nl = ( $this->getIsHtml() ? "" : "\n" );
-			$indstr = " ";
+			$nl = ( $this->getIsHtml() ? '' : "\n" );
+			$indstr = ' ';
 			$this->printText( "<?xml version=\"1.0\"?>$nl" );
 			$this->printText( "<wddxPacket version=\"1.0\">$nl" );
 			$this->printText( "$indstr<header/>$nl" );
@@ -69,11 +69,11 @@ class ApiFormatWddx extends ApiFormatBase {
 	 * Recursively go through the object and output its data in WDDX format.
 	 */
 	function slowWddxPrinter( $elemValue, $indent = 0 ) {
-		$indstr = ( $this->getIsHtml() ? "" : str_repeat( ' ', $indent ) );
-		$indstr2 = ( $this->getIsHtml() ? "" : str_repeat( ' ', $indent + 2 ) );
-		$nl = ( $this->getIsHtml() ? "" : "\n" );
+		$indstr = ( $this->getIsHtml() ? '' : str_repeat( ' ', $indent ) );
+		$indstr2 = ( $this->getIsHtml() ? '' : str_repeat( ' ', $indent + 2 ) );
+		$nl = ( $this->getIsHtml() ? '' : "\n" );
 		switch ( gettype( $elemValue ) ) {
-			case 'array' :
+			case 'array':
 				// Check whether we've got an associative array (<struct>)
 				// or a regular array (<array>)
 				$cnt = count( $elemValue );
@@ -81,8 +81,9 @@ class ApiFormatWddx extends ApiFormatBase {
 					// Regular array
 					$this->printText( $indstr . Xml::element( 'array', array(
 						'length' => $cnt ), null ) . $nl );
-					foreach ( $elemValue as $subElemValue )
+					foreach ( $elemValue as $subElemValue ) {
 						$this->slowWddxPrinter( $subElemValue, $indent + 2 );
+					}
 					$this->printText( "$indstr</array>$nl" );
 				} else {
 					// Associative array (<struct>)
@@ -97,20 +98,20 @@ class ApiFormatWddx extends ApiFormatBase {
 					$this->printText( "$indstr</struct>$nl" );
 				}
 				break;
-			case 'integer' :
-			case 'double' :
+			case 'integer':
+			case 'double':
 				$this->printText( $indstr . Xml::element( 'number', null, $elemValue ) . $nl );
 				break;
-			case 'string' :
+			case 'string':
 				$this->printText( $indstr . Xml::element( 'string', null, $elemValue ) . $nl );
 				break;
-			default :
-				ApiBase :: dieDebug( __METHOD__, 'Unknown type ' . gettype( $elemValue ) );
+			default:
+				ApiBase::dieDebug( __METHOD__, 'Unknown type ' . gettype( $elemValue ) );
 		}
 	}
 
 	public function getDescription() {
-		return 'Output data in WDDX format' . parent :: getDescription();
+		return 'Output data in WDDX format' . parent::getDescription();
 	}
 
 	public function getVersion() {

@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Sep 19, 2006
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiFormatBase.php' );
+	require_once( 'ApiFormatBase.php' );
 }
 
 /**
@@ -36,7 +36,7 @@ class ApiFormatJson extends ApiFormatBase {
 	private $mIsRaw;
 
 	public function __construct( $main, $format ) {
-		parent :: __construct( $main, $format );
+		parent::__construct( $main, $format );
 		$this->mIsRaw = ( $format === 'rawfm' );
 	}
 
@@ -59,37 +59,39 @@ class ApiFormatJson extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$prefix = $suffix = "";
+		$prefix = $suffix = '';
 
 		$params = $this->extractRequestParams();
 		$callback = $params['callback'];
 		if ( !is_null( $callback ) ) {
-			$prefix = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", "", $callback ) . "(";
-			$suffix = ")";
+			$prefix = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback ) . '(';
+			$suffix = ')';
 		}
 		$this->printText(
 			$prefix .
 			FormatJson::encode( $this->getResultData(),	$this->getIsHtml() ) .
-			$suffix );
+			$suffix
+		);
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'callback'  => null,
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
 		);
 	}
 
 	public function getDescription() {
-		if ( $this->mIsRaw )
-			return 'Output data with the debuging elements in JSON format' . parent :: getDescription();
-		else
-			return 'Output data in JSON format' . parent :: getDescription();
+		if ( $this->mIsRaw ) {
+			return 'Output data with the debuging elements in JSON format' . parent::getDescription();
+		} else {
+			return 'Output data in JSON format' . parent::getDescription();
+		}
 	}
 
 	public function getVersion() {

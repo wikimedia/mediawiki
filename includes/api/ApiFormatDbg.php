@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Oct 22, 2006
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2008 Roan Kattouw <Firstname>.<Lastname>@home.nl
+ * Copyright © 2008 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiFormatBase.php' );
+	require_once( 'ApiFormatBase.php' );
 }
 
 /**
@@ -34,7 +34,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiFormatDbg extends ApiFormatBase {
 
 	public function __construct( $main, $format ) {
-		parent :: __construct( $main, $format );
+		parent::__construct( $main, $format );
 	}
 
 	public function getMimeType() {
@@ -49,7 +49,7 @@ class ApiFormatDbg extends ApiFormatBase {
 	}
 
 	public function getDescription() {
-		return 'Output data in PHP\'s var_export() format' . parent :: getDescription();
+		return 'Output data in PHP\'s var_export() format' . parent::getDescription();
 	}
 
 	public function getVersion() {
