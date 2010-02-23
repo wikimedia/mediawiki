@@ -26,7 +26,6 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function doBeforeContent() {
-		$qb = $this->qbSetting();
 		$mainPageObj = Title::newMainPage();
 
 		$s = "\n<div id='content'>\n<div id='topbar'>" .
