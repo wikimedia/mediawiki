@@ -764,7 +764,7 @@ CREATE TABLE /*_*/image (
   -- the minor parts are not required to adher to any standard
   -- but should be consistent throughout the database
   -- see http://www.iana.org/assignments/media-types/
-  img_minor_mime varbinary(32) NOT NULL default "unknown",
+  img_minor_mime varbinary(100) NOT NULL default "unknown",
   
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
@@ -816,7 +816,7 @@ CREATE TABLE /*_*/oldimage (
   oi_metadata mediumblob NOT NULL,
   oi_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   oi_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") NOT NULL default "unknown",
-  oi_minor_mime varbinary(32) NOT NULL default "unknown",
+  oi_minor_mime varbinary(100) NOT NULL default "unknown",
   oi_deleted tinyint unsigned NOT NULL default 0,
   oi_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
@@ -866,7 +866,7 @@ CREATE TABLE /*_*/filearchive (
   fa_bits int default 0,
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") default "unknown",
-  fa_minor_mime varbinary(32) default "unknown",
+  fa_minor_mime varbinary(100) default "unknown",
   fa_description tinyblob,
   fa_user int unsigned default 0,
   fa_user_text varchar(255) binary,
