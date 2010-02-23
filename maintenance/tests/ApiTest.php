@@ -57,7 +57,9 @@ class ApiTest extends ApiSetup {
 	}
 
 	function testApi() {
-		if(!isset($wgServername) || !isset($wgServer)) {
+		global $wgServerName, $wgServer;
+
+		if(!isset($wgServerName) || !isset($wgServer)) {
 			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
 									  'be set in LocalSettings.php');
 		}
@@ -71,7 +73,9 @@ class ApiTest extends ApiSetup {
 	}
 
 	function testApiLoginNoName() {
-		if(!isset($wgServername) || !isset($wgServer)) {
+		global $wgServerName, $wgServer;
+
+		if(!isset($wgServerName) || !isset($wgServer)) {
 			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
 									  'be set in LocalSettings.php');
 		}
@@ -88,7 +92,9 @@ class ApiTest extends ApiSetup {
 	}
 
 	function testApiLoginBadPass() {
-		if(!isset($wgServername) || !isset($wgServer)) {
+		global $wgServerName, $wgServer;
+
+		if(!isset($wgServerName) || !isset($wgServer)) {
 			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
 									  'be set in LocalSettings.php');
 		}
@@ -105,7 +111,9 @@ class ApiTest extends ApiSetup {
 	}
 
 	function testApiLoginGoodPass() {
-		if(!isset($wgServername) || !isset($wgServer)) {
+		global $wgServerName, $wgServer;
+
+		if(!isset($wgServerName) || !isset($wgServer)) {
 			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
 									  'be set in LocalSettings.php');
 		}
@@ -122,9 +130,9 @@ class ApiTest extends ApiSetup {
 	}
 
 	function testApiGotCookie() {
-		global $wgScriptPath, $wgServerName;
+		global $wgServerName, $wgServer, $wgScriptPath;
 
-		if(!isset($wgServername) || !isset($wgServer)) {
+		if(!isset($wgServerName) || !isset($wgServer)) {
 			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
 									  'be set in LocalSettings.php');
 		}
@@ -146,6 +154,7 @@ class ApiTest extends ApiSetup {
 	 */
 	function testApiListPages(CookieJar $cj) {
 		$this->markTestIncomplete("Not done with this yet");
+		global $wgServerName, $wgServer;
 
 		if($wgServerName == "localhost" || $wgServer == "http://localhost") {
 			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
