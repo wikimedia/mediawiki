@@ -200,6 +200,7 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Творь́цъ права́',
 'currentevents'        => 'сѫ́щѧѩ вѣ́щи',
 'currentevents-url'    => 'Project:Сѫ́щѧѩ вѣ́щи',
+'edithelp'             => 'по́мощь по исправлѥ́ниѭ',
 'edithelppage'         => 'Help:Исправлѥ́ниѥ страни́цѧ',
 'mainpage'             => 'гла́вьна страни́ца',
 'mainpage-description' => 'гла́вьна страни́ца',
@@ -213,6 +214,7 @@ $messages = array(
 'viewsourceold'       => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'editlink'            => 'испра́ви',
 'viewsourcelink'      => 'страни́цѧ исто́чьнъ о́браꙁъ',
+'editsectionhint'     => 'исправлѥ́ниѥ чѧ́сти : $1',
 'showtoc'             => 'ви́ждь',
 'hidetoc'             => 'съкрꙑи',
 'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
@@ -292,6 +294,7 @@ $messages = array(
 'searchprofile-images'     => 'дѣ́ла',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
 'search-redirect'          => '(прѣнаправлє́ниѥ $1)',
+'search-section'           => '(чѧ́сть $1)',
 'search-interwiki-caption' => 'ро́дьствьна опꙑтьствова́ниꙗ',
 'searchall'                => 'вьсꙗ́',
 'powersearch'              => 'ищи́',
@@ -340,6 +343,7 @@ $messages = array(
 'rcnote'          => "нижѣ {{PLURAL:$1|'''1''' послѣ́дьнѭ мѣ́нѫ|'''$1''' послѣ́дьни мѣ́нꙑ|'''$1''' послѣ́дьнъ мѣ́нъ|'''$1''' послѣ́дьнъ мѣ́нъ}} ꙁа {{PLURAL:$2|дьнь|'''$2''' дьнꙗ|'''$2''' дьнъ|'''$2''' дьнъ}} · ꙗко нꙑнѣ $5 · $4 лѣ́та",
 'rcshowhideminor' => '$1 ма́лꙑ мѣ́нꙑ',
 'rcshowhidebots'  => '$1 аѵтома́тъ',
+'rcshowhideliu'   => '$1 по́льꙃєватєлъ · ѩжє съꙁижьдє сѥ мѣ́сто · мѣ́нꙑ',
 'rcshowhideanons' => '$1 анонѷмьнъ по́льꙃєватєлъ мѣ́нꙑ',
 'rcshowhidemine'  => '$1 моꙗ́ мѣ́нꙑ',
 'diff'            => 'ра҃ꙁн',
@@ -487,6 +491,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'      => 'ꙁабранѥ́ниꙗ їсторі́ꙗ',
+'protectedarticle'    => '⁖ [[$1]] ⁖ ꙁабранѥна ѥ́стъ',
 'prot_1movedto2'      => '⁖ [[$1]] ⁖ нарєчє́нъ ⁖ [[$2]] ⁖ ѥ́стъ',
 'protect-level-sysop' => 'то́лико съмотри́тєлє',
 
@@ -552,6 +557,7 @@ $messages = array(
 'tooltip-pt-userpage'            => 'твоꙗ́ по́льꙃєватєл҄ьска страни́ца',
 'tooltip-pt-mytalk'              => 'твоꙗ́ бєсѣ́дꙑ страни́ца',
 'tooltip-pt-preferences'         => 'твоꙗ́ строи',
+'tooltip-pt-mycontris'           => 'твоꙗ́ добродѣꙗ́ниѩ ката́логъ',
 'tooltip-pt-logout'              => 'ис̾хо́дъ',
 'tooltip-ca-viewsource'          => 'си страни́ца ꙁабранєна́ ѥ́стъ ⁙
 ѥѩ исто́чьнъ о́браꙁъ ви́дєти мо́жєщи',

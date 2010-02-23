@@ -212,6 +212,8 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Neciš kategorijas om vaiše üks' fail.|{{PLURAL:$1|Nece fail om|$1 Nened failad oma}} neciš kategorijas; om kaiked $2.}}",
 'category-file-count-limited'    => '{{PLURAL:$1|Nece fail om|$1 Nened failad oma}} neciš kategorijas.',
 'listingcontinuesabbrev'         => 'jatktand',
+'index-category'                 => 'Indeksiruidud lehtpoled',
+'noindex-category'               => 'Indeksiruimatomad lehtpoled',
 
 'mainpagetext'      => "<big>'''MediaWiki-likutim om seižutadud jügedusita.'''</big>",
 'mainpagedocfooter' => 'Kc. [http://meta.wikimedia.org/wiki/Help:Kävutajan abukirj], miše sada informacijad wikin kävutamižes.
@@ -324,6 +326,12 @@ $messages = array(
 'jumpto'            => 'Hüpähtada:',
 'jumptonavigation'  => 'navigacii',
 'jumptosearch'      => 'Ecind',
+'view-pool-error'   => "Pakičem armahtust!
+Serverad oma üläkormatud.
+Äjahk kävutajid lattäs kacta necidä lehtpol't.
+Varastagat pordon aigad i lat'kät pörttas lehtpolele.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Informacii saitas {{SITENAME}}',
@@ -424,6 +432,7 @@ Ližakat URL.',
 'readonly_lag'         => 'Andmusiden baz om luklostadud avtomatižešti pordoks aigad, kuni sinhroniziruiše ezmäškerdaine da toškerdaine serverad',
 'internalerror'        => 'Südäipetuz',
 'internalerror_info'   => 'Südäipetuz: $1',
+'fileappenderror'      => 'Ei voi ližata «$1»-failad «$2»-failha.',
 'filecopyerror'        => 'Ei voi kopiruida "$1"-failad "$2"-tahoze.',
 'filerenameerror'      => 'Ei voi udesnimitada "$1"-failad "$2"-tahoze.',
 'filedeleteerror'      => 'Ei voi čuta poiš "$1"-failad.',
@@ -433,8 +442,8 @@ Ližakat URL.',
 'unexpected'           => 'Varastamatoi znamočend: "$1"="$2".',
 'formerror'            => 'Petuz: ei voi oigeta forman admusid',
 'badarticleerror'      => 'Necidä ei sa tehta necil lehtpolel.',
-'cannotdelete'         => 'Ei voi čuta poiš necidä failad.
-Se om jo čutud kenel-ni toižel.',
+'cannotdelete'         => 'Ei voi čuta poiš necidä lehtpol\'t vai "$1"-failad.
+Sen om jo čutnu ken-se toine.',
 'badtitle'             => 'Hond nimi',
 'badtitletext'         => 'Ectud lehtpolen nimi om vär, vai mugošt nimed ei ole, vai kelidenkeskeline (interwiki) nimi om kirjutadud värin.
 Siš voib olda simvoloid, kudambid ei sa panda nimihe.',
@@ -484,6 +493,7 @@ Algat unohtagoi [[Special:Preferences|järgeta personaližikš]] sait.',
 'nav-login-createaccount' => 'Kirjutadas / Sada registracii',
 'loginprompt'             => 'Pidab laskta sada "cookies", miše kirjutadas {{SITENAME}}he.',
 'userlogin'               => 'Kirjutadas / Sada registracii',
+'userloginnocreate'       => 'Kirjutagatoiš sistemha',
 'logout'                  => 'Lähtta',
 'userlogout'              => 'Lähtta',
 'notloggedin'             => 'Tö et olgoi kirjutanus sistemha',
@@ -510,6 +520,7 @@ Kodvgat teiden oigedkirjutamine, vai [[Special:UserLogin/signup|säkat uz\' regi
 'nosuchusershort'         => 'Ei ole kävutajad "<nowiki>$1</nowiki>"-nimenke.
 Kodvgat teiden oigedkirjutamine.',
 'nouserspecified'         => 'Pidab kirjutada kävutajan nimi.',
+'login-userblocked'       => "Nece kävutai om blokiruidud. Tulend sistemha om kel'tud.",
 'wrongpassword'           => 'Peitsana om vär.
 Kirjutagat se völ kerdan.',
 'wrongpasswordempty'      => "Nece peitsana om pall'az.
@@ -534,6 +545,7 @@ Wiki-likutimen počtfunkcijad ei olgoi kävutamas.',
 'accountcreated'          => 'Registracii om OK',
 'accountcreatedtext'      => 'Registracii $1-kävutajan täht om sätud.',
 'createaccount-title'     => '{{SITENAME}}: registracijan sädand.',
+'usernamehasherror'       => 'Kävutajan nimes ei voi olda mugošt znamad.',
 'login-throttled'         => 'Tö olet tehnu äjahkon naprindoid kirjutadas sistemha.
 Olgat hüväd, varastagat pordon aigad edel ut naprindad.',
 'loginlanguagelabel'      => 'Kel’: $1',
@@ -552,6 +564,7 @@ Miše tulda sistemha lopuližikš, teile pidab säta uz' peitsana naku:",
 'resetpass_forbidden'       => 'Ei voi vajehtada peitsanad',
 'resetpass-no-info'         => 'Miše kirjutada necil lehtpolel, teile pidab kirjutadas sistemha.',
 'resetpass-submit-loggedin' => 'Vajehtada peitsana',
+'resetpass-submit-cancel'   => 'Heitta pätand',
 'resetpass-wrong-oldpass'   => 'Vär pordaigaine vai nügüdläine peitsana.
 Voib olda, tö olet jo toižetanuded peitsanan vai pakinuded uden peitsanan.',
 'resetpass-temp-password'   => 'Pordaigaline peitsana:',
@@ -630,8 +643,9 @@ Olgat hüväd, kirjutagat nened andmused kaikiš kirjeižiš administratorile.",
 'whitelistedittext'                => 'Teile pidab $1, miše redaktiruida lehtpolid.',
 'confirmedittext'                  => 'Tarbiž vahvištoitta e-počtan adres, miše redaktiruida lehtpolid.
 Olgat hüväd, kirjutagat da vahvištoitkat teiden e-počtan adres [[Special:Preferences|järgendusiden lehtpolel]].',
-'nosuchsectiontitle'               => 'Ei ole mugošt jagust',
-'nosuchsectiontext'                => 'Tö ladit redaktiruida olmatont lehtpolen jagust.',
+'nosuchsectiontitle'               => 'Ei voi löuta mugošt jagust',
+'nosuchsectiontext'                => 'Tö ladit redaktiruida olmatont lehtpolen jagust.
+Voib olda, se om sirtud vai čutud poiš lugemižen aigan.',
 'loginreqtitle'                    => 'Pidab kirjutadas sistemha',
 'loginreqlink'                     => 'kirjutagatoiš sistemha',
 'loginreqpagetext'                 => 'Teile pidab $1, miše lugeda toižid lehtpolid.',
@@ -680,15 +694,18 @@ erasil kaclimil om problemoid, konz ned kaceltas 32 kb ülitajid lehtpolid.
 Olgat hüväd, jagakat lehtpol' penembihe paloihe.",
 'longpageerror'                    => "'''PETUZ: Teiden tekstan suruz om $1 kb, a lasktud maksimum om $2 kb.'''
 Ei voi kirjutada muštho.",
-'protectedpagewarning'             => "'''VARUTUZ: nece lehtpol' om luklostadud, sidä voidas redaktiruida vaiše administratorad.'''",
-'semiprotectedpagewarning'         => "'''Tedotuz:''' Nece lehtpol' om kaitud redaktiruindaspäi; vaiše registriruidud kävutajad voidas redaktiruida sidä.",
+'protectedpagewarning'             => "'''VARUTUZ: nece lehtpol' om luklostadud, sidä voidas redaktiruida vaiše administratorad.'''
+Alemba om anttud jäl'gmäine aiglehtesen kirjutez:",
+'semiprotectedpagewarning'         => "'''Tedotuz:''' Nece lehtpol' om kaitud redaktiruindaspäi; vaiše registriruidud kävutajad voidas redaktiruida sidä.
+Alemba om anttud jäl'gmäine aiglehtesen kirjutez:",
 'cascadeprotectedwarning'          => "'''Homaikat:''' Nece lehtpol' om luklostadud muga, miše vaiše kävutajad administratoriden privilegijoidenke voidas 
 redaktiruida sidä, sikš miše se oli mülütadud {{PLURAL:$1|neche lehtpol'he, kudamban|nenihe lehtpolihe, kudambiden}} 
 täht oli sätud kaskadkaičend:",
-'titleprotectedwarning'            => "'''Homaikat: Nece lehtpol' om luklostadud, sikš pidab sada [[Special:ListGroupRights|specialižed oiktused]], miše säta se.'''",
-'templatesused'                    => 'Necil lehtpolel kävutadud šablonad:',
-'templatesusedpreview'             => 'Ezikactud lehtpolel kävutadud šablonad:',
-'templatesusedsection'             => 'Šablonad, kudambad kävutadas neciš sekcijas:',
+'titleprotectedwarning'            => "'''Homaikat: Nece lehtpol' om luklostadud, sikš pidab sada [[Special:ListGroupRights|specialižed oiktused]], miše säta se.'''
+Alemba om anttud jäl'gmäine aiglehtesen kirjutez:",
+'templatesused'                    => 'Necil lehtpolel kävutadud {{PLURAL:$1|šablon|šablonad}}:',
+'templatesusedpreview'             => 'Ezikactud lehtpolel kävutadud {{PLURAL:$1|šablon|šablonad}}:',
+'templatesusedsection'             => 'Neciš sekcijas kävutadud {{PLURAL:$1|šablon|šablonad}}:',
 'template-protected'               => '(kaitud)',
 'template-semiprotected'           => '(kaitud anonimoišpäi da uziš kävutajišpäi)',
 'hiddencategories'                 => "Nece lehtpol' om {{PLURAL:$1|1 peittud kategorijaspäi|$1 peittud kategorijoišpäi}}:",
@@ -697,6 +714,8 @@ täht oli sätud kaskadkaičend:",
 'nocreatetext'                     => "{{SITENAME}}-saitas uziden lehtpoliden sädand om kaidetud.
 Tö voit pörttas tagaze i redaktiruida toine lehtpol', vai [[Special:UserLogin|kirjutagatoiš sistemha, vai säkat registracii]].",
 'nocreate-loggedin'                => 'Teile ei sa säta uzid lehtpolid.',
+'sectioneditnotsupported-title'    => "Jagadusiden redaktiruind ei ole pid'oiteldud.",
+'sectioneditnotsupported-text'     => "Necil lehtpolel jagadusiden redaktiruind ei ole pid'oiteldud.",
 'permissionserrors'                => 'Oiktusiden petused',
 'permissionserrorstext'            => 'Teile ei sa tehta muga {{PLURAL:$1|necen sün|neniden süiden}} tagut:',
 'permissionserrorstext-withaction' => 'Teile ei sa $2 {{PLURAL:$1|necen sün|neciden süiden}} tagut:',
@@ -746,6 +765,7 @@ Ei voi mülütada erasid šablonoid.',
 'histlegend'             => "Valičend: virgakat versijad, miše rindatada niid, i paingat \"Mända\"-kosketimele alahan.<br />
 Znamoičendad: '''({{int:cur}})''' = erod nügüdläižes versijaspäi, '''({{int:last}})''' = erod enččes vepsijaspäi, '''{{int:minoreditletter}}''' = pen' toižetuz.",
 'history-fieldset-title' => 'Lehtelta istorii',
+'history-show-deleted'   => 'Vaiše čutud',
 'histfirst'              => 'Kaikiš vanhembad',
 'histlast'               => 'Tantoižed',
 'historysize'            => '({{PLURAL:$1|1 bait|$1 baitad}})',
@@ -771,6 +791,7 @@ Voib olda, süd oma anttud [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAM
 'rev-deleted-no-diff'         => "Tö et voigoi nähta necidä versijoiden erod, sikš miše üks' toižetusišpäi om '''čutud'''.
 Detalid voidas olda [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
 'rev-delundel'                => 'ozutada/peitta',
+'rev-showdeleted'             => 'ozutada',
 'revisiondelete'              => 'Čuta poiš/endištada lehtpolen versijad',
 'revdelete-nooldid-title'     => 'Vär metversii',
 'revdelete-nooldid-text'      => 'Tö et olgoi valinuded metversijad (metversijoid) necen funkcijan oigetes.',
@@ -791,13 +812,16 @@ Administratorad voiškatas lugeda peittud südäimištod da endištada sidä nec
 'revdelete-hide-comment'      => 'Peitta toižetusiden kirjutez',
 'revdelete-hide-user'         => 'Peitta avtoran nimi/IP',
 'revdelete-hide-restricted'   => 'Peitta andmusid eskai administratorilpäi-ki',
+'revdelete-radio-same'        => '(ala toižeta)',
+'revdelete-radio-set'         => 'Ka',
+'revdelete-radio-unset'       => 'Ei',
 'revdelete-suppress'          => 'Peitta administratorilpäi-ki sadud andmused',
 'revdelete-unsuppress'        => 'Heitta kaidendused endištadud versijoilpäi',
 'revdelete-log'               => 'Čudandan süd:',
-'revdelete-submit'            => 'Lattä valitud versijaha',
+'revdelete-submit'            => 'Lattä valitud {{PLURAL:$1|versijaha|versioihe}}',
 'revdelete-logentry'          => "Om vajehtanu sen, kut nägub lehtpol' [[$1]]",
 'logdelete-logentry'          => 'Om toižetanu sen, kut nägub tego [[$1]]',
-'revdelete-success'           => "'''Versijan nägulad om toižetadud.'''",
+'revdelete-success'           => "'''Versijan nägulad om toižetadud tugedusita.'''",
 'revdelete-failure'           => "'''Ei voi toižetada versijan läguladud:'''
 $1",
 'logdelete-success'           => "'''Aigkirjutesen nägulad om toižetadud.'''",
@@ -1049,7 +1073,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'userrights-editusergroup'       => 'Toižetada kävutajan gruppad',
 'saveusergroups'                 => 'Kirjutada muštho kävutajan gruppad',
 'userrights-groupsmember'        => 'Kävutai om neniden gruppiden ühtnii:',
-'userrights-reason'              => 'Toižetusen sü:',
+'userrights-reason'              => 'Sü:',
 'userrights-no-interwiki'        => 'Teile ei sa toižetada toižiden wikiden kävutajiden oiktusid.',
 'userrights-nodatabase'          => 'Andmusiden $1-bazad ei ole vai se ei ole lokaline.',
 'userrights-nologin'             => 'Teile pidab [[Special:UserLogin|kirjutadas sistemha]] administratoran oiktusidenke, miše antta oiktusid kävutajile.',
@@ -1136,6 +1160,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'right-userrights-interwiki' => 'Toižetada toižiden wiki-saitoiden kävutajiden oiktused',
 'right-siteadmin'            => 'Luklostada da avaita andmusiden baz',
 'right-reset-passwords'      => 'Heitta toižiden kävutajiden peitsanad',
+'right-sendemail'            => 'Oigeta e-počtad toižile kävutajile',
 
 # User rights log
 'rightslog'      => 'Kävutajan oiktusiden aigkirj',
@@ -1278,9 +1303,11 @@ Olgat hüväd, kodvgat, todeks-ik tö tahtoit jügutoitta nece fail.",
 'php-uploaddisabledtext'     => 'Failoiden jügutoitand om kel\'tud PHP:n järgendusiš. Kodvgat "file_uploads"-järgenduz.',
 'uploadscripted'             => 'Neciš failas om HTML-kod vai skript, kudamban kaclim voiži interpretiruida värin.',
 'uploadvirus'                => 'Failas om virus! Kc: $1',
+'upload-source'              => 'Lähtmižfail',
 'sourcefilename'             => 'Failan purdenimi:',
 'destfilename'               => 'Failan metnimi:',
 'upload-maxfilesize'         => 'Failan maksimaline suruz: $1',
+'upload-description'         => 'failan ümbrikirjutand',
 'watchthisupload'            => 'Kacelta necidä failad',
 
 'upload-proto-error'        => 'Vär protokol',
@@ -1299,6 +1326,10 @@ Ku problem jäb jäl'ghepäi-ki, säkat pagin [[Special:ListUsers/sysop|sistemad
 'img-auth-badtitle'     => 'Ei voi tehta oiktad pälkirjutest "$1"-späi.',
 'img-auth-nofile'       => 'Ei ole mugošt failad: "$1".',
 'img-auth-streaming'    => '"$1"-joksmuz.',
+
+# HTTP errors
+'http-invalid-url' => 'Vär URL: $1',
+'http-read-error'  => "HTTP'd lugemižen petuz.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'      => 'Ei voi säta sidod URL:anke',
