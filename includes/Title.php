@@ -932,7 +932,7 @@ class Title {
 	/**
 	 * Is this page "semi-protected" - the *only* protection is autoconfirm?
 	 *
-	 * @param @action \type{\string} Action to check (default: edit)
+	 * @param $action \type{\string} Action to check (default: edit)
 	 * @return \type{\bool}
 	 */
 	public function isSemiProtected( $action = 'edit' ) {
@@ -956,7 +956,7 @@ class Title {
 
 	/**
 	 * Does the title correspond to a protected article?
-	 * @param $what \type{\string} the action the page is protected from,
+	 * @param $action \type{\string} the action the page is protected from,
 	 * by default checks all actions.
 	 * @return \type{\bool}
 	 */
