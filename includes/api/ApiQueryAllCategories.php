@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on December 12, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2007 Roan Kattouw <Firstname>.<Lastname>@home.nl
+ * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiQueryBase.php' );
+	require_once( 'ApiQueryBase.php' );
 }
 
 /**
@@ -37,7 +37,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'ac' );
+		parent::__construct( $query, $moduleName, 'ac' );
 	}
 
 	public function execute() {
@@ -49,7 +49,6 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	private function run( $resultPageSet = null ) {
-
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 
@@ -59,16 +58,16 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
 		$this->addWhereRange( 'cat_title', $dir, $from, null );
-		if ( isset ( $params['prefix'] ) )
+		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( 'cat_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', 'cat_title' . ( $params['dir'] == 'descending' ? ' DESC' : '' ) );
 
 		$prop = array_flip( $params['prop'] );
 		$this->addFieldsIf( array( 'cat_pages', 'cat_subcats', 'cat_files' ), isset( $prop['size'] ) );
-		if ( isset( $prop['hidden'] ) )
-		{
+		if ( isset( $prop['hidden'] ) ) {
 			$this->addTables( array( 'page', 'page_props' ) );
 			$this->addJoinConds( array(
 				'page' => array( 'LEFT JOIN', array(
@@ -97,9 +96,9 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 			// Normalize titles
 			$titleObj = Title::makeTitle( NS_CATEGORY, $row->cat_title );
-			if ( !is_null( $resultPageSet ) )
+			if ( !is_null( $resultPageSet ) ) {
 				$pages[] = $titleObj->getPrefixedText();
-			else {
+			} else {
 				$item = array();
 				$result->setContent( $item, $titleObj->getText() );
 				if ( isset( $prop['size'] ) ) {
@@ -108,11 +107,11 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 					$item['files'] = intval( $row->cat_files );
 					$item['subcats'] = intval( $row->cat_subcats );
 				}
-				if ( isset( $prop['hidden'] ) && $row->cat_hidden )
+				if ( isset( $prop['hidden'] ) && $row->cat_hidden ) {
 					$item['hidden'] = '';
+				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $item );
-				if ( !$fit )
-				{
+				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->cat_title ) );
 					break;
 				}
@@ -128,33 +127,33 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'from' => null,
 			'prefix' => null,
 			'dir' => array(
-				ApiBase :: PARAM_DFLT => 'ascending',
-				ApiBase :: PARAM_TYPE => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
 					'ascending',
 					'descending'
 				),
 			),
-			'limit' => array (
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
-				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+			'limit' => array(
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'prop' => array (
-				ApiBase :: PARAM_TYPE => array( 'size', 'hidden' ),
-				ApiBase :: PARAM_DFLT => '',
-				ApiBase :: PARAM_ISMULTI => true
+			'prop' => array(
+				ApiBase::PARAM_TYPE => array( 'size', 'hidden' ),
+				ApiBase::PARAM_DFLT => '',
+				ApiBase::PARAM_ISMULTI => true
 			),
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'from' => 'The category to start enumerating from.',
 			'prefix' => 'Search for all category titles that begin with this value.',
 			'dir' => 'Direction to sort in.',
@@ -168,7 +167,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=query&list=allcategories&acprop=size',
 			'api.php?action=query&generator=allcategories&gacprefix=List&prop=info',
 		);

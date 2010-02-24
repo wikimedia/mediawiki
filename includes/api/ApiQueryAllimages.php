@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Mar 16, 2008
  *
  * API for MediaWiki 1.12+
  *
- * Copyright (C) 2008 Vasiliev Victor vasilvv@gmail.com,
+ * Copyright © 2008 Vasiliev Victor vasilvv@gmail.com,
  * based on ApiQueryAllpages.php
  *
  * This program is free software; you can redistribute it and/or modify
@@ -26,7 +26,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiQueryBase.php' );
+	require_once( 'ApiQueryBase.php' );
 }
 
 /**
@@ -37,14 +37,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'ai' );
+		parent::__construct( $query, $moduleName, 'ai' );
 		$this->mRepo = RepoGroup::singleton()->getLocalRepo();
 	}
-	
+
 	/**
 	 * Overide parent method to make sure to make sure the repo's DB is used
 	 * which may not necesarilly be the same as the local DB.
-	 * 
+	 *
 	 * TODO: allow querying non-local repos.
 	 */
 	protected function getDB() {
@@ -56,16 +56,18 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	}
 
 	public function executeGenerator( $resultPageSet ) {
-		if ( $resultPageSet->isResolvingRedirects() )
+		if ( $resultPageSet->isResolvingRedirects() ) {
 			$this->dieUsage( 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator', 'params' );
+		}
 
 		$this->run( $resultPageSet );
 	}
 
 	private function run( $resultPageSet = null ) {
 		$repo = $this->mRepo;
-		if ( !$repo instanceof LocalRepo )
+		if ( !$repo instanceof LocalRepo ) {
 			$this->dieUsage( 'Local file repository does not support querying all images', 'unsupportedrepo' );
+		}
 
 		$db = $this->getDB();
 
@@ -75,14 +77,14 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
 		$this->addWhereRange( 'img_name', $dir, $from, null );
-		if ( isset ( $params['prefix'] ) )
+		if ( isset( $params['prefix'] ) )
 			$this->addWhere( 'img_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 
-		if ( isset ( $params['minsize'] ) ) {
+		if ( isset( $params['minsize'] ) ) {
 			$this->addWhere( 'img_size>=' . intval( $params['minsize'] ) );
 		}
 
-		if ( isset ( $params['maxsize'] ) ) {
+		if ( isset( $params['maxsize'] ) ) {
 			$this->addWhere( 'img_size<=' . intval( $params['maxsize'] ) );
 		}
 
@@ -145,38 +147,38 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		return array (
 			'from' => null,
 			'prefix' => null,
-			'minsize' => array (
-				ApiBase :: PARAM_TYPE => 'integer',
+			'minsize' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
-			'maxsize' => array (
-				ApiBase :: PARAM_TYPE => 'integer',
+			'maxsize' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
-			'limit' => array (
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
-				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+			'limit' => array(
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'dir' => array (
-				ApiBase :: PARAM_DFLT => 'ascending',
-				ApiBase :: PARAM_TYPE => array (
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
 					'ascending',
 					'descending'
 				)
 			),
 			'sha1' => null,
 			'sha1base36' => null,
-			'prop' => array (
-				ApiBase :: PARAM_TYPE => ApiQueryImageInfo::getPropertyNames(),
-				ApiBase :: PARAM_DFLT => 'timestamp|url',
-				ApiBase :: PARAM_ISMULTI => true
+			'prop' => array(
+				ApiBase::PARAM_TYPE => ApiQueryImageInfo::getPropertyNames(),
+				ApiBase::PARAM_DFLT => 'timestamp|url',
+				ApiBase::PARAM_ISMULTI => true
 			)
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'from' => 'The image title to start enumerating from.',
 			'prefix' => 'Search for all image titles that begin with this value.',
 			'dir' => 'The direction in which to list',
@@ -192,7 +194,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'Enumerate all images sequentially';
 	}
-	
+
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator' ),
@@ -201,7 +203,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'Simple Use',
 			' Show a list of images starting at the letter "B"',
 			'  api.php?action=query&list=allimages&aifrom=B',
