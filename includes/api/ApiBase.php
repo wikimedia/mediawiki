@@ -645,11 +645,18 @@ abstract class ApiBase {
 						$value = wfTimestamp( TS_MW, $value );
 						break;
 					case 'user':
-						$title = Title::makeTitleSafe( NS_USER, $value );
-						if ( is_null( $title ) ) {
-							$this->dieUsage( "Invalid value for user parameter $encParamName", "baduser_{$encParamName}" );
+						if( !is_array( $value ) ) $value = array( $value );
+						
+						foreach( $value as $val ) {
+							$title = Title::makeTitleSafe( NS_USER, $value );
+							if ( is_null( $title ) ) {
+								$this->dieUsage( "Invalid value for user parameter $encParamName", "baduser_{$encParamName}" );
+							}
+							$value = $title->getText();
 						}
-						$value = $title->getText();
+						
+						if( !$multi ) $value = $value[0];
+						
 						break;
 					default:
 						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
