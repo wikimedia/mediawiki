@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on July 30, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiQueryBase.php' );
+	require_once( 'ApiQueryBase.php' );
 }
 
 /**
@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'sr' );
+		parent::__construct( $query, $moduleName, 'sr' );
 	}
 
 	public function execute() {
@@ -57,9 +57,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$what = $params['what'];
 		$searchInfo = array_flip( $params['info'] );
 		$prop = array_flip( $params['prop'] );
-		
-		if ( strval( $query ) === '' )
-			$this->dieUsage( "empty search string is not allowed", 'param-search' );
+
+		if ( strval( $query ) === '' ) {
+			$this->dieUsage( 'empty search string is not allowed', 'param-search' );
+		}
 
 		// Create search engine instance and set options
 		$search = SearchEngine::create();
@@ -79,7 +80,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			// In the future, the default should be for a combined index.
 			$what = 'title';
 			$matches = $search->searchTitle( $query );
-			
+
 			// Not all search engines support a separate title search,
 			// for instance the Lucene-based engine we use on Wikipedia.
 			// In this case, fall back to full-text search (which will
@@ -89,9 +90,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$matches = $search->searchText( $query );
 			}
 		}
-		if ( is_null( $matches ) )
+		if ( is_null( $matches ) ) {
 			$this->dieUsage( "{$what} search is disabled", "search-{$what}-disabled" );
-		
+		}
+
 		// Add search meta data to result
 		if ( isset( $searchInfo['totalhits'] ) ) {
 			$totalhits = $matches->getTotalHits();
@@ -107,7 +109,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// Add the search results to the result
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
-		$titles = array ();
+		$titles = array();
 		$count = 0;
 		while ( $result = $matches->next() ) {
 			if ( ++ $count > $limit ) {
@@ -117,23 +119,28 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			}
 
 			// Silently skip broken and missing titles
-			if ( $result->isBrokenTitle() || $result->isMissingRevision() )
+			if ( $result->isBrokenTitle() || $result->isMissingRevision() ) {
 				continue;
-			
+			}
+
 			$title = $result->getTitle();
 			if ( is_null( $resultPageSet ) ) {
 				$vals = array();
 				ApiQueryBase::addTitleInfo( $vals, $title );
-				
-				if ( isset( $prop['snippet'] ) )
+
+				if ( isset( $prop['snippet'] ) ) {
 					$vals['snippet'] = $result->getTextSnippet( $terms );
-				if ( isset( $prop['size'] ) )
+				}
+				if ( isset( $prop['size'] ) ) {
 					$vals['size'] = $result->getByteSize();
-				if ( isset( $prop['wordcount'] ) )
+				}
+				if ( isset( $prop['wordcount'] ) ) {
 					$vals['wordcount'] = $result->getWordCount();
-				if ( isset( $prop['timestamp'] ) )
+				}
+				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
-				
+				}
+
 				// Add item to results and see whether it fits
 				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ),
 						null, $vals );
@@ -156,52 +163,52 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'search' => null,
-			'namespace' => array (
-				ApiBase :: PARAM_DFLT => 0,
-				ApiBase :: PARAM_TYPE => 'namespace',
-				ApiBase :: PARAM_ISMULTI => true,
+			'namespace' => array(
+				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_TYPE => 'namespace',
+				ApiBase::PARAM_ISMULTI => true,
 			),
-			'what' => array (
-				ApiBase :: PARAM_DFLT => null,
-				ApiBase :: PARAM_TYPE => array (
+			'what' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_TYPE => array(
 					'title',
 					'text',
 				)
 			),
 			'info' => array(
-				ApiBase :: PARAM_DFLT => 'totalhits|suggestion',
-				ApiBase :: PARAM_TYPE => array (
+				ApiBase::PARAM_DFLT => 'totalhits|suggestion',
+				ApiBase::PARAM_TYPE => array(
 					'totalhits',
 					'suggestion',
 				),
-				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase::PARAM_ISMULTI => true,
 			),
 			'prop' => array(
-				ApiBase :: PARAM_DFLT => 'size|wordcount|timestamp|snippet',
-				ApiBase :: PARAM_TYPE => array (
+				ApiBase::PARAM_DFLT => 'size|wordcount|timestamp|snippet',
+				ApiBase::PARAM_TYPE => array(
 					'size',
 					'wordcount',
 					'timestamp',
 					'snippet',
 				),
-				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase::PARAM_ISMULTI => true,
 			),
 			'redirects' => false,
 			'offset' => 0,
-			'limit' => array (
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_SML1,
-				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_SML2
+			'limit' => array(
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_SML1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_SML2
 			)
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'search' => 'Search for all page titles (or content) that has this value.',
 			'namespace' => 'The namespace(s) to enumerate.',
 			'what' => 'Search inside the text or titles.',
@@ -216,7 +223,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'Perform a full text search';
 	}
-	
+
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'param-search', 'info' => 'empty search string is not allowed' ),
@@ -226,7 +233,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=query&list=search&srsearch=meaning',
 			'api.php?action=query&list=search&srwhat=text&srsearch=meaning',
 			'api.php?action=query&generator=search&gsrsearch=meaning&prop=info',
