@@ -2580,20 +2580,18 @@ class OutputPage {
 	 *
 	 * @param $modules Array: list of jQuery modules which should be loaded
 	 * @return Array: the list of modules which were not loaded.
+	 * @since 1.16
 	 */
 	public function includeJQuery( $modules = array() ) {
-		global $wgStylePath, $wgStyleVersion, $wgJsMimeType;
+		global $wgStylePath, $wgStyleVersion;
 
 		$supportedModules = array( /** TODO: add things here */ );
 		$unsupported = array_diff( $modules, $supportedModules );
 
-		$params = array(
-			'type' => $wgJsMimeType,
-			'src' => "$wgStylePath/common/jquery.min.js?$wgStyleVersion",
-		);
+		$url = "$wgStylePath/common/jquery.min.js?$wgStyleVersion";
 		if ( !$this->mJQueryDone ) {
 			$this->mJQueryDone = true;
-			$this->mScripts = Html::element( 'script', $params ) . "\n" . $this->mScripts;
+			$this->mScripts = Html::linkedScript( $url ) . "\n" . $this->mScripts;
 		}
 		return $unsupported;
 	}
