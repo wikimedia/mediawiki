@@ -137,7 +137,7 @@ class MWTidy {
 	 * 'pear install tidy' should be able to compile the extension module.
 	 */
 	private static function execInternalTidy( $text, $stderr = false, &$retval = null ) {
-		global $wgTidyConf, $IP, $wgDebugTidy;
+		global $wgTidyConf, $wgDebugTidy;
 		wfProfileIn( __METHOD__ );
 
 		$tidy = new tidy;
