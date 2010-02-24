@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Sep 25, 2006
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiQueryBase.php' );
+	require_once( 'ApiQueryBase.php' );
 }
 
 /**
@@ -41,7 +41,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$fld_preload = false;
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'in' );
+		parent::__construct( $query, $moduleName, 'in' );
 	}
 
 	public function requestExtraData( $pageSet ) {
@@ -62,12 +62,14 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	protected function getTokenFunctions() {
 		// Don't call the hooks twice
-		if ( isset( $this->tokenFunctions ) )
+		if ( isset( $this->tokenFunctions ) ) {
 			return $this->tokenFunctions;
+		}
 
 		// If we're in JSON callback mode, no tokens can be obtained
-		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) )
+		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
 			return array();
+		}
 
 		$this->tokenFunctions = array(
 			'edit' => array( 'ApiQueryInfo', 'getEditToken' ),
@@ -83,109 +85,115 @@ class ApiQueryInfo extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
-	public static function getEditToken( $pageid, $title )
-	{
+	public static function getEditToken( $pageid, $title ) {
 		// We could check for $title->userCan('edit') here,
 		// but that's too expensive for this purpose
 		// and would break caching
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'edit' ) )
+		if ( !$wgUser->isAllowed( 'edit' ) ) {
 			return false;
+		}
 
 		// The edit token is always the same, let's exploit that
 		static $cachedEditToken = null;
-		if ( !is_null( $cachedEditToken ) )
+		if ( !is_null( $cachedEditToken ) ) {
 			return $cachedEditToken;
+		}
 
 		$cachedEditToken = $wgUser->editToken();
 		return $cachedEditToken;
 	}
 
-	public static function getDeleteToken( $pageid, $title )
-	{
+	public static function getDeleteToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'delete' ) )
+		if ( !$wgUser->isAllowed( 'delete' ) ) {
 			return false;
+		}
 
 		static $cachedDeleteToken = null;
-		if ( !is_null( $cachedDeleteToken ) )
+		if ( !is_null( $cachedDeleteToken ) ) {
 			return $cachedDeleteToken;
+		}
 
 		$cachedDeleteToken = $wgUser->editToken();
 		return $cachedDeleteToken;
 	}
 
-	public static function getProtectToken( $pageid, $title )
-	{
+	public static function getProtectToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'protect' ) )
+		if ( !$wgUser->isAllowed( 'protect' ) ) {
 			return false;
+		}
 
 		static $cachedProtectToken = null;
-		if ( !is_null( $cachedProtectToken ) )
+		if ( !is_null( $cachedProtectToken ) ) {
 			return $cachedProtectToken;
+		}
 
 		$cachedProtectToken = $wgUser->editToken();
 		return $cachedProtectToken;
 	}
 
-	public static function getMoveToken( $pageid, $title )
-	{
+	public static function getMoveToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'move' ) )
+		if ( !$wgUser->isAllowed( 'move' ) ) {
 			return false;
+		}
 
 		static $cachedMoveToken = null;
-		if ( !is_null( $cachedMoveToken ) )
+		if ( !is_null( $cachedMoveToken ) ) {
 			return $cachedMoveToken;
+		}
 
 		$cachedMoveToken = $wgUser->editToken();
 		return $cachedMoveToken;
 	}
 
-	public static function getBlockToken( $pageid, $title )
-	{
+	public static function getBlockToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'block' ) )
+		if ( !$wgUser->isAllowed( 'block' ) ) {
 			return false;
+		}
 
 		static $cachedBlockToken = null;
-		if ( !is_null( $cachedBlockToken ) )
+		if ( !is_null( $cachedBlockToken ) ) {
 			return $cachedBlockToken;
+		}
 
 		$cachedBlockToken = $wgUser->editToken();
 		return $cachedBlockToken;
 	}
 
-	public static function getUnblockToken( $pageid, $title )
-	{
+	public static function getUnblockToken( $pageid, $title ) {
 		// Currently, this is exactly the same as the block token
 		return self::getBlockToken( $pageid, $title );
 	}
 
-	public static function getEmailToken( $pageid, $title )
-	{
+	public static function getEmailToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->canSendEmail() || $wgUser->isBlockedFromEmailUser() )
+		if ( !$wgUser->canSendEmail() || $wgUser->isBlockedFromEmailUser() ) {
 			return false;
+		}
 
 		static $cachedEmailToken = null;
-		if ( !is_null( $cachedEmailToken ) )
+		if ( !is_null( $cachedEmailToken ) ) {
 			return $cachedEmailToken;
+		}
 
 		$cachedEmailToken = $wgUser->editToken();
 		return $cachedEmailToken;
 	}
 
-	public static function getImportToken( $pageid, $title )
-	{
+	public static function getImportToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'import' ) )
+		if ( !$wgUser->isAllowed( 'import' ) ) {
 			return false;
+		}
 
 		static $cachedImportToken = null;
-		if ( !is_null( $cachedImportToken ) )
+		if ( !is_null( $cachedImportToken ) ) {
 			return $cachedImportToken;
+		}
 
 		$cachedImportToken = $wgUser->editToken();
 		return $cachedImportToken;
@@ -201,7 +209,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_subjectid = isset( $prop['subjectid'] );
 			$this->fld_url = isset( $prop['url'] );
 			$this->fld_readable = isset( $prop['readable'] );
-			$this->fld_preload = isset ( $prop['preload'] );
+			$this->fld_preload = isset( $prop['preload'] );
 		}
 
 		$pageSet = $this->getPageSet();
@@ -211,19 +219,19 @@ class ApiQueryInfo extends ApiQueryBase {
 		$result = $this->getResult();
 
 		uasort( $this->everything, array( 'Title', 'compare' ) );
-		if ( !is_null( $this->params['continue'] ) )
-		{
+		if ( !is_null( $this->params['continue'] ) ) {
 			// Throw away any titles we're gonna skip so they don't
 			// clutter queries
 			$cont = explode( '|', $this->params['continue'] );
-			if ( count( $cont ) != 2 )
-				$this->dieUsage( "Invalid continue param. You should pass the original " .
-						"value returned by the previous query", "_badcontinue" );
+			if ( count( $cont ) != 2 ) {
+				$this->dieUsage( 'Invalid continue param. You should pass the original ' .
+						'value returned by the previous query', '_badcontinue' );
+			}
 			$conttitle = Title::makeTitleSafe( $cont[0], $cont[1] );
-			foreach ( $this->everything as $pageid => $title )
-			{
-				if ( Title::compare( $title, $conttitle ) >= 0 )
+			foreach ( $this->everything as $pageid => $title ) {
+				if ( Title::compare( $title, $conttitle ) >= 0 ) {
 					break;
+				}
 				unset( $this->titles[$pageid] );
 				unset( $this->missing[$pageid] );
 				unset( $this->everything[$pageid] );
@@ -240,24 +248,26 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$db = $this->getDB();
 		// Get protection info if requested
-		if ( $this->fld_protection )
+		if ( $this->fld_protection ) {
 			$this->getProtectionInfo();
+		}
 
-		if ( $this->fld_watched )
+		if ( $this->fld_watched ) {
 			$this->getWatchedInfo();
+		}
 
 		// Run the talkid/subjectid query if requested
-		if ( $this->fld_talkid || $this->fld_subjectid )
+		if ( $this->fld_talkid || $this->fld_subjectid ) {
 			$this->getTSIDs();
+		}
 
 		foreach ( $this->everything as $pageid => $title ) {
 			$pageInfo = $this->extractPageInfo( $pageid, $title );
-			$fit = $result->addValue( array (
+			$fit = $result->addValue( array(
 				'query',
 				'pages'
 			), $pageid, $pageInfo );
-			if ( !$fit )
-			{
+			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue',
 						$title->getNamespace() . '|' .
 						$title->getText() );
@@ -272,64 +282,72 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param $title Title object
 	 * @return array
 	 */
-	private function extractPageInfo( $pageid, $title )
-	{
+	private function extractPageInfo( $pageid, $title ) {
 		$pageInfo = array();
-		if ( $title->exists() )
-		{
+		if ( $title->exists() ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = intval( $this->pageLatest[$pageid] );
 			$pageInfo['counter'] = intval( $this->pageCounter[$pageid] );
 			$pageInfo['length'] = intval( $this->pageLength[$pageid] );
-			if ( $this->pageIsRedir[$pageid] )
+			if ( $this->pageIsRedir[$pageid] ) {
 				$pageInfo['redirect'] = '';
-			if ( $this->pageIsNew[$pageid] )
+			}
+			if ( $this->pageIsNew[$pageid] ) {
 				$pageInfo['new'] = '';
+			}
 		}
 
 		if ( !is_null( $this->params['token'] ) ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			$pageInfo['starttimestamp'] = wfTimestamp( TS_ISO_8601, time() );
-			foreach ( $this->params['token'] as $t )
-			{
+			foreach ( $this->params['token'] as $t ) {
 				$val = call_user_func( $tokenFunctions[$t], $pageid, $title );
-				if ( $val === false )
+				if ( $val === false ) {
 					$this->setWarning( "Action '$t' is not allowed for the current user" );
-				else
+				} else {
 					$pageInfo[$t . 'token'] = $val;
+				}
 			}
 		}
 
 		if ( $this->fld_protection ) {
 			$pageInfo['protection'] = array();
-			if ( isset( $this->protections[$title->getNamespace()][$title->getDBkey()] ) )
+			if ( isset( $this->protections[$title->getNamespace()][$title->getDBkey()] ) ) {
 				$pageInfo['protection'] =
 					$this->protections[$title->getNamespace()][$title->getDBkey()];
+			}
 			$this->getResult()->setIndexedTagName( $pageInfo['protection'], 'pr' );
 		}
 
 		if ( $this->fld_watched && isset( $this->watched[$title->getNamespace()][$title->getDBkey()] ) )
+		{
 			$pageInfo['watched'] = '';
-	
+		}
+
 		if ( $this->fld_talkid && isset( $this->talkids[$title->getNamespace()][$title->getDBkey()] ) )
+		{
 			$pageInfo['talkid'] = $this->talkids[$title->getNamespace()][$title->getDBkey()];
+		}
 
 		if ( $this->fld_subjectid && isset( $this->subjectids[$title->getNamespace()][$title->getDBkey()] ) )
+		{
 			$pageInfo['subjectid'] = $this->subjectids[$title->getNamespace()][$title->getDBkey()];
+		}
 
 		if ( $this->fld_url ) {
 			$pageInfo['fullurl'] = $title->getFullURL();
 			$pageInfo['editurl'] = $title->getFullURL( 'action=edit' );
 		}
-		if ( $this->fld_readable && $title->userCanRead() )
+		if ( $this->fld_readable && $title->userCanRead() ) {
 			$pageInfo['readable'] = '';
-			
+		}
+
 		if ( $this->fld_preload ) {
-			if ( $title->exists() )
+			if ( $title->exists() ) {
 				$pageInfo['preload'] = '';
-			else {
+			} else {
 				wfRunHooks( 'EditFormPreloadText', array( &$text, &$title ) );
-			
+
 				$pageInfo['preload'] = $text;
 			}
 		}
@@ -339,14 +357,12 @@ class ApiQueryInfo extends ApiQueryBase {
 	/**
 	 * Get information about protections and put it in $protections
 	 */
-	private function getProtectionInfo()
-	{
+	private function getProtectionInfo() {
 		$this->protections = array();
 		$db = $this->getDB();
 
 		// Get normal protections for existing titles
-		if ( count( $this->titles ) )
-		{
+		if ( count( $this->titles ) ) {
 			$this->resetQueryParams();
 			$this->addTables( array( 'page_restrictions', 'page' ) );
 			$this->addWhere( 'page_id=pr_page' );
@@ -362,8 +378,9 @@ class ApiQueryInfo extends ApiQueryBase {
 					'level' => $row->pr_level,
 					'expiry' => Block::decodeExpiry( $row->pr_expiry, TS_ISO_8601 )
 				);
-				if ( $row->pr_cascade )
+				if ( $row->pr_cascade ) {
 					$a['cascade'] = '';
+				}
 				$this->protections[$row->page_namespace][$row->page_title][] = $a;
 
 				// Also check old restrictions
@@ -375,8 +392,9 @@ class ApiQueryInfo extends ApiQueryBase {
 							// old old format should be treated as edit/move restriction
 							$restriction = trim( $temp[0] );
 
-							if ( $restriction == '' )
+							if ( $restriction == '' ) {
 								continue;
+							}
 							$this->protections[$row->page_namespace][$row->page_title][] = array(
 								'type' => 'edit',
 								'level' => $restriction,
@@ -389,8 +407,9 @@ class ApiQueryInfo extends ApiQueryBase {
 							);
 						} else {
 							$restriction = trim( $temp[1] );
-							if ( $restriction == '' )
+							if ( $restriction == '' ) {
 								continue;
+							}
 							$this->protections[$row->page_namespace][$row->page_title][] = array(
 								'type' => $temp[0],
 								'level' => $restriction,
@@ -404,8 +423,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// Get protections for missing titles
-		if ( count( $this->missing ) )
-		{
+		if ( count( $this->missing ) ) {
 			$this->resetQueryParams();
 			$lb = new LinkBatch( $this->missing );
 			$this->addTables( 'protected_titles' );
@@ -425,10 +443,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		// Cascading protections
 		$images = $others = array();
 		foreach ( $this->everything as $title )
-			if ( $title->getNamespace() == NS_FILE )
+			if ( $title->getNamespace() == NS_FILE ) {
 				$images[] = $title->getDBkey();
-			else
+			} else {
 				$others[] = $title;
+			}
 
 		if ( count( $others ) ) {
 			// Non-images: check templatelinks
@@ -483,24 +502,23 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * Get talk page IDs (if requested) and subject page IDs (if requested)
-	 * and put them in $talkids and $subjectids 
+	 * and put them in $talkids and $subjectids
 	 */
-	private function getTSIDs()
-	{
+	private function getTSIDs() {
 		$getTitles = $this->talkids = $this->subjectids = array();
 		$db = $this->getDB();
-		foreach ( $this->everything as $t )
-		{
-			if ( MWNamespace::isTalk( $t->getNamespace() ) )
-			{
-				if ( $this->fld_subjectid )
+		foreach ( $this->everything as $t ) {
+			if ( MWNamespace::isTalk( $t->getNamespace() ) ) {
+				if ( $this->fld_subjectid ) {
 					$getTitles[] = $t->getSubjectPage();
-			}
-			else if ( $this->fld_talkid )
+				}
+			} elseif ( $this->fld_talkid ) {
 				$getTitles[] = $t->getTalkPage();
+			}
 		}
-		if ( !count( $getTitles ) )
+		if ( !count( $getTitles ) ) {
 			return;
+		}
 
 		// Construct a custom WHERE clause that matches
 		// all titles in $getTitles
@@ -510,26 +528,26 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addFields( array( 'page_title', 'page_namespace', 'page_id' ) );
 		$this->addWhere( $lb->constructSet( 'page', $db ) );
 		$res = $this->select( __METHOD__ );
-		while ( $row = $db->fetchObject( $res ) )
-		{
-			if ( MWNamespace::isTalk( $row->page_namespace ) )
+		while ( $row = $db->fetchObject( $res ) ) {
+			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
 				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
 						intval( $row->page_id );
-			else
+			} else {
 				$this->subjectids[MWNamespace::getTalk( $row->page_namespace )][$row->page_title] =
 						intval( $row->page_id );
+			}
 		}
 	}
 
 	/**
 	 * Get information about watched status and put it in $watched
 	 */
-	private function getWatchedInfo()
-	{
+	private function getWatchedInfo() {
 		global $wgUser;
 
-		if ( $wgUser->isAnon() || count( $this->titles ) == 0 )
+		if ( $wgUser->isAnon() || count( $this->titles ) == 0 ) {
 			return;
+		}
 
 		$this->watched = array();
 		$db = $this->getDB();
@@ -554,11 +572,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
-			'prop' => array (
-				ApiBase :: PARAM_DFLT => null,
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array (
+		return array(
+			'prop' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
 					'protection',
 					'talkid',
 					'watched',
@@ -567,18 +585,18 @@ class ApiQueryInfo extends ApiQueryBase {
 					'readable',
 					'preload'
 				) ),
-			'token' => array (
-				ApiBase :: PARAM_DFLT => null,
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array_keys( $this->getTokenFunctions() )
+			'token' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() )
 			),
 			'continue' => null,
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
-			'prop' => array (
+		return array(
+			'prop' => array(
 				'Which additional properties to get:',
 				' protection   - List the protection level of each page',
 				' talkid       - The page ID of the talk page for each non-talk page',
@@ -596,7 +614,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	public function getDescription() {
 		return 'Get basic page information such as namespace, title, last touched date, ...';
 	}
-	
+
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
@@ -604,7 +622,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=query&prop=info&titles=Main%20Page',
 			'api.php?action=query&prop=info&inprop=protection&titles=Main%20Page'
 		);

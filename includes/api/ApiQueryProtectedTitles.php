@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Feb 13, 2009
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2009 Roan Kattouw <Firstname>.<Lastname>@home.nl
+ * Copyright © 2009 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiQueryBase.php' );
+	require_once( 'ApiQueryBase.php' );
 }
 
 /**
@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'pt' );
+		parent::__construct( $query, $moduleName, 'pt' );
 	}
 
 	public function execute() {
@@ -63,9 +63,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addWhereRange( 'pt_timestamp', $params['dir'], $params['start'], $params['end'] );
 		$this->addWhereFld( 'pt_namespace', $params['namespace'] );
 		$this->addWhereFld( 'pt_create_perm', $params['level'] );
-		
-		if ( isset( $prop['user'] ) )
-		{
+
+		if ( isset( $prop['user'] ) ) {
 			$this->addTables( 'user' );
 			$this->addFields( 'user_name' );
 			$this->addJoinConds( array( 'user' => array( 'LEFT JOIN',
@@ -89,26 +88,31 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			if ( is_null( $resultPageSet ) ) {
 				$vals = array();
 				ApiQueryBase::addTitleInfo( $vals, $title );
-				if ( isset( $prop['timestamp'] ) )
+				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->pt_timestamp );
-					
-				if ( isset( $prop['user'] ) && !is_null( $row->user_name ) )
+				}
+
+				if ( isset( $prop['user'] ) && !is_null( $row->user_name ) ) {
 					$vals['user'] = $row->user_name;
-					
-				if ( isset( $prop['comment'] ) )
+				}
+
+				if ( isset( $prop['comment'] ) ) {
 					$vals['comment'] = $row->pt_reason;
-					
+				}
+
 				if ( isset( $prop['parsedcomment'] ) ) {
 					global $wgUser;
 					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->pt_reason, $title );
 				}
-					
-				if ( isset( $prop['expiry'] ) )
+
+				if ( isset( $prop['expiry'] ) ) {
 					$vals['expiry'] = Block::decodeExpiry( $row->pt_expiry, TS_ISO_8601 );
-					
-				if ( isset( $prop['level'] ) )
+				}
+
+				if ( isset( $prop['level'] ) ) {
 					$vals['level'] = $row->pt_create_perm;
-				
+				}
+
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'start',
@@ -120,47 +124,48 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			}
 		}
 		$db->freeResult( $res );
-		if ( is_null( $resultPageSet ) )
+		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), $this->getModulePrefix() );
-		else
+		} else {
 			$resultPageSet->populateFromTitles( $titles );
+		}
 	}
 
 	public function getAllowedParams() {
 		global $wgRestrictionLevels;
-		return array (
-			'namespace' => array (
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => 'namespace',
+		return array(
+			'namespace' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => 'namespace',
 			),
 			'level' => array(
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array_diff( $wgRestrictionLevels, array( '' ) )
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array_diff( $wgRestrictionLevels, array( '' ) )
 			),
 			'limit' => array (
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
-				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'dir' => array (
-				ApiBase :: PARAM_DFLT => 'older',
-				ApiBase :: PARAM_TYPE => array (
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'older',
+				ApiBase::PARAM_TYPE => array(
 					'older',
 					'newer'
 				)
 			),
 			'start' => array(
-				ApiBase :: PARAM_TYPE => 'timestamp'
+				ApiBase::PARAM_TYPE => 'timestamp'
 			),
 			'end' => array(
-				ApiBase :: PARAM_TYPE => 'timestamp'
+				ApiBase::PARAM_TYPE => 'timestamp'
 			),
 			'prop' => array(
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_DFLT => 'timestamp|level',
-				ApiBase :: PARAM_TYPE => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_DFLT => 'timestamp|level',
+				ApiBase::PARAM_TYPE => array(
 					'timestamp',
 					'user',
 					'comment',
@@ -173,7 +178,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'namespace' => 'Only list titles in these namespaces',
 			'start' => 'Start listing at this protection timestamp',
 			'end' => 'Stop listing at this protection timestamp',
@@ -189,7 +194,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=query&list=protectedtitles',
 		);
 	}
