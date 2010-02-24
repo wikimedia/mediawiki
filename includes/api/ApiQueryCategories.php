@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on May 13, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( "ApiQueryBase.php" );
+	require_once( "ApiQueryBase.php" );
 }
 
 /**
@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'cl' );
+		parent::__construct( $query, $moduleName, 'cl' );
 	}
 
 	public function execute() {
@@ -48,15 +48,15 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	private function run( $resultPageSet = null ) {
-
-		if ( $this->getPageSet()->getGoodTitleCount() == 0 )
+		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
 			return;	// nothing to do
+		}
 
 		$params = $this->extractRequestParams();
 		$prop = array_flip( (array)$params['prop'] );
 		$show = array_flip( (array)$params['show'] );
 
-		$this->addFields( array (
+		$this->addFields( array(
 			'cl_from',
 			'cl_to'
 		) );
@@ -66,34 +66,37 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		$this->addTables( 'categorylinks' );
 		$this->addWhereFld( 'cl_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
-		if ( !is_null( $params['categories'] ) )
-		{
+		if ( !is_null( $params['categories'] ) ) {
 			$cats = array();
-			foreach ( $params['categories'] as $cat )
-			{
+			foreach ( $params['categories'] as $cat ) {
 				$title = Title::newFromText( $cat );
-				if ( !$title || $title->getNamespace() != NS_CATEGORY )
+				if ( !$title || $title->getNamespace() != NS_CATEGORY ) {
 					$this->setWarning( "``$cat'' is not a category" );
-				else
+				} else {
 					$cats[] = $title->getDBkey();
+				}
 			}
 			$this->addWhereFld( 'cl_to', $cats );
 		}
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 )
+			if ( count( $cont ) != 2 ) {
 				$this->dieUsage( "Invalid continue param. You should pass the " .
 					"original value returned by the previous query", "_badcontinue" );
+			}
 			$clfrom = intval( $cont[0] );
 			$clto = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
-			$this->addWhere( "cl_from > $clfrom OR " .
-					"(cl_from = $clfrom AND " .
-					"cl_to >= '$clto')" );
+			$this->addWhere(
+				"cl_from > $clfrom OR " .
+				"(cl_from = $clfrom AND " .
+				"cl_to >= '$clto')"
+			);
 		}
 
-		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) )
+		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) ) {
 			$this->dieUsageMsg( array( 'show' ) );
+		}
 		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) )
 		{
 			$this->addOption( 'STRAIGHT_JOIN' );
@@ -107,24 +110,25 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					'pp_page=page_id',
 					'pp_propname' => 'hiddencat' ) )
 			) );
-			if ( isset( $show['hidden'] ) )
+			if ( isset( $show['hidden'] ) ) {
 				$this->addWhere( array( 'pp_propname IS NOT NULL' ) );
-			else if ( isset( $show['!hidden'] ) )
+			} elseif ( isset( $show['!hidden'] ) ) {
 				$this->addWhere( array( 'pp_propname IS NULL' ) );
+			}
 		}
 
 		$this->addOption( 'USE INDEX', array( 'categorylinks' => 'cl_from' ) );
 		// Don't order by cl_from if it's constant in the WHERE clause
-		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 )
+		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
 			$this->addOption( 'ORDER BY', 'cl_to' );
-		else
+		} else {
 			$this->addOption( 'ORDER BY', "cl_from, cl_to" );
+		}
 
 		$db = $this->getDB();
 		$res = $this->select( __METHOD__ );
 
 		if ( is_null( $resultPageSet ) ) {
-
 			$count = 0;
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( ++$count > $params['limit'] ) {
@@ -135,26 +139,27 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					break;
 				}
 
-				$title = Title :: makeTitle( NS_CATEGORY, $row->cl_to );
+				$title = Title::makeTitle( NS_CATEGORY, $row->cl_to );
 				$vals = array();
-				ApiQueryBase :: addTitleInfo( $vals, $title );
-				if ( isset( $prop['sortkey'] ) )
+				ApiQueryBase::addTitleInfo( $vals, $title );
+				if ( isset( $prop['sortkey'] ) ) {
 					$vals['sortkey'] = $row->cl_sortkey;
-				if ( isset( $prop['timestamp'] ) )
+				}
+				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
-				if ( isset( $prop['hidden'] ) && !is_null( $row->pp_propname ) )
+				}
+				if ( isset( $prop['hidden'] ) && !is_null( $row->pp_propname ) ) {
 					$vals['hidden'] = '';
+				}
 
 				$fit = $this->addPageSubItem( $row->cl_from, $vals );
-				if ( !$fit )
-				{
+				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', $row->cl_from .
 							'|' . $this->keyToTitle( $row->cl_to ) );
 					break;
 				}
 			}
 		} else {
-
 			$titles = array();
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( ++$count > $params['limit'] ) {
@@ -174,38 +179,38 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
-			'prop' => array (
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array (
+		return array(
+			'prop' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array (
 					'sortkey',
 					'timestamp',
 					'hidden',
 				)
 			),
 			'show' => array(
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
 					'hidden',
 					'!hidden',
 				)
 			),
 			'limit' => array(
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
-				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'continue' => null,
 			'categories' => array(
-				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase::PARAM_ISMULTI => true,
 			),
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'prop' => 'Which additional properties to get for each category.',
 			'limit' => 'How many categories to return',
 			'show' => 'Which kind of categories to show',
@@ -225,12 +230,12 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamples() {
-		return array (
-				"Get a list of categories [[Albert Einstein]] belongs to:",
-				"  api.php?action=query&prop=categories&titles=Albert%20Einstein",
-				"Get information about all categories used in the [[Albert Einstein]]:",
-				"  api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info"
-			);
+		return array(
+			'Get a list of categories [[Albert Einstein]] belongs to:',
+			'  api.php?action=query&prop=categories&titles=Albert%20Einstein',
+			'Get information about all categories used in the [[Albert Einstein]]:',
+			'  api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info'
+		);
 	}
 
 	public function getVersion() {

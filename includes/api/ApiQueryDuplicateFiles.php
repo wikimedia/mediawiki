@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Sep 27, 2008
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2008 Roan Kattow <Firstname>,<Lastname>@home.nl
+ * Copyright © 2008 Roan Kattow <Firstname>,<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( "ApiQueryBase.php" );
+	require_once( "ApiQueryBase.php" );
 }
 
 /**
@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'df' );
+		parent::__construct( $query, $moduleName, 'df' );
 	}
 
 	public function execute() {
@@ -54,7 +54,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			return;
 		}
 		$images = $namespaces[NS_FILE];
-		
+
 		$this->addTables( 'image', 'i1' );
 		$this->addTables( 'image', 'i2' );
 		$this->addFields( array(
@@ -70,17 +70,19 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			'i1.img_name != i2.img_name',
 		) );
 
-		if ( isset( $params['continue'] ) )
-		{
+		if ( isset( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 )
-				$this->dieUsage( "Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue" );
+			if ( count( $cont ) != 2 ) {
+				$this->dieUsage( 'Invalid continue param. You should pass the ' .
+					'original value returned by the previous query', '_badcontinue' );
+			}
 			$orig = $this->getDB()->strencode( $this->titleTokey( $cont[0] ) );
 			$dup = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
-			$this->addWhere( "i1.img_name > '$orig' OR " .
-					"(i1.img_name = '$orig' AND " .
-					"i2.img_name >= '$dup')" );
+			$this->addWhere(
+				"i1.img_name > '$orig' OR " .
+				"(i1.img_name = '$orig' AND " .
+				"i2.img_name >= '$dup')"
+			);
 		}
 
 		$this->addOption( 'ORDER BY', 'i1.img_name' );
@@ -90,10 +92,8 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 		$count = 0;
 		$titles = array();
-		while ( $row = $db->fetchObject( $res ) )
-		{
-			if ( ++$count > $params['limit'] )
-			{
+		while ( $row = $db->fetchObject( $res ) ) {
+			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue',
@@ -101,18 +101,16 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 					$this->keyToTitle( $row->dup_name ) );
 				break;
 			}
-			if ( !is_null( $resultPageSet ) )
+			if ( !is_null( $resultPageSet ) ) {
 				$titles[] = Title::makeTitle( NS_FILE, $row->dup_name );
-			else
-			{
+			} else {
 				$r = array(
 					'name' => $row->dup_name,
 					'user' => $row->dup_user_text,
 					'timestamp' => wfTimestamp( TS_ISO_8601, $row->dup_timestamp )
 				);
 				$fit = $this->addPageSubItem( $images[$row->orig_name], $r );
-				if ( !$fit )
-				{
+				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue',
 							$this->keyToTitle( $row->orig_name ) . '|' .
 							$this->keyToTitle( $row->dup_name ) );
@@ -120,26 +118,27 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				}
 			}
 		}
-		if ( !is_null( $resultPageSet ) )
+		if ( !is_null( $resultPageSet ) ) {
 			$resultPageSet->populateFromTitles( $titles );
+		}
 		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'limit' => array(
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
-				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'continue' => null,
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'limit' => 'How many files to return',
 			'continue' => 'When more results are available, use this to continue',
 		);
@@ -148,7 +147,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'List all files that are duplicates of the given file(s).';
 	}
-	
+
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
@@ -156,9 +155,10 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamples() {
-		return array (	'api.php?action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles',
-				'api.php?action=query&generator=allimages&prop=duplicatefiles',
-			);
+		return array(
+			'api.php?action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles',
+			'api.php?action=query&generator=allimages&prop=duplicatefiles',
+		);
 	}
 
 	public function getVersion() {
