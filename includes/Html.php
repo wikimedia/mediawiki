@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2009 Aryeh Gregor
+# Copyright © 2009 Aryeh Gregor
 # http://www.mediawiki.org/
 #
 # This program is free software; you can redistribute it and/or modify
@@ -38,6 +38,8 @@
  * This class is meant to be confined to utility functions that are called from
  * trusted code paths.  It does not do enforcement of policy like not allowing
  * <a> elements.
+ *
+ * @since 1.16
  */
 class Html {
 	# List of void elements from HTML5, section 9.1.2 as of 2009-08-10
