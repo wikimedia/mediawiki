@@ -18,7 +18,7 @@ class UploadFromChunksTest extends ApiSetup {
 
 	function makeChunk( $content ) {
 		$file = tempnam( wfTempDir(), "" );
-		$fh = fopen( $file, "w" );
+		$fh = fopen( $file, "wb" );
 		if ( $fh == false ) {
 			$this->markTestIncomplete( "Couldn't open $file!\n" );
 			return;
