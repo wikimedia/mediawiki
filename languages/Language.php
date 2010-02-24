@@ -2155,46 +2155,200 @@ class Language {
 	 */
 	function truncate( $string, $length, $ellipsis = '...' ) {
 		# Use the localized ellipsis character
-		if( $ellipsis == '...' ) {
+		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
 		}
-
-		if( $length == 0 ) {
+		# Check if there is no need to truncate
+		if ( $length == 0 ) {
 			return $ellipsis;
-		}
-		if ( strlen( $string ) <= abs( $length ) ) {
+		} elseif ( strlen( $string ) <= abs( $length ) ) {
 			return $string;
 		}
 		$stringOriginal = $string;
-		if( $length > 0 ) {
-			$string = substr( $string, 0, $length );
-			$char = ord( $string[strlen( $string ) - 1] );
-			$m = array();
-			if ($char >= 0xc0) {
-				# We got the first byte only of a multibyte char; remove it.
-				$string = substr( $string, 0, -1 );
-			} elseif( $char >= 0x80 &&
-			          preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
-			                      '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) ) {
-				# We chopped in the middle of a character; remove it
-				$string = $m[1];
-			}
+		if ( $length > 0 ) {
+			$string = substr( $string, 0, $length ); // xyz...
+			$string = self::removeBadCharLast( $string );
 			$string = $string . $ellipsis;
-
 		} else {
-			$string = substr( $string, $length );
-			$char = ord( $string[0] );
-			if( $char >= 0x80 && $char < 0xc0 ) {
-				# We chopped in the middle of a character; remove the whole thing
-				$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
-			}
+			$string = substr( $string, $length ); // ...xyz
+			$string = self::removeBadCharFirst( $string );
 			$string = $ellipsis . $string;
 		}
-		# Do not truncate if the ellipsis actually make the string longer. Bug 22181
+		# Do not truncate if the ellipsis makes the string longer (bug 22181)
 		if ( strlen( $string ) < strlen( $stringOriginal ) ) {
 			return $string;
 		} else {
 			return $stringOriginal;
+		}
+	}
+
+	/**
+	 * Remove bytes that represent an incomplete Unicode character
+	 * at the end of string (e.g. bytes of the char are missing)
+	 *
+	 * @param $string String
+	 * @return string
+	 */
+	protected function removeBadCharLast( $string ) {
+		$char = ord( $string[strlen( $string ) - 1] );
+		$m = array();
+		if ( $char >= 0xc0 ) {
+			# We got the first byte only of a multibyte char; remove it.
+			$string = substr( $string, 0, -1 );
+		} elseif ( $char >= 0x80 &&
+		      preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
+		                  '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) )
+		{
+			# We chopped in the middle of a character; remove it
+			$string = $m[1];
+		}
+		return $string;
+	}
+
+	/**
+	 * Remove bytes that represent an incomplete Unicode character
+	 * at the start of string (e.g. bytes of the char are missing)
+	 *
+	 * @param $string String
+	 * @return string
+	 */
+	protected function removeBadCharFirst( $string ) {
+		$char = ord( $string[0] );
+		if ( $char >= 0x80 && $char < 0xc0 ) {
+			# We chopped in the middle of a character; remove the whole thing
+			$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
+		}
+		return $string;
+	}
+
+	/*
+	 * Truncate a string of valid HTML to a specified length in bytes,
+	 * appending an optional string (e.g. for ellipses), and return valid HTML
+	 *
+	 * This is only intended for styled/linked text, such as HTML with
+	 * tags like <span> and <a>, were the tags are self-contained (valid HTML)
+	 *
+	 * Note: tries to fix broken HTML with MWTidy
+	 *
+	 * @param string $text String to truncate
+	 * @param int $length (zero/positive) Maximum length (excluding ellipses)
+	 * @param string $ellipsis String to append to the truncated text
+	 * @returns string
+	 */
+	function truncateHtml( $text, $length, $ellipsis = '...' ) {
+		# Use the localized ellipsis character
+		if ( $ellipsis == '...' ) {
+			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
+		}
+		# Check if there is no need to truncate
+		if ( $length <= 0 ) {
+			return $ellipsis; // no text shown, nothing to format
+		} elseif ( strlen($text) <= $length ) {
+			return $text; // string short enough even *with* HTML
+		}
+		$text = MWTidy::tidy( $text ); // fix tags
+		$displayLen = 0; // innerHTML legth so far
+		$doTruncate = true; // truncated string plus '...' shorter than original?
+		$tagType = 0; // 0-open, 1-close
+		$bracketState = 0; // 1-tag start, 2-tag name, 0-neither
+		$entityState = 0; // 0-not entity, 1-entity
+		$tag = $ret = $ch = '';
+		$openTags = array();
+		$textLen = strlen($text);
+		for( $pos = 0; $pos < $textLen; ++$pos ) {
+			$ch = $text[$pos];
+			$lastCh = $pos ? $text[$pos-1] : '';
+			$ret .= $ch; // add to result string
+			if ( $ch == '<' ) {
+				self::onEndBracket( $tag, $tagType, $lastCh, $openTags ); // for bad HTML
+				$entityState = 0; // for bad HTML
+				$bracketState = 1; // tag started (checking for backslash)
+			} elseif ( $ch == '>' ) {
+				self::onEndBracket( $tag, $tagType, $lastCh, $openTags );
+				$entityState = 0; // for bad HTML
+				$bracketState = 0; // out of brackets
+			} elseif ( $bracketState == 1 ) {
+				if ( $ch == '/' ) {
+					$tagType = 1; // close tag (e.g. "</span>")
+				} else {
+					$tagType = 0; // open tag (e.g. "<span>")
+					$tag .= $ch;
+				}
+				$bracketState = 2; // building tag name
+			} elseif ( $bracketState == 2 ) {
+				if ( $ch != ' ' ) {
+					$tag .= $ch;
+				} else {
+					// Name found (e.g. "<a href=..."), add on tag attributes...
+					$pos += self::skipAndAppend( $ret, $text, "<>", $pos + 1 );
+				}
+			} elseif ( $bracketState == 0 ) {
+				if ( $entityState ) {
+					if ( $ch == ';' ) {
+						$entityState = 0;
+						$displayLen++; // entity is one displayed char
+					}
+				} else {
+					if ( $ch == '&' ) {
+						$entityState = 1; // entity found, (e.g. "&nbsp;")
+					} else {
+						$displayLen++; // this char is displayed
+						// Add on the other display text after this...
+						$skipped = self::skipAndAppend(
+							$ret, $text, "<>&", $pos + 1, $length - $displayLen );
+						$displayLen += $skipped;
+						$pos += $skipped;
+					}
+				}
+			}
+			if( !$doTruncate ) continue;
+			# Truncate if not in the middle of a bracket/entity...
+			if ( $displayLen >= $length && $bracketState == 0 && $entityState == 0 ) {
+				$remaining = substr( $text, $pos + 1 ); // remaining string
+				$remaining = StringUtils::delimiterReplace( '<', '>', '', $remaining ); // rm tags
+				$remaining = StringUtils::delimiterReplace( '&', ';', '', $remaining ); // rm entities
+				$doTruncate = ( strlen($remaining) > strlen($ellipsis) );
+				if ( $doTruncate ) {
+					$ret = self::removeBadCharLast( $ret ) . $ellipsis;
+					break;
+				}
+			}
+		}
+		if ( $displayLen == 0 ) {
+			return ''; // no text shown, nothing to format
+		}
+		self::onEndBracket( $tag, $text[$textLen-1], $tagType, $openTags ); // for bad HTML
+		while ( count( $openTags ) > 0 ) {
+			$ret .= '</' . array_pop( $openTags ) . '>'; // close open tags
+		}
+		return $ret;
+	}
+
+	// truncateHtml() helper function
+	// like strcspn() but adds the skipped chars to $ret
+	private function skipAndAppend( &$ret, $text, $search, $start, $len = -1 ) {
+		$skipCount = 0;
+		if( $start < strlen($text) ) {
+			$skipCount = strcspn( $text, $search, $start, $len );
+			$ret .= substr( $text, $start, $skipCount );
+		}
+		return $skipCount;
+	}
+
+	// truncateHtml() helper function
+	// (a) push or pop $tag from $openTags as needed
+	// (b) clear $tag value
+	private function onEndBracket( &$tag, $tagType, $lastCh, &$openTags ) {
+		$tag = ltrim( $tag );
+		if( $tag != '' ) {
+			if( $tagType == 0 && $lastCh != '/' ) {
+				$openTags[] = $tag; // tag opened (didn't close itself)
+			} else if( $tagType == 1 ) {
+				if( $openTags && $tag == $openTags[count($openTags)-1] ) {
+					array_pop( $openTags ); // tag closed
+				}
+			}
+			$tag = '';
 		}
 	}
 
