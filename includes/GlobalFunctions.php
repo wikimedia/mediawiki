@@ -3083,7 +3083,7 @@ function wfBoolToStr( $value ) {
 
 /**
  * Load an extension messages file
- * @deprecated
+ * @deprecated in 1.16 (warnings in 1.18, removed in ?)
  */
 function wfLoadExtensionMessages( $extensionName, $langcode = false ) {
 }
