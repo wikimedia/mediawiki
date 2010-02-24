@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on May 13, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( "ApiQueryBase.php" );
+	require_once( "ApiQueryBase.php" );
 }
 
 /**
@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryCategoryInfo extends ApiQueryBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'ci' );
+		parent::__construct( $query, $moduleName, 'ci' );
 	}
 
 	public function execute() {
@@ -50,8 +50,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		$titles = $this->getPageSet()->getGoodTitles() +
 					$this->getPageSet()->getMissingTitles();
 		$cattitles = array();
-		foreach ( $categories as $c )
-		{
+		foreach ( $categories as $c ) {
 			$t = $titles[$c];
 			$cattitles[$c] = $t->getDBkey();
 		}
@@ -69,8 +68,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		$this->addFields( array( 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files', 'pp_propname AS cat_hidden' ) );
 		$this->addWhere( array( 'cat_title' => $cattitles ) );
 
-		if ( !is_null( $params['continue'] ) )
-		{
+		if ( !is_null( $params['continue'] ) ) {
 			$title = $this->getDB()->addQuotes( $params['continue'] );
 			$this->addWhere( "cat_title >= $title" );
 		}
@@ -80,18 +78,17 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		$catids = array_flip( $cattitles );
-		while ( $row = $db->fetchObject( $res ) )
-		{
+		while ( $row = $db->fetchObject( $res ) ) {
 			$vals = array();
 			$vals['size'] = intval( $row->cat_pages );
 			$vals['pages'] = $row->cat_pages - $row->cat_subcats - $row->cat_files;
 			$vals['files'] = intval( $row->cat_files );
 			$vals['subcats'] = intval( $row->cat_subcats );
-			if ( $row->cat_hidden )
+			if ( $row->cat_hidden ) {
 				$vals['hidden'] = '';
+			}
 			$fit = $this->addPageSubItems( $catids[$row->cat_title], $vals );
-			if ( !$fit )
-			{
+			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $row->cat_title );
 				break;
 			}
@@ -100,13 +97,13 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'continue' => null,
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'continue' => 'When more results are available, use this to continue',
 		);
 	}
@@ -116,7 +113,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 	}
 
 	protected function getExamples() {
-		return "api.php?action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar";
+		return 'api.php?action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar';
 	}
 
 	public function getVersion() {
