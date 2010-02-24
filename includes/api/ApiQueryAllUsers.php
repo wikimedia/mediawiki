@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on July 7, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiQueryBase.php' );
+	require_once( 'ApiQueryBase.php' );
 }
 
 /**
@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryAllUsers extends ApiQueryBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'au' );
+		parent::__construct( $query, $moduleName, 'au' );
 	}
 
 	public function execute() {
@@ -58,11 +58,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addTables( 'user', 'u1' );
 		$useIndex = true;
 
-		if ( !is_null( $params['from'] ) )
+		if ( !is_null( $params['from'] ) ) {
 			$this->addWhere( 'u1.user_name >= ' . $db->addQuotes( $this->keyToTitle( $params['from'] ) ) );
+		}
 
-		if ( !is_null( $params['prefix'] ) )
+		if ( !is_null( $params['prefix'] ) ) {
 			$this->addWhere( 'u1.user_name' . $db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
+		}
 
 		if ( !is_null( $params['group'] ) ) {
 			$useIndex = false;
@@ -73,8 +75,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'ug1.ug_group' => $params['group'] ) ) ) );
 		}
 
-		if ( $params['witheditsonly'] )
+		if ( $params['witheditsonly'] ) {
 			$this->addWhere( 'user_editcount > 0' );
+		}
 
 		if ( $fld_groups ) {
 			// Show the groups the given users belong to
@@ -113,7 +116,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$res = $this->select( __METHOD__ );
 
-		$data = array ();
+		$data = array();
 		$count = 0;
 		$lastUserData = false;
 		$lastUser = false;
@@ -127,18 +130,15 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		// to make sure all rows that belong to the same user are received.
 		//
 		while ( true ) {
-
 			$row = $db->fetchObject( $res );
 			$count++;
 
 			if ( !$row || $lastUser !== $row->user_name ) {
 				// Save the last pass's user data
-				if ( is_array( $lastUserData ) )
-				{
+				if ( is_array( $lastUserData ) ) {
 					$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 							null, $lastUserData );
-					if ( !$fit )
-					{
+					if ( !$fit ) {
 						$this->setContinueEnumParameter( 'from',
 								$this->keyToTitle( $lastUserData['name'] ) );
 						break;
@@ -146,8 +146,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				}
 
 				// No more rows left
-				if ( !$row )
+				if ( !$row ) {
 					break;
+				}
 
 				if ( $count > $limit ) {
 					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -162,18 +163,20 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					$lastUserData['blockedby'] = $row->blocker_name;
 					$lastUserData['blockreason'] = $row->ipb_reason;
 				}
-				if ( $fld_editcount )
+				if ( $fld_editcount ) {
 					$lastUserData['editcount'] = intval( $row->user_editcount );
-				if ( $fld_registration )
+				}
+				if ( $fld_registration ) {
 					$lastUserData['registration'] = $row->user_registration ?
 						wfTimestamp( TS_ISO_8601, $row->user_registration ) : '';
+				}
 
 			}
 
 			if ( $sqlLimit == $count ) {
 				// BUG!  database contains group name that User::getAllGroups() does not return
 				// TODO: should handle this more gracefully
-				ApiBase :: dieDebug( __METHOD__,
+				ApiBase::dieDebug( __METHOD__,
 					'MediaWiki configuration error: the database contains more user groups than known to User::getAllGroups() function' );
 			}
 
@@ -190,34 +193,34 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'from' => null,
 			'prefix' => null,
 			'group' => array(
-				ApiBase :: PARAM_TYPE => User::getAllGroups()
+				ApiBase::PARAM_TYPE => User::getAllGroups()
 			),
-			'prop' => array (
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array (
+			'prop' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
 					'blockinfo',
 					'groups',
 					'editcount',
 					'registration'
 				)
 			),
-			'limit' => array (
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
-				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+			'limit' => array(
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'witheditsonly' => false,
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'from' => 'The user name to start enumerating from.',
 			'prefix' => 'Search for all page titles that begin with this value.',
 			'group' => 'Limit users to a given group name',
@@ -234,7 +237,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=query&list=allusers&aufrom=Y',
 		);
 	}
