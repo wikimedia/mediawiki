@@ -647,12 +647,12 @@ abstract class ApiBase {
 					case 'user':
 						if( !is_array( $value ) ) $value = array( $value );
 						
-						foreach( $value as $val ) {
-							$title = Title::makeTitleSafe( NS_USER, $value );
+						foreach( $value as $key => $val ) {
+							$title = Title::makeTitleSafe( NS_USER, $val );
 							if ( is_null( $title ) ) {
 								$this->dieUsage( "Invalid value for user parameter $encParamName", "baduser_{$encParamName}" );
 							}
-							$value = $title->getText();
+							$value[$key] = $title->getText();
 						}
 						
 						if( !$multi ) $value = $value[0];
