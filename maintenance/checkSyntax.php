@@ -22,7 +22,7 @@
  
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
-class SyntaxChecker extends Maintenance {
+class CheckSyntax extends Maintenance {
 
 	// List of files we're going to check
 	private $mFiles = array(), $mFailures = array(), $mWarnings = array();
@@ -120,7 +120,7 @@ class SyntaxChecker extends Maintenance {
 				$this->output( "done\n" );
 			}
 
-			preg_match_all( '/^\s*[AM]\s+(.*?)\r?$/m', $output, $matches );
+			preg_match_all( '/^\s*[AM].{7}(.*?)\r?$/m', $output, $matches );
 			foreach ( $matches[1] as $file ) {
 				if ( self::isSuitableFile( $file ) && !is_dir( $file ) ) {
 					$this->mFiles[] = $file;
@@ -291,6 +291,6 @@ class SyntaxChecker extends Maintenance {
 	}
 }
 
-$maintClass = "SyntaxChecker";
+$maintClass = "CheckSyntax";
 require_once( DO_MAINTENANCE );
 
