@@ -10,6 +10,16 @@
 function wfSpecialUserlogout() {
 	global $wgUser, $wgOut;
 
+	/**
+	 * Some satellite ISPs use broken precaching schemes that log people out straight after
+	 * they're logged in (bug 17790). Luckily, there's a way to detect such requests.
+	 */
+	wfDebug( $_SERVER['REQUEST_URI'] . "\n" );
+	if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '&amp;' ) !== false ) {
+		wfHttpError( 400, wfMsg( 'loginerror' ), wfMsg( 'suspicious-userlogout' ) );
+		return;
+	}
+	
 	$oldName = $wgUser->getName();
 	$wgUser->logout();
 	$wgOut->setRobotPolicy( 'noindex,nofollow' );

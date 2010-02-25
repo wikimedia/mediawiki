@@ -465,6 +465,7 @@ $wgMessageStructure = array(
 		'login-throttled',
 		'loginlanguagelabel',
 		'loginlanguagelinks',
+		'suspicious-userlogout',
 	),
 	'resetpass' => array(
 		'resetpass',
