@@ -2095,11 +2095,22 @@ CSS;
 	 * Add content from a sidebar system message
 	 * Currently only used for MediaWiki:Sidebar (but may be used by Extensions)
 	 *
+	 * This is just a wrapper around addToSidebarPlain() for backwards compatibility
+	 * 
 	 * @param &$bar array
 	 * @param $message String
 	 */
 	function addToSidebar( &$bar, $message ) {
-		$lines = explode( "\n", wfMsgForContent( $message ) );
+		$this->addToSidebarPlain( $bar, wfMsgForContent( $message ) );
+	}
+	
+	/**
+	 * Add content from plain text
+	 * @param &$bar array
+	 * @param $text string
+	 */
+	function addToSidebarPlain( &$bar, $text ) {
+		$lines = explode( "\n", $text );
 		$heading = '';
 		foreach( $lines as $line ) {
 			if( strpos( $line, '*' ) !== 0 ) {
