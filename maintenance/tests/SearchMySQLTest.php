@@ -6,7 +6,7 @@ class SearchMySQLTest extends SearchEngineTest {
 
 	function setUp() {
 		global $wgDBprefix;
-		if($wgDBprefix === "parsertest_") $this->markTestSkipped("This test can't (yet?) be run with the parser tests");
+		if($wgDBprefix === "parsertest_" || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_')) $this->markTestSkipped("This test can't (yet?) be run with the parser tests");
 
 		$GLOBALS['wgContLang'] = new Language;
 		$this->db = $this->buildTestDatabase(
