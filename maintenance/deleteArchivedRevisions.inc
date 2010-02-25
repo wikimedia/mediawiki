@@ -32,7 +32,7 @@ class DeleteArchivedRevisionsImplementation {
 
 		# Delete as appropriate
 		$output->handleOutput( "Deleting archived revisions... " );
-		$dbw->query( "TRUNCATE TABLE $tbl_arch" );
+		$dbw->query( "DELETE FROM $tbl_arch" );
 
 		$count = $dbw->affectedRows();
 		$deletedRows = $count != 0;
@@ -43,7 +43,7 @@ class DeleteArchivedRevisionsImplementation {
 		# Purge redundant text records
 		$dbw->commit();
 		if( $deletedRows ) {
-			$output->purgeRedundantText( true );
+			$this->purgeRedundantText( true );
 		}
 	}
 }
