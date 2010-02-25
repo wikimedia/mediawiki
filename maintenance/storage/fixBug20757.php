@@ -31,6 +31,16 @@ class FixBug20757 extends Maintenance {
 
 		$totalRevs = $dbr->selectField( 'text', 'MAX(old_id)', false, __METHOD__ );
 
+		if ( $dbr->getType() == 'mysql' 
+			&& version_compare( $dbr->getServerVersion(), '4.1.0', '>=' ) )
+		{
+			// In MySQL 4.1+, the binary field old_text has a non-working LOWER() function
+			$lowerLeft = 'LOWER(CONVERT(LEFT(old_text,22) USING latin1))';
+		} else {
+			// No CONVERT() in MySQL 4.0
+			$lowerLeft = 'LOWER(LEFT(old_text,22))';
+		}
+
 		while ( true ) {
 			print "ID: $startId / $totalRevs\r";
 
@@ -40,7 +50,7 @@ class FixBug20757 extends Maintenance {
 				array( 
 					'old_id > ' . intval( $startId ),
 					'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\'',
-					'LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
+					"$lowerLeft = 'o:15:\"historyblobstub\"'",
 				),
 				__METHOD__,
 				array( 
