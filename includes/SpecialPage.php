@@ -254,6 +254,9 @@ class SpecialPage {
 	/**
 	 * Given a special page alias, return the special page name.
 	 * Returns false if there is no such alias.
+	 *
+	 * @param $alias String
+	 * @return String or false
 	 */
 	static function resolveAlias( $alias ) {
 		global $wgContLang;
@@ -272,6 +275,9 @@ class SpecialPage {
 	 * Given a special page name with a possible subpage, return an array
 	 * where the first element is the special page name and the second is the
 	 * subpage.
+	 *
+	 * @param $alias String
+	 * @return Array
 	 */
 	static function resolveAliasWithSubpage( $alias ) {
 		$bits = explode( '/', $alias, 2 );
@@ -289,8 +295,7 @@ class SpecialPage {
 	 * method for adding special pages in extensions. It's now suggested that you add
 	 * an associative record to $wgSpecialPages. This avoids autoloading SpecialPage.
 	 *
-	 * @param SpecialPage $page
-	 * @static
+	 * @param $page SpecialPage
 	 */
 	static function addPage( &$page ) {
 		if ( !self::$mListInitialised ) {
@@ -302,9 +307,8 @@ class SpecialPage {
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param mixed $page (SpecialPage or string)
-	 * @param string $group
-	 * @static
+	 * @param $page Mixed: SpecialPage or string
+	 * @param $group String
 	 */
 	static function setGroup( $page, $group ) {
 		global $wgSpecialPageGroups;
@@ -315,8 +319,7 @@ class SpecialPage {
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param SpecialPage $page
-	 * @static
+	 * @param $page SpecialPage
 	 */
 	static function getGroup( &$page ) {
 		global $wgSpecialPageGroups;
@@ -340,8 +343,6 @@ class SpecialPage {
 	 * Remove a special page from the list
 	 * Formerly used to disable expensive or dangerous special pages. The
 	 * preferred method is now to add a SpecialPage_initList hook.
-	 *
-	 * @static
 	 */
 	static function removePage( $name ) {
 		if ( !self::$mListInitialised ) {
@@ -352,8 +353,9 @@ class SpecialPage {
 
 	/**
 	 * Check if a given name exist as a special page or as a special page alias
-	 * @param $name string: name of a special page
-	 * @return boolean: true if a special page exists with this name
+	 *
+	 * @param $name String: name of a special page
+	 * @return Boolean: true if a special page exists with this name
 	 */
 	static function exists( $name ) {
 		global $wgContLang;
@@ -376,8 +378,9 @@ class SpecialPage {
 
 	/**
 	 * Find the object with a given name and return it (or NULL)
-	 * @static
-	 * @param string $name
+	 *
+	 * @param $name String
+	 * @return SpecialPage object or null if the page doesn't exist
 	 */
 	static function getPage( $name ) {
 		if ( !self::$mListInitialised ) {
@@ -401,6 +404,8 @@ class SpecialPage {
 	/**
 	 * Get a special page with a given localised name, or NULL if there
 	 * is no such special page.
+	 *
+	 * @return SpecialPage object or null if the page doesn't exist
 	 */
 	static function getPageByAlias( $alias ) {
 		$realName = self::resolveAlias( $alias );
@@ -414,7 +419,8 @@ class SpecialPage {
 	/**
 	 * Return categorised listable special pages which are available
 	 * for the current user, and everyone.
-	 * @static
+	 *
+	 * @return Associative array mapping page's name to its SpecialPage object
 	 */
 	static function getUsablePages() {
 		global $wgUser;
@@ -439,7 +445,8 @@ class SpecialPage {
 
 	/**
 	 * Return categorised listable special pages for all users
-	 * @static
+	 *
+	 * @return Associative array mapping page's name to its SpecialPage object
 	 */
 	static function getRegularPages() {
 		if ( !self::$mListInitialised ) {
@@ -459,7 +466,8 @@ class SpecialPage {
 	/**
 	 * Return categorised listable special pages which are available
 	 * for the current user, but not for everyone
-	 * @static
+	 *
+	 * @return Associative array mapping page's name to its SpecialPage object
 	 */
 	static function getRestrictedPages() {
 		global $wgUser;
@@ -566,7 +574,8 @@ class SpecialPage {
 	 * Just like executePath() except it returns the HTML instead of outputting it
 	 * Returns false if there was no such special page, or a title object if it was
 	 * a redirect.
-	 * @static
+	 *
+	 * @return String: HTML fragment
 	 */
 	static function capturePath( &$title ) {
 		global $wgOut, $wgTitle;
@@ -588,10 +597,10 @@ class SpecialPage {
 	/**
 	 * Get the local name for a specified canonical name
 	 *
-	 * @param $name
-	 * @param mixed $subpage Boolean false, or string
+	 * @param $name String
+	 * @param $subpage Mixed: boolean false, or string
 	 *
-	 * @return string
+	 * @return String
 	 */
 	static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
@@ -621,6 +630,8 @@ Perhaps no page aliases are defined for it?" );
 
 	/**
 	 * Get a localised Title object for a specified special page name
+	 *
+	 * @return Title object
 	 */
 	static function getTitleFor( $name, $subpage = false ) {
 		$name = self::getLocalNameFor( $name, $subpage );
@@ -633,6 +644,8 @@ Perhaps no page aliases are defined for it?" );
 
 	/**
 	 * Get a localised Title object for a page name with a possibly unvalidated subpage
+	 *
+	 * @return Title object or null if the page doesn't exist
 	 */
 	static function getSafeTitleFor( $name, $subpage = false ) {
 		$name = self::getLocalNameFor( $name, $subpage );
@@ -645,6 +658,7 @@ Perhaps no page aliases are defined for it?" );
 
 	/**
 	 * Get a title for a given alias
+	 *
 	 * @return Title or null if there is no such alias
 	 */
 	static function getTitleForAlias( $alias ) {
@@ -666,11 +680,12 @@ Perhaps no page aliases are defined for it?" );
 	 *     If you override execute(), you can recover the default behaviour with userCanExecute()
 	 *     and displayRestrictionError()
 	 *
-	 * @param string $name Name of the special page, as seen in links and URLs
-	 * @param string $restriction User right required, e.g. "block" or "delete"
-	 * @param boolean $listed Whether the page is listed in Special:Specialpages
-	 * @param string $function Function called by execute(). By default it is constructed from $name
-	 * @param string $file File which is included by execute(). It is also constructed from $name by default
+	 * @param $name String: name of the special page, as seen in links and URLs
+	 * @param $restriction String: user right required, e.g. "block" or "delete"
+	 * @param $listed Boolean: whether the page is listed in Special:Specialpages
+	 * @param $function Callback: function called by execute(). By default it is constructed from $name
+	 * @param $file String: file which is included by execute(). It is also constructed from $name by default
+	 * @param $includable Boolean: whether the page can be included in normal pages
 	 */
 	function SpecialPage( $name = '', $restriction = '', $listed = true, $function = false, $file = 'default', $includable = false ) {
 		$this->mName = $name;
@@ -731,7 +746,7 @@ Perhaps no page aliases are defined for it?" );
 	 * Can be overridden by subclasses with more complicated permissions
 	 * schemes.
 	 *
-	 * @return bool Should the page be displayed with the restricted-access
+	 * @return Boolean: should the page be displayed with the restricted-access
 	 *   pages?
 	 */
 	public function isRestricted() {
@@ -745,8 +760,8 @@ Perhaps no page aliases are defined for it?" );
 	 * special page (as defined by $mRestriction).  Can be overridden by sub-
 	 * classes with more complicated permissions schemes.
 	 *
-	 * @param User $user The user to check
-	 * @return bool Does the user have permission to view the page?
+	 * @param $user User: the user to check
+	 * @return Boolean: does the user have permission to view the page?
 	 */
 	public function userCanExecute( $user ) {
 		return $user->isAllowed( $this->mRestriction );
@@ -800,7 +815,7 @@ Perhaps no page aliases are defined for it?" );
 	 * May be overriden, i.e. by extensions to stick with the naming conventions
 	 * for message keys: 'extensionname-xxx'
 	 *
-	 * @param string message key of the summary
+	 * @param $summaryMessageKey String: message key of the summary
 	 */
 	function outputHeader( $summaryMessageKey = '' ) {
 		global $wgOut, $wgContLang;
@@ -817,17 +832,24 @@ Perhaps no page aliases are defined for it?" );
 
 	}
 
-	# Returns the name that goes in the <h1> in the special page itself, and also the name that
-	# will be listed in Special:Specialpages
-	#
-	# Derived classes can override this, but usually it is easier to keep the default behaviour.
-	# Messages can be added at run-time, see MessageCache.php
+	/**
+	 * Returns the name that goes in the \<h1\> in the special page itself, and
+	 * also the name that will be listed in Special:Specialpages
+	 *
+	 * Derived classes can override this, but usually it is easier to keep the
+	 * default behaviour. Messages can be added at run-time, see
+	 * MessageCache.php.
+	 *
+	 * @return String
+	 */
 	function getDescription() {
 		return wfMsg( strtolower( $this->mName ) );
 	}
 
 	/**
 	 * Get a self-referential title object
+	 *
+	 * @return Title object
 	 */
 	function getTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
@@ -852,7 +874,7 @@ Perhaps no page aliases are defined for it?" );
 	 * Return part of the request string for a special redirect page
 	 * This allows passing, e.g. action=history to Special:Mypage, etc.
 	 *
-	 * @return string
+	 * @return String
 	 */
 	function getRedirectQuery() {
 		global $wgRequest;
