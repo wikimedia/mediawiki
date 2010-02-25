@@ -1,5 +1,5 @@
 <?php
-/** Mainfränkisch (Mainfränkisch)
+/** Upper Franconian (Mainfränkisch)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -503,12 +503,28 @@ Duu ghâusch nach dem ausdrug aa [[Special:Search/{{PAGENAME}}|in aln sajdn drin
 'upload' => 'Nauflôôdn',
 
 # File description page
-'filehist'           => "Wärsjoon'n bis jeds",
-'filehist-help'      => 'Glig uf ân dsajdbhungd, um dii dôômôôlich fasung ôôdsgugn',
-'filehist-datetime'  => 'Âjschdlungs-daadum un -dsajd',
-'filehist-thumbtext' => "Wii d'fasung fom $2, $3 Uur grâub aussiid",
-'filehist-comment'   => 'Sembf dâdsuâ',
-'imagelinks'         => 'Dsajchn, wo dii dadaj als benudsd wärd',
+'filehist'                => "Wärsjoon'n bis jeds",
+'filehist-help'           => 'Glig uf ân dsajdbhungd, um dii dôômôôlich fasung ôôdsgugn',
+'filehist-current'        => 'agduäl',
+'filehist-datetime'       => 'Âjschdlungs-daadum un -dsajd',
+'filehist-thumb'          => 'Schbigbildlâ',
+'filehist-thumbtext'      => "Wii d'fasung fom $2, $3 Uur grâub aussiid",
+'filehist-user'           => 'Bajdräächâr',
+'filehist-dimensions'     => 'Maase',
+'filehist-filesize'       => 'Dadajgräâs',
+'filehist-comment'        => 'Sembf dâdsuâ',
+'filehist-missing'        => 'Dadaj fääld',
+'imagelinks'              => 'Dsajchn, wo dii dadaj als benudsd wärd',
+'linkstoimage'            => 'Dii dadaj wäd fon {{PLURAL:$1|därâ |denâ $1 }} sajdn benudsd:',
+'linkstoimage-more'       => "Määr wii {{PLURAL:$1|ane |$1 }} sajdn fârwajsn uf diâ dadaj.
+Dii lisdn undn dsajch dâfâu nôr äärschd môôl {{PLURAL:$1|an|$1}} fârwajs.
+S'gajd awâr aa â [[Special:WhatLinksHere/$2|lisdn mid alâ fârwajs]].",
+'nolinkstoimage'          => 'Diâ dadaj wärd närchends benudsd.',
+'morelinkstoimage'        => '[[Special:WhatLinksHere/$1|Diâ folchende]] fârwajs uf diâ dadaj.',
+'redirectstofile'         => 'Diâ {{PLURAL:$1|folchende dadaj schigd|folchende $1 dadajâ schigâ}} uf diâ dadaj wajdâr:',
+'duplicatesoffile'        => 'Dii {{PLURAL:$1|folchende dadaj is â dublighaad|folchende $1 dadajâ sn dublighaade}} fon dâr dadaj ([[Special:FileDuplicateSearch/$2|wajdâre ôôndlshajdâ]]):',
+'sharedupload'            => 'Dii dadaj ghumd fon $1, un mr däf se fir andârâ brojägd aa nemâ.',
+'sharedupload-desc-there' => 'Dii dadaj ghumd fon $1, un mr däf se fir andârâ brojägd aa nemâ. Genauârs schded uf dr [$2 beschrajwungssajdâ fon dr dadaj].',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|Bajd|Bajds}}',
@@ -588,10 +604,24 @@ Wen'd dii sajdn irchendwan nima fârfolchn wilsd, musd nôr af „{{int:Unwatch}
 'mycontris' => 'Maj bajdreech',
 
 # What links here
-'whatlinkshere'      => 'Linggs af däj Saidn',
-'whatlinkshere-page' => 'Sajdn:',
+'whatlinkshere'            => 'Linggs af däj Saidn',
+'whatlinkshere-page'       => 'Sajdn:',
+'isredirect'               => 'Wajdârlajdungssajdn',
+'istemplate'               => 'Foorlaachn-ajbindung',
+'isimage'                  => 'fârwajs uf des bild hiir',
+'whatlinkshere-prev'       => '{{PLURAL:$1|vorhäärichâr|vorhääriche $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|nägschdâr|nägschde $1}}',
+'whatlinkshere-links'      => '← fârwajse hiirhäär',
+'whatlinkshere-hideredirs' => '$1 wajdârlajdungn',
+'whatlinkshere-hidetrans'  => '$1 Foorlaachn-ajbindungn',
+'whatlinkshere-hidelinks'  => '$1 Fârwajse',
+'whatlinkshere-hideimages' => '$1 Bild-fârwajse',
+'whatlinkshere-filters'    => 'Fildhâr',
 
 # Block/unblock
+'blockip'          => 'IP-Adressn odr bearbajdâr aus-schbärn',
+'blockip-title'    => 'Bearbajdâr aus-schbärn',
+'blockip-legend'   => 'IP-Adresn odr Bearbajdâr aus-schbärn',
 'blocklink'        => 'Schbärn',
 'unblocklink'      => 'frajgeem',
 'change-blocklink' => 'Schbärn ändârn',
