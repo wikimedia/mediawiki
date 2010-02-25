@@ -745,6 +745,7 @@ comment from another wiki.
 * (bug 22551) Special:Resetpass now has a "Cancel" button that sends the user to 
   the page set in the &returnto parameter.
 * (bug 19194) Search box in Modern skin doesn't focus with Safari/Chrome
+* (bug 17790) Users instantly logged off on HughesNet
 
 == API changes in 1.16 ==
 
