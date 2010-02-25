@@ -7,6 +7,19 @@
          <!-- convertWarningsToExceptions="true" -->
   <testsuite name="MediaWiki Test Suite">
     <directory>.</directory>
+    <!-- <file>HttpTest.php</file> -->
+    <!-- <file>SearchEngineTest.php</file> -->
+    <!-- <file>SiteConfigurationTest.php</file> -->
+    <!-- <file>RevisionTest.php</file> -->
+    <!-- <file>XmlTest.php</file> -->
+    <!-- <file>TimeAdjustTest.php</file> -->
+    <!-- <file>ApiTest.php</file> -->
+    <!-- <file>LanguageConverterTest.php</file> -->
+    <!-- <file>TitleTest.php</file> -->
+    <!-- <file>UploadFromChunksTest.php</file> -->
+    <!-- <file>LocalFileTest.php</file> -->
+    <!-- <file>XmlTest.php</file> -->
+    <!-- <file>MediaWikiParserTest.php</file> -->
   </testsuite>
   <groups>
     <exclude>
