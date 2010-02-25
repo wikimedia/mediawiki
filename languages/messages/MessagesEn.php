@@ -1134,7 +1134,7 @@ Please wait before trying again.',
 * Español|es
 * Italiano|it
 * Nederlands|nl', # do not translate or duplicate this message to other languages
-'suspicious-userlogout'     => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
+'suspicious-userlogout'      => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Change password',
