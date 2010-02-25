@@ -1335,25 +1335,26 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'prefs-diffs'                   => 'Erinevused',
 
 # User rights
-'userrights'                  => 'Kasutaja õiguste muutmine',
-'userrights-lookup-user'      => 'Muuda kasutajarühma',
-'userrights-user-editname'    => 'Sisesta kasutajatunnus:',
-'editusergroup'               => 'Muuda kasutajarühma',
-'editinguser'                 => "Muudan kasutaja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) õigusi",
-'userrights-editusergroup'    => 'Kasutajarühma valik',
-'saveusergroups'              => 'Salvesta rühma muudatused',
-'userrights-groupsmember'     => 'Kuulub rühma:',
-'userrights-groups-help'      => 'Sa võid muuta selle kasutaja kuuluvust eri kasutajarühmadesse.
+'userrights'                   => 'Kasutaja õiguste muutmine',
+'userrights-lookup-user'       => 'Muuda kasutajarühma',
+'userrights-user-editname'     => 'Sisesta kasutajatunnus:',
+'editusergroup'                => 'Muuda kasutajarühma',
+'editinguser'                  => "Muudan kasutaja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) õigusi",
+'userrights-editusergroup'     => 'Kasutajarühma valik',
+'saveusergroups'               => 'Salvesta rühma muudatused',
+'userrights-groupsmember'      => 'Kuulub rühmadesse:',
+'userrights-groupsmember-auto' => 'Kuulub vaikimisi rühmadesse:',
+'userrights-groups-help'       => 'Sa võid muuta selle kasutaja kuuluvust eri kasutajarühmadesse.
 * Märgitud kast tähendab, et kasutaja kuulub sellesse rühma.
 * Märkimata kast tähendab, et kasutaja ei kuulu sellesse rühma.
 * Aga * kasutajarühma juures tähistab õigust, mida sa peale lisamist enam eemaldada ei saa, või siis ka vastupidi.',
-'userrights-reason'           => 'Põhjus:',
-'userrights-no-interwiki'     => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
-'userrights-nodatabase'       => 'Andmebaasi $1 ei ole olemas või pole see kohalik.',
-'userrights-nologin'          => 'Kasutaja õiguste muutmiseks, pead sa ülema õigustega kontoga [[Special:UserLogin|sisse logima]].',
-'userrights-notallowed'       => 'Sulle pole antud luba jagada kasutajatele õigusi.',
-'userrights-changeable-col'   => 'Rühmad, mida sa saad muuta',
-'userrights-unchangeable-col' => 'Rühmad, mida sa ei saa muuta',
+'userrights-reason'            => 'Põhjus:',
+'userrights-no-interwiki'      => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
+'userrights-nodatabase'        => 'Andmebaasi $1 ei ole olemas või pole see kohalik.',
+'userrights-nologin'           => 'Kasutaja õiguste muutmiseks, pead sa ülema õigustega kontoga [[Special:UserLogin|sisse logima]].',
+'userrights-notallowed'        => 'Sulle pole antud luba jagada kasutajatele õigusi.',
+'userrights-changeable-col'    => 'Rühmad, mida sa saad muuta',
+'userrights-unchangeable-col'  => 'Rühmad, mida sa ei saa muuta',
 
 # Groups
 'group'               => 'Rühm:',

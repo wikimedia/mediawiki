@@ -664,6 +664,8 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|systeembeheerder]] van {{
 'readonly_lag'         => 'De database is automatisch vergrendeld terwijl de ondergeschikte databaseservers synchroniseren met de hoofdserver.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
+'fileappenderrorread'  => '"$1" kon niet gelezen worden tijdens het toevoegen.',
+'fileappenderror'      => 'Het was niet mogelijk "$1" toe te voegen aan "$2".',
 'filecopyerror'        => 'Bestand “$1” kon niet naar “$2” gekopieerd worden.',
 'filerenameerror'      => '“$1” kon niet tot “$2” hernoemd worden.',
 'filedeleteerror'      => 'Bestand “$1” kon niet verwijderd worden.',
@@ -1678,6 +1680,7 @@ Zie de [[Special:NewFiles|galerij met nieuwe bestanden]] voor een visueler overz
 'illegalfilename'             => 'De bestandsnaam "$1" bevat ongeldige karakters.
 Geef het bestand een andere naam, en probeer het dan opnieuw te uploaden.',
 'badfilename'                 => 'De naam van het bestand is gewijzigd in "$1".',
+'filetype-mime-mismatch'      => 'De bestandsextensie hoort niet bij het MIME-type.',
 'filetype-badmime'            => 'Het is niet toegestaan om bestanden van MIME-type "$1" te uploaden.',
 'filetype-bad-ie-mime'        => 'Dit bestand kan niet toegevoegd worden omdat Internet Explorer het zou indentificeren als "$1", een niet toegelaten bestandstype dat potentieel schadelijk is.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is een ongewenst bestandstype.

@@ -1222,8 +1222,8 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'notitlematches'                   => 'Nenhum título de página coincide com o termo pesquisado',
 'textmatches'                      => 'Resultados nos textos das páginas',
 'notextmatches'                    => 'Não foi possível localizar, no conteúdo das páginas, o termo pesquisado',
-'prevn'                            => '{{PLURAL:$1|$1}} anteriores',
-'nextn'                            => 'próximos {{PLURAL:$1|$1}}',
+'prevn'                            => '{{PLURAL:$1|anterior|$1 anteriores}}',
+'nextn'                            => '{{PLURAL:$1|posterior|$1 posteriores}}',
 'prevn-title'                      => '$1 {{PLURAL:$1|resultado anterior|resultados anteriores}}',
 'nextn-title'                      => '{{PLURAL:$1|próximo|próximos}} $1 {{PLURAL:$1|resultado|resultados}}',
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
@@ -1975,7 +1975,7 @@ No entanto, outros sítios na internet podem fazer ligações para um ficheiro a
 'notargettext'            => 'Especifique sobre que página alvo ou utilizador pretende executar esta função.',
 'nopagetitle'             => 'Página alvo não existe',
 'nopagetext'              => 'A página alvo especificada não existe.',
-'pager-newer-n'           => '{{PLURAL:$1|1 seguinte|$1 seguintes}}',
+'pager-newer-n'           => '{{PLURAL:$1|posterior|$1 posteriores}}',
 'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
 'suppress'                => 'Supervisor',
 
@@ -2098,7 +2098,7 @@ O endereço de correio que introduziu nas [[Special:Preferences|suas preferênci
 'emailsubject'     => 'Assunto:',
 'emailmessage'     => 'Mensagem:',
 'emailsend'        => 'Enviar',
-'emailccme'        => 'Enviar uma cópia da mensagem para o meu correio electrónico.',
+'emailccme'        => 'Enviar uma cópia desta mensagem para o meu correio electrónico.',
 'emailccsubject'   => 'Cópia da sua mensagem para $1: $2',
 'emailsent'        => 'Mensagem enviada',
 'emailsenttext'    => 'A sua mensagem foi enviada.',
@@ -2452,7 +2452,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'blocklistline'                   => '$1, $2 bloqueou $3 ($4)',
 'infiniteblock'                   => 'infinito',
 'expiringblock'                   => 'expira em $1 às $2',
-'anononlyblock'                   => 'anón. apenas',
+'anononlyblock'                   => 'apenas anón.',
 'noautoblockblock'                => 'bloqueio automático impossibilitado',
 'createaccountblock'              => 'criação de conta bloqueada',
 'emailblock'                      => 'correio electrónico bloqueado',
@@ -2506,8 +2506,8 @@ Por favor, contacte o seu fornecedor do serviço de internet ou o seu serviço d
 'cant-see-hidden-user'            => "O utilizador que está tentando bloquear já está bloqueado e oculto. Como não possui privilégio de bloquear utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
 
 # Developer tools
-'lockdb'              => 'Trancar base de dados',
-'unlockdb'            => 'Destrancar base de dados',
+'lockdb'              => 'Bloquear base de dados',
+'unlockdb'            => 'Desbloquear base de dados',
 'lockdbtext'          => 'Trancar a base de dados impedirá todos os utilizadores de editar páginas, mudar as suas preferências, editar a lista de páginas vigiadas e executar qualquer outra acção que requer mudanças na base de dados.
 Por favor, confirme que é precisamente isso que pretende fazer e que vai destrancar a base de dados quando a manutenção estiver concluída.',
 'unlockdbtext'        => 'Destrancar a base de dados vai possibilitar a todos os utilizadores editar páginas, mudar as suas preferências, alterar as suas listas de páginas vigiadas e executar qualquer outra acção que requer mudanças na base de dados. Por favor, confirme que é isso que pretende fazer.',

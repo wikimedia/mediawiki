@@ -14,6 +14,7 @@
  * @author Irwangatot
  * @author IvanLanin
  * @author Kenrick95
+ * @author McDutchie
  * @author Meursault2004
  * @author Remember the dot
  * @author Rex
@@ -645,6 +646,7 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'readonly_lag'         => 'Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama',
 'internalerror'        => 'Kesalahan internal',
 'internalerror_info'   => 'Kesalahan internal: $1',
+'fileappenderror'      => 'Tidak dapat memasukkan "$1" ke "$2".',
 'filecopyerror'        => 'Tidak dapat menyalin berkas "$1" ke "$2".',
 'filerenameerror'      => 'Tidak dapat mengubah nama berkas "$1" menjadi "$2".',
 'filedeleteerror'      => 'Tidak dapat menghapus berkas "$1".',
@@ -1672,7 +1674,7 @@ Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL tidak sah: $1',
-'http-invalid-scheme'   => ' URL dengan skema "$ 1" tidak didukung',
+'http-invalid-scheme'   => 'URL dengan skema "$1" tidak didukung.',
 'http-request-error'    => 'Permintaan HTTP gagal karena kesalahan yang tidak diketahui.',
 'http-read-error'       => 'Kesalahan pembacaan HTTP',
 'http-curl-error'       => 'Kesalahan saat mengambil URL: $ 1',
