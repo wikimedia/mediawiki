@@ -2106,6 +2106,7 @@ CSS;
 	
 	/**
 	 * Add content from plain text
+	 * @since 1.17
 	 * @param &$bar array
 	 * @param $text string
 	 */
