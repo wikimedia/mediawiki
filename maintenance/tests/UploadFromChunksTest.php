@@ -1,6 +1,10 @@
 <?php
 
 require_once( "ApiSetup.php" );
+require_once( dirname( dirname( __FILE__ ) )."/deleteArchivedFiles.inc" );
+require_once( dirname( dirname( __FILE__ ) )."/deleteArchivedRevisions.inc" );
+
+class nullClass {public function handleOutput(){}}
 
 class UploadFromChunksTest extends ApiSetup {
 
@@ -9,6 +13,14 @@ class UploadFromChunksTest extends ApiSetup {
 
 		$wgEnableUploads = true;
 		parent::setup();
+		$wgLocalFileRepo = array(
+			'class' => 'LocalRepo',
+			'name' => 'local',
+			'directory' => 'test-repo',
+			'url' => 'http://example.com/images',
+			'hashLevels' => 2,
+			'transformVia404' => false,
+		);
 
 		ini_set( 'file_loads', 1 );
 		ini_set( 'log_errors', 1 );
@@ -64,6 +76,7 @@ class UploadFromChunksTest extends ApiSetup {
 			'action' => 'login',
 			'lgname' => self::$userName,
 			'lgpassword' => self::$passWord ) );
+
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
 		$this->assertEquals( "Success", $data[0]['login']['result'] );
@@ -202,72 +215,29 @@ class UploadFromChunksTest extends ApiSetup {
 	/**
 	 * @depends testLogin
 	 */
-	function testUploadChunkDoneDuplicate( $data ) {
-		global $wgUser, $wgVerifyMimeType;
-
-		$wgVerifyMimeType = false;
-		$wgUser = User::newFromName( self::$userName );
-		$data[2]['wsEditToken'] = $data[2]['wsToken'];
-		$token = md5( $data[2]['wsToken'] ) . EDIT_TOKEN_SUFFIX;
-		$data = $this->doApiRequest( array(
-			'filename' => 'tmp.png',
-			'action' => 'upload',
-			'enablechunks' => true,
-			'token' => $token ), $data );
-
-		$url = $data[0]['uploadUrl'];
-		$params = wfCgiToArray( substr( $url, strpos( $url, "?" ) ) );
-		$size = 0;
-		for ( $i = 0; $i < 4; $i++ ) {
-			$this->makeChunk( "123" );
-			$size += $_FILES['chunk']['size'];
-
-			$data = $this->doApiRequest( $params, $data );
-			$this->assertArrayHasKey( "result", $data[0] );
-			$this->assertTrue( (bool)$data[0]["result"] );
-
-			$this->assertArrayHasKey( "filesize", $data[0] );
-			$this->assertEquals( $size, $data[0]['filesize'] );
-
-			$this->cleanChunk();
-		}
-
-		$params['done'] = true;
-
-		$this->makeChunk( "123" );
-		$data = $this->doApiRequest( $params, $data );
-		$this->cleanChunk();
-
-		$this->assertArrayHasKey( 'upload', $data[0] );
-		$this->assertArrayHasKey( 'result', $data[0]['upload'] );
-		$this->assertEquals( 'Warning', $data[0]['upload']['result'] );
-
-		$this->assertArrayHasKey( 'warnings', $data[0]['upload'] );
-		$this->assertArrayHasKey( 'exists',
-								 $data[0]['upload']['warnings'] );
-		$this->assertEquals( 'Tmp.png',
-							$data[0]['upload']['warnings']['exists'] );
-
-	}
-
-	/**
-	 * @depends testLogin
-	 */
 	function testUploadChunkDoneGood( $data ) {
 		global $wgUser, $wgVerifyMimeType;
 		$wgVerifyMimeType = false;
 
-		$id = Title::newFromText( "Twar.png", NS_FILE )->getArticleID();
+		DeleteArchivedFilesImplementation::doDelete(new nullClass, true);
+		DeleteArchivedRevisionsImplementation::doDelete(new nullClass);
 
+		$id = Title::newFromText( "Twar.png", NS_FILE )->getArticleID();
 		$oldFile = Article::newFromID( $id );
 		if ( $oldFile ) {
 			$oldFile->doDeleteArticle();
 			$oldFile->doPurge();
 		}
+
 		$oldFile = wfFindFile( "Twar.png" );
 		if ( $oldFile ) {
 			$oldFile->delete();
 		}
+		$id = Title::newFromText( "Twar.png", NS_FILE )->getArticleID();
+		$this->assertEquals(0, $id);
+
+		$oldFile = Article::newFromID( $id );
+		$this->assertEquals(null, $oldFile);
 
 		$wgUser = User::newFromName( self::$userName );
 		$data[2]['wsEditToken'] = $data[2]['wsToken'];
@@ -301,11 +271,6 @@ class UploadFromChunksTest extends ApiSetup {
 		$data = $this->doApiRequest( $params, $data );
 
 		$this->cleanChunk();
-
-		if ( isset( $data[0]['upload'] ) ) {
-			$this->markTestSkipped( "Please run 'php maintenance/deleteArchivedFiles.php --delete --force' and 'php maintenance/deleteArchivedRevisions.php --delete'" );
-		}
-
 		$this->assertArrayHasKey( 'result', $data[0] );
 		$this->assertEquals( 1, $data[0]['result'] );
 
@@ -314,5 +279,53 @@ class UploadFromChunksTest extends ApiSetup {
 
 		$this->assertArrayHasKey( 'resultUrl', $data[0] );
 		$this->assertRegExp( '/File:Twar.png/', $data[0]['resultUrl'] );
+	}
+
+	/**
+	 * @depends testLogin
+	 */
+	function testUploadChunkDoneDuplicate( $data ) {
+		global $wgUser, $wgVerifyMimeType;
+
+		$this->markTestIncomplete("Not working yet");
+
+		$wgVerifyMimeType = false;
+		$wgUser = User::newFromName( self::$userName );
+		$data[2]['wsEditToken'] = $data[2]['wsToken'];
+		$token = md5( $data[2]['wsToken'] ) . EDIT_TOKEN_SUFFIX;
+		$data = $this->doApiRequest( array(
+			'filename' => 'twar.png',
+			'action' => 'upload',
+			'enablechunks' => true,
+			'token' => $token ), $data );
+
+		$url = $data[0]['uploadUrl'];
+		$params = wfCgiToArray( substr( $url, strpos( $url, "?" ) ) );
+		$size = 0;
+		$gotException = false;
+		for ( $i = 0; $i < 30; $i++ ) {
+			$this->makeChunk( "123" );
+			$size += $_FILES['chunk']['size'];
+			try {
+				$data = $this->doApiRequest( $params, $data );
+			} catch (UsageException $e) {
+				$arr = $e->getMessageArray();
+				$this->assertArrayHasKey( "code", $arr );
+				$this->assertEquals( "internal-error", $arr['code'] );
+
+				$this->assertEquals( "fileexistserror", $arr[0][0] );
+				$gotException = true;
+			}
+		}
+		$this->cleanChunk();
+		$this->assertTrue($gotException);
+	}
+
+	function testCleanup() {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
+		$dbw->delete("image", array('img_user_text' => self::$userName ));
+		$dbw->commit();
+		$this->assertTrue(true);
 	}
 }
