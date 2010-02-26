@@ -137,7 +137,9 @@ class SkinTemplate extends Skin {
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgProfiler;
 
 		wfProfileIn( __METHOD__ );
-		$wgProfiler->setTemplated(true);
+		if ( is_object( $wgProfiler ) ) {
+			$wgProfiler->setTemplated( true );
+		}
 
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
