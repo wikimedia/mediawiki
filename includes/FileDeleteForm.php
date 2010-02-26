@@ -140,7 +140,7 @@ class FileDeleteForm {
 				}
 			} catch ( MWException $e ) {
 				// rollback before returning to prevent UI from displaying incorrect "View or restore N deleted edits?"
-				//$dbw->rollback();
+				$dbw->rollback();
 				throw $e;
 			}
 		}
