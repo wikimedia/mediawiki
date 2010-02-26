@@ -521,10 +521,10 @@ abstract class ApiBase {
 		static $mValidNamespaces = null;
 
 		if ( is_null( $mValidNamespaces ) ) {
-			global $wgContLang;
-			$mValidNamespaces = array();
-			foreach ( array_keys( $wgContLang->getNamespaces() ) as $ns ) {
-				if ( $ns >= 0 ) {
+			global $wgCanonicalNamespaceNames;
+			$mValidNamespaces = array( NS_MAIN ); // Doesn't appear in $wgCanonicalNamespaceNames for some reason
+			foreach ( array_keys( $wgCanonicalNamespaceNames ) as $ns ) {
+				if ( $ns > 0 ) {
 					$mValidNamespaces[] = $ns;
 				}
 			}
