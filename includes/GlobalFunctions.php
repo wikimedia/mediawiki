@@ -496,7 +496,7 @@ function wfLogProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
 	global $wgProfiler, $wgProfileLimit, $wgUser;
 	# Profiling must actually be enabled...
-	if( !is_null( $wgProfiler ) ) return;
+	if( is_null( $wgProfiler ) ) return;
 	# Get total page request time
 	$now = wfTime();
 	$elapsed = $now - $wgRequestTime;
