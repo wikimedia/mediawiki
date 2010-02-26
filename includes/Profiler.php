@@ -61,6 +61,7 @@ if (!function_exists('memory_get_usage')) {
 class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
 	var $mCalls = array (), $mTotals = array ();
+	var $mTemplated = false;
 
 	function __construct() {
 		// Push an entry for the pre-profile setup time onto the stack
@@ -137,6 +138,14 @@ class Profiler {
 		while( count( $this->mWorkStack ) ){
 			$this->profileOut( 'close' );
 		}
+	}
+
+	/**
+	 * Mark this call as templated or not
+	 * @param $t Boolean
+	 */
+	function setTemplated( $t ) {
+		$this->mTemplated = $t;
 	}
 
 	/**

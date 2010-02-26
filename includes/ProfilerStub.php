@@ -7,6 +7,7 @@
 
 /** backward compatibility */
 $wgProfiling = false;
+$wgProfiler = null;
 
 /** is setproctitle function available ? */
 $haveProctitle = function_exists( 'setproctitle' );
