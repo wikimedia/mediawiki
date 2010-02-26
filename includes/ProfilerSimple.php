@@ -16,6 +16,7 @@ if ( !class_exists( 'Profiler' ) ) {
 class ProfilerSimple extends Profiler {
 	var $mMinimumTime = 0;
 	var $mProfileID = false;
+	var $mTemplated = false;
 
 	function __construct() {
 		global $wgRequestTime, $wgRUstart;
@@ -52,6 +53,14 @@ class ProfilerSimple extends Profiler {
 		} else {
 			return $this->mProfileID;
 		}
+	}
+
+	/**
+	 * Mark this call as templated or not
+	 * @param boolean $t
+	 */
+	function setTemplated( $t ) {
+		$this->mTemplated = $t;
 	}
 
 	function profileIn($functionname) {

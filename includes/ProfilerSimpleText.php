@@ -9,7 +9,7 @@ require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
 /**
  * The least sophisticated profiler output class possible, view your source! :)
  *
- * Put it to StartProfiler.php like this:
+ * Put the following 3 lines in StartProfiler.php:
  *
  * require_once( dirname( __FILE__ ) . '/includes/ProfilerSimpleText.php' );
  * $wgProfiler = new ProfilerSimpleText;
@@ -19,21 +19,23 @@ require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
  */
 class ProfilerSimpleText extends ProfilerSimple {
 	public $visible=false; /* Show as <PRE> or <!-- ? */
+	static private $out;
 
 	function getFunctionReport() {
-		global $wgRequest;
-		if ( $wgRequest->getVal( 'action' ) == 'raw' ) # bug 20388
-			return;
+		global $wgRequest, $wgOut;
 
-		if ($this->visible) print "<pre>";
-			else print "<!--\n";
-		uasort($this->mCollated,array('self','sort'));
-		array_walk($this->mCollated,array('self','format'));
-		if ($this->visible) print "</pre>\n";
-			else print "-->\n";
+		if($this->mTemplated) {
+			uasort($this->mCollated,array('self','sort'));
+			array_walk($this->mCollated,array('self','format'));
+			if ($this->visible) {
+				print '<pre>'.self::$out.'</pre>';
+			} else {
+				print '<!--\n'.self::$out.'\n-->\n';
+			}
+		}
 	}
 
 	/* dense is good */
 	static function sort($a,$b) { return $a['real']<$b['real']; /* sort descending by time elapsed */ }
-	static function format($item,$key) { printf("%3.6f %6d - %s\n",$item['real'],$item['count'], $key); }
+	static function format($item,$key) { self::$out .= sprintf("%3.6f %6d - %s\n",$item['real'],$item['count'], $key); }
 }
