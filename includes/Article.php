@@ -2859,7 +2859,7 @@ class Article {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 * Returns success
 	 */
-	public function doDeleteArticle( $reason, $suppress = false, $id = 0 ) {
+	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true ) {
 		global $wgUseSquid, $wgDeferredUpdateList;
 		global $wgUseTrackbacks;
 
@@ -2984,7 +2984,9 @@ class Article {
 		# Make sure logging got through
 		$log->addEntry( 'delete', $this->mTitle, $reason, array() );
 
-		$dbw->commit();
+		if ( $commit ) {
+			$dbw->commit();
+		}
 
 		return true;
 	}
