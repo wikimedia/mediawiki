@@ -21,6 +21,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Configuration changes in 1.17 ===
 
 === Bug fixes in 1.17 ===
+* (bug 17560) Half-broken deletion moved image files to deletion archive without updating DB
 
 == API changes in 1.17 ==
 
