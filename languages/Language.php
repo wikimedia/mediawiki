@@ -2167,11 +2167,11 @@ class Language {
 		$stringOriginal = $string;
 		if ( $length > 0 ) {
 			$string = substr( $string, 0, $length ); // xyz...
-			$string = self::removeBadCharLast( $string );
+			$string = $this->removeBadCharLast( $string );
 			$string = $string . $ellipsis;
 		} else {
 			$string = substr( $string, $length ); // ...xyz
-			$string = self::removeBadCharFirst( $string );
+			$string = $this->removeBadCharFirst( $string );
 			$string = $ellipsis . $string;
 		}
 		# Do not truncate if the ellipsis makes the string longer (bug 22181)
@@ -2260,11 +2260,11 @@ class Language {
 			$lastCh = $pos ? $text[$pos-1] : '';
 			$ret .= $ch; // add to result string
 			if ( $ch == '<' ) {
-				self::onEndBracket( $tag, $tagType, $lastCh, $openTags ); // for bad HTML
+				$this->truncate_endBracket( $tag, $tagType, $lastCh, $openTags ); // for bad HTML
 				$entityState = 0; // for bad HTML
 				$bracketState = 1; // tag started (checking for backslash)
 			} elseif ( $ch == '>' ) {
-				self::onEndBracket( $tag, $tagType, $lastCh, $openTags );
+				$this->truncate_endBracket( $tag, $tagType, $lastCh, $openTags );
 				$entityState = 0; // for bad HTML
 				$bracketState = 0; // out of brackets
 			} elseif ( $bracketState == 1 ) {
@@ -2280,7 +2280,7 @@ class Language {
 					$tag .= $ch;
 				} else {
 					// Name found (e.g. "<a href=..."), add on tag attributes...
-					$pos += self::skipAndAppend( $ret, $text, "<>", $pos + 1 );
+					$pos += $this->truncate_skip( $ret, $text, "<>", $pos + 1 );
 				}
 			} elseif ( $bracketState == 0 ) {
 				if ( $entityState ) {
@@ -2294,7 +2294,7 @@ class Language {
 					} else {
 						$displayLen++; // this char is displayed
 						// Add on the other display text after this...
-						$skipped = self::skipAndAppend(
+						$skipped = $this->truncate_skip(
 							$ret, $text, "<>&", $pos + 1, $length - $displayLen );
 						$displayLen += $skipped;
 						$pos += $skipped;
@@ -2309,7 +2309,7 @@ class Language {
 				$remaining = StringUtils::delimiterReplace( '&', ';', '', $remaining ); // rm entities
 				$doTruncate = ( strlen($remaining) > strlen($ellipsis) );
 				if ( $doTruncate ) {
-					$ret = self::removeBadCharLast( $ret ) . $ellipsis;
+					$ret = $this->removeBadCharLast( $ret ) . $ellipsis;
 					break;
 				}
 			}
@@ -2317,7 +2317,7 @@ class Language {
 		if ( $displayLen == 0 ) {
 			return ''; // no text shown, nothing to format
 		}
-		self::onEndBracket( $tag, $text[$textLen-1], $tagType, $openTags ); // for bad HTML
+		$this->truncate_endBracket( $tag, $text[$textLen-1], $tagType, $openTags ); // for bad HTML
 		while ( count( $openTags ) > 0 ) {
 			$ret .= '</' . array_pop( $openTags ) . '>'; // close open tags
 		}
@@ -2326,7 +2326,7 @@ class Language {
 
 	// truncateHtml() helper function
 	// like strcspn() but adds the skipped chars to $ret
-	private function skipAndAppend( &$ret, $text, $search, $start, $len = -1 ) {
+	private function truncate_skip( &$ret, $text, $search, $start, $len = -1 ) {
 		$skipCount = 0;
 		if( $start < strlen($text) ) {
 			$skipCount = strcspn( $text, $search, $start, $len );
@@ -2338,7 +2338,7 @@ class Language {
 	// truncateHtml() helper function
 	// (a) push or pop $tag from $openTags as needed
 	// (b) clear $tag value
-	private function onEndBracket( &$tag, $tagType, $lastCh, &$openTags ) {
+	private function truncate_endBracket( &$tag, $tagType, $lastCh, &$openTags ) {
 		$tag = ltrim( $tag );
 		if( $tag != '' ) {
 			if( $tagType == 0 && $lastCh != '/' ) {
