@@ -186,7 +186,7 @@ class OutputPage {
 	 */
 	public function addScriptFile( $file ) {
 		global $wgStylePath, $wgStyleVersion;
-		if( substr( $file, 0, 1 ) == '/' || substr( $file, 0, 7 ) == 'http://' ) {
+		if( substr( $file, 0, 1 ) == '/' || preg_match( '#^[a-z]*://#i', $file ) ) {
 			$path = $file;
 		} else {
 			$path =  "{$wgStylePath}/common/{$file}";
