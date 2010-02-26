@@ -1,9 +1,9 @@
 <?php
-/*
+/**
  * Created on Aug 21, 2008
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2008 - 2010 Bryan Tong Minh <Bryan.TongMinh@Gmail.com>
+ * Copyright © 2008 - 2010 Bryan Tong Minh <Bryan.TongMinh@Gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,8 +41,9 @@ class ApiUpload extends ApiBase {
 		global $wgUser, $wgAllowCopyUploads;
 
 		// Check whether upload is enabled
-		if ( !UploadBase::isEnabled() )
+		if ( !UploadBase::isEnabled() ) {
 			$this->dieUsageMsg( array( 'uploaddisabled' ) );
+		}
 
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
@@ -75,18 +76,18 @@ class ApiUpload extends ApiBase {
 			 * Upload stashed in a previous request
 			 */
 			// Check the session key
-			if ( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) )
+			if ( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) ) {
 				$this->dieUsageMsg( array( 'invalid-session-key' ) );
+			}
 
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
 				$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
 		} elseif ( isset( $this->mParams['filename'] ) ) {
 			/**
-			 * Upload from url, etc
+			 * Upload from URL, etc.
 			 * Parameter filename is required
 			 */
-
 			if ( isset( $this->mParams['file'] ) ) {
 				$this->mUpload = new UploadFromFile();
 				$this->mUpload->initialize(
@@ -95,13 +96,15 @@ class ApiUpload extends ApiBase {
 					$request->getFileSize( 'file' )
 				);
 			} elseif ( isset( $this->mParams['url'] ) ) {
-				// make sure upload by url is enabled:
-				if ( !$wgAllowCopyUploads )
+				// make sure upload by URL is enabled:
+				if ( !$wgAllowCopyUploads ) {
 					$this->dieUsageMsg( array( 'uploaddisabled' ) );
+				}
 
 				// make sure the current user can upload
-				if ( ! $wgUser->isAllowed( 'upload_by_url' ) )
+				if ( !$wgUser->isAllowed( 'upload_by_url' ) ) {
 					$this->dieUsageMsg( array( 'badaccess-groups' ) );
+				}
 
 				$this->mUpload = new UploadFromUrl();
 				$this->mUpload->initialize( $this->mParams['filename'],
@@ -112,19 +115,23 @@ class ApiUpload extends ApiBase {
 					$this->dieUsage( $status->getWikiText(),  'fetchfileerror' );
 				}
 			}
-		} else $this->dieUsageMsg( array( 'missingparam', 'filename' ) );
+		} else {
+			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
+		}
 
-		if ( !isset( $this->mUpload ) )
+		if ( !isset( $this->mUpload ) ) {
 			$this->dieUsage( 'No upload module set', 'nomodule' );
+		}
 
 		// Check whether the user has the appropriate permissions to upload anyway
 		$permission = $this->mUpload->isAllowed( $wgUser );
 
 		if ( $permission !== true ) {
-			if ( !$wgUser->isLoggedIn() )
+			if ( !$wgUser->isLoggedIn() ) {
 				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
-			else
+			} else {
 				$this->dieUsageMsg( array( 'badaccess-groups' ) );
+			}
 		}
 		// Perform the upload
 		$result = $this->performUpload();
@@ -134,7 +141,9 @@ class ApiUpload extends ApiBase {
 
 		if ( isset( $result['chunked-output'] ) ) {
 			foreach ( $result['chunked-output'] as $key => $value ) {
-				if ( $value === null ) $value = "";
+				if ( $value === null ) {
+					$value = '';
+				}
 				$this->getResult()->addValue( null, $key, $value );
 			}
 		} else {
@@ -209,7 +218,6 @@ class ApiUpload extends ApiBase {
 					$warnings['duplicate'] = $dupes;
 				}
 
-
 				if ( isset( $warnings['exists'] ) ) {
 					$warning = $warnings['exists'];
 					unset( $warnings['exists'] );
@@ -220,8 +228,9 @@ class ApiUpload extends ApiBase {
 				$result['warnings'] = $warnings;
 
 				$sessionKey = $this->mUpload->stashSession();
-				if ( !$sessionKey )
+				if ( !$sessionKey ) {
 					$this->dieUsage( 'Stashing temporary file failed', 'stashfailed' );
+				}
 
 				$result['sessionkey'] = $sessionKey;
 
@@ -230,8 +239,9 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Use comment as initial page text by default
-		if ( is_null( $this->mParams['text'] ) )
+		if ( is_null( $this->mParams['text'] ) ) {
 			$this->mParams['text'] = $this->mParams['comment'];
+		}
 
 		// No errors, no warnings: do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
@@ -243,7 +253,7 @@ class ApiUpload extends ApiBase {
 
 			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 		} elseif ( $this->mParams['enablechunks'] ) {
-			return array( "chunked-output" => $status->value );
+			return array( 'chunked-output' => $status->value );
 		}
 
 		$file = $this->mUpload->getLocalFile();
@@ -281,10 +291,10 @@ class ApiUpload extends ApiBase {
 			'sessionkey' => null,
 		);
 
-		if ( $this->getMain()->isInternalMode() )
+		if ( $this->getMain()->isInternalMode() ) {
 			$params['internalhttpsession'] = null;
+		}
 		return $params;
-
 	}
 
 	public function getParamDescription() {
@@ -320,8 +330,8 @@ class ApiUpload extends ApiBase {
 			'log out and then log back in). Also you must get and send an edit token before doing any upload stuff.'
 		);
 	}
-	
-    public function getPossibleErrors() {
+
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'uploaddisabled' ),
 			array( 'invalid-session-key' ),
@@ -339,9 +349,9 @@ class ApiUpload extends ApiBase {
 			array( 'code' => 'overwrite', 'info' => 'Overwriting an existing file is not allowed' ),
 			array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
 			array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
-        ) );
+		) );
 	}
-	
+
 	public function getTokenSalt() {
 		return '';
 	}
