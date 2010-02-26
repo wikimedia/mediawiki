@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on July 30, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2007 Roan Kattouw <Firstname>.<Lastname>@home.nl
+ * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiQueryBase.php' );
+	require_once( 'ApiQueryBase.php' );
 }
 
 /**
@@ -36,9 +36,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  class ApiQueryUsers extends ApiQueryBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'us' );
+		parent::__construct( $query, $moduleName, 'us' );
 	}
-	
+
 	/**
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($user)
@@ -47,12 +47,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	 */
 	protected function getTokenFunctions() {
 		// Don't call the hooks twice
-		if ( isset( $this->tokenFunctions ) )
+		if ( isset( $this->tokenFunctions ) ) {
 			return $this->tokenFunctions;
+		}
 
 		// If we're in JSON callback mode, no tokens can be obtained
-		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) )
+		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
 			return array();
+		}
 
 		$this->tokenFunctions = array(
 			'userrights' => array( 'ApiQueryUsers', 'getUserrightsToken' ),
@@ -60,9 +62,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		wfRunHooks( 'APIQueryUsersTokens', array( &$this->tokenFunctions ) );
 		return $this->tokenFunctions;
 	}
-	
-	public static function getUserrightsToken( $user )
-	{
+
+	public static function getUserrightsToken( $user ) {
 		global $wgUser;
 		// Since the permissions check for userrights is non-trivial,
 		// don't bother with it here
@@ -86,26 +87,23 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		// Canonicalize user names
 		foreach ( $users as $u ) {
 			$n = User::getCanonicalName( $u );
-			if ( $n === false || $n === '' )
-			{
+			if ( $n === false || $n === '' ) {
 				$vals = array( 'name' => $u, 'invalid' => '' );
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 						null, $vals );
-				if ( !$fit )
-				{
+				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'users',
 							implode( '|', array_diff( $users, $done ) ) );
 					$goodNames = array();
 					break;
 				}
 				$done[] = $u;
-			}
-			 else
+			} else {
 				$goodNames[] = $n;
+			}
 		}
 
-		if ( count( $goodNames ) )
-		{
+		if ( count( $goodNames ) ) {
 			$db = $this->getDb();
 			$this->addTables( 'user', 'u1' );
 			$this->addFields( 'u1.*' );
@@ -132,19 +130,23 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				$user = User::newFromRow( $r );
 				$name = $user->getName();
 				$data[$name]['name'] = $name;
-				if ( isset( $this->prop['editcount'] ) )
+				if ( isset( $this->prop['editcount'] ) ) {
 					$data[$name]['editcount'] = intval( $user->getEditCount() );
-				if ( isset( $this->prop['registration'] ) )
+				}
+				if ( isset( $this->prop['registration'] ) ) {
 					$data[$name]['registration'] = wfTimestampOrNull( TS_ISO_8601, $user->getRegistration() );
-				if ( isset( $this->prop['groups'] ) && !is_null( $r->ug_group ) )
+				}
+				if ( isset( $this->prop['groups'] ) && !is_null( $r->ug_group ) ) {
 					// This row contains only one group, others will be added from other rows
 					$data[$name]['groups'][] = $r->ug_group;
+				}
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $r->blocker_name ) ) {
 					$data[$name]['blockedby'] = $r->blocker_name;
 					$data[$name]['blockreason'] = $r->ipb_reason;
 				}
-				if ( isset( $this->prop['emailable'] ) && $user->canReceiveEmail() )
+				if ( isset( $this->prop['emailable'] ) && $user->canReceiveEmail() ) {
 					$data[$name]['emailable'] = '';
+				}
 
 				if ( isset( $this->prop['gender'] ) ) {
 					$gender = $user->getOption( 'gender' );
@@ -154,16 +156,15 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 					$data[$name]['gender'] = $gender;
 				}
 
-				if ( !is_null( $params['token'] ) )
-				{
+				if ( !is_null( $params['token'] ) ) {
 					$tokenFunctions = $this->getTokenFunctions();
-					foreach ( $params['token'] as $t )
-					{
+					foreach ( $params['token'] as $t ) {
 						$val = call_user_func( $tokenFunctions[$t], $user );
-						if ( $val === false )
+						if ( $val === false ) {
 							$this->setWarning( "Action '$t' is not allowed for the current user" );
-						else
+						} else {
 							$data[$name][$t . 'token'] = $val;
+						}
 					}
 				}
 			}
@@ -176,28 +177,29 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				$iwUser = $urPage->fetchUser( $u );
 				if ( $iwUser instanceof UserRightsProxy ) {
 					$data[$u]['interwiki'] = '';
-					if ( !is_null( $params['token'] ) )
-					{
+					if ( !is_null( $params['token'] ) ) {
 						$tokenFunctions = $this->getTokenFunctions();
-						foreach ( $params['token'] as $t )
-						{
+						foreach ( $params['token'] as $t ) {
 							$val = call_user_func( $tokenFunctions[$t], $iwUser );
-							if ( $val === false )
+							if ( $val === false ) {
 								$this->setWarning( "Action '$t' is not allowed for the current user" );
-							else
+							} else {
 								$data[$u][$t . 'token'] = $val;
+							}
 						}
 					}
-				} else
+				} else {
 					$data[$u]['missing'] = '';
+				}
 			} else {
 				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) )
+				{
 					$this->getResult()->setIndexedTagName( $data[$u]['groups'], 'g' );
+				}
 			}
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 					null, $data[$u] );
-			if ( !$fit )
-			{
+			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'users',
 						implode( '|', array_diff( $users, $done ) ) );
 				break;
@@ -208,11 +210,11 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	}
 
 	public function getAllowedParams() {
-		return array (
-			'prop' => array (
-				ApiBase :: PARAM_DFLT => null,
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array (
+		return array(
+			'prop' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
 					'blockinfo',
 					'groups',
 					'editcount',
@@ -222,17 +224,17 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				)
 			),
 			'users' => array(
-				ApiBase :: PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'token' => array(
-				ApiBase :: PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
-				ApiBase :: PARAM_ISMULTI => true
+				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
+				ApiBase::PARAM_ISMULTI => true
 			),
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'prop' => array(
 				'What pieces of information to include',
 				'  blockinfo    - tags if the user is blocked, by whom, and for what reason',

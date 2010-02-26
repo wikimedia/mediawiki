@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on July 30, 2007
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiQueryBase.php' );
+	require_once( 'ApiQueryBase.php' );
 }
 
 /**
@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryUserInfo extends ApiQueryBase {
 
 	public function __construct( $query, $moduleName ) {
-		parent :: __construct( $query, $moduleName, 'ui' );
+		parent::__construct( $query, $moduleName, 'ui' );
 	}
 
 	public function execute() {
@@ -50,7 +50,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$this->prop = array();
 		}
 		$r = $this->getCurrentUserInfo();
-		$result->addValue( "query", $this->getModuleName(), $r );
+		$result->addValue( 'query', $this->getModuleName(), $r );
 	}
 
 	protected function getCurrentUserInfo() {
@@ -60,8 +60,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$vals['id'] = intval( $wgUser->getId() );
 		$vals['name'] = $wgUser->getName();
 
-		if ( $wgUser->isAnon() )
+		if ( $wgUser->isAnon() ) {
 			$vals['anon'] = '';
+		}
 
 		if ( isset( $this->prop['blockinfo'] ) ) {
 			if ( $wgUser->isBlocked() ) {
@@ -97,7 +98,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['options'] = $wgUser->getOptions();
 		}
 
-		if ( isset( $this->prop['preferencestoken'] ) && is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+		if (
+			isset( $this->prop['preferencestoken'] ) &&
+			is_null( $this->getMain()->getRequest()->getVal( 'callback' ) )
+		)
+		{
 			$vals['preferencestoken'] = $wgUser->editToken();
 		}
 
@@ -112,26 +117,27 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( isset( $this->prop['email'] ) ) {
 			$vals['email'] = $wgUser->getEmail();
 			$auth = $wgUser->getEmailAuthenticationTimestamp();
-			if ( !is_null( $auth ) )
+			if ( !is_null( $auth ) ) {
 				$vals['emailauthenticated'] = wfTimestamp( TS_ISO_8601, $auth );
+			}
 		}
 		return $vals;
 	}
 
-	protected function getRateLimits()
-	{
+	protected function getRateLimits() {
 		global $wgUser, $wgRateLimits;
-		if ( !$wgUser->isPingLimitable() )
+		if ( !$wgUser->isPingLimitable() ) {
 			return array(); // No limits
+		}
 
 		// Find out which categories we belong to
 		$categories = array();
-		if ( $wgUser->isAnon() )
+		if ( $wgUser->isAnon() ) {
 			$categories[] = 'anon';
-		else
+		} else {
 			$categories[] = 'user';
-		if ( $wgUser->isNewBie() )
-		{
+		}
+		if ( $wgUser->isNewbie() ) {
 			$categories[] = 'ip';
 			$categories[] = 'subnet';
 			if ( !$wgUser->isAnon() )
@@ -141,22 +147,23 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		// Now get the actual limits
 		$retval = array();
-		foreach ( $wgRateLimits as $action => $limits )
-			foreach ( $categories as $cat )
-				if ( isset( $limits[$cat] ) && !is_null( $limits[$cat] ) )
-				{
+		foreach ( $wgRateLimits as $action => $limits ) {
+			foreach ( $categories as $cat ) {
+				if ( isset( $limits[$cat] ) && !is_null( $limits[$cat] ) ) {
 					$retval[$action][$cat]['hits'] = intval( $limits[$cat][0] );
 					$retval[$action][$cat]['seconds'] = intval( $limits[$cat][1] );
 				}
+			}
+		}
 		return $retval;
 	}
 
 	public function getAllowedParams() {
-		return array (
-			'prop' => array (
-				ApiBase :: PARAM_DFLT => null,
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array (
+		return array(
+			'prop' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
 					'blockinfo',
 					'hasmsg',
 					'groups',
@@ -173,7 +180,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'prop' => array(
 				'What pieces of information to include',
 				'  blockinfo  - tags if the current user is blocked, by whom, and for what reason',
@@ -193,7 +200,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=query&meta=userinfo',
 			'api.php?action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg',
 		);

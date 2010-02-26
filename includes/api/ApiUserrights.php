@@ -1,10 +1,10 @@
 <?php
 
-/*
+/**
  * Created on Mar 24, 2009
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2009 Roan Kattouw <Firstname>.<Lastname>@home.nl
+ * Copyright © 2009 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( "ApiBase.php" );
+	require_once( "ApiBase.php" );
 }
 
 /**
@@ -33,16 +33,16 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiUserrights extends ApiBase {
 
 	public function __construct( $main, $action ) {
-		parent :: __construct( $main, $action );
+		parent::__construct( $main, $action );
 	}
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		
+
 		// User already validated in call to getTokenSalt from Main
 		$form = new UserrightsPage;
 		$user = $form->fetchUser( $params['user'] );
-		
+
 		$r['user'] = $user->getName();
 		list( $r['added'], $r['removed'] ) =
 			$form->doSaveUserGroups(
@@ -66,22 +66,22 @@ class ApiUserrights extends ApiBase {
 		return array (
 			'user' => null,
 			'add' => array(
-				ApiBase :: PARAM_TYPE => User::getAllGroups(),
-				ApiBase :: PARAM_ISMULTI => true
+				ApiBase::PARAM_TYPE => User::getAllGroups(),
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'remove' => array(
-				ApiBase :: PARAM_TYPE => User::getAllGroups(),
-				ApiBase :: PARAM_ISMULTI => true
+				ApiBase::PARAM_TYPE => User::getAllGroups(),
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'token' => null,
 			'reason' => array(
-				ApiBase :: PARAM_DFLT => ''
+				ApiBase::PARAM_DFLT => ''
 			)
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'user' => 'User name',
 			'add' => 'Add the user to these groups',
 			'remove' => 'Remove the user from these groups',
@@ -95,29 +95,31 @@ class ApiUserrights extends ApiBase {
 			'Add/remove a user to/from groups',
 		);
 	}
-	
-    public function getPossibleErrors() {
+
+	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'user' ),
-        ) );
+		) );
 	}
-	
+
 	public function getTokenSalt() {
 		$params = $this->extractRequestParams();
-		if ( is_null( $params['user'] ) )
+		if ( is_null( $params['user'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
+		}
 
 		$form = new UserrightsPage;
 		$user = $form->fetchUser( $params['user'] );
-		if ( $user instanceof WikiErrorMsg )
+		if ( $user instanceof WikiErrorMsg ) {
 			$this->dieUsageMsg( array_merge(
 				(array)$user->getMessageKey(), $user->getMessageArgs() ) );
+		}
 
 		return $user->getName();
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
 		);
 	}

@@ -1,11 +1,11 @@
 <?php
 
-/*
+/**
  * Created on Sep 4, 2006
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ( 'ApiBase.php' );
+	require_once( 'ApiBase.php' );
 }
 
 /**
@@ -54,7 +54,7 @@ class ApiResult extends ApiBase {
 	 * @param $main ApiMain object
 	 */
 	public function __construct( $main ) {
-		parent :: __construct( $main, 'result' );
+		parent::__construct( $main, 'result' );
 		$this->mIsRawMode = false;
 		$this->mCheckingSize = true;
 		$this->reset();
@@ -64,7 +64,7 @@ class ApiResult extends ApiBase {
 	 * Clear the current result data.
 	 */
 	public function reset() {
-		$this->mData = array ();
+		$this->mData = array();
 		$this->mSize = 0;
 	}
 
@@ -100,12 +100,14 @@ class ApiResult extends ApiBase {
 	 */
 	public static function size( $value ) {
 		$s = 0;
-		if ( is_array( $value ) )
-			foreach ( $value as $v )
+		if ( is_array( $value ) ) {
+			foreach ( $value as $v ) {
 				$s += self::size( $v );
-		else if ( !is_object( $value ) )
+			}
+		} elseif ( !is_object( $value ) ) {
 			// Objects can't always be cast to string
 			$s = strlen( $value );
+		}
 		return $s;
 	}
 
@@ -140,21 +142,23 @@ class ApiResult extends ApiBase {
 	 * @param $name string Index of $arr to add $value at
 	 * @param $value mixed
 	 */
-	public static function setElement( & $arr, $name, $value ) {
-		if ( $arr === null || $name === null || $value === null || !is_array( $arr ) || is_array( $name ) )
-			ApiBase :: dieDebug( __METHOD__, 'Bad parameter' );
+	public static function setElement( &$arr, $name, $value ) {
+		if ( $arr === null || $name === null || $value === null || !is_array( $arr ) || is_array( $name ) ) {
+			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
+		}
 
 		if ( !isset ( $arr[$name] ) ) {
 			$arr[$name] = $value;
-		}
-		elseif ( is_array( $arr[$name] ) && is_array( $value ) ) {
+		} elseif ( is_array( $arr[$name] ) && is_array( $value ) ) {
 			$merged = array_intersect_key( $arr[$name], $value );
-			if ( !count( $merged ) )
+			if ( !count( $merged ) ) {
 				$arr[$name] += $value;
-			else
-				ApiBase :: dieDebug( __METHOD__, "Attempting to merge element $name" );
-		} else
-			ApiBase :: dieDebug( __METHOD__, "Attempting to add element $name=$value, existing value is {$arr[$name]}" );
+			} else {
+				ApiBase::dieDebug( __METHOD__, "Attempting to merge element $name" );
+			}
+		} else {
+			ApiBase::dieDebug( __METHOD__, "Attempting to add element $name=$value, existing value is {$arr[$name]}" );
+		}
 	}
 
 	/**
@@ -165,15 +169,17 @@ class ApiResult extends ApiBase {
 	 *  as a sub item of $arr. Use this parameter to create elements in
 	 *  format <elem>text</elem> without attributes
 	 */
-	public static function setContent( & $arr, $value, $subElemName = null ) {
-		if ( is_array( $value ) )
-			ApiBase :: dieDebug( __METHOD__, 'Bad parameter' );
+	public static function setContent( &$arr, $value, $subElemName = null ) {
+		if ( is_array( $value ) ) {
+			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
+		}
 		if ( is_null( $subElemName ) ) {
-			ApiResult :: setElement( $arr, '*', $value );
+			ApiResult::setElement( $arr, '*', $value );
 		} else {
-			if ( !isset ( $arr[$subElemName] ) )
-				$arr[$subElemName] = array ();
-			ApiResult :: setElement( $arr[$subElemName], '*', $value );
+			if ( !isset( $arr[$subElemName] ) ) {
+				$arr[$subElemName] = array();
+			}
+			ApiResult::setElement( $arr[$subElemName], '*', $value );
 		}
 	}
 
@@ -184,12 +190,15 @@ class ApiResult extends ApiBase {
 	 * @param $arr array
 	 * @param $tag string Tag name
 	 */
-	public function setIndexedTagName( & $arr, $tag ) {
+	public function setIndexedTagName( &$arr, $tag ) {
 		// In raw mode, add the '_element', otherwise just ignore
-		if ( !$this->getIsRawMode() )
+		if ( !$this->getIsRawMode() ) {
 			return;
+		}
 		if ( $arr === null || $tag === null || !is_array( $arr ) || is_array( $tag ) )
-			ApiBase :: dieDebug( __METHOD__, 'Bad parameter' );
+		{
+			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
+		}
 		// Do not use setElement() as it is ok to call this more than once
 		$arr['_element'] = $tag;
 	}
@@ -200,14 +209,15 @@ class ApiResult extends ApiBase {
 	 * @param $tag string Tag name
 	 */
 	public function setIndexedTagName_recursive( &$arr, $tag ) {
-		if ( !is_array( $arr ) )
-				return;
-		foreach ( $arr as &$a )
-		{
-				if ( !is_array( $a ) )
-						continue;
-				$this->setIndexedTagName( $a, $tag );
-				$this->setIndexedTagName_recursive( $a, $tag );
+		if ( !is_array( $arr ) ) {
+			return;
+		}
+		foreach ( $arr as &$a ) {
+			if ( !is_array( $a ) ) {
+				continue;
+			}
+			$this->setIndexedTagName( $a, $tag );
+			$this->setIndexedTagName_recursive( $a, $tag );
 		}
 	}
 
@@ -219,15 +229,16 @@ class ApiResult extends ApiBase {
 	 * @param $tag string
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
-		$data = & $this->mData;
+		$data = &$this->mData;
 		foreach ( (array)$path as $p ) {
 			if ( !isset( $data[$p] ) ) {
 				$data[$p] = array();
 			}
-			$data = & $data[$p];
+			$data = &$data[$p];
 		}
-		if ( is_null( $data ) )
+		if ( is_null( $data ) ) {
 			return;
+		}
 		$this->setIndexedTagName( $data, $tag );
 	}
 
@@ -240,32 +251,36 @@ class ApiResult extends ApiBase {
 	 */
 	public function addValue( $path, $name, $value ) {
 		global $wgAPIMaxResultSize;
-		$data = & $this->mData;
+		$data = &$this->mData;
 		if ( $this->mCheckingSize ) {
 			$newsize = $this->mSize + self::size( $value );
-			if ( $newsize > $wgAPIMaxResultSize )
+			if ( $newsize > $wgAPIMaxResultSize ) {
 				return false;
+			}
 			$this->mSize = $newsize;
 		}
 
 		if ( !is_null( $path ) ) {
 			if ( is_array( $path ) ) {
 				foreach ( $path as $p ) {
-					if ( !isset ( $data[$p] ) )
-						$data[$p] = array ();
-					$data = & $data[$p];
+					if ( !isset( $data[$p] ) ) {
+						$data[$p] = array();
+					}
+					$data = &$data[$p];
 				}
 			} else {
-				if ( !isset ( $data[$path] ) )
-					$data[$path] = array ();
-				$data = & $data[$path];
+				if ( !isset( $data[$path] ) ) {
+					$data[$path] = array();
+				}
+				$data = &$data[$path];
 			}
 		}
 
-		if ( !$name )
-			$data[] = $value;	// Add list element
-		else
-			ApiResult :: setElement( $data, $name, $value );	// Add named element
+		if ( !$name ) {
+			$data[] = $value; // Add list element
+		} else {
+			ApiResult::setElement( $data, $name, $value ); // Add named element
+		}
 		return true;
 	}
 
@@ -277,13 +292,15 @@ class ApiResult extends ApiBase {
 	 * @param $name string
 	 */
 	public function unsetValue( $path, $name ) {
-		$data = & $this->mData;
-		if ( !is_null( $path ) )
+		$data = &$this->mData;
+		if ( !is_null( $path ) ) {
 			foreach ( (array)$path as $p ) {
-				if ( !isset( $data[$p] ) )
+				if ( !isset( $data[$p] ) ) {
 					return;
-				$data = & $data[$p];
+				}
+				$data = &$data[$p];
 			}
+		}
 		$this->mSize -= self::size( $data[$name] );
 		unset( $data[$name] );
 	}
@@ -291,24 +308,23 @@ class ApiResult extends ApiBase {
 	/**
 	 * Ensure all values in this result are valid UTF-8.
 	 */
-	public function cleanUpUTF8()
-	{
+	public function cleanUpUTF8() {
 		array_walk_recursive( $this->mData, array( 'ApiResult', 'cleanUp_helper' ) );
 	}
 
 	/**
 	 * Callback function for cleanUpUTF8()
 	 */
-	private static function cleanUp_helper( &$s )
-	{
-		if ( !is_string( $s ) )
+	private static function cleanUp_helper( &$s ) {
+		if ( !is_string( $s ) ) {
 			return;
+		}
 		global $wgContLang;
 		$s = $wgContLang->normalize( $s );
 	}
 
 	public function execute() {
-		ApiBase :: dieDebug( __METHOD__, 'execute() is not supported on Result object' );
+		ApiBase::dieDebug( __METHOD__, 'execute() is not supported on Result object' );
 	}
 
 	public function getVersion() {
