@@ -45,6 +45,7 @@ class SpecialUpload extends SpecialPage {
 	protected $mForReUpload;		// The user followed an "overwrite this file" link
 	protected $mCancelUpload;		// The user clicked "Cancel and return to upload form" button
 	protected $mTokenOk;
+	protected $mUploadSuccessful = false;	// Subclasses can use this to determine whether a file was uploaded
 	
 	/** Text injection points for hooks not using HTMLForm **/
 	public $uploadFormTextTop;
@@ -181,18 +182,23 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
-	 * Show the main upload form and optionally add the session key to the
-	 * output. This hides the source selection.
+	 * Show the main upload form 
 	 *
-	 * @param string $message HTML message to be shown at top of form
-	 * @param string $sessionKey Session key of the stashed upload
+	 * @param mixed $form An HTMLForm instance or HTML string to show
 	 */
 	protected function showUploadForm( $form ) {
 		# Add links if file was previously deleted
-		if ( !$this->mDesiredDestName )
+		if ( !$this->mDesiredDestName ) {
 			$this->showViewDeletedLinks();
-
-		$form->show();
+		}
+		
+		if ( $form instanceof HTMLForm ) {
+			$form->show();
+		} else {
+			global $wgOut;
+			$wgOut->addHTML( $form );
+		}
+		
 	}
 
 	/**
@@ -416,6 +422,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		// Success, redirect to description page
+		$this->mUploadSuccessful = true;
 		wfRunHooks( 'SpecialUploadComplete', array( &$this ) );
 		$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 
@@ -701,7 +708,7 @@ class UploadForm extends HTMLForm {
 			+ $this->getDescriptionSection()
 			+ $this->getOptionsSection();
 
-		wfRunHooks( 'UploadFormInitDescriptor', array( $descriptor ) );
+		wfRunHooks( 'UploadFormInitDescriptor', array( &$descriptor ) );
 		parent::__construct( $descriptor, 'upload' );
 
 		# Set some form properties
