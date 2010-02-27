@@ -21,7 +21,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Configuration changes in 1.17 ===
 
 === Bug fixes in 1.17 ===
-* (bug 17560) Half-broken deletion moved image files to deletion archive without updating DB
+* (bug 17560) Half-broken deletion moved image files to deletion archive without
+  updating DB
+* (bug 22666) Submitting user block form with an invalid user name no longer
+  throws an error
 
 == API changes in 1.17 ==
 
