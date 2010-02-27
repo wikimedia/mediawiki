@@ -1592,7 +1592,7 @@ $1",
 'recentchangeslinked-to'       => 'إظهارالتغييرات للصفحات الموصولة للصفحة اللى انت اديتها',
 
 # Upload
-'upload'                      => 'حمل فايل (upload file)',
+'upload'                      => 'ارفع فايل (upload file)',
 'uploadbtn'                   => 'حمل الملف',
 'reuploaddesc'                => 'إلغى التحميل وارجع لاستمارة التحميل',
 'upload-tryagain'             => 'نفذ وصف الملف المتعدل',

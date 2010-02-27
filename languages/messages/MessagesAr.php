@@ -772,6 +772,7 @@ $1',
 'readonly_lag'         => 'تم إغلاق قاعدة البيانات تلقائيا حتى تستطيع الخواديم التابعة ملاحقة الخادوم الرئيسي',
 'internalerror'        => 'خطأ داخلي',
 'internalerror_info'   => 'خطأ داخلي: $1',
+'fileappenderror'      => 'تعذّرت إضافة "$1" إلى "$2".',
 'filecopyerror'        => 'لم يمكن نسخ الملف "$1" إلى "$2".',
 'filerenameerror'      => 'لم يمكن إعادة تسمية الملف "$1" إلى "$2".',
 'filedeleteerror'      => 'لم يمكن حذف الملف "$1".',
@@ -1635,7 +1636,7 @@ $1",
 # User rights log
 'rightslog'      => 'سجل صلاحيات المستخدمين',
 'rightslogtext'  => 'هذا سجل بالتغييرات في صلاحيات المستخدمين.',
-'rightslogentry' => 'غير صلاحيات $1 من $2 إلى $3',
+'rightslogentry' => 'غيّر صلاحيات $1 من $2 إلى $3',
 'rightsnone'     => '(لا شيء)',
 
 # Associated actions - in the sentence "You do not have permission to X"

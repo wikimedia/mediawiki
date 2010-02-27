@@ -2286,7 +2286,7 @@ $1',
 'whatlinkshere-hideredirs' => '넘겨주기를 $1',
 'whatlinkshere-hidetrans'  => '틀을 $1',
 'whatlinkshere-hidelinks'  => '링크를 $1',
-'whatlinkshere-hideimages' => '그림을 $1',
+'whatlinkshere-hideimages' => '그림 포함을 $1',
 'whatlinkshere-filters'    => '필터',
 
 # Block/unblock

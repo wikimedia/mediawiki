@@ -351,9 +351,37 @@ Wen's des ned is, bisd womeeglich iwa ân feela in dr sofdwäâr gschdolbad. Dan
 'math_tip'    => 'Mademaadische Fôrml (in LATEX)',
 
 # Edit pages
+'summary'                => 'Dsusamfasung:',
+'subject'                => 'Bedräf:',
+'minoredit'              => 'Nôr wenich is gändârd wôrn',
 'watchthis'              => 'Dii sajdn undâr beoobachdung nämma',
 'savearticle'            => 'Sajdn schbajchän',
+'preview'                => "Dii sajdn, wii's wärn dääd",
+'showpreview'            => "Schbign, wii's wärn dääd",
+'showdiff'               => 'Fârendârungn ôôdsajchn',
+'anoneditwarning'        => 'Duu has Di ned ôôgmäld dsum ändârn fon der sajdn. Wen Du se uuôôgmäld ändârsch un schbajchârsch, dan wird Dâj IP-adresn endgildich mid in iirn ändârungsfârlaaf najgschriiwn un ghan dan eewich fon jeedâm ghinfdich gleesn wärn.',
+'missingsummary'         => "'''Achdung:''' Du hasd bis jeds ghâ Dsamfasung dâdsuugschriiwn. Wen De's jeds ned noch mechsd un dan schbajchârsd, dan wärd Daj ändârung gands oone gmachd.",
+'missingcommenttext'     => "Schrajb bide aa â dsamfasung, dâmid mr siid, wieso Duu g'ändârd hasd un waas.",
+'missingcommentheader'   => "'''Achdung:''' Du hasd hindâr „Bedräf:“ gha ghinfdiche iiwârschrifd ôôgääwn. Wen De's ned noch mechsd un schbajchârsd, dan wäd's gands oone iiwârschrifd iwârnomn.",
 'summary-preview'        => "Was in'd dsusammfasungsdsajln najghumd:",
+'subject-preview'        => 'Wii dr bedräf aussään wärd:',
+'blockedtitle'           => 'Dr bajdreechâr is gschbärd.',
+'blockedtext'            => "<big>'''Du bisd gschbärd wôrn, jee nachdeem mid'm nôômn odâr mid dr IP-adresn.'''</big>
+
+Gmachd had des: $1
+Desweechn: ''$2''
+
+* Dii schbärung had dôô ôôgfangn: $8
+* Dii schbärung lefd dôô aus: $6
+* Des is dâbaj gschbärd: $7
+
+Du ghôôsch De grood an $1 wendn odâr aa an ân andârn [[{{MediaWiki:Grouppage-sysop}}|adminischdraadr]], wen De driiwâr disghudiirn wilst.
+
+Wen De ghâ gildiche iimejl-adresn in Dajn [[Special:Preferences|Ajschdelungn]] ôôgeewen hasd, odr wen mr des iimejln fir Dii gschbärd had, dan ged des ned iiwâr „Iimejl an den bearbajdâr“.
+
+Dâj IP-adressn is: $3
+Dii schbärr-ID is: $5
+Schrajb des bide als dâdsu, wen De Dich meldsd.",
 'noarticletext'          => 'Dii sajdn gibd\'s bis jeds noch ned.
 Duu ghâusch nach dem ausdrug aa [[Special:Search/{{PAGENAME}}|in aln sajdn drin suuchn]], 
 <span class="plainlinks"> [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} in deen dsugheerichn log-biichârn suuchn] odâr dii sajdn [{{fullurl:{{FULLPAGENAME}}|action=edit}} ôôleechn un najschrajwn]</span>.',

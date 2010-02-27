@@ -88,13 +88,13 @@ $messages = array(
 'category-subcat-count-limited' => "Am k'at'egori tudes na dgin {{PLURAL:$1|tude k'at'egoris|$1 tude k'at'egoris}} uğun.",
 'category-article-count'        => "{{PLURAL:$2|Am k'at'egoris, xvala, tude na ren k'at'egori uğun.|T'oplami $2 şen, tude na ren {{PLURAL:$1|but'k'a|$1 but'k'a}} am k'at'egoris ren.}}",
 'listingcontinuesabbrev'        => '(naqona)',
-'index-category'                => 'Indexi muşi na uğun sayfape',
+'index-category'                => "Indexi na uğun but'k'ape",
 'noindex-category'              => 'Indexi muşi na var uğun sayfape',
 
 'mainpagetext'      => "<big>'''Mediawiki dido k'ai ik'idu.'''</big>",
 'mainpagedocfooter' => "Vik'i şeni muç'o ixmarinen ya mutxanepe oguru şeni [http://meta.wikimedia.org/wiki/Help:Contents oxmaruşi rexberis] o3'k'edit.
 
-== Ağani na gyoç’k’u k'oçepe ==
+== Ağani na gyoç’k’u maxmarepe ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ok'iduşi ayarepeşi liste]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki P'anda Na-k'itxu K'itxalape]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-mailepeşiş liste]",
@@ -230,6 +230,7 @@ St'at'iapes oxmaruşi yasaği na ren ar, varna daha dido k'arak't'eri uğun.",
 'userlogin'               => "Amaxti / ik'ayit'i",
 'logout'                  => 'Siteşen Kogamaxti',
 'userlogout'              => 'Siteşen Kogamaxti',
+'nologin'                 => "Hesabi va giğuni? '''$1'''",
 'nologinlink'             => "Hesabi dok'idi.",
 'mailmypassword'          => "Ağne p'arola-çkimi moncğoni",
 
