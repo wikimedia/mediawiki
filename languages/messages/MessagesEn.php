@@ -3866,31 +3866,31 @@ Others will be hidden by default.
 'limitall'         => 'all',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirm e-mail address',
-'confirmemail_noemail'     => 'You do not have a valid e-mail address set in your [[Special:Preferences|user preferences]].',
-'confirmemail_text'        => '{{SITENAME}} requires that you validate your e-mail address before using e-mail features.
+'confirmemail'              => 'Confirm e-mail address',
+'confirmemail_noemail'      => 'You do not have a valid e-mail address set in your [[Special:Preferences|user preferences]].',
+'confirmemail_text'         => '{{SITENAME}} requires that you validate your e-mail address before using e-mail features.
 Activate the button below to send a confirmation mail to your address.
 The mail will include a link containing a code;
 load the link in your browser to confirm that your e-mail address is valid.',
-'confirmemail_pending'     => 'A confirmation code has already been e-mailed to you;
+'confirmemail_pending'      => 'A confirmation code has already been e-mailed to you;
 if you recently created your account, you may wish to wait a few minutes for it to arrive before trying to request a new code.',
-'confirmemail_send'        => 'Mail a confirmation code',
-'confirmemail_sent'        => 'Confirmation e-mail sent.',
-'confirmemail_oncreate'    => 'A confirmation code was sent to your e-mail address.
+'confirmemail_send'         => 'Mail a confirmation code',
+'confirmemail_sent'         => 'Confirmation e-mail sent.',
+'confirmemail_oncreate'     => 'A confirmation code was sent to your e-mail address.
 This code is not required to log in, but you will need to provide it before enabling any e-mail-based features in the wiki.',
-'confirmemail_sendfailed'  => '{{SITENAME}} could not send your confirmation mail.
+'confirmemail_sendfailed'   => '{{SITENAME}} could not send your confirmation mail.
 Please check your e-mail address for invalid characters.
 
 Mailer returned: $1',
-'confirmemail_invalid'     => 'Invalid confirmation code.
+'confirmemail_invalid'      => 'Invalid confirmation code.
 The code may have expired.',
-'confirmemail_needlogin'   => 'You need to $1 to confirm your e-mail address.',
-'confirmemail_success'     => 'Your e-mail address has been confirmed.
+'confirmemail_needlogin'    => 'You need to $1 to confirm your e-mail address.',
+'confirmemail_success'      => 'Your e-mail address has been confirmed.
 You may now [[Special:UserLogin|log in]] and enjoy the wiki.',
-'confirmemail_loggedin'    => 'Your e-mail address has now been confirmed.',
-'confirmemail_error'       => 'Something went wrong saving your confirmation.',
-'confirmemail_subject'     => '{{SITENAME}} e-mail address confirmation',
-'confirmemail_body'        => 'Someone, probably you, from IP address $1,
+'confirmemail_loggedin'     => 'Your e-mail address has now been confirmed.',
+'confirmemail_error'        => 'Something went wrong saving your confirmation.',
+'confirmemail_subject'      => '{{SITENAME}} e-mail address confirmation',
+'confirmemail_body'         => 'Someone, probably you, from IP address $1,
 has registered an account "$2" with this e-mail address on {{SITENAME}}.
 
 To confirm that this account really does belong to you and activate
@@ -3904,8 +3904,22 @@ to cancel the e-mail address confirmation:
 $5
 
 This confirmation code will expire at $4.',
-'confirmemail_invalidated' => 'E-mail address confirmation canceled',
-'invalidateemail'          => 'Cancel e-mail confirmation',
+'confirmemail_body_changed' => 'Someone, probably you, from IP address $1,
+has changed the e-mail address of the account "$2" to this address on {{SITENAME}}.
+
+To confirm that this account really does belong to you and reactivate
+e-mail features on {{SITENAME}}, open this link in your browser:
+
+$3
+
+If the account does *not* belong to you, follow this link
+to cancel the e-mail address confirmation:
+
+$5
+
+This confirmation code will expire at $4.',
+'confirmemail_invalidated'  => 'E-mail address confirmation canceled',
+'invalidateemail'           => 'Cancel e-mail confirmation',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
