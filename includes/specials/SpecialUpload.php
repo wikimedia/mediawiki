@@ -701,7 +701,7 @@ class UploadForm extends HTMLForm {
 			+ $this->getDescriptionSection()
 			+ $this->getOptionsSection();
 
-		wfRunHooks( 'UploadFormInitDescriptor', array( $descriptor ) );
+		wfRunHooks( 'UploadFormInitDescriptor', array( &$descriptor ) );
 		parent::__construct( $descriptor, 'upload' );
 
 		# Set some form properties
