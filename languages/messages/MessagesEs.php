@@ -43,6 +43,7 @@
  * @author Omnipaedista
  * @author Orgullomoore
  * @author Paucabot
+ * @author PerroVerd
  * @author Piolinfax
  * @author Platonides
  * @author Remember the dot
@@ -1627,6 +1628,7 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'minlength1'                  => 'Los nombres de archivo deben tener al menos una letra.',
 'illegalfilename'             => 'El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de páginas. Por favor, renombra el archivo e intenta volver a subirlo.',
 'badfilename'                 => 'El nombre de la imagen se ha cambiado a "$1".',
+'filetype-mime-mismatch'      => 'La extensión del archivo no coincide con su tipo MIME.',
 'filetype-badmime'            => 'No se permite subir archivos de tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'No se puede subir este fichero porque Internet Explorer podría considerarlo como «$1», que es un tipo de fichero deshabilitado y potencialmente peligroso.',
 'filetype-unwanted-type'      => "'''«.$1»''' no está entre los tipos de fichero aconsejados.

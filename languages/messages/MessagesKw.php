@@ -1,5 +1,5 @@
 <?php
-/** Cornish (Kernowek)
+/** Cornish (Kernewek)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -79,6 +79,9 @@ $specialPageAliases = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-hideminor' => 'Kudha chanjyow bian yn chanjyow a-dhiwedhes',
+
 'underline-never' => 'Jammes',
 
 # Dates

@@ -629,6 +629,7 @@ Tu pote ignorar iste message si iste conto ha essite create in error.',
 'login-throttled'            => 'Tu ha facite troppo de tentativas de identification.
 Per favor attende ante de probar lo novemente.',
 'loginlanguagelabel'         => 'Lingua: $1',
+'suspicious-userlogout'      => 'Le requesta de clauder le session ha essite refusate proque illo pare haber essite inviate per un navigator o proxy de cache defectuose.',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar contrasigno',

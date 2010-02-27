@@ -554,6 +554,7 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores escravos da base de datos se actualizan desde o máster',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
+'fileappenderror'      => 'Non se puido engadir "$1" a "$2".',
 'filecopyerror'        => 'Non se deu copiado o ficheiro "$1" a "$2".',
 'filerenameerror'      => 'Non se pode cambiar o nome do ficheiro "$1" a "$2".',
 'filedeleteerror'      => 'Non se deu borrado o ficheiro "$1".',
@@ -1942,7 +1943,7 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-ok'    => 'Procurar',
 'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".<br />
 Protocolos soportados: <tt>$1</tt>',
-'linksearch-line'  => '$1 é ligado desde $2',
+'linksearch-line'  => '$1 está ligado desde $2',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
 # Special:ListUsers
