@@ -11,12 +11,15 @@ interface HistoryBlob
 	 * Adds an item of text, returns a stub object which points to the item.
 	 * You must call setLocation() on the stub object before storing it to the
 	 * database
-	 * Returns the key for getItem()
+	 *
+	 * @return String: the key for getItem()
 	 */
 	public function addItem( $text );
 
 	/**
 	 * Get item by key, or false if the key is not present
+	 *
+	 * @return String or false
 	 */
 	public function getItem( $key );
 
@@ -32,6 +35,8 @@ interface HistoryBlob
 
 	/**
 	 * Get default text. This is called from Revision::getRevisionText()
+	 *
+	 * @return String
 	 */
 	function getText();
 }
@@ -149,8 +154,8 @@ class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
 
 	/**
-	 * @param string $hash The content hash of the text
-	 * @param integer $oldid The old_id for the CGZ object
+	 * @param $hash Strng: the content hash of the text
+	 * @param $oldid Integer: the old_id for the CGZ object
 	 */
 	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
 		$this->mHash = $hash;
@@ -246,7 +251,7 @@ class HistoryBlobCurStub {
 	var $mCurId;
 
 	/**
-	 * @param integer $curid The cur_id pointed to
+	 * @param $curid Integer: the cur_id pointed to
 	 */
 	function HistoryBlobCurStub( $curid = 0 ) {
 		$this->mCurId = $curid;
