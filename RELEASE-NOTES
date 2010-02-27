@@ -27,6 +27,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   throws an error
 * (bugs 22665 and 22667) User '0' can now be unblocked and have its block
   settings changed
+* (bug 22606) The body of e-mail address confirmation message is now different
+  when the address changed
 
 == API changes in 1.17 ==
 

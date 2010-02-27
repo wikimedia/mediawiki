@@ -1272,7 +1272,7 @@ class Preferences {
 				if( $wgEmailAuthentication ) {
 					# Mail a temporary password to the dirty address.
 					# User can come back through the confirmation URL to re-enable email.
-					$result = $wgUser->sendConfirmationMail();
+					$result = $wgUser->sendConfirmationMail( $oldadr != '' );
 					if( WikiError::isError( $result ) ) {
 						return wfMsg( 'mailerror', htmlspecialchars( $result->getMessage() ) );
 					} elseif( $entryPoint == 'ui' ) {
