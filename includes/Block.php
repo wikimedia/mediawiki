@@ -160,7 +160,7 @@ class Block {
 		$options = array();
 		$db =& $this->getDBOptions( $options );
 
-		if ( 0 == $user && $address == '' ) {
+		if ( 0 == $user && $address === '' ) {
 			# Invalid user specification, not blocked
 			$this->clear();
 			return false;
@@ -178,7 +178,7 @@ class Block {
 		# Try IP block
 		# TODO: improve performance by merging this query with the autoblock one
 		# Slightly tricky while handling killExpired as well
-		if ( $address ) {
+		if ( $address !== '' ) {
 			$conds = array( 'ipb_address' => $address, 'ipb_auto' => 0 );
 			$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
 

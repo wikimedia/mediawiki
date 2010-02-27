@@ -105,7 +105,7 @@ class IPBlockForm {
 			$msg = wfMsgReal( $key, $err );
 			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
 			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
-		} elseif( $this->BlockAddress ) {
+		} elseif( $this->BlockAddress !== null ) {
 			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
 			wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockedMsgs, $this->BlockAddress ) );
 

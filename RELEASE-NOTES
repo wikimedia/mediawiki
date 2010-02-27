@@ -25,6 +25,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   updating DB
 * (bug 22666) Submitting user block form with an invalid user name no longer
   throws an error
+* (bugs 22665 and 22667) User '0' can now be unblocked and have its block
+  settings changed
 
 == API changes in 1.17 ==
 
