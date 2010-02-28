@@ -33,6 +33,7 @@
  * @author Skalman
  * @author StefanB
  * @author Steinninn
+ * @author Where next Columbus
  * @author Where next Columbus?
  * @author לערי ריינהארט
  */
@@ -653,6 +654,7 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror'        => 'Internt fel',
 'internalerror_info'   => 'Internt fel: $1',
+'fileappenderror'      => 'Kunde inte bifoga "$1" till "$2".',
 'filecopyerror'        => 'Kunde inte kopiera filen "$1" till "$2".',
 'filerenameerror'      => 'Kunde inte byta namn på filen "$1" till "$2".',
 'filedeleteerror'      => 'Kunde inte radera filen "$1".',
@@ -878,7 +880,7 @@ Det kan ha flyttats eller raderats medan du tittade på sidan.',
 'loginreqtitle'                    => 'Inloggning krävs',
 'loginreqlink'                     => 'logga in',
 'loginreqpagetext'                 => 'Du måste $1 för att visa andra sidor.',
-'accmailtitle'                     => 'Lösenordet är skickat.',
+'accmailtitle'                     => 'Lösenord skickat.',
 'accmailtext'                      => "Ett slumpgenererat lösenord för [[User talk:$1|$1]] har skickats till $2.
 
 Lösenordet för det här nya användarkontot kan ändras på sidan ''[[Special:ChangePassword|ändra lösenord]]'' när du loggar in.",

@@ -815,6 +815,7 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'login-throttled'            => 'U hebt recentelijk te vaak geprobeerd aan te melden met een onjuist wachtwoord.
 Wacht even voordat u het opnieuw probeert.',
 'loginlanguagelabel'         => 'Taal: $1',
+'suspicious-userlogout'      => 'Uw verzoek om af te melden is genegeerd omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
 
 # Password reset dialog
 'resetpass'                 => 'Wachtwoord wijzigen',

@@ -139,8 +139,8 @@ $messages = array(
 'tog-watchmoves'              => 'Cosirar as pachinas que treslade',
 'tog-watchdeletion'           => 'Cosirar as pachinas que borre',
 'tog-minordefault'            => 'Siñalar por defeuto totas as edizions como menors',
-'tog-previewontop'            => "Amostrar l'ambiesta prebia antes d'o cuatrón d'edizión",
-'tog-previewonfirst'          => "Amostrar l'ambiesta prebia de l'articlo en a primera edizión",
+'tog-previewontop'            => "Amostrar l'anvista previa antes d'o quatrón d'edición",
+'tog-previewonfirst'          => "Amostrar l'anvista previa de l'articlo en a primera edición",
 'tog-nocache'                 => "Desautibar a ''caché'' de pachinas",
 'tog-enotifwatchlistpages'    => 'Rezibir un correu cuan se faigan cambios en una pachina cosirata por yo',
 'tog-enotifusertalkpages'     => 'Nimbiar-me un correu cuan cambee a mía pachina de descusión',
@@ -604,14 +604,14 @@ Puet estar que ya aiga cambeato a suya palabra de paso u aiga demandato una nueb
 'savearticle'                      => 'Alzar pachina',
 'preview'                          => 'Bisualizazión prebia',
 'showpreview'                      => 'Bisualizazión prebia',
-'showlivepreview'                  => 'Ambiesta prebia rapeda',
+'showlivepreview'                  => 'Anvista previa',
 'showdiff'                         => 'Amostrar cambeos',
 'anoneditwarning'                  => "''Pare cuenta:'' No s'ha identificato con un nombre d'usuario. A suya adreza IP s'alzará en o istorial d'a pachina.",
 'missingsummary'                   => "'''Pare cuenta:''' No ha escrito garra resumen d'edizión. Si fa clic nuebament en «{{MediaWiki:Savearticle}}» a suya edizión se grabará sin resumen.",
 'missingcommenttext'               => 'Por fabor, escriba o testo astí baxo.',
 'missingcommentheader'             => "'''Pare cuenta:''' No ha escrito garra títol ta iste comentario. Si puncha un atra bez en con a rateta en \"Alzar\", a suya edizión se grabará sin títol.",
-'summary-preview'                  => "Beyer ambiesta prebia d'o resumen:",
-'subject-preview'                  => "Ambiesta prebia d'o tema/títol:",
+'summary-preview'                  => "Veyer anvista previa d'o resumen:",
+'subject-preview'                  => "Ambiesta previa d'o tema/títol:",
 'blockedtitle'                     => "L'usuario ye bloqueyato",
 'blockedtext'                      => "<big>'''O suyo nombre d'usuario u adreza IP ye bloqueyato.'''</big>
 
@@ -645,8 +645,9 @@ A suya adreza IP autual ye \$3, y o identificador de bloqueyo ye #\$5. Por fabor
 'whitelistedittitle'               => 'Cal enzetar una sesión ta poder editar.',
 'whitelistedittext'                => 'Ha de $1 ta poder editar pachinas.',
 'confirmedittext'                  => "Ha de confirmar a suya adreza de correu-e antis de poder editar pachinas. Por fabor, establa y confirme una adreza de correu-e a trabiés d'as suyas [[Special:Preferences|preferenzias d'usuario]].",
-'nosuchsectiontitle'               => 'No esiste ixa sezión',
-'nosuchsectiontext'                => "Has prebato d'editar una sezión que no existe.",
+'nosuchsectiontitle'               => 'No se puede trobar ixa sección',
+'nosuchsectiontext'                => "Ha mirau d'editar una sección que no existe.
+Talment bell un l'haiga mobiu u borrau entre que vusté vesitaba a pachina.",
 'loginreqtitle'                    => 'Cal que enzete una sesión',
 'loginreqlink'                     => 'enzetar una sesión',
 'loginreqpagetext'                 => 'Ha de $1 ta beyer atras pachinas.',
@@ -678,14 +679,14 @@ Si busté ye un usuario anonimo y creye que l'han escrito comentarios no releban
 'userinvalidcssjstitle'            => "'''Pare cuenta:''' No bi ha garra aparenzia clamata \"\$1\". Remere que as pachinas presonalizatas .css y .js tienen un títol en minusclas, p.e. {{ns:user}}:Foo/monobook.css en cuenta de {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Esbiellato)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''Pare cuenta que isto sólo ye que l'ambiesta prebia d'a pachina; os cambeos encara no han estato alzatos!'''",
-'previewconflict'                  => "L'ambiesta prebia li amostrará l'aparenzia d'o testo dimpués d'alzar os cambeos.",
+'previewnote'                      => "'''Pare cuenta que isto no ye que l'anvista previa d'a pachina; os cambeos encara no s'ha alzato!'''",
+'previewconflict'                  => "L'anvista previa li amostrará l'aparencia d'o texto dimpués d'alzar os cambeos.",
 'session_fail_preview'             => "'''Ya lo sentimos, pero no emos puesto alzar a suya edizión por una perduga d'os datos de sesion. Por fabor, prebe de fer-lo una atra bez, y si encara no funziona, [[Special:UserLogout|salga d'a sesión]] y torne á identificar-se.'''",
-'session_fail_preview_html'        => "'''Ya lo sentimos, pero no emos puesto prozesar a suya edizión porque os datos de sesión s'han trafegato.'''
+'session_fail_preview_html'        => "'''Ya lo sentimos, pero no s'ha puesto procesar a suya edición por haber-se trafegato os datos de sesión.'''
 
-''Como {{SITENAME}} tiene l'HTML puro autibato, s'ha amagato l'ambiesta prebia ta aprebenir ataques en JavaScript.''
+''Como que {{SITENAME}} tiene l'HTML puro activato, s'ha amagato l'anviesta previa ta aprevenir ataques en JavaScript.''
 
-'''Si ye mirando d'editar lechitimament, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe de [[Special:UserLogout|zarrar a sesión]] y dentrar-ie identificando-se de nuebas.'''",
+'''Si ye mirando d'editar lechitimament, por favor, prebe una atra vegada. Si encara no funcionase alavez, prebe de [[Special:UserLogout|zarrar a sesión]] y dentrar-ie identificando-se de nuevas.'''",
 'token_suffix_mismatch'            => "'''S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.'''",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (sezión)',
@@ -711,12 +712,13 @@ Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más ch
 'readonlywarning'                  => "'''Pare cuenta: A base de datos ye bloqueyata por custions de mantenimiento. Por ixo, en iste inte ye imposible d'alzar as suyas edizions. Puede copiar y apegar o testo en un archibo y alzar-lo ta dimpués.'''
 
 A esplicazión ufierta por l'almenistrador que bloqueyó a base de datos ye ista: $1",
-'protectedpagewarning'             => "'''PARE CUENTA: Ista pachina ha estato protechita ta que sólo os usuarios con premisos d'almenistrador puedan editar-la.'''",
-'semiprotectedpagewarning'         => "'''Nota:''' Ista pachina ha estato protechita ta que nomás usuarios rechistratos puedan editar-la.",
+'protectedpagewarning'             => "'''Pare cuenta: Ista pachina s'ha protechito ta que nomás os usuarios con premisos d'almenistrador puedan editar-la.'''",
+'semiprotectedpagewarning'         => "'''Pare cuenta:''' Ista pachina s'ha protechito ta que nomás os usuarios rechistratos puedan editar-la.",
 'cascadeprotectedwarning'          => "'''Pare cuenta:''' Ista pachina ye protechita ta que nomás os almenistrador puedan editar-la, porque ye encluyita en {{PLURAL:$1|a siguient pachina, protechita|as siguients pachinas, protechitas}} con a opzión de ''cascada'' :",
-'titleprotectedwarning'            => "'''PARE CUENTA:  Ista pachina s'ha bloqueyato, y s'aprezisan [[Special:ListGroupRights|dreitos espezificos]] ta creyar-la.'''",
+'titleprotectedwarning'            => "'''PARE CUENTA:  Ista pachina s'ha bloqueyato de traza que s'aprecisan [[Special:ListGroupRights|dreitos especificos]] ta creyar-la.'''
+Como información adicional s'amuestra contino a zaguera dentrada en o rechistro.",
 'templatesused'                    => '{{PLURAL:$1|Plantilla|Planillas}} emplegatas en ista pachina:',
-'templatesusedpreview'             => '{{PLURAL:$1|Plantilla|Plantillas}} emplegadas en ista ambiesta prebia:',
+'templatesusedpreview'             => '{{PLURAL:$1|Plantilla|Plantillas}} emplegadas en ista anvista previa:',
 'templatesusedsection'             => '{{PLURAL:$1|Plantilla|Plantillas}} emplegatas en ista sezión:',
 'template-protected'               => '(protechita)',
 'template-semiprotected'           => '(semiprotechita)',
@@ -1052,7 +1054,7 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 * Un caxa siñalata sinnifica que l'usuario bi ye en ixa colla.
 * Una caxa no siñalata sinnifica que l'usuario no ye en ixa colla.
 * Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa.",
-'userrights-reason'           => 'Razón ta o cambeo:',
+'userrights-reason'           => 'Razón:',
 'userrights-no-interwiki'     => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
 'userrights-nodatabase'       => 'A base de datos $1 no esiste u no ye local.',
 'userrights-nologin'          => "Ha d'[[Special:UserLogin|enzetar una sesión]] con una cuenta d'almenistrador ta poder dar dreitos d'usuario.",
@@ -1244,7 +1246,7 @@ Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'ista
 'upload-prohibited'           => "Tipos d'archibo biedatos: $1.",
 'uploadlog'                   => 'rechistro de cargas',
 'uploadlogpage'               => "Rechistro de cargas d'archibos",
-'uploadlogpagetext'           => "Contino ye una lista d'os zaguers archibos cargatos. Mire-se a [[Special:NewFiles|galería d'archibos nuebos]] ta tener una ambiesta más bisual.",
+'uploadlogpagetext'           => "Contino s'amuestra  una lista d'os zaguers fichers cargatos. Mire-se a [[Special:NewFiles|galería de nuevos fichers]] ta tener una amvista más visual.",
 'filename'                    => "Nombre de l'archibo",
 'filedesc'                    => 'Resumen',
 'fileuploadsummary'           => 'Resumen:',
@@ -1336,7 +1338,7 @@ PICT # misz.
 'license'            => 'Lizenzia:',
 'license-header'     => 'Lizenziando',
 'nolicense'          => "No s'en ha trigato garra",
-'license-nopreview'  => '(Ambiesta prebia no disponible)',
+'license-nopreview'  => '(Anvista previa no disponible)',
 'upload_source_url'  => ' (una URL conforme y publicament aczesible)',
 'upload_source_file' => ' (un archibo en o suyo ordenador)',
 
@@ -1530,7 +1532,8 @@ Cada ringlera contién o binclo t'a primer y segunda reendrezeras, y tamién o d
 'ancientpages'            => 'Pachinas más biellas',
 'move'                    => 'Tresladar',
 'movethispage'            => 'Tresladar ista pachina',
-'unusedimagestext'        => 'Por fabor, pare cuenta que atros puestos web pueden tener binclos ta imachens con una URL dreita y, por ixo, podrían amanixer en ista lista encara que sí se faigan serbir autibament.',
+'unusedimagestext'        => 'Os siguient fichers existen pero no amaneixen incorporaus en garra pachina. 
+Por fabor, pare cuenta que atros puestos web pueden tener vinclos ta fichers con una URL dreita y, por ixo, podrían amaneixer en ista lista encara que sí se faigan servir activament.',
 'unusedcategoriestext'    => 'As siguients categoría son creyatas, pero no bi ha garra articlo u categoría que las faiga serbir.',
 'notargettitle'           => 'No bi ha garra pachina de destino',
 'notargettext'            => 'No ha espezificato en que pachina quiere aplicar ista funzión.',
@@ -1584,8 +1587,9 @@ Se beigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 'special-categories-sort-abc'   => 'ordenar alfabeticament',
 
 # Special:DeletedContributions
-'deletedcontributions'       => "Contrebuzions d'usuario borratas",
-'deletedcontributions-title' => "Contrebuzions d'usuario borradas",
+'deletedcontributions'             => "Contrebuzions d'usuario borratas",
+'deletedcontributions-title'       => "Contrebuzions d'usuario borradas",
+'sp-deletedcontributions-contribs' => 'contrebucions',
 
 # Special:LinkSearch
 'linksearch'       => 'Binclos esternos',
@@ -1693,27 +1697,28 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias
 'enotif_anon_editor'           => 'usuario anonimo $1',
 'enotif_body'                  => 'Quiesto/a $WATCHINGUSERNAME,
 
-A pachina «$PAGETITLE» de {{SITENAME}}
-ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATE.
-Puede trobar a bersión autual en $PAGETITLE_URL
+A pachina $PAGETITLE de {{SITENAME}} ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATE. Puede veyer a versión actual en $PAGETITLE_URL.
 
 $NEWPAGE
 
-O resumen d\'a edizión ye: $PAGESUMMARY $PAGEMINOREDIT
+Resumen d\'edición: $PAGESUMMARY $PAGEMINOREDIT
 
-Ta comunicar-se con l\'usuario:
-por correu: $PAGEEDITOR_EMAIL
-en o wiki: $PAGEEDITOR_WIKI
+Ta contactar con l\'editor:
+correu: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
 
-Ta recullir nuebas notificazions de cambios d\'ista pachina abrá de besitar-la nuebament.
-Tamién puede cambiar, en a su lista de seguimiento, as opzions de notificazión d\'as pachinas que ye cosirando.
+Ta recullir nuevas notificacions de cambios d\'ista pachina habrá de vesitar-la nuevament.
+Tamién puede cambiar, en a su lista de seguimiento, as opcions de notificación d\'as pachinas que ye cosirando.
 
 Atentament,
 O sistema de notificazión de {{SITENAME}}.
 
 --
-Ta cambiar as opzions d\'a suya lista de seguimiento en:
+Ta cambiar as opcions d\'a suya lista de seguimiento, punche:
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Ta borrar ista pachina d\'a suya lista de seguimiento, punche:
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Ta obtenir más informazión y aduya:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1731,6 +1736,7 @@ Ta obtenir más informazión y aduya:
 'confirmdeletetext'      => "Ye amanato á borrar d'a base de datos una pachina con tot o suyo istorial.
 Por fabor, confirme que reyalment ye mirando de fer ixo, que entiende as consecuenzias, y que lo fa d'alcuerdo con as [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
 'actioncomplete'         => 'Acción rematada',
+'actionfailed'           => "L'acción ha feito fallita",
 'deletedtext'            => '"<nowiki>$1</nowiki>" ha estato borrato.
 Se beiga en $2 un rechistro d\'os borraus rezients.',
 'deletedarticle'         => 'borrato "$1"',
@@ -1842,6 +1848,7 @@ Si s'ha creyato una nueba pachina con o mesmo nombre dende que se borró a orich
 'undelete-nodiff'              => "No s'ha trobato garra bersión anterior.",
 'undeletebtn'                  => 'Restaurar!',
 'undeletelink'                 => 'amostrar/restaurar',
+'undeleteviewlink'             => 'veyer',
 'undeletereset'                => 'Prenzipiar',
 'undeleteinvert'               => 'Contornar selezión',
 'undeletecomment'              => 'Razón ta restaurar:',
@@ -1994,6 +2001,7 @@ as pachinas que s'han bandalizato).",
 'block-log-flags-noemail'         => "s'ha desautibato o nimbío de mensaches por correu electronico",
 'block-log-flags-nousertalk'      => 'no puet editar a suya pachina de descusión',
 'block-log-flags-angry-autoblock' => "s'ha autibato l'autobloqueyo amillorato",
+'block-log-flags-hiddenname'      => "nombre d'usuario oculto",
 'range_block_disabled'            => "A posibilidat d'os almenistradors de bloqueyar rangos d'adrezas IP ye desautibata.",
 'ipb_expiry_invalid'              => 'O tiempo de zircunduzión no ye conforme.',
 'ipb_expiry_temp'                 => "Os bloqueyos con nombre d'usuario amagato abría d'estar ta cutio.",
@@ -2304,7 +2312,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'markaspatrolleddiff'                 => 'Siñalar como ya controlato',
 'markaspatrolledtext'                 => 'Siñalar iste articlo como controlato',
 'markedaspatrolled'                   => 'Siñalato como controlato',
-'markedaspatrolledtext'               => 'A bersión trigata ye siñalata como controlata.',
+'markedaspatrolledtext'               => "A versión seleccionata de [[:$1]] s'ha sinyalato como patrullata.",
 'rcpatroldisabled'                    => "S'ha desautibato o control d'os zagurers cambeos",
 'rcpatroldisabledtext'                => "A funzión de control d'os zaguers cambeos ye desautibata en iste inte.",
 'markedaspatrollederror'              => 'No se puede siñalar como controlata',
@@ -2344,7 +2352,7 @@ En executar-lo, podría meter en un contornillo a seguridat d'o suyo sistema.<hr
 'file-nohires'         => '<small>No bi ha garra bersión con mayor resoluzión.</small>',
 'svg-long-desc'        => '(archibo SVG, nominalment $1 × $2 píxels, grandaria: $3)',
 'show-big-image'       => 'Imachen en a masima resoluzión',
-'show-big-image-thumb' => "<small>Grandaria d'ista ambiesta prebia: $1 × $2 píxels</small>",
+'show-big-image-thumb' => "<small>Grandaria d'ista anvista previa: $1 × $2 píxels</small>",
 
 # Special:NewFiles
 'newimages'             => 'Galería de nuebas imachens',
