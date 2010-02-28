@@ -35,8 +35,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Subpages are now enabled in the MediaWiki namespace by default.  This is
   mainly a cosmetic change, and does not in any way affect the MessageCache,
   which was already effectively treating the namespace as if it had subpages.
-* (bug 10837) $wgVariant is a user variant selected in the user's preferences
-  if the $wgContLang does not have variant, then the $wgLang is used instead.
 * Oracle: maintenance/ora/user.sql script for creating DB user on oracle with
   appropriate privileges. Creating this user with web-install page requires
   oci8.privileged_connect set to On in php.ini.
