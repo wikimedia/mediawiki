@@ -1261,18 +1261,18 @@ class Preferences {
 		);
 
 		if( $wgEnableEmail ) {
-			$newadr = $formData['emailaddress'];
-			$oldadr = $wgUser->getEmail();
-			if( ( $newadr != '' ) && ( $newadr != $oldadr ) ) {
+			$newaddr = $formData['emailaddress'];
+			$oldaddr = $wgUser->getEmail();
+			if( ( $newaddr != '' ) && ( $newaddr != $oldaddr ) ) {
 				# the user has supplied a new email address on the login page
 				# new behaviour: set this new emailaddr from login-page into user database record
-				$wgUser->setEmail( $newadr );
+				$wgUser->setEmail( $newaddr );
 				# but flag as "dirty" = unauthenticated
 				$wgUser->invalidateEmail();
 				if( $wgEmailAuthentication ) {
 					# Mail a temporary password to the dirty address.
 					# User can come back through the confirmation URL to re-enable email.
-					$result = $wgUser->sendConfirmationMail( $oldadr != '' );
+					$result = $wgUser->sendConfirmationMail( $oldaddr != '' );
 					if( WikiError::isError( $result ) ) {
 						return wfMsg( 'mailerror', htmlspecialchars( $result->getMessage() ) );
 					} elseif( $entryPoint == 'ui' ) {
@@ -1280,10 +1280,10 @@ class Preferences {
 					}
 				}
 			} else {
-				$wgUser->setEmail( $newadr );
+				$wgUser->setEmail( $newaddr );
 			}
-			if( $oldadr != $newadr ) {
-				wfRunHooks( 'PrefsEmailAudit', array( $wgUser, $oldadr, $newadr ) );
+			if( $oldaddr != $newaddr ) {
+				wfRunHooks( 'PrefsEmailAudit', array( $wgUser, $oldaddr, $newaddr ) );
 			}
 		}
 
