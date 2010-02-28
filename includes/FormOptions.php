@@ -192,11 +192,11 @@ class FormOptions implements ArrayAccess {
 	}
 
 	public function offsetSet( $name, $value ) {
-		return $this->setValue( $name, $value );
+		$this->setValue( $name, $value );
 	}
 
 	public function offsetUnset( $name ) {
-		return $this->delete( $name );
+		$this->delete( $name );
 	}
 
 }
