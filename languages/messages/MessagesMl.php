@@ -272,6 +272,7 @@ $magicWords = array(
 	'padleft'               => array( '0', 'ഇടത്ത്നിറക്കുക', 'PADLEFT' ),
 	'padright'              => array( '0', 'വലത്ത്നിറക്കുക', 'PADRIGHT' ),
 	'special'               => array( '0', 'പ്രത്യേകം', 'special' ),
+	'filepath'              => array( '0', 'പ്രമാണപഥം:', 'FILEPATH:' ),
 	'tag'                   => array( '0', 'റ്റാഗ്', 'tag' ),
 	'hiddencat'             => array( '1', '‌‌__മറഞ്ഞിരിക്കുംവർഗ്ഗം__', '__HIDDENCAT__' ),
 	'pagesincategory'       => array( '1', 'വർഗ്ഗത്തിലുള്ളതാളുകൾ', 'PAGESINCATEGORY', 'PAGESINCAT' ),
