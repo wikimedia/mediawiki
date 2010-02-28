@@ -692,6 +692,7 @@ Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software ge
 'readonly_lag'         => 'Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.',
 'internalerror'        => 'Interner Fehler',
 'internalerror_info'   => 'Interner Fehler: $1',
+'fileappenderror'      => 'Konnte „$1“ nicht an „$2“ anhängen.',
 'filecopyerror'        => 'Die Datei „$1“ konnte nicht nach „$2“ kopiert werden.',
 'filerenameerror'      => 'Die Datei „$1“ konnte nicht nach „$2“ umbenannt werden.',
 'filedeleteerror'      => 'Die Datei „$1“ konnte nicht gelöscht werden.',
@@ -3203,25 +3204,25 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'limitall'         => 'alle',
 
 # E-mail address confirmation
-'confirmemail'             => 'E-Mail-Adresse bestätigen (Authentifizierung)',
-'confirmemail_noemail'     => 'Du hast keine gültige E-Mail-Adresse in deinen [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
-'confirmemail_text'        => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizieren), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Klicke bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem du diese Webseite in deinem Webbrowser öffnest, bestätigst du, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
-'confirmemail_pending'     => 'Es wurde dir bereits ein Bestätigungscode per E-Mail zugeschickt.
+'confirmemail'              => 'E-Mail-Adresse bestätigen (Authentifizierung)',
+'confirmemail_noemail'      => 'Du hast keine gültige E-Mail-Adresse in deinen [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
+'confirmemail_text'         => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizieren), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Klicke bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem du diese Webseite in deinem Webbrowser öffnest, bestätigst du, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
+'confirmemail_pending'      => 'Es wurde dir bereits ein Bestätigungscode per E-Mail zugeschickt.
 Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.',
-'confirmemail_send'        => 'Bestätigungscode zuschicken',
-'confirmemail_sent'        => 'Bestätigungs-E-Mail wurde verschickt.',
-'confirmemail_oncreate'    => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
-'confirmemail_sendfailed'  => '{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an dich versenden.
+'confirmemail_send'         => 'Bestätigungscode zuschicken',
+'confirmemail_sent'         => 'Bestätigungs-E-Mail wurde verschickt.',
+'confirmemail_oncreate'     => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
+'confirmemail_sendfailed'   => '{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an dich versenden.
 Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
 
 Rückmeldung des Mailservers: $1',
-'confirmemail_invalid'     => 'Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuche bitte, die Bestätigung zu wiederholen.',
-'confirmemail_needlogin'   => 'Du musst dich $1, um deine E-Mail-Adresse zu bestätigen.',
-'confirmemail_success'     => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt [[Special:UserLogin|anmelden]].',
-'confirmemail_loggedin'    => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt.',
-'confirmemail_error'       => 'Es gab einen Fehler bei der Bestätigung deiner E-Mail-Adresse.',
-'confirmemail_subject'     => '[{{SITENAME}}] - Bestätigung der E-Mail-Adresse',
-'confirmemail_body'        => 'Hallo,
+'confirmemail_invalid'      => 'Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuche bitte, die Bestätigung zu wiederholen.',
+'confirmemail_needlogin'    => 'Du musst dich $1, um deine E-Mail-Adresse zu bestätigen.',
+'confirmemail_success'      => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt [[Special:UserLogin|anmelden]].',
+'confirmemail_loggedin'     => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt.',
+'confirmemail_error'        => 'Es gab einen Fehler bei der Bestätigung deiner E-Mail-Adresse.',
+'confirmemail_subject'      => '[{{SITENAME}}] - Bestätigung der E-Mail-Adresse',
+'confirmemail_body'         => 'Hallo,
 
 jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto „$2“ in {{SITENAME}} registriert.
 
@@ -3237,8 +3238,22 @@ Wenn du das genannte Benutzerkonto *nicht* registriert hast, folge diesem Link, 
 $5
 
 Dieser Bestätigungscode ist gültig bis $6, $7 Uhr.',
-'confirmemail_invalidated' => 'E-Mail-Adressbestätigung abbrechen',
-'invalidateemail'          => 'E-Mail-Adressbestätigung abbrechen',
+'confirmemail_body_changed' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst,
+hat die E-Mail-Adresse des Benutzerkontos „$2“ zu dieser Adresse auf {{SITENAME}} geändert.
+
+Um zu bestätigen, dass dieses Benutzerkonto wirklich dir gehört
+und um die E-Mail-Features auf {{SITENAME}} zu reaktivieren, öffne diesen Link in deinem Browser:
+
+$3
+
+Falls das Konto *nicht* dir gehört, folge diesem Link,
+um die E-Mail-Adress-Bestätigung abzubrechen:
+
+$5
+
+Dieser Bestätigungscode ist gültig bis $4.',
+'confirmemail_invalidated'  => 'E-Mail-Adressbestätigung abbrechen',
+'invalidateemail'           => 'E-Mail-Adressbestätigung abbrechen',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Einbindung ist deaktiviert]',

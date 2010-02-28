@@ -589,6 +589,7 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'login-throttled'            => 'Rydych wedi ceisio mewngofnodi gormod o weithiau ar unwaith.
 Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
+'suspicious-userlogout'      => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
 
 # Password reset dialog
 'resetpass'                 => 'Newid cyfrinair y cyfrif',
@@ -2961,24 +2962,24 @@ Ymateb yr amledd gofodol',
 'limitall'         => 'oll',
 
 # E-mail address confirmation
-'confirmemail'             => "Cadarnhau'r cyfeiriad e-bost",
-'confirmemail_noemail'     => 'Does dim cyfeiriad e-bost dilys wedi ei osod yn eich [[Special:Preferences|dewisiadau defnyddiwr]].',
-'confirmemail_text'        => "Cyn i chi allu defnyddio'r nodweddion e-bost, mae'n rhaid i {{SITENAME}} ddilysu'ch cyfeiriad e-bost. Pwyswch y botwm isod er mwyn anfon côd cadarnhau i'ch cyfeiriad e-bost. Bydd yr e-bost yn cynnwys cyswllt gyda chôd ynddi; llwythwch y cyswllt ar eich porwr er mwyn cadarnhau dilysrwydd eich cyfeiriad e-bost.",
-'confirmemail_pending'     => "Mae côd cadarnhau eisoes wedi ei anfon atoch; os ydych newydd greu'ch cyfrif, hwyrach y gallech ddisgwyl rhai munudau amdano cyn gofyn yr eilwaith am gôd newydd.",
-'confirmemail_send'        => 'Postiwch gôd cadarnhau',
-'confirmemail_sent'        => "Wedi anfon e-bost er mwyn cadarnhau'r cyfeiriad.",
-'confirmemail_oncreate'    => "Anfonwyd côd cadarnhau at eich cyfeiriad e-bost.
+'confirmemail'              => "Cadarnhau'r cyfeiriad e-bost",
+'confirmemail_noemail'      => 'Does dim cyfeiriad e-bost dilys wedi ei osod yn eich [[Special:Preferences|dewisiadau defnyddiwr]].',
+'confirmemail_text'         => "Cyn i chi allu defnyddio'r nodweddion e-bost, mae'n rhaid i {{SITENAME}} ddilysu'ch cyfeiriad e-bost. Pwyswch y botwm isod er mwyn anfon côd cadarnhau i'ch cyfeiriad e-bost. Bydd yr e-bost yn cynnwys cyswllt gyda chôd ynddi; llwythwch y cyswllt ar eich porwr er mwyn cadarnhau dilysrwydd eich cyfeiriad e-bost.",
+'confirmemail_pending'      => "Mae côd cadarnhau eisoes wedi ei anfon atoch; os ydych newydd greu'ch cyfrif, hwyrach y gallech ddisgwyl rhai munudau amdano cyn gofyn yr eilwaith am gôd newydd.",
+'confirmemail_send'         => 'Postiwch gôd cadarnhau',
+'confirmemail_sent'         => "Wedi anfon e-bost er mwyn cadarnhau'r cyfeiriad.",
+'confirmemail_oncreate'     => "Anfonwyd côd cadarnhau at eich cyfeiriad e-bost.
 Nid oes rhaid wrth y côd wrth fewngofnodi, ond rhaid ei ddefnyddio er mwyn galluogi offer ar y wici sy'n defnyddio e-bost.",
-'confirmemail_sendfailed'  => "Ni fu'n bosibl danfon yr e-bost cadarnháu oddi wrth {{SITENAME}}. Gwiriwch eich cyfeiriad e-bost am nodau annilys.
+'confirmemail_sendfailed'   => "Ni fu'n bosibl danfon yr e-bost cadarnháu oddi wrth {{SITENAME}}. Gwiriwch eich cyfeiriad e-bost am nodau annilys.
 
 Dychwelodd yr ebostydd: $1",
-'confirmemail_invalid'     => 'Côd cadarnhau annilys. Efallai fod y côd wedi dod i ben.',
-'confirmemail_needlogin'   => 'Rhaid $1 er mwyn cadarnhau eich cyfeiriad e-bost.',
-'confirmemail_success'     => "Mae eich cyfeiriad e-bost wedi'i gadarnhau. Cewch fewngofnodi a mwynhau'r Wici.",
-'confirmemail_loggedin'    => 'Cadarnhawyd eich cyfeiriad e-bost.',
-'confirmemail_error'       => 'Cafwyd gwall wrth ddanfon eich cadarnhad.',
-'confirmemail_subject'     => 'Cadarnhâd cyfeiriad e-bost ar {{SITENAME}}',
-'confirmemail_body'        => 'Mae rhywun (chi, yn fwy na thebyg, o\'r cyfeiriad IP $1) wedi cofrestru\'r cyfrif "$2" ar {{SITENAME}} gyda\'r cyfeiriad e-bost hwn.
+'confirmemail_invalid'      => 'Côd cadarnhau annilys. Efallai fod y côd wedi dod i ben.',
+'confirmemail_needlogin'    => 'Rhaid $1 er mwyn cadarnhau eich cyfeiriad e-bost.',
+'confirmemail_success'      => "Mae eich cyfeiriad e-bost wedi'i gadarnhau. Cewch fewngofnodi a mwynhau'r Wici.",
+'confirmemail_loggedin'     => 'Cadarnhawyd eich cyfeiriad e-bost.',
+'confirmemail_error'        => 'Cafwyd gwall wrth ddanfon eich cadarnhad.',
+'confirmemail_subject'      => 'Cadarnhâd cyfeiriad e-bost ar {{SITENAME}}',
+'confirmemail_body'         => 'Mae rhywun (chi, yn fwy na thebyg, o\'r cyfeiriad IP $1) wedi cofrestru\'r cyfrif "$2" ar {{SITENAME}} gyda\'r cyfeiriad e-bost hwn.
 
 I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i alluogi nodweddion e-bost ar {{SITENAME}}, agorwch y cyswllt hwn yn eich porwr:
 
@@ -2989,8 +2990,19 @@ Os *nad* chi sydd berchen y cyfrif hwn, dilynwch y cyswllt hwn er mwyn diddymu c
 $5 
 
 Bydd y côd cadarnhau yn dod i ben am $4.',
-'confirmemail_invalidated' => "Diddymwyd y weithred o gadarnhau'r cyfeiriad e-bost",
-'invalidateemail'          => 'Diddymu cadarnhad y cyfeiriad e-bost.',
+'confirmemail_body_changed' => 'Mae rhywun (chi, yn fwy na thebyg, o\'r cyfeiriad IP $1) wedi newid cyfeiriad e-bost y cyfrif "$2" ar {{SITENAME}} i\'r cyfeiriad e-bost hwn.
+
+I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i ail-alluogi nodweddion e-bost ar {{SITENAME}}, agorwch y cyswllt hwn yn eich porwr:
+
+$3
+
+Os *nad* chi sydd berchen y cyfrif hwn, dilynwch y cyswllt hwn er mwyn diddymu cadarnhad y cyfeiriad e-bost:
+
+$5 
+
+Bydd y côd cadarnhau yn dod i ben am $4.',
+'confirmemail_invalidated'  => "Diddymwyd y weithred o gadarnhau'r cyfeiriad e-bost",
+'invalidateemail'           => 'Diddymu cadarnhad y cyfeiriad e-bost.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Analluogwyd cynhwysiad rhyng-wici]',

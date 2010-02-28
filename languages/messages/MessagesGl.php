@@ -710,6 +710,7 @@ Por favor, agarde antes de probar outra vez.',
 'resetpass_forbidden'       => 'Os contrasinais non poden ser mudados',
 'resetpass-no-info'         => 'Debe acceder ao sistema para acceder directamente a esta páxina.',
 'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
+'resetpass-submit-cancel'   => 'Cancelar',
 'resetpass-wrong-oldpass'   => 'Contrasinal temporal ou actual inválido. 
 Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
 'resetpass-temp-password'   => 'Contrasinal temporal:',

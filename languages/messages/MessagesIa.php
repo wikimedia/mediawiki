@@ -534,10 +534,10 @@ Le ration date es ''$2''.",
 'virus-unknownscanner' => 'antivirus non cognoscite:',
 
 # Login and logout pages
-'logouttext'                 => "'''Tu ha claudite tu session.'''
+'logouttext'                 => "'''Tu ha claudite le session.'''
 
-Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote [[Special:UserLogin|initiar un nove session]] como le mesme o como un altere usator.
-Nota que alcun paginas pote continuar a monstrar se como si le session esserea ancora active. Pro remediar isto, tu pote vacuar le cache de tu navigator.",
+Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote [[Special:UserLogin|aperir un nove session]] con le mesme nomine de usator o con un altere.
+Nota que alcun paginas pote continuar a apparer como si tu esserea ancora identificate. Pro remediar isto, tu pote vacuar le cache de tu navigator.",
 'welcomecreation'            => '== Benvenite, $1! ==
 Tu conto ha essite create.
 Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].',
@@ -3101,31 +3101,31 @@ Le alteres essera initialmente celate.
 'limitall'         => 'totes',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar adresse de e-mail',
-'confirmemail_noemail'     => 'Tu non ha configurate un adresse de e-mail valide in tu [[Special:Preferences|preferentias de usator]].',
-'confirmemail_text'        => '{{SITENAME}} require que tu valida tu adresse de e-mail ante que tu usa functiones involvente e-mail.
+'confirmemail'              => 'Confirmar adresse de e-mail',
+'confirmemail_noemail'      => 'Tu non ha configurate un adresse de e-mail valide in tu [[Special:Preferences|preferentias de usator]].',
+'confirmemail_text'         => '{{SITENAME}} require que tu valida tu adresse de e-mail ante que tu usa functiones involvente e-mail.
 Activa le button infra pro inviar un message de confirmation a tu adresse.
 Le message includera un ligamine continente un codice;
 visita le ligamine in tu navigator pro confirmar que tu adresse de e-mail es valide.',
-'confirmemail_pending'     => 'Un codice de confirmation ha ja essite inviate a te;
+'confirmemail_pending'      => 'Un codice de confirmation ha ja essite inviate a te;
 si tu ha recentemente create tu conto, es recommendate attender le arrivata de illo durante alcun minutas ante de provar requestar un nove codice.',
-'confirmemail_send'        => 'Inviar un codice de confirmation',
-'confirmemail_sent'        => 'Message de confirmation inviate.',
-'confirmemail_oncreate'    => 'Un codice de confirmation ha essite inviate a tu adresse de e-mail.
+'confirmemail_send'         => 'Inviar un codice de confirmation',
+'confirmemail_sent'         => 'Message de confirmation inviate.',
+'confirmemail_oncreate'     => 'Un codice de confirmation ha essite inviate a tu adresse de e-mail.
 Iste codice non es necessari pro aperir un session, ma es requirite pro activar omne functiones a base de e-mail in le wiki.',
-'confirmemail_sendfailed'  => '{{SITENAME}} non poteva inviar te le message de confirmation.
+'confirmemail_sendfailed'   => '{{SITENAME}} non poteva inviar te le message de confirmation.
 Per favor verifica que tu adresse de e-mail non ha characteres invalide.
 
 Le servitor de e-mail retornava: $1',
-'confirmemail_invalid'     => 'Codice de confirmation invalide.
+'confirmemail_invalid'      => 'Codice de confirmation invalide.
 Es possibile que le codice ha expirate.',
-'confirmemail_needlogin'   => 'Tu debe $1 pro confirmar tu adresse de e-mail.',
-'confirmemail_success'     => 'Tu adresse de e-mail ha essite confirmate.
+'confirmemail_needlogin'    => 'Tu debe $1 pro confirmar tu adresse de e-mail.',
+'confirmemail_success'      => 'Tu adresse de e-mail ha essite confirmate.
 Tu pote ora aperir un session e fruer te del wiki.',
-'confirmemail_loggedin'    => 'Tu adresse de e-mail ha ora essite confirmate.',
-'confirmemail_error'       => 'Un problema occurreva durante le salveguarda de tu confirmation.',
-'confirmemail_subject'     => 'Confirmation del adresse de e-mail pro {{SITENAME}}',
-'confirmemail_body'        => 'Un persona, probabilemente tu, usante le adresse IP $1,
+'confirmemail_loggedin'     => 'Tu adresse de e-mail ha ora essite confirmate.',
+'confirmemail_error'        => 'Un problema occurreva durante le salveguarda de tu confirmation.',
+'confirmemail_subject'      => 'Confirmation del adresse de e-mail pro {{SITENAME}}',
+'confirmemail_body'         => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha registrate un conto "$2" con iste adresse de e-mail in {{SITENAME}}.
 
 Pro confirmar que iste conto es de facto tue, e pro activar le functiones
@@ -3139,8 +3139,22 @@ pro cancellar le confirmation del adresse de e-mail:
 $5
 
 Iste codice de confirmation expirara a $4.',
-'confirmemail_invalidated' => 'Confirmation del adresse de e-mail cancellate',
-'invalidateemail'          => 'Cancellar confirmation del adresse de e-mail',
+'confirmemail_body_changed' => 'Un persona, probabilemente tu, usante le adresse IP $1,
+ha cambiate le adresse de e-mail del conto "$2" a iste adresse in {{SITENAME}}.
+
+Pro confirmar que iste conto es de facto tue, e pro reactivar le functiones
+de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
+
+$3
+
+Si le conto *non* pertine a te, seque iste ligamine
+pro cancellar le confirmation del adresse de e-mail:
+
+$5
+
+Iste codice de confirmation expirara a $4.',
+'confirmemail_invalidated'  => 'Confirmation del adresse de e-mail cancellate',
+'invalidateemail'           => 'Cancellar confirmation del adresse de e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Le transclusion interwiki es disactivate]',
