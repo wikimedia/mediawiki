@@ -3302,33 +3302,34 @@ Andere velden worden verborgen.
 'limitall'         => 'alle',
 
 # E-mail address confirmation
-'confirmemail'             => 'E-mailadres bevestigen',
-'confirmemail_noemail'     => 'U hebt geen geldig e-mailadres ingegeven in uw [[Special:Preferences|gebruikersvoorkeuren]].',
-'confirmemail_text'        => '{{SITENAME}} eist bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kunt gebruiken.
+'confirmemail'              => 'E-mailadres bevestigen',
+'confirmemail_noemail'      => 'U hebt geen geldig e-mailadres ingegeven in uw [[Special:Preferences|gebruikersvoorkeuren]].',
+'confirmemail_text'         => '{{SITENAME}} eist bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kunt gebruiken.
 Klik op de onderstaande knop om een bevestigingsbericht te ontvangen.
 Dit bericht bevat een verwijzing met een code.
 Open die verwijzing om uw e-mailadres te bevestigen.',
-'confirmemail_pending'     => 'Er is al een bevestigingsbericht aan u verzonden.
+'confirmemail_pending'      => 'Er is al een bevestigingsbericht aan u verzonden.
 Als u recentelijk uw gebruiker hebt aangemaakt, wacht dan een paar minuten totdat die aankomt voordat u opnieuw een e-mail laat sturen.',
-'confirmemail_send'        => 'Een bevestigingscode verzenden',
-'confirmemail_sent'        => 'Bevestigingscode verzonden.',
-'confirmemail_oncreate'    => 'Er is een bevestigingscode naar uw e-mailadres verzonden.
+'confirmemail_send'         => 'Een bevestigingscode verzenden',
+'confirmemail_sent'         => 'Bevestigingscode verzonden.',
+'confirmemail_oncreate'     => 'Er is een bevestigingscode naar uw e-mailadres verzonden.
 Deze code is niet nodig om u aan te melden, maar u dient deze wel te bevestigen voordat u de e-mailmogelijkheden van deze wiki kunt gebruiken.',
-'confirmemail_sendfailed'  => '{{SITENAME}} kon uw bevestigingscode niet verzenden.
+'confirmemail_sendfailed'   => '{{SITENAME}} kon uw bevestigingscode niet verzenden.
 Controleer uw e-mailadres op ongeldige tekens.
 
 Het e-mailprogramma meldde: $1',
-'confirmemail_invalid'     => 'Ongeldige bevestigingscode.
+'confirmemail_invalid'      => 'Ongeldige bevestigingscode.
 Mogelijk is de code verlopen.',
-'confirmemail_needlogin'   => 'U moet $1 om uw e-mailadres te bevestigen.',
-'confirmemail_success'     => 'Uw e-mailadres is bevestigd.
+'confirmemail_needlogin'    => 'U moet $1 om uw e-mailadres te bevestigen.',
+'confirmemail_success'      => 'Uw e-mailadres is bevestigd.
 U kunt zich nu aanmelden en {{SITENAME}} gebruiken.',
-'confirmemail_loggedin'    => 'Uw e-mailadres is nu bevestigd.',
-'confirmemail_error'       => 'Er is iets verkeerd gegaan tijdens het opslaan van uw bevestiging.',
-'confirmemail_subject'     => 'Bevestiging e-mailadres voor {{SITENAME}}',
-'confirmemail_body'        => 'Iemand, waarschijnlijk u, met het IP-adres $1, heeft zich met dit e-mailadres geregistreerd als gebruiker "$2" op {{SITENAME}}.
+'confirmemail_loggedin'     => 'Uw e-mailadres is nu bevestigd.',
+'confirmemail_error'        => 'Er is iets verkeerd gegaan tijdens het opslaan van uw bevestiging.',
+'confirmemail_subject'      => 'Bevestiging e-mailadres voor {{SITENAME}}',
+'confirmemail_body'         => 'Iemand, waarschijnlijk u, met het IP-adres $1,
+heeft zich met dit e-mailadres geregistreerd als gebruiker "$2" op {{SITENAME}}.
 
-Open de volgende verwijzing om te bevestigen dat u deze gebruiker bent en om de e-mailmogelijkheden op {{SITENAME}} te activeren:
+Open de volgende verwijzing in uw webbrowser om te bevestigen dat u deze gebruiker bent en om de e-mailmogelijkheden op {{SITENAME}} te activeren:
 
 $3
 
@@ -3337,8 +3338,20 @@ Als u uzelf *niet* hebt aangemeld, volg dan de volgende verwijzing om de bevesti
 $5
 
 De bevestigingscode vervalt op $4.',
-'confirmemail_invalidated' => 'De e-mailbevestiging is geannuleerd',
-'invalidateemail'          => 'E-mailbevestiging annuleren',
+'confirmemail_body_changed' => 'Iemand, waarschijnlijk u, met het IP-adres $1,
+heeft het het e-mailadres geregistreerd voor gebruiker "$2" op {{SITENAME}} gewijzigd naar dit e-mailadres.
+
+Open de volgende verwijzing in uw webbrowser om te bevestigen dat u deze gebruiker bent en om de e-mailmogelijkheden op {{SITENAME}} opnieuw te activeren:
+
+$3
+
+Als u uzelf *niet* hebt aangemeld, volg dan de volgende verwijzing om de bevestiging van uw e-mailadres te annuleren:
+
+$5
+
+De bevestigingscode vervalt op $4.',
+'confirmemail_invalidated'  => 'De e-mailbevestiging is geannuleerd',
+'invalidateemail'           => 'E-mailbevestiging annuleren',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-invoeging van sjablonen is uitgeschakeld]',

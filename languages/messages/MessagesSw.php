@@ -446,7 +446,7 @@ Au labda kuna hitilafu kwenye programu inayotumika na {{SITENAME}}.',
 Orodha ya kurasa maalumu zinapatika kwenye [[Special:SpecialPages|{{int:kurasamaalumu}}]].',
 
 # General errors
-'error'                => 'Kosa',
+'error'                => 'Hitilafu',
 'databaseerror'        => 'Hitilafu ya hifadhidata',
 'dberrortext'          => 'Shina la kuulizia kihifadhidata kuna hitilafu imetokea.
 Hii inaweza kuashiria kuna mdudu katika bidhaa pepe.
@@ -551,7 +551,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 'badretype'                  => 'Maneno uliyoyaandika ni tofauti.',
 'userexists'                 => 'Jina la mtumiaji uliloingiza tayari linatumika.
 Tafadhali chagua jina lingine.',
-'loginerror'                 => 'Kosa la kuingia',
+'loginerror'                 => 'Hitilafu ya kuingia',
 'createaccounterror'         => 'Haikufaulu kuanzisha akaunti: $1',
 'nocookiesnew'               => "Umesajiliwa, lakini bado hujaingizwa. {{SITENAME}} inatumia ''kuki'' ili watumiaji waingizwe. Kompyuta yako inazuia ''kuki''. Tafadhali, ondoa kizuizi hicho uingie kwa kutumia jina mpya na neno la siri.",
 'nocookieslogin'             => '{{SITENAME}} inatumia kuki ili watumiaji waweze kuingia.
@@ -1085,6 +1085,9 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'recentchangescount'            => 'Idadi ya masahihisho yatakayoonyeshwa kwa kawaida:',
 'prefs-help-recentchangescount' => '
 Kwenye kurasa za mabadiliko ya karibuni, za historia ya ukurasa, na za kumbukumbu.',
+'prefs-help-watchlist-token'    => 'Ukiandika ufunguo wa siri kwenye kisanduku hiki, programu itaanzisha tawanyiko la RSS kwa ajili ya maangalizi yako.
+Mtu wowote anayejua ufunguo wa siri huu ataweza kusoma orodha yako ya maangalizi, kwa hiyo chagua ufunguo salama. 
+Hapo kuna ufunguo uliotolewa na programu kwa kubahatisha, ambao unaweza kuutumia: %1',
 'savedprefs'                    => 'Mapendekezo yako yamehifadhiwa.',
 'timezonelegend'                => 'Ukanda saa:',
 'localtime'                     => 'Saa ya kwetu:',
@@ -1787,6 +1790,7 @@ Chagua jina lengine.',
 # Namespace 8 related
 'allmessages'               => 'Jumbe za mfumo',
 'allmessagesname'           => 'Jina',
+'allmessagescurrent'        => 'Ujumbe unapo sasa hivi',
 'allmessages-filter-legend' => 'Chuja',
 'allmessages-filter-all'    => 'Zote',
 'allmessages-language'      => 'Lugha:',
@@ -1800,6 +1804,8 @@ Chagua jina lengine.',
 # Special:Import
 'import-upload-filename' => 'Jina la faili:',
 'import-comment'         => 'Maelezo:',
+'import-token-mismatch'  => 'Data ya kipindi zilipotelewa.
+Tafadhali jaribu tena.',
 
 # Import log
 'importlogpage'                 => 'Kumbukumbu ya kuingizwa',
@@ -1807,12 +1813,14 @@ Chagua jina lengine.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ukurasa wako',
+'tooltip-pt-anonuserpage'         => 'Ukurasa wa mtumiaji kwa ajili ya anwani wa IP unaoitumia kuhariri',
 'tooltip-pt-mytalk'               => 'Majadiliano yako',
 'tooltip-pt-anontalk'             => 'Majadiliano ya masahihisho yaliyofanikiwa kutoka kwa anwani huu wa IP',
 'tooltip-pt-preferences'          => 'Mapendekezo yangu',
 'tooltip-pt-watchlist'            => 'Orodha ya kurasa unazofuatilia kwa mabadiliko',
 'tooltip-pt-mycontris'            => 'Orodha ya michango yako',
-'tooltip-pt-login'                => 'Tunakushajisha kuingia, lakini siyo lazima.',
+'tooltip-pt-login'                => 'Tunakushajiisha kuingia, lakini siyo lazima.',
+'tooltip-pt-anonlogin'            => 'Tunakushajiisha kuingia, lakini siyo lazima',
 'tooltip-pt-logout'               => 'Toka',
 'tooltip-ca-talk'                 => 'Mazungumzo kuhusu makala',
 'tooltip-ca-edit'                 => 'Unaweza kuhariri ukurasa huu.  Tafadhali tumia kitufe cha kuhakikisha kabla ya kuhifadhi.',
@@ -1821,6 +1829,7 @@ Chagua jina lengine.',
 'tooltip-ca-history'              => 'Mapitio ya awali ya ukurasa huu',
 'tooltip-ca-protect'              => 'Linda ukurasa huu',
 'tooltip-ca-delete'               => 'Futa ukurasa huu',
+'tooltip-ca-undelete'             => 'Rudisha masahihisho yaliyofanyiwa katika ukurasa huu kabla haujafutwa',
 'tooltip-ca-move'                 => 'Sogeza ukurasa huu',
 'tooltip-ca-watch'                => 'Fuatilia ukurasa huu kwenye maangalizi yako',
 'tooltip-ca-unwatch'              => 'Futa ukurasa huu kutoka maangalizi yako',
@@ -1850,6 +1859,7 @@ Chagua jina lengine.',
 'tooltip-ca-nstab-special'        => 'Huu ni ukurasa maalum ambao hauwezi kuhaririwa',
 'tooltip-ca-nstab-project'        => 'Tazama ukurasa wa mradi',
 'tooltip-ca-nstab-image'          => 'Angalia ukurasa wa faili',
+'tooltip-ca-nstab-mediawiki'      => 'Tazama ujumbe wa mfumo',
 'tooltip-ca-nstab-template'       => 'Tazama kigezo',
 'tooltip-ca-nstab-help'           => 'Tazama ukurasa wa msaada',
 'tooltip-ca-nstab-category'       => 'Tazama ukurasa wa jamii',

@@ -1632,7 +1632,7 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acceso denegado',
+'img-auth-accessdenied' => 'Acceso rexeitado',
 'img-auth-nopathinfo'   => 'Falta a PATH_INFO.
 O seu servidor non está configurado para pasar esta información.
 Pode ser que estea baseado en CGI e non puidese soportar img_auth.

@@ -511,6 +511,7 @@ $2',
 'login-throttled'            => 'Сиз асыры кёб кере кирирге кюрешгенсиз.
 Джангыдан кёргюнчю бираз заман ётдюрюгюз.',
 'loginlanguagelabel'         => 'Тил: $1',
+'suspicious-userlogout'      => 'Терс браузер неда кэш этиучу прокси берген соруугъа ушагъаны ючюн, Сизни чыгъаргъа сорууугъуз алынмагъанды.',
 
 # Password reset dialog
 'resetpass'                 => 'Парольну тюрлендириу',
@@ -2089,7 +2090,7 @@ $1',
 'sp-contributions-userrights'     => 'къошулуучуну хакъларына оноу этиу',
 'sp-contributions-blocked-notice' => 'Бу къошулуучу бусагъатда блокланыб турады. Тюбюнде блокланыуланы журналындан ахыр джазыу бериледи:',
 'sp-contributions-search'         => 'Къошакъны излеу',
-'sp-contributions-username'       => 'IP-адреси неда аты къошулуучуну:',
+'sp-contributions-username'       => 'Къошулуучуну IP-адреси неда аты:',
 'sp-contributions-submit'         => 'Таб',
 
 # What links here

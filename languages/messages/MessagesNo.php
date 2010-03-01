@@ -1519,6 +1519,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'minlength1'                  => 'Filnavn må være på minst én bokstav.',
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
+'filetype-mime-mismatch'      => 'Filendelsen samsvarer ikke med noen MIME-type.',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
 'filetype-bad-ie-mime'        => 'Kan ikke laste opp denne filen fordi Internet Explorer ville detektert denne som «$1», noe som er ikke er tillatt, og en potensielt farlig filtype.',
 'filetype-unwanted-type'      => "'''«.$1»''' er en uønsket filtype.
@@ -3067,24 +3068,24 @@ Rotert 90° mot klokka og vridd vertikalt',
 'limitall'         => 'alle',
 
 # E-mail address confirmation
-'confirmemail'             => 'Bekreft e-postadresse',
-'confirmemail_noemail'     => 'Du har ikke oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].',
-'confirmemail_text'        => 'Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.',
-'confirmemail_pending'     => 'En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig opprettet kontoen din, kan du ønske å vente noen minutter før du spør om ny kode.',
-'confirmemail_send'        => 'Send en bekreftelseskode.',
-'confirmemail_sent'        => 'Bekreftelsesmelding sendt.',
-'confirmemail_oncreate'    => 'En bekreftelseskode ble sendt til din e-postadresse. Denne koden er ikke nødvendig for å logge inn, men er nødvendig for å slå på e-postbaserte tjenester i denne wikien.',
-'confirmemail_sendfailed'  => '{{SITENAME}} klarte ikke å sende bekreftelseskode.
+'confirmemail'              => 'Bekreft e-postadresse',
+'confirmemail_noemail'      => 'Du har ikke oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].',
+'confirmemail_text'         => 'Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.',
+'confirmemail_pending'      => 'En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig opprettet kontoen din, kan du ønske å vente noen minutter før du spør om ny kode.',
+'confirmemail_send'         => 'Send en bekreftelseskode.',
+'confirmemail_sent'         => 'Bekreftelsesmelding sendt.',
+'confirmemail_oncreate'     => 'En bekreftelseskode ble sendt til din e-postadresse. Denne koden er ikke nødvendig for å logge inn, men er nødvendig for å slå på e-postbaserte tjenester i denne wikien.',
+'confirmemail_sendfailed'   => '{{SITENAME}} klarte ikke å sende bekreftelseskode.
 Sjekk e-postadressen for ugyldige tegn.
 
 E-postsenderen ga følgende melding: $1',
-'confirmemail_invalid'     => 'Ugyldig bekreftelseskode. Koden kan ha utløpt.',
-'confirmemail_needlogin'   => 'Du må $1 for å bekrefte e-postadressen din.',
-'confirmemail_success'     => 'Din e-postadresse er nå bekreftet. Du kan nå logge inn og nyte wikien.',
-'confirmemail_loggedin'    => 'E-postadressen din er bekreftet.',
-'confirmemail_error'       => 'Noe gikk galt under lagringen av din bekreftelse.',
-'confirmemail_subject'     => 'Bekreftelsesmelding fra {{SITENAME}}',
-'confirmemail_body'        => 'Noen, antageligvis deg, har registrert kontoen «$2» på {{SITENAME}}, fra IP-adressen $1.
+'confirmemail_invalid'      => 'Ugyldig bekreftelseskode. Koden kan ha utløpt.',
+'confirmemail_needlogin'    => 'Du må $1 for å bekrefte e-postadressen din.',
+'confirmemail_success'      => 'Din e-postadresse er nå bekreftet. Du kan nå logge inn og nyte wikien.',
+'confirmemail_loggedin'     => 'E-postadressen din er bekreftet.',
+'confirmemail_error'        => 'Noe gikk galt under lagringen av din bekreftelse.',
+'confirmemail_subject'      => 'Bekreftelsesmelding fra {{SITENAME}}',
+'confirmemail_body'         => 'Noen, antageligvis deg, har registrert kontoen «$2» på {{SITENAME}}, fra IP-adressen $1.
 
 For å bekrefte at denne kontoen tilhører deg og for å aktivere e-posttjenester på {{SITENAME}}, åpne følgende lenke i nettleseren din:
 
@@ -3095,8 +3096,21 @@ Om du *ikke* registrerte kontoen, følg denne lenken for å avbryte bekreftelse 
 $5
 
 Denne bekreftelseskoden utgår $4.',
-'confirmemail_invalidated' => 'Bekreftelse av e-postadresse avbrutt',
-'invalidateemail'          => 'Avbryt bekreftelse av e-postadresse',
+'confirmemail_body_changed' => 'Noen, antageligvis deg, fra IP-adresse $1,
+har endret e-postadressen til kontoen «$2» til denne adressen på {{SITENAME}}.
+
+For å bekrefte at denne kontoen virkelig er din og for å reaktivere e-postegenskaper på {{SITENAME}}, åpne denne lenken i nettleseren din:
+
+$3
+
+Dersom denne kontoen *ikke* tilhører deg, følg denne lenken
+for å avbryte e-postbekreftelsen:
+
+$5
+
+Denne bekreftelseskoden vil løpe ut $4.',
+'confirmemail_invalidated'  => 'Bekreftelse av e-postadresse avbrutt',
+'invalidateemail'           => 'Avbryt bekreftelse av e-postadresse',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-transkludering er slått av]',
