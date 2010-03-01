@@ -496,6 +496,8 @@ $1',
 'readonly_lag'         => '當從伺服器追緊主伺服器時，資料庫會自動被鎖',
 'internalerror'        => '內部錯誤',
 'internalerror_info'   => '內部錯誤: $1',
+'fileappenderrorread'  => '當附加嗰陣讀唔到 "$1"。',
+'fileappenderror'      => '附加唔到 "$1" 去 "$2"。',
 'filecopyerror'        => '檔案 "$1" 抄唔到去 "$2"。',
 'filerenameerror'      => '檔案 "$1" 唔改得做 "$2"。',
 'filedeleteerror'      => '檔案 "$1" 唔刪得。',
@@ -616,6 +618,7 @@ $1',
 'usernamehasherror'          => '用戶名唔可以包含切細字元',
 'login-throttled'            => '你已經試咗太多次登入動作。請等多一陣再試過。',
 'loginlanguagelabel'         => '語言：$1',
+'suspicious-userlogout'      => '你去登出嘅要求已經拒絕咗，因為佢可能由壞咗嘅瀏覽器或者快取代理傳送。',
 
 # Password reset dialog
 'resetpass'                 => '改密碼',
@@ -631,6 +634,7 @@ $1',
 'resetpass_forbidden'       => '唔可以更改密碼',
 'resetpass-no-info'         => '你一定要登入咗去直接入來呢一版。',
 'resetpass-submit-loggedin' => '改密碼',
+'resetpass-submit-cancel'   => '取消',
 'resetpass-wrong-oldpass'   => '無效嘅臨時或現有嘅密碼。
 你可能已經成功咁更改你嘅密碼，又或者重新請求過一個新嘅臨時密碼。',
 'resetpass-temp-password'   => '臨時密碼:',
@@ -726,6 +730,8 @@ $1',
 或者<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搵有關嘅日誌]</span>。',
 'userpage-userdoesnotexist'        => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
 'userpage-userdoesnotexist-view'   => '用戶戶口"$1"重未開。',
+'blocked-notice-logextract'        => '呢位用戶而家被封鎖緊。
+下面有最近嘅封鎖紀錄以供參考：',
 'clearyourcache'                   => "'''注意：喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''
 '''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）；
 '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''；
@@ -1438,6 +1444,7 @@ $1",
 'minlength1'                  => '檔名必須最少要有一個字。',
 'illegalfilename'             => '檔名「$1」含有頁面標題所唔允許嘅字。請試下改檔名再上載。',
 'badfilename'                 => '檔名已經更改成「$1」。',
+'filetype-mime-mismatch'      => '檔案擴展名唔搭MIME類型。',
 'filetype-badmime'            => '「$1」嘅MIME類型檔案係唔容許上載嘅。',
 'filetype-bad-ie-mime'        => '唔可以上載呢個檔案，因為 Internet Explorer 會將佢偵測做 "$1"，佢係一種唔容許同埋有潛在危險性嘅檔案類型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''係一種唔需要嘅檔案類型。
@@ -2995,24 +3002,24 @@ Variants for Chinese language
 'limitall'         => '全部',
 
 # E-mail address confirmation
-'confirmemail'             => '確認電郵地址',
-'confirmemail_noemail'     => '你唔需要響你嘅[[Special:Preferences|用戶喜好設定]]度設定一個有效嘅電郵地址。',
-'confirmemail_text'        => '{{SITENAME}}需要你喺使用電郵功能之前驗證吓你嘅電郵地址。啟用下邊個掣嚟發封確認信去你個地址度。封信入面會附帶一條包含代碼嘅連結；喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。',
-'confirmemail_pending'     => '一個確認碼已經電郵咗畀你；如果你係啱啱開咗個新戶口嘅，你可以響請求一個新嘅確認碼之前等多幾分鐘等佢寄畀你。',
-'confirmemail_send'        => '寄出確認碼。',
-'confirmemail_sent'        => '確認電郵已經寄出。',
-'confirmemail_oncreate'    => '一個確認碼已經寄送咗到嘅嘅電郵地址。
+'confirmemail'              => '確認電郵地址',
+'confirmemail_noemail'      => '你唔需要響你嘅[[Special:Preferences|用戶喜好設定]]度設定一個有效嘅電郵地址。',
+'confirmemail_text'         => '{{SITENAME}}需要你喺使用電郵功能之前驗證吓你嘅電郵地址。啟用下邊個掣嚟發封確認信去你個地址度。封信入面會附帶一條包含代碼嘅連結；喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。',
+'confirmemail_pending'      => '一個確認碼已經電郵咗畀你；如果你係啱啱開咗個新戶口嘅，你可以響請求一個新嘅確認碼之前等多幾分鐘等佢寄畀你。',
+'confirmemail_send'         => '寄出確認碼。',
+'confirmemail_sent'         => '確認電郵已經寄出。',
+'confirmemail_oncreate'     => '一個確認碼已經寄送咗到嘅嘅電郵地址。
 呢個代碼唔係登入嗰陣去用，但係你需要佢去開響呢個wiki度，任何同電郵有關嘅功能。',
-'confirmemail_sendfailed'  => '{{SITENAME}}發唔到確認信。請檢查吓個地址有冇無效嘅字。
+'confirmemail_sendfailed'   => '{{SITENAME}}發唔到確認信。請檢查吓個地址有冇無效嘅字。
 
 郵件遞送員回應咗：$1',
-'confirmemail_invalid'     => '無效嘅確認碼。個代碼可能已經過咗期。',
-'confirmemail_needlogin'   => '你需要先$1去確認你嘅電郵地址。',
-'confirmemail_success'     => '你嘅電郵地址已經得到確認。你而家可以[[Special:UserLogin|登入]]同盡情享受wiki啦。',
-'confirmemail_loggedin'    => '你嘅電郵地址現已得到確認。',
-'confirmemail_error'       => '儲存你嘅確認資料嘅時候有小小嘢發生咗意外。',
-'confirmemail_subject'     => '{{SITENAME}}電郵地址確認',
-'confirmemail_body'        => '有人（好有可能係嚟自你嘅IP地址 $1）已經用呢個電郵地址喺{{SITENAME}}度註冊咗帳戶"$2"
+'confirmemail_invalid'      => '無效嘅確認碼。個代碼可能已經過咗期。',
+'confirmemail_needlogin'    => '你需要先$1去確認你嘅電郵地址。',
+'confirmemail_success'      => '你嘅電郵地址已經得到確認。你而家可以[[Special:UserLogin|登入]]同盡情享受wiki啦。',
+'confirmemail_loggedin'     => '你嘅電郵地址現已得到確認。',
+'confirmemail_error'        => '儲存你嘅確認資料嘅時候有小小嘢發生咗意外。',
+'confirmemail_subject'      => '{{SITENAME}}電郵地址確認',
+'confirmemail_body'         => '有人（好有可能係嚟自你嘅IP地址 $1）已經用呢個電郵地址喺{{SITENAME}}度註冊咗帳戶"$2"。
 
 要確認呢個帳戶的而且確屬於你同埋啟用{{SITENAME}}嘅電郵功能，請喺你嘅瀏覽器度打開呢條連結：
 
@@ -3024,8 +3031,20 @@ $3
 $5
 
 呢個確認代碼會喺$4到期。',
-'confirmemail_invalidated' => '電郵地址確認取消咗',
-'invalidateemail'          => '取消電郵確認',
+'confirmemail_body_changed' => '有人（好有可能係嚟自你嘅IP地址 $1）已經用呢個電郵地址喺{{SITENAME}}度改咗戶口"$2"嘅電郵地址"$2"。
+
+要確認呢個帳戶的而且確屬於你同埋重新啟用{{SITENAME}}嘅電郵功能，請喺你嘅瀏覽器度打開呢條連結：
+
+$3
+
+如果呢個戶口*唔係*屬於你嘅，
+請跟住呢個連結去取消電郵地址確認：
+
+$5
+
+呢個確認代碼會喺$4到期。',
+'confirmemail_invalidated'  => '電郵地址確認取消咗',
+'invalidateemail'           => '取消電郵確認',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨 wiki 滲漏正停用]',

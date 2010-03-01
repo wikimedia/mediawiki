@@ -410,6 +410,8 @@ $1',
 'missingarticle-diff'  => '（異：$1，$2）',
 'internalerror'        => '家誤',
 'internalerror_info'   => '家誤：$1',
+'fileappenderrorread'  => '當附時無讀 "$1"，未可為也。',
+'fileappenderror'      => '"$2"附"$1"，未可為也。',
 'filecopyerror'        => '"$1"謄"$2"，未可為也。',
 'filerenameerror'      => '"$2"替"$1"名，未可為也。',
 'filedeleteerror'      => '"$1"未可刪也。',
@@ -517,6 +519,7 @@ $2',
 'login-throttled'            => '爾多試於此簿登中。
 請候再試之。',
 'loginlanguagelabel'         => '語：$1',
+'suspicious-userlogout'      => '爾欲無離也，可由壞瀏覽器或快枝代理呈送之。',
 
 # Password reset dialog
 'resetpass'                 => '變符',
@@ -532,6 +535,7 @@ $2',
 'resetpass_forbidden'       => '無改符節',
 'resetpass-no-info'         => '爾須登簿後方進此頁。',
 'resetpass-submit-loggedin' => '改符節',
+'resetpass-submit-cancel'   => '消',
 'resetpass-wrong-oldpass'   => '無效之臨符或現符。
 爾或改符，或求新臨符。',
 'resetpass-temp-password'   => '臨符節:',
@@ -609,6 +613,8 @@ $2',
 'noarticletext-nopermission'       => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]</span>。',
 'userpage-userdoesnotexist'        => '「$1」之簿未增也。請建纂本頁前查之。',
 'userpage-userdoesnotexist-view'   => '「$1」之簿未增也。',
+'blocked-notice-logextract'        => '該簿現鎖也。
+下列之記鎖，以察之：',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
 '''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Macintosh為''Command-R''）。
 '''Konqueror:'''點''Reload''，或押''F5''。
@@ -1275,6 +1281,7 @@ $1",
 'minlength1'                 => '名務逾一字元。',
 'illegalfilename'            => '名"$1"不格，更之再焉。',
 'badfilename'                => '更名"$1。"。',
+'filetype-mime-mismatch'     => '檔展名無配MIME類。',
 'filetype-badmime'           => '「$1」之MIME類物檔案不能獻之。',
 'filetype-bad-ie-mime'       => '因 Internet Explorer 偵作「$1」不貢也。它乃有危險之類也。',
 'filetype-unwanted-type'     => "'''「.$1」'''乃無需之物類也。
@@ -2488,15 +2495,41 @@ $1',
 'limitall'         => '全',
 
 # E-mail address confirmation
-'confirmemail'             => '核郵驛',
-'confirmemail_noemail'     => '[[Special:Preferences|簿註]]有驛。',
-'confirmemail_send'        => '遣核符',
-'confirmemail_sent'        => '核符遣矣',
-'confirmemail_sendfailed'  => '{{SITENAME}}信未遣焉，請核郵驛。
+'confirmemail'              => '核郵驛',
+'confirmemail_noemail'      => '[[Special:Preferences|簿註]]有驛。',
+'confirmemail_send'         => '遣核符',
+'confirmemail_sent'         => '核符遣矣',
+'confirmemail_sendfailed'   => '{{SITENAME}}信未遣焉，請核郵驛。
 
 郵者覆之：$1',
-'confirmemail_invalidated' => '核郵驛消也',
-'invalidateemail'          => '消核郵驛',
+'confirmemail_body'         => '持IP $1之人（亦為汝）於{{SITENAME}}建簿"$2"，並呈電郵位址。
+
+確此簿屬爾，並用{{SITENAME}}之電郵。
+於瀏覽器上開此連：
+
+$3
+
+如汝之簿*未*增，
+於瀏覽器上開此連消確：
+
+$5
+
+確碼於$4過之。',
+'confirmemail_body_changed' => '持IP $1之人（亦為汝）於{{SITENAME}}改簿"$2"之電郵。
+
+確此簿屬爾，並用{{SITENAME}}之電郵。
+於瀏覽器上開此連：
+
+$3
+
+如此簿*非*爾之，
+於瀏覽器上開此連消確：
+
+$5
+
+確碼於$4過之。',
+'confirmemail_invalidated'  => '核郵驛消也',
+'invalidateemail'           => '消核郵驛',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[蓋跨共筆之轉碼者，莫之能用也]',
