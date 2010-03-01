@@ -3048,26 +3048,26 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'limitall'         => 'visi',
 
 # E-mail address confirmation
-'confirmemail'             => 'Patvirtinkite el. pašto adresą',
-'confirmemail_noemail'     => 'Jūs neturite nurodę teisingo el. pašto adreso [[Special:Preferences|savo nustatymuose]].',
-'confirmemail_text'        => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,
+'confirmemail'              => 'Patvirtinkite el. pašto adresą',
+'confirmemail_noemail'      => 'Jūs neturite nurodę teisingo el. pašto adreso [[Special:Preferences|savo nustatymuose]].',
+'confirmemail_text'         => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,
 kad jūsų el. pašto adresu būtų išsiųstas patvirtinimo kodas.
 Laiške bus atsiųsta nuoroda su kodu, kuria nuėjus, el. pašto adresas bus patvirtintas.',
-'confirmemail_pending'     => 'Patvirtinimo kodas jums jau nusiųstas; jei neseniai sukūrėte savo paskyrą, jūs turėtumėte palaukti jo dar kelias minutes prieš prašydami naujo kodo.',
-'confirmemail_send'        => 'Išsiųsti patvirtinimo kodą',
-'confirmemail_sent'        => 'Patvirtinimo laiškas išsiųstas.',
-'confirmemail_oncreate'    => 'Patvirtinimo kodas buvo išsiųstas jūsų el. pašto adresu.
+'confirmemail_pending'      => 'Patvirtinimo kodas jums jau nusiųstas; jei neseniai sukūrėte savo paskyrą, jūs turėtumėte palaukti jo dar kelias minutes prieš prašydami naujo kodo.',
+'confirmemail_send'         => 'Išsiųsti patvirtinimo kodą',
+'confirmemail_sent'         => 'Patvirtinimo laiškas išsiųstas.',
+'confirmemail_oncreate'     => 'Patvirtinimo kodas buvo išsiųstas jūsų el. pašto adresu.
 Šis kodas nėra būtinas, kad prisijungtumėte, bet jums reikės jį duoti prieš įjungiant el. pašto paslaugas projekte.',
-'confirmemail_sendfailed'  => '{{SITENAME}} neišsiuntė patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
+'confirmemail_sendfailed'   => '{{SITENAME}} neišsiuntė patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
 
 Pašto tarnyba atsakė: $1',
-'confirmemail_invalid'     => 'Neteisingas patvirtinimo kodas. Kodo galiojimas gali būti jau pasibaigęs.',
-'confirmemail_needlogin'   => 'Jums reikia $1, kad patvirtintumėte savo el. pašto adresą.',
-'confirmemail_success'     => 'Jūsų el. pašto adresas patvirtintas. Dabar galite prisijungti ir mėgautis projektu.',
-'confirmemail_loggedin'    => 'Jūsų el. pašto adresas patvirtintas.',
-'confirmemail_error'       => 'Patvirtinimo metu įvyko neatpažinta klaida.',
-'confirmemail_subject'     => '{{SITENAME}} el. pašto adreso patvirtinimas',
-'confirmemail_body'        => 'Kažkas, tikriausiai jūs IP adresu $1, užregistravo
+'confirmemail_invalid'      => 'Neteisingas patvirtinimo kodas. Kodo galiojimas gali būti jau pasibaigęs.',
+'confirmemail_needlogin'    => 'Jums reikia $1, kad patvirtintumėte savo el. pašto adresą.',
+'confirmemail_success'      => 'Jūsų el. pašto adresas patvirtintas. Dabar galite prisijungti ir mėgautis projektu.',
+'confirmemail_loggedin'     => 'Jūsų el. pašto adresas patvirtintas.',
+'confirmemail_error'        => 'Patvirtinimo metu įvyko neatpažinta klaida.',
+'confirmemail_subject'      => '{{SITENAME}} el. pašto adreso patvirtinimas',
+'confirmemail_body'         => 'Kažkas, tikriausiai jūs IP adresu $1, užregistravo
 paskyrą „$2“ susietą su šiuo el. pašto adresu projekte {{SITENAME}}.
 
 Kad patvirtintumėte, kad ši dėžutė tikrai priklauso jums, ir aktyvuotumėte
@@ -3081,8 +3081,22 @@ kad atšauktumėte el. pašto adreso patvirtinimą:
 $5
 
 Patvirtinimo kodas baigs galioti $4.',
-'confirmemail_invalidated' => 'El. pašto adreso patvirtinimas atšauktas',
-'invalidateemail'          => 'El. pašto patvirtinimo atšaukimas',
+'confirmemail_body_changed' => 'Kažkas, tikriausiai jūs IP adresu $1, projekte {{SITENAME}}
+pakeitė paskyros „$2“ el. pašto adresą.
+
+Kad patvirtintumėte, kad ši dėžutė tikrai priklauso jums, ir vėl aktyvuotumėte
+el. pašto paslaugas projekte {{SITENAME}}, atverkite šią nuorodą savo naršyklėje:
+
+$3
+
+Jei paskyra jums *nepriklauso*, eikite šia nuoroda,
+kad atšauktumėte el. pašto adreso patvirtinimą:
+
+$5
+
+Patvirtinimo kodas baigs galioti $4.',
+'confirmemail_invalidated'  => 'El. pašto adreso patvirtinimas atšauktas',
+'invalidateemail'           => 'El. pašto patvirtinimo atšaukimas',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Tarpprojektinis įterpimas yra išjungtas]',

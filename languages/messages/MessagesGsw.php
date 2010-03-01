@@ -463,6 +463,8 @@ Wänn s des nit isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäl
 'readonly_lag'         => 'D Datebank isch automatisch gperrt wore, wil di verteilte Datebankserver (Sklave) mien mit em Hauptdatebankserver (Meischter) abgliche wäre.',
 'internalerror'        => 'Interner Fähler',
 'internalerror_info'   => 'Interne Fähler: $1',
+'fileappenderrorread'  => '„$1“ het nit chenne gläse wäre bim Aahänke.',
+'fileappenderror'      => 'Het „$1“ nit an „$2“ chenne anhänke.',
 'filecopyerror'        => 'Datei "$1" het nit noch "$2" kopiert werre kinne.',
 'filerenameerror'      => 'D Datei "$1" het nit in "$2" umgnennt werre kinne.',
 'filedeleteerror'      => 'Datei "$1" het nit glöscht werre kinne.',
@@ -594,6 +596,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'usernamehasherror'          => 'In Benutzernäme derf s kei Rautezeiche din haa',
 'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
 'loginlanguagelabel'         => 'Sproch: $1',
+'suspicious-userlogout'      => 'Dyy Versuech di abzmälde isch abbroche wore, wel s uusgsäh het, wie wänn s vun eme bschedigte Browser oder eme Cacheproxy uus gsändet woren isch.',
 
 # Password reset dialog
 'resetpass'                 => 'Passwort fir s Benutzerkonto ändere oder zrucksetze',
@@ -608,6 +611,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'resetpass_forbidden'       => 'S Passwort cha nid gänderet wäre.',
 'resetpass-no-info'         => 'Du muesch Di aamälde zum uf die Syte diräkt zuegryfe z chenne.',
 'resetpass-submit-loggedin' => 'Passwort ändere',
+'resetpass-submit-cancel'   => 'Abbräche',
 'resetpass-wrong-oldpass'   => 'S temporär oder aktuäll Passwort isch nimi giltig.
 Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagforderet.',
 'resetpass-temp-password'   => 'Temporär Passwort:',
@@ -711,6 +715,8 @@ Du chasch dää Titel uf andre Syte [[Special:Search/{{PAGENAME}}|sueche]]
 oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbiecher sueche].',
 'userpage-userdoesnotexist'        => 'S Benutzerkonto „$1“ git s nit. Bitte prief, eb Du die Syte wirkli wit aalege/bearbeite.',
 'userpage-userdoesnotexist-view'   => 'S Benutzerkonto „$1“ isch nit registriert.',
+'blocked-notice-logextract'        => 'Dää Benutzer isch zur Zyt gsperrt.
+As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
 'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
 'usercssyoucanpreview'             => "'''Tipp:''' Nimm dr Vorschau-Chnopf, zum Dyy nej CSS vor em Spichere z teschte.",
 'userjsyoucanpreview'              => "'''Tipp:''' Nimm dr Vorschau-Chnopf, zum Dyy nej JS vor em Spichere z teschte.",
@@ -1417,6 +1423,7 @@ Lueg au d [[Special:NewFiles|Galerii vu neije Dateie]] fir e visuälle Iberblick
 'minlength1'                  => 'Dateinäme mien zmindescht e Buechstab lang syy.',
 'illegalfilename'             => 'Im Dateiname „$1“ het s zmindescht ei Zeiche, wu nit erlaubt isch. Bitte gib dr Datei e andere Name un versuech nomol si uffezlade.',
 'badfilename'                 => 'Dr Dateiname isch in „$1“ gänderet wore.',
+'filetype-mime-mismatch'      => 'Dateierwyterig passt nit zum MIME-Typ.',
 'filetype-badmime'            => 'Dateie mit em MIME-Typ „$1“ derfe nit uffeglade wäre.',
 'filetype-bad-ie-mime'        => 'Die Datei cha nit uffeglade wäre, wel dr Internet Explorer si as „$1“ kennt, wu e nit erlaubte, villicht gferlige Dateityp isch.',
 'filetype-unwanted-type'      => "'''„.$1“''' isch e Dateiformat, wu nit gwinscht isch. Erlaubt {{PLURAL:$3|isch s Dateiformat|sin d Dateiformat}}: $2.",
@@ -1514,6 +1521,7 @@ Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
 'http-timed-out'        => 'Uuszyt bim HTTP-Versuech.',
 'http-curl-error'       => 'Fähler bim Ufsueche vu dr URL: $1',
 'http-host-unreachable' => 'URL isch nit z verwitsche',
+'http-bad-status'       => 'Bi dr HTTP-Aafrog isch e Fähler ufdrätte: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL isch nit z verwitsche',
@@ -2276,6 +2284,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 
 I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.",
 'movearticle'                  => 'Artikel verschiebe',
+'moveuserpage-warning'         => "'''Warnig:''' Du bis am Verschiebe vun ere Benutzersyte. Bitte gib Achtig, ass doderdur nume die Syte verschobe wird, aber dr Benutzer '''nit''' umgnännt wird.",
 'movenologin'                  => 'Du bisch nid aagmäldet',
 'movenologintext'              => 'Du muesch e regischtrierte Benutzer syy un Di [[Special:UserLogin|aamälde]] go die Syte verschiebe.',
 'movenotallowed'               => 'Du derfsch kei Syte verschiebe.',
@@ -2903,24 +2912,24 @@ Anderi Metadate sy standardmäßig versteckt.
 'limitall'         => 'alli',
 
 # E-mail address confirmation
-'confirmemail'             => 'Bstätigung vo Ihre E-Poscht-Adräss',
-'confirmemail_noemail'     => 'Du hesch in dyne [[Special:Preferences|persönliche Ystellige]] e kei E-Mail-Adress ygää.',
-'confirmemail_text'        => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die E-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die E-Mail-Adrässe dyni isch.',
-'confirmemail_pending'     => 'Es isch Dir scho en Code zum Bestätige zuegschiggt worde. Falls du Dyn Konto grad erscht aagleit hesch, muesch villicht noo e weng warte bis d E-Mail ytrifft, bevor du en nöie Code aafordresch.',
-'confirmemail_send'        => 'Bestätigungs-Mail verschicke',
-'confirmemail_sent'        => 'Es isch dir es Mail zur Adrässbestätigung gschickt worde.',
-'confirmemail_oncreate'    => 'En Code isch aa dyni E-Mail-Adress zum bestätige gschiggt worde. Du bruuch de Code zwar nüt zum dich aamälde, er wird aber zum aktiviere vo de E-Mail-Funktione in däm Wiki bruucht.',
-'confirmemail_sendfailed'  => '{{SITENAME}} het d E-Mail zum bestätige nüt chönne verschigge.
+'confirmemail'              => 'Bstätigung vo Ihre E-Poscht-Adräss',
+'confirmemail_noemail'      => 'Du hesch in dyne [[Special:Preferences|persönliche Ystellige]] e kei E-Mail-Adress ygää.',
+'confirmemail_text'         => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die E-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die E-Mail-Adrässe dyni isch.',
+'confirmemail_pending'      => 'Es isch Dir scho en Code zum Bestätige zuegschiggt worde. Falls du Dyn Konto grad erscht aagleit hesch, muesch villicht noo e weng warte bis d E-Mail ytrifft, bevor du en nöie Code aafordresch.',
+'confirmemail_send'         => 'Bestätigungs-Mail verschicke',
+'confirmemail_sent'         => 'Es isch dir es Mail zur Adrässbestätigung gschickt worde.',
+'confirmemail_oncreate'     => 'En Code isch aa dyni E-Mail-Adress zum bestätige gschiggt worde. Du bruuch de Code zwar nüt zum dich aamälde, er wird aber zum aktiviere vo de E-Mail-Funktione in däm Wiki bruucht.',
+'confirmemail_sendfailed'   => '{{SITENAME}} het d E-Mail zum bestätige nüt chönne verschigge.
 Bitte überprüef d E-Mail-Adress uf ungültigi Zeiche.
 
 Ruggmäldig vum Mailserver: $1',
-'confirmemail_invalid'     => 'De Bestätigscode isch ungültig. Es isch mögli das er abgloffe isch. In däm Fall chasch probiere d Bestätigung z widerhole.',
-'confirmemail_needlogin'   => 'Du muesch dich $1, zume dyni E-Mail-Adress bstätige.',
-'confirmemail_success'     => 'Dyni E-Mail-Adräss isch bstätiget worde. Du chasch di jitz aamälde.',
-'confirmemail_loggedin'    => 'Dyni E-Mail-Adräss isch jitz bstätigt.',
-'confirmemail_error'       => 'Öbis isch bim Bestätige vo dynrer E-Mail-Adress schief gloffe.',
-'confirmemail_subject'     => '{{SITENAME}} E-Mail-Adrässbstätigung',
-'confirmemail_body'        => 'Salü
+'confirmemail_invalid'      => 'De Bestätigscode isch ungültig. Es isch mögli das er abgloffe isch. In däm Fall chasch probiere d Bestätigung z widerhole.',
+'confirmemail_needlogin'    => 'Du muesch dich $1, zume dyni E-Mail-Adress bstätige.',
+'confirmemail_success'      => 'Dyni E-Mail-Adräss isch bstätiget worde. Du chasch di jitz aamälde.',
+'confirmemail_loggedin'     => 'Dyni E-Mail-Adräss isch jitz bstätigt.',
+'confirmemail_error'        => 'Öbis isch bim Bestätige vo dynrer E-Mail-Adress schief gloffe.',
+'confirmemail_subject'      => '{{SITENAME}} E-Mail-Adrässbstätigung',
+'confirmemail_body'         => 'Salü
 
 {{SITENAME}}-BenutzerIn «$2» — das bisch allwäg Du — het sech vor IP-Adrässen $1 uus mit deren e-Mail-Adrässe bi {{SITENAME}} aagmäldet.
 
@@ -2935,8 +2944,22 @@ $5
 De Bstätigungs-Code isch gültig bis $4.
 
 Fründlechi Grüess',
-'confirmemail_invalidated' => 'D E-Mail-Adressbestätig isch abbroche worde',
-'invalidateemail'          => 'S Bestätige vo dr E-Mail-Adress abbreche',
+'confirmemail_body_changed' => 'Eber mit dr IP-Adräss $1, wahrschyns Du sälber,
+het d E-Mail-Adräss vum Benutzerkonto „$2“ uf die Adräss gänderet uf {{SITENAME}}.
+
+Go bstetige, ass des Benutzerkonto wirkli Dir ghert
+un go d E-Mail-Feature uf {{SITENAME}} reaktiviere, mach des Gleich in Dyym Browser uf:
+
+$3
+
+Wänn des Konto imfall *nit* Dir ghert, gang däm Gleich noo
+go d E-Mail-Adräss-Bstetigung abbräche:
+
+$5
+
+Dää Bstetigungscode isch giltig bis am $4.',
+'confirmemail_invalidated'  => 'D E-Mail-Adressbestätig isch abbroche worde',
+'invalidateemail'           => 'S Bestätige vo dr E-Mail-Adress abbreche',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Yybindig isch deaktiviert]',
