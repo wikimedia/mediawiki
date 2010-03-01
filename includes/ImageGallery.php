@@ -83,7 +83,7 @@ class ImageGallery
 	/**
 	 * Set how many images will be displayed per row.
 	 *
-	 * @param int $num > 0; invalid numbers will be rejected
+	 * @param $num Integer > 0; invalid numbers will be rejected
 	 */
 	public function setPerRow( $num ) {
 		if ($num > 0) {
@@ -94,7 +94,7 @@ class ImageGallery
 	/**
 	 * Set how wide each image will be, in pixels.
 	 *
-	 * @param int $num > 0; invalid numbers will be ignored
+	 * @param $num Integer > 0; invalid numbers will be ignored
 	 */
 	public function setWidths( $num ) {
 		if ($num > 0) {
@@ -105,7 +105,7 @@ class ImageGallery
 	/**
 	 * Set how high each image will be, in pixels.
 	 *
-	 * @param int $num > 0; invalid numbers will be ignored
+	 * @param $num Integer > 0; invalid numbers will be ignored
 	 */
 	public function setHeights( $num ) {
 		if ($num > 0) {
@@ -201,7 +201,7 @@ class ImageGallery
 	 * Note -- if taking from user input, you should probably run through
 	 * Sanitizer::validateAttributes() first.
 	 *
-	 * @param array of HTML attribute pairs
+	 * @param $attribs Array of HTML attribute pairs
 	 */
 	function setAttributes( $attribs ) {
 		$this->mAttribs = $attribs;
@@ -343,7 +343,7 @@ class ImageGallery
 	}
 
 	/**
-	 * @return int Number of images in the gallery
+	 * @return Integer: number of images in the gallery
 	 */
 	public function count() {
 		return count( $this->mImages );
@@ -352,7 +352,7 @@ class ImageGallery
 	/**
 	 * Set the contextual title
 	 *
-	 * @param Title $title Contextual title
+	 * @param $title Title: contextual title
 	 */
 	public function setContextTitle( $title ) {
 		$this->contextTitle = $title;
