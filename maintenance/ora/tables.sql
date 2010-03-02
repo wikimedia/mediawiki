@@ -442,7 +442,7 @@ CREATE TABLE &mw_prefix.log_search (
   ls_value VARCHAR2(255) NOT NULL,
   ls_log_id NuMBER DEFAULT 0 NOT NULL
 );
-ALTER TABLE log_search ADD CONSTRAINT log_search_pk PRIMARY KEY (ls_field,ls_value,ls_log_id);
+ALTER TABLE &mw_prefix.log_search ADD CONSTRAINT log_search_pk PRIMARY KEY (ls_field,ls_value,ls_log_id);
 CREATE INDEX &mw_prefix.log_search_i01 ON &mw_prefix.log_search (ls_log_id);
 
 CREATE SEQUENCE trackbacks_tb_id_seq;
