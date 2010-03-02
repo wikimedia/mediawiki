@@ -1996,7 +1996,7 @@ if ( \$wgCommandLineMode ) {
 \$wgSecretKey = \"$secretKey\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
-## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
+## names, ie 'vector', 'monobook':
 \$wgDefaultSkin = 'monobook';
 
 ## For attaching licensing metadata to pages, and displaying an
