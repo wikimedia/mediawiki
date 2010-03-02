@@ -1333,7 +1333,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'upload_directory_missing'    => "Ny fametrahan-drakitra ampidiran-drakitra ($1) dia tsy misy ary tsy afaka namboarin'ny lohamilin-tranonkala.",
 'upload_directory_read_only'  => "Ny répertoire ($1) handraisana ny rakitra alefan'ny mpikambana dia tsy afaka anoratana.",
 'uploaderror'                 => 'Nisy tsy fetezana ny fandefasana rakitra',
-'uploadtext'                  => "Ampiasao ity fisy ity handefasana rakitra. Jereo eto ny [[Special:FileList|lisitry ny rakitra]] nalefan'ny mpikambana, na koa azonao ampiasaina ny [[Special:Log/upload|tantaran'asan'ny fandefasana sy famonoana rakitra]].
+'uploadtext'                  => "Ampiasao ity fisy ity handefasana rakitra. Jereo eto ny [[Special:FileList|lisitry ny rakitra]] nalefan'ny mpikambana, na koa azonao ampiasaina ny [[Special:Log/delete|tantaran'asan'ny fandefasana sy famonoana rakitra]].
 
 Raha hanisy sary ao anaty pejy, dia mampiasà rohy toy ny iray amin'ireto
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki>''', na
@@ -2238,7 +2238,21 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'importbadinterwiki'         => 'Rohy interwiki tsy izy',
 'importnotext'               => 'Tsy misy votoatiny',
 'importsuccess'              => 'Nandeha ilay fampidirana !',
+'importhistoryconflict'      => "Misy ady hita ao amin'y tantaran-tsantiôna (nety nalefa io pejy io taloha).",
+'importnosources'            => 'Mbola tsy voatono ny loharano inerwiki fampidiram-pejy ary mbola tsy mandeha ny nalefa ny fandefasana tantaram-pejy.',
+'importnofile'               => 'Tsy nisy rakitra fandefasana nalefa.',
+'importuploaderrorsize'      => "Tsy nandeha ny fampidirana ilay rakitra.
+Ambony nohon'ny lanja ahazon-dalana ny lanjany.",
+'importuploaderrorpartial'   => 'Tsy nandeha ny fampidirana ilay rakitra.
+Singam-votoatiny fotsiny no nalefa.',
+'importuploaderrortemp'      => 'Ny fandefasana ilay rakitra dia tsy nety.
+Tsy hita ny rakitra miserana.',
+'import-parse-failure'       => 'Tsy fetezana teo am-pandinihana ny XML ho ampidirina',
 'import-noarticle'           => 'Tsy misy pejy ho ampidirina !',
+'import-nonewrevisions'      => 'Efa nampidirina taloha daholo ny santiôna rehetra.',
+'import-upload'              => 'Fandrefasana data XML',
+'import-token-mismatch'      => "Very ny fampahalalàna momban'ny kaonty.
+Avereno fanindroany.",
 
 # Import log
 'importlogpage'             => "Tantaran'asan'ny fampidirana",

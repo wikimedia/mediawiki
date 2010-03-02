@@ -554,6 +554,7 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores escravos da base de datos se actualizan desde o máster',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
+'fileappenderrorread'  => 'Non foi posible ler "$1" durante a inserción.',
 'fileappenderror'      => 'Non se puido engadir "$1" a "$2".',
 'filecopyerror'        => 'Non se deu copiado o ficheiro "$1" a "$2".',
 'filerenameerror'      => 'Non se pode cambiar o nome do ficheiro "$1" a "$2".',
@@ -696,6 +697,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'login-throttled'            => 'Fixo demasiados intentos de inserir o contrasinal.
 Por favor, agarde antes de probar outra vez.',
 'loginlanguagelabel'         => 'Lingua: $1',
+'suspicious-userlogout'      => 'Rexeitouse a súa petición de saír do sistema porque semella que a enviou un navegador roto ou a caché dun proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar o contrasinal',
@@ -815,6 +817,8 @@ Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'userpage-userdoesnotexist-view'   => 'A conta de usuario "$1" non está rexistrada.',
+'blocked-notice-logextract'        => 'Este usuario está bloqueado.
+Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
 '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh);
 '''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5'';
@@ -1541,6 +1545,7 @@ Vexa a [[Special:NewFiles|galería de imaxes novas]] para unha visión máis xer
 'illegalfilename'             => 'O nome de ficheiro "$1" contén caracteres que non están permitidos nos títulos das páxinas.
 Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'badfilename'                 => 'O nome desta imaxe cambiouse a "$1".',
+'filetype-mime-mismatch'      => 'A extensión do ficheiro non coincide co tipo MIME.',
 'filetype-badmime'            => 'Non se permite enviar ficheiros de tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'Non se pode cargar este ficheiro porque o Internet Explorer detectaríao como "$1", o cal é un tipo de ficheiro non permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' é un tipo de ficheiro non desexado.
@@ -3111,29 +3116,29 @@ Os demais agocharanse por omisión.
 'limitall'         => 'todas',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar o enderezo de correo electrónico',
-'confirmemail_noemail'     => 'Non ten rexistrado ningún enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias de usuario]].',
-'confirmemail_text'        => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el.
+'confirmemail'              => 'Confirmar o enderezo de correo electrónico',
+'confirmemail_noemail'      => 'Non ten rexistrado ningún enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias de usuario]].',
+'confirmemail_text'         => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el.
 Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo.
 O correo incluirá unha ligazón cun código:
 faga clic nesta ligazón para abrila no seu navegador web e así confirmar que o seu enderezo é válido.',
-'confirmemail_pending'     => 'Envióuselle un código de confirmación ao enderezo de correo electrónico;
+'confirmemail_pending'      => 'Envióuselle un código de confirmación ao enderezo de correo electrónico;
 se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.',
-'confirmemail_send'        => 'Enviar por correo elecrónico un código de confirmación',
-'confirmemail_sent'        => 'Correo electrónico de confirmación enviado.',
-'confirmemail_oncreate'    => 'Envióuselle un código de confirmación ao enderezo de correo electrónico. Este código non é imprescindible para entrar no wiki, pero é preciso para activar as funcións do wiki baseadas no correo.',
-'confirmemail_sendfailed'  => '{{SITENAME}} non puido enviar a mensaxe de confirmación do correo.
+'confirmemail_send'         => 'Enviar por correo elecrónico un código de confirmación',
+'confirmemail_sent'         => 'Correo electrónico de confirmación enviado.',
+'confirmemail_oncreate'     => 'Envióuselle un código de confirmación ao enderezo de correo electrónico. Este código non é imprescindible para entrar no wiki, pero é preciso para activar as funcións do wiki baseadas no correo.',
+'confirmemail_sendfailed'   => '{{SITENAME}} non puido enviar a mensaxe de confirmación do correo.
 Por favor, comprobe que no enderezo de correo electrónico non haxa caracteres inválidos.
 
 O programa de correo informa do seguinte: $1',
-'confirmemail_invalid'     => 'O código de confirmación non é válido.
+'confirmemail_invalid'      => 'O código de confirmación non é válido.
 Pode ser que caducase.',
-'confirmemail_needlogin'   => 'Necesita $1 para confirmar o seu enderezo de correo electrónico.',
-'confirmemail_success'     => 'Confirmouse o seu enderezo de correo electrónico. Agora xa pode [[Special:UserLogin|acceder ao sistema]] e facer uso do wiki.',
-'confirmemail_loggedin'    => 'Xa se confirmou o seu enderezo de correo electrónico.',
-'confirmemail_error'       => 'Houbo un problema ao gardar a súa confirmación.',
-'confirmemail_subject'     => '{{SITENAME}} - Verificación do enderezo de correo electrónico',
-'confirmemail_body'        => 'Alguén, probablemente vostede, desde o enderezo IP $1,
+'confirmemail_needlogin'    => 'Necesita $1 para confirmar o seu enderezo de correo electrónico.',
+'confirmemail_success'      => 'Confirmouse o seu enderezo de correo electrónico. Agora xa pode [[Special:UserLogin|acceder ao sistema]] e facer uso do wiki.',
+'confirmemail_loggedin'     => 'Xa se confirmou o seu enderezo de correo electrónico.',
+'confirmemail_error'        => 'Houbo un problema ao gardar a súa confirmación.',
+'confirmemail_subject'      => '{{SITENAME}} - Verificación do enderezo de correo electrónico',
+'confirmemail_body'         => 'Alguén, probablemente vostede, desde o enderezo IP $1,
 rexistrou a conta "$2" con este enderezo de correo electrónico en {{SITENAME}}.
 
 Para confirmar que esta conta realmente lle pertence e así poder activar
@@ -3147,8 +3152,22 @@ para cancelar a confirmación do enderezo de correo electrónico:
 $5
 
 Este código de confirmación caducará o $6 ás $7.',
-'confirmemail_invalidated' => 'A confirmación do enderezo de correo electrónico foi cancelada',
-'invalidateemail'          => 'Cancelar a confirmación do correo electrónico',
+'confirmemail_body_changed' => 'Alguén, probablemente vostede, desde o enderezo IP $1,
+cambiou o enderezo de correo electrónico da conta "$2" a estoutro en {{SITENAME}}.
+
+Para confirmar que esta conta realmente lle pertence e así poder reactivar
+as funcións do correo electrónico en {{SITENAME}}, abra esta ligazón no seu navegador:
+
+$3
+
+Se a conta *non* lle pertence siga estoutra ligazón
+para cancelar a confirmación do enderezo de correo electrónico:
+
+$5
+
+Este código de confirmación caducará o $4.',
+'confirmemail_invalidated'  => 'A confirmación do enderezo de correo electrónico foi cancelada',
+'invalidateemail'           => 'Cancelar a confirmación do correo electrónico',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[A transclusión interwiki está desactivada]',

@@ -524,6 +524,7 @@ Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.'
 'login-throttled'            => "It l'has fàit tròpi tentativ recent d'intré.
 Për piasì speta prima ëd prové torna.",
 'loginlanguagelabel'         => 'Lenga: $1',
+'suspicious-userlogout'      => "Toa arcesta ëd seurte a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da un browser scolegà o da un proxy con cache.",
 
 # Password reset dialog
 'resetpass'                 => 'Cambia la ciav',
@@ -1040,8 +1041,8 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'saveprefs'                     => 'Salvé ij sò gust',
 'resetprefs'                    => 'Buté torna ij "mè gust" coma a-i ero al prinsipi',
 'restoreprefs'                  => "Buté torna j'ampostassion dë stàndard",
-'prefs-editing'                 => 'Amzure dël quàder ëd modìfica dël test',
-'prefs-edit-boxsize'            => 'Dimension ëd la fnesta ëd modìfica',
+'prefs-editing'                 => 'Quàder ëd modìfica dël test',
+'prefs-edit-boxsize'            => 'Dimension ëd la fnesta ëd modìfica.',
 'rows'                          => 'Righe',
 'columns'                       => 'Colòne',
 'searchresultshead'             => "Specifiché soe preferense d'arserca",
@@ -2926,31 +2927,31 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'limitall'         => 'tùit',
 
 # E-mail address confirmation
-'confirmemail'             => "Confermé l'adrëssa postal",
-'confirmemail_noemail'     => "A l'ha pa butà gnun-a adrëssa vàlida ëd pòsta eletrònica ant ij [[Special:Preferences|sò gust]].",
-'confirmemail_text'        => "Costa wiki a ciama che chiel a convalida n'adrëssa postal anans che
+'confirmemail'              => "Confermé l'adrëssa postal",
+'confirmemail_noemail'      => "A l'ha pa butà gnun-a adrëssa vàlida ëd pòsta eletrònica ant ij [[Special:Preferences|sò gust]].",
+'confirmemail_text'         => "Costa wiki a ciama che chiel a convalida n'adrëssa postal anans che
 dovré lòn che toca la pòsta. Che a sgnaca ël boton ambelessì sota
 për fesse mandé un messa ëd conferma a soa adrëssa eletrònica.
 Andrinta al messagi a-i sara n'anliura (URL) con andrinta un còdes.
 Che a deurba st'anliura andrinta a sò programa ëd navigassion (browser)
 për confermé che soa adrëssa a l'é pròpe cola.",
-'confirmemail_pending'     => "I l'oma già mandaje sò còdes ëd conferma;
+'confirmemail_pending'      => "I l'oma già mandaje sò còdes ëd conferma;
 se a l'ha pen-a creasse sò cont, miraco a venta che a speta dontre minute che a-j riva ant la pòsta, nopà che ciamene un neuv.",
-'confirmemail_send'        => 'Manda un còdes ëd conferma për pòsta eletrònica',
-'confirmemail_sent'        => "Ël messagi ëd conferma a l'é stait mandà.",
-'confirmemail_oncreate'    => "Un còdes ëd conferma a l'é stait mandà a soa adrëssa ëd pòsta eletrònica.
+'confirmemail_send'         => 'Manda un còdes ëd conferma për pòsta eletrònica',
+'confirmemail_sent'         => "Ël messagi ëd conferma a l'é stait mandà.",
+'confirmemail_oncreate'     => "Un còdes ëd conferma a l'é stait mandà a soa adrëssa ëd pòsta eletrònica.
 D'ës còdes a fa pa dë manca për rintré ant ël sistema, ma a ventrà che a lo mostra al sistema për podej abilité cole funsion dla wiki che a son basà ant sla pòsta eletrònica.",
-'confirmemail_sendfailed'  => "{{SITENAME}} a l'ha pa podù mandete l'e-mail ëd conferma. 
+'confirmemail_sendfailed'   => "{{SITENAME}} a l'ha pa podù mandete l'e-mail ëd conferma. 
 Che a controla l'adrëssa che a l'ha dane, mai che a-i fusso dij caràter nen vàlid.
 
 Ël programa ëd pòsta a l'ha arspondù: $1",
-'confirmemail_invalid'     => 'Còdes ëd conferma nen vàlid. A podrìa ëdcò mach esse scadù.',
-'confirmemail_needlogin'   => 'A venta che a fasa $1 për confermé soa addrëssa postal eletrònica.',
-'confirmemail_success'     => "Soa adrëssa postal a l'é staita confermà, adess a peul rintré ant ël sistema e i-j auguroma da fessla bin ant la wiki!",
-'confirmemail_loggedin'    => "Motobin mersì. Soa adrëssa ëd pòsta eletrònica adess a l'é confermà.",
-'confirmemail_error'       => "Cheich-còs a l'é andà mal ën salvand soa conferma.",
-'confirmemail_subject'     => "Conferma dl'adrëssa postal da 'nt la {{SITENAME}}",
-'confirmemail_body'        => "Cheidun, a l'é belfé che a sia stait pròpe chiel (ò chila), da 'nt l'adrëssa IP \$1, 
+'confirmemail_invalid'      => 'Còdes ëd conferma nen vàlid. A podrìa ëdcò mach esse scadù.',
+'confirmemail_needlogin'    => 'A venta che a fasa $1 për confermé soa addrëssa postal eletrònica.',
+'confirmemail_success'      => "Soa adrëssa postal a l'é staita confermà, adess a peul rintré ant ël sistema e i-j auguroma da fessla bin ant la wiki!",
+'confirmemail_loggedin'     => "Motobin mersì. Soa adrëssa ëd pòsta eletrònica adess a l'é confermà.",
+'confirmemail_error'        => "Cheich-còs a l'é andà mal ën salvand soa conferma.",
+'confirmemail_subject'      => "Conferma dl'adrëssa postal da 'nt la {{SITENAME}}",
+'confirmemail_body'         => "Cheidun, a l'é belfé che a sia stait pròpe chiel (ò chila), da 'nt l'adrëssa IP \$1, 
 a l'ha doertà un cont utent \"\$2\" ansima a {{SITENAME}}, lassand-ne st'adrëssa ëd pòsta eletrònica-sì.
 
 Për confermé che ës cont a l'é da bon sò e për ativé 
@@ -2964,8 +2965,22 @@ për scanselé la conferma ëd l'adrëssa e-mail:
 \$5
 
 Cost còdes ëd conferma a l'é bon fin-a al \$4.",
-'confirmemail_invalidated' => "Conferma ëd l'adrëssa e-mail scanselà",
-'invalidateemail'          => "Scansela l'e-mail ëd conferma",
+'confirmemail_body_changed' => 'Cheidun, miraco ti, da l\'adrëssa IP $1,
+a l\'ha cangià l\'adrëssa e-mail dël cont "$2" con st\'adrëssa-s\' dzora a {{SITENAME}}.
+
+Për confirmé che sto cont-sì a fa pròpi cap a ti e për riativé
+le possibilità e-mail dzora a {{SITENAME}}, deurb sto colegament-sì an tò browser:
+
+$3
+
+Se ël cont a fa *pa* cap a ti, va daré a sto colegament-sì 
+për scanselé la conferma dl\'adrëssa e-mail:
+
+$5
+
+Sto còdes ëd conferma a scadrà a $4.',
+'confirmemail_invalidated'  => "Conferma ëd l'adrëssa e-mail scanselà",
+'invalidateemail'           => "Scansela l'e-mail ëd conferma",
 
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusion ëd pàgine antra wiki diferente a l'é nen abilità]",
