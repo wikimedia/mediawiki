@@ -18,6 +18,7 @@ $fallback = 'es';
 
 $messages = array(
 # User preference toggles
+'tog-underline'      => 'Miñcewirilpe xapvmvn',
 'tog-editondblclick' => 'Wirin pakina epu klik mew (JavaScript)',
 
 'underline-always' => 'Rumel',
@@ -144,7 +145,7 @@ $messages = array(
 'edithelp'             => 'Kellü wirin',
 'edithelppage'         => 'Help:Chum wiringekey pakina',
 'helppage'             => 'Help:Kellu',
-'mainpage'             => 'Wüne pakina',
+'mainpage'             => 'Ñizol Wvbgiñ',
 'mainpage-description' => 'Wüne pakina',
 
 'ok'                      => 'Feley may',
@@ -414,7 +415,7 @@ $messages = array(
 'undelete-show-file-submit' => 'May',
 
 # Namespace form on various pages
-'blanknamespace' => '(Wüne pakina)',
+'blanknamespace' => '(Ñizol)',
 
 # Contributions
 'contribsub2' => '$1 ($2)',
