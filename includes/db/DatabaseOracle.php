@@ -851,7 +851,7 @@ class DatabaseOracle extends DatabaseBase {
 			$tableWhere = '= \''.$table.'\'';
 		}
 
-		$fieldInfoStmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name '.$tableWhere.' and column_name = \''.$field.'\'' );
+		$fieldInfoStmt = oci_parse( $this->mConn, 'SELECT * FROM '.$this->tableName('wiki_field_info_full').' WHERE table_name '.$tableWhere.' and column_name = \''.$field.'\'' );
 		if ( oci_execute( $fieldInfoStmt, OCI_DEFAULT ) === false ) {
 			$e = oci_error( $fieldInfoStmt );
 			$this->reportQueryError( $e['message'], $e['code'], 'fieldInfo QUERY', __METHOD__ );
@@ -989,7 +989,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		// do it like the postgres :D
-		$SQL = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
+		$SQL = "INSERT INTO ".$this->tableName('interwiki')." (iw_prefix,iw_url,iw_local) VALUES ";
 		while ( !feof( $f ) ) {
 			$line = fgets( $f, 1024 );
 			$matches = array();
