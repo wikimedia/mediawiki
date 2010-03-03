@@ -30,6 +30,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22606) The body of e-mail address confirmation message is now different
   when the address changed
 * (bug 22664) Special:Userrights now accepts '0' as a valid user name
+* (bug 5210) preload parser now parses <noinclude>, <includeonly> and redirects
 
 == API changes in 1.17 ==
 
