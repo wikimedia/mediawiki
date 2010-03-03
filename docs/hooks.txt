@@ -1765,13 +1765,6 @@ authentification timestamp
 new toggles
 $toggles: array of toggles to add
 
-'VectorTemplateToolboxEnd': Called by Vector skin after toolbox links have
-been rendered (useful for adding more)
-Note: this is only run for the Vector skin.  To add items to the toolbox
-for all 'SkinTemplate'-type skins, use the SkinTemplateToolboxEnd hook
-instead.
-$tools: array of tools
-
 'WantedPages::getSQL': called in WantedPagesPage::getSQL(), can be used to
 alter the SQL query which gets the list of wanted pages
 &$wantedPages: WantedPagesPage object
