@@ -67,16 +67,16 @@ class BackupDumper {
 	}
 
 	/**
-	 * @param string $name
-	 * @param string $class name of output filter plugin class
+	 * @param $name String
+	 * @param $class String: name of output filter plugin class
 	 */
 	function registerOutput( $name, $class ) {
 		$this->outputTypes[$name] = $class;
 	}
 
 	/**
-	 * @param string $name
-	 * @param string $class name of filter plugin class
+	 * @param $name String
+	 * @param $class String: name of filter plugin class
 	 */
 	function registerFilter( $name, $class ) {
 		$this->filterTypes[$name] = $class;
@@ -84,9 +84,10 @@ class BackupDumper {
 
 	/**
 	 * Load a plugin and register it
-	 * @param string $class Name of plugin class; must have a static 'register'
-	 *                      method that takes a BackupDumper as a parameter.
-	 * @param string $file Full or relative path to the PHP file to load, or empty
+	 *
+	 * @param $class String: name of plugin class; must have a static 'register'
+	 *               method that takes a BackupDumper as a parameter.
+	 * @param $file String: full or relative path to the PHP file to load, or empty
 	 */
 	function loadPlugin( $class, $file ) {
 		if( $file != '' ) {
@@ -97,9 +98,8 @@ class BackupDumper {
 	}
 
 	/**
-	 * @param array $args
-	 * @return array
-	 * @static
+	 * @param $args Array
+	 * @return Array
 	 */
 	function processArgs( $args ) {
 		$sink = null;
@@ -221,7 +221,7 @@ class BackupDumper {
 	 * Initialise starting time and maximum revision count.
 	 * We'll make ETA calculations based an progress, assuming relatively
 	 * constant per-revision rate.
-	 * @param int $history WikiExporter::CURRENT or WikiExporter::FULL
+	 * @param $history Integer: WikiExporter::CURRENT or WikiExporter::FULL
 	 */
 	function initProgress( $history = WikiExporter::FULL ) {
 		$table = ($history == WikiExporter::CURRENT) ? 'page' : 'revision';
@@ -233,8 +233,9 @@ class BackupDumper {
 	}
 
 	/**
-	 * @fixme the --server parameter is currently not respected, as it doesn't seem
-	 * terribly easy to ask the load balancer for a particular connection by name.
+	 * @todo Fixme: the --server parameter is currently not respected, as it
+	 * doesn't seem terribly easy to ask the load balancer for a particular
+	 * connection by name.
 	 */
 	function backupDb() {
 		$this->lb = wfGetLBFactory()->newMainLB();
