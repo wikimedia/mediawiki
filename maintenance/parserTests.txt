@@ -7731,7 +7731,46 @@ Screen
 <p>this is not the the title
 </p>
 !! end
+ 
+!! test
+preload: check <noinclude> and <includeonly>
+!! options
+preload
+!! input
+Hello <noinclude>cruel</noinclude><includeonly>kind</includeonly> world.
+!! result
+Hello kind world.
+!! end
+ 
+!! test
+preload: check <onlyinclude>
+!! options
+preload
+!! input
+Goodbye <onlyinclude>Hello world</onlyinclude>
+!! result
+Hello world
+!! end
 
+!! test
+preload: can pass tags through if we want to
+!! options
+preload
+!! input
+<includeonly><</includeonly>includeonly>Hello world<includeonly><</includeonly>/includeonly>
+!! result
+<includeonly>Hello world</includeonly>
+!! end
+
+!! test
+preload: check that it doesn't try to do tricks
+!! options
+preload
+!! input
+* <!-- Hello --> ''{{world}}'' {{<includeonly>subst:</includeonly>How are you}}{{ {{{|safesubst:}}} #if:1|2|3}}
+!! result
+* <!-- Hello --> ''{{world}}'' {{subst:How are you}}{{ {{{|safesubst:}}} #if:1|2|3}}
+!! end
 
 TODO:
 more images

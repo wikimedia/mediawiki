@@ -26,6 +26,8 @@
  *   Cleans a signature before saving it to preferences
  * extractSections()
  *   Extracts sections from an article for section editing
+ * getPreloadText()
+ *   Removes <noinclude> sections, and <includeonly> tags.
  *
  * Globals used:
  *    objects:   $wgLang, $wgContLang
@@ -78,10 +80,11 @@ class Parser
 
 	// Allowed values for $this->mOutputType
 	// Parameter to startExternalParse().
-	const OT_HTML = 1;
-	const OT_WIKI = 2;
-	const OT_PREPROCESS = 3;
+	const OT_HTML = 1; // like parse()
+	const OT_WIKI = 2; // like preSaveTransform()
+	const OT_PREPROCESS = 3; // like preprocess()
 	const OT_MSG = 3;
+	const OT_PLAIN = 4; // like extractSections() - portions of the original are returned unchanged.
 
 	// Marker Suffix needs to be accessible staticly.
 	const MARKER_SUFFIX = "-QINU\x7f";
@@ -249,6 +252,7 @@ class Parser
 			'html' => $ot == self::OT_HTML,
 			'wiki' => $ot == self::OT_WIKI,
 			'pre' => $ot == self::OT_PREPROCESS,
+			'plain' => $ot == self::OT_PLAIN,
 		);
 	}
 
@@ -486,6 +490,24 @@ class Parser
 		$text = $this->mStripState->unstripBoth( $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
+	}
+
+	/**
+	 * Process the wikitext for the ?preload= feature. (bug 5210)
+	 *
+	 * <noinclude>, <includeonly> etc. are parsed as for template transclusion, 
+	 * comments, templates, arguments, tags hooks and parser functions are untouched.
+	 */
+	public function getPreloadText( $text, $title, $options ) {
+		// Parser (re)initialisation
+		$this->clearState();
+		$this->setOutputType( self::OT_PLAIN );
+		$this->mOptions = $options;
+		$this->setTitle( $title ); 
+
+		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
+		$dom = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
+		return $this->getPreprocessor()->newFrame()->expand( $dom, $flags );
 	}
 
 	/**
@@ -4741,7 +4763,7 @@ class Parser
 		$this->clearState();
 		$this->setTitle( $wgTitle ); // not generally used but removes an ugly failure mode
 		$this->mOptions = new ParserOptions;
-		$this->setOutputType( self::OT_WIKI );
+		$this->setOutputType( self::OT_PLAIN );
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
 
