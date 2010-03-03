@@ -32,20 +32,22 @@ class ImageGallery
 	 */
 	private $contextTitle = false;
 
-	private $mPerRow = 4; // How many images wide should the gallery be?
-	private $mWidths = 120, $mHeights = 120; // How wide/tall each thumbnail should be
-
 	private $mAttribs = array();
 
 	/**
 	 * Create a new image gallery object.
 	 */
 	function __construct( ) {
+		global $wgGalleryImagesPerRow, $wgGalleryImageWidth, $wgGalleryImageHeight, $wgGalleryShowBytes, $wgGalleryCaptionLength;
 		$this->mImages = array();
-		$this->mShowBytes = true;
+		$this->mShowBytes = $wgGalleryShowBytes;
 		$this->mShowFilename = true;
 		$this->mParser = false;
 		$this->mHideBadImages = false;
+		$this->mPerRow = $wgGalleryImagesPerRow;
+		$this->mWidths = $wgGalleryImageWidth;
+		$this->mHeights = $wgGalleryImageHeight;
+		$this->mCaptionLength = $wgGalleryCaptionLength;
 	}
 
 	/**
@@ -308,7 +310,7 @@ class ImageGallery
 			$textlink = $this->mShowFilename ?
 				$sk->link(
 					$nt,
-					htmlspecialchars( $wgLang->truncate( $nt->getText(), 20 ) ),
+					htmlspecialchars( $wgLang->truncate( $nt->getText(), $this->mCaptionLength ) ),
 					array(),
 					array(),
 					array( 'known', 'noclasses' )

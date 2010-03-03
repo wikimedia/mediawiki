@@ -19,7 +19,12 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.17 ===
-
+* (bug 12797) Allow adjusting of default gallery display options:
+  $wgGalleryImagesPerRow, $wgGalleryImageWidth, $wgGalleryImageHeight
+  $wgGalleryCaptionLength, $wgGalleryShowBytes
+  
+=== New features in 1.17 ===
+  
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive without
   updating DB
