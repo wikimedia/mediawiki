@@ -31,6 +31,7 @@ added after the software update and so will be populated anyway.
 When the script has finished, it will make a note of this in the database, and
 will not run again without the --force option.
 TEXT;
+#'
 		$this->addOption( 'begin', 'Only do categories whose names are alphabetically after the provided name', false, true );
 		$this->addOption( 'max-slave-lag', 'If slave lag exceeds this many seconds, wait until it drops before continuing.  Default: 10', false, true );
 		$this->addOption( 'throttle', 'Wait this many milliseconds after each category.  Default: 0', false, true );

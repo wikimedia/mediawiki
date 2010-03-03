@@ -1,8 +1,6 @@
 <?php
 /*
- * Makes the required database updates for rev_len
- * to be of any use. It can be used for some simple tracking
- * and to find new page edits by users.
+ * Populates the rev_len field for old revisions created before MW 1.10.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
