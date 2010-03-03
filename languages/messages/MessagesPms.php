@@ -524,7 +524,7 @@ Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.'
 'login-throttled'            => "It l'has fàit tròpi tentativ recent d'intré.
 Për piasì speta prima ëd prové torna.",
 'loginlanguagelabel'         => 'Lenga: $1',
-'suspicious-userlogout'      => "Toa arcesta ëd seurte a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da un browser scolegà o da un proxy con cache.",
+'suspicious-userlogout'      => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
 
 # Password reset dialog
 'resetpass'                 => 'Cambia la ciav',
@@ -1043,10 +1043,10 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'restoreprefs'                  => "Buté torna j'ampostassion dë stàndard",
 'prefs-editing'                 => 'Quàder ëd modìfica dël test',
 'prefs-edit-boxsize'            => 'Dimension ëd la fnesta ëd modìfica.',
-'rows'                          => 'Righe',
-'columns'                       => 'Colòne',
+'rows'                          => 'Righe:',
+'columns'                       => 'Colòne:',
 'searchresultshead'             => "Specifiché soe preferense d'arserca",
-'resultsperpage'                => 'Arsultà da mostré për vira pàgina',
+'resultsperpage'                => 'Arzultà da mostré për vira pàgina:',
 'contextlines'                  => 'Righe ëd test për vira arsultà',
 'contextchars'                  => 'Caràter për riga',
 'stub-threshold'                => 'Valor mìnim për j\'<a href="#" class="stub">anliure a jë sbòss</a>:',
@@ -2965,20 +2965,20 @@ për scanselé la conferma ëd l'adrëssa e-mail:
 \$5
 
 Cost còdes ëd conferma a l'é bon fin-a al \$4.",
-'confirmemail_body_changed' => 'Cheidun, miraco ti, da l\'adrëssa IP $1,
-a l\'ha cangià l\'adrëssa e-mail dël cont "$2" con st\'adrëssa-s\' dzora a {{SITENAME}}.
+'confirmemail_body_changed' => "Cheidun, a l'é belfé ch'a sia chiel, da l'adrëssa IP \$1,
+a l'ha cangià l'adrëssa ëd pòsta eletrònica dël cont \"\$2\" con st'adrëssa-sì dzora a {{SITENAME}}.
 
-Për confirmé che sto cont-sì a fa pròpi cap a ti e për riativé
-le possibilità e-mail dzora a {{SITENAME}}, deurb sto colegament-sì an tò browser:
+Për confirmé che sto cont-sì a l'é pròpi sò e për riativé
+le possibilità ëd pòsta eletrònica dzora a {{SITENAME}}, ch'a deurba sto colegament-sì an sò navigador:
 
-$3
+\$3
 
-Se ël cont a fa *pa* cap a ti, va daré a sto colegament-sì 
-për scanselé la conferma dl\'adrëssa e-mail:
+Se ël cont a l'é *nen* sò, ch'a vada andré a sto colegament-sì 
+për scancelé la conferma dl'adrëssa ëd pòsta eletrònica:
 
-$5
+\$5
 
-Sto còdes ëd conferma a scadrà a $4.',
+Ës còdes ëd conferma a scadrà a \$4.",
 'confirmemail_invalidated'  => "Conferma ëd l'adrëssa e-mail scanselà",
 'invalidateemail'           => "Scansela l'e-mail ëd conferma",
 

@@ -19,6 +19,7 @@ $fallback = 'es';
 $messages = array(
 # User preference toggles
 'tog-underline'      => 'Miñcewirilpe xapvmvn',
+'tog-justify'        => 'Xvrvmpe cijkantvkun',
 'tog-editondblclick' => 'Wirin pakina epu klik mew (JavaScript)',
 
 'underline-always' => 'Rumel',

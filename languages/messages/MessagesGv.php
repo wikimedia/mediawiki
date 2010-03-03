@@ -296,6 +296,7 @@ Cur coontey jeh da [[Special:ListUsers/sysop|reireyder]], as gow notey jeh\'n UR
 'internalerror_info'   => 'Marranys ynveanagh: $1',
 'badarticleerror'      => 'Cha nod oo jannoo shen er y duillag shoh.',
 'badtitle'             => 'Drogh-ennym',
+'badtitletext'         => "Va marrantys bentyn rish ennym y ghuillag v'ou shirrey.  Foddee dy vel eh follym ny gyn vree, ny kianglt dy moal myr kiangley eddyr-wiki.  Foddee dy row cowraghyn 'syn ennym nagh nod oo jannoo ymmyd jeu ayns enmyn.",
 'viewsource'           => 'Jeeagh er bun',
 'viewsourcefor'        => 'dy $1',
 'actionthrottled'      => 'Obbyr er ny phlooghey',
@@ -600,7 +601,7 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'userrights-editusergroup' => 'Possanyn ymmydeyr y reaghey',
 'saveusergroups'           => 'Possanyn ymmydeyr y sauail',
 'userrights-groupsmember'  => 'Oltey jeh:',
-'userrights-reason'        => 'Fa yn chaghlaa:',
+'userrights-reason'        => 'Fa:',
 
 # Groups
 'group'            => 'Possan:',
@@ -955,10 +956,12 @@ Jeeagh er $2 son recortys ny scryssaghyn magh jeianagh.',
 'prot_1movedto2'              => '[[$1]] aa-enmyssit myr [[$2]]',
 'protectcomment'              => 'Fa:',
 'protectexpiry'               => 'Jerrey:',
+'protect_expiry_invalid'      => 'Ta jerrey yn amm gyn vree.',
 'protect_expiry_old'          => 'Ta jerrey yn amm er ngoll shaghey hannah.',
 'protect-text'                => "Foddee oo jeeagh er as arraghey yn rea choadee ayns shoh son y duillag '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Cha nel kied ec dty choontys dys arraghey cormidyn coadee.<br />
 Shoh ny reaghaghyn roie da'n duillag '''$1''':",
+'protect-cascadeon'           => "Ta'n duillag shoh coadit nish, er y fa dy vel eh goit stiagh {{PLURAL:$1|'sy $1 duillag|'syn $1 duillag| 'sy $1 ghuillag|ayns ny $1 duillagyn}} heese as adsyn fo coadey eiraghtagh.  Ga dy nod oo caghlaa keim coadee y ghuillag shoh, cha jean eh bentyn rish y coadey eiraghtagh.",
 'protect-default'             => 'Lhig da dagh ymmydeyr',
 'protect-fallback'            => 'Ta feme er kied "$1" ayd',
 'protect-level-autoconfirmed' => 'Cur ymmydeyryn noa as ymmydeyryn neu-recortit fo ghlass',
@@ -1078,6 +1081,21 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 # Move page
 'move-page'               => '$1 y scughey',
 'move-page-legend'        => 'Duillag y scughey',
+'movepagetext'            => "Ta'n form heese lhiggey dhyt duillag y aa-enmys, as y shennaghys echey y scughey dys yn ennym noa.
+Hig y shenn ennym y ve duillag aastiurey dys yn ennym noa.
+My ta aastiuraghyn ayn hannah dys y shenn ennym, foddee oo adsyn y chaghlaa dy seyr-obbragh.  Mannagh nee oo shen, jean shickyr dy hirrey er [[Special:DoubleRedirects|dooble-aastiuraghyn]] as [[Special:BrokenRedirects|aastiuraghyn brishtey]].
+T'eh ort y yannoo shickyr dy bee kianglaghyn kiangley rish y dean kiart foast.
+
+Gow tashtey '''nagh''' jed y duillag er scughey my ta duillag ayn as yn ennym noa echey hannah, '''mannagh''' nee duillag follym ny aastiurey t'ayn gyn shennaghys reaghey erbee.
+Myr shen, foddee oo duillag y chur erash 'syn chenn ynnyd echey my nee uss marrantys, as cha nod oo screeu harrish duillag t'ayn hannah.
+
+'''Raaue!'''
+She caghlaa trome as doaltattym t'ayn er son duillag mie er enney.  Jean shickyr dy vel oo toiggal ny h-eiyrtyssyn roish my nee uss y caghlaa shoh.",
+'movepagetalktext'        => "Hie y duillag resooney echey er scughey lesh y duillag hene '''mannagh:'''
+*Vel duillag resooney ayn nagh vel follym as yn ennym noa er;
+*Nee uss jee-reih y kishtey heese
+
+Foddee oo y duillag resooney y scughey er lheh ny yei shen.",
 'movearticle'             => 'Duillag y scughey:',
 'movenologin'             => 'Cha nel oo loggit stiagh',
 'newtitle'                => 'Gys ard-ennym noa:',

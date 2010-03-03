@@ -1408,8 +1408,10 @@ $1",
 'booksources-go'            => 'Эҙлә',
 
 # Special:Log
-'specialloguserlabel' => 'Ҡатнашыусы:',
-'log'                 => 'Журналдар',
+'specialloguserlabel'  => 'Ҡатнашыусы:',
+'speciallogtitlelabel' => 'Исеме:',
+'log'                  => 'Журналдар',
+'all-logs-page'        => 'Барлыҡ асыҡ журналдар',
 
 # Special:AllPages
 'allpages'          => 'Бөтә биттәр',
@@ -1432,8 +1434,10 @@ $1",
 'deletedcontributions-title' => 'Ҡулланыусыларҙың юйылған өлөшө',
 
 # Special:LinkSearch
-'linksearch'    => 'Тышҡы һылтанмалар',
-'linksearch-ns' => 'Исемдәр арауығы:',
+'linksearch'     => 'Тышҡы һылтанмалар',
+'linksearch-pat' => 'Эҙләү өсөн ҡалып',
+'linksearch-ns'  => 'Исемдәр арауығы:',
+'linksearch-ok'  => 'Эҙләү',
 
 # Special:ListUsers
 'listusers-submit'   => 'Күрһәтергә',
@@ -1450,7 +1454,7 @@ $1",
 'listgrouprights'          => 'Ҡатнашыусылыр төркөме хоҡуҡтары',
 'listgrouprights-group'    => 'Төркөм',
 'listgrouprights-rights'   => 'Хоҡуҡтар',
-'listgrouprights-helppage' => 'Белешмә: бер төркөм хоҡуҡтар',
+'listgrouprights-helppage' => 'Белешмә: Төркөм хоҡуҡтары',
 'listgrouprights-members'  => '(ағзалар исемлеге)',
 
 # E-mail user
@@ -1641,7 +1645,9 @@ $NEWPAGE
 'ipbsubmit'                => 'Был ҡатнашыусыны тыйырға',
 'ipbother'                 => 'Башҡа ваҡыт:',
 'ipboptions'               => '2 сәғәт:2 hours,1 көн:1 day,3 көн:3 days,1 аҙна:1 week,2 аҙна:2 weeks,1 ай:1 month,3ай:3 months,6 ай:6 months,1 йыл:1 year,сикләнмәгән:infinite',
+'ipbotheroption'           => 'башҡа',
 'ipblocklist'              => 'Тыйылған IP-адрестар һәм ҡатнашыусылыр',
+'ipblocklist-submit'       => 'Эҙләү',
 'blocklink'                => 'ябып ҡуйырға',
 'unblocklink'              => 'Тыйыуҙы кире алырға',
 'change-blocklink'         => 'блоклауҙы үҙгәртергә',
@@ -1653,9 +1659,9 @@ $NEWPAGE
 'proxyblocksuccess'        => 'Үтәлде',
 
 # Move page
-'move-page'        => '$1 — исемен үҙгәртеү',
-'move-page-legend' => 'Биттең исемен үҙгәртеү',
-'movepagetext'     => "Аҫтағы форманы ҡулланыу биттең исемен үҙгәртә һәм уның үҙгәртеүҙәр яҙмаһын яңы урынға күсерә.
+'move-page'           => '$1 — исемен үҙгәртеү',
+'move-page-legend'    => 'Биттең исемен үҙгәртеү',
+'movepagetext'        => "Аҫтағы форманы ҡулланыу биттең исемен үҙгәртә һәм уның үҙгәртеүҙәр яҙмаһын яңы урынға күсерә.
 Биттең элекке исеме яңы биткә йүнәлтеү булып ҡаласаҡ.
 Һеҙ элекке исемгә булған йүнәлтеүҙәрҙе автоматик рәүештә яңы исемгә күсерә алаһығыз.
 Әгәр быны эшләмәһәгеҙ, [[Special:DoubleRedirects|икеле]] һәм [[Special:BrokenRedirects|өҙөлгән йүнәлтеүҙәрҙе]] тикшерегеҙ.
@@ -1667,34 +1673,42 @@ $NEWPAGE
 '''Иғтибар!'''
 Популяр биттәрҙең исемен үҙгәртеү көтмәгән һөҙөмтәләргә килтерергә мөмкин.
 Дауам итерҙән алда, бөтә буласаҡ һөҙөмтәләрҙе аңлауығыҙҙы уйлағыҙ.",
-'movepagetalktext' => "Фекер алышыу битенең исеме лә үҙгәртеләсәк, '''киләһе осраҡтарҙан тыш''':
+'movepagetalktext'    => "Фекер алышыу битенең исеме лә үҙгәртеләсәк, '''киләһе осраҡтарҙан тыш''':
 *Бындай исемле фекер алышыу бите бар, йәки
 *Аҫтағы юлды билдәләмәгәнһегеҙ.
 
 Бындай осраҡтарҙа, кәрәкле булһа, биттәрҙе үҙегеҙҙең күсереүегеҙ йәки исемен үҙгәртеүегеҙ кәрәк буласаҡ.",
-'movearticle'      => 'Биттең исемен үҙгәртергә',
-'movenologin'      => 'Үҙегеҙҙе танытырға кәрәк',
-'newtitle'         => 'Яңы исем',
-'move-watch'       => 'Был битте күҙәтеү исемлегенә өҫтәргә',
-'movepagebtn'      => 'Биттең исемен үҙгәртергә',
-'pagemovedsub'     => 'Бит исеме үҙгәртелде',
-'movepage-moved'   => "<big>'''«$1» битенең яңы исеме: «$2»'''</big>",
-'articleexists'    => 'Бындай исемле бит бар йәки һеҙ белдергән исем рөхсәт ителмәй.
+'movearticle'         => 'Биттең исемен үҙгәртергә',
+'movenologin'         => 'Үҙегеҙҙе танытырға кәрәк',
+'movenotallowed'      => 'Һеҙҙең бит исемен үҙгәртергә хоҡуғығыҙ юҡ',
+'movenotallowedfile'  => 'Һеҙҙең файл исемен үҙгәртергә хоҡуғығыҙ юҡ',
+'cant-move-user-page' => 'Һеҙҙең ҡатнашыусы битенең исемен үҙгәртергә хоҡуғығыҙ юҡ',
+'newtitle'            => 'Яңы исем',
+'move-watch'          => 'Был битте күҙәтеү исемлегенә өҫтәргә',
+'movepagebtn'         => 'Биттең исемен үҙгәртергә',
+'pagemovedsub'        => 'Бит исеме үҙгәртелде',
+'movepage-moved'      => "<big>'''«$1» битенең яңы исеме: «$2»'''</big>",
+'articleexists'       => 'Бындай исемле бит бар йәки һеҙ белдергән исем рөхсәт ителмәй.
 Зинһар, башҡа исем һайлағыҙ.',
-'talkexists'       => "'''Бит исеме үҙгәртелде, ләкин фекер алышыу битенең исемен үҙгәртеп булмай, сөнки ундай исемле бит бар инде. Зинһар, уларҙы үҙегеҙ берләштерегеҙ.'''",
-'movedto'          => 'яңы исеме',
-'movetalk'         => 'Бәйле фекер алышыу бите исемен үҙгәртергә',
-'1movedto2'        => '«[[$1]]» битенең яңы исеме «[[$2]]»',
-'1movedto2_redir'  => '[[$1]] бите [[$2]] битенә йүнәлтеү буйынса күсте',
-'movelogpage'      => 'Исем үҙгәртеү яҙмалары',
-'movereason'       => 'Сәбәп:',
-'revertmove'       => 'кирегә',
+'talkexists'          => "'''Бит исеме үҙгәртелде, ләкин фекер алышыу битенең исемен үҙгәртеп булмай, сөнки ундай исемле бит бар инде. Зинһар, уларҙы үҙегеҙ берләштерегеҙ.'''",
+'movedto'             => 'яңы исеме',
+'movetalk'            => 'Бәйле фекер алышыу бите исемен үҙгәртергә',
+'1movedto2'           => '«[[$1]]» битенең яңы исеме «[[$2]]»',
+'1movedto2_redir'     => '[[$1]] бите [[$2]] битенә йүнәлтеү буйынса күсте',
+'movelogpage'         => 'Исем үҙгәртеү яҙмалары',
+'movereason'          => 'Сәбәп:',
+'revertmove'          => 'кирегә',
 
 # Export
-'export' => 'Биттәрҙе сығарыу',
+'export'        => 'Биттәрҙе сығарыу',
+'export-addcat' => 'Өҫтәргә',
+'export-addns'  => 'Өҫтәргә',
 
 # Namespace 8 related
-'allmessagesname' => 'Хәбәр',
+'allmessagesname'           => 'Хәбәр',
+'allmessages-filter-legend' => 'Иләк',
+'allmessages-filter-all'    => 'Бөтә',
+'allmessages-filter-submit' => 'Күсергә',
 
 # Thumbnails
 'thumbnail-more' => 'Ҙурайтырға',
@@ -1721,6 +1735,7 @@ $NEWPAGE
 'tooltip-search'                  => 'Эҙләргә {{SITENAME}}',
 'tooltip-search-go'               => 'Нәҡ ошондай исеме булған биткә күсергә',
 'tooltip-search-fulltext'         => 'Ошондай эстәлекле биттәрҙе табырға',
+'tooltip-p-logo'                  => 'Баш биткә күсергә',
 'tooltip-n-mainpage'              => 'Баш биткә күсергә',
 'tooltip-n-mainpage-description'  => 'Баш биткә күсеү',
 'tooltip-n-portal'                => 'Проект буйынса һеҙ нимә эшләй алаһығыҙ һәм ҡайҙа нимә барлығы тураһында белешмә',
@@ -1751,12 +1766,17 @@ $NEWPAGE
 'tooltip-diff'                    => 'Сығанаҡ текстҡа ҡарата эшләгән үҙгәртеүҙәрҙе күрһәтергә.',
 'tooltip-compareselectedversions' => 'Был биттең һайланған ике версияһы араһындағы айырманы ҡарарға',
 'tooltip-watch'                   => 'Битте күҙәтеү исемлегемә өҫтәргә',
+'tooltip-upload'                  => 'Күсерә башларға',
 'tooltip-rollback'                => 'Бер баҫыу менән аҙаҡҡы мөхәррирләүсенең үҙгәртеүҙәрен кире ала.',
 'tooltip-undo'                    => '"Кире ал" төҙәтеүҙе кире ала һәм төҙәтеү формаһын "алдан байҡау"ҙа күрһәтә. Һәм кире алыуҙың сәбәбен белдерергә була.',
 
 # Attribution
 'siteuser'  => '{{grammar:genitive|{{SITENAME}}}} - ла ҡатнашыусы $1',
+'others'    => 'башҡалар',
 'siteusers' => '{{SITENAME}} {{PLURAL:$2|ҡатнашыусы|ҡатнашыусылары}} $1',
+
+# Math errors
+'math_unknown_error' => 'билдәһеҙ хата',
 
 # Browsing diffs
 'previousdiff' => '← Алдағы төҙәтеү',
@@ -1768,6 +1788,9 @@ $NEWPAGE
 'svg-long-desc'        => '(SVG файлы, номиналь $1 × $2 нөктә, файл күләме: $3)',
 'show-big-image'       => 'Тулы асыҡлыҡ',
 'show-big-image-thumb' => '<small>Алдан байҡау дәүмәле: $1 × $2 нөктә</small>',
+
+# Special:NewFiles
+'newimages-legend' => 'Иләк',
 
 # Bad image list
 'bad_image_list' => 'Формат киләһе рәүештә булырға тейеш:
@@ -1791,6 +1814,9 @@ $NEWPAGE
 * focallength',
 
 # EXIF tags
+'exif-imagewidth'      => 'Киңлек',
+'exif-imagelength'     => 'Бейеклек',
+'exif-artist'          => 'Автор',
 'exif-gpslatituderef'  => 'Киңлек индексы',
 'exif-gpslatitude'     => 'Киңлек',
 'exif-gpslongituderef' => 'Оҙонлоҡ индексы',
@@ -1803,6 +1829,8 @@ $NEWPAGE
 
 'exif-meteringmode-0'   => 'Билдәһеҙ',
 'exif-meteringmode-255' => 'Икенсе',
+
+'exif-gaincontrol-0' => 'Юҡ',
 
 # External editor support
 'edit-externally'      => 'Был файлды тышҡы программа ҡулланып мөхәррирләргә',
@@ -1819,11 +1847,20 @@ $NEWPAGE
 # Delete conflict
 'recreate' => 'Яңынан булдырыу',
 
+# action=purge
+'confirm_purge_button' => 'Тамам',
+
 # Multipage image navigation
-'imgmultigo'   => 'Күсеү!',
-'imgmultigoto' => '$1 биткә күсеү',
+'imgmultipageprev' => '← алдағы бит',
+'imgmultipagenext' => 'киләһе бит →',
+'imgmultigo'       => 'Күсеү!',
+'imgmultigoto'     => '$1 биткә күсеү',
 
 # Table pager
+'table_pager_next'         => 'Киләһе бит',
+'table_pager_prev'         => 'Алдағы бит',
+'table_pager_first'        => 'Беренсе бит',
+'table_pager_last'         => 'Һуңғы бит',
 'table_pager_limit_submit' => 'Күсеү',
 
 # Watchlist editor
@@ -1835,19 +1872,37 @@ $NEWPAGE
 'watchlisttools-raw'  => 'Текст һымаҡ үҙгәртеү',
 
 # Special:Version
-'version-other' => 'Башҡалар',
+'version-specialpages'     => 'Махсус биттәр',
+'version-other'            => 'Башҡалар',
+'version-software-version' => 'Версия',
 
 # Special:FilePath
-'filepath-page' => 'Файл:',
+'filepath'        => 'Файлға юл',
+'filepath-page'   => 'Файл:',
+'filepath-submit' => 'Юл',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Бер төрлө файлдарҙы эҙләргә',
+'fileduplicatesearch-filename' => 'Файл исеме',
+'fileduplicatesearch-submit'   => 'Эҙләү',
 
 # Special:SpecialPages
-'specialpages'             => 'Махсус биттәр',
-'specialpages-group-login' => 'Танышыу йәки теркәлеү',
-'specialpages-group-users' => 'Ҡатнашыусылар һәм хоҡуҡтар',
+'specialpages'               => 'Махсус биттәр',
+'specialpages-note'          => '----
+* Ябай махсус биттәр.
+* <strong class="mw-specialpagerestricted">Сикләнгән махсус биттәр.</strong>',
+'specialpages-group-other'   => 'Башҡа махсус биттәр',
+'specialpages-group-login'   => 'Танышыу йәки теркәлеү',
+'specialpages-group-users'   => 'Ҡатнашыусылар һәм хоҡуҡтар',
+'specialpages-group-highuse' => 'Йыш ҡулланылған биттәр',
+
+# Special:BlankPage
+'blankpage' => 'Буш бит',
 
 # Special:Tags
 'tags-title' => 'Билдәләр',
 'tags-tag'   => 'Билдә исеме',
+'tags-edit'  => 'үҙгәртергә',
 
 # HTML forms
 'htmlform-selectorother-other' => 'Башҡа',
