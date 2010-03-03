@@ -553,6 +553,10 @@ L'ültima vus del register l'è mustrada chì de suta per riferiment:",
 'template-semiprotected'           => '(semi-prutegiüü)',
 'hiddencategories'                 => 'Quela pagina chì la fa part de {{PLURAL:$1|una categuria|$1 categurij}} scundüü:',
 'permissionserrorstext-withaction' => "Te gh'hee minga i permiss per $2, per {{PLURAL:$1|quela resón chì |quij resón chì}}:",
+'recreate-moveddeleted-warn'       => "'''Ocio: te see adree a creà turna una pagina che l'eva giamò stada scancelada.'''
+
+Cuntrulee se l'è propi el cas de cuntinuà a mudifegà 'sta pagina chì.
+Per cumudità, la lista di scancelament e di San Martìn l'è ripurtada chi de suta:",
 
 # "Undo" feature
 'undo-summary' => 'Scancelada la mudifega $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciciarada]])',

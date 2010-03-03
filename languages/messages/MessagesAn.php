@@ -275,8 +275,8 @@ $messages = array(
 'qbpageinfo'     => 'Contexto',
 'qbmyoptions'    => 'Pachinas propias',
 'qbspecialpages' => 'Pachinas especials',
-'faq'            => 'Preguntas frequents (FAQ)',
-'faqpage'        => 'Project:Preguntas cutianas',
+'faq'            => 'Preguntas freqüents (FAQ)',
+'faqpage'        => 'Project:Preguntas freqüents',
 
 # Vector skin
 'vector-action-delete'  => 'Borrar',

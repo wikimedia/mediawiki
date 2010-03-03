@@ -1082,29 +1082,30 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'prefs-diffs'                   => 'Diffs',
 
 # User rights
-'userrights'                  => 'Idarekerdena heqanê karberi',
-'userrights-lookup-user'      => 'Grupanê karberî idare bike',
-'userrights-user-editname'    => 'Yew nameyê karberî binusne',
-'editusergroup'               => 'Grupanê karberî bivurne',
-'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) şıma desthelatiyê karberi vurneni.",
-'userrights-editusergroup'    => 'Grupanê karberî bivurne',
-'saveusergroups'              => 'Grupanê karberî qeyd bike',
-'userrights-groupsmember'     => 'Ezayê / Ezaya:',
-'userrights-groups-help'      => 'şıma grubê no karbero ke tedeyo eşkeni bıvurni:
-* qutiyo ke nişane kerdeyo, mocneno ke karber daxilê ney grubi yo.
-* qutiyo ke nişane nêkerdeyo, mocneno ke karber no grub de niyo.
-* *, ıne zi mocneno ke vıraştışê yew grubi ra dıma xo tepiya antış çiniyo.',
-'userrights-reason'           => 'Sebeb:',
-'userrights-no-interwiki'     => 'Wikipediyaya binî de ti nieşkenî heqqê karberî bivurne.',
-'userrights-nodatabase'       => 'Databasê $1î çini yo ya zi lokal ni yo.',
-'userrights-nologin'          => 'Eka ti wazene ki heqqa karberi bide, ti gani bi [[Special:UserLogin|cikewtiye]] pê yew hesabê idarekarî',
-'userrights-notallowed'       => 'Hesabê tu de izin çinî yo ke ti heqqa karberî bide.',
-'userrights-changeable-col'   => 'Grupanê ke ti êşkeno bivurne',
-'userrights-unchangeable-col' => 'Grupanê ke ti niêşkeno bivurne',
+'userrights'                   => 'İdarey heqanê karberan',
+'userrights-lookup-user'       => 'Grubanê karberi/karbere idare bıke',
+'userrights-user-editname'     => 'Yew namey karberi bınusne',
+'editusergroup'                => 'Grupanê karberi/karbere bıvurne (bıbedelne)',
+'editinguser'                  => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) Vurnaena heqanê karberanê karberi",
+'userrights-editusergroup'     => 'Grubanê karberi/karbere sero bıgureye (bıxebetiye)',
+'saveusergroups'               => 'Grubanê karberi qeyd bıke',
+'userrights-groupsmember'      => 'Ezaê / Ezaya:',
+'userrights-groupsmember-auto' => 'Ezao daxıl/ezaa daxıle ê:',
+'userrights-groups-help'       => 'şıma şenê grubanê nê karberi/na karbere, oyo/aya ke tede, bıvurnê:
+* qutiya ke nışankerdiya, mocnena ke karber/e na grube dero/dera.
+* qutiya ke nışankerdiye niya, mocnena ke karber/ na grube de niyo/niya.
+* Yew estare * mocneno ke, gruba ke şıma kerda ra ser (daxıl kerda), şıma nêşenê wedarê/hewa dê ya ki dêmlaşta/tersê cı.',
+'userrights-reason'            => 'Sebeb:',
+'userrights-no-interwiki'      => 'Heqa şıma çıniya ke heqanê karberanê Wikipediyanê binan sero bıgureyê.',
+'userrights-nodatabase'        => 'Database $1 çıniyo ya zi mehelli niyo.',
+'userrights-nologin'           => 'Eke şıma wazenê ke heqa karberi/karbere cı dê, şıma gani be [[Special:UserLogin|cikewtiye]] pê yew hesabê idarekeran',
+'userrights-notallowed'        => 'İzna hesabê şıma çıniya ke heqa karberab cı dê.',
+'userrights-changeable-col'    => 'Grubê ke şıma şenê bıvurnê',
+'userrights-unchangeable-col'  => 'Grubê ke şıma nêşenê bıvurnê',
 
 # Groups
 'group'               => 'Grup:',
-'group-user'          => 'Karberan',
+'group-user'          => 'Karberi',
 'group-autoconfirmed' => 'Karberanê ke otokonfirm biy',
 'group-bot'           => 'Botî',
 'group-sysop'         => 'İdarekaran',
