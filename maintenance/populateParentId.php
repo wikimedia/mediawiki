@@ -48,12 +48,11 @@ class PopulateParentId extends Maintenance {
 			return;
 		}
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
 		$blockStart = intval( $start );
 		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
 		$count = 0;
 		$changed = 0;
-		while( $blockEnd <= $end ) {
+		while( $blockStart <= $end ) {
 			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
 			$cond = "rev_id BETWEEN $blockStart AND $blockEnd";
 			$res = $db->select( 'revision', 
@@ -97,8 +96,8 @@ class PopulateParentId extends Maintenance {
 					__METHOD__ );
 				$count++;
 			}
-			$blockStart += $this->mBatchSize - 1;
-			$blockEnd += $this->mBatchSize - 1;
+			$blockStart += $this->mBatchSize;
+			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves( 5 );
 		}
 		$logged = $db->insert( 'updatelog',

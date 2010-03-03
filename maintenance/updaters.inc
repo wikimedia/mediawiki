@@ -170,6 +170,8 @@ $wgUpdates = array(
 		// trunk
 		array( 'rename_eu_wiki_id' ),
 		array( 'do_update_mime_minor_field' ),
+		// Should've done this back in 1.10, but better late than never:
+		array( 'do_populate_rev_len' ),
 	),
 
 	'sqlite' => array(
@@ -1257,12 +1259,13 @@ function do_category_population() {
 		wfOut( "...category table already populated.\n" );
 		return;
 	}
-	require_once( 'populateCategory.inc' );
+	require_once( 'populateCategory.php' );
 	wfOut( "Populating category table, printing progress markers.  " ).
 "For large databases, you\n".
 "may want to hit Ctrl-C and do this manually with maintenance/\n".
 "populateCategory.php.\n";
-	populateCategory( '', 10, 0, true );
+	$task = new PopulateCategory();
+	$task->execute();
 	wfOut( "Done populating category table.\n" );
 }
 
@@ -1271,10 +1274,19 @@ function do_populate_parent_id() {
 		wfOut( "...rev_parent_id column already populated.\n" );
 		return;
 	}
-	require_once( 'populateParentId.inc' );
+	require_once( 'populateParentId.php' );
+	$task = new PopulateParentId();
+	$task->execute();
+}
 
-	global $wgDatabase;
-	populate_rev_parent_id( $wgDatabase );
+function do_populate_rev_len() {
+	if( update_row_exists( 'populate rev_len' ) ) {
+		wfOut( "...rev_len column already populated.\n" );
+		return;
+	}
+	require_once( 'populateRevisionLength.php' );
+	$task = new PopulateRevisionLength();
+	$task->execute();
 }
 
 function sqlite_initial_indexes() {
@@ -1324,12 +1336,13 @@ function do_log_search_population() {
 		wfOut( "...log_search table already populated.\n" );
 		return;
 	}
-	require_once( 'populateLogSearch.inc' );
+	require_once( 'populateLogSearch.php' );
 	wfOut(
 "Populating log_search table, printing progress markers. For large\n" .
 "databases, you may want to hit Ctrl-C and do this manually with\n" .
 "maintenance/populateLogSearch.php.\n" );
-	migrate_log_params( $wgDatabase );
+	$task = new PopulateLogSearch();
+	$task->execute();
 	wfOut( "Done populating log_search table.\n" );
 }
 
