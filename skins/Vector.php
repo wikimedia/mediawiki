@@ -611,7 +611,6 @@ class VectorTemplate extends QuickTemplate {
 		<?php elseif ( $this->data['nav_urls']['permalink']['href'] === '' ): ?>
 		<li id="t-ispermalink"<?php echo $this->skin->tooltip( 't-ispermalink' ) ?>><?php $this->msg( 'permalink' ) ?></li>
 		<?php endif; ?>
-		<?php wfRunHooks( 'VectorTemplateToolboxEnd', array( &$this ) ); ?>
 		<?php wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) ); ?>
 		</ul>
 	</div>
