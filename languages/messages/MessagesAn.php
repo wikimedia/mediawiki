@@ -603,7 +603,7 @@ Puet estar que ya aiga cambeato a suya palabra de paso u aiga demandato una nueb
 'watchthis'                        => 'Cosirar ista pachina',
 'savearticle'                      => 'Alzar pachina',
 'preview'                          => 'Previsualización',
-'showpreview'                      => 'Amostrar una previsualizción',
+'showpreview'                      => 'Amostrar previsualización',
 'showlivepreview'                  => 'Anvista previa',
 'showdiff'                         => 'Amostrar cambeos',
 'anoneditwarning'                  => "''Pare cuenta:'' No s'ha identificato con un nombre d'usuario. A suya adreza IP s'alzará en l'historial d'a pachina.",
