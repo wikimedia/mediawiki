@@ -7,8 +7,7 @@
 
 /**
  * Handles talking to the file cache, putting stuff in and taking it back out.
- * Mostly called from Article.php, also from DatabaseFunctions.php for the
- * emergency abort/fallback to cache.
+ * Mostly called from Article.php for the emergency abort/fallback to cache.
  *
  * Global options that affect this module:
  * - $wgCachePages
