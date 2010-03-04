@@ -143,6 +143,8 @@ ausghenn, mr mus dâdsuu ufm ajchnen rächnâr was âjrichdn ghenn)',
 'category-media-header'  => 'Meedjen in dr ghadegorii „$1“',
 'category-empty'         => "''Dsu däär ghadegorii ghärn dsur dsajd gâ sajdn odr meedjen.''",
 'hidden-categories'      => '{{PLURAL:$1|Fârschdegde ghadegorii|Fârschdegde ghadegoriin}}',
+'category-subcat-count'  => "Diâ ghadegorii umfasd {{PLURAL:$2|nôr ôô undâr-ghadegorii|dsam'n $2 undâr-ghadegoriâ, wofoo {{PLURAL:$1|nôr ôône| $1}}}} undn ôôdsajchd wärn.",
+'category-article-count' => 'Diâ ghadegorii umfasd {{PLURAL:$2|nôr ôô sajdn|$2 sajdn, wofoo hiir {{PLURAL:$1|aane undn ôôdsajchd wärd|l$1 ôôdsajchd undn wärn}}}}.',
 'listingcontinuesabbrev' => '(Fôrdsedsung)',
 
 'newwindow'  => '(Wärd in am najn fenschdâ daargschdeld)',
@@ -862,8 +864,21 @@ Nôr dsajln, dii was midem dsajchn * ôôfangn, wärn berigsichdichd. Un dr ärs
 
 # Metadata
 'metadata'          => 'Meedhaa-daadn',
+'metadata-help'     => 'Dii dadaj umfasd andâre ôôgaawn, dii normaalârwajs fon dr digidaal-ghamâraa odr fom sghänâr häärghumn. Wen awâr dii dadaj indswischn fârändârd wôrn is, meechn dii nime dsum bild basn.',
 'metadata-expand'   => 'Ajdslhajdn dsajchn',
 'metadata-collapse' => 'Ajdslhajdn ausblendn',
+'metadata-fields'   => 'Hiir ufgfiirde fäldâr fon dâ EXIF-medha-daadn wärn af aln bildbeschrajwungs-sajdn ufgfiird, aa wen dii medhadaadn-dabeln ajgfalded is. Andre sin ärschdâmôôl fârschdegd.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength',
+
+# EXIF tags
+'exif-imagewidth'  => 'brajdn',
+'exif-imagelength' => 'Heen',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ale',

@@ -270,6 +270,8 @@ Taamatut oqaasilimmik quppernerni allani [[Special:Search/{{PAGENAME}}|ujaasisin
 'editingsection'                   => 'Aaqqissorpaa $1 (immikkoortoq)',
 'editingcomment'                   => 'Aaqqissorpaa $1 (immikkoortoq nutaaq)',
 'yourtext'                         => 'Allatat',
+'editingold'                       => "'''Mianersoqqussut: Qupperneq pisoqaanerusoq aaqqissuutilerpat.'''
+Toqqorukku quppernerup taamaannera taarserneqassaaq.",
 'protectedpagewarning'             => "'''Mianersoqqussut: Una qupperneq illersugaavoq, administratorit kisimik aaqqissorsinnaavaat.'''",
 'semiprotectedpagewarning'         => "'''Malugiuk:''' Qupperneq parnaaqqavoq, atuisutut nalunaarsimasut kisimik allanngortitersinnaavaat.",
 'templatesused'                    => '{{PLURAL:$1|Ilisserut|Ilisserutit}} quppernermi atorneqartoq/tut:',

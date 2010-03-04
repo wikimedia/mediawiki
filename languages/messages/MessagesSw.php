@@ -1887,11 +1887,12 @@ Tafadhali jaribu tena.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|mtumiaji bila jina|watumiaji bila majina}} wa {{SITENAME}}',
 'siteuser'         => 'mtumiaji $1 wa {{SITENAME}}',
-'anonuser'         => 'Mtumiaji wa {{SITENAME}} asiyotiwa jina $1',
+'anonuser'         => 'Mtumiaji wa {{SITENAME}} asiyekuwa na jina $1',
 'lastmodifiedatby' => 'Ukurasa huu umebadilishwa kwa mara ya mwisho saa $2, tarehe $1 na $3.',
 'othercontribs'    => 'Ukurasa uliandikwa pia na $1.',
 'others'           => 'wengine',
 'siteusers'        => '{{PLURAL:$2|mtumiaji|watumiaji}} wa {{SITENAME}} $1',
+'anonusers'        => '{{PLURAL:$2|Mtumiaji|Watumiaji}} wa {{SITENAME}} {{PLURAL:$2|asiyetiwa jina|wasiotiwa jina}} $1',
 'creditspage'      => 'Wandishi wa ukurasa',
 'nocredits'        => 'Taarifa kuhusu wandishi wa ukurasa huu haipatikana.',
 
