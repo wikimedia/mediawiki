@@ -564,9 +564,9 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @param $opts FormOptions
 	 */
 	function filterByCategories( &$rows, FormOptions $opts ) {
-		$categories = array_map( 'trim', explode( "|" , $opts['categories'] ) );
+		$categories = array_map( 'trim', explode( '|' , $opts['categories'] ) );
 
-		if( empty($categories) ) {
+		if( !count( $categories ) ) {
 			return;
 		}
 
@@ -574,32 +574,34 @@ class SpecialRecentChanges extends SpecialPage {
 		$cats = array();
 		foreach( $categories as $cat ) {
 			$cat = trim( $cat );
-			if( $cat == "" ) continue;
+			if( $cat == '' ) continue;
 			$cats[] = $cat;
 		}
 
 		# Filter articles
 		$articles = array();
 		$a2r = array();
+		$rowsarr = array();
 		foreach( $rows AS $k => $r ) {
 			$nt = Title::makeTitle( $r->rc_namespace, $r->rc_title );
 			$id = $nt->getArticleID();
 			if( $id == 0 ) continue; # Page might have been deleted...
-			if( !in_array($id, $articles) ) {
+			if( !in_array( $id, $articles ) ) {
 				$articles[] = $id;
 			}
-			if( !isset($a2r[$id]) ) {
+			if( !isset( $a2r[$id] ) ) {
 				$a2r[$id] = array();
 			}
 			$a2r[$id][] = $k;
+			$rowsarr[$k] = $r;
 		}
 
 		# Shortcut?
-		if( !count($articles) || !count($cats) )
+		if( !count( $articles ) || !count( $cats ) )
 			return ;
 
 		# Look up
-		$c = new Categoryfinder ;
+		$c = new Categoryfinder;
 		$c->seed( $articles, $cats, $opts['categories_any'] ? "OR" : "AND" ) ;
 		$match = $c->run();
 
@@ -608,7 +610,7 @@ class SpecialRecentChanges extends SpecialPage {
 		foreach( $match AS $id ) {
 			foreach( $a2r[$id] AS $rev ) {
 				$k = $rev;
-				$newrows[$k] = $rows[$k];
+				$newrows[$k] = $rowsarr[$k];
 			}
 		}
 		$rows = $newrows;
