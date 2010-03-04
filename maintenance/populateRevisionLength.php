@@ -49,6 +49,7 @@ class PopulateRevisionLength extends Maintenance {
 		$blockStart = intval( $start );
 		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
 		$count = 0;
+		$missing = 0;
 		while( $blockStart <= $end ) {
 			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
 			$res = $db->select( 'revision',
@@ -61,12 +62,19 @@ class PopulateRevisionLength extends Maintenance {
 			foreach( $res as $row ) {
 				$rev = new Revision( $row );
 				$text = $rev->getRawText();
-				# Update the row...
-				$db->update( 'revision',
-					     array( 'rev_len' => strlen( $text ) ),
-					     array( 'rev_id' => $row->rev_id ),
-					     __METHOD__ );
-				$count++;
+				if( !is_string( $text ) ) {
+					# This should not happen, but sometimes does (bug 20757)
+					$this->output("Text of revision {$row->rev_id} unavailable!\n"); 
+					$missing++;
+				}
+				else {
+					# Update the row...
+					$db->update( 'revision',
+						     array( 'rev_len' => strlen( $text ) ),
+						     array( 'rev_id' => $row->rev_id ),
+						     __METHOD__ );
+					$count++;
+				}
 			}
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
@@ -77,7 +85,7 @@ class PopulateRevisionLength extends Maintenance {
 			__METHOD__,
 			'IGNORE' );
 		if( $logged ) {
-			$this->output( "rev_len population complete ... {$count} rows changed\n" );
+			$this->output( "rev_len population complete ... {$count} rows changed ({$missing} missing)\n" );
 			return true;
 		} else {
 			$this->output( "Could not insert rev_len population row.\n" );
