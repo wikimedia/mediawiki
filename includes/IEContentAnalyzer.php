@@ -323,11 +323,11 @@ class IEContentAnalyzer {
 	 * Get the MIME types from getMimesFromData(), but convert the result from IE's 
 	 * idiosyncratic private types into something other apps will understand.
 	 *
-	 * @param string $fileName The file name (unused at present)
-	 * @param string $chunk The first 256 bytes of the file
-	 * @param string $proposed The MIME type proposed by the server
+	 * @param $fileName String: the file name (unused at present)
+	 * @param $chunk String: the first 256 bytes of the file
+	 * @param $proposed String: the MIME type proposed by the server
 	 *
-	 * @return array Map of IE version to detected mime type
+	 * @return Array: map of IE version to detected mime type
 	 */
 	public function getRealMimesFromData( $fileName, $chunk, $proposed ) {
 		$types = $this->getMimesFromData( $fileName, $chunk, $proposed );
@@ -359,11 +359,11 @@ class IEContentAnalyzer {
 	/**
 	 * Get the untranslated MIME types for all known versions
 	 *
-	 * @param string $fileName The file name (unused at present)
-	 * @param string $chunk The first 256 bytes of the file
-	 * @param string $proposed The MIME type proposed by the server
+	 * @param $fileName String: the file name (unused at present)
+	 * @param $chunk String: the first 256 bytes of the file
+	 * @param $proposed String: the MIME type proposed by the server
 	 *
-	 * @return array Map of IE version to detected mime type
+	 * @return Array: map of IE version to detected mime type
 	 */
 	public function getMimesFromData( $fileName, $chunk, $proposed ) {
 		$types = array();
