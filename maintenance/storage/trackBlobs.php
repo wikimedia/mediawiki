@@ -35,12 +35,54 @@ class TrackBlobs {
 	}
 
 	function run() {
+		$this->checkIntegrity();
 		$this->initTrackingTable();
 		$this->trackRevisions();
 		$this->trackOrphanText();
 		if ( $this->doBlobOrphans ) {
 			$this->findOrphanBlobs();
 		}
+	}
+
+	function checkIntegrity() {
+		echo "Doing integrity check...\n";
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// Scan for HistoryBlobStub objects in the text table (bug 20757)
+		
+		$exists = $dbr->selectField( 'text', 1,
+			'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\' ' . 
+			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
+			__METHOD__
+		);
+		
+		if ( $exists ) {
+			echo "Integrity check failed: found HistoryBlobStub objects in your text table.\n".
+				"This script could destroy these objects if it continued. Run resolveStubs.php\n" .
+				"to fix this.\n";
+			exit( 1 );
+		}
+
+		// Scan the archive table for HistoryBlobStub objects or external flags (bug 22624)
+		$flags = $dbr->selectField( 'archive', 'ar_flags',
+			'ar_flags LIKE \'%external%\' OR (' .
+			'ar_flags LIKE \'%object%\' ' . 
+			'AND LOWER(CONVERT(LEFT(ar_text,22) USING latin1)) = \'o:15:"historyblobstub"\' )',
+			__METHOD__
+		);
+
+		if ( strpos( $flags, 'external' ) !== false ) {
+			echo "Integrity check failed: found external storage pointers in your archive table.\n" . 
+				"Run normaliseArchiveTable.php to fix this.\n";
+			exit( 1 );
+		} elseif ( $flags ) {
+			echo "Integrity check failed: found HistoryBlobStub objects in your archive table.\n" .
+				"These objects are probably already broken, continuing would make them\n" .
+				"unrecoverable. Run \"normaliseArchiveTable.php --fix-cgz-bug\" to fix this.\n";
+			exit( 1 );
+		}
+
+		echo "Integrity check OK\n";
 	}
 
 	function initTrackingTable() {
