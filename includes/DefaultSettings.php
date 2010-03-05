@@ -3296,6 +3296,7 @@ $wgLogActions = array(
 	'suppress/delete'   => 'suppressedarticle',
 	'suppress/block'	=> 'blocklogentry',
 	'suppress/reblock'  => 'reblock-logentry',
+	'patrol/patrol' 	=> 'patrol-log-line',
 );
 
 /**
