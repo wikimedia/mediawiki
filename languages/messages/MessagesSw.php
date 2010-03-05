@@ -1028,9 +1028,9 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'powersearch-ns'                   => 'Tafuta kwenye maeneo ya wiki yafuatayo:',
 'powersearch-redir'                => 'Orodhesha kurasa za kuelekeza',
 'powersearch-field'                => 'Tafuta huu:',
-'powersearch-togglelabel'          => 'Chagua:',
-'powersearch-toggleall'            => 'Yote',
-'powersearch-togglenone'           => 'Yasichaguliwe',
+'powersearch-togglelabel'          => '&nbsp;',
+'powersearch-toggleall'            => 'Chagua yote',
+'powersearch-togglenone'           => 'Usichague',
 'search-external'                  => 'Kutafuta nje',
 'searchdisabled'                   => 'Kutafuta {{SITENAME}} kumesimamishwa.
 Unaweza kutafuta kwa kutumia Google punde si punde.

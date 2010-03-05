@@ -680,6 +680,7 @@ Indien hierdie rekening foutief geskep is, kan u hierdie boodskap ignoreer.',
 'login-throttled'            => "U het al te veel kere met 'n ongeldige wagwoord probeer aanteken.
 Wag asseblief alvorens u weer probeer.",
 'loginlanguagelabel'         => 'Taal: $1',
+'suspicious-userlogout'      => "U versoek om af te teken is geïgnoreer omdat dit lyk asof dit deur 'n gebreekte webleser of instaanbediener gestuur is.",
 
 # Password reset dialog
 'resetpass'                 => 'Verander wagwoord',

@@ -84,6 +84,7 @@ $messages = array(
 'mypage'        => 'tañi nütramkawe',
 'mytalk'        => 'Tañi nütramkawe',
 'anontalk'      => 'Tüfachi IP ñi nütramkawe',
+'navigation'    => 'Wiyawvn',
 'and'           => '&#32;ka',
 
 # Cologne Blue skin
