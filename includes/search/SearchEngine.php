@@ -557,6 +557,9 @@ class SqlSearchResultSet extends SearchResultSet {
 	}
 
 	function numRows() {
+		if ($this->mResultSet === false )
+			return false;
+
 		return $this->mResultSet->numRows();
 	}
 
@@ -571,6 +574,9 @@ class SqlSearchResultSet extends SearchResultSet {
 	}
 
 	function free() {
+		if ($this->mResultSet === false )
+			return false;
+
 		$this->mResultSet->free();
 	}
 }
