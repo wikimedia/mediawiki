@@ -2199,13 +2199,16 @@ class OutputPage {
 				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
 				$userpage = $wgUser->getUserPage();
-				$scriptpage = Title::makeTitleSafe(
-					NS_USER,
-					$userpage->getDBkey() . '/' . $sk->getSkinName() . '.js'
-				);
-				if ( $scriptpage && $scriptpage->exists() ) {
-					$userjs = Skin::makeUrl( $scriptpage->getPrefixedText(), 'action=raw&ctype=' . $wgJsMimeType );
-					$this->addScriptFile( $userjs );
+				$names = array( 'common', $sk->getSkinName() );
+				foreach( $names as $name ) {
+					$scriptpage = Title::makeTitleSafe(
+						NS_USER,
+						$userpage->getDBkey() . '/' . $name . '.js'
+					);
+					if ( $scriptpage && $scriptpage->exists() ) {
+						$userjs = $scriptpage->getLocalURL( 'action=raw&ctype=' . $wgJsMimeType );
+						$this->addScriptFile( $userjs );
+					}
 				}
 			}
 		}

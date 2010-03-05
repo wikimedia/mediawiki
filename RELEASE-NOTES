@@ -23,6 +23,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   has been removed.
   
 === New features in 1.17 ===
+* (bug 10183) Users can now add personal styles and scripts to all skins via
+  User:<name>/common.css and /common.js (if user css/js is enabled)
   
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive without
