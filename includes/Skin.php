@@ -650,10 +650,13 @@ CSS;
 				// @FIXME: properly escape the cdata!
 				$out->addInlineStyle( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
-				$out->addStyle( self::makeUrl(
-					$this->userpage . '/' . $this->getSkinName() . '.css',
-					'action=raw&ctype=text/css' )
-				);
+				$names = array( 'common', $this->getSkinName() );
+				foreach( $names as $name ) {
+					$out->addStyle( self::makeUrl(
+						$this->userpage . '/' . $name . '.css',
+						'action=raw&ctype=text/css' )
+					);
+				}
 			}
 		}
 

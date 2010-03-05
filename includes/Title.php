@@ -1709,8 +1709,10 @@ class Title {
 	 */
 	public function isValidCssJsSubpage() {
 		if ( $this->isCssJsSubpage() ) {
+			$name = $this->getSkinFromCssJsSubpage();
+			if ( $name == 'common' ) return true;
 			$skinNames = Skin::getSkinNames();
-			return array_key_exists( $this->getSkinFromCssJsSubpage(), $skinNames );
+			return array_key_exists( $name, $skinNames );
 		} else {
 			return false;
 		}
