@@ -320,7 +320,8 @@ Chhà-khon: $2',
 
 # Login and logout pages
 'logouttitle'                => 'Yung-fu thui-chhut',
-'logouttext'                 => "'''Ngì hien-chhai yí-kîn thui-chhut.'''<br />
+'logouttext'                 => "'''Ngì hien-chhai yí-kîn thui-chhut.'''
+
 Ngì khó-yî ki-siu̍k yî ngia̍k-miàng fông-sṳt sṳ́-yung {{SITENAME}}, fe̍t-chá chai-chhṳ yî siông-thùng fe̍t-he mò-thùng yung-fu sṳ̂n-fun tên-ngi̍p.",
 'welcomecreation'            => '<h2>Fôn-ngiàng, $1!</h2><p>Ngì-ke chong-ho yí-kîn kien-li̍p, put-yeu mong-ki sat-chṳ {{SITENAME}} ke-ngìn chhâm-sṳ.</p>',
 'loginpagetitle'             => 'Yung-fu tên-ngi̍p',
@@ -451,7 +452,7 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'confirmedittitle'          => 'Email khok-ngin heu chhòi-nèn phiên-cho',
 'confirmedittext'           => 'Chhai phiên-cho chhṳ́-chông chṳ̂-chhièn pit-sî khok-ngin ngì-ke email thi-tiám. Chhiáng theu-ko [[Special:Preferences|chhâm-su sat-thin]] sat-thin pin ngiam-chṳn ngì-ke email thi-tiám.',
 'nosuchsectiontitle'        => 'Mò-yû liá-ke thon-lo̍k',
-'nosuchsectiontext'         => 'Ngì sòng-chhṳ phiên-cho ke thon-lo̍k pin-put chhùn-chhai. Chhai liá-piên he mò thi-$1-ke thon-lo̍k,  só-yî he mò-yû yit-ke thi-fông tú-chhùn ngì-ke phiên-cho.',
+'nosuchsectiontext'         => 'Ngì sòng-chhṳ phiên-cho ke thon-lo̍k pin-put chhùn-chhai.',
 'loginreqtitle'             => 'Sî-yeu Tên-ngi̍p',
 'loginreqlink'              => 'tên-ngi̍p',
 'loginreqpagetext'          => 'Ngì pit-sî $1 chhòi-nèn kiám-sṳ khì-thâ vùn-chông.',

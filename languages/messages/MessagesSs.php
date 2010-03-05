@@ -9,84 +9,141 @@
  *
  * @author Jatrobat
  * @author MF-Warburg
+ * @author Sibande
  */
 
 $messages = array(
 # Dates
-'sunday'        => 'LíSontfo',
-'monday'        => 'uMsombulûko',
-'tuesday'       => 'Lesíbilí',
-'wednesday'     => 'Lésitsâtfu',
-'thursday'      => 'Lesíne',
-'friday'        => 'Lesíhlánu',
-'saturday'      => 'úMgcibélo',
-'january'       => 'Bhimbídvwane',
-'february'      => 'iNdlóvana',
-'march'         => 'íNdlovu',
-'april'         => 'Mábasa',
-'may_long'      => 'íNkhwekhwéti',
-'june'          => 'íNhlaba',
-'july'          => 'Khólwáne',
-'august'        => 'íNgci',
-'september'     => 'íNyoni',
-'october'       => 'íMphala',
-'november'      => 'Lídvúba',
-'december'      => 'íNgongóni',
-'january-gen'   => 'Bhimbídvwane',
-'february-gen'  => 'iNdlóvana',
-'march-gen'     => 'íNdlovu',
-'april-gen'     => 'Mábasa',
-'may-gen'       => 'íNkhwekhwéti',
-'june-gen'      => 'íNhlaba',
-'july-gen'      => 'Khólwáne',
-'august-gen'    => 'íNgci',
-'september-gen' => 'íNyoni',
-'october-gen'   => 'íMphala',
-'november-gen'  => 'Lídvúba',
-'december-gen'  => 'íNgongóni',
+'sunday'        => 'LiSontfo',
+'monday'        => 'Msombuluko',
+'tuesday'       => 'Lesibili',
+'wednesday'     => 'Lesitsatfu',
+'thursday'      => 'Lesine',
+'friday'        => 'Lesihlanu',
+'saturday'      => 'Mgcibelo',
+'sun'           => 'LiSontfo',
+'mon'           => 'Msombuluko',
+'tue'           => 'Lesibili',
+'wed'           => 'Lesitsatfu',
+'thu'           => 'Lesine',
+'fri'           => 'Lesihlanu',
+'sat'           => 'Mgcibelo',
+'january'       => 'Bhimbidvwane',
+'february'      => 'iNdlovana',
+'march'         => 'iNdlovu',
+'april'         => 'Mabasa',
+'may_long'      => 'iNkhwekhweti',
+'june'          => 'iNhlaba',
+'july'          => 'Kholwane',
+'august'        => 'iNgci',
+'september'     => 'iNyoni',
+'october'       => 'iMphala',
+'november'      => 'Lweti',
+'december'      => 'iNgongoni',
+'january-gen'   => 'Bhimbidvwane',
+'february-gen'  => 'iNdlovana',
+'march-gen'     => 'iNdlovu',
+'april-gen'     => 'Mabasa',
+'may-gen'       => 'iNkhwekhweti',
+'june-gen'      => 'iNhlaba',
+'july-gen'      => 'Kholwane',
+'august-gen'    => 'iNgci',
+'september-gen' => 'iNyoni',
+'october-gen'   => 'iMphala',
+'november-gen'  => 'Lweti',
+'december-gen'  => 'iNgongoni',
+'jan'           => 'Bhi',
+'feb'           => 'iNdlova',
+'mar'           => 'iNdlovu',
+'apr'           => 'Mab',
+'may'           => 'iNkhwe',
+'jun'           => 'iNhla',
+'jul'           => 'Kho',
+'aug'           => 'iNgci',
+'sep'           => 'iNyo',
+'oct'           => 'iMpha',
+'nov'           => 'Lwe',
+'dec'           => 'iNgo',
 
-'qbfind'         => 'Kúkhándza',
-'qbedit'         => 'Kúhlela',
+# Categories related messages
+'category_header'          => 'Makhasi lakulomkhakha "$1"',
+'subcategories'            => 'Mikhakha lengaphansi',
+'category-media-header'    => 'i-Media lekulomkhakha "$1"',
+'category-empty'           => "''Lomkhakha ute makhasi nobe i-media lewuphetse.''",
+'hidden-category-category' => 'Mikhakha lefihliwe', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'chubeka.',
+
+'mainpagetext' => "<big>'''i-MediaWiki seyifakeke ngalokuphelele.'''</big>",
+
+'about'          => 'Kabanti',
+'article'        => 'Likhasi lentfo',
+'newwindow'      => '(kuvulekela tukweli-window lelisha)',
+'cancel'         => 'Yekela',
+'qbfind'         => 'Tfola',
+'qbbrowse'       => 'Browse',
+'qbedit'         => 'Hlela',
+'qbpageoptions'  => 'Lelikhasi',
+'qbmyoptions'    => 'Makhasi ami',
 'qbspecialpages' => 'Emakhasi labalulekile',
+'moredotdotdot'  => 'Lokunyenti...',
+'mypage'         => 'Likhasi lami',
+'mytalk'         => 'Tingcoco tami',
+'anontalk'       => 'Tingcogco letentwe ngulelikheli lale-IP',
 
-'help'             => 'Kúsíta',
-'search'           => 'Kucálata',
-'searchbutton'     => 'kucálata',
-'go'               => 'Kúhámba',
-'searcharticle'    => 'Kúhámba',
+'returnto'         => 'Buyela ku $1.',
+'help'             => 'Sita',
+'search'           => 'Sesha',
+'searchbutton'     => 'Sesha',
+'go'               => 'Hamba',
+'searcharticle'    => 'Hamba',
+'history'          => 'Umlandvo walelikhasi',
 'history_short'    => 'Umlandvo',
-'print'            => 'Kucindzetêla',
-'edit'             => 'kúhlela',
-'talkpagelinktext' => 'Kúcoca',
-'talk'             => 'Kúcoca',
-'jumptosearch'     => 'kucálata',
+'info_short'       => 'Lwati',
+'print'            => 'Print',
+'edit'             => 'Hlela',
+'editthispage'     => 'Hlela lelikhasi',
+'newpage'          => 'Likhasi lelisha',
+'talkpage'         => 'Coca ngalelikhasi',
+'talkpagelinktext' => 'Ingcoco',
+'specialpage'      => 'Likhasi lelibalulekile',
+'postcomment'      => 'Sihloko lesinsha',
+'talk'             => 'Ingcoco',
+'mediawikipage'    => 'Bona likhasi lemiyaleto',
+'viewtalkpage'     => 'Bona ingcoco',
+'otherlanguages'   => 'Ngaletinye tilwimi',
+'lastmodifiedat'   => 'Lelikhasi ligcine kushintjwa ngetingu $1, nga $2.', # $1 date, $2 time
+'jumptosearch'     => 'sesha',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Kabanti nge {{SITENAME}}',
+'aboutpage'            => 'Project:Kabanti',
+'edithelp'             => 'Lusito ngekuhlela',
+'edithelppage'         => 'Help:Kuhlela',
 'mainpage'             => 'Likhasi Lelikhulu',
-'mainpage-description' => 'Likhasi Lelikhulu',
+'mainpage-description' => 'Likhasi lelikhulu',
 'portal'               => 'Likhefi leinthanethi',
 'portal-url'           => 'Project:Likhefi leinthanethi',
 
 'youhavenewmessages' => 'Ube $1 ($2).',
-'editsection'        => 'kúhlela',
-'editold'            => 'kúhlela',
-'viewdeleted'        => 'Kúfúna $1?',
+'editsection'        => 'hlela',
+'editold'            => 'hlela',
+'viewdeleted'        => 'Bona $1?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Intfo',
+'nstab-main' => 'Likhasi',
 'nstab-user' => 'Umuntfu',
-'nstab-help' => 'Kúsíta',
+'nstab-help' => 'Likhasi lelusito',
 
 # Login and logout pages
-'uid'                => 'Umuntfu ID:',
-'yourlanguage'       => 'Lúlwîmi:',
-'loginlanguagelabel' => 'Lúlwîmi: $1',
+'uid'                => 'Matisi Wemuntfu:',
+'yourlanguage'       => 'Lulwimi:',
+'loginlanguagelabel' => 'Lulwimi: $1',
 
 # Search results
-'powersearch' => 'Kucálata',
+'powersearch' => 'Sesha ngalokuphakeme',
 
 # Preferences page
-'searchresultshead' => 'Kucálata',
+'searchresultshead' => 'Sesha',
 
 # Special:ListFiles
 'listfiles_date' => 'Lusuku',
@@ -94,64 +151,64 @@ $messages = array(
 'listfiles_user' => 'Umuntfu',
 
 # File description page
-'filehist-datetime' => 'Lusuku/Síkhatsí',
+'filehist-datetime' => 'Lusuku/Sikhatsi',
 'filehist-user'     => 'Umuntfu',
 
 'brokenredirects-edit' => '(kúhlela)',
 
-'withoutinterwiki-submit' => 'Kúfúna',
+'withoutinterwiki-submit' => 'Khomba',
 
 # Miscellaneous special pages
-'move' => 'Kúgojotîsa',
+'move' => 'Khweshisa',
 
 # Book sources
-'booksources-go' => 'Kúhámba',
+'booksources-go' => 'Hamba',
 
 # Special:Log
 'specialloguserlabel' => 'Umuntfu:',
 
 # Special:AllPages
-'allpagessubmit' => 'Kúhámba',
+'allpagessubmit' => 'Hamba',
 
 # Special:LinkSearch
-'linksearch-ok' => 'Kucálata',
+'linksearch-ok' => 'Sesha',
 
 # Special:ListUsers
-'listusers-submit' => 'Kúfúna',
+'listusers-submit' => 'Khomba',
 
 # Watchlist
 'watch'   => 'Gadza',
 'unwatch' => 'Yekela kugadza',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'Kúhlela',
-'restriction-move'   => 'Kúgojotîsa',
-'restriction-create' => 'Kúdála',
+'restriction-edit'   => 'Hlela',
+'restriction-move'   => 'Khweshisa',
+'restriction-create' => 'Create',
 
 # Undelete
-'undelete-search-submit' => 'Kucálata',
+'undelete-search-submit' => 'Sesha',
 
-'sp-contributions-submit' => 'Kucálata',
+'sp-contributions-submit' => 'Sesha',
 
 # Block/unblock
-'ipblocklist-submit' => 'Kucálata',
-'proxyblocksuccess'  => 'Ngiénta.',
+'ipblocklist-submit' => 'Sesha',
+'proxyblocksuccess'  => 'Kwentekile.',
 
 # Move page
-'movelogpage' => 'Kúgojotîsa log',
+'movelogpage' => 'Khweshisa i-log',
 
 # Namespace 8 related
 'allmessagesname' => 'Ligama',
 
 # Tooltip help for the actions
-'tooltip-search' => 'Kucálata {{SITENAME}}',
-'tooltip-p-logo' => 'Likhasi Lelikhulu',
+'tooltip-search' => 'Sesha i-{{SITENAME}}',
+'tooltip-p-logo' => 'Vakashela likhasi lelikhulu',
 
 # Special:NewFiles
-'ilsubmit' => 'Kucálata',
+'ilsubmit' => 'Sesha',
 
 # Multipage image navigation
-'imgmultigo' => 'Kúhámba!',
+'imgmultigo' => 'Hamba!',
 
 # Table pager
 'table_pager_limit_submit' => 'Kúhámba',

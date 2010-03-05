@@ -472,7 +472,7 @@ $messages = array(
 'addedwatchtext'    => "ཤོག་ལེབ་  \"[[:\$1]]\" འདི་ ཁྱོད་རའི་ [[Special:Watchlist|watchlist]] ལུ་ ཁ་སྐོང་བརྐྱབས་ནུག།\\n
 ཤོག་ལེབ་དེ་ལུ་མ་འོངས་བསྒྱུར་བཅོས་དང་ དེ་གི་འབྲེལ་ཡོད་བློ་ཤོག་འདི་ དེ་ཁར་ཐོ་བཀོད་འབད་ནི་དང་ འཇམ་ཏོང་ཏོ་སྦེ་གདམ་ཁ་བརྐྱབ་ཚུགས་ནི་གི་དོན་ལུ་  ཤོག་ལེབ་འདི་ [[Special:RecentChanges|list of recent changes]] ནང་ལུ་ '''མངོན་གསལ་''' སྦེ་འབྱུང་འོང་།",
 'removedwatch'      => 'བལྟ་ཞིབ་ཐོ་ཡིག་ནང་ལས་བཏོན་བཀོག་ཡོདཔ།',
-'removedwatchtext'  => 'ཤོག་ལེབ་  "[[:$1]]" འདི་ ཁྱོད་རའི་བལྟ་ཞིབ་ཐོ་ཡིག་ནང་ལས་ བཏོན་བཀོག་ནུག།',
+'removedwatchtext'  => 'ཤོག་ལེབ་  "[[:$1]]" འདི་ [[Special:Watchlist|your watchlist]] ལས་ བཏོན་བཀོག་ནུག།',
 'watch'             => 'བལྟ་ཞིབ་འབད།',
 'watchthispage'     => 'ཤོག་ལེབ་འདི་ལྟ།',
 'unwatch'           => 'བལྟ་བཤོལ།',
@@ -503,7 +503,7 @@ $messages = array(
 # Protect
 'protectlogpage'              => 'ཉེན་སྐྱོབ་ལོག།',
 'prot_1movedto2'              => '[[$1]] འདི་ [[$2]] ལུ་སྤོ་བཤུད་འབད་ཡོདཔ།',
-'protectcomment'              => 'བསམ་བཀོད:',
+'protectcomment'              => 'རྒྱུ་མཚན:',
 'protectexpiry'               => 'དུས་ཡོལ:',
 'protect_expiry_invalid'      => 'དུས་ཡོལ་དུས་ཚོད་འདི་ ནུས་མེད་ཨིན་པས།',
 'protect_expiry_old'          => 'དུས་ཡོལ་དུས་ཚོད་འདི་ཚར་ནུག།',
@@ -515,7 +515,7 @@ $messages = array(
 ཁྱོད་ཀྱིས་ ཤོག་ལེབ་འདི་གི་ཉེན་སྐྱོབ་གནས་རིམ་འདི་ བསྒྱུར་བཅོས་འབད་ཚུགས་རུང་ ཀསི་ཀ་ཌིང་ཉེན་སྐྱོབ་ལུ་མི་གནོད།',
 'protect-default'             => '(སྔོན་སྒྲིག།)',
 'protect-fallback'            => '"$1" གནང་བ་དགོས།',
-'protect-level-autoconfirmed' => 'ཐོ་བཀོད་མ་འབད་བའི་ལག་ལེན་པ་ཚུ་ བཀག།',
+'protect-level-autoconfirmed' => 'ལེན་པ་གསརཔ་དང་ཐོ་བཀོད་མ་འབད་བའི་ལག་ལེན་པ་ཚུ་ བཀག།',
 'protect-level-sysop'         => 'སི་སོཔསི་རྐྱངམ་ཅིག།',
 'protect-summary-cascade'     => 'ཀེསི་ཀེ་ཌིང་།',
 'protect-expiring'            => '$1 (UTC) དུས་ཡོལཝ་ཨིན།',
@@ -558,7 +558,7 @@ $messages = array(
 # Block/unblock
 'blockip'       => 'ལག་ལེན་པ་བཀག',
 'ipboptions'    => 'ཆུ་ཚོད་ ༢:2 hours,ཉིནམ་ ༡:1 day,ཉིནམ་ ༣:3 days,བདུན་ཕྲག་ ༡:1 week,བདུན་ཕྲག་ ༢:2 weeks,ཟླཝ་ ༡:1 month,ཟླཝ་ ༣:3 months,ཟླཝ་ ༦:6 months,ལོ་ ༡:1 year,ཚད་ལས་འདས་པ་:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'བཀག་ཆ་ཅན་གྱི་ ཨའི་པི་ཁ་བྱང་དང་ལག་ལེན་པའི་མིང།',
+'ipblocklist'   => 'བཀག་ཆ་འབད་ཡོད་པའི ཨའི་པི་ཁ་བྱང་དང་ལག་ལེན་པའི་མིང།',
 'blocklink'     => 'བཀག།',
 'unblocklink'   => 'བཀག་བཤོལ་',
 'contribslink'  => 'ཕན་འདེབས།',

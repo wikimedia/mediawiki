@@ -164,8 +164,9 @@ $messages = array(
 
 # Login and logout pages
 'logouttitle'                => 'Fine de session',
-'logouttext'                 => 'Vu ha terminat vor session.
-Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session denov quam li sam usator o quam un diferent usator.',
+'logouttext'                 => "'''Vu ha terminat vor session.'''
+
+Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session denov quam li sam usator o quam un diferent usator.",
 'loginpagetitle'             => 'Registrar se/Intrar',
 'yourname'                   => 'Vor nómine usatori:',
 'yourpassword'               => 'Vor passa-parol:',

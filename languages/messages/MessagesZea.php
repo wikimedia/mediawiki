@@ -382,7 +382,8 @@ De heheven reeën is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Gebruker afmelden',
-'logouttext'                 => "'''Je bin noe ofemeld.'''<br />
+'logouttext'                 => "'''Je bin noe ofemeld.'''
+
 Je kan {{SITENAME}} noe anoniem gebruken of wee anmelden as dezelven of een aore gebruker.
 Meuhlijk worn nog een antal pagina's weereheven asof a je anemeld bin totda je de cache van je browser leeg.",
 'welcomecreation'            => '== Welkom, $1! ==
@@ -552,7 +553,7 @@ Vermeld dat a je erhens over deêze blokkaode wil reaheern.",
 'confirmedittext'           => "Je mò jen e-mailadres bevestihen voe da je kan bewerken.
 Voer jen e-mailadres in en bevestig 't via [[Special:Preferences|je vòkeuren]].",
 'nosuchsectiontitle'        => 'Deêze subkop besti nie',
-'nosuchsectiontext'         => 'Je probeern een subkop te bewerken die a nie besti. Omda subkop $1 nie besti, kan je bewerkieng ok nie worn opeslogen.',
+'nosuchsectiontext'         => 'Je probeern een subkop te bewerken die a nie besti.',
 'loginreqtitle'             => 'Anmelden verplicht',
 'loginreqlink'              => 'anmelden',
 'loginreqpagetext'          => "$1 is verplicht om aore pagina's te kunn'n ziene.",
