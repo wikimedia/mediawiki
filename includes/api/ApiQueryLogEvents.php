@@ -48,6 +48,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_title = isset( $prop['title'] );
 		$this->fld_type = isset( $prop['type'] );
+		$this->fld_action = isset ( $prop['action'] );
 		$this->fld_user = isset( $prop['user'] );
 		$this->fld_timestamp = isset( $prop['timestamp'] );
 		$this->fld_comment = isset( $prop['comment'] );
@@ -103,7 +104,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$index['change_tag'] = $wgOldChangeTagsIndex ? 'ct_tag' : 'change_tag_tag_id';
 		}
 
-		if ( !is_null( $params['type'] ) ) {
+		if ( !is_null( $params['action'] ) ) {
+			$this->addWhereFld( 'log_action', substr( $params['action'], strrpos( $params['action'], "/" ) + 1 ) );
+		}
+		else if ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'log_type', $params['type'] );
 			$index['logging'] = 'type_time';
 		}
@@ -232,8 +236,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiQueryBase::addTitleInfo( $vals, $title );
 			}
 		}
-
-		if ( $this->fld_type ) {
+		
+		if ( $this->fld_type || $this->fld_action ) {
 			$vals['type'] = $row->log_type;
 			$vals['action'] = $row->log_action;
 		}
@@ -292,7 +296,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgLogTypes;
+		global $wgLogTypes, $wgLogActions;
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -311,6 +315,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			),
 			'type' => array(
 				ApiBase::PARAM_TYPE => $wgLogTypes
+			),
+			'action' => array(
+				ApiBase::PARAM_TYPE => array_keys( $wgLogActions )
 			),
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
@@ -342,6 +349,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return array(
 			'prop' => 'Which properties to get',
 			'type' => 'Filter log entries to only this type(s)',
+			'action' => "Filter log actions to only this type. Overrides {$this->getModulePrefix()}type",
 			'start' => 'The timestamp to start enumerating from.',
 			'end' => 'The timestamp to end enumerating.',
 			'dir' => 'In which direction to enumerate.',
