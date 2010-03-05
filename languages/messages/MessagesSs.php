@@ -83,7 +83,7 @@ $messages = array(
 'cancel'        => 'Yekela',
 'moredotdotdot' => 'Lokunyenti...',
 'mypage'        => 'Likhasi lami',
-'mytalk'        => 'Tinkhulumo tami',
+'mytalk'        => 'Tingcoco tami',
 'anontalk'      => 'Tingcogco letentwe ngulelikheli lale-IP',
 
 # Cologne Blue skin
@@ -123,7 +123,7 @@ $messages = array(
 'editthispage'     => 'Hlela lelikhasi',
 'newpage'          => 'Likhasi lelisha',
 'talkpage'         => 'Coca ngalelikhasi',
-'talkpagelinktext' => 'Coca',
+'talkpagelinktext' => 'Ingcoco',
 'specialpage'      => 'Likhasi lelibalulekile',
 'postcomment'      => 'Sihloko lesinsha',
 'talk'             => 'Ingcoco',
@@ -207,7 +207,7 @@ $messages = array(
 # Undelete
 'undelete-search-submit' => 'Sesha',
 
-'sp-contributions-talk'   => 'Coca',
+'sp-contributions-talk'   => 'ingcoco',
 'sp-contributions-submit' => 'Sesha',
 
 # Block/unblock

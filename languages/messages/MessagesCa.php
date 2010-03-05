@@ -362,7 +362,7 @@ $messages = array(
 'vector-view-create'         => 'Inicia',
 'vector-view-edit'           => 'Modifica',
 'vector-view-history'        => "Mostra l'historial",
-'vector-view-view'           => 'Llegeix',
+'vector-view-view'           => 'Mostra',
 'vector-view-viewsource'     => 'Mostra la font',
 'actions'                    => 'Accions',
 'namespaces'                 => 'Espais de noms',
@@ -535,6 +535,7 @@ Aviseu-ho llavors a un [[Special:ListUsers/sysop|administrador]], deixant-li cla
 'readonly_lag'         => "La base de dades s'ha bloquejat automàticament mentre els servidors esclaus se sincronitzen amb el mestre",
 'internalerror'        => 'Error intern',
 'internalerror_info'   => 'Error intern: $1',
+'fileappenderror'      => 'No he pogut afegir "$1" a "$2".',
 'filecopyerror'        => "No s'ha pogut copiar el fitxer «$1» com «$2».",
 'filerenameerror'      => "No s'ha pogut reanomenar el fitxer «$1» com «$2».",
 'filedeleteerror'      => "No s'ha pogut eliminar el fitxer «$1».",
@@ -3028,32 +3029,32 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'limitall'         => 'tots',
 
 # E-mail address confirmation
-'confirmemail'             => "Confirma l'adreça de correu electrònic",
-'confirmemail_noemail'     => "No heu introduït una direcció vàlida de correu electrònic en les vostres [[Special:Preferences|preferències d'usuari]].",
-'confirmemail_text'        => "El projecte {{SITENAME}} necessita que valideu la vostra adreça de correu
+'confirmemail'              => "Confirma l'adreça de correu electrònic",
+'confirmemail_noemail'      => "No heu introduït una direcció vàlida de correu electrònic en les vostres [[Special:Preferences|preferències d'usuari]].",
+'confirmemail_text'         => "El projecte {{SITENAME}} necessita que valideu la vostra adreça de correu
 electrònic per a poder gaudir d'algunes facilitats. Cliqueu el botó inferior
 per a enviar un codi de confirmació a la vostra adreça. Seguiu l'enllaç que
 hi haurà al missatge enviat per a confirmar que el vostre correu és correcte.",
-'confirmemail_pending'     => "Ja s'ha enviat el vostre codi de confirmació per correu electrònic; si
+'confirmemail_pending'      => "Ja s'ha enviat el vostre codi de confirmació per correu electrònic; si
 fa poc hi heu creat el vostre compte, abans de mirar de demanar un nou
 codi, primer hauríeu d'esperar alguns minuts per a rebre'l.",
-'confirmemail_send'        => 'Envia per correu electrònic un codi de confirmació',
-'confirmemail_sent'        => "S'ha enviat un missatge de confirmació.",
-'confirmemail_oncreate'    => "S'ha enviat un codi de confirmació a la vostra adreça de correu electrònic.
+'confirmemail_send'         => 'Envia per correu electrònic un codi de confirmació',
+'confirmemail_sent'         => "S'ha enviat un missatge de confirmació.",
+'confirmemail_oncreate'     => "S'ha enviat un codi de confirmació a la vostra adreça de correu electrònic.
 No es requereix aquest codi per a autenticar-s'hi, però vos caldrà proporcionar-lo
 abans d'activar qualsevol funcionalitat del wiki basada en missatges
 de correu electrònic.",
-'confirmemail_sendfailed'  => "{{SITENAME}} no ha pogut enviar el vostre missatge de confirmació.
+'confirmemail_sendfailed'   => "{{SITENAME}} no ha pogut enviar el vostre missatge de confirmació.
 Comproveu que l'adreça no tingui caràcters no vàlids.
 
 El programari de correu retornà el següent missatge: $1",
-'confirmemail_invalid'     => 'El codi de confirmació no és vàlid. Aquest podria haver vençut.',
-'confirmemail_needlogin'   => 'Necessiteu $1 per a confirmar la vostra adreça electrònica.',
-'confirmemail_success'     => "S'ha confirmat la vostra adreça electrònica. Ara podeu iniciar una sessió i gaudir del wiki.",
-'confirmemail_loggedin'    => "Ja s'ha confirmat la vostra adreça electrònica.",
-'confirmemail_error'       => 'Quelcom ha fallat en desar la vostra confirmació.',
-'confirmemail_subject'     => "Confirmació de l'adreça electrònica del projecte {{SITENAME}}",
-'confirmemail_body'        => "Algú, segurament vós, ha registrat el compte «$2» al projecte {{SITENAME}}
+'confirmemail_invalid'      => 'El codi de confirmació no és vàlid. Aquest podria haver vençut.',
+'confirmemail_needlogin'    => 'Necessiteu $1 per a confirmar la vostra adreça electrònica.',
+'confirmemail_success'      => "S'ha confirmat la vostra adreça electrònica. Ara podeu iniciar una sessió i gaudir del wiki.",
+'confirmemail_loggedin'     => "Ja s'ha confirmat la vostra adreça electrònica.",
+'confirmemail_error'        => 'Quelcom ha fallat en desar la vostra confirmació.',
+'confirmemail_subject'      => "Confirmació de l'adreça electrònica del projecte {{SITENAME}}",
+'confirmemail_body'         => "Algú, segurament vós, ha registrat el compte «$2» al projecte {{SITENAME}}
 amb aquesta adreça electrònica des de l'adreça IP $1.
 
 Per a confirmar que aquesta adreça electrònica us pertany realment
@@ -3066,8 +3067,21 @@ Si *no* heu estat qui ho ha fet, seguiu aquest altre enllaç per a canceŀlar la
 $5
 
 Aquest codi de confirmació caducarà a $4.",
-'confirmemail_invalidated' => "Confirmació d'adreça electrònica canceŀlada",
-'invalidateemail'          => "Canceŀlació d'adreça electrònica",
+'confirmemail_body_changed' => 'Algú, segurament vós, des de l\'adreça IP $1, ha canviat al projecte {{SITENAME}} l\'adreça de correu del compte "$2" a aquesta adreça.
+
+Per confirmar que aquest compte realment us pertany i per reactivar
+les opcions de correu a {{SITENAME}}, obriu el següent enllaç al vostre navegador:
+
+$3
+
+Si el compte *no* us pertany, seguiu l\'enllaç següent
+per a cancel·lar la confirmació d\'adreça de correu:
+
+$5
+
+Aquest codi de confirmació expirarà el $4.',
+'confirmemail_invalidated'  => "Confirmació d'adreça electrònica canceŀlada",
+'invalidateemail'           => "Canceŀlació d'adreça electrònica",
 
 # Scary transclusion
 'scarytranscludedisabled' => "[S'ha inhabilitat la transclusió interwiki]",

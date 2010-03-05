@@ -679,7 +679,7 @@ Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuer
 'anoneditwarning'                  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm Är IP Adress am Historique vun dëser Säit gespäichert.',
 'missingsummary'                   => "'''Erënnerung:''' Dir hutt kee Resumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Resumé ofgespäichert.",
 'missingcommenttext'               => 'Gitt w.e.g. eng Bemierkung an.',
-'missingcommentheader'             => "'''OPGEPASST:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn. Wann Dir nach en Kéier op \"Späicheren\" klickt da gëtt àr Ännerung ouni Titel ofgespäichert.",
+'missingcommentheader'             => "'''OPGEPASST:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn. Wann Dir nach en Kéier op \"Späicheren\" klickt da gëtt Är Ännerung ouni Titel ofgespäichert.",
 'summary-preview'                  => 'Resumé kucken ouni ofzespäicheren:',
 'subject-preview'                  => 'Sujet/Iwwerschrëft kucken:',
 'blockedtitle'                     => 'Benotzer ass gespaart',
@@ -762,9 +762,9 @@ Versicht et w.e.g. nach eng Kéier.
 Wann de Problem dann ëmmer nach bestoe sollt, da versicht iech [[Special:UserLogout|auszeloggen]] an dann erëm anzeloggen.'''",
 'session_fail_preview_html'        => "'''Är Ännerung konnt net gespäichert gi well d'Date vun ärer Sessioun verluergaange sinn.'''
 
-''Well op {{SITENAME}} ''raw HTML'' aktivéiert ass, gouf d'Uweise vun der nach-net gespäicherter Versioun ausgeblend fir JavaScript-Attacken ze vermeiden.''
+''Well op {{SITENAME}} ''raw HTML'' aktivéiert ass, gouf d'Uweise vun der nach-net gespäicherter Versioun ausgeblennt fir JavaScript-Attacken ze vermeiden.''
 
-'''Wann dir eng berechtigt Ännerung maache wëllt, da versicht et w.e.g. nach eng Kéier. 
+'''Wann dir eng berechtegt Ännerung maache wëllt, da versicht et w.e.g. nach eng Kéier. 
 Wann de Problem dann ëmmer nach bestoe sollt, versicht iech [[Special:UserLogout|auszeloggen]] an dann erëm anzeloggen.'''",
 'token_suffix_mismatch'            => "'''Är Ännerung gouf refuséiert wëll Äre Browser Zeechen am Ännerungs-Identifiant verännert huet.'''
 D'Ännerung gouf refuséiert fir ze verhënneren datt den Text op der Säit onliesbar gëtt.
@@ -1428,12 +1428,12 @@ Säite vun [[Special:Watchlist|Ärer Iwwerwaachungslëscht]] si '''fett''' gesch
 'upload_directory_missing'    => 'De Repertoire an deen Dir eropluede wollt ($1) feelt a konnt net vum Webserver ugeluecht ginn.',
 'upload_directory_read_only'  => 'De Webserver kann net an den Upload-Repertoire ($1) schreiwen.',
 'uploaderror'                 => 'Feeler bäim Eroplueden',
-'uploadtext'                  => "Benotzt dëse Formulair, fir nei Fichieren eropzelueden.
-Gitt op d'[[Special:FileList|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropgeluedungen fannt dir an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]], geläschte Fichieren am [[Special:Log/delete|Läschlog]].
+'uploadtext'                  => "Benotzt dëse Formulaire, fir nei Fichieren eropzelueden.
+Gitt op d'[[Special:FileList|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropluedunge fannt dir an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]], geläschte Fichieren am [[Special:Log/delete|Läschlog]].
 
-Fir e '''Bild''' op enger Säit zu benotzen, schreiwt aplaz vum Bild eng vun dëse Formelen:
+Fir e '''Bild''' op enger Säit zu benotzen, schreift amplaz vum Bild eng vun dëse Formelen:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.jpg]]</nowiki></tt>''' fir déi ganz Versioun vum Fichier ze benotzen
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></tt>''' fir eng 200 Pixel breed Versioun an enger Këscht am lenke Rand mat 'alt text' als Beschreiwung
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></tt>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénkse Rand mat 'alt text' als Beschreiwung
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></tt>''' fir e Fichier direk ze verlinken ouni de Fichier ze weisen",
 'upload-permitted'            => 'Erlaabte Formater vun de Fichieren: $1.',
 'upload-preferred'            => 'Fichierszorten déi am beschte funktionéieren: $1.',
@@ -1465,11 +1465,11 @@ Erlaabt {{PLURAL:$3|ass|sinn}}: $2.",
 'largefileserver'             => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
 'emptyfile'                   => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
 'fileexists'                  => "Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g.
-'''<tt>[[:$1]]</tt>''' wann Dir net sécher sidd, op Dir den Numm ännere wëllt.
+'''<tt>[[:$1]]</tt>''' wann Dir net sécher sidd, ob Dir den Numm ännere wëllt.
 [[$1|thumb]]",
 'filepageexists'              => "D'Beschreiwungssäit fir dëse Fichier gouf schonns als '''<tt>[[:$1]]</tt>''' ugeluecht, et gëtt awer kee Fichier mat deem Numm.
 
-De Resumé deen Dir agitt gëtt net op d'Beschreiwungssäit iwwerholl.
+De Resumé deen Dir agitt, gëtt net op d'Beschreiwungssäit iwwerholl.
 Fir datt äre Resumé do opdaucht musst Dir e manuell änneren.
 [[$1|thumb]]",
 'fileexists-extension'        => "E Fichier mat engem ähnlechen Numm gëtt et schonn: [[$2|thumb]]
