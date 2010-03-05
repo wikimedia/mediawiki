@@ -76,7 +76,6 @@ class CheckSyntax extends Maintenance {
 		$this->mIgnorePaths = array(
 			// Compat stuff, explodes on PHP 5.3
 			"includes/NamespaceCompat.php$",
-			"DiscussionThreading/REV",
 			);
 	
 		$this->mNoStyleCheckPaths = array(
