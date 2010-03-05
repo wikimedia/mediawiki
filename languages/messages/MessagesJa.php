@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author Aotake
  * @author Broad-Sky
+ * @author Chinneeb
  * @author Emk
  * @author Fievarsty
  * @author Fryed-peach
@@ -632,8 +633,8 @@ $2',
 'logouttitle'                => 'ログアウト',
 'logouttext'                 => "'''ログアウトしました。'''
 
-このまま匿名で{{SITENAME}}を使い続けることができます。もう一度元の、あるいは別の利用者としてログインすることもできます。
-なお、ブラウザのキャッシュをクリアするまで、ログインしているかのように表示されることがあります。",
+このまま匿名で{{SITENAME}}を使い続けることができます。もう一度元の、あるいは別の利用者として[[Special:UserLogin|ログイン]]することもできます。
+なお、ブラウザのキャッシュをクリアするまで、ページによってはログインしているかのように表示され続けることがあります。",
 'welcomecreation'            => '== $1 さん、ようこそ！ ==
 あなたのアカウントができました。
 お好みに合わせて{{SITENAME}}内での[[Special:Preferences|個人設定]]を変更することができます。',
@@ -810,7 +811,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'confirmedittitle'                 => '編集にはメールアドレスの確認が必要',
 'confirmedittext'                  => 'ページの編集を始める前にメールアドレスの確認をする必要があります。[[Special:Preferences|個人設定]]でメールアドレスを設定し、確認を行ってください。',
 'nosuchsectiontitle'               => 'セクションが存在しません',
-'nosuchsectiontext'                => '指定されたセクションはありません。セクション $1 はありませんでしたので、セクション編集は無効となります。編集内容は保存されません。',
+'nosuchsectiontext'                => 'あなたは存在しないセクションを編集しようとしました。ページを閲覧している間に移動あるいは削除された可能性があります。',
 'loginreqtitle'                    => 'ログインが必要',
 'loginreqlink'                     => 'ログイン',
 'loginreqpagetext'                 => '他のページを閲覧するには$1する必要があります。',
@@ -822,7 +823,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'newarticletext'                   => 'あなたがクリックしたリンク先のページはまだ存在していません。このページを新規に作成するには、下のボックスに内容を書き込んでください (詳しくは[[{{MediaWiki:Helppage}}|ヘルプページ]]を参照してください)。ページを作成するつもりがない場合には、ブラウザの「戻る」ボタンを使って前のページに戻ってください。',
 'anontalkpagetext'                 => "----
 ''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしあなたが匿名利用者で無関係なコメントが寄せられているとお考えの場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。''",
-'noarticletext'                    => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 関連記録を検索する]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを作成]</span>することができます。',
+'noarticletext'                    => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを作成]</span>することができます。',
 'userpage-userdoesnotexist'        => '「$1」という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'                   => "'''注意:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
 * '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Ctrl]-[F5] か [Ctrl]-[R] (Macintoshでは [Cmd]-[Shift]-[R])
@@ -1218,7 +1219,7 @@ $3による理由は以下の通りです: ''$2''",
 'savedprefs'                => '個人設定を保存しました。',
 'timezonelegend'            => 'タイムゾーン:',
 'timezonetext'              => '¹サーバーの時刻 (UTC) とあなたの地域の標準時との時差。',
-'localtime'                 => 'ローカル・タイム：',
+'localtime'                 => 'ローカル・タイム:',
 'timezoneselect'            => 'タイムゾーン:',
 'timezoneuseserverdefault'  => 'サーバーの既定を使用',
 'timezoneuseoffset'         => 'その他 (時差を指定)',
@@ -1257,7 +1258,7 @@ $3による理由は以下の通りです: ''$2''",
 * ボックスのチェックはこの利用者がそのグループに属していることを意味します。
 * チェックが入っていないボックスはこの利用者がそのグループに属していないことを意味します。
 * * は一旦グループへ登録または登録解除した場合、その決定を変更できないことを意味します。',
-'userrights-reason'           => '変更理由:',
+'userrights-reason'           => '理由:',
 'userrights-no-interwiki'     => '他ウィキ上における利用者権限の編集権限はありません。',
 'userrights-nodatabase'       => 'データベース $1は存在しないか、ローカル上にありません。',
 'userrights-nologin'          => '利用者権限を変更するには管理者権限を持つアカウントに[[Special:UserLogin|ログイン]]する必要があります。',
@@ -1604,7 +1605,7 @@ PICT # その他
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' の $2 $3 版は削除されています。",
 'filedelete-nofile'           => "'''$1''' は存在しません。",
 'filedelete-nofile-old'       => "指定された属性を持つ'''$1'''の古い版は存在しません。",
-'filedelete-otherreason'      => 'その他の理由・追加の理由:',
+'filedelete-otherreason'      => '他の、または追加の理由:',
 'filedelete-reason-otherlist' => 'その他の理由',
 'filedelete-reason-dropdown'  => '*よくある削除理由
 ** 著作権侵害
@@ -1730,7 +1731,7 @@ PICT # その他
 'ancientpages'            => '更新されていないページ',
 'move'                    => '移動',
 'movethispage'            => 'このページを移動',
-'unusedimagestext'        => '他のウェブサイトがURLを直接用いてファイルにリンクしている場合もあります。以下のファイル一覧には、そのような形で利用されているファイルが含まれている可能性があります。',
+'unusedimagestext'        => '以下のファイルは存在していますが、どのページにも埋め込まれていません。他のウェブサイトが URL を直接用いてファイルにリンクしている場合もあります。以下のファイル一覧には、そのような形で利用されているファイルが含まれている可能性があります。',
 'unusedcategoriestext'    => '以下のカテゴリはページが存在しますが、他のどのページおよびカテゴリからも使われていません。',
 'notargettitle'           => '対象となるページが存在しません',
 'notargettext'            => '対象となるページまたは利用者が指定されていません。',
@@ -1932,7 +1933,7 @@ $NEWPAGE
 'deletionlog'            => '削除記録',
 'reverted'               => '以前の版への差し戻し',
 'deletecomment'          => '削除理由:',
-'deleteotherreason'      => 'その他の理由・追加の理由:',
+'deleteotherreason'      => '他の、または追加の理由:',
 'deletereasonotherlist'  => 'その他の理由',
 'deletereason-dropdown'  => '*よくある削除理由
 ** 投稿者依頼
@@ -1952,7 +1953,7 @@ $NEWPAGE
 
 このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
 'editcomment'      => "編集内容の要約: 「''$1''」", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による最後の版へ差し戻し', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による直前の版へ差し戻し', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 による編集を取り消して $2 による最後の版へ差し戻しました。',
 'sessionfailure'   => 'ログイン・セッションに問題が発生しました。セッションハイジャックを防ぐために操作は取り消されました。ブラウザの「戻る」を押して直前のページを再度読み込んだ後に、もう一度操作を行ってください。',
 

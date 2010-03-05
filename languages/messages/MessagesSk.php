@@ -16,6 +16,7 @@
  * @author Palica
  * @author Rudko
  * @author Sp5uhe
+ * @author Tchoř
  * @author Urhixidur
  * @author Valasek
  * @author לערי ריינהארט
@@ -548,10 +549,8 @@ Udaný dôvod: ''$2''.",
 'logouttitle'                => 'Odhlásiť používateľa',
 'logouttext'                 => "'''Práve ste sa odhlásili.'''
 
-Odteraz môžete používať {{GRAMMAR:akuzatív|{{SITENAME}}}} ako anonymný používateľ alebo sa môžete
-opäť [[Special:UserLogin|prihlásiť]] pod rovnakým alebo odlišným používateľským menom.
-Uvedomte si, že niektoré stránky sa môžu naďalej zobrazovať ako keby ste boli prihlásený, až kým nevymažete
-vyrovnávaciu pamäť vášho prehliadača.",
+Odteraz môžete používať {{GRAMMAR:akuzatív|{{SITENAME}}}} ako anonymný používateľ alebo sa môžete opäť [[Special:UserLogin|prihlásiť]] pod rovnakým alebo odlišným používateľským menom.
+Uvedomte si, že niektoré stránky sa môžu naďalej zobrazovať ako keby ste boli prihlásený, až kým nevymažete vyrovnávaciu pamäť vášho prehliadača.",
 'welcomecreation'            => '== Vitaj, $1! ==
 
 Vaše konto je vytvorené.
@@ -750,8 +749,9 @@ Prosím, uveďte tieto podrobnosti v akýchkoľvek otázkach, ktoré sa opýtate
 'whitelistedittext'                => 'Aby ste mohli upravovať stránky, musíte sa $1',
 'confirmedittitle'                 => 'Aby ste mohli upravovať je potrebné potvrdenie e-mailu',
 'confirmedittext'                  => 'Pred úpravami stránok musíte potvrdiť vašu emailovú adresu. Prosím, nastavte a overte svoju emailovú adresu v [[Special:Preferences|používateľských nastaveniach]].',
-'nosuchsectiontitle'               => 'Sekcia neexistuje',
-'nosuchsectiontext'                => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje. Keďže sekcia $1 neexistuje, nie je kam uložiť vašu úpravu.',
+'nosuchsectiontitle'               => 'Sekcia nebola nájdená',
+'nosuchsectiontext'                => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje.
+Možno bola presunutá alebo zmazaná odkedy ste si stránku zobrazili.',
 'loginreqtitle'                    => 'Je potrebné prihlásiť sa',
 'loginreqlink'                     => 'prihlásiť',
 'loginreqpagetext'                 => 'Aby ste mohli prezerať ďalšie stránky, musíte sa $1.',
@@ -769,7 +769,7 @@ Preto musíme na jeho identifikáciu použiť numerickú IP adresu. Je možné, 
 Ak ste anonymný používateľ a máte pocit, že vám boli adresované irelevantné diskusné príspevky, [[Special:UserLogin/signup|vytvorte si konto]] alebo sa [[Special:UserLogin|prihláste]], aby sa zamedzilo budúcim zámenám s inými anonymnými používateľmi.''",
 'noarticletext'                    => 'Na tejto stránke sa momentálne nenachádza žiadny text.
 Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} vyhľadávať v súvisiacich záznamoch],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} vyhľadávať v súvisiacich záznamoch],
 alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
 'userpage-userdoesnotexist'        => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
 'clearyourcache'                   => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
@@ -874,7 +874,7 @@ Tieto argumenty boli vynechané.',
 'parser-template-recursion-depth-warning' => 'Bol prekročený limit rekurzie šablón ($1)',
 
 # "Undo" feature
-'undo-success' => 'Úpravu nie je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
+'undo-success' => 'Úpravu je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
 'undo-failure' => 'Úpravu nie je možné vrátiť kvôli konfliktným medziľahlým úpravám.',
 'undo-norev'   => 'Túto úpravu nie je možné vrátiť, pretože neexistuje alebo bola zmazaná.',
 'undo-summary' => 'Revízia $1 používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) bola vrátená',
@@ -965,7 +965,7 @@ Potvrďte prosím, že toto je vaším zámerom, že rozumiete dôsledkom a že 
 'revdelete-submit'               => 'Použiť na zvolenú revíziu',
 'revdelete-logentry'             => 'viditeľnosť revízie bola zmenená pre [[$1]]',
 'logdelete-logentry'             => 'viditeľnosť udalosti [[$1]] bola zmenená',
-'revdelete-success'              => "'''Viditeľnosť revízie bola úspešne nastavená.'''",
+'revdelete-success'              => "'''Viditeľnosť revízie bola úspešne aktualizovaná.'''",
 'logdelete-success'              => "'''Viditeľnosť záznamu bola úspešne nastavená.'''",
 'revdel-restore'                 => 'Zmeniť viditeľnosť',
 'pagehist'                       => 'História stránky',
@@ -1235,7 +1235,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 * Zaškrtnuté pole znamená, že používateľ je v skupine.
 * Nezaškrtnuté pole znamená, že používateľ nie je v skupine.
 * „*“ znamená, že nemôžete odstrániť skupinu, keď ste ju už pridali resp. naopak.',
-'userrights-reason'           => 'Dôvod zmeny:',
+'userrights-reason'           => 'Dôvod:',
 'userrights-no-interwiki'     => 'Nemáte oprávnenie upravovať práva používateľov na iných wiki.',
 'userrights-nodatabase'       => 'Databáza $1 neexistuje alebo nie je lokálna.',
 'userrights-nologin'          => 'Aby ste mohli prideľovať používateľom oprávnenia, musíte sa [[Special:UserLogin|prihlásiť]] s účtom správcu.',
@@ -1730,7 +1730,8 @@ Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riad
 'ancientpages'            => 'Najdávnejšie upravované stránky',
 'move'                    => 'Presunúť',
 'movethispage'            => 'Presunúť túto stránku',
-'unusedimagestext'        => 'Prosím, uvedomte si, že iné web stránky môžu odkazovať na tento súbor priamo URL adresou a tak tu môžu byť uvedené napriek tomu, že ich externé stránky používajú.',
+'unusedimagestext'        => 'Nasledovné súbory existujú, ale nie sú vložené v žiadnej stránke.
+Prosím, uvedomte si, že iné web stránky môžu odkazovať na tento súbor priamo URL adresou a tak tu môžu byť uvedené napriek tomu, že ich externé stránky používajú.',
 'unusedcategoriestext'    => 'Nasledujúce kategórie existujú napriek tomu, že do nich nie je zaradená žiadna stránka.',
 'notargettitle'           => 'Nebol zadaný cieľ',
 'notargettext'            => 'Nezadali ste cieľovú stránku alebo používateľa,
@@ -2593,7 +2594,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód.
-Po spustení môže byť váš systém kompromitovaný.<hr />",
+Jeho spustením môžete kompromitovať svoj systém.<hr />",
 'imagemaxsize'         => 'Obmedziť obrázky na popisnej stránke súboru na:',
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',

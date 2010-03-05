@@ -655,8 +655,7 @@ Adrès IP ou an kounye a se $3. Idantifyan, non ou an nan kilès ou bloke a se $
 'confirmedittitle'                 => 'Adrès imèl ou an dwèt valide pou ou kapab modifye kontni sa',
 'confirmedittext'                  => 'Ou dwèt konfime adrès imèl ou an anvan ou modifye paj {{SITENAME}} sa. Antre epi valide adrès elektwonik ou an ak èd ou kapab twouve nan paj sa [[Special:Preferences|preferans]].',
 'nosuchsectiontitle'               => 'Seksyon sa pa gen anyen sou li',
-'nosuchsectiontext'                => 'Ou eseye modifye yon seksyon ki pa egziste nan sitèm an.
-Paske sistèm an pa gen seksyon $1 sa, nou pa twouve pyès lòt kote pou pibliye modifikasyon ou fè nan paj sa.',
+'nosuchsectiontext'                => 'Ou eseye modifye yon seksyon ki pa egziste nan sitèm an.',
 'loginreqtitle'                    => 'Koneksyon an nesesè',
 'loginreqlink'                     => 'konekete ou',
 'loginreqpagetext'                 => 'Ou dwèt $1 pou ou kapab wè lòt paj yo.',
@@ -668,7 +667,7 @@ Pou ou kapab kreye paj sa a, komanse ap ekri nan bwat sa a ki anba (gade [[{{Med
 
 Si se paske ou komèt yon erè ke ou ap twouve ou nan paj sa a, klike anlè bouton '''ritounen''' nan bwozè ou a.",
 'anontalkpagetext'                 => "---- ''Ou nan paj diskisyon yon itilizatè anonim, ki pa gen non, ki poko kreye yon kont oubyen ki pa itilize pyès kont nan sistèm sa. Pou rezon sa, nou dwèt itilize adrès IP l pou nou kapab lokalize l, sitye l, montre kote l rete, idantifye l. Yon adrès IP kapab pataje ant plizyè moun, plizyè itilizatè. Si ou se yon itilizatè anonim e si ou wè ke ou resevwa komantè ki pa te pou ou, ou mèt [[Special:UserLogin|kreye yon kont oubyen konekte w]] pou ou kapab anpeche difikilte sa yo, move bagay sa yo ant lòt itilizatè yo, kontribitè anonim yo.''",
-'noarticletext'                    => 'Poko genyen tèks nan paj sa a, ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj, oubyen [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye li].',
+'noarticletext'                    => 'Poko genyen tèks nan paj sa a, ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj yo, oubyen <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chache jounal modifikasyon yo ki an relasyon ak paj sa] oubyen tou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye paj sa]</span>.',
 'userpage-userdoesnotexist'        => 'Kont itilizatè « $1 » sa pa anrejistre. Verifye toutbon ke ou vle kreye paj sa.',
 'clearyourcache'                   => "'''Note bagay sa:''' depi ou pibliye paj sa, ou dwèt fòse chajman, rafrechi paj an; ou mèt bliye kontni kach sistèm bwozè (navigatè entènèt ou an) kounye a pou ou kapab wè chanjman yo : '''Mozilla / Firefox / Konqueror / Safari :''' mentni touch ''lèt kapital'' ak klike sou bouton ''Rafrechi/Aktyalize'' oubyen peze ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sou sistèm Apple Mac) ; '''Internet Explorer / Opera :''' mentni touch ''Ctrl'' pandan ou ap prese bouton ''Rafrechi/Aktyalize'' oubyen peze ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Bagay ki ap sèvi w :''' Itilize bouton « Voye kout zye » pou teste nouvo fèy CSS/JS anvan ou anrejistre l.",

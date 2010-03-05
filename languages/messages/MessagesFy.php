@@ -498,8 +498,7 @@ De oanfierde reden is ''$2''.",
 'logouttitle'                => 'Ofmelde',
 'logouttext'                 => "'''Jo binne no ôfmeld.'''
 
-Jo kinne de {{SITENAME}} fierders anonym brûke,
-of jo op 'e [[Special:UserLogin|nij oanmelde]] ûnder deselde of in oare namme.
+Jo kinne de {{SITENAME}} fierders anonym brûke, of jo op 'e [[Special:UserLogin|nij oanmelde]] ûnder deselde of in oare namme.
 Mûglik wurdt noch in tal siden werjûn as wiene Jo oanmeld, oant Jo de cache fan Jo browser leegje.",
 'welcomecreation'            => '<h2>Wolkom, $1!</h2><p>Jo ynstellings binne oanmakke.
 Ferjit net se oan jo foarkar oan te passen.',
@@ -679,7 +678,7 @@ Jo tsjintwurdich e-postadres is $3 en it útsletnûmer is #$5. Neam beide gegeve
 'confirmedittitle'                 => 'Netpostbefêstiging frege foar bewurkjen',
 'confirmedittext'                  => "Jo moatte jo e-mailadres befêstichje foar't jo siden feroarje kinne. Fier in e-mailedres yn by jo [[Special:Preferences|ynstellings]] en befêstichje it.",
 'nosuchsectiontitle'               => 'Dizze subkop bestiet net',
-'nosuchsectiontext'                => "Jo besochten in subkop te bewurkjen dy't net bestiet. Om't subkop $1 net bestiet, kin jo bewurking ek net opslein wurde.",
+'nosuchsectiontext'                => "Jo besochten in subkop te bewurkjen dy't net bestiet.",
 'loginreqtitle'                    => 'Oanmelding frege',
 'loginreqlink'                     => 'Oanmelde',
 'loginreqpagetext'                 => 'Jo moatte jo $1 om oare siden besjen te kinnen.',

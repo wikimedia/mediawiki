@@ -547,8 +547,7 @@ Pakibanggit me iting ID neng atin kang pamangutang.',
 'confirmedittext'                  => "Kailangan meng kumpirman ing kekang e-mail address bayo mo a-edit deting bulung.
 Pakisulat me at patutuan ing kekang e-mail address kapamilata'ning [[Special:Preferences|pinili ning talagamit]] (user preferences).",
 'nosuchsectiontitle'               => 'Alang makanian a dake (seksiyon)',
-'nosuchsectiontext'                => 'Sibukan mung mag-edit king seksiyon a yala naman. 
-Uling alang seksiyon a $1, alang lugal a pirinan ketang kekang in-edit.',
+'nosuchsectiontext'                => 'Sibukan mung mag-edit king seksiyon a yala naman.',
 'loginreqtitle'                    => 'Kailangang Mag-login',
 'loginreqlink'                     => 'mag-login',
 'loginreqpagetext'                 => 'Kailangan mung $1 ba mong akit deng aliwang bulung.',
@@ -561,7 +560,7 @@ Nung migkamali kang minta keni, i-click me mu ing '''back''' (mibalik) button ni
 'anontalkpagetext'                 => "----''Ini ing bulung ning pamitalamitam (discussion page) para kareng gagamit a e pepakilala, e pa miglalang account, o e gagamit kaniti. Uli na nita, kaylangan ming gumamit IP address a nomiru ba yang makilala. Mapalyaring e ya mu metung ing gagamit kaniti. Nung metung kang gagamit a e pepakilala at king palage mu, mituran ka o meyatu king e dapat, pakisabi ming [[Special:UserLogin|maglalang kang account o mag-log in]] ba ra kang e pagkamalyan kareng aliwang gagamit.''",
 'noarticletext'                    => 'King salukuyan, alang sulat king bulung a ini.
 Maliari meng [[Special:Search/{{PAGENAME}}|paintunan ining bansag ning bulung]] kareng aliwang bulung,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} i-edit ing bulung a ini]</span>.',
 'userpage-userdoesnotexist'        => 'E makarehistru ing account ning talagamit (user account) a "$1". Pakilawe mu nung buri meng lalangan o i-edit ing bulung a ini.',
 'clearyourcache'                   => "'''Kapabaluan:''' Kaibat mung mig-save, maliari meng lakton ing simpan (cache) ning kekang browser ba mong akit deng miyalilan. '''Mozilla / Firefox / Safari:''' timid me ing ''Shift'' kabang ki-click me ing ''Reload'', o timid me ing ''Ctrl-Shift-R'' (''Cmd-Shift-R'' king Apple Mac); '''IE:''' timid me ing ''Ctrl'' kabang ki-click me ing ''Refresh'', o timid me ing ''Ctrl-F5''; '''Konqueror:''': i-click me mu ing ''Reload'' button, o timid me ing ''F5''; deng talagamit ning '''Opera''', mapaliaring kailangan deng laganas a linisan (i-clear) ing karelang simpan (cache) king ''Tools→Preferences''.",

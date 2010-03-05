@@ -11,13 +11,13 @@
  * @author Dalibor Bosits
  * @author Demicx
  * @author Dnik
+ * @author Ex13
  * @author Luka Krstulovic
  * @author MayaSimFan
  * @author Meno25
  * @author Mvrban
  * @author Roberta F.
  * @author SpeedyGonsales
- * @author Suradnik13
  * @author Treecko
  * @author לערי ריינהארט
  */
@@ -649,10 +649,10 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Odjava suradnika',
-'logouttext'                 => 'Odjavili ste se.<br />
-Možete nastaviti s korištenjem projekta {{SITENAME}} neprijavljeni,
-ili se možete ponovo prijaviti pod istim ili drugim imenom. Neke se stranice mogu
-prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.',
+'logouttext'                 => "'''Odjavili ste se.'''
+
+Možete nastaviti s korištenjem {{SITENAME}} neprijavljeni, ili se možete ponovo [[Special:UserLogin|prijaviti]] pod istim ili drugim imenom. 
+Neke se stranice mogu prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.",
 'welcomecreation'            => '== Dobrodošli, $1! ==
 Vaš je suradnički račun otvoren. 
 
@@ -848,7 +848,7 @@ Vaša trenutačna IP adresa je $3, a oznaka bloka #$5. Molimo navedite ovaj broj
 'confirmedittitle'                 => 'Ovjera e-mail adrese nužna za uređivanje',
 'confirmedittext'                  => 'Morate ovjeriti vašu e-mail adresu prije nego što vam bude omogućeno uređivanje. Molim unesite i ovjerite vašu e-mail adresu u [[Special:Preferences|suradničkim postavkama]].',
 'nosuchsectiontitle'               => 'Odlomak ne postoji',
-'nosuchsectiontext'                => 'Pokušali ste uređivati odlomak koji ne postoji (moguće je nedavno obrisan). Pošto odlomak $1 ne postoji, nije moguće snimiti vaše promjene.',
+'nosuchsectiontext'                => 'Pokušali ste uređivati odlomak koji ne postoji (moguće je nedavno obrisan).',
 'loginreqtitle'                    => 'Nužna prijava',
 'loginreqlink'                     => 'prijavite se',
 'loginreqpagetext'                 => 'Morate se $1 da biste vidjeli ostale stranice.',
@@ -864,7 +864,7 @@ Nakon prijave, lozinka za ovaj novi račun može biti promijenjena na stranici '
 'anontalkpagetext'                 => "Ovo je stranica za razgovor s neprijavljenim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste neprijavljeni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:UserLogin/signup|otvorite]] suradnički račun ili se prijavite te tako u budućnosti izbjegnete zamjenu s drugim neprijavljenim suradnicima.''",
 'noarticletext'                    => 'Na ovoj stranici trenutačno nema sadržaja.
 Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti povezane evidencije]
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane evidencije]
 ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'userpage-userdoesnotexist'        => 'Suradničko ime "$1" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?',
 'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
@@ -1048,7 +1048,7 @@ Molimo potvrdite da to želite, da razumijete posljedice, i da to radite u sklad
 'revdelete-submit'               => 'Izvrši brisanje/sakrivanje',
 'revdelete-logentry'             => 'promijenjena vidljivost izmjene za [[$1]]',
 'logdelete-logentry'             => 'promijenjena vidljivost uređivanja [[$1]]',
-'revdelete-success'              => "'''Vidljivost promjene uspješno postavljena.'''",
+'revdelete-success'              => "'''Vidljivost izmjene uspješno ažurirana.'''",
 'logdelete-success'              => "'''Vidljivost uređivanja uspješno postavljena.'''",
 'revdel-restore'                 => 'Promijeni dostupnost',
 'pagehist'                       => 'Povijest stranice',
@@ -1321,7 +1321,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 * Označena kućica pokazuje skupinu kojoj suradnik pripada.
 * Neoznačena kućica pokazuje skupinu kojoj suradnik ne pripada.
 * Zvjezdica * označava skupinu koju ne možete ukloniti kad ju jednom dodate, ili obratno.',
-'userrights-reason'           => 'Razlog za promjenu:',
+'userrights-reason'           => 'Razlog:',
 'userrights-no-interwiki'     => 'Nemate dopuštenje za uređivanje suradničkih prava na drugim wikijima.',
 'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalno dostupna.',
 'userrights-nologin'          => 'Morate se [[Special:UserLogin|prijaviti]] s administratorskim računom da bi mogli dodijeliti suradnička prava.',
@@ -1798,8 +1798,8 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'ancientpages'            => 'Najstarije stranice',
 'move'                    => 'Premjesti',
 'movethispage'            => 'Premjesti ovu stranicu',
-'unusedimagestext'        => '<p>Moguće je da su druge mrežne stranice izvan ovog
-wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivnoj uporabi.</p>',
+'unusedimagestext'        => 'Sljedeće datoteke postoje, ali nisu uključene ni u jednu stranicu.
+Molimo obratite pozornost da druge web stranice mogu povezivati sliku izravnim URL-om, i tako mogu  još uvijek biti prikazani ovdje unatoč činjenici da više nisu u aktivnoj uporabi.',
 'unusedcategoriestext'    => 'Na navedenim stranicama kategorija nema ni jednog članka ili potkategorije.',
 'notargettitle'           => 'Nema odredišta',
 'notargettext'            => 'Niste naveli ciljnu stranicu ili suradnika za izvršavanje ove funkcije.',
@@ -2630,8 +2630,8 @@ $1',
 'visual-comparison' => 'Prikazivanje razlike (usporedi)',
 
 # Media information
-'mediawarning'         => "'''Upozorenje''': Ova datoteka možda sadrži zlonamjerni program čije bi izvršavanje moglo ugroziti vaš računalni sustav.
-<hr />",
+'mediawarning'         => "'''Upozorenje''': Ova datoteka možda sadrži štetan kod.
+Njegovim izvršavanjem mogli biste oštetiti svoj sustav.<hr />",
 'imagemaxsize'         => 'Ograniči veličinu slike na stranici s opisom:',
 'thumbsize'            => 'Veličina sličice (umanjene inačice slike):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stranica|stranice}}',

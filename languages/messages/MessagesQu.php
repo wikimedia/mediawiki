@@ -665,8 +665,9 @@ Kunan IP huchhaykiqa $3 nisqam, hark'ay huchhataq #$5 nisqam. Mañakuspaykiqa ka
 'whitelistedittext'                => "$1ta ruranaykim tiyan qillqakunata llamk'apunaykipaq.",
 'confirmedittitle'                 => "E-chaski imamaytaykita takyachiy llamk'apunaykipaq",
 'confirmedittext'                  => "P'anqakunata llamk'apunaykipaqqa e-chaski imamaytaykita takyachinaykim tiyan. Ama hina kaspa, e-chaski imamaytata kicharispa takyachiy [[Special:Preferences|allinkachinaykikunapi]].",
-'nosuchsectiontitle'               => 'Manam kanchu chay raki',
-'nosuchsectiontext'                => "Allichaykacharqunki mana kachkaq rakitam. $1 raki mana kachkaptinmi, manam kanchu llamk'apusqaykita waqachana.",
+'nosuchsectiontitle'               => 'Manam tarinichu chay rakita',
+'nosuchsectiontext'                => 'Allichaykacharqunki mana kachkaq rakitam.
+Astasqachá icha qullusqachá qhawachkaptiyki.',
 'loginreqtitle'                    => 'Yaykunaykim tiyan',
 'loginreqlink'                     => 'yaykuna',
 'loginreqpagetext'                 => "Huk p'anqakunata rikunaykipaqqa $1ykim tiyan.",
@@ -677,7 +678,7 @@ Yaykurqaspaqa ''[[Special:ChangePassword|yaykuna rima hukchana]]'' p'anqapi kay 
 'newarticle'                       => '(Musuq)',
 'newarticletext'                   => "Manaraq kachkaq p'anqatam llamk'apuchkanki. Musuq p'anqata kamariyta munaspaykiqa, qillqarillay. Astawan ñawiriyta munaspaykiqa, [[{{MediaWiki:Helppage}}|yanapana p'anqata]] qhaway. Mana munaspaykitaq, ñawpaq p'anqaman ripuy.",
 'anontalkpagetext'                 => "---- ''Kayqa huk sutinnaq icha mana sutinta llamk'achiq ruraqpa rimanakuyninmi. IP huchhantam hallch'asunchik payta sutinchanapaq. Achka ruraqkunam huklla IP huchhanta llamk'achiyta atin. Sutinnaq ruraq kaspaykiqa, mana qampa rurasqaykimanta willamusqakunata rikuspaykiqa, ama hina kaspa [[Special:UserLogin/signup|rakiqunaykita kamariy]] icha [[Special:UserLogin|yaykuy]] huk sutinnaq ruraqkunawan ama pantasqa kanaykipaq.''",
-'noarticletext'                    => "Kunanqa kay p'anqa ch'usaqmi. Kaytam rurayta atinkiman: kay p'anqap sutinta [[Special:Search/{{PAGENAME}}|huk p'anqakunapi maskay]], <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} hallch'ankunapi maskay] icha [{{fullurl:{{FULLPAGENAME}}|action=edit}} kay p'anqata llamk'apuy].",
+'noarticletext'                    => "Kunanqa kay p'anqa ch'usaqmi. Kaytam rurayta atinkiman: kay p'anqap sutinta [[Special:Search/{{PAGENAME}}|huk p'anqakunapi maskay]], <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hallch'ankunapi maskay] icha [{{fullurl:{{FULLPAGENAME}}|action=edit}} kay p'anqata llamk'apuy].",
 'userpage-userdoesnotexist'        => '"$1" sutiyuq ruraqpa rakiqunanqa manam kanchu. Ama hina kaspa, llanchikuy kay p\'anqata kamarinaykimanta.',
 'clearyourcache'                   => "'''Paqtataq''': Willañiqita waqaycharquspaykiqa, wamp'unaykip ''cache'' nisqa pakasqa waqaychananta ch'usaqchanaykichá tiyanman hukchasqaykikunata rikunaykipaq:
 '''Mozilla / Firefox / Safari:''' ''Shift'' yatachkaspa ''Reload'' ñit'iy, ichataq ''Ctrl-F5'' icha ''Ctrl-R'' yatay (''Command-R'' Macintosh nisqapi); '''Konqueror: '''''Reload'' ñit'iy icha ''F5'' yatay; '''Opera:''' ''cache'' nisqata ch'usaqchay kaypi: ''Tools → Preferences;'' '''Internet Explorer:''' ''Ctrl'' yatachkaspa ''Refresh'' ñit'iy, icha ''Ctrl-F5'' yatay.",
@@ -859,7 +860,7 @@ Ama hina kaspa, ruraykachanaykita takyachiy, saqinakunata riqsispayki, [[{{Media
 'revdelete-submit'               => "Akllasqa llamk'apusqapaq llamk'achiy",
 'revdelete-logentry'             => "hukchasqa [[$1]]-paq llamk'apusqap rikunalla kaynin",
 'logdelete-logentry'             => 'hukchasqa [[$1]]-paq tukusqap rikunalla kaynin',
-'revdelete-success'              => "'''Llamk'apusqap rikunalla kayninqa aypalla hukchasqañam.'''",
+'revdelete-success'              => "'''Llamk'apusqap rikunalla kayninqa aypalla musuqchasqañam.'''",
 'logdelete-success'              => "'''Tukusqap rikunalla kayninqa aypalla hukchasqañam.'''",
 'revdel-restore'                 => 'Rikunalla kayta hukchay',
 'pagehist'                       => "P'anqap wiñay kawsaynin",
@@ -1129,7 +1130,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 * Sananchasqa kahacha niyta munan, ruraqqa kay huñupim kachkan, nispa.
 * Mana sananchasqa kahachataq niyta munan, ruraqqa manam kay huñupichu kachkan, nispa.
 * <nowiki>*</nowiki> quyllurchataq niyta munan, yaparqaspaykiqa manam atinkichu huñuta qichuyta, qichurqaspaykitaq manam atinkichu yapayta, nispa.',
-'userrights-reason'           => 'Imarayku hukchasqa:',
+'userrights-reason'           => 'Kayrayku:',
 'userrights-no-interwiki'     => 'Manam saqillasunkichu huk wikikunapi ruraqkunap hayñinkunata hukchayta.',
 'userrights-nodatabase'       => '$1 sutiyuq willañiqintinqa manam kanchu icha manam kayllapichu.',
 'userrights-nologin'          => 'Kamachiqpa rakiqunaykiwan [[Special:UserLogin|yaykunaykim]] tiyan ruraqkunap hayñinkunata rurapunaykipaq.',
@@ -1595,7 +1596,8 @@ Munaspaykiqa, [[Special:WhatLinksHere/$2|hunt'a sutisuyuta]] qhaway.",
 'ancientpages'            => "Ñawpaqta qallarisqa p'anqakuna",
 'move'                    => 'Astay',
 'movethispage'            => "Kay p'anqata astay",
-'unusedimagestext'        => "Ama hina kaspa musyariy, huk llika tiyaykunachá chiqalla t'inkimun huk rikchap URL tiyayninman, hinaptintaq kaypi rikch'akunchá, k'uchilla llamk'achisqa kachkaspanpas.",
+'unusedimagestext'        => "Kay qatiq willañiqikunaqa kachkanmi, ichataq manam huk p'anqapi ch'aqtasqachu.
+Ama hina kaspa musyariy, huk llika tiyaykunachá chiqalla t'inkimun huk rikchap URL tiyayninman, hinaptintaq kaypi rikch'akunchá, k'uchilla llamk'achisqa kachkaspanpas.",
 'unusedcategoriestext'    => "Kay qatiq katiguriyakunaqa kamarisqañam, mana ima qillqapas icha katiguriyapas t'inkimuptinpas.",
 'notargettitle'           => 'Manam ima taripanachu',
 'notargettext'            => "Manaraqmi willawarqankichu ruranaykipaq taripana p'anqata icha ruraqta.",

@@ -58,7 +58,8 @@ Für Übersetzungen ziehen Sie bitte in Betracht, diese im [http://translatewiki
 # Login and logout pages
 'logouttext'                 => "'''Sie sind nun abgemeldet.'''
 
-Sie können {{SITENAME}} jetzt anonym weiter benutzen, oder sich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].",
+Sie können {{SITENAME}} jetzt anonym weiter benutzen, oder sich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
+Beachten Sie, das einige Seiten noch anzeigen können, das Sie angemeldet sind, solange Sie nicht Ihren Browsercache geleert haben.",
 'welcomecreation'            => '== Willkommen, $1! ==
 
 Ihr Benutzerkonto wurde eingerichtet.
@@ -158,7 +159,8 @@ Bitte fügen Sie alle Informationen jeder Anfrage hinzu, die Sie stellen.",
 'blockededitsource'                => "Der Quelltext '''Ihrer Änderungen''' an '''$1''':",
 'whitelistedittext'                => 'Sie müssen sich $1, um Seiten bearbeiten zu können.',
 'confirmedittext'                  => 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie Bearbeitungen vornehmen können. Bitte ergänzen und bestätigen Sie Ihre E-Mail in den [[Special:Preferences|Einstellungen]].',
-'nosuchsectiontext'                => 'Sie versuchen den nicht vorhandenen Abschnitt $1 zu bearbeiten. Es können jedoch nur bereits vorhandene Abschnitte bearbeitet werden.',
+'nosuchsectiontext'                => 'Sie haben versucht, einen Abschnitt zu bearbeiten, der nicht existiert.
+Vermutlich wurde er verschoben oder gelöscht, nachdem Sie die Seite aufgerufen haben.',
 'loginreqpagetext'                 => 'Sie müssen sich $1, um Seiten lesen zu können.',
 'newarticletext'                   => "Sie sind einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
 Um die Seite anzulegen, tragen Sie Ihren Text in die untenstehende Box ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für mehr Informationen).

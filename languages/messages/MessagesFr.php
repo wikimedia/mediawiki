@@ -39,9 +39,11 @@
  * @author Omnipaedista
  * @author Peter17
  * @author PieRRoMaN
+ * @author Quentinv57
  * @author Remember the dot
  * @author Seb35
  * @author Sherbrooke
+ * @author Skalman
  * @author Urhixidur
  * @author Verdy p
  * @author Zetud
@@ -671,7 +673,8 @@ Le motif avancé est « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Déconnexion',
-'logouttext'                 => "'''Vous êtes à présent déconnecté{{GENDER:||e|(e)}}.'''<br />
+'logouttext'                 => "'''Vous êtes à présent déconnecté{{GENDER:||e|(e)}}.'''
+
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, [[Special:UserLogin|vous reconnecter]] sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté{{GENDER:||e|(e)}}, jusqu’à ce que vous effaciez le cache de votre navigateur.",
 'welcomecreation'            => '== Bienvenue, $1 ! ==
@@ -873,9 +876,9 @@ Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'confirmedittitle'                 => 'Validation de l’adresse de courriel nécessaire pour modifier le contenu',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse de courriel avant de modifier les pages.
 Veuillez entrer et valider votre adresse de courriel dans vos [[Special:Preferences|préférences utilisateur]].',
-'nosuchsectiontitle'               => 'Section manquante',
+'nosuchsectiontitle'               => 'Impossible de trouver la section',
 'nosuchsectiontext'                => 'Vous avez essayé de modifier une section qui n’existe pas.
-Puisqu’il n’y a pas de section $1, il n’y a pas d’endroit où publier vos modifications.',
+Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette page.',
 'loginreqtitle'                    => 'Connexion nécessaire',
 'loginreqlink'                     => 'connecter',
 'loginreqpagetext'                 => 'Vous devez vous $1 pour voir les autres pages.',
@@ -887,7 +890,10 @@ Le mot de passe pour ce nouveau compte peut être changé sur la page ''[[Specia
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
 Si vous êtes arrivé{{GENDER:||e|(e)}} ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un{{GENDER:||e|}} utilisat{{GENDER:|eur|rice|eur}} anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'                    => 'Il n’y a pas pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche de ce titre de page]] dans les autres pages, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} rechercher dans les opérations liées] ou [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} créer cette page]</span>.',
+'noarticletext'                    => 'Il n’y a pas pour l’instant aucun texte sur cette page ;
+vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche de ce titre de page]] dans les autres pages,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les opérations liées]
+ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page]</span>.',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant sur le bouton ''Actualiser'' (''Reload'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ;
@@ -917,7 +923,7 @@ Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anon
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (nouvelle section)',
 'editconflict'                     => 'Conflit de modification : $1',
-'explainconflict'                  => "Cette page a été sauvegardée après que vous ayez commencé à la modifier.
+'explainconflict'                  => "Cette page a été sauvegardée après que vous avez commencé à la modifier.
 La zone de modification supérieure contient le texte tel qu’il est enregistré actuellement dans la base de données.
 Vos modifications apparaissent dans la zone de modification inférieure.
 Vous allez devoir fusionner vos modifications dans le texte existant.
@@ -1013,7 +1019,7 @@ La raison donnée était ''$2''.",
 'next'                   => 'suivant',
 'last'                   => 'diff',
 'page_first'             => 'première',
-'page_last'              => 'dernier',
+'page_last'              => 'dernière',
 'histlegend'             => 'Légende : ({{MediaWiki:Cur}}) = différence avec la version actuelle, ({{MediaWiki:Last}}) = différence avec la version précédente, <b>m</b> = modification mineure',
 'history-fieldset-title' => 'Naviguer dans l’historique',
 'deletedrev'             => '[supprimé]',
@@ -1346,8 +1352,8 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'userrights-groups-help'      => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
 * Une case non cochée signifie qu’il ne s’y trouve pas.
-* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté et vice-versa.',
-'userrights-reason'           => 'Motif du changement :',
+* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté.',
+'userrights-reason'           => 'Raison du changement :',
 'userrights-no-interwiki'     => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
 'userrights-nodatabase'       => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
 'userrights-nologin'          => 'Vous devez vous [[Special:UserLogin|connecter]] avec un compte d’administrateur pour modifier des droits d’utilisateur.',
@@ -1845,7 +1851,8 @@ Les entrées <s>barrées</s> ont été résolues.',
 'ancientpages'            => 'Pages les plus anciennement modifiées',
 'move'                    => 'Renommer',
 'movethispage'            => 'Renommer cette page',
-'unusedimagestext'        => 'Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier, et donc qu’un fichier peut être listé comme inutilisé ici alors qu’il est en réalité utilisé sur ces sites.',
+'unusedimagestext'        => 'Les fichiers suivants existent, mais ne sont inclus dans aucune page.
+Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier, et donc qu’un fichier peut être listé ici alors qu’il est en réalité utilisé sur ces sites.',
 'unusedcategoriestext'    => 'Les catégories suivantes existent mais aucune page ou catégorie ne les utilise.',
 'notargettitle'           => 'Pas de cible',
 'notargettext'            => 'Vous n’avez pas indiqué une page ou un utilisateur sur lequel vous souhaitez effectuer cette action.',
@@ -1973,7 +1980,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:UserLogin|identifié]] pour modifier votre liste de suivi.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
-'addedwatchtext'       => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées. La page apparaîtra '''en gras''' dans la [[Special:RecentChanges|liste des modifications récentes]] pour en faciliter le repérage. Pour supprimer cette page de votre liste de suivi, cliquez sur « {{MediaWiki:Unwatch}} ».",
+'addedwatchtext'       => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées. La page apparaîtra '''en gras''' dans la [[Special:RecentChanges|liste des modifications récentes]] pour en faciliter le repérage.",
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',
@@ -2396,7 +2403,7 @@ Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion man
 'cant-move-user-page'          => 'Vous n’avez pas la permission de renommer les pages principales d’utilisateurs (en dehors de leurs sous-pages).',
 'cant-move-to-user-page'       => 'Vous n’avez pas la permission de renommer une page vers une page utilisateur (à l’exception d’une sous-page).',
 'newtitle'                     => 'Vers le nouveau titre :',
-'move-watch'                   => 'Suivre ces pages',
+'move-watch'                   => 'Suivre les pages originale et nouvelle',
 'movepagebtn'                  => 'Renommer la page',
 'pagemovedsub'                 => 'Déplacement réussi',
 'movepage-moved'               => "<big>'''« $1 »''' a été renommé '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
@@ -2625,7 +2632,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 # Metadata
 'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',
 'nocreativecommons' => 'Les métadonnées « Creative Commons RDF » sont désactivées sur ce serveur.',
-'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
+'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client soit capable de lire.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} sur {{SITENAME}}',
@@ -2672,14 +2679,14 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'mw_math_mathml' => 'MathML',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Marquer comme n’étant pas un vandalisme',
-'markaspatrolledtext'                 => 'Marquer cette page comme non vandalisée',
-'markedaspatrolled'                   => 'Marqué comme non vandalisé',
+'markaspatrolleddiff'                 => 'Marquer comme patrouillée',
+'markaspatrolledtext'                 => 'Marquer cette page comme patrouillée',
+'markedaspatrolled'                   => 'Marqué comme patrouillé',
 'markedaspatrolledtext'               => 'La version sélectionnée a été marquée comme non vandalisée.',
 'rcpatroldisabled'                    => 'La fonction de patrouille des modifications récentes n’est pas activée.',
 'rcpatroldisabledtext'                => 'La fonctionnalité de patrouille des modifications récentes est actuellement désactivée.',
-'markedaspatrollederror'              => 'Ne peut être marqué comme non vandalisé',
-'markedaspatrollederrortext'          => 'Vous devez sélectionner une version pour pouvoir la marquer comme non vandalisée.',
+'markedaspatrollederror'              => 'Ne peut être marquée comme patrouillée',
+'markedaspatrollederrortext'          => 'Vous devez sélectionner une version pour pouvoir la marquer comme patrouillée.',
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme patrouillées.',
 
 # Patrol log

@@ -9,6 +9,7 @@
  *
  * @author Codex Sinaiticus
  * @author Elfalem
+ * @author Solomon
  * @author Teferra
  */
 
@@ -235,7 +236,7 @@ $messages = array(
 'lastmodifiedat'    => 'ይህ ገጽ መጨረሻ የተቀየረው እ.ኣ.አ በ$2፣ $1 ዓ.ም. ነበር።', # $1 date, $2 time
 'viewcount'         => 'ይህ ገጽ {{PLURAL:$1|አንዴ|$1 ጊዜ}} ታይቷል።',
 'protectedpage'     => 'የተቆለፈ ገጽ',
-'jumpto'            => 'ዘልለው ለመሐድ፦',
+'jumpto'            => 'ዘልለው ለመሔድ፦',
 'jumptonavigation'  => 'የማውጫ ቁልፎች',
 'jumptosearch'      => 'ፍለጋ',
 
@@ -375,8 +376,9 @@ $2",
 
 # Login and logout pages
 'logouttitle'                => 'የአባል መውጫ',
-'logouttext'                 => "'''አሁን ወጥተዋል።'''<br /> አሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ።
-----
+'logouttext'                 => "'''አሁን ወጥተዋል።'''
+
+አሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ።
 በጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦",
 'welcomecreation'            => '== ሰላምታ፣ $1! ==
 
@@ -408,10 +410,14 @@ $2",
 'uid'                        => 'የገባበት ቁ.: #',
 'prefs-memberingroups'       => 'ተጠቃሚው {{PLURAL:$1|ያለበት ስብስባ|ያለባቸው ስብስባዎች}}፦',
 'yourrealname'               => 'ዕውነተኛ ስም፦',
-'yourlanguage'               => 'የመልኩ ቋንቋ',
+'yourlanguage'               => 'ቋንቋ',
 'yournick'                   => 'ቁልምጫ ስም (ለፊርማ)',
 'badsig'                     => 'ትክክለኛ ያልሆነ ጥሬ ፊርማ፤ HTML ተመልከት።',
 'badsiglength'               => 'ያ ቁልምጫ ስም ከመጠን በላይ ይረዝማል፤ ከ$1 ፊደል በታች መሆን አለበት።',
+'yourgender'                 => ' ሥርዓተ ጾታ',
+'gender-unknown'             => ' አታምር',
+'gender-male'                => 'ወንድ',
+'gender-female'              => ' ሴት',
 'email'                      => 'ኢ-ሜል',
 'prefs-help-realname'        => 'ዕውነተኛ ስምዎን መግለጽ አስፈላጊነት አይደለም። ለመግለጽ ከመረጡ ለሥራዎ ደራሲነቱን ለማስታወቅ ይጠቅማል።',
 'loginerror'                 => 'የመግባት ስኅተት',
@@ -539,7 +545,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'confirmedittitle'                 => 'ለማዘጋጀት የኢ-ሜል ማረጋገጫ ያስፈልጋል።',
 'confirmedittext'                  => 'ገጽ ማዘጋጀት ሳይችሉ፣ አስቀድመው የኢ-ሜል አድራሻዎን ማረጋገጥ አለብዎት። እባክዎ፣ በ[[Special:Preferences|ምርጫዎችዎ]] በኩል ኢ-ሜል አድራሻዎን ያረጋግጡ።',
 'nosuchsectiontitle'               => 'የማይኖር ክፍል',
-'nosuchsectiontext'                => 'የማይኖር ክፍል ለማዘጋጀት ሞክረዋል። ክፍሉ $1 ስለማይኖር፣ ለውጥዎን ለማስቀመጥ ምንም ሥፍራ የለም።',
+'nosuchsectiontext'                => 'የማይኖር ክፍል ለማዘጋጀት ሞክረዋል።',
 'loginreqtitle'                    => 'መግባት ያስፈልጋል።',
 'loginreqlink'                     => 'መግባት',
 'loginreqpagetext'                 => 'ሌሎች ገጾች ለመመልከት $1 ያስፈልግዎታል።',
@@ -772,6 +778,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'search-suggest'                   => 'ምናልባት $1 የፈለጉት ይሆን',
 'search-interwiki-default'         => '$1 ውጤቶች፦',
 'search-interwiki-more'            => '(ተጨማሪ)',
+'search-mwsuggest-enabled'         => 'ከ አማራጭ ጋር',
+'search-mwsuggest-disabled'        => 'ምንም አማራጭ የለም',
 'search-relatedarticle'            => 'የተዛመደ',
 'searchrelated'                    => 'የተዛመደ',
 'searchall'                        => 'ሁሉ',
@@ -794,7 +802,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefsnologin'              => 'ገና አልገቡም',
 'prefsnologintext'          => 'ምርጫዎችዎን ለማስተካከል አስቀድሞ <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} መግባት]</span>  ያስፈልግዎታል።',
 'prefsreset'                => 'ምርጫዎች ከመቆጠቢያ ታድሰዋል።',
-'qbsettings-none'           => 'የለም',
+'qbsettings-none'           => ' ምንም',
 'qbsettings-fixedleft'      => 'በግራ የተለጠፈ',
 'qbsettings-fixedright'     => 'በቀኝ የተለጠፈ',
 'qbsettings-floatingleft'   => 'በግራ ተንሳፋፊ',
@@ -844,7 +852,15 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'servertime'                => 'የሰርቨሩ ሰዓት',
 'guesstimezone'             => 'ከኮምፒውተርዎ መዝገብ ልዩነቱ ይገኝ',
 'timezoneregion-africa'     => 'አፍሪካ',
+'timezoneregion-america'    => ' አሜሪካ',
+'timezoneregion-antarctica' => ' አንታርክቲካ',
+'timezoneregion-arctic'     => ' አርክቲክ',
+'timezoneregion-asia'       => ' እስያ',
+'timezoneregion-atlantic'   => ' አትላንቲክ ውቅያኖስ',
+'timezoneregion-australia'  => ' አውስትራሊያ',
 'timezoneregion-europe'     => 'አውሮፓ',
+'timezoneregion-indian'     => 'ህንድ ውቅያኖስ',
+'timezoneregion-pacific'    => ' ፓሲፊክ ውቅያኖስ',
 'allowemail'                => 'ኢሜል ከሌሎች ተጠቃሚዎች ለመፍቀድ',
 'prefs-searchoptions'       => 'የፍለጋ ምርጫዎች',
 'prefs-namespaces'          => 'ክፍለ-ዊኪዎች',
@@ -958,7 +974,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'nchanges'                          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
 'recentchanges'                     => 'በቅርብ ጊዜ የተለወጡ',
 'recentchanges-legend'              => 'የቅርብ ለውጥ አማራጮች፦',
-'recentchangestext'                 => "በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ። <br /> ('''ጥ'''፦ ጥቃቅን ለውጥ፤ '''አ'''፦ አዲስ ገጽ)",
+'recentchangestext'                 => 'በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ።',
 'recentchanges-feed-description'    => 'በዚህ ዊኪ ላይ በቅርብ ግዜ የተለወጠውን በዚሁ feed መከታተል ይችላሉ',
 'rcnote'                            => "ከ$5 $4 እ.ኤ.አ. {{PLURAL:$2|ባለፈው 1 ቀን|ባለፉት '''$2''' ቀኖች}} {{PLURAL:$1|የተደረገው '''1''' ለውጥ እታች ይገኛል|የተደረጉት '''$1''' መጨረሻ ለውጦች እታች ይገኛሉ}}።",
 'rcnotefrom'                        => "ከ'''$2''' ጀምሮ የተቀየሩት ገጾች (እስከ '''$1''' ድረስ) ክዚህ በታች ይታያሉ።",

@@ -494,8 +494,10 @@ Podata přičina je ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Wotzjewjenje',
-'logouttext'                 => "'''Sy nětko wotzjewjeny.'''<br />
-Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom zaso přizjewić. Wobkedźbuj zo so někotre strony dale jewja kaž by hišće přizjewjeny był doniž pufrowak swojeho wobhladowaka njewuprózdnješ.",
+'logouttext'                 => "'''Sy nětko wotzjewjeny.'''
+
+Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom [[Special:UserLogin|zaso přizjewić]].
+Wobkedźbuj, zo so někotre strony dale jewja, kaž by hišće přizjewjeny był, doniž pufrowak swojeho wobhladowaka njewuprózdnješ.",
 'welcomecreation'            => '== Witaj, $1! ==
 
 Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|{{GRAMMAR:akuzatiw|{{SITENAME}}}}]] změnić.',
@@ -557,7 +559,7 @@ Přepruwuj swój prawopis abo [[Special:UserLogin/signup|wutwor nowe konto]].',
 'passwordtooshort'           => 'Hesło je překrótke. Dyrbi znajmjeńša $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} měć.',
 'mailmypassword'             => 'Nowe hesło e-mejlować',
 'passwordremindertitle'      => 'Skedźbnjenje na hesło z {{GRAMMAR:genitiw|{{SITENAME}}}}',
-'passwordremindertext'       => 'Něchtó z IP-adresu $1 (najskerje ty) je wo nowe hesło za přizjewjenje za {{GRAMMAR:Akuzatiw|{{SITENAME}}}} ($4) prosył. Nachwilne hesło za wužiwarja "$2" je so wutworiło a je nětko "$3". Jeli je to twój wotpohlad było dyrbiš so nětko přizjewić a nowe hesło wubrać. Twoje nachwilne hesło spadnje za {{PLURAL:$5|jeden dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
+'passwordremindertext'       => 'Něchtó z IP-adresu $1 (najskerje ty) je wo nowe hesło za přizjewjenje za {{GRAMMAR:akuzatiw|{{SITENAME}}}} ($4) prosył. Nachwilne hesło za wužiwarja "$2" je so wutworiło a je nětko "$3". Jeli je to twój wotpohlad było dyrbiš so nětko přizjewić a nowe hesło wubrać. Twoje nachwilne hesło spadnje za {{PLURAL:$5|jeden dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
 
 Jeli něchtó druhi wo nowe hesło prosył abo ty sy so zaso na swoje hesło dopomnił a hižo nochceš je změnić, móžeš tutu powěsć ignorować a swoje stare hesło dale wužiwać.',
 'noemail'                    => 'Za wužiwarja $1 žana e-mejlowa adresa podata njeje.',
@@ -678,8 +680,9 @@ Prošu podaj wšě horjeka naspomnjene podrobnosće w naprašowanjach, kotrež �
 'whitelistedittext'                => 'Dyrbiš so $1, zo by strony wobdźěłować móhł.',
 'confirmedittitle'                 => 'Twoja e-mejlowa adresa dyrbi so wobkrućić, prjedy hač móžeš strony wobdźěłować.',
 'confirmedittext'                  => 'Dyrbiš swoju e-mejlowu adresa wobkrućić, prjedy hač móžeš strony wobdźěłować. Prošu zapodaj a wobkruć swoju e-mejlowu adresu we [[Special:Preferences|wužiwarskich nastajenjach]].',
-'nosuchsectiontitle'               => 'Wotrězk njeeksistuje',
-'nosuchsectiontext'                => 'Sy spytał, njewobstejacy wotrězk $1 wobdźěłać. Móžeš pak jenož wobstejace wotrězki wobdźěłać.',
+'nosuchsectiontitle'               => 'Wotrězk njeda so namakać',
+'nosuchsectiontext'                => 'Sy spytał, wotrězk wobdźěłać, kotryž njeeksistuje.
+Móžno, zo je so přesunył abo zničił, mjeztym zo sej wobhladuješ stronu.',
 'loginreqtitle'                    => 'Přizjewjenje trěbne',
 'loginreqlink'                     => 'přizjewić',
 'loginreqpagetext'                 => 'Dyrbiš so $1, zo by strony čitać móhł.',
@@ -690,7 +693,7 @@ Hesło za tute nowe konto da so na stronje ''[[Special:ChangePassword|hesło zm�
 'newarticle'                       => '(Nowy nastawk)',
 'newarticletext'                   => 'Sy wotkaz k stronje slědował, kotraž hišće njeeksistuje. Zo by stronu wutworił, wupjelń slědowace tekstowe polo (hlej [[{{MediaWiki:Helppage}}|stronu pomocy]] za dalše informacije). Jeli sy zmylnje tu, klikń prosće na tłóčatko <b>Wróćo</b> we swojim wobhladowaku.',
 'anontalkpagetext'                 => "---- ''To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka IP-adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[Special:UserLogin/signup|wutwor prošu konto]] abo [[Special:UserLogin|přizjew so]], zo by přichodnu šmjatańcu z anonymnymi wužiwarjemi wobešoł.''",
-'noarticletext'                    => 'Tuchwilu tuta strona žadyn tekst njewobsahuje, móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony na druhich stronach pytać]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} wotpowědne protokole pytać] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tutu stronu wobdźěłać]</span>.',
+'noarticletext'                    => 'Tuchwilu tuta strona žadyn tekst njewobsahuje, móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony na druhich stronach pytać]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wotpowědne protokole pytać] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tutu stronu wobdźěłać]</span>.',
 'userpage-userdoesnotexist'        => 'Wužiwarske konto „$1“ njeje zregistrowane. Prošu pruwuj, hač chceš tutu stronu woprawdźe wutworić/wobdźěłać.',
 'clearyourcache'                   => '<b>Kedźbu:</b> Po składowanju dyrbiš snano pufrowak swojeho wobhladowaka wuprózdnić, <b>Mozilla/Firefox/Safari:</b> tłóč na <i>Umsch</i> kliknjo na <i>Znowa</i> abo tłóč <i>Strg-Umsch-R</i> (<i>Cmd-Shift-R</i> na Apple Mac); <b>IE:</b> tłóč <i>Strg</i> kliknjo na symbol <i>Aktualisieren</i> abo tłóč <i>Strg-F5</i>; <b>Konqueror:</b>: Klikń jenož na tłóčatko <i>Erneut laden</i> abo tłoč  <i>F5</i>; Wužiwarjo <b>Opery</b> móža swój pufrowak dospołnje  w <i>Tools→Preferences</i> wuprózdnić.',
 'usercssjsyoucanpreview'           => "'''Pokiw:''' Wužij tłóčku „Přehlad”, zo by swój nowy css/js do składowanja testował.",
@@ -747,7 +750,7 @@ Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1",
 'hiddencategories'                 => 'Tuta strona je čłon w {{PLURAL:$1|1 schowanej kategoriji|$1 schowanymaj kategorijomaj|$1 schowanych kategorijach|$1 schowanych kategorijach}}:',
 'edittools'                        => '<!-- Tutón tekst so spody wobdźěłowanskich a nahrawanskich formularow pokazuje. -->',
 'nocreatetitle'                    => 'Wutworjenje stron je wobmjezowane.',
-'nocreatetext'                     => 'Na {{GRAMMAR:Lokatiw|{{SITENAME}}}} bu wutworjenje nowych stronow wobmjezowane. Móžeš wobstejace strony wobdźěłać abo [[Special:UserLogin|so přizjewić abo wužiwarske konto wutworić]].',
+'nocreatetext'                     => 'Na {{GRAMMAR:lokatiw|{{SITENAME}}}} bu wutworjenje nowych stronow wobmjezowane. Móžeš wobstejace strony wobdźěłać abo [[Special:UserLogin|so přizjewić abo wužiwarske konto wutworić]].',
 'nocreate-loggedin'                => 'Nimaš prawo, zo by nowe strony wutworił.',
 'permissionserrors'                => 'Woprawnjenske zmylki',
 'permissionserrorstext'            => 'Nimaš prawo, zo by tutu akciju wuwjedł. {{PLURAL:$1|Přičina|Přičiny}}:',
@@ -1630,7 +1633,8 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'ancientpages'            => 'Najstarše nastawki',
 'move'                    => 'přesunyć',
 'movethispage'            => 'Stronu přesunyć',
-'unusedimagestext'        => 'Prošu wobkedźbuj, zo druhe websydła móža k dataji z direktnym URL wotkazować a su hišće tu naspomnjene, hačrunjež so hižo aktiwnje wužiwaja.',
+'unusedimagestext'        => 'Slědowace dataje eksistuja, njejsu wšak do strony zasadźene.
+Prošu wobkedźbuj, zo druhe websydła móža na dataju z direktnym URL wotkazować a móža so tu hišće jewić, byrnjež w altiwnym wužiwanju byli.',
 'unusedcategoriestext'    => 'Slědowace kategorije eksistuja, hačrunjež žana druha strona abo kategorija je njewužiwa.',
 'notargettitle'           => 'Žadyn cil',
 'notargettext'            => 'Njejsy cilowu stronu abo wužiwarja podał, zo by funkciju wuwjesć móhł.',

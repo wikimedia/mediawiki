@@ -332,8 +332,10 @@ Query: $2',
 
 # Login and logout pages
 'logouttitle'                => 'Tuffɣa',
-'logouttext'                 => "'''Tura teffɣeḍ.'''<br />
-Tzemreḍ ad tesseqdceḍ {{SITENAME}} d udrig, neɣ tzemreḍ ad tkecmeḍ daɣen s yisem n wemseqdac inek (neɣ nniḍen). Kra n isebtar zemren ad sskanen belli mazal-ik s yisem n wemseqdac inek armi temḥuḍ lkac.",
+'logouttext'                 => "'''Tura teffɣeḍ.'''
+
+Tzemreḍ ad tesseqdceḍ {{SITENAME}} d udrig, neɣ tzemreḍ ad tkecmeḍ daɣen s yisem n wemseqdac inek (neɣ nniḍen).
+Kra n isebtar zemren ad sskanen belli mazal-ik s yisem n wemseqdac inek armi temḥuḍ lkac.",
 'welcomecreation'            => '== Anṣuf yis-k, $1! ==
 
 Isem n wemseqdac inek yettwaxleq. Ur tettuḍ ara ad tbeddleḍ Isemyifiyen n {{SITENAME}} inek.',
@@ -474,7 +476,7 @@ Lukan ur tefkiḍ ara email saḥih deg [[Special:Preferences|isemyifiyen n wems
 'confirmedittitle'          => 'Yessef ad tsentmeḍ e-mail inek iwakken ad tbeddleḍ',
 'confirmedittext'           => 'Yessefk ad tsentmeḍ tansa e-mail inek uqbel abeddel. Xtar tansa e-mail di [[Special:Preferences|isemyifiyen n wemseqdac]].',
 'nosuchsectiontitle'        => 'Amur ulac-it',
-'nosuchsectiontext'         => 'Tɛerḍeḍ ad tbeddleḍ amur ulac-it. Ulac amur am akka deg usebter $1.',
+'nosuchsectiontext'         => 'Tɛerḍeḍ ad tbeddleḍ amur ulac-it.',
 'loginreqtitle'             => 'Yessefk ad tkecmeḍ',
 'loginreqlink'              => 'Kcem',
 'loginreqpagetext'          => 'Yessefk $1 iwakken ad teẓriḍ isebtar wiyaḍ.',

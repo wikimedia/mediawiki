@@ -711,8 +711,7 @@ $2',
 'confirmedittext'                  => 'شما بایدن وتی آدرس ایمیل آ پیش چه اصلاح کتن صفحات تایید کنیت.
 لطفا وتی آدرس ایمیل آی چه طریق [[Special:Preferences|ترجحات کاربر]] تنظیم و معتبر کنیت.',
 'nosuchsectiontitle'               => 'هچ چوشن بخش',
-'nosuchsectiontext'                => 'شما سعی کت یک بخشی اصلاح کنیت که نیستن.
-چوش که هچ بخشی $1 نیست، هچ جاهی په ذخیره کتن شمی اصلاح نیست.',
+'nosuchsectiontext'                => 'شما سعی کت یک بخشی اصلاح کنیت که نیستن.',
 'loginreqtitle'                    => 'ورود نیازنت',
 'loginreqlink'                     => 'ورود',
 'loginreqpagetext'                 => 'شما باید $1 په گندگ دگه صفحات.',
@@ -727,7 +726,8 @@ $2',
 چوشن آدرس آی پی گون چندین کاربر استفاده بیت.
 اگه شما یک کاربر ناشناس ایت وی حس کنیت بی ربطین نظر مربوط شمی هست، لطفا [[Special:UserLogin|وارد بیت ]] یا [[Special:UserLogin/signup|حسابی شرکن]] دان چه هور بییگ گون ناسناسین کاربران پرهیز بیت.''",
 'noarticletext'                    => 'هنو هچ متنی ته ای صفحه نیست.
-شما تونیت [[Special:Search/{{PAGENAME}}|گردیت په عنوان صفحه]]  ته دگه صفحات یا<span class="plainlinks"> [{{fullurl:{{FULLPAGENAME}}|action=edit}} ای صفحه اصلاح کن]</span>.',
+شما تونیت [[Special:Search/{{PAGENAME}}|گردیت په عنوان صفحه]]  ته دگه صفحات یا<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} گردگ په مربوطین آمار],
+یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} اصلاح ای صفحه]</span>.',
 'userpage-userdoesnotexist'        => 'حساب کاربر "$1" ثبت نهنت. لطفا کنترل کنیت اگه شما لوٹیت ای صفحه یا شر/اصلاح کنیت.',
 'clearyourcache'                   => "'''توجه:''' بعد چه ذخیره کتن، شما شاید مجبور بیت چه وتی ذخیره ی بروزر رد بیت تا تغییرات بگندیت. '''Mozilla / Firefox / Safari:'' ''Shift'' جهل داریت همی وهدی که کلیک کنیت ''Reload'' یا بداریت ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac);'''IE:''' ''Ctrl''  بداری وهدی که کلیک ''Refresh' یا 'Ctrl-F5''; '''Konqueror:''':  راحت کلیک کن دکمه ''Reload'' یا بدار ''F5''; '''Opera''' کاربر بایدن ته ''Tools→Preferences'' ذخیره پاک کنت.",
 'usercssjsyoucanpreview'           => "'''نکته:''' چه دکمه 'Show preview' په آزمایش کتن  CSS/JS پیش چه ذخیره کتن استفاده کن",
@@ -1952,7 +1952,7 @@ $NEWPAGE
 'protect-title'               => 'عوض کن سطح حفاظت په  "$1"',
 'prot_1movedto2'              => '[[$1]] چاه په چاه بوت په [[$2]]',
 'protect-legend'              => 'حفاظت تایید کن',
-'protectcomment'              => 'نظر:',
+'protectcomment'              => 'دلیل:',
 'protectexpiry'               => 'منقضی بیت:',
 'protect_expiry_invalid'      => 'تاریح انقضای معتبر نهنت.',
 'protect_expiry_old'          => 'تاریخ انقصا ته گذشته انت.',

@@ -298,14 +298,14 @@ $messages = array(
 'tog-showtoc'                 => 'Samenvatting van de onderwarpen laoten zien (mit meer as dree onderwarpen)',
 'tog-rememberpassword'        => 'Vanzelf anmelden',
 'tog-editwidth'               => 'Bewarkingsveld over volle breedte',
-'tog-watchcreations'          => 'Artikels dee-j anmaken an volglieste toevoegen',
-'tog-watchdefault'            => 'Artikels dee-j wiezigen an volglieste toevoegen',
-'tog-watchmoves'              => "Pagina's dee-k herneume op mien volglieste zetten",
-'tog-watchdeletion'           => 'Voeg pagina dee-k vortdo an mien volglieste toe',
+'tog-watchcreations'          => "Pagina's dee-k anmaak op de volglieste zetten",
+'tog-watchdefault'            => "Pagina's dee-k wiezig op de volglieste zetten",
+'tog-watchmoves'              => "Pagina's dee-k herneume op de volglieste zetten",
+'tog-watchdeletion'           => "Pagina's dee-k vortdo op de volglieste zetten",
 'tog-minordefault'            => "Markeer alle veraanderingen as 'kleine wieziging'",
 'tog-previewontop'            => "De naokiekpagina boven 't bewarkingsveld zetten",
 'tog-previewonfirst'          => 'Naokieken bie eerste wieziging',
-'tog-nocache'                 => 'De kas uutschakelen',
+'tog-nocache'                 => "'t Tussengeheugen uutschakelen",
 'tog-enotifwatchlistpages'    => 'Stuur mien een berichjen over paginawiezigingen.',
 'tog-enotifusertalkpages'     => 'Stuur mien een berichjen as mien overlegpagina ewiezig is.',
 'tog-enotifminoredits'        => 'Stuur mien oek een berichjen bie kleine bewarkingen',
@@ -411,7 +411,7 @@ $messages = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-poslieste veur nieje versies]",
 
 'about'          => 'Infermasie',
-'article'        => 'artikel',
+'article'        => 'Artikel',
 'newwindow'      => '(niej vienster)',
 'cancel'         => 'Ofbreken',
 'qbfind'         => 'Zeuken',
@@ -436,9 +436,9 @@ $messages = array(
 'tagline'           => 'Van {{SITENAME}}',
 'help'              => 'Hulpe en kontak',
 'search'            => 'Zeuken',
-'searchbutton'      => 'zeuken',
-'go'                => 'artikel',
-'searcharticle'     => 'artikel',
+'searchbutton'      => 'Zeuken',
+'go'                => 'Artikel',
+'searcharticle'     => 'Artikel',
 'history'           => 'Geschiedenisse',
 'history_short'     => 'Geschiedenisse',
 'updatedmarker'     => 'bie-ewörken sins mien leste bezeuk',
@@ -461,7 +461,7 @@ $messages = array(
 'newpage'           => 'Nieje pagina',
 'talkpage'          => 'Overlegpagina',
 'talkpagelinktext'  => 'Overleg',
-'specialpage'       => 'speciale pagina',
+'specialpage'       => 'Speciale pagina',
 'personaltools'     => 'Persoonlijke instellingen',
 'postcomment'       => 'Niej onderwarp',
 'articlepage'       => 'Artikel',
@@ -499,7 +499,7 @@ $messages = array(
 'edithelp'             => 'Hulpe mit bewarken',
 'edithelppage'         => 'Help:Uutleg',
 'faq'                  => 'Vragen dee vake esteld wönnen',
-'faqpage'              => 'Project:Vragen dee vake esteld wonnen',
+'faqpage'              => 'Project:Vragen dee vake esteld wönnen',
 'helppage'             => 'Help:Inhoud',
 'mainpage'             => 'Veurblad',
 'mainpage-description' => 'Veurblad',
@@ -612,7 +612,7 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'cannotdelete'         => 'Kon de pagina of ofbeelding neet vort-edaon wonnen.',
 'badtitle'             => 'Ongeldige naam',
 'badtitletext'         => 'De naam van de op-evreugen pagina is neet geldig, leeg, of een interwiki-verwiezing naor een onbekende of ongeldige wiki.',
-'perfcached'           => 'Disse gegevens kwammen uut de kas en bin werschienlijk neet actueel:',
+'perfcached'           => "Disse gegevens kwammen uut 't tussengeheugen en bin werschienlijk neet actueel:",
 'perfcachedts'         => 'De infermasie dee hieronder steet, is op-esleugen, en is van $1.',
 'querypage-no-updates' => "'''Disse pagina wönnen neet meer bie-ewörken.'''",
 'wrong_wfQuery_params' => 'Parremeters veur wfQuery() wanen verkeerd<br />
@@ -636,16 +636,16 @@ $2',
 De op-egeven reden is ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => "Slichte configurasie: onbekende virusscanner: ''$1''",
+'virus-badscanner'     => "Slichte configurasie: onbekend antiviruspregramma: ''$1''",
 'virus-scanfailed'     => 'scannen is mislok (code $1)',
-'virus-unknownscanner' => 'onbekende virusscanner:',
+'virus-unknownscanner' => 'onbekend antiviruspregramma:',
 
 # Login and logout pages
 'logouttitle'                => 'Ofmelden gebruker',
 'logouttext'                 => "'''Je bin noen of-emeld.'''
 
 Je kunnen {{SITENAME}} noen anneniem gebruken of je eigen [[Special:UserLogin|opniej anmelden]] onder disse of een aandere gebrukersnaam.
-'t Kan ween dat der wat pagina's bin dee weer-egeven wönnen asof je an-emeld bin totda-j de kas van joew webkieker leegmaken.",
+'t Kan ween dat der wat pagina's bin dee weer-egeven wönnen asof je an-emeld bin totda-j 't tussengeheugen van joew webkieker leegmaken.",
 'welcomecreation'            => '== Welkom, $1! ==
 Joew gebrukersnaam is an-emaak. 
 Vergeet neet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] in te stellen.',
@@ -847,7 +847,8 @@ Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
 'confirmedittitle'                 => 'Berichbevestiging is neudig um te bewarken.',
 'confirmedittext'                  => "Je mutten je posadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
 'nosuchsectiontitle'               => 'Disse sectie besteet neet',
-'nosuchsectiontext'                => 'Je preberen een sectie te bewarken dat neet besteet. Umdat der gien sectie $1 is, is der gien plaos um joew bewarking op te slaon.',
+'nosuchsectiontext'                => "Je preberen een sectie te bewarken dat neet besteet. 
+'t Kan ween dat 't herneumd is of dat 't vort-edaon is to jie 't an 't bekieken wanen.",
 'loginreqtitle'                    => 'Anmelden verplich',
 'loginreqlink'                     => 'Anmelden',
 'loginreqpagetext'                 => 'Je mutten $1 um disse pagina te bekieken.',
@@ -862,10 +863,10 @@ A-j hier per ongelok terechtekeumen bin gebruuk dan de knoppe ''veurige'' um wee
 'anontalkpagetext'                 => "---- ''Disse overlegpagina heurt bie een annenieme gebruker dee nog gien gebrukersnaam hef, of 't neet gebruuk. We gebruken daorumme 't IP-adres um hum of heur te herkennen, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:UserLogin/signup|een gebrukersnaam anmaken]] of [[Special:UserLogin|anmelden]].''",
 'noarticletext'                    => 'Der steet op hejen gien tekse op disse pagina.
 Je kunnen [[Special:Search/{{PAGENAME}}|de titel opzeuken]] in aandere pagina\'s,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} zeuken in de logboeken],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} zeuken in de logboeken],
 of [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse pagina bewarken]</span>.',
 'userpage-userdoesnotexist'        => 'Je bewarken een gebrukerspagina van een gebruker dee neet besteet (gebruker "$1"). Kiek effen nao o-j disse pagina wel anmaken/bewarken willen.',
-'clearyourcache'                   => "'''NB:''' naodat de wiezigingen op-esleugen bin, mut de kas van de webkieker nog leeg-emaak wonnen um 't te kunnen zien. '''Mozilla / Firefox / Safari:''' drok op ''Shift'' + ''Pagina verniejen,'' of ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Macintosh-computer); '''Konqueror: '''klik op ''verniejen'' of drok op ''F5;'' '''Opera:''' leeg de kas in ''Extra → Voorkeuren;'' '''Internet Explorer:''' huil ''Ctrl'' in-edrok terwiel je op ''Pagina verniejen'' klikken of ''Ctrl-F5'' gebruken.",
+'clearyourcache'                   => "'''NB:''' naodat de wiezigingen op-esleugen bin, mut 't tussengeheugen van de webkieker nog leeg-emaak wönnen um 't te kunnen zien. '''Mozilla / Firefox / Safari:''' drok op ''Shift'' + ''Pagina verniejen,'' of ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Macintosh-computer); '''Konqueror: '''klik op ''verniejen'' of drok op ''F5;'' '''Opera:''' leeg 't tussengeheugen in ''Extra → Voorkeuren;'' '''Internet Explorer:''' hou ''Ctrl'' in-edrok terwiel je op ''Pagina verniejen'' klikken of ''Ctrl-F5'' gebruken.",
 'usercssjsyoucanpreview'           => "'''Tip:''' gebruuk de knoppe 'Pagina naokieken' um joew nieje css/js nao te kieken veurda-j 't opslaon.",
 'usercsspreview'                   => "'''Dit is allinnig een controle van joew persoonlijke CSS.'''
 ''''t Is nog neet op-esleugen!'''",
@@ -922,7 +923,7 @@ As grund is angeven: $1",
 'template-protected'               => '(beveilig)',
 'template-semiprotected'           => '(semibeveilig)',
 'hiddencategories'                 => 'Disse pagina vuilt in de volgende verbörgen {{PLURAL:$1|kattegerie|kattegerieën}}:',
-'edittools'                        => '<!-- Disse tekse wonnen weer-egeven onder bewarkings- en bestaanstoevoegingsformelieren. -->',
+'edittools'                        => '<!-- Disse tekse steet onder bewarkings- en bestaanstoevoegingsformelieren. -->',
 'nocreatetitle'                    => "'t Anmaken van pagina's is beteund",
 'nocreatetext'                     => "Disse webstee hef de meugelijkheid um nieje pagina's an te maken beteund. Je kunnen pagina's dee al bestaon wiezigen of je kunnen je [[Special:UserLogin|anmelden of een gebrukerspagina anmaken]].",
 'nocreate-loggedin'                => "Je hemmen gien toestemming um nieje pagina's an te maken.",
@@ -1281,7 +1282,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'timezoneuseoffset'         => 'Aanders (tiedverschil angeven)',
 'timezoneoffset'            => 'Tiedverschil¹:',
 'servertime'                => 'Tied op de server:',
-'guesstimezone'             => 'Vanuut webkieker toevoegen',
+'guesstimezone'             => 'Vanuut webkieker overnemen',
 'timezoneregion-africa'     => 'Afrika',
 'timezoneregion-america'    => 'Amerika',
 'timezoneregion-antarctica' => 'Antarctica',
@@ -1363,7 +1364,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'right-reupload-own'          => 'Bestanen overschrieven dee-j der zelf bie ezet hemmen',
 'right-reupload-shared'       => 'Media uut de edelen mediadatabanke plaoselijk overschrieven',
 'right-upload_by_url'         => 'Bestanen toevoegen via een verwiezing',
-'right-purge'                 => 'De kas van een pagina legen',
+'right-purge'                 => "'t Tussengeheugen van een pagina legen",
 'right-autoconfirmed'         => 'Behaandeld wonnen as een an-emelde gebruker',
 'right-bot'                   => 'Behaandeld wönnen as een eautomatiseerd preces',
 'right-nominornewtalk'        => "Kleine bewarkingen an een overlegpagina leien neet tot een melding 'nieje berichen'",
@@ -1588,7 +1589,7 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand toe-evoeg wönnen.
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon webadres neet bereiken',
 'upload-curl-error6-text'  => "'t Webadres kon neet bereik wönnen. Kiek effen nao o-j 't goeie adres in-evoerd hemmen en of de webstee bereikbaor is.",
-'upload-curl-error28'      => "Tiedsoverschriejing bie 't toevoegen van 't bestaand",
+'upload-curl-error28'      => "Wachtied veur 't versturen van 't bestaand",
 'upload-curl-error28-text' => "'t Duren te lange veurdat de webstee reageren. Kiek effen nao of de webstee bereikbaor is, wach effen en prebeer 't daornao weer. Prebeer 't aanders as 't wat rustiger is.",
 
 'license'            => 'Licentie',
@@ -1795,7 +1796,11 @@ Meestentieds is leste pagina de gewunste doelpagina, waor oek de eerste pagina h
 'ancientpages'            => 'Artikels dee lange neet bewörk bin',
 'move'                    => 'Herneumen',
 'movethispage'            => 'Herneum',
-'unusedimagestext'        => "Vergeet neet dat aandere wiki's meschien oek enkele van disse ofbeeldingen gebruken.",
+'unusedimagestext'        => "Vergeet neet dat aandere wiki's meschien oek enkele van disse ofbeeldingen gebruken.
+
+De volgende bestanen bin toe-evoeg mar neet in gebruuk.
+'t Kan ween dat der drek verwezen wönnen naor een bestaand. 
+Een bestaand kan hier dus ten onrechte op-eneumen ween.",
 'unusedcategoriestext'    => 'De onderstaonde kattegerieën bin an-emaak mar bin neet in gebruuk.',
 'notargettitle'           => 'Gien pagina op-egeven',
 'notargettext'            => 'Je hemmen neet op-egeven veur welke pagina je disse functie bekieken willen.',
@@ -2987,8 +2992,8 @@ $1',
 
 # action=purge
 'confirm_purge_button' => 'Bevestig',
-'confirm-purge-top'    => "Klik op 'bevestig' um de kas van disse pagina te legen.",
-'confirm-purge-bottom' => "'t Leegmaken van de kas zörg derveur da-j de leste versie van een pagina zien.",
+'confirm-purge-top'    => "Klik op 'bevestig' um 't tussengeheugen van disse pagina te legen.",
+'confirm-purge-bottom' => "'t Leegmaken van 't tussengeheugen zörg derveur da-j de leste versie van een pagina zien.",
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; veurige',
@@ -3149,6 +3154,6 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'dberr-info'        => '(Kan gien verbiending maken mit de databankeserver: $1)',
 'dberr-usegoogle'   => 'Meschien ku-j ondertussen zeuken via Google.',
 'dberr-outofdate'   => "Let op: indexen de zee hemmen van onze pagina's bin meschien neet actueel.",
-'dberr-cachederror' => 'Disse pagina is een kepie uut de kas en is meschien neet de leste versie.',
+'dberr-cachederror' => "Disse pagina is een kopie uut 't tussengeheugen en is meschien neet actueel.",
 
 );

@@ -343,8 +343,8 @@ $messages = array(
 'privacypage'          => 'Project:Polisi preifatrwydd',
 
 'badaccess'        => 'Gwall caniatâd',
-'badaccess-group0' => 'Ni chaniateir i chi wneud y weithred y ceisiasoch amdani.',
-'badaccess-groups' => "Dim ond defnyddwyr o blith y {{PLURAL:$2|grwp|grwp|grwpiau|grwpiau|grwpiau|grwpiau}} $1 sy'n cael gwneud y weithred y gofynwyd amdani.",
+'badaccess-group0' => 'Ni chaniateir i chi wneud y weithred y gwnaethoch gais amdani.',
+'badaccess-groups' => "Dim ond defnyddwyr o blith y {{PLURAL:$2|grwp|grwp|grwpiau|grwpiau|grwpiau|grwpiau}} $1 sy'n cael gwneud y weithred y gwnaethoch gais amdani.",
 
 'versionrequired'     => 'Mae angen fersiwn $1 y meddalwedd MediaWiki',
 'versionrequiredtext' => "Mae angen fersiwn $1 y meddalwedd MediaWiki er mwyn gwneud defnydd o'r dudalen hon. Gweler y dudalen am y [[Special:Version|fersiwn]].",
@@ -424,7 +424,7 @@ $1",
 Rhoddwyd y rheswm canlynol gan y gweinyddwr a'i glodd: $1",
 'missing-article'      => 'Ni lwyddodd y databas i ddod o hyd i destun tudalen yr oedd disgwyl iddo ei gael, sef "$1" $2.
 
-Fe ddigwydd gan amlaf wrth ddilyn hen gyswllt "gwah" (gwahaniaeth rhwng tudalennau) neu hanes at dudalen sydd eisoes wedi ei dileu.
+Fe ddigwydd gan amlaf wrth ddilyn hen gyswllt "gwahan" (gwahaniaeth rhwng tudalennau) neu hanes at dudalen sydd eisoes wedi ei dileu.
 
 Onid dyma\'r achos, gall fod i chi ddod o hyd i fyg yn y meddalwedd.
 A fyddech gystal â gwneud adroddiad ar hwn at [[Special:ListUsers/sysop|weinyddwr]], gan nodi\'r URL dan sylw.',
@@ -670,8 +670,9 @@ Eich cyfeiriad IP presennol yw $3. Cyfeirnod y bloc yw $5. Nodwch y manylion hyn
 'confirmedittitle'                 => 'Cadarnhad trwy e-bost cyn dechrau golygu.',
 'confirmedittext'                  => "Mae'n rhaid i chi gadarnhau eich cyfeiriad e-bost cyn y gallwch ddechrau golygu tudalennau.
 Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyddiwr]] ac yna'i gadarnhau, os gwelwch yn dda.",
-'nosuchsectiontitle'               => 'Yr adran ddim yn bod',
-'nosuchsectiontext'                => "Rydych wedi ceisio golygu adran nad ydy'n bod. Gan nad oes adran o'r enw $1, ni ellir rhoi eich golygiad ar gadw.",
+'nosuchsectiontitle'               => "Heb ddod o hyd i'r adran",
+'nosuchsectiontext'                => "Rydych wedi ceisio golygu adran nad ydy'n bod. 
+Efallai bod yr adran wedi cael ei symud neu ei dileu ers i chi agor y dudalen.",
 'loginreqtitle'                    => 'Mae angen mewngofnodi',
 'loginreqlink'                     => 'mewngofnodi',
 'loginreqpagetext'                 => "Mae'n rhaid $1 er mwyn gweld tudalennau eraill.",
@@ -685,7 +686,7 @@ I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [[{{MediaWiki:Help
 Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'anontalkpagetext'                 => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:UserLogin/signup|crëwch gyfrif]] neu [[Special:UserLogin|mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys o hyn ymlaen.''",
 'noarticletext'                    => "Mae'r dudalen hon yn wag ar hyn o bryd. 
-Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} chwilio drwy'r logiau perthnasol], neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen]</span>.",
+Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chwilio drwy'r logiau perthnasol], neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen]</span>.",
 'userpage-userdoesnotexist'        => 'Nid oes defnyddiwr a\'r enw "$1" yn bod. Gwnewch yn siwr eich bod am greu/golygu\'r dudalen hon.',
 'clearyourcache'                   => "'''Sylwer - Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau.''' 
 '''Mozilla / Firefox / Safari:''' pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-F5'' neu ''Ctrl-R'' (''Command-R'' ar Macintosh); '''Konqueror:''' cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; '''Opera:''' gwacewch y celc yn llwyr trwy ''Offer → Dewisiadau / Tools→Preferences''; '''Internet Explorer:''' pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''.",
@@ -715,10 +716,10 @@ Weithiau fe ddigwydd hyn wrth ddefnyddio dirprwy-wasanaeth anhysbys gwallus yn s
 'editingcomment'                   => 'Yn golygu $1 (adran newydd)',
 'editconflict'                     => 'Cyd-ddigwyddiad golygu: $1',
 'explainconflict'                  => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi.
-Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan.
-Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.
-Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes.
-'''Dim ond''' y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
+Mae'r blwch testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan.
+Mae eich newidiadau chi yn ymddangos yn y blwch testun isaf.
+Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisoes.
+'''Dim ond''' y testun yn y blwch testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
 'yourtext'                         => 'Eich testun',
 'storedversion'                    => 'Y golygiad diweddaraf yn y storfa',
 'nonunicodebrowser'                => "'''RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn rhan o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.'''",
@@ -875,7 +876,7 @@ Byddwch gystal â chadarnhau eich bod yn bwriadu gwneud hyn, eich bod yn deall y
 'revdelete-submit'               => 'Rhoi ar waith ar y golgiad dewisedig',
 'revdelete-logentry'             => 'wedi newid y gallu i weld golygiadau ar [[$1]]',
 'logdelete-logentry'             => 'wedi newid y gallu i weld y digwyddiad ar [[$1]]',
-'revdelete-success'              => "'''Llwyddodd y newid i'r gallu i weld golygiadau.'''",
+'revdelete-success'              => "'''Diweddarwyd y gallu i weld golygiadau.'''",
 'logdelete-success'              => "'''Llwyddwyd i guddio neu i ddatguddio'r digwyddiad rhag y lòg.'''",
 'revdel-restore'                 => 'Newid gwelededd',
 'pagehist'                       => 'Hanes y dudalen',
@@ -1034,9 +1035,9 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'search-interwiki-more'            => '(rhagor)',
 'search-mwsuggest-enabled'         => 'gydag awgrymiadau',
 'search-mwsuggest-disabled'        => 'dim awgrymiadau',
-'search-relatedarticle'            => 'Cysylltiedig',
+'search-relatedarticle'            => 'Erthyglau eraill tebyg',
 'mwsuggest-disable'                => 'Analluogi awgrymiadau AJAX',
-'searchrelated'                    => 'cysylltiedig',
+'searchrelated'                    => 'erthyglau eraill tebyg',
 'searchall'                        => 'oll',
 'showingresults'                   => "Yn dangos $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 'showingresultsnum'                => "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
@@ -1125,7 +1126,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'timezoneregion-australia'  => 'Awstralia',
 'timezoneregion-europe'     => 'Ewrop',
 'timezoneregion-indian'     => 'Cefnfor yr India',
-'timezoneregion-pacific'    => 'Y Môr Tawelt',
+'timezoneregion-pacific'    => 'Y Môr Tawel',
 'allowemail'                => 'Galluogi e-bost oddi wrth ddefnyddwyr eraill',
 'prefs-searchoptions'       => 'Chwilio',
 'prefs-namespaces'          => 'Parthau',
@@ -1148,7 +1149,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 * Mae defnyddiwr yn perthyn i grŵp pan mae tic yn y bocs.
 * Nid yw defnyddiwr yn perthyn i grŵp pan nad oes tic yn y bocs.
 * Mae * yn golygu na fyddwch yn gallu dad-wneud unrhyw newid yn y grŵp hwnnw.',
-'userrights-reason'           => 'Y rheswm dros y newid:',
+'userrights-reason'           => 'Rheswm:',
 'userrights-no-interwiki'     => "Nid yw'r gallu ganddoch i newid galluoedd defnyddwyr ar wicïau eraill.",
 'userrights-nodatabase'       => "Nid yw'r bas data $1 yn bod neu nid yw'n un lleol.",
 'userrights-nologin'          => 'Rhaid i chi [[Special:UserLogin|fewngofnodi]] ar gyfrif gweinyddwr er mwyn pennu galluoedd defnyddwyr.',
@@ -1256,7 +1257,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'action-movefile'             => 'symud y ffeil hon',
 'action-upload'               => "uwchlwytho'r ffeil",
 'action-reupload'             => 'trosysgrifo ffeil sydd eisoes ar gael',
-'action-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil ar y storfa cyfrannol",
+'action-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil yn y storfa gyfrannol",
 'action-upload_by_url'        => "uuchlwytho'r ffeil o gyfeiriad URL",
 'action-writeapi'             => "defnyddio'r API i ysgrifennu a thrin y tudalennau",
 'action-delete'               => "dileu'r dudalen",
@@ -1607,7 +1608,7 @@ Gosodwyd <s>llinell</s> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'mostlinkedtemplates'     => 'Nodiadau yn nhrefn nifer y cysylltiadau iddynt',
 'mostcategories'          => 'Erthyglau yn nhrefn nifer eu categorïau',
 'mostimages'              => 'Ffeiliau yn nhrefn nifer y cysylltiadau iddynt',
-'mostrevisions'           => 'Tudalennau yn nhrefn nifer golygiadau',
+'mostrevisions'           => 'Tudalennau yn nhrefn nifer y newidiadau iddynt',
 'prefixindex'             => 'Pob tudalen yn ôl parth',
 'shortpages'              => 'Erthyglau byr',
 'longpages'               => 'Tudalennau hirion',
@@ -1631,7 +1632,8 @@ Gosodwyd <s>llinell</s> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'ancientpages'            => 'Erthyglau hynaf',
 'move'                    => 'Symud',
 'movethispage'            => 'Symud y dudalen hon',
-'unusedimagestext'        => "Sylwch y gall gwefannau eraill gysylltu a ffeil drwy URL uniongyrchol. Gan hynny mae'n bosibl fod ffeil wedi ei rhestru yma serch ei bod yn cael defnydd.",
+'unusedimagestext'        => "Mae'r ffeiliau canlynol ar gael, ond nid ydynt wedi eu mewnosod ar unrhyw dudalen. 
+Sylwch y gall gwefannau eraill gysylltu â ffeil drwy URL uniongyrchol. Gan hynny mae'n bosib fod ffeil wedi ei rhestru yma serch bod defnydd arni.",
 'unusedcategoriestext'    => "Mae'r tudalennau categori isod yn bodoli er nad oes unrhyw dudalen arall yn eu defnyddio.",
 'notargettitle'           => 'Dim targed',
 'notargettext'            => 'Dydych chi ddim wedi dewis defnyddiwr neu dudalen i weithredu arno.',
@@ -1929,7 +1931,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 'restriction-upload' => 'Uwchlwytho',
 
 # Restriction levels
-'restriction-level-sysop'         => 'llwyr diogelwyd',
+'restriction-level-sysop'         => 'diogelwyd yn llwyr',
 'restriction-level-autoconfirmed' => 'lled-ddiogelwyd',
 'restriction-level-all'           => 'pob lefel',
 
@@ -2458,6 +2460,7 @@ $1",
 # Media information
 'mediawarning'         => "'''Rhybudd''': Gallasai'r math hwn o ffeil gynnwys côd maleisus. 
 Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil.<hr />",
+'imagemaxsize'         => 'Cyfyngu maint lluniau ar eu tudalennau disgrifiad i:',
 'thumbsize'            => 'Maint mân-lun :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
 'file-info'            => '(maint y ffeil: $1, ffurf MIME: $2)',
@@ -2525,7 +2528,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-stripbytecounts'             => 'Nifer y beitiau i bob stribed cywasgedig',
 'exif-jpeginterchangeformat'       => 'Yr atred i JPEG SOI',
 'exif-jpeginterchangeformatlength' => "Nifer beitiau'r data JPEG",
-'exif-transferfunction'            => 'Ffwythiant trosglwyddo',
+'exif-transferfunction'            => 'Swyddogaeth trosglwyddo',
 'exif-whitepoint'                  => 'Cromatigedd y cyfeirbwynt gwyn',
 'exif-primarychromaticities'       => 'Cromatigedd y lliwiau cysefin',
 'exif-ycbcrcoefficients'           => 'Cyfernodau matrics trawsffurfio gofod lliw',

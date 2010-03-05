@@ -411,8 +411,10 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => '去簿',
-'logouttext'                 => "'''子去簿矣'''<br />
-子可匿名還覽{{SITENAME}}，或[[Special:UserLogin|復登]]同簿、異簿。未清謄本，覽器文舊，且慎之。",
+'logouttext'                 => "'''子去簿矣'''
+
+子可匿名還覽{{SITENAME}}，或[[Special:UserLogin|復登]]同簿、異簿。
+未清謄本，覽器文舊，且慎之。",
 'welcomecreation'            => '== $1大駕光臨! ==
 子簿增矣，敬更[[Special:Preferences|簿註]]。',
 'loginpagetitle'             => '合符節',
@@ -504,7 +506,8 @@ $2',
 'newpassword'               => '新符節：',
 'retypenew'                 => '重察新符節：',
 'resetpass_submit'          => '設符再登',
-'resetpass_success'         => '爾之符節已改！現登簿中...',
+'resetpass_success'         => '爾之符節已改！
+現登簿中...',
 'resetpass_bad_temporary'   => '無效之臨符。
 爾或改符，或求新臨符。',
 'resetpass_forbidden'       => '無改符節',
@@ -570,6 +573,9 @@ $2',
 'whitelistedittext'                => '$1後方可纂文。',
 'confirmedittitle'                 => '證驛以纂',
 'confirmedittext'                  => '驛證方可纂文。惠見[[Special:Preferences|簿註]]。',
+'nosuchsectiontitle'               => '無尋節',
+'nosuchsectiontext'                => '爾纂之節無存也。
+機以察時遷或刪之。',
 'loginreqtitle'                    => '須登簿',
 'loginreqlink'                     => '登簿',
 'loginreqpagetext'                 => '$1以覽它頁。',
@@ -580,7 +586,7 @@ $2',
 誤入者，返前即可。',
 'anontalkpagetext'                 => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:UserLogin/signup|增]][[Special:UserLogin|登簿]]遠之。",
 'noarticletext'                    => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 尋誌]，
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 纂頁]</span>。',
 'userpage-userdoesnotexist'        => '「$1」之簿未增也。請建纂本頁前查之。',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
@@ -625,6 +631,7 @@ $2',
 鎖者曰：「$1」",
 'protectedpagewarning'             => "'''警示：庫藏鎖矣，惟有秩纂之。'''",
 'semiprotectedpagewarning'         => "'''註記'''庫藏鎖矣，惟登簿纂之。",
+'cascadeprotectedwarning'          => "'''警示：'''此頁鎖錮矣，唯有秩纂之，乃因{{PLURAL:$1|一|多}}頁連誅之：",
 'templatesused'                    => '此文用模：',
 'template-protected'               => '（錮）',
 'template-semiprotected'           => '（半錮）',
@@ -736,7 +743,7 @@ $2',
 'revdelete-hide-user'            => '簿、IP址以藏',
 'revdelete-hide-restricted'      => '廢有秩與簿之事',
 'revdelete-suppress'             => '廢有秩與簿之事',
-'revdelete-hide-image'           => '藏檔',
+'revdelete-hide-image'           => '藏檔容',
 'revdelete-unsuppress'           => '復審解限',
 'revdelete-log'                  => '誌贊：',
 'revdelete-submit'               => '擇審使之',
@@ -1227,6 +1234,8 @@ $2',
 'overwroteimage'             => '新置「[[$1]]」矣',
 'uploaddisabledtext'         => '貢被禁也。',
 'php-uploaddisabledtext'     => 'PHP之貢被禁也。查 file_uploads 之。',
+'uploadvirus'                => '此檔含毒也！
+詳：$1',
 'sourcefilename'             => '源名：',
 'destfilename'               => '欲置檔名：',
 'upload-maxfilesize'         => '檔限：$1',
@@ -1235,8 +1244,17 @@ $2',
 誌刪如下：",
 'filename-bad-prefix'        => "獻檔以'''「$1」'''首，常由相機瞎造，惠更述之。",
 
-'license'           => '權：',
-'license-nopreview' => '（謝草覽）',
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => '無達網址也',
+'upload-curl-error6-text'  => '無達所指之網址也。再試其正，乃正常也。',
+'upload-curl-error28'      => '貢超時也',
+'upload-curl-error28-text' => '網站應之長也。再試其而行之。乃以閑以試之。',
+
+'license'            => '權：',
+'nolicense'          => '無選',
+'license-nopreview'  => '（謝草覽）',
+'upload_source_url'  => '（乃一公共可達之網址）',
+'upload_source_file' => '（本機之件）',
 
 # Special:ListFiles
 'listfiles-summary'     => '此奇頁示檔之全呈也。
@@ -1422,7 +1440,8 @@ $2',
 'ancientpages'            => '陳年',
 'move'                    => '遷',
 'movethispage'            => '遷此頁',
-'unusedimagestext'        => '<p>他站可以網址鏈檔，故下列並非盡閒，註記之。</p>',
+'unusedimagestext'        => '下檔存也，未嵌於其頁之。
+他站可以網址鏈檔，故下列並非盡閒，註記之。',
 'unusedcategoriestext'    => '以下空門，無依可活。',
 'notargettitle'           => '落靶',
 'notargettext'            => '簿、頁未定，無可為之。',
@@ -1912,7 +1931,7 @@ $1已被禁矣。爾是否改此置？',
 'cant-move-user-page'          => '無動自齋（除字頁）。',
 'cant-move-to-user-page'       => '無動至齋（除字頁）。',
 'newtitle'                     => '至新題：',
-'move-watch'                   => '派哨',
+'move-watch'                   => '派哨至自與至之頁',
 'movepagebtn'                  => '遷文',
 'pagemovedsub'                 => '遷成矣',
 'movepage-moved'               => "<big>'''「$1」已遷至「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
@@ -2368,8 +2387,10 @@ $1',
 # Live preview
 'livepreview-loading' => '遺藏…',
 'livepreview-ready'   => '藏至矣。',
-'livepreview-failed'  => '弗能即時示之！嘗以本法。',
-'livepreview-error'   => '莫之連也：$1 "$2" 嘗以本法。',
+'livepreview-failed'  => '弗能即時示之！
+嘗以本法。',
+'livepreview-error'   => '莫之連也：$1 "$2"。
+嘗以本法。',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '近$1秒新易者疑喪也。',

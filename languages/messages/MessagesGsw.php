@@ -470,10 +470,11 @@ Die Sperri isch dur [[User:$1|$1]] yygrichtet wore mit dr Begrindig ''„$2“''
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmäldig',
-'logouttext'                 => '<div align="center" style="background-color:white;">
-<b>Du bisch jitz abgmäldet!</b>
-</div><br />
-We du jitz öppis uf der {{SITENAME}} änderisch, de wird dyni IP-Adrässen als Urhäber regischtriert u nid dy Benutzername. Du chasch di mit em glychen oder emnen andere Benutzername nöi aamälde.',
+'logouttext'                 => "'''Du bisch jetz abgmäldet.'''
+
+Du chasch {{SITENAME}} wyter anonym bruche, oder Du chasch di [[Special:UserLogin|wider aamälde]] mit em glyche oder eme andere Benutzername.
+
+Ochat: s cha syy, ass bstimmti Syte eso aazeigt wäre, wie wänn Du allno aagmäldet wärsch, bis Du dr Zwischespycher vu Dyym Browser glescht hesch.",
 'welcomecreation'            => '==Willcho, $1!==
 Dyy Benutzerkonto isch aaglait wore.
 Vergiss nid, dyni [[Special:Preferences|{{SITENAME}}-Yystellige]] aazpasse.',
@@ -675,8 +676,9 @@ Du chasch $1 oder ein vu dr andre [[{{MediaWiki:Grouppage-sysop}}|Ammanne]] kont
 'whitelistedittext'                => 'Du muesch Di $1 zum Artikel bearbeite.',
 'confirmedittitle'                 => 'Zum Ändere isch e bstätigti E-Mail-Adräss notwändig.',
 'confirmedittext'                  => 'Si mien Ihri E-Mail-Adräss zerscht bstätige, voreb Si Syte chenne ändere. Bitte setze Si in [[Special:Preferences|Ihre Iistellige]] Ihri E-Mail-Adräss yy un len Si si priefe.',
-'nosuchsectiontitle'               => 'Abschnitt git s nid.',
-'nosuchsectiontext'                => 'Du versuechsch dr Abschnitt $1, wu s nid git, z bearbeite. Mer cha aber nume Abschnitt bearbeiter, wu s scho git.',
+'nosuchsectiontitle'               => 'Abschnitt nit gfunde',
+'nosuchsectiontext'                => 'Du hesch versuecht e Abschnitt z bearbeite, wu s nid git.
+S cha syy, ass er verschoben oder glescht woren isch, derwylscht Du d Syte aagluegt hesch.',
 'loginreqtitle'                    => 'S brucht d Aamäldig.',
 'loginreqlink'                     => 'aamälde',
 'loginreqpagetext'                 => 'Du muesch Di $1, zum Syte chenne läse.',
@@ -689,7 +691,7 @@ S Passwort fir des nej Benutzerkonto cha uf dr Spezialsyte „[[Special:ChangePa
 Zum die Syte aalege, chasch do in däm Chaschte unte aafange schrybe (lueg [[{{MediaWiki:Helppage}}|Hilfe]] fir meh Informatione).
 Wänn do nid hesch welle aane goh, no druck in Dyynem Browser uf '''Zruck'''.",
 'anontalkpagetext'                 => "----''Des isch e Diskussionssyte vun eme anonyme Benutzer, wu kei Zuegang aagleit het oder wu ne nit bruucht. Sälleweg mien mir di numerisch IP-Adräss bruuche zum ihn oder si z identifiziere. So ne IP-Adräss cha au vu mehrere Benutzer teilt wäre. Wenn Du ne anonyme Benutzer bisch un s Gfiel hesch, ass do irrelevanti Kommentar an di grichtet wäre, derno [[Special:UserLogin/signup|leg e Konto aa]] oder [[Special:UserLogin|mäld di aa]] zum in Zuekumft Verwirrige mit andere anonyme Benutzer z vermyyde.''",
-'noarticletext'                    => 'Uf däre Syte het s no kei Täxt. Du chasch uf andere Syte [[Special:Search/{{PAGENAME}}|dä Yytrag sueche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} dr Logbuechyytrag sueche, wo dezue ghert],
+'noarticletext'                    => 'Uf däre Syte het s no kei Täxt. Du chasch uf andere Syte [[Special:Search/{{PAGENAME}}|dä Yytrag sueche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} dr Logbuechyytrag sueche, wo dezue ghert],
 oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite]</span>.',
 'userpage-userdoesnotexist'        => 'S Benutzerkonto „$1“ git s nit. Bitte prief, eb Du die Syte wirkli wit aalege/bearbeite.',
 'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
@@ -880,7 +882,7 @@ Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass d
 'revdelete-submit'               => 'Uf usgwehlti Version aawände',
 'revdelete-logentry'             => 'het d Versionsaasicht fir „[[$1]]“ gänderet',
 'logdelete-logentry'             => 'het d Sichtbarkeit fir „[[$1]]“ gänderet',
-'revdelete-success'              => "'''Versionsaasicht erfolgryych gänderet.'''",
+'revdelete-success'              => "'''Versionsaasicht erfolgryych aktualisiert.'''",
 'logdelete-success'              => "'''Logbuechaasicht erfolgryych gänderet.'''",
 'revdel-restore'                 => 'Sichtbarkeit ändere',
 'pagehist'                       => 'Versionsgeschicht',
@@ -1629,7 +1631,8 @@ In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Zii
 'ancientpages'            => 'alti Sytene',
 'move'                    => 'Verschiebe',
 'movethispage'            => 'Artikel verschiebe',
-'unusedimagestext'        => 'Bitte gib Acht, ass anderi Netzsyte die Datei mit ere diräkte URL chenne vergleiche. Des wird nit as Verwändig erkannt. Wäge däm wird d Datei do ufgfiert.',
+'unusedimagestext'        => 'Die Dateie, wu do ufgfiert wäre, gits, si wäre aber uf keire Syte brucht.
+Bitte gib Acht, ass anderi Netzsyte die Datei mit ere diräkte URL chenne vergleiche. Des wird nit as Verwändig erkannt. Wäge däm wird d Datei do ufgfiert.',
 'unusedcategoriestext'    => 'Die Spezialsyte zeigt alli lääre Kategorie, d. h. si wäre nit brucht vu andre Syte oder Kategorie.',
 'notargettitle'           => 'Kei Syte aagee',
 'notargettext'            => 'Du hesch nit aagee, uf weli Syte die Funktion soll druf aagwändet wäre.',
@@ -2738,7 +2741,7 @@ Anderi Metadate sy standardmäßig versteckt.
 # E-mail address confirmation
 'confirmemail'             => 'Bstätigung vo Ihre E-Poscht-Adräss',
 'confirmemail_noemail'     => 'Du hesch in dyne [[Special:Preferences|persönliche Ystellige]] e kei E-Mail-Adress ygää.',
-'confirmemail_text'        => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die e-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die e-Mail-Adrässe dyni isch.',
+'confirmemail_text'        => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die E-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die E-Mail-Adrässe dyni isch.',
 'confirmemail_pending'     => 'Es isch Dir scho en Code zum Bestätige zuegschiggt worde. Falls du Dyn Konto grad erscht aagleit hesch, muesch villicht noo e weng warte bis d E-Mail ytrifft, bevor du en nöie Code aafordresch.',
 'confirmemail_send'        => 'Bestätigungs-Mail verschicke',
 'confirmemail_sent'        => 'Es isch dir es Mail zur Adrässbestätigung gschickt worde.',

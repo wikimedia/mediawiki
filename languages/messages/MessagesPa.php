@@ -279,11 +279,10 @@ A list of valid special pages can be found at [[Special:SpecialPages]].',
 
 # Login and logout pages
 'logouttitle'                => 'ਯੂਜ਼ਰ ਲਾਗਆਉਟ',
-'logouttext'                 => "'''ਹੁਣ ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਗਏ ਹੋ।'''<br />
-You can continue to use {{SITENAME}} anonymously, or you can log in
-again as the same or as a different user. Note that some pages may
-continue to be displayed as if you were still logged in, until you clear
-your browser cache.",
+'logouttext'                 => "'''ਹੁਣ ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਗਏ ਹੋ।'''
+
+You can continue to use {{SITENAME}} anonymously, or you can log in again as the same or as a different user.
+Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomecreation'            => "== ਜੀ ਆਇਆਂ ਨੂੰ, $1! ==
 
 Your account has been created. Don't forget to change your {{SITENAME}} preferences.",
@@ -538,7 +537,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'userrights-editusergroup' => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
 'saveusergroups'           => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੰਭਾਲੋ',
 'userrights-groupsmember'  => 'ਇਸ ਦਾ ਮੈਂਬਰ:',
-'userrights-reason'        => 'ਬਦਲਣ ਦੇ ਕਾਰਨ:',
+'userrights-reason'        => 'ਕਾਰਨ:',
 
 # Groups
 'group'      => 'ਗਰੁੱਪ:',

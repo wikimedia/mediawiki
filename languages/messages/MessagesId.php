@@ -9,8 +9,10 @@
  *
  * @author Bennylin
  * @author Borgx
+ * @author Farras
  * @author Irwangatot
  * @author IvanLanin
+ * @author Kenrick95
  * @author Meursault2004
  * @author Remember the dot
  * @author Rex
@@ -304,9 +306,9 @@ $messages = array(
 'tog-watchlisthideown'        => 'Sembunyikan suntingan saya di daftar pantauan',
 'tog-watchlisthidebots'       => 'Sembunyikan suntingan bot di daftar pantauan',
 'tog-watchlisthideminor'      => 'Sembunyikan suntingan kecil di daftar pantauan',
-'tog-watchlisthideliu'        => 'Sembunyikan suntingan pengguna yang masuk log dari daftar pantauan',
-'tog-watchlisthideanons'      => 'Sembunyikan suntingan pengguna anonim dari daftar pantauan',
-'tog-watchlisthidepatrolled'  => 'Sembunyikan suntingan terpatroli dari daftar pantauan',
+'tog-watchlisthideliu'        => 'Sembunyikan suntingan pengguna masuk log di daftar pantauan',
+'tog-watchlisthideanons'      => 'Sembunyikan suntingan pengguna anonim di daftar pantauan',
+'tog-watchlisthidepatrolled'  => 'Sembunyikan suntingan terpatroli di daftar pantauan',
 'tog-nolangconversion'        => 'Matikan konversi varian',
 'tog-ccmeonemails'            => 'Kirimkan saya salinan surel yang saya kirimkan ke orang lain',
 'tog-diffonly'                => 'Jangan tampilkan isi halaman di bawah perbedaan suntingan',
@@ -315,7 +317,7 @@ $messages = array(
 
 'underline-always'  => 'Selalu',
 'underline-never'   => 'Tidak pernah',
-'underline-default' => 'Default penjelajah web',
+'underline-default' => 'Bawaan penjelajah web',
 
 # Dates
 'sunday'        => 'Minggu',
@@ -620,7 +622,10 @@ Alasan yang diberikan adalah ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Keluar log pengguna',
-'logouttext'                 => 'Anda telah keluar log dari sistem. Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat masuk log lagi sebagai pengguna yang sama atau pengguna yang lain. Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda masih masuk log sampai Anda membersihkan <em>cache</em> penjelajah web Anda',
+'logouttext'                 => "'''Anda telah keluar log dari sistem.'''
+
+Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat [[Special:UserLogin|masuk log lagi]] sebagai pengguna yang sama atau pengguna yang lain.
+Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda masih masuk log sampai Anda membersihkan singgahan penjelajah web Anda",
 'welcomecreation'            => '== Selamat datang, $1! ==
 
 Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] Anda.',
@@ -815,8 +820,9 @@ Tolong sertakan informasi-informasi ini dalam setiap pertanyaan Anda.',
 'confirmedittitle'                 => 'Konfirmasi surel diperlukan untuk melakukan penyuntingan',
 'confirmedittext'                  => 'Anda harus mengkonfirmasikan dulu alamat surel Anda sebelum menyunting halaman.
 Harap masukkan dan validasikan alamat surel Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.',
-'nosuchsectiontitle'               => 'Subbagian tersebut tak ditemukan',
-'nosuchsectiontext'                => 'Anda mencoba menyunting suatu subbagian tidak ada. Karena subbagian $1 tidak ada, suntingan Anda tak dapat disimpan.',
+'nosuchsectiontitle'               => 'Bagian tidak ditemukan',
+'nosuchsectiontext'                => 'Anda mencoba menyunting suatu subbagian yang tidak ada.
+Subbagian ini mungkin dipindahkan atau dihapus ketika Anda membukanya.',
 'loginreqtitle'                    => 'Harus masuk log',
 'loginreqlink'                     => 'masuk log',
 'loginreqpagetext'                 => 'Anda harus $1 untuk dapat melihat halaman lainnya.',
@@ -831,7 +837,7 @@ Dengan demikian, kami terpaksa harus memakai alamat IP yang bersangkutan untuk m
 Alamat IP seperti ini mungkin dipakai bersama oleh beberapa pengguna yang berbeda.
 Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak relevan yang ditujukan langsung kepada Anda, silakan [[Special:UserLogin/signup|membuat akun]] atau [[Special:UserLogin|masuk log]] untuk menghindari kerancuan dengan pengguna anonim lainnya di lain waktu.''",
 'noarticletext'                    => 'Saat ini tidak ada teks dalam halaman ini.
-Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
+Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
 'usercssjsyoucanpreview'           => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji CSS/JS baru Anda sebelum menyimpannya.",
@@ -884,7 +890,7 @@ Pengurus yang mengunci basis data memberikan penjelasan berikut: $1",
 'templatesusedsection'             => 'Templat yang digunakan di bagian ini:',
 'template-protected'               => '(dilindungi)',
 'template-semiprotected'           => '(semi-perlindungan)',
-'hiddencategories'                 => 'Halaman ini adalah anggota dari {{PLURAL:$1|1 kategori tersebunyi|$1 kategori tersebunyi}}:',
+'hiddencategories'                 => 'Halaman ini adalah anggota dari {{PLURAL:$1|1 kategori tersembunyi|$1 kategori tersembunyi}}:',
 'edittools'                        => '<!-- Teks di sini akan dimunculkan di bawah isian suntingan dan pemuatan.-->',
 'nocreatetitle'                    => 'Pembuatan halaman baru dibatasi',
 'nocreatetext'                     => '{{SITENAME}} telah membatasi pembuatan halaman-halaman baru.
@@ -1227,7 +1233,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-resetpass'           => 'Ganti kata sandi',
 'saveprefs'                 => 'Simpan',
 'resetprefs'                => 'Batalkan perubahan',
-'restoreprefs'              => 'Kembalikan semua setelan baku',
+'restoreprefs'              => 'Kembalikan semua setelan bawaan',
 'textboxsize'               => 'Penyuntingan',
 'prefs-edit-boxsize'        => 'Ukuran kotak penyuntingan.',
 'rows'                      => 'Baris:',
@@ -1282,7 +1288,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 * Kotak dengan tanda cek merupakan kelompok pengguna yang bersangkutan
 * Kotak tanpa tanda cek berarti pengguna ini bukan anggota kelompok tersebut
 * Tanda * menandai bahwa Anda tidak dapat membatalkan kelompok tersebut bila Anda telah menambahkannya, atau sebaliknya.',
-'userrights-reason'           => 'Alasan pengubahan:',
+'userrights-reason'           => 'Alasan:',
 'userrights-no-interwiki'     => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
 'userrights-nodatabase'       => 'Basis data $1 tidak ada atau bukan lokal.',
 'userrights-nologin'          => 'Anda harus [[Special:UserLogin|masuk log]] dengan menggunakan akun pengurus untuk dapat mengubah hak pengguna.',
@@ -1590,7 +1596,7 @@ Klik pada kepala kolom untuk mengubah urutan.',
 'filehist-filesize'         => 'Besar berkas',
 'filehist-comment'          => 'Komentar',
 'imagelinks'                => 'Pranala berkas',
-'linkstoimage'              => 'Halaman berikut memiliki {{PLURAL:$1|pranala|$1 pranala}} ke berkas ini:',
+'linkstoimage'              => '{{PLURAL:$1||}}$1 halaman berikut memiliki pranala ke berkas ini:',
 'linkstoimage-more'         => 'Lebih dari $1 {{PLURAL:$1|halaman|halaman}} memiliki pranala ke berkas ini.
 Daftar berikut menampilkan {{PLURAL:$1|halaman dengan pranala langsung|$1 halaman dengan pranala langsung}} ke berkas ini.
 Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
@@ -1758,7 +1764,8 @@ Nama yang telah <s>dicoret</s> berarti telah dibetulkan.',
 'ancientpages'            => 'Artikel lama',
 'move'                    => 'Pindahkan',
 'movethispage'            => 'Pindahkan halaman ini',
-'unusedimagestext'        => 'Perhatikan bahwa mungkin ada situs web lain yang memiliki pautan URL ke salah satu berkas di bawah ini secara langsung, walaupun berkas tersebut tidak aktif digunakan di wiki ini.',
+'unusedimagestext'        => 'Berkas berikut ada tapi tidak disertakan di halaman manapun.
+Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas dengan URL langsung, dan karenanya masih terdaftar di sini meskiput sudah tidak digunakan aktif.',
 'unusedcategoriestext'    => 'Kategori berikut ada walaupun tidak ada artikel atau kategori lain yang menggunakannya.',
 'notargettitle'           => 'Tidak ada sasaran',
 'notargettext'            => 'Anda tidak menentukan halaman atau pengguna tujuan fungsi ini.',
@@ -1987,7 +1994,7 @@ Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:p
 'editcomment'      => "Komentar penyuntingan adalah: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => '←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
-'sessionfailure'   => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
+'sessionfailure'   => 'Sepertinya ada masalah dengan sesi log Anda; log Anda telah dibatalkan untuk mencegah pembajakan. Silakan tekan tombol "kembali" dan muat kembali halaman sebelum Anda masuk, lalu coba lagi.',
 
 # Protect
 'protectlogpage'              => 'Log perlindungan',
@@ -2288,7 +2295,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'pagemovedsub'                 => 'Pemindahan berhasil',
 'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Halaman pengalihan telah dibuat.',
-'movepage-moved-noredirect'    => 'Pembuatan pengalihan telah ditahan.',
+'movepage-moved-noredirect'    => 'Pengalihan tidak dibuat.',
 'articleexists'                => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',
 'cantmove-titleprotected'      => 'Anda tidak dapat memindahkan halaman ke lokasi ini, karena judul tujuan sedang dilindungi dari pembuatan',
 'talkexists'                   => 'Halaman tersebut berhasil dipindahkan, tetapi halaman pembicaraan dari halaman tersebut tidak dapat dipindahkan karena telah ada halaman pembicaraan pada judul yang baru. Silakan gabungkan halaman-halaman pembicaraan tersebut secara manual.',

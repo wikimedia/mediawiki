@@ -483,8 +483,10 @@ Emandako arrazoia ''$2'' izan zen.",
 
 # Login and logout pages
 'logouttitle'                => 'Saioa ixtea',
-'logouttext'                 => "'''Saioa itxi egin duzu.'''<br />
-Erabiltzaile anonimo bezala jarraitu dezakezu {{SITENAME}} erabiltzen, edo saioa has dezakezu berriz erabiltzaile berdinarekin edo ezberdin batekin. Kontuan izan orrialde batzuk saioa hasita bazenu bezala ikus ditzakezula nabigatzailearen katxea garbitu arte.",
+'logouttext'                 => "'''Saioa itxi egin duzu.'''
+
+Erabiltzaile anonimo bezala jarrai dezakezu {{SITENAME}} erabiltzen, edo [[Special:UserLogin|saioa has dezakezu berriz]] erabiltzaile berdinarekin edo ezberdin batekin.
+Kontuan izan orrialde batzuk saioa hasita bazenu bezala ikus ditzakezula nabigatzailearen katxea garbitu arte.",
 'welcomecreation'            => '== Ongi etorri, $1! ==
 
 Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hobespenak]] aldatzea.',
@@ -681,8 +683,9 @@ Mesedez, detaile hauek eman itzazu egin nahi duzun edozein kontsulta egiteko gar
 'whitelistedittext'                => '$1 behar duzu orrialdeak aldatu ahal izateko..',
 'confirmedittitle'                 => 'E-posta egiaztatzea beharrezkoa da aldaketak egiteko',
 'confirmedittext'                  => 'Orrialdeetan aldaketak egin aurretik zure e-posta helbidea egiaztatu beharra daukazu. Mesedez, zehaztu eta egiaztatu zure e-posta helbidea [[Special:Preferences|hobespenetan]].',
-'nosuchsectiontitle'               => 'Ez da atala existitzen',
-'nosuchsectiontext'                => 'Existitzen ez den atala editatzen saiatu zara. $1 atala existitzen ez denez, ezin dira zure aldaketak inon gorde.',
+'nosuchsectiontitle'               => 'Atala ez da aurkitu',
+'nosuchsectiontext'                => 'Existitzen ez den atala editatzen saiatu zara.
+Baliteke orrialdea begiratzen zenuen bitartean norbaitek ezabatu edo izenburua aldatu izana.',
 'loginreqtitle'                    => 'Saioa hastea beharrezkoa',
 'loginreqlink'                     => 'saioa hasi',
 'loginreqpagetext'                 => 'Beste orrialde batzuk ikusteko $1 beharra daukazu..',
@@ -698,7 +701,7 @@ Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea.
 Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Special:UserLogin/signup|Izena eman]] edo [[Special:UserLogin|saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
 'noarticletext'                    => 'Oraindik ez dago testurik orrialde honetan.
 Beste orrialde batzuetan [[Special:Search/{{PAGENAME}}|bilatu dezakezu izenburu hau]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} bilatu lotutako logak],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bilatu lotutako logak],
 edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu]</span>.',
 'userpage-userdoesnotexist'        => '"$1" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
 'clearyourcache'                   => "'''Oharra - Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.''' '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''Internet Explorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
@@ -1151,7 +1154,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 * Aukeratutako taulak esan nahi du lankidea talde horretan dagoela.
 * Aukeratu gabeko taulak esan nahi du lankidea ez dagoela talde horretan.
 * *-k erakusten du ezin duzula taldea ezabatu, behin gehitu ondoren, edo alderantziz.',
-'userrights-reason'           => 'Aldatzeko arrazoia:',
+'userrights-reason'           => 'Arrazoia:',
 'userrights-no-interwiki'     => 'Ez duzu beste wikietan erabiltzaile eskumenak aldatzeko baimenik.',
 'userrights-nodatabase'       => '$1 datubasea ez da existitzen edo ez dago lokalki.',
 'userrights-nologin'          => 'Administratzaile kontu batekin [[Special:UserLogin|hasi behar duzu saioa]] erabiltzaile eskubideak esleitzeko.',
@@ -1368,7 +1371,8 @@ Baimendutako fitxategi {{PLURAL:$3|mota $2 da|motak $2 dira}}.',
 [[$1|thumb]]",
 'filepageexists'              => "Fitxategi honen deskribapen orria dagoeneko sortuta dago '''<tt>[[:$1]]</tt>'''-en, baina, ez da existitzen izen hori duen fitxategirik.
 Idazten duzun laburpena ez da deskribapen orrian agertuko.
-Zure laburpena agertzeko, eskuz aldatu beharko duzu",
+Zure laburpena agertzeko, eskuz aldatu beharko duzu.
+[[$1|thumb]]",
 'fileexists-extension'        => "Badago antzeko izena duen fitxategi bat: [[$2|thumb]]
 * Igotako fitxategiaren izena: '''<tt>[[:$1]]</tt>'''
 * Aurretik dagoen fitxategiaren izena: '''<tt>[[:$2]]</tt>'''
@@ -1621,7 +1625,8 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'ancientpages'            => 'Orrialde zaharrenak',
 'move'                    => 'Mugitu',
 'movethispage'            => 'Orrialde hau mugitu',
-'unusedimagestext'        => '<p>Mesedez, kontuan izan beste webgune batzutatik URL zuzena erabiliz lotura izan dezaketela irudira, eta kasu horretan ez lirateke hemengo zerrendetan azalduko.</p>',
+'unusedimagestext'        => 'Ondorengo fitxategiak existizen dira baina ez daude inongo orrietatik lotuta.
+Mesedez, kontuan izan beste webgune batzutatik URL zuzena erabiliz lotura izan dezaketela irudira, eta kasu horretan ez lirateke hemengo zerrendetan azalduko.',
 'unusedcategoriestext'    => 'Hurrengo kategoria orrialde guztiak datu-basean existitzen dira, baina ez du inongo orrialde edo kategoriak erabiltzen.',
 'notargettitle'           => 'Helburu orrialderik ez',
 'notargettext'            => 'Ez duzu eragiketa hau burutzeko helburu orrialde edo erabiltzaile bat zehaztu.',

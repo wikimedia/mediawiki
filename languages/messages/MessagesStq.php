@@ -390,7 +390,9 @@ Ju Speere wuude truch [[User:$1|$1]] mäd ju Begruundenge ''$2'' ienroat.",
 # Login and logout pages
 'logouttitle'                => 'Benutser-Oumäldenge',
 'logouttext'                 => "'''Du bäst nu oumälded.'''
-Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dän sälwe of n uur Benutsernoome wier [[Special:UserLogin|anmäldje]].",
+
+Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dänsälge of n uur Benutsernoome wier [[Special:UserLogin|anmäldje]].
+Beoachtje, dät eenige Sieden noch anwiese konnen, dät du oumälded bäst, soloange du nit din Browsercache loosmoaked hääst.",
 'welcomecreation'            => '== Wäilkuumen, $1 ==
 
 Dien Benutserkonto wuude iengjucht. 
@@ -594,7 +596,7 @@ Du koast $1 of aan fon do uur [[{{MediaWiki:Grouppage-sysop}}|Administratore]] k
 'confirmedittitle'                 => 'Toun Beoarbaidjen is ju E-Mail-Anärkannenge nöödich.',
 'confirmedittext'                  => 'Du moast dien E-Mail-Adresse eerste anärkanne, eer du beoarbaidje koast. Fäl dien E-Mail uut un ärkanne ju an in do [[Special:Preferences|Ienstaalengen]].',
 'nosuchsectiontitle'               => 'Oudeelenge bestoant nit',
-'nosuchsectiontext'                => 'Du fersäkst ju nit bestoundende Oudeelenge $1 tou beoarbaidjen. Man bloot al bestoundende Oudeelengen konnen beoarbaided wäide.',
+'nosuchsectiontext'                => 'Du fersäkst ju nit bestoundende Oudeelenge tou beoarbaidjen.',
 'loginreqtitle'                    => 'Anmäldenge ärfoarderelk',
 'loginreqlink'                     => 'anmäldje',
 'loginreqpagetext'                 => 'Du moast die $1, uum uur Sieden betrachtje tou konnen.',
@@ -613,7 +615,7 @@ Man oafte wäd sunne Adrässe fon moorere Benutsere ferwoand.
 Wan du n uunbekoanden Benutser bääst un du toankst dät du Kommentare krichst do nit foar die meend sunt, dan koast du ap bääste n [[Special:UserLogin/signup|Benutserkonto iengjuchte]] of die [[Special:UserLogin|anmäldje]], uum sukke Fertuusengen mäd uur anomyme Benutsere tou fermieden.''",
 'noarticletext'                    => 'Deer is apstuuns naan Text ap disse Siede. 
 Du koast dissen Tittel ap do uur Sieden [[Special:Search/{{PAGENAME}}|säike]],
-<span class="plainlinks"> in do touheerige [{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} Logbouke säike] of disse Siede [{{fullurl:{{FULLPAGENAME}}|action=edit}} beoarbaidje]</span>.',
+<span class="plainlinks"> in do touheerige [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbouke säike] of disse Siede [{{fullurl:{{FULLPAGENAME}}|action=edit}} beoarbaidje]</span>.',
 'userpage-userdoesnotexist'        => 'Dät Benutserkonto „$1“ is nit deer. Pröif, of du disse Siede wuddelk moakje/beoarbaidje wolt.',
 'clearyourcache'                   => "'''Bemäärkenge: Ätter dät Fäästlääsen kon dät nöödich weese, dän Browser-Cache loostoumoakjen, uum do Annerengen sjo tou konnen.'''
 '''Mozilla / Firefox / Safari:''' hoold ''Shift'' deel un klik ''Reload,'' of tai ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' ap n Macintosh); '''Konqueror: '''klik ''Reload'' of tai ''F5;'' '''Opera:''' moak dän cache loos in ''Tools → Preferences;'' '''Internet Explorer:''' hoold ''Ctrl'' deel un klik ''Refresh,'' of tai ''Ctrl-F5.''",
@@ -759,6 +761,9 @@ As Administrator koast du ju wieders ienkiekje.
 Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-deleted-no-diff'            => "Du koast dissen Unnerscheed nit betrachtje, deer een fon do Versione '''uut do eepentelke Archive wächhoald wuud'''.
 Details stounde in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+'rev-deleted-unhide-diff'        => "Een fon do Versione fon dissen Unnerscheed wuud '''läsked'''.
+Details stounde in  dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].
+As n Administrator koast du noch [$1 dissen Unnerscheed bekiekje], wan du fääregunge moatest.",
 'rev-delundel'                   => 'wiese/ferbierge',
 'revisiondelete'                 => 'Versione läskje/wier häärstaale',
 'revdelete-nooldid-title'        => 'Uunjäildige Siel-Beoarbaidenge',
@@ -791,7 +796,7 @@ Bestäätigje, dät du dät dwoo wolt, do Konsequenze ferstoanst un dät in Uure
 'revdelete-submit'               => 'Ap uutwäälde Version anweende',
 'revdelete-logentry'             => 'Versionsansicht annerd foar [[$1]]',
 'logdelete-logentry'             => 'annerde ju Sichtboarkaid foar [[$1]]',
-'revdelete-success'              => "'''Versionsansicht mäd Ärfoulch annerd.'''",
+'revdelete-success'              => "'''Ju Versionsansicht wuud aktualisierd.'''",
 'logdelete-success'              => "'''Logbouk-Aktion mäd Ärfoulch sät.'''",
 'revdel-restore'                 => 'Sichtboarhaid annerje',
 'pagehist'                       => 'Siedegeschichte',
@@ -1550,8 +1555,9 @@ Ne Siede wäd as Begriepskläärengssiede behonneld, wan [[MediaWiki:Disambiguat
 'ancientpages'            => 'Siet loang uunbeoarbaidede Sieden',
 'move'                    => 'ferschuuwe',
 'movethispage'            => 'Artikkel ferschuuwe',
-'unusedimagestext'        => 'Beoachtje jädden, dät uur Websieden disse Doatäi mäd n direkten URL ferlinkje konnen.
-Deeruum kon ju hier noch aptäld weese, wan ju uk aktiv benutsed wäd.',
+'unusedimagestext'        => 'Do foulgjende Doatäie bestounde, man sunt nit apnuumen in ne Siede.
+Beoachtje jädden, dät uur Websieden ne Doatäi mäd n direkten URL ferlinkje konnen.
+Deeruum konnen do hier noch aptäld weese, wan do uk aktiv benutsed wäide.',
 'unusedcategoriestext'    => 'Do foulgjende Kategorien bestounde, wan do apstuuns uk nit in Ferweendenge sunt.',
 'notargettitle'           => 'Naan Artikkel anroat',
 'notargettext'            => 'Du hääst nit anroat, ap wäkke Siede disse Funktion anwoand wäide schäl.',
@@ -2015,9 +2021,11 @@ Reek dän Gruund foar ju Speere oun.',
 'block-log-flags-noemail'         => 'E-Mail-Fersoand speerd',
 'block-log-flags-nousertalk'      => 'duur oaine Diskussionssiede nit beoarbaidje',
 'block-log-flags-angry-autoblock' => 'ärwiederden Autoblock aktivierd',
+'block-log-flags-hiddenname'      => 'Benutsernoome ferstat',
 'range_block_disabled'            => 'Ju Muugelkaid, ganse Adräsruume tou speeren, is nit aktivierd.',
 'ipb_expiry_invalid'              => 'Ju anroate Oulooptied is nit gultich.',
 'ipb_expiry_temp'                 => 'Ferstatte Benutsernoomen-Speeren schällen permanent weese.',
+'ipb_hide_invalid'                => 'Dit Konto kon nit unnerdrukt wäide, deer dät toufuul Beoarbaidengen apwiest.',
 'ipb_already_blocked'             => '„$1“ wuude al speerd.',
 'ipb-needreblock'                 => '== Speere is al deer ==
 „$1“ is al speerd. Moatest du do Speerparametere annerje?',
@@ -2138,6 +2146,7 @@ Alternativ is die Export uk mäd de Syntax [[{{#Special:Export}}/{{MediaWiki:Mai
 'export-submit'     => 'Sieden exportierje',
 'export-addcattext' => 'Sieden uut Kategorie bietouföigje:',
 'export-addcat'     => 'Bietouföigje',
+'export-addnstext'  => 'Sieden uut Noomensruum bietouföigje:',
 'export-addns'      => 'Bietouföigje',
 'export-download'   => 'As XML-Doatäi spiekerje',
 'export-templates'  => 'Inklusive Foarloagen',
@@ -2356,7 +2365,7 @@ $1',
 'visual-comparison' => 'Visuellen Fergliek',
 
 # Media information
-'mediawarning'         => "'''Warnung:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden of Eepenjen fon dissen Doatäi kon dän Computer Schoade toubroacht wäide.<hr />",
+'mediawarning'         => "'''Woarschauenge:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden un Eepenjen fon disse Doatäi kon dän Computer Schoade toubroacht wäide.<hr />",
 'imagemaxsize'         => 'Maximoale Bieldegrööte ap Bieldebeschrieuwengssieden:',
 'thumbsize'            => 'Grööte fon do Foarschaubielden (thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Siede|$3 Sieden}}',

@@ -470,7 +470,7 @@ Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñi
 'loginpagetitle'             => 'Oturım aç',
 'yourname'                   => 'Qullanıcı adıñız',
 'yourpassword'               => 'Paroliñiz',
-'yourpasswordagain'          => 'Parolni yañıdan yaz',
+'yourpasswordagain'          => 'Parolni bir daa yazıñız:',
 'remembermypassword'         => 'Bu kompyuterde meni hatırla',
 'yourdomainname'             => 'Domen adıñız',
 'externaldberror'            => 'Oturımıñız açılğanda bir hata oldı. Bu tış esabıñızğa deñişiklik yapmağa aqqıñız olmayuvından meydanğa kelip ola.',
@@ -645,7 +645,7 @@ IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, idarecilerge 
 'confirmedittitle'                 => 'E-mail adresini tasdıqlamaq lâzimdir',
 'confirmedittext'                  => 'Saifeni deñiştirmeden evel e-mail adresiñizni tasdıqlamalısıñız. Lütfen, [[Special:Preferences|sazlamalar saifesinde]] e-mail adresiñizni kirsetiñiz ve tasdıqlañız.',
 'nosuchsectiontitle'               => 'Öyle bölük yoq',
-'nosuchsectiontext'                => 'Bar olmağan bölükni deñiştirip baqtıñız. $1 bölügi yoq olğanı içün metniñiz saqlanacaq yeri yoq.',
+'nosuchsectiontext'                => 'Bar olmağan bölükni deñiştirip baqtıñız.',
 'loginreqtitle'                    => 'Oturım açmalısıñız',
 'loginreqlink'                     => 'kiriş',
 'loginreqpagetext'                 => 'Başqa saifelerni baqmaq içün $1 borclusıñız.',
@@ -658,7 +658,7 @@ Bu yañı esap içün parol, kiriş yapqandan soñ ''[[Special:ChangePassword|pa
 'anontalkpagetext'                 => "----''Bu muzakere saifesi şimdilik qayd olunmağan ya da oturımını açmağan adsız (anonim) qullanıcığa mensüptir. İdentifikatsiya içün IP adres işletile. 
 Bir IP adresinden bir qaç qullanıcı faydalanıp ola.
 Eger siz anonim qullanıcı olsañız ve sizge kelgen beyanatlarnı yañlıştan kelgenini belleseñiz, lütfen, artıq bunıñ kibi qarışıqlıq olmasın dep [[Special:UserLogin|oturım açıñız]].''",
-'noarticletext'                    => 'Bu saife şimdi boştır. Bu serlevanı başqa saifelerde [[Special:Search/{{PAGENAME}}|qıdırıp olasıñız]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} bağlı jurnal qaydlarını qıdırıp olasıñız] ya da bu saifeni özüñiz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazıp olasıñız]</span>.',
+'noarticletext'                    => 'Bu saife şimdi boştır. Bu serlevanı başqa saifelerde [[Special:Search/{{PAGENAME}}|qıdırıp olasıñız]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bağlı jurnal qaydlarını qıdırıp olasıñız] ya da bu saifeni özüñiz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazıp olasıñız]</span>.',
 'userpage-userdoesnotexist'        => '"$1" adlı qullanıcı yoqtır. Tamam bu saifeni deñiştirmege istegeniñizni teşkeriñiz.',
 'clearyourcache'                   => "'''İhtar:''' Sazlamalarıñıznı saqlağandan soñ deñişikliklerni körmek içün brauzeriñizniñ keşini temizlemek kereksiñiz.
 '''Mozilla / Firefox / Safari:''' ''Shift'' basılı ekende saifeni yañıdan yüklep ya da ''Ctrl-Shift-R'' yapıp (Macintosh içün ''Command-R'');

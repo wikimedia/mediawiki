@@ -735,7 +735,8 @@ Prašome nurodyti šiuos duomenis visais atvejais, kai kreipiatės dėl blokavim
 'confirmedittext'                  => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius.
 Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[Special:Preferences|naudotojo nustatymus]].',
 'nosuchsectiontitle'               => 'Nėra tokio skyriaus',
-'nosuchsectiontext'                => 'Jūs mėginote redaguoti skyrių, kuris neegzistuoja. Kadangi nėra skyriaus „$1“, tai nėra kur įrašyti jūsų keitimo.',
+'nosuchsectiontext'                => 'Jūs mėginote redaguoti skyrių, kuris neegzistuoja.
+Jis galėjo būti perkeltas arba ištrintas, kol peržiūrėjote puslapį.',
 'loginreqtitle'                    => 'Reikalingas prisijungimas',
 'loginreqlink'                     => 'prisijungti',
 'loginreqpagetext'                 => 'Jums reikia $1, kad matytumėte kitus puslapius.',
@@ -754,7 +755,7 @@ Dėl to naudojamas IP adresas jo identifikavimui.
 Jeigu Jūs esate anoniminis naudotojas ir atrodo, kad komentarai nėra skirti Jums, [[Special:UserLogin/signup|sukurkite paskyrą]] arba [[Special:UserLogin|prisijunkite]], ir nebūsite tapatinamas su kitais anoniminiais naudotojais.''",
 'noarticletext'                    => 'Šiuo metu šiame puslapyje nėra jokio teksto.
 Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ieškoti susijusių įrašų],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ieškoti susijusių įrašų],
 arba [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaguoti šį puslapį]</span>.',
 'userpage-userdoesnotexist'        => 'Naudotojo paskyra „$1“ yra neužregistruota. Prašom patikrinti, ar jūs norite kurti/redaguoti šį puslapį.',
 'clearyourcache'                   => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
@@ -947,7 +948,7 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 'revdelete-submit'               => 'Taikyti pasirinktai versijai',
 'revdelete-logentry'             => 'pakeistas [[$1]] versijos matomumas',
 'logdelete-logentry'             => 'pakeistas [[$1]] įvykio matomumas',
-'revdelete-success'              => "'''Versijos matomumas sėkmingai nustatytas.'''",
+'revdelete-success'              => "'''Versijos matomumas sėkmingai pakeistas.'''",
 'logdelete-success'              => "'''Įvykio matomumas sėkmingai nustatytas.'''",
 'revdel-restore'                 => 'Keisti matomumą',
 'pagehist'                       => 'Puslapio istorija',
@@ -1062,9 +1063,9 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 
 # Search results
 'searchresults'                    => 'Paieškos rezultatai',
-'searchresults-title'              => 'Paieškos rezultatai "$1"',
+'searchresults-title'              => 'Paieškos rezultatai „$1“',
 'searchresulttext'                 => 'Daugiau informacijos apie paiešką projekte {{SITENAME}} rasite [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Jūs ieškote \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|visi puslapiai, prasidedantys "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|visi puslapiai, rodantys į "$1"]])',
+'searchsubtitle'                   => "Jūs ieškote '''[[:$1]]''' ([[Special:Prefixindex/$1|visi puslapiai, prasidedantys „$1“]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|visi puslapiai, rodantys į „$1“]])",
 'searchsubtitleinvalid'            => "Ieškoma '''$1'''",
 'noexactmatch'                     => "'''Nėra jokio puslapio, pavadinto „$1“.''' Jūs galite [[:$1|sukurti šį puslapį]].",
 'noexactmatch-nocreate'            => "'''Nėra puslapio su pavadinimu „$1“.'''",
@@ -1220,7 +1221,7 @@ teisės",
 * Pažymėtas langelis reiškia, kad šis naudotojas yra toje grupėje.
 * Nepažymėtas langelis reiškia, kad šis naudotojas nėra toje grupėje.
 * * parodo, kad jūs nebegalėsite pašalinti grupės, kai ją pridėsite, ir atvirkščiai.',
-'userrights-reason'           => 'Keitimo priežastis:',
+'userrights-reason'           => 'Priežastis:',
 'userrights-no-interwiki'     => 'Jūs neturite leidimo keisti naudotojų teises kituose projektuose.',
 'userrights-nodatabase'       => 'Duomenų bazė $1 neegzistuoja arba yra ne vietinė.',
 'userrights-nologin'          => 'Jūs privalote [[Special:UserLogin|prisijungti]] kaip administratorius, kad galėtumėte priskirti naudotojų teises.',
@@ -1345,7 +1346,7 @@ teisės",
 'action-patrol'               => 'pažymėti kitų keitimus kaip patikrintus',
 'action-autopatrol'           => 'savo keitimų pažymėjimas patikrintais',
 'action-unwatchedpages'       => 'žiūrėti nestebimų puslapių sąrašą',
-'action-trackback'            => "priimti trackback'ą",
+'action-trackback'            => 'priimti trackback nuorodą',
 'action-mergehistory'         => 'sulieti šio puslapio istoriją',
 'action-userrights'           => 'keisti visų naudotojų teises',
 'action-userrights-interwiki' => 'keisti naudotojų teises kitose wiki svetainėse',
@@ -1404,9 +1405,9 @@ Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra '''paryškin
 Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai ir trynimai yra registruojami [[Special:Log/upload|įkėlimų istorijoje]], trynimai - [[Special:Log/delete|trynimų istorijoje]].
 
 Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' arba
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' tiesioginei nuorodai į failą.",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></tt>''' arba
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki></tt>''' tiesioginei nuorodai į failą.",
 'upload-permitted'            => 'Leidžiami failų tipai: $1.',
 'upload-preferred'            => 'Pageidautini failų tipai: $1.',
 'upload-prohibited'           => 'Uždrausti failų tipai: $1.',
@@ -1598,7 +1599,7 @@ Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas]].',
 
 # Random redirect
 'randomredirect'         => 'Atsitiktinis peradresavimas',
-'randomredirect-nopages' => 'Vardų srityje "$1" nėra jokių peradresavimų.',
+'randomredirect-nopages' => 'Vardų srityje „$1“ nėra jokių peradresavimų.',
 
 # Statistics
 'statistics'                   => 'Statistika',
@@ -1696,7 +1697,8 @@ Kiekvienoje eilutėje yra nuorodos į pirmąjį ir antrąjį peradresavimą, tai
 'ancientpages'            => 'Seniausi puslapiai',
 'move'                    => 'Pervadinti',
 'movethispage'            => 'Pervadinti šį puslapį',
-'unusedimagestext'        => 'Primename, kad kitos svetainės gali turėti tiesioginę nuorodą į failą, bet vistiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.',
+'unusedimagestext'        => 'Šie failai yra, bet jie neįtraukti į jokį kitą puslapį.
+Primename, kad kitos svetainės gali turėti tiesioginę nuorodą į failą, bet vistiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.',
 'unusedcategoriestext'    => 'Šie kategorijų puslapiai sukurti, nors joks kitas puslapis ar kategorija jo nenaudoja.',
 'notargettitle'           => 'Nenurodytas objektas',
 'notargettext'            => 'Jūs nenurodėte norimo puslapio ar naudotojo, kuriam įvykdyti šią funkciją.',
@@ -1891,7 +1893,7 @@ Atsiliepimai ir pagalba:
 'excontentauthor'        => 'buvęs turinys: „$1“ (redagavo tik „[[Special:Contributions/$2|$2]]“)',
 'exbeforeblank'          => 'prieš ištrinant turinys buvo: „$1“',
 'exblank'                => 'puslapis buvo tuščias',
-'delete-confirm'         => 'Ištrinta "$1"',
+'delete-confirm'         => 'Ištrinti „$1“',
 'delete-legend'          => 'Trynimas',
 'historywarning'         => 'Dėmesio: Trinamas puslapis turi istoriją:',
 'confirmdeletetext'      => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį kartu su visa jo istorija.
@@ -2252,7 +2254,7 @@ kad suprantate visas pasekmes.",
 'move-watch'                   => 'Stebėti šį puslapį',
 'movepagebtn'                  => 'Pervadinti puslapį',
 'pagemovedsub'                 => 'Pervadinta sėkmingai',
-'movepage-moved'               => '<big>\'\'\'"$1" buvo pervadintas į "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''„$1“ buvo pervadintas į „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Nukreipimas sukurtas.',
 'movepage-moved-noredirect'    => 'Nukreipimo sukūrimas buvo atšauktas.',
 'articleexists'                => 'Puslapis tokiu pavadinimu jau egzistuoja
@@ -2541,7 +2543,8 @@ $1',
 'visual-comparison' => 'Vizualinis palyginimas',
 
 # Media information
-'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą, jį paleidus jūsų sistema gali būti pažeista.<hr />",
+'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą.
+Jį paleidus jūsų sistema gali būti pažeista.<hr />",
 'imagemaxsize'         => 'Riboti paveikslėlių dydį jų aprašymo puslapyje iki:',
 'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',

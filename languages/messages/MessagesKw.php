@@ -1,5 +1,5 @@
 <?php
-/** Cornish (Kernowek)
+/** Cornish (Kernewek)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -16,16 +16,19 @@
  */
 
 $messages = array(
+# User preference toggles
+'tog-hideminor' => 'Kudha chanjyow bian yn chanjyow a-dhiwedhes',
+
 'underline-never' => 'Jammes',
 
 # Dates
-'sunday'        => 'De Sul',
-'monday'        => 'De Lun',
-'tuesday'       => 'De Meurth',
-'wednesday'     => 'De Merher',
-'thursday'      => 'De Yow',
-'friday'        => 'De Gwener',
-'saturday'      => 'De Sadorn',
+'sunday'        => "Dy' Sul",
+'monday'        => "Dy' Lun",
+'tuesday'       => "Dy' Meurth",
+'wednesday'     => "Dy' Merher",
+'thursday'      => "Dy' Yow",
+'friday'        => "Dy' Gwener",
+'saturday'      => "Dy' Sadorn",
 'sun'           => 'Sul',
 'mon'           => 'Lun',
 'tue'           => 'Meu',
@@ -34,7 +37,7 @@ $messages = array(
 'fri'           => 'Gwe',
 'sat'           => 'Sad',
 'january'       => 'Genver',
-'february'      => 'Whevrel',
+'february'      => 'Hwevrer',
 'march'         => 'Meurth',
 'april'         => 'Ebrel',
 'may_long'      => 'Me',
@@ -46,7 +49,7 @@ $messages = array(
 'november'      => 'Du',
 'december'      => 'Kevardhu',
 'january-gen'   => 'Genver',
-'february-gen'  => 'Whevrel',
+'february-gen'  => 'Hwevrer',
 'march-gen'     => 'Meurth',
 'april-gen'     => 'Ebrel',
 'may-gen'       => 'Me',
@@ -58,7 +61,7 @@ $messages = array(
 'november-gen'  => 'Du',
 'december-gen'  => 'Kevardhu',
 'jan'           => 'Gen',
-'feb'           => 'Whe',
+'feb'           => 'Hwe',
 'mar'           => 'Meu',
 'apr'           => 'Ebr',
 'may'           => 'Me',
@@ -71,18 +74,18 @@ $messages = array(
 'dec'           => 'Kev',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Class|Class}}',
-'category_header'          => 'Folennow y\'n class "$1"',
-'subcategories'            => 'Is-classys',
-'category-media-header'    => 'Media y\'n class "$1"',
-'hidden-categories'        => '{{PLURAL:$1|Class covys|Class covys}}',
+'pagecategories'           => '{{PLURAL:$1|Klass|Klass}}',
+'category_header'          => 'Folennow y\'n klass "$1"',
+'subcategories'            => 'Is-klassys',
+'category-media-header'    => 'Media y\'n klass "$1"',
+'hidden-categories'        => '{{PLURAL:$1|Klass kovys|Klass kovys}}',
 'hidden-category-category' => 'Classys covys', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'pes.',
 
 'about'          => 'A-dro dhe',
-'cancel'         => 'Hedhy',
-'qbfind'         => 'Whila',
-'qbbrowse'       => 'Peury',
+'cancel'         => 'Hedhi',
+'qbfind'         => 'Hwila',
+'qbbrowse'       => 'Peuri',
 'qbedit'         => 'Chanjya',
 'qbpageoptions'  => 'An folen ma',
 'qbmyoptions'    => 'Ow folennow',
@@ -90,7 +93,7 @@ $messages = array(
 'moredotdotdot'  => 'Moy...',
 'mypage'         => 'Ow folen',
 'mytalk'         => 'Ow hows',
-'anontalk'       => 'Kescows rag an trigva IP-ma',
+'anontalk'       => 'Keskows rag an trigva IP-ma',
 'navigation'     => 'Lewyans',
 'and'            => '&#32;ha(g)',
 
@@ -100,20 +103,20 @@ $messages = array(
 'errorpagetitle'    => 'Gwall',
 'tagline'           => 'Dhyworth {{SITENAME}}',
 'help'              => 'Gweres',
-'search'            => 'Whilas',
-'searchbutton'      => 'Whila',
+'search'            => 'Hwilans',
+'searchbutton'      => 'Hwila',
 'go'                => 'Ke',
 'searcharticle'     => 'Ke',
-'history'           => 'Istory an folen',
-'history_short'     => 'Istory',
+'history'           => 'Istori an folen',
+'history_short'     => 'Istori',
 'info_short'        => 'Kedhlow',
 'printableversion'  => 'Versyon pryntyadow',
 'permalink'         => 'Kevren fast',
 'print'             => 'Pryntya',
 'edit'              => 'Chanjya',
-'create'            => 'Gruthyl',
+'create'            => 'Gwruthyl',
 'editthispage'      => 'Chanjya an folen-ma',
-'create-this-page'  => 'Gruthyl an folen-ma',
+'create-this-page'  => 'Gwruthyl an folen-ma',
 'delete'            => 'Dilea',
 'deletethispage'    => 'Dilea an folen-ma',
 'undelete_short'    => 'Disdhilea $1 chanj',
@@ -124,24 +127,25 @@ $messages = array(
 'unprotectthispage' => 'Disdhifres an folen-ma',
 'newpage'           => 'Folen nowyth',
 'talkpage'          => "Dadhelva a-dro dhe'n folen-ma",
-'talkpagelinktext'  => 'kescows',
+'talkpagelinktext'  => 'keskows',
 'specialpage'       => 'Folen arbennek',
 'personaltools'     => 'Toulys personel',
 'postcomment'       => 'Rann nowyth',
-'talk'              => 'Kescows',
+'talk'              => 'Keskows',
 'toolbox'           => 'Boks toulys',
 'userpage'          => 'Folen devnydhyer',
 'projectpage'       => 'Folen meta',
 'imagepage'         => 'Gweles folen an restren',
 'mediawikipage'     => 'Gweles folen an messajow',
-'templatepage'      => 'Gweles folen an scantlyn',
+'templatepage'      => 'Gweles folen an skantlyn',
 'viewhelppage'      => 'Gweles an folen gweres',
-'categorypage'      => 'Gweles folen an class',
-'viewtalkpage'      => 'Gweles an kescows',
+'categorypage'      => 'Gweles folen an klass',
+'viewtalkpage'      => 'Gweles an keskows',
 'otherlanguages'    => 'Yethow erel',
+'lastmodifiedat'    => 'An folen-ma a veu kens chanjys an $1, dhe $2.', # $1 date, $2 time
 'jumpto'            => 'Lamma dhe:',
 'jumptonavigation'  => 'lewyans',
-'jumptosearch'      => 'whilas',
+'jumptosearch'      => 'hwilans',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A-dro dhe {{SITENAME}}',
@@ -155,11 +159,11 @@ $messages = array(
 'helppage'             => 'Help:Gweres',
 'mainpage'             => 'Pennfolen',
 'mainpage-description' => 'Pennfolen',
-'policy-url'           => 'Project:Policy',
+'policy-url'           => 'Project:Polici',
 'portal'               => 'Porth an gemmynieth',
 'portal-url'           => 'Project:Porth an gemmynieth',
-'privacy'              => 'Policy privetter',
-'privacypage'          => 'Project:Policy privetter',
+'privacy'              => 'Polici privetter',
+'privacypage'          => 'Project:Polici privetter',
 
 'ok'                      => 'Sur',
 'youhavenewmessages'      => 'Yma $1 genowgh ($2).',
@@ -172,10 +176,10 @@ $messages = array(
 'editlink'                => 'chanjya',
 'viewsourcelink'          => 'gweles an fenten',
 'editsectionhint'         => 'Chanjya an rann: $1',
-'showtoc'                 => 'disqwedhes',
-'hidetoc'                 => 'cudha',
+'showtoc'                 => 'diskwedhes',
+'hidetoc'                 => 'kudha',
 'viewdeleted'             => 'Gweles $1?',
-'red-link-title'          => '$1 (nag eus folen henwys yndelma na whath)',
+'red-link-title'          => '$1 (nag eus folen henwys yndelma na hwath)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Erthygel',
@@ -185,9 +189,9 @@ $messages = array(
 'nstab-project'   => 'Folen towl',
 'nstab-image'     => 'Restren',
 'nstab-mediawiki' => 'Messaj',
-'nstab-template'  => 'Scantlyn',
+'nstab-template'  => 'Skantlyn',
 'nstab-help'      => 'Gweres',
-'nstab-category'  => 'Class',
+'nstab-category'  => 'Klass',
 
 # General errors
 'error'               => 'Gwall',
@@ -201,19 +205,19 @@ $messages = array(
 'loginpagetitle'          => 'Omgelmy devnydhyer',
 'yourname'                => 'Hanow-usyer:',
 'yourpassword'            => 'Ger-tremena:',
-'yourpasswordagain'       => 'Jynnscrifa agas ger-tremena arta:',
+'yourpasswordagain'       => 'Jynnskrifa agas ger-tremena arta:',
 'yourdomainname'          => 'Agas diredh:',
-'login'                   => 'Omgelmy',
-'nav-login-createaccount' => 'Omgelmy / Formya acont nowyth',
-'loginprompt'             => "Res porres gasa 'cookies' rag omgelmy worth {{SITENAME}}.",
-'userlogin'               => 'Omgelmy / formya acont nowyth',
-'logout'                  => 'Digelmy',
-'userlogout'              => 'Digelmy',
+'login'                   => 'Omgelmi',
+'nav-login-createaccount' => 'Omgelmi / Formya akont nowyth',
+'loginprompt'             => 'Res yw dhewgh galosegi cookies rag omgelmi orth {{SITENAME}}.',
+'userlogin'               => 'Omgelmi / formya akont nowyth',
+'logout'                  => 'Digelmi',
+'userlogout'              => 'Digelmi',
 'notloggedin'             => 'Digelmys',
-'nologin'                 => "Heb acont dhewgh? '''$1'''.",
-'nologinlink'             => 'Form acont nowyth',
-'createaccount'           => 'Form acont nowyth',
-'gotaccount'              => "Eus acont dhewgh seulabrys? '''$1'''.",
+'nologin'                 => "Nyns eus akont dhewgh? '''$1'''.",
+'nologinlink'             => 'Form akont',
+'createaccount'           => 'Form akont nowyth',
+'gotaccount'              => "Eus akont genowgh seulabrys? '''$1'''.",
 'gotaccountlink'          => 'Omgelmy',
 'createaccountmail'       => 'dre e-bost',
 'youremail'               => 'E-bost:',
@@ -231,8 +235,8 @@ $messages = array(
 
 # Password reset dialog
 'resetpass'                 => 'Chanjya ger-tremena',
-'resetpass_header'          => 'Chanjya ger-tremena an acont',
-'oldpassword'               => 'Ger-tremena coth:',
+'resetpass_header'          => 'Chanjya ger-tremena an akont',
+'oldpassword'               => 'Ger-tremena koth:',
 'newpassword'               => 'Ger-tremena nowyth:',
 'resetpass-submit-loggedin' => 'Chanjya an ger-tremena',
 
@@ -253,14 +257,14 @@ $messages = array(
 'savearticle'        => 'Gwitha',
 'preview'            => 'Ragwel',
 'showpreview'        => 'Ragweles',
-'showdiff'           => 'Disqwedhes an chanjyow',
-'loginreqlink'       => 'omgelmy',
+'showdiff'           => 'Diskwedhes an chanjyow',
+'loginreqlink'       => 'omgelmi',
 'newarticle'         => '(Nowyth)',
 'note'               => "'''Noten:'''",
 'editing'            => 'ow chanjya $1',
 'editingsection'     => 'ow chanjya $1 (rann)',
 'editingcomment'     => 'ow chanjya $1 (rann nowyth)',
-'yourtext'           => 'Agas text',
+'yourtext'           => 'Agas tekst',
 'yourdiff'           => 'Dyffransow',
 'template-protected' => '(gwithys)',
 
@@ -269,21 +273,21 @@ $messages = array(
 'last'                   => 'kens',
 'page_first'             => 'kensa',
 'page_last'              => 'kens',
-'history-fieldset-title' => 'Peury an istory',
+'history-fieldset-title' => 'Peuri an istori',
 'histfirst'              => 'An moyha a-varr',
 'histlast'               => 'An diwettha',
 'historyempty'           => '(gwag)',
 
 # Revision deletion
-'rev-delundel'    => 'disqwedhes/cudha',
-'pagehist'        => 'Istory an folen',
+'rev-delundel'    => 'diskwedhes/kudha',
+'pagehist'        => 'Istori an folen',
 'revdelete-uname' => 'hanow-usyer',
 
 # History merging
 'mergehistory-reason' => 'Acheson:',
 
 # Diffs
-'history-title' => 'Istory an folen "$1"',
+'history-title' => 'Istori an folen "$1"',
 'lineno'        => 'Linen $1:',
 'editundo'      => 'diswul',
 'diff-movedto'  => 'movys dhe $1',
@@ -300,33 +304,33 @@ $messages = array(
 'diff-strike'   => "'''treuslinys'''",
 
 # Search results
-'searchresults'                  => 'Sewyansow whilans',
-'searchresults-title'            => 'Sewyansow whilans rag "$1"',
+'searchresults'                  => 'Sewyansow an hwilans',
+'searchresults-title'            => 'Sewyansow an hwilans rag "$1"',
 'noexactmatch'                   => "'''Nag eus folen henwys \"\$1\".'''
 Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'noexactmatch-nocreate'          => "'''Nag eus folen henwys \"\$1\".'''",
 'prevn'                          => 'kyns $1',
 'nextn'                          => 'nessa $1',
 'viewprevnext'                   => 'Gweles ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-legend'              => 'Dewisyansow whilas',
+'searchmenu-legend'              => 'Dewisyansow hwilans',
 'searchmenu-exists'              => "'''Yma folen henwys \"[[:\$1]]\" war an wiki-ma'''",
-'searchmenu-new'                 => "'''Gruthyl an folen \"[[:\$1]]\" war an wiki-ma!'''",
+'searchmenu-new'                 => "'''Gwruthyl an folen \"[[:\$1]]\" war an wiki-ma!'''",
 'searchhelp-url'                 => 'Help:Gweres',
 'searchprofile-images'           => 'Restrednow',
 'searchprofile-everything'       => 'Puptra',
 'searchprofile-advanced'         => 'Avoncys',
-'searchprofile-articles-tooltip' => 'Whila yn $1',
-'searchprofile-project-tooltip'  => 'Whila yn $1',
-'searchprofile-images-tooltip'   => 'Whila restrennow',
+'searchprofile-articles-tooltip' => 'Hwila yn $1',
+'searchprofile-project-tooltip'  => 'Hwila yn $1',
+'searchprofile-images-tooltip'   => 'Hwila restrennow',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 ger|$2 ger}})',
 'search-section'                 => '(rann $1)',
-'search-interwiki-caption'       => 'Towlow whor',
+'search-interwiki-caption'       => 'Towlow hwor',
 'search-interwiki-default'       => '$1 sewyansow:',
 'search-interwiki-more'          => '(moy)',
 'searchall'                      => 'oll',
-'powersearch'                    => 'Whilans avoncys',
-'powersearch-legend'             => 'Whilans avoncys',
-'powersearch-field'              => 'Whila',
+'powersearch'                    => 'Hwilans avoncys',
+'powersearch-legend'             => 'Hwilans avoncys',
+'powersearch-field'              => 'Hwila',
 
 # Preferences page
 'preferences'               => 'Dewisyansow',
@@ -337,23 +341,23 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'prefs-watchlist'           => 'Rol golyas',
 'prefs-resetpass'           => 'Chanjya ger-tremena',
 'saveprefs'                 => 'Gwitha',
-'searchresultshead'         => 'Whilas',
-'timezoneregion-africa'     => 'Africa',
-'timezoneregion-america'    => 'America',
-'timezoneregion-antarctica' => 'Antarctica',
-'timezoneregion-arctic'     => 'Arctic',
+'searchresultshead'         => 'Hwilans',
+'timezoneregion-africa'     => 'Afrika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antarktika',
+'timezoneregion-arctic'     => 'Arktik',
 'timezoneregion-asia'       => 'Asi',
 'timezoneregion-atlantic'   => 'Keynvor Atlantek',
 'timezoneregion-australia'  => 'Awstralya',
 'timezoneregion-europe'     => 'Europa',
 'timezoneregion-indian'     => 'Keynvor Eyndek',
 'timezoneregion-pacific'    => 'Keynvor Hebask',
-'prefs-searchoptions'       => 'Dewisyansow whilas',
+'prefs-searchoptions'       => 'Dewisyansow hwilans',
 'files'                     => 'Restrednow',
 
 # User rights
 'userrights-groupsmember' => 'Esel a:',
-'userrights-reason'       => 'Acheson rag chanj:',
+'userrights-reason'       => 'Acheson:',
 
 # Groups
 'group'       => 'Bagas:',
@@ -373,64 +377,64 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 # Rights
 'right-read'          => 'Redya folennow',
 'right-edit'          => 'Chanjya folennow',
-'right-createtalk'    => 'Gruthyl folennow kescows',
-'right-createaccount' => 'Gruthyl acontow devnydhyer nowyth',
-'right-move'          => 'Movya folennow',
-'right-movefile'      => 'Movya restrennow',
-'right-upload'        => 'Ughcarga restrennow',
+'right-createtalk'    => 'Gwruthyl folennow keskows',
+'right-createaccount' => 'Form akontow devnydhyer nowyth',
+'right-move'          => 'Gwaya folennow',
+'right-movefile'      => 'Gwaya restrennow',
+'right-upload'        => 'Ughkarga restrennow',
 'right-delete'        => 'Dilea folennow',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit'     => 'chanjya an folen-ma',
-'action-move'     => 'movya an folen ma',
-'action-movefile' => 'movya an restren ma',
-'action-upload'   => 'ughcarga an restren-ma',
+'action-move'     => 'gwaya an folen ma',
+'action-movefile' => 'gwaya an restren ma',
+'action-upload'   => 'ughkarga an restren-ma',
 'action-delete'   => 'dilea an folen ma',
 
 # Recent changes
 'nchanges'             => '$1 {{PLURAL:$1|chanj|chanj}}',
 'recentchanges'        => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend' => 'Dewisyansow an chanjyow a-dhiwedhes',
-'rclistfrom'           => 'Disqwedhes chanjyow nowyth ow talleth dhort $1.',
+'rclistfrom'           => 'Diskwedhes chanjyow nowyth ow talleth a-dhia $1.',
 'rcshowhideminor'      => '$1 chanjyow bian',
 'rcshowhidebots'       => '$1 botow',
 'rcshowhideliu'        => '$1 devnydhoryon omgelmys',
-'rcshowhideanons'      => '$1 devnydhyoryon dyhanow',
+'rcshowhideanons'      => '$1 devnydhyoryon dihanow',
 'rcshowhidemine'       => '$1 ow chanjyow',
 'diff'                 => 'dyffrans',
 'hist'                 => 'ist',
-'hide'                 => 'Cudha',
-'show'                 => 'Disqwedhes',
+'hide'                 => 'Kudha',
+'show'                 => 'Diskwedhes',
 'minoreditletter'      => 'B',
 'newpageletter'        => 'N',
 'boteditletter'        => 'bot',
 'newsectionsummary'    => '/* $1 */ rann nowyth',
-'rc-enhanced-hide'     => 'Cudha manylyon',
+'rc-enhanced-hide'     => 'Kudha manylyon',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Chanjyow dhe folednow kevahal',
+'recentchangeslinked'      => 'Chanjyow dhe folennow kevahal',
 'recentchangeslinked-page' => 'Hanow an folen:',
 
 # Upload
-'upload'          => 'Ughcarga restren',
-'uploadbtn'       => 'Ughcarga restren',
+'upload'          => 'Ughkarga restren',
+'uploadbtn'       => 'Ughkarga restren',
 'filename'        => 'Hanow-restren',
 'filesource'      => 'Pennfenten:',
 'savefile'        => 'Gwitha restren',
-'uploadedimage'   => '"[[$1]]" ughcargys',
+'uploadedimage'   => '"[[$1]]" ughkargys',
 'watchthisupload' => 'Golya an folen ma',
 
 # Special:ListFiles
 'imgfile'        => 'restren',
-'listfiles_date' => 'Dedh',
+'listfiles_date' => 'Dedhyas',
 'listfiles_name' => 'Hanow',
 'listfiles_user' => 'Devnydhyer',
 
 # File description page
-'filehist'            => 'Istory an folen',
+'filehist'            => 'Istori an folen',
 'filehist-deleteall'  => 'dilea oll',
 'filehist-deleteone'  => 'dilea',
-'filehist-datetime'   => 'Dedh/Eur',
+'filehist-datetime'   => 'Dedhyas/Eur',
 'filehist-user'       => 'Devnydhyer',
 'filehist-dimensions' => 'Mynsow',
 'imagelinks'          => "Kevrennow dhe'n restren-ma",
@@ -441,7 +445,7 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'filedelete-submit' => 'Dilea',
 
 # MIME search
-'download' => 'iscarga',
+'download' => 'iskarga',
 
 # Unused templates
 'unusedtemplateswlh' => 'kevrennow erel',
@@ -455,16 +459,16 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'brokenredirects-edit'   => '(chanjya)',
 'brokenredirects-delete' => '(dilea)',
 
-'withoutinterwiki-submit' => 'Disqwedhes',
+'withoutinterwiki-submit' => 'Diskwedhes',
 
 # Miscellaneous special pages
 'nmembers'          => '$1 {{PLURAL:$1|esel|esel}}',
 'newpages'          => 'Folennow nowyth',
 'newpages-username' => 'Hanow-usyer:',
-'move'              => 'Movya',
-'movethispage'      => 'Movya an folen-ma',
+'move'              => 'Gwaya',
+'movethispage'      => 'Gwaya an folen-ma',
 'pager-newer-n'     => '{{PLURAL:$1|1 nowyttha|$1 nowyttha}}',
-'pager-older-n'     => '{{PLURAL:$1|1 cottha|$1 cottha}}',
+'pager-older-n'     => '{{PLURAL:$1|1 kottha|$1 kottha}}',
 
 # Book sources
 'booksources'    => 'Penn-fentynyow lever',
@@ -484,13 +488,13 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'allpagessubmit' => 'Ke',
 
 # Special:Categories
-'categories' => 'Classys',
+'categories' => 'Klassys',
 
 # Special:LinkSearch
-'linksearch-ok' => 'Whila',
+'linksearch-ok' => 'Hwila',
 
 # Special:ListUsers
-'listusers-submit' => 'Disqwedhes',
+'listusers-submit' => 'Diskwedhes',
 
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Devnydhyer nowyth',
@@ -499,10 +503,10 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'emailuser'       => 'E-bostya an devnydhyer-ma',
 'emailpage'       => 'E-bostya devnydhyer',
 'defemailsubject' => 'E-bost {{SITENAME}}',
-'emailfrom'       => 'Dhort:',
+'emailfrom'       => 'A-dhia:',
 'emailto'         => 'Dhe:',
 'emailmessage'    => 'Messaj:',
-'emailsend'       => 'Danon',
+'emailsend'       => 'Danvon',
 
 # Watchlist
 'watchlist'         => 'Ow rol golyas',
@@ -522,22 +526,22 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'deletepage'            => 'Dilea an folen',
 'delete-confirm'        => 'Dilea "$1"',
 'delete-legend'         => 'Dilea',
-'deletedarticle'        => '"[[$1]]" dileys',
+'deletedarticle'        => 'a dhileys "[[$1]]"',
 'deletereasonotherlist' => 'Acheson aral',
 
 # Protect
 'protect-level-sysop' => 'Menysteryon hepken',
-'restriction-type'    => 'Cummyas:',
+'restriction-type'    => 'Kummyas:',
 'pagesize'            => '(bayt)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Chanjya',
-'restriction-move'   => 'Movya',
-'restriction-create' => 'Gruthyl',
-'restriction-upload' => 'Ughcarga',
+'restriction-move'   => 'Gwaya',
+'restriction-create' => 'Gwruthyl',
+'restriction-upload' => 'Ughkarga',
 
 # Undelete
-'undelete-search-submit'    => 'Whila',
+'undelete-search-submit'    => 'Hwila',
 'undelete-show-file-submit' => 'Ea',
 
 # Namespace form on various pages
@@ -549,13 +553,13 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'mycontris'           => 'Ow hevrohow',
 'contribsub2'         => 'Rag $1 ($2)',
 'uctop'               => '(gwartha)',
-'month'               => 'Dhort mis (ha moy a-varr):',
-'year'                => 'Dhort bledhen (ha moy a-varr):',
+'month'               => 'A-dhia mis (ha moy a-varr):',
+'year'                => 'A-dhia bledhen (ha moy a-varr):',
 
-'sp-contributions-newbies'  => 'Disqwedhes hepken kevrohow an devnydhyoryon-nowyth',
-'sp-contributions-search'   => 'Whila kevrohow',
+'sp-contributions-newbies'  => 'Diskwedhes hepken kevrohow an akontow nowyth',
+'sp-contributions-search'   => 'Hwila kevrohow',
 'sp-contributions-username' => 'Trigva IP po hanow-usyer:',
-'sp-contributions-submit'   => 'Whila',
+'sp-contributions-submit'   => 'Hwila',
 
 # What links here
 'whatlinkshere'           => 'Folennow ow kevrenna bys omma',
@@ -575,25 +579,25 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'ipbreason'                  => 'Acheson:',
 'ipbreasonotherlist'         => 'Acheson aral',
 'ipb-blocklist-contribs'     => 'Kevrohow rag $1',
-'ipblocklist-submit'         => 'Whila',
+'ipblocklist-submit'         => 'Hwila',
 'blocklink'                  => 'let',
 'contribslink'               => 'kevrohow',
-'block-log-flags-anononly'   => 'devnydhyoryon dyhanow hepken',
+'block-log-flags-anononly'   => 'devnydhyoryon dihanow hepken',
 'block-log-flags-hiddenname' => 'hanow-usyer kovys',
 
 # Move page
-'move-page'        => 'Movya $1',
-'move-page-legend' => 'Movya an folen',
+'move-page'        => 'Gwaya $1',
+'move-page-legend' => 'Gwaya folen',
 'movearticle'      => 'Movya an folen:',
 'newtitle'         => 'Dhe titel nowyth:',
 'move-watch'       => 'Golya an folen-ma',
-'movepagebtn'      => 'Movya an folen',
-'movedto'          => 'movys dhe',
-'1movedto2'        => '[[$1]] movys dhe [[$2]]',
+'movepagebtn'      => 'Gwaya an folen',
+'movedto'          => 'gways dhe',
+'1movedto2'        => '[[$1]] gways dhe [[$2]]',
 'movereason'       => 'Acheson:',
 
 # Export
-'export'        => 'Esperthy folennow',
+'export'        => 'Esperthi folennow',
 'export-addcat' => 'Keworra',
 'export-addns'  => 'Keworra',
 
@@ -605,10 +609,10 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 
 # Special:Import
 'import'                  => 'Ymperthi folennow',
-'import-interwiki-submit' => 'Ymperthy',
+'import-interwiki-submit' => 'Ymperthi',
 'import-upload-filename'  => 'Hanow-restren:',
 'importstart'             => 'Owth ymperthi folennow...',
-'import-noarticle'        => 'Folen veth dhe ymperthi!',
+'import-noarticle'        => 'Folen vyth dhe ymperthi!',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => 'Agas folen devnydhyer',
@@ -619,48 +623,49 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'tooltip-ca-addsection'     => 'Dalleth rann nowyth',
 'tooltip-ca-protect'        => 'Difres an folen-ma',
 'tooltip-ca-delete'         => 'Dilea an folen-ma',
-'tooltip-ca-move'           => 'Movya an folen-ma',
+'tooltip-ca-move'           => 'Gwaya an folen-ma',
 'tooltip-ca-watch'          => "Keworra an folen-ma dh'agas rol golyas",
-'tooltip-search'            => 'Whila {{SITENAME}}',
-'tooltip-search-fulltext'   => "Whila an text-ma y'n folennow",
-'tooltip-n-mainpage'        => 'Disqwedhes an pennfolen',
+'tooltip-search'            => 'Hwila yn {{SITENAME}}',
+'tooltip-search-fulltext'   => "Hwila an tekst-ma y'n folennow",
+'tooltip-n-mainpage'        => 'Diskwedhes an pennfolen',
 'tooltip-n-recentchanges'   => "Rol an chanjyow a-dhiwedhes y'n wiki",
-'tooltip-n-randompage'      => 'Carga folen dre jons',
+'tooltip-n-randompage'      => 'Karga folen dre jons',
 'tooltip-t-whatlinkshere'   => 'Rol a bub folennow wiki ow kevrenna bys omma',
 'tooltip-t-contributions'   => 'Gweles rol kevrohow an devnydhyer-ma',
-'tooltip-t-emailuser'       => 'Danon e-bost war an devnydhyer-ma',
-'tooltip-t-upload'          => 'Ughcarga restrennow',
+'tooltip-t-emailuser'       => "Danvon e-bost dhe'n devnydhyer-ma",
+'tooltip-t-upload'          => 'Ughkarga restrennow',
 'tooltip-t-specialpages'    => 'Rol a bub folen arbennek',
 'tooltip-t-print'           => 'Versyon pryntyadow an folen-ma',
 'tooltip-ca-nstab-user'     => 'Gweles an folen devnydhyer',
 'tooltip-ca-nstab-project'  => 'Gweles folen an wiki',
 'tooltip-ca-nstab-image'    => 'Gweles folen an restren',
-'tooltip-ca-nstab-template' => 'Gweles an scantlyn',
-'tooltip-ca-nstab-category' => 'Gweles folen an class',
+'tooltip-ca-nstab-template' => 'Gweles an skantlyn',
+'tooltip-ca-nstab-category' => 'Gweles folen an klass',
 'tooltip-save'              => 'Gwitha agas chanjyow',
 
 # Attribution
-'siteuser'  => 'devnydhyer {{SITENAME}} $1',
-'siteusers' => '{{PLURAL:$2|devnydhyer|devnydhyoryon}} {{SITENAME}} $1',
+'siteuser'         => 'devnydhyer {{SITENAME}} $1',
+'lastmodifiedatby' => 'An folen-ma a veu kens chanjys dhe $2, $1 gans $3.', # $1 date, $2 time, $3 user
+'siteusers'        => '{{PLURAL:$2|devnydhyer|devnydhyoryon}} {{SITENAME}} $1',
 
 # Media information
-'show-big-image' => 'Clerder leun',
+'show-big-image' => 'Klerder leun',
 
 # Special:NewFiles
-'ilsubmit' => 'Whila',
+'ilsubmit' => 'Hwila',
 
 # Metadata
 'metadata' => 'Metadata',
 
 # EXIF tags
 'exif-imagewidth'  => 'Les',
-'exif-imagelength' => 'Ughelder',
+'exif-imagelength' => 'Uhelder',
 'exif-artist'      => 'Awtour',
 
 'exif-meteringmode-255' => 'Aral',
 
 'exif-contrast-1' => 'Medhel',
-'exif-contrast-2' => 'Cales',
+'exif-contrast-2' => 'Kales',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'oll',
@@ -681,7 +686,7 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 'table_pager_limit_submit' => 'Ke',
 
 # Auto-summaries
-'autosumm-new' => "Formys folen nowydh gen: '$1'",
+'autosumm-new' => "Formys folen nowyth gans: '$1'",
 
 # Special:Version
 'version'         => 'Versyon', # Not used as normal message but as header for the special page itself
@@ -693,7 +698,7 @@ Whi a ell [[:\$1|gruthyl an folen-ma]].",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Hanow-restren:',
-'fileduplicatesearch-submit'   => 'Whila',
+'fileduplicatesearch-submit'   => 'Hwila',
 
 # Special:SpecialPages
 'specialpages' => 'Folennow arbennek',

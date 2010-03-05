@@ -202,7 +202,7 @@ $messages = array(
 'action-edit' => 'gaij yieb neix',
 
 # Recent changes
-'recentchanges'   => 'Gaeqgaij suijnej',
+'recentchanges'   => 'Gaeqgaij seizneix',
 'diff'            => 'Faenbied',
 'hide'            => 'Cangz',
 'show'            => "Yienh'ok",
@@ -255,7 +255,7 @@ $messages = array(
 'allpagessubmit' => 'Bae',
 
 # Watchlist
-'watchlist'     => 'Gaeq gou demq',
+'watchlist'     => 'Yieb gou yawj',
 'mywatchlist'   => 'Gaeq gou demq',
 'watchnologin'  => 'Maengx laezhaej',
 'watch'         => 'Demq',
@@ -302,10 +302,12 @@ $messages = array(
 'revertmove'       => 'siu',
 
 # Tooltip help for the actions
+'tooltip-pt-mytalk'      => 'Yieb daujlun mwngz',
 'tooltip-pt-preferences' => 'Doenghgaeq gou hae',
+'tooltip-pt-logout'      => 'Doiq ok',
 'tooltip-ca-talk'        => 'Gvanhyih cingqfaenz yieb gij daojun',
 'tooltip-ca-history'     => 'yieb neix gij banj lizsij',
-'tooltip-ca-move'        => 'dean yieb neix',
+'tooltip-ca-move'        => 'Dean yieb neix',
 'tooltip-search'         => 'Ra {{SITENAME}}',
 'tooltip-p-logo'         => 'Mae meh',
 'tooltip-n-mainpage'     => 'Raen Yiebdaeuz',

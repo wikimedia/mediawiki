@@ -714,8 +714,7 @@ Pakisama ang lahat ng mga detalyeng nasa itaas sa anumang pagtatanong na gagawin
 'confirmedittext'                  => 'Kailangang kumpirmahin mo muna ang adres ng iyong e-liham bago makapagbago ng mga pahina.
 Pakihanda at patotohanan ang adres ng e-liham sa pamamagitan ng iyong [[Special:Preferences|kagustuhan ng tagagamit]].',
 'nosuchsectiontitle'               => 'Walang ganyang seksyon',
-'nosuchsectiontext'                => 'Sinubok mong baguhin ang isang seksyong hindi umiiral.
-Dahil walang seksyong $1, walang pook na mapagsasagipan ng iyong pagbabago.',
+'nosuchsectiontext'                => 'Sinubok mong baguhin ang isang seksyong hindi umiiral.',
 'loginreqtitle'                    => 'Paglagda/Pagtala Kailangan',
 'loginreqlink'                     => 'lumagda/tumala',
 'loginreqpagetext'                 => 'Kailangan mong $1 para matanaw ang ibang mga pahina.',
@@ -733,7 +732,7 @@ Maaaring pagsaluhan ng ilang mga tagagamit ang ganyang adres ng IP.
 Kung isa kang hindi nagpapakilalang tagagamit at nakadaramang may mga walang saysay na puna/kumentong patungkol sa iyo, [[Special:UserLogin/signup|pakilikha ng isang kuwenta]] o [[Special:UserLogin|lumagda]] para maiwasan ang kalituhan o mapagkamalan ka bilang ibang hindi nakikilalang mga tagagamit sa hinaharap.",
 'noarticletext'                    => 'Kasalukuyang walang teksto sa loob ng pahinang ito.
 Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa loob iba pang mga pahina, 
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} maghanap sa kaugnay na mga talaan],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa kaugnay na mga talaan],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahinang ito]</span>.',
 'userpage-userdoesnotexist'        => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".
 Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
@@ -1818,7 +1817,7 @@ para mabago ang mga binabantayan mo.',
 'addedwatchtext'       => "Dinagdag na ang pahinang \"[[:\$1]]\" sa iyong [[Special:Watchlist|Babantayan]].
 Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang usapang pahina, at ang pahina ay makikitang sa '''malalaking titik''' ('''''bold''''') sa [[Special:RecentChanges|tala ng mga huling binago]] para madaling makita.",
 'removedwatch'         => 'Tinigil na ang pagbabantay',
-'removedwatchtext'     => 'Hindi mo na binabantayan ang "$1".',
+'removedwatchtext'     => 'Ang pahinang "[[:$1]]" ay tinanggal na mula sa [[Special:Watchlist|iyong talaan ng binabantayan]].',
 'watch'                => 'Bantayan ito',
 'watchthispage'        => 'Bantayan ang pahinang ito',
 'unwatch'              => 'Huwag bantayan',
@@ -1939,7 +1938,7 @@ Tingnan ang [[Special:ProtectedPages|talaan ng nakasanggalang na mga pahina]] pa
 'prot_1movedto2'              => 'Inilipat ang [[$1]] patungo sa [[$2]]',
 'protect-backlink'            => '← $1',
 'protect-legend'              => 'Pagtibayin/tiyakin ang panananggalang',
-'protectcomment'              => 'Kumento/puna:',
+'protectcomment'              => 'Dahilan:',
 'protectexpiry'               => 'Magtatapos sa:',
 'protect_expiry_invalid'      => 'Hindi tanggap/hindi tama ang oras ng pagtatapos.',
 'protect_expiry_old'          => 'Nasa nakaraan ang oras ng pagtatapos.',

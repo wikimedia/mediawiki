@@ -11,16 +11,19 @@
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
  * @author Crazymadlover
+ * @author Daemorris
  * @author Diego Queiroz
  * @author Eduardo.mps
  * @author GKnedo
  * @author Giro720
  * @author Hamilton Abreu
  * @author Heldergeovane
+ * @author Jesielt
  * @author Jorge Morais
  * @author Leonardo.stabile
  * @author LeonardoG
  * @author Lijealso
+ * @author Luckas Blade
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
  * @author Waldir
@@ -561,7 +564,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'yourname'                   => 'Nome de usuário:',
 'yourpassword'               => 'Senha:',
 'yourpasswordagain'          => 'Redigite sua senha',
-'remembermypassword'         => 'Lembrar de minha senha em outras sessões.',
+'remembermypassword'         => 'Lembrar da minha senha em outras sessões.',
 'yourdomainname'             => 'Seu domínio:',
 'externaldberror'            => 'Ocorreu um erro externo ao banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
 'login'                      => 'Autenticar-se',
@@ -748,8 +751,9 @@ Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for re
 'confirmedittitle'                 => 'Confirmação de e-mail requerida para editar',
 'confirmedittext'                  => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de usuário]].',
-'nosuchsectiontitle'               => 'Seção inexistente',
-'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe. Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
+'nosuchsectiontitle'               => 'Não foi possível encontrar a seção',
+'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe.
+Ela pode ter sido movida ou removido enquanto você estava vendo a página.',
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Você precisa de $1 para poder visualizar outras páginas.',
@@ -764,7 +768,7 @@ Para criá-la, comece escrevendo na caixa abaixo
 Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
 'anontalkpagetext'                 => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Tal endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha que comentários irrelevantes foram direcionados a você, por gentileza, [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
 'noarticletext'                    => 'Atualmente não existe texto nesta página.
-Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] em outras páginas <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar nos registros relacionados],
+Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] em outras páginas <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar nos registros relacionados],
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} criar esta página]</span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'clearyourcache'                   => "'''Nota - Depois de salvar, você terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
@@ -948,7 +952,7 @@ Por favor confirme que deseja fazê-lo, que entende as consequências e que est�
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
 'revdelete-legend'               => 'Definir restrições de visualização',
 'revdelete-hide-text'            => 'Ocultar texto da edição',
-'revdelete-hide-name'            => 'Ocultar acção e alvo',
+'revdelete-hide-name'            => 'Ocultar ação e alvo',
 'revdelete-hide-comment'         => 'Esconder comentário de edição',
 'revdelete-hide-user'            => 'Esconder nome de usuário/IP do editor',
 'revdelete-hide-restricted'      => 'Suprimir dados de administradores assim como de outros',
@@ -959,7 +963,7 @@ Por favor confirme que deseja fazê-lo, que entende as consequências e que est�
 'revdelete-submit'               => 'Aplicar à edição selecionada',
 'revdelete-logentry'             => 'modificou visibilidade de revisão para [[$1]]',
 'logdelete-logentry'             => 'alterada visibilidade de eventos para [[$1]]',
-'revdelete-success'              => 'Visibilidade de edição definida com sucesso.',
+'revdelete-success'              => "'''A visibilidade da revisão foi definida com sucesso.'''",
 'logdelete-success'              => "'''Visibilidade de evento definida com sucesso.'''",
 'revdel-restore'                 => 'Alterar visibilidade',
 'pagehist'                       => 'Histórico da página',
@@ -1231,7 +1235,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 * Uma caixa de seleção selecionada significa que o usuário se encontra no grupo.
 * Uma caixa de seleção desselecionada significa que o usuário não se encontra no grupo.
 * Um * indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
-'userrights-reason'           => 'Motivo de alterações:',
+'userrights-reason'           => 'Motivo:',
 'userrights-no-interwiki'     => 'Você não tem permissão de alterar privilégios de usuários em outras wikis.',
 'userrights-nodatabase'       => 'O banco de dados $1 não existe ou não é um banco de dados local.',
 'userrights-nologin'          => 'Você precisa [[Special:UserLogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
@@ -1449,7 +1453,10 @@ Para incluir a imagem numa página, utilize uma ligação em um dos seguintes fo
 'fileexists'                  => "Já existe um arquivo com este nome.
 Por favor, verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza se deseja alterar o arquivo atual.
 [[$1|thumb]]",
-'filepageexists'              => "A página de descrição deste arquivo já foi criada em '''<tt>[[:$1]]</tt>''', mas atualmente não existe nenhum arquivo com este nome. O sumário que introduziu não aparecerá na página de descrição. Para o fazer aparecer, terá que o editar manualmente",
+'filepageexists'              => "A página de descrição deste arquivo já foi criada em '''<tt>[[:$1]]</tt>''', mas atualmente não existe nenhum arquivo com este nome.
+O sumário que você introduziu não aparecerá na página de descrição.
+Para fazer com que ele apareça lá, você precisará que editá-lo manualmente.
+[[$1|thumb]]",
 'fileexists-extension'        => "Já existe um arquivo de nome similar: [[$2|thumb]]
 * Nome do arquivo que está sendo enviado: '''<tt>[[:$1]]</tt>'''
 * Nome do arquivo existente: '''<tt>[[:$2]]</tt>'''
@@ -1505,7 +1512,8 @@ PICT # misc.
 'upload-proto-error'      => 'Protocolo incorreto',
 'upload-proto-error-text' => 'O envio de arquivos remotos requer endereços (URLs) que iniciem com <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error'       => 'Erro interno',
-'upload-file-error-text'  => 'Ocorreu um erro interno ao se tentar criar um arquivo temporário no servidor. Por gentileza, contate um administrador de sistema.',
+'upload-file-error-text'  => 'Ocorreu um erro interno ao tentar criar um arquivo temporário no servidor.
+Por gentileza, entre em contato com um [[Special:ListUsers/sysop|administrador]].',
 'upload-misc-error'       => 'Erro desconhecido de envio',
 'upload-misc-error-text'  => 'Ocorreu um erro desconhecido durante o envio. Por gentileza, verifique se o endereço (URL) é válido e acessível e tente novamente. Caso o problema persista, contacte um administrador de sistema.',
 
@@ -1630,7 +1638,7 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 'statistics-header-users'      => 'Estatísticas dos usuários',
 'statistics-articles'          => 'Páginas de conteúdo',
 'statistics-pages'             => 'Páginas',
-'statistics-pages-desc'        => 'Todas as páginas na wiki, incluindo páginas de discussão, redireccionamentos, etc.',
+'statistics-pages-desc'        => 'Todas as páginas na wiki, incluindo páginas de discussão, redirecionamentos, etc.',
 'statistics-files'             => 'Arquivos carregados',
 'statistics-edits'             => 'Edições de página desde que {{SITENAME}} foi instalado',
 'statistics-edits-average'     => 'Média de edições por página',
@@ -1717,7 +1725,8 @@ Entradas <s>riscadas</s> foram resolvidas.',
 'ancientpages'            => 'Páginas mais antigas',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta página',
-'unusedimagestext'        => 'Por favor, note que outros websites podem apontar para um arquivo através de um URL direto e, por isso, podem estar a ser listadas aqui, mesmo estando em uso.',
+'unusedimagestext'        => 'Os seguintes arquivos existem mas não são embutidos em nenhuma página.
+Por favor note que outros websites podem apontar para um arquivo através de um URL direto e, por isso, podem estar a ser listadas aqui, mesmo estando em uso.',
 'unusedcategoriestext'    => 'As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.',
 'notargettitle'           => 'Sem alvo',
 'notargettext'            => 'Você não especificou uma página alvo ou um usuário para executar esta função.',
@@ -1847,7 +1856,7 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
 Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
 'removedwatch'         => 'Removida da lista de páginas vigiadas',
-'removedwatchtext'     => 'A página "<nowiki>$1</nowiki>" foi removida de sua lista de páginas vigiadas.',
+'removedwatchtext'     => 'A página "[[:$1]]" foi removida de sua [[Special:Watchlist|lista de páginas vigiadas]].',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',
 'unwatch'              => 'Desinteressar-se',
@@ -2068,7 +2077,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Espaço nominal:',
-'invert'         => 'Inverter selecção',
+'invert'         => 'Inverter seleção',
 'blanknamespace' => '(Principal)',
 
 # Contributions
@@ -2550,7 +2559,8 @@ $1',
 'visual-comparison' => 'Comparação visual',
 
 # Media information
-'mediawarning'         => "'''Aviso''': Este arquivo pode conter código malicioso. Ao executar, o seu sistema poderá estar comprometido.<hr />",
+'mediawarning'         => "'''Aviso''': Este tipo de arquivo pode conter código malicioso.
+Executá-lo poderá comprometer a segurança do seu sistema.<hr />",
 'imagemaxsize'         => 'Limitar imagens nas páginas de descrição a:',
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
@@ -2697,10 +2707,10 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsdop'                      => 'Precisão da medição',
 'exif-gpsspeedref'                 => 'Unidade da velocidade',
 'exif-gpsspeed'                    => 'Velocidade do receptor GPS',
-'exif-gpstrackref'                 => 'Referência para a direcção do movimento',
-'exif-gpstrack'                    => 'Direcção do movimento',
-'exif-gpsimgdirectionref'          => 'Referência para a direcção da imagem',
-'exif-gpsimgdirection'             => 'Direcção da imagem',
+'exif-gpstrackref'                 => 'Referência para a direção do movimento',
+'exif-gpstrack'                    => 'Direção do movimento',
+'exif-gpsimgdirectionref'          => 'Referência para a direção da imagem',
+'exif-gpsimgdirection'             => 'Direção da imagem',
 'exif-gpsmapdatum'                 => 'Utilizados dados do estudo Geodetic',
 'exif-gpsdestlatituderef'          => 'Referência para a latitude do destino',
 'exif-gpsdestlatitude'             => 'Latitude do destino',

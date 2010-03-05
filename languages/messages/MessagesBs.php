@@ -824,9 +824,9 @@ Molimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.',
 'confirmedittitle'                 => 'Potvrda e-maila je potrebna za izmjene',
 'confirmedittext'                  => 'Morate potvrditi Vašu e-mail adresu prije nego počnete mijenjati stranice.
 Molimo da postavite i verifikujete Vašu e-mail adresu putem Vaših [[Special:Preferences|korisničkih opcija]].',
-'nosuchsectiontitle'               => 'Nema takve sekcije',
+'nosuchsectiontitle'               => 'Ne mogu pronaći sekciju',
 'nosuchsectiontext'                => 'Pokušali ste uređivati sekciju koja ne postoji.
-Pošto sekcija $1 ne postoji, nije moguće spremiti Vaše promjene.',
+Možda je premještena ili obrisana dok ste pregledavali stranicu.',
 'loginreqtitle'                    => 'Potrebno je prijavljivanje',
 'loginreqlink'                     => 'prijavi se',
 'loginreqpagetext'                 => 'Morate $1 da bi ste vidjeli druge strane.',
@@ -845,7 +845,7 @@ Takvu adresu može dijeliti više korisnika.
 Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo Vas da [[Special:UserLogin/signup|napravite nalog]] ili se [[Special:UserLogin|prijavite]] da biste izbjegli buduću zabunu sa ostalim anonimnim korisnicima.''",
 'noarticletext'                    => 'Na ovoj stranici trenutno nema teksta.
 Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim stranicama.
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tražiti u povezanim zapisima] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tražiti u povezanim zapisima] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'userpage-userdoesnotexist'        => 'Korisnički račun "$1" nije registrovan.
 Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'clearyourcache'                   => "'''Pažnja: Nakon što sačuvate izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
@@ -1046,7 +1046,7 @@ Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to �
 'revdelete-submit'               => 'Primijeni na odabranu reviziju',
 'revdelete-logentry'             => 'promijenjena vidljivost revizije [[$1]]',
 'logdelete-logentry'             => 'promijenjena vidljivost događaja [[$1]]',
-'revdelete-success'              => "'''Vidljivost revizije uspješno postavljena.'''",
+'revdelete-success'              => "'''Vidljivost revizije uspješno ažurirana.'''",
 'logdelete-success'              => "'''Vidljivost evidencije uspješno postavljena.'''",
 'revdel-restore'                 => 'Promijeni dostupnost',
 'pagehist'                       => 'Historija stranice',
@@ -1323,7 +1323,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 * Označeni kvadratić znači da je korisnik u toj grupi.
 * Neoznačen kvadratić znači da korisnik nije u toj grupi.
 * Oznaka * (zvjezdica) označava da Vi ne možete izbrisati ovu grupu ako je dodate i obrnutno.',
-'userrights-reason'           => 'Razlog promjene:',
+'userrights-reason'           => 'Razlog:',
 'userrights-no-interwiki'     => 'Nemate dopuštenja da uređujete korisnička prava na drugim wikijima.',
 'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalna baza.',
 'userrights-nologin'          => 'Morate se [[Special:UserLogin|prijaviti]] sa administratorskim računom da bi ste mogli postavljati korisnička prava.',
@@ -1827,10 +1827,8 @@ Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju tekst
 'ancientpages'            => 'Najstarije stranice',
 'move'                    => 'Preusmjeri',
 'movethispage'            => 'Premjesti ovu stranicu',
-'unusedimagestext'        => '<p>Obratite pažnju da se drugi veb sajtovi, kao što su drugi
-međunarodni Vikiji, mogu povezati na sliku direktnom
-URL-om, i tako mogu još uvijek biti prikazani ovdje uprkos
-aktivnoj upotrebi.</p>',
+'unusedimagestext'        => 'Slijedeće datoteke postoje ali nisu uključene ni u jednu stranicu.
+Molimo obratite pažnju da druge web stranice mogu biti povezane s datotekom putem direktnog URLa, tako da i pored toga mogu biti prikazane ovdje pored aktivne upotrebe.',
 'unusedcategoriestext'    => 'Slijedeće stranice kategorija postoje iako ih ni jedan drugi članak ili kategorija ne koriste.',
 'notargettitle'           => 'Nema cilja',
 'notargettext'            => 'Niste naveli ciljnu stranicu ili korisnika
@@ -2149,7 +2147,7 @@ Klikom na '''''Očisti''''' ćete očistiti polje za komentar i sve kutijice.",
 'undeleterevisions'            => '{{PLURAL:$1|$1 revizija arhivirana|$1 revizije arhivirane|$1 revizija arhivirano}}',
 'undeletehistory'              => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj historiji.
 Ako je nova stranica istog imena napravljena od brisanja, vraćene revizije će se pojaviti u njenoj ranijoj historiji.',
-'undeleterevdel'               => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelomično obrisano.
+'undeleterevdel'               => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelimično obrisano.
 U takvim slučajevima, morate ukloniti označene ili otkriti sakrivene najskorije obrisane revizije.',
 'undeletehistorynoadmin'       => 'Ova stranica je izbrisana.  Ispod se nalazi dio istorije brisanja i istorija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
 'undelete-revision'            => 'Obrisana revizija stranice $1 (dana $4, u $5) od strane $3:',

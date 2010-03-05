@@ -373,7 +373,10 @@ Powůd zawarćo: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Wylůgowańy užytkowńika',
-'logouttext'                 => "'''Terozki ježeś wylůgowany'''.<br />Možeš dali sam sprowjać zajty we {{SITENAME}} kej ńyzalůgowany užytkowńik, abo [[Special:UserLogin|zalůgować śe nazod]] kej tyn som abo inkšy užytkowńik. Dej pozůr, co na ńykerych zajtach přeglůndarka može dali pokozywać co ježeś zalůgowany, a bydźe tak aže uodśwjyžyš jeij cache.",
+'logouttext'                 => "'''Terozki ježeś wylůgowany'''.
+
+Možeš dali sam sprowjać zajty we {{SITENAME}} kej ńyzalůgowany užytkowńik, abo [[Special:UserLogin|zalůgować śe nazod]] kej tyn som abo inkšy užytkowńik.
+Dej pozůr, co na ńykerych zajtach přeglůndarka može dali pokozywać co ježeś zalůgowany, a bydźe tak aže uodśwjyžyš jeij cache.",
 'welcomecreation'            => '== Witej, $1! ==
 Uotwarli my sam lo Ćebje kůnto.
 Ńy zapomńij poštalować [[Special:Preferences|preferencyji lo {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
@@ -545,7 +548,7 @@ Twůj adres IP je terozki $3. Idyntyfikator Twojij blokady to $5. Zanotuj śe go
 'confirmedittext'                  => 'Muśiš podać a potwjerdźić swůj e-brif, coby můc sam sprowjać.
 Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
 'nosuchsectiontitle'               => 'Ńy mo takij tajli',
-'nosuchsectiontext'                => 'Průbowoužeś sprowjać tajla kero ńy istńeje. Jak sam ńy ma tajli $1, ńy ma tyž kaj naškryflać twojigo sprowjyńo.',
+'nosuchsectiontext'                => 'Průbowoužeś sprowjać tajla kero ńy istńeje.',
 'loginreqtitle'                    => 'Muśiš śe zalůgować',
 'loginreqlink'                     => 'zalůguj śe',
 'loginreqpagetext'                 => 'Muśiš $1 coby můc přeglůndać inkše zajty.',

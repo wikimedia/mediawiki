@@ -731,8 +731,9 @@ Bonvolu inkluzivi tiujn detalojn en iuj ajn demandoj kiun vi farus.',
 'whitelistedittext'                => 'Vi devas $1 por redakti paĝojn.',
 'confirmedittitle'                 => 'Nepras konfirmi per retpoŝto por redakti',
 'confirmedittext'                  => 'Vi devas konfirmi vian retpoŝtan adreson antaŭ ol redakti paĝojn. Bonvolu agordi kaj validigi vian retadreson per viaj [[Special:Preferences|preferoj]].',
-'nosuchsectiontitle'               => 'Ne tia sekcio',
-'nosuchsectiontext'                => 'Vi provis redakti sekcion, kiu ne ekzistas. Ĉar ne estas sekcio $1, ne  estas loko por savi vian redakton.',
+'nosuchsectiontitle'               => 'Ne eblas trovi sekcion',
+'nosuchsectiontext'                => 'Vi provis redakti sekcion, kiu ne ekzistas.
+Ĝi eble estis movita aŭ forigita dum vi rigardis la paĝon.',
 'loginreqtitle'                    => 'Nepre ensaluti',
 'loginreqlink'                     => 'ensaluti',
 'loginreqpagetext'                 => 'Vi devas $1 por rigardi aliajn paĝojn.',
@@ -748,7 +749,7 @@ Ni tial devas uzi la cifran IP-adreson por identigi lin/ŝin.
 Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn al vi, bonvolu [[Special:UserLogin/signup|krei konton]] aŭ [[Special:UserLogin|ensaluti]] por eviti estontan konfuzon pro aliaj anonimaj uzantoj.''",
 'noarticletext'                    => 'Mankas teksto en ĉi tiu paĝo.
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj paĝoj,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} serĉi la rilatajn protokolojn],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serĉi la rilatajn protokolojn],
 aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
 'userpage-userdoesnotexist'        => 'Uzula konto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti ĉi tiu paĝo.',
 'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
@@ -940,7 +941,7 @@ Bonvolu konfirmi ke vi intencias fari ĉi tiel, ke vi komprenas la konsekvencojn
 'revdelete-submit'               => 'Apliki al la selektita versio',
 'revdelete-logentry'             => 'ŝanĝis videblecon de versio por [[$1]]',
 'logdelete-logentry'             => 'ŝanĝis eventan videblecon de [[$1]]',
-'revdelete-success'              => "'''Revizia videbleco estas sukcese farita.'''",
+'revdelete-success'              => "'''Revizia videbleco estas sukcese ĝisdatigita.'''",
 'logdelete-success'              => "'''Videbleco de evento sukcese farita.'''",
 'revdel-restore'                 => 'Ŝanĝi videblecon',
 'pagehist'                       => 'Paĝa historio',
@@ -1215,7 +1216,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 * Markita markbutono signifas ke la uzanto estas en tiu grupo.
 * Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.
 * Steleto (*) signifas ke vi ne povas forigi la grupon post vi aldonis ĝin, aŭ male.',
-'userrights-reason'           => 'Kialo por ŝanĝo:',
+'userrights-reason'           => 'Kialo:',
 'userrights-no-interwiki'     => 'Vi ne rajtas redakti uzanto-rajtojn en aliaj vikioj.',
 'userrights-nodatabase'       => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
 'userrights-nologin'          => 'Vi nepre [[Special:UserLogin|ensalutu]] kun administranto-konto doni uzanto-rajtojn.',
@@ -1696,9 +1697,8 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'ancientpages'            => 'Plej malnovaj artikoloj',
 'move'                    => 'Alinomigi',
 'movethispage'            => 'Alinomigi ĉi tiun paĝon',
-'unusedimagestext'        => 'Notu, ke aliaj TTT-ejoj, ekzemple
-la alilingvaj {{SITENAME}}j, povas rekte ligi al dosiero per URL.
-Tio ne estus enkalkutita en la jena listo.',
+'unusedimagestext'        => 'La jenaj dosieroj ekzistas sed ne estas enmetas en iu ajn paĝo.
+Bonvolu noti ke aliaj retejoj eblas ligi dosieron kun rekta URL-o, kaj tial estas listebla ĉi tie malgraŭ estante aktive uzata.',
 'unusedcategoriestext'    => 'La paĝoj de la sekvanta kategorio jam ekzistas, sed neniu alia artikolo aŭ kategorio rilatas al ĝi.',
 'notargettitle'           => 'Sen celpaĝo',
 'notargettext'            => 'Vi ne precizigis, kiun paĝon aŭ uzanton priumi.',

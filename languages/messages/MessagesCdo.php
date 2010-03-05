@@ -214,7 +214,7 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 
 # Login and logout pages
 'logouttitle'                => 'Ê̤ṳng-hô láuk-chók',
-'logouttext'                 => "'''Nṳ̄ hiêng-câi láuk-chók lāu.'''<br />
+'logouttext'                 => "'''Nṳ̄ hiêng-câi láuk-chók lāu.'''
 Nṳ̄ â̤-sāi sāi mò̤-miàng huŏng-sék gié-sṳ̆k găk {{SITENAME}} gè̤-dēng láuk, nṳ̄ iâ â̤-sāi sāi dè̤ng-iông gì dióng-hô̤ hĕ̤k-ciā bĕk-nó̤h bĭk dióng-hô̤ gái láuk-diē. Diŏh gé lā̤, nṳ̄ báuk-lāng-ké ká̤-chṳ̄ (''browser cache'') nâ mò̤ tĕ̤ng táh gó̤ uâ, ô gì hiĕk giăng â̤ hiēng-sê nṳ̄ gó muôi láuk-chók.",
 'welcomecreation'            => '== Huăng-ngìng guŏng-lìng, $1! ==
 

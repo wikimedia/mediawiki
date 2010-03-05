@@ -798,8 +798,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'whitelistedittext'                => '문서를 편집하려면 $1해야 합니다.',
 'confirmedittitle'                 => '편집하려면 이메일 인증 필요',
 'confirmedittext'                  => '문서를 고치려면 이메일 인증 절차가 필요합니다. [[Special:Preferences|사용자 환경 설정]]에서 이메일 주소를 입력하고 이메일 주소 인증을 해 주시기 바랍니다.',
-'nosuchsectiontitle'               => '해당 부분 없음',
-'nosuchsectiontext'                => '편집하려는 문단이 존재하지 않습니다. $1번째 문단이 없기 때문에 편집한 내용을 저장할 수 없습니다.',
+'nosuchsectiontitle'               => '단락을 찾을 수 없음',
+'nosuchsectiontext'                => '편집하려는 문단이 존재하지 않습니다.',
 'loginreqtitle'                    => '로그인 필요',
 'loginreqlink'                     => '로그인',
 'loginreqpagetext'                 => '다른 문서를 보기 위해서는 $1해야 합니다.',
@@ -812,8 +812,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 만약 잘못 찾아온 문서라면, 웹 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
 'anontalkpagetext'                 => '----
 여기는 계정을 만들지 않았거나 사용하고 있지 않은 비등록 사용자를 위한 토론 문서입니다. 비등록 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다. IP 주소는 여러 사용자가 공유할 수 있습니다. 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 비등록 사용자는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 나중에 다른 비등록 사용자에게 줄 혼란을 줄일 수 있습니다.',
-'noarticletext'                    => '‘{{FULLPAGENAME}}’ 문서가 존재하지 않습니다.
-이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 기록]을 확인하거나, 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
+'noarticletext'                    => '이 문서가 존재하지 않습니다.
+이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나, 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
 'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
 
@@ -1134,7 +1134,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'shown-title'                      => '매 쪽마다 결과 $1 개씩 보이기',
 'viewprevnext'                     => '보기: ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => '검색 설정',
-'searchmenu-exists'                => "'''이 위키에 \"[[\$1]]\"의 이름을 가진 문서가 있습니다.'''",
+'searchmenu-exists'                => "'''이 위키에 \"[[:\$1]]\"의 이름을 가진 문서가 있습니다.'''",
 'searchmenu-new'                   => "'''이 위키에 \"[[:\$1]]\" 문서를 만드십시오!'''",
 'searchhelp-url'                   => 'Help:목차',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|이 접두어로 시작하는 문서 찾기]]',
@@ -1273,7 +1273,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 * 사용자는 체크 표시가 있는 권한을 갖습니다.
 * 사용자는 체크 표시가 없는 권한을 갖지 않습니다.
 * <nowiki>*</nowiki>표시는 권한을 주거나 거두는 것 중 하나만 할 수 있다는 뜻입니다.',
-'userrights-reason'           => '바꾸는 이유:',
+'userrights-reason'           => '이유:',
 'userrights-no-interwiki'     => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
 'userrights-nodatabase'       => '데이터베이스 $1이 존재하지 않거나 로컬에 있지 않습니다.',
 'userrights-nologin'          => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:UserLogin|로그인]]해야 합니다.',
@@ -1770,7 +1770,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'ancientpages'            => '오래된 문서 목록',
 'move'                    => '이동',
 'movethispage'            => '문서 이동하기',
-'unusedimagestext'        => '다른 사이트에서 URL 접근을 통해 파일을 사용할 수 있기 때문에, 아래 목록에 있는 파일도 실제로 사용 중일 가능성이 있다는 점을 주의해주세요.',
+'unusedimagestext'        => '다음은 어떤 문서도 사용하지 않는 파일의 목록입니다.
+다른 사이트에서 URL 접근을 통해 파일을 사용할 수 있기 때문에, 아래 목록에 있는 파일도 실제로 사용 중일 가능성이 있다는 점을 주의해주세요.',
 'unusedcategoriestext'    => '사용하지 않는 분류 문서들의 목록입니다.',
 'notargettitle'           => '해당하는 문서 없음',
 'notargettext'            => '기능을 수행할 대상 문서나 사용자를 지정하지 않았습니다.',
@@ -2155,7 +2156,7 @@ $1',
 'whatlinkshere-hideredirs' => '넘겨주기를 $1',
 'whatlinkshere-hidetrans'  => '틀을 $1',
 'whatlinkshere-hidelinks'  => '링크를 $1',
-'whatlinkshere-hideimages' => '그림을 $1',
+'whatlinkshere-hideimages' => '그림 포함을 $1',
 'whatlinkshere-filters'    => '필터',
 
 # Block/unblock

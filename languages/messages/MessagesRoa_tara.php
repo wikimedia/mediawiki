@@ -607,9 +607,9 @@ Pe piacere mitte tutte le dettaglie ca ponne essere utile pe le richieste tue.",
 'confirmedittitle'                 => "Ce vuè cu fece le cangiaminde a confermà cu l'email",
 'confirmedittext'                  => "Tu a confermà l'indirizze e-mail tue apprime de cangià le pàggene.
 Pe piacere mitte e validesce l'indirizze e-mail tue ausanne le [[Special:Preferences|preferenze de l'utende]].",
-'nosuchsectiontitle'               => 'Non ge stonne seziune',
+'nosuchsectiontitle'               => "Non ge pozze acchià 'a sezione",
 'nosuchsectiontext'                => "Tu stè prueve a cangià 'na sezione ca non g'esiste.
-Ce non ge stè 'a seziona $1, quiste non g'è 'u poste addò a reggistrà le cangiaminde tue.",
+Pò essere ca ha state spustate o scangellate quanne tu ste vedive 'a pàgene.",
 'loginreqtitle'                    => "T'a collegà pe forze",
 'loginreqlink'                     => 'trase',
 'loginreqpagetext'                 => 'Tu a $1 pe vedè otre pàggene.',
@@ -626,7 +626,7 @@ Nuje auseme 'n'indirizze IP (ca jè numereche) pe identificarle.
 E' normale ca essende 'n'indirizze IP pò essere ausete pure da otre utinde ca 'u pigghiene.
 Ce tu non ge si 'n'utende anonime e pinze ca le commende ca so revolte a te sonde studecarije, pe piacere [[Special:UserLogin/signup|ccreje 'nu cunde utende]] o [[Special:UserLogin|tràse]] pe no fà confusione jndr'à 'u future cu otre utinde anoneme.''",
 'noarticletext'                    => 'Non ge stè scritte ninde jndr\'à sta pàgene.
-Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre pàggene, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}}] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene]</span>.',
+Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre pàggene, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene]</span>.',
 'userpage-userdoesnotexist'        => '\'U cunde utende "$1" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
@@ -827,7 +827,7 @@ Pe piacere conferme ca tu vuè ccu face sta cose, ca tu è capite le conseguenze
 'revdelete-submit'               => 'Applichesce a le revisiune selezionete',
 'revdelete-logentry'             => "ha state cangete 'a visibbilità d'a revisione de [[$1]]",
 'logdelete-logentry'             => "ha state cangete 'a visibbilità de l'evende de [[$1]]",
-'revdelete-success'              => "'''Visibbilità de le revisiune 'mbostate correttamende.'''",
+'revdelete-success'              => "'''Visibbilità de le revisiune aggiornate correttamende.'''",
 'logdelete-success'              => "'''Log visibility successfully set.'''
 '''Visibbilità de l'archivije 'mbostate correttamende.'''",
 'revdel-restore'                 => "Cange 'a visibilità",
@@ -1108,7 +1108,7 @@ pe piacere vide math/README pe configurà.',
 * 'Na spunde de verifiche significhe ca l'utende stè jndr'à stu gruppe.
 * 'A spunda de verifica luate significhe ca l'utende non ge stè jndr'à stu gruppe.
 * 'Nu * significhe ca tu non ge puè luà 'u gruppe 'na vote ca tu l'è aggiunde, o a smerse.",
-'userrights-reason'              => "Mutive d'u cangiamende:",
+'userrights-reason'              => 'Mutive:',
 'userrights-no-interwiki'        => "Tu non ge tìne le permesse pe cangià le deritte utende sus a l'otre uicchi.",
 'userrights-nodatabase'          => "'U Database $1 non g'esiste o non g'è lochele.",
 'userrights-nologin'             => "Tu à essere [[Special:UserLogin|colleghete]] cu 'nu cunde utende d'amministratore pe assignà le deritte utende.",
@@ -1609,7 +1609,8 @@ Mò s'avène redirette a [[$2]].",
 'ancientpages'            => 'Pàggene vìcchje',
 'move'                    => 'Spuèste',
 'movethispage'            => 'Spueste sta pàgene',
-'unusedimagestext'        => "Pe piacere note ca otre site de Indernette ponne appondà a 'nu file cu 'na URL dirette, e accussì ponne essere elengate aqquà fine a ca avènene ausate.",
+'unusedimagestext'        => "Le file seguende esistene ma non ge se iacchiane jndr'à nisciuna pàggene.
+Pe piacere note ca otre site de Indernette ponne appondà a 'nu file cu 'na URL dirette, e accussì ponne essere elengate aqquà fine a ca avènene ausate.",
 'unusedcategoriestext'    => 'Le seguende categorije esistene, allore che non ge stonne otre pàggene o categorije ause a lore.',
 'notargettitle'           => 'Nisciuna destinazione',
 'notargettext'            => "Tu non g'è specificate 'na pàgene o 'n'utende de destinazione sus a 'u quale vuè ccu face l'operazione.",
@@ -2461,6 +2462,7 @@ $1",
 # Media information
 'mediawarning'         => "'''Attenziò''': Stu file pò condenè codece viziuse.
 Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.<hr />",
+'imagemaxsize'         => "Limite de l'immaggine sus a le pàggene de descrizione d'u file a:",
 'thumbsize'            => "Dimenziona d'a miniature:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
 'file-info'            => "(dimenzione d'u fail: $1, tipe de MIME: $2)",

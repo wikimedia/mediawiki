@@ -399,7 +399,9 @@ Alesané yaiku ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Metu log panganggo',
-'logouttext'                 => "Panjenengan wis metu (oncat) saka cathetan sistem. Panjenengan bisa migunakaké {{SITENAME}} kanthi anonim, utawa panjenengan bisa mlebu manèh .
+'logouttext'                 => "'''Panjenengan wis metu (oncat) saka cathetan sistem.'''
+
+Panjenengan bisa migunakaké {{SITENAME}} kanthi anonim, utawa panjenengan bisa mlebu manèh .
 Supaya dimangertèni bilih ana kaca sing isih nganggo panjenengan kacathet ing sistém amerga panjenengan durung mbusak <em>cache</em> ''browser'' panjenengan.",
 'welcomecreation'            => '== Sugeng rawuh, $1! ==
 
@@ -584,8 +586,9 @@ ID pamblokiran panjenengan iku #$5 lan alamat IP panjenengan iku $3. Tulung sert
 'whitelistedittext'                => 'Panjenengan kudu $1 supaya bisa nyunting artikel.',
 'confirmedittitle'                 => 'Konfirmasi layang e-mail diprelokaké supaya panjenengan pareng nglakoni panyuntingan',
 'confirmedittext'                  => 'Panjenengan kudu ndhedhes alamat e-mail dhisik sadurungé pareng nyunting sawijining kaca. Mangga nglebokaké lan validasi alamat e-mail panjenengan sadurungé nglakoni panyuntingan. Alamat e-mail sawisé bisa diowahi liwat [[Special:Preferences|kaca préférènsi]]',
-'nosuchsectiontitle'               => 'Subbagian iku ora bisa ditemokaké',
-'nosuchsectiontext'                => 'Panjenengan nyoba nyunting sawijining sing ora ana. Amerga subbagian $1 ora ana, suntingan panjenengan ora bisa disimpen.',
+'nosuchsectiontitle'               => 'Bagéan ora ditemokaké',
+'nosuchsectiontext'                => 'Panjenengan nyoba nyunting sawijining bagéan sing ora ana.
+Bagéan iki manawa wis dipindhah utawa dibusak nalika panjenengan buka.',
 'loginreqtitle'                    => 'Mangga mlebu log',
 'loginreqlink'                     => 'mlebu log',
 'loginreqpagetext'                 => 'Panjenengan kudu $1 kanggo bisa mirsani kaca liyané.',
@@ -1036,7 +1039,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 * Kothak sing dicenthang tegesé panganggo iki ana sajroné grup iku.
 * Kothak sing ora dicenthang tegesé panganggo iku ora ana ing grup iku.
 * Tandha bintang * tegesé panjenengan ora bisa ngilangi grup iku yèn wis tau nambah, utawa sawalikané.',
-'userrights-reason'           => 'Alesané ngowahi:',
+'userrights-reason'           => 'Alesan:',
 'userrights-no-interwiki'     => 'Panjenengan ora ana hak kanggo ngowahi hak panganggo ing wiki liyané.',
 'userrights-nodatabase'       => 'Basis data $1 ora ana utawa ora lokal.',
 'userrights-nologin'          => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] mawa nganggo akun utawa rékening pangurus supaya bisa ngowahi hak panganggo.',
@@ -1215,13 +1218,13 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'upload_directory_missing'    => 'Direktori pamunggahan ($1) ora ditemokaké lan ora bisa digawé déning server wèb.',
 'upload_directory_read_only'  => 'Dirèktori pangunggahan ($1) ora bisa ditulis déning server wèb.',
 'uploaderror'                 => 'Kaluputan pangunggahan berkas',
-'uploadtext'                  => "Anggonen formulir ing ngisor iki kanggo ngunggahaké berkas. 
-Kanggo mirsani utawa nggolèki berkas sing wis diunggah sadurungé pigunakaké [[Special:FileList|dhaftar berkas sing wis diunggah]], berkas sing diunggah ulang uga kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
+'uploadtext'                  => "Anggé formulir ing ngandhap punika kanggé nginggahaké gambar. 
+Kanggé mirsani utawi madosi gambar ingkang sampun dipununggah sakdèrèngipun pigunakaken [[Special:FileList|dhaftar berkas sing wis diunggah]], gambar ingkang dipununggah ulang ugi kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
 
-Kanggo nyertakaké berkas ing sawijining kaca, pigunakaké pranala salah siji saka format ing ngisor iki:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' kanggo migunakaké versi pepak berkas
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></tt>''' kanggo migunakaké berkas ambané 200 piksel jroning kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' kanggo nggandhèng langsung menyang berkas tanpa nampilaké berkas",
+Kanggé nyertakaken gambar ing satunggiling kaca, pigunakaken pranala salah setunggal saking format ing ngandhap punika:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' kanggé migunakaken versi pepak gambar
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></tt>''' kanggé migunakaken gambar wiyaripun 200 piksel ing kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' kanggé nggandhèng langsung dhumateng gambar tanpi nampilaké gambar",
 'upload-permitted'            => 'Jenis berkas sing diidinaké: $1.',
 'upload-preferred'            => 'Jenis berkas sing disaranaké: $1.',
 'upload-prohibited'           => 'Jenis berkas sing dilarang: $1.',

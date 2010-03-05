@@ -35,6 +35,7 @@
  * @author Lin linao
  * @author Locos epraix
  * @author Mahadeva
+ * @author Manuelt15
  * @author McDutchie
  * @author Muro de Aguas
  * @author Omnipaedista
@@ -220,7 +221,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subrayar enlaces:',
 'tog-highlightbroken'         => 'Destacar enlaces a artículos vacíos <a href="" class="new">como este</a> (alternativa: como éste<a href="" class="internal">?</a>).',
-'tog-justify'                 => 'Ajustar párrafos',
+'tog-justify'                 => 'Justificar párrafos',
 'tog-hideminor'               => 'Ocultar ediciones menores en cambios recientes',
 'tog-hidepatrolled'           => 'Ocultar ediciones patrulladas en los cambios recientes',
 'tog-newpageshidepatrolled'   => 'Ocultar páginas patrulladas de la lista de páginas nuevas',
@@ -241,7 +242,7 @@ $messages = array(
 'tog-minordefault'            => 'Marcar todas las ediciones como menores por defecto',
 'tog-previewontop'            => 'Mostrar la previsualización antes de la caja de edición en lugar de después',
 'tog-previewonfirst'          => 'Mostrar previsualización al comenzar a editar',
-'tog-nocache'                 => "Inhabilitar la ''caché'' de páginas",
+'tog-nocache'                 => 'Deshabilitar la caché de páginas',
 'tog-enotifwatchlistpages'    => 'Envíame un correo cuando haya cambios en una página vigilada',
 'tog-enotifusertalkpages'     => 'Notifícame cuando cambia mi página de discusión de usuario',
 'tog-enotifminoredits'        => 'Notifícame también los cambios menores de página',
@@ -426,7 +427,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
 'aboutpage'            => 'Project:Acerca de',
-'copyright'            => 'El contenido está disponible bajo los términos de la <i>$1</i>',
+'copyright'            => 'El contenido está disponible bajo los términos de la $1.',
 'copyrightpagename'    => 'Copyright de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Derechos de autor',
 'currentevents'        => 'Actualidad',
@@ -448,7 +449,7 @@ $messages = array(
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => 'No está autorizado a ejecutar la acción que ha solicitado.',
-'badaccess-groups' => 'La acción que ha solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos:}} $1.',
+'badaccess-groups' => 'La acción que has solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos:}} $1.',
 
 'versionrequired'     => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
 'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consulte [[Special:Version|la página de versión]]',
@@ -518,7 +519,7 @@ Base de datos retornó error "$3: $4".',
 $1',
 'nodb'                 => 'No se pudo seleccionar la base de datos $1',
 'cachederror'          => 'Esta es una copia guardada en el caché de la página requerida, y puede no estar actualizada.',
-'laggedslavemode'      => 'Aviso: puede que falten las actualizaciones más recientes en esta página.',
+'laggedslavemode'      => "'''Aviso:''' puede que falten las actualizaciones más recientes en esta página.",
 'readonly'             => 'Base de datos bloqueada',
 'enterlockreason'      => 'Explique el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo',
 'readonlytext'         => 'La base de datos no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras de lo cual volverá a la normalidad.
@@ -531,7 +532,7 @@ La causa de esto suele deberse a un ''diff'' anacrónico o un enlace al historia
 Si no fuera el caso, puedes haber encontrado un fallo en el software. 
 
 Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de la URL.",
-'missingarticle-rev'   => '(no. de revisión: $1)',
+'missingarticle-rev'   => '(nº. de revisión: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'La base de datos se ha bloqueado temporalmente mientras los servidores se sincronizan.',
 'internalerror'        => 'Error interno',
@@ -684,7 +685,8 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar la contraseña',
-'resetpass_announce'        => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico. Por favor, ingresa una nueva contraseña aquí:',
+'resetpass_announce'        => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico. 
+Por favor, introduce una nueva contraseña aquí:',
 'resetpass_text'            => '<!-- Añada texto aquí -->',
 'resetpass_header'          => 'Cambiar la contraseña',
 'oldpassword'               => 'Contraseña antigua:',
@@ -767,28 +769,29 @@ La razón dada es esta:
 * Caducidad del bloqueo: $6
 * Bloqueo destinado a: $7
 
-Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.
+Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|bibliotecarios]] para discutir el bloqueo.
 
 No puedes utilizar la función «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.
 
 Tu actual dirección IP es $3, y el identificador del bloqueo es #$5.
 Por favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
-'blockednoreason'                  => 'No se ha especificado el motivo',
+'blockednoreason'                  => 'no se ha especificado el motivo',
 'blockedoriginalsource'            => "El código fuente de '''$1''' se muestra a continuación:",
 'blockededitsource'                => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
 'whitelistedittitle'               => 'Se requiere identificación para editar.',
 'whitelistedittext'                => 'Tienes que $1 para editar artículos.',
 'confirmedittitle'                 => 'Se requiere confirmación de dirección electrónica para editar',
 'confirmedittext'                  => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
-'nosuchsectiontitle'               => 'No existe tal sección',
-'nosuchsectiontext'                => 'Has intentado editar una sección que no existe. Como no hay sección $1, no hay ningún lugar donde guardar tu edición.',
+'nosuchsectiontitle'               => 'Sección no encontrada',
+'nosuchsectiontext'                => 'Has intentado editar una sección que no existe.
+Quizá ha sido movida o borrada mientras visitabas la página.',
 'loginreqtitle'                    => 'Se requiere identificación',
 'loginreqlink'                     => 'identificarte',
 'loginreqpagetext'                 => 'Debe $1 para ver otras páginas.',
 'accmailtitle'                     => 'La contraseña ha sido enviada.',
 'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] ha sido enviada a $2.
 
-La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Special:ChangePassword|Cambiar la contraseña]]'' después de la autenticación.",
+La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Special:ChangePassword|cambiar la contraseña]]'' después de la autenticación.",
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe.
 Si lo que quieres es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]].
@@ -796,7 +799,7 @@ Si llegó aquí por error, vuelva a la página anterior.',
 'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
 'noarticletext'                    => 'En este momento no hay texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otras páginas,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar en los registros],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
@@ -984,11 +987,11 @@ Por favor confirme que está intentando hacer esto, que usted entiende las conse
 'revdelete-suppress'             => 'Suprimir datos a los administradores así como al resto',
 'revdelete-hide-image'           => 'Ocultar el contenido del archivo',
 'revdelete-unsuppress'           => 'Eliminar restricciones de revisiones restauradas',
-'revdelete-log'                  => 'Razón para borrado:',
+'revdelete-log'                  => 'Razón para el borrado:',
 'revdelete-submit'               => 'Aplicar a la revisión seleccionada',
 'revdelete-logentry'             => 'cambió la visibilidad de revisiones de [[$1]]',
 'logdelete-logentry'             => 'cambió la visibilidad de eventos de [[$1]]',
-'revdelete-success'              => 'Visibilidad de revisiones cambiada correctamente.',
+'revdelete-success'              => "'''La visibilidad de revisiones ha sido cambiada correctamente.'''",
 'logdelete-success'              => 'Visibilidad de eventos cambiada correctamente.',
 'revdel-restore'                 => 'Cambiar visibilidad',
 'pagehist'                       => 'Historial de la página',
@@ -998,8 +1001,8 @@ Por favor confirme que está intentando hacer esto, que usted entiende las conse
 'revdelete-uname'                => 'nombre de usuario',
 'revdelete-restricted'           => 'restricciones para administradores aplicadas',
 'revdelete-unrestricted'         => 'restricciones para administradores eliminadas',
-'revdelete-hid'                  => 'ocultar $1',
-'revdelete-unhid'                => 'mostrar $1',
+'revdelete-hid'                  => 'ocultó $1',
+'revdelete-unhid'                => 'mostró $1',
 'revdelete-log-message'          => '$1 para $2 {{PLURAL:$2|revisión|revisiones}}',
 'logdelete-log-message'          => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
 
@@ -1035,7 +1038,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 
 # Merge log
 'mergelog'           => 'Registro de fusiones',
-'pagemerge-logentry' => 'fusionado [[$1]] en [[$2]] (revisiones hasta $3)',
+'pagemerge-logentry' => 'fusionó [[$1]] en [[$2]] (revisiones hasta $3)',
 'revertmerge'        => 'Deshacer fusión',
 'mergelogpagetext'   => 'Debajo está una lista de las fusiones más recientes de historial de una página en otra.',
 
@@ -1266,7 +1269,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 * Un recuadro marcado significa que el usuario está en ese grupo.
 * Un recuadro no marcado significa que el usuario no está en ese grupo.
 * Un * indica que no podrás retirar el grupo una vez que lo concedas, o viceversa.',
-'userrights-reason'           => 'Motivo para el cambio:',
+'userrights-reason'           => 'Motivo:',
 'userrights-no-interwiki'     => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase'       => 'La base de datos $1 no existe o no es local.',
 'userrights-nologin'          => 'Debes [[Special:UserLogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
@@ -1384,7 +1387,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'action-undelete'             => 'recuperar esta página',
 'action-suppressrevision'     => 'revisar y restaurar esta revisión escondida',
 'action-suppressionlog'       => 'ver este registro privado',
-'action-block'                => 'bloquear a este usuario para que no modifique',
+'action-block'                => 'bloquear a este usuario para que no edite',
 'action-protect'              => 'cambiar los niveles de protección para esta página',
 'action-import'               => 'importar esta página desde otro wiki',
 'action-importupload'         => 'importar esta página mediante la carga de un archivo',
@@ -1508,7 +1511,7 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'uploadwarning'               => 'Advertencia de subida de archivo',
 'savefile'                    => 'Guardar archivo',
 'uploadedimage'               => 'subió «[[$1]]»',
-'overwroteimage'              => 'subida una nueva versión de «[[$1]]»',
+'overwroteimage'              => 'subió una nueva versión de «[[$1]]»',
 'uploaddisabled'              => 'Subida de archivos deshabilitada',
 'uploaddisabledtext'          => 'No es posible subir archivos.',
 'php-uploaddisabledtext'      => 'La subida de archivos está deshabilitada en PHP. Por favor compruebe <code>file_uploads</code> en php.ini.',
@@ -1747,7 +1750,8 @@ Las entradas <s>tachadas</s> han sido resueltas.',
 'ancientpages'            => 'Artículos más antiguos',
 'move'                    => 'Trasladar',
 'movethispage'            => 'Trasladar esta página',
-'unusedimagestext'        => 'Por favor, tenga en cuenta que otros sitios web pueden enlazar a una imagen directamente con su URL y de esa manera no aparecer listados aquí pese a estar en uso.',
+'unusedimagestext'        => 'Los siguientes archivos existen pero no están insertados en ninguna página.
+Por favor note que otros sitios web pueden vincular a un archivo con un URL directo, y por tanto pueden ser listados aquí a pesar de estar en uso activo.',
 'unusedcategoriestext'    => 'Las siguientes categorías han sido creadas, pero ningún artículo o categoría las utiliza.',
 'notargettitle'           => 'No hay página objetivo',
 'notargettext'            => 'Especifique sobre qué página desea llevar a cabo esta acción.',
@@ -1993,7 +1997,7 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:ProtectedPages|Esta página está protegida]] para más información.',
 'protectedarticle'            => 'protegió «[[$1]]»',
 'modifiedarticleprotection'   => 'cambió el nivel de protección de «[[$1]]»',
-'unprotectedarticle'          => 'desprotegió [[$1]]',
+'unprotectedarticle'          => 'desprotegió «[[$1]]»',
 'movedarticleprotection'      => 'cambiadas protecciones de «[[$2]]» a «[[$1]]»',
 'protect-title'               => 'Cambiando el nivel de protección de «$1»',
 'prot_1movedto2'              => 'heredando la protección al trasladar [[$1]] a [[$2]]',
@@ -2015,7 +2019,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-level-autoconfirmed' => 'Bloquear usuarios nuevos y no registrados',
 'protect-level-sysop'         => 'Sólo administradores',
 'protect-summary-cascade'     => 'en cascada',
-'protect-expiring'            => 'vence el $1 (UTC)',
+'protect-expiring'            => 'caduca el $1 (UTC)',
 'protect-expiry-indefinite'   => 'indefinido',
 'protect-cascade'             => 'Protección en cascada - proteger todas las páginas incluidas en ésta.',
 'protect-cantedit'            => 'No puedes cambiar el nivel de protección porque no tienes permiso para hacer ediciones.',
@@ -2071,7 +2075,7 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletereset'                => 'Cancelar',
 'undeleteinvert'               => 'Invertir selección',
 'undeletecomment'              => 'Razón para restaurar:',
-'undeletedarticle'             => 'restauró "$1"',
+'undeletedarticle'             => 'restauró «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Una edición restaurada|$1 ediciones restauradas}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|ediciones restauradas y $2 archivo restaurado|ediciones y $2 archivos restaurados}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo restaurado|archivos restaurados}}',
@@ -2162,7 +2166,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 'ipbanononly'                     => 'Bloquear usuarios anónimos solamente',
 'ipbcreateaccount'                => 'Prevenir la creación de cuentas de usuario',
 'ipbemailban'                     => 'Prevenir que el usuario envíe correo electrónico',
-'ipbenableautoblock'              => 'Bloquear automáticamente la dirección IP usada por este usuario, y cualquier IP posterior desde la cual intente editar',
+'ipbenableautoblock'              => 'Bloquear automáticamente la dirección IP usada por este usuario y cualquier IP posterior desde la cual intente editar',
 'ipbsubmit'                       => 'Bloquear a este usuario',
 'ipbother'                        => 'Especificar caducidad',
 'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,para siempre:infinite', # display1:time1,display2:time2,...
@@ -2222,7 +2226,7 @@ Consulte la [[Special:IPBlockList|lista de direcciones IP bloqueadas]] para ver 
 'block-log-flags-noautoblock'     => 'bloqueo automático desactivado',
 'block-log-flags-noemail'         => 'correo electrónico deshabilitado',
 'block-log-flags-nousertalk'      => 'no puede editar su propia página de discusión',
-'block-log-flags-angry-autoblock' => 'activado el autobloqueo avanzado',
+'block-log-flags-angry-autoblock' => 'autobloqueo avanzado habilitado',
 'block-log-flags-hiddenname'      => 'nombre de usuario oculto',
 'range_block_disabled'            => 'La facultad de administrador de crear bloqueos por rangos está deshabilitada.',
 'ipb_expiry_invalid'              => 'El tiempo de caducidad no es válido.',
@@ -2493,8 +2497,15 @@ Permite añadir una razón al resumen de edición.',
 'monobook.css' => '/* cambie este archivo para personalizar la piel monobook para el sitio entero */',
 
 # Scripts
-'common.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
-'monobook.js' => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
+'common.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
+'standard.js'    => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar. */',
+'nostalgia.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Nostalgia. */',
+'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul. */',
+'monobook.js'    => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
+'myskin.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel. */',
+'chick.js'       => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito. */',
+'simple.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple. */',
+'modern.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna. */',
 
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF deshabilitados en este servidor.',
@@ -2560,7 +2571,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 # Patrol log
 'patrol-log-page'      => 'Registro de revisiones',
 'patrol-log-header'    => 'Este es un registro de revisiones patrulladas.',
-'patrol-log-line'      => 'revisado $1 de $2 $3',
+'patrol-log-line'      => 'revisó la $1 de $2 $3',
 'patrol-log-auto'      => '(automático)',
 'patrol-log-diff'      => 'revisión $1',
 'log-show-hide-patrol' => '$1 registro de patrullaje',

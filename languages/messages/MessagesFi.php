@@ -515,7 +515,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 
 'badaccess'        => 'Lupa evätty',
 'badaccess-group0' => 'Sinulla ei ole lupaa suorittaa pyydettyä toimintoa.',
-'badaccess-groups' => 'Pyytämäsi toiminto on rajoitettu {{PLURAL:$2|ryhmän|ryhmien}} $1 henkilöille.',
+'badaccess-groups' => 'Pyytämäsi toiminto on rajoitettu {{PLURAL:$2|ryhmän|ryhmien}} $1 jäsenille.',
 
 'versionrequired'     => 'MediaWikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'MediaWikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]].',
@@ -639,7 +639,8 @@ $2',
 'logouttitle'                => 'Uloskirjautuminen',
 'logouttext'                 => "'''Olet nyt kirjautunut ulos.'''
 
-Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai [[Special:UserLogin|kirjautua uudelleen sisään]].",
+Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai [[Special:UserLogin|kirjautua uudelleen sisään]].
+Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut sisään, kunnes tyhjennät selaimen välimuistin.",
 'welcomecreation'            => '== Tervetuloa $1! ==
 Käyttäjätunnuksesi on luotu.
 Älä unohda virittää {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|asetuksiasi]].',
@@ -822,7 +823,8 @@ Liitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 'confirmedittitle'                 => 'Sähköpostin varmennus',
 'confirmedittext'                  => 'Et voi muokata sivuja, ennen kuin olet varmentanut sähköpostiosoitteesi. Voit tehdä varmennuksen [[Special:Preferences|asetussivulla]].',
 'nosuchsectiontitle'               => 'Pyydettyä osiota ei ole',
-'nosuchsectiontext'                => 'Yritit muokata osiota, jota ei ole olemassa. Koska osiota $1 ei ole olemassa, muokkausta ei voida tallentaa.',
+'nosuchsectiontext'                => 'Yritit muokata osiota, jota ei ole olemassa.
+Se on saatettu siirtää tai poistaa äskettäin.',
 'loginreqtitle'                    => 'Sisäänkirjautuminen vaaditaan',
 'loginreqlink'                     => 'kirjautua sisään',
 'loginreqpagetext'                 => 'Sinun täytyy $1, jotta voisit nähdä muut sivut.',
@@ -837,7 +839,7 @@ Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
 'anontalkpagetext'                 => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:UserLogin/signup|luo itsellesi käyttäjätunnus]] tai [[Special:UserLogin|kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
 'noarticletext'                    => 'Tällä hetkellä tällä sivulla ei ole tekstiä.
 Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} hakea aiheeseen liittyviä lokeja]
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea aiheeseen liittyviä lokeja]
 tai [{{fullurl:{{FULLPAGENAME}}|action=edit}} muokata tätä sivua]</span>.',
 'userpage-userdoesnotexist'        => 'Käyttäjätunnusta $1 ei ole rekisteröity. Varmista haluatko muokata tätä sivua.',
 'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
@@ -918,7 +920,7 @@ Joitakin mallineita ei ole sisällytetty.',
 Nämä muuttujat on jätetty käsittelemättä.',
 'post-expand-template-argument-category'  => 'Käsittelemättömiä mallinemuuttujia sisältävät sivut',
 'parser-template-loop-warning'            => 'Mallinesilmukka havaittu: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Mallineen rekursioraja ylitetty ($1)',
+'parser-template-recursion-depth-warning' => 'Mallineen rekursioraja ylittyi ($1)',
 
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
@@ -1283,7 +1285,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 * Merkattu valintaruutu tarkoittaa, että käyttäjä on kyseisessä ryhmässä.
 * Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.
 * <nowiki>*</nowiki> tarkoittaa, että et pysty kumoamaan kyseistä operaatiota.',
-'userrights-reason'           => 'Kommentti',
+'userrights-reason'           => 'Syy',
 'userrights-no-interwiki'     => 'Sinulla ei ole lupaa muokata käyttöoikeuksia muissa wikeissä.',
 'userrights-nodatabase'       => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
 'userrights-nologin'          => 'Sinun täytyy [[Special:UserLogin|kirjautua sisään]] ylläpitäjätunnuksella, jotta voisit muuttaa käyttöoikeuksia.',
@@ -1748,7 +1750,8 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
 'move'                    => 'Siirrä',
 'movethispage'            => 'Siirrä tämä sivu',
-'unusedimagestext'        => 'Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla, jolloin tiedosto saattaa olla tässä listassa, vaikka sitä käytetäänkin.',
+'unusedimagestext'        => 'Seuraavat tiedostot ovat olemassa, mutta niitä ei käytetä millään sivulla.
+Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla, jolloin tiedosto saattaa olla tässä listassa, vaikka sitä käytetäänkin.',
 'unusedcategoriestext'    => 'Nämä luokat ovat olemassa, mutta niitä ei käytetä.',
 'notargettitle'           => 'Ei kohdetta',
 'notargettext'            => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdistuu.',
@@ -2011,7 +2014,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-othertime'           => 'Muu kesto',
 'protect-othertime-op'        => 'muu kesto',
 'protect-existing-expiry'     => 'Nykyinen vanhenemisaika: $3 kello $2',
-'protect-otherreason'         => 'Muu tai lisäsyy',
+'protect-otherreason'         => 'Muu syy tai tarkennus',
 'protect-otherreason-op'      => 'Muu syy',
 'protect-dropdown'            => '*Yleiset suojaussyyt
 ** Jatkuva vandalismi

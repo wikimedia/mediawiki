@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andejkendej
  * @author Cradel
  * @author Dori
  * @author Eagleal
@@ -532,7 +533,9 @@ Arsyeja e dhënë është ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Përdoruesi doli',
-'logouttext'                 => 'Keni dalë jashtë {{SITENAME}}-s. Mund të vazhdoni të përdorni {{SITENAME}}-n anonimisht, ose mund të hyni brënda përsëri.',
+'logouttext'                 => "'''Keni dalë jashtë {{SITENAME}}-s.'''
+
+Mund të vazhdoni të përdorni {{SITENAME}}-n anonimisht, ose mund të hyni brënda përsëri.",
 'welcomecreation'            => '== Mirëserdhët, $1! ==
 Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAME}}-s suaj.',
 'loginpagetitle'             => 'Hyrje përdoruesi',
@@ -710,8 +713,7 @@ Ju lutemi përfshini këto detaje në të gjitha kërkesat që i bëni.',
 'confirmedittitle'                 => 'Nevojitet adresë email-i e vërtetuar për të redaktuar',
 'confirmedittext'                  => 'Ju duhet së pari ta vërtetoni e-mail adresen para se të redaktoni. Ju lutem plotësoni dhe vërtetoni e-mailin tuaj  te [[Special:Preferences|parapëlqimet]] e juaja.',
 'nosuchsectiontitle'               => 'Asnjë seksion i tillë nuk ekziston',
-'nosuchsectiontext'                => "Keni provuar të redaktoni një seksion që s'ekziston.
-Përderisa nuk ka seksion $1 nuk ka vend për të ruajtur ndryshimet tuaja.",
+'nosuchsectiontext'                => "Keni provuar të redaktoni një seksion që s'ekziston.",
 'loginreqtitle'                    => 'Detyrohet hyrja',
 'loginreqlink'                     => 'hyni',
 'loginreqpagetext'                 => 'Ju duhet $1 për të parë faqe e tjera.',
@@ -1091,6 +1093,10 @@ Ju mund [[:\$1|të e krijoni këtë faqe]].",
 'timezoneoffset'            => 'Ofset¹:',
 'servertime'                => 'Ora e shërbyesit:',
 'guesstimezone'             => 'Gjeje nga shfletuesi',
+'timezoneregion-atlantic'   => 'Oqeani Atlantik',
+'timezoneregion-pacific'    => 'Pacific Ocean
+
+Oqeani Paqësor',
 'allowemail'                => 'Lejo përdoruesit të më dërgojnë email',
 'prefs-searchoptions'       => 'Mundësi kërkimi',
 'prefs-namespaces'          => 'Hapësirat',
@@ -2106,6 +2112,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 # Special:Import
 'import'                   => 'Importoni faqe',
 'importinterwiki'          => 'Import ndër-wiki',
+'import-interwiki-source'  => 'Burimi wiki/faqe',
 'import-interwiki-history' => 'Kopjo të gjitha versionet e historisë për këtë faqe',
 'import-interwiki-submit'  => 'Importo',
 'import-comment'           => 'Arsyeja:',

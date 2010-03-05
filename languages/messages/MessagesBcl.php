@@ -433,7 +433,8 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Magluwas an paragamit',
-'logouttext'                 => "'''Nakaluwas ka na.'''<br />
+'logouttext'                 => "'''Nakaluwas ka na.'''
+
 Pwede mo pang gamiton an {{SITENAME}} na dai nagpapabisto, o pwede ka giraray lumaog
 bilang pareho o ibang parágamit. Giromdomon tabî na an ibang mga páhina pwedeng mahiling pa na garo nakalaog ka pa, hasta limpyarón mo an abang kan ''browser'' mo.",
 'welcomecreation'            => "== Maogmang Pagdagos, $1! ==
@@ -606,7 +607,7 @@ Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\
 'confirmedittitle'          => 'Kaipuhan nin kompirmasyon nin e-koreo tangarig makahirá',
 'confirmedittext'           => "Kaipuhan mong kompirmaron an saimong ''e''-surat. Ipwesto tabî asin patunayan an saimong ''e''-surat sa [[Special:Preferences|mga kabôtan kan parágamit]].",
 'nosuchsectiontitle'        => 'Mayong siring na seksyón',
-'nosuchsectiontext'         => 'Mayo man an seksyón an pighihira mo. Nin huli ta mayô nin seksyón na $1, mayong lugar na pwedeng tagamahan kan hirá mo.',
+'nosuchsectiontext'         => 'Mayo man an seksyón an pighihira mo.',
 'loginreqtitle'             => 'Kaipuhan Maglaog',
 'loginreqlink'              => 'maglaog',
 'loginreqpagetext'          => 'Kaipuhan kang $1 tangarig makahilíng nin ibang pahina.',

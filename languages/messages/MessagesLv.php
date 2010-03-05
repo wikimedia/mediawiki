@@ -8,6 +8,7 @@
  * @file
  *
  * @author Dark Eagle
+ * @author FnTmLV
  * @author Knakts
  * @author Marozols
  * @author Papuass
@@ -49,6 +50,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Saites uz neesošām lapām rādīt <a href="" class="new">šādi</a> (alternatīva: šādi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Izlīdzināt rindkopām abas malas',
 'tog-hideminor'               => 'Paslēpt maznozīmīgus labojumus pēdējo izmaiņu lapā',
+'tog-hidepatrolled'           => 'Slēpt apstiprinātās izmaņas pēdējo izmaiņu sarakstā',
 'tog-extendwatchlist'         => 'Izvērst uzraugāmo lapu sarakstu, lai parādītu visas veiktās izmaiņas (ne tikai pašas svaigākās)',
 'tog-usenewrc'                => "Lietot uzlaboto pēdējo izmaiņu lapu (izmanto ''JavaScript'')",
 'tog-numberheadings'          => 'Automātiski numurēt virsrakstus',
@@ -353,6 +355,7 @@ Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot
 'badarticleerror'      => 'Šo darbību nevar veikt šajā lapā.',
 'cannotdelete'         => 'Nevar izdzēst norādīto lapu vai failu. (Iespējams, to jau ir izdzēsis kāds cits)',
 'badtitle'             => 'Nepiemērots nosaukums',
+'badtitletext'         => 'Pieprasītā lapa ir kļūdaina, tukša, vai nepareizi saistīts starpvalodu vai starp-vikiju virsrakstas. Tas var saturēt vienu vai vairākus simbolus, ko nedrīkst izmantot nosaukumos.',
 'perfcached'           => 'Šie dati ir no servera kešatmiņas un var būt novecojuši:',
 'perfcachedts'         => "Šie dati ir no servera kešatmiņas (''cache''), kas pēdējo reizi bija atjaunota $1.",
 'querypage-no-updates' => 'Šīs lapas atjaunošana pagaidām ir atslēgta. Te esošie dati tuvākajā laikā netiks atjaunoti.',
@@ -549,8 +552,7 @@ Lūdzu iekļauj šos visos ziņojumos, kurus sūti adminiem, apspriežot šo blo
 'confirmedittext'           => 'Lai varētu izmainīt lapas, vispirms jāapstiprina savu e-pasta adresi.
 Norādi un apstiprini e-pasta adresi savos [[Special:Preferences|lietotāja uzstādījumos]].',
 'nosuchsectiontitle'        => 'Nav šādas nodaļas',
-'nosuchsectiontext'         => 'Tu mēģināji izmainīt neeksistējošu nodaļu.
-Tā kā te nav nodaļas $1, te nav kur saglabāt tavu izmaiņu.',
+'nosuchsectiontext'         => 'Tu mēģināji izmainīt neeksistējošu nodaļu.',
 'loginreqtitle'             => 'Nepieciešama ieiešana',
 'loginreqlink'              => 'login',
 'accmailtitle'              => 'Parole izsūtīta.',
@@ -564,7 +566,7 @@ Ja tu šeit nonāci kļūdas pēc, vienkārši uzspied '''back''' pogu pārlūkp
 'anontalkpagetext'          => "----''Šī ir diskusiju lapa anonīmam lietotājam, kurš vēl nav kļuvis par reģistrētu lietotāju vai arī neizmanto savu lietotājvārdu. Tādēļ mums ir jāizmanto skaitliskā IP adrese, lai viņu identificētu.
 Šāda IP adrese var būt vairākiem lietotājiem.
 Ja tu esi anonīms lietotājs un uzskati, ka tev ir adresēti neatbilstoši komentāri, lūdzu, [[Special:UserLogin/signup|kļūsti par lietotāju]] vai arī [[Special:UserLogin|izmanto jau izveidotu lietotājvārdu]], lai izvairītos no turpmākām neskaidrībām un tu netiktu sajaukts ar citiem anonīmiem lietotājiem.''",
-'noarticletext'             => 'Šajā lapā šobrīd nav nekāda teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt citās lapās pēc šīs lapas nosaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} meklēt saistītos reģistru ierakstos] vai arī [{{fullurl:{{FULLPAGENAME}}|action=edit}} sākt rediģēt šo lapu].',
+'noarticletext'             => 'Šajā lapā šobrīd nav nekāda teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt citās lapās pēc šīs lapas nosaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saistītos reģistru ierakstos] vai arī [{{fullurl:{{FULLPAGENAME}}|action=edit}} sākt rediģēt šo lapu].',
 'userpage-userdoesnotexist' => 'Lietotājs "$1" nav reģistrēts.
 Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
 'clearyourcache'            => "'''Piezīme - Pēc saglabāšanas, lai būtu redzamas izmaiņas, var būt nepieciešamas iztīrīt pārlūka kešatmiņu.''' '''Mozilla / Firefox / Safari:''' turi nospiestu ''Shift'' un klikšķini ''Reload,'' vai arī spied ''Ctrl-F5'' vai ''Ctrl-R'' (''Command-R'' uz Macintosh); '''Konqueror: '''klikšķini ''Reload'' vai spied uz ''F5;'' '''Opera:''' kešu var iztīrīt ''Tools → Preferences;'' '''Internet Explorer:''' turi nospiestu ''Ctrl'' un klikšķini ''Refresh,'' vai spied ''Ctrl-F5.''",
@@ -701,6 +703,9 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 # History merging
 'mergehistory-reason' => 'Iemesls:',
 
+# Merge log
+'revertmerge' => 'Atsaukt apvienošanu',
+
 # Diffs
 'history-title'           => '"$1" versiju hronoloģija',
 'difference'              => '(Atšķirības starp versijām)',
@@ -736,10 +741,13 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'searchprofile-everything-tooltip' => 'Meklēt visur (ieskaitot diskusiju lapas)',
 'searchprofile-advanced-tooltip'   => 'Izvēlēties nosaukumvietas, kurās meklēt',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 vārds|$2 vārdi}})',
+'search-section'                   => '(sadaļa $1)',
 'search-suggest'                   => 'Vai jūs domājāt: $1',
 'search-interwiki-caption'         => 'Citi projekti',
 'search-interwiki-default'         => 'Rezultāti no $1:',
 'search-interwiki-more'            => '(vairāk)',
+'search-mwsuggest-enabled'         => 'ar ieteikumiem',
+'search-mwsuggest-disabled'        => 'bez ieteikumiem',
 'mwsuggest-disable'                => 'Atslēgt AJAX ieteikumus',
 'showingresults'                   => "Šobrīd ir {{PLURAL:$1|redzama|redzamas}} '''$1''' {{PLURAL:$1|lapa|lapas}}, sākot ar #'''$2'''.",
 'showingresultsnum'                => "Šobrīd ir {{PLURAL:$3|redzama|redzamas}} '''$3''' {{PLURAL:$3|lapa|lapas}}, sākot ar #'''$2'''.",
@@ -896,6 +904,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'recentchanges'                     => 'Pēdējās izmaiņas',
 'recentchanges-legend'              => 'Pēdējo izmaiņu opcijas',
 'recentchangestext'                 => 'Šajā lapā ir šitajā viki izdarītās pēdējās izmaiņas.',
+'recentchanges-feed-description'    => 'Sekojiet līdzi jaunākajām izmaiņām vikijā izmantojot šo barotni.',
 'rcnote'                            => 'Šobrīd ir {{PLURAL:$1|redzama pēdējā <strong>$1</strong> izmaiņa, kas izdarīta|redzamas pēdējās <strong>$1</strong> izmaiņas, kas izdarītas}} {{PLURAL:$2|pēdējā|pēdējās}} <strong>$2</strong> {{PLURAL:$2|dienā|dienās}} (līdz $4, $5).',
 'rcnotefrom'                        => "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",
 'rclistfrom'                        => 'Parādīt jaunas izmaiņas kopš $1',
@@ -916,6 +925,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'rc_categories_any'                 => 'Jebkas',
 'newsectionsummary'                 => '/* $1 */ jauna sadaļa',
 'rc-enhanced-expand'                => 'Rādīt informāciju (nepieciešams JavaScript)',
+'rc-enhanced-hide'                  => 'Paslēpt detaļas',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Saistītās izmaiņas',
@@ -1379,6 +1389,7 @@ Pašreizējie lapas '''$1''' iestatījumi ir:",
 'protect-fallback'            => 'Nepieciešama atļauja "$1"',
 'protect-level-autoconfirmed' => 'Bloķēt jauniem un nereģistrētiem lietotājiem',
 'protect-level-sysop'         => 'Tikai adminiem',
+'protect-summary-cascade'     => 'kaskāde',
 'protect-expiring'            => 'līdz $1 (UTC)',
 'protect-cascade'             => "Aizsargāt šajā lapā iekļautās lapas (veidnes) ''(cascading protection)''",
 'protect-cantedit'            => 'Tu nevari izmainīt šīs lapas aizsardzības līmeņus, tāpēc, ka tur nevari izmainīt šo lapu.',
@@ -1480,7 +1491,7 @@ kāds cits iespējams to ir atjaunojis ātrāk.',
 # Block/unblock
 'blockip'                      => 'Bloķēt lietotāju',
 'blockip-legend'               => 'Bloķēt lietotāju',
-'blockiptext'                  => 'Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[Project:Vadlīnijas|noteikumiem]].
+'blockiptext'                  => 'Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[{{MediaWiki:Policy-url}}|noteikumiem]].
 Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'ipaddress'                    => 'IP adrese/lietotājvārds',
 'ipadressorusername'           => 'IP adrese vai lietotājvārds',
@@ -1722,6 +1733,8 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'tooltip-watch'                   => 'Pievienot šo lapu uzraugāmo lapu sarakstam',
 'tooltip-recreate'                => 'Atjaunot lapu, lai arī tā ir bijusi izdzēsta',
 'tooltip-upload'                  => 'Sākt augšuplādi',
+'tooltip-undo'                    => '"Atgriezt" atgriež šīs izmaiņas un atver labošanas formu priekšskatījuma veidā.
+Tas atļauj pievienot iemeslu kopsavilkumā.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonīmais {{grammar:ģenitīvs|{{SITENAME}}}} lietotājs|Anonīmie {{grammar:ģenitīvs|{{SITENAME}}}} lietotāji}}',

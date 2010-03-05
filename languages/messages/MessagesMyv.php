@@ -629,7 +629,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 Лисиндеряй тесэ ильведькс, лепштик браузерсэ '''back''' повнэнть.",
 'noarticletext'                    => 'Неень шкасто те лопасонть сёрмадовкс арась. Мусак [[Special:Search/{{PAGENAME}}|вешнемс  файлань те конякс]] лия сёрмадовкстнэстэ 
 <span class="plainlinks">
-[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} вешнемс малавикс журналтнэстэ],
+[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} вешнемс малавикс журналтнэстэ],
 эли [{{fullurl:
 {{FULLPAGENAME}}|action=edit}} витнемс-петнемс те лопанть]</span>.',
 'updated'                          => '(Одолгавтозь)',
@@ -923,7 +923,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'userrights-user-editname'    => 'Сёрмадт теицянь лем:',
 'editusergroup'               => 'Витнемс-петнемс сови куротнень',
 'saveusergroups'              => 'Ванстомс сови куротнень',
-'userrights-reason'           => 'Полавтомань тувтал:',
+'userrights-reason'           => 'Тувталось:',
 'userrights-changeable-col'   => 'Курот, конат тонеть полавтовить',
 'userrights-unchangeable-col' => 'Курот, конат тонеть а полавтовить',
 
@@ -1115,6 +1115,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'noimage-linktext'          => 'йовкстык тень',
 'uploadnewversion-linktext' => 'Тонгодо од версия те файланть',
 'shared-repo-from'          => 'вана теньстэ $1', # $1 is the repository name
+'shared-repo'               => 'вейтьсэнь ванстома тарка', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'         => 'Велявтомс $1 мекев',
@@ -1173,7 +1174,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'disambiguations'     => 'Лопат, конат сёрмадстовтовить ламосмустев терминтт',
 'disambiguationspage' => 'Template:смустень коряс явома',
 
-'doubleredirects' => 'Кавксть ютавтозь',
+'doubleredirects'       => 'Кавксть ютавтозь',
+'double-redirect-fixer' => 'Печтевтемс витнема-петнема пель',
 
 'brokenredirects'        => 'Сезезь ёнксось',
 'brokenredirects-edit'   => '(витнеме-петнеме)',
@@ -1596,6 +1598,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # Special:Import
 'import'                     => 'Таргамс лопатнень',
+'import-interwiki-source'    => 'Вики лисьмапрякс/лопась:',
 'import-interwiki-templates' => 'Совавтомс весе лопа парцунтнэнь',
 'import-interwiki-submit'    => 'Таргамс',
 'import-interwiki-namespace' => 'Норовазь лемпотмось:',

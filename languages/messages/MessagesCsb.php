@@ -305,7 +305,8 @@ Przemëszlë dolmaczënié na [http://translatewiki.net/wiki/Main_Page?setlang=c
 
 # Login and logout pages
 'logouttitle'                => 'Wëlogòwanié brëkòwnika',
-'logouttext'                 => 'Të jes ju wëlogòwóny. Mòżesz prôcowac z {{SITENAME}} jakno anonimòwi brëkòwnik abò wlogòwac sã jakno zaregistrowóny brëkòwnik.',
+'logouttext'                 => 'Të jes ju wëlogòwóny.
+Mòżesz prôcowac z {{SITENAME}} jakno anonimòwi brëkòwnik abò wlogòwac sã jakno zaregistrowóny brëkòwnik.',
 'loginpagetitle'             => 'Logòwanié brëkòwnika',
 'yourname'                   => 'Miono brëkòwnika',
 'yourpassword'               => 'Twòja parola',

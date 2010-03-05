@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bekiroflaz
+ * @author Bombola
  * @author Dbl2010
  * @author Erkan Yilmaz
  * @author Fryed-peach
@@ -327,9 +328,9 @@ $messages = array(
 'talkpage'          => 'Sayfayı tartış',
 'talkpagelinktext'  => 'Mesaj',
 'specialpage'       => 'Özel sayfa',
-'personaltools'     => 'Kişisel aletler',
+'personaltools'     => 'Kişisel araçlar',
 'postcomment'       => 'Yeni bölüm',
-'articlepage'       => 'Maddeye git',
+'articlepage'       => 'İçerik sayfasını gör',
 'talk'              => 'Tartışma',
 'views'             => 'Görünümler',
 'toolbox'           => 'Araçlar',
@@ -357,8 +358,8 @@ $messages = array(
 'copyright'            => 'İçerik $1 altındadır.',
 'copyrightpagename'    => '{{SITENAME}} telif hakları',
 'copyrightpage'        => '{{ns:project}}:Telif hakları',
-'currentevents'        => 'Köy çeşmesi',
-'currentevents-url'    => 'Project:Köy çeşmesi',
+'currentevents'        => 'Güncel olaylar',
+'currentevents-url'    => 'Project:Güncel olaylar',
 'disclaimers'          => 'Sorumluluk reddi',
 'disclaimerpage'       => 'Project:Genel_sorumluluk_reddi',
 'edithelp'             => 'Nasıl değiştirilir?',
@@ -415,8 +416,8 @@ $messages = array(
 'nstab-special'   => 'Özel sayfa',
 'nstab-project'   => 'Proje sayfası',
 'nstab-image'     => 'Dosya',
-'nstab-mediawiki' => 'arayüz metni',
-'nstab-template'  => 'şablon',
+'nstab-mediawiki' => 'Mesaj',
+'nstab-template'  => 'Şablon',
 'nstab-help'      => 'yardım',
 'nstab-category'  => 'Kategori',
 
@@ -505,8 +506,10 @@ Verilen sebep: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Oturumu kapat',
-'logouttext'                 => 'Oturumu kapattınız.
-Şimdi kimliğinizi belirtmeksizin {{SITENAME}} sitesini kullanmaya devam edebilirsiniz, ya da yeniden oturum açabilirsiniz (ister aynı kullanıcı adıyla, ister başka bir kullanıcı adıyla). Web tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hala oturumunuz açıkmış gibi görünebilir.',
+'logouttext'                 => "'''Oturumu kapattınız.'''
+
+Şimdi kimliğinizi belirtmeksizin {{SITENAME}} sitesini kullanmaya devam edebilirsiniz, ya da [[Special:UserLogin|yeniden oturum açabilirsiniz]] (ister aynı kullanıcı adıyla, ister başka bir kullanıcı adıyla).
+Web tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hala oturumunuz açıkmış gibi görünebilir.",
 'welcomecreation'            => '== Hoşgeldiniz, $1! ==
 
 Hesabınız açıldı. 
@@ -538,7 +541,7 @@ Hesabınız açıldı.
 'uid'                        => 'Kayıt numarası:',
 'prefs-memberingroups'       => '{{PLURAL:$1|grup|grup}} üyesi:',
 'yourrealname'               => 'Gerçek isminiz:',
-'yourlanguage'               => 'Arayüz dili',
+'yourlanguage'               => 'Dil:',
 'yourvariant'                => 'Sizce:',
 'yournick'                   => 'İmzalarda gözükmesini istediğiniz isim',
 'badsig'                     => 'Geçersiz ham imza; HTML etiketlerini kontorl edin.',
@@ -703,8 +706,9 @@ Lütfen yapacağınız herhangi bir sorguda yukarıdaki bütün detayları bulun
 'whitelistedittext'                => 'Değişiklik yapabilmek için $1.',
 'confirmedittitle'                 => 'Değişiklik yapmak için e-posta onaylaması gerekiyor',
 'confirmedittext'                  => 'Sayfa değiştirmeden önce e-posta adresinizi onaylamalısınız. Lütfen [[Special:Preferences|tercihler]] kısmından e-postanızı ekleyin ve onaylayın.',
-'nosuchsectiontitle'               => 'Böyle bir bölüm yok',
-'nosuchsectiontext'                => 'Bulunmayan bir konu başlığını değiştirmeyi denediniz. Burada $1 isimli bir konu başlığı bulunmamaktadır, katkınızı kaydedecek bir yer bulunmamaktadır.',
+'nosuchsectiontitle'               => 'Bölüm bulunamadı',
+'nosuchsectiontext'                => 'Bulunmayan bir konu başlığını değiştirmeyi denediniz.
+Siz sayfayı görüntülerken taşınmış veya silinmiş olabilir.',
 'loginreqtitle'                    => 'Oturum açmanız gerekiyor',
 'loginreqlink'                     => 'oturum aç',
 'loginreqpagetext'                 => 'Diğer sayfaları görmek için $1 olmalısınız.',
@@ -717,7 +721,7 @@ Bu yeni hesap için parola, giriş yapıldıktan sonra ''[[Special:ChangePasswor
 'anontalkpagetext'                 => "----''Bu sayfa henüz bir kullanıcı hesabı oluşturmamış veya hesabını kullanmayan bir anonim kullanıcının mesaj sayfasıdır. Bu nedenle bu kişiyi belirtmek için rakamsal IP adresini kullanmak zorundayız. Bu gibi IP adresleri birçok kullanıcı tarafından paylaşılabilir. Eğer siz de bir anonim kullanıcıysanız ve size sizin ilginiz olmayan mesajlar geliyorsa, lütfen diğer anonim kullanıcılarla olabilecek olan karmaşayı önlemek için [[Special:UserLogin/signup|bir hesap oluşturun]] veya [[Special:UserLogin|oturum açın]].''",
 'noarticletext'                    => 'Bu sayfa şu anda boştur.
 Bu başlığı diğer sayfalarda [[Special:Search/{{PAGENAME}}|arayabilir]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ilgili günlükleri arayabilir],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili günlükleri arayabilir],
 ya da bu sayfayı [{{fullurl:{{FULLPAGENAME}}|action=edit}} değiştirebilirsiniz]</span>.',
 'userpage-userdoesnotexist'        => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
@@ -1178,7 +1182,7 @@ ayarlamak için math/README'ye bakın.",
 * Seçili bir kutu, kullanıcının o gruba dahil olduğu anlamına gelir
 * Seçilmemiş bir kutu, kullanıcının o grupta olmadığı anlamına gelir.
 * *, grubu bir kez oluşturduktan sonra silemeceğinizi belirtir, ya da karşılıklı olarak.',
-'userrights-reason'           => 'Değiştirme nedeni:',
+'userrights-reason'           => 'Sebep:',
 'userrights-no-interwiki'     => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
 'userrights-nodatabase'       => '$1 veritabanı mevcut veya bölgesel değil',
 'userrights-nologin'          => 'Kullanıcı haklarını atamak için hizmetli hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
@@ -1270,7 +1274,7 @@ ayarlamak için math/README'ye bakın.",
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
 'rightslogtext'  => 'Kullanıcı hakları değişiklikleri kayıtları.',
-'rightslogentry' => '$1 in yetkileri $2 iken $3 olarak değiştirildi',
+'rightslogentry' => '$1 adlı kullanıcının yetkileri $2 iken $3 olarak değiştirildi',
 'rightsnone'     => '(hiçbiri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1671,9 +1675,10 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'newpages'                => 'Yeni sayfalar',
 'newpages-username'       => 'Kullanıcı adı:',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',
-'move'                    => 'Adını değiştir',
+'move'                    => 'Taşı',
 'movethispage'            => 'Sayfayı taşı',
-'unusedimagestext'        => 'Lütfen unutmayın ki, diğer web siteleri bir dosyaya doğrudan bir URL ile bağlantı verebilir, ve bu yüzden etkin kullanımda olmasa bile hala burada listenebilir.',
+'unusedimagestext'        => 'Aşağıdaki dosyalar mevcuttur ancak herhangi bir sayfada gömülü değildir.
+Lütfen unutmayın ki, diğer web siteleri bir dosyaya doğrudan bir URL ile bağlantı verebilir, ve bu yüzden etkin kullanımda olmasa bile hala burada listenebilir.',
 'unusedcategoriestext'    => 'Aşağıda bulunan kategoriler mevcut olduğu halde, hiçbir madde ya da kategori tarafından kullanılmıyor.',
 'notargettitle'           => 'Hedef yok',
 'notargettext'            => 'Bu fonksiyonu uygulamak için bir hedef sayfası ya da kullanıcısı belirtmediniz.',
@@ -2287,7 +2292,7 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'export-pagelinks'  => 'Bağlı sayfaları içerecek derinlik:',
 
 # Namespace 8 related
-'allmessages'               => 'Viki arayüz metinleri',
+'allmessages'               => 'Sistem mesajları',
 'allmessagesname'           => 'İsim',
 'allmessagesdefault'        => 'Orjinal metin',
 'allmessagescurrent'        => 'Kullanımdaki metin',

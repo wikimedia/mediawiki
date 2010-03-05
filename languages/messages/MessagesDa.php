@@ -23,6 +23,7 @@
  * @author Morten LJ
  * @author Najami
  * @author Peter Andersen
+ * @author Qaqqalik
  * @author Remember the dot
  * @author Sir48
  * @author Slomox
@@ -436,7 +437,8 @@ $messages = array(
 Du kan have skrevet URL'en forkert, eller fulgt en ukorrekt henvisning.
 Det kan også skyldes en fejl i programmellet som bruges af {{SITENAME}}.",
 'nosuchspecialpage' => 'En sådan specialside findes ikke',
-'nospecialpagetext' => 'Du har bedt om en specialside, der ikke kan genkendes af MediaWiki-softwaren.',
+'nospecialpagetext' => '<strong>Du har bedt om en specialside, der ikke kan genkendes af MediaWiki-softwaren.</strong>
+En liste over gyldige specialsider findes på [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Fejl',
@@ -514,8 +516,10 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Bruger-log-af',
-'logouttext'                 => 'Du er nu logget af.
-Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan logge på igen som den samme eller en anden bruger.',
+'logouttext'                 => "'''Du er nu logget af.'''
+
+Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge på igen]] som den samme eller en anden bruger.
+Bemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du tømmer din browsers cache.",
 'welcomecreation'            => '== Velkommen, $1! ==
 
 Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Preferences|{{SITENAME}}-indstillinger]].',
@@ -726,10 +730,13 @@ Adgangskoden for denne ny brugerkonto kan ændres på ''[[Special:ChangePassword
 For at oprette siden skal du begynde at skrive i boksen nedenfor
 (se [[{{MediaWiki:Helppage}}|hjælpesiden]] for yderligere information).
 Hvis du er her ved en fejl, så tryk på din browsers '''tilbage'''-knap.",
-'anontalkpagetext'                 => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske IP-adresse til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Special:UserLogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
+'anontalkpagetext'                 => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. 
+Vi er derfor nødt til at bruge den numeriske IP-adresse til at identificere ham eller hende. 
+En IP-adresse kan være delt mellem flere brugere. 
+Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at [[Special:UserLogin/signup|oprette en brugerkonto]] og [[Special:UserLogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
 'noarticletext'                    => 'Der er i øjeblikket ikke nogen tekst på denne side.
 Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} søge i relaterede logger]
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede logger]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
 'userpage-userdoesnotexist'        => 'Brugerkontoen "$1" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
 'clearyourcache'                   => "'''Bemærk: Efter at have gemt er du nødt til at tømme din browsers cache for at kunne se ændringerne.'''
@@ -914,7 +921,7 @@ Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, o
 'revdelete-submit'               => 'Bruge på udvalgte versioner',
 'revdelete-logentry'             => 'Versionsvisning ændret for [[$1]]',
 'logdelete-logentry'             => "ændrede [[$1]]'s synlighed",
-'revdelete-success'              => 'Versionsvisning er ændret.',
+'revdelete-success'              => "'''Versionsvisningen er ændret.'''",
 'logdelete-success'              => "'''Synlighed ændret med success.'''",
 'revdel-restore'                 => 'Ændre synlighed',
 'pagehist'                       => 'Sidehistorik',
@@ -1403,11 +1410,14 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'emptyfile'                   => 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
 'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst [[:$1]] om du er sikker på du vil ændre den.
 [[$1|thumb]]',
-'filepageexists'              => "Siden med beskrivelse af denne fil er allerede oprettet på '''<tt>[[:$1]]</tt>''', men der eksisterer ikke en fil med dette navn. Den beskrivelse du kan angive nedenfor vil derfor ikke blive brugt. For at få din beskrivelse vist, skal du selv redigere beskrivelsessiden.",
+'filepageexists'              => "Siden med beskrivelse af denne fil er allerede oprettet på '''<tt>[[:$1]]</tt>''', men der eksisterer ikke en fil med dette navn. 
+Den beskrivelse du kan angive nedenfor vil derfor ikke blive brugt. 
+For at få din beskrivelse vist, skal du selv redigere beskrivelsessiden.
+[[$1|thumb]]",
 'fileexists-extension'        => "En fil med lignende navn findes allerede: [[$2|thumb]]
 * Navnet på den valgte fil: '''<tt>[[:$1]]</tt>'''
 * Navnet på den eksisterende fil: '''<tt>[[:$2]]</tt>'''
-Kun filendelsen adskiller sig med store og små bogstaver.",
+Vælg venligst et andet navn.",
 'fileexists-thumb'            => "<center>'''Eksisterende billede'''</center>",
 'fileexists-thumbnail-yes'    => "Det ser ud som om filen indeholder et billede i reduceret størrelse ''(thumbnail)''. [[$1|thumb]]
 Kontroller filen '''<tt>[[:$1]]</tt>'''.
@@ -1448,7 +1458,8 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload-proto-error'      => 'Forkert protokol',
 'upload-proto-error-text' => 'Adressen skal begynde med <code>http://</code> eller <code>ftp://</code>.',
 'upload-file-error'       => 'Intern fejl',
-'upload-file-error-text'  => 'Ved oprettelse af en midlertidig fil på serveren, er der sket en fejl. Informer venligst en system-administrator.',
+'upload-file-error-text'  => 'Ved oprettelse af en midlertidig fil på serveren, er der sket en fejl. 
+Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'upload-misc-error'       => 'Ukendt fejl ved upload',
 'upload-misc-error-text'  => 'Ved upload er der sket en ukendt fejl. Kontroller adressen for fejl, sidens onlinestatus og forsøg igen. Hvis problemet fortsætter, informeres en system-administrator.',
 
@@ -1659,7 +1670,8 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'ancientpages'            => 'Ældste sider',
 'move'                    => 'Flyt',
 'movethispage'            => 'Flyt side',
-'unusedimagestext'        => '<p>Læg mærke til, at andre websider såsom de andre internationale {{SITENAME}}er måske henviser til et billede med en direkte URL, så det kan stadig være listet her, selvom det er i aktivt brug.',
+'unusedimagestext'        => 'De følgende filer findes, men bruges ikke på nogen sider.
+Læg mærke til at andre hjemmesider kan henvise til filen med et direkte URL, og kan stadig være listet her, selvom den faktisk er i brug.',
 'unusedcategoriestext'    => 'Denne specialside viser alle kategorier, som ikke selv er henført til en kategori.',
 'notargettitle'           => 'Sideangivelse mangler',
 'notargettext'            => 'Du har ikke angivet en side eller bruger at udføre denne funktion på.',
@@ -2111,7 +2123,8 @@ Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'unblocklink'                     => 'ophæv blokering',
 'change-blocklink'                => 'ændr blokering',
 'contribslink'                    => 'bidrag',
-'autoblocker'                     => 'Automatisk blokeret fordi du deler IP-adresse med "$1". Begrundelse "$2".',
+'autoblocker'                     => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]". 
+Begrundelse: "$2".',
 'blocklogpage'                    => 'Blokeringslog',
 'blocklog-fulllog'                => 'Komplet blokeringslog',
 'blocklogentry'                   => 'blokerede [[$1]] med en varighed på $2 $3',
@@ -2469,7 +2482,8 @@ $1',
 'visual-comparison' => 'Visuel sammenligning',
 
 # Media information
-'mediawarning'         => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udfører den.<hr />",
+'mediawarning'         => "'''Advarsel''': Denne filtype kan muligvis indeholde skadelig kode. 
+Du kan beskadige dit system hvis du udfører den.<hr />",
 'imagemaxsize'         => 'Begræns størrelsen af billeder på billedsiderne til:',
 'thumbsize'            => 'Thumbnailstørrelse :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',

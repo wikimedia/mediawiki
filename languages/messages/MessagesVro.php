@@ -8,6 +8,7 @@
  * @file
  *
  * @author Niklas Laxström
+ * @author Pikne
  * @author Sulev Iva (Võrok)
  * @author Võrok
  */
@@ -46,7 +47,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Käkiq perämäidsi muutmiisi nimekirän ärq muutmisõq, miä ommaq perräkaemisnimekirän',
 'tog-newpageshidepatrolled'   => 'Käkiq vahtsidõ lehti nimekirän ärq ülekaeduq leheq',
 'tog-extendwatchlist'         => 'Laendaq perräkaemisnimekirjä, et nätäq kõiki muutmiisi, mitte õnnõ kõgõ perämäidsi',
-'tog-usenewrc'                => 'Laendõduq perämädseq muutmisõq (olõ-i kõigin võrgokaejin)',
+'tog-usenewrc'                => 'Laendõduq perämädseq muutmisõq (vaia JavaScripti)',
 'tog-numberheadings'          => 'Päälkirjo automaatnummõrdus',
 'tog-showtoolbar'             => 'Näütäq toimõndusõ riistakasti',
 'tog-editondblclick'          => 'Artiklidõ toimõndaminõ topõltklõpsu pääle (JavaScript)',
@@ -54,7 +55,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Lupaq lõikõ toimõndaq hüäpoolidsõ klõpsutusõga <br /> lõigu päälkirä pääl (JavaScript)',
 'tog-showtoc'                 => 'Näütäq sisukõrda (rohkõmb ku kolmõ vaihõpäälkiräga lehile)',
 'tog-rememberpassword'        => 'Salasõna miildejätmine tulõvaidsis kõrros',
-'tog-editwidth'               => 'Täüslakjusõga toimõnduskast',
+'tog-editwidth'               => 'Tiiq toimõnduskast terve lehe lakjudsõs',
 'tog-watchcreations'          => 'Panõq mu luuduq leheq mu perräkaemisnimekirjä',
 'tog-watchdefault'            => 'Kaeq vahtsidõ ja muudõtuidõ artiklidõ perrä',
 'tog-watchmoves'              => 'Panõq mu ümbrenõstõduq leheküleq mu perräkaemisnimekirjä',
@@ -68,7 +69,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Saadaq mullõ e-kiri ka väikeisi muutmiisi kotsilõ',
 'tog-enotifrevealaddr'        => 'Näütäq mu e-postiaadrõssit tõisilõ saadõtuin teedüssin',
 'tog-shownumberswatching'     => "Näütäq, ku pall'o pruukjit taa lehe perrä kaes",
-'tog-fancysig'                => 'Pruugiq lihtsit allkirjo (ilma lingeldä pruukjalehe pääle)',
+'tog-fancysig'                => 'Pruugiq vikiteksti moodulist alakirotust (ilma automaatsõ lingildä)',
 'tog-externaleditor'          => "Pruugiq vaikimiisi välist tekstitoimõndajat (õnnõ as'atundjilõ, nõud suq puutri ümbresäädmist)",
 'tog-externaldiff'            => "Pruugiq vaikimiisi välist võrrõlusprogrammi (õnnõ as'atundjilõ, nõud su puutri ümbresäädmist)",
 'tog-showjumplinks'           => 'Panõq lehe algustõ kipõqlingiq',
@@ -587,7 +588,7 @@ Ku sa johtuq siiäq kogõmaldaq, sis klõpsaq võrgokaeja '''Tagasi'''-nuppi.",
 'anontalkpagetext'                 => "---- ''Taa om arotusleht nimeldä pruukja kotsilõ, kiä olõ-i loonuq pruukjanimme vai pruugi-i tuud. Tuuperäst tulõ meil pruukja kimmästegemises pruukiq timä puutri võrgoaadrõssit. Taa aadrõs või ollaq mitmõ pruukja pääle ütine. Ku olõt nimeldä pruukja ja lövvät, et taa leheküle pääle kirotõt jutt käü suq kotsilõ, sis olõq hää, [[Special:UserLogin/signup|luuq konto]] vai [[Special:UserLogin|mineq nimega sisse]], et edespiten segähüisi ärq hoitaq.''",
 'noarticletext'                    => 'Seo leht om parlaq tühi.
 Võit [[Special:Search/{{PAGENAME}}|otsiq soe lehe nimme]]  tõisi lehti päält vai
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} uuriq muutmisnimekirjo] vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduolõva leheküle esiq luvvaq]</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uuriq muutmisnimekirjo] vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduolõva leheküle esiq luvvaq]</span>.',
 'userpage-userdoesnotexist'        => 'Pruukjanimme "$1" olõ-i kirjä pant. Kaeq perrä, kas olõt iks kimmäs, et tahat taad lehte toimõndaq.',
 'clearyourcache'                   => "'''Panõq tähele:''' perän pästmist piät muutmiisi nägemises uma võrgokaeja vaihõmälo tühäs tegemä. '''Mozillal / Firofoxil / Safaril''' hoiaq all nõstmisnuppi ''Shift'' ja vaodaq ''Reload'' vai ''Ctrl-R'' (Macintoshil ''Command-R''); Konqueroril vaodaq ''Reload'' vai ''F5''. Operal puhastaq vaihõmälo ja võtaq valikust ''Tools → Preferences''. Internet Exploreril hoiaq ''Ctrl'' ja vaodaq ''Refresh'' vai vaodaq  ''ctrl-f5''.",
 'usercssjsyoucanpreview'           => "'''Nõvvoannõq:''' Pruugiq nuppi 'Näütäq proovikaehust' uma vahtsõ CCS-i vai JavaScripti ülekaemisõs, inne ku taa ärq pästät.",

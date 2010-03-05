@@ -10,6 +10,7 @@
  * @author Als-Holder
  * @author ChrisiPK
  * @author Church of emacs
+ * @author DaSch
  * @author Duesentrieb
  * @author Jan Luca
  * @author Jens Liebenau
@@ -33,6 +34,7 @@
  * @author Spacebirdy
  * @author Srhat
  * @author Tbleher
+ * @author The Evil IP address
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
  * @author UV
  * @author Umherirrender
@@ -690,7 +692,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 'logouttitle'                => 'Benutzer-Abmeldung',
 'logouttext'                 => "'''Du bist nun abgemeldet.'''
 
-Du kannst {{SITENAME}} jetzt anonym weiter benutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].",
+Du kannst {{SITENAME}} jetzt anonym weiter benutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
+Beachte, das einige Seiten noch anzeigen können, das du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
 'welcomecreation'            => '== Willkommen, $1! ==
 
 Dein Benutzerkonto wurde eingerichtet.
@@ -699,7 +702,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'yourname'                   => 'Benutzername:',
 'yourpassword'               => 'Passwort:',
 'yourpasswordagain'          => 'Passwort wiederholen:',
-'remembermypassword'         => 'auf diesem Computer dauerhaft anmelden',
+'remembermypassword'         => 'dauerhaft anmelden',
 'yourdomainname'             => 'Deine Domain:',
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder du darfst dein externes Benutzerkonto nicht aktualisieren.',
 'login'                      => 'Anmelden',
@@ -818,8 +821,8 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'link_tip'        => 'Interner Link',
 'extlink_sample'  => 'http://www.example.com Link-Text',
 'extlink_tip'     => 'Externer Link (http:// beachten)',
-'headline_sample' => 'Ebene 2 Überschrift',
-'headline_tip'    => 'Ebene 2 Überschrift',
+'headline_sample' => 'Ebene-2-Überschrift',
+'headline_tip'    => 'Ebene-2-Überschrift',
 'math_sample'     => 'Formel hier einfügen',
 'math_tip'        => 'Mathematische Formel (LaTeX)',
 'nowiki_sample'   => 'Unformatierten Text hier einfügen',
@@ -883,8 +886,9 @@ Bitte füge alle Informationen jeder Anfrage hinzu, die du stellt.",
 'whitelistedittext'                => 'Du musst dich $1, um Seiten bearbeiten zu können.',
 'confirmedittitle'                 => 'Zum Bearbeiten ist die E-Mail-Bestätigung erforderlich.',
 'confirmedittext'                  => 'Du musst deine E-Mail-Adresse erst bestätigen, bevor du Bearbeitungen durchführen kannst. Bitte ergänze und bestätige Deine E-Mail in den [[Special:Preferences|Einstellungen]].',
-'nosuchsectiontitle'               => 'Abschnitt nicht vorhanden',
-'nosuchsectiontext'                => 'Du versuchst den nicht vorhandenen Abschnitt $1 zu bearbeiten. Es können jedoch nur bereits vorhandene Abschnitte bearbeitet werden.',
+'nosuchsectiontitle'               => 'Abschnitt nicht gefunden',
+'nosuchsectiontext'                => 'Du hast versucht, einen Abschnitt zu bearbeiten, der nicht existiert.
+Vermutlich wurde er verschoben oder gelöscht, nachdem du die Seite aufgerufen hast.',
 'loginreqtitle'                    => 'Anmeldung erforderlich',
 'loginreqlink'                     => 'anmelden',
 'loginreqpagetext'                 => 'Du musst dich $1, um Seiten lesen zu können.',
@@ -1078,7 +1082,7 @@ Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst
 'revdelete-hide-user'            => 'Benutzername/IP-Adresse des Bearbeiters verstecken',
 'revdelete-hide-restricted'      => 'Daten auch vor Administratoren und anderen unterdrücken',
 'revdelete-suppress'             => 'Grund der Löschung auch vor Administratoren verstecken',
-'revdelete-hide-image'           => 'Bildinhalt verstecken',
+'revdelete-hide-image'           => 'Dateiinhalt verstecken',
 'revdelete-unsuppress'           => 'Einschränkungen für wiederhergestellte Versionen aufheben',
 'revdelete-log'                  => 'Grund der Löschung:',
 'revdelete-submit'               => 'Auf ausgewählte Version anwenden',
@@ -1125,7 +1129,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'mergehistory-autocomment'         => '„[[:$1]]“ vereinigt nach „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ vereinigt nach „[[:$2]]“: $3',
 'mergehistory-same-destination'    => 'Ausgangs- und Zielseite dürfen nicht identisch sein',
-'mergehistory-reason'              => 'Begründung:',
+'mergehistory-reason'              => 'Grund:',
 
 # Merge log
 'mergelog'           => 'Vereinigungs-Logbuch',
@@ -1492,7 +1496,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'recentchanges-legend'              => 'Anzeigeoptionen',
 'recentchangestext'                 => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
 'recentchanges-feed-description'    => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
-'rcnote'                            => "Angezeigt {{PLURAL:$1|wird '''1''' Änderung|werden die letzten '''$1''' Änderungen}} {{PLURAL:$2|des letzten Tages|der letzten '''$2''' Tage}}. Stand: $4, $5 Uhr.",
+'rcnote'                            => "{{PLURAL:$1|'''1''' Änderung|'''$1''' Änderungen}} in den {{PLURAL:$2|letzten 24 Stunden|letzten '''$2''' Tagen}}.
+Stand: $4, $5 Uhr.",
 'rcnotefrom'                        => "Angezeigt werden die Änderungen seit '''$2''' (max. '''$1''' Einträge).",
 'rclistfrom'                        => 'Nur Änderungen seit $1 zeigen.',
 'rcshowhideminor'                   => 'Kleine Änderungen $1',
@@ -1828,7 +1833,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'shortpages'              => 'Kurze Seiten',
 'longpages'               => 'Lange Seiten',
 'deadendpages'            => 'Sackgassenseiten',
-'deadendpagestext'        => 'Aus den folgenden Seiten wird nicht aus {{SITENAME}} verwiesen.',
+'deadendpagestext'        => 'Die folgenden Seiten verweisen nicht auf andere Seiten von {{SITENAME}}.',
 'protectedpages'          => 'Geschützte Seiten',
 'protectedpages-indef'    => 'Nur unbeschränkt geschützte Seiten zeigen',
 'protectedpages-cascade'  => 'Nur Seiten mit Kaskadenschutz',
@@ -1847,7 +1852,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'ancientpages'            => 'Seit längerem unbearbeitete Seiten',
 'move'                    => 'Verschieben',
 'movethispage'            => 'Seite verschieben',
-'unusedimagestext'        => 'Bitte beachte, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.',
+'unusedimagestext'        => 'Bitte beachte, dass andere Webseiten eine Datei mit einer direkten URL verlinken können. Sie könnte daher hier aufgelistet sein, obwohl sie in aktiver Verwendung ist.',
 'unusedcategoriestext'    => 'Diese Spezialseite zeigt alle Kategorien, die leer sind, also selbst keine Kategorien oder Seiten enthalten.',
 'notargettitle'           => 'Keine Seite angegeben',
 'notargettext'            => 'Du hast nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
@@ -2242,8 +2247,8 @@ Bitte gib den Grund für die Sperre an.',
 'ipaddress'                       => 'IP-Adresse:',
 'ipadressorusername'              => 'IP-Adresse oder Benutzername:',
 'ipbexpiry'                       => 'Sperrdauer:',
-'ipbreason'                       => 'Begründung:',
-'ipbreasonotherlist'              => 'Andere Begründung',
+'ipbreason'                       => 'Grund:',
+'ipbreasonotherlist'              => 'Anderer Grund',
 'ipbreason-dropdown'              => '* Allgemeine Sperrgründe
 ** Einfügen falscher Informationen
 ** Leeren von Seiten
@@ -2319,7 +2324,7 @@ Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernam
 'block-log-flags-hiddenname'      => 'Benutzername versteckt',
 'range_block_disabled'            => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid'              => 'Die eingegebene Dauer ist ungültig.',
-'ipb_expiry_temp'                 => 'Versteckte Benutzernamens-Sperren sollen permanent sein.',
+'ipb_expiry_temp'                 => 'Benutzernamens-Sperren mit der Verstecken-Option müssen permanent sein.',
 'ipb_hide_invalid'                => 'Dieses Konto kann nicht unterdrückt werden, da es zu viele Bearbeitungen aufweist.',
 'ipb_already_blocked'             => '„$1“ wurde bereits gesperrt.',
 'ipb-needreblock'                 => '== Sperre vorhanden ==
@@ -2382,7 +2387,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'cant-move-user-page'          => 'Du hast keine Berechtigung, Benutzerhauptseiten zu verschieben.',
 'cant-move-to-user-page'       => 'Du hast nicht die Berechtigung, Seiten auf eine Benutzerseite zu verschieben (mit Ausnahme von Benutzerunterseiten).',
 'newtitle'                     => 'Ziel:',
-'move-watch'                   => 'Diese Seite beobachten',
+'move-watch'                   => 'Quell- und Zielseite beobachten',
 'movepagebtn'                  => 'Seite verschieben',
 'pagemovedsub'                 => 'Verschiebung erfolgreich',
 'movepage-moved'               => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
@@ -2407,7 +2412,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movesubpage'                  => '{{PLURAL:$1|Unterseite|Unterseiten}}',
 'movesubpagetext'              => 'Diese Seite hat $1 {{PLURAL:$1|Unterseite|Unterseiten}}.',
 'movenosubpage'                => 'Diese Seite hat keine Unterseiten.',
-'movereason'                   => 'Begründung:',
+'movereason'                   => 'Grund:',
 'revertmove'                   => 'zurück verschieben',
 'delete_and_move'              => 'Löschen und Verschieben',
 'delete_and_move_text'         => '== Löschung erforderlich ==

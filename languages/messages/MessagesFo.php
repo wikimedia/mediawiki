@@ -362,7 +362,8 @@ afturkend av wiki',
 
 # Login and logout pages
 'logouttitle'                => 'Brúkaraútritan',
-'logouttext'                 => "'''Tú hevur nú ritað út.'''<br />
+'logouttext'                 => "'''Tú hevur nú ritað út.'''
+
 Tú kanst halda áfram at nýta {{SITENAME}} dulnevnt.
 Ella kanst tú rita inn aftur sum sami ella annar brúkari.
 Legg til merkis at summar síður kunnu framhaldandi síggja út

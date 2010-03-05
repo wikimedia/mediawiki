@@ -8,6 +8,7 @@
  * @file
  *
  * @author Clerc
+ * @author Kaniw
  * @author Lin linao
  * @author Poquil
  * @author Remember the dot
@@ -17,6 +18,8 @@ $fallback = 'es';
 
 $messages = array(
 # User preference toggles
+'tog-underline'      => 'Miñcewirilpe xapvmvn',
+'tog-justify'        => 'Xvrvmpe cijkantvkun',
 'tog-editondblclick' => 'Wirin pakina epu klik mew (JavaScript)',
 
 'underline-always' => 'Rumel',
@@ -85,6 +88,7 @@ $messages = array(
 'mypage'         => 'tañi nütramkawe',
 'mytalk'         => 'Tañi nütramkawe',
 'anontalk'       => 'Tüfachi IP ñi nütramkawe',
+'navigation'     => 'Wiyawvn',
 'and'            => '&#32;ka',
 
 'returnto'         => 'Amutun $1 püle.',
@@ -131,7 +135,7 @@ $messages = array(
 'faq'                  => 'FAQ',
 'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Kellu',
-'mainpage'             => 'Wüne pakina',
+'mainpage'             => 'Ñizol Wvbgiñ',
 'mainpage-description' => 'Wüne pakina',
 
 'ok'                      => 'Feley may',
@@ -220,7 +224,7 @@ $messages = array(
 
 # Search results
 'viewprevnext'                   => 'Pen ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-exists'              => "'''Ngey kiñe pakina pingey «[[$1]]» tüfachi wiki mew'''",
+'searchmenu-exists'              => "'''Mvley kiñe cijka «[[:$1]]» pigelu faci wiki mew'''",
 'searchmenu-new'                 => "'''¡Llitun pakina «[[:$1]]» tüfachi wiki mew!'''",
 'searchhelp-url'                 => 'Help:Kellu',
 'searchprofile-articles-tooltip' => 'kintu $1 mew',
@@ -402,7 +406,7 @@ $messages = array(
 'undelete-show-file-submit' => 'May',
 
 # Namespace form on various pages
-'blanknamespace' => '(Wüne pakina)',
+'blanknamespace' => '(Ñizol)',
 
 # Contributions
 'contribsub2' => '$1 ($2)',
@@ -514,7 +518,7 @@ $messages = array(
 
 # Multipage image navigation
 'imgmultigo'   => 'Amun!',
-'imgmultigoto' => 'Amun pakina 1$ mew',
+'imgmultigoto' => 'Amun pakina $1 mew',
 
 # Table pager
 'table_pager_limit_submit' => 'Amun',

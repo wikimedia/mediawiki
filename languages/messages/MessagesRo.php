@@ -740,7 +740,8 @@ Vă rugăm să includeţi detaliile de mai sus în orice interogări pe care le 
 'confirmedittitle'                 => 'Pentru a edita e necesară confirmarea adresei de e-mail',
 'confirmedittext'                  => 'Trebuie să vă confirmaţi adresa de e-mail înainte de a edita pagini. Vă rugăm să vă setaţi şi să vă validaţi adresa de e-mail cu ajutorul [[Special:Preferences|preferinţelor utilizatorului]].',
 'nosuchsectiontitle'               => 'Nu există o astfel de secţiune',
-'nosuchsectiontext'                => 'Aţi încercat să modificaţi o secţiune care nu există. Deoarece nu există secţiunea $1, modificarea nu va fi salvată.',
+'nosuchsectiontext'                => 'Aţi încercat să modificaţi o secţiune care nu există.
+Aceasta fie a fost mutată, fie a fost ştearsă în timp ce vizualizaţi pagina.',
 'loginreqtitle'                    => 'Necesită autentificare',
 'loginreqlink'                     => 'autentifici',
 'loginreqpagetext'                 => 'Trebuie să te $1 pentru a vizualiza alte pagini.',
@@ -749,14 +750,14 @@ Vă rugăm să includeţi detaliile de mai sus în orice interogări pe care le 
 
 Parola pentru acest nou cont poate fi schimbată după autentificare din ''[[Special:ChangePassword|schimbare parolă]]''",
 'newarticle'                       => '(Nou)',
-'newarticletext'                   => 'Ai ajuns la o pagină care nu există. Pentru a o crea, începe să scrii în caseta de mai jos (vezi [[{{MediaWiki:Helppage}}|pagina de ajutor]] pentru mai multe informaţii). Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ului tău',
+'newarticletext'                   => 'Aţi încercat să ajungeţi la o pagină care nu există. Pentru a o crea, începeţi să scrieţi în caseta de mai jos (vedeţi [[{{MediaWiki:Helppage}}|pagina de ajutor]] pentru mai multe informaţii). Dacă aţi ajuns aici din greşeală, întoarceţi-vă folosind controalele navigatorului dumneavoastră.',
 'anontalkpagetext'                 => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat.
 De aceea trebuie să folosim adresă IP pentru a identifica această persoană.
 O adresă IP poate fi folosită în comun de mai mulţi utilizatori.
 Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:UserLogin/signup|vă creaţi un cont]] sau să [[Special:UserLogin|vă autentificaţi]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
 'noarticletext'                    => 'În acest moment nu este niciun text în această pagină.
 Puteţi [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} căuta înregistrări în jurnale], sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale], sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
 'userpage-userdoesnotexist'        => 'Contul de utilizator "$1" nu este înregistrat. Verificaţi dacă doriţi să creaţi/modificaţi această pagină.',
 'clearyourcache'                   => "'''Notă:''' După salvare, trebuie să treceţi peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' ţineţi apăsat ''Shift'' în timp ce apăsaţi ''Reload'' (sau apăsaţi ''Ctrl-Shift-R''), '''IE:''' apăsaţi ''Ctrl-F5'', '''Opera:''' apăsaţi ''F5''.",
 'usercssjsyoucanpreview'           => "'''Sfat:''' Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
@@ -1717,7 +1718,8 @@ Intrările <s>tăiate</s> au fost rezolvate.',
 'ancientpages'            => 'Cele mai vechi articole',
 'move'                    => 'Mută',
 'movethispage'            => 'Mută această pagină',
-'unusedimagestext'        => 'Te rugăm ţine cont de faptul că alte situri, inclusiv alte versiuni de limbă {{SITENAME}} pot să aibă legături aici fără ca aceste pagini să fie listate aici - această listă se referă strict la {{SITENAME}} în română.',
+'unusedimagestext'        => 'Următoarele fişiere există dar nu sunt incluse în nicio altă pagină.
+Vă rugăm să aveţi în vedere faptul că alte saituri web pot avea o legătură directă către acest URL şi s-ar putea afla aici chiar dacă nu sunt în utlizare activă.',
 'unusedcategoriestext'    => 'Următoarele categorii de pagini există şi totuşi nici un articol sau categorie nu le foloseşte.',
 'notargettitle'           => 'Lipsă ţintă',
 'notargettext'            => 'Nu ai specificat nici o pagină sau un utilizator ţintă pentru care să se efectueze această operaţiune.',
@@ -2558,7 +2560,8 @@ $1',
 'visual-comparison' => 'Comparare vizuală',
 
 # Media information
-'mediawarning'         => "'''Atenţie''': Acest fişier poate conţine cod maliţios, executându-l, sistemul dvs. poate fi compromis.<hr />",
+'mediawarning'         => "'''Atenţie''': Acest fişier poate conţine cod maliţios.
+Executându-l, sistemul dvs. poate fi compromis.<hr />",
 'imagemaxsize'         => 'Limitează imaginile pe paginile de descriere la:',
 'thumbsize'            => 'Mărime thumbnail:',
 'widthheight'          => '$1x$2',

@@ -23,7 +23,7 @@
  * @author Najami
  * @author Nghtwlkr
  * @author Nsaa
- * @author Piivaat
+ * @author Qaqqalik
  * @author Samuelsen
  * @author Simny
  * @author Stigmj
@@ -723,8 +723,9 @@ Vennligst ta med all denne informasjonen ved henvendelser.",
 'whitelistedittext'                => 'Du må $1 for å redigere artikler.',
 'confirmedittitle'                 => 'E-postbekreftelse nødvendig før du kan redigere',
 'confirmedittext'                  => 'Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].',
-'nosuchsectiontitle'               => 'Ingen slik seksjon',
-'nosuchsectiontext'                => 'Du prøvde å redigere en seksjon som ikke eksisterer. Siden det ikke finnes noen seksjon «$1», er det ikke mulig å lagre endringen din.',
+'nosuchsectiontitle'               => 'Finner ikke avsnittet',
+'nosuchsectiontext'                => 'Du prøvde å redigere et avsnitt som ikke eksisterer.
+Det kan ha blitt flyttet eller slettet mens du så på siden.',
 'loginreqtitle'                    => 'Innlogging kreves',
 'loginreqlink'                     => 'logg inn',
 'loginreqpagetext'                 => 'Du må $1 for å se andre sider.',
@@ -740,7 +741,7 @@ Vi er derfor nødt til å bruke den numeriske IP-adressen til å identifisere ha
 En IP-adresse kan være delt mellom flere brukere.
 Hvis du er en uregistrert bruker og synes at du har fått irrelevante kommentarer på en slik side, [[Special:UserLogin/signup|opprett en konto]] eller [[Special:UserLogin|logg inn]] så vi unngår fremtidige forvekslinger med andre uregistrerte brukere.''",
 'noarticletext'                    => 'Det er ikke noe tekst på denne siden.
-Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} søke i relaterte logger] eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette siden]</span>.',
+Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relaterte logger] eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette siden]</span>.',
 'userpage-userdoesnotexist'        => 'Brukerkontoen «$1» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
 'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
 'usercssjsyoucanpreview'           => "'''Tips:''' Bruk «Forhåndsvisning»-knappen for å teste din nye CSS/JS før du lagrer.",
@@ -854,7 +855,8 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'last'                   => 'forrige',
 'page_first'             => 'første',
 'page_last'              => 'siste',
-'histlegend'             => "Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, '''m''' = mindre endring.",
+'histlegend'             => "Merk de revisjonen du ønsker å sammenligne og trykk [Enter] eller knappen nederst på siden.<br />
+Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:last}})''' = forskjell fra foregånde revisjon, '''{{int:minoreditletter}}''' = mindre redigering.",
 'history-fieldset-title' => 'Søk i historikken',
 'deletedrev'             => '[slettet]',
 'histfirst'              => 'Første',
@@ -1185,7 +1187,7 @@ se math/README for oppsett.',
 * En avkrysset boks betyr at brukeren er medlem av gruppen.
 * En uavkrysset boks betyr at brukeren ikke er medlem av gruppen.
 * En * betyr at du ikke kan fjerne gruppemedlemskapet når du har lagt det til, eller vice versa.',
-'userrights-reason'              => 'Endringsgrunn:',
+'userrights-reason'              => 'Årsak:',
 'userrights-no-interwiki'        => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
 'userrights-nodatabase'          => 'Databasen $1 finnes ikke, eller er ikke lokal.',
 'userrights-nologin'             => 'Du må [[Special:UserLogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
@@ -1676,7 +1678,8 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'ancientpages'            => 'Eldste sider',
 'move'                    => 'Flytt',
 'movethispage'            => 'Flytt denne siden',
-'unusedimagestext'        => 'Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen listes her selv om den faktisk er i bruk.',
+'unusedimagestext'        => 'Følgende filer eksisterer men er ikke innlagt på noen sider.
+Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen listes her selv om den faktisk er i bruk.',
 'unusedcategoriestext'    => 'Følgende kategorier finnes, men det er ingen sider i dem.',
 'notargettitle'           => 'Intet mål',
 'notargettext'            => 'Du oppga ikke en målside eller bruker å utføre denne funksjonen på.',
@@ -1916,7 +1919,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect-title'               => 'Låser «$1»',
 'prot_1movedto2'              => '[[$1]] flyttet til [[$2]]',
 'protect-legend'              => 'Bekreft låsing',
-'protectcomment'              => 'Begrunnelse:',
+'protectcomment'              => 'Årsak:',
 'protectexpiry'               => 'Utgår:',
 'protect_expiry_invalid'      => 'Utgangstiden er ugyldig.',
 'protect_expiry_old'          => 'Utgangstiden har allerede vært.',

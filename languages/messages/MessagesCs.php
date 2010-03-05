@@ -670,8 +670,10 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Na shledanou!',
-'logouttext'                 => 'Nyní jste odhlášeni.<br />
-Tento počítač může být používán k prohlížení a editaci {{grammar:2sg|{{SITENAME}}}} bez uživatelského jména, nebo pro přihlášení jiného uživatele. Upozorňujeme, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni. Tento jev potrvá do smazání cache vašeho prohlížeče.',
+'logouttext'                 => "'''Nyní jste odhlášeni.'''
+
+Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete [[Special:UserLogin|znovu přihlásit]] jako stejný či jiný uživatel.
+Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni, pokud nevymažete cache prohlížeče.",
 'welcomecreation'            => '== Vítejte, $1! ==
 Váš účet byl vytvořen.
 Nezapomeňte si upravit [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
@@ -863,8 +865,9 @@ Prosíme, uveďte tyto údaje při komunikaci se správci.",
 'whitelistedittext'                => 'Pro editaci se musíte $1.',
 'confirmedittitle'                 => 'Vyžadováno e-mailové potvrzení',
 'confirmedittext'                  => 'Pro editaci stránek je vyžadováno potvrzení vaší e-mailové adresy. Na stránce [[Special:Preferences|nastavení]] zadejte a nechte potvrdit svou e-mailovou adresu.',
-'nosuchsectiontitle'               => 'Neexistující sekce',
-'nosuchsectiontext'                => 'Pokoušíte se editovat neexistující sekci. Protože tu není žádná sekce „$1“, není kam uložit Vaši editaci.',
+'nosuchsectiontitle'               => 'Sekce nenalezena',
+'nosuchsectiontext'                => 'Pokoušíte se editovat neexistující sekci.
+Možná byla přesunuta či smazána, zatímco jste si stránku {{GENDER:|prohlížel|prohlížela|prohlíželi}}.',
 'loginreqtitle'                    => 'Vyžadováno přihlášení',
 'loginreqlink'                     => 'přihlásit',
 'loginreqpagetext'                 => 'K prohlížení jiných stránek se musíte $1.',
@@ -878,7 +881,7 @@ Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlač�
 Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'anontalkpagetext'                 => "----''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. K&nbsp;jeho identifikaci proto musíme používat číselnou IP adresu. Takovou IP adresu může sdílet několik uživatelů. Pokud jste anonymní uživatel a&nbsp;máte za to, že jsou vám adresovány irelevantní komentáře, prosíme, [[Special:UserLogin/signup|vytvořte si účet]] nebo [[Special:UserLogin|se přihlaste]], vyhnete se tím budoucí záměně s&nbsp;jinými anonymními uživateli.''",
 'noarticletext'                    => 'Tato stránka zatím neobsahuje žádný text.
-Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
+Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'userpage-userdoesnotexist'        => 'Uživatelský účet „$1“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
 'usercssjsyoucanpreview'           => "'''Tip:''' Použijte tlačítko „Ukázat náhled“ k testování vašeho nového CSS/JS před uložením.",
@@ -1046,9 +1049,10 @@ Ostatní správci {{GRAMMAR:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohl
 pokud nebyla nastavena další omezení.
 Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].",
 'revdelete-suppress-text'        => "Utajování by se mělo používat '''pouze''' v následujících případech:
+* Potenciálně pomlouvačné informace
 * Nevhodné osobní údaje
 *: ''adresy bydliště a telefonní čísla, rodná čísla apod.''",
-'revdelete-legend'               => 'Nastavit omezení k revizi:',
+'revdelete-legend'               => 'Nastavit omezení k revizi',
 'revdelete-hide-text'            => 'Skrýt text revize',
 'revdelete-hide-name'            => 'Skrýt událost a cíl',
 'revdelete-hide-comment'         => 'Skrýt editační komentář',
@@ -1332,7 +1336,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 * Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
 * Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
 * Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
-'userrights-reason'           => 'Zdůvodnění změny:',
+'userrights-reason'           => 'Důvod:',
 'userrights-no-interwiki'     => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'       => 'Databáze $1 neexistuje nebo není místní.',
 'userrights-nologin'          => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
@@ -1818,7 +1822,8 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'ancientpages'            => 'Nejdéle needitované stránky',
 'move'                    => 'Přesunout',
 'movethispage'            => 'Přesunout stránku',
-'unusedimagestext'        => 'Jiné WWW stránky mohou odkazovat na soubor přímo pomocí URL, na takové odkazy se v&nbsp;tomto seznamu nebere zřetel.',
+'unusedimagestext'        => 'Následující soubory existují, ale nejsou vloženy do žádné stránky.
+Uvědomte si, že jiné webové stránky mohou na soubor odkazovat pomocí přímého URL, takže zde mohou být uvedeny soubory, které se aktivně používají.',
 'unusedcategoriestext'    => 'Následující stránky kategorií existují, avšak žádná stránka ani jiná kategorie je nepoužívá.',
 'notargettitle'           => 'Bez cílové stránky',
 'notargettext'            => 'Této funkci musíte určit cílovou stránku nebo uživatele.',
@@ -3088,6 +3093,20 @@ Opravdu si přejete znovu tuto stránku založit?',
 'iranian-calendar-m9'  => 'Ázár',
 'iranian-calendar-m10' => 'Dej',
 'iranian-calendar-m11' => 'Bahmán',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'muharram',
+'hijri-calendar-m2'  => 'safar',
+'hijri-calendar-m3'  => "rabí' al-avval",
+'hijri-calendar-m4'  => "rabí'ath-thání",
+'hijri-calendar-m5'  => 'džumádá l-úlá',
+'hijri-calendar-m6'  => 'džumádá l-áchira',
+'hijri-calendar-m7'  => 'radžab',
+'hijri-calendar-m8'  => "ša'bán",
+'hijri-calendar-m9'  => 'ramadán',
+'hijri-calendar-m10' => 'šauvál',
+'hijri-calendar-m11' => "dhú l-ka'da",
+'hijri-calendar-m12' => 'dhú l-hidždža',
 
 # Hebrew month names
 'hebrew-calendar-m1'      => 'tišri',

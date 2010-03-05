@@ -532,7 +532,7 @@ $2',
 'confirmedittitle'                 => 'email確認後才編得正',
 'confirmedittext'                  => '確認嘞email才能編寫箇頁。麻煩用[[Special:Preferences|參數設置]]設置同確認倷嗰email。',
 'nosuchsectiontitle'               => '冇箇隻段落',
-'nosuchsectiontext'                => '倷嘗試編寫嗰段落伓存在。到箇首係冇第$1隻段落，所以係冇場窪去存到倷嗰編輯。',
+'nosuchsectiontext'                => '倷嘗試編寫嗰段落伓存在。',
 'loginreqtitle'                    => '需要登入',
 'loginreqlink'                     => '登入',
 'loginreqpagetext'                 => '倷要$1才眵得正別嗰頁面。',
@@ -1380,7 +1380,9 @@ $NEWPAGE
 'undelete-cleanup-error'       => '刪卟冇用嗰存檔文件 "$1" 時出錯。',
 'undelete-missing-filearchive' => '資料庫冇檔案存檔 ID $1 ，故係佢也就到檔案存檔恢復伓正。佢話伓定早反刪除嘞。',
 'undelete-error-short'         => '反刪除檔案嗰時間出錯: $1',
-'undelete-error-long'          => '反刪除檔案當中出錯: $1',
+'undelete-error-long'          => '反刪除檔案當中出錯:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => '空間名:',

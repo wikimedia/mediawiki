@@ -703,8 +703,9 @@ ditunjukkan di bawah:",
 'whitelistedittext'                => 'Anda hendaklah $1 terlebih dahulu untuk menyunting laman.',
 'confirmedittitle'                 => 'Pengesahan e-mel diperlukan untuk menyunting',
 'confirmedittext'                  => 'Anda perlu mengesahkan alamat e-mel anda terlebih dahulu untuk menyunting mana-mana laman. Sila tetapkan dan sahkan alamat e-mel anda melalui [[Special:Preferences|laman keutamaan]].',
-'nosuchsectiontitle'               => 'Bahagian tidak wujud',
-'nosuchsectiontext'                => 'Anda telah mencuba untuk menyunting bahagian "$1" yang tidak wujud. Oleh itu, suntingan anda tidak boleh disimpan.',
+'nosuchsectiontitle'               => 'Tidak ada bahagian ini',
+'nosuchsectiontext'                => 'Anda cuba untuk menyunting bahagian yang tidak wujud.
+Ia mungkin telah dialih atau dihapus semasa anda melihat laman ini.',
 'loginreqtitle'                    => 'Log masuk diperlukan',
 'loginreqlink'                     => 'log masuk',
 'loginreqpagetext'                 => 'Anda harus $1 untuk dapat melihat laman yang lain.',
@@ -720,7 +721,7 @@ Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pel
 'anontalkpagetext'                 => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk.
 Oleh itu kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna.
 Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujukan kepada anda, sila [[Special:UserLogin/signup|buka akaun baru]] atau [[Special:UserLogin|log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
-'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} menggelintar log-log yang berkaitan], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
+'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} menggelintar log-log yang berkaitan], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini]</span>.',
 'userpage-userdoesnotexist'        => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
 '''Mozilla/Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R'' (''Command+R'' dalam komputer Macintosh).
@@ -1187,7 +1188,7 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 * Petak yang bertanda bererti pengguna tersebut adalah ahli kumpulan itu.
 * Petak yang tidak bertanda bererti bahawa pengguna tersebut bukan ahli kumpulan itu.
 * Tanda bintang (*) menandakan bahawa anda tidak boleh melucutkan keahlian pengguna tersebut setelah anda melantiknya, dan begitulah sebaliknya.',
-'userrights-reason'           => 'Sebab perubahan:',
+'userrights-reason'           => 'Sebab:',
 'userrights-no-interwiki'     => 'Anda tidak mempunyai keizinan untuk mengubah hak-hak pengguna di wiki lain.',
 'userrights-nodatabase'       => 'Pangkalan data $1 tiada atau bukan tempatan.',
 'userrights-nologin'          => 'Anda mesti [[Special:UserLogin|log masuk]] dengan akaun pentadbir terlebih dahulu untuk memperuntukkan hak-hak pengguna.',
@@ -1566,7 +1567,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'statistics'                   => 'Statistik',
 'statistics-header-pages'      => 'Statistik laman',
 'statistics-header-edits'      => 'Statistik suntingan',
-'statistics-header-views'      => 'Statistics pandangan',
+'statistics-header-views'      => 'Statistik pandangan',
 'statistics-header-users'      => 'Statistik pengguna',
 'statistics-articles'          => 'Laman kandungan',
 'statistics-pages'             => 'Laman',
@@ -1655,9 +1656,8 @@ Masukan yang <s>dipotong</s> telah diselesaikan.',
 'ancientpages'            => 'Laman lapuk',
 'move'                    => 'Alih',
 'movethispage'            => 'Pindahkan laman ini',
-'unusedimagestext'        => '<p>Sila ambil perhatian bahawa
-mungkin terdapat tapak web lain yang mengandungi pautan ke imej ini
-menggunakan URL langsung walaupun ia disenaraikan di sini.</p>',
+'unusedimagestext'        => 'Fail-fail berikut wujud tetapi tidak digunakan dalam mana-mana laman. 
+Sila ambil perhatian bahawa mungkin terdapat tapak web lain yang memaut ke fail ini menggunakan URL langsung, dan masih disenaraikan di sini walapun berada dalam kegunaan aktif.',
 'unusedcategoriestext'    => 'Laman-laman kategori berikut wujud walaupun tiada laman atau kategori lain menggunakannya.',
 'notargettitle'           => 'Tiada sasaran',
 'notargettext'            => 'Anda tidak menyatakan laman atau pengguna sebagai sasaran bagi tindakan ini.',

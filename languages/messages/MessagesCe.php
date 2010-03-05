@@ -8,6 +8,7 @@
  * @file
  *
  * @author Chechenka
+ * @author Comp1089
  * @author Girdi
  * @author Mega programmer
  */
@@ -91,7 +92,7 @@ $messages = array(
 'protectthispage'   => 'лар е',
 'unprotect'         => 'Лар ма е',
 'unprotectthispage' => 'Лар ма е',
-'newpage'           => 'Керла таптар',
+'newpage'           => 'Керла тептар',
 'talkpage'          => 'Дийца',
 'talkpagelinktext'  => 'Дийца',
 'talk'              => 'Дийца',
@@ -127,7 +128,7 @@ $messages = array(
 'hidetoc'                 => 'цІанъян',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'таптар',
+'nstab-main'      => 'тептар',
 'nstab-user'      => 'юзер',
 'nstab-image'     => 'Сурт',
 'nstab-mediawiki' => 'хаам',
@@ -225,7 +226,7 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|байт|байтош|байтош}}',
 'ncategories'       => '$1 {{PLURAL:$1|тоба|тобаш|тоба}}',
-'newpages'          => 'Керла таптараш',
+'newpages'          => 'Керла тептараш',
 'newpages-username' => 'Юзер:',
 'move'              => 'цIe хийца',
 
@@ -234,7 +235,7 @@ $messages = array(
 
 # Special:AllPages
 'allpages'       => 'Массо таптараш',
-'allarticles'    => 'Массо таптараш',
+'allarticles'    => 'Массо тептараш',
 'allpagessubmit' => 'кхочушде',
 
 # Special:Categories
@@ -249,10 +250,10 @@ $messages = array(
 'defemailsubject' => '{{SITENAME}} и-пошта',
 
 # Watchlist
-'watchlist'    => 'тергалдеш таптарш',
+'watchlist'    => 'тергалдеш тептараш',
 'mywatchlist'  => 'Сан тергалдо список',
 'watchnologin' => 'Деза чу валар',
-'addedwatch'   => 'Т1етохха хьан тергалдо список чу',
+'addedwatch'   => 'Тlетохха хьан тергалдо список чу',
 'watch'        => 'зен',
 'wlshowlast'   => 'Гайт тІаьххара $1 сахьташ $2 денош $3',
 

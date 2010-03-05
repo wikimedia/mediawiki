@@ -477,9 +477,9 @@ Nota bene paginas fortasse videantur quasi tuum conventum esset apertum, priusqu
 Ratio tua iam creata est.
 Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusative|{{SITENAME}}}} mutare.',
 'loginpagetitle'             => 'Conventum aperire',
-'yourname'                   => 'Nomen tuum usoris:',
-'yourpassword'               => 'Tessera tua:',
-'yourpasswordagain'          => 'Tesseram tuam adfirmare:',
+'yourname'                   => 'Nomen usoris:',
+'yourpassword'               => 'Tessera:',
+'yourpasswordagain'          => 'Tesseram adfirmare:',
 'remembermypassword'         => 'Tesseram meam inter conventa memento',
 'yourdomainname'             => 'Regnum tuum:',
 'login'                      => 'Conventum aperire',
@@ -498,11 +498,11 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'badretype'                  => 'Tesserae quas scripsisti inter se non congruunt.',
 'userexists'                 => 'Nomen usoris quod selegisti iam est.
 Nomen usoris alium selige.',
-'youremail'                  => 'Inscriptio tua electronica:',
+'youremail'                  => 'Inscriptio electronica:',
 'username'                   => 'Nomen usoris:',
 'uid'                        => 'ID usoris:',
-'yourrealname'               => 'Nomen tuum verum:',
-'yourlanguage'               => 'Lingua tua:',
+'yourrealname'               => 'Nomen verum:',
+'yourlanguage'               => 'Lingua:',
 'yourvariant'                => 'Differentia:',
 'yournick'                   => 'Subscriptio:',
 'badsig'                     => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
@@ -637,8 +637,9 @@ Locus IP tuus temporarius $3 est et numerus obstructionis tuus est #$5. Quaesumu
 'whitelistedittext'                => 'Necesse est tibi $1 priusquam paginas recenseas.',
 'confirmedittitle'                 => 'Adfirmanda est inscriptio tua electronica prisuquam recenseas',
 'confirmedittext'                  => 'Tua inscriptio electronica est adfirmanda priusquam paginas recenseas. Quaesumus eam selige et adfirma per tuas [[Special:Preferences|praeferentias]].',
-'nosuchsectiontitle'               => 'Haec pars non est',
-'nosuchsectiontext'                => 'Partem inexistentem recensere conaris. Quia pars $1 non est, recensio tua servari non potest.',
+'nosuchsectiontitle'               => 'Haec pars inveniri non potest',
+'nosuchsectiontext'                => 'Partem inexistentem recensere conaris.
+Fortasse aliquis hanc partem movit vel delevit.',
 'loginreqtitle'                    => 'Conventum aperiendum',
 'loginreqlink'                     => 'conventum aperire',
 'loginreqpagetext'                 => 'Necesse est tibi $1 priusquam paginas alias legas.',
@@ -654,7 +655,7 @@ Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
 'anontalkpagetext'                 => "----''Haec est pagina disputationis usoris anonymi, solum a loco IP suo noti. Memento locos IP aliquando mutaturos, et a usoribus multis fortasse adhibitos. Si es usor ignotus, et tibi querulae sine causa datae sunt, conventum [[Special:UserLogin/signup|crea]] vel [[Special:UserLogin|aperi]] ad confusionem futuram evitendam.''",
 'noarticletext'                    => 'Hac in pagina non sunt litterae.
 Potes [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} acta huius paginae videre]
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} acta huius paginae videre]
 aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare]</span>.',
 'userpage-userdoesnotexist'        => 'Usor "$1" non est. Visne re vera hanc paginam creare vel recensere?',
 'updated'                          => '(Novata)',
@@ -1000,7 +1001,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'userrights-editusergroup'    => 'Greges usorum recensere',
 'saveusergroups'              => 'Greges usorum servare',
 'userrights-groupsmember'     => 'In grege aut in gregibus:',
-'userrights-reason'           => 'Causa modificationis:',
+'userrights-reason'           => 'Causa:',
 'userrights-changeable-col'   => 'Greges quos tibi oportet mutare',
 'userrights-unchangeable-col' => 'Greges quos tibi non oportet mutare',
 

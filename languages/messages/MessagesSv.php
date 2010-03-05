@@ -31,6 +31,7 @@
  * @author Skalman
  * @author StefanB
  * @author Steinninn
+ * @author Where next Columbus
  * @author לערי ריינהארט
  */
 
@@ -302,7 +303,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när en sida på min bevakningslista ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
-'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post från systemet',
+'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-postmeddelanden om ändringar som skickas till andra',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
 'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
 'tog-externaleditor'          => 'Använd extern texteditor som standard (avancerat, kräver speciella inställningar i din dator)',
@@ -837,23 +838,24 @@ Vänligen ange informationen ovan i alla förfrågningar som du gör i ärendet.
 'whitelistedittext'                => 'Du måste $1 för att kunna redigera sidor.',
 'confirmedittitle'                 => 'E-postbekräftelse krävs för redigering',
 'confirmedittext'                  => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
-'nosuchsectiontitle'               => 'Avsnittet finns inte',
-'nosuchsectiontext'                => 'Du försökte redigera ett avsnitt som inte finns. Eftersom avsnitt $1 inte finns, så kan inte din redigering sparas.',
+'nosuchsectiontitle'               => 'Kan inte hitta avsnitt',
+'nosuchsectiontext'                => 'Du försökte redigera ett avsnitt som inte finns.
+Det kan ha flyttats eller raderats medan du tittade på sidan.',
 'loginreqtitle'                    => 'Inloggning krävs',
 'loginreqlink'                     => 'logga in',
 'loginreqpagetext'                 => 'Du måste $1 för att visa andra sidor.',
-'accmailtitle'                     => 'Lösenordet är skickat.',
+'accmailtitle'                     => 'Lösenord skickat.',
 'accmailtext'                      => "Ett slumpgenererat lösenord för [[User talk:$1|$1]] har skickats till $2.
 
 Lösenordet för det här nya användarkontot kan ändras på sidan ''[[Special:ChangePassword|ändra lösenord]]'' när du loggar in.",
 'newarticle'                       => '(Ny)',
 'newarticletext'                   => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:Helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
-'anontalkpagetext'                 => "---- ''Detta är en diskussionssida för en användare som inte har loggat in.
-Därför måste personens numeriska IP-adress användas för att identifiera honom eller henne.
-En sådan IP-adress kan ibland användas av flera olika personer.
-Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:UserLogin/signup|skapa ett konto]] eller [[Special:UserLogin|logga in]]. Då undviker du framtida förväxlingar.''",
+'anontalkpagetext'                 => "----''Detta är diskussionssidan för en anonym användare som inte ännu skapat ett konto, eller som inte använder det.
+Därför måste vi använda den numeriska IP-adressen för att identifiera honom/henne.
+En sådan IP-adress kan delas av flera användare.
+Om du är en anonym användare och känner att irrelevanta kommentarer har riktats mot dig, vänligen [[Special:UserLogin/signup|skapa ett konto]] eller [[Special:UserLogin|logga in]] för att undvika framtida förväxlingar med andra anonyma användare.''",
 'noarticletext'                    => 'Det finns just nu ingen text på denna sida.
-Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} söka i loggarna], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida]</span>.',
+Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i loggarna], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida]</span>.',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
@@ -1046,7 +1048,7 @@ Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekven
 'revdelete-submit'               => 'Tillämpa på vald version',
 'revdelete-logentry'             => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'             => 'ändrade synlighet för åtgärder i [[$1]]',
-'revdelete-success'              => "'''Versionens synlighet har ändrats.'''",
+'revdelete-success'              => "'''Sidversionssynlighet har uppdaterats.'''",
 'logdelete-success'              => "'''Loggåtgärdens synlighet har ändrats.'''",
 'revdel-restore'                 => 'Ändra synlighet',
 'pagehist'                       => 'Sidhistorik',
@@ -1319,7 +1321,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 * En ikryssad ruta betyder användaren är medlem i den gruppen.
 * En okryssad ruta betyder att användaren inte är medlem i den gruppen.
 * En asterisk (*) markerar att du inte kan ta bort gruppen när du har lagt till den, eller vice versa.',
-'userrights-reason'           => 'Anledning till ändringen:',
+'userrights-reason'           => 'Anledning:',
 'userrights-no-interwiki'     => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase'       => 'Databasen $1 finns inte eller så är den inte lokal.',
 'userrights-nologin'          => 'Du måste [[Special:UserLogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
@@ -1815,7 +1817,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'ancientpages'            => 'Äldsta sidorna',
 'move'                    => 'Flytta',
 'movethispage'            => 'Flytta denna sida',
-'unusedimagestext'        => 'Lägg märke till att andra webbplatser kan länka till filer med en direkt URL. Filer kan därför  användas trots att de finns i den här listan.',
+'unusedimagestext'        => 'Följande filer existerar men är inte inlagda i någon sida.
+Lägg märke till att andra webbplatser kan länka till en fil med en direkt URL. Filer kan därför  användas aktivt trots att de listas här.',
 'unusedcategoriestext'    => 'Följande kategorier finns men innehåller inga sidor eller underkategorier.',
 'notargettitle'           => 'Inget mål',
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',

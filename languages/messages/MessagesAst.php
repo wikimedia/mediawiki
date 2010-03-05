@@ -409,7 +409,7 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Desconexón',
-'logouttext'                 => "'''Yá tas desconectáu.'''<br />
+'logouttext'                 => "'''Yá tas desconectáu.'''
 
 Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:UserLogin|volver a entrar]] como'l mesmu o como otru usuariu.
 Ten en cuenta que dalgunes páxines van continuar saliendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del navegador.",
@@ -604,7 +604,7 @@ Por favor, amiesta toos estos detalles nes consultes que faigas.',
 'confirmedittitle'                 => 'Requerida la confirmación de corréu electrónicu pa editar',
 'confirmedittext'                  => "Has confirmar la to direición de corréu electrónicu enantes d'editar páxines. Por favor, configúrala y valídala nes tos [[Special:Preferences|preferencies d'usuariu]].",
 'nosuchsectiontitle'               => 'Nun esiste tala seición',
-'nosuchsectiontext'                => 'Intentasti editar una seición que nun esiste.  Como nun hai seición $1, nun hai sitiu pa guardar la to edición.',
+'nosuchsectiontext'                => 'Intentasti editar una seición que nun esiste.',
 'loginreqtitle'                    => 'Identificación Requerida',
 'loginreqlink'                     => 'identificase',
 'loginreqpagetext'                 => 'Has $1 pa ver otres páxines.',
@@ -617,7 +617,7 @@ La clave pa esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword
 'anontalkpagetext'                 => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
 'noarticletext'                    => 'Anguaño nun hai testu nesta páxina.
 Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar los rexistros rellacionaos],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar los rexistros rellacionaos],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta d\'usuariu "$1" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
@@ -1023,7 +1023,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'recentchangesdays-max'     => '(máximo $1 {{PLURAL:$1|día|díes}})',
 'recentchangescount'        => "Númberu d'ediciones amosaes nes páxines de cambeos recientes, historiales de páxines y rexistros, por defeutu:",
 'savedprefs'                => 'Les tos preferencies quedaron grabaes.',
-'timezonelegend'            => 'Zona horaria',
+'timezonelegend'            => 'Zona horaria:',
 'timezonetext'              => '¹Diferencia horaria ente la UTC y la to hora llocal.',
 'localtime'                 => 'Hora llocal:',
 'timezoneselect'            => 'Zona horaria:',
@@ -1309,7 +1309,7 @@ Si tovía asina quies xubir l'archivu, por favor vuelvi atrás y usa otru nome. 
 'sourcefilename'              => "Nome d'orixe:",
 'destfilename'                => 'Nome de destín:',
 'upload-maxfilesize'          => "Máximu tamañu d'archivu: $1",
-'watchthisupload'             => 'Vixilar esta páxina',
+'watchthisupload'             => 'Vixilar esti ficheru',
 'filewasdeleted'              => 'Yá foi xubíu y depués esborráu un archivu con esti nome. Habríes comprobar el $1 enantes de volver a xubilu.',
 'upload-wasdeleted'           => "'''Avisu: Tas xubiendo un archivu que yá foi esborráu anteriormente.'''
 

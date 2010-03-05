@@ -27,12 +27,14 @@
  * @author Nemo bis
  * @author Nick1915
  * @author Omnipaedista
+ * @author PaoloRomano
  * @author Pietrodn
  * @author Ramac
  * @author Remember the dot
  * @author S.Örvarr.S
  * @author SabineCretella
  * @author Tonyfroio
+ * @author Trixt
  * @author Xpensive
  * @author לערי ריינהארט
  */
@@ -533,8 +535,8 @@ La motivazione è la seguente: ''$2''.",
 'logouttitle'                => 'Logout utente',
 'logouttext'                 => "'''Logout effettuato.'''
 
-Si può continuare ad usare {{SITENAME}} come utente anonimo oppure eseguire un nuovo accesso, con lo stesso nome utente o un nome diverso.
-Alcune pagine potrebbero continuare ad apparire come se il logout non fosse avvenuto finché non viene pulita la cache del proprio browser.",
+Si può continuare ad usare {{SITENAME}} come utente anonimo oppure [[Special:UserLogin|eseguire un nuovo accesso]], con lo stesso nome utente o un nome diverso.
+Nota che alcune pagine potrebbero continuare ad apparire come se il logout non fosse avvenuto finché non viene pulita la cache del proprio browser.",
 'welcomecreation'            => "== Benvenuto, $1! ==
 
 L'account è stato creato correttamente. Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITENAME}}]].",
@@ -725,7 +727,7 @@ Si prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi ric
 'confirmedittitle'                 => 'Conferma della e-mail necessaria per la modifica delle pagine',
 'confirmedittext'                  => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
 'nosuchsectiontitle'               => 'La sezione non esiste',
-'nosuchsectiontext'                => 'Si è tentato di modificare una sezione inesistente. Non è possibile salvare le modifiche in quanto la sezione $1 non esiste.',
+'nosuchsectiontext'                => 'Si è tentato di modificare una sezione inesistente.',
 'loginreqtitle'                    => 'Accesso richiesto',
 'loginreqlink'                     => "eseguire l'accesso",
 'loginreqpagetext'                 => 'Per vedere altre pagine è necessario $1.',
@@ -739,7 +741,7 @@ Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella 
 (fare riferimento alle [[{{MediaWiki:Helppage}}|pagine di aiuto]] per maggiori informazioni).
 Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
 'anontalkpagetext'                 => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea un nuovo accesso]] o [[Special:UserLogin|entra con quello che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
-'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
+'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
 'userpage-userdoesnotexist'        => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
 'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Suggerimento:''' si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
@@ -1036,7 +1038,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'noexactmatch'                     => "'''La pagina \"\$1\" non esiste.''' È possibile [[:\$1|crearla ora]].",
 'noexactmatch-nocreate'            => "'''La pagina con titolo \"\$1\" non esiste.'''",
 'toomanymatches'                   => 'Troppe corrispondenze. Modificare la richiesta.',
-'titlematches'                     => 'Truvaa int i titul di paginn',
+'titlematches'                     => 'Corrispondenze nel titolo delle pagine',
 'notitlematches'                   => 'Nessuna corrispondenza nei titoli delle pagine',
 'textmatches'                      => 'Corrispondenze nel testo delle pagine',
 'notextmatches'                    => 'Nessuna corrispondenza nel testo delle pagine',
@@ -1351,7 +1353,8 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'recentchangeslinked'          => 'Modifiche correlate',
 'recentchangeslinked-title'    => 'Modifiche correlate a "$1"',
 'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
-'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine contenute nella propria lista degli [[Special:Watchlist|Osservati Speciali]] sono evidenziate in '''grassetto'''.",
+'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate da quella specificata (o contenute nella categoria specificata). 
+Le pagine contenute nella propria lista degli [[Special:Watchlist|Osservati speciali]] sono evidenziate in '''grassetto'''.",
 'recentchangeslinked-page'     => 'Nome della pagina:',
 'recentchangeslinked-to'       => 'Mostra solo le modifiche alle pagine collegate a quella specificata',
 
@@ -1466,7 +1469,7 @@ PICT # misc.
 'upload-curl-error28'      => "Tempo scaduto per l'upload",
 'upload-curl-error28-text' => 'Il sito remoto ha impiegato troppo tempo a rispondere. Verificare che il sito sia attivo, attendere qualche minuto e provare di nuovo, eventualmente in un momento di minore traffico.',
 
-'license'            => "Licenza d'uso:",
+'license'            => 'Licenza:',
 'nolicense'          => 'Nessuna licenza indicata',
 'license-nopreview'  => '(Anteprima non disponibile)',
 'upload_source_url'  => ' (una URL corretta e accessibile)',
@@ -1667,7 +1670,8 @@ I redirect <s>cancellati</s> sono stati corretti.',
 'ancientpages'            => 'Pagine meno recenti',
 'move'                    => 'Sposta',
 'movethispage'            => 'Sposta questa pagina',
-'unusedimagestext'        => "Si noti che è possibile realizzare collegamenti ai file da altri siti, usando direttamente la URL; questi potrebbero quindi essere utilizzati anche se compaiono nell'elenco.",
+'unusedimagestext'        => 'In questo elenco sono presenti i file caricati e non usati nel sito. 
+Potrebbero essere presenti immagini che sono usate da altri siti con un collegamento diretto.',
 'unusedcategoriestext'    => 'Le pagine delle categorie indicate di seguito sono state create ma non contengono nessuna pagina né sottocategoria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",

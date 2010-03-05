@@ -589,7 +589,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'createaccount'              => 'Crear unha conta nova',
 'gotaccount'                 => "Xa ten unha conta? '''$1'''.",
 'gotaccountlink'             => 'Acceda ao sistema',
-'createaccountmail'          => 'por correo electrónico',
+'createaccountmail'          => 'Por correo electrónico',
 'badretype'                  => 'Os contrasinais que inseriu non coinciden entre si.',
 'userexists'                 => 'O nome de usuario que pretende usar xa está en uso.
 Escolla un nome diferente.',
@@ -615,8 +615,13 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'prefs-help-email'           => 'O enderezo de correo electrónico é opcional, pero permite que se lle envíe un contrasinal novo se se esquece del.
 Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a súa páxina de usuario ou de conversa sen necesidade de revelar a súa identidade.',
 'prefs-help-email-required'  => 'Requírese o enderezo de correo electrónico.',
-'nocookiesnew'               => "A conta de usuario foi creada, pero non está rexistrado. {{SITENAME}} usa ''cookies'' para o rexistro. Vostede ten deshabilitadas as ''cookies''. Por favor, habilíteas, e logo rexístrese co seu novo nome de usuario e contrasinal.",
-'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios. Vostede ten as cookies deshabilitadas. Por favor, habilíteas e ténteo de novo.',
+'nocookiesnew'               => 'A conta de usuario foi creada, pero non accedeu ao sistema.
+{{SITENAME}} para rexistrar os usuarios.
+Vostede ten as cookies deshabilitadas.
+Por favor, habilíteas e logo acceda ao sistema co seu novo nome de usuario e contrasinal.',
+'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios.
+Vostede ten as cookies deshabilitadas.
+Por favor, habilíteas e inténteo de novo.',
 'noname'                     => 'Non especificou un nome de usuario válido.',
 'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
@@ -729,7 +734,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 O seu enderezo IP quedará rexistrado no historial das revisións desta páxina.",
 'missingsummary'                   => "'''Aviso:''' esqueceu incluír o texto do campo resumo.
 Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrición da edición.",
-'missingcommenttext'               => 'Por favor escriba un comentario a continuación.',
+'missingcommenttext'               => 'Por favor, escriba un comentario a continuación.',
 'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/cabeceira deste comentario.
 Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'                  => 'Vista previa do resumo:',
@@ -770,8 +775,9 @@ Por favor, inclúa eses datos nas consultas que faga.',
 'whitelistedittext'                => 'Ten que $1 para poder editar páxinas.',
 'confirmedittitle'                 => 'Requírese confirmar o enderezo electrónico para editar',
 'confirmedittext'                  => 'Debe confirmar o correo electrónico antes de comezar a editar. Por favor, configure e dea validez ao correo mediante as súas [[Special:Preferences|preferencias de usuario]].',
-'nosuchsectiontitle'               => 'Non existe tal sección',
-'nosuchsectiontext'                => 'Tentou editar unha sección inexistente. Dado que non existe a sección $1, non hai onde gardar a súa edición.',
+'nosuchsectiontitle'               => 'Non se pode atopar a sección',
+'nosuchsectiontext'                => 'Intentou editar unha sección que non existe.
+Poida que a movesen ou borrasen mentres ollaba a páxina.',
 'loginreqtitle'                    => 'Cómpre acceder ao sistema',
 'loginreqlink'                     => 'acceder ao sistema',
 'loginreqpagetext'                 => 'Debe $1 para ver outras páxinas.',
@@ -786,7 +792,7 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'anontalkpagetext'                 => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'                    => 'Actualmente non hai ningún texto nesta páxina.
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ollar os rexistros relacionados]
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
@@ -828,8 +834,8 @@ Pode mesturar os seus cambios co texto existente.
 '''Só''' se gardará o texto na área superior cando prema \"Gardar a páxina\".",
 'yourtext'                         => 'O seu texto',
 'storedversion'                    => 'Versión gardada',
-'nonunicodebrowser'                => "'''ATENCIÓN: o seu navegador non soporta Unicode.
-Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.'''",
+'nonunicodebrowser'                => "'''ATENCIÓN: o seu navegador non soporta Unicode.'''
+Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.",
 'editingold'                       => "'''ATENCIÓN: está editando unha revisión non actualizada desta páxina.
 Se a garda, perderanse os cambios realizados tras esta revisión.'''",
 'yourdiff'                         => 'Diferenzas',
@@ -1219,7 +1225,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'recentchangesdays'         => 'Número de días a mostrar nos cambios recentes:',
 'recentchangesdays-max'     => '(máximo {{PLURAL:$1|un día|$1 días}})',
 'recentchangescount'        => 'Número de edicións a mostrar, por defecto, nas páxinas dos cambios recentes, historiais e rexistros:',
-'savedprefs'                => 'As súas preferencias foron gardadas.',
+'savedprefs'                => 'Gardáronse as súas preferencias.',
 'timezonelegend'            => 'Zona horaria:',
 'timezonetext'              => '¹Insira o número de horas de diferenza entre a súa hora local e a do servidor (UTC).',
 'localtime'                 => 'Hora local:',
@@ -1261,7 +1267,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 * Se a caixa ten un sinal (✓) significa que o usuario pertence a ese grupo.
 * Se, pola contra, non o ten, significa que non pertence.
 * Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e viceversa.',
-'userrights-reason'           => 'Razón para a modificación:',
+'userrights-reason'           => 'Motivo:',
 'userrights-no-interwiki'     => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
 'userrights-nodatabase'       => 'A base de datos $1 non existe ou non é local.',
 'userrights-nologin'          => 'Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.',
@@ -1400,7 +1406,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'recentchanges-feed-description'    => 'Siga os cambios máis recentes deste wiki nesta fonte de novas.',
 'rcnote'                            => "Embaixo {{PLURAL:$1|amósase '''1''' cambio|amósanse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata as $5 do $4.",
 'rcnotefrom'                        => "Abaixo amósanse os cambios desde '''$2''' (móstranse ata '''$1''').",
-'rclistfrom'                        => 'Mostrar os cambios novos desde $1',
+'rclistfrom'                        => 'Mostrar os cambios novos desde as $1',
 'rcshowhideminor'                   => '$1 as edicións pequenas',
 'rcshowhidebots'                    => '$1 os bots',
 'rcshowhideliu'                     => '$1 os usuarios rexistrados',
@@ -1442,7 +1448,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
 'uploadtext'                  => "Use o formulario de embaixo para cargar ficheiros.
-Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:FileList|lista de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de carga]], e as eliminacións no [[Special:Log/delete|rexistro de borrado]].
+Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:FileList|lista de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de cargas]] e as eliminacións no [[Special:Log/delete|rexistro de borrados]].
 
 Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar a versión completa do ficheiro
@@ -1576,7 +1582,7 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nome',
 'listfiles_user'        => 'Usuario',
-'listfiles_size'        => 'Tamaño (bytes)',
+'listfiles_size'        => 'Tamaño',
 'listfiles_description' => 'Descrición',
 'listfiles_count'       => 'Versións',
 
@@ -1736,11 +1742,11 @@ As entradas <s>riscadas</s> xa foron resoltas.',
 'wantedpages-badtitle'    => 'Título inválido fixado nos resultados: $1',
 'wantedfiles'             => 'Ficheiros requiridos',
 'wantedtemplates'         => 'Modelos requiridos',
-'mostlinked'              => 'Páxinas máis enlazadas',
+'mostlinked'              => 'Páxinas máis ligadas',
 'mostlinkedcategories'    => 'Categorías máis ligadas',
 'mostlinkedtemplates'     => 'Modelos máis enlazados',
 'mostcategories'          => 'Artigos con máis categorías',
-'mostimages'              => 'Ficheiros máis enlazados',
+'mostimages'              => 'Ficheiros máis usados',
 'mostrevisions'           => 'Artigos con máis revisións',
 'prefixindex'             => 'Todas as páxinas coas iniciais',
 'shortpages'              => 'Páxinas curtas',
@@ -1765,7 +1771,8 @@ As entradas <s>riscadas</s> xa foron resoltas.',
 'ancientpages'            => 'Artigos máis antigos',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta páxina',
-'unusedimagestext'        => 'Por favor, teña en conta que outros sitios web poden ligar a un ficheiro mediante un enderezo URL e por iso poden aparecer listados aquí, mesmo estando en uso.',
+'unusedimagestext'        => 'Os seguintes ficheiros existen pero aínda non se incluíron en ningunha páxina.
+Por favor, teña en conta que outras páxinas web poden ligar cara a un ficheiro mediante un enderezo URL directo e por iso poden aparecer listados aquí, mesmo estando en uso.',
 'unusedcategoriestext'    => 'Existen as seguintes categorías, aínda que ningún artigo ou categoría as emprega.',
 'notargettitle'           => 'Sen obxectivo',
 'notargettext'            => 'Non especificou a páxina ou o usuario no cal levar a cabo esta función.',
@@ -1829,7 +1836,7 @@ Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-ok'    => 'Procurar',
 'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".<br />
 Protocolos soportados: <tt>$1</tt>',
-'linksearch-line'  => '$1 é ligado desde $2',
+'linksearch-line'  => '$1 está ligado desde $2',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
 # Special:ListUsers
@@ -1976,8 +1983,8 @@ No $2 pode ver unha lista dos borrados máis recentes.',
 'deleteotherreason'      => 'Outro motivo:',
 'deletereasonotherlist'  => 'Outro motivo',
 'deletereason-dropdown'  => '*Motivos frecuentes para borrar
-** Petición do autor
-** Violación de copyright
+** Solicitado polo autor
+** Violación dos dereitos de autor
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar os motivos de borrado',
 'delete-toobig'          => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
@@ -2160,7 +2167,7 @@ $1',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
-'blockip'                         => 'Bloquear un usuario',
+'blockip'                         => 'Bloquear este usuario',
 'blockip-legend'                  => 'Bloquear un usuario',
 'blockiptext'                     => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
@@ -2168,9 +2175,9 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipaddress'                       => 'Enderezo IP:',
 'ipadressorusername'              => 'Enderezo IP ou nome de usuario:',
 'ipbexpiry'                       => 'Duración:',
-'ipbreason'                       => 'Razón:',
+'ipbreason'                       => 'Motivo:',
 'ipbreasonotherlist'              => 'Outro motivo',
-'ipbreason-dropdown'              => '*Mensaxes de bloqueo comúns
+'ipbreason-dropdown'              => '*Motivos frecuentes para bloquear
 ** Inserir información falsa
 ** Eliminar o contido de páxinas
 ** Ligazóns lixo a sitios externos
@@ -2336,7 +2343,7 @@ Por favor, escolla outro nome.',
 '1movedto2_redir'              => 'moveu "[[$1]]" a "[[$2]]" sobre unha redirección',
 'move-redirect-suppressed'     => 'redirección suprimida',
 'movelogpage'                  => 'Rexistro de traslados',
-'movelogpagetext'              => 'Abaixo móstrase unha lista de páxinas trasladadas.',
+'movelogpagetext'              => 'A continuación móstrase a lista con todas as páxinas trasladadas.',
 'movesubpage'                  => '{{PLURAL:$1|Subpáxina|Subpáxinas}}',
 'movesubpagetext'              => 'Esta páxina ten $1 {{PLURAL:$1|subpáxina|subpáxinas}}.',
 'movenosubpage'                => 'Esta páxina non ten subpáxinas.',
@@ -2514,7 +2521,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 
 # Scripts
 'common.js'   => '/* Calquera JavaScript será cargado para todos os usuarios en cada páxina cargada. */',
-'monobook.js' => '/* O JavaScript que apareza aquí só será cargado aos usuarios que usan a apariencia MonoBook. */',
+'monobook.js' => '/* O JavaScript que apareza aquí só será cargado aos usuarios que usan a aparencia MonoBook. */',
 
 # Metadata
 'nodublincore'      => 'A opción de metadatos RDF do Dublin Core está desactivada neste servidor.',
@@ -2553,7 +2560,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'skinname-nostalgia'   => 'Morriña',
 'skinname-cologneblue' => 'Azul colonial',
 'skinname-monobook'    => 'MonoBook',
-'skinname-myskin'      => 'A miña apariencia',
+'skinname-myskin'      => 'A miña aparencia',
 'skinname-chick'       => 'Parrulo',
 'skinname-simple'      => 'Sinxela',
 'skinname-modern'      => 'Moderna',
@@ -2618,7 +2625,7 @@ O seu sistema pode quedar comprometido se o executa.<hr />",
 
 # Special:NewFiles
 'newimages'             => 'Galería de imaxes novas',
-'imagelisttext'         => "Abaixo amósase unha lista de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
+'imagelisttext'         => "A continuación amósase unha lista de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
 'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente.',
 'newimages-legend'      => 'Filtro',
 'newimages-label'       => 'Nome do ficheiro (ou parte del):',
@@ -2988,7 +2995,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 
 # action=purge
 'confirm_purge_button' => 'Si',
-'confirm-purge-top'    => 'Está seguro de que desexa limpar a memoria caché desta páxina?',
+'confirm-purge-top'    => 'Quere limpar a memoria caché desta páxina?',
 'confirm-purge-bottom' => 'Ao purgar unha páxina, límpase a memoria caché e isto obriga tamén a que apareza a versión máis recente da páxina.',
 
 # Multipage image navigation

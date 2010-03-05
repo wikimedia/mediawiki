@@ -1,5 +1,5 @@
 <?php
-/** Kurdish (Latin) (Kurdî / كوردی (Latin))
+/** Kurdish (Latin) (Kurdî (Latin))
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -136,7 +136,7 @@ $messages = array(
 'dec'           => 'ber',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|Kategorî|Kategorîyan}}',
+'pagecategories'                 => '{{PLURAL:$1|Kategorî|Kategorî}}',
 'category_header'                => 'Gotarên di kategoriya "$1" de',
 'subcategories'                  => 'Binekategorî',
 'category-media-header'          => 'Medya di kategorîya "$1" da',
@@ -197,14 +197,14 @@ $messages = array(
 'permalink'         => 'Lînkê tim',
 'print'             => 'Çap',
 'edit'              => 'Biguherîne',
-'create'            => 'Çêke',
+'create'            => 'Afirandin',
 'editthispage'      => 'Vê rûpelê biguherîne',
 'create-this-page'  => 'Vê rûpelê çêke',
 'delete'            => 'Jê bibe',
 'deletethispage'    => 'Vê rûpelê jê bibe',
 'undelete_short'    => 'Dîsa {{PLURAL:$1|guherandinekî|$1 guherandinan}} çêke',
 'protect'           => 'Biparêze',
-'protect_change'    => 'biguherîne',
+'protect_change'    => 'guherandin',
 'protectthispage'   => 'Vê rûpelê biparêze',
 'unprotect'         => 'Parastinê rake',
 'unprotectthispage' => 'Parastina vê rûpelê rake',
@@ -291,7 +291,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
-'red-link-title'          => '$1 (hên nehatîye nivîsandin)',
+'red-link-title'          => '$1 (rûpel hê tune)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Gotar',
@@ -374,8 +374,10 @@ $2
 
 # Login and logout pages
 'logouttitle'                => 'Derketina bikarhêner',
-'logouttext'                 => "'''Tu niha derketî (logged out).'''<br />
-Tu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan jî tu dikarî dîsa bi vî navê xwe yan navekî din wek bikarhêner [[Special:UserLogin|dîsa têkevî]]. Bila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd kiriyî werin nîşandan, heta ku tu nîşanên çavlêgerandina (browser) xwe jênebî.",
+'logouttext'                 => "'''Tu niha derketî (logged out).'''
+
+Tu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan jî tu dikarî dîsa bi vî navê xwe yan navekî din wek bikarhêner [[Special:UserLogin|dîsa têkevî]].
+Bila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd kiriyî werin nîşandan, heta ku tu nîşanên çavlêgerandina (browser) xwe jênebî.",
 'welcomecreation'            => '== Bi xêr hatî, $1! ==
 
 Hesaba te hat afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe di {{SITENAME}}]] da eyar bikî.',
@@ -541,7 +543,7 @@ Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercih�
 'confirmedittitle'                 => 'Ji bo guherandinê, naskirina e-nameya te tê xastin.',
 'confirmedittext'                  => 'Tu gireke adrêsa e-nameya xwe nasbikê berî tu rûpelan diguherînê. Xêra xwe adrêsa e-nameya ya xwe di [[Special:Preferences|tercihên xwe]] da binivisîne û nasbike.',
 'nosuchsectiontitle'               => 'Beşekî wisa tune ye',
-'nosuchsectiontext'                => 'Te dixast beşekê biguherînê yê tune ye. Ji ber ku beşa $1 tune ye, guherandinên te jî nikanin werin tomarkirin.',
+'nosuchsectiontext'                => 'Te dixast beşekê biguherînê yê tune ye.',
 'loginreqtitle'                    => 'Têketin pêwîst e',
 'loginreqlink'                     => 'têkevê',
 'loginreqpagetext'                 => 'Tu gireke $1 ji bo dîtina rûpelên din.',
@@ -648,7 +650,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'revdelete-hide-user'         => "Navî bikarhêner/IP'yê veşêre",
 'revdelete-hide-restricted'   => 'Ev qebûlkirinan ji koordînatoran ra ye jî û ev rûpela tê girtin',
 'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
-'revdelete-hid'               => '$1 veşêre',
+'revdelete-hid'               => '$1 veşart',
 'revdelete-unhid'             => '$1 nîşanbide',
 
 # History merging
@@ -694,7 +696,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'searchhelp-url'                 => 'Help:Alîkarî',
 'searchprofile-articles-tooltip' => 'Di $1 da lêbigere',
 'searchprofile-project-tooltip'  => 'Di $1 da lêbigere',
-'search-result-size'             => '$1 ({{PLURAL:$2|peyvek|$2 peyvan}})',
+'search-result-size'             => '$1 ({{PLURAL:$2|peyvek|$2 peyv}})',
 'searchall'                      => 'hemû',
 'showingresults'                 => "{{PLURAL:$1|Encamek|'''$1''' encam}}, bi #'''$2''' dest pê dike.",
 'showingresultsnum'              => "{{PLURAL:$3|'''1'''|'''$3'''}} encam, bi #<b>$2</b> dest pê dike.",
@@ -1238,7 +1240,7 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'undelete-revision'        => 'Rêvîzyonên jêbirî yê $1 (di $2) ji $3:',
 'undelete-nodiff'          => 'Rêvîzyonên berê nehatin dîtin.',
 'undeletebtn'              => 'Dîsa çêke!',
-'undeletelink'             => 'dîsa çêke',
+'undeletelink'             => 'dîtin/dîsa çêkirin',
 'undeletereset'            => 'Biskine',
 'undeletecomment'          => 'Sedem:',
 'undeletedarticle'         => '"[[$1]]" dîsa çêkir',
@@ -1288,6 +1290,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'whatlinkshere-hideredirs' => "$1 redirect'an",
 'whatlinkshere-hidelinks'  => '$1 lînkan',
 'whatlinkshere-hideimages' => '$1 lînkên wêneyan',
+'whatlinkshere-filters'    => 'Parzûn',
 
 # Block/unblock
 'blockip'                     => 'Bikarhêner asteng bike',

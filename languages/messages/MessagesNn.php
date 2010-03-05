@@ -801,8 +801,9 @@ Ver venleg og opplyse dette ved eventuelle førespurnader.",
 'whitelistedittext'                => 'Du lyt $1 for å endre sider.',
 'confirmedittitle'                 => 'Du må stadfeste e-postadressa di før du kan endre noko',
 'confirmedittext'                  => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
-'nosuchsectiontitle'               => 'Ingen slik bolk',
-'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst. Sidan det ikkje er {{PLURAL:bolkar|$1 bolkar}} i teksten, er det ingen stad å lagre endringa di.',
+'nosuchsectiontitle'               => 'Kan ikkje finna bolk',
+'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst. 
+Han kan ha vorten flytta eller sletta medan du såg på sida.',
 'loginreqtitle'                    => 'Innlogging trengst',
 'loginreqlink'                     => 'logg inn',
 'loginreqpagetext'                 => 'Du lyt $1 for å lesa andre sider.',
@@ -819,7 +820,7 @@ Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|end
 'anontalkpagetext'                 => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin/signup|opprett ein brukarkonto]] eller [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext'                    => 'Det finst på noverande tidspunkt ikkje noko tekst på denne sida.
-Du kan [[Special:Search/{{PAGENAME}}|søkja etter denne sidetittelen]] i andre sider, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} søkja i dei relaterte loggane]
+Du kan [[Special:Search/{{PAGENAME}}|søkja etter denne sidetittelen]] i andre sider, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søkja i dei relaterte loggane]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra denne sida]</span>.',
 'userpage-userdoesnotexist'        => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
 'clearyourcache'                   => "'''Merk: Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft.''' '''Firefox og Safari:''' Hald ''Shift'' nede medan du trykkjer anten ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac). '''Konqueror:''' Trykk ''Oppdater'' eller på ''F5''. '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''. '''Internet Explorer:''' Hald nede ''Ctrl'' medan du trykkjer ''Oppdater'', eler trykk ''Ctrl-F5.''",
@@ -880,7 +881,7 @@ Du kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn 
 'nocreate-loggedin'                => 'Du har ikkje tilgang til å opprette nye sider.',
 'permissionserrors'                => 'Tilgangsfeil',
 'permissionserrorstext'            => 'Du har ikkje tilgang til å gjere dette, {{PLURAL:$1|grunnen|grunnane}} til det finn du her:',
-'permissionserrorstext-withaction' => 'Du har ikke løyve til å $2 {{PLURAL:$1|på grunn av|av desse grunnane}}:',
+'permissionserrorstext-withaction' => 'Du har ikkje løyve til å $2 {{PLURAL:$1|på grunn av|av desse grunnane}}:',
 'recreate-deleted-warn'            => "'''Åtvaring: Du nyopprettar ei side som tidlegare har vorte sletta.'''
 
 Du bør tenkje over om det er lurt å halde fram med å endre denne sida.
@@ -992,7 +993,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'revdelete-submit'               => 'Utfør på vald versjon',
 'revdelete-logentry'             => 'endra versjonsvisinga til [[$1]]',
 'logdelete-logentry'             => 'endra visinga av loggoppføringane til [[$1]]',
-'revdelete-success'              => "'''Versjonsvisinga er endra.'''",
+'revdelete-success'              => "'''Endringa av versjonsvisinga var vellukka.'''",
 'logdelete-success'              => "'''Visinga av loggoppføringar er endra.'''",
 'revdel-restore'                 => 'Endr synlegheita',
 'pagehist'                       => 'Sidehistorikk',
@@ -1157,7 +1158,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'mwsuggest-disable'                => 'Slå av AJAX-forslag',
 'searchrelated'                    => 'relatert',
 'searchall'                        => 'alle',
-'showingresults'                   => "Nedanfor er opp til {{PLURAL:$1|'''eitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist.",
+'showingresults'                   => "Nedanfor er opp til {{PLURAL:$1|'''eitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist{{PLURAL:$1||e}}.",
 'showingresultsnum'                => "Nedanfor er {{PLURAL:$3|'''eitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
 'showingresultstotal'              => "Syner resultat {{PLURAL:$4|'''$1''' av '''$3'''|'''$1&ndash;$2''' av '''$3'''}} nedanfor",
 'nonefound'                        => "'''Merk:''' Som standard blir det berre søkt i enkelte namnerom. 
@@ -1205,9 +1206,9 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-personal'            => 'Brukaropplysningar',
 'prefs-rc'                  => 'Siste endringar',
 'prefs-watchlist'           => 'Overvakingsliste',
-'prefs-watchlist-days'      => 'Tal på dagar som skal visast i overvakingslista:',
+'prefs-watchlist-days'      => 'Tal på dagar som viser i overvakingslista:',
 'prefs-watchlist-days-max'  => '(høgst sju dagar)',
-'prefs-watchlist-edits'     => 'Talet på endringar som vert viste i den utvida overvakingslista:',
+'prefs-watchlist-edits'     => 'Talet på endringar som viser i den utvida overvakingslista:',
 'prefs-watchlist-edits-max' => '(høgst 1000)',
 'prefs-misc'                => 'Andre',
 'prefs-resetpass'           => 'Endra passord',
@@ -1223,7 +1224,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'contextlines'              => 'Liner per resultat',
 'contextchars'              => 'Teikn per line i resultatet',
 'stub-threshold'            => 'Grense (i byte) for at frø/spirer skal formaterast <a href="#" class="stub">slik</a>:',
-'recentchangesdays'         => 'Tal dagar som skal visast på siste endringar:',
+'recentchangesdays'         => 'Tal på dagar som viser på siste endringar:',
 'recentchangesdays-max'     => '(høgst $1 {{PLURAL:$1|dag|dagar}})',
 'recentchangescount'        => 'Tal på endringar som skal verta viste i «siste endringar», sidehistorikkar og i loggar som standard:',
 'savedprefs'                => 'Brukarinnstillingane er lagra.',
@@ -1267,8 +1268,8 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'userrights-groups-help'      => 'Du kan endre kva for grupper denne brukaren er medlem av.
 * Ein krossa boks tyder at brukaren er medlem av denne gruppa.
 * Ein ikkjekrossa boks tyder at brukaren ikkje er medlem av denne gruppa.
-* Ein * tyder at du ikkje kan fjerna gruppemedlemskapen etter at du har lagt den til, eller omvendt.',
-'userrights-reason'           => 'Grunn til endring:',
+* Ein * tyder at du ikkje kan fjerne gruppemedlemskapen etter at du har lagt han til, eller omvendt.',
+'userrights-reason'           => 'Årsak:',
 'userrights-no-interwiki'     => 'Du har ikkje tilgang til å endre brukartilgangar på andre wikiar.',
 'userrights-nodatabase'       => 'Databasen $1 finst ikkje eller er ikkje lokal.',
 'userrights-nologin'          => 'Du må [[Special:UserLogin|logge inn]] med ein administrator- og/eller byråkratkonto for å endre brukartilgangar.',
@@ -1355,7 +1356,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'right-userrights-interwiki'  => 'Endre rettar for brukarar på andre wikiar',
 'right-siteadmin'             => 'Låse og låse opp databasen',
 'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
-'right-override-export-depth' => 'Eksportér sider inkludert lenka sider til ei djupn på 5',
+'right-override-export-depth' => 'Eksporter sider inkludert lenkte sider til ei djupn på 5',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1750,7 +1751,8 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'ancientpages'            => 'Eldste sider',
 'move'                    => 'Flytt',
 'movethispage'            => 'Flytt denne sida',
-'unusedimagestext'        => '<p>Merk deg at andre internettsider kan ha lenkjer til filer som er lista her. Dei kan difor vera i aktiv bruk.</p>',
+'unusedimagestext'        => 'Dei fylgjande filene finst, men vert ikkje nytta på noka sida.
+Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan filene vera nytta aktivt trass i at dei er lista opp her.',
 'unusedcategoriestext'    => 'Dei følgjande kategorisidene er oppretta, sjølv om ingen artikkel eller kategori brukar dei.',
 'notargettitle'           => 'Inkje mål',
 'notargettext'            => 'Du har ikkje spesifisert noka målside eller nokon brukar å bruke denne funksjonen på.',
@@ -1878,7 +1880,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 
 Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
 'removedwatch'         => 'Fjerna frå overvakingslista',
-'removedwatchtext'     => 'Sida «<[[:$1]]» er fjerna frå [[Special:Watchlist|overvakingslista di]] .',
+'removedwatchtext'     => 'Sida «[[:$1]]» er fjerna frå [[Special:Watchlist|overvakingslista di]].',
 'watch'                => 'Overvak',
 'watchthispage'        => 'Overvak denne sida',
 'unwatch'              => 'Fjern overvaking',
@@ -1888,7 +1890,7 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'watchnochange'        => 'Ingen av sidene i overvakingslista er endra i den valde perioden.',
 'watchlist-details'    => '{{PLURAL:$1|Éi side|$1 sider}} er overvaka, utanom diskusjonssider.',
 'wlheader-enotif'      => '* Funksjonen for endringsmeldingar per e-post er på.',
-'wlheader-showupdated' => "* Sider som har vorte endra sidan du sist såg på dei er '''utheva'''",
+'wlheader-showupdated' => "* Sider som er vortne endra sidan du sist såg på dei er '''utheva'''",
 'watchmethod-recent'   => 'sjekkar siste endringar for dei overvaka sidene',
 'watchmethod-list'     => 'sjekkar om dei overvaka sidene er vortne endra i det siste',
 'watchlistcontains'    => 'Overvakingslista di inneheld {{PLURAL:$1|éi side|$1 sider}}.',
@@ -2053,7 +2055,7 @@ For å berre attenderulle delar, kryss av boksane til endringane, og klikk '''''
 'undeletehistorynoadmin'       => 'Ein eller fleire versjonar av denne sida har blitt sletta.
 Grunnlaget for sletting er oppgjeve under, saman med informasjon om kven som sletta og når versjonane vart sletta.
 Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
-'undelete-revision'            => 'Sletta revisjon av $1 (per $4 $5) av $3:',
+'undelete-revision'            => 'Sletta versjon av $1 (per $4 $5) av $3:',
 'undeleterevision-missing'     => 'Ugyldig eller manglande versjon. Lenkja kan vere feil, eller han kan vere fjerna frå arkivet.',
 'undelete-nodiff'              => 'Fann ingen eldre versjonar.',
 'undeletebtn'                  => 'Attopprett',
@@ -2136,7 +2138,7 @@ $1',
 'ipadressorusername'              => 'IP-adresse eller brukarnamn',
 'ipbexpiry'                       => 'Opphøyrstid:',
 'ipbreason'                       => 'Årsak:',
-'ipbreasonotherlist'              => 'Anna grunn',
+'ipbreasonotherlist'              => 'Annan grunn',
 'ipbreason-dropdown'              => '*Vanlege grunnar for blokkering
 ** Legg inn usann tekst/tull
 ** Fjernar innhald frå sider
@@ -2152,7 +2154,7 @@ $1',
 'ipbother'                        => 'Anna tid',
 'ipboptions'                      => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'anna tid',
-'ipbotherreason'                  => 'Anna grunn/tilleggsgrunn:',
+'ipbotherreason'                  => 'Annan grunn/tilleggsgrunn:',
 'ipbhidename'                     => 'Gøym brukarnamnet frå endringar og lister',
 'ipbwatchuser'                    => 'Overvak brukarsida og diskusjonssida til brukaren',
 'ipballowusertalk'                => 'La brukaren endre si eiga diskusjonsside under blokkeringa',
@@ -2491,7 +2493,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'lastmodifiedatby' => 'Sida vart sist endra den $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
-'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|brukar|brukarar}} $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|brukaren|brukarane}} $1',
 'creditspage'      => 'Sidegodskriving',
 'nocredits'        => 'Det finst ikkje ikkje nokon godskrivingsinformasjon for denne sida.',
 

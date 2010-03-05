@@ -308,7 +308,7 @@ $messages = array(
 'tog-editsection'             => 'Bewerken van deelpagina’s mogelijk maken via [bewerken]-koppelingen',
 'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop (vereist JavaScript)',
 'tog-showtoc'                 => 'Inhoudsopgave weergeven (voor pagina’s met minstens 3 tussenkoppen)',
-'tog-rememberpassword'        => 'Wachtwoord onthouden',
+'tog-rememberpassword'        => 'Aanmeldgegevens onthouden',
 'tog-editwidth'               => 'Bewerkingsveld over volle breedte van het scherm weergeven',
 'tog-watchcreations'          => 'Pagina’s die ik aanmaak automatisch volgen',
 'tog-watchdefault'            => 'Pagina’s die ik bewerk automatisch volgen',
@@ -665,7 +665,8 @@ De gegeven reden is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Gebruiker afmelden',
-'logouttext'                 => "'''U bent nu afgemeld.'''<br />
+'logouttext'                 => "'''U bent nu afgemeld.'''
+
 U kunt {{SITENAME}} nu anoniem gebruiken of weer [[Special:UserLogin|aanmelden]] als dezelfde of een andere gebruiker.
 Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totdat u de cache van uw browser leegt.",
 'welcomecreation'            => '== Welkom, $1! ==
@@ -690,7 +691,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'createaccount'              => 'Registreren',
 'gotaccount'                 => "Hebt u al een gebruikersnaam? '''$1'''.",
 'gotaccountlink'             => 'Aanmelden',
-'createaccountmail'          => 'per e-mail',
+'createaccountmail'          => 'Per e-mail',
 'badretype'                  => 'De ingevoerde wachtwoorden verschillen van elkaar.',
 'userexists'                 => 'De gekozen gebruikersnaam is al in gebruik.
 Kies een andere naam.',
@@ -887,7 +888,7 @@ Vermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.',
 Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]].',
 'nosuchsectiontitle'               => 'Deze subkop bestaat niet',
 'nosuchsectiontext'                => 'U probeerde een subkopje te bewerken dat niet bestaat.
-Omdat subkopje $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
+Wellicht is het verplaatst of verwijderd terwijl u de pagina aan het bekijken was.',
 'loginreqtitle'                    => 'Aanmelden verplicht',
 'loginreqlink'                     => 'aanmelden',
 'loginreqpagetext'                 => "U moet zich $1 om andere pagina's te kunnen bekijken.",
@@ -905,7 +906,7 @@ Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken.
 Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn.
 Als u dat wilt voorkomen, [[Special:UserLogin/signup|registreer u]] of [[Special:UserLogin|meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
 'noarticletext'                    => 'Deze pagina bevat geen tekst.
-U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} de logboeken doorzoeken] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
+U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
 'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1").
 Controleer of u deze pagina wel wilt aanmaken/bewerken.',
 'clearyourcache'                   => "'''Let op! Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.'''
@@ -1385,7 +1386,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 * Een aangekruist vakje betekent dat de gebruiker lid is van de groep.
 * Een niet aangekruist vakje betekent dat de gebruiker geen lid is van de groep.
 * Een "*" betekent dat u een gebruiker niet uit een groep kunt verwijderen nadat u die hebt toegevoegd, of vice versa.',
-'userrights-reason'           => 'Reden voor het veranderen:',
+'userrights-reason'           => 'Reden:',
 'userrights-no-interwiki'     => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase'       => 'Database $1 bestaat niet of is geen plaatselijke database.',
 'userrights-nologin'          => 'U moet zich [[Special:UserLogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
@@ -1901,7 +1902,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'ancientpages'            => "Oudste pagina's",
 'move'                    => 'Hernoemen',
 'movethispage'            => 'Deze pagina hernoemen',
-'unusedimagestext'        => 'Let op!
+'unusedimagestext'        => 'De volgende bestanden zijn aanwezig maar worden nergens gebruikt.
 Het is mogelijk dat er direct verwezen wordt naar een bestand.
 Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'unusedcategoriestext'    => 'Hieronder staan categorieën die zijn aangemaakt, maar door geen enkele pagina of andere categorie gebruikt worden.',
@@ -2114,7 +2115,7 @@ Zie het $2 voor een overzicht van recente verwijderingen.',
 'deletionlog'            => 'verwijderingslogboek',
 'reverted'               => 'Eerdere versie hersteld',
 'deletecomment'          => 'Reden voor verwijderen:',
-'deleteotherreason'      => 'Andere/eventuele reden:',
+'deleteotherreason'      => 'Andere reden:',
 'deletereasonotherlist'  => 'Andere reden',
 'deletereason-dropdown'  => '*Veel voorkomende verwijderredenen
 ** Op aanvraag van auteur
@@ -2312,7 +2313,7 @@ Doe dit alleen als bescherming tegen vandalisme en in overeenstemming met het [[
 Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipaddress'                       => 'IP-adres:',
 'ipadressorusername'              => 'IP-adres of gebruikersnaam:',
-'ipbexpiry'                       => 'Duur (maak een keuze):',
+'ipbexpiry'                       => 'Vervalt (maak een keuze):',
 'ipbreason'                       => 'Reden:',
 'ipbreasonotherlist'              => 'Andere reden',
 'ipbreason-dropdown'              => "*Veel voorkomende redenen voor blokkades

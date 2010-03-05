@@ -379,7 +379,9 @@ Görkezilen sebäp: ''$2''.",
 # Login and logout pages
 'logouttitle'                => 'Sessiýany ýap',
 'logouttext'                 => "'''Sessiýany ýapdyňyz.'''
-Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz. Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
+
+Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz.
+Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
 'welcomecreation'            => '== Hoş geldiňiz, $1! ==
 
 Hasabyňyz açyldy.  
@@ -412,7 +414,7 @@ Başga bir at saýlamagyňyzy haýyş edýäris.',
 'uid'                        => 'Ulanyjy belgisi:',
 'prefs-memberingroups'       => 'Agza {{PLURAL:$1|topary|toparlary}}:',
 'yourrealname'               => 'Hakyky adyňyz:',
-'yourlanguage'               => 'Interfeýs dili:',
+'yourlanguage'               => 'Dil:',
 'yournick'                   => 'Lakamyňyz (gol hökmünde):',
 'badsig'                     => 'Nädogry işlenmedik gol. HTML belliklerini gözden geçiriň.',
 'badsiglength'               => 'Goluňyz çakdanaşa uzyn.
@@ -524,7 +526,7 @@ Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol ta
 'hr_tip'          => 'Gorizontal liniýa (ýygy-ýygydan ulanmaň)',
 
 # Edit pages
-'summary'                          => 'Gysgaça mazmuny:',
+'summary'                          => 'Gysgaça düşündiriş:',
 'subject'                          => 'Tema/at:',
 'minoredit'                        => 'Ujypsyzja özgerdiş',
 'watchthis'                        => 'Sahypany gözegçilikde sakla',
@@ -577,7 +579,7 @@ Häzirki IP adresiňiz $3, blokirleme belgiňiz bolsa #$5.
 'confirmedittext'                  => 'Sahypa redaktirlemäp başlamankaňyz e-poçta adresiňizi tassyklamalysyňyz. 
 [[Special:Preferences|Ulanyjy ileri tutmalaryňyza]] e-poçta adresiňizi ýazyp tassyklamagyňyzy haýyş edýäris.',
 'nosuchsectiontitle'               => 'Beýle bölüm ýok',
-'nosuchsectiontext'                => 'Siz ýok bölümi redaktirlejek bolduňyz. $1 atly bölüm bolmansoň, özgerdişiňizi ýazdyrara ýer ýok.',
+'nosuchsectiontext'                => 'Siz ýok bölümi redaktirlejek bolduňyz.',
 'loginreqtitle'                    => 'Sessiýa açmagyňyz zerur',
 'loginreqlink'                     => 'sessiýa açyň',
 'loginreqpagetext'                 => 'Başga sahypalary görmek üçin $1.',
@@ -593,7 +595,7 @@ Bu paroly sessiýa açanyňyzdan soňra ''[[Special:ChangePassword|paroly üýtg
 Eger-de sizem anonim ulanyjy bolsaňyz we size siziň bilen dahyly ýok habarlaşyklar gelýän bolsa, onda mundan beýläk başga anonim ulanyjylar bilen garjaşmazlygyňyz üçin [[Special:UserLogin/signup|özüňize hasap ediniň]] ýa-da [[Special:UserLogin|sessiýa açyň]].''",
 'noarticletext'                    => 'Bu sahypa häzirki wagtda boş dur.
 Bu ady başga sahypalarda [[Special:Search/{{PAGENAME}}|gözläp bilersiňiz]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} degişli gündeliklerde gözleg geçirip bilersiňiz],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} degişli gündeliklerde gözleg geçirip bilersiňiz],
 ýa-da bu sahypany [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktirläp bilersiňiz]</span>.',
 'userpage-userdoesnotexist'        => '"$1" ulanyjy hasaby hasaba alynmandyr. 
 Bu sahypany döretmek/redaktirlemek isleýän bolsaňyz, onda esewan boluň.',
@@ -777,6 +779,10 @@ Administrator hökmünde ony görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/de
 'revdelete-nologid-text'         => 'Bu funksiýany ýerine ýetirmek üçin ýa-ha niýetlenilýän gündelik wakasyny gürkezmänsiňiz ýa-da görkezen ýazgyňyz ýok.',
 'revdelete-selected'             => "'''[[:$1]] sahypasynyň {{PLURAL:$2|saýlanylan wersiýasy|saýlanylan wersiýalary}}:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Saýlanylan gündelik wakasy|Saýlanylan gündelik wakalary}}:'''",
+'revdelete-text'                 => "'''Öçürilen wersiýalar we wakalar ýene-de sahypa geçmişinde hem-de gündeliklerde görünjekdir, emma olaryň mazmunynyň bölekleri jemgyýetçilik üçin elýeterli boljak däldir.'''
+
+{{SITENAME}} saýtyndaky beýleki administratorlar gizlenilgi mazmuny görüp bilýändir we goşmaça çäklendirme goýulmadyk bolsa onda olary şol bir interfeýs bilen yzyna dikeldip bilýändir.
+Muny ýerine ýetirmek isleýändigiňizi, netijelerine düşünýändigiňiz we muny [[{{MediaWiki:Policy-url}}|kadalar]] boýunça edýändigiňizi tassyklaň.",
 'revdelete-suppress-text'        => "Gizlemeklik '''diňe''' aşakdaky ýagdaýlarda ulanylmalydyr:
 * Potensial taýdan töhmetçilikli maglumat
 * Ýerliksiz şahsy maglumat
@@ -791,9 +797,10 @@ Administrator hökmünde ony görüp bilersiňiz; [{{fullurl:{{#Special:Log}}/de
 'revdelete-hide-image'           => 'Faýlyň mazmunyny gizle',
 'revdelete-unsuppress'           => 'Dikeldilen wersiýalardaky çäklendirmeleri aýyr',
 'revdelete-log'                  => 'Öçürmekligiň sebäbi:',
+'revdelete-submit'               => 'Saýlanylan wersiýa berjaý et',
 'revdelete-logentry'             => '[[$1]] üçin wersiýa görünme derejesini üýtgetdi',
 'logdelete-logentry'             => '[[$1]] üçin waka görünme derejesini üýtgetdi',
-'revdelete-success'              => "'''Wersiýa görünme derejesi şowlulyk bilen sazlandy.'''",
+'revdelete-success'              => "'''Wersiýa görünme derejesi şowly täzelendi.'''",
 'logdelete-success'              => "'''Gündelik görünme derejesi şowlulyk bilen sazlandy.'''",
 'revdel-restore'                 => 'Görnüşi üýtget',
 'pagehist'                       => 'Sahypanyň geçmişi',
@@ -1071,7 +1078,7 @@ konfigurirlemek üçin math/README serediň.',
 * Bellenilgi guty ulanyjynyň şol topara degişlidigini aňladýar.
 * Bellenilmedik guty ulanyjynyň şol topara degişli däldigini aňladýar.
 * * belgisi topary bir goşanyňyzdan soň ony aýyryp ýa-da aýyranyňyzdan soň goşup bolmaýandygyny aňladýar.',
-'userrights-reason'           => 'Üýtgetmäniň sebäbi:',
+'userrights-reason'           => 'Sebäp:',
 'userrights-no-interwiki'     => 'Başga wikilerdäki ulanyjy hukuklaryny redaktirlemäge ygtyýaryňyz ýok.',
 'userrights-nodatabase'       => '$1 maglumat bazasy ýok ýa-da ol lokal däl.',
 'userrights-nologin'          => 'Ulanyjy hukuklaryny bermek üçin administrator hasaby bilen [[Special:UserLogin|sessiýa açmagyňyz]] zerurdyr.',
@@ -1086,7 +1093,7 @@ konfigurirlemek üçin math/README serediň.',
 'group-bot'           => 'Botlar',
 'group-sysop'         => 'Administratorlar',
 'group-bureaucrat'    => 'Býurokratlar',
-'group-suppress'      => 'Gözegçiler',
+'group-suppress'      => 'Esewançylar',
 'group-all'           => '(ählisi)',
 
 'group-user-member'          => 'Ulanyjy',
@@ -1094,14 +1101,14 @@ konfigurirlemek üçin math/README serediň.',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Býurokrat',
-'group-suppress-member'      => 'Gözegçi',
+'group-suppress-member'      => 'Esewançy',
 
 'grouppage-user'          => '{{ns:project}}:Ulanyjylar',
 'grouppage-autoconfirmed' => '{{ns:project}}:Awtomatik tassyklanan ulanyjylar',
 'grouppage-bot'           => '{{ns:project}}:Botlar',
 'grouppage-sysop'         => '{{ns:project}}:Administratorlar',
 'grouppage-bureaucrat'    => '{{ns:project}}:Býurokratlar',
-'grouppage-suppress'      => '{{ns:project}}:Gözegçi',
+'grouppage-suppress'      => '{{ns:project}}:Esewan',
 
 # Rights
 'right-read'                  => 'Sahypalary oka',
@@ -1163,7 +1170,7 @@ konfigurirlemek üçin math/README serediň.',
 # User rights log
 'rightslog'      => 'Ulanyjy hukuklarynyň gündeligi',
 'rightslogtext'  => 'Ulanyjy hukuklaryndaky üýtgeşmeler gündeligi.',
-'rightslogentry' => '$1 üçin topar agzalygyny $2 toparyndan $3 toparyna üýtgetmäge',
+'rightslogentry' => '$1 üçin topar agzalygyny $2 toparyndan $3 toparyna üýtgetdi',
 'rightsnone'     => '(hiç biri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1563,7 +1570,8 @@ Ol indi [[$2]] sahypasyna gönükdirýär.',
 'ancientpages'            => 'Iň köne sahypalar',
 'move'                    => 'Adyny üýtget',
 'movethispage'            => 'Bu sahypanyň adyny üýtget',
-'unusedimagestext'        => 'Unutmaň! Başga web saýtlary bir faýla gönümel URL bilen çykgyt berip biler, şonuň üçinem işjeň ulanylmasa-da bu ýerde görkezilmegi ahmal.',
+'unusedimagestext'        => 'Aşakdaky faýllar bar, emma haýsydyr bir sahypa girizilgi däl.
+Unutmaň! Başga web saýtlary bir faýla gönümel URL bilen çykgyt berip biler, şonuň üçinem işjeň ulanylmasa-da bu ýerde görkezilmegi ahmal.',
 'unusedcategoriestext'    => 'Aşakdaky kategoriýa sahypalary bar hem bolsa, hiç bir sahypa ýa-da kategoriýa tarapyndan ulanylmaýar.',
 'notargettitle'           => 'Maksat edinilýän ýok.',
 'notargettext'            => 'Bu funksiýany berjaý etmek üçin haýsydyr bir maksat edinilýän sahypa ýa-da ulanyjy görkezmänsiňiz.',
@@ -1571,7 +1579,7 @@ Ol indi [[$2]] sahypasyna gönükdirýär.',
 'nopagetext'              => 'Görkezilen maksat edinilýän sahypa ýok.',
 'pager-newer-n'           => '{{PLURAL:$1|1 has täze|$1 has täze}}',
 'pager-older-n'           => '{{PLURAL:$1|1 has köne|$1 has köne}}',
-'suppress'                => 'Gözegçilik',
+'suppress'                => 'Esewan',
 
 # Book sources
 'booksources'               => 'Kitap çeşmeleri',
@@ -1762,6 +1770,7 @@ Habarlaşmak we kömek soramak üçin:
 'exblank'                => 'sahypa boşdy',
 'delete-confirm'         => '"$1" sahypasyny öçür',
 'delete-legend'          => 'Öçür',
+'historywarning'         => "'''Duýduryş''': Öçürjek bolup duran sahypaňyzyň geçmişi bar:",
 'confirmdeletetext'      => 'Sahypany ýa-da faýly tutuş geçmişi bilen bilelikde öçürjek bolup dursuňyz.
 Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{{MediaWiki:Policy-url}}|Öçürme kadalaryna]] laýyklykdadygyny bilýän bolsaňyz, amaly tassyklaň.',
 'actioncomplete'         => 'Iş ýerine ýetirildi',
@@ -2392,7 +2401,9 @@ $1',
 'visual-comparison' => 'Görkezişli deňeşdirme',
 
 # Media information
-'mediawarning'         => "'''Duýduryş''': Bu faýlda zyýanly kod bar bolmagy ahmal we ol iş ulgamyňyza zeper ýetirip biler.<hr />",
+'mediawarning'         => "'''Duýduryş''': Bu faýlda zyýanly kod bar bolmagy ahmal.
+Ony işletseňiz iş ulgamyňyza howp astyna salmagyňyz mümkin />",
+'imagemaxsize'         => 'Faýl düşündiriş sahypalaryndaky suratlary şuňa çenli çäklendiriň:',
 'thumbsize'            => 'Miniatýura ölçegi:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahypa|sahypa}}',
 'file-info'            => '(faýl ölçegi: $1, MIME tipi: $2)',
