@@ -36,9 +36,9 @@ class MWException extends Exception {
 	/**
 	 * Run hook to allow extensions to modify the text of the exception
 	 *
-	 * @param String $name class name of the exception
-	 * @param Array $args arguments to pass to the callback functions
-	 * @return mixed string to output or null if any hook has been called
+	 * @param $name String: class name of the exception
+	 * @param $args Array: arguments to pass to the callback functions
+	 * @return Mixed: string to output or null if any hook has been called
 	 */
 	function runHooks( $name, $args = array() ) {
 		global $wgExceptionHooks;
@@ -63,9 +63,9 @@ class MWException extends Exception {
 	/**
 	 * Get a message from i18n
 	 *
-	 * @param String $key message name
-	 * @param String $fallback default message if the message cache can't be
-	 *                         called by the exception
+	 * @param $key String: message name
+	 * @param $fallback String: default message if the message cache can't be
+	 *                  called by the exception
 	 * The function also has other parameters that are arguments for the message
 	 * @return String message with arguments replaced
 	 */
@@ -127,7 +127,7 @@ class MWException extends Exception {
 	 * Return the requested URL and point to file and line number from which the
 	 * exception occured
 	 *
-	 * @return string
+	 * @return String
 	 */
 	function getLogMessage() {
 		global $wgRequest;
