@@ -3040,31 +3040,6 @@ $wgThumbLimits = array(
 $wgThumbUpright = 0.75;
 
 /**
- * Adjust the default number of images per-row in the gallery.
- */
-$wgGalleryImagesPerRow = 3;
-
-/**
- * Adjust the width of the cells containing images in galleries (in "px")
- */
-$wgGalleryImageWidth = 200;
-
-/**
- * Adjust the height of the cells containing images in galleries (in "px")
- */
-$wgGalleryImageHeight = 200;
-
-/**
- * The length of caption to truncate to by default (in characters)
- */
-$wgGalleryCaptionLength = 10;
-
-/**
- * Should the gallerys in categoryes show the filesize in bytes?
- */
-$wgGalleryShowBytes = true;
-
-/**
  *  On  category pages, show thumbnail gallery for images belonging to that
  * category instead of listing them as articles.
  */
