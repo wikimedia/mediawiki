@@ -433,14 +433,17 @@ class Preferences {
 							'label-message' => 'tog-enotifminoredits',
 							'disabled' => $disableEmailPrefs,
 						);
+				global $wgEnotifRevealEditorAddress;
+				if ( $wgEnotifRevealEditorAddress ) {
+					$defaultPreferences['enotifrevealaddr'] =
+							array(
+								'type' => 'toggle',
+								'section' => 'personal/email',
+								'label-message' => 'tog-enotifrevealaddr',
+								'disabled' => $disableEmailPrefs,
+							);
+				}
 			}
-			$defaultPreferences['enotifrevealaddr'] =
-					array(
-						'type' => 'toggle',
-						'section' => 'personal/email',
-						'label-message' => 'tog-enotifrevealaddr',
-						'disabled' => $disableEmailPrefs,
-					);
 		}
 	}
 
