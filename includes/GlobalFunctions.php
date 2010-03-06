@@ -9,7 +9,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 
 require_once dirname(__FILE__) . '/normal/UtfNormalUtil.php';
-require_once dirname(__FILE__) . '/XmlFunctions.php';
 
 // Hide compatibility functions from Doxygen
 /// @cond
@@ -2806,15 +2805,6 @@ function wfCreateObject( $name, $p ){
 		default:
 			throw new MWException( "Too many arguments to construtor in wfCreateObject" );
 	}
-}
-
-/**
- * Alias for modularized function
- * @deprecated Use Http::get() instead
- */
-function wfGetHTTP( $url ) {
-	wfDeprecated(__FUNCTION__);
-	return Http::get( $url );
 }
 
 /**
