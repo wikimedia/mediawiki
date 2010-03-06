@@ -193,7 +193,7 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Returns true if this database requires that SELECT DISTINCT queries require that all 
+	 * Returns true if this database requires that SELECT DISTINCT queries require that all
        ORDER BY expressions occur in the SELECT list per the SQL92 standard
 	 */
 	function standardSelectDistinct() {
@@ -244,7 +244,7 @@ abstract class DatabaseBase {
 	 *   - DBO_TRX: automatically start transactions
 	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
 	 *       and removes it in command line mode
-	 *   - DBO_PERSISTENT: use persistant database connection 
+	 *   - DBO_PERSISTENT: use persistant database connection
 	 */
 	function setFlag( $flag ) {
 		$this->mFlags |= $flag;
@@ -434,11 +434,11 @@ abstract class DatabaseBase {
 	 * Usually aborts on failure.  If errors are explicitly ignored, returns success.
 	 *
 	 * @param  $sql        String: SQL query
-	 * @param  $fname      String: Name of the calling function, for profiling/SHOW PROCESSLIST 
+	 * @param  $fname      String: Name of the calling function, for profiling/SHOW PROCESSLIST
 	 *     comment (you can use __METHOD__ or add some extra info)
-	 * @param  $tempIgnore Boolean:   Whether to avoid throwing an exception on errors... 
+	 * @param  $tempIgnore Boolean:   Whether to avoid throwing an exception on errors...
 	 *     maybe best to catch the exception instead?
-	 * @return true for a successful write query, ResultWrapper object for a successful read query, 
+	 * @return true for a successful write query, ResultWrapper object for a successful read query,
 	 *     or false on failure if $tempIgnore set
 	 * @throws DBQueryError Thrown when the database returns an error of any kind
 	 */
@@ -489,14 +489,14 @@ abstract class DatabaseBase {
 		#}
 
 		# If DBO_TRX is set, start a transaction
-		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() && 
+		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() &&
 			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK') {
 			// avoid establishing transactions for SHOW and SET statements too -
-			// that would delay transaction initializations to once connection 
+			// that would delay transaction initializations to once connection
 			// is really used by application
 			$sqlstart = substr($sql,0,10); // very much worth it, benchmark certified(tm)
-			if (strpos($sqlstart,"SHOW ")!==0 and strpos($sqlstart,"SET ")!==0) 
-				$this->begin(); 
+			if (strpos($sqlstart,"SHOW ")!==0 and strpos($sqlstart,"SET ")!==0)
+				$this->begin();
 		}
 
 		if ( $this->debug() ) {
@@ -825,10 +825,10 @@ abstract class DatabaseBase {
 		if ( isset( $options['GROUP BY'] ) ) $preLimitTail .= " GROUP BY {$options['GROUP BY']}";
 		if ( isset( $options['HAVING'] ) ) $preLimitTail .= " HAVING {$options['HAVING']}";
 		if ( isset( $options['ORDER BY'] ) ) $preLimitTail .= " ORDER BY {$options['ORDER BY']}";
-		
+
 		//if (isset($options['LIMIT'])) {
 		//	$tailOpts .= $this->limitResult('', $options['LIMIT'],
-		//		isset($options['OFFSET']) ? $options['OFFSET'] 
+		//		isset($options['OFFSET']) ? $options['OFFSET']
 		//		: false);
 		//}
 
@@ -851,7 +851,7 @@ abstract class DatabaseBase {
 		} else {
 			$useIndex = '';
 		}
-		
+
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
@@ -873,7 +873,7 @@ abstract class DatabaseBase {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 		return $this->query( $sql, $fname );
 	}
-	
+
 	/**
 	 * SELECT wrapper
 	 *
@@ -924,7 +924,7 @@ abstract class DatabaseBase {
 			$sql = $this->limitResult($sql, $options['LIMIT'],
 				isset($options['OFFSET']) ? $options['OFFSET'] : false);
 		$sql = "$sql $postLimitTail";
-		
+
 		if (isset($options['EXPLAIN'])) {
 			$sql = 'EXPLAIN ' . $sql;
 		}
@@ -963,7 +963,7 @@ abstract class DatabaseBase {
 		return $obj;
 
 	}
-	
+
 	/**
 	 * Estimate rows in dataset
 	 * Returns estimated count - not necessarily an accurate estimate across different databases,
@@ -1075,7 +1075,7 @@ abstract class DatabaseBase {
 			}
 		}
 		$this->freeResult($res);
-		
+
 		return empty($result) ? false : $result;
 	}
 
@@ -1336,7 +1336,7 @@ abstract class DatabaseBase {
 		# use of `database`.table. But won't break things if someone wants
 		# to query a database table with a dot in the name.
 		if ( $name[0] == '`' && substr( $name, -1, 1 ) == '`' ) return $name;
-		
+
 		# Lets test for any bits of text that should never show up in a table
 		# name. Basically anything like JOIN or ON which are actually part of
 		# SQL queries, but may end up inside of the table value to combine
@@ -1345,7 +1345,7 @@ abstract class DatabaseBase {
 		# any remote case where a word like on may be inside of a table name
 		# surrounded by symbols which may be considered word breaks.
 		if( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) return $name;
-		
+
 		# Split database and table into proper variables.
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
@@ -1353,11 +1353,11 @@ abstract class DatabaseBase {
 		if( isset( $dbDetails[1] ) ) @list( $table, $database ) = $dbDetails;
 		else                         @list( $table ) = $dbDetails;
 		$prefix = $this->mTablePrefix; # Default prefix
-		
+
 		# A database name has been specified in input. Quote the table name
 		# because we don't want any prefixes added.
 		if( isset($database) ) $table = ( $table[0] == '`' ? $table : "`{$table}`" );
-		
+
 		# Note that we use the long format because php will complain in in_array if
 		# the input is not an array, and will complain in is_array if it is not set.
 		if( !isset( $database ) # Don't use shared database if pre selected.
@@ -1369,14 +1369,14 @@ abstract class DatabaseBase {
 			$database = $wgSharedDB;
 			$prefix   = isset( $wgSharedPrefix ) ? $wgSharedPrefix : $prefix;
 		}
-		
+
 		# Quote the $database and $table and apply the prefix if not quoted.
 		if( isset($database) ) $database = ( $database[0] == '`' ? $database : "`{$database}`" );
 		$table = ( $table[0] == '`' ? $table : "`{$prefix}{$table}`" );
-		
+
 		# Merge our database and table into our final table name.
 		$tableName = ( isset($database) ? "{$database}.{$table}" : "{$table}" );
-		
+
 		# We're finished, return.
 		return $tableName;
 	}
@@ -1398,7 +1398,7 @@ abstract class DatabaseBase {
 		}
 		return $retVal;
 	}
-	
+
 	/**
 	 * Fetch a number of table names into an zero-indexed numerical array
 	 * This is handy when you need to construct SQL for joins
@@ -1510,7 +1510,7 @@ abstract class DatabaseBase {
 	 * LIKE statement wrapper, receives a variable-length argument list with parts of pattern to match
 	 * containing either string literals that will be escaped or tokens returned by anyChar() or anyString().
 	 * Alternatively, the function could be provided with an array of aforementioned parameters.
-	 * 
+	 *
 	 * Example: $dbr->buildLike( 'My_page_title/', $dbr->anyString() ) returns a LIKE clause that searches
 	 * for subpages of 'My page title'.
 	 * Alternatively: $pattern = array( 'My_page_title/', $dbr->anyString() ); $query .= $dbr->buildLike( $pattern );
@@ -1745,7 +1745,7 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Returns true if current database backend supports ORDER BY or LIMIT for separate subqueries 
+	 * Returns true if current database backend supports ORDER BY or LIMIT for separate subqueries
 	 * within the UNION construct.
 	 * @return Boolean
 	 */
@@ -1800,7 +1800,7 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Determines if the last query error was something that should be dealt 
+	 * Determines if the last query error was something that should be dealt
 	 * with by pinging the connection and reissuing the query.
 	 * STUB
 	 */
@@ -2064,7 +2064,7 @@ abstract class DatabaseBase {
 	/**
 	 * A string describing the current software version, like from
 	 * mysql_get_server_info().  Will be listed on Special:Version, etc.
-	 * 
+	 *
 	 * @return String: Version information from the database
 	 */
 	abstract function getServerVersion();
@@ -2091,18 +2091,18 @@ abstract class DatabaseBase {
 		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
 		# Find slave SQL thread
 		while ( $row = $this->fetchObject( $res ) ) {
-			/* This should work for most situations - when default db 
-			 * for thread is not specified, it had no events executed, 
+			/* This should work for most situations - when default db
+			 * for thread is not specified, it had no events executed,
 			 * and therefore it doesn't know yet how lagged it is.
 			 *
 			 * Relay log I/O thread does not select databases.
 			 */
-			if ( $row->User == 'system user' && 
+			if ( $row->User == 'system user' &&
 				$row->State != 'Waiting for master to send event' &&
-				$row->State != 'Connecting to master' && 
+				$row->State != 'Connecting to master' &&
 				$row->State != 'Queueing master event to the relay log' &&
 				$row->State != 'Waiting for master update' &&
-				$row->State != 'Requesting binlog dump' && 
+				$row->State != 'Requesting binlog dump' &&
 				$row->State != 'Waiting to reconnect after a failed master event read' &&
 				$row->State != 'Reconnecting after a failed master event read' &&
 				$row->State != 'Registering slave on master'
@@ -2174,7 +2174,7 @@ abstract class DatabaseBase {
 
 	/**
 	 * Get the full path of a patch file. Originally based on archive()
-	 * from updaters.inc. Keep in mind this always returns a patch, as 
+	 * from updaters.inc. Keep in mind this always returns a patch, as
 	 * it fails back to MySQL if no DB-specific patch can be found
 	 *
 	 * @param $patch String The name of the patch, like patch-something.sql
@@ -2277,7 +2277,7 @@ abstract class DatabaseBase {
 			array( $this, 'tableNameCallback' ), $ins );
 
 		// Index names
-		$ins = preg_replace_callback( '!/\*i\*/([a-zA-Z_0-9]*)!', 
+		$ins = preg_replace_callback( '!/\*i\*/([a-zA-Z_0-9]*)!',
 			array( $this, 'indexNameCallback' ), $ins );
 		return $ins;
 	}
@@ -2305,13 +2305,13 @@ abstract class DatabaseBase {
 	function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
 	}
-	
+
 	/**
 	 * Acquire a named lock
-	 * 
+	 *
 	 * Abstracted from Filestore::lock() so child classes can implement for
 	 * their own needs.
-	 * 
+	 *
 	 * @param $lockName String: Name of lock to aquire
 	 * @param $method String: Name of method calling us
 	 * @return bool
@@ -2322,13 +2322,13 @@ abstract class DatabaseBase {
 
 	/**
 	 * Release a lock.
-	 * 
+	 *
 	 * @param $lockName String: Name of lock to release
 	 * @param $method String: Name of method calling us
 	 *
 	 * FROM MYSQL DOCS: http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
 	 * @return Returns 1 if the lock was released, 0 if the lock was not established
-	 * by this thread (in which case the lock is not released), and NULL if the named 
+	 * by this thread (in which case the lock is not released), and NULL if the named
 	 * lock did not exist
 	 */
 	public function unlock( $lockName, $method ) {
@@ -2346,7 +2346,7 @@ abstract class DatabaseBase {
 	public function lockTables( $read, $write, $method, $lowPriority = true ) {
 		return true;
 	}
-	
+
 	/**
 	 * Unlock specific tables
 	 *
@@ -2355,11 +2355,11 @@ abstract class DatabaseBase {
 	public function unlockTables( $method ) {
 		return true;
 	}
-	
+
 	/**
 	 * Get search engine class. All subclasses of this
 	 * need to implement this if they wish to use searching.
-	 * 
+	 *
 	 * @return String
 	 */
 	public function getSearchEngine() {
@@ -2367,10 +2367,10 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Allow or deny "big selects" for this session only. This is done by setting 
+	 * Allow or deny "big selects" for this session only. This is done by setting
 	 * the sql_big_selects session variable.
 	 *
-	 * This is a MySQL-specific feature. 
+	 * This is a MySQL-specific feature.
 	 *
 	 * @param mixed $value true for allow, false for deny, or "default" to restore the initial value
 	 */
@@ -2509,7 +2509,7 @@ class DBError extends MWException {
  */
 class DBConnectionError extends DBError {
 	public $error;
-	
+
 	function __construct( DatabaseBase &$db, $error = 'unknown error' ) {
 		$msg = 'DB connection error';
 		if ( trim( $error ) != '' ) {
@@ -2528,7 +2528,7 @@ class DBConnectionError extends DBError {
 		// Not likely to work
 		return false;
 	}
-	
+
 	function getLogMessage() {
 		# Don't send to the exception log
 		return false;
@@ -2540,7 +2540,7 @@ class DBConnectionError extends DBError {
 		if ( $wgLang instanceof Language ) {
 			$header = htmlspecialchars( $wgLang->getMessage( 'dberr-header' ) );
 		}
-		
+
 		return $header;
 	}
 
@@ -2659,7 +2659,7 @@ EOT;
 			return '';
 		}
 	}
-	
+
 	function htmlBodyOnly() {
 		return true;
 	}
@@ -2671,7 +2671,7 @@ EOT;
  */
 class DBQueryError extends DBError {
 	public $error, $errno, $sql, $fname;
-	
+
 	function __construct( DatabaseBase &$db, $error, $errno, $sql, $fname ) {
 		$message = "A database error has occurred\n" .
 		  "Query: $sql\n" .
@@ -2698,7 +2698,7 @@ class DBQueryError extends DBError {
 			return parent::getText();
 		}
 	}
-	
+
 	function getSQL() {
 		global $wgShowSQLErrors;
 		if( !$wgShowSQLErrors ) {
@@ -2707,7 +2707,7 @@ class DBQueryError extends DBError {
 			return $this->sql;
 		}
 	}
-	
+
 	function getLogMessage() {
 		# Don't send to the exception log
 		return false;
