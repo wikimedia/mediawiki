@@ -1490,6 +1490,7 @@ $1",
 'uploadnewversion-linktext' => 'ארויפֿלאדן א נײַע ווערסיע פֿוו דער טעקע',
 'shared-repo-from'          => 'פֿון $1',
 'shared-repo'               => 'א געמיינזאַמער זאַפאַס',
+'shared-repo-name-wikimediacommons' => 'וויקימעדיע קאמאנס',
 
 # File reversion
 'filerevert'                => 'צוריקדרייען $1',

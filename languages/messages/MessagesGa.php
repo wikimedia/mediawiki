@@ -1043,6 +1043,7 @@ Má theastáilann uait do chomhad a uaslódáil fós, téigh ar ais agus úsáid
 'sharedupload'              => 'Is uaslodáil roinnte atá ann sa comhad seo, as $1, agus is féidir le tionscadail eile é a úsáid.',
 'uploadnewversion-linktext' => 'Uaslódáil leagan nua den comhad seo',
 'shared-repo'               => 'comhstóráil',
+'shared-repo-name-wikimediacommons' => 'an Cómhaoin Vicíméid',
 
 # File reversion
 'filerevert'                => 'Fill $1 ar ais',

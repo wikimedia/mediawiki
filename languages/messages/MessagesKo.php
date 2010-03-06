@@ -1719,6 +1719,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'uploadnewversion-linktext' => '이 파일의 새로운 버전을 올리기',
 'shared-repo-from'          => '($1)',
 'shared-repo'               => '공용 저장소',
+'shared-repo-name-wikimediacommons' => '위키미디어 공용',
 
 # File reversion
 'filerevert'                => '$1 되돌리기',

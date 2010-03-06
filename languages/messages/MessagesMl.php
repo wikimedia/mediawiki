@@ -1747,6 +1747,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'uploadnewversion-linktext' => 'ഈ ചിത്രത്തിലും മെച്ചപ്പെട്ടത് അപ്‌ലോഡ് ചെയ്യുക',
 'shared-repo-from'          => '$1ല്‍ നിന്ന്',
 'shared-repo'               => 'ഒരു പങ്കുവെക്കപ്പെട്ട സംഭരണി',
+'shared-repo-name-wikimediacommons' => 'വിക്കിമീഡിയ കോമൺസ്',
 
 # File reversion
 'filerevert'                => '$1 തിരസ്ക്കരിക്കുക',

@@ -1536,6 +1536,7 @@ Za spremembo razvrščanja kliknete na glavo stolpca.',
 'uploadnewversion-linktext' => 'Naložite novo različico datoteke',
 'shared-repo-from'          => 'iz $1',
 'shared-repo'               => 'skupno skladišče',
+'shared-repo-name-wikimediacommons' => 'Wikimedijine Zbirke',
 
 # File reversion
 'filerevert'                => 'Vrni $1',
