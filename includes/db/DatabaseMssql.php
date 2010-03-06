@@ -833,7 +833,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ($offset) {
 			throw new DBUnexpectedError( $this, 'Database::limitResult called with non-zero offset which is not supported yet' );
 		} else {
-			$sql = preg_replace("^SELECT", "SELECT TOP $limit", $sql);
+			$sql = preg_replace("/^SELECT/i", "SELECT TOP $limit", $sql);
 		}
 		return $sql;
 	}
@@ -876,7 +876,7 @@ class DatabaseMssql extends DatabaseBase {
 	 */
 	function getServerVersion() {
 		$row = mssql_fetch_row(mssql_query('select @@VERSION'));
-		return preg_match("^(.+[0-9]+\\.[0-9]+\\.[0-9]+) ",$row[0],$m) ? $m[1] : $row[0];
+		return preg_match("/^(.+[0-9]+\\.[0-9]+\\.[0-9]+) /",$row[0],$m) ? $m[1] : $row[0];
 	}
 
 	function limitResultForUpdate($sql, $num) {
