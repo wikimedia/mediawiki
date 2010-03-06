@@ -1777,42 +1777,42 @@ PICT # misc.
 'listfiles_count'       => 'نسخ',
 
 # File description page
-'file-anchor-link'          => 'فايل',
-'filehist'                  => 'تاريخ الفايل',
-'filehist-help'             => 'اضغط على الساعه/التاريخ علشان تشوف الفايل زى ما كان فى  الوقت ده.',
-'filehist-deleteall'        => 'امسح كله',
-'filehist-deleteone'        => 'مسح',
-'filehist-revert'           => 'استرجع',
-'filehist-current'          => 'دلوقتي',
-'filehist-datetime'         => 'الساعه / التاريخ',
-'filehist-thumb'            => 'صورة صغيرة',
-'filehist-thumbtext'        => 'تصغير للنسخة بتاريخ $1',
-'filehist-nothumb'          => 'لا تصغير',
-'filehist-user'             => 'يوزر',
-'filehist-dimensions'       => 'ابعاد',
-'filehist-filesize'         => 'حجم الفايل',
-'filehist-comment'          => 'تعليق',
-'filehist-missing'          => 'ملف مش  موجود',
-'imagelinks'                => 'لينكات الفايل',
-'linkstoimage'              => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
-'linkstoimage-more'         => 'أكتر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} للملف ده .
+'file-anchor-link'                  => 'فايل',
+'filehist'                          => 'تاريخ الفايل',
+'filehist-help'                     => 'اضغط على الساعه/التاريخ علشان تشوف الفايل زى ما كان فى  الوقت ده.',
+'filehist-deleteall'                => 'امسح كله',
+'filehist-deleteone'                => 'مسح',
+'filehist-revert'                   => 'استرجع',
+'filehist-current'                  => 'دلوقتي',
+'filehist-datetime'                 => 'الساعه / التاريخ',
+'filehist-thumb'                    => 'صورة صغيرة',
+'filehist-thumbtext'                => 'تصغير للنسخة بتاريخ $1',
+'filehist-nothumb'                  => 'لا تصغير',
+'filehist-user'                     => 'يوزر',
+'filehist-dimensions'               => 'ابعاد',
+'filehist-filesize'                 => 'حجم الفايل',
+'filehist-comment'                  => 'تعليق',
+'filehist-missing'                  => 'ملف مش  موجود',
+'imagelinks'                        => 'لينكات الفايل',
+'linkstoimage'                      => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
+'linkstoimage-more'                 => 'أكتر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} للملف ده .
 القائمة التالية تعرض {{PLURAL:$1|أول وصلة صفحة|أول $1 وصلة صفحة}} للملف ده بس.
 [[Special:WhatLinksHere/$2|قائمة كاملة]] متوفرة.',
-'nolinkstoimage'            => 'مافيش صفحات بتوصل للفايل ده.',
-'morelinkstoimage'          => 'عرض [[Special:WhatLinksHere/$1|لينكات اكتر]] للملف دا.',
-'redirectstofile'           => '{{PLURAL:$1| الملف|ال$1 ملف}} اللى جاى  بيحول للملف دا:',
-'duplicatesoffile'          => '{{PLURAL:$1| الملف|ال$1 ملف اللى بعده}} متكررين من الملف ده:
+'nolinkstoimage'                    => 'مافيش صفحات بتوصل للفايل ده.',
+'morelinkstoimage'                  => 'عرض [[Special:WhatLinksHere/$1|لينكات اكتر]] للملف دا.',
+'redirectstofile'                   => '{{PLURAL:$1| الملف|ال$1 ملف}} اللى جاى  بيحول للملف دا:',
+'duplicatesoffile'                  => '{{PLURAL:$1| الملف|ال$1 ملف اللى بعده}} متكررين من الملف ده:
 ([[Special:FileDuplicateSearch/$2| تفاصيل اكتر]]):',
-'sharedupload'              => 'الملف دا من  $1 و ممكن تستعمله مشاريع تانيه.',
-'sharedupload-desc-there'   => 'الملف دا من $1 و ممكن تستعمله المشاريع التانيه.
+'sharedupload'                      => 'الملف دا من  $1 و ممكن تستعمله مشاريع تانيه.',
+'sharedupload-desc-there'           => 'الملف دا من $1 و ممكن تستعمله المشاريع التانيه.
 لو سمحت تشوف [$2 صفحة وصف الملف] لو عايز معلومات اكتر..',
-'sharedupload-desc-here'    => 'الملف دا من $1 و ممكن تستعمله المشاريع التانيه.
+'sharedupload-desc-here'            => 'الملف دا من $1 و ممكن تستعمله المشاريع التانيه.
 الوصف بتاعه [$2 صفحة وصف الملف] هناك معروض تحت..',
-'filepage-nofile'           => 'ما فيش ملف موجود بالاسم دا.',
-'filepage-nofile-link'      => 'ما فيش ملف موجود بالاسم دا ، بس انتا ممكن [$1 تحمله].',
-'uploadnewversion-linktext' => 'حمل نسخه جديده من الملف ده',
-'shared-repo-from'          => 'من $1',
-'shared-repo'               => 'مخزن مشترك',
+'filepage-nofile'                   => 'ما فيش ملف موجود بالاسم دا.',
+'filepage-nofile-link'              => 'ما فيش ملف موجود بالاسم دا ، بس انتا ممكن [$1 تحمله].',
+'uploadnewversion-linktext'         => 'حمل نسخه جديده من الملف ده',
+'shared-repo-from'                  => 'من $1',
+'shared-repo'                       => 'مخزن مشترك',
 'shared-repo-name-wikimediacommons' => 'ويكيميديا كومنز',
 
 # File reversion

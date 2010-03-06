@@ -2957,31 +2957,31 @@ Otre avènene scunnute pe defolt.
 'limitall'         => 'tutte',
 
 # E-mail address confirmation
-'confirmemail'             => "Conferme l'indirizze e-mail",
-'confirmemail_noemail'     => "Tu non ge tine 'n'indirizze e-mail valide configurate sus a le [[Special:Preferences|preferenze tue]].",
-'confirmemail_text'        => "{{SITENAME}} richiede ca tu ha validà l'indirizze email tue apprime de ausà 'a funzione de l'email.
+'confirmemail'              => "Conferme l'indirizze e-mail",
+'confirmemail_noemail'      => "Tu non ge tine 'n'indirizze e-mail valide configurate sus a le [[Special:Preferences|preferenze tue]].",
+'confirmemail_text'         => "{{SITENAME}} richiede ca tu ha validà l'indirizze email tue apprime de ausà 'a funzione de l'email.
 Cazze 'u buttone de sotte pe mannà 'na email de conferme a l'indirizze tue.
 L'email ca t'arrive tène 'u collegamende cu 'u codece;
 careche 'u collegamende jndr'à 'u browser tue pe confermà ca l'indirizze email tue è valide.",
-'confirmemail_pending'     => "'Nu codece de conferme ha state già mannate a l'email toje;
+'confirmemail_pending'      => "'Nu codece de conferme ha state già mannate a l'email toje;
 Ce tu recendemende è ccrejate 'nu cunde utende, tu puè aspettà quacche minute ca jidde arrive e pò puè pruvà a fà 'n'otra richieste pe 'nu codece nuève.",
-'confirmemail_send'        => "Manne 'nu codece de conferme",
-'confirmemail_sent'        => 'E-mail de conferme mannete.',
-'confirmemail_oncreate'    => "'Nu codece de conferme ha state mannate a l'indirizze e-mail tue.
+'confirmemail_send'         => "Manne 'nu codece de conferme",
+'confirmemail_sent'         => 'E-mail de conferme mannete.',
+'confirmemail_oncreate'     => "'Nu codece de conferme ha state mannate a l'indirizze e-mail tue.
 Stu codece non g'è richieste pe collegarte, ma tu n'è abbesogne de averle apprime ca tu ause quacche cose ca se base sus a l'use de le e-mail sus a Uicchi.",
-'confirmemail_sendfailed'  => "{{SITENAME}} non ge pò mannà l'email toje de conferme.
+'confirmemail_sendfailed'   => "{{SITENAME}} non ge pò mannà l'email toje de conferme.
 Pe piacere condrolle l'indirizze email ce tène carattere invalide.
 
 Destinatarie returnate: $1",
-'confirmemail_invalid'     => "Codece de conferme invalide.
+'confirmemail_invalid'      => "Codece de conferme invalide.
 Pò essere ca 'u codece ha scadute.",
-'confirmemail_needlogin'   => "A confermà $1 l'indirizze email ca è mise.",
-'confirmemail_success'     => "L'indirizze e-mail tue ha state confermate.
+'confirmemail_needlogin'    => "A confermà $1 l'indirizze email ca è mise.",
+'confirmemail_success'      => "L'indirizze e-mail tue ha state confermate.
 Tu, mò te puè [[Special:UserLogin|collegà]] e te puè devertì sus 'a Uicchipèdie.",
-'confirmemail_loggedin'    => "L'indirizze e-mail tue ha state confermate.",
-'confirmemail_error'       => "Quacchedune ha sbagliate reggistranne 'a conferma toje.",
-'confirmemail_subject'     => 'Indirizze email de conferme pe {{SITENAME}}',
-'confirmemail_body'        => "Quacchedune, pò essere tu, fa l'indirizze IP \$1,
+'confirmemail_loggedin'     => "L'indirizze e-mail tue ha state confermate.",
+'confirmemail_error'        => "Quacchedune ha sbagliate reggistranne 'a conferma toje.",
+'confirmemail_subject'      => 'Indirizze email de conferme pe {{SITENAME}}',
+'confirmemail_body'         => "Quacchedune, pò essere tu, fa l'indirizze IP \$1,
 ha reggistrate 'nu cunde utende \"\$2\" cu st'indirizze email sus a {{SITENAME}}.
 
 Pe confermà ca stu cunde ète avveramende 'u tue e pe attivà 'a funzione email de {{SITENAME}}, iapre stu collegamende jndr'à 'u borwser tue:
@@ -2993,8 +2993,20 @@ Ce tu *NON* g'è reggistrate 'u cunde utende, segue stu collegamende pe scangell
 \$5
 
 Stu codece de conferme more 'u \$4.",
-'confirmemail_invalidated' => "Conferme de l'indirizze e-mail scangellete",
-'invalidateemail'          => "Scangille 'a conferme de l'e-mail",
+'confirmemail_body_changed' => "Quacchedune, pò essere tu, da l'indirizze IP \$1,
+ha cangiate l'indirizze e-mail d'u cunde utende \"\$2\" cu st'indirizze e-mail sus a {{SITENAME}}.
+
+Pe confermà ca stu cunde ète avveramende 'u tune e pe reattivà 'a funzione email de {{SITENAME}}, iapre stu collegamende jndr'à 'u borwser tune:
+
+\$3
+
+Ce tu *NON* g'è reggistrate 'u cunde utende, segue stu collegamende pe scangellà l'indirizze email de conferme:
+
+\$5
+
+Stu codece de conferme scade 'u \$4.",
+'confirmemail_invalidated'  => "Conferme de l'indirizze e-mail scangellete",
+'invalidateemail'           => "Scangille 'a conferme de l'e-mail",
 
 # Scary transclusion
 'scarytranscludedisabled' => "[Collegaminde 'mbrà InterUicchi disabbilitate]",

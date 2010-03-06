@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1608,41 +1608,41 @@ $1",
 'listfiles_count'       => '版本',
 
 # File description page
-'file-anchor-link'          => '檔案',
-'filehist'                  => '檔案歷史',
-'filehist-help'             => '點擊日期／時間以檢視當時出現過的檔案。',
-'filehist-deleteall'        => '刪除全部',
-'filehist-deleteone'        => '刪除',
-'filehist-revert'           => '恢復',
-'filehist-current'          => '目前',
-'filehist-datetime'         => '日期／時間',
-'filehist-thumb'            => '縮圖',
-'filehist-thumbtext'        => '於$1的縮圖版本',
-'filehist-nothumb'          => '沒有縮圖',
-'filehist-user'             => '用戶',
-'filehist-dimensions'       => '維度',
-'filehist-filesize'         => '檔案大小',
-'filehist-comment'          => '註解',
-'filehist-missing'          => '檔案遺失',
-'imagelinks'                => '檔案連結',
-'linkstoimage'              => '以下的$1個頁面連接到本檔案:',
-'linkstoimage-more'         => '多於$1個頁面連接到這個檔案。
+'file-anchor-link'                  => '檔案',
+'filehist'                          => '檔案歷史',
+'filehist-help'                     => '點擊日期／時間以檢視當時出現過的檔案。',
+'filehist-deleteall'                => '刪除全部',
+'filehist-deleteone'                => '刪除',
+'filehist-revert'                   => '恢復',
+'filehist-current'                  => '目前',
+'filehist-datetime'                 => '日期／時間',
+'filehist-thumb'                    => '縮圖',
+'filehist-thumbtext'                => '於$1的縮圖版本',
+'filehist-nothumb'                  => '沒有縮圖',
+'filehist-user'                     => '用戶',
+'filehist-dimensions'               => '維度',
+'filehist-filesize'                 => '檔案大小',
+'filehist-comment'                  => '註解',
+'filehist-missing'                  => '檔案遺失',
+'imagelinks'                        => '檔案連結',
+'linkstoimage'                      => '以下的$1個頁面連接到本檔案:',
+'linkstoimage-more'                 => '多於$1個頁面連接到這個檔案。
 下面的清單只列示了連去這個檔案的最首$1個頁面。
 一個[[Special:WhatLinksHere/$2|完整的清單]]可以提供。',
-'nolinkstoimage'            => '沒有頁面連接到本檔案。',
-'morelinkstoimage'          => '檢視連接到這個檔案的[[Special:WhatLinksHere/$1|更多連結]]。',
-'redirectstofile'           => '以下的$1個檔案重新定向到這個檔案:',
-'duplicatesoffile'          => '以下的$1個檔案跟這個檔案重覆（[[Special:FileDuplicateSearch/$2|更多細節]]）：',
-'sharedupload'              => '該檔案來自於$1，它可能在其它計劃項目中被應用。',
-'sharedupload-desc-there'   => '該檔案來自於$1，它可能在其它計劃項目中被應用。
+'nolinkstoimage'                    => '沒有頁面連接到本檔案。',
+'morelinkstoimage'                  => '檢視連接到這個檔案的[[Special:WhatLinksHere/$1|更多連結]]。',
+'redirectstofile'                   => '以下的$1個檔案重新定向到這個檔案:',
+'duplicatesoffile'                  => '以下的$1個檔案跟這個檔案重覆（[[Special:FileDuplicateSearch/$2|更多細節]]）：',
+'sharedupload'                      => '該檔案來自於$1，它可能在其它計劃項目中被應用。',
+'sharedupload-desc-there'           => '該檔案來自於$1，它可能在其它計劃項目中被應用。
 請參閱在[$2 檔案描述頁面]以了解其相關資訊。',
-'sharedupload-desc-here'    => '該檔案來自於$1，它可能在其它計劃項目中被應用。
+'sharedupload-desc-here'            => '該檔案來自於$1，它可能在其它計劃項目中被應用。
 它在[$2 檔案描述頁面]那邊上的描述於下面顯示。',
-'filepage-nofile'           => '不存在此名稱的檔案。',
-'filepage-nofile-link'      => '不存在此名稱的檔案，但您可以[$1 上傳它]。',
-'uploadnewversion-linktext' => '上傳該檔案的新版本',
-'shared-repo-from'          => '出自$1',
-'shared-repo'               => '一個共用檔案庫',
+'filepage-nofile'                   => '不存在此名稱的檔案。',
+'filepage-nofile-link'              => '不存在此名稱的檔案，但您可以[$1 上傳它]。',
+'uploadnewversion-linktext'         => '上傳該檔案的新版本',
+'shared-repo-from'                  => '出自$1',
+'shared-repo'                       => '一個共用檔案庫',
 'shared-repo-name-wikimediacommons' => '維基共享資源',
 
 # File reversion

@@ -655,7 +655,7 @@ $messages = array(
 'viewcount'         => '{{PLURAL:$1|لم تعرض هذه الصفحة أبدًا|تم عرض هذه الصفحة مرة واحدة|تم عرض هذه الصفحة مرتين|تم عرض هذه الصفحة $1 مرات|تم عرض هذه الصفحة $1 مرة}}.',
 'protectedpage'     => 'صفحة محمية',
 'jumpto'            => 'اذهب إلى:',
-'jumptonavigation'  => 'الإبحار',
+'jumptonavigation'  => 'تصفح',
 'jumptosearch'      => 'البحث',
 'view-pool-error'   => 'عذرا، الخواديم منهكة حاليًا.
 يحاول مستخدمون كثر الوصول إلى هذه الصفحة.
@@ -1052,7 +1052,7 @@ $2',
 'previewconflict'                  => 'هذا العرض يوضح النص الموجود في صندوق التحرير العلوي والذي سيظهر إذا اخترت الحفظ.',
 'session_fail_preview'             => "'''عذرا! لم نتمكن من حفظ التعديلات التي قمت بها نتيجة لضياع بيانات هذه الجلسة.
 من فضلك حاول مرة أخرى.
-في حال استمرار المشكلة حاول أن تقوم [[Special:UserLogout|بالخروج]] ومن ثم الدخول مرة أخرى.'''",
+في حال استمرار المشكلة حاول أن تقوم [[Special:UserLogout|بالخروج]] ومن ثم الولوج مرة أخرى.'''",
 'session_fail_preview_html'        => "'''عذرا! لم نستطع معالجة تعديلك بسبب فقدان بيانات الجلسة.'''
 
 ''لأن {{SITENAME}} بها HTML الخام مفعلة، العرض المسبق مخفي كاحتياط ضد هجمات الجافا سكريبت.''
@@ -1914,42 +1914,42 @@ PICT # متنوع
 'listfiles_count'       => 'نسخ',
 
 # File description page
-'file-anchor-link'          => 'ملف',
-'filehist'                  => 'تاريخ الملف',
-'filehist-help'             => 'اضغط على وقت/زمن لرؤية الملف كما بدا في هذا الزمن.',
-'filehist-deleteall'        => 'احذف الكل',
-'filehist-deleteone'        => 'حذف',
-'filehist-revert'           => 'استرجع',
-'filehist-current'          => 'حالي',
-'filehist-datetime'         => 'وقت/زمن',
-'filehist-thumb'            => 'صورة مصغرة',
-'filehist-thumbtext'        => 'تصغير للنسخة بتاريخ $1',
-'filehist-nothumb'          => 'لا تصغير',
-'filehist-user'             => 'مستخدم',
-'filehist-dimensions'       => 'الأبعاد',
-'filehist-filesize'         => 'حجم الملف',
-'filehist-comment'          => 'تعليق',
-'filehist-missing'          => 'ملف مفقود',
-'imagelinks'                => 'وصلات الملف',
-'linkstoimage'              => '{{PLURAL:$1||الصفحة التالية تصل|الصفحتان التاليتان تصلان|ال$1 صفحات التالية تصل|ال$1 صفحة التالية تصل}} إلى هذا الملف:',
-'linkstoimage-more'         => 'أكثر من {{PLURAL:$1||صفحة واحدة تصل|صفحتين تصلان|$1 صفحات تصل|$1 صفحة تصل}} إلى هذا الملف.
+'file-anchor-link'                  => 'ملف',
+'filehist'                          => 'تاريخ الملف',
+'filehist-help'                     => 'اضغط على وقت/زمن لرؤية الملف كما بدا في هذا الزمن.',
+'filehist-deleteall'                => 'احذف الكل',
+'filehist-deleteone'                => 'حذف',
+'filehist-revert'                   => 'استرجع',
+'filehist-current'                  => 'حالي',
+'filehist-datetime'                 => 'وقت/زمن',
+'filehist-thumb'                    => 'صورة مصغرة',
+'filehist-thumbtext'                => 'تصغير للنسخة بتاريخ $1',
+'filehist-nothumb'                  => 'لا تصغير',
+'filehist-user'                     => 'مستخدم',
+'filehist-dimensions'               => 'الأبعاد',
+'filehist-filesize'                 => 'حجم الملف',
+'filehist-comment'                  => 'تعليق',
+'filehist-missing'                  => 'ملف مفقود',
+'imagelinks'                        => 'وصلات الملف',
+'linkstoimage'                      => '{{PLURAL:$1||الصفحة التالية تصل|الصفحتان التاليتان تصلان|ال$1 صفحات التالية تصل|ال$1 صفحة التالية تصل}} إلى هذا الملف:',
+'linkstoimage-more'                 => 'أكثر من {{PLURAL:$1||صفحة واحدة تصل|صفحتين تصلان|$1 صفحات تصل|$1 صفحة تصل}} إلى هذا الملف.
 القائمة التالية تعرض فقط {{PLURAL:$1||أول صفحة تصل|أول صفحتين تصلان|أول $1 صفحات تصل|أول $1 صفحة تصل}} إلى هذا الملف.
 [[Special:WhatLinksHere/$2|قائمة كاملة]] متوفرة.',
-'nolinkstoimage'            => 'لا توجد صفحات تصل لهذا الملف.',
-'morelinkstoimage'          => 'عرض [[Special:WhatLinksHere/$1|المزيد من الوصلات]] إلى هذا الملف.',
-'redirectstofile'           => '{{PLURAL:$1|الملف|ال$1 ملف}} التالي يحول إلى هذا الملف:',
-'duplicatesoffile'          => '{{PLURAL:$1|الملف التالي مكرر|ال$1 ملف التالي مكررات}} لهذا الملف
+'nolinkstoimage'                    => 'لا توجد صفحات تصل لهذا الملف.',
+'morelinkstoimage'                  => 'عرض [[Special:WhatLinksHere/$1|المزيد من الوصلات]] إلى هذا الملف.',
+'redirectstofile'                   => '{{PLURAL:$1|الملف|ال$1 ملف}} التالي يحول إلى هذا الملف:',
+'duplicatesoffile'                  => '{{PLURAL:$1|الملف التالي مكرر|ال$1 ملف التالي مكررات}} لهذا الملف
 ([[Special:FileDuplicateSearch/$2|المزيد من التفاصيل]]):',
-'sharedupload'              => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.',
-'sharedupload-desc-there'   => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.
+'sharedupload'                      => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.',
+'sharedupload-desc-there'           => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.
 من فضلك انظر [$2 صفحة وصف الملف] لمزيد من المعلومات.',
-'sharedupload-desc-here'    => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.
+'sharedupload-desc-here'            => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.
 الوصف على [$2 صفحة وصف الملف] هناك معروض بالأسفل.',
-'filepage-nofile'           => 'لا ملف موجود بهذا الاسم.',
-'filepage-nofile-link'      => 'لا يوجد ملف بهذا الاسم، لكن يمكنك [$1 رفعه].',
-'uploadnewversion-linktext' => 'ارفع نسخة جديدة من هذا الملف',
-'shared-repo-from'          => 'من $1',
-'shared-repo'               => 'مستودع مشترك',
+'filepage-nofile'                   => 'لا ملف موجود بهذا الاسم.',
+'filepage-nofile-link'              => 'لا يوجد ملف بهذا الاسم، لكن يمكنك [$1 رفعه].',
+'uploadnewversion-linktext'         => 'ارفع نسخة جديدة من هذا الملف',
+'shared-repo-from'                  => 'من $1',
+'shared-repo'                       => 'مستودع مشترك',
 'shared-repo-name-wikimediacommons' => 'ويكيميديا كومنز',
 
 # File reversion
@@ -2564,7 +2564,7 @@ $1',
 'ipbenableautoblock'              => 'تلقائيا امنع آخر عنوان أيبي تم استعماله بواسطة هذا المستخدم، وأي عناوين أيبي أخرى يحاول التحرير من خلالها',
 'ipbsubmit'                       => 'امنع هذا المستخدم',
 'ipbother'                        => 'وقت آخر:',
-'ipboptions'                      => '2 ساعة:2 hours,1 يوم:1 day,3 يوم:3 days,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite',
+'ipboptions'                      => 'ساعتين:2 hours,يوم واحد:1 day,3 أيام:3 days,أسبوع واحد:1 week,أسبوعين:2 weeks,شهر واحد:1 month,3 أشهر:3 months,6 أشهر:6 months,سنة واحدة:1 year,دائم:infinite',
 'ipbotheroption'                  => 'غير ذلك',
 'ipbotherreason'                  => 'سبب إضافي/آخر:',
 'ipbhidename'                     => 'أخفِ اسم المستخدم من التعديلات والقوائم',

@@ -2273,12 +2273,20 @@ Fl-Aħħar każ inti tista' tuża link, e.ż.
 'export-templates'  => 'Inkludi templates',
 
 # Namespace 8 related
-'allmessages'               => 'Messaġġi tas-sistema',
-'allmessagesname'           => 'Isem',
-'allmessagesdefault'        => 'Test predefinit',
-'allmessagescurrent'        => 'It-test attwali',
-'allmessagestext'           => "Din hija lista ta' messaġġi tas-sistema disponibbli fl-ispazju tal-isem MediaWiki.",
-'allmessagesnotsupportedDB' => "Il-paġna ma tistax tintuża għax '''\$wgUseDatabaseMessages''' mhux attivat.",
+'allmessages'                   => 'Messaġġi tas-sistema',
+'allmessagesname'               => 'Isem',
+'allmessagesdefault'            => 'Test predefinit',
+'allmessagescurrent'            => 'It-test attwali',
+'allmessagestext'               => "Din hija lista ta' messaġġi tas-sistema disponibbli fl-ispazju tal-isem MediaWiki.",
+'allmessagesnotsupportedDB'     => "Il-paġna ma tistax tintuża għax '''\$wgUseDatabaseMessages''' mhux attivat.",
+'allmessages-filter-legend'     => 'Filtru',
+'allmessages-filter'            => "Iffilitra skont l-istat ta' modifika:",
+'allmessages-filter-unmodified' => 'Mhux modifikati',
+'allmessages-filter-all'        => 'Kollha',
+'allmessages-filter-modified'   => 'Modifikati',
+'allmessages-prefix'            => 'Iffiltra skont il-prefiss:',
+'allmessages-language'          => 'Lingwa:',
+'allmessages-filter-submit'     => 'Mur',
 
 # Thumbnails
 'thumbnail-more'           => 'Kabbar',
