@@ -242,7 +242,7 @@ Cnāw þæt sume sīdan cunnon gelǣstende ēowod wesan swā þū wǣre gīet in
 'yourdomainname'             => 'Þīn geweald',
 'login'                      => 'Inmeldian',
 'nav-login-createaccount'    => 'Settan nīwne hordcleofan oþþe inmeldian',
-'userlogin'                  => 'Settan nīwne hordcleofan oþþe inmeldian',
+'userlogin'                  => 'Macian nīwne grīman oþþe grīman brūcan',
 'userloginnocreate'          => 'Inmeldian',
 'logout'                     => 'Ūtmeldian',
 'userlogout'                 => 'Ūtmeldian',

@@ -1719,42 +1719,42 @@ PICT # різні
 'listfiles_count'       => 'Версії',
 
 # File description page
-'file-anchor-link'          => 'Файл',
-'filehist'                  => 'Історія файлу',
-'filehist-help'             => 'Клацніть на дату/час, щоб переглянути, як тоді виглядав файл.',
-'filehist-deleteall'        => 'вилучити всі',
-'filehist-deleteone'        => 'вилучити',
-'filehist-revert'           => 'повернути',
-'filehist-current'          => 'поточний',
-'filehist-datetime'         => 'Дата/час',
-'filehist-thumb'            => 'Мініатюра',
-'filehist-thumbtext'        => 'Мініатюра для версії від $1',
-'filehist-nothumb'          => 'Нема мініатюри',
-'filehist-user'             => 'Користувач',
-'filehist-dimensions'       => "Розмір об'єкта",
-'filehist-filesize'         => 'Розмір файлу',
-'filehist-comment'          => 'Коментар',
-'filehist-missing'          => 'Файл відсутній',
-'imagelinks'                => 'Посилання на файл',
-'linkstoimage'              => '{{PLURAL:$1|Наступна сторінка посилається|Наступні сторінки посилаються}} на цей файл:',
-'linkstoimage-more'         => 'Більше $1 {{PLURAL:$1|сторінки|сторінок}} посилаються на цей файл.
+'file-anchor-link'                  => 'Файл',
+'filehist'                          => 'Історія файлу',
+'filehist-help'                     => 'Клацніть на дату/час, щоб переглянути, як тоді виглядав файл.',
+'filehist-deleteall'                => 'вилучити всі',
+'filehist-deleteone'                => 'вилучити',
+'filehist-revert'                   => 'повернути',
+'filehist-current'                  => 'поточний',
+'filehist-datetime'                 => 'Дата/час',
+'filehist-thumb'                    => 'Мініатюра',
+'filehist-thumbtext'                => 'Мініатюра для версії від $1',
+'filehist-nothumb'                  => 'Нема мініатюри',
+'filehist-user'                     => 'Користувач',
+'filehist-dimensions'               => "Розмір об'єкта",
+'filehist-filesize'                 => 'Розмір файлу',
+'filehist-comment'                  => 'Коментар',
+'filehist-missing'                  => 'Файл відсутній',
+'imagelinks'                        => 'Посилання на файл',
+'linkstoimage'                      => '{{PLURAL:$1|Наступна сторінка посилається|Наступні сторінки посилаються}} на цей файл:',
+'linkstoimage-more'                 => 'Більше $1 {{PLURAL:$1|сторінки|сторінок}} посилаються на цей файл.
 У цьому списку {{PLURAL:$1|показане тільки $1 посилання|показані тільки $1 посилання|показані тільки $1 посилань}} на цей файл.
 Також доступний [[Special:WhatLinksHere/$2|повний список]].',
-'nolinkstoimage'            => 'Нема сторінок, що посилаються на цей файл.',
-'morelinkstoimage'          => 'Переглянути [[Special:WhatLinksHere/$1|інші посилання]] на цей файл.',
-'redirectstofile'           => 'На цей файл {{PLURAL:$1|перенаправляється файл|перенаправляються такі файли}}:',
-'duplicatesoffile'          => '{{PLURAL:$1|Дублікатом цього файлу є файл|Такі $1 файли є дублікатами цього файлу|Такі $1 файлів є дублікатами цього файлу}}
+'nolinkstoimage'                    => 'Нема сторінок, що посилаються на цей файл.',
+'morelinkstoimage'                  => 'Переглянути [[Special:WhatLinksHere/$1|інші посилання]] на цей файл.',
+'redirectstofile'                   => 'На цей файл {{PLURAL:$1|перенаправляється файл|перенаправляються такі файли}}:',
+'duplicatesoffile'                  => '{{PLURAL:$1|Дублікатом цього файлу є файл|Такі $1 файли є дублікатами цього файлу|Такі $1 файлів є дублікатами цього файлу}}
 ([[Special:FileDuplicateSearch/$2|докладніше]]):',
-'sharedupload'              => 'Цей файл із $1 і є доступним для інших проектів.',
-'sharedupload-desc-there'   => 'Цей файл з $1 і може використовуватися в інших проектах.
+'sharedupload'                      => 'Цей файл із $1 і є доступним для інших проектів.',
+'sharedupload-desc-there'           => 'Цей файл з $1 і може використовуватися в інших проектах.
 Додаткову інформацію можна знайти на [$2 сторінці опису файлу].',
-'sharedupload-desc-here'    => 'Цей файл з $1 і може використовуватися в інших проектах.
+'sharedupload-desc-here'            => 'Цей файл з $1 і може використовуватися в інших проектах.
 Далі наведена інформація з його [$2 сторінки опису].',
-'filepage-nofile'           => 'Не існує файлу з такою назвою.',
-'filepage-nofile-link'      => 'Не існує файлу з такою назвою, але ви можете [$1 завантажити його].',
-'uploadnewversion-linktext' => 'Завантажити нову версію цього файлу',
-'shared-repo-from'          => 'з $1',
-'shared-repo'               => 'спільного сховища',
+'filepage-nofile'                   => 'Не існує файлу з такою назвою.',
+'filepage-nofile-link'              => 'Не існує файлу з такою назвою, але ви можете [$1 завантажити його].',
+'uploadnewversion-linktext'         => 'Завантажити нову версію цього файлу',
+'shared-repo-from'                  => 'з $1',
+'shared-repo'                       => 'спільного сховища',
 'shared-repo-name-wikimediacommons' => 'Вікісховища',
 
 # File reversion

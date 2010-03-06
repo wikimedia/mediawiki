@@ -410,22 +410,25 @@ Duu ghâusch nach dem ausdrug aa [[Special:Search/{{PAGENAME}}|in aln sajdn drin
 <span class="plainlinks"> [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} in deen dsugheerichn log-biichârn suuchn] odâr dii sajdn [{{fullurl:{{FULLPAGENAME}}|action=edit}} ôôleechn un najschrajwn]</span>.',
 'previewnote'                      => "'''Hiir schbigsde nôr, wii's wärn dääd, dii sajdn is awâr noch ned soo gschriiwn!'''",
 'editing'                          => 'Bearbajdn fon $1',
+'editingsection'                   => 'Bearbajdn fon $1 (nôr abschnid)',
 'copyrightwarning'                 => "''<big>Ghobhiir jôô ghâ web-sajdn</big>, dii dr ned ghärn, un benuds <big>ghâ uurheewarrechdlich gschidsde wärgghe</big> oone geneemichung fom uurheewâr fon den'n!'''<br />
 Mid dem hiir soogsd, das Du den dhägsd '''sälw1ar gschriiwn''' hasd, das däär dhägsd algemajnguud is '''(public domain)''' odâr dr das dr '''uurheewâr'' dâmid '''ajfârschdandn''' is. Wen dr dhägsd scho woandârsd fârefendlich wôrn is, dan schrajb des bide uf dr disghusjoonssajdn.
 <i>Achdung, ale {{SITENAME}}-bajdreech faln audomaadisch undâr di „$2“ (ajndslhajdn dâdsuu baj $1). Wen'd awâr doch ned wilsd, das des waas'D hiir gschriiwn hasd, fon andârn g'ändârd odr fârbrajded wäd, dan däfsd ned  „Sajdn schbajchârn“ glign.</i>",
+'templatesused'                    => 'Uf däär sajdn {{PLURAL:$1|wärd|wärn}} dii folchende foorlachn benudsd:',
 'template-protected'               => '(schrajbgschidsd)',
 'template-semiprotected'           => '(ned ôôgmeldede un naje benudsr däfn hiir ned schrajm)',
 'permissionserrorstext-withaction' => 'Du däfsd ned $2, des{{PLURAL:$1||}}dâweechn:',
 
 # History pages
-'viewpagelogs'     => 'Schuurnaale fôr dii sajdn dsajchn',
-'currentrev-asof'  => 'Jedsiche wärsjoon, am $2 um $3 gmachd',
-'revisionasof'     => 'Wärsjoon fom $2 um $3 Uur',
-'previousrevision' => '← wärsjoon dâfoor',
-'cur'              => 'undârschiid dsur jedsichn fasung',
-'last'             => 'Foorhäärich',
-'histfirst'        => 'Äldâschde',
-'histlast'         => 'Najschde',
+'viewpagelogs'           => 'Schuurnaale fôr dii sajdn dsajchn',
+'currentrev-asof'        => 'Jedsiche wärsjoon, am $2 um $3 gmachd',
+'revisionasof'           => 'Wärsjoon fom $2 um $3 Uur',
+'previousrevision'       => '← wärsjoon dâfoor',
+'cur'                    => 'undârschiid dsur jedsichn fasung',
+'last'                   => 'Foorhäärich',
+'history-fieldset-title' => 'Suuche in dr wärsjoonsfolche',
+'histfirst'              => 'Äldâschde',
+'histlast'               => 'Najschde',
 
 # Revision deletion
 'rev-delundel'   => 'ôôdsajchn/fârbärchn',
@@ -446,6 +449,7 @@ Mid dem hiir soogsd, das Du den dhägsd '''sälw1ar gschriiwn''' hasd, das dää
 'searchresults-title'       => 'Gfundn bam suchng nach „$1“',
 'searchresulttext'          => 'Wende wisn wilsd, wii genau mr ales af {{SITENAME}} suuchn ghôô, dan gug uf dâr [[{{MediaWiki:Helppage}}|filfssajdn]] nôôch.',
 'searchsubtitle'            => 'Gsuuchd wän sod nach: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|aln sajdn, dii wo mid „$1“ ôôfangn]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|aln sajdn, dii wo af „$1“ fârwajsn]])',
+'searchsubtitleinvalid'     => 'Daj suuchn wôôr des: „$1“.',
 'notitlematches'            => 'Gha sajdn gfundn, däärn nôômâ basn dääd',
 'notextmatches'             => 'Närchnds gfundn.',
 'prevn'                     => '{{PLURAL:$1|foorichâr|fooriche $1}}',
@@ -632,19 +636,21 @@ S'gajd awâr aa â [[Special:WhatLinksHere/$2|lisdn mid alâ fârwajs]].",
 'newuserlog-create-entry' => 'Jeds hasd an benudsâr-ghondoo',
 
 # Watchlist
-'watchlist'        => 'Maj beoobachdungs-lisdn',
-'mywatchlist'      => 'Mâj beoobachdungslisdn',
-'addedwatch'       => 'Wärd ab jeds beoobachd',
-'addedwatchtext'   => "Di sajdn „[[:$1]]“ schdeed jeds mid af dajnâr [[Special:Watchlist|beoobachdungs-lisdn]] .
+'watchlist'         => 'Maj beoobachdungs-lisdn',
+'mywatchlist'       => 'Mâj beoobachdungslisdn',
+'watchlistfor'      => "(fir '''$1''')",
+'addedwatch'        => 'Wärd ab jeds beoobachd',
+'addedwatchtext'    => "Di sajdn „[[:$1]]“ schdeed jeds mid af dajnâr [[Special:Watchlist|beoobachdungs-lisdn]] .
 
 Wen sich af dr sajdn oda iirâr disghusjoons-sajdn was duud, wärd se jeds
  af den „[[Special:RecentChanges|Ledsdn ändrungn]]“ fäd dâdsuugschriim.
 
 Wen'd dii sajdn irchendwan nima fârfolchn wilsd, musd nôr af „{{int:Unwatch}}“ glign.",
-'removedwatch'     => 'Wärd jeds nima beoobachd',
-'removedwatchtext' => 'Dii sajdn „[[:$1]]“ is fon Dajnâr [[Special:Watchlist|beoobachdungslischdn]] rundârgnomn.',
-'watch'            => 'Beoobachdn',
-'unwatch'          => 'Nimmä beoobachdn',
+'removedwatch'      => 'Wärd jeds nima beoobachd',
+'removedwatchtext'  => 'Dii sajdn „[[:$1]]“ is fon Dajnâr [[Special:Watchlist|beoobachdungslischdn]] rundârgnomn.',
+'watch'             => 'Beoobachdn',
+'unwatch'           => 'Nimmä beoobachdn',
+'watchlist-options' => 'Was un wii uf Dajnâr beobachdungslisdn dsajchd wärn sol',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ghumd undâr beoobachdung ...',
@@ -674,6 +680,7 @@ Wen'd dii sajdn irchendwan nima fârfolchn wilsd, musd nôr af „{{int:Unwatch}
 
 # Protect
 'protectlogpage'              => 'Sajdnschbärn-schurnaal',
+'protectedarticle'            => 'had „[[$1]]“ gschbärd',
 'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Schbär-dauâr:',
 'protect_expiry_invalid'      => 'Dii ôôgäwâne schbärdsajd is uugildich.',
@@ -710,6 +717,7 @@ Wen'd dii sajdn irchendwan nima fârfolchn wilsd, musd nôr af „{{int:Unwatch}
 'whatlinkshere'            => 'Linggs af däj Saidn',
 'whatlinkshere-title'      => 'Sajdn, di af „$1“ fârwajsn',
 'whatlinkshere-page'       => 'Sajdn:',
+'linkshere'                => "Dii ufgfiirdn sajdn fârwajs uf ''„[[:$1]]“''':",
 'isredirect'               => 'Wajdârlajdungssajdn',
 'istemplate'               => 'Foorlaachn-ajbindung',
 'isimage'                  => 'fârwajs uf des bild hiir',
@@ -731,6 +739,7 @@ Wen'd dii sajdn irchendwan nima fârfolchn wilsd, musd nôr af „{{int:Unwatch}
 'unblocklink'      => 'frajgeem',
 'change-blocklink' => 'Schbärn ändârn',
 'contribslink'     => 'Bajdreech',
+'blocklogpage'     => 'Schurnaal fon den schbärn fir bajdräächâr',
 
 # Move page
 'movepagetext'   => "Mid dem fôrmulaar hiir wärd â sajdn umdaafd, midsamd aln foorichn wärsjoon'n. Dii sajdn mi'm aldn nôômn blajbd, fârwajsd danôôch awâr bloos noch uf dii naje.
@@ -752,6 +761,7 @@ Wen'D des mid'râr  beliibdn sajdn duusd, ghan soo'n umdaafn â hefdiche sachn s
 'talkexists'     => 'Dii sajdn is fârschoom wôrn, awa baj iira disghusjoonssajdn is ned gangn, wals dii scho mim najn naam gibd. Jeds musd des fon hand dsamwôrschdln.',
 'movedto'        => 'fârschoobn nach',
 'movetalk'       => "Dii disghusjoons-sajdn aa mid fârschiibn, wen's gäd",
+'1movedto2'      => 'had „[[$1]]“ nach „[[$2]]“ umdaafd',
 'movelogpage'    => 'Umdaaf-schurnaal',
 'movereason'     => 'Grund:',
 'revertmove'     => 'dsrigdaafn af an aldn nôômâ',
@@ -777,6 +787,7 @@ Bide gug's midm foorschau-gnobf ôô fôrm schbajchan",
 'tooltip-ca-viewsource'           => 'Dii sajdn is gechn ändrungn gschbärd. Mr ghôô awâr den gwäl-dhägsd ôôgugn.',
 'tooltip-ca-history'              => 'Friâre Fasungn fon där sajdn',
 'tooltip-ca-protect'              => 'Dii sajdn schidsn',
+'tooltip-ca-delete'               => 'Dii sajdn leschn',
 'tooltip-ca-move'                 => 'Damid daafsd dii sajdn um',
 'tooltip-ca-watch'                => 'Dôômid nimsd dii sajdn undâr daj beoobachdung',
 'tooltip-ca-unwatch'              => 'Mir nime beschajd geewn, wen sich uf där sajdn was duud',
@@ -880,10 +891,17 @@ Nôr dsajln, dii was midem dsajchn * ôôfangn, wärn berigsichdichd. Un dr ärs
 'exif-imagewidth'  => 'brajdn',
 'exif-imagelength' => 'Heen',
 
+# External editor support
+'edit-externally'      => 'Dii dadaj mid anem ägsdärnn brogram ändârn',
+'edit-externally-help' => '(Määr un genauârs dâdsuu baj den [http://www.mediawiki.org/wiki/Manual:External_editors Inschdaladsjoonsanwajsungn])',
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ale',
 'namespacesall' => 'ale',
 'monthsall'     => 'ale',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Beobachdungslisdn dsajchn un ändârn',
 
 # Special:SpecialPages
 'specialpages' => 'Schbedsjaal-sajdn',
