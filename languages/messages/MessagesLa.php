@@ -1225,6 +1225,7 @@ Contenta [$2 paginae descriptionis fasciculi] subter monstrantur.',
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
 'shared-repo-from'          => 'apud {{grammar:accusative|$1}}',
 'shared-repo'               => 'repositorium commune',
+'shared-repo-name-wikimediacommons' => 'Vicimedia Communia',
 
 # File reversion
 'filerevert'                => 'Revertere $1',

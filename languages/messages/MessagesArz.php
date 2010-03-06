@@ -1811,6 +1811,7 @@ PICT # misc.
 'uploadnewversion-linktext' => 'حمل نسخه جديده من الملف ده',
 'shared-repo-from'          => 'من $1',
 'shared-repo'               => 'مخزن مشترك',
+'shared-repo-name-wikimediacommons' => 'ويكيميديا كومنز',
 
 # File reversion
 'filerevert'                => 'استرجع $1',

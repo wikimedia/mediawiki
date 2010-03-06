@@ -1749,6 +1749,7 @@ PICT # различные
 'uploadnewversion-linktext' => 'Загрузить новую версию этого файла',
 'shared-repo-from'          => 'из $1',
 'shared-repo'               => 'общего хранилища',
+'shared-repo-name-wikimediacommons' => 'Викисклада',
 
 # File reversion
 'filerevert'                => 'Возврат к старой версии $1',

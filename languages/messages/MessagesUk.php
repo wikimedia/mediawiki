@@ -1753,6 +1753,7 @@ PICT # різні
 'uploadnewversion-linktext' => 'Завантажити нову версію цього файлу',
 'shared-repo-from'          => 'з $1',
 'shared-repo'               => 'спільного сховища',
+'shared-repo-name-wikimediacommons' => 'Вікісховища',
 
 # File reversion
 'filerevert'                => 'Повернення до старої версії $1',

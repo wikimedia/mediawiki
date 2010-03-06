@@ -2234,6 +2234,7 @@ The description on its [$2 file description page] there is shown below.',
 'uploadnewversion-linktext' => 'Upload a new version of this file',
 'shared-repo-from'          => 'from $1',
 'shared-repo'               => 'a shared repository',
+'shared-repo-name-wikimediacommons' => 'Wikimedia Commons', # only translate this message to other languages if you have to change it
 
 # File reversion
 'filerevert'                => 'Revert $1',

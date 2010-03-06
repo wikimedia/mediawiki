@@ -1630,6 +1630,7 @@ $1",
 'uploadnewversion-linktext' => '上传该文件的新版本',
 'shared-repo-from'          => '出自$1',
 'shared-repo'               => '一个共用文件库',
+'shared-repo-name-wikimediacommons' => '维基共享资源',
 
 # File reversion
 'filerevert'                => '恢复$1',
