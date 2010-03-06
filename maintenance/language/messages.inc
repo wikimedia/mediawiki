@@ -1345,6 +1345,7 @@ $wgMessageStructure = array(
 		'uploadnewversion-linktext',
 		'shared-repo-from',
 		'shared-repo',
+		'shared-repo-name-wikimediacommons',
 	),
 	'filerevert' => array(
 		'filerevert',

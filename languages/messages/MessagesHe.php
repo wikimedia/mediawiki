@@ -1805,6 +1805,7 @@ PICT # שונות
 'uploadnewversion-linktext' => 'העלאת גרסה חדשה של קובץ זה',
 'shared-repo-from'          => 'מתוך $1',
 'shared-repo'               => 'מקום איחסון משותף',
+'shared-repo-name-wikimediacommons' => 'ויקישיתוף',
 
 # File reversion
 'filerevert'                => 'שחזור $1',

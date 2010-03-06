@@ -1676,6 +1676,7 @@ PICT # その他
 'uploadnewversion-linktext' => 'このファイルの新しいバージョンをアップロードする',
 'shared-repo-from'          => '$1より',
 'shared-repo'               => '共有リポジトリ',
+'shared-repo-name-wikimediacommons' => 'ウィキメディア・コモンズ',
 
 # File reversion
 'filerevert'                => '$1 を差し戻す',

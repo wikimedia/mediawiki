@@ -1950,6 +1950,7 @@ PICT # متنوع
 'uploadnewversion-linktext' => 'ارفع نسخة جديدة من هذا الملف',
 'shared-repo-from'          => 'من $1',
 'shared-repo'               => 'مستودع مشترك',
+'shared-repo-name-wikimediacommons' => 'ويكيميديا كومنز',
 
 # File reversion
 'filerevert'                => 'استرجع $1',

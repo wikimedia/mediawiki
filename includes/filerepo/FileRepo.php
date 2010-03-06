@@ -623,6 +623,7 @@ abstract class FileRepo {
 		if ( $this->name == 'local' ) {
 			return null;
 		}
+		// 'shared-repo-name-wikimediacommons' is used when $wgUseInstantCommons = true
 		$repoName = wfMsg( 'shared-repo-name-' . $this->name );
 		if ( !wfEmptyMsg( 'shared-repo-name-' . $this->name, $repoName ) ) {
 			return $repoName;
