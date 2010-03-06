@@ -930,6 +930,7 @@ $wgMessageStructure = array(
 		'prefs-files',
 		'prefs-custom-css',
 		'prefs-custom-js',
+		'prefs-common-css-js',
 		'prefs-reset-intro',
 		'prefs-emailconfirm-label',
 		'prefs-textboxsize',
