@@ -63,7 +63,8 @@ class SpecialListGroupRights extends SpecialPage {
 			} else {
 				$grouppage = $this->skin->link(
 					Title::newFromText( $grouppageLocalized ),
-					htmlspecialchars($groupnameLocalized)
+					htmlspecialchars($groupnameLocalized),
+					array( 'name' => $group )
 				);
 			}
 
