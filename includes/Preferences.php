@@ -446,6 +446,8 @@ class Preferences {
 
 	static function skinPreferences( $user, &$defaultPreferences ) {
 		## Skin #####################################
+		global $wgLang, $wgAllowUserCss, $wgAllowUserJs;
+
 		$defaultPreferences['skin'] =
 				array(
 					'type' => 'radio',
@@ -453,6 +455,30 @@ class Preferences {
 					'label' => '&nbsp;',
 					'section' => 'rendering/skin',
 				);
+
+		# Create links to user CSS/JS pages for all skins
+		# This code is basically copied from generateSkinOptions().  It'd
+		# be nice to somehow merge this back in there to avoid redundancy. 
+		if( $wgAllowUserCss || $wgAllowUserJs ) {
+			$sk = $user->getSkin();
+			$linkTools = array();
+			if( $wgAllowUserCss ) {
+				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/common.css' );
+				$linkTools[] = $sk->link( $cssPage, wfMsgHtml( 'prefs-custom-css' ) );
+			}
+			if( $wgAllowUserJs ) {
+				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/common.js' );
+				$linkTools[] = $sk->link( $jsPage, wfMsgHtml( 'prefs-custom-js' ) );
+			}
+			$defaultPreferences['commoncssjs'] =
+				array(
+					'type' => 'info',
+					'raw' => true,
+					'default' => $wgLang->pipeList( $linkTools ),
+					'label-message' => 'prefs-common-css-js',
+					'section' => 'rendering/skin',
+				);
+		}
 
 		$selectedSkin = $user->getOption( 'skin' );
 		if ( in_array( $selectedSkin, array( 'cologneblue', 'standard' ) ) ) {

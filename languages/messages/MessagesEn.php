@@ -1749,6 +1749,7 @@ Here's a randomly-generated value you can use: $1",
 'prefs-files'                   => 'Files',
 'prefs-custom-css'              => 'Custom CSS',
 'prefs-custom-js'               => 'Custom JS',
+'prefs-common-css-js'           => 'Shared CSS/JS for all skins:',
 'prefs-reset-intro'             => 'You can use this page to reset your preferences to the site defaults.
 This cannot be undone.',
 'prefs-emailconfirm-label'      => 'E-mail confirmation:',
