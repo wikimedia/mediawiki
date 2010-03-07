@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1169,6 +1169,7 @@ $1",
 'prefs-files'                   => '檔案',
 'prefs-custom-css'              => '自定 CSS',
 'prefs-custom-js'               => '自定 JS',
+'prefs-common-css-js'           => '共享嘅CSS同埋JS俾所有畫面用',
 'prefs-reset-intro'             => '你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。',
 'prefs-emailconfirm-label'      => '電郵確認:',
 'prefs-textboxsize'             => '編輯窗大細',

@@ -639,6 +639,7 @@ $1',
 'readonly_lag'         => 'データベースはスレーブ・サーバーがマスター・サーバーに同期するまで自動的にロックされています',
 'internalerror'        => '内部処理エラー',
 'internalerror_info'   => '内部処理エラー: $1',
+'fileappenderrorread'  => '追加中に、「$1」を読み取れませんでした。',
 'fileappenderror'      => '「$1」を「$2」に追加できませんでした。',
 'filecopyerror'        => 'ファイル "$1" を "$2" へコピーできませんでした。',
 'filerenameerror'      => 'ファイル名を "$1" から "$2" へ変更できませんでした。',
@@ -751,6 +752,7 @@ $2',
 'usernamehasherror'          => '利用者名には番号記号を含むことができません',
 'login-throttled'            => 'ログインの失敗が制限回数を超えました。しばらく時間をおいてから再度お試しください。',
 'loginlanguagelabel'         => '言語: $1',
+'suspicious-userlogout'      => 'あなたのログアウトは拒否されました。送信されたリクエストが、壊れたブラウザもしくはキャッシュ・プロキシによって送信された可能性があるからです。',
 
 # Password reset dialog
 'resetpass'                 => 'パスワードの変更',
@@ -1253,6 +1255,7 @@ $1",
 'prefs-files'                   => 'ファイル',
 'prefs-custom-css'              => 'カスタムCSS',
 'prefs-custom-js'               => 'カスタムJS',
+'prefs-common-css-js'           => 'すべてのスキンに共通のCSSまたはJavaScript',
 'prefs-reset-intro'             => 'このページを使うと、あなたの個人設定をこのサイトの既定のものに再設定することができます。この操作は取り消しができません。',
 'prefs-emailconfirm-label'      => 'メール確認:',
 'prefs-textboxsize'             => '編集画面の大きさ',
@@ -3047,23 +3050,23 @@ Variants for Chinese language
 'limitall'         => 'すべて',
 
 # E-mail address confirmation
-'confirmemail'             => 'メールアドレスの確認',
-'confirmemail_noemail'     => '[[Special:Preferences|個人設定]]で有効なメールアドレスが指定されていません。',
-'confirmemail_text'        => '{{SITENAME}} ではメール機能を利用する前にメールアドレスの確認が必要です。以下のボタンを押すとあなたのメールアドレスに確認メールが送られます。メールには確認用コードを含むリンクが書かれています。そのリンクを開くことによってメールアドレスの正当性が確認されます。',
-'confirmemail_pending'     => '確認メールは既に送信されています。あなたがこのアカウントを作成したばかりであれば、メールが届くまで数分ほど待たなければならないかもしれません。',
-'confirmemail_send'        => '確認用コードを送信する',
-'confirmemail_sent'        => '確認メールを送信しました。',
-'confirmemail_oncreate'    => 'メールアドレスの正当性を確認するためのコードを含んだメールを送信しました。この確認を行わなくてもログインはできますが、確認するまでメール通知の機能は無効化されます。',
-'confirmemail_sendfailed'  => '{{SITENAME}}からの確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。
+'confirmemail'              => 'メールアドレスの確認',
+'confirmemail_noemail'      => '[[Special:Preferences|個人設定]]で有効なメールアドレスが指定されていません。',
+'confirmemail_text'         => '{{SITENAME}} ではメール機能を利用する前にメールアドレスの確認が必要です。以下のボタンを押すとあなたのメールアドレスに確認メールが送られます。メールには確認用コードを含むリンクが書かれています。そのリンクを開くことによってメールアドレスの正当性が確認されます。',
+'confirmemail_pending'      => '確認メールは既に送信されています。あなたがこのアカウントを作成したばかりであれば、メールが届くまで数分ほど待たなければならないかもしれません。',
+'confirmemail_send'         => '確認用コードを送信する',
+'confirmemail_sent'         => '確認メールを送信しました。',
+'confirmemail_oncreate'     => 'メールアドレスの正当性を確認するためのコードを含んだメールを送信しました。この確認を行わなくてもログインはできますが、確認するまでメール通知の機能は無効化されます。',
+'confirmemail_sendfailed'   => '{{SITENAME}}からの確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。
 
 メールサーバーからの返答: $1',
-'confirmemail_invalid'     => '確認用コードが正しくありません。このコードは期限切れです。',
-'confirmemail_needlogin'   => 'メールアドレスを確認するために$1が必要です。',
-'confirmemail_success'     => 'あなたのメールアドレスは確認されました。[[Special:UserLogin|ログイン]]してウィキを使用できます。',
-'confirmemail_loggedin'    => 'あなたのメールアドレスは確認されました。',
-'confirmemail_error'       => 'あなたの確認を保存する際に内部エラーが発生しました。',
-'confirmemail_subject'     => '{{SITENAME}} メールアドレスの確認',
-'confirmemail_body'        => 'どなたか (IPアドレス $1 の使用者) がこのメールアドレスで
+'confirmemail_invalid'      => '確認用コードが正しくありません。このコードは期限切れです。',
+'confirmemail_needlogin'    => 'メールアドレスを確認するために$1が必要です。',
+'confirmemail_success'      => 'あなたのメールアドレスは確認されました。[[Special:UserLogin|ログイン]]してウィキを使用できます。',
+'confirmemail_loggedin'     => 'あなたのメールアドレスは確認されました。',
+'confirmemail_error'        => 'あなたの確認を保存する際に内部エラーが発生しました。',
+'confirmemail_subject'      => '{{SITENAME}} メールアドレスの確認',
+'confirmemail_body'         => 'どなたか (IPアドレス $1 の使用者) がこのメールアドレスで
 {{SITENAME}} のアカウント「$2」を登録しました。
 
 このアカウントがあなたのものであるか確認してください。
@@ -3078,8 +3081,21 @@ $3
 $5
 
 この確認用コードは $4 に期限切れになります。',
-'confirmemail_invalidated' => 'メールアドレスの確認が中止されました',
-'invalidateemail'          => 'メールアドレスの認証中止',
+'confirmemail_body_changed' => 'IPアドレス$1の使用者である誰か（もしかすると、あなた）が、
+このメールアドレスで{{SITENAME}}のアカウント「$2」を登録しました。
+
+
+このアカウントがあなたのものであるならば、{{SITENAME}}のメール通知機能を有効にするために、以下のURLにアクセスしてください。
+
+$3
+
+もしアカウントの登録をした覚えがない場合は、次のURLにアクセスしてメール登録を解除してください。
+
+$5
+
+この確認用コードは $4 に期限切れになります。',
+'confirmemail_invalidated'  => 'メールアドレスの確認が中止されました',
+'invalidateemail'           => 'メールアドレスの認証中止',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[ウィキ間トランスクルージョンは無効になっています]',

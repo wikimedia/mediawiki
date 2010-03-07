@@ -1327,6 +1327,7 @@ Je kunnen oek disse egenereren standardcode gebruken: $1",
 'prefs-files'                   => 'Bestanen',
 'prefs-custom-css'              => 'Persoonlijke CSS',
 'prefs-custom-js'               => 'Persoonlijke JS',
+'prefs-common-css-js'           => 'Edelen CSS/JS veur elke vormgeving:',
 'prefs-reset-intro'             => 'Je kunnen disse pagina gebruken um joew veurkeuren naor de standardinstellingen weerumme te zetten.
 Disse haandeling kan neet ongedaon-emaak wonnen.',
 'prefs-emailconfirm-label'      => 'Netposbevestiging:',

@@ -1455,7 +1455,7 @@ $1",
 'listgrouprights'          => 'Ҡатнашыусылыр төркөме хоҡуҡтары',
 'listgrouprights-group'    => 'Төркөм',
 'listgrouprights-rights'   => 'Хоҡуҡтар',
-'listgrouprights-helppage' => 'Белешмә: Төркөм хоҡуҡтары',
+'listgrouprights-helppage' => 'Белешмә: Төркөмдәр хоҡуҡтары',
 'listgrouprights-members'  => '(ағзалар исемлеге)',
 
 # E-mail user

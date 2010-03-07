@@ -804,7 +804,8 @@ Si prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi ric
 'whitelistedittext'                => 'Per modificare le pagine è necessario $1.',
 'confirmedittext'                  => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
 'nosuchsectiontitle'               => 'Impossibile trovare la sezione',
-'nosuchsectiontext'                => 'Si è tentato di modificare una sezione inesistente.',
+'nosuchsectiontext'                => 'Si è tentato di modificare una sezione inesistente.
+Potrebbe essere stata spostata o eliminata mentre si stava visionando la pagina.',
 'loginreqtitle'                    => 'Accesso richiesto',
 'loginreqlink'                     => "eseguire l'accesso",
 'loginreqpagetext'                 => 'Per vedere altre pagine è necessario $1.',
@@ -867,10 +868,13 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'readonlywarning'                  => "'''ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.'''
 
 L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
-'protectedpagewarning'             => "'''ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.'''",
-'semiprotectedpagewarning'         => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
+'protectedpagewarning'             => "'''ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.'''
+L'ultimo elemento del registro è riportato di seguito per informazione:",
+'semiprotectedpagewarning'         => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.
+L'ultimo elemento del registro è riportato di seguito per informazione:",
 'cascadeprotectedwarning'          => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":",
-'titleprotectedwarning'            => "'''ATTENZIONE:  Questa pagina è stata bloccata in modo che siano necessari [[Special:ListGroupRights|diritti specifici]] per crearla.'''",
+'titleprotectedwarning'            => "'''ATTENZIONE:  Questa pagina è stata bloccata in modo che siano necessari [[Special:ListGroupRights|diritti specifici]] per crearla.'''
+L'ultimo elemento del registro è riportato di seguito per informazione:",
 'templatesused'                    => '{{PLURAL:$1|Template utilizzato|Template utilizzati}} in questa pagina:',
 'templatesusedpreview'             => '{{PLURAL:$1|Template utilizzato|Template utilizzati}} in questa anteprima:',
 'templatesusedsection'             => '{{PLURAL:$1|Template utilizzato|Template utilizzati}} in questa sezione:',
@@ -976,6 +980,7 @@ Gli amministratori possono ancora visualizzarla; consultare il [{{fullurl:{{#Spe
 Gli amministratori possono ancora visualizzarla; consultare il [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log di rimozione] per ulteriori dettagli.",
 'rev-deleted-no-diff'         => "Non è possibile visualizzare questo confronto tra versioni perché una delle revisioni è stata '''cancellata'''.
 Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.",
+'rev-suppressed-no-diff'      => "Non è possibile visualizzare questo confronto tra versioni perché una delle revisioni è stata '''cancellata'''.",
 'rev-deleted-unhide-diff'     => "Una delle revisioni di questo confronto tra versioni è stata '''cancellata'''.
 Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.
 Agli amministratori è ancora consentito [$1 visualizzare il confronto] se necessario.",
@@ -1235,6 +1240,7 @@ $1",
 'prefs-files'                   => 'File',
 'prefs-custom-css'              => 'CSS personalizzato',
 'prefs-custom-js'               => 'JS personalizzato',
+'prefs-common-css-js'           => 'CSS/JS condiviso per tutte le skin:',
 'prefs-reset-intro'             => "È possibile usare questa pagina per reimpostare le proprie preferenze a quelle predefinite del sito.
 L'operazione non può essere annullata.",
 'prefs-emailconfirm-label'      => "Conferma dell'e-mail:",
@@ -1274,25 +1280,26 @@ L'operazione non può essere annullata.",
 'prefs-diffs'                   => 'Differenze',
 
 # User rights
-'userrights'                  => 'Gestione dei permessi relativi agli utenti',
-'userrights-lookup-user'      => 'Gestione dei gruppi utente',
-'userrights-user-editname'    => 'Inserire il nome utente:',
-'editusergroup'               => 'Modifica gruppi utente',
-'editinguser'                 => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Modifica gruppi utente',
-'saveusergroups'              => 'Salva gruppi utente',
-'userrights-groupsmember'     => 'Appartiene ai gruppi:',
-'userrights-groups-help'      => "È possibile modificare i gruppi cui è assegnato l'utente.
+'userrights'                   => 'Gestione dei permessi relativi agli utenti',
+'userrights-lookup-user'       => 'Gestione dei gruppi utente',
+'userrights-user-editname'     => 'Inserire il nome utente:',
+'editusergroup'                => 'Modifica gruppi utente',
+'editinguser'                  => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Modifica gruppi utente',
+'saveusergroups'               => 'Salva gruppi utente',
+'userrights-groupsmember'      => 'Appartiene ai gruppi:',
+'userrights-groupsmember-auto' => 'Membro implicito di:',
+'userrights-groups-help'       => "È possibile modificare i gruppi cui è assegnato l'utente.
 * Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo
 * Una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.
 * Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o vice versa).",
-'userrights-reason'           => 'Motivo della modifica:',
-'userrights-no-interwiki'     => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
-'userrights-nodatabase'       => 'Il database $1 non esiste o non è un database locale.',
-'userrights-nologin'          => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
-'userrights-notallowed'       => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
-'userrights-changeable-col'   => 'Gruppi modificabili',
-'userrights-unchangeable-col' => 'Gruppi non modificabili',
+'userrights-reason'            => 'Motivo della modifica:',
+'userrights-no-interwiki'      => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
+'userrights-nodatabase'        => 'Il database $1 non esiste o non è un database locale.',
+'userrights-nologin'           => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
+'userrights-notallowed'        => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
+'userrights-changeable-col'    => 'Gruppi modificabili',
+'userrights-unchangeable-col'  => 'Gruppi non modificabili',
 
 # Groups
 'group'               => 'Gruppo:',
@@ -1602,6 +1609,10 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 'img-auth-noread'       => 'L\'utente non ha accesso alla lettura di "$1".',
 
 # HTTP errors
+'http-invalid-url'      => 'URL non valido: $1',
+'http-invalid-scheme'   => 'URL con il prefisso "$1" non sono supportati.',
+'http-read-error'       => 'Errore di lettura HTTP.',
+'http-timed-out'        => 'Richiesta HTTP scaduta.',
 'http-host-unreachable' => 'URL non raggiungibile.',
 'http-bad-status'       => "C'è stato un problema durante la richiesta HTTP: $1 $2",
 
@@ -2020,6 +2031,9 @@ Non verranno inviate altre notifiche in caso di ulteriori cambiamenti, a meno ch
 Per modificare le impostazioni della lista degli osservati speciali, visita
 {{fullurl:Special:Watchlist/edit}}
 
+Per cancellare la pagina della lista degli osservati speciali, visita 
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
 Per dare il tuo feedback e ricevere ulteriore assistenza:
 {{fullurl:Help:Aiuto}}',
 
@@ -2421,8 +2435,10 @@ La pagina specificata come destinazione "[[:$1]]" esiste già. Vuoi cancellarla 
 'imageinvalidfilename'         => "Il nome dell'immagine non è valido",
 'fix-double-redirects'         => 'Aggiorna tutti i redirect che puntano al titolo originale',
 'move-leave-redirect'          => 'Crea un redirect con lo spostamento',
-'protectedpagemovewarning'     => "'''Attenzione: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano spostarla.'''",
-'semiprotectedpagemovewarning' => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano spostarla.",
+'protectedpagemovewarning'     => "'''Attenzione: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano spostarla.'''
+L'ultimo elemento del registro è riportato di seguito per informazione:",
+'semiprotectedpagemovewarning' => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano spostarla.
+L'ultimo elemento del registro è riportato di seguito per informazione:",
 'move-over-sharedrepo'         => '== File già esistente ==
 [[:$1]] è già presente in una struttura condivisa. Spostare un file a questo titolo comporterà la sovrascrittura del file condiviso.',
 'file-exists-sharedrepo'       => 'Il nome che hai scelto per il file è già utilizzato.
@@ -3029,28 +3045,28 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'limitall'         => 'tutti',
 
 # E-mail address confirmation
-'confirmemail'             => 'Conferma indirizzo e-mail',
-'confirmemail_noemail'     => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
-'confirmemail_text'        => "{{SITENAME}} richiede la verifica dell'indirizzo e-mail prima di poter usare le relative funzioni. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
-'confirmemail_pending'     => "Il codice di conferma è già stato spedito via posta elettronica; se l'account è stato
+'confirmemail'              => 'Conferma indirizzo e-mail',
+'confirmemail_noemail'      => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
+'confirmemail_text'         => "{{SITENAME}} richiede la verifica dell'indirizzo e-mail prima di poter usare le relative funzioni. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
+'confirmemail_pending'      => "Il codice di conferma è già stato spedito via posta elettronica; se l'account è stato
 creato di recente, si prega di attendere l'arrivo del codice per qualche minuto prima
 di tentare di richiederne uno nuovo.",
-'confirmemail_send'        => 'Invia un codice di conferma via e-mail.',
-'confirmemail_sent'        => 'Messaggio e-mail di conferma inviato.',
-'confirmemail_oncreate'    => "Un codice di conferma è stato spedito all'indirizzo
+'confirmemail_send'         => 'Invia un codice di conferma via e-mail.',
+'confirmemail_sent'         => 'Messaggio e-mail di conferma inviato.',
+'confirmemail_oncreate'     => "Un codice di conferma è stato spedito all'indirizzo
 di posta elettronica indicato. Il codice non è necessario per accedere al sito,
 ma è necessario fornirlo per poter abilitare tutte le funzioni del sito che fanno
 uso della posta elettronica.",
-'confirmemail_sendfailed'  => '{{SITENAME}} non può inviare il messaggio e-mail di conferma. Verificare che il proprio indirizzo e-mail non contenga caratteri non validi.
+'confirmemail_sendfailed'   => '{{SITENAME}} non può inviare il messaggio e-mail di conferma. Verificare che il proprio indirizzo e-mail non contenga caratteri non validi.
 
 Messaggio di errore del mailer: $1',
-'confirmemail_invalid'     => 'Codice di conferma non valido. Il codice potrebbe essere scaduto.',
-'confirmemail_needlogin'   => 'È necessario $1 per confermare il proprio indirizzo e-mail.',
-'confirmemail_success'     => "L'indirizzo e-mail è confermato. Ora è possibile [[Special:UserLogin|eseguire l'accesso]] e fare pieno uso del sito.",
-'confirmemail_loggedin'    => "L'indirizzo e-mail è stato confermato.",
-'confirmemail_error'       => 'Errore nel salvataggio della conferma.',
-'confirmemail_subject'     => "{{SITENAME}}: richiesta di conferma dell'indirizzo",
-'confirmemail_body'        => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1, ha registrato l\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
+'confirmemail_invalid'      => 'Codice di conferma non valido. Il codice potrebbe essere scaduto.',
+'confirmemail_needlogin'    => 'È necessario $1 per confermare il proprio indirizzo e-mail.',
+'confirmemail_success'      => "L'indirizzo e-mail è confermato. Ora è possibile [[Special:UserLogin|eseguire l'accesso]] e fare pieno uso del sito.",
+'confirmemail_loggedin'     => "L'indirizzo e-mail è stato confermato.",
+'confirmemail_error'        => 'Errore nel salvataggio della conferma.',
+'confirmemail_subject'      => "{{SITENAME}}: richiesta di conferma dell'indirizzo",
+'confirmemail_body'         => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1, ha registrato l\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
 
 Per confermare che l\'account ti appartiene veramente e attivare le funzioni relative all\'invio di e-mail su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
 
@@ -3061,8 +3077,22 @@ Se *non* hai registrato tu l\'account, segui questo collegamento per annullare l
 $5
 
 Questo codice di conferma scadrà automaticamente alle $4.',
-'confirmemail_invalidated' => 'Richiesta di conferma indirizzo e-mail annullata',
-'invalidateemail'          => 'Annulla richiesta di conferma e-mail',
+'confirmemail_body_changed' => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1, 
+ha modificato l\'indirizzo e-mail dell\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
+
+Per confermare che l\'account ti appartiene veramente e riattivare le funzioni relative all\'invio 
+di e-mail su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
+
+$3
+
+Se l\'account *non* ti appartiene, segui questo collegamento 
+per annullare la conferma dell\'indirizzo e-mail:
+
+$5
+
+Questo codice di conferma scadrà automaticamente alle $4.',
+'confirmemail_invalidated'  => 'Richiesta di conferma indirizzo e-mail annullata',
+'invalidateemail'           => 'Annulla richiesta di conferma e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusione di pagine tra siti wiki non è attiva]",

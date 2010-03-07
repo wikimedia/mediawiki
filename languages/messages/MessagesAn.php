@@ -336,6 +336,11 @@ $messages = array(
 'jumpto'            => 'Ir ta:',
 'jumptonavigation'  => 'navego',
 'jumptosearch'      => 'busca',
+'view-pool-error'   => "Desincuse, os servidors son agora sobrecargaus.
+Masiaus usuarios son mirando d'acceder ta ista pachina.
+Aguarde una mica antes de tornar a acceder ta ista pachina.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Información sobre {{SITENAME}}',
@@ -1450,6 +1455,7 @@ Tamién puez consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'statistics-header-edits'      => "Estatisticas d'edizions",
 'statistics-header-views'      => 'Estatisticas de besitas',
 'statistics-header-users'      => "Estatisticas d'usuarios",
+'statistics-header-hooks'      => 'Atras estatisticas',
 'statistics-articles'          => 'Pachinas de contenito',
 'statistics-pages'             => 'Pachinas',
 'statistics-pages-desc'        => "Todas as pachinas d'o wiki, encluyendo pachinas de descusión, reendrezeras, etz.",
@@ -2878,9 +2884,12 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:file}}:".',
 'htmlform-reset' => 'Desfer cambios',
 
 # Add categories per AJAX
-'ajax-confirm-save'          => 'Alzar',
-'ajax-confirm-actionsummary' => 'Aczión á prener:',
-'ajax-error-title'           => 'Error',
-'ajax-error-dismiss'         => "D'alcuerdo",
+'ajax-confirm-save'            => 'Alzar',
+'ajax-add-category-summary'    => 'Adibir categoría "$1"',
+'ajax-remove-category-summary' => 'Sacar a categoría "$1"',
+'ajax-confirm-actionsummary'   => 'Aczión á prener:',
+'ajax-error-title'             => 'Error',
+'ajax-error-dismiss'           => "D'alcuerdo",
+'ajax-remove-category-error'   => "No s'ha puesto eliminar ista categoría. Isto gosa pasar, por un regular, quan a categoría ha estau adibida por una plantilla.",
 
 );

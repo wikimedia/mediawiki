@@ -1397,6 +1397,7 @@ Hier volgt een willekeurig gegenereerde waarde die u kunt gebruiken: $1',
 'prefs-files'                   => 'Bestanden',
 'prefs-custom-css'              => 'persoonlijke CSS',
 'prefs-custom-js'               => 'persoonlijke JS',
+'prefs-common-css-js'           => 'Gedeelde CSS/JS voor elke vormgeving:',
 'prefs-reset-intro'             => 'Gebruik deze functie om uw voorkeuren te herstellen naar de standaardinstellingen.
 Deze handeling kan niet ongedaan gemaakt worden.',
 'prefs-emailconfirm-label'      => 'E-mailbevestiging:',
