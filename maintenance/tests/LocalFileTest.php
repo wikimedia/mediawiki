@@ -92,6 +92,11 @@ class LocalFileTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( '/testurl/Test%21', $this->file_hl0->getUrl() );
 		$this->assertEquals( '/testurl/a/a2/Test%21', $this->file_hl2->getUrl() );
 	}
+
+	function testWfLocalFile() {
+		$file = wfLocalFile( "File:Some_file_that_probably_doesn't exist.png" );
+		$this->assertThat( $file, $this->isInstanceOf( 'LocalFile' ), 'wfLocalFile() returns LocalFile for valid Titles' );
+	}
 }
 
 
