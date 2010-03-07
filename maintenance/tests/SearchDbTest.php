@@ -1,12 +1,16 @@
 <?php
 require_once( 'SearchEngineTest.php' );
 
-class SearchMySQLTest extends SearchEngineTest {
+class SearchDbTest extends SearchEngineTest {
 	var $db;
 
 	function setUp() {
-		global $wgDBprefix;
-		if($wgDBprefix === "parsertest_" || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_')) $this->markTestSkipped("This test can't (yet?) be run with the parser tests");
+		global $wgDBprefix, $wgDBtype;
+
+		if($wgDBprefix === "parsertest_" ||
+		   ($wgDBtype === 'oracle' && $wgDBprefix === 'pt_')) {
+			$this->markTestSkipped("This test can't (yet?) be run with the parser tests");
+		}
 
 		$GLOBALS['wgContLang'] = new Language;
 		$this->db = $this->buildTestDatabase(
@@ -14,7 +18,8 @@ class SearchMySQLTest extends SearchEngineTest {
 		if( $this->db ) {
 			$this->insertSearchData();
 		}
-		$this->search = new SearchMySQL( $this->db );
+		$searchType = preg_replace("/Database/", "Search", get_class($this->db));
+		$this->search = new $searchType( $this->db );
 	}
 
 	function tearDown() {

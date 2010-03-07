@@ -7,64 +7,39 @@ require_once( 'MediaWiki_Setup.php' );
  */
 class SearchEngineTest extends MediaWiki_Setup {
 	var $db, $search;
+	private $count = 0;
 
-	function insertSearchData() {
-		$this->db->safeQuery( <<<SQL
-		INSERT INTO ! (page_id,page_namespace,page_title,page_latest)
-		VALUES (1, 0, 'Main_Page', 1),
-			   (2, 1, 'Main_Page', 2),
-			   (3, 0, 'Smithee', 3),
-			   (4, 1, 'Smithee', 4),
-			   (5, 0, 'Unrelated_page', 5),
-			   (6, 0, 'Another_page', 6),
-			   (7, 4, 'Help', 7),
-			   (8, 0, 'Thppt', 8),
-			   (9, 0, 'Alan_Smithee', 9),
-			   (10, 0, 'Pages', 10)
-SQL
-			, $this->db->tableName( 'page' ) );
-		$this->db->safeQuery( <<<SQL
-		INSERT INTO ! (rev_id,rev_page)
-		VALUES (1, 1),
-		       (2, 2),
-		       (3, 3),
-		       (4, 4),
-		       (5, 5),
-		       (6, 6),
-		       (7, 7),
-		       (8, 8),
-		       (9, 9),
-		       (10, 10)
-SQL
-			, $this->db->tableName( 'revision' ) );
-		$this->db->safeQuery( <<<SQL
-		INSERT INTO ! (old_id,old_text)
-		VALUES (1, 'This is a main page'),
-			   (2, 'This is a talk page to the main page, see [[smithee]]'),
-			   (3, 'A smithee is one who smiths. See also [[Alan Smithee]]'),
-			   (4, 'This article sucks.'),
-			   (5, 'Nothing in this page is about the S word.'),
-			   (6, 'This page also is unrelated.'),
-			   (7, 'Help me!'),
-			   (8, 'Blah blah'),
-			   (9, 'yum'),
-			   (10,'are food')
-SQL
-			, $this->db->tableName( 'text' ) );
-		$this->db->safeQuery( <<<SQL
-		INSERT INTO ! (si_page,si_title,si_text)
-		VALUES (1, 'main page', 'this is a main page'),
-			   (2, 'main page', 'this is a talk page to the main page, see smithee'),
-			   (3, 'smithee', 'a smithee is one who smiths see also alan smithee'),
-			   (4, 'smithee', 'this article sucks'),
-			   (5, 'unrelated page', 'nothing in this page is about the s word'),
-			   (6, 'another page', 'this page also is unrelated'),
-			   (7, 'help', 'help me'),
-			   (8, 'thppt', 'blah blah'),
-			   (9, 'alan smithee', 'yum'),
-			   (10, 'pages', 'are food')
-SQL
-			, $this->db->tableName( 'searchindex' ) );
+ 	function insertSearchData() {
+		$this->insertPage("Main_Page",      "This is a main page", 0);
+		$this->insertPage('Main_Page',      'This is a talk page to the main page, see [[smithee]]', 1);
+		$this->insertPage('Smithee', 		'A smithee is one who smiths. See also [[Alan Smithee]]', 0);
+		$this->insertPage('Smithee',		'This article sucks.', 1);
+		$this->insertPage('Unrelated_page',	'Nothing in this page is about the S word.', 0);
+		$this->insertPage('Another_page',	'This page also is unrelated.', 0);
+		$this->insertPage('Help',			'Help me!', 4);
+		$this->insertPage('Thppt',			'Blah blah', 0);
+		$this->insertPage('Alan_Smithee',	'yum', 0);
+		$this->insertPage('Pages',			'are food', 0);
+		$this->insertPage('DblPageOne',		'ＡＢＣＤＥＦ', 0);
+		$this->insertPage('DblPageTwo',		'ＡＢＣＤＥ', 0);
+		$this->insertPage('DblPageTwoLow',  'ａｂｃｄｅ', 0);
+	}
+
+	function normalize( $text ) {
+		return strtolower(preg_replace("/[^[:alnum:] ]/", " ", $text));
+	}
+
+	function insertPage( $pageName, $text, $ns ) {
+		$this->count++;
+		$this->db->safeQuery( 'INSERT INTO ! (page_id,page_namespace,page_title,page_latest) VALUES (?,?,?,?)',
+			$this->db->tableName( 'page' ), $this->count, $ns, $pageName, $this->count );
+		$this->db->safeQuery( 'INSERT INTO ! (rev_id,rev_page) VALUES (?, ?)',
+			$this->db->tableName( 'revision' ), $this->count, $this->count );
+		$this->db->safeQuery( 'INSERT INTO ! (old_id,old_text) VALUES (?, ?)',
+			$this->db->tableName( 'text' ), $this->count, $text );
+		$this->db->safeQuery( 'INSERT INTO ! (si_page,si_title,si_text) VALUES (?, ?, ?)',
+			$this->db->tableName( 'searchindex' ), $this->count,
+			$this->normalize( $pageName ), $this->normalize( $text ) );
 	}
 
 	function fetchIds( $results ) {
