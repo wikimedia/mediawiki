@@ -722,19 +722,10 @@ class EditPage {
 		}
 		# Try to add a custom edit intro, or use the standard one if this is not possible.
 		if ( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
-			# If it is a user (talk) page of the current user, add true as parameter, otherwise false.
-			$isCurrent = false;
-			if ( ( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK )
-				&& $wgUser->getName() == $this->mTitle->getBaseText() )
-			{
-				$isCurrent = true;
-			}
-
-			# Show standard message
 			if ( $wgUser->isLoggedIn() ) {
-				$wgOut->wrapWikiMsg( "<div class=\"mw-newarticletext\">\n$1</div>", array( 'newarticletext', $isCurrent ) );
+				$wgOut->wrapWikiMsg( "<div class=\"mw-newarticletext\">\n$1</div>", 'newarticletext' );
 			} else {
-				$wgOut->wrapWikiMsg( "<div class=\"mw-newarticletextanon\">\n$1</div>", array( 'newarticletext', $isCurrent ) );
+				$wgOut->wrapWikiMsg( "<div class=\"mw-newarticletextanon\">\n$1</div>", 'newarticletextanon' );
 			}
 		}
 		# Give a notice if the user is editing a deleted/moved page...
