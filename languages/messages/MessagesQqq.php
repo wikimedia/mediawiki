@@ -796,16 +796,16 @@ Parameters:
 {{doc-important|Do not translate \"<nowiki>[[User talk:\$1|\$1]]</nowiki>\" and ''Special:ChangePassword''.}}",
 'newarticle'                       => '{{Identical|New}}',
 'newarticletext'                   => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!
-
-$1 is true when the page is a user (talk) page of the current user, otherwise false.",
+The following optional parameter should not be used in default localisations:
+* $1 is true when the page is a user (talk) page of the current user, otherwise false.",
 'noarticletext'                    => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
 
 See also {{msg-mw|Noarticletext-nopermission}}.
-
-$1 is true when the page is a user (talk) page of the current user, otherwise false.',
+The following optional parameter should not be used in default localisations:
+* $1 is true when the page is a user (talk) page of the current user, otherwise false.',
 'noarticletext-nopermission'       => 'See also {{msg-mw|Noarticletext}}.
-
-$1 is true when the page is a user (talk) page of the current user, otherwise false.',
+The following optional parameter should not be used in default localisations:
+* $1 is true when the page is a user (talk) page of the current user, otherwise false.',
 'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki',
 'userpage-userdoesnotexist-view'   => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo].',
 'clearyourcache'                   => 'Text at the top of .js/.css pages',
