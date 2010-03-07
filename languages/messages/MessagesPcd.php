@@ -286,6 +286,7 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'filenotfound'         => 'Éj pux poin trouvoér ch\'fichié "$1".',
 'fileexistserror'      => 'Éj pux poin écrire su ch\'fichié "$1": ech fichié écsiste',
 'unexpected'           => 'Valeur poin prévue: "$1"="$2".',
+'badarticleerror'      => "Os n'povez poin foaire cha su l'pache-lo.",
 'badtitle'             => 'Méchant tite',
 'badtitletext'         => "Ch'tite del pache écmindée n'est poin valabe, est vide, ou bin ch'est un tite inter-langue ou inter-proujé aveuc des méchands loïens. Pététe qu'il y o un ou des caractére(s) éq i feut poin mette din chés tites.",
 'viewsource'           => "Vir l'source",
@@ -399,7 +400,7 @@ Os prométtez auchi éq vos avez écrit ch'teske vous-méme, ou éq vos l’avez
 'histlegend'             => "Diff séléccion: buke chés boétes d'chés canjemints à comparète pi détriquer intrer ou ch'bouton édsou.<br />
 Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-chi, ({{MediaWiki:Last}}) = différinches aveuc el vérchon édvant, <b>m</b> = tiot canjemint.",
 'history-fieldset-title' => "S'déplacher din l'historique",
-'histfirst'              => "L'pu neu",
+'histfirst'              => 'preumières paches',
 'histlast'               => 'Darin',
 
 # Revision deletion
