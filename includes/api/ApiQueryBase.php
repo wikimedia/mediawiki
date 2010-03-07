@@ -464,7 +464,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	/**
 	 * Overrides base class to prepend 'g' to every generator parameter
-	 * @param $paramNames string Parameter name
+	 * @param $paramName string Parameter name
 	 * @return string Prefixed parameter name
 	 */
 	public function encodeParamName( $paramName ) {
