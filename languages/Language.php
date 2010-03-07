@@ -2174,7 +2174,7 @@ class Language {
 			$string = $this->removeBadCharFirst( $string );
 			$string = $ellipsis . $string;
 		}
-		# Do not truncate if the ellipsis makes the string longer (bug 22181)
+		# Do not truncate if the ellipsis makes the string longer/equal (bug 22181)
 		if ( strlen( $string ) < strlen( $stringOriginal ) ) {
 			return $string;
 		} else {
@@ -2248,7 +2248,7 @@ class Language {
 		}
 		$text = MWTidy::tidy( $text ); // fix tags
 		$displayLen = 0; // innerHTML legth so far
-		$doTruncate = true; // truncated string plus '...' shorter than original?
+		$testingEllipsis = false; // checking if ellipses will make string longer/equal?
 		$tagType = 0; // 0-open, 1-close
 		$bracketState = 0; // 1-tag start, 2-tag name, 0-neither
 		$entityState = 0; // 0-not entity, 1-entity
@@ -2301,15 +2301,20 @@ class Language {
 					}
 				}
 			}
-			if( !$doTruncate ) continue;
-			# Truncate if not in the middle of a bracket/entity...
+			# Consider truncation once the display length has reached the maximim.
+			# Double-check that we're not in the middle of a bracket/entity...
 			if ( $displayLen >= $length && $bracketState == 0 && $entityState == 0 ) {
-				$remaining = substr( $text, $pos + 1 ); // remaining string
-				$remaining = StringUtils::delimiterReplace( '<', '>', '', $remaining ); // rm tags
-				$remaining = StringUtils::delimiterReplace( '&', ';', '', $remaining ); // rm entities
-				$doTruncate = ( strlen($remaining) > strlen($ellipsis) );
-				if ( $doTruncate ) {
-					$ret = $this->removeBadCharLast( $ret ) . $ellipsis;
+				if ( !$testingEllipsis ) {
+					$testingEllipsis = true;
+					# Save were we are; we will truncate here unless
+					# the ellipsis actually makes the string longer.
+					$pOpenTags = $openTags; // save state
+					$pRet = $ret; // save state
+				} elseif ( $displayLen > ($length + strlen($ellipsis)) ) {
+					# Ellipsis won't make string longer/equal, the truncation point was OK.
+					$openTags = $pOpenTags; // reload state
+					$ret = $this->removeBadCharLast( $pRet ); // reload state, multi-byte char fix
+					$ret .= $ellipsis; // add ellipsis
 					break;
 				}
 			}
