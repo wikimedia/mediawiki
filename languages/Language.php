@@ -2306,7 +2306,7 @@ class Language {
 			if ( $displayLen >= $length && $bracketState == 0 && $entityState == 0 ) {
 				if ( !$testingEllipsis ) {
 					$testingEllipsis = true;
-					# Save were we are; we will truncate here unless
+					# Save where we are; we will truncate here unless
 					# the ellipsis actually makes the string longer.
 					$pOpenTags = $openTags; // save state
 					$pRet = $ret; // save state
