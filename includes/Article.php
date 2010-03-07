@@ -1253,23 +1253,14 @@ class Article {
 			// Use the default message text
 			$text = $this->getContent();
 		} else {
-			# If it is a user (talk) page of the current user, add true as parameter, otherwise false.
-			$isCurrent = false;
-			if ( ( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK )
-				&& $wgUser->getName() == $this->mTitle->getBaseText() )
-			{
-				$isCurrent = true;
-			}
-
-			# Don't show option "create this page" in the message if the user isn't allowed to.
 			$createErrors = $this->mTitle->getUserPermissionsErrors( 'create', $wgUser );
 			$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
 			$errors = array_merge( $createErrors, $editErrors );
 
 			if ( !count( $errors ) )
-				$text = wfMsgNoTrans( 'noarticletext', $isCurrent );
+				$text = wfMsgNoTrans( 'noarticletext' );
 			else
-				$text = wfMsgNoTrans( 'noarticletext-nopermission', $isCurrent );
+				$text = wfMsgNoTrans( 'noarticletext-nopermission' );
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
 		if ( !$this->hasViewableContent() ) {

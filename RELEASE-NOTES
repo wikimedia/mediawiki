@@ -26,8 +26,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10183) Users can now add personal styles and scripts to all skins via
   User:<name>/common.css and /common.js (if user css/js is enabled)
 * (bug 22748) Add anchors on Special:ListGroupRights  
-* (bug 22756) Adding a parameter to noarticletext/newarticletext which indicates
-  if it's the current user's user (talk) page ($1 is true in that case)
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive without
