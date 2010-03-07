@@ -10,9 +10,9 @@ abstract class MediaWiki_Setup extends PHPUnit_Framework_TestCase {
 		foreach( $tables as $table )
 			$oldTableNames[$table] = $db->tableName( $table );
 		if($db->getType() == 'oracle') {
-			$wgDBprefix === 'pt_';
+			$wgDBprefix = 'pt_';
 		} else {
-			$wgDBprefix === 'parsertest_';
+			$wgDBprefix = 'parsertest_';
 		}
 
 		$db->tablePrefix( $wgDBprefix );
