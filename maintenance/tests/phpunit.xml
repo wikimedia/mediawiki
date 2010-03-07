@@ -1,25 +1,25 @@
 <!-- See http://www.phpunit.de/manual/3.3/en/appendixes.configuration.html -->
 <phpunit bootstrap="./bootstrap.php"
-         colors="false"
+         colors="true"
+         backupGlobals="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
          stopOnFailure="false">
-         <!-- convertErrorsToExceptions="true" -->
-         <!-- convertNoticesToExceptions="true" -->
-         <!-- convertWarningsToExceptions="true" -->
   <testsuite name="MediaWiki Test Suite">
-    <directory>.</directory>
-    <!-- <file>HttpTest.php</file> -->
-    <!-- <file>SearchEngineTest.php</file> -->
-    <!-- <file>SiteConfigurationTest.php</file> -->
-    <!-- <file>RevisionTest.php</file> -->
-    <!-- <file>XmlTest.php</file> -->
-    <!-- <file>TimeAdjustTest.php</file> -->
-    <!-- <file>ApiTest.php</file> -->
-    <!-- <file>LanguageConverterTest.php</file> -->
-    <!-- <file>TitleTest.php</file> -->
-    <!-- <file>UploadFromChunksTest.php</file> -->
-    <!-- <file>LocalFileTest.php</file> -->
-    <!-- <file>XmlTest.php</file> -->
-    <!-- <file>MediaWikiParserTest.php</file> -->
+    <!-- <directory>.</directory> -->
+    <file>ApiTest.php</file>
+    <file>HttpTest.php</file>
+    <file>LanguageConverterTest.php</file>
+    <file>LocalFileTest.php</file>
+    <file>MediaWikiParserTest.php</file>
+    <file>RevisionTest.php</file>
+    <file>SearchEngineTest.php</file>
+    <file>SiteConfigurationTest.php</file>
+    <file>TimeAdjustTest.php</file>
+    <file>TitleTest.php</file>
+    <file>UploadFromChunksTest.php</file>
+    <file>XmlTest.php</file>
   </testsuite>
   <groups>
     <exclude>
