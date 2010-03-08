@@ -52,7 +52,13 @@ class ApiParse extends ApiBase {
 
 		// The parser needs $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
-		global $wgParser, $wgUser, $wgTitle, $wgEnableParserCache;
+		global $wgParser, $wgUser, $wgTitle, $wgEnableParserCache, $wgLang;
+		
+		if ( isset( $params['uselang'] ) && $params['uselang'] != $wgLang->getCode() ) {
+			$oldLang = $wgLang; //Backup wgLang
+			$wgLang = Language::factory( $params['uselang'] );
+		}
+		
 		$popts = new ParserOptions();
 		$popts->setTidy( true );
 		$popts->enableLimitReport();
@@ -204,6 +210,10 @@ class ApiParse extends ApiBase {
 		);
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
+		
+		if ( isset( $params['uselang'] ) ) {
+			$wgLang = $oldLang; //Reset $wgLang to $oldLang
+		}
 	}
 
 	private function formatLangLinks( $links ) {
@@ -299,14 +309,14 @@ class ApiParse extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'text' => 'Wikitext to parse',
-			'summary' => 'Summary to parse',
-			'redirects' => 'If the page parameter is set to a redirect, resolve it',
-			'title' => 'Title of page the text belongs to',
-			'page' => 'Parse the content of this page. Cannot be used together with text and title',
-			'oldid' => 'Parse the content of this revision. Overrides page',
+			'text' => 'Wikitext to parse.',
+			'summary' => 'Summary to parse.',
+			'redirects' => 'If the page parameter is set to a redirect, resolve it.',
+			'title' => 'Title of page the text belongs to.',
+			'page' => 'Parse the content of this page. Cannot be used together with text and title.',
+			'oldid' => 'Parse the content of this revision. Overrides page.',
 			'prop' => array( 'Which pieces of information to get.',
-					'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present'
+					'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present.'
 			),
 			'pst' => array(	'Do a pre-save transform on the input before parsing it.',
 					'Ignored if page or oldid is used.'
@@ -314,6 +324,7 @@ class ApiParse extends ApiBase {
 			'onlypst' => array( 'Do a PST on the input, but don\'t parse it.',
 					'Returns PSTed wikitext. Ignored if page or oldid is used.'
 			),
+			'uselang' => 'Which language to parse the request in.'
 		);
 	}
 
