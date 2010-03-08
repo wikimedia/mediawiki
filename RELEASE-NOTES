@@ -18,8 +18,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Changes since 1.15.1 ===
 
-* Installer now includes a check for a data corruption issue with certain
-  versions of libxml2 2.7 and PHP earlier than 5.2.9.
+* The installer now includes a check for a data corruption issue with certain
+  versions of libxml2 2.7 and PHP earlier than 5.2.9, and also for a PHP bug 
+  present in the official release of PHP 5.3.1.
 * (bug 20239) MediaWiki:Imagemaxsize does not contain anymore a <br /> tag which
   was displayed to the user
 * (bug 21150) SQLite no longer raise an error when deleting files
