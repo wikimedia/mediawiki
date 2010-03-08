@@ -92,7 +92,8 @@ class MoveBatch extends Maintenance {
 			$dbw->begin();
 			$err = $source->moveTo( $dest, false, $reason );
 			if( $err !== true ) {
-				$this->output( "\nFAILED: $err" );
+				$msg = array_shift( $err[0] );
+				$this->output( "\nFAILED: " . wfMsg( $msg, $err[0] ) );
 			}
 			$dbw->commit();
 			$this->output( "\n" );
