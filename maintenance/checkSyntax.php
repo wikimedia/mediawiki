@@ -86,7 +86,7 @@ class CheckSyntax extends Maintenance {
 			'\bphplot-',
 			"/svggraph/",
 			"\bjsmin.php$",
-			"OggHandler/PEAR/",
+			"PEAR/File_Ogg/",
 			"QPoll/Excel/",
 			"/geshi/",
 			"/smarty/",
