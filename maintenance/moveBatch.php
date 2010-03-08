@@ -81,7 +81,8 @@ for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 	$dbw->begin();
 	$err = $source->moveTo( $dest, false, $reason );
 	if( $err !== true ) {
-		print "\nFAILED: $err";
+		$msg = array_shift( $err[0] );
+		print "\nFAILED: " . wfMsg( $msg, $err[0] );
 	}
 	$dbw->immediateCommit();
 	print "\n";
