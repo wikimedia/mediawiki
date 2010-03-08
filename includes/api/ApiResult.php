@@ -165,6 +165,7 @@ class ApiResult extends ApiBase {
 	 * Adds a content element to an array.
 	 * Use this function instead of hardcoding the '*' element.
 	 * @param $arr array to add the content element to
+	 * @param $value Mixed
 	 * @param $subElemName string when present, content element is created
 	 *  as a sub item of $arr. Use this parameter to create elements in
 	 *  format <elem>text</elem> without attributes
