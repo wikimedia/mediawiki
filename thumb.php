@@ -20,6 +20,9 @@ wfLogProfilingData();
 
 function wfThumbMain() {
 	wfProfileIn( __METHOD__ );
+
+	$headers = array();
+
 	// Get input parameters
 	if ( get_magic_quotes_gpc() ) {
 		$params = array_map( 'stripslashes', $_REQUEST );
@@ -65,6 +68,17 @@ function wfThumbMain() {
 		$img = wfLocalFile( $fileName );
 	}
 
+	// Check permissions if there are read restrictions
+	if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
+		if ( !$img->getTitle()->userCanRead() ) {
+			wfThumbError( 403, 'Access denied. You do not have permission to access ' . 
+				'the source file.' );
+			return;
+		}
+		$headers[] = 'Cache-Control: private';
+		$headers[] = 'Vary: Cookie';
+	}
+
 	if ( !$img ) {
 		wfThumbError( 404, wfMsg( 'badtitletext' ) );
 		return;
@@ -101,7 +115,7 @@ function wfThumbMain() {
 			$thumbPath = $img->getThumbPath( $thumbName );
 
 			if ( is_file( $thumbPath ) ) {
-				wfStreamFile( $thumbPath );
+				wfStreamFile( $thumbPath, $headers );
 				return;
 			}
 		}
@@ -128,7 +142,7 @@ function wfThumbMain() {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'Image was not scaled, ' .
 			'is the requested width bigger than the source?' );
 	} else {
-		wfStreamFile( $thumb->getPath() );
+		wfStreamFile( $thumb->getPath(), $headers );
 	}
 	if ( $errorMsg !== false ) {
 		wfThumbError( 500, $errorMsg );
@@ -143,6 +157,9 @@ function wfThumbError( $status, $msg ) {
 	header( 'Content-Type: text/html; charset=utf-8' );
 	if ( $status == 404 ) {
 		header( 'HTTP/1.1 404 Not found' );
+	} elseif ( $status == 403 ) {
+		header( 'HTTP/1.1 403 Forbidden' );
+		header( 'Vary: Cookie' );
 	} else {
 		header( 'HTTP/1.1 500 Internal server error' );
 	}
