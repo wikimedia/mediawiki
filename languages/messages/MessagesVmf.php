@@ -901,7 +901,9 @@ Nôr dsajln, dii was midem dsajchn * ôôfangn, wärn berigsichdichd. Un dr ärs
 'monthsall'     => 'ale',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Ändrungn in dr beoobachdzbgslisdn',
 'watchlisttools-edit' => 'Beobachdungslisdn dsajchn un ändârn',
+'watchlisttools-raw'  => "In dr beoobachdungslisdn ds'fuâs rumwärschdln",
 
 # Special:SpecialPages
 'specialpages' => 'Schbedsjaal-sajdn',
