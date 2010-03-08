@@ -1284,6 +1284,9 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'upload-misc-error'   => 'Hitilafu ya kupakia isiyojulikana',
 'upload-unknown-size' => 'Ukubwa haujulikani',
 
+# HTTP errors
+'http-invalid-url' => 'URL batili: $1',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'KISARA (URL) haikupatikana',
 
