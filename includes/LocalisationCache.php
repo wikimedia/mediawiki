@@ -586,9 +586,6 @@ class LocalisationCache {
 			$allData['defaultUserOptionOverrides'] = array();
 		}
 
-		# Set the preload key
-		$allData['preload'] = $this->buildPreload( $allData );
-
 		# Set the list keys
 		$allData['list'] = array();
 		foreach ( self::$splitKeys as $key ) {
@@ -602,6 +599,9 @@ class LocalisationCache {
 			throw new MWException( __METHOD__.': Localisation data failed sanity check! ' . 
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}
+
+		# Set the preload key
+		$allData['preload'] = $this->buildPreload( $allData );
 
 		# Save to the process cache and register the items loaded
 		$this->data[$code] = $allData;
