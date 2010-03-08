@@ -4357,6 +4357,23 @@ Table attribute safety
 
 !! end
 
+!! test
+CSS line continuation 1
+!! input
+<div style="background-image: u\&#10;rl(test.jpg);"></div>
+!! result
+<div></div>
+
+!! end
+
+!! test
+CSS line continuation 2
+!! input
+<div style="background-image: u\&#13;rl(test.jpg); "></div>
+!! result
+<div></div>
+
+!! end
 
 !! article
 Template:Identity

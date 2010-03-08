@@ -26,6 +26,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21150) SQLite no longer raise an error when deleting files
 * (bug 20880) Fixed updater failure on SQLite backend
 * upgrade1_5.php now requires to be run --update option to prevent confusion
+* Fixed a CSS validation issue which allowed external images to be included 
+  into wikis where that is disallowed by configuration.
 
 === Changes since 1.15.0 ===
 
