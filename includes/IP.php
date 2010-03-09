@@ -154,19 +154,19 @@ class IP {
 
 	/**
 	 * Given an unsigned integer, returns an IPv6 address in octet notation
-	 * @param $ip integer IP address.
+	 * @param $ip_int integer IP address.
 	 * @return string
 	 */
 	public static function toOctet( $ip_int ) {
-   		// Convert to padded uppercase hex
-   		$ip_hex = wfBaseConvert($ip_int, 10, 16, 32, false);
-   		// Separate into 8 octets
-   		$ip_oct = substr( $ip_hex, 0, 4 );
-   		for ($n=1; $n < 8; $n++) {
-   			$ip_oct .= ':' . substr($ip_hex, 4*$n, 4);
-   		}
-   		// NO leading zeroes
-   		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
+		// Convert to padded uppercase hex
+		$ip_hex = wfBaseConvert($ip_int, 10, 16, 32, false);
+		// Separate into 8 octets
+		$ip_oct = substr( $ip_hex, 0, 4 );
+		for ($n=1; $n < 8; $n++) {
+			$ip_oct .= ':' . substr($ip_hex, 4*$n, 4);
+		}
+		// NO leading zeroes
+		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
 		return $ip_oct;
 	}
 
@@ -183,19 +183,19 @@ class IP {
 	
 	/**
 	 * Given a hexadecimal number, returns to an IPv6 address in octet notation
-	 * @param $ip string hex IP
+	 * @param $ip_hex string hex IP
 	 * @return string
 	 */
 	public static function hextoOctet( $ip_hex ) {
-   		// Convert to padded uppercase hex
-   		$ip_hex = str_pad( strtoupper($ip_hex), 32, '0');
-   		// Separate into 8 octets
-   		$ip_oct = substr( $ip_hex, 0, 4 );
-   		for ($n=1; $n < 8; $n++) {
-   			$ip_oct .= ':' . substr($ip_hex, 4*$n, 4);
-   		}
-   		// NO leading zeroes
-   		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
+		// Convert to padded uppercase hex
+		$ip_hex = str_pad( strtoupper($ip_hex), 32, '0');
+		// Separate into 8 octets
+		$ip_oct = substr( $ip_hex, 0, 4 );
+		for ($n=1; $n < 8; $n++) {
+			$ip_oct .= ':' . substr($ip_hex, 4*$n, 4);
+		}
+		// NO leading zeroes
+		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
 		return $ip_oct;
 	}
 	
@@ -357,7 +357,7 @@ class IP {
 	 * Split out an IP block as an array of 4 bytes and a mask,
 	 * return false if it can't be determined
 	 *
-	 * @param $ip string A quad dotted/octet IP address
+	 * @param $ipblock string A quad dotted/octet IP address
 	 * @return array
 	 */
 	public static function toArray( $ipblock ) {
