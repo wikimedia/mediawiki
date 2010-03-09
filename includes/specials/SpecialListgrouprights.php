@@ -63,8 +63,7 @@ class SpecialListGroupRights extends SpecialPage {
 			} else {
 				$grouppage = $this->skin->link(
 					Title::newFromText( $grouppageLocalized ),
-					htmlspecialchars($groupnameLocalized),
-					array( 'name' => $group )
+					htmlspecialchars($groupnameLocalized)
 				);
 			}
 
@@ -96,16 +95,17 @@ class SpecialListGroupRights extends SpecialPage {
 			$addgroupsSelf = isset( $wgGroupsAddToSelf[$group] ) ? $wgGroupsAddToSelf[$group] : array();
 			$removegroupsSelf = isset( $wgGroupsRemoveFromSelf[$group] ) ? $wgGroupsRemoveFromSelf[$group] : array();
 
-			$wgOut->addHTML(
-				'<tr>
-					<td>' .
+			$id = $group == '*' ? false : Sanitizer::escapeId( $group );
+			$wgOut->addHTML( Html::rawElement( 'tr', array( 'id' => $id ),
+				'
+				<td>' .
 						$grouppage . $grouplink .
 					'</td>
 					<td>' .
 						self::formatPermissions( $permissions, $revoke, $addgroups, $removegroups, $addgroupsSelf, $removegroupsSelf ) .
 					'</td>
-				</tr>'
-			);
+				'
+			) );
 		}
 		$wgOut->addHTML(
 			Xml::closeElement( 'table' ) . "\n<br /><hr />\n"
