@@ -745,6 +745,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'resetpass_forbidden'       => 'Passord kan ikkje endrast',
 'resetpass-no-info'         => 'Du må vera innlogga for å få direktetilgang til denne sida.',
 'resetpass-submit-loggedin' => 'Endra passord',
+'resetpass-submit-cancel'   => 'Avbryt',
 'resetpass-wrong-oldpass'   => 'Feil mellombels eller noverande passord.
 Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels passord.',
 'resetpass-temp-password'   => 'Mellombels passord:',

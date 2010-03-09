@@ -12,6 +12,7 @@
  * @author Carla404
  * @author Crazymadlover
  * @author Daemorris
+ * @author Danielsouzat
  * @author Diego Queiroz
  * @author Eduardo.mps
  * @author GKnedo
@@ -632,6 +633,7 @@ Por favor, reporte este fato a um administrador, fazendo notar a URL.',
 'readonly_lag'         => 'O banco de dados foi automaticamente bloqueado enquanto os servidores secundários se sincronizam com o principal',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
+'fileappenderror'      => 'Não foi possível adicionar "$1" a "$2".',
 'filecopyerror'        => 'Não foi possível copiar o arquivo "$1" para "$2".',
 'filerenameerror'      => 'Não foi possível renomear o arquivo "$1" para "$2".',
 'filedeleteerror'      => 'Não foi possível eliminar o arquivo "$1".',
@@ -719,6 +721,7 @@ Os nomes de utilizador são sensíveis à capitalização.
 Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'nosuchusershort'            => 'Não existe um usuário com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Você precisa especificar um nome de usuário.',
+'login-userblocked'          => 'Este usuário está bloqueado. Entrada proibida.',
 'wrongpassword'              => 'A senha que introduziu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'         => 'A senha introduzida está em branco. Por favor, tente novamente.',
 'passwordtooshort'           => 'As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.',
@@ -770,6 +773,7 @@ Por favor aguarde antes de tentar novamente.',
 'resetpass_forbidden'       => 'As senhas não podem ser alteradas',
 'resetpass-no-info'         => 'Você precisa estar autenticado para acessar esta página diretamente.',
 'resetpass-submit-loggedin' => 'Alterar senha',
+'resetpass-submit-cancel'   => 'Cancelar',
 'resetpass-wrong-oldpass'   => 'Senha temporária ou atual inválida. 
 Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senha temporária.',
 'resetpass-temp-password'   => 'Senha temporária:',
@@ -873,6 +877,8 @@ Você pode [[Special:Search/{{PAGENAME}}|procurar este título de página]] em o
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar os registos relacionados] </span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view'   => 'Conta de usuário "$1" não está registrada.',
+'blocked-notice-logextract'        => 'Este usuário está atualmente bloqueado.
+O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'clearyourcache'                   => "'''Nota - Depois de salvar, você terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Macintosh);
 '''Konqueror:''' clique no botão ''Recarregar'' ou pressione ''F5'';
@@ -1688,6 +1694,13 @@ Esta wiki está configurada como uma wiki pública.
 Para melhor segurança, o img_auth.php está desativado.',
 'img-auth-noread'       => 'Usuário não tem acesso para ler "$1".',
 
+# HTTP errors
+'http-invalid-url'      => 'URL inválida: $1',
+'http-request-error'    => 'A requisição HTTP falhou devido a um erro desconhecido.',
+'http-read-error'       => 'Erro de leitura HTTP.',
+'http-timed-out'        => 'Esgotado o tempo de espera da requisição HTTP.',
+'http-host-unreachable' => 'Não foi possível atingir a URL.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível acessar a URL',
 'upload-curl-error6-text'  => 'Não foi possível acessar o endereço (URL) fornecido. Por gentileza, se certifique que o endereço foi fornecido corretamente e de que o site esteja acessível.',
@@ -2467,6 +2480,7 @@ Isto pode ser uma mudança drástica e inesperada para uma página popular; por 
 
 Nestes casos, você terá que mover ou mesclar a página manualmente, se assim desejar.",
 'movearticle'                  => 'Mover página',
+'moveuserpage-warning'         => "'''Aviso:''' Você irá mover uma página de usuário. Note que apenas a página será movida, ''sem'' alterar o nome do usuário.",
 'movenologin'                  => 'Não autenticado',
 'movenologintext'              => 'Você precisa ser um usuário registrado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
 'movenotallowed'               => 'Você não possui permissão para mover páginas.',
