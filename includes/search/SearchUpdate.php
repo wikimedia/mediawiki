@@ -37,7 +37,7 @@ class SearchUpdate {
 
 		if( $this->mText === false ) {
 			$search->updateTitle($this->mId,
-				Title::indexTitle( $this->mNamespace, $this->mTitle ));
+				$search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -97,8 +97,8 @@ class SearchUpdate {
 		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
 
 		# Perform the actual update
-		$search->update($this->mId, Title::indexTitle( $this->mNamespace, $this->mTitle ),
-				$text);
+		$search->update($this->mId, $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ),
+				$search->normalizeText( $text ) );
 
 		wfProfileOut( $fname );
 	}
