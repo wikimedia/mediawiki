@@ -59,11 +59,11 @@ class SpecialListGroupRights extends SpecialPage {
 
 			if( $group == '*' ) {
 				// Do not make a link for the generic * group
-				$grouppage = htmlspecialchars($groupnameLocalized);
+				$grouppage = htmlspecialchars( $groupnameLocalized );
 			} else {
 				$grouppage = $this->skin->link(
 					Title::newFromText( $grouppageLocalized ),
-					htmlspecialchars($groupnameLocalized)
+					htmlspecialchars( $groupnameLocalized )
 				);
 			}
 
@@ -97,11 +97,9 @@ class SpecialListGroupRights extends SpecialPage {
 
 			$id = $group == '*' ? false : Sanitizer::escapeId( $group );
 			$wgOut->addHTML( Html::rawElement( 'tr', array( 'id' => $id ),
-				'
-				<td>' .
-						$grouppage . $grouplink .
-					'</td>
-					<td>' .
+				"
+				<td>$grouppage$grouplink</td>
+					<td>" .
 						self::formatPermissions( $permissions, $revoke, $addgroups, $removegroups, $addgroupsSelf, $removegroupsSelf ) .
 					'</td>
 				'
