@@ -571,7 +571,7 @@ Os mai rhywun arall a holodd am y cyfrinair, ynteu eich bod wedi cofio\'r hen gy
 Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cyfarwyddiadau yn yr e-bost hwnnw er mwyn cadarnhau bod y cyfeiriad yn un dilys.',
 'throttled-mailpassword'     => "Anfonwyd e-bost atoch i'ch atgoffa o'ch cyfrinair eisoes, yn ystod y $1 {{PLURAL:$1|awr|awr|awr|awr|awr|awr}} diwethaf.
 Er mwyn rhwystro camddefnydd, dim ond un e-bost i'ch atgoffa o'ch cyfrinair gaiff ei anfon bob yn $1 {{PLURAL:$1|awr|awr|awr|awr|awr|awr}}.",
-'mailerror'                  => 'Gwall wrth ddanfon e-bost: $1',
+'mailerror'                  => 'Gwall wrth ddanfon yr e-bost: $1',
 'acct_creation_throttle_hit' => "Mae ymwelwyr sy'n defnyddio'ch cyfeiriad IP wedi creu $1 {{PLURAL:$1|cyfrif|cyfrif|gyfrif|chyfrif|chyfrif|cyfrif}} yn ystod y diwrnod diwethaf, sef y mwyafswm a ganiateir mewn diwrnod.
 Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfrifon ar hyn o bryd.",
 'emailauthenticated'         => 'Cadarnhawyd eich cyfeiriad e-bost am $3 ar $2.',
@@ -1144,6 +1144,7 @@ Dyma allwedd wedi ei chreu ar hap y gallwch ei defnyddio: $1",
 'prefs-files'                   => 'Ffeiliau',
 'prefs-custom-css'              => 'CSS o hunan-ddewis',
 'prefs-custom-js'               => 'JS o hunan-ddewis',
+'prefs-common-css-js'           => 'CSS/JS ar y cyd ar gyfer pob gwedd:',
 'prefs-reset-intro'             => "Gallwch ddefnyddio'r dudalen hon i ailosod eich dewisiadau i'r rhai diofyn.
 Ni allwch ddadwneud y weithred hon.",
 'prefs-emailconfirm-label'      => "Cadarnhau'r e-bost:",

@@ -75,8 +75,9 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'پیوندون جیر خط دأکشی بأوو',
-'tog-justify'   => 'بندون ته‌موم چین هاکه‌رده‌ن',
+'tog-underline'       => 'پیوندون جیر خط دأکشی بأوو',
+'tog-highlightbroken' => 'ناقص پیوندون قالب بندی<a href="" class="new">اینجوری</a>(امکان دیگه:اینجوری<a href="" class="internal">؟</a>).',
+'tog-justify'         => 'بندون ته‌موم چین هاکه‌رده‌ن',
 
 'underline-default' => 'مه چأرخ‌گأر ده‌لخاء',
 

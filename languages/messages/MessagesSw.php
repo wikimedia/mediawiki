@@ -1182,12 +1182,15 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 # Rights
 'right-read'          => 'Kusoma kurasa',
 'right-edit'          => 'Kuhariri kurasa',
+'right-createpage'    => 'Kuanzisha kurasa (ambazo si kurasa za majadiliano)',
 'right-createtalk'    => 'Kuanzisha kurasa za majadiliano',
 'right-createaccount' => 'Kufungua akaunti mpya za watumiaji',
 'right-minoredit'     => 'Kutia alama kwamba badiliko ni dogo',
 'right-move'          => 'Kusogeza kurasa',
+'right-move-subpages' => 'Kusogeza kurasa pamoja na kurasa zake ndogo',
 'right-movefile'      => 'Kusogeza mafaili',
 'right-upload'        => 'Kupakia mafaili',
+'right-upload_by_url' => 'Kupakia mafaili kutoka kwa URL',
 'right-delete'        => 'Kufuta kurasa',
 
 # User rights log
