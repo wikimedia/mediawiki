@@ -26,7 +26,6 @@ class LanguageZh_hans extends Language {
 		$s = self::convertDoubleWidth( $string );
 		$s = trim( $s );
 		$s = self::wordSegmentation( $s );
-		$s = self::convertDoubleWidth( $s );
 		$s = parent::normalizeForSearch( $s );
 
 		wfProfileOut( __METHOD__ );
