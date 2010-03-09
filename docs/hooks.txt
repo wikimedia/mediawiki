@@ -964,14 +964,14 @@ $linkType: The external link type
 
 'LinksUpdate': At the beginning of LinksUpdate::doUpdate() just before the
 actual update
-&$linksUpdate: the LinkUpdate object
+&$linksUpdate: the LinksUpdate object
 
 'LinksUpdateComplete': At the end of LinksUpdate::doUpdate() when updating has
 completed
-&$linksUpdate: the LinkUpdate object
+&$linksUpdate: the LinksUpdate object
 
 'LinksUpdateConstructed': At the end of LinksUpdate() is contruction.
-&$linksUpdate: the LinkUpdate object
+&$linksUpdate: the LinksUpdate object
 
 'ListDefinedTags': When trying to find all defined tags.
 &$tags: The list of tags.
