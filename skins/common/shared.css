@@ -46,6 +46,10 @@ div#mw-js-message {
 /**
  * File histories
  */
+h2#filehistory {
+	clear: both;
+}
+
 table.filehistory th,
 table.filehistory td {
 	vertical-align:top;
