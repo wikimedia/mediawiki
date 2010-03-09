@@ -56,7 +56,10 @@ class SearchEngine {
 	 * @return string
 	 */
 	public function normalizeText( $string ) {
-		return $string;
+		global $wgContLang;
+
+		// Some languages such as Chinese require word segmentation
+		return $wgContLang->wordSegmentation( $string );
 	}
 
 	/**
