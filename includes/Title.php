@@ -2157,7 +2157,8 @@ class Title {
 			return $this->mLatestID;
 
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB(DB_MASTER) : wfGetDB(DB_SLAVE);
-		$this->mLatestID = $db->selectField( 'page', 'page_latest', $this->pageCond(), __METHOD__ );
+		$this->mLatestID = (int)$db->selectField(
+			'page', 'page_latest', $this->pageCond(), __METHOD__ );
 		return $this->mLatestID;
 	}
 
