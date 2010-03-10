@@ -50,7 +50,7 @@ class BatchedQueryRunner extends Maintenance {
 		} while ( $affected > 0 );
 	}
 
-	protected function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
 }

@@ -40,7 +40,7 @@ class UpdateSearchIndex extends Maintenance {
 		$this->addOption( 'l', 'How long the searchindex and revision tables will be locked for', false, true );
 	}
 
-	protected function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
 
