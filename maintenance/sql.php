@@ -70,7 +70,7 @@ class MwSql extends Maintenance {
 		}
 	}
 	
-	protected function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
 }

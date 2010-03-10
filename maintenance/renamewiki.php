@@ -33,7 +33,7 @@ class RenameWiki extends Maintenance {
 		$this->addArg( 'newdb', 'New DB name' );
 	}
 	
-	protected function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
 

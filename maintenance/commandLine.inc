@@ -18,7 +18,7 @@ class CommandLineInc extends Maintenance {
 		}
 	}
 
-	protected function getDbType() {
+	public function getDbType() {
 		global $wgUseNormalUser;
 
 		return ( isset( $wgUseNormalUser ) && $wgUseNormalUser ) ?

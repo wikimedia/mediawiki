@@ -30,7 +30,7 @@ class RenameDbPrefix extends Maintenance {
 		$this->addOption( "new", "New db prefix [0 for none]", true, true );
 	}
 
-	protected function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
 

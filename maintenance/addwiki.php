@@ -38,7 +38,7 @@ class AddWiki extends Maintenance {
 		$this->addArg( 'dbname', 'Name of database to create' );
 	}
 
-	protected function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
 
