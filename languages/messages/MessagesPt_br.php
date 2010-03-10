@@ -25,6 +25,7 @@
  * @author LeonardoG
  * @author Lijealso
  * @author Luckas Blade
+ * @author McDutchie
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
  * @author Vuln
@@ -501,7 +502,7 @@ $messages = array(
 'postcomment'       => 'Nova seção',
 'articlepage'       => 'Ver página de conteúdo',
 'talk'              => 'Discussão',
-'views'             => 'Acessos',
+'views'             => 'Vistas',
 'toolbox'           => 'Ferramentas',
 'userpage'          => 'Ver página de usuário',
 'projectpage'       => 'Ver página de projeto',

@@ -406,7 +406,7 @@ $1',
 'versionrequiredtext' => 'Le version $1 de MediaWiki es requirite pro usar iste pagina. Vide [[Special:Version|le pagina de version]].',
 
 'ok'                      => 'OK',
-'retrievedfrom'           => 'Recuperate de "$1"',
+'retrievedfrom'           => 'Obtenite de "$1"',
 'youhavenewmessages'      => 'Tu ha $1 ($2).',
 'newmessageslink'         => 'nove messages',
 'newmessagesdifflink'     => 'ultime modification',
@@ -1062,7 +1062,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'lineno'                   => 'Linea $1:',
 'compareselectedversions'  => 'Comparar versiones seligite',
 'showhideselectedversions' => 'Revelar/celar le versiones seligite',
-'editundo'                 => 'annullar',
+'editundo'                 => 'disfacer',
 'diff-multi'               => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non es monstrate)',
 
 # Search results
@@ -2652,7 +2652,7 @@ Tu pote vider su codice-fonte.',
 'tooltip-recreate'                => 'Recrear le pagina nonobstante que illo ha essite delite',
 'tooltip-upload'                  => 'Comenciar le incargamento',
 'tooltip-rollback'                => '"Revocar" reverte le modification(es) de iste pagina del ultime contributor con un singule clic.',
-'tooltip-undo'                    => '"Annullar" reverte iste modification e aperi le formulario de modification in modo de previsualistion.
+'tooltip-undo'                    => '"Disfacer" reverte iste modification e aperi le formulario de modification in modo de previsualisation.
 Es possibile adder un motivo in le summario.',
 
 # Stylesheets
