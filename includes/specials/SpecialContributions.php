@@ -140,8 +140,8 @@ class SpecialContributions extends SpecialPage {
 
 	/**
 	 * Generates the subheading with links
-	 * @param Title $nt @see Title object for the target
-	 * @param integer $id User ID for the target
+	 * @param $nt Title object for the target
+	 * @param $id Integer: User ID for the target
 	 * @return String: appropriately-escaped HTML to be output literally
 	 * @todo Fixme: almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
 	 */
@@ -257,7 +257,7 @@ class SpecialContributions extends SpecialPage {
 
 	/**
 	 * Generates the namespace selector form with hidden attributes.
-	 * @param $this->opts Array: the options to be included.
+	 * @return String: HTML fragment
 	 */
 	protected function getForm() {
 		global $wgScript;
@@ -337,7 +337,7 @@ class SpecialContributions extends SpecialPage {
 	
 	/**
 	 * Output a subscription feed listing recent edits to this page.
-	 * @param string $type
+	 * @param $type String
 	 */
 	protected function feed( $type ) {
 		global $wgRequest, $wgFeed, $wgFeedClasses, $wgFeedLimit;
