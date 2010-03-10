@@ -6,7 +6,7 @@
  * @ingroup Language
  */
 class LanguageJa extends Language {
-	function wordSegmentation( $string ) {
+	function segmentByWord( $string ) {
 		// Strip known punctuation ?
 		// $s = preg_replace( '/\xe3\x80[\x80-\xbf]/', '', $s ); # U3000-303f
 

@@ -63,9 +63,18 @@ class UpdateSearchIndex extends Maintenance {
 		$lockTime = $this->getOption( 'l', 20 );
 		
 		$this->doUpdateSearchIndex( $start, $end, $lockTime );
-		$file = fopen( $posFile, 'w' );
-		fwrite( $file, $end );
-		fclose( $file );
+		if( is_writable( dirname( realpath( $posFile ) ) ) ) {
+			$file = fopen( $posFile, 'w' );
+			if( $file !== false ) {
+				fwrite( $file, $end );
+				fclose( $file );
+			} else {
+			echo posix_get_last_error();
+				$this->output( "*** Couldn't write to the $posFile!" );
+			}
+		} else {
+			$this->output( "*** Couldn't write to the $posFile!" );
+		}
 	}
 	
 	private function doUpdateSearchIndex( $start, $end, $maxLockTime ) {
@@ -89,83 +98,22 @@ class UpdateSearchIndex extends Maintenance {
 		  ";
 		$res = $dbw->query( $sql, __METHOD__ );
 
+		$this->updateSearchIndex($maxLockTime, array($this, 'searchIndexUpdateCallback'), $dbw, $res);
 
-		# Lock searchindex
-		if ( $maxLockTime ) {
-			$this->output( "   --- Waiting for lock ---" );
-			$this->lockSearchindex( $dbw );
-			$lockTime = time();
-			$this->output( "\n" );
-		}
-
-		# Loop through the results and do a search update
-		foreach ( $res as $row ) {
-			# Allow reads to be processed
-			if ( $maxLockTime && time() > $lockTime + $maxLockTime ) {
-				$this->output( "    --- Relocking ---" );
-				$this->relockSearchindex( $dbw );
-				$lockTime = time();
-				$this->output( "\n" );
-			}
-			if ( $row->rc_type == RC_LOG ) {
-				continue;
-			} elseif ( $row->rc_type == RC_MOVE || $row->rc_type == RC_MOVE_OVER_REDIRECT ) {
-				# Rename searchindex entry
-				$titleObj = Title::makeTitle( $row->rc_moved_to_ns, $row->rc_moved_to_title );
-				$title = $titleObj->getPrefixedDBkey();
-				$this->output( "$title..." );
-				$u = new SearchUpdate( $row->rc_cur_id, $title, false );
-				$this->output( "\n" );
-			} else {
-				// Get current revision
-				$rev = Revision::loadFromPageId( $dbw, $row->rc_cur_id );
-				if( $rev ) {
-					$titleObj = $rev->getTitle();
-					$title = $titleObj->getPrefixedDBkey();
-					$this->output( $title );
-					# Update searchindex
-					$u = new SearchUpdate( $row->rc_cur_id, $titleObj->getText(), $rev->getText() );
-					$u->doUpdate();
-					$this->output( "\n" );
-				}
-			}
-		}
-
-		# Unlock searchindex
-		if ( $maxLockTime ) {
-			$this->output( "    --- Unlocking --" );
-			$this->unlockSearchindex( $dbw );
-			$this->output( "\n" );
-		}
 		$this->output( "Done\n" );
 	}
 
-	/**
-	 * Lock the search index
-	 * @param &$db Database object
-	 */
-	private function lockSearchindex( &$db ) {
-		$write = array( 'searchindex' );
-		$read = array( 'page', 'revision', 'text', 'interwiki' );
-		$db->lockTables( $read, $write, 'updateSearchIndex.php ' . __METHOD__ );
-	}
-
-	/**
-	 * Unlock the tables
-	 * @param &$db Database object
-	 */
-	private function unlockSearchindex( &$db ) {
-		$db->unlockTables( 'updateSearchIndex.php ' . __METHOD__ );
-	}
-	
-	/**
-	 * Unlock and lock again
-	 * Since the lock is low-priority, queued reads will be able to complete
-	 * @param &$db Database object
-	 */
-	private function relockSearchindex( &$db ) {
-		$this->unlockSearchindex( $db );
-		$this->lockSearchindex( $db );
+	public function searchIndexUpdateCallback($dbw, $row) {
+		if ( $row->rc_type == RC_MOVE || $row->rc_type == RC_MOVE_OVER_REDIRECT ) {
+			# Rename searchindex entry
+			$titleObj = Title::makeTitle( $row->rc_moved_to_ns, $row->rc_moved_to_title );
+			$title = $titleObj->getPrefixedDBkey();
+			$this->output( "$title..." );
+			$u = new SearchUpdate( $row->rc_cur_id, $title, false );
+			$this->output( "\n" );
+		} elseif ( $row->rc_type !== RC_LOG ) {
+			$this->updateSearchIndexForPage( $dbw, $row->rc_cur_id );
+		}
 	}
 }
 
