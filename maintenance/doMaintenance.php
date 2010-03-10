@@ -76,6 +76,11 @@ if( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
 } else {
 	require_once( $maintenance->loadSettings() );
 }
+if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
+		is_readable( "$IP/AdminSettings.php" ) )
+{
+	require( "$IP/AdminSettings.php" );
+}
 $maintenance->finalSetup();
 // Some last includes
 require_once( "$IP/includes/Setup.php" );
