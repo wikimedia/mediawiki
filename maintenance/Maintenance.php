@@ -292,7 +292,7 @@ abstract class Maintenance {
 	 *    Maintenance::DB_ADMIN -  For admin DB access
 	 * @return int
 	 */
-	protected function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_STD;
 	}
 
