@@ -13,7 +13,7 @@ class LanguageZh_hans extends Language {
 	 * for now just treat each character as a word.
 	 * @todo Fixme: only do this for Han characters...
 	 */
-	function wordSegmentation( $string ) {
+	function segmentByWord( $string ) {
 		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";
 		$s = self::insertSpace( $string, $reg );
 		return $s;
@@ -25,7 +25,7 @@ class LanguageZh_hans extends Language {
 		// Double-width roman characters
 		$s = self::convertDoubleWidth( $string );
 		$s = trim( $s );
-		$s = self::wordSegmentation( $s );
+		$s = self::segmentByWord( $s );
 		$s = parent::normalizeForSearch( $s );
 
 		wfProfileOut( __METHOD__ );

@@ -1695,7 +1695,7 @@ class Language {
 	 * @param $string String
 	 * @return String
 	 */
-	function wordSegmentation( $string ) {
+	function segmentByWord( $string ) {
 		return $string;
 	}
 

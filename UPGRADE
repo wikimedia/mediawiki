@@ -53,10 +53,18 @@ deleted file archives, and any custom skins.
 You will need to have $wgDBadminuser and $wgDBadminpass set in your
 LocalSettings.php, see there for more info.
 
-From the command line, browse to the "maintenance" directory and run the 
+From the command line, browse to the "maintenance" directory and run the
 update.php script to check and update the schema. This will insert missing
 tables, update existing tables, and move data around as needed. In most cases,
 this is successful and nothing further needs to be done.
+
+If you have a Chinese or Japanese wiki ($wgLanguageCode is set to one
+of "zh", "ja", or "yue") and you are using MySQL fulltext search, you
+will probably want to update the search index.
+
+In the "maintenance" directory, run the updateDoubleWidthSearch.php
+script.  This will update the searchindex table for those pages that
+contain double-byte latin characters.
 
 === Check configuration settings ===
 
@@ -67,6 +75,7 @@ notes to check for configuration changes which would alter the expected
 behaviour of MediaWiki.
 
 === Check installed extensions ===
+
 In MediaWiki 1.14 some extensions are migrated into the core. Please see the
 HISTORY section "Migrated extensions" and disable these extensions in your
 LocalSettings.php

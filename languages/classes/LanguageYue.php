@@ -12,7 +12,7 @@ class LanguageYue extends Language {
 	 * for now just treat each character as a word.
 	 * @todo Fixme: only do this for Han characters...
 	 */
-	function wordSegmentation( $string ) {
+	function segmentByWord( $string ) {
 		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";
 		$s = self::insertSpace( $string, $reg );
 		return $s;
