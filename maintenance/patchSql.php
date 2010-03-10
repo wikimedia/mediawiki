@@ -30,7 +30,7 @@ class PatchSql extends Maintenance {
 		$this->addArg( 'patch-name', 'Name of the patch file, either full path or in maintenance/archives' );
 	}
 
-	protected function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
 
