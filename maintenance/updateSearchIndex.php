@@ -69,7 +69,6 @@ class UpdateSearchIndex extends Maintenance {
 				fwrite( $file, $end );
 				fclose( $file );
 			} else {
-			echo posix_get_last_error();
 				$this->output( "*** Couldn't write to the $posFile!" );
 			}
 		} else {
