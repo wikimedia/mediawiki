@@ -1057,11 +1057,11 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'prefs-help-watchlist-token'    => "An ampinend sto camp-sì con na ciav segreta as genererà un fluss RSS për la ròba che as ten sot euj.
 Chicassìa che a conossa la ciav an sto camp-sì a podrà lese la ròba ch'a ten sot euj, parèj ch'a serna un valor sigur.
 Ambelessì a-i é un valor generà a asar che a peul dovré: $1",
-'savedprefs'                    => 'Ij sò gust a son stait salvà.',
+'savedprefs'                    => 'Ij sò gust a son ëstàit salvà.',
 'timezonelegend'                => 'Fus orari:',
 'localtime'                     => 'Ora local:',
-'timezoneuseserverdefault'      => 'Dòvra ij default dël server:',
-'timezoneuseoffset'             => 'Àutr (spessìfica la diferensa)',
+'timezoneuseserverdefault'      => 'Dovré lë stàndard dël servent',
+'timezoneuseoffset'             => 'Àutr (spessifiché la diferensa)',
 'timezoneoffset'                => 'Diferensa oraria¹:',
 'servertime'                    => 'Ora dël server:',
 'guesstimezone'                 => "Ciapa sù l'ora da 'nt ël mè programa ëd navigassion (browser)",
@@ -1083,7 +1083,7 @@ Ambelessì a-i é un valor generà a asar che a peul dovré: $1",
 'prefs-files'                   => 'Archivi',
 'prefs-custom-css'              => 'CSS përsonaj',
 'prefs-custom-js'               => 'JS përsonaj',
-'prefs-common-css-js'           => 'CSS/JS condivis për tùit jë strat:',
+'prefs-common-css-js'           => 'CSS e JS condividù për tute le pej:',
 'prefs-reset-intro'             => 'It peule dovré sta pàgina-sì për torna amposté ij tò gust a coj ëd default.
 Sòn-sì a peul pa esse anulà.',
 'prefs-emailconfirm-label'      => "Conferma dl'e-mail:",

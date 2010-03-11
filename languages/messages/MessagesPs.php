@@ -474,10 +474,10 @@ $messages = array(
 'ns-specialprotected'  => 'ځانګړې مخونه د سمادولو وړ نه دي.',
 
 # Login and logout pages
-'logouttext'                 => "'''تاسو اوس د غونډال نه ووتلی.'''
+'logouttext'                 => "'''تاسې اوس د غونډال نه ووتلی.'''
 
-تاسو کولای شی چې پرته د کارن-نوم نه {{SITENAME}} په ورکنومي توګه وکاروی، او يا هم تاسو کولای شی چې په همدې کارن-نوم يا په کوم بل کارن-نوم خپلې ليکنې خپرې کړی. 
-يادونه دې وي چې ځينې مخونو کې به تاسو لا تر اوسه پورې غونډال کې ننوتي ښکاری، تر څو تاسو د خپل کتنمل حافظه نه وي سپينه کړی.",
+تاسې کولای شی چې پرته د کارن-نوم نه {{SITENAME}} په ورکنومي توګه هم وکاروی، او يا هم تاسې په همدې او يا کوم بل کارن-نوم، يو ځل [[Special:UserLogin|بيا غونډال ته ورننوځۍ]]. 
+په ياد ولرۍ چې تر څو تاسې د خپل کتنمل حافظه نه وي سپينه کړې، نو ځينې مخونو کې به لا تر اوسه پورې تاسې غونډال کې ننوتي ښکارۍ.",
 'welcomecreation'            => '==$1 ښه راغلاست! ==
 
 ستاسو کارن-حساب جوړ شو. لطفاً د [[Special:Preferences|{{SITENAME}} غوره توبونو]] بدلول مو مه هېروی.',
@@ -621,7 +621,7 @@ $messages = array(
 'newarticletext'                   => "تاسې د يوې داسې تړنې څارنه کړې چې لا تر اوسه پورې نه شته.
 که همدا مخ ليکل غواړۍ، نو په لانديني چوکاټ کې خپل متن وټاپۍ (د لا نورو مالوماتو لپاره د [[{{MediaWiki:Helppage}}|لارښود مخ]] وګورۍ).
 که چېرته تاسې دلته په تېروتنه راغلي ياست، نو يواځې د خپل د کتنمل '''مخ پر شا''' تڼۍ مو وټوکۍ.",
-'anontalkpagetext'                 => "----''دا د بې نومه کارنانو لپاره چې کارن نوم يې نه دی جوړ کړی او يا هم خپل کارن نوم نه دی کارولی، د سکالو پاڼه ده. نو ددې پخاطر مونږ د هغه کارن د انټرنېټ شمېره يا IP پته د نوموړي/نوموړې د پېژندلو لپاره کاروو. داسې يوه IP پته د ډېرو کارنانو لخوا هم کارېدلی شي. که تاسې يو بې نومه کارن ياست او تاسې ته نااړونده پېغامونه او تبصرې اشاره شوي، نو لطفاً د نورو بې نومو کارنانو او ستاسې ترمېنځ د ټکنتوب مخ نيونې لپاره [[Special:UserLogin|کارن-حساب جوړول يا ننوتنه]] وټوکۍ.''",
+'anontalkpagetext'                 => "----''دا د يوه ورکنومي کارن چې کارن-نوم نه لري او يا خپل کارن-نوم نه کاروي، د سکالو يوه پاڼه ده. نو د يوه کس د پېژندلو پخاطر موږ د هماغه کارن د انټرنېټ شمېره يا IP پته دلته ثبتوؤ. داسې يوه IP پته د ډېرو کارنانو لخوا هم کارېدلی شي. که تاسې يو ورکنومی کارن ياست او تاسې ته دا څرګندېږي چې تاسې ته نااړونده پېغامونه او تبصرې اشاره شوي، نو د نورو بې نومو کارنانو او ستاسې ترمېنځ د ټکنتوب د مخ نيونې لپاره لطفاً [[Special:UserLogin/signup|يو کارن-حساب جوړ کړۍ]] او يا هم [[Special:UserLogin|غونډال ته ورننوځۍ]].''",
 'noarticletext'                    => 'دم مهال په دې مخ کې څه نشته.
 تاسې کولای شی چې په نورو مخونو کې [[Special:Search/{{PAGENAME}}|د دې مخ د سرليک پلټنه]] يا
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} د اړوندو يادښتونو پلټنه] وکړی.
@@ -656,10 +656,10 @@ $messages = array(
 'nocreate-loggedin'                => 'تاسو د نوو مخونو د جوړولو اجازه نه لری.',
 'permissionserrors'                => 'د اجازې ستونزې',
 'permissionserrorstext-withaction' => 'تاسې د $2 اجازه نه لری، دا د {{PLURAL:$1|دغه سبب|دغو سببونو}} پخاطر:',
-'recreate-moveddeleted-warn'       => "'''ګواښنه: تاسو د يو داسې مخ بياجوړونه کوی کوم چې يو ځل پخوا ړنګ شوی وو.'''
+'recreate-moveddeleted-warn'       => "'''ګواښنه: تاسې د يوه داسې مخ بياجوړونه کوۍ کوم چې يو ځل پخوا ړنګ شوی وو.'''
 
-پکار ده چې تاسو په دې ځان پوه کړی چې ايا دا تاسو ته وړ ده چې د همدې مخ سمونه په پرله پسې توګه وکړی.
-ستاسو د اسانتياوو لپاره د همدې مخ د ړنګېدلو يادښت هم ورکړ شوی:",
+پکار ده چې تاسې په دې ځان پوه کړۍ چې ايا دا تاسې ته وړ ده چې د همدې مخ جوړول په پرله پسې توګه وکړۍ.
+ستاسې د اسانتياوو لپاره د همدې مخ د ړنګېدلو يادښت هم ورکړ شوی:",
 'log-fulllog'                      => 'بشپړ يادښت کتل',
 'edit-conflict'                    => 'د سمولو خنډ',
 'edit-already-exists'              => 'په دې نوم يو نوی مخ جوړ نه شو.
@@ -700,6 +700,7 @@ $messages = array(
 'rev-delundel'               => 'ښکاره کول/ پټول',
 'rev-showdeleted'            => 'ښکاره کول',
 'revdelete-show-file-submit' => 'هو',
+'revdelete-radio-same'       => '(مه بدلوه)',
 'revdelete-radio-set'        => 'هو',
 'revdelete-radio-unset'      => 'نه',
 'revdelete-log'              => 'د ړنګولو سبب:',
@@ -709,6 +710,8 @@ $messages = array(
 'revdelete-content'          => 'مېنځپانګه',
 'revdelete-summary'          => 'لنډيز سمول',
 'revdelete-uname'            => 'کارن-نوم',
+'revdelete-hid'              => '$1 پټول',
+'revdelete-unhid'            => '$1 ښکاره کول',
 'revdelete-reason-dropdown'  => '*د ړنګولو ټولګړي سببونه
 ** د خپرېدو د رښتو سرغړونه
 ** ناسم شخصي مالومات
@@ -771,6 +774,7 @@ $messages = array(
 'powersearch-redir'              => 'مخ ګرځونې په لړليک کې اوډل',
 'powersearch-field'              => 'پلټنه د',
 'powersearch-toggleall'          => 'ټول',
+'powersearch-togglenone'         => 'هېڅ',
 'search-external'                => 'باندنۍ پلټنه',
 
 # Quickbar
@@ -801,9 +805,11 @@ $messages = array(
 'restoreprefs'                => 'ټولې تلواليزې امستنې پرځای کول',
 'prefs-editing'               => 'سمادېدنه',
 'prefs-edit-boxsize'          => 'د سمون کړکۍ کچه.',
+'rows'                        => 'ليکې:',
+'columns'                     => 'ستنې:',
 'searchresultshead'           => 'پلټل',
 'recentchangesdays'           => 'د هغو ورځو شمېر وټاکی چې په وروستي بدلونو کې يې ليدل غواړی:',
-'recentchangescount'          => 'د هغو سمادونو شمېر چې په وروستي بدلونو کې يې ليدل غواړی:',
+'recentchangescount'          => 'د هغو سمونو شمېر چې په تلواليزه بڼه ښکاره بايد شي:',
 'savedprefs'                  => 'ستاسو غوره توبونه خوندي شوه.',
 'timezonelegend'              => 'د وخت سيمه:',
 'localtime'                   => 'سيمه ايز وخت:',
@@ -852,6 +858,7 @@ $messages = array(
 'prefs-advancedrendering'     => 'پرمختللې خوښنې',
 'prefs-advancedsearchoptions' => 'پرمختللې خوښنې',
 'prefs-advancedwatchlist'     => 'پرمختللې خوښنې',
+'prefs-display'               => 'د ښکارېدنې خوښنې',
 'prefs-diffs'                 => 'توپيرونه',
 
 # User rights
@@ -862,21 +869,28 @@ $messages = array(
 'userrights-reason'        => 'سبب:',
 
 # Groups
-'group'       => 'ډله:',
-'group-user'  => 'کارنان',
-'group-sysop' => 'پازوالان',
-'group-all'   => '(ټول)',
+'group'            => 'ډله:',
+'group-user'       => 'کارنان',
+'group-sysop'      => 'پازوالان',
+'group-bureaucrat' => 'بيوروکراټان',
+'group-all'        => '(ټول)',
 
-'group-user-member'  => 'کارن',
-'group-bot-member'   => 'باټ',
-'group-sysop-member' => 'پازوال',
+'group-user-member'       => 'کارن',
+'group-bot-member'        => 'باټ',
+'group-sysop-member'      => 'پازوال',
+'group-bureaucrat-member' => 'بيوروکراټ',
 
-'grouppage-sysop' => '{{ns:project}}:پازوالان',
+'grouppage-sysop'      => '{{ns:project}}:پازوالان',
+'grouppage-bureaucrat' => '{{ns:project}}:بيوروکراټان',
 
 # Rights
 'right-read'          => 'مخونه لوستل',
+'right-edit'          => 'مخونه سمول',
+'right-move'          => 'مخونه لېږدول',
+'right-movefile'      => 'دوتنې لېږدول',
 'right-delete'        => 'مخونه ړنګول',
 'right-browsearchive' => 'ړنګ شوي مخونه پلټل',
+'right-undelete'      => 'يو مخ ناړنګول',
 
 # User rights log
 'rightslog'  => 'د کارن د رښتو يادښت',
@@ -897,6 +911,7 @@ $messages = array(
 'recentchanges-legend'           => 'د ورستي بدلونو خوښنې',
 'recentchangestext'              => 'په همدې مخ باندې د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ.',
 'recentchanges-feed-description' => 'همدلته د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ او وګورۍ چې څه پېښ شوي.',
+'recentchanges-label-legend'     => 'څرګندونې: $1.',
 'recentchanges-legend-newpage'   => '$1 - نوی مخ',
 'recentchanges-legend-minor'     => '$1 - وړوکی سمون',
 'recentchanges-label-minor'      => 'دا يوه وړه سمونه ده',
@@ -972,7 +987,9 @@ $messages = array(
 'uploaddisabled'        => 'پورته کول ناچارن شوي',
 'uploadvirus'           => 'دا دوتنه ويروس لري! تفصيل: $1',
 'sourcefilename'        => 'د سرچينيزې دوتنې نوم:',
+'sourceurl'             => 'د URL سرچينه:',
 'upload-maxfilesize'    => 'د دوتنې تر ټولو لويه کچه: $1',
+'upload-description'    => 'د دوتنې څرګندونې',
 'watchthisupload'       => 'همدا دوتنه کتل',
 
 'upload-file-error' => 'کورنۍ ستونزه',
@@ -1008,7 +1025,7 @@ $messages = array(
 'imagelinks'                => 'د دوتنې تړنې',
 'linkstoimage'              => 'دا {{PLURAL:$1|لاندينی مخ|$1 لانديني مخونه}} د همدې دوتنې سره تړنې لري:',
 'nolinkstoimage'            => 'داسې هېڅ کوم مخ نه شته چې د دغې دوتنې سره تړنې ولري.',
-'duplicatesoffile'          => 'دا لاندينۍ {{PLURAL:$1| دوتنه د همدې دوتنې غبرګونې لمېسه ده|$1 دوتنې د همدې دوتنې غبرګونې لمېسې دي}}:',
+'duplicatesoffile'          => 'دا لاندينۍ {{PLURAL:$1| دوتنه د همدې دوتنې غبرګونې لمېسه ده|$1 دوتنې د همدې دوتنې غبرګونې لمېسې دي}} ([[Special:FileDuplicateSearch/$2|نور تفصيل]]):',
 'sharedupload'              => 'دا دوتنه د $1 لخوا نه ده او کېدای شي چې نورې پروژې به يې هم کاروي.',
 'uploadnewversion-linktext' => 'د همدغې دوتنې نوې بڼه پورته کول',
 
@@ -1045,15 +1062,22 @@ $messages = array(
 
 # Random page
 'randompage'         => 'ناټاکلی مخ',
-'randompage-nopages' => 'د "$1" په نوم-تشيال کې هېڅ کوم مخ نشته.',
+'randompage-nopages' => 'په لانديني {{PLURAL:$2|نوم-تشيال|نوم-تشيالونو}} کې هېڅ کوم مخ نشته: $1.',
 
 # Random redirect
 'randomredirect' => 'ناټاکلی ورګرځېدنه',
 
 # Statistics
-'statistics'             => 'شمار',
-'statistics-pages'       => 'مخونه',
-'statistics-mostpopular' => 'تر ټولو ډېر کتل شوي مخونه',
+'statistics'              => 'شمار',
+'statistics-header-pages' => 'د مخونو شمار',
+'statistics-header-edits' => 'د سمونو شمار',
+'statistics-header-views' => 'د کتنو شمار',
+'statistics-header-users' => 'د کارنانو شمار',
+'statistics-header-hooks' => 'بل شمار',
+'statistics-pages'        => 'مخونه',
+'statistics-files'        => 'پورته شوې دوتنې',
+'statistics-views-total'  => 'ټولټال کتنې',
+'statistics-mostpopular'  => 'تر ټولو ډېر کتل شوي مخونه',
 
 'disambiguations' => 'د څرګندونې مخونه',
 
@@ -1163,7 +1187,9 @@ $messages = array(
 'listusers-noresult' => 'هېڅ کوم کارن و نه موندل شو.',
 
 # Special:ActiveUsers
-'activeusers' => 'د فعالو کارنانو لړليک',
+'activeusers'            => 'د فعالو کارنانو لړليک',
+'activeusers-hidesysops' => 'پازوالان پټول',
+'activeusers-noresult'   => 'کارن و نه موندل شو.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'د کارن-نوم د جوړېدو يادښت',
@@ -1374,6 +1400,7 @@ $messages = array(
 'ipbexpiry'                => 'د پای نېټه:',
 'ipbreason'                => 'سبب',
 'ipbreasonotherlist'       => 'بل لامل',
+'ipbsubmit'                => 'پدې کارن بنديز لګول',
 'ipbother'                 => 'بل وخت:',
 'ipboptions'               => '2 ساعتونه:2 hours,1 ورځ:1 day,3 ورځې:3 days,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',
 'ipbotheroption'           => 'نور',
