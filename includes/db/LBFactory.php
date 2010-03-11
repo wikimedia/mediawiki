@@ -44,7 +44,7 @@ abstract class LBFactory {
 	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
-	 * @param string $wiki Wiki ID, or false for the current wiki
+	 * @param $wiki String: wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function newMainLB( $wiki = false );
@@ -52,7 +52,7 @@ abstract class LBFactory {
 	/**
 	 * Get a cached (tracked) load balancer object.
 	 *
-	 * @param string $wiki Wiki ID, or false for the current wiki
+	 * @param $wiki String: wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function getMainLB( $wiki = false );
@@ -62,16 +62,16 @@ abstract class LBFactory {
 	 * untracked, not chronology-protected, and the caller is responsible for
 	 * cleaning it up.
 	 *
-	 * @param string $cluster External storage cluster, or false for core
-	 * @param string $wiki Wiki ID, or false for the current wiki
+	 * @param $cluster String: external storage cluster, or false for core
+	 * @param $wiki String: wiki ID, or false for the current wiki
 	 */
 	abstract function newExternalLB( $cluster, $wiki = false );
 
 	/*
 	 * Get a cached (tracked) load balancer for external storage
 	 *
-	 * @param string $cluster External storage cluster, or false for core
-	 * @param string $wiki Wiki ID, or false for the current wiki
+	 * @param $cluster String: external storage cluster, or false for core
+	 * @param $wiki String: wiki ID, or false for the current wiki
 	 */
 	abstract function &getExternalLB( $cluster, $wiki = false );
 
@@ -208,7 +208,7 @@ class ChronologyProtector {
 	/**
 	 * Initialise a LoadBalancer to give it appropriate chronology protection.
 	 *
-	 * @param LoadBalancer $lb
+	 * @param $lb LoadBalancer
 	 */
 	function initLB( $lb ) {
 		if ( $this->startupPos === null ) {
@@ -233,7 +233,7 @@ class ChronologyProtector {
 	 * Notify the ChronologyProtector that the LoadBalancer is about to shut
 	 * down. Saves replication positions.
 	 *
-	 * @param LoadBalancer $lb
+	 * @param $lb LoadBalancer
 	 */
 	function shutdownLB( $lb ) {
 		// Don't start a session, don't bother with non-replicated setups

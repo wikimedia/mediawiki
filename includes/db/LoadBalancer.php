@@ -20,9 +20,9 @@ class LoadBalancer {
 	/* private */ var $mLoadMonitorClass, $mLoadMonitor;
 
 	/**
-	 * @param array $params Array with keys:
+	 * @param $params Array with keys:
 	 *    servers           Required. Array of server info structures.
-	 *    failFunction	    Deprecated, use exceptions instead.
+	 *    failFunction      Deprecated, use exceptions instead.
 	 *    masterWaitTimeout Replication lag wait timeout
 	 *    loadMonitor       Name of a class used to fetch server lag and load.
 	 */
@@ -398,9 +398,9 @@ class LoadBalancer {
 	/**
 	 * Get a connection by index
 	 * This is the main entry point for this class.
-	 * @param int $i Database
-	 * @param array $groups Query groups
-	 * @param string $wiki Wiki ID
+	 * @param $i Integer: server index
+	 * @param $groups Array: query groups
+	 * @param $wiki String: wiki ID
 	 */
 	public function &getConnection( $i, $groups = array(), $wiki = false ) {
 		global $wgDBtype;
@@ -509,9 +509,9 @@ class LoadBalancer {
 	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
 	 *
-	 * @param integer $i Server index
-	 * @param string $wiki Wiki ID to open
-	 * @return Database
+	 * @param $i Integer: server index
+	 * @param $wiki String: wiki ID to open
+	 * @return DatabaseBase
 	 *
 	 * @access private
 	 */
@@ -554,9 +554,9 @@ class LoadBalancer {
 	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
 	 *
-	 * @param integer $i Server index
-	 * @param string $wiki Wiki ID to open
-	 * @return Database
+	 * @param $i Integer: server index
+	 * @param $wiki String: wiki ID to open
+	 * @return DatabaseBase
 	 */
 	function openForeignConnection( $i, $wiki ) {
 		wfProfileIn(__METHOD__);
@@ -615,6 +615,8 @@ class LoadBalancer {
 
 	/**
 	 * Test if the specified index represents an open connection
+	 *
+	 * @param $index Integer: server index
 	 * @access private
 	 */
 	function isOpen( $index ) {
