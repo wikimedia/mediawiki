@@ -12,9 +12,9 @@ interface LoadMonitor {
 	
 	/**
 	 * Perform pre-connection load ratio adjustment.
-	 * @param array $loads
-	 * @param string $group The selected query group
-	 * @param string $wiki
+	 * @param $loads Array
+	 * @param $group String: the selected query group
+	 * @param $wiki String
 	 */
 	function scaleLoads( &$loads, $group = false, $wiki = false );
 
@@ -31,8 +31,8 @@ interface LoadMonitor {
 	 * to the running thread count. The threshold may be false, which indicates
 	 * that the sysadmin has not configured this feature.
 	 *
-	 * @param Database $conn
-	 * @param float $threshold
+	 * @param $conn DatabaseBase
+	 * @param $threshold Float
 	 */
 	function postConnectionBackoff( $conn, $threshold );
 
