@@ -642,7 +642,7 @@ class IPBlockForm {
 		);
 
 		// Add suppression block entries if allowed
-		if( $wgUser->isAllowed( 'hideuser' ) ) {
+		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
 			LogEventsList::showLogExtract( $out, 'suppress', $title->getPrefixedText(), '',
 				array(
 					'lim' => 10,
