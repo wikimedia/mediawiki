@@ -59,7 +59,7 @@ class SearchEngine {
 		global $wgContLang;
 
 		// Some languages such as Chinese require word segmentation
-		return $wgContLang->wordSegmentation( $string );
+		return $wgContLang->segmentByWord( $string );
 	}
 
 	/**
