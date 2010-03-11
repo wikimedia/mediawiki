@@ -2176,10 +2176,16 @@ class Title {
 		$linkCache = LinkCache::singleton();
 		$linkCache->clearBadLink( $this->getPrefixedDBkey() );
 
-		if ( $newid === false ) { $this->mArticleID = -1; }
-		else { $this->mArticleID = intval( $newid ); }
+		if ( $newid === false ) {
+			$this->mArticleID = -1;
+		} else {
+			$this->mArticleID = intval( $newid );
+		}
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
+		$this->mRedirect = null;
+		$this->mLength = -1;
+		$this->mLatestID = false;
 	}
 
 	/**
