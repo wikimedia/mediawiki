@@ -260,10 +260,6 @@ class ApiUpload extends ApiBase {
 			'url' => null,
 			'sessionkey' => null,
 		);
-
-		if ( $this->getMain()->isInternalMode() ) {
-			$params['internalhttpsession'] = null;
-		}
 		return $params;
 	}
 
