@@ -2,6 +2,10 @@
 
 class SanitizerTest extends PHPUnit_Framework_TestCase {
 
+	function setUp() {
+		AutoLoader::loadClass( 'Sanitizer' );
+	}
+
 	function testDecodeNamedEntities() {
 		$this->assertEquals(
 			"\xc3\xa9cole",
