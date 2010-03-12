@@ -1117,6 +1117,7 @@ Hapo kuna ufunguo uliotolewa na programu kwa kubahatisha, ambao unaweza kuutumia
 'prefs-files'                   => 'Mafaili',
 'prefs-custom-css'              => 'CSS niliyotunga mwenyewe',
 'prefs-custom-js'               => 'JS niliyotunga mwenyewe',
+'prefs-common-css-js'           => 'CSS/JS inayoshirikishwa na maumbo yote:',
 'prefs-reset-intro'             => 'Unaweza kutumia ukurasa huu ili kurudisha mapendekezo yako kwenye yale ya msingi ya tovuti.
 Hutaweza kulibatilisha tendo hili baadaye.',
 'prefs-emailconfirm-label'      => 'Kuhakikisha barua pepe:',
@@ -1191,13 +1192,19 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-move-subpages'    => 'Kusogeza kurasa pamoja na kurasa zake ndogo',
 'right-movefile'         => 'Kusogeza mafaili',
 'right-upload'           => 'Kupakia mafaili',
+'right-reupload'         => 'Kuandikiza mafaili yaliyopo tayari',
+'right-reupload-own'     => 'Kuandikiza mafaili yaliyopakizwa na mimi mwenyewe',
 'right-upload_by_url'    => 'Kupakia mafaili kutoka kwa URL',
 'right-delete'           => 'Kufuta kurasa',
+'right-deleterevision'   => 'Kufuta na kurudisha mapitio fulani ya kurasa',
+'right-deletedtext'      => 'Kutazama maandishi yaliyofutwa na mabadiliko kati ya mapitio yaliyofutwa',
 'right-browsearchive'    => 'Kutafuta kwenye kurasa zilizofutwa',
 'right-undelete'         => 'Kurudisha ukurasa uliofutwa',
 'right-suppressrevision' => 'Kuangalia na kurudisha mapitio yaliyofichwa kwa wakabidhi',
+'right-suppressionlog'   => 'Kutazama kumbukumbu za faragha',
 'right-block'            => 'Kuwazuia watumiaji wengine wasihariri',
 'right-blockemail'       => 'Kumzuia mtumiaji asitume barua-pepe',
+'right-siteadmin'        => 'Kufunga na kufungua hifadhidata',
 'right-sendemail'        => 'Kutuma barua-pepe kwa watumiaji wengine',
 
 # User rights log
@@ -1212,11 +1219,15 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-move'             => 'kusogeza ukurasa huu',
 'action-move-subpages'    => 'kusogeza ukurasa huu, pamoja na kurasa zake ndogo',
 'action-movefile'         => 'kusogeza faili hili',
+'action-reupload'         => 'kuandikiza faili lililopo tayari',
 'action-delete'           => 'kufuta ukurasa huu',
+'action-deleterevision'   => 'kufuta pitio hili',
 'action-browsearchive'    => 'kutafuta kwenye kurasa zilizofutwa',
 'action-undelete'         => 'kurudisha ukurasa huu',
 'action-suppressrevision' => 'kuangalia na kurudisha pitio hilo lililofichwa kwa wakabidhi',
+'action-suppressionlog'   => 'kutazama kumbukumbu za faragha',
 'action-block'            => 'Kumzuia mtumiaji huyu asihariri',
+'action-siteadmin'        => 'kufunga na kufungua hifadhidata',
 
 # Recent changes
 'nchanges'                       => '{{PLURAL:$1|badiliko|mabadiliko}} $1',

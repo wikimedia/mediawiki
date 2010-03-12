@@ -636,6 +636,7 @@ Lütfen bunu bir [[Special:ListUsers/sysop|hizmetliye]], URL\'yi not ederek ilet
 'readonly_lag'         => 'Yedek sunucular ana sunucu ile güncellemeye çalışırken veritabanı otomatik olarak kilitlendi.',
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
+'fileappenderrorread'  => 'Ekleme yapılırken "$1" okunamadı.',
 'fileappenderror'      => '"$1" dosyası "$2" dosyasına eklenemiyor.',
 'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
 'filerenameerror'      => '"$1" dosyasının ismi "$2" olarak değiştirilemedi.',
@@ -765,6 +766,7 @@ Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoks
 'login-throttled'            => 'Yakın zamanda çok fazla oturum açma denemesinde bulundunuz.
 Lütfen tekrar denemeden önce bekleyin.',
 'loginlanguagelabel'         => 'Dil: $1',
+'suspicious-userlogout'      => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
 
 # Password reset dialog
 'resetpass'                 => 'Parolayı değiştir',
@@ -1315,6 +1317,7 @@ Kullanabileceğiniz rasgele-üretilmiş bir değer: $1',
 'prefs-files'                   => 'Dosyalar',
 'prefs-custom-css'              => 'Özel CSS',
 'prefs-custom-js'               => 'Özel JS',
+'prefs-common-css-js'           => 'Tüm kaplamalar için paylaşılan CSS/JS:',
 'prefs-reset-intro'             => 'Bu sayfayı tercihlerinizi site varsayılanına döndürmek için kullanabilirsiniz. Bu geri alınamaz.',
 'prefs-emailconfirm-label'      => 'E-posta doğrulaması:',
 'prefs-textboxsize'             => 'Değiştirme penceresinin boyutu',
@@ -1355,25 +1358,26 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'prefs-diffs'                   => 'Farklar',
 
 # User rights
-'userrights'                  => 'Kullanıcı hakları yönetimi',
-'userrights-lookup-user'      => 'Kullanıcı gruplarını düzenle',
-'userrights-user-editname'    => 'Kullanıcı adı giriniz:',
-'editusergroup'               => 'Kullanıcı grupları düzenle',
-'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) kullanıcısının yetkilerini değiştirmektesiniz",
-'userrights-editusergroup'    => 'Kullanıcı grupları düzenle',
-'saveusergroups'              => 'Kullanıcı grupları kaydet',
-'userrights-groupsmember'     => 'İçinde olduğu gruplar:',
-'userrights-groups-help'      => 'Bu kullanıcının içinde olduğu grupları değiştirebilirsiniz:
+'userrights'                   => 'Kullanıcı hakları yönetimi',
+'userrights-lookup-user'       => 'Kullanıcı gruplarını düzenle',
+'userrights-user-editname'     => 'Kullanıcı adı giriniz:',
+'editusergroup'                => 'Kullanıcı grupları düzenle',
+'editinguser'                  => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) kullanıcısının yetkilerini değiştirmektesiniz",
+'userrights-editusergroup'     => 'Kullanıcı grupları düzenle',
+'saveusergroups'               => 'Kullanıcı grupları kaydet',
+'userrights-groupsmember'      => 'İçinde olduğu gruplar:',
+'userrights-groupsmember-auto' => 'Saklı olarak içinde olduğu gruplar:',
+'userrights-groups-help'       => 'Bu kullanıcının içinde olduğu grupları değiştirebilirsiniz:
 * Seçili bir kutu, kullanıcının o gruba dahil olduğu anlamına gelir
 * Seçilmemiş bir kutu, kullanıcının o grupta olmadığı anlamına gelir.
 * *, grubu bir kez oluşturduktan sonra silemeceğinizi belirtir, ya da karşılıklı olarak.',
-'userrights-reason'           => 'Sebep:',
-'userrights-no-interwiki'     => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
-'userrights-nodatabase'       => '$1 veritabanı mevcut veya bölgesel değil',
-'userrights-nologin'          => 'Kullanıcı haklarını atamak için hizmetli hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
-'userrights-notallowed'       => 'Kullanıcı hesabınızın kullanıcı haklarını atamak için izni yok.',
-'userrights-changeable-col'   => 'Değiştirebildiğiniz gruplar',
-'userrights-unchangeable-col' => 'Değiştirebilmediğiniz gruplar',
+'userrights-reason'            => 'Sebep:',
+'userrights-no-interwiki'      => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
+'userrights-nodatabase'        => '$1 veritabanı mevcut veya bölgesel değil',
+'userrights-nologin'           => 'Kullanıcı haklarını atamak için hizmetli hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
+'userrights-notallowed'        => 'Kullanıcı hesabınızın kullanıcı haklarını atamak için izni yok.',
+'userrights-changeable-col'    => 'Değiştirebildiğiniz gruplar',
+'userrights-unchangeable-col'  => 'Değiştirebilmediğiniz gruplar',
 
 # Groups
 'group'               => 'Grup:',
@@ -1588,6 +1592,7 @@ Bir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini k
 'minlength1'                  => 'Dosya adı en az bir harften oluşmalıdır.',
 'illegalfilename'             => '"$1" dosya adı bazı kullanılmayan karekterler içermektedir. Lütfen, yeni bir dosya adıyla tekrar deneyin.',
 'badfilename'                 => 'Görüntü dosyasının ismi "$1" olarak değiştirildi.',
+'filetype-mime-mismatch'      => 'Dosya uzantısı MIME türü ile eşleşmiyor.',
 'filetype-badmime'            => '"$1" MIME tipindeki dosyaların yüklenmesine izin verilmez.',
 'filetype-bad-ie-mime'        => 'Bu dosya yüklenemez; çünkü Internet Explorer bunu, izin verilmeyen ve potansiyel zararlı dosya türü olan "$1" olarak tespit etmektedir.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' istenmeyen bir dosya türüdür.  Önerilen {{PLURAL:\$3|dosya türü|dosya türleri}} \$2.",
@@ -3178,28 +3183,28 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'limitall'         => 'tümü',
 
 # E-mail address confirmation
-'confirmemail'             => 'E-posta adresini onayla',
-'confirmemail_noemail'     => '[[Special:Preferences|Kullanıcı tercihlerinizde]] tanımlanmış uygun bir e-posta adresiniz yok.',
-'confirmemail_text'        => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin doğrulanması gerekiyor.
+'confirmemail'              => 'E-posta adresini onayla',
+'confirmemail_noemail'      => '[[Special:Preferences|Kullanıcı tercihlerinizde]] tanımlanmış uygun bir e-posta adresiniz yok.',
+'confirmemail_text'         => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin doğrulanması gerekiyor.
 Adresinize onay e-postası göndermek için aşağıdaki butonu tıklayın.
 Gönderilecek iletide adresinizi onaylamak için tarayıcınızla erişebileceğiniz, onay kodu içeren bir bağlantı olacak;
 linki tarayıcınıda açın ve e-posta adresinizin geçerliliğini doğrulayın.",
-'confirmemail_pending'     => 'Bir doğrulama kodu size zaten e-postalandı;
+'confirmemail_pending'      => 'Bir doğrulama kodu size zaten e-postalandı;
 Eğer hesabınızı yeni oluşturduysanız, yeni bir kod istemeye çalışmadan önce gelmesini biraz beklemeyi isteyebilirsiniz.',
-'confirmemail_send'        => 'Onay kodu gönder',
-'confirmemail_sent'        => 'Onay e-postası gönderildi.',
-'confirmemail_oncreate'    => 'Bir doğrulama kodu e-posta adresinize gönderildi.
+'confirmemail_send'         => 'Onay kodu gönder',
+'confirmemail_sent'         => 'Onay e-postası gönderildi.',
+'confirmemail_oncreate'     => 'Bir doğrulama kodu e-posta adresinize gönderildi.
 Giriş yapmak için bu kod gerekli değildir, ancak bu vikideki herhangi bir e-posta tabanlı özelliği devreye sokmak için bunu sağlamak zorundasınız.',
-'confirmemail_sendfailed'  => '{{SITENAME}} Onay maili gönderemedi. Geçersiz karakterler olabilir adresi kontrol edin
+'confirmemail_sendfailed'   => '{{SITENAME}} Onay maili gönderemedi. Geçersiz karakterler olabilir adresi kontrol edin
 
 Mail yazılımı iade etti:$1',
-'confirmemail_invalid'     => 'Geçersiz onay kodu. Onay kodunun son kullanma tarihi geçmiş olabilir.',
-'confirmemail_needlogin'   => 'E-posta adresinizi onaylamak için önce $1 yapmalısınız.',
-'confirmemail_success'     => "E-posta adresiniz onaylandı. Oturum açıp Viki'nin tadını çıkarabilirsiniz.",
-'confirmemail_loggedin'    => 'E-posta adresiniz onaylandı.',
-'confirmemail_error'       => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
-'confirmemail_subject'     => '{{SITENAME}} e-posta adres onayı.',
-'confirmemail_body'        => 'Birisi, muhtemelen siz, $1 IP adresinden,
+'confirmemail_invalid'      => 'Geçersiz onay kodu. Onay kodunun son kullanma tarihi geçmiş olabilir.',
+'confirmemail_needlogin'    => 'E-posta adresinizi onaylamak için önce $1 yapmalısınız.',
+'confirmemail_success'      => "E-posta adresiniz onaylandı. Oturum açıp Viki'nin tadını çıkarabilirsiniz.",
+'confirmemail_loggedin'     => 'E-posta adresiniz onaylandı.',
+'confirmemail_error'        => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
+'confirmemail_subject'      => '{{SITENAME}} e-posta adres onayı.',
+'confirmemail_body'         => 'Birisi, muhtemelen siz, $1 IP adresinden,
 {{SITENAME}} sitesinde bu e-posta adresi ile $2 hesabını açtı.  
 
 Bu hesabın gerçekten size ait olduğunu onaylamak ve {{SITENAME}} sitesindeki
@@ -3213,8 +3218,22 @@ iptal etmek için aşağıdaki bağlantıyı takip edin:
 $5
 
 Bu onay kodu $4 tarihine kadar geçerli olacak.',
-'confirmemail_invalidated' => 'E-posta adresi doğrulaması iptal edildi',
-'invalidateemail'          => 'E-posta doğrulamasını iptal et',
+'confirmemail_body_changed' => 'Birisi, muhtemelen siz, $1 IP adresinden,
+{{SITENAME}} sitesinde "$2" hesabı için e-posta adresini değiştirdi.
+
+Bu hesabın gerçekten size ait olduğunu onaylamak ve {{SITENAME}} sitesindeki
+e-posta işlevlerini tekrar aktif hale getirmek için aşağıdakı bağlantıyı tarayıcınızda açın.:
+
+$3
+
+Eğer hesap size ait *değilse*, e-posta adresi doğrulamasını
+iptal etmek için aşağıdaki bağlantıyı takip edin:
+
+$5
+
+Bu onay kodu $4 tarihine kadar geçerli olacak.',
+'confirmemail_invalidated'  => 'E-posta adresi doğrulaması iptal edildi',
+'invalidateemail'           => 'E-posta doğrulamasını iptal et',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Vikilerarası çapraz ekleme devre dışı]',
