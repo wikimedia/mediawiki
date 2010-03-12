@@ -24,10 +24,8 @@ class UploadFromStash extends UploadBase {
 			$sessionData
 		);
 	}
-	/*
-	 * some $na vars for uploadBase method compatibility.
-	 */
-	public function initialize( $name, $sessionData, $na=false, $na2=false ) {
+
+	public function initialize( $name, $sessionKey, $sessionData ) {
 			/**
 			 * Confirming a temporarily stashed upload.
 			 * We don't want path names to be forged, so we keep
@@ -40,19 +38,20 @@ class UploadFromStash extends UploadBase {
 				$sessionData['mFileSize'],
 				false
 			);
-
+			
+			$this->mSessionKey = $sessionKey;
 			$this->mVirtualTempPath = $sessionData['mTempPath'];
 			$this->mFileProps = $sessionData['mFileProps'];
 	}
 
 	public function initializeFromRequest( &$request ) {
-		$this->mSessionKey = $request->getInt( 'wpSessionKey' );
+		$sessionKey = $request->getInt( 'wpSessionKey' );
 		$sessionData = $request->getSessionData('wsUploadData');
 
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if( !$desiredDestName )
 			$desiredDestName = $request->getText( 'wpUploadFile' );
-		return $this->initialize( $desiredDestName, $sessionData[$this->mSessionKey], false );
+		return $this->initialize( $desiredDestName, $sessionKey, $sessionData[$sessionKey] );
 	}
 
 	/**
