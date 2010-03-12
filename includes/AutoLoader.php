@@ -664,6 +664,17 @@ class AutoLoader {
 			}
 		}
 	}
+
+	/**
+	 * Force a class to be run through the autoloader, helpful for things like
+	 * Sanitizer that have define()s outside of their class definition. Of course
+	 * this wouldn't be necessary if everything in MediaWiki was class-based. Sigh.
+	 *
+	 * @return Boolean Return the results of class_exists() so we know if we were successful
+	 */
+	static function loadClass( $class ) {
+		return class_exists( $class );
+	}
 }
 
 function wfLoadAllExtensions() {
