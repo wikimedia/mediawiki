@@ -1,22 +1,46 @@
 = MediaWiki release notes =
 
-Security reminder: MediaWiki does not require PHP's register_globals
-setting since version 1.2.0. If you have it on, turn it *off* if you can.
+== MediaWiki 1.16 beta 1 ==
 
-== MediaWiki 1.16 ==
+March 12, 2010
 
-THIS IS NOT A RELEASE YET
+This is a pre-release beta of the MediaWiki 1.16 branch.
 
-MediaWiki is now using a "continuous integration" development model with
-quarterly snapshot releases. The latest development code is always kept
-"ready to run", and in fact runs our own sites on Wikipedia.
+=== Summary of selected changes in 1.16 ===
 
-Release branches will continue to receive security updates for about a year
-from first release, but nonessential bugfixes and feature developments
-will be made on the development trunk and appear in the next quarterly release.
+Selected changes since MediaWiki 1.15 that may be of interest:
 
-Those wishing to use the latest code instead of a branch release can obtain
-it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+* Watchlists now have RSS/Atom feeds. RSS feeds generally are now hidden, since
+  Atom is a better protocol and is supported by virtually all clients.
+
+* It's now possible to block users from sending email via Special:Emailuser.
+
+* The maintenance script system was overhauled. Most maintenance scripts now
+  have a useful help page when you run them with --help.
+
+* AdminSettings.php is no longer required in order to run maintenance scripts.
+  You can just set $wgDBadminuser and $wgDBadminpassword in your 
+  LocalSettings.php instead.
+
+* The preferences system was overhauled. Preferences are stored in a more
+  compact format. Changes to site default preferences will automatically affect
+  all users who have not chosen a different preference.
+
+* Support for SQLite was improved. Some broken features were fixed, and it now
+  has an efficient full-text search.
+
+* The user groups ACL system was improved by allowing rights to be revoked,
+  instead of just granted.
+
+* A new localisation caching system was introduced, which will make MediaWiki
+  faster for almost everyone, especially when lots of extensions are enabled.
+
+  By default, this new system makes a lot of database queries. If your database
+  is particularly slow, or if your system administrator limits your query 
+  count, or if you want to squeeze as much performance as possible out of 
+  Mediawiki, set $wgCacheDirectory to a writable path on the local filesystem.
+  Make sure you have the DBA extension for PHP installed, this will improve 
+  performance further.
 
 === Configuration changes in 1.16 ===
 

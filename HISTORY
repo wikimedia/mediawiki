@@ -2,6 +2,43 @@ Change notes from older releases. For current info see RELEASE-NOTES.
 
 == MediaWiki 1.15 ==
 
+=== Changes since 1.15.1 ===
+
+* The installer now includes a check for a data corruption issue with certain
+  versions of libxml2 2.7 and PHP earlier than 5.2.9, and also for a PHP bug 
+  present in the official release of PHP 5.3.1.
+* (bug 20239) MediaWiki:Imagemaxsize does not contain anymore a <br /> tag which
+  was displayed to the user
+* (bug 21150) SQLite no longer raise an error when deleting files
+* (bug 20880) Fixed updater failure on SQLite backend
+* upgrade1_5.php now requires to be run --update option to prevent confusion
+* Fixed a CSS validation issue which allowed external images to be included 
+  into wikis where that is disallowed by configuration.
+* Fixed a data leakage vulnerability for private wikis using img_auth.php or 
+  similar image access authentication schemes. Check user permissions before 
+  streaming out scaled images from thumb.php.
+
+=== Changes since 1.15.0 ===
+
+* Fixed fatal errors for unusual file repository configurations, such as 
+  ForeignAPIRepo.
+* Fixed the "change password" link on Special:Preferences to have the correct
+  returnto parameter.
+* (bug 19693) Fixed cross-site scripting vulnerability in Special:Block
+
+=== Changes since 1.15.0rc1 ===
+
+* Removed category redirect feature, implementation was incomplete.
+* (bug 18846) Remove update_password_format(), unnecessary, destroys all 
+  passwords if a wiki with $wgPasswordSalt=false is upgraded with the web 
+  installer.
+* (bug 19127) Documentation warning for PostgreSQL users who run update.php: 
+  use the same user in AdminSettings.php as in LocalSettings.php. 
+* Fixed possible web invocation of some maintenance scripts, due to the use of
+  include() instead of require(). A full exploit would require a very strange
+  web server configuration.
+* Localisation updates.
+
 === Configuration changes in 1.15 ===
 
 * Added $wgNewPasswordExpiry, to specify an expiry time (in seconds) to
