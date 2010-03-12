@@ -516,9 +516,7 @@ abstract class UploadBase {
 			# Couldn't save the file.
 			return false;
 		}
-		if( !isset( $_SESSION ) ) {
-			session_start(); // start up the session (might have been previously closed to prevent php session locking)
-		}
+
 		$key = $this->getSessionKey();
 		$_SESSION['wsUploadData'][$key] = array(
 			'mTempPath'       => $status->value,
