@@ -405,7 +405,7 @@ class Block {
 				'ipb_expiry' => self::encodeExpiry( $this->mExpiry, $dbw ),
 				'ipb_range_start' => $this->mRangeStart,
 				'ipb_range_end' => $this->mRangeEnd,
-				'ipb_deleted'	=> $this->mHideName,
+				'ipb_deleted'	=> intval( $this->mHideName ), // typecast required for SQLite
 				'ipb_block_email' => $this->mBlockEmail,
 				'ipb_allow_usertalk' => $this->mAllowUsertalk
 			),
