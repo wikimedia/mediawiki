@@ -1,8 +1,5 @@
 <?php
 
-global $IP;
-require_once( "$IP/includes/Sanitizer.php" );
-
 class SanitizerTest extends PHPUnit_Framework_TestCase {
 
 	function testDecodeNamedEntities() {
