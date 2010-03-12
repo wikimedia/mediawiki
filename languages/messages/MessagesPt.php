@@ -774,6 +774,7 @@ Se a conta foi criada por engano, pode ignorar esta mensagem.',
 'login-throttled'            => 'Realizou demasiadas tentativas de autenticação com esta conta.
 Por favor, aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Língua: $1',
+'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com caching.',
 
 # Password reset dialog
 'resetpass'                 => 'Alterar palavra-chave',
@@ -1354,6 +1355,7 @@ Eis um valor gerado aleatoriamente, que pode usar: $1",
 'prefs-files'                   => 'Ficheiros',
 'prefs-custom-css'              => 'CSS personalizada',
 'prefs-custom-js'               => 'JS personalizado',
+'prefs-common-css-js'           => 'CSS/JS partilhado por todos os temas:',
 'prefs-reset-intro'             => 'Pode usar esta página para repor as configurações padrão das preferências.
 As suas preferências serão modificadas para os valores predefinidos do sítio.
 Esta acção não pode ser desfeita.',
@@ -1744,7 +1746,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
-'http-invalid-scheme'   => 'URLs com o esquema "$1" não são suportadas',
+'http-invalid-scheme'   => 'URLs começadas pelo prefixo "$1" não são suportadas.',
 'http-request-error'    => 'O pedido HTTP falhou devido a um erro desconhecido.',
 'http-read-error'       => 'Erro de leitura HTTP.',
 'http-timed-out'        => 'O pedido HTTP expirou.',
@@ -3221,30 +3223,30 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'limitall'         => 'tudo',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar endereço de correio electrónico',
-'confirmemail_noemail'     => 'Não tem um endereço de correio electrónico válido nas suas [[Special:Preferences|preferências de utilizador]].',
-'confirmemail_text'        => 'A {{SITENAME}} requer que valide o seu endereço de correio electrónico antes de usar as funcionalidades de correio.
+'confirmemail'              => 'Confirmar endereço de correio electrónico',
+'confirmemail_noemail'      => 'Não tem um endereço de correio electrónico válido nas suas [[Special:Preferences|preferências de utilizador]].',
+'confirmemail_text'         => 'A {{SITENAME}} requer que valide o seu endereço de correio electrónico antes de usar as funcionalidades de correio.
 Clique o botão abaixo para enviar uma mensagem de confirmação para o seu endereço.
 A mensagem incluíra uma URL que contém um código;
 insira a URL no seu navegador para confirmar que o seu endereço de correio electrónico é válido.',
-'confirmemail_pending'     => 'Um código de confirmação já lhe foi enviado;
+'confirmemail_pending'      => 'Um código de confirmação já lhe foi enviado;
 caso tenha criado a conta recentemente, é recomendado que aguarde alguns minutos até o receber antes de tentar pedir um novo código.',
-'confirmemail_send'        => 'Enviar código de confirmação',
-'confirmemail_sent'        => 'Correio de confirmação enviado.',
-'confirmemail_oncreate'    => 'Foi enviado um código de confirmação para o seu endereço de correio electrónico.
+'confirmemail_send'         => 'Enviar código de confirmação',
+'confirmemail_sent'         => 'Correio de confirmação enviado.',
+'confirmemail_oncreate'     => 'Foi enviado um código de confirmação para o seu endereço de correio electrónico.
 Este código não é necessário para se autenticar no sistema, mas será necessário para activar qualquer funcionalidade baseada no uso de correio na wiki.',
-'confirmemail_sendfailed'  => 'A {{SITENAME}} não conseguiu enviar o correio de confirmação.
+'confirmemail_sendfailed'   => 'A {{SITENAME}} não conseguiu enviar o correio de confirmação.
 Verifique se o seu endereço de correio electrónico possui caracteres inválidos.
 
 O sistema de correio devolveu o erro: $1',
-'confirmemail_invalid'     => 'Código de confirmação inválido. O código poderá ter expirado.',
-'confirmemail_needlogin'   => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
-'confirmemail_success'     => 'O seu endereço de correio electrónico foi confirmado.
+'confirmemail_invalid'      => 'Código de confirmação inválido. O código poderá ter expirado.',
+'confirmemail_needlogin'    => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
+'confirmemail_success'      => 'O seu endereço de correio electrónico foi confirmado.
 Pode agora [[Special:UserLogin|autenticar-se]] e disfrutar da wiki.',
-'confirmemail_loggedin'    => 'O seu endereço de correio electrónico foi confirmado.',
-'confirmemail_error'       => 'Alguma coisa correu mal ao gravar a sua confirmação.',
-'confirmemail_subject'     => 'Confirmação de endereço de correio electrónico da {{SITENAME}}',
-'confirmemail_body'        => 'Alguém, provavelmente você com o endereço IP $1,
+'confirmemail_loggedin'     => 'O seu endereço de correio electrónico foi confirmado.',
+'confirmemail_error'        => 'Alguma coisa correu mal ao gravar a sua confirmação.',
+'confirmemail_subject'      => 'Confirmação de endereço de correio electrónico da {{SITENAME}}',
+'confirmemail_body'         => 'Alguém, provavelmente você com o endereço IP $1,
 registou uma conta "$2" com este endereço de correio electrónico na {{SITENAME}}.
 
 Para confirmar que esta conta é realmente sua e activar
@@ -3259,8 +3261,23 @@ para cancelar a confirmação do endereço de correio electrónico:
 $5
 
 Este código de confirmação irá expirar a $4.',
-'confirmemail_invalidated' => 'Confirmação de endereço de correio electrónico cancelada',
-'invalidateemail'          => 'Cancelar confirmação de correio electrónico',
+'confirmemail_body_changed' => 'Alguém, provavelmente você com o endereço IP $1,
+alterou o endereço de correio electrónico da conta "$2" para este na {{SITENAME}}.
+
+Para confirmar que esta conta é realmente sua e reactivar
+as funcionalidades de correio electrónico na {{SITENAME}},
+abra a seguinte ligação no seu navegador:
+
+$3
+
+Caso a conta *não* lhe pertença, abra a seguinte ligação
+para cancelar a confirmação do endereço de correio electrónico:
+
+$5
+
+Este código de confirmação irá expirar a $4.',
+'confirmemail_invalidated'  => 'Confirmação de endereço de correio electrónico cancelada',
+'invalidateemail'           => 'Cancelar confirmação de correio electrónico',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transclusão interwikis foi impossibilitada]',
