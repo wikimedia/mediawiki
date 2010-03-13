@@ -795,6 +795,7 @@ Vänta innan du försöker igen.',
 'resetpass_forbidden'       => 'Lösenord kan inte ändras',
 'resetpass-no-info'         => 'Du måste vara inloggad för att komma åt den här sidan direkt.',
 'resetpass-submit-loggedin' => 'Ändra lösenord',
+'resetpass-submit-cancel'   => 'Avbryt',
 'resetpass-wrong-oldpass'   => 'Ogiltigt tillfälligt eller nuvarande lösenord.
 Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfälligt lösenord.',
 'resetpass-temp-password'   => 'Tillfälligt lösenord:',
@@ -897,6 +898,8 @@ Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] i andra sid
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relevanta loggar]</span>.',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'userpage-userdoesnotexist-view'   => 'Kontot "$1" är inte registrerat.',
+'blocked-notice-logextract'        => 'Användaren är blockerad.
+Orsaken till senaste blockeringen kan ses nedan:',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
 'userjsyoucanpreview'              => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
@@ -1340,6 +1343,7 @@ Här är ett slumpmässigt genererat värde som du kan använda: $1',
 'prefs-files'                   => 'Filer',
 'prefs-custom-css'              => 'Personlig CSS',
 'prefs-custom-js'               => 'Personlig JavaScript',
+'prefs-common-css-js'           => 'Delad CSS/JS för alla teman:',
 'prefs-reset-intro'             => 'Du kan använda den här sidan till att återställa dina inställningar till webbplatsens standardinställningar.
 Detta kan inte återställas.',
 'prefs-emailconfirm-label'      => 'E-postbekräftelse:',
@@ -3185,25 +3189,25 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'limitall'         => 'alla',
 
 # E-mail address confirmation
-'confirmemail'             => 'Bekräfta e-postadress',
-'confirmemail_noemail'     => 'Du har inte angivit någon giltig e-postadress i dina [[Special:Preferences|inställningar]].',
-'confirmemail_text'        => 'Innan du kan använda {{SITENAME}}s funktioner för e-post måste du bekräfta din e-postadress. Aktivera knappen nedan för att skicka en bekräftelsekod till din e-postadress. Mailet kommer att innehålla en länk, som innehåller en kod. Genom att klicka på den länken eller kopiera den till din webbläsares fönster för webbadresser, bekräftar du att din e-postadress fungerar.',
-'confirmemail_pending'     => 'En bekräftelsekod har redan skickats till din epostadress. Om du skapade ditt konto nyligen, så kanske du vill vänta några minuter innan du begär en ny kod.',
-'confirmemail_send'        => 'Skicka bekräftelsekod',
-'confirmemail_sent'        => 'E-post med bekräftelse skickat.',
-'confirmemail_oncreate'    => 'En bekräftelsekod skickades till din epostadress. Koden behövs inte för att logga in, men du behöver koden för att få tillgång till de epostbaserade funktionerna på wikin.',
-'confirmemail_sendfailed'  => '{{SITENAME}} kunde inte skicka din e-postbekräftelse.
+'confirmemail'              => 'Bekräfta e-postadress',
+'confirmemail_noemail'      => 'Du har inte angivit någon giltig e-postadress i dina [[Special:Preferences|inställningar]].',
+'confirmemail_text'         => 'Innan du kan använda {{SITENAME}}s funktioner för e-post måste du bekräfta din e-postadress. Aktivera knappen nedan för att skicka en bekräftelsekod till din e-postadress. Mailet kommer att innehålla en länk, som innehåller en kod. Genom att klicka på den länken eller kopiera den till din webbläsares fönster för webbadresser, bekräftar du att din e-postadress fungerar.',
+'confirmemail_pending'      => 'En bekräftelsekod har redan skickats till din epostadress. Om du skapade ditt konto nyligen, så kanske du vill vänta några minuter innan du begär en ny kod.',
+'confirmemail_send'         => 'Skicka bekräftelsekod',
+'confirmemail_sent'         => 'E-post med bekräftelse skickat.',
+'confirmemail_oncreate'     => 'En bekräftelsekod skickades till din epostadress. Koden behövs inte för att logga in, men du behöver koden för att få tillgång till de epostbaserade funktionerna på wikin.',
+'confirmemail_sendfailed'   => '{{SITENAME}} kunde inte skicka din e-postbekräftelse.
 Kontrollera om e-postadressen innehåller ogiltiga tecken.
 
 Mailservern svarade: $1',
-'confirmemail_invalid'     => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
-'confirmemail_needlogin'   => 'Du behöver $1 för att bekräfta din e-postadress',
-'confirmemail_success'     => 'Din e-postadress har bekräftats. 
+'confirmemail_invalid'      => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
+'confirmemail_needlogin'    => 'Du behöver $1 för att bekräfta din e-postadress',
+'confirmemail_success'      => 'Din e-postadress har bekräftats. 
 Du kan nu [[Special:UserLogin|logga in]] och använda wikin.',
-'confirmemail_loggedin'    => 'Din e-postadress är nu bekräftad.',
-'confirmemail_error'       => 'Någonting gick fel när din bekräftelse skulle sparas.',
-'confirmemail_subject'     => 'Bekräftelse av e-postadress på {{SITENAME}}',
-'confirmemail_body'        => 'Någon, troligen du, har från IP-adressen $1 registrerat användarkontot "$2" med denna e-postadress på {{SITENAME}}.
+'confirmemail_loggedin'     => 'Din e-postadress är nu bekräftad.',
+'confirmemail_error'        => 'Någonting gick fel när din bekräftelse skulle sparas.',
+'confirmemail_subject'      => 'Bekräftelse av e-postadress på {{SITENAME}}',
+'confirmemail_body'         => 'Någon, troligen du, har från IP-adressen $1 registrerat användarkontot "$2" med denna e-postadress på {{SITENAME}}.
 
 För att bekräfta att detta konto verkligen är ditt, och för att aktivera funktionerna för e-post på {{SITENAME}}, öppna denna länk i din webbläsare:
 
@@ -3214,8 +3218,22 @@ Om det *inte* är du som registrerat kontot, följ denna länk för att avbryta 
 $5
 
 Denna bekräftelsekod kommer inte att fungera efter $4.',
-'confirmemail_invalidated' => 'Bekräftelsen av e-postadressen har ogiltigförklarats',
-'invalidateemail'          => 'Avbryt bekräftelse av e-postadress',
+'confirmemail_body_changed' => 'Någon, troligen du, har från IP-adressen $1
+registrerat användarkontot "$2" med denna e-postadress på {{SITENAME}}.
+
+För att bekräfta att detta konto verkligen är ditt, och för att aktivera
+funktionerna för e-post på {{SITENAME}}, öppna denna länk i din webbläsare:
+
+$3
+
+Om det *inte* är du som registrerat kontot, följ denna länk
+för att avbryta bekräftelsen av e-postadressen:
+
+$5
+
+Denna bekräftelsekod kommer inte att fungera efter $4.',
+'confirmemail_invalidated'  => 'Bekräftelsen av e-postadressen har ogiltigförklarats',
+'invalidateemail'           => 'Avbryt bekräftelse av e-postadress',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-inklusion är inte aktiverad]',

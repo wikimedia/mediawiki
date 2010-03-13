@@ -373,6 +373,7 @@ Kerem kerê, nae be namê ''URL''i jü [[Special:ListUsers/sysop|karber]]i ra va
 'readonly_lag'         => "Panga daeyu otomatikman qapan biye ''slave-database-servers''i ra be hata ''master''i",
 'internalerror'        => 'Xeta zerrey',
 'internalerror_info'   => 'Xeta zerrey: $1',
+'fileappenderror'      => 'Dosya "$1"ine dosya "$2"ine ser nêbena.',
 'filecopyerror'        => 'Dosya "$1"i kopya nêbiye be dosya "$2".',
 'filerenameerror'      => 'Namê dosya "$1"i nêvuriya be dosya "$2".',
 'filedeleteerror'      => 'Dosya "$1"i nêesteriye.',
@@ -826,14 +827,21 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'userrights-reason'        => 'Sebeb:',
 
 # Groups
-'group'       => 'Kom:',
-'group-user'  => 'Karberi',
-'group-sysop' => 'İdarekeri',
+'group'            => 'Kom:',
+'group-user'       => 'Karberi',
+'group-bot'        => 'Boti',
+'group-sysop'      => 'İdarekeri',
+'group-bureaucrat' => 'Burokrati',
 
-'group-user-member'  => 'Karber',
-'group-sysop-member' => 'İdareker',
+'group-user-member'       => 'Karber',
+'group-bot-member'        => 'Bot',
+'group-sysop-member'      => 'İdareker',
+'group-bureaucrat-member' => 'Burokrat',
 
-'grouppage-sysop' => '{{ns:project}}:İdarekeri',
+'grouppage-user'       => '{{ns:project}}:Karberi',
+'grouppage-bot'        => '{{ns:project}}:Boti',
+'grouppage-sysop'      => '{{ns:project}}:İdarekeri',
+'grouppage-bureaucrat' => '{{ns:project}}:Burokrati',
 
 # Rights
 'right-read'     => 'Pelu bıwane',
@@ -913,10 +921,12 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'fileuploadsummary'          => 'Xulasa:',
 'filereuploadsummary'        => 'Vurnaisê dosya:',
 'filesource'                 => 'Çıme:',
+'uploadedfiles'              => 'Dosyê barkerdey',
 'savefile'                   => 'Dosya qeyd ke',
 'uploadedimage'              => '"[[$1]]" bar bi',
 'upload-source'              => 'Dosya çımey',
 'sourcefilename'             => 'Namê dosya çımey:',
+'watchthisupload'            => 'Na dosya de şêr ke',
 
 # Special:ListFiles
 'imgfile'        => 'dosya',
@@ -943,7 +953,13 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'sharedupload'              => 'Na dosya depoê $1 rawa u beno ke procunê binu de gurenina.',
 'uploadnewversion-linktext' => 'Dosya de newiye bar ke',
 
+# File reversion
+'filerevert-comment' => 'Arezekerdene:',
+'filerevert-submit'  => 'Raçarne',
+
 # File deletion
+'filedelete'                  => 'Bıestere $1',
+'filedelete-legend'           => 'Dosya bıestere',
 'filedelete-submit'           => 'Bıestere',
 'filedelete-reason-otherlist' => 'Sebebo bin',
 

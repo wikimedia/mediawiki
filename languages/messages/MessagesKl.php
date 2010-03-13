@@ -432,11 +432,12 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'unwatching' => 'Saqquminera peeruk',
 
 # Delete
-'excontent'      => "imarivaa: '$1'",
-'delete-confirm' => 'Peeruk "$1"',
-'actioncomplete' => 'Naammassivoq',
-'deletedtext'    => '"$1" peerpoq. Takuuk $2 peerneqarsimasut kingulliit.',
-'deletedarticle' => 'peerpaa "[[$1]]"',
+'excontent'       => "imarivaa: '$1'",
+'excontentauthor' => "imarivaa: '$1' (allattutuaavorlu '[[Special:Contributions/$2|$2]]')",
+'delete-confirm'  => 'Peeruk "$1"',
+'actioncomplete'  => 'Naammassivoq',
+'deletedtext'     => '"$1" peerpoq. Takuuk $2 peerneqarsimasut kingulliit.',
+'deletedarticle'  => 'peerpaa "[[$1]]"',
 
 # Rollback
 'revertpage' => 'Inisseqqiineq [[User:$1|$1]]-meersoq, peerneqarpoq [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])-meersoq',

@@ -1947,10 +1947,7 @@ Template:消除歧義',
 'watchnologintext'     => '您必須先[[Special:UserLogin|登入]]
 才能更改您的監視列表',
 'addedwatch'           => '加入到監視列表',
-'addedwatchtext'       => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
-將來有關此頁面及其討論頁的任何修改將會在那裡列出，
-而且還會在[[Special:RecentChanges|最近更改]]中
-以'''粗體'''形式列出以使起更容易識別。",
+'addedwatchtext'       => "頁面“[[:$1]]”已經被加入到您的[[Special:Watchlist|監視清單]]中。將來有關此頁面及其討論頁的任何修改將會在那裡列出，而且還會在[[Special:RecentChanges|最近更改]]中以'''粗體'''形式列出以使其更容易識別。",
 'removedwatch'         => '已停止監視',
 'removedwatchtext'     => '[[:$1]]已經從[[Special:Watchlist|您的監視頁面]]中移除。',
 'watch'                => '監視',
