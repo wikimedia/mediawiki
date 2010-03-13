@@ -6352,6 +6352,97 @@ image4    |300px| centre
 !! end
 
 !! test
+Gallery (with options)
+!! input
+<gallery widths='60px' heights='40px' perrow='2' caption='Foo [[Main Page]]' >
+File:Nonexistant.jpg|caption
+File:Nonexistant.jpg
+image:foobar.jpg|some '''caption''' [[Main Page]]
+image:foobar.jpg
+</gallery>
+!! result
+<table class="gallery" cellspacing="0" cellpadding="0">
+	<caption>Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></caption>
+	<tr>
+		<td><div class="gallerybox" style="width: 95px;">
+			<div style="height: 52px;">Nonexistant.jpg</div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 95px;">
+			<div style="height: 52px;">Nonexistant.jpg</div>
+			<div class="gallerytext">
+			</div>
+		</div></td>
+	</tr>
+	<tr>
+		<td><div class="gallerybox" style="width: 95px;">
+			<div class="thumb" style="padding: 19px 0; width: 90px;"><div style="margin-left: auto; margin-right: auto; width: 60px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
+			<div class="gallerytext">
+<p>some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p>
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 95px;">
+			<div class="thumb" style="padding: 19px 0; width: 90px;"><div style="margin-left: auto; margin-right: auto; width: 60px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></td>
+	</tr>
+</table>
+
+!! end
+
+!! test
+gallery (with showfilename option)
+!! input
+<gallery showfilename>
+File:Nonexistant.jpg|caption
+File:Nonexistant.jpg
+image:foobar.jpg|some '''caption''' [[Main Page]]
+File:Foobar.jpg
+</gallery>
+!! result
+<table class="gallery" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><div class="gallerybox" style="width: 155px;">
+			<div style="height: 152px;">Nonexistant.jpg</div>
+			<div class="gallerytext">
+<p><a href="/wiki/File:Nonexistant.jpg" title="File:Nonexistant.jpg">Nonexistant.jpg</a><br />
+caption
+</p>
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 155px;">
+			<div style="height: 152px;">Nonexistant.jpg</div>
+			<div class="gallerytext">
+<p><a href="/wiki/File:Nonexistant.jpg" title="File:Nonexistant.jpg">Nonexistant.jpg</a><br />
+</p>
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 155px;">
+			<div class="thumb" style="padding: 66px 0; width: 150px;"><div style="margin-left: auto; margin-right: auto; width: 120px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">Foobar.jpg</a><br />
+some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p>
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 155px;">
+			<div class="thumb" style="padding: 66px 0; width: 150px;"><div style="margin-left: auto; margin-right: auto; width: 120px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">Foobar.jpg</a><br />
+</p>
+			</div>
+		</div></td>
+	</tr>
+</table>
+
+!! end
+
+!! test
 HTML Hex character encoding (spells the word "JavaScript")
 !! input
 &#x4A;&#x061;&#x0076;&#x00061;&#x000053;&#x0000063;&#114;&#x0000069;&#00000112;&#x0000000074;

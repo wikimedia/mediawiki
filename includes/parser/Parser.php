@@ -4372,6 +4372,11 @@ class Parser
 		$ig->useSkin( $this->mOptions->getSkin() );
 		$ig->mRevisionId = $this->mRevisionId;
 
+		if( isset( $params['showfilename'] ) ) {
+			$ig->setShowFilename( true );
+		} else {
+			$ig->setShowFilename( false );
+		}
 		if( isset( $params['caption'] ) ) {
 			$caption = $params['caption'];
 			$caption = htmlspecialchars( $caption );
