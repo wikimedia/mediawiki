@@ -1776,7 +1776,11 @@ function writeLocalSettings( $conf ) {
 	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 	$hashedUploads = $conf->safeMode ? '' : '# ';
-	$sqliteDataDir = escapePhpString( realpath($conf->SQLiteDataDir) );
+	$dir = realpath( $conf->SQLiteDataDir );
+	if ( !$dir ) {
+		$dir = $conf->SQLiteDataDir; // dumb realpath sometimes fails
+	}
+	$sqliteDataDir = escapePhpString( $dir );
 
 	if ( $conf->ShellLocale ) {
 		$locale = '';
