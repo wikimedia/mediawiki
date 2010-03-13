@@ -73,8 +73,8 @@ $namespaceAliases = array(
 
 $bookstoreList = array(
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
-	'amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
-	'buch.de' => 'http://www.buch.de/de.buch.shop/shop/1/home/schnellsuche/buch/?fqbi=$1',
+	'amazon.de' => 'http://www.amazon.de/gp/search/field-isbn=$1',
+	'buch.de' => 'http://www.buch.de/shop/home/suche/?sswg=BUCH&sq=$1',
 	'Karlsruher Virtueller Katalog (KVK)' => 'http://www.ubka.uni-karlsruhe.de/kvk.html?SB=$1',
 	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
 );
@@ -2924,7 +2924,10 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'metadata-expand'   => 'Erweiterte Details einblenden',
 'metadata-collapse' => 'Erweiterte Details ausblenden',
 'metadata-fields'   => 'Die folgenden Felder der EXIF-Metadaten in diesem MediaWiki-Systemtext werden auf Bildbeschreibungsseiten angezeigt; weitere standardmäßig „eingeklappte“ Details können angezeigt werden.
+* imagedescription
 * make
+* copyright
+* artist
 * model
 * datetimeoriginal
 * exposuretime
