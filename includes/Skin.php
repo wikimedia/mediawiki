@@ -548,6 +548,7 @@ class Skin extends Linker {
 
 	/**
 	 * Split for easier subclassing in SkinSimple, SkinStandard and SkinCologneBlue
+	 * Anything in here won't be generated if $wgAllowUserCssPrefs is false.
 	 */
 	protected function reallyGenerateUserStylesheet() {
 		global $wgUser;
@@ -629,18 +630,21 @@ CSS;
 			$out->addStyle( self::makeNSUrl( $this->getSkinName() . '.css', $query, NS_MEDIAWIKI ) );
 		}
 
-		if( $wgUser->isLoggedIn() ) {
-			// Ensure that logged-in users' generated CSS isn't clobbered
-			// by anons' publicly cacheable generated CSS.
-			$siteargs['smaxage'] = '0';
-			$siteargs['ts'] = $wgUser->mTouched;
+		global $wgAllowUserCssPrefs;
+		if( $wgAllowUserCssPrefs ){
+			if( $wgUser->isLoggedIn() ) {
+				// Ensure that logged-in users' generated CSS isn't clobbered
+				// by anons' publicly cacheable generated CSS.
+				$siteargs['smaxage'] = '0';
+				$siteargs['ts'] = $wgUser->mTouched;
+			}
+			// Per-user styles based on preferences
+			$siteargs['gen'] = 'css';
+			if( ( $us = $wgRequest->getVal( 'useskin', '' ) ) !== '' ) {
+				$siteargs['useskin'] = $us;
+			}
+			$out->addStyle( self::makeUrl( '-', wfArrayToCGI( $siteargs ) ) );
 		}
-		// Per-user styles based on preferences
-		$siteargs['gen'] = 'css';
-		if( ( $us = $wgRequest->getVal( 'useskin', '' ) ) !== '' ) {
-			$siteargs['useskin'] = $us;
-		}
-		$out->addStyle( self::makeUrl( '-', wfArrayToCGI( $siteargs ) ) );
 
 		// Per-user custom style pages
 		if( $wgAllowUserCss && $wgUser->isLoggedIn() ) {
