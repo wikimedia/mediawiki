@@ -3040,6 +3040,18 @@ $wgThumbLimits = array(
 $wgThumbUpright = 0.75;
 
 /**
+ * Default parameters for the <gallery> tag
+ */
+
+$wgGalleryOptions = array (
+	'imagesPerRow' => 4, // Default number of images per-row in the gallery
+	'imageWidth' => 120, // Width of the cells containing images in galleries (in "px")
+	'imageHeight' => 120, // Height of the cells containing images in galleries (in "px")
+	'captionLength' => 20, // Length of caption to truncate (in characters)
+	'showBytes' => true, // Show the filesize in bytes in categories
+);
+
+/**
  *  On  category pages, show thumbnail gallery for images belonging to that
  * category instead of listing them as articles.
  */
