@@ -1225,8 +1225,11 @@ class Title {
 			}
 
 			if( $groups ) {
-				$return = array( 'badaccess-groups',
-					array( implode( ', ', $groups ), count( $groups ) ) );
+				$return = array( 
+					'badaccess-groups',
+					implode( ', ', $groups ), 
+					count( $groups )
+				);
 			} else {
 				$return = array( "badaccess-group0" );
 			}
