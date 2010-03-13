@@ -85,10 +85,11 @@ class ProtectedTitlesForm {
 	}
 
 	/**
-	 * @param $namespace int
+	 * @param $namespace Integer:
 	 * @param $type string
 	 * @param $level string
-	 * @param $minsize int
+	 * @param $sizetype Unused
+	 * @param $size Unused
 	 * @private
 	 */
 	function showOptions( $namespace, $type='edit', $level, $sizetype, $size ) {
@@ -110,7 +111,7 @@ class ProtectedTitlesForm {
 	 * Prepare the namespace filter drop-down; standard namespace
 	 * selector, sans the MediaWiki namespace
 	 *
-	 * @param mixed $namespace Pre-select namespace
+	 * @param $namespace Mixed: pre-select namespace
 	 * @return string
 	 */
 	function getNamespaceMenu( $namespace = null ) {

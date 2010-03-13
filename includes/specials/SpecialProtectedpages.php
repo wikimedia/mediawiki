@@ -123,14 +123,14 @@ class ProtectedPagesForm {
 	}
 
 	/**
-	 * @param $namespace int
-	 * @param $type string
-	 * @param $level string
-	 * @param $minsize int
-	 * @param $indefOnly bool
-	 * @param $cascadeOnly bool
-	 * @return string Input form
-	 * @private
+	 * @param $namespace Integer
+	 * @param $type String: restriction type
+	 * @param $level String: restriction level
+	 * @param $sizetype String: "min" or "max"
+	 * @param $size Integer
+	 * @param $indefOnly Boolean: only indefinie protection
+	 * @param $cascadeOnly Boolean: only cascading protection
+	 * @return String: input form
 	 */
 	protected function showOptions( $namespace, $type='edit', $level, $sizetype, $size, $indefOnly, $cascadeOnly ) {
 		global $wgScript;
@@ -157,8 +157,8 @@ class ProtectedPagesForm {
 	 * Prepare the namespace filter drop-down; standard namespace
 	 * selector, sans the MediaWiki namespace
 	 *
-	 * @param mixed $namespace Pre-select namespace
-	 * @return string
+	 * @param $namespace Mixed: pre-select namespace
+	 * @return String
 	 */
 	protected function getNamespaceMenu( $namespace = null ) {
 		return "<span style='white-space: nowrap'>" .
