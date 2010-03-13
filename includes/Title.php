@@ -1225,9 +1225,10 @@ class Title {
 			}
 
 			if( $groups ) {
+				global $wgLang;
 				$return = array( 
 					'badaccess-groups',
-					implode( ', ', $groups ), 
+					$wgLang->commaList( $groups ), 
 					count( $groups )
 				);
 			} else {
