@@ -593,17 +593,20 @@ class Preferences {
 
 	static function renderingPreferences( $user, &$defaultPreferences ) {
 		## Page Rendering ##############################
-		$defaultPreferences['underline'] =
-				array(
-					'type' => 'select',
-					'options' => array(
-						wfMsg( 'underline-never' ) => 0,
-						wfMsg( 'underline-always' ) => 1,
-						wfMsg( 'underline-default' ) => 2,
-					),
-					'label-message' => 'tog-underline',
-					'section' => 'rendering/advancedrendering',
-				);
+		global $wgAllowUserCssPrefs;
+		if( $wgAllowUserCssPrefs ){
+			$defaultPreferences['underline'] =
+					array(
+						'type' => 'select',
+						'options' => array(
+							wfMsg( 'underline-never' ) => 0,
+							wfMsg( 'underline-always' ) => 1,
+							wfMsg( 'underline-default' ) => 2,
+						),
+						'label-message' => 'tog-underline',
+						'section' => 'rendering/advancedrendering',
+					);
+		}
 
 		$stubThresholdValues = array( 0, 50, 100, 500, 1000, 2000, 5000, 10000 );
 		$stubThresholdOptions = array();
@@ -619,18 +622,20 @@ class Preferences {
 					'size' => 20,
 					'label' => wfMsg( 'stub-threshold' ), // Raw HTML message. Yay?
 				);
-		$defaultPreferences['highlightbroken'] =
-				array(
-					'type' => 'toggle',
-					'section' => 'rendering/advancedrendering',
-					'label' => wfMsg( 'tog-highlightbroken' ), // Raw HTML
-				);
-		$defaultPreferences['showtoc'] =
-				array(
-					'type' => 'toggle',
-					'section' => 'rendering/advancedrendering',
-					'label-message' => 'tog-showtoc',
-				);
+		if( $wgAllowUserCssPrefs ){
+			$defaultPreferences['highlightbroken'] =
+					array(
+						'type' => 'toggle',
+						'section' => 'rendering/advancedrendering',
+						'label' => wfMsg( 'tog-highlightbroken' ), // Raw HTML
+					);
+			$defaultPreferences['showtoc'] =
+					array(
+						'type' => 'toggle',
+						'section' => 'rendering/advancedrendering',
+						'label-message' => 'tog-showtoc',
+					);
+		}
 		$defaultPreferences['nocache'] =
 				array(
 					'type' => 'toggle',
@@ -649,12 +654,14 @@ class Preferences {
 					'section' => 'rendering/advancedrendering',
 					'label-message' => 'tog-showjumplinks',
 				);
-		$defaultPreferences['justify'] =
-				array(
-					'type' => 'toggle',
-					'section' => 'rendering/advancedrendering',
-					'label-message' => 'tog-justify',
-				);
+		if( $wgAllowUserCssPrefs ){
+			$defaultPreferences['justify'] =
+					array(
+						'type' => 'toggle',
+						'section' => 'rendering/advancedrendering',
+						'label-message' => 'tog-justify',
+					);
+		}
 		$defaultPreferences['numberheadings'] =
 				array(
 					'type' => 'toggle',
@@ -664,7 +671,7 @@ class Preferences {
 	}
 
 	static function editingPreferences( $user, &$defaultPreferences ) {
-		global $wgUseExternalEditor, $wgLivePreview;
+		global $wgUseExternalEditor, $wgLivePreview, $wgAllowUserCssPrefs;
 
 		## Editing #####################################
 		$defaultPreferences['cols'] =
@@ -683,19 +690,20 @@ class Preferences {
 					'min' => 4,
 					'max' => 1000,
 				);
-
-		$defaultPreferences['editfont'] =
-				array(
-					'type' => 'select',
-					'section' => 'editing/advancedediting',
-					'label-message' => 'editfont-style',
-					'options' => array(
-						wfMsg( 'editfont-default' ) => 'default',
-						wfMsg( 'editfont-monospace' ) => 'monospace',
-						wfMsg( 'editfont-sansserif' ) => 'sans-serif',
-						wfMsg( 'editfont-serif' ) => 'serif',
-					)
-				);
+		if( $wgAllowUserCssPrefs ){
+			$defaultPreferences['editfont'] =
+					array(
+						'type' => 'select',
+						'section' => 'editing/advancedediting',
+						'label-message' => 'editfont-style',
+						'options' => array(
+							wfMsg( 'editfont-default' ) => 'default',
+							wfMsg( 'editfont-monospace' ) => 'monospace',
+							wfMsg( 'editfont-sansserif' ) => 'sans-serif',
+							wfMsg( 'editfont-serif' ) => 'serif',
+						)
+					);
+		}
 		$defaultPreferences['previewontop'] =
 				array(
 					'type' => 'toggle',
@@ -708,12 +716,14 @@ class Preferences {
 					'section' => 'editing/advancedediting',
 					'label-message' => 'tog-previewonfirst',
 				);
-		$defaultPreferences['editsection'] =
-				array(
-					'type' => 'toggle',
-					'section' => 'editing/advancedediting',
-					'label-message' => 'tog-editsection',
-				);
+		if( $wgAllowUserCssPrefs ){
+			$defaultPreferences['editsection'] =
+					array(
+						'type' => 'toggle',
+						'section' => 'editing/advancedediting',
+						'label-message' => 'tog-editsection',
+					);
+		}
 		$defaultPreferences['editsectiononrightclick'] =
 				array(
 					'type' => 'toggle',
@@ -1116,7 +1126,7 @@ class Preferences {
 		$ret = array();
 
 		foreach ( $wgImageLimits as $index => $limits ) {
-			$display = "{$limits[0]}×{$limits[1]}" . wfMsg( 'unit-pixel' );
+			$display = "{$limits[0]}Ã—{$limits[1]}" . wfMsg( 'unit-pixel' );
 			$ret[$display] = $index;
 		}
 

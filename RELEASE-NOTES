@@ -30,6 +30,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the names of the individual files within the gallery
 * (bug 12797) Add $wgGalleryOptions for adjusting of default gallery display
   options
+* $wgAllowUserCssPrefs option allows disabling CSS-based preferences; which can
+  improve page loading speed.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive without
