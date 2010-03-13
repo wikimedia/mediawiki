@@ -2018,11 +2018,11 @@ class OutputPage {
 	 * @param $title Title to link
 	 * @param $query String: query string
 	 */
-	public function addReturnTo( $title, $query = array() ) {
+	public function addReturnTo( $title, $query = array(), $text=null ) {
 		global $wgUser;
 		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullUrl() ) );
 		$link = wfMsgHtml( 'returnto', $wgUser->getSkin()->link(
-			$title, null, array(), $query ) );
+			$title, $text, array(), $query ) );
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
 	}
 
