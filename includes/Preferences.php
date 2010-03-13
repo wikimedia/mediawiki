@@ -1126,7 +1126,7 @@ class Preferences {
 		$ret = array();
 
 		foreach ( $wgImageLimits as $index => $limits ) {
-			$display = "{$limits[0]}Ã—{$limits[1]}" . wfMsg( 'unit-pixel' );
+			$display = "{$limits[0]}×{$limits[1]}" . wfMsg( 'unit-pixel' );
 			$ret[$display] = $index;
 		}
 
