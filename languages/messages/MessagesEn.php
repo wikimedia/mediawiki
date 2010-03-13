@@ -2746,7 +2746,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-othertime-op'        => 'other time',
 'protect-existing-expiry'     => 'Existing expiry time: $3, $2',
 'protect-otherreason'         => 'Other/additional reason:',
-'protect-otherreason-op'      => 'other/additional reason',
+'protect-otherreason-op'      => 'Other reason',
 'protect-dropdown'            => '*Common protection reasons
 ** Excessive vandalism
 ** Excessive spamming
