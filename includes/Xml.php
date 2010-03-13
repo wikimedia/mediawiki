@@ -744,7 +744,7 @@ class XmlSelect {
 	public function __construct( $name = false, $id = false, $default = false ) {
 		if ( $name ) $this->setAttribute( 'name', $name );
 		if ( $id ) $this->setAttribute( 'id', $id );
-		if ( $default ) $this->default = $default;
+		if ( $default !== false ) $this->default = $default;
 	}
 
 	public function setDefault( $default ) {
