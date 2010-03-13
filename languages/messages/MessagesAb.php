@@ -8,6 +8,7 @@
  * @file
  *
  * @author Mzhiba
+ * @author Temuri rajavi
  * @author ОйЛ
  */
 
@@ -15,18 +16,27 @@ $fallback = 'ru';
 
 $messages = array(
 # Dates
-'january'   => 'ажьырныҳәа',
-'february'  => 'жәабран',
-'march'     => 'хәажәкыр',
-'april'     => 'мшаҧы',
-'may_long'  => 'лаҵара',
-'june'      => 'рашәара',
-'july'      => 'ҧхынгәы',
-'august'    => 'нанҳәа',
-'september' => 'цәыббра',
-'october'   => 'жьҭаара',
-'november'  => 'абҵара',
-'december'  => 'ҧхынҷкәын',
+'sunday'       => 'амҽыш',
+'monday'       => 'ашәахь',
+'tuesday'      => 'аҩаш',
+'wednesday'    => 'ахаш',
+'thursday'     => 'аҧшьаш',
+'friday'       => 'ахәуаш',
+'saturday'     => 'асабш',
+'january'      => 'ажьырныҳәа',
+'february'     => 'жәабран',
+'march'        => 'хәажәкыр',
+'april'        => 'мшаҧы',
+'may_long'     => 'лаҵара',
+'june'         => 'рашәара',
+'july'         => 'ҧхынгәы',
+'august'       => 'нанҳәа',
+'september'    => 'цәыббра',
+'october'      => 'жьҭаара',
+'november'     => 'абҵара',
+'december'     => 'ҧхынҷкәын',
+'january-gen'  => 'ажьырныҳәа',
+'february-gen' => 'жәабран',
 
 'search'           => 'Аҧшаара',
 'searchbutton'     => 'Аҧшаара',
@@ -37,6 +47,9 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} иазкны',
 'mainpage'             => 'Ихадоу адаҟьа',
 'mainpage-description' => 'Ихадоу адаҟьа',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main' => 'Адаҟьа',
 
 # Edit pages
 'summary' => 'Ятарлă саспаллисем:',
