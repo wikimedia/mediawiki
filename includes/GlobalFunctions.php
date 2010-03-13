@@ -2580,11 +2580,13 @@ function wfArrayMerge( $array1/* ... */ ) {
  *   		array( 'y' )
  *   	)
  */
-function wfMergeErrorArrays(/*...*/) {
+function wfMergeErrorArrays( /*...*/ ) {
 	$args = func_get_args();
 	$out = array();
 	foreach ( $args as $errors ) {
 		foreach ( $errors as $params ) {
+			# FIXME: sometimes get nested arrays for $params,
+			# which leads to E_NOTICEs
 			$spec = implode( "\t", $params );
 			$out[$spec] = $params;
 		}
