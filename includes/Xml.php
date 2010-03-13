@@ -336,11 +336,16 @@ class Xml {
 	/**
 	 * Convenience function to build an HTML form label
 	 * @param $label text of the label
-	 * @param $id 
+	 * @param $id
+	 * @param $attrs Array, other attributes 
 	 * @return string HTML
 	 */
-	public static function label( $label, $id ) {
-		return self::element( 'label', array( 'for' => $id ), $label );
+	public static function label( $label, $id, $attribs=array() ) {
+		$a = array( 'for' => $id );
+		if( isset( $attribs['class'] ) ){
+				$a['class'] = $attribs['class'];
+		}
+		return self::element( 'label', $a, $label );
 	}
 
 	/**
@@ -363,7 +368,7 @@ class Xml {
 	 */
 	public static function inputLabelSep( $label, $name, $id, $size=false, $value=false, $attribs=array() ) {
 		return array(
-			Xml::label( $label, $id ),
+			Xml::label( $label, $id, $attribs ),
 			self::input( $name, $size, $value, array( 'id' => $id ) + $attribs )
 		);
 	}
@@ -375,7 +380,7 @@ class Xml {
 	public static function checkLabel( $label, $name, $id, $checked=false, $attribs=array() ) {
 		return self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
 			'&nbsp;' .
-			self::label( $label, $id );
+			self::label( $label, $id, $attribs );
 	}
 
 	/**
@@ -385,7 +390,7 @@ class Xml {
 	public static function radioLabel( $label, $name, $value, $id, $checked=false, $attribs=array() ) {
 		return self::radio( $name, $value, $checked, array( 'id' => $id ) + $attribs ) .
 			'&nbsp;' .
-			self::label( $label, $id );
+			self::label( $label, $id, $attribs );
 	}
 
 	/**
