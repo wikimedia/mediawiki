@@ -20,6 +20,9 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+=== Changes since 1.15.2 ===
+* (bug 22828) Fixed deletion on SQLite.
+
 === Changes since 1.15.1 ===
 
 * The installer now includes a check for a data corruption issue with certain
