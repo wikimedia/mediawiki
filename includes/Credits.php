@@ -108,7 +108,7 @@ class Credits {
 		if( $cnt > 0 && $contributors->count() > $cnt ){
 			$others_link = self::othersLink( $article );
 			if( !$showIfMax )
-				return wfMsg( 'othercontribs', $others_link );
+				return wfMsgExt( 'othercontribs', 'parsemag', $others_link, $contributors->count() );
 		}
 	
 		$real_names = array();
@@ -163,7 +163,9 @@ class Credits {
 		$creds = $wgLang->listToText( $fulllist );
 
 		# "Based on work by ..."
-		return strlen( $creds ) ? wfMsg( 'othercontribs', $creds ) : '';
+		return strlen( $creds ) 
+			? wfMsgExt( 'othercontribs', 'parsemag', $creds, count( $fulllist ) )
+			: '';
 	}
 
 	/**
