@@ -565,6 +565,10 @@ abstract class Maintenance {
 	 * @param $force boolean Whether to force the help to show, default false
 	 */
 	protected function maybeHelp( $force = false ) {
+		$screenWidth = 80;	// TODO: Caculate this!
+		$tab = "    ";
+		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
+		
 		ksort( $this->mParams );
 		if( $this->hasOption( 'help' ) || $force ) {
 			$this->mQuiet = false;
@@ -572,7 +576,7 @@ abstract class Maintenance {
 			if( $this->mDescription ) {
 				$this->output( "\n" . $this->mDescription . "\n" );
 			}
-			$output = "\nUsage: php " . $this->mSelf;
+			$output = "\nUsage: php " . basename( $this->mSelf );
 			if( $this->mParams ) {
 				$output .= " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]";
 			}
@@ -586,10 +590,12 @@ abstract class Maintenance {
 			}
 			$this->output( "$output\n" );
 			foreach( $this->mParams as $par => $info ) {
-				$this->output( "\t$par : " . $info['desc'] . "\n" );
+				$this->output( wordwrap( "$tab$par : " . $info['desc'], $descWidth, 
+				               "\n$tab$tab" ) . "\n" );
 			}
 			foreach( $this->mArgList as $info ) {
-				$this->output( "\t<" . $info['name'] . "> : " . $info['desc'] . "\n" );
+				$this->output( wordwrap( "$tab<" . $info['name'] . "> : " .
+				               $info['desc'], $descWidth, "\n$tab$tab" ) . "\n" );
 			}
 			die( 1 );
 		}
