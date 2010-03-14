@@ -2182,10 +2182,10 @@ abstract class DatabaseBase {
 	 */
 	public static function patchPath( $patch ) {
 		global $wgDBtype, $IP;
-		if ( file_exists( "$IP/maintenance/$wgDBtype/archives/$name" ) ) {
-			return "$IP/maintenance/$wgDBtype/archives/$name";
+		if ( file_exists( "$IP/maintenance/$wgDBtype/archives/$patch" ) ) {
+			return "$IP/maintenance/$wgDBtype/archives/$patch";
 		} else {
-			return "$IP/maintenance/archives/$name";
+			return "$IP/maintenance/archives/$patch";
 		}
 	}
 
