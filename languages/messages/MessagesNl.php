@@ -2331,7 +2331,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'protect-othertime-op'        => 'andere duur',
 'protect-existing-expiry'     => 'Bestaande vervaldatum: $2 om $3',
 'protect-otherreason'         => 'Overige/additionele reden:',
-'protect-otherreason-op'      => 'overige/additionele reden',
+'protect-otherreason-op'      => 'andere reden',
 'protect-dropdown'            => '*Veel voorkomende redenen voor beveiliging
 ** Vandalisme
 ** Spam

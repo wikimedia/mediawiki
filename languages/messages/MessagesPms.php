@@ -1996,7 +1996,7 @@ Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 'protect-othertime-op'        => "N'àutra durà",
 'protect-existing-expiry'     => 'Scadensa esistenta:$3, $2',
 'protect-otherreason'         => 'Rason àutra/adissional:',
-'protect-otherreason-op'      => 'Rason àutra/adissional',
+'protect-otherreason-op'      => 'Àutra rason',
 'protect-dropdown'            => '*Rason comun-e ëd protession
 ** Tròp vandalism
 ** Tròp spamming

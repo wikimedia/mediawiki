@@ -38,18 +38,26 @@ $messages = array(
 'january-gen'  => 'ажьырныҳәа',
 'february-gen' => 'жәабран',
 
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
+
+# Vector skin
+'vector-namespace-main' => 'Адаҟьа',
+
 'search'           => 'Аҧшаара',
 'searchbutton'     => 'Аҧшаара',
+'history_short'    => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
 'jumptosearch'     => 'аҧшаара',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} иазкны',
-'mainpage'             => 'Ихадоу адаҟьа',
+'mainpage'             => 'Ихадоу Адаҟьа',
 'mainpage-description' => 'Ихадоу адаҟьа',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Адаҟьа',
+'nstab-main'     => 'Адаҟьа',
+'nstab-category' => 'Акатегориа',
 
 # Edit pages
 'summary' => 'Ятарлă саспаллисем:',

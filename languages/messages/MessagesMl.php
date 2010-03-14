@@ -2193,7 +2193,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'മറ്റു കാലയളവ്',
 'protect-existing-expiry'     => 'നിലവിലെ കാലാവധി: $3, $2',
 'protect-otherreason'         => 'മറ്റുള്ള/പുറമേയുള്ള കാരണം:',
-'protect-otherreason-op'      => 'മറ്റു/കൂടുതല്‍ കാരണങ്ങള്‍',
+'protect-otherreason-op'      => 'മറ്റ് കാരണം',
 'protect-dropdown'            => '*സംരക്ഷിക്കാനുള്ള കാരണങ്ങള്‍
 ** അമിതമായ നശീകരണപ്രവര്‍ത്തനങ്ങള്‍
 ** അമിതമായ പാഴ് എഴുത്ത് ഉൾപ്പെടുത്തൽ

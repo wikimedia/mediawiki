@@ -2262,7 +2262,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-othertime-op'        => 'andere Sperrdauer',
 'protect-existing-expiry'     => 'Aktuelles Seitenschutzende: $2, $3 Uhr',
 'protect-otherreason'         => 'Anderer/ergänzender Grund:',
-'protect-otherreason-op'      => 'anderer/ergänzender Grund',
+'protect-otherreason-op'      => 'Anderer Grund',
 'protect-dropdown'            => '*Allgemeine Schutzgründe
 ** Weblink-Spam
 ** Editwar
@@ -2413,7 +2413,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbother'                        => 'Andere Dauer (englisch):',
 'ipboptions'                      => '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite',
 'ipbotheroption'                  => 'Andere Dauer',
-'ipbotherreason'                  => 'Andere/ergänzende Begründung:',
+'ipbotherreason'                  => 'Anderer/ergänzender Grund:',
 'ipbhidename'                     => 'Benutzername in Bearbeitungen und Listen verstecken',
 'ipbwatchuser'                    => 'Benutzer(diskussions)seite beobachten',
 'ipballowusertalk'                => 'Benutzer darf eigene Diskussionsseiten während seiner Sperre bearbeiten',

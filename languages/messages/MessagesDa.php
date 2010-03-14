@@ -1867,7 +1867,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Brugergrupperettigheder',
-'listgrouprights-summary'              => 'Denne side vider de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.
+'listgrouprights-summary'              => 'Denne side viser de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.
 
 Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere information]] om de enkelte rettigheder.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Given rettighed</span>

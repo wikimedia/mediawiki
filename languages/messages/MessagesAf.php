@@ -2152,7 +2152,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-othertime-op'        => 'ander tyd',
 'protect-existing-expiry'     => 'Bestaande vervaldatum: $2 om $3',
 'protect-otherreason'         => 'Ander/addisionele rede:',
-'protect-otherreason-op'      => 'ander/addisionele rede',
+'protect-otherreason-op'      => 'Ander rede',
 'protect-dropdown'            => '*Algemene redes vir beveiliging
 ** Vandalisme
 ** Spam

@@ -2278,7 +2278,7 @@ Voici les réglages actuels de la page '''$1''' :",
 'protect-othertime-op'        => 'autre date d’expiration',
 'protect-existing-expiry'     => 'Date d’expiration existante : $2 à $3',
 'protect-otherreason'         => 'Motif autre ou supplémentaire :',
-'protect-otherreason-op'      => 'motif autre ou supplémentaire',
+'protect-otherreason-op'      => 'Autre motif',
 'protect-dropdown'            => '* Motifs de protection courants
 ** Vandalisme excessif
 ** Pourriels
