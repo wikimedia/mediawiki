@@ -42,6 +42,9 @@ Selected changes since MediaWiki 1.15 that may be of interest:
   Make sure you have the DBA extension for PHP installed, this will improve 
   performance further.
 
+=== Changes since 1.16 beta 1 ===
+* Fixed errors in maintenance/patchSql.php
+
 === Configuration changes in 1.16 ===
 
 * (bug 18222) $wgMinimalPasswordLength default is now 1

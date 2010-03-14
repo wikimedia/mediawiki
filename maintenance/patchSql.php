@@ -45,7 +45,7 @@ class PatchSql extends Maintenance {
 			foreach( $files as $file ) {
 				if( file_exists( $file ) ) {
 					$this->output( "$file ...\n" );
-					$dbw->fileSource( $file );
+					$dbw->sourceFile( $file );
 					continue 2;
 				}
 			}
