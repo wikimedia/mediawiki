@@ -591,11 +591,11 @@ abstract class Maintenance {
 			$this->output( "$output\n" );
 			foreach( $this->mParams as $par => $info ) {
 				$this->output( wordwrap( "$tab$par : " . $info['desc'], $descWidth, 
-								"\n$tab$tab" ) . "\n" );
+				               "\n$tab$tab" ) . "\n" );
 			}
 			foreach( $this->mArgList as $info ) {
 				$this->output( wordwrap( "$tab<" . $info['name'] . "> : " .
-								$info['desc'], $descWidth, "\n$tab$tab" ) . "\n" );
+				               $info['desc'], $descWidth, "\n$tab$tab" ) . "\n" );
 			}
 			die( 1 );
 		}
