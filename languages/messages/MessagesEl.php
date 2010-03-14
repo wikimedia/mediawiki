@@ -2252,7 +2252,7 @@ Tο σύστημα ειδοποίησης του εγχειρήματος {{SITE
 'protect-othertime-op'        => 'άλλος χρόνος',
 'protect-existing-expiry'     => 'Υπάρχουσα λήξη προθεσμίας: $3, $2',
 'protect-otherreason'         => 'Άλλος/πρόσθετος λόγος:',
-'protect-otherreason-op'      => 'άλλος/πρόσθετος λόγος',
+'protect-otherreason-op'      => 'Άλλος λόγος',
 'protect-dropdown'            => '*Συνήθεις λόγοι προστασίας
 ** Υπερβολικός βανδαλισμός
 ** Υπερβολικό spamming

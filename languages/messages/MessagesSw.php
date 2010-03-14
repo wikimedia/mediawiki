@@ -2052,8 +2052,25 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'livepreview-loading' => 'Inapakizwa...',
 
 # Watchlist editor
-'watchlistedit-normal-title' => 'Kuhariri orodha ya maangalizi',
-'watchlistedit-raw-titles'   => 'Vichwa:',
+'watchlistedit-numitems'       => 'Orodha ya maangalizi yako ina {{PLURAL:$1|ukurasa 1|kurasa $1}}, bila kuhesabu kurasa za majadiliano.',
+'watchlistedit-noitems'        => 'Orodha ya maangalizi yako haina kitu.',
+'watchlistedit-normal-title'   => 'Kuhariri orodha ya maangalizi',
+'watchlistedit-normal-legend'  => 'Kuondoa majina kwenye orodha ya maangalizi',
+'watchlistedit-normal-explain' => 'Majina kwenye orodha ya maangalizi yako yapo chini. 
+Ili kuondoa jina, weka alama katiku kisanduku lake, na bonyeza "Ondoa majina." 
+Unaweza pia [[Special:watchlist/raw|kuhariri orodha ya ghafi]].',
+'watchlistedit-normal-submit'  => 'Ondoa majina',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Jina 1 iliondolewa|Majina $1 yaliondolewa}} kutoka kwa orodha yako ya maangalizi:',
+'watchlistedit-raw-title'      => 'Kuhariri maangalizi ghafi',
+'watchlistedit-raw-legend'     => 'Kuhariri maangalizi ghafi',
+'watchlistedit-raw-explain'    => 'Majina ya kurasa za maangalizi yako yanaorodheshwa chini. Unaweza kuhariri orodha kwa kuandika au kutoa majina; na liwe jina moja tu kwa kila mstari.
+Unapomaliza bonyeza Sasisha Orodha ya Maangalizi.
+Ama utumie [[Special:Watchlist/edit|ukurasa wa kuhariri wa kawaida]].',
+'watchlistedit-raw-titles'     => 'Majina:',
+'watchlistedit-raw-submit'     => 'Sasisha orodha ya maangalizi',
+'watchlistedit-raw-done'       => 'Orodha yako ya maangalizi imesasishwa.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Jina 1 liliongezwa|Majina $1 yaliongezwa}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Jina 1 liliondolewa|Majina $1 yaliondolewa}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Tazama mabadiliko yanayohusiana',

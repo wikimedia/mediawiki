@@ -2068,7 +2068,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'protect-othertime-op'        => 'aner Zäit',
 'protect-existing-expiry'     => 'Ënn vun der Säitespär: $2 ëm $3 Auer',
 'protect-otherreason'         => 'Aneren/zousätzleche Grond:',
-'protect-otherreason-op'      => 'aneren/zousätzleche Grond',
+'protect-otherreason-op'      => 'Anere Grond',
 'protect-dropdown'            => '*Déi heefegst Grënn fir eng Säit ze spären
 ** Weblink-Spam
 ** Permanenten Ännerungskonflikt

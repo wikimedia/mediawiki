@@ -2137,7 +2137,7 @@ Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le
 'protect-othertime-op'        => 'altere duration',
 'protect-existing-expiry'     => 'Expiration existente: le $2 a $3',
 'protect-otherreason'         => 'Motivo altere/additional:',
-'protect-otherreason-op'      => 'motivo altere/additional',
+'protect-otherreason-op'      => 'Altere motivo',
 'protect-dropdown'            => '*Motivos commun de protection
 ** Vandalismo excessive
 ** Spam excessive

@@ -386,7 +386,7 @@ $messages = array(
 'feb'           => 'Fev.',
 'mar'           => 'Mar.',
 'apr'           => 'Abr.',
-'may'           => 'Mai.',
+'may'           => 'Maio',
 'jun'           => 'Jun.',
 'jul'           => 'Jul.',
 'aug'           => 'Ago.',
@@ -2272,7 +2272,7 @@ Pode alterar o nível de protecção desta página, mas isso não afectará a pr
 'protect-othertime-op'        => 'outra duração',
 'protect-existing-expiry'     => 'A proteção atual expirará às $3 de $2',
 'protect-otherreason'         => 'Outro motivo/motivo adicional:',
-'protect-otherreason-op'      => 'outro/motivo adicional',
+'protect-otherreason-op'      => 'Outro motivo',
 'protect-dropdown'            => "*Motivos comuns para protecção
 ** Vandalismo excessivo
 ** ''Spam'' excessivo

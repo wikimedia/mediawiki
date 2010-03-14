@@ -1329,6 +1329,7 @@ $1",
 'prefs-files'                   => 'Податотеки',
 'prefs-custom-css'              => 'Посебно CSS',
 'prefs-custom-js'               => 'Посебно JS',
+'prefs-common-css-js'           => 'Заеднички CSS/JS за сите изгледи:',
 'prefs-reset-intro'             => 'Може да ја користите оваа страница за враќање на вашите нагодувања на основните нагодувања на сајтот. Оваа операција не може да се поништи.',
 'prefs-emailconfirm-label'      => 'Потврда на е-пошта:',
 'prefs-textboxsize'             => 'Големина на прозорец за уредување',
@@ -2253,7 +2254,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'друго време',
 'protect-existing-expiry'     => 'Постоечки рок на истекување: $3, $2',
 'protect-otherreason'         => 'Друга/дополнителна причини:',
-'protect-otherreason-op'      => 'друга/дополнителна причина',
+'protect-otherreason-op'      => 'Друга причина',
 'protect-dropdown'            => '*Вообичаени причини за заштита
 ** Зачестен вандализам
 ** Зачестен спем

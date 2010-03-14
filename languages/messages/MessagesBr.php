@@ -903,9 +903,9 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 'revdelete-hide-comment'      => "Kuzhat notenn ar c'hemm",
 'revdelete-hide-user'         => "Kuzhat anv implijer pe chomlec'h IP an aozer",
 'revdelete-hide-restricted'   => "Diverkañ ar roadennoù kement d'ar verourien ha d'ar re all",
-'revdelete-radio-same'        => '(chom hep cheñch)',
+'revdelete-radio-same'        => '(arabat cheñch)',
 'revdelete-radio-set'         => 'Ya',
-'revdelete-radio-unset'       => 'Nann',
+'revdelete-radio-unset'       => 'Ket',
 'revdelete-suppress'          => 'Diverkañ roadennoù ar verourien hag ar re all',
 'revdelete-unsuppress'        => 'Lemel ar strishadurioù war ar stummoù assavet',
 'revdelete-log'               => 'Abeg an diverkañ :',
@@ -2035,7 +2035,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ '''$1''':",
 'protect-othertime-op'        => 'termen all',
 'protect-existing-expiry'     => 'Termen echuiñ merket : $3, $2',
 'protect-otherreason'         => 'Abeg all/ouzhpenn :',
-'protect-otherreason-op'      => 'abeg all/ouzhpenn',
+'protect-otherreason-op'      => 'Abeg all',
 'protect-dropdown'            => '*Abegoù gwareziñ boutin
 ** Vandalerezh betek re
 ** Stroberezh betek re

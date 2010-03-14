@@ -2244,7 +2244,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-othertime-op'        => 'jiný čas',
 'protect-existing-expiry'     => 'Současný čas vypršení: $2, $3',
 'protect-otherreason'         => 'Jiný/další důvod:',
-'protect-otherreason-op'      => 'jiný/další důvod',
+'protect-otherreason-op'      => 'Jiný důvod',
 'protect-dropdown'            => '*Obvyklé důvody zamčení
 ** Opakovaný vandalismus
 ** Vkládání reklamních externích odkazů
@@ -2762,7 +2762,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http:
 'siteuser'         => 'uživatel {{grammar:2sg|{{SITENAME}}}} $1',
 'anonuser'         => 'anonymní uživatel {{grammar:2sg|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Tuto stránku naposledy {{GENDER:$4|změnil|změnila|změnil}} $3 v $2, $1.',
-'othercontribs'    => 'Do textu přispěli $1.',
+'othercontribs'    => 'Do textu {{PLURAL:$2|přispěl|přispěli}} $1.',
 'others'           => 'další',
 'siteusers'        => '{{PLURAL:$2|uživatel|uživatelé|uživatelé}} {{grammar:2sg|{{SITENAME}}}} $1',
 'anonusers'        => 'anonymní {{PLURAL:$2|uživatel|uživatelé}} {{grammar:2sg|{{SITENAME}}}} $1',

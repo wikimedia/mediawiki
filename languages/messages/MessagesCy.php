@@ -2041,7 +2041,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 'protect-othertime-op'        => 'cyfnod arall',
 'protect-existing-expiry'     => "Ar hyn o bryd daw'r gwarchod i ben am: $3, $2",
 'protect-otherreason'         => 'Rheswm arall:',
-'protect-otherreason-op'      => 'rheswm arall',
+'protect-otherreason-op'      => 'Rheswm arall',
 'protect-dropdown'            => '*Rhesymau cyffredin dros ddiogelu
 ** Fandaliaeth yn rhemp
 ** Sbam yn rhemp

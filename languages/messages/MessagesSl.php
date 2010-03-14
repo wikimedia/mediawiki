@@ -8,6 +8,7 @@
  * @file
  *
  * @author Freakolowsky
+ * @author McDutchie
  * @author Smihael
  * @author XJamRastafire
  * @author Yerpo
