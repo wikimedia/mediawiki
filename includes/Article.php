@@ -70,7 +70,7 @@ class Article {
 	 * from another page on the wiki.
 	 * @param $from Title object.
 	 */
-	public function setRedirectedFrom( $from ) {
+	public function setRedirectedFrom( Title $from ) {
 		$this->mRedirectedFrom = $from;
 	}
 
@@ -136,6 +136,7 @@ class Article {
 	/**
 	 * Get the Title object this text redirects to
 	 *
+	 * @param $text string article content containing redirect info
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirectText( $text ) {
@@ -173,6 +174,7 @@ class Article {
 
 	/**
 	 * get the title object of the article
+	 * @return Title object of current title
 	 */
 	public function getTitle() {
 		return $this->mTitle;
@@ -349,6 +351,7 @@ class Article {
 	 * Fetch a page record with the given conditions
 	 * @param $dbr Database object
 	 * @param $conditions Array
+	 * @return mixed Database result resource, or false on failure
 	 */
 	protected function pageData( $dbr, $conditions ) {
 		$fields = array(
@@ -376,8 +379,12 @@ class Article {
 	}
 
 	/**
+	 * Fetch a page record matching the Title object's namespace and title
+	 * using a sanitized title string
+	 * 
 	 * @param $dbr Database object
 	 * @param $title Title object
+	 * @return mixed Database result resource, or false on failure
 	 */
 	public function pageDataFromTitle( $dbr, $title ) {
 		return $this->pageData( $dbr, array(
@@ -386,6 +393,8 @@ class Article {
 	}
 
 	/**
+	 * Fetch a page record matching the requested ID
+	 *
 	 * @param $dbr Database
 	 * @param $id Integer
 	 */
@@ -431,8 +440,9 @@ class Article {
 	/**
 	 * Get text of an article from database
 	 * Does *NOT* follow redirects.
+	 * 
 	 * @param $oldid Int: 0 for whatever the latest revision is
-	 * @return string
+	 * @return mixed string containing article contents, or false if null
 	 */
 	function fetchContent( $oldid = 0 ) {
 		if ( $this->mContentLoaded ) {
@@ -498,6 +508,7 @@ class Article {
 	 * Read/write accessor to select FOR UPDATE
 	 *
 	 * @param $x Mixed: FIXME
+	 * @return 
 	 */
 	public function forUpdate( $x = null ) {
 		return wfSetVar( $this->mForUpdate, $x );
