@@ -1716,7 +1716,7 @@ class Language {
 	 */
 	protected static function convertDoubleWidth( $string ) {
 		$string = preg_replace( '/\xef\xbc([\x80-\xbf])/e', 'chr((ord("$1") & 0x3f) + 0x20)', $string );
-		$string = preg_replace( '/\xef\xbd([\x80-\x99])/e', 'chr((ord("$1") & 0x3f) + 0x60)', $string );
+		$string = preg_replace( '/\xef\xbd([\x80-\x9a])/e', 'chr((ord("$1") & 0x3f) + 0x60)', $string );
 		return $string;
 	}
 
