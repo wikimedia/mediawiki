@@ -2505,7 +2505,10 @@ class Article {
 
 	/**
 	 * Auto-generates a deletion reason
+	 * 
 	 * @param &$hasHistory Boolean: whether the page has a history
+	 * @return mixed String containing deletion reason or empty string, or boolean false
+	 *    if no revision occurred
 	 */
 	public function generateReason( &$hasHistory ) {
 		global $wgContLang;
@@ -2911,7 +2914,16 @@ class Article {
 	/**
 	 * Back-end article deletion
 	 * Deletes the article with database consistency, writes logs, purges caches
-	 * Returns success
+	 *
+	 * @param $reason string delete reason for deletion log
+	 * @param suppress bitfield
+	 * 	Revision::DELETED_TEXT
+	 * 	Revision::DELETED_COMMENT
+	 * 	Revision::DELETED_USER
+	 * 	Revision::DELETED_RESTRICTED
+	 * @param $id int article ID
+	 * @param $commit boolean defaults to true, triggers transaction end
+	 * @return boolean true if successful
 	 */
 	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true ) {
 		global $wgUseSquid, $wgDeferredUpdateList;
@@ -3583,7 +3595,9 @@ class Article {
 	 * This function is called right before saving the wikitext,
 	 * so we can do things like signatures and links-in-context.
 	 *
-	 * @param $text String
+	 * @param $text String article contents
+	 * @return string article contents with altered wikitext markup (signatures
+	 * 	converted, {{subst:}}, templates, etc.)
 	 */
 	public function preSaveTransform( $text ) {
 		global $wgParser, $wgUser;
@@ -3596,6 +3610,8 @@ class Article {
 	 * checkLastModified returns true if it has taken care of all
 	 * output to the client that is necessary for this request.
 	 * (that is, it has sent a cached version of the page)
+	 *
+	 * @return boolean true if cached version send, false otherwise
 	 */
 	protected function tryFileCache() {
 		static $called = false;
@@ -3638,7 +3654,7 @@ class Article {
 
 	/**
 	 * Loads page_touched and returns a value indicating if it should be used
-	 *
+	 * @return boolean true if not a redirect
 	 */
 	public function checkTouched() {
 		if ( !$this->mDataLoaded ) {
@@ -3649,6 +3665,7 @@ class Article {
 
 	/**
 	 * Get the page_touched field
+	 * @return string containing GMT timestamp
 	 */
 	public function getTouched() {
 		# Ensure that page data has been loaded
@@ -3660,6 +3677,7 @@ class Article {
 
 	/**
 	 * Get the page_latest field
+	 * @return integer rev_id of current revision
 	 */
 	public function getLatest() {
 		if ( !$this->mDataLoaded ) {
@@ -3782,7 +3800,10 @@ class Article {
 		$title->purgeSquid();
 		$title->deleteTitleProtection();
 	}
-
+	
+	/**
+	 * Clears caches when article is deleted
+	 */
 	public static function onArticleDelete( $title ) {
 		global $wgMessageCache;
 		# Update existence markers on article/talk tabs...
@@ -3912,7 +3933,7 @@ class Article {
 	 * on a given page. If page does not exist, returns false.
 	 *
 	 * @param $title Title object
-	 * @return array
+	 * @return mixed array or boolean false
 	 */
 	public function pageCountInfo( $title ) {
 		$id = $title->getArticleId();
@@ -4042,6 +4063,7 @@ class Article {
 	 *
 	 * @param $text String
 	 * @param $cache Boolean
+	 * @param $parserOptions mixed ParserOptions object, or boolean false
 	 */
 	public function outputWikiText( $text, $cache = true, $parserOptions = false ) {
 		global $wgOut;
@@ -4054,6 +4076,11 @@ class Article {
 	 * This does all the heavy lifting for outputWikitext, except it returns the parser
 	 * output instead of sending it straight to $wgOut. Makes things nice and simple for,
 	 * say, embedding thread pages within a discussion system (LiquidThreads)
+	 *
+	 * @param $text string
+	 * @param $cache boolean
+	 * @param $parserOptions parsing options, defaults to false
+	 * @return string containing parsed output
 	 */
 	public function getOutputFromWikitext( $text, $cache = true, $parserOptions = false ) {
 		global $wgParser, $wgOut, $wgEnableParserCache, $wgUseFileCache;
@@ -4089,6 +4116,7 @@ class Article {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
+	 * @return mixed ParserOptions object or boolean false
 	 */
 	public function getParserOptions() {
 		global $wgUser;
@@ -4099,6 +4127,12 @@ class Article {
 		}
 		return $this->mParserOptions;
 	}
+	
+	/**
+	 * Updates cascading protections
+	 *
+	 * @param $parserOutput mixedParseerOptions object, or boolean false
+	 **/
 
 	protected function doCascadeProtectionUpdates( $parserOutput ) {
 		if ( !$this->isCurrent() || wfReadOnly() || !$this->mTitle->areRestrictionsCascading() ) {
@@ -4153,7 +4187,6 @@ class Article {
 	 *
 	 * @param $added array   The names of categories that were added
 	 * @param $deleted array The names of categories that were deleted
-	 * @return null
 	 */
 	public function updateCategoryCounts( $added, $deleted ) {
 		$ns = $this->mTitle->getNamespace();
@@ -4207,11 +4240,14 @@ class Article {
 		}
 	}
 
-	/** Lightweight method to get the parser output for a page, checking the parser cache
+	/**
+	 * Lightweight method to get the parser output for a page, checking the parser cache
 	 * and so on. Doesn't consider most of the stuff that Article::view is forced to
 	 * consider, so it's not appropriate to use there.
+	 *
+	 * @param $oldid mixed integer Revision ID or null
 	 */
-	function getParserOutput( $oldid = null ) {
+	public function getParserOutput( $oldid = null ) {
 		global $wgEnableParserCache, $wgUser, $wgOut;
 
 		// Should the parser cache be used?
