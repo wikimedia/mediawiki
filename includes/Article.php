@@ -3843,6 +3843,7 @@ class Article {
 	 * Purge caches on page update etc
 	 *
 	 * @param $title Title object
+	 * @todo:  verify that $title is always a Title object (and never false or null), add Title hint to parameter $title
 	 */
 	public static function onArticleEdit( $title ) {
 		global $wgDeferredUpdateList;
@@ -4133,7 +4134,7 @@ class Article {
 	/**
 	 * Updates cascading protections
 	 *
-	 * @param $parserOutput mixedParseerOptions object, or boolean false
+	 * @param $parserOutput mixed ParseerOptions object, or boolean false
 	 **/
 
 	protected function doCascadeProtectionUpdates( $parserOutput ) {
