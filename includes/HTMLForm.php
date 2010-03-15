@@ -572,7 +572,7 @@ class HTMLForm {
 		if( !$hasLeftColumn ) // Avoid strange spacing when no labels exist
 			$classes[] = 'mw-htmlform-nolabel';
 		$attribs = array(
-			'classes' => implode( ' ', $classes ), 
+			'class' => implode( ' ', $classes ), 
 		);
 		if ( $sectionName ) 
 			$attribs['id'] = Sanitizer::escapeId( "mw-htmlform-$sectionName" );
