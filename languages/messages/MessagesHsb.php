@@ -1141,6 +1141,7 @@ Tu je připadnje wupłodźena hódnota, kotruž móžeš wužiwać: $1',
 'prefs-files'                   => 'Dataje',
 'prefs-custom-css'              => 'Swójski CSS',
 'prefs-custom-js'               => 'Swójski JS',
+'prefs-common-css-js'           => 'Zhromadny CSS/JS za w32 šaty:',
 'prefs-reset-intro'             => 'You can use this page to reset your preferences to the site defaults. This cannot be undone.
 Móžeš tutu stronu wužiwać, zo by swoje nastajenja na standardne hódnoty sydła wróćo stajić. To njeda so anulować.',
 'prefs-emailconfirm-label'      => 'E-mejlowe wobkrućenje:',
@@ -2029,7 +2030,7 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 'protect-othertime-op'        => 'druhi čas',
 'protect-existing-expiry'     => 'Eksistowacy čas spadnjenja: $2, $3 hodź.',
 'protect-otherreason'         => 'Druha/přidatna přičina:',
-'protect-otherreason-op'      => 'druha/přidatna přičina',
+'protect-otherreason-op'      => 'Druha přičina',
 'protect-dropdown'            => '*Powšitkowne škitowe přičiny
 ** Ekscesiwny wandalizm
 ** Ekscesiwne spamowanje

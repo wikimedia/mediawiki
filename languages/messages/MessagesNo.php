@@ -1244,6 +1244,7 @@ Her er et tilfeldig tall du kan bruke: $1',
 'prefs-files'                   => 'Filer',
 'prefs-custom-css'              => 'Personlig CSS',
 'prefs-custom-js'               => 'Personlig Javascript',
+'prefs-common-css-js'           => 'Delt CSS/JS for alle drakter:',
 'prefs-reset-intro'             => 'Du kan bruke denne siden til å tilbakestille innstillingene dine til standardinnstillingene.
 Dette kan ikke tilbakestilles.',
 'prefs-emailconfirm-label'      => 'E-postbekreftelse:',
@@ -2133,7 +2134,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect-othertime-op'        => 'annen tid',
 'protect-existing-expiry'     => 'Gjeldende utløpstid: $3 $2',
 'protect-otherreason'         => 'Annen/utdypende grunn:',
-'protect-otherreason-op'      => 'annen/utdypende grunn',
+'protect-otherreason-op'      => 'Annen/utdypende grunn',
 'protect-dropdown'            => '*Vanlige låsingsårsaker
 ** Gjentatt hærverk
 ** Gjentatt spam
