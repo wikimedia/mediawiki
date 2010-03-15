@@ -3841,8 +3841,10 @@ class Article {
 
 	/**
 	 * Purge caches on page update etc
+	 *
+	 * @param $title Title object
 	 */
-	public static function onArticleEdit( $title, $flags = '' ) {
+	public static function onArticleEdit( $title ) {
 		global $wgDeferredUpdateList;
 
 		// Invalidate caches of articles which include this page
