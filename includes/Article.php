@@ -508,7 +508,7 @@ class Article {
 	 * Read/write accessor to select FOR UPDATE
 	 *
 	 * @param $x Mixed: FIXME
-	 * @return 
+	 * @return mixed value of $x, or value stored in Article::mForUpdate
 	 */
 	public function forUpdate( $x = null ) {
 		return wfSetVar( $this->mForUpdate, $x );
@@ -611,7 +611,7 @@ class Article {
 	/**
 	 * Tests if the article text represents a redirect
 	 *
-	 * @param $text String: FIXME
+	 * @param $text mixed string containing article contents, or boolean
 	 * @return bool
 	 */
 	public function isRedirect( $text = false ) {
@@ -663,6 +663,10 @@ class Article {
 			$this->mRevIdFetched = $this->mLastRevision->getId();
 		}
 	}
+	
+	/**
+	 * @return string GMT timestamp of last article revision
+	 **/
 
 	public function getTimestamp() {
 		// Check if the field has been filled by ParserCache::get()
@@ -672,27 +676,45 @@ class Article {
 		return wfTimestamp( TS_MW, $this->mTimestamp );
 	}
 
+	/**
+	 * @return int user ID for the user that made the last article revision
+	 */
 	public function getUser() {
 		$this->loadLastEdit();
 		return $this->mUser;
 	}
 
+	/**
+	 * @return string username of the user that made the last article revision
+	 */
 	public function getUserText() {
 		$this->loadLastEdit();
 		return $this->mUserText;
 	}
 
+	/**
+	 * @return string Comment stored for the last article revision
+	 */
 	public function getComment() {
 		$this->loadLastEdit();
 		return $this->mComment;
 	}
 
+	/**
+	 * Returns true if last revision was marked as "minor edit"
+	 * 
+	 * @return boolean Minor edit indicator for the last article revision.
+	 */
 	public function getMinorEdit() {
 		$this->loadLastEdit();
 		return $this->mMinorEdit;
 	}
 
-	/* Use this to fetch the rev ID used on page views */
+	/**
+	 * Use this to fetch the rev ID used on page views
+	 *
+	 * @return int revision ID of last article revision
+	 */
 	public function getRevIdFetched() {
 		$this->loadLastEdit();
 		return $this->mRevIdFetched;
@@ -701,6 +723,7 @@ class Article {
 	/**
 	 * @param $limit Integer: default 0.
 	 * @param $offset Integer: default 0.
+	 * @return UserArrayFromResult object with User objects of article contributors for requested range
 	 */
 	public function getContributors( $limit = 0, $offset = 0 ) {
 		# XXX: this is expensive; cache this info somewhere.
@@ -1099,6 +1122,8 @@ class Article {
 	 * If this request is a redirect view, send "redirected from" subtitle to
 	 * $wgOut. Returns true if the header was needed, false if this is not a
 	 * redirect view. Handles both local and remote redirects.
+	 *
+	 * @return boolean
 	 */
 	public function showRedirectedFromHeader() {
 		global $wgOut, $wgUser, $wgRequest, $wgRedirectSources;
@@ -1285,7 +1310,8 @@ class Article {
 	/**
 	 * If the revision requested for view is deleted, check permissions.
 	 * Send either an error message or a warning header to $wgOut.
-	 * Returns true if the view is allowed, false if not.
+	 * 
+	 * @return boolean true if the view is allowed, false if not.
 	 */
 	public function showDeletedRevisionHeader() {
 		global $wgOut, $wgRequest;
@@ -1317,9 +1343,11 @@ class Article {
 		}
 	}
 
-	/*
-	* Should the parser cache be used?
-	*/
+	/**
+	 * Should the parser cache be used?
+	 *
+	 * @return boolean
+	 */
 	public function useParserCache( $oldid ) {
 		global $wgUser, $wgEnableParserCache;
 
@@ -1352,6 +1380,8 @@ class Article {
 	 * output it and return true. If it is not present, output nothing and
 	 * return false. This is used as a callback function for
 	 * PoolCounter::executeProtected().
+	 *
+	 * @return boolean
 	 */
 	public function tryDirtyCache() {
 		global $wgOut;
@@ -1392,9 +1422,11 @@ class Article {
 
 	/**
 	 * View redirect
+	 * 
 	 * @param $target Title object or Array of destination(s) to redirect
 	 * @param $appendSubtitle Boolean [optional]
 	 * @param $forceKnown Boolean: should the image be shown as a bluelink regardless of existence?
+	 * @return string containing HMTL with redirect link
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		global $wgOut, $wgContLang, $wgStylePath, $wgUser;
@@ -1445,6 +1477,9 @@ class Article {
 
 	}
 
+	/**
+	 * Builds trackback links for article display if $wgUseTrackbacks is set to true
+	 */
 	public function addTrackbacks() {
 		global $wgOut, $wgUser;
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1474,6 +1509,9 @@ class Article {
 		$this->mTitle->invalidateCache();
 	}
 
+	/**
+	 * Removes trackback record for current article from trackbacks table
+	 */
 	public function deletetrackback() {
 		global $wgUser, $wgRequest, $wgOut;
 		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'token' ) ) ) {
@@ -1493,6 +1531,10 @@ class Article {
 		$wgOut->addWikiMsg( 'trackbackdeleteok' );
 		$this->mTitle->invalidateCache();
 	}
+	
+	/**
+	 * Handle action=render
+	 */
 
 	public function render() {
 		global $wgOut;
@@ -1683,6 +1725,7 @@ class Article {
 	 *
 	 * @param $dbw Database object
 	 * @param $revision Revision object
+	 * @return mixed 
 	 */
 	public function updateIfNewerOn( &$dbw, $revision ) {
 		wfProfileIn( __METHOD__ );
