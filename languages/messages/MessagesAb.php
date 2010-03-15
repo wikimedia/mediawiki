@@ -46,6 +46,7 @@ $messages = array(
 
 'search'           => 'Аҧшаара',
 'searchbutton'     => 'Аҧшаара',
+'searcharticle'    => 'Адаҟьа',
 'history_short'    => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
 'jumptosearch'     => 'аҧшаара',
@@ -61,6 +62,12 @@ $messages = array(
 
 # Edit pages
 'summary' => 'Ятарлă саспаллисем:',
+
+# Groups
+'group-user' => 'Иалоуқәа',
+
+# File description page
+'filehist-user' => 'Иалоу',
 
 # Special:AllPages
 'alphaindexline' => '$1 ... $2',

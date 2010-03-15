@@ -2008,7 +2008,7 @@ $1",
 'nowikiemailtext'  => 'Гэты ўдзельнік не дазволіў атрымліваць лісты па электроннай пошце ад іншых удзельнікаў.',
 'email-legend'     => 'Даслаць ліст электроннай пошты іншаму ўдзельніку {{GRAMMAR:родны|{{SITENAME}}}}',
 'emailfrom'        => 'Ад:',
-'emailto'          => 'Каму:',
+'emailto'          => 'Да:',
 'emailsubject'     => 'Тэма:',
 'emailmessage'     => 'Паведамленьне:',
 'emailsend'        => 'Даслаць',
@@ -2179,7 +2179,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'іншы тэрмін',
 'protect-existing-expiry'     => 'Наяўны час сканчэньня: $3, $2',
 'protect-otherreason'         => 'Іншая/дадатковая прычына:',
-'protect-otherreason-op'      => 'іншая/дадатковая прычына',
+'protect-otherreason-op'      => 'Іншая прычына',
 'protect-dropdown'            => '*Звычайныя прычыны абароны
 ** Часты вандалізм
 ** Празьмерны спам

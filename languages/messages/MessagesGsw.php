@@ -1148,6 +1148,7 @@ Do het s e zuefellig generierte Wärt, wu du chasch bruche: $1',
 'prefs-files'                   => 'Bilder',
 'prefs-custom-css'              => 'Benutzerdefinierti CSS',
 'prefs-custom-js'               => 'Benutzerdefiniert JS',
+'prefs-common-css-js'           => 'Gmeinsam CSS/JS fir alli Skin:',
 'prefs-reset-intro'             => 'Du chasch die Syte verwände go d Yystellige uf dr Standard zrucksetze.
 Des cha nimmi ruckgängig gmacht wäre.',
 'prefs-emailconfirm-label'      => 'E-Mail-Bstätigung:',
@@ -2026,7 +2027,7 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 'protect-othertime-op'        => 'anderi Sperrduur',
 'protect-existing-expiry'     => 'Aktuälls Syteschutzänd: $2, $3 Uhr',
 'protect-otherreason'         => 'Andere/zuesätzlige Grund:',
-'protect-otherreason-op'      => 'andere/zuesätzlige Grund',
+'protect-otherreason-op'      => 'Andere Grund',
 'protect-dropdown'            => '*Allgmeini Schutzgrind
 ** Netzgleich-Spam
 ** Editwar

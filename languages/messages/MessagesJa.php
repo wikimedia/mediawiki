@@ -1255,7 +1255,7 @@ $1",
 'prefs-files'                   => 'ファイル',
 'prefs-custom-css'              => 'カスタムCSS',
 'prefs-custom-js'               => 'カスタムJS',
-'prefs-common-css-js'           => 'すべてのスキンに共通のCSSまたはJavaScript',
+'prefs-common-css-js'           => 'すべてのスキンに共通の CSS と JavaScript:',
 'prefs-reset-intro'             => 'このページを使うと、あなたの個人設定をこのサイトの既定のものに再設定することができます。この操作は取り消しができません。',
 'prefs-emailconfirm-label'      => 'メール確認:',
 'prefs-textboxsize'             => '編集画面の大きさ',
@@ -2112,7 +2112,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'その他の期間',
 'protect-existing-expiry'     => '現在の保護期限: $2 $3',
 'protect-otherreason'         => 'その他の理由・追加の理由:',
-'protect-otherreason-op'      => 'その他の理由・追加の理由:',
+'protect-otherreason-op'      => 'その他の理由',
 'protect-dropdown'            => '*よくある保護理由
 ** 度重なる荒らし
 ** 度重なるスパム投稿
