@@ -1,6 +1,8 @@
 <?php
 /**
  * MediaWiki is the to-be base class for this whole project
+ *
+ * @internal documentation reviewed 15 Mar 2010
  */
 class MediaWiki {
 
@@ -29,7 +31,8 @@ class MediaWiki {
 	 * Note that keys are case-insensitive!
 	 *
 	 * @param $key String: key to get
-	 * @param $default Mixed: default value if if the key doesn't exist
+	 * @param $default string default value, defaults to empty string
+	 * @return $default Mixed: default value if if the key doesn't exist
 	 */
 	function getVal( $key, $default = '' ) {
 		$key = strtolower( $key );
@@ -142,6 +145,7 @@ class MediaWiki {
 	 * @param $title Title
 	 * @param $output OutputPage
 	 * @param $request WebRequest
+	 * @return boolean true if successful
 	 */
 	function preliminaryChecks( &$title, &$output, $request ) {
 		if( $request->getCheck( 'search' ) ) {

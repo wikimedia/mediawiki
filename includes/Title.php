@@ -4,6 +4,11 @@
  * @file
  */
 
+/**
+ * @todo:  determine if it is really necessary to load this.  Appears to be left over from pre-autoloader versions, and
+ *   is only really needed to provide access to constant UTF8_REPLACEMENT, which actually resides in UtfNormalDefines.php
+ *   and is loaded by UtfNormalUtil.php, which is loaded by UtfNormal.php.
+ */
 if ( !class_exists( 'UtfNormal' ) ) {
 	require_once( dirname(__FILE__) . '/normal/UtfNormal.php' );
 }
@@ -15,6 +20,8 @@ define ( 'GAID_FOR_UPDATE', 1 );
  * Optionally may contain an interwiki designation or namespace.
  * @note This class can fetch various kinds of data from the database;
  *       however, it does so inefficiently.
+ *
+ * @internal documentation reviewed 15 Mar 2010
  */
 class Title {
 	/** @name Static cache variables */
@@ -93,9 +100,9 @@ class Title {
 	 * Create a new Title from text, such as what one would find in a link. De-
 	 * codes any HTML entities in the text.
 	 *
-	 * @param $text             string  The link text; spaces, prefixes, and an
+	 * @param $text string  The link text; spaces, prefixes, and an
 	 *   initial ':' indicating the main namespace are accepted.
-	 * @param $defaultNamespace int     The namespace to use if none is speci-
+	 * @param $defaultNamespace int The namespace to use if none is speci-
 	 *   fied by a prefix.  If you want to force a specific namespace even if
 	 *   $text might begin with a namespace prefix, use makeTitle() or
 	 *   makeTitleSafe().
@@ -499,6 +506,9 @@ class Title {
 
 	/**
 	 * Escape a text fragment, say from a link, for a URL
+	 * 
+	 * @param $fragment string containing a URL or link fragment (after the "#")
+	 * @return string escaped string
 	 */
 	static function escapeFragmentForURL( $fragment ) {
 		# Note that we don't urlencode the fragment.  urlencoded Unicode
@@ -1439,6 +1449,7 @@ class Title {
 	 * @param $create_perm \type{\string} Permission required for creation
 	 * @param $reason \type{\string} Reason for protection
 	 * @param $expiry \type{\string} Expiry timestamp
+	 * @return boolean true
 	 */
 	public function updateTitleProtection( $create_perm, $reason, $expiry ) {
 		global $wgUser,$wgContLang;
@@ -1723,6 +1734,7 @@ class Title {
 	}
 	/**
 	 * Trim down a .css or .js subpage title to get the corresponding skin name
+	 * @return string containing skin name from .css or .js subpage title
 	 */
 	public function getSkinFromCssJsSubpage() {
 		$subpage = explode( '/', $this->mTextform );
@@ -1869,7 +1881,11 @@ class Title {
 		}
 		return array( $sources, $pagerestrictions );
 	}
-
+	
+	/**
+	 * Returns cascading restrictions for the current article
+	 * @return 
+	 */
 	function areRestrictionsCascading() {
 		if (!$this->mRestrictionsLoaded) {
 			$this->loadRestrictions();
@@ -1881,6 +1897,7 @@ class Title {
 	/**
 	 * Loads a string into mRestrictions array
 	 * @param $res \type{Resource} restrictions as an SQL result.
+	 * @param $oldFashionedRestrictions string comma-separated list of page restrictions from page table (pre 1.10)
 	 */
 	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
 		$rows = array();
@@ -1892,7 +1909,12 @@ class Title {
 
 		$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
 	}
-
+	
+	/**
+	 * Compiles list of active page restrictions from both page table (pre 1.10) and page_restrictions table
+	 * @param $rows array of db result objects
+	 * @param $oldFashionedRestrictions string comma-separated list of page restrictions from page table (pre 1.10)
+	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -1968,6 +1990,7 @@ class Title {
 
 	/**
 	 * Load restrictions from the page_restrictions table
+	 * @param $oldFashionedRestrictions string comma-separated list of page restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
 		if( !$this->mRestrictionsLoaded ) {
@@ -2034,7 +2057,7 @@ class Title {
 	/**
 	 * Get the expiry time for the restriction against a given action
 	 * @return 14-char timestamp, or 'infinity' if the page is protected forever
-	 * or not protected at all, or false if the action is not recognised.
+	 * 	or not protected at all, or false if the action is not recognised.
 	 */
 	public function getRestrictionExpiry( $action ) {
 		if( !$this->mRestrictionsLoaded ) {
@@ -2229,9 +2252,12 @@ class Title {
 		return $p . $name;
 	}
 
-	// Returns a simple regex that will match on characters and sequences invalid in titles.
-	//  Note that this doesn't pick up many things that could be wrong with titles, but that
-	//  replacing this regex with something valid will make many titles valid.
+	/**
+	 * Returns a simple regex that will match on characters and sequences invalid in titles.
+	 * Note that this doesn't pick up many things that could be wrong with titles, but that
+	 * replacing this regex with something valid will make many titles valid.
+	 * @return string regex string
+	 */
 	static function getTitleInvalidRegex() {
 		static $rxTc = false;
 		if( !$rxTc ) {
@@ -2253,7 +2279,10 @@ class Title {
 	}
 
 	/**
-	 * Capitalize a text if it belongs to a namespace that capitalizes
+	 * Capitalize a text string for a title if it belongs to a namespace that capitalizes
+	 * @param $text string containing title to capitalize
+	 * $param $ns int namespace index, defaults to NS_MAIN
+	 * @return $text string containing capitalized title
 	 */
 	public static function capitalize( $text, $ns = NS_MAIN ) {
 		global $wgContLang;
@@ -2643,6 +2672,7 @@ class Title {
 	/**
 	 * Move this page without authentication
 	 * @param &$nt \type{Title} the new page Title
+	 * @return \type{\mixed} true on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveNoAuth( &$nt ) {
 		return $this->moveTo( $nt, false );
@@ -3453,6 +3483,8 @@ class Title {
 
 	/**
 	 * Callback for usort() to do title sorts by (namespace, title)
+	 * 
+	 * @return int result of string comparison, or namespace comparison
 	 */
 	public static function compare( $a, $b ) {
 		if( $a->getNamespace() == $b->getNamespace() ) {
@@ -3541,9 +3573,10 @@ class Title {
 	* Is this in a namespace that allows actual pages?
 	*
 	* @return \type{\bool} TRUE or FALSE
+	* @internal note -- uses hardcoded namespace index instead of constants
 	*/
 	public function canExist() {
-		return $this->mNamespace >= 0 && $this->mNamespace != NS_MEDIA;
+		return $this->mNamespace >=0 && $this->mNamespace != NS_MEDIA;
 	}
 
 	/**
@@ -3645,6 +3678,7 @@ class Title {
 
 	/**
 	 * Generate strings used for xml 'id' names in monobook tabs
+	 * @param $prepend string defaults to 'nstab-'
 	 * @return \type{\string} XML 'id' name
 	 */
 	public function getNamespaceKey( $prepend = 'nstab-' ) {
@@ -3674,6 +3708,7 @@ class Title {
 
 	/**
 	 * Returns true if this is a special page.
+	 * @return boolean
 	 */
 	public function isSpecialPage( ) {
 		return $this->getNamespace() == NS_SPECIAL;
@@ -3682,6 +3717,7 @@ class Title {
 	/**
 	 * Returns true if this title resolves to the named special page
 	 * @param $name \type{\string} The special page name
+	 * @return boolean
 	 */
 	public function isSpecial( $name ) {
 		if ( $this->getNamespace() == NS_SPECIAL ) {
@@ -3777,6 +3813,7 @@ class Title {
 
 	/**
 	 * Get a backlink cache object
+	 * @return object BacklinkCache
 	 */
 	function getBacklinkCache() {
 		if ( is_null( $this->mBacklinkCache ) ) {
@@ -3802,6 +3839,10 @@ class Title {
 
 	}
 
+	/**
+	 * Returns restriction types for the current Title
+	 * @return array applicable restriction types
+	 */
 	public function getRestrictionTypes() {
 		global $wgRestrictionTypes;
 		$types = $this->exists() ? $wgRestrictionTypes : array('create');

@@ -11,6 +11,7 @@
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and HTMLFileCache classes.
  *
+ * @internal documentation reviewed 15 Mar 2010
  */
 class Article {
 	/**@{{
@@ -39,7 +40,7 @@ class Article {
 	var $mTotalAdjustment = 0;        // !<
 	var $mTouched = '19700101000000'; // !<
 	var $mUser = -1;                  // !< Not loaded
-	var $mUserText = '';              // !<
+	var $mUserText = '';              // !< username from Revision if set
 	var $mParserOptions;              // !< ParserOptions object
 	var $mParserOutput;               // !< ParserCache object if set
 	/**@}}*/
