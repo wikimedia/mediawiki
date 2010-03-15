@@ -33,15 +33,15 @@ class Article {
 	var $mRedirectTarget = null;      // !< Title object if set
 	var $mRedirectUrl = false;        // !<
 	var $mRevIdFetched = 0;           // !<
-	var $mRevision;                   // !<
+	var $mRevision;                   // !< Revision object if set
 	var $mTimestamp = '';             // !<
-	var $mTitle;                      // !<
+	var $mTitle;                      // !< Title object
 	var $mTotalAdjustment = 0;        // !<
 	var $mTouched = '19700101000000'; // !<
 	var $mUser = -1;                  // !< Not loaded
 	var $mUserText = '';              // !<
-	var $mParserOptions;              // !<
-	var $mParserOutput;               // !<
+	var $mParserOptions;              // !< ParserOptions object
+	var $mParserOutput;               // !< ParserCache object if set
 	/**@}}*/
 
 	/**
@@ -4134,7 +4134,7 @@ class Article {
 	/**
 	 * Updates cascading protections
 	 *
-	 * @param $parserOutput mixed ParseerOptions object, or boolean false
+	 * @param $parserOutput mixed ParserOptions object, or boolean false
 	 **/
 
 	protected function doCascadeProtectionUpdates( $parserOutput ) {
