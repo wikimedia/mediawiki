@@ -48,8 +48,8 @@ class LinkCache {
 	/**
 	 * Get a field of a title object from cache.
 	 * If this link is not good, it will return NULL.
-	 * @param Title $title
-	 * @param string $field ('length','redirect')
+	 * @param $title Title
+	 * @param $field String: ('length','redirect')
 	 * @return mixed
 	 */
 	public function getGoodLinkFieldObj( $title, $field ) {
@@ -67,10 +67,10 @@ class LinkCache {
 
 	/**
 	 * Add a link for the title to the link cache
-	 * @param int $id
-	 * @param Title $title
-	 * @param int $len
-	 * @param int $redir
+	 * @param $id Integer
+	 * @param $title Title
+	 * @param $len Integer
+	 * @param $redir Integer
 	 */
 	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null ) {
 		$dbkey = $title->getPrefixedDbKey();
@@ -127,7 +127,7 @@ class LinkCache {
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 * @param $nt Title to add.
 	 * @param $len int, page size
-	 * @param $redir bool, is redirect?
+	 * @param $redirect bool, is redirect?
 	 * @return integer
 	 */
 	public function addLinkObj( &$nt, $len = -1, $redirect = null ) {

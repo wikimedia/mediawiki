@@ -142,9 +142,9 @@ class LinkBatch {
 	/**
 	 * Construct a WHERE clause which will match all the given titles.
 	 *
-	 * @param string $prefix the appropriate table's field name prefix ('page', 'pl', etc)
-	 * @return string
-	 * @public
+	 * @param $prefix String: the appropriate table's field name prefix ('page', 'pl', etc)
+	 * @param $db DatabaseBase object to use
+	 * @return String
 	 */
 	public function constructSet( $prefix, &$db ) {
 		$first = true;
