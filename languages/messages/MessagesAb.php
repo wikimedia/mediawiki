@@ -41,14 +41,19 @@ $messages = array(
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
 
+# Cologne Blue skin
+'qbpageoptions' => 'Ари адаҟьа',
+
 # Vector skin
 'vector-namespace-main' => 'Адаҟьа',
+'vector-view-history'   => 'Аҭоурых',
 
 'search'           => 'Аҧшаара',
 'searchbutton'     => 'Аҧшаара',
 'searcharticle'    => 'Адаҟьа',
 'history_short'    => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
+'jumptonavigation' => 'анавигациа',
 'jumptosearch'     => 'аҧшаара',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

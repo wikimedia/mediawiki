@@ -1268,6 +1268,7 @@ Velaquí un valor xerado ao chou que pode usar: $1',
 'prefs-files'                   => 'Ficheiros',
 'prefs-custom-css'              => 'CSS personalizado',
 'prefs-custom-js'               => 'JS personalizado',
+'prefs-common-css-js'           => 'CSS/JS compartido por todas as aparencias:',
 'prefs-reset-intro'             => 'Pode usar esta páxina para restablecer as súas preferencias ás que veñen dadas por defecto.
 Este cambio non se poderá desfacer.',
 'prefs-emailconfirm-label'      => 'Confirmación do correo:',
@@ -2183,7 +2184,7 @@ Pode mudar o nivel de protección da páxina pero iso non afectará á protecci�
 'protect-othertime-op'        => 'outro período',
 'protect-existing-expiry'     => 'Período de caducidade existente: $2, $3',
 'protect-otherreason'         => 'Outro motivo:',
-'protect-otherreason-op'      => 'outro motivo',
+'protect-otherreason-op'      => 'Outro motivo',
 'protect-dropdown'            => '*Motivos frecuentes para a protección
 ** Vandalismo excesivo
 ** Publicidade excesiva

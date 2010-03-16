@@ -2197,7 +2197,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'protect-othertime-op'        => 'inny okres',
 'protect-existing-expiry'     => 'Obecny czas wygaśnięcia: $2 o $3',
 'protect-otherreason'         => 'Inny lub dodatkowy powód',
-'protect-otherreason-op'      => 'inny lub dodatkowy powód',
+'protect-otherreason-op'      => 'Inny powód',
 'protect-dropdown'            => '*Najczęstsze powody zabezpieczenia
 ** Częste wandalizmy
 ** Częste spamowanie
