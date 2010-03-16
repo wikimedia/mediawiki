@@ -3167,6 +3167,16 @@ Special:RecentChanges
 !! end
 
 !! test
+{{#special:}} page name with subpage, known
+!! options
+msg
+!! input
+{{#special:Recentchanges/param}}
+!! result
+Special:RecentChanges/param
+!! end
+
+!! test
 {{#special:}} page name, unknown
 !! options
 msg
