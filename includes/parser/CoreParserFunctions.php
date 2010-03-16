@@ -561,9 +561,10 @@ class CoreParserFunctions {
 	}
 
 	static function special( $parser, $text ) {
-		$title = SpecialPage::getTitleForAlias( $text );
-		if ( $title ) {
-			return $title->getPrefixedText();
+		list( $page, $subpage ) = SpecialPage::resolveAliasWithSubpage( $text );
+		if ( $page ) {
+			$title = SpecialPage::getTitleFor( $page, $subpage );
+			return $title;
 		} else {
 			return wfMsgForContent( 'nosuchspecialpage' );
 		}
