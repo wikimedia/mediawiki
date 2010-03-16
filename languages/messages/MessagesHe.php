@@ -2256,7 +2256,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'זמן אחר',
 'protect-existing-expiry'     => 'זמן פקיעה נוכחי: $3, $2',
 'protect-otherreason'         => 'סיבה אחרת/נוספת:',
-'protect-otherreason-op'      => 'סיבה אחרת/נוספת',
+'protect-otherreason-op'      => 'סיבה אחרת',
 'protect-dropdown'            => '* סיבות הגנה נפוצות
 ** השחתה רבה
 ** ספאם רב
