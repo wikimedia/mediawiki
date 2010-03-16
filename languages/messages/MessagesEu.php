@@ -1961,7 +1961,7 @@ Orrialde honen babes maila alda dezakezu, baina ez du eraginik izango kaskada bi
 'protect-othertime-op'        => 'beste denbora',
 'protect-existing-expiry'     => 'Iraungitze ordua: $2, $3',
 'protect-otherreason'         => 'Bestelako arrazoiak (edo gehigarriak):',
-'protect-otherreason-op'      => 'bestelako arrazoiak (edo gehigarriak)',
+'protect-otherreason-op'      => 'Bestelako arrazoiak',
 'protect-dropdown'            => '*Babesteko arrazoi ohikoenak
 ** Gehiegizko bandalismoa
 ** Gehiegizko spama

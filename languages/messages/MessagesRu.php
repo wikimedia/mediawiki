@@ -2208,7 +2208,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'другое время',
 'protect-existing-expiry'     => 'Текущее время окончания: $2, $3',
 'protect-otherreason'         => 'Другая причина/дополнение:',
-'protect-otherreason-op'      => 'другая причина',
+'protect-otherreason-op'      => 'Другая причина',
 'protect-dropdown'            => '* Типовые причины защиты
 ** заядлый вандализм
 ** чрезмерный спам

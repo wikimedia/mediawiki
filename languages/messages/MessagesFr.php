@@ -688,7 +688,7 @@ Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oubli
 'readonly_lag'         => 'La base de données a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
 'internalerror'        => 'Erreur interne',
 'internalerror_info'   => 'Erreur interne : $1',
-'fileappenderrorread'  => "Impossible de lire « $1 » lors de l'insertion",
+'fileappenderrorread'  => 'Impossible de lire « $1 » lors de l’insertion',
 'fileappenderror'      => 'Impossible d’ajouter « $1 » à « $2 ».',
 'filecopyerror'        => 'Impossible de copier le fichier « $1 » vers « $2 ».',
 'filerenameerror'      => 'Impossible de renommer le fichier « $1 » en « $2 ».',
@@ -815,11 +815,11 @@ Entrez une adresse bien formatée ou laissez ce champ vide.',
 Vous devriez ouvrir une session et modifier dès à présent votre mot de passe.
 
 Ignorez ce message si ce compte a été créé par erreur.',
-'usernamehasherror'          => "Le nom d'utilisateur ne peut pas contenir des caractères de hachage",
+'usernamehasherror'          => 'Le nom d’utilisateur ne peut pas contenir des caractères de hachage',
 'login-throttled'            => 'Vous avez tenté un trop grand nombre de connexions dernièrement.
 Veuillez attendre avant d’essayer à nouveau.',
 'loginlanguagelabel'         => 'Langue : $1',
-'suspicious-userlogout'      => "Votre demande de déconnexion a été refusée car il semble qu'elle été envoyée par un navigateur cassé ou la mise en cache d'un proxy.",
+'suspicious-userlogout'      => 'Votre demande de déconnexion a été refusée car il semble qu’elle a été envoyée par un navigateur cassé ou la mise en cache d’un proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Changer le mot de passe',
@@ -938,8 +938,8 @@ Vous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur le titre de la
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les journaux associés]</span>.',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'userpage-userdoesnotexist-view'   => 'Le compte utilisateur « $1 » n’est pas enregistré.',
-'blocked-notice-logextract'        => "Cet utilisateur est actuellement bloqué.
-La dernière entrée du registre des blocages est indiquée ci-dessous à titre d'information :",
+'blocked-notice-logextract'        => 'Cet utilisateur est actuellement bloqué.
+La dernière entrée du registre des blocages est indiquée ci-dessous à titre d’information :',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant sur le bouton ''Actualiser'' (''Reload'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ;
 '''Internet Explorer / Opera :''' maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5''.",
@@ -1009,7 +1009,7 @@ L’administrateur ayant verrouillé la base de données a donné l’explicatio
 Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Special:UserLogin|vous connecter ou créer un compte]].',
 'nocreate-loggedin'                => 'Vous n’avez pas la permission de créer de nouvelles pages.',
 'sectioneditnotsupported-title'    => 'Modification de section non prise en charge',
-'sectioneditnotsupported-text'     => "La modification d'une section n'est pas supportée dans cette page de modification.",
+'sectioneditnotsupported-text'     => 'La modification d’une section n’est pas supportée dans cette page de modification.',
 'permissionserrors'                => 'Erreur de permissions',
 'permissionserrorstext'            => 'Vous n’avez pas la permission d’effectuer l’opération demandée pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
 'permissionserrorstext-withaction' => 'Vous n’êtes pas autorisé{{GENDER:||e|(e)}} à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
@@ -1087,7 +1087,7 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-comment'         => '(commentaire supprimé)',
 'rev-deleted-user'            => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'           => '(entrée supprimée)',
-'rev-deleted-user-contribs'   => "[nom d'utilisateur ou adresse IP supprimée - modification cachée sur les contributions]",
+'rev-deleted-user-contribs'   => '[nom d’utilisateur ou adresse IP supprimée - modification cachée sur les contributions]',
 'rev-deleted-text-permission' => "Cette version de la page a été '''effacée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-deleted-text-unhide'     => "Cette version de la page a été '''effacée'''.
@@ -1106,13 +1106,13 @@ Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{
 'rev-deleted-unhide-diff'     => "Une des révisions de cette différence a été '''effacée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].
 En tant qu’administrateur vous pouvez toujours [$1 voir cette différence] si vous le voulez.",
-'rev-suppressed-unhide-diff'  => "L'une des révisions de ce diff a été '''supprimée'''.
+'rev-suppressed-unhide-diff'  => "L’une des révisions de ce diff a été '''supprimée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].
-En tant qu'administrateur, vous pouvez toujours [$1 voir ce diff] si vous souhaitez poursuivre.",
+En tant qu’administrateur, vous pouvez toujours [$1 voir ce diff] si vous souhaitez poursuivre.",
 'rev-deleted-diff-view'       => "Une des révisions de ce diff a été '''supprimée'''.
-En tant qu'administrateur vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
+En tant qu’administrateur vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'rev-suppressed-diff-view'    => "Une des révisions de ce diff a été '''effacée'''.
-En tant qu'administrateur vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des effacements].",
+En tant qu’administrateur vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-delundel'                => 'afficher/masquer',
 'rev-showdeleted'             => 'afficher',
 'revisiondelete'              => 'Supprimer ou restaurer des événements',
@@ -1122,7 +1122,7 @@ En tant qu'administrateur vous pouvez voir ce diff ; des détails sont disponibl
 'revdelete-nologtype-text'    => 'Vous n’avez pas spécifié un type de journal sur lequel cette action doit être réalisée.',
 'revdelete-nologid-title'     => 'Entrée du journal invalide',
 'revdelete-nologid-text'      => 'Vous n’avez pas spécifié une entrée du journal sur laquelle cette action doit être effectuée, ou alors l’événement spécifié n’existe pas.',
-'revdelete-no-file'           => "Le fichier spécifié n'existe pas.",
+'revdelete-no-file'           => 'Le fichier spécifié n’existe pas.',
 'revdelete-show-file-confirm' => 'Êtes-vous sûr de vouloir voir la révision supprimée du fichier « <nowiki>$1</nowiki> » datant du $2 à $3?',
 'revdelete-show-file-submit'  => 'Oui',
 'revdelete-selected'          => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''[[:$1]]''' :'''",
@@ -1169,15 +1169,15 @@ $1",
 'logdelete-log-message'       => '$1 sur $2 évènement{{PLURAL:$2||s}}',
 'revdelete-hide-current'      => 'Erreur lors de la suppression de l’élément daté du $1 à $2 : il est la révision courante.
 Il ne peut pas être supprimé.',
-'revdelete-show-no-access'    => "Erreur lors de l’affichage de l'élément daté du $1 à $2 : il est marqué comme « restreint ».
-Vous n’y avez pas accès.",
+'revdelete-show-no-access'    => 'Erreur lors de l’affichage de l’élément daté du $1 à $2 : il est marqué comme « restreint ».
+Vous n’y avez pas accès.',
 'revdelete-modify-no-access'  => 'Erreur lors de la modification de l’élément daté du $1 à $2 : il est marqué comme « restreint ».
 Vous n’y avez pas accès.',
 'revdelete-modify-missing'    => 'Erreur lors de la modification de l’élément avec l’ID $1 : il est manquant dans la base de données !',
 'revdelete-no-change'         => "'''Attention :''' L’élément daté du $1 à $2 a déjà les paramètres de visibilité demandés.",
 'revdelete-concurrent-change' => 'Erreur lors de la modification de l’élément daté du $1 à $2 : son statut a été changé par quelqu’un d’autre pendant que vous le modifiez.
 Vérifiez les journaux.',
-'revdelete-only-restricted'   => "Erreur lors de la suppression de l'entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.",
+'revdelete-only-restricted'   => 'Erreur lors de la suppression de l’entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.',
 'revdelete-reason-dropdown'   => '* Raisons courantes de suppression 
 ** Violation des droits d’auteurs
 ** Renseignements personnels inappropriés',
@@ -1252,7 +1252,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searchhelp-url'                   => 'Help:Accueil',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Rechercher les pages commençant par ce préfixe]]',
 'searchprofile-articles'           => 'Pages de contenu',
-'searchprofile-project'            => "Pages d'aide et du projet",
+'searchprofile-project'            => 'Pages d’aide et du projet',
 'searchprofile-images'             => 'Multimédia',
 'searchprofile-everything'         => 'Tout',
 'searchprofile-advanced'           => 'Recherche avancée',
@@ -1408,7 +1408,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'prefs-advancedrendering'       => 'Options avancées',
 'prefs-advancedsearchoptions'   => 'Options avancées',
 'prefs-advancedwatchlist'       => 'Options avancées',
-'prefs-display'                 => "Options d'affichage",
+'prefs-display'                 => 'Options d’affichage',
 'prefs-diffs'                   => 'Différences',
 
 # User rights
@@ -1646,7 +1646,7 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'minlength1'                  => 'Le noms de fichiers doivent comprendre au moins une lettre.',
 'illegalfilename'             => 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le téléverser à nouveau.',
 'badfilename'                 => 'Le fichier a été renommé en « $1 ».',
-'filetype-mime-mismatch'      => "L'extension du fichier ne correspond pas au type MIME.",
+'filetype-mime-mismatch'      => 'L’extension du fichier ne correspond pas au type MIME.',
 'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être téléversés.',
 'filetype-bad-ie-mime'        => 'Le fichier ne peut pas être téléversé parce qu’il serait détecté comme « $1 » par Internet Explorer, ce qui correspond à un type de fichier interdit car potentiellement dangereux.',
 'filetype-unwanted-type'      => "'''« .$1 »''' est un format de fichier non désiré.
@@ -1755,11 +1755,11 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 # HTTP errors
 'http-invalid-url'      => 'URL incorrecte : $1',
 'http-invalid-scheme'   => 'Les URLs avec le schéma « $1 » ne sont pas supportées',
-'http-request-error'    => "Erreur inconnue lors de l'envoi de la requête.",
+'http-request-error'    => 'Erreur inconnue lors de l’envoi de la requête.',
 'http-read-error'       => 'Erreur de lecture HTTP.',
 'http-timed-out'        => 'La requête HTTP a expiré.',
-'http-curl-error'       => "Erreur lors de la récupération de l'URL : $1",
-'http-host-unreachable' => "Impossible d'atteindre l'URL",
+'http-curl-error'       => 'Erreur lors de la récupération de l’URL : $1',
+'http-host-unreachable' => 'Impossible d’atteindre l’URL.',
 'http-bad-status'       => 'Il y a eu un problème lors de la requête HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2256,7 +2256,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protectexpiry'               => 'Date d’expiration :',
 'protect_expiry_invalid'      => 'La date d’expiration est invalide.',
 'protect_expiry_old'          => 'La date d’expiration est déjà passée.',
-'protect-unchain-permissions' => "Déverrouiller davantage d'options de protection",
+'protect-unchain-permissions' => 'Déverrouiller davantage d’options de protection',
 'protect-text'                => "Vous pouvez consulter et modifier le niveau de protection de la page '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Vous ne pouvez pas modifier les niveaux de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
 Voici les réglages actuels de la page '''$1''' :",
@@ -2518,7 +2518,7 @@ Veuillez contacter votre fournisseur d’accès Internet ou votre support techni
 'sorbs_create_account_reason'     => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.
 Vous ne pouvez pas créer un compte.',
 'cant-block-while-blocked'        => 'Vous ne pouvez pas bloquer d’autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.',
-'cant-see-hidden-user'            => "L'utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N'ayant pas le droit hideuser, vous ne pouvez pas voir ou modifier le blocage de l'utilisateur.",
+'cant-see-hidden-user'            => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N'ayant pas le droit hideuser, vous ne pouvez pas voir ou modifier le blocage de l’utilisateur.",
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base de données',
@@ -2557,7 +2557,7 @@ Ceci peut provoquer un changement radical et imprévu pour une page souvent cons
 
 Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion manuellement si vous le désirez.",
 'movearticle'                  => 'Renommer la page :',
-'moveuserpage-warning'         => "'''Attention:''' Vous êtes sur le point de renommer une page d'utilisateur. Veuillez noter que seul la page sera renommée et que l'utilisateur '''ne''' sera '''pas''' renommé.",
+'moveuserpage-warning'         => "'''Attention :''' Vous êtes sur le point de renommer une page d’utilisateur. Veuillez noter que seul la page sera renommée et que l’utilisateur '''ne''' sera '''pas''' renommé.",
 'movenologin'                  => 'Vous n’êtes pas identifié{{GENDER:||e|(e)}}.',
 'movenologintext'              => 'Pour pouvoir renommer une page, vous devez être [[Special:UserLogin|identifié{{GENDER:||e|(e)}}]] avec un compte utilisateur enregistré et d’ancienneté suffisante.',
 'movenotallowed'               => 'Vous n’avez pas la permission de renommer les pages.',
@@ -2611,8 +2611,8 @@ impossible de renommer une page sur elle-même.',
 'imageinvalidfilename'         => 'Le nom du fichier cible est incorrect',
 'fix-double-redirects'         => 'Mettre à jour les redirections pointant vers le titre original',
 'move-leave-redirect'          => 'Laisser une redirection vers le nouveau titre',
-'protectedpagemovewarning'     => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d'administrateur puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
-'semiprotectedpagemovewarning' => "'''Note:''' Cette page a été protégée afin que seuls les utilisateurs enregistrés puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
+'protectedpagemovewarning'     => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d’administrateur puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
+'semiprotectedpagemovewarning' => "'''Note :''' Cette page a été protégée afin que seuls les utilisateurs enregistrés puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
 'move-over-sharedrepo'         => '== Le fichier existe ==
 [[:$1]] existe déjà sur un dépôt partagé. Renommer ce fichier rendra le fichier sur le dépôt partage inaccessible.',
 'file-exists-sharedrepo'       => 'Le nom choisi est déjà utilisé par un fichier sur un dépôt partagé.
@@ -2815,13 +2815,13 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} sur {{SITENAME}}',
-'siteuser'         => "l'utilisateur $1 de {{SITENAME}}",
-'anonuser'         => "l'utilisateur anonyme $1 de {{SITENAME}}",
+'siteuser'         => 'l’utilisateur $1 de {{SITENAME}}',
+'anonuser'         => 'l’utilisateur anonyme $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.',
 'othercontribs'    => 'Basé sur le travail de $1.',
 'others'           => 'autres',
 'siteusers'        => '{{PLURAL:$2|l’utilisateur|les utilisateurs}} $1 de {{SITENAME}}',
-'anonusers'        => "{{PLURAL:$2|l'utilisateur anonyme|les utilisateurs anonymes}} $1 de {{SITENAME}}",
+'anonusers'        => '{{PLURAL:$2|l’utilisateur anonyme|les utilisateurs anonymes}} $1 de {{SITENAME}}',
 'creditspage'      => 'Crédits de la page',
 'nocredits'        => 'Il n’y a pas d’informations d’attribution disponibles pour cette page.',
 
@@ -2907,7 +2907,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attention :''' ce type de fichier peut contenir du code malveillant.
-Si vous l'exécutez, votre système peut être compromis.<hr />",
+Si vous l’exécutez, votre système peut être compromis.<hr />",
 'imagemaxsize'         => "Format maximal des images :<br />''(pour les pages de description d’images)''",
 'thumbsize'            => 'Taille de la miniature :',
 'widthheightpage'      => '$1 × $2, $3 page{{PLURAL:$3||s}}',
