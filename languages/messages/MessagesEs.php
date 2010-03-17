@@ -2245,7 +2245,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-othertime-op'        => 'otra (especificar)',
 'protect-existing-expiry'     => 'Fecha de caducidad actual: $2 a las $3',
 'protect-otherreason'         => 'Otra razón:',
-'protect-otherreason-op'      => 'otra razón',
+'protect-otherreason-op'      => 'Otra razón',
 'protect-dropdown'            => '*Razones de protección habituales
 **Vandalismo excesivo
 **Spam excesivo

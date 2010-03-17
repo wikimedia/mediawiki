@@ -1103,6 +1103,7 @@ Aqquà ste 'nu valore generate a uecchije ca tu puè ausà: $1",
 'prefs-files'                   => 'Fails',
 'prefs-custom-css'              => 'CSS Personalizzete',
 'prefs-custom-js'               => 'JS Personalizzete',
+'prefs-common-css-js'           => 'CSS/JS condivise pe tutte le sfonde:',
 'prefs-reset-intro'             => "Tu puè ausà sta pàgene pe azzerà le preferenze tue a quidde de default d'u site.
 Quiste non ge pò essere annullate.",
 'prefs-emailconfirm-label'      => "Conferme de l'e-mail:",
@@ -2021,7 +2022,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'protect-othertime-op'        => 'otre orarie',
 'protect-existing-expiry'     => "'U timbe de scadenze esistende: $3, $2",
 'protect-otherreason'         => 'Otre mutive:',
-'protect-otherreason-op'      => 'otre mutive',
+'protect-otherreason-op'      => 'Otre mutive',
 'protect-dropdown'            => '*Mutive de protezzione comune
 ** Vandalisme eccessive
 ** Spamming eccessive
