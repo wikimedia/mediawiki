@@ -506,7 +506,7 @@ class EditPage {
 	 * variable in the constructor is not enough. This can be used when the
 	 * EditPage lives inside of a Special page rather than a custom page action.
 	 * 
-	 * @param Title $title The title for which is being edited (where we go to for &action= links)
+	 * @param $title Title object for which is being edited (where we go to for &action= links)
 	 * @return string
 	 */
 	protected function getActionURL( Title $title ) {
@@ -656,7 +656,7 @@ class EditPage {
 	 * this method should be overrided and return the page text that will be used
 	 * for saving, preview parsing and so on...
 	 * 
-	 * @praram WebRequest $request
+	 * @param $request WebRequest
 	 */
 	protected function importContentFormData( &$request ) {
 		return; // Don't do anything, EditPage already extracted wpTextbox1
@@ -1475,8 +1475,8 @@ HTML
 	 * 
 	 * @param $summary The value of the summary input
 	 * @param $labelText The html to place inside the label
-	 * @param $userInputAttrs An array of attrs to use on the input
-	 * @param $userSpanAttrs An array of attrs to use on the span inside the label
+	 * @param $inputAttrs An array of attrs to use on the input
+	 * @param $spanLabelAttrs An array of attrs to use on the span inside the label
 	 * 
 	 * @return array An array in the format array( $label, $input )
 	 */
@@ -1506,11 +1506,11 @@ HTML
 	}
 
 	/**
-	 * @param bool $isSubjectPreview true if this is the section subject/title
-	 *                               up top, or false if this is the comment
-	 *                               summary down below the textarea
-	 * @param string $summary The text of the summary to display
-	 * @return string
+	 * @param $isSubjectPreview Boolean: true if this is the section subject/title
+	 *                          up top, or false if this is the comment summary
+	 *                          down below the textarea
+	 * @param $summary String: The text of the summary to display
+	 * @return String
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
 		global $wgOut, $wgContLang;
@@ -1530,11 +1530,11 @@ HTML
 	}
 
 	/**
-	 * @param bool $isSubjectPreview true if this is the section subject/title
-	 *                               up top, or false if this is the comment
-	 *                               summary down below the textarea
-	 * @param string $summary The text of the summary to display
-	 * @return string
+	 * @param $isSubjectPreview Boolean: true if this is the section subject/title
+	 *                          up top, or false if this is the comment summary
+	 *                          down below the textarea
+	 * @param $summary String: the text of the summary to display
+	 * @return String
 	 */
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
 		if ( !$summary || ( !$this->preview && !$this->diff ) )
@@ -1590,7 +1590,7 @@ INPUTS
 	 * reverse modified when extracted from the post data.
 	 * Note that this is basically the inverse for importContentFormData
 	 * 
-	 * @praram WebRequest $request
+	 * @param $request WebRequest
 	 */
 	protected function showContentForm() {
 		$this->showTextbox1();
@@ -1601,8 +1601,8 @@ INPUTS
 	 * The $textoverride method can be used by subclasses overriding showContentForm
 	 * to pass back to this method.
 	 * 
-	 * @param array $customAttribs An array of html attributes to use in the textarea
-	 * @param string $textoverride Optional text to override $this->textarea1 with
+	 * @param $customAttribs An array of html attributes to use in the textarea
+	 * @param $textoverride String: optional text to override $this->textarea1 with
 	 */
 	protected function showTextbox1($customAttribs = null, $textoverride = null) {
 		$classes = array(); // Textarea CSS
@@ -1688,7 +1688,7 @@ INPUTS
 	 * Append preview output to $wgOut.
 	 * Includes category rendering if this is a category page.
 	 *
-	 * @param string $text The HTML to be output for the preview.
+	 * @param $text String: the HTML to be output for the preview.
 	 */
 	protected function showPreview( $text ) {
 		global $wgOut;
@@ -2081,8 +2081,8 @@ INPUTS
 
 	/**
 	 * Format an anchor fragment as it would appear for a given section name
-	 * @param string $text
-	 * @return string
+	 * @param $text String
+	 * @return String
 	 * @private
 	 */
 	function sectionAnchor( $text ) {
@@ -2420,9 +2420,9 @@ INPUTS
 	 * Filter an input field through a Unicode de-armoring process if it
 	 * came from an old browser with known broken Unicode editing issues.
 	 *
-	 * @param WebRequest $request
-	 * @param string $field
-	 * @return string
+	 * @param $request WebRequest
+	 * @param $field String
+	 * @return String
 	 * @private
 	 */
 	function safeUnicodeInput( $request, $field ) {
@@ -2443,8 +2443,8 @@ INPUTS
 	 * Filter an output field through a Unicode armoring process if it is
 	 * going to an old browser with known broken Unicode editing issues.
 	 *
-	 * @param string $text
-	 * @return string
+	 * @param $text String
+	 * @return String
 	 * @private
 	 */
 	function safeUnicodeOutput( $text ) {
@@ -2464,8 +2464,8 @@ INPUTS
 	 * Preexisting such character references will have a 0 added to them
 	 * to ensure that round-trips do not alter the original data.
 	 *
-	 * @param string $invalue
-	 * @return string
+	 * @param $invalue String
+	 * @return String
 	 * @private
 	 */
 	function makesafe( $invalue ) {
@@ -2506,8 +2506,8 @@ INPUTS
 	 * back to UTF-8. Used to protect data from corruption by broken web browsers
 	 * as listed in $wgBrowserBlackList.
 	 *
-	 * @param string $invalue
-	 * @return string
+	 * @param $invalue String
+	 * @return String
 	 * @private
 	 */
 	function unmakesafe( $invalue ) {
