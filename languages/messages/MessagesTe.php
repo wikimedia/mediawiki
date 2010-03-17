@@ -1981,7 +1981,7 @@ $NEWPAGE
 'reverted'               => 'పాత కూర్పుకు తీసుకువెళ్ళాం.',
 'deletecomment'          => 'తొలగింపునకు కారణం:',
 'deleteotherreason'      => 'ఇతర/అదనపు కారణం:',
-'deletereasonotherlist'  => 'ఇతర కారణాలు',
+'deletereasonotherlist'  => 'ఇతర కారణం',
 'deletereason-dropdown'  => '* తొలగింపుకి సాధారణ కారణాలు
 ** రచయిత అభ్యర్థన
 ** కాపీహక్కుల ఉల్లంఘన
@@ -2042,7 +2042,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'ఇతర సమయం',
 'protect-existing-expiry'     => 'ప్రస్తుత కాల పరిమితి: $3, $2',
 'protect-otherreason'         => 'ఇతర/అదనపు కారణం:',
-'protect-otherreason-op'      => 'ఇతర/అదనపు కారణం',
+'protect-otherreason-op'      => 'ఇతర కారణం',
 'protect-dropdown'            => '*సాధారణ సంరక్షణ కారణాలు
 ** అత్యధిక వాండలిజం
 ** అత్యధిక స్పామింగు

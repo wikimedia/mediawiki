@@ -45,8 +45,9 @@ $messages = array(
 'qbpageoptions' => 'Ари адаҟьа',
 
 # Vector skin
-'vector-namespace-main' => 'Адаҟьа',
-'vector-view-history'   => 'Аҭоурых',
+'vector-namespace-category' => 'Акатегориа',
+'vector-namespace-main'     => 'Адаҟьа',
+'vector-view-history'       => 'Аҭоурых',
 
 'search'           => 'Аҧшаара',
 'searchbutton'     => 'Аҧшаара',
