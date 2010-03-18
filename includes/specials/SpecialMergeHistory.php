@@ -47,21 +47,22 @@ class SpecialMergeHistory extends SpecialPage {
 	function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			$this->message['last'] = wfMsgExt( 'last', array( 'escape') );
+			$this->message['last'] = wfMsgExt( 'last', array( 'escape' ) );
 		}
 	}
 
 	function execute( $par = '' ) {
 		global $wgOut, $wgRequest, $wgUser;
 
-		if( !$wgUser->isAllowed( 'mergehistory' ) ) {
-			$wgOut->permissionRequired( 'mergehistory' );
+		if( !$this->userCanExecute( $wgUser ) ) {
+			$this->displayRestrictionError();
 			return;
 		}
 
 		$this->loadRequestParams( $wgRequest );
 
-		$wgOut->setPagetitle( wfMsgHtml( "mergehistory" ) );
+		$this->setHeaders();
+		$this->outputHeader();
 
 		if( $this->mTargetID && $this->mDestID && $this->mAction=="submit" && $this->mMerge ) {
 			return $this->merge();

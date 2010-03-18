@@ -430,7 +430,7 @@ class LogEventsList {
 		// Show unmerge link
 		} else if( self::typeAction( $row, 'merge', 'merge', 'mergehistory' ) ) {
 			$revert = '(' . $this->skin->link(
-				SpecialPage::getTitleFor( 'Mergehistory' ),
+				SpecialPage::getTitleFor( 'MergeHistory' ),
 				$this->message['revertmerge'],
 				array(),
 				array(
