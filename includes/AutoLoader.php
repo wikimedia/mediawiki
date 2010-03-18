@@ -560,6 +560,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialExport' => 'includes/specials/SpecialExport.php',
 	'SpecialImport' => 'includes/specials/SpecialImport.php',
 	'SpecialListGroupRights' => 'includes/specials/SpecialListgrouprights.php',
+	'SpecialMergeHistory' => 'includes/specials/SpecialMergeHistory.php',
 	'SpecialMostlinkedtemplates' => 'includes/specials/SpecialMostlinkedtemplates.php',
 	'SpecialPreferences' => 'includes/specials/SpecialPreferences.php',
 	'SpecialPrefixindex' => 'includes/specials/SpecialPrefixindex.php',

@@ -168,7 +168,7 @@ class SpecialPage {
 		'Import'                    => 'SpecialImport',
 		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
 		'Whatlinkshere'             => 'SpecialWhatlinkshere',
-		'MergeHistory'              => array( 'SpecialPage', 'MergeHistory', 'mergehistory' ),
+		'MergeHistory'              => 'SpecialMergeHistory',
 
 		# Other
 		'Booksources'               => 'SpecialBookSources',
