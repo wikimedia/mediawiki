@@ -507,6 +507,7 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 'readonly_lag'         => 'Datowa banka jo awtomatiski se zacyniła, aby wótwisne serwery se mógli z głownym serwerom wurownowaś.',
 'internalerror'        => 'Interna zmólka',
 'internalerror_info'   => 'Interna zmólka: $1',
+'fileappenderrorread'  => '"$1" njejo se dał cytaś pśi pśipowjesanju.',
 'fileappenderror'      => 'Njejo móžno było "$1" k "$2" pśipowjesyś.',
 'filecopyerror'        => 'Njejo było móžno dataju „$1” k „$2” kopěrowaś.',
 'filerenameerror'      => 'Njejo było móžno dataju „$1” do „$2” pśemjenjowaś.',
@@ -624,6 +625,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'usernamehasherror'          => 'Wužywarske mě njesmějo hašowe znamuška wopśimjeś',
 'login-throttled'            => 'Sy pśecesto wopytał se pśizjawiś. Pócakaj pšosym, nježli až wopytajoš znowego.',
 'loginlanguagelabel'         => 'Rěc: $1',
+'suspicious-userlogout'      => 'Twójo póžedanje za wótzjawjenim jo se wótpokazało, dokulaž zda se, až jo se pósłało pśez wobškóźony wobglědowak abo pufrowański proksy',
 
 # Password reset dialog
 'resetpass'                 => 'Gronidło změniś',
@@ -812,7 +814,7 @@ Protokol wulašowanjow a pśesunjenjow za toś ten bok so how za informaciju pó
 'moveddeleted-notice'              => 'Toś ten bok jo se wulašował. Protokol wulašowanjow a pśesunjenjow za toś ten bok pódawa se dołojce ako referenca.',
 'log-fulllog'                      => 'Dopołny protokol se woglědaś',
 'edit-hook-aborted'                => 'Wobźěłanje pśez kokulu pśetergnjony.
-Njejo žedne wujasnjenje.',
+Njejo žedno wujasnjenje.',
 'edit-gone-missing'                => 'Njejo móžno było bok aktualizěrowaś.
 Zda sem až jo wulašowany.',
 'edit-conflict'                    => 'Wobźěłański konflikt.',
@@ -1260,7 +1262,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-move-subpages'         => 'Boki ze swójimi pódbokami pśesunuś',
 'right-move-rootuserpages'    => 'Głowne wužywarske boki pśesunuś',
 'right-movefile'              => 'Dataje pśesunuś',
-'right-suppressredirect'      => 'Pśi pśesunjenju žedne dalejpósrědnjenje ze starego mjenja napóraś',
+'right-suppressredirect'      => 'Pśi pśesunjenju žedno dalejpósrědnjenje ze starego mjenja napóraś',
 'right-upload'                => 'lódowaś dataje',
 'right-reupload'              => 'Eksistěrujucu dataju pśepisaś',
 'right-reupload-own'          => 'Dataju nagratu wót togo samogo wužywarja pśepisaś',
@@ -1540,10 +1542,14 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'img-auth-noread'       => 'Wužywaŕ njama pśistup, aby cytał "$1".',
 
 # HTTP errors
-'http-invalid-url'   => 'Njepłaśiwy URL: $1',
-'http-request-error' => 'HTTP-napšašowanje jo se njeraźiło njeznateje zmólki dla.',
-'http-read-error'    => 'Cytańska zmólka HTTP.',
-'http-timed-out'     => 'HTTP-napšašowanje jo cas pśekšocyło.',
+'http-invalid-url'      => 'Njepłaśiwy URL: $1',
+'http-invalid-scheme'   => 'URL ze šemu "$1" se njepódpěraju.',
+'http-request-error'    => 'HTTP-napšašowanje jo se njeraźiło njeznateje zmólki dla.',
+'http-read-error'       => 'Cytańska zmólka HTTP.',
+'http-timed-out'        => 'HTTP-napšašowanje jo cas pśekšocyło.',
+'http-curl-error'       => 'Zmólka pśi wótwółowanju URL: $1',
+'http-host-unreachable' => 'URL njejo był pśistupny.',
+'http-bad-status'       => 'Wob cas HTTP-napšašowanje jo problem był: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL njejo pśistupna.',
@@ -1648,7 +1654,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 
 # Unused templates
 'unusedtemplates'     => 'Njewužywane pśedłogi',
-'unusedtemplatestext' => 'Toś ten bok nalicujo wšykne boki w mjenjowom rumje {{ns:template}}, kótarež njejsu do žednego drugego boka zawězane. Pšosym kontrolěruj dalšne wótkaze, nježli až je wulašujoš.',
+'unusedtemplatestext' => 'Toś ten bok nalicujo wšykne boki w mjenjowom rumje {{ns:template}}, kótarež njejsu do žednogo drugego boka zawězane. Pšosym kontrolěruj dalšne wótkaze, nježli až je wulašujoš.',
 'unusedtemplateswlh'  => 'Druge wótkaze',
 
 # Random page
@@ -2312,6 +2318,7 @@ pšosym zawěsć, až konsekwency rozmijoš, nježli až pókšacujoš.",
 
 W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu wjasć, jolic až to coš.",
 'movearticle'                  => 'Bok pśesunuś',
+'moveuserpage-warning'         => "'''Warnowanje:''' Coš rowno wužywarski bok pśesunuś. Pšosym wobmysli, až jano bok se pśesunjo a wužiwaŕ '''nje'''buźo se pśemjenjowaś.",
 'movenologin'                  => 'Njepśizjawjony(a)',
 'movenologintext'              => 'Musyš zregistrěrowany wužywaŕ a [[Special:UserLogin|pśizjawjony]] byś, aby pśesunuł bok.',
 'movenotallowed'               => 'Njamaš pšawo pśesuwaś boki.',
@@ -2960,23 +2967,23 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'limitall'         => 'wšykne',
 
 # E-mail address confirmation
-'confirmemail'             => 'E-mailowu adresu wobkšuśiś.',
-'confirmemail_noemail'     => 'W swójich [[Special:Preferences|nastajenjach]] njejsy płaśecu e-mailowu adresu zapódał.',
-'confirmemail_text'        => '{{SITENAME}} pomina, až wobkšuśijoš swóju e-mailowu adresu, nježlic až móžoš e-mailowe funkcije wužywaś. Tłocyš-lic na tłocatko, dostanjoš e-mailku, w kótarejž jo wótkaz z wobkšuśenskim gronidłom. Tłocenje na wótkaz wobkšuśijo, až twója e-mailowa adresa jo korektna.',
-'confirmemail_pending'     => 'Tebje jo južo jadno wobkšuśeńske gronidło se pśimailowało. Sy-lic swójo wužywarske konto akle gano wutwórił, ga pócakaj hyšći žedne minuty na e-mail, nježlic až pominaš nowe gronidło.',
-'confirmemail_send'        => 'Wobkšuśeńske gronidło pósłaś',
-'confirmemail_sent'        => 'Wobkšuśeńska e-mailka pósłana.',
-'confirmemail_oncreate'    => 'Na Twóju adresu jo se wótpósłało wobkšuśeńske gronidło. Toś ten kod njejo notny za pśizjawjenje, ale za aktiwěrowanje e-mailowych funkcijow we wikiju.',
-'confirmemail_sendfailed'  => '{{SITENAME}} njejo se mógła twóju wobkšuśensku e-mail pósłaś. Pšosym pśeglědaj swóju e-mailowu adresu na njepłaśiwe znamuška.
+'confirmemail'              => 'E-mailowu adresu wobkšuśiś.',
+'confirmemail_noemail'      => 'W swójich [[Special:Preferences|nastajenjach]] njejsy płaśecu e-mailowu adresu zapódał.',
+'confirmemail_text'         => '{{SITENAME}} pomina, až wobkšuśijoš swóju e-mailowu adresu, nježlic až móžoš e-mailowe funkcije wužywaś. Tłocyš-lic na tłocatko, dostanjoš e-mailku, w kótarejž jo wótkaz z wobkšuśenskim gronidłom. Tłocenje na wótkaz wobkšuśijo, až twója e-mailowa adresa jo korektna.',
+'confirmemail_pending'      => 'Tebje jo južo jadno wobkšuśeńske gronidło se pśimailowało. Sy-lic swójo wužywarske konto akle gano wutwórił, ga pócakaj hyšći žedne minuty na e-mail, nježlic až pominaš nowe gronidło.',
+'confirmemail_send'         => 'Wobkšuśeńske gronidło pósłaś',
+'confirmemail_sent'         => 'Wobkšuśeńska e-mailka pósłana.',
+'confirmemail_oncreate'     => 'Na Twóju adresu jo se wótpósłało wobkšuśeńske gronidło. Toś ten kod njejo notny za pśizjawjenje, ale za aktiwěrowanje e-mailowych funkcijow we wikiju.',
+'confirmemail_sendfailed'   => '{{SITENAME}} njejo se mógła twóju wobkšuśensku e-mail pósłaś. Pšosym pśeglědaj swóju e-mailowu adresu na njepłaśiwe znamuška.
 
 E-mailowy program jo wrośił: $1',
-'confirmemail_invalid'     => 'Njepłaśece wobkšuśeńske gronidło. Snaź jo kod mjaztym płaśiwosć zgubił.',
-'confirmemail_needlogin'   => 'Dejš $1 aby swóju e-mailowu adresu wobkšuśił.',
-'confirmemail_success'     => 'Twója e-mailowa adresa jo wobkšuśona, móžoš se pśizjawiś.',
-'confirmemail_loggedin'    => 'Twója e-mailowa adresa jo něnto wobkšuśona.',
-'confirmemail_error'       => 'Zmólka pśi wobkšuśenju e-mailoweje adresy.',
-'confirmemail_subject'     => '{{SITENAME}} - Wobkšuśenje e-mailoweje adrese',
-'confirmemail_body'        => 'Něchten, nejskerjej ty z adresy $1, jo na boku {{SITENAME}} wužywarske konto "$2" z toś teju e-mailoweju adresu zregistrěrował.
+'confirmemail_invalid'      => 'Njepłaśece wobkšuśeńske gronidło. Snaź jo kod mjaztym płaśiwosć zgubił.',
+'confirmemail_needlogin'    => 'Dejš $1 aby swóju e-mailowu adresu wobkšuśił.',
+'confirmemail_success'      => 'Twója e-mailowa adresa jo wobkšuśona, móžoš se pśizjawiś.',
+'confirmemail_loggedin'     => 'Twója e-mailowa adresa jo něnto wobkšuśona.',
+'confirmemail_error'        => 'Zmólka pśi wobkšuśenju e-mailoweje adresy.',
+'confirmemail_subject'      => '{{SITENAME}} - Wobkšuśenje e-mailoweje adrese',
+'confirmemail_body'         => 'Něchten, nejskerjej ty z adresy $1, jo na boku {{SITENAME}} wužywarske konto "$2" z toś teju e-mailoweju adresu zregistrěrował.
 
 Aby wobkšuśił, až toś to konto napšawdu śi słuša a aby e-mailowe funkcije na boce {{SITENAME}} aktiwěrował, wócyń toś ten wótkaz w swójim browserje:
 
@@ -2987,8 +2994,19 @@ Jolic až *njejsy* toś to konto zregistrěrował, slěduj toś tomu wótkazoju,
 $5
 
 Toś ten wobkšuśeński kod płaśi do $4.',
-'confirmemail_invalidated' => 'Emailowe wobkšuśenje pśetergnjone',
-'invalidateemail'          => 'Emailowe wobkšuśenje pśetergnuś',
+'confirmemail_body_changed' => 'Něchten, nejskerjej ty z IP-adresy $1, jo e-mailowu adresu konta "$2" do toś teje adrese na {{GRAMMAR:lokatiw{{SITENAME}}}} změnił.
+
+Aby wobkšuśił, až toś to konto napšawdu śi słuša a aby e-mailowe funkcije na {{GRAMMAR:lokatiw{{SITENAME}}}} aktiwěrował, wócyń toś ten wótkaz w swójom wobglědowaku:
+
+$3
+
+Jolic toś to konto śi *nje*słuša, slěduj toś tomu wótkazoju, aby wobkśuśenje e-mejloweje adrese anulěrował:  
+
+$5
+
+Toś ten wobkšuśeński kod płaśi až do $4.',
+'confirmemail_invalidated'  => 'Emailowe wobkšuśenje pśetergnjone',
+'invalidateemail'           => 'Emailowe wobkšuśenje pśetergnuś',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Pśidawanje interwiki jo deaktiwěrowane]',

@@ -49,13 +49,14 @@ $messages = array(
 'vector-namespace-main'     => 'Адаҟьа',
 'vector-view-history'       => 'Аҭоурых',
 
+'help'             => 'Цхыраара',
 'search'           => 'Аҧшаара',
 'searchbutton'     => 'Аҧшаара',
 'searcharticle'    => 'Адаҟьа',
 'history_short'    => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
-'jumptonavigation' => 'анавигациа',
-'jumptosearch'     => 'аҧшаара',
+'jumptonavigation' => 'Анавигациа',
+'jumptosearch'     => 'Аҧшаара',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} иазкны',
@@ -66,8 +67,15 @@ $messages = array(
 'nstab-main'     => 'Адаҟьа',
 'nstab-category' => 'Акатегориа',
 
+# Login and logout pages
+'loginlanguagelabel' => 'Бызшәа: $1',
+
 # Edit pages
 'summary' => 'Ятарлă саспаллисем:',
+
+# Preferences page
+'uid'          => 'Иалоу ID:',
+'yourlanguage' => 'Абызшәа:',
 
 # Groups
 'group-user' => 'Иалоуқәа',
@@ -77,6 +85,11 @@ $messages = array(
 
 # Special:AllPages
 'alphaindexline' => '$1 ... $2',
+
+'sp-contributions-submit' => 'Аҧшаара',
+
+# What links here
+'whatlinkshere-page' => 'Адаҟьа:',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'зегьы',

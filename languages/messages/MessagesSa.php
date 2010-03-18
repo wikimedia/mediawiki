@@ -584,7 +584,7 @@ $messages = array(
 'resetpass-temp-password'   => 'अस्थिर रहस्यवाक् :',
 
 # Edit page toolbar
-'bold_sample'     => 'स्थूलाक्षरितपाठः',
+'bold_sample'     => 'स्थूलाक्षरम्',
 'bold_tip'        => 'स्थूलाक्षरम्',
 'italic_sample'   => 'तिर्यक् अक्षरम्',
 'italic_tip'      => 'तिर्यक् अक्षरम्',
@@ -734,13 +734,14 @@ $messages = array(
 'rcshowhidemine'                 => '$1 मम संपादनानि',
 'rclinks'                        => 'अंतिमानि $1 परिवर्तनानि अंतिमेषु $2 दिनेषु, दर्शयतु<br />$3',
 'diff'                           => 'अन्तरम्',
-'hist'                           => 'इति.',
+'hist'                           => 'इतिहासः',
 'hide'                           => 'गोपयतु',
 'show'                           => 'दर्शयतु',
 'minoreditletter'                => 'लघु',
-'newpageletter'                  => 'न',
-'boteditletter'                  => 'बो',
-'rc-enhanced-expand'             => 'विवरणानि दर्शयतु (जावास्क्रिप्टम् आवश्यकम्)',
+'newpageletter'                  => 'नवी॰',
+'boteditletter'                  => 'यन्त्रं',
+'newsectionsummary'              => '/* $1 */ नवीन विभागः',
+'rc-enhanced-expand'             => 'विवरणानि दर्शयतु (जावालिपि आवश्यकम्)',
 'rc-enhanced-hide'               => 'विवरणानि विलोपयतु',
 
 # Recent changes linked
@@ -756,6 +757,7 @@ $messages = array(
 
 # Upload
 'upload'        => 'संचिकाम् उद्भारयतु',
+'uploadbtn'     => 'संचिकाम् उद्भारयतु',
 'uploadlogpage' => 'उद्भारण-सूचिका',
 'uploadedimage' => '"[[$1]]" इत्येतद् उद्भारितमस्ति',
 
