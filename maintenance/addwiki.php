@@ -43,17 +43,18 @@ class AddWiki extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgLanguageNames, $wgDefaultExternalStore, $wgNoDBParam;
+		global $IP, $wgDefaultExternalStore, $wgNoDBParam;
 
 		$wgNoDBParam = true;
 		$lang = $this->getArg(0);
 		$site = $this->getArg(1);
 		$dbName = $this->getArg(2);
+		$languageNames = Language::getLanguageNames();
 
-		if ( !isset( $wgLanguageNames[$lang] ) ) {
+		if ( !isset( $languageNames[$lang] ) ) {
 			$this->error( "Language $lang not found in \$wgLanguageNames", true );
 		}
-		$name = $wgLanguageNames[$lang];
+		$name = $languageNames[$lang];
 
 		$dbw = wfGetDB( DB_MASTER );
 		$common = "/home/wikipedia/common";
