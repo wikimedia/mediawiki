@@ -18,21 +18,22 @@ class DatabaseLag extends Maintenance {
 	public function execute() {
 		if ( $this->hasOption( 'r' ) ) {
 			$lb = wfGetLB();
-			$this->output( 'time     ' );
-			for( $i = 0; $i < $lb->getServerCount(); $i++ ) {
+			echo 'time     ';
+			for( $i = 1; $i < $lb->getServerCount(); $i++ ) {
 				$hostname = $lb->getServerName( $i );
-				$this->output( sprintf( "%-12s ", $hostname ) );
+				printf( "%-12s ", $hostname );
 			}
-			$this->output( "\n" );
+			echo "\n";
 
 			while( 1 ) {
+				$lb->clearLagTimeCache();
 				$lags = $lb->getLagTimes();
 				unset( $lags[0] );
-				$this->output( gmdate( 'H:i:s' ) . ' ' );
+				echo gmdate( 'H:i:s' ) . ' ';
 				foreach( $lags as $i => $lag ) {
-					$this->output( sprintf( "%-12s " , $lag === false ? 'false' : $lag ) );
+					printf( "%-12s " , $lag === false ? 'false' : $lag );
 				}
-				$this->output( "\n" );
+				echo "\n";
 				sleep( 5 );
 			}
 		} else {
