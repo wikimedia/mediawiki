@@ -2007,8 +2007,10 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'watchlistall2'    => 'zote',
 'namespacesall'    => 'zote',
 'monthsall'        => 'yote',
+'limitall'         => 'zote',
 
 # E-mail address confirmation
+'confirmemail'             => 'Yakinisha anwani yako ya barua pepe',
 'confirmemail_needlogin'   => 'Unahitajika $1 kuthibitisha anwani ya barua pepe yako.',
 'confirmemail_success'     => 'Barua pepe yako imethibitishwa.
 Sasa unaweza [[Special:UserLogin|kuingia]] na kuifurahia {{SITENAME}}.',
@@ -2041,6 +2043,8 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'imgmultigo'       => 'Nenda!',
 
 # Table pager
+'ascending_abbrev'         => 'pand',
+'descending_abbrev'        => 'shuk',
 'table_pager_next'         => 'Ukurasa ujao',
 'table_pager_prev'         => 'Ukurasa uliotangulia',
 'table_pager_first'        => 'Ukurasa wa kwanza',

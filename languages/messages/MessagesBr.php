@@ -2178,7 +2178,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 ** Mont re bell gant implij meur a gont
 ** Anv implijer n'eo ket aotreet",
 'ipbanononly'                     => 'Stankañ an implijerien dianav hepken',
-'ipbcreateaccount'                => 'Mirout da grouiñ kontoù',
+'ipbcreateaccount'                => 'Mirout ouzh an implijer da grouiñ kontoù',
 'ipbemailban'                     => 'Mirout ouzh an implijer da gas posteloù',
 'ipbenableautoblock'              => "Stankañ war-eeun ar chomlec'h IP diwezhañ implijet gant an den-mañ hag an holl chomlec'hioù en deus klasket degas kemmoù drezo war-lerc'h",
 'ipbsubmit'                       => "Stankañ ouzh ar chomlec'h-mañ",

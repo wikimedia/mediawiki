@@ -1078,7 +1078,7 @@ Como administrador podrá seguir [$1 viendo esta revisión] si desea continuar."
 'rev-deleted-text-view'       => "Esta revisión de la página ha sido '''borrada'''.
 Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-suppressed-text-view'    => "Esta revisión de la página ha sido '''suprimida'''.
-Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresión].",
+Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
 'rev-deleted-no-diff'         => "No puede visualizarse este cambio debido a que las revisiones han sido '''borradas'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-suppressed-no-diff'      => "No puedes ver este diff porque una de las revisiones ha sido '''borrada'''.",
@@ -1353,6 +1353,7 @@ Cualquiera que conozca la clave en este campo será capaz de leer tu lista de se
 'prefs-files'                   => 'Archivos',
 'prefs-custom-css'              => 'CSS preferido',
 'prefs-custom-js'               => 'JS preferido',
+'prefs-common-css-js'           => 'CSS/JS compartido para todas las pieles:',
 'prefs-reset-intro'             => 'Puedes usar esta página para restaurar tus preferencias a los por defecto del sitio.
 Esto no puede ser deshecho.',
 'prefs-emailconfirm-label'      => 'Confirmación de correo electrónico:',
@@ -3182,26 +3183,26 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'limitall'         => 'Todos',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar dirección de correo electrónico',
-'confirmemail_noemail'     => 'No tienes una dirección de correo electrónico válida en tus [[Special:Preferences|preferencias de usuario]].',
-'confirmemail_text'        => '{{SITENAME}} requiere que valide su dirección de correo antes de usarlo. Pulse el botón de abajo para enviar la confirmación.
+'confirmemail'              => 'Confirmar dirección de correo electrónico',
+'confirmemail_noemail'      => 'No tienes una dirección de correo electrónico válida en tus [[Special:Preferences|preferencias de usuario]].',
+'confirmemail_text'         => '{{SITENAME}} requiere que valide su dirección de correo antes de usarlo. Pulse el botón de abajo para enviar la confirmación.
 El correo incluirá un enlace con un código. Introdúzcalo para confirmar la validez de su dirección.',
-'confirmemail_pending'     => 'Ya se te ha enviado un código de confirmación; si creaste una cuenta recientemente, puede que tengas que esperar unos minutos para que te llegue antes de intentar pedir un nuevo código.',
-'confirmemail_send'        => 'Envíar el código de confimación.',
-'confirmemail_sent'        => 'Confirmación de correo enviada.',
-'confirmemail_oncreate'    => 'Se ha enviado un código de confirmación a tu dirección de correo electrónico.
+'confirmemail_pending'      => 'Ya se te ha enviado un código de confirmación; si creaste una cuenta recientemente, puede que tengas que esperar unos minutos para que te llegue antes de intentar pedir un nuevo código.',
+'confirmemail_send'         => 'Envíar el código de confimación.',
+'confirmemail_sent'         => 'Confirmación de correo enviada.',
+'confirmemail_oncreate'     => 'Se ha enviado un código de confirmación a tu dirección de correo electrónico.
 Este código no es necesario para entrar, pero necesitarás darlo antes de activar cualquier función basada en correo electrónico en el wiki.',
-'confirmemail_sendfailed'  => 'No fue posible enviar el correo de confirmación. Por favor, compruebe la validez de la dirección de correo.
+'confirmemail_sendfailed'   => 'No fue posible enviar el correo de confirmación. Por favor, compruebe la validez de la dirección de correo.
 
 El servidor indicó el error: $1',
-'confirmemail_invalid'     => 'Código de confirmación incorrecto. El código debe haber expirado.',
-'confirmemail_needlogin'   => 'Necesitas $1 para confirmar tu dirección electrónica.',
-'confirmemail_success'     => 'Su dirección de correo ha sido confirmada
+'confirmemail_invalid'      => 'Código de confirmación incorrecto. El código debe haber expirado.',
+'confirmemail_needlogin'    => 'Necesitas $1 para confirmar tu dirección electrónica.',
+'confirmemail_success'      => 'Su dirección de correo ha sido confirmada
 Ahora puedes [[Special:UserLogin|identificarte]] y colaborar en el wiki.',
-'confirmemail_loggedin'    => 'Tu dirección de correo electrónico ha sido confirmada.',
-'confirmemail_error'       => 'Algo salió mal al guardar su confirmación.',
-'confirmemail_subject'     => 'confirmación de la dirección de correo de {{SITENAME}}',
-'confirmemail_body'        => 'Alguien, probablemente usted mismo, ha registrado desde la dirección IP $1 la cuenta "$2" en {{SITENAME}}, utilizando esta dirección de correo.
+'confirmemail_loggedin'     => 'Tu dirección de correo electrónico ha sido confirmada.',
+'confirmemail_error'        => 'Algo salió mal al guardar su confirmación.',
+'confirmemail_subject'      => 'confirmación de la dirección de correo de {{SITENAME}}',
+'confirmemail_body'         => 'Alguien, probablemente usted mismo, ha registrado desde la dirección IP $1 la cuenta "$2" en {{SITENAME}}, utilizando esta dirección de correo.
 
 Para confirmar que esta cuenta realmente le pertenece y activar el correo en {{SITENAME}}, siga este enlace:
 
@@ -3212,8 +3213,20 @@ Si la cuenta *no* es suya, siga este otro enlace para cancelar la confirmación 
 $5
 
 El código de confirmación expirará en $4.',
-'confirmemail_invalidated' => 'La confirmación de la dirección de correo electrónico ha sido cancelada',
-'invalidateemail'          => 'Cancelar confirmación de correo electrónico',
+'confirmemail_body_changed' => 'Alguien, probablemente usted, desde la dirección IP $1,
+ha modificado la dirección de correo electrónico asociado a la cuenta "$2" hacia esta en {{SITENAME}}.
+
+Para confirmar que esta cuenta realmente le pertenece y reactivar las funciones de correo electrónico en {{SITENAME}}, abra este enlace en su navegador:
+
+$3
+
+Si la cuenta *no* le pertenece, siga el siguiente enlace para cancelar la confirmación:
+
+$5
+
+Este código de confirmación expirará el $4.',
+'confirmemail_invalidated'  => 'La confirmación de la dirección de correo electrónico ha sido cancelada',
+'invalidateemail'           => 'Cancelar confirmación de correo electrónico',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transclusión interwiki está deshabilitada]',
