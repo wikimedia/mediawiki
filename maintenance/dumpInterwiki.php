@@ -14,7 +14,7 @@ $oldCwd = getcwd();
 
 $optionsWithArgs = array( "o" );
 require_once( dirname(__FILE__) . '/commandLine.inc' );
-require( "dumpInterwiki.inc" );
+require( dirname(__FILE__)."/dumpInterwiki.inc" );
 chdir( $oldCwd );
 
 # Output
