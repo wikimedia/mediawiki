@@ -639,11 +639,6 @@ $wgAllDBsAreLocalhost = false;
 
 /**@}*/
 
-
-/** Live high performance sites should disable this - some checks acquire giant mysql locks */
-$wgCheckDBSchema = true;
-
-
 /**
  * Shared database for multiple wikis. Commonly used for storing a user table
  * for single sign-on. The server for this database must be the same as for the
