@@ -153,20 +153,12 @@ class NamespaceConflictChecker extends Maintenance {
 	 * @param $suffix String Suffix to append to renamed articles
 	 */
 	private function checkNamespace( $ns, $name, $fix, $suffix = '' ) {
-		if( $ns == 0 ) {
-			$header = "Checking interwiki prefix: \"$name\"\n";
-		} else {
-			$header = "Checking namespace $ns: \"$name\"\n";
-		}
-
 		$conflicts = $this->getConflicts( $ns, $name );
 		$count = count( $conflicts );
 		if( $count == 0 ) {
-			$this->output( $header . "... no conflict detected!\n" );
 			return true;
 		}
 
-		$this->output( $header . "... $count conflicts detected:\n" );
 		$ok = true;
 		foreach( $conflicts as $row ) {
 			$resolvable = $this->reportConflict( $row, $suffix );
