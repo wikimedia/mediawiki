@@ -337,7 +337,7 @@ class Xml {
 	 * Convenience function to build an HTML form label
 	 * @param $label text of the label
 	 * @param $id
-	 * @param $attrs Array, other attributes 
+	 * @param $attribs Array, other attributes 
 	 * @return string HTML
 	 */
 	public static function label( $label, $id, $attribs=array() ) {
