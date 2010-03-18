@@ -31,11 +31,13 @@ class RecompressTracked {
 	var $copyOnly = false;
 	var $isChild = false;
 	var $slaveId = false;
+	var $noCount = false;
 	var $debugLog, $infoLog, $criticalLog;
 	var $store;
 
 	static $optionsWithArgs = array( 'procs', 'slave-id', 'debug-log', 'info-log', 'critical-log' );
 	static $cmdLineOptionMap = array(
+		'no-count' => 'noCount',
 		'procs' => 'numProcs',
 		'copy-only' => 'copyOnly',
 		'child' => 'isChild',
@@ -259,12 +261,16 @@ class RecompressTracked {
 		$dbr = wfGetDB( DB_SLAVE );
 		$i = 0;
 		$startId = 0;
-		$numPages = $dbr->selectField( 'blob_tracking', 
-			'COUNT(DISTINCT bt_page)', 
-			# A condition is required so that this query uses the index
-			array( 'bt_moved' => 0 ),
-			__METHOD__
-		);
+		if ( $this->noCount ) {
+			$numPages = '[unknown]';
+		} else {
+			$numPages = $dbr->selectField( 'blob_tracking', 
+				'COUNT(DISTINCT bt_page)', 
+				# A condition is required so that this query uses the index
+				array( 'bt_moved' => 0 ),
+				__METHOD__
+			);
+		}
 		if ( $this->copyOnly ) {
 			$this->info( "Copying pages..." );
 		} else {
@@ -310,7 +316,7 @@ class RecompressTracked {
 		if ( $current == $end || $this->numBatches >= $this->reportingInterval ) {
 			$this->numBatches = 0;
 			$this->info( "$label: $current / $end" );
-			wfWaitForSlaves( 5 );
+			$this->waitForSlaves();
 		}
 	}
 
@@ -321,12 +327,16 @@ class RecompressTracked {
 		$dbr = wfGetDB( DB_SLAVE );
 		$startId = 0;
 		$i = 0;
-		$numOrphans = $dbr->selectField( 'blob_tracking', 
-			'COUNT(DISTINCT bt_text_id)', 
-			array( 'bt_moved' => 0, 'bt_page' => 0 ),
-			__METHOD__ );
-		if ( !$numOrphans ) {
-			return;
+		if ( $this->noCount ) {
+			$numOrphans = '[unknown]';
+		} else {
+			$numOrphans = $dbr->selectField( 'blob_tracking', 
+				'COUNT(DISTINCT bt_text_id)', 
+				array( 'bt_moved' => 0, 'bt_page' => 0 ),
+				__METHOD__ );
+			if ( !$numOrphans ) {
+				return;
+			}
 		}
 		if ( $this->copyOnly ) {
 			$this->info( "Copying orphans..." );
@@ -404,7 +414,7 @@ class RecompressTracked {
 			case 'quit':
 				return;
 			}
-			wfWaitForSlaves( 5 );
+			$this->waitForSlaves();
 		}
 	}
 
@@ -469,6 +479,7 @@ class RecompressTracked {
 					$this->debug( "$titleText: committing blob with " . $trx->getSize() . " items" );
 					$trx->commit();
 					$trx = new CgzCopyTransaction( $this, $this->pageBlobClass );
+					$this->waitForSlaves();
 				}
 			}
 			$startId = $row->bt_text_id;
@@ -545,6 +556,9 @@ class RecompressTracked {
 			$this->debug( 'Incomplete: ' . $res->numRows() . ' rows' );
 			foreach ( $res as $row ) {
 				$this->moveTextRow( $row->bt_text_id, $row->bt_new_url );
+				if ( $row->bt_text_id % 10 == 0 ) {
+					$this->waitForSlaves();
+				}
 			}
 			$startId = $row->bt_text_id;
 		}
@@ -604,10 +618,25 @@ class RecompressTracked {
 				$this->debug( "[orphan]: committing blob with " . $trx->getSize() . " rows" );
 				$trx->commit();
 				$trx = new CgzCopyTransaction( $this, $this->orphanBlobClass );
+				$this->waitForSlaves();
 			}
 		}
 		$this->debug( "[orphan]: committing blob with " . $trx->getSize() . " rows" );
 		$trx->commit();
+	}
+
+	/** 
+	 * Wait for slaves (quietly)
+	 */
+	function waitForSlaves() {
+		$lb = wfGetLB();
+		while ( true ) {
+			list( $host, $maxLag ) = $lb->getMaxLag();
+			if ( $maxLag < 2 ) {
+				break;
+			}
+			sleep( 5 );
+		}
 	}
 }
 
