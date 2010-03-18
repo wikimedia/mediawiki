@@ -62,7 +62,8 @@ class DumpRev extends Maintenance {
 			$text = gzinflate( $text );
 		}
 		if ( in_array( 'object', $flags ) ) {
-			$text = unserialize( $text );
+			$obj = unserialize( $text );
+			$text = $obj->getText();
 		}
 	
 		if ( is_object( $text ) ) {
