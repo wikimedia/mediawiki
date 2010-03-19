@@ -150,8 +150,8 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param string $srcPath the source path
-	 * @returns the real path if it was a virtual URL
+	 * @param $srcPath String: the source path
+	 * @return the real path if it was a virtual URL
 	 */
 	function getRealPath( $srcPath ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
@@ -286,7 +286,7 @@ abstract class UploadBase {
 	/**
 	 * Check whether the user can edit, upload and create the image.
 	 *
-	 * @param User $user the user to verify the permissions against
+	 * @param $user the User object to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
 	 *               in case the user has proper permissions.
 	 */
@@ -313,7 +313,7 @@ abstract class UploadBase {
 	/**
 	 * Check for non fatal problems with the file
 	 *
-	 * @return array Array of warnings
+	 * @return Array of warnings
 	 */
 	public function checkWarnings() {
 		$warnings = array();
@@ -492,9 +492,9 @@ abstract class UploadBase {
 	 * If the user doesn't explicitly cancel or accept, these files
 	 * can accumulate in the temp directory.
 	 *
-	 * @param string $saveName - the destination filename
-	 * @param string $tempSrc - the source temporary file to save
-	 * @return string - full path the stashed file, or false on failure
+	 * @param $saveName String: the destination filename
+	 * @param $tempSrc String: the source temporary file to save
+	 * @return String: full path the stashed file, or false on failure
 	 */
 	protected function saveTempUploadedFile( $saveName, $tempSrc ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
@@ -508,7 +508,7 @@ abstract class UploadBase {
 	 * Returns a key value which will be passed through a form
 	 * to pick up the path info on a later invocation.
 	 *
-	 * @return int Session key
+	 * @return Integer: session key
 	 */
 	public function stashSession() {
 		$status = $this->saveTempUploadedFile( $this->mDestName, $this->mTempPath );
@@ -569,9 +569,9 @@ abstract class UploadBase {
 	 * Perform case-insensitive match against a list of file extensions.
 	 * Returns true if the extension is in the list.
 	 *
-	 * @param string $ext
-	 * @param array $list
-	 * @return bool
+	 * @param $ext String
+	 * @param $list Array
+	 * @return Boolean
 	 */
 	public static function checkFileExtension( $ext, $list ) {
 		return in_array( strtolower( $ext ), $list );
@@ -581,9 +581,9 @@ abstract class UploadBase {
 	 * Perform case-insensitive match against a list of file extensions.
 	 * Returns true if any of the extensions are in the list.
 	 *
-	 * @param array $ext
-	 * @param array $list
-	 * @return bool
+	 * @param $ext Array
+	 * @param $list Array
+	 * @return Boolean
 	 */
 	public static function checkFileExtensionList( $ext, $list ) {
 		foreach( $ext as $e ) {
@@ -597,9 +597,9 @@ abstract class UploadBase {
 	/**
 	 * Checks if the mime type of the uploaded file matches the file extension.
 	 *
-	 * @param string $mime the mime type of the uploaded file
-	 * @param string $extension The filename extension that the file is to be served with
-	 * @return bool
+	 * @param $mime String: the mime type of the uploaded file
+	 * @param $extension String: the filename extension that the file is to be served with
+	 * @return Boolean
 	 */
 	public static function verifyExtension( $mime, $extension ) {
 		$magic = MimeMagic::singleton();
@@ -638,10 +638,10 @@ abstract class UploadBase {
 	 * potentially harmful. The present implementation will produce false
 	 * positives in some situations.
 	 *
-	 * @param string $file Pathname to the temporary upload file
-	 * @param string $mime The mime type of the file
-	 * @param string $extension The extension of the file
-	 * @return bool true if the file contains something looking like embedded scripts
+	 * @param $file String: pathname to the temporary upload file
+	 * @param $mime String: the mime type of the file
+	 * @param $extension String: the extension of the file
+	 * @return Boolean: true if the file contains something looking like embedded scripts
 	 */
 	public static function detectScript( $file, $mime, $extension ) {
 		global $wgAllowTitlesInSVG;
@@ -788,7 +788,7 @@ abstract class UploadBase {
 	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.
 	 * $wgAntivirusRequired may be used to deny upload if the scan fails.
 	 *
-	 * @param string $file Pathname to the temporary upload file
+	 * @param $file String: pathname to the temporary upload file
 	 * @return mixed false if not virus is found, NULL if the scan fails or is disabled,
 	 *         or a string containing feedback from the virus scanner if a virus was found.
 	 *         If textual feedback is missing but a virus was found, this function returns true.
@@ -933,9 +933,9 @@ abstract class UploadBase {
 	/**
 	 * Check if a user is the last uploader
 	 *
-	 * @param User $user
-	 * @param string $img, image name
-	 * @return bool
+	 * @param $user User object
+	 * @param $img String: image name
+	 * @return Boolean
 	 */
 	public static function userCanReUpload( User $user, $img ) {
 		if( $user->isAllowed( 'reupload' ) ) {
@@ -962,7 +962,7 @@ abstract class UploadBase {
 	 * - File exists with normalized extension
 	 * - The file looks like a thumbnail and the original exists
 	 *
-	 * @param File $file The file to check
+	 * @param $file The File object to check
 	 * @return mixed False if the file does not exists, else an array
 	 */
 	public static function getExistsWarning( $file ) {
