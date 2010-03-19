@@ -497,16 +497,21 @@ function redirectToFragment( fragment ) {
 			return;
 		}
 	}
-	if ( is_gecko ) {
-		// Mozilla needs to wait until after load, otherwise the window doesn't scroll
-		addOnloadHook(function() {
-			if ( window.location.hash == '' ) {
-				window.location.hash = fragment;
-			}
-		});
-	} else {
-		if ( window.location.hash == '' ) {
-			window.location.hash = fragment;
+	if ( window.location.hash == '' ) {
+		window.location.hash = fragment;
+
+		// Mozilla needs to wait until after load, otherwise the window doesn't
+		// scroll.  See <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
+		// There's no obvious way to detect this programmatically, so we use
+		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
+		// better twice than not at all, so make the fix hit future versions as
+		// well.
+		if ( is_gecko ) {
+			addOnloadHook(function() {
+				if ( window.location.hash == fragment ) {
+					window.location.hash = fragment;
+				}
+			});
 		}
 	}
 }
