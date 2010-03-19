@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bencmq
+ * @author Biŋhai
  * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
@@ -1207,6 +1208,7 @@ $1",
 'prefs-files'                   => '文件',
 'prefs-custom-css'              => '自定义CSS',
 'prefs-custom-js'               => '自定义JS',
+'prefs-common-css-js'           => '将CSS/JS与所有皮肤匹配：',
 'prefs-reset-intro'             => '您可以利用这个页面去重设您的参数设置到网站默认值。这个动作无法复原。',
 'prefs-emailconfirm-label'      => '电子邮件确认：',
 'prefs-textboxsize'             => '编辑框大小',
@@ -2086,7 +2088,7 @@ $NEWPAGE
 'protect-othertime-op'        => '其它时间',
 'protect-existing-expiry'     => '现时到期之时间：$2 $3',
 'protect-otherreason'         => '其它／附加的理由：',
-'protect-otherreason-op'      => '其它／附加的理由',
+'protect-otherreason-op'      => '其它理由',
 'protect-dropdown'            => '*通用保护理由
 ** 遭到过度破坏
 ** 过度张贴垃圾链接

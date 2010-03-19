@@ -660,6 +660,7 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 'login-throttled'            => "Heu realitzat massa intents d'accés a la sessió.
 Si us plau, esperi abans de tornar-ho a intentar.",
 'loginlanguagelabel'         => 'Llengua: $1',
+'suspicious-userlogout'      => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
 
 # Password reset dialog
 'resetpass'                 => 'Canvia la contrasenya',
@@ -776,6 +777,8 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear-la ara]</span>.',
 Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o bé <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres relacionats]</span>.',
 'userpage-userdoesnotexist'        => "Atenció: El compte d'usuari «$1» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
 'userpage-userdoesnotexist-view'   => 'El compte d\'usuari "$1" no està registrat.',
+'blocked-notice-logextract'        => "En aquests moments aquest compte d'usuari es troba blocat.
+Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
 'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó «Mostra previsualització» per probar el vostre nou CSS abans de desar-lo.",
 'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó «Mostra previsualització» per probar el vostre nou JS abans de desar-lo.",
@@ -1210,6 +1213,7 @@ A continuació es mostra un valor generat de forma aleatòria que podeu fer serv
 'prefs-files'                   => 'Fitxers',
 'prefs-custom-css'              => 'CSS personalitzat',
 'prefs-custom-js'               => 'JS personalitzat',
+'prefs-common-css-js'           => 'CSS/JS compartit per tots els skins:',
 'prefs-reset-intro'             => 'Podeu usar aquesta pàgina per a restablir les vostres preferències als valors per defecte.
 No es podrà desfer el canvi.',
 'prefs-emailconfirm-label'      => 'Confirmació de correu electrònic:',
@@ -1487,6 +1491,7 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'minlength1'                  => "Els noms de fitxer han de ser de com a mínim d'una lletra.",
 'illegalfilename'             => 'El nom del fitxer «$1» conté caràcters que no estan permesos en els títols de pàgines. Si us plau, canvieu el nom al fitxer i torneu a carregar-lo.',
 'badfilename'                 => "El nom de la imatge s'ha canviat a «$1».",
+'filetype-mime-mismatch'      => "L'extensió de fitxer no coincideix amb el tipus MIME.",
 'filetype-badmime'            => 'No es poden carregar fitxers del tipus MIME «$1».',
 'filetype-bad-ie-mime'        => 'No es pot carregar aquest fitxer perquè Internet Explorer el detectaria com a «$1», que és un tipus de fitxer prohibit i potencialment perillós.',
 'filetype-unwanted-type'      => "Els fitxers del tipus «'''.$1'''» no són desitjats. {{PLURAL:$3|Es prefereix el tipus de fitxer|Els tipus de fitxer preferits són}} $2.",
@@ -2092,7 +2097,7 @@ Ací es troben els paràmetres actuals de la pàgina '''$1''':",
 'protect-othertime-op'        => 'un altre termini',
 'protect-existing-expiry'     => "Data d'expiració existent: $2 a les $3",
 'protect-otherreason'         => 'Altres motius:',
-'protect-otherreason-op'      => 'altres motius',
+'protect-otherreason-op'      => 'Altres motius',
 'protect-dropdown'            => "*Motius comuns de protecció
 ** Vandalisme excessiu
 ** Spam excessiu

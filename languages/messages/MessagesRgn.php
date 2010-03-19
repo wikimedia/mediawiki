@@ -13,6 +13,10 @@
 $fallback = 'it';
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'Link cun la sotliniadura',
+'tog-highlightbroken' => 'Fa avdé i link sbajé <a href="" class="new">scrètt acsè</a> (alternativa: scrètt acsè<a href="" class="internal">?</a>)',
+
 # Dates
 'january'       => 'Znèr',
 'february'      => 'Febrér',
