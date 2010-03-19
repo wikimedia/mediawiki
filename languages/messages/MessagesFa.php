@@ -296,6 +296,7 @@ $magicWords = array(
 	'subjectpagenamee'      => array( '1', 'نشانی‌صفحه‌موضوع', 'نشانی‌صفحه‌مقاله', 'نشانی_صفحه_موضوع', 'نشانی_صفحه_مقاله', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'msg'                   => array( '0', 'پیغام:', 'پ:', 'MSG:' ),
 	'subst'                 => array( '0', 'جایگزین:', 'جا:', 'SUBST:' ),
+	'safesubst'              => array( '0', 'جایگزین_امن:', 'جام:', 'SAFESUBST:' ),
 	'msgnw'                 => array( '0', 'پیغام‌بی‌بسط:', 'MSGNW:' ),
 	'img_thumbnail'         => array( '1', 'بندانگشتی', 'انگشتدان', 'انگشتی', 'thumbnail', 'thumb' ),
 	'img_manualthumb'       => array( '1', 'بندانگشتی=$1', 'انگشتدانهای=$1', 'انگشتی=$1', 'thumbnail=$1', 'thumb=$1' ),
