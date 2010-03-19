@@ -782,9 +782,9 @@ CREATE TABLE /*_*/image (
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/img_usertext_timestamp ON /*_*/image (img_user_text,img_timestamp);
--- Used by Special:Imagelist for sort-by-size
+-- Used by Special:ListFiles for sort-by-size
 CREATE INDEX /*i*/img_size ON /*_*/image (img_size);
--- Used by Special:Newimages and Special:Imagelist
+-- Used by Special:Newimages and Special:ListFiles
 CREATE INDEX /*i*/img_timestamp ON /*_*/image (img_timestamp);
 -- Used in API and duplicate search
 CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1);
