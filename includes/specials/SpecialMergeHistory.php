@@ -51,7 +51,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 	}
 
-	function execute( $par = '' ) {
+	function execute( $par ) {
 		global $wgOut, $wgRequest, $wgUser;
 
 		if( !$this->userCanExecute( $wgUser ) ) {
