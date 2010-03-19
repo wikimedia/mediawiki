@@ -55,6 +55,7 @@ $messages = array(
 'searcharticle'    => 'Адаҟьа',
 'history_short'    => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
+'edit'             => 'Ариашамҭа',
 'jumptonavigation' => 'Анавигациа',
 'jumptosearch'     => 'Аҧшаара',
 
@@ -62,6 +63,9 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} иазкны',
 'mainpage'             => 'Ихадоу Адаҟьа',
 'mainpage-description' => 'Ихадоу адаҟьа',
+
+'editold'  => 'ариашамҭа',
+'editlink' => 'ариашамҭа',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Адаҟьа',
