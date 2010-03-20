@@ -2212,7 +2212,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protect-othertime-op'        => 'Autra expiracion',
 'protect-existing-expiry'     => 'Durada d’expiracion existenta : $2 a $3',
 'protect-otherreason'         => 'Motiu suplementari o autre :',
-'protect-otherreason-op'      => 'Motiu suplementari o autre',
+'protect-otherreason-op'      => 'Autra rason',
 'protect-dropdown'            => "*Motius de proteccion mai corrents
 ** Vandalisme excessiu
 ** Spam excessiu

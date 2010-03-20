@@ -42,11 +42,13 @@ $messages = array(
 'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
 
 # Cologne Blue skin
+'qbedit'        => 'Ариашара',
 'qbpageoptions' => 'Ари адаҟьа',
 
 # Vector skin
 'vector-namespace-category' => 'Акатегориа',
 'vector-namespace-main'     => 'Адаҟьа',
+'vector-view-edit'          => 'Ариашамҭа',
 'vector-view-history'       => 'Аҭоурых',
 
 'help'             => 'Цхыраара',
@@ -64,8 +66,8 @@ $messages = array(
 'mainpage'             => 'Ихадоу Адаҟьа',
 'mainpage-description' => 'Ихадоу адаҟьа',
 
-'editold'  => 'ариашамҭа',
-'editlink' => 'ариашамҭа',
+'editold'  => 'ариашара',
+'editlink' => 'ариашара',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Адаҟьа',
