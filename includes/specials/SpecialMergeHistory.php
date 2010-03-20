@@ -54,6 +54,11 @@ class SpecialMergeHistory extends SpecialPage {
 	function execute( $par ) {
 		global $wgOut, $wgRequest, $wgUser;
 
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+
 		if( !$this->userCanExecute( $wgUser ) ) {
 			$this->displayRestrictionError();
 			return;
