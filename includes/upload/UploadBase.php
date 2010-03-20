@@ -417,9 +417,7 @@ abstract class UploadBase {
 		 * filter out illegal characters, and try to make a legible name
 		 * out of it. We'll strip some silently that Title would die on.
 		 */
-		$basename = $this->mDesiredDestName;
-
-		$this->mFilteredName = wfStripIllegalFilenameChars( $basename );
+		$this->mFilteredName = wfStripIllegalFilenameChars( $this->mDesiredDestName );
 		/* Normalize to title form before we do any further processing */
 		$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
 		if( is_null( $nt ) ) {
@@ -466,11 +464,6 @@ abstract class UploadBase {
 			return $this->mTitle = null;
 		}
 
-		$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
-		if( is_null( $nt ) ) {
-			$this->mTitleError = self::ILLEGAL_FILENAME;
-			return $this->mTitle = null;
-		}
 		return $this->mTitle = $nt;
 	}
 
