@@ -79,6 +79,8 @@ $messages = array(
 'tog-underline'       => 'پیوندون جیر خط دأکشی بأوو',
 'tog-highlightbroken' => 'ناقص پیوندون قالب بندی<a href="" class="new">اینجوری</a>(امکان دیگه:اینجوری<a href="" class="internal">؟</a>).',
 'tog-justify'         => 'بندون ته‌موم چین هاکه‌رده‌ن',
+'tog-hideminor'       => 'نشون ندائن کچیک تغییرات تازه دگارسه‌ئون دله',
+'tog-hidepatrolled'   => 'جا بدائن دچی ینون پس بخرد تازه دگارسه‌ئون دله',
 
 'underline-default' => 'مه چأرخ‌گأر ده‌لخاء',
 

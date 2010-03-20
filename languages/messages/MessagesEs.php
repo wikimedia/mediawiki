@@ -2001,8 +2001,8 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
 # Special:DeletedContributions
-'deletedcontributions'             => 'Contribuciones de usuario borradas',
-'deletedcontributions-title'       => 'Contribuciones de usuario borradas',
+'deletedcontributions'             => 'Contribuciones borradas de usuario',
+'deletedcontributions-title'       => 'Contribuciones borradas de usuario',
 'sp-deletedcontributions-contribs' => 'contribuciones',
 
 # Special:LinkSearch

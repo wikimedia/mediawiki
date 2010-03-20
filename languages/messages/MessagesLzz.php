@@ -165,10 +165,10 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} şeni',
 'aboutpage'            => 'Project:Ambarepe',
-'copyright'            => 'Doloxe na renanpe $1-şi ren.',
+'copyright'            => 'Doloxe na renanpe, $1-şi ren.',
 'copyrightpage'        => "{{ns:project}}:Şinaxeri Hak'epe",
-'disclaimers'          => "K'abuli na var ixvenu şeyepe",
-'disclaimerpage'       => "Project:Mtelot k'abuli na var ixvenu şeyepe",
+'disclaimers'          => "K'abuli na var ixvenu ondepe",
+'disclaimerpage'       => "Project:Mtelot k'abuli na var ixvenu ondepe",
 'edithelp'             => "Muç'oşi iktirinen?",
 'edithelppage'         => "Help:But'k'a muç'oşi iktirinen?",
 'helppage'             => 'Help:Doloxe na renanpe',
@@ -342,7 +342,7 @@ Oxo3’onapape: (a3'ineri) = a3'ineri versiyoni k'ala na ren fark'i,
 'search-interwiki-default'  => '$1 sonucepe:',
 'search-interwiki-more'     => '(çkva)',
 'search-mwsuggest-enabled'  => "ok'vandupete",
-'search-mwsuggest-disabled' => "ok'vandu var uğun",
+'search-mwsuggest-disabled' => "ok'vandu varen",
 'nonefound'                 => "'''Not'i''': Xvala, namtini svacoxope maartani oqopinot igoren.
 Ogoruşi dudis '''all:''' p'refiksi ok'atute doloç'areli na ren iri şeyi (oğarğaluşi but'k'ape, t'empleit'epe doçkva şeyepeti iqvasen) mgori varna p'refiksi oqopinot na igoren svacoxo ixmarit.",
 'powersearch'               => 'Mordineri ogoru',
@@ -411,8 +411,8 @@ Ogoruşi dudis '''all:''' p'refiksi ok'atute doloç'areli na ren iri şeyi (oğa
 # Recent changes linked
 'recentchangeslinked'         => "K'ont'akt'i na ixvenu oktirobape",
 'recentchangeslinked-title'   => '"$1" k\'ala alak\'ali na renan oktirobape',
-'recentchangeslinked-summary' => "Tude na ç'ars list'e, k'iti na noğiru but'k'aşa (varna k'iti na noğiru k'at'egorişi mak’aturepeşa) k'ont'akt'i na ikips but'k'apes na ixvenu çodinaşi oktirobapeşi list'e-muşi ren.
-[[Special:Watchlist|Gotxozu na ginon but'k'apeşi list'e-muşis]] na renan but'k'ape '''mçxu''' nç'araten niç’aru.",
+'recentchangeslinked-summary' => "Tude na ç'ars list'e, k'iti na noğiru but'k'aşa (varna k'iti na noğiru k'at'egorişi mak’aturepeşa) k'ont'akt'i na ikips but'k'apes na ixvenu çodinaşi oktirobapeşi list'e ren.
+[[Special:Watchlist|Gotxozu na ginon but'k'apeşi list'es]] na renan but'k'ape '''mçxu''' nç'araten niç’aru.",
 'recentchangeslinked-page'    => "But'k'aşi coxo:",
 'recentchangeslinked-to'      => "Na niçinen but'k'a yeine na niçinen but'k'aşa k'ont'akt'i meçameri na renan but'k'ape ko3'iri",
 
@@ -662,7 +662,7 @@ Mu iqven başka coxo doç'ari.",
 'tooltip-ca-watch'                => "Am but'k'as gatxozi.",
 'tooltip-ca-unwatch'              => "Skani gotxozu list'eşen jili am but'k'a",
 'tooltip-search'                  => '{{SITENAME}}-iş doloxe mgori',
-'tooltip-search-go'               => 'Eger korenna, am coxos na uğun a sayfaşa idi',
+'tooltip-search-go'               => "Eger korenna, am coxos na uğun ar but'k'aşa idi",
 'tooltip-search-fulltext'         => "Am nç'ara şeni but'k'ape mgori",
 'tooltip-n-mainpage'              => "Dudi but'k'aşa idi",
 'tooltip-n-mainpage-description'  => "Dudi but'k'aşa idi",
@@ -712,9 +712,9 @@ Mu iqven başka coxo doç'ari.",
 # Bad image list
 'bad_image_list' => "Format'i aşo ren:
 
-Xvala listeşi dudi şeyepe (* k'ala na gyoç'k'aps şeyepe) beciti(muhimli) ren.
+Xvala listeşi dudi ondepe (* k'ala na gyoç'k'aps ondepe) beciti ren.
 Sat'irişi maartani k'ont'akt'i, p'at'i dosyaşa na ulun ar k'ont'akt'i oqopinu dvaç’irs.
-Uk'açxe na mulunan k'ont'akt'epe ist'isna oqopinot k’abuli ixvenen. Mesela: dosya, but'k'as, sat'iriş doloxe iz’iren.",
+Uk'açxe na mulunan k'ont'akt'epe ist'isna oqopinot k'abuli ixvenen. Mesela: dosya, but'k'as, sat'iriş doloxe iz'iren.",
 
 # Metadata
 'metadata'          => 'Metadata',
