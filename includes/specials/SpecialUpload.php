@@ -11,7 +11,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Constructor : initialise object
 	 * Get data POSTed through the form and assign them to the object
-	 * @param WebRequest $request Data posted.
+	 * @param $request WebRequest : data posted.
 	 */
 	public function __construct( $request = null ) {
 		global $wgRequest;
@@ -53,7 +53,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Initialize instance variables from request and create an Upload handler
 	 *
-	 * @param WebRequest $request The request to extract variables from
+	 * @param $request WebRequest: the request to extract variables from
 	 */
 	protected function loadRequest( $request ) {
 		global $wgUser;
@@ -106,8 +106,8 @@ class SpecialUpload extends SpecialPage {
 	 * Handle permission checking elsewhere in order to be able to show
 	 * custom error messages.
 	 *
-	 * @param User $user
-	 * @return bool
+	 * @param $user User object
+	 * @return Boolean
 	 */
 	public function userCanExecute( $user ) {
 		return UploadBase::isEnabled() && parent::userCanExecute( $user );
@@ -187,7 +187,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Show the main upload form
 	 *
-	 * @param mixed $form An HTMLForm instance or HTML string to show
+	 * @param $form Mixed: an HTMLForm instance or HTML string to show
 	 */
 	protected function showUploadForm( $form ) {
 		# Add links if file was previously deleted
@@ -207,8 +207,9 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Get an UploadForm instance with title and text properly set.
 	 *
-	 * @param string $message HTML string to add to the form
-	 * @param string $sessionKey Session key in case this is a stashed upload
+	 * @param $message String: HTML string to add to the form
+	 * @param $sessionKey String: session key in case this is a stashed upload
+	 * @param $hideIgnoreWarning Boolean: whether to hide "ignore warning" check box
 	 * @return UploadForm
 	 */
 	protected function getUploadForm( $message = '', $sessionKey = '', $hideIgnoreWarning = false ) {
@@ -290,7 +291,7 @@ class SpecialUpload extends SpecialPage {
 	 * essentially means that UploadBase::VERIFICATION_ERROR and
 	 * UploadBase::EMPTY_FILE should not be passed here.
 	 *
-	 * @param string $message HTML message to be passed to mainUploadForm
+	 * @param $message String: HTML message to be passed to mainUploadForm
 	 */
 	protected function showRecoverableUploadError( $message ) {
 		$sessionKey = $this->mUpload->stashSession();
@@ -305,7 +306,7 @@ class SpecialUpload extends SpecialPage {
 	 * Stashes the upload, shows the main form, but adds an "continue anyway button".
 	 * Also checks whether there are actually warnings to display.
 	 *
-	 * @param array $warnings
+	 * @param $warnings Array
 	 * @return boolean true if warnings were displayed, false if there are no
 	 * 	warnings and the should continue processing like there was no warning
 	 */
@@ -360,7 +361,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Show the upload form with error message, but do not stash the file.
 	 *
-	 * @param string $message
+	 * @param $message String
 	 */
 	protected function showUploadError( $message ) {
 		$message = '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" .
@@ -491,7 +492,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Provides output to the user for a result of UploadBase::verifyUpload
 	 *
-	 * @param array $details Result of UploadBase::verifyUpload
+	 * @param $details Array: result of UploadBase::verifyUpload
 	 */
 	protected function processVerificationError( $details ) {
 		global $wgFileExtensions, $wgLang;
@@ -556,7 +557,8 @@ class SpecialUpload extends SpecialPage {
 
 	/**
 	 * Remove a temporarily kept file stashed by saveTempUploadedFile().
-	 * @return success
+	 *
+	 * @return Boolean: success
 	 */
 	protected function unsaveUploadedFile() {
 		global $wgOut;
@@ -578,8 +580,8 @@ class SpecialUpload extends SpecialPage {
 	 * Formats a result of UploadBase::getExistsWarning as HTML
 	 * This check is static and can be done pre-upload via AJAX
 	 *
-	 * @param array $exists The result of UploadBase::getExistsWarning
-	 * @return string Empty string if there is no warning or an HTML fragment
+	 * @param $exists Array: the result of UploadBase::getExistsWarning
+	 * @return String: empty string if there is no warning or an HTML fragment
 	 */
 	public static function getExistsWarning( $exists ) {
 		global $wgUser, $wgContLang;
@@ -635,8 +637,8 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Get a list of warnings
 	 *
-	 * @param string local filename, e.g. 'file exists', 'non-descriptive filename'
-	 * @return array list of warning messages
+	 * @param $filename String: local filename, e.g. 'file exists', 'non-descriptive filename'
+	 * @return Array: list of warning messages
 	 */
 	public static function ajaxGetExistsWarning( $filename ) {
 		$file = wfFindFile( $filename );
@@ -734,7 +736,7 @@ class UploadForm extends HTMLForm {
 	 * Get the descriptor of the fieldset that contains the file source
 	 * selection. The section is 'source'
 	 *
-	 * @return array Descriptor array
+	 * @return Array: descriptor array
 	 */
 	protected function getSourceSection() {
 		global $wgLang, $wgUser, $wgRequest;
@@ -812,7 +814,7 @@ class UploadForm extends HTMLForm {
 	/**
 	 * Get the messages indicating which extensions are preferred and prohibitted.
 	 *
-	 * @return string HTML string containing the message
+	 * @return String: HTML string containing the message
 	 */
 	protected function getExtensionsMessage() {
 		# Print a list of allowed file extensions, if so configured.  We ignore
@@ -849,7 +851,7 @@ class UploadForm extends HTMLForm {
 	 * Get the descriptor of the fieldset that contains the file description
 	 * input. The section is 'description'
 	 *
-	 * @return array Descriptor array
+	 * @return Array: descriptor array
 	 */
 	protected function getDescriptionSection() {
 		global $wgUser, $wgOut;
@@ -927,7 +929,7 @@ class UploadForm extends HTMLForm {
 	 * Get the descriptor of the fieldset that contains the upload options,
 	 * such as "watch this file". The section is 'options'
 	 *
-	 * @return array Descriptor array
+	 * @return Array: descriptor array
 	 */
 	protected function getOptionsSection() {
 		global $wgUser;
@@ -970,9 +972,6 @@ class UploadForm extends HTMLForm {
 
 	/**
 	 * Add upload JS to $wgOut
-	 *
-	 * @param $autofill Boolean: Whether or not to autofill the destination
-	 * 	filename text box
 	 */
 	protected function addUploadJS() {
 		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview, $wgEnableAPI;
