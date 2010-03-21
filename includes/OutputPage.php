@@ -2088,7 +2088,7 @@ class OutputPage {
 		}
 
 		if ( $this->getHTMLTitle() == '' ) {
-			$this->setHTMLTitle(  wfMsg( 'pagetitle', $this->getPageTitle() ));
+			$this->setHTMLTitle( wfMsg( 'pagetitle', $this->getPageTitle() ) );
 		}
 
 		$dir = $wgContLang->getDir();
@@ -2108,12 +2108,14 @@ class OutputPage {
 				$ret .= "<!doctype html>\n";
 			}
 			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\"";
-			if ( $wgHtml5Version ) $ret .= " version=\"$wgHtml5Version\"";
+			if ( $wgHtml5Version ) {
+				$ret .= " version=\"$wgHtml5Version\"";
+			}
 			$ret .= ">\n";
 		} else {
 			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
 			$ret .= "<html xmlns=\"{$wgXhtmlDefaultNamespace}\" ";
-			foreach($wgXhtmlNamespaces as $tag => $ns) {
+			foreach ( $wgXhtmlNamespaces as $tag => $ns ) {
 				$ret .= "xmlns:{$tag}=\"{$ns}\" ";
 			}
 			$ret .= "lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
@@ -2126,13 +2128,14 @@ class OutputPage {
 			$this->buildCssLinks(),
 			$this->getHeadScripts( $sk ),
 			$this->getHeadItems(),
-		));
-		if( $sk->usercss ){
+		) );
+		if ( $sk->usercss ) {
 			$ret .= Html::inlineStyle( $sk->usercss );
 		}
 
-		if ($wgUseTrackbacks && $this->isArticleRelated())
+		if ( $wgUseTrackbacks && $this->isArticleRelated() ) {
 			$ret .= $this->getTitle()->trackbackRDF();
+		}
 
 		$ret .= "</head>\n";
 
