@@ -583,6 +583,7 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'login-throttled'            => "Betek re oc'h eus klasket kevreañ en aner. 
 Gortozit a-raok klask en-dro.",
 'loginlanguagelabel'         => 'Yezh : $1',
+'suspicious-userlogout'      => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
 
 # Password reset dialog
 'resetpass'                 => 'Cheñch ar ger-tremen',
@@ -800,6 +801,7 @@ A-gostez eo bet lezet an arventenn-se.',
 'post-expand-template-argument-category'  => 'Pajennoù enno arventennoù patrom bet lezet a-gostez',
 'parser-template-loop-warning'            => "Patrom e kelc'h detektet : [[$1]]",
 'parser-template-recursion-depth-warning' => 'Tizhet bevenn donder galvoù ar patromoù ($1)',
+'language-converter-depth-warning'        => "Aet eur en tu all d'ar vevenn amdreiñ yezhoù ($1)",
 
 # "Undo" feature
 'undo-success' => "Gallout a reer disteurel ar c'hemmoù-mañ. Gwiriit, mar plij, gant ar geñveriadenn a-is evit bezañ sur eo an dra-se a fell deoc'h ober; goude-se enrollit ar c'hemmoù a-is a-benn echuiñ disteurel ar c'hemmoù.",
@@ -866,6 +868,7 @@ Marteze e kavot munudoù all war [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 Pa'z oc'h merour e c'hallit sellet outañ; marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
 'rev-deleted-no-diff'         => "N'hallit ket gwelet an diforc'h-mañ rak '''diverket''' eo bet unan eus ar stummoù.
 Marteze ez eus muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
+'rev-suppressed-no-diff'      => "N'hallit ket gwelet an diforc'h-se rak '''diverket''' ez eus bet unan eus an adweladennoù.",
 'rev-deleted-unhide-diff'     => "'''Diverket''' eo bet unan eus kemmoù an diforc'h-mañ. 
 Marteze e kavot muoic'h a ditouroù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
 Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
@@ -1172,25 +1175,26 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'prefs-diffs'                   => "Diforc'hioù",
 
 # User rights
-'userrights'                  => 'Merañ statud an implijerien',
-'userrights-lookup-user'      => 'Merañ strolladoù an implijer',
-'userrights-user-editname'    => 'Lakait un anv implijer :',
-'editusergroup'               => 'Kemmañ ar strolladoù implijerien',
-'editinguser'                 => "Kemmañ gwirioù an implijer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Kemmañ strolladoù an implijer',
-'saveusergroups'              => 'Enrollañ ar strolladoù implijer',
-'userrights-groupsmember'     => 'Ezel eus :',
-'userrights-groups-help'      => "Cheñch strollad an implijer a c'hallit ober.
+'userrights'                   => 'Merañ statud an implijerien',
+'userrights-lookup-user'       => 'Merañ strolladoù an implijer',
+'userrights-user-editname'     => 'Lakait un anv implijer :',
+'editusergroup'                => 'Kemmañ ar strolladoù implijerien',
+'editinguser'                  => "Kemmañ gwirioù an implijer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Kemmañ strolladoù an implijer',
+'saveusergroups'               => 'Enrollañ ar strolladoù implijer',
+'userrights-groupsmember'      => 'Ezel eus :',
+'userrights-groupsmember-auto' => 'Ezel emplegat eus :',
+'userrights-groups-help'       => "Cheñch strollad an implijer a c'hallit ober.
 * Ul log asket a verk emañ an implijer er strollad.
 * Ul log diask a verk n'emañ ket an implijer er strollad.
 * Ur * a verk n'hallit ket dilemel ar strollad ur wech bet ouzhpennet, pe ar c'hontrol.",
-'userrights-reason'           => 'Abeg kemmañ :',
-'userrights-no-interwiki'     => "N'oc'h ket aotreet da gemmañ ar gwirioù implijer war wikioù all.",
-'userrights-nodatabase'       => "N'eus ket eus an diaz titouroù $1 pe n'eo ket lec'hel.",
-'userrights-nologin'          => "Ret eo deoc'h [[Special:UserLogin|bezañ enrollet]] gant ur gont merour a-benn reiñ gwirioù implijer.",
-'userrights-notallowed'       => "N'eo ket aotreet ho kont da reiñ gwirioù implijer.",
-'userrights-changeable-col'   => "Ar strolladoù a c'hallit cheñch",
-'userrights-unchangeable-col' => "Ar strolladoù n'hallit ket cheñch",
+'userrights-reason'            => 'Abeg kemmañ :',
+'userrights-no-interwiki'      => "N'oc'h ket aotreet da gemmañ ar gwirioù implijer war wikioù all.",
+'userrights-nodatabase'        => "N'eus ket eus an diaz titouroù $1 pe n'eo ket lec'hel.",
+'userrights-nologin'           => "Ret eo deoc'h [[Special:UserLogin|bezañ enrollet]] gant ur gont merour a-benn reiñ gwirioù implijer.",
+'userrights-notallowed'        => "N'eo ket aotreet ho kont da reiñ gwirioù implijer.",
+'userrights-changeable-col'    => "Ar strolladoù a c'hallit cheñch",
+'userrights-unchangeable-col'  => "Ar strolladoù n'hallit ket cheñch",
 
 # Groups
 'group'               => 'Strollad :',
@@ -1406,6 +1410,7 @@ S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'minlength1'                  => 'Anv ar restroù a rank bezañ keit hag ul lizherenn da nebeutañ.',
 'illegalfilename'             => "Lakaet ez eus bet er restr « $1 » arouezennoù n'int ket aotreet evit titl ur bajenn. Mar plij, adanvit ar restr hag adkasit anezhi.",
 'badfilename'                 => 'Anvet eo bet ar skeudenn « $1 ».',
+'filetype-mime-mismatch'      => 'Ne glot ket astenn ar restr gant ar seurt MIME.',
 'filetype-badmime'            => 'N\'eo ket aotreet pellgargañ ar restroù a seurt MIME "$1".',
 'filetype-bad-ie-mime'        => 'Dibosupl enporzhiañ ar restr-mañ rak detektet e vefe evel "$1" gant Internet Explorer, ur seurt restroù berzet rak arvarus sañset.',
 'filetype-unwanted-type'      => "'''Eus ar seurt restroù n'int ket c'hoantaet eo \".\$1\"'''.  Ar re a zere ar gwellañ zo eus {{PLURAL:\$3|ar seurt|ar seurt}} \$2.",
@@ -1511,9 +1516,11 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 
 # HTTP errors
 'http-invalid-url'      => 'URL direizh : $1',
+'http-invalid-scheme'   => 'N\'eo ket skoret an URLoù gant ar patrom "$1"',
 'http-request-error'    => "Ur fazi dianavezet 'zo bet pa veze kaset ar reked.",
 'http-read-error'       => 'Fazi lenn HTTP.',
 'http-timed-out'        => 'Erru eo termen ar reked HTTP.',
+'http-curl-error'       => 'Fazi adtapout an URL : $1',
 'http-host-unreachable' => "N'eus ket bet gallet tizhout an URL.",
 'http-bad-status'       => 'Ur gudenn a zo bet e-pad ar reked HTTP : $1 $2',
 
@@ -2307,6 +2314,7 @@ bezit sur e komprenit mat an heuliadoù a-raok kenderc'hel ganti.",
 
 En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma karit.",
 'movearticle'                  => "Dilec'hiañ ar pennad",
+'moveuserpage-warning'         => "'''Diwallit : ''' War-nes dilec'hiañ ur bajenn implijer emaoc'h. Notit mat n'eus nemet ar bajenn a vo dilec'hiet ha ne vo ''ket'' adanvet an implijer.",
 'movenologin'                  => 'Digevreet',
 'movenologintext'              => 'A-benn gellout adenvel ur pennad e rankit bezañ un implijer enrollet ha bezañ [[Special:UserLogin|kevreet]].',
 'movenotallowed'               => "N'oc'h ket aotreet da zilec'hiañ pajennoù.",
