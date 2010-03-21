@@ -2121,7 +2121,11 @@ class OutputPage {
 			$ret .= "lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
 		}
 
-		$ret .= "<head>\n";
+		$openHead = Html::openElement( 'head' );
+		if ( $openHead ) {
+			# Don't bother with the newline if $head == ''
+			$ret .= "$openHead\n";
+		}
 		$ret .= "<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
@@ -2137,7 +2141,10 @@ class OutputPage {
 			$ret .= $this->getTitle()->trackbackRDF();
 		}
 
-		$ret .= "</head>\n";
+		$closeHead = Html::closeElement( 'head' );
+		if ( $closeHead ) {
+			$ret .= "$closeHead\n";
+		}
 
 		$bodyAttrs = array();
 
