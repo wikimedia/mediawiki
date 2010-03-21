@@ -2093,6 +2093,7 @@ class OutputPage {
 
 		$dir = $wgContLang->getDir();
 
+		$htmlAttribs = array( 'lang' => $wgContLanguageCode, 'dir' => $dir );
 		if ( $wgHtml5 ) {
 			if ( $wgWellFormedXml ) {
 				# Unknown elements and attributes are okay in XML, but unknown
@@ -2107,19 +2108,17 @@ class OutputPage {
 				# Much saner.
 				$ret .= "<!doctype html>\n";
 			}
-			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\"";
 			if ( $wgHtml5Version ) {
-				$ret .= " version=\"$wgHtml5Version\"";
+				$htmlAttribs['version'] = $wgHtml5Version;
 			}
-			$ret .= ">\n";
 		} else {
 			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
-			$ret .= "<html xmlns=\"{$wgXhtmlDefaultNamespace}\" ";
+			$htmlAttribs['xmlns'] = $wgXhtmlDefaultNamespace;
 			foreach ( $wgXhtmlNamespaces as $tag => $ns ) {
-				$ret .= "xmlns:{$tag}=\"{$ns}\" ";
+				$htmlAttribs["xmlns:$tag"] = $ns;
 			}
-			$ret .= "lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
 		}
+		$ret .= Html::element( 'html', $htmlAttribs ) . "\n";
 
 		$openHead = Html::openElement( 'head' );
 		if ( $openHead ) {
