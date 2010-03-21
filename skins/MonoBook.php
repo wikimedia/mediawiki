@@ -204,10 +204,11 @@ if($this->data['copyrightico']) { ?>
 <?php $this->text( 'debug' ); ?>
 
 -->
-<?php endif; ?>
-</body></html>
-<?php
-	wfRestoreWarnings();
+<?php endif;
+
+		echo Html::closeElement( 'body' );
+		echo Html::closeElement( 'html' );
+		wfRestoreWarnings();
 	} // end of execute() method
 
 	/*************************************************************************************************/

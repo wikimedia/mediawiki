@@ -117,7 +117,7 @@ class Html {
 			}
 			return $start;
 		} else {
-			return "$start$contents</$element>";
+			return "$start$contents" . self::closeElement( $element );
 		}
 	}
 
@@ -136,14 +136,22 @@ class Html {
 
 	/**
 	 * Identical to rawElement(), but has no third parameter and omits the end
-	 * tag (and the self-closing / in XML mode for empty elements).
+	 * tag (and the self-closing '/' in XML mode for empty elements).
 	 */
 	public static function openElement( $element, $attribs = array() ) {
-		global $wgHtml5;
+		global $wgHtml5, $wgWellFormedXml;
 		$attribs = (array)$attribs;
 		# This is not required in HTML5, but let's do it anyway, for
 		# consistency and better compression.
 		$element = strtolower( $element );
+
+		# In text/html, initial <html> and <head> tags can be omitted under
+		# pretty much any sane circumstances, if they have no attributes.  See:
+		# <http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#optional-tags>
+		if ( !$wgWellFormedXml && !$attribs
+		&& in_array( $element, array( 'html', 'head' ) ) ) {
+			return '';
+		}
 
 		# Remove HTML5-only attributes if we aren't doing HTML5
 		if ( !$wgHtml5 ) {
@@ -190,6 +198,36 @@ class Html {
 
 		return "<$element" . self::expandAttributes(
 			self::dropDefaults( $element, $attribs ) ) . '>';
+	}
+
+	/**
+	 * Returns "</$element>", except if $wgWellFormedXml is off, in which case
+	 * it returns the empty string when that's guaranteed to be safe.
+	 *
+	 * @param $element string Name of the element, e.g., 'a'
+	 * @return string A closing tag, if required
+	 */
+	public static function closeElement( $element ) {
+		global $wgWellFormedXml;
+
+		$element = strtolower( $element );
+
+		# Reference:
+		# http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#optional-tags
+		if ( !$wgWellFormedXml && in_array( $element, array(
+			'html',
+			'head',
+			'body',
+			'li',
+			'dt',
+			'dd',
+			'tr',
+			'td',
+			'th',
+		) ) ) {
+			return '';
+		}
+		return "</$element>";
 	}
 
 	/**
