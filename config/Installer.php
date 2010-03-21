@@ -613,9 +613,9 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 		$conf->DBtype = $DefaultDBtype;
 	}
 
-	$conf->DBserver = importPost( "DBserver", "localhost" );
-	$conf->DBname = importPost( "DBname", "wikidb" );
-	$conf->DBuser = importPost( "DBuser", "wikiuser" );
+	$conf->DBserver = importPost( "DBserver", $wgDBserver );
+	$conf->DBname = importPost( "DBname", $wgDBname );
+	$conf->DBuser = importPost( "DBuser", $wgDBuser );
 	$conf->DBpassword = importPost( "DBpassword" );
 	$conf->DBpassword2 = importPost( "DBpassword2" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
@@ -632,7 +632,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 		importPost( "DBengine", "InnoDB" ) );
 
 	## Postgres specific:
-	$conf->DBport      = importPost( "DBport",      "5432" );
+	$conf->DBport      = importPost( "DBport",      $wgDBport );
 	$conf->DBts2schema = importPost( "DBts2schema", "public" );
 	$conf->DBpgschema  = importPost( "DBpgschema",  "mediawiki" );
 
