@@ -36,7 +36,6 @@
  * @file
  */
 
-
 # Initialise common code
 $preIP = dirname( __FILE__ );
 require_once( "$preIP/includes/WebStart.php" );
