@@ -64,10 +64,9 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 	}
 
 	/**
-	 * Fetch a list of all or used images from a particular image source.
-	 * @param string $table
-	 * @param string $directory Base directory where files are located
-	 * @param bool $shared true to pass shared-dir settings to hash func
+	 * Fetch a list of used images from a particular image source.
+	 *
+	 * @param $shared Boolean: true to pass shared-dir settings to hash func
 	 */
 	function fetchUsed( $shared ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -86,6 +85,11 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 		$dbr->freeResult( $result );
 	}
 
+	/**
+	 * Fetch a list of all images from a particular image source.
+	 *
+	 * @param $shared Boolean: true to pass shared-dir settings to hash func
+	 */
 	function fetchLocal( $shared ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$result = $dbr->select( 'image',
