@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1208,6 +1208,7 @@ $1",
 'prefs-files'                   => '檔案',
 'prefs-custom-css'              => '自定CSS',
 'prefs-custom-js'               => '自定JS',
+'prefs-common-css-js'           => '共用CSS/JS於所有的面板中：',
 'prefs-reset-intro'             => '您可以利用這個頁面去重設您的參數設置到網站預設值。這個動作無法復原。',
 'prefs-emailconfirm-label'      => '電子郵件確認：',
 'prefs-textboxsize'             => '編輯框大小',
@@ -2093,7 +2094,7 @@ $NEWPAGE
 'protect-othertime-op'        => '其它時間',
 'protect-existing-expiry'     => '現時到期之時間: $2 $3',
 'protect-otherreason'         => '其它／附加的理由:',
-'protect-otherreason-op'      => '其它／附加的理由',
+'protect-otherreason-op'      => '其它理由',
 'protect-dropdown'            => '*通用保護理由
 ** 過量的破壞
 ** 過量的灌水
