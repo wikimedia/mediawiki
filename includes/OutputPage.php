@@ -2075,7 +2075,6 @@ class OutputPage {
 		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5, $wgWellFormedXml;
 		global $wgUser, $wgRequest, $wgLang;
 
-		$this->addMeta( "http:Content-Type", "$wgMimeType; charset={$wgOutputEncoding}" );
 		if ( $sk->commonPrintStylesheet() ) {
 			$this->addStyle( 'common/wikiprintable.css', 'print' );
 		}
@@ -2117,6 +2116,7 @@ class OutputPage {
 			foreach ( $wgXhtmlNamespaces as $tag => $ns ) {
 				$htmlAttribs["xmlns:$tag"] = $ns;
 			}
+			$this->addMeta( 'http:Content-Type', "$wgMimeType; charset=$wgOutputEncoding" );
 		}
 		$ret .= Html::element( 'html', $htmlAttribs ) . "\n";
 
@@ -2126,6 +2126,13 @@ class OutputPage {
 			$ret .= "$openHead\n";
 		}
 		$ret .= "<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
+
+		if ( $wgHtml5 ) {
+			# More succinct than <meta http-equiv=Content-Type>, has the
+			# same effect
+			$ret .= Html::element( 'meta', array( 'charset' => $wgOutputEncoding ) ) . "\n";
+		}
+
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
 			$this->buildCssLinks(),
