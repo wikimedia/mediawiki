@@ -706,7 +706,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'logout'                     => 'Sair',
 'userlogout'                 => 'Sair',
 'notloggedin'                => 'Não autenticado',
-'nologin'                    => "Não possui uma conta? '''$1'''.",
+'nologin'                    => 'Não possui uma conta? $1.',
 'nologinlink'                => 'Criar uma conta',
 'createaccount'              => 'Criar conta',
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",

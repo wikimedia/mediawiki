@@ -252,6 +252,12 @@ $messages = array(
 # General errors
 'error'               => 'Yerro',
 'databaseerror'       => 'Yerro de la Databasa',
+'missing-article'     => 'La databasa no topó el teksto de una hoja que debería topar, llamada "$1" $2.
+
+Esto es generalmente cabsado por un "diff" anacrónico o un link a la istoria de una hoja que era efassado.
+
+Si esto no es el cabso, puede ser que topates un escarabajo en el software.
+Si puede ser, enfórmaselo a un [[Special:ListUsers/sysop|administrator]], anotando la URL.',
 'missingarticle-diff' => '(Dif.: $1, $2)',
 'filecopyerror'       => 'No se pudo copiar el arxiv "$1" a "$2".',
 'viewsourcefor'       => 'para $1',
