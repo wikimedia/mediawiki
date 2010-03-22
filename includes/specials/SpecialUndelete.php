@@ -50,6 +50,7 @@ class PageArchive {
 	 * given title prefix.
 	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
 	 *
+	 * @param $prefix String: title prefix
 	 * @return ResultWrapper
 	 */
 	public static function listPagesByPrefix( $prefix ) {
@@ -153,7 +154,8 @@ class PageArchive {
 	 * Fetch (and decompress if necessary) the stored text for the deleted
 	 * revision of the page with the given timestamp.
 	 *
-	 * @return string
+	 * @param $timestamp String
+	 * @return String
 	 * @deprecated Use getRevision() for more flexible information
 	 */
 	function getRevisionText( $timestamp ) {
@@ -164,7 +166,8 @@ class PageArchive {
 	/**
 	 * Return a Revision object containing data for the deleted revision.
 	 * Note that the result *may* or *may not* have a null page ID.
-	 * @param string $timestamp
+	 *
+	 * @param $timestamp String
 	 * @return Revision
 	 */
 	function getRevision( $timestamp ) {
@@ -200,7 +203,7 @@ class PageArchive {
 	 * May produce unexpected results in case of history merges or other
 	 * unusual time issues.
 	 *
-	 * @param string $timestamp
+	 * @param $timestamp String
 	 * @return Revision or null
 	 */
 	function getPreviousRevision( $timestamp ) {
@@ -248,6 +251,9 @@ class PageArchive {
 
 	/**
 	 * Get the text from an archive row containing ar_text, ar_flags and ar_text_id
+	 *
+	 * @param $row Object: database row
+	 * @return Revision
 	 */
 	function getTextFromRow( $row ) {
 		if( is_null( $row->ar_text_id ) ) {
@@ -272,7 +278,7 @@ class PageArchive {
 	 *
 	 * If there are no archived revisions for the page, returns NULL.
 	 *
-	 * @return string
+	 * @return String
 	 */
 	function getLastRevisionText() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -291,7 +297,8 @@ class PageArchive {
 
 	/**
 	 * Quick check if any archived revisions are present for the page.
-	 * @return bool
+	 *
+	 * @return Boolean
 	 */
 	function isDeleted() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -306,10 +313,10 @@ class PageArchive {
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions, otherwise list the ones to undelete.
-	 * @param string $comment
-	 * @param array $fileVersions
-	 * @param bool $unsuppress
+	 * @param $timestamps Array: pass an empty array to restore all revisions, otherwise list the ones to undelete.
+	 * @param $comment String
+	 * @param $fileVersions Array
+	 * @param $unsuppress Boolean
 	 *
 	 * @return array(number of file revisions restored, number of image revisions restored, log message)
 	 * on success, false on failure
@@ -369,12 +376,11 @@ class PageArchive {
 	 * to the cur/old tables. If the page currently exists, all revisions will
 	 * be stuffed into old, otherwise the most recent will go into cur.
 	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions, otherwise list the ones to undelete.
-	 * @param string $comment
-	 * @param array $fileVersions
-	 * @param bool $unsuppress, remove all ar_deleted/fa_deleted restrictions of seletected revs
+	 * @param $timestamps Array: pass an empty array to restore all revisions, otherwise list the ones to undelete.
+	 * @param $comment String
+	 * @param $unsuppress Boolean: remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 *
-	 * @return mixed number of revisions restored or false on failure
+	 * @return Mixed: number of revisions restored or false on failure
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
 		if ( wfReadOnly() )
@@ -851,9 +857,10 @@ class UndeleteForm {
 	/**
 	 * Build a diff display between this and the previous either deleted
 	 * or non-deleted edit.
-	 * @param Revision $previousRev
-	 * @param Revision $currentRev
-	 * @return string HTML
+	 *
+	 * @param $previousRev Revision
+	 * @param $currentRev Revision
+	 * @return String: HTML
 	 */
 	function showDiff( $previousRev, $currentRev ) {
 		global $wgOut;
@@ -1294,7 +1301,8 @@ class UndeleteForm {
 
 	/**
 	 * Fetch image view link if it's available to all users
-	 * @return string
+	 *
+	 * @return String: HTML fragment
 	 */
 	function getFileLink( $file, $titleObj, $ts, $key, $sk ) {
 		global $wgLang, $wgUser;
@@ -1320,7 +1328,8 @@ class UndeleteForm {
 
 	/**
 	 * Fetch file's user id if it's available to this user
-	 * @return string
+	 *
+	 * @return String: HTML fragment
 	 */
 	function getFileUser( $file, $sk ) {
 		if( !$file->userCan(File::DELETED_USER) ) {
@@ -1336,7 +1345,8 @@ class UndeleteForm {
 
 	/**
 	 * Fetch file upload comment if it's available to this user
-	 * @return string
+	 *
+	 * @return String: HTML fragment
 	 */
 	function getFileComment( $file, $sk ) {
 		if( !$file->userCan(File::DELETED_COMMENT) ) {
