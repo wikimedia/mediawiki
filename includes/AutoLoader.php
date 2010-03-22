@@ -163,6 +163,7 @@ $wgAutoloadLocalClasses = array(
 	'MediaWiki_I18N' => 'includes/SkinTemplate.php',
 	'MediaWiki' => 'includes/Wiki.php',
 	'MemCachedClientforWiki' => 'includes/memcached-client.php',
+	'Message' => 'includes/Message.php',
 	'MessageCache' => 'includes/MessageCache.php',
 	'MimeMagic' => 'includes/MimeMagic.php',
 	'MWException' => 'includes/Exception.php',
