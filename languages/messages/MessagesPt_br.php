@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bani
+ * @author BrunaaAa
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
  * @author Crazymadlover
@@ -634,6 +635,7 @@ Por favor, reporte este fato a um administrador, fazendo notar a URL.',
 'readonly_lag'         => 'O banco de dados foi automaticamente bloqueado enquanto os servidores secundários se sincronizam com o principal',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
+'fileappenderrorread'  => 'Não foi possível ler "$1" durante a anexação.',
 'fileappenderror'      => 'Não foi possível adicionar "$1" a "$2".',
 'filecopyerror'        => 'Não foi possível copiar o arquivo "$1" para "$2".',
 'filerenameerror'      => 'Não foi possível renomear o arquivo "$1" para "$2".',

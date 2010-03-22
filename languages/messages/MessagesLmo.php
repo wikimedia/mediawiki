@@ -858,6 +858,8 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'statistics-edits'             => "Paginn mudifegaa dal dì che l'è nassüü 'l sit de {{SITENAME}}",
 'statistics-edits-average'     => 'Mudifegh in média per pagina',
 'statistics-jobqueue'          => 'Lungheza de la [http://www.mediawiki.org/wiki/Manual:Job_queue Cua di prucediment]',
+'statistics-users'             => '[[Special:ListUsers|Druvadur]] registraa',
+'statistics-users-active'      => 'Druvadur ativ',
 'statistics-users-active-desc' => "Druvadur che i hann faa un'azión int {{PLURAL:$1|l'ültem dì|i ültem $1 dì}}",
 
 'disambiguations' => 'Pagin da disambiguazziún',

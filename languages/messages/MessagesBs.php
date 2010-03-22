@@ -755,6 +755,7 @@ Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
 'login-throttled'            => 'Previše puta ste se pokušali prijaviti.
 Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
+'suspicious-userlogout'      => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
 
 # Password reset dialog
 'resetpass'                 => 'Promijeni korisničku šifru',
@@ -1329,6 +1330,7 @@ Ovdje su navedene neke nasumično odabrane vrijednosti koje možete koristiti: $
 'prefs-files'                   => 'Datoteke',
 'prefs-custom-css'              => 'Prilagođeni CSS',
 'prefs-custom-js'               => 'Prilagođeni JS',
+'prefs-common-css-js'           => 'Dijeljeni CSS/JS za sve kože:',
 'prefs-reset-intro'             => 'Možete koristiti ovu stranicu da poništite Vaše postavke na ovom sajtu na pretpostavljene vrijednosti.
 Ovo se ne može vratiti unazad.',
 'prefs-emailconfirm-label'      => 'E-mail potvrda:',
@@ -3214,25 +3216,25 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'limitall'         => 'sve',
 
 # E-mail address confirmation
-'confirmemail'             => 'Potvrdite adresu e-pošte',
-'confirmemail_noemail'     => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
-'confirmemail_text'        => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje link koji sadrži kod; učitajte link u Vaš preglednik da bi ste potvrdili da je adresa Vaše e-pošte validna.',
-'confirmemail_pending'     => 'Konfirmacioni kod Vam je već poslan putem e-maila;
+'confirmemail'              => 'Potvrdite adresu e-pošte',
+'confirmemail_noemail'      => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
+'confirmemail_text'         => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje link koji sadrži kod; učitajte link u Vaš preglednik da bi ste potvrdili da je adresa Vaše e-pošte validna.',
+'confirmemail_pending'      => 'Konfirmacioni kod Vam je već poslan putem e-maila;
 ako ste nedavno otvorili Vaš račun, trebali bi pričekati par minuta da poslana pošta stigne, prije nego što ponovno zahtijevate novi kod.',
-'confirmemail_send'        => 'Pošaljite kod za potvrdu',
-'confirmemail_sent'        => 'E-pošta za potvrđivanje poslata.',
-'confirmemail_oncreate'    => 'Kod za potvrđivanje Vam je poslat na Vašu e-mail adresu.
+'confirmemail_send'         => 'Pošaljite kod za potvrdu',
+'confirmemail_sent'         => 'E-pošta za potvrđivanje poslata.',
+'confirmemail_oncreate'     => 'Kod za potvrđivanje Vam je poslat na Vašu e-mail adresu.
 Taj kod nije neophodan za prijavljivanje, ali Vam ne potreban kako bi ste omogućili funkcije wikija zasnovane na e-mailu.',
-'confirmemail_sendfailed'  => '{{SITENAME}} Vam ne može poslati poštu za potvrđivanje. Provjerite adresu zbog nepravilnih karaktera.
+'confirmemail_sendfailed'   => '{{SITENAME}} Vam ne može poslati poštu za potvrđivanje. Provjerite adresu zbog nepravilnih karaktera.
 
 Povratna pošta: $1',
-'confirmemail_invalid'     => 'Netačan kod za potvrdu. Moguće je da je kod istekao.',
-'confirmemail_needlogin'   => 'Morate $1 da bi ste potvrdili Vašu e-mail adresu.',
-'confirmemail_success'     => 'Adresa vaše e-pošte je potvrđena. Možete sad da se prijavite i uživate u viki.',
-'confirmemail_loggedin'    => 'Adresa Vaše e-pošte je potvrđena.',
-'confirmemail_error'       => 'Nešto je pošlo po zlu prilikom sačuvavanja vaše potvrde.',
-'confirmemail_subject'     => 'Vikiriječnik adresa e-pošte za potvrđivanje',
-'confirmemail_body'        => 'Neko, vjerovatno Vi, je sa IP adrese $1 registrovao nalog "$2" sa ovom adresom e-pošte na {{SITENAME}}.
+'confirmemail_invalid'      => 'Netačan kod za potvrdu. Moguće je da je kod istekao.',
+'confirmemail_needlogin'    => 'Morate $1 da bi ste potvrdili Vašu e-mail adresu.',
+'confirmemail_success'      => 'Adresa vaše e-pošte je potvrđena. Možete sad da se prijavite i uživate u viki.',
+'confirmemail_loggedin'     => 'Adresa Vaše e-pošte je potvrđena.',
+'confirmemail_error'        => 'Nešto je pošlo po zlu prilikom sačuvavanja vaše potvrde.',
+'confirmemail_subject'      => 'Vikiriječnik adresa e-pošte za potvrđivanje',
+'confirmemail_body'         => 'Neko, vjerovatno Vi, je sa IP adrese $1 registrovao nalog "$2" sa ovom adresom e-pošte na {{SITENAME}}.
 
 Da potvrdite da ovaj nalog stvarno pripada vama i da aktivirate mogućnost e-pošte na {{SITENAME}}, otvorite ovaj link u vašem pregledniku:
 
@@ -3242,8 +3244,20 @@ Ako ovo niste vi, pratite ovaj link da prekinete prijavu:
 $5
 
 Ovaj kod za potvrdu će isteći u $4.',
-'confirmemail_invalidated' => 'Potvrda e-mail adrese otkazana',
-'invalidateemail'          => 'Odustani od e-mail potvrde',
+'confirmemail_body_changed' => 'Neko, vjerovatno Vi, je sa IP adrese $1 
+je promijenio adresu e-pošte računa "$2" na ovu adresu za {{SITENAME}}.
+
+Da potvrdite da ovaj nalog stvarno pripada Vama i da reaktivirate mogućnosti e-pošte na {{SITENAME}}, otvorite ovaj link u Vašem pregledniku:
+
+$3
+
+Ako ovaj račun *ne* pripada Vama, pratite ovaj link da prekinete odobravanje adrese e-pošte:
+
+$5
+
+Ovaj kod za potvrdu će isteći u $4.',
+'confirmemail_invalidated'  => 'Potvrda e-mail adrese otkazana',
+'invalidateemail'           => 'Odustani od e-mail potvrde',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Međuwiki umetanje je isključeno]',
