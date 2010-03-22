@@ -159,11 +159,13 @@ class LogPage {
 	public static function logHeader( $type ) {
 		global $wgLogHeaders, $wgMessageCache;
 		$wgMessageCache->loadAllMessages();
-		return wfMsgExt($wgLogHeaders[$type],array('parseinline'));
+		return wfMsgExt($wgLogHeaders[$type], array( 'parseinline' ) );
 	}
 
 	/**
 	 * @static
+	 * Note that if $skin is null, we want to use the wiki content language, since that 
+	 * will go to the irc feed.
 	 * @return HTML string
 	 */
 	public static function actionText( $type, $action, $title = null, $skin = null, 
@@ -217,6 +219,7 @@ class LogPage {
 						}
 						$params[2] = isset( $params[2] ) ? 
 							self::formatBlockFlags( $params[2], is_null( $skin ) ) : '';
+
 					// Page protections
 					} else if ( $type == 'protect' && count($params) == 3 ) {
 						// Restrictions and expiries
@@ -233,6 +236,7 @@ class LogPage {
 								$details .= ' ['.wfMsgForContent('protect-summary-cascade').']';
 							}
 						}
+
 					// Page moves
 					} else if ( $type == 'move' && count( $params ) == 3 ) {
 						if( $params[2] ) {
@@ -242,19 +246,22 @@ class LogPage {
 								$details .= ' [' . wfMsgForContent( 'move-redirect-suppressed' ) . ']';
 							}
 						}
+
 					// Revision deletion
 					} else if ( preg_match( '/^(delete|suppress)\/revision$/', $key ) && count( $params ) == 5 ) {
 						$count = substr_count( $params[2], ',' ) + 1; // revisions
 						$ofield = intval( substr( $params[3], 7 ) ); // <ofield=x>
 						$nfield = intval( substr( $params[4], 7 ) ); // <nfield=x>
-						$details .= ': '.RevisionDeleter::getLogMessage( $count, $nfield, $ofield, false );
+						$details .= ': ' . RevisionDeleter::getLogMessage( $count, $nfield, $ofield, false, is_null($skin) );
+
 					// Log deletion
 					} else if ( preg_match( '/^(delete|suppress)\/event$/', $key ) && count( $params ) == 4 ) {
 						$count = substr_count( $params[1], ',' ) + 1; // log items
 						$ofield = intval( substr( $params[2], 7 ) ); // <ofield=x>
 						$nfield = intval( substr( $params[3], 7 ) ); // <nfield=x>
-						$details .= ': '.RevisionDeleter::getLogMessage( $count, $nfield, $ofield, true );
+						$details .= ': ' . RevisionDeleter::getLogMessage( $count, $nfield, $ofield, true, is_null($skin) );
 					}
+
 					if ( $skin ) {
 						$rv = wfMsgHtml( $wgLogActions[$key], $params ) . $details;
 					} else {

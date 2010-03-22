@@ -621,12 +621,12 @@ class RevisionDeleter {
 	}
 
 	/**
-	 * Gets an array describing the changes made to the visibilit of the revision.
-	 * If the resulting array is $arr, then $arr[0] will contain an array of strings
-	 * describing the items that were hidden, $arr[2] will contain an array of strings
-	 * describing the items that were unhidden, and $arr[3] will contain an array with
-	 * a single string, which can be one of "applied restrictions to sysops",
-	 * "removed restrictions from sysops", or null.
+	 * Gets an array of message keys describing the changes made to the visibility
+	 * of the revision. If the resulting array is $arr, then $arr[0] will contain an 
+	 * array of strings describing the items that were hidden, $arr[2] will contain 
+	 * an array of strings describing the items that were unhidden, and $arr[3] will 
+	 * contain an array with a single string, which can be one of "applied 
+	 * restrictions to sysops", "removed restrictions from sysops", or null.
 	 *
 	 * @param $n Integer: the new bitfield.
 	 * @param $o Integer: the old bitfield.
@@ -636,18 +636,18 @@ class RevisionDeleter {
 		$diff = $n ^ $o;
 		$ret = array( 0 => array(), 1 => array(), 2 => array() );
 		// Build bitfield changes in language
-		self::checkItem( wfMsgForContent( 'revdelete-content' ),
+		self::checkItem( 'revdelete-content',
 			Revision::DELETED_TEXT, $diff, $n, $ret );
-		self::checkItem( wfMsgForContent( 'revdelete-summary' ),
+		self::checkItem( 'revdelete-summary',
 			Revision::DELETED_COMMENT, $diff, $n, $ret );
-		self::checkItem( wfMsgForContent( 'revdelete-uname' ),
+		self::checkItem( 'revdelete-uname',
 			Revision::DELETED_USER, $diff, $n, $ret );
 		// Restriction application to sysops
 		if( $diff & Revision::DELETED_RESTRICTED ) {
 			if( $n & Revision::DELETED_RESTRICTED )
-				$ret[2][] = wfMsgForContent( 'revdelete-restricted' );
+				$ret[2][] = 'revdelete-restricted';
 			else
-				$ret[2][] = wfMsgForContent( 'revdelete-unrestricted' );
+				$ret[2][] = 'revdelete-unrestricted';
 		}
 		return $ret;
 	}
@@ -661,24 +661,46 @@ class RevisionDeleter {
 	 * @param $nbitfield Integer: The new bitfield for the revision.
 	 * @param $obitfield Integer: The old bitfield for the revision.
 	 * @param $isForLog Boolean
+	 * @param $forContent Boolean
 	 */
-	public static function getLogMessage( $count, $nbitfield, $obitfield, $isForLog = false ) {
-		global $wgLang;
+	public static function getLogMessage( $count, $nbitfield, $obitfield, $isForLog = false, $forContent = false ) {
+		global $wgLang, $wgContLang;
+		
+		$lang = $forContent ? $wgContLang : $wgLang;
+		$msgFunc = $forContent ? "wfMsgForContent" : "wfMsg";
+		
 		$s = '';
 		$changes = self::getChanges( $nbitfield, $obitfield );
+		array_walk($changes, 'RevisionDeleter::expandMessageArray', $forContent);
+		
+		$changesText = array();
+		
 		if( count( $changes[0] ) ) {
-			$s .= wfMsgForContent( 'revdelete-hid', implode( ', ', $changes[0] ) );
+			$changesText[] = $msgFunc( 'revdelete-hid', $lang->commaList( $changes[0] ) );
 		}
 		if( count( $changes[1] ) ) {
-			if ($s) $s .= '; ';
-			$s .= wfMsgForContent( 'revdelete-unhid', implode( ', ', $changes[1] ) );
+			$changesText[] = $msgFunc( 'revdelete-unhid', $lang->commaList( $changes[1] ) );
 		}
+		
+		$s = $lang->semicolonList( $changesText );
 		if( count( $changes[2] ) ) {
-			$s .= $s ? ' (' . $changes[2][0] . ')' : $changes[2][0];
+			$s .= $s ? ' (' . $changes[2][0] . ')' : ' ' . $changes[2][0];
 		}
+		
 		$msg = $isForLog ? 'logdelete-log-message' : 'revdelete-log-message';
-		return wfMsgExt( $msg, array( 'parsemag', 'content' ), $s, $wgLang->formatNum($count) );
-
+		return wfMsgExt( $msg, $forContent ? array( 'parsemag', 'content' ) : array( 'parsemag' ), $s, $lang->formatNum($count) );
+	}
+	
+	private static function expandMessageArray(& $msg, $key, $forContent) {
+		if ( is_array ($msg) ) {
+			array_walk($msg, 'RevisionDeleter::expandMessageArray', $forContent);
+		} else {
+			if ( $forContent ) {
+				$msg = wfMsgForContent($msg);
+			} else {
+				$msg = wfMsg($msg);
+			}
+		}
 	}
 	
 	// Get DB field name for URL param...
