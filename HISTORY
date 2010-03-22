@@ -744,6 +744,8 @@ comment from another wiki.
   the page set in the &returnto parameter.
 * (bug 19194) Search box in Modern skin doesn't focus with Safari/Chrome
 * (bug 17790) Users instantly logged off on HughesNet
+* (bug 21549) Make foreign key constraints DEFERRABLE INITIALLY DEFERRED 
+  when using Postgres as the database backend.
 
 == API changes in 1.16 ==
 

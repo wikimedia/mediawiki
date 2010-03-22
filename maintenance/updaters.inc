@@ -1711,6 +1711,38 @@ function do_postgres_updates() {
 	$newrules = array(
 	);
 
+	## All FK columns should be deferred
+	$deferredcols = array(
+		array("archive",          "ar_user",         "mwuser(user_id) ON DELETE SET NULL"),
+		array("categorylinks",    "cl_from",         "page(page_id) ON DELETE CASCADE"),
+		array("externallinks",    "el_from",         "page(page_id) ON DELETE CASCADE"),
+		array("filearchive",      "fa_deleted_user", "mwuser(user_id) ON DELETE SET NULL"),
+		array("filearchive",      "fa_user",         "mwuser(user_id) ON DELETE SET NULL"),
+		array("image",            "img_user",        "mwuser(user_id) ON DELETE SET NULL"),
+		array("imagelinks",       "il_from",         "page(page_id) ON DELETE CASCADE"),
+		array("ipblocks",         "ipb_by",          "mwuser(user_id) ON DELETE CASCADE"),
+		array("ipblocks",         "ipb_user",        "mwuser(user_id) ON DELETE SET NULL"),
+		array("langlinks",        "ll_from",         "page(page_id) ON DELETE CASCADE"),
+		array("logging",          "log_user",        "mwuser(user_id) ON DELETE SET NULL"),
+		array("oldimage",         "oi_name",         "image(img_name) ON DELETE CASCADE ON UPDATE CASCADE"),
+		array("oldimage",         "oi_user",         "mwuser(user_id) ON DELETE SET NULL"),
+		array("pagelinks",        "pl_from",         "page(page_id) ON DELETE CASCADE"),
+		array("page_props",       "pp_page",         "page (page_id) ON DELETE CASCADE"),
+		array("page_restrictions","pr_page",         "page(page_id) ON DELETE CASCADE"),
+		array("protected_titles", "pt_user",         "mwuser(user_id) ON DELETE SET NULL"),
+		array("recentchanges",    "rc_cur_id",       "page(page_id) ON DELETE SET NULL"),
+		array("recentchanges",    "rc_user",         "mwuser(user_id) ON DELETE SET NULL"),
+		array("redirect",         "rd_from",         "page(page_id) ON DELETE CASCADE"),
+		array("revision",         "rev_page",        "page (page_id) ON DELETE CASCADE"),
+		array("revision",         "rev_user",        "mwuser(user_id) ON DELETE RESTRICT"),
+		array("templatelinks",    "tl_from",         "page(page_id) ON DELETE CASCADE"),
+		array("trackbacks",       "tb_page",         "page(page_id) ON DELETE CASCADE"),
+		array("user_groups",      "ug_user",         "mwuser(user_id) ON DELETE CASCADE"),
+		array("user_newtalk",     "user_id",         "mwuser(user_id) ON DELETE CASCADE"),
+		array("user_properties",  "up_user",         "mwuser(user_id) ON DELETE CASCADE"),
+		array("watchlist",        "wl_user",         "mwuser(user_id) ON DELETE CASCADE"),
+	);
+
 	#Check new sequences, rename if needed
 	foreach ($newsequences as $ns) {
 		if( $wgDatabase->sequenceExists('pr_id_val') ) {
@@ -1965,6 +1997,24 @@ function do_postgres_updates() {
 		else {
 			$wgDatabase->sourceFile($ni[2]);
 		}
+	}
+
+	foreach ( $deferredcols AS $dc ) {
+		$fi = $wgDatabase->fieldInfo($dc[0], $dc[1]);
+		if (is_null($fi)) {
+			wfOut( "WARNING! Column \"$dc[0].$dc[1]\" does not exist but it should! Please report this.\n" );
+			continue;
+		}
+		if ( $fi->is_deferred() && $fi->is_deferrable() ) {
+			continue;
+		}
+		wfOut( "Altering column \"$dc[0].$dc[1]\" to be DEFERRABLE INITTALLY DEFERRED\n" );
+		$conname = $fi->conname();
+		$clause = $dc[2];
+		$command = "ALTER TABLE $dc[0] DROP CONSTRAINT $conname";
+		$wgDatabase->query( $command );
+		$command = "ALTER TABLE $dc[0] ADD CONSTRAINT $conname FOREIGN KEY ($dc[1]) REFERENCES $clause DEFERRABLE INITIALLY DEFERRED";
+		$wgDatabase->query( $command );
 	}
 
 	# Tweak the page_title tsearch2 trigger to filter out slashes
