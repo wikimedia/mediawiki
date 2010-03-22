@@ -1,38 +1,38 @@
 <?php
 
 /**
-OBS!!! *EXPERIMENTAL* This class is still under discussion.
-
-This class provides methods for fetching interface messages and
-processing them into variety of formats that are needed in MediaWiki.
-
-It is intented to replace the old wfMsg* functions that over time grew
-unusable.
-
-Examples:
-
-Use full parsing.
-Would correspond to wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
-$parsed = Message::key( 'key' ).param( 'apple' ).parse();
-Parseinline is used because it is more useful when pre-building html.
-In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
-
-Places where html cannot be used. {{-transformation is done.
-Would correspond to wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
-$plain = Message::key( 'key' ).params( 'apple', 'pear' ).text();
-
-Shortcut for escaping the message too, similar to wfMsgHTML, but
-parameters are not replaced after escaping by default.
-$escaped = Message::key( 'key' ).rawParam( 'apple' ).escaped();
-
-TODO:
-* document everything
-* test, can we have tests?
-* sort out the details marked with fixme
-* should we have _m() or similar global wrapper?
-
-@since 1.17
-*/
+ * OBS!!! *EXPERIMENTAL* This class is still under discussion.
+ *
+ * This class provides methods for fetching interface messages and
+ * processing them into variety of formats that are needed in MediaWiki.
+ *
+ * It is intented to replace the old wfMsg* functions that over time grew
+ * unusable.
+ *
+ * Examples:
+ *
+ * Use full parsing.
+ *  Would correspond to wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
+ * $parsed = Message::key( 'key' )->param( 'apple' )->parse();
+ * Parseinline is used because it is more useful when pre-building html.
+ * In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
+ *
+ * Places where html cannot be used. {{-transformation is done.
+ * Would correspond to wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
+ * $plain = Message::key( 'key' )->params( 'apple', 'pear' )->text();
+ *
+ * Shortcut for escaping the message too, similar to wfMsgHTML, but
+ * parameters are not replaced after escaping by default.
+ * $escaped = Message::key( 'key' )->rawParam( 'apple' ).escaped();
+ *
+ * TODO:
+ * * document everything
+ * * test, can we have tests?
+ * * sort out the details marked with fixme
+ * * should we have _m() or similar global wrapper?
+ *
+ * @since 1.17
+ */
 class Message {
 	// FIXME: public or protected?
 
@@ -63,7 +63,7 @@ class Message {
 
 	/**
 	 * Adds parameters to the paramater list of this message.
-	 * @params String: parameter
+	 * @param $value String: parameter
 	 * @return Message: reference to the object
 	 */
 	public function param( $value ) {
