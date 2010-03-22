@@ -54,6 +54,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22772) {{#special:}} parser function now works with subpages
 * (bug 18664) Relative URIs in interwiki links cause failed redirects
 * (bug 19270) Relative URIs in interwiki links break interwiki transclusion
+* (bug 22903) Revdelete log entries now show in the user preferred language.
 
 == API changes in 1.17 ==
 * (bug 22738) Allow filtering by action type on query=logevent
