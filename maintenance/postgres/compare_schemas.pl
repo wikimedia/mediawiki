@@ -317,13 +317,13 @@ rc_log_type     varbinary(255) TEXT
 ## Simple text-only strings:
 ar_flags          tinyblob       TEXT
 ct_params         blob           TEXT
-fa_minor_mime     varbinary(32)  TEXT
+fa_minor_mime     varbinary(100) TEXT
 fa_storage_group  varbinary(16)  TEXT # Just 'deleted' for now, should stay plain text
 fa_storage_key    varbinary(64)  TEXT # sha1 plus text extension
 ipb_address       tinyblob       TEXT # IP address or username
 ipb_range_end     tinyblob       TEXT # hexadecimal
 ipb_range_start   tinyblob       TEXT # hexadecimal
-img_minor_mime    varbinary(32)  TEXT
+img_minor_mime    varbinary(100) TEXT
 lc_lang           varbinary(32)  TEXT
 lc_value          varbinary(32)  TEXT
 
@@ -335,7 +335,7 @@ lc_value          mediumblob     TEXT
 log_params        blob           TEXT # LF separated list of args
 log_type          varbinary(10)  TEXT
 ls_field          varbinary(32)  TEXT
-oi_minor_mime     varbinary(32)  TEXT
+oi_minor_mime     varbinary(100) TEXT
 oi_sha1           varbinary(32)  TEXT
 old_flags         tinyblob       TEXT
 old_text          mediumblob     TEXT
