@@ -748,6 +748,7 @@ Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt eirata
 'login-throttled'            => 'Oled lühikese aja jooksul liiga palju äpardunud logimiskatseid sooritanud.
 Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
+'suspicious-userlogout'      => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
 
 # Password reset dialog
 'resetpass'                 => 'Muuda parooli',
@@ -1295,6 +1296,7 @@ Siin on juhuslik väärtus, mida saad kasutada: $1',
 'prefs-files'                   => 'Failid',
 'prefs-custom-css'              => 'kohandatud CSS',
 'prefs-custom-js'               => 'kohandatud JS',
+'prefs-common-css-js'           => 'Kõigi kujunduste ühine CSS/JS:',
 'prefs-reset-intro'             => 'Sellel leheküljel saad oma eelistused lähtestada võrgukoha vaike-eelistusteks.
 Toimingut ei saa hiljem tühistada.',
 'prefs-emailconfirm-label'      => 'E-posti kinnitus:',
@@ -1668,7 +1670,12 @@ Turvakaalutlustel on img_auth.php kasutus keelatud.',
 'img-auth-noread'       => 'Faili "$1" lugemiseks vajalik juurdepääs puudub.',
 
 # HTTP errors
-'http-invalid-url' => 'Vigane internetiaadress: $1',
+'http-invalid-url'      => 'Vigane internetiaadress: $1',
+'http-request-error'    => 'HTTP-päring nurjus tundmatu tõrke tõttu.',
+'http-read-error'       => 'HTTP-lugemistõrge.',
+'http-timed-out'        => 'HTTP-päring aegus.',
+'http-host-unreachable' => 'Internetiaadress pole kättesaadav.',
+'http-bad-status'       => 'HTTP-päringu ajal ilmnes tõrge: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Internetiaadress pole kättesaadav',
@@ -2186,7 +2193,7 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'protect-othertime-op'        => 'muu aeg',
 'protect-existing-expiry'     => 'Kehtiv aegumisaeg: $2 kell $3',
 'protect-otherreason'         => 'Muu/täiendav põhjus:',
-'protect-otherreason-op'      => 'muu/täiendav põhjus',
+'protect-otherreason-op'      => 'Muu põhjus',
 'protect-dropdown'            => '*Tavalised kaitsmise põhjused
 ** Liigne vandalism
 ** Liigne spämmimine
@@ -2459,6 +2466,7 @@ enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks
 
 Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta omal käel uue aruteluleheküljega.",
 'movearticle'                  => 'Teisalda lehekülg',
+'moveuserpage-warning'         => "'''Hoiatus:''' Oled teisaldamas kasutajalehekülge. Pane tähele, et teisaldatakse ainult lehekülg ja kasutajat '''ei''' nimetata ümber.",
 'movenologin'                  => 'Te ei ole sisse loginud',
 'movenologintext'              => 'Et lehekülge teisaldada, peate registreeruma
 kasutajaks ja [[Special:UserLogin|sisse logima]]',
@@ -2680,6 +2688,12 @@ Palun ürita uuesti.',
 'tooltip-rollback'                => 'Tühistab ühe klõpsuga viimase kaastöölise tehtud muudatused.',
 'tooltip-undo'                    => '"Eemalda" tühistab selle muudatuse ja avab teksti eelvaatega redigeerimisakna. 
 Samuti võimaldab see resümee reale põhjenduse lisamist.',
+
+# Stylesheets
+'common.css' => '/* Siinset CSS-i kasutavad kõik kujundused. */',
+
+# Scripts
+'common.js' => '/* Siinne JavaScript laaditakse igale kasutajatele igal laaditud leheküljel. */',
 
 # Metadata
 'nodublincore'      => "Dublin Core'i RDF-meta-andmed ei ole selles serveris lubatud.",
@@ -3055,24 +3069,24 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'limitall'         => 'iga',
 
 # E-mail address confirmation
-'confirmemail'             => 'Kinnita e-posti aadress',
-'confirmemail_noemail'     => 'Sul ei ole e-aadress määratud [[Special:Preferences|eelistustes]].',
-'confirmemail_text'        => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead oma e-posti aadressi õigsust kinnitama. Allpool olevat nuppu klõpsates saadetakse sulle e-posti teel kinnituskood. Aadressi kinnitamiseks klõpsa e-kirjas olevat linki.',
-'confirmemail_pending'     => 'Kinnituskood on juba saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',
-'confirmemail_send'        => 'Saada kinnituskood',
-'confirmemail_sent'        => 'Kinnitus-e-kiri saadetud.',
-'confirmemail_oncreate'    => 'Kinnituskood saadeti e-posti aadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-postipõhiseid toiminguid.',
-'confirmemail_sendfailed'  => 'Kinnitus-e-kirja ei õnnestunud saata. 
+'confirmemail'              => 'Kinnita e-posti aadress',
+'confirmemail_noemail'      => 'Sul ei ole e-aadress määratud [[Special:Preferences|eelistustes]].',
+'confirmemail_text'         => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead oma e-posti aadressi õigsust kinnitama. Allpool olevat nuppu klõpsates saadetakse sulle e-posti teel kinnituskood. Aadressi kinnitamiseks klõpsa e-kirjas olevat linki.',
+'confirmemail_pending'      => 'Kinnituskood on juba saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',
+'confirmemail_send'         => 'Saada kinnituskood',
+'confirmemail_sent'         => 'Kinnitus-e-kiri saadetud.',
+'confirmemail_oncreate'     => 'Kinnituskood saadeti e-posti aadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-postipõhiseid toiminguid.',
+'confirmemail_sendfailed'   => 'Kinnitus-e-kirja ei õnnestunud saata. 
 Kontrolli aadressi õigsust.
 
 Veateade e-kirja saatmisel: $1',
-'confirmemail_invalid'     => 'Vigane kinnituskood, kinnituskood võib olla aegunud.',
-'confirmemail_needlogin'   => 'Pead oma e-posti aadressi kinnitamiseks $1.',
-'confirmemail_success'     => 'Sinu e-posti aadress on nüüd kinnitatud. Sa võid sisse logida ning viki imelisest maailma nautida.',
-'confirmemail_loggedin'    => 'Sinu e-posti aadress on nüüd kinnitatud.',
-'confirmemail_error'       => 'Viga kinnituskoodi salvestamisel.',
-'confirmemail_subject'     => '{{GRAMMAR:genitive|{{SITENAME}}}} e-posti aadressi kinnitamine',
-'confirmemail_body'        => 'Keegi IP-aadressilt $1, ilmselt sa ise, registreeris selle e-posti aadressiga {{GRAMMAR:inessive|{{SITENAME}}}} konto "$2".
+'confirmemail_invalid'      => 'Vigane kinnituskood, kinnituskood võib olla aegunud.',
+'confirmemail_needlogin'    => 'Pead oma e-posti aadressi kinnitamiseks $1.',
+'confirmemail_success'      => 'Sinu e-posti aadress on nüüd kinnitatud. Sa võid sisse logida ning viki imelisest maailma nautida.',
+'confirmemail_loggedin'     => 'Sinu e-posti aadress on nüüd kinnitatud.',
+'confirmemail_error'        => 'Viga kinnituskoodi salvestamisel.',
+'confirmemail_subject'      => '{{GRAMMAR:genitive|{{SITENAME}}}} e-posti aadressi kinnitamine',
+'confirmemail_body'         => 'Keegi IP-aadressilt $1, ilmselt sa ise, registreeris selle e-posti aadressiga {{GRAMMAR:inessive|{{SITENAME}}}} konto "$2".
 
 Kinnitamaks, et see kasutajakonto tõepoolest kuulub sulle ning e-posti teenuste aktiveerimiseks, ava oma võrgulehitsejas järgnev link:
 
@@ -3083,8 +3097,21 @@ Kui see *pole* sinu loodud konto, ava järgnev link kinnituse tühistamiseks:
 $5
 
 Kinnituskood aegub kuupäeval $4.',
-'confirmemail_invalidated' => 'E-posti aadressi kinnitamine tühistati',
-'invalidateemail'          => 'E-posti aadressi kinnituse tühistamine',
+'confirmemail_body_changed' => 'Keegi IP-aadressilt $1, ilmselt sa ise,
+muutis {{GRAMMAR:inessive|{{SITENAME}}}} konto "$2" e-posti aadressiks selle aadressi.
+
+Kinnitamaks, et see konto tõepoolest kuulub sulle ja e-posti teenuste taasaktiveerimiseks, ava oma veebilehitsejas järgnev link:
+
+$3
+
+Kui see *pole* sinu konto, ava järgnev link
+kinnituse tühistamiseks:
+
+$5
+
+Kinnituskood aegub kuupäeval $4.',
+'confirmemail_invalidated'  => 'E-posti aadressi kinnitamine tühistati',
+'invalidateemail'           => 'E-posti aadressi kinnituse tühistamine',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL on liiga pikk]',
@@ -3168,24 +3195,25 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'duplicate-defaultsort' => '\'\'\'Hoiatus:\'\'\' Järjestamisvõti "$2" tühistab eespool oleva järjestamisvõtme "$1".',
 
 # Special:Version
-'version'                       => 'Versioon',
-'version-extensions'            => 'Paigaldatud lisad',
-'version-specialpages'          => 'Erileheküljed',
-'version-parserhooks'           => 'Süntaksianalüsaatori lisad (Parser hooks)',
-'version-variables'             => 'Muutujad',
-'version-other'                 => 'Muu',
-'version-mediahandlers'         => 'Meediatöötlejad',
-'version-hooks'                 => 'Redaktsioon',
-'version-extension-functions'   => 'Lisafunktsioonid',
-'version-parser-extensiontags'  => 'Parseri lisamärgendid',
-'version-parser-function-hooks' => 'Parserifunktsioonid',
-'version-hook-name'             => 'Redaktsiooni nimi',
-'version-hook-subscribedby'     => 'Tellijad',
-'version-version'               => '(Versioon $1)',
-'version-license'               => 'Litsents',
-'version-software'              => 'Paigaldatud tarkvara',
-'version-software-product'      => 'Toode',
-'version-software-version'      => 'Versioon',
+'version'                          => 'Versioon',
+'version-extensions'               => 'Paigaldatud lisad',
+'version-specialpages'             => 'Erileheküljed',
+'version-parserhooks'              => 'Süntaksianalüsaatori lisad (Parser hooks)',
+'version-variables'                => 'Muutujad',
+'version-other'                    => 'Muu',
+'version-mediahandlers'            => 'Meediatöötlejad',
+'version-hooks'                    => 'Redaktsioon',
+'version-extension-functions'      => 'Lisafunktsioonid',
+'version-parser-extensiontags'     => 'Parseri lisamärgendid',
+'version-parser-function-hooks'    => 'Parserifunktsioonid',
+'version-skin-extension-functions' => 'Kujunduse lisa funktsioonid',
+'version-hook-name'                => 'Redaktsiooni nimi',
+'version-hook-subscribedby'        => 'Tellijad',
+'version-version'                  => '(Versioon $1)',
+'version-license'                  => 'Litsents',
+'version-software'                 => 'Paigaldatud tarkvara',
+'version-software-product'         => 'Toode',
+'version-software-version'         => 'Versioon',
 
 # Special:FilePath
 'filepath'         => 'Failitee',

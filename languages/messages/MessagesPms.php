@@ -1084,9 +1084,9 @@ Ambelessì a-i é un valor generà a asar che a peul dovré: $1",
 'prefs-custom-css'              => 'CSS përsonaj',
 'prefs-custom-js'               => 'JS përsonaj',
 'prefs-common-css-js'           => 'CSS e JS condividù për tute le pej:',
-'prefs-reset-intro'             => 'It peule dovré sta pàgina-sì për torna amposté ij tò gust a coj ëd default.
-Sòn-sì a peul pa esse anulà.',
-'prefs-emailconfirm-label'      => "Conferma dl'e-mail:",
+'prefs-reset-intro'             => 'A peul dovré costa pàgina për amposté torna ij sò gust a coj dë stàndard.
+Sòn a peul pa esse anulà.',
+'prefs-emailconfirm-label'      => "Conferma dl'adrëssa ëd pòsta eletrònica:",
 'prefs-textboxsize'             => 'Dimension ëd la fnesta ëd modìfica',
 'youremail'                     => 'Soa adrëssa ëd pòsta eletrònica',
 'username'                      => 'Stranòm:',
