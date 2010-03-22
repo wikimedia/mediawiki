@@ -23,7 +23,7 @@
  *
  * Shortcut for escaping the message too, similar to wfMsgHTML, but
  * parameters are not replaced after escaping by default.
- * $escaped = Message::key( 'key' )->rawParam( 'apple' ).escaped();
+ * $escaped = Message::key( 'key' )->rawParam( 'apple' )->escaped();
  *
  * TODO:
  * * document everything
@@ -86,7 +86,6 @@ class Message {
 	 * @param $value Array: list of parameters, array keys will be ignored.
 	 * @return Message: reference to the object
 	 */
-
 	public function paramList( array $values ) {
 		$this->parameters += array_values( $values );
 		return $this;
@@ -166,7 +165,9 @@ class Message {
 
 	protected function transformText( $string ) {
 		global $wgMessageCache;
-		if ( !isset( $wgMessageCache ) ) return $string;
+		if ( !isset( $wgMessageCache ) ) {
+			return $string;
+		}
 		// FIXME: handle second param correctly
 		return $wgMessageCache->transform( $string, true, $this->getLanguage() );
 	}
