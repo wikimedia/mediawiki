@@ -6,24 +6,27 @@
  *
  */
 class PostgresField {
-	private $name, $tablename, $type, $nullable, $max_length;
+	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname;
 
 	static function fromText($db, $table, $field) {
 	global $wgDBmwschema;
 
 		$q = <<<SQL
-SELECT
-CASE WHEN typname = 'int2' THEN 'smallint'
-WHEN typname = 'int4' THEN 'integer'
-WHEN typname = 'int8' THEN 'bigint'
-WHEN typname = 'bpchar' THEN 'char'
-ELSE typname END AS typname,
-attnotnull, attlen
-FROM pg_class, pg_namespace, pg_attribute, pg_type
-WHERE relnamespace=pg_namespace.oid
-AND relkind='r'
-AND attrelid=pg_class.oid
-AND atttypid=pg_type.oid
+SELECT 
+ attnotnull, attlen, COALESCE(conname, '') AS conname,
+ COALESCE(condeferred, 'f') AS deferred,
+ COALESCE(condeferrable, 'f') AS deferrable,
+ CASE WHEN typname = 'int2' THEN 'smallint'
+  WHEN typname = 'int4' THEN 'integer'
+  WHEN typname = 'int8' THEN 'bigint'
+  WHEN typname = 'bpchar' THEN 'char'
+ ELSE typname END AS typname
+FROM pg_class c
+JOIN pg_namespace n ON (n.oid = c.relnamespace)
+JOIN pg_attribute a ON (a.attrelid = c.oid)
+JOIN pg_type t ON (t.oid = a.atttypid)
+LEFT JOIN pg_constraint o ON (o.conrelid = c.oid AND a.attnum = ANY(o.conkey) AND o.contype = 'f')
+WHERE relkind = 'r'
 AND nspname=%s
 AND relname=%s
 AND attname=%s;
@@ -41,6 +44,9 @@ SQL;
 		$n->name = $field;
 		$n->tablename = $table;
 		$n->max_length = $row->attlen;
+		$n->deferrable = ($row->deferrable == 't');
+		$n->deferred = ($row->deferred == 't');
+		$n->conname = $row->conname;
 		return $n;
 	}
 
@@ -63,6 +69,19 @@ SQL;
 	function maxLength() {
 		return $this->max_length;
 	}
+
+	function is_deferrable() {
+		return $this->deferrable;
+	}
+
+	function is_deferred() {
+		return $this->deferred;
+	}
+
+	function conname() {
+		return $this->conname;
+	}
+
 }
 
 /**
