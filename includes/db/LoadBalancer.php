@@ -916,4 +916,11 @@ class LoadBalancer {
 		$this->mLagTimes = $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $wiki );
 		return $this->mLagTimes;
 	}
+
+	/**
+	 * Clear the cache for getLagTimes
+	 */
+	function clearLagTimeCache() {
+		$this->mLagTimes = null;
+	}
 }

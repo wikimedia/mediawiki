@@ -10,40 +10,30 @@ This is a pre-release beta of the MediaWiki 1.16 branch.
 
 Selected changes since MediaWiki 1.15 that may be of interest:
 
-* Watchlists now have RSS/Atom feeds. RSS feeds generally are now hidden, since
-  Atom is a better protocol and is supported by virtually all clients.
+* Watchlists now have RSS/Atom feeds. RSS feeds generally are now hidden, since Atom is a better protocol and is supported by virtually all clients.
 
 * It's now possible to block users from sending email via Special:Emailuser.
 
-* The maintenance script system was overhauled. Most maintenance scripts now
-  have a useful help page when you run them with --help.
+* The maintenance script system was overhauled. Most maintenance scripts now have a useful help page when you run them with --help.
 
-* AdminSettings.php is no longer required in order to run maintenance scripts.
-  You can just set $wgDBadminuser and $wgDBadminpassword in your 
-  LocalSettings.php instead.
+* AdminSettings.php is no longer required in order to run maintenance scripts. You can just set $wgDBadminuser and $wgDBadminpassword in your LocalSettings.php instead.
 
-* The preferences system was overhauled. Preferences are stored in a more
-  compact format. Changes to site default preferences will automatically affect
-  all users who have not chosen a different preference.
+* The preferences system was overhauled. Preferences are stored in a more compact format. Changes to site default preferences will automatically affect all users who have not chosen a different preference.
 
-* Support for SQLite was improved. Some broken features were fixed, and it now
-  has an efficient full-text search.
+* Support for SQLite was improved. Some broken features were fixed, and it now has an efficient full-text search.
 
-* The user groups ACL system was improved by allowing rights to be revoked,
-  instead of just granted.
+* The user groups ACL system was improved by allowing rights to be revoked, instead of just granted.
 
-* A new localisation caching system was introduced, which will make MediaWiki
-  faster for almost everyone, especially when lots of extensions are enabled.
+* A new localisation caching system was introduced, which will make MediaWiki faster for almost everyone, especially when lots of extensions are enabled.
 
-  By default, this new system makes a lot of database queries. If your database
-  is particularly slow, or if your system administrator limits your query 
-  count, or if you want to squeeze as much performance as possible out of 
-  Mediawiki, set $wgCacheDirectory to a writable path on the local filesystem.
-  Make sure you have the DBA extension for PHP installed, this will improve 
-  performance further.
+By default, this new system makes a lot of database queries. If your database is particularly slow, or if your system administrator limits your query count, or if you want to squeeze as much performance as possible out of Mediawiki, set $wgCacheDirectory to a writable path on the local filesystem. Make sure you have the DBA extension for PHP installed, this will improve performance further.
 
 === Changes since 1.16 beta 1 ===
+
 * Fixed errors in maintenance/patchSql.php
+* (bug 19627) Fix regression from r57867 where HTMLForm would output 
+  <element classes="foo bar"> rather than <element class="foo bar">
+* Fixed broken "-r" option to maintenance/lag.php
 
 === Configuration changes in 1.16 ===
 
