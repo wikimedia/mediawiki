@@ -2711,19 +2711,19 @@ class Language {
 
 	function formatTimePeriod( $seconds ) {
 		if ( $seconds < 10 ) {
-			return $this->formatNum( sprintf( "%.1f", $seconds ) ) . wfMsg( 'seconds-abbrev' );
+			return $this->formatNum( sprintf( "%.1f", $seconds ) ) . ' ' . wfMsg( 'seconds-abbrev' );
 		} elseif ( $seconds < 60 ) {
-			return $this->formatNum( round( $seconds ) ) . wfMsg( 'seconds-abbrev' );
+			return $this->formatNum( round( $seconds ) ) . ' ' . wfMsg( 'seconds-abbrev' );
 		} elseif ( $seconds < 3600 ) {
-			return $this->formatNum( floor( $seconds / 60 ) ) . wfMsg( 'minutes-abbrev' ) .
-				$this->formatNum( round( fmod( $seconds, 60 ) ) ) . wfMsg( 'seconds-abbrev' );
+			return $this->formatNum( floor( $seconds / 60 ) ) . ' ' . wfMsg( 'minutes-abbrev' ) . ' ' .
+				$this->formatNum( round( fmod( $seconds, 60 ) ) ) . ' ' . wfMsg( 'seconds-abbrev' );
 		} else {
 			$hours = floor( $seconds / 3600 );
 			$minutes = floor( ( $seconds - $hours * 3600 ) / 60 );
 			$secondsPart = round( $seconds - $hours * 3600 - $minutes * 60 );
-			return $this->formatNum( $hours ) . wfMsg( 'hours-abbrev' ) .
-				$this->formatNum( $minutes ) . wfMsg( 'minutes-abbrev' ) .
-				$this->formatNum( $secondsPart ) . wfMsg( 'seconds-abbrev' );
+			return $this->formatNum( $hours ) . ' ' . wfMsg( 'hours-abbrev' ) . ' ' .
+				$this->formatNum( $minutes ) . ' ' . wfMsg( 'minutes-abbrev' ) . ' ' .
+				$this->formatNum( $secondsPart ) . ' ' . wfMsg( 'seconds-abbrev' );
 		}
 	}
 
