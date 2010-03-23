@@ -662,6 +662,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 'readonly_lag'         => 'La base de datos se ha bloqueado temporalmente mientras los servidores se sincronizan.',
 'internalerror'        => 'Error interno',
 'internalerror_info'   => 'Error interno: $1',
+'fileappenderrorread'  => 'No se ha podido leer "$1" durante la anexión.',
 'fileappenderror'      => 'No se ha podido añadir "$1" a "$2".',
 'filecopyerror'        => 'No se pudo copiar el archivo "$1" a "$2".',
 'filerenameerror'      => 'No se pudo renombrar el archivo "$1" a "$2".',

@@ -1218,6 +1218,7 @@ Galite panaudoti šią atsitiktinai sugeneruotą reikšmę: $1',
 'prefs-files'                   => 'Failai',
 'prefs-custom-css'              => 'Asmeninis CSS',
 'prefs-custom-js'               => 'Asmeninis JavaSript',
+'prefs-common-css-js'           => 'Bendras CSS/JS visoms išvaizdoms:',
 'prefs-reset-intro'             => 'Jūs galite pasinaudoti šiuo puslapiu atstatyti jūsų nustatymus į svetainės numatytuosius.
 Tai nebeatšaukiama.',
 'prefs-emailconfirm-label'      => 'El. pašto patvirtinimas:',
@@ -2105,7 +2106,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 'protect-othertime-op'        => 'kitas laikas',
 'protect-existing-expiry'     => 'Esamas galiojimo laikas: $3, $2',
 'protect-otherreason'         => 'Kita/papildoma priežastis:',
-'protect-otherreason-op'      => 'kita/papildoma priežastis',
+'protect-otherreason-op'      => 'Kita priežastis',
 'protect-dropdown'            => '*Įprastos užrakinimo priežastys
 ** Intensyvus vandalizmas
 ** Intensyvus nuorodų reklamavimas
