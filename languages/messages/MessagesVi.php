@@ -1286,6 +1286,7 @@ Bất cứ ai biết được khóa trong ô này cũng có thể đọc đượ
 'prefs-files'                   => 'Tập tin',
 'prefs-custom-css'              => 'sửa CSS',
 'prefs-custom-js'               => 'sửa JS',
+'prefs-common-css-js'           => 'CSS/JS chung cho mọi hình dạng:',
 'prefs-reset-intro'             => 'Có thể mặc định lại toàn bộ tùy chọn dùng trang này.
 Không có thể lùi lại tác động này.',
 'prefs-emailconfirm-label'      => 'Xác nhận thư điện tử:',
@@ -2190,7 +2191,7 @@ hiện tại của trang '''$1''':",
 'protect-othertime-op'        => 'thời hạn khác',
 'protect-existing-expiry'     => 'Thời hạn hiện thời: $3, $2',
 'protect-otherreason'         => 'Lý do khác/bổ sung:',
-'protect-otherreason-op'      => 'lý do khác/bổ sung',
+'protect-otherreason-op'      => 'Lý do khác',
 'protect-dropdown'            => '*Các lý do thường dùng khi khóa
 ** Bị phá hoại quá mức
 ** Bị spam quá mức

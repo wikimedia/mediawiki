@@ -1150,6 +1150,7 @@ $2',
 'post-expand-template-argument-category'  => 'صفحات تحتوي مدخلات القالب المحذوفة',
 'parser-template-loop-warning'            => 'تم كشف حلقة قالب: [[$1]]',
 'parser-template-recursion-depth-warning' => 'تم تجاوز حد عمق فرد القوالب ($1)',
+'language-converter-depth-warning'        => 'تم تخطي حد عمق مُحوّل اللغة ($1)',
 
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل.
@@ -2648,6 +2649,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'ipb_blocked_as_range'            => 'خطأ: الأيبي $1 ليس ممنوعا مباشرة ولا يمكن رفع المنع عنه.
 لكنه، على أية حال، ممنوع كجزء من النطاق $2، والذي يمكن رفع المنع عنه.',
 'ip_range_invalid'                => 'نطاق عناوين الأيبي المدخل غير صحيح.',
+'ip_range_toolarge'               => 'لا يسمح بنطاقات المنع الأكبر من /$1',
 'blockme'                         => 'منعي',
 'proxyblocker'                    => 'مانع البروكسي',
 'proxyblocker-disabled'           => 'هذه الخاصية معطلة.',

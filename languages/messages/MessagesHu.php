@@ -950,10 +950,12 @@ A szerkesztést nem lehet elmenteni.'''",
 A lap szöveget kimásolhatod egy szövegfájlba, amit elmenthetsz későbbre.'''
 
 Az adatbázist lezáró adminisztrátor az alábbi magyarázatot adta: $1",
-'protectedpagewarning'             => "'''FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik.'''",
+'protectedpagewarning'             => "'''Figyelem: Ez a lap le van védve, így csak adminisztrátori jogosultságokkal rendelkező szerkesztők módosíthatják.'''
+A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
 'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált szerkesztők nem módosíthatják.",
 'cascadeprotectedwarning'          => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
-'titleprotectedwarning'            => "'''FIGYELEM:  Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogokkal]] rendelkező szerkesztők hozhatják létre.'''",
+'titleprotectedwarning'            => "'''Figyelem: Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogosultságokkal]] rendelkező szerkesztők hozhatják létre.'''
+A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
 'templatesused'                    => 'A lapon használt {{PLURAL:$1|sablon|sablonok}}:',
 'templatesusedpreview'             => 'Az előnézet megjelenítésekor használt {{PLURAL:$1|sablon|sablonok}}:',
 'templatesusedsection'             => 'Az ebben a szakaszban használt {{PLURAL:$1|sablon|sablonok}}:',
@@ -998,6 +1000,7 @@ Néhány sablon nem fog megjelenni.',
 'post-expand-template-argument-category'  => 'Elhagyott sablonparaméterekkel rendelkező lapok',
 'parser-template-loop-warning'            => 'Végtelen ciklus a következő sablonban: [[$1]]',
 'parser-template-recursion-depth-warning' => 'A sablon rekurzív beillesztésének mélysége átlépte a határérékét ($1)',
+'language-converter-depth-warning'        => 'A nyelvátalakító rekurzióinak száma túllépve ($1)',
 
 # "Undo" feature
 'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
@@ -2505,6 +2508,7 @@ győződj meg a folytatás előtt arról, hogy tisztában vagy-e a következmén
 
 Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid szerint.",
 'movearticle'                  => 'Lap átnevezése',
+'moveuserpage-warning'         => "'''Figyelem:''' Egy felhasználólapot készülsz átmozgatni. Csak a lap lesz átmozgatva, a szerkesztő ''nem'' lesz átnevezve.",
 'movenologin'                  => 'Nem jelentkeztél be',
 'movenologintext'              => 'Ahhoz, hogy átnevezhess egy lapot, [[Special:UserLogin|be kell lépned]].',
 'movenotallowed'               => 'Nincs jogod a lapok átnevezéséhez.',

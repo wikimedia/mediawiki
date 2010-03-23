@@ -1514,6 +1514,7 @@ Consultare la [[Special:NewFiles|galleria dei nuovi file]] per una visione d'ins
 'minlength1'                  => "Il nome del file dev'essere composto da almeno un carattere.",
 'illegalfilename'             => 'Il nome "$1" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.',
 'badfilename'                 => 'Il nome del file è stato convertito in "$1".',
+'filetype-mime-mismatch'      => "L'estensione del file non corrisponde con il tipo MIME.",
 'filetype-badmime'            => 'Non è consentito caricare file di tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'Impossibile caricare il file perché Internet Explorer lo rileverebbe come "$1", che è un tipo di file non consentito e potenzialmente pericoloso.',
 'filetype-unwanted-type'      => "Caricare file di tipo '''\".\$1\"''' è sconsigliato. {{PLURAL:\$3|Il tipo di file consigliato è|I tipi di file consigliati sono}} \$2.",
@@ -1611,8 +1612,10 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 # HTTP errors
 'http-invalid-url'      => 'URL non valido: $1',
 'http-invalid-scheme'   => 'URL con il prefisso "$1" non sono supportati.',
+'http-request-error'    => 'Richiesta HTTP fallita a causa di un errore sconosciuto.',
 'http-read-error'       => 'Errore di lettura HTTP.',
 'http-timed-out'        => 'Richiesta HTTP scaduta.',
+'http-curl-error'       => "Errore durante il recupero dell'URL: $1",
 'http-host-unreachable' => 'URL non raggiungibile.',
 'http-bad-status'       => "C'è stato un problema durante la richiesta HTTP: $1 $2",
 

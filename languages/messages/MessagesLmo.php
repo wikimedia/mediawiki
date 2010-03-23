@@ -820,6 +820,10 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada chì suta.",
 'uploadnewversion-linktext' => 'Carga una versión növa de quel file chì',
 
+# File reversion
+'filerevert-comment'        => 'Uget:',
+'filerevert-defaultcomment' => 'Bütada turna la versión di $2, $1',
+
 # File deletion
 'filedelete-reason-dropdown' => '*I sòlit resón per i scancelament
 ** Viulazión de copyright
@@ -1016,6 +1020,7 @@ Per piasè, dà la cunferma che te gh'hee intenzión de andà inanz cun 'l scanc
 'deletedarticle'         => 'l\'ha scancelaa "[[$1]]"',
 'dellogpage'             => 'Register di scancelament',
 'deletionlog'            => 'log di scancelament',
+'reverted'               => 'Bütada sü turna la versión de prima.',
 'deletecomment'          => 'Mutiv del scancelament',
 'deleteotherreason'      => 'Alter mutiv:',
 'deletereasonotherlist'  => 'Altra resón',
@@ -1239,6 +1244,7 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 'tooltip-search'                  => 'Cerca in {{SITENAME}}',
 'tooltip-search-go'               => "Va a una pagina che la se ciama cumpagn, semper che la gh'è",
 'tooltip-search-fulltext'         => 'Cerca quel test chì intra i paginn del sit',
+'tooltip-p-logo'                  => 'Pagina principala',
 'tooltip-n-mainpage'              => 'Visité la pàgina principala',
 'tooltip-n-mainpage-description'  => 'Visita la pagina principala',
 'tooltip-n-portal'                => "Descrizión del pruget, 'sè ch'a pudé fà, indè che se pö truvà i rob.",
