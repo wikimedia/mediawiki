@@ -2181,4 +2181,61 @@ CSS;
 	public function commonPrintStylesheet() {
 		return true;
 	}
+
+	/**
+	 * Gets new talk page messages for the current user.
+	 * @return MediaWiki message or if no new talk page messages, nothing
+	 */
+	function getNewtalks() {
+		global $wgUser, $wgOut;
+		$newtalks = $wgUser->getNewMessageLinks();
+
+		if( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
+			$userTitle = $this->mUser->getUserPage();
+			$userTalkTitle = $userTitle->getTalkPage();
+
+			if( !$userTalkTitle->equals( $this->mTitle ) ) {
+				$newMessagesLink = $this->link(
+					$userTalkTitle,
+					wfMsgHtml( 'newmessageslink' ),
+					array(),
+					array( 'redirect' => 'no' ),
+					array( 'known', 'noclasses' )
+				);
+
+				$newMessagesDiffLink = $this->link(
+					$userTalkTitle,
+					wfMsgHtml( 'newmessagesdifflink' ),
+					array(),
+					array( 'diff' => 'cur' ),
+					array( 'known', 'noclasses' )
+				);
+
+				$ntl = wfMsg(
+					'youhavenewmessages',
+					$newMessagesLink,
+					$newMessagesDiffLink
+				);
+				# Disable Squid cache
+				$wgOut->setSquidMaxage( 0 );
+			}
+		} elseif( count( $newtalks ) ) {
+			// _>" " for BC <= 1.16
+			$sep = str_replace( '_', ' ', wfMsgHtml( 'newtalkseparator' ) );
+			$msgs = array();
+			foreach( $newtalks as $newtalk ) {
+				$msgs[] = Xml::element(
+					'a',
+					array( 'href' => $newtalk['link'] ), $newtalk['wiki']
+				);
+			}
+			$parts = implode( $sep, $msgs );
+			$ntl = wfMsgHtml( 'youhavenewmessagesmulti', $parts );
+			$wgOut->setSquidMaxage( 0 );
+		} else {
+			$ntl = '';
+		}
+		return $ntl;
+	}
+
 }
