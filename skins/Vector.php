@@ -52,8 +52,8 @@ class SkinVector extends SkinTemplate {
 		parent::setupSkinUserCss( $out );
 
 		// Append skin-specific styles
-		$out->addStyle( 'origins/main-rtl.css', 'screen', '', 'rtl' );
-		$out->addStyle( 'origins/main-ltr.css', 'screen', '', 'ltr' );
+		$out->addStyle( 'vector/main-rtl.css', 'screen', '', 'rtl' );
+		$out->addStyle( 'vector/main-ltr.css', 'screen', '', 'ltr' );
 
 		// Add extra stylesheets
 		// THIS IS ONLY USEFUL FOR EXPERIMENTING WITH DIFFERNT STYLE OPTIONS! THIS WILL BE REMOVED IN THE NEAR FUTURE.
