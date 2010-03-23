@@ -30,9 +30,6 @@ class SkinVector extends SkinTemplate {
 		
 		parent::initPage( $out );
 
-		// Append skin-specific styles
-		$out->addStyle( 'vector/main-rtl.css', 'screen', '', 'rtl' );
-		$out->addStyle( 'vector/main-ltr.css', 'screen', '', 'ltr' );
 		// Append CSS which includes IE only behavior fixes for hover support -
 		// this is better than including this in a CSS fille since it doesn't
 		// wait for the CSS file to load before fetching the HTC file.
@@ -41,14 +38,32 @@ class SkinVector extends SkinTemplate {
 				$wgStylePath .
 				'/vector/csshover.htc")}</style><![endif]-->'
 		);
+	}
+
+	/**
+	 * Load skin and user css files in the correct order
+	 * fixes bug 22916
+	 * @param object $out OutputPage object
+	 */
+
+	function setupSkinUserCss( OutputPage $out ){
+		global $wgStylePath, $wgVectorExtraStyles;
+		
+		parent::setupSkinUserCss( $out );
+
+		// Append skin-specific styles
+		$out->addStyle( 'origins/main-rtl.css', 'screen', '', 'rtl' );
+		$out->addStyle( 'origins/main-ltr.css', 'screen', '', 'ltr' );
+
 		// Add extra stylesheets
 		// THIS IS ONLY USEFUL FOR EXPERIMENTING WITH DIFFERNT STYLE OPTIONS! THIS WILL BE REMOVED IN THE NEAR FUTURE.
 		if ( is_array( $wgVectorExtraStyles ) ) {
 			foreach ( $wgVectorExtraStyles as $style ) {
-				$out->addStyle( 'vector/' . $style, 'screen' );
+				$out->addStyle( 'origins/' . $style, 'screen' );
 			}
 		}
 	}
+
 	/**
 	 * Builds a structured array of links used for tabs and menus
 	 * @return array
