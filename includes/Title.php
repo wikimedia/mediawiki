@@ -82,6 +82,7 @@ class Title {
 
 	/**
 	 * Create a new Title from a prefixed DB key
+	 *
 	 * @param $key \type{\string} The database key, which has underscores
 	 *	instead of spaces, possibly including namespace and
 	 *	interwiki prefixes
@@ -163,6 +164,7 @@ class Title {
 	 *
 	 * Create a new Title from URL-encoded text. Ensures that
 	 * the given title's length does not exceed the maximum.
+	 *
 	 * @param $url \type{\string} the title, as might be taken from a URL
 	 * @return \type{Title} the new object, or NULL on an error
 	 */
@@ -205,6 +207,7 @@ class Title {
 
 	/**
 	 * Make an array of titles from an array of IDs
+	 *
 	 * @param $ids \type{\arrayof{\int}} Array of IDs
 	 * @return \type{\arrayof{Title}} Array of Titles
 	 */
@@ -225,6 +228,7 @@ class Title {
 
 	/**
 	 * Make a Title object from a DB row
+	 *
 	 * @param $row \type{Row} (needs at least page_title,page_namespace)
 	 * @return \type{Title} corresponding Title
 	 */
@@ -285,6 +289,7 @@ class Title {
 
 	/**
 	 * Create a new Title for the Main Page
+	 *
 	 * @return \type{Title} the new object
 	 */
 	public static function newMainPage() {
@@ -403,6 +408,7 @@ class Title {
 
 	/**
 	 * Get the prefixed DB key associated with an ID
+	 *
 	 * @param $id \type{\int} the page_id of the article
 	 * @return \type{Title} an object representing the article, or NULL
 	 *  if no such article was found
@@ -422,6 +428,7 @@ class Title {
 
 	/**
 	 * Get a regex character class describing the legal characters in a link
+	 *
 	 * @return \type{\string} the list of characters, not delimited
 	 */
 	public static function legalChars() {
@@ -460,6 +467,7 @@ class Title {
 
 	/**
 	 * Make a prefixed DB key from a DB key and a namespace index
+	 *
 	 * @param $ns \type{\int} numerical representation of the namespace
 	 * @param $title \type{\string} the DB key form the title
 	 * @param $fragment \type{\string} The link fragment (after the "#")
@@ -508,7 +516,7 @@ class Title {
 	 * Escape a text fragment, say from a link, for a URL
 	 * 
 	 * @param $fragment string containing a URL or link fragment (after the "#")
-	 * @return string escaped string
+	 * @return String: escaped string
 	 */
 	static function escapeFragmentForURL( $fragment ) {
 		# Note that we don't urlencode the fragment.  urlencoded Unicode
@@ -525,26 +533,35 @@ class Title {
 	/** Simple accessors */
 	/**
 	 * Get the text form (spaces not underscores) of the main part
+	 *
 	 * @return \type{\string} Main part of the title
 	 */
 	public function getText() { return $this->mTextform; }
+
 	/**
 	 * Get the URL-encoded form of the main part
+	 *
 	 * @return \type{\string} Main part of the title, URL-encoded
 	 */
 	public function getPartialURL() { return $this->mUrlform; }
+
 	/**
 	 * Get the main part with underscores
+	 *
 	 * @return \type{\string} Main part of the title, with underscores
 	 */
 	public function getDBkey() { return $this->mDbkeyform; }
+
 	/**
 	 * Get the namespace index, i.e.\ one of the NS_xxxx constants.
+	 *
 	 * @return \type{\int} Namespace index
 	 */
 	public function getNamespace() { return $this->mNamespace; }
+
 	/**
 	 * Get the namespace text
+	 *
 	 * @return \type{\string} Namespace text
 	 */
 	public function getNsText() {
@@ -563,46 +580,59 @@ class Title {
 		}
 		return $wgContLang->getNsText( $this->mNamespace );
 	}
+
 	/**
 	 * Get the DB key with the initial letter case as specified by the user
+	 *
 	 * @return \type{\string} DB key
 	 */
 	function getUserCaseDBKey() {
 		return $this->mUserCaseDBKey;
 	}
+
 	/**
 	 * Get the namespace text of the subject (rather than talk) page
+	 *
 	 * @return \type{\string} Namespace text
 	 */
 	public function getSubjectNsText() {
 		global $wgContLang;
 		return $wgContLang->getNsText( MWNamespace::getSubject( $this->mNamespace ) );
 	}
+
 	/**
 	 * Get the namespace text of the talk page
+	 *
 	 * @return \type{\string} Namespace text
 	 */
 	public function getTalkNsText() {
 		global $wgContLang;
 		return( $wgContLang->getNsText( MWNamespace::getTalk( $this->mNamespace ) ) );
 	}
+
 	/**
 	 * Could this title have a corresponding talk page?
+	 *
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function canTalk() {
 		return( MWNamespace::canTalk( $this->mNamespace ) );
 	}
+
 	/**
 	 * Get the interwiki prefix (or null string)
+	 *
 	 * @return \type{\string} Interwiki prefix
 	 */
 	public function getInterwiki() { return $this->mInterwiki; }
+
 	/**
 	 * Get the Title fragment (i.e.\ the bit after the #) in text form
+	 *
 	 * @return \type{\string} Title fragment
 	 */
 	public function getFragment() { return $this->mFragment; }
+
 	/**
 	 * Get the fragment in URL form, including the "#" character if there is one
 	 * @return \type{\string} Fragment in URL form
@@ -614,14 +644,17 @@ class Title {
 			return '#' . Title::escapeFragmentForURL( $this->mFragment );
 		}
 	}
+
 	/**
 	 * Get the default namespace index, for when there is no namespace
+	 *
 	 * @return \type{\int} Default namespace index
 	 */
 	public function getDefaultNamespace() { return $this->mDefaultNamespace; }
 
 	/**
 	 * Get title for search index
+	 *
 	 * @return \type{\string} a stripped-down title string ready for the
 	 *  search index
 	 */
@@ -631,6 +664,7 @@ class Title {
 
 	/**
 	 * Get the prefixed database key form
+	 *
 	 * @return \type{\string} the prefixed title, with underscores and
 	 *  any interwiki and namespace prefixes
 	 */
@@ -643,6 +677,7 @@ class Title {
 	/**
 	 * Get the prefixed title with spaces.
 	 * This is the form usually used for display
+	 *
 	 * @return \type{\string} the prefixed title, with spaces
 	 */
 	public function getPrefixedText() {
@@ -657,6 +692,7 @@ class Title {
 	/**
 	 * Get the prefixed title with spaces, plus any fragment
 	 * (part beginning with '#')
+	 *
 	 * @return \type{\string} the prefixed title, with spaces and
 	 *  the fragment, including '#'
 	 */
@@ -670,6 +706,7 @@ class Title {
 
 	/**
 	 * Get the base name, i.e. the leftmost parts before the /
+	 *
 	 * @return \type{\string} Base name
 	 */
 	public function getBaseText() {
@@ -686,6 +723,7 @@ class Title {
 
 	/**
 	 * Get the lowest-level subpage name, i.e. the rightmost part after /
+	 *
 	 * @return \type{\string} Subpage name
 	 */
 	public function getSubpageText() {
@@ -698,6 +736,7 @@ class Title {
 
 	/**
 	 * Get a URL-encoded form of the subpage text
+	 *
 	 * @return \type{\string} URL-encoded subpage name
 	 */
 	public function getSubpageUrlForm() {
@@ -708,6 +747,7 @@ class Title {
 
 	/**
 	 * Get a URL-encoded title (not an actual URL) including interwiki
+	 *
 	 * @return \type{\string} the URL-encoded form
 	 */
 	public function getPrefixedURL() {
@@ -765,7 +805,8 @@ class Title {
 	/**
 	 * Get a URL with no fragment or server name.  If this page is generated
 	 * with action=render, $wgServer is prepended.
-	 * @param mixed $query an optional query string; if not specified,
+	 *
+	 * @param $query Mixed: an optional query string; if not specified,
 	 *   $wgArticlePath will be used.  Can be specified as an associative array
 	 *   as well, e.g., array( 'action' => 'edit' ) (keys and values will be
 	 *   URL-escaped).
@@ -878,6 +919,7 @@ class Title {
 	/**
 	 * Get an HTML-escaped version of the URL form, suitable for
 	 * using in a link, without a server name or fragment
+	 *
 	 * @param $query \type{\string} an optional query string
 	 * @return \type{\string} the URL
 	 */
@@ -914,6 +956,7 @@ class Title {
 
 	/**
 	 * Get the edit URL for this Title
+	 *
 	 * @return \type{\string} the URL, or a null string if this is an
 	 *  interwiki link
 	 */
@@ -927,6 +970,7 @@ class Title {
 	/**
 	 * Get the HTML-escaped displayable text form.
 	 * Used for the title field in <a> tags.
+	 *
 	 * @return \type{\string} the text, including any prefixes
 	 */
 	public function getEscapedText() {
@@ -935,6 +979,7 @@ class Title {
 
 	/**
 	 * Is this Title interwiki?
+	 *
 	 * @return \type{\bool}
 	 */
 	public function isExternal() { return ( $this->mInterwiki != '' ); }
@@ -966,6 +1011,7 @@ class Title {
 
 	/**
 	 * Does the title correspond to a protected article?
+	 *
 	 * @param $action \type{\string} the action the page is protected from,
 	 * by default checks all actions.
 	 * @return \type{\bool}
@@ -996,6 +1042,7 @@ class Title {
 
 	/**
 	 * Is this a conversion table for the LanguageConverter?
+	 *
 	 * @return \type{\bool}
 	 */
 	public function isConversionTable() {
@@ -1009,6 +1056,7 @@ class Title {
 
 	/**
 	 * Is $wgUser watching this page?
+	 *
 	 * @return \type{\bool}
 	 */
 	public function userIsWatching() {
@@ -1060,6 +1108,7 @@ class Title {
 
 	/**
 	 * Can $wgUser perform $action on this page?
+	 *
 	 * @param $action \type{\string} action that permission needs to be checked for
 	 * @param $doExpensiveQueries \type{\bool} Set this to false to avoid doing unnecessary queries.
 	 * @return \type{\bool}
@@ -1418,6 +1467,7 @@ class Title {
 
 	/**
 	 * Is this title subject to title protection?
+	 *
 	 * @return \type{\mixed} An associative array representing any existent title
 	 *   protection, or false if there's none.
 	 */
@@ -1446,6 +1496,7 @@ class Title {
 
 	/**
 	 * Update the title protection status
+	 *
 	 * @param $create_perm \type{\string} Permission required for creation
 	 * @param $reason \type{\string} Reason for protection
 	 * @param $expiry \type{\string} Expiry timestamp
@@ -1530,7 +1581,8 @@ class Title {
 
 	/**
 	 * Can $wgUser read this page?
-	 * @return \type{\bool} TRUE or FALSE
+	 *
+	 * @return \type{\bool}
 	 * @todo fold these checks into userCan()
 	 */
 	public function userCanRead() {
@@ -1633,7 +1685,8 @@ class Title {
 
 	/**
 	 * Is this a talk page of some sort?
-	 * @return \type{\bool} TRUE or FALSE
+	 *
+	 * @return \type{\bool}
 	 */
 	public function isTalkPage() {
 		return MWNamespace::isTalk( $this->getNamespace() );
@@ -1641,7 +1694,8 @@ class Title {
 
 	/**
 	 * Is this a subpage?
-	 * @return \type{\bool} TRUE or FALSE
+	 *
+	 * @return \type{\bool}
 	 */
 	public function isSubpage() {
 		return MWNamespace::hasSubpages( $this->mNamespace )
@@ -1651,7 +1705,8 @@ class Title {
 
 	/**
 	 * Does this have subpages?  (Warning, usually requires an extra DB query.)
-	 * @return \type{\bool} TRUE or FALSE
+	 *
+	 * @return \type{\bool}
 	 */
 	public function hasSubpages() {
 		if( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
@@ -1675,6 +1730,7 @@ class Title {
 
 	/**
 	 * Get all subpages of this page.
+	 *
 	 * @param $limit Maximum number of subpages to fetch; -1 for no limit
 	 * @return mixed TitleArray, or empty array if this page's namespace
 	 *  doesn't allow subpages
@@ -1703,7 +1759,7 @@ class Title {
 	 * Could this page contain custom CSS or JavaScript, based
 	 * on the title?
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 */
 	public function isCssOrJsPage() {
 		return $this->mNamespace == NS_MEDIAWIKI
@@ -1712,15 +1768,17 @@ class Title {
 
 	/**
 	 * Is this a .css or .js subpage of a user page?
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 */
 	public function isCssJsSubpage() {
 		return ( NS_USER == $this->mNamespace and preg_match("/\\/.*\\.(?:css|js)$/", $this->mTextform ) );
 	}
+
 	/**
 	 * Is this a *valid* .css or .js subpage of a user page?
 	 * Check that the corresponding skin exists
-	 * @return \type{\bool} TRUE or FALSE
+	 *
+	 * @return \type{\bool}
 	 */
 	public function isValidCssJsSubpage() {
 		if ( $this->isCssJsSubpage() ) {
@@ -1732,8 +1790,10 @@ class Title {
 			return false;
 		}
 	}
+
 	/**
 	 * Trim down a .css or .js subpage title to get the corresponding skin name
+	 *
 	 * @return string containing skin name from .css or .js subpage title
 	 */
 	public function getSkinFromCssJsSubpage() {
@@ -1741,25 +1801,30 @@ class Title {
 		$subpage = $subpage[ count( $subpage ) - 1 ];
 		return( str_replace( array( '.css', '.js' ), array( '', '' ), $subpage ) );
 	}
+
 	/**
 	 * Is this a .css subpage of a user page?
-	 * @return \type{\bool} TRUE or FALSE
+	 *
+	 * @return \type{\bool}
 	 */
 	public function isCssSubpage() {
 		return ( NS_USER == $this->mNamespace && preg_match("/\\/.*\\.css$/", $this->mTextform ) );
 	}
+
 	/**
 	 * Is this a .js subpage of a user page?
-	 * @return \type{\bool} TRUE or FALSE
+	 *
+	 * @return \type{\bool}
 	 */
 	public function isJsSubpage() {
 		return ( NS_USER == $this->mNamespace && preg_match("/\\/.*\\.js$/", $this->mTextform ) );
 	}
+
 	/**
 	 * Protect css subpages of user pages: can $wgUser edit
 	 * this page?
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 * @todo XXX: this might be better using restrictions
 	 */
 	public function userCanEditCssSubpage() {
@@ -1771,7 +1836,7 @@ class Title {
 	 * Protect js subpages of user pages: can $wgUser edit
 	 * this page?
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 * @todo XXX: this might be better using restrictions
 	 */
 	public function userCanEditJsSubpage() {
@@ -1793,10 +1858,13 @@ class Title {
 	/**
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
-	 * @param $get_pages \type{\bool} Whether or not to retrieve the actual pages that the restrictions have come from.
-	 * @return \type{\arrayof{mixed title array, restriction array}} Array of the Title objects of the pages from
-	 *         which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
-	 *         The restriction array is an array of each type, each of which contains an array of unique groups.
+	 * @param $get_pages \type{\bool} Whether or not to retrieve the actual pages
+	 *        that the restrictions have come from.
+	 * @return \type{\arrayof{mixed title array, restriction array}} Array of the Title
+	 *         objects of the pages from which cascading restrictions have come,
+	 *         false for none, or true if such restrictions exist, but $get_pages was not set.
+	 *         The restriction array is an array of each type, each of which contains a
+	 *         array of unique groups.
 	 */
 	public function getCascadeProtectionSources( $get_pages = true ) {
 		$pagerestrictions = array();
@@ -1881,10 +1949,11 @@ class Title {
 		}
 		return array( $sources, $pagerestrictions );
 	}
-	
+
 	/**
 	 * Returns cascading restrictions for the current article
-	 * @return 
+	 *
+	 * @return Boolean
 	 */
 	function areRestrictionsCascading() {
 		if (!$this->mRestrictionsLoaded) {
@@ -1896,8 +1965,10 @@ class Title {
 
 	/**
 	 * Loads a string into mRestrictions array
+	 *
 	 * @param $res \type{Resource} restrictions as an SQL result.
-	 * @param $oldFashionedRestrictions string comma-separated list of page restrictions from page table (pre 1.10)
+	 * @param $oldFashionedRestrictions string comma-separated list of page
+	 *        restrictions from page table (pre 1.10)
 	 */
 	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
 		$rows = array();
@@ -1909,11 +1980,14 @@ class Title {
 
 		$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
 	}
-	
+
 	/**
-	 * Compiles list of active page restrictions from both page table (pre 1.10) and page_restrictions table
+	 * Compiles list of active page restrictions from both page table (pre 1.10)
+	 * and page_restrictions table
+	 *
 	 * @param $rows array of db result objects
-	 * @param $oldFashionedRestrictions string comma-separated list of page restrictions from page table (pre 1.10)
+	 * @param $oldFashionedRestrictions string comma-separated list of page
+	 *        restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1990,7 +2064,9 @@ class Title {
 
 	/**
 	 * Load restrictions from the page_restrictions table
-	 * @param $oldFashionedRestrictions string comma-separated list of page restrictions from page table (pre 1.10)
+	 *
+	 * @param $oldFashionedRestrictions string comma-separated list of page
+	 *        restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
 		if( !$this->mRestrictionsLoaded ) {
@@ -2056,6 +2132,7 @@ class Title {
 
 	/**
 	 * Get the expiry time for the restriction against a given action
+	 *
 	 * @return 14-char timestamp, or 'infinity' if the page is protected forever
 	 * 	or not protected at all, or false if the action is not recognised.
 	 */
@@ -2068,6 +2145,7 @@ class Title {
 
 	/**
 	 * Is there a version of this page in the deletion archive?
+	 *
 	 * @return \type{\int} the number of archived revisions
 	 */
 	public function isDeleted() {
@@ -2091,7 +2169,8 @@ class Title {
 
 	/**
 	 * Is there a version of this page in the deletion archive?
-	 * @return bool
+	 *
+	 * @return Boolean
 	 */
 	public function isDeletedQuick() {
 		if( $this->getNamespace() < 0 ) {
@@ -2114,6 +2193,7 @@ class Title {
 	/**
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary
+	 *
 	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select
 	 *  for update
 	 * @return \type{\int} the ID
@@ -2139,6 +2219,7 @@ class Title {
 	/**
 	 * Is this an article that is a redirect page?
 	 * Uses link cache, adding it if necessary
+	 *
 	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select for update
 	 * @return \type{\bool}
 	 */
@@ -2158,6 +2239,7 @@ class Title {
 	/**
 	 * What is the length of this page?
 	 * Uses link cache, adding it if necessary
+	 *
 	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select for update
 	 * @return \type{\bool}
 	 */
@@ -2176,6 +2258,7 @@ class Title {
 
 	/**
 	 * What is the page_latest field for this page?
+	 *
 	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select for update
 	 * @return \type{\int} or false if the page doesn't exist
 	 */
@@ -2217,6 +2300,7 @@ class Title {
 
 	/**
 	 * Updates page_touched for this page; called from LinksUpdate.php
+	 *
 	 * @return \type{\bool} true if the update succeded
 	 */
 	public function invalidateCache() {
@@ -2256,6 +2340,7 @@ class Title {
 	 * Returns a simple regex that will match on characters and sequences invalid in titles.
 	 * Note that this doesn't pick up many things that could be wrong with titles, but that
 	 * replacing this regex with something valid will make many titles valid.
+	 *
 	 * @return string regex string
 	 */
 	static function getTitleInvalidRegex() {
@@ -2280,9 +2365,10 @@ class Title {
 
 	/**
 	 * Capitalize a text string for a title if it belongs to a namespace that capitalizes
+	 *
 	 * @param $text string containing title to capitalize
-	 * $param $ns int namespace index, defaults to NS_MAIN
-	 * @return $text string containing capitalized title
+	 * @param $ns int namespace index, defaults to NS_MAIN
+	 * @return String containing capitalized title
 	 */
 	public static function capitalize( $text, $ns = NS_MAIN ) {
 		global $wgContLang;
@@ -2301,6 +2387,7 @@ class Title {
 	 * removes illegal characters, splits off the interwiki and
 	 * namespace prefixes, sets the other forms, and canonicalizes
 	 * everything.
+	 *
 	 * @return \type{\bool} true on success
 	 */
 	private function secureAndSplit() {
@@ -2518,6 +2605,7 @@ class Title {
 
 	/**
 	 * Get a Title object associated with the talk page of this article
+	 *
 	 * @return \type{Title} the object for the talk page
 	 */
 	public function getTalkPage() {
@@ -2546,7 +2634,9 @@ class Title {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param array $options may be FOR UPDATE
+	 * @param $options Array: may be FOR UPDATE
+	 * @param $table String: table name
+	 * @param $prefix String: fields prefix
 	 * @return \type{\arrayof{Title}} the Title objects linking here
 	 */
 	public function getLinksTo( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
@@ -2587,7 +2677,7 @@ class Title {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param array $options may be FOR UPDATE
+	 * @param $options Array: may be FOR UPDATE
 	 * @return \type{\arrayof{Title}} the Title objects linking here
 	 */
 	public function getTemplateLinksTo( $options = array() ) {
@@ -2671,7 +2761,8 @@ class Title {
 
 	/**
 	 * Move this page without authentication
-	 * @param &$nt \type{Title} the new page Title
+	 *
+	 * @param $nt \type{Title} the new page Title
 	 * @return \type{\mixed} true on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveNoAuth( &$nt ) {
@@ -2681,7 +2772,8 @@ class Title {
 	/**
 	 * Check whether a given move operation would be valid.
 	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
-	 * @param &$nt \type{Title} the new title
+	 *
+	 * @param $nt \type{Title} the new title
 	 * @param $auth \type{\bool} indicates whether $wgUser's permissions
 	 *  should be checked
 	 * @param $reason \type{\string} is the log summary of the move, used for spam checking
@@ -2783,7 +2875,8 @@ class Title {
 
 	/**
 	 * Move a title to a new location
-	 * @param &$nt \type{Title} the new title
+	 *
+	 * @param $nt \type{Title} the new title
 	 * @param $auth \type{\bool} indicates whether $wgUser's permissions
 	 *  should be checked
 	 * @param $reason \type{\string} The reason for the move
@@ -2926,7 +3019,7 @@ class Title {
 	 * Move page to a title which is at present a redirect to the
 	 * source page
 	 *
-	 * @param &$nt \type{Title} the page to move to, which should currently
+	 * @param $nt \type{Title} the page to move to, which should currently
 	 *  be a redirect
 	 * @param $reason \type{\string} The reason for the move
 	 * @param $createRedirect \type{\bool} Whether to leave a redirect at the old title.
@@ -3043,7 +3136,8 @@ class Title {
 
 	/**
 	 * Move page to non-existing title.
-	 * @param &$nt \type{Title} the new Title
+	 *
+	 * @param $nt \type{Title} the new Title
 	 * @param $reason \type{\string} The reason for the move
 	 * @param $createRedirect \type{\bool} Whether to create a redirect from the old title to the new title
 	 *  Ignored if the user doesn't have the suppressredirect right
@@ -3133,6 +3227,7 @@ class Title {
 
 	/**
 	 * Move this page's subpages to be subpages of $nt
+	 *
 	 * @param $nt Title Move target
 	 * @param $auth bool Whether $wgUser's permissions should be checked
 	 * @param $reason string The reason for the move
@@ -3201,7 +3296,7 @@ class Title {
 	 * Checks if this page is just a one-rev redirect.
 	 * Adds lock, so don't use just for light purposes.
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 */
 	public function isSingleRevRedirect() {
 		$dbw = wfGetDB( DB_MASTER );
@@ -3238,7 +3333,7 @@ class Title {
 	 * Checks if $this can be moved to a given Title
 	 * - Selects for update, so don't call it unless you mean business
 	 *
-	 * @param &$nt \type{Title} the new title to check
+	 * @param $nt \type{Title} the new title to check
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function isValidMoveTarget( $nt ) {
@@ -3322,6 +3417,7 @@ class Title {
 
 	/**
 	 * Get a tree of parent categories
+	 *
 	 * @param $children \type{\array} an array with the children in the keys, to check for circular refs
 	 * @return \type{\array} Tree of parent categories
 	 */
@@ -3436,7 +3532,7 @@ class Title {
 	/**
 	 * Get the oldest revision timestamp of this page
 	 *
-	 * @return string, MW timestamp
+	 * @return String: MW timestamp
 	 */
 	public function getEarliestRevTime() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -3471,7 +3567,7 @@ class Title {
 	/**
 	 * Compare with another title.
 	 *
-	 * @param \type{Title} $title
+	 * @param $title \type{Title}
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function equals( Title $title ) {
@@ -3484,7 +3580,7 @@ class Title {
 	/**
 	 * Callback for usort() to do title sorts by (namespace, title)
 	 * 
-	 * @return int result of string comparison, or namespace comparison
+	 * @return Integer: result of string comparison, or namespace comparison
 	 */
 	public static function compare( $a, $b ) {
 		if( $a->getNamespace() == $b->getNamespace() ) {
@@ -3510,7 +3606,7 @@ class Title {
 	 * If you want to know if a title can be meaningfully viewed, you should
 	 * probably call the isKnown() method instead.
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 */
 	public function exists() {
 		return $this->getArticleId() != 0;
@@ -3530,7 +3626,7 @@ class Title {
 	 * existing code, but we might want to add an optional parameter to skip
 	 * it and any other expensive checks.)
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 */
 	public function isAlwaysKnown() {
 		if( $this->mInterwiki != '' ) {
@@ -3563,7 +3659,7 @@ class Title {
 	 * links to the title should be rendered as "bluelinks" (as opposed to
 	 * "redlinks" to non-existent pages).
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 */
 	public function isKnown() {
 		return $this->exists() || $this->isAlwaysKnown();
@@ -3572,7 +3668,7 @@ class Title {
 	/**
 	* Is this in a namespace that allows actual pages?
 	*
-	* @return \type{\bool} TRUE or FALSE
+	* @return \type{\bool}
 	* @internal note -- uses hardcoded namespace index instead of constants
 	*/
 	public function canExist() {
@@ -3596,7 +3692,8 @@ class Title {
 
 	/**
 	 * Get the last touched timestamp
-	 * @param Database $db, optional db
+	 *
+	 * @param $db DatabaseBase: optional db
 	 * @return \type{\string} Last touched timestamp
 	 */
 	public function getTouched( $db = null ) {
@@ -3607,8 +3704,9 @@ class Title {
 
 	/**
 	 * Get the timestamp when this page was updated since the user last saw it.
-	 * @param User $user
-	 * @return mixed string/NULL
+	 *
+	 * @param $user User
+	 * @return Mixed: string/null
 	 */
 	public function getNotificationTimestamp( $user = null ) {
 		global $wgUser, $wgShowUpdatedMarker;
@@ -3640,6 +3738,7 @@ class Title {
 
 	/**
 	 * Get the trackback URL for this page
+	 *
 	 * @return \type{\string} Trackback URL
 	 */
 	public function trackbackURL() {
@@ -3651,6 +3750,7 @@ class Title {
 
 	/**
 	 * Get the trackback RDF for this page
+	 *
 	 * @return \type{\string} Trackback RDF
 	 */
 	public function trackbackRDF() {
@@ -3678,6 +3778,7 @@ class Title {
 
 	/**
 	 * Generate strings used for xml 'id' names in monobook tabs
+	 *
 	 * @param $prepend string defaults to 'nstab-'
 	 * @return \type{\string} XML 'id' name
 	 */
@@ -3708,6 +3809,7 @@ class Title {
 
 	/**
 	 * Returns true if this is a special page.
+	 *
 	 * @return boolean
 	 */
 	public function isSpecialPage( ) {
@@ -3716,6 +3818,7 @@ class Title {
 
 	/**
 	 * Returns true if this title resolves to the named special page
+	 *
 	 * @param $name \type{\string} The special page name
 	 * @return boolean
 	 */
@@ -3731,7 +3834,9 @@ class Title {
 
 	/**
 	 * If the Title refers to a special page alias which is not the local default,
-	 * @return \type{Title} A new Title which points to the local default. Otherwise, returns $this.
+	 *
+	 * @return \type{Title} A new Title which points to the local default.
+	 *         Otherwise, returns $this.
 	 */
 	public function fixSpecialName() {
 		if ( $this->getNamespace() == NS_SPECIAL ) {
@@ -3751,7 +3856,7 @@ class Title {
 	 * In other words, is this a content page, for the purposes of calculating
 	 * statistics, etc?
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 */
 	public function isContentPage() {
 		return MWNamespace::isContent( $this->getNamespace() );
@@ -3792,7 +3897,7 @@ class Title {
 	/**
 	 * Check if this Title is a valid redirect target
 	 *
-	 * @return \type{\bool} TRUE or FALSE
+	 * @return \type{\bool}
 	 */
 	public function isValidRedirectTarget() {
 		global $wgInvalidRedirectTargets;
@@ -3813,6 +3918,7 @@ class Title {
 
 	/**
 	 * Get a backlink cache object
+	 *
 	 * @return object BacklinkCache
 	 */
 	function getBacklinkCache() {
@@ -3825,7 +3931,8 @@ class Title {
 	/**
 	 * Whether the magic words __INDEX__ and __NOINDEX__ function for
 	 * this page.
-	 * @return Bool
+	 *
+	 * @return Boolean
 	 */
 	public function canUseNoindex(){
 		global $wgArticleRobotPolicies, $wgContentNamespaces,
@@ -3841,6 +3948,7 @@ class Title {
 
 	/**
 	 * Returns restriction types for the current Title
+	 *
 	 * @return array applicable restriction types
 	 */
 	public function getRestrictionTypes() {
