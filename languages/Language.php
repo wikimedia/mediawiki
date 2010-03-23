@@ -1707,7 +1707,7 @@ class Language {
 	 * @return String
 	 */
 	function normalizeForSearch( $string ) {
-		return $string;
+		return self::convertDoubleWidth($string);
 	}
 
 	/**
@@ -1715,8 +1715,17 @@ class Language {
 	 * range: ff00-ff5f ~= 0020-007f
 	 */
 	protected static function convertDoubleWidth( $string ) {
-		$string = preg_replace( '/\xef\xbc([\x80-\xbf])/e', 'chr((ord("$1") & 0x3f) + 0x20)', $string );
-		$string = preg_replace( '/\xef\xbd([\x80-\x9a])/e', 'chr((ord("$1") & 0x3f) + 0x60)', $string );
+		static $full = null;
+		static $half = null;
+
+		if( $full === null ) {
+			$fullWidth = "０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ";
+			$halfWidth = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+			$full = str_split( $fullWidth, 3 );
+			$half = str_split( $halfWidth );
+		}
+
+		$string = str_replace( $full, $half, $string );
 		return $string;
 	}
 

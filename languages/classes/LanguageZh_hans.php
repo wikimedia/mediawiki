@@ -23,10 +23,9 @@ class LanguageZh_hans extends Language {
 		wfProfileIn( __METHOD__ );
 
 		// Double-width roman characters
-		$s = self::convertDoubleWidth( $string );
+		$s = parent::normalizeForSearch( $s );
 		$s = trim( $s );
 		$s = self::segmentByWord( $s );
-		$s = parent::normalizeForSearch( $s );
 
 		wfProfileOut( __METHOD__ );
 		return $s;

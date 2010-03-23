@@ -6,23 +6,22 @@ class SearchDbTest extends SearchEngineTest {
 
 	function setUp() {
 		global $wgDBprefix, $wgDBtype;
-
-		if($wgDBprefix === "parsertest_" ||
-		   ($wgDBtype === 'oracle' && $wgDBprefix === 'pt_')) {
-			$this->markTestSkipped("This test can't (yet?) be run with the parser tests");
-		}
+		$this->db = wfGetDB( DB_MASTER );
+		if( !$this->db  ) {
+			$this->markTestIncomplete( "Can't find a database to test with." );
+ 		}
 
 		$GLOBALS['wgContLang'] = new Language;
-		$this->db = $this->buildTestDatabase(
-			array( 'page', 'revision', 'text', 'searchindex', 'user' ) );
-		if( $this->db ) {
-			$this->insertSearchData();
-		}
-		$searchType = preg_replace("/Database/", "Search", get_class($this->db));
+		$this->insertSearchData();
+
+		$this->insertSearchData();
+		$searchType = preg_replace("/Database/", "Search",
+								   get_class($this->db));
 		$this->search = new $searchType( $this->db );
 	}
 
 	function tearDown() {
+		$this->removeSearchData();
 		if( !is_null( $this->db ) ) {
 			wfGetLB()->closeConnecton( $this->db );
 		}

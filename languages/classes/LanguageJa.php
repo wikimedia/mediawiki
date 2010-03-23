@@ -23,14 +23,6 @@ class LanguageJa extends Language {
 		return $s;
 	}
 
-	function normalizeForSearch( $string ) {
-		// Double-width roman characters
-		$s = self::convertDoubleWidth( $string );
-		
-		# Do general case folding and UTF-8 armoring
-		return parent::normalizeForSearch( $s );
-	}
-
 	# Italic is not appropriate for Japanese script
 	# Unfortunately most browsers do not recognise this, and render <em> as italic
 	function emphasize( $text ) {
