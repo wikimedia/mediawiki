@@ -632,6 +632,7 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 'login-throttled'            => 'Anda telah mencuba log masuk berulang kali.
 Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
+'suspicious-userlogout'      => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
 
 # Password reset dialog
 'resetpass'                 => 'Tukar kata laluan',
@@ -1779,6 +1780,10 @@ Protokol yang disokong: <tt>$1</tt>',
 'listusers-submit'   => 'Tunjuk',
 'listusers-noresult' => 'Tiada pengguna dijumpai.',
 'listusers-blocked'  => '(disekat)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Senarai pengguna aktif',
+'activeusers-noresult' => 'Tiada pengguna dijumpai.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Log akaun baru',
