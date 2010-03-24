@@ -279,7 +279,7 @@ süi titul dai sezziún (JavaScript)',
 'history'           => 'Crunulugia de la pagina',
 'history_short'     => 'Crunulugìa',
 'info_short'        => 'Infurmazión',
-'printableversion'  => 'Versiun də stampà',
+'printableversion'  => 'Versión stampàbil',
 'permalink'         => 'Culegament permanent',
 'print'             => 'Stampa',
 'edit'              => 'Mudifega',
@@ -582,6 +582,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version curenta, (ültima) = di
 Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} register di scancelament].",
 'rev-delundel'                => 'fa vidè/scund',
 'revdel-restore'              => 'Cambia la visibilità',
+'revdelete-edit-reasonlist'   => 'Mudifega i mutiv del scancelament',
 
 # Merge log
 'revertmerge' => 'Scancela i ünión',
@@ -825,9 +826,16 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'filerevert-defaultcomment' => 'Bütada turna la versión di $2, $1',
 
 # File deletion
-'filedelete-reason-dropdown' => '*I sòlit resón per i scancelament
+'filedelete'                  => 'Scancela $1',
+'filedelete-legend'           => "Scancela 'l file",
+'filedelete-intro-old'        => "Te seet adree a scancelà la versión de '''[[Media:$1|$1]]''' del [$4 $2, $3].",
+'filedelete-comment'          => 'Mutiv del scancelament:',
+'filedelete-otherreason'      => 'Alter resón/spiegazión:',
+'filedelete-reason-otherlist' => 'Óltra resón',
+'filedelete-reason-dropdown'  => '*I sòlit resón per i scancelament
 ** Viulazión de copyright
 ** File dubi',
+'filedelete-edit-reasonlist'  => 'Mudifega i mutiv del scancelament',
 
 # MIME search
 'mimesearch' => 'cérca MIME',
@@ -968,7 +976,7 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'removedwatch'      => 'Scancelaa dala lista di usservazziún.',
 'removedwatchtext'  => 'La pagina "[[:$1]]" l\'è stada scancelada de la tò lista di [[Special:Watchlist|paginn sot ögg]].',
 'watch'             => "Tegn d'öcc",
-'watchthispage'     => "Tegn d'öcc questa pagina",
+'watchthispage'     => "Tegn d'ögg quela pagina chì",
 'unwatch'           => "Tegn pü d'ögg",
 'watchnochange'     => "Nissün cambiament l'è stai faa ins i pàginn che te tegn d'ögg ind 'l períud de temp indicaa.",
 'watchlist-details' => '{{PLURAL:$1|$1 pagina|$1 paginn}} tegnüü sot ögg, fö che i paginn de discüssión.',
@@ -1288,6 +1296,9 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 'mw_math_source' => 'Lassá in furmaa TeX (pər i prugráma də navigazziún dumá in furmaa da testu)',
 'mw_math_modern' => 'Racumandaa pər i bigatt püssè reçeent',
 'mw_math_mathml' => 'MathML se l è pussíbil (sperimentaal)',
+
+# Image deletion
+'deletedrevision' => 'Scancelada la revision vegia de $1.',
 
 # Browsing diffs
 'previousdiff' => '← Diferenza püssee vegia',

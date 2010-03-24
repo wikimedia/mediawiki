@@ -660,6 +660,7 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'login-throttled'            => 'Vi tro ofte provis eniri la pasvorton por ĉi tiu konto. 
 Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel'         => 'Lingvo: $1',
+'suspicious-userlogout'      => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
 
 # Password reset dialog
 'resetpass'                 => 'Ŝanĝi pasvorton',
@@ -1220,6 +1221,7 @@ Jen hazarde generita valoron por via uzo: $1',
 'prefs-files'                   => 'Dosieroj',
 'prefs-custom-css'              => 'Propra CSS',
 'prefs-custom-js'               => 'Propra JS',
+'prefs-common-css-js'           => 'Komuna CSS/JS por ĉiuj etosoj:',
 'prefs-reset-intro'             => 'Vi povas uzi ĉi tiun paĝon por restarigi viajn agordojn al la originalaj defaŭltoj.
 Ĉi tiel ne estus malfarebla.',
 'prefs-emailconfirm-label'      => 'Retpoŝta konfirmado:',
@@ -2109,7 +2111,7 @@ Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.
 'protect-othertime-op'        => 'alia tempo',
 'protect-existing-expiry'     => 'Ekzistanta protektdaŭro: $3, $2',
 'protect-otherreason'         => 'Alia/plua kialo:',
-'protect-otherreason-op'      => 'alia/plua kialo',
+'protect-otherreason-op'      => 'Alia/plua kialo',
 'protect-dropdown'            => '*Oftaj kialoj por protektado
 ** Tro da vanadlismo
 ** Tro da spamado
@@ -2392,6 +2394,7 @@ ol vi antaŭeniru.",
 
 Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'movearticle'                  => 'Alinomigi paĝon',
+'moveuserpage-warning'         => "'''Averto:''' Vi preskaŭ alinomigas paĝon de uzanto. Bonvolu noti ke nur la paĝo estos alinomigita kaj la uzanto mem ''ne'' estos alinomigita.",
 'movenologin'                  => 'Ne ensalutinta',
 'movenologintext'              => 'Vi nepre estu registrita uzanto kaj [[Special:UserLogin|ensalutu]] por rajti movi paĝojn.',
 'movenotallowed'               => 'Vi ne rajtas movi paĝojn.',
@@ -3034,25 +3037,25 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'limitall'         => 'ĉiuj',
 
 # E-mail address confirmation
-'confirmemail'             => 'Konfirmi retadreson',
-'confirmemail_noemail'     => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
-'confirmemail_text'        => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
-'confirmemail_pending'     => 'Konfirma kodo estis jam repoŝtis al vi; se vi lastatempe kreis vian konton, vi eble volus atenti kelkajn minutojn por ĝi aliĝi antaŭ vi petus novan kodon.',
-'confirmemail_send'        => 'Retmesaĝi konfirmkodon',
-'confirmemail_sent'        => 'Konfirma retmesaĝo estas sendita.',
-'confirmemail_oncreate'    => 'Konfirma kodo estis sendita al via retpoŝta adreso.
+'confirmemail'              => 'Konfirmi retadreson',
+'confirmemail_noemail'      => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
+'confirmemail_text'         => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
+'confirmemail_pending'      => 'Konfirma kodo estis jam repoŝtis al vi; se vi lastatempe kreis vian konton, vi eble volus atenti kelkajn minutojn por ĝi aliĝi antaŭ vi petus novan kodon.',
+'confirmemail_send'         => 'Retmesaĝi konfirmkodon',
+'confirmemail_sent'         => 'Konfirma retmesaĝo estas sendita.',
+'confirmemail_oncreate'     => 'Konfirma kodo estis sendita al via retpoŝta adreso.
 Ĉi kodo ne estas bezonata ensaluti, sed vi bezonos doni ĝin antaŭ uzante iujn ajn retpoŝt-bazitajn ecojn de la vikio.',
-'confirmemail_sendfailed'  => '{{SITENAME}} ne eblis sendi vian konfirmretmesaĝon. 
+'confirmemail_sendfailed'   => '{{SITENAME}} ne eblis sendi vian konfirmretmesaĝon. 
 Bonvolu kontroli vian retadreson por nevalidaj signoj.
 
 Retpoŝta programo respondis: $1',
-'confirmemail_invalid'     => 'Nevalida konfirmkodo. La kodo eble ne plu validas.',
-'confirmemail_needlogin'   => 'Vi devas $1 por konfirmi vian retpoŝtan adreson.',
-'confirmemail_success'     => 'Via retadreso estas konfirmita. Vi povas nun ensaluti kaj ĝui la vikion.',
-'confirmemail_loggedin'    => 'Via retadreso estas nun konfirmita.',
-'confirmemail_error'       => 'Io misokazis dum konservo de via konfirmo.',
-'confirmemail_subject'     => 'Konfirmo de retadreso por {{SITENAME}}',
-'confirmemail_body'        => 'Iu, verŝajne vi, ĉe la IP-adreso $1, 
+'confirmemail_invalid'      => 'Nevalida konfirmkodo. La kodo eble ne plu validas.',
+'confirmemail_needlogin'    => 'Vi devas $1 por konfirmi vian retpoŝtan adreson.',
+'confirmemail_success'      => 'Via retadreso estas konfirmita. Vi povas nun ensaluti kaj ĝui la vikion.',
+'confirmemail_loggedin'     => 'Via retadreso estas nun konfirmita.',
+'confirmemail_error'        => 'Io misokazis dum konservo de via konfirmo.',
+'confirmemail_subject'      => 'Konfirmo de retadreso por {{SITENAME}}',
+'confirmemail_body'         => 'Iu, verŝajne vi, ĉe la IP-adreso $1, 
 enregistrigis konton "$2" ĉe {{SITENAME}} kun ĉi retadreso ĉe {{SITENAME}}.
 
 Konfirmi ke ĉi tiu konto ja apartenas al vi kaj por malŝlosi 
@@ -3067,8 +3070,22 @@ $5
 
 
 Ĉi tiu konfirmokodo eksvalidiĝos je $4.',
-'confirmemail_invalidated' => 'Konfirmado de retadreso estas nuligita',
-'invalidateemail'          => 'Nuligi konfirmadon de retadreso',
+'confirmemail_body_changed' => 'Iu, verŝajne vi, de IP-adreso $1,
+ŝanĝis la retadreson de la konto "$2" al ĉi tiu adreso en {{SITENAME}}.
+
+Por konfirmi, ke ĉi tiu konto ja apartenas al vi kaj reaktivigi 
+retpoŝtajn ecojn en {{SITENAME}}, sekvu ĉi tiun ligilon en via retumilo:
+
+$3
+
+Se la konto *ne* apartenas al vi, sekvu ĉi tiun ligilon
+por nuligi la retadresan konfirmadon:
+
+$5
+
+Ĉi tiu konfirmkodo malvalidiĝos je $4.',
+'confirmemail_invalidated'  => 'Konfirmado de retadreso estas nuligita',
+'invalidateemail'           => 'Nuligi konfirmadon de retadreso',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Intervikia transinkluzivado estas malebligita.]',

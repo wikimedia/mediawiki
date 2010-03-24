@@ -1264,9 +1264,9 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|тюрлениу|тюрлениу}}',
-'recentchanges'                     => 'Тюрлендириуле',
+'recentchanges'                     => 'Ахыр тюрлениуле',
 'recentchanges-legend'              => 'Ахыр тюрлениулени джарашдырыулары',
-'recentchangestext'                 => 'Этилген эм ахыр тюрлениулени бу бетде {{grammar:genitive|{{SITENAME}}}} къарагъыз.',
+'recentchangestext'                 => 'Тюбюнде, Википедияда этилген ахыр тюрлениуле хронология бла тизилиб турадыла.',
 'recentchanges-feed-description'    => 'Викиде бу лентада тюрлниулени сынчыкъла.',
 'recentchanges-label-legend'        => 'Легенда: $1.',
 'recentchanges-legend-newpage'      => '$1 — джангы бет',
@@ -1584,7 +1584,7 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'unusedtemplateswlh'  => 'башха джибериуле',
 
 # Random page
-'randompage'         => 'Сакъланмагъан бет',
+'randompage'         => 'Къайсы болса да',
 'randompage-nopages' => '{{PLURAL:$2|Ат аланында|Ат аланында}} чырт бир бет джокъду: $1.',
 
 # Random redirect
