@@ -970,7 +970,7 @@ class Parser
 		$urlChar = self::EXT_LINK_URL_CLASS;
 		$text = preg_replace_callback(
 			'!(?:                           # Start cases
-				(<a.*?</a>) |               # m[1]: Skip link text
+				(<a[ \t\r\n>].*?</a>) |     # m[1]: Skip link text
 				(<.*?>) |                   # m[2]: Skip stuff inside HTML elements' . "
 				(\\b(?:$prots)$urlChar+) |  # m[3]: Free external links" . '
 				(?:RFC|PMID)\s+([0-9]+) |   # m[4]: RFC or PMID, capture number
