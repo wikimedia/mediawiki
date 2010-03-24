@@ -6499,6 +6499,15 @@ ISBN ISBN 1234567890
 !! end
 
 !! test
+Bug 22905: <abbr> followed by ISBN followed by </a>
+!! input
+<abbr>(fr)</abbr> ISBN 2753300917 [http://www.example.com example.com]
+!! result
+<p><abbr>(fr)</abbr> <a href="/wiki/Special:BookSources/2753300917" class="internal mw-magiclink-isbn">ISBN 2753300917</a> <a href="http://www.example.com" class="external text" rel="nofollow">example.com</a>
+</p>
+!! end
+
+!! test
 Double RFC
 !! input
 RFC RFC 1234
