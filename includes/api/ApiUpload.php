@@ -236,8 +236,13 @@ class ApiUpload extends ApiBase {
 
 			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 		}
-
+		
 		$file = $this->mUpload->getLocalFile();
+		
+		if ( !$watch ) {
+			$wgUser->removeWatch( $file->getTitle() );
+		}
+		
 		$result['result'] = 'Success';
 		$result['filename'] = $file->getName();
 		$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
