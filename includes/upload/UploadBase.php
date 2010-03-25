@@ -390,11 +390,11 @@ abstract class UploadBase {
 		$status = $this->getLocalFile()->upload( $this->mTempPath, $comment, $pageText,
 			File::DELETE_SOURCE, $this->mFileProps, false, $user );
 
-		if( $status->isGood() && $watch ) {
-			$user->addWatch( $this->getLocalFile()->getTitle() );
-		}
-
 		if( $status->isGood() ) {
+			if ( $watch ) {
+				$user->addWatch( $this->getLocalFile()->getTitle() );
+			}
+
 			wfRunHooks( 'UploadComplete', array( &$this ) );
 		}
 
