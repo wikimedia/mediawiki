@@ -47,10 +47,6 @@ class ApiUpload extends ApiBase {
 
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
-		
-		if ( isset( $this->mParams['watch'] ) && isset( $this->mParams['unwatch'] ) ) {
-			$this->dieUsageMsg( array( 'show' ) );
-		}
 
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
@@ -226,10 +222,6 @@ class ApiUpload extends ApiBase {
 		// No errors, no warnings: do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
 			$this->mParams['text'], $this->mParams['watch'], $wgUser );
-			
-		if ( $this->mParams['unwatch'] ) {
-			$wgUser->removeWatch( $file->getTitle() );
-		}
 
 		if ( !$status->isGood() ) {
 			$error = $status->getErrorsArray();
@@ -263,7 +255,6 @@ class ApiUpload extends ApiBase {
 			'text' => null,
 			'token' => null,
 			'watch' => false,
-			'unwatch' => false,
 			'ignorewarnings' => false,
 			'file' => null,
 			'url' => null,
@@ -279,7 +270,6 @@ class ApiUpload extends ApiBase {
 			'comment' => 'Upload comment. Also used as the initial page text for new files if "text" is not specified',
 			'text' => 'Initial page text for new files',
 			'watch' => 'Watch the page',
-			'watch' => 'Unwatch the page',
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'url' => 'Url to fetch the file from',
@@ -312,7 +302,6 @@ class ApiUpload extends ApiBase {
 			array( 'mustbeloggedin', 'upload' ),
 			array( 'badaccess-groups' ),
 			array( 'badaccess-groups' ),
-			array( 'show' ),
 			array( 'code' => 'fetchfileerror', 'info' => '' ),
 			array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
 			array( 'code' => 'empty-file', 'info' => 'The file you submitted was empty' ),

@@ -39,11 +39,6 @@ class ApiMove extends ApiBase {
 	public function execute() {
 		global $wgUser;
 		$params = $this->extractRequestParams();
-		
-		if ( isset( $params['watch'] ) && isset( $params['unwatch'] ) ) {
-			$this->dieUsageMsg( array( 'show' ) );
-		}
-		
 		if ( is_null( $params['reason'] ) ) {
 			$params['reason'] = '';
 		}
@@ -216,7 +211,6 @@ class ApiMove extends ApiBase {
 			array( 'notanarticle' ),
 			array( 'invalidtitle', 'to' ),
 			array( 'sharedfile-exists' ),
-			array( 'show' ),
 		) );
 	}
 
