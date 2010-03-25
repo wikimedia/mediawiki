@@ -39,6 +39,10 @@ class ApiProtect extends ApiBase {
 	public function execute() {
 		global $wgUser, $wgRestrictionTypes, $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
+		
+		if ( isset( $params['watch'] ) && isset( $params['unwatch'] ) ) {
+			$this->dieUsageMsg( array( 'show' ) );
+		}
 
 		$titleObj = null;
 		if ( !isset( $params['title'] ) ) {

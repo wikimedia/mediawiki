@@ -40,7 +40,7 @@ class ApiUndelete extends ApiBase {
 		global $wgUser;
 		$params = $this->extractRequestParams();
 		
-		if ( isset( $params['watch'] ) && params( $show['unwatch'] ) ) {
+		if ( isset( $params['watch'] ) && isset( $params['unwatch'] ) ) {
 			$this->dieUsageMsg( array( 'show' ) );
 		}
 
