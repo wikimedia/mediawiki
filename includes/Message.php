@@ -94,16 +94,16 @@ class Message {
 	/**
 	 * Constructor.
 	 * @param $key String: message key
+	 * @param $params Array message parameters
+	 * @param $options Array message options
 	 * @return Message: $this
 	 */
 	public function __construct( $key, $params=array(), $options=array() ) {
 		$this->key = $key;
-		if( $params ){
-			$this->params( $params );
+		foreach( $params as $param ){
+			$this->params( $param );
 		}
-		if( $options ){
-			$this->options( $options );
-		}
+		$this->options( $options );
 	}
 
 	/**
@@ -173,7 +173,7 @@ class Message {
 			$this->language = Language::factory( $lang );
 		} else {
 			$type = gettype( $lang );
-			throw new MWException( "Message::langauge() must be "
+			throw new MWException( __METHOD__ . " must be "
 				. "passed a String or Language object; $type given" 
 			);
 		}
@@ -238,8 +238,6 @@ class Message {
 		return $string;
 	}
 	
-	public function __tostring(){ return $this->toString(); }
-	
 	/**
 	 * Fully parse the text from wikitext to HTML
 	 * @return String parsed HTML
@@ -285,7 +283,7 @@ class Message {
 	public function parseAsBlock() {
 		$this->options( array(
 			'parse' => true,
-			'inline' => true,
+			'inline' => false,
 		));		
 		return $this->tostring();
 	}
