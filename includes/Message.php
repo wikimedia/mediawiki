@@ -11,19 +11,24 @@
  * Examples:
  * Fetching a message text for interface message
  *    $button = Xml::button( Message::key( 'submit' )->text() );
+ * </pre>
  * Messages can have parameters:
  *    Message::key( 'welcome-to' )->params( $wgSitename )->text(); 
  *        {{GRAMMAR}} and friends work correctly
  *    Message::key( 'are-friends' )->params( $user, $friend );
  *    Message::key( 'bad-message' )->rawParams( '<script>...</script>' )->escaped()
+ * </pre>
  * Sometimes the message text ends up in the database, so content language is needed.
  *    Message::key( 'file-log' )->params( $user, $filename )->inContentLanguage()->text()
+ * </pre>
  * Checking if message exists:
  *    Message::key( 'mysterious-message' )->exists()
+ * </pre>
  * If you want to use a different language:
  *    Message::key( 'email-header' )->language( $user->getOption( 'language' ) )->plain()
  *        Note that you cannot parse the text except in the content or interface
  *        languages
+ * </pre>
  *
  *
  * Comparison with old wfMsg* functions:
@@ -31,21 +36,24 @@
  * Use full parsing.
  *     wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
  *     === Message::key( 'key' )->params( 'apple' )->parse();
+ * </pre>
  * Parseinline is used because it is more useful when pre-building html.
  * In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
  *
  * Places where html cannot be used. {{-transformation is done.
  *     wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
  *     === Message::key( 'key' )->params( 'apple', 'pear' )->text();
+ * </pre>
  *
  * Shortcut for escaping the message too, similar to wfMsgHTML, but
  * parameters are not replaced after escaping by default.
  * $escaped = Message::key( 'key' )->rawParams( 'apple' )->escaped();
+ * </pre>
  *
  * TODO:
- * * test, can we have tests?
- * * sort out the details marked with fixme
- * * should we have _m() or similar global wrapper?
+ * - test, can we have tests?
+ * - sort out the details marked with fixme
+ * - should we have _m() or similar global wrapper?
  *
  * @since 1.17
  */
@@ -120,7 +128,7 @@ class Message {
 
 	/**
 	 * Adds parameters to the parameter list of this message.
-	 * @params Vargars: parameters as Strings
+	 * @param Vargars: parameters as Strings
 	 * @return Message: $this
 	 */
 	public function params( /*...*/ ) {
@@ -133,7 +141,7 @@ class Message {
 	 * In other words the parsing process cannot access the contents
 	 * of this type of parameter, and you need to make sure it is
 	 * sanitized beforehand.  The parser will see "$n", instead.
-	 * @param $value Varargs: raw parameters as Strings
+	 * @param Varargs: raw parameters as Strings
 	 * @return Message: $this
 	 */
 	public function rawParams( /*...*/ ) {
