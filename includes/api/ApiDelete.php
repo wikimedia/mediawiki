@@ -52,10 +52,6 @@ class ApiDelete extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-		
-		if ( isset( $params['watch'] ) && isset( $params['unwatch'] ) ) {
-			$this->dieUsageMsg( array( 'show' ) );
-		}
 
 		if ( isset( $params['title'] ) ) {
 			$titleObj = Title::newFromText( $params['title'] );
@@ -231,7 +227,6 @@ class ApiDelete extends ApiBase {
 			array( 'nosuchpageid', 'pageid' ),
 			array( 'notanarticle' ),
 			array( 'hookaborted', 'error' ),
-			array( 'show' ),
 		) );
 	}
 

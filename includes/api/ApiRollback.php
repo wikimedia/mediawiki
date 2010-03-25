@@ -38,10 +38,6 @@ class ApiRollback extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		
-		if ( isset( $params['watch'] ) && isset( $params['unwatch'] ) ) {
-			$this->dieUsageMsg( array( 'show' ) );
-		}
 
 		$titleObj = null;
 		if ( !isset( $params['title'] ) ) {
@@ -76,12 +72,6 @@ class ApiRollback extends ApiBase {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg( reset( $retval ) );
 		}
-		
-		if ( $params['watch'] || $wgUser->getOption( 'watchdeletion' ) ) {
-			$articleObj->doWatch();
-		} elseif ( $params['unwatch'] ) {
-			$articleObj->doUnwatch();
-		}
 
 		$info = array(
 			'title' => $titleObj->getPrefixedText(),
@@ -109,9 +99,7 @@ class ApiRollback extends ApiBase {
 			'user' => null,
 			'token' => null,
 			'summary' => null,
-			'markbot' => false,
-			'watch' => false,
-			'unwatch' => false,
+			'markbot' => false
 		);
 	}
 
@@ -121,9 +109,7 @@ class ApiRollback extends ApiBase {
 			'user' => 'Name of the user whose edits are to be rolled back. If set incorrectly, you\'ll get a badtoken error.',
 			'token' => 'A rollback token previously retrieved through prop=revisions',
 			'summary' => 'Custom edit summary. If not set, default summary will be used.',
-			'markbot' => 'Mark the reverted edits and the revert as bot edits',
-			'watch' => 'Add the page to your watchlist',
-			'unwatch' => 'Remove the page from your watchlist',
+			'markbot' => 'Mark the reverted edits and the revert as bot edits'
 		);
 	}
 
@@ -141,7 +127,6 @@ class ApiRollback extends ApiBase {
 			array( 'invalidtitle', 'title' ),
 			array( 'notanarticle' ),
 			array( 'invaliduser', 'user' ),
-			array( 'show' ),
 		) );
 	}
 
