@@ -1743,7 +1743,7 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'special-categories-sort-abc'   => 'алфавит халда тиз',
 
 # Special:DeletedContributions
-'deletedcontributions'             => 'Кетерилген къошулучуну къошхан юлюшю',
+'deletedcontributions'             => 'Кетерилген къошулуучуну къошхан юлюшю',
 'deletedcontributions-title'       => 'Кетерилген къошулучуну къошхан юлюшю',
 'sp-deletedcontributions-contribs' => 'къошхан юлюш',
 
@@ -3171,7 +3171,7 @@ $1',
 'specialpages-group-other'       => 'Башха къуллукъчу бетле',
 'specialpages-group-login'       => 'Системагъа кир/регистрация эт',
 'specialpages-group-changes'     => 'Ахыр тюрлендириуле бла журналла',
-'specialpages-group-media'       => 'Мелиа-материаланы юсюнден отчетла бла джюклеуле',
+'specialpages-group-media'       => 'Медиа-материалланы юсюнден отчетла бла джюклеуле',
 'specialpages-group-users'       => 'Къошулуучула эм хакълары',
 'specialpages-group-highuse'     => 'Бек хайырландырылгъан бетле',
 'specialpages-group-pages'       => 'Бетлени списоклары',

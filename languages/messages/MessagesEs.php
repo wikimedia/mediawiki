@@ -1762,7 +1762,7 @@ Un click sobre el encabezamiento de la columna cambia el orden.',
 'filehist-help'             => 'Haga clic sobre una fecha/hora para ver el
 archivo a esa fecha.',
 'filehist-deleteall'        => 'borrar todo',
-'filehist-deleteone'        => 'borrar esto',
+'filehist-deleteone'        => 'borrar',
 'filehist-revert'           => 'revertir',
 'filehist-current'          => 'act',
 'filehist-datetime'         => 'Fecha/Hora',

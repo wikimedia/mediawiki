@@ -761,6 +761,7 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'login-throttled'            => 'Nedávno ste uskutočnili príliš mnoho neúspešných pokusov o prihlásenie.
 Prosím, počkajte predtým, než to skúsite znova.',
 'loginlanguagelabel'         => 'Jazyk: $1',
+'suspicious-userlogout'      => 'Vaša požiadavka odhlásiť sa bola zamietnutá, pretože to vyzerá, že ju poslal pokazený prehliadač alebo proxy server.',
 
 # Password reset dialog
 'resetpass'                 => 'Zmeniť heslo',
@@ -1322,6 +1323,7 @@ Tu je náhodne vytvorená hodnota, ktorú môžete použiť: $1',
 'prefs-files'                   => 'Súbory',
 'prefs-custom-css'              => 'Vlastný CSS',
 'prefs-custom-js'               => 'Vlastný JS',
+'prefs-common-css-js'           => 'Spoločné CSS/JS pre všetky témy vzhľadu:',
 'prefs-reset-intro'             => 'Túto stránku môžete použiť na vrátenie predvolených hodnôt vašich nastavení.
 Túto operáciu nemožno vrátiť.',
 'prefs-emailconfirm-label'      => 'Potvrdenie emailu:',
@@ -2220,7 +2222,7 @@ Tu sú aktuálne nastavenia stránky '''$1''':",
 'protect-othertime-op'        => 'iný čas',
 'protect-existing-expiry'     => 'Súčasný čas ukončenia: $2, $3',
 'protect-otherreason'         => 'Iný/ďalší dôvod:',
-'protect-otherreason-op'      => 'iný/ďalší dôvod',
+'protect-otherreason-op'      => 'Iný/ďalší dôvod',
 'protect-dropdown'            => '* Bežné dôvody zamknutia
 ** Nadmerný vandalizmus
 ** Nadmerný spam
@@ -3174,31 +3176,31 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'limitall'         => 'všetky',
 
 # E-mail address confirmation
-'confirmemail'             => 'Potvrdiť e-mailovú adresu',
-'confirmemail_noemail'     => 'Nenastavili ste platnú emailovú adresu vo svojich [[Special:Preferences|Nastaveniach]].',
-'confirmemail_text'        => '{{SITENAME}} vyžaduje, aby ste potvrdili platnosť vašej e-mailovej adresy
+'confirmemail'              => 'Potvrdiť e-mailovú adresu',
+'confirmemail_noemail'      => 'Nenastavili ste platnú emailovú adresu vo svojich [[Special:Preferences|Nastaveniach]].',
+'confirmemail_text'         => '{{SITENAME}} vyžaduje, aby ste potvrdili platnosť vašej e-mailovej adresy
 pred používaním e-mailových funkcií. Kliknite na tlačidlo dole, aby sa na vašu adresu odoslal potvrdzovací
 e-mail. V e-maili bude aj odkaz obsahujúci kód; otvorte odkaz
 vo vašom prehliadači, čím potvrdíte, že vaša e-mailová adresa je platná.',
-'confirmemail_pending'     => 'Potvrdzovací kód vám už bol zaslaný; ak ste si účet vytvorili len nedávno
+'confirmemail_pending'      => 'Potvrdzovací kód vám už bol zaslaný; ak ste si účet vytvorili len nedávno
 mali by ste počkať niekoľko minút, kým vám bude email doručený, predtým
 než si vyžiadate nový kód.',
-'confirmemail_send'        => 'Odoslať potvrdzovací kód',
-'confirmemail_sent'        => 'Potvrdzovací e-mail odoslaný.',
-'confirmemail_oncreate'    => 'Na vašu emailovú adresu bol odoslaný potvrdzovací kód.
+'confirmemail_send'         => 'Odoslať potvrdzovací kód',
+'confirmemail_sent'         => 'Potvrdzovací e-mail odoslaný.',
+'confirmemail_oncreate'     => 'Na vašu emailovú adresu bol odoslaný potvrdzovací kód.
 Tento kód nie je potrebný na prihlásenie, ale budete ho musieť poskytnúť pred
 zapnutím vlastností wiki využívajcich email.',
-'confirmemail_sendfailed'  => 'Z {{GRAMMAR:genitív|{{SITENAME}}}} nebolo možné odoslať potvrdzovací e-mail.
+'confirmemail_sendfailed'   => 'Z {{GRAMMAR:genitív|{{SITENAME}}}} nebolo možné odoslať potvrdzovací e-mail.
 Skontrolujte neplatné znaky vo vašej emailovej adrese.
 
 Hlásenie programu, ktorý odosielal poštu: $1',
-'confirmemail_invalid'     => 'Neplatný potvrdzovací kód. Kód možno vypršal.',
-'confirmemail_needlogin'   => 'Musíte sa $1 na potvrdenie vašej emailovaj adresy.',
-'confirmemail_success'     => 'Vaša e-mailová adresa bola potvrdená. Môžete sa prihlásiť a využívať wiki.',
-'confirmemail_loggedin'    => 'Vaša e-mailová adresa bola potvrdená.',
-'confirmemail_error'       => 'Niečo sa pokazilo pri ukladaní vášho potvrdenia.',
-'confirmemail_subject'     => '{{SITENAME}} - potvrdenie e-mailovej adresy',
-'confirmemail_body'        => 'Niekto, pravdepodobne vy z IP adresy $1, zaregistroval účet
+'confirmemail_invalid'      => 'Neplatný potvrdzovací kód. Kód možno vypršal.',
+'confirmemail_needlogin'    => 'Musíte sa $1 na potvrdenie vašej emailovaj adresy.',
+'confirmemail_success'      => 'Vaša e-mailová adresa bola potvrdená. Môžete sa prihlásiť a využívať wiki.',
+'confirmemail_loggedin'     => 'Vaša e-mailová adresa bola potvrdená.',
+'confirmemail_error'        => 'Niečo sa pokazilo pri ukladaní vášho potvrdenia.',
+'confirmemail_subject'      => '{{SITENAME}} - potvrdenie e-mailovej adresy',
+'confirmemail_body'         => 'Niekto, pravdepodobne vy z IP adresy $1, zaregistroval účet
 „$2“ s touto e-mailovou adresou na {{GRAMMAR:lokál|{{SITENAME}}}}.
 
 Pre potvrdenie, že tento účet skutočne patrí vám a pre aktivovanie
@@ -3212,8 +3214,23 @@ Ak ste to *neboli* vy, otvorte tento odkaz,
 $5
 
 Tento potvrdzovací kód vyprší $4.',
-'confirmemail_invalidated' => 'Potvrdenie emailovej adresy bolo zrušené',
-'invalidateemail'          => 'Zrušiť potvrdenie emailovej adresy',
+'confirmemail_body_changed' => 'Niekto, pravdepodobne vy, z IP adresy $1,
+zmenil emailovú adresu účtu „$2“ na túto adresu na {{GRAMMAR:lokál|{{SITENAME}}}}.
+
+Aby ste potvrdili, že tento účet skutočne patrí vám a znova
+aktivovali funkcie emailu na{{GRAMMAR:lokál|{{SITENAME}}}},
+otvorte nasledovný odkaz v prehliadači:
+
+$3
+
+Ak vám účet *nepatrí*, otvorte namiesto toho tento odkaz,
+ktorý zruší potvrdenie emailovej adresy:
+
+$5
+
+Platnosť tohto potvrdzovacieho kódu vyprší $4.',
+'confirmemail_invalidated'  => 'Potvrdenie emailovej adresy bolo zrušené',
+'invalidateemail'           => 'Zrušiť potvrdenie emailovej adresy',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklúzia interwiki je vypnutá]',
