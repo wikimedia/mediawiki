@@ -834,6 +834,11 @@ class LanguageConverter {
 
 		if ( strpos( $code, '/' ) === false ) {
 			$txt = $wgMessageCache->get( 'Conversiontable', true, $code );
+			if( $txt === false ){
+				# FIXME: this method doesn't seem to be expecting
+				# this possible outcome...
+				$txt = '&lt;Conversiontable&gt;';
+			}
 		} else {
 			$title = Title::makeTitleSafe( NS_MEDIAWIKI,
 										   "Conversiontable/$code" );

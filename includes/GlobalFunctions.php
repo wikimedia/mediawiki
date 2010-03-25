@@ -750,7 +750,9 @@ function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
 	# If $wgMessageCache isn't initialised yet, try to return something sensible.
 	if( is_object( $wgMessageCache ) ) {
 		$message = $wgMessageCache->get( $key, $useDB, $langCode );
-		if ( $transform ) {
+		if( $message === false ){
+			$message = '&lt;' . htmlspecialchars( $key ) . '&gt;';
+		} elseif ( $transform ) {
 			$message = $wgMessageCache->transform( $message );
 		}
 	} else {
@@ -2267,12 +2269,12 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * looked up didn't exist but a XHTML string, this function checks for the
  * nonexistance of messages by looking at wfMsg() output
  *
- * @param $msg      String: the message key looked up
- * @param $wfMsgOut String: the output of wfMsg*()
- * @return Boolean
+ * @param $key      String: the message key looked up
+ * @return Boolean True if the message *doesn't* exist.
  */
-function wfEmptyMsg( $msg, $wfMsgOut ) {
-	return $wfMsgOut === htmlspecialchars( "<$msg>" );
+function wfEmptyMsg( $key ) {
+	global $wgMessageCache;
+	return $wgMessageCache->get( $key ) === false;
 }
 
 /**
