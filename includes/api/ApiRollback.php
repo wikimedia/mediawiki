@@ -141,6 +141,7 @@ class ApiRollback extends ApiBase {
 			array( 'invalidtitle', 'title' ),
 			array( 'notanarticle' ),
 			array( 'invaliduser', 'user' ),
+			array( 'show' ),
 		) );
 	}
 

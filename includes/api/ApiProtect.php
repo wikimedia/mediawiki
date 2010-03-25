@@ -205,6 +205,7 @@ class ApiProtect extends ApiBase {
 			array( 'protect-invalidlevel', 'level' ),
 			array( 'invalidexpiry', 'expiry' ),
 			array( 'pastexpiry', 'expiry' ),
+			array( 'show' ),
 		) );
 	}
 

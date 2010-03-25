@@ -147,6 +147,7 @@ class ApiUndelete extends ApiBase {
 			array( 'blockedtext' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'cannotundelete' ),
+			array( 'show' ),
 		) );
 	}
 

@@ -312,6 +312,7 @@ class ApiUpload extends ApiBase {
 			array( 'mustbeloggedin', 'upload' ),
 			array( 'badaccess-groups' ),
 			array( 'badaccess-groups' ),
+			array( 'show' ),
 			array( 'code' => 'fetchfileerror', 'info' => '' ),
 			array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
 			array( 'code' => 'empty-file', 'info' => 'The file you submitted was empty' ),

@@ -231,6 +231,7 @@ class ApiDelete extends ApiBase {
 			array( 'nosuchpageid', 'pageid' ),
 			array( 'notanarticle' ),
 			array( 'hookaborted', 'error' ),
+			array( 'show' ),
 		) );
 	}
 
