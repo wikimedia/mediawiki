@@ -11,11 +11,11 @@
  *
  * Examples:
  * Fetching a message text for interface message
- *  $button = Xml::button( Message::key( 'submit' ).text() );
+ *  $button = Xml::button( Message::key( 'submit' )->text() );
  * Messages can have parameters:
- *  Message::key( 'welcome-to' )->param( $wgSitename ).text(); // {{GRAMMAR}} and friends work correctly
+ *  Message::key( 'welcome-to' )->param( $wgSitename )->text(); // {{GRAMMAR}} and friends work correctly
  *  Message::key( 'are-friends' )->params( $user, $friend );
- *  Message::key( 'bad-message' )->rawParam( '<script>...</script>' ).escaped()
+ *  Message::key( 'bad-message' )->rawParam( '<script>...</script>' )->escaped()
  * Sometimes the message text ends up in the database, so content language is needed.
  *  Message::key( 'file-log' )->params( $user, $filename )->inContentLanguage()->text()
  * Checking if message exists:
