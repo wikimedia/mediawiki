@@ -77,6 +77,14 @@ class ApiUndelete extends ApiBase {
 			$this->dieUsageMsg( array( 'cannotundelete' ) );
 		}
 
+		if ( $params['watch'] ) {
+			$articleObj = new Article( $titleObj );
+			$articleObj->doWatch();
+		} elseif ( $params['unwatch'] ) {
+			$articleObj = new Article( $titleObj );
+			$articleObj->doUnwatch();
+		}
+
 		if ( $retval[1] ) {
 			wfRunHooks( 'FileUndeleteComplete',
 				array( $titleObj, array(), $wgUser, $params['reason'] ) );
@@ -104,7 +112,9 @@ class ApiUndelete extends ApiBase {
 			'reason' => '',
 			'timestamps' => array(
 				ApiBase::PARAM_ISMULTI => true
-			)
+			),
+			'watch' => false,
+			'unwatch' => false,
 		);
 	}
 
@@ -114,6 +124,8 @@ class ApiUndelete extends ApiBase {
 			'token' => 'An undelete token previously retrieved through list=deletedrevs',
 			'reason' => 'Reason for restoring (optional)',
 			'timestamps' => 'Timestamps of the revisions to restore. If not set, all revisions will be restored.'
+			'watch' => 'Add the page to your watchlist',
+			'unwatch' => 'Remove the page from your watchlist',
 		);
 	}
 
