@@ -175,9 +175,9 @@ class AllmessagesTablePager extends TablePager {
 		wfProfileIn( __METHOD__ );
 		$messageNames = Language::getLocalisationCache()->getSubitemList( 'en', 'messages' );
 		if( $descending ){
-			krsort( $messageNames );
+			rsort( $messageNames );
 		} else {
-			ksort( $messageNames );
+			asort( $messageNames );
 		}
 
 		// Normalise message names so they look like page titles
