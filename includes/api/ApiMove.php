@@ -216,6 +216,7 @@ class ApiMove extends ApiBase {
 			array( 'notanarticle' ),
 			array( 'invalidtitle', 'to' ),
 			array( 'sharedfile-exists' ),
+			array( 'show' ),
 		) );
 	}
 
