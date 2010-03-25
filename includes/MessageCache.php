@@ -500,7 +500,7 @@ class MessageCache {
 
 		if ( strval( $key ) === '' ) {
 			# Shortcut: the empty key is always missing
-			return '&lt;&gt;';
+			return false;
 		}
 
 		$lang = wfGetLangObj( $langcode );
@@ -558,7 +558,7 @@ class MessageCache {
 
 		# Final fallback
 		if( $message === false ) {
-			return '&lt;' . htmlspecialchars($key) . '&gt;';
+			return false;
 		}
 
 		# Fix whitespace
