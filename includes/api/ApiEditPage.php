@@ -177,15 +177,13 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpEdittime'] = $articleObj->getTimestamp();
 		}
 
-		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' )
-		{
+		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' ) {
 			$reqArr['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
 		} else {
 			$reqArr['wpStarttime'] = $reqArr['wpEdittime'];	// Fake wpStartime
 		}
 
-		if ( $params['minor'] || ( !$params['notminor'] && $wgUser->getOption( 'minordefault' ) ) )
-		{
+		if ( $params['minor'] || ( !$params['notminor'] && $wgUser->getOption( 'minordefault' ) ) )	{
 			$reqArr['wpMinoredit'] = '';
 		}
 
@@ -204,25 +202,8 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpSection'] = '';
 		}
 
-		// Handle watchlist settings
-		switch ( $params['watchlist'] ) {
-			case 'watch':
-				$watch = true;
-				break;
-			case 'unwatch':
-				$watch = false;
-				break;
-			case 'preferences':
-				if ( $titleObj->exists() ) {
-					$watch = $wgUser->getOption( 'watchdefault' ) || $titleObj->userIsWatching();
-				} else {
-					$watch = $wgUser->getOption( 'watchcreations' );
-				}
-				break;
-			case 'nochange':
-			default:
-				$watch = $titleObj->userIsWatching();
-		}
+		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj ) || $wgUser->getOption( 'watchcreations' );
+
 		// Deprecated parameters
 		if ( $params['watch'] ) {
 			$watch = true;

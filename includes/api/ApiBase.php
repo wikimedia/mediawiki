@@ -532,6 +532,31 @@ abstract class ApiBase {
 
 		return $mValidNamespaces;
 	}
+	/**
+	* Handle watchlist settings
+	*/
+	protected function getWatchlistValue ( $watchlist, $titleObj ) {
+		switch ( $watchlist ) {
+			case 'watch':
+				$watch = true;
+				break;
+			case 'unwatch':
+				$watch = false;
+				break;
+			case 'preferences':
+				global $wgUser;
+			
+				if ( $titleObj->exists() ) {
+					$watch = $wgUser->getOption( 'watchdefault' ) || $titleObj->userIsWatching();
+				}
+				break;
+			case 'nochange':
+			default:
+				$watch = $titleObj->userIsWatching();
+		}
+		
+		return $watch;
+	}
 
 	/**
 	 * Using the settings determine the value for the given parameter

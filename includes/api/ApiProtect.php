@@ -113,9 +113,15 @@ class ApiProtect extends ApiBase {
 
 		$cascade = $params['cascade'];
 		$articleObj = new Article( $titleObj );
-		if ( $params['watch'] ) {
+		
+		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
+		
+		if ( $params['watch'] || $watch ) {
 			$articleObj->doWatch();
+		} else if ( !$watch ) {
+			$articleObj->doUnwatch();
 		}
+
 		if ( $titleObj->exists() ) {
 			$ok = $articleObj->updateRestrictions( $protections, $params['reason'], $cascade, $expiryarray );
 		} else {
@@ -160,7 +166,19 @@ class ApiProtect extends ApiBase {
 			),
 			'reason' => '',
 			'cascade' => false,
-			'watch' => false,
+			'watch' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'watchlist' => array(
+				ApiBase::PARAM_DFLT => 'preferences',
+				ApiBase::PARAM_TYPE => array(
+					'watch',
+					'unwatch',
+					'preferences',
+					'nochange'
+				),
+			),
 		);
 	}
 
@@ -175,6 +193,7 @@ class ApiProtect extends ApiBase {
 			'cascade' => array( 'Enable cascading protection (i.e. protect pages included in this page)',
 					'Ignored if not all protection levels are \'sysop\' or \'protect\'' ),
 			'watch' => 'If set, add the page being (un)protected to your watchlist',
+			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 		);
 	}
 

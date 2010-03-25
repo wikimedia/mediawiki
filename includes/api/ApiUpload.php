@@ -218,10 +218,17 @@ class ApiUpload extends ApiBase {
 		if ( is_null( $this->mParams['text'] ) ) {
 			$this->mParams['text'] = $this->mParams['comment'];
 		}
-
+		
+		$watch = $this->getWatchlistValue( $params['watchlist'] );
+		
+		// Deprecated parameters
+		if ( $this->mParams['watch'] ) {
+			$watch = true;
+		}
+		
 		// No errors, no warnings: do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
-			$this->mParams['text'], $this->mParams['watch'], $wgUser );
+			$this->mParams['text'], $watch, $wgUser );
 
 		if ( !$status->isGood() ) {
 			$error = $status->getErrorsArray();
@@ -254,7 +261,19 @@ class ApiUpload extends ApiBase {
 			),
 			'text' => null,
 			'token' => null,
-			'watch' => false,
+			'watch' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'watchlist' => array(
+				ApiBase::PARAM_DFLT => 'preferences',
+				ApiBase::PARAM_TYPE => array(
+					'watch',
+					'unwatch',
+					'preferences',
+					'nochange'
+				),
+			),
 			'ignorewarnings' => false,
 			'file' => null,
 			'url' => null,
@@ -270,6 +289,7 @@ class ApiUpload extends ApiBase {
 			'comment' => 'Upload comment. Also used as the initial page text for new files if "text" is not specified',
 			'text' => 'Initial page text for new files',
 			'watch' => 'Watch the page',
+			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'url' => 'Url to fetch the file from',

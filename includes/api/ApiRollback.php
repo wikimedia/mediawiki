@@ -72,6 +72,14 @@ class ApiRollback extends ApiBase {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg( reset( $retval ) );
 		}
+		
+		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
+		
+		if ( $watch ) {
+			$articleObj->doWatch();
+		} else if ( !$watch ) {
+			$articleObj->doUnwatch();
+		}
 
 		$info = array(
 			'title' => $titleObj->getPrefixedText(),
@@ -99,7 +107,16 @@ class ApiRollback extends ApiBase {
 			'user' => null,
 			'token' => null,
 			'summary' => null,
-			'markbot' => false
+			'markbot' => false,
+			'watchlist' => array(
+				ApiBase::PARAM_DFLT => 'preferences',
+				ApiBase::PARAM_TYPE => array(
+					'watch',
+					'unwatch',
+					'preferences',
+					'nochange'
+				),
+			),
 		);
 	}
 
@@ -109,7 +126,8 @@ class ApiRollback extends ApiBase {
 			'user' => 'Name of the user whose edits are to be rolled back. If set incorrectly, you\'ll get a badtoken error.',
 			'token' => 'A rollback token previously retrieved through prop=revisions',
 			'summary' => 'Custom edit summary. If not set, default summary will be used.',
-			'markbot' => 'Mark the reverted edits and the revert as bot edits'
+			'markbot' => 'Mark the reverted edits and the revert as bot edits',
+			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 		);
 	}
 

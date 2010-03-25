@@ -60,6 +60,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 == API changes in 1.17 ==
 * (bug 22738) Allow filtering by action type on query=logevent
 * (bug 22764) uselang parameter for action=parse
+* (bug 22944) API: watchlist options are inconsistent
 
 === Languages updated in 1.17 ===
 
