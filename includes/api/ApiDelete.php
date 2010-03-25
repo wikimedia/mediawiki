@@ -81,10 +81,13 @@ class ApiDelete extends ApiBase {
 			if ( count( $retval ) ) {
 				$this->dieUsageMsg( reset( $retval ) ); // We don't care about multiple errors, just report one of them
 			}
+			
+			$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj ) || $wgUser->getOption( 'watchdeletion' );
 
-			if ( $params['watch'] || $wgUser->getOption( 'watchdeletion' ) ) {
+			// Deprecated parameters
+			if ( $params['watch'] || $watch ) {
 				$articleObj->doWatch();
-			} elseif ( $params['unwatch'] ) {
+			} elseif ( $params['unwatch'] || !$watch ) {
 				$articleObj->doUnwatch();
 			}
 		}
@@ -197,7 +200,19 @@ class ApiDelete extends ApiBase {
 			),
 			'token' => null,
 			'reason' => null,
-			'watch' => false,
+			'watch' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'watchlist' => array(
+				ApiBase::PARAM_DFLT => 'preferences',
+				ApiBase::PARAM_TYPE => array(
+					'watch',
+					'unwatch',
+					'preferences',
+					'nochange'
+				),
+			),
 			'unwatch' => false,
 			'oldimage' => null
 		);
@@ -210,6 +225,7 @@ class ApiDelete extends ApiBase {
 			'token' => 'A delete token previously retrieved through prop=info',
 			'reason' => 'Reason for the deletion. If not set, an automatically generated reason will be used.',
 			'watch' => 'Add the page to your watchlist',
+			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 			'unwatch' => 'Remove the page from your watchlist',
 			'oldimage' => 'The name of the old image to delete as provided by iiprop=archivename'
 		);
