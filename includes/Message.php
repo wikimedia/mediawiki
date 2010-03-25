@@ -1,5 +1,4 @@
 <?php
-
 /**
  * OBS!!! *EXPERIMENTAL* This class is still under discussion.
  *
@@ -11,34 +10,37 @@
  *
  * Examples:
  * Fetching a message text for interface message
- *  $button = Xml::button( Message::key( 'submit' )->text() );
+ *    $button = Xml::button( Message::key( 'submit' )->text() );
  * Messages can have parameters:
- *  Message::key( 'welcome-to' )->param( $wgSitename )->text(); // {{GRAMMAR}} and friends work correctly
- *  Message::key( 'are-friends' )->params( $user, $friend );
- *  Message::key( 'bad-message' )->rawParam( '<script>...</script>' )->escaped()
+ *    Message::key( 'welcome-to' )->params( $wgSitename )->text(); 
+ *        {{GRAMMAR}} and friends work correctly
+ *    Message::key( 'are-friends' )->params( $user, $friend );
+ *    Message::key( 'bad-message' )->rawParams( '<script>...</script>' )->escaped()
  * Sometimes the message text ends up in the database, so content language is needed.
- *  Message::key( 'file-log' )->params( $user, $filename )->inContentLanguage()->text()
+ *    Message::key( 'file-log' )->params( $user, $filename )->inContentLanguage()->text()
  * Checking if message exists:
- *  Message::key( 'mysterious-message' )->exists()
+ *    Message::key( 'mysterious-message' )->exists()
  * If you want to use a different language:
- *  Message::key( 'email-header' )->language( $user->getOption( 'language' ) )->plain()
+ *    Message::key( 'email-header' )->language( $user->getOption( 'language' ) )->plain()
+ *        Note that you cannot parse the text except in the content or interface
+ *        languages
  *
  *
  * Comparison with old wfMsg* functions:
  *
  * Use full parsing.
- * Would correspond to wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
- * $parsed = Message::key( 'key' )->param( 'apple' )->parse();
+ *     wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
+ *     === Message::key( 'key' )->params( 'apple' )->parse();
  * Parseinline is used because it is more useful when pre-building html.
  * In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
  *
  * Places where html cannot be used. {{-transformation is done.
- * Would correspond to wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
- * $plain = Message::key( 'key' )->params( 'apple', 'pear' )->text();
+ *     wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
+ *     === Message::key( 'key' )->params( 'apple', 'pear' )->text();
  *
  * Shortcut for escaping the message too, similar to wfMsgHTML, but
  * parameters are not replaced after escaping by default.
- * $escaped = Message::key( 'key' )->rawParam( 'apple' )->escaped();
+ * $escaped = Message::key( 'key' )->rawParams( 'apple' )->escaped();
  *
  * TODO:
  * * test, can we have tests?
@@ -53,11 +55,13 @@ class Message {
 	 * means the current interface language, false content language.
 	 */
 	protected $interface = true;
+	
 	/**
 	 * In which language to get this message. Overrides the $interface
 	 * variable.
 	 */
 	protected $language = null;
+	
 	/**
 	 * The message key.
 	 */
@@ -67,14 +71,39 @@ class Message {
 	 * List of parameters which will be substituted into the message.
 	 */
 	protected $parameters = array();
+	
+	/**
+	 * Some situations need exotic combinations of options to the
+	 * underlying Language modules; which can be specified here.
+	 * Dependencies:
+	 *     'parse' implies 'transform', 'escape'
+	 */
+	protected $options = array(
+		# Don't wrap the output in a block-level element
+		'inline' => true,
+		# Expand {{ constructs
+		'transform' => true,
+		# Output will be safe HTML
+		'escape' => true,
+		# Parse the text with the full parser
+		'parse' => true,
+		# Access the database when getting the message text
+		'usedb' => true,
+	);
 
 	/**
 	 * Constructor.
 	 * @param $key String: message key
 	 * @return Message: $this
 	 */
-	public function __construct( $key ) {
+	public function __construct( $key, $params=array(), $options=array() ) {
 		$this->key = $key;
+		if( $params ){
+			$this->params( $params );
+		}
+		if( $options ){
+			$this->options( $options );
+		}
 	}
 
 	/**
@@ -91,44 +120,42 @@ class Message {
 
 	/**
 	 * Adds parameters to the parameter list of this message.
-	 * @param $value String: parameter
-	 * @return Message: $this
-	 */
-	public function param( $value ) {
-		$this->parameters[] = $value;
-		return $this;
-	}
-
-	/**
-	 * Adds parameters to the parameter list of this message.
-	 * @params Vargars: parameters
+	 * @params Vargars: parameters as Strings
 	 * @return Message: $this
 	 */
 	public function params( /*...*/ ) {
-		$this->paramList( func_get_args() );
+		$this->parameters += array_values( func_get_args() );
 		return $this;
 	}
 
 	/**
-	 * Adds a list of parameters to the parameter list of this message.
-	 * @param $value Array: list of parameters, array keys will be ignored.
-	 * @return Message: $this
-	 */
-	public function paramList( array $values ) {
-		$this->parameters += array_values( $values );
-		return $this;
-	}
-
-	/**
-	 * Adds a parameters that is substituted after parsing or escaping.
+	 * Add parameters that are substituted after parsing or escaping.
 	 * In other words the parsing process cannot access the contents
-	 * of this type parameter, and you need to make sure it is
-	 * sanitized beforehand.
-	 * @param $value String: raw parameter
+	 * of this type of parameter, and you need to make sure it is
+	 * sanitized beforehand.  The parser will see "$n", instead.
+	 * @param $value Varargs: raw parameters as Strings
 	 * @return Message: $this
 	 */
-	public function rawParam( $value ) {
-		$this->parameters[] =  array( 'raw' => $value );
+	public function rawParams( /*...*/ ) {
+		$params = func_get_args();
+		foreach( $params as $param ){
+			$this->parameters[] =  array( 'raw' => $param );
+		}
+		return $this;
+	}
+	
+	/**
+	 * Set some of the individual options, if you need to use some 
+	 * funky combination of them.
+	 * @param $options Array $option => $value
+	 * @return Message $this
+	 */
+	public function options( array $options ){
+		foreach( $options as $key => $value ){
+			if( in_array( $key, $this->options ) ){
+				$this->options[$key] = (bool)$value;
+			}
+		}
 		return $this;
 	}
 
@@ -139,11 +166,16 @@ class Message {
 	 * @param $lang Mixed: langauge code or language object.
 	 * @return Message: $this
 	 */
-	public function language( Language $lang ) {
-		if ( is_string( $lang ) ) {
+	public function language( $lang ) {
+		if( $lang instanceof Language ){
+			$this->language = $lang;
+		} elseif ( is_string( $lang ) ) {
 			$this->language = Language::factory( $lang );
 		} else {
-			$this->language = $lang;
+			$type = gettype( $lang );
+			throw new MWException( "Message::langauge() must be "
+				. "passed a String or Language object; $type given" 
+			);
 		}
 		$this->interface = false;
 		return $this;
@@ -161,15 +193,62 @@ class Message {
 
 	/**
 	 * Returns the message parsed from wikitext to HTML.
+	 * TODO: in PHP >= 5.2.0, we can make this a magic method,
+	 * and then we can do, eg:
+	 *     $foo = Message::get($key);
+	 *     $string = "<abbr>$foo</abbr>";
+	 * But we shouldn't implement that while MediaWiki still supports
+	 * PHP < 5.2; or people will start using it...
 	 * @return String: HTML
 	 */
-	public function parse() {
-		$string = $this->parseAsBlock( $string );
-		$m = array();
-		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
-			$string = $m[1];
+	public function toString() {
+		$string = $this->getMessageText();
+		
+		# Replace parameters before text parsing
+		$string = $this->replaceParameters( $string, 'before' );
+		
+		# Maybe transform using the full parser
+		if( $this->options['parse'] ){
+			$string = $this->parseText( $string );
+		} else {
+			
+			# Transform {{ constructs
+			if( $this->options['transform'] ){
+				$string = $this->transformText( $string );
+			}
+			
+			# Sanitise
+			if( $this->options['escape'] ){
+				# FIXME: Sanitizer method here?
+				$string = htmlspecialchars( $string );
+			}
 		}
+		
+		# Strip the block element
+		if( !$this->options['inline'] ){
+			$m = array();
+			if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
+				$string = $m[1];
+			}
+		}
+		
+		# Raw parameter replacement
+		$string = $this->replaceParameters( $string, 'after' );
+		
 		return $string;
+	}
+	
+	public function __tostring(){ return $this->toString(); }
+	
+	/**
+	 * Fully parse the text from wikitext to HTML
+	 * @return String parsed HTML
+	 */
+	public function parse(){
+		$this->options( array(
+			'parse' => true,
+		));		
+		return $this->tostring();
 	}
 
 	/**
@@ -177,11 +256,12 @@ class Message {
 	 * @return String: Unescaped message text.
 	 */
 	public function text() {
-		$string = $this->getMessageText();
-		$string = $this->replaceParameters( 'before' );
-		$string = $this->transformText( $string );
-		$string = $this->replaceParameters( 'after' );
-		return $string;
+		$this->options( array(
+			'parse' => false,
+			'transform' => true,
+			'escape' => false,
+		));		
+		return $this->tostring();
 	}
 
 	/**
@@ -189,10 +269,13 @@ class Message {
 	 * @return String: Unescaped untransformed message text.
 	 */
 	public function plain() {
-		$string = $this->getMessageText();
-		$string = $this->replaceParameters( 'before' );
-		$string = $this->replaceParameters( 'after' );
-		return $string;
+		$this->options( array(
+			'parse' => false,
+			'transform' => false,
+			'escape' => false,
+			'inline' => false,
+		));		
+		return $this->tostring();
 	}
 
 	/**
@@ -200,11 +283,11 @@ class Message {
 	 * @return String: HTML
 	 */
 	public function parseAsBlock() {
-		$string = $this->getMessageText();
-		$string =  $this->replaceParameters( 'before' );
-		$string = $this->parseText( $string );
-		$string = $this->replaceParameters( 'after' );
-		return $string;
+		$this->options( array(
+			'parse' => true,
+			'inline' => true,
+		));		
+		return $this->tostring();
 	}
 
 	/**
@@ -213,12 +296,13 @@ class Message {
 	 * @return String: Escaped message text.
 	 */
 	public function escaped() {
-		$string = $this->getMessageText();
-		$string = $this->replaceParameters( 'before' );
-		$string = $this->transformText( $string );
-		$string = htmlspecialchars( $string );
-		$string = $this->replaceParameters( 'after' );
-		return $string;
+		$this->options( array(
+			'parse' => false,
+			'transform' => true,
+			'escape' => true,
+			'inline' => false,
+		));		
+		return $this->tostring();
 	}
 
 	/**
@@ -226,18 +310,24 @@ class Message {
 	 * @return Bool: true if it is and false if not.
 	 */
 	public function exists() {
-		return !wfEmptyMsg( $this->key, $this->getMessageText() );
+		global $wgMessageCache;
+		return $wgMessageCache->get( 
+			$this->key, 
+			$this->options['usedb'], 
+			$this->language 
+		) !== false;
 	}
 
 	/**
 	 * Substitutes any paramaters into the message text.
+	 * @param $message String, the message text
 	 * @param $type String: either before or after
 	 * @return String
 	 */
-	protected function replaceParameters( $type = 'before' ) {
+	protected function replaceParameters( $message, $type = 'before' ) {
 		$replacementKeys = array();
-		foreach( $args as $n => $param ) {
-			if ( $type === 'before' && !isset( $param['raw'] ) ) {
+		foreach( $this->parameters as $n => $param ) {
+			if ( $type === 'before' && !is_array( $param ) ) {
 				$replacementKeys['$' . ($n + 1)] = $param;
 			} elseif ( $type === 'after' && isset( $param['raw'] ) ) {
 				$replacementKeys['$' . ($n + 1)] = $param['raw'];
@@ -255,10 +345,10 @@ class Message {
 	protected function parseText( $string ) {
 		global $wgOut;
 		if ( $this->language !== null ) {
-			// FIXME: remove this limitation
+			# FIXME: remove this limitation
 			throw new MWException( 'Can only parse in interface or content language' );
 		}
-		return $wgOut->parse( $string, /*linestart*/true, $this->interface() );
+		return $wgOut->parse( $string, /*linestart*/true, $this->interface );
 	}
 
 	/**
@@ -277,7 +367,10 @@ class Message {
 	 */
 	protected function getMessageText() {
 		global $wgMessageCache;
-		return $wgMessageCache->get( $this->key, /*DB*/true, $this->language );
+		$message = $wgMessageCache->get( $this->key, $this->options['usedb'], $this->language );
+		return $message === false
+			? '&lt;' . htmlspecialchars( $this->key ) . '&gt;'
+			: $message;
 	}
 
 }
