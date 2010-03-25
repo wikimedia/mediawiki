@@ -127,7 +127,7 @@ class ApiUndelete extends ApiBase {
 			'title' => 'Title of the page you want to restore.',
 			'token' => 'An undelete token previously retrieved through list=deletedrevs',
 			'reason' => 'Reason for restoring (optional)',
-			'timestamps' => 'Timestamps of the revisions to restore. If not set, all revisions will be restored.'
+			'timestamps' => 'Timestamps of the revisions to restore. If not set, all revisions will be restored.',
 			'watch' => 'Add the page to your watchlist',
 			'unwatch' => 'Remove the page from your watchlist',
 		);
