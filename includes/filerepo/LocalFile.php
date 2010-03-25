@@ -739,13 +739,14 @@ class LocalFile extends File {
 
 	/**
 	 * Upload a file and record it in the DB
-	 * @param string $srcPath Source path or virtual URL
-	 * @param string $comment Upload description
-	 * @param string $pageText Text to use for the new description page, if a new description page is created
-	 * @param integer $flags Flags for publish()
-	 * @param array $props File properties, if known. This can be used to reduce the
-	 *                         upload time when uploading virtual URLs for which the file info
-	 *                         is already known
+	 * @param $srcPath String: source path or virtual URL
+	 * @param $comment String: upload description
+	 * @param $pageText String: text to use for the new description page,
+	 *                  if a new description page is created
+	 * @param $flags Integer: flags for publish()
+	 * @param $props Array: File properties, if known. This can be used to reduce the
+	 *               upload time when uploading virtual URLs for which the file info
+	 *               is already known
 	 * @param string $timestamp Timestamp for img_timestamp, or false to use the current time
 	 *
 	 * @return FileRepoStatus object. On success, the value member contains the
@@ -953,8 +954,8 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param string $sourcePath Local filesystem path to the source image
-	 * @param integer $flags A bitwise combination of:
+	 * @param $sourcePath String: local filesystem path to the source image
+	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move
 	 *         rather than copy
 	 * @return FileRepoStatus object. On success, the value member contains the
@@ -1064,8 +1065,9 @@ class LocalFile extends File {
 	 *
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
-	 * @param $reason
-	 * @param $suppress
+	 * @param $archiveName String
+	 * @param $reason String
+	 * @param $suppress Boolean
 	 * @throws MWException or FSException on database or file store failure
 	 * @return FileRepoStatus object.
 	 */
@@ -1090,7 +1092,7 @@ class LocalFile extends File {
 	 *
 	 * @param $versions set of record ids of deleted items to restore,
 	 *                    or empty to restore all revisions.
-	 * @param $unuppress
+	 * @param $unsuppress Boolean
 	 * @return FileRepoStatus
 	 */
 	function restore( $versions = array(), $unsuppress = false ) {
