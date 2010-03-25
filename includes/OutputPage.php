@@ -2118,7 +2118,7 @@ class OutputPage {
 			}
 			$this->addMeta( 'http:Content-Type', "$wgMimeType; charset=$wgOutputEncoding" );
 		}
-		$ret .= Html::element( 'html', $htmlAttribs ) . "\n";
+		$ret .= Html::openElement( 'html', $htmlAttribs ) . "\n";
 
 		$openHead = Html::openElement( 'head' );
 		if ( $openHead ) {
