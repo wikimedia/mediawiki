@@ -177,7 +177,8 @@ abstract class File {
 	 * Return a fully-qualified URL to the file.
 	 * Upload URL paths _may or may not_ be fully qualified, so
 	 * we check. Local paths are assumed to belong on $wgServer.
-	 * @return string
+	 *
+	 * @return String
 	 */
 	public function getFullUrl() {
 		return wfExpandUrl( $this->getUrl() );
@@ -456,7 +457,7 @@ abstract class File {
 	/**
 	 * Return the file name of a thumbnail with the specified parameters
 	 *
-	 * @param array $params Handler-specific parameters
+	 * @param $params Array: handler-specific parameters
 	 * @private -ish
 	 */
 	function thumbName( $params ) {
@@ -484,8 +485,8 @@ abstract class File {
 	 * specified, the generated image will be no bigger than width x height,
 	 * and will also have correct aspect ratio.
 	 *
-	 * @param integer $width	maximum width of the generated thumbnail
-	 * @param integer $height	maximum height of the image (optional)
+	 * @param $width Integer: maximum width of the generated thumbnail
+	 * @param $height Integer: maximum height of the image (optional)
 	 */
 	public function createThumb( $width, $height = -1 ) {
 		$params = array( 'width' => $width );
@@ -504,9 +505,9 @@ abstract class File {
 	 *
 	 * For non-image formats, this may return a filetype-specific icon.
 	 *
-	 * @param integer $width	maximum width of the generated thumbnail
-	 * @param integer $height	maximum height of the image (optional)
-	 * @param boolean $render	Deprecated
+	 * @param $width Integer: maximum width of the generated thumbnail
+	 * @param $height Integer: maximum height of the image (optional)
+	 * @param $render Integer: Deprecated
 	 *
 	 * @return ThumbnailImage or null on failure
 	 *
@@ -523,9 +524,9 @@ abstract class File {
 	/**
 	 * Transform a media file
 	 *
-	 * @param array $params An associative array of handler-specific parameters. Typical
-	 *                      keys are width, height and page.
-	 * @param integer $flags A bitfield, may contain self::RENDER_NOW to force rendering
+	 * @param $params Array: an associative array of handler-specific parameters.
+	 *                Typical keys are width, height and page.
+	 * @param $flags Integer: a bitfield, may contain self::RENDER_NOW to force rendering
 	 * @return MediaTransformOutput
 	 */
 	function transform( $params, $flags = 0 ) {
@@ -849,8 +850,8 @@ abstract class File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param string $sourcePath Local filesystem path to the source image
-	 * @param integer $flags A bitwise combination of:
+	 * @param $sourcePath String: local filesystem path to the source image
+	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move
 	 *         rather than copy
 	 * @return The archive name on success or an empty string if it was a new
@@ -992,8 +993,8 @@ abstract class File {
 	 *
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
-	 * @param $reason
-	 * @param $suppress, hide content from sysops?
+	 * @param $reason String
+	 * @param $suppress Boolean: hide content from sysops?
 	 * @return true on success, false on some kind of failure
 	 * STUB
 	 * Overridden by LocalFile
@@ -1010,7 +1011,7 @@ abstract class File {
 	 *
 	 * @param $versions set of record ids of deleted items to restore,
 	 *                    or empty to restore all revisions.
-	 * @param $unsuppress, remove restrictions on content upon restoration?
+	 * @param $unsuppress remove restrictions on content upon restoration?
 	 * @return the number of file revisions restored if successful,
 	 *         or false on failure
 	 * STUB
@@ -1062,8 +1063,8 @@ abstract class File {
 	 * Get an image size array like that returned by getimagesize(), or false if it
 	 * can't be determined.
 	 *
-	 * @param string $fileName The filename
-	 * @return array
+	 * @param $fileName String: The filename
+	 * @return Array
 	 */
 	function getImageSize( $fileName ) {
 		if ( !$this->getHandler() ) {
@@ -1156,8 +1157,8 @@ abstract class File {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this file, if it's marked as deleted.
 	 * STUB
-	 * @param int $field
-	 * @return bool
+	 * @param $field Integer
+	 * @return Boolean
 	 */
 	function userCan( $field ) {
 		return true;
@@ -1166,9 +1167,9 @@ abstract class File {
 	/**
 	 * Get an associative array containing information about a file in the local filesystem.
 	 *
-	 * @param string $path Absolute local filesystem path
-	 * @param mixed $ext The file extension, or true to extract it from the filename.
-	 *                   Set it to false to ignore the extension.
+	 * @param $path String: absolute local filesystem path
+	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
+	 *             Set it to false to ignore the extension.
 	 */
 	static function getPropsFromPath( $path, $ext = true ) {
 		wfProfileIn( __METHOD__ );

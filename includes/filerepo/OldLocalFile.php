@@ -70,10 +70,10 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @param Title $title
-	 * @param FileRepo $repo
-	 * @param string $time Timestamp or null to load by archive name
-	 * @param string $archiveName Archive name or null to load by timestamp
+	 * @param $title Title
+	 * @param $repo FileRepo
+	 * @param $time String: timestamp or null to load by archive name
+	 * @param $archiveNameString: archive name or null to load by timestamp
 	 */
 	function __construct( $title, $repo, $time, $archiveName ) {
 		parent::__construct( $title, $repo );
@@ -172,8 +172,8 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * int $field one of DELETED_* bitfield constants
-	 * for file or revision rows
+	 * @param $field Integer: one of DELETED_* bitfield constants
+	 *               for file or revision rows
 	 * @return bool
 	 */
 	function isDeleted( $field ) {
@@ -193,7 +193,8 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this image file, if it's marked as deleted.
-	 * @param int $field
+	 *
+	 * @param $field Integer
 	 * @return bool
 	 */
 	function userCan( $field ) {
