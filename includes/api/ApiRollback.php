@@ -38,6 +38,10 @@ class ApiRollback extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		
+		if ( isset( $params['watch'] ) && params( $show['unwatch'] ) ) {
+			$this->dieUsageMsg( array( 'show' ) );
+		}
 
 		$titleObj = null;
 		if ( !isset( $params['title'] ) ) {
