@@ -2440,7 +2440,7 @@ class Title {
 			$m = array();
 			if ( preg_match( $prefixRegexp, $dbkey, $m ) ) {
 				$p = $m[1];
-				if ( $ns = $wgContLang->getNsIndex( $p ) ) {
+				if ( ( $ns = $wgContLang->getNsIndex( $p ) ) !== false ) {
 					# Ordinary namespace
 					$dbkey = $m[2];
 					$this->mNamespace = $ns;
