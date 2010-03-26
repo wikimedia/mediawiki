@@ -309,6 +309,8 @@ $wgUrlProtocols = array(
 	'mailto:',
 	'news:',
 	'svn://',
+	'git://',
+	'mms://',
 );
 
 /** internal name of virus scanner. This servers as a key to the $wgAntivirusSetup array.

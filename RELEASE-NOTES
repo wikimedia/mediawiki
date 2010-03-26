@@ -34,6 +34,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   improve page loading speed.
 * Future-proof redirection to fragments in Gecko, so things work a little nicer
   if they fix <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
+* Support git:// and mms:// protocols by default for external links
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive without
