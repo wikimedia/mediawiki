@@ -501,7 +501,7 @@ abstract class File {
 	/**
 	 * As createThumb, but returns a ThumbnailImage object. This can
 	 * provide access to the actual file, the real size of the thumb,
-	 * and can produce a convenient <img> tag for you.
+	 * and can produce a convenient \<img\> tag for you.
 	 *
 	 * For non-image formats, this may return a filetype-specific icon.
 	 *
@@ -850,7 +850,7 @@ abstract class File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param $sourcePath String: local filesystem path to the source image
+	 * @param $srcPath String: local filesystem path to the source image
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move
 	 *         rather than copy
