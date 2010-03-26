@@ -2035,7 +2035,8 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'enotif_lastvisited'           => 'Sjå $1 for alle endringane sidan siste vitjing.',
 'enotif_lastdiff'              => 'Sjå $1 for å sjå denne endringa.',
 'enotif_anon_editor'           => 'anonym brukar $1',
-'enotif_body'                  => 'Hei $WATCHINGUSERNAME,
+'enotif_body'                  => 'Kjære $WATCHINGUSERNAME,
+
 
 {{SITENAME}}-sida $PAGETITLE er vorten $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
 
@@ -2047,16 +2048,20 @@ Du kan kontakte bidragsytaren gjennom:
 e-post: $PAGEEDITOR_EMAIL , eller
 wiki: $PAGEEDITOR_WIKI
 
-Du får ikkje fleire endringsmeldingar om denne sida før du har vitja henne på nytt. Du kan også tilbakestille endringsmeldingsstatus for alle sidene på overvakingslista di.
+Du får ikkje fleire endringsmeldingar om denne sida før du har vitja henne på nytt.
+Du kan også tilbakestille endringsmeldingsstatus for alle sidene på overvakingslista di.
 
              Helsing det venlege {{SITENAME}}-meldingssystemet ditt
 
 --
 For å endre innstillingane for overvakingslista di, gå til
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 For hjelp og meir informasjon:
-{{fullurl:Hjelp:Overvaking}}',
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+Tilbakemeldingar og anna hjelp:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Slett side',
@@ -2138,7 +2143,7 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'protect-othertime-op'        => 'anna tid',
 'protect-existing-expiry'     => 'Gjeldande utløpstid: $3 $2',
 'protect-otherreason'         => 'Annan/ytterlegare årsak:',
-'protect-otherreason-op'      => 'annan/ytterlegare årsak',
+'protect-otherreason-op'      => 'Annan årsak',
 'protect-dropdown'            => '*Vanlege verneårsaker
 ** Gjenteke hærverk
 ** Gjenteke spam

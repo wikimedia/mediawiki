@@ -751,7 +751,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'page_first'             => 'প্রথম',
 'page_last'              => 'শেষ',
 'histlegend'             => 'পার্থক্য (Diff) নির্বাচন: যে সংস্করণগুলো তুলনা করতে চান, সেগুলো চিহ্নিত করে এন্টার বা নিচের বোতামটি টিপুন।<br />
-নির্দেশিকা: (বর্তমান) = বর্তমান সংস্করণের সাথে পার্থক্য,(পূর্ববর্তী) =  পূর্বের সংস্করণের সাথে পার্থক্য, অ = অনুল্লেখ্য সম্পাদনা।',
+নির্দেশিকা: (বর্তমান) = বর্তমান সংস্করণের সাথে পার্থক্য, (পূর্ববর্তী) =  পূর্বের সংস্করণের সাথে পার্থক্য, অ = অনুল্লেখ্য সম্পাদনা।',
 'history-fieldset-title' => 'ব্রাউজ ইতিহাস',
 'history-show-deleted'   => 'শুধুমাত্র অপসারণ',
 'histfirst'              => 'সবচেয়ে পুরনো',
@@ -796,6 +796,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'revdelete-hide-comment'      => 'সম্পাদনা মন্তব্য আড়াল করো',
 'revdelete-hide-user'         => 'সম্পাদকে ব্যবহারকারীর নাম/আইপি আড়াল করো',
 'revdelete-hide-restricted'   => 'প্রশাসকবৃন্দ এবং অন্যদের ক্ষেত্রে এই ডাটা রোধ করো',
+'revdelete-radio-same'        => 'পরিবর্তন নয়',
 'revdelete-radio-set'         => 'হ্যাঁ',
 'revdelete-radio-unset'       => 'না',
 'revdelete-suppress'          => 'সব প্রশাসক ও অন্যান্যদের কাছ থেকে উপাত্ত লুকিয়ে রাখা হোক।',
@@ -841,6 +842,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 'mergehistory-no-destination'      => '$1 বলে কোন গন্তব্য পাতার অস্তিত্ব নেই।',
 'mergehistory-invalid-source'      => 'উৎস পাতার অবশ্যই একটি বৈধ শিরোনাম থাকতে হবে।',
 'mergehistory-invalid-destination' => 'গন্তব্য পাতার একটি বৈধ শিরোনাম থাকতে হবে।',
+'mergehistory-autocomment'         => '[[:$1]] কে [[:$2]] -এ একত্রীত করা হয়েছে',
+'mergehistory-comment'             => '[[:$1]] কে [[:$2]] -এ একত্রীত করা হয়েছে: $3',
 'mergehistory-same-destination'    => 'উৎস এবং গন্তব্য পাতা একই হতে পারবে না',
 'mergehistory-reason'              => 'কারণ:',
 
@@ -1051,6 +1054,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'group-bot'           => 'বট',
 'group-sysop'         => 'প্রশাসক',
 'group-bureaucrat'    => 'ব্যুরোক্রেট',
+'group-suppress'      => 'গোপন পর্যবেক্ষকবৃন্দ',
 'group-all'           => '(সমস্ত)',
 
 'group-user-member'          => 'ব্যবহারকারী',
@@ -1058,12 +1062,14 @@ $3-এর দেয়া কারণ হল ''$2''",
 'group-bot-member'           => 'বট',
 'group-sysop-member'         => 'প্রশাসক',
 'group-bureaucrat-member'    => 'ব্যুরোক্রেট',
+'group-suppress-member'      => 'গোপন পর্যবেক্ষক',
 
 'grouppage-user'          => '{{ns:project}}:ব্যবহারকারীগণ',
 'grouppage-autoconfirmed' => '{{ns:project}}:স্বয়ংক্রিয়ভাবে নিশ্চিতকৃত ব্যবহারকারীরা',
 'grouppage-bot'           => '{{ns:project}}:বটগুলি',
 'grouppage-sysop'         => '{{ns:project}}:প্রশাসকবৃন্দ',
 'grouppage-bureaucrat'    => '{{ns:project}}:ব্যুরোক্রেট',
+'grouppage-suppress'      => '{{ns:project}}:গোপন পর্যবেক্ষক',
 
 # Rights
 'right-read'                 => 'পাতাসমূহ পড়ুন',
@@ -1097,9 +1103,12 @@ $3-এর দেয়া কারণ হল ''$2''",
 'right-import'               => 'অন্য উইকি থেকে পাতা আমদানী করো',
 'right-patrol'               => 'অন্যের সম্পাদনা পরীক্ষিত বলে চিহ্নিত করো',
 'right-unwatchedpages'       => 'নজরতালিকা বহির্ভূত পাতাগুলির তালিকা দেখাও',
+'right-trackback'            => 'একটি ট্র্যাকব্যাক জমা দিন',
 'right-mergehistory'         => 'পাতার ইতিহাস একীকরণ করুন।',
 'right-userrights'           => 'সকল ব্যবহারকারী অধিকার সম্পাদনা করুন',
 'right-userrights-interwiki' => 'অন্যান্য উইকির ব্যবহারকারীদের অধিকারসমূহ সম্পাদনা করুন।',
+'right-reset-passwords'      => 'অন্য ব্যবহারকারীদের শব্দচাবি পুনরায় নির্ধারণ করুন',
+'right-sendemail'            => 'অন্য ব্যবহারকারীকে ইমেইল পাঠান',
 
 # User rights log
 'rightslog'      => 'ব্যবহারকারীর অধিকার লগ',
@@ -1216,7 +1225,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 'illegalfilename'             => '"$1" ফাইলনামটিতে এমন কিছু ক্যারেক্টার আছে যেগুলি পাতার শিরোনামে ব্যবহার করা অবৈধ। অনুগ্রহ করে ফাইলটি নতুন করে নামকরণ করুন এবং তারপর আপলোড করার চেষ্টা করুন।',
 'badfilename'                 => 'ফাইলের নামটি পরিবর্তন করে $1" করা হয়েছে।',
 'filetype-badmime'            => '"$1" MIME ধরনের ফাইল আপলোড করা যাবে না।',
-'filetype-unwanted-type'      => "'''\".\$1\"''' ফাইল ধরনটি অগ্রহণযোগ্য। পছন্দনীয় ফাইল ধরনগুলি হলো \$2।",
+'filetype-unwanted-type'      => "'''\".\$1\"''' ফাইল ধরনটি অগ্রহণযোগ্য। 
+পছন্দনীয় {{PLURAL:\$3|ফাইলের ধরন|ফাইলের ধরনগুলো}} হলো \$2।",
 'filetype-banned-type'        => "'''\".\$1\"''' ফাইল ধরনটি অনুমোদিত নয়। অনুমোদিত ফাইল ধরনগুলি হল \$2।",
 'filetype-missing'            => 'এই ফাইলটির কোন এক্সটেনশন নেই (যেমন ".jpg")।',
 'large-file'                  => '$1-এর চেয়ে বড় আকারের ফাইল সুপারিশ করা হয় না; এই ফাইলটি $2।',
@@ -1250,6 +1260,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'upload-source'               => 'উৎস ফাইল',
 'sourcefilename'              => 'উৎস ফাইলের নাম:',
 'destfilename'                => 'লক্ষ্য ফাইলের নাম:',
+'upload-maxfilesize'          => 'ফাইলের সর্বোচ্চ আকার: $1',
 'upload-description'          => 'ফাইলের বর্ণনা',
 'upload-options'              => 'আপলোড-অপশন',
 'watchthisupload'             => 'এই ফাইলটি নজরে রাখুন',
@@ -1267,6 +1278,12 @@ $3-এর দেয়া কারণ হল ''$2''",
 'upload-misc-error'       => 'অজানা আপলোড ত্রুটি',
 'upload-misc-error-text'  => 'আপলোড করার সময় অজানা ত্রুটি ঘটেছে। অনুগ্রহ করে যাচাই করুন URLটি বৈধ কি না এবং আবার চেষ্টা করুন। যদি এর পরেও সমস্যা হয়, তবে একজন সিস্টেম প্রশাসকের সাথে যোগাযোগ করুন।',
 'upload-unknown-size'     => 'অজানা আকার',
+
+# img_auth script messages
+'img-auth-nofile' => 'ফাইল "$1" নাই।',
+
+# HTTP errors
+'http-invalid-url' => 'ভুল ইউআরএল: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-এ পৌঁছানো যায়নি',
@@ -1455,6 +1472,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'unusedcategoriestext'    => 'নিচের বিষয়শ্রেণীগুলোর অস্তিত্ব আছে, যদিও কোনো নিবন্ধ বা অন্য কোনো বিষয়শ্রেণী এগুলোকে ব্যবহার করে না।',
 'notargettitle'           => 'কোন লক্ষ্য নেই',
 'notargettext'            => 'আপনি এই কাজটি সম্পাদনের জন্য কোন লক্ষ্য পাতা বা ব্যবহারকারী নির্দিষ্ট করে দেননি।',
+'nopagetitle'             => 'এমন কোন লক্ষ্য পাতা নাই',
 'pager-newer-n'           => '{{PLURAL:$1|নতুনতর ১টি|নতুনতর $1টি}}',
 'pager-older-n'           => '{{PLURAL:$1|আরও পুরনো ১টি|আরও পুরনো $1টি}}',
 'suppress'                => 'ওভারসাইট',
@@ -1515,8 +1533,10 @@ $3-এর দেয়া কারণ হল ''$2''",
 'listusers-blocked'  => '(ব্লককৃত)',
 
 # Special:ActiveUsers
-'activeusers'          => 'সক্রিয় ব্যবহারকারী তালিকা',
-'activeusers-noresult' => 'কোনো ব্যবহারকারী পাওয়া যায়নি।',
+'activeusers'            => 'সক্রিয় ব্যবহারকারী তালিকা',
+'activeusers-hidebots'   => 'বট লুকাও',
+'activeusers-hidesysops' => 'প্রশাসক লুকাও',
+'activeusers-noresult'   => 'কোনো ব্যবহারকারী পাওয়া যায়নি।',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'ব্যবহারকারী সৃষ্টির লগ',
@@ -1527,30 +1547,33 @@ $3-এর দেয়া কারণ হল ''$2''",
 'newuserlog-autocreate-entry' => 'সয়ংক্রিয় ভাবে অ্যাকাউন্ট তৈরি হয়েছে',
 
 # Special:ListGroupRights
-'listgrouprights-group'   => 'দল',
-'listgrouprights-rights'  => 'অধিকারসমূহ',
-'listgrouprights-members' => '(সদস্যদের তালিকা)',
+'listgrouprights-group'           => 'দল',
+'listgrouprights-rights'          => 'অধিকারসমূহ',
+'listgrouprights-members'         => '(সদস্যদের তালিকা)',
+'listgrouprights-addgroup-all'    => 'সমস্ত দল যোগ করুন',
+'listgrouprights-removegroup-all' => 'সমস্ত দল অপসারণ করুন',
 
 # E-mail user
-'mailnologin'     => 'প্রাপকের ঠিকানা নেই',
-'mailnologintext' => "অন্য ব্যবহারকারীদেরকে ই-মেইল পাঠাতে হলে আপনাকে অবশ্যই আগে [[Special:UserLogin|লগ-ইন]] করতে হবে এবং ''[[Special:Preferences|আপনার পছন্দ তালিকায়]] আপনার ই-মেইল ঠিকানাটি ঠিকমত দিতে হবে।",
-'emailuser'       => 'ইমেইল করো',
-'emailpage'       => 'ব্যবহারকারীকে ই-মেইল করুন',
-'emailpagetext'   => 'যদি এই ব্যবহারকারীটি তার ব্যবহারকারী পছন্দগুলিতে কোন বৈধ ই-মেইল ঠিকানা প্রবেশ করিয়ে থাকেন, তাহলে নিচের ফর্মটি একটি মাত্র বার্তা পাঠাবে।
+'mailnologin'      => 'প্রাপকের ঠিকানা নেই',
+'mailnologintext'  => "অন্য ব্যবহারকারীদেরকে ই-মেইল পাঠাতে হলে আপনাকে অবশ্যই আগে [[Special:UserLogin|লগ-ইন]] করতে হবে এবং ''[[Special:Preferences|আপনার পছন্দ তালিকায়]] আপনার ই-মেইল ঠিকানাটি ঠিকমত দিতে হবে।",
+'emailuser'        => 'ইমেইল করো',
+'emailpage'        => 'ব্যবহারকারীকে ই-মেইল করুন',
+'emailpagetext'    => 'যদি এই ব্যবহারকারীটি তার ব্যবহারকারী পছন্দগুলিতে কোন বৈধ ই-মেইল ঠিকানা প্রবেশ করিয়ে থাকেন, তাহলে নিচের ফর্মটি একটি মাত্র বার্তা পাঠাবে।
 আপনি আপনার ব্যবহারকারী পছন্দে যে ই-মেইল দিয়েছেন, সেটি মেইলের "প্রেরক" ক্ষেত্রে দেখানো হবে, যাতে মেইলের প্রাপক আপনাকে উত্তর দিতে পারেন।',
-'usermailererror' => 'মেইল অবজেক্ট ত্রুটি পাঠিয়েছে:',
-'defemailsubject' => '{{SITENAME}} ই-মেইল',
-'noemailtitle'    => 'ই-মেইল ঠিকানা নেই',
-'noemailtext'     => 'এই ব্যবহারকারী কোন বৈধ ই-মেইল ঠিকানা নির্দিষ্ট করে দেননি, অথবা অন্য ব্যবহারকারীদের কাছ থেকে ই-মেইল গ্রহণ করতে চান না।',
-'emailfrom'       => 'প্রেরক',
-'emailto'         => 'প্রাপক',
-'emailsubject'    => 'বিষয়',
-'emailmessage'    => 'বার্তা',
-'emailsend'       => 'প্রেরণ করো',
-'emailccme'       => 'আমার বার্তার একটি অনুলিপি আমাকে ই-মেইল করা হোক।',
-'emailccsubject'  => 'আপনার বার্তার অনুলিপি $1-কে: $2',
-'emailsent'       => 'ই-মেইল প্রেরণ করা হয়েছে',
-'emailsenttext'   => 'আপনার ই-মেইল বার্তা প্রেরণ করা হয়েছে।',
+'usermailererror'  => 'মেইল অবজেক্ট ত্রুটি পাঠিয়েছে:',
+'defemailsubject'  => '{{SITENAME}} ই-মেইল',
+'noemailtitle'     => 'ই-মেইল ঠিকানা নেই',
+'noemailtext'      => 'এই ব্যবহারকারী কোন বৈধ ই-মেইল ঠিকানা নির্দিষ্ট করে দেননি, অথবা অন্য ব্যবহারকারীদের কাছ থেকে ই-মেইল গ্রহণ করতে চান না।',
+'nowikiemailtitle' => 'কোন ইমেইল অনুমোদিত নয়',
+'emailfrom'        => 'প্রেরক:',
+'emailto'          => 'প্রাপক:',
+'emailsubject'     => 'বিষয়:',
+'emailmessage'     => 'বার্তা:',
+'emailsend'        => 'প্রেরণ করো',
+'emailccme'        => 'আমার বার্তার একটি অনুলিপি আমাকে ই-মেইল করা হোক।',
+'emailccsubject'   => 'আপনার বার্তার অনুলিপি $1-কে: $2',
+'emailsent'        => 'ই-মেইল প্রেরণ করা হয়েছে',
+'emailsenttext'    => 'আপনার ই-মেইল বার্তা প্রেরণ করা হয়েছে।',
 
 # Watchlist
 'watchlist'            => 'আমার নজর তালিকা',
@@ -1692,10 +1715,18 @@ $NEWPAGE
 'protect-level-sysop'         => 'কেবল প্রশাসকদের জন্য',
 'protect-summary-cascade'     => 'প্রপাতাকার',
 'protect-expiring'            => '$1 (UTC) সময়ে মেয়াদোত্তীর্ণ',
+'protect-expiry-indefinite'   => 'অসীম',
 'protect-cascade'             => 'এই পাতায় অন্তর্ভুক্ত পাতাগুলিও সুরক্ষিত করা হোক (প্রপাতাকার সুরক্ষা)',
 'protect-cantedit'            => 'আপনি এই পাতার সুরক্ষার স্তর পরিবর্তন করতে পারবেন না, কারণ আপনার তা সম্পাদনা করার অনুমতি নেই।',
 'protect-othertime'           => 'অন্য সময়:',
 'protect-othertime-op'        => 'অন্য সময়',
+'protect-otherreason-op'      => 'অন্য কারণ',
+'protect-dropdown'            => '*সুরক্ষার প্রচলিত কারণ
+** অতিরিক্ত ধ্বংসপ্রবণতা
+** অতিরিক্ত অর্থহীন বিষয়বস্তু প্রবেশ করানো
+** পাল্টা-গঠনমূলক সম্পাদনা যুদ্ধ
+** বেশি মাত্রায় প্রদর্শনকৃত পাতা',
+'protect-edit-reasonlist'     => 'সম্পাদনা সুরক্ষার কারণ',
 'protect-expiry-options'      => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাস:1 month,৩ মাস:3 months,৬ মাস:6 months,১ বছর:1 year,অসীম:infinite',
 'restriction-type'            => 'অনুমতি:',
 'restriction-level'           => 'বাধার স্তর:',
@@ -1982,6 +2013,7 @@ $1',
 'allmessagestext'             => 'নিচে মিডিয়াউইকি: নামস্থানে অন্তর্ভুক্ত সিস্টেম বার্তাগুলোর তালিকা দেওয়া হল।
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB'   => "'''{{ns:special}}:Allmessages''' ব্যবহার করা যাবে না কারণ '''\$wgUseDatabaseMessages''' বন্ধ করে রাখা আছে।",
+'allmessages-filter-legend'   => 'ছাকনী',
 'allmessages-filter-all'      => 'সমস্ত',
 'allmessages-filter-modified' => 'পরিবর্তিত',
 'allmessages-language'        => 'ভাষা:',
@@ -2016,7 +2048,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'importcantopen'             => 'আমদানি ফাইল খোলা যায়নি',
 'importbadinterwiki'         => 'খারাপ আন্তঃউইকি সংযোগ',
 'importnotext'               => 'খালি বা কোন টেক্সট নেই',
-'importsuccess'              => 'আমদানি সফল!',
+'importsuccess'              => 'ইম্পোর্ট সফল!',
 'importhistoryconflict'      => 'পরস্পর-বিরোধী ইতিহাস সংশোধন বিদ্যমান (এই পাতাটি সম্ভবত আগেও আমদানি করা হয়েছে)',
 'importnosources'            => 'কোন আন্তঃউইকি আমদানি উৎস সংজ্ঞায়িত করা হয়নি এবং সরাসরি ইতিহাস আপলোডের ক্ষমতা নিষ্ক্রিয় করা হয়েছে।',
 'importnofile'               => 'কোন আমদানি ফাইল আপলোড করা হয়নি।',
@@ -2508,6 +2540,7 @@ $1',
 $3
 
 যদি আপনি এই ব্যক্তি *না* হন, তবে সংযোগটি অনুসরণ করবেন না। $4-এ নিশ্চিতকরণ কোডটি মেয়াদোত্তীর্ণ হয়ে যাবে।',
+'invalidateemail'         => 'ইমেইল নিশ্চিতকরণ বাতিল করুন',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[আন্তঃউইকি আন্তঃভুক্তি নিষ্ক্রিয়]',
@@ -2613,6 +2646,7 @@ $1',
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'ফাইলনাম:',
 'fileduplicatesearch-submit'   => 'অনুসন্ধান',
+'fileduplicatesearch-info'     => '$1 × $2 পিক্সেল<br />ফাইলের আকার: $3<br />এমআইএমই প্রকার: $4',
 
 # Special:SpecialPages
 'specialpages'                   => 'বিশেষ পাতাসমূহ',
@@ -2637,11 +2671,23 @@ $1',
 'intentionallyblankpage' => 'এই পাতাটি ইচ্ছা করে খালি রাখা হয়েছে',
 
 # Special:Tags
-'tags-title' => 'ট্যাগসমূহ',
-'tags-edit'  => 'সম্পাদনা',
+'tag-filter-submit' => 'ছাকনী',
+'tags-title'        => 'ট্যাগসমূহ',
+'tags-edit'         => 'সম্পাদনা',
+
+# Database error messages
+'dberr-header' => 'এই উইকিতে কোন সমস্যা রয়েছে',
 
 # HTML forms
 'htmlform-submit'              => 'জমা দাও',
 'htmlform-selectorother-other' => 'অন্য',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'বিষয়শ্রেণী যোগ',
+'ajax-add-category-submit'     => 'যোগ',
+'ajax-confirm-save'            => 'সংরক্ষণ',
+'ajax-add-category-summary'    => '"$1" বিষয়শ্রেণী যোগ',
+'ajax-remove-category-summary' => '"$1" বিষয়শ্রেণী অপসারণ',
+'ajax-error-dismiss'           => 'ঠিক আছে',
 
 );

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ainali
  * @author Boivie
  * @author Fluff
  * @author GameOn
@@ -1385,25 +1386,26 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'prefs-diffs'                   => 'Skillnader',
 
 # User rights
-'userrights'                  => 'Hantering av användarrättigheter',
-'userrights-lookup-user'      => 'Hantera användargrupper',
-'userrights-user-editname'    => 'Skriv in ett användarnamn:',
-'editusergroup'               => 'Ändra användargrupper',
-'editinguser'                 => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Ändra användargrupper',
-'saveusergroups'              => 'Spara användargrupper',
-'userrights-groupsmember'     => 'Medlem i:',
-'userrights-groups-help'      => 'Du kan ändra vilka grupper denna användare är medlem i.
+'userrights'                   => 'Hantering av användarrättigheter',
+'userrights-lookup-user'       => 'Hantera användargrupper',
+'userrights-user-editname'     => 'Skriv in ett användarnamn:',
+'editusergroup'                => 'Ändra användargrupper',
+'editinguser'                  => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Ändra användargrupper',
+'saveusergroups'               => 'Spara användargrupper',
+'userrights-groupsmember'      => 'Medlem i:',
+'userrights-groupsmember-auto' => 'Implicit medlem av:',
+'userrights-groups-help'       => 'Du kan ändra vilka grupper denna användare är medlem i.
 * En ikryssad ruta betyder användaren är medlem i den gruppen.
 * En okryssad ruta betyder att användaren inte är medlem i den gruppen.
 * En asterisk (*) markerar att du inte kan ta bort gruppen när du har lagt till den, eller vice versa.',
-'userrights-reason'           => 'Anledning:',
-'userrights-no-interwiki'     => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
-'userrights-nodatabase'       => 'Databasen $1 finns inte eller så är den inte lokal.',
-'userrights-nologin'          => 'Du måste [[Special:UserLogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
-'userrights-notallowed'       => 'Ditt konto har inte behörighet till att ändra användarrättigheter.',
-'userrights-changeable-col'   => 'Grupper du kan ändra',
-'userrights-unchangeable-col' => 'Grupper du inte kan ändra',
+'userrights-reason'            => 'Anledning:',
+'userrights-no-interwiki'      => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
+'userrights-nodatabase'        => 'Databasen $1 finns inte eller så är den inte lokal.',
+'userrights-nologin'           => 'Du måste [[Special:UserLogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
+'userrights-notallowed'        => 'Ditt konto har inte behörighet till att ändra användarrättigheter.',
+'userrights-changeable-col'    => 'Grupper du kan ändra',
+'userrights-unchangeable-col'  => 'Grupper du inte kan ändra',
 
 # Groups
 'group'               => 'Grupp:',
@@ -2515,6 +2517,7 @@ därför bör du vara säker på att du förstår konsekvenserna innan du forts�
 
 I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'movearticle'                  => 'Flytta sidan:',
+'moveuserpage-warning'         => "'''Varning:''' Du håller på att flytta en användarsida. Observera att endast sidan kommer att flyttas och att användaren ''inte'' kommer att byta namn.",
 'movenologin'                  => 'Inte inloggad',
 'movenologintext'              => 'För att flytta en sida måste du vara registrerad användare och [[Special:UserLogin|inloggad]].',
 'movenotallowed'               => 'Du har inte behörighet att flytta sidor på den här wikin.',

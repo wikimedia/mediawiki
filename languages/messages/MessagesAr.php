@@ -2291,7 +2291,7 @@ PICT # متنوع
 'enotif_impersonal_salutation' => 'مستخدم {{SITENAME}}',
 'changed'                      => 'غُيّرت',
 'created'                      => 'أنشئت',
-'enotif_subject'               => 'صفحة {{SITENAME}} $PAGETITLE تم $CHANGEDORCREATED بواسطة $PAGEEDITOR',
+'enotif_subject'               => 'صفحة {{SITENAME}} $PAGETITLE $CHANGEDORCREATED بواسطة $PAGEEDITOR',
 'enotif_lastvisited'           => 'انظر $1 لكل التغييرات منذ زيارتك الأخيرة.',
 'enotif_lastdiff'              => 'انظر $1 لرؤية هذا التغيير.',
 'enotif_anon_editor'           => 'مستخدم مجهول $1',

@@ -2134,7 +2134,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect-othertime-op'        => 'annen tid',
 'protect-existing-expiry'     => 'Gjeldende utløpstid: $3 $2',
 'protect-otherreason'         => 'Annen/utdypende grunn:',
-'protect-otherreason-op'      => 'Annen/utdypende grunn',
+'protect-otherreason-op'      => 'Annen grunn',
 'protect-dropdown'            => '*Vanlige låsingsårsaker
 ** Gjentatt hærverk
 ** Gjentatt spam

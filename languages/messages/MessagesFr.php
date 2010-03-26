@@ -717,7 +717,7 @@ Veuillez essayer de nouveau dans quelques minutes.',
 'protectedpagetext'    => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext'       => 'Vous pouvez voir et copier le contenu de la page :',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
-'editinginterface'     => "'''Attention :''' vous êtes en train d’éditer une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d’internationalisation des messages [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
+'editinginterface'     => "'''Attention :''' vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d’internationalisation des messages [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
 'sqlhidden'            => '(Requête SQL cachée)',
 'cascadeprotected'     => 'Cette page est actuellement protégée car elle est incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée{{PLURAL:$1||s}} avec l’option « protection en cascade » activée :
 $2',
@@ -943,8 +943,8 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant sur le bouton ''Actualiser'' (''Reload'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ;
 '''Internet Explorer / Opera :''' maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS avant de l’enregistrer.",
-'userjsyoucanpreview'              => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille JS avant de l’enregistrer.",
+'usercssyoucanpreview'             => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille CSS avant de l’enregistrer.",
+'userjsyoucanpreview'              => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille JS avant de l’enregistrer.",
 'usercsspreview'                   => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''
 '''Elle n’a pas encore été enregistrée !'''",
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
@@ -1278,8 +1278,8 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searchall'                        => 'tout',
 'showingresults'                   => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du #<b>$2</b>.',
 'showingresultsnum'                => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du #<b>$2</b>.',
-'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1'''|Resultats '''$1–$2'''}} de '''$3''' pour '''$4'''",
-'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont recherchés par défaut.
+'showingresultsheader'             => "{{PLURAL:$5|Résultat '''$1'''|Résultats '''$1–$2'''}} de '''$3''' pour '''$4'''",
+'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont fouillés par défaut.
 Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (y compris les pages de discussion, les modèles, etc.) ou bien utilisez l’espace de noms souhaité comme préfixe.",
 'search-nonefound'                 => 'Il n’y a aucun résultat correspondant à la requête.',
 'powersearch'                      => 'Rechercher',
@@ -1660,11 +1660,11 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 Ceci peut être dû à une erreur dans le nom du fichier.
 Veuillez vérifier que vous désirez vraiment téléverser ce fichier.',
 'fileexists'                  => "Un fichier existe déjà sous ce nom.
-Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n'êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
+Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n’êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
 [[$1|thumb]]",
 'filepageexists'              => "La page de description pour ce fichier a déjà été créée ici '''<tt>[[:$1]]</tt>''', mais aucun fichier n’existe actuellement sous ce nom.
-Le résumé que vous allez spécifier n'apparaîtra pas sur la page de description.
-Pour le faire, vous devrez modifier manuellement la page. [[$1|thumb]]",
+Le résumé que vous allez spécifier n’apparaîtra pas sur la page de description.
+Pour que ce soit le cas, vous devrez modifier manuellement la page. [[$1|thumb]]",
 'fileexists-extension'        => "Un fichier existe avec un nom proche : [[$2|thumb]]
 * Nom du fichier à téléverser : '''<tt>[[:$1]]</tt>'''
 * Nom du fichier existant : '''<tt>[[:$2]]</tt>'''
@@ -1819,7 +1819,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'sharedupload-desc-there'           => 'Ce fichier provient de $1 et peut être utilisé par d’autres projets. Voyez [$2 sa page de description] pour plus d’informations.',
 'sharedupload-desc-here'            => 'Ce fichier provient de $1 et peut être utilisé par d’autres projets. Sa [$2 page de description] est affichée ci-dessous.',
 'filepage-nofile'                   => 'Aucun fichier de ce nom existe.',
-'filepage-nofile-link'              => "Aucun fichier de ce nom n'existe, mais vous pouvez [$1 en téléverser un].",
+'filepage-nofile-link'              => 'Aucun fichier de ce nom n’existe, mais vous pouvez [$1 en téléverser un].',
 'uploadnewversion-linktext'         => 'Téléverser une nouvelle version de ce fichier',
 'shared-repo-from'                  => 'de $1',
 'shared-repo'                       => 'un dépôt partagé',
@@ -2518,7 +2518,7 @@ Veuillez contacter votre fournisseur d’accès Internet ou votre support techni
 'sorbs_create_account_reason'     => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.
 Vous ne pouvez pas créer un compte.',
 'cant-block-while-blocked'        => 'Vous ne pouvez pas bloquer d’autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.',
-'cant-see-hidden-user'            => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N'ayant pas le droit hideuser, vous ne pouvez pas voir ou modifier le blocage de l’utilisateur.",
+'cant-see-hidden-user'            => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N’ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base de données',
@@ -3274,9 +3274,9 @@ confirmation de votre adresse courriel :
 $5
 
 Ce code de confirmation expirera le $4.',
-'confirmemail_body_changed' => "Quelqu’un, probablement vous, à partir de l’adresse IP $1,
-a modifié l'adresse de courriel associée au compte « $2 » de {{SITENAME}}
-à cette adresse.
+'confirmemail_body_changed' => 'Quelqu’un, probablement vous, à partir de l’adresse IP $1,
+a modifié l’adresse de courriel associée au compte « $2 » de {{SITENAME}}
+en cette adresse.
 
 Pour confirmer que ce compte vous appartient vraiment et afin
 de réactiver les fonctions de messagerie sur {{SITENAME}},
@@ -3290,7 +3290,7 @@ confirmation de votre adresse courriel :
 
 $5
 
-Ce code de confirmation expirera le $4.",
+Ce code de confirmation expirera le $4.',
 'confirmemail_invalidated'  => 'Confirmation de l’adresse courriel annulée',
 'invalidateemail'           => 'Annuler la confirmation de l’adresse de courriel',
 
