@@ -132,8 +132,8 @@ class FSRepo extends FileRepo {
 	/**
 	 * Store a batch of files
 	 *
-	 * @param array $triplets (src,zone,dest) triplets as per store()
-	 * @param integer $flags Bitwise combination of the following flags:
+	 * @param $triplets Array: (src,zone,dest) triplets as per store()
+	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::DELETE_SOURCE     Delete the source file after upload
 	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
 	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
@@ -267,8 +267,8 @@ class FSRepo extends FileRepo {
 	/**
 	 * Checks existence of specified array of files.
 	 *
-	 * @param array $files URLs of files to check
-	 * @param integer $flags Bitwise combination of the following flags:
+	 * @param $files Array: URLs of files to check
+	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::FILES_ONLY     Mark file as existing only if it is a file (not directory)
 	 * @return Either array of files and existence flags, or false
 	 */
@@ -307,9 +307,9 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Pick a random name in the temp zone and store a file to it.
-	 * @param string $originalName The base name of the file as specified
+	 * @param $originalName String: the base name of the file as specified
 	 *     by the user. The file extension will be maintained.
-	 * @param string $srcPath The current location of the file.
+	 * @param $srcPath String: the current location of the file.
 	 * @return FileRepoStatus object with the URL in the value.
 	 */
 	function storeTemp( $originalName, $srcPath ) {
@@ -325,8 +325,8 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Remove a temporary file or mark it for garbage collection
-	 * @param string $virtualUrl The virtual URL returned by storeTemp
-	 * @return boolean True on success, false on failure
+	 * @param $virtualUrl String: the virtual URL returned by storeTemp
+	 * @return Boolean: true on success, false on failure
 	 */
 	function freeTemp( $virtualUrl ) {
 		$temp = "mwrepo://{$this->name}/temp";
@@ -343,8 +343,8 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Publish a batch of files
-	 * @param array $triplets (source,dest,archive) triplets as per publish()
-	 * @param integer $flags Bitfield, may be FileRepo::DELETE_SOURCE to indicate
+	 * @param $triplets Array: (source,dest,archive) triplets as per publish()
+	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source files should be deleted if possible
 	 */
 	function publishBatch( $triplets, $flags = 0 ) {
@@ -454,7 +454,7 @@ class FSRepo extends FileRepo {
 	 * If no valid deletion archive is configured, this may either delete the
 	 * file or throw an exception, depending on the preference of the repository.
 	 *
-	 * @param array $sourceDestPairs Array of source/destination pairs. Each element
+	 * @param $sourceDestPairs Array of source/destination pairs. Each element
 	 *        is a two-element array containing the source file path relative to the
 	 *        public root in the first element, and the archive file path relative
 	 *        to the deleted zone root in the second element.
@@ -615,7 +615,7 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Chmod a file, supressing the warnings.
-	 * @param String $path The path to change
+	 * @param $path String: the path to change
 	 */
 	protected function chmod( $path ) {
 		wfSuppressWarnings();

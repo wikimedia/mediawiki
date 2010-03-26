@@ -71,7 +71,7 @@ class LocalRepo extends FSRepo {
 	/**
 	 * Checks if there is a redirect named as $title
 	 *
-	 * @param Title $title Title of image
+	 * @param $title Title of file
 	 */
 	function checkRedirect( $title ) {
 		global $wgMemc;
@@ -189,8 +189,8 @@ class LocalRepo extends FSRepo {
 	/**
 	 * Invalidates image redirect cache related to that image
 	 *
-	 * @param Title $title Title of image
-	 */	
+	 * @param $title Title of page
+	 */
 	function invalidateImageRedirect( $title ) {
 		global $wgMemc;
 		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );

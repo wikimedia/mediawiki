@@ -65,7 +65,7 @@ class ForeignDBRepo extends LocalRepo {
 	function publish( $srcPath, $dstRel, $archiveRel, $flags = 0 ) {
 		throw new MWException( get_class($this) . ': write operations are not supported' );
 	}
-	function deleteBatch( $fileMap ) {
+	function deleteBatch( $sourceDestPairs ) {
 		throw new MWException( get_class($this) . ': write operations are not supported' );
 	}
 }

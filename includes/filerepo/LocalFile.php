@@ -747,7 +747,8 @@ class LocalFile extends File {
 	 * @param $props Array: File properties, if known. This can be used to reduce the
 	 *               upload time when uploading virtual URLs for which the file info
 	 *               is already known
-	 * @param string $timestamp Timestamp for img_timestamp, or false to use the current time
+	 * @param $timestamp String: timestamp for img_timestamp, or false to use the current time
+	 * @param $user Mixed: User object or null to use $wgUser
 	 *
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
@@ -954,7 +955,7 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param $sourcePath String: local filesystem path to the source image
+	 * @param $srcPath String: local filesystem path to the source image
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move
 	 *         rather than copy

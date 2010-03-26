@@ -73,7 +73,7 @@ class OldLocalFile extends LocalFile {
 	 * @param $title Title
 	 * @param $repo FileRepo
 	 * @param $time String: timestamp or null to load by archive name
-	 * @param $archiveNameString: archive name or null to load by timestamp
+	 * @param $archiveName String: archive name or null to load by timestamp
 	 */
 	function __construct( $title, $repo, $time, $archiveName ) {
 		parent::__construct( $title, $repo );
