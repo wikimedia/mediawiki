@@ -19,7 +19,7 @@ function wfSpecialIpblocklist( $ip = '' ) {
 
 	$ipu = new IPUnblockForm( $ip, $id, $reason );
 
-	if( $action == 'unblock' ) {
+	if( $action == 'unblock' || $action == 'submit' && $wgRequest->wasPosted() ) {
 		# Check permissions
 		if( !$wgUser->isAllowed( 'block' ) ) {
 			$wgOut->permissionRequired( 'block' );
@@ -30,22 +30,40 @@ function wfSpecialIpblocklist( $ip = '' ) {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		# Show unblock form
-		$ipu->showForm( '' );
-	} elseif( $action == 'submit' && $wgRequest->wasPosted()
-		&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-		# Check permissions
-		if( !$wgUser->isAllowed( 'block' ) ) {
-			$wgOut->permissionRequired( 'block' );
-			return;
+	
+		# bug 15810: blocked admins should have limited access here
+		if( $wgUser->isBlocked() ){
+			if( $id ){
+				# This doesn't pick up on autoblocks, but admins
+				# should have the ipblock-exempt permission anyway
+				$block = Block::newFromID( $id );
+				$user = User::newFromName( $block->mAddress );
+			} else {
+				$user = User::newFromName( $ip );
+			}
+			if( $user instanceof User
+				&& $user->getId() == $wgUser->getId() )
+			{
+				# User is trying to unblock themselves
+				if( !$wgUser->isAllowed( 'unblockself' ) ){
+					throw new ErrorPageError( 'badaccess', 'ipbnounblockself' );
+				}
+			} else {
+				# User is trying to block/unblock someone else
+				throw new ErrorPageError( 'badaccess', 'ipbblocked' );
+			}
 		}
-		# Check for database lock
-		if( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
+		if( $action == 'unblock' ){
+			# Show unblock form
+			$ipu->showForm( '' );
+		} elseif( $action == 'submit' 
+			&& $wgRequest->wasPosted()
+			&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) 
+		{
+			# Remove blocks and redirect user to success page
+			$ipu->doSubmit();
 		}
-		# Remove blocks and redirect user to success page
-		$ipu->doSubmit();
+		
 	} elseif( $action == 'success' ) {
 		# Inform the user of a successful unblock
 		# (No need to check permissions or locks here,

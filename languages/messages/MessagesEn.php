@@ -1904,6 +1904,7 @@ You can also choose to let others contact you through your user or talk page wit
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-versiondetail'         => 'Show the extended software version information',
 'right-sendemail'             => 'Send e-mail to other users',
+'right-unblockself'           => 'Unblock themselves',
 
 # User rights log
 'rightslog'      => 'User rights log',
@@ -2999,6 +3000,8 @@ You cannot create an account',
 'cant-block-while-blocked'        => 'You cannot block other users while you are blocked.',
 'cant-see-hidden-user'            => "The user you are trying to block has already been blocked and hidden.
 Since you do not have the hideuser right, you cannot see or edit the user's block.",
+'ipbblocked'                      => 'You cannot block or unblock other users, because you are yourself blocked',
+'ipbnounblockself'                => 'You are not allowed to unblock yourself',
 
 # Developer tools
 'lockdb'              => 'Lock database',

@@ -2495,6 +2495,8 @@ Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking o
 'blockme'                      => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'sorbs'                        => '{{optional}}',
 'cant-see-hidden-user'         => 'Used as (red) error message on Special:Block when you try to change (as sysop w/o the hideuser right) the block of a hidden user.',
+'ipbblocked'                   => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
+'ipbnounblockself'             => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themselves.',
 
 # Developer tools
 'lockdb'              => 'The title of the special page [[Special:LockDB]].
