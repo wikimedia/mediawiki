@@ -2273,7 +2273,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'وقت آخر',
 'protect-existing-expiry'     => 'تاريخ الانتهاء الموجود: $3، $2',
 'protect-otherreason'         => 'سبب آخر/إضافى:',
-'protect-otherreason-op'      => 'سبب آخر/إضافى',
+'protect-otherreason-op'      => 'سبب تانى',
 'protect-dropdown'            => '*أسباب الحماية الشايعة
 ** تخريب شديد
 ** سبام شديد

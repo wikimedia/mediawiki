@@ -483,6 +483,7 @@ Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt 
 'newpassword'               => 'Jaunā parole',
 'retypenew'                 => 'Atkārto jauno paroli',
 'resetpass-submit-loggedin' => 'Mainīt paroli',
+'resetpass-submit-cancel'   => 'Atcelt',
 'resetpass-wrong-oldpass'   => 'Nepareiza pagaidu vai galvenā parole.
 Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis jaunu pagaidu paroli.',
 'resetpass-temp-password'   => 'Pagaidu parole:',

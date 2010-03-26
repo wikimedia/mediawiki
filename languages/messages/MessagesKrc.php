@@ -1303,7 +1303,7 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'rc-enhanced-hide'                  => 'Къошакъланы джашыр',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Байламлы тюрлендириуле',
+'recentchangeslinked'          => 'Байламлы тюрлениуле',
 'recentchangeslinked-feed'     => 'Байламлы тюрлендириуле',
 'recentchangeslinked-toolbox'  => 'Байламлы тюрлендириуле',
 'recentchangeslinked-title'    => '$1 бет бла байламлы тюрлендириуле',
