@@ -2274,7 +2274,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  */
 function wfEmptyMsg( $key ) {
 	global $wgMessageCache;
-	return $wgMessageCache->get( $key ) === false;
+	return $wgMessageCache->get( $key, /*useDB*/true, /*content*/false ) === false;
 }
 
 /**
