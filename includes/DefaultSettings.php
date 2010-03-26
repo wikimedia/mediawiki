@@ -1462,6 +1462,7 @@ $wgGroupPermissions['sysop']['browsearchive']    = true;
 $wgGroupPermissions['sysop']['noratelimit']      = true;
 $wgGroupPermissions['sysop']['versiondetail']    = true;
 $wgGroupPermissions['sysop']['movefile']         = true;
+$wgGroupPermissions['sysop']['unblockself']      = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
 // Permission to change users' group assignments
