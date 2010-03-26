@@ -1704,14 +1704,16 @@ INPUTS
 		}
 	}
 
+	/**
+	 * Give a chance for site and per-namespace customizations of
+	 * terms of service summary link that might exist separately
+	 * from the copyright notice.
+	 * 
+	 * This will display between the save button and the edit tools,
+	 * so should remain short!
+	 */
 	protected function showTosSummary() {
 		$msg = 'editpage-tos-summary';
-		// Give a chance for site and per-namespace customizations of
-		// terms of service summary link that might exist separately
-		// from the copyright notice.
-		//
-		// This will display between the save button and the edit tools,
-		// so should remain short!
 		wfRunHooks( 'EditPageTosSummary', array( $this->mTitle, &$msg ) );
 		$text = wfMsg( $msg );
 		if( !wfEmptyMsg( $msg, $text ) && $text !== '-' ) {
