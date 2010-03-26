@@ -64,6 +64,21 @@ class ApiBlock extends ApiBase {
 		if ( !$wgUser->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( array( 'cantblock' ) );
 		}
+		# bug 15810: blocked admins should have limited access here
+		if( $wgUser->isBlocked() ){
+			$user = User::newFromName( $params['user'] );
+			if( $user instanceof User
+				&& $user->getId() == $wgUser->getId() )
+			{
+				# User is trying to unblock themselves
+				if( !$wgUser->isAllowed( 'unblockself' ) ){
+					$this->dieUsageMsg( array( 'ipbnounblockself' ) );
+				}
+			} else {
+				# User is trying to block/unblock someone else
+				$this->dieUsageMsg( array( 'ipbblocked' ) );
+			}
+		}
 		if ( $params['hidename'] && !$wgUser->isAllowed( 'hideuser' ) ) {
 			$this->dieUsageMsg( array( 'canthide' ) );
 		}
@@ -172,6 +187,8 @@ class ApiBlock extends ApiBase {
 			array( 'cantblock' ),
 			array( 'canthide' ),
 			array( 'cantblock-email' ),
+			array( 'ipbblocked' ),
+			array( 'ipbnounblockself' ),
 		) );
 	}
 	
