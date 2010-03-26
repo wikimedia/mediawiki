@@ -24,6 +24,22 @@ function wfSpecialBlockip( $par ) {
 	}
 
 	$ipb = new IPBlockForm( $par );
+	
+	# bug 15810: blocked admins should have limited access here
+	if( $wgUser->isBlocked() ){
+		$user = User::newFromName( $ipb->BlockAddress );
+		if( $user instanceof User
+			&& $user->getId() == $wgUser->getId() )
+		{
+			# User is trying to unblock themselves
+			if( !$wgUser->isAllowed( 'unblockself' ) ){
+				throw new ErrorPageError( 'badaccess', 'ipbnounblockself' );
+			}
+		} else {
+			# User is trying to block/unblock someone else
+			throw new ErrorPageError( 'badaccess', 'ipbblocked' );
+		}
+	}
 
 	$action = $wgRequest->getVal( 'action' );
 	if( 'success' == $action ) {

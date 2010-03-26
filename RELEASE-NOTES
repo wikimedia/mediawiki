@@ -58,6 +58,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22903) Revdelete log entries now show in the user preferred language.
 * (bug 22905) Correctly handle <abbr> followed by ISBN
 * (bug 22940) Namespace aliases pointing to main namespace don't work
+* (bug 15810) blocked admins can no longer block/unblock other users, nor
+  themselves unless they are given the 'unblockself' permission.
 
 == API changes in 1.17 ==
 * (bug 22738) Allow filtering by action type on query=logevent

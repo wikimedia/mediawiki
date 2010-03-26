@@ -1078,6 +1078,7 @@ $wgMessageStructure = array(
 		'right-override-export-depth',
 		'right-versiondetail',
 		'right-sendemail',
+		'right-unblockself',
 	),
 	'rightslog' => array(
 		'rightslog',
@@ -2013,7 +2014,9 @@ $wgMessageStructure = array(
 		'sorbsreason',
 		'sorbs_create_account_reason',
 		'cant-block-while-blocked',
-		'cant-see-hidden-user'
+		'cant-see-hidden-user',
+		'ipbblocked',
+		'ipbnounblockself',
 	),
 	'developertools' => array(
 		'lockdb',
