@@ -34,7 +34,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @return string Destination file path (local filesystem)
+	 * @return String: destination file path (local filesystem)
 	 */
 	function getPath() {
 		return $this->path;
@@ -43,7 +43,7 @@ abstract class MediaTransformOutput {
 	/**
 	 * Fetch HTML for this transform output
 	 *
-	 * @param array $options Associative array of options. Boolean options
+	 * @param $options Associative array of options. Boolean options
 	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *
@@ -103,9 +103,14 @@ abstract class MediaTransformOutput {
  * @ingroup Media
  */
 class ThumbnailImage extends MediaTransformOutput {
+
 	/**
-	 * @param string $path Filesystem path to the thumb
-	 * @param string $url URL path to the thumb
+	 * @param $file File object
+	 * @param $url String: URL path to the thumb
+	 * @param $width Integer: file's width
+	 * @param $height Integer: file's height
+	 * @param $path String: filesystem path to the thumb
+	 * @param $page Integer: page number, for multipage files
 	 * @private
 	 */
 	function ThumbnailImage( $file, $url, $width, $height, $path = false, $page = false ) {
@@ -124,7 +129,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * Return HTML <img ... /> tag for the thumbnail, will include
 	 * width and height attributes and a blank alt text (as required).
 	 *
-	 * @param array $options Associative array of options. Boolean options
+	 * @param $options Associative array of options. Boolean options
 	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *
@@ -133,7 +138,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     desc-link    Boolean, show a description link
 	 *     file-link    Boolean, show a file download link
 	 *     valign       vertical-align property, if the output is an inline element
-	 *     img-class    Class applied to the <img> tag, if there is such a tag
+	 *     img-class    Class applied to the \<img\> tag, if there is such a tag
 	 *     desc-query   String, description link query params
 	 *     custom-url-link    Custom URL to link to
 	 *     custom-title-link  Custom Title object to link to
@@ -142,7 +147,6 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * sounds and videos, they may be displayed in other ways.
 	 *
 	 * @return string
-	 * @public
 	 */
 	function toHtml( $options = array() ) {
 		if ( count( func_get_args() ) == 2 ) {
