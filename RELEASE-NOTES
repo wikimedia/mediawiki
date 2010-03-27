@@ -60,6 +60,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22940) Namespace aliases pointing to main namespace don't work
 * (bug 15810) blocked admins can no longer block/unblock other users, nor
   themselves unless they are given the 'unblockself' permission.
+* (bug 22876) Avoid possible PHP Notice if $wgDefaultUserOptions is not
+  correctly set
 
 == API changes in 1.17 ==
 * (bug 22738) Allow filtering by action type on query=logevent
