@@ -32,8 +32,8 @@ function wfSpecialIpblocklist( $ip = '' ) {
 		}
 	
 		# bug 15810: blocked admins should have limited access here
-		if( $wgUser->isBlocked() ){
-			if( $id ){
+		if ( $wgUser->isBlocked() ) {
+			if ( $id ) {
 				# This doesn't pick up on autoblocks, but admins
 				# should have the ipblock-exempt permission anyway
 				$block = Block::newFromID( $id );
@@ -42,9 +42,9 @@ function wfSpecialIpblocklist( $ip = '' ) {
 				$user = User::newFromName( $ip );
 			}
 			$status = IPBlockForm::checkUnblockSelf( $user );
-			if( $status !== true ){
+			if ( $status !== true ) {
 				throw new ErrorPageError( 'badaccess', $status );
-			} 
+			}
 		}
 		
 		if( $action == 'unblock' ){
