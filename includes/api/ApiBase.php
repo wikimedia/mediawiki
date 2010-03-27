@@ -538,24 +538,20 @@ abstract class ApiBase {
 	protected function getWatchlistValue ( $watchlist, $titleObj ) {
 		switch ( $watchlist ) {
 			case 'watch':
-				$watch = true;
-				break;
+				return true;
 			case 'unwatch':
-				$watch = false;
-				break;
-			case 'preferences':
-				global $wgUser;
-			
+				return false;
+			case 'preferences':			
 				if ( $titleObj->exists() ) {
-					$watch = $wgUser->getOption( 'watchdefault' ) || $titleObj->userIsWatching();
+					global $wgUser;
+				
+					return ($wgUser->getOption( 'watchdefault' ) || $titleObj->userIsWatching());
 				}
-				break;
+				return false;
 			case 'nochange':
 			default:
-				$watch = $titleObj->userIsWatching();
+				return $titleObj->userIsWatching();
 		}
-		
-		return $watch;
 	}
 
 	/**

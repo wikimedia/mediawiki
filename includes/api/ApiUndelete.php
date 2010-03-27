@@ -86,7 +86,7 @@ class ApiUndelete extends ApiBase {
 		
 		if ( $params['watch'] || $watch ) {
 			$wgUser->addWatch( $titleObj );
-		} else if ( !$watch ) {
+		} else {
 			$wgUser->removeWatch( $titleObj );
 		}
 
