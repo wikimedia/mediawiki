@@ -1054,6 +1054,7 @@ $wgMessageStructure = array(
 		'right-hideuser',
 		'right-ipblock-exempt',
 		'right-proxyunbannable',
+		'right-unblockself',
 		'right-protect',
 		'right-editprotected',
 		'right-editinterface',
@@ -1078,7 +1079,6 @@ $wgMessageStructure = array(
 		'right-override-export-depth',
 		'right-versiondetail',
 		'right-sendemail',
-		'right-unblockself',
 	),
 	'rightslog' => array(
 		'rightslog',

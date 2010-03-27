@@ -1880,6 +1880,7 @@ You can also choose to let others contact you through your user or talk page wit
 'right-hideuser'              => 'Block a username, hiding it from the public',
 'right-ipblock-exempt'        => 'Bypass IP blocks, auto-blocks and range blocks',
 'right-proxyunbannable'       => 'Bypass automatic blocks of proxies',
+'right-unblockself'           => 'Unblock themselves',
 'right-protect'               => 'Change protection levels and edit protected pages',
 'right-editprotected'         => 'Edit protected pages (without cascading protection)',
 'right-editinterface'         => 'Edit the user interface',
@@ -1904,7 +1905,6 @@ You can also choose to let others contact you through your user or talk page wit
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-versiondetail'         => 'Show the extended software version information',
 'right-sendemail'             => 'Send e-mail to other users',
-'right-unblockself'           => 'Unblock themselves',
 
 # User rights log
 'rightslog'      => 'User rights log',
