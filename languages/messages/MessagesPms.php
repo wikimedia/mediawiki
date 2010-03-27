@@ -1207,6 +1207,7 @@ Ti it peule ëdcò serne ëd lassé che j'àutri at contato al sël tò utent o 
 'right-hideuser'              => 'Bloché un nòm utent, stërmandlo al pùblich',
 'right-ipblock-exempt'        => "Scavalché i blòh ëd j'IP, ij blòch automàtich e ij blòch ëd range d'IP",
 'right-proxyunbannable'       => 'Scavalché ij blòch automatich dij proxy',
+'right-unblockself'           => 'Dësblochesse da soj',
 'right-protect'               => 'Cambié lìvel ëd protession e modifiché pàgine protegiùe',
 'right-editprotected'         => 'Modifiché pàgine protegiùe (sensa protession a cascada)',
 'right-editinterface'         => "Modifiché l'antërfacia utent",
@@ -2233,6 +2234,8 @@ It veule cambié le ampostassion?",
 'sorbs_create_account_reason'     => "Soa adrëssa IP a l'é listà coma arpetitor doèrt (open proxy) ansima al DNSBL dovrà da {{SITENAME}}. A peul nen creésse un cont.",
 'cant-block-while-blocked'        => 'It peule pa bloché àutri utent an mente it ses blocà.',
 'cant-see-hidden-user'            => "L'utent che të stas provand a bloché a l'é già stàit blocà e stërmà. Da già ch'it l'has pa ël drit hideuser, it peule pa vëdde o modifiché ël blòch ëd l'utent.",
+'ipbblocked'                      => 'It peule pa bloché o dësbloché àutri utent, përchè it ses blocà ti midem',
+'ipbnounblockself'                => 'It peule pa dësbloché ti midem',
 
 # Developer tools
 'lockdb'              => 'Blòca la base dat',

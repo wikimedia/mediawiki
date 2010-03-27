@@ -1288,6 +1288,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-hideuser'              => 'Wužywarske mě blokěrowaś a schowaś',
 'right-ipblock-exempt'        => 'Blokěrowanja IP, awtomatiske blokěrowanja a blokěrowanja wobcerkow se wobinuś',
 'right-proxyunbannable'       => 'Awtomatiske blokěrowanje proksyjow se wobinuś',
+'right-unblockself'           => 'Wótblokěrowaś se samogo',
 'right-protect'               => 'Šćitowe schójźeńki změniś a šćitane boki wobźěłaś',
 'right-editprotected'         => 'Šćitane boki wobźěłaś (bśez kaskadowego šćita)',
 'right-editinterface'         => 'Wužywański pówjerch wobźěłaś',
@@ -2279,6 +2280,8 @@ $1 jo južo zablokěrowany. Coš nastajenja změniś?',
 'sorbs_create_account_reason'     => 'Twója IP-adresa jo w DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} ako wócynjony proxy zapisana. Njejo móžno, nowe wužywarske konta załožowaś.',
 'cant-block-while-blocked'        => 'Njesmějoš žednych drugich wužywarjow blokěrowaś, mjaztym až ty sy blokěrowany.',
 'cant-see-hidden-user'            => 'Wužywaŕ, kótaregož wopytujoš blokěrowaś, jo južo zablokěrowany a schowany. Dokulaž njamaš pšawo wužywarja schowaś, njamóžoš blokěrowanje wužywarja wiźeś abo wobźěłaś.',
+'ipbblocked'                      => 'Njamóžoš drugich wužywarjow blokěrowaś abo wótblokěrowaś, dokulaž ty sam jo zablokěrowany',
+'ipbnounblockself'                => 'Njesmějoš se samogo wótblokěrowaś',
 
 # Developer tools
 'lockdb'              => 'Datowu banku zamknuś',

@@ -1494,6 +1494,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-hideuser'              => 'Bloquer un utilisateur en masquant son nom au public',
 'right-ipblock-exempt'        => 'Ne pas être affecté par les IP bloquées, les blocages automatiques et les blocages de plages d’IP',
 'right-proxyunbannable'       => 'Ne pas être affecté par les blocages automatiques de serveurs mandataires',
+'right-unblockself'           => 'Se débloquer eux-mêmes',
 'right-protect'               => 'Modifier le niveau de protection des pages et modifier les pages protégées',
 'right-editprotected'         => 'Modifier les pages protégées (sans protection en cascade)',
 'right-editinterface'         => 'Modifier l’interface utilisateur',
@@ -2519,6 +2520,8 @@ Veuillez contacter votre fournisseur d’accès Internet ou votre support techni
 Vous ne pouvez pas créer un compte.',
 'cant-block-while-blocked'        => 'Vous ne pouvez pas bloquer d’autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.',
 'cant-see-hidden-user'            => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N’ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
+'ipbblocked'                      => "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué",
+'ipbnounblockself'                => "Vous n'êtes pas autorisé à vous débloquer vous-même",
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base de données',

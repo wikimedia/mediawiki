@@ -1270,6 +1270,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-hideuser'              => 'E Benutzername sperre un verberge',
 'right-ipblock-exempt'        => 'Uusnahm vu IP-Sperrine, Autoblock und Rangesperre',
 'right-proxyunbannable'       => 'Uusnahm vu automatische Proxysperrine',
+'right-unblockself'           => 'Sich sälber entsperre',
 'right-protect'               => 'Syteschutzstatus ändere',
 'right-editprotected'         => 'Gschitzti Syte bearbeite (ohni Kaskadeschutz)',
 'right-editinterface'         => 'Benutzerinterface bearbeite',
@@ -2256,6 +2257,8 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'sorbs_create_account_reason'     => 'D IP-Adräss isch in dr DNSBL vu {{SITENAME}} as uffige PROXY glischtet. S Aalege vu neije Benutzer isch nit megli.',
 'cant-block-while-blocked'        => 'Du derfsch kei anderi Benutzer sperre, derwylscht Du sälber gsperrt bisch.',
 'cant-see-hidden-user'            => 'Dr Benutzer, wu Du versuechsch z sperre, isch scho gsperrt un versteckt wore. Du chasch d Sperri vu däm Benutzer nit säh oder bearbeite, wel du s „hideuser“-Rächt nit hesch.',
+'ipbblocked'                      => 'Du chasch keini andere Benutzer sperre oder entsperre, wel Du sälber gsperrt bisch',
+'ipbnounblockself'                => 'Du derfsch di nit sälber entsperre',
 
 # Developer tools
 'lockdb'              => 'D Datebank sperre',

@@ -76,11 +76,12 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'پیوندون جیر خط دأکشی بأوو',
-'tog-highlightbroken' => 'ناقص پیوندون قالب بندی<a href="" class="new">اینجوری</a>(امکان دیگه:اینجوری<a href="" class="internal">؟</a>).',
-'tog-justify'         => 'بندون ته‌موم چین هاکه‌رده‌ن',
-'tog-hideminor'       => 'نشون ندائن کچیک تغییرات تازه دگارسه‌ئون دله',
-'tog-hidepatrolled'   => 'جا بدائن دچی ینون پس بخرد تازه دگارسه‌ئون دله',
+'tog-underline'               => 'پیوندون جیر خط دأکشی بأوو',
+'tog-highlightbroken'         => 'ناقص پیوندون قالب بندی<a href="" class="new">اینجوری</a>(امکان دیگه:اینجوری<a href="" class="internal">؟</a>).',
+'tog-justify'                 => 'بندون ته‌موم چین هاکه‌رده‌ن',
+'tog-hideminor'               => 'نشون ندائن کچیک تغییرات تازه دگارسه‌ئون دله',
+'tog-hidepatrolled'           => 'جا بدائن دچی ینون پس بخرد تازه دگارسه‌ئون دله',
+'tog-editsectiononrightclick' => 'به کار دمبدائن دچیه‌ن قسمت‌ئون با راست کیلیک<br />عناوین قسمت‌ئون ِرو (جاوااسکریپت)',
 
 'underline-default' => 'مه چأرخ‌گأر ده‌لخاء',
 
@@ -644,6 +645,19 @@ $2، $1',
 'watchlistall2' => 'هـأمـه',
 'namespacesall' => 'هأمه',
 'monthsall'     => 'هـأمـه',
+
+# E-mail address confirmation
+'confirmemail_body_changed' => 'ات نفر، احتمالأ خاد شمِا، از نشونی آی‌پی $1 نشونی پوست ایلکتورونیک حیساب «$2» {{SITENAME}} ره تغییر هدائه.
+
+برای تایید این که این حیساب واقعاً شمه شه و فعال هکردن دبارهٔ ویژگی پوست ایلکتورونیک {{SITENAME}}، پیوند زیر دله ره شه مرورگر دله وا هکنین:
+
+$3
+
+اگه این حساب شه مه نی‌یه، پیوند زیر ره دنبال هکنین تا تغییر پوست ایلیکتورونیک ره لغو هکنین:
+
+$5
+
+این تایید یه در $4 منقضی وانه.',
 
 # Multipage image navigation
 'imgmultigo' => 'بور!',

@@ -1269,6 +1269,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-hideuser'              => "Atal enw defnyddiwr rhag i'r cyhoedd ei weld",
 'right-ipblock-exempt'        => 'Mynd heibio i flociau IP, blociau awtomatig a blociau amrediad',
 'right-proxyunbannable'       => 'Mynd heibio i flociau awtomatig gan weinyddion dirprwyol',
+'right-unblockself'           => 'Dad-flocio eu hunain',
 'right-protect'               => 'Newid lefelau diogelu a golygu tudalennau wedi eu diogelu',
 'right-editprotected'         => 'Golygu tudalennau sydd wedi eu diogelu (ond bod hebddynt ddiogelu sgydol)',
 'right-editinterface'         => "Golygu'r rhyngwyneb",
@@ -2274,6 +2275,8 @@ Ni allwch greu cyfrif.',
 'cant-block-while-blocked'        => 'Ni allwch flocio defnyddwyr eraill tra bod bloc arnoch chithau.',
 'cant-see-hidden-user'            => "Mae'r defnyddiwr yr ydych am ei flocio eisoes wedi ei flocio a'i guddio.
 Gan nad yw'r gallu \"hideuser\" gennych, ni allwch weld y bloc ar y defnyddiwr na'i olygu.",
+'ipbblocked'                      => 'Ni allwch flocio na dad-flocio defnyddwyr eraill, oherwydd eich bod chi eich hunan wedi eich blocio',
+'ipbnounblockself'                => "Nid yw'r gallu gennych i ddad-flocio'ch hunan",
 
 # Developer tools
 'lockdb'              => "Cloi'r databas",
