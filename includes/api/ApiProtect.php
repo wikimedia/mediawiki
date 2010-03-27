@@ -118,7 +118,7 @@ class ApiProtect extends ApiBase {
 		
 		if ( $params['watch'] || $watch ) {
 			$articleObj->doWatch();
-		} else if ( !$watch ) {
+		} else {
 			$articleObj->doUnwatch();
 		}
 
