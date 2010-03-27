@@ -1395,6 +1395,7 @@ $1",
 'right-hideuser'              => '사용자 이름을 차단하고 숨김',
 'right-ipblock-exempt'        => 'IP 차단, 자동 차단, 광역 차단을 무시',
 'right-proxyunbannable'       => '프록시 자동 차단을 우회',
+'right-unblockself'           => '자기 자신을 차단 해제하기',
 'right-protect'               => '보호 수준 변경 및 보호된 문서 편집',
 'right-editprotected'         => '보호된 문서 편집 (연쇄적 보호 제외)',
 'right-editinterface'         => '사용자 인터페이스를 편집',
@@ -2164,7 +2165,7 @@ $NEWPAGE
 'protect-othertime-op'        => '다른 기간',
 'protect-existing-expiry'     => '현재 만료 기간: $2 $3',
 'protect-otherreason'         => '다른 이유/추가적인 이유:',
-'protect-otherreason-op'      => '다른 이유/추가적인 이유',
+'protect-otherreason-op'      => '다른 이유',
 'protect-dropdown'            => '*일반적인 보호 이유
 ** 빈번한 훼손 행위
 ** 빈번한 광고 행위
@@ -2399,6 +2400,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'sorbs_create_account_reason'     => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다. 계정을 만들 수 없습니다.',
 'cant-block-while-blocked'        => '당신이 차단되어 있는 동안에는 다른 사용자를 차단할 수 없습니다.',
 'cant-see-hidden-user'            => '당신이 차단하려 하는 사용자는 이미 차단되었고 계정 숨김 처리되었습니다. 당신이 계정 숨기기 권한을 갖고 있지 않기 때문에, 이 사용자의 차단 기록을 보거나 차단 설정을 변경할 수 없습니다.',
+'ipbblocked'                      => '당신은 차단되어 있기 때문에 다른 사용자를 차단하거나 차단을 해제할 수 없습니다.',
+'ipbnounblockself'                => '당신은 자기 스스로를 차단 해제할 수 없습니다.',
 
 # Developer tools
 'lockdb'              => '데이터베이스 잠그기',

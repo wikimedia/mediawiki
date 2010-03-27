@@ -1392,6 +1392,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-hideuser'              => 'Bloquear un usuario, agochándollo ao público',
 'right-ipblock-exempt'        => 'Evitar bloqueos de IPs, autobloqueos e bloqueos de rango',
 'right-proxyunbannable'       => 'Evitar os bloqueos autamáticos a proxies',
+'right-unblockself'           => 'Desbloqueárense a si mesmos',
 'right-protect'               => 'Trocar os niveis de protección e editar páxinas protexidas',
 'right-editprotected'         => 'Editar páxinas protexidas (que non teñan protección en serie)',
 'right-editinterface'         => 'Editar a interface de usuario',
@@ -2420,6 +2421,8 @@ Por favor, contacte co seu fornecedor de acceso á Internet ou co seu soporte t�
 Polo tanto, non pode crear unha conta",
 'cant-block-while-blocked'        => 'Non pode bloquear outros usuarios mentres vostede estea bloqueado.',
 'cant-see-hidden-user'            => 'O usuario que intenta bloquear xa foi bloqueado e agochado. Dado que non ten o dereito necesario para agochar usuarios, non pode ver ou editar o bloqueo do usuario.',
+'ipbblocked'                      => 'Non pode bloquear ou desbloquear outros usuarios porque vostede está bloqueado',
+'ipbnounblockself'                => 'Non ten os permisos necesarios para desbloquearse a si mesmo',
 
 # Developer tools
 'lockdb'              => 'Fechar base de datos',

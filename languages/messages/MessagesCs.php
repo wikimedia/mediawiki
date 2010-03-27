@@ -1480,6 +1480,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-hideuser'              => 'Blokování uživatelského jména a jeho skrytí',
 'right-ipblock-exempt'        => 'Obcházení blokování IP adres, jejich rozsahů a autobloků',
 'right-proxyunbannable'       => 'Obcházení automatického blokování proxy serverů',
+'right-unblockself'           => 'Odblokování sebe sama',
 'right-protect'               => 'Měnění úrovně zámku a editace zamčených stránek',
 'right-editprotected'         => 'Editace zamčených stránek (bez kaskádového zámku)',
 'right-editinterface'         => 'Editace zpráv uživatelského rozhraní',
@@ -2470,6 +2471,8 @@ $1 je již zablokován(a). Chcete změnit nastavení bloku?',
 'sorbs_create_account_reason'     => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server. Z této adresy si nemůžete založit účet',
 'cant-block-while-blocked'        => 'Nemůžete blokovat jiné uživatele, když jste zablokován(a).',
 'cant-see-hidden-user'            => 'Uživatel, kterého se snažíte blokovat, už byl zablokován a skryt. Jelikož nemáte oprávnění hideuser, nemůžete si nastavení bloku tohoto uživatele prohlédnout ani ho změnit.',
+'ipbblocked'                      => 'Nemůžete blokovat nebo odblokovávat jiné uživatele, {{GENDER:|sám|sama|sám}} jste {{GENDER:|zablokován|zablokována|zablokován}}',
+'ipbnounblockself'                => 'Nemáte dovoleno odblokovat {{GENDER:|sám|sama|sám}} sebe',
 
 # Developer tools
 'lockdb'              => 'Zamknout databázi',

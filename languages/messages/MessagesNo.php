@@ -1368,6 +1368,7 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'right-hideuser'              => 'Blokkere et brukernavn og skjule det fra det offentlige',
 'right-ipblock-exempt'        => 'Kan redigere fra blokkerte IP-adresser',
 'right-proxyunbannable'       => 'Kan redigere fra blokkerte proxyer',
+'right-unblockself'           => 'Fjern blokkering av seg selv',
 'right-protect'               => 'Endre beskyttelsesnivåer',
 'right-editprotected'         => 'Redigere beskyttede sider',
 'right-editinterface'         => 'Redigere brukergrensesnittet',
@@ -2362,6 +2363,8 @@ $1 er blokkert fra før. Vil du endre innstillingene?',
 'sorbs_create_account_reason'     => 'Din IP-adresse angis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}. Du kan ikke opprette en konto',
 'cant-block-while-blocked'        => 'Du kan ikke blokkere andre mens du selv er blokkert.',
 'cant-see-hidden-user'            => 'Brukeren du prøver å blokkere har allerede blitt blokkert og skjult. Ettersom du ikke har rett til å skjule brukere (hideuser), kan du ikke se eller endre brukerens blokkering.',
+'ipbblocked'                      => 'Du kan ikke blokkere eller avblokkere andre brukere, siden du selv er blokkert',
+'ipbnounblockself'                => 'Du har ikke tillatelse til å avblokkere deg selv',
 
 # Developer tools
 'lockdb'              => 'Lås database',

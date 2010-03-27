@@ -1523,6 +1523,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-hideuser'              => 'Een gebruiker voor de overige gebruikers verbergen',
 'right-ipblock-exempt'        => 'IP-blokkades omzeilen',
 'right-proxyunbannable'       => "Blokkades voor proxy's gelden niet",
+'right-unblockself'           => 'Eigen gebruiker deblokkeren',
 'right-protect'               => 'Beveiligingsniveaus wijzigen',
 'right-editprotected'         => "Beveiligde pagina's bewerken",
 'right-editinterface'         => 'De gebruikersinterface bewerken',
@@ -2575,6 +2576,8 @@ U kunt geen gebruiker registreren.',
 'cant-block-while-blocked'        => 'U kunt andere gebruikers niet blokkeren terwijl u zelf geblokkeerd bent.',
 'cant-see-hidden-user'            => "De gebruiker die u probeert te blokken is al geblokkeerd en verborgen.
 Omdat u het recht 'hideuser' niet hebt, kunt u de blokkade van de gebruiker niet bekijken of bewerken.",
+'ipbblocked'                      => 'U kunt geen andere gebruikers (de)blokkeren, omdat u zelf geblokkeerd bent',
+'ipbnounblockself'                => 'U mag uzelf niet deblokkeren',
 
 # Developer tools
 'lockdb'              => 'Database blokkeren',
