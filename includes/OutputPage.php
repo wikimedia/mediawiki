@@ -1320,8 +1320,6 @@ class OutputPage {
 	 * For example:
 	 *   /w/index.php?title=Main_page should always be served; but
 	 *   /w/index.php?title=Main_page&variant=zh-cn should never be served.
-	 *
-	 * patched by Liangent and Philip
 	 */
 	function addAcceptLanguage() {
 		global $wgRequest, $wgContLang;
