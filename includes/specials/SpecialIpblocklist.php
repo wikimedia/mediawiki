@@ -41,18 +41,12 @@ function wfSpecialIpblocklist( $ip = '' ) {
 			} else {
 				$user = User::newFromName( $ip );
 			}
-			if( $user instanceof User
-				&& $user->getId() == $wgUser->getId() )
-			{
-				# User is trying to unblock themselves
-				if( !$wgUser->isAllowed( 'unblockself' ) ){
-					throw new ErrorPageError( 'badaccess', 'ipbnounblockself' );
-				}
-			} else {
-				# User is trying to block/unblock someone else
-				throw new ErrorPageError( 'badaccess', 'ipbblocked' );
-			}
+			$status = IPBlockForm::checkUnblockSelf( $user );
+			if( $status !== true ){
+				throw new ErrorPageError( 'badaccess', $status );
+			} 
 		}
+		
 		if( $action == 'unblock' ){
 			# Show unblock form
 			$ipu->showForm( '' );
