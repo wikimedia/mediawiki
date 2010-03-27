@@ -26,11 +26,11 @@ function wfSpecialBlockip( $par ) {
 	$ipb = new IPBlockForm( $par );
 	
 	# bug 15810: blocked admins should have limited access here
-	if( $wgUser->isBlocked() ){
+	if ( $wgUser->isBlocked() ) {
 		$status = IPBlockForm::checkUnblockSelf( $ipb->BlockAddress );
-		if( $status !== true ){
+		if ( $status !== true ) {
 			throw new ErrorPageError( 'badaccess', $status );
-		} 
+		}
 	}
 
 	$action = $wgRequest->getVal( 'action' );
@@ -375,18 +375,16 @@ class IPBlockForm {
 	 * either.
 	 * @param $user User, Int or String
 	 */
-	public static function checkUnblockSelf( $user ){
+	public static function checkUnblockSelf( $user ) {
 		global $wgUser;
-		if( is_int( $user ) ){
+		if ( is_int( $user ) ) {
 			$user = User::newFromId( $user );
-		} elseif ( is_string( $user ) ){
+		} elseif ( is_string( $user ) ) {
 			$user = User::newFromName( $user );
 		}
-		if( $user instanceof User
-			&& $user->getId() == $wgUser->getId() )
-		{
+		if( $user instanceof User && $user->getId() == $wgUser->getId() ) {
 			# User is trying to unblock themselves
-			if( $wgUser->isAllowed( 'unblockself' ) ){
+			if ( $wgUser->isAllowed( 'unblockself' ) ) {
 				return true;
 			} else {
 				return 'ipbnounblockself';
