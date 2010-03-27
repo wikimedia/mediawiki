@@ -1367,8 +1367,7 @@ class Language {
 			if( $usePrefs ) {
 				$datePreference = $wgUser->getDatePreference();
 			} else {
-				$options = User::getDefaultOptions();
-				$datePreference = (string)$options['date'];
+				$datePreference = (string)User::getDefaultOption( 'date' );
 			}
 		} else {
 			$datePreference = (string)$usePrefs;
