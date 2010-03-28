@@ -1253,7 +1253,7 @@ class Sanitizer {
 	static function setupAttributeWhitelist() {
 		global $wgAllowRdfaAttributes, $wgHtml5, $wgAllowMicrodataAttributes;
 
-		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style', 'xml:lang' );
+		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style' );
 
 		if ( $wgAllowRdfaAttributes ) {
 			#RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
