@@ -104,9 +104,7 @@ class Message {
 	 */
 	public function __construct( $key, $params = array() ) {
 		$this->key = $key;
-		foreach( $params as $param ){
-			$this->params( $param );
-		}
+		$this->parameters = array_values( $params );
 	}
 
 	/**
@@ -118,16 +116,16 @@ class Message {
 	 * @return Message: $this
 	 */
 	public static function key( $key ) {
-		return new Message( $key );
+		return new self( $key );
 	}
 
 	/**
 	 * Adds parameters to the parameter list of this message.
-	 * @param Vargars: parameters as Strings
+	 * @param Varargs: parameters as Strings
 	 * @return Message: $this
 	 */
 	public function params( /*...*/ ) {
-		$this->parameters += array_values( func_get_args() );
+		$this->parameters = array_merge( $this->parameters, array_values( func_get_args() ) );
 		return $this;
 	}
 
@@ -141,8 +139,8 @@ class Message {
 	 */
 	public function rawParams( /*...*/ ) {
 		$params = func_get_args();
-		foreach( $params as $param ){
-			$this->parameters[] =  array( 'raw' => $param );
+		foreach( $params as $param ) {
+			$this->parameters[] = array( 'raw' => $param );
 		}
 		return $this;
 	}
@@ -151,7 +149,7 @@ class Message {
 	 * Request the message in any language that is supported.
 	 * As a side effect interface message status is unconditionally
 	 * turned off.
-	 * @param $lang Mixed: langauge code or language object.
+	 * @param $lang Mixed: language code or Language object.
 	 * @return Message: $this
 	 */
 	public function language( $lang ) {
@@ -232,9 +230,9 @@ class Message {
 	 * Fully parse the text from wikitext to HTML
 	 * @return String parsed HTML
 	 */
-	public function parse(){
+	public function parse() {
 		$this->format = 'parse';
-		return $this->tostring();
+		return $this->toString();
 	}
 
 	/**
@@ -243,7 +241,7 @@ class Message {
 	 */
 	public function text() {
 		$this->format = 'text';
-		return $this->tostring();
+		return $this->toString();
 	}
 
 	/**
@@ -252,7 +250,7 @@ class Message {
 	 */
 	public function plain() {
 		$this->format = 'plain';
-		return $this->tostring();
+		return $this->toString();
 	}
 
 	/**
@@ -261,7 +259,7 @@ class Message {
 	 */
 	public function parseAsBlock() {
 		$this->format = 'block-parse';
-		return $this->tostring();
+		return $this->toString();
 	}
 
 	/**
@@ -271,7 +269,7 @@ class Message {
 	 */
 	public function escaped() {
 		$this->format = 'escaped';
-		return $this->tostring();
+		return $this->toString();
 	}
 
 	/**
