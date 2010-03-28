@@ -4114,6 +4114,31 @@ Character reference normalization in link text (bug 1938)
 </p>
 !!end
 
+!! article
+אַ
+!! text
+Test for unicode normalization
+
+The page's name is U+05d0 U+05b7, with non-canonical form U+FB2E
+!! endarticle
+
+!! test
+(bug 19451) Links should refer to the normalized form.
+!! input
+[[&#xFB2E;]]
+[[&#x5d0;&#x5b7;]]
+[[&#x5d0;ַ]]
+[[א&#x5b7;]]
+[[אַ]]
+!! result
+<p><a href="/wiki/%D7%90%D6%B7" title="אַ">&#xfb2e;</a>
+<a href="/wiki/%D7%90%D6%B7" title="אַ">&#x5d0;&#x5b7;</a>
+<a href="/wiki/%D7%90%D6%B7" title="אַ">&#x5d0;ַ</a>
+<a href="/wiki/%D7%90%D6%B7" title="אַ">א&#x5b7;</a>
+<a href="/wiki/%D7%90%D6%B7" title="אַ">אַ</a>
+</p>
+!! end
+
 !! test
 Empty attribute crash test (bug 2067)
 !! input
