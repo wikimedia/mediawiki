@@ -211,7 +211,7 @@ class ApiEditPage extends ApiBase {
 			$watch = false;
 		}
 
-		if ( $watch ) {
+		if ( $watch || $titleObj->userIsWatching() ) {
 			$reqArr['wpWatchthis'] = '';
 		}
 

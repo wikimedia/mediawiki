@@ -85,10 +85,18 @@ class ApiDelete extends ApiBase {
 			$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj ) || $wgUser->getOption( 'watchdeletion' );
 
 			// Deprecated parameters
-			if ( $params['watch'] || $watch ) {
-				$articleObj->doWatch();
-			} elseif ( $params['unwatch'] || !$watch ) {
-				$articleObj->doUnwatch();
+			if ( $params['watch'] ) {
+				$watch = true;
+			} elseif ( $params['unwatch'] ) {
+				$watch = false;
+			}
+			
+			if ( $watch !== null ) {
+				if ( $watch ) {
+					$articleObj->doWatch();
+				} else {
+					$articleObj->doUnwatch();
+				}
 			}
 		}
 
