@@ -79,39 +79,34 @@ class Message {
 	 * List of parameters which will be substituted into the message.
 	 */
 	protected $parameters = array();
-	
+
 	/**
-	 * Some situations need exotic combinations of options to the
-	 * underlying Language modules; which can be specified here.
-	 * Dependencies:
-	 *     'parse' implies 'transform', 'escape'
+	 * Format for the message.
+	 * Supported formats are:
+	 * * text (transform)
+	 * * escaped (transform+htmlspecialchars)
+	 * * block-parse
+	 * * parse (default)
+	 * * plain
 	 */
-	protected $options = array(
-		# Don't wrap the output in a block-level element
-		'inline' => true,
-		# Expand {{ constructs
-		'transform' => true,
-		# Output will be safe HTML
-		'escape' => true,
-		# Parse the text with the full parser
-		'parse' => true,
-		# Access the database when getting the message text
-		'usedb' => true,
-	);
+	protected $format = 'parse';
+
+	/**
+	 * Whether database can be used.
+	 */
+	protected $useDatabase = true;
 
 	/**
 	 * Constructor.
 	 * @param $key String: message key
 	 * @param $params Array message parameters
-	 * @param $options Array message options
 	 * @return Message: $this
 	 */
-	public function __construct( $key, $params=array(), $options=array() ) {
+	public function __construct( $key, $params = array() ) {
 		$this->key = $key;
 		foreach( $params as $param ){
 			$this->params( $param );
 		}
-		$this->options( $options );
 	}
 
 	/**
@@ -153,21 +148,6 @@ class Message {
 	}
 	
 	/**
-	 * Set some of the individual options, if you need to use some 
-	 * funky combination of them.
-	 * @param $options Array $option => $value
-	 * @return Message $this
-	 */
-	public function options( array $options ){
-		foreach( $options as $key => $value ){
-			if( in_array( $key, $this->options ) ){
-				$this->options[$key] = (bool)$value;
-			}
-		}
-		return $this;
-	}
-
-	/**
 	 * Request the message in any language that is supported.
 	 * As a side effect interface message status is unconditionally
 	 * turned off.
@@ -200,6 +180,16 @@ class Message {
 	}
 
 	/**
+	 * Enable or disable database use.
+	 * @param $value Boolean
+	 * @return Message: $this
+	 */
+	public function useDatabase( $value ) {
+		$this->useDatabase = (bool) $value;
+		return $this;
+	}
+
+	/**
 	 * Returns the message parsed from wikitext to HTML.
 	 * TODO: in PHP >= 5.2.0, we can make this a magic method,
 	 * and then we can do, eg:
@@ -216,28 +206,20 @@ class Message {
 		$string = $this->replaceParameters( $string, 'before' );
 		
 		# Maybe transform using the full parser
-		if( $this->options['parse'] ){
+		if( $this->format === 'parse' ) {
 			$string = $this->parseText( $string );
-		} else {
-			
-			# Transform {{ constructs
-			if( $this->options['transform'] ){
-				$string = $this->transformText( $string );
-			}
-			
-			# Sanitise
-			if( $this->options['escape'] ){
-				# FIXME: Sanitizer method here?
-				$string = htmlspecialchars( $string );
-			}
-		}
-		
-		# Strip the block element
-		if( !$this->options['inline'] ){
 			$m = array();
 			if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 				$string = $m[1];
 			}
+		} elseif( $this->format === 'block-parse' ){
+			$string = $this->parseText( $string );
+		} elseif( $this->format === 'text' ){
+			$string = $this->transformText( $string );
+		} elseif( $this->format === 'escaped' ){
+			# FIXME: Sanitizer method here?
+			$string = $this->transformText( $string );
+			$string = htmlspecialchars( $string );
 		}
 		
 		# Raw parameter replacement
@@ -251,9 +233,7 @@ class Message {
 	 * @return String parsed HTML
 	 */
 	public function parse(){
-		$this->options( array(
-			'parse' => true,
-		));		
+		$this->format = 'parse';
 		return $this->tostring();
 	}
 
@@ -262,11 +242,7 @@ class Message {
 	 * @return String: Unescaped message text.
 	 */
 	public function text() {
-		$this->options( array(
-			'parse' => false,
-			'transform' => true,
-			'escape' => false,
-		));		
+		$this->format = 'text';
 		return $this->tostring();
 	}
 
@@ -275,12 +251,7 @@ class Message {
 	 * @return String: Unescaped untransformed message text.
 	 */
 	public function plain() {
-		$this->options( array(
-			'parse' => false,
-			'transform' => false,
-			'escape' => false,
-			'inline' => false,
-		));		
+		$this->format = 'plain';
 		return $this->tostring();
 	}
 
@@ -289,10 +260,7 @@ class Message {
 	 * @return String: HTML
 	 */
 	public function parseAsBlock() {
-		$this->options( array(
-			'parse' => true,
-			'inline' => false,
-		));		
+		$this->format = 'block-parse';
 		return $this->tostring();
 	}
 
@@ -302,12 +270,7 @@ class Message {
 	 * @return String: Escaped message text.
 	 */
 	public function escaped() {
-		$this->options( array(
-			'parse' => false,
-			'transform' => true,
-			'escape' => true,
-			'inline' => false,
-		));		
+		$this->format = 'escaped';
 		return $this->tostring();
 	}
 
@@ -316,12 +279,7 @@ class Message {
 	 * @return Bool: true if it is and false if not.
 	 */
 	public function exists() {
-		global $wgMessageCache;
-		return $wgMessageCache->get( 
-			$this->key, 
-			$this->options['usedb'], 
-			$this->language 
-		) !== false;
+		return $this->fetchMessage() === false;
 	}
 
 	/**
@@ -368,15 +326,27 @@ class Message {
 	}
 
 	/**
-	 * Wrapper for what ever method we use to get message contents
-	 * @return Unmodified message contents
+	 * Returns the textual value for the message.
+	 * @return Message contents or placeholder
 	 */
 	protected function getMessageText() {
-		global $wgMessageCache;
-		$message = $wgMessageCache->get( $this->key, $this->options['usedb'], $this->language );
-		return $message === false
-			? '&lt;' . htmlspecialchars( $this->key ) . '&gt;'
-			: $message;
+		$message = $this->fetchMessage();
+		if ( $message === false ) {
+			return '&lt;' . htmlspecialchars( $this->key ) . '&gt;';
+		} else {
+			return $message;
+		}
+	}
+
+	/**
+	 * Wrapper for what ever method we use to get message contents
+	 */
+	protected function fetchMessage() {
+		if ( !isset( $this->message ) ) {
+			global $wgMessageCache;
+			$this->message = $wgMessageCache->get( $this->key, $this->useDatabase, $this->language );
+		}
+		return $this->message;
 	}
 
 }
