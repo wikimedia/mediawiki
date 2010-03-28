@@ -38,7 +38,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 			'upload title without extension' );
 		
 		/* A title with no basename */
-		$this->assertUploadTitleAndCode( '.A',
+		$this->assertUploadTitleAndCode( '.jpg',
 			null, UploadTestHandler::MIN_LENGTH_PARTNAME,
 			'upload title without basename' );
 			
