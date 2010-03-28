@@ -1409,6 +1409,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-hideuser'              => 'Blokowanie użytkownika, niewidoczne publicznie',
 'right-ipblock-exempt'        => 'Obejście blokad, automatycznych blokad i blokad zakresów, adresów IP',
 'right-proxyunbannable'       => 'Obejście automatycznych blokad proxy',
+'right-unblockself'           => 'Odblokowanie samego siebie',
 'right-protect'               => 'Zmiana poziomu zabezpieczenia i dostęp do edycji zabezpieczonych stron',
 'right-editprotected'         => 'Dostęp do edycji zabezpieczonych stron (bez zabezpieczenia dziedziczonego)',
 'right-editinterface'         => 'Edycja interfejsu użytkownika',
@@ -2439,6 +2440,8 @@ O tym poważnym problemie dotyczącym bezpieczeństwa należy poinformować dost
 Nie możesz utworzyć konta',
 'cant-block-while-blocked'        => 'Nie możesz zablokować innych użytkowników, kiedy sam jesteś zablokowany.',
 'cant-see-hidden-user'            => 'Konto użytkownika, które próbujesz zablokować, zostało już zablokowane oraz ukryte. Bez uprawnienia do ukrywania kont nie możesz zobaczyć oraz modyfikować blokady tego użytkownika.',
+'ipbblocked'                      => 'Nie możesz blokować i odblokowywać innych użytkowników, ponieważ sam jesteś zablokowany',
+'ipbnounblockself'                => 'Nie możesz odblokować samego siebie',
 
 # Developer tools
 'lockdb'              => 'Zablokuj bazę danych',

@@ -2128,7 +2128,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'друг срок',
 'protect-existing-expiry'     => 'Оставащо време: $2, $3',
 'protect-otherreason'         => 'Друга/допълнителна причина:',
-'protect-otherreason-op'      => 'друга/допълнителна причина',
+'protect-otherreason-op'      => 'Друга причина',
 'protect-dropdown'            => '* Стандартни причини за защита на страници
 ** Чест обект на вандализъм
 ** Чест обект на спам
