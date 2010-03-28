@@ -62,6 +62,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   themselves unless they are given the 'unblockself' permission.
 * (bug 22876) Avoid possible PHP Notice if $wgDefaultUserOptions is not
   correctly set
+* (bug 14952) Page titles are renormalized after html entities are removed so that
+  links with non-NFC character references work correctly.
 
 == API changes in 1.17 ==
 * (bug 22738) Allow filtering by action type on query=logevent

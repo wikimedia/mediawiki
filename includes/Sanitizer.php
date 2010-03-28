@@ -1177,6 +1177,30 @@ class Sanitizer {
 	}
 
 	/**
+	 * Decode any character references, numeric or named entities,
+	 * in the next and normalize the resulting string. (bug 14952)
+	 *
+	 * This is useful for page titles, not for text to be displayed,
+	 * MediaWiki allows HTML entities to escape normalization as a feature.
+	 *
+	 * @param $text String (already normalized, containing entities)
+	 * @return String (still normalized, without entities)
+	 */
+	public static function decodeCharReferencesAndNormalize( $text ) {
+		global $wgContLang;
+		$text = preg_replace_callback(
+			MW_CHAR_REFS_REGEX,
+			array( 'Sanitizer', 'decodeCharReferencesCallback' ),
+			$text, /* limit */ -1, $count );
+
+		if ( $count ) {
+			return $wgContLang->normalize( $text );
+		} else {
+			return $text;
+		}
+	}
+
+	/**
 	 * @param $matches String
 	 * @return String
 	 */
