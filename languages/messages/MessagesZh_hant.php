@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2064,7 +2064,7 @@ $NEWPAGE
 'protectedarticle'            => '已保護"[[$1]]"',
 'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',
-'movedarticleprotection'      => '已經更改由「[[$2]]」至「[[$1]]」的保護設定',
+'movedarticleprotection'      => '已將「[[$2]]」的保護設定移動至「[[$1]]」',
 'protect-title'               => '正在更改"$1"的保護等級',
 'prot_1movedto2'              => '[[$1]]移動到[[$2]]',
 'protect-legend'              => '確認保護',

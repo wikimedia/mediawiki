@@ -1727,9 +1727,10 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 'img-auth-noread'       => 'Användaren har inte tillåtelse att läsa "$1"',
 
 # HTTP errors
-'http-invalid-url'    => 'Ogiltig URL: $1',
-'http-invalid-scheme' => 'URLer med "$1"-formen stöds inte',
-'http-request-error'  => 'HTTP-begäran misslyckades på grund av okänt fel.',
+'http-invalid-url'      => 'Ogiltig URL: $1',
+'http-invalid-scheme'   => 'URLer med "$1"-formen stöds inte',
+'http-request-error'    => 'HTTP-begäran misslyckades på grund av okänt fel.',
+'http-host-unreachable' => 'URL:en kunde inte nås.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
@@ -2476,6 +2477,7 @@ $1 är redan blockerad. Vill du ändra inställningarna?',
 Du får inte skapa ett användarkonto',
 'cant-block-while-blocked'        => 'Du kan inte blockera andra användare medan du är blockerad.',
 'cant-see-hidden-user'            => 'Användaren du försöker blockera är redan blockerad och gömd. Eftersom du inte har hideuser-rättigheter, kan du inte se eller redigera användarens blockering.',
+'ipbnounblockself'                => 'Du har inte tillåtelse att avblockera dig själv',
 
 # Developer tools
 'lockdb'              => 'Lås databas',

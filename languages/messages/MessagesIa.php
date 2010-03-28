@@ -1332,6 +1332,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-hideuser'              => 'Blocar un nomine de usator, celante lo del publico',
 'right-ipblock-exempt'        => 'Contornar le blocadas de adresses IP, blocadas automatic e blocadas de intervallos IP',
 'right-proxyunbannable'       => 'Contornar le blocadas automatic de proxy',
+'right-unblockself'           => 'Disblocar se mesme',
 'right-protect'               => 'Cambiar nivellos de protection e modificar paginas protegite',
 'right-editprotected'         => 'Modificar paginas protegite (sin cascada)',
 'right-editinterface'         => 'Modificar le interfacie de usator',
@@ -2382,6 +2383,8 @@ Per favor contacta tu providitor de servicio internet o supporto technic e infor
 Tu non pote crear un conto',
 'cant-block-while-blocked'        => 'Tu non pote blocar altere usatores durante que tu mesme es blocate.',
 'cant-see-hidden-user'            => 'Le usator que tu tenta blocar ha ja essite blocate e celate. Post que tu non ha le derecto hideuser, tu non pote vider o modificar le blocada del usator.',
+'ipbblocked'                      => 'Tu non pote blocar o disblocar altere usatores, proque tu mesme es blocate',
+'ipbnounblockself'                => 'Tu non ha le permission de disblocar te mesme',
 
 # Developer tools
 'lockdb'              => 'Blocar base de datos',

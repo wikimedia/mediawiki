@@ -1440,6 +1440,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-hideuser'              => 'Bir kullanıcı adını engelle, genelden gizleyerek',
 'right-ipblock-exempt'        => 'IP engellemelerini atla, otomatik engelle ve aralık engellemeleri',
 'right-proxyunbannable'       => 'Proxylerin otomatik engellemelerini atla',
+'right-unblockself'           => 'Kendi engellemesini kaldır',
 'right-protect'               => 'Koruma seviyelerini değiştir ve korumalı sayfalarda değişiklik yap',
 'right-editprotected'         => 'Korumalı sayfalarda değişiklik yap (korumayı basamaklamadan)',
 'right-editinterface'         => 'Kullanıcı arayüzünü değiştirmek',
@@ -2459,6 +2460,8 @@ Lütfen İnternet sevis sağlayınız ile ya da teknik destek ile irtibat kurun 
 Hesap oluşturamazsınız",
 'cant-block-while-blocked'        => 'Siz engelliyken başka kullanıcıları engelleyemezsiniz.',
 'cant-see-hidden-user'            => 'Engellemek istediğiniz kullanıcı zaten engellenmiş ve gizlenmiş. Kullanıcıgizle yetkiniz olmadığı için, kullanıcının engellenmesini göremez ya da değiştiremezsiniz.',
+'ipbblocked'                      => 'Diğer kullanıcıları engelleyemez ya da engellemesini kaldıramazsınız, çünkü kendiniz engellenmişsiz',
+'ipbnounblockself'                => 'Kendi engellemenizi kaldırmanıza izniniz yok',
 
 # Developer tools
 'lockdb'              => 'Veritabanı kilitli',
