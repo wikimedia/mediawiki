@@ -122,7 +122,7 @@ class Message {
 	 * @param $key String: message key
 	 * @return Message: $this
 	 */
-	public function key( $key ) {
+	public static function key( $key ) {
 		return new Message( $key );
 	}
 
