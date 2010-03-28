@@ -239,10 +239,6 @@ class ApiUpload extends ApiBase {
 		
 		$file = $this->mUpload->getLocalFile();
 		
-		if ( !$watch ) {
-			$wgUser->removeWatch( $file->getTitle() );
-		}
-		
 		$result['result'] = 'Success';
 		$result['filename'] = $file->getName();
 		$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
@@ -274,7 +270,6 @@ class ApiUpload extends ApiBase {
 				ApiBase::PARAM_DFLT => 'preferences',
 				ApiBase::PARAM_TYPE => array(
 					'watch',
-					'unwatch',
 					'preferences',
 					'nochange'
 				),

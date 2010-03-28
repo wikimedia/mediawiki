@@ -116,10 +116,16 @@ class ApiProtect extends ApiBase {
 		
 		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
 		
-		if ( $params['watch'] || $watch ) {
-			$articleObj->doWatch();
-		} else {
-			$articleObj->doUnwatch();
+		if ( $params['watch'] ) {
+			$watch = true;
+		}
+		
+		if ( $watch !== null ) {
+			if ( $watch ) {
+				$articleObj->doWatch();
+			} else {
+				$articleObj->doUnwatch();
+			}
 		}
 
 		if ( $titleObj->exists() ) {

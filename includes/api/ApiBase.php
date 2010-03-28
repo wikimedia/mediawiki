@@ -542,14 +542,14 @@ abstract class ApiBase {
 			case 'unwatch':
 				return false;
 			case 'preferences':
-				if ( $titleObj->exists() ) {
-					global $wgUser;
-					return $wgUser->getOption( 'watchdefault' ) || $titleObj->userIsWatching();
+				global $wgUser;
+				if ( $titleObj->exists() && !$titleObj->userIsWatching() && $wgUser->getOption( 'watchdefault' ) ) {				
+					return true;
 				}
-				return false;
+				return null;
 			case 'nochange':
 			default:
-				return $titleObj->userIsWatching();
+				return null;
 		}
 	}
 

@@ -124,14 +124,22 @@ class ApiMove extends ApiBase {
 		
 		// Watch pages
 		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj ) || $wgUser->getOption( 'watchmoves' );
-
+		
 		// Deprecated parameters
-		if ( $params['watch'] || $watch ) {
-			$wgUser->addWatch( $fromTitle );
-			$wgUser->addWatch( $toTitle );
-		} elseif ( $params['unwatch'] || !$watch ) {
-			$wgUser->removeWatch( $fromTitle );
-			$wgUser->removeWatch( $toTitle );
+		if ( $params['watch'] ) {
+			$watch = true;
+		} elseif ( $params['unwatch'] ) {
+			$watch = false;
+		}
+
+		if ( $watch !== null ) {
+			if ( $watch ) {
+				$wgUser->addWatch( $fromTitle );
+				$wgUser->addWatch( $toTitle );
+			} else {
+				$wgUser->removeWatch( $fromTitle );
+				$wgUser->removeWatch( $toTitle );
+			}
 		}
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}

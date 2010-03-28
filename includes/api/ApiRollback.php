@@ -75,10 +75,12 @@ class ApiRollback extends ApiBase {
 		
 		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
 		
-		if ( $watch ) {
-			$articleObj->doWatch();
-		} else if ( !$watch ) {
-			$articleObj->doUnwatch();
+		if ( $watch !== null) {
+			if ( $watch ) {
+				$articleObj->doWatch();
+			} else {
+				$articleObj->doUnwatch();
+			}
 		}
 
 		$info = array(

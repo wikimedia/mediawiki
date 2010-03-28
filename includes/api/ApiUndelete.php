@@ -84,10 +84,12 @@ class ApiUndelete extends ApiBase {
 		
 		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
 		
-		if ( $params['watch'] || $watch ) {
-			$wgUser->addWatch( $titleObj );
-		} else {
-			$wgUser->removeWatch( $titleObj );
+		if ( $watch !== null ) {
+			if ( $watch ) {
+				$wgUser->addWatch( $titleObj );
+			} else {
+				$wgUser->removeWatch( $titleObj );
+			}
 		}
 
 		$info['title'] = $titleObj->getPrefixedText();
