@@ -2545,13 +2545,17 @@ class Article {
 
 		$hasHistory = ( $res->numRows() > 1 );
 		$row = $dbw->fetchObject( $res );
-		$onlyAuthor = $row->rev_user_text;
-		// Try to find a second contributor
-		foreach ( $res as $row ) {
-			if ( $row->rev_user_text != $onlyAuthor ) {
-				$onlyAuthor = false;
-				break;
+		if ( $row ) { // $row is false if the only contributor is hidden
+			$onlyAuthor = $row->rev_user_text;
+			// Try to find a second contributor
+			foreach ( $res as $row ) {
+				if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
+					$onlyAuthor = false;
+					break;
+				}
 			}
+		} else {
+			$onlyAuthor = false;
 		}
 		$dbw->freeResult( $res );
 
