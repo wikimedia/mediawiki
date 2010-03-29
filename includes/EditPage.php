@@ -1401,8 +1401,12 @@ HTML
 
 		if ( wfReadOnly() ) {
 			$wgOut->wrapWikiMsg( "<div id=\"mw-read-only-warning\">\n$1\n</div>", array( 'readonlywarning', wfReadOnlyReason() ) );
-		} elseif ( $wgUser->isAnon() && $this->formtype != 'preview' ) {
-			$wgOut->wrapWikiMsg( "<div id=\"mw-anon-edit-warning\">\n$1</div>", 'anoneditwarning' );
+		} elseif ( $wgUser->isAnon() ) {
+			if ( $this->formtype != 'preview' ) {
+				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-edit-warning\">\n$1</div>", 'anoneditwarning' );
+			} else {
+				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-preview-warning\">\n$1</div>", 'anonpreviewwarning' );
+			}
 		} else {
 			if ( $this->isCssJsSubpage ) {
 				# Check the skin exists

@@ -1,3 +1,4 @@
+
 <?php
 /**
  * This is the default English localisation file
@@ -1190,6 +1191,7 @@ You may have already successfully changed your password or requested a new tempo
 'showdiff'                         => 'Show changes',
 'anoneditwarning'                  => "'''Warning:''' You are not logged in.
 Your IP address will be recorded in this page's edit history.",
+'anonpreviewwarning'               => "''You are not logged in. Saving will record your IP address in this page's edit history.''",
 'missingsummary'                   => "'''Reminder:''' You have not provided an edit summary.
 If you click Save again, your edit will be saved without one.",
 'missingcommenttext'               => 'Please enter a comment below.',
