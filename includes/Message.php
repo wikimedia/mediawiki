@@ -15,8 +15,8 @@
  * Messages can have parameters:
  *    Message::key( 'welcome-to' )->params( $wgSitename )->text(); 
  *        {{GRAMMAR}} and friends work correctly
- *    Message::key( 'are-friends' )->params( $user, $friend );
- *    Message::key( 'bad-message' )->rawParams( '<script>...</script>' )->escaped()
+ *    Message::key( 'are-friends', $user, $friend );
+ *    Message::key( 'bad-message' )->rawParams( '<script>...</script>' )->escaped();
  * </pre>
  * Sometimes the message text ends up in the database, so content language is needed.
  *    Message::key( 'file-log' )->params( $user, $filename )->inContentLanguage()->text()
@@ -25,7 +25,7 @@
  *    Message::key( 'mysterious-message' )->exists()
  * </pre>
  * If you want to use a different language:
- *    Message::key( 'email-header' )->language( $user->getOption( 'language' ) )->plain()
+ *    Message::key( 'email-header' )->inLanguage( $user->getOption( 'language' ) )->plain()
  *        Note that you cannot parse the text except in the content or interface
  *        languages
  * </pre>
@@ -111,12 +111,12 @@ class Message {
 	 * Factory function that is just wrapper for the real constructor. It is
 	 * intented to be used instead of the real constructor, because it allows
 	 * chaining method calls, while new objects don't.
-	 * //FIXME: key or get or something else?
 	 * @param $key String: message key
+	 * @param Varargs: parameters as Strings
 	 * @return Message: $this
 	 */
-	public static function key( $key ) {
-		return new self( $key );
+	public static function key( $key, /*...*/ ) {
+		return new self( $key, array_shift( func_get_args() );
 	}
 
 	/**
@@ -140,7 +140,7 @@ class Message {
 	public function rawParams( /*...*/ ) {
 		$params = func_get_args();
 		foreach( $params as $param ) {
-			$this->parameters[] = array( 'raw' => $param );
+			$this->parameters[] = self::rawParam( $param );
 		}
 		return $this;
 	}
@@ -152,7 +152,7 @@ class Message {
 	 * @param $lang Mixed: language code or Language object.
 	 * @return Message: $this
 	 */
-	public function language( $lang ) {
+	public function inLanguage( $lang ) {
 		if( $lang instanceof Language ){
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
@@ -278,6 +278,10 @@ class Message {
 	 */
 	public function exists() {
 		return $this->fetchMessage() === false;
+	}
+
+	public static function rawParam( $value ) {
+		return array( 'raw' => $value );
 	}
 
 	/**
