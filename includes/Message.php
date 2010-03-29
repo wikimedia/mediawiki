@@ -115,8 +115,8 @@ class Message {
 	 * @param Varargs: parameters as Strings
 	 * @return Message: $this
 	 */
-	public static function key( $key, /*...*/ ) {
-		return new self( $key, array_shift( func_get_args() );
+	public static function key( $key /*...*/ ) {
+		return new self( $key, array_shift( func_get_args() ) );
 	}
 
 	/**
