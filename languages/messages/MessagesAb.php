@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Comp1089
  * @author Mzhiba
  * @author Temuri rajavi
  * @author ОйЛ
@@ -58,6 +59,8 @@ $messages = array(
 'history_short'    => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
 'edit'             => 'Ариашамҭа',
+'talkpagelinktext' => 'Ахцәажәара',
+'talk'             => 'Ахцәажәара',
 'jumptonavigation' => 'Анавигациа',
 'jumptosearch'     => 'Аҧшаара',
 

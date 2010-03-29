@@ -1481,6 +1481,7 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'right-hideuser'              => 'Bloquear um nome de utilizador, escondendo-o do público',
 'right-ipblock-exempt'        => 'Contornar bloqueios de IP, bloqueios automáticos e bloqueios de gamas de IPs',
 'right-proxyunbannable'       => 'Contornar bloqueios automáticos de proxies',
+'right-unblockself'           => 'Desbloquearem-se a si próprios',
 'right-protect'               => 'Mudar níveis de protecção e editar páginas protegidas',
 'right-editprotected'         => 'Editar páginas protegidas (sem protecção em cascata)',
 'right-editinterface'         => 'Editar a interface de utilizador',
@@ -2506,6 +2507,8 @@ Por favor, contacte o seu fornecedor do serviço de internet ou o seu serviço d
 'sorbs_create_account_reason'     => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}. Não pode criar uma conta",
 'cant-block-while-blocked'        => 'Não pode bloquear outros utilizadores enquanto estiver bloqueado.',
 'cant-see-hidden-user'            => "O utilizador que está tentando bloquear já está bloqueado e oculto. Como não possui privilégio de bloquear utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
+'ipbblocked'                      => 'Não pode bloquear ou desbloquear outros, porque está bloqueado',
+'ipbnounblockself'                => 'Não lhe é permitido desbloquear-se a si mesmo',
 
 # Developer tools
 'lockdb'              => 'Bloquear base de dados',

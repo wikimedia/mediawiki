@@ -911,9 +911,9 @@ Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.'''",
 'copyrightwarning'                 => "Pidage silmas, et kogu teie kaastöö võrgukohale {{SITENAME}} loetakse avaldatuks litsentsi $2 all (vaata ka $1). Kui te ei soovi, et teie kirjutatut halastamatult redigeeritakse ja oma äranägemise järgi kasutatakse, siis ärge seda siia salvestage.<br />
 Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast.<br />
 '''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
-'copyrightwarning2'                => "Pidage silmas teised kaastöölised võivad kogu võrgukohale {{SITENAME}} tehtud kaastööd muuta või eemaldada. Kui te ei soovi, et teie kirjutatut halastamatult redigeeritakse, siis ärge seda siia salvestage.<br />
-Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast (vaata ka $1).<br />
-'''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
+'copyrightwarning2'                => "Pea silmas, et teised kaastöölised võivad kogu {{GRAMMAR:inessive|{{SITENAME}}}} tehtud kaastööd muuta või eemaldada. Kui sa ei soovi, et su kirjutatut halastamatult redigeeritakse, siis ära seda siia salvesta.<br />
+Sa kinnitad ka, et kirjutasid selle ise või võtsid selle kopeerimiskitsenduseta allikast (vaata ka $1).
+'''Ära saada autoriõigusega kaitstud materjali loata!'''",
 'longpagewarning'                  => "'''HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.'''",
 'longpageerror'                    => "'''Viga: Lehekülje suurus on $1 kilobaiti. Lehekülge ei saa salvestada, kuna see on pikem kui maksimaalsed $2 kilobaiti.'''",
 'readonlywarning'                  => "'''HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti hilisemaks kasutamiseks alles hoida tekstifailina.'''
@@ -1419,6 +1419,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-hideuser'             => 'Blokeerida kasutajanimi, peites selle avalikkuse eest',
 'right-ipblock-exempt'       => 'Mööduda automaatsetest blokeeringutest ning aadressivahemiku- ja IP-blokeeringutest',
 'right-proxyunbannable'      => 'Mööduda automaatsetest puhverserveri blokeeringutest',
+'right-unblockself'          => 'Enda blokeeringut eemaldada',
 'right-protect'              => 'Muuta kaitsetasemeid ja redigeerida kaitstud lehekülgi',
 'right-editprotected'        => 'Muuta kaitstud lehekülgi, millel ei ole kaskaadkaitset',
 'right-editinterface'        => 'Muuta kasutajaliidest',
@@ -2424,6 +2425,8 @@ See kuulub aga blokeeritud IP-vahemikku $2, mille blokeeringut saab eemaldada.',
 Sa ei saa kasutajakontot luua.',
 'cant-block-while-blocked'     => 'Teisi kasutajaid ei saa blokeerida, kui oled ise blokeeritud.',
 'cant-see-hidden-user'         => 'Kasutaja, keda blokeerida üritad, on juba blokeeritud ning peidetud. Kuna sul pole õigust blokeerida kasutajanimesid, peites need avalikkuse eest, ei saa sa selle kasutaja blokeeringut vaadata ega muuta.',
+'ipbblocked'                   => 'Sa ei saa teisi blokeerida ega nende blokeeringuid eemaldada, sest oled ise blokeeritud.',
+'ipbnounblockself'             => 'Sul pole lubatud enda blokeeringut eemaldada.',
 
 # Developer tools
 'lockdb'              => 'Lukusta andmebaas',
