@@ -64,6 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   correctly set
 * (bug 14952) Page titles are renormalized after html entities are removed so that
   links with non-NFC character references work correctly.
+* (bug 22991) wgUserGroups JavaScript variable now reports * group for
+  anonymous users instead of null.
 
 == API changes in 1.17 ==
 * (bug 22738) Allow filtering by action type on query=logevent
