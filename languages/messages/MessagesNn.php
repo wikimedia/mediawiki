@@ -1646,6 +1646,7 @@ For best tryggleik, er img_auth.php sett ut av funksjon.',
 'http-timed-out'        => 'Tidsavbrot på HTTP-førespurnad.',
 'http-curl-error'       => 'Feil under henting av nettadressa: $1',
 'http-host-unreachable' => 'Kunne ikkje nå nettadressa',
+'http-bad-status'       => 'Det var eit problem under HTTP-førespurnaden: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikkje nå nettadressa',
@@ -2371,6 +2372,8 @@ $1 er alt blokkert. Vil du endre innstillingane?',
 'sorbs_create_account_reason'     => 'IP-adressa di er lista som ein open mellomtenar i DNSBL, og difor får du ikkje registrert deg.',
 'cant-block-while-blocked'        => 'Du kan ikkje blokkere andre medan du sjølv er blokkert.',
 'cant-see-hidden-user'            => 'Brukaren du prøver å blokkera har allereie vorte blokkert og skjult. Sidan du ikkje har rett til å skjula brukarar, kan du ikkje sjå eller endra blokkeringa til brukaren.',
+'ipbblocked'                      => 'Du kan ikkje blokkera eller avblokkera andre brukarar sidan du sjølv er blokkert',
+'ipbnounblockself'                => 'Du kan ikkje avblokkera deg sjølv',
 
 # Developer tools
 'lockdb'              => 'Skrivevern (lock) database',

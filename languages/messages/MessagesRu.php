@@ -18,6 +18,7 @@
  * @author EugeneZelenko
  * @author Ferrer
  * @author Flrn
+ * @author Gazeb
  * @author Grigol
  * @author HalanTul
  * @author Illusion
@@ -1496,7 +1497,7 @@ $1",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
-'recentchanges'                     => 'Свежие правки',
+'recentchanges'                     => 'Остатнї зміны',
 'recentchanges-legend'              => 'Настройки свежих правок',
 'recentchangestext'                 => 'Ниже в хронологическом порядке перечислены последние изменения на страницах {{grammar:genitive|{{SITENAME}}}}.',
 'recentchanges-feed-description'    => 'Отслеживать последние изменения в вики в этом потоке.',

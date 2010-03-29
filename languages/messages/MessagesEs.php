@@ -320,7 +320,7 @@ $messages = array(
 'tog-showtoolbar'             => 'Mostrar la barra de edición',
 'tog-editondblclick'          => 'Editar páginas con doble click (JavaScript)',
 'tog-editsection'             => 'Habilitar la edición de secciones usando el enlace [editar]',
-'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha<br /> en los títulos de secciones (JavaScript)',
+'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha en los títulos de secciones (requiere JavaScript)',
 'tog-showtoc'                 => 'Mostrar el índice (para páginas con más de 3 encabezados)',
 'tog-rememberpassword'        => 'Recordar la contraseña entre sesiones',
 'tog-editwidth'               => 'Ampliar el cuadro de edición para llenar toda la pantalla',
@@ -470,7 +470,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'   => 'Agregar tópico',
+'vector-action-addsection'   => 'Añadir tema',
 'vector-action-delete'       => 'Borrar',
 'vector-action-move'         => 'Mover',
 'vector-action-protect'      => 'Proteger',
@@ -577,11 +577,11 @@ $1',
 'privacypage'          => 'Project:Política de protección de datos',
 
 'badaccess'        => 'Error de permisos',
-'badaccess-group0' => 'No está autorizado a ejecutar la acción que ha solicitado.',
-'badaccess-groups' => 'La acción que has solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos:}} $1.',
+'badaccess-group0' => 'No tienes autorización para ejecutar la acción que ha solicitado.',
+'badaccess-groups' => 'La acción que has solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos}}: $1.',
 
 'versionrequired'     => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
-'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consulte [[Special:Version|la página de versión]]',
+'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consultar [[Special:Version|la página de versión]]',
 
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Obtenido de "$1"',
@@ -604,9 +604,9 @@ $1',
 'feedlinks'               => 'Sindicación:',
 'feed-invalid'            => 'Tipo de subscripción a sindicación de noticias inválida.',
 'feed-unavailable'        => 'Las fuentes web no están disponibles',
-'site-rss-feed'           => '$1 RSS feed',
-'site-atom-feed'          => '$1 Atom feed',
-'page-rss-feed'           => '"$1" RSS feed',
+'site-rss-feed'           => '$1 Fuente RSS',
+'site-atom-feed'          => '$1 Fuente Atom',
+'page-rss-feed'           => '"$1" Fuente RSS',
 'page-atom-feed'          => '"$1" Subscripción Atom',
 'red-link-title'          => '$1 (página no existe)',
 
@@ -647,7 +647,7 @@ Base de datos retornó error "$3: $4".',
 'laggedslavemode'      => "'''Aviso:''' puede que falten las actualizaciones más recientes en esta página.",
 'readonly'             => 'Base de datos bloqueada',
 'enterlockreason'      => 'Explique el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo',
-'readonlytext'         => 'La base de datos no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras de lo cual volverá a la normalidad.
+'readonlytext'         => 'La base de datos no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras lo cual volverá a la normalidad.
 
 La explicación dada por el administrador que la bloqueó fue: $1',
 'missing-article'      => "La base de datos no encuentra el texto de una página que debería hallarse, llamada «$1» $2.
@@ -691,7 +691,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Esta página ha sido bloqueada para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
 'protectedinterface'   => 'Esta página provee texto del interfaz del software, y está protegida para evitar vandalismos.',
-'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto de interfaz para el software. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios. Para traducciones, por favor considere usar [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], el proyecto de localización MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto de interfaz para el software. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios. Para traducciones, por favor considera usar [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], el proyecto de localización MediaWiki.",
 'sqlhidden'            => '(Consulta SQL oculta)',
 'cascadeprotected'     => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con las opción de "cascada":
 $2',
@@ -715,24 +715,24 @@ Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas
 
 Tu cuenta ha sido creada. 
 No olvides personalizar [[Special:Preferences|tus preferencias]].',
-'yourname'                   => 'Su nombre de usuario:',
+'yourname'                   => 'Nombre de usuario:',
 'yourpassword'               => 'Contraseña:',
-'yourpasswordagain'          => 'Repita su contraseña:',
+'yourpasswordagain'          => 'Repita la contraseña:',
 'remembermypassword'         => 'Quiero que me recuerden entre sesiones.',
-'yourdomainname'             => 'Su dominio',
-'externaldberror'            => 'Hubo un error de autenticación externa de la base de datos o bien no está autorizado a actualizar su cuenta externa.',
+'yourdomainname'             => 'Dominio',
+'externaldberror'            => 'Hubo un error de autenticación externa de la base de datos o bien no tienes autorización para actualizar tu cuenta externa.',
 'login'                      => 'Entrar',
 'nav-login-createaccount'    => 'Registrarse/Entrar',
-'loginprompt'                => "Necesita habilitar las ''cookies'' en su navegador para registrarse en {{SITENAME}}.",
+'loginprompt'                => "Es necesario habilitar las ''cookies'' en el navegador para registrarse en {{SITENAME}}.",
 'userlogin'                  => 'Registrarse/Entrar',
 'userloginnocreate'          => 'Iniciar sesión',
 'logout'                     => 'Salir',
 'userlogout'                 => 'Salir',
-'notloggedin'                => 'No ha entrado',
-'nologin'                    => "¿No tiene una cuenta? '''$1'''.",
+'notloggedin'                => 'No has iniciado sesión',
+'nologin'                    => "¿No tienes una cuenta? '''$1'''.",
 'nologinlink'                => 'Crear una cuenta',
 'createaccount'              => 'Cree una nueva cuenta',
-'gotaccount'                 => "¿Ya tiene una cuenta? '''$1'''.",
+'gotaccount'                 => '¿Ya tienes una cuenta? $ 1.',
 'gotaccountlink'             => 'Autenticarse',
 'createaccountmail'          => 'por correo electrónico',
 'badretype'                  => 'Las contraseñas no coinciden.',
@@ -740,20 +740,20 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 Por favor, indica un nombre diferente.',
 'loginerror'                 => 'Error de inicio de sesión',
 'createaccounterror'         => 'No se pudo crear cuenta: $1',
-'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero ahora mismo no está identificado. {{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados, pero parecen deshabilitadas. Por favor, habilítelas e identifíquese con su nombre de usuario y contraseña.',
+'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero en este momento no has iniciado la sesión. {{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados, pero parecen deshabilitadas. Por favor, habilítalas e identifícate con nombre de usuario y contraseña.',
 'nocookieslogin'             => '{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Tiene las <em>cookies</em> deshabilitadas en el navegador. Por favor, actívelas e inténtelo de nuevo.',
-'noname'                     => 'No ha especificado un nombre de usuario válido.',
+'noname'                     => 'No se ha especificado un nombre de usuario válido.',
 'loginsuccesstitle'          => 'Inicio de sesión exitoso',
-'loginsuccess'               => 'Ha iniciado su sesión en {{SITENAME}} como "$1".',
+'loginsuccess'               => 'Has iniciado su sesión en {{SITENAME}} como "$1".',
 'nosuchuser'                 => 'No existe ningún usuario llamado «$1».
 Los nombres de usuario son sensibles a las mayúsculas.
-Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
-'nosuchusershort'            => 'No hay un usuario con el nombre "<nowiki>$1</nowiki>". Compruebe que lo ha escrito correctamente.',
+Revisa la ortografía, o [[Special:UserLogin/signup|crea una nueva cuenta]].',
+'nosuchusershort'            => 'No hay un usuario con el nombre "<nowiki>$1</nowiki>". Comprueba que lo has escrito correctamente.',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
 'login-userblocked'          => 'Este usuario está bloqueado. Inicio de sesión no permitido.',
-'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtelo de nuevo.',
+'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtalo de nuevo.',
 'wrongpasswordempty'         => 'No has escrito una contraseña.
-Por favor, intente de nuevo.',
+Por favor, inténtalo de nuevo.',
 'passwordtooshort'           => 'Las contraseñas deben tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
 'password-name-match'        => 'Tu contraseña debe ser diferente de tu nombre de usuario.',
 'mailmypassword'             => 'Enviar una nueva contraseña por correo electrónico',
@@ -778,17 +778,17 @@ Como resultado, los visitantes usando esta dirección IP no pueden crear más cu
 'emailauthenticated'         => 'Su dirección electrónica fue autenticada en $2 a $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
-'noemailprefs'               => 'Especifique una dirección electrónica para habilitar estas características.',
-'emailconfirmlink'           => 'Confirme su dirección de correo electrónico',
+'noemailprefs'               => 'Especifica una dirección electrónica para habilitar estas características.',
+'emailconfirmlink'           => 'Confirmar dirección de correo electrónico',
 'invalidemailaddress'        => 'La dirección electrónica no puede ser aceptada, pues parece que tiene un formato no válido.
-Por favor, entre una dirección bien formada, o vacíe ese campo.',
+Por favor, escribe una dirección en el formato adecuado o deja el campo en blanco.',
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => 'La cuenta de usuario para $1 ha sido creada.',
 'createaccount-title'        => 'Creación de cuenta para {{SITENAME}}',
 'createaccount-text'         => 'Alguien creó en  {{SITENAME}} ($4) una cuenta asociada a este correo electrónico con el nombre "$2".
 La contraseña asignada automáticamente es "$3". Por favor entra ahora y cambia tu contraseña.
 
-Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
+Puedes ignorar este mensaje si esta cuenta fue creada erróneamente.',
 'usernamehasherror'          => 'El nombre de usuario no puede contener símbolos de almohadilla/numeral',
 'login-throttled'            => 'Has intentado demasiadas veces iniciar sesión. Por favor espera antes de intentarlo nuevamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
@@ -802,9 +802,9 @@ Por favor, introduce una nueva contraseña aquí:',
 'resetpass_header'          => 'Cambiar la contraseña',
 'oldpassword'               => 'Contraseña antigua:',
 'newpassword'               => 'Contraseña nueva:',
-'retypenew'                 => 'Confirme la nueva contraseña:',
+'retypenew'                 => 'Confirmar la nueva contraseña:',
 'resetpass_submit'          => 'Cambiar la contraseña e identificarse',
-'resetpass_success'         => 'Se ha cambiado su contraseña. Autenticándole...',
+'resetpass_success'         => 'La contraseña ha sido cambiada. Iniciando sesión...',
 'resetpass_forbidden'       => 'No se puede cambiar contraseñas',
 'resetpass-no-info'         => 'Debes identificarte para acceder directamente a esta página.',
 'resetpass-submit-loggedin' => 'Cambiar contraseña',
@@ -824,16 +824,16 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'extlink_tip'     => 'Enlace externo (recuerda añadir el prefijo http://)',
 'headline_sample' => 'Texto de titular',
 'headline_tip'    => 'Titular de nivel 2',
-'math_sample'     => 'Escriba aquí una fórmula',
+'math_sample'     => 'Escribir la fórmula aquí',
 'math_tip'        => 'Fórmula matemática (LaTeX)',
-'nowiki_sample'   => 'Inserte aquí texto sin formato',
+'nowiki_sample'   => 'Insertar aquí texto sin formato',
 'nowiki_tip'      => 'Pasar por alto el formato wiki',
 'image_sample'    => 'Ejemplo.jpg',
 'image_tip'       => 'Imagen incorporada',
 'media_sample'    => 'Ejemplo.ogg',
 'media_tip'       => 'Enlace a archivo multimedia',
 'sig_tip'         => 'Firma, fecha y hora',
-'hr_tip'          => 'Línea horizontal (utilícela con moderación)',
+'hr_tip'          => 'Línea horizontal (utilizar con moderación)',
 
 # Edit pages
 'summary'                          => 'Resumen:',
@@ -893,44 +893,44 @@ Por favor incluye todos los datos aquí mostrados en cualquier consulta que haga
 Quizá ha sido movida o borrada mientras visitabas la página.',
 'loginreqtitle'                    => 'Se requiere identificación',
 'loginreqlink'                     => 'identificarte',
-'loginreqpagetext'                 => 'Debe $1 para ver otras páginas.',
+'loginreqpagetext'                 => 'Debes $1 para ver otras páginas.',
 'accmailtitle'                     => 'La contraseña ha sido enviada.',
 'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] ha sido enviada a $2.
 
-La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Special:ChangePassword|cambiar la contraseña]]'' después de la autenticación.",
+La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Special:ChangePassword|cambiar la contraseña]]'' después de haber iniciado sesión.",
 'newarticle'                       => '(Nuevo)',
-'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe.
-Si lo que quieres es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]].
-Si llegó aquí por error, vuelva a la página anterior.',
+'newarticletext'                   => 'Has seguido un enlace a una página que aún no existe.
+Para crear esta página, escribe en el campo a continuación. Para más información, consulta la [[{{MediaWiki:Helppage}}|página de ayuda]].
+Si llegaste aquí por error, vuelve a la página anterior.',
 'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
 'noarticletext'                    => 'En este momento no hay texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otras páginas,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
-'noarticletext-nopermission'       => 'No hay actualmente texto en esta página.
+'noarticletext-nopermission'       => 'Actualmente no hay texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'userpage-userdoesnotexist-view'   => 'Cuenta de usuario "$1" no está registrada.',
 'blocked-notice-logextract'        => 'Este usuario está actualmente bloqueado.
 La última entrada del registro de bloqueos es provista debajo para mayor referencia:',
-'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
+'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debes vaciar la caché del navegador para ver los cambios:
 
 *'''Mozilla / Firefox / Safari:''' pulsa ''Mayúsculas.'' mientras haces click en el botón ''Recargar,'' o pulsa si no ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' en un Macintosh)
-*'''Konqueror: '''Haz click en el botón ''Reload'' o pulsa ''F5;''
+*'''Konqueror: '''Haz click en el botón ''Recargar'' o pulsa ''F5;''
 *'''Opera:''' Limpia la caché en ''Herramientas → Preferencias;''
-*'''Internet Explorer:''' pulsa ''Ctrl'' mientras haces click en ''Refresh,'' o pulsa ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Consejo:''' Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.",
-'userjsyoucanpreview'              => "'''Consejo:''' Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.",
-'usercsspreview'                   => "'''Recuerde que sólo está previsualizando su CSS de usuario.'''
+*'''Internet Explorer:''' pulsa ''Ctrl'' mientras haces click en ''Actualizar,'' o pulsa ''Ctrl-F5.''",
+'usercssyoucanpreview'             => "'''Consejo:''' Usa el botón «Mostrar previsualización» para probar el nuevo css/js antes de grabarlo.",
+'userjsyoucanpreview'              => "'''Consejo:''' Usa el botón «Mostrar previsualización» para probar el nuevo JS antes de grabarlo.",
+'usercsspreview'                   => "'''Recuerda que sólo está previsualizando tu CSS de usuario.'''
 '''¡Aún no se ha grabado!'''",
-'userjspreview'                    => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
-'userinvalidcssjstitle'            => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
+'userjspreview'                    => "'''¡Recuerde que sólo estás previsualizando tu javascript de usuario y aún no se ha grabado!'''",
+'userinvalidcssjstitle'            => "'''Aviso:''' No existe la máscara \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''¡Recuerde que esto es sólo una previsualización y aún no se ha grabado!'''",
+'previewnote'                      => "'''¡Recuerda que esto es sólo una previsualización y aún no se ha grabado!'''",
 'previewconflict'                  => 'La previsualización le muestra cómo aparecerá el texto una vez guardados los cambios.',
-'session_fail_preview'             => "'''Lo sentimos, no pudimos efectuar su edición debido a una pérdida de los datos de sesión. Por favor, inténtelo de nuevo y si no funciona, salga de su sesión y vuelva a identificarse.'''",
+'session_fail_preview'             => "'''Lo sentimos, no pudimos procesar la edición debido a una pérdida de los datos de sesión. Por favor, inténtalo de nuevo y si no funciona, cierra la sesión y vuelve a identificarte.'''",
 'session_fail_preview_html'        => "'''Lo sentimos, no hemos podido procesar tu cambio debido a una pérdida de datos de sesión.'''
 
 ''Puesto que este wiki tiene el HTML puro habilitado, la visión preliminar está oculta para prevenirse contra ataques en JavaScript.''
@@ -1478,6 +1478,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'right-hideuser'              => 'Bloquear un nombre de usuario, haciéndolo invisible',
 'right-ipblock-exempt'        => 'Pasar por encima de bloqueos de IPs, auto-bloqueos y bloqueos de rangos.',
 'right-proxyunbannable'       => 'Pasar por encima de bloqueos automáticos de proxies',
+'right-unblockself'           => 'Desbloquearse',
 'right-protect'               => 'Cambiar niveles de protección y editar páginas protegidas',
 'right-editprotected'         => 'Editar páginas protegidas (sin la protección «en cascada»)',
 'right-editinterface'         => 'Editar la interfaz de usuario',
@@ -2479,6 +2480,8 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'sorbs_create_account_reason'     => 'Su dirección IP está listada como proxy abierto en DNSBL. No puede crear una cuenta',
 'cant-block-while-blocked'        => 'No puedes bloquear a otros usuarios mientras estás bloqueado.',
 'cant-see-hidden-user'            => 'El usuario que está intentando bloquear ya ha sido bloqueado y oculto. Puesto que usted no tiene el derecho hideuser, usted no puede ver o editar los bloqueos del usuario.',
+'ipbblocked'                      => 'No puedes bloquear a otros usuarios porque estás {{GENDER:$1|bloqueado|bloqueada}}',
+'ipbnounblockself'                => 'No puedes desbloquearte',
 
 # Developer tools
 'lockdb'              => 'Bloquear la base de datos',

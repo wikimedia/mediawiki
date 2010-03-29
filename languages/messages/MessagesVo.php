@@ -1811,7 +1811,7 @@ Ekö! parametem anuik pada: '''$1''':",
 'protect-othertime-op'        => 'tim votik',
 'protect-existing-expiry'     => 'Dul dabinöl: jü $3, tü $2',
 'protect-otherreason'         => 'Kod votik/pluik:',
-'protect-otherreason-op'      => 'kod votik/pluik',
+'protect-otherreason-op'      => 'Kod votik',
 'protect-dropdown'            => '* Jelakods suvik
 ** Vandalim tuik
 ** Spam tuik
@@ -1858,6 +1858,7 @@ Ba labol yümi dädik, u ba fomam pegepübon u pemoükon se registar.',
 'undelete-nodiff'              => 'Fomams büik no petuvons.',
 'undeletebtn'                  => 'Sädunön moükami',
 'undeletelink'                 => 'logön/sädunön',
+'undeleteviewlink'             => 'logön',
 'undeletereset'                => 'Vagükolöd vali',
 'undeleteinvert'               => 'Väli güükön',
 'undeletecomment'              => 'Küpet:',
@@ -2649,6 +2650,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'watchlistall2'    => 'valikis',
 'namespacesall'    => 'valik',
 'monthsall'        => 'valik',
+'limitall'         => 'valikis',
 
 # E-mail address confirmation
 'confirmemail'             => 'Fümedolös ladeti leäktronik',

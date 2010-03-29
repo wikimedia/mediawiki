@@ -1337,6 +1337,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-hideuser'              => "Blocar un nom d'usuari amagant-lo del públic",
 'right-ipblock-exempt'        => "Evitar blocatges d'IP, de rang i automàtics",
 'right-proxyunbannable'       => 'Evitar els blocatges automàtics a proxies',
+'right-unblockself'           => 'Desblocar-se a si mateixos',
 'right-protect'               => 'Canviar el nivell de protecció i modificar pàgines protegides',
 'right-editprotected'         => 'Editar pàgines protegides (sense protecció de cascada)',
 'right-editinterface'         => "Editar la interfície d'usuari",
@@ -2338,6 +2339,8 @@ L'usuari $1 ja està blocat. Voleu canviar-ne els paràmetres del blocatge?",
 'sorbs_create_account_reason'     => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert a la llista negra de DNS que utilitza el projecte {{SITENAME}}. No podeu crear-vos-hi un compte",
 'cant-block-while-blocked'        => 'No podeu blocar altres usuaris quan esteu bloquejat.',
 'cant-see-hidden-user'            => "L'usuari que esteu intentant blocar ja ha estat blocat i ocultat. Com que no teniu el permís hideuser no podeu veure ni modificar el seu blocatge.",
+'ipbblocked'                      => 'No podeu blocar o desblocar altres usuaris, perquè vós {{GENDER:|mateix|mateixa|mateix}} esteu {{GENDER:|blocat|blocada|blocat}}.',
+'ipbnounblockself'                => 'No teniu permís per a treure el vostre bloqueig',
 
 # Developer tools
 'lockdb'              => 'Bloca la base de dades',

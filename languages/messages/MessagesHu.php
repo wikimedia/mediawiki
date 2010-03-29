@@ -1454,6 +1454,7 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-hideuser'              => 'felhasználói név blokkolása és elrejtése a külvilág elől',
 'right-ipblock-exempt'        => 'IP-, auto- és tartományblokkok megkerülése',
 'right-proxyunbannable'       => 'proxyk automatikus blokkjainak megkerülése',
+'right-unblockself'           => 'saját felhasználói fiók blokkjának feloldása',
 'right-protect'               => 'védelmi szintek megváltoztatása és védett lapok szerkesztése',
 'right-editprotected'         => 'kaszkád védelem nélküli védett lapok szerkesztése',
 'right-editinterface'         => 'felhasználói felület szerkesztése',
@@ -2136,6 +2137,9 @@ Amíg nem keresed fel az oldalt, addig nem érkeznek újabb értesítések az ol
 A figyelőlistád módosításához keresd fel a
 {{fullurl:{{#special:Watchlist}}/edit}} címet
 
+A lap figyelőlistádról való törléséhez keresd fel a
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}} címet
+
 Visszajelzés és további segítség:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -2461,6 +2465,8 @@ $1 már blokkolva van. Meg szeretnéd változtatni a beállításokat?',
 'sorbs_create_account_reason'     => 'Az IP-címed nyitott proxyként szerepel e webhely által használt DNSBL listán. Nem hozhatsz létre fiókot.',
 'cant-block-while-blocked'        => 'Nem blokkolhatsz más szerkesztőket, miközben te magad blokkolva vagy.',
 'cant-see-hidden-user'            => 'A felhasználó, akit blokkolni próbáltál már blokkolva és rejtve van. Mivel nincs felhasználó elrejtése jogosultságod, nem láthatod és nem szerkesztheted a felhasználó blokkját.',
+'ipbblocked'                      => 'Nem blokkolhatsz és nem oldhatod fel más felhasználók blokkjait, mert te magad is blokkolva vagy',
+'ipbnounblockself'                => 'Nincs jogosultságod feloldani a saját felhasználói fiókod blokkját',
 
 # Developer tools
 'lockdb'              => 'Adatbázis zárolása',
@@ -2561,8 +2567,10 @@ Az átnevezés céljaként megadott „[[:$1]]” szócikk már létezik.  Ha az
 'imageinvalidfilename'         => 'A célnév érvénytelen',
 'fix-double-redirects'         => 'Az eredeti címre mutató hivatkozások frissítése',
 'move-leave-redirect'          => 'Átirányítás készítése a régi címről az új címre',
-'protectedpagemovewarning'     => "'''FIGYELEM:''' Ez a lap le van védve, ezért csak adminisztrátorok nevezhetik át.",
-'semiprotectedpagemovewarning' => "'''Megjegyzés:''' Ez a lap le van védve, ezért csak regisztrált szerkesztők nevezhetik át.",
+'protectedpagemovewarning'     => "'''Figyelem:''' Ez a lap le van védve, így csak adminisztrátori jogosultságokkal rendelkező szerkesztők nevezhetik át.
+A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
+'semiprotectedpagemovewarning' => "'''Figyelem:''' Ez a lap le van védve, így csak regisztrált felhasználók nevezhetik át.
+A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
 'move-over-sharedrepo'         => '== Létező fájlnév ==
 
 A(z) [[:$1]] néven már létezik fájl egy megosztott tárhelyen. Ha ilyen néven töltöd fel, el fogja takarni a közös tárhelyen levőt.',
@@ -3169,26 +3177,26 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'limitall'         => 'mind',
 
 # E-mail address confirmation
-'confirmemail'             => 'E-mail cím megerősítése',
-'confirmemail_noemail'     => 'Nincs érvényes e-mail cím megadva a [[Special:Preferences|beállításaidnál]].',
-'confirmemail_text'        => 'Meg kell erősítened az e-mail címed, mielőtt használhatnád a(z) {{SITENAME}} levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet.',
-'confirmemail_pending'     => 'A megerősítő kódot már elküldtük neked e-mailben, kérjük, várj türelemmel, amíg a szükséges adatok megérkeznek az e-mailcímedre, és csak akkor kérj új kódot, ha valami technikai malőr folytán értelmes időn belül nem kapod meg a levelet.',
-'confirmemail_send'        => 'Küldd el a kódot',
-'confirmemail_sent'        => 'Kaptál egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot.',
-'confirmemail_oncreate'    => 'A megerősítő kódot elküldtük az e-mail címedre.
+'confirmemail'              => 'E-mail cím megerősítése',
+'confirmemail_noemail'      => 'Nincs érvényes e-mail cím megadva a [[Special:Preferences|beállításaidnál]].',
+'confirmemail_text'         => 'Meg kell erősítened az e-mail címed, mielőtt használhatnád a(z) {{SITENAME}} levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet.',
+'confirmemail_pending'      => 'A megerősítő kódot már elküldtük neked e-mailben, kérjük, várj türelemmel, amíg a szükséges adatok megérkeznek az e-mailcímedre, és csak akkor kérj új kódot, ha valami technikai malőr folytán értelmes időn belül nem kapod meg a levelet.',
+'confirmemail_send'         => 'Küldd el a kódot',
+'confirmemail_sent'         => 'Kaptál egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot.',
+'confirmemail_oncreate'     => 'A megerősítő kódot elküldtük az e-mail címedre.
 Ez a kód nem szükséges a belépéshez, de meg kell adnod,
 mielőtt a wiki e-mail alapú szolgáltatásait igénybe veheted.',
-'confirmemail_sendfailed'  => 'Nem sikerült elküldeni a megerősítő e-mailt.
+'confirmemail_sendfailed'   => 'Nem sikerült elküldeni a megerősítő e-mailt.
 Ellenőrizd, hogy nem írtál-e érvénytelen karaktert a címbe.
 
 A levelező üzenete: $1',
-'confirmemail_invalid'     => 'Nem megfelelő kód. A kódnak lehet, hogy lejárt a felhasználhatósági ideje.',
-'confirmemail_needlogin'   => 'Meg kell $1 erősíteni az e-mail címedet.',
-'confirmemail_success'     => 'Az e-mail címed megerősítve. Most már beléphetsz a wikibe.',
-'confirmemail_loggedin'    => 'E-mail címed megerősítve.',
-'confirmemail_error'       => 'Hiba az e-mail címed megerősítése során.',
-'confirmemail_subject'     => '{{SITENAME}} e-mail cím megerősítés',
-'confirmemail_body'        => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált
+'confirmemail_invalid'      => 'Nem megfelelő kód. A kódnak lehet, hogy lejárt a felhasználhatósági ideje.',
+'confirmemail_needlogin'    => 'Meg kell $1 erősíteni az e-mail címedet.',
+'confirmemail_success'      => 'Az e-mail címed megerősítve. Most már beléphetsz a wikibe.',
+'confirmemail_loggedin'     => 'E-mail címed megerősítve.',
+'confirmemail_error'        => 'Hiba az e-mail címed megerősítése során.',
+'confirmemail_subject'      => '{{SITENAME}} e-mail cím megerősítés',
+'confirmemail_body'         => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált
 "$2" néven a(z) {{SITENAME}} wikin, a(z) $1 IP-címről.
 
 Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik,
@@ -3202,8 +3210,21 @@ e-mail cím megerősíthetőségének visszavonásához:
 $5
 
 A megerősítésre szánt kód felhasználhatósági idejének lejárata: $4.',
-'confirmemail_invalidated' => 'E-mail-cím megerősíthetősége visszavonva',
-'invalidateemail'          => 'E-mail-cím megerősíthetőségének visszavonása',
+'confirmemail_body_changed' => 'Valaki (vélhetően te, a(z) $1 IP-címről) megváltoztatta a(z) „$2” felhasználói fiók email címét a {{SITENAME}} wikin erre a címre.
+
+Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik,
+és hogy újra aktiváld az e-mail címedet, nyisd meg az alábbi linket a böngésződben:
+
+$3
+
+Ha ez *nem* te vagy, kattints erre a linkre az
+e-mail cím megerősíthetőségének visszavonásához:
+
+$5
+
+A megerősítésre szánt kód felhasználhatósági idejének lejárata: $4.',
+'confirmemail_invalidated'  => 'E-mail-cím megerősíthetősége visszavonva',
+'invalidateemail'           => 'E-mail-cím megerősíthetőségének visszavonása',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Wikiközi beillesztés le van tiltva]',
