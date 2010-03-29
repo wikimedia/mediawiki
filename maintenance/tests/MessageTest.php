@@ -16,4 +16,18 @@ class MessageTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'Main Page', Message::key( 'mainpage' )->text() );
 		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', Message::key( 'i-dont-exist-evar' )->text() );
 	}
+
+	function testInLanguage() {
+		$this->assertEquals( 'Main Page', Message::key( 'mainpage' )->inLanguage( 'en' )->text() );
+		$this->assertEquals( 'Заглавная страница', Message::key( 'mainpage' )->inLanguage( 'ru' )->text() );
+		$this->assertEquals( 'Main Page', Message::key( 'mainpage' )->inLanguage( Language::factory( 'en' ) )->text() );
+		$this->assertEquals( 'Заглавная страница', Message::key( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
+	}
+
+	/**
+	 * @expectedException
+	 */
+	function testInLanguageThrows() {
+		Message::key( 'foo' )->inLanguage( 123 );
+	}
 }
