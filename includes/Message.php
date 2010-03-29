@@ -277,7 +277,7 @@ class Message {
 	 * @return Bool: true if it is and false if not.
 	 */
 	public function exists() {
-		return $this->fetchMessage() === false;
+		return $this->fetchMessage() !== false;
 	}
 
 	public static function rawParam( $value ) {
