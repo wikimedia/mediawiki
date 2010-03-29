@@ -1,6 +1,6 @@
 <!-- See http://www.phpunit.de/manual/3.3/en/appendixes.configuration.html -->
 <phpunit bootstrap="./bootstrap.php"
-         colors="true"
+         colors="false"
          backupGlobals="false"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
