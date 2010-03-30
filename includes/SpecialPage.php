@@ -70,6 +70,10 @@ class SpecialPage {
 	 */
 	var $mAllowedRedirectParams = array();
 	/**
+	 * Query parameteres added by redirects
+	 */
+	var $mAddedRedirectParams = array();
+	/**
 	 * List of special pages, followed by parameters.
 	 * If the only parameter is a string, that is the page name.
 	 * Otherwise, it is an array. The format is one of:
@@ -118,6 +122,7 @@ class SpecialPage {
 		# Users and rights
 		'Blockip'                   => array( 'SpecialPage', 'Blockip', 'block' ),
 		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
+		'Unblock'                   => array( 'SpecialRedirectToSpecial', 'Unblock', 'Ipblocklist', false, array( 'uselang', 'ip', 'id' ), array( 'action' => 'unblock' ) ),
 		'Resetpass'                 => 'SpecialResetpass',
 		'DeletedContributions'      => 'DeletedContributionsPage',
 		'Preferences'               => 'SpecialPreferences',
@@ -883,7 +888,11 @@ Perhaps no page aliases are defined for it?" );
 			if( ( $val = $wgRequest->getVal( $arg, null ) ) !== null )
 				$params[] = $arg . '=' . $val;
 		}
-
+		
+		foreach( $this->mAddedRedirectParams as $arg => $val ) {
+			$params[] = $arg . '=' . $val;
+		}
+		
 		return count( $params ) ? implode( '&', $params ) : false;
 	}
 }
@@ -917,11 +926,12 @@ class IncludableSpecialPage extends SpecialPage
 class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	var $redirName, $redirSubpage;
 
-	function __construct( $name, $redirName, $redirSubpage = false, $redirectParams = array() ) {
+	function __construct( $name, $redirName, $redirSubpage = false, $allowedRedirectParams = array(), $addedRedirectParams = array() ) {
 		parent::__construct( $name );
 		$this->redirName = $redirName;
 		$this->redirSubpage = $redirSubpage;
-		$this->mAllowedRedirectParams = $redirectParams;
+		$this->mAllowedRedirectParams = $allowedRedirectParams;
+		$this->mAddedRedirectParams = $addedRedirectParams;
 	}
 
 	function getRedirect( $subpage ) {
