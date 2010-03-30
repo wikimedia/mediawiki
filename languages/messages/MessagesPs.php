@@ -955,12 +955,13 @@ $messages = array(
 'uploadnologin'         => 'غونډال کې نه ياست ننوتي',
 'uploadnologintext'     => 'ددې لپاره چې دوتنې پورته کړای شۍ، تاسو ته پکار ده چې لومړی غونډال کې [[Special:UserLogin|ننوتنه]] ترسره کړی.',
 'uploaderror'           => 'د پورته کولو ستونزه',
-'uploadtext'            => "د دوتنو د پورته کولو لپاره د لانديني چوکاټ نه کار واخلۍ، که چېرته غواړۍ چې د پخوانيو پورته شوو انځورونو په اړه لټون وکړۍ او يا يې وکتلای شۍ نو بيا د [[Special:FileList|پورته شوو دوتنو لړليک]] ته لاړ شی، د پورته شوو دوتنو او ړنګ شوو دوتنو يادښتونه په [[Special:Log/upload|پورته شوي يادښت]] کې کتلای شی.
+'uploadtext'            => "د دوتنې د پورته کېدو لپاره لاندينی چوکاټ وکاروۍ.
+که چېرته د پخونيو پورته شويو دوتنو کتل او پلټل غواړۍ نو [[Special:FileList|د پورته شويو دوتنو لړليک]] ته ورشۍ، [[Special:Log/upload|د (بيا) پورته شويو دوتنو يادښتونه]] او [[Special:Log/delete|د ړنګېدو يادښتونه]] هم کتلای شی.
 
-ددې لپاره چې يوه مخ ته انځور ورواچوی، نو بيا پدې ډول تړن (لېنک) وکاروی
-'''<nowiki>[[</nowiki>Image:File.jpg<nowiki>]]</nowiki>''',
-'''<nowiki>[[</nowiki>Image:File.png|alt text<nowiki>]]</nowiki>''' او يا هم د رسنيزو دوتنو لپاره د راساً تړن (لېنک) چې په دې ډول دی
-'''<nowiki>[[</nowiki>Media:File.ogg<nowiki>]]</nowiki>''' وکاروی.",
+ددې لپاره چې يوه مخ ته انځور ورواچوی، نو بيا پدې ډول تړنې (لېنک) وکاروی
+* د يوې دوتنې د بشپړې بڼې د کارولو په موخه د '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' کوډ وکاروۍ.
+* د '۲۰۰ پېکسل' په کچه د 'بټنوک' په توګه د يوې دوتنې کارول چې د مخ کيڼې څنډې کې او ترلاندې 'د انځور څرګندونې' ولري، نو د دې موخې لپاره د '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|بټنوک|کيڼ|د انځور څرګندونې]]</nowiki></tt>''' کوډ وکاروۍ.
+* د انځور د ښودلو نه پرته، د دوتنې سره د سيخې تړنې لپاره د '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' کوډ وکاروۍ.",
 'uploadlogpage'         => 'د پورته شويو دوتنو يادښت',
 'uploadlogpagetext'     => 'دا لاندې د نوو پورته شوو دوتنو لړليک دی.',
 'filename'              => 'د دوتنې نوم',
@@ -1264,7 +1265,7 @@ $messages = array(
 'exblank'               => 'دا مخ تش وه',
 'delete-confirm'        => '"$1" ړنګوول',
 'delete-legend'         => 'ړنګول',
-'historywarning'        => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
+'historywarning'        => "ګواښنه:''' تاسې چې د کوم مخ د ړنګېدو تکل لری، هغه د نژدې $1 {{PLURAL:$1|بڼې|بڼو}} يو پېښليک لري:",
 'confirmdeletetext'     => 'تاسې د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره د دغه توکبنسټ نه ړنګوۍ. که چېرته تاسې ددې کړنې په پايله پوه ياست او يا ستاسو همدا کړنه د دې پاڼې د [[{{MediaWiki:Policy-url}}|تګلارې]] سره سمون خوري نو لطفاً د دې تاييد وکړی.',
 'actioncomplete'        => 'بشپړه کړنه',
 'deletedtext'           => '"<nowiki>$1</nowiki>" ړنګ شوی.
@@ -1313,7 +1314,7 @@ $messages = array(
 'protect-othertime'           => 'بل وخت:',
 'protect-othertime-op'        => 'بل وخت',
 'protect-otherreason'         => 'بل/اضافي سبب:',
-'protect-otherreason-op'      => 'بل/اضافي سبب',
+'protect-otherreason-op'      => 'بل سبب',
 'protect-dropdown'            => '*د ژغورلو عام سببونه
 ** ډېره زياته ورانکاري
 ** ډېره زياته سپام خپرونه
@@ -1392,43 +1393,63 @@ $messages = array(
 'whatlinkshere-filters'    => 'چاڼګرونه',
 
 # Block/unblock
-'blockip'                  => 'په کارن بنديز لګول',
-'blockip-title'            => 'په کارن بنديز لګول',
-'blockip-legend'           => 'په کارن بنديز لګول',
-'ipaddress'                => 'IP پته',
-'ipadressorusername'       => 'IP پته يا کارن نوم',
-'ipbexpiry'                => 'د پای نېټه:',
-'ipbreason'                => 'سبب',
-'ipbreasonotherlist'       => 'بل لامل',
-'ipbsubmit'                => 'پدې کارن بنديز لګول',
-'ipbother'                 => 'بل وخت:',
-'ipboptions'               => '2 ساعتونه:2 hours,1 ورځ:1 day,3 ورځې:3 days,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',
-'ipbotheroption'           => 'نور',
-'ipbotherreason'           => 'بل/اضافه سبب:',
-'badipaddress'             => 'ناسمه IP پته',
-'blockipsuccesssub'        => 'مخنيوی په برياليتوب سره ترسره شو',
-'blockipsuccesstext'       => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
+'blockip'                   => 'په کارن بنديز لګول',
+'blockip-title'             => 'په کارن بنديز لګول',
+'blockip-legend'            => 'په کارن بنديز لګول',
+'ipaddress'                 => 'IP پته',
+'ipadressorusername'        => 'IP پته يا کارن نوم',
+'ipbexpiry'                 => 'د پای نېټه:',
+'ipbreason'                 => 'سبب',
+'ipbreasonotherlist'        => 'بل لامل',
+'ipbreason-dropdown'        => '*د بنديز ټولګړي سببونه
+** د ناسمو مالوماتو خپرول
+** د مخونو د مېنځپانګې ړنګول
+** په مخونو کې د باندنيو وېبځايونو بېکاره سپام تړنې ځايول 
+** په مخونو کې بې مانا/چټياټ ځايول
+** په مخونو کې ناندرۍ راپارېدنې/د تاوتريخوالي خپرېدو ته هڅول
+** د ګڼ شمېر کارن-حسابونو نه ناوړه ګټه اخيستل
+** نه مننونکی کارن-نوم کارول',
+'ipbsubmit'                 => 'پدې کارن بنديز لګول',
+'ipbother'                  => 'بل وخت:',
+'ipboptions'                => '2 ساعتونه:2 hours,1 ورځ:1 day,3 ورځې:3 days,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',
+'ipbotheroption'            => 'نور',
+'ipbotherreason'            => 'بل/اضافه سبب:',
+'badipaddress'              => 'ناسمه IP پته',
+'blockipsuccesssub'         => 'مخنيوی په برياليتوب سره ترسره شو',
+'blockipsuccesstext'        => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
 <br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:IPBlockList|مخنيول شويو IP لړليک]] وګورۍ.',
-'ipblocklist'              => 'د بنديز لګېدلي آی پي پتو او کارن نومونو لړليک',
-'ipblocklist-username'     => 'کارن-نوم يا IP پته:',
-'ipblocklist-submit'       => 'پلټل',
-'infiniteblock'            => 'لامحدوده',
-'anononlyblock'            => 'يواځې ورکنومی',
-'blocklink'                => 'بنديز لګول',
-'unblocklink'              => 'بنديز لرې کول',
-'change-blocklink'         => 'د بنديز بدلون',
-'contribslink'             => 'ونډې',
-'autoblocker'              => 'په اتوماتيک ډول ستاسو مخنيوی شوی دا ځکه چې ستاسو IP پته وروستی ځل د "[[User:$1|$1]]" له خوا کارېدلې. او د $1 د مخنيوي سبب دا دی: "$2"',
-'blocklogpage'             => 'د مخنيوي يادښت',
-'blocklogentry'            => 'په [[$1]] بنديز لګېدلی چې د بنديز د پای وخت يې $2 $3 دی',
-'unblocklogentry'          => 'بنديز ليرې شو $1',
-'block-log-flags-anononly' => 'يواځې ورکنومي کارنان',
-'block-log-flags-nocreate' => 'د کارن-حساب جوړول ناچارن شوې',
-'block-log-flags-noemail'  => 'ددې برېښليک مخه نيول شوی',
-'proxyblocksuccess'        => 'ترسره شو.',
+'ipb-edit-dropdown'         => 'د بنديز د سببونو سمول',
+'unblockip'                 => 'کارن له بنديزه وېستل',
+'ipusubmit'                 => 'دا بنديز ليرې کول',
+'ipblocklist'               => 'د بنديز لګېدلي آی پي پتو او کارن نومونو لړليک',
+'ipblocklist-legend'        => 'يو بنديز شوی کارن موندل',
+'ipblocklist-username'      => 'کارن-نوم يا IP پته:',
+'ipblocklist-sh-userblocks' => 'د کارن-حساب بنديزونه $1',
+'ipblocklist-sh-tempblocks' => 'لنډمهاله بنديزونه $1',
+'ipblocklist-submit'        => 'پلټل',
+'ipblocklist-localblock'    => 'سيمه ايز بنديز',
+'infiniteblock'             => 'لامحدوده',
+'anononlyblock'             => 'يواځې ورکنومی',
+'emailblock'                => 'پر برېښليک بنديز ولګېد',
+'blocklink'                 => 'بنديز لګول',
+'unblocklink'               => 'بنديز لرې کول',
+'change-blocklink'          => 'د بنديز بدلون',
+'contribslink'              => 'ونډې',
+'autoblocker'               => 'په اتوماتيک ډول ستاسو مخنيوی شوی دا ځکه چې ستاسو IP پته وروستی ځل د "[[User:$1|$1]]" له خوا کارېدلې. او د $1 د مخنيوي سبب دا دی: "$2"',
+'blocklogpage'              => 'د مخنيوي يادښت',
+'blocklogentry'             => 'په [[$1]] بنديز لګېدلی چې د بنديز د پای وخت يې $2 $3 دی',
+'unblocklogentry'           => 'بنديز ليرې شو $1',
+'block-log-flags-anononly'  => 'يواځې ورکنومي کارنان',
+'block-log-flags-nocreate'  => 'د کارن-حساب جوړول ناچارن شوې',
+'block-log-flags-noemail'   => 'ددې برېښليک مخه نيول شوی',
+'ipb_already_blocked'       => 'پر "$1" د پخوا نه بنديز دی',
+'blockme'                   => 'پر ما بنديز لګول',
+'proxyblocksuccess'         => 'ترسره شو.',
 
 # Developer tools
-'lockdb' => 'توکبنسټ تړل',
+'lockdb'    => 'توکبنسټ تړل',
+'lockbtn'   => 'توکبنسټ تړل',
+'unlockbtn' => 'توکبنسټ پرانيستل',
 
 # Move page
 'move-page-legend'        => 'مخ لېږدول',
@@ -1471,6 +1492,8 @@ $messages = array(
 'delete_and_move_confirm' => 'هو, دا مخ ړنګ کړه',
 'immobile-source-page'    => 'دا مخ نه لېږدېدنونکی دی',
 'imageinvalidfilename'    => 'د موخنې دوتنې نوم سم نه دی',
+'move-over-sharedrepo'    => '== دوتنه شته ==
+د [[:$1]] دوتنه په يوه ګډ زېرمتون کې شته. دې نوم ته د يوې دوتنې لېږدون به د ګډې دوتنې د باطلېدلو سبب شي.',
 
 # Export
 'export'            => 'مخونه صادرول',
@@ -1481,17 +1504,20 @@ $messages = array(
 'export-download'   => 'د دوتنې په بڼه خوندي کول',
 
 # Namespace 8 related
-'allmessages'               => 'د غونډال پيغامونه',
-'allmessagesname'           => 'نوم',
-'allmessagesdefault'        => 'ټاکل شوی متن',
-'allmessagescurrent'        => 'اوسنی متن',
-'allmessagestext'           => 'دا د مېډياويکي په نوم-تشيال کې د غونډال د پيغامونو لړليک دی.
+'allmessages'                   => 'د غونډال پيغامونه',
+'allmessagesname'               => 'نوم',
+'allmessagesdefault'            => 'ټاکل شوی متن',
+'allmessagescurrent'            => 'اوسنی متن',
+'allmessagestext'               => 'دا د مېډياويکي په نوم-تشيال کې د غونډال د پيغامونو لړليک دی.
 که چېرته تاسو د ميډياويکي په ځايتابه کې ونډې ترسره کول غواړۍ نو لطفاً [http://www.mediawiki.org/wiki/Localisation د ويډياويکي ځايتابه] او [http://translatewiki.net translatewiki.net] نه ليدنه وکړۍ.',
-'allmessagesnotsupportedDB' => "'''Special:Allmessages''' ترېنه کار نه اخيستل کېږي ځکه چې '''\$wgUseDatabaseMessages''' مړ دی.",
-'allmessages-filter-legend' => 'چاڼګر',
-'allmessages-filter-all'    => 'ټول',
-'allmessages-language'      => 'ژبه:',
-'allmessages-filter-submit' => 'ورځه',
+'allmessagesnotsupportedDB'     => "'''Special:Allmessages''' ترېنه کار نه اخيستل کېږي ځکه چې '''\$wgUseDatabaseMessages''' مړ دی.",
+'allmessages-filter-legend'     => 'چاڼګر',
+'allmessages-filter-unmodified' => 'نابدلېدلي',
+'allmessages-filter-all'        => 'ټول',
+'allmessages-filter-modified'   => 'بدلېدلي',
+'allmessages-prefix'            => 'د مختاړي پر بنسټ اړونده چاڼګر:',
+'allmessages-language'          => 'ژبه:',
+'allmessages-filter-submit'     => 'ورځه',
 
 # Thumbnails
 'thumbnail-more'  => 'لويول',
@@ -1670,6 +1696,7 @@ $messages = array(
 'exif-subjectdistance-value' => '$1 متره',
 
 'exif-meteringmode-0'   => 'ناجوت',
+'exif-meteringmode-5'   => 'مخبېلګه',
 'exif-meteringmode-255' => 'نور',
 
 'exif-lightsource-0'  => 'ناجوت',

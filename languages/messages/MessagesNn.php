@@ -845,6 +845,8 @@ Du kan [[Special:Search/{{PAGENAME}}|søkja etter tittelen på denne sida]] på 
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sjå loggføringar med tilknytting]</span>.',
 'userpage-userdoesnotexist'        => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
 'userpage-userdoesnotexist-view'   => 'Brukarkontoen "$1" er ikkje oppretta.',
+'blocked-notice-logextract'        => 'Denne brukaren er for tida blokkert.
+Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'clearyourcache'                   => "'''Merk: Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft.''' '''Firefox og Safari:''' Hald ''Shift'' nede medan du trykkjer anten ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac). '''Konqueror:''' Trykk ''Oppdater'' eller på ''F5''. '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''. '''Internet Explorer:''' Hald nede ''Ctrl'' medan du trykkjer ''Oppdater'', eler trykk ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tips:''' Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.",
 'userjsyoucanpreview'              => "'''Tips:''' Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.",
@@ -1389,6 +1391,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-hideuser'              => 'Blokkere eit brukarnamn og skjule det frå ålmenta.',
 'right-ipblock-exempt'        => 'Kan gjere endringar frå blokkerte IP-adresser',
 'right-proxyunbannable'       => 'Kan gjere endringar frå blokkerte proxyar',
+'right-unblockself'           => 'Avblokkera seg sjølve',
 'right-protect'               => 'Endre vernenivå',
 'right-editprotected'         => 'Endre verna sider',
 'right-editinterface'         => 'Redigere brukargrensesnittet',
@@ -1638,9 +1641,11 @@ Berre tilgjenge til filer er tillete.',
 'img-auth-public'       => 'Funksjonen til img_auth.php er å laga filer frå ein privat wiki.
 Denne wikien er sett opp som ein ålmennt tilgjengeleg wiki.
 For best tryggleik, er img_auth.php sett ut av funksjon.',
-'img-auth-noread'       => 'Brukaren har ikkje rettar til å lesa "$1".',
+'img-auth-noread'       => 'Brukaren har ikkje rettar til å lesa «$1».',
 
 # HTTP errors
+'http-invalid-url'      => 'Ugyldig URL: $1',
+'http-invalid-scheme'   => 'URL-ar med  «$1»-førestavinga er ikkje støtta.',
 'http-request-error'    => 'HTTP-førespurnaden feila grunna ein ukjend feil.',
 'http-read-error'       => 'HTTP-lesefeil.',
 'http-timed-out'        => 'Tidsavbrot på HTTP-førespurnad.',

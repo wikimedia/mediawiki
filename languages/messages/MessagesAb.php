@@ -49,6 +49,7 @@ $messages = array(
 # Vector skin
 'vector-namespace-category' => 'Акатегориа',
 'vector-namespace-main'     => 'Адаҟьа',
+'vector-namespace-talk'     => 'Ахцәажәара',
 'vector-view-edit'          => 'Ариашамҭа',
 'vector-view-history'       => 'Аҭоурых',
 
