@@ -517,6 +517,7 @@ $wgMessageStructure = array(
 		'showlivepreview',
 		'showdiff',
 		'anoneditwarning',
+		'anonpreviewwarning',
 		'missingsummary',
 		'missingcommenttext',
 		'missingcommentheader',
