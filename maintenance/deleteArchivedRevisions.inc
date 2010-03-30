@@ -23,7 +23,15 @@
 
 class DeleteArchivedRevisionsImplementation {
 
-	static public function doDelete($output) {
+	/**
+	 * Perform the delete on archived revisions.
+
+	 * @param $maint Object An object (typically of class Maintenance)
+	 * that implements two methods: handleOutput() and
+	 * purgeRedundantText().  See Maintenance for a description of
+	 * those methods.
+	 */
+	static public function doDelete($maint) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->begin();
@@ -31,19 +39,19 @@ class DeleteArchivedRevisionsImplementation {
 		$tbl_arch = $dbw->tableName( 'archive' );
 
 		# Delete as appropriate
-		$output->handleOutput( "Deleting archived revisions... " );
+		$maint->handleOutput( "Deleting archived revisions... " );
 		$dbw->query( "DELETE FROM $tbl_arch" );
 
 		$count = $dbw->affectedRows();
 		$deletedRows = $count != 0;
 
-		$output->handleOutput( "done. $count revisions deleted.\n" );
+		$maint->handleOutput( "done. $count revisions deleted.\n" );
 
 		# This bit's done
 		# Purge redundant text records
 		$dbw->commit();
 		if( $deletedRows ) {
-			$this->purgeRedundantText( true );
+			$maint->purgeRedundantText( true );
 		}
 	}
 }
