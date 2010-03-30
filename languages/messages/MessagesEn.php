@@ -407,6 +407,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'AllPages' ),
 	'Prefixindex'               => array( 'PrefixIndex' ) ,
 	'Ipblocklist'               => array( 'BlockList', 'ListBlocks', 'IPBlockList' ),
+	'Unblock'                   => array( 'Unblock' ),
 	'Specialpages'              => array( 'SpecialPages' ),
 	'Contributions'             => array( 'Contributions' ),
 	'Emailuser'                 => array( 'EmailUser' ),
