@@ -463,7 +463,7 @@ class ApiMain extends ApiBase {
 				} else {
 					$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
 				}
-				return false
+				return false;
 			}
 		}
 		return true;
