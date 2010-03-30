@@ -60,14 +60,14 @@ class ApiUpload extends ApiBase {
 			 * Upload stashed in a previous request
 			 */
 			// Check the session key
-			if ( !isset( $_SESSION['wsUploadData'][$this->mParams['sessionkey']] ) ) {
+			if ( !isset( $_SESSION[UploadBase::getSessionKey()][$this->mParams['sessionkey']] ) ) {
 				$this->dieUsageMsg( array( 'invalid-session-key' ) );
 			}
 
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
 				$this->mParams['sessionkey'],
-				$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
+				$_SESSION[UploadBase::getSessionKey()][$this->mParams['sessionkey']] );
 		} elseif ( isset( $this->mParams['filename'] ) ) {
 			/**
 			 * Upload from URL, etc.
@@ -127,59 +127,73 @@ class ApiUpload extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
-	protected function performUpload() {
-		global $wgUser;
-		$result = array();
-		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
-		if ( $permErrors !== true ) {
-			$this->dieUsageMsg( array( 'badaccess-groups' ) );
+	/**
+	 * Performs file verification, dies on error.
+	 *
+	 * @param $flag integer passed to UploadBase::verifyUpload, set to
+	 * UploadBase::EMPTY_FILE to skip the empty file check.
+	 */
+	public function verifyUpload( $flag ) {
+		$verification = $this->mUpload->verifyUpload( $flag );
+		if ( $verification['status'] === UploadBase::OK ) {
+			return $verification;
 		}
 
+		$this->getVerificationError( $verification );
+	}
+
+	/**
+	 * Produce the usage error
+	 *
+	 * @param $verification array an associative array with the status
+	 * key
+	 */
+	public function getVerificationError( $verification ) {
 		// TODO: Move them to ApiBase's message map
-		$verification = $this->mUpload->verifyUpload();
-		if ( $verification['status'] !== UploadBase::OK ) {
-			$result['result'] = 'Failure';
-			switch( $verification['status'] ) {
-				case UploadBase::EMPTY_FILE:
-					$this->dieUsage( 'The file you submitted was empty', 'empty-file' );
-					break;
-				case UploadBase::FILETYPE_MISSING:
-					$this->dieUsage( 'The file is missing an extension', 'filetype-missing' );
-					break;
-				case UploadBase::FILETYPE_BADTYPE:
-					global $wgFileExtensions;
-					$this->dieUsage( 'This type of file is banned', 'filetype-banned',
-							0, array(
-								'filetype' => $verification['finalExt'],
-								'allowed' => $wgFileExtensions
-							) );
-					break;
-				case UploadBase::MIN_LENGTH_PARTNAME:
-					$this->dieUsage( 'The filename is too short', 'filename-tooshort' );
-					break;
-				case UploadBase::ILLEGAL_FILENAME:
-					$this->dieUsage( 'The filename is not allowed', 'illegal-filename',
-							0, array( 'filename' => $verification['filtered'] ) );
-					break;
-				case UploadBase::OVERWRITE_EXISTING_FILE:
-					$this->dieUsage( 'Overwriting an existing file is not allowed', 'overwrite' );
-					break;
-				case UploadBase::VERIFICATION_ERROR:
-					$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );
-					$this->dieUsage( 'This file did not pass file verification', 'verification-error',
-							0, array( 'details' => $verification['details'] ) );
-					break;
-				case UploadBase::HOOK_ABORTED:
-					$this->dieUsage( "The modification you tried to make was aborted by an extension hook",
-							'hookaborted', 0, array( 'error' => $verification['error'] ) );
-					break;
-				default:
-					$this->dieUsage( 'An unknown error occurred', 'unknown-error',
-							0, array( 'code' =>  $verification['status'] ) );
-					break;
-			}
-			return $result;
+		switch( $verification['status'] ) {
+			case UploadBase::EMPTY_FILE:
+				$this->dieUsage( 'The file you submitted was empty', 'empty-file' );
+				break;
+			case UploadBase::FILETYPE_MISSING:
+				$this->dieUsage( 'The file is missing an extension', 'filetype-missing' );
+				break;
+			case UploadBase::FILETYPE_BADTYPE:
+				global $wgFileExtensions;
+				$this->dieUsage( 'This type of file is banned', 'filetype-banned',
+						0, array(
+							'filetype' => $verification['finalExt'],
+							'allowed' => $wgFileExtensions
+						) );
+				break;
+			case UploadBase::MIN_LENGTH_PARTNAME:
+				$this->dieUsage( 'The filename is too short', 'filename-tooshort' );
+				break;
+			case UploadBase::ILLEGAL_FILENAME:
+				$this->dieUsage( 'The filename is not allowed', 'illegal-filename',
+						0, array( 'filename' => $verification['filtered'] ) );
+				break;
+			case UploadBase::OVERWRITE_EXISTING_FILE:
+				$this->dieUsage( 'Overwriting an existing file is not allowed', 'overwrite' );
+				break;
+			case UploadBase::VERIFICATION_ERROR:
+				$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );
+				$this->dieUsage( 'This file did not pass file verification', 'verification-error',
+						0, array( 'details' => $verification['details'] ) );
+				break;
+			case UploadBase::HOOK_ABORTED:
+				$this->dieUsage( "The modification you tried to make was aborted by an extension hook",
+						'hookaborted', 0, array( 'error' => $verification['error'] ) );
+				break;
+			default:
+				$this->dieUsage( 'An unknown error occurred', 'unknown-error',
+						0, array( 'code' =>  $verification['status'] ) );
+				break;
 		}
+	}
+
+	protected function checkForWarnings() {
+		$result = array();
+
 		if ( !$this->mParams['ignorewarnings'] ) {
 			$warnings = $this->mUpload->checkWarnings();
 			if ( $warnings ) {
@@ -213,19 +227,34 @@ class ApiUpload extends ApiBase {
 				return $result;
 			}
 		}
+		return;
+	}
+
+	protected function performUpload() {
+		global $wgUser;
+		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
+		if ( $permErrors !== true ) {
+			$this->dieUsageMsg( array( 'badaccess-groups' ) );
+		}
+
+		$this->verifyUpload();
+
+		$warnings = $this->checkForWarnings();
+		if( isset($warnings) ) return $warnings;
 
 		// Use comment as initial page text by default
 		if ( is_null( $this->mParams['text'] ) ) {
 			$this->mParams['text'] = $this->mParams['comment'];
 		}
-		
-		$watch = $this->getWatchlistValue( $params['watchlist'] );
-		
+
+		$file = $this->mUpload->getLocalFile();
+		$watch = $this->getWatchlistValue( $params['watchlist'], $file->getTitle() );
+
 		// Deprecated parameters
 		if ( $this->mParams['watch'] ) {
 			$watch = true;
 		}
-		
+
 		// No errors, no warnings: do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
 			$this->mParams['text'], $watch, $wgUser );
@@ -236,9 +265,9 @@ class ApiUpload extends ApiBase {
 
 			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 		}
-		
+
 		$file = $this->mUpload->getLocalFile();
-		
+
 		$result['result'] = 'Success';
 		$result['filename'] = $file->getName();
 		$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );

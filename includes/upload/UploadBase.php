@@ -33,6 +33,11 @@ abstract class UploadBase {
 	const HOOK_ABORTED = 11;
 
 	const SESSION_VERSION = 2;
+	const SESSION_KEYNAME = 'wsUploadData';
+
+	static public function getSessionKeyname() {
+		return self::SESSION_KEYNAME;
+	}
 
 	/**
 	 * Returns true if uploads are enabled.
@@ -143,10 +148,32 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Return the file size
+	 * Return true if the file is empty
+	 * @return bool
 	 */
 	public function isEmptyFile() {
 		return empty( $this->mFileSize );
+	}
+
+	/**
+	 * Return the file size
+	 * @return integer
+	 */
+	public function getFileSize() {
+		return $this->mFileSize;
+	}
+
+	/**
+	 * Append a file to the Repo file
+	 *
+	 * @param string $srcPath Path to source file
+	 * @param string $toAppendPath Path to the Repo file that will be appended to.
+	 * @return Status Status
+	 */
+	protected function appendToUploadFile( $srcPath, $toAppendPath ) {
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		$status = $repo->append( $srcPath, $toAppendPath );
+		return $status;
 	}
 
 	/**
@@ -163,9 +190,9 @@ abstract class UploadBase {
 
 	/**
 	 * Verify whether the upload is sane.
-	 * Returns self::OK or else an array with error information
+	 * @return mixed self::OK or else an array with error information
 	 */
-	public function verifyUpload() {
+	public function verifyUpload( ) {
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
@@ -189,6 +216,31 @@ abstract class UploadBase {
 			);
 		}
 
+		/**
+		 * Make sure this file can be created
+		 */
+		$result = $this->validateNameAndOverwrite();
+		if( $result !== true ) {
+			return $result;
+		}
+
+		$error = '';
+		if( !wfRunHooks( 'UploadVerification',
+				array( $this->mDestName, $this->mTempPath, &$error ) ) ) {
+			// @fixme This status needs another name...
+			return array( 'status' => self::HOOK_ABORTED, 'error' => $error );
+		}
+
+		return array( 'status' => self::OK );
+	}
+
+	/**
+	 * Verify that the name is valid and, if necessary, that we can overwrite
+	 *
+	 * @return mixed true if valid, otherwise and array with 'status'
+	 * and other keys
+	 **/
+	public function validateNameAndOverwrite() {
 		$nt = $this->getTitle();
 		if( is_null( $nt ) ) {
 			$result = array( 'status' => $this->mTitleError );
@@ -212,15 +264,7 @@ abstract class UploadBase {
 				'overwrite' => $overwrite
 			);
 		}
-
-		$error = '';
-		if( !wfRunHooks( 'UploadVerification',
-				array( $this->mDestName, $this->mTempPath, &$error ) ) ) {
-			// This status needs another name...
-			return array( 'status' => self::HOOK_ABORTED, 'error' => $error );
-		}
-
-		return array( 'status' => self::OK );
+		return true;
 	}
 
 	/**
@@ -511,7 +555,7 @@ abstract class UploadBase {
 		}
 
 		$key = $this->getSessionKey();
-		$_SESSION['wsUploadData'][$key] = array(
+		$_SESSION[self::SESSION_KEYNAME][$key] = array(
 			'mTempPath'       => $status->value,
 			'mFileSize'       => $this->mFileSize,
 			'mFileProps'      => $this->mFileProps,
@@ -525,7 +569,7 @@ abstract class UploadBase {
 	 */
 	protected function getSessionKey() {
 		$key = mt_rand( 0, 0x7fffffff );
-		$_SESSION['wsUploadData'][$key] = array();
+		$_SESSION[self::SESSION_KEYNAME][$key] = array();
 		return $key;
 	}
 

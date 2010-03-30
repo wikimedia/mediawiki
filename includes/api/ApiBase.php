@@ -535,7 +535,7 @@ abstract class ApiBase {
 	/**
 	* Handle watchlist settings
 	*/
-	protected function getWatchlistValue ( $watchlist, $titleObj ) {
+	protected function getWatchlistValue ( $watchlist, $titleObj = null ) {
 		switch ( $watchlist ) {
 			case 'watch':
 				return true;
@@ -543,7 +543,10 @@ abstract class ApiBase {
 				return false;
 			case 'preferences':
 				global $wgUser;
-				if ( $titleObj->exists() && $wgUser->getOption( 'watchdefault' ) && !$titleObj->userIsWatching() ) {
+				if ( isset($titleObj)
+					 && $titleObj->exists()
+					 && $wgUser->getOption( 'watchdefault' )
+					 && !$titleObj->userIsWatching() ) {
 					return true;
 				}
 				return null;
