@@ -498,7 +498,7 @@ class ApiMain extends ApiBase {
 	 * @param $module object An Api module
 	 * @param $params Array an array with the request parameters
 	 */
-	protected function setupExternalResponse($module) {
+	protected function setupExternalResponse($module, $params) {
 		// Ignore mustBePosted() for internal calls
 		if ( $module->mustBePosted() && !$this->mRequest->wasPosted() ) {
 			$this->dieUsageMsg( array( 'mustbeposted', $this->mAction ) );
