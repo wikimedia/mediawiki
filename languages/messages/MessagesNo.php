@@ -756,6 +756,7 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'showlivepreview'                  => 'Levende forhåndsvisning',
 'showdiff'                         => 'Vis endringer',
 'anoneditwarning'                  => "'''Advarsel:''' Du er ikke logget inn. IP-adressen din blir bevart i sidens redigeringshistorikk.",
+'anonpreviewwarning'               => "''Du er ikke logget inn. Lagring vil registrere din IP-adresse i sidens redigeringshistorikk.''",
 'missingsummary'                   => "'''Påminnelse:''' Du har ikke lagt inn en redigeringsforklaring.
 Velger du ''Lagre siden'' en gang til blir endringene lagret uten forklaring.",
 'missingcommenttext'               => 'Vennligst legg inn en kommentar under.',

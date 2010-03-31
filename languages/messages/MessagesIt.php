@@ -38,6 +38,7 @@
  * @author Stefano-c
  * @author Tonyfroio
  * @author Trixt
+ * @author Una giornata uggiosa '94
  * @author Xpensive
  * @author לערי ריינהארט
  */
@@ -762,6 +763,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'showlivepreview'                  => "Funzione ''Live preview''",
 'showdiff'                         => 'Mostra cambiamenti',
 'anoneditwarning'                  => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato l'indirizzo IP.",
+'anonpreviewwarning'               => "''Non hai eseguito il login. Salvando il tuo indirizzo IP sarà registrato nella cronologia di questa voce.''",
 'missingsummary'                   => "'''Attenzione:''' non è stato specificato l'oggetto di questa modifica. Premendo di nuovo '''Salva la pagina''' la modifica verrà salvata con l'oggetto vuoto.",
 'missingcommenttext'               => 'Inserire un commento qui sotto.',
 'missingcommentheader'             => "'''Attenzione:''' Non è stata specificata l'intestazione di questo commento. Premendo di nuovo '''Salva la pagina''' la modifica verrà salvata senza intestazione.",
@@ -2123,7 +2125,7 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 'protect-othertime-op'        => 'durata non in elenco',
 'protect-existing-expiry'     => 'Scadenza attuale: $2, $3',
 'protect-otherreason'         => 'Altri motivi/dettagli:',
-'protect-otherreason-op'      => 'altri motivi/dettagli',
+'protect-otherreason-op'      => 'Altra motivazione',
 'protect-dropdown'            => '*Motivi comuni di protezione
 ** Reiterati vandalismi
 ** Reiterati inserimenti di spam
@@ -2350,6 +2352,8 @@ L'utente $1 è già bloccato. Modificare le impostazioni?",
 'sorbs_create_account_reason'     => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'cant-block-while-blocked'        => 'Non è possibile bloccare altri utenti mentre si è bloccati.',
 'cant-see-hidden-user'            => 'L\'utente che si sta tentando di bloccare è stato già bloccato e nascosto. Poiché non hai il permesso "hideuser", non è possibile visualizzare o modificare il blocco dell\'utente.',
+'ipbblocked'                      => 'Non puoi bloccare o sbloccare altri utenti, perché tu stesso sei bloccato',
+'ipbnounblockself'                => 'Non puoi sbloccare te stesso',
 
 # Developer tools
 'lockdb'              => 'Blocca il database',

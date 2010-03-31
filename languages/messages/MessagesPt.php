@@ -829,6 +829,7 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'showdiff'                         => 'Mostrar alterações',
 'anoneditwarning'                  => "'''Aviso''': Não se encontra autenticado.
 O seu endereço IP será registado no histórico de edições desta página.",
+'anonpreviewwarning'               => "''Não está autenticado. Gravar registará o seu endereço IP no histórico de edições da página.''",
 'missingsummary'                   => "'''Atenção:''' Não introduziu um sumário de edição.
 Se clicar novamente em \"Gravar página\" a sua edição será gravada sem sumário.",
 'missingcommenttext'               => 'Por favor, introduzida um comentário abaixo.',
