@@ -18,7 +18,7 @@ class UploadFromStash extends UploadBase {
 	}
 
 	public static function isValidRequest( $request ) {
-		$sessionData = $request->getSessionData( 'wsUploadData' );
+		$sessionData = $request->getSessionData( self::SESSION_KEYNAME );
 		return self::isValidSessionKey(
 			$request->getInt( 'wpSessionKey' ),
 			$sessionData
@@ -46,7 +46,7 @@ class UploadFromStash extends UploadBase {
 
 	public function initializeFromRequest( &$request ) {
 		$sessionKey = $request->getInt( 'wpSessionKey' );
-		$sessionData = $request->getSessionData('wsUploadData');
+		$sessionData = $request->getSessionData( self::SESSION_KEYNAME );
 
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if( !$desiredDestName )
