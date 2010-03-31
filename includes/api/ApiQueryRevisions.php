@@ -392,15 +392,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['commenthidden'] = '';
 			} else {
 				$comment = $revision->getComment();
-				if ( strval( $comment ) !== '' ) {
-					if ( $this->fld_comment ) {
-						$vals['comment'] = $comment;
-					}
+				
+				if ( $this->fld_comment ) {
+					$vals['comment'] = $comment;
+				}
 
-					if ( $this->fld_parsedcomment ) {
-						global $wgUser;
-						$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $comment, $title );
-					}
+				if ( $this->fld_parsedcomment ) {
+					global $wgUser;
+					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $comment, $title );
 				}
 			}
 		}
