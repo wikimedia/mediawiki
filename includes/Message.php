@@ -116,7 +116,9 @@ class Message {
 	 * @return Message: $this
 	 */
 	public static function key( $key /*...*/ ) {
-		return new self( $key, array_shift( func_get_args() ) );
+		$params = func_get_args();
+		array_shift( $params );
+		return new self( $key, $params );
 	}
 
 	/**
