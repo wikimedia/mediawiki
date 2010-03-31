@@ -75,6 +75,7 @@ logged in (anonpreviewwarning).
 * (bug 22764) uselang parameter for action=parse
 * (bug 22944) API: watchlist options are inconsistent
 * (bug 22339) "Go" result should be available through the API
+* (bug 22868) don't list infinite block expiry date as "now" in API logevents
 
 === Languages updated in 1.17 ===
 
