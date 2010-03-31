@@ -70,13 +70,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21520) Anonymous previews now also gives a warning about not being 
 logged in (anonpreviewwarning).
 
-== API changes in 1.17 ==
+=== API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
 * (bug 22764) uselang parameter for action=parse
 * (bug 22944) API: watchlist options are inconsistent
 * (bug 22339) "Go" result should be available through the API
 * (bug 22868) don't list infinite block expiry date as "now" in API logevents
-
+* (bug 22290) Inconsistent presence of "comment" field in prop=revisions
+  versus list=recentchanges
+  
 === Languages updated in 1.17 ===
 
 == Compatibility ==
