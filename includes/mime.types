@@ -85,6 +85,7 @@ image/vnd.djvu djvu djv
 image/vnd.wap.wbmp wbmp
 image/x-cmu-raster ras
 image/x-icon ico
+image/x-ms-bmp
 image/x-portable-anymap pnm
 image/x-portable-bitmap pbm
 image/x-portable-graymap pgm
