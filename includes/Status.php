@@ -24,6 +24,8 @@ class Status {
 
 	/**
 	 * Factory function for fatal errors
+	 *
+	 * @param $message String: message name
 	 */
 	static function newFatal( $message /*, parameters...*/ ) {
 		$params = func_get_args();
@@ -33,25 +35,52 @@ class Status {
 		return $result;
 	}
 
+	/**
+	 * Factory function for good results
+	 *
+	 * @param $value Mixed
+	 */
 	static function newGood( $value = null ) {
 		$result = new self;
 		$result->value = $value;
 		return $result;
 	}
 
+	/**
+	 * Change operation result
+	 *
+	 * @param $ok Boolean: whether to operation completed
+	 * @param $value Mixed
+	 */
 	function setResult( $ok, $value = null ) {
 		$this->ok = $ok;
 		$this->value = $value;
 	}
 
+	/**
+	 * Returns whether the operation completed and didn't have any error or
+	 * warnings
+	 *
+	 * @return Boolean
+	 */
 	function isGood() {
 		return $this->ok && !$this->errors;
 	}
 
+	/**
+	 * Returns whether the operation completed
+	 *
+	 * @return Boolean
+	 */
 	function isOK() {
 		return $this->ok;
 	}
 
+	/**
+	 * Add a new warning
+	 *
+	 * @param $message String: message name
+	 */
 	function warning( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
 		$this->errors[] = array(
@@ -63,6 +92,8 @@ class Status {
 	/**
 	 * Add an error, do not set fatal flag
 	 * This can be used for non-fatal errors
+	 *
+	 * @param $message String: message name
 	 */
 	function error( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -73,7 +104,10 @@ class Status {
 	}
 
 	/**
-	 * Add an error and set OK to false, indicating that the operation as a whole was fatal
+	 * Add an error and set OK to false, indicating that the operation
+	 * as a whole was fatal
+	 *
+	 * @param $message String: message name
 	 */
 	function fatal( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -128,9 +162,11 @@ class Status {
 
 	/**
 	 * Get the error list as a wikitext formatted list
-	 * @param string $shortContext A short enclosing context message name, to be used
-	 *     when there is a single error
-	 * @param string $longContext A long enclosing context message name, for a list
+	 *
+	 * @param $shortContext String: a short enclosing context message name, to
+	 *        be used when there is a single error
+	 * @param $longContext String: a long enclosing context message name, for a list
+	 * @return String
 	 */
 	function getWikiText( $shortContext = false, $longContext = false ) {
 		if ( count( $this->errors ) == 0 ) {
@@ -167,6 +203,9 @@ class Status {
 
 	/**
 	 * Merge another status object into this one
+	 *
+	 * @param $other Other Status object
+	 * @param $overwriteValue Boolean: whether to override the "value" member
 	 */
 	function merge( $other, $overwriteValue = false ) {
 		$this->errors = array_merge( $this->errors, $other->errors );
@@ -178,6 +217,11 @@ class Status {
 		$this->failCount += $other->failCount;
 	}
 
+	/**
+	 * Get the list of errors (but not warnings)
+	 *
+	 * @return Array
+	 */
 	function getErrorsArray() {
 		$result = array();
 		foreach ( $this->errors as $error ) {
@@ -192,6 +236,9 @@ class Status {
 
 	/**
 	 * Returns true if the specified message is present as a warning or error
+	 *
+	 * @param $msg String: message name
+	 * @return Boolean
 	 */
 	function hasMessage( $msg ) {
 		foreach ( $this->errors as $error ) {
