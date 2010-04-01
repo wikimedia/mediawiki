@@ -35,6 +35,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Future-proof redirection to fragments in Gecko, so things work a little nicer
   if they fix <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
 * Support git:// and mms:// protocols by default for external links
+* (bug 15810) Blocked admins can no longer block/unblock anyone without the
+  'unblockself' permission (which they have by default).
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive without
@@ -58,8 +60,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22903) Revdelete log entries now show in the user preferred language.
 * (bug 22905) Correctly handle <abbr> followed by ISBN
 * (bug 22940) Namespace aliases pointing to main namespace don't work
-* (bug 15810) blocked admins can no longer block/unblock other users, nor
-  themselves unless they are given the 'unblockself' permission.
 * (bug 22876) Avoid possible PHP Notice if $wgDefaultUserOptions is not
   correctly set
 * (bug 14952) Page titles are renormalized after html entities are removed so that
