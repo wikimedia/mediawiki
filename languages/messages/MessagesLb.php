@@ -677,6 +677,7 @@ Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuer
 'showlivepreview'                  => 'Live-Kucken ouni ofzespäicheren',
 'showdiff'                         => 'Weis Ännerungen',
 'anoneditwarning'                  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm Är IP Adress am Historique vun dëser Säit gespäichert.',
+'anonpreviewwarning'               => "''Dir sidd net ageloggt. Wann Dir ofspäichert gëtt Är IP-Adress an der Lëscht vun de Versioune vun dëser Säit enregistréiert.''",
 'missingsummary'                   => "'''Erënnerung:''' Dir hutt kee Resumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Resumé ofgespäichert.",
 'missingcommenttext'               => 'Gitt w.e.g. eng Bemierkung an.',
 'missingcommentheader'             => "'''OPGEPASST:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn. Wann Dir nach en Kéier op \"Späicheren\" klickt da gëtt Är Ännerung ouni Titel ofgespäichert.",

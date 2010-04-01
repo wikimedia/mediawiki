@@ -642,6 +642,7 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 'showlivepreview'                  => 'Rhagolwg byw',
 'showdiff'                         => 'Dangos newidiadau',
 'anoneditwarning'                  => "'''Dalier sylw''': Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu'r dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy greu cyfrif (a mewngofnodi) cyn golygu.",
+'anonpreviewwarning'               => "''Nid ydych wedi mewngofnodi. Os y cadwch eich newidiadau caiff eich cyfeiriad IP ei gofnodi yn hanes golygu'r dudalen hon.''",
 'missingsummary'                   => "'''Sylwer:''' Nid ydych wedi gosod nodyn yn y blwch 'Crynodeb'.
 Os y pwyswch eto ar 'Cadw'r dudalen' caiff y golygiad ei gadw heb nodyn.",
 'missingcommenttext'               => 'Rhowch eich sylwadau isod.',
