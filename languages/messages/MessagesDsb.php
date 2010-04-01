@@ -678,6 +678,7 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'showlivepreview'                  => 'Livepśeglěd',
 'showdiff'                         => 'Pśeměnjenja pokazaś',
 'anoneditwarning'                  => "'''Warnowanje:''' Njejsy pśizjawjony. Změny w stawiznach togo boka składuju se z twójeju IP-adresu.",
+'anonpreviewwarning'               => "''Njejsy pśizjawjony. Składowanje pśenosujo twóju IP-adresu do wobźěłowańskeje historije toś togo boka.''",
 'missingsummary'                   => "'''Pokazka:''' Njejsy žedno zespominanje zapódał. Gaž kliknjoš na \"Składowaś\" składujo se bok bźez zespominanja.",
 'missingcommenttext'               => 'Pšosym zespominanje zapódaś.',
 'missingcommentheader'             => "'''WARNOWANJE:''' Njejsy žedno nadpismo zapódał. Gaž kliknjoš na \"Składowaś\", składujo se twójo wobźěłanje mimo nadpisma.",

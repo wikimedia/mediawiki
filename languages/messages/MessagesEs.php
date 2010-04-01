@@ -430,7 +430,7 @@ $messages = array(
 'hidden-categories'              => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
 'hidden-category-category'       => 'Categorías ocultas',
 'category-subcat-count'          => '{{PLURAL:$2|Esta categoría comprende solamente la siguiente categoría.|Esta categoría incluye {{PLURAL:$1|la siguiente categorías|las siguientes $1 subcategorías}}, de un total de $2.}}',
-'category-subcat-count-limited'  => 'Esta categoría contiene las siguientes {{PLURAL:$1|subcategoría|$1 subcategorías}}.',
+'category-subcat-count-limited'  => 'Esta categoría contiene {{PLURAL:$1|la siguiente subcategoría|las siguientes $1 subcategorías}}.',
 'category-article-count'         => '{{PLURAL:$2|Esta categoría incluye solamente la siguiente página.|{{PLURAL:$1|La siguiente página página pertenece|Las siguientes $1 páginas pertenecen}} a esta categoría, de un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|La siguiente página pertenece|Las siguientes $1 páginas pertenecen}} a esta categoría.',
 'category-file-count'            => '{{PLURAL:$2|Esta categoría contiene solamente el siguiente fichero.|{{PLURAL:$1|El siguiente fichero pertencer|Los siguientes $1 ficheros pertenecen}} a esta categoría, de un total de $2.}}',
@@ -440,12 +440,11 @@ $messages = array(
 'noindex-category'               => 'Páginas no indexadas',
 
 'mainpagetext'      => "<big>'''MediaWiki ha sido instalado con éxito.'''</big>",
-'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Help:Contents Guía de usuario] para obtener información sobre el uso del software wiki.
+'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
 
 == Empezando ==
-
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustes de configuración]
-* [http://www.mediawiki.org/wiki/Manual:FAQ PMF sobre MediaWiki]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/es FAQ de MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]',
 
 'about'         => 'Acerca de',
@@ -461,7 +460,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Buscar',
-'qbbrowse'       => 'Hojear',
+'qbbrowse'       => 'Navegar',
 'qbedit'         => 'Editar',
 'qbpageoptions'  => 'Opciones de página',
 'qbpageinfo'     => 'Información de página',

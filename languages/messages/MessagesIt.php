@@ -587,6 +587,7 @@ Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]
 'readonly_lag'         => 'Il database è stato bloccato automaticamente per consentire ai server con i database slave di sincronizzarsi con il master',
 'internalerror'        => 'Errore interno',
 'internalerror_info'   => 'Errore interno: $1',
+'fileappenderrorread'  => 'Non è stato possibile leggere "$1" durante l\'aggiunta.',
 'fileappenderror'      => 'Impossibile aggiungere "$1" a "$2".',
 'filecopyerror'        => 'Impossibile copiare il file "$1" in "$2".',
 'filerenameerror'      => 'Impossibile rinominare il file "$1" in "$2".',
@@ -711,6 +712,7 @@ Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 'login-throttled'            => 'Sono stati effettuati troppi tentativi di accesso in breve tempo. 
 Riprovare più tardi.',
 'loginlanguagelabel'         => 'Lingua: $1',
+'suspicious-userlogout'      => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
 
 # Password reset dialog
 'resetpass'                 => 'Cambia la password',
@@ -919,6 +921,7 @@ Alcuni template non verranno inclusi.",
 'post-expand-template-argument-category'  => 'Pagine contenenti template con argomenti mancanti',
 'parser-template-loop-warning'            => 'Rilevato loop del template: [[$1]]',
 'parser-template-recursion-depth-warning' => 'È stato raggiunto il limite di ricorsione nel template ($1)',
+'language-converter-depth-warning'        => 'Limite di profondità del convertitore di lingua superato ($1)',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',

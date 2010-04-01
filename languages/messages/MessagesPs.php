@@ -901,6 +901,8 @@ $messages = array(
 'action-edit'          => 'دا مخ سمول',
 'action-createpage'    => 'مخونه جوړول',
 'action-move'          => 'همدا مخ لېږدول',
+'action-movefile'      => 'همدا دوتنه لېږدول',
+'action-upload'        => 'همدا دوتنه پورته کول',
 'action-delete'        => 'همدا مخ ړنګول',
 'action-browsearchive' => 'ړنګ مخونه پلټل',
 'action-undelete'      => 'همدا مخ ناړنګول',
@@ -981,16 +983,20 @@ $messages = array(
 * د پورته کېدونکې دوتنې نوم: '''<tt>[[:$1]]</tt>'''
 * د پخوا نه شته دوتنه: '''<tt>[[:$2]]</tt>'''
 لطفاً يو داسې نوم وټاکی چې د پخوانۍ دوتنې سره توپير ولري.",
-'fileexists-forbidden'  => 'د پخوا نه پدې نوم يوه دوتنه شته؛ لطفاً بېرته وګرځۍ او همدغه دوتنه بيا په يوه نوي نوم پورته کړی. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'  => 'د پخوا نه پدې نوم يوه دوتنه شته، او په دې نوم بله دوتنه نه پورته کېږي.
+که تاسې بيا هم د خپلې دوتنې پورته کول غواړۍ، نو لطفاً بېرته وګرځۍ او همدغه دوتنه بيا په يوه نوي نوم پورته کړی. 
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'همدا دوتنه د {{PLURAL:$1|لاندينۍ دوتنې|لاندينيو دوتنو}} غبرګه لمېسه ده:',
 'savefile'              => 'دوتنه خوندي کړه',
 'uploadedimage'         => '"[[$1]]" پورته شوه',
 'uploaddisabled'        => 'پورته کول ناچارن شوي',
 'uploadvirus'           => 'دا دوتنه ويروس لري! تفصيل: $1',
+'upload-source'         => 'سرچينيزه دوتنه',
 'sourcefilename'        => 'د سرچينيزې دوتنې نوم:',
 'sourceurl'             => 'د URL سرچينه:',
 'upload-maxfilesize'    => 'د دوتنې تر ټولو لويه کچه: $1',
 'upload-description'    => 'د دوتنې څرګندونې',
+'upload-options'        => 'د پورته کولو خوښنې',
 'watchthisupload'       => 'همدا دوتنه کتل',
 
 'upload-file-error' => 'کورنۍ ستونزه',
@@ -1007,6 +1013,7 @@ $messages = array(
 'listfiles_user'        => 'کارن',
 'listfiles_size'        => 'کچه (bytes)',
 'listfiles_description' => 'څرګندونه',
+'listfiles_count'       => 'بڼې',
 
 # File description page
 'file-anchor-link'          => 'دوتنه',
@@ -1330,6 +1337,7 @@ $messages = array(
 'restriction-edit'   => 'سمون',
 'restriction-move'   => 'لېږدول',
 'restriction-create' => 'جوړول',
+'restriction-upload' => 'پورته کول',
 
 # Restriction levels
 'restriction-level-sysop'         => 'بشپړ ژغورلی',
@@ -1428,6 +1436,7 @@ $messages = array(
 'ipblocklist-sh-tempblocks' => 'لنډمهاله بنديزونه $1',
 'ipblocklist-submit'        => 'پلټل',
 'ipblocklist-localblock'    => 'سيمه ايز بنديز',
+'ipblocklist-otherblocks'   => '{{PLURAL:$1|بل بنديز|نور بنديزونه}}',
 'infiniteblock'             => 'لامحدوده',
 'anononlyblock'             => 'يواځې ورکنومی',
 'emailblock'                => 'پر برېښليک بنديز ولګېد',
@@ -1443,6 +1452,7 @@ $messages = array(
 'block-log-flags-nocreate'  => 'د کارن-حساب جوړول ناچارن شوې',
 'block-log-flags-noemail'   => 'ددې برېښليک مخه نيول شوی',
 'ipb_already_blocked'       => 'پر "$1" د پخوا نه بنديز دی',
+'ipb-otherblocks-header'    => '{{PLURAL:$1|بل بنديز|نور بنديزونه}}',
 'blockme'                   => 'پر ما بنديز لګول',
 'proxyblocksuccess'         => 'ترسره شو.',
 
@@ -1865,6 +1875,7 @@ $5
 'dberr-header' => 'دا ويکي يوه ستونزه لري',
 
 # HTML forms
+'htmlform-submit'              => 'سپارل',
 'htmlform-reset'               => 'بدلونونه ناکړل',
 'htmlform-selectorother-other' => 'بل',
 
@@ -1875,5 +1886,6 @@ $5
 'ajax-add-category-summary'    => 'د "$1" وېشنيزه ورګډول',
 'ajax-remove-category-summary' => 'د "$1" وېشنيزه ليرې کول',
 'ajax-error-title'             => 'ستونزه',
+'ajax-error-dismiss'           => 'ښه',
 
 );

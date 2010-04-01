@@ -1776,6 +1776,7 @@ $NEWPAGE
 'protect-othertime'           => 'অন্য সময়:',
 'protect-othertime-op'        => 'অন্য সময়',
 'protect-existing-expiry'     => 'বিদ্যমান মেয়াদউত্তীর্ণের সময়: $3, $2',
+'protect-otherreason'         => 'অন্যান্য/অতিরিক্ত কারণ:',
 'protect-otherreason-op'      => 'অন্য কারণ',
 'protect-dropdown'            => '*সুরক্ষার প্রচলিত কারণ
 ** অতিরিক্ত ধ্বংসপ্রবণতা
