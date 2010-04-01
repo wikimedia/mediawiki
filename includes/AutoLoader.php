@@ -463,7 +463,7 @@ $wgAutoloadLocalClasses = array(
 	'PPNode_Hash_Tree' => 'includes/parser/Preprocessor_Hash.php',
 	'PPTemplateFrame_DOM' => 'includes/parser/Preprocessor_DOM.php',
 	'PPTemplateFrame_Hash' => 'includes/parser/Preprocessor_Hash.php',
-	'Parser' => 'includes/parser/Parser.php',
+	'Parser' => 'includes/parser/LOLParser.php',
 	'ParserCache' => 'includes/parser/ParserCache.php',
 	'ParserOptions' => 'includes/parser/ParserOptions.php',
 	'ParserOutput' => 'includes/parser/ParserOutput.php',
@@ -684,7 +684,7 @@ function wfLoadAllExtensions() {
 	AutoLoader::loadAllExtensions();
 }
 
-if ( function_exists( 'spl_autoload_register' ) ) {
+if ( function_exists( 'spl_autoload_register' ) && false ) {
 	spl_autoload_register( array( 'AutoLoader', 'autoload' ) );
 } else {
 	function __autoload( $class ) {
