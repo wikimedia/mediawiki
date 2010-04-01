@@ -805,8 +805,6 @@ class Article {
 			}
 		}
 
-		$sk = $wgUser->getSkin();
-
 		# getOldID may want us to redirect somewhere else
 		if ( $this->mRedirectUrl ) {
 			$wgOut->redirect( $this->mRedirectUrl );
