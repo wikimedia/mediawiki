@@ -475,7 +475,7 @@ abstract class ApiBase {
 		$params = $this->getFinalParams();
 		$results = array();
 
-		if($params) {			/* getFinalParams() can return false */
+		if($params) { // getFinalParams() can return false
 			foreach ( $params as $paramName => $paramSettings ) {
 				$results[$paramName] = $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 			}
