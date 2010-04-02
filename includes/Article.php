@@ -1022,7 +1022,7 @@ class Article {
 	 *    array
 	 */
 	public function getRobotPolicyForView() {
-		wfDeprecated( __FUNC__ );
+		wfDeprecated( __FUNCTION__ );
 		$policy = $this->getRobotPolicy( 'view' );
 		return $policy['index'] . ',' . $policy['follow'];
 	}
