@@ -169,8 +169,8 @@ class SkinVector extends SkinTemplate {
 						);
 					}
 				}
-			// Checks if the page is known (some kind of viewable content)
-			} elseif ( $this->mTitle->isKnown() ) {
+			// Checks if the page has some kind of viewable content
+			} elseif ( $this->mTitle->hasSourceText() ) {
 				// Adds view source view link
 				$links['views']['viewsource'] = array(
 					'class' => ( $action == 'edit' ) ? 'selected' : false,

@@ -3644,8 +3644,6 @@ class Title {
 			// If the page is form Mediawiki:message/lang, calling wfMsgWeirdKey causes
 			// the full l10n of that language to be loaded. That takes much memory and
 			// isn't needed. So we strip the language part away.
-			// Also, extension messages which are not loaded, are shown as red, because
-			// we don't call MessageCache::loadAllMessages.
 			list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
 			return wfMsgWeirdKey( $basename );  // known system message
 		default:
@@ -3663,6 +3661,26 @@ class Title {
 	 */
 	public function isKnown() {
 		return $this->exists() || $this->isAlwaysKnown();
+	}
+
+	/**
+	 * Does this page have source text?
+	 *
+	 * @return Boolean
+	 */
+	public function hasSourceText() {
+		if ( $this->exists() )
+			return true;
+
+		if ( $this->mNamespace == NS_MEDIAWIKI ) {
+			// If the page is form Mediawiki:message/lang, calling wfMsgWeirdKey causes
+			// the full l10n of that language to be loaded. That takes much memory and
+			// isn't needed. So we strip the language part away.
+			list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
+			return wfMsgWeirdKey( $basename );  // known system message
+		}
+
+		return false;
 	}
 
 	/**
