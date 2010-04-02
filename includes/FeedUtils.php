@@ -86,7 +86,7 @@ class FeedUtils {
 	 * @return String
 	 */
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext='' ) {
-		global $wgFeedDiffCutoff, $wgContLang, $wgUser;
+		global $wgFeedDiffCutoff, $wgLang, $wgUser;
 		wfProfileIn( __METHOD__ );
 
 		$skin = $wgUser->getSkin();
@@ -108,9 +108,9 @@ class FeedUtils {
 				wfProfileIn( __METHOD__."-dodiff" );
 
 				#$diffText = $de->getDiff( wfMsg( 'revisionasof',
-				#	$wgContLang->timeanddate( $timestamp ),
-				#	$wgContLang->date( $timestamp ),
-				#	$wgContLang->time( $timestamp ) ),
+				#	$wgLang->timeanddate( $timestamp ),
+				#	$wgLang->date( $timestamp ),
+				#	$wgLang->time( $timestamp ) ),
 				#	wfMsg( 'currentrev' ) );
 				
 				// Don't bother generating the diff if we won't be able to show it
@@ -119,9 +119,9 @@ class FeedUtils {
 					$diffText = $de->getDiff(
 						wfMsg( 'previousrevision' ), // hack
 						wfMsg( 'revisionasof',
-							$wgContLang->timeanddate( $timestamp ),
-							$wgContLang->date( $timestamp ),
-							$wgContLang->time( $timestamp ) ) );
+							$wgLang->timeanddate( $timestamp ),
+							$wgLang->date( $timestamp ),
+							$wgLang->time( $timestamp ) ) );
 				}
 
 				if ( ( strlen( $diffText ) > $wgFeedDiffCutoff ) || ( $wgFeedDiffCutoff <= 0 ) ) {
