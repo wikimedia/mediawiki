@@ -71,6 +71,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21520) Anonymous previews now also gives a warning about not being 
   logged in (anonpreviewwarning).
 * (bug 22935) image/x-ms-bmp mime type added for BMP files
+* (bug 23024) Special:ListFiles now escapes file names correctly
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
