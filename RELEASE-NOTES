@@ -73,6 +73,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22935) image/x-ms-bmp mime type added for BMP files
 * (bug 23024) Special:ListFiles now escapes file names correctly
 * (bug 22867) "View source" tab is now only displayed if there's source text
+* (bug 19393) Feeds now format dates in user language rather than content
+  language
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
