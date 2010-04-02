@@ -4227,7 +4227,7 @@ class Parser {
 	/**
 	 * Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
 	 * The callback should have the following form:
-	 *    function myParserHook( $text, $params, &$parser ) { ... }
+	 *    function myParserHook( $text, $params, $parser ) { ... }
 	 *
 	 * Transform and return $text. Use $parser for any required context, e.g. use
 	 * $parser->getTitle() and $parser->getOptions() not $wgTitle or $wgOut->mParserOptions
