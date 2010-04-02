@@ -719,7 +719,7 @@ class SkinTemplate extends Skin {
 						);
 					}
 				}
-			} elseif ( $this->mTitle->isKnown() ) {
+			} elseif ( $this->mTitle->hasSourceText() ) {
 				$content_actions['viewsource'] = array(
 					'class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg( 'viewsource' ),
