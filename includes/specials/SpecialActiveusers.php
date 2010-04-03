@@ -170,6 +170,7 @@ class SpecialActiveUsers extends SpecialPage {
 		global $wgOut, $wgLang, $wgRCMaxAge;
 
 		$this->setHeaders();
+		$this->outputHeader();
 
 		$up = new ActiveUsersPager();
 
