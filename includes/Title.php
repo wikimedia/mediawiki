@@ -3645,7 +3645,7 @@ class Title {
 			// the full l10n of that language to be loaded. That takes much memory and
 			// isn't needed. So we strip the language part away.
 			list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
-			return wfMsgWeirdKey( $basename );  // known system message
+			return (bool)wfMsgWeirdKey( $basename );  // known system message
 		default:
 			return false;
 		}
@@ -3673,11 +3673,13 @@ class Title {
 			return true;
 
 		if ( $this->mNamespace == NS_MEDIAWIKI ) {
-			// If the page is form Mediawiki:message/lang, calling wfMsgWeirdKey causes
-			// the full l10n of that language to be loaded. That takes much memory and
-			// isn't needed. So we strip the language part away.
+			// If the page doesn't exist but is a known system message, default
+			// message content will be displayed, same for language subpages
+			// Also, if the page is form Mediawiki:message/lang, calling wfMsgWeirdKey
+			// causes the full l10n of that language to be loaded. That takes much
+			// memory and isn't needed. So we strip the language part away.
 			list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
-			return wfMsgWeirdKey( $basename );  // known system message
+			return (bool)wfMsgWeirdKey( $basename );
 		}
 
 		return false;
