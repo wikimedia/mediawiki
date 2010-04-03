@@ -19,13 +19,13 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.17 ===
-* DatabaseFunctions.php that was needed for compatibility with pre-1.3 extensions
-  has been removed.
-  
+* DatabaseFunctions.php that was needed for compatibility with pre-1.3
+  extensions has been removed.
+
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
   User:<name>/common.css and /common.js (if user css/js is enabled)
-* (bug 22748) Add anchors on Special:ListGroupRights  
+* (bug 22748) Add anchors on Special:ListGroupRights
 * (bug 21981) Add parameter 'showfilename' to <gallery> to automatically apply
   the names of the individual files within the gallery
 * (bug 12797) Add $wgGalleryOptions for adjusting of default gallery display
@@ -41,8 +41,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   changes list
 
 === Bug fixes in 1.17 ===
-* (bug 17560) Half-broken deletion moved image files to deletion archive without
-  updating DB
+* (bug 17560) Half-broken deletion moved image files to deletion archive
+  without updating database
 * (bug 22666) Submitting user block form with an invalid user name no longer
   throws an error
 * (bugs 22665 and 22667) User '0' can now be unblocked and have its block
@@ -65,12 +65,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15810) Blocked admins can no longer block/unblock other users
 * (bug 22876) Avoid possible PHP Notice if $wgDefaultUserOptions is not
   correctly set
-* (bug 14952) Page titles are renormalized after html entities are removed so that
-  links with non-NFC character references work correctly.
+* (bug 14952) Page titles are renormalized after html entities are removed so
+  that links with non-NFC character references work correctly.
 * (bug 22991) wgUserGroups JavaScript variable now reports * group for
   anonymous users instead of null.
 * (bug 22627) Remove PHP notice when deleting a page only hidden users edited.
-* (bug 21520) Anonymous previews now also gives a warning about not being 
+* (bug 21520) Anonymous previews now also gives a warning about not being
   logged in (anonpreviewwarning).
 * (bug 22935) image/x-ms-bmp mime type added for BMP files
 * (bug 23024) Special:ListFiles now escapes file names correctly
@@ -88,12 +88,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22868) don't list infinite block expiry date as "now" in API logevents
 * (bug 22290) prop=revisions now outputs "comment" field even when comment
   is empty, for consistency with list=recentchanges
-  
+
 === Languages updated in 1.17 ===
 
 == Compatibility ==
 
-MediaWiki 1.17 requires PHP 5.1 (5.2 recommended). PHP 4 is no longer supported.
+MediaWiki 1.17 requires PHP 5.1 (5.2 recommended). PHP 4 is no longer
+supported.
 
 MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
 At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
