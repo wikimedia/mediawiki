@@ -44,11 +44,13 @@ class ChangesList {
 	 * @return ChangesList derivative
 	 */
 	public static function newFromUser( &$user ) {
+		global $wgRequest;
+
 		$sk = $user->getSkin();
 		$list = null;
 		if( wfRunHooks( 'FetchChangesList', array( &$user, &$sk, &$list ) ) ) {
-			return $user->getOption( 'usenewrc' ) ?
-				new EnhancedChangesList( $sk ) : new OldChangesList( $sk );
+			$new = $wgRequest->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
+			return $new ? new EnhancedChangesList( $sk ) : new OldChangesList( $sk );
 		} else {
 			return $list;
 		}
