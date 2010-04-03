@@ -9,6 +9,7 @@
  *
  * @author Codex Sinaiticus
  * @author Elfalem
+ * @author Romaine
  * @author Solomon
  * @author Teferra
  */
@@ -830,7 +831,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'yournick'                  => 'ቁልምጫ ስም (ለፊርማ)',
 'badsig'                    => 'ትክክለኛ ያልሆነ ጥሬ ፊርማ፤ HTML ተመልከት።',
 'badsiglength'              => 'ያ ቁልምጫ ስም ከመጠን በላይ ይረዝማል፤ ከ$1 ፊደል በታች መሆን አለበት።',
-'yourgender'                => ' ሥርዓተ ጾታ',
+'yourgender'                => 'ሥርዓተ ጾታ',
 'gender-unknown'            => ' አታምር',
 'gender-male'               => 'ወንድ',
 'gender-female'             => ' ሴት',

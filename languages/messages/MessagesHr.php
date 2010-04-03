@@ -871,7 +871,8 @@ Vaša trenutačna IP adresa je $3, a oznaka bloka #$5. Molimo navedite ovaj broj
 'whitelistedittext'                => 'Za uređivanje stranice morate se $1.',
 'confirmedittext'                  => 'Morate ovjeriti vašu e-mail adresu prije nego što vam bude omogućeno uređivanje. Molim unesite i ovjerite vašu e-mail adresu u [[Special:Preferences|suradničkim postavkama]].',
 'nosuchsectiontitle'               => 'Ne mogu pronaći odlomak',
-'nosuchsectiontext'                => 'Pokušali ste uređivati odlomak koji ne postoji (moguće je nedavno obrisan).',
+'nosuchsectiontext'                => 'Pokušali ste uređivati odlomak koji ne postoji.
+Budući da ne postoji sodlomak $1, nema mjesta za spremanje izmjena.',
 'loginreqtitle'                    => 'Nužna prijava',
 'loginreqlink'                     => 'prijavite se',
 'loginreqpagetext'                 => 'Morate se $1 da biste vidjeli ostale stranice.',
@@ -2054,7 +2055,7 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'watchlistcontains'    => 'Vaš popis praćenja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.',
 'iteminvalidname'      => "Problem s izborom '$1', ime nije valjano...",
 'wlnote'               => "Ovdje {{PLURAL:$1|je posljednja $1 promjena|su posljednje $1 promjene|je posljednjih $1 promjena}} u {{PLURAL:$2|posljednjem '''$2''' satu|posljednja '''$2''' sata|posljednjih '''$2''' sati}}.",
-'wlshowlast'           => 'Pokaži zadnjih $1 sati $2 dana $3',
+'wlshowlast'           => 'Prikaži zadnjih $1 sati $2 dana $3',
 'watchlist-options'    => 'Izbornik popisa praćenja',
 
 # Displayed when you click the "watch" button and it is in the process of watching

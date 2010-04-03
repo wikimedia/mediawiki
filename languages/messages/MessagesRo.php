@@ -13,6 +13,7 @@
  * @author Laurap
  * @author Mihai
  * @author Minisarm
+ * @author Misterr
  * @author SCriBu
  * @author Silviubogan
  * @author Stelistcristi
@@ -2127,8 +2128,8 @@ Asistenţă şi suport:
 'deleteotherreason'      => 'Motiv diferit/suplimentar:',
 'deletereasonotherlist'  => 'Alt motiv',
 'deletereason-dropdown'  => '*Motive uzuale
-** Cererea autorului
-** Violare drepturi de autor
+** La cererea autorului
+** Violarea drepturilor de autor
 ** Vandalism',
 'delete-edit-reasonlist' => 'Modifică motivele ştergerii',
 'delete-toobig'          => 'Această pagină are un istoric al modificărilor mare, mai mult de $1 {{PLURAL:$1|revizie|revizii}}.

@@ -594,7 +594,7 @@ Ili kuzuia uhuni, ni kikumbusho kimoja tu cha neno la siri ambacho utatumiwa kwa
 'mailerror'                  => 'Hitilafu ilitokea wakati ulivyoituma barua pepe: $1',
 'acct_creation_throttle_hit' => 'Watembeleaji wa wiki hii kwa kutumia anwani yako ya IP amefungua {{PLURAL:$1|akaunti 1|akaunti $1}} katika siku iliyopita, ambayo inaruhusiwa hasa kwa kipindi cha muda huu.
 Majibu yake, watumiaji wanaotumia anwani ya IP hii hawawezi kufungua akaunti nyingine tena kwa muda huu.',
-'emailauthenticated'         => 'Anwani yako ya barua pepe ilihakikishwa saa $3, tarehe $2.',
+'emailauthenticated'         => 'Anwani yako ya barua pepe iliyakinishwa saa $3, tarehe $2.',
 'emailnotauthenticated'      => 'Anwani ya barua pepe yako bado haijahakikiwa.
 Hakuna hata barua  pepe moja itakayotumwa kwa lolote katika vipengele hivi vifuatavyo.',
 'noemailprefs'               => 'Weka anwani ya barua pepe kwenye mapendekezo ili uweze kutumia zana hizi.',
@@ -2010,7 +2010,18 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'limitall'         => 'zote',
 
 # E-mail address confirmation
-'confirmemail'             => 'Yakinisha anwani yako ya barua pepe',
+'confirmemail'             => 'Kuyakinisha anwani ya barua pepe',
+'confirmemail_noemail'     => 'Hakuna anwani ya barua pepe halali kwenye [[Special:Preferences|mapendekezo yako]].',
+'confirmemail_text'        => '{{SITENAME}} inakutakia uyakinishe anwani yako ya barua pepe kabla kutumia zana zinazohusika barua pepe.
+Bofya kibonyezi cha chini kuituma barua pepe ya kuyakinisha kwa anwani yako.
+Ndani ya barua pepe patakuwa na kiungo chenye ishara;
+tumia kiungo kwenye kivinjari chako ili kuyakinisha kwamba anwani yako ya barua pepe ni halali.',
+'confirmemail_pending'     => 'Ishara za kuidhinisha zimeshatumwa kwako kwa njia ya barua pepe;
+ikiwa umeanzisha akaunti yako sasa hivi tu, tafadhali subiri dakika chache zifike, kabla hujaribu kuomba ishara zingine.',
+'confirmemail_send'        => 'Nitumie ishara za kuyakinisha',
+'confirmemail_sent'        => 'Barua pepe ya kuyakinisha imetumwa.',
+'confirmemail_oncreate'    => 'Ishara za kuyakinisha zilitumwa kwa anwani yako ya barua pepe.
+Huhitaji ishara hizi ili kuingia akaunti yako, lakini utazihitaji ili kuwezesha zana zozote za wiki hii zinazotumia barua pepe.',
 'confirmemail_needlogin'   => 'Unahitajika $1 kuthibitisha anwani ya barua pepe yako.',
 'confirmemail_success'     => 'Barua pepe yako imethibitishwa.
 Sasa unaweza [[Special:UserLogin|kuingia]] na kuifurahia {{SITENAME}}.',

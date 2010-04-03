@@ -684,6 +684,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'showdiff'                         => 'Detaliar modificationes',
 'anoneditwarning'                  => "'''Attention:''' Tu non te ha identificate.
 Tu adresse IP essera registrate in le historia de modificationes de iste pagina.",
+'anonpreviewwarning'               => "''Tu non te ha identificate. Si tu publica iste pagina, tu adresse IP essera registrate in le historia de modificationes.''",
 'missingsummary'                   => "'''Memento:''' Tu non entrava alcun summario del modification.
 Si tu clicca super Publicar de novo, le modification essera publicate sin summario.",
 'missingcommenttext'               => 'Per favor entra un commento infra.',

@@ -346,7 +346,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'permalink'         => 'Trajna povezava',
 'print'             => 'Tisk',
 'edit'              => 'Uredi stran',
-'create'            => 'ustvari',
+'create'            => 'Ustvari',
 'editthispage'      => 'Uredi stran',
 'create-this-page'  => 'Ustvari to stran',
 'delete'            => 'Briši',
@@ -733,7 +733,8 @@ Vaš trenutni IP-naslov je $3, ID blokiranja pa #$5. Prosimo, vključite ta ID v
 'blockededitsource'                => "Besedilo '''vaših urejanj''' v '''$1''' je prikazano spodaj:",
 'whitelistedittitle'               => 'Za urejanje se morate prijaviti',
 'whitelistedittext'                => 'Za urejanje strani se morate $1.',
-'confirmedittext'                  => 'Pred urejanjem strani morate potrditi svoj e-poštni naslov. Prosimo, da ga z uporabo [[Special:Preferences|uporabniških nastavitev]] vpišete in potrdite.',
+'confirmedittext'                  => 'Pred urejanjem strani morate potrditi svoj e-poštni naslov.
+Prosimo, da ga z uporabo [[Special:Preferences|uporabniških nastavitev]] vpišete in potrdite.',
 'nosuchsectiontitle'               => 'Ne najdem razdelka',
 'nosuchsectiontext'                => 'Poskušali ste urediti razdelek, ki ne obstaja.
 Morda je bil premaknjen ali izbrisan, medtem ko ste gledali stran.',
@@ -790,12 +791,15 @@ Največkrat je razlog uporaba hroščato spletno anonimizacijsko storitev.",
 'editingsection'                   => 'Urejanje $1 (razdelek)',
 'editingcomment'                   => 'Urejanje $1 (nov razdelek)',
 'editconflict'                     => 'Navzkrižje urejanj: $1',
-'explainconflict'                  => 'Med vašim urejanjem je stran spremenil nekdo drug. Zgornje besedilno območje vsebuje njeno trenutno vsebino in bo edino, ki se bo ob izbiri ukaza »Shrani stran« shranilo. V spodnjem območju so prikazane vaše spremembe, ki jih boste morali vključiti v zgornje.<br />',
+'explainconflict'                  => "Med vašim urejanjem je stran spremenil nekdo drug.
+Zgornje urejevalno polje vsebuje njeno trenutno vsebino.
+Vaše spremembe so prikazane v spodnjem polju, ki jih boste morali združiti z obstoječim besedilom.
+'''Samo''' besedilo v zgornjem polju bo shranjeno, ko boste izbrali ukaz »Shrani stran«.",
 'yourtext'                         => 'Vaše besedilo',
 'storedversion'                    => 'Shranjena redakcija',
 'nonunicodebrowser'                => "'''Opozorilo: Vaš brskalnik ne podpira Unicode.'''
 Za obhod te težave se bodo ne-ASCII-znaki v urejevalnem polju spodaj pojavili kot šestnajstiške kode.",
-'editingold'                       => "'''OPOZORILO: Urejate staro redakcijo strani.'''
+'editingold'                       => "'''Opozorilo: Urejate staro redakcijo strani.'''
 Če jo boste shranili, bodo vse poznejše spremembe razveljavljene.",
 'yourdiff'                         => 'Primerjava',
 'copyrightwarning'                 => "Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se obravnavajo kot objave pod pogoji $2 (za podrobnosti glej $1). Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.
@@ -1491,11 +1495,10 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 'filetype-missing'            => 'Datoteka nima končnice (kot ».jpg«).',
 'large-file'                  => 'Priporočeno je, da datoteke niso večje od $1; ta datoteka je $2.',
 'largefileserver'             => 'Velikost datoteke presega strežnikove nastavitve.',
-'emptyfile'                   => 'Naložena datoteka je morda prazna. Do tega bi lahko prišlo zaradi slovnične napake v imenu. Ali datoteko resnično želite naložiti?',
-'fileexists'                  => "Datoteka s tem imenom že obstaja.
-Preden jo povozite, preverite stran '''<tt>[[:$1]]</tt>'''.
-Da preprečite navzkrižja z že obstoječimi datotekami, uporabljajte za datoteke opisna imena (npr.
-»Eifflov stolp, Pariz, ponoči.jpg«).
+'emptyfile'                   => 'Kaže, da je aložena datoteka prazna.
+Do tega bi lahko prišlo zaradi tipkarske napake v imenu.
+Ali datoteko resnično želite naložiti?',
+'fileexists'                  => "Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran '''<tt>[[:$1]]</tt>'''.
 [[$1|thumb]]",
 'filepageexists'              => "Opisna stran za to datoteko je bila že ustvarjena na '''<tt>[[:$1]]</tt>''', vendar datoteka s tem imenom trenutno ne obstaja.
 Povzetek, ki ste ga vnesli, se ne bo prikazal na opisni strani.
@@ -1512,7 +1515,8 @@ Prosimo, preverite datoteko '''<tt>[[:$1]]</tt>'''.
 Izgleda, da je to pomanjšana slika ''(thumbnail)''.
 Če imate sliko polne resolucije, jo naložite, drugače spremenite ime datoteke.",
 'fileexists-forbidden'        => 'Datoteka s tem imenom že obstaja in je ni mogoče prepisati.
-Poskusite svojo datoteko naložiti pod drugim imenom. [[File:$1|thumb|center|$1]]',
+Če še vedno želite naložiti vašo datoteko, se prosimo vrnite nazaj in uporabite novo ime.
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka s tem imenom že obstaja v skupnem skladišču datotek.
 Prosimo, vrnite se in naložite svojo datoteko pod drugim imenom. 
 [[File:$1|thumb|center|$1]]',
@@ -1547,7 +1551,7 @@ Premislite ali je nadaljevanje nalaganja primerno.
 Za lažjo presojo je spodaj izpisek iz dnevnika brisanj:",
 'filename-bad-prefix'         => "Ime datoteke, ki jo nalagate, se začne z '''»$1«''', ki je neopisno ime, ponavadi dodeljeno samodejno s strani digitalnih fotoaparatov.
 Prosimo, izberite bolj opisno ime vaše datoteke.",
-'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- pustite to vrstico takšno, kot je --> <pre>
 # Sintaksa:
 #   * Vse od znaka »#« in do konca vrstice je komentar
 #   * Vsaka neprazna vrstica je predpona za tipična imena datotek, določena samodejno s strani digitalnih fotoaparatov
@@ -1560,7 +1564,7 @@ IMG # generično
 JD # Jenoptik
 MGP # Pentax
 PICT # mešano
- #</pre> <!-- leave this line exactly as it is -->',
+ #</pre> <!-- pustite to vrstico takšno, kot je -->',
 
 'upload-proto-error'        => 'Nepravilni protokol',
 'upload-proto-error-text'   => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
@@ -1696,9 +1700,7 @@ Povzetek na njeni [$2 opisni strani datoteke] je prikazan spodaj.',
 'filedelete-reason-otherlist' => 'Drug razlog',
 'filedelete-reason-dropdown'  => '* Pogosti razlogi brisanja
 ** kršitev avtorskih pravic
-** neumnosti v besedilu
-** podvojena datoteka
-** potrjen predlog za brisanje',
+** podvojena datoteka',
 'filedelete-edit-reasonlist'  => 'Uredi razloge za brisanje',
 'filedelete-maintenance'      => 'Brisanje in obnovitev datotek je začasno onemogočeno zaradi vzdrževanja.',
 
@@ -1943,8 +1945,8 @@ Na voljo so morda [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]]
 'mailnologintext'  => 'Za pošiljanje e-pošte drugim uporabnikom se [[Special:UserLogin|prijavite]] in v [[Special:Preferences|nastavitvah]] vpišite veljaven e-poštni naslov.',
 'emailuser'        => 'Pošlji uporabniku e-pismo',
 'emailpage'        => 'Pošlji uporabniku e-pismo',
-'emailpagetext'    => "S spodnjim obrazcem lahko uporabniku pošljete e-poštno sporočilo.
-Da bo prejemnik lahko odgovoril neposredno vam, bo v glavi sporočila zapisan '''vaš e-poštni naslov''' (kot ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]]).",
+'emailpagetext'    => 'S spodnjim obrazcem lahko uporabniku pošljete e-poštno sporočilo.
+E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]], bo v e-sporočilu naveden kot naslov »Od:«, tako da bo prejemnik lahko odgovoril neposredno vam.',
 'usermailererror'  => 'Predmet e-pošte je vrnil napako:',
 'defemailsubject'  => 'Elektronska pošta {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'noemailtitle'     => 'Ni e-poštnega naslova',
@@ -2049,8 +2051,8 @@ Povratna sporočila in pomoč:
 Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 'actioncomplete'         => 'Poseg je končan',
 'actionfailed'           => 'Dejanje spodletelo',
-'deletedtext'            => "»'''<nowiki>$1</nowiki>'''« je bila izbrisana. 
-Za zapise nedavnih brisanj glej $2.",
+'deletedtext'            => 'Stran »<nowiki>$1</nowiki>« je bila izbrisana. 
+Za zapise nedavnih brisanj glej $2.',
 'deletedarticle'         => 'je izbrisal(-a) »[[$1]]«',
 'suppressedarticle'      => 'skril »[[$1]]«',
 'dellogpage'             => 'Dnevnik brisanja',
@@ -2273,7 +2275,7 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 ** neprimerno uporabniško ime',
 'ipbanononly'                     => 'Blokiraj le brezimne uporabnike',
 'ipbcreateaccount'                => 'Prepreči ustvarjanje računov',
-'ipbemailban'                     => 'uporabniku prepreči pošiljanje e-pošte',
+'ipbemailban'                     => 'Uporabniku prepreči pošiljanje e-pošte',
 'ipbenableautoblock'              => 'Samodejno blokiraj zadnji IP-naslov tega uporabnika in vse naslednje naslove, ki jih bodo hoteli uporabiti',
 'ipbsubmit'                       => 'Blokiraj naslov',
 'ipbother'                        => 'Drugačen čas',
@@ -2474,15 +2476,16 @@ Prosimo, izberite drugo ime.',
 
 # Export
 'export'            => 'Izvoz strani',
-'exporttext'        => "Besedilo in urejevalno zgodovino ene ali več strani lahko izvozite v obliki XML. V prihodnosti bo to vsebino morda mogoče izvoziti v drug wiki, ki ga bo poganjalo programje MediaWiki, v trenutni različici pa so možnosti za to zelo omejene (kjer je omogočeno orodje ''Special:Import'', lahko vsebino z njegovo uporabo uvozijo administratorji).
+'exporttext'        => 'Besedilo in urejevalno zgodovino ene ali več strani lahko izvozite v obliki XML.
+To je mogoče uvoziti v drug wiki z uporabo MediaWiki preko [[Special:Import|strani za uvoz]].
 
-Če želite izvoziti članke, v spodnje polje vpišite njihove naslove (enega v vsako vrstico) in označite, ali želite le trenutno različico s podatki o trenutnem urejanju ali tudi vse prejšnje z vrsticami o zgodovini strani.
+Če želite izvoziti strani, v spodnje polje vpišite naslove (enega v vsako vrstico) in označite, ali želite vse prejšnje različice z vrsticami o zgodovini strani ali le trenutno različico s podatki o trenutnem urejanju.
 
 Če gre za slednje, lahko uporabite tudi povezavo, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za 
-članek \"[[{{MediaWiki:Mainpage}}]]\".",
+stran »[[{{MediaWiki:Mainpage}}]]«.',
 'exportcuronly'     => 'Vključi le trenutno redakcijo, ne pa celotne zgodovine.',
 'exportnohistory'   => "----
-'''Opomba:''' izvoz celotne zgodovine strani je do nadaljnjega zaradi preobremenjenosti strežnikov onemogočen. Popolno zgodovino lahko najdete v [http://download.wikimedia.org/ izmetih zbirke podatkov] — administratorji strežnikov Wikimedije.",
+'''Opomba:''' Izvoz celotne zgodovine strani preko tega obrazca je zaradi preobremenjenosti strežnikov onemogočen.",
 'export-submit'     => 'Izvozi',
 'export-addcattext' => 'Dodaj strani iz kategorije:',
 'export-addcat'     => 'Dodaj',
@@ -2498,7 +2501,7 @@ Prosimo, izberite drugo ime.',
 'allmessagesdefault'            => 'Prednastavljeno besedilo',
 'allmessagescurrent'            => 'Trenutno besedilo',
 'allmessagestext'               => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila.
-Za lokalizacijo in prevajanje obiščite [http://www.mediawiki.org/wiki/Localisation MediaWiki] in [http://translatewiki.net translatewiki.net] in tako prispevajte k splošnem prevodu programja.',
+Za lokalizacijo in prevajanje obiščite [http://www.mediawiki.org/wiki/Localisation MediaWiki] in [http://translatewiki.net translatewiki.net] in tako prispevajte k splošnemu prevodu programja.',
 'allmessagesnotsupportedDB'     => "Te strani ni mogoče uporabljati, ker je bilo '''\$wgUseDatabaseMessages''' izključeno.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtriraj po prilagoditvenem stanju:',
@@ -3063,24 +3066,30 @@ Ali ste svoj e-poštni naslov že potrdili, lahko preverite v nastavitvah.',
 'confirmemail_sent'         => 'Potrditveno e-sporočilo je bilo poslano.',
 'confirmemail_oncreate'     => 'Potrditveno geslo je bilo poslano na vaš e-poštni naslov.
 To geslo ni potrebno za vpis, vendar ga boste morali vnesti pred omogočanjem katere koli funkcije temelječe na e-pošti na wikiju.',
-'confirmemail_sendfailed'   => 'Potrditvenega sporočila ni bilo mogoče poslati. Prosimo, preverite, če niste naslova vnesli napačno.
+'confirmemail_sendfailed'   => 'Potrditvenega sporočila ni bilo mogoče poslati.
+Prosimo, preverite, če niste naslova vnesli napačno.
 
 Posrednik e-pošte je vrnil: $1',
 'confirmemail_invalid'      => 'Potrditveno geslo je neveljavno. Morda je poteklo.',
-'confirmemail_needlogin'    => 'Za potrditev svojega e-poštnega se morate $1.',
+'confirmemail_needlogin'    => 'Za potrditev svojega e-poštnega naslova se morate $1.',
 'confirmemail_success'      => 'Vaš e-poštni naslov je potrjen. Zdaj se lahko prijavite in uporabljate wiki.',
 'confirmemail_loggedin'     => 'Svoj elektronski naslov ste uspešno potrdili.',
 'confirmemail_error'        => 'Vaša potrditev se žal ni shranila.',
 'confirmemail_subject'      => 'Potrditev e-poštnega naslova',
-'confirmemail_body'         => 'Nekdo z IP-naslovom »$1« (verjetno vi) je v {{GRAMMAR:dajalnik|{{SITENAME}}}} ustvaril račun »$2« in zanj vpisal vaš elektronski naslov. Da bi potrdili, da ta resnično pripada vam in s tem lahko začeli uporabljati e-poštne storitve {{GRAMMAR:rodilnik|{{SITENAME}}}}, odprite naslednjo povezavo: 
+'confirmemail_body'         => 'Nekdo, verjetno vi, z IP-naslovom $1,
+je v {{GRAMMAR:dajalnik|{{SITENAME}}}} ustvaril račun »$2« in zanj vpisal ta elektronski naslov.
+
+Da bi potrdili, da ta račun resnično pripada vam in s tem
+lahko začeli uporabljati e-poštne storitve {{GRAMMAR:rodilnik|{{SITENAME}}}}, odprite naslednjo povezavo: 
 
 $3
 
-Če tega niste napravili vi, sledite naslednji povezavi in tako prekličite potrditev elektronskega naslova:
+Če tega *niste* napravili vi, sledite naslednji povezavi
+in tako prekličite potrditev elektronskega naslova:
 
 $5
 
-Potrditvena koda bo potekla ob $4.',
+Potrditvena koda bo potekla $4.',
 'confirmemail_body_changed' => 'Nekdo, najverjetneje vi, je iz IP-naslova $1
 na strani {{SITENAME}} spremenil e-poštni naslov računa »$2« v ta naslov.
 
@@ -3214,11 +3223,14 @@ Uporabite lahko tudi [[Special:Watchlist/edit|standardni urejevalnik]].',
 'filepath'         => 'Pot do datoteke',
 'filepath-page'    => 'Datoteka:',
 'filepath-submit'  => 'Pot',
-'filepath-summary' => 'Ta posebna stran vrne polno pot do datoteke. Slike so prikazane v polni resoluciji, druge vrste datotek pa se zaženejo v za njih določenih programih. Vtipkajte ime datoteke brez predpone »{{ns:image}}:«.',
+'filepath-summary' => 'Ta posebna stran vrne polno pot do datoteke.
+Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.
+
+Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Iskanje podvojenih datotek',
-'fileduplicatesearch-summary'  => 'Iskanje podvojenih datotek temelji na podlagi njenih hash vrednosti.
+'fileduplicatesearch-summary'  => 'Iskanje podvojenih datotek temelji na podlagi njenih hashvrednosti.
 
 Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 'fileduplicatesearch-legend'   => 'Poišči dvojnik',

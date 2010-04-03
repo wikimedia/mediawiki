@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Cantonese (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -10,6 +10,7 @@
  * @author Horacewai2
  * @author KaiesTse
  * @author William915
+ * @author Wong128hk
  */
 
 $bookstoreList = array(
@@ -286,7 +287,7 @@ $messages = array(
 'cancel'        => '取消',
 'moredotdotdot' => '更多...',
 'mypage'        => '我嘅頁',
-'mytalk'        => '我嘅討論',
+'mytalk'        => '傾偈',
 'anontalk'      => '同呢個 IP 傾偈',
 'navigation'    => '導航',
 'and'           => '同埋',
@@ -670,6 +671,7 @@ $1',
 'showlivepreview'                  => '實時預覽',
 'showdiff'                         => '顯示差異',
 'anoneditwarning'                  => "'''警告：'''你重未登入。你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。",
+'anonpreviewwarning'               => "''你重未登入，你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。''",
 'missingsummary'                   => "'''提醒：''' 你未提供編輯摘要。如果你再撳多一下儲存嘅話，咁你儲存嘅編輯就會無摘要。",
 'missingcommenttext'               => '請輸入一個註解。',
 'missingcommentheader'             => "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就會無題。",
@@ -1102,7 +1104,7 @@ $1",
 
 # Preferences page
 'preferences'                   => '喜好設定',
-'mypreferences'                 => '我嘅喜好設定',
+'mypreferences'                 => '安排與架生',
 'prefs-edits'                   => '編輯數:',
 'prefsnologin'                  => '重未登入',
 'prefsnologintext'              => '你一定要去<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登入]</span>設定好用戶喜好值先。',
@@ -1292,6 +1294,7 @@ $1",
 'right-hideuser'              => '封鎖用戶名，對公眾隱藏',
 'right-ipblock-exempt'        => '繞過IP封鎖、自動封鎖同埋範圍封鎖',
 'right-proxyunbannable'       => '繞過Proxy嘅自動封鎖',
+'right-unblockself'           => '解封佢地',
 'right-protect'               => '改保護等級同埋編輯保護版',
 'right-editprotected'         => '編輯保護版（無連串保護）',
 'right-editinterface'         => '編輯用戶界面',
@@ -1889,7 +1892,7 @@ Template:搞清楚',
 
 # Watchlist
 'watchlist'            => '監視清單',
-'mywatchlist'          => '我張監視清單',
+'mywatchlist'          => '監視清單',
 'watchlistfor'         => "（用戶「'''$1'''」嘅監視清單）",
 'nowatchlist'          => '你嘅監視清單度並冇任何項目。',
 'watchlistanontext'    => '請先$1去睇或者改響你監視清單度嘅項目。',
@@ -2119,7 +2122,7 @@ $1',
 # Contributions
 'contributions'       => '用戶貢獻',
 'contributions-title' => '$1嘅用戶貢獻',
-'mycontris'           => '我嘅貢獻',
+'mycontris'           => '貢獻',
 'contribsub2'         => '$1嘅貢獻 ($2)',
 'nocontribs'          => '搵唔到符合呢啲條件嘅修改。',
 'uctop'               => '(最頂)',
@@ -2266,6 +2269,8 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'cant-block-while-blocked'        => '當你被封鎖嗰陣唔可以封鎖其他用戶。',
 'cant-see-hidden-user'            => '你試緊封鎖嘅用戶已經封鎖咗或者隱藏咗。
 你而家冇隱藏用戶嘅權限，你唔可以睇或者改呢位用戶嘅封鎖。',
+'ipbblocked'                      => 'You cannot block or unblock other users, because you are yourself blocked
+你唔可以查封或者解封其他人，因為你自己都俾人查封左。',
 
 # Developer tools
 'lockdb'              => '鎖定資料庫',
@@ -2466,7 +2471,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-pt-anonuserpage'         => '你編輯呢個IP嘅對應用戶頁',
 'tooltip-pt-mytalk'               => '你嘅對話頁',
 'tooltip-pt-anontalk'             => '對於嚟自呢一個IP地址編輯嘅討論',
-'tooltip-pt-preferences'          => '你嘅喜好設定',
+'tooltip-pt-preferences'          => '安排與架生',
 'tooltip-pt-watchlist'            => '你所監視嘅頁面更改一覽',
 'tooltip-pt-mycontris'            => '你嘅貢獻一覽',
 'tooltip-pt-login'                => '建議你去登入；但係唔係一定嘅',
