@@ -352,6 +352,7 @@ Tí kì bá ṣe bẹ́ẹ̀, ó lè jẹ́ pé ẹ ti rí àsìṣe nínú soft
 'missingarticle-diff'  => '(Ìyàtọ̀: $1, $2)',
 'internalerror'        => 'Àsìṣe inú',
 'internalerror_info'   => 'Àsìṣe inú: $1',
+'fileappenderror'      => 'Kò le so "$1" pọ̀ mọ́ "$2".',
 'filecopyerror'        => 'Àwòkọ faili "$1" sí "$2" kò ṣe é ṣe.',
 'filerenameerror'      => 'Àtúnsọlórúkọ faili "$1" sí "$2" kò ṣe é ṣe.',
 'filedeleteerror'      => 'Ìparẹ́ faili "$1" kò ṣe é ṣe.',
@@ -481,6 +482,7 @@ Kí á tó fi e-mail mìíràn ránṣẹ́ sí àkópamọ́ yìí, ẹ gbọ́
 'resetpass_forbidden'       => 'Àwọn ọ̀rọ̀ìpamọ́ kò ṣe é yípadà',
 'resetpass-no-info'         => 'Ẹ gbọ́dọ̀ wọlẹ́ láti le lọ sí ojúewé yìí tààrà.',
 'resetpass-submit-loggedin' => 'Ìyípadà ọ̀rọ̀ìpamọ́',
+'resetpass-submit-cancel'   => 'Fagilé',
 'resetpass-temp-password'   => 'Ọ̀rọ̀ìpamọ́ fún ìgbà díẹ̀',
 
 # Edit page toolbar

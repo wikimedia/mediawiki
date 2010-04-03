@@ -395,7 +395,7 @@ $messages = array(
 'and'           => '&#32;і',
 
 # Cologne Blue skin
-'qbfind'         => 'Шукаць',
+'qbfind'         => 'Знайсьці',
 'qbbrowse'       => 'Праглядзець',
 'qbedit'         => 'Рэдагаваць',
 'qbpageoptions'  => 'Гэтая старонка',

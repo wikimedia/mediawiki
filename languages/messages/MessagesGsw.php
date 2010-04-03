@@ -925,7 +925,7 @@ As Ammann (Administrator) chasch dää Unterschid bschaue; villicht het s Detail
 'revdelete-radio-set'         => 'Jo',
 'revdelete-radio-unset'       => 'Nei',
 'revdelete-suppress'          => 'Grund vu dr Leschig au vor dr Ammanne versteckle',
-'revdelete-unsuppress'        => 'Yyhscränkige fir di widerhergstellte Versione ufhebe',
+'revdelete-unsuppress'        => 'Yyschränkige fir di widerhergstellte Versione ufhebe',
 'revdelete-log'               => 'Leschgrund:',
 'revdelete-submit'            => 'Uf {{PLURAL:$1|di uusgwehlt Version|usgwehlti Versione}} aawände',
 'revdelete-logentry'          => 'het d Versionsaasicht fir „[[$1]]“ gänderet',

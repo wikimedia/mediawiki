@@ -871,6 +871,8 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'showdiff'                         => 'Wijzigingen bekijken',
 'anoneditwarning'                  => "'''Waarschuwing:''' u bent niet aangemeld.
 Uw IP-adres wordt opgeslagen als u wijzigingen op deze pagina maakt.",
+'anonpreviewwarning'               => "''U bent niet aangemeld.''
+''Door uw bewerking op te slaan wordt uw IP-adres opgeslagen in de paginageschiedenis.''",
 'missingsummary'                   => "'''Herinnering:''' u hebt geen samenvatting opgegeven voor uw bewerking.
 Als u nogmaals op ''Pagina opslaan'' klikt wordt de bewerking zonder samenvatting opgeslagen.",
 'missingcommenttext'               => 'Plaats uw opmerking hieronder.',

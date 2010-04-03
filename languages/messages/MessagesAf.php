@@ -1238,6 +1238,7 @@ Hier volg 'n lukraak gegenereerde waarde wat u kan gebruik: $1",
 'prefs-files'                   => 'Lêers',
 'prefs-custom-css'              => 'Persoonlike CSS',
 'prefs-custom-js'               => 'Persoonlike JS',
+'prefs-common-css-js'           => 'Gedeelde CSS/JS vir al die omslae:',
 'prefs-reset-intro'             => 'U kan die blad gebruik om u voorkeure terug te stel na die webwerf se verstekwaardes.
 Die aksie kan nie ongedaan gemaak word nie.',
 'prefs-emailconfirm-label'      => 'E-posbevestiging:',
@@ -1362,6 +1363,7 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-hideuser'              => "Blokkeer 'n gebruiker, versteek dit van die publiek",
 'right-ipblock-exempt'        => 'Omseil IP-blokkades',
 'right-proxyunbannable'       => "Blokkades vir instaanbedieners (proxy's) geld nie",
+'right-unblockself'           => 'Eie gebruiker deblokkeer',
 'right-protect'               => 'Verander beskermingsvlakke en wysig beskermde bladsye',
 'right-editprotected'         => 'Wysig beskermde bladsye (sonder kaskade-beskerming)',
 'right-editinterface'         => 'Wysig die gebruikerskoppelvlak',
@@ -2393,6 +2395,8 @@ U kan nie 'n rekening skep nie.",
 'cant-block-while-blocked'        => 'U kan nie ander gebruikers blokkeer terwyl u self geblokkeer is nie.',
 'cant-see-hidden-user'            => "Die gebruiker wat u probeer blokkeer is reeds geblokkeer en weggesteek.
 Aangesien u nie die 'hideuser'-reg het nie, kan u nie die blokkade van die gebruiker sien of wysig nie.",
+'ipbblocked'                      => 'U kan nie ander gebruikers (de)blokkeer nie, omdat u self geblokkeer is',
+'ipbnounblockself'                => 'U mag uself nie deblokkeer nie',
 
 # Developer tools
 'lockdb'              => 'Sluit databasis',

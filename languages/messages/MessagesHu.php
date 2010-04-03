@@ -827,6 +827,7 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'showlivepreview'                  => 'Élő előnézet',
 'showdiff'                         => 'Változtatások megtekintése',
 'anoneditwarning'                  => "'''Figyelem:''' Nem vagy bejelentkezve, ha szerkesztesz, az IP-címed látható lesz a laptörténetben.",
+'anonpreviewwarning'               => "''Nem vagy bejelentkezve. A mentéskor az IP-címed rögzítve lesz a laptörténetben.''",
 'missingsummary'                   => "'''Emlékeztető:''' Nem adtál meg szerkesztési összefoglalót. Ha összefoglaló nélkül akarod elküldeni a szöveget, kattints újra a mentésre.",
 'missingcommenttext'               => 'Kérjük, hogy írj összefoglalót szerkesztésedhez.',
 'missingcommentheader'             => "'''Emlékeztető:''' Nem adtad meg a megjegyzés tárgyát vagy címét.

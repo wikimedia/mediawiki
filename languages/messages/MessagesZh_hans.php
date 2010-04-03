@@ -9,6 +9,7 @@
  *
  * @author Bencmq
  * @author Biŋhai
+ * @author Fantasticfears
  * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
@@ -719,6 +720,7 @@ $2',
 'showlivepreview'                  => '实时预览',
 'showdiff'                         => '显示差异',
 'anoneditwarning'                  => "'''警告：'''您没有登录，您的IP位址将记录在此页的编辑历史中。",
+'anonpreviewwarning'               => "''您没有登录。您的IP位址将记录在此页的编辑历史中。''",
 'missingsummary'                   => "'''提示：''' 您没有提供一个编辑摘要。如果您再次单击保存，您的编辑将不带编辑摘要保存。",
 'missingcommenttext'               => '请在下面输入评论。',
 'missingcommentheader'             => "'''提示：''' 您没有为此评论提供一个标题。如果您再次单击保存，您的编辑将不带标题保存。",

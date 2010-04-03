@@ -70,11 +70,13 @@ $messages = array(
 'mainpage'             => 'Ихадоу Адаҟьа',
 'mainpage-description' => 'Ихадоу адаҟьа',
 
-'editold'  => 'ариашара',
-'editlink' => 'ариашара',
+'editsection' => 'ариашамҭа',
+'editold'     => 'ариашара',
+'editlink'    => 'ариашара',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Адаҟьа',
+'nstab-user'     => 'Иалоу',
 'nstab-category' => 'Акатегориа',
 
 # Login and logout pages
@@ -90,20 +92,46 @@ $messages = array(
 # Groups
 'group-user' => 'Иалоуқәа',
 
+'group-user-member' => 'Иалоу',
+
 # File description page
 'filehist-user' => 'Иалоу',
+
+'brokenredirects-edit' => 'ариашамҭа',
+
+# Miscellaneous special pages
+'newpages-username' => 'Иалоу:',
+
+# Special:Log
+'specialloguserlabel' => 'Иалоу:',
 
 # Special:AllPages
 'alphaindexline' => '$1 ... $2',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Аҧшаара',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Ариашамҭа',
+
+'sp-contributions-talk'   => 'ахцәажәара',
 'sp-contributions-submit' => 'Аҧшаара',
 
 # What links here
 'whatlinkshere-page' => 'Адаҟьа:',
 
+# Namespace 8 related
+'allmessages-language' => 'Абызшәа:',
+
+# Special:NewFiles
+'ilsubmit' => 'Аҧшаара',
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'зегьы',
 'namespacesall' => 'зегьы',
 'monthsall'     => 'зегьы',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Аҧшаара',
 
 );

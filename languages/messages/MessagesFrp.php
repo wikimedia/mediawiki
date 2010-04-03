@@ -799,6 +799,7 @@ Ignorâd ceti mèssâjo se cél compto at étâ fêt per èrror.',
 'login-throttled'            => 'Vos éd tentâ dèrriérement un trop grant nombro de branchements.
 Volyéd atendre devant que tornar èprovar.',
 'loginlanguagelabel'         => 'Lengoua : $1',
+'suspicious-userlogout'      => "Voutra demanda de dèbranchement at étâ refusâ perce que semble qu’el at étâ mandâ per un navigator câsso ou ben la misa en cache d’un sèrvor mandatèro (''proxy'').",
 
 # Password reset dialog
 'resetpass'                 => 'Changiér lo mot de pâssa',
@@ -853,6 +854,7 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'showdiff'                         => 'Changements que sont aprés étre fêts',
 'anoneditwarning'                  => "'''Atencion :''' vos éte pas branchiê.
 Voutra adrèce IP serat encartâ dens l’historico de ceta pâge.",
+'anonpreviewwarning'               => "''Vos éte pas branchiê. Sôvar encarterat voutra adrèce IP dens l’historico des changements de la pâge.''",
 'missingsummary'                   => "'''Rapèl :''' vos éd p’oncor balyê lo rèsumâ de voutron changement.
 Se vos tornâd clicar dessus « Sôvar ceta pâge », voutron changement serat sôvâ sen novél avèrtissement.",
 'missingcommenttext'               => 'Volyéd fâre voutron comentèro ce-desot.',
@@ -1506,6 +1508,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-hideuser'              => 'Blocar un utilisator en cachient son nom u publico',
 'right-ipblock-exempt'        => 'Pas étre afèctâ per les adrèces IP blocâs, los blocâjos ôtomaticos et los blocâjos de plages d’adrèces IP',
 'right-proxyunbannable'       => "Pas étre afèctâ per los blocâjos ôtomaticos de sèrvors mandatèros (''proxies'')",
+'right-unblockself'           => 'Sè dèblocar lor-mémos',
 'right-protect'               => 'Changiér lo nivél de protèccion de les pâges et changiér les pâges protègiês',
 'right-editprotected'         => 'Changiér les pâges protègiês (sen protèccion en cascâda)',
 'right-editinterface'         => 'Changiér l’entèrface de la programeria',
@@ -2557,6 +2560,8 @@ Vos volyéd veriér vers voutron fornissor d’accès u Malyâjo ou ben voutra a
 Vos pouede pas fâre un compto.",
 'cant-block-while-blocked'        => 'Vos pouede pas blocar d’ôtros utilisators tant que vos éte blocâ.',
 'cant-see-hidden-user'            => 'L’utilisator que vos tâchiéd de blocar at ja étâ blocâ et cachiê. Pas èyent lo drêt hideuser, vos pouede pas vêre ou ben changiér lo blocâjo a l’utilisator.',
+'ipbblocked'                      => 'Vos pouede pas blocar ou ben dèblocar d’ôtros utilisators, perce que vos éte vos-mémo blocâ',
+'ipbnounblockself'                => 'Vos éte pas ôtorisâ a vos dèblocar vos-mémo',
 
 # Developer tools
 'lockdb'              => 'Vèrrolyér la bâsa de balyês',
@@ -2600,6 +2605,7 @@ assurâd-vos de nen avêr comprês les consèquences devant que continuar.",
 
 Dens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo voléd.",
 'movearticle'                  => 'Renomar la pâge :',
+'moveuserpage-warning'         => "'''Atencion :''' vos éte prèst a renomar una pâge utilisator. Volyéd notar que solament la pâge serat renomâ et que l’utilisator serat '''pas''' renomâ.",
 'movenologin'                  => 'Pas branchiê',
 'movenologintext'              => 'Por povêr renomar una pâge, vos dête étre [[Special:UserLogin|branchiê]] coment utilisator encartâ.',
 'movenotallowed'               => 'Vos avéd pas la pèrmission de renomar les pâges.',
@@ -3287,31 +3293,31 @@ Los ôtros champs seront cachiês per dèfôt.
 'limitall'         => 'tôs',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar l’adrèce èlèctronica',
-'confirmemail_noemail'     => 'Vos éd pas dèfeni una adrèce èlèctronica valida dens voutres [[Special:Preferences|prèferences]].',
-'confirmemail_text'        => '{{SITENAME}} at fôta du contrôlo de voutra adrèce èlèctronica devant que povêr utilisar tota fonccion de mèssageria.
+'confirmemail'              => 'Confirmar l’adrèce èlèctronica',
+'confirmemail_noemail'      => 'Vos éd pas dèfeni una adrèce èlèctronica valida dens voutres [[Special:Preferences|prèferences]].',
+'confirmemail_text'         => '{{SITENAME}} at fôta du contrôlo de voutra adrèce èlèctronica devant que povêr utilisar tota fonccion de mèssageria.
 Utilisâd lo boton ce-desot por mandar un mèssâjo de confirmacion a voutra adrèce.
 Lo mèssâjo encllurat un lim que contint un code a usâjo solèt et limitâ dens lo temps ;
 chargiéd cél lim dens voutron navigator por confirmar que voutra adrèce èlèctronica est valida.',
-'confirmemail_pending'     => 'Un code de confirmacion vos at ja étâ mandâ per mèssageria èlèctronica ;
+'confirmemail_pending'      => 'Un code de confirmacion vos at ja étâ mandâ per mèssageria èlèctronica ;
 se vos vegnéd de fâre voutron compto, volyéd atendre doux-três menutes que lo mèssâjo arreve devant que demandar un code novél.',
-'confirmemail_send'        => 'Mandar un code de confirmacion',
-'confirmemail_sent'        => 'Mèssâjo de confirmacion mandâ.',
-'confirmemail_oncreate'    => 'Un code de confirmacion at étâ mandâ a voutra adrèce èlèctronica.
+'confirmemail_send'         => 'Mandar un code de confirmacion',
+'confirmemail_sent'         => 'Mèssâjo de confirmacion mandâ.',
+'confirmemail_oncreate'     => 'Un code de confirmacion at étâ mandâ a voutra adrèce èlèctronica.
 Cél code est pas nècèssèro por sè branchiér, mas vos lo devréd balyér por activar tota fonccionalitât liyê a la mèssageria èlèctronica sur ceti vouiqui.',
-'confirmemail_sendfailed'  => '{{SITENAME}} vos at pas possu mandar lo mèssâjo de confirmacion.
+'confirmemail_sendfailed'   => '{{SITENAME}} vos at pas possu mandar lo mèssâjo de confirmacion.
 Volyéd controlar que voutra adrèce èlèctronica contint gins de caractèro dèfendu.
 
 Lo programo d’èxpèdicion de mèssâjo at retornâ ceta endicacion : $1',
-'confirmemail_invalid'     => 'Code de confirmacion fôx.
+'confirmemail_invalid'      => 'Code de confirmacion fôx.
 Ceti at pôt-étre èxpirâ.',
-'confirmemail_needlogin'   => 'Vos vos dête $1 por confirmar voutra adrèce èlèctronica.',
-'confirmemail_success'     => 'Voutra adrèce èlèctronica at étâ confirmâ.
+'confirmemail_needlogin'    => 'Vos vos dête $1 por confirmar voutra adrèce èlèctronica.',
+'confirmemail_success'      => 'Voutra adrèce èlèctronica at étâ confirmâ.
 Ora, vos vos pouede [[Special:UserLogin|branchiér]] et profitar du vouiqui.',
-'confirmemail_loggedin'    => 'Ora, voutra adrèce èlèctronica est confirmâ.',
-'confirmemail_error'       => 'Un problèmo est arrevâ pendent l’encartâjo de voutra confirmacion.',
-'confirmemail_subject'     => 'Confirmacion d’adrèce èlèctronica por {{SITENAME}}',
-'confirmemail_body'        => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
+'confirmemail_loggedin'     => 'Ora, voutra adrèce èlèctronica est confirmâ.',
+'confirmemail_error'        => 'Un problèmo est arrevâ pendent l’encartâjo de voutra confirmacion.',
+'confirmemail_subject'      => 'Confirmacion d’adrèce èlèctronica por {{SITENAME}}',
+'confirmemail_body'         => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
 at encartâ un compto « $2 » avouéc ceta adrèce èlèctronica sur lo seto {{SITENAME}}.
 
 Por confirmar que cél compto est franc a vos et por
@@ -3327,8 +3333,25 @@ confirmacion de voutra adrèce èlèctronica :
 $5
 
 Cél code de confirmacion èxpirerat lo $4.',
-'confirmemail_invalidated' => 'Confirmacion de l’adrèce èlèctronica anulâ',
-'invalidateemail'          => 'Anular la confirmacion de l’adrèce èlèctronica',
+'confirmemail_body_changed' => 'Quârqu’un, probâblament vos, dês l’adrèce IP $1,
+at changiê l’adrèce èlèctronica associyê u compto « $2 » de {{SITENAME}}
+en ceta adrèce.
+
+Por confirmar que cél compto est franc a vos et por
+reactivar les fonccions de mèssageria dessus {{SITENAME}},
+volyéd siuvre ceti lim dens voutron navigator :
+
+$3
+
+Se vos éd *pas* encartâ cél compto, uvréd pas ceti lim ;
+vos pouede siuvre l’ôtro lim ce-desot por anular la
+confirmacion de voutra adrèce èlèctronica :
+
+$5
+
+Cél code de confirmacion èxpirerat lo $4.',
+'confirmemail_invalidated'  => 'Confirmacion de l’adrèce èlèctronica anulâ',
+'invalidateemail'           => 'Anular la confirmacion de l’adrèce èlèctronica',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transcllusion entèrvouiqui est dèsactivâ]',

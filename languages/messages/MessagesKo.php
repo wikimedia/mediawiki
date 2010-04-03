@@ -619,6 +619,7 @@ $1',
 'readonly_lag'         => '슬레이브 데이터베이스가 마스터 서버의 자료를 갱신하는 중입니다. 데이터베이스가 자동으로 잠겨 있습니다.',
 'internalerror'        => '내부 오류',
 'internalerror_info'   => '내부 오류: $1',
+'fileappenderrorread'  => '‘$1’ 파일을 읽을 수 없습니다. 해당 파일에 내용을 덧붙일 수 없습니다.',
 'fileappenderror'      => '‘$1’ 파일을 ‘$2’에 덧붙일 수 없습니다.',
 'filecopyerror'        => '‘$1’ 파일을 ‘$2’(으)로 복사할 수 없습니다.',
 'filerenameerror'      => '‘$1’ 파일을 ‘$2’(으)로 옮길 수 없습니다.',
@@ -740,6 +741,7 @@ $2',
 'login-throttled'            => '로그인에 연속으로 실패하였습니다.
 잠시 후에 다시 시도해주세요.',
 'loginlanguagelabel'         => '언어: $1',
+'suspicious-userlogout'      => '브라우저의 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.',
 
 # Password reset dialog
 'resetpass'                 => '비밀번호 바꾸기',
@@ -789,6 +791,7 @@ $2',
 'showlivepreview'                  => '실시간 미리 보기',
 'showdiff'                         => '차이 보기',
 'anoneditwarning'                  => "'''주의''': 로그인하고 있지 않습니다. 당신의 IP 주소가 문서 역사에 남게 됩니다.",
+'anonpreviewwarning'               => "'''당신은 지금 로그인하고 있지 않습니다. 문서를 저장하면 당신의 IP 주소가 문서 역사에 남게 됩니다.'''",
 'missingsummary'                   => "'''알림:''' 편집 요약을 적지 않았습니다. 그대로 저장하면 편집 요약 없이 저장됩니다.",
 'missingcommenttext'               => '아래에 내용을 채워 넣어 주세요.',
 'missingcommentheader'             => "'''알림:''' 글의 제목을 입력하지 않았습니다.
@@ -828,7 +831,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'whitelistedittext'                => '문서를 편집하려면 $1해야 합니다.',
 'confirmedittext'                  => '문서를 고치려면 이메일 인증 절차가 필요합니다. [[Special:Preferences|사용자 환경 설정]]에서 이메일 주소를 입력하고 이메일 주소 인증을 해 주시기 바랍니다.',
 'nosuchsectiontitle'               => '단락을 찾을 수 없음',
-'nosuchsectiontext'                => '편집하려는 문단이 존재하지 않습니다.',
+'nosuchsectiontext'                => '편집하려는 문단이 존재하지 않습니다.
+당신이 이 문서를 보는 동안 문단이 이동되거나 삭제되었을 수 있습니다.',
 'loginreqtitle'                    => '로그인 필요',
 'loginreqlink'                     => '로그인',
 'loginreqpagetext'                 => '다른 문서를 보기 위해서는 $1해야 합니다.',
@@ -847,6 +851,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.',
 'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'userpage-userdoesnotexist-view'   => '"$1" 사용자 계정은 등록되지 않았습니다.',
+'blocked-notice-logextract'        => '이 사용자는 현재 차단되어 있습니다.
+해당 사용자의 최근 차단 기록을 참고하십시오:',
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
 
 '''모질라 / 파이어폭스 / 사파리''': Shift 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5 또는 Ctrl-R 을 입력 (매킨토시에서는 Command-R); '''컨커러''': 새로고침을 클릭하거나 F5를 입력; '''오페라''': 도구→설정에서 캐시를 비움; '''인터넷 익스플로러''': Ctrl 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5를 입력.",
@@ -895,10 +901,13 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 편집 내용을 복사 붙여넣기 등을 사용하여 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.'''
 
 잠근 관리자가 남긴 설명은 다음과 같습니다: $1",
-'protectedpagewarning'             => "'''경고: 이 문서는 관리자만 편집할 수 있도록 보호되어 있습니다.'''",
-'semiprotectedpagewarning'         => "'''안내:''' 이 문서는 가입한지 3일이 지난 사용자만이 편집할 수 있도록 잠겨 있습니다.",
+'protectedpagewarning'             => "'''경고: 이 문서는 관리자만 편집할 수 있도록 보호되어 있습니다.'''
+이 문서의 최근 기록을 참고하십시오:",
+'semiprotectedpagewarning'         => "'''안내:''' 이 문서는 계정을 등록한 사용자만이 편집할 수 있도록 잠겨 있습니다.
+이 문서의 최근 기록을 참고하십시오:",
 'cascadeprotectedwarning'          => "'''주의''': 이 문서는 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음 {{PLURAL:$1|문서}}에서 이 문서를 사용하고 있습니다:",
-'titleprotectedwarning'            => "'''경고: 이 문서는 잠겨 있어, 문서를 생성하려면 [[Special:ListGroupRights|특정 권한]]이 필요합니다.'''",
+'titleprotectedwarning'            => "'''경고: 이 문서는 잠겨 있어, 문서를 생성하려면 [[Special:ListGroupRights|특정 권한]]이 필요합니다.'''
+아래 문서의 최근 기록을 참고하십시오:",
 'templatesused'                    => '이 문서에서 사용한 {{PLURAL:$1|틀}}:',
 'templatesusedpreview'             => '이 미리 보기에서 사용하고 있는 {{PLURAL:$1|틀}}:',
 'templatesusedsection'             => '이 문단에서 사용하고 있는 {{PLURAL:$1|틀}}:',
@@ -942,6 +951,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'post-expand-template-argument-category'  => '생략된 틀 변수를 포함한 문서',
 'parser-template-loop-warning'            => '재귀적인 틀이 발견되었습니다: [[$1]]',
 'parser-template-recursion-depth-warning' => '틀 반복 횟수 제한을 초과함($1)',
+'language-converter-depth-warning'        => '언어 변환기 실행 제한 초과($1)',
 
 # "Undo" feature
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
@@ -1009,6 +1019,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-deleted-no-diff'         => "특정 판이 문서 역사에서 '''삭제'''되었기 때문에 비교할 수 없습니다.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
+'rev-suppressed-no-diff'      => "두 판 중 일부가 '''삭제'''되었기 때문에 문서 편집 내용을 비교할 수 없습니다.",
 'rev-deleted-unhide-diff'     => "이 비교에 사용된 판 가운데 하나가 '''삭제'''되었습니다.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에 자세한 내용이 있을 수 있습니다.
 관리자로서 작업하고 싶다면 여전히 [$1 비교 보기]를 계속할 수 있습니다.",
@@ -1017,6 +1028,8 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 관리자로 작업하고 싶다면 [$1 해당 편집]을 볼 수도 있습니다.",
 'rev-deleted-diff-view'       => "비교 대상 중 어느 한 판이 '''삭제'''되었습니다.
 관리자로서 삭제된 판과 다른 판의 비교를 할 수 있습니다; 자세한 것은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]을 참고하십시오.",
+'rev-suppressed-diff-view'    => "비교하려는 판 중 일부가 '''숨겨져''' 있습니다.
+관리자 권한이 있다면 편집 비교가 가능합니다. 자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 해당 숨김 기록]에서 볼 수 있습니다.",
 'rev-delundel'                => '보이기/숨기기',
 'rev-showdeleted'             => '표시',
 'revisiondelete'              => '판 삭제/복구',
@@ -1275,6 +1288,7 @@ $1",
 'prefs-files'                   => '파일',
 'prefs-custom-css'              => '사용자 CSS',
 'prefs-custom-js'               => '사용자 자바스크립트',
+'prefs-common-css-js'           => '모든 스킨에 적용되는 공통 CSS/자바스크립트:',
 'prefs-reset-intro'             => '이 사이트의 기본 값으로 환경 설정을 되돌릴 수 있습니다.
 복구할 수 없습니다.',
 'prefs-emailconfirm-label'      => '이메일 인증:',
@@ -1314,25 +1328,26 @@ $1",
 'prefs-diffs'                   => '차이',
 
 # User rights
-'userrights'                  => '사용자 권한 관리',
-'userrights-lookup-user'      => '사용자 권한 관리',
-'userrights-user-editname'    => '계정 이름:',
-'editusergroup'               => '사용자 그룹 편집',
-'editinguser'                 => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
-'userrights-editusergroup'    => '사용자 그룹 편집',
-'saveusergroups'              => '사용자 권한 저장',
-'userrights-groupsmember'     => '현재 권한:',
-'userrights-groups-help'      => '이 사용자의 권한을 바꿀 수 있습니다.
+'userrights'                   => '사용자 권한 관리',
+'userrights-lookup-user'       => '사용자 권한 관리',
+'userrights-user-editname'     => '계정 이름:',
+'editusergroup'                => '사용자 그룹 편집',
+'editinguser'                  => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
+'userrights-editusergroup'     => '사용자 그룹 편집',
+'saveusergroups'               => '사용자 권한 저장',
+'userrights-groupsmember'      => '현재 권한:',
+'userrights-groupsmember-auto' => '자동으로 부여된 권한:',
+'userrights-groups-help'       => '이 사용자의 권한을 바꿀 수 있습니다.
 * 사용자는 체크 표시가 있는 권한을 갖습니다.
 * 사용자는 체크 표시가 없는 권한을 갖지 않습니다.
 * <nowiki>*</nowiki>표시는 권한을 주거나 거두는 것 중 하나만 할 수 있다는 뜻입니다.',
-'userrights-reason'           => '이유:',
-'userrights-no-interwiki'     => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
-'userrights-nodatabase'       => '데이터베이스 $1이 존재하지 않거나 로컬에 있지 않습니다.',
-'userrights-nologin'          => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:UserLogin|로그인]]해야 합니다.',
-'userrights-notallowed'       => '다른 사용자의 권한을 조정할 권한이 없습니다.',
-'userrights-changeable-col'   => '바꿀 수 있는 권한',
-'userrights-unchangeable-col' => '바꿀 수 없는 권한',
+'userrights-reason'            => '이유:',
+'userrights-no-interwiki'      => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
+'userrights-nodatabase'        => '데이터베이스 $1이 존재하지 않거나 로컬에 있지 않습니다.',
+'userrights-nologin'           => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:UserLogin|로그인]]해야 합니다.',
+'userrights-notallowed'        => '다른 사용자의 권한을 조정할 권한이 없습니다.',
+'userrights-changeable-col'    => '바꿀 수 있는 권한',
+'userrights-unchangeable-col'  => '바꿀 수 없는 권한',
 
 # Groups
 'group'               => '권한:',
@@ -1653,9 +1668,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
 
 # HTTP errors
 'http-invalid-url'      => '잘못된 URL: $1',
+'http-invalid-scheme'   => '‘$1’로 시작하는 URL은 지원되지 않습니다.',
 'http-request-error'    => '알 수 없는 오류로 HTTP 요청에 실패했습니다.',
+'http-read-error'       => 'HTTP 읽기 오류.',
 'http-timed-out'        => 'HTTP 요청 시간 초과.',
+'http-curl-error'       => 'URL 열기 오류: $1',
 'http-host-unreachable' => 'URL에 접근하지 못했습니다.',
+'http-bad-status'       => 'HTTP 요청 중 오류 발생: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL 접근 불가',
@@ -3106,27 +3125,27 @@ Variants for Chinese language
 'limitall'         => '모두',
 
 # E-mail address confirmation
-'confirmemail'             => '이메일 주소 확인',
-'confirmemail_noemail'     => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
-'confirmemail_text'        => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에 이메일 인증을 받아야 합니다.
+'confirmemail'              => '이메일 주소 확인',
+'confirmemail_noemail'      => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
+'confirmemail_text'         => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에 이메일 인증을 받아야 합니다.
 아래의 버튼을 누르면 인증 메일을 보냅니다.
 메일에는 인증 코드가 들어있는 링크가 있습니다.
 그 링크를 웹 브라우저로 열면 인증이 완료됩니다.',
-'confirmemail_pending'     => '이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.',
-'confirmemail_send'        => '인증 코드를 메일로 보내기',
-'confirmemail_sent'        => '인증 이메일을 보냈습니다.',
-'confirmemail_oncreate'    => '확인 이메일을 보냈습니다. 이 확인 과정은 로그인하는 데에 필요하지는 않지만, 위키 프로그램에서 제공하는 이메일 기능을 사용하기 위해서 필요합니다.',
-'confirmemail_sendfailed'  => '{{SITENAME}}에서 인증 이메일을 보낼 수 없습니다.
+'confirmemail_pending'      => '이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.',
+'confirmemail_send'         => '인증 코드를 메일로 보내기',
+'confirmemail_sent'         => '인증 이메일을 보냈습니다.',
+'confirmemail_oncreate'     => '확인 이메일을 보냈습니다. 이 확인 과정은 로그인하는 데에 필요하지는 않지만, 위키 프로그램에서 제공하는 이메일 기능을 사용하기 위해서 필요합니다.',
+'confirmemail_sendfailed'   => '{{SITENAME}}에서 인증 이메일을 보낼 수 없습니다.
 이메일 주소를 잘못 입력했는지 확인해주세요.
 
 메일 서버로부터의 응답: $1',
-'confirmemail_invalid'     => '인증 코드가 올바르지 않습니다. 인증 코드가 만료되었을 수도 있습니다.',
-'confirmemail_needlogin'   => '이메일 주소를 인증하려면 $1이 필요합니다.',
-'confirmemail_success'     => '이메일 주소가 인증되었습니다. 이제 로그인해서 위키를 사용하세요.',
-'confirmemail_loggedin'    => '이메일 주소가 인증되었습니다.',
-'confirmemail_error'       => '당신의 인증을 저장하는 도중 오류가 발생했습니다.',
-'confirmemail_subject'     => '{{SITENAME}} 이메일 주소 인증',
-'confirmemail_body'        => '$1 아이피 주소를 사용하는 사용자가 {{SITENAME}}의 ‘$2’ 계정에 이메일 인증 신청을 했습니다.
+'confirmemail_invalid'      => '인증 코드가 올바르지 않습니다. 인증 코드가 만료되었을 수도 있습니다.',
+'confirmemail_needlogin'    => '이메일 주소를 인증하려면 $1이 필요합니다.',
+'confirmemail_success'      => '이메일 주소가 인증되었습니다. 이제 로그인해서 위키를 사용하세요.',
+'confirmemail_loggedin'     => '이메일 주소가 인증되었습니다.',
+'confirmemail_error'        => '당신의 인증을 저장하는 도중 오류가 발생했습니다.',
+'confirmemail_subject'      => '{{SITENAME}} 이메일 주소 인증',
+'confirmemail_body'         => '$1 아이피 주소를 사용하는 사용자가 {{SITENAME}}의 ‘$2’ 계정에 이메일 인증 신청을 했습니다.
 
 이 계정이 당신의 계정이라면, 아래 주소를 열어서 이메일 인증을 해 주세요.
 
@@ -3137,8 +3156,19 @@ $3
 $5
 
 인증 코드는 $4에 만료됩니다.',
-'confirmemail_invalidated' => '이메일 확인이 취소됨',
-'invalidateemail'          => '이메일 확인 취소',
+'confirmemail_body_changed' => '$1 IP 주소를 사용하는 사용자가 {{SITENAME}}의 "$2" 계정의 이메일 주소를 바꾸었습니다.
+
+이 계정이 당신의 계정인지 확인하고 {{SITENAME}}의 이메일 기능을 활성화하려면 아래 링크를 클릭하여 이메일 인증을 해 주세요.
+
+$3
+
+이 계정이 당신의 것이 아니라면 다음 링크를 열어 이메일 주소 변경을 취소하십시오.
+
+$5
+
+인증 코드는 $4에 만료됩니다.',
+'confirmemail_invalidated'  => '이메일 확인이 취소됨',
+'invalidateemail'           => '이메일 확인 취소',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[인터위키가 비활성되어 있습니다]',
