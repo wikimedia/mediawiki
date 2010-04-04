@@ -124,7 +124,7 @@ class FeedUtils {
 							$wgLang->time( $timestamp ) ) );
 				}
 
-				if ( ( strlen( $diffText ) > $wgFeedDiffCutoff ) || ( $wgFeedDiffCutoff <= 0 ) ) {
+				if ( $wgFeedDiffCutoff <= 0 || ( strlen( $diffText ) > $wgFeedDiffCutoff ) ) {
 					// Omit large diffs
 					$diffLink = $title->escapeFullUrl(
 						'diff=' . $newid .
