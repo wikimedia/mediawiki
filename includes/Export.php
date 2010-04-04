@@ -152,15 +152,14 @@ class WikiExporter {
 	# Not called by default (depends on $this->list_authors)
 	# Can be set by Special:Export when not exporting whole history
 	protected function do_list_authors( $page , $revision , $cond ) {
-		$fname = "do_list_authors" ;
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		$this->author_list = "<contributors>";
 		//rev_deleted
 		$nothidden = '('.$this->db->bitAnd('rev_deleted', Revision::DELETED_USER) . ') = 0';
 
 		$sql = "SELECT DISTINCT rev_user_text,rev_user FROM {$page},{$revision} 
 		WHERE page_id=rev_page AND $nothidden AND " . $cond ;
-		$result = $this->db->query( $sql, $fname );
+		$result = $this->db->query( $sql, __METHOD__ );
 		$resultset = $this->db->resultObject( $result );
 		while( $row = $resultset->fetchObject() ) {
 			$this->author_list .= "<contributor>" .
@@ -172,7 +171,7 @@ class WikiExporter {
 				"</id>" .
 				"</contributor>";
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		$this->author_list .= "</contributors>";
 	}
 
@@ -477,8 +476,7 @@ class XmlDumpWriter {
 	 * @access private
 	 */
 	function writeRevision( $row ) {
-		$fname = 'WikiExporter::dumpRev';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$out  = "    <revision>\n";
 		$out .= "      " . Xml::element( 'id', null, strval( $row->rev_id ) ) . "\n";
@@ -520,7 +518,7 @@ class XmlDumpWriter {
 
 		$out .= "    </revision>\n";
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $out;
 	}
 	
@@ -533,8 +531,7 @@ class XmlDumpWriter {
 	 * @access private
 	 */
 	function writeLogItem( $row ) {
-		$fname = 'WikiExporter::writeLogItem';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$out  = "    <logitem>\n";
 		$out .= "      " . Xml::element( 'id', null, strval( $row->log_id ) ) . "\n";
@@ -568,7 +565,7 @@ class XmlDumpWriter {
 
 		$out .= "    </logitem>\n";
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $out;
 	}
 
@@ -919,8 +916,7 @@ class DumpMultiWriter {
 }
 
 function xmlsafe( $string ) {
-	$fname = 'xmlsafe';
-	wfProfileIn( $fname );
+	wfProfileIn( __FUNCTION__ );
 
 	/**
 	 * The page may contain old data which has not been properly normalized.
@@ -930,6 +926,6 @@ function xmlsafe( $string ) {
 	$string = UtfNormal::cleanUp( $string );
 
 	$string = htmlspecialchars( $string );
-	wfProfileOut( $fname );
+	wfProfileOut( __FUNCTION__ );
 	return $string;
 }
