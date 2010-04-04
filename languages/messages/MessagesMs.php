@@ -856,6 +856,7 @@ Argumen-argumen ini telah ditinggalkan.',
 'post-expand-template-argument-category'  => 'Laman yang mengandungi templat dengan argumen yang tidak lengkap',
 'parser-template-loop-warning'            => 'Gelung templat dikesan: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Had pengulangan templat dilebihi ($1)',
+'language-converter-depth-warning'        => 'Had kedalaman penukar bahasa dilepasi ($1)',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',
@@ -1156,6 +1157,9 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'recentchangesdays-max'         => '(had $1 hari)',
 'recentchangescount'            => 'Bilangan suntingan yang dipaparkan mengikut ketetapan:',
 'prefs-help-recentchangescount' => 'Ini termasuklah perubahan terkini, sejarah laman dan log.',
+'prefs-help-watchlist-token'    => 'Mengisi medan ini dengan kunci rahsia akan menghasilkan suapan RSS untuk senarai pantau anda.
+Sesiapa yang mengetahui kunci dalam medan ini akan dapat membaca senarai pantau anda, jadi pilihlah nilai selamat.
+Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'savedprefs'                    => 'Keutamaan anda disimpan.',
 'timezonelegend'                => 'Zon waktu:',
 'localtime'                     => 'Waktu tempatan:',

@@ -42,33 +42,49 @@ $messages = array(
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
 
+'article' => 'Адаҟьа',
+
 # Cologne Blue skin
-'qbedit'        => 'Ариашара',
-'qbpageoptions' => 'Ари адаҟьа',
+'qbedit'         => 'Ариашара',
+'qbpageoptions'  => 'Ари адаҟьа',
+'qbspecialpages' => 'Цастәи адаҟьақәа',
 
 # Vector skin
 'vector-namespace-category' => 'Акатегориа',
 'vector-namespace-main'     => 'Адаҟьа',
+'vector-namespace-special'  => 'Цастәи адаҟьа',
 'vector-namespace-talk'     => 'Ахцәажәара',
+'vector-namespace-user'     => 'Иалахә Адаҟьа',
+'vector-view-create'        => 'Арҿиара',
 'vector-view-edit'          => 'Ариашамҭа',
 'vector-view-history'       => 'Аҭоурых',
+'vector-view-view'          => 'Аҧхьра',
+'vector-view-viewsource'    => 'Ахәаҧшра',
 
-'help'             => 'Цхыраара',
+'help'             => 'Ацхыраара',
 'search'           => 'Аҧшаара',
 'searchbutton'     => 'Аҧшаара',
 'searcharticle'    => 'Адаҟьа',
+'history'          => 'Аҭоурых',
 'history_short'    => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
 'edit'             => 'Ариашамҭа',
+'create'           => 'Арҿиара',
 'talkpagelinktext' => 'Ахцәажәара',
+'specialpage'      => 'Цастәи адаҟьа',
 'talk'             => 'Ахцәажәара',
+'toolbox'          => 'Амаҵыругақәа',
+'lastmodifiedat'   => 'Ацыхәтәантәи аҧсахрақәа абри адаҟьа аҟны: $2, $1.',
 'jumptonavigation' => 'Анавигациа',
 'jumptosearch'     => 'Аҧшаара',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} иазкны',
+'currentevents'        => 'Ииасуа ахҭысқәа',
 'mainpage'             => 'Ихадоу Адаҟьа',
 'mainpage-description' => 'Ихадоу адаҟьа',
+'privacy'              => 'Аконфиденциалтә аполитика',
+'privacypage'          => 'Project: Аконфиденциалтә аполитика',
 
 'editsection' => 'ариашамҭа',
 'editold'     => 'ариашара',
@@ -76,14 +92,20 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Адаҟьа',
-'nstab-user'     => 'Иалоу',
+'nstab-user'     => 'Иалахә',
+'nstab-template' => 'Ашаблон',
+'nstab-help'     => 'Ацхыраара',
 'nstab-category' => 'Акатегориа',
+
+# General errors
+'viewsource' => 'Ахәаҧшра',
 
 # Login and logout pages
 'loginlanguagelabel' => 'Бызшәа: $1',
 
 # Edit pages
-'summary' => 'Ятарлă саспаллисем:',
+'summary'     => 'Ятарлă саспаллисем:',
+'savearticle' => 'Адаҟьа ахьчара',
 
 # Preferences page
 'uid'          => 'Иалоу ID:',
@@ -92,18 +114,29 @@ $messages = array(
 # Groups
 'group-user' => 'Иалоуқәа',
 
-'group-user-member' => 'Иалоу',
+'group-user-member' => 'Иалахә',
+
+# Recent changes
+'recentchanges' => 'Аҽыц риашарақәа',
+
+# Recent changes linked
+'recentchangeslinked'         => 'Еимадоу ариашарақәа',
+'recentchangeslinked-feed'    => 'Еимадоу ариашарақәа',
+'recentchangeslinked-toolbox' => 'Еимадоу ариашарақәа',
 
 # File description page
 'filehist-user' => 'Иалоу',
 
+# Random page
+'randompage' => 'Машәырлатәи аҩымҭа',
+
 'brokenredirects-edit' => 'ариашамҭа',
 
 # Miscellaneous special pages
-'newpages-username' => 'Иалоу:',
+'newpages-username' => 'Иалахә:',
 
 # Special:Log
-'specialloguserlabel' => 'Иалоу:',
+'specialloguserlabel' => 'Иалахә:',
 
 # Special:AllPages
 'alphaindexline' => '$1 ... $2',
