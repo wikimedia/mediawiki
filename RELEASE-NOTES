@@ -79,6 +79,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   language
 * (bug 22852) "Served in" comment is now the time used to cache a single page
   when using rebuildFileCache.php
+* (bug 22496) Viewing diff of a redirect page without specifying "oldid"
+  parameter no longer makes the page displayed as being the redirect target
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
