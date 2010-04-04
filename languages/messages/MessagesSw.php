@@ -1196,6 +1196,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-reupload-own'     => 'Kuandikiza mafaili yaliyopakizwa na mimi mwenyewe',
 'right-upload_by_url'    => 'Kupakia mafaili kutoka kwa URL',
 'right-delete'           => 'Kufuta kurasa',
+'right-bigdelete'        => 'Kufuta kurasa zenye mabadiliko mengi',
 'right-deleterevision'   => 'Kufuta na kurudisha mapitio fulani ya kurasa',
 'right-deletedhistory'   => 'Kutazama kumbukumbu za historia zilizofutwa, bila kuona maandiko yaliyomo',
 'right-deletedtext'      => 'Kutazama maandishi yaliyofutwa na mabadiliko kati ya mapitio yaliyofutwa',
@@ -1995,7 +1996,21 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-usercomment'             => 'Maoni ya mtumiaji',
 'exif-relatedsoundfile'        => 'Faili la sauti linalohusika',
 
+'exif-gaincontrol-0' => 'Bila',
+
 'exif-subjectdistancerange-0' => 'Haujulikani',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Latitudo ya kaskazini',
+'exif-gpslatitude-s' => 'Latitudo ya kusini',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Longitudo kwenda mashariki',
+'exif-gpslongitude-w' => 'Longitudo kwenda magharibi',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'Kilometa kwa saa',
+'exif-gpsspeed-m' => 'Maili kwa saa',
 
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',
@@ -2010,25 +2025,31 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'limitall'         => 'zote',
 
 # E-mail address confirmation
-'confirmemail'             => 'Kuyakinisha anwani ya barua pepe',
-'confirmemail_noemail'     => 'Hakuna anwani ya barua pepe halali kwenye [[Special:Preferences|mapendekezo yako]].',
-'confirmemail_text'        => '{{SITENAME}} inakutakia uyakinishe anwani yako ya barua pepe kabla kutumia zana zinazohusika barua pepe.
+'confirmemail'              => 'Kuyakinisha anwani ya barua pepe',
+'confirmemail_noemail'      => 'Hakuna anwani ya barua pepe halali kwenye [[Special:Preferences|mapendekezo yako]].',
+'confirmemail_text'         => '{{SITENAME}} inakutakia uyakinishe anwani yako ya barua pepe kabla kutumia zana zinazohusika barua pepe.
 Bofya kibonyezi cha chini kuituma barua pepe ya kuyakinisha kwa anwani yako.
 Ndani ya barua pepe patakuwa na kiungo chenye ishara;
 tumia kiungo kwenye kivinjari chako ili kuyakinisha kwamba anwani yako ya barua pepe ni halali.',
-'confirmemail_pending'     => 'Ishara za kuidhinisha zimeshatumwa kwako kwa njia ya barua pepe;
+'confirmemail_pending'      => 'Ishara za kuidhinisha zimeshatumwa kwako kwa njia ya barua pepe;
 ikiwa umeanzisha akaunti yako sasa hivi tu, tafadhali subiri dakika chache zifike, kabla hujaribu kuomba ishara zingine.',
-'confirmemail_send'        => 'Nitumie ishara za kuyakinisha',
-'confirmemail_sent'        => 'Barua pepe ya kuyakinisha imetumwa.',
-'confirmemail_oncreate'    => 'Ishara za kuyakinisha zilitumwa kwa anwani yako ya barua pepe.
+'confirmemail_send'         => 'Nitumie ishara za kuyakinisha',
+'confirmemail_sent'         => 'Barua pepe ya kuyakinisha imetumwa.',
+'confirmemail_oncreate'     => 'Ishara za kuyakinisha zilitumwa kwa anwani yako ya barua pepe.
 Huhitaji ishara hizi ili kuingia akaunti yako, lakini utazihitaji ili kuwezesha zana zozote za wiki hii zinazotumia barua pepe.',
-'confirmemail_needlogin'   => 'Unahitajika $1 kuthibitisha anwani ya barua pepe yako.',
-'confirmemail_success'     => 'Barua pepe yako imethibitishwa.
+'confirmemail_sendfailed'   => '{{SITENAME}} haikufaulu kutuma barua pepe ya kuyakinisha kwako.
+Tafadhali uhakikishe kwamba hakuna ishara batili katika anwani yako ya barua pepe.
+
+Huduma ya barua pepe inasema: $1',
+'confirmemail_invalid'      => 'Ishara za kuyakinisha ni batili.
+Huenda zimepitwa na wakati.',
+'confirmemail_needlogin'    => 'Unahitajika $1 kuthibitisha anwani ya barua pepe yako.',
+'confirmemail_success'      => 'Barua pepe yako imethibitishwa.
 Sasa unaweza [[Special:UserLogin|kuingia]] na kuifurahia {{SITENAME}}.',
-'confirmemail_loggedin'    => 'Anwani ya barua pepe yako imethibishwa sasa.',
-'confirmemail_error'       => 'Kuna mambo yameenda kombo hifadhi ukamilisho wako.',
-'confirmemail_subject'     => 'Barua pepe ya uthibitisho ya {{SITENAME}}',
-'confirmemail_body'        => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, amesajili akaunti "$2" na anwani ya barua pepe hii kwenye {{SITENAME}}.
+'confirmemail_loggedin'     => 'Anwani ya barua pepe yako imethibishwa sasa.',
+'confirmemail_error'        => 'Kuna mambo yameenda kombo hifadhi ukamilisho wako.',
+'confirmemail_subject'      => 'Barua pepe ya uthibitisho ya {{SITENAME}}',
+'confirmemail_body'         => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, amesajili akaunti "$2" na anwani ya barua pepe hii kwenye {{SITENAME}}.
 
 Kuthibitisha ya kwamba akaunti hii inamilikiwa na wewe, unatakiwa kuwezesha njia ya barua pepe kwenye  {{SITENAME}}, fungua kiungo hiki katika kivinjari chako:
 
@@ -2039,19 +2060,37 @@ na kama *huja* sajili akaunti hii, fuata kiungo hiki ili kubatilisha uthibitisho
 $5
 
 Kodi hizi za uthibitisho zitaishia mnamo $4.',
-'confirmemail_invalidated' => 'Uthibitisho wa barua pepe umebatilishwa.',
-'invalidateemail'          => 'Batilisha barua pepe ya uthibitisho.',
+'confirmemail_body_changed' => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, ambaye amebadilisha anwani ya barua pepe ya akaunti "$2" iwe anwani ya barua pepe hii, kule {{SITENAME}}.
+
+Ili kuthibitisha ya kwamba akaunti hii inamilikiwa na wewe, pamoja na kuwezesha upya zana zinazotumia barua pepe kule {{SITENAME}}, ufungue kiungo hiki katika kivinjari chako:
+
+$3
+
+na kama *huja* sajili akaunti hii, fuata kiungo hiki ili kubatilisha uthibitisho wa anwani ya barua pepe:
+
+$5
+
+Ishara hizi za uthibitisho zitaishia mnamo $4.',
+'confirmemail_invalidated'  => 'Uthibitisho wa barua pepe umebatilishwa.',
+'invalidateemail'           => 'Batilisha barua pepe ya uthibitisho.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
+'confirmrecreate'     => "Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri, akaandika sababu hii ya kufuta:
+: ''$2''
+Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
+'recreate'            => 'Anzisha upya',
 
 # action=purge
 'confirm_purge_button' => 'Sawa',
+'confirm-purge-top'    => 'Ghili ya ukurasa huu ifutwe?',
+'confirm-purge-bottom' => 'Unaposafisha ukurasa ghili yake inasafishwa na haririo wa kisasa unaonekana.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ukurasa uliotangulia',
 'imgmultipagenext' => 'ukurasa ujao →',
 'imgmultigo'       => 'Nenda!',
+'imgmultigoto'     => 'Uende kwenye ukurasa wa $1',
 
 # Table pager
 'ascending_abbrev'         => 'pand',
@@ -2060,8 +2099,12 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'table_pager_prev'         => 'Ukurasa uliotangulia',
 'table_pager_first'        => 'Ukurasa wa kwanza',
 'table_pager_last'         => 'Ukurasa wa mwisho',
+'table_pager_limit'        => 'Ionyeshwe vitu $1 katika kila ukurasa',
 'table_pager_limit_submit' => 'Nenda',
 'table_pager_empty'        => 'Hakuna matokeo',
+
+# Auto-summaries
+'autosumm-blank' => 'Ukurasa ulimwagika',
 
 # Live preview
 'livepreview-loading' => 'Inapakizwa...',

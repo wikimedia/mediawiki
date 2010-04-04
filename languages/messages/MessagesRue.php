@@ -14,8 +14,12 @@
 $fallbak = 'uk';
 
 $messages = array(
-'underline-always' => 'Все',
-'underline-never'  => 'Нїґда',
+# User preference toggles
+'tog-showhiddencats' => 'Вказати схованы катеґорії',
+
+'underline-always'  => 'Все',
+'underline-never'   => 'Нїґда',
+'underline-default' => 'Хосновати наставлиня переглядача',
 
 # Dates
 'sunday'        => 'недїля',
@@ -70,36 +74,58 @@ $messages = array(
 'dec'           => 'дец',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Катеґорія|Катеґорії}}',
-'category_header'        => 'Сторінки в катеґорії «$1»',
-'subcategories'          => 'Підкатегорії',
-'category-media-header'  => 'Файлы в категорії «$1»',
-'hidden-categories'      => '{{PLURAL:$1|Скрыта катеґорія|Скрыты катеґорії}}',
-'category-subcat-count'  => '{{PLURAL:$2|Тота катеґорія має лем таку підкатеґорію.|{{PLURAL:$1|Показана $1 підкатеґорія|Показаны $1 підкатеґорії|Показані $1 підкатеґорій}} із $2.}}',
-'category-article-count' => '{{PLURAL:$2|Тота катеґорія має лем таку сторінку.|{{PLURAL:$1|Показана $1 сторінка|Показаны $1 сторінкы|Показані $1 сторінок}} той катеґорії з $2.}}',
-'listingcontinuesabbrev' => '(дале)',
+'pagecategories'                 => '{{PLURAL:$1|Катеґорія|Катеґорії}}',
+'category_header'                => 'Сторінки в катеґорії «$1»',
+'subcategories'                  => 'Підкатегорії',
+'category-media-header'          => 'Файлы в категорії «$1»',
+'category-empty'                 => "''Тота катеґорія порожня.''",
+'hidden-categories'              => '{{PLURAL:$1|Скрыта катеґорія|Скрыты катеґорії}}',
+'hidden-category-category'       => 'Схованы катеґорії',
+'category-subcat-count'          => '{{PLURAL:$2|Тота катеґорія має лем таку підкатеґорію.|{{PLURAL:$1|Показана $1 підкатеґорія|Показаны $1 підкатеґорії|Показані $1 підкатеґорій}} із $2.}}',
+'category-subcat-count-limited'  => 'В тїй катеґорії {{PLURAL:$1|$1 підкатеґорія|$1 підкатеґорії|$1 підкаґегорій}}.',
+'category-article-count'         => '{{PLURAL:$2|Тота катеґорія має лем таку сторінку.|{{PLURAL:$1|Показана $1 сторінка|Показаны $1 сторінкы|Показані $1 сторінок}} той катеґорії з $2.}}',
+'category-article-count-limited' => 'В тій катеґорії {{PLURAL:$1|$1 сторінка|$1 сторінкы|$1 сторінок}}.',
+'category-file-count-limited'    => 'В тій катеґорії {{PLURAL:$1|$1 файл|$1 файлы|$1 файлів}}.',
+'listingcontinuesabbrev'         => '(дале)',
+'index-category'                 => 'Індексованы сторінкы',
+'noindex-category'               => 'Неіндексованы сторінкы',
+
+'mainpagetext' => "<big>'''MediaWiki была успішнї наіншталована.'''</big>",
 
 'about'         => 'О',
+'article'       => 'Обсягова сторінка',
 'newwindow'     => '(отворить ся в новім окнї)',
 'cancel'        => 'Зрушыти',
 'moredotdotdot' => 'Детайлнїше…',
 'mypage'        => 'Моя сторінка',
 'mytalk'        => 'Моя діскузія',
+'anontalk'      => 'Діскузія ку тотїй IP-адресі',
 'navigation'    => 'Навіґація',
+'and'           => '&#32;і',
 
 # Cologne Blue skin
 'qbfind'         => 'Найти',
+'qbbrowse'       => 'Переглядати',
+'qbedit'         => 'Едітовати',
+'qbpageoptions'  => 'Тота сторінка',
+'qbpageinfo'     => 'Контекст',
 'qbmyoptions'    => 'Мої сторінкы',
 'qbspecialpages' => 'Шпеціалны сторінкы',
+'faq'            => 'Часты звідованя',
+'faqpage'        => 'Project:Часты звідованя',
 
 # Vector skin
 'vector-action-addsection'   => 'Придати тему',
 'vector-action-delete'       => 'Вымазати',
 'vector-action-move'         => 'Переменовати',
 'vector-action-protect'      => 'Хранити',
+'vector-action-undelete'     => 'Обновити',
+'vector-action-unprotect'    => 'Одомкнути',
 'vector-namespace-category'  => 'Катеґорія',
+'vector-namespace-help'      => 'Сторінка помочі',
 'vector-namespace-image'     => 'Файл',
 'vector-namespace-main'      => 'Сторінка',
+'vector-namespace-media'     => 'Медіа-сторінка',
 'vector-namespace-mediawiki' => 'Ознам',
 'vector-namespace-project'   => 'Сторінка проєкту',
 'vector-namespace-special'   => 'Шпеціална сторінка',
@@ -111,51 +137,76 @@ $messages = array(
 'vector-view-history'        => 'Відїти історію',
 'vector-view-view'           => 'Чітати',
 'vector-view-viewsource'     => 'Відїти код',
+'actions'                    => 'Дїї',
+'namespaces'                 => 'Просторы назв',
 'variants'                   => 'Варіанты',
 
-'errorpagetitle'   => 'Хыба',
-'returnto'         => 'Навернутя до сторінкы «$1».',
-'tagline'          => 'Матеріал з {{grammar:genitive|{{SITENAME}}}}',
-'help'             => 'Поміч',
-'search'           => 'Глядати',
-'searchbutton'     => 'Найти',
-'go'               => 'Перейти',
-'searcharticle'    => 'Перейти',
-'history'          => 'Історія сторінкы',
-'history_short'    => 'Історія',
-'info_short'       => 'Інформація',
-'printableversion' => 'Верзіа про тиснутя',
-'permalink'        => 'Перманентный одказ',
-'edit'             => 'Едітовати',
-'create'           => 'Створити',
-'editthispage'     => 'Едітовату тоту сторінку',
-'create-this-page' => 'Створити тоту сторінку',
-'delete'           => 'Вымазати',
-'deletethispage'   => 'Змазати тоту сторінку',
-'protect'          => 'Хранити',
-'protect_change'   => 'змінити',
-'protectthispage'  => 'Хранити тоту сторінку',
-'newpage'          => 'Нова сторінка',
-'talkpage'         => 'Діскутовати тоту сторінку',
-'talkpagelinktext' => 'діскузія',
-'specialpage'      => 'Шпеціална сторінка',
-'personaltools'    => 'Особны інштрументы',
-'talk'             => 'Діскузія',
-'views'            => 'Перегляды',
-'toolbox'          => 'Інштрументы',
-'otherlanguages'   => 'Іншыми языками',
-'redirectedfrom'   => '(Напрямленый з $1)',
-'redirectpagesub'  => 'Сторінка-напрямлиня',
-'lastmodifiedat'   => 'Послїдня зміна той сторінкы: $2, $1.',
-'jumpto'           => 'Перейти до:',
-'jumptonavigation' => 'навіґація',
-'jumptosearch'     => 'Найти',
+'errorpagetitle'    => 'Хыба',
+'returnto'          => 'Навернутя до сторінкы «$1».',
+'tagline'           => 'Матеріал з {{grammar:genitive|{{SITENAME}}}}',
+'help'              => 'Поміч',
+'search'            => 'Глядати',
+'searchbutton'      => 'Найти',
+'go'                => 'Перейти',
+'searcharticle'     => 'Перейти',
+'history'           => 'Історія сторінкы',
+'history_short'     => 'Історія',
+'updatedmarker'     => 'змінено од послїдный навщівы',
+'info_short'        => 'Інформація',
+'printableversion'  => 'Верзіа про тиснутя',
+'permalink'         => 'Перманентный одказ',
+'edit'              => 'Едітовати',
+'create'            => 'Створити',
+'editthispage'      => 'Едітовату тоту сторінку',
+'create-this-page'  => 'Створити тоту сторінку',
+'delete'            => 'Вымазати',
+'deletethispage'    => 'Змазати тоту сторінку',
+'undelete_short'    => 'Обновити $1 {{PLURAL:$1|верзію|верзії|верзії}}',
+'protect'           => 'Хранити',
+'protect_change'    => 'змінити',
+'protectthispage'   => 'Хранити тоту сторінку',
+'unprotect'         => 'Одомкнути',
+'unprotectthispage' => 'Одомкнути сторінку',
+'newpage'           => 'Нова сторінка',
+'talkpage'          => 'Діскутовати тоту сторінку',
+'talkpagelinktext'  => 'діскузія',
+'specialpage'       => 'Шпеціална сторінка',
+'personaltools'     => 'Особны інштрументы',
+'postcomment'       => 'Нова секція',
+'articlepage'       => 'Перегляднути сторінку',
+'talk'              => 'Діскузія',
+'views'             => 'Перегляды',
+'toolbox'           => 'Інштрументы',
+'userpage'          => 'Відїти сторінку хоснователя',
+'projectpage'       => 'Відїти сторінку проєкту',
+'imagepage'         => 'Відїти сторінку файлу',
+'mediawikipage'     => 'Відїти сторінку вістї',
+'templatepage'      => 'Відїти шаблону',
+'viewhelppage'      => 'Відїти сторінку помочі',
+'categorypage'      => 'Відїти сторінку катеґорії',
+'viewtalkpage'      => 'Відїти діскузію',
+'otherlanguages'    => 'Іншыми языками',
+'redirectedfrom'    => '(Напрямленый з $1)',
+'redirectpagesub'   => 'Сторінка-напрямлиня',
+'lastmodifiedat'    => 'Послїдня зміна той сторінкы: $2, $1.',
+'viewcount'         => 'Сторінка была зображена  {{PLURAL:$1|раз|$1разы|$1раз}}.',
+'protectedpage'     => 'Замкнута сторінка',
+'jumpto'            => 'Перейти до:',
+'jumptonavigation'  => 'навіґація',
+'jumptosearch'      => 'Найти',
+'view-pool-error'   => 'Перебачте, серверы суть теперь перетяжены.
+Тоту сторінку сі теперь перезерать много хоснователів.
+Просиме Вас, почекайте і спробуйте доступность пізнїше.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O  {{grammar:accusative|{{SITENAME}}}}',
 'aboutpage'            => 'Project:Описаня',
 'copyright'            => 'Обсяг є досупный з $1.',
 'copyrightpage'        => '{{ns:project}}:Авторьске право',
+'currentevents'        => 'Актуалны подїї',
+'currentevents-url'    => 'Project:Актуалны подїї',
 'disclaimers'          => 'Вылучіня зодповідности',
 'disclaimerpage'       => 'Project:Вылучіня зодповідности',
 'edithelp'             => 'Поміч про едітованя',
@@ -163,10 +214,17 @@ $messages = array(
 'helppage'             => 'Help:Обсяг',
 'mainpage'             => 'Головна сторінка',
 'mainpage-description' => 'Головна сторінка',
+'policy-url'           => 'Project:Правила',
+'portal'               => 'Портал комуниты',
+'portal-url'           => 'Project:Портал комуниты',
 'privacy'              => 'Політика охраны особных дат',
 'privacypage'          => 'Project:Охрана особных дат',
 
-'badaccess' => 'Хыба оправнїня',
+'badaccess'        => 'Хыба оправнїня',
+'badaccess-group0' => 'Вам не є поволено выконавати тоту дїю.',
+'badaccess-groups' => 'Дїя, яку сьте хотіли зробити, поволена лем хоснователям із {{PLURAL:$2|ґрупы|ґруп}}: $1.',
+
+'versionrequired' => 'Потрібна MediaWiki верзії $1',
 
 'ok'                      => 'ОК',
 'retrievedfrom'           => 'Обтримане з "$1"',
@@ -183,6 +241,7 @@ $messages = array(
 'toc'                     => 'Обсяг',
 'showtoc'                 => 'вказати',
 'hidetoc'                 => 'сховати',
+'thisisdeleted'           => 'Перегляднути ці обновити $1?',
 'site-rss-feed'           => '$1 RSS канал',
 'site-atom-feed'          => '$1 Atom канал',
 'page-rss-feed'           => '"$1" RSS канал',
@@ -200,6 +259,12 @@ $messages = array(
 'nstab-category' => 'Катеґорія',
 
 # General errors
+'missing-article'    => 'В датабазї са ненашов просеный текст сторінкы «$1» $2.
+
+Подобна сітуація звычайнї взникать при спробі переходу по застаралому одказованю на історію змін сторінкы, яка была вымазана.
+
+Кідь то не є тот припад, може сьте нашли помылку в програмовім забезпечіню.
+Просиме Вас, оголоште то [[Special:ListUsers/sysop|адміністраторам]], придайте і URL.',
 'missingarticle-rev' => '(ревізія № $1)',
 'badtitle'           => 'Неприпустна назва',
 'badtitletext'       => 'Пожадована назжа сторінкы неправилна, порожня, бо неправилно одказована як міджі-язычного ці міджі-вікі назва.
@@ -293,6 +358,8 @@ $messages = array(
 'currentrevisionlink'    => 'Актуална ревізія',
 'cur'                    => 'актуална',
 'last'                   => 'ост.',
+'histlegend'             => "(теперь) = роздїлы од актуалной верзії,
+(послїдня) = роздїлы од попереднёй верзії, '''м''' = мале едітованя",
 'history-fieldset-title' => 'Перегляднути історію',
 'histfirst'              => 'найстаршы',
 'histlast'               => 'послїднї',
@@ -336,6 +403,8 @@ $messages = array(
 'search-mwsuggest-enabled'  => 'з порадамі',
 'search-mwsuggest-disabled' => 'без порад',
 'searchall'                 => 'вшыткы',
+'nonefound'                 => "'''Познамка:''' Штандарднї ся глядать лем в дакотрых просторах назв. 
+Хоснуйте префікс ''all:'', жебы глядати у вшыткых просторах назв (рахувчі тыж сторінкы діскузії, шаблоны ітд.), або зазначте потрібный простор назв.",
 'powersearch'               => 'Розшырене гляданя',
 'powersearch-legend'        => 'Розшырене гляданя',
 'powersearch-ns'            => 'Глядати у просторах назв:',
@@ -363,26 +432,27 @@ $messages = array(
 'action-edit' => 'едітованя той сторінкы',
 
 # Recent changes
-'nchanges'             => '$1 {{PLURAL:$1|зміна|зміны|змін}}',
-'recentchanges'        => 'Послїднї зміны',
-'recentchanges-legend' => 'Можности послїднїх змін',
-'rcnote'               => "{{PLURAL:$1|Послїдня '''$1''' зміна|Послїднї '''$1''' зміны|Послїднїх '''$1''' змін}} за '''$2''' {{PLURAL:$2|день|днї|днїв}}, на час $5, $4.",
-'rclistfrom'           => 'Вказати едітованя починаючі з $1.',
-'rcshowhideminor'      => '$1 незначны едітованя',
-'rcshowhidebots'       => '$1 ботів',
-'rcshowhideliu'        => '$1 приголошеных',
-'rcshowhideanons'      => '$1 анонімів',
-'rcshowhidemine'       => '$1 мої едітованя',
-'rclinks'              => 'Вказати послїднї $1 зміны за $2 днїв<br />$3',
-'diff'                 => 'різн.',
-'hist'                 => 'історія',
-'hide'                 => 'сховати',
-'show'                 => 'вказати',
-'minoreditletter'      => 'м',
-'newpageletter'        => 'Н',
-'boteditletter'        => 'б',
-'rc-enhanced-expand'   => 'Вказати детайлы (потрібный JavaScript)',
-'rc-enhanced-hide'     => 'Сховати детайлы',
+'nchanges'                       => '$1 {{PLURAL:$1|зміна|зміны|змін}}',
+'recentchanges'                  => 'Послїднї зміны',
+'recentchanges-legend'           => 'Можности послїднїх змін',
+'recentchanges-feed-description' => 'На тотїм каналу слїдуєте послїднї зміны на {{grammar:6sg|{{SITENAME}}}}.',
+'rcnote'                         => "{{PLURAL:$1|Послїдня '''$1''' зміна|Послїднї '''$1''' зміны|Послїднїх '''$1''' змін}} за '''$2''' {{PLURAL:$2|день|днї|днїв}}, на час $5, $4.",
+'rclistfrom'                     => 'Вказати едітованя починаючі з $1.',
+'rcshowhideminor'                => '$1 незначны едітованя',
+'rcshowhidebots'                 => '$1 ботів',
+'rcshowhideliu'                  => '$1 приголошеных',
+'rcshowhideanons'                => '$1 анонімів',
+'rcshowhidemine'                 => '$1 мої едітованя',
+'rclinks'                        => 'Вказати послїднї $1 зміны за $2 днїв<br />$3',
+'diff'                           => 'різн.',
+'hist'                           => 'історія',
+'hide'                           => 'сховати',
+'show'                           => 'вказати',
+'minoreditletter'                => 'м',
+'newpageletter'                  => 'Н',
+'boteditletter'                  => 'б',
+'rc-enhanced-expand'             => 'Вказати детайлы (потрібный JavaScript)',
+'rc-enhanced-hide'               => 'Сховати детайлы',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Повязаны зміны',
@@ -390,6 +460,7 @@ $messages = array(
 'recentchangeslinked-summary' => "Тото є зознам недавных знмін на сторінках на котры одказує задана сторінка (або котры патрят до той катеґорії).
 Сторінкы з [[Special:Watchlist|вашого зознаму слїдованых]] суть вызначены '''тучно'''.",
 'recentchangeslinked-page'    => 'Назва сторінкы:',
+'recentchangeslinked-to'      => 'Вказати зміны на сторінках, одказуючіх на задану сторінку',
 
 # Upload
 'upload'        => 'Награти файл',
@@ -407,7 +478,7 @@ $messages = array(
 'filehist-dimensions'       => 'Розмір обєкта',
 'filehist-comment'          => 'Коментарь',
 'imagelinks'                => 'Одказы на файл',
-'linkstoimage'              => '{{PLURAL:$1|Наступна сторінка ся одказує|Наступнї сторінкы ся одказують}} на тот файл:',
+'linkstoimage'              => '{{PLURAL:$1|Далша сторінка ся одказує|Далшы сторінкы ся одказують}} на тот файл:',
 'sharedupload'              => 'Тот файл є з $1 і є доступным про іншы проекты.',
 'uploadnewversion-linktext' => 'Награти нову верзію того файлу',
 
@@ -459,12 +530,14 @@ $messages = array(
 'mywatchlist'       => 'Слїдованы сторінкы',
 'watchlistfor'      => "(хоснователя '''$1''')",
 'addedwatch'        => 'Придана до зознаму слїдованых сторінок',
+'addedwatchtext'    => "Сторінка «[[:$1]]» была придана до вашого [[Special:Watchlist|зознаму слїдованых]].
+Будучі зміны той статї і з нёв повязаной сторінков діскузії будуть зображены у тім зознамі, а тыж будуть выдїлены '''тучнї''' на сторінцї із [[Special:RecentChanges|зознамом послїднїх змін]], жебы їх было легше вшимнути.",
 'removedwatch'      => 'Вымазана зо зознаму слїдованых сторінок',
 'removedwatchtext'  => 'Сторінка «[[:$1]]» вымазана з вашого [[Special:Watchlist|зознаму слїдованых сторінок]].',
 'watch'             => 'Слїдовати',
 'watchthispage'     => 'Слїдовати тоту сторінку',
 'unwatch'           => 'Зрушыти слїдованя',
-'watchlist-details' => '{{PLURAL:$1|Єдна слїдована сторінка|слїдованы сторінкы|слїдованых сторінок}} (не рахуючі діскузны сторнкы).',
+'watchlist-details' => '{{PLURAL:$1|Єдна слїдована сторінка|слїдованы сторінкы|слїдованых сторінок}} (не рахувчі діскузны сторінкы).',
 'wlshowlast'        => 'Вказати зміны за послїднї $1 годин $2 днїв $3',
 'watchlist-options' => 'Наставлина зознаму слїдованых',
 
@@ -474,6 +547,8 @@ $messages = array(
 
 # Delete
 'deletepage'            => 'Змазати сторінку',
+'confirmdeletetext'     => 'Рыхтуєте ся вымазати сторінку і вшыткы єй лоґы едітовань.
+Просиме Вас, потвердьте, же справды тото хочете зробити, повнї розумієте наслыдкы і же робите тото в одповідности з [[{{MediaWiki:Policy-url}}|правилами]].',
 'actioncomplete'        => 'Дїя выконана',
 'deletedtext'           => '"<nowiki>$1</nowiki>" было змазане.
 Від. $2 про зознам послїднїх змазань.',
@@ -563,6 +638,18 @@ $messages = array(
 'block-log-flags-nocreate' => 'вытваряня конт не поволене',
 
 # Move page
+'movepagetext'     => "Хоснувчі форму ниже, можете переменовати сторінку, єдным разом перемістивши на нове місце і лоґ єй едітовань.
+Стара назва стане перенапрямлинём на нову назву.
+Можете автоматично обновити перенапрямлиня на страу назву.
+Кідь вы тото не зробите, просиме Вас, перевірте наявність [[Special:DoubleRedirects|подвойных]] ці [[Special:BrokenRedirects|розорваных]] перенапрямлинь.
+Вы зодповідаєте за то, жебы одказы і надалей вказували там, де мають.
+
+Уважте, же сторінка '''не''' буде переменована, кідь сторінка з новов назвов уж екзістує, окрем того, коли она порожня або є перенапрямлинём, а лоґ єй едітовань порожнїй.
+То значіть, же вы можете вернути сторінцї стару назву, кідь вы переменовали єй помылково, але вы не можете переписати екзістуючу сторінку.
+
+'''ВАРОВАНЯ!'''
+Тота дїя може ся стати причінов серіозных а неочекаваных змін популарных сторінок.
+Просиме Вас, перед далшым кроком ся утвердьте, же розуміте вшыткы можны наслїдкы.",
 'movepagetalktext' => "Асоціована діскузна сторінка буде автоматічно переменована, '''окрем:'''
 * Непорожня сторінка діскузії з таков назвов уж екзістує або
 * Не означіли сьте в полічку ниже.
@@ -576,6 +663,7 @@ $messages = array(
 'movepage-moved'   => "<big>'''Сторінка «$1» переменована на «$2»'''</big>",
 'articleexists'    => 'Сторінка з таков назвов уж екзістує або назва вамі выбрата не є платна.
 Просиме, выберте іншу назву.',
+'talkexists'       => "'''Сторінка була переменована, але діскузна сторінка не могла быти переменована, бо сторінка з таков назвов уж екзістує. Просиме Вас, злучте їх ручнї.'''",
 'movedto'          => 'теперь ся называє',
 'movetalk'         => 'Переменовати одповідну діскузну сторінку',
 '1movedto2'        => 'переменовав «[[$1]]» на «[[$2]]»',
@@ -605,7 +693,7 @@ $messages = array(
 'tooltip-ca-history'              => 'Мінулы верзії той сторінкы',
 'tooltip-ca-protect'              => 'Хрань тоту сторінку',
 'tooltip-ca-delete'               => 'Вымазати тоту сторінку',
-'tooltip-ca-move'                 => 'Переменовати тоту сторинку',
+'tooltip-ca-move'                 => 'Переменовати тоту сторінку',
 'tooltip-ca-watch'                => 'Придати тоту сторінку до зознаму слїдованых сторінок',
 'tooltip-ca-unwatch'              => 'Одобрати тоту сторінку зо зознаму слїдованых сторінок',
 'tooltip-search'                  => 'Глядати {{SITENAME}}',
@@ -661,7 +749,7 @@ $messages = array(
 
 Раховати ся будуть лем елементы (рядкы, што ся почінають з *).
 Першый одказ рядка має быти одказом на планый файл.
-Наступны одказы у тому самому рядку будуть уважены як выняткы, наприклад сторінкы, де зображіня може быти вложене.',
+Далшы одказы у тім самім рядку будуть уважены як выняткы, наприклад сторінкы, де зображіня може быти вложене.',
 
 # Metadata
 'metadata'          => 'Метадата',
@@ -679,7 +767,8 @@ $messages = array(
 * focallength',
 
 # External editor support
-'edit-externally' => 'Едітовати тот файл хоснувчі екстерну аплікацію',
+'edit-externally'      => 'Едітовати тот файл хоснувчі екстерну аплікацію',
+'edit-externally-help' => '(Вецей інформації найдете в [http://www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлиня].)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вшыткы',
