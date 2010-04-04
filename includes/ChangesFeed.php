@@ -46,17 +46,17 @@ class ChangesFeed {
 	 */
 	public function execute( $feed, $rows, $lastmod, $opts ) {
 		global $messageMemc, $wgFeedCacheTimeout;
-		global $wgSitename, $wgLang;
+		global $wgSitename, $wgLang, $wgRenderHashAppend;
 
 		if ( !FeedUtils::checkFeedOutput( $this->format ) ) {
 			return;
 		}
 
-		$timekey = wfMemcKey( $this->type, $this->format, 'timestamp' );
-		$optionsHash = md5( serialize( $opts->getAllValues() ) );
+		$optionsHash = md5( serialize( $opts->getAllValues() ) ) . $wgRenderHashAppend;
+		$timekey = wfMemcKey( $this->type, $this->format, $wgLang->getCode(), $optionsHash, 'timestamp' );
 		$key = wfMemcKey( $this->type, $this->format, $wgLang->getCode(), $optionsHash );
 
-		FeedUtils::checkPurge($timekey, $key);
+		FeedUtils::checkPurge( $timekey, $key );
 
 		/*
 		* Bumping around loading up diffs can be pretty slow, so where
