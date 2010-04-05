@@ -168,7 +168,7 @@ class SpecialContributions extends SpecialPage {
 							wfMsgHtml( 'change-blocklink' )
 						);
 						$tools[] = $sk->linkKnown( # Unblock link
-							SpecialPage::getTitleFor( 'BlockList' ),
+							SpecialPage::getTitleFor( 'Ipblocklist' ),
 							wfMsgHtml( 'unblocklink' ),
 							array(),
 							array(
