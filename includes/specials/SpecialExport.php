@@ -134,7 +134,7 @@ class SpecialExport extends SpecialPage {
 			// Cancel output buffering and gzipping if set
 			// This should provide safer streaming for pages with history
 			wfResetOutputBuffers();
-			header( "Content-type: application/xml; charset=utf-8" );
+			$wgRequest->response()->header( "Content-type: application/xml; charset=utf-8" );
 			if( $wgRequest->getCheck( 'wpDownload' ) ) {
 				// Provide a sane filename suggestion
 				$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
