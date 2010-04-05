@@ -285,7 +285,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset eikä vain viimeisimmät',
 'tog-usenewrc'                => 'Käytä kehittynyttä tuoreet muutokset -listausta (JavaScript)',
 'tog-numberheadings'          => 'Numeroi otsikot',
-'tog-showtoolbar'             => 'Näytä työkalupalkki',
+'tog-showtoolbar'             => 'Näytä työkalupalkki (JavaScript)',
 'tog-editondblclick'          => 'Muokkaa sivuja kaksoisnapsautuksella (JavaScript)',
 'tog-editsection'             => 'Näytä muokkauslinkit jokaisen osion yläpuolella',
 'tog-editsectiononrightclick' => 'Muokkaa osioita napsauttamalla otsikkoa hiiren oikealla painikkeella (JavaScript)',
@@ -1143,7 +1143,7 @@ Voit [[:$1|luoda aiheesta uuden sivun]].',
 'shown-title'                      => 'Näytä $1 {{PLURAL:$1|osuma|osumaa}} sivulla',
 'viewprevnext'                     => 'Näytä [$3] kerralla.
 
-$1 {{int:pipe-separator}} $2',
+$1 | $2',
 'searchmenu-legend'                => 'Hakuasetukset',
 'searchmenu-exists'                => "'''Sivu [[:$1]] löytyy tästä wikistä.'''",
 'searchmenu-new'                   => "'''Luo sivu ''[[:$1]]'' tähän wikiin.'''",

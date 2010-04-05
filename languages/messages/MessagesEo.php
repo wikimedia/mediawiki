@@ -1071,7 +1071,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'prevn-title'                      => '{{PLURAL:$1|Antaŭa $1 rezulto|Antaŭaj $1 rezultoj}}',
 'nextn-title'                      => '{{PLURAL:$1|Posta $1 rezulto|Postaj $1 rezultoj}}',
 'shown-title'                      => 'Montri {{PLURAL:$1|$1 rezulton|$1 rezultojn}} en paĝo',
-'viewprevnext'                     => 'Montri ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Montri ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Serĉaj opcioj',
 'searchmenu-exists'                => "* Paĝo '''[[$1]]'''",
 'searchmenu-new'                   => "'''Krei la paĝon \"[[:\$1]]\" en ĉi tiu vikio!'''",
@@ -1970,7 +1970,7 @@ Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.
 'protect-othertime-op'        => 'alia tempo',
 'protect-existing-expiry'     => 'Ekzistanta protektdaŭro: $3, $2',
 'protect-otherreason'         => 'Alia/plua kialo:',
-'protect-otherreason-op'      => 'alia/plua kialo',
+'protect-otherreason-op'      => 'Alia/plua kialo',
 'protect-dropdown'            => '*Oftaj kialoj por protektado
 ** Tro da vanadlismo
 ** Tro da spamado

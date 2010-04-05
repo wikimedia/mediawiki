@@ -1,5 +1,5 @@
 <?php
-/** Rhaeto-Romance (Rumantsch)
+/** Romansh (Rumantsch)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -579,7 +579,7 @@ Quests arguments vegnan ignorads.",
 'prevn-title'                      => '{{PLURAL:$1|Ultim resultat|Ultims resultats}}',
 'nextn-title'                      => '{{PLURAL:$1|Proxim resultat|Proxims resultats}}',
 'shown-title'                      => 'Mussar $1 {{PLURAL:$1|resultat|resultats}} per pagina',
-'viewprevnext'                     => 'Mussar ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Mussar ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opziuns da tschertgar',
 'searchmenu-exists'                => "'''Igl exista ina pagina cun il num \"[[:\$1]] sin questa vichi\"'''",
 'searchmenu-new'                   => "'''Crear la pagina \"[[:\$1]]\" sin questa vichi!'''",

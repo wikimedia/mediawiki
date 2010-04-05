@@ -878,7 +878,7 @@ $2',
 'notextmatches'                    => '無文合',
 'prevn'                            => '前$1',
 'nextn'                            => '次$1',
-'viewprevnext'                     => '見（$1 {{int:pipe-separator}} $2）（$3）',
+'viewprevnext'                     => '見（$1）（$2）（$3）',
 'searchmenu-legend'                => '尋選',
 'searchmenu-exists'                => "'''在此wiki中有頁為\"[[:\$1]]\"'''",
 'searchmenu-new'                   => "'''在此wiki上建頁\"[[:\$1]]\"！'''",
@@ -1692,7 +1692,7 @@ $NEWPAGE
 'protect-othertime-op'        => '它時',
 'protect-existing-expiry'     => '現屆時：$2 $3',
 'protect-otherreason'         => '它／附之理：',
-'protect-otherreason-op'      => '它／附之理',
+'protect-otherreason-op'      => '它理',
 'protect-dropdown'            => '*通錮之理
 ** 多破
 ** 多灌

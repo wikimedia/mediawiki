@@ -1039,7 +1039,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'prevn-title'                      => 'Önceki $1 {{PLURAL:$1|sonuç|sonuç}}',
 'nextn-title'                      => 'Sonraki $1 {{PLURAL:$1|sonuç|sonuç}}',
 'shown-title'                      => 'Sayfa başına $1 {{PLURAL:$1|sonuç|sonuç}} göster',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => '($1) ($2) ($3).',
 'searchmenu-legend'                => 'Arama seçenekleri',
 'searchmenu-exists'                => "'''Bu vikide \"[[:\$1]]\" adında bir sayfa mevcut'''",
 'searchmenu-new'                   => "'''Bu vikide \"[[:\$1]]\" sayfasını oluştur!'''",
@@ -1960,7 +1960,7 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 'protect-othertime-op'        => 'farklı zaman',
 'protect-existing-expiry'     => 'Mevcut bitiş zamanı: $3, $2',
 'protect-otherreason'         => 'Diğer/ilave gerekçe:',
-'protect-otherreason-op'      => 'diğer/ilave gerekçe',
+'protect-otherreason-op'      => 'Diğer gerekçe',
 'protect-dropdown'            => '*Genel koruma gerekçeleri
 ** Aşırı vandalizm
 ** Aşırı spam

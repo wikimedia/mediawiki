@@ -1202,7 +1202,7 @@ $2',
 'prevn-title'                      => '$1 {{PLURAL:$1|نتيجه|نتيجه}} سابقه',
 'nextn-title'                      => '{{PLURAL:$1|النتيجه|النتايج}}  $1 اللى بعد كدا.',
 'shown-title'                      => 'اعرض $1 {{PLURAL:$1|نتيجه|نتايج}} فى كل صفحه',
-'viewprevnext'                     => 'بُص ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'بُص ($1) ($2) ($3)',
 'searchmenu-legend'                => 'اختيارات التدوير',
 'searchmenu-exists'                => "*الصفحة '''[[$1]]'''",
 'searchmenu-new'                   => "'''ابتدى الصفحه \"[[:\$1]]\" ع الويكى دا!'''",
@@ -2135,7 +2135,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'وقت آخر',
 'protect-existing-expiry'     => 'تاريخ الانتهاء الموجود: $3، $2',
 'protect-otherreason'         => 'سبب آخر/إضافى:',
-'protect-otherreason-op'      => 'سبب آخر/إضافى',
+'protect-otherreason-op'      => 'سبب تانى',
 'protect-dropdown'            => '*أسباب الحماية الشايعة
 ** تخريب شديد
 ** سبام شديد

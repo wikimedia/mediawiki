@@ -312,9 +312,13 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Säänest tallitust olõ-i.',
-'nosuchactiontext'  => 'Viki tunnõ-i taa aadrõsi manoq käüvät tallitust.',
+'nosuchactiontext'  => 'Seo aadrõsi manoq käüvä tallitus om viganõ.
+Võimalik, et sa kirotit aadrõsi võlssi vai pruugõt vigast linki.
+Niisama või taa ollaq {{SITENAME}} tarkvara viga.',
 'nosuchspecialpage' => 'Säänest tallituslehekülge olõ-i.',
-'nospecialpagetext' => 'Viki tunnõ-i säänest tallituslehekülge.',
+'nospecialpagetext' => '<strong> Säänest tallituslehekülge olõ-õi.</strong>
+
+Olõmanolõvaq tallitusleheküleq ommaq löüdäq leheküle päält [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Viga',
@@ -756,7 +760,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'notextmatches'             => 'Artiklitekstest es lövväq',
 'prevn'                     => 'minevädseq $1',
 'nextn'                     => 'järgmädseq $1',
-'viewprevnext'              => 'Näütäq ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'              => 'Näütäq ($1 ) ($2) ($3).',
 'searchhelp-url'            => 'Help:Oppus',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 sõna|$2 sõnna}})',
 'search-redirect'           => '(ümbresaatminõ $1)',

@@ -962,7 +962,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'prevn-title'                      => 'Precedende $1 {{PLURAL:$1|resultete|resultete}}',
 'nextn-title'                      => 'Successive $1 {{PLURAL:$1|resultete|resultete}}',
 'shown-title'                      => 'Fà vedè le $1 {{PLURAL:$1|resultete|resultete}} pe pàgene',
-'viewprevnext'                     => 'Vide ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Vide ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opzione de ricerche',
 'searchmenu-exists'                => "'''Stè 'na pàgene nnumenete \"[[\$1]]\" sus 'a sta Uicchipèdie'''",
 'searchmenu-new'                   => "'''[[:\$1|Ccreje]] 'a pàgene \"[[:\$1|\$1]]\" sus 'a sta Uicchipèdie!'''",
@@ -1895,7 +1895,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'protect-othertime-op'        => 'otre orarie',
 'protect-existing-expiry'     => "'U timbe de scadenze esistende: $3, $2",
 'protect-otherreason'         => 'Otre mutive:',
-'protect-otherreason-op'      => 'otre mutive',
+'protect-otherreason-op'      => 'Otre mutive',
 'protect-dropdown'            => '*Mutive de protezzione comune
 ** Vandalisme eccessive
 ** Spamming eccessive

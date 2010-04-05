@@ -1001,7 +1001,7 @@ Vos pouede [[:$1|fâre cela pâge]].",
 'prevn-title'                      => '$1 rèsultat{{PLURAL:$1||s}} devant',
 'nextn-title'                      => '$1 rèsultat{{PLURAL:$1||s}} aprés',
 'shown-title'                      => 'Fâre vêre $1 rèsultat{{PLURAL:$1||s}} per pâge',
-'viewprevnext'                     => 'Vêre ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vêre ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Chouèx de rechèrche',
 'searchmenu-exists'                => "'''Y at una pâge avouéc lo titro « [[:$1]] » sur ceti vouiqui.'''",
 'searchmenu-new'                   => "'''Fâre la pâge « [[:$1|$1]] » sur ceti vouiqui !'''",
@@ -1943,7 +1943,7 @@ Vos pouede changiér lo nivél de protèccion de ceta pâge sen que cen afècte 
 'protect-othertime-op'        => 'ôtra dâta d’èxpiracion',
 'protect-existing-expiry'     => 'Dâta d’èxpiracion ègzistenta : $2 a $3',
 'protect-otherreason'         => 'Ôtra rêson / rêson de ples :',
-'protect-otherreason-op'      => 'ôtra rêson / rêson de ples',
+'protect-otherreason-op'      => 'Ôtra rêson',
 'protect-dropdown'            => '* Rêsons de protèccion les ples corentes
 ** Vandalismo èxcèssif
 ** Spame èxcèssif

@@ -350,7 +350,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'notextmatches'  => 'Kileşkän bit mätene yuq',
 'prevn'          => 'uzğan $1',
 'nextn'          => 'kiläse $1',
-'viewprevnext'   => 'Kürsätäse: ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'   => 'Kürsätäse: ($1) ($2) ($3)',
 'searchhelp-url' => 'Help:Eçtälek',
 'powersearch'    => 'Ezläw',
 

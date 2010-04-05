@@ -510,7 +510,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'uid'                        => 'ID Defnyddiwr:',
 'prefs-memberingroups'       => "Yn aelod o'r {{PLURAL:$1|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol:",
 'yourrealname'               => 'Eich enw cywir*',
-'yourlanguage'               => 'Iaith rhyngwyneb',
+'yourlanguage'               => 'Iaith y rhyngwyneb',
 'yourvariant'                => 'Amrywiad',
 'yournick'                   => 'Eich llysenw (fel llofnod):',
 'badsig'                     => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
@@ -554,7 +554,7 @@ Os mai rhywun arall a holodd am y cyfrinair, ynteu eich bod wedi cofio\'r hen gy
 Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cyfarwyddiadau yn yr e-bost hwnnw er mwyn cadarnhau bod y cyfeiriad yn un dilys.',
 'throttled-mailpassword'     => "Anfonwyd e-bost atoch i'ch atgoffa o'ch cyfrinair eisoes, yn ystod y $1 {{PLURAL:$1|awr|awr|awr|awr|awr|awr}} diwethaf.
 Er mwyn rhwystro camddefnydd, dim ond un e-bost i'ch atgoffa o'ch cyfrinair gaiff ei anfon bob yn $1 {{PLURAL:$1|awr|awr|awr|awr|awr|awr}}.",
-'mailerror'                  => 'Gwall wrth ddanfon e-bost: $1',
+'mailerror'                  => 'Gwall wrth ddanfon yr e-bost: $1',
 'acct_creation_throttle_hit' => "Mae ymwelwyr sy'n defnyddio'ch cyfeiriad IP wedi creu $1 {{PLURAL:$1|cyfrif|cyfrif|gyfrif|chyfrif|chyfrif|cyfrif}} yn ystod y diwrnod diwethaf, sef y mwyafswm a ganiateir mewn diwrnod.
 Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfrifon ar hyn o bryd.",
 'emailauthenticated'         => 'Cadarnhawyd eich cyfeiriad e-bost am $3 ar $2.',
@@ -1006,7 +1006,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'prevn-title'                      => 'Y $1 {{PLURAL:$1|canlyiad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} cynt',
 'nextn-title'                      => 'Y $1 {{PLURAL:$1|canlyiad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} nesaf',
 'shown-title'                      => 'Dangos $1 {{PLURAL:$1|canlyiad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} y dudalen',
-'viewprevnext'                     => 'Dangos ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Dangos ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Dewisiadau chwilio',
 'searchmenu-exists'                => "'''Mae tudalen o'r enw \"[[\$1]]\" ar y wici hwn'''",
 'searchmenu-new'                   => "'''Creu'r dudalen \"[[:\$1]]\" ar y wici hwn!'''",
@@ -1910,7 +1910,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 'protect-othertime-op'        => 'cyfnod arall',
 'protect-existing-expiry'     => "Ar hyn o bryd daw'r gwarchod i ben am: $3, $2",
 'protect-otherreason'         => 'Rheswm arall:',
-'protect-otherreason-op'      => 'rheswm arall',
+'protect-otherreason-op'      => 'Rheswm arall',
 'protect-dropdown'            => '*Rhesymau cyffredin dros ddiogelu
 ** Fandaliaeth yn rhemp
 ** Sbam yn rhemp
@@ -1956,7 +1956,7 @@ Mae'n bosib bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi ei adfer neu we
 'undelete-nodiff'              => 'Ni chafwyd hyd i olygiad cynharach.',
 'undeletebtn'                  => 'Adfer!',
 'undeletelink'                 => 'gweld/adfer',
-'undeletereset'                => 'Ailosod',
+'undeletereset'                => 'Ailosoder',
 'undeleteinvert'               => "Troi'r dewis tu chwith",
 'undeletecomment'              => 'Sylwadau:',
 'undeletedarticle'             => 'wedi adfer "[[$1]]"',

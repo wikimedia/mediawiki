@@ -1,5 +1,5 @@
 <?php
-/** Ripoarisch (Ripoarisch)
+/** Colognian (Ripoarisch)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1205,7 +1205,7 @@ Do kanns se [[:$1|aanläje]], wann De wells.',
 'prevn-title'                      => '{{PLURAL:$1|Et vorijje|De $1 dovör|Es nix dovör}}',
 'nextn-title'                      => '{{PLURAL:$1|Et näähßte|De nähßte $1|Kütt nix mieh}}',
 'shown-title'                      => 'Zeisch {{PLURAL:$1|ein|$1|nix}} pro Sigg',
-'viewprevnext'                     => 'Bläddere: ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Bläddere: ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Enstellunge för et Söhke',
 'searchmenu-exists'                => "*Sigg '''[[$1]]'''",
 'searchmenu-new'                   => "'''Donn de Sigg „[[:$1|$1]]“ hee em Wiki aanlääje'''",

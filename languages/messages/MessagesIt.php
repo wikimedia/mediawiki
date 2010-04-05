@@ -35,6 +35,7 @@
  * @author SabineCretella
  * @author Tonyfroio
  * @author Trixt
+ * @author Una giornata uggiosa '94
  * @author Xpensive
  * @author לערי ריינהארט
  */
@@ -726,8 +727,9 @@ Si prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi ric
 'whitelistedittext'                => 'Per modificare le pagine è necessario $1.',
 'confirmedittitle'                 => 'Conferma della e-mail necessaria per la modifica delle pagine',
 'confirmedittext'                  => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
-'nosuchsectiontitle'               => 'La sezione non esiste',
-'nosuchsectiontext'                => 'Si è tentato di modificare una sezione inesistente.',
+'nosuchsectiontitle'               => 'Impossibile trovare la sezione',
+'nosuchsectiontext'                => 'Si è tentato di modificare una sezione inesistente.
+Potrebbe essere stata spostata o eliminata mentre si stava visionando la pagina.',
 'loginreqtitle'                    => 'Accesso richiesto',
 'loginreqlink'                     => "eseguire l'accesso",
 'loginreqpagetext'                 => 'Per vedere altre pagine è necessario $1.',
@@ -1047,7 +1049,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'prevn-title'                      => '{{PLURAL:$1|Risultato precedente|$1 risultati precedenti}}',
 'nextn-title'                      => '{{PLURAL:$1|Risultato successivo|$1 risultati successivi}}',
 'shown-title'                      => 'Mostra {{PLURAL:$1|un risultato|$1 risultati}} per pagina',
-'viewprevnext'                     => 'Vedi ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vedi ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opzioni di ricerca',
 'searchmenu-exists'                => "'''Sul sito esiste una pagina il cui nome è \"[[:\$1]]\"'''",
 'searchmenu-new'                   => "'''Crea la pagina \"[[:\$1]]\" su questo sito'''",
@@ -1939,7 +1941,7 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 'protect-othertime-op'        => 'durata non in elenco',
 'protect-existing-expiry'     => 'Scadenza attuale: $2, $3',
 'protect-otherreason'         => 'Altri motivi/dettagli:',
-'protect-otherreason-op'      => 'altri motivi/dettagli',
+'protect-otherreason-op'      => 'Altra motivazione',
 'protect-dropdown'            => '*Motivi comuni di protezione
 ** Reiterati vandalismi
 ** Reiterati inserimenti di spam

@@ -1174,7 +1174,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'prevn-title'                      => '{{PLURAL:$1|Veurig risseltaot|Veurige $1 risseltaoten}}',
 'nextn-title'                      => '{{PLURAL:$1|Volgend risseltaot|Volgende $1 risseltaoten}}',
 'shown-title'                      => '$1 {{PLURAL:$1|risseltaot|risseltaoten}} per pagina weergeven',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => '($1) ($2) ($3)',
 'searchmenu-legend'                => 'Zeukopties',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
 'searchmenu-new'                   => "'''De pagina \"[[:\$1]]\" op disse wiki anmaken!'''",

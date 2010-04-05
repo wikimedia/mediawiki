@@ -10,6 +10,7 @@
  * @author Cecílio
  * @author MCruz
  * @author Malafaya
+ * @author Romaine
  * @author Urhixidur
  */
 
@@ -102,7 +103,7 @@ $messages = array(
 'tog-previewonfirst'          => "Amostrar l'antebison na purmeira eidiçon",
 'tog-nocache'                 => 'Zatibar caching de páiginas',
 'tog-enotifwatchlistpages'    => 'Notificar-me por correio eiletrónico quando ua páigina begiada ye altarada',
-'tog-enotifusertalkpages'     => ' Abisar -me por correio eiletrónico quando la mie páigina de çcusson ye eiditada',
+'tog-enotifusertalkpages'     => 'Abisar -me por correio eiletrónico quando la mie páigina de çcusson ye eiditada',
 'tog-enotifminoredits'        => 'Abisar-me por correio eiletrónico tamien quando las eidiçones fúren pequeinhas',
 'tog-enotifrevealaddr'        => 'Rebelar l miu andereço de correio eiletrónico nas noteficaçones',
 'tog-shownumberswatching'     => "Amostrar l númaro d'outelizadores a begiar",
@@ -593,7 +594,7 @@ Tu puodes [[:\$1|criar esta páigina]].",
 'notextmatches'             => 'Nun fui possible achar, ne l cuntenido de las páiginas, la palabra percurada',
 'prevn'                     => 'anteriores $1',
 'nextn'                     => 'próssimos $1',
-'viewprevnext'              => 'Ber ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'              => 'Ber ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Conteúdos',
 'searchprofile-images'      => 'Fexeiros',
 'searchprofile-everything'  => 'Todo',

@@ -242,7 +242,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Search results
 'prevn'               => '$1 ya libosó',
 'nextn'               => 'bolɛngɛli $1',
-'viewprevnext'        => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'        => 'Komɔ́na ($1) ($2) ($3)',
 'search-result-size'  => '$1 ({{PLURAL:$2|lokomá 1|nkomá $2}})',
 'search-result-score' => 'Ntína : $1%',
 'search-redirect'     => '(bopengoli útá $1)',

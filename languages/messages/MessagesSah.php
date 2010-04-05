@@ -939,7 +939,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'prevn-title'                      => 'Бу иннинээҕи $1 {{PLURAL:$1|сурук|суруктар}}',
 'nextn-title'                      => 'Бу кэннинээҕи $1 {{PLURAL:$1|сурук|суруктар}}',
 'shown-title'                      => 'Сирэйгэ $1 {{PLURAL:$1|суругу|суруктары}} көрдөр',
-'viewprevnext'                     => 'Көр ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Көр ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Көрдөөһүн туруоруулара',
 'searchmenu-exists'                => "'''Бу биикигэ бу сирэй маннык ааттаах \"[[\$1]]\"'''",
 'searchmenu-new'                   => "'''Бу биикигэ \"[[:\$1]]\" сирэйи айарга!'''",

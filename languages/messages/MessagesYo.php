@@ -774,7 +774,7 @@ Gẹ́gẹ́ bíi alámùójútó ẹ le wòó; ẹ̀kúnrẹ́rẹ́ ṣe é �
 'prevn-title'                      => '{{PLURAL:$1|Èsì $1 sẹ́yìn|Àwọn èsì $1 sẹ́yìn}}',
 'nextn-title'                      => '{{PLURAL:$1|Èsì $1 tóúnbọ̀|Àwọn èsì $1 tóúnbọ̀}}',
 'shown-title'                      => '{{PLURAL:$1|Ìfihàn èsì $1|Ìfihàn àwọn èsì $1}} nínú ojúewé kọ̀ọ̀kan',
-'viewprevnext'                     => 'Ẹ wo ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Ẹ wo ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Àwọn àṣàyàn àwáàrí',
 'searchmenu-exists'                => "'''Ojúewé tó ún jẹ́ \"[[:\$1]]\" wà lórí wiki yìí'''",
 'searchmenu-new'                   => "'''Dá ojúewé \"[[:\$1]]\" sí orí wiki yìí!'''",

@@ -1023,7 +1023,7 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'prevn-title'                      => 'Vorige {{PLURAL:$1|resultaat|$1 resultate}}',
 'nextn-title'                      => 'Volgende {{PLURAL:$1|resultaat|$1 resultate}}',
 'shown-title'                      => '$1 {{PLURAL:$1|resultaat|resultate}} per bladsy',
-'viewprevnext'                     => 'Kyk na ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Kyk na ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Soekopsies',
 'searchmenu-exists'                => "'''Daar is reeds 'n bladsy genaamd \"[[:\$1]]\" op die wiki'''",
 'searchmenu-new'                   => "'''Skep die bladsy \"[[:\$1]]\" op hierdie wiki'''",
@@ -1945,7 +1945,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-othertime-op'        => 'ander tyd',
 'protect-existing-expiry'     => 'Bestaande vervaldatum: $2 om $3',
 'protect-otherreason'         => 'Ander/addisionele rede:',
-'protect-otherreason-op'      => 'ander/addisionele rede',
+'protect-otherreason-op'      => 'Ander rede',
 'protect-dropdown'            => '*Algemene redes vir beveiliging
 ** Vandalisme
 ** Spam

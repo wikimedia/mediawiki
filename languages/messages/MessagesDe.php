@@ -1167,10 +1167,10 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'diff-h3'                 => "eine '''Überschrift (3. Ordnung)'''",
 'diff-h4'                 => "eine '''Überschrift (4. Ordnung)'''",
 'diff-h5'                 => "eine '''Überschrift (5. Ordnung)'''",
-'diff-pre'                => "einen '''formattierten Block'''",
+'diff-pre'                => "einen '''formatierten Block'''",
 'diff-div'                => "ein '''Blockelement'''",
 'diff-ul'                 => "eine '''Liste'''",
-'diff-ol'                 => "eine '''numerierte Liste'''",
+'diff-ol'                 => "eine '''nummerierte Liste'''",
 'diff-li'                 => "einen '''Listeneintrag'''",
 'diff-table'              => "eine '''Tabelle'''",
 'diff-tbody'              => "ein '''Tabelleninhalt'''",
@@ -1219,7 +1219,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'prevn-title'                      => '{{PLURAL:$1|Vorheriges Ergebnis|Vorherige $1 Ergebnisse}}',
 'nextn-title'                      => '{{PLURAL:$1|Folgendes Ergebnis|Folgende $1 Ergebnisse}}',
 'shown-title'                      => 'Zeige $1 {{PLURAL:$1|Ergebnis|Ergebnisse}} pro Seite',
-'viewprevnext'                     => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Zeige ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Suchoptionen',
 'searchmenu-exists'                => "'''Es gibt eine Seite, die den Namen „[[:$1]]“ hat'''",
 'searchmenu-new'                   => "'''Erstelle die Seite „[[:$1|$1]]“ in diesem Wiki.'''",
@@ -1780,7 +1780,10 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 
 'disambiguations'      => 'Begriffsklärungsseiten',
 'disambiguationspage'  => 'Template:Begriffsklärung',
-'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie verlinkt.<br />Links aus Namensräumen werden hier nicht aufgelistet.',
+'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.
+
+Eine Seite gilt als Begriffsklärungsseite, wenn sie eine der in [[MediaWiki:Disambiguationspage]] aufgeführte(n) Vorlage(n) einbindet.<br />
+Links aus Namensräumen werden hier nicht aufgelistet.',
 
 'doubleredirects'            => 'Doppelte Weiterleitungen',
 'doubleredirectstext'        => 'Diese Liste enthält Weiterleitungen, die auf weitere Weiterleitungen verlinken.
@@ -2015,7 +2018,7 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
 'changed'                      => 'geändert',
 'created'                      => 'erstellt',
-'enotif_subject'               => '[{{SITENAME}}] Die Seite "$PAGETITLE" wurde von $PAGEEDITOR $CHANGEDORCREATED',
+'enotif_subject'               => '[{{SITENAME}}] Die Seite „$PAGETITLE“ wurde von $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Alle Änderungen auf einen Blick: $1',
 'enotif_lastdiff'              => 'Siehe $1 nach dieser Änderung.',
 'enotif_anon_editor'           => 'Anonymer Benutzer $1',
@@ -2120,7 +2123,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-othertime-op'        => 'andere Sperrdauer',
 'protect-existing-expiry'     => 'Aktuelles Seitenschutzende: $2, $3 Uhr',
 'protect-otherreason'         => 'Anderer/ergänzender Grund:',
-'protect-otherreason-op'      => 'anderer/ergänzender Grund',
+'protect-otherreason-op'      => 'Anderer Grund',
 'protect-dropdown'            => '*Allgemeine Schutzgründe
 ** Weblink-Spam
 ** Editwar
@@ -2265,7 +2268,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbother'                        => 'Andere Dauer (englisch):',
 'ipboptions'                      => '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Andere Dauer',
-'ipbotherreason'                  => 'Andere/ergänzende Begründung:',
+'ipbotherreason'                  => 'Anderer/ergänzender Grund:',
 'ipbhidename'                     => 'Benutzername in Bearbeitungen und Listen verstecken',
 'ipbwatchuser'                    => 'Benutzer(diskussions)seite beobachten',
 'ipballowusertalk'                => 'Benutzer darf eigene Diskussionsseiten während seiner Sperre bearbeiten',

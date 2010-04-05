@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bencmq
+ * @author Biŋhai
  * @author Gaoxuewei
  * @author Gzdavidwong
  * @author Jimmy xu wrk
@@ -1056,7 +1057,7 @@ $2',
 'prevn-title'                      => '前$1项结果',
 'nextn-title'                      => '后$1项结果',
 'shown-title'                      => '每页显示$1项结果',
-'viewprevnext'                     => '查看（$1 {{int:pipe-separator}} $2）（$3）',
+'viewprevnext'                     => '查看（$1）（$2）（$3）',
 'searchmenu-legend'                => '搜索选项',
 'searchmenu-exists'                => "'''在该wiki上已有页面名叫“[[:$1]]”'''",
 'searchmenu-new'                   => "'''在该wiki上新建页面“[[:$1]]”！'''",
@@ -1808,10 +1809,7 @@ Template:消除歧義',
 'watchnologin'         => '未登录',
 'watchnologintext'     => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
 'addedwatch'           => '已添加至监视列表',
-'addedwatchtext'       => "页面\"[[:\$1]]\"已经被加入到您的[[Special:Watchlist|监视列表]]中。
-将来有关此页面及其讨论页的任何修改将会在那里列出，
-而且还会在[[Special:RecentChanges|最近更改]]中
-以'''粗体'''形式列出以使起更容易识别。",
+'addedwatchtext'       => "页面“[[:$1]]”已经被加入到您的[[Special:Watchlist|监视列表]]中。将来有关此页面及其讨论页的任何修改将会在那里列出，而且还会在[[Special:RecentChanges|最近更改]]中以'''粗体'''形式列出以使其更容易识别。",
 'removedwatch'         => '已停止监视',
 'removedwatchtext'     => '页面[[:$1]]已经从[[Special:Watchlist|您的监视页面]]中移除。',
 'watch'                => '监视',
@@ -1919,12 +1917,12 @@ $NEWPAGE
 # Protect
 'protectlogpage'              => '保护日志',
 'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:ProtectedPages|保护页面列表]]以查看当前进行的页面保护。',
-'protectedarticle'            => '已保护"[[$1]]"',
-'modifiedarticleprotection'   => '已经更改 "[[$1]]" 的保护等级',
-'unprotectedarticle'          => '已取消保护"[[$1]]"',
-'movedarticleprotection'      => '已经更改由“[[$2]]”至“[[$1]]”的保护设置',
-'protect-title'               => '正在更改"$1"的保护等级',
-'prot_1movedto2'              => '[[$1]]移动到[[$2]]',
+'protectedarticle'            => '已保护“[[$1]]”',
+'modifiedarticleprotection'   => '已更改“[[$1]]”的保护等级',
+'unprotectedarticle'          => '已取消“[[$1]]”的保护',
+'movedarticleprotection'      => '已将“[[$2]]”的保护设置移动至“[[$1]]”',
+'protect-title'               => '更改“$1”的保护等级',
+'prot_1movedto2'              => '[[$1]]已移动至[[$2]]',
 'protect-legend'              => '确认保护',
 'protectcomment'              => '原因：',
 'protectexpiry'               => '到期：',
@@ -1952,7 +1950,7 @@ $NEWPAGE
 'protect-othertime-op'        => '其它时间',
 'protect-existing-expiry'     => '现时到期之时间：$2 $3',
 'protect-otherreason'         => '其它／附加的理由：',
-'protect-otherreason-op'      => '其它／附加的理由',
+'protect-otherreason-op'      => '其它理由',
 'protect-dropdown'            => '*通用保护理由
 ** 遭到过度破坏
 ** 过度张贴垃圾链接
@@ -2217,8 +2215,8 @@ $1已经被封锁。您是否想更改这个设置？',
 后才可移动一个页面。',
 'movenotallowed'               => '您并没有权限去移动页面。',
 'movenotallowedfile'           => '您并没有权限去移动文件。',
-'cant-move-user-page'          => '您并没有许可权去移动用户页面（它的字页面除外）。',
-'cant-move-to-user-page'       => '您并没有许可权去移动到用户页面（它的字页面除外）。',
+'cant-move-user-page'          => '您并没有许可权去移动用户页面（它的子页面除外）。',
+'cant-move-to-user-page'       => '您并没有许可权去移动到用户页面（它的子页面除外）。',
 'newtitle'                     => '新标题：',
 'move-watch'                   => '监视来源以及目标页',
 'movepagebtn'                  => '移动页面',

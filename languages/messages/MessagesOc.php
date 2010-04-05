@@ -1150,7 +1150,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'prevn-title'                      => '$1 {{PLURAL:$1|resultat precedent|resultats precedents}}',
 'nextn-title'                      => '$1 {{PLURAL:$1|resultat seguent|resultats seguents}}',
 'shown-title'                      => 'Afichar $1 {{PLURAL:$1|resultat|resultats}} per pagina',
-'viewprevnext'                     => 'Veire ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Veire ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opcions de recèrca',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
 'searchmenu-new'                   => "'''Crear la pagina ''[[:$1|$1]]'' sus aqueste wiki !'''",
@@ -2062,7 +2062,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protect-othertime-op'        => 'Autra expiracion',
 'protect-existing-expiry'     => 'Durada d’expiracion existenta : $2 a $3',
 'protect-otherreason'         => 'Motiu suplementari o autre :',
-'protect-otherreason-op'      => 'Motiu suplementari o autre',
+'protect-otherreason-op'      => 'Autra rason',
 'protect-dropdown'            => "*Motius de proteccion mai corrents
 ** Vandalisme excessiu
 ** Spam excessiu

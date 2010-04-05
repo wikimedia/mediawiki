@@ -1046,7 +1046,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'prevn-title'                      => '$1 hasil sebelumnya',
 'nextn-title'                      => '$1 hasil berikutnya',
 'shown-title'                      => 'Papar $1 hasil setiap laman',
-'viewprevnext'                     => 'Lihat ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Lihat ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Pilihan gelintar',
 'searchmenu-exists'                => "* Laman '''[[$1]]'''",
 'searchmenu-new'                   => "'''Cipta laman \"[[:\$1]]\" di wiki ini!'''",
@@ -1936,7 +1936,7 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 'protect-othertime-op'        => 'waktu lain',
 'protect-existing-expiry'     => 'Waktu tamat yang telah ditetapkan: $2, $3',
 'protect-otherreason'         => 'Sebab lain/tambahan:',
-'protect-otherreason-op'      => 'sebab lain/tambahan',
+'protect-otherreason-op'      => 'Sebab lain',
 'protect-dropdown'            => '*Sebab lazim
 ** Vandalisme
 ** Spam

@@ -445,7 +445,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'textmatches'                    => 'ܟܬܒܬܐ ܐܘܝܢܬܐ',
 'notextmatches'                  => 'ܠܝܬ ܟܬܒܬܐ ܐܘܝܢܬܐ',
 'shown-title'                    => 'ܚܘܝ $1 {{PLURAL:$1|ܦܠܛܐ|ܦܠܛ̈ܐ}} ܠܟܠ ܦܐܬܐ',
-'viewprevnext'                   => 'ܚܘܝ ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                   => 'ܚܘܝ ($1) ($2) ($3)',
 'searchmenu-legend'              => 'ܓܒܝܬ̈ܐ ܕܒܘܨܝܐ',
 'searchmenu-exists'              => "'''ܐܝܬ ܦܐܬܐ ܒܫܡ \"[[:\$1]]\" ܥܠ ܗܢܐ ܘܝܩܝ'''",
 'searchmenu-new'                 => "'''ܒܪܝ ܦܐܬܐ \"[[:\$1]]\" ܥܠ ܗܢܐ ܘܝܩܝ!'''",

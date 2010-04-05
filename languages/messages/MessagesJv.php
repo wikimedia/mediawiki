@@ -897,7 +897,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'prevn-title'                      => '$1 {{PLURAL:$1|asil|asil}} sadurungé',
 'nextn-title'                      => '$1 {{PLURAL:$1|asil|asil}} sabanjuré',
 'shown-title'                      => 'Tampilaké $1 {{PLURAL:$1|asil|asil}} saben kaca',
-'viewprevnext'                     => 'Deleng ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Deleng ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Pilihan panggolèkan',
 'searchmenu-exists'                => "'''Ana kaca kanthi jeneng \"[[\$1]]\" ing wiki iki'''",
 'searchmenu-new'                   => "'''Gawé kaca \"[[:\$1]]\" ing wiki iki!'''",

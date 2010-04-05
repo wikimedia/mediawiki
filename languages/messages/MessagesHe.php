@@ -514,7 +514,7 @@ $messages = array(
 'viewhelppage'      => 'צפייה בדף העזרה',
 'categorypage'      => 'צפייה בדף הקטגוריה',
 'viewtalkpage'      => 'צפייה בדף השיחה',
-'otherlanguages'    => 'שפות אחרות',
+'otherlanguages'    => 'דף זה בשפות אחרות',
 'redirectedfrom'    => '(הופנה מהדף $1)',
 'redirectpagesub'   => 'דף הפניה',
 'lastmodifiedat'    => 'שונה לאחרונה ב־$2, $1.', # $1 date, $2 time
@@ -1209,7 +1209,7 @@ $2',
 'prevn-title'                      => '{{PLURAL:$1|התוצאה הקודמת|$1 התוצאות הקודמות}}',
 'nextn-title'                      => '{{PLURAL:$1|התוצאה הבאה|$1 התוצאות הבאות}}',
 'shown-title'                      => 'הצגת {{PLURAL:$1|תוצאה אחת|$1 תוצאות}} בדף',
-'viewprevnext'                     => 'צפייה ב - ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'צפייה ב - ($1) ($2) ($3)',
 'searchmenu-legend'                => 'אפשרויות חיפוש',
 'searchmenu-exists'                => "'''קיים דף בשם \"[[:\$1]]\" באתר זה'''",
 'searchmenu-new'                   => "'''יצירת הדף \"[[:\$1]]\" באתר זה'''",
@@ -1350,7 +1350,7 @@ $2',
 'userrights-groups-help'      => 'באפשרותכם לשנות את הקבוצות שמשתמש זה חבר בהן:
 * תיבה מסומנת פירושה שהמשתמש חבר בקבוצה.
 * תיבה בלתי מסומנת פירושה שהמשתמש אינו חבר בקבוצה.
-* סימון * פירושו שלא תוכלו להסיר משתמש מהקבוצה מרגע שהוספתם אותו אליה, או להיפך.',
+* סימון * פירושו שלא תוכלו להסיר משתמש מהקבוצה מרגע שהוספתם אותו אליה, או להפך.',
 'userrights-reason'           => 'סיבה:',
 'userrights-no-interwiki'     => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
 'userrights-nodatabase'       => 'בסיס הנתונים $1 אינו קיים או אינו מקומי.',
@@ -2118,7 +2118,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'זמן אחר',
 'protect-existing-expiry'     => 'זמן פקיעה נוכחי: $3, $2',
 'protect-otherreason'         => 'סיבה אחרת/נוספת:',
-'protect-otherreason-op'      => 'סיבה אחרת/נוספת',
+'protect-otherreason-op'      => 'סיבה אחרת',
 'protect-dropdown'            => '* סיבות הגנה נפוצות
 ** השחתה רבה
 ** ספאם רב

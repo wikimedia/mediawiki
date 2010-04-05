@@ -795,7 +795,7 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'notextmatches'         => "Hin pagina's evon'n",
 'prevn'                 => 'vorrege $1',
 'nextn'                 => 'volhende $1',
-'viewprevnext'          => 'Bekiek ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'          => 'Bekiek ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Inoud',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 woôrd|$2 woôrn}})',
 'search-result-score'   => 'Rillevantie: $1%',

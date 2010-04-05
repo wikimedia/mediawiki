@@ -1012,7 +1012,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'prevn-title'                      => 'Aurreko {{PLURAL:$1|emaitza|emaitzak}}',
 'nextn-title'                      => 'Hurrengo $1 {{PLURAL:$1|emaitza|emaitzak}}',
 'shown-title'                      => 'Erakutsi {{PLURAL:$1|emaitza $1|$1 emaitza}} orrialdeko',
-'viewprevnext'                     => 'Ikusi ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Ikusi ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Bilaketa aukerak',
 'searchmenu-exists'                => "'''\"[[:\$1]]\" izena duen orrialde bat badago wiki honetan'''",
 'searchmenu-new'                   => "'''\"[[:\$1]]\" orrialde sortu wiki honetan!'''",
@@ -1898,7 +1898,7 @@ Orrialde honen babes maila alda dezakezu, baina ez du eraginik izango kaskada bi
 'protect-othertime-op'        => 'beste denbora',
 'protect-existing-expiry'     => 'Iraungitze ordua: $2, $3',
 'protect-otherreason'         => 'Bestelako arrazoiak (edo gehigarriak):',
-'protect-otherreason-op'      => 'bestelako arrazoiak (edo gehigarriak)',
+'protect-otherreason-op'      => 'Bestelako arrazoiak',
 'protect-dropdown'            => '*Babesteko arrazoi ohikoenak
 ** Gehiegizko bandalismoa
 ** Gehiegizko spama

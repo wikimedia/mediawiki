@@ -1181,7 +1181,7 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'prevn-title'                      => '{{PLURAL:$1|Prethodni $1 rezultat|Prethodna $1 rezultata|Prethodnih $1 rezultata}}',
 'nextn-title'                      => '{{PLURAL:$1|Slijedeći $1 rezultat|Slijedeća $1 rezultata|Slijedećih $1 rezultata}}',
 'shown-title'                      => 'Pokaži $1 {{PLURAL:$1|rezultat|rezultata}} po stranici',
-'viewprevnext'                     => 'Pogledaj ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Pogledaj ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opcije pretrage',
 'searchmenu-exists'                => "'''Postoji stranica pod nazivom \"[[:\$1]]\" na ovoj wiki'''",
 'searchmenu-new'                   => "'''Napravi stranicu \"[[:\$1|\$1]]\" na ovoj wiki!'''",
@@ -2108,7 +2108,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 'protect-othertime-op'        => 'ostali period',
 'protect-existing-expiry'     => 'Postojeće vrijeme isticanja: $3, $2',
 'protect-otherreason'         => 'Ostali/dodatni razlozi:',
-'protect-otherreason-op'      => 'ostali/dodatni razlozi',
+'protect-otherreason-op'      => 'Ostali razlozi',
 'protect-dropdown'            => '*Uobičajeni razlozi zaštite
 ** Prekomjerni vandalizam
 ** Prekomjerno spamovanje

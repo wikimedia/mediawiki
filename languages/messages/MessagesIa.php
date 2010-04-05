@@ -134,19 +134,19 @@ $messages = array(
 'tog-underline'               => 'Sublinear ligamines:',
 'tog-highlightbroken'         => 'Formatar ligamines rupte <a href="" class="new">assi</a> (alternativa: assi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar paragraphos',
-'tog-hideminor'               => 'Celar modificationes recente minor',
+'tog-hideminor'               => 'Celar le modificationes minor in le modificationes recente',
 'tog-hidepatrolled'           => 'Celar le modificationes patruliate in le modificationes recente',
 'tog-newpageshidepatrolled'   => 'Celar le paginas patruliate del lista de nove paginas',
-'tog-extendwatchlist'         => 'Expander le observatorio pro monstrar tote le modificationes, non solmente les plus recente',
+'tog-extendwatchlist'         => 'Displicar le observatorio pro monstrar tote le modificationes, non solmente les plus recente',
 'tog-usenewrc'                => 'Usar le modificationes recente meliorate (require JavaScript)',
 'tog-numberheadings'          => 'Numerar titulos automaticamente',
-'tog-showtoolbar'             => 'Monstrar barra de instrumentos pro modification (require JavaScript)',
+'tog-showtoolbar'             => 'Monstrar instrumentario de modification (require JavaScript)',
 'tog-editondblclick'          => 'Duple clic pro modificar un pagina (require JavaScript)',
-'tog-editsection'             => 'Activar le modification de sectiones con ligamines [modificar]',
+'tog-editsection'             => 'Activar le modification de sectiones con ligamines "[modificar]"',
 'tog-editsectiononrightclick' => 'Activar modification de sectiones con clic-a-dextra super lor titulos (require JavaScript)',
 'tog-showtoc'                 => 'Monstrar tabula de contento (in paginas con plus de 3 sectiones)',
 'tog-rememberpassword'        => 'Memorar mi contrasigno in iste computator',
-'tog-editwidth'               => 'Allargar le quadro de modification pro plenar le schermo integre',
+'tog-editwidth'               => 'Maximisar le latitude del quadro de modification',
 'tog-watchcreations'          => 'Adder le paginas que io crea a mi observatorio',
 'tog-watchdefault'            => 'Adder le paginas que io modifica a mi observatorio',
 'tog-watchmoves'              => 'Adder le paginas que io renomina a mi observatorio',
@@ -155,28 +155,28 @@ $messages = array(
 'tog-previewontop'            => 'Monstrar previsualisation ante le quadro de modification',
 'tog-previewonfirst'          => 'Monstrar previsualisation al prime modification',
 'tog-nocache'                 => "Disactivar le ''cache'' de paginas",
-'tog-enotifwatchlistpages'    => 'Notificar me via e-mail quando se cambia un pagina in mi observatorio',
-'tog-enotifusertalkpages'     => 'Notificar me via e-mail quando se cambia mi pagina de discussion',
-'tog-enotifminoredits'        => 'Notificar me etiam de modificationes minor',
+'tog-enotifwatchlistpages'    => 'Notificar me via e-mail quando un pagina in mi observatorio es modificate',
+'tog-enotifusertalkpages'     => 'Notificar me via e-mail quando mi pagina de discussion es modificate',
+'tog-enotifminoredits'        => 'Notificar me etiam de modificationes minor de paginas',
 'tog-enotifrevealaddr'        => 'Revelar mi adresse de e-mail in messages de notification',
 'tog-shownumberswatching'     => 'Monstrar le numero de usatores que observa le pagina',
 'tog-fancysig'                => 'Tractar signatura como wikitexto (sin ligamine automatic)',
 'tog-externaleditor'          => 'Usar editor externe qua standard (pro expertos solmente, necessita configuration special in tu computator)',
 'tog-externaldiff'            => "Usar un programma ''diff'' externe qua standard (pro expertos solmente, necessita configuration special in tu computator)",
 'tog-showjumplinks'           => 'Activar ligamines de accessibilitate "saltar a"',
-'tog-uselivepreview'          => 'Usar previsualisation directe (JavaScript) (Experimental)',
-'tog-forceeditsummary'        => 'Prevenir me quando io entra un summario de modification vacue',
-'tog-watchlisthideown'        => 'Excluder mi proprie modificationes del observatorio',
-'tog-watchlisthidebots'       => 'Excluder le modificationes per bots del observatorio',
-'tog-watchlisthideminor'      => 'Excluder le modificationes minor del observatorio',
-'tog-watchlisthideliu'        => 'Celar modificationes per usatores identificate del observatorio',
-'tog-watchlisthideanons'      => 'Celar modificationes per usatores anonyme del observatorio',
-'tog-watchlisthidepatrolled'  => 'Celar le modificationes patruliate del observatorio',
+'tog-uselivepreview'          => 'Usar previsualisation in directo (require JavaScript) (experimental)',
+'tog-forceeditsummary'        => 'Avisar me si io non entra un summario de modification',
+'tog-watchlisthideown'        => 'Celar mi proprie modificationes in le observatorio',
+'tog-watchlisthidebots'       => 'Celar le modificationes de robots in le observatorio',
+'tog-watchlisthideminor'      => 'Celar modificationes minor in le observatorio',
+'tog-watchlisthideliu'        => 'Celar modificationes de usatores registrate in le observatorio',
+'tog-watchlisthideanons'      => 'Celar modificationes de usatores anonyme in le observatorio',
+'tog-watchlisthidepatrolled'  => 'Celar le modificationes patruliate in le observatorio',
 'tog-nolangconversion'        => 'Disactivar conversion de variantes',
 'tog-ccmeonemails'            => 'Inviar me copias del messages de e-mail que io invia a altere usatores',
 'tog-diffonly'                => 'Non monstrar le contento del pagina sub le comparation de duo versiones',
 'tog-showhiddencats'          => 'Monstrar categorias celate',
-'tog-noconvertlink'           => 'Disactivar conversion del titulo de ligamine',
+'tog-noconvertlink'           => 'Disactivar conversion de titulos de ligamines',
 'tog-norollbackdiff'          => 'Omitter le diff post le execution de un revocation',
 
 'underline-always'  => 'Sempre',
@@ -239,7 +239,7 @@ $messages = array(
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'                => 'Articulos in le categoria "$1"',
 'subcategories'                  => 'Subcategorias',
-'category-media-header'          => 'Media in categoria "$1"',
+'category-media-header'          => 'Multimedia in categoria "$1"',
 'category-empty'                 => "''Iste categoria non contine alcun pagina o file multimedia al momento.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria celate|Categorias celate}}',
 'hidden-category-category'       => 'Categorias celate', # Name of the category where hidden categories will be listed
@@ -366,7 +366,7 @@ $messages = array(
 'versionrequiredtext' => 'Le version $1 de MediaWiki es requirite pro usar iste pagina. Vide [[Special:Version|le pagina de version]].',
 
 'ok'                      => 'OK',
-'retrievedfrom'           => 'Recuperate de "$1"',
+'retrievedfrom'           => 'Obtenite de "$1"',
 'youhavenewmessages'      => 'Tu ha $1 ($2).',
 'newmessageslink'         => 'nove messages',
 'newmessagesdifflink'     => 'ultime modification',
@@ -416,7 +416,7 @@ Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:speci
 
 # General errors
 'error'                => 'Error',
-'databaseerror'        => 'Error de base de datos',
+'databaseerror'        => 'Error del base de datos',
 'dberrortext'          => 'Un error de syntaxe occurreva durante un consulta del base de datos.
 Isto pote indicar le presentia de un defecto in le software.
 Le ultime consulta que esseva tentate es:
@@ -424,7 +424,7 @@ Le ultime consulta que esseva tentate es:
 effectuate per le function "<tt>$2</tt>".
 Le base de datos retornava le error "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Un error de syntaxe occurreva durante un consulta del base de datos.
-Le ultime consulta que se tentava es:
+Le ultime consulta que esseva tentate es:
 "$1"
 effectuate per le function "$2".
 Le base de datos retornava le error "$3: $4"',
@@ -488,11 +488,11 @@ $2',
 'customcssjsprotected' => 'Tu non ha le permission de modificar iste pagina, proque illo contine le configurationes personal de un altere usator.',
 'ns-specialprotected'  => 'Le paginas special non es modificabile.',
 'titleprotected'       => "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].
-Le ration date es ''$2''.",
+Le motivo specificate es ''$2''.",
 
 # Virus scanner
 'virus-badscanner'     => "Configuration incorrecte: programma antivirus non cognoscite: ''$1''",
-'virus-scanfailed'     => 'scansion fallite (codice $1)',
+'virus-scanfailed'     => 'scannamento fallite (codice $1)',
 'virus-unknownscanner' => 'antivirus non cognoscite:',
 
 # Login and logout pages
@@ -510,7 +510,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'yourpasswordagain'          => 'Repete contrasigno:',
 'remembermypassword'         => 'Memorar mi contrasigno in iste computator',
 'yourdomainname'             => 'Tu dominio:',
-'externaldberror'            => 'O il occureva un error in le base de datos de authentification externe, o tu non ha le autorisation de actualisar tu conto externe.',
+'externaldberror'            => 'O il occurreva un error in le base de datos de authentication, o tu non ha le autorisation de actualisar tu conto externe.',
 'login'                      => 'Aperir session',
 'nav-login-createaccount'    => 'Aperir session / crear conto',
 'loginprompt'                => 'Tu debe haber activate le cookies pro poter identificar te a {{SITENAME}}.',
@@ -705,14 +705,14 @@ Nota que tu non pote utilisar le function "inviar e-mail a iste usator" salvo qu
 
 Tu adresse IP actual es $3, e le ID del blocada es #$5.
 Per favor include tote le detalios supra specificate in omne correspondentia.',
-'blockednoreason'                  => 'nulle ration date',
+'blockednoreason'                  => 'nulle motivo specificate',
 'blockedoriginalsource'            => "Le codice-fonte de '''$1''' se monstra infra:",
 'blockededitsource'                => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
 'whitelistedittitle'               => 'Identification requirite pro modificar',
 'whitelistedittext'                => 'Tu debe $1 pro poter modificar paginas.',
 'confirmedittitle'                 => 'Confirmation del adresse de e-mail es requirite pro poter modificar',
 'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
-Per favor defini e valida tu adresse de e-mail per medio de tu [[Special:Preferences|preferentias de usator]].',
+Per favor entra e valida tu adresse de e-mail per medio de tu [[Special:Preferences|preferentias de usator]].',
 'nosuchsectiontitle'               => 'Section non trovate',
 'nosuchsectiontext'                => 'Tu ha tentate modificar un section que non existe.
 Illo pote haber essite displaciate o delite durante que tu legeva le pagina.',
@@ -737,16 +737,16 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove CSS/JS ante de publicar lo.",
-'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.
-Le modificationes non ha ancora essite salveguardate!'''",
+'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.'''
+'''Le modificationes non ha ancora essite salveguardate!'''",
 'userjspreview'                    => "'''Non oblida que isto es solmente un test/previsualisation de tu JavaScript personalisate.'''
 '''Illo non ha ancora essite salveguardate!'''",
 'userinvalidcssjstitle'            => "'''Attention:''' Le stilo \"\$1\" non existe.
 Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/monobook.css e non {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualisate)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''Isto es solmente un previsualisation;
-le modificationes non ha ancora essite publicate!'''",
+'previewnote'                      => "'''Isto es solmente un previsualisation.'''
+'''Le modificationes non ha ancora essite publicate!'''",
 'previewconflict'                  => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
 'session_fail_preview'             => "'''Nos non poteva processar tu modification proque nos perdeva le datos del session.
@@ -774,10 +774,10 @@ Tu debera incorporar tu modificationes in le texto existente.
 quando tu clicca super \"Publicar articulo\".",
 'yourtext'                         => 'Tu texto',
 'storedversion'                    => 'Version immagazinate',
-'nonunicodebrowser'                => "'''ATTENTION: Tu utilisa un navigator non compatibile con le characteres Unicode.
-Se ha activate un systema de modification alternative que te permittera modificar articulos con securitate: le characteres non-ASCII apparera in le quadro de modification como codices hexadecimal.'''",
-'editingold'                       => "'''ATTENTION: Tu va modificar un version obsolete de iste pagina.
-Si tu lo publica, tote le modificationes facite post iste version essera perdite.'''",
+'nonunicodebrowser'                => "'''Attention: Tu utilisa un navigator non compatibile con le characteres Unicode.'''
+Un systema de modification alternative ha essite activate, que te permitte modificar articulos con securitate: le characteres non ASCII apparera in le quadro de modification como codices hexadecimal.",
+'editingold'                       => "'''Attention: Tu modifica un version ancian de iste pagina.'''
+Si tu lo publica, tote le modificationes facite post iste version essera perdite.",
 'yourdiff'                         => 'Differentias',
 'copyrightwarning'                 => "Nota ben que tote le contributiones a {{SITENAME}} se considera publicate sub le $2 (vide plus detalios in $1).
 Si tu non vole que tu scripto sia modificate impietosemente e redistribuite a voluntate, alora non lo submitte hic.<br />
@@ -785,13 +785,13 @@ In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate d
 '''Non submitte material subjecte a copyright sin autorisation expresse!'''",
 'copyrightwarning2'                => "Nota ben que tote le contributiones a {{SITENAME}} pote esser redigite, alterate, o eliminate per altere contributores.
 Si tu non vole que tu scripto sia modificate impietosemente, alora non lo submitte hic.<br />
-In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate de un ressource a dominio public o alteremente libere de derectos (vide detalios in $1).
-'''NON SUBMITTE MATERIAL SUBJECTE A COPYRIGHT SIN AUTORISATION EXPRESSE!'''",
-'longpagewarning'                  => "'''ATTENTION: Iste pagina occupa $1 kilobytes;
-alcun navigatores pote presentar problemas in modificar paginas que approxima o excede 32 kilobytes.
-Per favor considera divider le pagina in sectiones minus grande.'''",
-'longpageerror'                    => "'''Error: Le texto que tu submitteva occupa $1 kilobytes, excedente le maximo de $2 kilobytes.
-Illo non pote esser salveguardate.'''",
+In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate de un ressource a dominio public o alteremente libere de derectos (vide $1 pro detalios).
+'''Non submitte material subjecte a copyright sin autorisation expresse!'''",
+'longpagewarning'                  => "'''Attention:''' Iste pagina occupa $1 kilobytes;
+alcun navigatores pote presentar problemas in modificar paginas de 32 kilobytes o plus.
+Per favor considera divider le pagina in sectiones minus grande.",
+'longpageerror'                    => "'''Error: Le texto que tu submitteva occupa $1 kilobytes, excedente le maximo de $2 kilobytes.'''
+Illo non pote esser salveguardate.",
 'readonlywarning'                  => "'''Attention: Le base de datos ha essite blocate pro mantenentia, ergo tu non pote salveguardar tu modificationes in iste momento.'''
 Nos recommenda copiar-e-collar le texto in un file de texto e salveguardar lo pro plus tarde.
 
@@ -821,8 +821,8 @@ Le registro de deletiones pro iste pagina se trova infra pro major commoditate:"
 'deleted-notice'                   => 'Iste pagina ha essite delite.
 In basso se revela le registro de deletiones del pagina pro ulterior informationes.',
 'deletelog-fulllog'                => 'Vider registro complete',
-'edit-hook-aborted'                => 'Modification abortate per uncino.
-Illo non dava un explication.',
+'edit-hook-aborted'                => 'Modification abortate per un extension.
+Nulle explication disponibile.',
 'edit-gone-missing'                => 'Impossibile actualisar le pagina.
 Pare que illo ha essite delite.',
 'edit-conflict'                    => 'Conflicto inter modificationes.',
@@ -835,11 +835,11 @@ Illo existe ja.',
 
 Illo debe haber minus de $2 {{PLURAL:$2|appello|appellos}}, sed al momento ha $1 {{PLURAL:$1|appello|appellos}}.',
 'expensive-parserfunction-category'       => 'Paginas con troppo de appellos costose al functiones del analysator syntactic',
-'post-expand-template-inclusion-warning'  => 'Attention: Le grandor del patronos includite ha excedite le maximo.
-Alcun patronos non essera includite.',
+'post-expand-template-inclusion-warning'  => "'''Attention:''' Le grandor del patronos includite ha excedite le maximo.
+Alcun patronos non essera includite.",
 'post-expand-template-inclusion-category' => 'Paginas excedente le grandor maximal del patronos includite',
-'post-expand-template-argument-warning'   => 'Attention: Iste pagina contine al minus un parametro de patrono que ha un grandor de expansion excessive.
-Iste parametros ha essite omittite.',
+'post-expand-template-argument-warning'   => "'''Attention:''' Iste pagina contine al minus un parametro de patrono que ha un grandor de expansion excessive.
+Iste parametros ha essite omittite.",
 'post-expand-template-argument-category'  => 'Paginas que omitte alcun parametros de patrono',
 'parser-template-loop-warning'            => 'Recursion infinite detegite in patrono: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limite de recursion del patrono excedite ($1)',
@@ -995,7 +995,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'compareselectedversions' => 'Comparar versiones seligite',
 'visualcomparison'        => 'Comparation visual',
 'wikicodecomparison'      => 'Comparation del wikitexto',
-'editundo'                => 'annullar',
+'editundo'                => 'disfacer',
 'diff-multi'              => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non es monstrate)',
 'diff-movedto'            => 'displaciate verso $1',
 'diff-styleadded'         => '$1 stilo addite',
@@ -1070,7 +1070,7 @@ Tu pote [[:\$1|crear iste pagina]].",
 'prevn-title'                      => '$1 {{PLURAL:$1|resultato|resultatos}} precedente',
 'nextn-title'                      => '$1 {{PLURAL:$1|resultato|resultatos}} sequente',
 'shown-title'                      => 'Monstrar $1 {{PLURAL:$1|resultato|resultatos}} per pagina',
-'viewprevnext'                     => 'Vider ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vider ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Optiones de recerca',
 'searchmenu-exists'                => "'''Existe un pagina nominate \"[[\$1]]\" in iste wiki'''",
 'searchmenu-new'                   => "'''Crea le pagina \"[[:\$1]]\" in iste wiki!'''",
@@ -2012,7 +2012,7 @@ Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le
 'protect-othertime-op'        => 'altere duration',
 'protect-existing-expiry'     => 'Expiration existente: le $2 a $3',
 'protect-otherreason'         => 'Motivo altere/additional:',
-'protect-otherreason-op'      => 'motivo altere/additional',
+'protect-otherreason-op'      => 'Altere motivo',
 'protect-dropdown'            => '*Motivos commun de protection
 ** Vandalismo excessive
 ** Spam excessive
@@ -2207,8 +2207,8 @@ a un adresse IP blocate previemente.',
 'unblocklink'                     => 'disblocar',
 'change-blocklink'                => 'cambiar blocada',
 'contribslink'                    => 'contributiones',
-'autoblocker'                     => 'Autoblocate proque tu adresse IP ha recentemente essite usate per "[[User:$1|$1]]".
-Le ration date pro le blocada de $1 es: "$2"',
+'autoblocker'                     => 'Automaticamente blocate proque tu adresse IP ha recentemente essite usate per "[[User:$1|$1]]".
+Le motivo specificate pro le blocada de $1 es: "$2"',
 'blocklogpage'                    => 'Registro de blocadas',
 'blocklog-fulllog'                => 'Registro complete de blocadas',
 'blocklogentry'                   => 'blocava [[$1]] con un tempore de expiration de $2 $3',
@@ -2497,30 +2497,32 @@ Tu pote vider su codice-fonte.',
 'tooltip-recreate'                => 'Recrear le pagina nonobstante que illo ha essite delite',
 'tooltip-upload'                  => 'Comenciar le incargamento',
 'tooltip-rollback'                => '"Revocar" reverte le modification(es) de iste pagina del ultime contributor con un singule clic.',
-'tooltip-undo'                    => '"Annullar" reverte iste modification e aperi le formulario de modification in modo de previsualistion.
+'tooltip-undo'                    => '"Disfacer" reverte iste modification e aperi le formulario de modification in modo de previsualisation.
 Es possibile adder un motivo in le summario.',
 
 # Stylesheets
 'common.css'      => '/* Le CSS placiate hic se applicara a tote le stilos */',
-'standard.css'    => '/* Le CSS placiate hic afficera le usatores del stilo Standard */',
-'nostalgia.css'   => '/* Le CSS placiate hic afficera le usatores del stilo Nostalgia */',
-'cologneblue.css' => '/* Le CSS placiate hic afficera le usatores del stilo Cologne Blue */',
-'monobook.css'    => '/* Le CSS placiate hic afficera le usatores del stilo Monobook */',
-'myskin.css'      => '/* Le CSS placiate hic afficera le usatores del stilo Myskin */',
-'chick.css'       => '/* Le CSS placiate hic afficera le usatores del stilo Chick */',
-'simple.css'      => '/* Le CSS placiate hic afficera le usatores del stilo Simple */',
-'modern.css'      => '/* Le CSS placiate hic afficera le usatores del stilo Modern */',
+'standard.css'    => '/* Le CSS placiate hic afficera le usatores del apparentia Classic */',
+'nostalgia.css'   => '/* Le CSS placiate hic afficera le usatores del apparentia Nostalgia */',
+'cologneblue.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Colonia Blau */',
+'monobook.css'    => '/* Le CSS placiate hic afficera le usatores del apparentia MonoBook */',
+'myskin.css'      => '/* Le CSS placiate hic afficera le usatores del apparentia "Mi apparentia" */',
+'chick.css'       => '/* Le CSS placiate hic afficera le usatores del apparentia Chique */',
+'simple.css'      => '/* Le CSS placiate hic afficera le usatores del apparentia Simple */',
+'modern.css'      => '/* Le CSS placiate hic afficera le usatores del apparentia Moderne */',
+'print.css'       => '/* Le CSS placiate hic influentiara le apparentia del paginas imprimite */',
+'handheld.css'    => '/* Le CSS placiate hic afficera le apparatos mobile basate super le apparentia configurate in $wgHandheldStyle */',
 
 # Scripts
 'common.js'      => '/* Omne JavaScript hic se executara pro tote le usatores a cata cargamento de pagina. */',
-'standard.js'    => '/* Omne JavaScript hic se executara pro le usatores del stilo Standard */',
-'nostalgia.js'   => '/* Omne JavaScript hic se executara pro le usatores del stilo Nostalgia */',
-'cologneblue.js' => '/* Omne JavaScript hic se executara pro le usatores del stilo Cologne Blue */',
-'monobook.js'    => '/* Omne JavaScript hic se executara pro le usatores del stilo MonoBook */',
-'myskin.js'      => '/* Omne JavaScript hic se executara pro le usatores del stilo Myskin */',
-'chick.js'       => '/* Omne JavaScript hic se executara pro le usatores del stilo Chick */',
-'simple.js'      => '/* Omne JavaScript hic se executara pro le usatores del stilo Simple */',
-'modern.js'      => '/* Omne JavaScript hic se executara pro le usatores del stilo Modern */',
+'standard.js'    => '/* Omne JavaScript hic se executara pro le usatores del apparentia Classic */',
+'nostalgia.js'   => '/* Omne JavaScript hic se executara pro le usatores del apparentia Nostalgia */',
+'cologneblue.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Colonia Blau */',
+'monobook.js'    => '/* Omne JavaScript hic se executara pro le usatores del apparentia MonoBook */',
+'myskin.js'      => '/* Omne JavaScript hic se executara pro le usatores del apparentia "Mi apparentia" */',
+'chick.js'       => '/* Omne JavaScript hic se executara pro le usatores del apparentia Chique */',
+'simple.js'      => '/* Omne JavaScript hic se executara pro le usatores del apparentia Simple */',
+'modern.js'      => '/* Omne JavaScript hic se executara pro le usatores del apparentia Moderne */',
 
 # Metadata
 'nodublincore'      => 'Le metadatos Dublin Core RDF ha essite disactivate in iste servitor.',
@@ -2557,9 +2559,9 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 # Skin names
 'skinname-standard'    => 'Classic',
 'skinname-nostalgia'   => 'Nostalgia',
-'skinname-cologneblue' => 'Blau Colonia',
+'skinname-cologneblue' => 'Colonia Blau',
 'skinname-monobook'    => 'MonoBook',
-'skinname-myskin'      => 'Mi stilo',
+'skinname-myskin'      => 'Mi apparentia',
 'skinname-chick'       => 'Chique',
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Moderne',

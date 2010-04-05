@@ -989,7 +989,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prevn-title'                      => 'Ñawpaq $1 {{PLURAL:$1|taripasqa|taripasqakuna}}',
 'nextn-title'                      => 'Qatiq $1 {{PLURAL:$1|taripasqa|taripasqakuna}}',
 'shown-title'                      => "Huk p'anqapi $1 {{PLURAL:$1|taripasqata|taripasqakunata}} rikuchiy",
-'viewprevnext'                     => 'Qhaway ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Qhaway ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Maskaypaq akllanakuna',
 'searchmenu-exists'                => "'''Kay wikipiqa «[[$1]]» sutiyuq p'anqam kachkan'''",
 'searchmenu-new'                   => "'''Kay wikipi \"[[:\$1]]\" sutiyuq p'anqata kamariy!'''",

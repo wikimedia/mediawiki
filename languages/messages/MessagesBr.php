@@ -991,7 +991,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'prevn-title'                      => "$1 {{PLURAL:$1|disoc'h|disoc'h}} kent",
 'nextn-title'                      => "$1 {{PLURAL:$1|disoc'h|disoc'h}} war-lerc'h",
 'shown-title'                      => "Diskouez $1 {{PLURAL:$1|disoc'h|disoc'h}} dre bajenn",
-'viewprevnext'                     => 'Gwelet ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Gwelet ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Dibarzhioù klask',
 'searchmenu-exists'                => "'''Ur bajenn anvet\"[[:\$1]]\" zo war ar wiki-mañ'''",
 'searchmenu-new'                   => "'''Krouiñ ar bajenn \"[[:\$1]]\" war ar wiki-mañ !'''",
@@ -1552,7 +1552,7 @@ Ur [[Special:WhatLinksHere/$2|roll klok]] a c'haller da gaout.",
 'statistics-mostpopular'       => 'Pajennoù muiañ sellet',
 
 'disambiguations'      => 'Pajennoù disheñvelout',
-'disambiguationspage'  => 'Project:Liammoù_ouzh_ar_pajennoù_disheñvelaat',
+'disambiguationspage'  => 'Template:Disheñvelout',
 'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn disheñvelout'''.
 Padal e tlefent kas war-eeun d'an danvez anezho.<br />
 Sellet e vez ouzh ur bajenn evel ouzh ur bajenn disheñvelout ma ra gant ur patrom liammet ouzh [[MediaWiki:Disambiguationspage]]",
@@ -1906,7 +1906,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ '''$1''':",
 'protect-othertime-op'        => 'termen all',
 'protect-existing-expiry'     => 'Termen echuiñ merket : $3, $2',
 'protect-otherreason'         => 'Abeg all/ouzhpenn :',
-'protect-otherreason-op'      => 'abeg all/ouzhpenn',
+'protect-otherreason-op'      => 'Abeg all',
 'protect-dropdown'            => '*Abegoù gwareziñ boutin
 ** Vandalerezh betek re
 ** Stroberezh betek re
@@ -2043,7 +2043,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 ** Mont re bell gant implij meur a gont
 ** Anv implijer n'eo ket aotreet",
 'ipbanononly'                     => 'Stankañ an implijerien dianav hepken',
-'ipbcreateaccount'                => 'Mirout da grouiñ kontoù',
+'ipbcreateaccount'                => 'Mirout ouzh an implijer da grouiñ kontoù',
 'ipbemailban'                     => 'Mirout ouzh an implijer da gas posteloù',
 'ipbenableautoblock'              => "Stankañ war-eeun ar chomlec'h IP diwezhañ implijet gant an den-mañ hag an holl chomlec'hioù en deus klasket degas kemmoù drezo war-lerc'h",
 'ipbsubmit'                       => "Stankañ ouzh ar chomlec'h-mañ",

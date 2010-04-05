@@ -1079,7 +1079,7 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 'prevn-title'                      => '{{PLURAL:$1|Ankstesnis $1 rezultatas|Ankstesni $1 rezultatai|Ankstesni $1 rezultatų}}',
 'nextn-title'                      => '{{PLURAL:$1|Kitas $1 rezultatas|Kiti $1 rezultatai|Kiti $1 rezultatų}}',
 'shown-title'                      => 'Rodyti $1 {{PLURAL:$1|rezultatą|rezultatus|rezultatus}} puslapyje',
-'viewprevnext'                     => 'Žiūrėti ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Žiūrėti ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Paieškos nustatymai',
 'searchmenu-exists'                => "'''Puslapis pavadinimu „[[$1]]“ šioje wiki'''",
 'searchmenu-new'                   => "'''Sukurti puslapį „[[:$1]]“ šioje wiki!'''",
@@ -1972,7 +1972,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 'protect-othertime-op'        => 'kitas laikas',
 'protect-existing-expiry'     => 'Esamas galiojimo laikas: $3, $2',
 'protect-otherreason'         => 'Kita/papildoma priežastis:',
-'protect-otherreason-op'      => 'kita/papildoma priežastis',
+'protect-otherreason-op'      => 'Kita priežastis',
 'protect-dropdown'            => '*Įprastos užrakinimo priežastys
 ** Intensyvus vandalizmas
 ** Intensyvus nuorodų reklamavimas

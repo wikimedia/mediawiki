@@ -350,14 +350,14 @@ $messages = array(
 'badaccess-group0' => "No tiene premisos ta fer l'aizión que ha demandato.",
 'badaccess-groups' => "L'aizión que ha demandato no ye premitita que ta os usuarios {{PLURAL:$2|d'a colla|d'as collas}}: $1.",
 
-'versionrequired'     => 'Cal a bersión $1 de MediaWiki',
-'versionrequiredtext' => 'Cal a bersión $1 de MediaWiki ta fer serbir ista pachina. Ta más informazión, consulte [[Special:Version]]',
+'versionrequired'     => 'Ye precisa a versión $1 de MediaWiki',
+'versionrequiredtext' => 'Ye precisa a versión $1 de MediaWiki ta fer servir ista pachina. Ta más información, consulte [[Special:Version]]',
 
 'ok'                      => "D'alcuerdo",
 'retrievedfrom'           => 'Obtenito de "$1"',
 'youhavenewmessages'      => 'Tiene $1 ($2).',
 'newmessageslink'         => 'mensaches nuebos',
-'newmessagesdifflink'     => 'Esferenzias con a bersión anterior',
+'newmessagesdifflink'     => 'Esferencias con a versión anterior',
 'youhavenewmessagesmulti' => 'Tiene nuebos mensaches en $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
@@ -432,7 +432,7 @@ Cal que a razón d'isto siga que s'ha seguito un diff no esviellato u un vinclo 
 
 Si no ye iste o caso, talment haiga trobato un error en o software. 
 Por favor, comunique-lo a un [[Special:ListUsers/sysop|almenistrador]] endicando-le l'adreza URL.",
-'missingarticle-rev'   => '(bersión#: $1)',
+'missingarticle-rev'   => '(versión#: $1)',
 'missingarticle-diff'  => '(Esf: $1, $2)',
 'readonly_lag'         => 'A base de datos ye bloqueyata temporalment entre que os serbidors se sincronizan.',
 'internalerror'        => 'Error interna',
@@ -717,9 +717,9 @@ Os suyos cambeos s'amuestran en o cuatrón de testo inferior.
 Abrá d'encorporar os suyos cambeos en o testo esistent.
 '''Nomás''' o testo en o cuatrón superior s'alzará cuan prete o botón \"Alzar a pachina\".",
 'yourtext'                         => 'O testo suyo',
-'storedversion'                    => 'Bersión almadazenata',
+'storedversion'                    => 'Versión almadazenata',
 'nonunicodebrowser'                => "'''Pare cuenta: O suyo nabegador no cumple a norma Unicode. S'ha autibato un sistema d'edizión alternatibo que li premitirá d'editar articlos con seguridat: os caráuters no ASCII aparixerán en a caxa d'edizión como codigos exadezimals.'''",
-'editingold'                       => "'''PARE CUENTA: Ye editando una bersión antiga d'ista pachina. Si alza a pachina, toz os cambeos feitos dende ixa rebisión se tresbatirán.'''",
+'editingold'                       => "'''Pare cuenta: Ye editando una versión antiga d'ista pachina. Si alza a pachina, totz os cambios feitos dende ixa revisión se perderán.'''",
 'yourdiff'                         => 'Esferenzias',
 'copyrightwarning'                 => "Por favor, pare cuenta en que todas as contrebucions a {{SITENAME}} se consideran publicatas baixo a licencia $2 (se veigan os detalles en $1). Si no deseya que atra chent corricha os suyos escritos sin piedat y los distribuiga librement, alavez, no habría de meter-los aquí. En publicar aquí, tamién ye declarando que vusté mesmo escribió iste texto y ye l'amo d'os dreitos d'autor, u bien lo copió dende o dominio publico u de cualsiquier atra fuent libre.
 '''NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!'''<br />",
@@ -793,13 +793,13 @@ A razón endicata por $3 ye ''$2''",
 # History pages
 'viewpagelogs'           => "Veyer os rechistros d'ista pachina",
 'nohistory'              => "Ista pachina no tiene un istorial d'edizions.",
-'currentrev'             => 'Bersión autual',
+'currentrev'             => 'Versión actual',
 'currentrev-asof'        => "zaguera bersión d'o $1",
 'revisionasof'           => "Bersión d'o $1",
 'revision-info'          => "Bersión d'o $1 feita por $2", # Additionally available: $3: revision id
 'previousrevision'       => '← Versión anterior',
 'nextrevision'           => 'Versión siguient →',
-'currentrevisionlink'    => 'Beyer bersión autual',
+'currentrevisionlink'    => 'Versión actual',
 'cur'                    => 'act',
 'next'                   => 'siguient',
 'last'                   => 'ant',
@@ -816,7 +816,7 @@ Leyenda: '''({{int:cur}})''' = esferencias con a versión actual, '''({{int:last
 
 # Revision feed
 'history-feed-title'          => 'Historial de versions',
-'history-feed-description'    => "Istorial de bersions d'ista pachina en o wiki",
+'history-feed-description'    => "Historial de versions d'ista pachina en o wiki",
 'history-feed-item-nocomment' => '$1 en $2', # user at time
 'history-feed-empty'          => "A pachina demandata no esiste.
 Puede que aiga estato borrata d'o wiki u renombrata.
@@ -831,34 +831,34 @@ Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAM
 'rev-deleted-text-view'          => "Ista bersión d'a pachina s'ha '''borrato'''.
 La puet beyer porque ye almenistrador/a; puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borratos].",
 'rev-delundel'                   => 'amostrar/amagar',
-'revisiondelete'                 => 'Borrar/esfer borrau de bersions',
-'revdelete-nooldid-title'        => 'A bersión de destino no ye conforme',
-'revdelete-nooldid-text'         => 'No ha espezificato garra bersión de destino ta aplicar-le ista funzión, a bersión espezificata no esiste u ye mirando de amagar a bersión autual.',
+'revisiondelete'                 => 'Borrar/restaurar versions',
+'revdelete-nooldid-title'        => 'A versión de destino no ye conforme',
+'revdelete-nooldid-text'         => "No ha endicato sobre qué versión u versions de destino s'ha d'aplicar ista función, a versión especificata no existe u ye mirando d'amagar a versión actual.",
 'revdelete-nologtype-title'      => "No s'ha endicau garra mena de rechistro",
 'revdelete-nologtype-text'       => 'No ha endicato sobre qué tipo de rechistro quiere fer ista azión.',
 'revdelete-toomanytargets-title' => 'Masiaus obchetibos',
 'revdelete-toomanytargets-text'  => "Ha endicato masiadas menas d'obchetibos sobre os que fer ista azión.",
 'revdelete-nologid-title'        => 'Dentrada de rechistro imbalida',
 'revdelete-nologid-text'         => 'No ha endicau sobre qué ebento rechistrau quiere fer serbir ista funzión u bien no esiste a dentrada de rechistro que ha endicau.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Bersión trigata|Bersions trigatas}} de [[:$1]]:'''",
+'revdelete-selected'             => "'''{{PLURAL:$2|Versión trigata|Versions trigatas}} de [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Escaizimiento d'o rechistro trigato|Escaizimientos d'o rechistro trigatos}}:'''",
 'revdelete-text'                 => "'''As bersions borratas encara aparixerán en o istorial y o rechistro d'a pachina, pero os suyos contenius no serán azesibles ta o publico.'''
 
 Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato y podrán esfer o borrau á trabiés d'a mesma interfaz, fueras de si os operadors establen restrizions adizionals.",
 'revdelete-legend'               => 'Establir as restrizions de bisibilidat:',
-'revdelete-hide-text'            => "Amagar o testo d'a bersión",
+'revdelete-hide-text'            => "Amagar o texto d'a versión",
 'revdelete-hide-name'            => 'Amagar aizión y obchetibo',
 'revdelete-hide-comment'         => "Amagar comentario d'edizión",
 'revdelete-hide-user'            => "Amagar o nombre/l'adreza IP d'o editor",
 'revdelete-hide-restricted'      => "Suprimir os datos d'os almenistradors igual como os d'a resta",
 'revdelete-suppress'             => "Sacar os datos d'os almenistradors igual como os d'a resta d'usuarios",
 'revdelete-hide-image'           => "Amagar o conteniu de l'archibo",
-'revdelete-unsuppress'           => "Sacar restrizions d'as bersions restauradas",
+'revdelete-unsuppress'           => "Sacar restriccions d'as versions restauradas",
 'revdelete-log'                  => 'Razón ta o borrau:',
 'revdelete-submit'               => 'Aplicar á la bersión trigata',
-'revdelete-logentry'             => "S'ha cambiato a bisibilidat d'a bersión de [[$1]]",
+'revdelete-logentry'             => "S'ha cambiato a visibilidat d'a versión de [[$1]]",
 'logdelete-logentry'             => "S'ha cambiato a bisibilidat d'escaizimientos de [[$1]]",
-'revdelete-success'              => "'''S'ha cambiato correctament a bisibilidat d'as bersions.'''",
+'revdelete-success'              => "'''S'ha cambiato correctament a visibilidat d'as versions.'''",
 'logdelete-success'              => "'''S'ha cambiato correutament a bisibilidat d'os escaizimientos.'''",
 'revdel-restore'                 => 'Cambiar a visibilidat',
 'pagehist'                       => 'Istorial',
@@ -870,7 +870,7 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 'revdelete-unrestricted'         => "S'han borrato as restrizions ta almenistradors",
 'revdelete-hid'                  => 'amagar $1',
 'revdelete-unhid'                => 'amostrar $1',
-'revdelete-log-message'          => '$1 ta $2 {{PLURAL:$2|bersión|bersions}}',
+'revdelete-log-message'          => '$1 ta $2 {{PLURAL:$2|versión|versions}}',
 'logdelete-log-message'          => '$1 ta $2 {{PLURAL:$2|esdebenimiento|esdebenimientos}}',
 
 # Suppression log
@@ -879,15 +879,15 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 
 # History merging
 'mergehistory'                     => 'Aunir istorials',
-'mergehistory-header'              => "Ista pachina li premite aunir bersions d'o istorial d'una pachina d'orichen con una nueba pachina.
-Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
-'mergehistory-box'                 => 'Aunir as bersions de dos pachinas:',
+'mergehistory-header'              => "Ista pachina li premite de fusionar versions d'o historial d'una pachina d'orichen con una nueva pachina.
+Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.",
+'mergehistory-box'                 => 'Fusionar as versions de dos pachinas:',
 'mergehistory-from'                => "Pachina d'orichen:",
 'mergehistory-into'                => 'Pachina de destino:',
 'mergehistory-list'                => "Istorial d'edizions aunible",
-'mergehistory-merge'               => "As siguients bersions de [[:$1]] pueden aunir-se con [[:$2]]. Faiga serbir a columna de botons de radio ta aunir nomás as bersions creyadas antis d'un tiempo espezificato. Pare cuenta que si emplega os binclos de nabegazión meterá os botons en o suyo estau orichinal.",
+'mergehistory-merge'               => "As siguients versions de [[:$1]] se pueden fundir con [[:$2]]. Faiga serbir a columna de botons d'opciónradio ta fusionar nomás as versions creyadas antis d'un tiempo especificato. Pare cuenta que si emplega os vinclos de navegación meterá os botons en o suyo estau orichinal.",
 'mergehistory-go'                  => 'Amostrar edizions aunibles',
-'mergehistory-submit'              => 'Aunir bersions',
+'mergehistory-submit'              => 'Fusionar versions',
 'mergehistory-empty'               => 'No puede aunir-se garra rebisión.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|rebisión|rebisions}} de [[:$1]] {{PLURAL:$3|combinata|combinatas}} correutament con [[:$2]].',
 'mergehistory-fail'                => "No s'ha puesto aunir os dos istorials, por fabor comprebe a pachina y os parametros de tiempo.",
@@ -983,7 +983,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'notextmatches'                    => "No bi ha garra consonancia en os textos d'as pachinas",
 'prevn'                            => 'anteriors $1',
 'nextn'                            => 'siguiens $1',
-'viewprevnext'                     => 'Veyer ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Veyer ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opzions de busca',
 'searchmenu-exists'                => "'''Bi ha una pachina clamada \"[[\$1]]\" en ista wiki'''",
 'searchmenu-new'                   => "'''Creyar a pachina \"[[:\$1]]\" en ista wiki!'''",
@@ -1054,7 +1054,8 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'math_unknown_function'     => 'funzión esconoxita',
 'math_lexing_error'         => 'error de lesico',
 'math_syntax_error'         => 'error de sintacsis',
-'math_image_error'          => "Bi abió una error en a combersión enta o formato PNG; comprebe que ''latex'', ''dvips'', ''gs'', y ''convert'' sigan instalatos correutament.",
+'math_image_error'          => 'A conversión enta PNG ha tenito errors; 
+comprebe si latex, dvips, gs y convert son bien instalatos.',
 'math_bad_tmpdir'           => "No s'ha puesto escribir u creyar o direutorio temporal d'esprisions matematicas",
 'math_bad_output'           => "No s'ha puesto escribir u creyar o direutorio de salida d'esprisions matematicas",
 'math_notexvc'              => "No s'ha trobato l'archibo executable ''texvc''. Por fabor, leiga <em>math/README</em> ta confegurar-lo correutament.",
@@ -1181,11 +1182,11 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'right-writeapi'             => "Emplego de l'API d'escritura",
 'right-delete'               => 'Borrar pachinas',
 'right-bigdelete'            => 'Borrar pachinas con istorials largos',
-'right-deleterevision'       => "Borrar y recuperar bersions espezificas d'una pachina",
+'right-deleterevision'       => "Borrar y recuperar versions especificas d'una pachina",
 'right-deletedhistory'       => "Beyer as dentradas borratas de l'istorial, sin o suyo testo asoziato",
 'right-browsearchive'        => 'Mirar pachinas borratas',
 'right-undelete'             => 'Recuperar una pachina',
-'right-suppressrevision'     => 'Rebisar y recuperar bersions amagatas ta os Almenistradors',
+'right-suppressrevision'     => 'Revisar y recuperar versions amagatas ta os Admenistradors',
 'right-suppressionlog'       => 'Veyer os rechistro privatos',
 'right-block'                => "Bloqueyar á atros usuarios ta pribar-les d'editar",
 'right-blockemail'           => 'Bloqueyar á un usuario ta pribar-le de nimbiar correus',
@@ -1234,11 +1235,11 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'action-upload_by_url'        => 'cargar iste archibo dende una adreza URL',
 'action-writeapi'             => "fer serbir l'API d'escritura",
 'action-delete'               => 'borrar ista pachina',
-'action-deleterevision'       => 'borrar ista bersión',
+'action-deleterevision'       => 'borrar ista versión',
 'action-deletedhistory'       => "beyer o istorial borrato d'ista pachina",
 'action-browsearchive'        => 'mirar pachinas borratas',
 'action-undelete'             => 'recuperar ista pachina',
-'action-suppressrevision'     => 'rebisar y restaurar ista bersión amagata',
+'action-suppressrevision'     => 'revisar y restaurar ista versión amagata',
 'action-suppressionlog'       => 'beyer iste rechistro pribato',
 'action-block'                => 'bloqueyar iste usuario ta que no pueda editar',
 'action-protect'              => "cambiar os libels de protezión d'ista pachina",
@@ -1301,13 +1302,13 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'upload_directory_missing'    => 'O direutorio de carga ($1) no esiste y no lo puede creyar o serbidor web.',
 'upload_directory_read_only'  => "O serbidor web no puede escribir en o direutorio de carga d'archibos ($1).",
 'uploaderror'                 => "S'ha produzito una error en cargar l'archibo",
-'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar archibos.
-Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:FileList|lista d'archibos cargatos]]. As cargas y recargas tamién se rechistran en o [[Special:Log/upload|rechistro de cargas]], y os borraus en o [[Special:Log/delete|rechistro de borraus]].
+'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar fichers.
+Ta veyer u mirar fichers cargatas denantes vaiga t'a [[Special:FileList|lista de fichers cargatos]]. As cargas y recargas tamién se rechistran en o [[Special:Log/upload|rechistro de cargas]], y os borraus en o [[Special:Log/delete|rechistro de borraus]].
 
-Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas 
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archibo.jpg]]</nowiki></tt>''' ta usar a bersion completa de l'archibo, 
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archibo.png|200px|thumb|left|testo alternatibo]]</nowiki></tt>''' ta usar una bersión de 200 píxels d'amplaria en una caixa a la marguin cucha con 'testo alternatibo' como descripzión
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archibo.ogg]]</nowiki></tt>''' ta fer un binclo dreitament ta l'archibo sin amostrar-lo.",
+Ta incluyir un fichero en una pachina, emplegue un vinclo d'una d'istas trazas 
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichero.jpg]]</nowiki></tt>''' ta fer servir a version completa d'o fichero, 
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichero.png|200px|thumb|left|texto alternativo]]</nowiki></tt>''' ta fer serivr una versión de 200 píxels d'amplaria en una caixa a la marguin cucha con 'texto alternativo' como descripción
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichero.ogg]]</nowiki></tt>''' ta fer un vinclo dreitament ta o fichero sin amostrar-lo.",
 'upload-permitted'            => "Tipos d'archibo premititos: $1.",
 'upload-preferred'            => "Tipos d'archibo preferitos: $1.",
 'upload-prohibited'           => "Tipos d'archibo biedatos: $1.",
@@ -1360,7 +1361,7 @@ Si encara quiere cargar ixe archibo, torne y faiga serbir un nuebo nombre. [[Fil
 'uploadwarning'               => "Albertenzia de carga d'archibo",
 'savefile'                    => 'Alzar archibo',
 'uploadedimage'               => '«[[$1]]» cargato.',
-'overwroteimage'              => 's\'ha cargato una nueba bersión de "[[$1]]"',
+'overwroteimage'              => 's\'ha cargato una nueva versión de "[[$1]]"',
 'uploaddisabled'              => "A carga d'archibos ye desautibata",
 'uploaddisabledtext'          => 'A carga de archibos ye desautibata.',
 'php-uploaddisabledtext'      => 'A carga de fichers PHP ye desautibata. Por fabor, berifique a confegurazión de file_uploads.',
@@ -1422,7 +1423,7 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'listfiles_user'        => 'Usuario',
 'listfiles_size'        => 'Grandaria (bytes)',
 'listfiles_description' => 'Descripzión',
-'listfiles_count'       => 'Bersions',
+'listfiles_count'       => 'Versions',
 
 # File description page
 'filehist'                  => "Historial d'o fichero",
@@ -1455,29 +1456,29 @@ Tamién puez consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'shareduploadwiki-linktext' => "pachina de descripzión de l'archibo",
 'noimage'                   => 'No bi ha garra archibo con ixe nombre. Manimenos, puede $1.',
 'noimage-linktext'          => 'cargar uno',
-'uploadnewversion-linktext' => "Cargar una nueba bersión d'iste archibo",
+'uploadnewversion-linktext' => "Cargar una nueva versión d'iste fichero",
 
 # File reversion
 'filerevert'                => 'Rebertir $1',
 'filerevert-legend'         => 'Rebertir fichero',
-'filerevert-intro'          => "Ye rebertindo '''[[Media:$1|$1]]''' á la [$4 bersion de $3, $2].",
+'filerevert-intro'          => "Ye revertindo '''[[Media:$1|$1]]''' a la [$4 versión de $3, $2].",
 'filerevert-comment'        => 'Comentario:',
-'filerevert-defaultcomment' => 'Rebertito á la bersión de $2, $1',
+'filerevert-defaultcomment' => "Revertito t'a versión de $1, $2",
 'filerevert-submit'         => 'Rebertir',
-'filerevert-success'        => "S'ha rebertito '''[[Media:$1|$1]]''' á la [$4 bersión de $3, $2].",
-'filerevert-badversion'     => "No bi ha garra bersión antiga d'o archibo con ixa calendata y ora.",
+'filerevert-success'        => "S'ha revertito '''[[Media:$1|$1]]''' a la [$4 versión de $3, $2].",
+'filerevert-badversion'     => "No bi ha garra versión antiga d'o fichero con ixa calendata y hora.",
 
 # File deletion
 'filedelete'                  => 'Borrar $1',
 'filedelete-legend'           => 'Borrar archibo',
 'filedelete-intro'            => "Ye en momentos de borrar o fichero '''[[Media:$1|$1]]''' chunto con toda a suya istoria.",
-'filedelete-intro-old'        => "Ye borrando a bersión de '''[[Media:$1|$1]]''' de [$4 $3, $2].",
+'filedelete-intro-old'        => "Ye en momentos de borrar a versión de '''[[Media:$1|$1]]''' de [$4 $3, $2].",
 'filedelete-comment'          => 'Causa:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "S'ha borrato '''$1'''.",
-'filedelete-success-old'      => "S'ha borrato a bersión de '''[[Media:$1|$1]]''' de $3, $2.",
+'filedelete-success-old'      => "S'ha borrato a versión de '''[[Media:$1|$1]]''' de $2 a las $3.",
 'filedelete-nofile'           => "'''$1''' no esiste.",
-'filedelete-nofile-old'       => "No bi ha garra bersión alzata de '''$1''' con ixos atributos.",
+'filedelete-nofile-old'       => "No bi ha garra versión alzata de '''$1''' con os atributos especificatos.",
 'filedelete-otherreason'      => 'Atras razons:',
 'filedelete-reason-otherlist' => 'Atra razón',
 'filedelete-reason-dropdown'  => "*Razons comuns ta borrar archibos
@@ -1548,7 +1549,7 @@ Cada ringlera contién o binclo t'a primer y segunda reendrezeras, y tamién o d
 'brokenredirects-delete' => '(borrar)',
 
 'withoutinterwiki'         => "Pachinas sin d'interwikis",
-'withoutinterwiki-summary' => 'As siguients pachinas no tienen binclos ta bersions en atras luengas:',
+'withoutinterwiki-summary' => 'As pachinas siguients no tienen vinclos ta versions en atras luengas:',
 'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Amostrar',
 
@@ -1559,8 +1560,8 @@ Cada ringlera contién o binclo t'a primer y segunda reendrezeras, y tamién o d
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categorías}}',
 'nlinks'                  => '$1 {{PLURAL:$1|binclo|binclos}}',
 'nmembers'                => '$1 {{PLURAL:$1|miembro|miembros}}',
-'nrevisions'              => '$1 {{PLURAL:$1|bersión|bersions}}',
-'nviews'                  => '$1 {{PLURAL:$1|besita|besitas}}',
+'nrevisions'              => '$1 {{PLURAL:$1|versión|versions}}',
+'nviews'                  => '$1 {{PLURAL:$1|vesita|vesitas}}',
 'specialpage-empty'       => 'Ista pachina ye bueda.',
 'lonelypages'             => 'Pachinas popiellas',
 'lonelypagestext'         => "As siguients pachinas no tienen binclos dende atras pachinas ni s'encluyen en atras pachinas de {{SITENAME}}.",
@@ -1739,7 +1740,7 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias
 'unwatch'              => 'Deixar de cosirar',
 'unwatchthispage'      => 'Deixar de cosirar',
 'notanarticle'         => 'No ye una pachina de conteniu',
-'notvisiblerev'        => "S'ha borrau ixa bersión",
+'notvisiblerev'        => "S'ha borrato a revisión",
 'watchnochange'        => "Dengún d'os articlos d'a suya lista de seguimiento no s'ha editoato en o periodo de tiempo amostrato.",
 'watchlist-details'    => '{{PLURAL:$1|$1 pachina|$1 pachinas}} en a suya lista de seguimiento, sin contar-ie as pachinas de descusión.',
 'wlheader-enotif'      => '* A notificazión por correu eletronico ye autibata',
@@ -1813,17 +1814,17 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 'dellogpage'             => 'Rechistro de borraus',
 'dellogpagetext'         => "Contino se i amuestra una lista d'os borraus más rezients.",
 'deletionlog'            => 'rechistro de borraus',
-'reverted'               => 'Tornato ta una bersión anterior',
+'reverted'               => "S'ha tornato ta una versión anterior",
 'deletecomment'          => 'Razón ta borrar:',
 'deleteotherreason'      => 'Otras/Más razons:',
-'deletereasonotherlist'  => 'Otra razón',
+'deletereasonotherlist'  => 'Atra razón',
 'deletereason-dropdown'  => "*Razons comuns de borrau
 ** Á demanda d'o mesmo autor
 ** trencadura de copyright
 ** Bandalismo",
 'delete-edit-reasonlist' => "Editar as razons d'o borrau",
-'delete-toobig'          => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersión|bersions}}. S'ha restrinchito o borrau d'ista mena de pachinas ta aprebenir d'a corrompizión azidental de {{SITENAME}}.",
-'delete-warning-toobig'  => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersión|bersions}}. Si la borra puede corromper as operazions d'a base de datos de {{SITENAME}}; contine con ficazio.",
+'delete-toobig'          => "Ista pachina tiene un historial d'edicions prou largo, con mas de $1 {{PLURAL:$1|versión|versions}}. S'ha restrinchito o borrau d'ista mena de pachinas ta aprevenir d'a corrompición accidental de {{SITENAME}}.",
+'delete-warning-toobig'  => "Ista pachina tiene un historial d'edición prou largo, con más de $1 {{PLURAL:$1|versión|versions}}. Si la borra podría corromper as operacions d'a base de datos de {{SITENAME}}; contine con cuenta.",
 
 # Rollback
 'rollback'         => 'Revertir edicions',
@@ -1835,8 +1836,8 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 
 A zaguer edizión d'a pachina la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment'      => "O resumen d'a edizión ye: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => "S'han esfeito as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success' => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
+'revertpage'       => "S'han revertito as edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); tornando t'a zaguera versión editada por [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "Revertidas as edicions de $1; s'ha retornato t'a zaguer versión de $2.",
 'sessionfailure'   => 'Pareix que bi ha un problema con a suya sesión;
 s\'ha anulato ista aizión como mida de precura contra secuestros de sesión.
 Por fabor, prete "Entazaga", recargue a pachina d\'a que benió, y torne á prebar alabez.',
@@ -1875,7 +1876,7 @@ Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
 'protect-othertime-op'        => 'atra (espezificar)',
 'protect-existing-expiry'     => 'Calendata de zircunduzión autual: $2 a las $3',
 'protect-otherreason'         => 'Atra razón:',
-'protect-otherreason-op'      => 'atra razón',
+'protect-otherreason-op'      => 'Atra razón',
 'protect-dropdown'            => "*Razons de protezión eszesibo
 **Bandalismo eszesibo
 **Spam eszesibo
@@ -1903,19 +1904,19 @@ Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
 # Undelete
 'undelete'                     => 'Beyer pachinas borratas',
 'undeletepage'                 => 'Beyer y restaurar pachinas borratas',
-'undeletepagetitle'            => "'''Contino s'amuestran as bersión borratas de [[:$1]]'''.",
+'undeletepagetitle'            => "'''Contino s'amuestran as versions borratas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Beyer pachinas borratas',
 'undeletepagetext'             => "{{PLURAL:$1|A pachina siguent ye estada borrata pera encara ye|As siguients $1 pachinas son estadas borratas pero encara son}} en l'archibo y {{PLURAL:$1|podría restaurar-se|podrían restaurar-sen}}. L'archibo se borra periodicament.",
-'undelete-fieldset-title'      => 'Restaurar bersions',
-'undeleteextrahelp'            => "Ta restaurar tot o istorial de bersions d'una pachina, deixe todas as caixetas sin siñalar y prete '''''Restaurar!'''''. Ta restaurar sólo belunas d'as bersions, siñale as caixetas correspondients á las bersions que quiere restaurar y punche dimpués en '''''Restaurar!'''''. Punchando en '''''Prenzipiar''''' se borrará o comentario y se tirarán os siñals d'as caixetas.",
-'undeleterevisions'            => '$1 {{PLURAL:$1|bersión|bersions}} archibatas',
-'undeletehistory'              => "Si restaura a pachina, se restaurarán  todas as bersions en o suyo istorial. 
-Si s'ha creyato una nueba pachina con o mesmo nombre dende que se borró a orichinal, as bersions restauradas amaneixerán antes en o istorial.",
-'undeleterevdel'               => "No s'esfará o borrau si isto resulta en o borrau parzial d'a pachina d'alto u a rebisión de l'archibo. En ixe caso, deselezione u amuestre as bersions borratas más rezients.",
+'undelete-fieldset-title'      => 'Restaurar versions',
+'undeleteextrahelp'            => "Ta restaurar tot o istorial de versions d'una pachina, deixe todas as caixetas sin sinyalar y prete '''''Restaurar!'''''. Ta no restaurar que bell unas d'as versions, sinyale as caixetas correspondients a las versions que quiere restaurar y punche dimpués en '''''Restaurar!'''''. Punchando en '''''Prencipiar''''' se borrará o comentario y se tirarán os sinyals d'as caixetas.",
+'undeleterevisions'            => '$1 {{PLURAL:$1|versión|versions}} archivatas',
+'undeletehistory'              => "Si restableix a pachina, se restaurarán  todas as versions en o suyo historial. 
+Si s'ha creyato una nueva pachina con o mesmo nombre dende que se borró a orichinal, as versions restauradas amaneixerán antes en o istorial.",
+'undeleterevdel'               => "O borrau no se desferá si resultalse en o borrau parcial d'a zaguera versión d'a pachina u o fichero.  En ixos casos, ha de deseleccionar u fer veyer as versions borratas más recients.",
 'undeletehistorynoadmin'       => "Esta pachina ye borrata. A razón d'o suyo borrau s'amuestra más t'abaixo en o resumen, asinas como os detalles d'os usuarios que eban editato a pachina antes d'o borrau. O testo completo d'istas edizions borratas ye disponible nomás ta os almenistradors.",
-'undelete-revision'            => 'Bersión borrata de $1 (editada por $3, o $4 á las $5):',
-'undeleterevision-missing'     => "Bersión no conforme u no trobata. Regular que o binclo sia incorreuto u que a bersión aiga estato restaurata u borrata de l'archibo.",
-'undelete-nodiff'              => "No s'ha trobato garra bersión anterior.",
+'undelete-revision'            => 'Versión borrata de $1 (editada por $3, o $4 a las $5):',
+'undeleterevision-missing'     => "Versión no conforme u no trobata. Regular que o vinclo sía incorreuto u que ixa versión s'haiga restaurato u borrato de l'archivo.",
+'undelete-nodiff'              => "No s'ha trobato garra versión anterior.",
 'undeletebtn'                  => 'Restaurar!',
 'undeletelink'                 => 'amostrar/restaurar',
 'undeletereset'                => 'Prenzipiar',
@@ -1935,14 +1936,14 @@ Consulte o [[Special:Log/delete|rechistro de borraus]] ta beyer una lista d'os z
 'undelete-search-submit'       => 'Mirar',
 'undelete-no-results'          => "No s'han trobato pachinas borratas con ixos criterios.",
 'undelete-filename-mismatch'   => "No se pueden restaurar a rebisión d'archibo con calendata $1: o nombre d'archibo no consona",
-'undelete-bad-store-key'       => "No se puede restaurar a bersión de l'archibo con calendata $1: l'archibo ya no se i trobaba antis d'o borrau.",
+'undelete-bad-store-key'       => "No se puede restaurar a versión de l'archivo con calendata $1: l'archivo ya no se i trobaba antis d'o borrau.",
 'undelete-cleanup-error'       => 'Bi abió una error mientres se borraba l\'archibo "$1".',
 'undelete-missing-filearchive' => "No ye posible restaurar l'archibo con ID $1 porque no bi ye en a base de datos. Puede que ya s'aiga restaurato.",
 'undelete-error-short'         => "Error mientres se restauraba l'archibo: $1",
 'undelete-error-long'          => 'Bi abió errors mientres se borraban os archibos:
 
 $1',
-'undelete-show-file-confirm'   => 'Seguro que quiere beyer una bersión borrata de l\'archibo "<nowiki>$1</nowiki>" d\'o $2 á las $3?',
+'undelete-show-file-confirm'   => 'Seguro que quiere veyer una versión borrata d\'o fichero "<nowiki>$1</nowiki>" d\'o $2 a las $3?',
 'undelete-show-file-submit'    => 'Sí',
 
 # Namespace form on various pages
@@ -2180,12 +2181,12 @@ A pachina de destino ("[[:$1]]") ya esiste. Quiere borrar-la ta premitir o tresl
 
 # Export
 'export'            => 'Exportar pachinas',
-'exporttext'        => "Puede esportar o testo y l'istorial d'edizions d'una pachina u conchunto de pachinas ta un testo XML. Iste testo XML puede importar-se ta atro wiki que faiga serbir MediaWiki á trabiés d'a [[Special:Import|pachina d'importazión]].
+'exporttext'        => "Puede exportar o texto y l'historial d'edicions d'una pachina u conchunto de pachinas ta un texto XML. Iste texto XML puede importar-se ta atro wiki que faiga servir MediaWiki a traviés d'a [[Special:Import|pachina d'importación]].
 
-Ta esportar pachinas, escriba os títols en a caixa de testo que bi ha más ta baixo, metendo un títol en cada linia, y eslicha si quiere esportar a bersión autual con as bersions anteriors y as lineas de l'istorial u nomás a bersión autual con a informazión sobre a zaguer edizión.
+Ta exportar pachinas, escriba os títols en a caixa de texto que bi ha más ta baixo, metendo un títol en cada linia, y esliya si quiere exportar a versión autual con as versions anteriors y as linias de l'historial u nomás a versión actual con a información sobre a zaguer edición.
 
-En iste zaguer caso tamién puede usar un binclo, por exemplo [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] t'a pachina \"[[{{MediaWiki:Mainpage}}]]\".",
-'exportcuronly'     => "Encluye nomás a bersión autual, no l'istorial de bersions completo.",
+En iste zaguer caso tamién puede usar un vinclo, por eixemplo [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] t'a pachina \"[[{{MediaWiki:Mainpage}}]]\".",
+'exportcuronly'     => "Incluyir nomás a versión actual, no pas l'historial de versions completo.",
 'exportnohistory'   => "----
 '''Nota:''' A esportazión de istorials de pachinas á trabiés d'iste formulario ye desautibata por problemas en o rendimiento d'o serbidor.",
 'export-submit'     => 'Esportar',
@@ -2218,17 +2219,17 @@ Besite por fabor [http://www.mediawiki.org/wiki/Localisation a pachina sobre loc
 'import'                     => 'Importar pachinas',
 'importinterwiki'            => 'Importazión interwiki',
 'import-interwiki-text'      => "Trigue un wiki y un títol de pachina ta importar.
-As calendatas d'as bersions y os nombres d'editors se mantendrán.
-Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistro d'importazions]].",
+As calendatas d'as versions y os nombres d'os editors se preservarán.
+Todas as importacions interwiki se rechistran en o [[Special:Log/import|rechistro d'importacions]].",
 'import-interwiki-source'    => 'Wiki/pachina fuent:',
-'import-interwiki-history'   => "Copiar todas as bersions de l'istorial d'ista pachina",
+'import-interwiki-history'   => "Copiar todas as versions de l'historial d'ista pachina",
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Espazio de nombres de destín:',
 'import-upload-filename'     => "Nombre d'archibo:",
 'import-comment'             => 'Comentario:',
 'importtext'                 => "Por fabor, esporte l'archibo dende o wiki d'orichen fendo serbir a [[Special:Export|ferramienta d'esportazión]]. Alze-lo en o suyo ordenador y cargue-lo aquí.",
 'importstart'                => 'Importando pachinas...',
-'import-revision-count'      => '$1 {{PLURAL:$1|bersión|bersions}}',
+'import-revision-count'      => '$1 {{PLURAL:$1|versión|versions}}',
 'importnopages'              => 'No bi ha garra pachina ta importar.',
 'importfailed'               => 'Ha fallato a importazión: $1',
 'importunknownsource'        => "O tipo de fuent d'a importazión ye esconoixito",
@@ -2236,7 +2237,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'importbadinterwiki'         => 'Binclo interwiki incorreuto',
 'importnotext'               => 'Buendo y sin de testo',
 'importsuccess'              => "S'ha rematato a importazión!",
-'importhistoryconflict'      => "Bi ha un conflito de bersions en o istorial (talment ista pachina s'aiga importata antes)",
+'importhistoryconflict'      => "Bi ha un conflicto de versions en o istorial (talment ista pachina s'haiga importato denantes)",
 'importnosources'            => "No bi ha fuents d'importazión interwiki y no ye premitito cargar o istorial dreitament.",
 'importnofile'               => "No s'ha cargato os archibos d'importazión.",
 'importuploaderrorsize'      => "Ha fallato a carga de l'archibo importato. L'archibo brinca d'a grandaria de carga premitita.",
@@ -2244,7 +2245,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'importuploaderrortemp'      => "Ha fallato a carga de l'archibo importato. No se troba o direutorio temporal.",
 'import-parse-failure'       => "Fallo en o parseyo d'a importazión XML",
 'import-noarticle'           => 'No bi ha garra pachina ta importar!',
-'import-nonewrevisions'      => "Ya s'eban importato denantes todas as bersions.",
+'import-nonewrevisions'      => "Ya s'heban importato denantes todas as versions.",
 'xml-error-string'           => '$1 en a linia $2, col $3 (byte $4): $5',
 'import-upload'              => 'Datos XML cargatos',
 'import-token-mismatch'      => "S'han perdito os datos d'a sesión. Por fabor, prebe unatra begada.",
@@ -2254,9 +2255,9 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'importlogpage'                    => "Rechistro d'importazions",
 'importlogpagetext'                => 'Importazions almenistratibas de pachinas con istorial dende atros wikis.',
 'import-logentry-upload'           => 'importata [[$1]] cargando un archibo',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|bersión|bersions}}',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versión|versions}}',
 'import-logentry-interwiki'        => 'Importata $1 entre wikis',
-'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|bersión|bersions}} dende $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versión|versions}} dende $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "A suya pachina d'usuario",
@@ -2342,8 +2343,8 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'spamprotectiontext'  => "A pachina que mira d'alzar l'ha bloqueyata o filtro de spam.  Regular que a causa sía que i aiga bel binclo ta un sitio esterno que i sía en a lista negra.",
 'spamprotectionmatch' => 'O testo siguient ye o que autibó o nuestro filtro de spam: $1',
 'spambot_username'    => 'Esporga de spam de MediaWiki',
-'spam_reverting'      => "Tornando t'a zaguera bersión sin de binclos ta $1",
-'spam_blanking'       => 'Todas as bersions contienen binclos ta $1, se blanquea a pachina',
+'spam_reverting'      => "Tornando t'a zaguera versión sin de vinclos ta $1",
+'spam_blanking'       => 'Todas as versions teneban vinclos ta $1, se deixa en blanco',
 
 # Info page
 'infosubtitle'   => "Informazión d'a pachina",
@@ -2376,24 +2377,25 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'rcpatroldisabled'                    => "S'ha desautibato o control d'os zagurers cambeos",
 'rcpatroldisabledtext'                => "A funzión de control d'os zaguers cambeos ye desautibata en iste inte.",
 'markedaspatrollederror'              => 'No se puede siñalar como controlata',
-'markedaspatrollederrortext'          => "Ha d'espezificar una bersión ta siñalar-la como controlata.",
+'markedaspatrollederrortext'          => "Ha d'especificar una versión ta sinyalar-la como revisata.",
 'markedaspatrollederror-noautopatrol' => 'No tiene premisos ta siñalar os suyos propios cambios como controlatos.',
 
 # Patrol log
-'patrol-log-page'      => 'Rechistro de control de bersions',
+'patrol-log-page'      => 'Rechistro de control de revisions',
 'patrol-log-header'    => 'Iste ye un rechistro de rebisions patrullatas.',
-'patrol-log-line'      => "s'ha siñalato a bersión $1 de $2 como controlata $3",
+'patrol-log-line'      => "s'ha sinyalato a versión $1 de $2 como revisata $3",
 'patrol-log-auto'      => '(automatico)',
+'patrol-log-diff'      => 'versión $1',
 'log-show-hide-patrol' => '$1 o rechistro de patrullache',
 
 # Image deletion
-'deletedrevision'                 => "S'ha borrato a bersión antiga $1",
+'deletedrevision'                 => "S'ha borrato a versión antiga $1",
 'filedeleteerror-short'           => "Error borrando l'archibo: $1",
 'filedeleteerror-long'            => "Se troboron errors borrando l'archibo:
 
 $1",
 'filedelete-missing'              => 'L\'archibo "$1" no se puede borrar porque no esiste.',
-'filedelete-old-unregistered'     => 'A bersión de l\'archibo espezificata "$1" no ye en a base de datos.',
+'filedelete-old-unregistered'     => 'A versión de l\'archivo especificata "$1" no ye en a base de datos.',
 'filedelete-current-unregistered' => 'L\'archibo espezificato "$1" no ye en a base de datos.',
 'filedelete-archive-read-only'    => 'O direutorio d\'archibo "$1" no puede escribir-se en o serbidor web.',
 
@@ -2479,8 +2481,8 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-software'                    => 'Software emplegato',
 'exif-artist'                      => 'Autor',
 'exif-copyright'                   => "Dueño d'os dreitos d'autor (copyright)",
-'exif-exifversion'                 => 'Bersión Exif',
-'exif-flashpixversion'             => 'Bersión de Flashpix almitita',
+'exif-exifversion'                 => 'Versión Exif',
+'exif-flashpixversion'             => 'Versión de Flashpix almesa',
 'exif-colorspace'                  => 'Espazio de colors',
 'exif-componentsconfiguration'     => 'Sinnificazión de cada component',
 'exif-compressedbitsperpixel'      => "Modo de compresión d'a imachen",
@@ -2500,8 +2502,8 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-exposureprogram'             => "Programa d'esposizión",
 'exif-spectralsensitivity'         => 'Sensibilidat espeutral',
 'exif-isospeedratings'             => 'Sensibilidat ISO',
-'exif-oecf'                        => 'Fautor de combersión optoelectronica',
-'exif-shutterspeedvalue'           => "Belozidat de l'obturador",
+'exif-oecf'                        => 'Factor de conversión optoelectronica',
+'exif-shutterspeedvalue'           => "Velocidat de l'obturador",
 'exif-aperturevalue'               => 'Obredura',
 'exif-brightnessvalue'             => 'Brilura',
 'exif-exposurebiasvalue'           => "Siesco d'esposizión",
@@ -2536,7 +2538,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-devicesettingdescription'    => "Descripzión d'os achustes d'o dispositibo",
 'exif-subjectdistancerange'        => 'Rango de distancias á o sucheto',
 'exif-imageuniqueid'               => "ID unico d'a imachen",
-'exif-gpsversionid'                => "Bersión d'as etiquetas de GPS",
+'exif-gpsversionid'                => "Versión d'as etiquetas de GPS",
 'exif-gpslatituderef'              => 'Latitut norte/sud',
 'exif-gpslatitude'                 => 'Latitut',
 'exif-gpslongituderef'             => 'Lonchitut este/ueste',
@@ -2776,7 +2778,7 @@ Por fabor, confirme que reyalment deseya creyar l'articlo nuebament.",
 # action=purge
 'confirm_purge_button' => 'Confirmar',
 'confirm-purge-top'    => "Limpiar a caché d'ista pachina?",
-'confirm-purge-bottom' => 'Si porga una pachina, se limpia a caché y fa que amaneixca a bersión más autual.',
+'confirm-purge-bottom' => 'En porgar una pachina, se limpia a memoria caché y afuerza que amaneixca a versión más actual.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pachina anterior',
@@ -2842,7 +2844,7 @@ Tamién puede fer serbir o [[Special:Watchlist/edit|editor estándar]].",
 'duplicate-defaultsort' => "Pare cuenta: A clau d'ordenazión por defeuto «$2» anula l'anterior clau d'ordenazión por defeuto «$1».",
 
 # Special:Version
-'version'                          => 'Bersión', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versión', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Estensions instalatas',
 'version-specialpages'             => 'Pachinas espezials',
 'version-parserhooks'              => "Grifios d'o parser (parser hooks)",
@@ -2860,7 +2862,7 @@ Tamién puede fer serbir o [[Special:Watchlist/edit|editor estándar]].",
 'version-license'                  => 'Lizenzia',
 'version-software'                 => 'Software instalato',
 'version-software-product'         => 'Produto',
-'version-software-version'         => 'Bersión',
+'version-software-version'         => 'Versión',
 
 # Special:FilePath
 'filepath'         => "Camín de l'archibo",

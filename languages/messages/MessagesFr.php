@@ -656,7 +656,7 @@ Veuillez essayer de nouveau dans quelques minutes.',
 'protectedpagetext'    => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext'       => 'Vous pouvez voir et copier le contenu de la page :',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
-'editinginterface'     => "'''Attention :''' vous êtes en train d’éditer une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d’internationalisation des messages [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
+'editinginterface'     => "'''Attention :''' vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d’internationalisation des messages [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
 'sqlhidden'            => '(Requête SQL cachée)',
 'cascadeprotected'     => 'Cette page est actuellement protégée car elle est incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée{{PLURAL:$1||s}} avec l’option « protection en cascade » activée :
 $2',
@@ -685,7 +685,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'yourname'                   => 'Nom d’utilisateur :',
 'yourpassword'               => 'Mot de passe :',
 'yourpasswordagain'          => 'Confirmez le mot de passe :',
-'remembermypassword'         => 'Me reconnecter automatiquement à la prochaine visite (cookie)',
+'remembermypassword'         => 'Me reconnecter automatiquement à la prochaine visite (témoin ("cookie"))',
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
 'login'                      => 'Connexion',
@@ -890,8 +890,8 @@ Le mot de passe pour ce nouveau compte peut être changé sur la page ''[[Specia
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
 Si vous êtes arrivé{{GENDER:||e|(e)}} ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un{{GENDER:||e|}} utilisat{{GENDER:|eur|rice|eur}} anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'                    => 'Il n’y a pas pour l’instant aucun texte sur cette page ;
-vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche de ce titre de page]] dans les autres pages,
+'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page.
+Vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur ce titre]] dans les autres pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les opérations liées]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page]</span>.',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
@@ -1211,7 +1211,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'prevn-title'                      => '$1 {{PLURAL:$1|résultat précédent|résultats précédents}}',
 'nextn-title'                      => '$1 {{PLURAL:$1|résultat suivant|résultats suivants}}',
 'shown-title'                      => 'Afficher $1 résultat{{PLURAL:$1||s}} par page',
-'viewprevnext'                     => 'Voir ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Voir ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Options de recherche',
 'searchmenu-exists'                => "'''Il existe une page nommée « [[:$1]] » sur ce wiki'''",
 'searchmenu-new'                   => "'''Créer la page « [[:$1|$1]] » sur ce wiki !'''",
@@ -1247,7 +1247,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'showingresults'                   => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du #<b>$2</b>.',
 'showingresultsnum'                => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du #<b>$2</b>.',
 'showingresultstotal'              => "Affichage {{PLURAL:$4|du résultat '''$1'''|des résultats '''$1 – $2'''}} sur '''$3'''",
-'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont recherchés par défaut.
+'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont fouillés par défaut.
 Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (y compris les pages de discussion, les modèles, etc.) ou bien utilisez l’espace de noms souhaité comme préfixe.",
 'search-nonefound'                 => 'Il n’y a aucun résultat correspondant à la requête.',
 'powersearch'                      => 'Rechercher',
@@ -1571,11 +1571,11 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 Ceci peut être dû à une erreur dans le nom du fichier.
 Veuillez vérifier que vous désirez vraiment téléverser ce fichier.',
 'fileexists'                  => "Un fichier existe déjà sous ce nom.
-Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n'êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
+Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n’êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
 [[$1|thumb]]",
 'filepageexists'              => "La page de description pour ce fichier a déjà été créée ici '''<tt>[[:$1]]</tt>''', mais aucun fichier n’existe actuellement sous ce nom.
-Le résumé que vous allez spécifier n'apparaîtra pas sur la page de description.
-Pour le faire, vous devrez modifier manuellement la page. [[$1|thumb]]",
+Le résumé que vous allez spécifier n’apparaîtra pas sur la page de description.
+Pour que ce soit le cas, vous devrez modifier manuellement la page. [[$1|thumb]]",
 'fileexists-extension'        => "Un fichier existe avec un nom proche : [[$2|thumb]]
 * Nom du fichier à téléverser : '''<tt>[[:$1]]</tt>'''
 * Nom du fichier existant : '''<tt>[[:$2]]</tt>'''
@@ -2129,7 +2129,7 @@ Voici les réglages actuels de la page '''$1''' :",
 'protect-othertime-op'        => 'autre date d’expiration',
 'protect-existing-expiry'     => 'Date d’expiration existante : $2 à $3',
 'protect-otherreason'         => 'Motif autre ou supplémentaire :',
-'protect-otherreason-op'      => 'motif autre ou supplémentaire',
+'protect-otherreason-op'      => 'Autre motif',
 'protect-dropdown'            => '* Motifs de protection courants
 ** Vandalisme excessif
 ** Pourriels
@@ -2636,7 +2636,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} sur {{SITENAME}}',
-'siteuser'         => "l'utilisateur $1 de {{SITENAME}}",
+'siteuser'         => 'l’utilisateur $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basé sur le travail de $1.',
 'others'           => 'autres',
@@ -2717,7 +2717,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attention :''' ce type de fichier peut contenir du code malveillant.
-Si vous l'exécutez, votre système peut être compromis.<hr />",
+Si vous l’exécutez, votre système peut être compromis.<hr />",
 'imagemaxsize'         => 'Format maximal pour les images dans les pages de description d’images :',
 'thumbsize'            => 'Taille de la miniature :',
 'widthheightpage'      => '$1 × $2, $3 page{{PLURAL:$3||s}}',

@@ -19,6 +19,7 @@
  * @author MCruz
  * @author Malafaya
  * @author Manuel Menezes de Sequeira
+ * @author McDutchie
  * @author Minh Nguyen
  * @author Nuno Tavares
  * @author Paulo Juntas
@@ -168,8 +169,8 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sublinhar ligações:',
-'tog-highlightbroken'         => 'Formatar ligações para páginas inexistentes <a href="" class="new">assim</a> (alternativa: assim<a href="" class="internal">?</a>).',
+'tog-underline'               => 'Sublinhar links:',
+'tog-highlightbroken'         => 'Formatar links para páginas inexistentes <a href="" class="new">assim</a> (em alternativa: assim<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições menores nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
@@ -179,11 +180,11 @@ $messages = array(
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver um clique duplo (JavaScript)',
-'tog-editsection'             => 'Possibilitar a edição de secções com ligações [editar]',
+'tog-editsection'             => 'Possibilitar a edição de secções com links [editar]',
 'tog-editsectiononrightclick' => 'Possibilitar a edição de secções por clique com o botão direito no título da secção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar índice (para páginas com mais de três secções)',
 'tog-rememberpassword'        => 'Recordar a minha palavra-chave entre sessões',
-'tog-editwidth'               => 'Aumentar a largura da caixa de edição para preencher todo o ecrã',
+'tog-editwidth'               => 'Aumentar a largura da caixa de edição para preencher o espaço disponível',
 'tog-watchcreations'          => 'Adicionar as páginas que eu criar às minhas páginas vigiadas',
 'tog-watchdefault'            => 'Adicionar as páginas que eu editar às minhas páginas vigiadas',
 'tog-watchmoves'              => 'Adicionar as páginas que eu mover às minhas páginas vigiadas',
@@ -197,10 +198,10 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificar-me por correio electrónico também quando as edições forem menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de correio electrónico nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de utilizadores a vigiar',
-'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem ligação automática)',
+'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem link automático)',
 'tog-externaleditor'          => 'Por omissão, utilizar um editor externo (só para utilizadores avançados, exige configurações adicionais no seu computador)',
 'tog-externaldiff'            => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador)',
-'tog-showjumplinks'           => 'Possibilitar ligações de acessibilidade "{{int:jumpto}}"',
+'tog-showjumplinks'           => 'Possibilitar links de acessibilidade "{{int:jumpto}}"',
 'tog-uselivepreview'          => 'Usar a antevisão em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
 'tog-watchlisthideown'        => 'Esconder as minhas edições ao listar mudanças às páginas vigiadas',
@@ -263,7 +264,7 @@ $messages = array(
 'feb'           => 'Fev.',
 'mar'           => 'Mar.',
 'apr'           => 'Abr.',
-'may'           => 'Mai.',
+'may'           => 'Maio',
 'jun'           => 'Jun.',
 'jul'           => 'Jul.',
 'aug'           => 'Ago.',
@@ -331,7 +332,7 @@ $messages = array(
 'updatedmarker'     => 'actualizado desde a minha última visita',
 'info_short'        => 'Informação',
 'printableversion'  => 'Versão para impressão',
-'permalink'         => 'Ligação permanente',
+'permalink'         => 'Link permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
 'create'            => 'Criar',
@@ -353,7 +354,7 @@ $messages = array(
 'postcomment'       => 'Nova secção',
 'articlepage'       => 'Ver página de conteúdo',
 'talk'              => 'Discussão',
-'views'             => 'Acessos',
+'views'             => 'Vistas',
 'toolbox'           => 'Ferramentas',
 'userpage'          => 'Ver página de utilizador',
 'projectpage'       => 'Ver página de projecto',
@@ -446,8 +447,8 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 # Main script and global functions
 'nosuchaction'      => 'Acção não existente',
 'nosuchactiontext'  => 'A acção especificada pela URL é inválida.
-É possível que tenha escrito mal a URL ou seguido uma ligação incorrecta.
-Isto pode também ser indicativo de um defeito no programa usado pela {{SITENAME}}.',
+É possível que tenha escrito mal a URL ou seguido um link incorrecto.
+Isto pode também indicar um defeito no software da {{SITENAME}}.',
 'nosuchspecialpage' => 'Esta página especial não existe',
 'nospecialpagetext' => '<strong>Solicitou uma página especial inválida.</strong>
 
@@ -479,7 +480,7 @@ $1',
 O administrador que a trancou deu a seguinte explicação: $1',
 'missing-article'      => 'A base de dados não encontrou o texto de uma página que deveria ter encontrado, com o nome "$1" $2.
 
-Geralmente, esta situação ocorre ao clicar uma ligação para diferenças desactualizada ou para o histórico de uma página que tenha sido removida.
+Geralmente, esta situação ocorre ao clicar um link para diferenças desactualizado ou para o histórico de uma página que tenha sido removida.
 
 Se nenhuma destas situações se verifica, pode ter encontrado um defeito no programa.
 Por favor, anote a URL e reporte este incidente a um [[Special:ListUsers/sysop|administrador]].',
@@ -499,7 +500,7 @@ Por favor, anote a URL e reporte este incidente a um [[Special:ListUsers/sysop|a
 'badarticleerror'      => 'Esta acção não pode ser realizada nesta página.',
 'cannotdelete'         => 'Não foi possível eliminar a página ou ficheiro especificado (provavelmente por já ter sido eliminada por outra pessoa.)',
 'badtitle'             => 'Título inválido',
-'badtitletext'         => 'O título de página solicitado era inválido, vazio, ou uma ligação interlínguas ou interwikis incorrecta.
+'badtitletext'         => 'O título de página solicitado era inválido, vazio, ou um link interlínguas ou interwikis incorrecto.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 'perfcached'           => "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar actualizados.",
 'perfcachedts'         => "Os seguintes dados encontram-se armazenados na ''cache'' e foram actualizados pela última vez a $1.",
@@ -553,7 +554,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'logout'                     => 'Sair',
 'userlogout'                 => 'Sair',
 'notloggedin'                => 'Não autenticado',
-'nologin'                    => "Não possui uma conta? '''$1'''.",
+'nologin'                    => 'Não possui uma conta? $1.',
 'nologinlink'                => 'Criar uma conta',
 'createaccount'              => 'Criar conta',
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",
@@ -668,10 +669,10 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'bold_tip'        => 'Texto a negrito',
 'italic_sample'   => 'Texto em itálico',
 'italic_tip'      => 'Texto em itálico',
-'link_sample'     => 'Título da ligação',
-'link_tip'        => 'Ligação interna',
-'extlink_sample'  => 'http://www.example.com ligação externa',
-'extlink_tip'     => 'Ligação externa (lembre-se do prefixo http://)',
+'link_sample'     => 'Título do link',
+'link_tip'        => 'Link interno',
+'extlink_sample'  => 'http://www.example.com link externo',
+'extlink_tip'     => 'Link externo (lembre-se do prefixo http://)',
 'headline_sample' => 'Texto do cabeçalho',
 'headline_tip'    => 'Secção de nível 2',
 'math_sample'     => 'Inserir fórmula aqui',
@@ -681,7 +682,7 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Ficheiro embutido',
 'media_sample'    => 'Exemplo.ogg',
-'media_tip'       => 'Ligação para ficheiro',
+'media_tip'       => 'Link para ficheiro',
 'sig_tip'         => 'A sua assinatura, com hora e data',
 'hr_tip'          => 'Linha horizontal (utilize moderadamente)',
 
@@ -753,9 +754,9 @@ Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 
 A palavra-chave para esta nova conta pode ser alterada na página [[Special:ChangePassword|alterar palavra-chave]] após autenticação.',
 'newarticle'                       => '(Nova)',
-'newarticletext'                   => "Seguiu uma ligação para uma página que ainda não existe.
+'newarticletext'                   => "Seguiu um link para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
-Se chegou aqui por engano, clique no botão '''voltar''' (ou ''back'') do seu navegador.",
+Se chegou aqui por engano, clique o botão '''voltar''' (ou ''back'') do seu navegador.",
 'anontalkpagetext'                 => "----''Esta é a página de discussão de um utilizador anónimo que ainda não criou uma conta ou não a utiliza, pelo que temos de utilizar o endereço IP para identificá-lo(a).
 Um endereço IP pode ser partilhado por vários utilizadores.
 Se é um utilizador anónimo e sente que lhe foram direccionados comentários irrelevantes, por favor [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
@@ -849,7 +850,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'deletelog-fulllog'                => 'Ver registo completo',
 'edit-hook-aborted'                => 'Edição abortada por hook.
 Ele não deu nenhuma explicação.',
-'edit-gone-missing'                => 'Não foi possível atualizar a página.
+'edit-gone-missing'                => 'Não foi possível actualizar a página.
 Ela foi, aparentemente, eliminada.',
 'edit-conflict'                    => 'Conflito de edição.',
 'edit-no-change'                   => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
@@ -993,7 +994,7 @@ Certifique-se de que esta alteração manterá a continuidade histórica da pág
 'mergehistory-list'                => 'Histórico de edições fundíveis',
 'mergehistory-merge'               => 'As seguintes revisões de [[:$1]] podem fundir-se em [[:$2]].
 Usando os botões de opção, pode escolher fundir apenas as revisões até àquela que marcar.
-Note que, se usar as ligações de navegação, os botões de opção voltarão aos valores originais.',
+Note que, se usar os links de navegação, os botões de opção voltarão aos valores originais.',
 'mergehistory-go'                  => 'Mostrar edições que podem ser fundidas',
 'mergehistory-submit'              => 'Fundir edições',
 'mergehistory-empty'               => 'Não existem revisões fundíveis.',
@@ -1095,7 +1096,7 @@ Note que, se usar as ligações de navegação, os botões de opção voltarão 
 'prevn-title'                      => '$1 {{PLURAL:$1|resultado anterior|resultados anteriores}}',
 'nextn-title'                      => '{{PLURAL:$1|próximo|próximos}} $1 {{PLURAL:$1|resultado|resultados}}',
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
-'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
 'searchmenu-exists'                => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
 'searchmenu-new'                   => "'''Crie a página \"[[:\$1]]\" nesta wiki!'''",
@@ -1193,7 +1194,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'resultsperpage'            => 'Resultados por página:',
 'contextlines'              => 'Linhas por resultado:',
 'contextchars'              => 'Contexto por linha:',
-'stub-threshold'            => 'Ligações a páginas provisórias \'\'(stubs)\'\' terão <a href="#" class="stub">este formato</a> se elas ocuparem menos de (bytes):',
+'stub-threshold'            => 'Links para páginas provisórias \'\'(stubs)\'\' terão <a href="#" class="stub">este formato</a> se elas ocuparem menos de (bytes):',
 'recentchangesdays'         => 'Dias a apresentar nas mudanças recentes:',
 'recentchangesdays-max'     => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'        => 'Número de edições a serem exibidas nas mudanças recentes, históricos de páginas e páginas de registos, por defeito:',
@@ -1358,7 +1359,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'action-suppressrevision'     => 'rever e restaurar esta edição oculta',
 'action-suppressionlog'       => 'ver este registo privado',
 'action-block'                => 'impedir este utilizador de editar',
-'action-protect'              => 'alterar os níveis de proteção desta página',
+'action-protect'              => 'alterar os níveis de protecção desta página',
 'action-import'               => 'importar esta página a partir de outra wiki',
 'action-importupload'         => 'importar esta página a partir de um ficheiro xml',
 'action-patrol'               => 'marcar as edições de outros utilizadores como patrulhadas',
@@ -1403,11 +1404,11 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
-'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas para as quais a página fornecida contém ligações, no intervalo de tempo escolhido.',
-'recentchangeslinked-summary'  => "Lista das mudanças recentes a todas as páginas para as quais a página fornecida contém ligações (ou de todas as que pertencem à categoria fornecida).
+'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas para as quais a página fornecida contém links, no intervalo de tempo escolhido.',
+'recentchangeslinked-summary'  => "Lista das mudanças recentes a todas as páginas para as quais a página fornecida contém links (ou de todas as que pertencem à categoria fornecida).
 As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 'recentchangeslinked-page'     => 'Nome da página:',
-'recentchangeslinked-to'       => 'Inversamente, mostrar mudanças às páginas que contêm ligações para esta',
+'recentchangeslinked-to'       => 'Inversamente, mostrar mudanças às páginas que contêm links para esta',
 
 # Upload
 'upload'                      => 'Carregar ficheiro',
@@ -1423,10 +1424,10 @@ As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 Para ver ou pesquisar ficheiros anteriormente carregados, consulte a [[Special:FileList|lista de ficheiros]].
 Os recarregamentos de um ficheiro são também registados no [[Special:Log/upload|registo de carregamentos]] e as eliminações no [[Special:Log/delete|registo de eliminações]].
 
-Para utilizar um ficheiro numa página, depois de carregado, insira uma ligação com um dos seguintes formatos:
+Para utilizar um ficheiro numa página, depois de carregado, insira um link com um dos seguintes formatos:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para mostrar uma imagem nas suas dimensões originais;
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></tt>''' para mostrar uma imagem com a dimensão horizontal de 200 pixels, dentro de uma caixa, na margem esquerda, contendo 'texto' como descrição (pode usar subconjuntos destas características);
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></tt>''' para apresentar uma ligação directa para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></tt>''' para apresentar um link directo para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
 'upload-permitted'            => 'Tipos de ficheiros permitidos: $1.',
 'upload-preferred'            => 'Tipos de ficheiros preferidos: $1.',
 'upload-prohibited'           => 'Tipos de ficheiro proibidos: $1.',
@@ -1534,9 +1535,9 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível aceder à URL',
 'upload-curl-error6-text'  => 'Não foi possível aceder à URL.
-Por favor, verifique se o endereço está correcto e o sítio disponível.',
+Por favor, verifique se o endereço está correcto e o site disponível.',
 'upload-curl-error28'      => 'Tempo limite para o envio do ficheiro excedido',
-'upload-curl-error28-text' => 'O sítio demorou muito tempo a responder. Por favor, verifique se o sítio está acessível, aguarde alguns momentos e tente novamente. Talvez possa tentar num horário menos congestionado.',
+'upload-curl-error28-text' => 'O site demorou muito tempo a responder. Por favor, verifique se o site está disponível, aguarde alguns momentos e tente novamente. Talvez possa tentar num horário menos congestionado.',
 
 'license'            => 'Licença:',
 'nolicense'          => 'Nenhuma seleccionada',
@@ -1573,13 +1574,13 @@ Clique um cabeçalho de coluna para alterar a ordenação.',
 'filehist-dimensions'       => 'Dimensões',
 'filehist-filesize'         => 'Tamanho do ficheiro',
 'filehist-comment'          => 'Comentário',
-'imagelinks'                => 'Ligações para este ficheiro',
-'linkstoimage'              => '{{PLURAL:$1|A seguinte página contém|As seguintes $1 páginas contêm}} ligações para este ficheiro:',
-'linkstoimage-more'         => 'Mais de {{PLURAL:$1|uma página contém|$1 páginas contêm}} ligações para este ficheiro.
+'imagelinks'                => 'Links para este ficheiro',
+'linkstoimage'              => '{{PLURAL:$1|A seguinte página contém|As seguintes $1 páginas contêm}} links para este ficheiro:',
+'linkstoimage-more'         => 'Mais de {{PLURAL:$1|uma página contém|$1 páginas contêm}} links para este ficheiro.
 A lista abaixo apresenta apenas {{PLURAL:$1|a primeira página|as primeiras $1 páginas}}.
 Encontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].',
-'nolinkstoimage'            => 'Nenhuma página contém ligações para este ficheiro.',
-'morelinkstoimage'          => 'Ver a [[Special:WhatLinksHere/$1|lista completa]] de páginas que contêm ligações para este ficheiro.',
+'nolinkstoimage'            => 'Nenhuma página contém links para este ficheiro.',
+'morelinkstoimage'          => 'Ver a [[Special:WhatLinksHere/$1|lista completa]] de páginas que contêm links para este ficheiro.',
 'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirecciona|Os seguintes ficheiros redireccionam}} para este ficheiro:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é duplicado|Os seguintes $1 ficheiros são duplicados}} deste ficheiro ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
 'sharedupload'              => 'Este ficheiro provém de $1 e pode ser utilizado por outros projectos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
@@ -1634,8 +1635,8 @@ Encontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].',
 
 # Unused templates
 'unusedtemplates'     => 'Predefinições não utilizadas',
-'unusedtemplatestext' => 'Esta página lista todas as páginas no espaço nominal {{ns:template}} que não são incluídas em nenhuma outra página. Lembre-se de verificar a existência de outras ligações para as predefinições, antes de as eliminar.',
-'unusedtemplateswlh'  => 'outras ligações',
+'unusedtemplatestext' => 'Esta página lista todas as páginas no espaço nominal {{ns:template}} que não são incluídas em nenhuma outra página. Lembre-se de verificar a existência de outros links para as predefinições, antes de eliminá-las.',
+'unusedtemplateswlh'  => 'outros links',
 
 # Random page
 'randompage'         => 'Página aleatória',
@@ -1667,14 +1668,14 @@ Encontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].',
 
 'disambiguations'      => 'Desambiguações',
 'disambiguationspage'  => 'Template:disambig',
-'disambiguations-text' => 'As páginas abaixo contêm ligações para páginas de desambiguação.
-Estas ligações deviam ser desambiguadas, apontando-as para a página apropriada.<br /> 
+'disambiguations-text' => 'As páginas abaixo contêm links para uma página de desambiguação.
+Estes links deviam ser desambiguados, apontando-os para a página apropriada.<br /> 
 Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].',
 
 'doubleredirects'            => 'Redireccionamentos duplos',
 'doubleredirectstext'        => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
-Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem como o destino do segundo redireccionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redireccionamento.
-<s>Entradas cortadas</s> foram já solucionadas.',
+Cada linha contém links para o primeiro e segundo redireccionamentos, bem como o destino do segundo redireccionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redireccionamento.
+<s>Entradas cortadas</s> já foram solucionadas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido, passando a redirecionar para [[$2]]',
 'double-redirect-fixer'      => 'Corretor de redirecionamentos',
 
@@ -1683,8 +1684,8 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(eliminar)',
 
-'withoutinterwiki'         => 'Páginas sem ligações interlínguas',
-'withoutinterwiki-summary' => 'As seguintes páginas não possuem ligações para versões noutras línguas.',
+'withoutinterwiki'         => 'Páginas sem links interlínguas',
+'withoutinterwiki-summary' => 'As seguintes páginas não possuem links para versões noutras línguas.',
 'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Mostrar',
 
@@ -1693,13 +1694,13 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
-'nlinks'                  => '$1 {{PLURAL:$1|ligação|ligações}}',
+'nlinks'                  => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
 'nrevisions'              => '$1 {{PLURAL:$1|edição|edições}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
 'specialpage-empty'       => 'Não existem dados para apresentar.',
 'lonelypages'             => 'Páginas órfãs',
-'lonelypagestext'         => 'As seguintes páginas não são destino de ligações nem são transcluídas a partir de outras páginas nesta wiki.',
+'lonelypagestext'         => 'As seguintes páginas não são destino de links nem são transcluídas a partir de outras páginas na {{SITENAME}}.',
 'uncategorizedpages'      => 'Páginas não categorizadas',
 'uncategorizedcategories' => 'Categorias não categorizadas',
 'uncategorizedimages'     => 'Ficheiros não categorizados',
@@ -1722,7 +1723,7 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'shortpages'              => 'Páginas curtas',
 'longpages'               => 'Páginas longas',
 'deadendpages'            => 'Páginas sem saída',
-'deadendpagestext'        => 'As seguintes páginas não contêm ligações para outras páginas nesta wiki.',
+'deadendpagestext'        => 'As seguintes páginas não contêm links para outras páginas na {{SITENAME}}.',
 'protectedpages'          => 'Páginas protegidas',
 'protectedpages-indef'    => 'Apenas protecções infinitas',
 'protectedpages-cascade'  => 'Apenas protecções em cascata',
@@ -1742,7 +1743,7 @@ Cada linha contém ligações para o primeiro e segundo redireccionamentos, bem 
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta página',
 'unusedimagestext'        => 'Os seguintes ficheiros existem mas não são usados na wiki.
-No entanto, outros sítios na internet podem fazer ligações para um ficheiro através de uma URL directa e, por isso, podem estar listados ficheiros que estão a ser activamente usados por entidades externas.',
+No entanto, outros sites na internet podem ter links para um ficheiro através de uma URL directa e, por isso, podem estar listados ficheiros que estão a ser activamente usados por entidades externas.',
 'unusedcategoriestext'    => 'As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.',
 'notargettitle'           => 'Sem alvo',
 'notargettext'            => 'Especifique sobre que página alvo ou utilizador pretende executar esta função.',
@@ -1756,7 +1757,7 @@ No entanto, outros sítios na internet podem fazer ligações para um ficheiro a
 'booksources'               => 'Fontes de livros',
 'booksources-search-legend' => 'Procurar fontes de livros',
 'booksources-go'            => 'Prosseguir',
-'booksources-text'          => 'É apresentada abaixo uma lista de ligações para outros sítios na internet que vendem livros novos e usados e talvez possuam informações adicionais sobre os livros que procura:',
+'booksources-text'          => 'É apresentada abaixo uma lista de links para outros sites na internet que vendem livros novos e usados e talvez possuam informações adicionais sobre os livros que procura:',
 'booksources-invalid-isbn'  => 'O número ISBN fornecido não parece ser válido; verifique a existência de erros ao copiar da fonte original.',
 
 # Special:Log
@@ -1783,7 +1784,7 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allpagesnext'      => 'Próximo',
 'allpagessubmit'    => 'Prosseguir',
 'allpagesprefix'    => 'Apresentar páginas iniciadas por:',
-'allpagesbadtitle'  => 'O título de página fornecido era inválido ou tinha um prefixo de ligação interlínguas ou interwikis.
+'allpagesbadtitle'  => 'O título de página fornecido era inválido ou tinha um prefixo interlínguas ou interwikis.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 'allpages-bad-ns'   => 'A {{SITENAME}} não possui o espaço nominal "$1".',
 
@@ -1801,12 +1802,12 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 'deletedcontributions-title' => 'Edições eliminadas',
 
 # Special:LinkSearch
-'linksearch'       => 'Ligações externas',
+'linksearch'       => 'Links externos',
 'linksearch-pat'   => 'Padrão de busca:',
 'linksearch-ns'    => 'Espaço nominal:',
 'linksearch-ok'    => 'Prosseguir',
 'linksearch-text'  => "É possível usar caracteres de substituição ''(wildcards)'' no padrão de busca, como por exemplo: \"*.wikipedia.org\".<br />Protocolos suportados: <tt>\$1</tt>",
-'linksearch-line'  => 'Ligação para $1 na página $2',
+'linksearch-line'  => 'Link para $1 na página $2',
 'linksearch-error' => "Caracteres de substituição ''(wildcards)'' só podem ser usados no início do endereço.",
 
 # Special:ListUsers
@@ -1899,7 +1900,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'enotif_mailer'                => 'Gerador de Notificações da {{SITENAME}}',
 'enotif_reset'                 => 'Marcar todas as páginas como visitadas',
 'enotif_newpagetext'           => 'Esta é uma página nova.',
-'enotif_impersonal_salutation' => 'Utilizador do projeto "{{SITENAME}}"',
+'enotif_impersonal_salutation' => 'Utilizador da "{{SITENAME}}"',
 'changed'                      => 'alterada',
 'created'                      => 'criada',
 'enotif_subject'               => '{{SITENAME}}: A página $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
@@ -1984,12 +1985,12 @@ Experimente usar o botão "Voltar" e recarregar a página de onde veio e tente n
 
 # Protect
 'protectlogpage'              => 'Registo de protecção',
-'protectlogtext'              => 'Abaixo encontra-se o registo de protecção e desprotecção de páginas.
-Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
+'protectlogtext'              => 'Abaixo encontra o registo de protecção e desprotecção de páginas.
+Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as páginas que se encontram protegidas neste momento.',
 'protectedarticle'            => 'protegeu "[[$1]]"',
 'modifiedarticleprotection'   => 'alterou o nível de protecção para "[[$1]]"',
 'unprotectedarticle'          => 'desprotegeu "[[$1]]"',
-'movedarticleprotection'      => 'moveu as configurações de proteção de "[[$2]]" para "[[$1]]"',
+'movedarticleprotection'      => 'moveu as configurações de protecção de "[[$2]]" para "[[$1]]"',
 'protect-title'               => 'Protegendo "$1"',
 'prot_1movedto2'              => 'moveu [[$1]] para [[$2]]',
 'protect-legend'              => 'Confirmar protecção',
@@ -2001,8 +2002,8 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'protect-text'                => "Pode ver e alterar aqui o nível de protecção da página '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Não pode alterar níveis de protecção enquanto estiver bloqueado.
 Esta é a configuração presente para a página '''$1''':",
-'protect-locked-dblock'       => "Não é possível alterar os níveis de proteção, uma vez que a base de dados se encontra trancada.
-Esta é a configuração atual para a página '''$1''':",
+'protect-locked-dblock'       => "Não é possível alterar os níveis de protecção, uma vez que a base de dados se encontra trancada.
+Esta é a configuração actual para a página '''$1''':",
 'protect-locked-access'       => "A sua conta não possui permissões para alterar os níveis de protecção de uma página.
 Esta é a configuração actual da página '''$1''':",
 'protect-cascadeon'           => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com protecção em cascata.
@@ -2018,9 +2019,9 @@ Pode alterar o nível de protecção desta página, mas isso não afectará a pr
 'protect-cantedit'            => 'Não pode alterar o nível de protecção desta página, porque não tem permissão para editá-la.',
 'protect-othertime'           => 'Outra duração:',
 'protect-othertime-op'        => 'outra duração',
-'protect-existing-expiry'     => 'A proteção atual expirará às $3 de $2',
+'protect-existing-expiry'     => 'A protecção actual expirará às $3 de $2',
 'protect-otherreason'         => 'Outro motivo/motivo adicional:',
-'protect-otherreason-op'      => 'outro/motivo adicional',
+'protect-otherreason-op'      => 'Outro motivo',
 'protect-dropdown'            => "*Motivos comuns para protecção
 ** Vandalismo excessivo
 ** ''Spam'' excessivo
@@ -2063,7 +2064,7 @@ Nestes casos, deverá desmarcar ou revelar a versão eliminada mais recente.',
 'undeletehistorynoadmin'       => 'Esta página foi eliminada. O motivo de eliminação é apresentado no súmario abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto actual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
 'undelete-revision'            => 'Edição eliminada da página $1 (das $5 de $4), por $3:',
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada.
-Pode ter usado uma ligação incorrecta ou talvez a revisão tenha sido restaurada ou removida do arquivo.',
+Pode ter usado um link incorrecto ou talvez a revisão tenha sido restaurada ou removida do arquivo.',
 'undelete-nodiff'              => 'Não foram encontradas edições anteriores.',
 'undeletebtn'                  => 'Restaurar',
 'undeletelink'                 => 'ver/restaurar',
@@ -2120,21 +2121,21 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
-'whatlinkshere-title'      => 'Páginas que possuem ligações para "$1"',
+'whatlinkshere-title'      => 'Páginas que possuem links para "$1"',
 'whatlinkshere-page'       => 'Página:',
-'linkshere'                => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
-'nolinkshere'              => "Não existem ligações para '''[[:$1]]'''.",
-'nolinkshere-ns'           => "Não existem ligações para '''[[:$1]]''' no espaço nominal seleccionado.",
+'linkshere'                => "As seguintes páginas possuem links para '''[[:$1]]''':",
+'nolinkshere'              => "Não existem links para '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Não existem links para '''[[:$1]]''' no espaço nominal seleccionado.",
 'isredirect'               => 'página de redireccionamento',
 'istemplate'               => 'inclusão',
-'isimage'                  => 'ligação para imagem',
+'isimage'                  => 'link para imagem',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|próximo|próximos $1}}',
-'whatlinkshere-links'      => '← ligações',
+'whatlinkshere-links'      => '← links',
 'whatlinkshere-hideredirs' => '$1 redireccionamentos',
 'whatlinkshere-hidetrans'  => '$1 transclusões',
-'whatlinkshere-hidelinks'  => '$1 ligações',
-'whatlinkshere-hideimages' => '$1 ligações para imagens',
+'whatlinkshere-hidelinks'  => '$1 links',
+'whatlinkshere-hideimages' => '$1 links para imagens',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
@@ -2150,7 +2151,7 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'ipbreason-dropdown'              => '*Razões comuns para um bloqueio
 ** Inserção de informações falsas
 ** Remoção de conteúdos de páginas
-** Inserção de "spam" para sítios externos
+** Inserção de "spam" para sites externos
 ** Inserção de conteúdo sem sentido/incompreensível nas páginas
 ** Comportamento intimidador/inoportuno
 ** Uso abusivo de contas múltiplas
@@ -2228,7 +2229,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'ipb-needreblock'                 => '== Já se encontra bloqueado ==
 $1 já se encontra bloqueado. Deseja alterar as configurações?',
 'ipb_cant_unblock'                => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
-'ipb_blocked_as_range'            => 'Erro: O IP $1 não se encontra bloqueado de forma direta, não podendo ser desbloqueado deste modo. Se encontra bloqueado como parte do "range" $2, o qual pode ser desbloqueado.',
+'ipb_blocked_as_range'            => 'Erro: O IP $1 não se encontra bloqueado de forma directa, não podendo ser desbloqueado deste modo. No entanto, está bloqueado como parte do "range" $2, o qual pode ser desbloqueado.',
 'ip_range_invalid'                => 'Gama de IPs inválida.',
 'blockme'                         => 'Bloquear-me',
 'proxyblocker'                    => 'Bloqueador de proxy',
@@ -2266,7 +2267,7 @@ Lembre-se de [[Special:UnlockDB|remover o bloqueio]] após a manutenção.',
 A página original será transformada num redireccionamento para a nova página.
 Pode corrigir de forma automática os redireccionamentos existentes que apontam para a página original.
 Caso escolha não o fazer, certifique-se de que não existem [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
-É da sua responsabilidade verificar que as ligações continuam a apontar para onde é suposto que apontem.
+É da sua responsabilidade verificar que s links continuam a apontar para onde é suposto que apontem.
 
 Note que a página '''não''' será movida se já existir uma página com o novo nome, a menos que esta esteja vazia ou seja um redireccionamento sem qualquer histórico de edições.
 Isto significa que pode mover uma página de volta para o seu nome original se cometeu algum engano e que não pode mover uma página para cima de outra já existente.
@@ -2325,13 +2326,13 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 não é possível mover uma página para ela mesma.',
 'immobile-source-namespace'    => 'Não é possível mover páginas no espaço nominal "$1"',
 'immobile-target-namespace'    => 'Não é possível mover páginas para o espaço nominal "$1"',
-'immobile-target-namespace-iw' => 'Uma ligação interwikis não é um destino válido para uma movimentação de página.',
+'immobile-target-namespace-iw' => 'Um link interwikis não é um destino válido para uma movimentação de página.',
 'immobile-source-page'         => 'Esta página não pode ser movida.',
 'immobile-target-page'         => 'Não é possível mover para esse título de destino.',
 'imagenocrossnamespace'        => 'Não é possível mover imagem para espaço nominal que não de imagens',
 'imagetypemismatch'            => 'A extensão do novo ficheiro não corresponde ao seu tipo',
 'imageinvalidfilename'         => 'O nome do ficheiro alvo é inválido',
-'fix-double-redirects'         => 'Atualizar todos os redirecionamentos que apontem para o título original',
+'fix-double-redirects'         => 'Actualizar todos os redireccionamentos que apontem para o título original',
 'move-leave-redirect'          => 'Criar um redireccionamento',
 
 # Export
@@ -2340,7 +2341,7 @@ não é possível mover uma página para ela mesma.',
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e seleccione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição actual e informações sobre a mais recente das edições.
 
-Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
+Se desejar, pode utilizar um link (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
 'exportcuronly'     => 'Incluir apenas a edição actual, não o histórico inteiro',
 'exportnohistory'   => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desactivada por afectar o desempenho.",
@@ -2394,7 +2395,7 @@ Grave o ficheiro no seu computador e importe-o aqui.',
 'importfailed'               => 'A importação falhou: $1',
 'importunknownsource'        => 'Tipo de fonte de importação desconhecida',
 'importcantopen'             => 'Não foi possível abrir o ficheiro de importação',
-'importbadinterwiki'         => 'Ligação interwikis incorrecta',
+'importbadinterwiki'         => 'Link interwikis incorrecto',
 'importnotext'               => 'Vazio ou sem texto',
 'importsuccess'              => 'Importação completa!',
 'importhistoryconflict'      => 'Existem conflitos de edições no histórico (talvez esta página já foi importada antes)',
@@ -2455,8 +2456,8 @@ Por favor, utilize o botão "Antever resultado" antes de gravar.',
 'tooltip-n-recentchanges'         => 'A lista de mudanças recentes nesta wiki.',
 'tooltip-n-randompage'            => 'Carregar página aleatória',
 'tooltip-n-help'                  => 'Um local reservado para auxílio.',
-'tooltip-t-whatlinkshere'         => 'Lista de todas as páginas que contêm ligações para esta',
-'tooltip-t-recentchangeslinked'   => 'Mudanças recentes em páginas para as quais esta contém ligações',
+'tooltip-t-whatlinkshere'         => 'Lista de todas as páginas que contêm links para esta',
+'tooltip-t-recentchangeslinked'   => 'Mudanças recentes em páginas para as quais esta contém links',
 'tooltip-feed-rss'                => "''Feed'' RSS desta página",
 'tooltip-feed-atom'               => "''Feed'' Atom desta página",
 'tooltip-t-contributions'         => 'Ver as contribuições deste utilizador',
@@ -2464,7 +2465,7 @@ Por favor, utilize o botão "Antever resultado" antes de gravar.',
 'tooltip-t-upload'                => 'Carregar ficheiros',
 'tooltip-t-specialpages'          => 'Lista de páginas especiais',
 'tooltip-t-print'                 => 'Versão para impressão desta página',
-'tooltip-t-permalink'             => 'Ligação permanente para esta versão desta página',
+'tooltip-t-permalink'             => 'Link permanente para esta versão desta página',
 'tooltip-ca-nstab-main'           => 'Ver a página de conteúdo',
 'tooltip-ca-nstab-user'           => 'Ver a página de utilizador',
 'tooltip-ca-nstab-media'          => 'Ver a página de media',
@@ -2529,11 +2530,11 @@ Permite colocar uma justificação no sumário da edição.',
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protecção contra spam',
 'spamprotectiontext'  => "A página que deseja gravar foi bloqueada pelo filtro de ''spam''.
-Este bloqueio foi provavelmente causado por uma ligação para um sítio externo que consta da lista negra.",
+Este bloqueio foi provavelmente causado por um link para um site externo que consta da lista negra.",
 'spamprotectionmatch' => 'O seguinte texto activou o filtro de spam: $1',
 'spambot_username'    => 'MediaWiki limpeza de spam',
-'spam_reverting'      => 'Revertendo para a última revisão que não contém ligações para $1',
-'spam_blanking'       => 'Todas as revisões continham ligações para $1, limpando',
+'spam_reverting'      => 'Revertendo para a última revisão que não contém links para $1',
+'spam_blanking'       => 'Todas as revisões continham links para $1, limpando',
 
 # Info page
 'infosubtitle'   => 'Informação para página',
@@ -2627,8 +2628,8 @@ Executá-lo poderá comprometer a segurança do seu sistema.<hr />",
 'bad_image_list' => 'O formato é o seguinte:
 
 Só são reconhecidos elementos na forma de lista (linhas começadas por *).
-A primeira ligação em cada linha deve ser uma ligação ao ficheiro que se pretende bloquear.
-Quaisquer outras ligações nessa mesma linha são consideradas excepções (ou seja, páginas de onde se pode aceder ao ficheiro).',
+O primeiro link em cada linha deve apontar para o ficheiro que se pretende bloquear.
+Quaisquer outros links nessa mesma linha são considerados excepções (ou seja, páginas de onde se pode aceder ao ficheiro).',
 
 # Metadata
 'metadata'          => 'Metadados',
@@ -2967,7 +2968,7 @@ Este código de confirmação irá expirar a $4.',
 'scarytranscludetoolong'  => '[URL longa demais]',
 
 # Trackbacks
-'trackbackbox'      => "Ligações ''trackback'' para esta página:<br />
+'trackbackbox'      => "Links ''trackback'' para esta página:<br />
 $1",
 'trackbackremove'   => '([$1 Eliminar])',
 'trackbacklink'     => "''Trackback''",
@@ -3119,8 +3120,8 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 # External image whitelist
 'external_image_whitelist' => ' # Deixe esta linha exatamente como ela está<pre> 
 # Coloque fragmentos de expressões regulares (apenas a parte entre //) em baixo
-# Estas serão comparadas com as URLs das imagens externas (com ligação directa)
-# As que corresponderem serão apresentadas como imagens, caso contrário apenas será apresentada uma ligação para a imagem
+# Estas serão comparadas com as URLs das imagens externas (com link directo)
+# As que corresponderem serão apresentadas como imagens, caso contrário apenas será apresentado um link para a imagem
 # As linhas que começam com um símbolo de cardinal (#) são tratadas como comentários
 # Esta lista não é sensível a maiúsculas ou minúsculas
 
@@ -3141,11 +3142,11 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 
 # Database error messages
 'dberr-header'      => 'Esta wiki tem um problema',
-'dberr-problems'    => 'Desculpe! Este sítio está a experienciar dificuldades técnicas.',
-'dberr-again'       => 'Experimente esperar uns minutos e atualizar.',
-'dberr-info'        => '(Não foi possível contactar o servidor de base de dados: $1)',
+'dberr-problems'    => 'Desculpe! Este site está a experienciar dificuldades técnicas.',
+'dberr-again'       => 'Experimente esperar uns minutos e actualizar.',
+'dberr-info'        => '(Não foi possível contactar o servidor da base de dados: $1)',
 'dberr-usegoogle'   => 'Pode tentar pesquisar no Google entretanto.',
-'dberr-outofdate'   => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
-'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar atualizada.',
+'dberr-outofdate'   => 'Note que os seus índices relativos ao nosso conteúdo podem estar desactualizados.',
+'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar actualizada.',
 
 );

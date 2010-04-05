@@ -13,6 +13,7 @@
  * @author Laurap
  * @author Mihai
  * @author Minisarm
+ * @author Misterr
  * @author SCriBu
  * @author Silviubogan
  * @author Urhixidur
@@ -1077,7 +1078,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prevn-title'                      => '{{PLURAL:$1|anteriorul|anterioarele}} $1 {{PLURAL:$1|rezultat|rezultate}}',
 'nextn-title'                      => '{{PLURAL:$1|următorul|următoarele}} $1 {{PLURAL:$1|rezultat|rezultate}}',
 'shown-title'                      => 'Arată $1 {{PLURAL:$1|rezultat|rezultate}} pe pagină',
-'viewprevnext'                     => 'Vezi ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vezi ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opţiuni căutare',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
 'searchmenu-new'                   => "'''Creează pagina \"[[:\$1]]\" pe acest wiki!'''",
@@ -1929,8 +1930,8 @@ Asistenţă şi suport:
 'deleteotherreason'      => 'Motiv diferit/suplimentar:',
 'deletereasonotherlist'  => 'Alt motiv',
 'deletereason-dropdown'  => '*Motive uzuale
-** Cererea autorului
-** Violare drepturi de autor
+** La cererea autorului
+** Violarea drepturilor de autor
 ** Vandalism',
 'delete-edit-reasonlist' => 'Modifică motivele ştergerii',
 'delete-toobig'          => 'Această pagină are un istoric al modificărilor mare, mai mult de $1 {{PLURAL:$1|revizie|revizii}}.

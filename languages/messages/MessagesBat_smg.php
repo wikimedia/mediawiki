@@ -706,7 +706,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'notextmatches'                    => 'Juokiū poslapė teksta atitikmenū',
 'prevn'                            => 'onkstesnius $1',
 'nextn'                            => 'paskesnius $1',
-'viewprevnext'                     => 'Veizėtė ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Veizėtė ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Paėiškuos nustatīmā',
 'searchmenu-exists'                => "'''Poslapis pavadėnts „[[$1]]“ šėtuo wiki'''",
 'searchmenu-new'                   => "'''Sokortė poslapi „[[:$1]]“ šėtuo wiki!'''",

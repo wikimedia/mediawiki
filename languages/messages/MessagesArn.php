@@ -18,7 +18,7 @@ $fallback = 'es';
 
 $messages = array(
 # User preference toggles
-'tog-underline'      => 'Miñcewirilpe xapvmvn',
+'tog-underline'      => 'Miñcewirilpe lasun',
 'tog-justify'        => 'Xvrvmpe cijkantvkun',
 'tog-editondblclick' => 'Wirin pakina epu klik mew (JavaScript)',
 
@@ -80,28 +80,31 @@ $messages = array(
 # Categories related messages
 'listingcontinuesabbrev' => 'ramt.',
 
-'qbfind'         => 'Kintun',
-'qbedit'         => 'Wirin',
+'qbfind'         => 'Kintupe',
+'qbedit'         => 'Pepikape',
 'qbmyoptions'    => 'tañi nütramkawe',
 'qbspecialpages' => 'Kangelu',
 'moredotdotdot'  => 'Doy...',
 'mypage'         => 'tañi nütramkawe',
 'mytalk'         => 'Tañi nütramkawe',
 'anontalk'       => 'Tüfachi IP ñi nütramkawe',
-'navigation'     => 'Wiyawvn',
+'navigation'     => 'Miyawvn',
 'and'            => '&#32;ka',
 
 'returnto'         => 'Amutun $1 püle.',
 'tagline'          => '{{SITENAME}} mew',
-'help'             => 'Kellu',
-'search'           => 'Kintun',
-'searchbutton'     => 'Kintun',
-'go'               => 'Amun',
-'searcharticle'    => 'Amun',
+'help'             => 'Kejuaqen',
+'search'           => 'Kintupe',
+'searchbutton'     => 'Kintupe',
+'go'               => 'Amupe',
+'searcharticle'    => 'Amupe',
 'history'          => 'Pünon',
-'history_short'    => 'Pünon',
-'edit'             => 'Wirin',
-'create'           => 'Llitun',
+'history_short'    => 'Rupañmael',
+'printableversion' => 'Wirinentuam ñi az',
+'permalink'        => 'Mvlekalelu lasun',
+'print'            => 'Wirinentupe',
+'edit'             => 'Pepikan',
+'create'           => 'Zewmape',
 'editthispage'     => 'Wirin tüfachi página',
 'create-this-page' => 'Llitun tüfachi pakina',
 'delete'           => 'Ñamümün',
@@ -110,12 +113,12 @@ $messages = array(
 'unprotect'        => 'Elun ñi wiriael',
 'newpage'          => 'We Pakina',
 'talkpage'         => 'Nütramkafinge tüfachi pakina',
-'talkpagelinktext' => 'Nütramkawe',
+'talkpagelinktext' => 'Nvxamkawvn',
 'specialpage'      => 'Kangelu',
 'personaltools'    => 'Kisungechi küdawpeyüm',
 'articlepage'      => 'adkintun artículo',
-'talk'             => 'Nütramkawe',
-'views'            => 'Pen',
+'talk'             => 'Nvxamkawvn',
+'views'            => 'Az',
 'toolbox'          => 'Küdawpeyüm',
 'userpage'         => 'adkintun página de usuario',
 'projectpage'      => 'adkintun página meta',
@@ -126,8 +129,9 @@ $messages = array(
 'categorypage'     => 'adkintun página de categoría',
 'viewtalkpage'     => 'Pen ti nütramkawe',
 'otherlanguages'   => 'Kake dungun',
-'jumpto'           => 'Amun:',
-'jumptosearch'     => 'kintu',
+'jumpto'           => 'Rvgkvpupe',
+'jumptonavigation' => 'miyawvn',
+'jumptosearch'     => 'kintupe',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'edithelp'             => 'Kellü wirin',
@@ -136,26 +140,31 @@ $messages = array(
 'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Kellu',
 'mainpage'             => 'Ñizol Wvbgiñ',
-'mainpage-description' => 'Wüne pakina',
+'mainpage-description' => 'Ñizol Wvbgiñ',
+'portal'               => 'Lofce ñi wvbgiñ',
+'portal-url'           => 'Project:Lofce ñi wvbgiñ',
 
-'ok'                      => 'Feley may',
-'youhavenewmessages'      => 'Elungeymi $1 ($2).',
-'newmessageslink'         => 'we dungu',
-'youhavenewmessagesmulti' => 'Elungeymi we dungu $1 mew.',
-'editsection'             => 'wirin',
-'editold'                 => 'wirin',
-'editlink'                => 'wirin',
-'showtoc'                 => 'pengelün',
+'ok'                      => 'Feley',
+'youhavenewmessages'      => 'Nieymi $1 ($2).',
+'newmessageslink'         => 'we yefalzugu',
+'youhavenewmessagesmulti' => 'Nieymi we yefalzugu $1 mew.',
+'editsection'             => 'pepikan',
+'editold'                 => 'pepikan',
+'editlink'                => 'pepikan',
+'editsectionhint'         => 'Ñom ñi pepikan: $1',
+'showtoc'                 => 'pegelpe',
 'hidetoc'                 => 'ellkan',
 'viewdeleted'             => 'Küpaadkintuymi $1 am?',
 'restorelink'             => '{{PLURAL:$1|kiñe wirin ñamümgün|$1 wirin ñamümün}}',
+'red-link-title'          => '$1 (gelay tici aztapvl)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pakina',
 'nstab-user'      => 'Kellufe',
 'nstab-special'   => 'Kangelu',
-'nstab-mediawiki' => 'Dungu',
+'nstab-mediawiki' => 'Yefalzugu',
 'nstab-help'      => 'Kelluwe',
+'nstab-category'  => 'Xokiñ',
 
 # General errors
 'filedeleteerror' => 'Pepiñamümüngelay "$1".',
@@ -166,9 +175,9 @@ $messages = array(
 'loginpagetitle'          => 'Konün',
 'yourname'                => 'Tami üy',
 'yourpassword'            => 'Tami kondungu',
-'login'                   => 'Konün',
-'nav-login-createaccount' => 'Konün',
-'userlogin'               => 'Konün',
+'login'                   => 'Konvn',
+'nav-login-createaccount' => 'Cijkantvkuwvn/Konvn',
+'userlogin'               => 'Cijkantvkuwvn/Konvn',
 'logout'                  => 'Tripan',
 'userlogout'              => 'Tripan',
 'notloggedin'             => 'Petu konlaymi.',
@@ -177,10 +186,10 @@ $messages = array(
 'gotaccountlink'          => 'Konün',
 'username'                => 'Üy kellufe:',
 'yourrealname'            => 'Tami mupiñ üy *',
-'yourlanguage'            => 'Dungun:',
+'yourlanguage'            => 'Cezugun:',
 'gender-male'             => 'Wentru',
 'gender-female'           => 'Domo',
-'loginlanguagelabel'      => 'Dungun: $1',
+'loginlanguagelabel'      => 'Cezugun: $1',
 
 # Edit pages
 'subject'            => 'Dungu/üy:',
@@ -205,7 +214,7 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 $2 mew', # user at time
 
 # Revision deletion
-'rev-delundel'    => 'pengelün/ellkan',
+'rev-delundel'    => 'pegelpe/ejkape',
 'pagehist'        => 'pünon pakina',
 'deletedhist'     => 'Ñamümüngelu pünon',
 'revdelete-uname' => 'Üy kellufe',
@@ -223,12 +232,13 @@ $messages = array(
 'diff-del'     => "'''Ñamümün'''",
 
 # Search results
-'viewprevnext'                   => 'Pen ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                   => 'Pen ($1) ($2) ($3).',
 'searchmenu-exists'              => "'''Mvley kiñe cijka «[[:$1]]» pigelu faci wiki mew'''",
 'searchmenu-new'                 => "'''¡Llitun pakina «[[:$1]]» tüfachi wiki mew!'''",
 'searchhelp-url'                 => 'Help:Kellu',
 'searchprofile-articles-tooltip' => 'kintu $1 mew',
 'searchprofile-project-tooltip'  => 'Kintun $1 mew',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 hemvl|$2 hemvl}})',
 'search-interwiki-more'          => '(Doy)',
 'searchall'                      => 'kom',
 'powersearch'                    => 'Kintun',
@@ -284,9 +294,9 @@ $messages = array(
 # Recent changes
 'rcshowhideminor'                   => '$1 pichi wirin',
 'rcshowhidemine'                    => '$1 tañi wirin',
-'hist'                              => 'Püno',
-'hide'                              => 'Ellkan',
-'show'                              => 'pengelün',
+'hist'                              => 'rupañ',
+'hide'                              => 'Ejkape',
+'show'                              => 'pegelpe',
 'minoreditletter'                   => 'p',
 'newpageletter'                     => 'W',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|Kellufe|Kellufe}} wiñamüy]',
@@ -317,8 +327,11 @@ $messages = array(
 'filedelete-success'         => "'''$1''' ñamümngey.",
 'filedelete-edit-reasonlist' => 'Wirin dungu ñamümgün mew',
 
+# MIME search
+'download' => 'nakvmpafipe',
+
 # Unused templates
-'unusedtemplateswlh' => "Kake ''enlase''",
+'unusedtemplateswlh' => 'Kake lasun',
 
 # Statistics
 'statistics-pages' => 'Pakina',
@@ -326,7 +339,7 @@ $messages = array(
 'brokenredirects-edit'   => '(wirin)',
 'brokenredirects-delete' => '(ñamümün)',
 
-'withoutinterwiki-submit' => 'Pengelün',
+'withoutinterwiki-submit' => 'Pegelpe',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -416,6 +429,7 @@ $messages = array(
 'sp-contributions-submit' => 'Kintun',
 
 # What links here
+'whatlinkshere'      => 'Lasulu fa pvle',
 'whatlinkshere-page' => 'Pakina:',
 'whatlinkshere-prev' => '{{PLURAL:$1|Pen chum müley|Pen chum müluey $1}}',
 

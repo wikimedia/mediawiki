@@ -126,6 +126,7 @@ $messages = array(
 'specialpage'      => 'Besonderes Blatt',
 'personaltools'    => 'Paerseenlich Gscharr',
 'talk'             => 'Gschwetz',
+'views'            => 'Aasichte',
 'toolbox'          => 'Schapp',
 'userpage'         => 'Yuuserblatt zeige',
 'imagepage'        => 'Feils zeige',
@@ -133,15 +134,17 @@ $messages = array(
 'viewtalkpage'     => 'Gschwetz zeige',
 'otherlanguages'   => 'Annere Schprooche',
 'redirectedfrom'   => '(Weiterleitung vun $1)',
-'redirectpagesub'  => 'Weiterleitung',
+'redirectpagesub'  => 'Weiderleiding',
 'lastmodifiedat'   => 'Des Blatt iss letscht gennert am $1 um $2 Uhr.', # $1 date, $2 time
 'protectedpage'    => 'Blatt mit Schutz',
+'jumpto'           => 'Gang nooch:',
 'jumptonavigation' => 'Faahre-Gnepp',
 'jumptosearch'     => 'guck uff',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Iwwer {{SITENAME}}',
 'aboutpage'            => 'Project:Iwwer_{{SITENAME}}',
+'disclaimers'          => 'Impressum',
 'disclaimerpage'       => 'Project:Impressum',
 'edithelp'             => 'Hilf zum Ennere',
 'edithelppage'         => 'Help:Tscheensche',
@@ -224,6 +227,8 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'newpassword' => 'Neies Paesswatt:',
 
 # Edit page toolbar
+'bold_sample'    => 'Wadde fett gmarrickt',
+'bold_tip'       => 'Wadde fett gmarrickt',
 'link_tip'       => 'Gleecher',
 'extlink_sample' => 'http://www.example.com Gleecher-Text',
 'extlink_tip'    => 'Gewebbgleecher (acht uff http://)',
@@ -272,6 +277,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 
 # Diffs
 'difference'        => '(Unnerschidd zwische Versione)',
+'lineno'            => 'Lein $1:',
 'editundo'          => 'zerick',
 'diff-styleadded'   => '$1-Style dezu geduh',
 'diff-added'        => '$1 dezu geduh',
@@ -286,21 +292,23 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'diff-b'            => "'''fett'''",
 
 # Search results
-'prevn'                    => 'Letscht $1',
-'nextn'                    => 'neegschte $1',
-'viewprevnext'             => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url'           => 'Help:Hilf',
-'search-result-size'       => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
-'search-redirect'          => '(Weiterleitung vun „$1“)',
-'search-section'           => '(Abschnitt $1)',
-'search-suggest'           => 'Iss „$1“ gmeent?',
-'search-interwiki-caption' => 'Schweschder Projects',
-'search-interwiki-more'    => '(weidere)',
-'searchall'                => 'all',
-'powersearch'              => 'Guck uff',
-'powersearch-redir'        => 'Lischt vun Weiterleitinge',
-'powersearch-field'        => 'Such fer',
-'search-external'          => 'Guck im Gewebb',
+'prevn'                     => 'Letscht $1',
+'nextn'                     => 'neegschte $1',
+'viewprevnext'              => 'Zeige ($1) ($2) ($3)',
+'searchhelp-url'            => 'Help:Hilf',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
+'search-redirect'           => '(Weiterleitung vun „$1“)',
+'search-section'            => '(Abschnitt $1)',
+'search-suggest'            => 'Iss „$1“ gmeent?',
+'search-interwiki-caption'  => 'Schweschder Projects',
+'search-interwiki-more'     => '(weidere)',
+'search-mwsuggest-enabled'  => 'mit Vorschläch',
+'search-mwsuggest-disabled' => 'kee Vorschläch',
+'searchall'                 => 'all',
+'powersearch'               => 'Guck uff',
+'powersearch-redir'         => 'Lischt vun Weiterleidinge',
+'powersearch-field'         => 'Such fer',
+'search-external'           => 'Guck im Gewebb',
 
 # Preferences page
 'preferences'              => 'paerseenlich Profil',
@@ -412,6 +420,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'filehist-dimensions' => 'Grees',
 'filehist-filesize'   => 'Grees vum Feil',
 'filehist-comment'    => 'Anmaerricking',
+'imagelinks'          => 'Gleecher fer es Feil',
 'shared-repo-from'    => 'vun $1', # $1 is the repository name
 
 # File reversion
@@ -426,8 +435,17 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'filedelete-otherreason'      => 'Annere Grind dezu:',
 'filedelete-reason-otherlist' => 'Annerer Gund',
 
+# MIME search
+'download' => 'Runnerlaade',
+
+# List redirects
+'listredirects' => 'Lischt vun Weiderleidinge',
+
 # Random page
 'randompage' => 'Ennich Ardickel',
+
+# Random redirect
+'randomredirect' => 'Random Weiderleiding',
 
 # Statistics
 'statistics'              => 'Nummere',
@@ -435,8 +453,10 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'statistics-header-users' => 'Nummere vun Yuuser',
 'statistics-pages'        => 'Bledder',
 
+'doubleredirects'       => 'Zweefache Weiderleidinge',
 'double-redirect-fixer' => 'Xqbot',
 
+'brokenredirects'      => 'Kaputte Weiderleidinge',
 'brokenredirects-edit' => '(ennere)',
 
 'withoutinterwiki-submit' => 'Zeig',
@@ -529,6 +549,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'protectcomment'            => 'Grund:',
 'protect-default'           => 'All Yuuser',
 'protect-level-sysop'       => 'Nur Verwalter',
+'protect-expiring'          => 'bis $2, $3 Uhr (UTC)',
 'protect-expiry-indefinite' => 'fer immer',
 'protect-othertime'         => 'Annre Zeit:',
 'protect-othertime-op'      => 'annre Zeit',
@@ -565,12 +586,15 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'sp-contributions-submit'   => 'Guck uff',
 
 # What links here
-'whatlinkshere'           => 'Was doher zeigt',
-'whatlinkshere-page'      => 'Blatt:',
-'whatlinkshere-prev'      => '{{PLURAL:$1|letscht|letscht $1}}',
-'whatlinkshere-next'      => '{{PLURAL:$1|neegscht|neegscht $1}}',
-'whatlinkshere-links'     => '← Gleecher',
-'whatlinkshere-hidelinks' => 'Gleecher $1',
+'whatlinkshere'            => 'Was doher zeigt',
+'whatlinkshere-page'       => 'Blatt:',
+'isredirect'               => 'Weiderleidingsblatt',
+'isimage'                  => 'Feilgleecher',
+'whatlinkshere-prev'       => '{{PLURAL:$1|letscht|letscht $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|neegscht|neegscht $1}}',
+'whatlinkshere-links'      => '← Gleecher',
+'whatlinkshere-hideredirs' => 'Weiderleidinge $1',
+'whatlinkshere-hidelinks'  => 'Gleecher $1',
 
 # Block/unblock
 'ipadressorusername' => 'IP-Adress odder Yuusernaame:',
@@ -590,6 +614,8 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'movearticle'             => 'Blatt ziehe:',
 'move-watch'              => 'watsch des Blatt',
 'movepagebtn'             => 'Blatt ziehe',
+'movepage-moved'          => "<big>'''Es Blatt „$1“ iss gezoge warre uff „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'                 => 'gezoge uff',
 '1movedto2'               => 'hot „[[$1]]“ nooch „[[$2]]“ gezoge',
 'movereason'              => 'Grund:',
 'revertmove'              => 'zerick ziehe',
@@ -612,14 +638,18 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # Tooltip help for the actions
 'tooltip-pt-userpage'      => 'Dei Yuuser-Blatt',
 'tooltip-pt-mytalk'        => 'Dei Gschwetz-Blatt',
+'tooltip-pt-preferences'   => 'Mei Uffschtelling',
 'tooltip-pt-mycontris'     => 'Lischt vun deine Ardickel',
 'tooltip-pt-logout'        => 'Geh naus',
 'tooltip-ca-talk'          => 'Gschetz iwwers Blatt',
 'tooltip-ca-delete'        => 'Des Blatt lösche',
 'tooltip-ca-move'          => 'Des Blatt ziehe',
 'tooltip-search'           => 'Guck uff {{SITENAME}}',
+'tooltip-search-go'        => 'Geh zu dem Blatt mit genaa dem Naame, wenns es gebbt.',
+'tooltip-search-fulltext'  => 'Guck nooch Bledder mit denne Wadde',
 'tooltip-p-logo'           => 'Haaptblatt',
 'tooltip-n-mainpage'       => 'Zum Haaptblatt geh',
+'tooltip-n-randompage'     => 'Ennich Ardickel',
 'tooltip-t-whatlinkshere'  => 'Lischt vun all die Bledder, wu do her zeige',
 'tooltip-feed-rss'         => 'RSS-Feed fer des Blatt',
 'tooltip-feed-atom'        => 'Atom-Feed fer des Blatt',

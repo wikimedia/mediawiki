@@ -10,6 +10,7 @@
  * @author Ali1986
  * @author Firuz
  * @author Spacebirdy
+ * @author محک
  */
 
 $linkPrefixExtension = true;
@@ -27,8 +28,17 @@ $fallback = 'fa';
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'پیوندون جیر خط دأکشی بأوو',
-'tog-justify'   => 'بندون ته‌موم چین هاکه‌رده‌ن',
+'tog-underline'               => 'پیوندون جیر خط دأکشی بأوو',
+'tog-highlightbroken'         => 'ناقص پیوندون قالب بندی<a href="" class="new">اینجوری</a>(امکان دیگه:اینجوری<a href="" class="internal">؟</a>).',
+'tog-justify'                 => 'بندون ته‌موم چین هاکه‌رده‌ن',
+'tog-hideminor'               => 'نشون ندائن کچیک تغییرات تازه دگارسه‌ئون دله',
+'tog-hidepatrolled'           => 'جا بدائن دچی ینون پس بخرد تازه دگارسه‌ئون دله',
+'tog-newpageshidepatrolled'   => 'قایم هکردن گشت بخرد ولگون نو ولگون فهرست جا',
+'tog-extendwatchlist'         => 'گت تر هکردن دمبال هکرده‌ئون فهرست تموم دگارسه‌ئون سر، و نا فقط آخرین  موردون',
+'tog-usenewrc'                => 'استفاده از تازه دگارسه‌ئون گت تر بئی (نیازمند جاوااسکریپت)',
+'tog-numberheadings'          => 'شماره بشتن خدکار عناوین',
+'tog-showtoolbar'             => 'نشون هدائن نوار ابزار جعبه دچی ین',
+'tog-editsectiononrightclick' => 'به کار دمبدائن دچیه‌ن قسمت‌ئون با راست کیلیک<br />عناوین قسمت‌ئون ِرو (جاوااسکریپت)',
 
 'underline-default' => 'مه چأرخ‌گأر ده‌لخاء',
 
@@ -284,7 +294,7 @@ $2، $1', # $1 date, $2 time
 'searchresults'             => 'چرخه‌توی هه‌دایی‌ئون',
 'searchsubtitle'            => 'شـه‌مـا \'\'\'[[:$1]]\'\'\' ره ده‌مـبـال بـورده‌نـی ([[Special:Prefixindex/$1|هـأمـه ولـگ‌ئونـی کـه وه‌شـون نـوم  "$1" هـه‌مـرا سـأر گـیـرنـه ره بـأویـنـه‌ن]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|هـأمه ولـگ‌ئونـی که  "$1" ره لـیـنـک وه‌شـون ده‌لـه دأره]])',
 'notitlematches'            => 'هـیـچ ولـگـی شه‌مه گـب ره نـه‌مـاسـتـه',
-'viewprevnext'              => 'بـأویـنـه‌ن ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'              => 'بـأویـنـه‌ن ($1) ($2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 واجه|$2 واجه}})',
 'search-redirect'           => '(بـأره‌سـیـه $1 جـه)',
 'search-section'            => '(تیکه $1)',

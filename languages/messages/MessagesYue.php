@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -10,6 +10,7 @@
  * @author Horacewai2
  * @author KaiesTse
  * @author William915
+ * @author Wong128hk
  */
 
 $bookstoreList = array(
@@ -285,7 +286,7 @@ $messages = array(
 'qbspecialpages' => '特別頁',
 'moredotdotdot'  => '更多...',
 'mypage'         => '我嘅頁',
-'mytalk'         => '我嘅討論',
+'mytalk'         => '傾偈',
 'anontalk'       => '同呢個 IP 傾偈',
 'navigation'     => '導航',
 'and'            => '同埋',
@@ -1033,7 +1034,7 @@ $1',
 'prevn-title'                      => '前$1項結果',
 'nextn-title'                      => '後$1項結果',
 'shown-title'                      => '每版顯示$1項結果',
-'viewprevnext'                     => '去睇 ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => '去睇 ($1) ($2) ($3)',
 'searchmenu-legend'                => '搵嘢選項',
 'searchmenu-exists'                => "'''響呢個wiki度有一版叫做\"[[:\$1]]\"'''",
 'searchmenu-new'                   => "'''響呢個wiki度開呢版\"[[:\$1]]\"！'''",
@@ -1081,7 +1082,7 @@ $1',
 
 # Preferences page
 'preferences'               => '喜好設定',
-'mypreferences'             => '我嘅喜好設定',
+'mypreferences'             => '安排與架生',
 'prefs-edits'               => '編輯數:',
 'prefsnologin'              => '重未登入',
 'prefsnologintext'          => '你一定要去<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} 登入]</span>設定好用戶喜好值先。',
@@ -1766,7 +1767,7 @@ Template:搞清楚',
 
 # Watchlist
 'watchlist'            => '監視清單',
-'mywatchlist'          => '我張監視清單',
+'mywatchlist'          => '監視清單',
 'watchlistfor'         => "（用戶「'''$1'''」嘅監視清單）",
 'nowatchlist'          => '你嘅監視清單度並冇任何項目。',
 'watchlistanontext'    => '請先$1去睇或者改響你監視清單度嘅項目。',
@@ -1912,7 +1913,7 @@ wiki: $PAGEEDITOR_WIKI
 'protect-othertime-op'        => '其它時間',
 'protect-existing-expiry'     => '現時到期嘅時間: $2 $3',
 'protect-otherreason'         => '其它／附加嘅原因:',
-'protect-otherreason-op'      => '其它／附加嘅原因',
+'protect-otherreason-op'      => '其它原因',
 'protect-dropdown'            => '*通用保護原因
 ** 過量嘅破壞
 ** 過量嘅灌水
@@ -1991,7 +1992,7 @@ $1',
 # Contributions
 'contributions'       => '用戶貢獻',
 'contributions-title' => '$1嘅用戶貢獻',
-'mycontris'           => '我嘅貢獻',
+'mycontris'           => '個人貢獻',
 'contribsub2'         => '$1嘅貢獻 ($2)',
 'nocontribs'          => '搵唔到符合呢啲條件嘅修改。', # Optional parameter: $1 is the user name
 'uctop'               => '(最頂)',
@@ -2308,7 +2309,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-pt-anonuserpage'         => '你編輯呢個IP嘅對應用戶頁',
 'tooltip-pt-mytalk'               => '你嘅對話頁',
 'tooltip-pt-anontalk'             => '對於嚟自呢一個IP地址編輯嘅討論',
-'tooltip-pt-preferences'          => '你嘅喜好設定',
+'tooltip-pt-preferences'          => '安排與架生',
 'tooltip-pt-watchlist'            => '你所監視嘅頁面更改一覽',
 'tooltip-pt-mycontris'            => '你嘅貢獻一覽',
 'tooltip-pt-login'                => '建議你去登入；但係唔係一定嘅',

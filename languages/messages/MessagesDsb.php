@@ -780,7 +780,7 @@ Aby se mógał informěrowaś, slědujo how wulašowanski log-zapis, w kótarem�
 'deleted-notice'                   => 'Toś ten bok jo se wulašował. Protokol wulašowanjow za toś ten bok pódawa se dołojce ako referenca.',
 'deletelog-fulllog'                => 'Dopołny protokol se wobglědaś',
 'edit-hook-aborted'                => 'Wobźěłanje pśez kokulu pśetergnjony.
-Njejo žedne wujasnjenje.',
+Njejo žedno wujasnjenje.',
 'edit-gone-missing'                => 'Njejo móžno było bok aktualizěrowaś.
 Zda sem až jo wulašowany.',
 'edit-conflict'                    => 'Wobźěłański konflikt.',
@@ -1021,7 +1021,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'prevn-title'                      => '{{PLURAL:$1|Pjerwjejšny wuslědk|Pjerwjejšnej $1 wuslědka|Pjerwjejšne $1 wuslědki|Pjerwjejšnych $1 wuslědkow}}',
 'nextn-title'                      => '{{PLURAL:$1|Pśiducy wuslědk|Pśiducej $1 wuslědka|Pśiduce $1 wuslědki|Pśiducych $1 wuslědkow}}',
 'shown-title'                      => '$1 {{PLURAL:$1|wuslědk|wuslědka|wuslědki|wuslědkow}} na bok pokazaś',
-'viewprevnext'                     => 'Pokazaś ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Pokazaś ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Pytańske opcije',
 'searchmenu-exists'                => "'''Jo bok z mjenim \"[[\$1]]\" na toś tom wikiju'''",
 'searchmenu-new'                   => "'''Napóraj bok \"[[:\$1|\$1]]\" na toś tom wikiju!'''",
@@ -1205,7 +1205,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'right-move-subpages'         => 'Boki ze swójimi pódbokami pśesunuś',
 'right-move-rootuserpages'    => 'Głowne wužywarske boki pśesunuś',
 'right-movefile'              => 'Dataje pśesunuś',
-'right-suppressredirect'      => 'Pśi pśesunjenju žedne dalejpósrědnjenje ze starego mjenja napóraś',
+'right-suppressredirect'      => 'Pśi pśesunjenju žedno dalejpósrědnjenje ze starego mjenja napóraś',
 'right-upload'                => 'lódowaś dataje',
 'right-reupload'              => 'Eksistěrujucu dataju pśepisaś',
 'right-reupload-own'          => 'Dataju nagratu wót togo samogo wužywarja pśepisaś',
@@ -1543,7 +1543,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 
 # Unused templates
 'unusedtemplates'     => 'Njewužywane pśedłogi',
-'unusedtemplatestext' => 'Toś ten bok nalicujo wšykne boki w mjenjowom rumje {{ns:template}}, kótarež njejsu do žednego drugego boka zawězane. Pšosym kontrolěruj dalšne wótkaze, nježli až je wulašujoš.',
+'unusedtemplatestext' => 'Toś ten bok nalicujo wšykne boki w mjenjowom rumje {{ns:template}}, kótarež njejsu do žednogo drugego boka zawězane. Pšosym kontrolěruj dalšne wótkaze, nježli až je wulašujoš.',
 'unusedtemplateswlh'  => 'Druge wótkaze',
 
 # Random page
@@ -1805,7 +1805,7 @@ Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicu
 'enotif_newpagetext'           => 'To jo nowy bok.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-wužywaŕ',
 'changed'                      => 'změnił',
-'created'                      => 'wutwórił',
+'created'                      => 'napórał',
 'enotif_subject'               => '[{{SITENAME}}] $PAGEEDITOR jo bok "$PAGETITLE" $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Wšykne změny na jadno póglědnjenje: $1',
 'enotif_lastdiff'              => 'Za toś tu změnu glědaj w $1.',
@@ -1910,7 +1910,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'protect-othertime-op'        => 'drugi cas',
 'protect-existing-expiry'     => 'Eksistěrujucy cas pśepadnjenja: $2, $3',
 'protect-otherreason'         => 'Druga/pśidatna pśicyna:',
-'protect-otherreason-op'      => 'Druga/pśidatna pśicyna',
+'protect-otherreason-op'      => 'Druga pśicyna',
 'protect-dropdown'            => '*Powšykne šćitowe pśicyny
 ** Ekscesiwny wanadalizm
 ** Ekscesiwne spamowanje

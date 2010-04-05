@@ -934,7 +934,7 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'prevn-title'                      => 'Pahile waala $1 {{PLURAL:$1|natija|natija}}',
 'nextn-title'                      => 'Aage waala $1 {{PLURAL:$1|result|results}}',
 'shown-title'                      => 'Ek panna me $1 {{PLURAL:$1|result|results}} dekhao',
-'viewprevnext'                     => 'Dekho ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Dekho ($1 ) ($2) ($3)',
 'searchmenu-legend'                => 'Khoje ke option',
 'searchmenu-exists'                => "'''Ii wiki me \"[[\$1]]\" naam ke panna hai'''",
 'searchmenu-new'                   => "'''Ii wiki me \"[[:\$1]]\" panna ke banao!'''",

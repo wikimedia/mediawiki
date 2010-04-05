@@ -19,6 +19,7 @@
  * @author Jon Harald Søby
  * @author Jorunn
  * @author Najami
+ * @author Nghtwlkr
  * @author Olve Utne
  * @author Ranveig
  * @author Shauni
@@ -1125,7 +1126,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'prevn-title'                      => 'Førre $1 {{PLURAL:$1|resultat|resultat}}',
 'nextn-title'                      => 'Neste $1 {{PLURAL:$1|resultat|resultat}}',
 'shown-title'                      => 'Syn $1 {{PLURAL:$1|resultat|resultat}} for kvar side',
-'viewprevnext'                     => 'Vis ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Søkjeval',
 'searchmenu-exists'                => "* Sida '''[[$1]]'''",
 'searchmenu-new'                   => "'''Opprett sida «[[:$1|$1]]» på denne wikien.'''",
@@ -1621,7 +1622,7 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'filedelete-legend'           => 'Slett fil',
 'filedelete-intro'            => "Du er i ferd med å sletta fila '''[[Media:$1|$1]]''' i lag med heile historikken hennar.",
 'filedelete-intro-old'        => "Du slettar versjonen av '''[[Media:$1|$1]]''' frå [$4 $3, $2].",
-'filedelete-comment'          => 'Slettingsårsak:',
+'filedelete-comment'          => 'Sletteårsak:',
 'filedelete-submit'           => 'Slett',
 'filedelete-success'          => "'''$1''' er sletta.",
 'filedelete-success-old'      => "Versjonen av '''[[Media:$1|$1]]''' frå $3, $2 er sletta.",
@@ -1955,7 +1956,7 @@ For hjelp og meir informasjon:
 'dellogpagetext'         => 'Her er ei liste over dei siste slettingane.',
 'deletionlog'            => 'slettelogg',
 'reverted'               => 'Attenderulla til ein tidlegare versjon',
-'deletecomment'          => 'Slettingsårsak:',
+'deletecomment'          => 'Sletteårsak:',
 'deleteotherreason'      => 'Annan grunn:',
 'deletereasonotherlist'  => 'Annan grunn',
 'deletereason-dropdown'  => '*Vanlege grunnar for sletting
@@ -2014,7 +2015,7 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'protect-othertime-op'        => 'anna tid',
 'protect-existing-expiry'     => 'Gjeldande utløpstid: $3 $2',
 'protect-otherreason'         => 'Annan/ytterlegare årsak:',
-'protect-otherreason-op'      => 'annan/ytterlegare årsak',
+'protect-otherreason-op'      => 'Annan årsak',
 'protect-dropdown'            => '*Vanlege verneårsaker
 ** Gjenteke hærverk
 ** Gjenteke spam

@@ -1017,7 +1017,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'prevn-title'                      => 'Vörge {{PLURAL:$1|resultaat|$1 resultate}}',
 'nextn-title'                      => 'Volgende {{PLURAL:$1|resultaat|$1 resultate}}',
 'shown-title'                      => '$1 {{PLURAL:$1|resultaat|resultate}} per pagina weergaeve',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) bekieke.',
+'viewprevnext'                     => '($1) ($2) ($3) bekieke.',
 'searchmenu-legend'                => 'Zeukopties',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
 'searchmenu-new'                   => "'''De pagina \"[[:\$1]]\" aanmake op deze wiki'''",

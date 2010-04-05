@@ -650,7 +650,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'prevn-title'                     => '$1 {{PLURAL:$1|risultât precedent|risultâts precedents}}',
 'nextn-title'                     => '$1 {{PLURAL:$1|risultât sucessîf|risultâts sucessîfs}}',
 'shown-title'                     => 'Mostre $1 {{PLURAL:$1|risultât|risultâts}} par pagjine',
-'viewprevnext'                    => 'Cjale ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                    => 'Cjale ($1) ($2) ($3).',
 'searchmenu-legend'               => 'Opzions de ricercje',
 'searchmenu-exists'               => "'''E je une pagjine di non \"[[:\$1]]\" su cheste wiki'''",
 'searchmenu-new'                  => "'''Cree la pagjine \"[[:\$1]]\" su cheste wiki!'''",

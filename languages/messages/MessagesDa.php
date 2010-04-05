@@ -25,6 +25,7 @@
  * @author Peter Andersen
  * @author Qaqqalik
  * @author Remember the dot
+ * @author Sarrus
  * @author Sir48
  * @author Slomox
  * @author Svip
@@ -716,8 +717,8 @@ Angiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.',
 'whitelistedittext'                => 'Du skal $1 for at kunne redigere sider.',
 'confirmedittitle'                 => 'For at kunne bearbejde er bekræftelsen af e-mail-adressen nødvendig.',
 'confirmedittext'                  => 'Du skal først bekræfte e-mail-adressen, før du kan lave ændringer. Udfyld og bekræft din e-mail-adresse i dine [[Special:Preferences|Indstillinger]].',
-'nosuchsectiontitle'               => 'Afsnit findes ikke',
-'nosuchsectiontext'                => 'Du forsøgte at ændre det ikke eksisterende afsnit $1. Det er dog kun muligt at ændre eksisterende afsnit.',
+'nosuchsectiontitle'               => 'Kan ikke finde afsnittet',
+'nosuchsectiontext'                => 'Du forsøgte at ændre et ikke-eksisterende afsnit. Det kan være flyttet eller slettet, siden du hentede siden.',
 'loginreqtitle'                    => 'Log på nødvendigt',
 'loginreqlink'                     => 'logge på',
 'loginreqpagetext'                 => 'Du skal $1 for at se andre sider.',
@@ -1053,7 +1054,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'prevn-title'                      => 'Forrige $1 {{PLURAL:$1|resultat|resultater}}',
 'nextn-title'                      => 'Næste $1 {{PLURAL:$1|resultat|resultater}}',
 'shown-title'                      => 'Vis $1 {{PLURAL:$1|resultat|resultater}} per side',
-'viewprevnext'                     => 'Vis ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Søgemuligheder',
 'searchmenu-exists'                => "'''Der er en side med navnet \"[[:\$1]]\" på denne wiki'''",
 'searchmenu-new'                   => "'''Opret siden \"[[:\$1]]\" i denne wiki'''",
@@ -1752,7 +1753,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Brugergrupperettigheder',
-'listgrouprights-summary'         => 'Denne side vider de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.
+'listgrouprights-summary'         => 'Denne side viser de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.
 
 Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere information]] om de enkelte rettigheder.',
 'listgrouprights-group'           => 'Gruppe',

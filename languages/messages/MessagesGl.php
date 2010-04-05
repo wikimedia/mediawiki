@@ -731,7 +731,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'showlivepreview'                  => 'Vista previa',
 'showdiff'                         => 'Mostrar os cambios',
 'anoneditwarning'                  => "'''Aviso:''' non accedeu ao sistema.
-O seu enderezo IP quedará rexistrado no historial das revisións desta páxina.",
+O seu enderezo IP quedará rexistrado no historial de revisións desta páxina.",
 'missingsummary'                   => "'''Aviso:''' esqueceu incluír o texto do campo resumo.
 Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrición da edición.",
 'missingcommenttext'               => 'Por favor, escriba un comentario a continuación.',
@@ -1123,7 +1123,7 @@ Se quere, pode [[:\$1|creala]].",
 'prevn-title'                      => '$1 {{PLURAL:$1|resultado previo|resultados previos}}',
 'nextn-title'                      => '$1 {{PLURAL:$1|resultado seguinte|resultados seguintes}}',
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por páxina',
-'viewprevnext'                     => 'Ver as ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Ver as ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opcións de busca',
 'searchmenu-exists'                => "* Páxina \"'''[[\$1]]'''\"",
 'searchmenu-new'                   => "'''Crear a páxina \"''[[:\$1|\$1]]''\" neste wiki!'''",
@@ -2047,7 +2047,7 @@ Pode mudar o nivel de protección da páxina pero iso non afectará á protecci�
 'protect-othertime-op'        => 'outro período',
 'protect-existing-expiry'     => 'Período de caducidade existente: $2, $3',
 'protect-otherreason'         => 'Outro motivo:',
-'protect-otherreason-op'      => 'outro motivo',
+'protect-otherreason-op'      => 'Outro motivo',
 'protect-dropdown'            => '*Motivos frecuentes para a protección
 ** Vandalismo excesivo
 ** Publicidade excesiva

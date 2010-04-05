@@ -702,9 +702,9 @@ Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.'''",
 'copyrightwarning'                 => "Pidage silmas, et kogu teie kaastöö võrgukohale {{SITENAME}} loetakse avaldatuks litsentsi $2 all (vaata ka $1). Kui te ei soovi, et teie kirjutatut halastamatult redigeeritakse ja oma äranägemise järgi kasutatakse, siis ärge seda siia salvestage.<br />
 Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast.<br />
 '''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
-'copyrightwarning2'                => "Pidage silmas teised kaastöölised võivad kogu võrgukohale {{SITENAME}} tehtud kaastööd muuta või eemaldada. Kui te ei soovi, et teie kirjutatut halastamatult redigeeritakse, siis ärge seda siia salvestage.<br />
-Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast (vaata ka $1).<br />
-'''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
+'copyrightwarning2'                => "Pea silmas, et teised kaastöölised võivad kogu {{GRAMMAR:inessive|{{SITENAME}}}} tehtud kaastööd muuta või eemaldada. Kui sa ei soovi, et su kirjutatut halastamatult redigeeritakse, siis ära seda siia salvesta.<br />
+Sa kinnitad ka, et kirjutasid selle ise või võtsid selle kopeerimiskitsenduseta allikast (vaata ka $1).
+'''Ära saada autoriõigusega kaitstud materjali loata!'''",
 'longpagewarning'                  => "'''HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.'''",
 'longpageerror'                    => "'''Viga: Lehekülje suurus on $1 kilobaiti. Lehekülge ei saa salvestada, kuna see on pikem kui maksimaalsed $2 kilobaiti.'''",
 'readonlywarning'                  => "'''HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti hilisemaks kasutamiseks alles hoida tekstifailina.'''
@@ -945,7 +945,7 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'prevn-title'                      => '{{PLURAL:$1|Eelmine tulemus|Eelmised $1 tulemust}}',
 'nextn-title'                      => '{{PLURAL:$1|Järgmine tulemus|Järgmised $1 tulemust}}',
 'shown-title'                      => 'Näita lehekülje kohta $1 {{PLURAL:$1|tulemus|tulemust}}',
-'viewprevnext'                     => 'Näita ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Näita ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Otsingu sätted',
 'searchmenu-exists'                => "'''Lehekülg pealkirjaga \"[[:\$1]]\" on selles vikis olemas.'''",
 'searchmenu-new'                   => "'''Loo lehekülg pealkirjaga \"[[:\$1]]\".'''",
@@ -1830,7 +1830,7 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'protect-othertime-op'        => 'muu aeg',
 'protect-existing-expiry'     => 'Kehtiv aegumisaeg: $2 kell $3',
 'protect-otherreason'         => 'Muu/täiendav põhjus:',
-'protect-otherreason-op'      => 'muu/täiendav põhjus',
+'protect-otherreason-op'      => 'Muu põhjus',
 'protect-dropdown'            => '*Tavalised kaitsmise põhjused
 ** Liigne vandalism
 ** Liigne spämmimine
@@ -2295,6 +2295,12 @@ Palun ürita uuesti.',
 'tooltip-rollback'                => 'Tühistab ühe klõpsuga viimase kaastöölise tehtud muudatused.',
 'tooltip-undo'                    => '"Eemalda" tühistab selle muudatuse ja avab teksti eelvaatega redigeerimisakna. 
 Samuti võimaldab see resümee reale põhjenduse lisamist.',
+
+# Stylesheets
+'common.css' => '/* Siinset CSS-i kasutavad kõik kujundused. */',
+
+# Scripts
+'common.js' => '/* Siinne JavaScript laaditakse igale kasutajatele igal laaditud leheküljel. */',
 
 # Metadata
 'nodublincore'      => "Dublin Core'i RDF-meta-andmed ei ole selles serveris lubatud.",
@@ -2770,24 +2776,25 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'duplicate-defaultsort' => '\'\'\'Hoiatus:\'\'\' Järjestamisvõti "$2" tühistab eespool oleva järjestamisvõtme "$1".',
 
 # Special:Version
-'version'                       => 'Versioon', # Not used as normal message but as header for the special page itself
-'version-extensions'            => 'Paigaldatud lisad',
-'version-specialpages'          => 'Erileheküljed',
-'version-parserhooks'           => 'Süntaksianalüsaatori lisad (Parser hooks)',
-'version-variables'             => 'Muutujad',
-'version-other'                 => 'Muu',
-'version-mediahandlers'         => 'Meediatöötlejad',
-'version-hooks'                 => 'Redaktsioon',
-'version-extension-functions'   => 'Lisafunktsioonid',
-'version-parser-extensiontags'  => 'Parseri lisamärgendid',
-'version-parser-function-hooks' => 'Parserifunktsioonid',
-'version-hook-name'             => 'Redaktsiooni nimi',
-'version-hook-subscribedby'     => 'Tellijad',
-'version-version'               => 'Versioon',
-'version-license'               => 'Litsents',
-'version-software'              => 'Paigaldatud tarkvara',
-'version-software-product'      => 'Toode',
-'version-software-version'      => 'Versioon',
+'version'                          => 'Versioon', # Not used as normal message but as header for the special page itself
+'version-extensions'               => 'Paigaldatud lisad',
+'version-specialpages'             => 'Erileheküljed',
+'version-parserhooks'              => 'Süntaksianalüsaatori lisad (Parser hooks)',
+'version-variables'                => 'Muutujad',
+'version-other'                    => 'Muu',
+'version-mediahandlers'            => 'Meediatöötlejad',
+'version-hooks'                    => 'Redaktsioon',
+'version-extension-functions'      => 'Lisafunktsioonid',
+'version-parser-extensiontags'     => 'Parseri lisamärgendid',
+'version-parser-function-hooks'    => 'Parserifunktsioonid',
+'version-skin-extension-functions' => 'Kujunduse lisa funktsioonid',
+'version-hook-name'                => 'Redaktsiooni nimi',
+'version-hook-subscribedby'        => 'Tellijad',
+'version-version'                  => 'Versioon',
+'version-license'                  => 'Litsents',
+'version-software'                 => 'Paigaldatud tarkvara',
+'version-software-product'         => 'Toode',
+'version-software-version'         => 'Versioon',
 
 # Special:FilePath
 'filepath'         => 'Failitee',

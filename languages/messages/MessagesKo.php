@@ -799,7 +799,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'confirmedittitle'                 => '편집하려면 이메일 인증 필요',
 'confirmedittext'                  => '문서를 고치려면 이메일 인증 절차가 필요합니다. [[Special:Preferences|사용자 환경 설정]]에서 이메일 주소를 입력하고 이메일 주소 인증을 해 주시기 바랍니다.',
 'nosuchsectiontitle'               => '단락을 찾을 수 없음',
-'nosuchsectiontext'                => '편집하려는 문단이 존재하지 않습니다.',
+'nosuchsectiontext'                => '편집하려는 문단이 존재하지 않습니다.
+당신이 이 문서를 보는 동안 문단이 이동되거나 삭제되었을 수 있습니다.',
 'loginreqtitle'                    => '로그인 필요',
 'loginreqlink'                     => '로그인',
 'loginreqpagetext'                 => '다른 문서를 보기 위해서는 $1해야 합니다.',
@@ -1132,7 +1133,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'prevn-title'                      => '이전 결과 $1개',
 'nextn-title'                      => '다음 결과 $1개',
 'shown-title'                      => '매 쪽마다 결과 $1 개씩 보이기',
-'viewprevnext'                     => '보기: ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => '보기: ($1) ($2) ($3).',
 'searchmenu-legend'                => '검색 설정',
 'searchmenu-exists'                => "'''이 위키에 \"[[:\$1]]\"의 이름을 가진 문서가 있습니다.'''",
 'searchmenu-new'                   => "'''이 위키에 \"[[:\$1]]\" 문서를 만드십시오!'''",
@@ -2038,7 +2039,7 @@ $NEWPAGE
 'protect-othertime-op'        => '다른 기간',
 'protect-existing-expiry'     => '현재 만료 기간: $2 $3',
 'protect-otherreason'         => '다른 이유/추가적인 이유:',
-'protect-otherreason-op'      => '다른 이유/추가적인 이유',
+'protect-otherreason-op'      => '다른 이유',
 'protect-dropdown'            => '*일반적인 보호 이유
 ** 빈번한 훼손 행위
 ** 빈번한 광고 행위

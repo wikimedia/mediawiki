@@ -924,7 +924,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'notextmatches'                    => 'Nun hai coincidencies nel testu de la páxina',
 'prevn'                            => 'previos $1',
 'nextn'                            => 'siguientes $1',
-'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Ver ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opciones de busca',
 'searchmenu-exists'                => "'''Hai una páxina nomada \"[[\$1]]\" nesta wiki'''",
 'searchmenu-new'                   => "'''¡Crear la páxina \"[[:\$1]]\" nesta wiki!'''",

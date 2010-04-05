@@ -596,7 +596,7 @@ $messages = array(
 'viewcount'         => '{{PLURAL:$1|لم تعرض هذه الصفحة أبدًا|تم عرض هذه الصفحة مرة واحدة|تم عرض هذه الصفحة مرتين|تم عرض هذه الصفحة $1 مرات|تم عرض هذه الصفحة $1 مرة}}.',
 'protectedpage'     => 'صفحة محمية',
 'jumpto'            => 'اذهب إلى:',
-'jumptonavigation'  => 'الإبحار',
+'jumptonavigation'  => 'تصفح',
 'jumptosearch'      => 'البحث',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1015,7 +1015,7 @@ $2',
 'previewconflict'                  => 'هذا العرض يوضح النص الموجود في صندوق التحرير العلوي والذي سيظهر إذا اخترت الحفظ.',
 'session_fail_preview'             => "'''عذرا! لم نتمكن من حفظ التعديلات التي قمت بها نتيجة لضياع بيانات هذه الجلسة.
 من فضلك حاول مرة أخرى.
-في حال استمرار المشكلة حاول أن تقوم [[Special:UserLogout|بالخروج]] ومن ثم الدخول مرة أخرى.'''",
+في حال استمرار المشكلة حاول أن تقوم [[Special:UserLogout|بالخروج]] ومن ثم الولوج مرة أخرى.'''",
 'session_fail_preview_html'        => "'''عذرا! لم نستطع معالجة تعديلك بسبب فقدان بيانات الجلسة.'''
 
 ''لأن {{SITENAME}} بها HTML الخام مفعلة، العرض المسبق مخفي كاحتياط ضد هجمات الجافا سكريبت.''
@@ -1330,7 +1330,7 @@ $2',
 'prevn-title'                      => '$1 {{PLURAL:$1|نتيجة|نتيجة}} سابقة',
 'nextn-title'                      => '$1 {{PLURAL:$1|نتيجة|نتيجة}} تالية',
 'shown-title'                      => 'عرض $1 {{PLURAL:$1|نتيجة|نتيجة}} لكل صفحة',
-'viewprevnext'                     => 'عرض ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'عرض ($1) ($2) ($3).',
 'searchmenu-legend'                => 'خيارات البحث',
 'searchmenu-exists'                => "*الصفحة '''[[$1]]'''",
 'searchmenu-new'                   => "'''أنشئ الصفحة \"[[:\$1]]\" في هذا الويكي!'''",
@@ -2146,7 +2146,7 @@ PICT # متنوع
 'enotif_impersonal_salutation' => 'مستخدم {{SITENAME}}',
 'changed'                      => 'غُيّرت',
 'created'                      => 'أنشئت',
-'enotif_subject'               => 'صفحة {{SITENAME}} $PAGETITLE تم $CHANGEDORCREATED بواسطة $PAGEEDITOR',
+'enotif_subject'               => 'صفحة {{SITENAME}} $PAGETITLE $CHANGEDORCREATED بواسطة $PAGEEDITOR',
 'enotif_lastvisited'           => 'انظر $1 لكل التغييرات منذ زيارتك الأخيرة.',
 'enotif_lastdiff'              => 'انظر $1 لرؤية هذا التغيير.',
 'enotif_anon_editor'           => 'مستخدم مجهول $1',
@@ -2265,7 +2265,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'وقت آخر',
 'protect-existing-expiry'     => 'تاريخ الانتهاء الموجود: $3، $2',
 'protect-otherreason'         => 'سبب آخر/إضافي:',
-'protect-otherreason-op'      => 'سبب آخر/إضافي',
+'protect-otherreason-op'      => 'سبب آخر',
 'protect-dropdown'            => '*أسباب الحماية الشائعة
 ** تخريب شديد
 ** سبام شديد
@@ -2413,7 +2413,7 @@ $1',
 'ipbenableautoblock'              => 'تلقائيا امنع آخر عنوان أيبي تم استعماله بواسطة هذا المستخدم، وأي عناوين أيبي أخرى يحاول التحرير من خلالها',
 'ipbsubmit'                       => 'امنع هذا المستخدم',
 'ipbother'                        => 'وقت آخر:',
-'ipboptions'                      => '2 ساعة:2 hours,1 يوم:1 day,3 يوم:3 days,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => 'ساعتين:2 hours,يوم واحد:1 day,3 أيام:3 days,أسبوع واحد:1 week,أسبوعين:2 weeks,شهر واحد:1 month,3 أشهر:3 months,6 أشهر:6 months,سنة واحدة:1 year,دائم:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'غير ذلك',
 'ipbotherreason'                  => 'سبب إضافي/آخر:',
 'ipbhidename'                     => 'أخفِ اسم المستخدم من التعديلات والقوائم',
@@ -3460,7 +3460,7 @@ $1',
 * <strong class="mw-specialpagerestricted">صفحات خاصة للمخولين.</strong>',
 'specialpages-group-maintenance' => 'تقارير الصيانة',
 'specialpages-group-other'       => 'صفحات خاصة أخرى',
-'specialpages-group-login'       => 'لُج / سجل',
+'specialpages-group-login'       => 'ولوج / تسجيل',
 'specialpages-group-changes'     => 'السجلات وأحدث التغييرات',
 'specialpages-group-media'       => 'تقارير الميديا وعمليات الرفع',
 'specialpages-group-users'       => 'المستخدمون والصلاحيات',

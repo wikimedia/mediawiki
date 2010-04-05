@@ -1145,7 +1145,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'prevn-title'                      => '$1 {{PLURAL:$1|hasil|hasil}} sebelumnya',
 'nextn-title'                      => '$1 {{PLURAL:$1|hasil|hasil}} selanjutnya',
 'shown-title'                      => 'Tampilkan $1 {{PLURAL:$1|hasil|hasil}} per halaman',
-'viewprevnext'                     => 'Lihat ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Lihat ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opsi pencarian',
 'searchmenu-exists'                => "* Halaman '''[[$1]]'''",
 'searchmenu-new'                   => "'''Buat halaman \"[[:\$1]]\" di wiki ini!'''",

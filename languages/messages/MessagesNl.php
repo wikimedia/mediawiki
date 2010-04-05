@@ -531,7 +531,7 @@ $messages = array(
 Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].',
 
 'ok'                      => 'OK',
-'retrievedfrom'           => 'Teruggeplaatst van "$1"',
+'retrievedfrom'           => 'Ontvangen van "$1"',
 'youhavenewmessages'      => 'U hebt $1 ($2).',
 'newmessageslink'         => 'nieuwe berichten',
 'newmessagesdifflink'     => 'laatste wijziging',
@@ -1240,7 +1240,7 @@ Probeer een andere zoekopdracht.',
 'prevn-title'                      => 'Vorige {{PLURAL:$1|resultaat|$1 resultaten}}',
 'nextn-title'                      => 'Volgende {{PLURAL:$1|resultaat|$1 resultaten}}',
 'shown-title'                      => '$1 {{PLURAL:$1|resultaat|resultaten}} per pagina weergeven',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) bekijken.',
+'viewprevnext'                     => '($1) ($2) ($3) bekijken.',
 'searchmenu-legend'                => 'Zoekopties',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
 'searchmenu-new'                   => "'''De pagina \"[[:\$1]]\" aanmaken op deze wiki'''",
@@ -2184,7 +2184,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'protect-othertime-op'        => 'andere duur',
 'protect-existing-expiry'     => 'Bestaande vervaldatum: $2 om $3',
 'protect-otherreason'         => 'Overige/additionele reden:',
-'protect-otherreason-op'      => 'overige/additionele reden',
+'protect-otherreason-op'      => 'andere reden',
 'protect-dropdown'            => '*Veel voorkomende redenen voor beveiliging
 ** Vandalisme
 ** Spam

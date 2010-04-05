@@ -352,7 +352,7 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 
 # Miscellaneous special pages
-'unusedimagestext' => 'Bitte beachten Sie, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.',
+'unusedimagestext' => 'Bitte beachten Sie, dass andere Webseiten eine Datei mit einer direkten URL verlinken können. Sie könnte daher hier aufgelistet sein, obwohl sie in aktiver Verwendung ist.',
 'notargettext'     => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 
 # Book sources

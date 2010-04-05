@@ -1015,7 +1015,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'notextmatches'                    => 'Engar samsvaranir á texta í síðum',
 'prevn'                            => 'síðustu $1',
 'nextn'                            => 'næstu $1',
-'viewprevnext'                     => 'Skoða ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Skoða ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Leitarvalmöguleikar',
 'searchmenu-exists'                => "'''Það er síða að nafni „[[$1]]“ á þessum wiki'''",
 'searchmenu-new'                   => "'''Skapaðu síðuna \"[[:\$1]]\" á þessum wiki!'''",

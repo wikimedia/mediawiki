@@ -544,7 +544,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'loginerror'                 => 'Feeler beim umellen',
 'prefs-help-email'           => "D'E-Mailadress ass fakultativ, awer si erméiglecht et Iech ärt Passwuert ze mailen wann Dir et vergiess hutt.
 Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Benotzersäit oder ärer diskussiounssäit - kontaktéiere kënnen ouni datt Dir är Identitéit präisgitt.",
-'prefs-help-email-required'  => 'Eng gülteg E-Mailadress gëtt heifir gebraucht.',
+'prefs-help-email-required'  => 'Eng gëlteg E-Mailadress gëtt heifir gebraucht.',
 'nocookiesnew'               => "De Benotzerkont gouf ugeluecht, awer Dir sidd net ageloggt. 
 {{SITENAME}} brauch fir dës Funktioun Cookien.
 Dir hutt d'Cookien desaktivéiert.
@@ -668,14 +668,14 @@ D'Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
 
 Dir kënnt den/d' \$1 kontaktéieren oder ee vun den aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateure]] fir iwwer d'Spär ze schwätzen.
 
-Dëst sollt Der besonnesch maachen, wann Der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit.
+Dëst sollt Der besonnesch maachen, wann Der d'Gefill hutt, datt de Grond fir d'Spären net bei Iech läit.
 D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwer deen och aner Leit fueren.
-Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. 
+Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'evitéieren. 
 
-Dir kënnt d'Funktioun \"Dësem Benotzer eng E-Mail schécken\" nëmme benotzen, wann Dir eng gülteg E-Mail Adress bei ären [[Special:Preferences|Astellungen]] aginn hutt.
+Dir kënnt d'Funktioun \"Dësem Benotzer eng E-Mail schécken\" nëmme benotzen, wann Dir eng gëlteg E-Mail Adress bei Ären [[Special:Preferences|Astellungen]] aginn hutt.
 Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. 
 Schreift all dës Informatioune w.e.g. bei all Ufro derbäi.",
-'autoblockedtext'                  => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass.
+'autoblockedtext'                  => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dee vum $1 gespaart gouf.
 De Grond dofir war:
 
 :\'\'$2\'\'
@@ -684,11 +684,11 @@ De Grond dofir war:
 * Dauer vun der Spär: $6
 * D\'Spär leeft of: $7
 
-Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer dës Spär ze diskutéieren.
+Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer déi Spär ze diskutéieren.
 
-Bedenkt datt Dir d\'Fonctioun "Dësem Benotzer eng E-Mail schécken" benotze kënnt wann Dir eng gülteg E-Mailadress an ären [[Special:Preferences|Astellungen]] uginn hutt a wann dat net fir iech gespaart gouf.
+Bedenkt datt Dir d\'Fonctioun "Dësem Benotzer eng E-Mail schécken" benotze kënnt wann Dir eng gëlteg E-Mailadress an Ären [[Special:Preferences|Astellungen]] uginn hutt a wann dat net fir iech gespaart gouf.
 
-Är aktuell IP-Adress ass $3 an d\'Nummer vun ärer Spär ass $5. 
+Är aktuell IP-Adress ass $3 an d\'Nummer vun Ärer Spär ass $5. 
 Gitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.',
 'blockednoreason'                  => 'Kee Grond uginn',
 'blockedoriginalsource'            => "De Quelltext vun '''$1''' steet hei ënnendrënner:",
@@ -755,7 +755,7 @@ Dir musst Är Ännerungen an dat iewescht Textfeld androen.
 'copyrightwarning'                 => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} automatesch ënnert der $2 (kuckt $1 fir méi Informatiounen) verëffentlecht sinn.
 Wann Dir net wëllt datt är Texter vun anere Mataarbechter verännert, geläscht a weiderverdeelt kënne ginn, da setzt näischt heihinner.<br />
 Dir verspriecht ausserdeem datt Dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnleche Ressource kopéiert hutt.
-'''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNISS AN!'''",
+'''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNES AN!'''",
 'copyrightwarning2'                => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br />
 Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailler). '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!'''",
 'longpagewarning'                  => "'''WARNUNG: Dës Säit ass $1 kB grouss; verschidde Browser kéinte Problemer hunn, Säiten ze verschaffen, déi méi grouss wéi 32 kB sinn.
@@ -1034,7 +1034,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'prevn-title'                      => 'Vireg $1 {{PLURAL:$1|Resultat|Resultater}}',
 'nextn-title'                      => 'Nächst $1 {{PLURAL:$1|Resultat|Resultater}}',
 'shown-title'                      => '$1 {{PLURAL:$1|Resultat|Resultater}} pro Säit weisen',
-'viewprevnext'                     => 'Weis ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Weis ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Optioune vun der Sich',
 'searchmenu-exists'                => "* Säit '''[[$1]]'''",
 'searchmenu-new'                   => "'''Opmaache vun der Säit ''[[:$1|$1]]'' op dëser Wiki!'''",
@@ -1459,7 +1459,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'license'            => 'Lizenzéiert:',
 'nolicense'          => 'Keng Lizenz ausgewielt',
 'license-nopreview'  => '(Kucken ouni ofzespäichere geet net)',
-'upload_source_url'  => ' (gülteg, ëffentlech zougänglech URL)',
+'upload_source_url'  => ' (gëlteg, ëffentlech zougänglech URL)',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Special:ListFiles
@@ -1747,14 +1747,14 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'listgrouprights-rights'          => 'Rechter',
 'listgrouprights-helppage'        => 'Help:Grupperechter',
 'listgrouprights-members'         => '(Lëscht vun de Memberen)',
-'listgrouprights-addgroup'        => 'Kann {{PLURAL:$2|dëse Grupp|dës Gruppen}} derbäisetzen: $1',
+'listgrouprights-addgroup'        => 'Kann {{PLURAL:$2|dës Grupp|dës Gruppen}} derbäisetzen: $1',
 'listgrouprights-removegroup'     => 'Kann {{PLURAL:$2|dëse Gruppe|dës Gruppen}} ewechhuelen: $1',
 'listgrouprights-addgroup-all'    => 'Kann all Gruppen derbäisetzen',
 'listgrouprights-removegroup-all' => 'Ka Benotzer aus alle Gruppen eraushuelen',
 
 # E-mail user
 'mailnologin'      => 'Keng E-Mailadress',
-'mailnologintext'  => 'Dir musst [[Special:UserLogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Astellungen]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
+'mailnologintext'  => 'Dir musst [[Special:UserLogin|ugemellt]] sinn an eng gëlteg E-Mail Adress an Äre [[Special:Preferences|Astellungen]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser'        => 'Dësem Benotzer eng E-Mail schécken',
 'emailpage'        => 'Dem Benotzer eng E-Mail schécken',
 'emailpagetext'    => 'Dir kënnt mat dësem Formulaire dësem Benotzer en E-Mail-Message schécken.
@@ -1933,7 +1933,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'protect-othertime-op'        => 'aner Zäit',
 'protect-existing-expiry'     => 'Ënn vun der Säitespär: $2 ëm $3 Auer',
 'protect-otherreason'         => 'Aneren/zousätzleche Grond:',
-'protect-otherreason-op'      => 'aneren/zousätzleche Grond',
+'protect-otherreason-op'      => 'Anere Grond',
 'protect-dropdown'            => '*Déi heefegst Grënn fir eng Säit ze spären
 ** Weblink-Spam
 ** Permanenten Ännerungskonflikt
@@ -2814,8 +2814,8 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 
 # E-mail address confirmation
 'confirmemail'             => 'E-Mailadress confirméieren',
-'confirmemail_noemail'     => 'Dir hutt keng gülteg E-Mail-Adress an äre [[Special:Preferences|Benotzerastellungen]] agedro.',
-'confirmemail_text'        => "Ier der d'E-Mailfunktioune vun {{SITENAME}} notze kënnt musst dir als éischt är E-Mailadress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi dir uginn hutt. An däer E-Mail steet e Link mat engem Code, deen dir dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
+'confirmemail_noemail'     => 'Dir hutt keng gëlteg E-Mail-Adress an Äre [[Special:Preferences|Benotzerastellungen]] agedro.',
+'confirmemail_text'        => "Ier Dir d'E-Mailfunktioune vun {{SITENAME}} benotze kënnt musst dir als éischt Är E-Mailadress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi Dir uginn hutt. An där E-Mail steet e Link mat engem Code, deen dir dann an Ärem Browser opmaache musst fir esou ze bestätegen, datt Är Adress och wierklech existéiert a valabel ass.",
 'confirmemail_pending'     => 'Dir krut schonn e Confirmatiouns-Code per E-Mail geschéckt. Wenn Dir Äre Benotzerkont eréischt elo kuerz opgemaach hutt, da gedëllegt Iech nach e puer Minutten bis Är E-Mail ukomm ass, ier Dir een neie Code ufrot.',
 'confirmemail_send'        => 'Confirmatiouns-E-Mail schécken',
 'confirmemail_sent'        => 'Confirmatiouns-E-Mail gouf geschéckt.',

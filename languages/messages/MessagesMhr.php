@@ -429,7 +429,7 @@ $messages = array(
 'notextmatches'                  => 'Лаштык-влакыште икгайлык возымо уке',
 'prevn'                          => 'кодшо $1',
 'nextn'                          => 'весе $1',
-'viewprevnext'                   => 'Ончал ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                   => 'Ончал ($1) ($2) ($3)',
 'searchmenu-new'                 => "'''Тиде вики-проектыште «[[:$1]]» лӱман лаштыкым ышташ!'''",
 'searchhelp-url'                 => 'Help:Вуйлымаш',
 'searchprofile-everything'       => 'Чыла',
@@ -646,7 +646,7 @@ $messages = array(
 'allpagesfrom'   => 'Лукташ тыгай лӱман лаштык-влакым, кудыжо тӱҥалыт:',
 'allpagesto'     => 'кудыжо пытат:',
 'allarticles'    => 'Чыла лаштык-влак',
-'allpagessubmit' => 'Кай',
+'allpagessubmit' => 'Кычалаш',
 
 # Special:Categories
 'categories' => 'Категорий-влак',
@@ -967,7 +967,7 @@ $messages = array(
 # Table pager
 'table_pager_next'         => 'Вес лаштык',
 'table_pager_prev'         => 'Ончычсо лаштык',
-'table_pager_limit_submit' => 'Кай',
+'table_pager_limit_submit' => 'Кычалаш',
 
 # Auto-summaries
 'autoredircomment' => '[[$1]] лаштыкыш колтымаш',

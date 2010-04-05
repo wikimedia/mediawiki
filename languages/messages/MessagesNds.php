@@ -1086,7 +1086,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'prevn-title'                      => '{{PLURAL:$1|Vörig Resultat|Vörige $1 Resultaten}}',
 'nextn-title'                      => 'Tokamen {{PLURAL:$1|Resultat|$1 Resultaten}}',
 'shown-title'                      => 'Wies $1 {{PLURAL:$1|Resultat|Resultaten}} per Sied',
-'viewprevnext'                     => 'Wies ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Wies ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Söökoptionen',
 'searchmenu-exists'                => "* Sied '''[[$1]]'''",
 'searchmenu-new'                   => "'''Stell de Sied „[[:$1]]“ in dit Wiki nee op!'''",

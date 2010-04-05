@@ -578,8 +578,9 @@ Häzirki IP adresiňiz $3, blokirleme belgiňiz bolsa #$5.
 'confirmedittitle'                 => 'Redaktirlemeklik üçin e-poçta tassyklamasy talap edilýär',
 'confirmedittext'                  => 'Sahypa redaktirlemäp başlamankaňyz e-poçta adresiňizi tassyklamalysyňyz. 
 [[Special:Preferences|Ulanyjy ileri tutmalaryňyza]] e-poçta adresiňizi ýazyp tassyklamagyňyzy haýyş edýäris.',
-'nosuchsectiontitle'               => 'Beýle bölüm ýok',
-'nosuchsectiontext'                => 'Siz ýok bölümi redaktirlejek bolduňyz.',
+'nosuchsectiontitle'               => 'Bölüm tapylmady',
+'nosuchsectiontext'                => 'Siz ýok bölümi redaktirlejek bolduňyz.
+Sahypany görýän mahalayňyz onuň ady üýtgedilen ýa-da öçürilen bolmagy mümkin.',
 'loginreqtitle'                    => 'Sessiýa açmagyňyz zerur',
 'loginreqlink'                     => 'sessiýa açyň',
 'loginreqpagetext'                 => 'Başga sahypalary görmek üçin $1.',
@@ -932,7 +933,7 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'prevn-title'                      => 'Öňki $1 {{PLURAL:$1|netije|netije}}',
 'nextn-title'                      => 'Indiki $1 {{PLURAL:$1|netije|netije}}',
 'shown-title'                      => 'Sahypa başyna $1 {{PLURAL:$1|netije|netije}} görkez',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => '($1) ($2) ($3).',
 'searchmenu-legend'                => 'Gözleg opsiýalary',
 'searchmenu-exists'                => "'''Bu wikide \"[[:\$1]]\" atly sahypa bar'''",
 'searchmenu-new'                   => "'''Bu wikide \"[[:\$1]]\" sahypasyny döret!'''",

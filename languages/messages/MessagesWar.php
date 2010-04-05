@@ -340,7 +340,7 @@ Nagbalik hin sayop an database nga "$3: $4"',
 # Search results
 'prevn'                    => 'naha-una nga $1',
 'nextn'                    => 'sunod nga $1',
-'viewprevnext'             => 'Kitaa an ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'             => 'Kitaa an ($1) ($2) ($3)',
 'searchhelp-url'           => 'Help:Sulod',
 'search-suggest'           => 'Buot sidngon mo ba: $1',
 'search-interwiki-caption' => 'Mga bugto nga proyekto',

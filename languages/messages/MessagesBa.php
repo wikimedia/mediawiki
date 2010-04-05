@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Comp1089
  * @author Haqmar
  * @author Timming
  * @author Рустам Нурыев
@@ -817,9 +818,13 @@ $3 белдергән сәбәп: ''$2''",
 'notitlematches'                   => 'Бит исемдәрендә тап килеүҙәр юҡ',
 'textmatches'                      => 'Бит эстәлегендә тап килеүҙәр',
 'notextmatches'                    => 'Тап килгән бит табылманы',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) ҡарарға',
+'prevn-title'                      => 'Һуңғы $1 һөҙөмтә',
+'nextn-title'                      => 'Тәүге $1 һөҙөмтә',
+'shown-title'                      => 'Бер биттә $1 һөҙөмтә күрһәт',
+'viewprevnext'                     => '($1) ($2) ($3) ҡарарға',
 'searchmenu-legend'                => 'Эҙләү көйләүҙәре',
 'searchmenu-exists'                => "'''Был вики-проектта «[[:$1]]» бите бар'''",
+'searchmenu-new'                   => "'''Был википроектта \"[[:\$1]]\" бите булдырырға.'''",
 'searchhelp-url'                   => 'Help:Эстәлек',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Был префикслы биттәрҙе күрһәтергә]]',
 'searchprofile-everything'         => 'Барыһы',
@@ -1249,7 +1254,7 @@ $3 белдергән сәбәп: ''$2''",
 'listgrouprights'          => 'Ҡатнашыусылыр төркөме хоҡуҡтары',
 'listgrouprights-group'    => 'Төркөм',
 'listgrouprights-rights'   => 'Хоҡуҡтар',
-'listgrouprights-helppage' => 'Белешмә: Төркөм хоҡуҡтары',
+'listgrouprights-helppage' => 'Белешмә: Төркөмдәр хоҡуҡтары',
 'listgrouprights-members'  => '(ағзалар исемлеге)',
 
 # E-mail user

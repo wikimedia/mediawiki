@@ -798,7 +798,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'notextmatches'             => 'Mayong ángay na teksto nin páhina',
 'prevn'                     => 'dati $1',
 'nextn'                     => 'sunod $1',
-'viewprevnext'              => 'Hilingón ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'              => 'Hilingón ($1 ) ($2) ($3)',
 'searchhelp-url'            => 'Help:Mga laog',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 tatarámon|$2 mga tatarámon}})',
 'search-suggest'            => 'An boot mo: $1',

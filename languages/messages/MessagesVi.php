@@ -1120,7 +1120,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prevn-title'                      => '$1 {{PLURAL:$1|kết quả|kết quả}} trước',
 'nextn-title'                      => '$1 {{PLURAL:$1|kết quả|kết quả}} sau',
 'shown-title'                      => 'Hiển thị $1 {{PLURAL:$1|kết quả|kết quả}} mỗi trang',
-'viewprevnext'                     => 'Xem ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Xem ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Tùy chọn tìm kiếm',
 'searchmenu-exists'                => "* Trang '''[[$1]]'''",
 'searchmenu-new'                   => "'''Tạo trang “[[:$1]]” trên wiki này!'''",
@@ -2029,7 +2029,7 @@ hiện tại của trang '''$1''':",
 'protect-othertime-op'        => 'thời hạn khác',
 'protect-existing-expiry'     => 'Thời hạn hiện thời: $3, $2',
 'protect-otherreason'         => 'Lý do khác/bổ sung:',
-'protect-otherreason-op'      => 'lý do khác/bổ sung',
+'protect-otherreason-op'      => 'Lý do khác',
 'protect-dropdown'            => '*Các lý do thường dùng khi khóa
 ** Bị phá hoại quá mức
 ** Bị spam quá mức

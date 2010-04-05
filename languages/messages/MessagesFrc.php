@@ -8,6 +8,7 @@
  * @file
  *
  * @author JeanVoisin
+ * @author Peter17
  * @author PieRRoMaN
  * @author RoyAlcatraz
  * @author Urhixidur
@@ -531,7 +532,7 @@ Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
 'edittools'                 => "<!-- Le texte que vous mettez ici va être montré sous les boëttes de changements ou d'import de dossier. -->",
 'nocreatetitle'             => 'Création de page limitée',
 'nocreatetext'              => "La création des pages est limitée.  Vous pouvez changer une page qu'a été déjà créée ou [[Special:UserLogin|connecter ou créer un compte]].",
-'nocreate-loggedin'         => 'Vous avez pas la permission de créer des nouvelles pages sus ce wiki.',
+'nocreate-loggedin'         => 'Vous avez pas la permission de créer des nouvelles pages.',
 'permissionserrors'         => 'Erreur de permissions',
 'permissionserrorstext'     => 'Vous avez pas la permission de faire ça pour {{PLURAL:$1|cette raison|ces raisons}}:',
 'recreate-deleted-warn'     => "'''Attention: Vous êtes après recréer une page qu'a déjà été ôtée.'''  

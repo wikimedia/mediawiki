@@ -956,7 +956,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'prevn-title'                      => 'గత $1 {{PLURAL:$1|ఫలితం|ఫలితాలు}}',
 'nextn-title'                      => 'తదుపరి $1 {{PLURAL:$1|ఫలితం|ఫలితాలు}}',
 'shown-title'                      => 'పేజీకి $1 {{PLURAL:$1|ఫలితాన్ని|ఫలితాలను}} చూపించు',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) చూపించు.',
+'viewprevnext'                     => '($1) ($2) ($3) చూపించు.',
 'searchmenu-legend'                => 'అన్వేషణ ఎంపికలు',
 'searchmenu-exists'                => "'''ఈ వికీలో \"[[:\$1]]\" అనే పేజీ ఉంది'''",
 'searchmenu-new'                   => "'''ఈ వికీలో \"[[:\$1]]\" అనే పేరుతో పేజీని సృష్టించు!'''",
@@ -1039,7 +1039,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'prefs-watchlist-edits-max' => '(గరిష్ఠ సంఖ్య: 1000)',
 'prefs-misc'                => 'ఇతరాలు',
 'prefs-resetpass'           => 'సంకేతపదాన్ని మార్చుకోండి',
-'saveprefs'                 => 'భధ్రపరచు',
+'saveprefs'                 => 'భద్రపరచు',
 'resetprefs'                => 'మునుపటి వలె',
 'restoreprefs'              => 'సృష్టించబడినప్పటి అభిరుచులు తిరిగి తీసుకురా',
 'textboxsize'               => 'మార్పులు',
@@ -1779,7 +1779,7 @@ $NEWPAGE
 'reverted'               => 'పాత కూర్పుకు తీసుకువెళ్ళాం.',
 'deletecomment'          => 'తొలగింపునకు కారణం:',
 'deleteotherreason'      => 'ఇతర/అదనపు కారణం:',
-'deletereasonotherlist'  => 'ఇతర కారణాలు',
+'deletereasonotherlist'  => 'ఇతర కారణం',
 'deletereason-dropdown'  => '* తొలగింపుకి సాధారణ కారణాలు
 ** రచయిత అభ్యర్థన
 ** కాపీహక్కుల ఉల్లంఘన
@@ -1839,7 +1839,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'ఇతర సమయం',
 'protect-existing-expiry'     => 'ప్రస్తుత కాల పరిమితి: $3, $2',
 'protect-otherreason'         => 'ఇతర/అదనపు కారణం:',
-'protect-otherreason-op'      => 'ఇతర/అదనపు కారణం',
+'protect-otherreason-op'      => 'ఇతర కారణం',
 'protect-dropdown'            => '*సాధారణ సంరక్షణ కారణాలు
 ** అత్యధిక వాండలిజం
 ** అత్యధిక స్పామింగు

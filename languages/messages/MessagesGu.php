@@ -710,7 +710,7 @@ Please log in again after you receive it.
 'notextmatches'             => 'આ શબ્દ કોઈ પાનાંમાં મળ્યો નથી',
 'prevn'                     => 'પાછળનાં $1',
 'nextn'                     => 'આગળનાં $1',
-'viewprevnext'              => 'જુઓ: ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'              => 'જુઓ: ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:સૂચિ',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 શબ્દ|$2 શબ્દો}})',
 'search-result-score'       => 'પ્રસ્તુતિ: $1%',

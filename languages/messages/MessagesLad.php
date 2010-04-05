@@ -235,8 +235,15 @@ $messages = array(
 # General errors
 'error'               => 'Yerro',
 'databaseerror'       => 'Yerro de la Databasa',
+'missing-article'     => 'La databasa no topó el teksto de una hoja que debería topar, llamada "$1" $2.
+
+Esto es generalmente cabsado por un "diff" anacrónico o un link a la istoria de una hoja que era efassado.
+
+Si esto no es el cabso, puede ser que topates un escarabajo en el software.
+Si puede ser, enfórmaselo a un [[Special:ListUsers/sysop|administrator]], anotando la URL.',
 'missingarticle-diff' => '(Dif.: $1, $2)',
 'filecopyerror'       => 'No se pudo copiar el arxiv "$1" a "$2".',
+'viewsource'          => 'Ver el codd fuente',
 'viewsourcefor'       => 'para $1',
 
 # Login and logout pages
@@ -272,9 +279,12 @@ Si puede ser, escoge un otro nombre.',
 'extlink_sample' => 'http://www.example.com Título del link',
 'extlink_tip'    => 'Link eksterno (acόrdate de ajustar el prefiks http://)',
 'headline_tip'   => 'Titular de nivel 2',
+'math_sample'    => 'Escribe aquí una formula',
 'math_tip'       => 'Fórmula matemática (LaTeX)',
+'nowiki_tip'     => 'Iñorar el formato wiki',
 'image_tip'      => 'Imagen incorporada',
 'media_tip'      => 'Link al arxivo multimedia',
+'hr_tip'         => 'Liña orizontala (úsala de vez en cuando)',
 
 # Edit pages
 'summary'                          => 'Resumido:',
@@ -324,6 +334,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} trocar esta hoja]</span>.',
 # Revision deletion
 'rev-delundel'      => 'mostra/esconde',
 'revdelete-log'     => 'La razón para efassar:',
+'revdel-restore'    => 'trocar la vizibilidad',
 'revdelete-content' => 'contenido',
 
 # History merging
@@ -345,10 +356,12 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} trocar esta hoja]</span>.',
 'prevn-title'               => '$1 {{PLURAL:$1|resultado|resultados}} de antes',
 'nextn-title'               => 'Venideros $1 {{PLURAL:$1|resultado|resultados}}',
 'shown-title'               => 'Mostra $1 {{PLURAL:$1|resultado|resultados}} por hoja',
+'viewprevnext'              => 'Ver ($1) ($2) ($3).',
 'searchhelp-url'            => 'Help:Ayudo',
 'searchprofile-everything'  => 'Todo',
 'searchprofile-advanced'    => 'Adelantado',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 biervo|$2 biervos}})',
+'search-section'            => '(sección $1)',
 'search-suggest'            => 'Quisites dezir: $1',
 'search-interwiki-caption'  => 'Proyectos hermanos',
 'search-interwiki-default'  => 'Los resultados de $1:',
@@ -358,6 +371,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} trocar esta hoja]</span>.',
 'searchall'                 => 'todos',
 'powersearch'               => 'Búsqueda adelantada',
 'powersearch-legend'        => 'Búsqueda adelantada',
+'powersearch-redir'         => 'Mostra las redirecciones',
 'powersearch-field'         => 'Busca por',
 'search-external'           => 'Búsqueda eksterna',
 
@@ -512,6 +526,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} trocar esta hoja]</span>.',
 '1movedto2'       => '[[$1]] trasladado a [[$2]]',
 '1movedto2_redir' => '[[$1]] renombrado a [[$2]] por el medio de una redirección',
 'movereason'      => 'Razόn',
+'revertmove'      => 'revertir',
 
 # Namespace 8 related
 'allmessages'        => 'Mesajes del sistema',
@@ -552,6 +567,7 @@ Si puede ser, usa el botón de previsualización antes de registrarla.',
 'tooltip-t-upload'                => 'Mandar imágenes o arxivos de multimedia al servidor',
 'tooltip-t-specialpages'          => 'La lista de todas las hojas especiales',
 'tooltip-t-print'                 => 'Versión imprimible de la hoja',
+'tooltip-t-permalink'             => 'Link permanente a esta versión de la hoja',
 'tooltip-ca-nstab-main'           => 'Ve el artículo',
 'tooltip-ca-nstab-user'           => 'Ve la hoja de usuario',
 'tooltip-ca-nstab-special'        => 'Esta es una hoja especial, la hoja ya no se puede trocar',

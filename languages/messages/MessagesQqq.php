@@ -117,10 +117,10 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-previewontop'            => 'Toggle option used in [[Special:Preferences]].',
 'tog-previewonfirst'          => 'Toggle option used in [[Special:Preferences]].',
 'tog-nocache'                 => "[[Special:Preferences]], tab 'Misc.'. Offers the user the option of disabling caching of pages in the browser",
-'tog-enotifwatchlistpages'    => 'In user preferences',
-'tog-enotifusertalkpages'     => 'In user preferences',
-'tog-enotifminoredits'        => 'In user preferences',
-'tog-enotifrevealaddr'        => 'Toggle option used in [[Special:Preferences]].',
+'tog-enotifwatchlistpages'    => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
+'tog-enotifusertalkpages'     => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
+'tog-enotifminoredits'        => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
+'tog-enotifrevealaddr'        => 'Toggle option used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'tog-shownumberswatching'     => 'Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages.',
 'tog-fancysig'                => 'In user preferences under the signature box',
 'tog-externaleditor'          => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external editor by default.",
@@ -135,7 +135,7 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-watchlisthideanons'      => "Option in tab 'Watchlist' of [[Special:Preferences]]",
 'tog-watchlisthidepatrolled'  => 'Option in Watchlist tab of [[Special:Preferences]]',
 'tog-nolangconversion'        => 'In user preferences.',
-'tog-ccmeonemails'            => 'In user preferences',
+'tog-ccmeonemails'            => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]].',
 'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]].',
 'tog-noconvertlink'           => '{{optional}}',
@@ -247,7 +247,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'cancel'         => 'Message shown below the edit form, and if you click on it, you stop with editing the page and go back to the normal page view.
 
 {{Identical|Cancel}}',
-'qbfind'         => 'Alternative for "search" as used in Cologne Blue skin.',
+'qbfind'         => 'Alternative for "search" as used in Cologne Blue skin.
+{{Identical|Find}}',
 'qbedit'         => '{{Identical|Edit}}',
 'qbmyoptions'    => '{{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special pages}}',
@@ -292,6 +293,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'updatedmarker'     => 'Displayed in the page history (of a page you are [[Special:Watchlist|watching]]), when the page has been edited since the last time you visited it.',
 'printableversion'  => 'Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].',
 'permalink'         => 'Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]',
+'print'             => '{{Identical|Print}}',
 'edit'              => 'The text of the tab going to the edit form. When the page is protected, you will see "[[MediaWiki:Viewsource/{{SUBPAGENAME}}|{{int:viewsource}}]]". Should be in the infinitive mood.
 
 {{Identical|Edit}}',
@@ -421,6 +423,7 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 {{Identical|Edit}}',
 'editsection-brackets'    => '{{optional}}',
 'editold'                 => '{{Identical|Edit}}',
+'viewsourceold'           => '{{Identical|View source}}',
 'editlink'                => 'Text of the edit link shown next to every (editable) template in the list of used templates below the edit window. See also {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
@@ -602,7 +605,7 @@ HTML markup cannot be used.",
 {{Identical|Female}}',
 'email'                      => '{{Identical|E-mail}}',
 'prefs-help-realname'        => 'In user preferences.',
-'prefs-help-email'           => 'Shown as explanation text on [[Special:Preferences]].',
+'prefs-help-email'           => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'nocookiesnew'               => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 'nocookieslogin'             => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'loginsuccesstitle'          => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
@@ -627,13 +630,17 @@ $1 is the minimum number of characters in the password.',
 * $4 is a URL. Example: http://wiki.example.com
 * $5 is a number of days in which the temporary password will expire',
 'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
+'eauthentsent'               => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
 "in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
-'emailauthenticated'         => 'In user preferences. ([[Special:Preferences]])
+'emailauthenticated'         => 'In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].
 
 * $1: obsolete, date and time
 * $2: date
 * $3: time',
+'emailnotauthenticated'      => 'Message in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. It appears after saving your e-mail address but before it has been authenticated.',
+'noemailprefs'               => "Message appearing in the 'E-mail options' section of the 'User profile' page in [[Special:Preferences|Preferences]], when no user e-mail address has been entered.",
+'emailconfirmlink'           => 'Link to [[Special:ConfirmEmail]]. Appears in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}} after saving your e-mail address but before it has been authenticated.',
 'invalidemailaddress'        => 'Shown as a warning when written an invalid e-mail adress in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page',
 'createaccount-title'        => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',
 'createaccount-text'         => 'This text is sent as an e-mail to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.
@@ -715,9 +722,7 @@ Tip for internal links',
 {{Identical|Preview}}',
 'showpreview'                      => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.',
 'showdiff'                         => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.',
-'anoneditwarning'                  => 'Shown when editing a page anonymously.
-
-<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
+'anoneditwarning'                  => 'Shown when editing a page anonymously.',
 'missingsummary'                   => 'The text "sdit summary" is in {{msg-mw|summary}}.
 The text "Save" is in {{msg-mw|savearticle}}.',
 'missingcommentheader'             => '
@@ -800,9 +805,15 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'post-expand-template-inclusion-category' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
 
 # "Undo" feature
-'undo-success' => '{{Identical|Undo}}',
-'undo-failure' => '{{Identical|Undo}}',
-'undo-norev'   => '{{Identical|Undo}}',
+'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.
+
+{{Identical|Undo}}',
+'undo-failure' => 'Message appears if an attempt to revert an edit by clicking the "undo" link on the page history fails.
+
+{{Identical|Undo}}',
+'undo-norev'   => 'Message appears if an attempt to revert an edit by clicking the "undo" link on the page history fails.
+
+{{Identical|Undo}}',
 'undo-summary' => '{{Identical|Undo}}',
 
 # History pages
@@ -1387,6 +1398,9 @@ List elements are separated by {{msg-mw|pipe-separator}} each. Each list element
 'newpageletter'        => "Very short form of \"'''new page'''\". Used in [[Special:RecentChanges]], [[Special:Watchlist]] and [[Special:Contributions]].",
 'boteditletter'        => 'Abbreviation of "bot". Appears in [[Special:RecentChanges]] and [[Special:Watchlist]].',
 'sectionlink'          => '{{optional}}',
+'rc_categories'        => "Probably to do with 'recent changes' special page, either in a particular skin, or for a particular user group.
+
+I guess that this should appear before an input box where you can specify that recent changes should be shown for pages belonging to certain categories only. You name the categories in the input box, and separate them by a pipe character. If this is right, then you should be able to use 'restrict' instead of 'limit', or even 'show pages in the following categories only'.",
 'rc-change-size'       => '{{optional}}
 
 Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
@@ -1871,8 +1885,10 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'noemailtitle'    => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
 'noemailtext'     => 'The text of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
 'email-legend'    => 'Title of the box in [[Special:EmailUser]]',
-'emailfrom'       => 'Field in [[Special:EmailUser]].',
-'emailto'         => 'Field in [[Special:EmailUser]].',
+'emailfrom'       => 'Field in [[Special:EmailUser]].
+{{Identical|From}}',
+'emailto'         => 'Field in [[Special:EmailUser]].
+{{Identical|To}}',
 'emailsubject'    => 'Field in [[Special:EmailUser]].
 
 {{Identical|Subject}}',
@@ -2026,7 +2042,7 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'protect-otherreason'       => 'Shown on the page protection form as label for the following input field (text)
 {{Identical|Other/additional reason}}',
 'protect-otherreason-op'    => 'Shown on the page protection form in the drop down menu
-{{Identical|Other/additional reason}}',
+{{Identical|Other reason}}',
 'protect-dropdown'          => 'Shown on the page protection form as drop down menu for protection reasons.
 
 <tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
@@ -2469,7 +2485,8 @@ See also {{msg-mw|Siteusers}}.",
 
 See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].", # $1 date, $2 time, $3 user
 'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
-* $1: the list of author(s) of the revisions preceding the current revision. It appears after the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. If there are no previous authors this message does not appear at all. If needed the messages [[Mediawiki:siteusers/{{SUBPAGENAME}}]], [[Mediawiki:anonymous/{{SUBPAGENAME}}]] and [[Mediawiki:and/{{SUBPAGENAME}}]] are part of the list of names.',
+* $1: the list of author(s) of the revisions preceding the current revision. It appears after the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. If there are no previous authors this message does not appear at all. If needed the messages [[Mediawiki:siteusers/{{SUBPAGENAME}}]], [[Mediawiki:anonymous/{{SUBPAGENAME}}]] and [[Mediawiki:and/{{SUBPAGENAME}}]] are part of the list of names.
+* $2: optional, the count of names in $1',
 'others'           => 'The following explanation is guesswork. This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
 
 The message appears at the end of the list of credits given in the message [[Mediawiki:Othercontribs/{{SUBPAGENAME}}]] if the number of contributors is above a certain level.',
@@ -2638,7 +2655,9 @@ Variant option for wikis with variants conversion enabled.',
 {{Identical|Metadata}}',
 'metadata-expand'   => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on this link, you can see more data and information. For the link to hide back the less important data, see "[[MediaWiki:Metadata-collapse/{{SUBPAGENAME}}|{{int:metadata-collapse}}]]".',
 'metadata-collapse' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on the link "[[MediaWiki:Metadata-expand/{{SUBPAGENAME}}|{{int:metadata-expand}}]]", you can see more data and information. This message is for the link to hide back the less important data.',
-'metadata-fields'   => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as they are.", # Do not translate list items
+'metadata-fields'   => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as they are.
+
+The sentences are for explanation only and are not shown to the user.", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
@@ -2914,8 +2933,19 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 {{Identical|All}}',
 
 # E-mail address confirmation
+'confirmemail'             => 'Title of [[Special:ConfirmEmail]] page.',
+'confirmemail_noemail'     => 'Failure message on [[Special:ConfirmEmail]].',
+'confirmemail_text'        => 'Explanation on [[Special:ConfirmEmail]]',
+'confirmemail_pending'     => 'Message on [[Special:ConfirmEmail]] when confirmation of e-mail not yet complete.',
+'confirmemail_send'        => 'Button label on [[Special:ConfirmEmail]]',
+'confirmemail_sent'        => 'Message appearing after button {{msg-mw|Confirmemail_send}} activated on [[Special:ConfirmEmail]].',
+'confirmemail_sendfailed'  => 'Failure message to do with [[Special:ConfirmEmail]].
+
+$1 is a message from the e-mail delivery system.',
 'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out.
 * $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
+'confirmemail_loggedin'    => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
+'confirmemail_subject'     => 'Text in subject box of e-mail sent to user during e-mail address confirmation',
 'confirmemail_body'        => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
 
 *$1 is the IP adress of the user that changed the e-mail adress
@@ -2996,13 +3026,24 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Message on Special page: Edit watchlist. This is paired with the message [[Mediawiki:Watchlistedit-noitems]] which appears instead of Watchlistedit-numitems when $1 is 0.',
-'watchlistedit-noitems'        => "Message on Special page: Edit watchlist, which only appears when a user's watchlist is empty.",
+'watchlistedit-noitems'        => "Message on [[Special:Watchlist/edit]], which only appears when a user's watchlist is empty.",
+'watchlistedit-normal-title'   => 'Title of [[Special:Watchlist/edit|special page]].',
+'watchlistedit-normal-legend'  => 'Heading of dialogue box on [[Special:Watchlist/edit]]',
 'watchlistedit-normal-explain' => 'An introduction/explanation about the [[Special:Watchlist/edit|normal edit watchlist function]].
 Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
+'watchlistedit-normal-submit'  => 'Text of submit button on [[Special:Watchlist/edit]].',
 'watchlistedit-normal-done'    => 'Message on Special page: Edit watchlist after pages are removed from the watchlist.',
-'watchlistedit-raw-title'      => '{{Identical|Edit raw watchlist}}',
-'watchlistedit-raw-legend'     => '{{Identical|Edit raw watchlist}}',
-'watchlistedit-raw-explain'    => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].',
+'watchlistedit-raw-title'      => 'Title of [[Special:Watchlist/raw|Special page]].
+
+{{Identical|Edit raw watchlist}}',
+'watchlistedit-raw-legend'     => 'Heading of dialogue box on [[Special:Watchlist/raw]].
+
+{{Identical|Edit raw watchlist}}',
+'watchlistedit-raw-explain'    => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].
+Hint: the text "Update Watchlist" is in {{msg-mw|watchlistedit-raw-submit}}',
+'watchlistedit-raw-titles'     => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].',
+'watchlistedit-raw-submit'     => 'Text of submit button on [[Special:Watchlist/raw]].',
+'watchlistedit-raw-done'       => 'A message which appears after the raw watchlist has been updated using [[Special:Watchlist/raw]].',
 'watchlistedit-raw-added'      => 'Message on special page: Edit raw watchlist. The message appears after at least 1 message is added to the raw watchlist.',
 'watchlistedit-raw-removed'    => 'Message on special page: Edit raw watchlist. The message appears after at least 1 message is deleted from the raw watchlist.',
 

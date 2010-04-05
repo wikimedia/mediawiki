@@ -747,7 +747,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'notextmatches'                  => 'এটাও লিখনীৰ পাঠ্য মিলা নাই',
 'prevn'                          => 'পুর্ববর্তি $1',
 'nextn'                          => 'পৰৱর্তি $1',
-'viewprevnext'                   => 'চাওক ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                   => 'চাওক ($1) ($2) ($3)',
 'searchmenu-new'                 => "'''এই ৱিকিত \"[[:\$1]]\" পৃষ্ঠাখন সৃষ্টি কৰক!'''",
 'searchhelp-url'                 => 'Help:সুচী',
 'searchprofile-everything'       => 'সকলো',

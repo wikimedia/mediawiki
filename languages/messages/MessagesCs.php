@@ -1194,7 +1194,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'prevn-title'                      => '{{PLURAL:$1|Předchozí výsledek|Předchozí $1 výsledky|Předchozích $1 výsledků}}',
 'nextn-title'                      => '{{PLURAL:$1|Následující výsledek|Následující $1 výsledky|Následujících $1 výsledků}}',
 'shown-title'                      => 'Zobrazit $1 {{PLURAL:$1|výsledek|výsledky|výsledků}} na stránku',
-'viewprevnext'                     => 'Ukázat ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Ukázat ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Možnosti hledání',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
 'searchmenu-new'                   => "'''Vytvořte na této wiki stránku „[[:$1]]“!'''",
@@ -2090,7 +2090,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-othertime-op'        => 'jiný čas',
 'protect-existing-expiry'     => 'Současný čas vypršení: $2, $3',
 'protect-otherreason'         => 'Jiný/další důvod:',
-'protect-otherreason-op'      => 'jiný/další důvod',
+'protect-otherreason-op'      => 'Jiný důvod',
 'protect-dropdown'            => '*Obvyklé důvody zamčení
 ** Opakovaný vandalismus
 ** Vkládání reklamních externích odkazů
@@ -2572,7 +2572,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http:
 'anonymous'        => 'anonymní {{PLURAL:$1|uživatel|uživatelé|uživatelé}} {{GRAMMAR:2sg|{{SITENAME}}}}',
 'siteuser'         => 'uživatel {{grammar:2sg|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Tuto stránku naposledy {{GENDER:$4|změnil|změnila|změnil}} $3 v $2, $1.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'Do textu přispěli $1.',
+'othercontribs'    => 'Do textu {{PLURAL:$2|přispěl|přispěli}} $1.',
 'others'           => 'další',
 'siteusers'        => '{{PLURAL:$2|uživatel|uživatelé|uživatelé}} {{grammar:2sg|{{SITENAME}}}} $1',
 'creditspage'      => 'Zásluhy za stránku',

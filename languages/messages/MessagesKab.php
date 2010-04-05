@@ -638,7 +638,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'notextmatches'         => 'ulac ayen yecban azwel n usebter',
 'prevn'                 => '$1 ssabeq',
 'nextn'                 => '$1 ameḍfir',
-'viewprevnext'          => 'Ẓer ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'          => 'Ẓer ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Agbur',
 'showingresults'        => "Tamuli n {{PLURAL:$1|'''Yiwen''' wegmud|'''$1''' n yigmad}} seg  #'''$2'''.",
 'showingresultsnum'     => "Tamuli n {{PLURAL:$3|'''Yiwen''' wegmud|'''$3''' n yigmad}} seg  #'''$2'''.",

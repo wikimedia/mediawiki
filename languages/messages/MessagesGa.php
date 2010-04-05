@@ -785,7 +785,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'notextmatches'                  => 'Ní bhfuarthas an téacs ar leathanach ar bith',
 'prevn'                          => 'na $1 cinn roimhe seo',
 'nextn'                          => 'an $1 i ndiadh',
-'viewprevnext'                   => 'Taispeáin ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                   => 'Taispeáin ($1) ($2) ($3).',
 'searchmenu-legend'              => 'Sainroghanna cuardaithe',
 'searchmenu-new'                 => "'''Cruthaigh an leathanach \"[[:\$1]]\" ar an vicí seo!'''",
 'searchhelp-url'                 => 'Help:Clár_ábhair',

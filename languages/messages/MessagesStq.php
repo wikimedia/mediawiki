@@ -595,8 +595,9 @@ Du koast $1 of aan fon do uur [[{{MediaWiki:Grouppage-sysop}}|Administratore]] k
 'whitelistedittext'                => 'Du moast die $1, uum Artikkele beoarbaidje tou konnen.',
 'confirmedittitle'                 => 'Toun Beoarbaidjen is ju E-Mail-Anärkannenge nöödich.',
 'confirmedittext'                  => 'Du moast dien E-Mail-Adresse eerste anärkanne, eer du beoarbaidje koast. Fäl dien E-Mail uut un ärkanne ju an in do [[Special:Preferences|Ienstaalengen]].',
-'nosuchsectiontitle'               => 'Oudeelenge bestoant nit',
-'nosuchsectiontext'                => 'Du fersäkst ju nit bestoundende Oudeelenge tou beoarbaidjen.',
+'nosuchsectiontitle'               => 'Kon ju Oudeelenge nit fiende',
+'nosuchsectiontext'                => 'Du hääst fersoacht, ne Oudeelenge tou beoarbaidjen, ju dät nit rakt.
+Ju kon ferschäuwen of läsked weese, ätterdät du ju Siede apruupen hääst.',
 'loginreqtitle'                    => 'Anmäldenge ärfoarderelk',
 'loginreqlink'                     => 'anmäldje',
 'loginreqpagetext'                 => 'Du moast die $1, uum uur Sieden betrachtje tou konnen.',
@@ -927,7 +928,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'prevn-title'                      => '{{PLURAL:$1|Foarich Resultoat|Foarige $1 Resultoate}}',
 'nextn-title'                      => '{{PLURAL:$1|Foulgjend Resultoat|Foulgjende $1 Resultoate}}',
 'shown-title'                      => 'Wies $1 {{PLURAL:$1|Resultoat|Resultoate}} pro Siede',
-'viewprevnext'                     => 'Wies ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => 'Wies ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Säikoptione',
 'searchmenu-exists'                => "'''Dät rakt n Siede mäd Noome \"[[:\$1]]\" ap dissen Wiki'''",
 'searchmenu-new'                   => "'''Moak ju Siede „[[:$1]]“ in dissen Wiki.'''",
@@ -1823,7 +1824,7 @@ Sjuch [[Special:ProtectedPages|Schutsede Siede]] foar moor Informatione.',
 'protect-othertime-op'        => 'uur Speerduur',
 'protect-existing-expiry'     => 'Aktuel Siedenschutseende: $2, $3 Uure',
 'protect-otherreason'         => 'Uur/touföigeden Gruund:',
-'protect-otherreason-op'      => 'uur/bietoukuumenden Gruund',
+'protect-otherreason-op'      => 'Uur Gruund',
 'protect-dropdown'            => '*Algemeene Schutsgruunde
 ** Weblink-Spam
 ** Editwar

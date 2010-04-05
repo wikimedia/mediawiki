@@ -259,7 +259,7 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'notextmatches'         => "Chan eil teacsa duilleig a' samhlachadh",
 'prevn'                 => '$1 mu dheireadh',
 'nextn'                 => 'an ath $1',
-'viewprevnext'          => 'Seall ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'          => 'Seall ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Cuideachadh',
 'showingresults'        => "A' nochdadh $1 {{PLURAL:$1|thoradh|toradh|toraidhean|toradh}} gu h-ìosal a' tòiseachadh le #'''$2'''.",
 'showingresultsnum'     => "A' nochdadh '''$3''' {{PLURAL:$3|thoradh|toradh|toraidhean|toradh}}  gu h-ìosal a' tòiseachadh le #'''$2'''.",

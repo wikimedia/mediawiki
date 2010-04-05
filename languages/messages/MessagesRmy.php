@@ -268,7 +268,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 # Search results
 'prevn'             => 'mai neve $1',
 'nextn'             => 'mai purane $1',
-'viewprevnext'      => 'Dikh ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'      => 'Dikh ($1) ($2) ($3).',
 'searchhelp-url'    => 'Help:Zhutipen',
 'showingresults'    => 'Tele si <b>$1</b> rezultaturya shirdindoi le ginestar <b>$2</b>.',
 'showingresultsnum' => 'Tele si <b>$3</b> rezultaturya shirdindoi le ginestar <b>$2</b>.',

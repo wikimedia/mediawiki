@@ -620,7 +620,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'noexactmatch'          => "'''Páhina zo \"\$1\" coccebj ne'dáár.''' Mecoccebj [[:\$1|hunpáhinámom]].",
 'prevn'                 => 'jan $1',
 'nextn'                 => 'hun $1',
-'viewprevnext'          => 'Cohuatlöx ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'          => 'Cohuatlöx ($1) ($2) ($3)',
 'searchhelp-url'        => 'Help:Caálixötöj',
 'powersearch'           => 'Yahöx',
 

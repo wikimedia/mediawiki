@@ -1001,7 +1001,7 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'prevn-title'                      => '{{PLURAL:$1|Předchadny wuslědk|Předchadnej $1 wuslědkaj|Předchadne $1 wuslědki|Předchadnych $1 wuslědkow}}',
 'nextn-title'                      => '{{PLURAL:$1|Přichodny wuslědk|Přichodnej $1 wuslědkaj|Přichodne $1 wuslědki|Přichodnych $1 wuslědkow}}',
 'shown-title'                      => '$1 {{PLURAL:$1|wuslědk|wuslědkaj|wuslědki|wuslědkow}} na stronu pokazać',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) pokazać',
+'viewprevnext'                     => '($1) ($2) ($3) pokazać',
 'searchmenu-legend'                => 'Pytanske opcije',
 'searchmenu-exists'                => "'''Je strona z mjenom \"[[\$1]]\" na tutym wikiju'''",
 'searchmenu-new'                   => "'''Wutwor stronu \"[[:\$1|\$1]]\" na tutym wikiju!'''",
@@ -1900,7 +1900,7 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 'protect-othertime-op'        => 'druhi čas',
 'protect-existing-expiry'     => 'Eksistowacy čas spadnjenja: $2, $3 hodź.',
 'protect-otherreason'         => 'Druha/přidatna přičina:',
-'protect-otherreason-op'      => 'druha/přidatna přičina',
+'protect-otherreason-op'      => 'Druha přičina',
 'protect-dropdown'            => '*Powšitkowne škitowe přičiny
 ** Ekscesiwny wandalizm
 ** Ekscesiwne spamowanje

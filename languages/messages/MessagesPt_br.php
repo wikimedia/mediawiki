@@ -24,6 +24,7 @@
  * @author LeonardoG
  * @author Lijealso
  * @author Luckas Blade
+ * @author McDutchie
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
  * @author Waldir
@@ -377,7 +378,7 @@ $messages = array(
 'postcomment'       => 'Nova seção',
 'articlepage'       => 'Ver página de conteúdo',
 'talk'              => 'Discussão',
-'views'             => 'Acessos',
+'views'             => 'Vistas',
 'toolbox'           => 'Ferramentas',
 'userpage'          => 'Ver página de usuário',
 'projectpage'       => 'Ver página de projeto',
@@ -574,7 +575,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'logout'                     => 'Sair',
 'userlogout'                 => 'Sair',
 'notloggedin'                => 'Não autenticado',
-'nologin'                    => "Não possui uma conta? '''$1'''.",
+'nologin'                    => 'Não possui uma conta? $1.',
 'nologinlink'                => 'Criar uma conta',
 'createaccount'              => 'Criar nova conta',
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",
@@ -1093,7 +1094,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'prevn-title'                      => '$1 {{PLURAL:$1|resultado anterior|resultados anteriores}}',
 'nextn-title'                      => '{{PLURAL:$1|próximo|próximos}} $1 {{PLURAL:$1|resultado|resultados}}',
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
-'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
 'searchmenu-exists'                => "*'''Há uma página chamada \"[[\$1]]\" nesta wiki'''",
 'searchmenu-new'                   => "'''Criar a página \"[[:\$1|\$1]]\" nesta wiki!'''",

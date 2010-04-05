@@ -1185,7 +1185,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prevn-title'                      => 'Előző {{PLURAL:$1|egy|$1}} találat',
 'nextn-title'                      => 'Következő {{PLURAL:$1|egy|$1}} találat',
 'shown-title'                      => '{{PLURAL:$1|Egy|$1}} találat laponként',
-'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                     => '($1) ($2) ($3)',
 'searchmenu-legend'                => 'Keresési beállítások',
 'searchmenu-exists'                => "'''A wikin már van „[[:$1]]” nevű lap'''",
 'searchmenu-new'                   => "'''Hozd létre a(z) „[[:$1]]” nevű lapot ezen a wikin!'''",
@@ -2094,7 +2094,7 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 'protect-othertime-op'        => 'más időtartam',
 'protect-existing-expiry'     => 'Jelenleg érvényben lévő lejárati idő: $2, $3',
 'protect-otherreason'         => 'További okok:',
-'protect-otherreason-op'      => 'további okok',
+'protect-otherreason-op'      => 'Más/további ok:',
 'protect-dropdown'            => '*Általános védelmi okok
 ** Gyakori vandalizmus
 ** Gyakori spamelés

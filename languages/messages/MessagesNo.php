@@ -1045,7 +1045,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'prevn-title'                      => 'Forrige $1 {{PLURAL:$1|resultat|resultater}}',
 'nextn-title'                      => 'Neste $1 {{PLURAL:$1|resultat|resultater}}',
 'shown-title'                      => 'Vis $1 {{PLURAL:$1|resultat|resultater}} per side',
-'viewprevnext'                     => 'Vis ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Søkeinnstillinger',
 'searchmenu-exists'                => "* Siden '''[[$1]]'''",
 'searchmenu-new'                   => "'''Opprett siden ''[[:$1]]'' på denne wikien.'''",
@@ -1942,7 +1942,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect-othertime-op'        => 'annen tid',
 'protect-existing-expiry'     => 'Gjeldende utløpstid: $3 $2',
 'protect-otherreason'         => 'Annen/utdypende grunn:',
-'protect-otherreason-op'      => 'annen/utdypende grunn',
+'protect-otherreason-op'      => 'Annen grunn',
 'protect-dropdown'            => '*Vanlige låsingsårsaker
 ** Gjentatt hærverk
 ** Gjentatt spam

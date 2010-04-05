@@ -967,7 +967,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'prevn-title'                      => '{{PLURAL:$1|Sukasek|Sukaseks}} büik $1',
 'nextn-title'                      => '{{PLURAL:$1|Sukasek|Sukaseks}} fovik $1',
 'shown-title'                      => 'Jonön {{PLURAL:$1|sukaseki|sukasekis}} $1 a pad',
-'viewprevnext'                     => 'Logön padis ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Logön padis ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Sukaparamets',
 'searchmenu-exists'                => "'''Dabinon pad labü nem: \"[[:\$1]]\" su vük at'''",
 'searchmenu-new'                   => "'''Jafolös padi: \"[[:\$1]]\" su vük at!'''",
@@ -1845,7 +1845,7 @@ Ekö! parametem anuik pada: '''$1''':",
 'protect-othertime-op'        => 'tim votik',
 'protect-existing-expiry'     => 'Dul dabinöl: jü $3, tü $2',
 'protect-otherreason'         => 'Kod votik/pluik:',
-'protect-otherreason-op'      => 'kod votik/pluik',
+'protect-otherreason-op'      => 'Kod votik',
 'protect-dropdown'            => '* Jelakods suvik
 ** Vandalim tuik
 ** Spam tuik

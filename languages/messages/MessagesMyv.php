@@ -615,7 +615,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'whitelistedittitle'               => 'Витнемань-петнемань теемга эряви совамо лем',
 'whitelistedittext'                => 'Лопанть витнемс - петнемс эряви $1.',
 'confirmedittitle'                 => 'Витнемга-петнемга эряви е-сёрма паргонь кемекстамо',
-'nosuchsectiontitle'               => 'Истямо явкс арась',
+'nosuchsectiontitle'               => 'Явксось а муеви',
 'loginreqtitle'                    => 'Совамс эряви',
 'loginreqlink'                     => 'совамс',
 'loginreqpagetext'                 => 'Лия лопань ванномга, эряви $1.',
@@ -827,7 +827,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'notextmatches'                   => 'Лопанть сёрмадсткэнзэ марто вейтьс прамот арасть',
 'prevn'                           => 'седе икелень $1',
 'nextn'                           => 'сы $1',
-'viewprevnext'                    => 'Ванномс ($1 {{int:pipe-separator}} $2) ($3)',
+'viewprevnext'                    => 'Ванномс ($1) ($2) ($3)',
 'searchmenu-legend'               => 'Вешнемань аравтомкат',
 'searchmenu-exists'               => "'''Те викисэнть ули \"[[\$1]]\" лем марто лопа'''",
 'searchhelp-url'                  => 'Help:Лопась мезе кирди',
@@ -1854,6 +1854,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 'exif-sensingmethod-1' => 'Апак путо',
 
+'exif-customrendered-0' => 'Эрьва чинь процесс',
+'exif-customrendered-1' => 'Башка ёнкс марто процесс',
+
 'exif-exposuremode-0' => 'Сонсь тееви экспозициясь',
 
 'exif-scenecapturetype-0' => 'Стандарт',
@@ -1922,6 +1925,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'confirmemail_send'     => 'Кучомс е-сёрмасо кемекстамонь код',
 'confirmemail_loggedin' => 'Е-сёрма паргот апак кемекста.',
 'confirmemail_error'    => 'Кемекстамот ванстомсто мезе-бути лиссь.',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[URL пек кувака]',
 
 # Trackbacks
 'trackbackremove' => '([$1 Нардамс])',
