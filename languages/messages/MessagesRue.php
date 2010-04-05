@@ -11,7 +11,7 @@
  * @author Tkalyn
  */
 
-$fallbak = 'uk';
+$fallback = 'uk';
 
 $messages = array(
 # User preference toggles
