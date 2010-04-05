@@ -364,6 +364,16 @@ class OutputPage {
 		return true;
 	}
 
+	/**
+	 * Override the last modified timestamp
+	 *
+	 * @param $timestamp String: new timestamp, in a format readable by
+	 *        wfTimestamp()
+	 */
+	public function setLastModified( $timestamp ) {
+		$this->mLastModified = wfTimestamp( TS_RFC2822, $timestamp );
+	}
+
 
 	/**
 	 * Set the robot policy for the page: <http://www.robotstxt.org/meta.html>
