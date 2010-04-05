@@ -156,7 +156,6 @@ class SiteStats {
 			$row === false
 			or $row->ss_total_pages < $row->ss_good_articles
 			or $row->ss_total_edits < $row->ss_total_pages
-			or $row->ss_users       < $row->ss_admins
 		) {
 			return false;
 		}
@@ -375,7 +374,6 @@ class SiteStatsInit {
 						'ss_good_articles' => $this->mArticles,
 						'ss_total_pages' => $this->mPages,
 						'ss_users' => $this->mUsers,
-						'ss_admins' => SiteStats::numberingroup( 'sysop' ), // @todo make this go away
 						'ss_images' => $this->mFiles );
 		$conds = array( 'ss_row_id' => 1 );
 		$views = array( 'ss_total_views' => $this->mViews );
