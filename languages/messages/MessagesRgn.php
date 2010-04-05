@@ -13,6 +13,16 @@
 $fallback = 'it';
 
 $messages = array(
+# User preference toggles
+'tog-underline'             => 'Link cun la sotliniadura',
+'tog-highlightbroken'       => 'Fa avdé i link sbajé <a href="" class="new">scrètt acsè</a> (alternativa: scrètt acsè<a href="" class="internal">?</a>)',
+'tog-justify'               => 'Paràgraf: giustifiché',
+'tog-hideminor'             => 'Nascond al mudefghi znini int la pàgina "Ultum mudèfghi"',
+'tog-hidepatrolled'         => "Nascònd j cambiamént verifichèdi int'aglj ultum mudèfigh",
+'tog-newpageshidepatrolled' => 'Nascònd al pàgin verifichèdi da la lèsta dal pàgin növi',
+'tog-extendwatchlist'       => "Slèrga la funziòn \"tènn sot occ\" d'mod ch'us pòsa avdé toti al mudefchi, no sol l'ultma.",
+'tog-usenewrc'              => "Drova agl'j ultmi mudèfchi avanzëdi (u j vô JavaScript)",
+
 # Dates
 'january'       => 'Znèr',
 'february'      => 'Febrér',

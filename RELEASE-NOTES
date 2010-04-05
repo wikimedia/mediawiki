@@ -864,7 +864,7 @@ comment from another wiki.
 
 === Languages updated in 1.16 ===
 
-MediaWiki supports over 300 languages. Many localisations are updated
+MediaWiki supports over 330 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of MediaZilla reports.
 
@@ -873,9 +873,11 @@ changes to languages because of MediaZilla reports.
 * Kirmanjki (kiu) (new)
 * Komi-Permyak (koi) (new)
 * Karachay-Balkar (krc) (new)
+* Latgalian (ltg) (new)
 * Hill Mari (mrj) (new)
 * Prussian (prg) (new)
 * Romagnol (rgn) (new)
+* Rusyn (rue) (new)
 * Lower Silesian (sli) (new)
 * Picard (pcd) (new)
 * Uyghur (Arabic script) (ug-arab) (new)

@@ -14,6 +14,7 @@
  * @author Irwangatot
  * @author IvanLanin
  * @author Kenrick95
+ * @author McDutchie
  * @author Meursault2004
  * @author Remember the dot
  * @author Rex
@@ -645,6 +646,7 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'readonly_lag'         => 'Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama',
 'internalerror'        => 'Kesalahan internal',
 'internalerror_info'   => 'Kesalahan internal: $1',
+'fileappenderror'      => 'Tidak dapat memasukkan "$1" ke "$2".',
 'filecopyerror'        => 'Tidak dapat menyalin berkas "$1" ke "$2".',
 'filerenameerror'      => 'Tidak dapat mengubah nama berkas "$1" menjadi "$2".',
 'filedeleteerror'      => 'Tidak dapat menghapus berkas "$1".',
@@ -767,6 +769,7 @@ Anda dapat mengabaikan pesan ini jika akun ini dibuat karena suatu kesalahan.',
 'login-throttled'            => 'Anda telah berkali-kali mencoba masuk log. 
 Silakan menunggu sebelum mencoba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
+'suspicious-userlogout'      => 'Permintaan Anda untuk keluar log ditolak karena tampaknya dikirim oleh penjelajah yang rusak atau proksi penyinggah.',
 
 # Password reset dialog
 'resetpass'                 => 'Ganti kata sandi',
@@ -781,6 +784,7 @@ Silakan menunggu sebelum mencoba lagi.',
 'resetpass_forbidden'       => 'Kata sandi tidak dapat diubah',
 'resetpass-no-info'         => 'Anda harus masuk log untuk mengakses halaman ini secara langsung.',
 'resetpass-submit-loggedin' => 'Ganti kata sandi',
+'resetpass-submit-cancel'   => 'Batalkan',
 'resetpass-wrong-oldpass'   => 'Kata sandi tidak sah.
 Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sandi sementara yang baru.',
 'resetpass-temp-password'   => 'Kata sandi sementara:',
@@ -884,6 +888,8 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul ini]] d
 Hanya pengguna terdaftar yang telah masuk log yang dapat membuat artikel. Jika Anda ingin membuat artikel dan belum mempunyai akun, silakan [http://id.wikipedia.org/w/index.php?title=Istimewa:Masuk_log&type=signup&returnto=Halaman_Utama membuat akun baru] sekarang.',
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
 'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
+'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
+Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
 'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji CSS baru Anda sebelum menyimpannya.",
 'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji JS baru Anda sebelum menyimpannya.",
@@ -978,6 +984,7 @@ Beberapa templat akan diabaikan.',
 'post-expand-template-argument-category'  => 'Halaman dengan argumen templat yang diabaikan',
 'parser-template-loop-warning'            => 'Hubungan berulang templat terdeteksi: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit kedalaman hubungan berulang templat terlampaui ($1)',
+'language-converter-depth-warning'        => 'Batas kedalaman pengonversi bahasa terlampaui ($1)',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
@@ -1585,6 +1592,7 @@ Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pra
 'minlength1'                  => 'Nama berkas paling tidak harus terdiri dari satu huruf.',
 'illegalfilename'             => 'Nama berkas "$1" mengandung aksara yang tidak diperbolehkan ada dalam judul halaman. Silakan ubah nama berkas tersebut dan cobalah memuatkannya kembali.',
 'badfilename'                 => 'Nama berkas telah diubah menjadi "$1".',
+'filetype-mime-mismatch'      => 'Ekstensi berkas tidak cocok dengan tipe MIME.',
 'filetype-badmime'            => 'Berkas dengan tipe MIME "$1" tidak diperkenankan untuk dimuat.',
 'filetype-bad-ie-mime'        => 'Tidak dapat memuat berkas ini karena Internet Explorer mendeteksinya sebagai "$1", yang tak diizinkan dan merupakan tipe berkas yang memiliki potensi bahaya.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' termasuk jenis berkas yang tidak diijinkan.
@@ -1672,10 +1680,11 @@ Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL tidak sah: $1',
-'http-invalid-scheme'   => ' URL dengan skema "$ 1" tidak didukung',
+'http-invalid-scheme'   => 'URL dengan skema "$1" tidak didukung.',
 'http-request-error'    => 'Permintaan HTTP gagal karena kesalahan yang tidak diketahui.',
 'http-read-error'       => 'Kesalahan pembacaan HTTP',
-'http-curl-error'       => 'Kesalahan saat mengambil URL: $ 1',
+'http-timed-out'        => 'Permintaan HTTP lewat tenggat.',
+'http-curl-error'       => 'Kesalahan saat mengambil URL: $1',
 'http-host-unreachable' => 'Tidak dapat mencapai URL.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

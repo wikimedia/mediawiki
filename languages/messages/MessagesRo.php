@@ -13,6 +13,7 @@
  * @author Laurap
  * @author Mihai
  * @author Minisarm
+ * @author Misterr
  * @author SCriBu
  * @author Silviubogan
  * @author Stelistcristi
@@ -634,6 +635,7 @@ Te rog anunţă acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'readonly_lag'         => 'Baza de date a fost închisă automatic în timp ce serverele secundare ale bazei de date îl urmează pe cel principal.',
 'internalerror'        => 'Eroare internă',
 'internalerror_info'   => 'Eroare internă: $1',
+'fileappenderror'      => 'Nu se poate adăuga "$1" în "$2".',
 'filecopyerror'        => 'Fişierul "$1" nu a putut fi copiat la "$2".',
 'filerenameerror'      => 'Fişierul "$1" nu a putut fi mutat la "$2".',
 'filedeleteerror'      => 'Fişierul "$1" nu a putut fi şters.',
@@ -2126,8 +2128,8 @@ Asistenţă şi suport:
 'deleteotherreason'      => 'Motiv diferit/suplimentar:',
 'deletereasonotherlist'  => 'Alt motiv',
 'deletereason-dropdown'  => '*Motive uzuale
-** Cererea autorului
-** Violare drepturi de autor
+** La cererea autorului
+** Violarea drepturilor de autor
 ** Vandalism',
 'delete-edit-reasonlist' => 'Modifică motivele ştergerii',
 'delete-toobig'          => 'Această pagină are un istoric al modificărilor mare, mai mult de $1 {{PLURAL:$1|revizie|revizii}}.

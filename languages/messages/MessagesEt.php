@@ -623,6 +623,7 @@ Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|administraatorit]], ed
 'readonly_lag'         => "Andmebaas on automaatselt lukustatud, seniks kuni ''slave''-andmebaasid on uuendatud.",
 'internalerror'        => 'Sisemine viga',
 'internalerror_info'   => 'Sisemine viga: $1',
+'fileappenderror'      => 'Faili "$1" ei saanud lisada failile "$2".',
 'filecopyerror'        => 'Ei saanud faili "$1" kopeerida nimega "$2".',
 'filerenameerror'      => 'Ei saanud faili "$1" failiks "$2" ümber nimetada.',
 'filedeleteerror'      => 'Faili nimega "$1" ei ole võimalik kustutada.',
@@ -747,6 +748,7 @@ Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt eirata
 'login-throttled'            => 'Oled lühikese aja jooksul liiga palju äpardunud logimiskatseid sooritanud.
 Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
+'suspicious-userlogout'      => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
 
 # Password reset dialog
 'resetpass'                 => 'Muuda parooli',
@@ -762,6 +764,7 @@ Sisselogimise lõpetamiseks pead siia uue parooli sisestama:',
 'resetpass_forbidden'       => 'Paroole ei saa muuta',
 'resetpass-no-info'         => 'Pead olema sisselogitud, et sellele lehele pääseda.',
 'resetpass-submit-loggedin' => 'Muuda parool',
+'resetpass-submit-cancel'   => 'Loobu',
 'resetpass-wrong-oldpass'   => 'Vigane ajutine või praegune salasõna.
 Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist salasõna.',
 'resetpass-temp-password'   => 'Ajutine parool:',
@@ -866,6 +869,8 @@ või <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}
 'userpage-userdoesnotexist'        => 'Kasutajakontot "$1" pole olemas.
 Palun mõtle järele, kas soovid seda lehte luua või muuta.',
 'userpage-userdoesnotexist-view'   => 'Kasutajakonto "$1" pole registreeritud.',
+'blocked-notice-logextract'        => 'See kasutaja on praegu blokeeritud.
+Allpool on toodud viimane blokeerimislogi sissekanne:',
 'clearyourcache'                   => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'usercssyoucanpreview'             => "'''Vihje:''' Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
 'userjsyoucanpreview'              => "'''Vihje:''' Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
@@ -906,9 +911,9 @@ Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.'''",
 'copyrightwarning'                 => "Pidage silmas, et kogu teie kaastöö võrgukohale {{SITENAME}} loetakse avaldatuks litsentsi $2 all (vaata ka $1). Kui te ei soovi, et teie kirjutatut halastamatult redigeeritakse ja oma äranägemise järgi kasutatakse, siis ärge seda siia salvestage.<br />
 Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast.<br />
 '''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
-'copyrightwarning2'                => "Pidage silmas teised kaastöölised võivad kogu võrgukohale {{SITENAME}} tehtud kaastööd muuta või eemaldada. Kui te ei soovi, et teie kirjutatut halastamatult redigeeritakse, siis ärge seda siia salvestage.<br />
-Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast (vaata ka $1).<br />
-'''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
+'copyrightwarning2'                => "Pea silmas, et teised kaastöölised võivad kogu {{GRAMMAR:inessive|{{SITENAME}}}} tehtud kaastööd muuta või eemaldada. Kui sa ei soovi, et su kirjutatut halastamatult redigeeritakse, siis ära seda siia salvesta.<br />
+Sa kinnitad ka, et kirjutasid selle ise või võtsid selle kopeerimiskitsenduseta allikast (vaata ka $1).
+'''Ära saada autoriõigusega kaitstud materjali loata!'''",
 'longpagewarning'                  => "'''HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.'''",
 'longpageerror'                    => "'''Viga: Lehekülje suurus on $1 kilobaiti. Lehekülge ei saa salvestada, kuna see on pikem kui maksimaalsed $2 kilobaiti.'''",
 'readonlywarning'                  => "'''HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti hilisemaks kasutamiseks alles hoida tekstifailina.'''
@@ -1331,25 +1336,26 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'prefs-diffs'                   => 'Erinevused',
 
 # User rights
-'userrights'                  => 'Kasutaja õiguste muutmine',
-'userrights-lookup-user'      => 'Muuda kasutajarühma',
-'userrights-user-editname'    => 'Sisesta kasutajatunnus:',
-'editusergroup'               => 'Muuda kasutajarühma',
-'editinguser'                 => "Muudan kasutaja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) õigusi",
-'userrights-editusergroup'    => 'Kasutajarühma valik',
-'saveusergroups'              => 'Salvesta rühma muudatused',
-'userrights-groupsmember'     => 'Kuulub rühma:',
-'userrights-groups-help'      => 'Sa võid muuta selle kasutaja kuuluvust eri kasutajarühmadesse.
+'userrights'                   => 'Kasutaja õiguste muutmine',
+'userrights-lookup-user'       => 'Muuda kasutajarühma',
+'userrights-user-editname'     => 'Sisesta kasutajatunnus:',
+'editusergroup'                => 'Muuda kasutajarühma',
+'editinguser'                  => "Muudan kasutaja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) õigusi",
+'userrights-editusergroup'     => 'Kasutajarühma valik',
+'saveusergroups'               => 'Salvesta rühma muudatused',
+'userrights-groupsmember'      => 'Kuulub rühmadesse:',
+'userrights-groupsmember-auto' => 'Kuulub vaikimisi rühmadesse:',
+'userrights-groups-help'       => 'Sa võid muuta selle kasutaja kuuluvust eri kasutajarühmadesse.
 * Märgitud kast tähendab, et kasutaja kuulub sellesse rühma.
 * Märkimata kast tähendab, et kasutaja ei kuulu sellesse rühma.
 * Aga * kasutajarühma juures tähistab õigust, mida sa peale lisamist enam eemaldada ei saa, või siis ka vastupidi.',
-'userrights-reason'           => 'Põhjus:',
-'userrights-no-interwiki'     => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
-'userrights-nodatabase'       => 'Andmebaasi $1 ei ole olemas või pole see kohalik.',
-'userrights-nologin'          => 'Kasutaja õiguste muutmiseks, pead sa ülema õigustega kontoga [[Special:UserLogin|sisse logima]].',
-'userrights-notallowed'       => 'Sulle pole antud luba jagada kasutajatele õigusi.',
-'userrights-changeable-col'   => 'Rühmad, mida sa saad muuta',
-'userrights-unchangeable-col' => 'Rühmad, mida sa ei saa muuta',
+'userrights-reason'            => 'Põhjus:',
+'userrights-no-interwiki'      => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
+'userrights-nodatabase'        => 'Andmebaasi $1 ei ole olemas või pole see kohalik.',
+'userrights-nologin'           => 'Kasutaja õiguste muutmiseks, pead sa ülema õigustega kontoga [[Special:UserLogin|sisse logima]].',
+'userrights-notallowed'        => 'Sulle pole antud luba jagada kasutajatele õigusi.',
+'userrights-changeable-col'    => 'Rühmad, mida sa saad muuta',
+'userrights-unchangeable-col'  => 'Rühmad, mida sa ei saa muuta',
 
 # Groups
 'group'               => 'Rühm:',
@@ -1663,7 +1669,12 @@ Turvakaalutlustel on img_auth.php kasutus keelatud.',
 'img-auth-noread'       => 'Faili "$1" lugemiseks vajalik juurdepääs puudub.',
 
 # HTTP errors
-'http-invalid-url' => 'Vigane internetiaadress: $1',
+'http-invalid-url'      => 'Vigane internetiaadress: $1',
+'http-request-error'    => 'HTTP-päring nurjus tundmatu tõrke tõttu.',
+'http-read-error'       => 'HTTP-lugemistõrge.',
+'http-timed-out'        => 'HTTP-päring aegus.',
+'http-host-unreachable' => 'Internetiaadress pole kättesaadav.',
+'http-bad-status'       => 'HTTP-päringu ajal ilmnes tõrge: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Internetiaadress pole kättesaadav',
@@ -2181,7 +2192,7 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'protect-othertime-op'        => 'muu aeg',
 'protect-existing-expiry'     => 'Kehtiv aegumisaeg: $2 kell $3',
 'protect-otherreason'         => 'Muu/täiendav põhjus:',
-'protect-otherreason-op'      => 'muu/täiendav põhjus',
+'protect-otherreason-op'      => 'Muu põhjus',
 'protect-dropdown'            => '*Tavalised kaitsmise põhjused
 ** Liigne vandalism
 ** Liigne spämmimine
@@ -2454,6 +2465,7 @@ enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks
 
 Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta omal käel uue aruteluleheküljega.",
 'movearticle'                  => 'Teisalda lehekülg',
+'moveuserpage-warning'         => "'''Hoiatus:''' Oled teisaldamas kasutajalehekülge. Pane tähele, et teisaldatakse ainult lehekülg ja kasutajat '''ei''' nimetata ümber.",
 'movenologin'                  => 'Te ei ole sisse loginud',
 'movenologintext'              => 'Et lehekülge teisaldada, peate registreeruma
 kasutajaks ja [[Special:UserLogin|sisse logima]]',
@@ -2675,6 +2687,12 @@ Palun ürita uuesti.',
 'tooltip-rollback'                => 'Tühistab ühe klõpsuga viimase kaastöölise tehtud muudatused.',
 'tooltip-undo'                    => '"Eemalda" tühistab selle muudatuse ja avab teksti eelvaatega redigeerimisakna. 
 Samuti võimaldab see resümee reale põhjenduse lisamist.',
+
+# Stylesheets
+'common.css' => '/* Siinset CSS-i kasutavad kõik kujundused. */',
+
+# Scripts
+'common.js' => '/* Siinne JavaScript laaditakse igale kasutajatele igal laaditud leheküljel. */',
 
 # Metadata
 'nodublincore'      => "Dublin Core'i RDF-meta-andmed ei ole selles serveris lubatud.",
@@ -3163,24 +3181,25 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'duplicate-defaultsort' => '\'\'\'Hoiatus:\'\'\' Järjestamisvõti "$2" tühistab eespool oleva järjestamisvõtme "$1".',
 
 # Special:Version
-'version'                       => 'Versioon',
-'version-extensions'            => 'Paigaldatud lisad',
-'version-specialpages'          => 'Erileheküljed',
-'version-parserhooks'           => 'Süntaksianalüsaatori lisad (Parser hooks)',
-'version-variables'             => 'Muutujad',
-'version-other'                 => 'Muu',
-'version-mediahandlers'         => 'Meediatöötlejad',
-'version-hooks'                 => 'Redaktsioon',
-'version-extension-functions'   => 'Lisafunktsioonid',
-'version-parser-extensiontags'  => 'Parseri lisamärgendid',
-'version-parser-function-hooks' => 'Parserifunktsioonid',
-'version-hook-name'             => 'Redaktsiooni nimi',
-'version-hook-subscribedby'     => 'Tellijad',
-'version-version'               => '(Versioon $1)',
-'version-license'               => 'Litsents',
-'version-software'              => 'Paigaldatud tarkvara',
-'version-software-product'      => 'Toode',
-'version-software-version'      => 'Versioon',
+'version'                          => 'Versioon',
+'version-extensions'               => 'Paigaldatud lisad',
+'version-specialpages'             => 'Erileheküljed',
+'version-parserhooks'              => 'Süntaksianalüsaatori lisad (Parser hooks)',
+'version-variables'                => 'Muutujad',
+'version-other'                    => 'Muu',
+'version-mediahandlers'            => 'Meediatöötlejad',
+'version-hooks'                    => 'Redaktsioon',
+'version-extension-functions'      => 'Lisafunktsioonid',
+'version-parser-extensiontags'     => 'Parseri lisamärgendid',
+'version-parser-function-hooks'    => 'Parserifunktsioonid',
+'version-skin-extension-functions' => 'Kujunduse lisa funktsioonid',
+'version-hook-name'                => 'Redaktsiooni nimi',
+'version-hook-subscribedby'        => 'Tellijad',
+'version-version'                  => '(Versioon $1)',
+'version-license'                  => 'Litsents',
+'version-software'                 => 'Paigaldatud tarkvara',
+'version-software-product'         => 'Toode',
+'version-software-version'         => 'Versioon',
 
 # Special:FilePath
 'filepath'         => 'Failitee',

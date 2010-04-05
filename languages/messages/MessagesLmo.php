@@ -279,7 +279,7 @@ süi titul dai sezziún (JavaScript)',
 'history'           => 'Crunulugia de la pagina',
 'history_short'     => 'Crunulugìa',
 'info_short'        => 'Infurmazión',
-'printableversion'  => 'Versiun də stampà',
+'printableversion'  => 'Versión stampàbil',
 'permalink'         => 'Culegament permanent',
 'print'             => 'Stampa',
 'edit'              => 'Mudifega',
@@ -553,6 +553,10 @@ L'ültima vus del register l'è mustrada chì de suta per riferiment:",
 'template-semiprotected'           => '(semi-prutegiüü)',
 'hiddencategories'                 => 'Quela pagina chì la fa part de {{PLURAL:$1|una categuria|$1 categurij}} scundüü:',
 'permissionserrorstext-withaction' => "Te gh'hee minga i permiss per $2, per {{PLURAL:$1|quela resón chì |quij resón chì}}:",
+'recreate-moveddeleted-warn'       => "'''Ocio: te see adree a creà turna una pagina che l'eva giamò stada scancelada.'''
+
+Cuntrulee se l'è propi el cas de cuntinuà a mudifegà 'sta pagina chì.
+Per cumudità, la lista di scancelament e di San Martìn l'è ripurtada chi de suta:",
 
 # "Undo" feature
 'undo-summary' => 'Scancelada la mudifega $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciciarada]])',
@@ -578,6 +582,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version curenta, (ültima) = di
 Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} register di scancelament].",
 'rev-delundel'                => 'fa vidè/scund',
 'revdel-restore'              => 'Cambia la visibilità',
+'revdelete-edit-reasonlist'   => 'Mudifega i mutiv del scancelament',
 
 # Merge log
 'revertmerge' => 'Scancela i ünión',
@@ -816,10 +821,21 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada chì suta.",
 'uploadnewversion-linktext' => 'Carga una versión növa de quel file chì',
 
+# File reversion
+'filerevert-comment'        => 'Uget:',
+'filerevert-defaultcomment' => 'Bütada turna la versión di $2, $1',
+
 # File deletion
-'filedelete-reason-dropdown' => '*I sòlit resón per i scancelament
+'filedelete'                  => 'Scancela $1',
+'filedelete-legend'           => "Scancela 'l file",
+'filedelete-intro-old'        => "Te seet adree a scancelà la versión de '''[[Media:$1|$1]]''' del [$4 $2, $3].",
+'filedelete-comment'          => 'Mutiv del scancelament:',
+'filedelete-otherreason'      => 'Alter resón/spiegazión:',
+'filedelete-reason-otherlist' => 'Óltra resón',
+'filedelete-reason-dropdown'  => '*I sòlit resón per i scancelament
 ** Viulazión de copyright
 ** File dubi',
+'filedelete-edit-reasonlist'  => 'Mudifega i mutiv del scancelament',
 
 # MIME search
 'mimesearch' => 'cérca MIME',
@@ -854,6 +870,8 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'statistics-edits'             => "Paginn mudifegaa dal dì che l'è nassüü 'l sit de {{SITENAME}}",
 'statistics-edits-average'     => 'Mudifegh in média per pagina',
 'statistics-jobqueue'          => 'Lungheza de la [http://www.mediawiki.org/wiki/Manual:Job_queue Cua di prucediment]',
+'statistics-users'             => '[[Special:ListUsers|Druvadur]] registraa',
+'statistics-users-active'      => 'Druvadur ativ',
 'statistics-users-active-desc' => "Druvadur che i hann faa un'azión int {{PLURAL:$1|l'ültem dì|i ültem $1 dì}}",
 
 'disambiguations' => 'Pagin da disambiguazziún',
@@ -958,7 +976,7 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'removedwatch'      => 'Scancelaa dala lista di usservazziún.',
 'removedwatchtext'  => 'La pagina "[[:$1]]" l\'è stada scancelada de la tò lista di [[Special:Watchlist|paginn sot ögg]].',
 'watch'             => "Tegn d'öcc",
-'watchthispage'     => "Tegn d'öcc questa pagina",
+'watchthispage'     => "Tegn d'ögg quela pagina chì",
 'unwatch'           => "Tegn pü d'ögg",
 'watchnochange'     => "Nissün cambiament l'è stai faa ins i pàginn che te tegn d'ögg ind 'l períud de temp indicaa.",
 'watchlist-details' => '{{PLURAL:$1|$1 pagina|$1 paginn}} tegnüü sot ögg, fö che i paginn de discüssión.',
@@ -1010,6 +1028,7 @@ Per piasè, dà la cunferma che te gh'hee intenzión de andà inanz cun 'l scanc
 'deletedarticle'         => 'l\'ha scancelaa "[[$1]]"',
 'dellogpage'             => 'Register di scancelament',
 'deletionlog'            => 'log di scancelament',
+'reverted'               => 'Bütada sü turna la versión de prima.',
 'deletecomment'          => 'Mutiv del scancelament',
 'deleteotherreason'      => 'Alter mutiv:',
 'deletereasonotherlist'  => 'Altra resón',
@@ -1233,6 +1252,7 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 'tooltip-search'                  => 'Cerca in {{SITENAME}}',
 'tooltip-search-go'               => "Va a una pagina che la se ciama cumpagn, semper che la gh'è",
 'tooltip-search-fulltext'         => 'Cerca quel test chì intra i paginn del sit',
+'tooltip-p-logo'                  => 'Pagina principala',
 'tooltip-n-mainpage'              => 'Visité la pàgina principala',
 'tooltip-n-mainpage-description'  => 'Visita la pagina principala',
 'tooltip-n-portal'                => "Descrizión del pruget, 'sè ch'a pudé fà, indè che se pö truvà i rob.",
@@ -1276,6 +1296,9 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 'mw_math_source' => 'Lassá in furmaa TeX (pər i prugráma də navigazziún dumá in furmaa da testu)',
 'mw_math_modern' => 'Racumandaa pər i bigatt püssè reçeent',
 'mw_math_mathml' => 'MathML se l è pussíbil (sperimentaal)',
+
+# Image deletion
+'deletedrevision' => 'Scancelada la revision vegia de $1.',
 
 # Browsing diffs
 'previousdiff' => '← Diferenza püssee vegia',

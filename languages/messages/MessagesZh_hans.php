@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bencmq
+ * @author Biŋhai
  * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
@@ -16,6 +17,7 @@
  * @author KaiesTse
  * @author Liangent
  * @author Mark85296341
+ * @author MarkAHershberger
  * @author O
  * @author Onecountry
  * @author PhiLiP
@@ -545,6 +547,8 @@ $1',
 'readonly_lag'         => '从数据库服务器正在从主服务器上更新，数据库已被自动锁定',
 'internalerror'        => '内部错误',
 'internalerror_info'   => '内部错误：$1',
+'fileappenderrorread'  => '当附加时无法读取"$1"。',
+'fileappenderror'      => '无法将“$1”附加到“$2”。',
 'filecopyerror'        => '无法将文件“$1”复制到“$2”。',
 'filerenameerror'      => '无法将文件“$1”重命名为“$2”。',
 'filedeleteerror'      => '无法删除文件“$1”。',
@@ -663,6 +667,7 @@ $2',
 'login-throttled'            => '您已经尝试多次的登录动作。
 请稍等多一会再试。',
 'loginlanguagelabel'         => '语言：$1',
+'suspicious-userlogout'      => '您登出的要求已经被拒绝，因为它可能是由已损坏的浏览器或者缓存代理传送。',
 
 # Password reset dialog
 'resetpass'                 => '更改密码',
@@ -765,11 +770,13 @@ $2',
 要创建该页面，请在下面的编辑框中输入内容（详情参见[[{{MediaWiki:Helppage}}|帮助]]）。
 如果您是不小心来到此页面，直接点击您浏览器中的“返回”按钮返回。',
 'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
-'noarticletext'                    => '此页面目前没有内容。您可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索此页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑此页]。',
+'noarticletext'                    => '此页面目前没有内容。您可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索此页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑此页]。</span>',
 'noarticletext-nopermission'       => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
 'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
 'userpage-userdoesnotexist-view'   => '用户账户“$1”未曾创建。',
+'blocked-notice-logextract'        => '这位用户现正被封锁。
+下面有最近的封锁纪录以供参考：',
 'clearyourcache'                   => "'''注意：在保存以后，您必须清除浏览器的缓存才能看到所作出的改变。'''
 '''Mozilla / Firefox / Safari'''：按住''Shift''再点击''刷新''，或按下''Ctrl-F5''或''Ctrl-R''（在Macintosh上按下''Command-R''）；
 '''Konqueror'''：只需点击''刷新''或按下''F5''；
@@ -1312,7 +1319,7 @@ $1",
 'right-delete'                => '删除页面',
 'right-bigdelete'             => '删除大量历史之页面',
 'right-deleterevision'        => '删除及同反删除页面中的指定修订',
-'right-deletedhistory'        => '查看已删除之项目，不含有关的字',
+'right-deletedhistory'        => '查看已删除的历史项目，不含关联的文本',
 'right-deletedtext'           => '查看已删除修订中之已删除的字以及更改',
 'right-browsearchive'         => '搜索已删除之页面',
 'right-undelete'              => '反删除页面',
@@ -1479,6 +1486,7 @@ $1",
 'minlength1'                  => '文件名字必须至少有一个字母。',
 'illegalfilename'             => '文件名「$1」包含有页面标题所禁止的字符。请改名后重新上传。',
 'badfilename'                 => '文件名已被改为“$1”。',
+'filetype-mime-mismatch'      => '文件扩展名不配MIME类型。',
 'filetype-badmime'            => 'MIME类别"$1"不是容许的文件格式。',
 'filetype-bad-ie-mime'        => '不可以上传这个文件，因为 Internet Explorer 会将它侦测为 "$1"，它是一种不容许以及有潜在危险性之文件类型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''是一种不需要的文件类型。
@@ -1595,41 +1603,41 @@ $1",
 'listfiles_count'       => '版本',
 
 # File description page
-'file-anchor-link'          => '文件',
-'filehist'                  => '文件历史',
-'filehist-help'             => '点击日期／时间以查看当时出现过的文件。',
-'filehist-deleteall'        => '删除全部',
-'filehist-deleteone'        => '删除',
-'filehist-revert'           => '恢复',
-'filehist-current'          => '当前',
-'filehist-datetime'         => '日期／时间',
-'filehist-thumb'            => '缩图',
-'filehist-thumbtext'        => '于$1的缩图版本',
-'filehist-nothumb'          => '没有缩图',
-'filehist-user'             => '用户',
-'filehist-dimensions'       => '维度',
-'filehist-filesize'         => '文件大小',
-'filehist-comment'          => '注解',
-'filehist-missing'          => '文件遗失',
-'imagelinks'                => '文件链接',
-'linkstoimage'              => '以下的$1个页面链接到本文件：',
-'linkstoimage-more'         => '多于$1个页面连接到这个文件。
+'file-anchor-link'                  => '文件',
+'filehist'                          => '文件历史',
+'filehist-help'                     => '点击日期／时间以查看当时出现过的文件。',
+'filehist-deleteall'                => '删除全部',
+'filehist-deleteone'                => '删除',
+'filehist-revert'                   => '恢复',
+'filehist-current'                  => '当前',
+'filehist-datetime'                 => '日期／时间',
+'filehist-thumb'                    => '缩图',
+'filehist-thumbtext'                => '于$1的缩图版本',
+'filehist-nothumb'                  => '没有缩图',
+'filehist-user'                     => '用户',
+'filehist-dimensions'               => '维度',
+'filehist-filesize'                 => '文件大小',
+'filehist-comment'                  => '注解',
+'filehist-missing'                  => '文件遗失',
+'imagelinks'                        => '文件链接',
+'linkstoimage'                      => '以下的$1个页面链接到本文件：',
+'linkstoimage-more'                 => '多于$1个页面连接到这个文件。
 下面的列表只列示了连去这个文件的最首$1个页面。
 一个[[Special:WhatLinksHere/$2|完整的列表]]可以提供。',
-'nolinkstoimage'            => '没有页面链接到本文件。',
-'morelinkstoimage'          => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多链接]]。',
-'redirectstofile'           => '以下的$1个文件重新定向到这个文件：',
-'duplicatesoffile'          => '以下的$1个文件跟这个文件重复（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
-'sharedupload'              => '该文件来自于$1，它可能在其它计划项目中被应用。',
-'sharedupload-desc-there'   => '该文件来自于$1，它可能在其它计划项目中被应用。
+'nolinkstoimage'                    => '没有页面链接到本文件。',
+'morelinkstoimage'                  => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多链接]]。',
+'redirectstofile'                   => '以下的$1个文件重新定向到这个文件：',
+'duplicatesoffile'                  => '以下的$1个文件跟这个文件重复（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
+'sharedupload'                      => '该文件来自于$1，它可能在其它计划项目中被应用。',
+'sharedupload-desc-there'           => '该文件来自于$1，它可能在其它计划项目中被应用。
 请参阅在[$2 文件描述页面]以了解其相关信息。',
-'sharedupload-desc-here'    => '该文件来自于$1，它可能在其它计划项目中被应用。
+'sharedupload-desc-here'            => '该文件来自于$1，它可能在其它计划项目中被应用。
 它在[$2 文件描述页面]那边上的描述于下面显示。',
-'filepage-nofile'           => '不存在此名称的文件。',
-'filepage-nofile-link'      => '不存在此名称的文件，但您可以[$1 上传它]。',
-'uploadnewversion-linktext' => '上传该文件的新版本',
-'shared-repo-from'          => '出自$1',
-'shared-repo'               => '一个共用文件库',
+'filepage-nofile'                   => '不存在此名称的文件。',
+'filepage-nofile-link'              => '不存在此名称的文件，但您可以[$1 上传它]。',
+'uploadnewversion-linktext'         => '上传该文件的新版本',
+'shared-repo-from'                  => '出自$1',
+'shared-repo'                       => '一个共用文件库',
 'shared-repo-name-wikimediacommons' => '维基共享资源',
 
 # File reversion
@@ -1933,10 +1941,7 @@ Template:消除歧義',
 'watchnologin'         => '未登录',
 'watchnologintext'     => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
 'addedwatch'           => '已添加至监视列表',
-'addedwatchtext'       => "页面\"[[:\$1]]\"已经被加入到您的[[Special:Watchlist|监视列表]]中。
-将来有关此页面及其讨论页的任何修改将会在那里列出，
-而且还会在[[Special:RecentChanges|最近更改]]中
-以'''粗体'''形式列出以使起更容易识别。",
+'addedwatchtext'       => "页面“[[:$1]]”已经被加入到您的[[Special:Watchlist|监视列表]]中。将来有关此页面及其讨论页的任何修改将会在那里列出，而且还会在[[Special:RecentChanges|最近更改]]中以'''粗体'''形式列出以使其更容易识别。",
 'removedwatch'         => '已停止监视',
 'removedwatchtext'     => '页面[[:$1]]已经从[[Special:Watchlist|您的监视页面]]中移除。',
 'watch'                => '监视',
@@ -2014,7 +2019,7 @@ $NEWPAGE
 'actioncomplete'         => '操作完成',
 'actionfailed'           => '操作失败',
 'deletedtext'            => '"<nowiki>$1</nowiki>"已经被删除。最近删除的记录请参见$2。',
-'deletedarticle'         => '已删除"[[$1]]"',
+'deletedarticle'         => '已删除“[[$1]]”',
 'suppressedarticle'      => '已废止"[[$1]]"',
 'dellogpage'             => '删除日志',
 'dellogpagetext'         => '以下是最近删除的纪录列表：',
@@ -2049,12 +2054,12 @@ $NEWPAGE
 # Protect
 'protectlogpage'              => '保护日志',
 'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:ProtectedPages|保护页面列表]]以查看当前进行的页面保护。',
-'protectedarticle'            => '已保护"[[$1]]"',
-'modifiedarticleprotection'   => '已经更改 "[[$1]]" 的保护等级',
-'unprotectedarticle'          => '已取消保护"[[$1]]"',
-'movedarticleprotection'      => '已经更改由“[[$2]]”至“[[$1]]”的保护设置',
-'protect-title'               => '正在更改"$1"的保护等级',
-'prot_1movedto2'              => '[[$1]]移动到[[$2]]',
+'protectedarticle'            => '已保护“[[$1]]”',
+'modifiedarticleprotection'   => '已更改“[[$1]]”的保护等级',
+'unprotectedarticle'          => '已取消“[[$1]]”的保护',
+'movedarticleprotection'      => '已将“[[$2]]”的保护设置移动至“[[$1]]”',
+'protect-title'               => '更改“$1”的保护等级',
+'prot_1movedto2'              => '[[$1]]已移动至[[$2]]',
 'protect-legend'              => '确认保护',
 'protectcomment'              => '原因：',
 'protectexpiry'               => '到期：',
@@ -2082,7 +2087,7 @@ $NEWPAGE
 'protect-othertime-op'        => '其它时间',
 'protect-existing-expiry'     => '现时到期之时间：$2 $3',
 'protect-otherreason'         => '其它／附加的理由：',
-'protect-otherreason-op'      => '其它／附加的理由',
+'protect-otherreason-op'      => '其它理由',
 'protect-dropdown'            => '*通用保护理由
 ** 遭到过度破坏
 ** 过度张贴垃圾链接

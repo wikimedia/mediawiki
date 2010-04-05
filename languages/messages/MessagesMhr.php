@@ -733,7 +733,7 @@ $messages = array(
 'allpagesfrom'   => 'Лукташ тыгай лӱман лаштык-влакым, кудыжо тӱҥалыт:',
 'allpagesto'     => 'кудыжо пытат:',
 'allarticles'    => 'Чыла лаштык-влак',
-'allpagessubmit' => 'Кай',
+'allpagessubmit' => 'Кычалаш',
 
 # Special:Categories
 'categories' => 'Категорий-влак',
@@ -1065,7 +1065,7 @@ $messages = array(
 # Table pager
 'table_pager_next'         => 'Вес лаштык',
 'table_pager_prev'         => 'Ончычсо лаштык',
-'table_pager_limit_submit' => 'Кай',
+'table_pager_limit_submit' => 'Кычалаш',
 
 # Auto-summaries
 'autoredircomment' => '[[$1]] лаштыкыш колтымаш',

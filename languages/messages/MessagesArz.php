@@ -653,6 +653,7 @@ $1',
 'readonly_lag'         => 'قاعدة البيانات (الـ database) اتقفلت اوتوماتيكى علشان تقدر السيرڤرات الـ slave تلحق السيرڤر الـ master',
 'internalerror'        => 'غلط جوّانى',
 'internalerror_info'   => 'غلط جوّانى: $1',
+'fileappenderror'      => 'ماقدرناش نضيف "$1" على "$2".',
 'filecopyerror'        => 'ما نفع ش  يتنسخ الفايل "$1" لـ "$2".',
 'filerenameerror'      => 'ما نفع ش يتغير اسم الفايل "$1" لـ "$2".',
 'filedeleteerror'      => 'ما نفع ش يتمسح الفايل "$1".',
@@ -907,7 +908,8 @@ $2',
 او <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات بتاعتها]</span>.',
 'userpage-userdoesnotexist'        => 'حساب اليوزر "$1" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
 'userpage-userdoesnotexist-view'   => 'حساب اليوزر "$1" مش متسجل',
-'blocked-notice-logextract'        => 'اليوزر ده ممنوع دلوقتى.آخر عمليه منع في السجل موجوده تحت كمرجع:',
+'blocked-notice-logextract'        => 'اليوزر ده معمول له بلوك دلوقتى.
+اخر بلوك فى السجل موجود تحت للمراجعه:',
 'clearyourcache'                   => "'''ملاحظة - بعد التسييف,  يمكن لازم تفرغ كاش متصفحك علشان تشوف التغييرات.''' '''موزيللا / فايرفوكس / سافارى:''' دوس على ''Shift'' فى نفس الوقت دوس على ''Reload,'' أو دوس على اما ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''دوس على ''Reload'' أو دوس على ''F5;'' '''أوبرا:''' فرغ الكاش فى ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' دوس على ''Ctrl'' فى نفس الوقت دوس على ''Refresh,'' أو دوس على ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''ملاحظة:''' استعمل زرار ' عرض بروفة' علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل تسييڤ الصفحه.",
 'userjsyoucanpreview'              => "'''ملاحظة:''' استعمل زرار ' عرض بروفة' علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل تسييڤ الصفحه.",
@@ -1590,7 +1592,7 @@ $1",
 'recentchangeslinked-to'       => 'إظهارالتغييرات للصفحات الموصولة للصفحة اللى انت اديتها',
 
 # Upload
-'upload'                      => 'حمل فايل (upload file)',
+'upload'                      => 'ارفع فايل (upload file)',
 'uploadbtn'                   => 'حمل الملف',
 'reuploaddesc'                => 'إلغى التحميل وارجع لاستمارة التحميل',
 'upload-tryagain'             => 'نفذ وصف الملف المتعدل',
@@ -1680,8 +1682,8 @@ $1",
 'upload-description'          => 'وصف الملف',
 'upload-options'              => 'أوبشنات الرفع',
 'watchthisupload'             => 'حط الملف دا تحت المراقبه',
-'filewasdeleted'              => 'فيه ملف بنفس الاسم دا تحمل قبل كدا و بعدين اتمسح.
-لو سمحت تراجع $1 قبل ما تحمله كمان مرة.',
+'filewasdeleted'              => 'فيه فايل بنفس الاسم دا اتأپلود قبل كدا و بعدين اتمسح.
+لازم تشيّك على $1 قبل ما تأپلود الفايل كمان مره.',
 'upload-wasdeleted'           => "'''تحذير: انت بتحمل ملف اتمسح قبل كدا.'''
 
 لازم تتاكد من انك عايز تستمر فى تحميل الملف دا.
@@ -1775,42 +1777,42 @@ PICT # misc.
 'listfiles_count'       => 'نسخ',
 
 # File description page
-'file-anchor-link'          => 'فايل',
-'filehist'                  => 'تاريخ الفايل',
-'filehist-help'             => 'اضغط على الساعه/التاريخ علشان تشوف الفايل زى ما كان فى  الوقت ده.',
-'filehist-deleteall'        => 'امسح كله',
-'filehist-deleteone'        => 'مسح',
-'filehist-revert'           => 'استرجع',
-'filehist-current'          => 'دلوقتي',
-'filehist-datetime'         => 'الساعه / التاريخ',
-'filehist-thumb'            => 'صورة صغيرة',
-'filehist-thumbtext'        => 'تصغير للنسخة بتاريخ $1',
-'filehist-nothumb'          => 'لا تصغير',
-'filehist-user'             => 'يوزر',
-'filehist-dimensions'       => 'ابعاد',
-'filehist-filesize'         => 'حجم الفايل',
-'filehist-comment'          => 'تعليق',
-'filehist-missing'          => 'ملف مش  موجود',
-'imagelinks'                => 'لينكات الفايل',
-'linkstoimage'              => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
-'linkstoimage-more'         => 'أكتر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} للملف ده .
+'file-anchor-link'                  => 'فايل',
+'filehist'                          => 'تاريخ الفايل',
+'filehist-help'                     => 'اضغط على الساعه/التاريخ علشان تشوف الفايل زى ما كان فى  الوقت ده.',
+'filehist-deleteall'                => 'امسح كله',
+'filehist-deleteone'                => 'مسح',
+'filehist-revert'                   => 'استرجع',
+'filehist-current'                  => 'دلوقتي',
+'filehist-datetime'                 => 'الساعه / التاريخ',
+'filehist-thumb'                    => 'صورة صغيرة',
+'filehist-thumbtext'                => 'تصغير للنسخة بتاريخ $1',
+'filehist-nothumb'                  => 'لا تصغير',
+'filehist-user'                     => 'يوزر',
+'filehist-dimensions'               => 'ابعاد',
+'filehist-filesize'                 => 'حجم الفايل',
+'filehist-comment'                  => 'تعليق',
+'filehist-missing'                  => 'ملف مش  موجود',
+'imagelinks'                        => 'لينكات الفايل',
+'linkstoimage'                      => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
+'linkstoimage-more'                 => 'أكتر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} للملف ده .
 القائمة التالية تعرض {{PLURAL:$1|أول وصلة صفحة|أول $1 وصلة صفحة}} للملف ده بس.
 [[Special:WhatLinksHere/$2|قائمة كاملة]] متوفرة.',
-'nolinkstoimage'            => 'مافيش صفحات بتوصل للفايل ده.',
-'morelinkstoimage'          => 'عرض [[Special:WhatLinksHere/$1|لينكات اكتر]] للملف دا.',
-'redirectstofile'           => '{{PLURAL:$1| الملف|ال$1 ملف}} اللى جاى  بيحول للملف دا:',
-'duplicatesoffile'          => '{{PLURAL:$1| الملف|ال$1 ملف اللى بعده}} متكررين من الملف ده:
+'nolinkstoimage'                    => 'مافيش صفحات بتوصل للفايل ده.',
+'morelinkstoimage'                  => 'عرض [[Special:WhatLinksHere/$1|لينكات اكتر]] للملف دا.',
+'redirectstofile'                   => '{{PLURAL:$1| الملف|ال$1 ملف}} اللى جاى  بيحول للملف دا:',
+'duplicatesoffile'                  => '{{PLURAL:$1| الملف|ال$1 ملف اللى بعده}} متكررين من الملف ده:
 ([[Special:FileDuplicateSearch/$2| تفاصيل اكتر]]):',
-'sharedupload'              => 'الملف دا من  $1 و ممكن تستعمله مشاريع تانيه.',
-'sharedupload-desc-there'   => 'الملف دا من $1 و ممكن تستعمله المشاريع التانيه.
+'sharedupload'                      => 'الملف دا من  $1 و ممكن تستعمله مشاريع تانيه.',
+'sharedupload-desc-there'           => 'الملف دا من $1 و ممكن تستعمله المشاريع التانيه.
 لو سمحت تشوف [$2 صفحة وصف الملف] لو عايز معلومات اكتر..',
-'sharedupload-desc-here'    => 'الملف دا من $1 و ممكن تستعمله المشاريع التانيه.
+'sharedupload-desc-here'            => 'الملف دا من $1 و ممكن تستعمله المشاريع التانيه.
 الوصف بتاعه [$2 صفحة وصف الملف] هناك معروض تحت..',
-'filepage-nofile'           => 'ما فيش ملف موجود بالاسم دا.',
-'filepage-nofile-link'      => 'ما فيش ملف موجود بالاسم دا ، بس انتا ممكن [$1 تحمله].',
-'uploadnewversion-linktext' => 'حمل نسخه جديده من الملف ده',
-'shared-repo-from'          => 'من $1',
-'shared-repo'               => 'مخزن مشترك',
+'filepage-nofile'                   => 'ما فيش ملف موجود بالاسم دا.',
+'filepage-nofile-link'              => 'ما فيش ملف موجود بالاسم دا ، بس انتا ممكن [$1 تحمله].',
+'uploadnewversion-linktext'         => 'حمل نسخه جديده من الملف ده',
+'shared-repo-from'                  => 'من $1',
+'shared-repo'                       => 'مخزن مشترك',
 'shared-repo-name-wikimediacommons' => 'ويكيميديا كومنز',
 
 # File reversion
@@ -2271,7 +2273,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'وقت آخر',
 'protect-existing-expiry'     => 'تاريخ الانتهاء الموجود: $3، $2',
 'protect-otherreason'         => 'سبب آخر/إضافى:',
-'protect-otherreason-op'      => 'سبب آخر/إضافى',
+'protect-otherreason-op'      => 'سبب تانى',
 'protect-dropdown'            => '*أسباب الحماية الشايعة
 ** تخريب شديد
 ** سبام شديد

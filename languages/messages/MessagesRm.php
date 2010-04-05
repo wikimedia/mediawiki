@@ -1,5 +1,5 @@
 <?php
-/** Rhaeto-Romance (Rumantsch)
+/** Romansh (Rumantsch)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1511,6 +1511,10 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 'confirm_purge_button' => 'ok',
 'confirm-purge-top'    => 'Stizzar il cache da questa pagina?',
 
+# Multipage image navigation
+'imgmultipageprev' => '← ultima pagina',
+'imgmultipagenext' => 'proxima pagina →',
+
 # Table pager
 'table_pager_next'         => 'Proxima pagina',
 'table_pager_prev'         => 'Ultima pagina',
@@ -1559,14 +1563,16 @@ Questa pagina ha actualmain difficultads tecnicas.',
 'htmlform-selectorother-other' => 'Auters',
 
 # Add categories per AJAX
-'ajax-add-category'          => 'Agiuntar categoria',
-'ajax-add-category-submit'   => 'Agiuntar',
-'ajax-confirm-prompt'        => 'Ti pos inditgar sutvart ina resumaziun da la midada. 
+'ajax-add-category'            => 'Agiuntar categoria',
+'ajax-add-category-submit'     => 'Agiuntar',
+'ajax-confirm-prompt'          => 'Ti pos inditgar sutvart ina resumaziun da la midada. 
 Clicca sin "memorisar" per memorisar tias modificaziuns.',
-'ajax-confirm-save'          => 'Memorisar',
-'ajax-error-title'           => 'Errur',
-'ajax-error-dismiss'         => 'OK',
-'ajax-remove-category-error' => "I n'era betg pussaivel da stizzar questa categoria. 
+'ajax-confirm-save'            => 'Memorisar',
+'ajax-add-category-summary'    => 'Agiuntar la categoria "$1"',
+'ajax-remove-category-summary' => 'Allontanar la categoria "$1"',
+'ajax-error-title'             => 'Errur',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => "I n'era betg pussaivel da stizzar questa categoria. 
 Quai capita normalmain sche la categoria è vegnida integrada en in model.",
 
 );

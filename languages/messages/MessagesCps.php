@@ -345,9 +345,11 @@ Ang nagligad nga database query mini:
 <blockquote><tt>$1</tt></blockquote>
 nga halin sa ulubrahon nga "<tt>$2</tt>".
 Nagbalik sang sala nga "<tt>$3: $4</tt>" ang MySQL.',
+'dberrortextcl'        => '',
 'laggedslavemode'      => 'Pahibalo: Posible nga wala unod ang pahina sang mga yanda nga bag-ong nadugang.',
 'readonly'             => 'Nakakandado ang database',
 'enterlockreason'      => 'Maghatag sang kabangdanan sa pagkakandado, upod ang bana-bana kung san-o ang kandado ibuy-an',
+'readonlytext'         => '',
 'missing-article'      => 'Indi makita ang teksto nga pahina sa database nga dapat nakita na , na nangalanan "$1" $2.
 
 Ang rason kung ngaa nagakatabo mini kay may mga nagasunod bilang daan nga diff o link nga kasaysayan sa may pahina nga napanas.
@@ -355,6 +357,8 @@ Ang rason kung ngaa nagakatabo mini kay may mga nagasunod bilang daan nga diff o
 Kung indi mini ang kaso, basi may nakita ka nga guba ukon diperensiya sa software.
 Palihog isugid sa [[Special:ListUsers/sysop|tagapamahala]], kag i-lista ang iya URL.',
 'missingarticle-rev'   => '(pagbag-o#: $1)',
+'missingarticle-diff'  => '',
+'readonly_lag'         => '',
 'internalerror'        => 'Pangsulodlon nga diperensiya',
 'internalerror_info'   => 'Pangsulodlon nga diperensiya:  $1',
 'filecopyerror'        => 'Indi makopya ang file nga "$1" pakadto sa "$2".',
@@ -365,16 +369,25 @@ Palihog isugid sa [[Special:ListUsers/sysop|tagapamahala]], kag i-lista ang iya 
 'fileexistserror'      => 'Indi makasulat sa file nga "$1": buhi ang file',
 'unexpected'           => 'Wala naekspektaran nga bili: "$1"="$2"',
 'formerror'            => 'Kasal-anan: indi mapadala ang pormas',
+'badarticleerror'      => '',
+'cannotdelete'         => '',
 'badtitle'             => 'Kala-in nga titulo',
 'badtitletext'         => 'Ang ginapangayo nga titulo sang pahina sala, wala unod, ukon may indi insakto nga koneksyon sa inter-language ukon sa titulo sang interwiki.
 Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede gamiton sa mga titulo.',
+'perfcached'           => '',
+'perfcachedts'         => '',
+'querypage-no-updates' => '',
+'wrong_wfQuery_params' => '',
 'viewsource'           => 'Lantawon ang ginhalinan',
 'viewsourcefor'        => 'para sa $1',
 'actionthrottled'      => 'Ginpunggan ang ulubrahon',
+'actionthrottledtext'  => '',
 'protectedpagetext'    => 'Ginkandaduhan ang mini nga pahina para indi ma-islan.',
 'viewsourcetext'       => 'Pwede mo makita kag makopya ang ginhalinan sang mini nga pahina:',
 'protectedinterface'   => "Nagahatag ang mini nga pahina sang teksto nga pangkatapusan (''interface'') para sa software, kag ikandado para mapunggan ang pag-abuso.",
+'editinginterface'     => '',
 'sqlhidden'            => '(nakatago ang pamangkot sang SQL)',
+'cascadeprotected'     => '',
 'namespaceprotected'   => "Wala ka sang permiso nga magliwat sang mga pahina nga ara sa namespace nga '''$1'''.",
 'customcssjsprotected' => 'Wala ka sang permiso nga bag-uhon ang ini nga pahina, tungod naga-unod ni sang mga pangkina-ugalingon nga gusto sang iban nga manug-usar.',
 'ns-specialprotected'  => 'Indi pwede bag-uhon ang mga pinasahi nga pahina.',
@@ -382,9 +395,12 @@ Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede
 Mini ang ginhatag nga kabangdanan "\'\'$2\'\'".',
 
 # Virus scanner
-'virus-badscanner' => "Sala nga konpigurasyon: wala nakilal-an nga manugsala sang virus: ''$1''",
+'virus-badscanner'     => "Sala nga konpigurasyon: wala nakilal-an nga manugsala sang virus: ''$1''",
+'virus-scanfailed'     => '',
+'virus-unknownscanner' => '',
 
 # Login and logout pages
+'logouttext'              => '',
 'welcomecreation'         => '==Malipayon nga pag-abot, $1! ==
 Nahimo na ang imo account.
 Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENAME}}]].',
@@ -395,6 +411,7 @@ Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENA
 'yourdomainname'          => 'Imo domain:',
 'login'                   => 'Mag sulod',
 'nav-login-createaccount' => 'Magsulod / maghimo account',
+'loginprompt'             => '',
 'userlogin'               => 'Mag sulod / mag-ubra account',
 'userloginnocreate'       => 'Magsulod',
 'logout'                  => 'Maggwa',
@@ -925,5 +942,12 @@ Ang iban ay pagataguon sang default.
 
 # Special:SpecialPages
 'specialpages' => 'Espesyal nga mga panid',
+
+# Add categories per AJAX
+'ajax-confirm-prompt'          => 'Pwede ka makahatag sang kabilugan sang tanan nga pag-ilis sa idalum.
+Pinduton ang "Save"  para i-save ang imo ginilis.',
+'ajax-confirm-save'            => 'I-save',
+'ajax-add-category-summary'    => 'Dugangan sang kategorya nga "$1"',
+'ajax-remove-category-summary' => 'Kwa-on ang kategorya nga  "$1"',
 
 );

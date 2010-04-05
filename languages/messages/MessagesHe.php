@@ -557,7 +557,7 @@ $messages = array(
 'viewhelppage'      => 'צפייה בדף העזרה',
 'categorypage'      => 'צפייה בדף הקטגוריה',
 'viewtalkpage'      => 'צפייה בדף השיחה',
-'otherlanguages'    => 'שפות אחרות',
+'otherlanguages'    => 'דף זה בשפות אחרות',
 'redirectedfrom'    => '(הופנה מהדף $1)',
 'redirectpagesub'   => 'דף הפניה',
 'lastmodifiedat'    => 'שונה לאחרונה ב־$2, $1.',
@@ -680,6 +680,8 @@ $1',
 'readonly_lag'         => 'בסיס הנתונים ננעל אוטומטית כדי לאפשר לבסיסי הנתונים המשניים להתעדכן מהבסיס הראשי.',
 'internalerror'        => 'שגיאה פנימית',
 'internalerror_info'   => 'שגיאה פנימית: $1',
+'fileappenderrorread'  => 'קריאת "$1" במהלך צירוף נכשלה.',
+'fileappenderror'      => 'צירוף "$1" ל־"$2" נכשל.',
 'filecopyerror'        => 'העתקת "$1" ל־"$2" נכשלה.',
 'filerenameerror'      => 'שינוי השם של "$1" ל־"$2" נכשל.',
 'filedeleteerror'      => 'מחיקת "$1" נכשלה.',
@@ -799,6 +801,7 @@ $2',
 'login-throttled'            => 'ביצעתם לאחרונה ניסיונות רבים מדי להיכנס לחשבון זה.
 אנא המתינו לפני שתנסו שנית.',
 'loginlanguagelabel'         => 'שפה: $1',
+'suspicious-userlogout'      => 'בקשתכם לצאת מהחשבון נדחתה כיוון שנראה שהיא נשלחה על ידי דפדפן שבור או שרת פרוקסי עם זיכרון מטמון.',
 
 # Password reset dialog
 'resetpass'                 => 'שינוי סיסמה',
@@ -1404,7 +1407,7 @@ $1",
 'userrights-groups-help'       => 'באפשרותכם לשנות את הקבוצות שמשתמש זה חבר בהן:
 * תיבה מסומנת פירושה שהמשתמש חבר בקבוצה.
 * תיבה בלתי מסומנת פירושה שהמשתמש אינו חבר בקבוצה.
-* סימון * פירושו שלא תוכלו להסיר משתמש מהקבוצה מרגע שהוספתם אותו אליה, או להיפך.',
+* סימון * פירושו שלא תוכלו להסיר משתמש מהקבוצה מרגע שהוספתם אותו אליה, או להפך.',
 'userrights-reason'            => 'סיבה:',
 'userrights-no-interwiki'      => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
 'userrights-nodatabase'        => 'בסיס הנתונים $1 אינו קיים או אינו מקומי.',
@@ -1629,6 +1632,7 @@ $1",
 'minlength1'                  => 'שמות קבצים צריכים להיות בני תו אחד לפחות.',
 'illegalfilename'             => 'הקובץ "$1" מכיל תווים בלתי חוקיים. אנא שנו את שמו ונסו להעלותו שנית.',
 'badfilename'                 => 'שם הקובץ שונה ל־"$1".',
+'filetype-mime-mismatch'      => 'סיומת הקובץ אינה מתאימה לסוג ה־MIME.',
 'filetype-badmime'            => 'לא ניתן להעלות קבצים עם סוג ה־MIME "$1".',
 'filetype-bad-ie-mime'        => 'לא ניתן להעלות קובץ זה, כיוון שאינטרנט אקספלורר יזהה אותו כקובץ מסוג "$1", שהוא סוג קובץ אסור שעלול להיות מסוכן.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' הוא סוג קובץ בלתי מומלץ. {{PLURAL:\$3|סוג הקובץ המומלץ הוא|סוגי הקבצים המומלצים הם}} \$2.",
@@ -1766,41 +1770,41 @@ PICT # שונות
 'listfiles_count'       => 'גרסאות',
 
 # File description page
-'file-anchor-link'          => 'קובץ',
-'filehist'                  => 'היסטוריית הקובץ',
-'filehist-help'             => 'לחצו על תאריך/שעה כדי לראות את הקובץ כפי שנראה בעת זו.',
-'filehist-deleteall'        => 'מחיקת כל הגרסאות',
-'filehist-deleteone'        => 'מחיקה',
-'filehist-revert'           => 'שחזור',
-'filehist-current'          => 'נוכחית',
-'filehist-datetime'         => 'תאריך/שעה',
-'filehist-thumb'            => 'תמונה ממוזערת',
-'filehist-thumbtext'        => 'תמונה ממוזערת לגרסה מתאריך $1',
-'filehist-nothumb'          => 'אין תמונה ממוזערת',
-'filehist-user'             => 'משתמש',
-'filehist-dimensions'       => 'ממדים',
-'filehist-filesize'         => 'גודל הקובץ',
-'filehist-comment'          => 'הערה',
-'filehist-missing'          => 'הקובץ חסר',
-'imagelinks'                => 'קישורים לקובץ',
-'linkstoimage'              => '{{PLURAL:$1|הדף הבא משתמש|הדפים הבאים משתמשים}} בקובץ זה:',
-'linkstoimage-more'         => 'יותר מ{{PLURAL:$1|דף אחד מקשר|־$1 דפים מקשרים}} לקובץ זה.
+'file-anchor-link'                  => 'קובץ',
+'filehist'                          => 'היסטוריית הקובץ',
+'filehist-help'                     => 'לחצו על תאריך/שעה כדי לראות את הקובץ כפי שנראה בעת זו.',
+'filehist-deleteall'                => 'מחיקת כל הגרסאות',
+'filehist-deleteone'                => 'מחיקה',
+'filehist-revert'                   => 'שחזור',
+'filehist-current'                  => 'נוכחית',
+'filehist-datetime'                 => 'תאריך/שעה',
+'filehist-thumb'                    => 'תמונה ממוזערת',
+'filehist-thumbtext'                => 'תמונה ממוזערת לגרסה מתאריך $1',
+'filehist-nothumb'                  => 'אין תמונה ממוזערת',
+'filehist-user'                     => 'משתמש',
+'filehist-dimensions'               => 'ממדים',
+'filehist-filesize'                 => 'גודל הקובץ',
+'filehist-comment'                  => 'הערה',
+'filehist-missing'                  => 'הקובץ חסר',
+'imagelinks'                        => 'קישורים לקובץ',
+'linkstoimage'                      => '{{PLURAL:$1|הדף הבא משתמש|הדפים הבאים משתמשים}} בקובץ זה:',
+'linkstoimage-more'                 => 'יותר מ{{PLURAL:$1|דף אחד מקשר|־$1 דפים מקשרים}} לקובץ זה.
 הרשימה הבאה מראה רק את {{PLURAL:$1|הדף הראשון שמקשר|$1 הדפים הראשונים שמקשרים}} לקובץ זה.
 ניתן לצפות ב[[Special:WhatLinksHere/$2|רשימה המלאה]].',
-'nolinkstoimage'            => 'אין דפים המשתמשים בקובץ זה.',
-'morelinkstoimage'          => 'ראו [[Special:WhatLinksHere/$1|דפים נוספים]] המשתמשים בקובץ זה.',
-'redirectstofile'           => '{{PLURAL:$1|הדף הבא הוא דף הפניה|הדפים הבאים הם דפי הפניה}} לקובץ זה:',
-'duplicatesoffile'          => '{{PLURAL:$1|הקובץ הבא זהה|הקבצים הבאים זהים}} לקובץ זה ([[Special:FileDuplicateSearch/$2|לפרטים נוספים]]):',
-'sharedupload'              => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.',
-'sharedupload-desc-there'   => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.
+'nolinkstoimage'                    => 'אין דפים המשתמשים בקובץ זה.',
+'morelinkstoimage'                  => 'ראו [[Special:WhatLinksHere/$1|דפים נוספים]] המשתמשים בקובץ זה.',
+'redirectstofile'                   => '{{PLURAL:$1|הדף הבא הוא דף הפניה|הדפים הבאים הם דפי הפניה}} לקובץ זה:',
+'duplicatesoffile'                  => '{{PLURAL:$1|הקובץ הבא זהה|הקבצים הבאים זהים}} לקובץ זה ([[Special:FileDuplicateSearch/$2|לפרטים נוספים]]):',
+'sharedupload'                      => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.',
+'sharedupload-desc-there'           => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.
 למידע נוסף, ראו את [$2 דף תיאור הקובץ].',
-'sharedupload-desc-here'    => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.
+'sharedupload-desc-here'            => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.
 תיאורו ב[$2 דף תיאור הקובץ] שלו מוצג למטה.',
-'filepage-nofile'           => 'לא קיים קובץ בשם זה.',
-'filepage-nofile-link'      => 'לא קיים קובץ בשם זה, אך באפשרותכם [$1 להעלות אחד].',
-'uploadnewversion-linktext' => 'העלאת גרסה חדשה של קובץ זה',
-'shared-repo-from'          => 'מתוך $1',
-'shared-repo'               => 'מקום איחסון משותף',
+'filepage-nofile'                   => 'לא קיים קובץ בשם זה.',
+'filepage-nofile-link'              => 'לא קיים קובץ בשם זה, אך באפשרותכם [$1 להעלות אחד].',
+'uploadnewversion-linktext'         => 'העלאת גרסה חדשה של קובץ זה',
+'shared-repo-from'                  => 'מתוך $1',
+'shared-repo'                       => 'מקום איחסון משותף',
 'shared-repo-name-wikimediacommons' => 'ויקישיתוף',
 
 # File reversion
@@ -2251,7 +2255,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'זמן אחר',
 'protect-existing-expiry'     => 'זמן פקיעה נוכחי: $3, $2',
 'protect-otherreason'         => 'סיבה אחרת/נוספת:',
-'protect-otherreason-op'      => 'סיבה אחרת/נוספת',
+'protect-otherreason-op'      => 'סיבה אחרת',
 'protect-dropdown'            => '* סיבות הגנה נפוצות
 ** השחתה רבה
 ** ספאם רב
@@ -3219,11 +3223,11 @@ $1',
 'confirmemail_subject'     => 'קוד אישור דוא"ל מ{{grammar:תחילית|{{SITENAME}}}}',
 'confirmemail_body'        => 'מישהו, כנראה אתם (מכתובת ה־IP הזו: $1), רשם את החשבון "$2" עם כתובת הדוא"ל הזו ב{{grammar:תחילית|{{SITENAME}}}}.
 
-כדי לוודא שחשבון זה באמת שייך לכם ולהפעיל את שירותי הדוא"ל באתר, אנא פתחו את הכתובת הבאה בדפדפן שלכם:
+כדי לאשר שחשבון זה באמת שייך לכם ולהפעיל את שירותי הדוא"ל באתר, אנא פתחו את הכתובת הבאה בדפדפן שלכם:
 
 $3
 
-אם *לא* אתם רשמתם את החשבון, השתמשו בקישור זה כדי לבטל את אימות כתובת הדוא"ל:
+אם *לא* אתם רשמתם את החשבון, השתמשו בקישור הבא כדי לבטל את אימות כתובת הדוא"ל:
 
 $5
 

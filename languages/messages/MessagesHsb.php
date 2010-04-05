@@ -486,6 +486,8 @@ Zdźěl to prošu [[Special:ListUsers/sysop|admininistratorej]] podawajo wotpow�
 'readonly_lag'         => 'Datowa banka bu awtomatisce zawrjena, mjeztym zo pospytuja wotwisne serwery datowych bankow  hłowny serwer docpěć',
 'internalerror'        => 'Znutřkowny zmylk',
 'internalerror_info'   => 'Znutřkowny zmylk: $1',
+'fileappenderrorread'  => '"$1" njeda so čitać při připowěšenju.',
+'fileappenderror'      => 'Njeje móžno było "$1" k "$2" připowěsnyć.',
 'filecopyerror'        => 'Njebě móžno dataju „$1” k „$2” kopěrować.',
 'filerenameerror'      => 'Njebě móžno dataju „$1” na „$2” přemjenować.',
 'filedeleteerror'      => 'Njebě móžno dataju „$1” wušmórnyć.',
@@ -571,6 +573,7 @@ Wužiwarske mjena wobkedźbuja wulkopisanje.
 Přepruwuj swój prawopis abo [[Special:UserLogin/signup|wutwor nowe konto]].',
 'nosuchusershort'            => 'Wužiwarske mjeno „<nowiki>$1</nowiki>” njeeksistuje. Prošu přepruwuj prawopis.',
 'nouserspecified'            => 'Dyrbiš wužiwarske mjeno podać',
+'login-userblocked'          => 'Tutón wužiwar je zablokowany. Přizjewjenje njedowolene.',
 'wrongpassword'              => 'Hesło, kotrež sy zapodał, je wopačne. Prošu spytaj hišće raz.',
 'wrongpasswordempty'         => 'Hesło, kotrež sy zapodał, běše prózdne. Prošu spytaj hišće raz.',
 'passwordtooshort'           => 'Hesła dyrbja znajmjeńša {{PLURAL:$1|1 znamješko|$1 znamješce|$1 znamješka|$1 znamješkow}} měć.',
@@ -604,6 +607,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'usernamehasherror'          => 'Wužiwarske mjeno njesmě hašowe znamješka wpbsahować',
 'login-throttled'            => 'Sy přehusto spytał so přizjewić. Počakaj prošu, prjedy hač znowa spytaš.',
 'loginlanguagelabel'         => 'Rěč: $1',
+'suspicious-userlogout'      => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
 
 # Password reset dialog
 'resetpass'                 => 'Hesło změnić',
@@ -618,6 +622,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'resetpass_forbidden'       => 'Hesła njedadźa so změnić.',
 'resetpass-no-info'         => 'Dyrbiš so přizjewić, zo by direktny přistup na tutu stronu měł.',
 'resetpass-submit-loggedin' => 'Hesło změnić',
+'resetpass-submit-cancel'   => 'Přetorhnyć',
 'resetpass-wrong-oldpass'   => 'Njepłaćiwe nachwilne abo aktualne hesło.
 Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
 'resetpass-temp-password'   => 'Nachwilne hesło:',
@@ -712,6 +717,7 @@ Hesło za tute nowe konto da so na stronje ''[[Special:ChangePassword|hesło zm�
 Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>.',
 'userpage-userdoesnotexist'        => 'Wužiwarske konto „$1“ njeje zregistrowane. Prošu pruwuj, hač chceš tutu stronu woprawdźe wutworić/wobdźěłać.',
 'userpage-userdoesnotexist-view'   => 'Wužiwarske konto "$1" njeje zregistrowane.',
+'blocked-notice-logextract'        => 'Tutón wužiwar je tuchwilu zablokowany. Najnowši protokolowy zapisk so deleka jako referenca podawa:',
 'clearyourcache'                   => '<b>Kedźbu:</b> Po składowanju dyrbiš snano pufrowak swojeho wobhladowaka wuprózdnić, <b>Mozilla/Firefox/Safari:</b> tłóč na <i>Umsch</i> kliknjo na <i>Znowa</i> abo tłóč <i>Strg-Umsch-R</i> (<i>Cmd-Shift-R</i> na Apple Mac); <b>IE:</b> tłóč <i>Strg</i> kliknjo na symbol <i>Aktualisieren</i> abo tłóč <i>Strg-F5</i>; <b>Konqueror:</b>: Klikń jenož na tłóčatko <i>Erneut laden</i> abo tłoč  <i>F5</i>; Wužiwarjo <b>Opery</b> móža swój pufrowak dospołnje  w <i>Tools→Preferences</i> wuprózdnić.',
 'usercssyoucanpreview'             => "'''Pokiw:''' Wužij tłóčku „Přehlad”, zo by swój nowy css/js do składowanja testował.",
 'userjsyoucanpreview'              => "'''Pokiw:''' Wužij tłóčku „Přehlad”, zo by swój nowy css/js do składowanja testował.",
@@ -1175,25 +1181,26 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'prefs-diffs'                   => 'Rozdźěle',
 
 # User rights
-'userrights'                  => 'Zrjadowanje wužiwarskich prawow',
-'userrights-lookup-user'      => 'Wužiwarske skupiny zrjadować',
-'userrights-user-editname'    => 'Wužiwarske mjeno:',
-'editusergroup'               => 'Wužiwarske skupiny wobdźěłać',
-'editinguser'                 => "Měnja so wužiwarske prawa wot wužiwarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Wužiwarske skupiny wobdźěłać',
-'saveusergroups'              => 'Wužiwarske skupiny składować',
-'userrights-groupsmember'     => 'Čłon skupiny:',
-'userrights-groups-help'      => 'Móžeš skupiny změnić, w kotrychž wužiwar je.
+'userrights'                   => 'Zrjadowanje wužiwarskich prawow',
+'userrights-lookup-user'       => 'Wužiwarske skupiny zrjadować',
+'userrights-user-editname'     => 'Wužiwarske mjeno:',
+'editusergroup'                => 'Wužiwarske skupiny wobdźěłać',
+'editinguser'                  => "Měnja so wužiwarske prawa wot wužiwarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Wužiwarske skupiny wobdźěłać',
+'saveusergroups'               => 'Wužiwarske skupiny składować',
+'userrights-groupsmember'      => 'Čłon skupiny:',
+'userrights-groupsmember-auto' => 'Implicitny čłon wot:',
+'userrights-groups-help'       => 'Móžeš skupiny změnić, w kotrychž wužiwar je.
 * Markěrowany kašćik woznamjenja, zo wužiwar je w tej skupinje.
 * Njemarkěrowany kašćik woznamjenja, zo wužiwar w tej skupinje njeje.
 * "*" podawa, zo njemóžeš skupinu wotstronić, tak ruče kaž sy ju přidał abo nawopak.',
-'userrights-reason'           => 'Přičina:',
-'userrights-no-interwiki'     => 'Nimaš prawo wužiwarske prawa w druhich wikijach změnić.',
-'userrights-nodatabase'       => 'Datowa banka $1 njeeksistuje abo lokalna njeje.',
-'userrights-nologin'          => 'Dyrbiš so z admininstratorowym kontom [[Special:UserLogin|přizjewić]], zo by wužiwarske prawa změnił.',
-'userrights-notallowed'       => 'Twoje konto nima trěbne prawa, zo by wužiwarske prawa přidźělił.',
-'userrights-changeable-col'   => 'Skupiny, kotrež móžeš změnić',
-'userrights-unchangeable-col' => 'Skupiny, kotrež njemóžeš změnić',
+'userrights-reason'            => 'Přičina:',
+'userrights-no-interwiki'      => 'Nimaš prawo wužiwarske prawa w druhich wikijach změnić.',
+'userrights-nodatabase'        => 'Datowa banka $1 njeeksistuje abo lokalna njeje.',
+'userrights-nologin'           => 'Dyrbiš so z admininstratorowym kontom [[Special:UserLogin|přizjewić]], zo by wužiwarske prawa změnił.',
+'userrights-notallowed'        => 'Twoje konto nima trěbne prawa, zo by wužiwarske prawa přidźělił.',
+'userrights-changeable-col'    => 'Skupiny, kotrež móžeš změnić',
+'userrights-unchangeable-col'  => 'Skupiny, kotrež njemóžeš změnić',
 
 # Groups
 'group'               => 'Skupina:',
@@ -1412,6 +1419,7 @@ Hlej [[Special:NewFiles|galeriju nowych datajow]] za wizuelny přehlad.',
 'minlength1'                  => 'Datajowe mjena dyrbja znajmjeńša jedyn pismik dołhe być.',
 'illegalfilename'             => 'Mjeno dataje „$1” wobsahuje znamješka, kotrež w titlach stronow dowolene njejsu. Prošu přemjenuj dataju a spytaj ju znowa nahrać.',
 'badfilename'                 => 'Mjeno dataje bu do „$1” změnjene.',
+'filetype-mime-mismatch'      => 'Datajowy sufiks njewotpowěduje MIME-typej.',
 'filetype-badmime'            => 'Dataje typa MIME „$1” njesmědźa so nahrać.',
 'filetype-bad-ie-mime'        => 'Tuta dataja njeda so nahrać, dokelž Internet Explorer by ju jako "$1" interpretował, kotryž je njedowoleny a potencielnje strašny datajowy typ.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je njepožadany datajowy typ. 
@@ -1512,6 +1520,16 @@ Jenož datajowy přistup je dowoleny.',
 Tutón wiki je jako zjawny wiki konfigurowany.
 Za optimalnu wěstotu je img_auth.php znjemóžnjeny.',
 'img-auth-noread'       => 'Wužiwar nima přistup, zo by "$1" čitał.',
+
+# HTTP errors
+'http-invalid-url'      => 'Njepłaćiwy URL: $1',
+'http-invalid-scheme'   => 'URL ze šemu „$1“ so njepodpěruja.',
+'http-request-error'    => 'Naprašowanje HTTP je so njeznateho zmylka dla njeporadźiło.',
+'http-read-error'       => 'Čitanski zmylk HTTP.',
+'http-timed-out'        => 'Naprašowanje HTTP je čas překročiło.',
+'http-curl-error'       => 'Zmylk při wołanju URL: $1',
+'http-host-unreachable' => 'URL njeda so docpěć.',
+'http-bad-status'       => 'Problem je za HTTP-naprašowanje wustupił: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL docpějomny njeje.',
@@ -1923,7 +1941,11 @@ Móžeš tež zdźělenske marki za wšě swoje wobkedźbowane strony we swojich
 Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Wospjetne prašenja a dalša pomoc:
+Zo by stronu ze swojich wobkedźbowankow zhašał, wopytaj
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+
+Wotmołwy a dalša pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2007,7 +2029,7 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 'protect-othertime-op'        => 'druhi čas',
 'protect-existing-expiry'     => 'Eksistowacy čas spadnjenja: $2, $3 hodź.',
 'protect-otherreason'         => 'Druha/přidatna přičina:',
-'protect-otherreason-op'      => 'druha/přidatna přičina',
+'protect-otherreason-op'      => 'Druha přičina',
 'protect-dropdown'            => '*Powšitkowne škitowe přičiny
 ** Ekscesiwny wandalizm
 ** Ekscesiwne spamowanje
@@ -2267,6 +2289,7 @@ Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo 
 
 W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to přeješ.',
 'movearticle'                  => 'Stronu přesunyć',
+'moveuserpage-warning'         => "'''Warnowanje:''' Sy při tym wužiwarsku stronu přesunyć. Prošu dźiwaj na to, zo so jenož strona posunje a wužiwar so ''nje''budźe přemjenować.",
 'movenologin'                  => 'Njejsy přizjewjeny.',
 'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunył.',
 'movenotallowed'               => 'Nimaš prawo, zo by strony přesunył.',

@@ -507,6 +507,8 @@ Sila catat URL bagi laman ini dan laporkan perkara ini kepada seorang [[Special:
 'readonly_lag'         => 'Pangkalan data telah dikunci secara automatik sementara semua pelayan pangkalan data diselaraskan.',
 'internalerror'        => 'Ralat dalaman',
 'internalerror_info'   => 'Ralat dalaman: $1',
+'fileappenderrorread'  => 'Tidak dapat membaca "$1" semasa tambah.',
+'fileappenderror'      => 'Tidak dapat menambah "$1" kepada "$2".',
 'filecopyerror'        => 'Fail "$1" tidak dapat disalin kepada "$2".',
 'filerenameerror'      => 'Nama fail "$1" tidak dapat ditukarkan kepada "$2".',
 'filedeleteerror'      => 'Fail "$1" tidak dapat dihapuskan.',
@@ -630,6 +632,7 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 'login-throttled'            => 'Anda telah mencuba log masuk berulang kali.
 Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
+'suspicious-userlogout'      => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
 
 # Password reset dialog
 'resetpass'                 => 'Tukar kata laluan',
@@ -644,6 +647,7 @@ Sila tunggu sebentar dan cuba lagi.',
 'resetpass_forbidden'       => 'Kata laluan tidak boleh ditukar',
 'resetpass-no-info'         => 'Anda hendaklah log masuk terlebih dahulu untuk mencapai laman ini secara terus.',
 'resetpass-submit-loggedin' => 'Tukar kata laluan',
+'resetpass-submit-cancel'   => 'Batal',
 'resetpass-wrong-oldpass'   => 'Kata laluan sementara atau semasa tidak sah.
 Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan sementara yang baru.',
 'resetpass-temp-password'   => 'Kata laluan sementara:',
@@ -745,6 +749,8 @@ Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman l
 atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} menggelintar log yang berkaitan]</span>.',
 'userpage-userdoesnotexist'        => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
 'userpage-userdoesnotexist-view'   => 'Akaun pengguna "$1" tidak berdaftar.',
+'blocked-notice-logextract'        => 'Pengguna ini sedang disekat.
+Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
 '''Mozilla/Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R'' (''Command+R'' dalam komputer Macintosh).
 '''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''.
@@ -850,6 +856,7 @@ Argumen-argumen ini telah ditinggalkan.',
 'post-expand-template-argument-category'  => 'Laman yang mengandungi templat dengan argumen yang tidak lengkap',
 'parser-template-loop-warning'            => 'Gelung templat dikesan: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Had pengulangan templat dilebihi ($1)',
+'language-converter-depth-warning'        => 'Had kedalaman penukar bahasa dilepasi ($1)',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',
@@ -913,6 +920,7 @@ Sebagai seorang pentadbir anda boleh melihatnya; butiran lanjut mungkin boleh di
 Sebagai seorang pentadbir, anda boleh memaparkannya; butiran lanjut mungkin ada di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].",
 'rev-deleted-no-diff'         => "Anda tidak boleh melihat perbezaan ini kerana salah satu daripada semakannya telah '''dihapuskan'''.
 Mungkin terdapat butiran lanjut di dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
+'rev-suppressed-no-diff'      => "Anda tidak boleh melihat perbezaan ini kerana salah satu semakannya telah '''dihapuskan'''.",
 'rev-deleted-unhide-diff'     => "Salah satu semakan laman ini telah '''dihapuskan'''.
 Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai seorang pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin teruskan.",
@@ -989,6 +997,7 @@ Anda tidak memiliki capaian padanya.',
 ** Maklumat peribadi tidak sesuai
 ** Maklumat berpotensi fitnah',
 'revdelete-otherreason'       => 'Sebab lain/tambahan:',
+'revdelete-reasonotherlist'   => 'Sebab lain',
 'revdelete-edit-reasonlist'   => 'Ubah sebab-sebab hapus',
 
 # Suppression log
@@ -1148,6 +1157,9 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'recentchangesdays-max'         => '(had $1 hari)',
 'recentchangescount'            => 'Bilangan suntingan yang dipaparkan mengikut ketetapan:',
 'prefs-help-recentchangescount' => 'Ini termasuklah perubahan terkini, sejarah laman dan log.',
+'prefs-help-watchlist-token'    => 'Mengisi medan ini dengan kunci rahsia akan menghasilkan suapan RSS untuk senarai pantau anda.
+Sesiapa yang mengetahui kunci dalam medan ini akan dapat membaca senarai pantau anda, jadi pilihlah nilai selamat.
+Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'savedprefs'                    => 'Keutamaan anda disimpan.',
 'timezonelegend'                => 'Zon waktu:',
 'localtime'                     => 'Waktu tempatan:',
@@ -1775,6 +1787,10 @@ Protokol yang disokong: <tt>$1</tt>',
 'listusers-noresult' => 'Tiada pengguna dijumpai.',
 'listusers-blocked'  => '(disekat)',
 
+# Special:ActiveUsers
+'activeusers'          => 'Senarai pengguna aktif',
+'activeusers-noresult' => 'Tiada pengguna dijumpai.',
+
 # Special:Log/newusers
 'newuserlogpage'              => 'Log akaun baru',
 'newuserlogpagetext'          => 'Yang berikut ialah log penciptaan pengguna.',
@@ -1987,7 +2003,7 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 'protect-othertime-op'        => 'waktu lain',
 'protect-existing-expiry'     => 'Waktu tamat yang telah ditetapkan: $2, $3',
 'protect-otherreason'         => 'Sebab lain/tambahan:',
-'protect-otherreason-op'      => 'sebab lain/tambahan',
+'protect-otherreason-op'      => 'Sebab lain',
 'protect-dropdown'            => '*Sebab lazim
 ** Vandalisme
 ** Spam
