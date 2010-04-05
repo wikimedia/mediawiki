@@ -1890,6 +1890,7 @@ $wgMessageStructure = array(
 		'sp-contributions-talk',
 		'sp-contributions-userrights',
 		'sp-contributions-blocked-notice',
+		'sp-contributions-blocked-notice-anon',
 		'sp-contributions-search',
 		'sp-contributions-username',
 		'sp-contributions-submit',
