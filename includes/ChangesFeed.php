@@ -102,7 +102,8 @@ class ChangesFeed {
 	 * @return feed's content on cache hit or false on cache miss
 	 */
 	public function loadFromCache( $lastmod, $timekey, $key ) {
-		global $wgFeedCacheTimeout, $messageMemc;
+		global $wgFeedCacheTimeout, $wgOut, $messageMemc;
+
 		$feedLastmod = $messageMemc->get( $timekey );
 
 		if( ( $wgFeedCacheTimeout > 0 ) && $feedLastmod ) {
@@ -119,6 +120,9 @@ class ChangesFeed {
 
 			if( $feedAge < $wgFeedCacheTimeout || $feedLastmodUnix > $lastmodUnix) {
 				wfDebug( "RC: loading feed from cache ($key; $feedLastmod; $lastmod)...\n" );
+				if ( $feedLastmodUnix < $lastmodUnix ) {
+					$wgOut->setLastModified( $feedLastmod ); // bug 21916
+				}
 				return $messageMemc->get( $key );
 			} else {
 				wfDebug( "RC: cached feed timestamp check failed ($feedLastmod; $lastmod)\n" );
