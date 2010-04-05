@@ -2348,18 +2348,21 @@ $1',
 'month'               => 'עד החודש:',
 'year'                => 'עד השנה:',
 
-'sp-contributions-newbies'        => 'הצגת תרומות של משתמשים חדשים בלבד',
-'sp-contributions-newbies-sub'    => 'עבור משתמשים חדשים',
-'sp-contributions-newbies-title'  => 'תרומות של משתמשים חדשים',
-'sp-contributions-blocklog'       => 'יומן חסימות',
-'sp-contributions-deleted'        => 'תרומות משתמש מחוקות',
-'sp-contributions-logs'           => 'יומנים',
-'sp-contributions-talk'           => 'שיחה',
-'sp-contributions-userrights'     => 'ניהול הרשאות משתמש',
-'sp-contributions-blocked-notice' => 'משתמש זה חסום כרגע. הפעולה האחרונה ביומן החסימות מוצגת להלן:',
-'sp-contributions-search'         => 'חיפוש תרומות',
-'sp-contributions-username'       => 'שם משתמש או כתובת IP:',
-'sp-contributions-submit'         => 'חיפוש',
+'sp-contributions-newbies'             => 'הצגת תרומות של משתמשים חדשים בלבד',
+'sp-contributions-newbies-sub'         => 'עבור משתמשים חדשים',
+'sp-contributions-newbies-title'       => 'תרומות של משתמשים חדשים',
+'sp-contributions-blocklog'            => 'יומן חסימות',
+'sp-contributions-deleted'             => 'תרומות משתמש מחוקות',
+'sp-contributions-logs'                => 'יומנים',
+'sp-contributions-talk'                => 'שיחה',
+'sp-contributions-userrights'          => 'ניהול הרשאות משתמש',
+'sp-contributions-blocked-notice'      => 'משתמש זה חסום כרגע.
+הפעולה האחרונה ביומן החסימות מוצגת להלן:',
+'sp-contributions-blocked-notice-anon' => 'כתובת IP זו חסומה כרגע.
+הפעולה האחרונה ביומן החסימות מוצגת להלן:',
+'sp-contributions-search'              => 'חיפוש תרומות',
+'sp-contributions-username'            => 'שם משתמש או כתובת IP:',
+'sp-contributions-submit'              => 'חיפוש',
 
 # What links here
 'whatlinkshere'            => 'דפים המקושרים לכאן',
@@ -3423,7 +3426,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'נתיב לקובץ',
 'filepath-page'    => 'הקובץ:',
-'filepath-submit'  => 'מציאת הנתיב',
+'filepath-submit'  => 'הצגה',
 'filepath-summary' => 'דף זה מציג את הנתיב המלא לקבצים שהועלו.
 תמונות מוצגות ברזולוציה מלאה, ואילו סוגי קבצים אחרים מוצגים ישירות באמצעות התוכנה שהוגדרה להצגתם.
 
