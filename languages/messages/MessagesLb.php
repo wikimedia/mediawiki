@@ -2159,18 +2159,20 @@ $1',
 'month'               => 'Vum Mount (a virdrun):',
 'year'                => 'Vum Joer (a virdrun):',
 
-'sp-contributions-newbies'        => 'Nëmme Kontributioune vun neie Mataarbechter weisen',
-'sp-contributions-newbies-sub'    => 'Fir déi Nei',
-'sp-contributions-newbies-title'  => 'Kontributioune vun neie Benotzer',
-'sp-contributions-blocklog'       => 'Spärlescht',
-'sp-contributions-deleted'        => 'geläschte Benotzer-Kontributiounen',
-'sp-contributions-logs'           => 'Logbicher',
-'sp-contributions-talk'           => 'diskutéieren',
-'sp-contributions-userrights'     => 'Verwaltung vun de Benotzerrechter',
-'sp-contributions-blocked-notice' => 'Dëse Benotzer ass elo gespaart. Déi lescht Entrée am Läsch-Logbuch steet als Referenz hei ënnendrënner:',
-'sp-contributions-search'         => 'No Kontributioune sichen',
-'sp-contributions-username'       => 'IP-Adress oder Benotzernumm:',
-'sp-contributions-submit'         => 'Sichen',
+'sp-contributions-newbies'             => 'Nëmme Kontributioune vun neie Mataarbechter weisen',
+'sp-contributions-newbies-sub'         => 'Fir déi Nei',
+'sp-contributions-newbies-title'       => 'Kontributioune vun neie Benotzer',
+'sp-contributions-blocklog'            => 'Spärlescht',
+'sp-contributions-deleted'             => 'geläschte Benotzer-Kontributiounen',
+'sp-contributions-logs'                => 'Logbicher',
+'sp-contributions-talk'                => 'diskutéieren',
+'sp-contributions-userrights'          => 'Verwaltung vun de Benotzerrechter',
+'sp-contributions-blocked-notice'      => 'Dëse Benotzer ass elo gespaart. Déi lescht Entrée am Läsch-Logbuch steet als Referenz hei ënnendrënner:',
+'sp-contributions-blocked-notice-anon' => "Dës IP-Adress ass elo gespaart.
+Ënnendrënner steet déi lescht Androung an d'Spärlëscht:",
+'sp-contributions-search'              => 'No Kontributioune sichen',
+'sp-contributions-username'            => 'IP-Adress oder Benotzernumm:',
+'sp-contributions-submit'              => 'Sichen',
 
 # What links here
 'whatlinkshere'            => 'Linken op dës Säit',
@@ -3146,7 +3148,7 @@ Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslësc
 # Special:FilePath
 'filepath'         => 'Pad bei de Fichier',
 'filepath-page'    => 'Fichier:',
-'filepath-submit'  => 'Pad',
+'filepath-submit'  => 'Lass',
 'filepath-summary' => 'Op dëser Spezialsäit kënnt Dir de komplette Pad vun der aktueller Versioun vun engem engem Fichier direkt offroen. Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikatioun gestart.
 
 D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',

@@ -2275,18 +2275,20 @@ $1',
 'month'               => 'Ад месяца (і раней):',
 'year'                => 'Ад году (і раней):',
 
-'sp-contributions-newbies'        => 'Паказаць унёсак толькі з новых рахункаў',
-'sp-contributions-newbies-sub'    => 'Унёсак пачынаючых',
-'sp-contributions-newbies-title'  => 'Унёсак удзельнікаў з новых рахункаў',
-'sp-contributions-blocklog'       => 'журнал блякаваньняў',
-'sp-contributions-deleted'        => 'выдалены ўнёсак удзельніка',
-'sp-contributions-logs'           => 'журналы падзеяў',
-'sp-contributions-talk'           => 'гутаркі',
-'sp-contributions-userrights'     => 'кіраваньне правамі ўдзельнікаў і ўдзельніц',
-'sp-contributions-blocked-notice' => 'Гэты ўдзельнік у дадзены момант заблякаваны. Апошні запіс з журналу блякаваньняў пададзены ніжэй для даведкі:',
-'sp-contributions-search'         => 'Пошук унёску',
-'sp-contributions-username'       => 'IP-адрас альбо імя ўдзельніка/ўдзельніцы:',
-'sp-contributions-submit'         => 'Шукаць',
+'sp-contributions-newbies'             => 'Паказаць унёсак толькі з новых рахункаў',
+'sp-contributions-newbies-sub'         => 'Унёсак пачынаючых',
+'sp-contributions-newbies-title'       => 'Унёсак удзельнікаў з новых рахункаў',
+'sp-contributions-blocklog'            => 'журнал блякаваньняў',
+'sp-contributions-deleted'             => 'выдалены ўнёсак удзельніка',
+'sp-contributions-logs'                => 'журналы падзеяў',
+'sp-contributions-talk'                => 'гутаркі',
+'sp-contributions-userrights'          => 'кіраваньне правамі ўдзельнікаў і ўдзельніц',
+'sp-contributions-blocked-notice'      => '{{GENDER:$1|Гэты ўдзельнік у дадзены момант заблякаваны|Гэтая ўдзельніца ў дадзены момант заблякаваная}}. Апошні запіс з журнала блякаваньняў пададзены ніжэй для даведкі:',
+'sp-contributions-blocked-notice-anon' => 'Гэты IP-адрас у дадзены момант заблякаваны.
+Апошні запіс з журнала блякаваньняў пададзены ніжэй для даведкі:',
+'sp-contributions-search'              => 'Пошук унёску',
+'sp-contributions-username'            => 'IP-адрас альбо імя ўдзельніка/ўдзельніцы:',
+'sp-contributions-submit'              => 'Шукаць',
 
 # What links here
 'whatlinkshere'            => 'Спасылкі на старонку',
@@ -3276,7 +3278,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'Шлях да файла',
 'filepath-page'    => 'Файл:',
-'filepath-submit'  => 'Шлях',
+'filepath-submit'  => 'Перайсьці',
 'filepath-summary' => 'Гэтая спэцыяльная старонка вяртае поўны шлях да файла.
 Выявы паказаныя ў поўным выглядзе, астатнія тыпы файлаў адкрываюцца прыпісанымі да іх праграмамі.
 

@@ -2120,18 +2120,20 @@ $1',
 'month'               => 'wot měsaca (a do toho):',
 'year'                => 'wot lěta (a do toho):',
 
-'sp-contributions-newbies'        => 'jenož přinoški nowačkow pokazać',
-'sp-contributions-newbies-sub'    => 'Za nowačkow',
-'sp-contributions-newbies-title'  => 'Wužiwarske přinoški za nowe konta',
-'sp-contributions-blocklog'       => 'protokol zablokowanjow',
-'sp-contributions-deleted'        => 'wušmórnjene wužiwarske přinoški',
-'sp-contributions-logs'           => 'protokole',
-'sp-contributions-talk'           => 'diskusija',
-'sp-contributions-userrights'     => 'Zrjadowanje wužiwarskich prawow',
-'sp-contributions-blocked-notice' => 'Tutón wužiwar je tuchwilu zablokowany. Najnowši protokolowy zapisk so deleka jako referenca podawa:',
-'sp-contributions-search'         => 'Přinoški pytać',
-'sp-contributions-username'       => 'IP-adresa abo wužiwarske mjeno:',
-'sp-contributions-submit'         => 'OK',
+'sp-contributions-newbies'             => 'jenož přinoški nowačkow pokazać',
+'sp-contributions-newbies-sub'         => 'Za nowačkow',
+'sp-contributions-newbies-title'       => 'Wužiwarske přinoški za nowe konta',
+'sp-contributions-blocklog'            => 'protokol zablokowanjow',
+'sp-contributions-deleted'             => 'wušmórnjene wužiwarske přinoški',
+'sp-contributions-logs'                => 'protokole',
+'sp-contributions-talk'                => 'diskusija',
+'sp-contributions-userrights'          => 'Zrjadowanje wužiwarskich prawow',
+'sp-contributions-blocked-notice'      => 'Tutón wužiwar je tuchwilu zablokowany. Najnowši protokolowy zapisk so deleka jako referenca podawa:',
+'sp-contributions-blocked-notice-anon' => 'Tuta IP-adresa je tuchwilu zablokowana.
+Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
+'sp-contributions-search'              => 'Přinoški pytać',
+'sp-contributions-username'            => 'IP-adresa abo wužiwarske mjeno:',
+'sp-contributions-submit'              => 'OK',
 
 # What links here
 'whatlinkshere'            => 'Što wotkazuje sem',
@@ -3096,7 +3098,7 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 # Special:FilePath
 'filepath'         => 'Datajowy puć',
 'filepath-page'    => 'Dataja:',
-'filepath-submit'  => 'Puć',
+'filepath-submit'  => 'Pytać',
 'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.
 
 Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',

@@ -2294,18 +2294,20 @@ $1',
 'month'               => 'Przed miesiącem (włącznie)',
 'year'                => 'Przed rokiem (włącznie)',
 
-'sp-contributions-newbies'        => 'Pokaż wyłącznie wkład nowych użytkowników',
-'sp-contributions-newbies-sub'    => 'Dla nowych użytkowników',
-'sp-contributions-newbies-title'  => 'Wkład nowych użytkowników',
-'sp-contributions-blocklog'       => 'blokady',
-'sp-contributions-deleted'        => 'usunięty wkład użytkownika',
-'sp-contributions-logs'           => 'rejestry',
-'sp-contributions-talk'           => 'dyskusja',
-'sp-contributions-userrights'     => 'zarządzanie uprawnieniami użytkowników',
-'sp-contributions-blocked-notice' => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}. Ostatni wpis rejestru blokad jest pokazany poniżej.',
-'sp-contributions-search'         => 'Szukaj wkładu',
-'sp-contributions-username'       => 'Adres IP lub nazwa użytkownika',
-'sp-contributions-submit'         => 'Szukaj',
+'sp-contributions-newbies'             => 'Pokaż wyłącznie wkład nowych użytkowników',
+'sp-contributions-newbies-sub'         => 'Dla nowych użytkowników',
+'sp-contributions-newbies-title'       => 'Wkład nowych użytkowników',
+'sp-contributions-blocklog'            => 'blokady',
+'sp-contributions-deleted'             => 'usunięty wkład użytkownika',
+'sp-contributions-logs'                => 'rejestry',
+'sp-contributions-talk'                => 'dyskusja',
+'sp-contributions-userrights'          => 'zarządzanie uprawnieniami użytkowników',
+'sp-contributions-blocked-notice'      => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}. Ostatni wpis rejestru blokad jest pokazany poniżej.',
+'sp-contributions-blocked-notice-anon' => 'Ten adres IP jest obecnie zablokowany.
+Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
+'sp-contributions-search'              => 'Szukaj wkładu',
+'sp-contributions-username'            => 'Adres IP lub nazwa użytkownika',
+'sp-contributions-submit'              => 'Szukaj',
 
 # What links here
 'whatlinkshere'            => 'Linkujące',
@@ -3371,7 +3373,7 @@ Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
 # Special:FilePath
 'filepath'         => 'Ścieżka do pliku',
 'filepath-page'    => 'Plik',
-'filepath-submit'  => 'Ścieżka',
+'filepath-submit'  => 'Przejdź',
 'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku.
 Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie.
 

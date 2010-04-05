@@ -761,7 +761,7 @@ Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov te strani]] v drug
 Prosimo preverite, ali res želite ustvariti/urediti to stran.',
 'userpage-userdoesnotexist-view'   => 'Uporabniški račun "$1" ni registriran.',
 'blocked-notice-logextract'        => 'Ta uporabnik je trenutno blokiran.
-Najnovejši vnos v dnevniku blokiranja je prikazan spodaj:',
+Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 'clearyourcache'                   => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika: '''Mozilla/Safari:''' držite ''Shift'' in kliknite ''Reload'' (ali pritisnite ''Ctrl-Shift-R''), '''Internet Explorer:''' ''Ctrl-F5'', '''Opera/Konqueror:''' ''F5''.",
 'usercssyoucanpreview'             => "'''Nasvet:''' Za preizkušanje svojega novega CSS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
 'userjsyoucanpreview'              => "'''Nasvet:''' Za preizkušanje svojega novega JS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
@@ -2222,19 +2222,21 @@ $1',
 'month'               => 'Od meseca (in prej):',
 'year'                => 'Od leta (in prej):',
 
-'sp-contributions-newbies'        => 'Prikaži samo prispevke novih računov',
-'sp-contributions-newbies-sub'    => 'Prispevki novincev',
-'sp-contributions-newbies-title'  => 'Uporabniški prispevki novih računov',
-'sp-contributions-blocklog'       => 'dnevnik blokiranja',
-'sp-contributions-deleted'        => 'izbrisani uporabnikovi prispevki',
-'sp-contributions-logs'           => 'dnevniki',
-'sp-contributions-talk'           => 'pogovor',
-'sp-contributions-userrights'     => 'upravljanje s pravicami uporabnikov',
-'sp-contributions-blocked-notice' => 'Ta uporabnik je trenutno blokiran.
+'sp-contributions-newbies'             => 'Prikaži samo prispevke novih računov',
+'sp-contributions-newbies-sub'         => 'Prispevki novincev',
+'sp-contributions-newbies-title'       => 'Uporabniški prispevki novih računov',
+'sp-contributions-blocklog'            => 'dnevnik blokiranja',
+'sp-contributions-deleted'             => 'izbrisani uporabnikovi prispevki',
+'sp-contributions-logs'                => 'dnevniki',
+'sp-contributions-talk'                => 'pogovor',
+'sp-contributions-userrights'          => 'upravljanje s pravicami uporabnikov',
+'sp-contributions-blocked-notice'      => 'Ta uporabnik je trenutno blokiran.
 Najnovejši vnos v dnevniku blokad je naveden spodaj:',
-'sp-contributions-search'         => 'Išči prispevke',
-'sp-contributions-username'       => 'IP-naslov ali uporabniško ime:',
-'sp-contributions-submit'         => 'Išči',
+'sp-contributions-blocked-notice-anon' => 'Ta IP-naslov je trenutno blokiran.
+Najnovejši vnos v dnevniku blokad je naveden spodaj:',
+'sp-contributions-search'              => 'Išči prispevke',
+'sp-contributions-username'            => 'IP-naslov ali uporabniško ime:',
+'sp-contributions-submit'              => 'Išči',
 
 # What links here
 'whatlinkshere'            => 'Kaj se povezuje sem',
@@ -3222,7 +3224,7 @@ Uporabite lahko tudi [[Special:Watchlist/edit|standardni urejevalnik]].',
 # Special:FilePath
 'filepath'         => 'Pot do datoteke',
 'filepath-page'    => 'Datoteka:',
-'filepath-submit'  => 'Pot',
+'filepath-submit'  => 'Pojdi',
 'filepath-summary' => 'Ta posebna stran vrne polno pot do datoteke.
 Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.
 

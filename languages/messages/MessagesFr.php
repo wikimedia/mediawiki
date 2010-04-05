@@ -2375,18 +2375,20 @@ $1',
 'month'               => 'À partir du mois (et précédents) :',
 'year'                => 'À partir de l’année (et précédentes) :',
 
-'sp-contributions-newbies'        => 'Ne montrer que les contributions des nouveaux utilisateurs',
-'sp-contributions-newbies-sub'    => 'Parmi les nouveaux comptes',
-'sp-contributions-newbies-title'  => 'Contributions d’utilisateurs parmi les nouveaux comptes',
-'sp-contributions-blocklog'       => 'journal des blocages',
-'sp-contributions-deleted'        => 'contributions supprimées',
-'sp-contributions-logs'           => 'journaux',
-'sp-contributions-talk'           => 'discuter',
-'sp-contributions-userrights'     => 'gérer les droits',
-'sp-contributions-blocked-notice' => 'Cet utilisateur est actuellement bloqué. La dernière entrée du journal des blocages est indiquée ci-dessous à titre d’information :',
-'sp-contributions-search'         => 'Rechercher les contributions',
-'sp-contributions-username'       => 'Adresse IP ou nom d’utilisateur :',
-'sp-contributions-submit'         => 'Rechercher',
+'sp-contributions-newbies'             => 'Ne montrer que les contributions des nouveaux utilisateurs',
+'sp-contributions-newbies-sub'         => 'Parmi les nouveaux comptes',
+'sp-contributions-newbies-title'       => 'Contributions d’utilisateurs parmi les nouveaux comptes',
+'sp-contributions-blocklog'            => 'journal des blocages',
+'sp-contributions-deleted'             => 'contributions supprimées',
+'sp-contributions-logs'                => 'journaux',
+'sp-contributions-talk'                => 'discuter',
+'sp-contributions-userrights'          => 'gérer les droits',
+'sp-contributions-blocked-notice'      => 'Cet utilisateur est actuellement bloqué. La dernière entrée du journal des blocages est indiquée ci-dessous à titre d’information :',
+'sp-contributions-blocked-notice-anon' => 'Cette adresse IP est actuellement bloquée.
+La dernière entrée du journal des blocages est indiquée ci-dessous à titre d’information :',
+'sp-contributions-search'              => 'Rechercher les contributions',
+'sp-contributions-username'            => 'Adresse IP ou nom d’utilisateur :',
+'sp-contributions-submit'              => 'Rechercher',
 
 # What links here
 'whatlinkshere'            => 'Pages liées',
@@ -3429,7 +3431,7 @@ Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
 # Special:FilePath
 'filepath'         => 'Chemin d’accès du fichier',
 'filepath-page'    => 'Fichier :',
-'filepath-submit'  => 'Chemin d’accès',
+'filepath-submit'  => 'Aller',
 'filepath-summary' => 'Cette page spéciale retourne le chemin d’accès complet d’un fichier.
 Les images sont montrées dans leur pleine résolution, les autres fichiers sont chargés et démarrés directement avec leur programme associé.
 

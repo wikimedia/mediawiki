@@ -945,7 +945,7 @@ alibadilisha uwezo wa kuona maelezo ya mapitio ya ukurasa wa [[$1]]',
 ** Taarifa zinazowezekana kwamba ni za kukashifu',
 'revdelete-otherreason'       => 'Sababu nyingine:',
 'revdelete-reasonotherlist'   => 'Sababu nyingine',
-'revdelete-edit-reasonlist'   => 'Kuhariri sababu za kufuta',
+'revdelete-edit-reasonlist'   => 'Kuhariri orodha ya sababu za kufuta',
 'revdelete-offender'          => 'Mhariri wa pitio:',
 
 # Suppression log
@@ -1378,10 +1378,12 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
 'filedelete-comment'          => 'Sababu ya kufuta:',
 'filedelete-submit'           => 'Futa',
+'filedelete-success'          => "'''$1''' limefutwa.",
 'filedelete-success-old'      => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
 'filedelete-nofile-old'       => "There is no archived version of '''$1''' with the specified attributes.",
 'filedelete-otherreason'      => 'Sababu nyingine:',
 'filedelete-reason-otherlist' => 'Sababu nyingine',
+'filedelete-edit-reasonlist'  => 'Kuhariri orodha ya sababu za kufuta',
 
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
@@ -1622,7 +1624,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 ** Ombi la mmiliki
 ** Ukiukaji wa hakimiliki
 ** Uharabu',
-'delete-edit-reasonlist' => 'Uhariri sababu za kufuta',
+'delete-edit-reasonlist' => 'Uhariri orodha ya sababu za kufuta',
 
 # Rollback
 'rollback'         => 'Rejesha masahihisho',
@@ -1963,6 +1965,7 @@ Tafadhali jaribu tena.',
 'newimages-legend' => 'Chuja',
 'noimages'         => 'Hakuna picha.',
 'ilsubmit'         => 'Tafuta',
+'bydate'           => 'kwa tarehe',
 
 # Bad image list
 'bad_image_list' => 'Fomati ni hii:

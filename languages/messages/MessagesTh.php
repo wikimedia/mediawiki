@@ -3116,9 +3116,9 @@ $1',
 'version-software-version'         => 'รุ่น',
 
 # Special:FilePath
-'filepath'         => 'ตำแหน่งไฟล์',
-'filepath-page'    => 'ไฟล์ :',
-'filepath-submit'  => 'ตำแหน่งไฟล์',
+'filepath'         => 'พาธของไฟล์',
+'filepath-page'    => '{{ns:file}}:',
+'filepath-submit'  => 'ไป',
 'filepath-summary' => 'หน้าพิเศษนี้คืนค่าเป็นเส้นทางเต็มของไฟล์
 ไฟล์ภาพจะถูกแสดงในขนาดเต็ม และไฟล์ประเภทอื่นจะถูกเปิดด้วยโปรแกรมที่เกี่ยวข้องโดยตรง
 

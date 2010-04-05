@@ -846,9 +846,9 @@ Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver
 
 '''Se este é un intento de facer unha edición lexítima, por favor, inténteo de novo.
 Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver entrar.'''",
-'token_suffix_mismatch'            => "'''Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.
-Rexeitouse a edición para evitar que se corrompa o texto do artigo. Isto pode acontecer porque estea a
-empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.'''",
+'token_suffix_mismatch'            => "'''Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.'''
+Rexeitouse a edición para evitar que se corrompa o texto do artigo.
+Isto pode acontecer porque estea a empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.",
 'editing'                          => 'Editando "$1"',
 'editingsection'                   => 'Editando unha sección de "$1"',
 'editingcomment'                   => 'Editando unha nova sección de "$1"',
@@ -1219,7 +1219,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-days-max'      => '(máximo 7 días)',
 'prefs-watchlist-edits'         => 'Número de edicións para mostrar na lista de vixilancia completa:',
 'prefs-watchlist-edits-max'     => '(número máximo: 1000)',
-'prefs-watchlist-token'         => 'Token para a lista de vixilancia:',
+'prefs-watchlist-token'         => 'Pase para a lista de vixilancia:',
 'prefs-misc'                    => 'Preferencias varias',
 'prefs-resetpass'               => 'Cambiar o contrasinal',
 'prefs-email'                   => 'Opcións de correo electrónico',
@@ -2278,18 +2278,20 @@ $1',
 'month'               => 'Desde o mes de (e anteriores):',
 'year'                => 'Desde o ano (e anteriores):',
 
-'sp-contributions-newbies'        => 'Mostrar só as contribucións das contas de usuario novas',
-'sp-contributions-newbies-sub'    => 'Contribucións dos usuarios novos',
-'sp-contributions-newbies-title'  => 'Contribucións dos usuarios novos',
-'sp-contributions-blocklog'       => 'rexistro de bloqueos',
-'sp-contributions-deleted'        => 'contribucións borradas do usuario',
-'sp-contributions-logs'           => 'rexistros',
-'sp-contributions-talk'           => 'conversa',
-'sp-contributions-userrights'     => 'xestión dos dereitos de usuario',
-'sp-contributions-blocked-notice' => 'Este usuario está bloqueado. Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
-'sp-contributions-search'         => 'Busca de contribucións',
-'sp-contributions-username'       => 'Enderezo IP ou nome de usuario:',
-'sp-contributions-submit'         => 'Procurar',
+'sp-contributions-newbies'             => 'Mostrar só as contribucións das contas de usuario novas',
+'sp-contributions-newbies-sub'         => 'Contribucións dos usuarios novos',
+'sp-contributions-newbies-title'       => 'Contribucións dos usuarios novos',
+'sp-contributions-blocklog'            => 'rexistro de bloqueos',
+'sp-contributions-deleted'             => 'contribucións borradas do usuario',
+'sp-contributions-logs'                => 'rexistros',
+'sp-contributions-talk'                => 'conversa',
+'sp-contributions-userrights'          => 'xestión dos dereitos de usuario',
+'sp-contributions-blocked-notice'      => 'Este usuario está bloqueado. Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
+'sp-contributions-blocked-notice-anon' => 'Este enderezo IP está bloqueado.
+Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
+'sp-contributions-search'              => 'Busca de contribucións',
+'sp-contributions-username'            => 'Enderezo IP ou nome de usuario:',
+'sp-contributions-submit'              => 'Procurar',
 
 # What links here
 'whatlinkshere'            => 'Páxinas que ligan con esta',
@@ -3286,8 +3288,8 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 # Special:FilePath
 'filepath'         => 'Ruta do ficheiro',
 'filepath-page'    => 'Ficheiro:',
-'filepath-submit'  => 'Ruta',
-'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro.
+'filepath-submit'  => 'Ir',
+'filepath-summary' => 'Esta páxina especial devolve a ruta completa dun ficheiro.
 As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
 
 Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',

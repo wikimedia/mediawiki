@@ -957,7 +957,7 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 ** Gwybodaeth bersonol anaddas',
 'revdelete-otherreason'       => 'Rheswm arall:',
 'revdelete-reasonotherlist'   => 'Rheswm arall',
-'revdelete-edit-reasonlist'   => 'Rhowch reswm dros y dileu',
+'revdelete-edit-reasonlist'   => 'Golygu rhestr y rhesymau dros ddileu',
 'revdelete-offender'          => 'Awdur y golygiad:',
 
 # Suppression log
@@ -1619,7 +1619,7 @@ Dangosir isod y disgrifiad sydd ar [$2 dudalen ddisgrifio'r ffeil] yno.",
 'filedelete-reason-dropdown'  => '*Rhesymau cyffredin dros ddileu
 ** Yn torri hawlfraint
 ** Dwy ffeil yn union debyg',
-'filedelete-edit-reasonlist'  => 'Rhowch reswm dros y dileu',
+'filedelete-edit-reasonlist'  => 'Golygu rhestr y rhesymau dros ddileu',
 'filedelete-maintenance'      => "Mae'r gallu i ddileu ffeiliau a'u hadfer wedi ei anallogi tra bod gwaith cynnal wrthi.",
 
 # MIME search
@@ -1983,7 +1983,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 ** Ar gais yr awdur
 ** Torri'r hawlfraint
 ** Fandaliaeth",
-'delete-edit-reasonlist' => 'Golygu rhesymau dileu',
+'delete-edit-reasonlist' => 'Golygu rhestr y rhesymau dros ddileu',
 'delete-toobig'          => "Cafwyd dros $1 {{PLURAL:$1|o olygiadau}} i'r dudalen hon.
 Cyfyngwyd ar y gallu i ddileu tudalennau sydd wedi eu golygu cymaint â hyn, er mwyn osgoi amharu ar weithrediad databas {{SITENAME}} yn ddamweiniol.",
 'delete-warning-toobig'  => "Cafwyd dros $1 {{PLURAL:$1|o olygiadau}} i'r dudalen hon.
@@ -2134,18 +2134,20 @@ $1',
 'month'               => 'Cyfraniadau hyd at fis:',
 'year'                => 'Cyfraniadau hyd at y flwyddyn:',
 
-'sp-contributions-newbies'        => 'Dangos cyfraniadau gan gyfrifon newydd yn unig',
-'sp-contributions-newbies-sub'    => 'Ar gyfer cyfrifon newydd',
-'sp-contributions-newbies-title'  => 'Cyfraniadau defnyddwyr newydd',
-'sp-contributions-blocklog'       => 'Lòg blocio',
-'sp-contributions-deleted'        => 'cyfraniadau defnyddiwr i dudalennau dilëedig',
-'sp-contributions-logs'           => 'logiau',
-'sp-contributions-talk'           => 'sgwrs',
-'sp-contributions-userrights'     => 'rheoli galluoedd defnyddwyr',
-'sp-contributions-blocked-notice' => "Mae'r defnyddiwr hwn wedi ei atal rhag golygu ar hyn o bryd. Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
-'sp-contributions-search'         => 'Chwilio am gyfraniadau',
-'sp-contributions-username'       => 'Cyfeiriad IP neu enw defnyddiwr:',
-'sp-contributions-submit'         => 'Chwilier',
+'sp-contributions-newbies'             => 'Dangos cyfraniadau gan gyfrifon newydd yn unig',
+'sp-contributions-newbies-sub'         => 'Ar gyfer cyfrifon newydd',
+'sp-contributions-newbies-title'       => 'Cyfraniadau defnyddwyr newydd',
+'sp-contributions-blocklog'            => 'Lòg blocio',
+'sp-contributions-deleted'             => 'cyfraniadau defnyddiwr i dudalennau dilëedig',
+'sp-contributions-logs'                => 'logiau',
+'sp-contributions-talk'                => 'sgwrs',
+'sp-contributions-userrights'          => 'rheoli galluoedd defnyddwyr',
+'sp-contributions-blocked-notice'      => "Mae'r defnyddiwr hwn wedi ei atal rhag golygu ar hyn o bryd. Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
+'sp-contributions-blocked-notice-anon' => "Mae'r gallu i olygu o'r cyfeiriad IP hwn wedi ei atal ar hyn o bryd. 
+Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
+'sp-contributions-search'              => 'Chwilio am gyfraniadau',
+'sp-contributions-username'            => 'Cyfeiriad IP neu enw defnyddiwr:',
+'sp-contributions-submit'              => 'Chwilier',
 
 # What links here
 'whatlinkshere'            => "Beth sy'n cysylltu yma",
@@ -3118,7 +3120,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 # Special:FilePath
 'filepath'         => 'Llwybr y ffeil',
 'filepath-page'    => 'Ffeil:',
-'filepath-submit'  => 'Llwybr',
+'filepath-submit'  => 'Eler',
 'filepath-summary' => 'Mae\'r dudalen arbennig hon yn adrodd llwybr ffeil yn gyfan.
 Dangosir delweddau ar eu llawn maint, dechreuir ffeiliau o fathau eraill yn uniongyrchol gan y rhaglen cysylltiedig.
 
