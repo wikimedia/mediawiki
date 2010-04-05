@@ -22,6 +22,7 @@
  * @author NickK
  * @author Prima klasy4na
  * @author Urhixidur
+ * @author Тест
  */
 
 /*
@@ -3316,7 +3317,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'Шлях до файлу',
 'filepath-page'    => 'Файл:',
-'filepath-submit'  => 'Шлях',
+'filepath-submit'  => 'Виконати',
 'filepath-summary' => 'Ця спеціальна сторінка повертає повний шлях до файлу в тому вигляді, в якому він зберігається на диску.
 
 Уведіть назву файлу без префіксу <code>{{ns:file}}:</code>.',

@@ -2271,6 +2271,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 你而家冇隱藏用戶嘅權限，你唔可以睇或者改呢位用戶嘅封鎖。',
 'ipbblocked'                      => 'You cannot block or unblock other users, because you are yourself blocked
 你唔可以查封或者解封其他人，因為你自己都俾人查封左。',
+'ipbnounblockself'                => '你唔可以封鎖你自己。',
 
 # Developer tools
 'lockdb'              => '鎖定資料庫',

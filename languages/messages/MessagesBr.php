@@ -1134,6 +1134,7 @@ Setu aze un dalvoudenn ganet dre zegouezh hag a c'hallfec'h implijout : $1",
 'prefs-files'                   => 'Restroù',
 'prefs-custom-css'              => 'CSS personelaet',
 'prefs-custom-js'               => 'JS personelaet',
+'prefs-common-css-js'           => 'JavaScript ha CSS kenrannet evit an holl wiskadurioù :',
 'prefs-reset-intro'             => "Ober gant ar bajenn-mañ a c'hallit evit adlakaat ho penndibaboù dre ziouer evit al lec'hienn-mañ. Kement-se n'hallo ket bezañ disc'hraet da c'houde.",
 'prefs-emailconfirm-label'      => 'Kadarnaat ar postel :',
 'prefs-textboxsize'             => 'Ment ar prenestr skridaozañ',
@@ -2134,18 +2135,20 @@ $1',
 'month'               => 'Abaoe miz (hag a-raok) :',
 'year'                => 'Abaoe bloaz (hag a-raok) :',
 
-'sp-contributions-newbies'        => "Diskouez hepken degasadennoù ar c'hontoù nevez",
-'sp-contributions-newbies-sub'    => 'Evit an implijerien nevez',
-'sp-contributions-newbies-title'  => "Degasadennoù implijer evit ar c'hontoù nevez",
-'sp-contributions-blocklog'       => 'Roll ar stankadennoù',
-'sp-contributions-deleted'        => 'Degasadennoù diverket',
-'sp-contributions-logs'           => 'marilhoù',
-'sp-contributions-talk'           => 'kaozeal',
-'sp-contributions-userrights'     => 'Merañ ar gwirioù',
-'sp-contributions-blocked-notice' => "Stanket eo an implijer-mañ evit poent. Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
-'sp-contributions-search'         => 'Klask degasadennoù',
-'sp-contributions-username'       => "Anv implijer pe chomlec'h IP :",
-'sp-contributions-submit'         => 'Klask',
+'sp-contributions-newbies'             => "Diskouez hepken degasadennoù ar c'hontoù nevez",
+'sp-contributions-newbies-sub'         => 'Evit an implijerien nevez',
+'sp-contributions-newbies-title'       => "Degasadennoù implijer evit ar c'hontoù nevez",
+'sp-contributions-blocklog'            => 'Roll ar stankadennoù',
+'sp-contributions-deleted'             => 'Degasadennoù diverket',
+'sp-contributions-logs'                => 'marilhoù',
+'sp-contributions-talk'                => 'kaozeal',
+'sp-contributions-userrights'          => 'Merañ ar gwirioù',
+'sp-contributions-blocked-notice'      => "Stanket eo an implijer-mañ evit poent. Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
+'sp-contributions-blocked-notice-anon' => "Stanket eo ar chomlec'h IP-mañ evit ar mare.
+Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
+'sp-contributions-search'              => 'Klask degasadennoù',
+'sp-contributions-username'            => "Anv implijer pe chomlec'h IP :",
+'sp-contributions-submit'              => 'Klask',
 
 # What links here
 'whatlinkshere'            => 'Pajennoù liammet',
@@ -2666,7 +2669,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Diwallit :''' Kodoù siek a c'hall bezañ er seurt restr-mañ. 
 Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.<hr />",
-'imagemaxsize'         => "Bevenn ment ar skeudennoù vrasañ ar skeudennoù :<br />''(evit ar pajennoù deskrivañ)''",
+'imagemaxsize'         => "Bevenn ment vrasañ ar skeudennoù :<br />''(evit ar pajennoù deskrivañ)''",
 'thumbsize'            => 'Ment an alberz :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pajenn|pajenn}}',
 'file-info'            => '(ment ar restr : $1, seurt MIME : $2)',
@@ -2986,26 +2989,26 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'limitall'         => 'An holl',
 
 # E-mail address confirmation
-'confirmemail'             => "Kadarnaat ar chomlec'h postel",
-'confirmemail_noemail'     => "N'hoc'h eus ket spisaet chomlec'h postel mat ebet en ho [[Special:Preferences|penndibaboù implijer]].",
-'confirmemail_text'        => "Rankout a ra ar wiki-mañ bezañ gwiriet ho chomlec'h postel a-raok gallout implijout nep arc'hwel postel. Implijit ar bouton a-is evit kas ur postel kadarnaat d'ho chomlec'h. Ul liamm ennañ ur c'hod a vo er postel. Kargit al liamm-se en o merdeer evit kadarnaat ho chomlec'h.",
-'confirmemail_pending'     => "Ur c'hod kadarnaat zo bet kaset deoc'h dre bostel c'hoazh;
+'confirmemail'              => "Kadarnaat ar chomlec'h postel",
+'confirmemail_noemail'      => "N'hoc'h eus ket spisaet chomlec'h postel mat ebet en ho [[Special:Preferences|penndibaboù implijer]].",
+'confirmemail_text'         => "Rankout a ra ar wiki-mañ bezañ gwiriet ho chomlec'h postel a-raok gallout implijout nep arc'hwel postel. Implijit ar bouton a-is evit kas ur postel kadarnaat d'ho chomlec'h. Ul liamm ennañ ur c'hod a vo er postel. Kargit al liamm-se en o merdeer evit kadarnaat ho chomlec'h.",
+'confirmemail_pending'      => "Ur c'hod kadarnaat zo bet kaset deoc'h dre bostel c'hoazh;
 a-raok klask goulenn unan nevez, m'emaoc'h o paouez krouiñ ho kont, e vo fur eus ho perzh gortoz un nebeud munutoù ha leuskel amzer dezhañ d'en em gavout betek ennoc'h.",
-'confirmemail_send'        => "Kas ur c'hod kadarnaat",
-'confirmemail_sent'        => 'Postel kadarnaat kaset',
-'confirmemail_oncreate'    => "Kaset ez eus bet ur c'hod kadarnaat d'ho chomlec'h postel.
+'confirmemail_send'         => "Kas ur c'hod kadarnaat",
+'confirmemail_sent'         => 'Postel kadarnaat kaset',
+'confirmemail_oncreate'     => "Kaset ez eus bet ur c'hod kadarnaat d'ho chomlec'h postel.
 N'eus ket ezhomm eus ar c'hod-mañ evit kevreañ met ret e vo deoc'h ober gantañ evit aotren hini pe hini eus arc'hwelioù postel ar wiki.",
-'confirmemail_sendfailed'  => "Dibosupl kas ar postel kadarnaat deoc'h gant {{SITENAME}}. 
+'confirmemail_sendfailed'   => "Dibosupl kas ar postel kadarnaat deoc'h gant {{SITENAME}}. 
 Gwiriit ha n'eus ket arouezennoù direizh en ho chomlec'h.
 
 Distro ar posteler : $1",
-'confirmemail_invalid'     => "Kod kadarnaat kamm. Marteze eo aet ar c'hod d'e dermen",
-'confirmemail_needlogin'   => "Ret eo deoc'h $1 evit kadarnaat ho chomlec'h postel.",
-'confirmemail_success'     => "Kadarnaet eo ho chomlec'h postel. A-benn bremañ e c'hallit [[Special:UserLogin|kevreañ]] hag ober ho mad eus ar wiki.",
-'confirmemail_loggedin'    => "Kadarnaet eo ho chomlec'h bremañ",
-'confirmemail_error'       => 'Ur gudenn zo bet e-ser enrollañ ho kadarnadenn',
-'confirmemail_subject'     => "Kadarnadenn chomlec'h postel evit {{SITENAME}}",
-'confirmemail_body'        => "Unan bennak, c'hwi moarvat, gant ar chomlec'h IP \$1,
+'confirmemail_invalid'      => "Kod kadarnaat kamm. Marteze eo aet ar c'hod d'e dermen",
+'confirmemail_needlogin'    => "Ret eo deoc'h $1 evit kadarnaat ho chomlec'h postel.",
+'confirmemail_success'      => "Kadarnaet eo ho chomlec'h postel. A-benn bremañ e c'hallit [[Special:UserLogin|kevreañ]] hag ober ho mad eus ar wiki.",
+'confirmemail_loggedin'     => "Kadarnaet eo ho chomlec'h bremañ",
+'confirmemail_error'        => 'Ur gudenn zo bet e-ser enrollañ ho kadarnadenn',
+'confirmemail_subject'      => "Kadarnadenn chomlec'h postel evit {{SITENAME}}",
+'confirmemail_body'         => "Unan bennak, c'hwi moarvat, gant ar chomlec'h IP \$1,
 en deus enrollet ur gont \"\$2\" gant ar chomlec'h postel-mañ war lec'hienn {{SITENAME}}.
 
 A-benn kadarnaat eo deoc'h ar gont-se ha gweredekaat
@@ -3019,8 +3022,22 @@ evit nullañ kadarnaat ar chomlec'h postel :
 \$5
 
 Mont a raio ar c'hod-mañ d'e dermen d'ar \$4.",
-'confirmemail_invalidated' => "Nullet eo bet kadarnaat ar chomlec'h postel",
-'invalidateemail'          => 'Nullañ kadarnaat ar postel',
+'confirmemail_body_changed' => "↓ Unan bennak, c'hwi sur a-walc'h, gant ar chomlec'h IP \$1,
+en deus cheñchet chomlec'h postel ar gont \"\$2\" gant ar chomlec'h postel-mañ war lec'hienn {{SITENAME}}.
+
+A-benn kadarnaat eo deoc'h ar gont-se hag adgweredekaat
+ar perzhioù postel war {{SITENAME}}, digorit al liamm-mañ en ho merdeer :
+
+\$3
+
+Ma n'eo *ket* deoc'h ar gont, heuilhit al liamm-mañ
+evit nullañ kadarnaat ar chomlec'h postel :
+
+\$5
+
+Mont a raio ar c'hod kadarnaat-mañ d'e dermen d'ar \$4.",
+'confirmemail_invalidated'  => "Nullet eo bet kadarnaat ar chomlec'h postel",
+'invalidateemail'           => 'Nullañ kadarnaat ar postel',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Diweredekaet eo an treuzkludañ etrewiki]',
@@ -3153,7 +3170,7 @@ Klaskit rakwelet er mod boutin.',
 # Special:FilePath
 'filepath'         => 'Hent moned ur restr',
 'filepath-page'    => 'Restr :',
-'filepath-submit'  => 'Hent moned',
+'filepath-submit'  => 'Mont',
 'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr. Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.
 
 Merkit anv ar restr hep ar rakger "{{ns:file}} :"',

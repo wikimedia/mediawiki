@@ -42,7 +42,8 @@ $messages = array(
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
 
-'article' => 'Адаҟьа',
+'article'    => 'Адаҟьа',
+'navigation' => 'Анавигациа',
 
 # Cologne Blue skin
 'qbedit'         => 'Ариашара',
@@ -54,11 +55,12 @@ $messages = array(
 'vector-namespace-main'     => 'Адаҟьа',
 'vector-namespace-special'  => 'Цастәи адаҟьа',
 'vector-namespace-talk'     => 'Ахцәажәара',
+'vector-namespace-template' => 'Ашаблон',
 'vector-namespace-user'     => 'Иалахә Адаҟьа',
 'vector-view-create'        => 'Арҿиара',
 'vector-view-edit'          => 'Ариашамҭа',
 'vector-view-history'       => 'Аҭоурых',
-'vector-view-view'          => 'Аҧхьра',
+'vector-view-view'          => 'Аҧхьара',
 'vector-view-viewsource'    => 'Ахәаҧшра',
 
 'help'             => 'Ацхыраара',
@@ -68,6 +70,7 @@ $messages = array(
 'history'          => 'Аҭоурых',
 'history_short'    => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
+'permalink'        => 'Еисымшатәи ахьарҧш',
 'edit'             => 'Ариашамҭа',
 'create'           => 'Арҿиара',
 'talkpagelinktext' => 'Ахцәажәара',
@@ -93,6 +96,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Адаҟьа',
 'nstab-user'     => 'Иалахә',
+'nstab-special'  => 'Цастәи адаҟьа',
 'nstab-template' => 'Ашаблон',
 'nstab-help'     => 'Ацхыраара',
 'nstab-category' => 'Акатегориа',
@@ -151,6 +155,7 @@ $messages = array(
 'sp-contributions-submit' => 'Аҧшаара',
 
 # What links here
+'whatlinkshere'      => 'Арахьтәи ахьарҧшқәа',
 'whatlinkshere-page' => 'Адаҟьа:',
 
 # Namespace 8 related

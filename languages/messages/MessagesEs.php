@@ -2340,18 +2340,20 @@ $1',
 'month'               => 'Desde el mes (y anterior):',
 'year'                => 'Desde el año (y anterior):',
 
-'sp-contributions-newbies'        => 'Mostrar solo las contribuciones de usuarios nuevos',
-'sp-contributions-newbies-sub'    => 'Para cuentas nuevas',
-'sp-contributions-newbies-title'  => 'Contribuciones de usuarios nuevos',
-'sp-contributions-blocklog'       => 'registro de bloqueos',
-'sp-contributions-deleted'        => 'contribuciones de usuario borradas',
-'sp-contributions-logs'           => 'registros',
-'sp-contributions-talk'           => 'discusión',
-'sp-contributions-userrights'     => 'administración de derechos de usuarios',
-'sp-contributions-blocked-notice' => 'Este usuario está actualmente bloqueado. La última entrada del registro de bloqueos es presentada debajo para mayor referencia:',
-'sp-contributions-search'         => 'Buscar contribuciones',
-'sp-contributions-username'       => 'Dirección IP o nombre de usuario:',
-'sp-contributions-submit'         => 'Buscar',
+'sp-contributions-newbies'             => 'Mostrar solo las contribuciones de usuarios nuevos',
+'sp-contributions-newbies-sub'         => 'Para cuentas nuevas',
+'sp-contributions-newbies-title'       => 'Contribuciones de usuarios nuevos',
+'sp-contributions-blocklog'            => 'registro de bloqueos',
+'sp-contributions-deleted'             => 'contribuciones de usuario borradas',
+'sp-contributions-logs'                => 'registros',
+'sp-contributions-talk'                => 'discusión',
+'sp-contributions-userrights'          => 'administración de derechos de usuarios',
+'sp-contributions-blocked-notice'      => 'Este usuario está actualmente bloqueado. La última entrada del registro de bloqueos es presentada debajo para mayor referencia:',
+'sp-contributions-blocked-notice-anon' => 'Esta dirección IP se encuentra actualmente bloqueada.
+A continuación se muestra la última entrada del registro de bloqueos para mayor referencia.',
+'sp-contributions-search'              => 'Buscar contribuciones',
+'sp-contributions-username'            => 'Dirección IP o nombre de usuario:',
+'sp-contributions-submit'              => 'Buscar',
 
 # What links here
 'whatlinkshere'            => 'Lo que enlaza aquí',
@@ -3349,7 +3351,7 @@ También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
 # Special:FilePath
 'filepath'         => 'Ruta de archivo',
 'filepath-page'    => 'Archivo:',
-'filepath-submit'  => 'Ruta',
+'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
 Las imágenes se muestran en resolución máxima, otros tipos de archivo se inician directamente con su programa asociado.
 

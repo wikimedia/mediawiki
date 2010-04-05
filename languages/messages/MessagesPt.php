@@ -2364,19 +2364,21 @@ $1',
 'month'               => 'Mês (inclusive anteriores):',
 'year'                => 'Ano (inclusive anteriores):',
 
-'sp-contributions-newbies'        => 'Pesquisar apenas nas contribuições de contas recentes',
-'sp-contributions-newbies-sub'    => 'Para contas novas',
-'sp-contributions-newbies-title'  => 'Contribuições de contas novas',
-'sp-contributions-blocklog'       => 'registo de bloqueios',
-'sp-contributions-deleted'        => 'contribuições eliminadas',
-'sp-contributions-logs'           => 'registos',
-'sp-contributions-talk'           => 'discussão',
-'sp-contributions-userrights'     => 'gestão de privilégios de utilizador',
-'sp-contributions-blocked-notice' => 'Este utilizador encontra-se actualmente bloqueado.
+'sp-contributions-newbies'             => 'Pesquisar apenas nas contribuições de contas recentes',
+'sp-contributions-newbies-sub'         => 'Para contas novas',
+'sp-contributions-newbies-title'       => 'Contribuições de contas novas',
+'sp-contributions-blocklog'            => 'registo de bloqueios',
+'sp-contributions-deleted'             => 'contribuições eliminadas',
+'sp-contributions-logs'                => 'registos',
+'sp-contributions-talk'                => 'discussão',
+'sp-contributions-userrights'          => 'gestão de privilégios de utilizador',
+'sp-contributions-blocked-notice'      => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
-'sp-contributions-search'         => 'Pesquisar contribuições',
-'sp-contributions-username'       => 'Endereço IP ou utilizador:',
-'sp-contributions-submit'         => 'Pesquisar',
+'sp-contributions-blocked-notice-anon' => 'Este endereço IP está bloqueado neste momento.
+Para sua referência, encontra abaixo a entrada mais recente no registo de bloqueios:',
+'sp-contributions-search'              => 'Pesquisar contribuições',
+'sp-contributions-username'            => 'Endereço IP ou utilizador:',
+'sp-contributions-submit'              => 'Pesquisar',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',

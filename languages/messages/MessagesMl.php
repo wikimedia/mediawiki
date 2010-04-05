@@ -2283,18 +2283,20 @@ $1',
 'month'               => 'മാസം:',
 'year'                => 'വര്‍ഷം:',
 
-'sp-contributions-newbies'        => 'പുതിയ അംഗങ്ങള്‍ നടത്തിയ തിരുത്തലുകള്‍ മാത്രം',
-'sp-contributions-newbies-sub'    => 'പുതിയ അംഗത്വങ്ങൾക്ക്',
-'sp-contributions-newbies-title'  => 'പുതിയ അംഗത്വമെടുത്ത ഉപയോക്താക്കളുടെ സേവനങ്ങൾ',
-'sp-contributions-blocklog'       => 'തടയല്‍ രേഖ',
-'sp-contributions-deleted'        => 'മായ്ക്കപ്പെട്ട ഉപയോക്തൃസംഭാവനകള്‍',
-'sp-contributions-logs'           => 'പ്രവര്‍ത്തനരേഖകള്‍',
-'sp-contributions-talk'           => 'സംവാദം',
-'sp-contributions-userrights'     => 'ഉപയോക്തൃ അവകാശങ്ങളുടെ പരിപാലനം',
-'sp-contributions-blocked-notice' => 'ഈ ഉപയോക്താവ് ഇപ്പോൾ തടയപ്പെട്ടിരിക്കുകയാണ്. അവലംബമായി തടയൽ രേഖയുടെ പുതിയ ഭാഗം താഴെ കൊടുത്തിരിക്കുന്നു:',
-'sp-contributions-search'         => 'ചെയ്ത സേവനങ്ങള്‍',
-'sp-contributions-username'       => 'ഐ.പി. വിലാസം അഥവാ ഉപയോക്തൃനാമം:',
-'sp-contributions-submit'         => 'തിരയൂ',
+'sp-contributions-newbies'             => 'പുതിയ അംഗങ്ങള്‍ നടത്തിയ തിരുത്തലുകള്‍ മാത്രം',
+'sp-contributions-newbies-sub'         => 'പുതിയ അംഗത്വങ്ങൾക്ക്',
+'sp-contributions-newbies-title'       => 'പുതിയ അംഗത്വമെടുത്ത ഉപയോക്താക്കളുടെ സേവനങ്ങൾ',
+'sp-contributions-blocklog'            => 'തടയല്‍ രേഖ',
+'sp-contributions-deleted'             => 'മായ്ക്കപ്പെട്ട ഉപയോക്തൃസംഭാവനകള്‍',
+'sp-contributions-logs'                => 'പ്രവര്‍ത്തനരേഖകള്‍',
+'sp-contributions-talk'                => 'സംവാദം',
+'sp-contributions-userrights'          => 'ഉപയോക്തൃ അവകാശങ്ങളുടെ പരിപാലനം',
+'sp-contributions-blocked-notice'      => 'ഈ ഉപയോക്താവ് ഇപ്പോൾ തടയപ്പെട്ടിരിക്കുകയാണ്. അവലംബമായി തടയൽ രേഖയുടെ പുതിയ ഭാഗം താഴെ കൊടുത്തിരിക്കുന്നു:',
+'sp-contributions-blocked-notice-anon' => 'ഈ ഐ.പി. വിലാസം ഇപ്പോൾ തടയപ്പെട്ടിരിക്കുകയാണ്.
+അവലംബമായി തടയൽ രേഖയുടെ പുതിയഭാഗം താഴെ കൊടുത്തിരിക്കുന്നു:',
+'sp-contributions-search'              => 'ചെയ്ത സേവനങ്ങള്‍',
+'sp-contributions-username'            => 'ഐ.പി. വിലാസം അഥവാ ഉപയോക്തൃനാമം:',
+'sp-contributions-submit'              => 'തിരയൂ',
 
 # What links here
 'whatlinkshere'            => 'അനുബന്ധകണ്ണികള്‍',
@@ -3236,7 +3238,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'പ്രമാണത്തിലേക്കുള്ള വിലാസം',
 'filepath-page'    => 'പ്രമാണം:',
-'filepath-submit'  => 'പാത',
+'filepath-submit'  => 'പോകൂ',
 'filepath-summary' => 'ഈ പ്രത്യേക താള്‍ ഒരു പ്രമാണത്തിന്റെ പൂര്‍ണ്ണ വിലാസം പ്രദര്‍ശിപ്പിക്കുന്നു.
 ചിത്രങ്ങള്‍ പൂര്‍ണ്ണ റെസലൂഷനോടു കൂടി പ്രദര്‍ശിപ്പിച്ചിരിക്കുന്നു. മറ്റുള്ള പ്രമാണ തരങ്ങള്‍ അതതു പ്രോഗ്രാമില്‍ നേരിട്ടു തുറക്കാവുന്നതാണ്‌.
 

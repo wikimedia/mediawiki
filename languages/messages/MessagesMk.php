@@ -2350,18 +2350,20 @@ $1',
 'month'               => 'Од месец (и порано):',
 'year'                => 'Од година (и порано):',
 
-'sp-contributions-newbies'        => 'Прикажи придонеси само на нови корисници',
-'sp-contributions-newbies-sub'    => 'За нови кориснички сметки',
-'sp-contributions-newbies-title'  => 'Придонеси на нови корисници',
-'sp-contributions-blocklog'       => 'Дневник на блокирања',
-'sp-contributions-deleted'        => 'избришани кориснички придонеси',
-'sp-contributions-logs'           => 'дневници',
-'sp-contributions-talk'           => 'разговор',
-'sp-contributions-userrights'     => 'раководење со кориснички права',
-'sp-contributions-blocked-notice' => 'Овој корисник е блокиран. Последните ставки во дневникот на блокирања, за ваша информација се дадени подолу:',
-'sp-contributions-search'         => 'Пребарување на придонеси',
-'sp-contributions-username'       => 'IP адреса или корисничко име:',
-'sp-contributions-submit'         => 'Пребарај',
+'sp-contributions-newbies'             => 'Прикажи придонеси само на нови корисници',
+'sp-contributions-newbies-sub'         => 'За нови кориснички сметки',
+'sp-contributions-newbies-title'       => 'Придонеси на нови корисници',
+'sp-contributions-blocklog'            => 'Дневник на блокирања',
+'sp-contributions-deleted'             => 'избришани кориснички придонеси',
+'sp-contributions-logs'                => 'дневници',
+'sp-contributions-talk'                => 'разговор',
+'sp-contributions-userrights'          => 'раководење со кориснички права',
+'sp-contributions-blocked-notice'      => 'Овој корисник е блокиран. Последните ставки во дневникот на блокирања, за ваша информација се дадени подолу:',
+'sp-contributions-blocked-notice-anon' => 'Оваа IP-адреса е моментално блокирана.
+Подолу е наведен најновиот дневнички запис на блокирање:',
+'sp-contributions-search'              => 'Пребарување на придонеси',
+'sp-contributions-username'            => 'IP адреса или корисничко име:',
+'sp-contributions-submit'              => 'Пребарај',
 
 # What links here
 'whatlinkshere'            => 'Што води овде',
@@ -3458,7 +3460,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'Патека до податотека',
 'filepath-page'    => 'Податотека:',
-'filepath-submit'  => 'Пат',
+'filepath-submit'  => 'Патека',
 'filepath-summary' => 'Оваа специјална страница го враќа целосниот пат на податотеката.
 Сликите се прикажани во оригинална големина, другите типови на податотеки се отвораат со соодветно асоцираните програми, директно.
 

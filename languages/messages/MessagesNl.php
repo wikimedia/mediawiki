@@ -2045,7 +2045,7 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 # Book sources
 'booksources'               => 'Boekinformatie',
 'booksources-search-legend' => 'Bronnen en informatie over een boek zoeken',
-'booksources-go'            => 'Zoeken',
+'booksources-go'            => 'OK',
 'booksources-text'          => 'Hieronder staat een lijst met koppelingen naar andere websites die nieuwe of gebruikte boeken verkopen, en die wellicht meer informatie over het boek dat u zoekt hebben:',
 'booksources-invalid-isbn'  => 'Het ingegeven ISBN lijkt niet geldig te zijn.
 Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
@@ -2428,19 +2428,21 @@ $1',
 'month'               => 'Van maand (en eerder):',
 'year'                => 'Van jaar (en eerder):',
 
-'sp-contributions-newbies'        => 'Alleen de bijdragen van nieuwe gebruikers bekijken',
-'sp-contributions-newbies-sub'    => 'Voor nieuwelingen',
-'sp-contributions-newbies-title'  => 'Bijdragen van nieuwe gebruikers',
-'sp-contributions-blocklog'       => 'blokkeerlogboek',
-'sp-contributions-deleted'        => 'verwijderde bijdragen',
-'sp-contributions-logs'           => 'logboeken',
-'sp-contributions-talk'           => 'overleg',
-'sp-contributions-userrights'     => 'gebruikersrechtenbeheer',
-'sp-contributions-blocked-notice' => 'Deze gebruiker is op het moment geblokkeerd.
+'sp-contributions-newbies'             => 'Alleen de bijdragen van nieuwe gebruikers bekijken',
+'sp-contributions-newbies-sub'         => 'Voor nieuwelingen',
+'sp-contributions-newbies-title'       => 'Bijdragen van nieuwe gebruikers',
+'sp-contributions-blocklog'            => 'blokkeerlogboek',
+'sp-contributions-deleted'             => 'verwijderde bijdragen',
+'sp-contributions-logs'                => 'logboeken',
+'sp-contributions-talk'                => 'overleg',
+'sp-contributions-userrights'          => 'gebruikersrechtenbeheer',
+'sp-contributions-blocked-notice'      => 'Deze gebruiker is op het moment geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
-'sp-contributions-search'         => 'Zoeken naar bijdragen',
-'sp-contributions-username'       => 'IP-adres of gebruikersnaam:',
-'sp-contributions-submit'         => 'Bekijken',
+'sp-contributions-blocked-notice-anon' => 'Dit IP-adres is geblokeerd.
+De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
+'sp-contributions-search'              => 'Zoeken naar bijdragen',
+'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
+'sp-contributions-submit'              => 'Bekijken',
 
 # What links here
 'whatlinkshere'            => 'Verwijzingen naar deze pagina',
@@ -3492,7 +3494,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 # Special:FilePath
 'filepath'         => 'Bestandslocatie',
 'filepath-page'    => 'Bestand:',
-'filepath-submit'  => 'Zoeken',
+'filepath-submit'  => 'OK',
 'filepath-summary' => 'Deze speciale pagina geeft het volledige pad voor een bestand.
 Afbeeldingen worden in hun volledige resolutie weergegeven.
 Andere bestandstypen worden direct in het met het MIME-type verbonden programma geopend.

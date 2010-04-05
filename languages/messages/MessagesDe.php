@@ -2358,18 +2358,20 @@ $1',
 'month'               => 'und Monat:',
 'year'                => 'bis Jahr:',
 
-'sp-contributions-newbies'        => 'Zeige nur Beiträge neuer Benutzer',
-'sp-contributions-newbies-sub'    => 'Für Neulinge',
-'sp-contributions-newbies-title'  => 'Benutzerbeiträge von neuen Benutzern',
-'sp-contributions-blocklog'       => 'Sperr-Logbuch',
-'sp-contributions-deleted'        => 'Gelöschte Beiträge',
-'sp-contributions-logs'           => 'Logbücher',
-'sp-contributions-talk'           => 'Diskussion',
-'sp-contributions-userrights'     => 'Benutzerrechteverwaltung',
-'sp-contributions-blocked-notice' => 'Dieser Benutzer ist derzeit gesperrt. Es folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:',
-'sp-contributions-search'         => 'Suche nach Benutzerbeiträgen',
-'sp-contributions-username'       => 'IP-Adresse oder Benutzername:',
-'sp-contributions-submit'         => 'Suchen',
+'sp-contributions-newbies'             => 'Zeige nur Beiträge neuer Benutzer',
+'sp-contributions-newbies-sub'         => 'Für Neulinge',
+'sp-contributions-newbies-title'       => 'Benutzerbeiträge von neuen Benutzern',
+'sp-contributions-blocklog'            => 'Sperr-Logbuch',
+'sp-contributions-deleted'             => 'Gelöschte Beiträge',
+'sp-contributions-logs'                => 'Logbücher',
+'sp-contributions-talk'                => 'Diskussion',
+'sp-contributions-userrights'          => 'Benutzerrechteverwaltung',
+'sp-contributions-blocked-notice'      => 'Dieser Benutzer ist derzeit gesperrt. Es folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:',
+'sp-contributions-blocked-notice-anon' => 'Diese IP-Adresse ist zur Zeit gesperrt.
+Zur Information folgt der aktuelle Auszug aus dem Sperr-Logbuch:',
+'sp-contributions-search'              => 'Suche nach Benutzerbeiträgen',
+'sp-contributions-username'            => 'IP-Adresse oder Benutzername:',
+'sp-contributions-submit'              => 'Suchen',
 
 # What links here
 'whatlinkshere'            => 'Links auf diese Seite',
@@ -3385,7 +3387,7 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 # Special:FilePath
 'filepath'         => 'Dateipfad',
 'filepath-page'    => 'Datei:',
-'filepath-submit'  => 'Pfad suchen',
+'filepath-submit'  => 'Los',
 'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.
 
 Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
