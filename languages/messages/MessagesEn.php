@@ -4154,7 +4154,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 # Special:FilePath
 'filepath'         => 'File path',
 'filepath-page'    => 'File:',
-'filepath-submit'  => 'Path',
+'filepath-submit'  => 'Go',
 'filepath-summary' => 'This special page returns the complete path for a file.
 Images are shown in full resolution, other file types are started with their associated program directly.
 
