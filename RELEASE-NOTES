@@ -39,6 +39,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   'unblockself' permission (which they have by default)
 * (bug 18499) Added "enhanced" URL parameter to switch between old and enhanced
   changes list
+* (bug 22925) "sp-contributions-blocked-notice-anon" message now displayed when
+  viewing contributions of a blocked IP address
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

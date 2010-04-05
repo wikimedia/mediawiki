@@ -235,7 +235,9 @@ class SpecialContributions extends SpecialPage {
 						'lim' => 1,
 						'showIfEmpty' => false,
 						'msgKey' => array(
-							'sp-contributions-blocked-notice',
+							$userObj->isAnon() ?
+								'sp-contributions-blocked-notice-anon' :
+								'sp-contributions-blocked-notice',
 							$nt->getText() # Support GENDER in 'sp-contributions-blocked-notice'
 						),
 						'offset' => '' # don't use $wgRequest parameter offset
