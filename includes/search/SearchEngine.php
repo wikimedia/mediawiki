@@ -934,12 +934,14 @@ class SearchHighlighter {
 
 		// add extra chars to each snippet to make snippets constant size
 		$extended = array();
-		if( count( $snippets ) == 0){
+		if( count( $snippets ) == 0 ){
 			// couldn't find the target words, just show beginning of article
-			$targetchars = $contextchars * $contextlines;
-			$snippets[$first] = '';
-			$offsets[$first] = 0;
-		} else{
+			if ( array_key_exists( $first, $all ) ) {
+				$targetchars = $contextchars * $contextlines;
+				$snippets[$first] = '';
+				$offsets[$first] = 0;
+			}
+		} else {
 			// if begin of the article contains the whole phrase, show only that !!
 			if( array_key_exists($first,$snippets) && preg_match($pat1,$snippets[$first])
 			    && $offsets[$first] < $contextchars * 2 ){
