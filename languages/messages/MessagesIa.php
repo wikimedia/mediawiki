@@ -2235,18 +2235,20 @@ $1',
 'month'               => 'A partir del mense (e anterior):',
 'year'                => 'A partir del anno (e anterior):',
 
-'sp-contributions-newbies'        => 'Monstrar contributiones de nove contos solmente',
-'sp-contributions-newbies-sub'    => 'Pro nove contos',
-'sp-contributions-newbies-title'  => 'Contributiones de nove contos de usator',
-'sp-contributions-blocklog'       => 'Registro de blocadas',
-'sp-contributions-deleted'        => 'contributiones delite de usatores',
-'sp-contributions-logs'           => 'registros',
-'sp-contributions-talk'           => 'discussion',
-'sp-contributions-userrights'     => 'gestion de derectos de usator',
-'sp-contributions-blocked-notice' => 'Iste usator es actualmente blocate. Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
-'sp-contributions-search'         => 'Cercar contributiones',
-'sp-contributions-username'       => 'Adresse IP o nomine de usator:',
-'sp-contributions-submit'         => 'Cercar',
+'sp-contributions-newbies'             => 'Monstrar contributiones de nove contos solmente',
+'sp-contributions-newbies-sub'         => 'Pro nove contos',
+'sp-contributions-newbies-title'       => 'Contributiones de nove contos de usator',
+'sp-contributions-blocklog'            => 'Registro de blocadas',
+'sp-contributions-deleted'             => 'contributiones delite de usatores',
+'sp-contributions-logs'                => 'registros',
+'sp-contributions-talk'                => 'discussion',
+'sp-contributions-userrights'          => 'gestion de derectos de usator',
+'sp-contributions-blocked-notice'      => 'Iste usator es actualmente blocate. Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
+'sp-contributions-blocked-notice-anon' => 'Iste adresse IP es actualmente blocate.
+Le ultime entrata del registro de blocadas es reproducite hic infra pro information:',
+'sp-contributions-search'              => 'Cercar contributiones',
+'sp-contributions-username'            => 'Adresse IP o nomine de usator:',
+'sp-contributions-submit'              => 'Cercar',
 
 # What links here
 'whatlinkshere'            => 'Referentias a iste pagina',
@@ -3277,7 +3279,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 # Special:FilePath
 'filepath'         => 'Cammino del file',
 'filepath-page'    => 'File:',
-'filepath-submit'  => 'Cammino',
+'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Iste pagina special contine le cammino complete de un file.
 Le imagines se monstra in plen resolution, le altere typos de file se executa directemente con lor programmas associate.
 

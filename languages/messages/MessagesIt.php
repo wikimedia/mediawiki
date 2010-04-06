@@ -12,6 +12,7 @@
  * @author BrokenArrow
  * @author Brownout
  * @author Candalua
+ * @author Civvì
  * @author Cruccone
  * @author Cryptex
  * @author Dakrismeno
@@ -2216,18 +2217,19 @@ $1',
 'month'               => 'Dal mese (e precedenti):',
 'year'                => "Dall'anno (e precedenti):",
 
-'sp-contributions-newbies'        => 'Mostra solo i contributi dei nuovi utenti',
-'sp-contributions-newbies-sub'    => 'Per i nuovi utenti',
-'sp-contributions-newbies-title'  => 'Contributi dei nuovi utenti',
-'sp-contributions-blocklog'       => 'blocchi',
-'sp-contributions-deleted'        => 'contributi utente cancellati',
-'sp-contributions-logs'           => 'registri',
-'sp-contributions-talk'           => 'discussione',
-'sp-contributions-userrights'     => 'gestione dei permessi',
-'sp-contributions-blocked-notice' => "Questo utente è attualmente bloccato. L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
-'sp-contributions-search'         => 'Ricerca contributi',
-'sp-contributions-username'       => 'Indirizzo IP o nome utente:',
-'sp-contributions-submit'         => 'Ricerca',
+'sp-contributions-newbies'             => 'Mostra solo i contributi dei nuovi utenti',
+'sp-contributions-newbies-sub'         => 'Per i nuovi utenti',
+'sp-contributions-newbies-title'       => 'Contributi dei nuovi utenti',
+'sp-contributions-blocklog'            => 'blocchi',
+'sp-contributions-deleted'             => 'contributi utente cancellati',
+'sp-contributions-logs'                => 'registri',
+'sp-contributions-talk'                => 'discussione',
+'sp-contributions-userrights'          => 'gestione dei permessi',
+'sp-contributions-blocked-notice'      => "Questo utente è attualmente bloccato. L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
+'sp-contributions-blocked-notice-anon' => "Questo indirizzo IP è attualmente bloccato. Di seguito è riportato l'ultimo elemento del registro dei blocchi:",
+'sp-contributions-search'              => 'Ricerca contributi',
+'sp-contributions-username'            => 'Indirizzo IP o nome utente:',
+'sp-contributions-submit'              => 'Ricerca',
 
 # What links here
 'whatlinkshere'            => 'Puntano qui',
@@ -3220,7 +3222,7 @@ Usare l\'anteprima standard.',
 # Special:FilePath
 'filepath'         => 'Percorso di un file',
 'filepath-page'    => 'Nome del file:',
-'filepath-submit'  => 'Percorso',
+'filepath-submit'  => 'Vai',
 'filepath-summary' => 'Questa pagina speciale restituisce il percorso completo di un file. Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri tipi di file viene avviato direttamente il programma associato.
 
 Inserire il nome del file senza il prefisso "{{ns:file}}:"',

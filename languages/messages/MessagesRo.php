@@ -749,14 +749,15 @@ Prin urmare, vizitatorii care folosesc acelaşi IP nu mai pot crea alte conturi 
 'accountcreated'             => 'Contul a fost creat.',
 'accountcreatedtext'         => 'Contul utilizatorului pentru $1 a fost creat.',
 'createaccount-title'        => 'Creare de cont la {{SITENAME}}',
-'createaccount-text'         => 'Cineva a creat un cont cu adresa dvs. de e-mail pe {{SITENAME}} ($4) numit "$2", având parola "$3".
+'createaccount-text'         => 'Cineva a creat un cont cu adresa dumneavoastră de e-mail pe {{SITENAME}} ($4) numit „$2“, având parola „$3“.
 Este de dorit să vă autentificaţi şi să schimbaţi parola cât mai repede.
 
-Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
-'usernamehasherror'          => 'Numele de utilizator nu poate conţine caractere diez',
+Ignoraţi acest mesaj dacă aceea creare a fost o greşeală.',
+'usernamehasherror'          => 'Numele de utilizator nu poate conţine caractere diez (#)',
 'login-throttled'            => 'Aţi avut prea multe încercări de a vă autentifica.
 Vă rugăm să aşteptaţi până să mai încercaţi.',
 'loginlanguagelabel'         => 'Limba: $1',
+'suspicious-userlogout'      => 'Cererea dumneavoastră de a vă loga a fost refuzată deoarece se pare că a fost trimisă de un browser rupt sau reîncărcaţi proxy-ul.',
 
 # Password reset dialog
 'resetpass'                 => 'Modifică parola',

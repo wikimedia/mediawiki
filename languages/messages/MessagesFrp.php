@@ -2410,19 +2410,21 @@ $1',
 'month'               => 'Dês lo mês (et devant) :',
 'year'                => 'Dês l’an (et devant) :',
 
-'sp-contributions-newbies'        => 'Fâre vêre ren que les contribucions ux novéls utilisators',
-'sp-contributions-newbies-sub'    => 'Permié los comptos novéls',
-'sp-contributions-newbies-title'  => 'Contribucions d’utilisators permié los comptos novéls',
-'sp-contributions-blocklog'       => 'jornal des blocâjos',
-'sp-contributions-deleted'        => 'contribucions suprimâs',
-'sp-contributions-logs'           => 'jornals',
-'sp-contributions-talk'           => 'discutar',
-'sp-contributions-userrights'     => 'administrar los drêts d’utilisator',
-'sp-contributions-blocked-notice' => 'Ceti utilisator est ora blocâ.
+'sp-contributions-newbies'             => 'Fâre vêre ren que les contribucions ux novéls utilisators',
+'sp-contributions-newbies-sub'         => 'Permié los comptos novéls',
+'sp-contributions-newbies-title'       => 'Contribucions d’utilisators permié los comptos novéls',
+'sp-contributions-blocklog'            => 'jornal des blocâjos',
+'sp-contributions-deleted'             => 'contribucions suprimâs',
+'sp-contributions-logs'                => 'jornals',
+'sp-contributions-talk'                => 'discutar',
+'sp-contributions-userrights'          => 'administrar los drêts d’utilisator',
+'sp-contributions-blocked-notice'      => 'Ceti utilisator est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
-'sp-contributions-search'         => 'Rechèrchiér les contribucions',
-'sp-contributions-username'       => 'Adrèce IP ou ben nom d’utilisator :',
-'sp-contributions-submit'         => 'Rechèrchiér',
+'sp-contributions-blocked-notice-anon' => 'Ceta adrèce IP est ora blocâ.
+La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
+'sp-contributions-search'              => 'Rechèrchiér les contribucions',
+'sp-contributions-username'            => 'Adrèce IP ou ben nom d’utilisator :',
+'sp-contributions-submit'              => 'Rechèrchiér',
 
 # What links here
 'whatlinkshere'            => 'Pâges liyês',
@@ -3539,7 +3541,7 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 # Special:FilePath
 'filepath'         => 'Chemin d’accès du fichiér',
 'filepath-page'    => 'Fichiér :',
-'filepath-submit'  => 'Chemin d’accès',
+'filepath-submit'  => 'Alar trovar',
 'filepath-summary' => 'Ceta pâge spèciâla montre lo chemin d’accès complèt d’un fichiér.
 Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs sont chargiês et dèmarrâs tot drêt avouéc lor programo associyê.
 

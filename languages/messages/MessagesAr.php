@@ -2513,19 +2513,21 @@ $1',
 'month'               => 'من شهر (وأقدم):',
 'year'                => 'من سنة (وأقدم):',
 
-'sp-contributions-newbies'        => 'اعرض مساهمات الحسابات الجديدة فقط',
-'sp-contributions-newbies-sub'    => 'للحسابات الجديدة',
-'sp-contributions-newbies-title'  => 'مساهمات المستخدم للحسابات الجديدة',
-'sp-contributions-blocklog'       => 'سجل المنع',
-'sp-contributions-deleted'        => 'مساهمات المستخدم المحذوفة',
-'sp-contributions-logs'           => 'سجلات',
-'sp-contributions-talk'           => 'نقاش',
-'sp-contributions-userrights'     => 'إدارة صلاحيات المستخدم',
-'sp-contributions-blocked-notice' => '{{GENDER:$1|هذا المستخدم ممنوع|هذه المستخدمة ممنوعة}} حاليًا.
+'sp-contributions-newbies'             => 'اعرض مساهمات الحسابات الجديدة فقط',
+'sp-contributions-newbies-sub'         => 'للحسابات الجديدة',
+'sp-contributions-newbies-title'       => 'مساهمات المستخدم للحسابات الجديدة',
+'sp-contributions-blocklog'            => 'سجل المنع',
+'sp-contributions-deleted'             => 'مساهمات المستخدم المحذوفة',
+'sp-contributions-logs'                => 'سجلات',
+'sp-contributions-talk'                => 'نقاش',
+'sp-contributions-userrights'          => 'إدارة صلاحيات المستخدم',
+'sp-contributions-blocked-notice'      => '{{GENDER:$1|هذا المستخدم ممنوع|هذه المستخدمة ممنوعة}} حاليًا.
 إن آخر مدخلة في سجل المنع موجودة أدناه كمرجع:',
-'sp-contributions-search'         => 'بحث عن مساهمات',
-'sp-contributions-username'       => 'عنوان أيبي أو اسم مستخدم:',
-'sp-contributions-submit'         => 'ابحث',
+'sp-contributions-blocked-notice-anon' => 'عنوان الأيبي هذا ممنوع حاليا.
+آخر مدخلة لسجل المنع معروضة هنا كمرجع:',
+'sp-contributions-search'              => 'بحث عن مساهمات',
+'sp-contributions-username'            => 'عنوان أيبي أو اسم مستخدم:',
+'sp-contributions-submit'              => 'ابحث',
 
 # What links here
 'whatlinkshere'            => 'ماذا يصل هنا',
@@ -3659,7 +3661,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'مسار ملف',
 'filepath-page'    => 'الملف:',
-'filepath-submit'  => 'المسار',
+'filepath-submit'  => 'اذهب',
 'filepath-summary' => 'هذه الصفحة الخاصة تعرض المسار الكامل لملف.
 ستعرض الصور بأقصى دقة، ستعمل أنواع الملفات الأخرى بالبرنامج المخصص لهم مباشرة.
 

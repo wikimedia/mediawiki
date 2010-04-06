@@ -655,6 +655,7 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror'        => 'Internt fel',
 'internalerror_info'   => 'Internt fel: $1',
+'fileappenderrorread'  => 'Kunde inte läsa "$1" medan data skulle tillföras.',
 'fileappenderror'      => 'Kunde inte bifoga "$1" till "$2".',
 'filecopyerror'        => 'Kunde inte kopiera filen "$1" till "$2".',
 'filerenameerror'      => 'Kunde inte byta namn på filen "$1" till "$2".',
@@ -782,6 +783,7 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'login-throttled'            => 'Du har gjort för många misslyckade inloggningsförsök till det här kontot.
 Vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
+'suspicious-userlogout'      => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Ändra lösenord',
@@ -835,6 +837,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'showdiff'                         => 'Visa ändringar',
 'anoneditwarning'                  => "'''Varning:''' Du är inte inloggad.
 Din IP-adress kommer att sparas i historiken för den här sidan.",
+'anonpreviewwarning'               => "''Du är inte inloggad. Vid spara kommer att din IP-adress registreras på denna sidas redigeringshistorik.''",
 'missingsummary'                   => "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar. 
 Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'missingcommenttext'               => 'Var god och skriv in en kommentar nedan.',
@@ -1342,8 +1345,8 @@ Här är ett slumpmässigt genererat värde som du kan använda: $1',
 'defaultns'                     => 'Sök annars i dessa namnrymder:',
 'default'                       => 'ursprungsinställning',
 'prefs-files'                   => 'Filer',
-'prefs-custom-css'              => 'Personlig CSS',
-'prefs-custom-js'               => 'Personlig JavaScript',
+'prefs-custom-css'              => 'personlig CSS',
+'prefs-custom-js'               => 'personlig JavaScript',
 'prefs-common-css-js'           => 'Delad CSS/JS för alla teman:',
 'prefs-reset-intro'             => 'Du kan använda den här sidan till att återställa dina inställningar till webbplatsens standardinställningar.
 Detta kan inte återställas.',
@@ -1468,6 +1471,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-hideuser'              => 'Blockera användarnamn och dölja det från blockeringsloggen',
 'right-ipblock-exempt'        => 'Kan redigera från blockerade IP-adresser',
 'right-proxyunbannable'       => 'Kan redigera från blockerade proxyer',
+'right-unblockself'           => 'Avblockera sig själva',
 'right-protect'               => 'Ändra skyddsnivåer och redigera skyddade sidor',
 'right-editprotected'         => 'Redigera skyddade sidor',
 'right-editinterface'         => 'Redigera användargränssnittet',
@@ -1621,6 +1625,7 @@ Se [[Special:NewFiles|galleriet över nya filer]] för en mer visuell översikt.
 'minlength1'                  => 'Filens namn måste innehålla minst ett tecken.',
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
 'badfilename'                 => 'Filens namn har blivit ändrat till "$1".',
+'filetype-mime-mismatch'      => 'Filnamnsändelse matchar inte MIME-typ.',
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
 'filetype-bad-ie-mime'        => 'Kan inte ladda upp denna fil på grund av att Internet Explorer skulle upptäcka att den är "$1", vilket är en otillåten och möjligtvis farlig filtyp.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' är en oönskad filtyp.
@@ -1730,7 +1735,11 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 'http-invalid-url'      => 'Ogiltig URL: $1',
 'http-invalid-scheme'   => 'URLer med "$1"-formen stöds inte',
 'http-request-error'    => 'HTTP-begäran misslyckades på grund av okänt fel.',
+'http-read-error'       => 'HTTP-läsfel.',
+'http-timed-out'        => 'Time out för HTTP-begäran.',
+'http-curl-error'       => 'Fel vid hämtning av URL: $1',
 'http-host-unreachable' => 'URL:en kunde inte nås.',
+'http-bad-status'       => 'Det uppstod ett problem under HTTP-begäran: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
@@ -2331,19 +2340,21 @@ $1',
 'month'               => 'Från månad (och tidigare):',
 'year'                => 'Från år (och tidigare):',
 
-'sp-contributions-newbies'        => 'Visa endast bidrag från nya konton',
-'sp-contributions-newbies-sub'    => 'Från nya konton',
-'sp-contributions-newbies-title'  => 'Bidrag från nya konton',
-'sp-contributions-blocklog'       => 'Blockeringslogg',
-'sp-contributions-deleted'        => 'raderade användarbidrag',
-'sp-contributions-logs'           => 'Loggar',
-'sp-contributions-talk'           => 'diskussion',
-'sp-contributions-userrights'     => 'hantering av användarrättigheter',
-'sp-contributions-blocked-notice' => 'Användaren är blockerad.
+'sp-contributions-newbies'             => 'Visa endast bidrag från nya konton',
+'sp-contributions-newbies-sub'         => 'Från nya konton',
+'sp-contributions-newbies-title'       => 'Bidrag från nya konton',
+'sp-contributions-blocklog'            => 'Blockeringslogg',
+'sp-contributions-deleted'             => 'raderade användarbidrag',
+'sp-contributions-logs'                => 'Loggar',
+'sp-contributions-talk'                => 'diskussion',
+'sp-contributions-userrights'          => 'hantering av användarrättigheter',
+'sp-contributions-blocked-notice'      => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
-'sp-contributions-search'         => 'Sök efter användarbidrag',
-'sp-contributions-username'       => 'IP-adress eller användarnamn:',
-'sp-contributions-submit'         => 'Sök',
+'sp-contributions-blocked-notice-anon' => 'Denna IP-adress är för närvarande blockerad.
+Den senaste posten i blockeringsloggen visas nedan som referens:',
+'sp-contributions-search'              => 'Sök efter användarbidrag',
+'sp-contributions-username'            => 'IP-adress eller användarnamn:',
+'sp-contributions-submit'              => 'Sök',
 
 # What links here
 'whatlinkshere'            => 'Vad som länkar hit',
@@ -2477,6 +2488,7 @@ $1 är redan blockerad. Vill du ändra inställningarna?',
 Du får inte skapa ett användarkonto',
 'cant-block-while-blocked'        => 'Du kan inte blockera andra användare medan du är blockerad.',
 'cant-see-hidden-user'            => 'Användaren du försöker blockera är redan blockerad och gömd. Eftersom du inte har hideuser-rättigheter, kan du inte se eller redigera användarens blockering.',
+'ipbblocked'                      => 'Du kan inte blockera eller avblockera andra användare, eftersom du själv är blockerad',
 'ipbnounblockself'                => 'Du har inte tillåtelse att avblockera dig själv',
 
 # Developer tools

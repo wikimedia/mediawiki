@@ -822,6 +822,7 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'uploadnewversion-linktext' => 'Carga una versión növa de quel file chì',
 
 # File reversion
+'filerevert-intro'          => "Te seet adree a bütà turna el file '''[[Media:$1|$1]]''' a la [$4 version del $2, $3].",
 'filerevert-comment'        => 'Uget:',
 'filerevert-defaultcomment' => 'Bütada turna la versión di $2, $1',
 
