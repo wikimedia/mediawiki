@@ -121,7 +121,7 @@ $messages = array(
 'group-user-member' => 'Иалахә',
 
 # Recent changes
-'recentchanges' => 'Аҽыц риашарақәа',
+'recentchanges' => 'Арҽеира ҽыцқәа',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Еимадоу ариашарақәа',

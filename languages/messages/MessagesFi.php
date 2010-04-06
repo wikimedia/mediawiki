@@ -1887,7 +1887,7 @@ Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla,
 'booksources'               => 'Kirjalähteet',
 'booksources-search-legend' => 'Etsi kirjalähteitä',
 'booksources-isbn'          => 'ISBN',
-'booksources-go'            => 'Etsi',
+'booksources-go'            => 'Siirry',
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
 'booksources-invalid-isbn'  => 'Annettu ISBN-numero ei ole kelvollinen. Tarkista alkuperäisestä lähteestä kirjoitusvirheiden varalta.',
 
@@ -3218,7 +3218,7 @@ Yritä normaalia esikatselua.',
 # Special:FilePath
 'filepath'         => 'Tiedoston osoite',
 'filepath-page'    => 'Tiedosto',
-'filepath-submit'  => 'Selvitä osoite',
+'filepath-submit'  => 'Siirry',
 'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen. Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
 
 # Special:FileDuplicateSearch

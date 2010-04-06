@@ -1281,18 +1281,18 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'group'               => 'Grup:',
 'group-user'          => 'Usuaris',
 'group-autoconfirmed' => 'Usuaris autoconfirmats',
-'group-bot'           => 'bots',
-'group-sysop'         => 'administradors',
-'group-bureaucrat'    => 'buròcrates',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Administradors',
+'group-bureaucrat'    => 'Buròcrates',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(tots)',
 
-'group-user-member'          => 'Usuari',
-'group-autoconfirmed-member' => 'Usuari autoconfirmat',
+'group-user-member'          => 'usuari',
+'group-autoconfirmed-member' => 'usuari autoconfirmat',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administrador',
 'group-bureaucrat-member'    => 'buròcrata',
-'group-suppress-member'      => 'Oversight',
+'group-suppress-member'      => 'oversight',
 
 'grouppage-user'          => '{{ns:project}}:Usuaris',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuaris autoconfirmats',
@@ -2193,19 +2193,21 @@ $1",
 'month'               => 'Mes (i anteriors):',
 'year'                => 'Any (i anteriors):',
 
-'sp-contributions-newbies'        => 'Mostra les contribucions dels usuaris novells',
-'sp-contributions-newbies-sub'    => 'Per a novells',
-'sp-contributions-newbies-title'  => "Contribucions dels comptes d'usuari més nous",
-'sp-contributions-blocklog'       => 'Registre de bloquejos',
-'sp-contributions-deleted'        => "contribucions d'usuari esborrades",
-'sp-contributions-logs'           => 'registres',
-'sp-contributions-talk'           => 'discussió',
-'sp-contributions-userrights'     => "gestió de drets d'usuari",
-'sp-contributions-blocked-notice' => "En aquests moments, aquest compte d'usuari es troba blocat.
+'sp-contributions-newbies'             => 'Mostra les contribucions dels usuaris novells',
+'sp-contributions-newbies-sub'         => 'Per a novells',
+'sp-contributions-newbies-title'       => "Contribucions dels comptes d'usuari més nous",
+'sp-contributions-blocklog'            => 'Registre de bloquejos',
+'sp-contributions-deleted'             => "contribucions d'usuari esborrades",
+'sp-contributions-logs'                => 'registres',
+'sp-contributions-talk'                => 'discussió',
+'sp-contributions-userrights'          => "gestió de drets d'usuari",
+'sp-contributions-blocked-notice'      => "En aquests moments, aquest compte d'usuari es troba blocat.
 Per més detalls, la última entrada del registre es mostra a continuació:",
-'sp-contributions-search'         => 'Cerca les contribucions',
-'sp-contributions-username'       => "Adreça IP o nom d'usuari:",
-'sp-contributions-submit'         => 'Cerca',
+'sp-contributions-blocked-notice-anon' => 'En aquests moments, aquesta adreça IP es troba blocada. 
+Per més detalls, la última entrada del registre es mostra a continuació:',
+'sp-contributions-search'              => 'Cerca les contribucions',
+'sp-contributions-username'            => "Adreça IP o nom d'usuari:",
+'sp-contributions-submit'              => 'Cerca',
 
 # What links here
 'whatlinkshere'            => 'Què hi enllaça',
@@ -3205,7 +3207,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 # Special:FilePath
 'filepath'         => 'Camí del fitxer',
 'filepath-page'    => 'Fitxer:',
-'filepath-submit'  => 'Camí',
+'filepath-submit'  => 'Vés-hi',
 'filepath-summary' => "Aquesta pàgina especial retorna un camí complet d'un fitxer.
 Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien directament amb el seu programa associat.
 

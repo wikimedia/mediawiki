@@ -2129,19 +2129,21 @@ $NEWPAGE
 'month'               => 'ఈ నెల నుండి (అంతకు ముందువి):',
 'year'                => 'ఈ సంవత్సరం నుండి (అంతకు ముందువి):',
 
-'sp-contributions-newbies'        => 'కొత్త సభ్యులు చేసిన రచనలు మాత్రమే చూపించు',
-'sp-contributions-newbies-sub'    => 'కొత్తవారి కోసం',
-'sp-contributions-newbies-title'  => 'కొత్త ఖాతాల వాడుకరుల మార్పుచేర్పులు',
-'sp-contributions-blocklog'       => 'నిరోధాల చిట్టా',
-'sp-contributions-deleted'        => 'తొలగించబడిన వాడుకరి రచనలు',
-'sp-contributions-logs'           => 'చిట్టాలు',
-'sp-contributions-talk'           => 'చర్చ',
-'sp-contributions-userrights'     => 'వాడుకరి హక్కుల నిర్వహణ',
-'sp-contributions-blocked-notice' => 'ఈ వాడుకరిపై ప్రస్తుతం నిరోధం ఉంది.
+'sp-contributions-newbies'             => 'కొత్త సభ్యులు చేసిన రచనలు మాత్రమే చూపించు',
+'sp-contributions-newbies-sub'         => 'కొత్తవారి కోసం',
+'sp-contributions-newbies-title'       => 'కొత్త ఖాతాల వాడుకరుల మార్పుచేర్పులు',
+'sp-contributions-blocklog'            => 'నిరోధాల చిట్టా',
+'sp-contributions-deleted'             => 'తొలగించబడిన వాడుకరి రచనలు',
+'sp-contributions-logs'                => 'చిట్టాలు',
+'sp-contributions-talk'                => 'చర్చ',
+'sp-contributions-userrights'          => 'వాడుకరి హక్కుల నిర్వహణ',
+'sp-contributions-blocked-notice'      => 'ఈ వాడుకరిపై ప్రస్తుతం నిరోధం ఉంది.
 నిరోధపు చిట్టాలోని చివరి పద్దుని మీ సమాచారంకోసం ఇస్తున్నాం:',
-'sp-contributions-search'         => 'రచనల కోసం అన్వేషణ',
-'sp-contributions-username'       => 'ఐపీ చిరునామా లేదా వాడుకరిపేరు:',
-'sp-contributions-submit'         => 'వెతుకు',
+'sp-contributions-blocked-notice-anon' => 'ఈ ఐపీ చిరునామాపై ప్రస్తుతం నిరోధం ఉంది.
+నిరోధపు చిట్టాలోని చివరి పద్దుని మీ సమాచారంకోసం ఇస్తున్నాం:',
+'sp-contributions-search'              => 'రచనల కోసం అన్వేషణ',
+'sp-contributions-username'            => 'ఐపీ చిరునామా లేదా వాడుకరిపేరు:',
+'sp-contributions-submit'              => 'వెతుకు',
 
 # What links here
 'whatlinkshere'            => 'ఇక్కడికి లింకు చేస్తున్న పేజీలు',
@@ -3120,7 +3122,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'పూర్తి చిరునామా',
 'filepath-page'    => '{{ns:file}}:',
-'filepath-submit'  => 'చిరునామా',
+'filepath-submit'  => 'వెళ్ళు',
 'filepath-summary' => 'ఈ ప్రత్యేక పేజీలో ఫైళ్ల పేర్లు ఇస్తే వాటి పూర్తి చిరునామలు వస్తాయి. బొమ్మలైతే వాటి పూర్తి సైజుతో తెరుచుకుంటాయి, బొమ్మలు కాని ఇతర ఫైళ్లు వాటి అనుబంధ ప్రోగ్రాములతో తెరుచుకుంటాయి.
 
 పేరుకు ముందు "{{ns:file}}:" అని చేర్చవద్దు.',

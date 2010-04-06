@@ -379,12 +379,21 @@ $1',
 'nextrevision'           => 'Новша ревізія →',
 'currentrevisionlink'    => 'Актуална ревізія',
 'cur'                    => 'актуална',
+'next'                   => 'насл.',
 'last'                   => 'ост.',
+'page_first'             => 'перша',
+'page_last'              => 'послїдня',
 'histlegend'             => "(теперь) = роздїлы од актуалной верзії,
 (послїдня) = роздїлы од попереднёй верзії, '''м''' = мале едітованя",
 'history-fieldset-title' => 'Перегляднути історію',
+'history-show-deleted'   => 'Лем змазаны',
 'histfirst'              => 'найстаршы',
 'histlast'               => 'послїднї',
+'historysize'            => '($1 {{PLURAL:$1|байт|байты|байтів}})',
+'historyempty'           => '(порожнё)',
+
+# Revision feed
+'history-feed-title' => 'Історія едітовань',
 
 # Revision deletion
 'rev-delundel'   => 'вказати/сховати',
@@ -434,13 +443,22 @@ $1',
 'powersearch-field'         => 'Глядати',
 
 # Preferences page
-'preferences'   => 'Наставлиня',
-'mypreferences' => 'Наставлиня',
-'prefs-files'   => 'Файлы',
-'yourlanguage'  => 'Язык:',
+'preferences'                 => 'Наставлиня',
+'mypreferences'               => 'Наставлиня',
+'prefs-files'                 => 'Файлы',
+'yourlanguage'                => 'Язык:',
+'prefs-signature'             => 'Підпис',
+'prefs-dateformat'            => 'Формат датуму',
+'prefs-timeoffset'            => 'Часовый посун',
+'prefs-advancedediting'       => 'Розшырены можности',
+'prefs-advancedrc'            => 'Розшырены мовности',
+'prefs-advancedrendering'     => 'Розшырены можности',
+'prefs-advancedsearchoptions' => 'Розшырены можности',
+'prefs-advancedwatchlist'     => 'Розшырены можности',
 
 # User rights
-'userrights-reason' => 'Причіна:',
+'userrights-lookup-user' => 'Управовати хосновательскы ґрупы',
+'userrights-reason'      => 'Причіна:',
 
 # Groups
 'group-sysop' => 'Адміністраторы',
@@ -528,10 +546,12 @@ $1',
 # Special:AllPages
 'allpages'       => 'Вшыткы сторінкы',
 'alphaindexline' => 'од $1 до $2',
+'nextpage'       => 'Далша сторінка ($1)',
 'prevpage'       => 'Попередня сторінка ($1)',
 'allpagesfrom'   => 'Вказати сторінкы, што ся зачінають на:',
 'allpagesto'     => 'Зобразити сторінкы кінчачі на:',
 'allarticles'    => 'Вшыткы сторінкы',
+'allinnamespace' => 'Вшыткы сторінкы (простор назв $1)',
 'allpagessubmit' => 'Выконати',
 
 # Special:LinkSearch
@@ -796,6 +816,9 @@ $1',
 'watchlistall2' => 'вшыткы',
 'namespacesall' => 'вшыткы',
 'monthsall'     => 'вшыткы',
+
+# action=purge
+'confirm_purge_button' => 'OK',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Зміны на сторінках зо зознаму',

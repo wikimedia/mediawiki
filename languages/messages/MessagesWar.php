@@ -286,6 +286,8 @@ $messages = array(
 'thisisdeleted'           => '¿Kitaa o balika in $1?',
 'viewdeleted'             => '¿Kitaa in $1?',
 'restorelink'             => '{{PLURAL:$1|usa nga ginpara nga pagliwat|$1 ka ginpara nga mga pagliwat}}',
+'site-rss-feed'           => '$1 RSS nga feed',
+'site-atom-feed'          => '$1 Atom nga feed',
 'red-link-title'          => '$1 (waray dida ini nga pakli)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -350,14 +352,17 @@ Nagbalik hin sayop an database nga "$3: $4"',
 'page_last'    => 'kataposan',
 
 # Search results
-'prevn'                    => 'naha-una nga {{PLURAL:$1|$1}}',
-'nextn'                    => 'sunod nga {{PLURAL:$1|$1}}',
-'viewprevnext'             => 'Kitaa an ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url'           => 'Help:Sulod',
-'search-suggest'           => 'Buot sidngon mo ba: $1',
-'search-interwiki-caption' => 'Mga bugto nga proyekto',
-'search-interwiki-default' => '$1 nga resulta:',
-'powersearch'              => 'Bilnga',
+'prevn'                     => 'naha-una nga {{PLURAL:$1|$1}}',
+'nextn'                     => 'sunod nga {{PLURAL:$1|$1}}',
+'viewprevnext'              => 'Kitaa an ($1 {{int:pipe-separator}} $2) ($3)',
+'searchhelp-url'            => 'Help:Sulod',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 nga pulong|$2 nga mga pulong}})',
+'search-suggest'            => 'Buot sidngon mo ba: $1',
+'search-interwiki-caption'  => 'Mga bugto nga proyekto',
+'search-interwiki-default'  => '$1 nga resulta:',
+'search-mwsuggest-enabled'  => 'upod hin mga suhestyon',
+'search-mwsuggest-disabled' => 'waray mga suhestyon',
+'powersearch'               => 'Bilnga',
 
 # Preferences page
 'preferences'       => 'Mga karuyag',
@@ -463,6 +468,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 
 # Block/unblock
 'ipblocklist-submit' => 'Bilnga',
+'contribslink'       => 'mga ámot',
 
 # Thumbnails
 'thumbnail-more' => 'Padako-a',
@@ -470,6 +476,14 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # Tooltip help for the actions
 'tooltip-pt-logout'             => 'gawas',
 'tooltip-ca-move'               => 'Balhina ini nga pakli',
+'tooltip-search'                => 'Bilnga ha {{SITENAME}}',
+'tooltip-search-go'             => 'Kadto hin pakli nga mayda hin gud nga exakto ngaran kon aadà',
+'tooltip-search-fulltext'       => 'Bilnga ha mga pakli para hini nga texto',
+'tooltip-n-mainpage'            => 'Bisitaha an syahan nga pakli',
+'tooltip-n-portal'              => 'Mahiunong han proyekto, ano an imo mahihimo, diin makabiling hin mga butang',
+'tooltip-n-recentchanges'       => 'An talaan hin mga urhe nga mga kabag-ohan han wiki',
+'tooltip-n-randompage'          => 'Pagkaraga hin bisan ano nga pakli',
+'tooltip-n-help'                => 'An lugar hin pagbiling',
 'tooltip-t-whatlinkshere'       => 'Talaan han ngatanan nga wiki nga mga pakli nga nasumpay dinhe',
 'tooltip-t-recentchangeslinked' => 'Mga bag-o nga kabag-ohan ha mga pakli nga nahasumpay tikang hini nga pakli',
 'tooltip-feed-rss'              => 'RSS nga pangarga para hini nga pakli',

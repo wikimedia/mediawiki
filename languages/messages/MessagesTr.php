@@ -2318,18 +2318,20 @@ $1',
 'month'               => 'Ay:',
 'year'                => 'Yıl:',
 
-'sp-contributions-newbies'        => 'Sadece yeni hesap açan kullanıcıların katkılarını göster',
-'sp-contributions-newbies-sub'    => 'Yeni kullanıcılar için',
-'sp-contributions-newbies-title'  => 'Yeni hesaplar için kullanıcı katkıları',
-'sp-contributions-blocklog'       => 'Engel kaydı',
-'sp-contributions-deleted'        => 'silinen kullanıcı katkıları',
-'sp-contributions-logs'           => 'günlükler',
-'sp-contributions-talk'           => 'tartışma',
-'sp-contributions-userrights'     => 'kullanıcı hakları yönetimi',
-'sp-contributions-blocked-notice' => 'Bu kullanıcı engellenmiştir. Referans için en son engellenme kaydı aşağıda belirtilmiştir:',
-'sp-contributions-search'         => 'Katkıları ara',
-'sp-contributions-username'       => 'IP veya kullanıcı:',
-'sp-contributions-submit'         => 'Ara',
+'sp-contributions-newbies'             => 'Sadece yeni hesap açan kullanıcıların katkılarını göster',
+'sp-contributions-newbies-sub'         => 'Yeni kullanıcılar için',
+'sp-contributions-newbies-title'       => 'Yeni hesaplar için kullanıcı katkıları',
+'sp-contributions-blocklog'            => 'Engel kaydı',
+'sp-contributions-deleted'             => 'silinen kullanıcı katkıları',
+'sp-contributions-logs'                => 'günlükler',
+'sp-contributions-talk'                => 'tartışma',
+'sp-contributions-userrights'          => 'kullanıcı hakları yönetimi',
+'sp-contributions-blocked-notice'      => 'Bu kullanıcı engellenmiştir. Referans için en son engellenme kaydı aşağıda belirtilmiştir:',
+'sp-contributions-blocked-notice-anon' => 'Bu IP adresi şuanda engellenmiş.
+Son engelleme günlüğü girdisi referans amacıyla aşağıda verilmiştir:',
+'sp-contributions-search'              => 'Katkıları ara',
+'sp-contributions-username'            => 'IP veya kullanıcı:',
+'sp-contributions-submit'              => 'Ara',
 
 # What links here
 'whatlinkshere'            => 'Sayfaya bağlantılar',
@@ -3354,7 +3356,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 # Special:FilePath
 'filepath'         => 'Dosyanın konumu',
 'filepath-page'    => 'Dosya adı:',
-'filepath-submit'  => 'Konum',
+'filepath-submit'  => 'Git',
 'filepath-summary' => 'Bu özel sayfa bir dosya için tam yolu getirir.
 Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili programlarıyla doğrudan başlatılır.
 

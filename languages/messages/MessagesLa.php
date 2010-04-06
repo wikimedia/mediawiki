@@ -2373,7 +2373,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Special:FilePath
 'filepath'        => 'Fasciculorum inscriptio',
 'filepath-page'   => 'Fasciculus:',
-'filepath-submit' => 'Via',
+'filepath-submit' => 'Ire',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-legend'   => 'Duplicatum quaerere',

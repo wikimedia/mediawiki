@@ -1100,20 +1100,20 @@ Sòn a peul pa esse anulà.',
 'yourlanguage'                  => 'Lenga:',
 'yourvariant'                   => 'Variant:',
 'yournick'                      => 'Sò stranòm (për firmé):',
-'prefs-help-signature'          => 'Ij coment an sle pàgine ëd discussion a dovrìo esse firmà con "<nowiki>~~~~</nowiki>" che a sarà convertì ant toa firma e timestamp.',
-'badsig'                        => "Soa forma a l'é nen giusta, che a controla le istrussion HTML.",
-'badsiglength'                  => "Tò stranòm a l'é tròp longh.
+'prefs-help-signature'          => 'Ij coment an sle pàgine ëd discussion a dovrìo esse firmà con "<nowiki>~~~~</nowiki>" che a sarà convertì ant soa firma e orari.',
+'badsig'                        => "Soa firma a l'é nen giusta, che a controla j'istrussion HTML.",
+'badsiglength'                  => "Sò stranòm a l'é tròp longh.
 A deuv nen esse pì longh che $1 {{PLURAL:$1|caràter|caràter}}.",
-'yourgender'                    => 'Géner:',
+'yourgender'                    => 'Sess:',
 'gender-unknown'                => 'Nen spessificà',
-'gender-male'                   => 'Masculin',
-'gender-female'                 => 'Feminin',
-'prefs-help-gender'             => "Opsional: a l'é dovrà për adaté ël software al géner.
+'gender-male'                   => 'Òm',
+'gender-female'                 => 'Fomna',
+'prefs-help-gender'             => "Opsional: a l'é dovrà për adaté ël programa al géner.
 Costa anformassion a sarà pùblica.",
-'email'                         => 'pòsta eletrònica',
+'email'                         => 'Pòsta eletrònica',
 'prefs-help-realname'           => '* Nòm vèir (opsional): se i sërne da butelo ambelessì a sarà dovrà për deve mérit ëd vòstr travaj.',
-'prefs-help-email'              => "L'adrëssa ëd pòsta eletrònica a l'é opsional: ma a lassa che na neuva ciav a sia spedìa se it dësmentie toa ciav.
-Ti it peule ëdcò serne ëd lassé che j'àutri at contato al sël tò utent o ans toa pàgina ëd ciaciarade sensa ël dabzògn ëd rivelé toa identità.",
+'prefs-help-email'              => "L'adrëssa ëd pòsta eletrònica a l'é opsional: ma a lassa che na neuva ciav a sia spedìa se a dësmentia soa ciav.
+A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent o ëd ciaciarade sensa dabzògn ëd rivelé soa identità.",
 'prefs-help-email-required'     => "A-i va l'adrëssa ëd pòsta eletrònica.",
 'prefs-info'                    => 'Anformassion ëd base',
 'prefs-i18n'                    => 'Antërnassionalisassion',
@@ -1132,22 +1132,22 @@ Ti it peule ëdcò serne ëd lassé che j'àutri at contato al sël tò utent o 
 'userrights'                   => "Gestion dij drit dj'utent",
 'userrights-lookup-user'       => "Gestion dle partìe d'utent",
 'userrights-user-editname'     => 'Che a buta në stranòm:',
-'editusergroup'                => "Modifiché le partìe d'Utent",
+'editusergroup'                => "Modifiché le partìe d'utent",
 'editinguser'                  => "Modìfica dij drit ëd l'utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'     => "Modìfiché le partìe dj'utent",
-'saveusergroups'               => "Salva le partìe d'utent",
+'userrights-editusergroup'     => "Modifiché le partìe dl'utent",
+'saveusergroups'               => "Salvé le partìe d'utent",
 'userrights-groupsmember'      => "A l'é andrinta a:",
 'userrights-groupsmember-auto' => 'Mèmber amplìssit ëd:',
-'userrights-groups-help'       => "It peule cambié i grup anté st'utent-sì a l'é an:
-* Na casela signà a veul dì che l'utent a l'é an col grup.
-* Na casela pa signà a veul dì che l'utent a l'é pa an col grup.
-* Un * a veul dì che it peule pa scanselé ël grup na vira ch'it l'abie giontalo, o viceversa.",
+'userrights-groups-help'       => "A peul cambié le partìe anté ch'a l'é st'utent-sì:
+* Na casela marcà a veul dì che l'utent a l'é an cola partìa.
+* Na casela nen marcà a veul dì che l'utent a l'é pa an cola partìa.
+* N'asterisch (*) a veul dì che a peul pa gavé cola partìa na vira ch'a l'abia giontala, o viceversa.",
 'userrights-reason'            => 'Rason:',
-'userrights-no-interwiki'      => "A l'ha pa ij përmess dont a fa da manca për podej cambieje ij drit a dj'utent ansima a dj'àutre wiki.",
-'userrights-nodatabase'        => "La base dat $1 a-i é pa, ò pura a l'é nen local.",
+'userrights-no-interwiki'      => "A l'ha pa ij përmess dont a fa da manca për podèj cambieje ij drit a dj'utent ansima a dj'àutre wiki.",
+'userrights-nodatabase'        => "La base ëd dat $1 a-i é pa, ò pura a l'é nen local.",
 'userrights-nologin'           => "A l'ha da [[Special:UserLogin|rintré ant ël sistema]] con un cont da aministrator për podej-je dé dij drit a j'utent.",
 'userrights-notallowed'        => "A l'ha pa ij përmess dont a fa da manca për podej-je dé dij drit a j'utent.",
-'userrights-changeable-col'    => "Grup ch'it peule cambié",
+'userrights-changeable-col'    => "Partìe ch'a peul cambié",
 'userrights-unchangeable-col'  => "Grup ch'it peule pa cambié",
 
 # Groups
@@ -2093,18 +2093,20 @@ $1",
 'month'               => 'Mèis:',
 'year'                => 'Ann:',
 
-'sp-contributions-newbies'        => 'Smon mach ël travaj dij cont neuv',
-'sp-contributions-newbies-sub'    => "Për j'utent neuv",
-'sp-contributions-newbies-title'  => "Contribussion ëd j'utent për ij neuv cont",
-'sp-contributions-blocklog'       => "Fërma l'agiornament dij registr",
-'sp-contributions-deleted'        => "Modìfiche d'utent scanselà",
-'sp-contributions-logs'           => 'registr',
-'sp-contributions-talk'           => 'discussion',
-'sp-contributions-userrights'     => 'gestion dij drit utent',
-'sp-contributions-blocked-notice' => "St'utent-sì a l'é blocà al moment. L'ùltima intrada dël registr dij blòch a l'é butà sì sota për arferiment:",
-'sp-contributions-search'         => 'Arsërca contribussion',
-'sp-contributions-username'       => 'Adrëssa IP ò nòm utent:',
-'sp-contributions-submit'         => 'Arsërca',
+'sp-contributions-newbies'             => 'Smon mach ël travaj dij cont neuv',
+'sp-contributions-newbies-sub'         => "Për j'utent neuv",
+'sp-contributions-newbies-title'       => "Contribussion ëd j'utent për ij neuv cont",
+'sp-contributions-blocklog'            => "Fërma l'agiornament dij registr",
+'sp-contributions-deleted'             => "Modìfiche d'utent scanselà",
+'sp-contributions-logs'                => 'registr',
+'sp-contributions-talk'                => 'discussion',
+'sp-contributions-userrights'          => 'gestion dij drit utent',
+'sp-contributions-blocked-notice'      => "St'utent-sì a l'é blocà al moment. L'ùltima intrada dël registr dij blòch a l'é butà sì sota për arferiment:",
+'sp-contributions-blocked-notice-anon' => "St'adrëssa IP a l'é blocà al moment. 
+L'ùltima intrada dël registr dij blòch a l'é butà sì sota për arferiment:",
+'sp-contributions-search'              => 'Arsërca contribussion',
+'sp-contributions-username'            => 'Adrëssa IP ò nòm utent:',
+'sp-contributions-submit'              => 'Arsërca',
 
 # What links here
 'whatlinkshere'            => "Pàgine con dj'anliure che a men-o a costa-sì",

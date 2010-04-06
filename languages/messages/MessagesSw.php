@@ -1824,6 +1824,7 @@ Chagua jina lengine.',
 'movelogpage'             => 'Kumbukumbu ya uhamiaji',
 'movereason'              => 'Sababu:',
 'revertmove'              => 'rejesha',
+'delete_and_move'         => 'Kufuta na kusogeza',
 'delete_and_move_confirm' => 'Ndiyo, ukurasa ufutwe',
 
 # Export
@@ -1942,11 +1943,15 @@ Tafadhali jaribu tena.',
 
 # Info page
 'infosubtitle' => 'Taarifa juu ya ukurasa',
+'numedits'     => 'Idadi ya haririo (ukurasa): $1',
+'numtalkedits' => 'Idadi ya haririo (ukurasa wa majadiliano): $1',
+'numwatchers'  => 'Idadi ya wanaofuatilia ukurasa: $1',
 
 # Math errors
 'math_unknown_error' => 'hitilafu isiyojulikana',
 
 # Image deletion
+'filedeleteerror-short'       => 'Hitilafu wakati wa kufuta faili: $1',
 'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
 
 # Browsing diffs
@@ -1954,6 +1959,8 @@ Tafadhali jaribu tena.',
 'nextdiff'     => 'Badilisho lijalo →',
 
 # Media information
+'thumbsize'            => 'Ukubwa wa picha ndogo:',
+'widthheightpage'      => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
 'file-info-size'       => '(piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4)',
 'file-nohires'         => '<small>Hakuna saizi kubwa zaidi.</small>',
 'svg-long-desc'        => '(faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3)',

@@ -12,6 +12,7 @@
  * @author Nick1915
  * @author Omnipaedista
  * @author Urhixidur
+ * @author Vajotwo
  * @author לערי ריינהארט
  */
 
@@ -492,6 +493,7 @@ Se prega de segnalar l\'acaduto a un [[Special:ListUsers/sysop|aministrador]] sp
 'readonly_lag'         => 'El database el xe stà blocà automaticamente par consentirghe ai server coi database slave de sincronizarse col master',
 'internalerror'        => 'Eròr interno',
 'internalerror_info'   => 'Eror interno: $1',
+'fileappenderrorread'  => 'Non xè sta posibiłe lezare "$1" durante l\'agiunta.',
 'fileappenderror'      => 'No se pode zontar "$1" con "$2".',
 'filecopyerror'        => 'No xè stà possibiłe copiare el file "$1" come "$2".',
 'filerenameerror'      => 'No xè stà possibile rinominare el file "$1" in "$2".',
@@ -618,6 +620,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'login-throttled'            => 'Te ghè fato massa tentativi de autenticarte. 
 Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
+'suspicious-userlogout'      => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
 
 # Password reset dialog
 'resetpass'                 => 'Cànbia la password',
@@ -670,6 +673,7 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'showlivepreview'                  => 'Anteprima in tenpo reàl',
 'showdiff'                         => 'Mostra canbiamenti',
 'anoneditwarning'                  => "'''Ocio:''' Acesso mìa efetuà. Ne ła cronołogia de ła pàxena vegnarà registrà el to indirizo IP.",
+'anonpreviewwarning'               => '"No te ghe eseguio el login. Salvando el to indiriso IP sarà rejistrà ne ła cronołosia de sta voxe."',
 'missingsummary'                   => "'''Ocio:''' No te ghè indicà l'ogeto de la modifica. Macando de novo 'Salva la pagina' la modifica la vegnerà con l'ogeto vodo.",
 'missingcommenttext'               => 'Inserissi un comento qua soto.',
 'missingcommentheader'             => "'''Ocio:''' No te ghè specificà l'intestazion de sto commento. Macando de novo '''Salva la pagina''' la modifica la vegnarà salvà senza intestazion.",
@@ -2042,7 +2046,7 @@ Le impostazion atuali par la pagina le xe '''$1''':",
 'protect-othertime-op'        => 'altra durata',
 'protect-existing-expiry'     => 'Scadensa de desso: $2, $3',
 'protect-otherreason'         => 'Altri motivi:',
-'protect-otherreason-op'      => 'altri motivi',
+'protect-otherreason-op'      => 'Altra modivasion',
 'protect-dropdown'            => '*Motivi piessè comuni de protession
 ** Guere de modifica (edit war)
 ** Inserimenti ripetùi de spam
@@ -3094,7 +3098,7 @@ Doparar l\'anteprima standard.',
 # Special:FilePath
 'filepath'         => 'Percorso de un file',
 'filepath-page'    => 'Nome del file:',
-'filepath-submit'  => 'Percorso',
+'filepath-submit'  => 'Va',
 'filepath-summary' => 'Sta pagina speciale la restituìsse el percorso conpleto de un file. Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tipi de file vien avià diretamente el programa associà.
 
 Inserissi el nome del file senza el prefisso "{{ns:file}}:"',
