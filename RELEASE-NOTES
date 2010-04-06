@@ -85,6 +85,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   parameter no longer makes the page displayed as being the redirect target
 * (bug 22918) Feed cache keys now use $wgRenderHashAppend
 * (bug 21916) Last-Modified header is now correct when outputting cached feed
+* (bug 20049) Fixed in PHP notice in search highlighter that occurs in some
+  cases
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
