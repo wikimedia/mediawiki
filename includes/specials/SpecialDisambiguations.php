@@ -22,6 +22,8 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 
 	function getSQL() {
+		global $wgContentNamespaces;
+
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$dMsgText = wfMsgForContent('disambiguationspage');
@@ -64,12 +66,18 @@ class DisambiguationsPage extends PageQueryPage {
 
 		list( $page, $pagelinks, $templatelinks) = $dbr->tableNamesN( 'page', 'pagelinks', 'templatelinks' );
 
+		if ( $wgContentNamespaces ) {
+			$nsclause = 'IN (' . $dbr->makeList( $wgContentNamespaces ) . ')';
+		} else {
+			$nsclause = '= ' . NS_MAIN;
+		}
+
 		$sql = "SELECT 'Disambiguations' AS \"type\", pb.page_namespace AS namespace,"
 			." pb.page_title AS title, la.pl_from AS value"
 			." FROM {$templatelinks} AS lb, {$page} AS pb, {$pagelinks} AS la, {$page} AS pa"
 			." WHERE $set"  # disambiguation template(s)
 			.' AND pa.page_id = la.pl_from'
-			.' AND pa.page_namespace = ' . NS_MAIN  # Limit to just articles in the main namespace
+			.' AND pa.page_namespace ' . $nsclause
 			.' AND pb.page_id = lb.tl_from'
 			.' AND pb.page_namespace = la.pl_namespace'
 			.' AND pb.page_title = la.pl_title'
