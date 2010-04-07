@@ -31,6 +31,7 @@ class SpecialResetpass extends SpecialPage {
 		
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->disallowUserJs();
 
 		if( !$wgAuth->allowPasswordChange() ) {
 			$this->error( wfMsg( 'resetpass_forbidden' ) );

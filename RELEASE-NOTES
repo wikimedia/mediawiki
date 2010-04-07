@@ -94,6 +94,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   exceeding $wgMaxImageArea can still be embedded at original size
 * (bug 23078) "All public logs" option on Special:Log is now always the first
   item
+* Special:ChangePassword no longer loads user javascript
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
