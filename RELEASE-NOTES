@@ -3,9 +3,9 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.15.2 ==
+== MediaWiki 1.15.3 ==
 
-March 8, 2010
+April 7, 2010
 
 This is a security and maintenance release.
 
@@ -21,7 +21,10 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Changes since 1.15.2 ===
+
 * (bug 22828) Fixed deletion on SQLite.
+* (bug 23076) Fixed login CSRF vulnerability. Logins now require a token to 
+  be submitted along with the user name and password.
 
 === Changes since 1.15.1 ===
 

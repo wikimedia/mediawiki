@@ -87,6 +87,7 @@ class UserloginTemplate extends QuickTemplate {
 		</tr>
 	</table>
 <?php if( @$this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
+<?php if( @$this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 </form>
 </div>
 <div id="loginend"><?php $this->msgWiki( 'loginend' ); ?></div>

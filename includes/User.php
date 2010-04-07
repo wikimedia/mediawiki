@@ -2771,7 +2771,7 @@ class User {
 			return EDIT_TOKEN_SUFFIX;
 		} else {
 			if( !isset( $_SESSION['wsEditToken'] ) ) {
-				$token = $this->generateToken();
+				$token = self::generateToken();
 				$_SESSION['wsEditToken'] = $token;
 			} else {
 				$token = $_SESSION['wsEditToken'];
@@ -2789,7 +2789,7 @@ class User {
 	 * @param $salt \string Optional salt value
 	 * @return \string The new random token
 	 */
-	function generateToken( $salt = '' ) {
+	public static function generateToken( $salt = '' ) {
 		$token = dechex( mt_rand() ) . dechex( mt_rand() );
 		return md5( $token . $salt );
 	}
@@ -2884,7 +2884,7 @@ class User {
 		$now = time();
 		$expires = $now + 7 * 24 * 60 * 60;
 		$expiration = wfTimestamp( TS_MW, $expires );
-		$token = $this->generateToken( $this->mId . $this->mEmail . $expires );
+		$token = self::generateToken( $this->mId . $this->mEmail . $expires );
 		$hash = md5( $token );
 		$this->load();
 		$this->mEmailToken = $hash;
