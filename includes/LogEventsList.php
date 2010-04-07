@@ -199,6 +199,14 @@ class LogEventsList {
 
 		// Note the query type
 		$queryType = count($queryTypes) == 1 ? $queryTypes[0] : '';
+
+		// Always put "All public logs" on top
+		if ( isset( $typesByName[''] ) ) {
+			$all = $typesByName[''];
+			unset( $typesByName[''] );
+			$typesByName = array( '' => $all ) + $typesByName;
+		}
+
 		// Third pass generates sorted XHTML content
 		foreach( $typesByName as $type => $text ) {
 			$selected = ($type == $queryType);
