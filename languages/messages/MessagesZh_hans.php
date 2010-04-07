@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1333,7 +1333,7 @@ $1",
 'right-hideuser'              => '封锁用户名，对公众隐藏',
 'right-ipblock-exempt'        => '绕过IP封锁、自动封锁以及范围封锁',
 'right-proxyunbannable'       => '绕过Proxy的自动封锁',
-'right-unblockself'           => '自我解除封禁',
+'right-unblockself'           => '自我解除封锁',
 'right-protect'               => '更改保护等级以及编辑保护页面',
 'right-editprotected'         => '编辑保护页面（无连锁保护）',
 'right-editinterface'         => '编辑用户接口',
@@ -2178,18 +2178,21 @@ $1',
 'month'               => '从该月份 （或更早）：',
 'year'                => '从该年份 （或更早）：',
 
-'sp-contributions-newbies'        => '只显示新创建之用户的贡献',
-'sp-contributions-newbies-sub'    => '新手',
-'sp-contributions-newbies-title'  => '新手的用户贡献',
-'sp-contributions-blocklog'       => '封禁日志',
-'sp-contributions-deleted'        => '已删除的用户贡献',
-'sp-contributions-logs'           => '日志',
-'sp-contributions-talk'           => '对话',
-'sp-contributions-userrights'     => '用户权限管理',
-'sp-contributions-blocked-notice' => '这位用户现时正在被封锁中。最近的封锁日志项目在下面提供以便参考：',
-'sp-contributions-search'         => '搜索贡献记录',
-'sp-contributions-username'       => 'IP地址或用户名称：',
-'sp-contributions-submit'         => '搜索',
+'sp-contributions-newbies'             => '只显示新创建之用户的贡献',
+'sp-contributions-newbies-sub'         => '新手',
+'sp-contributions-newbies-title'       => '新手的用户贡献',
+'sp-contributions-blocklog'            => '封禁日志',
+'sp-contributions-deleted'             => '已删除的用户贡献',
+'sp-contributions-logs'                => '日志',
+'sp-contributions-talk'                => '对话',
+'sp-contributions-userrights'          => '用户权限管理',
+'sp-contributions-blocked-notice'      => '这位用户现时正在被封锁中。
+最近的封锁日志项目在下面提供以便参考：',
+'sp-contributions-blocked-notice-anon' => '这个IP地址现时正在被封锁中。
+最近的封锁日志项目在下面提供以便参考：',
+'sp-contributions-search'              => '搜索贡献记录',
+'sp-contributions-username'            => 'IP地址或用户名称：',
+'sp-contributions-submit'              => '搜索',
 
 # What links here
 'whatlinkshere'            => '链入页面',
@@ -2321,7 +2324,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'cant-see-hidden-user'            => '您现正尝试封锁的用户已经被封锁或隐藏。
 您现在没有隐藏用户的权限，您不可以查看或者编辑这位用户的封锁。',
 'ipbblocked'                      => '您无法封禁或解封其他用户，因为您自己已被封禁',
-'ipbnounblockself'                => '您无权自我解除封禁',
+'ipbnounblockself'                => '您不容许自我解除封禁',
 
 # Developer tools
 'lockdb'              => '锁定数据库',
@@ -3213,7 +3216,7 @@ $1',
 # Special:FilePath
 'filepath'         => '文件路径',
 'filepath-page'    => '文件名：',
-'filepath-submit'  => '查找路径',
+'filepath-submit'  => '前往',
 'filepath-summary' => '此特殊页面返回文件的完整路径。图像会以完整的分辨率显示，其它的文件类型亦将直接通过关联的应用程序打开。
 
 请输入文件名，不要包含“{{ns:file}}:”前缀。',
