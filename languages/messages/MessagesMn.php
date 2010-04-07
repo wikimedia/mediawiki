@@ -20,8 +20,8 @@ $namespaceNames = array(
 	NS_USER             => 'Хэрэглэгч',
 	NS_USER_TALK        => 'Хэрэглэгчийн_яриа',
 	NS_PROJECT_TALK     => '$1-н_хэлэлцүүлэг',
-	NS_FILE             => 'Зураг',
-	NS_FILE_TALK        => 'Зургийн_хэлэлцүүлэг',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файлын_хэлэлцүүлэг',
 	NS_MEDIAWIKI        => 'МедиаВики',
 	NS_MEDIAWIKI_TALK   => 'МедиаВикигийн_хэлэлцүүлэг',
 	NS_TEMPLATE         => 'Загвар',
@@ -30,6 +30,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Тусламжийн_хэлэлцүүлэг',
 	NS_CATEGORY         => 'Ангилал',
 	NS_CATEGORY_TALK    => 'Ангиллын_хэлэлцүүлэг',
+);
+
+$namespaceAliases = array(
+	'Зураг' => NS_FILE,
+	'Зургийн_хэлэлцүүлэг' => NS_FILE_TALK,
 );
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';

@@ -48,7 +48,7 @@
 $capitalizeAllNouns = true;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => 'Medium',
 	NS_SPECIAL          => 'Spezial',
 	NS_TALK             => 'Diskussion',
 	NS_USER             => 'Benutzer',
