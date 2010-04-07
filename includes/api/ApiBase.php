@@ -534,6 +534,7 @@ abstract class ApiBase {
 
 		return $mValidNamespaces;
 	}
+
 	/**
 	* Handle watchlist settings
 	*/
