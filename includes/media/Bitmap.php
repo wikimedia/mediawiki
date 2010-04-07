@@ -18,15 +18,6 @@ class BitmapHandler extends ImageHandler {
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
 
-		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
-		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
-		# an exception for it.
-		if ( $mimeType !== 'image/jpeg' &&
-			$this->getImageArea( $image, $srcWidth, $srcHeight ) > $wgMaxImageArea )
-		{
-			return false;
-		}
-
 		# Don't make an image bigger than the source
 		$params['physicalWidth'] = $params['width'];
 		$params['physicalHeight'] = $params['height'];
@@ -34,7 +25,18 @@ class BitmapHandler extends ImageHandler {
 		if ( $params['physicalWidth'] >= $srcWidth ) {
 			$params['physicalWidth'] = $srcWidth;
 			$params['physicalHeight'] = $srcHeight;
-			return true;
+			# Skip scaling limit checks if no scaling is required
+			if( !$image->mustRender() )
+				return true;
+		}
+
+		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
+		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
+		# an exception for it.
+		if ( $mimeType !== 'image/jpeg' &&
+			$this->getImageArea( $image, $srcWidth, $srcHeight ) > $wgMaxImageArea )
+		{
+			return false;
 		}
 
 		return true;
