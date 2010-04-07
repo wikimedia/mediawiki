@@ -142,6 +142,7 @@ $magicWords = array(
 	'img_none'              => array( '1', 'אן', 'ללא', 'none' ),
 	'img_center'            => array( '1', 'צענטער', 'מרכז', 'center', 'centre' ),
 	'img_sub'               => array( '1', 'אונטער', 'תחתי', 'sub' ),
+	'grammar'               => array( '0', 'גראמאטיק:', 'דקדוק:', 'GRAMMAR:' ),
 	'plural'                => array( '0', 'מערצאל:', 'רבים:', 'PLURAL:' ),
 	'fullurl'               => array( '0', 'פֿולער נאמען:', 'כתובת מלאה:', 'FULLURL:' ),
 	'raw'                   => array( '0', 'רוי:', 'ללא עיבוד:', 'RAW:' ),

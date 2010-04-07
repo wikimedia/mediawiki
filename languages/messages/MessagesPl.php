@@ -216,10 +216,13 @@ $magicWords = array(
 	'ucfirst'               => array( '0', 'ZWIELKIEJ:', 'ZDUŻEJ:', 'UCFIRST:' ),
 	'lc'                    => array( '0', 'MAŁE:', 'LC:' ),
 	'uc'                    => array( '0', 'WIELKIE:', 'DUŻE:', 'UC:' ),
+	'newsectionlink'        => array( '1', '__LINKNOWEJSEKCJI__', '__NEWSECTIONLINK__' ),
 	'language'              => array( '0', '#JĘZYK:', '#LANGUAGE:' ),
 	'numberofadmins'        => array( '1', 'ADMINISTRATORÓW', 'NUMBEROFADMINS' ),
 	'padleft'               => array( '0', 'DOLEWEJ', 'PADLEFT' ),
 	'padright'              => array( '0', 'DOPRAWEJ', 'PADRIGHT' ),
+	'defaultsort'           => array( '1', 'DOMYŚLNIESORTUJ', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
+	'hiddencat'             => array( '1', '__KATEGORIAUKRYTA__', '__HIDDENCAT__' ),
 );
 
 $messages = array(

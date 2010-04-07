@@ -58,6 +58,11 @@ $specialPageAliases = array(
 	'Search'                    => array( 'Кычалмаш' ),
 );
 
+$magicWords = array(
+	'img_right'             => array( '1', 'пурла', 'справа', 'right' ),
+	'img_left'              => array( '1', 'шола', 'слева', 'left' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Кузе кылвер-влакым ӱлычын удыралаш?',

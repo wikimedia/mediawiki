@@ -280,6 +280,7 @@ $magicWords = array(
 	'int'                   => array( '0', 'NACHRICHT:', 'INT:' ),
 	'sitename'              => array( '1', 'PROJEKTNAME', 'SITENAME' ),
 	'ns'                    => array( '0', 'NR:', 'NS:' ),
+	'nse'                   => array( '0', 'NR_URL:', 'NSE:' ),
 	'localurl'              => array( '0', 'LOKALE_URL:', 'LOCALURL:' ),
 	'scriptpath'            => array( '0', 'SKRIPTPFAD', 'SCRIPTPATH' ),
 	'stylepath'             => array( '0', 'STYLEPFAD', 'STYLEPATH' ),
