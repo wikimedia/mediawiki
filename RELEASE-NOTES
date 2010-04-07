@@ -88,6 +88,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20049) Fixed PHP notice in search highlighter that occurs in some cases
 * (bug 23017) Special:Disambiguations now list pages in content namespaces
   rather than only main namespace
+* (bug 23063) $wgMaxAnimatedGifArea is checked against the total size of all
+  frames, and $wgMaxImageArea against the size of the first frame, rather than
+  the other way around.  Both now default to 12.5 megapixels.  Also, images
+  exceeding $wgMaxImageArea can still be embedded at original size
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent

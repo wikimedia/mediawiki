@@ -2349,11 +2349,11 @@ $wgSVGMaxSize = 2048;
 $wgMaxImageArea = 1.25e7;
 /**
  * Force thumbnailing of animated GIFs above this size to a single
- * frame instead of an animated thumbnail. ImageMagick seems to
- * get real unhappy and doesn't play well with resource limits. :P
- * Defaulting to 1 megapixel (1000x1000)
+ * frame instead of an animated thumbnail.  As of MW 1.17 this limit
+ * is checked against the total size of all frames in the animation.
+ * It probably makes sense to keep this equal to $wgMaxImageArea.
  */
-$wgMaxAnimatedGifArea = 1.0e6;
+$wgMaxAnimatedGifArea = 1.25e7;
 /**
  * Browsers don't support TIFF inline generally...
  * For inline display, we need to convert to PNG or JPEG.
