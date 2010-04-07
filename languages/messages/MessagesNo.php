@@ -2224,19 +2224,21 @@ $1',
 'month'               => 'Måned:',
 'year'                => 'År:',
 
-'sp-contributions-newbies'        => 'Vis kun bidrag fra nye kontoer',
-'sp-contributions-newbies-sub'    => 'For nybegynnere',
-'sp-contributions-newbies-title'  => 'Bidrag av nye kontoer',
-'sp-contributions-blocklog'       => 'Blokkeringslogg',
-'sp-contributions-deleted'        => 'slettede brukerbidrag',
-'sp-contributions-logs'           => 'logger',
-'sp-contributions-talk'           => 'diskusjon',
-'sp-contributions-userrights'     => 'brukerrettighetskontroll',
-'sp-contributions-blocked-notice' => 'Denne brukeren er for tiden blokkert.
+'sp-contributions-newbies'             => 'Vis kun bidrag fra nye kontoer',
+'sp-contributions-newbies-sub'         => 'For nybegynnere',
+'sp-contributions-newbies-title'       => 'Bidrag av nye kontoer',
+'sp-contributions-blocklog'            => 'Blokkeringslogg',
+'sp-contributions-deleted'             => 'slettede brukerbidrag',
+'sp-contributions-logs'                => 'logger',
+'sp-contributions-talk'                => 'diskusjon',
+'sp-contributions-userrights'          => 'brukerrettighetskontroll',
+'sp-contributions-blocked-notice'      => 'Denne brukeren er for tiden blokkert.
 Siste blokkeringsloggelement kan sees nedenfor.',
-'sp-contributions-search'         => 'Søk etter bidrag',
-'sp-contributions-username'       => 'IP-adresse eller brukernavn:',
-'sp-contributions-submit'         => 'Søk',
+'sp-contributions-blocked-notice-anon' => 'Denne IP-adressen er for tiden blokkert.
+Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
+'sp-contributions-search'              => 'Søk etter bidrag',
+'sp-contributions-username'            => 'IP-adresse eller brukernavn:',
+'sp-contributions-submit'              => 'Søk',
 
 # What links here
 'whatlinkshere'            => 'Lenker hit',
@@ -3255,7 +3257,7 @@ Prøv vanlig forhåndsvisning.',
 # Special:FilePath
 'filepath'         => 'Filsti',
 'filepath-page'    => 'Fil:',
-'filepath-submit'  => 'Sti',
+'filepath-submit'  => 'Gå',
 'filepath-summary' => 'Denne spesialsiden gir den fullstendige stien for en fil. Bilder vises i full oppløsning; andre filtyper startes direkte i sine assosierte programmer.
 
 	Skriv inn filnavnet uten «{{ns:file}}:»-prefikset.',

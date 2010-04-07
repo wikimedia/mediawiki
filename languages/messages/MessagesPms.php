@@ -1129,26 +1129,27 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'prefs-diffs'                   => 'Diferense',
 
 # User rights
-'userrights'                   => "Gestion dij drit dj'utent",
-'userrights-lookup-user'       => "Gestion dle partìe d'utent",
-'userrights-user-editname'     => 'Che a buta në stranòm:',
-'editusergroup'                => "Modifiché le partìe d'utent",
-'editinguser'                  => "Modìfica dij drit ëd l'utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'     => "Modifiché le partìe dl'utent",
-'saveusergroups'               => "Salvé le partìe d'utent",
-'userrights-groupsmember'      => "A l'é andrinta a:",
-'userrights-groupsmember-auto' => 'Mèmber amplìssit ëd:',
-'userrights-groups-help'       => "A peul cambié le partìe anté ch'a l'é st'utent-sì:
+'userrights'                     => "Gestion dij drit dj'utent",
+'userrights-lookup-user'         => "Gestion dle partìe d'utent",
+'userrights-user-editname'       => 'Che a buta në stranòm:',
+'editusergroup'                  => "Modifiché le partìe d'utent",
+'editinguser'                    => "Modìfica dij drit ëd l'utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'       => "Modifiché le partìe dl'utent",
+'saveusergroups'                 => "Salvé le partìe d'utent",
+'userrights-groupsmember'        => "A l'é andrinta a:",
+'userrights-groupsmember-auto'   => 'Mèmber amplìssit ëd:',
+'userrights-groups-help'         => "A peul cambié le partìe anté ch'a l'é st'utent-sì:
 * Na casela marcà a veul dì che l'utent a l'é an cola partìa.
 * Na casela nen marcà a veul dì che l'utent a l'é pa an cola partìa.
 * N'asterisch (*) a veul dì che a peul pa gavé cola partìa na vira ch'a l'abia giontala, o viceversa.",
-'userrights-reason'            => 'Rason:',
-'userrights-no-interwiki'      => "A l'ha pa ij përmess dont a fa da manca për podèj cambieje ij drit a dj'utent ansima a dj'àutre wiki.",
-'userrights-nodatabase'        => "La base ëd dat $1 a-i é pa, ò pura a l'é nen local.",
-'userrights-nologin'           => "A l'ha da [[Special:UserLogin|rintré ant ël sistema]] con un cont da aministrator për podej-je dé dij drit a j'utent.",
-'userrights-notallowed'        => "A l'ha pa ij përmess dont a fa da manca për podej-je dé dij drit a j'utent.",
-'userrights-changeable-col'    => "Partìe ch'a peul cambié",
-'userrights-unchangeable-col'  => "Grup ch'it peule pa cambié",
+'userrights-reason'              => 'Rason:',
+'userrights-no-interwiki'        => "A l'ha pa ij përmess dont a fa da manca për podèj cambieje ij drit a dj'utent ansima a dj'àutre wiki.",
+'userrights-nodatabase'          => "La base ëd dat $1 a-i é pa, ò pura a l'é nen local.",
+'userrights-nologin'             => "A l'ha da [[Special:UserLogin|rintré ant ël sistema]] con un cont da aministrator për podej-je dé dij drit a j'utent.",
+'userrights-notallowed'          => "A l'ha pa ij përmess dont a fa da manca për podej-je dé dij drit a j'utent.",
+'userrights-changeable-col'      => "Partìe ch'a peul cambié",
+'userrights-unchangeable-col'    => "Partìe ch'a peul pa cambié",
+'userrights-irreversible-marker' => '$1*',
 
 # Groups
 'group'               => 'Partìa:',
@@ -1157,7 +1158,7 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'group-bot'           => 'Trigomiro',
 'group-sysop'         => 'Aministrator',
 'group-bureaucrat'    => 'Mangiapapé',
-'group-suppress'      => 'Oversight',
+'group-suppress'      => 'Supervisor',
 'group-all'           => '(utent)',
 
 'group-user-member'          => 'Utent',
@@ -2103,7 +2104,7 @@ $1",
 'sp-contributions-userrights'          => 'gestion dij drit utent',
 'sp-contributions-blocked-notice'      => "St'utent-sì a l'é blocà al moment. L'ùltima intrada dël registr dij blòch a l'é butà sì sota për arferiment:",
 'sp-contributions-blocked-notice-anon' => "St'adrëssa IP a l'é blocà al moment. 
-L'ùltima intrada dël registr dij blòch a l'é butà sì sota për arferiment:",
+L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment:",
 'sp-contributions-search'              => 'Arsërca contribussion',
 'sp-contributions-username'            => 'Adrëssa IP ò nòm utent:',
 'sp-contributions-submit'              => 'Arsërca',
