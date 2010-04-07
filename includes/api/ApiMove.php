@@ -123,7 +123,7 @@ class ApiMove extends ApiBase {
 		}
 		
 		// Watch pages
-		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj ) || $wgUser->getOption( 'watchmoves' );
+		$watch = $this->getWatchlistValue( $params['watchlist'], $fromTitle ) || $wgUser->getOption( 'watchmoves' );
 		
 		// Deprecated parameters
 		if ( $params['watch'] ) {
