@@ -34,7 +34,7 @@ class BitmapHandler extends ImageHandler {
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
 		# an exception for it.
 		if ( $mimeType !== 'image/jpeg' &&
-			$this->getImageArea( $image, $srcWidth, $srcHeight ) > $wgMaxImageArea )
+			$srcWidth * $srcHeight > $wgMaxImageArea )
 		{
 			return false;
 		}
@@ -124,7 +124,7 @@ class BitmapHandler extends ImageHandler {
 			} elseif ( $mimeType == 'image/png' ) {
 				$quality = "-quality 95"; // zlib 9, adaptive filtering
 			} elseif( $mimeType == 'image/gif' ) {
-				if( $srcWidth * $srcHeight > $wgMaxAnimatedGifArea ) {
+				if( $this->getImageArea( $image, $srcWidth, $srcHeight ) > $wgMaxAnimatedGifArea ) {
 					// Extract initial frame only; we're so big it'll
 					// be a total drag. :P
 					$frame = '[0]';
