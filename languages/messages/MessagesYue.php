@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1294,7 +1294,7 @@ $1",
 'right-hideuser'              => '封鎖用戶名，對公眾隱藏',
 'right-ipblock-exempt'        => '繞過IP封鎖、自動封鎖同埋範圍封鎖',
 'right-proxyunbannable'       => '繞過Proxy嘅自動封鎖',
-'right-unblockself'           => '解封佢地',
+'right-unblockself'           => '解封佢哋自己',
 'right-protect'               => '改保護等級同埋編輯保護版',
 'right-editprotected'         => '編輯保護版（無連串保護）',
 'right-editinterface'         => '編輯用戶界面',
@@ -2129,18 +2129,21 @@ $1',
 'month'               => '由呢個月 (同更早):',
 'year'                => '由呢一年 (同更早):',
 
-'sp-contributions-newbies'        => '只顯示新戶口嘅貢獻',
-'sp-contributions-newbies-sub'    => '新戶口嘅貢獻',
-'sp-contributions-newbies-title'  => '新戶口嘅用戶貢獻',
-'sp-contributions-blocklog'       => '封鎖日誌',
-'sp-contributions-deleted'        => '已經刪除咗嘅用戶貢獻',
-'sp-contributions-logs'           => '日誌',
-'sp-contributions-talk'           => '傾偈',
-'sp-contributions-userrights'     => '用戶權限管理',
-'sp-contributions-blocked-notice' => '呢位用戶現時封鎖緊。最近嘅封鎖日誌項目響下面提供以便參考：',
-'sp-contributions-search'         => '搵貢獻',
-'sp-contributions-username'       => 'IP地址或用戶名：',
-'sp-contributions-submit'         => '搵',
+'sp-contributions-newbies'             => '只顯示新戶口嘅貢獻',
+'sp-contributions-newbies-sub'         => '新戶口嘅貢獻',
+'sp-contributions-newbies-title'       => '新戶口嘅用戶貢獻',
+'sp-contributions-blocklog'            => '封鎖日誌',
+'sp-contributions-deleted'             => '已經刪除咗嘅用戶貢獻',
+'sp-contributions-logs'                => '日誌',
+'sp-contributions-talk'                => '傾偈',
+'sp-contributions-userrights'          => '用戶權限管理',
+'sp-contributions-blocked-notice'      => '呢位用戶現時封鎖緊。
+最近嘅封鎖日誌項目響下面提供以便參考：',
+'sp-contributions-blocked-notice-anon' => '呢個IP地址現時封鎖緊。
+最近嘅封鎖日誌項目響下面提供以便參考：',
+'sp-contributions-search'              => '搵貢獻',
+'sp-contributions-username'            => 'IP地址或用戶名：',
+'sp-contributions-submit'              => '搵',
 
 # What links here
 'whatlinkshere'            => '有乜嘢連結來呢度',
@@ -2269,9 +2272,8 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'cant-block-while-blocked'        => '當你被封鎖嗰陣唔可以封鎖其他用戶。',
 'cant-see-hidden-user'            => '你試緊封鎖嘅用戶已經封鎖咗或者隱藏咗。
 你而家冇隱藏用戶嘅權限，你唔可以睇或者改呢位用戶嘅封鎖。',
-'ipbblocked'                      => 'You cannot block or unblock other users, because you are yourself blocked
-你唔可以查封或者解封其他人，因為你自己都俾人查封左。',
-'ipbnounblockself'                => '你唔可以封鎖你自己。',
+'ipbblocked'                      => '你唔可以封鎖或者解封其他用戶，因為你自己已經俾人封鎖咗。',
+'ipbnounblockself'                => '你唔容許封鎖你自己。',
 
 # Developer tools
 'lockdb'              => '鎖定資料庫',
@@ -3167,7 +3169,7 @@ $1',
 # Special:FilePath
 'filepath'         => '檔案路徑',
 'filepath-page'    => '檔名:',
-'filepath-submit'  => '搵路徑',
+'filepath-submit'  => '去',
 'filepath-summary' => '呢個特別頁拎一個檔案嘅完整路徑。圖像會以完整嘅解像度顯示，其它嘅檔案類型會以同佢哋關聯咗嘅程式啟動。
 
 請輸入檔名，唔好連埋個"{{ns:file}}:"開頭。',

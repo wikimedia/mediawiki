@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -713,6 +713,7 @@ $2',
 'showlivepreview'                  => '即時預覽',
 'showdiff'                         => '顯示差異',
 'anoneditwarning'                  => "'''警告：'''您沒有登錄，您的IP位址將記錄在此頁的編輯歷史中。",
+'anonpreviewwarning'               => "''您沒有登入，您的IP位址將記錄在此頁的編輯歷史中。''",
 'missingsummary'                   => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊儲存，您的編輯將不帶編輯摘要儲存。",
 'missingcommenttext'               => '請在下面輸入評論。',
 'missingcommentheader'             => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊儲存，您的編輯將不帶標題儲存。",
@@ -1331,6 +1332,7 @@ $1",
 'right-hideuser'              => '封鎖用戶名，對公眾隱藏',
 'right-ipblock-exempt'        => '繞過IP封鎖、自動封鎖以及範圍封鎖',
 'right-proxyunbannable'       => '繞過Proxy的自動封鎖',
+'right-unblockself'           => '自我解除封鎖',
 'right-protect'               => '更改保護等級以及編輯保護頁面',
 'right-editprotected'         => '編輯保護頁面（無連鎖保護）',
 'right-editinterface'         => '編輯用戶界面',
@@ -2181,18 +2183,21 @@ $1',
 'month'               => '從該月份 （或更早）:',
 'year'                => '從該年份 （或更早）:',
 
-'sp-contributions-newbies'        => '只顯示新建立之用戶的貢獻',
-'sp-contributions-newbies-sub'    => '新手',
-'sp-contributions-newbies-title'  => '新手的用戶貢獻',
-'sp-contributions-blocklog'       => '封禁記錄',
-'sp-contributions-deleted'        => '已刪除的用戶貢獻',
-'sp-contributions-logs'           => '日誌',
-'sp-contributions-talk'           => '對話',
-'sp-contributions-userrights'     => '用戶權限管理',
-'sp-contributions-blocked-notice' => '這位用戶現時正在被封鎖中。最近的封鎖日誌項目在下面提供以便參考：',
-'sp-contributions-search'         => '搜尋貢獻記錄',
-'sp-contributions-username'       => 'IP位址或用戶名稱：',
-'sp-contributions-submit'         => '搜尋',
+'sp-contributions-newbies'             => '只顯示新建立之用戶的貢獻',
+'sp-contributions-newbies-sub'         => '新手',
+'sp-contributions-newbies-title'       => '新手的用戶貢獻',
+'sp-contributions-blocklog'            => '封禁記錄',
+'sp-contributions-deleted'             => '已刪除的用戶貢獻',
+'sp-contributions-logs'                => '日誌',
+'sp-contributions-talk'                => '對話',
+'sp-contributions-userrights'          => '用戶權限管理',
+'sp-contributions-blocked-notice'      => '這位用戶現時正在被封鎖中。
+最近的封鎖日誌項目在下面提供以便參考：',
+'sp-contributions-blocked-notice-anon' => '這個IP地址現時正在被封鎖中。
+最近的封鎖日誌項目在下面提供以便參考：',
+'sp-contributions-search'              => '搜尋貢獻記錄',
+'sp-contributions-username'            => 'IP位址或用戶名稱：',
+'sp-contributions-submit'              => '搜尋',
 
 # What links here
 'whatlinkshere'            => '鏈入頁面',
@@ -2322,6 +2327,8 @@ $1已經被封鎖。您是否想更改這個設定？',
 'cant-block-while-blocked'        => '當您被封鎖時不可以封鎖其他用戶。',
 'cant-see-hidden-user'            => '您現正嘗試封鎖的用戶已經被封鎖或隱藏。
 您現在沒有隱藏用戶的權限，您不可以檢視或者編輯這位用戶的封鎖。',
+'ipbblocked'                      => '您無法封禁或解封其他用戶，因為您自己已被封禁',
+'ipbnounblockself'                => '您不容許自我解除封禁',
 
 # Developer tools
 'lockdb'              => '禁止更改資料庫',
@@ -3215,7 +3222,7 @@ $1',
 # Special:FilePath
 'filepath'         => '檔案路徑',
 'filepath-page'    => '檔案名:',
-'filepath-submit'  => '搜尋路徑',
+'filepath-submit'  => '前往',
 'filepath-summary' => '這個特殊頁面擷取一個檔案的完整路徑。圖片會以完整的解像度顯示，其它的檔案類型會以同它們已關聯程式啟動。
 
 請輸入檔名，不要包含"{{ns:file}}:"開頭。',
