@@ -12,12 +12,16 @@
  */
 
 $namespaceNames = array(
+	NS_TALK             => 'Razgovor',
 	NS_USER             => 'Korisnik',
 	NS_USER_TALK        => 'Razgovor_sa_korisnikom',
+	NS_PROJECT_TALK     => 'Razgovor_o_$1',
 	NS_FILE             => 'Datoteka',
 	NS_FILE_TALK        => 'Razgovor_o_datoteci',
 	NS_TEMPLATE         => 'Šablon',
 	NS_TEMPLATE_TALK    => 'Razgovor_o_šablonu',
+	NS_HELP             => 'Pomoć',
+	NS_HELP_TALK        => 'Razgovor_o_pomoći',
 	NS_CATEGORY         => 'Kategorija',
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );

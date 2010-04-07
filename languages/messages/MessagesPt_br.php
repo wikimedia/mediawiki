@@ -39,7 +39,7 @@
 $fallback = 'pt'; 
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => 'Mídia',
 	NS_SPECIAL          => 'Especial',
 	NS_TALK             => 'Discussão',
 	NS_USER             => 'Usuário',

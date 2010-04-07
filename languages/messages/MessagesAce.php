@@ -16,6 +16,51 @@
 
 $fallback = 'id';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Alat',
+	NS_SPECIAL          => 'Kusuih',
+	NS_TALK             => 'Marit',
+	NS_USER             => 'Ureuëng_Nguy',
+	NS_USER_TALK        => 'Marit_Ureuëng_Nguy',
+	NS_PROJECT_TALK     => 'Marit_$1',
+	NS_FILE             => 'Beureukaih',
+	NS_FILE_TALK        => 'Marit_Beureukaih',
+	NS_MEDIAWIKI        => 'AlatWiki',
+	NS_MEDIAWIKI_TALK   => 'Marit_AlatWiki',
+	NS_TEMPLATE         => 'Pola',
+	NS_TEMPLATE_TALK    => 'Marit_Pola',
+	NS_HELP             => 'Beunantu',
+	NS_HELP_TALK        => 'Marit_Beunantu',
+	NS_CATEGORY         => 'Kawan',
+	NS_CATEGORY_TALK    => 'Marit_Kawan',
+);
+
+$namespaceAliases = array(
+	'Istimewa'              => NS_SPECIAL
+	'Pembicaraan'           => NS_TALK,
+	'Pengguna'              => NS_USER,
+	'Pembicaraan_Pengguna'  => NS_USER_TALK,
+	'Pembicaraan_$1'        => NS_PROJECT_TALK,
+	'Berkas'                => NS_FILE,
+	'Pembicaraan_Berkas'    => NS_FILE_TALK,
+	'Pembicaraan_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Templat'               => NS_TEMPLATE,
+	'Pembicaraan_Templat'   => NS_TEMPLATE_TALK,
+	'Bantuan'               => NS_HELP,
+	'Pembicaraan_Bantuan'   => NS_HELP_TALK,
+	'Kategori'              => NS_CATEGORY,
+	'Pembicaraan_Kategori'  => NS_CATEGORY_TALK,
+	'Gambar_Pembicaraan'    => NS_FILE_TALK,
+	'MediaWiki_Pembicaraan' => NS_MEDIAWIKI_TALK,
+	'Templat_Pembicaraan'   => NS_TEMPLATE_TALK,
+	'Bantuan_Pembicaraan'   => NS_HELP_TALK,
+	'Kategori_Pembicaraan'  => NS_CATEGORY_TALK,
+	'Gambar'                => NS_FILE,
+	'Pembicaraan_Gambar'    => NS_FILE_TALK,
+	'Bicara'                => NS_TALK,
+	'Bicara_Pengguna'       => NS_USER_TALK,
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Bôh garéh yup bak hubông:',
