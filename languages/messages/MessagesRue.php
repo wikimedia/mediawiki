@@ -307,6 +307,7 @@ $1',
 'nologinlink'             => 'Вытворити конто',
 'createaccount'           => 'Вытворити конто',
 'gotaccountlink'          => 'Приголошіня',
+'createaccountmail'       => 'електроничнов поштов',
 'mailmypassword'          => 'Послати нове гесло',
 'createaccount-title'     => 'Вытвориня конта про  {{SITENAME}}',
 'loginlanguagelabel'      => 'Язык: $1',
@@ -716,6 +717,9 @@ $1',
 
 # Export
 'export' => 'Експорт сторінок',
+
+# Namespace 8 related
+'allmessages-language' => 'Язык:',
 
 # Thumbnails
 'thumbnail-more' => 'Звекшыти',

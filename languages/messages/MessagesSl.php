@@ -696,7 +696,8 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'anonpreviewwarning'               => 'Niste prijavljeni. Ob spremembi strani se bo vaš IP naslov zapisal v zgodovini urejanja te strani.',
 'missingsummary'                   => "'''Opozorilo:''' Niste napisali povzetka urejanja. Ob ponovnem kliku gumba ''Shrani'' se bo vaše urejanje shranilo brez njega.",
 'missingcommenttext'               => 'Prosimo, vpišite v spodnje polje komentar.',
-'missingcommentheader'             => "'''Opozorilo:''' Niste vnesli zadeve/naslova za ta komentar. Če boste ponovno kliknili Shrani, bo vaše urejanje shranjeno brez le-tega.",
+'missingcommentheader'             => "'''Opozorilo:''' Niste vnesli zadeve/naslova za ta komentar.
+Če boste ponovno kliknili Shrani stran, bo vaše urejanje shranjeno brez le-tega.",
 'summary-preview'                  => 'Predogled povzetka',
 'subject-preview'                  => 'Predogled zadeve/naslova:',
 'blockedtitle'                     => 'Uporabnik je blokiran',
@@ -1706,7 +1707,8 @@ Povzetek na njeni [$2 opisni strani datoteke] je prikazan spodaj.',
 
 # MIME search
 'mimesearch'         => 'Iskanje po vrsti MIME',
-'mimesearch-summary' => 'Ta stran omogoča filtriranje datotek po njihovi vrsti MIME. Vnesite: vrstavsebine/podvrsta, npr. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ta stran omogoča filtriranje datotek po njihovi vrsti MIME.
+Vnesite: vrstavsebine/podvrsta, npr. <tt>image/jpeg</tt>.',
 'mimetype'           => 'Vrsta MIME:',
 'download'           => 'prenesi',
 
@@ -1801,7 +1803,7 @@ Sedaj je preusmeritev na [[$2]].',
 'wantedtemplates'         => 'Želene predloge',
 'mostlinked'              => 'Strani, na katere se največ povezuje',
 'mostlinkedcategories'    => 'Kategorije z največ elementi',
-'mostlinkedtemplates'     => 'Najbolj uporabljene predloge',
+'mostlinkedtemplates'     => 'Najbolj uporabljane predloge',
 'mostcategories'          => 'Članki z največ kategorijami',
 'mostimages'              => 'Najbolj uporabljane datoteke',
 'mostrevisions'           => 'Največkrat urejane strani',
@@ -2681,7 +2683,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'mw_math_html'   => 'Kadar je mogoče, uporabi HTML, sicer pa PNG',
 'mw_math_source' => 'Pusti v TeX-ovi obliki (za besedilne brskalnike)',
 'mw_math_modern' => 'Priporočeno za sodobne brskalnike',
-'mw_math_mathml' => 'če je le mogoče, uporabi MathML (preizkusno)',
+'mw_math_mathml' => 'Če je le mogoče, uporabi MathML (preizkusno)',
 
 # Math errors
 'math_failure'          => 'Ni mi uspelo razčleniti',
@@ -2691,8 +2693,8 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'math_syntax_error'     => 'skladenjska napaka',
 'math_image_error'      => 'Pretvarjanje v PNG ni uspelo;
 preverite, ali so latex, dvips, gs, in convert pravilno nameščeni.',
-'math_bad_tmpdir'       => 'Začasne mape za matematiko ne morem ustvariti ali pisati vanjo.',
-'math_bad_output'       => 'Izhodne mape za matematiko ne morem ustvariti ali pisati vanjo.',
+'math_bad_tmpdir'       => 'Začasne mape za math ne morem ustvariti ali pisati vanjo.',
+'math_bad_output'       => 'Izhodne mape za math ne morem ustvariti ali pisati vanjo.',
 'math_notexvc'          => 'Manjka izvedbena datoteka texvc;
 za njeno namestitev si poglejte math/README.',
 
@@ -2770,7 +2772,8 @@ Z njenim zagonom lahko ogrozite vaš sistem.<hr />",
 'metadata-help'     => 'Datoteka vsebuje še druge podatke, ki jih je verjetno dodal za njeno ustvaritev oziroma digitalizacijo uporabljeni fotografski aparat ali optični bralnik. Če je bila datoteka pozneje spremenjena, podatki sprememb morda ne izražajo popolnoma.',
 'metadata-expand'   => 'Razširi seznam',
 'metadata-collapse' => 'Skrči seznam',
-'metadata-fields'   => 'V skrčeni razpredelnici metapodatkov EXIF bodo prikazana le v tem sporočilu našteta polja. Druga bodo po privzetem skrita.
+'metadata-fields'   => 'V skrčeni razpredelnici metapodatkov EXIF bodo prikazana le v tem sporočilu našteta polja.
+Druga bodo po privzetem skrita.
 * make
 * model
 * datetimeoriginal

@@ -41,6 +41,7 @@
  * @author UV
  * @author Umherirrender
  * @author W (aka Wuzur)
+ * @author Ziko
  * @author לערי ריינהארט
  */
 
@@ -964,9 +965,9 @@ Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und da
 Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und danach wieder an.'''",
 'token_suffix_mismatch'            => "'''Deine Bearbeitung wurde zurückgewiesen, da dein Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.'''",
-'editing'                          => 'Bearbeiten von $1',
-'editingsection'                   => 'Bearbeiten von $1 (Abschnitt)',
-'editingcomment'                   => 'Bearbeiten von $1 (Neuer Abschnitt)',
+'editing'                          => 'Bearbeiten von „$1“',
+'editingsection'                   => 'Bearbeiten von „$1“ (Abschnitt)',
+'editingcomment'                   => 'Bearbeiten von „$1“ (Neuer Abschnitt)',
 'editconflict'                     => 'Bearbeitungskonflikt: $1',
 'explainconflict'                  => "Jemand anders hat diese Seite geändert, nachdem du angefangen hast diese zu bearbeiten.
 Das obere Textfeld enthält den aktuellen Stand.
