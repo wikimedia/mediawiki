@@ -58,6 +58,7 @@ class ApiLogin extends ApiBase {
 			'wpName' => $params['name'],
 			'wpPassword' => $params['password'],
 			'wpDomain' => $params['domain'],
+			'wpLoginToken' => $params['token'],
 			'wpRemember' => ''
 		) );
 
@@ -85,6 +86,15 @@ class ApiLogin extends ApiBase {
 				$result['lgtoken'] = $wgUser->getToken();
 				$result['cookieprefix'] = $wgCookiePrefix;
 				$result['sessionid'] = session_id();
+				break;
+			
+			case LoginForm::NEED_TOKEN:
+				$result['result'] = 'NeedToken';
+				$result['token'] = $loginForm->getLoginToken();
+				break;
+			
+			case LoginForm::WRONG_TOKEN:
+				$result['result'] = 'WrongToken';
 				break;
 
 			case LoginForm::NO_NAME:
@@ -146,7 +156,8 @@ class ApiLogin extends ApiBase {
 		return array(
 			'name' => null,
 			'password' => null,
-			'domain' => null
+			'domain' => null,
+			'token' => null,
 		);
 	}
 
@@ -154,7 +165,8 @@ class ApiLogin extends ApiBase {
 		return array(
 			'name' => 'User Name',
 			'password' => 'Password',
-			'domain' => 'Domain (optional)'
+			'domain' => 'Domain (optional)',
+			'token' => 'Login token obtained in first request',
 		);
 	}
 
@@ -170,6 +182,8 @@ class ApiLogin extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'NeedToken', 'info' => 'You need to resubmit your login with the specified token. See https://bugzilla.wikimedia.org/show_bug.cgi?id=23076' ),
+			array( 'code' => 'WrongToken', 'info' => 'You specified an invalid token' ),
 			array( 'code' => 'NoName', 'info' => 'You didn\'t set the lgname parameter' ),
 			array( 'code' => 'Illegal', 'info' => ' You provided an illegal username' ),
 			array( 'code' => 'NotExists', 'info' => ' The username you provided doesn\'t exist' ),
