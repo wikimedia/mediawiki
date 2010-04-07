@@ -100,6 +100,15 @@ $namespaceAliases = array(
 	'Törkem_bäxäse'    => NS_CATEGORY_TALK,
 );
 
+$specialPageAliases = array(
+	'CreateAccount'             => array( 'Теркәлү' ),
+	'Watchlist'                 => array( 'Күзәтү исемлеге' ),
+	'Recentchanges'             => array( 'Соңгы үзгәртүләр' ),
+	'Statistics'                => array( 'Статистика' ),
+	'Randompage'                => array( 'Очраклы_мәкалә' ),
+	'Listadmins'                => array( 'Идарәчеләр_исемлеге' ),
+);
+
 $magicWords = array(
 	'redirect'              => array( '0', '#yünältü', '#перенаправление', '#перенапр', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__ETYUQ__', '__БЕЗ_ОГЛ__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__NOTOC__' ),

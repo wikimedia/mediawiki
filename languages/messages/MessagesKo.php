@@ -91,6 +91,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( '모든문서' ),
 	'Prefixindex'               => array( '접두어찾기' ),
 	'Ipblocklist'               => array( '차단된사용자', '차단목록' ),
+	'Unblock'                   => array( '차단해제' ),
 	'Specialpages'              => array( '특수기능' ),
 	'Contributions'             => array( '기여', '기여목록', '사용자기여' ),
 	'Emailuser'                 => array( '이메일보내기' ),

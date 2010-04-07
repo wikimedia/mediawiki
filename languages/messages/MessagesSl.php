@@ -77,11 +77,21 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'VseStrani' ),
 	'Specialpages'              => array( 'PosebneStrani' ),
 	'Contributions'             => array( 'Prispevki' ),
+	'Movepage'                  => array( 'PrestaviStran', 'PremakniStran' ),
+	'Blockme'                   => array( 'BlokirajMe' ),
+	'Categories'                => array( 'Kategorije' ),
 	'Export'                    => array( 'Izvozi' ),
 	'Version'                   => array( 'Verzija' ),
+	'Allmessages'               => array( 'VsaSporocila' ),
+	'Blockip'                   => array( 'Blokiraj', 'BlokirajIP', 'BlokirajUporabnika' ),
+	'Import'                    => array( 'Uvoz' ),
 	'Mypage'                    => array( 'MojaStran' ),
 	'Mytalk'                    => array( 'MojPogovor' ),
+	'Mycontributions'           => array( 'MojiPrispevki' ),
 	'Search'                    => array( 'Iskanje' ),
+	'Blankpage'                 => array( 'PraznaStran' ),
+	'DeletedContributions'      => array( 'IzbrisaniPrispevki' ),
+	'Activeusers'               => array( 'AktivniUporabniki' ),
 );
 
 $magicWords = array(

@@ -91,6 +91,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'Sve_stranice' ),
 	'Prefixindex'               => array( 'Prefiks_indeks', 'Stranice_po_prefiksu' ),
 	'Ipblocklist'               => array( 'Blokirane_adrese' ),
+	'Unblock'                   => array( 'Odblokiraj' ),
 	'Specialpages'              => array( 'Posebne_stranice' ),
 	'Contributions'             => array( 'Doprinosi' ),
 	'Emailuser'                 => array( 'Elektronička_pošta', 'E-mail' ),
@@ -125,7 +126,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'Botovi' ),
 	'Popularpages'              => array( 'Popularne_stranice' ),
 	'Search'                    => array( 'Traži' ),
-	'Resetpass'                 => array( 'Ponovno_postavi_lozinku' ),
+	'Resetpass'                 => array( 'Izmijeni_lozinku' ),
 	'Withoutinterwiki'          => array( 'Bez_međuwikipoveznica', 'Bez_interwikija' ),
 	'MergeHistory'              => array( 'Spoji_povijest' ),
 	'Filepath'                  => array( 'Putanja_datoteke' ),
@@ -134,6 +135,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Traži_poveznice', 'Traži_linkove' ),
 	'DeletedContributions'      => array( 'Obrisani_doprinosi' ),
 	'Tags'                      => array( 'Oznake' ),
+	'Activeusers'               => array( 'Aktivni_suradnici' ),
 );
 
 $magicWords = array(
