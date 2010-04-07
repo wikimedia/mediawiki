@@ -50,6 +50,14 @@ $namespaceAliases = array(
 	'Обсуждение_категории' => NS_CATEGORY_TALK,
 );
 
+$specialPageAliases = array(
+	'Preferences'               => array( 'Келыштарымаш' ),
+	'Watchlist'                 => array( 'Эскерымаш лӱмер' ),
+	'Recentchanges'             => array( 'Пытартыш тӧрлатымаш-влак' ),
+	'Statistics'                => array( 'Иктешлымаш' ),
+	'Search'                    => array( 'Кычалмаш' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Кузе кылвер-влакым ӱлычын удыралаш?',

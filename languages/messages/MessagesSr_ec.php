@@ -81,6 +81,35 @@ $datePreferenceMigrationMap = array(
 	'h:mm d mon y',
 );
 
+$specialPageAliases = array(
+	'CreateAccount'             => array( 'ОтвориНалог' ),
+	'Watchlist'                 => array( 'СписакНадгледања' ),
+	'Recentchanges'             => array( 'СкорашњеИзмене' ),
+	'Upload'                    => array( 'Пошаљи' ),
+	'Newimages'                 => array( 'НовиФајлови', 'НовеСлике' ),
+	'Listusers'                 => array( 'СписакКорисника', 'КорисничкиСписак' ),
+	'Statistics'                => array( 'Статистика' ),
+	'Specialpages'              => array( 'СпецијалнеСтране' ),
+	'Contributions'             => array( 'Доприноси' ),
+	'Confirmemail'              => array( 'ПотврдиЕ-пошту' ),
+	'Movepage'                  => array( 'Преусмери' ),
+	'Blockme'                   => array( 'БлокирајМе' ),
+	'Categories'                => array( 'Категорије' ),
+	'Version'                   => array( 'Верзија' ),
+	'Allmessages'               => array( 'СвеПоруке' ),
+	'Blockip'                   => array( 'Блокирај', 'БлокирајИП', 'БлокирајКорисника' ),
+	'Lockdb'                    => array( 'ЗакључајБазу' ),
+	'Unlockdb'                  => array( 'ОткључајБазу' ),
+	'Listredirects'             => array( 'СписакПреусмерења' ),
+	'Mypage'                    => array( 'МојаСтраница' ),
+	'Mytalk'                    => array( 'МојРазговор' ),
+	'Mycontributions'           => array( 'МојиДоприноси' ),
+	'Listadmins'                => array( 'ПописАдминистратора' ),
+	'Listbots'                  => array( 'ПописБотова' ),
+	'Search'                    => array( 'Претражи' ),
+	'Activeusers'               => array( 'АктивниКорисници' ),
+);
+
 $datePreferences = array(
 	'default',
 	'hh:mm d. month y.',
