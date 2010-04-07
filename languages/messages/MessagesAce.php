@@ -36,7 +36,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Istimewa'              => NS_SPECIAL
+	'Istimewa'              => NS_SPECIAL,
 	'Pembicaraan'           => NS_TALK,
 	'Pengguna'              => NS_USER,
 	'Pembicaraan_Pengguna'  => NS_USER_TALK,
