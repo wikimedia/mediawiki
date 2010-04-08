@@ -517,7 +517,7 @@ la estimatan tempon de malŝlosado.',
 novaj aldonaj kaj aliaj ŝanĝoj, verŝajne pro laŭkutima flegado de la datumaro.
 Bonvolu reprovi post iom da tempo.
 
-La ŝlosinta administranto lasis la jenan eksplikaĵon:
+La ŝlosinta administranto lasis la jenan klarigon:
 <p>$1</p>',
 'missing-article'      => 'La datumbazo ne trovis la tekston de paĝo kiun ĝi devas trovi, nomita "$1" $2.
 

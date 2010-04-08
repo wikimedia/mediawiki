@@ -3224,7 +3224,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'autosumm-new'     => 'Nova páxina: "$1"',
 
 # Live preview
-'livepreview-loading' => 'Cargando…',
+'livepreview-loading' => 'Cargando...',
 'livepreview-ready'   => 'Cargando… Listo!',
 'livepreview-failed'  => 'Fallou a vista previa en tempo real! Inténteo coa vista previa normal.',
 'livepreview-error'   => 'Fallou a conexión: $1 "$2"

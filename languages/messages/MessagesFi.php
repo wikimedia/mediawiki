@@ -814,7 +814,9 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'showpreview'                      => 'Esikatsele',
 'showlivepreview'                  => 'Pikaesikatselu',
 'showdiff'                         => 'Näytä muutokset',
-'anoneditwarning'                  => 'Et ole kirjautunut sisään. IP-osoitteesi kirjataan tämän sivun muokkaushistoriaan.',
+'anoneditwarning'                  => "'''Varoitus:''' Et ole kirjautunut sisään.
+IP-osoitteesi kirjataan tämän sivun muutoshistoriaan.",
+'anonpreviewwarning'               => "''Et ole kirjautunut sisään. Tallentaminen kirjaa IP-osoitteesi tämän sivun muutoshistoriaan.''",
 'missingsummary'                   => 'Et ole antanut yhteenvetoa. Jos valitset Tallenna uudelleen, niin muokkauksesi tallennetaan ilman yhteenvetoa.',
 'missingcommenttext'               => 'Kirjoita viesti alle.',
 'missingcommentheader'             => 'Et ole antanut otsikkoa kommentillesi. Valitse <em>Tallenna</em>, jos et halua antaa otsikkoa.',
@@ -2244,18 +2246,20 @@ $1',
 'month'               => 'Kuukausi',
 'year'                => 'Vuosi',
 
-'sp-contributions-newbies'        => 'Näytä uusien tulokkaiden muutokset',
-'sp-contributions-newbies-sub'    => 'Uusien tulokkaiden muokkaukset',
-'sp-contributions-newbies-title'  => 'Uusien tulokkaiden muokkaukset',
-'sp-contributions-blocklog'       => 'estot',
-'sp-contributions-deleted'        => 'poistetut muokkaukset',
-'sp-contributions-logs'           => 'lokit',
-'sp-contributions-talk'           => 'keskustelu',
-'sp-contributions-userrights'     => 'käyttöoikeuksien hallinta',
-'sp-contributions-blocked-notice' => 'Tämä käyttäjä on tällä hetkellä estetty. Alla on viimeisin estolokin tapahtuma:',
-'sp-contributions-search'         => 'Etsi muokkauksia',
-'sp-contributions-username'       => 'IP-osoite tai käyttäjätunnus',
-'sp-contributions-submit'         => 'Hae',
+'sp-contributions-newbies'             => 'Näytä uusien tulokkaiden muutokset',
+'sp-contributions-newbies-sub'         => 'Uusien tulokkaiden muokkaukset',
+'sp-contributions-newbies-title'       => 'Uusien tulokkaiden muokkaukset',
+'sp-contributions-blocklog'            => 'estot',
+'sp-contributions-deleted'             => 'poistetut muokkaukset',
+'sp-contributions-logs'                => 'lokit',
+'sp-contributions-talk'                => 'keskustelu',
+'sp-contributions-userrights'          => 'käyttöoikeuksien hallinta',
+'sp-contributions-blocked-notice'      => 'Tämä käyttäjä on tällä hetkellä estetty. Alla on viimeisin estolokin tapahtuma:',
+'sp-contributions-blocked-notice-anon' => 'Tämä IP-osoite on tällä hetkellä estetty.
+Alla on viimeisin estolokin tapahtuma:',
+'sp-contributions-search'              => 'Etsi muokkauksia',
+'sp-contributions-username'            => 'IP-osoite tai käyttäjätunnus',
+'sp-contributions-submit'              => 'Hae',
 
 # What links here
 'whatlinkshere'            => 'Tänne viittaavat sivut',
@@ -2383,6 +2387,8 @@ $1 on jo estetty. Haluatko muuttaa eston asetuksia?',
 'sorbs_create_account_reason'     => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBLin mustalla listalla. Et voi luoda käyttäjätunnusta.',
 'cant-block-while-blocked'        => 'Et voi estää muita käyttäjiä ollessasi estetty.',
 'cant-see-hidden-user'            => 'Käyttäjä, jota yrität estää on jo estetty ja piilotettu. Koska sinulla ei ole hideuser-oikeutta, et voi nähdä tai muokata käyttäjän estoa.',
+'ipbblocked'                      => 'Et voi estää tai poistaa estoja muilta käyttäjiltä, koska itse olet estettynä',
+'ipbnounblockself'                => 'Et ole oikeutettu poistamaan estoa itseltäsi',
 
 # Developer tools
 'lockdb'              => 'Lukitse tietokanta',
@@ -3069,23 +3075,23 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'limitall'         => 'kaikki',
 
 # E-mail address confirmation
-'confirmemail'             => 'Varmenna sähköpostiosoite',
-'confirmemail_noemail'     => 'Sinulla ei ole kelvollista sähköpostiosoitetta [[Special:Preferences|asetuksissasi]].',
-'confirmemail_text'        => 'Tämä wiki vaatii sähköpostiosoitteen varmentamisen, ennen kuin voit käyttää sähköpostitoimintoja. Lähetä alla olevasta painikkeesta varmennusviesti osoitteeseesi. Viesti sisältää linkin, jonka avaamalla varmennat sähköpostiosoitteesi.',
-'confirmemail_pending'     => 'Varmennusviesti on jo lähetetty. Jos loit tunnuksen äskettäin, odota muutama minuutti viestin saapumista, ennen kuin yrität uudelleen.',
-'confirmemail_send'        => 'Lähetä varmennusviesti',
-'confirmemail_sent'        => 'Varmennusviesti lähetetty.',
-'confirmemail_oncreate'    => 'Varmennusviesti lähetettiin sähköpostiosoitteeseesi. Varmennuskoodia ei tarvita sisäänkirjautumiseen, mutta se täytyy antaa, ennen kuin voit käyttää sähköpostitoimintoja tässä wikissä.',
-'confirmemail_sendfailed'  => 'Varmennusviestin lähettäminen epäonnistui. Tarkista, onko osoitteessa kiellettyjä merkkejä.
+'confirmemail'              => 'Varmenna sähköpostiosoite',
+'confirmemail_noemail'      => 'Sinulla ei ole kelvollista sähköpostiosoitetta [[Special:Preferences|asetuksissasi]].',
+'confirmemail_text'         => 'Tämä wiki vaatii sähköpostiosoitteen varmentamisen, ennen kuin voit käyttää sähköpostitoimintoja. Lähetä alla olevasta painikkeesta varmennusviesti osoitteeseesi. Viesti sisältää linkin, jonka avaamalla varmennat sähköpostiosoitteesi.',
+'confirmemail_pending'      => 'Varmennusviesti on jo lähetetty. Jos loit tunnuksen äskettäin, odota muutama minuutti viestin saapumista, ennen kuin yrität uudelleen.',
+'confirmemail_send'         => 'Lähetä varmennusviesti',
+'confirmemail_sent'         => 'Varmennusviesti lähetetty.',
+'confirmemail_oncreate'     => 'Varmennusviesti lähetettiin sähköpostiosoitteeseesi. Varmennuskoodia ei tarvita sisäänkirjautumiseen, mutta se täytyy antaa, ennen kuin voit käyttää sähköpostitoimintoja tässä wikissä.',
+'confirmemail_sendfailed'   => 'Varmennusviestin lähettäminen epäonnistui. Tarkista, onko osoitteessa kiellettyjä merkkejä.
 
 Postitusohjelma palautti: $1',
-'confirmemail_invalid'     => 'Varmennuskoodi ei kelpaa. Koodi on voinut vanhentua.',
-'confirmemail_needlogin'   => 'Sinun täytyy $1, jotta voisit varmistaa sähköpostiosoitteesi.',
-'confirmemail_success'     => 'Sähköpostiosoitteesi on nyt varmennettu. Voit kirjautua sisään.',
-'confirmemail_loggedin'    => 'Sähköpostiosoitteesi on nyt varmennettu.',
-'confirmemail_error'       => 'Jokin epäonnistui varmennuksen tallentamisessa.',
-'confirmemail_subject'     => '{{GRAMMAR:genitive|{{SITENAME}}}} sähköpostiosoitteen varmennus',
-'confirmemail_body'        => 'Joku IP-osoitteesta $1 on rekisteröinyt {{GRAMMAR:inessive|{{SITENAME}}}} tunnuksen $2 tällä sähköpostiosoitteella.
+'confirmemail_invalid'      => 'Varmennuskoodi ei kelpaa. Koodi on voinut vanhentua.',
+'confirmemail_needlogin'    => 'Sinun täytyy $1, jotta voisit varmistaa sähköpostiosoitteesi.',
+'confirmemail_success'      => 'Sähköpostiosoitteesi on nyt varmennettu. Voit kirjautua sisään.',
+'confirmemail_loggedin'     => 'Sähköpostiosoitteesi on nyt varmennettu.',
+'confirmemail_error'        => 'Jokin epäonnistui varmennuksen tallentamisessa.',
+'confirmemail_subject'      => '{{GRAMMAR:genitive|{{SITENAME}}}} sähköpostiosoitteen varmennus',
+'confirmemail_body'         => 'Joku IP-osoitteesta $1 on rekisteröinyt {{GRAMMAR:inessive|{{SITENAME}}}} tunnuksen $2 tällä sähköpostiosoitteella.
 
 Varmenna, että tämä tunnus kuuluu sinulle avaamalla seuraava linkki selaimellasi:
 
@@ -3096,8 +3102,19 @@ Jos et ole rekisteröinyt tätä tunnusta, peruuta sähköpostiosoitteen varmist
 $5
 
 Varmennuskoodi vanhenee $4.',
-'confirmemail_invalidated' => 'Sähköpostiosoitteen varmennus peruutettiin',
-'invalidateemail'          => 'Sähköpostiosoitteen varmennuksen peruuttaminen',
+'confirmemail_body_changed' => 'Joku IP-osoitteesta $1 on vaihtanut {{GRAMMAR:inessive|{{SITENAME}}}} tunnuksen $2 sähköpostiosoitteeksi tämän osoitteen.
+
+Varmenna, että tämä tunnus kuuluu sinulle ja uudelleenaktivoi sähköpostitoiminnot avaamalla seuraava linkki selaimellasi:
+
+$3
+
+Jos tunnus ei kuulu sinulle, peruuta sähköpostiosoitteen varmistus avaamalla seuraava linkki:
+
+$5
+
+Varmennuskoodi vanhenee $4.',
+'confirmemail_invalidated'  => 'Sähköpostiosoitteen varmennus peruutettiin',
+'invalidateemail'           => 'Sähköpostiosoitteen varmennuksen peruuttaminen',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Wikienvälinen sisällytys ei ole käytössä]',

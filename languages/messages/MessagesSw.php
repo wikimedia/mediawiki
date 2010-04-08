@@ -1944,7 +1944,7 @@ Tafadhali jaribu tena.',
 # Info page
 'infosubtitle' => 'Taarifa juu ya ukurasa',
 'numedits'     => 'Idadi ya haririo (ukurasa): $1',
-'numtalkedits' => 'Idadi ya haririo (ukurasa wa majadiliano): $1',
+'numtalkedits' => 'Idadi ya uhariri (ukurasa wa majadiliano): $1',
 'numwatchers'  => 'Idadi ya wanaofuatilia ukurasa: $1',
 
 # Math errors

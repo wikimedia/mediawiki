@@ -939,6 +939,7 @@ $2',
 'showdiff'                         => 'نمایش تغییرات',
 'anoneditwarning'                  => "'''هشدار:''' شما به سیستم وارد نشده‌اید.
 نشانی آی‌پی شما در تاریخچهٔ ویرایش این صفحه ثبت خواهد شد.",
+'anonpreviewwarning'               => "''شما به سیستم وارد نشده‌اید. ذخیره کردن باعث می‌شود که نشانی آی‌پی شما در تاریخچهٔ این صفحه ثبت گردد.''",
 'missingsummary'                   => "'''یادآوری:''' شما خلاصهٔ ویرایش ننوشته‌اید. اگر دوباره ''ذخیره'' را کلیک کنید ویرایشتان بدون خلاصه ذخیره خواهد شد.",
 'missingcommenttext'               => 'لطفاً توضیحی در زیر بیفزایید.',
 'missingcommentheader'             => "یادآوری: '''شما موضوع/عنوان این یادداشت را مشخص نکرده‌اید.''' اگر دوباره دکمهٔ ذخیره را فشار دهید ویرایش شما بدون آن ذخیره خواهد شد.",
@@ -1573,6 +1574,7 @@ $1",
 'right-hideuser'              => 'قطع دسترسی کاربر و پنهان کردن آن از دید عموم',
 'right-ipblock-exempt'        => 'تاثیر نپذیرفتن از قطع دسترسی‌های آی‌پی، خودکار یا فاصله‌ای',
 'right-proxyunbannable'       => 'تاثیر نپذیرفتن از قطع دسترسی خودکار پروکسی‌ها',
+'right-unblockself'           => 'دسترسی خود را باز کنند',
 'right-protect'               => 'تغییر میزان حفاظت صفحه‌ها و ویرایش صفحه‌های حفاظت شده',
 'right-editprotected'         => 'ویرایش صفحه‌های حفاظت شده (به شرط نبود حفاظت آبشاری)',
 'right-editinterface'         => 'ویرایش رابط کاربری',
@@ -1917,7 +1919,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'filedelete-nofile'           => "'''$1''' وجود ندارد.",
 'filedelete-nofile-old'       => "نسخه بایگانی شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد..",
 'filedelete-otherreason'      => 'دلیل دیگر/اضافی:',
-'filedelete-reason-otherlist' => 'دیگر',
+'filedelete-reason-otherlist' => 'دلیل دیگر',
 'filedelete-reason-dropdown'  => '
 *دلایل متداول حذف
 ** نقض حق تکثیر
@@ -2287,7 +2289,7 @@ $NEWPAGE
 'reverted'               => 'به نسخهٔ قدیمی‌تر واگردانده شد.',
 'deletecomment'          => 'توضیح حذف:',
 'deleteotherreason'      => 'دلیل دیگر/اضافی:',
-'deletereasonotherlist'  => 'دیگر',
+'deletereasonotherlist'  => 'دلیل دیگر',
 'deletereason-dropdown'  => '*دلایل متداول حذف
 ** درخواست کاربر
 ** نقض حق تکثیر
@@ -2350,7 +2352,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'زمانی دیگر',
 'protect-existing-expiry'     => 'زمان انقضای موجود: $2، $3',
 'protect-otherreason'         => 'دلیل دیگر/اضافی:',
-'protect-otherreason-op'      => 'دلیل دیگر/اضافی',
+'protect-otherreason-op'      => 'دلیل دیگر',
 'protect-dropdown'            => '*دلایل متداول محافظت
 ** خرابکاری گسترده
 ** هرزنگاری گسترده
@@ -2440,18 +2442,20 @@ $1',
 'month'               => 'در این ماه (و قبل از آن)',
 'year'                => 'در این سال (و قبل از آن)',
 
-'sp-contributions-newbies'        => 'فقط مشارکت‌های تازه‌واردان نمایش داده شود',
-'sp-contributions-newbies-sub'    => 'برای تازه‌کاران',
-'sp-contributions-newbies-title'  => 'مشارکت‌های کاربری برای حساب‌های تازه‌کار',
-'sp-contributions-blocklog'       => 'سیاههٔ بسته‌شدن‌ها',
-'sp-contributions-deleted'        => 'مشارکت‌های حذف شدهٔ کاربر',
-'sp-contributions-logs'           => 'سیاهه‌ها',
-'sp-contributions-talk'           => 'بحث',
-'sp-contributions-userrights'     => 'مدیریت اختیارات کاربر',
-'sp-contributions-blocked-notice' => 'این کاربر در حال حاضر بسته شده‌است. آخرین سیاههٔ بسته شدن در زیر آمده‌است:',
-'sp-contributions-search'         => 'جستجوی مشارکت‌ها',
-'sp-contributions-username'       => 'نشانی آی‌پی یا نام کاربری:',
-'sp-contributions-submit'         => 'جستجو',
+'sp-contributions-newbies'             => 'فقط مشارکت‌های تازه‌واردان نمایش داده شود',
+'sp-contributions-newbies-sub'         => 'برای تازه‌کاران',
+'sp-contributions-newbies-title'       => 'مشارکت‌های کاربری برای حساب‌های تازه‌کار',
+'sp-contributions-blocklog'            => 'سیاههٔ بسته‌شدن‌ها',
+'sp-contributions-deleted'             => 'مشارکت‌های حذف شدهٔ کاربر',
+'sp-contributions-logs'                => 'سیاهه‌ها',
+'sp-contributions-talk'                => 'بحث',
+'sp-contributions-userrights'          => 'مدیریت اختیارات کاربر',
+'sp-contributions-blocked-notice'      => 'این کاربر در حال حاضر بسته شده‌است. آخرین سیاههٔ بسته شدن در زیر آمده‌است:',
+'sp-contributions-blocked-notice-anon' => 'این نشانی آی‌پی در حال حاضر بسته است.
+آخرین سیاههٔ بسته شدن در زیر آمده‌است:',
+'sp-contributions-search'              => 'جستجوی مشارکت‌ها',
+'sp-contributions-username'            => 'نشانی آی‌پی یا نام کاربری:',
+'sp-contributions-submit'              => 'جستجو',
 
 # What links here
 'whatlinkshere'            => 'پیوندها به این صفحه',
@@ -2483,7 +2487,7 @@ $1',
 'ipadressorusername'              => 'نشانی آی‌پی یا نام کاربری',
 'ipbexpiry'                       => 'خاتمه',
 'ipbreason'                       => 'دلیل',
-'ipbreasonotherlist'              => 'دیگر دلایل',
+'ipbreasonotherlist'              => 'دلیل دیگر',
 'ipbreason-dropdown'              => '*دلایل متداول قطع دسترسی
 **وارد کردن اطلاعات نادرست
 **پاک کردن اطلاعات مفید از صفحه‌ها
@@ -2583,6 +2587,8 @@ $1',
 'sorbs_create_account_reason'     => 'نشانی اینترنتی (آی‌پی) شما توسط DNSBL به عنوان یک پروکسی باز گزارش شده‌است. شما اجازهٔ ساختن حساب کاربری ندارید.',
 'cant-block-while-blocked'        => 'در مدتی که دسترسی شما بسته است نمی‌توانید دسترسی کاربران دیگر را قطع کنید.',
 'cant-see-hidden-user'            => 'کاربری که می‌خواهید ببندید قبلاً بسته شده و پنهان گردیده است. چون شما دسترسی پنهان کردن کاربران را ندارید، نمی‌توانید قطع دسترسی کاربر را ببینید یا ویرایش کنید.',
+'ipbblocked'                      => 'شما نمی‌توانید دسترسی دیگر کاربران را ببندید یا باز کنید زیرا دسترسی خودتان بسته است.',
+'ipbnounblockself'                => 'شما مجاز به باز کردن دسترسی خود نیستید.',
 
 # Developer tools
 'lockdb'              => 'قفل کردن پایگاه داده',
@@ -3505,7 +3511,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'مسیر پرونده',
 'filepath-page'    => 'پرونده:',
-'filepath-submit'  => 'مسیر',
+'filepath-submit'  => 'برو',
 'filepath-summary' => 'این صفحهٔ ویژه نشانی کامل برای یک پرونده را نشان می‌دهد. تصاویر با کیفیت وضوح کامل نشان داده می‌شوند، سایر انواع پرونده با برنامه مخصوص به خودشان باز می‌شوند.
 
 نشانی پرونده را بدون پیشوند «{{ns:file}}:» وارد کنید.',

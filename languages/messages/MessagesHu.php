@@ -2327,18 +2327,20 @@ $1',
 'month'               => 'E hónap végéig:',
 'year'                => 'Eddig az évig:',
 
-'sp-contributions-newbies'        => 'Csak a nemrég regisztrált szerkesztők közreműködéseinek mutatása',
-'sp-contributions-newbies-sub'    => 'Új szerkesztők lapjai',
-'sp-contributions-newbies-title'  => 'Új szerkesztők közreműködései',
-'sp-contributions-blocklog'       => 'Blokkolási napló',
-'sp-contributions-deleted'        => 'törölt szerkesztések',
-'sp-contributions-logs'           => 'naplók',
-'sp-contributions-talk'           => 'vitalap',
-'sp-contributions-userrights'     => 'szerkesztői jogok beállítása',
-'sp-contributions-blocked-notice' => 'Ez a szerkesztő blokkolva van. A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
-'sp-contributions-search'         => 'Közreműködések szűrése',
-'sp-contributions-username'       => 'IP-cím vagy felhasználónév:',
-'sp-contributions-submit'         => 'Keresés',
+'sp-contributions-newbies'             => 'Csak a nemrég regisztrált szerkesztők közreműködéseinek mutatása',
+'sp-contributions-newbies-sub'         => 'Új szerkesztők lapjai',
+'sp-contributions-newbies-title'       => 'Új szerkesztők közreműködései',
+'sp-contributions-blocklog'            => 'Blokkolási napló',
+'sp-contributions-deleted'             => 'törölt szerkesztések',
+'sp-contributions-logs'                => 'naplók',
+'sp-contributions-talk'                => 'vitalap',
+'sp-contributions-userrights'          => 'szerkesztői jogok beállítása',
+'sp-contributions-blocked-notice'      => 'Ez a szerkesztő blokkolva van. A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
+'sp-contributions-blocked-notice-anon' => 'Ez az IP-cím blokkolva van.
+A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
+'sp-contributions-search'              => 'Közreműködések szűrése',
+'sp-contributions-username'            => 'IP-cím vagy felhasználónév:',
+'sp-contributions-submit'              => 'Keresés',
 
 # What links here
 'whatlinkshere'            => 'Mi hivatkozik erre',
@@ -3341,7 +3343,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 # Special:FilePath
 'filepath'         => 'Fájlelérés',
 'filepath-page'    => 'Fájl:',
-'filepath-submit'  => 'Elérés',
+'filepath-submit'  => 'Elérési út',
 'filepath-summary' => 'Ezen lap segítségével lekérheted egy adott fájl pontos útvonalát. A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozzájuk rendelt programmal indulnak el.
 
 Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',

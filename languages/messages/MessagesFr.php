@@ -1444,12 +1444,12 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'group-suppress'      => 'Superviseurs',
 'group-all'           => 'Tous',
 
-'group-user-member'          => 'Utilisateur',
-'group-autoconfirmed-member' => 'Utilisateur enregistré',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrateur',
-'group-bureaucrat-member'    => 'Bureaucrate',
-'group-suppress-member'      => 'Superviseur',
+'group-user-member'          => 'utilisateur',
+'group-autoconfirmed-member' => 'utilisateur enregistré',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrateur',
+'group-bureaucrat-member'    => 'bureaucrate',
+'group-suppress-member'      => 'superviseur',
 
 'grouppage-user'          => '{{ns:project}}:Utilisateurs',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilisateurs enregistrés',
@@ -3360,7 +3360,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'size-gigabytes' => '$1 Gio',
 
 # Live preview
-'livepreview-loading' => 'Chargement …',
+'livepreview-loading' => 'Chargement…',
 'livepreview-ready'   => 'Chargement … terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',

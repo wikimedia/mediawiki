@@ -712,6 +712,7 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'showlivepreview'                  => 'Tiesioginė peržiūra',
 'showdiff'                         => 'Rodyti skirtumus',
 'anoneditwarning'                  => "'''Dėmesio:''' Jūs nesate prisijungęs. Jūsų IP adresas bus įrašytas į šio puslapio istoriją.",
+'anonpreviewwarning'               => "''Jūs nesate prisijungęs. Išsaugojant jūsų IP adresas bus rodomas šio puslapio redagavimo istorijoje.''",
 'missingsummary'                   => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite Įšsaugoti, jūsų keitimas bus išsaugotas be jo.",
 'missingcommenttext'               => 'Prašome įvesti komentarą.',
 'missingcommentheader'             => "'''Priminimas:''' Jūs nenurodėte skyrelio/antraštės šiam komentarui. Jei vėl paspausite Išsaugoti, jūsų keitimas bus įrašytas be jo.",
@@ -1344,6 +1345,7 @@ teisės",
 'right-hideuser'              => 'Blokuoti naudotojo vardą, paslepiant jį nuo viešinimo',
 'right-ipblock-exempt'        => 'Apeiti IP blokavimus, autoblokavimus ir pakopinius blokavimus',
 'right-proxyunbannable'       => 'Apeiti automatinius proxy serverių blokavimus',
+'right-unblockself'           => 'Atblokuoti pačius',
 'right-protect'               => 'Pakeisti apsaugos lygius ir redaguoti apsaugotus puslapius',
 'right-editprotected'         => 'Redaguoti apsaugotus puslapius (be pakopinės apsaugos)',
 'right-editinterface'         => 'Redaguoti naudotojo aplinką',
@@ -1472,11 +1474,11 @@ Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra '''paryškin
 'upload_directory_read_only'  => 'Tinklapio serveris negali rašyti į įkėlimo aplanką ($1).',
 'uploaderror'                 => 'Įkėlimo klaida',
 'uploadtext'                  => "Naudokitės žemiau pateikta forma failų įkėlimui.
-Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai ir trynimai yra registruojami [[Special:Log/upload|įkėlimų istorijoje]], trynimai - [[Special:Log/delete|trynimų istorijoje]].
+Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai yra registruojami [[Special:Log/upload|įkėlimų istorijoje]], trynimai — [[Special:Log/delete|trynimų istorijoje]].
 
 Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></tt>''' arba
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></tt>''' norėdami naudoti pilną failo versiją
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></tt>''' norėdami naudoti 200 pikselių pločio paveikslėlį rėmelyje puslapio kairėje; „alternatyvus tekstas“ bus naudojamas paveikslėlio aprašymui.
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki></tt>''' tiesioginei nuorodai į failą.",
 'upload-permitted'            => 'Leidžiami failų tipai: $1.',
 'upload-preferred'            => 'Pageidautini failų tipai: $1.',
@@ -1599,7 +1601,7 @@ Dėl saugumo, img_auth.php yra išjungtas.',
 'upload-curl-error28'      => 'Per ilgai įkeliama',
 'upload-curl-error28-text' => 'Atsakant svetainė užtrunka per ilgai. Patikrinkite, ar svetainė veikia, palaukite truputį ir vėl pamėginkite. Galbūt jums reikėtų pamėginti ne tokiu apkrautu metu.',
 
-'license'            => 'Licensija:',
+'license'            => 'Licencija:',
 'license-header'     => 'Licensija',
 'nolicense'          => 'Nepasirinkta',
 'license-nopreview'  => '(Peržiūra negalima)',
@@ -1809,7 +1811,7 @@ Kiekvienoje eilutėje yra nuorodos į pirmąjį ir antrąjį peradresavimą, tai
 'move'                    => 'Pervadinti',
 'movethispage'            => 'Pervadinti šį puslapį',
 'unusedimagestext'        => 'Šie failai yra, bet jie neįtraukti į jokį kitą puslapį.
-Primename, kad kitos svetainės gali turėti tiesioginę nuorodą į failą, bet vistiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.',
+Primename, kad kitos svetainės gali turėti tiesioginę nuorodą į failą, bet vis tiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.',
 'unusedcategoriestext'    => 'Šie kategorijų puslapiai sukurti, nors joks kitas puslapis ar kategorija jo nenaudoja.',
 'notargettitle'           => 'Nenurodytas objektas',
 'notargettext'            => 'Jūs nenurodėte norimo puslapio ar naudotojo, kuriam įvykdyti šią funkciją.',
@@ -2196,19 +2198,21 @@ $1',
 'month'               => 'Nuo mėnesio (ir anksčiau):',
 'year'                => 'Nuo metų (ir anksčiau):',
 
-'sp-contributions-newbies'        => 'Rodyti tik naujų paskyrų įnašus',
-'sp-contributions-newbies-sub'    => 'Naujoms paskyroms',
-'sp-contributions-newbies-title'  => 'Naudotojų keitimai naujoms paskyroms',
-'sp-contributions-blocklog'       => 'Blokavimų istorija',
-'sp-contributions-deleted'        => 'ištrintas naudotojo indėlis',
-'sp-contributions-logs'           => 'Specialiųjų veiksmų istorija',
-'sp-contributions-talk'           => 'Aptarimas',
-'sp-contributions-userrights'     => 'naudotojų teisių valdymas',
-'sp-contributions-blocked-notice' => 'Šis naudotojas šiuo metu užblokuotas.
+'sp-contributions-newbies'             => 'Rodyti tik naujų paskyrų įnašus',
+'sp-contributions-newbies-sub'         => 'Naujoms paskyroms',
+'sp-contributions-newbies-title'       => 'Naudotojų keitimai naujoms paskyroms',
+'sp-contributions-blocklog'            => 'Blokavimų istorija',
+'sp-contributions-deleted'             => 'ištrintas naudotojo indėlis',
+'sp-contributions-logs'                => 'Specialiųjų veiksmų istorija',
+'sp-contributions-talk'                => 'Aptarimas',
+'sp-contributions-userrights'          => 'naudotojų teisių valdymas',
+'sp-contributions-blocked-notice'      => 'Šis naudotojas šiuo metu užblokuotas.
 Pateikiamas paskutinis blokavimo istorijos įrašas.',
-'sp-contributions-search'         => 'Ieškoti įnašo',
-'sp-contributions-username'       => 'IP adresas arba naudotojo vardas:',
-'sp-contributions-submit'         => 'Ieškoti',
+'sp-contributions-blocked-notice-anon' => 'Šis IP adresas yra užblokuotas.
+Paskutinis blokavimo įrašas pateikiamas žemiau:',
+'sp-contributions-search'              => 'Ieškoti įnašo',
+'sp-contributions-username'            => 'IP adresas arba naudotojo vardas:',
+'sp-contributions-submit'              => 'Ieškoti',
 
 # What links here
 'whatlinkshere'            => 'Susiję puslapiai',
@@ -2341,6 +2345,8 @@ $1 jau yra užblokuotas. Ar norite pakeisti nustatymus?',
 'cant-block-while-blocked'        => 'Jūs negalite blokuoti kitų naudotojų kuomet pats esate užblokuotas.',
 'cant-see-hidden-user'            => 'Naudotojas, kurį bandote užblokuoti, jau yra užblokuotas arba paslėptas.
 Kadangi jūs neturi hideuser teisės, jūs negalite pamatyti arba pakeisti naudotojo blokavimo.',
+'ipbblocked'                      => 'Jūs negalite blokuoti ar atblokuoti kitų naudotojų, nes pats esate užblokuotas',
+'ipbnounblockself'                => 'Jums nėra leidžiama savęs atblokuoti',
 
 # Developer tools
 'lockdb'              => 'Užrakinti duomenų bazę',
