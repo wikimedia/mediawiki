@@ -143,38 +143,38 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sotołinea i cołegamenti:',
 'tog-highlightbroken'         => 'Evidensia <a href="" class="new">cussita/a> i cołegamenti che i punta a voxe \'ncora da scrìvar (se disativà vien fora <a href="" class="internal">cussita</a>).',
-'tog-justify'                 => 'Paragrafo: giustificà',
-'tog-hideminor'               => 'Scondi łe modifighe picenine n\'te ła paxena "Ultime modifighe"',
-'tog-hidepatrolled'           => 'Scondi le modìfeghe verificà tra le ultime modìfeghe',
-'tog-newpageshidepatrolled'   => "Scondi le pàxene verificà da l'elenco de le pàxene piassè nove",
-'tog-extendwatchlist'         => "Espandi i osservai speciałi mostrando tute łe modifighe, no solo l'ultima",
-'tog-usenewrc'                => 'Ultime modifiche avanzade (ghe vol JavaScript)',
-'tog-numberheadings'          => 'Auto-numerazion dei titoli de paragrafo',
-'tog-showtoolbar'             => 'Mostra la barra dei strumenti de modifica (ghe vol JavaScript)',
-'tog-editondblclick'          => 'Dopio clic par modificar ła voxe (ghe vol JavaScript)',
-'tog-editsection'             => 'Modifega de łe sezion tramite el cołegamento [modifica]',
-'tog-editsectiononrightclick' => 'Modifega de łe sezion tramite clic destro sul titoło (ghe vol JavaScript)',
-'tog-showtoc'                 => "Mostra l'indexe par łe pàxene con pì de 3 sezion",
-'tog-rememberpassword'        => 'Ricorda la password (no limitar a una session - ghe vol i cookies)',
-'tog-editwidth'               => 'Slarga la casèla de modifica fin a inpenir tuto el schermo',
-'tog-watchcreations'          => 'Xonta łe pàxene creàe a i osservati speciałi',
-'tog-watchdefault'            => 'Xonta łe pàxene modifegàe a i osservati speciałi',
-'tog-watchmoves'              => 'Xonta łe pàxene spostà ai oservai speciałi',
-'tog-watchdeletion'           => 'Xonta łe pàxene scancełà a i oservai speciałi',
-'tog-minordefault'            => 'Indica ogni modifica come picenina (solo come predefinìo)',
-'tog-previewontop'            => "Mostra l'anteprima de sora la casèla de modifica",
-'tog-previewonfirst'          => "Mostra l'anteprima par la prima modifica",
-'tog-nocache'                 => "Disativa ła ''cache'' par łe pàxene",
-'tog-enotifwatchlistpages'    => 'Segnàleme via e-mail le modifiche a le pagine osservà',
-'tog-enotifusertalkpages'     => 'Segnàleme via e-mail łe modifighe a ła me pàxena de discusion',
-'tog-enotifminoredits'        => 'Segnàleme via e-mail anca le modifiche picenine',
-'tog-enotifrevealaddr'        => 'Rivela el me indirizo e-mail nei messagi de aviso',
-'tog-shownumberswatching'     => "Mostra el nùmaro de utenti che tien d'ocio la pagina",
-'tog-oldsig'                  => 'Anteprima de la firma esistente:',
-'tog-fancysig'                => 'Tràta la firma come la fusse un testo wiki (sensa el colegamento automatico)',
-'tog-externaleditor'          => 'Dòpara par default un editor de testi esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
-'tog-externaldiff'            => 'Dòpara par default un programa de diff esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
-'tog-showjumplinks'           => "Ativa i cołegamenti acesibiłi 'và a'",
+'tog-justify'                 => 'Paragrafo: giustifegà',
+'tog-hideminor'               => 'Scondi łe modifeghe picenine n\'te ła pajina "Ulteme modifeghe"',
+'tog-hidepatrolled'           => 'Scondi łe modifeghe verifegae tra łe ulteme modifeghe',
+'tog-newpageshidepatrolled'   => "Scondi łe pajine verifegae da l'elenco de łe pajine pì resenti",
+'tog-extendwatchlist'         => "Mostra tute łe modifeghe a i oservai spesałi, no soło l'ultima",
+'tog-usenewrc'                => 'Utiłisa łe ulteme modifeghe avansae (el richiede JavaScript)',
+'tog-numberheadings'          => 'Numerasion automatega de i titołi de sesion',
+'tog-showtoolbar'             => 'Mostra ła bara de i strumenti de modifega (el richiede JavaScript)',
+'tog-editondblclick'          => 'Modifega de łe pajine tramite dopio clic (el richiede JavaScript)',
+'tog-editsection'             => 'Modifega de łe sesion tramite el cołegamento [modifega]',
+'tog-editsectiononrightclick' => 'Modifega de łe sesion tramite clic destro sol titoło (el richiede JavaScript)',
+'tog-showtoc'                 => "Mostra l'indexe par łe pajine con pì de 3 sesion",
+'tog-rememberpassword'        => 'Ricorda ła password so sto computer (el richiede de asetare i cookies)',
+'tog-editwidth'               => 'Slarga al masimo ła caseła de modifega',
+'tog-watchcreations'          => 'Zonta łe pajine creae a i oservai spesałi',
+'tog-watchdefault'            => 'Zonta łe pajine modifegae a i oservai spesałi',
+'tog-watchmoves'              => 'Zonta łe pajine spostae a i oservai spesałi',
+'tog-watchdeletion'           => 'Zonta łe pajine scansełae a i oservai spesałi',
+'tog-minordefault'            => 'Indica ogni modifega come minore (soło come predefinio)',
+'tog-previewontop'            => "Mostra l'anteprima sora ła caseła de modifega e no soto",
+'tog-previewonfirst'          => "Mostra l'anteprima par ła prima modifega",
+'tog-nocache'                 => 'Disativa ła "cache" par łe pajine',
+'tog-enotifwatchlistpages'    => 'Segnałame via e-mail łe modifeghe a łe pajine oservae',
+'tog-enotifusertalkpages'     => 'Segnałame via e-mail łe modifeghe a ła me pajina de discusion',
+'tog-enotifminoredits'        => 'Segnałame via e-mail anca łe modifeghe minori',
+'tog-enotifrevealaddr'        => 'Riveła el me indiriso e-mail ne i mesaji de avixo',
+'tog-shownumberswatching'     => 'Mostra el numaro de utenti che i ga ła pajina en oservasion',
+'tog-oldsig'                  => 'Anteprima de ła firma atuałe:',
+'tog-fancysig'                => 'Interpreta i comandi wiki ne ła firma (sensa cołegamento automatego)',
+'tog-externaleditor'          => "Dopara par default on editor de testo esterno (soło par utenti esperti, el richiede l'uso de impostasion particołari sol proprio computer)",
+'tog-externaldiff'            => "Dopara par default on programa de diff esterno (soło par utenti esperti, el richiede l'uso de impostasion particołari sol proprio computer)",
+'tog-showjumplinks'           => 'Ativa i cołegamenti acesibiłi "va a"',
 'tog-uselivepreview'          => "Ativa la funzion ''Anteprima in tenpo reàl'' (ghe vol JavaScript; sperimental)",
 'tog-forceeditsummary'        => "Domanda conferma se l'ogeto de la modifica el xe vodo",
 'tog-watchlisthideown'        => 'Scondi łe me modifeghe ne i osservati speciałi',
@@ -742,6 +742,8 @@ Te pol [[Special:Search/{{PAGENAME}}|sercar el titolo de sta pagina]] in altre p
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sercar in tei registri ligà a sta pagina]</span>.',
 'userpage-userdoesnotexist'        => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
 'userpage-userdoesnotexist-view'   => 'L\'utensa "$1" no la xe gnancora registrà.',
+'blocked-notice-logextract'        => "Sto utente xè atualmente blocà.
+L'ultimo ełemento del rejistro de i blochi xè riportà de seguito par informasion:",
 'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Sugerimento:''' se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
 'userjsyoucanpreview'              => "'''Sugerimento:''' se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
@@ -1168,6 +1170,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'prefs-files'                   => 'File',
 'prefs-custom-css'              => 'CSS personalixà',
 'prefs-custom-js'               => 'JS personalixà',
+'prefs-common-css-js'           => 'CSS/JS condiviso par tute łe skin:',
 'prefs-reset-intro'             => 'Te pol doparar sta pagina par riportar le to preferense a quele predefinìe.
 Sta operassion no la pol èssar anulà.',
 'prefs-emailconfirm-label'      => "Conferma de l'e-mail:",
@@ -1291,6 +1294,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'right-hideuser'              => 'Bloca un nome utente, scondéndolo al publico',
 'right-ipblock-exempt'        => "Scavalca i blochi de l'IP, i auto-blochi e i blochi de grupi de IP",
 'right-proxyunbannable'       => 'Salta via i blochi sui proxy',
+'right-unblockself'           => 'Sbloca se steso',
 'right-protect'               => 'Canbia i livèi de protezion',
 'right-editprotected'         => 'Modifica pagine protete',
 'right-editinterface'         => "Modifica l'interfacia utente",
@@ -1445,6 +1449,7 @@ Varda la [[Special:NewFiles|galerìa dei file nóvi]] par na vision de insieme.'
 'minlength1'                  => 'El nome del file el ga da contegner almanco un caràtere.',
 'illegalfilename'             => 'El nome file "$1" el contien caràteri che no xè permessi nei titoli de le pagine. Par piaser, rinomina el file e próa a ricaricarlo.',
 'badfilename'                 => 'El nome de el file el xè stà convertio in "$1".',
+'filetype-mime-mismatch'      => "L'estension del file no a corisponde con el tipo MIME.",
 'filetype-badmime'            => 'No xe consentìo de cargar file de tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'No se pode cargar sto file, parché da Internet Explorer el vegnarìa rilevà come "$1", che xe un tipo de file disativà e potensialmente pericoloso.',
 'filetype-unwanted-type'      => "Cargar file de tipo '''\".\$1\"''' xe sconsiglià. {{PLURAL:\$3|El tipo de file consiglià el|I tipi de file consiglià i}} xe \$2.",
@@ -2135,18 +2140,19 @@ $1',
 'month'               => 'A partir dal mese (e precedenti):',
 'year'                => "A partir da l'ano (e precedenti):",
 
-'sp-contributions-newbies'        => 'Mostra solo i contributi dei utenti novi',
-'sp-contributions-newbies-sub'    => 'Par i novi utenti',
-'sp-contributions-newbies-title'  => 'Contributi dei utenti novi',
-'sp-contributions-blocklog'       => 'registro dei blochi',
-'sp-contributions-deleted'        => 'contributi utente scancelà',
-'sp-contributions-logs'           => 'registri',
-'sp-contributions-talk'           => 'discussion',
-'sp-contributions-userrights'     => 'gestion dei parmessi relativi ai utenti',
-'sp-contributions-blocked-notice' => "Sto utente el xe atualmente blocà. L'ultimo elemento del registro dei blochi el xè riportà qua soto par informassion:",
-'sp-contributions-search'         => 'Riçerca contributi',
-'sp-contributions-username'       => 'Indirizo IP o nome utente:',
-'sp-contributions-submit'         => 'Riçerca',
+'sp-contributions-newbies'             => 'Mostra solo i contributi dei utenti novi',
+'sp-contributions-newbies-sub'         => 'Par i novi utenti',
+'sp-contributions-newbies-title'       => 'Contributi dei utenti novi',
+'sp-contributions-blocklog'            => 'registro dei blochi',
+'sp-contributions-deleted'             => 'contributi utente scancelà',
+'sp-contributions-logs'                => 'registri',
+'sp-contributions-talk'                => 'discussion',
+'sp-contributions-userrights'          => 'gestion dei parmessi relativi ai utenti',
+'sp-contributions-blocked-notice'      => "Sto utente el xe atualmente blocà. L'ultimo elemento del registro dei blochi el xè riportà qua soto par informassion:",
+'sp-contributions-blocked-notice-anon' => "Sto indiriso IP xè atualmente blocà. De seguito xè riportà l'ultimo ełemento del rejistro de i blochi:",
+'sp-contributions-search'              => 'Riçerca contributi',
+'sp-contributions-username'            => 'Indirizo IP o nome utente:',
+'sp-contributions-submit'              => 'Riçerca',
 
 # What links here
 'whatlinkshere'            => 'Pàxene che le punta qua',
@@ -2274,6 +2280,8 @@ $1 xe xà blocà. Vuto canbiar le inpostassion?',
 'sorbs_create_account_reason'     => 'No se pol crear acessi novi da sto indirizo IP parché el xe elencà come proxy verto ne la lista nera DNSBL doparà da {{SITENAME}}.',
 'cant-block-while-blocked'        => 'No se pode blocar altri utenti finché se xe blocài.',
 'cant-see-hidden-user'            => "L'utente che te vol blocar el xe zà stà blocà e sconto. Sicome a no te ghè mia i diriti de hideuser, no te pol mia védar o canbiar el bloco de l'utente.",
+'ipbblocked'                      => 'No te pui blocare o sblocare altri utenti, parché ti steso te si blocà',
+'ipbnounblockself'                => 'No te pui sblocare ti steso',
 
 # Developer tools
 'lockdb'              => 'Blocca el database',
@@ -2952,30 +2960,30 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 'limitall'         => 'tuti quanti',
 
 # E-mail address confirmation
-'confirmemail'             => 'Conferma indirisso e-mail',
-'confirmemail_noemail'     => 'No te ghè indicà un indirizo e-mail valido ne le to [[Special:Preferences|preferense]].',
-'confirmemail_text'        => "{{SITENAME}} el richiede la verifica de l'indirizo e-mail prima che te possi doparar le funzion ligà a l'e-mail.
+'confirmemail'              => 'Conferma indirisso e-mail',
+'confirmemail_noemail'      => 'No te ghè indicà un indirizo e-mail valido ne le to [[Special:Preferences|preferense]].',
+'confirmemail_text'         => "{{SITENAME}} el richiede la verifica de l'indirizo e-mail prima che te possi doparar le funzion ligà a l'e-mail.
 Struca el boton qua soto par mandar na richiesta de conferma al to indirizo.
 Nel messagio che te riva te catarè un colegamento che contien un codice.
 Visita el colegamento col to browser par confermar che el to indirizo el xe valido.",
-'confirmemail_pending'     => "El codice de conferma el xe zà stà spedìo par posta eletronica; se l'account el xe stà
+'confirmemail_pending'      => "El codice de conferma el xe zà stà spedìo par posta eletronica; se l'account el xe stà
 creà de reçente, par piaser speta par qualche minuto che riva el codice prima de domandàrghene uno novo.",
-'confirmemail_send'        => 'Spedissi un codice de conferma par e-mail',
-'confirmemail_sent'        => 'Email de conferma invià.',
-'confirmemail_oncreate'    => "Un codice de conferma el xe stà spedìo a l'indirizo
+'confirmemail_send'         => 'Spedissi un codice de conferma par e-mail',
+'confirmemail_sent'         => 'Email de conferma invià.',
+'confirmemail_oncreate'     => "Un codice de conferma el xe stà spedìo a l'indirizo
 de posta eletronica indicà. El codice no'l xe necessario par entrar nel sito,
 ma bisogna fornirlo par poder abilitar tute le funzion del sito che dòpara la posta eletronica.",
-'confirmemail_sendfailed'  => "{{SITENAME}} no l'è stà bon da inviar el messagio e-mail de conferma. 
+'confirmemail_sendfailed'   => "{{SITENAME}} no l'è stà bon da inviar el messagio e-mail de conferma. 
 Controla che l'indirizo no'l contegna carateri mìa validi.
 
 El messagio de eror el xe: $1",
-'confirmemail_invalid'     => 'Codice de conferma mìa valido. El codice el podarìa èssar scadùo.',
-'confirmemail_needlogin'   => 'Xè necessario $1 par confermare el proprio indirisso e-mail.',
-'confirmemail_success'     => "El to indirisso email l'è stado confermà. Ora te podi loggarte e gòderte la wiki.",
-'confirmemail_loggedin'    => 'El to indirisso email el xè stà confermà.',
-'confirmemail_error'       => "Qualcossa l'è andà storto nel salvar la to conferma.",
-'confirmemail_subject'     => "{{SITENAME}}: e-mail par la conferma de l'indirisso",
-'confirmemail_body'        => 'Qualcheduni, probabilmente ti stesso da l\'indirizo IP $1, el ga registrà n\'account "$2" con sto indirizo e-mail su {{SITENAME}}. 
+'confirmemail_invalid'      => 'Codice de conferma mìa valido. El codice el podarìa èssar scadùo.',
+'confirmemail_needlogin'    => 'Xè necessario $1 par confermare el proprio indirisso e-mail.',
+'confirmemail_success'      => "El to indirisso email l'è stado confermà. Ora te podi loggarte e gòderte la wiki.",
+'confirmemail_loggedin'     => 'El to indirisso email el xè stà confermà.',
+'confirmemail_error'        => "Qualcossa l'è andà storto nel salvar la to conferma.",
+'confirmemail_subject'      => "{{SITENAME}}: e-mail par la conferma de l'indirisso",
+'confirmemail_body'         => 'Qualcheduni, probabilmente ti stesso da l\'indirizo IP $1, el ga registrà n\'account "$2" con sto indirizo e-mail su {{SITENAME}}. 
 
 Par confermar che sto account el xe veramente tuo e poder ativar le funzion relative a l\'e-mail su {{SITENAME}}, verzi sto colegamento col to browser: 
 
@@ -2986,8 +2994,14 @@ Se l\'account *no* te lo ghè registrà ti, verzi st\'altro colegamento par anul
 $5
 
 El codice de conferma el scadrà in automatico a le $4.',
-'confirmemail_invalidated' => 'Richiesta de conferma indirizo e-mail anulà',
-'invalidateemail'          => 'Anula richiesta de conferma e-mail',
+'confirmemail_body_changed' => 'Qualcheduni, probabilmente ti steso da l\'indiriso IP $1 el ga rejistrà n\'acount "$2" con sto indiriso e-mail  so {{SITENAME}}.
+Par confermare che sto acount el xè veramente tuo e poder ativar łe funsion rełative a l\'e-mail so {{SITENAME}} verzi sto cołegamento nel to browser:
+$3
+Se l\'acount *no* te o ghe rejistrà ti, verzi st\'altro cołegamento par anułar ła conferma de l\'indiriso e-mail:
+$5
+El codexe de conferma el scadrà en automatego a łe $4.',
+'confirmemail_invalidated'  => 'Richiesta de conferma indirizo e-mail anulà',
+'invalidateemail'           => 'Anula richiesta de conferma e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusion de pagine tra siti wiki no la xe ativa]",

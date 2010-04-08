@@ -1090,8 +1090,8 @@ Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAM
 'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
 Como administrador podrá seguir [$1 viendo este cambio] si así lo deseas.",
-'rev-suppressed-unhide-diff'  => "Una de las revisiones de este cambio ha sido '''suprimida'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE=}}}} registro de supresión].
+'rev-suppressed-unhide-diff'  => "Una de las revisiones de este diff ha sido '''suprimida'''.
+Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
 Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
 'rev-deleted-diff-view'       => "Una de las revisiones de este diff ha sido '''borrada'''.
 Como administrador puede ver el contenido; puede que existan más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",

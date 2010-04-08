@@ -15,7 +15,30 @@ $fallback = 'de';
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Linke unerstrike:',
+'tog-underline'           => 'Linke unerstrike:',
+'tog-justify'             => 'Täkst ås blokseeting',
+'tog-hideminor'           => 'Latje änringe fersteege',
+'tog-extendwatchlist'     => 'Ütwidede wåchelist tun wisen foon åle änringe',
+'tog-usenewrc'            => 'Ütwidede deerstaling foon da "Leeste Änringe" (brükt JavaScript)',
+'tog-numberheadings'      => 'Ouerschrafte automatisch numeriire',
+'tog-showtoolbar'         => 'Beårbe-wärktjüch wise',
+'tog-editondblclick'      => 'Side ma dööweltklik beårbe (brükt JavaScript)',
+'tog-editsection'         => 'Ferbininge tun wisen foon änkelte oufsnaase',
+'tog-editwidth'           => 'Önjjeewefälj ütwide, am di hiilj bilschirm üttufeelen',
+'tog-watchcreations'      => 'Seelew måågede side automatisch bekiike',
+'tog-watchdefault'        => 'Seelew änrede side automaatisch bekiike',
+'tog-watchmoves'          => 'Seelew ferschääwene side automaatisch bekiike',
+'tog-previewontop'        => 'Forbekiiken boowen dåt beårbingswaning wise',
+'tog-previewonfirst'      => 'Bai dåt jarst beårben åltens dåt forbekiiken wise',
+'tog-enotifusertalkpages' => 'Bai änringe tu min brüker-diskusjoonssid E-Maile siinje',
+'tog-enotifminoredits'    => 'Uk bai latje änringe tu bekiikede side E-maile siinje',
+'tog-oldsig'              => 'Forbekiik foon e aktuäle signatuur:',
+'tog-fancysig'            => 'Signatuur behoonle ås wikitäkst',
+'tog-showjumplinks'       => '"Schafte tu"-ferbininge aktiwiire',
+'tog-uselivepreview'      => 'Live-forbekiik ferwiinje (brükt JavaScript) (äksperimentäl)',
+'tog-forceeditsummary'    => 'Woorschoue, wan bai dåt spiikern jü tuhuupefooting breecht',
+'tog-watchlisthideminor'  => 'Latje beårbinge önj e bekiiklist fersteege',
+'tog-watchlisthideliu'    => 'Beårbinge foon önjmäldede brükere önj e bekiikliste fersteege',
 
 # Dates
 'january'       => 'januar',

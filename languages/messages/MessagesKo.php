@@ -2279,18 +2279,20 @@ $1',
 'month'               => '월:',
 'year'                => '연도:',
 
-'sp-contributions-newbies'        => '새 사용자의 기여만 보기',
-'sp-contributions-newbies-sub'    => '새 사용자들의 기여',
-'sp-contributions-newbies-title'  => '새 사용자의 기여',
-'sp-contributions-blocklog'       => '차단 기록',
-'sp-contributions-deleted'        => '삭제된 기여 목록',
-'sp-contributions-logs'           => '기록',
-'sp-contributions-talk'           => '토론',
-'sp-contributions-userrights'     => '사용자 권한 관리',
-'sp-contributions-blocked-notice' => '이 사용자는 현재 차단되어 있습니다. 해당 사용자의 차단 기록은 다음과 같습니다.',
-'sp-contributions-search'         => '기여 검색',
-'sp-contributions-username'       => 'IP 주소 혹은 계정 이름:',
-'sp-contributions-submit'         => '찾기',
+'sp-contributions-newbies'             => '새 사용자의 기여만 보기',
+'sp-contributions-newbies-sub'         => '새 사용자들의 기여',
+'sp-contributions-newbies-title'       => '새 사용자의 기여',
+'sp-contributions-blocklog'            => '차단 기록',
+'sp-contributions-deleted'             => '삭제된 기여 목록',
+'sp-contributions-logs'                => '기록',
+'sp-contributions-talk'                => '토론',
+'sp-contributions-userrights'          => '사용자 권한 관리',
+'sp-contributions-blocked-notice'      => '이 사용자는 현재 차단되어 있습니다. 해당 사용자의 차단 기록은 다음과 같습니다.',
+'sp-contributions-blocked-notice-anon' => '이 IP 주소는 현재 차단되어 있습니다.
+아래의 최근 차단 기록을 참고하십시오.',
+'sp-contributions-search'              => '기여 검색',
+'sp-contributions-username'            => 'IP 주소 혹은 계정 이름:',
+'sp-contributions-submit'              => '찾기',
 
 # What links here
 'whatlinkshere'            => '여기를 가리키는 문서',
@@ -3280,7 +3282,7 @@ $1',
 # Special:FilePath
 'filepath'         => '파일 경로',
 'filepath-page'    => '파일:',
-'filepath-submit'  => '경로',
+'filepath-submit'  => '가기',
 'filepath-summary' => '파일의 실제 URL 주소를 엽니다.
 그림 파일일 경우 원본 해상도의 파일이 열립니다. 다른 종류의 파일일 경우 그 파일의 종류에 맞는 프로그램이 실행됩니다.
 
