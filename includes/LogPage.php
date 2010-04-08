@@ -189,7 +189,7 @@ class LogPage {
 						$rightsnone = wfMsg( 'rightsnone' );
 						foreach ( $params as &$param ) {
 							$groupArray = array_map( 'trim', explode( ',', $param ) );
-							$groupArray = array_map( array( 'User', 'getGroupName' ), $groupArray );
+							$groupArray = array_map( array( 'User', 'getGroupMember' ), $groupArray );
 							$param = $wgLang->listToText( $groupArray );
 						}
 					} else {

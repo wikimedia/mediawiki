@@ -97,6 +97,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23078) "All public logs" option on Special:Log is now always the first
   item
 * Special:ChangePassword no longer loads user javascript
+* (bug 16817) Group names in user rights log are now singular and in lowercase
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
