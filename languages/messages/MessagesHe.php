@@ -206,6 +206,9 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__הפניה_קבועה__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'רמת הגנה', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'עיצוב תאריך', 'formatdate', 'dateformat' ),
+	'url_path'              => array( '0', 'נתיב', 'PATH' ),
+	'url_wiki'              => array( '0', 'ויקי', 'WIKI' ),
+	'url_query'             => array( '0', 'שאילתה', 'QUERY' ),
 );
 
 $specialPageAliases = array(
@@ -1509,7 +1512,7 @@ $1",
 # User rights log
 'rightslog'      => 'יומן תפקידים',
 'rightslogtext'  => 'זהו יומן השינויים בתפקידי המשתמשים.',
-'rightslogentry' => 'שינה את ההרשאות של $1 מ־$2 ל־$3',
+'rightslogentry' => 'שינה את ההרשאות של $1 מ$2 ל$3',
 'rightsnone'     => '(כלום)',
 
 # Associated actions - in the sentence "You do not have permission to X"
