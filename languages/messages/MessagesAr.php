@@ -352,6 +352,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'كل_الصفحات' ),
 	'Prefixindex'               => array( 'فهرس_بادئة' ),
 	'Ipblocklist'               => array( 'قائمة_المنع', 'عرض_المنع', 'قائمة_منع_أيبي' ),
+	'Unblock'                   => array( 'رفع_منع' ),
 	'Specialpages'              => array( 'صفحات_خاصة' ),
 	'Contributions'             => array( 'مساهمات' ),
 	'Emailuser'                 => array( 'مراسلة_المستخدم' ),
