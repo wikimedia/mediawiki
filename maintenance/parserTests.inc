@@ -1069,7 +1069,7 @@ class ParserTest {
 	 *
 	 * @param $name String
 	 */
-	private function requireFunctionHook( $name ) {
+	public function requireFunctionHook( $name ) {
 		global $wgParser;
 		$wgParser->firstCallInit( ); //make sure hooks are loaded.
 		if( isset( $wgParser->mFunctionHooks[$name] ) ) {
