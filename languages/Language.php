@@ -13,18 +13,18 @@ if( !defined( 'MEDIAWIKI' ) ) {
 
 # Read language names
 global $wgLanguageNames;
-require_once( dirname(__FILE__) . '/Names.php' ) ;
+require_once( dirname( __FILE__ ) . '/Names.php' );
 
 global $wgInputEncoding, $wgOutputEncoding;
 
 /**
  * These are always UTF-8, they exist only for backwards compatibility
  */
-$wgInputEncoding    = "UTF-8";
-$wgOutputEncoding	= "UTF-8";
+$wgInputEncoding    = 'UTF-8';
+$wgOutputEncoding	= 'UTF-8';
 
 if( function_exists( 'mb_strtoupper' ) ) {
-	mb_internal_encoding('UTF-8');
+	mb_internal_encoding( 'UTF-8' );
 }
 
 /**
@@ -34,19 +34,19 @@ if( function_exists( 'mb_strtoupper' ) ) {
  */
 class FakeConverter {
 	var $mLang;
-	function FakeConverter($langobj) {$this->mLang = $langobj;}
-	function autoConvertToAllVariants($text) {return $text;}
-	function convert($t, $i) {return $t;}
+	function FakeConverter( $langobj ) { $this->mLang = $langobj; }
+	function autoConvertToAllVariants( $text ) { return $text; }
+	function convert( $t, $i ) { return $t; }
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() { return $this->mLang->getCode(); }
 	function getConvRuleTitle() { return false; }
-	function findVariantLink(&$l, &$n, $ignoreOtherCond = false) {}
-	function getExtraHashOptions() {return '';}
-	function getParsedTitle() {return '';}
-	function markNoConversion($text, $noParse=false) {return $text;}
-	function convertCategoryKey( $key ) {return $key; }
-	function convertLinkToAllVariants($text){ return array( $this->mLang->getCode() => $text); }
-	function armourMath($text){ return $text; }
+	function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) {}
+	function getExtraHashOptions() { return ''; }
+	function getParsedTitle() { return ''; }
+	function markNoConversion( $text, $noParse = false ) { return $text; }
+	function convertCategoryKey( $key ) { return $key; }
+	function convertLinkToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
+	function armourMath( $text ) { return $text; }
 }
 
 /**
@@ -149,10 +149,10 @@ class Language {
 			$class = 'Language' . str_replace( '-', '_', ucfirst( $code ) );
 			// Preload base classes to work around APC/PHP5 bug
 			if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
-				include_once("$IP/languages/classes/$class.deps.php");
+				include_once( "$IP/languages/classes/$class.deps.php" );
 			}
 			if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
-				include_once("$IP/languages/classes/$class.php");
+				include_once( "$IP/languages/classes/$class.php" );
 			}
 		}
 
@@ -160,7 +160,7 @@ class Language {
 			throw new MWException( "Language fallback loop detected when creating class $class\n" );
 		}
 
-		if( ! class_exists( $class ) ) {
+		if( !class_exists( $class ) ) {
 			$fallback = Language::getFallbackFor( $code );
 			++$recursionLevel;
 			$lang = Language::newFromCode( $fallback );
@@ -185,7 +185,7 @@ class Language {
 	}
 
 	function __construct() {
-		$this->mConverter = new FakeConverter($this);
+		$this->mConverter = new FakeConverter( $this );
 		// Set the code to the name of the descendant
 		if ( get_class( $this ) == 'Language' ) {
 			$this->mCode = 'en';
@@ -273,8 +273,8 @@ class Language {
 	 */
 	function getFormattedNamespaces() {
 		$ns = $this->getNamespaces();
-		foreach($ns as $k => $v) {
-			$ns[$k] = strtr($v, '_', ' ');
+		foreach( $ns as $k => $v ) {
+			$ns[$k] = strtr( $v, '_', ' ' );
 		}
 		return $ns;
 	}
@@ -303,7 +303,7 @@ class Language {
 	 */
 	function getFormattedNsText( $index ) {
 		$ns = $this->getNsText( $index );
-		return strtr($ns, '_', ' ');
+		return strtr( $ns, '_', ' ' );
 	}
 
 	/**
@@ -315,7 +315,7 @@ class Language {
 	 * @return mixed An integer if $text is a valid value otherwise false
 	 */
 	function getLocalNsIndex( $text ) {
-		$lctext = $this->lc($text);
+		$lctext = $this->lc( $text );
 		$ids = $this->getNamespaceIds();
 		return isset( $ids[$lctext] ) ? $ids[$lctext] : false;
 	}
@@ -348,14 +348,14 @@ class Language {
 			# class-specific fixup hasn't been done.
 			$this->mNamespaceIds = array();
 			foreach ( $this->getNamespaces() as $index => $name ) {
-				$this->mNamespaceIds[$this->lc($name)] = $index;
+				$this->mNamespaceIds[$this->lc( $name )] = $index;
 			}
 			foreach ( $this->getNamespaceAliases() as $name => $index ) {
-				$this->mNamespaceIds[$this->lc($name)] = $index;
+				$this->mNamespaceIds[$this->lc( $name )] = $index;
 			}
 			if ( $wgNamespaceAliases ) {
 				foreach ( $wgNamespaceAliases as $name => $index ) {
-					$this->mNamespaceIds[$this->lc($name)] = $index;
+					$this->mNamespaceIds[$this->lc( $name )] = $index;
 				}
 			}
 		}
@@ -371,7 +371,7 @@ class Language {
 	 * @return mixed An integer if $text is a valid value otherwise false
 	 */
 	function getNsIndex( $text ) {
-		$lctext = $this->lc($text);
+		$lctext = $this->lc( $text );
 		if ( ( $ns = MWNamespace::getCanonicalIndex( $lctext ) ) !== null ) {
 			return $ns;
 		}
@@ -492,39 +492,39 @@ class Language {
 	}
 
 	function getMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mMonthMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mMonthMsgs[$key - 1] );
 	}
 
 	function getMonthNameGen( $key ) {
-		return $this->getMessageFromDB( self::$mMonthGenMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mMonthGenMsgs[$key - 1] );
 	}
 
 	function getMonthAbbreviation( $key ) {
-		return $this->getMessageFromDB( self::$mMonthAbbrevMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mMonthAbbrevMsgs[$key - 1] );
 	}
 
 	function getWeekdayName( $key ) {
-		return $this->getMessageFromDB( self::$mWeekdayMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mWeekdayMsgs[$key - 1] );
 	}
 
 	function getWeekdayAbbreviation( $key ) {
-		return $this->getMessageFromDB( self::$mWeekdayAbbrevMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mWeekdayAbbrevMsgs[$key - 1] );
 	}
 
 	function getIranianCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mIranianCalendarMonthMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mIranianCalendarMonthMsgs[$key - 1] );
 	}
 
 	function getHebrewCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mHebrewCalendarMonthMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mHebrewCalendarMonthMsgs[$key - 1] );
 	}
 
 	function getHebrewCalendarMonthNameGen( $key ) {
-		return $this->getMessageFromDB( self::$mHebrewCalendarMonthGenMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mHebrewCalendarMonthGenMsgs[$key - 1] );
 	}
 
 	function getHijriCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mHijriCalendarMonthMsgs[$key-1] );
+		return $this->getMessageFromDB( self::$mHijriCalendarMonthMsgs[$key - 1] );
 	}
 
 	/**
@@ -558,7 +558,9 @@ class Language {
 		$minDiff = 0;
 		if ( $data[0] == 'System' || $tz == '' ) {
 			# Global offset in minutes.
-			if( isset($wgLocalTZoffset) ) $minDiff = $wgLocalTZoffset;
+			if( isset( $wgLocalTZoffset ) ) {
+				$minDiff = $wgLocalTZoffset;
+			}
 		} else if ( $data[0] == 'Offset' ) {
 			$minDiff = intval( $data[1] );
 		} else {
@@ -567,14 +569,18 @@ class Language {
 				$data[0] = intval( $data[0] );
 				$data[1] = intval( $data[1] );
 				$minDiff = abs( $data[0] ) * 60 + $data[1];
-				if ( $data[0] < 0 ) $minDiff = -$minDiff;
+				if ( $data[0] < 0 ) {
+					$minDiff = -$minDiff;
+				}
 			} else {
 				$minDiff = intval( $data[0] ) * 60;
 			}
 		}
 
 		# No difference ? Return time unchanged
-		if ( 0 == $minDiff ) return $ts;
+		if ( 0 == $minDiff ) {
+			return $ts;
+		}
 
 		wfSuppressWarnings(); // E_STRICT system time bitching
 		# Generate an adjusted date; take advantage of the fact that mktime
@@ -713,51 +719,73 @@ class Language {
 					$num = intval( substr( $ts, 6, 2 ) );
 					break;
 				case 'xij':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
+					if ( !$iranian ) {
+						$iranian = self::tsToIranian( $ts );
+					}
 					$num = $iranian[2];
 					break;
 				case 'xmj':
-					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+					if ( !$hijri ) {
+						$hijri = self::tsToHijri( $ts );
+					}
 					$num = $hijri[2];
 					break;
 				case 'xjj':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+					if ( !$hebrew ) {
+						$hebrew = self::tsToHebrew( $ts );
+					}
 					$num = $hebrew[2];
 					break;
 				case 'l':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$s .= $this->getWeekdayName( gmdate( 'w', $unix ) + 1 );
 					break;
 				case 'N':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$w = gmdate( 'w', $unix );
 					$num = $w ? $w : 7;
 					break;
 				case 'w':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$num = gmdate( 'w', $unix );
 					break;
 				case 'z':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$num = gmdate( 'z', $unix );
 					break;
 				case 'W':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$num = gmdate( 'W', $unix );
 					break;
 				case 'F':
 					$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
 					break;
 				case 'xiF':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
+					if ( !$iranian ) {
+						$iranian = self::tsToIranian( $ts );
+					}
 					$s .= $this->getIranianCalendarMonthName( $iranian[1] );
 					break;
 				case 'xmF':
-					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+					if ( !$hijri ) {
+						$hijri = self::tsToHijri( $ts );
+					}
 					$s .= $this->getHijriCalendarMonthName( $hijri[1] );
 					break;
 				case 'xjF':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+					if ( !$hebrew ) {
+						$hebrew = self::tsToHebrew( $ts );
+					}
 					$s .= $this->getHebrewCalendarMonthName( $hebrew[1] );
 					break;
 				case 'm':
@@ -770,64 +798,91 @@ class Language {
 					$num = intval( substr( $ts, 4, 2 ) );
 					break;
 				case 'xin':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
+					if ( !$iranian ) {
+						$iranian = self::tsToIranian( $ts );
+					}
 					$num = $iranian[1];
 					break;
 				case 'xmn':
-					if ( !$hijri ) $hijri = self::tsToHijri ( $ts );
+					if ( !$hijri ) {
+						$hijri = self::tsToHijri ( $ts );
+					}
 					$num = $hijri[1];
 					break;
 				case 'xjn':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+					if ( !$hebrew ) {
+						$hebrew = self::tsToHebrew( $ts );
+					}
 					$num = $hebrew[1];
 					break;
 				case 't':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$num = gmdate( 't', $unix );
 					break;
 				case 'xjt':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+					if ( !$hebrew ) {
+						$hebrew = self::tsToHebrew( $ts );
+					}
 					$num = $hebrew[3];
 					break;
 				case 'L':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$num = gmdate( 'L', $unix );
 					break;
 				# 'o' is supported since PHP 5.1.0
 				# return literal if not supported
 				# TODO: emulation for pre 5.1.0 versions
 				case 'o':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					if ( version_compare(PHP_VERSION, '5.1.0') === 1 )
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
+					if ( version_compare( PHP_VERSION, '5.1.0' ) === 1 ) {
 						$num = date( 'o', $unix );
-					else
+					} else {
 						$s .= 'o';
+					}
 					break;
 				case 'Y':
 					$num = substr( $ts, 0, 4 );
 					break;
 				case 'xiY':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
+					if ( !$iranian ) {
+						$iranian = self::tsToIranian( $ts );
+					}
 					$num = $iranian[0];
 					break;
 				case 'xmY':
-					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+					if ( !$hijri ) {
+						$hijri = self::tsToHijri( $ts );
+					}
 					$num = $hijri[0];
 					break;
 				case 'xjY':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+					if ( !$hebrew ) {
+						$hebrew = self::tsToHebrew( $ts );
+					}
 					$num = $hebrew[0];
 					break;
 				case 'xkY':
-					if ( !$thai ) $thai = self::tsToYear( $ts, 'thai' );
+					if ( !$thai ) {
+						$thai = self::tsToYear( $ts, 'thai' );
+					}
 					$num = $thai[0];
 					break;
 				case 'xoY':
-					if ( !$minguo ) $minguo = self::tsToYear( $ts, 'minguo' );
+					if ( !$minguo ) {
+						$minguo = self::tsToYear( $ts, 'minguo' );
+					}
 					$num = $minguo[0];
 					break;
 				case 'xtY':
-					if ( !$tenno ) $tenno = self::tsToYear( $ts, 'tenno' );
+					if ( !$tenno ) {
+						$tenno = self::tsToYear( $ts, 'tenno' );
+					}
 					$num = $tenno[0];
 					break;
 				case 'y':
@@ -860,15 +915,21 @@ class Language {
 					$num = substr( $ts, 12, 2 );
 					break;
 				case 'c':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$s .= gmdate( 'c', $unix );
 					break;
 				case 'r':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$s .= gmdate( 'r', $unix );
 					break;
 				case 'U':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$unix ) {
+						$unix = wfTimestamp( TS_UNIX, $ts );
+					}
 					$num = $unix;
 					break;
 				case '\\':
@@ -933,10 +994,10 @@ class Language {
 		$gd = substr( $ts, 6, 2 ) -1;
 
 		# Days passed from the beginning (including leap years)
-		$gDayNo = 365*$gy
-			+ floor(($gy+3) / 4)
-			- floor(($gy+99) / 100)
-			+ floor(($gy+399) / 400);
+		$gDayNo = 365 * $gy
+			+ floor( ( $gy + 3 ) / 4 )
+			- floor( ( $gy + 99 ) / 100 )
+			+ floor( ( $gy + 399 ) / 400 );
 
 
 		// Add days of the past months of this year
@@ -945,7 +1006,7 @@ class Language {
 		}
 
 		// Leap years
-		if ( $gm > 1 && (($gy%4===0 && $gy%100!==0 || ($gy%400==0)))) {
+		if ( $gm > 1 && ( ( $gy%4 === 0 && $gy%100 !== 0 || ( $gy%400 == 0 ) ) ) ) {
 			$gDayNo++;
 		}
 
@@ -954,26 +1015,27 @@ class Language {
 
 		$jDayNo = $gDayNo - 79;
 
-		$jNp = floor($jDayNo / 12053);
+		$jNp = floor( $jDayNo / 12053 );
 		$jDayNo %= 12053;
 
-		$jy = 979 + 33*$jNp + 4*floor($jDayNo/1461);
+		$jy = 979 + 33 * $jNp + 4 * floor( $jDayNo / 1461 );
 		$jDayNo %= 1461;
 
 		if ( $jDayNo >= 366 ) {
-			$jy += floor(($jDayNo-1)/365);
-			$jDayNo = floor(($jDayNo-1)%365);
+			$jy += floor( ( $jDayNo - 1 ) / 365 );
+			$jDayNo = floor( ( $jDayNo - 1 ) % 365 );
 		}
 
 		for ( $i = 0; $i < 11 && $jDayNo >= self::$IRANIAN_DAYS[$i]; $i++ ) {
 			$jDayNo -= self::$IRANIAN_DAYS[$i];
 		}
 
-		$jm= $i+1;
-		$jd= $jDayNo+1;
+		$jm = $i + 1;
+		$jd = $jDayNo + 1;
 
-		return array($jy, $jm, $jd);
+		return array( $jy, $jm, $jd );
 	}
+
 	/**
 	 * Converting Gregorian dates to Hijri dates.
 	 *
@@ -981,39 +1043,40 @@ class Language {
 	 *
 	 * @link http://phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
 	 */
-	private static function tsToHijri ( $ts ) {
+	private static function tsToHijri( $ts ) {
 		$year = substr( $ts, 0, 4 );
 		$month = substr( $ts, 4, 2 );
 		$day = substr( $ts, 6, 2 );
 
 		$zyr = $year;
-		$zd=$day;
-		$zm=$month;
-		$zy=$zyr;
+		$zd = $day;
+		$zm = $month;
+		$zy = $zyr;
 
+		if (
+			( $zy > 1582 ) || ( ( $zy == 1582 ) && ( $zm > 10 ) ) ||
+			( ( $zy == 1582 ) && ( $zm == 10 ) && ( $zd > 14 ) )
+		)
+		{
+			$zjd = (int)( ( 1461 * ( $zy + 4800 + (int)( ( $zm - 14 ) / 12 ) ) ) / 4 ) +
+					(int)( ( 367 * ( $zm - 2 - 12 * ( (int)( ( $zm - 14 ) / 12 ) ) ) ) / 12 ) -
+					(int)( ( 3 * (int)( ( ( $zy + 4900 + (int)( ( $zm - 14 ) / 12 ) ) / 100 ) ) ) / 4 ) +
+					$zd - 32075;
+		} else {
+			$zjd = 367 * $zy - (int)( ( 7 * ( $zy + 5001 + (int)( ( $zm - 9 ) / 7 ) ) ) / 4 ) +
+								(int)( ( 275 * $zm ) / 9 ) + $zd + 1729777;
+		}
 
+		$zl = $zjd-1948440 + 10632;
+		$zn = (int)( ( $zl - 1 ) / 10631 );
+		$zl = $zl - 10631 * $zn + 354;
+		$zj = ( (int)( ( 10985 - $zl ) / 5316 ) ) * ((int)( ( 50 * $zl ) / 17719 ) ) + ( (int)( $zl / 5670 ) ) * ( (int)( ( 43 * $zl ) / 15238 ) );
+		$zl = $zl - ( (int)( ( 30 - $zj ) / 15 ) ) * ((int)( ( 17719 * $zj ) / 50 ) ) - ( (int)( $zj / 16 ) ) * ( (int)( ( 15238 * $zj ) / 43 ) ) + 29;
+		$zm = (int)( ( 24 * $zl ) / 709 );
+		$zd = $zl - (int)( ( 709 * $zm ) / 24 );
+		$zy = 30 * $zn + $zj - 30;
 
-		if (($zy>1582)||(($zy==1582)&&($zm>10))||(($zy==1582)&&($zm==10)&&($zd>14)))
-			{
-
-
-				    $zjd=(int)((1461*($zy + 4800 + (int)( ($zm-14) /12) ))/4) + (int)((367*($zm-2-12*((int)(($zm-14)/12))))/12)-(int)((3*(int)(( ($zy+4900+(int)(($zm-14)/12))/100)))/4)+$zd-32075;
-				    }
-		 else
-			{
-				    $zjd = 367*$zy-(int)((7*($zy+5001+(int)(($zm-9)/7)))/4)+(int)((275*$zm)/9)+$zd+1729777;
-			}
-
-		$zl=$zjd-1948440+10632;
-		$zn=(int)(($zl-1)/10631);
-		$zl=$zl-10631*$zn+354;
-		$zj=((int)((10985-$zl)/5316))*((int)((50*$zl)/17719))+((int)($zl/5670))*((int)((43*$zl)/15238));
-		$zl=$zl-((int)((30-$zj)/15))*((int)((17719*$zj)/50))-((int)($zj/16))*((int)((15238*$zj)/43))+29;
-		$zm=(int)((24*$zl)/709);
-		$zd=$zl-(int)((709*$zm)/24);
-		$zy=30*$zn+$zj-30;
-
-		return array ($zy, $zm, $zd);
+		return array( $zy, $zm, $zd );
 	}
 
 	/**
@@ -1207,49 +1270,65 @@ class Language {
 		$gm = substr( $ts, 4, 2 );
 		$gd = substr( $ts, 6, 2 );
 
-		if (!strcmp($cName,'thai')) {
+		if ( !strcmp( $cName, 'thai' ) ) {
 			# Thai solar dates
 			# Add 543 years to the Gregorian calendar
 			# Months and days are identical
 			$gy_offset = $gy + 543;
-		} else if ((!strcmp($cName,'minguo')) || !strcmp($cName,'juche')) {
+		} else if ( ( !strcmp( $cName, 'minguo' ) ) || !strcmp( $cName, 'juche' ) ) {
 			# Minguo dates
 			# Deduct 1911 years from the Gregorian calendar
 			# Months and days are identical
 			$gy_offset = $gy - 1911;
-		} else if (!strcmp($cName,'tenno')) {
+		} else if ( !strcmp( $cName, 'tenno' ) ) {
 			# Nengō dates up to Meiji period
 			# Deduct years from the Gregorian calendar
 			# depending on the nengo periods
 			# Months and days are identical
-			if (($gy < 1912) || (($gy == 1912) && ($gm < 7)) || (($gy == 1912) && ($gm == 7) && ($gd < 31))) {
+			if ( ( $gy < 1912 ) || ( ( $gy == 1912 ) && ( $gm < 7 ) ) || ( ( $gy == 1912 ) && ( $gm == 7 ) && ( $gd < 31 ) ) ) {
 				# Meiji period
 				$gy_gannen = $gy - 1868 + 1;
 				$gy_offset = $gy_gannen;
-				if ($gy_gannen == 1)
+				if ( $gy_gannen == 1 ) {
 					$gy_offset = '元';
-				$gy_offset = '明治'.$gy_offset;
-			} else if ((($gy == 1912) && ($gm == 7) && ($gd == 31)) || (($gy == 1912) && ($gm >= 8)) || (($gy > 1912) && ($gy < 1926)) || (($gy == 1926) && ($gm < 12)) || (($gy == 1926) && ($gm == 12) && ($gd < 26))) {
+				}
+				$gy_offset = '明治' . $gy_offset;
+			} else if (
+				( ( $gy == 1912 ) && ( $gm == 7 ) && ( $gd == 31 ) ) ||
+				( ( $gy == 1912 ) && ( $gm >= 8 ) ) ||
+				( ( $gy > 1912 ) && ( $gy < 1926 ) ) ||
+				( ( $gy == 1926 ) && ( $gm < 12 ) ) ||
+				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd < 26 ) )
+			)
+			{
 				# Taishō period
 				$gy_gannen = $gy - 1912 + 1;
 				$gy_offset = $gy_gannen;
-				if ($gy_gannen == 1)
+				if ( $gy_gannen == 1 ) {
 					$gy_offset = '元';
-				$gy_offset = '大正'.$gy_offset;
-			} else if ((($gy == 1926) && ($gm == 12) && ($gd >= 26)) || (($gy > 1926) && ($gy < 1989)) || (($gy == 1989) && ($gm == 1) && ($gd < 8))) {
+				}
+				$gy_offset = '大正' . $gy_offset;
+			} else if (
+				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd >= 26 ) ) ||
+				( ( $gy > 1926 ) && ( $gy < 1989 ) ) ||
+				( ( $gy == 1989 ) && ( $gm == 1 ) && ( $gd < 8 ) )
+			)
+			{
 				# Shōwa period
 				$gy_gannen = $gy - 1926 + 1;
 				$gy_offset = $gy_gannen;
-				if ($gy_gannen == 1)
+				if ( $gy_gannen == 1 ) {
 					$gy_offset = '元';
-				$gy_offset = '昭和'.$gy_offset;
+				}
+				$gy_offset = '昭和' . $gy_offset;
 			} else {
 				# Heisei period
 				$gy_gannen = $gy - 1989 + 1;
 				$gy_offset = $gy_gannen;
-				if ($gy_gannen == 1)
+				if ( $gy_gannen == 1 ) {
 					$gy_offset = '元';
-				$gy_offset = '平成'.$gy_offset;
+				}
+				$gy_offset = '平成' . $gy_offset;
 			}
 		} else {
 			$gy_offset = $gy;
@@ -1277,7 +1356,7 @@ class Language {
 		$s = '';
 		for ( $pow10 = 1000, $i = 3; $i >= 0; $pow10 /= 10, $i-- ) {
 			if ( $num >= $pow10 ) {
-				$s .= $table[$i][floor($num / $pow10)];
+				$s .= $table[$i][floor( $num / $pow10 )];
 			}
 			$num = $num % $pow10;
 		}
@@ -1482,29 +1561,29 @@ class Language {
 	}
 
 	// callback functions for uc(), lc(), ucwords(), ucwordbreaks()
-	function ucwordbreaksCallbackAscii($matches){
-		return $this->ucfirst($matches[1]);
+	function ucwordbreaksCallbackAscii( $matches ) {
+		return $this->ucfirst( $matches[1] );
 	}
 
-	function ucwordbreaksCallbackMB($matches){
-		return mb_strtoupper($matches[0]);
+	function ucwordbreaksCallbackMB( $matches ) {
+		return mb_strtoupper( $matches[0] );
 	}
 
-	function ucCallback($matches){
+	function ucCallback( $matches ) {
 		list( $wikiUpperChars ) = self::getCaseMaps();
 		return strtr( $matches[1], $wikiUpperChars );
 	}
 
-	function lcCallback($matches){
+	function lcCallback( $matches ) {
 		list( , $wikiLowerChars ) = self::getCaseMaps();
 		return strtr( $matches[1], $wikiLowerChars );
 	}
 
-	function ucwordsCallbackMB($matches){
-		return mb_strtoupper($matches[0]);
+	function ucwordsCallbackMB( $matches ) {
+		return mb_strtoupper( $matches[0] );
 	}
 
-	function ucwordsCallbackWiki($matches){
+	function ucwordsCallbackWiki( $matches ) {
 		list( $wikiUpperChars ) = self::getCaseMaps();
 		return strtr( $matches[0], $wikiUpperChars );
 	}
@@ -1514,10 +1593,10 @@ class Language {
 		if ( $o < 96 ) {
 			return $str;
 		} elseif ( $o < 128 ) {
-			return ucfirst($str);
+			return ucfirst( $str );
 		} else {
 			// fall back to more complex logic in case of multibyte strings
-			return self::uc($str,true);
+			return self::uc( $str, true );
 		}
 	}
 
@@ -1538,7 +1617,7 @@ class Language {
 				$x = $first ? '^' : '';
 				return preg_replace_callback(
 					"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
-					array($this,"ucCallback"),
+					array( $this, 'ucCallback' ),
 					$str
 				);
 			} else {
@@ -1562,85 +1641,92 @@ class Language {
 	}
 
 	function lc( $str, $first = false ) {
-		if ( function_exists( 'mb_strtolower' ) )
-			if ( $first )
-				if ( self::isMultibyte( $str ) )
+		if ( function_exists( 'mb_strtolower' ) ) {
+			if ( $first ) {
+				if ( self::isMultibyte( $str ) ) {
 					return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-				else
+				} else {
 					return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
-			else
+				}
+			} else {
 				return self::isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
-		else
+			}
+		} else {
 			if ( self::isMultibyte( $str ) ) {
 				list( , $wikiLowerChars ) = self::getCaseMaps();
 				$x = $first ? '^' : '';
 				return preg_replace_callback(
 					"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
-					array($this,"lcCallback"),
+					array( $this, 'lcCallback' ),
 					$str
 				);
-			} else
+			} else {
 				return $first ? strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 ) : strtolower( $str );
+			}
+		}
 	}
 
 	function isMultibyte( $str ) {
 		return (bool)preg_match( '/[\x80-\xff]/', $str );
 	}
 
-	function ucwords($str) {
+	function ucwords( $str ) {
 		if ( self::isMultibyte( $str ) ) {
-			$str = self::lc($str);
+			$str = self::lc( $str );
 
 			// regexp to find first letter in each word (i.e. after each space)
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)| ([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
 			// function to use to capitalize a single char
-			if ( function_exists( 'mb_strtoupper' ) )
+			if ( function_exists( 'mb_strtoupper' ) ) {
 				return preg_replace_callback(
 					$replaceRegexp,
-					array($this,"ucwordsCallbackMB"),
+					array( $this, 'ucwordsCallbackMB' ),
 					$str
 				);
-			else
+			} else {
 				return preg_replace_callback(
 					$replaceRegexp,
-					array($this,"ucwordsCallbackWiki"),
+					array( $this, 'ucwordsCallbackWiki' ),
 					$str
 				);
-		}
-		else
+			}
+		} else {
 			return ucwords( strtolower( $str ) );
+		}
 	}
 
-  # capitalize words at word breaks
-	function ucwordbreaks($str){
-		if (self::isMultibyte( $str ) ) {
-			$str = self::lc($str);
+	# capitalize words at word breaks
+	function ucwordbreaks( $str ) {
+		if ( self::isMultibyte( $str ) ) {
+			$str = self::lc( $str );
 
 			// since \b doesn't work for UTF-8, we explicitely define word break chars
-			$breaks= "[ \-\(\)\}\{\.,\?!]";
+			$breaks = "[ \-\(\)\}\{\.,\?!]";
 
 			// find first letter after word break
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)|$breaks([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
-			if ( function_exists( 'mb_strtoupper' ) )
+			if ( function_exists( 'mb_strtoupper' ) ) {
 				return preg_replace_callback(
 					$replaceRegexp,
-					array($this,"ucwordbreaksCallbackMB"),
+					array( $this, 'ucwordbreaksCallbackMB' ),
 					$str
 				);
-			else
+			} else {
 				return preg_replace_callback(
 					$replaceRegexp,
-					array($this,"ucwordsCallbackWiki"),
+					array( $this, 'ucwordsCallbackWiki' ),
 					$str
 				);
-		}
-		else
+			}
+		} else {
 			return preg_replace_callback(
-			'/\b([\w\x80-\xff]+)\b/',
-			array($this,"ucwordbreaksCallbackAscii"),
-			$str );
+				'/\b([\w\x80-\xff]+)\b/',
+				array( $this, 'ucwordbreaksCallbackAscii' ),
+				$str
+			);
+		}
 	}
 
 	/**
@@ -1664,13 +1750,17 @@ class Language {
 		}
 		# Check for non-UTF-8 URLs
 		$ishigh = preg_match( '/[\x80-\xff]/', $s);
-		if(!$ishigh) return $s;
+		if( !$ishigh ) {
+			return $s;
+		}
 
 		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
                 '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
-		if( $isutf8 ) return $s;
+		if( $isutf8 ) {
+			return $s;
+		}
 
-		return $this->iconv( $this->fallback8bitEncoding(), "utf-8", $s );
+		return $this->iconv( $this->fallback8bitEncoding(), 'utf-8', $s );
 	}
 
 	function fallback8bitEncoding() {
@@ -1686,11 +1776,11 @@ class Language {
 	function hasWordBreaks() {
 		return true;
 	}
-	
+
 	/**
 	 * Some languages such as Chinese require word segmentation,
 	 * Specify such segmentation when overridden in derived class.
-	 * 
+	 *
 	 * @param $string String
 	 * @return String
 	 */
@@ -1748,8 +1838,12 @@ class Language {
 	 */
 	function firstChar( $s ) {
 		$matches = array();
-		preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/', $s, $matches);
+		preg_match(
+			'/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/',
+			$s,
+			$matches
+		);
 
 		if ( isset( $matches[1] ) ) {
 			if ( strlen( $matches[1] ) != 3 ) {
@@ -1758,7 +1852,7 @@ class Language {
 
 			// Break down Hangul syllables to grab the first jamo
 			$code = utf8ToCodepoint( $matches[1] );
-			if ( $code < 0xac00 || 0xd7a4 <= $code) {
+			if ( $code < 0xac00 || 0xd7a4 <= $code ) {
 				return $matches[1];
 			} elseif ( $code < 0xb098 ) {
 				return "\xe3\x84\xb1";
@@ -1790,7 +1884,7 @@ class Language {
 				return "\xe3\x85\x8e";
 			}
 		} else {
-			return "";
+			return '';
 		}
 	}
 
@@ -1809,8 +1903,7 @@ class Language {
 		# wgInputEncoding, this text will be further converted
 		# to wgOutputEncoding.
 		global $wgEditEncoding;
-		if( $wgEditEncoding == '' or
-		  $wgEditEncoding == 'UTF-8' ) {
+		if( $wgEditEncoding == '' || $wgEditEncoding == 'UTF-8' ) {
 			return $s;
 		} else {
 			return $this->iconv( 'UTF-8', $wgEditEncoding, $s );
@@ -1820,7 +1913,7 @@ class Language {
 	function recodeInput( $s ) {
 		# Take the previous into account.
 		global $wgEditEncoding;
-		if($wgEditEncoding != "") {
+		if( $wgEditEncoding != '' ) {
 			$enc = $wgEditEncoding;
 		} else {
 			$enc = 'UTF-8';
@@ -1855,7 +1948,7 @@ class Language {
 		if ( !isset( $this->transformData[$file] ) ) {
 			$data = wfGetPrecompiledData( $file );
 			if ( $data === false ) {
-				throw new MWException( __METHOD__.": The transformation file $file is missing" );
+				throw new MWException( __METHOD__ . ": The transformation file $file is missing" );
 			}
 			$this->transformData[$file] = new ReplacementArray( $data );
 		}
@@ -2039,15 +2132,19 @@ class Language {
 	  */
 	function formatNum( $number, $nocommafy = false ) {
 		global $wgTranslateNumerals;
-		if (!$nocommafy) {
-			$number = $this->commafy($number);
+		if ( !$nocommafy ) {
+			$number = $this->commafy( $number );
 			$s = $this->separatorTransformTable();
-			if ($s) { $number = strtr($number, $s); }
+			if ( $s ) {
+				$number = strtr( $number, $s );
+			}
 		}
 
-		if ($wgTranslateNumerals) {
+		if ( $wgTranslateNumerals ) {
 			$s = $this->digitTransformTable();
-			if ($s) { $number = strtr($number, $s); }
+			if ( $s ) {
+				$number = strtr( $number, $s );
+			}
 		}
 
 		return $number;
@@ -2055,12 +2152,16 @@ class Language {
 
 	function parseFormattedNumber( $number ) {
 		$s = $this->digitTransformTable();
-		if ($s) { $number = strtr($number, array_flip($s)); }
+		if ( $s ) {
+			$number = strtr( $number, array_flip( $s ) );
+		}
 
 		$s = $this->separatorTransformTable();
-		if ($s) { $number = strtr($number, array_flip($s)); }
+		if ( $s ) {
+			$number = strtr( $number, array_flip( $s ) );
+		}
 
-		$number = strtr( $number, array (',' => '') );
+		$number = strtr( $number, array( ',' => '' ) );
 		return $number;
 	}
 
@@ -2071,7 +2172,7 @@ class Language {
 	 * @return string
 	 */
 	function commafy($_) {
-		return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+		return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 	}
 
 	function digitTransformTable() {
@@ -2081,7 +2182,6 @@ class Language {
 	function separatorTransformTable() {
 		return self::$dataCache->getItem( $this->mCode, 'separatorTransformTable' );
 	}
-
 
 	/**
 	 * Take a list of strings and build a locale-friendly comma-separated
@@ -2096,8 +2196,7 @@ class Language {
 		$m = count( $l ) - 1;
 		if( $m == 1 ) {
 			return $l[0] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $l[1];
-		}
-		else {
+		} else {
 			for ( $i = $m; $i >= 0; $i-- ) {
 				if ( $i == $m ) {
 					$s = $l[$i];
@@ -2120,7 +2219,11 @@ class Language {
 	function commaList( $list ) {
 		return implode(
 			$list,
-			wfMsgExt( 'comma-separator', array( 'parsemag', 'escapenoentities', 'language' => $this ) ) );
+			wfMsgExt(
+				'comma-separator',
+				array( 'parsemag', 'escapenoentities', 'language' => $this )
+			)
+		);
 	}
 
 	/**
@@ -2132,7 +2235,11 @@ class Language {
 	function semicolonList( $list ) {
 		return implode(
 			$list,
-			wfMsgExt( 'semicolon-separator', array( 'parsemag', 'escapenoentities', 'language' => $this ) ) );
+			wfMsgExt(
+				'semicolon-separator',
+				array( 'parsemag', 'escapenoentities', 'language' => $this )
+			)
+		);
 	}
 
 	/**
@@ -2143,7 +2250,11 @@ class Language {
 	function pipeList( $list ) {
 		return implode(
 			$list,
-			wfMsgExt( 'pipe-separator', array( 'escapenoentities', 'language' => $this ) ) );
+			wfMsgExt(
+				'pipe-separator',
+				array( 'escapenoentities', 'language' => $this )
+			)
+		);
 	}
 
 	/**
@@ -2251,7 +2362,7 @@ class Language {
 		# Check if there is no need to truncate
 		if ( $length <= 0 ) {
 			return $ellipsis; // no text shown, nothing to format
-		} elseif ( strlen($text) <= $length ) {
+		} elseif ( strlen( $text ) <= $length ) {
 			return $text; // string short enough even *with* HTML
 		}
 		$text = MWTidy::tidy( $text ); // fix tags
@@ -2265,7 +2376,7 @@ class Language {
 		$textLen = strlen($text);
 		for( $pos = 0; $pos < $textLen; ++$pos ) {
 			$ch = $text[$pos];
-			$lastCh = $pos ? $text[$pos-1] : '';
+			$lastCh = $pos ? $text[$pos - 1] : '';
 			$ret .= $ch; // add to result string
 			if ( $ch == '<' ) {
 				$this->truncate_endBracket( $tag, $tagType, $lastCh, $openTags ); // for bad HTML
@@ -2318,7 +2429,7 @@ class Language {
 					# the ellipsis actually makes the string longer.
 					$pOpenTags = $openTags; // save state
 					$pRet = $ret; // save state
-				} elseif ( $displayLen > ($length + strlen($ellipsis)) ) {
+				} elseif ( $displayLen > ( $length + strlen( $ellipsis ) ) ) {
 					# Ellipsis won't make string longer/equal, the truncation point was OK.
 					$openTags = $pOpenTags; // reload state
 					$ret = $this->removeBadCharLast( $pRet ); // reload state, multi-byte char fix
@@ -2330,7 +2441,7 @@ class Language {
 		if ( $displayLen == 0 ) {
 			return ''; // no text shown, nothing to format
 		}
-		$this->truncate_endBracket( $tag, $text[$textLen-1], $tagType, $openTags ); // for bad HTML
+		$this->truncate_endBracket( $tag, $text[$textLen - 1], $tagType, $openTags ); // for bad HTML
 		while ( count( $openTags ) > 0 ) {
 			$ret .= '</' . array_pop( $openTags ) . '>'; // close open tags
 		}
@@ -2341,7 +2452,7 @@ class Language {
 	// like strcspn() but adds the skipped chars to $ret
 	private function truncate_skip( &$ret, $text, $search, $start, $len = -1 ) {
 		$skipCount = 0;
-		if( $start < strlen($text) ) {
+		if( $start < strlen( $text ) ) {
 			$skipCount = strcspn( $text, $search, $start, $len );
 			$ret .= substr( $text, $start, $skipCount );
 		}
@@ -2357,7 +2468,7 @@ class Language {
 			if( $tagType == 0 && $lastCh != '/' ) {
 				$openTags[] = $tag; // tag opened (didn't close itself)
 			} else if( $tagType == 1 ) {
-				if( $openTags && $tag == $openTags[count($openTags)-1] ) {
+				if( $openTags && $tag == $openTags[count( $openTags ) - 1] ) {
 					array_pop( $openTags ); // tag closed
 				}
 			}
@@ -2375,7 +2486,7 @@ class Language {
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$this->getCode()][$case][$word]) ) {
+		if ( isset( $wgGrammarForms[$this->getCode()][$case][$word] ) ) {
 			return $wgGrammarForms[$this->getCode()][$case][$word];
 		}
 		return $word;
@@ -2390,11 +2501,17 @@ class Language {
 	 * These details may be overriden per language.
 	 */
 	function gender( $gender, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) {
+			return '';
+		}
 		$forms = $this->preConvertPlural( $forms, 2 );
-		if ( $gender === 'male' ) return $forms[0];
-		if ( $gender === 'female' ) return $forms[1];
-		return isset($forms[2]) ? $forms[2] : $forms[0];
+		if ( $gender === 'male' ) {
+			return $forms[0];
+		}
+		if ( $gender === 'female' ) {
+			return $forms[1];
+		}
+		return isset( $forms[2] ) ? $forms[2] : $forms[0];
 	}
 
 	/**
@@ -2413,7 +2530,9 @@ class Language {
 	 * @return string Correct form of plural for $count in this language
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) {
+			return '';
+		}
 		$forms = $this->preConvertPlural( $forms, 2 );
 
 		return ( $count == 1 ) ? $forms[0] : $forms[1];
@@ -2428,31 +2547,31 @@ class Language {
 	 * @return array Padded array of forms or an exception if not an array
 	 */
 	protected function preConvertPlural( /* Array */ $forms, $count ) {
-		while ( count($forms) < $count ) {
-			$forms[] = $forms[count($forms)-1];
+		while ( count( $forms ) < $count ) {
+			$forms[] = $forms[count( $forms ) - 1];
 		}
 		return $forms;
 	}
 
 	/**
-	 * For translaing of expiry times
+	 * For translating of expiry times
 	 * @param $str String: the validated block time in English
 	 * @return Somehow translated block time
 	 * @see LanguageFi.php for example implementation
 	 */
 	function translateBlockExpiry( $str ) {
-
 		$scBlockExpiryOptions = $this->getMessageFromDB( 'ipboptions' );
 
-		if ( $scBlockExpiryOptions == '-') {
+		if ( $scBlockExpiryOptions == '-' ) {
 			return $str;
 		}
 
-		foreach (explode(',', $scBlockExpiryOptions) as $option) {
-			if ( strpos($option, ":") === false )
+		foreach ( explode( ',', $scBlockExpiryOptions) as $option ) {
+			if ( strpos( $option, ':' ) === false ) {
 				continue;
-			list($show, $value) = explode(":", $option);
-			if ( strcmp ( $str, $value) == 0 ) {
+			}
+			list( $show, $value ) = explode( ':', $option );
+			if ( strcmp( $str, $value ) == 0 ) {
 				return htmlspecialchars( trim( $show ) );
 			}
 		}
@@ -2482,25 +2601,24 @@ class Language {
 	}
 
 	# convert text to all supported variants
-	function autoConvertToAllVariants($text) {
-		return $this->mConverter->autoConvertToAllVariants($text);
+	function autoConvertToAllVariants( $text ) {
+		return $this->mConverter->autoConvertToAllVariants( $text );
 	}
 
 	# convert text to different variants of a language.
-	function convert( $text, $isTitle = false) {
-		return $this->mConverter->convert($text, $isTitle);
+	function convert( $text, $isTitle = false ) {
+		return $this->mConverter->convert( $text, $isTitle );
 	}
 
 	# Check if this is a language with variants
-	function hasVariants(){
-		return sizeof($this->getVariants())>1;
+	function hasVariants() {
+		return sizeof( $this->getVariants() ) > 1;
 	}
 
 	# Put custom tags (e.g. -{ }-) around math to prevent conversion
-	function armourMath($text){
-		return $this->mConverter->armourMath($text);
+	function armourMath( $text ) {
+		return $this->mConverter->armourMath( $text );
 	}
-
 
 	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
@@ -2518,7 +2636,7 @@ class Language {
 	}
 
 	/**
-	 * get the list of variants supported by this langauge
+	 * Get the list of variants supported by this langauge
 	 * see sample implementation in LanguageZh.php
 	 *
 	 * @return array an array of language codes
@@ -2527,13 +2645,12 @@ class Language {
 		return $this->mConverter->getVariants();
 	}
 
-
 	function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
 		return $this->mConverter->getPreferredVariant( $fromUser, $fromHeader );
 	}
 
 	/**
-	 * if a language supports multiple variants, it is
+	 * If a language supports multiple variants, it is
 	 * possible that non-existing link in one variant
 	 * actually exists in another variant. this function
 	 * tries to find it. See e.g. LanguageZh.php
@@ -2553,10 +2670,9 @@ class Language {
 	 * into an array of all possible variants of the text:
 	 *  'variant' => text in that variant
 	 */
-	function convertLinkToAllVariants($text){
-		return $this->mConverter->convertLinkToAllVariants($text);
+	function convertLinkToAllVariants( $text ) {
+		return $this->mConverter->convertLinkToAllVariants( $text );
 	}
-
 
 	/**
 	 * returns language specific options used by User::getPageRenderHash()
@@ -2569,7 +2685,7 @@ class Language {
 	}
 
 	/**
-	 * for languages that support multiple variants, the title of an
+	 * For languages that support multiple variants, the title of an
 	 * article may be displayed differently in different variants. this
 	 * function returns the apporiate title defined in the body of the article.
 	 *
@@ -2587,7 +2703,7 @@ class Language {
 	 * @param $noParse
 	 * @return string the tagged text
 	 */
-	function markNoConversion( $text, $noParse=false ) {
+	function markNoConversion( $text, $noParse = false ) {
 		return $this->mConverter->markNoConversion( $text, $noParse );
 	}
 
@@ -2682,7 +2798,9 @@ class Language {
 	}
 
 	function fixVariableInNamespace( $talk ) {
-		if ( strpos( $talk, '$1' ) === false ) return $talk;
+		if ( strpos( $talk, '$1' ) === false ) {
+			return $talk;
+		}
 
 		global $wgMetaNamespace;
 		$talk = str_replace( '$1', $wgMetaNamespace, $talk );
