@@ -162,6 +162,7 @@ class CheckSyntax extends Maintenance {
 	 * Returns true if $file is of a type we can check
 	 */
 	private function isSuitableFile( $file ) {
+		$file = str_replace( '\\', '/', $file );
 		$ext = pathinfo( $file, PATHINFO_EXTENSION );
 		if ( $ext != 'php' && $ext != 'inc' && $ext != 'php5' )
 			return false;
