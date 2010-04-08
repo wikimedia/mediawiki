@@ -305,6 +305,9 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'مستوى_الحماية', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'تهيئة_التاريخ', 'تهيئة_تاريخ', 'formatdate', 'dateformat' ),
+	'url_path'              => array( '0', 'مسار', 'PATH' ),
+	'url_wiki'              => array( '0', 'ويكي', 'WIKI' ),
+	'url_query'             => array( '0', 'استعلام', 'QUERY' ),
 );
 
 $specialPageAliases = array(
