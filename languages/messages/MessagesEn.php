@@ -352,6 +352,9 @@ $magicWords = array(
 	'staticredirect'         => array( 1,    '__STATICREDIRECT__'     ),
 	'protectionlevel'        => array( 1,    'PROTECTIONLEVEL'        ),
 	'formatdate'             => array( 0,    'formatdate', 'dateformat' ),
+	'url_path'               => array( 0,    'PATH' ),
+	'url_wiki'               => array( 0,    'WIKI' ),
+	'url_query'              => array( 0,    'QUERY' ),
 );
 
 /**

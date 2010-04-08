@@ -2177,6 +2177,21 @@ language=de
 !! end
 
 
+!! test
+Urlencode
+!! input
+{{urlencode:hi world?!}}
+{{urlencode:hi world?!|WIKI}}
+{{urlencode:hi world?!|PATH}}
+{{urlencode:hi world?!|QUERY}}
+!! result
+<p>hi+world%3F%21
+hi_world%3F!
+hi%20world%3F%21
+hi+world%3F%21
+</p>
+!! end
+
 ###
 ### Magic links
 ###
