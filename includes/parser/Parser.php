@@ -348,8 +348,8 @@ class Parser {
 		 * The page doesn't get language converted if
 		 * a) It's disabled
 		 * b) Titles aren't converted
-         * c) Content isn't converted and this is not a talk page
-         * d) It's a conversion table
+		 * c) Content isn't converted and this is not a talk page
+		 * d) It's a conversion table
 		 */
 		if ( !( $wgDisableLangConversion
 				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
