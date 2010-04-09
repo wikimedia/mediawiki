@@ -387,7 +387,7 @@ class Parser {
 				$this->mOutput->setTitleText( $convruletitle );
 			}
 			else {
-				$this->mOutput->setTitleText( $wgContLang->convert( $title->getText() ) );
+				$this->mOutput->setTitleText( $wgContLang->convert( $title->getPrefixedText() ) );
 			}
 		}
 
