@@ -637,6 +637,7 @@ class ApiMain extends ApiBase {
 			'',
 			'Documentation:   http://www.mediawiki.org/wiki/API',
 			'Mailing list:    http://lists.wikimedia.org/mailman/listinfo/mediawiki-api',
+			'Api Announcements:    http://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce',
 			'Bugs & Requests: http://bugzilla.wikimedia.org/buglist.cgi?component=API&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts',
 			'',
 			'',
