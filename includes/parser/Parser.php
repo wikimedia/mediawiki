@@ -349,7 +349,6 @@ class Parser {
 		# is the <nowiki> mark.
 		if ( !( $wgDisableLangConversion
 				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
-				|| $this->mTitle->isTalkPage()
 				|| $this->mTitle->isConversionTable() ) ) {
 			$text = $wgContLang->convert( $text );
 		}
