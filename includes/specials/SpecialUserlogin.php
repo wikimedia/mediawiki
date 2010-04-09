@@ -708,7 +708,7 @@ class LoginForm {
 			return;
 		}
 		$u = User::newFromName( $this->mName );
-		if( is_null( $u ) ) {
+		if( !$u instanceof User ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
 		}
