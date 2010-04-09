@@ -10,6 +10,7 @@
  * @author Bani
  * @author BrunaaAa
  * @author Brunoy Anastasiya Seryozhenko
+ * @author Capmo
  * @author Carla404
  * @author Crazymadlover
  * @author Daemorris
@@ -765,6 +766,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'login-throttled'            => 'Você fez tentativas demais de se autenticar com esta conta recentemente.
 Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
+'suspicious-userlogout'      => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
 
 # Password reset dialog
 'resetpass'                 => 'Alterar senha',
@@ -992,6 +994,7 @@ Estes argumentos foram omitidos.',
 'post-expand-template-argument-category'  => 'Páginas com omissões de argumentos em predefinições',
 'parser-template-loop-warning'            => 'Ciclo de predefinições detectado: [[$1]]',
 'parser-template-recursion-depth-warning' => 'O limite de profundidade de recursividade de predefinição foi ultrapassado ($1)',
+'language-converter-depth-warning'        => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
 
 # "Undo" feature
 'undo-success' => 'A edição pôde ser desfeita. Por gentileza, verifique o comparativo a seguir para se certificar de que é isto que deseja fazer, salvando as alterações após ter terminado de revisá-las.',
@@ -1366,25 +1369,26 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'prefs-diffs'                   => 'Diferenças',
 
 # User rights
-'userrights'                  => 'Gestão de privilégios de usuários',
-'userrights-lookup-user'      => 'Administrar grupos de usuários',
-'userrights-user-editname'    => 'Forneça um nome de usuário:',
-'editusergroup'               => 'Editar grupos de usuários',
-'editinguser'                 => "Modificando privilégios do usuário '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Editar grupos do usuário',
-'saveusergroups'              => 'Salvar grupos do usuário',
-'userrights-groupsmember'     => 'Membro de:',
-'userrights-groups-help'      => 'É possível alterar os grupos em que este usuário se encontra:
+'userrights'                   => 'Gestão de privilégios de usuários',
+'userrights-lookup-user'       => 'Administrar grupos de usuários',
+'userrights-user-editname'     => 'Forneça um nome de usuário:',
+'editusergroup'                => 'Editar grupos de usuários',
+'editinguser'                  => "Modificando privilégios do usuário '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Editar grupos do usuário',
+'saveusergroups'               => 'Salvar grupos do usuário',
+'userrights-groupsmember'      => 'Membro de:',
+'userrights-groupsmember-auto' => 'Membro implícito de:',
+'userrights-groups-help'       => 'É possível alterar os grupos em que este usuário se encontra:
 * Uma caixa de seleção selecionada significa que o usuário se encontra no grupo.
 * Uma caixa de seleção desselecionada significa que o usuário não se encontra no grupo.
 * Um * indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
-'userrights-reason'           => 'Motivo:',
-'userrights-no-interwiki'     => 'Você não tem permissão de alterar privilégios de usuários em outras wikis.',
-'userrights-nodatabase'       => 'O banco de dados $1 não existe ou não é um banco de dados local.',
-'userrights-nologin'          => 'Você precisa [[Special:UserLogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
-'userrights-notallowed'       => 'Sua conta não possui permissão para conceder privilégios a usuários.',
-'userrights-changeable-col'   => 'Grupos que pode alterar',
-'userrights-unchangeable-col' => 'Grupos que não pode alterar',
+'userrights-reason'            => 'Motivo:',
+'userrights-no-interwiki'      => 'Você não tem permissão de alterar privilégios de usuários em outras wikis.',
+'userrights-nodatabase'        => 'O banco de dados $1 não existe ou não é um banco de dados local.',
+'userrights-nologin'           => 'Você precisa [[Special:UserLogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
+'userrights-notallowed'        => 'Sua conta não possui permissão para conceder privilégios a usuários.',
+'userrights-changeable-col'    => 'Grupos que pode alterar',
+'userrights-unchangeable-col'  => 'Grupos que não pode alterar',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1599,6 +1603,7 @@ Para incluir a imagem numa página, utilize uma ligação em um dos seguintes fo
 'minlength1'                  => 'Os nomes de arquivos devem de ter pelo menos uma letra.',
 'illegalfilename'             => 'O arquivo "$1" possui caracteres que não são permitidos no título de uma página. Por favor, altere o nome do arquivo e tente carregar novamente.',
 'badfilename'                 => 'O nome do arquivo foi alterado para "$1".',
+'filetype-mime-mismatch'      => 'A extensão do arquivo não corresponde ao tipo MIME.',
 'filetype-badmime'            => 'Arquivos de tipo MIME "$1" não são permitidos de serem enviados.',
 'filetype-bad-ie-mime'        => 'Este arquivo não pode ser carregado porque o Internet Explorer o detectaria como "$1", que é um tipo de arquivo não permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' é um tipo de arquivo não desejado.
@@ -1702,10 +1707,13 @@ Para melhor segurança, o img_auth.php está desativado.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
+'http-invalid-scheme'   => 'URLs que iniciam com o prefixo "$1" não são aceitas.',
 'http-request-error'    => 'A requisição HTTP falhou devido a um erro desconhecido.',
 'http-read-error'       => 'Erro de leitura HTTP.',
 'http-timed-out'        => 'Esgotado o tempo de espera da requisição HTTP.',
+'http-curl-error'       => 'Erro ao requisitar a URL: $1',
 'http-host-unreachable' => 'Não foi possível atingir a URL.',
+'http-bad-status'       => 'Ocorreu um problema durante a requisição HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível acessar a URL',
@@ -2102,7 +2110,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_lastvisited'           => 'Consulte $1 para todas as alterações efetuadas desde a sua última visita.',
 'enotif_lastdiff'              => 'Acesse $1 para ver esta alteração.',
 'enotif_anon_editor'           => 'usuário anônimo $1',
-'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
+'enotif_body'                  => 'Caro(a) $WATCHINGUSERNAME,
 
 
 A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão atual.
@@ -2115,15 +2123,19 @@ Contate o editor:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página. Você poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
+Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página.
+Você pode também reativar as notificações para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
 
-             O seu amigável sistema de notificação de {{SITENAME}}
+             O seu sistema de notificação amigável da {{SITENAME}}
 
 --
-Para alterar as suas preferências da lista de páginas vigiadas, visite
+Para alterar as configurações de sua lista de páginas vigiadas, visite
 {{fullurl:Special:Watchlist/edit}}
 
-Contato e assistência:
+Para retirar esta página de sua lista de páginas vigiadas, visite
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+
+Comentários e assistência:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2216,7 +2228,7 @@ Esta é a configuração atual para a página '''$1''':",
 'protect-othertime-op'        => 'outra duração',
 'protect-existing-expiry'     => 'A proteção atual expirará às $3 de $2',
 'protect-otherreason'         => 'Outro motivo/motivo adicional:',
-'protect-otherreason-op'      => 'outro motivo/motivo adicional',
+'protect-otherreason-op'      => 'Outro motivo',
 'protect-dropdown'            => "*Motivos comuns para proteção
 ** Vandalismo excessivo
 ** Inserção excessiva de ''spams''
@@ -2788,7 +2800,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'markaspatrolleddiff'                 => 'Marcar como verificado',
 'markaspatrolledtext'                 => 'Marcar esta página como verificada',
 'markedaspatrolled'                   => 'Marcado como verificado',
-'markedaspatrolledtext'               => 'A revisão selecionada foi marcada como verificada.',
+'markedaspatrolledtext'               => 'A revisão selecionada de [[:$1]] foi marcada como patrulhada.',
 'rcpatroldisabled'                    => 'Edições verificadas nas Mudanças Recentes desativadas',
 'rcpatroldisabledtext'                => 'A funcionalidade de Edições verificadas nas Mudanças Recentes está atualmente desativada.',
 'markedaspatrollederror'              => 'Não é possível marcar como verificado',
@@ -3292,7 +3304,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional
 # Special:FilePath
 'filepath'         => 'Diretório do arquivo',
 'filepath-page'    => 'arquivo:',
-'filepath-submit'  => 'Diretório',
+'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Através dsta página especial é possível descobrir o endereço completo de um determinado arquivo. As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos serão iniciados automaticamente em seus programas correspondentes.
 
 Entre com o nome do arquivo sem utilizar o prefixo "{{ns:file}}:".',

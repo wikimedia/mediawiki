@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Capmo
  * @author Crazymadlover
  * @author Daemorris
  * @author Giro720
@@ -776,7 +777,7 @@ Se a conta foi criada por engano, pode ignorar esta mensagem.',
 'login-throttled'            => 'Realizou demasiadas tentativas de autenticação com esta conta.
 Por favor, aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Língua: $1',
-'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com caching.',
+'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um navegador danificado ou por um proxy com cache.',
 
 # Password reset dialog
 'resetpass'                 => 'Alterar palavra-chave',
@@ -1016,7 +1017,7 @@ Estes argumentos foram omitidos.',
 'post-expand-template-argument-category'  => 'Páginas com omissões de argumentos em predefinições',
 'parser-template-loop-warning'            => 'Ciclo de predefinições detectado: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Atingido o limite de profundidade de recursividade de predefinição ($1)',
-'language-converter-depth-warning'        => 'O limite de profundidade do conversor de línguas foi excedido ($1)',
+'language-converter-depth-warning'        => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
 
 # "Undo" feature
 'undo-success' => 'A edição pode ser desfeita.
@@ -1640,7 +1641,7 @@ Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualizaç�
 'minlength1'                  => 'Os nomes de ficheiros devem de ter pelo menos uma letra.',
 'illegalfilename'             => 'O ficheiro "$1" possui caracteres que não são permitidos no título de uma página. Por favor, altere o nome do ficheiro e tente carregar novamente.',
 'badfilename'                 => 'O nome do ficheiro foi alterado para "$1".',
-'filetype-mime-mismatch'      => 'Extensão do ficheiro não corresponde ao tipo MIME.',
+'filetype-mime-mismatch'      => 'A extensão do ficheiro não corresponde ao tipo MIME.',
 'filetype-badmime'            => 'Não é permitido carregar ficheiros do tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'Este ficheiro não pôde ser carregado porque o Internet Explorer o iria detectar como "$1", que é um tipo de ficheiro não permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' não é um tipo de ficheiro desejado.
@@ -1751,7 +1752,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
-'http-invalid-scheme'   => 'URLs começadas pelo prefixo "$1" não são suportadas.',
+'http-invalid-scheme'   => 'URLs que iniciam com o prefixo "$1" não são aceites.',
 'http-request-error'    => 'O pedido HTTP falhou devido a um erro desconhecido.',
 'http-read-error'       => 'Erro de leitura HTTP.',
 'http-timed-out'        => 'O pedido HTTP expirou.',
@@ -2171,9 +2172,9 @@ correio electrónico: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Até que visite esta página, não haverá lugar a mais notificações no caso de alterações futuras.
-Pode também restaurar as marcações de notificação para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
+Pode também reativar as notificação para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
 
-             O seu amigável sistema de notificação da {{SITENAME}}
+             O seu sistema de notificação amigável da {{SITENAME}}
 
 --
 Para alterar as suas preferências da lista de páginas vigiadas, visite
@@ -3402,7 +3403,7 @@ Também pode [[Special:Watchlist/edit|editar a lista da maneira convencional]].'
 # Special:FilePath
 'filepath'         => 'Endereço de ficheiro',
 'filepath-page'    => 'Ficheiro:',
-'filepath-submit'  => 'Endereço',
+'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Esta página especial retorna o endereço completo de um ficheiro ao seu browser, que irá processá-lo.
 Imagens serão apresentadas pelo browser na resolução máxima.
 Ficheiros de outro tipo serão abertos pelo browser directamente no programa que lhes está associado no seu computador.

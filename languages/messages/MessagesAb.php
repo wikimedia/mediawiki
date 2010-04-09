@@ -46,13 +46,17 @@ $messages = array(
 'navigation' => 'Анавигациа',
 
 # Cologne Blue skin
+'qbfind'         => 'Аҧшаара',
 'qbedit'         => 'Ариашара',
 'qbpageoptions'  => 'Ари адаҟьа',
 'qbspecialpages' => 'Цастәи адаҟьақәа',
 
 # Vector skin
 'vector-namespace-category' => 'Акатегориа',
+'vector-namespace-help'     => 'Ацхыраара адаҟьа',
+'vector-namespace-image'    => 'Афаил',
 'vector-namespace-main'     => 'Адаҟьа',
+'vector-namespace-project'  => 'Апроект',
 'vector-namespace-special'  => 'Цастәи адаҟьа',
 'vector-namespace-talk'     => 'Ахцәажәара',
 'vector-namespace-template' => 'Ашаблон',
@@ -123,7 +127,7 @@ $messages = array(
 'group-user-member' => 'Иалахә',
 
 # Recent changes
-'recentchanges' => 'Арҽеира ҽыцқәа',
+'recentchanges' => 'Арҽеира ҿыцқәа',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Еимадоу ариашарақәа',

@@ -2114,10 +2114,15 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 'table_pager_empty'        => 'Hakuna matokeo',
 
 # Auto-summaries
-'autosumm-blank' => 'Ukurasa ulimwagika',
+'autosumm-blank'   => 'Ukurasa ulimwagika',
+'autoredircomment' => 'Ukurasa ulielekezwa kwenda [[$1]]',
+'autosumm-new'     => "Ukurasa ulianzishwa kwa kuandika '$1'",
 
 # Live preview
 'livepreview-loading' => 'Inapakizwa...',
+'livepreview-ready'   => 'Inapakizwa... Tayari!',
+'livepreview-failed'  => 'Hakikisho la kisasa hakufaulu!
+Jaribu hakikisho la kawaida.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Orodha ya maangalizi yako ina {{PLURAL:$1|ukurasa 1|kurasa $1}}, bila kuhesabu kurasa za majadiliano.',

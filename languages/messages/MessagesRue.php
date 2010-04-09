@@ -153,7 +153,7 @@ $messages = array(
 'history_short'     => 'Історія',
 'updatedmarker'     => 'змінено од послїдный навщівы',
 'info_short'        => 'Інформація',
-'printableversion'  => 'Верзіа про тиснутя',
+'printableversion'  => 'Верзія про друк',
 'permalink'         => 'Перманентный одказ',
 'edit'              => 'Едітовати',
 'create'            => 'Створити',
@@ -295,9 +295,12 @@ $1',
 'viewsourcefor'        => 'Сторінка «$1»',
 
 # Login and logout pages
+'welcomecreation'         => '== Вітаєме вас, $1! ==
+Ваше конто было вытворене.
+Не забудьте змінити свої [[Special:Preferences|наставлиня сайту]].',
 'yourname'                => 'Мено хоснователя:',
 'yourpassword'            => 'Гесло:',
-'remembermypassword'      => 'Запамятати моє приголошиня на тім компютері',
+'remembermypassword'      => 'Запамятати моє приголошіня на тім компютері',
 'login'                   => 'Приголошіня',
 'nav-login-createaccount' => 'Приголошіня / Вытвориня конта',
 'userlogin'               => 'Приголошіня / вытвориня конта',
@@ -308,9 +311,23 @@ $1',
 'createaccount'           => 'Вытворити конто',
 'gotaccountlink'          => 'Приголошіня',
 'createaccountmail'       => 'електроничнов поштов',
+'login-userblocked'       => 'Тот хоснователь є заблокованый. Приголошіня не є доволене.',
+'wrongpassword'           => 'Задали сьте хыбне гесло. Спробуйте іщі раз.',
 'mailmypassword'          => 'Послати нове гесло',
 'createaccount-title'     => 'Вытвориня конта про  {{SITENAME}}',
 'loginlanguagelabel'      => 'Язык: $1',
+
+# Password reset dialog
+'resetpass_header'          => 'Зміна гесла',
+'oldpassword'               => 'Старе гесло:',
+'newpassword'               => 'Нове гесло:',
+'retypenew'                 => 'Напиште знову нове гесло:',
+'resetpass_submit'          => 'Наставити гесло а приголосити ся',
+'resetpass_success'         => 'Ваше гесло было успішно змінено! Теперь ся приголосуєте...',
+'resetpass_forbidden'       => 'Гесла не є можне змінити',
+'resetpass-submit-loggedin' => 'Змінити гесло',
+'resetpass-submit-cancel'   => 'Сторно',
+'resetpass-temp-password'   => 'Дочасне гесло:',
 
 # Edit page toolbar
 'bold_sample'     => 'Тучный текст',
@@ -342,8 +359,13 @@ $1',
 'showpreview'                      => 'Вказати перегляд',
 'showdiff'                         => 'Вказати зміны',
 'anoneditwarning'                  => "'''Увага''': Не сте приголошены. Ваша IP-адреса буде записана до історії змін той сторінкы.",
+'missingcommenttext'               => 'Задайте коментарь',
 'summary-preview'                  => 'Опис буде:',
 'blockedtitle'                     => 'Хоснователь є блокованый',
+'blockednoreason'                  => 'причіна не была задана',
+'nosuchsectiontitle'               => 'Секція ненайджена',
+'loginreqlink'                     => 'Приголосити ся',
+'accmailtitle'                     => 'Гесло одослане.',
 'newarticle'                       => '(Нова)',
 'newarticletext'                   => "Перешли сте на сторінку, котра іщі не екзістує.
 Нову сторінку створите так, же зачнете писати в окнї ниже (вид. [[{{MediaWiki:Helppage}}|сторінка помочі]], про вецей інформації).
@@ -352,11 +374,15 @@ $1',
 Можете [[Special:Search/{{PAGENAME}}|глядати тоту назву]] в іншых сторінках,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} глядати в лоґах]
 або [{{fullurl:{{FULLPAGENAME}}|action=edit}} вытворити сторінку з таков назвов]</span>.',
+'updated'                          => '(Зміна уложена)',
 'previewnote'                      => "'''Памятайте, же то лем попереднїй перегляд,
 текст іщі не є уложеный!'''",
 'editing'                          => 'Едітованя $1',
 'editingsection'                   => 'Едітованя $1 (роздїл)',
+'editingcomment'                   => 'Едітованя $1 (нова секція)',
+'editconflict'                     => 'Конфлікт едітованя: $1',
 'yourtext'                         => 'Ваш текст',
+'storedversion'                    => 'Уложена верзія',
 'yourdiff'                         => 'Роздїлы',
 'copyrightwarning'                 => "Просиме Вас, уважте, што вшыткы додаваня і зміны до {{grammar:genitive|{{SITENAME}}}} будуть выпущены під ліценціёв $2 (від. $1).
 Кідь не хочете, жебы написане вами ся немилосерднї едітовало і шырило, пак не пиште гев.<br />
@@ -364,9 +390,11 @@ $1',
 '''НЕ ПУБЛІКУЙТЕ ТУ БЕЗ ПОВОЛИНЯ МАТЕРІАЛЫ, ШТО СЯ ОХРАНЮЮТЬ АВТОРСКЫМ ПРАВОМ!''",
 'templatesused'                    => '{{PLURAL:$1|Шаблона, хоснована|Шаблоны, хоснованы}} на тій сторінці:',
 'templatesusedpreview'             => '{{PLURAL:$1|Шаблона, хоснована|Шаблоны, хоснованы}} у тім перегляді:',
+'templatesusedsection'             => '{{PLURAL:$1|Шаблона, хоснована|Шаблоны, хоснованы}} у тій секції:',
 'template-protected'               => '(хранена)',
 'template-semiprotected'           => '(частково хранено)',
 'hiddencategories'                 => 'Тота сторінка належыть до $1 {{PLURAL:$1|схованa катеґорія|схованы катеґорії|схованы катеґорії}}:',
+'permissionserrors'                => 'Хыба оправнїня',
 'permissionserrorstext-withaction' => 'Немаєте поволїня на $2 з {{PLURAL:$1|такой причіны|такых причін}}:',
 
 # Account creation failure
@@ -613,6 +641,7 @@ $1',
 # Upload
 'upload'        => 'Награти файл',
 'uploadlogpage' => 'Лоґ награных файлів',
+'savefile'      => 'Уложыти файл',
 'uploadedimage' => 'награв "[[$1]]"',
 
 # Special:ListFiles
@@ -861,6 +890,29 @@ $1',
 # Thumbnails
 'thumbnail-more' => 'Звекшыти',
 
+# Special:Import
+'importinterwiki'            => 'Імпорт міджі вікі',
+'import-interwiki-source'    => 'Вікі/сторінка-джерело',
+'import-interwiki-history'   => 'Копіровати вшыткы історічны верзії той сторінкы',
+'import-interwiki-submit'    => 'Імпортовати',
+'import-interwiki-namespace' => 'Цілёвый простор назв:',
+'import-upload-filename'     => 'Назва файлу:',
+'import-comment'             => 'Коментарь:',
+'importtext'                 => 'Просиме Вас, експортуйте сторінку з іншой вікі помочов [[Special:Export| експорт]], уложте файл на ваш діск а потім го награйте ту.',
+'importstart'                => 'Імпорт сторінок…',
+'import-revision-count'      => '$1 {{PLURAL:$1|ревізія|ревізії|ревізій}}',
+'importnopages'              => 'Не є што імпортовати.',
+'importfailed'               => 'Імпорт ся не подарив: $1',
+'importunknownsource'        => 'Незнамый тіп  імпортованой сторінкы',
+'importcantopen'             => 'Не дало ся отворити файл імпорту',
+'importbadinterwiki'         => 'Неплатный одказ інтервікі',
+'importnotext'               => 'Порожнїй або жаден текст',
+'importsuccess'              => 'Імпорт сконченый!',
+'importhistoryconflict'      => 'Екзістує конфлікт міджі історіямі верзії (може тота сторінка уж была імпортована скоре)',
+'importnosources'            => 'Не было выбране джерело імпорту міджі вікі, пряме начітаня історії змін є выпнуте.',
+'importnofile'               => 'Не быв начітаный файл імпорту.',
+'importuploaderrorsize'      => 'Не подарило ся начітати файл імпорту. Розмір файлу перевышує становлену меджу.',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ваша сторінка хоснователя',
 'tooltip-pt-mytalk'               => 'Ваша діскузна сторінка',
@@ -971,5 +1023,15 @@ $1',
 
 # HTML forms
 'htmlform-selectorother-other' => 'Інше',
+
+# Add categories per AJAX
+'ajax-confirm-save'            => 'Уложыти',
+'ajax-add-category-summary'    => 'Придати катеґорію „$1“',
+'ajax-remove-category-summary' => 'Одобрати катеґорію „$1“',
+'ajax-confirm-actionsummary'   => 'Мета дїї:',
+'ajax-error-title'             => 'Хыба',
+'ajax-error-dismiss'           => 'ОК',
+'ajax-remove-category-error'   => 'Не подарило ся одстранити дану катеґорію.
+Таке ся трафляє звычайнї тогды, коли катеґорія была придана до сторінкы через шаблону.',
 
 );
