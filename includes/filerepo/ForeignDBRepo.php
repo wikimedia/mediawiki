@@ -24,6 +24,8 @@ class ForeignDBRepo extends LocalRepo {
 		$this->dbFlags = $info['dbFlags'];
 		$this->tablePrefix = $info['tablePrefix'];
 		$this->hasSharedCache = $info['hasSharedCache'];
+                // This must not depend on per-wiki namespace configuration (bug 23120)
+                $this->initialCapital = true;
 	}
 
 	function getMasterDB() {
