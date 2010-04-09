@@ -365,7 +365,7 @@ class Parser
 
 		/**
 		 * A page get its title converted except:
-		 * a) Content convert is globally disabled
+		 * a) Language conversion is globally disabled
 		 * b) Title convert is globally disabled
 		 * c) The page is a redirect page
 		 * d) User request with a "linkconvert" set to "no"
@@ -377,7 +377,7 @@ class Parser
 		 * rule but content conversion was not done, then the parser
 		 * won't pick it up.  This is probably expected behavior.
 		 */
-		if ( !( $wgDisableContentConversion
+		if ( !( $wgDisableLangConversion
 				|| $wgDisableTitleConversion
 				|| $wgRequest->getText( 'redirect', 'yes' ) == 'no'
 				|| $wgRequest->getText( 'linkconvert', 'yes' ) == 'no'
