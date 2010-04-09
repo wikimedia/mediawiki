@@ -420,7 +420,6 @@ class MessageCache {
 	 * Shortcut to update caches.
 	 *
 	 * @param $cache Array: cached messages with a version.
-	 * @param $cacheKey String: Identifier for the cache.
 	 * @param $memc Bool: Wether to update or not memcache.
 	 * @param $code String: Language code.
 	 * @return False on somekind of error.
@@ -454,8 +453,9 @@ class MessageCache {
 	}
 
 	/**
-	 * Returns success
 	 * Represents a write lock on the messages key
+	 *
+	 * @return Boolean: success
 	 */
 	function lock($key) {
 		if ( !$this->mUseCache ) {
@@ -482,18 +482,19 @@ class MessageCache {
 	/**
 	 * Get a message from either the content language or the user language.
 	 *
-	 * @param string $key The message cache key
-	 * @param bool $useDB Get the message from the DB, false to use only the localisation
-	 * @param string $langcode Code of the language to get the message for, if
-	 *                         it is a valid code create a language for that
-	 *                         language, if it is a string but not a valid code
-	 *                         then make a basic language object, if it is a
-	 *                         false boolean then use the current users
-	 *                         language (as a fallback for the old parameter
-	 *                         functionality), or if it is a true boolean then
-	 *                         use the wikis content language (also as a
-	 *                         fallback).
-	 * @param bool $isFullKey Specifies whether $key is a two part key "msg/lang".
+	 * @param $key String: the message cache key
+	 * @param $useDB Boolean: get the message from the DB, false to use only
+	 *               the localisation
+	 * @param $langcode String: code of the language to get the message for, if
+	 *                  it is a valid code create a language for that language,
+	 *                  if it is a string but not a valid code then make a basic
+	 *                  language object, if it is a false boolean then use the
+	 *                  current users language (as a fallback for the old
+	 *                  parameter functionality), or if it is a true boolean
+	 *                  then use the wikis content language (also as a
+	 *                  fallback).
+	 * @param $isFullKey Boolean: specifies whether $key is a two part key
+	 *                   "msg/lang".
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLanguageCode, $wgContLang;
@@ -712,9 +713,9 @@ class MessageCache {
 	 * Add a message to the cache
 	 * @deprecated Use $wgExtensionMessagesFiles
 	 *
-	 * @param mixed $key
-	 * @param mixed $value
-	 * @param string $lang The messages language, English by default
+	 * @param $key Mixed
+	 * @param $value Mixed
+	 * @param $lang String: the messages language, English by default
 	 */
 	function addMessage( $key, $value, $lang = 'en' ) {
 		wfDeprecated( __METHOD__ );
@@ -726,8 +727,8 @@ class MessageCache {
 	 * Add an associative array of message to the cache
 	 * @deprecated Use $wgExtensionMessagesFiles
 	 *
-	 * @param array $messages An associative array of key => values to be added
-	 * @param string $lang The messages language, English by default
+	 * @param $messages Array: an associative array of key => values to be added
+	 * @param $lang String: the messages language, English by default
 	 */
 	function addMessages( $messages, $lang = 'en' ) {
 		wfDeprecated( __METHOD__ );
@@ -739,7 +740,7 @@ class MessageCache {
 	 * Add a 2-D array of messages by lang. Useful for extensions.
 	 * @deprecated Use $wgExtensionMessagesFiles
 	 *
-	 * @param array $messages The array to be added
+	 * @param $messages Array: the array to be added
 	 */
 	function addMessagesByLang( $messages ) {
 		wfDeprecated( __METHOD__ );
