@@ -305,7 +305,7 @@ class Parser
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgUser, $wgRequest, $wgDisableTitleConversion;
 		$fname = __METHOD__.'-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -349,13 +349,11 @@ class Parser
 		/**
 		 * The page doesn't get language converted if
 		 * a) It's disabled
-		 * b) Titles aren't converted
-		 * c) Content isn't converted and this is not a talk page
-		 * d) It's a conversion table
+         * c) Content isn't converted
+         * d) It's a conversion table
 		 */
 		if ( !( $wgDisableLangConversion
-				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
-				|| ( isset( $this->mDoubleUnderscores['nocontentconvert'] ) && !$this->mTitle->isTalkPage() )
+				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
 				|| $this->mTitle->isConversionTable() ) ) {
 
 			# The position of the convert() call should not be changed. it
@@ -365,12 +363,34 @@ class Parser
 			$text = $wgContLang->convert( $text );
 		}
 
-		// A title may have been set in a conversion rule.
-		// Note that if a user tries to set a title in a conversion
-		// rule but content conversion was not done, then the parser
-		// won't pick it up.  This is probably expected behavior.
-		if ( $wgContLang->getConvRuleTitle() ) {
-			$this->mOutput->setTitleText( $wgContLang->getConvRuleTitle() );
+		/**
+		 * A page get its title converted except:
+		 * a) Content convert is globally disabled
+		 * b) Title convert is globally disabled
+		 * c) The page is a redirect page
+		 * d) User request with a "linkconvert" set to "no"
+		 * e) A "nocontentconvert" magic word has been set
+		 * f) A "notitleconvert" magic word has been set
+		 * g) User sets "noconvertlink" in his/her preference
+		 *
+		 * Note that if a user tries to set a title in a conversion
+		 * rule but content conversion was not done, then the parser
+		 * won't pick it up.  This is probably expected behavior.
+		 */
+		if ( !( $wgDisableContentConversion
+				|| $wgDisableTitleConversion
+				|| $wgRequest->getText( 'redirect', 'yes' ) == 'no'
+				|| $wgRequest->getText( 'linkconvert', 'yes' ) == 'no'
+				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
+				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
+				|| $wgUser->getOption( 'noconvertlink' ) == 1 ) ) {
+			$convruletitle = $wgContLang->getConvRuleTitle();
+			if ( $convruletitle ) {
+				$this->mOutput->setTitleText( $convruletitle );
+			}
+			else {
+				$this->mOutput->setTitleText( $wgContLang->convert( $title->getText() ) );
+			}
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
