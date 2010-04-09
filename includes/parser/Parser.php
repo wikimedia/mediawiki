@@ -387,9 +387,8 @@ class Parser
 			$convruletitle = $wgContLang->getConvRuleTitle();
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
-			}
-			else {
-				$this->mOutput->setTitleText( $wgContLang->convert( $title->getPrefixedText() ) );
+			} else {
+				$this->mOutput->setTitleText( $wgContLang->convert( $this->mOutput->getTitleText() ) );
 			}
 		}
 
