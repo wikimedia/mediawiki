@@ -284,9 +284,9 @@ class Profiler {
 				$overheadInternal[] = $elapsed;
 			}
 		}
-		$overheadTotal = array_sum( $overheadTotal ) / count( $overheadInternal );
-		$overheadMemory = array_sum( $overheadMemory ) / count( $overheadInternal );
-		$overheadInternal = array_sum( $overheadInternal ) / count( $overheadInternal );
+		$overheadTotal = $overheadTotal ? array_sum( $overheadTotal ) / count( $overheadInternal ) : 0;
+		$overheadMemory = $overheadMemory ? array_sum( $overheadMemory ) / count( $overheadInternal ) : 0;
+		$overheadInternal = $overheadInternal ? array_sum( $overheadInternal ) / count( $overheadInternal ) : 0;
 
 		# Collate
 		foreach( $this->mStack as $index => $entry ){
