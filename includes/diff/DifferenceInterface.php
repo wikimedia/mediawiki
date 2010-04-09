@@ -395,8 +395,8 @@ CONTROL;
 			} else {
 				$query = array(
 					'type' 	 => 'revision',
-					'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
-					'ids' 	 => $this->mOldRev->getId()
+					'target' => $rev->mTitle->getPrefixedDbkey(),
+					'ids' 	 => $rev->getId()
 				);
 				$link = $sk->revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
