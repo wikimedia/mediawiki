@@ -344,12 +344,22 @@ class Parser {
 
 		$this->replaceLinkHolders( $text );
 
-		# The position of the convert() call should not be changed. it
-		# assumes that the links are all replaced and the only thing left
-		# is the <nowiki> mark.
+		/**
+		 * The page doesn't get language converted if
+		 * a) It's disabled
+		 * b) Titles aren't converted
+         * c) Content isn't converted and this is not a talk page
+         * d) It's a conversion table
+		 */
 		if ( !( $wgDisableLangConversion
-				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
+				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
+				|| ( isset( $this->mDoubleUnderscores['nocontentconvert'] ) && !$this->mTitle->isTalkPage() )
 				|| $this->mTitle->isConversionTable() ) ) {
+
+			# The position of the convert() call should not be changed. it
+			# assumes that the links are all replaced and the only thing left
+			# is the <nowiki> mark.
+
 			$text = $wgContLang->convert( $text );
 		}
 
