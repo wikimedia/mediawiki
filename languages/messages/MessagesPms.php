@@ -1161,8 +1161,8 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'group-suppress'      => 'Supervisor',
 'group-all'           => '(utent)',
 
-'group-user-member'          => 'Utent',
-'group-autoconfirmed-member' => "Utent ch'a l'é convalidasse daspërchiel/chila",
+'group-user-member'          => 'utent',
+'group-autoconfirmed-member' => "utent ch'a l'é convalidasse daspërchiel/chila",
 'group-bot-member'           => 'Trigomiro',
 'group-sysop-member'         => 'Aministrator',
 'group-bureaucrat-member'    => 'Mangiapapé',

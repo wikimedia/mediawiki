@@ -1855,7 +1855,7 @@ $1",
 # Book sources
 'booksources'               => 'Източници на книги',
 'booksources-search-legend' => 'Търсене на информация за книга',
-'booksources-go'            => 'Търсене',
+'booksources-go'            => 'Отваряне',
 'booksources-text'          => 'По-долу е списъкът от връзки към други сайтове, продаващи нови и използвани книги или имащи повече информация за книгите, които търсите:',
 'booksources-invalid-isbn'  => 'Предоставеният ISBN изглежда е невалиден; проверете за грешки и копирайте от оригиналния източник.',
 
@@ -3106,7 +3106,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '← предишна страница',
 'imgmultipagenext' => 'следваща страница →',
-'imgmultigo'       => 'Отиване',
+'imgmultigo'       => 'Отваряне',
 'imgmultigoto'     => 'Отиване на страница $1',
 
 # Table pager
@@ -3117,7 +3117,7 @@ $1',
 'table_pager_first'        => 'Първа страница',
 'table_pager_last'         => 'Последна страница',
 'table_pager_limit'        => 'Показване на $1 записа на страница',
-'table_pager_limit_submit' => 'Зареждане',
+'table_pager_limit_submit' => 'Отваряне',
 'table_pager_empty'        => 'Няма резултати',
 
 # Auto-summaries
@@ -3187,7 +3187,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'Път към файл',
 'filepath-page'    => 'Файл:',
-'filepath-submit'  => 'Път',
+'filepath-submit'  => 'Отваряне',
 'filepath-summary' => 'Тази специална страница връща пълния път до даден файл. Изображенията се показват в пълната им разделителна способност, а други типове файлове се отварят направо с приложенията, с които са асоциирани.
 
 Името на файла се изписва без представката „{{ns:file}}:“',

@@ -18,6 +18,7 @@
  * @author BicScope
  * @author Boivie
  * @author Candalua
+ * @author Capmo
  * @author Cerealito
  * @author Clerc
  * @author Crazymadlover
@@ -2024,7 +2025,7 @@ Protocolos soportados: <tt>$1</tt>',
 'listusersfrom'      => 'Mostrar usuarios que empiecen por:',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'No se encontró al usuario.',
-'listusers-blocked'  => '(bloqueado)',
+'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista de usuarios activos',

@@ -3097,7 +3097,7 @@ Varmenna, että tämä tunnus kuuluu sinulle avaamalla seuraava linkki selaimell
 
 $3
 
-Jos et ole rekisteröinyt tätä tunnusta, peruuta sähköpostiosoitteen varmistus avaamalla seuraava linkki:
+Jos et ole rekisteröinyt tätä tunnusta, peruuta sähköpostiosoitteen varmennus avaamalla seuraava linkki:
 
 $5
 
@@ -3108,7 +3108,7 @@ Varmenna, että tämä tunnus kuuluu sinulle ja uudelleenaktivoi sähköpostitoi
 
 $3
 
-Jos tunnus ei kuulu sinulle, peruuta sähköpostiosoitteen varmistus avaamalla seuraava linkki:
+Jos tunnus ei kuulu sinulle, peruuta sähköpostiosoitteen varmennus avaamalla seuraava linkki:
 
 $5
 

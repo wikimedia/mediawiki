@@ -2119,7 +2119,7 @@ Tagasiside ja abi:
 'confirmdeletetext'      => 'Sa oled andmebaasist jäädavalt kustutamas lehte või pilti koos kogu tema ajalooga. Palun kinnita, et sa tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse [[{{MediaWiki:Policy-url}}|sisekorraga]].',
 'actioncomplete'         => 'Toiming sooritatud',
 'actionfailed'           => 'Tegevus ebaõnnestus',
-'deletedtext'            => '"<nowiki>$1</nowiki>" on kustutatud. $2 lehel on nimekiri viimastest kustutatud lehekülgedest.',
+'deletedtext'            => '"<nowiki>$1</nowiki>" on kustutatud. {{ucfirst:$2}} lehel on nimekiri viimastest kustutatud lehekülgedest.',
 'deletedarticle'         => 'kustutas lehekülje "[[$1]]"',
 'suppressedarticle'      => 'varjas lehekülje "[[$1]]"',
 'dellogpage'             => 'Kustutamislogi',
