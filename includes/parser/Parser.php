@@ -303,7 +303,7 @@ class Parser {
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgUser, $wgRequest, $wgDisableTitleConversion, $wgDisableContentConversion;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgUser, $wgRequest, $wgDisableTitleConversion;
 		$fname = __METHOD__.'-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -375,7 +375,7 @@ class Parser {
 		 * rule but content conversion was not done, then the parser
 		 * won't pick it up.  This is probably expected behavior.
 		 */
-		if ( !( $wgDisableContentConversion
+		if ( !( $wgDisableLangConversion
 				|| $wgDisableTitleConversion
 				|| $wgRequest->getText( 'redirect', 'yes' ) == 'no'
 				|| $wgRequest->getText( 'linkconvert', 'yes' ) == 'no'
