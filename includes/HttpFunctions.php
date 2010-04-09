@@ -212,6 +212,15 @@ class HttpRequest {
 	}
 
 	/**
+	 * Set the parameters of the request
+	 * @param $params array
+	 * @todo overload the args param
+	 */
+	public function setData($args) {
+		$this->postData = $args;
+	}
+
+	/**
 	 * Take care of setting up the proxy
 	 * (override in subclass)
 	 * @return string
@@ -295,6 +304,8 @@ class HttpRequest {
 	 */
 	public function execute() {
 		global $wgTitle;
+
+		$this->content = "";
 
 		if( strtoupper($this->method) == "HEAD" ) {
 			$this->headersOnly = true;

@@ -774,7 +774,7 @@ class FauxRequest extends WebRequest {
 	}
 
 	public function setSessionData( $key, $data ) {
-		$this->notImplemented( __METHOD__ );
+		$this->session[$key] = $data;
 	}
 
 	public function isPathInfoBad() {
