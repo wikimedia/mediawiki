@@ -303,7 +303,7 @@ class Parser {
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgUser, $wgRequest, $wgDisableTitleConversion;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgDisableTitleConversion, $wgUser, $wgRequest;
 		$fname = __METHOD__.'-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -363,7 +363,7 @@ class Parser {
 
 		/**
 		 * A page get its title converted except:
-		 * a) Content convert is globally disabled
+		 * a) Language conversion is globally disabled
 		 * b) Title convert is globally disabled
 		 * c) The page is a redirect page
 		 * d) User request with a "linkconvert" set to "no"
