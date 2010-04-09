@@ -1,8 +1,8 @@
 <?php
+
 /**
  * @ingroup MaintenanceLanguage
  */
-
 class CheckLanguageCLI {
 	protected $code  = null;
 	protected $level = 2;
@@ -190,17 +190,23 @@ class CheckLanguageCLI {
 Run this script to check a specific language file, or all of them.
 Command line settings are in form --parameter[=value].
 Parameters:
-	* lang: Language code (default: the installation default language).
-	* all: Check all customized languages.
-	* help: Show this help.
-	* level: Show the following display level (default: 2).
-	* links: Link the message values (default off).
-	* prefix: prefix to add to links.
-	* wikilang: For the links, what is the content language of the wiki to display the output in (default en).
-	* whitelist: Do only the following checks (form: code,code).
-	* blacklist: Don't do the following checks (form: code,code).
-	* easy: Do only the easy checks, which can be treated by non-speakers of the language.
-	* noexif: Don't check for EXIF messages (a bit hard and boring to translate), if you know that they are currently not translated and want to focus on other problems (default off).
+	--help: Show this help.
+	--lang: Language code (default: the installation default language).
+	--all: Check all customized languages.
+	--level: Show the following display level (default: 2):
+		* 0: Skip the checks (useful for checking syntax).
+		* 1: Show only the stub headers and number of wrong messages, without list of messages.
+		* 2: Show only the headers and the message keys, without the message values.
+		* 3: Show both the headers and the complete messages, with both keys and values.
+	--links: Link the message values (default off).
+	--prefix: prefix to add to links.
+	--wikilang: For the links, what is the content language of the wiki to display the output in (default en).
+	--noexif: Don't check for EXIF messages (a bit hard and boring to translate), if you know
+		that they are currently not translated and want to focus on other problems (default off).
+	--whitelist: Do only the following checks (form: code,code).
+	--blacklist: Don't do the following checks (form: code,code).
+	--easy: Do only the easy checks, which can be treated by non-speakers of the language.
+
 Check codes (ideally, all of them should result 0; all the checks are executed by default (except language-specific check blacklists in checkLanguage.inc):
 	* untranslated: Messages which are required to translate, but are not translated.
 	* duplicate: Messages which translation equal to fallback
@@ -220,11 +226,6 @@ Check codes (ideally, all of them should result 0; all the checks are executed b
 	* magic-case: Magic words whose translation changes the case-sensitivity of the original English word.
 	* special: Special page names that were not translated.
 	* special-old: Special page names which do not exist.
-Display levels (default: 2):
-	* 0: Skip the checks (useful for checking syntax).
-	* 1: Show only the stub headers and number of wrong messages, without list of messages.
-	* 2: Show only the headers and the message keys, without the message values.
-	* 3: Show both the headers and the complete messages, with both keys and values.
 
 ENDS;
 	}
@@ -454,6 +455,9 @@ EOL;
 	}
 }
 
+/**
+ * @ingroup MaintenanceLanguage
+ */
 class CheckExtensionsCLI extends CheckLanguageCLI {
 	private $extensions;
 
