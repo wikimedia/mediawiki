@@ -826,6 +826,9 @@ class Title {
 			$pref = $wgContLang->getPreferredVariant(false);
 			if($pref != $wgContLang->getCode())
 				$variant = $pref;
+		} elseif ( $variant == $wgContLang->getCode() ) {
+			// Don't use $wgVariantArticlePath for the main code
+			$variant = false;
 		}
 
 		if ( $this->isExternal() ) {
