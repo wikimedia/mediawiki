@@ -15,6 +15,7 @@ $fallback = 'uk';
 
 $messages = array(
 # User preference toggles
+'tog-underline'      => 'Підкреслёвати одказы:',
 'tog-showhiddencats' => 'Вказати схованы катеґорії',
 
 'underline-always'  => 'Все',
@@ -313,7 +314,10 @@ $1',
 'createaccountmail'       => 'електроничнов поштов',
 'login-userblocked'       => 'Тот хоснователь є заблокованый. Приголошіня не є доволене.',
 'wrongpassword'           => 'Задали сьте хыбне гесло. Спробуйте іщі раз.',
+'wrongpasswordempty'      => 'Было задане порожнє гесло. Спробуйте іщі раз.',
 'mailmypassword'          => 'Послати нове гесло',
+'noemail'                 => 'Хоснователь "$1" не має реґістровану адресу електронічной пошты.',
+'noemailcreate'           => 'Мусите задати правилну адресу електронічной пошты',
 'createaccount-title'     => 'Вытвориня конта про  {{SITENAME}}',
 'loginlanguagelabel'      => 'Язык: $1',
 
