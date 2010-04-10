@@ -1295,7 +1295,7 @@ HTML
 			// and fallback to the raw wpTextbox1 since editconflicts can't be
 			// resolved between page source edits and custom ui edits using the
 			// custom edit ui.
-			$this->showTextbox1();
+			$this->showTextbox1( null, $this->getContent() );
 		} else {
 			$this->showContentForm();
 		}
@@ -1775,7 +1775,11 @@ INPUTS
 		$wgOut->addHTML( "	<span class='editHelp'>{$cancel}{$separator}{$edithelp}</span>\n" );
 		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
 	}
-	
+
+	/*
+	 * Show an edit conflict. textbox1 is already shown in showEditForm().
+	 * If you want to use another entry point to this function, be careful.
+	 */
 	protected function showConflict() {
 		global $wgOut;
 		$this->textbox2 = $this->textbox1;
