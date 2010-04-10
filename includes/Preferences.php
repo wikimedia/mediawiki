@@ -1105,6 +1105,11 @@ class Preferences {
 				$dateopts[] = 'default'; // Make sure default is always valid
 										// Bug 19237
 			}
+			// KLUGE: site default might not be valid for user language
+			global $wgDefaultUserOptions;
+			if ( !in_array( $wgDefaultUserOptions['date'], $dateopts ) ) {
+				$wgDefaultUserOptions['date'] = 'default';
+			}
 
 			$idCnt = 0;
 			$epoch = wfTimestampNow();

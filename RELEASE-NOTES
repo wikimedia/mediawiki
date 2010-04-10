@@ -99,6 +99,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23078) "All public logs" option on Special:Log is now always the first
   item
 * (bug 16817) Group names in user rights log are now singular and in lowercase
+* Special:Preferences no longer crashes if the wiki default date formatting
+  style is not valid for the user's interface language
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
