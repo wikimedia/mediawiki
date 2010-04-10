@@ -3328,6 +3328,11 @@ $wgLogActionsHandlers = array();
 $wgNewUserLog = true;
 
 /**
+ * Log the automatic creations of new users accounts?
+ */
+$wgLogAutocreatedAccounts = false;
+
+/**
  * List of special pages, followed by what subtitle they should go under
  * at Special:SpecialPages
  */

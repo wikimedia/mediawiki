@@ -3602,8 +3602,8 @@ class User {
 	 * Used by things like CentralAuth and perhaps other authplugins.
 	 */
 	public function addNewUserLogEntryAutoCreate() {
-		global $wgNewUserLog;
-		if( empty( $wgNewUserLog ) ) {
+		global $wgNewUserLog, $wgLogAutocreatedAccounts;
+		if( !$wgNewUserLog || !$wgLogAutocreatedAccounts ) {
 			return true; // disabled
 		}
 		$log = new LogPage( 'newusers', false );
