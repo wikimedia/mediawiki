@@ -9,7 +9,7 @@ class OutputPage {
 	var $mMetatags = array(), $mKeywords = array(), $mLinktags = array();
 	var $mExtStyles = array();
 	var $mPagetitle = '', $mBodytext = '', $mDebugtext = '';
-	var $mHTMLtitle = '', $mIsarticle = true, $mPrintable = false;
+	var $mHTMLtitle = '', $mHTMLtitleFromPagetitle = true, $mIsarticle = true, $mPrintable = false;
 	var $mSubtitle = '', $mRedirect = '', $mStatusCode;
 	var $mLastModified = '', $mETag = false;
 	var $mCategoryLinks = array(), $mCategories = array(), $mLanguageLinks = array();
@@ -435,10 +435,19 @@ class OutputPage {
 	}
 
 	/**
-	 * "HTML title" means the contents of <title>. It is stored as plain, unescaped text and will be run through htmlspecialchars in the skin file.
+	 * "HTML title" means the contents of <title>.
+	 * It is stored as plain, unescaped text and will be run through htmlspecialchars in the skin file.
+	 * If $name is from page title, it can only override names which are also from page title,
+	 * but if it is not from page title, it can override all other names.
 	 */
-	public function setHTMLTitle( $name ) {
-		$this->mHTMLtitle = $name;
+	public function setHTMLTitle( $name, $frompagetitle = false ) {
+		if ( $frompagetitle && $this->mHTMLtitleFromPagetitle ) {
+			$this->mHTMLtitle = $name;
+		}
+		elseif ( $this->mHTMLtitleFromPagetitle ) {
+			$this->mHTMLtitle = $name;
+			$this->mHTMLtitleFromPagetitle = false;
+		}
 	}
 
 	/**
@@ -468,7 +477,7 @@ class OutputPage {
 		}
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
-		$this->setHTMLTitle( wfMsg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) ) );
+		$this->setHTMLTitle( wfMsg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) ), true );
 	}
 
 	/**

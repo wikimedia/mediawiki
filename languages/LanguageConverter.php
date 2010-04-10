@@ -521,8 +521,8 @@ class LanguageConverter {
 
 	/**
 	 * Convert namespace.
-	 * @param string $title the title included namespace
-	 * @return array of string
+	 * @param $title String: the title included namespace
+	 * @return Array of string
 	 * @private
 	 */
 	function convertNamespace( $title, $variant ) {
@@ -548,15 +548,18 @@ class LanguageConverter {
 	 * -{flags|code1:text1;code2:text2;...}-  or
 	 * -{text}- in which case no conversion should take place for text
 	 *
-	 * @param string $text text to be converted
-	 * @return string converted text
-	 * @public
+	 * @param $text String: text to be converted
+	 * @return String: converted text
 	 */
-	function convert( $text ) {
+	public function convert( $text, $istitle = false ) {
 		global $wgDisableLangConversion;
 		if ( $wgDisableLangConversion ) return $text;
 
 		$variant = $this->getPreferredVariant();
+
+		if( $istitle ) {
+			$text = $this->convertNamespace( $text, $variant );
+		}
 
 		return $this->recursiveConvertTopLevel( $text, $variant );
 	}
