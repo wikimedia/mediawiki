@@ -19,7 +19,7 @@ class LanguageZh_hans extends Language {
 		return $s;
 	}
 
-	function normalizeForSearch( $string ) {
+	function normalizeForSearch( $s ) {
 		wfProfileIn( __METHOD__ );
 
 		// Double-width roman characters
