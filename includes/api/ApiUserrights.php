@@ -36,12 +36,12 @@ class ApiUserrights extends ApiBase {
 		parent::__construct( $main, $action );
 	}
 
+	private $mUser = null;
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		// User already validated in call to getTokenSalt from Main
-		$form = new UserrightsPage;
-		$user = $form->fetchUser( $params['user'] );
+		$user = $this->getUser();
 
 		$r['user'] = $user->getName();
 		list( $r['added'], $r['removed'] ) =
@@ -103,6 +103,14 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getTokenSalt() {
+		return $this->getUser()->getName();
+	}
+
+	private function getUser() {
+		if ( $this->mUser !== null ) {
+			return $this->mUser;
+		}
+
 		$params = $this->extractRequestParams();
 		if ( is_null( $params['user'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
@@ -115,7 +123,8 @@ class ApiUserrights extends ApiBase {
 				(array)$user->getMessageKey(), $user->getMessageArgs() ) );
 		}
 
-		return $user->getName();
+		$this->mUser = $user;
+		return $user;
 	}
 
 	protected function getExamples() {
