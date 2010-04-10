@@ -642,7 +642,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$del = '';
 		}
 
-		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
+		$diffHistLinks = '(' . $histlink . $this->messages['pipe-separator'] .  $difftext . ')';
 		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 		
 		# Denote if username is redacted for this edit
