@@ -46,7 +46,7 @@ class ApiRollback extends ApiBase {
 		$articleObj = new Article( $this->mTitleObj );
 		$summary = ( isset( $params['summary'] ) ? $params['summary'] : '' );
 		$details = null;
-		$retval = $articleObj->doRollback( $params['user'], $summary, $params['token'], $params['markbot'], $details );
+		$retval = $articleObj->doRollback( $this->username, $summary, $params['token'], $params['markbot'], $details );
 
 		if ( $retval ) {
 			// We don't care about multiple errors, just report one of them
