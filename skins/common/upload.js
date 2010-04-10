@@ -13,7 +13,7 @@ function licenseSelectorCheck() {
 
 function wgUploadSetup() {
 	// Disable URL box if the URL copy upload source type is not selected
-	var e = document.getElementById( 'wpSourceTypeURL' );
+	var e = document.getElementById( 'wpSourceTypeurl' );
 	if( e ) {
 		if( !e.checked ) {
 			var ein = document.getElementById( 'wpUploadFileURL' );
