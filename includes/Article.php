@@ -1759,6 +1759,9 @@ class Article {
 
 	/**
 	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...)
+	 * @param $text String: new text of the section
+	 * @param $summary String: new section's subject, only if $section is 'new'
+	 * @param $edittime String: revision timestamp or null to use the current revision
 	 * @return string Complete article text, or null if error
 	 */
 	public function replaceSection( $section, $text, $summary = '', $edittime = null ) {
