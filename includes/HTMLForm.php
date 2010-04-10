@@ -84,6 +84,7 @@ class HTMLForm {
 	
 	protected $mPre = '';
 	protected $mHeader = '';
+	protected $mFooter = '';
 	protected $mPost = '';
 	protected $mId;
 	
@@ -286,6 +287,12 @@ class HTMLForm {
 	function addHeaderText( $msg ) { $this->mHeader .= $msg; }
 	
 	/**
+	 * Add footer text, inside the form.
+	 * @param $msg String complete text of message to display
+	 */
+	function addFooterText( $msg ) { $this->mFooter .= $msg; }
+	
+	/**
 	 * Add text to the end of the display.
 	 * @param $msg String complete text of message to display
 	 */
@@ -313,15 +320,13 @@ class HTMLForm {
 	function displayForm( $submitResult ) {
 		global $wgOut;
 
-		if ( $submitResult !== false ) {
-			$this->displayErrors( $submitResult );
-		}
-
 		$html = ''
+			. $this->getErrors( $submitResult )
 			. $this->mHeader
 			. $this->getBody()
 			. $this->getHiddenFields()
 			. $this->getButtons()
+			. $this->mFooter
 		;
 
 		$html = $this->wrapForm( $html );
@@ -438,18 +443,18 @@ class HTMLForm {
 	/**
 	 * Format and display an error message stack.
 	 * @param $errors Mixed String or Array of message keys
+	 * @return String
 	 */
-	function displayErrors( $errors ) {
+	function getErrors( $errors ) {
 		if ( is_array( $errors ) ) {
 			$errorstr = $this->formatErrors( $errors );
 		} else {
 			$errorstr = $errors;
 		}
 		
-		$errorstr = Html::rawElement( 'div', array( 'class' => 'error' ), $errorstr );
-
-		global $wgOut;
-		$wgOut->addHTML( $errorstr );
+		return $errorstr
+			? Html::rawElement( 'div', array( 'class' => 'error' ), $errorstr )
+			: '';
 	}
 
 	/**
@@ -995,6 +1000,16 @@ class HTMLTextAreaField extends HTMLFormField {
 		}
 
 		return Html::element( 'textarea', $attribs, $value );
+	}
+	
+	public function validate( $value, $alldata ){
+		$p = parent::validate( $value, $alldata );
+		if( $p !== true ) return $p;
+		
+		if( isset( $this->mParams['required'] ) && $value === '' ){
+			return wfMsgExt( 'htmlform-required', 'parseinline' );
+		}
+		return true;
 	}
 }
 
