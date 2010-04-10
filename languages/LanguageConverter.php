@@ -547,11 +547,15 @@ class LanguageConverter {
 	 * @param $text String: text to be converted
 	 * @return String: converted text
 	 */
-	public function convert( $text ) {
+	public function convert( $text, $istitle = false ) {
 		global $wgDisableLangConversion;
 		if ( $wgDisableLangConversion ) return $text;
 
 		$variant = $this->getPreferredVariant();
+
+		if( $istitle ) {
+			$text = $this->convertNamespace( $text, $variant );
+		}
 
 		return $this->recursiveConvertTopLevel( $text, $variant );
 	}
