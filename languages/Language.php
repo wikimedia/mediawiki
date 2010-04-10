@@ -36,7 +36,8 @@ class FakeConverter {
 	var $mLang;
 	function FakeConverter( $langobj ) { $this->mLang = $langobj; }
 	function autoConvertToAllVariants( $text ) { return $text; }
-	function convert( $t, $i ) { return $t; }
+	function convert( $t ) { return $t; }
+	function convertTitle( $t ) { return $t->getPrefixedText(); }
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() { return $this->mLang->getCode(); }
 	function getConvRuleTitle() { return false; }
@@ -2606,8 +2607,13 @@ class Language {
 	}
 
 	# convert text to different variants of a language.
-	function convert( $text, $isTitle = false ) {
-		return $this->mConverter->convert( $text, $isTitle );
+	function convert( $text ) {
+		return $this->mConverter->convert( $text );
+	}
+
+	# Convert a Title object to a string in the preferred variant
+	function convertTitle( $title ) {
+		return $this->mConverter->convertTitle( $title );
 	}
 
 	# Check if this is a language with variants
