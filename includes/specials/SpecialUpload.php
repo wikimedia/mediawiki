@@ -238,7 +238,9 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		# Add text to form
-		$form->addPreText( '<div id="uploadtext">' . wfMsgExt( 'uploadtext', 'parse' ) . '</div>');
+		$form->addPreText( '<div id="uploadtext">' . 
+			wfMsgExt( 'uploadtext', 'parse', array( $this->mDesiredDestName ) ) . 
+			'</div>' );
 		# Add upload error message
 		$form->addPreText( $message );
 
