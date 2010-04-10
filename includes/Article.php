@@ -956,6 +956,12 @@ class Article {
 			}
 		}
 
+		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
+		$titleText = $this->mParserOutput->getTitleText();
+		if ( strval( $titleText ) !== '' ) {
+			$wgOut->setPageTitle( $titleText );
+		}
+
 		# Now that we've filled $this->mParserOutput, we know whether
 		# there are any __NOINDEX__ tags on the page
 		$policy = $this->getRobotPolicy( 'view' );
