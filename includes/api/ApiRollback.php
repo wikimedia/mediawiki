@@ -35,7 +35,7 @@ class ApiRollback extends ApiBase {
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 	}
-	
+
 	private $mTitleObj = null;
 
 	public function execute() {
@@ -52,16 +52,8 @@ class ApiRollback extends ApiBase {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg( reset( $retval ) );
 		}
-		
-		$watch = $this->getWatchlistValue( $params['watchlist'], $this->mTitleObj );
-		
-		if ( $watch !== null) {
-			if ( $watch ) {
-				$articleObj->doWatch();
-			} else {
-				$articleObj->doUnwatch();
-			}
-		}
+
+		$this->setWatch( $params['watchlist'], $this->mTitleObj );
 
 		$info = array(
 			'title' => $this->mTitleObj->getPrefixedText(),

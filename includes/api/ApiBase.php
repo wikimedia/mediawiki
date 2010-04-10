@@ -536,14 +536,19 @@ abstract class ApiBase {
 	}
 
 	/**
-	* Handle watchlist settings
-	*/
+	 * Return true if we're to watch the page, false if not, null if no change.
+	 * @param $watch String Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
+	 * @param $titleObj Title (optional) the page under consideration
+	 * @returns mixed
+	 */
 	protected function getWatchlistValue ( $watchlist, $titleObj = null ) {
 		switch ( $watchlist ) {
 			case 'watch':
 				return true;
+
 			case 'unwatch':
 				return false;
+
 			case 'preferences':
 				global $wgUser;
 				if ( isset($titleObj)
@@ -553,9 +558,29 @@ abstract class ApiBase {
 					return true;
 				}
 				return null;
+
 			case 'nochange':
+				return null;
+
 			default:
 				return null;
+		}
+	}
+
+	/**
+	 * Set a watch (or unwatch) based the based on a watchlist parameter.
+	 * @param $watch String Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
+	 * @param $titleObj Title the article's title to change
+	 */
+	protected function setWatch ( $watch, $titleObj ) {
+		$value = $this->getWatchlistValue( $watch, $titleObj );
+		if( $value === null ) return;
+
+		$articleObj = new Article( $titleObj );
+		if ( $value ) {
+			$articleObj->doWatch();
+		} else {
+			$articleObj->doUnwatch();
 		}
 	}
 
