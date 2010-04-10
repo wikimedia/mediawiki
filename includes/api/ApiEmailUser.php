@@ -38,10 +38,6 @@ class ApiEmailUser extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		// Check whether email is enabled
-		if ( !EmailUserForm::userEmailEnabled() ) {
-			$this->dieUsageMsg( array( 'usermaildisabled' ) );
-		}
 
 		$params = $this->extractRequestParams();
 		// Check required parameters
@@ -53,25 +49,30 @@ class ApiEmailUser extends ApiBase {
 		}
 
 		// Validate target
-		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
+		$targetUser = SpecialEmailuser::getTarget( $params['target'] );
 		if ( !( $targetUser instanceof User ) ) {
 			$this->dieUsageMsg( array( $targetUser ) );
 		}
 
-		// Check permissions
-		$error = EmailUserForm::getPermissionsError( $wgUser, $params['token'] );
+		// Check permissions and errors
+		$error = SpecialEmailuser::getPermissionsError( $wgUser, $params['token'] );
 		if ( $error ) {
 			$this->dieUsageMsg( array( $error ) );
 		}
 
-		$form = new EmailUserForm( $targetUser, $params['text'], $params['subject'], $params['ccme'] );
-		$retval = $form->doSubmit();
-		if ( is_null( $retval ) ) {
+		$data = array(
+			'Target' => $targetUser->getName(), 
+			'Text' => $params['text'], 
+			'Subject' => $params['subject'], 
+			'CCMe' => $params['ccme'],
+		);
+		$retval = SpecialEmailuser::submit( $data );
+		if ( $retval === true ) {
 			$result = array( 'result' => 'Success' );
 		} else {
 			$result = array(
 				'result' => 'Failure',
-				'message' => $retval->getMessage()
+				'message' => $retval
 			);
 		}
 
