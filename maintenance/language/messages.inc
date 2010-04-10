@@ -1664,6 +1664,8 @@ $wgMessageStructure = array(
 		'emailpagetext',
 		'usermailererror',
 		'defemailsubject',
+		'usermaildisabled',
+		'usermaildisabledtext',
 		'noemailtitle',
 		'noemailtext',
 		'nowikiemailtitle',
