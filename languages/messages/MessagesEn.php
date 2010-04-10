@@ -4165,7 +4165,7 @@ Enter the file name without the "{{ns:file}}:" prefix.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Search for duplicate files',
-'fileduplicatesearch-summary'  => 'Search for duplicate files on base of its hash value.
+'fileduplicatesearch-summary'  => 'Search for duplicate files based on hash values.
 
 Enter the filename without the "{{ns:file}}:" prefix.',
 'fileduplicatesearch-legend'   => 'Search for a duplicate',
