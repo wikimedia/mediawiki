@@ -113,20 +113,9 @@ class ApiProtect extends ApiBase {
 
 		$cascade = $params['cascade'];
 		$articleObj = new Article( $titleObj );
-		
-		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
-		
-		if ( $params['watch'] ) {
-			$watch = true;
-		}
-		
-		if ( $watch !== null ) {
-			if ( $watch ) {
-				$articleObj->doWatch();
-			} else {
-				$articleObj->doUnwatch();
-			}
-		}
+
+		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
+		$this->setWatch( $watch, $titleObj );
 
 		if ( $titleObj->exists() ) {
 			$ok = $articleObj->updateRestrictions( $protections, $params['reason'], $cascade, $expiryarray );

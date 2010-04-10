@@ -81,23 +81,19 @@ class ApiDelete extends ApiBase {
 			if ( count( $retval ) ) {
 				$this->dieUsageMsg( reset( $retval ) ); // We don't care about multiple errors, just report one of them
 			}
-			
-			$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj ) || $wgUser->getOption( 'watchdeletion' );
 
+			$watch = 'nochange';
 			// Deprecated parameters
 			if ( $params['watch'] ) {
-				$watch = true;
+				$watch = 'watch';
 			} elseif ( $params['unwatch'] ) {
-				$watch = false;
+				$watch = 'unwatch';
+			} elseif ( $wgUser->getOption( 'watchdeletion' ) ) {
+				$watch = 'watch';
+			} else {
+				$watch = $params['watchlist'];
 			}
-			
-			if ( $watch !== null ) {
-				if ( $watch ) {
-					$articleObj->doWatch();
-				} else {
-					$articleObj->doUnwatch();
-				}
-			}
+			$this->setWatch( $watch, $titleObj );
 		}
 
 		$r = array( 'title' => $titleObj->getPrefixedText(), 'reason' => $reason );
