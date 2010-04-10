@@ -933,9 +933,9 @@ class Parser {
 				$flag = 0;
 			} else {
 				$flag = Parser::PTD_FOR_INCLUSION;
+			}
 			$dom = $this->preprocessToDom( $text, $flag );
 			$text = $frame->expand( $dom );
-			}
 		} else {
 			# if $frame is not provided, then use old-style replaceVariables
 			$text = $this->replaceVariables( $text );
