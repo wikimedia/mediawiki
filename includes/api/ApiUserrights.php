@@ -40,7 +40,8 @@ class ApiUserrights extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// User already validated in call to getTokenSalt from Main
-		$user = $this->mForm->fetchUser( $params['user'] );
+		$form = new UserrightsPage;
+		$user = $form->fetchUser( $params['user'] );
 
 		$r['user'] = $user->getName();
 		list( $r['added'], $r['removed'] ) =
@@ -107,8 +108,8 @@ class ApiUserrights extends ApiBase {
 			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
 		}
 
-		$this->mForm = new UserrightsPage;
-		$user = $this->mForm->fetchUser( $params['user'] );
+		$form = new UserrightsPage;
+		$user = $form->fetchUser( $params['user'] );
 		if ( $user instanceof WikiErrorMsg ) {
 			$this->dieUsageMsg( array_merge(
 				(array)$user->getMessageKey(), $user->getMessageArgs() ) );
