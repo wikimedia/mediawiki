@@ -303,7 +303,7 @@ class Parser {
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgDisableTitleConversion, $wgUser, $wgRequest, $wgOut;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgDisableTitleConversion, $wgUser, $wgRequest;
 		$fname = __METHOD__.'-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -386,7 +386,7 @@ class Parser {
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$wgOut->setPageTitle( $wgContLang->convert( $wgOut->getPageTitle(), true ) );
+				$this->mOutput->setTitleText( $wgContLang->convert( $title->getPrefixedText(), true ) );
 			}
 		}
 
