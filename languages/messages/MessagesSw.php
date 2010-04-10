@@ -2115,6 +2115,7 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 
 # Auto-summaries
 'autosumm-blank'   => 'Ukurasa ulimwagika',
+'autosumm-replace' => "Maandishi yaliyokuwepo yalichukuliwa nafasi na '$1'",
 'autoredircomment' => 'Ukurasa ulielekezwa kwenda [[$1]]',
 'autosumm-new'     => "Ukurasa ulianzishwa kwa kuandika '$1'",
 
@@ -2123,6 +2124,12 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 'livepreview-ready'   => 'Inapakizwa... Tayari!',
 'livepreview-failed'  => 'Hakikisho la kisasa hakufaulu!
 Jaribu hakikisho la kawaida.',
+'livepreview-error'   => 'Imeshindikana kuunganisha: $1 "$2".
+Jaribu hakikisho la kawaida.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Huenda mabadiliko yaliyowekwa tangu sekunde $1 {{PLURAL:$1|iliyopita|zilizopita}} hayataonyeshwa katika orodha hii.',
+'lag-warn-high'   => 'Kutokana na seva ya hifadhidata kukawia sana, huenda mabadiliko yaliyowekwa tangu sekunde $1 {{PLURAL:$1|iliyopita|zilizopita}} yanaweza yasioneshwe kwenye orodha hii.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Orodha ya maangalizi yako ina {{PLURAL:$1|ukurasa 1|kurasa $1}}, bila kuhesabu kurasa za majadiliano.',
@@ -2161,14 +2168,22 @@ Ama utumie [[Special:Watchlist/edit|ukurasa wa kuhariri wa kawaida]].',
 'version-software-version' => 'Toleo',
 
 # Special:FilePath
-'filepath'        => 'Njia ya faili',
-'filepath-page'   => 'Faili:',
-'filepath-submit' => 'Njia',
+'filepath'         => 'Njia ya faili',
+'filepath-page'    => 'Faili:',
+'filepath-submit'  => 'Nenda',
+'filepath-summary' => 'Ukurasa maalum huu unakwenda kwenye faili pamoja na kuonyesha anwani yake kamili (URL) katika sanduku la anwani juu.
+Picha zinaonyeshwa kwenye ukubwa mzima, na mafaili ya aina zingine yanaanzishwa kwa kutumia programu zinazozihusika moja kwa moja.
+
+Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-legend'   => 'Tafuta kifani',
+'fileduplicatesearch'          => 'Tafuta mafaili ya nakili',
+'fileduplicatesearch-legend'   => 'Kutafuta kifani',
 'fileduplicatesearch-filename' => 'Jina la faili:',
 'fileduplicatesearch-submit'   => 'Tafuta',
+'fileduplicatesearch-info'     => 'Piseli $1 × $2<br />Ukubwa wa faili: $3<br />Aina ya MIME: $4',
+'fileduplicatesearch-result-1' => 'Faili la "$1" halina kifani.',
+'fileduplicatesearch-result-n' => 'Faili la "$1" lina {{PLURAL:$2|kifani 1|vifani $2}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Kurasa maalum',

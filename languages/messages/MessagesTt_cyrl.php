@@ -1506,10 +1506,12 @@ $1',
 'move-leave-redirect'       => 'Юнәлтүне калдырырга',
 
 # Export
-'export' => 'Битләрне чыгаруы',
+'export'       => 'Битләрне чыгаруы',
+'export-addns' => 'Өстәргә',
 
 # Namespace 8 related
-'allmessages' => 'Система хәбәрләре',
+'allmessages'     => 'Система хәбәрләре',
+'allmessagesname' => 'Исем',
 
 # Thumbnails
 'thumbnail-more'  => 'Зурайтырга',
@@ -1574,6 +1576,9 @@ $1',
 'tooltip-rollback'                => "\"Кире кайтару\" соңгы кулланучының бу биттә ясаган '''барлык''' үзгәртүләрен бетерә.",
 'tooltip-undo'                    => 'Бу үзгәртүне алдан карап үткәрмәү. Шулай ук үткәрмәүнең сәбәбен язып була.',
 
+# Math errors
+'math_unknown_error' => 'беленмәгән хата',
+
 # Patrolling
 'markaspatrolledtext'   => 'Бу мәкаләне тикшерелгән дип тамгаларга',
 'markedaspatrolled'     => 'Тикшерелгән дип тамгаланды',
@@ -1623,9 +1628,10 @@ $1',
 'edit-externally-help' => '(тулырак мәгълүмат өчен [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'барлык',
-'namespacesall' => 'барлык',
-'monthsall'     => 'барлык',
+'recentchangesall' => 'Барлык',
+'watchlistall2'    => 'барлык',
+'namespacesall'    => 'барлык',
+'monthsall'        => 'барлык',
 
 # Multipage image navigation
 'imgmultipagenext' => 'алдагы бит →',
