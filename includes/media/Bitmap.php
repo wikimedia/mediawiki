@@ -157,6 +157,7 @@ class BitmapHandler extends ImageHandler {
 				// or ImageMagick may decide your ratio is wrong and slice off
 				// a pixel.
 				" -thumbnail " . wfEscapeShellArg( "{$physicalWidth}x{$physicalHeight}!" ) .
+				// A % is an escape character in ImageMagick
 				" -set comment " . wfEscapeShellArg( str_replace( '%', '%%', $descriptionUrl ) ) .
 				" -depth 8 $sharpen " .
 				wfEscapeShellArg($dstPath) . " 2>&1";
