@@ -930,8 +930,10 @@ class SkinTemplate extends Skin {
 		}
 
 		if( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
-			$id = User::idFromName( $this->mTitle->getText() );
-			$ip = User::isIP( $this->mTitle->getText() );
+			$parts = explode( '/', $this->mTitle->getText() );
+			$rootUser = $parts[0];
+			$id = User::idFromName( $rootUser );
+			$ip = User::isIP( $rootUser );
 		} else {
 			$id = 0;
 			$ip = false;
@@ -939,7 +941,7 @@ class SkinTemplate extends Skin {
 
 		if( $id || $ip ) { # both anons and non-anons have contribs list
 			$nav_urls['contributions'] = array(
-				'href' => self::makeSpecialUrlSubpage( 'Contributions', $this->mTitle->getText() )
+				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser )
 			);
 
 			if( $id ) {
@@ -947,7 +949,7 @@ class SkinTemplate extends Skin {
 				$nav_urls['log'] = array(
 					'href' => $logPage->getLocalUrl(
 						array(
-							'user' => $this->mTitle->getText()
+							'user' => $rootUser
 						)
 					)
 				);
@@ -957,7 +959,7 @@ class SkinTemplate extends Skin {
 
 			if ( $wgUser->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
-					'href' => self::makeSpecialUrlSubpage( 'Blockip', $this->mTitle->getText() )
+					'href' => self::makeSpecialUrlSubpage( 'Blockip', $rootUser )
 				);
 			} else {
 				$nav_urls['blockip'] = false;
@@ -970,7 +972,7 @@ class SkinTemplate extends Skin {
 		$nav_urls['emailuser'] = false;
 		if( $this->showEmailUser( $id ) ) {
 			$nav_urls['emailuser'] = array(
-				'href' => self::makeSpecialUrlSubpage( 'Emailuser', $this->mTitle->getText() )
+				'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser )
 			);
 		}
 		wfProfileOut( __METHOD__ );
