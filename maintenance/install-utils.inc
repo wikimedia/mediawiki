@@ -95,10 +95,18 @@ class PhpRefCallBugTester {
 	}
 }
 
+if ( !function_exists( 'posix_isatty' ) ) {
+	# We default as considering stdin a tty (for nice readline methods)
+	# but treating stout as not a tty to avoid color codes
+	function posix_isatty( $fd ) {
+		return !$fd;
+	}
+}
+
 function readconsole( $prompt = '' ) {
 	static $isatty = null;
 	if ( is_null( $isatty ) ) {
-		if ( !function_exists( 'posix_isatty' ) || posix_isatty( 0 /*STDIN*/ ) ) {
+		if ( posix_isatty( 0 /*STDIN*/ ) ) {
 			$isatty = true;
 		} else {
 			$isatty = false;
