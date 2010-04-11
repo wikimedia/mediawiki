@@ -219,6 +219,7 @@ $magicWords = array(
 	'subjectpagenamee'      => array( '1', 'عنوان_صفحة_الموضوع', 'عنوان_صفحة_المقالة', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'msg'                   => array( '0', 'رسالة:', 'MSG:' ),
 	'subst'                 => array( '0', 'نسخ:', 'SUBST:' ),
+	'safesubst'             => array( '0', 'نسخ_آمن:', 'SAFESUBST:' ),
 	'msgnw'                 => array( '0', 'رسالة_بدون_تهيئة:', 'MSGNW:' ),
 	'img_thumbnail'         => array( '1', 'تصغير', 'thumbnail', 'thumb' ),
 	'img_manualthumb'       => array( '1', 'تصغير=$1', 'مصغر=$1', 'thumbnail=$1', 'thumb=$1' ),
