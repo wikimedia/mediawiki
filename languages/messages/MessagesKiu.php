@@ -495,6 +495,7 @@ Kerem ke, oncia bıcerrebne.',
 'resetpass_success'         => 'Parola sıma ebe serkotene vurriye! Nıka hesabê sıma beno ra...',
 'resetpass_forbidden'       => 'Paroley nêşikinê bıvurniyê',
 'resetpass-submit-loggedin' => 'Parola bıvurne',
+'resetpass-submit-cancel'   => 'Bıtexelne',
 'resetpass-temp-password'   => 'Parola vêrdiye:',
 
 # Edit page toolbar
@@ -703,6 +704,7 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'nextn'                     => '{{PLURAL:$1|$1}} peyên',
 'viewprevnext'              => 'Bıvêne ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'            => 'Help:Tedeestey',
+'searchprofile-articles'    => 'Pelê tedeesteu',
 'searchprofile-images'      => 'Multimedya',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 çekuye|$2 çekuy}})',
 'search-redirect'           => '(hetêcıraberdene $1)',
@@ -832,6 +834,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'group-bot'        => 'Boti',
 'group-sysop'      => 'İdarekeri',
 'group-bureaucrat' => 'Burokrati',
+'group-all'        => '(pêro)',
 
 'group-user-member'       => 'Karber',
 'group-bot-member'        => 'Bot',
@@ -915,11 +918,13 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'upload_directory_missing'   => "İndeksê bar-kerdena ($1)i çino u terefê ''webserver''i ra nêşikino ke bıaferiyo.",
 'upload_directory_read_only' => "İndeksê bar-kerdena ($1)i terefê ''webserver''i nênuşino.",
 'uploaderror'                => 'Xeta bar-kerdene',
+'uploadlog'                  => 'qeydê barkerdene',
 'uploadlogpage'              => 'Qeydê dosya barkerdene',
 'filename'                   => 'Namê dosya',
 'filedesc'                   => 'Xulasa',
 'fileuploadsummary'          => 'Xulasa:',
 'filereuploadsummary'        => 'Vurnaisê dosya:',
+'filestatus'                 => 'Halê heqa telifi:',
 'filesource'                 => 'Çıme:',
 'uploadedfiles'              => 'Dosyê barkerdey',
 'savefile'                   => 'Dosya qeyd ke',
@@ -952,6 +957,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'linkstoimage'              => 'Ano {{PLURAL:$1|girê pele|$1 girê pelu}} be na dosya:',
 'sharedupload'              => 'Na dosya depoê $1 rawa u beno ke procunê binu de gurenina.',
 'uploadnewversion-linktext' => 'Dosya de newiye bar ke',
+'shared-repo-from'          => '$1 ra',
 
 # File reversion
 'filerevert-comment' => 'Arezekerdene:',
@@ -1001,8 +1007,9 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'booksources-go'            => 'So',
 
 # Special:Log
-'specialloguserlabel' => 'Karber:',
-'log'                 => 'Qeydi',
+'specialloguserlabel'  => 'Karber:',
+'speciallogtitlelabel' => 'Sernuste:',
+'log'                  => 'Qeydi',
 
 # Special:AllPages
 'allpages'       => 'Peli pêro',
@@ -1013,18 +1020,29 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'allarticles'    => 'Peli pêro',
 'allpagessubmit' => 'So',
 
+# Special:Categories
+'categories' => 'Kategoriy',
+
+# Special:DeletedContributions
+'sp-deletedcontributions-contribs' => 'iştıraki',
+
 # Special:LinkSearch
 'linksearch' => 'Girê teberi',
+
+# Special:ListUsers
+'listusers-submit' => 'Bıasne',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Qeydê karberiê newey',
 'newuserlog-create-entry' => 'Hesabê karberê newey',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'Kome',
 'listgrouprights-members' => '(lista azau)',
 
 # E-mail user
 'emailuser' => 'Nê karberi rê e-poste bırusne',
+'emailsend' => 'Bırusne',
 
 # Watchlist
 'watchlist'         => 'Pela mına şêrkerdene',

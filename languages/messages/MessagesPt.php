@@ -777,7 +777,7 @@ Se a conta foi criada por engano, pode ignorar esta mensagem.',
 'login-throttled'            => 'Realizou demasiadas tentativas de autenticação com esta conta.
 Por favor, aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Língua: $1',
-'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um navegador danificado ou por um proxy com cache.',
+'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com cache.',
 
 # Password reset dialog
 'resetpass'                 => 'Alterar palavra-chave',
@@ -1752,7 +1752,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
-'http-invalid-scheme'   => 'URLs que iniciam com o prefixo "$1" não são aceites.',
+'http-invalid-scheme'   => 'URLs iniciadas pelo prefixo "$1" não são aceites.',
 'http-request-error'    => 'O pedido HTTP falhou devido a um erro desconhecido.',
 'http-read-error'       => 'Erro de leitura HTTP.',
 'http-timed-out'        => 'O pedido HTTP expirou.',
@@ -2088,29 +2088,31 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'listgrouprights-removegroup-self-all' => 'Remover a própria conta de todos os grupos',
 
 # E-mail user
-'mailnologin'      => 'Nenhum endereço de envio',
-'mailnologintext'  => 'Precisa de estar [[Special:UserLogin|autenticado]] e possuir um endereço de correio válido nas suas [[Special:Preferences|preferências]], para poder enviar correio electrónico a outros utilizadores.',
-'emailuser'        => 'Contactar este utilizador',
-'emailpage'        => 'Contactar utilizador',
-'emailpagetext'    => 'Pode usar o formulário abaixo para enviar uma mensagem por correio electrónico para este utilizador.
+'mailnologin'          => 'Nenhum endereço de envio',
+'mailnologintext'      => 'Precisa de estar [[Special:UserLogin|autenticado]] e possuir um endereço de correio válido nas suas [[Special:Preferences|preferências]], para poder enviar correio electrónico a outros utilizadores.',
+'emailuser'            => 'Contactar este utilizador',
+'emailpage'            => 'Contactar utilizador',
+'emailpagetext'        => 'Pode usar o formulário abaixo para enviar uma mensagem por correio electrónico para este utilizador.
 O endereço de correio que introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo do remetente da mensagem "De:", para que o destinatário lhe possa responder directamente.',
-'usermailererror'  => 'O sistema de correio devolveu o erro:',
-'defemailsubject'  => 'Correio da {{SITENAME}}',
-'noemailtitle'     => 'Sem endereço de correio electrónico',
-'noemailtext'      => 'Este utilizador não especificou um endereço de correio electrónico válido.',
-'nowikiemailtitle' => 'Correio electrónico não é permitido',
-'nowikiemailtext'  => 'Este utilizador optou por não receber correio electrónico de outros utilizadores.',
-'email-legend'     => 'Enviar correio electrónico para outro utilizador da {{SITENAME}}',
-'emailfrom'        => 'De:',
-'emailto'          => 'Para:',
-'emailsubject'     => 'Assunto:',
-'emailmessage'     => 'Mensagem:',
-'emailsend'        => 'Enviar',
-'emailccme'        => 'Enviar uma cópia desta mensagem para o meu correio electrónico.',
-'emailccsubject'   => 'Cópia da sua mensagem para $1: $2',
-'emailsent'        => 'Mensagem enviada',
-'emailsenttext'    => 'A sua mensagem foi enviada.',
-'emailuserfooter'  => 'Esta mensagem foi enviada por $1 para $2 usando a opção "Contactar este utilizador" da {{SITENAME}}.',
+'usermailererror'      => 'O sistema de correio devolveu o erro:',
+'defemailsubject'      => 'Correio da {{SITENAME}}',
+'usermaildisabled'     => 'Correio electrónico do utilizador foi desactivado',
+'usermaildisabledtext' => 'Não pode enviar correio electrónico aos outros utilizadores desta wiki',
+'noemailtitle'         => 'Sem endereço de correio electrónico',
+'noemailtext'          => 'Este utilizador não especificou um endereço de correio electrónico válido.',
+'nowikiemailtitle'     => 'Correio electrónico não é permitido',
+'nowikiemailtext'      => 'Este utilizador optou por não receber correio electrónico de outros utilizadores.',
+'email-legend'         => 'Enviar correio electrónico para outro utilizador da {{SITENAME}}',
+'emailfrom'            => 'De:',
+'emailto'              => 'Para:',
+'emailsubject'         => 'Assunto:',
+'emailmessage'         => 'Mensagem:',
+'emailsend'            => 'Enviar',
+'emailccme'            => 'Enviar uma cópia desta mensagem para o meu correio electrónico.',
+'emailccsubject'       => 'Cópia da sua mensagem para $1: $2',
+'emailsent'            => 'Mensagem enviada',
+'emailsenttext'        => 'A sua mensagem foi enviada.',
+'emailuserfooter'      => 'Esta mensagem foi enviada por $1 para $2 usando a opção "Contactar este utilizador" da {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Páginas vigiadas',
@@ -2172,7 +2174,7 @@ correio electrónico: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Até que visite esta página, não haverá lugar a mais notificações no caso de alterações futuras.
-Pode também reativar as notificação para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
+Pode também reactivar as notificações para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
 
              O seu sistema de notificação amigável da {{SITENAME}}
 
@@ -3483,6 +3485,7 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 'htmlform-float-invalid'       => 'O valor que especificou não é um número.',
 'htmlform-int-toolow'          => 'O valor que especificou é inferior ao mínimo de $1',
 'htmlform-int-toohigh'         => 'O valor que especificou é superior ao máximo de $1',
+'htmlform-required'            => 'Este valor é necessário',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
