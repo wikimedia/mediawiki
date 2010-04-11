@@ -158,7 +158,8 @@ class BitmapHandler extends ImageHandler {
 				// a pixel.
 				" -thumbnail " . wfEscapeShellArg( "{$physicalWidth}x{$physicalHeight}!" ) .
 				// Add the source url as a comment to the thumb. A % is an 
-				// escape character in ImageMagick, so needs escaping
+				// escape character in ImageMagick, so needs escaping (bug 23148)
+				// http://www.imagemagick.org/script/escape.php?ImageMagick=i766ho1om315scce8eh75efjc6
 				" -set comment " . wfEscapeShellArg( str_replace( '%', '%%', $descriptionUrl ) ) .
 				" -depth 8 $sharpen " .
 				wfEscapeShellArg( $dstPath ) . " 2>&1";
