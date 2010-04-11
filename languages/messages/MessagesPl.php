@@ -1754,7 +1754,7 @@ Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
 'filerevert'                => 'Przywracanie $1',
 'filerevert-legend'         => 'Przywracanie poprzedniej wersji pliku',
 'filerevert-intro'          => "Zamierzasz przywrócić '''[[Media:$1|$1]]''' do [wersji $4 z $3, $2].",
-'filerevert-comment'        => 'Komentarz',
+'filerevert-comment'        => 'Komentarz:',
 'filerevert-defaultcomment' => 'Przywrócono wersję z $2, $1',
 'filerevert-submit'         => 'Przywróć',
 'filerevert-success'        => "Plik '''[[Media:$1|$1]]''' został cofnięty do [wersji $4 z $3, $2].",
@@ -1923,7 +1923,7 @@ Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich a
 
 # Special:Log
 'specialloguserlabel'  => 'Użytkownik',
-'speciallogtitlelabel' => 'Tytuł',
+'speciallogtitlelabel' => 'Tytuł:',
 'log'                  => 'Rejestr operacji',
 'all-logs-page'        => 'Wszystkie publiczne operacje',
 'alllogstext'          => 'Wspólny rejestr wszystkich typów operacji dla {{GRAMMAR:D.lp|{{SITENAME}}}}.
@@ -1965,7 +1965,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 # Special:LinkSearch
 'linksearch'       => 'Linki zewnętrzne',
 'linksearch-pat'   => 'Wzorzec wyszukiwania',
-'linksearch-ns'    => 'Przestrzeń nazw',
+'linksearch-ns'    => 'Przestrzeń nazw:',
 'linksearch-ok'    => 'Szukaj',
 'linksearch-text'  => 'Można użyć symbolu wieloznacznego „*”. Dla przykładu „*.wikipedia.org” spowoduje wyszukanie wszystkich linków prowadzących do domeny „wikipedia.org” i jej poddomen.<br />
 Obsługiwane protokoły: <tt>$1</tt>',
@@ -2179,7 +2179,7 @@ Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę 
 'prot_1movedto2'              => 'stronę [[$1]] przeniósł do [[$2]]',
 'protect-legend'              => 'Potwierdź zabezpieczenie',
 'protectcomment'              => 'Powód',
-'protectexpiry'               => 'Czas wygaśnięcia',
+'protectexpiry'               => 'Czas wygaśnięcia:',
 'protect_expiry_invalid'      => 'Podany czas automatycznego odbezpieczenia jest nieprawidłowy.',
 'protect_expiry_old'          => 'Podany czas automatycznego odblokowania znajduje się w przeszłości.',
 'protect-unchain-permissions' => 'Odblokuj dodatkowe opcje zabezpieczania',
@@ -2255,7 +2255,7 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeleteviewlink'             => 'pokaż',
 'undeletereset'                => 'Wyczyść',
 'undeleteinvert'               => 'Odwróć zaznaczenie',
-'undeletecomment'              => 'Powód odtworzenia',
+'undeletecomment'              => 'Komentarz:',
 'undeletedarticle'             => 'odtworzył [[$1]]',
 'undeletedrevisions'           => 'odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
 'undeletedrevisions-files'     => 'odtworzono $1 {{PLURAL:$1|wersję|wersje|wersji}} i $2 {{PLURAL:$2|plik|pliki|plików}}',
@@ -2283,7 +2283,7 @@ $1',
 'undelete-show-file-submit'    => 'Tak',
 
 # Namespace form on various pages
-'namespace'      => 'Przestrzeń nazw',
+'namespace'      => 'Przestrzeń nazw:',
 'invert'         => 'odwróć wybór',
 'blanknamespace' => '(główna)',
 
@@ -2340,7 +2340,7 @@ Blokować należy jedynie po to, by zapobiec wandalizmom, zgodnie z [[{{MediaWik
 Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandalizmu).',
 'ipaddress'                       => 'Adres IP',
 'ipadressorusername'              => 'Adres IP lub nazwa użytkownika',
-'ipbexpiry'                       => 'Czas blokady',
+'ipbexpiry'                       => 'Czas blokady:',
 'ipbreason'                       => 'Powód',
 'ipbreasonotherlist'              => 'Inny powód',
 'ipbreason-dropdown'              => '*Najczęstsze przyczyny blokad
@@ -2614,7 +2614,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-interwiki-submit'    => 'Importuj',
 'import-interwiki-namespace' => 'Docelowa przestrzeń nazw',
 'import-upload-filename'     => 'Nazwa pliku',
-'import-comment'             => 'Komentarz',
+'import-comment'             => 'Komentarz:',
 'importtext'                 => 'Używając narzędzia [[Special:Export|eksportu]], wyeksportuj plik ze źródłowej wiki, zapisz go na swoim dysku, a następnie prześlij go tutaj.',
 'importstart'                => 'Trwa importowanie stron...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',

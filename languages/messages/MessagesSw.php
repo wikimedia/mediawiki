@@ -1942,10 +1942,12 @@ Tafadhali jaribu tena.',
 'nocredits'        => 'Taarifa kuhusu wandishi wa ukurasa huu haipatikana.',
 
 # Info page
-'infosubtitle' => 'Taarifa juu ya ukurasa',
-'numedits'     => 'Idadi ya haririo (ukurasa): $1',
-'numtalkedits' => 'Idadi ya uhariri (ukurasa wa majadiliano): $1',
-'numwatchers'  => 'Idadi ya wanaofuatilia ukurasa: $1',
+'infosubtitle'   => 'Taarifa juu ya ukurasa',
+'numedits'       => 'Idadi ya haririo (ukurasa): $1',
+'numtalkedits'   => 'Idadi ya uhariri (ukurasa wa majadiliano): $1',
+'numwatchers'    => 'Idadi ya wanaofuatilia ukurasa: $1',
+'numauthors'     => 'Idadi ya waandishi tofauti (ukurasa): $1',
+'numtalkauthors' => 'Idadi ya waandishi tofauti (ukurasa wa majadiliano): $1',
 
 # Math errors
 'math_unknown_error' => 'hitilafu isiyojulikana',
@@ -2022,6 +2024,10 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpsspeed-k' => 'Kilometa kwa saa',
 'exif-gpsspeed-m' => 'Maili kwa saa',
 
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Mwelekeo halisi',
+'exif-gpsdirection-m' => 'Mwelekeo wa sumaku',
+
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',
 'edit-externally-help' => '(Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
@@ -2083,6 +2089,10 @@ $5
 Ishara hizi za uthibitisho zitaishia mnamo $4.',
 'confirmemail_invalidated'  => 'Uthibitisho wa barua pepe umebatilishwa.',
 'invalidateemail'           => 'Batilisha barua pepe ya uthibitisho.',
+
+# Scary transclusion
+'scarytranscludefailed'  => '[Kuleta kigezo hakufaulu kwa ajili ya $1]',
+'scarytranscludetoolong' => '[URL ni ndefu mno]',
 
 # Delete conflict
 'deletedwhileediting' => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
@@ -2178,6 +2188,9 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Tafuta mafaili ya nakili',
+'fileduplicatesearch-summary'  => 'Kutafuta mafaili ya nakili kwa kutafuta thamani za reli.
+
+Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Kutafuta kifani',
 'fileduplicatesearch-filename' => 'Jina la faili:',
 'fileduplicatesearch-submit'   => 'Tafuta',
