@@ -149,19 +149,20 @@ class BitmapHandler extends ImageHandler {
 
 			$cmd  = 
 				$tempEnv .
-				wfEscapeShellArg($wgImageMagickConvertCommand) .
+				wfEscapeShellArg( $wgImageMagickConvertCommand ) .
 				" {$quality} -background white -size {$physicalWidth} ".
-				wfEscapeShellArg($srcPath . $frame) .
+				wfEscapeShellArg( $srcPath . $frame ) .
 				$animation .
 				// For the -resize option a "!" is needed to force exact size,
 				// or ImageMagick may decide your ratio is wrong and slice off
 				// a pixel.
 				" -thumbnail " . wfEscapeShellArg( "{$physicalWidth}x{$physicalHeight}!" ) .
-				// A % is an escape character in ImageMagick
+				// Add the source url as a comment to the thumb. A % is an 
+				// escape character in ImageMagick, so needs escaping
 				" -set comment " . wfEscapeShellArg( str_replace( '%', '%%', $descriptionUrl ) ) .
 				" -depth 8 $sharpen " .
-				wfEscapeShellArg($dstPath) . " 2>&1";
-			wfDebug( __METHOD__.": running ImageMagick: $cmd\n");
+				wfEscapeShellArg( $dstPath ) . " 2>&1";
+			wfDebug( __METHOD__.": running ImageMagick: $cmd\n" );
 			wfProfileIn( 'convert' );
 			$err = wfShellExec( $cmd, $retval );
 			wfProfileOut( 'convert' );
