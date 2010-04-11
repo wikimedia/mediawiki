@@ -61,7 +61,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		);
 	}
 	
-	public function execute( $par=null ) {
+	public function execute( $par ) {
 		global $wgRequest, $wgOut, $wgUser;
 		$this->mTarget = is_null( $par )
 			? $wgRequest->getVal( 'wpTarget', '' )
@@ -192,7 +192,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if ( $hookErr ) {
 			return $hookErr;
 		}
-		
+
 		return null;
 	}
 
@@ -208,7 +208,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$target = self::getTarget( $data['Target'] );
 		if( !$target instanceof User ){
-			return wfMsgExt( $to, 'parse' );
+			return wfMsgExt( $target . 'text', 'parse' );
 		}
 		$to = new MailAddress( $target );
 		$from = new MailAddress( $wgUser );
