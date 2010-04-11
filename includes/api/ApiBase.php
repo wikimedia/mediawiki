@@ -537,7 +537,7 @@ abstract class ApiBase {
 
 	/**
 	 * Return true if we're to watch the page, false if not, null if no change.
-	 * @param $watch String Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
+	 * @param $watchlist String Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param $titleObj Title (optional) the page under consideration
 	 * @returns mixed
 	 */

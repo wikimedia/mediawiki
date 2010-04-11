@@ -447,6 +447,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Check the max lag if necessary
+	 * @param $module ApiBase object: Api module being used
 	 * @param $params Array an array containing the request parameters.
 	 * @return boolean True on success, false should exit immediately
 	 */
