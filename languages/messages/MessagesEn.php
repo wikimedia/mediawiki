@@ -745,7 +745,7 @@ XHTML id names.
 'noindex-category'               => 'Noindexed pages',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
-'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
+'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
 == Getting started ==
@@ -1203,7 +1203,7 @@ If you click Save again, your edit will be saved without one.",
 'summary-preview'                  => 'Summary preview:',
 'subject-preview'                  => 'Subject/headline preview:',
 'blockedtitle'                     => 'User is blocked',
-'blockedtext'                      => "<big>'''Your user name or IP address has been blocked.'''</big>
+'blockedtext'                      => "'''Your user name or IP address has been blocked.'''
 
 The block was made by $1.
 The reason given is ''$2''.
@@ -2814,7 +2814,7 @@ You may have a bad link, or the revision may have been restored or removed from 
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} restored',
 'cannotundelete'               => 'Undelete failed;
 someone else may have undeleted the page first.',
-'undeletedpage'                => "<big>'''$1 has been restored'''</big>
+'undeletedpage'                => "'''$1 has been restored'''
 
 Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
 'undelete-header'              => 'See [[Special:Log/delete|the deletion log]] for recently deleted pages.',
@@ -3066,7 +3066,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 'move-watch'                   => 'Watch source page and target page',
 'movepagebtn'                  => 'Move page',
 'pagemovedsub'                 => 'Move succeeded',
-'movepage-moved'               => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" has been moved to "$2"\'\'\'',
 'movepage-moved-redirect'      => 'A redirect has been created.',
 'movepage-moved-noredirect'    => 'The creation of a redirect has been suppressed.',
 'articleexists'                => 'A page of that name already exists, or the name you have chosen is not valid.
