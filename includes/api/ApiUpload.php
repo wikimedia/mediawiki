@@ -248,7 +248,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		$file = $this->mUpload->getLocalFile();
-		$watch = $this->getWatchlistValue( $params['watchlist'], $file->getTitle() );
+		$watch = $this->getWatchlistValue( $params['watchlist'], $file->getTitle() ) || $wgUser->getOption( 'watchcreations' );
 
 		// Deprecated parameters
 		if ( $this->mParams['watch'] ) {
