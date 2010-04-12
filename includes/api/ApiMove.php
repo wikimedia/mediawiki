@@ -121,26 +121,21 @@ class ApiMove extends ApiBase {
 				$this->getResult()->setIndexedTagName( $r['subpages-talk'], 'subpage' );
 			}
 		}
-		
-		// Watch pages
-		$watch = $this->getWatchlistValue( $params['watchlist'], $fromTitle ) || $wgUser->getOption( 'watchmoves' );
-		
-		// Deprecated parameters
+
+		$watch = $params['watchlist'];
+		if ( $wgUser->getOption( 'watchmoves' ) ) {
+			$watch = 'watch';
+		}
 		if ( $params['watch'] ) {
-			$watch = true;
+			$watch = 'watch';
 		} elseif ( $params['unwatch'] ) {
-			$watch = false;
+			$watch = 'unwatch';
 		}
 
-		if ( $watch !== null ) {
-			if ( $watch ) {
-				$wgUser->addWatch( $fromTitle );
-				$wgUser->addWatch( $toTitle );
-			} else {
-				$wgUser->removeWatch( $fromTitle );
-				$wgUser->removeWatch( $toTitle );
-			}
-		}
+		// Watch pages
+		$this->setWatch( $watch, $fromTitle );
+		$this->setWatch( $watch, $toTitle );
+
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
 
