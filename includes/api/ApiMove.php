@@ -122,11 +122,10 @@ class ApiMove extends ApiBase {
 			}
 		}
 
-		$watch = $params['watchlist'];
-		if ( $wgUser->getOption( 'watchmoves' ) ) {
-			$watch = 'watch';
-		}
-		if ( $params['watch'] ) {
+		$watch = "preferences";
+		if ( isset( $params['watchlist'] ) ) {
+			$watch = $params['watchlist'];
+		} elseif ( $wgUser->getOption( 'watchmoves' ) || $params['watch'] ) {
 			$watch = 'watch';
 		} elseif ( $params['unwatch'] ) {
 			$watch = 'unwatch';
