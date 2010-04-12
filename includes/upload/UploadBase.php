@@ -166,8 +166,8 @@ abstract class UploadBase {
 	/**
 	 * Append a file to the Repo file
 	 *
-	 * @param string $srcPath Path to source file
-	 * @param string $toAppendPath Path to the Repo file that will be appended to.
+	 * @param $srcPath String: path to source file
+	 * @param $toAppendPath String: path to the Repo file that will be appended to.
 	 * @return Status Status
 	 */
 	protected function appendToUploadFile( $srcPath, $toAppendPath ) {
