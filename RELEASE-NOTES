@@ -101,6 +101,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16817) Group names in user rights log are now singular and in lowercase
 * Special:Preferences no longer crashes if the wiki default date formatting
   style is not valid for the user's interface language
+* (bug 23167) Check the watch checkbox by default if the watchcreations preference is set
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
