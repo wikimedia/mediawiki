@@ -102,6 +102,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Preferences no longer crashes if the wiki default date formatting
   style is not valid for the user's interface language
 * (bug 23167) Check the watch checkbox by default if the watchcreations preference is set
+* Maintenance script cleanupTitles is now able to fix titles stored
+in a negative namespace (which is invalid).
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
