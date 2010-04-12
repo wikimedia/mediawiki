@@ -943,6 +943,7 @@ class UploadForm extends HTMLForm {
 					'id' => 'wpWatchthis',
 					'label-message' => 'watchthisupload',
 					'section' => 'options',
+					'default' => $wgUser->getOption( 'watchcreations' ),
 				)
 			);
 		}
