@@ -235,7 +235,10 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Выдалены_ўнёсак' ),
 );
 
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+$separatorTransformTable = array(
+	',' => "\xc2\xa0", # nbsp
+	'.' => ','
+);
 
 $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
 

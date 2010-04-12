@@ -101,7 +101,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16817) Group names in user rights log are now singular and in lowercase
 * Special:Preferences no longer crashes if the wiki default date formatting
   style is not valid for the user's interface language
-* (bug 23167) Check the watch checkbox by default if the watchcreations preference is set
+* (bug 23167) Check the watch checkbox by default if the watchcreations
+  preference is set
 * Maintenance script cleanupTitles is now able to fix titles stored
 in a negative namespace (which is invalid).
 
@@ -122,6 +123,9 @@ changes to languages because of MediaZilla reports.
 
 * Latgalian (ltg) (new)
 * Rusyn (rue) (new)
+
+* (bug 23156) Commafy and search normalization updated for Belarusian
+  (Taraškievica)
 
 == Compatibility ==
 

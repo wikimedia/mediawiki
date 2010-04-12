@@ -4,7 +4,7 @@
   * @ingroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  * @link http://be.wikipedia.org/wiki/Talk:LanguageBe.php
+  * @link http://be-x-old.wikipedia.org/wiki/Project_talk:LanguageBe_tarask.php
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
   * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
   */
@@ -38,6 +38,39 @@ class LanguageBe_tarask extends Language {
 				case 4:  return $forms[1];
 				default: return $forms[2];
 			}
+		}
+	}
+	
+	/*
+	 * The Belarusian language uses apostrophe sign, 
+	 * but the characters used for this could be both U+0027 and U+2019.
+	 * This function unifies apostrophe sign in search index values
+	 * to enable seach using both apostrophe signs.
+	 */
+	function normalizeForSearch( $string ) {
+		wfProfileIn( __METHOD__ );
+
+		# MySQL fulltext index doesn't grok utf-8, so we
+		# need to fold cases and convert to hex
+
+		# Replacing apostrophe sign U+2019 with U+0027
+		$s = preg_replace( '/\xe2\x80\x99/', '\'', $string );
+
+		$s = parent::normalizeForSearch( $s );
+
+		wfProfileOut( __METHOD__ );
+		return $s;
+	}
+	
+	/*
+	 * Four-digit number should be without group commas (spaces)
+	 * So "1 234 567", "12 345" but "1234"
+	 */
+	function commafy($_) {
+		if (preg_match('/^-?\d{1,4}(\.\d*)?$/',$_)) {
+			return $_;
+		} else {
+			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
 		}
 	}
 }
