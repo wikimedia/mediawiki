@@ -202,7 +202,7 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpSection'] = '';
 		}
 
-		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj ) || $wgUser->getOption( 'watchcreations' );
+		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
 
 		// Deprecated parameters
 		if ( $params['watch'] ) {
