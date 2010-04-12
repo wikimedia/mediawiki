@@ -247,7 +247,7 @@ $messages = array(
 'tog-watchcreations'          => 'Overvåk sider jeg oppretter',
 'tog-watchdefault'            => 'Overvåk alle sider jeg redigerer',
 'tog-watchmoves'              => 'Overvåk sider jeg flytter',
-'tog-watchdeletion'           => 'Overvåk sider jeg sletter.',
+'tog-watchdeletion'           => 'Overvåk sider jeg sletter',
 'tog-minordefault'            => 'Merk i utgangspunktet alle redigeringer som mindre',
 'tog-previewontop'            => 'Flytt forhåndsvisningen foran redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning ved første redigering av en side',
@@ -801,7 +801,7 @@ Vennligst ta med all denne informasjonen ved henvendelser.",
 'nosuchsectiontext'                => 'Du prøvde å redigere et avsnitt som ikke eksisterer.
 Det kan ha blitt flyttet eller slettet mens du så på siden.',
 'loginreqtitle'                    => 'Innlogging kreves',
-'loginreqlink'                     => 'logg inn',
+'loginreqlink'                     => 'logge inn',
 'loginreqpagetext'                 => 'Du må $1 for å se andre sider.',
 'accmailtitle'                     => 'Passord sendt.',
 'accmailtext'                      => 'Et tilfeldig passord for [[User talk:$1|$1]] har blitt sendt til $2.

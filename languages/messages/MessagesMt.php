@@ -2504,7 +2504,7 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marka l-modifiki bħalha verifikati',
-'markaspatrolledtext'                 => 'Marka din il-paġna bħalha verifikata',
+'markaspatrolledtext'                 => 'Immarka din il-paġna bħala verifikata',
 'markedaspatrolled'                   => 'Markat bħalha verifikat',
 'markedaspatrolledtext'               => 'Ir-Reviżjoni magħżula hija markata bħalha verifikata.',
 'rcpatroldisabled'                    => 'Modifikar riċenti verifikar disattivat',

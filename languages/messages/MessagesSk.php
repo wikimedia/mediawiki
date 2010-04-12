@@ -2051,6 +2051,7 @@ môžete mu pomocou nasledovného formulára poslať email.
 Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniach]] sa zobrazí ako adresa odosielateľa emailu, aby vám mohol príjemca priamo odpovedať.',
 'usermailererror'  => 'Emailový program vrátil chybu:',
 'defemailsubject'  => 'email {{GRAMMAR:genitív|{{SITENAME}}}}',
+'usermaildisabled' => 'Používateľ má vypnuté používanie emailu',
 'noemailtitle'     => 'Chýba e-mailová adresa',
 'noemailtext'      => 'Tento používateľ neuviedol svoju platnú e-mailovú adresu.',
 'nowikiemailtitle' => 'Posielanie emailov nie je umožnené',

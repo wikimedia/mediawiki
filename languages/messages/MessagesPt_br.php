@@ -27,6 +27,7 @@
  * @author LeonardoG
  * @author Lijealso
  * @author Luckas Blade
+ * @author Malafaya
  * @author McDutchie
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
@@ -723,8 +724,8 @@ Por favor ative-os, depois autentique-se com o seu novo nome de usuário e a sua
 'noname'                     => 'Você não colocou um nome de usuário válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Agora você está ligado à {{SITENAME}} como \"\$1\"'''.",
-'nosuchuser'                 => 'Não existe nenhum utilizador com o nome "$1".
-Os nomes de utilizador são sensíveis à capitalização.
+'nosuchuser'                 => 'Não existe nenhum usuário com o nome "$1".
+Os nomes de usuário são sensíveis à capitalização.
 Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'nosuchusershort'            => 'Não existe um usuário com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Você precisa especificar um nome de usuário.',
@@ -850,7 +851,7 @@ O motivo apresentado foi:
 
 Você pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
 
-Note que não poderá utilizar a funcionalidade "Contatar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de \'\'e-mail\'\' válido indicado nas suas [[Special:Preferences|preferências de usuário]] ou se tiver sido bloqueado de utilizar tal recurso.
+Note que não poderá utilizar a funcionalidade "Contatar usuário" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de \'\'e-mail\'\' válido indicado nas suas [[Special:Preferences|preferências de usuário]] ou se tiver sido bloqueado de utilizar tal recurso.
 
 Seu endereço de IP no momento é $3 e sua ID de bloqueio é #$5.
 Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for realizar.',
@@ -2050,9 +2051,9 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'usermailererror'  => 'Erro no email:',
 'defemailsubject'  => 'E-mail: {{SITENAME}}',
 'noemailtitle'     => 'Sem endereço de e-mail',
-'noemailtext'      => 'Este utilizador não especificou um endereço de e-mail válido.',
+'noemailtext'      => 'Este usuário não especificou um endereço de e-mail válido.',
 'nowikiemailtitle' => 'E-mail não permitido',
-'nowikiemailtext'  => 'Este utilizador optou por não receber e-mail de outros utilizadores.',
+'nowikiemailtext'  => 'Este usuário optou por não receber e-mail de outros usuários.',
 'email-legend'     => 'Enviar uma mensagem eletrônica para outro usuário da {{SITENAME}}',
 'emailfrom'        => 'De:',
 'emailto'          => 'Para:',
@@ -2215,9 +2216,9 @@ Esta é a configuração atual para a página '''$1''':",
 'protect-locked-access'       => "Sua conta não possui permissões para alterar os níveis de proteção de uma página.
 Esta é a configuração atual para a página '''$1''':",
 'protect-cascadeon'           => 'Esta página encontra-se protegida, uma vez que se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com a "proteção progressiva" ativada. Você poderá alterar o nível de proteção desta página, mas isso não afetará a "proteção progressiva".',
-'protect-default'             => 'Permitir todos os utilizadores',
+'protect-default'             => 'Permitir todos os usuários',
 'protect-fallback'            => 'É necessário o privilégio de "$1"',
-'protect-level-autoconfirmed' => 'Bloquear utilizadores novos e não registrados',
+'protect-level-autoconfirmed' => 'Bloquear usuários novos e não registrados',
 'protect-level-sysop'         => 'Apenas administradores',
 'protect-summary-cascade'     => 'p. progressiva',
 'protect-expiring'            => 'expira em $1 (UTC)',
@@ -2325,7 +2326,7 @@ $1',
 'sp-contributions-deleted'        => 'contribuições de usuário eliminadas',
 'sp-contributions-logs'           => 'registros',
 'sp-contributions-talk'           => 'disc',
-'sp-contributions-userrights'     => 'gerenciamento de privilégios de utilizadores',
+'sp-contributions-userrights'     => 'gerenciamento de privilégios de usuários',
 'sp-contributions-blocked-notice' => 'Este usuário atualmente está bloqueado. O registro de bloqueio mais recente é fornecido abaixo para referência:',
 'sp-contributions-search'         => 'Pesquisar contribuições',
 'sp-contributions-username'       => 'Endereço de IP ou usuário:',
@@ -2378,7 +2379,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipboptions'                      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite',
 'ipbotheroption'                  => 'outro',
 'ipbotherreason'                  => 'Outro motivo/motivo adicional:',
-'ipbhidename'                     => 'Ocultar nome de utilizador em edições e listas',
+'ipbhidename'                     => 'Ocultar nome de usuário em edições e listas',
 'ipbwatchuser'                    => 'Vigiar a página de usuário e a página de discussão deste usuário',
 'ipballowusertalk'                => 'Permitir que este usuário edite sua própria página de discussão mesmo estando bloqueado',
 'ipb-change-block'                => 'Bloquear o usuário novamente com estes parâmetros',
@@ -2438,7 +2439,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'block-log-flags-noemail'         => 'impedido de enviar e-mail',
 'block-log-flags-nousertalk'      => 'impossibilitado de editar a própria página de discussão',
 'block-log-flags-angry-autoblock' => 'autobloqueio melhorado ativado',
-'block-log-flags-hiddenname'      => 'Nome de utilizador oculto',
+'block-log-flags-hiddenname'      => 'Nome de usuário oculto',
 'range_block_disabled'            => 'A funcionalidade de bloquear gamas de IPs encontra-se desativada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',
 'ipb_expiry_temp'                 => 'Bloqueios com nome de usuário ocultado devem ser permanentes.',
@@ -2653,7 +2654,7 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 edição|$1 edições}} de $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Sua página de utilizador',
+'tooltip-pt-userpage'             => 'Sua página de usuário',
 'tooltip-pt-anonuserpage'         => 'A página de usuário para o ip com o qual você está editando',
 'tooltip-pt-mytalk'               => 'Sua página de discussão',
 'tooltip-pt-anontalk'             => 'Discussão sobre edições deste endereço de ip',

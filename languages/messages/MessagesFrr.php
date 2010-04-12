@@ -68,6 +68,7 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Schraftfamiili for di takst onj dåt beårbingswaning:',
+'editfont-default'   => 'oufhingi foon browser-önjstaling',
 'editfont-monospace' => 'Schraft ma fååst tiikenbrååtj',
 'editfont-sansserif' => 'Seriifen-lüüse grotäskschraft',
 'editfont-serif'     => 'Schraft ma seriife',
@@ -133,6 +134,7 @@ $messages = array(
 'hidden-categories'              => '{{PLURAL:$1|Ferstäägen Kategorii|Ferstäägene Kategoriie}}',
 'hidden-category-category'       => 'Ferstäägene kategoriie',
 'category-subcat-count'          => '{{PLURAL:$2|Jüdeer kategorii önjthålt füliend unerkategorii:|{{PLURAL:$1|Füliend unerkategorii as iinj foon inåål $2 unerkategoriie önj jüdeer kategorii:|Deer wårde $1 foon inåål $2 unerkategoriie önj jüdeer kategorii wised:}}}}',
+'category-subcat-count-limited'  => 'Jüdeer kategorii önjthålt füliende {{PLURAL:$1|unerkategorii|$1 unerkategoriie}}:',
 'category-article-count'         => '{{PLURAL:$2|Jüdeer kategorii önjthålt füliende sid:|{{PLURAL:$1|Füliende sid as iinj foon inåål $2 side önj jüdeer kategorii:|Deer wårde $1 foon inåål $2 side önj jüdeer kategorii wised:}}}}',
 'category-article-count-limited' => 'Füliende {{PLURAL:$1|sid as|$1 side san}} önj jüheer kategorii önjthülen:',
 'category-file-count'            => '↓ {{PLURAL:$2|Jüdeer kategorii önjthålt füliende dootäi:|{{PLURAL:$1|Füliende dootäi as iinj foon inåål $2 side önj jüdeer kategorii:|Deer wårde $1 foon inåål $2 dootäie önj jüdeer kategorii wised:}}}}',
@@ -151,6 +153,8 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
 
+'about'         => 'Ouer',
+'article'       => 'Sid',
 'newwindow'     => '(wårt önj en nai waning änäämmååged)',
 'cancel'        => 'Oufbreege',
 'moredotdotdot' => 'Mör ...',
@@ -165,6 +169,7 @@ $messages = array(
 'qbbrowse'       => 'Bleese',
 'qbedit'         => 'Änre',
 'qbpageoptions'  => 'Jüdeer sid',
+'qbpageinfo'     => 'Sidedoote',
 'qbmyoptions'    => 'Min side',
 'qbspecialpages' => ' Spetsjåålside',
 'faq'            => 'FAQ',
@@ -173,15 +178,27 @@ $messages = array(
 'vector-action-delete'       => 'Sleeke',
 'vector-action-move'         => 'Ferschüwe',
 'vector-action-protect'      => 'Önj ferbading hüülje',
+'vector-action-undelete'     => 'Wi mååge',
 'vector-action-unprotect'    => 'Frijeewe',
 'vector-namespace-category'  => 'Kategorii',
 'vector-namespace-help'      => 'Heelpsid',
 'vector-namespace-image'     => 'Dootäi',
 'vector-namespace-main'      => 'sid',
+'vector-namespace-media'     => 'Meediesid',
 'vector-namespace-mediawiki' => 'Berucht',
 'vector-namespace-project'   => 'Prujäktsid',
 'vector-namespace-special'   => 'Spetsjåålsid',
 'vector-namespace-talk'      => 'Diskusjoon',
+'vector-namespace-template'  => 'Forlååge',
+'vector-namespace-user'      => 'Brükersid',
+'vector-view-create'         => 'Mååge',
+'vector-view-edit'           => 'Beårbe',
+'vector-view-history'        => 'Dootäifärsjoone',
+'vector-view-view'           => 'Lees',
+'vector-view-viewsource'     => 'Kwältäkst önjkiike',
+'actions'                    => 'Aksjoone',
+'namespaces'                 => 'Noomerüme:',
+'variants'                   => 'Fariante',
 
 'errorpagetitle'    => 'Fäägel',
 'returnto'          => 'Tubääg tu jü side $1.',
@@ -213,8 +230,10 @@ $messages = array(
 'newpage'           => 'Nai sid',
 'talkpage'          => 'Jüdeer sid diskutiire',
 'talkpagelinktext'  => 'diskusjoon',
+'specialpage'       => 'Spetsjåålsid',
 'personaltools'     => 'Persöönlike räischupe',
 'postcomment'       => 'Nai oufsnaas',
+'articlepage'       => 'Inhåltsid wise',
 'talk'              => 'Diskusjoon',
 'views'             => 'Önjsichte',
 'toolbox'           => 'Räischape',
@@ -230,9 +249,14 @@ $messages = array(
 'redirectedfrom'    => '(Widerliidjet foon $1)',
 'redirectpagesub'   => 'Widerliidjing',
 'lastmodifiedat'    => 'Jüdeer sid wörd tuleest aw $1 am jü klook $2 änred.',
+'viewcount'         => 'Aw jüdeer sid as  {{PLURAL:$1|once|$1 times}} tugram.',
+'protectedpage'     => 'Önj ferbading hülen sid',
 'jumpto'            => 'Schaft tu:',
 'jumptonavigation'  => 'Navigasjoon',
 'jumptosearch'      => 'säk',
+'view-pool-error'   => 'Önjschüliing, da särwere san nütutids ouerlååsted.
+Tufoole brükere fersäke, jüdeer sid tu besäken.
+Wees sü gödj än täiw hu minuute, iir dü dåt nuch iinjsen ferseechst.',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ouer {{SITENAME}}',
@@ -295,23 +319,55 @@ Sii jü [[Special:Färsjoon|Färsjoonssid]]',
 'red-link-title'          => '$1 (sid ai deer)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'sid',
-'nstab-user'     => 'Brükersid',
-'nstab-special'  => 'Spetsjåålsid',
-'nstab-project'  => 'Prujäktsid',
-'nstab-image'    => 'Dååtäi',
-'nstab-template' => 'Forlååge',
-'nstab-category' => 'Kategorii',
+'nstab-main'      => 'sid',
+'nstab-user'      => 'Brükersid',
+'nstab-media'     => 'Meediesid',
+'nstab-special'   => 'Spetsjåålsid',
+'nstab-project'   => 'Prujäktsid',
+'nstab-image'     => 'Dååtäi',
+'nstab-mediawiki' => 'Berucht',
+'nstab-template'  => 'Forlååge',
+'nstab-help'      => 'Heelpsid',
+'nstab-category'  => 'Kategorii',
+
+# Main script and global functions
+'nosuchaction'      => "Ai sü'n aksjoon",
+'nosuchactiontext'  => 'Jü aksjoon spesifisiird döör di URL jült ai.
+Dü koost di URL ferkiird tipt hääwe, unti dü hääst en ferkiirden link fülied.
+Dåt koon uk en fäägel önjjeewe önj e software, jü {{SITENAME}} brúkt.',
+'nosuchspecialpage' => "Ai sü'n spetsjäl sid",
+'nospecialpagetext' => '<strong>Jü önjfrååged spetsjåålsid as ai deer.</strong>
+
+Åle ferfäigboore spetsjåålside san önj e [[Special:SpecialPages|List foon da spetsjåålside]] tu finen.',
 
 # General errors
-'missing-article'    => 'Di täkst for „$1“ $2 wörd ai önj e dååtenbånk fünen.
+'error'                => 'Fäägel',
+'databaseerror'        => 'Dootebånkfäägel',
+'laggedslavemode'      => "''''Woarschauing:''' Jü wised sid köö uner amstånde ai da leeste beåarbinge önjthüülje.",
+'readonly'             => 'Dootebånk späred',
+'enterlockreason'      => 'Wees swü gödj än jeew en grün önj, weeram jü dootebånk späred wårde schal än en schåting ouer e duur foon jü späre',
+'readonlytext'         => 'Jü dootebånk as forluupi späred for naie önjdreege än änringe. Wees sü gödj än fersäk dåt lääser nuch iinjsen.
+
+Grün foon e späre: $1',
+'missing-article'      => 'Di täkst for „$1“ $2 wörd ai önj e dååtenbånk fünen.
 
 Jü sid as möölikerwise tuninte mååged unti ferschääwen wörden.
 
 Wan dåt ai di fål as, hääst dü eewäntuäl en fäägel önj e software fünen. Mäld dåt hål en  [[Special:ListUsers/sysop|administrator]] unner nååming foon jü URL.',
-'missingarticle-rev' => '(Färsjoonsnumer: $1)',
-'badtitletext'       => 'Di tiitel foon jü anfrååged sid as üngülti, lääsi unti n üngültigen spräklink foon en ouder wiki.',
-'viewsource'         => 'Kwältäkst önjkiike',
+'missingarticle-rev'   => '(Färsjoonsnumer: $1)',
+'missingarticle-diff'  => '(Ferschääl twasche färsjoone: $1, $2)',
+'fileappenderrorread'  => '"$1" köö wilert dåt baitufäigen ai leesen wårde.',
+'filecopyerror'        => 'Jü dootäi "$1" köö ai eefter "$2" kopiiird wårde.',
+'filerenameerror'      => 'Jü dootäi "$1" köö ai eefter "$2" amnååmd wårde.',
+'filedeleteerror'      => 'Jü dootái "$1" köö ai sleeked wårde.',
+'directorycreateerror' => 'Dåt fertiiknis "$1" köö ai mååged wårde.',
+'filenotfound'         => 'Köö dootäi "$1" ai fine.',
+'fileexistserror'      => 'Ai önjstånde eefter dootäi "$1" tu schriwen: dootäi bestoont ål',
+'unexpected'           => 'Ünfermousene wjart: "$1"="$2".',
+'formerror'            => 'Fäägel: köö jü form ai lääwere',
+'badarticleerror'      => 'Jüdeer aksjoon koon ai aw jüdeer sid mååged wårde.',
+'badtitletext'         => 'Di tiitel foon jü anfrååged sid as üngülti, lääsi unti n üngültigen spräklink foon en ouder wiki.',
+'viewsource'           => 'Kwältäkst önjkiike',
 
 # Login and logout pages
 'yourname'                => 'Brükernoome:',
@@ -342,6 +398,24 @@ Mälde wi önj eefter dü jü füngen heest.',
 'mailerror'               => 'Fäägel bai dåt siinjen foon e E-mail: $1',
 'emailnotauthenticated'   => 'Din E-mail-adräs as nuch ai bestääsied. Da füliende E-mail-funksjoone stönje jarst eefter erfolchrike bestääsiing tu ferfäiging.',
 'noemailprefs'            => 'Jeew en E-mail-adräs önj da önjstalinge önj, deerma da füliende funksjoone tu ferfäiging stönje.',
+'loginlanguagelabel'      => 'Spräke: $1',
+'suspicious-userlogout'   => 'Dan Oufmäldönjfrååge wörd ferwaigred, deer ja fermouslik foon en defäkte browser unti en cache-proxy sånd wörd.',
+
+# Password reset dialog
+'resetpass'                 => 'Pååsuurd änre',
+'resetpass_announce'        => 'Önjmälding ma di ouer E-mail tusånde kode. Am e önjmälding ouftusliten, möist dü en nai pååsuurd kiise.',
+'resetpass_header'          => 'Account pååsuurd änre',
+'oldpassword'               => 'Üülj pååsuurd:',
+'newpassword'               => 'Nai pååsuurd:',
+'retypenew'                 => 'Tip nai pååsuurd nuch iinjsen:',
+'resetpass_submit'          => 'Seet pååsuurd än mäld önj',
+'resetpass_success'         => 'Din pååsuurd as ma resultoot änred!
+Nü wårst dü önjmälded...',
+'resetpass_forbidden'       => 'Pååsuurde koone ai änred wårde',
+'resetpass-no-info'         => 'Dü möist önjmälded weese am ju sid diräkt tu tu gripen.',
+'resetpass-submit-loggedin' => 'Pååsuurd änre',
+'resetpass-submit-cancel'   => 'Oufbreege',
+'resetpass-temp-password'   => 'Tidwise pååsuurd:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fåten täkst',
@@ -371,9 +445,24 @@ Mälde wi önj eefter dü jü füngen heest.',
 'savearticle'                      => 'Sid spikre',
 'preview'                          => 'Forlök',
 'showpreview'                      => 'Forlök wise',
+'showlivepreview'                  => 'Live-forkiik',
 'showdiff'                         => 'Änringe wise',
 'anoneditwarning'                  => "Dü beårbest jüdeer sid ünönjmälded. Wan dü spikerst, wård din aktuäle IP-adräs önj e fesjoonshistoori aptiikned än as deerma for åltens '''ålgemiin''' sichtboor.",
+'missingcommenttext'               => 'Jeew en tuhuupefooting önj.',
 'summary-preview'                  => 'Forlök foon jü tuhuupfootingssid:',
+'subject-preview'                  => 'Forkiik foon dåt subjäkt:',
+'blockedtitle'                     => 'Brüker as späred',
+'blockednoreason'                  => 'niinj grün önjjääwen',
+'blockedoriginalsource'            => "Di kwältakst foon '''$1''' wårt heer wised:",
+'blockededitsource'                => "Di takst foon '''din änringe''' bit '''$1'''wårt heer wised:",
+'confirmedittext'                  => 'Dü möist din E-mail-adräs jarst bestääsie, iir dü beårbinge döörfääre koost. Mååg din årbe radi än bestääsie din E-mail önj da  [[Special:Preferences|önjstalinge]].',
+'nosuchsectiontitle'               => 'Stuk ai fünen',
+'nosuchsectiontext'                => 'Dü fersoochst en stuk tu änren, dåt dåt ai jeeft.
+Dåt koon ferschääwen unti wächhååld weese, wilt dü jü sid bekiikedest.',
+'loginreqtitle'                    => 'Önjmälden nüsi.',
+'loginreqlink'                     => 'Önjmälde',
+'loginreqpagetext'                 => 'Dü möist $1 am oudere side tu bekiiken.',
+'accmailtitle'                     => 'Pååsuurd sånd.',
 'newarticle'                       => '(Nai)',
 'newarticletext'                   => "Dü bast en link tu en sid fülied, jü nuch ai bestoont.
 Am jü sid tu måågen, dreeg dan täkst önj e unerstönjene box in (sii jü
@@ -382,7 +471,12 @@ Bast üt fersiien heer, klik di '''tubääg'''-klänkfläche foon dan browser.",
 'noarticletext'                    => 'Jüdeer sid önjhålt uugenblaklik nuch nån täkst.
 Dü koost dideere tiitel aw da ouder side [[Special:Search/{{PAGENAME}}|säke]],
 <span class="plainlinks">önj da deertuhiirende [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logböke säke] unti jüdeer sid [{{fullurl:{{FULLPAGENAME}}|action=edit}} beårbe]</span>.',
+'userjsyoucanpreview'              => "'''Tip:''' Brük di forkiik-knoop, am din nai JS for dåt spiikern tu tästen.",
+'userjspreview'                    => "'''Påås aw dåt dü bloot din brüker JavaScript präiwest/forbekiikest.'''
+'''Dåt as nuch ai spiikerd!'''",
+'userinvalidcssjstitle'            => "''Woorschauing:''' Skin \"\$1\"jeeft dåt ai. Betånk, dåt brükerspetsiifische .css- än .js-side ma en latj bökstääw önjfånge mönje, ålsü biispelswise ''{{ns:user}}:Münsterkjarl/monobook.css'' önj stää foon ''{{ns:user}}:Münsterkjarl/Monobook.css''.",
 'previewnote'                      => "'''Dåtheer as bloot en forlök, jü sid wörd nuch ai spikred!'''",
+'previewconflict'                  => 'Dideer forbekiik jeeft di inhålt foon dåt boowerst takstfälj wider. Sü wårt jü sid ütsiinj, wan dü nü spiikerst.',
 'editing'                          => 'Beårbe foon $1',
 'editingsection'                   => 'Beårben foon $1 (oufsnaas)',
 'copyrightwarning'                 => "''' Hål <big>kopiir niinj webside</big>, da ai din äine san, brük <big>niinj uurhääwerruchtlik schütsede wärke</big> suner ferloof foon di uurhääwer!'''<br />
@@ -416,19 +510,40 @@ Dü jeefst üs heerma dan tusååge, dåt dü di täkst '''seelew ferfooted''' h
 'revdel-restore'            => 'sichtboorhäid änre',
 'revdelete-otherreason'     => 'Ouderen/tubaikaamenden grün:',
 'revdelete-reasonotherlist' => 'Ouderen grün',
+'revdelete-edit-reasonlist' => 'Sleekgrüne beårbe',
 
 # Suppression log
 'suppressionlog' => 'Oversight-logbök',
 
+# History merging
+'mergehistory'                  => 'Fersjoonshistoorie feriine',
+'mergehistory-header'           => 'Ma jüdeer spetsjåålsid koost dü jü färsjoonshistoori foon en jurtkamstsid ma jü färsjoonshistoori foon en müüljsid feriine.
+Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
+'mergehistory-box'              => 'Rewisjoone foon tou side feriine:',
+'mergehistory-from'             => 'Jurtkamstsid:',
+'mergehistory-into'             => 'Müüljsid:',
+'mergehistory-list'             => 'Färsjoone, da feriind wårde koone',
+'mergehistory-go'               => 'Wis färsjoone da feriind wårde koone',
+'mergehistory-submit'           => 'Feriinde färsjoone',
+'mergehistory-empty'            => 'Niinj färsjoone koone fereiind wårde.',
+'mergehistory-success'          => '$3 {{PLURAL:$3|färsjoon|färsjoone}} foon [[:$1]] ma erfolch feriind tu [[:$2]].',
+'mergehistory-no-destination'   => 'Müüljsid „$1“ bestoont ai.',
+'mergehistory-invalid-source'   => 'Jurtkamstsid mötj en gültige sidnoome heewe.',
+'mergehistory-comment'          => '„[[:$1]]“ feriind eefter „[[:$2]]“: $3',
+'mergehistory-same-destination' => 'Jurtkamst- än müüljsid mönje ai idäntisch weese',
+'mergehistory-reason'           => 'Grün:',
+
 # Merge log
-'revertmerge' => 'Feriining tuninte mååge',
+'revertmerge'      => 'Feriining tuninte mååge',
+'mergelogpagetext' => 'Dåtheer as dåt logbök foon da feriinde färsjoonshistoorie.',
 
 # Diffs
-'history-title'           => 'Färsjoonshistoori foon "$1"',
-'difference'              => '(Ferschääl twasche Färsjoone)',
-'lineno'                  => 'Ra $1:',
-'compareselectedversions' => 'Wäälde färsjoone ferglike',
-'editundo'                => 'tunintemååge',
+'history-title'            => 'Färsjoonshistoori foon "$1"',
+'difference'               => '(Ferschääl twasche Färsjoone)',
+'lineno'                   => 'Ra $1:',
+'compareselectedversions'  => 'Wäälde färsjoone ferglike',
+'showhideselectedversions' => 'Wäälde färsjoone wise/fersteege',
+'editundo'                 => 'tunintemååge',
 
 # Search results
 'searchresults'             => 'Säkjresultoote',
@@ -436,11 +551,18 @@ Dü jeefst üs heerma dan tusååge, dåt dü di täkst '''seelew ferfooted''' h
 'searchresulttext'          => 'For mör informasjoon tu jü säkj sii jü [[{{MediaWiki:Helppage}}|heelpsid]].',
 'searchsubtitle'            => 'Din säkönjfrååg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|åle ma „$1“ beganende side]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|åle side, da eefter „$1“ ferlinke]])',
 'searchsubtitleinvalid'     => 'Din säkönjfrååg: "$1".',
+'titlematches'              => 'Oueriinjstiminge ma sidetiitle',
 'notitlematches'            => 'Niinj oueriinjstiming ma sidetiitle',
+'textmatches'               => 'Oueriinjstiminge ma inhålte',
 'notextmatches'             => 'Niinj oueriinjstiming ma inhålte',
 'prevn'                     => '{{PLURAL:$1|leesten|leeste $1}}',
 'nextn'                     => '{{PLURAL:$1|näisten|näiste $1}}',
+'prevn-title'               => 'Leeste $1 {{PLURAL:$1|resultoot|resultoote}}',
+'nextn-title'               => 'Näiste $1 {{PLURAL:$1|resultoot|resultoote}}',
+'shown-title'               => 'Wis $1 {{PLURAL:$1|resultoot|resultoote}} pro sid',
 'viewprevnext'              => 'Wis ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists'         => "'''Deer as en sid nååmd \"[[:\$1]]\" önj jüdeer wiki'''",
+'searchmenu-new'            => "'''Mååg jü sid „[[:$1|$1]]“ önj dideer Wiki.'''",
 'search-result-size'        => '$1 ({{PLURAL:$2|1 uurd|$2 uurde}})',
 'search-result-score'       => 'Relevans: $1 %',
 'search-redirect'           => '(widerliidjing foon „$1“)',

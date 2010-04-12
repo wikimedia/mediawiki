@@ -481,7 +481,7 @@ $1',
 'powersearch'               => 'Розшырене гляданя',
 'powersearch-legend'        => 'Розшырене гляданя',
 'powersearch-ns'            => 'Глядати у просторах назв:',
-'powersearch-redir'         => 'Зознам напрямлинь',
+'powersearch-redir'         => 'Список напрямлинь',
 'powersearch-field'         => 'Глядати',
 'powersearch-togglelabel'   => 'Позначіти:',
 'powersearch-toggleall'     => 'Вшыткы',
@@ -637,8 +637,8 @@ $1',
 # Recent changes linked
 'recentchangeslinked'         => 'Повязаны зміны',
 'recentchangeslinked-title'   => 'Зміны звязаны з «$1»',
-'recentchangeslinked-summary' => "Тото є зознам недавных знмін на сторінках на котры одказує задана сторінка (або котры патрят до той катеґорії).
-Сторінкы з [[Special:Watchlist|вашого зознаму слїдованых]] суть вызначены '''тучно'''.",
+'recentchangeslinked-summary' => "Тото є список недавных змін на сторінках на котры одказує задана сторінка (або котры патрят до той катеґорії).
+Сторінкы з [[Special:Watchlist|вашого списку слїдованых]] суть вызначены '''тучно'''.",
 'recentchangeslinked-page'    => 'Назва сторінкы:',
 'recentchangeslinked-to'      => 'Вказати зміны на сторінках, одказуючіх на задану сторінку',
 
@@ -650,7 +650,7 @@ $1',
 
 # Special:ListFiles
 'imgfile'               => 'файл',
-'listfiles'             => 'Зознам файлів',
+'listfiles'             => 'Список файлів',
 'listfiles_date'        => 'Датум',
 'listfiles_name'        => 'Назва',
 'listfiles_user'        => 'Хоснователь',
@@ -683,28 +683,58 @@ $1',
 'uploadnewversion-linktext' => 'Награти нову верзію того файлу',
 
 # File reversion
-'filerevert'         => 'Вернути назад',
+'filerevert'         => 'Вернути назад $1',
 'filerevert-legend'  => 'Вернути назад файл',
 'filerevert-comment' => 'Комент:',
 'filerevert-submit'  => 'Вернути назад',
 
 # File deletion
-'filedelete'         => 'Змазаня файлу $1',
-'filedelete-legend'  => 'Змазати файл',
-'filedelete-comment' => 'Причіна змазаня:',
+'filedelete'                  => 'Змазаня файлу $1',
+'filedelete-legend'           => 'Змазати файл',
+'filedelete-comment'          => 'Причіна змазаня:',
+'filedelete-submit'           => 'Вымазати',
+'filedelete-success'          => "Файл '''$1''' быв змазаный.",
+'filedelete-nofile'           => "Файл '''$1''' не екзістує.",
+'filedelete-otherreason'      => 'Інша/додаткова причіна:',
+'filedelete-reason-otherlist' => 'Інша причіна',
+
+# List redirects
+'listredirects' => 'Список напрямлинь',
 
 # Statistics
-'statistics' => 'Штатістіка',
+'statistics'              => 'Штатістіка',
+'statistics-header-pages' => 'Штатістіка сторінок',
+'statistics-header-edits' => 'Штатістіка едітовань',
+'statistics-header-users' => 'Штатістіка хоснователів',
+'statistics-header-hooks' => 'Інша штатістіка',
+'statistics-pages'        => 'Сторінкы',
+'statistics-files'        => 'Начітаны файлы',
+'statistics-users-active' => 'Аківны хоснователї',
+'statistics-mostpopular'  => 'Найчітанїшы сторінкы',
+
+'brokenredirects-edit'   => 'едітовати',
+'brokenredirects-delete' => 'змазати',
+
+'withoutinterwiki-legend' => 'Префікс',
+'withoutinterwiki-submit' => 'Вказати',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|байт|байты|байтів}}',
-'nmembers'      => '$1 {{PLURAL:$1|обєкт|обєкты|обєктів}}',
-'prefixindex'   => 'Вшыткы сторінкы з початком назв',
-'newpages'      => 'Новы сторінкы',
-'move'          => 'Переменовати',
-'movethispage'  => 'Переменовати тоту сторінку',
-'pager-newer-n' => '{{PLURAL:$1|новша|новшы|новшых}} $1',
-'pager-older-n' => '{{PLURAL:$1|старша|старшы|старшых}} $1',
+'nbytes'             => '$1 {{PLURAL:$1|байт|байты|байтів}}',
+'ncategories'        => '$1 {{PLURAL:$1|катеґорія|катеґорії|катеґорій}}',
+'nmembers'           => '$1 {{PLURAL:$1|обєкт|обєкты|обєктів}}',
+'nrevisions'         => '$1 {{PLURAL:$1|ревізія|ревізії|ревізій}}',
+'uncategorizedpages' => 'Некатеґоризованы сторінкы',
+'prefixindex'        => 'Вшыткы сторінкы з початком назв',
+'longpages'          => 'Найдовшы статті',
+'protectedpages'     => 'Замкнуты сторінкы',
+'listusers'          => 'Список хоснователїв',
+'newpages'           => 'Новы сторінкы',
+'newpages-username'  => 'Мено хоснователя:',
+'move'               => 'Переменовати',
+'movethispage'       => 'Переменовати тоту сторінку',
+'pager-newer-n'      => '{{PLURAL:$1|новша|новшы|новшых}} $1',
+'pager-older-n'      => '{{PLURAL:$1|старша|старшы|старшых}} $1',
+'suppress'           => 'Ревізор',
 
 # Book sources
 'booksources'               => 'Джерела книг',
@@ -712,25 +742,53 @@ $1',
 'booksources-go'            => 'Выконати',
 
 # Special:Log
-'log' => 'Лоґы',
+'specialloguserlabel'  => 'Хоснователь:',
+'speciallogtitlelabel' => 'Назва:',
+'log'                  => 'Лоґы',
 
 # Special:AllPages
-'allpages'       => 'Вшыткы сторінкы',
-'alphaindexline' => 'од $1 до $2',
-'nextpage'       => 'Далша сторінка ($1)',
-'prevpage'       => 'Попередня сторінка ($1)',
-'allpagesfrom'   => 'Вказати сторінкы, што ся зачінають на:',
-'allpagesto'     => 'Зобразити сторінкы кінчачі на:',
-'allarticles'    => 'Вшыткы сторінкы',
-'allinnamespace' => 'Вшыткы сторінкы (простор назв $1)',
-'allpagessubmit' => 'Выконати',
+'allpages'          => 'Вшыткы сторінкы',
+'alphaindexline'    => 'од $1 до $2',
+'nextpage'          => 'Далша сторінка ($1)',
+'prevpage'          => 'Попередня сторінка ($1)',
+'allpagesfrom'      => 'Вказати сторінкы, што ся зачінають на:',
+'allpagesto'        => 'Зобразити сторінкы кінчачі на:',
+'allarticles'       => 'Вшыткы сторінкы',
+'allinnamespace'    => 'Вшыткы сторінкы (простор назв $1)',
+'allnotinnamespace' => 'Вшыткы сторінкы (окрем простору назв $1)',
+'allpagesprev'      => 'Попереднї',
+'allpagesnext'      => 'Далшы',
+'allpagessubmit'    => 'Выконати',
+'allpages-bad-ns'   => '{{SITENAME}} не має простору назв «$1».',
+
+# Special:Categories
+'categories'     => 'Катеґорії',
+'categoriesfrom' => 'Вказати сторінкы, што ся зачінають на:',
+
+# Special:DeletedContributions
+'sp-deletedcontributions-contribs' => 'приспевкы',
 
 # Special:LinkSearch
-'linksearch' => 'Екстерны одказы',
+'linksearch'    => 'Екстерны одказы',
+'linksearch-ns' => 'Простор назв:',
+'linksearch-ok' => 'Глядати',
+
+# Special:ListUsers
+'listusersfrom'    => 'Вказати хоснователів, што ся зачінають на:',
+'listusers-submit' => 'Вказати',
+
+# Special:ActiveUsers
+'activeusers-from'       => 'Вказати хоснователів, што ся зачінають на:',
+'activeusers-hidebots'   => 'Сховати ботів',
+'activeusers-hidesysops' => 'Сховати адміністраторів',
+'activeusers-noresult'   => 'Ненайдженый жаден хоснователь.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Лоґ вытварянь хоснователів',
-'newuserlog-create-entry' => 'Новый хоснователь',
+'newuserlogpage'              => 'Лоґ вытварянь хоснователів',
+'newuserlog-byemail'          => 'гело послане електронічнов поштов',
+'newuserlog-create-entry'     => 'Новый хоснователь',
+'newuserlog-create2-entry'    => 'вытворив нове конто $1',
+'newuserlog-autocreate-entry' => 'Конто вытворене автоматічнї',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(списok членїв)',
@@ -742,21 +800,21 @@ $1',
 'watchlist'         => 'Слїдованы сторінкы',
 'mywatchlist'       => 'Слїдованы сторінкы',
 'watchlistfor'      => "(хоснователя '''$1''')",
-'addedwatch'        => 'Придана до зознаму слїдованых сторінок',
-'addedwatchtext'    => "Сторінка «[[:$1]]» была придана до вашого [[Special:Watchlist|зознаму слїдованых]].
-Будучі зміны той статї і з нёв повязаной сторінков діскузії будуть зображены у тім зознамі, а тыж будуть выдїлены '''тучнї''' на сторінцї із [[Special:RecentChanges|зознамом послїднїх змін]], жебы їх было легше вшимнути.",
-'removedwatch'      => 'Вымазана зо зознаму слїдованых сторінок',
-'removedwatchtext'  => 'Сторінка «[[:$1]]» вымазана з вашого [[Special:Watchlist|зознаму слїдованых сторінок]].',
+'addedwatch'        => 'Придана до списку слїдованых сторінок',
+'addedwatchtext'    => "Сторінка «[[:$1]]» была придана до вашого [[Special:Watchlist|списку слїдованых]].
+Будучі зміны той статї і з нёв повязаной сторінков діскузії будуть зображены у тім списку, а тыж будуть выдїлены '''тучнї''' на сторінцї із [[Special:RecentChanges|списком послїднїх змін]], жебы їх было легше вшимнути.",
+'removedwatch'      => 'Вымазана зо список слїдованых сторінок',
+'removedwatchtext'  => 'Сторінка «[[:$1]]» вымазана з вашого [[Special:Watchlist|списку слїдованых сторінок]].',
 'watch'             => 'Слїдовати',
 'watchthispage'     => 'Слїдовати тоту сторінку',
 'unwatch'           => 'Зрушыти слїдованя',
 'watchlist-details' => '{{PLURAL:$1|Єдна слїдована сторінка|слїдованы сторінкы|слїдованых сторінок}} (не рахувчі діскузны сторінкы).',
 'wlshowlast'        => 'Вказати зміны за послїднї $1 годин $2 днїв $3',
-'watchlist-options' => 'Наставлина зознаму слїдованых',
+'watchlist-options' => 'Наставлина списку слїдованых',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Придаваня до зознаму слїдованя...',
-'unwatching' => 'Одобратя зо зознаму слїдованя...',
+'watching'   => 'Придаваня до списку слїдованя...',
+'unwatching' => 'Одобратя зо списку слїдованя...',
 
 # Delete
 'deletepage'            => 'Змазати сторінку',
@@ -764,7 +822,7 @@ $1',
 Просиме Вас, потвердьте, же справды тото хочете зробити, повнї розумієте наслыдкы і же робите тото в одповідности з [[{{MediaWiki:Policy-url}}|правилами]].',
 'actioncomplete'        => 'Дїя выконана',
 'deletedtext'           => '"<nowiki>$1</nowiki>" было змазане.
-Від. $2 про зознам послїднїх змазань.',
+Смоть $2 про список послїднїх змазань.',
 'deletedarticle'        => 'змазаный "[[$1]]"',
 'dellogpage'            => 'Лоґ вымазаня',
 'deletecomment'         => 'причіна вымазаня:',
@@ -921,8 +979,8 @@ $1',
 'tooltip-pt-userpage'             => 'Ваша сторінка хоснователя',
 'tooltip-pt-mytalk'               => 'Ваша діскузна сторінка',
 'tooltip-pt-preferences'          => 'Вашы наставлиня',
-'tooltip-pt-watchlist'            => 'Зознам сторінок, на котрых слїдуєте зміны',
-'tooltip-pt-mycontris'            => 'Зознам вашых приспевків',
+'tooltip-pt-watchlist'            => 'Список сторінок, на котрых слїдуєте зміны',
+'tooltip-pt-mycontris'            => 'Список вашых приспевків',
 'tooltip-pt-login'                => 'Рекомендуєме ся приголосити, але не є то повинне.',
 'tooltip-pt-logout'               => 'Одголошіня',
 'tooltip-ca-talk'                 => 'Діскузія о обсягу сторінкы',
@@ -933,8 +991,8 @@ $1',
 'tooltip-ca-protect'              => 'Хрань тоту сторінку',
 'tooltip-ca-delete'               => 'Вымазати тоту сторінку',
 'tooltip-ca-move'                 => 'Переменовати тоту сторінку',
-'tooltip-ca-watch'                => 'Придати тоту сторінку до зознаму слїдованых сторінок',
-'tooltip-ca-unwatch'              => 'Одобрати тоту сторінку зо зознаму слїдованых сторінок',
+'tooltip-ca-watch'                => 'Придати тоту сторінку до вашого списку слїдованых сторінок',
+'tooltip-ca-unwatch'              => 'Одобрати тоту сторінку з вашого списку слїдованых сторінок',
 'tooltip-search'                  => 'Глядати {{SITENAME}}',
 'tooltip-search-go'               => 'Перейти до сторінкы, што має точно таку назву (кідь екзістує)',
 'tooltip-search-fulltext'         => 'Найти сторінкы про тот текст',
@@ -942,17 +1000,17 @@ $1',
 'tooltip-n-mainpage-description'  => 'Перейти на головну сторінку',
 'tooltip-n-portal'                => 'О проекті, што можете зробити, де ся што находить',
 'tooltip-n-currentevents'         => 'Актуалны подїї',
-'tooltip-n-recentchanges'         => 'Зознам послїднїх змін',
+'tooltip-n-recentchanges'         => 'Список послїднїх змін',
 'tooltip-n-randompage'            => 'Зображіня нагодной сторінкы',
 'tooltip-n-help'                  => 'Посмотрити поміч',
-'tooltip-t-whatlinkshere'         => 'Зознам вшыткых сторінок, што одказують на тоту сторінку',
+'tooltip-t-whatlinkshere'         => 'Список вшыткых сторінок, што одказують на тоту сторінку',
 'tooltip-t-recentchangeslinked'   => 'Послїднї зміны на сторінках, котры мають одказ на тїй сторінцї',
 'tooltip-feed-rss'                => 'RSS канал про тоту сторінку',
 'tooltip-feed-atom'               => 'Atom канал про тоту сторінку',
 'tooltip-t-contributions'         => 'Перегляд приспевків того хоснователя',
 'tooltip-t-emailuser'             => 'Послати е-маіл тому хоснователёві',
 'tooltip-t-upload'                => 'Награти файлы',
-'tooltip-t-specialpages'          => 'Зознам вшыткых шпеціалных сторінок',
+'tooltip-t-specialpages'          => 'Список вшыткых шпеціалных сторінок',
 'tooltip-t-print'                 => 'Тиснутельна верзія той сторінкы',
 'tooltip-t-permalink'             => 'Перманентный одказ на тоту верзію сторінкы',
 'tooltip-ca-nstab-main'           => 'Обсяг сторінкы',
@@ -967,7 +1025,7 @@ $1',
 'tooltip-preview'                 => 'Попереднїй перегляд сторінкы, просиме Вас, хоснуйте перед зображінём!',
 'tooltip-diff'                    => 'Вказати зміны, што были зроблены в тексті.',
 'tooltip-compareselectedversions' => 'Відїти роздїл міджі двома вказаними верзіями той сторінкы.',
-'tooltip-watch'                   => 'Придати тоту сторінку до зознаму слїдованых',
+'tooltip-watch'                   => 'Придати тоту сторінку до списку слїдованых',
 'tooltip-rollback'                => 'Єдным кликом вернути зміны, зроблены послїдным приспівателём',
 'tooltip-undo'                    => 'Зрушыти зміны і вказати попереднїй перегляд. Доволяє придати причіну до ресуме.',
 
@@ -996,7 +1054,7 @@ $1',
 Кідь ся файл зедітовал по вытвориню, даякы параметры можуть не одповідати тому зображіню.',
 'metadata-expand'   => 'Вказати додатковы детайлы',
 'metadata-collapse' => 'Сховати додатковы детайлы',
-'metadata-fields'   => 'Поля метадат, перерахованы у тім зознамі, будуть автоматично зображені на сторінцї зображіня, вшыткы іншы будуть схованы.
+'metadata-fields'   => 'Поля метадат, перерахованы у тім списку, будуть автоматично зображены на сторінцї зображіня, вшыткы іншы будуть схованы.
 * make
 * model
 * datetimeoriginal
@@ -1004,6 +1062,9 @@ $1',
 * fnumber
 * isospeedratings
 * focallength',
+
+# EXIF tags
+'exif-orientation' => 'Орієнтація',
 
 # External editor support
 'edit-externally'      => 'Едітовати тот файл хоснувчі екстерну аплікацію',
@@ -1017,18 +1078,72 @@ $1',
 # action=purge
 'confirm_purge_button' => 'OK',
 
+# Multipage image navigation
+'imgmultipageprev' => '← попередня сторінка',
+
+# Table pager
+'table_pager_first' => 'Перша сторінка',
+'table_pager_last'  => 'Послїдня сторінка',
+
 # Watchlist editing tools
-'watchlisttools-view' => 'Зміны на сторінках зо зознаму',
-'watchlisttools-edit' => 'Перегляд і едітованя зознаму',
+'watchlisttools-view' => 'Зміны на сторінках зо списку',
+'watchlisttools-edit' => 'Перегляд і едітованя списку',
 'watchlisttools-raw'  => 'Едітовати як текст',
 
+# Special:Version
+'version'                  => 'Верзія',
+'version-specialpages'     => 'Шпеціалны сторінкы',
+'version-license'          => 'Ліценція',
+'version-software'         => 'Іншталованый софтвер',
+'version-software-product' => 'Продукт',
+'version-software-version' => 'Верзія',
+
+# Special:FilePath
+'filepath-page'   => 'Файл:',
+'filepath-submit' => 'Выконати',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Гляданя дуплікатных файлів',
+'fileduplicatesearch-legend'   => 'Гляданя дуплікатів',
+'fileduplicatesearch-filename' => 'Назва файлу:',
+'fileduplicatesearch-submit'   => 'Глядати',
+'fileduplicatesearch-result-1' => 'Файл «$1» не має ідентичных файлів.',
+'fileduplicatesearch-result-n' => 'Файл «$1» має {{PLURAL:$2|1 ідентичный дуплікат|$2 ідентичных дуплікатів}}.',
+
 # Special:SpecialPages
-'specialpages' => 'Шпеціалны сторінкы',
+'specialpages'                   => 'Шпеціалны сторінкы',
+'specialpages-group-maintenance' => 'Технічны репорты',
+'specialpages-group-other'       => 'Іншы',
+'specialpages-group-login'       => 'Приголошіня / реґістрація',
+'specialpages-group-changes'     => 'Послїднї зміны а лоґы',
+'specialpages-group-media'       => 'Файлы',
+'specialpages-group-users'       => 'Хоснователї і права',
+'specialpages-group-highuse'     => 'Часто поужываны сторінкы',
+'specialpages-group-pages'       => 'Спискы сторінок',
+'specialpages-group-pagetools'   => 'Інштрументы сторінок',
+'specialpages-group-redirects'   => 'Перенапрамлиня',
+'specialpages-group-spam'        => 'Протиспамовы інштрументы',
+
+# Special:BlankPage
+'blankpage' => 'Порожня сторінка',
+
+# Special:Tags
+'tag-filter-submit' => 'Філтровати',
+'tags-edit'         => 'едітовати',
+'tags-hitcount'     => '$1 {{PLURAL:$1|зміна|зміны|змін}}',
+
+# Database error messages
+'dberr-header' => 'Тота вікі має даякы проблемы',
 
 # HTML forms
+'htmlform-submit'              => 'Одослати',
+'htmlform-reset'               => 'Вернути зміны',
 'htmlform-selectorother-other' => 'Інше',
 
 # Add categories per AJAX
+'ajax-add-category'            => 'Придати катеґорію',
+'ajax-add-category-submit'     => 'Придати',
+'ajax-confirm-title'           => 'Підтвердити дїю',
 'ajax-confirm-save'            => 'Уложыти',
 'ajax-add-category-summary'    => 'Придати катеґорію „$1“',
 'ajax-remove-category-summary' => 'Одобрати катеґорію „$1“',

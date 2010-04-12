@@ -2245,7 +2245,7 @@ Feedback en andere assistentie:
 
 # Delete
 'deletepage'             => 'Deze pagina verwijderen',
-'confirm'                => 'Bevestig',
+'confirm'                => 'Bevestigen',
 'excontent'              => "De inhoud was: '$1'",
 'excontentauthor'        => 'De inhoud was: "$1" ([[Special:Contributions/$2|$2]] was de enige auteur)',
 'exbeforeblank'          => "De inhoud was: '$1'",
