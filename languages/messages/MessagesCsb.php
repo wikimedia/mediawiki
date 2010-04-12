@@ -8,6 +8,7 @@
  * @file
  *
  * @author Kaszeba
+ * @author Kuvaly
  * @author Leinad
  * @author MinuteElectron
  * @author Warszk
@@ -161,6 +162,16 @@ $messages = array(
 'qbmyoptions'    => 'Mòje òptacëje',
 'qbspecialpages' => 'Specjalné starnë',
 
+# Vector skin
+'vector-action-delete'     => 'Rëmôj',
+'vector-namespace-help'    => 'Pòmòc',
+'vector-namespace-image'   => 'Òbrôzk',
+'vector-namespace-main'    => 'Artikel',
+'vector-namespace-special' => 'Specjalnô starna',
+'vector-namespace-user'    => 'Starna brëkòwnika',
+'vector-view-edit'         => 'Edicëjô',
+'vector-view-view'         => 'Czëtaniô',
+
 'errorpagetitle'    => 'Brida',
 'returnto'          => 'Wôrcë sã do starnë: $1.',
 'tagline'           => 'Z {{SITENAME}}',
@@ -306,11 +317,13 @@ Mòżesz prôcowac z {{SITENAME}} jakno anonimòwi brëkòwnik abò wlogòwac s�
 'yourname'                   => 'Miono brëkòwnika',
 'yourpassword'               => 'Twòja parola',
 'yourpasswordagain'          => 'Pòwtórzë parolã',
+'remembermypassword'         => 'Wdôrzë mòjé miono brëkòwnika na tim kòmpùtrze',
 'yourdomainname'             => 'Twòjô domena',
 'login'                      => 'Wlogùjë mie',
 'nav-login-createaccount'    => 'Logòwanié',
 'loginprompt'                => "Brëkùjesz miec ''cookies'' (kùszczi) włączoné bë sã wlogòwac do {{SITENAME}}.",
 'userlogin'                  => 'Logòwanié',
+'userloginnocreate'          => 'Wlogùjë mie',
 'logout'                     => 'Wëlogùjë mie',
 'userlogout'                 => 'Wëlogòwanié',
 'notloggedin'                => 'Felëje logòwóniô',
@@ -351,11 +364,14 @@ Ni mòżesz miec ju wicy.',
 'accountcreated'             => 'Konto założone',
 'accountcreatedtext'         => 'Konto brëkòwnika dlô $1 je założone.',
 'createaccount-title'        => 'Kònto ùsôdzoné dlô {{SITENAME}}',
+'loginlanguagelabel'         => 'Jãzëk: $1',
 
 # Password reset dialog
-'oldpassword' => 'Stôrô parola:',
-'newpassword' => 'Nowô parola',
-'retypenew'   => 'Napiszë nową parolã jesz rôz',
+'oldpassword'               => 'Stôrô parola:',
+'newpassword'               => 'Nowô parola',
+'retypenew'                 => 'Napiszë nową parolã jesz rôz',
+'resetpass-submit-loggedin' => 'Zmiana parolë',
+'resetpass-submit-cancel'   => 'Anulujë',
 
 # Edit page toolbar
 'bold_sample'     => 'Wëtłëszczony drëk',
@@ -466,6 +482,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 # Revision deletion
 'rev-delundel'   => 'pòkażë/zatacë',
 'revdel-restore' => 'Zjinaczë widzawnotã',
+'pagehist'       => 'Historëjô starnë',
 
 # Merge log
 'revertmerge' => 'Rozdzélë',
@@ -538,6 +555,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'guesstimezone'         => 'Wezmi z przezérnika',
 'allowemail'            => 'Włączë mòżlewòtã sélaniô e-mailów òd jinëch brëkòwników',
 'defaultns'             => 'Domëslno przeszëkùjë nôslédné rëmnotë mionów:',
+'default'               => 'domëszlné',
 'prefs-files'           => 'Lopczi',
 'youremail'             => 'E-mail:',
 'username'              => 'Miono brëkòwnika:',
@@ -561,6 +579,9 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 
 # Groups
 'group-sysop' => 'Sprôwnicë',
+
+'group-user-member'  => 'Brëkòwnik',
+'group-sysop-member' => 'Sprôwnicë',
 
 'grouppage-sysop' => '{{ns:project}}:Administratorzë',
 

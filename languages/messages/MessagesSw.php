@@ -1952,6 +1952,9 @@ Tafadhali jaribu tena.',
 # Math errors
 'math_unknown_error' => 'hitilafu isiyojulikana',
 
+# Patrol log
+'patrol-log-auto' => '(kwa kujiendesha)',
+
 # Image deletion
 'filedeleteerror-short'       => 'Hitilafu wakati wa kufuta faili: $1',
 'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
@@ -1961,8 +1964,11 @@ Tafadhali jaribu tena.',
 'nextdiff'     => 'Badilisho lijalo →',
 
 # Media information
+'mediawarning'         => 'Ilani: Huenda faili hili lina msimbo mbaya.
+Ukilitekeleza faili, mashine yako huenda ikawa matatani.<hr />',
 'thumbsize'            => 'Ukubwa wa picha ndogo:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
+'file-info'            => '(ukubwa wa faili: $1, aina ya MIME: $2)',
 'file-info-size'       => '(piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4)',
 'file-nohires'         => '<small>Hakuna saizi kubwa zaidi.</small>',
 'svg-long-desc'        => '(faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3)',
@@ -1972,6 +1978,8 @@ Tafadhali jaribu tena.',
 # Special:NewFiles
 'newimages'        => 'Mkusanyiko wa faili jipya',
 'newimages-legend' => 'Chuja',
+'newimages-label'  => 'Jina la faili (au sehemu yake):',
+'showhidebots'     => '($ 1 roboti)',
 'noimages'         => 'Hakuna picha.',
 'ilsubmit'         => 'Tafuta',
 'bydate'           => 'kwa tarehe',
@@ -2091,7 +2099,7 @@ Ishara hizi za uthibitisho zitaishia mnamo $4.',
 'invalidateemail'           => 'Batilisha barua pepe ya uthibitisho.',
 
 # Scary transclusion
-'scarytranscludefailed'  => '[Kuleta kigezo hakufaulu kwa ajili ya $1]',
+'scarytranscludefailed'  => '[Kuleta kigezo imeshindikana kwa ajili ya $1]',
 'scarytranscludetoolong' => '[URL ni ndefu mno]',
 
 # Delete conflict
@@ -2188,7 +2196,7 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Tafuta mafaili ya nakili',
-'fileduplicatesearch-summary'  => 'Kutafuta mafaili ya nakili kwa kutafuta thamani za reli.
+'fileduplicatesearch-summary'  => 'Kutafuta mafaili ya nakili kwa kuzingatia thamani za reli.
 
 Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Kutafuta kifani',
