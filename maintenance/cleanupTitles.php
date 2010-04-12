@@ -106,18 +106,23 @@ class TitleCleanup extends TableCleanup {
 	}
 
 	protected function moveInconsistentPage( $row, $title ) {
-		if( $title->exists() || $title->getInterwiki() ) {
-			if( $title->getInterwiki() ) {
+		if( $title->exists() || $title->getInterwiki() || !$title->canExist() ) {
+			if( $title->getInterwiki() || !$title->canExist() ) {
 				$prior = $title->getPrefixedDbKey();
 			} else {
 				$prior = $title->getDBkey();
 			}
+
+			# Old cleanupTitles could move articles there. See bug 23147.
+			$ns = $row->page_namespace; 
+			if ( $ns < 0) $ns = 0;
+
 			$clean = 'Broken/' . $prior;
-			$verified = Title::makeTitleSafe( $row->page_namespace, $clean );
+			$verified = Title::makeTitleSafe( $ns, $clean );
 			if( $verified->exists() ) {
 				$blah = "Broken/id:" . $row->page_id;
 				$this->output( "Couldn't legalize; form '$clean' exists; using '$blah'\n" );
-				$verified = Title::makeTitleSafe( $row->page_namespace, $blah );
+				$verified = Title::makeTitleSafe( $ns, $blah );
 			}
 			$title = $verified;
 		}
@@ -126,8 +131,9 @@ class TitleCleanup extends TableCleanup {
 		}
 		$ns = $title->getNamespace();
 		$dest = $title->getDBkey();
+
 		if( $this->dryrun ) {
-			$this->output( "DRY RUN: would rename $row->page_id ($row->page_namespace,'$row->page_title') to ($row->page_namespace,'$dest')\n" );
+			$this->output( "DRY RUN: would rename $row->page_id ($row->page_namespace,'$row->page_title') to ($ns,'$dest')\n" );
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace,'$row->page_title') to ($ns,'$dest')\n" );
 			$dbw = wfGetDB( DB_MASTER );
