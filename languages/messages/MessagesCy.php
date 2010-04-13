@@ -241,7 +241,7 @@ $messages = array(
 'index-category'                 => 'Tudalennau wedi eu mynegeio',
 'noindex-category'               => 'Tudalennau heb eu mynegeio',
 
-'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''</big>",
+'mainpagetext'      => "'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
 
 ==Cychwyn arni==
@@ -650,7 +650,7 @@ Os y pwyswch eto ar 'Cadw'r dudalen' caiff y golygiad ei gadw heb nodyn.",
 'summary-preview'                  => "Rhagolwg o'r crynodeb:",
 'subject-preview'                  => 'Rhagolwg pwnc/pennawd:',
 'blockedtitle'                     => "Mae'r defnyddiwr hwn wedi cael ei flocio",
-'blockedtext'                      => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio.'''</big>
+'blockedtext'                      => "'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio.'''
 
 $1 a osododd y bloc.
 Y rheswm a roddwyd dros y blocio yw: ''$2''.
@@ -1855,31 +1855,33 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 'listgrouprights-removegroup-self-all' => "Yn gallu tynnu'r holl grwpiau oddi ar eich cyfrif eich hunan",
 
 # E-mail user
-'mailnologin'      => "Does dim cyfeiriad i'w anfon iddo",
-'mailnologintext'  => 'Rhaid eich bod wedi [[Special:UserLogin|mewngofnodi]]
+'mailnologin'          => "Does dim cyfeiriad i'w anfon iddo",
+'mailnologintext'      => 'Rhaid eich bod wedi [[Special:UserLogin|mewngofnodi]]
 a bod cyfeiriad e-bost dilys yn eich [[Special:Preferences|dewisiadau]]
 er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
-'emailuser'        => 'Anfon e-bost at y defnyddiwr hwn',
-'emailpage'        => 'Anfon e-bost at ddefnyddiwr',
-'emailpagetext'    => "Os yw'r cyfeiriad e-bost sydd yn newisiadau'r defnyddiwr hwn yn un dilys, gellir anfon neges ato o'i ysgrifennu ar y ffurflen isod. 
+'emailuser'            => 'Anfon e-bost at y defnyddiwr hwn',
+'emailpage'            => 'Anfon e-bost at ddefnyddiwr',
+'emailpagetext'        => "Os yw'r cyfeiriad e-bost sydd yn newisiadau'r defnyddiwr hwn yn un dilys, gellir anfon neges ato o'i ysgrifennu ar y ffurflen isod. 
 Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chithau]] yn ymddangos ym maes \"Oddi wrth\" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb atoch.",
-'usermailererror'  => 'Dychwelwyd gwall gan y rhaglen e-bost:',
-'defemailsubject'  => 'E-bost {{SITENAME}}',
-'noemailtitle'     => 'Dim cyfeiriad e-bost',
-'noemailtext'      => "Nid yw'r defnyddiwr hwn wedi gosod cyfeiriad e-bost dilys.",
-'nowikiemailtitle' => 'Ni chaniateir e-bostio',
-'nowikiemailtext'  => "Mae'r defnyddiwr hwn wedi dewis peidio derbyn e-byst oddi wrth ddefnyddwyr eraill.",
-'email-legend'     => 'Anfon e-bost at ddefnyddiwr {{SITENAME}} arall',
-'emailfrom'        => 'Oddi wrth:',
-'emailto'          => 'At:',
-'emailsubject'     => 'Pwnc:',
-'emailmessage'     => 'Neges:',
-'emailsend'        => 'Anfon',
-'emailccme'        => "Anfoner gopi o'r neges e-bost ataf.",
-'emailccsubject'   => "Copi o'ch neges at $1: $2",
-'emailsent'        => "Neges e-bost wedi'i hanfon",
-'emailsenttext'    => 'Mae eich neges e-bost wedi cael ei hanfon.',
-'emailuserfooter'  => 'Anfonwyd yr e-bost hwn oddi wrth $1 at $2 trwy ddefnyddio\'r teclyn "Anfon e-bost at ddefnyddiwr" ar {{SITENAME}}.',
+'usermailererror'      => 'Dychwelwyd gwall gan y rhaglen e-bost:',
+'defemailsubject'      => 'E-bost {{SITENAME}}',
+'usermaildisabled'     => 'Dim modd anfon e-bost at ddefnyddwyr',
+'usermaildisabledtext' => 'Ni allwch anfon e-bost at ddefnyddwyr eraill y wici hwn',
+'noemailtitle'         => 'Dim cyfeiriad e-bost',
+'noemailtext'          => "Nid yw'r defnyddiwr hwn wedi gosod cyfeiriad e-bost dilys.",
+'nowikiemailtitle'     => 'Ni chaniateir e-bostio',
+'nowikiemailtext'      => "Mae'r defnyddiwr hwn wedi dewis peidio derbyn e-byst oddi wrth ddefnyddwyr eraill.",
+'email-legend'         => 'Anfon e-bost at ddefnyddiwr {{SITENAME}} arall',
+'emailfrom'            => 'Oddi wrth:',
+'emailto'              => 'At:',
+'emailsubject'         => 'Pwnc:',
+'emailmessage'         => 'Neges:',
+'emailsend'            => 'Anfon',
+'emailccme'            => "Anfoner gopi o'r neges e-bost ataf.",
+'emailccsubject'       => "Copi o'ch neges at $1: $2",
+'emailsent'            => "Neges e-bost wedi'i hanfon",
+'emailsenttext'        => 'Mae eich neges e-bost wedi cael ei hanfon.',
+'emailuserfooter'      => 'Anfonwyd yr e-bost hwn oddi wrth $1 at $2 trwy ddefnyddio\'r teclyn "Anfon e-bost at ddefnyddiwr" ar {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Fy rhestr gwylio',
@@ -2099,7 +2101,7 @@ Mae'n bosib bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi ei adfer neu we
 'undeletedfiles'               => 'Adferwyd $1 {{PLURAL:$1|ffeil|ffeil|ffeil|ffeil|ffeil|ffeil}}',
 'cannotundelete'               => "Wedi methu dad-ddileu;
 gall rhywyn arall fod wedi dad-ddileu'r dudalen yn barod.",
-'undeletedpage'                => "<big>'''Adferwyd $1'''</big>
+'undeletedpage'                => "'''Adferwyd $1'''
 
 Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Special:Log/delete|lòg dileuon]].",
 'undelete-header'              => "Ewch i'r [[Special:Log/delete|lòg dileuon]] i weld tudalennau a ddilëwyd yn ddiweddar.",
@@ -2333,7 +2335,7 @@ Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei 
 'move-watch'                   => 'Gwylier y dudalen hon',
 'movepagebtn'                  => 'Symud y dudalen',
 'pagemovedsub'                 => 'Y symud wedi llwyddo',
-'movepage-moved'               => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Gosodwyd ail-gyfeiriad.',
 'movepage-moved-noredirect'    => 'Ni osodwyd tudalen ailgyfeirio.',
 'articleexists'                => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
@@ -3199,6 +3201,7 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'htmlform-float-invalid'       => "Nid yw'r gwerth a bennwyd gennych yn rif.",
 'htmlform-int-toolow'          => "Mae'r gwerth a bennwyd gennych yn llai na'r isafswm $1",
 'htmlform-int-toohigh'         => "Mae'r gwerth a bennwyd gennych yn fwy na'r uchafswm $1",
+'htmlform-required'            => "Rhaid llanw'r blwch hwn",
 'htmlform-submit'              => 'Gosoder',
 'htmlform-reset'               => 'Datod y newidiadau',
 'htmlform-selectorother-other' => 'Arall',

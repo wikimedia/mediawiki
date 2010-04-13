@@ -169,7 +169,7 @@ $messages = array(
 'index-category'                 => 'Indeksētās lapas',
 'noindex-category'               => 'Neindeksētās lapas',
 
-'mainpagetext'      => "<big>'''MediaWiki veiksmīgi ieinstalēts'''</big>",
+'mainpagetext'      => "'''MediaWiki veiksmīgi ieinstalēts'''",
 'mainpagedocfooter' => 'Izlasi [http://meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.
 
 == Pirmie soļi ==
@@ -529,7 +529,7 @@ Ja tu vēlreiz uzspiedīsi uz Saglabāt, tavas izmaiņas tiks saglabātas bez t�
 'summary-preview'               => 'Kopsavilkuma pirmskats:',
 'subject-preview'               => 'Kopsavilkuma/virsraksta pirmskats:',
 'blockedtitle'                  => 'Lietotājs ir bloķēts.',
-'blockedtext'                   => "<big>'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''</big>
+'blockedtext'                   => "'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''
 
 \$1 nobloķēja tavu lietotāja vārdu vai IP adresi.
 Bloķējot norādītais iemesls bija: ''\$2''.
@@ -1527,7 +1527,7 @@ Vai nu tu šeit esi nonācis lietojot kļūdainu saiti, vai arī šī versija ja
 'undeletedfiles'           => '{{PLURAL:$1|1 fails atjaunots|$1 faili atjaunoti}}',
 'cannotundelete'           => 'Atjaunošana neizdevās;
 kāds cits iespējams to ir atjaunojis ātrāk.',
-'undeletedpage'            => "<big>'''$1 tika atjaunots'''</big>
+'undeletedpage'            => "'''$1 tika atjaunots'''
 
 [[Special:Log/delete|Dzēšanas reģistrā]] ir informācija par pēdējām dzēšanām un atjaunošanām.",
 
@@ -1688,7 +1688,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'move-watch'              => 'Uzraudzīt šo lapu',
 'movepagebtn'             => 'Pārvietot lapu',
 'pagemovedsub'            => 'Pārvietošana notikusi veiksmīgi',
-'movepage-moved'          => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>',
+'movepage-moved'          => '\'\'\'"$1" tika pārvietots uz "$2"\'\'\'',
 'movepage-moved-redirect' => 'Tika izveidota pāradresācija.',
 'articleexists'           => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'cantmove-titleprotected' => 'Tu nevari pārvietot lapu uz šo nosaukumu, tāpēc, ka jaunais nosaukums (lapa) ir aizsargāta pret izveidošanu',

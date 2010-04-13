@@ -165,7 +165,7 @@ $messages = array(
 'index-category'                 => 'Indizierde Sieden',
 'noindex-category'               => 'Nit indizierde Sieden',
 
-'mainpagetext'      => "<big>'''Ju MediaWiki Software wuude mäd Ärfoulch installierd.'''</big>",
+'mainpagetext'      => "'''Ju MediaWiki Software wuude mäd Ärfoulch installierd.'''",
 'mainpagedocfooter' => 'Sjuch ju [http://meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [http://meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.',
 
 'about'         => 'Uur',
@@ -566,7 +566,7 @@ Muugelkerwiese hääst du dien Paaswoud al mäd Ärfoulch annerd of n näi tiede
 'summary-preview'                  => 'Foarschau fon ju Touhoopefoatengsriege:',
 'subject-preview'                  => 'Themoa bekiekje:',
 'blockedtitle'                     => 'Benutser is blokkierd',
-'blockedtext'                      => '<big>\'\'\'Din Benutsernoome of dien IP-Adrässe wuud fon $1 speerd.\'\'\'</big> 
+'blockedtext'                      => '\'\'\'Din Benutsernoome of dien IP-Adrässe wuud fon $1 speerd.\'\'\' 
 
 As Gruund wuud ounroat: 
 :\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
@@ -2230,7 +2230,7 @@ In disse Falle moast du ju Siede, wan wonsked, fon Hounde ferschuuwe. Jädden d�
 'move-watch'                   => 'Disse Siede beooboachtje',
 'movepagebtn'                  => 'Siede ferschuuwe',
 'pagemovedsub'                 => 'Ferschuuwenge mäd Ärfoulch',
-'movepage-moved'               => "<big>'''Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.'''</big>",
+'movepage-moved'               => "'''Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.'''",
 'movepage-moved-redirect'      => 'Der wuud ne Fäärelaitenge moaked.',
 'movepage-moved-noredirect'    => 'Dät Moakjen fon ne Fäärelaitenge wuud unnerdrukt.',
 'articleexists'                => 'Dät rakt al n Siede mäd disse Noome, of uurs is die Noome dän du anroat hääst, nit toulät.

@@ -130,7 +130,7 @@ $messages = array(
 'index-category'                 => 'Indeksirane stranice',
 'noindex-category'               => 'Neindeksirane stranice',
 
-'mainpagetext'      => "<big>'''MediaWiki softver is uspješno instaliran.'''</big>",
+'mainpagetext'      => "'''MediaWiki softver is uspješno instaliran.'''",
 'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
 
 == Početak ==
@@ -538,7 +538,7 @@ Ako ponovo kliknete na '''Snimi stranicu''', Vaše izmjene će biti snimljene be
 'summary-preview'                  => 'Pretpregled sažetka:',
 'subject-preview'                  => 'Pretpregled teme/naslova:',
 'blockedtitle'                     => 'Korisnik je blokiran',
-'blockedtext'                      => "<big>'''Vaše korisničko ime ili IP adresa je blokirana.'''</big>
+'blockedtext'                      => "'''Vaše korisničko ime ili IP adresa je blokirana.'''
 
 Blokada izvršena od strane $1.
 Dati razlog je slijedeći: ''$2''.
@@ -1419,7 +1419,7 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'move-watch'       => 'Prati ovu stranicu',
 'movepagebtn'      => 'premjestite stranicu',
 'pagemovedsub'     => 'Premještanje uspjelo',
-'movepage-moved'   => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" je premještena na "$2"\'\'\'',
 'articleexists'    => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  
 Molimo Vas da izaberete drugo ime.',
 'talkexists'       => "'''Sama stranica je uspješno premještena, ali stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.'''",

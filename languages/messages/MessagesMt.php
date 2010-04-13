@@ -391,7 +391,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'kompli',
 
 'linkprefix'        => '/^(.*?)([a-żA-Ż\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''MediaWiki ġie installat b'suċċess.'''</big>",
+'mainpagetext'      => "'''MediaWiki ġie installat b'suċċess.'''",
 'mainpagedocfooter' => "Ikkonsulta l-[http://meta.wikimedia.org/wiki/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.
 
 == Biex tibda ==
@@ -794,7 +794,7 @@ Jekk terġa' tagħfas Modifika, l-modifika tiegħek se tiġi salvata mingħajr w
 'summary-preview'                  => 'Dehra proviżorja tat-taqsira:',
 'subject-preview'                  => 'Dehra proviżorja tat-taqsira/suġġett:',
 'blockedtitle'                     => 'L-utent ġie bblokkjat',
-'blockedtext'                      => "<big>'''L-isem ta' l-utent jew l-indirizz IP tiegħek ġew imblukkati.'''</big>
+'blockedtext'                      => "'''L-isem ta' l-utent jew l-indirizz IP tiegħek ġew imblukkati.'''
 
 Il-blokk twettaq minn \$1. Ir-raġuni mogħtiha kienet ''\$2''.
 
@@ -2025,7 +2025,7 @@ Int jista' jkollhok link ħażin, jew jista' jkun li ir-reviżjoni ġie rkuprat 
 'undeletedfiles'               => '{{PLURAL:$1|file wieħed|$1 fajls}} irkuprati',
 'cannotundelete'               => "L-irkuprar ma rnexxiex;
 jista' jkun li xi ħadd ieħor irkupra l-paġna qabel.",
-'undeletedpage'                => "<big>'''$1 ġie irkuprat'''</big>
+'undeletedpage'                => "'''$1 ġie irkuprat'''
 
 Konsulta [[Special:Log/delete|l-log ta' tħassir]] għar-reġistru ta' tħassir riċenti u irkupri.",
 'undelete-header'              => "Ara [[Special:Log/delete|l-log ta' tħassir]] għal paġni mħassra riċentament.",
@@ -2226,7 +2226,7 @@ F'dawn il-każi, inti trid iċaqlaq jew tagħqad il-paġna manwalment jekk dan h
 'move-watch'                   => 'Segwi din il-paġna',
 'movepagebtn'                  => 'Ċaqlaq il-paġna',
 'pagemovedsub'                 => 'Ċaqlieq irnexxa',
-'movepage-moved'               => '<big>\'\'\'"$1" ġie mċaqlaq għal "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" ġie mċaqlaq għal "$2"\'\'\'',
 'articleexists'                => "Diġà teżisti paġna b'dak l-isem, jew inkella l-isem li għażilt mhux validu.
 Jekk jogħġbok, agħżel isem ieħor.",
 'cantmove-titleprotected'      => 'Ma tistax iċċaqlaq paġna hemmhekk, minħabba li t-titlu l-ġdid ġie protett milli jiġi maħluq.',

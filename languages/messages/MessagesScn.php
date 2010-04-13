@@ -264,7 +264,7 @@ $messages = array(
 'index-category'                 => 'Pàggini nnicizzati',
 'noindex-category'               => 'Pàggini nun nnicizzati',
 
-'mainpagetext'      => "<big>'''Nstallazzioni di MediaWiki cumplitata currettamenti.'''</big>",
+'mainpagetext'      => "'''Nstallazzioni di MediaWiki cumplitata currettamenti.'''",
 'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni di stu software wiki. 
 
 == P'accuminzari == 
@@ -656,7 +656,7 @@ Pò èssiri ca ggià canciasti cu successu la tò password o c'addumannasti na n
 'summary-preview'                  => 'Antiprima uggettu:',
 'subject-preview'                  => 'Antiprima suggettu/ntistazzioni:',
 'blockedtitle'                     => 'Utenti bluccatu.',
-'blockedtext'                      => "<big>'''Stu nomu d'utenti o nnirizzu IP havi statu bluccatu.'''</big>
+'blockedtext'                      => "'''Stu nomu d'utenti o nnirizzu IP havi statu bluccatu.'''
 
 Lu bloccu fu fattu di $1. Lu mutivu dû bloccu è: ''$2''.
 
@@ -1972,7 +1972,7 @@ Li mpostazzioni correnti pâ pàggina sugnu '''$1''':",
 'undeletedrevisions-files'     => '{{PLURAL:$1|na rivisioni|$1 rivisioni}} e {{PLURAL:$2|nu file ricupiratu|$2 file ricupirati}}',
 'undeletedfiles'               => '{{PLURAL:$1|un file ricupiratu|$1 file ricupirati}}',
 'cannotundelete'               => 'Lu ricùpiru nun è arrinisciutu: quarcunu àutru putissi aviri già ricupiratu la pàggina.',
-'undeletedpage'                => "<big>'''La pàggina $1 hà statu ricupirata'''</big> Cunzurta lu [[Special:Log/delete|log dî cancillazzioni]] pi vìdiri li cancillazzioni e li ricùpiri cchiù ricenti.",
+'undeletedpage'                => "'''La pàggina $1 hà statu ricupirata''' Cunzurta lu [[Special:Log/delete|log dî cancillazzioni]] pi vìdiri li cancillazzioni e li ricùpiri cchiù ricenti.",
 'undelete-header'              => 'Vidi lu [[Special:Log/delete|log dî cancillazzioni]] pi li pàggini cancillati di ricenti.',
 'undelete-search-box'          => 'Cerca li pàggini cancillati',
 'undelete-search-prefix'       => 'Ammustra li pàggini lu cui tìtulu accumincia cu:',
@@ -2179,7 +2179,7 @@ Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discus
 'move-watch'                   => 'Talìa sta pàggina',
 'movepagebtn'                  => 'Sposta la pàggina',
 'pagemovedsub'                 => 'Lu spustamentu riniscìu.',
-'movepage-moved'               => '<big>\'\'\'"$1" fu spustata a "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" fu spustata a "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Vinni criatu nu riinnirizzamentu.',
 'movepage-moved-noredirect'    => 'La criazzioni di nu riinnirizzamentu vinni scancillata.',
 'articleexists'                => "Na pàggina cu stu nomu esisti già, oppuru lu nomu scigghiutu nun è vàlidu. Scègghiri n'àutru tìtulu.",

@@ -448,7 +448,7 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'showdiff'                         => 'Peuleumah neu’ubah',
 'anoneditwarning'                  => 'Droëneuh   hana teudapeuta tamong. Alamat IP Droëneuh   teucatat lam tarèh (riwayat away) ôn nyoë.',
 'summary-preview'                  => 'Eu dilèë reuningkah:',
-'blockedtext'                      => "<big>'''Nan ureuëng nguy atawa alamat IP Droëneuh  ka geutheun.'''</big> 
+'blockedtext'                      => "'''Nan ureuëng nguy atawa alamat IP Droëneuh  ka geutheun.''' 
 
 Geutheun lé $1. Dalèh jih nakeuh ''$2''. 
 
@@ -862,7 +862,7 @@ Lam masalah nyoë, meunyo neuhawa, Droëneuh jeuët neupeupinah atawa neupeugab�
 'move-watch'       => 'Kalön ôn nyoë',
 'movepagebtn'      => 'Peupinah ôn',
 'pagemovedsub'     => 'Peupinah meuhasé',
-'movepage-moved'   => '<big>\'\'\'"$1" ka geupeupinah u "$2".\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" ka geupeupinah u "$2".\'\'\'',
 'articleexists'    => 'Ôn ngön nan nyan ka na atawa nan nyang neupiléh hana sah. Neupiléh nan la’én.',
 'talkexists'       => 'Ôn nyan ka geupeupinah, tapi ôn peugah haba bak ôn nyan h‘an jeuët geupeupinah kareuna ka na ôn peugah haba bak nan barô. Neupeusapat mantöng ôn ôn peugah haba nyan keudroë.',
 'movedto'          => 'geupeupinah u',

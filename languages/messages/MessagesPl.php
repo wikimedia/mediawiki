@@ -16,6 +16,7 @@
  * @author Lajsikonik
  * @author Leinad
  * @author Maikking
+ * @author Marcin Łukasz Kiejzik
  * @author Masti
  * @author Matma Rex
  * @author McMonster
@@ -357,7 +358,7 @@ $messages = array(
 'index-category'                 => 'Strony indeksowane',
 'noindex-category'               => 'Strony nieindeksowane',
 
-'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",
+'mainpagetext'      => "'''Instalacja MediaWiki powiodła się.'''",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
 
 == Na początek ==
@@ -783,7 +784,7 @@ Jeśli tego nie zrobisz, Twój komentarz zostanie zapisany bez nagłówka.",
 'summary-preview'                  => 'Podgląd opisu:',
 'subject-preview'                  => 'Podgląd nagłówka:',
 'blockedtitle'                     => 'Użytkownik jest zablokowany',
-'blockedtext'                      => "<big>'''Twoje konto lub adres IP zostały zablokowane.'''</big>
+'blockedtext'                      => "'''Twoje konto lub adres IP zostały zablokowane.'''
 
 Blokada została nałożona przez $1.
 Podany powód to: ''$2''.
@@ -2264,7 +2265,7 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeletedfiles'               => 'odtworzył $1 {{PLURAL:$1|plik|pliki|plików}}',
 'cannotundelete'               => 'Odtworzenie nie powiodło się.
 Ktoś inny prawdopodobnie odtworzył już tę stronę.',
-'undeletedpage'                => "<big>'''Odtworzono stronę $1.'''</big>
+'undeletedpage'                => "'''Odtworzono stronę $1.'''
 
 Zobacz [[Special:Log/delete|rejestr usunięć]], jeśli chcesz przejrzeć ostatnie operacje usuwania i odtwarzania stron.",
 'undelete-header'              => 'Zobacz [[Special:Log/delete|rejestr usunięć]], aby sprawdzić ostatnio usunięte strony.',
@@ -2503,7 +2504,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'move-watch'                   => 'Obserwuj',
 'movepagebtn'                  => 'Przenieś stronę',
 'pagemovedsub'                 => 'Przeniesienie powiodło się',
-'movepage-moved'               => "<big>'''„$1” została przeniesiona do „$2”'''</big>",
+'movepage-moved'               => "'''„$1” została przeniesiona do „$2”'''",
 'movepage-moved-redirect'      => 'Zostało utworzone przekierowanie.',
 'movepage-moved-noredirect'    => 'Nie zostało utworzone przekierowanie.',
 'articleexists'                => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
@@ -2616,7 +2617,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-interwiki-submit'    => 'Importuj',
 'import-interwiki-namespace' => 'Docelowa przestrzeń nazw',
 'import-upload-filename'     => 'Nazwa pliku',
-'import-comment'             => 'Komentarz',
+'import-comment'             => 'Komentarz:',
 'importtext'                 => 'Używając narzędzia [[Special:Export|eksportu]], wyeksportuj plik ze źródłowej wiki, zapisz go na swoim dysku, a następnie prześlij go tutaj.',
 'importstart'                => 'Trwa importowanie stron...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',

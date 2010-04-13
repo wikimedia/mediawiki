@@ -115,7 +115,7 @@ $messages = array(
 'category-article-count'   => "{{PLURAL:$2|Chol catégorie o seulemint chol pache-lo.|{{PLURAL:$1|El pache-lo est|$1 Chés paches-lo sont}} din l'catégorie-lo, pou un total éd $2 .}}",
 'listingcontinuesabbrev'   => 'cont.',
 
-'mainpagetext' => "<big>'''MediaWiki o té instalé aveuc victoère.'''</big>",
+'mainpagetext' => "'''MediaWiki o té instalé aveuc victoère.'''",
 
 'about'         => 'À pérpos',
 'article'       => 'Étnu del pache',
@@ -719,7 +719,7 @@ Din chés cas-lo, I feut érlonmer ou ratatouiller l'pache aveuc l'main.",
 'move-watch'       => "Suire l'pache-lo",
 'movepagebtn'      => "Déplacer l'pache",
 'pagemovedsub'     => 'Déplachemint réussi',
-'movepage-moved'   => '<big>\'\'\'"$1" o té déplaché su "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" o té déplaché su "$2"\'\'\'',
 'articleexists'    => "Il y o eune pache aveuc ch'nom-lo dja, ou bin ch'tite couési n'est poin valabe. <br /> I feut in prinde un eute",
 'talkexists'       => "'''L'pache ale o té déplachée   mais l'pache d'pérlache n'put poin éte déplachée ker il y o pécho eune pache d'pérlache aveuc ch'nouvieu nom. <br /> I feut foaire un touillache al main.'''",
 'movedto'          => 'Déplaché dsus',

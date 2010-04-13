@@ -1202,7 +1202,7 @@ In quij cas chì, se'l var la pena, ghe sarà de spustà a man i infurmazión de
 'move-watch'              => "Gionta chela pagina chí ai pàgin à tegní d'œucc.",
 'movepagebtn'             => 'Sposta quela pagina chì',
 'pagemovedsub'            => "San Martin l'è bele fat!",
-'movepage-moved'          => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>",
+'movepage-moved'          => "'''\"\$1\" l'è staa muvüü a \"\$2\"'''",
 'movepage-moved-redirect' => "L'è staa creaa un redirect.",
 'articleexists'           => "Una pagina che la se ciama cumpagn la gh'è giamò, opüra el nom che hii scernüü al va minga ben. <br />
 Che 'l scerna, per piasè, un nom diferent per quel articul chì.",

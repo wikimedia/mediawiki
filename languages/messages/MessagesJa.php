@@ -419,7 +419,7 @@ $messages = array(
 'index-category'                 => '検索エンジンにインデックス化されるページ',
 'noindex-category'               => '検索エンジンにインデックス化されないページ',
 
-'mainpagetext'      => "<big>'''MediaWikiが正常にインストールされました。'''</big>",
+'mainpagetext'      => "'''MediaWikiが正常にインストールされました。'''",
 'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/%E3%83%98%E3%83%AB%E3%83%97:%E7%9B%AE%E6%AC%A1 ユーザーズガイド]を参照してください。
 
 == はじめましょう ==
@@ -811,7 +811,7 @@ $2',
 'summary-preview'                  => '要約のプレビュー:',
 'subject-preview'                  => '題名・見出しのプレビュー:',
 'blockedtitle'                     => '投稿ブロックされています',
-'blockedtext'                      => "<big>'''この利用者名またはIPアドレスでの投稿はブロックされています。'''</big>
+'blockedtext'                      => "'''この利用者名またはIPアドレスでの投稿はブロックされています。'''
 
 ブロックは $1 によって実施されました。
 ブロックの理由は「$2」です。
@@ -2164,7 +2164,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1{{PLURAL:$1|版}}と$2{{PLURAL:$2|個}}のファイルを復帰しました',
 'undeletedfiles'               => '$1{{PLURAL:$1|個}}のファイルを復帰しました',
 'cannotundelete'               => '復帰に失敗しました。誰かがすでにこのページを復帰した可能性があります。',
-'undeletedpage'                => "<big>'''$1 を復帰しました。'''</big>
+'undeletedpage'                => "'''$1 を復帰しました。'''
 
 最近の削除と復帰については[[Special:Log/delete|削除記録]]を参照してください。",
 'undelete-header'              => '最近削除されたページは[[Special:Log/delete|削除記録]]で確認できます。',
@@ -2389,7 +2389,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'move-watch'                   => '移動するページをウォッチ',
 'movepagebtn'                  => 'ページを移動',
 'pagemovedsub'                 => '移動しました',
-'movepage-moved'               => "<big>'''「$1」は「$2」へ移動されました'''</big>",
+'movepage-moved'               => "'''「$1」は「$2」へ移動されました'''",
 'movepage-moved-redirect'      => 'リダイレクトが作成されました。',
 'movepage-moved-noredirect'    => 'リダイレクトは作成されませんでした。',
 'articleexists'                => '指定された移動先には既にページが存在するか、名前が不適切です。',

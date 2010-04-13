@@ -293,7 +293,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Kjo skedë është|$1 skeda janë}} në këtë kategori.',
 'listingcontinuesabbrev'         => 'vazh.',
 
-'mainpagetext'      => "<big>'''MediaWiki software u instalua me sukses.'''</big>",
+'mainpagetext'      => "'''MediaWiki software u instalua me sukses.'''",
 'mainpagedocfooter' => 'Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
 
 == Sa për fillim==
@@ -654,7 +654,7 @@ Nëse kryeni ndryshimet redaktimi juaj do të ruhet pa titull.",
 'summary-preview'                  => 'Parapamja e përmbledhjes:',
 'subject-preview'                  => 'Parapamja e titullit:',
 'blockedtitle'                     => 'Përdoruesi është bllokuar',
-'blockedtext'                      => "<big>'''Llogaria juaj ose adresa e IP-së është bllokuar'''</big>
+'blockedtext'                      => "'''Llogaria juaj ose adresa e IP-së është bllokuar'''
 
 Bllokimi u bë nga $1 dhe arsyeja e dhënë ishte '''$2'''.
 
@@ -1814,7 +1814,7 @@ Arkivi, kohëpaskohe është e mundur të pastrohet.',
 'undeletedrevisions-files'   => '$1 {{PLURAL:$1|version|versione}} dhe $2 {{PLURAL:$2|skedë|skeda}} janë restauruar',
 'undeletedfiles'             => '$1 {{PLURAL:$1|skedë u restaurua|skeda u restauruan}}',
 'cannotundelete'             => 'Restaurimi dështoi; dikush tjetër mund ta ketë restauruar faqen përpara jush.',
-'undeletedpage'              => "<big>'''$1 është restauruar'''</big>
+'undeletedpage'              => "'''$1 është restauruar'''
 
 Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurimet së fundmi.",
 'undelete-header'            => 'Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për faqet e grisura së fundmi.',
@@ -2007,7 +2007,7 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'move-watch'                => 'Mbikqyre këtë faqe',
 'movepagebtn'               => 'Zhvendose faqen',
 'pagemovedsub'              => 'Zhvendosja doli me sukses',
-'movepage-moved'            => '<big>\'\'\'"$1" u zhvendos tek "$2"\'\'\'</big>',
+'movepage-moved'            => '\'\'\'"$1" u zhvendos tek "$2"\'\'\'',
 'articleexists'             => 'Një faqe me atë titull ekziston, ose titulli që zgjodhët nuk është i saktë. Ju lutem zgjidhni një tjetër.',
 'cantmove-titleprotected'   => 'Nuk mund të zhvendosni një faqe në këtë titull pasi ky titull është mbrojtur kundrejt krijimit',
 'talkexists'                => 'Faqja për vete u zhvendos, ndërsa faqja e diskutimit nuk u zhvendos sepse një e tillë ekziston tek titulli i ri. Ju lutem, përpuqini vetë.',

@@ -259,7 +259,7 @@ $messages = array(
 'index-category'              => 'نوملړلرونکي مخونه',
 'noindex-category'            => 'بې نوملړه مخونه',
 
-'mainpagetext'      => "<big>'''MediaWiki په برياليتوب سره نصب شو.'''</big>",
+'mainpagetext'      => "'''MediaWiki په برياليتوب سره نصب شو.'''",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
 == پيلول ==
@@ -600,7 +600,7 @@ $messages = array(
 'summary-preview'                  => 'د لنډيز مخليدنه:',
 'subject-preview'                  => 'موضوع/سرليک مخکتنه:',
 'blockedtitle'                     => 'پر کارن بنديز لګېدلی',
-'blockedtext'                      => "<big>'''ستاسو د کارن-نوم يا آی پي پتې مخنيوی شوی.'''</big>
+'blockedtext'                      => "'''ستاسو د کارن-نوم يا آی پي پتې مخنيوی شوی.'''
 
 همدا بنديز د $1 له خوا پر تاسو لږېدلی. او د همدې کړنې سبب دی ''$2''.
 
@@ -1488,7 +1488,7 @@ $messages = array(
 'move-watch'              => 'همدا مخ کتل',
 'movepagebtn'             => 'مخ لېږدول',
 'pagemovedsub'            => 'لېږدول په برياليتوب سره ترسره شوه',
-'movepage-moved'          => '<big>\'\'\'د "$1" په نامه دوتنه، "$2" ته ولېږدېده\'\'\'</big>',
+'movepage-moved'          => '\'\'\'د "$1" په نامه دوتنه، "$2" ته ولېږدېده\'\'\'',
 'articleexists'           => 'په همدې نوم يوه بله پاڼه د پخوا نه شته او يا خو دا نوم چې تاسې ټاکلی سم نه دی. لطفاً يو بل نوم وټاکۍ.',
 'talkexists'              => "'''همدا مخ په برياليتوب سره نوي سرليک ته ولېږدېده، خو د خبرواترو مخ يې و نه لېږدول شو دا ځکه چې نوی سرليک له پخوا نه ځانته د خبرواترو يو مخ لري.
 لطفاُ د خبرواترو دا دواړه مخونه په لاسي توګه سره يو ځای کړی.'''",

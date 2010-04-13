@@ -8,6 +8,7 @@
  * @file
  *
  * @author Albamhandae
+ * @author Devunt
  * @author Ficell
  * @author ITurtle
  * @author Klutzy
@@ -396,7 +397,7 @@ $messages = array(
 'index-category'                 => '색인된 문서',
 'noindex-category'               => '색인에서 제외되는 문서',
 
-'mainpagetext'      => "<big>'''미디어위키가 성공적으로 설치되었습니다.'''</big>",
+'mainpagetext'      => "'''미디어위키가 성공적으로 설치되었습니다.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
 
 == 시작하기 ==
@@ -800,7 +801,7 @@ $2',
 'summary-preview'                  => '편집 요약 미리 보기:',
 'subject-preview'                  => '주제/제목 미리 보기:',
 'blockedtitle'                     => '차단됨',
-'blockedtext'                      => "<big>'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''</big>
+'blockedtext'                      => "'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''
 
 차단한 사람은 $1이고, 차단한 이유는 다음과 같습니다: $2
 
@@ -2007,29 +2008,31 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listgrouprights-removegroup-self-all' => '자신의 계정에서 모든 권한을 해제',
 
 # E-mail user
-'mailnologin'      => '보낼 이메일 주소가 없음',
-'mailnologintext'  => '다른 사용자에게 이메일을 보내려면, [[Special:UserLogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
-'emailuser'        => '이메일 보내기',
-'emailpage'        => '사용자에게 이메일 보내기',
-'emailpagetext'    => '이 사용자가 환경 설정에 올바른 이메일 주소를 적었다면, 아래 양식을 통해 이메일을 보낼 수 있습니다.
+'mailnologin'          => '보낼 이메일 주소가 없음',
+'mailnologintext'      => '다른 사용자에게 이메일을 보내려면, [[Special:UserLogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
+'emailuser'            => '이메일 보내기',
+'emailpage'            => '사용자에게 이메일 보내기',
+'emailpagetext'        => '이 사용자가 환경 설정에 올바른 이메일 주소를 적었다면, 아래 양식을 통해 이메일을 보낼 수 있습니다.
 이메일을 받은 사용자가 바로 답장할 수 있도록 하기 위해 당신이 [[Special:Preferences|사용자 환경 설정]]에 적은 이메일 주소가 "발신자" 정보에 들어갑니다. 따라서 수신자가 당신에게 직접 답장을 보낼 수 있습니다.',
-'usermailererror'  => '메일 객체에서 오류 발생:',
-'defemailsubject'  => '{{SITENAME}} 이메일',
-'noemailtitle'     => '이메일 주소 없음',
-'noemailtext'      => '이 사용자는 올바른 이메일 주소를 입력하지 않았습니다.',
-'nowikiemailtitle' => '이메일이 허용되지 않음',
-'nowikiemailtext'  => '이 사용자는 다른 사용자로부터의 이메일을 받지 않도록 설정하였습니다.',
-'email-legend'     => '{{SITENAME}}의 다른 사용자에게 이메일을 보내기',
-'emailfrom'        => '이메일 발신자:',
-'emailto'          => '수신자:',
-'emailsubject'     => '제목:',
-'emailmessage'     => '내용:',
-'emailsend'        => '보내기',
-'emailccme'        => '사본을 내 이메일로도 보내기',
-'emailccsubject'   => '$1에게 보낸 메일 사본: $2',
-'emailsent'        => '이메일 보냄',
-'emailsenttext'    => '이메일을 보냈습니다.',
-'emailuserfooter'  => '이 이메일은 {{SITENAME}}의 $1 사용자가 $2 사용자에게 "이메일 보내기" 기능을 통해 전송되었습니다.',
+'usermailererror'      => '메일 객체에서 오류 발생:',
+'defemailsubject'      => '{{SITENAME}} 이메일',
+'usermaildisabled'     => '사용자 이메일 비활성화됨',
+'usermaildisabledtext' => '당신은 이 위키에서 다른 사용자에게 메일을 보낼 수 없습니다',
+'noemailtitle'         => '이메일 주소 없음',
+'noemailtext'          => '이 사용자는 올바른 이메일 주소를 입력하지 않았습니다.',
+'nowikiemailtitle'     => '이메일이 허용되지 않음',
+'nowikiemailtext'      => '이 사용자는 다른 사용자로부터의 이메일을 받지 않도록 설정하였습니다.',
+'email-legend'         => '{{SITENAME}}의 다른 사용자에게 이메일을 보내기',
+'emailfrom'            => '이메일 발신자:',
+'emailto'              => '수신자:',
+'emailsubject'         => '제목:',
+'emailmessage'         => '내용:',
+'emailsend'            => '보내기',
+'emailccme'            => '사본을 내 이메일로도 보내기',
+'emailccsubject'       => '$1에게 보낸 메일 사본: $2',
+'emailsent'            => '이메일 보냄',
+'emailsenttext'        => '이메일을 보냈습니다.',
+'emailuserfooter'      => '이 이메일은 {{SITENAME}}의 $1 사용자가 $2 사용자에게 "이메일 보내기" 기능을 통해 전송되었습니다.',
 
 # Watchlist
 'watchlist'            => '주시문서 목록',
@@ -2244,7 +2247,7 @@ $NEWPAGE
 'undeletedfiles'               => '파일 $1개를 복구했습니다',
 'cannotundelete'               => '복구에 실패했습니다.
 다른 사용자가 이미 복구했을 수도 있습니다.',
-'undeletedpage'                => "<big>'''$1 문서가 복구되었습니다.'''</big>
+'undeletedpage'                => "'''$1 문서가 복구되었습니다.'''
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
 'undelete-header'              => '최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
@@ -2477,7 +2480,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-watch'                   => '이 문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
-'movepage-moved'               => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'',
 'movepage-moved-redirect'      => '넘겨주기 문서를 만들었습니다.',
 'movepage-moved-noredirect'    => '넘겨주기 문서를 만들지 못했습니다.',
 'articleexists'                => '문서가 이미 존재하거나 이름이 올바르지 않습니다.
@@ -3361,6 +3364,7 @@ $1',
 'htmlform-float-invalid'       => '입력한 값이 수가 아닙니다.',
 'htmlform-int-toolow'          => '당신이 입력한 값은 최소값 $1 미만입니다.',
 'htmlform-int-toohigh'         => '당신이 입력한 값은 최대값 $1 이상입니다.',
+'htmlform-required'            => '이 값은 필수 항목입니다',
 'htmlform-submit'              => '저장',
 'htmlform-reset'               => '변경한 것을 되돌리기',
 'htmlform-selectorother-other' => '기타',

@@ -128,7 +128,7 @@ $messages = array(
 'category-file-count-limited'    => "Ta{{PLURAL:$1|'n $1 coadan|'n $1 choadan|'n $1 choadan| ny $1 coadanyn}} heese 'sy ronney shoh.",
 'listingcontinuesabbrev'         => 'tooil.',
 
-'mainpagetext' => "<big>'''Ta MediaWiki currit stiagh nish.'''</big>",
+'mainpagetext' => "'''Ta MediaWiki currit stiagh nish.'''",
 
 'about'         => 'Mychione',
 'article'       => 'Duillag chummal',
@@ -401,7 +401,7 @@ Bee dt'enmys IP recortyssit ayns shennaghys reaghey yn duillag shoh.",
 'summary-preview'                  => 'Roie-haishbynys y ghiare-choontey:',
 'subject-preview'                  => 'Roie-haishbynys cooish/kione-linney:',
 'blockedtitle'                     => "Ta'n ymmydeyr glast magh",
-'blockedtext'                      => "<big>'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''</big>
+'blockedtext'                      => "'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''
 
 V'ou glassit magh ec $1. T'eh yn oyr na ''$2''.
 
@@ -1115,7 +1115,7 @@ Foddee oo y duillag resooney y scughey er lheh ny yei shen.",
 'move-watch'              => 'Freill arrey er y duillag shoh',
 'movepagebtn'             => 'Yn duillag y scughey',
 'pagemovedsub'            => "Va'n scughey rahoil",
-'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>',
+'movepage-moved'          => 'Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'',
 'articleexists'           => 'Ta duillag ayn lesh yn ennym shen, ny ta ennym mee-chiart reiht ayd.<br />
 Reih ennym elley, my sailliu.',
 'talkexists'              => "'''Va'n duillag hene scughit, agh cha nod y duillag resoonaght y scughey er yn oyr dy row fer ec yn enmys shen hannah.<br />

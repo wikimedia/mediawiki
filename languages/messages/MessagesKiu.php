@@ -144,7 +144,7 @@ href="" class="internal"}?{/a}) basne.',
 'noindex-category'               => 'Pelê bêendekşi',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''MediaWiki ebe mıwefeq instale bi.'''</big>",
+'mainpagetext'      => "'''MediaWiki ebe mıwefeq instale bi.'''",
 'mainpagedocfooter' => "Serba melumatê gurenaena ''wiki software''i [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
 
 == Gamê verêni ==
@@ -1195,7 +1195,7 @@ Nê halu de, tı gunê pele ebe dest berê ya ki ser kerê eke wajiye.",
 'move-watch'       => 'Na pele de şêr ke',
 'movepagebtn'      => 'Pele bere',
 'pagemovedsub'     => 'Vurnaena namey biye temam',
-'movepage-moved'   => '<big>\'\'\'"$1" berd be pela "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" berd be pela "$2"\'\'\'',
 'articleexists'    => 'Pelê da ebe nê namey çina, ya ki nameo ke çiniyo we nêvêreno.
 Kerem ke, nameo de bin bıcerrebne.',
 'talkexists'       => "'''Pele be ho ebe mıweffeq kırışiye, hema pela hurênaişi nêşikiye ke bıkırışiyo, çıke bınê na namey de hora jüye esta.

@@ -394,7 +394,7 @@ Wen's des ned is, bisd womeeglich iwa ân feela in dr sofdwäâr gschdolbäd. In
 'summary-preview'                  => "Was in'd dsusammfasungsdsajln najghumd:",
 'subject-preview'                  => 'Wii dr bedräf aussään wärd:',
 'blockedtitle'                     => 'Dr bajdreechâr is gschbärd.',
-'blockedtext'                      => "<big>'''Du bisd gschbärd wôrn, jee nachdeem mid'm nôômn odâr mid dr IP-adresn.'''</big>
+'blockedtext'                      => "'''Du bisd gschbärd wôrn, jee nachdeem mid'm nôômn odâr mid dr IP-adresn.'''
 
 Gmachd had des: $1
 Desweechn: ''$2''
@@ -827,7 +827,7 @@ Schrajb bide den '''naja'' nôômâ fo dâr sajdn undârals '''Dsiil'' nâj un '
 'move-watch'       => 'Alde un naje sajdn beoobachdn.',
 'movepagebtn'      => 'Sajdn fârschiibm',
 'pagemovedsub'     => 'Eds is fârschoom.',
-'movepage-moved'   => "<big>'''Dii sajdn „$1“ is edsad nach  „$2“ verschoom wôrn.'''</big>",
+'movepage-moved'   => "'''Dii sajdn „$1“ is edsad nach  „$2“ verschoom wôrn.'''",
 'articleexists'    => "Es umdaafn gäd ned, wal's dii sajdn scho gibd, soo wise naj häd haasn soln. Dengg dä´ hald an andârn nôômâ aus.",
 'talkexists'       => 'Dii sajdn is fârschoom wôrn, awa baj iira disghusjoonssajdn is ned gangâ, wals dii scho mim naja nôôma gibd. Jeds musd des fo hand dsamwôrschdln.',
 'movedto'          => 'fârschoom nach',

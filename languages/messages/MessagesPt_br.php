@@ -415,7 +415,7 @@ $messages = array(
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas não indexadas',
 
-'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
+'mainpagetext'      => "'''MediaWiki instalado com sucesso.'''",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Manual de Usuário] para informações de como usar o software wiki.
 
 == Começando ==
@@ -826,7 +826,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'summary-preview'                  => 'Previsão de sumário:',
 'subject-preview'                  => 'Previsão de assunto/título:',
 'blockedtitle'                     => 'O usuário está bloqueado',
-'blockedtext'                      => "<big>'''O seu nome de usuário ou endereço de IP foi bloqueado.'''</big>
+'blockedtext'                      => "'''O seu nome de usuário ou endereço de IP foi bloqueado.'''
 
 O bloqueio foi realizado por \$1.
 O motivo apresentado foi ''\$2''.
@@ -2285,7 +2285,7 @@ Em tais casos, deverá desselecionar ou reverter a ocultação da versão apagad
 'undeletedrevisions-files'     => '$1 {{PLURAL:$2|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|arquivo restaurado|arquivos restaurados}}',
 'undeletedfiles'               => '{{PLURAL:$1|arquivo restaurado|$1 arquivos restaurados}}',
 'cannotundelete'               => 'Restauração falhada; alguém talvez já restaurou a página.',
-'undeletedpage'                => "<big>'''$1 foi restaurada'''</big>
+'undeletedpage'                => "'''$1 foi restaurada'''
 
 Consulte o [[Special:Log/delete|registro de eliminações]] para um registro das eliminações e restaurações mais recentes.",
 'undelete-header'              => 'Veja o [[Special:Log/delete|registro de deleções]] para as páginas recentemente eliminadas.',
@@ -2510,7 +2510,7 @@ Nestes casos, você terá que mover ou mesclar a página manualmente, se assim d
 'move-watch'                   => 'Vigiar esta página',
 'movepagebtn'                  => 'Mover página',
 'pagemovedsub'                 => 'Página movida com sucesso',
-'movepage-moved'               => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" foi movida para "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Um redirecionamento foi criado.',
 'movepage-moved-noredirect'    => 'A criação de um redirecionamento foi suprimida.',
 'articleexists'                => 'Uma página com este título já existe, ou o título que escolheu é inválido.

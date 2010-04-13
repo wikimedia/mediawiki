@@ -213,7 +213,7 @@ $messages = array(
 'category-file-count-limited'    => 'Tá {{PLURAL:$1|an comhad seo|$1 na comhaid seo}} a leanas sa chatagóir reatha.',
 'listingcontinuesabbrev'         => 'ar lean.',
 
-'mainpagetext'      => "<big>'''D'éirigh le suiteáil MediaWiki.'''</big>",
+'mainpagetext'      => "'''D'éirigh le suiteáil MediaWiki.'''",
 'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
 agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.',
 
@@ -583,7 +583,7 @@ Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a r
 'missingcommenttext'               => 'Cuir nóta tráchta isteach faoi seo, le do thoil.',
 'summary-preview'                  => 'Réamhamharc an achoimriú:',
 'blockedtitle'                     => 'Tá an úsáideoir seo faoi chosc',
-'blockedtext'                      => '<big>\'\'\'Chuir $1 cosc ar d’ainm úsáideora nó ar do sheoladh IP.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Chuir $1 cosc ar d’ainm úsáideora nó ar do sheoladh IP.\'\'\'
 
 Is í seo an chúis a thugadh:<br />\'\'$2\'\'.<p>Is féidir leat teagmháil a dhéanamh le $1 nó le duine eile de na [[{{MediaWiki:Grouppage-sysop}}|riarthóirí]] chun an cosc a phlé.
 
@@ -1576,7 +1576,7 @@ Sna cásanna sin, caithfidh tú an leathanach a aistrigh nó a chumasc tú féin
 'move-watch'              => 'Déan faire an leathanach seo',
 'movepagebtn'             => 'Athainmnigh an leathanach',
 'pagemovedsub'            => "D'éirigh leis an athainmniú",
-'movepage-moved'          => '<big>\'\'\'Athainmníodh "$1" mar "$2"\'\'\'</big>',
+'movepage-moved'          => '\'\'\'Athainmníodh "$1" mar "$2"\'\'\'',
 'articleexists'           => 'Tá leathanach leis an teideal seo ann cheana féin, nó níl an teideal a roghnaigh tú ina theideal bailí. Roghnaigh teideal eile le do thoil.',
 'talkexists'              => "'''D’athainmníodh an leathanach é féin go rathúil, ach ní raibh sé ar a chumas an leathanach phlé a hathainmniú dá bharr go bhfuil ceann ann cheana féin ag an teideal nua.'''<br />
 '''Báigh tusa féin iad.'''",

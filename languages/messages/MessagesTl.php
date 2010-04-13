@@ -252,7 +252,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ang sumusunod na {{PLURAL:$1|talaksan ay|$1 mga talaksan}} ay nasa kasalukuyang kategorya.',
 'listingcontinuesabbrev'         => 'karugtong',
 
-'mainpagetext'      => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
+'mainpagetext'      => "'''Matagumpay na ininstala ang MediaWiki.'''",
 'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents Patnubay sa Tagagamit] (''\"User's Guide\"'') para sa kaalaman sa paggamit ng wiking ''software''.
 
 == Pagsisimula ==
@@ -643,7 +643,7 @@ Kapag pinindot mo uli ang Sagip, masasagip ang pagbabago mo na wala nito.",
 'summary-preview'                  => 'Paunang tingin sa buod:',
 'subject-preview'                  => 'Paunang tingin sa paksa/paulo:',
 'blockedtitle'                     => 'Hinarang ang tagagamit',
-'blockedtext'                      => "<big>'''Hinarang/hinadlangan ang iyong pangalan ng tagagamit o adres ng IP.'''</big>
+'blockedtext'                      => "'''Hinarang/hinadlangan ang iyong pangalan ng tagagamit o adres ng IP.'''
 
 Ginawa ang pagharang/paghadlang ni $1. Ito ang ibinigay na dahilan: ''$2''.
 
@@ -1932,7 +1932,7 @@ Sa ganitong mga pagkakataon, dapat mong tanggalin ang tsek o huwag itago ang pin
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 pagbabago|$1 mga pagbabago}} at {{PLURAL:$2|1 talaksang|$2 mga talaksang}} naibalik na',
 'undeletedfiles'               => '{{PLURAL:$1|1 talaksang|$1 mga talaksang}} naibalik na',
 'cannotundelete'               => 'Hindi matagumpay ang pagpapabalik mula sa pagkakabura; maaaring may isang nakauna na sa pagpapabalik ng pahina mula sa pagkakabura.',
-'undeletedpage'                => "<big>'''Naibalik na ang $1'''</big>
+'undeletedpage'                => "'''Naibalik na ang $1'''
 
 Tingnan ang [[Special:Log/delete|talaan ng pagbubura]] para sa isang talaan ng mga kamakailan lamang na mga pagbubura at mga pagbabalik mula sa pagkakabura.",
 'undelete-header'              => 'Tingnan ang [[Special:Log/delete|talaan ng pagbubura]] para sa kamakailan lamang na  binura/naburang mga pahina.',
@@ -2152,7 +2152,7 @@ Sa mga kasong ganoon, kailangan mong ilipat o pagsamahin/pagsanibin ang pahina s
 'move-watch'                   => 'Bantayan ang pahinang ito',
 'movepagebtn'                  => 'Ilipat ang pahina',
 'pagemovedsub'                 => 'Matagumpay ang paglipat',
-'movepage-moved'               => '<big>\'\'\'Inilipat ang "$1" patungo sa "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'Inilipat ang "$1" patungo sa "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Nalikha ang isang panturo patungo sa ibang pahina.',
 'movepage-moved-noredirect'    => 'Pinigilan ang paglikha ng isang panturo.',
 'articleexists'                => 'May umiiral nang pahinang may ganyang pangalan, o ang
