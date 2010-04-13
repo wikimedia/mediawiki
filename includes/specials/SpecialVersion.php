@@ -176,7 +176,11 @@ class SpecialVersion extends SpecialPage {
 		return $version;
 	}
 
-	/** Generate wikitext showing extensions name, URL, author and description */
+	/**
+	 * Generate wikitext showing extensions name, URL, author and description
+	 *
+	 * @return String: Wikitext
+	 */
 	function extensionCredits() {
 		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser, $wgSkinExtensionFunctions;
 
@@ -313,7 +317,9 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @return string
+	 * Generate wikitext showing hooks in $wgHooks
+	 *
+	 * @return String: wikitext
 	 */
 	function wgHooks() {
 		global $wgHooks;
@@ -359,7 +365,9 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @return string
+	 * Get information about client's IP address
+	 *
+	 * @return String: HTML fragment
 	 */
 	function IPInfo() {
 		$ip =  str_replace( '--', ' - ', htmlspecialchars( wfGetIP() ) );
@@ -368,9 +376,11 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @param array $list
-	 * @param bool $sort
-	 * @return string
+	 * Convert an array of items into a list for display
+	 *
+	 * @param $list Array of elements to display
+	 * @param $sort Boolean: whether to sort the items in $list
+	 * @return String
 	 */
 	function listToText( $list, $sort = true ) {
 		$cnt = count( $list );
@@ -390,9 +400,11 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @param mixed $list Will convert an array to string if given and return
-	 *                    the paramater unaltered otherwise
-	 * @return mixed
+	 * Convert an array or object to a string for display
+	 *
+	 * @param $list Mixed: will convert an array to string if given and return
+	 *              the paramater unaltered otherwise
+	 * @return Mixed
 	 */
 	static function arrayToString( $list ) {
 		if( is_array( $list ) && count( $list ) == 1 )
@@ -491,8 +503,8 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Retrieve the revision number of a Subversion working directory.
 	 *
-	 * @param String $dir Directory of the svn checkout
-	 * @return int revision number as int
+	 * @param $dir String: directory of the svn checkout
+	 * @return Integer: revision number as int
 	 */
 	public static function getSvnRevision( $dir ) {
 		$info = self::getSvnInfo( $dir );
