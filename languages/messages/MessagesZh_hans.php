@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -332,7 +332,7 @@ $messages = array(
 'index-category'                 => '已做索引的页面',
 'noindex-category'               => '未做索引的页面',
 
-'mainpagetext'      => "<big>'''已成功安装 MediaWiki。'''</big>",
+'mainpagetext'      => "'''已成功安装 MediaWiki。'''",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
 
 == 入门 ==
@@ -727,7 +727,7 @@ $2',
 'summary-preview'                  => '摘要预览：',
 'subject-preview'                  => '标题预览：',
 'blockedtitle'                     => '用户被查封',
-'blockedtext'                      => "<big>你的用户名或IP地址已经被$1查封。</big>
+'blockedtext'                      => "你的用户名或IP地址已经被$1查封。
 
 这次查封是由$1所封的。当中的原因是''$2''。
 
@@ -2144,7 +2144,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1个修订版本和$2个文件已经被恢复',
 'undeletedfiles'               => '$1个文件已经被恢复',
 'cannotundelete'               => '恢复删除失败；可能已有其他人先行恢复了此页面。',
-'undeletedpage'                => "<big>'''$1已经被恢复'''</big>
+'undeletedpage'                => "'''$1已经被恢复'''
 
 参考[[Special:Log/delete|删除日志]]查看删除及恢复记录。",
 'undelete-header'              => '如要查询最近的记录请参阅[[Special:Log/delete|删除日志]]。',
@@ -2381,7 +2381,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'move-watch'                   => '监视来源以及目标页',
 'movepagebtn'                  => '移动页面',
 'pagemovedsub'                 => '移动成功',
-'movepage-moved'               => "<big>'''“$1”已经移动到“$2”'''</big>",
+'movepage-moved'               => "'''“$1”已经移动到“$2”'''",
 'movepage-moved-redirect'      => '一个重新定向已经被创建。',
 'movepage-moved-noredirect'    => '已阻止建立重定向。',
 'articleexists'                => '该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。',

@@ -441,7 +441,7 @@ $messages = array(
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas no indexadas',
 
-'mainpagetext'      => "<big>'''MediaWiki ha sido instalado con éxito.'''</big>",
+'mainpagetext'      => "'''MediaWiki ha sido instalado con éxito.'''",
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
 
 == Empezando ==
@@ -856,7 +856,7 @@ Tu dirección IP será guardada en el historial de ediciones de la página.",
 'summary-preview'                  => 'Previsualización del resumen:',
 'subject-preview'                  => 'Previsualización del tema/título:',
 'blockedtitle'                     => 'El usuario está bloqueado',
-'blockedtext'                      => "<big>'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</big>
+'blockedtext'                      => "'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''
 
 El bloqueo fue hecho por $1.
 La razón dada es ''$2''.
@@ -2309,7 +2309,7 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo restaurado|archivos restaurados}}',
 'cannotundelete'               => 'Ha fallado el deshacer el borrado;
 alguien más puede haber deshecho el borrado antes.',
-'undeletedpage'                => "<big>'''Se ha restaurado $1'''</big>
+'undeletedpage'                => "'''Se ha restaurado $1'''
 
 Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de los últimos borrados y restauraciones.",
 'undelete-header'              => 'En el [[Special:Log/delete|registro de borrados]] se listan las páginas eliminadas.',
@@ -2542,7 +2542,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'                   => 'Vigilar este artículo',
 'movepagebtn'                  => 'Renombrar página',
 'pagemovedsub'                 => 'Renombrado realizado con éxito',
-'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" ha sido trasladado a "$2".\'\'\'',
 'movepage-moved-redirect'      => 'Se ha creado una redirección.',
 'movepage-moved-noredirect'    => 'Se ha suprimido la creación de la redirección.',
 'articleexists'                => 'Ya existe una página con ese nombre, o el nombre que has escogido no es válido.

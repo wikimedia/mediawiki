@@ -421,7 +421,7 @@ $messages = array(
 'index-category'                 => 'Indexelt lapok',
 'noindex-category'               => 'Nem indexelt lapok',
 
-'mainpagetext'      => "<big>'''A MediaWiki telepítése sikeresen befejeződött.'''</big>",
+'mainpagetext'      => "'''A MediaWiki telepítése sikeresen befejeződött.'''",
 'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
 
 == Alapok (angol nyelven) ==
@@ -835,7 +835,7 @@ Ha ismét a Mentés gombra kattintasz, akkor a szerkesztésed nélküle kerül m
 'summary-preview'                  => 'A szerkesztési összefoglaló előnézete:',
 'subject-preview'                  => 'A téma/főcím előnézete:',
 'blockedtitle'                     => 'A szerkesztő blokkolva van',
-'blockedtext'                      => "<big>'''A szerkesztőnevedet vagy az IP-címedet blokkoltuk.'''</big>
+'blockedtext'                      => "'''A szerkesztőnevedet vagy az IP-címedet blokkoltuk.'''
 
 A blokkolást $1 végezte el.
 Az általa felhozott indok: ''$2''.
@@ -2048,29 +2048,31 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-removegroup-self-all' => 'az összes csoporból eltávolíthatja a saját fiókját',
 
 # E-mail user
-'mailnologin'      => 'Nincs feladó',
-'mailnologintext'  => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
-'emailuser'        => 'E-mail küldése ezen szerkesztőnek',
-'emailpage'        => 'E-mail küldése',
-'emailpagetext'    => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
+'mailnologin'          => 'Nincs feladó',
+'mailnologintext'      => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
+'emailuser'            => 'E-mail küldése ezen szerkesztőnek',
+'emailpage'            => 'E-mail küldése',
+'emailpagetext'        => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül neked tud majd válaszolni.',
-'usermailererror'  => 'A levélküldő objektum hibával tért vissza:',
-'defemailsubject'  => '{{SITENAME}} e-mail',
-'noemailtitle'     => 'Nincs e-mail cím',
-'noemailtext'      => 'Ez a szerkesztő nem adott meg érvényes e-mail címet.',
-'nowikiemailtitle' => 'Nem küldhető e-mail üzenet',
-'nowikiemailtext'  => 'Ez a szerkesztő nem kíván másoktól e-mail üzeneteket fogadni.',
-'email-legend'     => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
-'emailfrom'        => 'Feladó:',
-'emailto'          => 'Címzett:',
-'emailsubject'     => 'Téma:',
-'emailmessage'     => 'Üzenet:',
-'emailsend'        => 'Küldés',
-'emailccme'        => 'Az üzenet másolatát küldje el nekem is e-mailben.',
-'emailccsubject'   => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
-'emailsent'        => 'E-mail elküldve',
-'emailsenttext'    => 'Az e-mail üzenetedet elküldtem.',
-'emailuserfooter'  => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
+'usermailererror'      => 'A levélküldő objektum hibával tért vissza:',
+'defemailsubject'      => '{{SITENAME}} e-mail',
+'usermaildisabled'     => 'Email fogadás letiltva',
+'usermaildisabledtext' => 'Nem küldhetsz emailt más felhasználóknak ezen a wikin',
+'noemailtitle'         => 'Nincs e-mail cím',
+'noemailtext'          => 'Ez a szerkesztő nem adott meg érvényes e-mail címet.',
+'nowikiemailtitle'     => 'Nem küldhető e-mail üzenet',
+'nowikiemailtext'      => 'Ez a szerkesztő nem kíván másoktól e-mail üzeneteket fogadni.',
+'email-legend'         => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
+'emailfrom'            => 'Feladó:',
+'emailto'              => 'Címzett:',
+'emailsubject'         => 'Téma:',
+'emailmessage'         => 'Üzenet:',
+'emailsend'            => 'Küldés',
+'emailccme'            => 'Az üzenet másolatát küldje el nekem is e-mailben.',
+'emailccsubject'       => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
+'emailsent'            => 'E-mail elküldve',
+'emailsenttext'        => 'Az e-mail üzenetedet elküldtem.',
+'emailuserfooter'      => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
 
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
@@ -2293,7 +2295,7 @@ változatot visszaállították vagy eltávolították az archívumból.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|egy|$1}} változat és {{PLURAL:$2|egy|$2}} fájl visszaállítva',
 'undeletedfiles'               => '{{PLURAL:$1|egy|$1}} fájl visszaállítva',
 'cannotundelete'               => 'Nem lehet a lapot visszaállítani; lehet, hogy azt már valaki visszaállította.',
-'undeletedpage'                => "<big>'''$1 helyreállítva'''</big>
+'undeletedpage'                => "'''$1 helyreállítva'''
 
 Lásd a [[Special:Log/delete|törlési naplót]] a legutóbbi törlések és helyreállítások listájához.",
 'undelete-header'              => 'A legutoljára törölt lapokat lásd a [[Special:Log/delete|törlési naplóban]].',
@@ -2528,7 +2530,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'move-watch'                   => 'Figyeld a lapot',
 'movepagebtn'                  => 'Lap átnevezése',
 'pagemovedsub'                 => 'Átnevezés sikeres',
-'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>",
+'movepage-moved'               => "'''„$1” átnevezve „$2” névre'''",
 'movepage-moved-redirect'      => 'Átirányítás létrehozva.',
 'movepage-moved-noredirect'    => 'A régi címről nem sikerült átirányítást készíteni.',
 'articleexists'                => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
@@ -3421,6 +3423,7 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'htmlform-float-invalid'       => 'A megadott érték nem szám.',
 'htmlform-int-toolow'          => 'A megadott érték a minimum, $1 alatt van',
 'htmlform-int-toohigh'         => 'A megadott érték a maximum, $1 felett van',
+'htmlform-required'            => 'Az érték megadása kötelező',
 'htmlform-submit'              => 'Elküldés',
 'htmlform-reset'               => 'Változtatások visszavonása',
 'htmlform-selectorother-other' => 'egyéb',

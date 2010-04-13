@@ -175,7 +175,7 @@ $messages = array(
 'category-file-count-limited'    => 'Inīn {{PLURAL:$1|tlahcuilōlli cah|$1 tlahcuilōlli cateh}} inīn neneuhcāyōc.',
 'listingcontinuesabbrev'         => 'niman',
 
-'mainpagetext' => "<big>'''MediaHuiqui cualli ōmotlahtlāli.'''</big>",
+'mainpagetext' => "'''MediaHuiqui cualli ōmotlahtlāli.'''",
 
 'about'         => 'Ītechpa',
 'article'       => 'tlahcuilōlli',
@@ -1148,7 +1148,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'move-watch'                => 'Tictlachiyāz inīn zāzanilli',
 'movepagebtn'               => 'Ticzacāz zāzanilli',
 'pagemovedsub'              => 'Cualli ōmozacac',
-'movepage-moved'            => '<big>\'\'\'"$1" ōmotlacuep īhuīc "$2".\'\'\'</big>',
+'movepage-moved'            => '\'\'\'"$1" ōmotlacuep īhuīc "$2".\'\'\'',
 'movedto'                   => 'ōmozacac īhuīc',
 'movetalk'                  => 'Ticzacāz nō tēixnāmiquiliztli tlahcuilōltechcopa.',
 'movepage-page-moved'       => 'Zāzanilli $1 ōmozacac īhuīc $2.',

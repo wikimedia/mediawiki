@@ -416,7 +416,7 @@ $messages = array(
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas não indexadas',
 
-'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
+'mainpagetext'      => "'''MediaWiki instalado com sucesso.'''",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações sobre o uso do software wiki.
 
 == Onde começar ==
@@ -840,7 +840,7 @@ Se clicar novamente em \"Gravar página\" a sua edição será gravada sem resum
 'summary-preview'                  => 'Antevisão do resumo:',
 'subject-preview'                  => 'Antevisão do assunto/cabeçalho:',
 'blockedtitle'                     => 'O utilizador está bloqueado',
-'blockedtext'                      => '<big>O seu nome de utilizador ou endereço IP foram bloqueados</big>
+'blockedtext'                      => 'O seu nome de utilizador ou endereço IP foram bloqueados
 
 O bloqueio foi realizado por $1.
 O motivo apresentado foi \'\'$2\'\'.
@@ -2336,7 +2336,7 @@ Pode ter usado um link incorrecto ou talvez a revisão tenha sido restaurada ou 
 'undeletedrevisions-files'     => '$1 {{PLURAL:$2|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
 'undeletedfiles'               => '{{PLURAL:$1|ficheiro restaurado|$1 ficheiros restaurados}}',
 'cannotundelete'               => 'Restauração falhada; alguém talvez já restaurou a página.',
-'undeletedpage'                => "<big>'''$1 foi restaurada'''</big>
+'undeletedpage'                => "'''$1 foi restaurada'''
 
 Consulte o [[Special:Log/delete|registo de eliminações]] para um registo das eliminações e restaurações mais recentes.",
 'undelete-header'              => 'Consulte o [[Special:Log/delete|registo de eliminações]] para ver as páginas eliminadas recentemente.',
@@ -2570,7 +2570,7 @@ Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la co
 'move-watch'                   => 'Vigiar esta página',
 'movepagebtn'                  => 'Mover página',
 'pagemovedsub'                 => 'Página movida com sucesso',
-'movepage-moved'               => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" foi movida para "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Um redireccionamento foi criado.',
 'movepage-moved-noredirect'    => 'A criação de um redirecionamento foi suprimida.',
 'articleexists'                => 'Uma página com este título já existe, ou o título que escolheu é inválido.

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -313,7 +313,7 @@ $messages = array(
 'index-category'                 => '已做索引的頁面',
 'noindex-category'               => '未做索引的頁面',
 
-'mainpagetext'      => "<big>'''已成功安裝 MediaWiki。'''</big>",
+'mainpagetext'      => "'''已成功安裝 MediaWiki。'''",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟件的訊息！
 
 == 入門 ==
@@ -720,7 +720,7 @@ $2',
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '主題/標題預覽:',
 'blockedtitle'                     => '用戶被查封',
-'blockedtext'                      => "<big>{{GENDER:|你|妳|你}}的用戶名或IP地址已經被$1查封。</big>
+'blockedtext'                      => "{{GENDER:|你|妳|你}}的用戶名或IP地址已經被$1查封。
 
 這次查封是由$1所封的。當中的原因是''$2''。
 
@@ -2151,7 +2151,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 個版本和 $2 個檔案被恢復',
 'undeletedfiles'               => '$1 個檔案被恢復',
 'cannotundelete'               => '恢復失敗；可能之前已經被其他人恢復。',
-'undeletedpage'                => "<big>'''$1已經被恢復'''</big> 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
+'undeletedpage'                => "'''$1已經被恢復''' 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
 'undelete-header'              => '如要查詢最近的記錄請參閱[[Special:Log/delete|刪除日誌]]。',
 'undelete-search-box'          => '搜尋已刪除頁面',
 'undelete-search-prefix'       => '顯示頁面自:',
@@ -2386,7 +2386,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'move-watch'                   => '監視來源以及目標頁',
 'movepagebtn'                  => '移動頁面',
 'pagemovedsub'                 => '移動成功',
-'movepage-moved'               => "<big>'''「$1」已經移動到「$2」'''</big>",
+'movepage-moved'               => "'''「$1」已經移動到「$2」'''",
 'movepage-moved-redirect'      => '一個重新定向已經被創建。',
 'movepage-moved-noredirect'    => '已經壓制創建重新定向。',
 'articleexists'                => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',

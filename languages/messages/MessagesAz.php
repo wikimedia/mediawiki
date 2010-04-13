@@ -190,7 +190,7 @@ $messages = array(
 'index-category'                 => 'İndeksləşdirilmiş səhifələr',
 'noindex-category'               => 'İndeksləşdirilməyən səhifələr',
 
-'mainpagetext'      => "<big>'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''</big>",
+'mainpagetext'      => "'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''",
 'mainpagedocfooter' => 'Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [http://meta.wikimedia.org/wiki/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.
 
 == Faydalı keçidlər ==
@@ -1304,7 +1304,7 @@ Sonuncu silinmələrə bax: $2.',
 'undeletecomment'        => 'Səbəb:',
 'undeletedarticle'       => '"[[$1]]" məqaləsi bərpa edilmişdir',
 'cannotundelete'         => 'Silməni ləğv etmə yetinə yetirilə bilmir; başqa birisi daha əvvəl səhifənin silinməsini ləğv etmiş ola bilər.',
-'undeletedpage'          => "<big>'''$1 bərpa edildi'''</big>
+'undeletedpage'          => "'''$1 bərpa edildi'''
 
 Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri nəzərdən keçirmək üçün [[Special:Log/delete|silmə qeydlərinə]] baxın.",
 'undelete-header'        => 'Son silinmiş səhifələrə baxmaq üçün [[Special:Log/delete|silmə qeydlərinə]] bax.',
@@ -1415,7 +1415,7 @@ Bu yerdəyişmə populiyar səhifə üçün əsaslı və gözlənilməz ola bil�
 'move-watch'               => 'Bu səhifəni izlə',
 'movepagebtn'              => 'Səhifənin adını dəyiş',
 'pagemovedsub'             => 'Yerdəyişmə edilmişdir',
-'movepage-moved'           => '<big>\'\'\'"$1" səhifəsi "$2" səhifəsinə yerləşdirilmişdir\'\'\'</big>',
+'movepage-moved'           => '\'\'\'"$1" səhifəsi "$2" səhifəsinə yerləşdirilmişdir\'\'\'',
 'movedto'                  => 'dəyişdi',
 'movetalk'                 => 'Bu səhifənin müzakirə səhifəsinin de adını dəyişdir.',
 '1movedto2'                => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',

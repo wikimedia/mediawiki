@@ -430,7 +430,7 @@ $messages = array(
 'index-category'                 => 'Indexerade sidor',
 'noindex-category'               => 'Icke-indexerade sidor',
 
-'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
+'mainpagetext'      => "'''MediaWiki har installerats utan problem.'''",
 'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
 
 == Att komma igång ==
@@ -845,7 +845,7 @@ Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'summary-preview'                  => 'Förhandsgranskning av sammanfattning:',
 'subject-preview'                  => 'Rubrikförhandsgranskning:',
 'blockedtitle'                     => 'Användaren är blockerad',
-'blockedtext'                      => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.'''</big>
+'blockedtext'                      => "'''Din IP-adress eller ditt användarnamn är blockerat.'''
 
 Blockeringen utfördes av $1 med motiveringen: ''$2''.
 
@@ -2068,29 +2068,30 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'listgrouprights-removegroup-self-all' => 'Kan ta bort alla grupperna från sitt eget konto',
 
 # E-mail user
-'mailnologin'      => 'Ingen adress att skicka till',
-'mailnologintext'  => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:UserLogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
-'emailuser'        => 'Skicka e-post till den här användaren',
-'emailpage'        => 'Skicka e-post till användare',
-'emailpagetext'    => 'Du kan använda det här formuläret för att skicka e-post till den här användaren.
+'mailnologin'          => 'Ingen adress att skicka till',
+'mailnologintext'      => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:UserLogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
+'emailuser'            => 'Skicka e-post till den här användaren',
+'emailpage'            => 'Skicka e-post till användare',
+'emailpagetext'        => 'Du kan använda det här formuläret för att skicka e-post till den här användaren.
 Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas som "Från"-adress i meddelandet, så att mottagaren har möjlighet att svara direkt till dig.',
-'usermailererror'  => 'Fel i hanteringen av mail:',
-'defemailsubject'  => '{{SITENAME}} e-post',
-'noemailtitle'     => 'Ingen e-postadress',
-'noemailtext'      => 'Den här användaren har inte angivit en giltig e-postadress.',
-'nowikiemailtitle' => 'Ingen e-post tillåten',
-'nowikiemailtext'  => 'Den här användaren har valt att inte motta e-post från andra användare.',
-'email-legend'     => 'Skicka ett mail till en annan användare på {{SITENAME}}',
-'emailfrom'        => 'Från:',
-'emailto'          => 'Till:',
-'emailsubject'     => 'Ämne:',
-'emailmessage'     => 'Meddelande:',
-'emailsend'        => 'Skicka',
-'emailccme'        => 'Skicka en kopia av meddelandet till mig.',
-'emailccsubject'   => 'Kopia av ditt meddelande till $1: $2',
-'emailsent'        => 'E-post har nu skickats',
-'emailsenttext'    => 'Din e-post har skickats.',
-'emailuserfooter'  => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
+'usermailererror'      => 'Fel i hanteringen av mail:',
+'defemailsubject'      => '{{SITENAME}} e-post',
+'usermaildisabledtext' => 'Du kan inte skicka e-post till andra användare på den här wikin',
+'noemailtitle'         => 'Ingen e-postadress',
+'noemailtext'          => 'Den här användaren har inte angivit en giltig e-postadress.',
+'nowikiemailtitle'     => 'Ingen e-post tillåten',
+'nowikiemailtext'      => 'Den här användaren har valt att inte motta e-post från andra användare.',
+'email-legend'         => 'Skicka ett mail till en annan användare på {{SITENAME}}',
+'emailfrom'            => 'Från:',
+'emailto'              => 'Till:',
+'emailsubject'         => 'Ämne:',
+'emailmessage'         => 'Meddelande:',
+'emailsend'            => 'Skicka',
+'emailccme'            => 'Skicka en kopia av meddelandet till mig.',
+'emailccsubject'       => 'Kopia av ditt meddelande till $1: $2',
+'emailsent'            => 'E-post har nu skickats',
+'emailsenttext'        => 'Din e-post har skickats.',
+'emailuserfooter'      => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Bevakningslista',
@@ -2306,7 +2307,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|version|versioner}} och $2 {{PLURAL:$2|fil|filer}} återställda',
 'undeletedfiles'               => '{{PLURAL:$1|en fil återställd|$1 filer återställda}}',
 'cannotundelete'               => 'Återställning misslyckades; kanske någon redan har återställt sidan.',
-'undeletedpage'                => "<big>'''$1 har återställts'''</big>
+'undeletedpage'                => "'''$1 har återställts'''
 
 Se [[Special:Log/delete|raderingsloggen]] för en förteckning över de senaste raderingarna och återställningarna.",
 'undelete-header'              => 'Se [[Special:Log/delete|raderingsloggen]] för nyligen raderade sidor.',
@@ -2542,7 +2543,7 @@ I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'move-watch'                   => 'Bevaka denna sida',
 'movepagebtn'                  => 'Flytta sidan',
 'pagemovedsub'                 => 'Flyttningen lyckades',
-'movepage-moved'               => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" har flyttats till "$2"\'\'\'',
 'movepage-moved-redirect'      => 'En omdirigering har skapats.',
 'movepage-moved-noredirect'    => 'Skapandet av en omdirigering avbröts.',
 'articleexists'                => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
@@ -3450,6 +3451,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'htmlform-float-invalid'       => 'Värdet du valde är inte en siffra.',
 'htmlform-int-toolow'          => 'Värdet du valde är under minimumet på $1',
 'htmlform-int-toohigh'         => 'Värdet du valde är över maximumet på $1',
+'htmlform-required'            => 'Det här värdet krävs',
 'htmlform-submit'              => 'Spara',
 'htmlform-reset'               => 'Ogör ändringar',
 'htmlform-selectorother-other' => 'Andra',

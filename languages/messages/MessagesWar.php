@@ -138,7 +138,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'pdyn.',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''Malinamposon an pag-instalar han MediaWiki.'''</big>",
+'mainpagetext'      => "'''Malinamposon an pag-instalar han MediaWiki.'''",
 'mainpagedocfooter' => "Kitaa an [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para hin impormasyon ha paggamit han wiki nga softweyr.
 
 == Ha pagtikang==

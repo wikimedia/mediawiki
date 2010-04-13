@@ -144,7 +144,7 @@ $messages = array(
 'category-file-count-limited'    => 'W katygoryji {{PLURAL:$1|je pokozany $1 plik|sům pokozane $1 pliki|je pokozanych $1 plikůw}}.',
 'listingcontinuesabbrev'         => 'ć.d.',
 
-'mainpagetext'      => "<big>'''Sztalowańy MediaWiki śe udoło.'''</big>",
+'mainpagetext'      => "'''Sztalowańy MediaWiki śe udoło.'''",
 'mainpagedocfooter' => 'Uobezdrzij [http://meta.wikimedia.org/wiki/Help:Contents przewodńik sprowjacza], kaj sům informacyje uo dźołańu uoprogramowańo MediaWiki.
 
 == Na sztart ==
@@ -497,7 +497,7 @@ Możliwe co właśńy zmjyńiłżeś swoje hasło abo poprosiłżeś uo nowe tym
 'summary-preview'                  => 'Podglůnd uopisu:',
 'subject-preview'                  => 'Podglůnd tematu/naguůwka:',
 'blockedtitle'                     => 'Užytkowńik je zawarty uod sprowjyń',
-'blockedtext'                      => '<big>\'\'\'Twoje kůnto abo adres IP sům zawarte.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Twoje kůnto abo adres IP sům zawarte.\'\'\'
 
 Uo zawarću zdecydowou $1. Pado, aže skuli: \'\'$2\'\'.
 
@@ -1678,7 +1678,7 @@ Možeš mjeć felerny link abo wersyjo můgua zostać wćepano nazod, abo wyćep
 'undeletedfiles'               => 'wćepou nazod $1 {{PLURAL:$1|plik|pliki|plikůw}}',
 'cannotundelete'               => 'Wćepańy nazod ńy powjodo śe.
 Kto inkšy můgu wćepać nazod zajta pjyrwšy.',
-'undeletedpage'                => "<big>'''Wćepano nazod zajta $1.'''</big>
+'undeletedpage'                => "'''Wćepano nazod zajta $1.'''
 
 Uobejřij [[Special:Log/delete|rejer wyćepań]], kejbyś chćou přeglůndnůnć uostatnie uoperacyje wyćepywańo i wćepywańo nazod zajtůw.",
 'undelete-header'              => 'Uobejřij [[Special:Log/delete|rejer wyćepań]] coby sprawdźić uostatńo wyćepane zajty.',
@@ -1898,7 +1898,7 @@ W takiych razach tekst godki třa přećepać, a jak třeba to i pouůnčyć z t
 'move-watch'                   => 'Dej pozůr',
 'movepagebtn'                  => 'Přećiś artikel',
 'pagemovedsub'                 => 'Přećiśńjyńće gotowe',
-'movepage-moved'               => '<big>\'\'\'"$1" přećiśńjynto ku "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" přećiśńjynto ku "$2"\'\'\'',
 'articleexists'                => 'Artikel s takym mjanym juž je, abo mjano je zue.
 Wybjer inkše mjano.',
 'cantmove-titleprotected'      => 'Ńy možeš přećepnůńć zajty, bez tůž co jei nowe mjano je ńydozwolůne s kuli zabezpječyńo před utwořyńym',

@@ -286,7 +286,7 @@ $messages = array(
 'index-category'                 => 'Indexéiert Säiten',
 'noindex-category'               => 'Net-indexéiert Säiten',
 
-'mainpagetext'      => "<big>'''MediaWiki gouf installéiert.'''</big>",
+'mainpagetext'      => "'''MediaWiki gouf installéiert.'''",
 'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren.
 
 == Starthëllefen ==
@@ -700,7 +700,7 @@ Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuer
 'summary-preview'                  => 'Resumé kucken ouni ofzespäicheren:',
 'subject-preview'                  => 'Sujet/Iwwerschrëft kucken:',
 'blockedtitle'                     => 'Benotzer ass gespaart',
-'blockedtext'                      => "<big>Äre Benotzernumm oder är IP Adress gouf gespaart.</big>
+'blockedtext'                      => "Äre Benotzernumm oder är IP Adress gouf gespaart.
 
 D'Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
 
@@ -2379,7 +2379,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-watch'                   => 'Dës Säit iwwerwaachen',
 'movepagebtn'                  => 'Säit réckelen',
 'pagemovedsub'                 => 'Gouf geréckelt',
-'movepage-moved'               => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>",
+'movepage-moved'               => "'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''",
 'movepage-moved-redirect'      => 'Et gouf eng Viruleedung ugeluecht.',
 'movepage-moved-noredirect'    => "D'Uleeë vun enger Viruleedung gouf ënnerdréckt.",
 'articleexists'                => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',

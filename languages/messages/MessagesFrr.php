@@ -143,7 +143,7 @@ $messages = array(
 'index-category'                 => 'Indisiirde side',
 'noindex-category'               => 'Ai indisiirde side',
 
-'mainpagetext'      => "<big>'''MediaWiki wörd ma erfolch instaliird.'''</big>",
+'mainpagetext'      => "'''MediaWiki wörd ma erfolch instaliird.'''",
 'mainpagedocfooter' => 'Heelp tu jü benjüting än konfigurasjoon foon e Wiki-software fanst dü önj dåt [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 
 
@@ -175,6 +175,7 @@ $messages = array(
 'faq'            => 'FAQ',
 
 # Vector skin
+'vector-action-addsection'   => 'Stuk haanetufoue',
 'vector-action-delete'       => 'Sleeke',
 'vector-action-move'         => 'Ferschüwe',
 'vector-action-protect'      => 'Önj ferbading hüülje',
@@ -256,7 +257,9 @@ $messages = array(
 'jumptosearch'      => 'säk',
 'view-pool-error'   => 'Önjschüliing, da särwere san nütutids ouerlååsted.
 Tufoole brükere fersäke, jüdeer sid tu besäken.
-Wees sü gödj än täiw hu minuute, iir dü dåt nuch iinjsen ferseechst.',
+Wees sü gödj än täiw hu minuute, iir dü dåt nuch iinjsen ferseechst.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ouer {{SITENAME}}',
@@ -284,7 +287,7 @@ Wees sü gödj än täiw hu minuute, iir dü dåt nuch iinjsen ferseechst.',
 
 'versionrequired'     => 'Färsjoon $1 foon MediaWiki as nüsi.',
 'versionrequiredtext' => 'Färsjoon $1 foon MediaWiki as nüsi, am jüdeer sid tu brüken.
-Sii jü [[Special:Färsjoon|Färsjoonssid]]',
+Sii jü [[Special:Version|Färsjoonssid]]',
 
 'ok'                      => 'OK',
 'pagetitle'               => '$1 – {{SITENAME}}',
@@ -343,6 +346,14 @@ Dåt koon uk en fäägel önjjeewe önj e software, jü {{SITENAME}} brúkt.',
 # General errors
 'error'                => 'Fäägel',
 'databaseerror'        => 'Dootebånkfäägel',
+'dberrortext'          => 'Deer as en dootebånk-fäägel aptrin.
+Di grün koon en programiirfäägel weese.
+Jü leest dootebånk ouffrååg wus:
+<blockquote><tt>$1</tt></blockquote>
+üt jü funksjoon „<tt>$2</tt>“.
+Jü dootebank mäldede di fäägel „<tt>$3: $4</tt>“.',
+'dberrortextcl'        => 'Dåt jäif en süntaksfäägel önj e dootebånk-ouffrååch.
+Jü leest dootebånkouffrååch wus  „$1“ üt jü funksjoon „<tt>$2</tt>“.',
 'laggedslavemode'      => "''''Woarschauing:''' Jü wised sid köö uner amstånde ai da leeste beåarbinge önjthüülje.",
 'readonly'             => 'Dootebånk späred',
 'enterlockreason'      => 'Wees swü gödj än jeew en grün önj, weeram jü dootebånk späred wårde schal än en schåting ouer e duur foon jü späre',
@@ -356,7 +367,11 @@ Jü sid as möölikerwise tuninte mååged unti ferschääwen wörden.
 Wan dåt ai di fål as, hääst dü eewäntuäl en fäägel önj e software fünen. Mäld dåt hål en  [[Special:ListUsers/sysop|administrator]] unner nååming foon jü URL.',
 'missingarticle-rev'   => '(Färsjoonsnumer: $1)',
 'missingarticle-diff'  => '(Ferschääl twasche färsjoone: $1, $2)',
+'readonly_lag'         => 'Jü dootebånk wörd automaatisch for schriwtugraawe späred, deerma da ferdiiljde dootebånke (slaves) jam ma di hooddootebånksärwer (master) oufglike koone.',
+'internalerror'        => 'Intärn fäägel',
+'internalerror_info'   => 'Intärne fäägel: $1',
 'fileappenderrorread'  => '"$1" köö wilert dåt baitufäigen ai leesen wårde.',
+'fileappenderror'      => 'Köö ai "$1" tu "$2" önjhinge.',
 'filecopyerror'        => 'Jü dootäi "$1" köö ai eefter "$2" kopiiird wårde.',
 'filerenameerror'      => 'Jü dootäi "$1" köö ai eefter "$2" amnååmd wårde.',
 'filedeleteerror'      => 'Jü dootái "$1" köö ai sleeked wårde.',
@@ -366,25 +381,77 @@ Wan dåt ai di fål as, hääst dü eewäntuäl en fäägel önj e software fün
 'unexpected'           => 'Ünfermousene wjart: "$1"="$2".',
 'formerror'            => 'Fäägel: köö jü form ai lääwere',
 'badarticleerror'      => 'Jüdeer aksjoon koon ai aw jüdeer sid mååged wårde.',
+'cannotdelete'         => 'Jü sid unti dootäi "$1" köö ai sleeked wårde.
+Dåt as flicht ål sleeked foon huum ouders.',
+'badtitle'             => 'Ferkiirde tiitel',
 'badtitletext'         => 'Di tiitel foon jü anfrååged sid as üngülti, lääsi unti n üngültigen spräklink foon en ouder wiki.',
+'perfcached'           => 'Da füliende doote ståme üt di cache än san möölikerwise ai aktuäl.',
+'perfcachedts'         => 'Daheere doote ståme üt di cache, leest aktualisiiring: $2, klook $3.',
+'querypage-no-updates' => "'''Jü aktualisiiringsfunksjoon for jüdeer sid as nütutids deaktiwiird. Da doote wårde tujarst ai fernaierd.'''",
+'wrong_wfQuery_params' => 'Ferkiirde parameetere for wfQuery()<br />
+Funksjoon: $1<br />
+Ouffrååch: $2',
 'viewsource'           => 'Kwältäkst önjkiike',
+'viewsourcefor'        => 'for $1',
+'actionthrottled'      => 'Aksjoonstål limitiird',
+'actionthrottledtext'  => 'Dü hääst jüdeer aksjoon tu oofding bane en kort tidrüm ütfjard. Wees sü gödj än täiw en påår minuute än fersäk dåt et dan foon naien.',
+'protectedpagetext'    => 'Jüdeer sid as for dåt beårben späred.',
+'viewsourcetext'       => 'Dü koost jü kwäle foon jüdeer sid bekiike än kopiire.',
+'protectedinterface'   => 'Jüdeer sid önjthålt takst for ju brükerouerfläche foon e software än as späred, am masbrük tu ferhanern.',
+'editinginterface'     => "'''Woorschauing:''' Jüdeer sid önjthålt foon jü MesiaWiki-software bënjüteden takst.
+Änringe wirke jam aw jü brükerouerfläche üt.
+For ouerseetinge tånk deeram, jü önj di  [http://translatewiki.net/wiki/Main_Page?setlang=frr Translatewiki], dåt MediaWiki lokalisiiringsprojekt, döörtufäären.",
+'namespaceprotected'   => "Dü hääst niinj beruchtiging, jü sid önj di '''$1'''-noomerüm tu beårben.",
+'customcssjsprotected' => 'Dü bast ai beruchtiged, jüdeer sid tu beårben, deer jü tu da persöönlike önjstalinge foon en ouderen brüker hiirt.',
+'ns-specialprotected'  => 'Spetsjåålside koone ai beårbed wårde.',
+'titleprotected'       => 'En sid ma dideer noome koon ai önjläid wårde.
+Jü späre wörd döör [[User:$1|$1]] ma grün "$2" önjruchted.',
+
+# Virus scanner
+'virus-badscanner'     => "Hiinje konfigurasjoon: ünbekånde fiirusscanner: ''$1''",
+'virus-scanfailed'     => 'scan fäägelsloin (code $1)',
+'virus-unknownscanner' => 'Ünbekånde fiirusscanner:',
 
 # Login and logout pages
+'welcomecreation'         => '== Wäljkiimen, $1! ==
+
+Din brükerkonto wörd önjruchted.
+Ferjeet ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen.',
 'yourname'                => 'Brükernoome:',
 'yourpassword'            => 'Pååsuurd:',
+'yourpasswordagain'       => 'Tip pååsuurd nuch iinjsen:',
 'remembermypassword'      => 'aw diheere komputer foon duur önjmälde',
+'yourdomainname'          => 'Din domain:',
+'externaldberror'         => 'Önjtwider deer läit en fäägel bai jü äkstärn autentifisiiring for, unti dü möist din äkstärn brükerkonto äi aktualisiire.',
 'login'                   => 'Önjmälde',
 'nav-login-createaccount' => 'Önjmälde',
+'loginprompt'             => 'For jü önjmälding monje cookies aktiwiird weese.',
 'userlogin'               => 'Önjmälde / brükerkonte mååge',
+'userloginnocreate'       => 'Önjmälde',
 'logout'                  => 'Oufmälde',
 'userlogout'              => 'Oufmälde',
+'notloggedin'             => 'Ai önjmälded',
+'nologin'                 => "Dü hääst ai en brükerkonto? '''$1'''.",
 'nologinlink'             => 'Nai brükerkonto anleede',
+'createaccount'           => 'Brükerkonto anleede',
+'gotaccount'              => "Dú hääst ål en brükerkonto? '''$1'''.",
+'gotaccountlink'          => 'Önjmälde',
+'createaccountmail'       => 'ouer E-mail',
+'badretype'               => 'Da biise pååsuurde stime ai oueriinj.',
+'userexists'              => 'Dideer brükernoome as ål ferjääwen. Wees sü gödj en ouderen tu kiisen.',
+'loginerror'              => 'Fäägel bai önjmälding',
+'createaccounterror'      => 'Brükerkonto köö ai mååged wårde: $1',
+'noname'                  => 'Dü möist en gültigen brükernooem önjjeewe.',
+'loginsuccesstitle'       => 'Önjmälding erfolchrik',
 'loginsuccess'            => "'''Dü bast nü ås „$1“ bai {{SITENAME}} önjmälded.'''",
 'nosuchuser'              => 'Di brükernoome „$1“ bestoont ai.
 Präiw jü schriwwise (grut-/latjschriwing beåchte) unti [[Special:UserLogin/signup|mäld de ås naie brüker önj]].',
 'nosuchusershort'         => 'Deer as nåån brüker ma noome  "<nowiki>$1</nowiki>".
 Präiw din ruchtschriwing.',
 'nouserspecified'         => 'Dü schäät en brükernoome spesifisiire.',
+'login-userblocked'       => 'Dideer brüker as spärd. Niinj ferloof tu önjmälding.',
+'wrongpassword'           => 'Ferkiird pååsuurd önjjeewen.
+Wees sü gödje än fersäk dåt nuch iinjsen.',
 'wrongpasswordempty'      => 'Deer wörd niinj pååsuurd önjjääwen. Fersäk dåt foon naien.',
 'passwordtooshort'        => 'Pååsuurde mönje tu t manst {{PLURAL:$1|1 tiiken|$1 tiikne}} lung weese.',
 'password-name-match'     => 'Din pååsuurd mätj ferschääle foon dan brükernoome.',
@@ -489,6 +556,17 @@ Dü jeefst üs heerma dan tusååge, dåt dü di täkst '''seelew ferfooted''' h
 'permissionserrorstext-withaction' => 'Dü bast ai beruchtit, $2.
 {{PLURAL:$1|grün|grüne}}:',
 
+# Parser/template warnings
+'expensive-parserfunction-warning'  => 'Woorschauing: Jüdeer sid önjthålt tu fool apteele foon widluftie parserfunksjoone.
+
+Deer {{PLURAL:$2|mötj ai mör ås 1 apteel|mönje ai mör ås $1 apteele}} weese.',
+'expensive-parserfunction-category' => 'Side, da widluftie parserfunksjoone tu oofding apteele',
+
+# Account creation failure
+'cantcreateaccount-text' => "Dår måågen foon en brükerkonto foon jü IP-adräs '''($1)''' üt wörd döör [[User:$3|$3]] späred.
+
+Grün foon jü späre: ''$2''",
+
 # History pages
 'viewpagelogs'           => 'Logböke for jüdeer sid wise',
 'currentrev-asof'        => 'Aktuäl färsjoon foon $2 am e klook $3',
@@ -527,6 +605,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'mergehistory-submit'           => 'Feriinde färsjoone',
 'mergehistory-empty'            => 'Niinj färsjoone koone fereiind wårde.',
 'mergehistory-success'          => '$3 {{PLURAL:$3|färsjoon|färsjoone}} foon [[:$1]] ma erfolch feriind tu [[:$2]].',
+'mergehistory-no-source'        => 'Jurtkamstsid "$1" as ai deer.',
 'mergehistory-no-destination'   => 'Müüljsid „$1“ bestoont ai.',
 'mergehistory-invalid-source'   => 'Jurtkamstsid mötj en gültige sidnoome heewe.',
 'mergehistory-comment'          => '„[[:$1]]“ feriind eefter „[[:$2]]“: $3',
@@ -640,9 +719,14 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'recentchangeslinked-to'      => 'Wis änringe aw side, da heerjurt ferlinke',
 
 # Upload
-'upload'        => 'Huuchsiinje',
-'uploadlogpage' => 'Dåtäi-logbök',
-'uploadedimage' => 'heet "[[$1]]" huuchsånd',
+'upload'                     => 'Huuchsiinje',
+'uploadnologin'              => 'Ai önjmälded',
+'uploadnologintext'          => 'Dü möist [[Special:UserLogin|önjmälded weese]], am dootäie huuchleese tu koonen.',
+'upload_directory_missing'   => 'Dåt aplees-fertiiknis ($1) breecht än köö ai foon di wäbsärwer mååged wårde.',
+'upload_directory_read_only' => 'Dåt aplees-fertiiknis ($1) koon ai foon e wäbsärver beschraawen wårde.',
+'uploaderror'                => 'Aplees-fäägel',
+'uploadlogpage'              => 'Dåtäi-logbök',
+'uploadedimage'              => 'heet "[[$1]]" huuchsånd',
 
 # File description page
 'filehist'                  => 'Dååtäifärsjoone',
@@ -806,6 +890,7 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'blockip'                         => 'IP-adräs/brüker späre',
 'ipboptions'                      => '2 stüne:2 hours,1 däi:1 day,3 deege:3 days,1 wääg:1 week,2 wääge:2 weeks,1 moune:1 month,3 moune:3 months,6 moune:6 months,1 iir:1 year,suner iinje:infinite',
 'ipblocklist'                     => 'Spärd IP-adräse än brükernoome',
+'expiringblock'                   => 'iinjet aw e $1 am e klook $2',
 'blocklink'                       => 'späre',
 'unblocklink'                     => 'frijeewe',
 'change-blocklink'                => 'Spär änre',
@@ -857,7 +942,7 @@ Hål di '''naie''' tiitel uner '''muul''' önjdreege, deeruner jü ambenååming
 'move-watch'       => 'Lök eefter jüdeer sid',
 'movepagebtn'      => 'Sid ferschüwe',
 'pagemovedsub'     => 'Ferschüwing erfolchrik',
-'movepage-moved'   => "<big>'''Jü sid „$1“ wörd eefter „$2“ ferschääwen.'''</big>",
+'movepage-moved'   => "'''Jü sid „$1“ wörd eefter „$2“ ferschääwen.'''",
 'articleexists'    => 'Uner dideere noome bestoont ål en sid. Wääl hål en nai noome.',
 'talkexists'       => 'Jü sid seelew wörd erfolchrik ferschääwen, ouers jü deertu hiirende diskusjoonssid ai, deer ål iinj ma di nai tiitel bestoont. Glik hål da önjhålte foon hönj ouf.',
 'movedto'          => 'ferschääwen eefter',

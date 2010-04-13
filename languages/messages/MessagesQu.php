@@ -390,7 +390,7 @@ $messages = array(
 'index-category'                 => "Yuyarinachasqa p'anqakuna",
 'noindex-category'               => "Mana yuyarinachasqa p'anqakuna",
 
-'mainpagetext'      => "<big>'''MediaWiki nisqa llamp'u kaqqa aypaylla takyachisqañam.'''</big>",
+'mainpagetext'      => "'''MediaWiki nisqa llamp'u kaqqa aypaylla takyachisqañam.'''",
 'mainpagedocfooter' => "Wiki llamp'u kaqmanta willasunaykipaqqa [http://meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.
 
 == Qallarichkaspa ==
@@ -789,7 +789,7 @@ Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata
 'summary-preview'                  => 'Pisichayta ñawpaqta qhawarillay:',
 'subject-preview'                  => 'Yachaywata/umallita ñawpaqta qhawarillay:',
 'blockedtitle'                     => "Ruraqqa hark'asqam",
-'blockedtext'                      => "<big>'''Ruraqpa sutiykiqa icha IP huchhaykiqa hark'asqam.'''</big>
+'blockedtext'                      => "'''Ruraqpa sutiykiqa icha IP huchhaykiqa hark'asqam.'''
 
 $1 sutiyuqmi hark'asurqunki ''$2'' nisqarayku.
 
@@ -2188,7 +2188,7 @@ Huklla llamk'apusqakunata paqarichinaykipaqqa, munasqayki llamk'apusqakunata akl
 'undeletedrevisions-files'     => "{{PLURAL:$1|1 llamk'apusqaqa|$1 llamk'apusqakunaqa}} {{PLURAL:$2|1 willañiqipas|$2 willañiqikunapas}} paqarichisqam",
 'undeletedfiles'               => '{{PLURAL:$1|1 willañiqiqa|$1 willañiqikunaqa}} paqarichisqam',
 'cannotundelete'               => 'Manam atinichu qullusqata paqarichiyta; huk runachá ñawpaqtaña qullusqata paqarichirqan.',
-'undeletedpage'                => "<big>'''$1 nisqaqa paqarichisqañam'''</big>
+'undeletedpage'                => "'''$1 nisqaqa paqarichisqañam'''
 
 [[Special:Log/delete|Qulluy hallch'api]] qhaway ñaqha qullusqakunata paqarichisqakunatapas rikunaykipaq.",
 'undelete-header'              => "[[Special:Log/delete|Qulluy hallch'apiqa]] qullusqa p'anqakunap sutinkunatam rikunki.",
@@ -2410,7 +2410,7 @@ Hinaptinqa, kay rimachina p'anqap samiqninta makiykiwan astanaykim tiyanqa.",
 'move-watch'                   => "Kay p'anqata watiqay",
 'movepagebtn'                  => "P'anqata astay",
 'pagemovedsub'                 => "P'anqaqa astasqañam",
-'movepage-moved'               => "<big>'''\"\$1\" sutiyuq p'anqaqa kaymanmi astasqa: \"\$2\".'''</big>",
+'movepage-moved'               => "'''\"\$1\" sutiyuq p'anqaqa kaymanmi astasqa: \"\$2\".'''",
 'movepage-moved-redirect'      => 'Pusapunam kamarisqaña.',
 'movepage-moved-noredirect'    => "Pusapuna kamariyqa hark'asqam.",
 'articleexists'                => "Kay sutiyuq p'anqaqa kachkanñam icha akllasqayki sutiqa manam allinchu. Ama hina kaspa, huk sutita akllay.",

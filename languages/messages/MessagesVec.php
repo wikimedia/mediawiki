@@ -269,7 +269,7 @@ $messages = array(
 'index-category'                 => 'Pajine indicisae',
 'noindex-category'               => 'Pajine no indicisae',
 
-'mainpagetext'      => "<big>'''Instałasion de MediaWiki conpletà coretamente.'''</big>",
+'mainpagetext'      => "'''Instałasion de MediaWiki conpletà coretamente.'''",
 'mainpagedocfooter' => "Varda ła [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] par majori informasion so l'uso de sto software wiki.
 
 == Par scumisiar ==
@@ -681,7 +681,7 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'summary-preview'                  => 'Anteprima ogeto:',
 'subject-preview'                  => 'Anteprima ogeto/intestazion:',
 'blockedtitle'                     => 'Utente blocà',
-'blockedtext'                      => "<big>'''Sto nome utente o indirizo IP el xe stà blocà.'''</big>
+'blockedtext'                      => "'''Sto nome utente o indirizo IP el xe stà blocà.'''
 
 El bloco el xe stà messo da $1.
 La motivazion del bloco la xe sta qua: ''$2''.
@@ -2107,7 +2107,7 @@ Se dopo ła scancełazion xè stà creà na nova pàxena col stesso titoło, łe
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revision|$1 revision}} e $2 file recuperà',
 'undeletedfiles'               => '{{PLURAL:$1|Un file recuperà|$1 file recuperà}}',
 'cannotundelete'               => "El recupero no'l xè riussìo: qualchedun altro el podarià aver xà recuperà ła pàxena.",
-'undeletedpage'                => "<big>'''$1 la xè stà recuperà'''</big>
+'undeletedpage'                => "'''$1 la xè stà recuperà'''
 
 Consulta el [[Special:Log/delete|registro de le scancełassion]] par vardare łe scancełassion e i recuperi pì reçenti.",
 'undelete-header'              => 'Varda el [[Special:Log/delete|registro de le scancelazion]] par védar le scancelazion piassè reçenti.',
@@ -2334,7 +2334,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'move-watch'                   => "Tien d'ocio",
 'movepagebtn'                  => 'Sposta sta pàxena',
 'pagemovedsub'                 => 'Spostamento efetuà con sucesso',
-'movepage-moved'               => '<big>\'\'\'"$1" la xe stà spostà a "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" la xe stà spostà a "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Un reindirissamento el xe stà creà.',
 'movepage-moved-noredirect'    => 'La creassion de un reindirissamento la xe stà sopressa.',
 'articleexists'                => "Na pàxena con sto nome la existe xà, opure el nome che te ghè sielto no'l xè vałido.

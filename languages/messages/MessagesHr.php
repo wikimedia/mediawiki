@@ -432,7 +432,7 @@ $messages = array(
 'index-category'                 => 'Indeksirane stranice',
 'noindex-category'               => 'Neindeksirane stranice',
 
-'mainpagetext'      => "<big>'''Softver MediaWiki je uspješno instaliran.'''</big>",
+'mainpagetext'      => "'''Softver MediaWiki je uspješno instaliran.'''",
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
 i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.',
 
@@ -839,7 +839,7 @@ Možda ste već uspješno promijenili vašu lozinku ili ste zatražili novu priv
 'summary-preview'                  => 'Pregled sažetka:',
 'subject-preview'                  => 'Pregled predmeta:',
 'blockedtitle'                     => 'Suradnik je blokiran',
-'blockedtext'                      => '<big>\'\'\'Vaše suradničko ime ili IP adresa je blokirana\'\'\'</big>
+'blockedtext'                      => '\'\'\'Vaše suradničko ime ili IP adresa je blokirana\'\'\'
 
 Blokirao vas je $1.
 Iz sljedećeg razloga: \'\'$2\'\'.
@@ -2020,31 +2020,33 @@ Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgroupr
 'listgrouprights-removegroup-self-all' => 'Uklonite sve skupine iz vlastitog računa',
 
 # E-mail user
-'mailnologin'      => 'Nema adrese pošiljaoca',
-'mailnologintext'  => 'Morate biti [[Special:UserLogin|prijavljeni]]
+'mailnologin'          => 'Nema adrese pošiljaoca',
+'mailnologintext'      => 'Morate biti [[Special:UserLogin|prijavljeni]]
 i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
 da bi mogli slati poštu drugim suradnicima.',
-'emailuser'        => 'Pošalji e-poštu ovom suradniku',
-'emailpage'        => 'Pošalji e-poštu suradniku',
-'emailpagetext'    => 'Možete koristiti ovaj obrazac za slanje elektroničke pošte ovom suradniku.
+'emailuser'            => 'Pošalji e-poštu ovom suradniku',
+'emailpage'            => 'Pošalji e-poštu suradniku',
+'emailpagetext'        => 'Možete koristiti ovaj obrazac za slanje elektroničke pošte ovom suradniku.
 E-mail adresa iz vaših [[Special:Preferences|postavki]] nalazit će se u "From" polju poruke i primatelj će vam moći odgovoriti.',
-'usermailererror'  => 'Sustav pošte javio je pogrešku:',
-'defemailsubject'  => '{{SITENAME}} elektronička pošta (e-mail)',
-'noemailtitle'     => 'Nema adrese primaoca',
-'noemailtext'      => 'Ovaj suradnik nije odredio valjanu e-mail adresu.',
-'nowikiemailtitle' => 'E-mail nije dozvoljen',
-'nowikiemailtext'  => 'Ovaj suradnik je odlučio ne primati e-mail od drugih suradnika.',
-'email-legend'     => 'Pošalji elektroničku poštu drugom suradniku projekta {{SITENAME}}',
-'emailfrom'        => 'Od:',
-'emailto'          => 'Za:',
-'emailsubject'     => 'Tema:',
-'emailmessage'     => 'Poruka:',
-'emailsend'        => 'Pošalji',
-'emailccme'        => 'Pošalji mi e-mailom kopiju moje poruke.',
-'emailccsubject'   => 'Kopija vaše poruke suradniku $1: $2',
-'emailsent'        => 'E-mail poslan',
-'emailsenttext'    => 'Vaša poruka je poslana.',
-'emailuserfooter'  => 'Ovaj e-mail je poslan od $1 za $2 korištenjem "elektroničke pošte" s projekta {{SITENAME}}.',
+'usermailererror'      => 'Sustav pošte javio je pogrešku:',
+'defemailsubject'      => '{{SITENAME}} elektronička pošta (e-mail)',
+'usermaildisabled'     => 'Suradnička e-pošta je onemogućena',
+'usermaildisabledtext' => 'Ne možete slati e-poštu drugim suradnicima na ovom wikiju',
+'noemailtitle'         => 'Nema adrese primaoca',
+'noemailtext'          => 'Ovaj suradnik nije odredio valjanu e-mail adresu.',
+'nowikiemailtitle'     => 'E-mail nije dozvoljen',
+'nowikiemailtext'      => 'Ovaj suradnik je odlučio ne primati e-mail od drugih suradnika.',
+'email-legend'         => 'Pošalji elektroničku poštu drugom suradniku projekta {{SITENAME}}',
+'emailfrom'            => 'Od:',
+'emailto'              => 'Za:',
+'emailsubject'         => 'Tema:',
+'emailmessage'         => 'Poruka:',
+'emailsend'            => 'Pošalji',
+'emailccme'            => 'Pošalji mi e-mailom kopiju moje poruke.',
+'emailccsubject'       => 'Kopija vaše poruke suradniku $1: $2',
+'emailsent'            => 'E-mail poslan',
+'emailsenttext'        => 'Vaša poruka je poslana.',
+'emailuserfooter'      => 'Ovaj e-mail je poslan od $1 za $2 korištenjem "elektroničke pošte" s projekta {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Moj popis praćenja',
@@ -2265,7 +2267,7 @@ ili je promjena vraćena ili uklonjena iz arhive.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|$1 promjena|$1 promjene|$1 promjena}} i {{PLURAL:$2|$2 datoteka vraćena|$2 datototeke vraćene|$2 datoteka vraćeno}}',
 'undeletedfiles'               => '{{PLURAL:$1|$1 datoteka vraćena|$1 datoteke vraćene|$1 datoteka vraćeno}}',
 'cannotundelete'               => 'Vraćanje obrisane inačice nije uspjelo; netko drugi je stranicu već vratio.',
-'undeletedpage'                => "<big>'''$1 je vraćena'''</big>
+'undeletedpage'                => "'''$1 je vraćena'''
 
 Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanja i vraćanja.",
 'undelete-header'              => 'Pogledaj [[Special:Log/delete|evidenciju brisanja]] za nedavno obrisane stranice.',
@@ -2499,7 +2501,7 @@ ako to želite.",
 'move-watch'                   => 'Prati ovu stranicu',
 'movepagebtn'                  => 'Premjesti stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
-'movepage-moved'               => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" je premješteno na "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Napravljeno je preusmjeravanje.',
 'movepage-moved-noredirect'    => 'Stvaranje preusmjeravanja je izostavljeno.',
 'articleexists'                => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
@@ -3378,6 +3380,7 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'htmlform-float-invalid'       => 'Vrijednost koju ste naveli nije broj.',
 'htmlform-int-toolow'          => 'Vrijednost koju ste naveli je ispod minimuma od $1',
 'htmlform-int-toohigh'         => 'Vrijednost koju ste naveli je iznad maksimuma od $1',
+'htmlform-required'            => 'Ova vrijednost je potrebna',
 'htmlform-submit'              => 'Pošalji',
 'htmlform-reset'               => 'Poništi izmjene',
 'htmlform-selectorother-other' => 'Drugi',

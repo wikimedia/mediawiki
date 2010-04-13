@@ -133,7 +133,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El siguienti archivu está|Los siguientis $1 archivus están}} nesta categoria.',
 'listingcontinuesabbrev'         => 'acont.',
 
-'mainpagetext'      => "<big>'''MeyaGüiqui s'á istalau satihatoriamenti.'''</big>",
+'mainpagetext'      => "'''MeyaGüiqui s'á istalau satihatoriamenti.'''",
 'mainpagedocfooter' => "Consurta la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pa sabel mas al tentu el huncionamientu el software güiqui.
 
 == Esminciandu ==
@@ -527,7 +527,7 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'summary-preview'                  => 'Previsoreal síntesis:',
 'subject-preview'                  => 'Previsoreal tema/entítulu:',
 'blockedtitle'                     => 'Esti usuáriu está atarugau',
-'blockedtext'                      => "<big>'''El tu nombri d'usuáriu/direción IP está atarugau/á.'''</big>
+'blockedtext'                      => "'''El tu nombri d'usuáriu/direción IP está atarugau/á.'''
 
 \$1 jue quien jidu el tarugu, pola siguienti razón: ''\$2''.
 
@@ -1621,7 +1621,7 @@ arrecuperás apaicerán nel estorial anteriol.",
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revisión|$1 revisionis}} i {{PLURAL:$2|1 archivu|$2 archivus}} restauraus',
 'undeletedfiles'               => '{{PLURAL:$1|1 archivu|$1 archivus}} restauraus',
 'cannotundelete'               => 'Marru arrecuperandu; es posibri qu´alguien ya aiga arrecuperau la páhina.',
-'undeletedpage'                => "<big>'''S'á restaurau $1'''</big>
+'undeletedpage'                => "'''S'á restaurau $1'''
 
 Consurta el [[Special:Log/delete|rustrihu d'esborrau]] pa visoreal los úrtimus esborraus i arrecuperacionis.",
 'undelete-header'              => 'Vaiti pal [[Special:Log/delete|rustrihu d´esborrau]] pa vel las úrtimas páhinas esborrás.',
@@ -1821,7 +1821,7 @@ En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhin
 'move-watch'              => 'Vehilal esta páhina',
 'movepagebtn'             => 'Movel páhina',
 'pagemovedsub'            => 'S´á moviu la páhina',
-'movepage-moved'          => "<big>S'á muau '''\"\$1\" a \"\$2\"'''</big>",
+'movepage-moved'          => "S'á muau '''\"\$1\" a \"\$2\"'''",
 'movepage-moved-redirect' => 'Á siu criá una redireción.',
 'articleexists'           => 'Ya desisti una páhina con esi nombri u nu se premiti el nombri qu´as lihiu.
 Pol favol, escrebi otru entítulu.',

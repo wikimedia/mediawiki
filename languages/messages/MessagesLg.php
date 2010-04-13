@@ -235,7 +235,7 @@ Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde -
 'showdiff'                   => 'Ndaga bwe bikyuse',
 'anoneditwarning'            => "'''Kulabula:''' Owandiiika toyingidde mu sisitemu. Tujjakuwandiika endagiriro eya kompyuta kwosinzidde
 mu lukalala lw'enkuykakyuka ez'omu lupapula luno.",
-'blockedtext'                => "<big>'''Ebikolebwa mu linnya lyo ery'obwa memba, oba okuva ku ndagiriro yo eya 'IP', tebikyakkirizibwa.'''</big>
+'blockedtext'                => "'''Ebikolebwa mu linnya lyo ery'obwa memba, oba okuva ku ndagiriro yo eya 'IP', tebikyakkirizibwa.'''
 
 $1 y'ataddewo natti eyo. Ensonga gy'awadde eri nti ''$2''.
 

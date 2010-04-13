@@ -287,7 +287,7 @@ $messages = array(
 'index-category'                 => 'Indeksirane strani',
 'noindex-category'               => 'Neindeksirane strani',
 
-'mainpagetext'      => "<big>'''Programje MediaWiki je bilo uspešno nameščeno.'''</big>",
+'mainpagetext'      => "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
 'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
 in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
 
@@ -711,7 +711,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'summary-preview'                  => 'Predogled povzetka',
 'subject-preview'                  => 'Predogled zadeve/naslova:',
 'blockedtitle'                     => 'Uporabnik je blokiran',
-'blockedtext'                      => "<big>'''Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je bilo onemogočeno.'''</big>
+'blockedtext'                      => "'''Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je bilo onemogočeno.'''
 
 Blokiral vas je $1.
 Podan razlog je ''$2''.
@@ -2201,7 +2201,7 @@ Morda imate napačno povezavo ali pa je bila redakcija obnovljena ali odstranjen
 'undeletedfiles'               => '{{PLURAL:$1|obnovljena je $1 datoteka|obnovljeni sta $1 datoteki|obnovljene so $1 datoteke|obnovljenih je $1 datotek}}',
 'cannotundelete'               => 'Obnova ni uspela;
 morda je stran obnovil že kdo drug.',
-'undeletedpage'                => "<big>'''Obnovili ste stran $1.'''</big>
+'undeletedpage'                => "'''Obnovili ste stran $1.'''
 
 Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]].",
 'undelete-header'              => 'Glej [[Special:Log/delete|dnevnik brisanja]] za nedavno izbrisane strani.',
@@ -2437,7 +2437,7 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'move-watch'                   => 'Opazuj to stran',
 'movepagebtn'                  => 'Prestavi stran',
 'pagemovedsub'                 => 'Uspešno prestavljeno',
-'movepage-moved'               => "<big>Stran '''»$1«''' je prestavljena na naslov '''»$2«'''.</big>",
+'movepage-moved'               => "Stran '''»$1«''' je prestavljena na naslov '''»$2«'''.",
 'movepage-moved-redirect'      => 'Preusmeritev je bila ustvarjena.',
 'movepage-moved-noredirect'    => 'Izdelava preusmeritve je bila zatrta.',
 'articleexists'                => 'Izbrano ime je že zasedeno ali pa ni veljavno. 

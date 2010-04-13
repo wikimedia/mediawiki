@@ -608,7 +608,7 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'summary-preview'                  => 'Praevisum summarii:',
 'subject-preview'                  => 'Praevisum rei/tituli:',
 'blockedtitle'                     => 'Usor obstructus est',
-'blockedtext'                      => '<big>\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\'</big> a magistratu $1.
+'blockedtext'                      => '\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\' a magistratu $1.
 
 Ratio data est: \'\'$2\'\'.
 
@@ -1838,7 +1838,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'move-watch'                => 'Hanc paginam custodire',
 'movepagebtn'               => 'Paginam movere',
 'pagemovedsub'              => 'Pagina mota est',
-'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>',
+'movepage-moved'            => '\'\'\'"$1" mota est ad "$2"\'\'\'',
 'movepage-moved-redirect'   => 'Redirectio creata est.',
 'movepage-moved-noredirect' => 'Redirectio non creata est.',
 'articleexists'             => 'Pagina huius tituli iam est, aut invalidum est nomen electum.

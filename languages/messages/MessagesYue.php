@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Cantonese (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -273,7 +273,7 @@ $messages = array(
 'index-category'                 => '做咗索引嘅版',
 'noindex-category'               => '未做索引嘅版',
 
-'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
+'mainpagetext'      => "'''MediaWiki已經裝好。'''",
 'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
 
 ==開始使用==
@@ -678,7 +678,7 @@ $1',
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '標題／頭條預覽:',
 'blockedtitle'                     => '用戶已經封鎖',
-'blockedtext'                      => "<big>你嘅用戶名或者 IP 位址已經被 $1 封咗。</big>
+'blockedtext'                      => "你嘅用戶名或者 IP 位址已經被 $1 封咗。
 
 呢次封鎖係由$1所封嘅。當中嘅原因係''$2''。
 
@@ -2095,7 +2095,7 @@ wiki: $PAGEEDITOR_WIKI
 'undeletedrevisions-files'     => '$1個修訂同$2個檔案已經救返',
 'undeletedfiles'               => '$1個檔案已經救返',
 'cannotundelete'               => '救唔到；可能有其他人已經救返嗰頁。',
-'undeletedpage'                => "<big>'''$1已經成功救返'''</big>
+'undeletedpage'                => "'''$1已經成功救返'''
 
 最近嘅刪除同恢復記錄請睇[[Special:Log/delete]]。",
 'undelete-header'              => '睇吓[[Special:Log/delete|刪除日誌]]去睇之前刪除嘅頁頁。',
@@ -2325,7 +2325,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'move-watch'                   => '睇實來源同埋目標版',
 'movepagebtn'                  => '搬頁',
 'pagemovedsub'                 => '搬頁成功',
-'movepage-moved'               => '<big>\'\'\'"$1"已經搬到去"$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1"已經搬到去"$2"\'\'\'',
 'movepage-moved-redirect'      => '一個跳轉已經開咗。',
 'movepage-moved-noredirect'    => '已經壓制開個跳轉。',
 'articleexists'                => '已經有頁面叫嗰個名，或者你揀嘅名唔合法。請揀過第二個名。',

@@ -239,7 +239,7 @@ zzat ma ca n e-mail nniḍen ma ad itwasekk ɣar umiḍan , ixessa ad tegged man
 'anoneditwarning'            => "'''ɣark:''' war tudifd ca s isem inec.
 Tansa n IP inac ad-teqqim deg umezruy n teẓṛigin n Tasna ya .",
 'summary-preview'            => 'Azar-ascan n Tegḍwit:',
-'blockedtext'                => "<big>'''Isem useqdac niɣ tansa IP inecc tewabluca  .'''</big>
+'blockedtext'                => "'''Isem useqdac niɣ tansa IP inecc tewabluca  .'''
 
 iblocat  $1.
 Maynzi ''$2''.
@@ -644,7 +644,7 @@ mala amya, itxessa cekk ad tesnaqled s ufus mala txisd.",
 'move-watch'       => 'Ẓar Tasna ya',
 'movepagebtn'      => 'Snaqel Tasna',
 'pagemovedsub'     => 'Asmutti itwagg',
-'movepage-moved'   => '<big>\'\'\'"$1" twanql ɣar "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" twanql ɣar "$2"\'\'\'',
 'articleexists'    => 'Tasna s isem a tella da, niɣ isem itucid war icni.
 ixdar isem nniḍn.',
 'talkexists'       => "'''Tasna twanql , maca Tasna n usiwl ins war twanqel ca maymmi qaddin ict nninḍ.

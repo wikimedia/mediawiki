@@ -301,7 +301,7 @@ $messages = array(
 'index-category'                 => 'Indeksitaj paĝoj',
 'noindex-category'               => 'Neindeksitaj paĝoj',
 
-'mainpagetext'      => "<big>'''MediaViki softvaro sukcese instaliĝis.'''</big>",
+'mainpagetext'      => "'''MediaViki softvaro sukcese instaliĝis.'''",
 'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
 
 ==Kiel komenci==
@@ -723,7 +723,7 @@ Se vi klakos Konservi denove, via redakto estos konservita sen ĝi.",
 'summary-preview'                  => 'Resuma antaŭrigardo:',
 'subject-preview'                  => 'Antaŭrigardo de Temo/Subitolo:',
 'blockedtitle'                     => 'La uzanto estas forbarita.',
-'blockedtext'                      => "<big>'''Via konto aŭ IP-adreso estis forbarita'''</big> 
+'blockedtext'                      => "'''Via konto aŭ IP-adreso estis forbarita''' 
 
 La forbaro estis farita de $1.
 La skribita kialo estas ''$2''.
@@ -2173,7 +2173,7 @@ Vi verŝajne havas malbonan ligilon, aŭ la revizio eble estis restarigita aŭ f
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 versio|$1 versioj}} kaj {{PLURAL:$2|1 dosiero|$2 dosieroj}} restarigitaj',
 'undeletedfiles'               => '{{PLURAL:$1|1 dosiero restarigita|$1 dosieroj restarigitaj}}',
 'cannotundelete'               => 'Restarigo malsukcesis; iu eble restarigis la paĝon antaŭe.',
-'undeletedpage'                => "<big>'''$1 estis restarigita'''</big>
+'undeletedpage'                => "'''$1 estis restarigita'''
 
 Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj forigoj kaj restarigoj.",
 'undelete-header'              => 'Konsulti la [[Special:Log/delete|protokolo de forigoj]] por lastatempaj forigoj.',
@@ -2410,7 +2410,7 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'move-watch'                   => 'Atenti ĉi tiun paĝon',
 'movepagebtn'                  => 'Alinomigi paĝon',
 'pagemovedsub'                 => 'Sukcesis alinomigo',
-'movepage-moved'               => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" estis alinomigita al "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Alidirektilo estis kreita.',
 'movepage-moved-noredirect'    => 'La kreado de alidirektilo estis nuligita.',
 'articleexists'                => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.

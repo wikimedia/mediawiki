@@ -268,7 +268,7 @@ $messages = array(
 'index-category'                 => 'pejy voasokajy',
 'noindex-category'               => 'Pejy tsy voasikajy',
 
-'mainpagetext'      => "<big>'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''</big>",
+'mainpagetext'      => "'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''",
 'mainpagedocfooter' => "Vangio ny [http://meta.wikimedia.org/wiki/Aide:Contenu Fanoroana ho an'ny mpampiasa] ra te hitady fanoroana momba ny fampiasan'ity rindrankajy ity.
 
 == Hanomboka amin'ny MediaWiki ==
@@ -684,7 +684,7 @@ Raha tsindrianao indray eo amin'ny « {{MediaWiki:Savearticle}} » ho voatahiry 
 'summary-preview'                  => "Topi-maso n'ilay ambangovangony :",
 'subject-preview'                  => 'Topi maso ny lazaina :',
 'blockedtitle'                     => 'Mpikambana voasakana',
-'blockedtext'                      => "<big>'''Voasakana ny solonanaranao na ny adiresy IP anao.'''</big>
+'blockedtext'                      => "'''Voasakana ny solonanaranao na ny adiresy IP anao.'''
 
 Nataon'i $1 ny fisakanana.
 Ny antony : ''$2''.
@@ -2177,7 +2177,7 @@ Tokony ataonao rery io asa io (fusion)",
 'move-watch'                   => 'araho-maso ity pejy ity',
 'movepagebtn'                  => 'Afindrao',
 'pagemovedsub'                 => 'Voafindra ny pejy',
-'movepage-moved'               => "<big>voafindra tany amin'ny '''$2''' i '''$1'''</big>",
+'movepage-moved'               => "voafindra tany amin'ny '''$2''' i '''$1'''",
 'movepage-moved-redirect'      => "Voaforona ny fihodinana manketo any amin'ny anarany taloha.",
 'articleexists'                => 'Efa misy ny lahatsoratra mitondra io anarana io, na 
 tsy mety ny anarana nosafidianao.

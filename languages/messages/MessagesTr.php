@@ -415,7 +415,7 @@ $messages = array(
 'index-category'                 => 'Endeksli sayfalar',
 'noindex-category'               => 'Endeksli olmayan sayfalar',
 
-'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
+'mainpagetext'      => "'''MediaWiki başarı ile kuruldu.'''",
 'mainpagedocfooter' => 'Viki yazılımının kullanımı hakkında bilgi almak için [http://meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.
 
 == Yeni Başlayanlar ==
@@ -828,7 +828,7 @@ Kaydet tuşuna tekrar basarsan sayfa özetsiz kaydedilecek.",
 'summary-preview'                  => 'Ön izleme özeti:',
 'subject-preview'                  => 'Konu/Başlık ön izlemesi:',
 'blockedtitle'                     => 'Kullanıcı erişimi engellendi.',
-'blockedtext'                      => '<big>\'\'\'Kullanıcı adı veya IP adresiniz engellenmiştir.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Kullanıcı adı veya IP adresiniz engellenmiştir.\'\'\'
 
 Sizi engelleyen hizmetli: $1.<br />
 Engelleme sebebi: \'\'$2\'\'.
@@ -2035,29 +2035,31 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'listgrouprights-removegroup-self-all' => 'Kendi hesabından tüm grupları çıkarabilir',
 
 # E-mail user
-'mailnologin'      => 'Gönderi adresi yok.',
-'mailnologintext'  => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:UserLogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
-'emailuser'        => 'Kullanıcıya e-posta gönder',
-'emailpage'        => 'Kullanıcıya e-posta gönder',
-'emailpagetext'    => 'Bu kullanıcıya e-posta mesajı göndermek için aşağıdaki formu kullanabilirsiniz.
+'mailnologin'          => 'Gönderi adresi yok.',
+'mailnologintext'      => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:UserLogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
+'emailuser'            => 'Kullanıcıya e-posta gönder',
+'emailpage'            => 'Kullanıcıya e-posta gönder',
+'emailpagetext'        => 'Bu kullanıcıya e-posta mesajı göndermek için aşağıdaki formu kullanabilirsiniz.
 [[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın "From (Kimden)" adresinde görünecektir, bu yüzden alıcı size direk cevap verebilecektir.',
-'usermailererror'  => 'Eposta hizmeti hata verdi:',
-'defemailsubject'  => '{{SITENAME}} e-posta',
-'noemailtitle'     => 'e-posta adresi yok',
-'noemailtext'      => 'Bu kullanıcı geçerli bir e-posta adresi belirtmemiş.',
-'nowikiemailtitle' => 'E-postalara izin verilmiyor',
-'nowikiemailtext'  => 'Bu kullanıcı, diğer kullanıcılardan e-posta almamayı tercih etti.',
-'email-legend'     => 'Diğer {{SITENAME}} kullanıcısına e-posta gönder',
-'emailfrom'        => 'Kimden:',
-'emailto'          => 'Kime:',
-'emailsubject'     => 'Konu:',
-'emailmessage'     => 'E-posta:',
-'emailsend'        => 'Gönder',
-'emailccme'        => 'Mesajın bir kopyasını da bana gönder.',
-'emailccsubject'   => "$1'e gönderdiğiniz mesajın kopyası: $2",
-'emailsent'        => 'E-posta gönderildi',
-'emailsenttext'    => 'E-postanız gönderildi.',
-'emailuserfooter'  => 'Bu e-posta $1 tarafından $2 kullanıcısına, {{SITENAME}} sitesindeki "Kullanıcıya e-posta gönder" fonksiyonu ile gönderilmiştir.',
+'usermailererror'      => 'Eposta hizmeti hata verdi:',
+'defemailsubject'      => '{{SITENAME}} e-posta',
+'usermaildisabled'     => 'Kullanıcı e-postası devre dışı',
+'usermaildisabledtext' => 'Bu vikide diğer kullanıcılara e-posta gönderemezsiniz',
+'noemailtitle'         => 'e-posta adresi yok',
+'noemailtext'          => 'Bu kullanıcı geçerli bir e-posta adresi belirtmemiş.',
+'nowikiemailtitle'     => 'E-postalara izin verilmiyor',
+'nowikiemailtext'      => 'Bu kullanıcı, diğer kullanıcılardan e-posta almamayı tercih etti.',
+'email-legend'         => 'Diğer {{SITENAME}} kullanıcısına e-posta gönder',
+'emailfrom'            => 'Kimden:',
+'emailto'              => 'Kime:',
+'emailsubject'         => 'Konu:',
+'emailmessage'         => 'E-posta:',
+'emailsend'            => 'Gönder',
+'emailccme'            => 'Mesajın bir kopyasını da bana gönder.',
+'emailccsubject'       => "$1'e gönderdiğiniz mesajın kopyası: $2",
+'emailsent'            => 'E-posta gönderildi',
+'emailsenttext'        => 'E-postanız gönderildi.',
+'emailuserfooter'      => 'Bu e-posta $1 tarafından $2 kullanıcısına, {{SITENAME}} sitesindeki "Kullanıcıya e-posta gönder" fonksiyonu ile gönderilmiştir.',
 
 # Watchlist
 'watchlist'            => 'izleme listem',
@@ -2283,7 +2285,7 @@ Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz b
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revizyon|$1 revizyon}} ve {{PLURAL:$2|1 dosya|$2 dosya}} eski konumuna getirildi',
 'undeletedfiles'               => '{{PLURAL:$1|1 dosya|$1 dosya}} geri getirildi.',
 'cannotundelete'               => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
-'undeletedpage'                => "<big>'''$1 sayfası geri getirildi'''</big>
+'undeletedpage'                => "'''$1 sayfası geri getirildi'''
 
 Önceki silme ve geri getirme işlemleri için [[Special:Log/delete|silme kayıtları]]na bakınız.",
 'undelete-header'              => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
@@ -2515,7 +2517,7 @@ Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'move-watch'                   => 'Bu sayfayı izle',
 'movepagebtn'                  => 'İsmi değiştir',
 'pagemovedsub'                 => 'İsim değişikliği tamamlandı.',
-'movepage-moved'               => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'',
 'movepage-moved-redirect'      => 'Bir yönlendirme oluşturuldu.',
 'movepage-moved-noredirect'    => 'Bir yönlendirme oluşturulması bastırıldı.',
 'articleexists'                => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.
@@ -3435,6 +3437,7 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'htmlform-float-invalid'       => 'Belirttiğiniz değer bir sayı değil.',
 'htmlform-int-toolow'          => "Belirttiğiniz değer asgari $1'in altında",
 'htmlform-int-toohigh'         => "Belirttiğiniz değer azami $1'in üstünde",
+'htmlform-required'            => 'Bu değer gereklidir',
 'htmlform-submit'              => 'Gönder',
 'htmlform-reset'               => 'Değişiklikleri geri al',
 'htmlform-selectorother-other' => 'Diğer',

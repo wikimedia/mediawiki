@@ -401,7 +401,7 @@ $messages = array(
 'noindex-category'               => 'Ikkje-indekserte sider',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''MediaWiki er no installert.'''</big>",
+'mainpagetext'      => "'''MediaWiki er no installert.'''",
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.
 
 ==Kome i gang==
@@ -792,7 +792,7 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'summary-preview'                  => 'Førehandsvising av endringssamandraget:',
 'subject-preview'                  => 'Førehandsvising av emne/overskrift:',
 'blockedtitle'                     => 'Brukaren er blokkert',
-'blockedtext'                      => "<big>'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''</big>
+'blockedtext'                      => "'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''
 
 Blokkeringa vart gjort av $1. 
 Denne grunnen vart gjeven: ''$2''.
@@ -2206,7 +2206,7 @@ Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Éin versjon|$1 versjonar}} og {{PLURAL:$2|éi fil|$2 filer}} er attoppretta',
 'undeletedfiles'               => '{{PLURAL:$1|Éi fil|$1 filer}} er attoppretta',
 'cannotundelete'               => 'Feil ved attoppretting, andre kan allereie ha attoppretta sida.',
-'undeletedpage'                => "<big>'''$1 er attoppretta'''</big>
+'undeletedpage'                => "'''$1 er attoppretta'''
 
 Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er sletta eller attoppretta.",
 'undelete-header'              => 'Sjå [[Special:Log/delete|sletteloggen]] for dei sist sletta sidene.',
@@ -2424,7 +2424,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'move-watch'                   => 'Overvak denne sida',
 'movepagebtn'                  => 'Flytt side',
 'pagemovedsub'                 => 'Flyttinga er gjennomført',
-'movepage-moved'               => "<big>'''«$1» er flytt til «$2»'''</big>",
+'movepage-moved'               => "'''«$1» er flytt til «$2»'''",
 'movepage-moved-redirect'      => 'Ei omdirigering er vorten oppretta.',
 'movepage-moved-noredirect'    => 'Det vart ikkje oppretta ei omdirigering.',
 'articleexists'                => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',

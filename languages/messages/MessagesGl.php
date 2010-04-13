@@ -330,7 +330,7 @@ $messages = array(
 'index-category'                 => 'Páxinas indexadas',
 'noindex-category'               => 'Páxinas non indexadas',
 
-'mainpagetext'      => "<big>'''O programa Wiki foi instalado con éxito.'''</big>",
+'mainpagetext'      => "'''MediaWiki instalouse correctamente.'''",
 'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.
 
 == Comezando ==
@@ -760,7 +760,7 @@ Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'                  => 'Vista previa do resumo:',
 'subject-preview'                  => 'Vista previa do asunto/cabeceira:',
 'blockedtitle'                     => 'O usuario está bloqueado',
-'blockedtext'                      => '<big>\'\'\'O seu nome de usuario ou enderezo IP foi bloqueado.\'\'\'</big>
+'blockedtext'                      => '\'\'\'O seu nome de usuario ou enderezo IP foi bloqueado.\'\'\'
 
 O bloqueo foi realizado por $1.
 A razón que deu foi \'\'$2\'\'.
@@ -1145,7 +1145,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'viewprevnext'                     => 'Ver as ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Opcións de busca',
 'searchmenu-exists'                => "* Páxina \"'''[[\$1]]'''\"",
-'searchmenu-new'                   => "'''Crear a páxina \"''[[:\$1|\$1]]''\" neste wiki!'''",
+'searchmenu-new'                   => "'''Crear a páxina \"[[:\$1]]\" neste wiki!'''",
 'searchhelp-url'                   => 'Help:Contidos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue polas páxinas que comezan coas mesmas iniciais]]',
 'searchprofile-articles'           => 'Páxinas de contido',
@@ -1757,7 +1757,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'filedelete-otherreason'      => 'Outro motivo:',
 'filedelete-reason-otherlist' => 'Outra razón',
 'filedelete-reason-dropdown'  => '*Motivos frecuentes para borrar
-** Violación do copyright
+** Violación dos dereitos de autor
 ** Ficheiro duplicado',
 'filedelete-edit-reasonlist'  => 'Editar os motivos de borrado',
 'filedelete-maintenance'      => 'Os borrados e restauracións de ficheiros están desactivados temporalmente durante o mantemento.',
@@ -1998,29 +1998,31 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 'listgrouprights-removegroup-self-all' => 'Pode eliminar todos os grupos pola súa propia conta',
 
 # E-mail user
-'mailnologin'      => 'Non existe enderezo para o envío',
-'mailnologintext'  => 'Debe [[Special:UserLogin|acceder ao sistema]] e ter rexistrado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
-'emailuser'        => 'Enviar un correo electrónico a este usuario',
-'emailpage'        => 'Enviar un correo electrónico a un usuario',
-'emailpagetext'    => 'Pode usar o formulario de embaixo para enviar unha mensaxe de correo electrónico a este usuario.
+'mailnologin'          => 'Non existe enderezo para o envío',
+'mailnologintext'      => 'Debe [[Special:UserLogin|acceder ao sistema]] e ter rexistrado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
+'emailuser'            => 'Enviar un correo electrónico a este usuario',
+'emailpage'            => 'Enviar un correo electrónico a un usuario',
+'emailpagetext'        => 'Pode usar o formulario de embaixo para enviar unha mensaxe de correo electrónico a este usuario.
 O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que o receptor da mensaxe poderalle responder.',
-'usermailererror'  => 'O obxecto enviado deu unha mensaxe de erro:',
-'defemailsubject'  => 'Correo electrónico de {{SITENAME}}',
-'noemailtitle'     => 'Sen enderezo de correo electrónico',
-'noemailtext'      => 'Este usuario non especificou un enderezo de correo electrónico válido.',
-'nowikiemailtitle' => 'Sen correo electrónico habilitado',
-'nowikiemailtext'  => 'Este usuario elixiu non recibir correos electrónicos doutros usuarios.',
-'email-legend'     => 'Enviar un correo electrónico a outro usuario de {{SITENAME}}',
-'emailfrom'        => 'De:',
-'emailto'          => 'Para:',
-'emailsubject'     => 'Asunto:',
-'emailmessage'     => 'Mensaxe:',
-'emailsend'        => 'Enviar',
-'emailccme'        => 'Enviar unha copia da mensaxe para min.',
-'emailccsubject'   => 'Copia da súa mensaxe para $1: $2',
-'emailsent'        => 'Mensaxe enviada',
-'emailsenttext'    => 'A súa mensaxe de correo electrónico foi enviada.',
-'emailuserfooter'  => 'Este correo electrónico foi enviado por $1 a $2 mediante a función "Enviar un correo electrónico a este usuario" de {{SITENAME}}.',
+'usermailererror'      => 'O obxecto enviado deu unha mensaxe de erro:',
+'defemailsubject'      => 'Correo electrónico de {{SITENAME}}',
+'usermaildisabled'     => 'O correo electrónico do usuario está desactivado',
+'usermaildisabledtext' => 'Non pode enviar correos electrónicos a outros usuarios deste wiki',
+'noemailtitle'         => 'Sen enderezo de correo electrónico',
+'noemailtext'          => 'Este usuario non especificou un enderezo de correo electrónico válido.',
+'nowikiemailtitle'     => 'Sen correo electrónico habilitado',
+'nowikiemailtext'      => 'Este usuario elixiu non recibir correos electrónicos doutros usuarios.',
+'email-legend'         => 'Enviar un correo electrónico a outro usuario de {{SITENAME}}',
+'emailfrom'            => 'De:',
+'emailto'              => 'Para:',
+'emailsubject'         => 'Asunto:',
+'emailmessage'         => 'Mensaxe:',
+'emailsend'            => 'Enviar',
+'emailccme'            => 'Enviar unha copia da mensaxe para min.',
+'emailccsubject'       => 'Copia da súa mensaxe para $1: $2',
+'emailsent'            => 'Mensaxe enviada',
+'emailsenttext'        => 'A súa mensaxe de correo electrónico foi enviada.',
+'emailuserfooter'      => 'Este correo electrónico foi enviado por $1 a $2 mediante a función "Enviar un correo electrónico a este usuario" de {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'A miña lista de vixilancia',
@@ -2244,7 +2246,7 @@ O texto destas revisións eliminadas só está á disposición dos administrador
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revisión|revisións}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|ficheiro restaurado|ficheiros restaurados}}',
 'cannotundelete'               => 'Non se restaurou a páxina porque alguén xa o fixo antes.',
-'undeletedpage'                => "<big>'''A páxina \"\$1\" foi restaurada'''</big>
+'undeletedpage'                => "'''A páxina \"\$1\" foi restaurada'''
 
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
 'undelete-header'              => 'Vexa [[Special:Log/delete|no rexistro de borrados]] as páxinas eliminadas recentemente.',
@@ -2480,7 +2482,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'move-watch'                   => 'Vixiar esta páxina',
 'movepagebtn'                  => 'Mover a páxina',
 'pagemovedsub'                 => 'O movemento foi un éxito',
-'movepage-moved'               => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'A páxina "$1" foi movida a "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Creouse unha redirección da primeira cara á segunda.',
 'movepage-moved-noredirect'    => 'A creación da redirección da primeira cara á segunda foi cancelada.',
 'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
@@ -3367,6 +3369,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'htmlform-float-invalid'       => 'O valor que especificou non é un número.',
 'htmlform-int-toolow'          => 'O valor que especificou está por baixo do mínimo de $1',
 'htmlform-int-toohigh'         => 'O valor que especificou está por riba do máximo de $1',
+'htmlform-required'            => 'Este valor é obrigatorio',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfacer os cambios',
 'htmlform-selectorother-other' => 'Outra',

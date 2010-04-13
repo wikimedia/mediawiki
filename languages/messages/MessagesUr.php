@@ -165,7 +165,7 @@ $messages = array(
 'category-subcat-count-limited' => 'اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ ہے|$1 ذیلی زمرہ جات ہیں}}.',
 'listingcontinuesabbrev'        => '۔جاری',
 
-'mainpagetext' => "<big>'''میڈیاوکی کو کامیابی سے چالو کردیا گیا ہے۔.'''</big>",
+'mainpagetext' => "'''میڈیاوکی کو کامیابی سے چالو کردیا گیا ہے۔.'''",
 
 'about'         => 'تعارف',
 'article'       => 'صفحۂ مشمول',
@@ -574,7 +574,7 @@ Warning: Page may not contain recent updates.',
 'summary-preview'                  => 'نمائش خلاصہ:',
 'subject-preview'                  => 'عنوان/شہ سرخی کا پیش منظر:',
 'blockedtitle'                     => 'صارف مسدود ہے',
-'blockedtext'                      => "<big>'''آپکا اسمِ صارف یا آئی پی پتہ پر پابندی ہے.'''</big>
+'blockedtext'                      => "'''آپکا اسمِ صارف یا آئی پی پتہ پر پابندی ہے.'''
 
 $1 نے پابندی لگائی تھی.
 وجہ یہ بتائی گئی کہ ''$2''.

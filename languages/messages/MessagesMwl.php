@@ -456,7 +456,7 @@ de modo a cunfirmar que la cuonta ye mesmo la tue.',
 'showdiff'                         => 'Amostrar altaraçones',
 'anoneditwarning'                  => "'''Abiso''': Tu nun stás outenticado. L tou IP será registrado ne l stórico de las eidiçones desta páigina.",
 'summary-preview'                  => 'Amostra de l sumário:',
-'blockedtext'                      => '<big>L tou nome d\'outelizador ó morada de IP foi bloquiada</big>
+'blockedtext'                      => 'L tou nome d\'outelizador ó morada de IP foi bloquiada
 
 L bloqueio fui feito por $1. La rezon fui \'\'$2\'\'.
 
@@ -1025,7 +1025,7 @@ Nestes causos, tu terás que arrastrar ou ajuntar la páigina a la mano, se assi
 'move-watch'       => 'Begiar esta páigina',
 'movepagebtn'      => 'Arrastrar páigina',
 'pagemovedsub'     => 'Páigina arrastrada cumo debe de ser',
-'movepage-moved'   => '<big>\'\'\'"$1" fui arrastrado pa "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" fui arrastrado pa "$2"\'\'\'',
 'articleexists'    => 'Yá eisiste ua páigina cun este títalo, ou l títalo que scolhiste ye ambálido.
 Por fabor, scuolhe outro nome.',
 'talkexists'       => "'''La páigina an si fui arrastrada cun éisito. Inda assi, la páigina de çcusson nun fui arrastrada, ua beç que yá eisistie ua cun este títalo. Por fabor, ajunta-las a la mano.'''",

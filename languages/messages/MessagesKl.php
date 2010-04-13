@@ -491,7 +491,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'move-watch'      => 'Qupperneq ersersimatiguk',
 'movepagebtn'     => 'Qupperneq nuuguk',
 'pagemovedsub'    => 'Nuunnera iluatsippoq',
-'movepage-moved'  => '<big>Qupperneq \'\'\'"$1" uunga nuuppoq "$2"\'\'\'</big>',
+'movepage-moved'  => 'Qupperneq \'\'\'"$1" uunga nuuppoq "$2"\'\'\'',
 '1movedto2'       => '[[$1]] nuuppaa [[$2]]-mut',
 '1movedto2_redir' => '[[$1]] nuunneqarsimavoq [[$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
 

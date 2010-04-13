@@ -251,7 +251,7 @@ $messages = array(
 'index-category'                 => 'Kurasa kuu',
 'noindex-category'               => 'Kurasa zisizokuu',
 
-'mainpagetext'      => "<big>'''MediaWiki imefanikiwa kuingizwa.'''</big>",
+'mainpagetext'      => "'''MediaWiki imefanikiwa kuingizwa.'''",
 'mainpagedocfooter' => 'Shauriana na [http://meta.wikimedia.org/wiki/Help:Contents Mwongozo wa Mtumiaji] kwa habari juu ya utumiaji wa bidhaa pepe ya wiki.
 
 == Msaada wa kianzio ==
@@ -670,7 +670,7 @@ Iwapo utabonyeza tena Hifadhi, haririo lako litahifadhiwa bila kichwa cha habari
 'summary-preview'                  => 'Hakikisho la muhtasari:',
 'subject-preview'                  => 'Hakikisha kichwa cha habari/mada:',
 'blockedtitle'                     => 'Mtumiaji amezuiwa',
-'blockedtext'                      => "<big>'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</big>
+'blockedtext'                      => "'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''
 
 Umezuiwa na $1. 
 Sababu aliyetambua ni ''$2''
@@ -1283,6 +1283,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'upload'              => 'Pakia faili',
 'uploadbtn'           => 'Pakia faili',
 'reuploaddesc'        => 'Kubatilisha kupakia na kurudi kwenye fomu ya kupakia',
+'upload-tryagain'     => 'Uwasilishe maelezo tofauti ya faili',
 'uploadnologin'       => 'Hujaingia',
 'uploadnologintext'   => 'Lazima [[Special:UserLogin|uingie akaunti yako]] ile upakie mafaili.',
 'uploaderror'         => 'Hitilafu ya kupia',
@@ -1812,7 +1813,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'move-watch'              => 'Fuatilia ukurasa huu',
 'movepagebtn'             => 'Sogeza ukurasa',
 'pagemovedsub'            => 'Umefaulu kusogeza ukurasa',
-'movepage-moved'          => '<big>\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'</big>',
+'movepage-moved'          => '\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'',
 'articleexists'           => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',

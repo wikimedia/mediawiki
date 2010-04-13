@@ -426,7 +426,7 @@ $messages = array(
 'index-category'                 => 'Halaman yang diindeks',
 'noindex-category'               => 'Halaman yang tidak diindeks',
 
-'mainpagetext'      => "<big>'''MediaWiki telah terpasang dengan sukses'''</big>.",
+'mainpagetext'      => "'''MediaWiki telah terpasang dengan sukses'''.",
 'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki ini.
 
 == Memulai penggunaan ==
@@ -829,7 +829,7 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'summary-preview'                  => 'Pratayang ringkasan:',
 'subject-preview'                  => 'Pratayang subyek/tajuk:',
 'blockedtitle'                     => 'Pengguna diblokir',
-'blockedtext'                      => "<big>'''Nama pengguna atau alamat IP Anda telah diblokir.'''</big>
+'blockedtext'                      => "'''Nama pengguna atau alamat IP Anda telah diblokir.'''
 
 Blokir dilakukan oleh $1.
 Alasan yang diberikan adalah ''$2''.
@@ -2247,7 +2247,7 @@ Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, r
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revisi|revisi}} and $2 berkas dikembalikan',
 'undeletedfiles'               => '$1 {{PLURAL:$1|berkas|berkas}} dikembalikan',
 'cannotundelete'               => 'Pembatalan penghapusan gagal; mungkin ada orang lain yang telah terlebih dahulu melakukan pembatalan.',
-'undeletedpage'                => "<big>'''$1 berhasil dikembalikan'''</big>
+'undeletedpage'                => "'''$1 berhasil dikembalikan'''
 
 Lihat [[Special:Log/delete|log penghapusan]] untuk data penghapusan dan pengembalian.",
 'undelete-header'              => 'Lihat [[Special:Log/delete|log penghapusan]] untuk daftar halaman yang baru dihapus.',
@@ -2467,7 +2467,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'move-watch'                   => 'Pantau halaman ini',
 'movepagebtn'                  => 'Pindahkan halaman',
 'pagemovedsub'                 => 'Pemindahan berhasil',
-'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Halaman pengalihan telah dibuat.',
 'movepage-moved-noredirect'    => 'Pengalihan tidak dibuat.',
 'articleexists'                => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',

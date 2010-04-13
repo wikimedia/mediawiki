@@ -204,7 +204,7 @@ $messages = array(
 'category-article-count-limited' => 'Yaon sa presenteng kategorya an mga minasunod na {{PLURAL:$1|pahina|$1 pahina}}.',
 'listingcontinuesabbrev'         => 'sunód',
 
-'mainpagetext'      => "<big>'''Instalado na an MediaWiki.'''</big>",
+'mainpagetext'      => "'''Instalado na an MediaWiki.'''",
 'mainpagedocfooter' => "Konsultarón tabì an [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa impormasyon sa paggamit nin progama kaining wiki.
 
 == Pagpopoon ==
@@ -558,7 +558,7 @@ Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong s
 'summary-preview'            => 'Patànaw nin sumada:',
 'subject-preview'            => 'Patânaw nin tema/pamayohan:',
 'blockedtitle'               => 'Pigbágat an parágamit',
-'blockedtext'                => "<big>'''Pigbagat an pangaran o IP mo.'''</big>
+'blockedtext'                => "'''Pigbagat an pangaran o IP mo.'''
 
 Si $1 an nagbagat. Ini an itinaong rasón, ''$2''.
 
@@ -1415,7 +1415,7 @@ binalik an na pagribay o hinalî sa archibo.',
 'undeletedrevisions-files'     => "$1 na (mga) pagribay asin $2 na (mga) binalik na ''file''",
 'undeletedfiles'               => "$1 (mga) ''file'' an binalik",
 'cannotundelete'               => 'Naprakaso an pagbalik kan pigparâ; pwede ser an binawi an pagparâ kan páhina kan ibang parágamit.',
-'undeletedpage'                => "<big>'''binalik na an $1 '''</big>
+'undeletedpage'                => "'''binalik na an $1 '''
 
 Ikonsultar an [[Special:Log/delete|historial nin pagparâ]] para mahiling an lista nin mga kaaaging pagparâ asin pagbalik.",
 'undelete-header'              => 'Hilingon an [[Special:Log/delete|historial kan pagparâ]] kan mga kaaagi pa sanang pinarang páhina.',
@@ -1590,7 +1590,7 @@ Sa mga kasong iyan, kaipuhan mong ibalyo o isalak an páhina nin mano-mano kun b
 'move-watch'              => 'Bantayán ining pahina',
 'movepagebtn'             => 'Ibalyó an pahina',
 'pagemovedsub'            => 'Naibalyó na',
-'movepage-moved'          => '<big>\'\'\'Naihubò na an "$1" sa "$2"\'\'\'</big>',
+'movepage-moved'          => '\'\'\'Naihubò na an "$1" sa "$2"\'\'\'',
 'articleexists'           => 'Igwa nang pahina sa parehong pangaran, o dai pwede an pangaran na pigpilì mo.
 Magpilì tabì nin ibang pangaran.',
 'talkexists'              => "'''Ibinalyo na an mismong pahina, alagad dai naibalyo an pahina nin orolay ta igwa na kaini sa bàgong titulo. Pagsaroon tabì ining duwa nin mano-mano.'''",

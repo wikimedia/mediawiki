@@ -437,7 +437,7 @@ $messages = array(
 'index-category'                 => "Te indexeren pagina's",
 'noindex-category'               => "Niet te indexeren pagina's",
 
-'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",
+'mainpagetext'      => "'''De installatie van MediaWiki is geslaagd.'''",
 'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 
 == Meer hulp over MediaWiki ==
@@ -881,7 +881,7 @@ Als u opnieuw op \"opslaan\" klikt, wordt uw wijziging zonder een onderwerp/kop 
 'summary-preview'                  => 'Samenvatting nakijken:',
 'subject-preview'                  => 'Nakijken onderwerp/kop:',
 'blockedtitle'                     => 'Gebruiker is geblokkeerd',
-'blockedtext'                      => '<big>\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'
 
 De blokkade is uitgevoerd door $1.
 De opgegeven reden is \'\'$2\'\'.
@@ -2395,7 +2395,7 @@ Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undeletedfiles'               => '{{PLURAL:$1|1 bestand|$1 bestanden}} teruggeplaatst',
 'cannotundelete'               => 'Het terugplaatsen is mislukt.
 Misschien heeft een andere gebruiker de pagina al teruggeplaatst.',
-'undeletedpage'                => "<big>'''$1 is teruggeplaatst'''</big>
+'undeletedpage'                => "'''$1 is teruggeplaatst'''
 
 In het [[Special:Log/delete|verwijderingslogboek]] staan recente verwijderingen en herstelhandelingen.",
 'undelete-header'              => "Zie het [[Special:Log/delete|verwijderingslogboek]] voor recent verwijderde pagina's.",
@@ -2639,7 +2639,7 @@ Houd er rekening mee dat alleen de pagina wordt hernoemd, ''niet'' de gebruiker.
 'move-watch'                   => 'Deze pagina volgen',
 'movepagebtn'                  => 'Pagina hernoemen',
 'pagemovedsub'                 => 'De pagina is hernoemd',
-'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" is hernoemd naar "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Er is een doorverwijzing aangemaakt.',
 'movepage-moved-noredirect'    => 'Er is geen doorverwijzing aangemaakt.',
 'articleexists'                => 'De pagina bestaat al of de paginanaam is ongeldig.

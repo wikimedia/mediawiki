@@ -362,7 +362,7 @@ $messages = array(
 'index-category'                 => 'Pagine indicizzate',
 'noindex-category'               => 'Pagine non indicizzate',
 
-'mainpagetext'      => "<big>'''Installazione di MediaWiki completata correttamente.'''</big>",
+'mainpagetext'      => "'''Installazione di MediaWiki completata correttamente.'''",
 'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
 
 == Per iniziare ==
@@ -773,7 +773,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'summary-preview'                  => "Anteprima dell'oggetto:",
 'subject-preview'                  => 'Anteprima oggetto/intestazione:',
 'blockedtitle'                     => 'Utente bloccato.',
-'blockedtext'                      => "<big>'''Questo nome utente o indirizzo IP sono stati bloccati.'''</big>
+'blockedtext'                      => "'''Questo nome utente o indirizzo IP sono stati bloccati.'''
 
 Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2''
 
@@ -2185,7 +2185,7 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisione|$1 revisioni}} e $2 file recuperati',
 'undeletedfiles'               => '{{PLURAL:$1|Un file recuperato|$1 file recuperati}}',
 'cannotundelete'               => 'Ripristino non riuscito; è possibile che la pagina sia già stata recuperata da un altro utente.',
-'undeletedpage'                => "<big>'''La pagina $1 è stata recuperata'''</big>
+'undeletedpage'                => "'''La pagina $1 è stata recuperata'''
 
 Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni e i recuperi più recenti.",
 'undelete-header'              => 'Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni più recenti.',
@@ -2408,7 +2408,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'move-watch'                   => 'Aggiungi la pagina agli osservati speciali',
 'movepagebtn'                  => 'Sposta la pagina',
 'pagemovedsub'                 => 'Spostamento effettuato con successo',
-'movepage-moved'               => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" è stata spostata a "$2"\'\'\'',
 'movepage-moved-redirect'      => 'È stato creato un redirect.',
 'movepage-moved-noredirect'    => 'La creazione di un redirect è stata soppressa.',
 'articleexists'                => 'Una pagina con questo nome esiste già oppure il nome scelto non è valido.

@@ -170,7 +170,7 @@ dj'artìcoj ancó pa scrit",
 'index-category'                 => 'Pàgine indicisà',
 'noindex-category'               => 'Pàgine pa indicisà',
 
-'mainpagetext'      => "<big>'''MediaWiki a l'é staita anstalà a la përfession.'''</big>",
+'mainpagetext'      => "'''MediaWiki a l'é staita anstalà a la përfession.'''",
 'mainpagedocfooter' => "Che a varda la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] për avèj dj'anformassion ant sël coma dovré ël programa dla wiki.
 
 == Për anandiesse a travajé ==
@@ -584,7 +584,7 @@ Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
 'summary-preview'                  => "Preuva dl'oget:",
 'subject-preview'                  => "Preuva d'oget/intestassion:",
 'blockedtitle'                     => "Belavans cost ëstranòm-sì a resta col ëd n'utent che a l'é stàit disabilità a fé 'd modìfiche a j'artìcoj.",
-'blockedtext'                      => "<big>'''Sò stranòm ò pura adrëssa IP a l'é stàit blocà.'''</big>
+'blockedtext'                      => "'''Sò stranòm ò pura adrëssa IP a l'é stàit blocà.'''
 
 Ël blocagi a l'é stàit fàit da \$1. 
 Coma rason a l'ha butà ''\$2''.
@@ -1163,8 +1163,8 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 
 'group-user-member'          => 'utent',
 'group-autoconfirmed-member' => "utent ch'a l'é convalidasse daspërchiel/chila",
-'group-bot-member'           => 'Trigomiro',
-'group-sysop-member'         => 'Aministrator',
+'group-bot-member'           => 'trigomiro',
+'group-sysop-member'         => 'aministrator',
 'group-bureaucrat-member'    => 'Mangiapapé',
 'group-suppress-member'      => 'Oversight',
 
@@ -1813,30 +1813,32 @@ A peulo ess-ie [[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissionaj]
 'listgrouprights-removegroup-self-all' => 'Gava tute le partìe da tò cont',
 
 # E-mail user
-'mailnologin'      => 'A-i é pa gnun-a adrëssa për mandé ël messagi',
-'mailnologintext'  => "A dev [[Special:UserLogin|rintré ant ël sistema]]
+'mailnologin'          => 'A-i é pa gnun-a adrëssa për mandé ël messagi',
+'mailnologintext'      => "A dev [[Special:UserLogin|rintré ant ël sistema]]
 e avej registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podej mandé dij messagi ëd pòsta eletrònica a j'àutri Utent.",
-'emailuser'        => "Mand-je un messagi eletrònich a st'Utent-sì",
-'emailpage'        => "Mand-je un messagi ëd pòsta eletrònica a st'utent-sì",
-'emailpagetext'    => "It peule dovré la forma ambelessì për mandé un messagi e-mail a st'utent-sì.
+'emailuser'            => "Mand-je un messagi eletrònich a st'Utent-sì",
+'emailpage'            => "Mand-je un messagi ëd pòsta eletrònica a st'utent-sì",
+'emailpagetext'        => "It peule dovré la forma ambelessì për mandé un messagi e-mail a st'utent-sì.
 L'adrëssa e-mail ch'it l'has butà an [[Special:Preferences|Ij sò gust]] a sarà butò ant l'adrëssa \"From\" ëd toa e-mail, parèj ël ricevent a podrà arsponde diretament a ti.",
-'usermailererror'  => "L'oget che a goèrna la pòsta eletrònica a l'ha dait eror:",
-'defemailsubject'  => 'Messagi da {{SITENAME}}',
-'noemailtitle'     => 'Pa gnun-a adrëssa ëd pòsta eletrònica',
-'noemailtext'      => "Cost Utent-sì a l'ha pa spessificà n'adrëssa e-mail vàlida.",
-'nowikiemailtitle' => 'Gnun-e e-mail',
-'nowikiemailtext'  => "Stutent-sì a l'ha sërnù ëd pa arseive e-mail da dj'àutri utent.",
-'email-legend'     => "Manda n'e-mail a n'àutr utent ëd {{SITENAME}}",
-'emailfrom'        => 'Da:',
-'emailto'          => 'A:',
-'emailsubject'     => 'Oget:',
-'emailmessage'     => 'Messagi:',
-'emailsend'        => 'Manda',
-'emailccme'        => 'Mand-ne na còpia ëdcò a mia adrëssa.',
-'emailccsubject'   => 'Còpia dël messagi mandà a $1: $2',
-'emailsent'        => 'Messagi eletrònich mandà',
-'emailsenttext'    => "Sò messagi eletrònich a l'é stait mandà",
-'emailuserfooter'  => 'St\'e-mail-sì a l\'é stàita mandà da $1 a $2 con la fonsion "E-mail utent" a {{SITENAME}}.',
+'usermailererror'      => "L'oget che a goèrna la pòsta eletrònica a l'ha dait eror:",
+'defemailsubject'      => 'Messagi da {{SITENAME}}',
+'usermaildisabled'     => "Pòsta eletrònica dl'utent disabilità",
+'usermaildisabledtext' => "A peul pa mandé ëd mësagi ëd pòsta eletrònica a d'àutri utent dzora a sta wiki-sì",
+'noemailtitle'         => 'Pa gnun-a adrëssa ëd pòsta eletrònica',
+'noemailtext'          => "Cost Utent-sì a l'ha pa spessificà n'adrëssa e-mail vàlida.",
+'nowikiemailtitle'     => 'Gnun-e e-mail',
+'nowikiemailtext'      => "Stutent-sì a l'ha sërnù ëd pa arseive e-mail da dj'àutri utent.",
+'email-legend'         => "Manda n'e-mail a n'àutr utent ëd {{SITENAME}}",
+'emailfrom'            => 'Da:',
+'emailto'              => 'A:',
+'emailsubject'         => 'Oget:',
+'emailmessage'         => 'Messagi:',
+'emailsend'            => 'Manda',
+'emailccme'            => 'Mand-ne na còpia ëdcò a mia adrëssa.',
+'emailccsubject'       => 'Còpia dël messagi mandà a $1: $2',
+'emailsent'            => 'Messagi eletrònich mandà',
+'emailsenttext'        => "Sò messagi eletrònich a l'é stait mandà",
+'emailuserfooter'      => 'St\'e-mail-sì a l\'é stàita mandà da $1 a $2 con la fonsion "E-mail utent" a {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Ròba che im ten-o sot euj',
@@ -2060,7 +2062,7 @@ l'avìa travaje ansima anans che a la scancelèisso.
 'undeletedrevisions-files'     => "{{PLURAL:$1|Na|$1}} revision e {{PLURAL:$2|n'|$2&nbsp;}}archivi pijait andré",
 'undeletedfiles'               => "{{PLURAL:$1|N'|$1&nbsp;}}archivi pijait andaré",
 'cannotundelete'               => "Disdëscancelament falì; a peul esse che i fusse antra doi a felo ant l'istess temp e l'àutr a sia riva prima.",
-'undeletedpage'                => "<big>'''$1 a l'é stait pijait andaré'''</big>
+'undeletedpage'                => "'''$1 a l'é stait pijait andaré'''
 
 Che as varda ël [[Special:Log/delete|Registr djë scancelament]] për ës-ciairé j'ùltim scancelament e disdëscancelament.",
 'undelete-header'              => "Ch'a varda [[Special:Log/delete|ël registr djë scancelament]] për ës-ciairé j'ùltim dëscancelament.",
@@ -2297,7 +2299,7 @@ për podej tramudé na pàgina.",
 'move-watch'                   => 'Ten sot euj sta pàgina-sì',
 'movepagebtn'                  => 'Tramuda sta pàgina-sì',
 'pagemovedsub'                 => 'San Martin bele finì!',
-'movepage-moved'               => "<big>'''\"\$1\" a l'é stàit spostà a \"\$2\"'''</big>",
+'movepage-moved'               => "'''\"\$1\" a l'é stàit spostà a \"\$2\"'''",
 'movepage-moved-redirect'      => "A l'é stàita creà na rediression.",
 'movepage-moved-noredirect'    => "La creassion ëd na rediression a l'é stàita scanselà.",
 'articleexists'                => "Na pàgina che as ciama parej a-i é già, ò pura ël nòm che a l'ha sërnù a va nen bin.<br />
@@ -3205,6 +3207,7 @@ Ch'a bata 'l nòm dl'archivi sensa pa bute-ie 'l prefiss \"{{ns:file}}:\".",
 'htmlform-float-invalid'       => "Ël valor ch'it l'has spessificà a l'é pa un nùmer.",
 'htmlform-int-toolow'          => "Ël valor ch'it l'has spessificà a l'é sota al mìnim ëd $1.",
 'htmlform-int-toohigh'         => "Ël valor ch'it l'has spessificà a l'é dzora dël màssim ëd $1.",
+'htmlform-required'            => 'A-i é dabzògn ëd cost valor',
 'htmlform-submit'              => 'Spediss',
 'htmlform-reset'               => 'Scansela ij cambiament',
 'htmlform-selectorother-other' => 'Àutr',
