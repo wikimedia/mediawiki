@@ -731,11 +731,20 @@ $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
 
+'EmailUserCC': before sending the copy of the email to the author
+$to: address of receiving user
+$from: address of sending user
+$subject: subject of the mail
+$text: text of the mail
+
 'EmailUserComplete': after sending email from one user to another
 $to: address of receiving user
 $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
+
+'EmailUserForm': after building the email user form object
+$form: HTMLForm object
 
 'EmailUserPermissionsErrors': to retrieve permissions errors for emailing a user.
 $user: The user who is trying to email another user.
