@@ -24,6 +24,7 @@ function wfSpecialListfiles( $par = null ) {
 class ImageListPager extends TablePager {
 	var $mFieldNames = null;
 	var $mQueryConds = array();
+	var $mUserName = null;
 	
 	function __construct( $par = null ) {
 		global $wgRequest, $wgMiserMode;
@@ -37,14 +38,15 @@ class ImageListPager extends TablePager {
 		if ( $userName ) {
 			$nt = Title::newFromText( $userName, NS_USER );
 			if ( !is_null( $nt ) ) {
-				$this->mQueryConds['img_user_text'] = $nt->getText();
+				$this->mUserName = $nt->getText();
+				$this->mQueryConds['img_user_text'] = $this->mUserName;
 			}
 		} 
 		
 		$search = $wgRequest->getText( 'ilsearch' );
 		if ( $search != '' && !$wgMiserMode ) {
 			$nt = Title::newFromURL( $search );
-			if( $nt ) {
+			if ( $nt ) {
 				$dbr = wfGetDB( DB_SLAVE );
 				$this->mQueryConds[] = 'LOWER(img_name)' . $dbr->buildLike( $dbr->anyString(), 
 					strtolower( $nt->getDBkey() ), $dbr->anyString() );
@@ -199,5 +201,16 @@ class ImageListPager extends TablePager {
 
 	function getSortHeaderClass() {
 		return 'listfiles_sort ' . parent::getSortHeaderClass();
+	}
+	
+	function getPagingQueries() {
+		$queries = parent::getPagingQueries();
+		if ( !is_null( $this->mUserName ) ) {
+			# Append the username to the query string
+			foreach ( $queries as $key => &$query ) {
+				$query['username'] = $this->mUserName;
+			}
+		}
+		return $queries;
 	}
 }
