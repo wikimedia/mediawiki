@@ -37,7 +37,8 @@ class MathRenderer {
 
 		if( $this->mode == MW_MATH_SOURCE ) {
 			# No need to render or parse anything more!
-			return ('$ '.htmlspecialchars( $this->tex ).' $');
+			# New lines are replaced with spaces, which avoids confusing our parser (bugs 23190, 22818)
+			return ('$ ' . str_replace( "\n", " ", htmlspecialchars( $this->tex ) ) . ' $');
 		}
 		if( $this->tex == '' ) {
 			return; # bug 8372

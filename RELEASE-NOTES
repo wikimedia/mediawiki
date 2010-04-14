@@ -109,6 +109,7 @@ in a negative namespace (which is invalid).
 * (bug 19858) Removed obsolete <big> in interface messages.
 * (bug 21456) "Bad title" error when showing non-local interwiki pages no longer
   displays incorrect tabs
+* (bug 23190) Improved math representation for text browsers.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
