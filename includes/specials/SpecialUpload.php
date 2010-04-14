@@ -313,11 +313,13 @@ class SpecialUpload extends SpecialPage {
 	 * 	warnings and the should continue processing like there was no warning
 	 */
 	protected function showUploadWarning( $warnings ) {
-		# If there are no warnings, or warnings we can ignore, return early
-		if (
-			!$warnings || ( count( $warnings ) == 1 &&
-			isset( $warnings['exists']) && $this->mDestWarningAck )
-		)
+		# If there are no warnings, or warnings we can ignore, return early.
+		# mDestWarningAck is set when some javascript has shown the warning
+		# to the user. mForReUpload is set when the user clicks the "upload a
+		# new version" link.
+		if ( !$warnings || ( count( $warnings ) == 1 && 
+			isset( $warnings['exists'] ) && 
+			( $this->mDestWarningAck || $this->mForReUpload ) ) )
 		{
 			return false;
 		}
@@ -936,7 +938,7 @@ class UploadForm extends HTMLForm {
 	protected function getOptionsSection() {
 		global $wgUser;
 
-		if( $wgUser->isLoggedIn() ) {
+		if ( $wgUser->isLoggedIn() ) {
 			$descriptor = array(
 				'Watchthis' => array(
 					'type' => 'check',
@@ -947,7 +949,7 @@ class UploadForm extends HTMLForm {
 				)
 			);
 		}
-		if( !$this->mHideIgnoreWarning ) {
+		if ( !$this->mHideIgnoreWarning ) {
 			$descriptor['IgnoreWarning'] = array(
 				'type' => 'check',
 				'id' => 'wpIgnoreWarning',
@@ -956,11 +958,19 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		$descriptor['wpDestFileWarningAck'] = array(
+		$descriptor['DestFileWarningAck'] = array(
 			'type' => 'hidden',
 			'id' => 'wpDestFileWarningAck',
 			'default' => $this->mDestWarningAck ? '1' : '',
 		);
+		
+		if ( $this->mForReUpload ) {
+			$descriptor['ForReUpload'] = array(
+				'type' => 'hidden',
+				'id' => 'wpForReUpload',
+				'default' => '1',
+			);
+		}
 
 		return $descriptor;
 	}
