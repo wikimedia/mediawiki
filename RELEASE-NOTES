@@ -107,6 +107,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Maintenance script cleanupTitles is now able to fix titles stored
 in a negative namespace (which is invalid).
 * (bug 19858) Removed obsolete <big> in interface messages.
+* (bug 21456) "Bad title" error when showing non-local interwiki pages no longer
+  displays incorrect tabs
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent

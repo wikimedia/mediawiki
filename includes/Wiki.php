@@ -207,6 +207,7 @@ class MediaWiki {
 				$output->redirect( $url );
 			} else {
 				$title = SpecialPage::getTitleFor( 'Badtitle' );
+				$output->setTitle( $title ); // bug 21456
 				wfProfileOut( __METHOD__ );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
