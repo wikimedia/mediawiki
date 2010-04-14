@@ -472,6 +472,7 @@ class EmailNotification {
 
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
+		$keys['$UNWATCHURL']         = $this->title->getFullUrl( 'action=unwatch' );
 
 		$subject = strtr( $subject, $keys );
 

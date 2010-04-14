@@ -2653,7 +2653,7 @@ To change your watchlist settings, visit
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 To delete the page from your watchlist, visit
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Feedback and further assistance:
 {{fullurl:{{MediaWiki:Helppage}}}}',
