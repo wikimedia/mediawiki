@@ -2173,7 +2173,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 علشان تمسح الصفحه من على ليستة مراقبتك, زور
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 الfeedback و مساعده اكتر:
 {{fullurl:{{MediaWiki:Helppage}}}}',

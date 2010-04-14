@@ -1870,7 +1870,7 @@ Zure jarraipen zerrendako konfigurazioa aldatzeko, ikus
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Orrialdea zure jarraipen zerrendatik ezabatzeko, ikus
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Laguntza:
 {{fullurl:{{MediaWiki:Helppage}}}}',

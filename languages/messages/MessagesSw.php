@@ -1283,7 +1283,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'upload'              => 'Pakia faili',
 'uploadbtn'           => 'Pakia faili',
 'reuploaddesc'        => 'Kubatilisha kupakia na kurudi kwenye fomu ya kupakia',
-'upload-tryagain'     => 'Uwasilishe maelezo tofauti ya faili',
+'upload-tryagain'     => 'Wasilisha maelezo ya faili lililobadilishwa',
 'uploadnologin'       => 'Hujaingia',
 'uploadnologintext'   => 'Lazima [[Special:UserLogin|uingie akaunti yako]] ile upakie mafaili.',
 'uploaderror'         => 'Hitilafu ya kupia',
@@ -1598,7 +1598,7 @@ Ukitaka kubadilisha mapendekezo yako yanayohusika orodha ya maangalizi yako, nen
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Ukitaka kutoa ukurasa huu kwenye orodha ya maangalizi yako, nenda
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Kutoa maoni yako au kupata msaada mwingine:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1683,16 +1683,23 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 
 # Undelete
 'undelete'                  => 'Kuzitazama kurasa zilizofutwa',
+'undeletepage'              => 'Kutazama na kurudisha kurasa zilizofutwa',
 'viewdeletedpage'           => 'Tazama kurasa zilizofutwa',
+'undelete-fieldset-title'   => 'Kurudisha mapitio',
 'undeletebtn'               => 'Rudisha',
 'undeletelink'              => 'onyesha/rejesha',
 'undeleteviewlink'          => 'tazama',
 'undeletecomment'           => 'Sababu:',
 'undeletedarticle'          => 'alirudisha "[[$1]]"',
+'undeletedrevisions'        => '{{PLURAL:$1|pitio 1 lilirudishwa|mapitio $1 yalirudishwa}}',
+'undeletedfiles'            => '{{PLURAL:$1|faili 1 lilirudishwa|mafaili $1 yalirudishwa}}',
+'cannotundelete'            => 'Kurudisha ukurasa imeshindikana;
+huenda ikawa mtu mwingine ameurudisha tayari.',
 'undelete-header'           => 'Tazama [[Special:Log/delete|kumbukumbu za ufutaji]] ili kujua kurasa zipi zilizofutwa hivi karibuni.',
 'undelete-search-box'       => 'Tafuta kwenye kurasa zilizofutwa',
 'undelete-search-prefix'    => 'Onyesha kurasa kuanzia na:',
 'undelete-search-submit'    => 'Tafuta',
+'undelete-error-short'      => 'Hitilafu wakati wa kurudisha faili: $1',
 'undelete-show-file-submit' => 'Ndiyo',
 
 # Namespace form on various pages

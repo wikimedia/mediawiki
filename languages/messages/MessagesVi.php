@@ -2098,7 +2098,7 @@ Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả cá
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Phản hồi và cần sự hỗ trợ:
 {{fullurl:{{MediaWiki:Helppage}}}}',

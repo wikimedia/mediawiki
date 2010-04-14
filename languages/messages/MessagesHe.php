@@ -2173,7 +2173,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 כדי למחוק את הדף מרשימת המעקב שלכם, בקרו בדף
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 למשוב ולעזרה נוספת:
 {{fullurl::{{MediaWiki:Helppage}}}}',

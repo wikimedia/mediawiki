@@ -2114,7 +2114,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Для вилучення сторінки з вашого списку спостереження відвідайте
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Зворотний зв\'язок та допомога:
 {{fullurl:{{MediaWiki:Helppage}}}}',

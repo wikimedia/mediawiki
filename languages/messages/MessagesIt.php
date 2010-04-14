@@ -2044,7 +2044,7 @@ Per modificare le impostazioni della lista degli osservati speciali, visita
 {{fullurl:Special:Watchlist/edit}}
 
 Per cancellare la pagina della lista degli osservati speciali, visita 
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Per dare il tuo feedback e ricevere ulteriore assistenza:
 {{fullurl:Help:Aiuto}}',

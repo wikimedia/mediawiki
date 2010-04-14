@@ -1896,7 +1896,7 @@ Biex tbiddel l-impostazzjonijiet tal-lista ta\' osservazzjoni tiegħek, żur
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Biex tħassar il-paġna minn fuq il-lista ta\' osservazzjoni tiegħek, żur
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Biex tagħti l-kumment tiegħek u biex tikseb aktar għajnuna:
 {{fullurl:{{MediaWiki:Helppage}}}}',

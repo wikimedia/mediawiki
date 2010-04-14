@@ -2134,7 +2134,7 @@ Zmeniť nastavenia vašich sledovaných stránok môžete na
 {{fullurl:Special:Watchlist/edit}}
 
 Zmazať stránku z vášho zoznamu sledovaných môžete na
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Návrhy a ďalšia pomoc:
 {{fullurl:{{int:Helppage}}}}',

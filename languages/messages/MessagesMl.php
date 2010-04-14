@@ -2110,7 +2110,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 താൾ താങ്കൾ ശ്രദ്ധിക്കുന്നവയുടെ പട്ടികയിൽ നിന്ന് നീക്കംചെയ്യാൻ, സന്ദർശിക്കുക
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 അഭിപ്രായം അറിയിക്കാനും മറ്റു സഹായങ്ങൾക്കും:
 {{fullurl:{{MediaWiki:Helppage}}}}',

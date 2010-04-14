@@ -2092,7 +2092,7 @@ Para cambiar a súa lista de vixilancia, visite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Para borrar a páxina da súa lista de vixilancia, visite
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Axuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',

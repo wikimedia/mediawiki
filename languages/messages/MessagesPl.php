@@ -2111,7 +2111,7 @@ W celu zmiany ustawień swojej listy obserwowanych odwiedź
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Usunięcie strony z listy obserwowanych możliwe jest na stronie
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Pomoc
 {{fullurl:{{MediaWiki:Helppage}}}}',

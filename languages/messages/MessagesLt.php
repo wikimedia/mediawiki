@@ -2015,7 +2015,7 @@ Norėdami pakeisti stebimų puslapių nustatymus, užeikite į
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Norėdami puslapį iš stebimų puslapių sąrašo, užeikite į
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Atsiliepimai ir pagalba:
 {{fullurl:{{MediaWiki:Helppage}}}}',

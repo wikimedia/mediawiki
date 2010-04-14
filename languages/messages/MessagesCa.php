@@ -2010,7 +2010,7 @@ Per a canviar les opcions de la vostra llista de seguiment aneu a
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Per eliminar la pàgina de la vostra llista de seguiment aneu a
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Suggeriments i ajuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',

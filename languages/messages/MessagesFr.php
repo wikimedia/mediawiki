@@ -2185,7 +2185,7 @@ Pour modifier les paramètres de votre liste de suivi, visitez
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Pour supprimer la page de votre liste de suivi, visitez
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Retour et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -656,17 +656,19 @@ Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagford
 'summary-preview'                  => 'Vorschou vor Zämefassig:',
 'subject-preview'                  => 'Vorschau vum Betreff:',
 'blockedtitle'                     => 'Benutzer isch gsperrt.',
-'blockedtext'                      => "'''Dy Benutzernamen oder dyni IP-Adrässen isch gsperrt worde.'''
+'blockedtext'                      => "'''Dyy Benutzername oder Dyyni IP-Adräss isch gsperrt wore.'''
 
-Du chasch $1 oder en anderen [[{{MediaWiki:Grouppage-sysop}}|Administrator]] kontaktiere, für die Sperrig z diskutiere. Vergis i däm Fall bitte keni vo de folgenden Agabe:
+D Sperrig isch vu $1 uusgfiert wore.
+As Grund isch ''$2'' aagee wore.
 
-*Administrator, wo het gsperrt: $1
-*Grund für d Sperrig: $2
-*Afang vor Sperrig: $8
-*Ändi vor Sperrig: $6
-*IP-Adrässe: $3
-*Sperrig betrifft: $7
-*ID vor Sperrig: #$5",
+* Aafang vu dr Sperrig: $8
+* Ändi vu dr Sperrig: $6
+* Sperrig betrifft: $7
+
+Du chasch $1 oder e andere [[{{MediaWiki:Grouppage-sysop}}|Ammann]] kontaktiere go dischpetiere iber die Sperrig.
+Du chasch d „E-Mail an dää Benutzer“-Funktion nit bruche, solang kei giltigi E-Mail-Adräss in Dyyne [[Special:Preferences|Benutzerkonto-Yystellige]] yydrait isch, oder solang die Funktion fir Di gsperrt isch.
+Dyy aktuälli IP-Adräss isch $3, un d Sperr-ID isch #$5.
+Bitte fieg in jedi Aafrog, wu du stellsch, alli Information yy.",
 'autoblockedtext'                  => 'Dyyni IP-Adräss isch automatisch gsperrt wore, wel si vu me andere Benutzer brucht woren isch, wu dur $1 gsperrt woren isch.
 As Grund isch aagee wore:
 
@@ -1847,29 +1849,31 @@ Zuesätzligi Informatione iber einzelni Rächt git s [[{{MediaWiki:Listgrouprigh
 'listgrouprights-removegroup-self-all' => 'Cha alli Gruppe us em eigene Benutzerkonto useneh',
 
 # E-mail user
-'mailnologin'      => 'Du bisch nid aagmäldet oder hesch keis Mail aaggä',
-'mailnologintext'  => 'Du muesch [[Special:UserLogin|aagmäldet syy]] un e bstätigti E-Mail-Adräss in Dyyne [[Special:Preferences|Yystellige]] aagee ha, fir dass epper anderem es E-Mail chasch schicke.',
-'emailuser'        => 'Es Mail schrybe',
-'emailpage'        => 'E-Mail an Benutzer',
-'emailpagetext'    => 'Du chasch im Benutzer mit däm Formular e E-Mail schicke.
+'mailnologin'          => 'Du bisch nid aagmäldet oder hesch keis Mail aaggä',
+'mailnologintext'      => 'Du muesch [[Special:UserLogin|aagmäldet syy]] un e bstätigti E-Mail-Adräss in Dyyne [[Special:Preferences|Yystellige]] aagee ha, fir dass epper anderem es E-Mail chasch schicke.',
+'emailuser'            => 'Es Mail schrybe',
+'emailpage'            => 'E-Mail an Benutzer',
+'emailpagetext'        => 'Du chasch im Benutzer mit däm Formular e E-Mail schicke.
 As Absender wird d E-Mail-Adräss us Dyyne [[Special:Preferences|Yystellige]] yytrait, ass dr Benutzer Dir cha Antwort gee.',
-'usermailererror'  => 'S Mail-Objekt het e Fähler zruckgee:',
-'defemailsubject'  => '{{SITENAME}}-E-Mail',
-'noemailtitle'     => 'Kei e-Mail-Adrässe',
-'noemailtext'      => 'Dää Benutzer het kei bstätigti E-Mail-Adräss aagee oder wet kei E-Mail vo andere Benutzer.',
-'nowikiemailtitle' => 'Kei E-Mail Versand mögli',
-'nowikiemailtext'  => 'De Benutzer möcht kei E-Mails vo andri Benutzer erhalte',
-'email-legend'     => 'E-Mail an e andere {{SITENAME}}-Benutzer schicke',
-'emailfrom'        => 'Vu:',
-'emailto'          => 'An:',
-'emailsubject'     => 'Betreff:',
-'emailmessage'     => 'Nochricht:',
-'emailsend'        => 'Abschicke',
-'emailccme'        => 'Schick e Kopii vu dr E-Mail a mii',
-'emailccsubject'   => 'Kopii vu Dyynere Nochricht an $1: $2',
-'emailsent'        => 'E-Mail furtgschickt',
-'emailsenttext'    => 'Dys E-Mail isch verschickt worde.',
-'emailuserfooter'  => 'Die E-Mail isch vum {{SITENAME}}-Benutzer „$1“ an „$2“ gschickt wore.',
+'usermailererror'      => 'S Mail-Objekt het e Fähler zruckgee:',
+'defemailsubject'      => '{{SITENAME}}-E-Mail',
+'usermaildisabled'     => 'Benutzer-E-Mail abgstellt',
+'usermaildisabledtext' => 'Du chasch in däm Wiki kei E-Mail an anderi Benutzer schicke',
+'noemailtitle'         => 'Kei e-Mail-Adrässe',
+'noemailtext'          => 'Dää Benutzer het kei bstätigti E-Mail-Adräss aagee oder wet kei E-Mail vo andere Benutzer.',
+'nowikiemailtitle'     => 'Kei E-Mail Versand mögli',
+'nowikiemailtext'      => 'De Benutzer möcht kei E-Mails vo andri Benutzer erhalte',
+'email-legend'         => 'E-Mail an e andere {{SITENAME}}-Benutzer schicke',
+'emailfrom'            => 'Vu:',
+'emailto'              => 'An:',
+'emailsubject'         => 'Betreff:',
+'emailmessage'         => 'Nochricht:',
+'emailsend'            => 'Abschicke',
+'emailccme'            => 'Schick e Kopii vu dr E-Mail a mii',
+'emailccsubject'       => 'Kopii vu Dyynere Nochricht an $1: $2',
+'emailsent'            => 'E-Mail furtgschickt',
+'emailsenttext'        => 'Dys E-Mail isch verschickt worde.',
+'emailuserfooter'      => 'Die E-Mail isch vum {{SITENAME}}-Benutzer „$1“ an „$2“ gschickt wore.',
 
 # Watchlist
 'watchlist'            => 'Beobachtigslischte',
@@ -1939,7 +1943,7 @@ Uf Dyyre Beobachtigssyte chasch d Beobachtigsmarker fir alli Syte zrucksetze, wu
 Go d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{fullurl:Special:Watchlist/edit}}
 
 Go d Syte us Dyyre Beobachtigslischte uuseneh, gang uf
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Ruckmäldig un wyteri Hilf:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3156,6 +3160,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'htmlform-float-invalid'       => 'D Wärt, wu du aagee hesch, isch kei Zahl.',
 'htmlform-int-toolow'          => 'Dr Wärt, wu aagee hesch, isch unter em Minimum vu $1',
 'htmlform-int-toohigh'         => 'Dr Wärt, wu aagee hesch, isch iber em Maximum vu $1',
+'htmlform-required'            => 'Dää Wert wird brucht',
 'htmlform-submit'              => 'Ibertrage',
 'htmlform-reset'               => 'Änderige ruckgängig mache',
 'htmlform-selectorother-other' => 'Anderi',

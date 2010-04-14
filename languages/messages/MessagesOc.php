@@ -2121,7 +2121,7 @@ Per modificar los paramètres de vòstra lista de seguiment, visitatz
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Per suprimir la pagina de vòstra lista de seguiment, visitatz
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Retorn e assisténcia :
 {{fullurl:{{MediaWiki:Helppage}}}}',

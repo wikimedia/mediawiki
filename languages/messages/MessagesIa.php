@@ -2041,7 +2041,7 @@ Pro cambiar le configuration de tu observatorio, visita
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Pro retirar le pagina de tu observatorio, visita
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Feedback e ulterior assistentia:
 {{fullurl:{{MediaWiki:Helppage}}}}',

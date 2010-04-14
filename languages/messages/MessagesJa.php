@@ -2029,7 +2029,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 あなたのウォッチリストからこのページを除去する:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 ご意見・お問い合わせ:
 {{fullurl:{{MediaWiki:Helppage}}}}',

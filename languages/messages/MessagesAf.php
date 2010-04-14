@@ -2058,7 +2058,7 @@ U kan u dophoulys wysig by:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Om die bladsy vanaf u dophoulys te verwyder, besoek:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Terugvoer en verdere bystand:
 {{fullurl:{{MediaWiki:Helppage}}}}',

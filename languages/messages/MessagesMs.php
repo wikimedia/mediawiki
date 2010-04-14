@@ -1914,7 +1914,7 @@ Untuk mengubah tetapan senarai pantau anda, lawati
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Untuk memadam laman ini dari senarai pantau anda, lawati
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Maklum balas dan bantuan:
 {{fullurl:{{MediaWiki:Helppage}}}}',

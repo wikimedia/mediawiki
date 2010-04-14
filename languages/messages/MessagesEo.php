@@ -2025,7 +2025,7 @@ Por ŝanĝi la elektojn de via atentaro, bv viziti
 
 
 Por forigi la paĝon el via atentaro, bv viziti
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Reagoj kaj plia helpo:
 {{fullurl:{{MediaWiki:Helppage}}}}',

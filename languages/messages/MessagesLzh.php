@@ -1750,7 +1750,7 @@ $NEWPAGE
 --
 欲更哨令，惠訪{{fullurl:{{#special:Watchlist}}/edit}}
 
-欲刪之頁，惠訪{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+欲刪之頁，惠訪$UNWATCHURL
 
 饋助之，惠訪{{fullurl:{{MediaWiki:Helppage}}}}',
 

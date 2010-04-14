@@ -2238,7 +2238,7 @@ U kunt uw volglijstinstellingen wijzigen op:
 {{fullurl:Special:Watchlist/edit}}
 
 U kunt de pagina van uw volglijst verwijderen via de volgende verwijzing:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Feedback en andere assistentie:
 {{fullurl:{{MediaWiki:Helppage}}}}',

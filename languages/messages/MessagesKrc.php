@@ -1896,7 +1896,7 @@ $NEWPAGE
 {{fullurl:Special:Watchlist/edit}}
 
 Сынчыкълау списокдан кетерир ючюн:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Болушлукъ эм теджеуле ючюн:
 {{fullurl:{{MediaWiki:Helppage}}}}',

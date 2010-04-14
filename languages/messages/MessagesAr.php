@@ -2326,7 +2326,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 لحذف الصفحة من قائمة مراقبتك، زر
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 للاقتراحات وللحصول على مساعدة إضافية:
 {{fullurl:{{MediaWiki:Helppage}}}}',

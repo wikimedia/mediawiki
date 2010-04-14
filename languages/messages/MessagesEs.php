@@ -1141,7 +1141,7 @@ $1",
 'logdelete-success'           => 'Visibilidad de eventos cambiada correctamente.',
 'logdelete-failure'           => "'''La visibilidad del registro no pudo ser ajustada:'''
 $1",
-'revdel-restore'              => 'Cambiar visibilidad',
+'revdel-restore'              => 'cambiar visibilidad',
 'pagehist'                    => 'Historial de la página',
 'deletedhist'                 => 'Historial borrado',
 'revdelete-content'           => 'contenido',
@@ -2159,7 +2159,7 @@ Para cambiar las opciones de tu lista de seguimiento, visita:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Para borrar la página de tu lista de seguimiento visita:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Retroalimentación y asistencia adicional:
 {{fullurl:{{MediaWiki:Helppage}}}}',

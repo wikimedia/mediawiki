@@ -1951,7 +1951,7 @@ I newid eich gosodiadau gwylio, ymwelwch â
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 I dynnu\'r dudalen oddi ar eich rhestr gwylio, ewch at
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Am fwy o gymorth ac adborth:
 {{fullurl:{{MediaWiki:Helppage}}}}',
