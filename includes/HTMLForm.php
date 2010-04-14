@@ -305,7 +305,8 @@ class HTMLForm {
 	 * @param $attribs Array
 	 */
 	public function addHiddenField( $name, $value, $attribs=array() ){
-		$this->mHiddenFields[ $name ] = array( $value, $attribs );
+		$attribs += array( 'name' => $name );
+		$this->mHiddenFields[] = array( $value, $attribs );
 	}
 	
 	public function addButton( $name, $value, $id=null, $attribs=null ){
@@ -377,9 +378,9 @@ class HTMLForm {
 		$html .= Html::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
 		$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		
-		foreach( $this->mHiddenFields as $name => $value ){
-			list( $value, $attribs ) = $value;
-			$html .= Html::hidden( $name, $value, $attribs ) . "\n";
+		foreach( $this->mHiddenFields as $data ){
+			list( $value, $attribs ) = $data;
+			$html .= Html::hidden( $attribs['name'], $value, $attribs ) . "\n";
 		}
 
 		return $html;
@@ -1396,6 +1397,13 @@ class HTMLInfoField extends HTMLFormField {
 }
 
 class HTMLHiddenField extends HTMLFormField {
+	
+	public function __construct( $params ){
+		parent::__construct( $params );
+		# forcing the 'wp' prefix on hidden field names
+		# is undesirable
+		$this->mName = substr( $this->mName, 2 );
+	}
 	
 	public function getTableRow( $value ){
 		$params = array();
