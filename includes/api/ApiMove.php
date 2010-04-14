@@ -125,15 +125,15 @@ class ApiMove extends ApiBase {
 		$watch = "preferences";
 		if ( isset( $params['watchlist'] ) ) {
 			$watch = $params['watchlist'];
-		} elseif ( $wgUser->getOption( 'watchmoves' ) || $params['watch'] ) {
+		} elseif ( $params['watch'] ) {
 			$watch = 'watch';
 		} elseif ( $params['unwatch'] ) {
 			$watch = 'unwatch';
 		}
 
 		// Watch pages
-		$this->setWatch( $watch, $fromTitle );
-		$this->setWatch( $watch, $toTitle );
+		$this->setWatch( $watch, $fromTitle, 'watchmoves' );
+		$this->setWatch( $watch, $toTitle, 'watchmoves' );
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}

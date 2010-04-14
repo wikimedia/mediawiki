@@ -538,10 +538,12 @@ abstract class ApiBase {
 	/**
 	 * Return true if we're to watch the page, false if not, null if no change.
 	 * @param $watchlist String Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param $titleObj Title (optional) the page under consideration
+	 * @param $titleObj Title the page under consideration
+	 * @param $userOption The user option to consider when $watchlist=preferences. 
+	 * 	If not set will magically default to either watchdefault or watchcreations
 	 * @returns mixed
 	 */
-	protected function getWatchlistValue ( $watchlist, $titleObj = null ) {
+	protected function getWatchlistValue ( $watchlist, $titleObj, $userOption = null ) {
 		switch ( $watchlist ) {
 			case 'watch':
 				return true;
@@ -551,16 +553,17 @@ abstract class ApiBase {
 
 			case 'preferences':
 				global $wgUser;
-				if ( isset($titleObj) && !$titleObj->userIsWatching() ) {
-					if ( $titleObj->exists() ) {
-						if ( $wgUser->getOption( 'watchdefault' ) ) {
-							return true;
-						}
-					} elseif ( $wgUser->getOption( 'watchcreations' ) ) {
-						return true;
-					}
+				# If the user is already watching, don't bother checking
+				if ( $titleObj->userIsWatching() ) {
+					return null;
 				}
-				return null;
+				# If no user option was passed, use watchdefault or watchcreation
+				if ( is_null( $userOption ) ) {
+					$userOption = $titleObj->exists() 
+						? 'watchdefault' : 'watchcreations';
+				}
+				# If the corresponding user option is true, watch, else no change
+				return $wgUser->getOption( $userOption ) ? true : null;
 
 			case 'nochange':
 				return null;
@@ -574,10 +577,13 @@ abstract class ApiBase {
 	 * Set a watch (or unwatch) based the based on a watchlist parameter.
 	 * @param $watch String Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param $titleObj Title the article's title to change
+	 * @param $userOption The user option to consider when $watch=preferences
 	 */
-	protected function setWatch ( $watch, $titleObj ) {
-		$value = $this->getWatchlistValue( $watch, $titleObj );
-		if( $value === null ) return;
+	protected function setWatch ( $watch, $titleObj, $userOption = null ) {
+		$value = $this->getWatchlistValue( $watch, $titleObj, $userOption );
+		if( $value === null ) { 
+			return;
+		}
 
 		$articleObj = new Article( $titleObj );
 		if ( $value ) {
