@@ -551,7 +551,7 @@ abstract class ApiBase {
 
 			case 'preferences':
 				global $wgUser;
-				if ( isset($titleObj) && !$titleObj->userIsWatching() ) {				
+				if ( isset($titleObj) && !$titleObj->userIsWatching() ) {
 					if ( $titleObj->exists() ) {
 						if ( $wgUser->getOption( 'watchdefault' ) ) {
 							return true;
