@@ -2008,7 +2008,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 要刪除您監視清單中的該頁面，請參閱
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 回饋和進一步的幫助:
 {{fullurl:{{MediaWiki:Helppage}}}}',

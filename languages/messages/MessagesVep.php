@@ -1713,7 +1713,7 @@ Miše toižetada teiden kaclendnimikirjutesen järgendused, mängat tänna:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Miše čuta lehtpol\' teiden kaclendnimikirjutesespäi, mängat tänna:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Pid\'oitelend da joksii abu:
 {{fullurl:{{MediaWiki:Helppage}}}}',

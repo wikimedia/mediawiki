@@ -1865,7 +1865,7 @@ Uum do Ienstaalengen fon dien Beooboachtengslieste antoupaasjen, besäik
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Uum ju Siede fon dien Kontrollieste tou läskjen, besäik
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Touräächmäldengen un wiedere Hälpe: {{fullurl:{{MediaWiki:Helppage}}}}',
 

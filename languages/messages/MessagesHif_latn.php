@@ -1876,7 +1876,7 @@ Aapan dhyan ke settings ke badle ke khatir, jaao
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Aapan dhyan suchi se panna ke mitae ke khatir, jaao
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 
 Aapan bichar de ke khatir aur aage ke sahaeta:

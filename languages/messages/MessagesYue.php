@@ -1954,7 +1954,7 @@ wiki: $PAGEEDITOR_WIKI
 --
 要修改你嘅監視清單設定，請睇{{fullurl:{{#special:Watchlist}}/edit}}
 
-要刪除你嘅監視清單度嘅呢一版，請睇{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+要刪除你嘅監視清單度嘅呢一版，請睇$UNWATCHURL
 
 回饋及更多幫助：
 {{fullurl:{{MediaWiki:Helppage}}}}',

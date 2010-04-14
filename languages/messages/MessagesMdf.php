@@ -1735,7 +1735,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Лопать тонь мельгеваномастот нардаманди сашентт
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Азома мекпяли ди иля лезкс:
 {{fullurl:{{MediaWiki:Helppage}}}}',

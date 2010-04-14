@@ -2216,7 +2216,7 @@ Por changiér los paramètres de voutra lista de survelyence, visitâd
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Por suprimar la pâge de voutra lista de survelyence, visitâd
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Retôrn et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',

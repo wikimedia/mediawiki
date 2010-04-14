@@ -1165,8 +1165,8 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'group-autoconfirmed-member' => "utent ch'a l'é convalidasse daspërchiel/chila",
 'group-bot-member'           => 'trigomiro',
 'group-sysop-member'         => 'aministrator',
-'group-bureaucrat-member'    => 'Mangiapapé',
-'group-suppress-member'      => 'Oversight',
+'group-bureaucrat-member'    => 'mangiapapé',
+'group-suppress-member'      => 'supervisor',
 
 'grouppage-user'          => '{{ns:project}}:Utent',
 'grouppage-autoconfirmed' => "{{ns:project}}:Utent ch'a son convalidasse daspërlor",
@@ -1910,7 +1910,7 @@ Për cangé la configurassion ëd lòn che as ten sot euj che a vada ansima a
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Për scancelé la pàgina da lòn ch\'a ten sot euj, ch\'a vìsita
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Për fé dle comunicassion ëd servissi e avèj pì d\'agiut:
 {{fullurl:{{MediaWiki:Helppage}}}}',

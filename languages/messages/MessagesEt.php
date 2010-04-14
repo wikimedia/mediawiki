@@ -2101,7 +2101,7 @@ Abivalmilt
 Oma jälgimisloendi sätete muutmiseks mine leheküljele
 {{fullurl:Special:Watchlist/edit}}.
 
-Lehekülje kustutamiseks jälgimisloendist mine leheküljele {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}.
+Lehekülje kustutamiseks jälgimisloendist mine leheküljele $UNWATCHURL.
 
 Tagasiside ja abi:
 {{fullurl:{{MediaWiki:Helppage}}}}',

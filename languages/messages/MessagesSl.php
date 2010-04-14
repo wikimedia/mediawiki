@@ -2046,7 +2046,7 @@ Za spremembo nastavitev spiska nadzorov obiščite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Za odstranitev strani z vašega spiska nadzorov obiščite
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Povratna sporočila in pomoč:
 {{fullurl:{{MediaWiki:Helppage}}}}',

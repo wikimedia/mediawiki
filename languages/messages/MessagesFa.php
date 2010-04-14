@@ -2259,7 +2259,7 @@ $NEWPAGE
 --
 برای تغییر تنظیمات فهرست پی‌گیری‌هایتان به {{fullurl:{{#special:Watchlist}}/edit}} بروید.
 
-برای حذف صفحه از فهرصت پی‌گیری‌هایتان به {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}} بروید.
+برای حذف صفحه از فهرصت پی‌گیری‌هایتان به $UNWATCHURL بروید.
 
 بازخورد و کمک بیشتر:
 {{fullurl:{{ns:help}}:Contents}}',

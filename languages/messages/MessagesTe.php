@@ -1958,7 +1958,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}} ని చూడండి.
 
 ఈ పేజీని మీ వీక్షణజాబితా నుండి తొలగించుకునేందుకు, 
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}} కి వెళ్ళండి.
+$UNWATCHURL కి వెళ్ళండి.
 
 మీ అభిప్రాయాలు చెప్పేందుకు మరియు మరింత సహాయానికై:
 {{fullurl:{{MediaWiki:helppage}}}}',

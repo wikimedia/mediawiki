@@ -2045,7 +2045,7 @@ Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhawa
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 P\'anqata watiqana sutisuyuykimanta qichunaykipaqqa kay p\'anqatam qhaway:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Yanapasunaykipaq:
 {{fullurl:{{MediaWiki:Helppage}}}}',

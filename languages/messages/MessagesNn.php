@@ -1133,7 +1133,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'searchresults'                    => 'Søkjeresultat',
 'searchresults-title'              => 'Søkjeresultat for «$1»',
 'searchresulttext'                 => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[{{MediaWiki:Helppage}}|Hjelp]].',
-'searchsubtitle'                   => 'Du søkte etter «[[:$1]]» ([[Special:Prefixindex/$1|alle sider som byrjar med «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle sider som lenkjer til «$1»]])',
+'searchsubtitle'                   => "Du søkte etter '''[[:$1]]''' ([[Special:Prefixindex/$1|alle sider som byrjar med «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle sider som lenkjer til «$1»]])",
 'searchsubtitleinvalid'            => 'Du søkte etter «$1»',
 'toomanymatches'                   => 'Søket gav for mange treff, prøv ei anna spørjing',
 'titlematches'                     => 'Sidetitlar med treff på førespurnaden',
@@ -1145,7 +1145,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'prevn-title'                      => 'Førre $1 {{PLURAL:$1|resultat|resultat}}',
 'nextn-title'                      => 'Neste $1 {{PLURAL:$1|resultat|resultat}}',
 'shown-title'                      => 'Syn $1 {{PLURAL:$1|resultat|resultat}} for kvar side',
-'viewprevnext'                     => 'Vis ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vis ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Søkjeval',
 'searchmenu-exists'                => "* Sida '''[[$1]]'''",
 'searchmenu-new'                   => "'''Opprett sida «[[:$1|$1]]» på denne wikien.'''",
@@ -1488,8 +1488,8 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'rclinks'                           => 'Vis siste $1 endringar dei siste $2 dagane<br />$3',
 'diff'                              => 'skil',
 'hist'                              => 'hist',
-'hide'                              => 'gøym',
-'show'                              => 'vis',
+'hide'                              => 'Gøym',
+'show'                              => 'Vis',
 'minoreditletter'                   => 's',
 'newpageletter'                     => 'n',
 'boteditletter'                     => 'b',
@@ -2066,7 +2066,7 @@ For å endre innstillingane for overvakingslista di, gå til
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 For hjelp og meir informasjon:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Tilbakemeldingar og anna hjelp:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2420,7 +2420,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'movenotallowedfile'           => 'Du har ikkje løyve til å flytta filer.',
 'cant-move-user-page'          => 'Du har ikkje løyve til å flytte brukarsider (bortsett frå undersider).',
 'cant-move-to-user-page'       => 'Du har ikkje løyve til å flytte brukarsider (bortsett frå undersider).',
-'newtitle'                     => 'Til ny tittel',
+'newtitle'                     => 'Til ny tittel:',
 'move-watch'                   => 'Overvak denne sida',
 'movepagebtn'                  => 'Flytt side',
 'pagemovedsub'                 => 'Flyttinga er gjennomført',
@@ -2581,7 +2581,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-ca-edit'                 => 'Du kan endre denne sida. Bruk førehandsvisings-knappen før du lagrar.',
 'tooltip-ca-addsection'           => 'Start ein ny bolk',
 'tooltip-ca-viewsource'           => 'Denne sida er verna, men du kan sjå kjeldeteksten.',
-'tooltip-ca-history'              => 'Eldre versjonar av denne sida.',
+'tooltip-ca-history'              => 'Eldre versjonar av denne sida',
 'tooltip-ca-protect'              => 'Vern denne sida',
 'tooltip-ca-unprotect'            => 'Ta vekk skrivevernet for denne sida',
 'tooltip-ca-delete'               => 'Slett denne sida',
@@ -2613,7 +2613,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-ca-nstab-main'           => 'Vis innhaldssida',
 'tooltip-ca-nstab-user'           => 'Vis brukarsida',
 'tooltip-ca-nstab-media'          => 'Direktelenkje (filpeikar) til fil',
-'tooltip-ca-nstab-special'        => 'Dette er ei spesialside, du kan ikkje endre ho.',
+'tooltip-ca-nstab-special'        => 'Dette er ei spesialside, du kan ikkje endre ho',
 'tooltip-ca-nstab-project'        => 'Vis prosjektside',
 'tooltip-ca-nstab-image'          => 'Vis filside',
 'tooltip-ca-nstab-mediawiki'      => 'Vis systemmelding',
@@ -2628,7 +2628,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-watch'                   => 'Legg denne sida til i overvakingslista di [alt-w]',
 'tooltip-recreate'                => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
 'tooltip-upload'                  => 'Start opplastinga',
-'tooltip-rollback'                => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar.',
+'tooltip-rollback'                => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar',
 'tooltip-undo'                    => '«Gjer om» attenderullar endringar og opnar endringsvindauga med førehandsvising. Gjer at ein kan leggje til ei årsak samandragsboksen.',
 
 # Stylesheets

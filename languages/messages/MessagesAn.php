@@ -1735,7 +1735,7 @@ Ta cambiar as opcions d\'a suya lista de seguimiento, punche:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Ta borrar ista pachina d\'a suya lista de seguimiento, punche:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Ta obtenir más informazión y aduya:
 {{fullurl:{{MediaWiki:Helppage}}}}',

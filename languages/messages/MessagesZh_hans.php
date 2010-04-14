@@ -2003,7 +2003,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 要删除您监视列表中的该页面，请访问
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 反馈和进一步的帮助:
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -1893,7 +1893,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Бу сирэйи кэтэбил тиһигиттэн соторго манна киир:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Көмөлөһүннэрэр уонна быһаартарар сир: 
 {{fullurl:{{MediaWiki:Helppage}}}}',

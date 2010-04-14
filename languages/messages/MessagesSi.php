@@ -2074,7 +2074,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}} වෙත පිවිසෙන්න
 
 ඔබගේ මුරලැයිස්තුවෙන් පිටුව මකා දැමීම සඳහා වූ 
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}} වෙත පිවිසෙන්න
+$UNWATCHURL වෙත පිවිසෙන්න
 
 ප්‍රතිපෝෂණය හා වැඩිමනත්  සහාය:
 {{fullurl:{{MediaWiki:Helppage}}}}',

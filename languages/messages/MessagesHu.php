@@ -2141,7 +2141,7 @@ A figyelőlistád módosításához keresd fel a
 {{fullurl:{{#special:Watchlist}}/edit}} címet
 
 A lap figyelőlistádról való törléséhez keresd fel a
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}} címet
+$UNWATCHURL címet
 
 Visszajelzés és további segítség:
 {{fullurl:{{MediaWiki:Helppage}}}}',

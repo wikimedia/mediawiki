@@ -2166,7 +2166,7 @@ Tο σύστημα ειδοποίησης του εγχειρήματος {{SITE
 {{fullurl:Special:Watchlist/edit}}
 
 Για να διαγράψετε την σελίδα από την λίστα παρακολούθησής σας:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Ερωτήσεις και περισσότερες πληροφορίες:
 {{fullurl:{{MediaWiki:Helppage}}}}',

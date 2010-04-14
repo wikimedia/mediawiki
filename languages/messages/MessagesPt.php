@@ -2183,7 +2183,7 @@ Para alterar as suas preferências da lista de páginas vigiadas, visite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Para retirar a página da sua lista de páginas vigiadas, visite
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Contacto e assistência:
 {{fullurl:{{MediaWiki:Helppage}}}}',

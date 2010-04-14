@@ -2042,7 +2042,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 За да изтриете страницата от списъка си за наблюдение, посетете 
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 За обратна връзка и помощ:
 {{fullurl:{{MediaWiki:Helppage}}}}',

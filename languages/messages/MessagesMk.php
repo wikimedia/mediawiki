@@ -2161,7 +2161,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 За да ја избришете страницата од листата на набљудувања, посетете ја страницата
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Повратни информации и помош:
 {{fullurl:{{MediaWiki:Helppage}}}}',

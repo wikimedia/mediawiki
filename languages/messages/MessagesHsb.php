@@ -1947,7 +1947,7 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Zo by stronu ze swojich wobkedźbowankow zhašał, wopytaj
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 
 Wotmołwy a dalša pomoc:

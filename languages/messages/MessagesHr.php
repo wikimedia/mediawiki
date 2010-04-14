@@ -2118,7 +2118,7 @@ Za promjene svog popisa praćenja, posjetite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Za brisanje stranica iz svog popisa praćenja, posjetite
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Za povratne informacije i pomoć posjetite:
 {{fullurl:{{MediaWiki:Helppage}}}}',

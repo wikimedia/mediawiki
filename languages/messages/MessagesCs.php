@@ -2158,7 +2158,7 @@ Nastavení sledovaných stránek může změnit na
 {{fullurl:Special:Watchlist/edit}}
 
 Stránku můžete ze svých sledovaných vyřadit na
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Rady a kontakt:
 {{fullurl:{{MediaWiki:Helppage}}}}',

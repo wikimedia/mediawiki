@@ -1901,7 +1901,7 @@ Gözegçilik sanawy sazlamalaryňyzy üýtgetmek üçin:
 {{fullurl:Special:Watchlist/edit}}
 
 Sahypany gözegçilik sanawyňyzdan öçürmek üçin:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Seslenme we goşmaça kömek:
 {{fullurl:{{MediaWiki:Helppage}}}}',

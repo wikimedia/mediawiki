@@ -2091,7 +2091,7 @@ $NEWPAGE
 
 --
 Каб зьмяніць устаноўкі сьпісу назіраньня, наведайце:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Зваротная сувязь і дапамога:
 {{fullurl:{{MediaWiki:Helppage}}}}',

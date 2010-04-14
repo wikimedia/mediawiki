@@ -2185,7 +2185,7 @@ Es werden solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die 
 --
 Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{fullurl:{{#special:Watchlist}}/edit}}
 
-Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL
 
 Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 

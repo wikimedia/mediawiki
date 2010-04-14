@@ -13,6 +13,7 @@
  * @author Farras
  * @author Irwangatot
  * @author IvanLanin
+ * @author Iwan Novirion
  * @author Kenrick95
  * @author McDutchie
  * @author Meursault2004
@@ -575,7 +576,7 @@ $1',
 'youhavenewmessages'      => 'Anda mempunyai $1 ($2).',
 'newmessageslink'         => 'pesan baru',
 'newmessagesdifflink'     => 'perubahan terakhir',
-'youhavenewmessagesmulti' => 'Anda mendapat pesan-pesan baru $1',
+'youhavenewmessagesmulti' => 'Anda mendapat beberapa pesan baru pada $1',
 'editsection'             => 'sunting',
 'editold'                 => 'sunting',
 'viewsourceold'           => 'lihat sumber',
@@ -646,6 +647,7 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'readonly_lag'         => 'Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama',
 'internalerror'        => 'Kesalahan internal',
 'internalerror_info'   => 'Kesalahan internal: $1',
+'fileappenderrorread'  => 'Tidak dapat membaca "$1" saat penambahan.',
 'fileappenderror'      => 'Tidak dapat memasukkan "$1" ke "$2".',
 'filecopyerror'        => 'Tidak dapat menyalin berkas "$1" ke "$2".',
 'filerenameerror'      => 'Tidak dapat mengubah nama berkas "$1" menjadi "$2".',
@@ -1689,6 +1691,7 @@ Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 'http-timed-out'        => 'Permintaan HTTP lewat tenggat.',
 'http-curl-error'       => 'Kesalahan saat mengambil URL: $1',
 'http-host-unreachable' => 'Tidak dapat mencapai URL.',
+'http-bad-status'       => 'Ada masalah saat permintaan halaman HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL tidak dapat dihubungi',
@@ -2180,7 +2183,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-locked-dblock'       => "Tingkat perlindungan tak dapat diganti karena aktifnya penguncian basis data. Berikut adalah konfigurasi saat ini untuk halaman '''$1''':",
 'protect-locked-access'       => "Akun Anda tidak dapat memiliki hak untuk mengganti tingkat perlindungan halaman. Berikut adalah konfigurasi saat ini untuk halaman '''$1''':",
 'protect-cascadeon'           => 'Halaman ini sedang dilindungi karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan pilihan perlindungan runtun diaktifkan. Anda dapat mengganti tingkat perlindungan untuk halaman ini, tapi hal tersebut tidak akan mempengaruhi perlindungan runtun.',
-'protect-default'             => 'Ijinkan semua pengguna',
+'protect-default'             => 'Izinkan semua pengguna',
 'protect-fallback'            => 'Memerlukan hak akses "$1"',
 'protect-level-autoconfirmed' => 'Blokir pengguna baru dan tak terdaftar',
 'protect-level-sysop'         => 'Hanya pengurus',
@@ -2193,7 +2196,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-othertime-op'        => 'waktu lain',
 'protect-existing-expiry'     => 'Waktu kadaluwarsa saat ini: $3, $2',
 'protect-otherreason'         => 'Alasan lain/tambahan:',
-'protect-otherreason-op'      => 'alasan lain/tambahan',
+'protect-otherreason-op'      => 'Alasan lain',
 'protect-dropdown'            => '*Alasan umum perlindungan
 ** Vandalisme berulang
 ** Spam berulang
@@ -2414,6 +2417,7 @@ $1 sudah diblokir. Apakah Anda ingin mengubah set pemblokiran yang bersangkutan?
 'ipb_cant_unblock'                => 'Kesalahan: Blokir dengan ID $1 tidak ditemukan. Blokir tersebut kemungkinan telah dibuka.',
 'ipb_blocked_as_range'            => 'Kesalahan: IP $1 tidak diblok secara langsung dan tidak dapat dilepaskan. IP $1 diblok sebagai bagian dari pemblokiran kelompok IP $2, yang dapat dilepaskan.',
 'ip_range_invalid'                => 'Blok IP tidak sah.',
+'ip_range_toolarge'               => 'Rentang blok lebih besar dari /$1 tidak diperbolehkan.',
 'blockme'                         => 'Blokir saya',
 'proxyblocker'                    => 'Pemblokir proxy',
 'proxyblocker-disabled'           => 'Fitur ini sedang tidak diakfifkan.',
@@ -2457,6 +2461,7 @@ Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yan
 
 Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabungkan halaman secara manual.",
 'movearticle'                  => 'Pindahkan halaman:',
+'moveuserpage-warning'         => "'''Peringatan:''' Anda tengah memindahkan halaman pengguna. Perlu diketahui bahwa hanya halaman yang akan dipindahkan namun pengguna ''tidak akan'' berganti nama.",
 'movenologin'                  => 'Belum masuk log',
 'movenologintext'              => 'Anda harus menjadi pengguna terdaftar dan telah [[Special:UserLogin|masuk log]] untuk dapat memindahkan suatu halaman.',
 'movenotallowed'               => 'Anda tak memiliki hak akses untuk memindahkan halaman.',
@@ -2508,9 +2513,9 @@ Artikel yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapu
 'imageinvalidfilename'         => 'Nama berkas tujuan tidak sah',
 'fix-double-redirects'         => 'Perbaiki semua pengalihan ganda yang mungkin terjadi',
 'move-leave-redirect'          => 'Buat pengalihan ke judul baru',
-'protectedpagemovewarning'     => "'''Peringatan''': Halaman ini telah dilindungi sehingga hanya pengurus yang bisa memindahkannya.
+'protectedpagemovewarning'     => "'''Peringatan''': Halaman ini telah dikunci sehingga hanya pengguna dengan hak akses pengurus yang bisa memindahkannya.
 Entri catatan terakhir disediakan dibawah untuk referensi:",
-'semiprotectedpagemovewarning' => "'''Catatan:''' Halaman ini telah dilindungi sehingga hanya pengguna terdaftar yang dapat memindahkannya.
+'semiprotectedpagemovewarning' => "'''Catatan:''' Halaman ini telah dikunci sehingga hanya pengguna terdaftar yang dapat memindahkannya.
 Entri catatan terakhir disediakan dibawah untuk referensi:",
 'move-over-sharedrepo'         => '== Berkas sudah ada ==
 
@@ -3309,7 +3314,7 @@ Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
 # Special:FilePath
 'filepath'         => 'Lokasi berkas',
 'filepath-page'    => 'Berkas:',
-'filepath-submit'  => 'Lokasi',
+'filepath-submit'  => 'Cari',
 'filepath-summary' => 'Halaman istimewa ini menampilkan jalur lengkap untuk suatu berkas.
 Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.
 

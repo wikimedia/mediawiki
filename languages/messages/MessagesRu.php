@@ -2120,7 +2120,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Удалить страницы из вашего списка наблюдения
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Обратная связь и помощь
 {{fullurl:{{MediaWiki:Helppage}}}}',

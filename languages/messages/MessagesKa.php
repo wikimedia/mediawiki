@@ -1956,7 +1956,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 თქვენი კონტროლის სიიდან გვერდის ამოშლა
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 დამატებითი ინფორმაცია
 {{fullurl:{{MediaWiki:Helppage}}}}',

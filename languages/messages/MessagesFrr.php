@@ -461,6 +461,10 @@ Wees sü gödje än fersäk dåt nuch iinjsen.',
 'noemailcreate'           => 'Dü möist en gülti E-mail-adräs önjjeewe',
 'passwordsent'            => 'En nai pååsuurd as sånd tu jü E-mail-adräs registriird for "$1".
 Mälde wi önj eefter dü jü füngen heest.',
+'blocked-mailpassword'    => 'Jü foon de ferwånde IP-adräs as for dåt änren foon side späred. Am en masbrük tu ferhanern, wórd jü möölikhäid tu dåt önjfråågen foon en nai pååsuurd uk späred.',
+'eauthentsent'            => 'En bestääsiings-E-mäil wörd önj jü önjjääwen adräs sånd.
+
+Iir en E-mail foon oudere brükere ouer jü E-mail-funksjoon emfångd wårde koon, mötj jü adräs än har wörklike tuhiirihäid tu dåtheer brükerkonto jarst bestääsied wårde. Wees sü gödj än befülie da haanewisinge önj di bestääsiings-E-mail.',
 'throttled-mailpassword'  => 'Deer wörd önj da leeste {{PLURAL:$1|stün|$1 stüne}} ål en nai pååsuurd önjfrååged. Am en misbrük foon jüdeer funksjoon tu ferhanren, koon bloot {{PLURAL:$1|iinjsen pro stün|åle $1 stüne}} en nai pååsuurd önjfrååged wårde.',
 'mailerror'               => 'Fäägel bai dåt siinjen foon e E-mail: $1',
 'emailnotauthenticated'   => 'Din E-mail-adräs as nuch ai bestääsied. Da füliende E-mail-funksjoone stönje jarst eefter erfolchrike bestääsiing tu ferfäiging.',
@@ -584,11 +588,30 @@ Grün foon jü späre: ''$2''",
 'histlast'               => 'Naiste',
 
 # Revision deletion
-'rev-delundel'              => 'wis/fersteeg',
-'revdel-restore'            => 'sichtboorhäid änre',
-'revdelete-otherreason'     => 'Ouderen/tubaikaamenden grün:',
-'revdelete-reasonotherlist' => 'Ouderen grün',
-'revdelete-edit-reasonlist' => 'Sleekgrüne beårbe',
+'rev-deleted-user'            => '(Brükernoome wächhååld)',
+'rev-deleted-text-permission' => "Judeer Färsjoon wörd '''sleeked'''.
+Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
+'rev-deleted-text-unhide'     => "Jüdeer färsjoon wörd '''sleeked'''.
+Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].
+Ås en administraator koost dü  nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
+'rev-deleted-text-view'       => "Jüdeer Färsjoon wörd '''sleeked'''.
+Ås administraator koost dü da wider önjkiike.
+Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
+'rev-suppressed-text-view'    => "Jüdeer färsjoon wörd '''unerdruked'''.
+Administratoore koone da önjkiike; ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
+'rev-deleted-no-diff'         => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''sleeked'''. Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
+'rev-suppressed-no-diff'      => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''sleeked'''.",
+'rev-deleted-unhide-diff'     => "Iinj foon da änringe doon jüdeer ferschääl wörd '''sleeked'''. 
+Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].
+Ås en administraator koost dü nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
+'rev-suppressed-unhide-diff'  => "Iinj foon da färsjoone foon dåtdeer ferschääl wörd '''unerdruked'''.
+Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} unerdruk-logbök].
+Ås en administraator koost dü  nuch [$1 dåtdeer ferschääl bekiike], wan dü wider gunge mååst.",
+'rev-delundel'                => 'wis/fersteeg',
+'revdel-restore'              => 'sichtboorhäid änre',
+'revdelete-otherreason'       => 'Ouderen/tubaikaamenden grün:',
+'revdelete-reasonotherlist'   => 'Ouderen grün',
+'revdelete-edit-reasonlist'   => 'Sleekgrüne beårbe',
 
 # Suppression log
 'suppressionlog' => 'Oversight-logbök',

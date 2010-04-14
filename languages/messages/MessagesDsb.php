@@ -1966,7 +1966,7 @@ Aby nastajenja twójeje wobglědowańki změnił, woglědaj:
 {{fullurl:Special:Watchlist/edit}}
 
 Aby se bok z twójeje wobglědowańki wulašował, woglědaj se
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Pšašanja a dalšna pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
