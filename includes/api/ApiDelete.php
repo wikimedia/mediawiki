@@ -88,12 +88,10 @@ class ApiDelete extends ApiBase {
 				$watch = 'watch';
 			} elseif ( $params['unwatch'] ) {
 				$watch = 'unwatch';
-			} elseif ( $wgUser->getOption( 'watchdeletion' ) ) {
-				$watch = 'watch';
 			} else {
 				$watch = $params['watchlist'];
 			}
-			$this->setWatch( $watch, $titleObj );
+			$this->setWatch( $watch, $titleObj, 'watchdeletion' );
 		}
 
 		$r = array( 'title' => $titleObj->getPrefixedText(), 'reason' => $reason );
