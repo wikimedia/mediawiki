@@ -33,7 +33,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgOut, $wgContLang;
+		global $wgOut, $wgContLang, $wgRequest;
 
 		if ($par) {
 			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
@@ -48,7 +48,9 @@ class RandomPage extends SpecialPage {
 			return;
 		}
 
-		$query = $this->isRedirect() ? 'redirect=no' : '';
+		$redirectParam = $this->isRedirect() ? array( 'redirect' => 'no' ) : array();
+		$query = array_merge( $wgRequest->getValues(), $redirectParam );
+		unset( $query['title'] );
 		$wgOut->redirect( $title->getFullUrl( $query ) );
 	}
 

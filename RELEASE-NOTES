@@ -46,6 +46,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22474) {{urlencode:}} now takes an optional second paramter for type of
   escaping.
 * Special:Listfiles now supports a username parameter
+* Special:Random carries over query string parameters
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
