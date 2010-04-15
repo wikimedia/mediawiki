@@ -464,9 +464,7 @@ $wgCacheSharedUploads = true;
 $wgAllowCopyUploads = false;
 
 /**
- * Max size for uploads, in bytes.  Currently only works for uploads from URL
- * via CURL (see $wgAllowCopyUploads).  The only way to impose limits on
- * normal uploads is currently to edit php.ini.
+ * Max size for uploads, in bytes. Applies to all uploads.
  */
 $wgMaxUploadSize = 1024*1024*100; # 100MB
 
