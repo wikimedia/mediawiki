@@ -154,6 +154,9 @@ class ApiUpload extends ApiBase {
 			case UploadBase::EMPTY_FILE:
 				$this->dieUsage( 'The file you submitted was empty', 'empty-file' );
 				break;
+			case UploadBase::FILE_TOO_LARGE:
+				$this->dieUsage( 'The file you submitted was too large', 'file-too-large' );
+				break;
 			case UploadBase::FILETYPE_MISSING:
 				$this->dieUsage( 'The file is missing an extension', 'filetype-missing' );
 				break;
