@@ -1424,7 +1424,6 @@ $wgMessageStructure = array(
 		'statistics-edits-average',
 		'statistics-views-total',
 		'statistics-views-peredit',
-		'statistics-jobqueue',
 		'statistics-users',
 		'statistics-users-active',
 		'statistics-users-active-desc',
