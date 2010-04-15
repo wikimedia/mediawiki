@@ -153,11 +153,9 @@ class SpecialStatistics extends SpecialPage {
 						array( 'class' => 'mw-statistics-edits' ) ) .
 				$this->formatRow( wfMsgExt( 'statistics-edits-average', array( 'parseinline' ) ),
 						$wgLang->formatNum( sprintf( '%.2f', $this->total ? $this->edits / $this->total : 0 ) ),
-						array( 'class' => 'mw-statistics-edits-average' ) ) .
-				$this->formatRow( wfMsgExt( 'statistics-jobqueue', array( 'parseinline' ) ),
-						$wgLang->formatNum( $this->numJobs ),
-						array( 'class' => 'mw-statistics-jobqueue' ) );
+						array( 'class' => 'mw-statistics-edits-average' ) );
 	}
+
 	private function getUserStats() {
 		global $wgLang, $wgUser, $wgRCMaxAge;
 		$sk = $wgUser->getSkin();
