@@ -78,44 +78,25 @@ class UploadFromUrl extends UploadBase {
 		if( !self::isValidUrl( $this->mUrl ) ) {
 			return Status::newFatal( 'upload-proto-error' );
 		}
-		$res = $this->curlCopy();
-		if( $res !== true ) {
-			return Status::newFatal( $res );
-		}
-		return Status::newGood();
-	}
-
-	/**
-	 * Safe copy from URL
-	 * Returns true if there was an error, false otherwise
-	 */
-	private function curlCopy() {
-		global $wgOut;
 
 		# Open temporary file
 		$this->mCurlDestHandle = @fopen( $this->mTempPath, "wb" );
 		if( $this->mCurlDestHandle === false ) {
 			# Could not open temporary file to write in
-			return 'upload-file-error';
+			return Status::newFatal( 'upload-file-error' );
 		}
-
-		$ch = curl_init();
-		curl_setopt( $ch, CURLOPT_HTTP_VERSION, 1.0); # Probably not needed, but apparently can work around some bug
-		curl_setopt( $ch, CURLOPT_TIMEOUT, 10); # 10 seconds timeout
-		curl_setopt( $ch, CURLOPT_LOW_SPEED_LIMIT, 512); # 0.5KB per second minimum transfer speed
-		curl_setopt( $ch, CURLOPT_URL, $this->mUrl);
-		curl_setopt( $ch, CURLOPT_WRITEFUNCTION, array( $this, 'uploadCurlCallback' ) );
-		curl_exec( $ch );
-		$error =  curl_errno( $ch );
-		curl_close( $ch );
-
+		
+		$options = array(
+			'method' => 'GET',
+			'timeout' => 10,
+		);
+		$req = HttpRequest::factory( $this->mUrl, $options );
+		$req->setCallback( array( $this, 'uploadCurlCallback' ) );
+		$status = $req->execute();
 		fclose( $this->mCurlDestHandle );
 		unset( $this->mCurlDestHandle );
 
-		if( $error )
-			return "upload-curl-error$errornum";
-
-		return true;
+		return $status;
 	}
 
 	/**
