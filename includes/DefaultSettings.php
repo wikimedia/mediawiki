@@ -2724,7 +2724,6 @@ $wgDefaultUserOptions = array(
 	'editondblclick'          => 0,
 	'editsection'             => 1,
 	'editsectiononrightclick' => 0,
-	'editwidth'               => 0,
 	'enotifminoredits'        => 0,
 	'enotifrevealaddr'        => 0,
 	'enotifusertalkpages'     => 1,

@@ -62,7 +62,6 @@ class User {
 		'editsectiononrightclick',
 		'showtoc',
 		'rememberpassword',
-		'editwidth',
 		'watchcreations',
 		'watchdefault',
 		'watchmoves',
