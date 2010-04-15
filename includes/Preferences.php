@@ -736,12 +736,6 @@ class Preferences {
 					'section' => 'editing/advancedediting',
 					'label-message' => 'tog-editondblclick',
 				);
-		$defaultPreferences['editwidth'] =
-				array(
-					'type' => 'toggle',
-					'section' => 'editing/advancedediting',
-					'label-message' => 'tog-editwidth',
-				);
 		$defaultPreferences['showtoolbar'] =
 				array(
 					'type' => 'toggle',

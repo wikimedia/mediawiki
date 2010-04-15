@@ -1655,11 +1655,8 @@ INPUTS
 			'id'   => $name,
 			'cols' => $wgUser->getIntOption( 'cols' ), 
 			'rows' => $wgUser->getIntOption( 'rows' ),
-			'style' => '' // avoid php notices when appending for editwidth preference (appending allows customAttribs['style'] to still work
+			'style' => '' // avoid php notices when appending preferences (appending allows customAttribs['style'] to still work
 		);
-
-		if ( $wgUser->getOption( 'editwidth' ) )
-			$attribs['style'] .= 'width: 100%';
 
 		$wgOut->addHTML( Html::textarea( $name, $wikitext, $attribs ) );
 	}
