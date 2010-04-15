@@ -390,7 +390,7 @@ class SpecialUpload extends SpecialPage {
 		// Fetch the file if required
 		$status = $this->mUpload->fetchFile();
 		if( !$status->isOK() ) {
-			$this->showUploadForm( $this->getUploadForm( $wgOut->parse( $status->getWikiText() ) ) );
+			$this->showUploadError( $wgOut->parse( $status->getWikiText() ) );
 			return;
 		}
 
