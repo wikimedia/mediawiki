@@ -599,20 +599,31 @@ class User {
 	 * either by batch processes or by user accounts which have
 	 * already been created.
 	 *
-	 * Additional character blacklisting may be added here
-	 * rather than in isValidUserName() to avoid disrupting
-	 * existing accounts.
+	 * Additional blacklisting may be added here rather than in 
+	 * isValidUserName() to avoid disrupting existing accounts.
 	 *
 	 * @param $name \string String to match
 	 * @return \bool True or false
 	 */
 	static function isCreatableName( $name ) {
 		global $wgInvalidUsernameCharacters;
-		return
-			self::isUsableName( $name ) &&
 
-			// Registration-time character blacklisting...
-			!preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name );
+		// Ensure that the username isn't longer than 235 bytes, so that
+		// (at least for the builtin skins) user javascript and css files
+		// will work. (bug 23080)
+		if( strlen( $name ) > 235 ) {
+			wfDebugLog( 'username', __METHOD__ .
+				": '$name' invalid due to length" );
+			return false;
+		}
+
+		if( preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name ) ) {
+			wfDebugLog( 'username', __METHOD__ .
+				": '$name' invalid due to wgInvalidUsernameCharacters" );
+			return false;
+		}
+
+		return self::isUsableName( $name );
 	}
 
 	/**
