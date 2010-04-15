@@ -27,7 +27,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Kpa na áká nri Í gbanyé orürü nkeji na ishi nkeji (ö chọrọ JavaScript)',
 'tog-showtoc'                 => 'Zi agada ihe níle (maka ihü nwere ishis ká áto)',
 'tog-rememberpassword'        => 'Chetá edemede éjim a banyé na orunótuá',
-'tog-editwidth'               => 'Më akbati orü öbodobo kó juö ihu gbúrugbúru',
 'tog-watchcreations'          => 'Tinyé ihüm na eké na ndetu ihem ne lé',
 'tog-watchdefault'            => 'Tinyé ihü m na rüoru élu na ndetu ihem ne lé',
 'tog-watchmoves'              => 'Tinyé ihü m na puzié na ndetu ihe m ne lé',

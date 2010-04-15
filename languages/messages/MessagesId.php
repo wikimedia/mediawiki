@@ -313,7 +313,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Fungsikan penyuntingan subbagian dengan mengeklik kanan pada judul bagian (JavaScript)',
 'tog-showtoc'                 => 'Perlihatkan daftar isi (untuk halaman yang mempunyai lebih dari 3 subbagian)',
 'tog-rememberpassword'        => 'Ingat kata sandi saya di komputer ini',
-'tog-editwidth'               => 'Perlebar kotak suntingan hingga seluruh layar',
 'tog-watchcreations'          => 'Tambahkan halaman yang saya buat ke daftar pantauan',
 'tog-watchdefault'            => 'Tambahkan halaman yang saya sunting ke daftar pantauan',
 'tog-watchmoves'              => 'Tambahkan halaman yang saya pindahkan ke daftar pantauan',
@@ -1827,7 +1826,6 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'statistics-edits-average'     => 'Rata-rata suntingan per halaman',
 'statistics-views-total'       => 'Jumlah penampilan halaman',
 'statistics-views-peredit'     => 'Jumlah penampilan per suntingan',
-'statistics-jobqueue'          => 'Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue antrean pekerjaan]',
 'statistics-users'             => 'Jumlah [[Special:ListUsers|pengguna terdaftar]]',
 'statistics-users-active'      => 'Jumlah pengguna aktif',
 'statistics-users-active-desc' => 'Pengguna yang telah melakukan suatu aktivitas dalam {{PLURAL:$1|sehari|$1 hari}} terakhir.',
@@ -2019,29 +2017,31 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'listgrouprights-removegroup-self-all' => 'Menghapus semua kelompok dari akun sendiri',
 
 # E-mail user
-'mailnologin'      => 'Tidak ada alamat surel',
-'mailnologintext'  => 'Anda harus [[Special:UserLogin|masuk log]] dan mempunyai alamat surel yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surel kepada pengguna lain.',
-'emailuser'        => 'Surel pengguna',
-'emailpage'        => 'Kirim surel ke pengguna ini',
-'emailpagetext'    => 'Anda dapat menggunakan formulir di bawah ini untuk mengirimkan surel ke pengguna ini.
+'mailnologin'          => 'Tidak ada alamat surel',
+'mailnologintext'      => 'Anda harus [[Special:UserLogin|masuk log]] dan mempunyai alamat surel yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surel kepada pengguna lain.',
+'emailuser'            => 'Surel pengguna',
+'emailpage'            => 'Kirim surel ke pengguna ini',
+'emailpagetext'        => 'Anda dapat menggunakan formulir di bawah ini untuk mengirimkan surel ke pengguna ini.
 Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] akan muncul sebagai alamat "Dari" dalam surel tersebut, sehingga penerima dapat langsung membalas kepada Anda.',
-'usermailererror'  => 'Kesalahan objek surat:',
-'defemailsubject'  => 'Surel {{SITENAME}}',
-'noemailtitle'     => 'Tidak ada alamat surel',
-'noemailtext'      => 'Pengguna ini tidak memberikan suatu alamat surel yang valid.',
-'nowikiemailtitle' => 'Surel tak diizinkan',
-'nowikiemailtext'  => 'Pengguna ini telah memilih untuk tidak menerima surel dari pengguna lain.',
-'email-legend'     => 'Kirim surel ke pengguna {{SITENAME}} lainnya',
-'emailfrom'        => 'Dari:',
-'emailto'          => 'Untuk:',
-'emailsubject'     => 'Perihal:',
-'emailmessage'     => 'Pesan:',
-'emailsend'        => 'Kirim',
-'emailccme'        => 'Kirimkan saya salinan pesan saya.',
-'emailccsubject'   => 'Salinan pesan Anda untuk $1: $2',
-'emailsent'        => 'Surel terkirim',
-'emailsenttext'    => 'Surel Anda telah dikirimkan.',
-'emailuserfooter'  => 'Surel ini dikirimkan oleh $1 kepada $2 menggunakan fungsi "Suratepengguna" di {{SITENAME}}.',
+'usermailererror'      => 'Kesalahan objek surat:',
+'defemailsubject'      => 'Surel {{SITENAME}}',
+'usermaildisabled'     => 'Surel pengguna dinonaktifkan',
+'usermaildisabledtext' => 'Anda tidak dapat mengirim surel pada pengguna lain di wiki ini',
+'noemailtitle'         => 'Tidak ada alamat surel',
+'noemailtext'          => 'Pengguna ini tidak memberikan suatu alamat surel yang valid.',
+'nowikiemailtitle'     => 'Surel tak diizinkan',
+'nowikiemailtext'      => 'Pengguna ini telah memilih untuk tidak menerima surel dari pengguna lain.',
+'email-legend'         => 'Kirim surel ke pengguna {{SITENAME}} lainnya',
+'emailfrom'            => 'Dari:',
+'emailto'              => 'Untuk:',
+'emailsubject'         => 'Perihal:',
+'emailmessage'         => 'Pesan:',
+'emailsend'            => 'Kirim',
+'emailccme'            => 'Kirimkan saya salinan pesan saya.',
+'emailccsubject'       => 'Salinan pesan Anda untuk $1: $2',
+'emailsent'            => 'Surel terkirim',
+'emailsenttext'        => 'Surel Anda telah dikirimkan.',
+'emailuserfooter'      => 'Surel ini dikirimkan oleh $1 kepada $2 menggunakan fungsi "Suratepengguna" di {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Daftar pantauan saya',
@@ -2101,14 +2101,17 @@ Hubungi penyunting:
 surel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Kami tidak akan mengirimkan pemberitahuan perubahan lainnya sampai Anda mengunjungi halaman tersebut.
-Anda juga dapat menghapus tanda notifikasi untuk semua halaman pantauan Anda pada daftar pantauan Anda.
+Tidak akan ada pemberitahuan lainnya dalam rangka perubahan lebih lanjut kecuali anda mengunjungi halaman ini.
+Anda juga dapat menset ulang tanda pemberitahuan untuk semua halaman pantauan anda pada daftar pantauan anda.
 
-             Sistem notifikasi Anda di {{SITENAME}}
+             Sistem pemberitahuan anda di {{SITENAME}}
 
 --
-Untuk mengubah preferensi daftar pantauan Anda, kunjungi
+Untuk mengubah preferensi daftar pantauan anda, kunjungi
 {{fullurl:{{#special:Watchlist}}/edit}}
+
+Untuk menghapus halaman dari daftar pantauan anda, kunjungi
+{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
 
 Umpan balik dan bantuan lebih lanjut:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2284,18 +2287,20 @@ $1',
 'month'               => 'Sejak bulan (dan sebelumnya):',
 'year'                => 'Sejak tahun (dan sebelumnya):',
 
-'sp-contributions-newbies'        => 'Hanya pengguna-pengguna baru',
-'sp-contributions-newbies-sub'    => 'Untuk pengguna baru',
-'sp-contributions-newbies-title'  => 'Kontribusi pengguna baru',
-'sp-contributions-blocklog'       => 'Log pemblokiran',
-'sp-contributions-deleted'        => 'kontribusi pengguna yang dihapus',
-'sp-contributions-logs'           => 'log',
-'sp-contributions-talk'           => 'bicara',
-'sp-contributions-userrights'     => 'pengelolaan hak pengguna',
-'sp-contributions-blocked-notice' => 'Pengguna ini sedang di blok. log pemblokiran terakhir ditampilkan berikut untuk referensi:',
-'sp-contributions-search'         => 'Cari kontribusi',
-'sp-contributions-username'       => 'Alamat IP atau nama pengguna:',
-'sp-contributions-submit'         => 'Cari',
+'sp-contributions-newbies'             => 'Hanya pengguna-pengguna baru',
+'sp-contributions-newbies-sub'         => 'Untuk pengguna baru',
+'sp-contributions-newbies-title'       => 'Kontribusi pengguna baru',
+'sp-contributions-blocklog'            => 'Log pemblokiran',
+'sp-contributions-deleted'             => 'kontribusi pengguna yang dihapus',
+'sp-contributions-logs'                => 'log',
+'sp-contributions-talk'                => 'bicara',
+'sp-contributions-userrights'          => 'pengelolaan hak pengguna',
+'sp-contributions-blocked-notice'      => 'Pengguna ini sedang di blok. log pemblokiran terakhir ditampilkan berikut untuk referensi:',
+'sp-contributions-blocked-notice-anon' => 'Alamat IP ini diblokir pada saat ini.
+Catatan log pemblokiran terakhir tersedia di bawah ini sebagai rujukan:',
+'sp-contributions-search'              => 'Cari kontribusi',
+'sp-contributions-username'            => 'Alamat IP atau nama pengguna:',
+'sp-contributions-submit'              => 'Cari',
 
 # What links here
 'whatlinkshere'            => 'Pranala balik',
@@ -2427,6 +2432,8 @@ $1 sudah diblokir. Apakah Anda ingin mengubah set pemblokiran yang bersangkutan?
 'sorbs_create_account_reason'     => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL. Anda tidak dapat membuat akun.',
 'cant-block-while-blocked'        => 'Anda tidak dapat memblokir pengguna lain ketika Anda sendiri sedang diblokir.',
 'cant-see-hidden-user'            => 'Pengguna yang anda coba blokir telah di blokir dan di sembunyikan. Selama anda tidak memiliki hak sembunyikan pengguna, anda tidak dapat melihat atau menyunting pemblokiran pengguna ini.',
+'ipbblocked'                      => 'Anda tidak dapat memblokir atau membuka blokir pengguna lain, karena anda sendiri diblokir',
+'ipbnounblockself'                => 'Anda tidak diizinkan untuk membuka blokir sendiri',
 
 # Developer tools
 'lockdb'              => 'Kunci basis data',
@@ -3128,27 +3135,27 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'limitall'         => 'semua',
 
 # E-mail address confirmation
-'confirmemail'             => 'Konfirmasi alamat surel',
-'confirmemail_noemail'     => 'Anda tidak memberikan alamat surel yang sah di [[Special:Preferences|preferensi pengguna]] Anda.',
-'confirmemail_text'        => '{{SITENAME}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surel Anda sebelum fitur-fitur surel dapat digunakan.
+'confirmemail'              => 'Konfirmasi alamat surel',
+'confirmemail_noemail'      => 'Anda tidak memberikan alamat surel yang sah di [[Special:Preferences|preferensi pengguna]] Anda.',
+'confirmemail_text'         => '{{SITENAME}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surel Anda sebelum fitur-fitur surel dapat digunakan.
 Tekan tombol di bawah ini untuk mengirimi Anda sebuah surel yang berisi kode konfirmasi yang berupa sebuah alamat internet.
 Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan bahwa alamat surel Anda valid.',
-'confirmemail_pending'     => 'Suatu kode konfirmasi telah dikirimkan kepada Anda; jika Anda baru saja membuat akun Anda, silakan tunggu beberapa menit untuk surat tersebut tiba sebelum mencoba untuk meminta satu kode baru.',
-'confirmemail_send'        => 'Kirim kode konfirmasi',
-'confirmemail_sent'        => 'Surel berisi kode konfirmasi telah dikirim.',
-'confirmemail_oncreate'    => 'Suatu kode konfirmasi telah dikirimkan ke alamat surel Anda. Kode ini tidak dibutuhkan untuk masuk log, tapi dibutuhkan sebelum menggunakan semua fitur yang menggunakan surel di wiki ini.',
-'confirmemail_sendfailed'  => '{{SITENAME}} tidak berhasil mengirimkan surat konfirmasi Anda.
+'confirmemail_pending'      => 'Suatu kode konfirmasi telah dikirimkan kepada Anda; jika Anda baru saja membuat akun Anda, silakan tunggu beberapa menit untuk surat tersebut tiba sebelum mencoba untuk meminta satu kode baru.',
+'confirmemail_send'         => 'Kirim kode konfirmasi',
+'confirmemail_sent'         => 'Surel berisi kode konfirmasi telah dikirim.',
+'confirmemail_oncreate'     => 'Suatu kode konfirmasi telah dikirimkan ke alamat surel Anda. Kode ini tidak dibutuhkan untuk masuk log, tapi dibutuhkan sebelum menggunakan semua fitur yang menggunakan surel di wiki ini.',
+'confirmemail_sendfailed'   => '{{SITENAME}} tidak berhasil mengirimkan surat konfirmasi Anda.
 Harap cek kemungkinan karakter ilegal pada alamat surel.
 
 Aplikasi pengiriman surel menginformasikan: $1',
-'confirmemail_invalid'     => 'Kode konfirmasi salah. Kode tersebut mungkin sudah kadaluwarsa.',
-'confirmemail_needlogin'   => 'Anda harus melakukan $1 untuk mengkonfirmasikan alamat surel Anda.',
-'confirmemail_success'     => 'Alamat surel Anda telah dikonfirmasi.
+'confirmemail_invalid'      => 'Kode konfirmasi salah. Kode tersebut mungkin sudah kadaluwarsa.',
+'confirmemail_needlogin'    => 'Anda harus melakukan $1 untuk mengkonfirmasikan alamat surel Anda.',
+'confirmemail_success'      => 'Alamat surel Anda telah dikonfirmasi.
 Sekarang Anda dapat [[Special:UserLogin|masuk log]] dan mulai menggunakan wiki.',
-'confirmemail_loggedin'    => 'Alamat surel Anda telah dikonfirmasi.',
-'confirmemail_error'       => 'Terjadi kesalahan sewaktu menyimpan konfirmasi Anda.',
-'confirmemail_subject'     => 'Konfirmasi alamat surel {{SITENAME}}',
-'confirmemail_body'        => 'Seseorang, mungkin Anda, dari alamat IP $1, telah mendaftarkan akun "$2" dengan alamat surel ini di {{SITENAME}}.
+'confirmemail_loggedin'     => 'Alamat surel Anda telah dikonfirmasi.',
+'confirmemail_error'        => 'Terjadi kesalahan sewaktu menyimpan konfirmasi Anda.',
+'confirmemail_subject'      => 'Konfirmasi alamat surel {{SITENAME}}',
+'confirmemail_body'         => 'Seseorang, mungkin Anda, dari alamat IP $1, telah mendaftarkan akun "$2" dengan alamat surel ini di {{SITENAME}}.
 
 Untuk mengkonfirmasikan bahwa akun ini benar dimiliki oleh Anda sekaligus mengaktifkan fitur surel di {{SITENAME}}, ikuti pranala berikut pada penjelajah web Anda:
 
@@ -3160,8 +3167,22 @@ Klik pada pranala ini untuk membatalkan konfirmasi alamat surel:
 $5
 
 Kode konfirmasi ini akan kadaluwarsa pada $4.',
-'confirmemail_invalidated' => 'Konfirmasi alamat surel dibatalkan',
-'invalidateemail'          => 'Batalkan konfirmasi surel',
+'confirmemail_body_changed' => 'Seseorang, mungkin anda, dari alamat IP $1,
+telah merubah surel dari akun "$2" pada alamat ini di {{SITENAME}}. 
+
+Untuk mengkonfirmasi bahwa akun ini adalah benar milik anda sekaligus mengaktifkan
+kembali fitur surel pada {{SITENAME}}, ikuti pranala berikut pada browser Anda:
+
+$3
+
+Jika akun ini *bukan* milik anda, ikuti pranala berikut
+untuk membatalkan konfirmasi alamat surel:
+
+$5
+
+Kode konfirmasi ini akan kadaluwarsa pada $4.',
+'confirmemail_invalidated'  => 'Konfirmasi alamat surel dibatalkan',
+'invalidateemail'           => 'Batalkan konfirmasi surel',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklusi interwiki dimatikan]',
@@ -3393,6 +3414,7 @@ Keterangan tampilan:
 'htmlform-float-invalid'       => 'Yang Anda masukkan bukan merupakan angka.',
 'htmlform-int-toolow'          => 'Nilai yang Anda masukkan terlalu rendah di bawah nilai minimum $1',
 'htmlform-int-toohigh'         => 'Nilai yang Anda masukkan melebihi nilai maksimum $1',
+'htmlform-required'            => 'Nilai ini diperlukan',
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Batalkan perubahan',
 'htmlform-selectorother-other' => 'Lain-lain',

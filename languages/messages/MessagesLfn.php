@@ -48,7 +48,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Engrana la edita de sesion par clica a la destra a titulos de sesion (JavaScript)',
 'tog-showtoc'                 => 'Mostra la table de contenis (per pajes con plu ce tre titulos)',
 'tog-rememberpassword'        => 'Memora me sinia per entra a esta computador',
-'tog-editwidth'               => 'La caxa de editas ave la longia masima',
 'tog-watchcreations'          => 'Junta la pajes ce me ia creada a me lista de pajes oservada',
 'tog-watchdefault'            => 'Junta pajes ce me ia edita a me lista de pajes oservada',
 'tog-watchmoves'              => 'Junta pajes ce me ia moveda a me lista de pajes oservada',

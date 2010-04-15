@@ -79,7 +79,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Mahimo ang pag-usab sa seksyon pinaagi sa pag-right click sa titulo sa seksyon (JavaScript kinahanglan)',
 'tog-showtoc'                 => 'Ipakita ang talaan sa sulod (alang sa mga panid nga may daghan pa sa 3 ka heading)',
 'tog-rememberpassword'        => 'Hinumdomi ako sa kining kompyuter',
-'tog-editwidth'               => 'Palapdan ang kahon sa pag-usab aron mapuno sa tibuok screen',
 'tog-watchcreations'          => 'Bantayi ang akong gisugdang mga panid',
 'tog-watchdefault'            => 'Bantayi ang akong giusab nga mga panid',
 'tog-watchmoves'              => 'Bantayi ang akong gibalhin nga mga panid',

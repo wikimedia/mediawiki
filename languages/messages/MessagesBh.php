@@ -38,7 +38,21 @@ $messages = array(
 'november'  => 'नवम्बर',
 'december'  => 'दिसम्बर',
 
+'mytalk'     => 'हमार बात',
+'navigation' => 'परिभ्रमण',
+
+# Cologne Blue skin
+'qbfind'         => 'खोज',
+'qbbrowse'       => 'ब्राउज',
+'qbedit'         => 'सम्पादन',
+'qbpageoptions'  => 'ई पन्ना',
+'qbpageinfo'     => 'प्रसंग',
+'qbmyoptions'    => 'हमार पन्ना',
+'qbspecialpages' => 'विशेष पन्ना',
+
 'help'             => 'मदद',
+'search'           => 'खोज',
+'searchbutton'     => 'खोज',
 'newpage'          => 'नया पन्ना',
 'talkpagelinktext' => 'बात-चीत',
 
@@ -80,6 +94,13 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked' => 'सम्बन्धित बदलाव',
 
+# File description page
+'filehist-user'     => 'प्रयोगकर्ता',
+'filehist-filesize' => 'फाईल के आकार',
+'filehist-comment'  => 'टिप्पणी',
+'filehist-missing'  => 'गायब फाईल',
+'imagelinks'        => 'फाईल लिंक',
+
 # Namespace form on various pages
 'blanknamespace' => '(मुख्य)',
 
@@ -102,6 +123,10 @@ $messages = array(
 'sp-contributions-userrights'     => 'प्रयोगकर्ता अधिकार प्रबन्धन',
 'sp-contributions-blocked-notice' => 'ई प्रयोगकर्ता के ई समय निष्क्रीय करल गईल बा।
 नविनतम नष्ट लौग प्रविष्टी उद्धरण खातिर निचे दिहल बा:',
+
+# Block/unblock
+'contribslink' => 'योगदान',
+'blocklogpage' => 'निष्क्रिय लौग',
 
 # Tooltip help for the actions
 'tooltip-t-print'     => 'ई पन्ना के छापे लायक संस्करण।',

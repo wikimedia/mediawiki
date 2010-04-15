@@ -21,7 +21,6 @@ $messages = array(
 'tog-numberheadings'   => 'nmra n nsmiat wahdot',
 'tog-showtoolbar'      => 'sbaynd tizikrt n tbddil(JavaScript)',
 'tog-rememberpassword' => 'Sektid akccum inu ɣu-amsuddas ad',
-'tog-editwidth'        => 'Simɣur tanaka n-umẓṛag ard tamu amiẓar',
 'tog-watchcreations'   => 'Zaydn tasniwin lli skrɣ i umuɣ n tilli ssuġiɣ.',
 'tog-watchdefault'     => 'Zaydn tasniwin lli tżrigɣ i umuɣ n tilli tsaggaɣ',
 'tog-watchmoves'       => 'Zayd tisniwin lli smattayɣ i tilli tsggaɣ.',

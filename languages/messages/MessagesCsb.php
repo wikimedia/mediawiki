@@ -49,7 +49,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Włączë edicëjã sekcëji bez klëkniãcé prawą knąpą mëszë<br />na titlu sekcëji (JavaScript)',
 'tog-showtoc'                 => 'Pòkażë spisënk zamkłoscë (dlô starnów z wicy jak 3 nôgłówkama)',
 'tog-rememberpassword'        => 'Wdôrzë mòjé miono brëkòwnika na tim kòmpùtrze',
-'tog-editwidth'               => 'Kastka edicëji mô fùl szérz',
 'tog-watchcreations'          => 'Dodôwôj starnë jaczé ùsôdzã do mòji lëstë ùzérónëch artiklów',
 'tog-watchdefault'            => 'Dodôwôj starnë jaczé editëjã do mòji lëstë ùzérónëch artiklów',
 'tog-watchmoves'              => 'Dodôwôj starnë jaczé przenoszã do mòji lëstë ùzérónëch artiklów',

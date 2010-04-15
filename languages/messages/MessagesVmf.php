@@ -66,7 +66,6 @@ $messages = array(
 'tog-hidepatrolled'          => 'Ned dsajchn in dâ „Ledschdâ Ändrungn“, was an andrar schon brüüfd had',
 'tog-showtoc'                => 'Inhalds-fârdsajchnis ôôdsajchn baj määr wi 3 iiwârschrifdn',
 'tog-rememberpassword'       => 'Uf dem Ghombjuudâr schdändich ôôgmäld blajwn',
-'tog-editwidth'              => "S'âjgaawefäld sol soo braad wi dr bildschirm wärn",
 'tog-watchcreations'         => 'Ale fon miir sälwâr gmachdn sajdn soln uf mâj beoobachdungs-lischdn',
 'tog-watchdefault'           => 'Ale fon miir gändârdnd sajdn soln uf mâj beoobachdungs-lischdn',
 'tog-watchmoves'             => 'Ale fon miir fârschoobnen sajdn soln uf mâj beoobachdungs-lischdn',

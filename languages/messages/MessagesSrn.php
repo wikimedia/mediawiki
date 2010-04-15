@@ -166,7 +166,6 @@ $messages = array(
 'tog-editsectiononrightclick' => "Gi primisi fu kenki pisi-papira nanga wan naki n'a leti-anu sey na tapu wan pisi-ede (JavaScript)",
 'tog-showtoc'                 => 'Sori san de (gi papira nanga moro leki 3 pisi-ede)',
 'tog-rememberpassword'        => 'Memre mi psawortu',
-'tog-editwidth'               => 'A kenki boksu span na marki na ala tu sei',
 'tog-watchcreations'          => 'Tan luku den papira di mi meki',
 'tog-watchdefault'            => 'Tan luku den papira di mi kenki',
 'tog-watchmoves'              => 'Tan luku den papira di mi froysi',

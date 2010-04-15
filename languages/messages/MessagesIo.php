@@ -122,7 +122,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Kapabligez redakto di secioni kande on dextra-klikus tituli di secioni (JavaScript bezonesas)',
 'tog-showtoc'                 => 'Montrez indexo (por pagini havanta plu multa kam 3 tituli)',
 'tog-rememberpassword'        => 'Memorez mea pasovorto en ica komputoro',
-'tog-editwidth'               => 'Larjigez la redakto-buxo por ke ol okupas la tota skreno',
 'tog-watchcreations'          => 'Adjuntez pagini kreota da me ad mea surveyaji',
 'tog-watchdefault'            => 'Adjuntez pagini redaktota da me ad mea surveyaji',
 'tog-watchmoves'              => 'Adjuntez pagini movota da me ad mea surveyaji',

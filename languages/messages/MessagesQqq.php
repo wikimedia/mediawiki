@@ -111,7 +111,6 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-rememberpassword'        => "[[Special:Preferences]], tab 'User profile', section 'Change password'. Offers user remember login details.
 
 {{Identical|Remember my login on this computer}}",
-'tog-editwidth'               => "[[Special:Preferences]], tab 'Edit'. Offers user make give edit box full width in browser.",
 'tog-watchcreations'          => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add created pages to watchlist.",
 'tog-watchdefault'            => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add edited pages to watchlist.",
 'tog-watchmoves'              => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add moved pages to watchlist.",
@@ -1896,7 +1895,6 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'statistics-edits-average'     => 'Used in [[Special:Statistics]]',
 'statistics-views-total'       => 'Used in [[Special:Statistics]]',
 'statistics-views-peredit'     => 'Used in [[Special:Statistics]]',
-'statistics-jobqueue'          => 'Used in [[Special:Statistics]]',
 'statistics-users'             => 'Used in [[Special:Statistics]]',
 'statistics-users-active'      => 'Used in [[Special:Statistics]]',
 'statistics-users-active-desc' => "Description shown beneath ''Active users'' in [[Special:Statistics]]
@@ -3235,7 +3233,9 @@ See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography 
 * {{msg|Exif-subjectdistancerange-0}}
 * {{msg|Exif-subjectdistancerange-1}}
 * {{msg|Exif-subjectdistancerange-2}}
-* {{msg|Exif-subjectdistancerange-3}}',
+* {{msg|Exif-subjectdistancerange-3}}
+
+Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_photography Wikipedia].',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => "Knots: ''Knot'' is a unit of speed on water used for ships, etc., equal to one nautical mile per hour.",

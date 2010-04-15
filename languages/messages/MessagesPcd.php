@@ -27,7 +27,6 @@ $messages = array(
 'tog-editsectiononrightclick' => "Pérmet l'édichion del sekchion par un droé buke su ch'tite del sekchion (i feut JavaScript)",
 'tog-showtoc'                 => "Aficher l'tabe ed ches étnus (pou ches paches aveuc plu ed 3 intétes)",
 'tog-rememberpassword'        => "Warder min lodjine su chl'ordinateu-lo.",
-'tog-editwidth'               => "Alatcher l'boéte d'édichon pou rimplir tout ch'cassi",
 'tog-watchcreations'          => "Ajouter ches paches qu'éj crée su em lisse",
 'tog-watchdefault'            => "Ajouter ches paches qu'éj édite su em lisse.",
 'tog-watchmoves'              => "Ajouter ches paches qu'éj déplache su m'lisse.",

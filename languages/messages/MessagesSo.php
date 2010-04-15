@@ -26,7 +26,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Fasax cutub wax ka bedelida hadii batoonka midig ee dooliga <br /> dhag lagu siiyo cinwaanka korkiisa (JavaScript)',
 'tog-showtoc'                 => "I'tus bogga cinwaanada (boggaga leh in kabada 3 cinwaan)",
 'tog-rememberpassword'        => 'Kumbuyuutarkaan ku xasuusnaaw gudagaleyheyga',
-'tog-editwidth'               => 'Sanduuqa wax ka bedelka wuxuu leeyahay balaarnaan buuxda',
 'tog-watchcreations'          => 'Boggaga aan qoro kudar liiska-waardiyaha',
 'tog-watchdefault'            => 'Boggaga aan wax ka bedelo kudar liiska-waardiyaha',
 'tog-watchmoves'              => 'Boggaga aan wareejiyo ku dar liiska-waardiyaha',

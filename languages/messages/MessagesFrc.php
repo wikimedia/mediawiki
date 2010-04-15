@@ -30,7 +30,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Changer une section en faisant un clic droit sus son nom (JavaScript)',
 'tog-showtoc'                 => 'Montrer la table des matières (pour les pages avec plus que 3 têtes)',
 'tog-rememberpassword'        => 'Garder mon mot de passe',
-'tog-editwidth'               => 'Montrer la fenêtre des changements en pleine largeur',
 'tog-watchcreations'          => 'Additionner les pages que je crée à ma liste des pages guettées',
 'tog-watchdefault'            => 'Additionner les pages que je change à ma liste des pages guettées',
 'tog-watchmoves'              => 'Additionner les pages que je renomme à ma liste des pages guettées',

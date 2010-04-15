@@ -67,7 +67,6 @@ $messages = array(
 'tog-editsectiononrightclick' => "Permette 'e cangne 'e sezzione cliccanno p''o tasto destro ncopp 'e titule 'e sezzione (JavaScript)",
 'tog-showtoc'                 => "Mosta ll'innece pe 'e paggene cu cchiù 'e 3 sezzione",
 'tog-rememberpassword'        => "Ricurda 'a registrazzione pe' cchiu sessione",
-'tog-editwidth'               => "Larghezza massima d''a casella pe scrivere",
 
 'underline-always' => 'Sèmpe',
 'underline-never'  => 'Màje',

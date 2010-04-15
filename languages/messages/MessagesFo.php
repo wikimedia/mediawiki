@@ -124,7 +124,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Rætta greinpart við at høgraklikkja á yvirskrift av greinparti (JavaScript)',
 'tog-showtoc'                 => 'Vís innihaldsyvurlit (Til greinir við meira enn trimun greinpartum)',
 'tog-rememberpassword'        => 'Minst til loyniorð næstu ferð',
-'tog-editwidth'               => 'Rættingarkassin hevur fulla breid',
 'tog-watchcreations'          => 'Legg síður, sum eg stovni, í mítt eftirlit',
 'tog-watchdefault'            => 'Vaka yvur nýggjum og broyttum greinum',
 'tog-minordefault'            => 'Merk sum standard allar broytingar sum smærri',

@@ -26,7 +26,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Rievdat osiid nu ahte deaddilat bájilčállaga sáhpána olggeš boaluin (JavaScript)',
 'tog-showtoc'                 => 'Čájet sisdoallologahallama siidduin, main lea eanet go golbma bájilčállaga',
 'tog-rememberpassword'        => 'Muite mu dieđuid dán dihtoris',
-'tog-editwidth'               => 'Ođasmahttinlođa lea olles siiddu viidosaš',
 'tog-watchcreations'          => 'Lasit čuovvunlistui siidduid maid lean álggahan',
 'tog-watchdefault'            => 'Lasit čuovvunlistui siidduid maid lean ođasmahttán',
 'tog-watchmoves'              => 'Lasit čuovvunlistui siidduid maid lean sirdán',

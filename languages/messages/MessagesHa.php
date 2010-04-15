@@ -27,7 +27,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'A lamunta gyara shashe da kilikin dama a kan kanun shashe (ana buƙatar JavaScript)',
 'tog-showtoc'                 => 'A nuna jadawalin kanu (cikin shafuna masu fiye da kanu 3)',
 'tog-rememberpassword'        => 'A adana bayanan loginkina a wannan kwamfyuta',
-'tog-editwidth'               => 'A faɗaɗa sararin gyarawa ya cika duka bangon',
 'tog-watchcreations'          => 'A daɗa shafunan da na ƙirƙira a cikin jerina na kan ido',
 'tog-watchdefault'            => 'A daɗa shafunan da na gyara a cikin jerina na kan ido',
 'tog-watchmoves'              => 'A daɗa shafunan da na gusar a cikin jerina na kan ido',

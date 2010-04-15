@@ -378,7 +378,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bölim taqırıbın oñ nuqwmen öñdewin qos (JavaScript)',
 'tog-showtoc'                 => 'Mazmunın körset (3-ten arta bölimi barılarğa)',
 'tog-rememberpassword'        => 'Kirgenimdi osı komp′ywterde umıtpa',
-'tog-editwidth'               => 'Kiristirw ornı tolıq enimen',
 'tog-watchcreations'          => 'Men bastağan betterdi baqılaw tizimime üste',
 'tog-watchdefault'            => 'Men öñdegen betterdi baqılaw tizimime üste',
 'tog-watchmoves'              => 'Men jıljıtqan betterdi baqılaw tizimime üste',

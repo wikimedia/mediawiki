@@ -164,7 +164,6 @@ $messages = array(
 'tog-editsectiononrightclick' => "Bo'lim atamasın on' jaqqa basıp o'zgertiwdi qos (JavaScript)",
 'tog-showtoc'                 => "Mazmunın ko'rset (3-ten artıq bo'limi bar betlerge)",
 'tog-rememberpassword'        => "Menin' kirgenimdi usı kompyuterde saqlap qal",
-'tog-editwidth'               => "O'zgertiw maydanının' eni tolıq",
 'tog-watchcreations'          => 'Men jaratqan betlerdi baqlaw dizimime qos',
 'tog-watchdefault'            => "Men o'zgeris kiritken betlerdi baqlaw dizimime qos",
 'tog-watchmoves'              => "Men ko'shirgen betlerdi baqlaw dizimime qos",

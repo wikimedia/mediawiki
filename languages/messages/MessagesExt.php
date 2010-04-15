@@ -28,7 +28,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Premitil eital secionis pulsandu el botón de la derecha<br /> enus entítulus de secionis (JavaScript)',
 'tog-showtoc'                 => 'Muestral cuairu e continius (pa páhinas con mas de 3 entítulus)',
 'tog-rememberpassword'        => 'Recordal la mi cuenta nesti ordinaol',
-'tog-editwidth'               => "Encajal el cuairu d'eición al anchu la pantalla",
 'tog-watchcreations'          => 'Vehilal las páhinas que yo crei',
 'tog-watchdefault'            => "Vehilal las páhinas qu'eiti",
 'tog-watchmoves'              => 'Vehilal las páhinas que rellami',
