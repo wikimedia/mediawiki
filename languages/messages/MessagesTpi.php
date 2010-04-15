@@ -43,7 +43,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Senisim ol hap bilong pes taim yu paitim nem bilong hap<br />wantaim raithan-klik (i nidim Javascript)',
 'tog-showtoc'                 => 'Soim ol nem bilong hap insait long liklik bokis, taim igat antap long 3 hap long pes',
 'tog-rememberpassword'        => 'Holim nem bilong yusa bilong mi long dispela kompiuta',
-'tog-editwidth'               => 'Larim bokis bilong senisim igo bikpela olgeta',
 'tog-watchcreations'          => 'Putim ol nupela pes mi wokim long lukautbuk',
 'tog-watchdefault'            => 'Putim ol pes mi senisim long lukautbuk bilong mi',
 'tog-watchmoves'              => 'Putim ol pes mi surikim long lukautbuk bilong mi',

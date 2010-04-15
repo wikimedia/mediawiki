@@ -84,7 +84,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Candjî les seccions avou on dobe-clitch sol tite (JavaScript)',
 'tog-showtoc'                 => "Mostrer l' tåvlea d' ådvins<br />(po ls årtikes avou pus di 3 seccions)",
 'tog-rememberpassword'        => 'Rimimbrer li scret inte les sessions',
-'tog-editwidth'               => "Li boesse d' aspougnaedje prind tote li lårdjeu",
 'tog-watchcreations'          => "Mete les pådjes ki dj' askepeye dins l' djivêye des pådjes shuvowes",
 'tog-watchdefault'            => "Shuve les årtikes ki dj' fwai ou ki dj' candje",
 'tog-watchmoves'              => "Radjouter a m' djivêye des shuvous les pådjes ki dji displaece",

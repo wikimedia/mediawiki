@@ -65,7 +65,6 @@ $messages = array(
 'tog-showtoolbar'          => "Amosta s'amusta de is ainas pro is acontzos (esigit JavaScript)",
 'tog-editondblclick'       => 'Acontza pàginas cun dòpiu click (esigit JavaScript)',
 'tog-rememberpassword'     => 'Amenta sa password in custu carculadore',
-'tog-editwidth'            => 'Amànnia su box pro acontzare a sa largària màssima',
 'tog-watchcreations'       => 'Aciungi is pàginas chi apo creadu a sa watchlist mea',
 'tog-watchdefault'         => 'Aciungi is pàginas chi apo acontzadu a sa watchlist mea',
 'tog-watchmoves'           => 'Aciungi is pàginas chi apo mòvidu a sa watchlist mea',

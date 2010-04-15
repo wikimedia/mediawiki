@@ -59,7 +59,6 @@ $messages = array(
 'tog-editsectiononrightclick' => "Atvērt sadaļas rediģēšanas lapu, uzklikšķinot ar labo peles pogu uz sadaļas virsraksta (izmanto ''JavaScript'')",
 'tog-showtoc'                 => 'Parādīt satura rādītāju (lapām, kurās ir vairāk par 3 virsrakstiem)',
 'tog-rememberpassword'        => 'Atcerēties paroli pēc pārlūka aizvēršanas',
-'tog-editwidth'               => 'Parādīt izmainīšanas logu visa ekrāna platumā',
 'tog-watchcreations'          => 'Pievienot manis radītās lapas uzraugāmo lapu sarakstam',
 'tog-watchdefault'            => 'Pievienot manis izmainītās lapas uzraugāmo lapu sarakstam',
 'tog-watchmoves'              => 'Pievienot manis pārvietotās lapas uzraugāmo lapu sarakstam',

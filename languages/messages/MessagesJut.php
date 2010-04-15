@@ -29,7 +29,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Redigær åfsnet ve at klikke på deres titler (JavaScript)',
 'tog-showtoc'                 => 'Ves endholtsførtegnelse (i artikler ve mære end tre åfsnet)',
 'tog-rememberpassword'        => 'Husk adgengskode til næste besøĝ frå denne kompjuter',
-'tog-editwidth'               => 'Redigærengsboksen har fuld bredde',
 'tog-watchcreations'          => 'Tilføj sider a åpretter til miin åvervågnengsliste',
 'tog-watchdefault'            => 'Tilføj sider a redigærer til miin åvervågnengsliste',
 'tog-watchmoves'              => 'Tilføj sider a flytter til miin åvervågnengsliste',

@@ -30,7 +30,6 @@ $messages = array(
 'tog-editsectiononrightclick' => '(JavaScript munawiwa) titulxat tuqina kupi suxuqiñampi tuqitaki turkawi luräña',
 'tog-showtoc'                 => 'Waruchataw uñachayaña (kimsa tituljampi uñstawitaki)',
 'tog-rememberpassword'        => "Akax jasanchirin imt'awija amtaña",
-'tog-editwidth'               => 'Akiptawit llataxa taqi anchuniwa',
 'tog-watchcreations'          => "Unch'ukit waruchatajana nayaxa uñstawix uñstayawajata yapxataña",
 'tog-watchdefault'            => "Unch'ukit waruchatajana nayaxa uñstawix turkajata yapxataña",
 'tog-watchmoves'              => "Unch'ukit waruchatajana nayaxa uñstawix sutiyarajata yapxataña",

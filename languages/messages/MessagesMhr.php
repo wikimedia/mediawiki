@@ -698,7 +698,6 @@ $messages = array(
 'statistics-edits-average'     => 'Ик лаштыкым покшел тӧрлымӧ чот',
 'statistics-views-total'       => 'Чылажге ончымо',
 'statistics-views-peredit'     => 'Ик тӧрлатымашлан ончымо',
-'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Паша черетын] кужытшо',
 'statistics-users'             => 'Регистрацийым эртыше [[Special:ListUsers|пайдаланыше-влак]]',
 'statistics-users-active'      => 'Чӱчкыдын пайдаланыше-влак',
 'statistics-users-active-desc' => 'Пытартыш {{PLURAL:$1|кечыште|$1 кечыште}} иктаж-мом ыштыше пайаланыше-влак',

@@ -26,7 +26,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Yún-chún yu-kit phêu-thì phiên-chho thon-lo̍k （JavaScript）',
 'tog-showtoc'                 => 'Hién-sṳ muk-liu̍k （chṳ̂m-tui yit-chông chhêu-ko sâm-ke phêu-thì ke vùn-chông）',
 'tog-rememberpassword'        => 'Hâ-yit-chhṳ tên-ngi̍p ki-he̍t me̍t-me̍t',
-'tog-editwidth'               => 'Phiên-cho làn-vi yí-kîn yû chui-thai khôn-yùng',
 'tog-watchcreations'          => 'Chiông ngô chhóng-chho ke vùn-chông kâ-thiâm to ngô-ke kam-sṳ lie̍t-péu chûng',
 'tog-watchdefault'            => 'Chiông ngô kiên-kói ke vùn-chông kâ-thiâm to ngô-ke kam-sṳ lie̍t-péu chûng',
 'tog-watchmoves'              => 'Chiông ngô yì-thung ke vùn-chông kâ-ngi̍p ngô-ke kam-sṳ lie̍t-péu',

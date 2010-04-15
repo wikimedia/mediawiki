@@ -93,7 +93,6 @@ $messages = array(
 'tog-editsectiononrightclick' => "Posseblitar l'eidiçon de cachos por clique cul boton dreito ne l títalo de la seçon (JavaScrit)",
 'tog-showtoc'                 => 'Amostrar índice (para páiginas cun mais de trés cachos)',
 'tog-rememberpassword'        => 'Recordar la mie palabra-chabe antre sessones',
-'tog-editwidth'               => "Oumentar l'anchura de la caixa d'eidiçon para prencher toda la pantalha",
 'tog-watchcreations'          => 'Ajuntar las páiginas que you criar a las minhas páiginas begiadas',
 'tog-watchdefault'            => 'Ajuntar las páiginas que you eiditar a las minhas páiginas begiadas',
 'tog-watchmoves'              => ' Ajuntar las páiginas que you mober a las minhas páiginas begiadas',

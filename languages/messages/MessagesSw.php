@@ -136,7 +136,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Wezesha sehemu ya kuandikia kwa kubonyeza kitufe cha kulia cha puku yako juu ya sehemu ya majina husika (JavaScript)',
 'tog-showtoc'                 => 'Onyesha mistari ya yaliyomo (kwa kila kurasa iliyo na zaidi ya vichwa vya habari 3)',
 'tog-rememberpassword'        => 'Kumbuka kuingia kwangu katika kompyuta hii',
-'tog-editwidth'               => 'Sanduku la kuhariri liwe na upana wa kujaza skrini nzima',
 'tog-watchcreations'          => 'Weka kurasa nilizoumba katika maangalizi yangu',
 'tog-watchdefault'            => 'Weka kurasa zote nilizohariri katika maangalizi yangu',
 'tog-watchmoves'              => 'Weka kurasa zote nilizohamisha katika maangalizi yangu',
@@ -952,6 +951,10 @@ alibadilisha uwezo wa kuona maelezo ya mapitio ya ukurasa wa [[$1]]',
 'suppressionlog' => 'Kumbukumbu za kuficha',
 
 # History merging
+'mergehistory'             => 'Unganisha historia za kurasa',
+'mergehistory-box'         => 'Unganisha mapitio ya kurasa mbili:',
+'mergehistory-from'        => 'Ukurasa wa chanzo:',
+'mergehistory-into'        => 'Ukurasa wa mwishilio:',
 'mergehistory-autocomment' => '[[:$1]] uliunganishwa ndani wa [[:$2]]',
 'mergehistory-comment'     => '[[:$1]] uliunganishwa ndani wa [[:$2]]: $3',
 'mergehistory-reason'      => 'Sababu:',
@@ -1417,7 +1420,6 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'statistics-edits-average'     => 'Wastani wa uhariri kwa kurasa',
 'statistics-views-total'       => 'Onyesha kwa jumla',
 'statistics-views-peredit'     => 'Onyesha kwa uhariri',
-'statistics-jobqueue'          => 'Urefu wa [http://www.mediawiki.org/wiki/Manual:Job_queue foleni ya kazi]',
 'statistics-users'             => '[[Special:ListUsers|Watumiaji]] waliojisajiri',
 'statistics-users-active'      => 'Watumiaji wanaofanya kazi',
 'statistics-users-active-desc' => 'Watumiaji waliofanya kazi katika siku {{PLURAL:$1|siku|$1 zilizopita}}',
@@ -1984,13 +1986,16 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.<hr />',
 'show-big-image-thumb' => '<small>Ukubwa wa hakikisho hili: piseli $1 x $2</small>',
 
 # Special:NewFiles
-'newimages'        => 'Mkusanyiko wa faili jipya',
-'newimages-legend' => 'Chuja',
-'newimages-label'  => 'Jina la faili (au sehemu yake):',
-'showhidebots'     => '($ 1 roboti)',
-'noimages'         => 'Hakuna picha.',
-'ilsubmit'         => 'Tafuta',
-'bydate'           => 'kwa tarehe',
+'newimages'             => 'Mkusanyiko wa faili jipya',
+'imagelisttext'         => "Orodha iliyopo chini inataja {{PLURAL:$1|faili '''$1''' lililopangwa|mafaili '''$1''' yaliyopangwa}} $2.",
+'newimages-summary'     => 'Ukurasa maalum huu unaonyesha mafaili yaliyopakiwa hivi karibuni.',
+'newimages-legend'      => 'Chuja',
+'newimages-label'       => 'Jina la faili (au sehemu yake):',
+'showhidebots'          => '($ 1 roboti)',
+'noimages'              => 'Hakuna picha.',
+'ilsubmit'              => 'Tafuta',
+'bydate'                => 'kwa tarehe',
+'sp-newimages-showfrom' => 'Onyesha mafaili mapya kuanzia saa $2, tarehe $1',
 
 # Bad image list
 'bad_image_list' => 'Fomati ni hii:
@@ -2027,6 +2032,9 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gaincontrol-0' => 'Bila',
 
 'exif-subjectdistancerange-0' => 'Haujulikani',
+'exif-subjectdistancerange-1' => 'Mandhari ya karibu mno',
+'exif-subjectdistancerange-2' => 'Mandhari ya karibu',
+'exif-subjectdistancerange-3' => 'Mandhari ya mbali',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Latitudo ya kaskazini',
@@ -2036,9 +2044,12 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpslongitude-e' => 'Longitudo kwenda mashariki',
 'exif-gpslongitude-w' => 'Longitudo kwenda magharibi',
 
+'exif-gpsstatus-a' => 'Kipimo kinaendelea',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometa kwa saa',
 'exif-gpsspeed-m' => 'Maili kwa saa',
+'exif-gpsspeed-n' => 'Noti',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Mwelekeo halisi',
@@ -2142,7 +2153,7 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 # Auto-summaries
 'autosumm-blank'   => 'Ukurasa ulimwagika',
 'autosumm-replace' => "Maandishi yaliyokuwepo yalichukuliwa nafasi na '$1'",
-'autoredircomment' => 'Ukurasa ulielekezwa kwenda [[$1]]',
+'autoredircomment' => 'Ukurasa umeelekezwa kwenda [[$1]]',
 'autosumm-new'     => "Ukurasa ulianzishwa kwa kuandika '$1'",
 
 # Live preview

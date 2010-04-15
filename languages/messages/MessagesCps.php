@@ -28,7 +28,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Pasugtan ang pag-ilis sang mga bahin pama-agi sa tu-o nga pagpindot sa mga titulo sang pahina {kinanglan ang JavaScript}',
 'tog-showtoc'                 => 'Ipakita ang listahan sang mga kaundan (sa mga pahina nga may madamu pa sa 3 ka titulo)',
 'tog-rememberpassword'        => 'Dumdumon ang akon pagsulod sa mini nga kompyuter',
-'tog-editwidth'               => 'Palapadun ang kahon sang pang-ilis para masudlan ang bilog nga screen',
 'tog-watchcreations'          => 'Idugang sa akon balantayan ang mga pahina nga gin-ubra ko.',
 'tog-watchdefault'            => 'Idugang sa akon balantayan ang mga pahina nga akon na-islan',
 'tog-watchmoves'              => 'Idugang sa akon balantayan ang mga pahina nga akon ginsaylo',

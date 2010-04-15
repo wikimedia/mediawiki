@@ -30,7 +30,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Änkelte stöögne ma ruchts kliken beårbe (brükt JavaScript)',
 'tog-showtoc'                 => 'Wis en inhåltsferteeknis for side ma mäs ås trii ouerschrafte',
 'tog-rememberpassword'        => 'aw diheere komputer foon duur önjmälde',
-'tog-editwidth'               => 'Önjjeewefälj ütwide, am di hiilj bilschirm üttufeelen',
 'tog-watchcreations'          => 'Seelew måågede side automatisch bekiike',
 'tog-watchdefault'            => 'Seelew änrede side automaatisch bekiike',
 'tog-watchmoves'              => 'Seelew ferschääwene side automaatisch bekiike',

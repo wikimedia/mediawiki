@@ -47,7 +47,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Beşekê bi rast-klîkekê biguherîne (JavaScript gireke)',
 'tog-showtoc'                 => 'Tabloya naverokê nîşanbide (ji rûpelan bi zêdetirî sê sernavan)',
 'tog-rememberpassword'        => 'Qeydkirinê min di vê komputerê da wîne bîrê',
-'tog-editwidth'               => 'Cihê guherandinê yê tewrî mezin',
 'tog-watchcreations'          => 'Rûpelan, yê min çêkir, têke lîsteya min ya şopandinê',
 'tog-watchdefault'            => 'Rûpelan, yê min guhart, têke lîsteya min ya şopandinê',
 'tog-watchmoves'              => 'Rûpelan, yê min navî wan guhart, têke lîsteya min ya şopandinê',

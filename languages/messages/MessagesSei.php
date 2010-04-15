@@ -28,7 +28,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Ton ticpatlöx seccion pok clickám mii<br /> seccion titelám iti (JavaScript)',
 'tog-showtoc'                 => 'Cohuatlöx insacualte (páhinám bajlip 3 text corridór mii)',
 'tog-rememberpassword'        => 'Qualtiinii he quimx canj jan ordinator iti',
-'tog-editwidth'               => 'Cui ticpatlöx janvam',
 'tog-watchcreations'          => 'Plusöx páhinám he hun he listade cáminot',
 'tog-watchdefault'            => 'Plusöx páhinám he ticpatlöx he listade cáminot',
 'tog-watchmoves'              => 'Plusöx páhinám he yacom he listade cáminot',

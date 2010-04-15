@@ -15,12 +15,30 @@ $fallback = 'uk';
 
 $messages = array(
 # User preference toggles
-'tog-underline'      => 'Підкреслёвати одказы:',
-'tog-showhiddencats' => 'Вказати схованы катеґорії',
+'tog-underline'             => 'Підкреслёвати одказы:',
+'tog-highlightbroken'       => 'Форматовати одказы на неекзістуючі сторінкы <a href="" class="new">так</a> (алтернатіва: так<a href="" class="internal">?</a>).',
+'tog-justify'               => 'Зарівнати текст до блоку',
+'tog-hideminor'             => 'Сховати малы едітованя в списку послїднїх змін',
+'tog-newpageshidepatrolled' => 'Сховати патролёваны сторінкы зо списку новых сторінок',
+'tog-extendwatchlist'       => 'Росшыреный список слїдованых сторінок, обсягує вшыткы зміны, не лем послїднї',
+'tog-numberheadings'        => 'Автоматічно нумеровати надписы',
+'tog-showtoolbar'           => 'Вказати панел інштрументів (потрібный JavaScript)',
+'tog-editondblclick'        => 'Едітовати двоїтым кликом (JavaScript)',
+'tog-rememberpassword'      => 'Запамятати моє приголошіня на тім компютері',
+'tog-watchcreations'        => 'Придавати сторінкы створены мнов  до мого списку слїдованых',
+'tog-nocache'               => 'Заборонити кешованя сторінок',
+'tog-enotifwatchlistpages'  => 'Послати електронічну пошту, кідь ся змінила сторінка з мого списку слїдованя',
+'tog-watchlisthideown'      => 'Крыти мої едітованя на списку слїдованых сторінок',
+'tog-watchlisthidebots'     => 'Крыти едітованя ботів у списку слїдованых сторінок',
+'tog-watchlisthideminor'    => 'Сховати малы едітованя зо списку слїдованых сторінок',
+'tog-showhiddencats'        => 'Вказати схованы катеґорії',
 
 'underline-always'  => 'Все',
 'underline-never'   => 'Нїґда',
 'underline-default' => 'Хосновати наставлиня переглядача',
+
+# Font style option in Special:Preferences
+'editfont-default' => 'Хосновати наставлиня переглядача',
 
 # Dates
 'sunday'        => 'недїля',
@@ -156,6 +174,7 @@ $messages = array(
 'info_short'        => 'Інформація',
 'printableversion'  => 'Верзія про друк',
 'permalink'         => 'Перманентный одказ',
+'print'             => 'Друк',
 'edit'              => 'Едітовати',
 'create'            => 'Створити',
 'editthispage'      => 'Едітовату тоту сторінку',
@@ -245,6 +264,7 @@ $1',
 'thisisdeleted'           => 'Перегляднути ці обновити $1?',
 'viewdeleted'             => 'Зобразити $1?',
 'feedlinks'               => 'Каналы:',
+'feed-invalid'            => 'Неправилный тіп каналу.',
 'site-rss-feed'           => '$1 RSS канал',
 'site-atom-feed'          => '$1 Atom канал',
 'page-rss-feed'           => '"$1" RSS канал',
@@ -252,14 +272,20 @@ $1',
 'red-link-title'          => '$1 (така сторінка не екзістує)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Сторінка',
-'nstab-user'     => 'Сторінка хоснователя',
-'nstab-media'    => 'Медіа-сторінка',
-'nstab-special'  => 'Шпеціална сторінка',
-'nstab-project'  => 'Сторінка проекту',
-'nstab-image'    => 'Файл',
-'nstab-template' => 'Шаблона',
-'nstab-category' => 'Катеґорія',
+'nstab-main'      => 'Сторінка',
+'nstab-user'      => 'Сторінка хоснователя',
+'nstab-media'     => 'Медіа-сторінка',
+'nstab-special'   => 'Шпеціална сторінка',
+'nstab-project'   => 'Сторінка проекту',
+'nstab-image'     => 'Файл',
+'nstab-mediawiki' => 'Ознам',
+'nstab-template'  => 'Шаблона',
+'nstab-help'      => 'Сторінка помочі',
+'nstab-category'  => 'Катеґорія',
+
+# Main script and global functions
+'nosuchaction'      => 'Такой дїї не має',
+'nosuchspecialpage' => 'Такой шпеціалной сторінкы не має',
 
 # General errors
 'error'                => 'Хыба',
@@ -531,9 +557,16 @@ $1',
 'timezoneoffset'              => 'Посун¹:',
 'servertime'                  => 'Час сервера:',
 'guesstimezone'               => 'Начітати з переглядача',
+'timezoneregion-africa'       => 'Африка',
+'timezoneregion-america'      => 'Америка',
+'timezoneregion-antarctica'   => 'Антарктіда',
+'timezoneregion-arctic'       => 'Арктіка',
 'timezoneregion-asia'         => 'Азія',
+'timezoneregion-atlantic'     => 'Атлантічный океан',
 'timezoneregion-australia'    => 'Австралія',
 'timezoneregion-europe'       => 'Европа',
+'timezoneregion-indian'       => 'Індійскый океан',
+'timezoneregion-pacific'      => 'Тихый океан',
 'allowemail'                  => 'Поволити електронічну пошту од іншых хоснователїв',
 'prefs-searchoptions'         => 'Параметры гляданя',
 'prefs-namespaces'            => 'Просторы назв',
@@ -565,6 +598,7 @@ $1',
 'prefs-advancedrendering'     => 'Розшырены можности',
 'prefs-advancedsearchoptions' => 'Розшырены можности',
 'prefs-advancedwatchlist'     => 'Розшырены можности',
+'prefs-diffs'                 => 'Порівнаня верзії',
 
 # User rights
 'userrights-lookup-user'      => 'Управовати хосновательскы ґрупы',
@@ -602,8 +636,18 @@ $1',
 'grouppage-suppress'      => '{{ns:project}}:Ревізоры',
 
 # Rights
-'right-read' => 'Чітаня сторінок',
-'right-edit' => 'Едітованя сторінок',
+'right-read'          => 'Чітаня сторінок',
+'right-edit'          => 'Едітованя сторінок',
+'right-createtalk'    => 'Вытворїня сторінок діскузії',
+'right-createaccount' => 'Вытворїня новых конт хоснователїв',
+'right-move'          => 'Переменованя сторінок',
+'right-move-subpages' => 'Переменованя сторінок і їх підсторінок',
+'right-movefile'      => 'Переменовати файлы',
+'right-upload'        => 'Награваня файлів',
+'right-delete'        => 'Змазаня сторінок',
+'right-unblockself'   => 'Одблоковати самого себе',
+'right-editinterface' => 'Едітованя інтерфейсу хоснователя',
+'right-import'        => 'Імпорт сторінок з іншых вікі',
 
 # User rights log
 'rightslog' => 'Лоґ хосновательскых прав',
@@ -725,7 +769,9 @@ $1',
 'nrevisions'         => '$1 {{PLURAL:$1|ревізія|ревізії|ревізій}}',
 'uncategorizedpages' => 'Некатеґоризованы сторінкы',
 'prefixindex'        => 'Вшыткы сторінкы з початком назв',
+'shortpages'         => 'Курты статї',
 'longpages'          => 'Найдовшы статті',
+'deadendpages'       => 'Слїпы сторінкы',
 'protectedpages'     => 'Замкнуты сторінкы',
 'listusers'          => 'Список хоснователїв',
 'newpages'           => 'Новы сторінкы',
@@ -791,10 +837,18 @@ $1',
 'newuserlog-autocreate-entry' => 'Конто вытворене автоматічнї',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(списok членїв)',
+'listgrouprights-group'    => 'Ґрупа',
+'listgrouprights-rights'   => 'Права',
+'listgrouprights-helppage' => 'Help:Права хоснователїв',
+'listgrouprights-members'  => '(списok членїв)',
 
 # E-mail user
-'emailuser' => 'Послати е-маіл тому хоснователёві',
+'emailuser'    => 'Послати е-маіл тому хоснователёві',
+'emailfrom'    => 'Од:',
+'emailto'      => 'Кому:',
+'emailsubject' => 'Тема:',
+'emailmessage' => 'Ознам:',
+'emailsend'    => 'Одослати',
 
 # Watchlist
 'watchlist'         => 'Слїдованы сторінкы',
@@ -852,12 +906,28 @@ $1',
 'protect-expiring'            => 'кінчіть $1 (UTC)',
 'protect-cascade'             => 'Хранити сторінкы вложены до той сторінкы (каскадова охрана)',
 'protect-cantedit'            => 'Вы не можете змінювати рівень охороны той сторінкы, тому што вы не маєте прав про єй едитованя.',
+'protect-othertime'           => 'Іншый час:',
+'protect-othertime-op'        => 'Іншый час',
+'protect-otherreason'         => 'Інша/додаткова причіна:',
+'protect-otherreason-op'      => 'Інша причіна',
 'restriction-type'            => 'Права',
 'restriction-level'           => 'Рівень доступу:',
+'minimum-size'                => 'Мінімалный розмір',
+'maximum-size'                => 'Максімалный розмір:',
+'pagesize'                    => '(байтів)',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Едітованя',
+'restriction-move'   => 'Переменовати',
+'restriction-create' => 'Вытвориня',
+
+# Restriction levels
+'restriction-level-autoconfirmed' => 'частково хранено',
 
 # Undelete
-'undeletelink'     => 'відїти/обновити',
-'undeletedarticle' => 'обновів "[[$1]]"',
+'undeletelink'              => 'відїти/обновити',
+'undeletedarticle'          => 'обновів "[[$1]]"',
+'undelete-show-file-submit' => 'Гей',
 
 # Namespace form on various pages
 'namespace'      => 'Простор назв:',
@@ -897,7 +967,12 @@ $1',
 
 # Block/unblock
 'blockip'                  => 'Заблоковати хоснователя',
+'ipbreason'                => 'Причіна',
+'ipbreasonotherlist'       => 'Інша причіна',
+'ipbother'                 => 'Іншый час:',
 'ipboptions'               => '2 годины:2 hours,1 день:1 day,3 днї:3 days,1 тыждень:1 week,2 тыжднї:2 weeks,1 місяць:1 month,3 місяцї:3 months,6 місяцїв:6 months,1 рік:1 year,неограніченї:infinite',
+'ipbotheroption'           => 'іншый',
+'ipbotherreason'           => 'Інша/додаткова причіна:',
 'ipblocklist'              => 'Заблокованы IP адресы і мена хоснователів',
 'blocklink'                => 'заблоковати',
 'unblocklink'              => 'одблоковати',
@@ -944,10 +1019,20 @@ $1',
 'revertmove'       => 'вернути',
 
 # Export
-'export' => 'Експорт сторінок',
+'export'          => 'Експорт сторінок',
+'export-submit'   => 'Експорт',
+'export-addcat'   => 'Придати',
+'export-addns'    => 'Придати',
+'export-download' => 'Уложыти як файл',
 
 # Namespace 8 related
-'allmessages-language' => 'Язык:',
+'allmessagesname'           => 'Назва',
+'allmessagesdefault'        => 'Штандартный текст',
+'allmessagescurrent'        => 'Актуалный текст',
+'allmessages-filter-legend' => 'Філтер',
+'allmessages-filter-all'    => 'Вшыткы',
+'allmessages-language'      => 'Язык:',
+'allmessages-filter-submit' => 'Выконати',
 
 # Thumbnails
 'thumbnail-more' => 'Звекшыти',
@@ -1080,10 +1165,13 @@ $1',
 
 # Multipage image navigation
 'imgmultipageprev' => '← попередня сторінка',
+'imgmultigo'       => 'Перейти!',
+'imgmultigoto'     => 'Перейти на сторінку $1',
 
 # Table pager
-'table_pager_first' => 'Перша сторінка',
-'table_pager_last'  => 'Послїдня сторінка',
+'table_pager_first'        => 'Перша сторінка',
+'table_pager_last'         => 'Послїдня сторінка',
+'table_pager_limit_submit' => 'Выконати',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Зміны на сторінках зо списку',

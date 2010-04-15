@@ -28,7 +28,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Pagmayaten ti section editing babaen ti panang-right click kadagiti section titles (JavaScript)',
 'tog-showtoc'                 => 'Ipakita dagiti linaon (para kadagiti panid nga addaan ad-adu ngem 3 a headings)',
 'tog-rememberpassword'        => 'Laglagipen ti iseserrekko kadaytoy a kompiuter',
-'tog-editwidth'               => 'Ti kahon ti edit ket addaan sibubukel a kaakaba',
 'tog-watchcreations'          => 'Inayon dagiti inaramidko a pampanid iti listaan ti bambantayak',
 'tog-watchdefault'            => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
 'tog-watchmoves'              => 'Inayon dagiti inyakarko a pampanid iti listaan ti bambantayak',

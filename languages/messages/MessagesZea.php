@@ -56,7 +56,6 @@ $messages = array(
 'tog-editsectiononrightclick' => "Bewerken van deêlpahina's meulijk maeken mie een rechtermuusklik op een tussenkopje (JavaScript vereist)",
 'tog-showtoc'                 => "Inoudsopgaeve weerheven (voe pahina's mie minstes 3 tussenkopjes)",
 'tog-rememberpassword'        => 'Wachtwoôrd ontouwe',
-'tog-editwidth'               => 'Bewerkiengsveld over de volle breêdte',
 'tog-watchcreations'          => "Pahina's die ak anmik automaotisch volhen",
 'tog-watchdefault'            => "Pahina's die ak bewerk automaotisch volhen",
 'tog-watchmoves'              => "Pahina's die ak verplekke automaotisch volhen",

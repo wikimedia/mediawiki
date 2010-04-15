@@ -407,7 +407,6 @@ $messages = array(
 'statistics-articles'     => 'истиньнꙑ члѣ́ни',
 'statistics-pages'        => 'страни́цѧ',
 'statistics-files'        => 'положєнꙑ дѣла́',
-'statistics-jobqueue'     => '[http://www.mediawiki.org/wiki/Manual:Job_queue Дѣ́иствъ чрѣ́дꙑ] дльгота',
 
 'disambiguations'     => 'мъногосъмꙑ́слиꙗ',
 'disambiguationspage' => 'Template:мъногосъмꙑ́слиѥ',

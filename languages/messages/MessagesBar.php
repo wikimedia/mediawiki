@@ -30,7 +30,6 @@ $messages = array(
 'tog-showtoolbar'            => 'Bearbatn-Werkzeugleiste oozoang',
 'tog-editondblclick'         => 'Seitn mid am Doppiklick beåaweitn (JavaScript wiad braucht)',
 'tog-editsection'            => 'Links zum Beåaweitn vu de anzlnen Åbschnitte ãnzoang',
-'tog-editwidth'              => "Eingåbeföid erweitan, damid's in gãnzn Büidschiam ausfüid",
 'tog-watchcreations'         => 'Vu mia söiwa nei eigstöide Seitn automatisch beobåchtn',
 'tog-watchdefault'           => 'Vu mia söiwa beåabeitete und vu mia nei eigstöide Seitn automatisch beobåchtn',
 'tog-watchmoves'             => 'Vu mia söiwa vaschomne Seitn automatisch beobåchtn',

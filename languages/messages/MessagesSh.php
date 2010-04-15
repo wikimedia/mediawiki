@@ -43,7 +43,6 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka (JavaScript)',
 'tog-showtoc'                 => 'Prikaži sadržaj (u svim stranicama sa više od tri podnaslova)',
 'tog-rememberpassword'        => 'Upamti moju lozinku na ovom kompjuteru za buduće posjete',
-'tog-editwidth'               => 'Proširi kutiju za uređivanje da ispuni cijeli ekran',
 'tog-watchcreations'          => 'Dodaj stranice koje sam napravio u moj spisak praćenja',
 'tog-watchdefault'            => 'Dodaj stranice koje uređujem u moj spisak praćenja',
 'tog-watchmoves'              => 'Dodaj stranice koje premještam u moj spisak praćenja',

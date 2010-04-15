@@ -166,7 +166,6 @@ $messages = array(
 'tog-showtoolbar'           => 'Peuleumah <em>toolbar</em> (bateuëng alat) andam',
 'tog-editondblclick'        => 'Andam ôn deungon duagoe klik',
 'tog-rememberpassword'      => 'Ingat lageuëm rahsia lôn bak komputer nyoë',
-'tog-editwidth'             => 'Peurayeuk kotak andam ube layeu komputer',
 'tog-watchlisthideown'      => 'Peusöm nyang lôn andam nibak dapeuta keunalön',
 'tog-watchlisthidebots'     => 'Peusöm nyang teu andam nibak sagoö nyang bak dapeuta keunalön',
 'tog-watchlisthideminor'    => 'Peusöm Andam Bacut bak dapeuta keunalön',
