@@ -373,17 +373,6 @@ body {
 	#simpleSearch > button#searchButton {
 		height: 100%;
 	}
-	.suggestions-special .special-label {
-		font-size: 0.8em;
-		color: gray;
-	}
-	.suggestions-special .special-query {
-		color: black;
-		font-style: italic;
-	}
-	.suggestions-special .special-hover {
-		background-color: silver;
-	}
 /* Panel */
 #panel {
 	position: absolute;
