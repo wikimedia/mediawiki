@@ -110,6 +110,7 @@ in a negative namespace (which is invalid).
 * (bug 21456) "Bad title" error when showing non-local interwiki pages no longer
   displays incorrect tabs
 * (bug 23190) Improved math representation for text browsers.
+* (bug 22015) Improved upload-by-url error handling and error display
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
