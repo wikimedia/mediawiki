@@ -29,8 +29,10 @@ abstract class UploadBase {
 	const FILETYPE_MISSING = 8;
 	const FILETYPE_BADTYPE = 9;
 	const VERIFICATION_ERROR = 10;
+	# HOOK_ABORTED is the new name of UPLOAD_VERIFICATION_ERROR
 	const UPLOAD_VERIFICATION_ERROR = 11;
 	const HOOK_ABORTED = 11;
+	const FILE_TOO_LARGE = 12;
 
 	const SESSION_VERSION = 2;
 	const SESSION_KEYNAME = 'wsUploadData';
@@ -198,6 +200,14 @@ abstract class UploadBase {
 		 */
 		if( $this->isEmptyFile() ) {
 			return array( 'status' => self::EMPTY_FILE );
+		}
+		
+		/**
+		 * Honor $wgMaxUploadSize
+		 */
+		global $wgMaxUploadSize;
+		if( $this->mFileSize > $wgMaxUploadSize ) {
+			return array( 'status' => self::FILE_TOO_LARGE );
 		}
 
 		/**

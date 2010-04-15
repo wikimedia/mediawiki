@@ -111,6 +111,7 @@ in a negative namespace (which is invalid).
   displays incorrect tabs
 * (bug 23190) Improved math representation for text browsers.
 * (bug 22015) Improved upload-by-url error handling and error display
+* (bug 17941) $wgMaxUploadSize is now honored by all upload sources
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent

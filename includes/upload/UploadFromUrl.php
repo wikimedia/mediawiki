@@ -96,6 +96,13 @@ class UploadFromUrl extends UploadBase {
 		fclose( $this->mCurlDestHandle );
 		unset( $this->mCurlDestHandle );
 
+		global $wgMaxUploadSize;
+		if ( $this->mFileSize > $wgMaxUploadSize ) {
+			# Just return an ok, so that the regular verifications can handle 
+			# the file-too-large error
+			return Status::newGood();
+		}
+
 		return $status;
 	}
 

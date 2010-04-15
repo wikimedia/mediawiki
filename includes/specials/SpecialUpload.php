@@ -365,7 +365,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Show the upload form with error message, but do not stash the file.
 	 *
-	 * @param $message String
+	 * @param $message HTML string
 	 */
 	protected function showUploadError( $message ) {
 		$message = '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" .
@@ -522,7 +522,10 @@ class SpecialUpload extends SpecialPage {
 
 			/** Statuses that require reuploading **/
 			case UploadBase::EMPTY_FILE:
-				$this->showUploadForm( $this->getUploadForm( wfMsgHtml( 'emptyfile' ) ) );
+				$this->showUploadError( wfMsgHtml( 'emptyfile' ) );
+				break;
+			case UploadBase::FILESIZE_TOO_LARGE:
+				$this->showUploadError( wfMsgHtml( 'largefileserver' ) );
 				break;
 			case UploadBase::FILETYPE_BADTYPE:
 				$finalExt = $details['finalExt'];
@@ -744,6 +747,7 @@ class UploadForm extends HTMLForm {
 	 */
 	protected function getSourceSection() {
 		global $wgLang, $wgUser, $wgRequest;
+		global $wgMaxUploadSize;
 
 		if ( $this->mSessionKey ) {
 			return array(
@@ -783,13 +787,16 @@ class UploadForm extends HTMLForm {
 			'help' => wfMsgExt( 'upload-maxfilesize',
 					array( 'parseinline', 'escapenoentities' ),
 					$wgLang->formatSize(
-						wfShorthandToInteger( ini_get( 'upload_max_filesize' ) )
+						wfShorthandToInteger( min( 
+							wfShorthandToInteger(
+								ini_get( 'upload_max_filesize' )
+							), $wgMaxUploadSize
+						) )
 					)
 				) . ' ' . wfMsgHtml( 'upload_source_file' ),
 			'checked' => $selectedSourceType == 'file',
 		);
 		if ( $canUploadByUrl ) {
-			global $wgMaxUploadSize;
 			$descriptor['UploadFileURL'] = array(
 				'class' => 'UploadSourceField',
 				'section' => 'source',
