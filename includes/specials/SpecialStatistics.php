@@ -9,9 +9,7 @@
  */
 
 /**
- * Show the special page
- *
- * @param mixed $par (not used)
+ * Some statistics about the wiki
  */
 class SpecialStatistics extends SpecialPage {
 	
@@ -25,7 +23,6 @@ class SpecialStatistics extends SpecialPage {
 	public function execute( $par ) {
 		global $wgOut, $wgRequest, $wgMessageCache, $wgMemc;
 		global $wgDisableCounters, $wgMiserMode;
-		$wgMessageCache->loadAllMessages();
 		
 		$this->setHeaders();
 	
@@ -101,11 +98,11 @@ class SpecialStatistics extends SpecialPage {
 
 	/**
 	 * Format a row
-	 * @param string $text description of the row
-	 * @param float $number a number
-	 * @param array $trExtraParams
-	 * @param string $descMsg
-	 * @param string $descMsgParam
+	 * @param $text  String: description of the row
+	 * @param $number  Float: a statistical number
+	 * @param $trExtraParams  Array: params to table row, see Html::elememt
+	 * @param $descMsg  String: message key
+	 * @param $descMsgParam  Array: message params
 	 * @return string table row in HTML format
 	 */
 	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '', $descMsgParam = '' ) {
@@ -118,10 +115,11 @@ class SpecialStatistics extends SpecialPage {
 					$descriptionText );
 			}
 		}
-		return Xml::openElement( 'tr', $trExtraParams ) .
-			Xml::openElement( 'td' ) . $text . Xml::closeElement( 'td' ) .
-			Xml::openElement( 'td', array( 'class' => 'mw-statistics-numbers' ) ) . $number . Xml::closeElement( 'td' ) .
-			Xml::closeElement( 'tr' );
+		return
+		Html::rawElement( 'tr', $trExtraParams,
+			Html::rawElement( 'td', array(), $text ) .
+			Html::rawElement( 'td', array( 'class' => 'mw-statistics-numbers' ), $number )
+		);
 	}
 	
 	/**
