@@ -1172,11 +1172,11 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'grouppage-bot'           => '{{ns:project}}:Trigomiro',
 'grouppage-sysop'         => '{{ns:project}}:Aministrator',
 'grouppage-bureaucrat'    => '{{ns:project}}:Mangiapapé',
-'grouppage-suppress'      => '{{ns:project}}:Oversight',
+'grouppage-suppress'      => '{{ns:project}}:Supervisor',
 
 # Rights
-'right-read'                  => 'Lese pàgine',
-'right-edit'                  => 'Modifiché pàgine',
+'right-read'                  => 'Lese le pàgine',
+'right-edit'                  => 'Modifiché le pàgine',
 'right-createpage'            => 'Creé pàgine (che a son pa pàgine ëd discussion)',
 'right-createtalk'            => 'Creé pàgine ëd discussion',
 'right-createaccount'         => 'Creé neuv cont utent',

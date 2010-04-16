@@ -127,7 +127,7 @@ $messages = array(
 'tog-justify'                 => 'Achustar parrafos',
 'tog-hideminor'               => 'Amagar edizions menors en a pachina de "zaguers cambeos"',
 'tog-hidepatrolled'           => 'Amagar as edizions patrullatas en os zaguers cambeos',
-'tog-newpageshidepatrolled'   => "Amagar as pachinas patrulladas d'a lista de pachinas nuebas",
+'tog-newpageshidepatrolled'   => "Amagar as pachinas patrulladas d'a lista de pachinas nuevas",
 'tog-extendwatchlist'         => "Expandir a lista de seguimiento t'amostrar toz os cambeos, no nomás os más rezients.",
 'tog-usenewrc'                => 'Zaguers cambeos con presentazión amillorada (cal JavaScript)',
 'tog-numberheadings'          => 'Numerar automaticament os encabezaus',
@@ -261,7 +261,7 @@ $messages = array(
 
 'about'         => 'Informazión sobre',
 'article'       => 'Articlo',
-'newwindow'     => "(s'ubre en una nueba finestra)",
+'newwindow'     => "(s'ubre en una nueva finestra)",
 'cancel'        => 'Anular',
 'moredotdotdot' => 'Más...',
 'mypage'        => 'A mía pachina',
@@ -317,7 +317,7 @@ $messages = array(
 'talkpagelinktext'  => 'Descutir',
 'specialpage'       => 'Pachina Espezial',
 'personaltools'     => 'Ferramientas personals',
-'postcomment'       => 'Nueba sezión',
+'postcomment'       => 'Nueva sección',
 'articlepage'       => "Beyer l'articlo",
 'talk'              => 'Descusión',
 'views'             => 'Visualizacions',
@@ -375,9 +375,9 @@ $1",
 'ok'                      => "D'alcuerdo",
 'retrievedfrom'           => 'Obtenito de "$1"',
 'youhavenewmessages'      => 'Tiene $1 ($2).',
-'newmessageslink'         => 'mensaches nuebos',
+'newmessageslink'         => 'mensaches nuevos',
 'newmessagesdifflink'     => 'Esferencias con a versión anterior',
-'youhavenewmessagesmulti' => 'Tiene nuebos mensaches en $1',
+'youhavenewmessagesmulti' => 'Tiene nuevos mensaches en $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
 'viewsourceold'           => 'beyer codigo fuent',
@@ -473,7 +473,7 @@ Consulta: $2',
 'viewsource'           => 'Veyer codigo fuent',
 'viewsourcefor'        => 'ta $1',
 'actionthrottled'      => 'Aizión afogata',
-'actionthrottledtext'  => "Como mida anti-spam, bi ha un limite en o numero de begadas que puede fer ista aizión en un curto espazio de tiempo, y ha brincato d'iste limite. Aspere bels menutos y prebe de fer-lo nuebament.",
+'actionthrottledtext'  => 'Como mesura contra lo "spam", bi ha un limite en o numero de vegadas que puede fer ista acción en un curto espacio de tiempo, y ha brincato d\'ixe limite. Aguarde bells menutos y prebe de fer-lo de nuevas.',
 'protectedpagetext'    => 'Ista pachina ha estato protechita ta aprebenir a suya edizión.',
 'viewsourcetext'       => "Puede beyer y copiar o codigo fuent d'ista pachina:",
 'protectedinterface'   => "Ista pachina furne o testo d'a interfaz ta o software. Ye protechita ta pribar o bandalismo. Si creye que bi ha bella error, contaute con un almenistrador.",
@@ -494,7 +494,7 @@ A razón data ye ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''Ha rematato a sesión.'''
 
-Puede continar nabegando por {{SITENAME}} anonimament, u puede [[Special:UserLogin|enzetar]] una nueba sesión con o mesmo nombre d'usuario u unatro diferent. Pare cuenta que, entre que se limpia a caché d'o nabegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",
+Puede continar navegando por {{SITENAME}} anonimament, u puede [[Special:UserLogin|enzetar]] una nueva sesión con o mesmo nombre d'usuario u bell atro diferent. Pare cuenta que, entre que se limpia a caché d'o navegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",
 'welcomecreation'            => "== ¡Bienbeniu(da), $1! ==
 S'ha creyato a suya cuenta.
 No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAME}}]].",
@@ -514,7 +514,7 @@ No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAM
 'notloggedin'                => 'No ha dentrato en o sistema',
 'nologin'                    => "No tiene garra cuenta? '''$1'''.",
 'nologinlink'                => 'Creyar una nueva cuenta',
-'createaccount'              => 'Creyar una nueba cuenta',
+'createaccount'              => 'Creyar una nueva cuenta',
 'gotaccount'                 => "Tiene ya una cuenta? '''$1'''.",
 'gotaccountlink'             => 'Identificar-se y enzetar sesión',
 'createaccountmail'          => 'por correu electronico',
@@ -522,28 +522,28 @@ No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAM
 'userexists'                 => 'Ixe nombre ya ye en uso. Por fabor, meta un nombre diferent.',
 'loginerror'                 => 'Error en enzetar a sesión',
 'nocookiesnew'               => "A cuenta d'usuario s'ha creyata, pero encara no ye indentificato. {{SITENAME}} fa serbir <em>cookies</em> ta identificar á os usuario rechistratos, pero pareix que las tiene desautibatas. Por fabor, autibe-las e identifique-se con o suyo nombre d'usuario y palabra de paso.",
-'nocookieslogin'             => "{{SITENAME}} fa serbir <em>cookies</em> ta la identificazión d'usuarios. Tiene as <em>cookies</em> desautibatas en o nabegador. Por fabor, autibe-las y prebe á identificar-se de nuebas.",
+'nocookieslogin'             => "{{SITENAME}} fa serbir <em>cookies</em> ta la identificazión d'usuarios. Tiene as <em>cookies</em> desactivatas en o suyo navegador. Por favor, active-las y prebe d'identificar-se de nuevas.",
 'noname'                     => "No ha escrito un nombre d'usuario correuto.",
 'loginsuccesstitle'          => "S'ha identificato correutament",
 'loginsuccess'               => 'Ha enzetato una sesión en {{SITENAME}} como "$1".',
 'nosuchuser'                 => 'No bi ha garra usuario clamato "$1".
 Os nombres d\'usuario son sensibles á las mayusclas.
-Comprebe si ha escrito bien o nombre u [[Special:UserLogin/signup|creye una nueba cuenta d\'usuario]].',
+Comprebe si ha escrito bien o nombre u [[Special:UserLogin/signup|creye una nueva cuenta d\'usuario]].',
 'nosuchusershort'            => 'No bi ha garra usuario con o nombre "<nowiki>$1</nowiki>". Comprebe si o nombre ye bien escrito.',
 'nouserspecified'            => "Ha d'escribir un nombre d'usuario.",
 'wrongpassword'              => 'A palabra de paso endicata no ye correuta. Prebe unatra begada.',
 'wrongpasswordempty'         => 'No ha escrito garra palabra de paso. Prebe unatra begada.',
 'passwordtooshort'           => 'As contraseñas han de tener á lo menos {{PLURAL:$1|1 carácter|$1 carácters}}.',
-'mailmypassword'             => 'Nimbiar una nueba palabra de paso por correu eletronico',
-'passwordremindertitle'      => 'Nueba palabra de paso temporal de {{SITENAME}}',
-'passwordremindertext'       => 'Belún (probablement busté, dende l\'adreza IP $1) demandó una nueba palabra de paso ta la suya cuenta en {{SITENAME}} ($4). S\'ha creyato una nueba palabra de paso temporal ta l\'usuario "$2", que ye "$3".
-Si isto ye lo que quereba, ha d\'enzetar agora una sesión y trigar una nueba palabra de paso.
-A suya palabra de paso temporal zircunduzirá en {{PLURAL:$5|un día|$5 días}}
+'mailmypassword'             => 'Ninviar una nueva contrasenya por correu electronico',
+'passwordremindertitle'      => 'Nueva contrasenya temporal de {{SITENAME}}',
+'passwordremindertext'       => 'Bell un (probablement vusté mesmo, dende l\'adreza IP $1) demandó una nueva contrasenya ta la suya cuenta en {{SITENAME}} ($4). S\'ha creyato una nueva contrasenya temporal ta l\'usuario "$2", que ye "$3".
+Si isto ye o que quereba, ha d\'encetar agora una sesión y trigar una nueva contrasenya.
+A suya contrasenya temporal circumducirá en {{PLURAL:$5|un día|$5 días}}
 
-Si estió belatro qui fazió ista demanda, u ya se\'n ha alcordau d\'a palabra de paso, y ya no deseya cambiar-la, puet innorar iste mensache y continar fendo serbir l\'antiga palabra de paso.',
+Si estió bell atro qui fació ista demanda, u ya se\'n ha alcordau d\'a contrasenya y ya no deseya cambiar-la, puet ignorar iste mensache y continar fendo servir l\'antiga contrasenya.',
 'noemail'                    => 'No bi ha garra adreza de correu electronico rechistrada ta "$1".',
-'passwordsent'               => 'Una nueba palabra de paso plega de nimbiar-se ta o correu electronico de "$1".
-Por fabor, identifique-se unatra bez malas que la reculla.',
+'passwordsent'               => 'Una nueva contrasenya plega de ninviar-se ta o correu electronico de "$1".
+Por favor, identifique-se un atra vez malas que la reculla.',
 'blocked-mailpassword'       => "A suya adreza IP ye bloqueyata y, ta pribar abusos, no se li premite emplegar d'a funzión de recuperazión de palabras de paso.",
 'eauthentsent'               => "S'ha nimbiato un correu electronico de confirmazión ta l'adreza espezificata. Antes que no se nimbíe dengún atro correu ta ixa cuenta, ha de confirmar que ixa adreza te pertenexe. Ta ixo, cal que siga as instruzions que trobará en o mensache.",
 'throttled-mailpassword'     => "Ya s'ha nimbiato un correu recordatorio con a suya palabra de paso fa menos de {{PLURAL:$1|1 ora|$1 oras}}. Ta escusar abusos, nomás se nimbia un recordatorio cada {{PLURAL:$1|ora|$1 oras}}.",
@@ -566,20 +566,19 @@ Si a cuenta s\'ha creyato por error, simplament innore iste mensache.',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar a palabra de paso',
-'resetpass_announce'        => 'Ha enzetato una sesión con una palabra de paso temporal que fue nimbiata por correu electronico. Por fabor, escriba aquí una nueba palabra de paso:',
+'resetpass_announce'        => 'Ha encetato una sesión con una contrasenya temporal que se le ninvió por correu. Por favor, escriba aquí una nueva contrasenya:',
 'resetpass_text'            => '<!-- Adiba aquí o testo -->',
 'resetpass_header'          => "Cambiar a palabra de paso d'a cuenta",
 'oldpassword'               => 'Palabra de paso antiga:',
-'newpassword'               => 'Nueba palabra de paso:',
-'retypenew'                 => 'Torne á escribir a nueba palabra de paso:',
+'newpassword'               => 'Nueva contrasenya:',
+'retypenew'                 => 'Torne á escribir a nueva contrasenya:',
 'resetpass_submit'          => 'Cambiar a palabra de paso e identificar-se',
 'resetpass_success'         => 'A suya palabra de paso ya ye cambiata. Agora ya puede dentrar-ie...',
 'resetpass_forbidden'       => 'No se pueden cambiar as palabras de paso.',
 'resetpass-no-info'         => 'Debe identificar-se como usuario ta poder azeder dreitament ta ista pachina.',
 'resetpass-submit-loggedin' => 'Cambiar a palabra de paso',
-'resetpass-wrong-oldpass'   => 'A palabra de paso autual u temporal no conforme. 
-
-Puet estar que ya aiga cambeato a suya palabra de paso u aiga demandato una nueba palabra de paso temporal.',
+'resetpass-wrong-oldpass'   => 'A contrasenya actual u temporal no ye conforme. 
+Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya temporal.',
 'resetpass-temp-password'   => 'Palabra de paso temporal:',
 
 # Edit page toolbar
@@ -615,9 +614,9 @@ Puet estar que ya aiga cambeato a suya palabra de paso u aiga demandato una nueb
 'showlivepreview'                  => 'Anvista previa',
 'showdiff'                         => 'Amostrar cambeos',
 'anoneditwarning'                  => "''Pare cuenta:'' No s'ha identificato con un nombre d'usuario. A suya adreza IP s'alzará en l'historial d'a pachina.",
-'missingsummary'                   => "'''Pare cuenta:''' No ha escrito garra resumen d'edizión. Si fa clic nuebament en «{{MediaWiki:Savearticle}}» a suya edizión se grabará sin resumen.",
+'missingsummary'                   => "'''Pare cuenta:''' No ha escrito garra resumen d'edición. Si puncha de nuevas en «{{MediaWiki:Savearticle}}» a suya edición se grabará sin resumen.",
 'missingcommenttext'               => 'Por fabor, escriba o testo astí baxo.',
-'missingcommentheader'             => "'''Pare cuenta:''' No ha escrito garra títol ta iste comentario. Si puncha un atra bez en con a rateta en \"Alzar\", a suya edizión se grabará sin títol.",
+'missingcommentheader'             => "'''Pare cuenta:''' No ha escrito garra títol ta iste comentario. Si puncha de nuevas en \"Alzar\", a suya edición se grabará sin títol.",
 'summary-preview'                  => "Veyer anvista previa d'o resumen:",
 'subject-preview'                  => "Ambiesta previa d'o tema/títol:",
 'blockedtitle'                     => "L'usuario ye bloqueyato",
@@ -660,9 +659,9 @@ Talment bell un l'haiga mobiu u borrau entre que vusté vesitaba a pachina.",
 'loginreqlink'                     => 'enzetar una sesión',
 'loginreqpagetext'                 => 'Ha de $1 ta beyer atras pachinas.',
 'accmailtitle'                     => 'A palabra de paso ha estato nimbiata.',
-'accmailtext'                      => "Una palabra de paso ta [[User talk:$1|$1]] chenerata aliatoriament s'ha nimbiato ta $2.
+'accmailtext'                      => "S'ha ninviato a $2 una contrasenya ta [[User talk:$1|$1]] chenerata aliatoriament.
 
-A palabra de paso ta ista nueba cuenta puet cambiar-se en a pachina ''[[Special:ChangePassword|cambiar palabra de paso]]'' dimpués d'aber dentrato en ella.",
+A contrasenya ta ista nueva cuenta la puet cambiar en a pachina ''[[Special:ChangePassword|cambiar contrasenya]]'' dimpués d'haber dentrato en ella.",
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => "Ha siguito un vinclo ta una pachina que encara no existe.
 Ta creyar a pachina, prencipie a escribir en a caixa d'abaixo
@@ -680,7 +679,7 @@ Si busté ye un usuario anonimo y creye que l'han escrito comentarios no releban
 *'''Opera:''' limpiar a caché en ''Tools → Preferences;'' 
 *'''Internet Explorer:''' prete ''Ctrl'' mientres puncha ''Refresh,'' u prete ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Consello:''' Faga serbir o botón «Amostrar prebisualizazión» ta prebar o nuebo css/js antes de grabar-lo.",
-'userjsyoucanpreview'              => "'''Consello:''' Faga serbir o botón «Amostrar prebisualizazión» ta prebar o nuebo css/js antes de grabar-lo.",
+'userjsyoucanpreview'              => "'''Consello:''' Faiga servir o botón «Amostrar previsualización» ta prebar o nuebo css/js antes de grabar-lo.",
 'usercsspreview'                   => "'''Remere que isto no ye que una prebisualizazión d'o suyo CSS d'usuario.'''
 '''Encara no s'ha alzato!'''",
 'userjspreview'                    => "'''Remere que sólo ye prebisualizando o suyo javascript d'usuario y encara no ye grabato!'''",
@@ -697,8 +696,8 @@ Si busté ye un usuario anonimo y creye que l'han escrito comentarios no releban
 '''Si ye mirando d'editar lechitimament, por favor, prebe una atra vegada. Si encara no funcionase alavez, prebe de [[Special:UserLogout|zarrar a sesión]] y dentrar-ie identificando-se de nuevas.'''",
 'token_suffix_mismatch'            => "'''S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.'''",
 'editing'                          => 'Editando $1',
-'editingsection'                   => 'Editando $1 (sezión)',
-'editingcomment'                   => 'Editando $1 (nueba sezión)',
+'editingsection'                   => 'Editando $1 (sección)',
+'editingcomment'                   => 'Editando $1 (nueva sección)',
 'editconflict'                     => "Conflito d'edizión: $1",
 'explainconflict'                  => "Bel atro usuario ha cambiato ista pachina dende que bustet prenzipió á editar-la.
 O cuatrón de testo superior contiene o testo d'a pachina como ye autualment.
@@ -733,14 +732,14 @@ Como información adicional s'amuestra contino a zaguera dentrada en o rechistro
 'hiddencategories'                 => 'Ista pachina fa parte de {{PLURAL:$1|1 categoría amagata|$1 categorías amagatas}}:',
 'edittools'                        => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
 'nocreatetitle'                    => "S'ha restrinchito a creyazión de pachinas",
-'nocreatetext'                     => '{{SITENAME}} ha restrinchito a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:UserLogin|identificarse u creyar una cuenta]].',
-'nocreate-loggedin'                => 'No tiene premiso ta creyar nuebas pachinas.',
+'nocreatetext'                     => '{{SITENAME}} ha restrinchito a creyación de nuevas pachinas. Puede tornar entazaga y editar una pachina ya existent, [[Special:UserLogin|identificarse u creyar una cuenta]].',
+'nocreate-loggedin'                => 'No tiene premiso ta creyar nuevas pachinas.',
 'permissionserrors'                => 'Errors de premisos',
 'permissionserrorstext'            => 'No tiene premisos ta fer-lo, por {{PLURAL:$1|ista razón|istas razons}}:',
 'permissionserrorstext-withaction' => 'No tiene premisos ta $2, por {{PLURAL:$1|ista razón|istas razons}}:',
-'recreate-moveddeleted-warn'       => "Pare cuenta: ye creyando de nuebas una pachina que ya ha s'eba borrau denantes.'''
+'recreate-moveddeleted-warn'       => "Pare cuenta: ye creyando de nuevas una pachina que ya ha s'heba borrada denantes.'''
 
-Considere si ye nezesario continar editando ista pachina.
+Considere si ye preciso continar editando ista pachina.
 Contino s'amuestra o rechistro de borraus y treslaus ta ista pachina:",
 'moveddeleted-notice'              => "Ista pachina s'ha borrato.
 Contino s'amuestra o rechistro de borraus y treslaus como referenzia.",
@@ -750,8 +749,8 @@ No dio garra esplicazión.',
 Pareix que la esen borrau.",
 'edit-conflict'                    => "Conflito d'edizión.",
 'edit-no-change'                   => "S'ha ignorato a suya edizión, pos no s'ha feito garra cambeo ta o testo.",
-'edit-already-exists'              => "No s'ha puesto creyar una pachina nueba.
-Ya esiste.",
+'edit-already-exists'              => "No s'ha puesto creyar una pachina nueva.
+Ya existe.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Pare cuenta: Ista pachina tiene masiadas cridas ta funzions de preprozeso (parser functions) costosas.
@@ -1043,7 +1042,7 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 'prefs-help-gender'           => 'Opzional: Emplegada ta correzión de chenero por o software. Ista informazión será publica.',
 'email'                       => 'Adreza de correu-e',
 'prefs-help-realname'         => "* Nombre reyal (opzional): si esliche escribir-lo, se ferá serbir ta l'atribuzión d'a suya faina.",
-'prefs-help-email'            => "L'adreza de correu-e ye opzional, pero premite que le nimbiemos una nueba palabra de paso si nunca la oblidase. Tamién premite que atros usuarios contauten con bustet dende a suya pachina d'usuario u de descusión d'usuario sin aber de rebelar a suya identidat.",
+'prefs-help-email'            => "L'adreza de correu-e ye opcional, pero ye precisa ta que le ninviemos una nueva contrasenya si nunc la xublidase. Tamién puede fer que atros usuarios puedan contactar con vusté dende a suya pachina d'usuario u de descusión d'usuario sin haber de revelar a suya identidat.",
 'prefs-help-email-required'   => 'Cal una adreza de correu-e.',
 'prefs-advancedediting'       => 'Opzions abanzadas',
 'prefs-advancedrc'            => 'Opzions abanzadas',
@@ -1101,7 +1100,7 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 'right-edit'                 => 'Editar pachinas',
 'right-createpage'           => 'Creyar pachinas (que no sían pachinas de descusión)',
 'right-createtalk'           => 'Creyar pachinas de descusión',
-'right-createaccount'        => "Creyar nuebas cuentas d'usuario",
+'right-createaccount'        => "Creyar nuevas cuentas d'usuario",
 'right-minoredit'            => 'Siñalar como edizions menors',
 'right-move'                 => 'Tresladar pachinas',
 'right-move-subpages'        => 'Tresladar as pachinas con a suyas sozpachinas',
@@ -1116,7 +1115,7 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 'right-purge'                => 'Porgar a memoria caché ta una pachina sin nezesidat de confirmar-la',
 'right-autoconfirmed'        => 'Editar pachinas semiprotechitas',
 'right-bot'                  => 'Ser tratato como un prozeso automatico (bot)',
-'right-nominornewtalk'       => 'Fer que as edizions menors en pachinas de descusión no cheneren l\'abiso de "nuebos mensaches"',
+'right-nominornewtalk'       => 'Fer que as edicions menors en pachinas de descusión no cheneren l\'aviso de "nuevos mensaches"',
 'right-apihighlimits'        => 'Usar limites más altos en consultas API',
 'right-writeapi'             => "Emplego de l'API d'escritura",
 'right-delete'               => 'Borrar pachinas',
@@ -1221,7 +1220,7 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} cosirando]',
 'rc_categories'                     => 'Limite d\'as categorías (deseparatas por "|")',
 'rc_categories_any'                 => 'Todas',
-'newsectionsummary'                 => 'Nueba sezión: /* $1 */',
+'newsectionsummary'                 => 'Nueva sección: /* $1 */',
 'rc-enhanced-expand'                => 'Amostrar detalles (cal JavaScript)',
 'rc-enhanced-hide'                  => 'Amagar detalles',
 
@@ -1287,15 +1286,15 @@ Si quiere que o suyo resumen amaneixca aquí, abrá d'editar-lo manualment.
 * Nombre de l'archibo que ye cargando: '''<tt>[[:$1]]</tt>'''
 * Nombre de l'archibo ya esistent: '''<tt>[[:$2]]</tt>'''
 Por fabor, trigue un nombre diferent.",
-'fileexists-thumbnail-yes'    => "Parixe que l'archibo ye una imachen prou chicota ''(miniatura)''. [[$1|thumb]]
-Comprebe por fabor l'archibo '''<tt>[[:$1]]</tt>'''.
-Si l'archibo comprebato ye a mesma imachen en tamaño orichinal no cal cargar una nueba miniatura.",
+'fileexists-thumbnail-yes'    => "Pareix que l'archivo ye una imachen chicota ''(miniatura)''. [[$1|thumb]]
+Comprebe por fabor l'archivo '''<tt>[[:$1]]</tt>'''.
+Si l'archivo comprebato ye a mesma imachen en tamaño orichinal no cal cargar una nueva miniatura.",
 'file-thumbnail-no'           => "O nombre de l'archibo prenzipia con '''<tt>$1</tt>'''. 
 Pareix que estase una imachen achiquida ''(thumbnail)''.
 Si tiene ista imachen a toda resoluzión, cargue-la, si no, por fabor, cambee o nombre de l'archibo.",
 'fileexists-forbidden'        => 'Ya bi ha un fichero con iste nombre, y no se puet sobrescribir. 
-Si encara quiere cargar ixe archibo, torne y faiga serbir un nuebo nombre. [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ya bi ha un archibo con ixe nombre en o reposte compartito. Si encara quiere cargar o fichero, por fabor, torne entazaga y faiba serbir un nuebo nombre. [[File:$1|thumb|center|$1]]',
+Si encara quiere cargar ixe archivo, torne y faiga serbir un nuevo nombre. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ya bi ha un archivo con ixe nombre en o reposte compartito. Si encara quiere cargar o fichero, por favor, torne entazaga y faiga servir un nuevo nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => "Iste archibo ye un duplicau {{PLURAL:$1|d'o siguient archibo|d'os siguients archibos}}:",
 'file-deleted-duplicate'      => "Un archibo igual que iste ([[$1]]) s'ha borrato enantes. Debería mirar-se o istorial de borraus de l'archibo antes de continar cargando-lo atra begada.",
 'successfulupload'            => 'Cargata correutament',
@@ -1348,7 +1347,7 @@ PICT # misz.
 'upload-curl-error6'       => 'No se podió aczeder dica la URL',
 'upload-curl-error6-text'  => 'No se podió plegar dica a URL. Por fabor, comprebe que a URL sía correuta y o sitio web sía funzionando.',
 'upload-curl-error28'      => "Tiempo d'aspera sobrexito",
-'upload-curl-error28-text' => "O tiempo de respuesta d'a pachina ye masiau gran. Por fabor, comprebe si o serbidor ye funzionando, aspere bel tiempo y mire de tornar á fer-lo.  Talment deseye prebar de nuebo cuan o rete tienga menos carga.",
+'upload-curl-error28-text' => "O tiempo de respuesta d'a pachina ye masiau gran. Por favor, comprebe si o servidor ye funcionando, aguarde bell ratet y mire de tornar á fer-lo.  Talment deseye prebar de nuevas quan o ret tienga menos carga.",
 
 'license'            => 'Lizenzia:',
 'license-header'     => 'Lizenziando',
@@ -1562,7 +1561,7 @@ Por fabor, pare cuenta que atros puestos web pueden tener vinclos ta fichers con
 'booksources'               => 'Fuents de libros',
 'booksources-search-legend' => 'Mirar fuents de libros',
 'booksources-go'            => 'Ir-ie',
-'booksources-text'          => 'Contino ye una lista de binclos ta atros puestos an que benden libros nuebos y usatos, talment bi aiga más informazión sobre os libros que ye mirando.',
+'booksources-text'          => 'Contino ye una lista de vinclos ta atros puestos an que venden libros nuevos y usatos, talment bi aiga más información sobre os libros que ye mirando.',
 'booksources-invalid-isbn'  => "O numero d'ISBN dato pareix que no ye conforme; comprebe si no bi ha garra error en copiar d'a fuent orichinal.",
 
 # Special:Log
@@ -1622,11 +1621,11 @@ Protocolos suportados: <tt>$1</tt>',
 'listusers-noresult' => "No s'ha trobato ixe usuario.",
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Rechistro de nuebos usuarios',
+'newuserlogpage'              => 'Rechistro de nuevos usuarios',
 'newuserlogpagetext'          => "Isto ye un rechistro de creyazión d'usuarios.",
 'newuserlog-byemail'          => 'Palabra de paso nimbiata por correu electronico',
 'newuserlog-create-entry'     => 'Nuevo usuario',
-'newuserlog-create2-entry'    => "s'ha creyato a nueba cuenta $1",
+'newuserlog-create2-entry'    => "s'ha creyato a nueva cuenta $1",
 'newuserlog-autocreate-entry' => 'Cuenta creyata automaticament',
 
 # Special:ListGroupRights
@@ -1702,7 +1701,7 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias
 
 'enotif_mailer'                => 'Sistema de notificazión por correu de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar todas as pachinas como besitatas',
-'enotif_newpagetext'           => 'Ista ye una nueba pachina.',
+'enotif_newpagetext'           => 'Ista ye una nueva pachina.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed'                      => 'editata',
 'created'                      => 'creyata',
@@ -1748,8 +1747,8 @@ Ta obtenir más informazión y aduya:
 'delete-confirm'         => 'Borrar "$1"',
 'delete-legend'          => 'Borrar',
 'historywarning'         => "'''Pare cuenta!:''' A pachina que ye en momentos de borrar tien un istorial de $1 {{PLURAL:$1|versión|versions}}:",
-'confirmdeletetext'      => "Ye amanato á borrar d'a base de datos una pachina con tot o suyo istorial.
-Por fabor, confirme que reyalment ye mirando de fer ixo, que entiende as consecuenzias, y que lo fa d'alcuerdo con as [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
+'confirmdeletetext'      => "Ye en momentos de borrar d'a base de datos una pachina con tot o suyo historial.
+Por favor, confirme que reyalment ye mirando de fer ixo, que entiende as conseqüencias, y que lo fa d'alcuerdo con as [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
 'actioncomplete'         => 'Acción rematada',
 'actionfailed'           => "L'acción ha feito fallita",
 'deletedtext'            => '"<nowiki>$1</nowiki>" ha estato borrato.
@@ -1810,7 +1809,7 @@ Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
 'protect-cascadeon'           => "Ista pachina ye autualment protechita por estar encluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que tienen autibata a opzión de protezión en cascada. Puede cambiar o libel de protezión d'ista pachina, pero no afeutará á la protezión en cascada.",
 'protect-default'             => 'Premitir á toz os usuarios',
 'protect-fallback'            => 'Amenista o premiso "$1"',
-'protect-level-autoconfirmed' => 'Bloqueyar os usuarios nuebos y no rechistratos',
+'protect-level-autoconfirmed' => 'Bloqueyar os usuarios nuevos y no rechistratos',
 'protect-level-sysop'         => 'Sólo almenistradors',
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'caduca o $1 (UTC)',
@@ -1907,9 +1906,9 @@ $1',
 'month'               => 'Dende o mes (y anteriors):',
 'year'                => "Dende l'anyo (y anteriors):",
 
-'sp-contributions-newbies'       => "Amostrar nomás as contrebuzions d'os usuarios nuebos",
-'sp-contributions-newbies-sub'   => 'Por usuarios nuebos',
-'sp-contributions-newbies-title' => "Contrebuzions d'os nuebos usuarios",
+'sp-contributions-newbies'       => "Amostrar nomás as contrebucions d'os usuarios nuevos",
+'sp-contributions-newbies-sub'   => 'Por nuevos usuarios',
+'sp-contributions-newbies-title' => "Contrebucions d'os nuevos usuarios",
 'sp-contributions-blocklog'      => 'Rechistro de bloqueyos',
 'sp-contributions-talk'          => 'descusión',
 'sp-contributions-search'        => 'Mirar contrebuzions',
@@ -1996,7 +1995,7 @@ as pachinas que s'han bandalizato).",
 'expiringblock'                   => 'zircunduz o $1 á las $2',
 'anononlyblock'                   => 'nomás anon.',
 'noautoblockblock'                => 'Bloqueyo automatico desautibato',
-'createaccountblock'              => "S'ha bloqueyato a creyazión de nuebas cuentas",
+'createaccountblock'              => "S'ha bloqueyato a creyación de nuevas cuentas",
 'emailblock'                      => "S'ha bloqueyato o nimbió de correus electronicos",
 'blocklist-nousertalk'            => 'No puet editar a suya propia pachina de descusión',
 'ipblocklist-empty'               => 'A lista de bloqueyos ye bueda.',
@@ -2057,24 +2056,24 @@ Alcuerde-se-ne d'[[Special:UnlockDB|estrancar a base de datos]] dimpués de rema
 # Move page
 'move-page'                    => 'Tresladar $1',
 'move-page-legend'             => 'Tresladar pachina',
-'movepagetext'                 => "Fendo serbir o formulario siguient se cambiará o nombre d'a pachina, tresladando tot o suyo istorial t'o nuebo nombre.
-O títol anterior se tornará en una reendrezera ta o nuebo títol.
-Puede esbiellar automaticament as reendrezeras que plegan ta o títol orichina.
-Si s'estima más de no fer-lo, asegure-se de no deixar [[Special:DoubleRedirects|reendrezeras dobles]] u [[Special:BrokenRedirects|crebatas]].
-Ye a suya responsabilidat d'asegurar-se que os binclos continan endrezando t'an que abrían de fer-lo.
+'movepagetext'                 => "Fendo servir o formulario siguient se cambiará o nombre d'a pachina, tresladando tot o suyo historial t'o nuevo nombre.
+O títol anterior se tornará en una reendrecera ta o nuevo títol.
+Puede esviellar automaticament as reendreceras que plegan ta o títol orichinal.
+Si s'estima más de no fer-lo, asegure-se de no deixar [[Special:DoubleRedirects|reendrezeras doples]] u [[Special:BrokenRedirects|trencatas]].
+Ye a suya responsabilidat d'asegurar-se que os vinclos continan endrezando t'a on que habrían de fer-lo.
 
-Remere que a pachina '''no''' se renombrará si ya esiste una pachina con o nuebo títol, si no ye que estase una pachina bueda u una ''reendrezera'' sin istorial.
-Isto senifica que podrá tresladar una pachina á lo suyo títol orichinal si ha feito una error, pero no podrá escribir denzima d'una pachina ya esistent.
+Remere que a pachina '''no''' se renombrará si ya esiste una pachina con o nuebo títol, si no ye que estase una pachina vueda u una ''reendrecera'' sin historial.
+Isto significa que podrá tresladar una pachina ta o suyo títol orichinal si ha feito una error, pero no podrá escribir dencima d'una pachina ya existent.
 
 '''¡PARE CUENTA!'''
 Iste puede estar un cambio drastico e inasperato ta una pachina popular;
-por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión antis de seguir entadebant.",
-'movepagetalktext'             => "A pachina de descusión asoziata será tresladata automaticament '''de no estar que:'''
+por favor, asegure-se d'entender as conseqüencias que tendrá ista acción antes de seguir entadebant.",
+'movepagetalktext'             => "A pachina de descusión asociata será tresladata automaticament '''de no estar que:'''
 
-*Ya esista una pachina de descusión no bueda con o nombre nuebo, u
-*Desautibe a caixeta d'abaxo.
+*Ya exista una pachina de descusión no vueda con o nombre nuevo, u
+*Desactive a caixeta d'abaixo.
 
-En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu d'a pachina de descusión.",
+En ixos casos, si lo deseya, habrá de tresladar u combinar manualment o conteniu d'a pachina de descusión.",
 'movearticle'                  => 'Tresladar pachina:',
 'movenologin'                  => 'No ha enzetato sesión',
 'movenologintext'              => 'Amenista estar un usuario rechistrato y [[Special:UserLogin|aber-se identificato enzetando una sesión]] ta tresladar una pachina.',
@@ -2082,7 +2081,7 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'movenotallowedfile'           => 'No tien premiso ta tresladar archibos.',
 'cant-move-user-page'          => "No tien premiso ta tresladar pachinas d'usuario (fueras de subpachinas).",
 'cant-move-to-user-page'       => "No tiene premisos ta tresladar una pachina ta una pachina d'usuario (fueras de si ye ta una subpachina).",
-'newtitle'                     => 'Ta o nuebo títol',
+'newtitle'                     => 'Ta o nuevo títol',
 'move-watch'                   => 'Cosirar iste articlo',
 'movepagebtn'                  => 'Tresladar pachina',
 'pagemovedsub'                 => 'Treslado feito correutament',
@@ -2090,8 +2089,8 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'movepage-moved-redirect'      => "S'ha creyato una reendrezera.",
 'movepage-moved-noredirect'    => "S'ha canzelato a creyazión d'una reendrezera.",
 'articleexists'                => 'Ya bi ha una pachina con ixe nombre u o nombre que ha eslechito no ye conforme. Por fabor trigue un atro nombre.',
-'cantmove-titleprotected'      => 'No puede tresladar una pachina ta íste títol porque o nuebo títol ye protechito y no puede estar creyato',
-'talkexists'                   => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",
+'cantmove-titleprotected'      => 'No puede tresladar una pachina ta íste títol porque o nuevo títol ye protechito y no puede estar creyato',
+'talkexists'                   => "A pachina s'ha tresladato correctament, pero a descusión no s'ha puesto tresladar porque ya en existe una con o nuebo títol. Por favor, incorpore manualment o suyo conteniu.",
 'movedto'                      => 'tresladato ta',
 'movetalk'                     => 'Tresladar a pachina de descusión asoziata.',
 'move-subpages'                => 'Tresladar as sozpachinas (dica $1)',
@@ -2120,7 +2119,7 @@ A pachina de destino ("[[:$1]]") ya esiste. Quiere borrar-la ta premitir o tresl
 'immobile-source-page'         => 'Ista pachina no se puet tresladar.',
 'immobile-target-page'         => 'No se puet tresladar ta ixe títol.',
 'imagenocrossnamespace'        => "No se puede tresladar un archibo ta un espazio de nombres que no sía t'archibos",
-'imagetypemismatch'            => "A nueba estensión no concuerda con o tipo d'archibo",
+'imagetypemismatch'            => 'A nueva estensión no concuerda con o tipo de fichero',
 'imageinvalidfilename'         => "O nombre de l'archibo obchetibo no ye conforme",
 'fix-double-redirects'         => 'Esbiellar todas as reendrezeras que plegan ta o títol orichinal',
 'move-leave-redirect'          => 'Deixar una reendrezera',
@@ -2376,7 +2375,7 @@ En executar-lo, podría meter en un contornillo a seguridat d'o suyo sistema.<hr
 'file-info-gif-frames' => '$1 {{PLURAL:$1|imachen|imáchens}}',
 
 # Special:NewFiles
-'newimages'             => 'Galería de nuebas imachens',
+'newimages'             => 'Galería de nuevas imachens',
 'imagelisttext'         => "Contino bi ha una lista de '''$1''' {{PLURAL:$1|imachen ordenata|imachens ordenatas}} $2.",
 'newimages-summary'     => 'Ista pachina espezial amuestra os zaguers archibos cargatos.',
 'newimages-legend'      => 'Filtro',
@@ -2385,7 +2384,7 @@ En executar-lo, podría meter en un contornillo a seguridat d'o suyo sistema.<hr
 'noimages'              => 'No bi ha cosa á beyer.',
 'ilsubmit'              => 'Mirar',
 'bydate'                => 'por a calendata',
-'sp-newimages-showfrom' => "Amostrar archibos nuebos dende as $2 d'o $1",
+'sp-newimages-showfrom' => "Amostrar fichers nuevos dende as $2 d'o $1",
 
 # Bad image list
 'bad_image_list' => "O formato ha d'estar o siguient:
@@ -2463,7 +2462,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-aperturevalue'               => 'Obredura',
 'exif-brightnessvalue'             => 'Brilura',
 'exif-exposurebiasvalue'           => "Siesco d'esposizión",
-'exif-maxaperturevalue'            => 'Obredura masima',
+'exif-maxaperturevalue'            => 'Obredura maxima',
 'exif-subjectdistance'             => 'Distanzia á o sucheto',
 'exif-meteringmode'                => 'Modo de mesura',
 'exif-lightsource'                 => 'Fuent de luz',
@@ -2471,7 +2470,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-focallength'                 => "Longaria d'o lente focal",
 'exif-subjectarea'                 => "Aria d'o sucheto",
 'exif-flashenergy'                 => "Enerchía d'o flash",
-'exif-spatialfrequencyresponse'    => 'Respuesta frecuenzial espazial',
+'exif-spatialfrequencyresponse'    => 'Respuesta en freqüencia espacial',
 'exif-focalplanexresolution'       => 'Resoluzión en o plano focal X',
 'exif-focalplaneyresolution'       => 'Resolución en o plano focal Y',
 'exif-focalplaneresolutionunit'    => "Unidaz d'a resoluzión en o plano focal",
@@ -2684,7 +2683,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'confirmemail'             => 'Confirmar adreza de correu-e',
 'confirmemail_noemail'     => "No tiene una adreza de correu-e conforme en as suyas [[Special:Preferences|preferenzias d'usuario]].",
 'confirmemail_text'        => "{{SITENAME}} requiere que confirme a suya adreza de correu-e antis de poder usar as funzions de correu-e. Punche o botón de baxo ta nimbiar un mensache de confirmazión t'a suya adreza. O mensache encluirá un binclo con un codigo. Escriba-lo ta confirmar que a suya adreza ye conforme.",
-'confirmemail_pending'     => "Ya se le ha nimbiato un codigo de confirmazión; si creyó una cuenta fa poco tiempo, puede que s'estime más asperar bels menutos á beyer si le plega antis de pedir un nuebo codigo.",
+'confirmemail_pending'     => "Ya se le ha ninviato un codigo de confirmación; si creyó una cuenta fa poco tiempo, puede que s'estime más d'aguardar bells  bels menutos ta veyer si le plega antes de pedir un nuevo codigo.",
 'confirmemail_send'        => 'Nimbiar un codigo de confirmazión.',
 'confirmemail_sent'        => "S'ha nimbiato un correu de confirmazión.",
 'confirmemail_oncreate'    => "S'ha nimbiato un codigo de confirmazión t'a suya adreza de correu-e.
@@ -2726,10 +2725,10 @@ $1',
 
 # Delete conflict
 'deletedwhileediting' => "Pare cuenta: Ista pachina s'ha borrato dimpués de que busté prenzipiase á editar!",
-'confirmrecreate'     => "O ususario [[User:$1|$1]] ([[User talk:$1|descusión]]) ha borrato iste articlo dimpués que bustet prenzipió á editarlo, y a razón que ha dato ye:
+'confirmrecreate'     => "L'usuario [[User:$1|$1]] ([[User talk:$1|descusión]]) ha borrato iste articlo dimpués que vusté prencipase a editar-lo, y ha dato a siguient razón:
 : ''$2''
-Por fabor, confirme que reyalment deseya creyar l'articlo nuebament.",
-'recreate'            => 'Creyar nuebament',
+Por favor, confirme que reyalment deseya tornar a creyar l'articlo.",
+'recreate'            => 'Tornar a creyar',
 
 # action=purge
 'confirm_purge_button' => 'Confirmar',

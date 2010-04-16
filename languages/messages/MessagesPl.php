@@ -653,7 +653,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'createaccount'              => 'Załóż nowe konto',
 'gotaccount'                 => "Masz już konto? '''$1'''.",
 'gotaccountlink'             => 'Zaloguj się',
-'createaccountmail'          => '– wyślij w tym celu wiadomość e‐mail',
+'createaccountmail'          => 'Wygeneruj hasło na podany adres e‐mail',
 'badretype'                  => 'Wprowadzone hasła różnią się między sobą.',
 'userexists'                 => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
 Wybierz inną nazwę użytkownika.',

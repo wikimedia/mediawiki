@@ -37,6 +37,7 @@ $messages = array(
 'october'   => 'अक्टूबर',
 'november'  => 'नवम्बर',
 'december'  => 'दिसम्बर',
+'jan'       => 'जन',
 
 'mytalk'     => 'हमार बात',
 'navigation' => 'परिभ्रमण',
@@ -53,8 +54,23 @@ $messages = array(
 'help'             => 'मदद',
 'search'           => 'खोज',
 'searchbutton'     => 'खोज',
+'searcharticle'    => 'जाईं',
+'history_short'    => 'इतिहास',
+'updatedmarker'    => 'हमार अन्तिम आगमन से बदलाव',
+'info_short'       => 'जानकारी',
+'printableversion' => 'छापे लायक संस्करण',
+'permalink'        => 'स्थायी लिंक',
+'print'            => 'छापीं',
+'edit'             => 'सम्पादन',
+'create'           => 'बनाईं',
+'editthispage'     => 'ई पन्ना के सम्पादन करीं',
+'create-this-page' => 'ई पन्ना के निर्माण करीं',
+'delete'           => 'मिटाईं',
+'deletethispage'   => 'ई पन्ना के मिटाईं',
 'newpage'          => 'नया पन्ना',
 'talkpagelinktext' => 'बात-चीत',
+'personaltools'    => 'ब्यक्तिगत औजार',
+'talk'             => 'बात-चीत',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} के बारे में',
@@ -89,7 +105,7 @@ $messages = array(
 'logout'       => 'लाँग आउट',
 
 # Search results
-'searchresults-title' => 'खोज परिणाम',
+'searchresults-title' => '$1 खातिर खोज परिणाम',
 
 # Recent changes linked
 'recentchangeslinked' => 'सम्बन्धित बदलाव',
@@ -100,6 +116,9 @@ $messages = array(
 'filehist-comment'  => 'टिप्पणी',
 'filehist-missing'  => 'गायब फाईल',
 'imagelinks'        => 'फाईल लिंक',
+
+# Watchlist
+'watch' => 'देखीं',
 
 # Namespace form on various pages
 'blanknamespace' => '(मुख्य)',
@@ -129,7 +148,13 @@ $messages = array(
 'blocklogpage' => 'निष्क्रिय लौग',
 
 # Tooltip help for the actions
-'tooltip-t-print'     => 'ई पन्ना के छापे लायक संस्करण।',
-'tooltip-t-permalink' => 'ई पन्ना के संसोधन खातिर स्थायी लिंक।',
+'tooltip-n-mainpage-description' => 'मुख्य पन्ना पर पधारीं',
+'tooltip-n-portal'               => 'परियोजना के बारे मेँ, रउआ का कर सकत बानी, वस्तु कहाँ खोजब',
+'tooltip-n-currentevents'        => 'वर्तमान के घटना पर पृष्ठभूमी जानकारी खोजीं',
+'tooltip-n-recentchanges'        => 'विकि पर तुरंत भईल परिवर्तन के सूची',
+'tooltip-n-randompage'           => 'बेतरतिब पन्ना लादीं (Load करीं)',
+'tooltip-n-help'                 => 'जगह पता लगावे खातिर',
+'tooltip-t-print'                => 'ई पन्ना के छापे लायक संस्करण।',
+'tooltip-t-permalink'            => 'ई पन्ना के संसोधन खातिर स्थायी लिंक।',
 
 );
