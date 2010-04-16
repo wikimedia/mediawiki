@@ -117,10 +117,12 @@ class ApiUserrights extends ApiBase {
 		}
 
 		$form = new UserrightsPage;
-		$user = $form->fetchUser( $params['user'] );
-		if ( $user instanceof WikiErrorMsg ) {
-			$this->dieUsageMsg( array_merge(
-				(array)$user->getMessageKey(), $user->getMessageArgs() ) );
+		$status = $form->fetchUser( $params['user'] );
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsArray();
+			$this->dieUsageMsg( $errors[0] );
+		} else {
+			$user = $status->value;
 		}
 
 		$this->mUser = $user;
