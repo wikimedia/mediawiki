@@ -92,6 +92,7 @@ class SpecialSearch {
 		# If there's an exact or very near match, jump right there.
 		$t = SearchEngine::getNearMatch( $term );
 		if( !is_null( $t ) ) {
+			wfRunHooks( 'SpecialSearchGomatch', array( &$t ) );
 			$wgOut->redirect( $t->getFullURL() );
 			return;
 		}
@@ -881,7 +882,6 @@ class SpecialSearch {
 			$bareterm = substr( $term, strpos( $term, ':' ) + 1 );
 		}
 
-		
 		$profiles = $this->getSearchProfiles();
 		
 		// Outputs XML for Search Types
