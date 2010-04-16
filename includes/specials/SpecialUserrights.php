@@ -141,10 +141,12 @@ class UserrightsPage extends SpecialPage {
 	function saveUserGroups( $username, $reason = '' ) {
 		global $wgRequest, $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
-		$user = $this->fetchUser( $username );
-		if( $user instanceof WikiErrorMsg ) {
-			$wgOut->addWikiMsgArray( $user->getMessageKey(), $user->getMessageArgs() );
+		$status = $this->fetchUser( $username );
+		if( !$status->isOK() ) {
+			$wgOut->addWikiText( $status->getWikiText() );
 			return;
+		} else {
+			$user = $status->value;
 		}
 
 		$allgroups = $this->getAllGroups();
@@ -247,10 +249,12 @@ class UserrightsPage extends SpecialPage {
 	function editUserGroupsForm( $username ) {
 		global $wgOut;
 
-		$user = $this->fetchUser( $username );
-		if( $user instanceof WikiErrorMsg ) {
-			$wgOut->addWikiMsgArray( $user->getMessageKey(), $user->getMessageArgs() );
+		$status = $this->fetchUser( $username );
+		if( !$status->isOK() ) {
+			$wgOut->addWikiText( $status->getWikiText() );
 			return;
+		} else {
+			$user = $status->value;
 		}
 
 		$groups = $user->getGroups();
@@ -267,7 +271,7 @@ class UserrightsPage extends SpecialPage {
 	 * return a user (or proxy) object for manipulating it.
 	 *
 	 * Side effects: error output for invalid access
-	 * @return mixed User, UserRightsProxy, or WikiErrorMsg
+	 * @return Status object
 	 */
 	public function fetchUser( $username ) {
 		global $wgUser, $wgUserrightsInterwikiDelimiter;
@@ -283,16 +287,16 @@ class UserrightsPage extends SpecialPage {
 				$database = '';
 			} else {
 				if( !$wgUser->isAllowed( 'userrights-interwiki' ) ) {
-					return new WikiErrorMsg( 'userrights-no-interwiki' );
+					return Status::newFatal( 'userrights-no-interwiki' );
 				}
 				if( !UserRightsProxy::validDatabase( $database ) ) {
-					return new WikiErrorMsg( 'userrights-nodatabase', $database );
+					return Status::newFatal( 'userrights-nodatabase', $database );
 				}
 			}
 		}
 
 		if( $name === '' ) {
-			return new WikiErrorMsg( 'nouserspecified' );
+			return Status::newFatal( 'nouserspecified' );
 		}
 
 		if( $name{0} == '#' ) {
@@ -307,13 +311,13 @@ class UserrightsPage extends SpecialPage {
 			}
 
 			if( !$name ) {
-				return new WikiErrorMsg( 'noname' );
+				return Status::newFatal( 'noname' );
 			}
 		} else {
 			$name = User::getCanonicalName( $name );
 			if( $name === false ) {
 				// invalid name
-				return new WikiErrorMsg( 'nosuchusershort', $username );
+				return Status::newFatal( 'nosuchusershort', $username );
 			}
 		}
 
@@ -324,10 +328,10 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		if( !$user || $user->isAnon() ) {
-			return new WikiErrorMsg( 'nosuchusershort', $username );
+			return Status::newFatal( 'nosuchusershort', $username );
 		}
 
-		return $user;
+		return Status::newGood( $user );
 	}
 
 	function makeGroupNameList( $ids ) {
