@@ -403,39 +403,39 @@ $1',
 'mainpage'             => 'Pajina prinsipałe',
 'mainpage-description' => 'Pajina prinsipałe',
 'policy-url'           => 'Project:Policy',
-'portal'               => 'Portal comunità',
+'portal'               => 'Portałe comunidà',
 'portal-url'           => 'Project:Portałe Comunità',
 'privacy'              => 'Informasion so ła privacy',
 'privacypage'          => 'Project:Informassion su la privacy',
 
-'badaccess'        => 'Eròr ne i permessi',
-'badaccess-group0' => "No te ghè i permessi necessari par eseguir l'azion richiesta.",
-'badaccess-groups' => 'La funzion richiesta la xe riservà ai utenti che fa parte {{PLURAL:$2|del grupo|de uno dei seguenti grupi}}: $1.',
+'badaccess'        => 'Parmesi no suficienti',
+'badaccess-group0' => "No te disponi de i parmesi nesesari par eseguire l'asion richiesta.",
+'badaccess-groups' => 'Ła funsion richiesta ła xè riservà a i utenti che apartien {{PLURAL:$2|al grupo|a uno de i seguenti grupi}}: $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki richiesta',
-'versionrequiredtext' => 'Par doparar sta pagina a ghe vole la version $1 del software MediaWiki. Varda la [[Special:Version|pagina de la version]].',
+'versionrequiredtext' => "Par usare sta pajina xè nesesario dispore de ła version $1 del software MediaWiki. Varda [[Special:Version|l'aposita pajina]].",
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Estrato da "$1"',
-'youhavenewmessages'      => 'Te ghè dei $1 ($2).',
-'newmessageslink'         => 'messagi novi',
-'newmessagesdifflink'     => 'difarensa con la revision precedente',
-'youhavenewmessagesmulti' => 'Te ghè novi messagi su $1',
+'youhavenewmessages'      => 'Te ghe $1 ($2).',
+'newmessageslink'         => 'novi mesaji',
+'newmessagesdifflink'     => 'difarensa con ła revision presedente',
+'youhavenewmessagesmulti' => 'Te ghe novi mesaji so $1',
 'editsection'             => 'modifega',
-'editold'                 => 'modìfega',
-'viewsourceold'           => 'mostra sorgente',
-'editlink'                => 'modìfega',
-'viewsourcelink'          => 'varda el testo',
+'editold'                 => 'modifega',
+'viewsourceold'           => 'visuałiza sorzente',
+'editlink'                => 'modifega',
+'viewsourcelink'          => 'visuałiza sorzente',
 'editsectionhint'         => 'Modifega ła sesion $1',
-'toc'                     => 'Indice',
+'toc'                     => 'Indexe',
 'showtoc'                 => 'mostra',
 'hidetoc'                 => 'scondi',
 'thisisdeleted'           => 'Varda o ripristina $1?',
-'viewdeleted'             => 'Vuto védar $1?',
-'restorelink'             => '{{PLURAL:$1|una modifica scancelà|$1 modifiche scancelà}}',
+'viewdeleted'             => 'Varda $1?',
+'restorelink'             => '{{PLURAL:$1|na modifega scansełà|$1 modifeghe scansełà}}',
 'feedlinks'               => 'Feed:',
-'feed-invalid'            => 'Modałità de sotoscrission del feed mìa vałida.',
-'feed-unavailable'        => 'No ghe xe feed disponibili',
+'feed-invalid'            => 'Modałità de sotoscrision del feed no vałida.',
+'feed-unavailable'        => 'No ghe xè feed disponibiłi',
 'site-rss-feed'           => 'Feed RSS de $1',
 'site-atom-feed'          => 'Feed Atom de $1',
 'page-rss-feed'           => 'Feed RSS par "$1"',
@@ -445,68 +445,70 @@ $1',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Voxe',
 'nstab-user'      => 'Utente',
-'nstab-media'     => 'File multimedial',
+'nstab-media'     => 'File multimediałe',
 'nstab-special'   => 'Pajina spesałe',
-'nstab-project'   => 'Pagina de servissio',
+'nstab-project'   => 'pajina de servisio',
 'nstab-image'     => 'File',
-'nstab-mediawiki' => 'Messagio',
-'nstab-template'  => 'Modèl',
+'nstab-mediawiki' => 'Mesajo',
+'nstab-template'  => 'Modeło',
 'nstab-help'      => 'Ajuto',
 'nstab-category'  => 'Categoria',
 
 # Main script and global functions
-'nosuchaction'      => 'Operazion mìa riconossùa',
-'nosuchactiontext'  => "L'azion indicà in tel'URL no la xe valida. Te podaressi ver sbalià a digitar l'URL o ver strucà un colegamento mia justo. Opure podarìa anca tratarse de un bug in {{SITENAME}}.",
-'nosuchspecialpage' => 'No xè disponibiłe nissuna pàxena speciałe co sto nome',
-'nospecialpagetext' => '<strong>Te ghè richiesto na pagina speciale mìa esistente.</strong>
+'nosuchaction'      => 'Operasion no riconossua',
+'nosuchactiontext'  => "L'asion spesifegà ne l'URL no a xè vałida.
+Xè posibiłe che l'URL sia sta dizità en modo erato o che sia sta seguio on cołegamento no vałido.
+Ciò podaria anca indicare on bug en {{SITENAME}}.",
+'nosuchspecialpage' => 'Pajina prinsipałe no disponibiłe',
+'nospecialpagetext' => "<strong>Ła pajina spesałe richiesta no a xè sta riconossua.</strong>
 
-Te podi catar na lista de le pagine speciali esistenti in [[Special:SpecialPages|{{int:specialpages}}]].',
+L'elenco de łe pajine spesałi vałide se trova en [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'                => 'Erór',
-'databaseerror'        => 'Eror del database',
-'dberrortext'          => 'Eror de sintassi ne la richiesta inoltrà al database.
-Podarìa èssar dovù a un bug in tel software.
-L\'ultima richiesta inoltrà al database l\'è stà:
+'error'                => 'Erore',
+'databaseerror'        => 'Erore del database',
+'dberrortext'          => 'Erore de sintassi ne ła richiesta inoltrà al database.
+Ciò podaria indicare ła presensa de on bug nel software.
+L\'ultima query invià al database xè sta:
 <blockquote><tt>$1</tt></blockquote>
-da la funsion "<tt>$2</tt>".
-El database el gà restituìo un eror "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Se gà verificà un eror de sintassi ne la richiesta al database.
-L\'ultima richiesta al database l\'è stà:
+riciamà da ła funsion "<tt>$2</tt>".
+El database el ga restituio el seguente erore "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Erore de sintasi ne ła richiesta inoltrà al database.
+L\'ultima query invià al database xè sta:
 "$1"
-da la funsion "$2".
-El database el gà restituìo l\'eror "$3: $4".',
-'laggedslavemode'      => 'Ocio: la pàxena la podarìa no contegner mìa i ultimi agiornamenti.',
-'readonly'             => 'Accesso al database tenporaneamente disabilità',
-'enterlockreason'      => 'Fornissi na spiegassion sui motivi del bloco, includendo le probabili data ed ora de riativazion o de rimozion del bloco.',
-'readonlytext'         => "El database de {{SITENAME}} el xe al momento blocà, e no'l consente nove imissioni né modifiche, molto probabilmente par operassion de manutension del server, nel qual caso el database el sarà presto de novo completamente acessibile.
+riciamà da ła funsion "$2".
+El database ga restituio el seguente erore "$3: $4".',
+'laggedslavemode'      => "'''Atension:''' ła pajina podaria no riportare i azornamenti pì resenti.",
+'readonly'             => 'Database blocà',
+'enterlockreason'      => 'Indicare el motivo del bloco, spesifegando el momento in cui xè presumibiłe che el venga rimoso',
+'readonlytext'         => "En sto momento el database xè blocà e no xè disponibiłi azunte o modifeghe a łe pajine. El bloco xè de sołito legà a operasion de manutension ordinaria, al termine de łe quałi el database xè da novo acesibiłe.
 
-L'aministrador de sistema che gà messo el bloco el gà lassà sta spiegassion: $1",
-'missing-article'      => 'El database nol ga trovà el testo de na pajina che gavaria dovuo trovarse soto el nome de "$1" $2.
+L'aministradore de sistema che ga imposto el bloco ga fornio sta spiegasion: $1",
+'missing-article'      => 'El database no ga trovà el testo de na pajina che gavaria dovuo trovare soto el nome de "$1" $2.
 
-De sołito ciò se verifica quando el vien riciamà, a partire da ła cronołosia o dal confronto tra revision, on cołegamento a na pajina scansełà, a on confronto tra revision inesistenti o a on confronto tra revision ripulie da ła cronołosia.
+De sołito ciò se verifica quando el vien riciamà, a partire da ła cronołosia o dal confronto tra revision, on cołegamento a na pajina scansełà, a on confronto tra revision inesistenti o a on confronto tra revision ripułie da ła cronołosia.
 
-En caso contrario, se ga probabilmente scoperto on erore del software MediaWiki.
+En caso contrario, se ga probabilmente scovà on erore del software MediaWiki.
 Se prega de segnałare l\'acaduo a on [[Special:ListUsers/sysop|aministradore]] spesifegando l\'URL en question.',
-'missingarticle-rev'   => '(revision n°: $1)',
+'missingarticle-rev'   => '(numaro de ła revision: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
-'readonly_lag'         => 'El database el xe stà blocà automaticamente par consentirghe ai server coi database slave de sincronizarse col master',
-'internalerror'        => 'Eròr interno',
-'internalerror_info'   => 'Eror interno: $1',
-'fileappenderrorread'  => 'Non xè sta posibiłe lezare "$1" durante l\'agiunta.',
-'fileappenderror'      => 'No se pode zontar "$1" con "$2".',
-'filecopyerror'        => 'No xè stà possibiłe copiare el file "$1" come "$2".',
-'filerenameerror'      => 'No xè stà possibile rinominare el file "$1" in "$2".',
-'filedeleteerror'      => 'No xè stà possibiłe scancełare el file "$1".',
-'directorycreateerror' => 'Xe inpossibile crear la directory "$1".',
-'filenotfound'         => 'No xè stà possibile catar fora el file "$1".',
-'fileexistserror'      => 'Xe inpossibile scrìvar el file "$1": sto file l\'esiste de zà',
-'unexpected'           => 'Valor inprevisto: "$1"="$2".',
-'formerror'            => "Erór: el modulo no'l xè stà invià correttamente",
-'badarticleerror'      => 'Sta operazion no la xè consentìa su sta pàxena.',
-'cannotdelete'         => 'No se riesse mìa a scancełar la pàxena o el file "$1".
-Podarìa èssar che qualchedun altro la gàbia zà scancelà.',
-'badtitle'             => "El titoło no'l xè mia giusto",
+'readonly_lag'         => 'El database xè sta blocà automaticamente par consentire a i server co i database slave de sincronizarse con el master',
+'internalerror'        => 'Erore interno',
+'internalerror_info'   => 'Erore interno: $1',
+'fileappenderrorread'  => 'No xè sta posibiłe lezare "$1" durante l\'azunta.',
+'fileappenderror'      => 'Inposibiłe zontare "$1" a "$2".',
+'filecopyerror'        => 'Inposibiłe copiare el file "$1" en "$2".',
+'filerenameerror'      => 'Inposibiłe rinominare el file "$1" en "$2".',
+'filedeleteerror'      => 'Inposibiłe scansełare el file "$1".',
+'directorycreateerror' => 'Inposibiłe creare ła directory "$1".',
+'filenotfound'         => 'File "$1" no trovà.',
+'fileexistserror'      => 'Inposibiłe scrivare el file "$1": el file esiste zà',
+'unexpected'           => 'Vałore inprevisto: "$1"="$2".',
+'formerror'            => 'Erore: inposibiłe inviare el moduło',
+'badarticleerror'      => 'Operasion no consentia par sta pajina.',
+'cannotdelete'         => 'No xè sta posibiłe scansełare el file "$1". 
+Podaria esare sta zà scansełà da qualcun altro.',
+'badtitle'             => 'Titoło no coreto',
 'badtitletext'         => 'El titolo de la pagina richiesta el xe vodo, sbalià o con caràteri mia amessi, opure el deriva da un eròr in tei colegamenti tra siti wiki diversi o version in lengoe diverse del stesso sito.',
 'perfcached'           => "Sta qua la xè na copia ''cache'' e quindi la podarìa no èssar conpletamente agiornà.",
 'perfcachedts'         => "I dati che segue i xe tirà fora da na copia ''cache'' del database. Ultimo agiornamento: $1.",

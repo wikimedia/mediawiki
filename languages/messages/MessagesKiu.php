@@ -670,6 +670,8 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'revdelete-uname'             => 'namê karberi',
 'revdelete-hid'               => 'bınımne $1',
 'revdelete-unhid'             => 'bıasne $1',
+'revdelete-log-message'       => '$1 rê $2 {{PLURAL:$2|çımraviarnais|çımraviarnaişi}}',
+'logdelete-log-message'       => '$1 rê $2 {{PLURAL:$2|hadisa|hadisey}}',
 'revdelete-otherreason'       => 'Sebebo bin/ilaweki:',
 'revdelete-reasonotherlist'   => 'Sebebo bin',
 'revdelete-edit-reasonlist'   => 'Sebebunê esterıtene bıvurne',

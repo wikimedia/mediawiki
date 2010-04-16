@@ -1304,6 +1304,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'fileuploadsummary'   => 'Muhtasari:',
 'filereuploadsummary' => 'Mabadiliko ya faili:',
 'filestatus'          => 'Hali ya hatimiliki:',
+'filesource'          => 'Chanzo:',
 'uploadedfiles'       => 'Mafaili yaliyopakiwa:',
 'ignorewarning'       => 'Hifadhi bila kujali maonyo yoyote.',
 'ignorewarnings'      => 'Usijali ilani zozote',

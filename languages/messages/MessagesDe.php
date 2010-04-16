@@ -1482,7 +1482,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-apihighlimits'         => 'Höhere Limits in API-Abfragen',
 'right-writeapi'              => 'Benutzung der writeAPI',
 'right-delete'                => 'Seiten löschen',
-'right-bigdelete'             => 'Seiten löschen mit großer Versionsgeschichte',
+'right-bigdelete'             => 'Seiten mit großer Versionsgeschichte löschen',
 'right-deleterevision'        => 'Einzelne Versionen einer Seite löschen und wiederherstellen',
 'right-deletedhistory'        => 'Gelöschte Versionen in der Versionsgeschichte ansehen, ohne zugehörigen Text',
 'right-deletedtext'           => 'Gelöschte Texte und Versionsunterschiede zwischen gelöschten Versionen ansehen',
