@@ -1274,6 +1274,33 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * Build a partial where clause from a 2-d array such as used for LinkBatch.
+	 * The keys on each level may be either integers or strings.
+	 *
+	 * @param array $data organized as 2-d array(baseKeyVal => array(subKeyVal => <ignored>, ...), ...)
+	 * @param string $baseKey field name to match the base-level keys to (eg 'pl_namespace')
+	 * @param string $subKey field name to match the sub-level keys to (eg 'pl_title')
+	 * @return mixed string SQL fragment, or false if no items in array.
+	 */
+	function makeWhereFrom2d( $data, $baseKey, $subKey ) {
+		$conds = array();
+		foreach ( $data as $base => $sub ) {
+			if ( count( $sub ) ) {
+				$conds[] = $this->makeList(
+					array( $baseKey => $base, $subKey => array_keys( $sub ) ),
+					LIST_AND);
+			}
+		}
+
+		if ( $conds ) {
+			return $this->makeList( $conds, LIST_OR );
+		} else {
+			// Nothing to search for...
+			return false;
+		}
+	}
+
+	/**
 	 * Bitwise operations
 	 */
 

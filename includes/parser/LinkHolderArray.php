@@ -162,6 +162,9 @@ class LinkHolderArray {
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
 					$colours[$pdbk] = '';
+					if( $title->getInterwiki() != '' ) {
+						$output->addInterwikiLink( $title );
+					}
 				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
 					$colours[$pdbk] = $sk->getLinkColour( $title, $threshold );
 					$output->addLink( $title, $id );
