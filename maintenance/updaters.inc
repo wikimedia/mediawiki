@@ -1596,7 +1596,7 @@ function do_postgres_updates() {
 		array('user_properties',   'patch-user_properties.sql'),
 		array('log_search',        'patch-log_search.sql'),
 		array('l10n_cache',        'patch-l10n_cache.sql'),
-		// @fixme add iwlinks table
+		array('iwlinks',           'patch-iwlinks.sql'),
 	);
 
 	$newcols = array(
