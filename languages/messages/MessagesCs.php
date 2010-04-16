@@ -25,22 +25,35 @@
 $fallback8bitEncoding = 'cp1250';
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Média',
-	NS_SPECIAL          => 'Speciální',
-	NS_TALK             => 'Diskuse',
-	NS_USER             => 'Uživatel',
-	NS_USER_TALK        => 'Uživatel_diskuse',
-	NS_PROJECT_TALK     => '$1_diskuse',
-	NS_FILE             => 'Soubor',
-	NS_FILE_TALK        => 'Soubor_diskuse',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskuse',
-	NS_TEMPLATE         => 'Šablona',
-	NS_TEMPLATE_TALK    => 'Šablona_diskuse',
-	NS_HELP             => 'Nápověda',
-	NS_HELP_TALK        => 'Nápověda_diskuse',
-	NS_CATEGORY         => 'Kategorie',
-	NS_CATEGORY_TALK    => 'Kategorie_diskuse',
+	NS_MEDIA          => 'Média',
+	NS_SPECIAL        => 'Speciální',
+	NS_TALK           => 'Diskuse',
+	NS_USER           => 'Uživatel',
+	NS_USER_TALK      => 'Diskuse_s_uživatelem',
+	NS_PROJECT_TALK   => 'Diskuse_k_{{grammar:3sg|$1}}',
+	NS_FILE           => 'Soubor',
+	NS_FILE_TALK      => 'Diskuse_k_souboru',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Diskuse_k_MediaWiki',
+	NS_TEMPLATE       => 'Šablona',
+	NS_TEMPLATE_TALK  => 'Diskuse_k_šabloně',
+	NS_HELP           => 'Nápověda',
+	NS_HELP_TALK      => 'Diskuse_k_nápovědě',
+	NS_CATEGORY       => 'Kategorie',
+ 	NS_CATEGORY_TALK  => 'Diskuse_ke_kategorii',
+);
+
+$namespaceAliases = array(
+    'Uživatelka'            => NS_USER,           # female complement
+    'Diskuse_s_uživatelkou' => NS_USER_TALK,      # female complement
+    'Uživatel_diskuse'      => NS_USER_TALK,      # old literal translation backward compatibility
+    'Uživatelka_diskuse'    => NS_USER_TALK,      # female complement to old literal translation style
+    '$1_diskuse'            => NS_PROJECT_TALK,   # old literal translation backward compatibility
+    'Soubor_diskuse'        => NS_FILE_TALK,      # old literal translation backward compatibility
+    'MediaWiki_diskuse'     => NS_MEDIAWIKI_TALK, # old literal translation backward compatibility
+    'Šablona_diskuse'       => NS_TEMPLATE_TALK,  # old literal translation backward compatibility
+    'Nápověda_diskuse'      => NS_HELP_TALK,      # old literal translation backward compatibility
+    'Kategorie_diskuse'     => NS_CATEGORY_TALK,  # old literal translation backward compatibility
 );
 
 /**
