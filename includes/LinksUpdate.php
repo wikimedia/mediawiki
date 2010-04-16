@@ -54,6 +54,7 @@ class LinksUpdate {
 		$this->mExternals = $parserOutput->getExternalLinks();
 		$this->mCategories = $parserOutput->getCategories();
 		$this->mProperties = $parserOutput->getProperties();
+		$this->mInterwikis = $parserOutput->getInterwikiLinks();
 
 		# Convert the format of the interlanguage links
 		# I didn't want to change it in the ParserOutput, because that array is passed all
@@ -115,6 +116,11 @@ class LinksUpdate {
 		$this->incrTableUpdate( 'langlinks', 'll', $this->getInterlangDeletions( $existing ),
 			$this->getInterlangInsertions( $existing ) );
 
+		# Inline interwiki links
+		$existing = $this->getExistingInterwikis();
+		$this->incrTableUpdate( 'iwlinks', 'iwl', $this->getInterwikiDeletions( $existing ),
+			$this->getInterwikiInsertions( $existing ) );
+
 		# Template links
 		$existing = $this->getExistingTemplates();
 		$this->incrTableUpdate( 'templatelinks', 'tl', $this->getTemplateDeletions( $existing ),
@@ -175,6 +181,7 @@ class LinksUpdate {
 		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
 		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
 		$this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(),'ll_from' );
+		$this->dumbTableUpdate( 'iwlinks',       $this->getInterwikiInsertions(),'iwl_from' );
 		$this->dumbTableUpdate( 'page_props',    $this->getPropertyInsertions(), 'pp_page' );
 
 		# Update the cache of all the category pages and image description
@@ -292,18 +299,6 @@ class LinksUpdate {
 	}
 
 	/**
-	 * Make a WHERE clause from a 2-d NS/dbkey array
-	 *
-	 * @param array $arr 2-d array indexed by namespace and DB key
-	 * @param string $prefix Field name prefix, without the underscore
-	 */
-	function makeWhereFrom2d( &$arr, $prefix ) {
-		$lb = new LinkBatch;
-		$lb->setArray( $arr );
-		return $lb->constructSet( $prefix, $this->mDb );
-	}
-
-	/**
 	 * Update a table by doing a delete query then an insert query
 	 * @private
 	 */
@@ -314,8 +309,13 @@ class LinksUpdate {
 			$fromField = "{$prefix}_from";
 		}
 		$where = array( $fromField => $this->mId );
-		if ( $table == 'pagelinks' || $table == 'templatelinks' ) {
-			$clause = $this->makeWhereFrom2d( $deletions, $prefix );
+		if ( $table == 'pagelinks' || $table == 'templatelinks' || $table == 'iwlinks' ) {
+			if ( $table == 'iwlinks' ) {
+				$baseKey = 'iwl_prefix';
+			} else {
+				$baseKey = "{$prefix}_namespace";
+			}
+			$clause = $this->mDb->makeWhereFrom2d( $deletions, $baseKey, "{$prefix}_title" );
 			if ( $clause ) {
 				$where[] = $clause;
 			} else {
@@ -476,6 +476,29 @@ class LinksUpdate {
 		return $arr;
 	}
 
+	/**
+	 * Get an array of interwiki insertions for passing to the DB
+	 * Skips the titles specified by the 2-D array $existing
+	 * @private
+	 */
+	function getInterwikiInsertions( $existing = array() ) {
+		$arr = array();
+		foreach( $this->mInterwikis as $prefix => $dbkeys ) {
+			# array_diff_key() was introduced in PHP 5.1, there is a compatibility function
+			# in GlobalFunctions.php
+			$diffs = isset( $existing[$prefix] ) ? array_diff_key( $dbkeys, $existing[$prefix] ) : $dbkeys;
+			foreach ( $diffs as $dbk => $id ) {
+				$arr[] = array(
+					'iwl_from'   => $this->mId,
+					'iwl_prefix' => $prefix,
+					'iwl_title'  => $dbk
+				);
+			}
+		}
+		return $arr;
+	}
+
+
 
 	/**
 	 * Given an array of existing links, returns those links which are not in $this
@@ -553,6 +576,23 @@ class LinksUpdate {
 	 */
 	function getPropertyDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mProperties );
+	}
+
+	/**
+	 * Given an array of existing interwiki links, returns those links which are not in $this
+	 * and thus should be deleted.
+	 * @private
+	 */
+	function getInterwikiDeletions( $existing ) {
+		$del = array();
+		foreach ( $existing as $prefix => $dbkeys ) {
+			if ( isset( $this->mInterwikis[$prefix] ) ) {
+				$del[$prefix] = array_diff_key( $existing[$prefix], $this->mInterwikis[$prefix] );
+			} else {
+				$del[$prefix] = $existing[$prefix];
+			}
+		}
+		return $del;
 	}
 
 	/**
@@ -648,6 +688,24 @@ class LinksUpdate {
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
 			$arr[$row->ll_lang] = $row->ll_title;
 		}
+		return $arr;
+	}
+
+	/**
+	 * Get an array of existing inline interwiki links, as a 2-D array
+	 * @return array (prefix => array(dbkey => 1))
+	 */
+	protected function getExistingInterwikis() {
+		$res = $this->mDb->select( 'iwlinks', array( 'iwl_prefix', 'iwl_title' ),
+			array( 'iwl_from' => $this->mId ), __METHOD__, $this->mOptions );
+		$arr = array();
+		while ( $row = $this->mDb->fetchObject( $res ) ) {
+			if ( !isset( $arr[$row->iwl_prefix] ) ) {
+				$arr[$row->iwl_prefix] = array();
+			}
+			$arr[$row->iwl_prefix][$row->iwl_title] = 1;
+		}
+		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 

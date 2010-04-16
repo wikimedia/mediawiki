@@ -17,6 +17,7 @@ class ParserOutput
 		$mTemplateIds = array(),      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
 		$mImages = array(),           # DB keys of the images used, in the array key only
 		$mExternalLinks = array(),    # External link URLs, in the key only
+		$mInterwikiLinks = array(),   # 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
 		$mNewSection = false,         # Show a new section link?
 		$mHideNewSection = false,     # Hide the new section link?
 		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
@@ -40,6 +41,7 @@ class ParserOutput
 
 	function getText()                   { return $this->mText; }
 	function &getLanguageLinks()         { return $this->mLanguageLinks; }
+	function getInterwikiLinks()         { return $this->mInterwikiLinks; }
 	function getCategoryLinks()          { return array_keys( $this->mCategories ); }
 	function &getCategories()            { return $this->mCategories; }
 	function getCacheTime()              { return $this->mCacheTime; }
@@ -96,9 +98,17 @@ class ParserOutput
 			$this->mExternalLinks[$url] = 1; 
 	}
 
+	/**
+	 * Record a local or interwiki inline link for saving in future link tables.
+	 *
+	 * @param Title $title
+	 * @param mixed $id optional known page_id so we can skip the lookup
+	 */
 	function addLink( $title, $id = null ) {
+		wfDebug(__METHOD__ . " got: " . $title->getPrefixedText() . "\n");
 		if ( $title->isExternal() ) {
 			// Don't record interwikis in pagelinks
+			$this->addInterwikiLink( $title );
 			return;
 		}
 		$ns = $title->getNamespace();
@@ -138,6 +148,21 @@ class ParserOutput
 			$this->mTemplateIds[$ns] = array();
 		}
 		$this->mTemplateIds[$ns][$dbk] = $rev_id; // For versioning
+	}
+	
+	/**
+	 * @param Title $title object, must be an interwiki link
+	 * @throws MWException if given invalid input
+	 */
+	function addInterwikiLink( $title ) {
+		$prefix = $title->getInterwiki();
+		if( $prefix == '' ) {
+			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
+		}
+		if (!isset($this->mInterwikiLinks[$prefix])) {
+			$this->mInterwikiLinks[$prefix] = array();
+		}
+		$this->mInterwikiLinks[$prefix][$title->getDBkey()] = 1;
 	}
 
 	/**

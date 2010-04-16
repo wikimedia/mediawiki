@@ -172,6 +172,9 @@ $wgUpdates = array(
 		array( 'do_update_mime_minor_field' ),
 		// Should've done this back in 1.10, but better late than never:
 		array( 'do_populate_rev_len' ),
+
+		// 1.17
+		array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ),
 	),
 
 	'sqlite' => array(
@@ -199,6 +202,9 @@ $wgUpdates = array(
 		array( 'do_update_transcache_field' ),
 		// version-independent searchindex setup, added in 1.16
 		array( 'sqlite_setup_searchindex' ),
+
+		// 1.17
+		array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ), // @fixme so far untested on sqlite 2010-04-16
 	),
 );
 
@@ -1590,6 +1596,7 @@ function do_postgres_updates() {
 		array('user_properties',   'patch-user_properties.sql'),
 		array('log_search',        'patch-log_search.sql'),
 		array('l10n_cache',        'patch-l10n_cache.sql'),
+		// @fixme add iwlinks table
 	);
 
 	$newcols = array(

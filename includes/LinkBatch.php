@@ -144,48 +144,9 @@ class LinkBatch {
 	 *
 	 * @param $prefix String: the appropriate table's field name prefix ('page', 'pl', etc)
 	 * @param $db DatabaseBase object to use
-	 * @return String
+	 * @return mixed string with SQL where clause fragment, or false if no items.
 	 */
-	public function constructSet( $prefix, &$db ) {
-		$first = true;
-		$firstTitle = true;
-		$sql = '';
-		foreach ( $this->data as $ns => $dbkeys ) {
-			if ( !count( $dbkeys ) ) {
-				continue;
-			}
-
-			if ( $first ) {
-				$first = false;
-			} else {
-				$sql .= ' OR ';
-			}
-
-			if (count($dbkeys)==1) { // avoid multiple-reference syntax if simple equality can be used
-				$singleKey = array_keys($dbkeys);
-				$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title=".
-					$db->addQuotes($singleKey[0]).
-					")";
-			} else {
-				$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title IN (";
-
-				$firstTitle = true;
-				foreach( $dbkeys as $dbkey => $unused ) {
-					if ( $firstTitle ) {
-						$firstTitle = false;
-					} else {
-						$sql .= ',';
-					}
-					$sql .= $db->addQuotes( $dbkey );
-				}
-				$sql .= '))';
-			}
-		}
-		if ( $first && $firstTitle ) {
-			# No titles added
-			return false;
-		} else {
-			return $sql;
-		}
+	public function constructSet( $prefix, $db ) {
+	    return $db->makeWhereFrom2d( $this->data, "{$prefix}_namespace", "{$prefix}_title" );
 	}
 }
