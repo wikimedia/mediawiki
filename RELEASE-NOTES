@@ -47,6 +47,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   escaping.
 * Special:Listfiles now supports a username parameter
 * Special:Random carries over query string parameters
+* (bug 23206) Add Special::Search hook for detecting successful "Go"
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

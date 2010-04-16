@@ -1498,9 +1498,13 @@ SpecialRecentChanges
 $opts: FormOptions for this request
 &$query_options: array of options for the database request
 
+'SpecialSearchGomatch': called when user clicked the "Go" button and the target
+exists
+&$title: title object generated from the text entred by the user
+
 'SpecialSearchNogomatch': called when user clicked the "Go" button but the
 target doesn't exist
-$title: title object generated from the text entred by the user
+&$title: title object generated from the text entred by the user
 
 'SpecialSearchProfiles': allows modification of search profiles
 &$profiles: profiles, which can be modified.
