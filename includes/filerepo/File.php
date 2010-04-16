@@ -843,9 +843,8 @@ abstract class File {
 
 	/**
 	 * Move or copy a file to its public location. If a file exists at the
-	 * destination, move it to an archive. Returns the archive name on success
-	 * or an empty string if it was a new file, and a wikitext-formatted
-	 * WikiError object on failure.
+	 * destination, move it to an archive. Returns a FileRepoStatus object with
+	 * the archive name in the "value" member on success.
 	 *
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
@@ -854,8 +853,8 @@ abstract class File {
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move
 	 *         rather than copy
-	 * @return The archive name on success or an empty string if it was a new
-	 *     file, and a wikitext-formatted WikiError object on failure.
+	 * @return FileRepoStatus object. On success, the value member contains the
+	 *     archive name, or an empty string if it was a new file.
 	 *
 	 * STUB
 	 * Overridden by LocalFile
