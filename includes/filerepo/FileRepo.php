@@ -494,7 +494,7 @@ abstract class FileRepo {
 	 * @param $srcRel Mixed: relative path for the file to be deleted
 	 * @param $archiveRel Mixed: relative path for the archive location.
 	 *        Relative to a private archive directory.
-	 * @return WikiError object (wikitext-formatted), or true for success
+	 * @return FileRepoStatus object
 	 */
 	function delete( $srcRel, $archiveRel ) {
 		return $this->deleteBatch( array( array( $srcRel, $archiveRel ) ) );
