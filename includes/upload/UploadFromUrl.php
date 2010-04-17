@@ -10,7 +10,7 @@
  */
 class UploadFromUrl extends UploadBase {
 	protected $mTempDownloadPath;
-	protected $comment, $watchList;
+	protected $comment, $watchList, $ignoreWarnings;
 
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
@@ -35,7 +35,7 @@ class UploadFromUrl extends UploadBase {
 	 * Entry point for API upload
 	 * @return bool true on success
 	 */
-	public function initialize( $name, $url, $comment, $watchlist ) {
+	public function initialize( $name, $url, $comment, $watchList, $ignoreWarn ) {
 		global $wgUser;
 
 		if( !Http::isValidURI( $url ) ) {
@@ -47,7 +47,8 @@ class UploadFromUrl extends UploadBase {
 			"url" => trim( $url ),
 			"timestamp" => wfTimestampNow(),
 			"comment" => $comment,
-			"watchlist" => $watchlist);
+			"watchlist" => $watchList,
+			"ignorewarnings" => $ignoreWarn);
 
 		$title = Title::newFromText( $name );
 		/* // Check whether the user has the appropriate permissions to upload anyway */
@@ -81,6 +82,7 @@ class UploadFromUrl extends UploadBase {
 		$this->mDesiredDestName = $job->title;
 		$this->comment = $job->params['comment'];
 		$this->watchList = $job->params['watchlist'];
+		$this->ignoreWarnings = $job->params['ignorewarnings'];
 		$this->getTitle();
 	}
 
@@ -95,8 +97,9 @@ class UploadFromUrl extends UploadBase {
 		return $this->initialize(
 			$desiredDestName,
 			$request->getVal( 'wpUploadFileURL' ),
-			'',
-			false
+			$request->getVal( 'wpUploadDescription' ),
+			$request->getVal( 'wpWatchThis' ),
+			$request->getVal( 'wpIgnoreWarnings' )
 		);
 	}
 
@@ -104,10 +107,12 @@ class UploadFromUrl extends UploadBase {
 	 * @param $request Object: WebRequest object
 	 */
 	public static function isValidRequest( $request ){
-		if( !$request->getVal( 'wpUploadFileURL' ) )
-			return false;
-		// check that is a valid url:
-		return Http::isValidURI( $request->getVal( 'wpUploadFileURL' ) );
+		global $wgUser;
+
+		$url = $request->getVal( 'wpUploadFileURL' );
+		return !empty( $url )
+			&& Http::isValidURI( $url )
+			&& $wgUser->isAllowed( 'upload_by_url' );
 	}
 
 	private function saveTempFile( $req ) {
@@ -151,11 +156,6 @@ class UploadFromUrl extends UploadBase {
 		/* $warnings = $this->checkForWarnings(); */
 		/* if( isset($warnings) ) return $warnings; */
 
-		// Use comment as initial page text by default
-		if ( is_null( $this->mParams['text'] ) ) {
-			$this->mParams['text'] = $this->mParams['comment'];
-		}
-
 		$file = $this->getLocalFile();
 		// This comes from ApiBase
 		/* $watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() ); */
@@ -165,7 +165,7 @@ class UploadFromUrl extends UploadBase {
 		}
 
 		$status = $this->getLocalFile()->upload( $this->mTempPath, $this->comment,
-			$this->pageText, File::DELETE_SOURCE, $this->mFileProps, false, $wgUser );
+			$this->comment, File::DELETE_SOURCE, $this->mFileProps, false, $wgUser );
 
 		return $status;
 	}

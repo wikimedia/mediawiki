@@ -2106,6 +2106,7 @@ You should check that file's deletion history before proceeding to re-upload it.
 'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
 'uploaddisabled'              => 'Uploads disabled.',
 'copyuploaddisabled'          => 'Upload by URL disabled.',
+'uploadfromurl-queued'        => 'Your upload has been queued.',
 'uploaddisabledtext'          => 'File uploads are disabled.',
 'php-uploaddisabledtext'      => 'File uploads are disabled in PHP.
 Please check the file_uploads setting.',
