@@ -92,10 +92,10 @@ class ApiUpload extends ApiBase {
 				}
 
 				$this->mUpload = new UploadFromUrl;
-				$this->mUpload->initialize( $this->mParams['filename'], $this->mParams['url'],
+				$result = $this->mUpload->initialize( $this->mParams['filename'], $this->mParams['url'],
 											$this->mParams['comment'] );
 
-				$this->getResult()->addValue( null, $this->getModuleName(), Status::newGood() );
+				$this->getResult()->addValue( null, $this->getModuleName(), array( 'queued' => $result ) );
 				return;
 			}
 		} else {

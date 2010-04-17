@@ -76,7 +76,8 @@ abstract class Job {
 		$namespace = $row->job_namespace;
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
-		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ), $row->job_id );
+		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ),
+			$row->job_id );
 
 		$dbw->delete( 'job', $job->insertFields(), __METHOD__ );
 		$dbw->commit();
@@ -260,6 +261,7 @@ abstract class Job {
 
 	/**
 	 * Insert a single job into the queue.
+	 * @return bool true on success
 	 */
 	function insert() {
 		$fields = $this->insertFields();
@@ -272,7 +274,7 @@ abstract class Job {
 				return;
 			}
 		}
-		$dbw->insert( 'job', $fields, __METHOD__ );
+		return $dbw->insert( 'job', $fields, __METHOD__ );
 	}
 
 	protected function insertFields() {
