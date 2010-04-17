@@ -377,9 +377,9 @@ class Block {
 	 *
 	 * @return Boolean: whether or not the insertion was successful.
 	 */
-	public function insert($dbw = null) {
+	public function insert( $dbw = null ) {
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
-		if ( $dbw === null)
+		if ( $dbw === null )
 			$dbw = wfGetDB( DB_MASTER );
 
 		$this->validateBlockParams();
