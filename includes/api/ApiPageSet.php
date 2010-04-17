@@ -79,7 +79,7 @@ class ApiPageSet extends ApiQueryBase {
 			$this->mPendingRedirectIDs = array();
 		}
 
-		$this->mFakePageId = -1;
+		$this->mFakePageId = - 1;
 	}
 
 	/**

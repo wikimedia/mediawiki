@@ -246,7 +246,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					if ( $this->hasNS ) {
 						$parentID = $this->pageMap[$row-> { $this->bl_ns } ][$row-> { $this->bl_title } ];
 					} else {
-						$parentID = $this->pageMap[NS_IMAGE][$row->{$this->bl_title}];
+						$parentID = $this->pageMap[NS_IMAGE][$row-> { $this->bl_title } ];
 					}
 					$this->continueStr = $this->getContinueRedirStr( $parentID, $row->page_id );
 					break;

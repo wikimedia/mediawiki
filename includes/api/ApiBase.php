@@ -475,7 +475,7 @@ abstract class ApiBase {
 		$params = $this->getFinalParams();
 		$results = array();
 
-		if( $params ) { // getFinalParams() can return false
+		if ( $params ) { // getFinalParams() can return false
 			foreach ( $params as $paramName => $paramSettings ) {
 				$results[$paramName] = $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 			}
@@ -559,7 +559,7 @@ abstract class ApiBase {
 				}
 				# If no user option was passed, use watchdefault or watchcreation
 				if ( is_null( $userOption ) ) {
-					$userOption = $titleObj->exists() 
+					$userOption = $titleObj->exists()
 						? 'watchdefault' : 'watchcreations';
 				}
 				# If the corresponding user option is true, watch, else no change
@@ -581,7 +581,7 @@ abstract class ApiBase {
 	 */
 	protected function setWatch ( $watch, $titleObj, $userOption = null ) {
 		$value = $this->getWatchlistValue( $watch, $titleObj, $userOption );
-		if( $value === null ) { 
+		if ( $value === null ) {
 			return;
 		}
 
@@ -705,9 +705,9 @@ abstract class ApiBase {
 						$value = wfTimestamp( TS_MW, $value );
 						break;
 					case 'user':
-						if( !is_array( $value ) ) $value = array( $value );
+						if ( !is_array( $value ) ) $value = array( $value );
 						
-						foreach( $value as $key => $val ) {
+						foreach ( $value as $key => $val ) {
 							$title = Title::makeTitleSafe( NS_USER, $val );
 							if ( is_null( $title ) ) {
 								$this->dieUsage( "Invalid value for user parameter $encParamName", "baduser_{$encParamName}" );
@@ -715,7 +715,7 @@ abstract class ApiBase {
 							$value[$key] = $title->getText();
 						}
 						
-						if( !$multi ) $value = $value[0];
+						if ( !$multi ) $value = $value[0];
 						
 						break;
 					default:

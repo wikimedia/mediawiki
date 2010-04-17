@@ -54,10 +54,10 @@ class ApiParse extends ApiBase {
 		// $title parameter in Parser::parse isn't enough *sigh*
 		global $wgParser, $wgUser, $wgTitle, $wgEnableParserCache, $wgLang;
 		
-		//Current unncessary, code to act as a safeguard against any change in current behaviour of uselang breaks
+		// Current unncessary, code to act as a safeguard against any change in current behaviour of uselang breaks
 		$oldLang = null;
 		if ( isset( $params['uselang'] ) && $params['uselang'] != $wgLang->getCode() ) {
-			$oldLang = $wgLang; //Backup wgLang
+			$oldLang = $wgLang; // Backup wgLang
 			$wgLang = Language::factory( $params['uselang'] );
 		}
 		
@@ -214,7 +214,7 @@ class ApiParse extends ApiBase {
 		$result->addValue( null, $this->getModuleName(), $result_array );
 		
 		if ( !is_null( $oldLang ) ) {
-			$wgLang = $oldLang; //Reset $wgLang to $oldLang
+			$wgLang = $oldLang; // Reset $wgLang to $oldLang
 		}
 	}
 

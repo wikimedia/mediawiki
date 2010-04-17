@@ -168,7 +168,7 @@ class ApiMain extends ApiBase {
 
 		$this->mRequest = &$request;
 
-		$this->mSquidMaxage = -1; // flag for executeActionWithErrorHandling()
+		$this->mSquidMaxage = - 1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
 	}
 
@@ -451,7 +451,7 @@ class ApiMain extends ApiBase {
 	 * @param $params Array an array containing the request parameters.
 	 * @return boolean True on success, false should exit immediately
 	 */
-	protected function checkMaxLag($module, $params) {
+	protected function checkMaxLag( $module, $params ) {
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			// Check for maxlag
 			global $wgShowHostnames;
@@ -476,7 +476,7 @@ class ApiMain extends ApiBase {
 	 * Check for sufficient permissions to execute
 	 * @param $module object An Api module
 	 */
-	protected function checkExecutePermissions($module) {
+	protected function checkExecutePermissions( $module ) {
 		global $wgUser, $wgGroupPermissions;
 		if ( $module->isReadMode() && !$wgGroupPermissions['*']['read'] && !$wgUser->isAllowed( 'read' ) )
 		{
@@ -500,7 +500,7 @@ class ApiMain extends ApiBase {
 	 * @param $module object An Api module
 	 * @param $params Array an array with the request parameters
 	 */
-	protected function setupExternalResponse($module, $params) {
+	protected function setupExternalResponse( $module, $params ) {
 		// Ignore mustBePosted() for internal calls
 		if ( $module->mustBePosted() && !$this->mRequest->wasPosted() ) {
 			$this->dieUsageMsg( array( 'mustbeposted', $this->mAction ) );
@@ -525,12 +525,12 @@ class ApiMain extends ApiBase {
 		$params = $this->setupExecuteAction();
 		$module = $this->setupModule();
 
-		$this->checkExecutePermissions($module);
+		$this->checkExecutePermissions( $module );
 
-		if(!$this->checkMaxLag($module, $params)) return;
+		if ( !$this->checkMaxLag( $module, $params ) ) return;
 
 		if ( !$this->mInternalMode ) {
-			$this->setupExternalResponse($module, $params);
+			$this->setupExternalResponse( $module, $params );
 		}
 
 		// Execute
