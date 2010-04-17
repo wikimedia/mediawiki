@@ -143,9 +143,7 @@ class UploadFromUrlTest extends ApiSetup {
 			'token' => $token,
 		), $data );
 
-		$this->assertThat( $data[0]['upload'], $this->isInstanceOf( 'Status' ),
-			"Got Status Object" );
-		$this->assertTrue( $data[0]['upload']->isOk(), 'Job added');
+		$this->assertTrue( $data[0]['upload']['queued'], 'Job added');
 
 		$job = Job::pop();
 		$this->assertThat( $job, $this->isInstanceOf( 'UploadFromUrlJob' ),

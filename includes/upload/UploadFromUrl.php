@@ -24,6 +24,7 @@ class UploadFromUrl extends UploadBase {
 
 	/**
 	 * Checks if the upload from URL feature is enabled
+	 * @return bool
 	 */
 	public static function isEnabled() {
 		global $wgAllowCopyUploads;
@@ -32,6 +33,7 @@ class UploadFromUrl extends UploadBase {
 
 	/**
 	 * Entry point for API upload
+	 * @return bool true on success
 	 */
 	public function initialize( $name, $url, $comment, $watchlist ) {
 		global $wgUser;
@@ -66,7 +68,7 @@ class UploadFromUrl extends UploadBase {
 
 
 		$job = new UploadFromUrlJob( $title, $params );
-		$job->insert();
+		return $job->insert();
 	}
 
 	/**
