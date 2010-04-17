@@ -155,7 +155,7 @@ class ApiRollback extends ApiBase {
 
 		$params = $this->extractRequestParams();
 		if ( !isset( $params['title'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'title' ) ); 
+			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
 		}
 
 		$this->mTitleObj = Title::newFromText( $params['title'] );

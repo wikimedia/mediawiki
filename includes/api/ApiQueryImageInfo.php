@@ -288,11 +288,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			),
 			'urlwidth' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => -1
+				ApiBase::PARAM_DFLT => - 1
 			),
 			'urlheight' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => -1
+				ApiBase::PARAM_DFLT => - 1
 			),
 			'continue' => null,
 		);

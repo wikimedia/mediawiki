@@ -61,9 +61,9 @@ class ApiEmailUser extends ApiBase {
 		}
 
 		$data = array(
-			'Target' => $targetUser->getName(), 
-			'Text' => $params['text'], 
-			'Subject' => $params['subject'], 
+			'Target' => $targetUser->getName(),
+			'Text' => $params['text'],
+			'Subject' => $params['subject'],
 			'CCMe' => $params['ccme'],
 		);
 		$retval = SpecialEmailuser::submit( $data );
