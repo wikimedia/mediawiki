@@ -44,6 +44,11 @@ class GIFHandler extends BitmapHandler {
 		return 'parsed-gif';
 	}
 	
+	function isMetadataValid( $image, $metadata ) {
+		$data = @unserialize( $metadata );
+		return (boolean) $data;
+	}
+
 	function getLongDesc( $image ) {
 		global $wgUser, $wgLang;
 		$sk = $wgUser->getSkin();
