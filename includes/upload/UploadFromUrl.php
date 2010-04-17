@@ -10,6 +10,7 @@
  */
 class UploadFromUrl extends UploadBase {
 	protected $mTempDownloadPath;
+	protected $comment, $watchList;
 
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
@@ -32,13 +33,53 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Entry point for API upload
 	 */
-	public function initialize( $name, $url, $na, $nb = false ) {
-		global $wgTmpDirectory;
+	public function initialize( $name, $url, $comment, $watchlist ) {
+		global $wgUser;
 
-		$localFile = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
-		$this->initializePathInfo( $name, $localFile, 0, true );
+		if( !Http::isValidURI( $url ) ) {
+			return Status::newFatal( 'http-invalid-url' );
+		}
+		$params = array(
+			"userName" => $wgUser->getName(),
+			"userID" => $wgUser->getID(),
+			"url" => trim( $url ),
+			"timestamp" => wfTimestampNow(),
+			"comment" => $comment,
+			"watchlist" => $watchlist);
 
-		$this->mUrl = trim( $url );
+		$title = Title::newFromText( $name );
+		/* // Check whether the user has the appropriate permissions to upload anyway */
+		/* $permission = $this->isAllowed( $wgUser ); */
+
+		/* if ( $permission !== true ) { */
+		/* 	if ( !$wgUser->isLoggedIn() ) { */
+		/* 		return Status::newFatal( 'uploadnologintext' ); */
+		/* 	} else { */
+		/* 		return Status::newFatal( 'badaccess-groups' ); */
+		/* 	} */
+		/* } */
+
+		/* $permErrors = $this->verifyPermissions( $wgUser ); */
+		/* if ( $permErrors !== true ) { */
+		/* 	return Status::newFatal( 'badaccess-groups' ); */
+		/* } */
+
+
+		$job = new UploadFromUrlJob( $title, $params );
+		$job->insert();
+	}
+
+	/**
+	 * Initialize a queued download
+	 * @param $job Job
+	 */
+	public function initializeFromJob( $job ) {
+		$this->mUrl = $job->params['url'];
+		$this->mTempPath = tempnam( $wgTmpDirectory, 'COPYUPLOAD' );
+		$this->mDesiredDestName = $job->title;
+		$this->comment = $job->params['comment'];
+		$this->watchList = $job->params['watchlist'];
+		$this->getTitle();
 	}
 
 	/**
@@ -66,60 +107,63 @@ class UploadFromUrl extends UploadBase {
 		return self::isValidUrl( $request->getVal( 'wpUploadFileURL' ) );
 	}
 
-	public static function isValidUrl( $url ) {
-		// Only allow HTTP or FTP for now
-		return (bool)preg_match( '!^(http://|ftp://)!', $url );
+	private function saveTempFile( $req ) {
+		$filename = tempnam( wfTempDir(), 'URL' );
+		if ( $filename === false ) {
+			return Status::newFatal( 'tmp-create-error' );
+		}
+		if ( file_put_contents( $filename, $req->getContent() ) === false ) {
+			return Status::newFatal( 'tmp-write-error' );
+		}
+
+		$this->mTempPath = $filename;
+		$this->mFileSize = filesize( $filename );
+
+		return Status::newGood();
 	}
 
-	/**
-	 * Do the real fetching stuff
-	 */
-	function fetchFile() {
-		if( !self::isValidUrl( $this->mUrl ) ) {
-			return Status::newFatal( 'upload-proto-error' );
-		}
+	public function doUpload() {
+		global $wgUser;
 
-		# Open temporary file
-		$this->mCurlDestHandle = @fopen( $this->mTempPath, "wb" );
-		if( $this->mCurlDestHandle === false ) {
-			# Could not open temporary file to write in
-			return Status::newFatal( 'upload-file-error' );
-		}
-		
-		$options = array(
-			'method' => 'GET',
-			'timeout' => 10,
-		);
-		$req = HttpRequest::factory( $this->mUrl, $options );
-		$req->setCallback( array( $this, 'uploadCurlCallback' ) );
+		$req = HttpRequest::factory($this->mUrl);
 		$status = $req->execute();
-		fclose( $this->mCurlDestHandle );
-		unset( $this->mCurlDestHandle );
 
-		global $wgMaxUploadSize;
-		if ( $this->mFileSize > $wgMaxUploadSize ) {
-			# Just return an ok, so that the regular verifications can handle 
-			# the file-too-large error
-			return Status::newGood();
+		if( !$status->isOk() ) {
+			return $status;
 		}
+
+		$status = $this->saveTempFile( $req );
+		$this->mRemoveTempFile = true;
+
+		if( !$status->isOk() ) {
+			return $status;
+		}
+
+		$v = $this->verifyUpload();
+		if( $v['status'] !== UploadBase::OK ) {
+			return $this->convertVerifyErrorToStatus( $v['status'], $v['details'] );
+		}
+
+		// This has to come from API
+		/* $warnings = $this->checkForWarnings(); */
+		/* if( isset($warnings) ) return $warnings; */
+
+		// Use comment as initial page text by default
+		if ( is_null( $this->mParams['text'] ) ) {
+			$this->mParams['text'] = $this->mParams['comment'];
+		}
+
+		$file = $this->getLocalFile();
+		// This comes from ApiBase
+		/* $watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() ); */
+
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+
+		$status = $this->getLocalFile()->upload( $this->mTempPath, $this->comment,
+			$this->pageText, File::DELETE_SOURCE, $this->mFileProps, false, $wgUser );
 
 		return $status;
-	}
-
-	/**
-	 * Callback function for CURL-based web transfer
-	 * Write data to file unless we've passed the length limit;
-	 * if so, abort immediately.
-	 * @access private
-	 */
-	function uploadCurlCallback( $ch, $data ) {
-		global $wgMaxUploadSize;
-		$length = strlen( $data );
-		$this->mFileSize += $length;
-		if( $this->mFileSize > $wgMaxUploadSize ) {
-			return 0;
-		}
-		fwrite( $this->mCurlDestHandle, $data );
-		return $length;
 	}
 }

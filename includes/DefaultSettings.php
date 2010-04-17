@@ -1935,6 +1935,7 @@ $wgJobClasses = array(
 	'sendMail' => 'EmaillingJob',
 	'enotifNotify' => 'EnotifNotifyJob',
 	'fixDoubleRedirect' => 'DoubleRedirectJob',
+	'uploadFromUrl' => 'UploadFromUrlJob',
 );
 
 /**

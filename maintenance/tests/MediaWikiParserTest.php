@@ -27,6 +27,7 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 		$tables[] = 'filearchive';
 		$tables[] = 'logging';
 		$tables[] = 'updatelog';
+		$tables[] = 'iwlinks';
 		return true;
 	}
 

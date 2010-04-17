@@ -43,6 +43,7 @@ class ApiUserrights extends ApiBase {
 
 		$user = $this->getUser();
 
+		$form = new UserrightsPage;
 		$r['user'] = $user->getName();
 		list( $r['added'], $r['removed'] ) =
 			$form->doSaveUserGroups(
