@@ -164,7 +164,7 @@ class UserrightsPage extends SpecialPage {
 				$removegroup[] = $group;
 			}
 		}
-		
+
 		$this->doSaveUserGroups( $user, $addgroup, $removegroup, $reason );
 	}
 
@@ -282,7 +282,7 @@ class UserrightsPage extends SpecialPage {
 			$database = '';
 		} else {
 			list( $name, $database ) = array_map( 'trim', $parts );
-			
+
 			if( $database == wfWikiID() ) {
 				$database = '';
 			} else {
@@ -526,7 +526,7 @@ class UserrightsPage extends SpecialPage {
 				$attr = $checkbox['disabled'] ? array( 'disabled' => 'disabled' ) : array();
 
 				if ( $checkbox['irreversible'] ) {
-					$text = htmlspecialchars( wfMsg( 'userrights-irreversible-marker', 
+					$text = htmlspecialchars( wfMsg( 'userrights-irreversible-marker',
 						User::getGroupMember( $group ) ) );
 				} else {
 					$text = htmlspecialchars( User::getGroupMember( $group ) );
