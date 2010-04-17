@@ -34,7 +34,7 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'type', 'Type of job to run', false, true );
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
 	}
-	
+
 	public function memoryLimit() {
 		// Don't eat all memory on the machine if we get a bad job.
 		return "150M";
@@ -67,10 +67,10 @@ class RunJobs extends Maintenance {
 				$job = ($type == false) ?
 						Job::pop($offset)
 						: Job::pop_type($type);
-	
+
 				if ($job == false)
 					break;
-	
+
 				wfWaitForSlaves( 5 );
 				$t = microtime( true );
 				$offset=$job->id;
