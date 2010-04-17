@@ -1656,6 +1656,17 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'filetype-unwanted-type'      => "'''„.$1“''' ist ein unerwünschtes Dateiformat. Erlaubt {{PLURAL:$3|ist das Dateiformat|sind die Dateiformate}}: $2.",
 'filetype-banned-type'        => "'''„.$1“''' ist ein nicht erlaubtes Dateiformat. Erlaubt {{PLURAL:$3|ist das Dateiformat|sind die Dateiformate}}: $2.",
 'filetype-missing'            => 'Die hochzuladende Datei hat keine Erweiterung (z. B. „.jpg“).',
+'empty-file'                  => 'Die übertragene Datei ist leer',
+'file-too-large'              => 'Die übertragene Datei ist zu groß',
+'filename-tooshort'           => 'Der Dateiname ist zu kurz',
+'filetype-banned'             => 'Dieser Dateityp ist gesperrt',
+'verification-error'          => 'Diese Datei durchlief keine Dateiprüfung',
+'hookaborted'                 => 'Der Versuch, die Änderung durchzuführen, ist aufgrund eines Extension-Hooks fehlgeschlagen',
+'illegal-filename'            => 'Der Dateiname ist nicht erlaubt',
+'overwrite'                   => 'Das Überschreiben einer existierenden Datei ist nicht erlaubt',
+'unknown-error'               => 'Ein unbekannter Fehler ist aufgetreten',
+'tmp-create-error'            => 'Temporäre Datei konnte nicht erstellt werden',
+'tmp-write-error'             => 'Fehler beim Schreiben der temporären Datei',
 'large-file'                  => 'Die Dateigröße sollte nach Möglichkeit $1 nicht überschreiten. Diese Datei ist $2 groß.',
 'largefileserver'             => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile'                   => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrolliere, ob du die Datei wirklich hochladen willst.',
@@ -1688,6 +1699,7 @@ Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere
 'uploadedimage'               => 'hat „[[$1]]“ hochgeladen',
 'overwroteimage'              => 'hat eine neue Version von „[[$1]]“ hochgeladen',
 'uploaddisabled'              => 'Hochladen deaktiviert',
+'copyuploaddisabled'          => 'Das Hochladen per URL wurde deaktiviert',
 'uploaddisabledtext'          => 'Das Hochladen von Dateien ist deaktiviert.',
 'php-uploaddisabledtext'      => 'Das Hochladen von Dateien wurde in PHP deaktiviert.
 Bitte überprüfe die <code>file_uploads</code>-Einstellung.',
@@ -1710,14 +1722,14 @@ Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorh
 Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.",
 'filename-prefix-blacklist'   => ' #<!-- Diese Zeile darf nicht verändert werden! --> <pre>
 #  Syntax:
-#   * Alles von einem #-Zeichen bis zum Ende der Zeile ist ein Kommentar
-#   * Jede nicht-leere Zeile ist ein ist ein Anfang für einen Typischen Dateinamen der automatisch von einer Digitalkamera erzeugt wird
+#   * Alles von einem #-Zeichen bis zum Ende der Zeile ist ein Kommentar.
+#   * Jede nicht-leere Zeile ist der Anfang eines typischen Dateinamens, der automatisch von einer Digitalkamera erzeugt wird.
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
 DSCN # Nikon
-DUW # gewisse Mobiltelefone
-IMG # generisch
+DUW # einige Mobiltelefone
+IMG # allgemein
 JD # Jenoptik
 MGP # Pentax
 PICT # verschiedene
@@ -2191,7 +2203,7 @@ Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 # Delete
 'deletepage'             => 'Seite löschen',
 'confirm'                => 'Bestätigen',
-'excontent'              => 'Alter Inhalt: „$1“',
+'excontent'              => 'Inhalt war: „$1“',
 'excontentauthor'        => 'Inhalt war: „$1“ (einziger Bearbeiter: [[Special:Contributions/$2|$2]])',
 'exbeforeblank'          => 'Inhalt vor dem Leeren der Seite: „$1“',
 'exblank'                => 'Seite war leer',

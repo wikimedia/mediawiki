@@ -16,6 +16,7 @@
  * @author Dorgan
  * @author Glanthor Reviol
  * @author Gondnok
+ * @author Hunyadym
  * @author KossuthRad
  * @author Samat
  * @author Terik
@@ -1093,8 +1094,8 @@ vagy a legutolsó változatot próbáltad meg elrejteni.',
 'revdelete-selected'          => "'''A(z) [[:$1]] lap {{PLURAL:$2|kiválasztott változata|kiválasztott változatai}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
 'revdelete-text'              => "'''A törölt változatok és események továbbra is megjelennek a laptörténetben és a naplókban,
-azonban a tartalmuk egyes részei el lesznek rejtve a nyilvánosság elől.'''
-A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az elrejtett tartalmat, és helyre tudják állítani ugyanezen a felületen keresztül, amennyiben nincs további korlátozás beállítva.",
+azonban a tartalmuk nem lesz mindenki számára hozzáférhető.'''
+A(z) {{SITENAME}} adminisztrátorai továbbra is meg tudják tekinteni az elrejtett tartalmat, és helyre tudják állítani ugyanezen a felületen keresztül, amennyiben nincs további korlátozás beállítva.",
 'revdelete-confirm'           => 'Kérlek erősítsd meg, hogy valóban ezt szeretnéd tenni; megértetted a következményeket, és amit teszel, az összhangban van [[{{MediaWiki:Policy-url}}|az irányelvekkel]].',
 'revdelete-suppress-text'     => "Az elrejtés '''csak''' a következő esetekben használható:
 * Illetlen személyes információk
@@ -1103,7 +1104,7 @@ A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az e
 'revdelete-hide-text'         => 'Változat szövegének elrejtése',
 'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
 'revdelete-hide-name'         => 'Művelet és cél elrejtése',
-'revdelete-hide-comment'      => 'Megjegyzés módosításának elrejtése',
+'revdelete-hide-comment'      => 'Összefoglaló elrejtése',
 'revdelete-hide-user'         => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
 'revdelete-hide-restricted'   => 'Adatok elrejtése az adminisztrátorok és mindenki más elől',
 'revdelete-radio-same'        => '(nincs változtatás)',
@@ -1187,7 +1188,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'difference'               => '(Változatok közti eltérés)',
 'lineno'                   => '$1. sor:',
 'compareselectedversions'  => 'Kiválasztott változatok összehasonlítása',
-'showhideselectedversions' => 'A kiválasztott verziók megjelenítése/elrejtése',
+'showhideselectedversions' => 'Kiválasztott változatok láthatóságának beállítása',
 'editundo'                 => 'visszavonás',
 'diff-multi'               => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
 

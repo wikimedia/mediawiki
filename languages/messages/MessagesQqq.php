@@ -1085,13 +1085,14 @@ Please note that the parameters in a log entry will appear in the log only in th
 'mergelogpagetext'   => 'Description of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=merge&user=&page=&year=&month=-1 merge log], on the log. The associated [[Special:MergeHistory|Merge]] special page is not enabled by default.',
 
 # Diffs
-'history-title'           => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
-'difference'              => 'Displayed under the title when viewing the difference between two or more edits.',
-'lineno'                  => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
-'compareselectedversions' => 'Used as button in history pages.',
-'editundo'                => 'Undo link when viewing diffs
+'history-title'            => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
+'difference'               => 'Displayed under the title when viewing the difference between two or more edits.',
+'lineno'                   => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
+'compareselectedversions'  => 'Used as button in history pages.',
+'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu.',
+'editundo'                 => 'Undo link when viewing diffs
 {{Identical|Undo}}',
-'diff-multi'              => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
+'diff-multi'               => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
 
 # Search results
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
