@@ -104,7 +104,7 @@ class UploadFromUrl extends UploadBase {
 		if( !$request->getVal( 'wpUploadFileURL' ) )
 			return false;
 		// check that is a valid url:
-		return self::isValidUrl( $request->getVal( 'wpUploadFileURL' ) );
+		return Http::isValidURI( $request->getVal( 'wpUploadFileURL' ) );
 	}
 
 	private function saveTempFile( $req ) {
