@@ -83,7 +83,7 @@ class ApiUpload extends ApiBase {
 			} elseif ( isset( $this->mParams['url'] ) ) {
 				// make sure upload by URL is enabled:
 				if ( !$wgAllowCopyUploads ) {
-					$this->dieUsageMsg( array( 'uploaddisabled' ) );
+					$this->dieUsageMsg( array( 'copyuploaddisabled' ) );
 				}
 
 				// make sure the current user can upload
@@ -91,14 +91,12 @@ class ApiUpload extends ApiBase {
 					$this->dieUsageMsg( array( 'badaccess-groups' ) );
 				}
 
-				$this->mUpload = new UploadFromUrl();
-				$this->mUpload->initialize( $this->mParams['filename'],
-						$this->mParams['url'] );
+				$this->mUpload = new UploadFromUrl;
+				$this->mUpload->initialize( $this->mParams['filename'], $this->mParams['url'],
+											$this->mParams['comment'] );
 
-				$status = $this->mUpload->fetchFile();
-				if ( !$status->isOK() ) {
-					$this->dieUsage( $status->getWikiText(),  'fetchfileerror' );
-				}
+				$this->getResult()->addValue( null, $this->getModuleName(), Status::newGood() );
+				return;
 			}
 		} else {
 			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
