@@ -25,7 +25,7 @@ class Block {
 
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0 )
+		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byName = false )
 	{
 		$this->mId = 0;
 		# Expand valid IPv6 addresses
@@ -45,7 +45,7 @@ class Block {
 		$this->mAllowUsertalk = $allowUsertalk;
 		$this->mForUpdate = false;
 		$this->mFromMaster = false;
-		$this->mByName = false;
+		$this->mByName = $byName;
 		$this->mAngryAutoblock = false;
 		$this->initialiseRange();
 	}
