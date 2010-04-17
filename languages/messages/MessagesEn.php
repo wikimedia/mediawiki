@@ -2064,7 +2064,7 @@ Permitted {{PLURAL:\$3|file type is|file types are}} \$2.",
 'illegal-filename'            => 'The filename is not allowed',
 'overwrite'                   => 'Overwriting an existing file is not allowed',
 'unknown-error'               => 'An unknown error occured',
-'tmp-create-error'            => 'Couldn\'t create temporary file',
+'tmp-create-error'            => "Couldn't create temporary file",
 'tmp-write-error'             => 'Error writing temporary file',
 'large-file'                  => 'It is recommended that files are no larger than $1;
 this file is $2.',
