@@ -1967,8 +1967,11 @@ Tafadhali jaribu tena.',
 'patrol-log-auto' => '(kwa kujiendesha)',
 
 # Image deletion
-'filedeleteerror-short'       => 'Hitilafu wakati wa kufuta faili: $1',
-'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
+'deletedrevision'                 => 'Pitio lililofutwa $1',
+'filedeleteerror-short'           => 'Hitilafu wakati wa kufuta faili: $1',
+'filedelete-missing'              => 'Faili la "$1" haliwezi kufutwa, kwa sababu faili hili hakuna.',
+'filedelete-old-unregistered'     => 'The specified file revision "$1" is not in the database.',
+'filedelete-current-unregistered' => 'Faili lilotajwa la "$1" halipo katika hifadhidata.',
 
 # Browsing diffs
 'previousdiff' => '← Badilisho lililopita',
