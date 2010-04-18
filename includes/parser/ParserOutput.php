@@ -105,7 +105,6 @@ class ParserOutput
 	 * @param mixed $id optional known page_id so we can skip the lookup
 	 */
 	function addLink( $title, $id = null ) {
-		wfDebug(__METHOD__ . " got: " . $title->getPrefixedText() . "\n");
 		if ( $title->isExternal() ) {
 			// Don't record interwikis in pagelinks
 			$this->addInterwikiLink( $title );
