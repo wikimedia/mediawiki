@@ -77,6 +77,8 @@ class UploadFromUrl extends UploadBase {
 	 * @param $job Job
 	 */
 	public function initializeFromJob( $job ) {
+		global $wgTmpDirectory;
+
 		$this->mUrl = $job->params['url'];
 		$this->mTempPath = tempnam( $wgTmpDirectory, 'COPYUPLOAD' );
 		$this->mDesiredDestName = $job->title;
