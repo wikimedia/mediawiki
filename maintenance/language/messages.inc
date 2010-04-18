@@ -1245,7 +1245,7 @@ $wgMessageStructure = array(
 		'overwroteimage',
 		'uploaddisabled',
 		'copyuploaddisabled',
-		'uploadfromurl-queued'
+		'uploadfromurl-queued',
 		'uploaddisabledtext',
 		'php-uploaddisabledtext',
 		'uploadscripted',
