@@ -25,9 +25,28 @@ $digitTransformTable = array(
 
 $messages = array(
 # User preference toggles
-'tog-previewonfirst' => 'पहिलका सम्पादन पर पूर्वावलोकन देखीं',
+'tog-hideminor'        => 'हाल के परिवर्तन में मामूली संपादन छुपाईं',
+'tog-rememberpassword' => 'ई कम्पयुटर पर हमार खाता हर दम सक्रिय रहे',
+'tog-previewonfirst'   => 'पहिलका सम्पादन पर पूर्वावलोकन देखीं',
+
+'underline-always' => 'हमेशा',
+'underline-never'  => 'कभी ना',
 
 # Dates
+'sunday'    => 'इतवार',
+'monday'    => 'सोमवार',
+'tuesday'   => 'मंगलवार',
+'wednesday' => 'बुधवार',
+'thursday'  => 'गुरुवार',
+'friday'    => 'शुक्रवार',
+'saturday'  => 'शनिवार',
+'sun'       => 'इत',
+'mon'       => 'सोम',
+'tue'       => 'मंगल',
+'wed'       => 'बुध',
+'thu'       => 'गुरु',
+'fri'       => 'शुक्र',
+'sat'       => 'शनि',
 'january'   => 'जनवरी',
 'february'  => 'फरवरी',
 'march'     => 'मार्च',
@@ -42,6 +61,11 @@ $messages = array(
 'december'  => 'दिसम्बर',
 'jan'       => 'जन',
 
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1|श्रेणी|श्रेणी}}',
+
+'newwindow'  => '(नया विंडो में खोलीं)',
+'cancel'     => 'निरस्त',
 'mytalk'     => 'हमार बात',
 'navigation' => 'परिभ्रमण',
 
@@ -54,10 +78,17 @@ $messages = array(
 'qbmyoptions'    => 'हमार पन्ना',
 'qbspecialpages' => 'विशेष पन्ना',
 
+# Vector skin
+'vector-action-delete' => 'मिटाईं',
+'vector-action-move'   => 'स्थांतरण',
+
+'tagline'          => '{{SITENAME}} कि ओर से',
 'help'             => 'मदद',
 'search'           => 'खोज',
 'searchbutton'     => 'खोजीं',
+'go'               => 'जाईं',
 'searcharticle'    => 'जाईं',
+'history'          => 'पन्ना के इतिहास',
 'history_short'    => 'इतिहास',
 'updatedmarker'    => 'हमार अन्तिम आगमन से बदलाव',
 'info_short'       => 'जानकारी',
@@ -113,23 +144,96 @@ $1',
 'badaccess'        => 'अनुमति त्रुटी',
 'badaccess-group0' => 'रउआ जवन कार्रवाई खातिर अनुरोध कईले बानी उ के निष्पादन करे के अनुमति नईखे।',
 
-'showtoc'        => 'देखाईं',
-'red-link-title' => '$1 (पन्ना मौजूद नईखे)।',
+'viewsourcelink'  => 'स्त्रोत देखीं',
+'editsectionhint' => 'सम्पादन खण्ड: $1',
+'toc'             => 'सामग्री',
+'showtoc'         => 'देखाईं',
+'hidetoc'         => 'छुपाईं',
+'thisisdeleted'   => 'देखीं या भंडार करीं $1?',
+'viewdeleted'     => '$1 देखब?',
+'site-rss-feed'   => '$1 आर एस एस फिड',
+'site-atom-feed'  => '$1 एटम फिड',
+'page-rss-feed'   => '"$1" आर एस एस फिड',
+'page-atom-feed'  => '"$1" एटम फिड',
+'red-link-title'  => '$1 (पन्ना मौजूद नईखे)।',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'    => 'पन्ना',
-'nstab-user'    => 'प्रयोगकर्ता पन्ना',
-'nstab-media'   => 'मिडीया पन्ना',
-'nstab-special' => 'विशेष पन्ना',
-'nstab-project' => 'परियोजना पन्ना',
+'nstab-main'      => 'पन्ना',
+'nstab-user'      => 'प्रयोगकर्ता पन्ना',
+'nstab-media'     => 'मिडीया पन्ना',
+'nstab-special'   => 'विशेष पन्ना',
+'nstab-project'   => 'परियोजना पन्ना',
+'nstab-image'     => 'फाईल',
+'nstab-mediawiki' => 'सन्देश',
+'nstab-template'  => 'टेम्पलेट',
+'nstab-help'      => 'मदद पन्ना',
+'nstab-category'  => 'श्रेणी',
+
+# Main script and global functions
+'nosuchaction'      => 'अईसन कौनो कार्रवाई नाहि',
+'nosuchspecialpage' => 'अईसन कौनो ख़ाश पन्ना नाहि',
+
+# General errors
+'error'         => 'त्रुटी',
+'databaseerror' => 'डेटाबेस त्रुटी',
 
 # Login and logout pages
-'yourname'     => 'प्रयोगकर्ता नाम',
-'yourpassword' => 'गुप्त शब्द',
-'login'        => 'खाता में प्रवेश',
-'logout'       => 'खाता से बाहर',
+'yourname'                => 'प्रयोगकर्ता नाम',
+'yourpassword'            => 'गुप्त शब्द',
+'yourpasswordagain'       => 'गुप्त-शब्द पुन:डालीं:',
+'login'                   => 'खाता में प्रवेश',
+'nav-login-createaccount' => 'खाता प्रवेश / बनाईं',
+'loginprompt'             => '{{SITENAME}} में प्रवेश खातिर राउर कुकिज चालू होवे के चाहीं',
+'userlogin'               => 'खाता प्रवेश / बनाईं',
+'userloginnocreate'       => 'खाता में प्रवेश',
+'logout'                  => 'खाता से बाहर',
+'userlogout'              => 'खाता से बाहर',
+'notloggedin'             => 'खाता में प्रवेश नईखीं भईल',
+'nologin'                 => 'का एगो खाता नईखे? $1.',
+'nologinlink'             => 'एगो खाता बनाईं',
+'createaccount'           => 'खाता बनाईं',
+'gotaccount'              => 'का पहिले से एगो खाता बा? $1.',
+'gotaccountlink'          => 'खाता में प्रवेश',
+'createaccountmail'       => 'ई-मेल द्वारा',
+'badretype'               => 'रउआ जौन गुप्त शब्द डालत बानी उ नईखे मेल खात।',
+'userexists'              => 'ई प्रयोगकर्ता नाम पहिले से इस्तेमाल में बा। कृपया कौनो दोसर नाम चुनीं।',
+'loginerror'              => 'खाता प्रवेश में त्रुटि',
+'createaccounterror'      => 'ई खाता ना बन पाईल: $1',
+'nocookiesnew'            => 'प्रयोगकर्ता खाता त बन गईल, बाँकी रउआ प्रवेश नईखीं भईल।
+{{SITENAME}} प्रयोगकर्ता लोग के खाता में प्रवेश करावे खातिर कुकिज के प्रयोग करेला।
+राउर कुकिज असक्षम बा।
+कृपया उ के सक्षम करीं, उ के बाद राउर नया प्रयोगकर्ता नाम आ गुप्त शब्द के साथ प्रवेश करीं।',
+'nocookieslogin'          => '{{SITENAME}} प्रयोगकर्ता लोग के खाता में प्रवेश करावे खातिर कुकिज के प्रयोग करेला।
+राउर कुकिज असक्षम बा।
+कृपया उ के सक्षम करीं आ फिर से कोशिश करीं',
+'noname'                  => 'रउआ उपयुक्त प्रयोगकर्ता नाम नईखीं निर्दिष्ट कईले।',
+'loginsuccesstitle'       => 'खाता प्रवेश में सफल',
+'loginsuccess'            => "''' \"\$1\" के रुप में रउआ {{SITENAME}} में अब प्रवेश कर चुकल बानी।'''",
+'nosuchuser'              => '"$1" नाम से कौनो प्रयोगकर्ता नईखन।
+प्रयोगकर्ता नाम संवेदनशील मामला बा।
+शब्द-वर्तनी के जाँच करीं, आ चाहे [[Special:UserLogin/signup|एगो नया खाता बनाईं]]।',
+'nosuchusershort'         => 'ई नाम से कौनो प्रयोगकर्ता नईखन "<nowiki>$1</nowiki>".
+आपन शब्द-वर्तनी के जाँच करीं।',
+'nouserspecified'         => 'रउआ एगो प्रयोगकर्ता नाम निर्दिष्ट करे के बा।',
+'login-userblocked'       => 'ई प्रयोगकर्ता के खाता निष्क्रिय हो चुकल बा। प्रवेश के आज्ञा नईखे।',
+'wrongpassword'           => 'गलत गुप्त-शब्द डलले बानी।
+कृपया फिर से कोशिश करीं।',
+'wrongpasswordempty'      => 'गुप्त-शब्द खाली बा। कृपया फिर से कोशिश करीं।',
+'passwordtooshort'        => 'गुप्त-शब्द कम से कम {{PLURAL:$1|1 अक्षर|$1 अक्षर}} के होवे के चाहीं।',
+'password-name-match'     => 'राउर गुप्त-शब्द राउर प्रयोगकर्ता नाम से अलग होवे के चाहीं।',
+'mailmypassword'          => 'नया गुप्त-शब्द ई-मेल पर भेजीं',
+'passwordremindertitle'   => '{{SITENAME}} खातिर नया अस्थायी गुप्त-शब्द',
+
+# Password reset dialog
+'resetpass'   => 'गुप्त-शब्द बदलीं',
+'oldpassword' => 'पुराना गुप्त-शब्द:',
+'newpassword' => 'नया गुप्त-शब्द:',
+'retypenew'   => 'नया गुप्त-शब्द पुन: डालीं:',
 
 # Edit pages
+'summary'              => 'सारांश:',
+'minoredit'            => 'छोट परिवर्तन',
+'watchthis'            => 'ई पन्ना देखीं',
 'savearticle'          => 'पन्ना के सुरक्षित करीं',
 'preview'              => 'पूर्वावलोकन',
 'showpreview'          => 'पूर्वावलोकन देखाईं',
@@ -143,17 +247,36 @@ $1',
 'summary-preview'      => 'सारांश पूर्वावलोकन:',
 'subject-preview'      => 'विषय/शिर्षक पूर्वावलोकन:',
 'blockedtitle'         => 'निष्क्रिय प्रयोगकर्ता',
+'yourdiff'             => 'अंतर',
+
+# History pages
+'cur' => 'हाल',
+
+# Revision deletion
+'rev-delundel' => 'दिखाईं/छुपाईं',
 
 # Search results
 'searchresults-title'       => '$1 खातिर खोज परिणाम',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्द|$2 शब्द}})',
+'search-result-score'       => 'प्रासंगिकता: $1%',
+'search-redirect'           => '(पुन: निर्देशण $1)',
+'search-section'            => '(खंड $1)',
 'search-suggest'            => 'का राउर मतलब बा: $1',
+'search-interwiki-caption'  => 'बहिन परियोजना',
 'search-interwiki-default'  => '$1 के परिणाम:',
 'search-interwiki-more'     => '(अउर)',
 'search-mwsuggest-enabled'  => 'सुझाव के साथ',
 'search-mwsuggest-disabled' => 'कौनो सुझाव ना',
 'search-relatedarticle'     => 'संबंधित',
+'mwsuggest-disable'         => 'AJAX सुझाव असक्षम',
+'searcheverything-enable'   => 'सभन सन्दर्भ में खोजीं',
+'searchrelated'             => 'संबंधित',
+'searchall'                 => 'सब',
+'showingresults'            => "नीचे देखावल जा रहल बा {{PLURAL:$1|'''1''' परिणाम|'''$1''' परिणाम}} #'''$2''' से शुरु होवे वाला।",
+'showingresultsnum'         => "नीचे देखावल जा रहल बा {{PLURAL:$3|'''1''' परिणाम|'''$3''' परिणाम}} #'''$2''' से शुरु होवे वाला।",
 
 # Preferences page
+'preferences'    => 'वरीयता',
 'mypreferences'  => 'हमार पसन्द',
 'prefs-edits'    => 'सम्पादन संख्या',
 'prefsnologin'   => 'खाता में प्रवेश नईखीं कईले',
@@ -161,8 +284,22 @@ $1',
 'skin-preview'   => 'पूर्वावलोकन',
 'prefs-math'     => 'गणित',
 
+# Recent changes
+'recentchanges'                     => 'अन्तिम परिवर्तन',
+'diff'                              => 'अन्तर',
+'hist'                              => 'इति',
+'hide'                              => 'छुपाँई',
+'show'                              => 'दिखाईं',
+'minoreditletter'                   => 'छो',
+'newpageletter'                     => 'न',
+'boteditletter'                     => 'बो',
+'number_of_watching_users_pageview' => '[$1 देखल जा रहल बा {{PLURAL:$1|प्रयोगकर्ता|प्रयोगकर्ता}}]',
+
 # Recent changes linked
 'recentchangeslinked' => 'सम्बन्धित बदलाव',
+
+# Upload
+'upload' => 'फाईल लादीं',
 
 # File description page
 'filehist-user'     => 'प्रयोगकर्ता',
@@ -171,8 +308,16 @@ $1',
 'filehist-missing'  => 'गायब फाईल',
 'imagelinks'        => 'फाईल लिंक',
 
+# Miscellaneous special pages
+'move'         => 'स्थान्तरण',
+'movethispage' => 'ई पन्ना के स्थांतरण करीं',
+
+# E-mail user
+'emailuser' => 'ई प्रयोगकर्ता के ईमेल करीं',
+
 # Watchlist
-'watch' => 'देखीं',
+'watch'         => 'देखीं',
+'watchthispage' => 'ई पन्ना के देखीं',
 
 # Namespace form on various pages
 'blanknamespace' => '(मुख्य)',
@@ -197,11 +342,33 @@ $1',
 'sp-contributions-blocked-notice' => 'ई प्रयोगकर्ता के ई समय निष्क्रीय करल गईल बा।
 नविनतम नष्ट लौग प्रविष्टी उद्धरण खातिर निचे दिहल बा:',
 
+# What links here
+'whatlinkshere'            => 'अहिजा का जुड़ी',
+'whatlinkshere-title'      => 'पन्ना जौन "$1" से जुड़ेला',
+'whatlinkshere-page'       => 'पन्ना:',
+'linkshere'                => "नीचे के सब पन्ना '''[[:$1]]''' से जुड़ेला:",
+'nolinkshere'              => "'''[[:$1]]''' से कौनो पन्ना नईखे जुड़ल।",
+'nolinkshere-ns'           => "चुनल गईल सन्दर्भ में '''[[:$1]]''' से कौनो पन्ना ना जुड़ेला।",
+'isredirect'               => 'पुन: निर्दिष्ट पन्ना',
+'isimage'                  => 'तस्वीर लिंक',
+'whatlinkshere-prev'       => '{{PLURAL:$1|पिछला|पिछला $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|अगला|अगला $1}}',
+'whatlinkshere-links'      => '← लिंक',
+'whatlinkshere-hideredirs' => '$1 पुन: निर्देशित',
+'whatlinkshere-hidelinks'  => '$1 लिंक',
+'whatlinkshere-hideimages' => '$1 तस्वीर लिंक',
+'whatlinkshere-filters'    => 'फिल्टर',
+
 # Block/unblock
+'blockip'      => 'प्रतिबंधित प्रयोगकर्ता',
 'contribslink' => 'योगदान',
 'blocklogpage' => 'निष्क्रिय खाता',
 
+# Move page
+'movepagebtn' => 'पन्ना स्थांतरण',
+
 # Tooltip help for the actions
+'tooltip-ca-move'                => 'ई पन्ना के स्थांतरण करीं',
 'tooltip-n-mainpage'             => 'मुख्य पन्ना पर जाईं',
 'tooltip-n-mainpage-description' => 'मुख्य पन्ना पर पधारीं',
 'tooltip-n-portal'               => 'परियोजना के बारे मेँ, रउआ का कर सकत बानी, वस्तु कहाँ खोजब',
@@ -210,7 +377,12 @@ $1',
 'tooltip-n-randompage'           => 'बेतरतिब पन्ना लादीं (Load करीं)',
 'tooltip-n-help'                 => 'जगह पता लगावे खातिर',
 'tooltip-t-whatlinkshere'        => 'अहिजा लिंक होखे वाला सब विकि पन्ना के सूची',
+'tooltip-t-upload'               => 'फाईल लादीं (अपलोड )',
 'tooltip-t-print'                => 'ई पन्ना के छापे लायक संस्करण।',
 'tooltip-t-permalink'            => 'ई पन्ना के संसोधन खातिर स्थायी लिंक।',
+'tooltip-save'                   => 'आपन बदलाव के सुरक्षित करीं',
+
+# Special:SpecialPages
+'specialpages' => 'ख़ाश पन्ना',
 
 );

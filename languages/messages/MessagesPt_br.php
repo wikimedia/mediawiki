@@ -819,6 +819,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'showlivepreview'                  => 'Pré-visualização em tempo real',
 'showdiff'                         => 'Mostrar alterações',
 'anoneditwarning'                  => "'''Atenção''': Você não se encontra autenticado. O seu endereço de IP será registrado no histórico de edições desta página.",
+'anonpreviewwarning'               => "''Você não está logado. Gravar registará o seu endereço IP no histórico de edições desta página.''",
 'missingsummary'                   => "'''Lembrete:''' Você não introduziu um sumário de edição. Se clicar novamente em Salvar, a sua edição será salva sem um sumário.",
 'missingcommenttext'               => 'Por favor, introduzida um comentário abaixo.',
 'missingcommentheader'             => "'''Lembrete:''' Você não introduziu um assunto/título para este comentário. Se carregar novamente em Salvar a sua edição será salva sem um título/assunto.",
@@ -1329,6 +1330,7 @@ Eis um valor gerado aleatoriamente que você pode usar: $1",
 'prefs-files'                   => 'Arquivos',
 'prefs-custom-css'              => 'CSS personalizada',
 'prefs-custom-js'               => 'JS personalizado',
+'prefs-common-css-js'           => 'CSS/JS partilhado por todos os temas:',
 'prefs-reset-intro'             => 'Você pode usar esta página para restaurar as suas preferências para os valores predefinidos do sítio.
 Esta ação não pode ser desfeita.',
 'prefs-emailconfirm-label'      => 'Confirmação do e-mail:',
@@ -1451,6 +1453,7 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'right-hideuser'              => 'Bloquear um nome de usuário, escondendo-o do público',
 'right-ipblock-exempt'        => 'Contornar bloqueios de IP, automáticos e de intervalo',
 'right-proxyunbannable'       => 'Contornar bloqueios automáticos de proxies',
+'right-unblockself'           => 'Desbloquearem-se a si próprios',
 'right-protect'               => 'Mudar níveis de proteção e editar páginas protegidas',
 'right-editprotected'         => 'Editar páginas protegidas (sem proteção em cascata)',
 'right-editinterface'         => 'Editar a interface de usuário',
@@ -1611,6 +1614,11 @@ Para incluir a imagem numa página, utilize uma ligação em um dos seguintes fo
 'filetype-banned-type'        => "'''\".\$1\"''' é um tipo proibido de arquivo.
 {{PLURAL:\$3|O tipo permitido é|Os tipos permitidos são}} \$2.",
 'filetype-missing'            => 'O arquivo não possui uma extensão (como, por exemplo, ".jpg").',
+'empty-file'                  => 'O arquivo que você enviou estava vazio.',
+'file-too-large'              => 'O arquivo que você enviou era demasiado grande.',
+'filename-tooshort'           => 'O nome do arquivo é curto demais.',
+'filetype-banned'             => 'Este tipo do arquivo é proibido.',
+'verification-error'          => 'Este arquivo não passou pela verificação de arquivos.',
 'large-file'                  => 'É recomendável que os arquivos não sejam maiores que $1; este possui $2.',
 'largefileserver'             => 'O tamanho deste arquivo é superior ao qual o servidor encontra-se configurado para permitir.',
 'emptyfile'                   => 'O arquivo que está tentando carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do arquivo. Por favor verifique se realmente deseja carregar este arquivo.',
@@ -2048,6 +2056,7 @@ Pode haver [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] s
 O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferências de usuário]] irá aparecer como o endereço do remetente da mensagem, então o destinatário poderá responder diretamente para você.',
 'usermailererror'  => 'Erro no email:',
 'defemailsubject'  => 'E-mail: {{SITENAME}}',
+'usermaildisabled' => 'E-mail do usuário foi desativado',
 'noemailtitle'     => 'Sem endereço de e-mail',
 'noemailtext'      => 'Este usuário não especificou um endereço de e-mail válido.',
 'nowikiemailtitle' => 'E-mail não permitido',
@@ -3154,25 +3163,25 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'limitall'         => 'todas',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar endereço de E-mail',
-'confirmemail_noemail'     => 'Não possui um endereço de e-mail válido indicado nas suas [[Special:Preferences|preferências de usuário]].',
-'confirmemail_text'        => 'Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Ative o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.',
-'confirmemail_pending'     => 'Um código de confirmação já foi enviado para você; caso tenha criado sua conta recentemente, é recomendável aguardar alguns minutos para o receber antes de tentar pedir um novo código.',
-'confirmemail_send'        => 'Enviar código de confirmação',
-'confirmemail_sent'        => 'E-mail de confirmação enviado.',
-'confirmemail_oncreate'    => 'Foi enviado um código de confirmação para o seu endereço de e-mail.
+'confirmemail'              => 'Confirmar endereço de E-mail',
+'confirmemail_noemail'      => 'Não possui um endereço de e-mail válido indicado nas suas [[Special:Preferences|preferências de usuário]].',
+'confirmemail_text'         => 'Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Ative o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.',
+'confirmemail_pending'      => 'Um código de confirmação já foi enviado para você; caso tenha criado sua conta recentemente, é recomendável aguardar alguns minutos para o receber antes de tentar pedir um novo código.',
+'confirmemail_send'         => 'Enviar código de confirmação',
+'confirmemail_sent'         => 'E-mail de confirmação enviado.',
+'confirmemail_oncreate'     => 'Foi enviado um código de confirmação para o seu endereço de e-mail.
 Tal código não é exigido para que possa se autenticar no sistema, mas será necessário que você o forneça antes de habilitar qualquer ferramenta baseada no uso de e-mail deste wiki.',
-'confirmemail_sendfailed'  => 'O {{SITENAME}} não pôde enviar o email de confirmação.
+'confirmemail_sendfailed'   => 'O {{SITENAME}} não pôde enviar o email de confirmação.
 Verifique se o seu endereço de e-mail possui caracteres inválidos.
 
 O mailer retornou: $1',
-'confirmemail_invalid'     => 'Código de confirmação inválido. O código poderá ter expirado.',
-'confirmemail_needlogin'   => 'Precisa de $1 para confirmar o seu endereço de e-mail.',
-'confirmemail_success'     => 'O seu endereço de e-mail foi confirmado. Pode agora se ligar.',
-'confirmemail_loggedin'    => 'O seu endereço de e-mail foi agora confirmado.',
-'confirmemail_error'       => 'Alguma coisa correu mal ao guardar a sua confirmação.',
-'confirmemail_subject'     => '{{SITENAME}} confirmação de endereço de e-mail',
-'confirmemail_body'        => 'Alguém, provavelmente você, com o endereço de IP $1,
+'confirmemail_invalid'      => 'Código de confirmação inválido. O código poderá ter expirado.',
+'confirmemail_needlogin'    => 'Precisa de $1 para confirmar o seu endereço de e-mail.',
+'confirmemail_success'      => 'O seu endereço de e-mail foi confirmado. Pode agora se ligar.',
+'confirmemail_loggedin'     => 'O seu endereço de e-mail foi agora confirmado.',
+'confirmemail_error'        => 'Alguma coisa correu mal ao guardar a sua confirmação.',
+'confirmemail_subject'      => '{{SITENAME}} confirmação de endereço de e-mail',
+'confirmemail_body'         => 'Alguém, provavelmente você, com o endereço de IP $1,
 registrou uma conta "$2" com este endereço de e-mail em {{SITENAME}}.
 
 Para confirmar que esta conta realmente é sua, e para ativar
@@ -3187,8 +3196,23 @@ para cancelar a confirmação do endereço de e-mail:
 $5
 
 Este código de confirmação irá expirar em $4.',
-'confirmemail_invalidated' => 'Confirmação de endereço de e-mail cancelada',
-'invalidateemail'          => 'Cancelar confirmação de e-mail',
+'confirmemail_body_changed' => 'Alguém, provavelmente você com o endereço de IP $1,
+alterou o endereço de e-mail da conta "$2" para este em {{SITENAME}}.
+
+Para confirmar que esta conta é realmente sua e reativar
+as funcionalidades de e-mail em {{SITENAME}},
+abra o seguinte link no seu navegador:
+
+$3
+
+Caso a conta *não* lhe pertença, siga o seguinte link
+para cancelar a confirmação do endereço de e-mail:
+
+$5
+
+Este código de confirmação irá expirar em $4.',
+'confirmemail_invalidated'  => 'Confirmação de endereço de e-mail cancelada',
+'invalidateemail'           => 'Cancelar confirmação de e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[A transclusão de páginas de outros wikis encontra-se desabilitada]',
@@ -3381,6 +3405,7 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'htmlform-float-invalid'       => 'O valor que você especificou não é um número.',
 'htmlform-int-toolow'          => 'O valor que você especificou está abaixo do mínimo de $1',
 'htmlform-int-toohigh'         => 'O valor que você especificou está acima do máximo de $1',
+'htmlform-required'            => 'Este valor é necessário',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
