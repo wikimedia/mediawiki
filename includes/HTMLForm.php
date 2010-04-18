@@ -1270,7 +1270,7 @@ class HTMLMultiSelectField extends HTMLFormField {
 			} else {
 				$thisAttribs = array( 'id' => $this->mID . "-$info", 'value' => $info );
 				
-				$checkbox = Xml::check( $this->mName . '[]', $info === $value,
+				$checkbox = Xml::check( $this->mName . '[]', in_array( $info, $value, true ),
 								$attribs + $thisAttribs );
 				$checkbox .= '&nbsp;' . Html::rawElement( 'label', array( 'for' => $this->mID . "-$info" ), $label );
 
