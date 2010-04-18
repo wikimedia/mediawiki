@@ -740,7 +740,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 
 # Edit pages
 'summary'                          => 'Resumo:',
-'subject'                          => 'Asunto/cabeceira:',
+'subject'                          => 'Asunto/título:',
 'minoredit'                        => 'Esta é unha edición pequena',
 'watchthis'                        => 'Vixiar esta páxina',
 'savearticle'                      => 'Gardar a páxina',
@@ -757,7 +757,7 @@ Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrici
 'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/cabeceira deste comentario.
 Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'                  => 'Vista previa do resumo:',
-'subject-preview'                  => 'Vista previa do asunto/cabeceira:',
+'subject-preview'                  => 'Vista previa do asunto/título:',
 'blockedtitle'                     => 'O usuario está bloqueado',
 'blockedtext'                      => '\'\'\'O seu nome de usuario ou enderezo IP foi bloqueado.\'\'\'
 
@@ -1555,7 +1555,18 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'filetype-banned-type'        => "'''\".\$1\"''' non é un tipo de ficheiro permitido.
 {{PLURAL:\$3|O tipo de ficheiro permitido é|Os tipos de ficheiros permitidos son}} \$2.",
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
-'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere $1; este ficheiro ocupa $2.',
+'empty-file'                  => 'O ficheiro que enviou estaba baleiro.',
+'file-too-large'              => 'O ficheiro que enviou era grande de máis.',
+'filename-tooshort'           => 'O nome do ficheiro é curto de máis.',
+'filetype-banned'             => 'Este tipo de ficheiro está prohibido.',
+'verification-error'          => 'O ficheiro non pasou a comprobación de ficheiros.',
+'hookaborted'                 => 'O asociador da extensión cancelou a modificación que intentou realizar.',
+'illegal-filename'            => 'O nome do ficheiro non está permitido.',
+'overwrite'                   => 'Non está permitido sobrescribir un ficheiro existente.',
+'unknown-error'               => 'Houbo un erro descoñecido.',
+'tmp-create-error'            => 'Non se puido crear o ficheiro temporal.',
+'tmp-write-error'             => 'Houbo un erro ao gravar o ficheiro temporal.',
+'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere os $1; este ficheiro ocupa $2.',
 'largefileserver'             => 'Este ficheiro é de maior tamaño có permitido pola configuración do servidor.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro.
 Isto pode deberse a un erro ortográfico no seu nome.
@@ -1590,7 +1601,9 @@ Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
 'uploadedimage'               => 'cargou "[[$1]]"',
 'overwroteimage'              => 'enviou unha nova versión de "[[$1]]"',
 'uploaddisabled'              => 'Sentímolo, a subida de ficheiros está desactivada.',
-'uploaddisabledtext'          => 'A carga de ficheiros está deshabilitada.',
+'copyuploaddisabled'          => 'A carga mediante URL está desactivada.',
+'uploadfromurl-queued'        => 'A súa carga púxese á cola.',
+'uploaddisabledtext'          => 'A carga de ficheiros está desactivada.',
 'php-uploaddisabledtext'      => 'As cargas de ficheiros PHP están desactivadas. Por favor, comprobe a característica file_uploads.',
 'uploadscripted'              => 'Este ficheiro contén HTML ou código (script code) que pode producir erros ao ser interpretado polo navegador.',
 'uploadvirus'                 => 'O ficheiro contén un virus! Detalles: $1',

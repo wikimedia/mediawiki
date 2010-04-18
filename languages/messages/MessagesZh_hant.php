@@ -750,7 +750,7 @@ $2',
 'whitelistedittitle'               => '登入後才可編輯',
 'whitelistedittext'                => '您必須先$1才可編輯頁面。',
 'confirmedittext'                  => '在編輯此頁之前您必須確認您的郵箱位址。請透過[[Special:Preferences|參數設定]]設定並驗証您的郵箱位址。',
-'nosuchsectiontitle'               => '沒有這個段落',
+'nosuchsectiontitle'               => '找不到段落',
 'nosuchsectiontext'                => '您嘗試編輯的章節並不存在。
 可能在您查看頁面時已經移動或刪除。',
 'loginreqtitle'                    => '需要登入',

@@ -344,6 +344,8 @@ $1',
 'mailmypassword'          => 'Послати нове гесло',
 'noemail'                 => 'Хоснователь "$1" не має реґістровану адресу електронічной пошты.',
 'noemailcreate'           => 'Мусите задати правилну адресу електронічной пошты',
+'accountcreated'          => 'Конто вытворене',
+'accountcreatedtext'      => 'Конто хоснователя было вытворене.',
 'createaccount-title'     => 'Вытвориня конта про  {{SITENAME}}',
 'loginlanguagelabel'      => 'Язык: $1',
 
@@ -432,8 +434,11 @@ $1',
 
 # History pages
 'viewpagelogs'           => 'Вказати лоґы про тоту сторінку',
+'nohistory'              => 'Про тоту статю не екзістує історія едітовань.',
+'currentrev'             => 'Актуална ревізія',
 'currentrev-asof'        => 'Точна ревізія на $1',
 'revisionasof'           => 'Ревізія $1',
+'revision-info'          => 'Верзія од $1; $2',
 'previousrevision'       => 'Старша верзія',
 'nextrevision'           => 'Новша ревізія →',
 'currentrevisionlink'    => 'Актуална ревізія',
@@ -452,9 +457,17 @@ $1',
 'historyempty'           => '(порожнё)',
 
 # Revision feed
-'history-feed-title' => 'Історія едітовань',
+'history-feed-title'          => 'Історія едітовань',
+'history-feed-description'    => 'Історія едітовань той сторінкы на вікі',
+'history-feed-item-nocomment' => '$1 в $2',
+'history-feed-empty'          => 'Такой сторінкы не екзістує.
+Могли єй вымазати ці переменовати.
+Спробуйте [[Special:Search|найти во вікі]] подобны сторінкы.',
 
 # Revision deletion
+'rev-deleted-comment'        => '(коментарь вымазаный)',
+'rev-deleted-user'           => '(мено автора стерто)',
+'rev-deleted-event'          => '(лоґ одстраненый)',
 'rev-delundel'               => 'вказати/сховати',
 'revdelete-show-file-submit' => 'Гей',
 'revdelete-hide-text'        => 'Сховати текст ревізії',

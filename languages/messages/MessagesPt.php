@@ -1648,6 +1648,17 @@ Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualizaç�
 'filetype-banned-type'        => "'''\".\$1\"''' não é um tipo de ficheiro permitido.
 {{PLURAL:\$3|O tipo permitido é|Os tipos permitidos são}} \$2.",
 'filetype-missing'            => 'O ficheiro não possui uma extensão (como, por exemplo, ".jpg").',
+'empty-file'                  => 'O ficheiro que enviou estava vazio.',
+'file-too-large'              => 'O ficheiro que enviou era demasiado grande.',
+'filename-tooshort'           => 'O nome do ficheiro é demasiado curto.',
+'filetype-banned'             => 'O tipo do ficheiro é proibido.',
+'verification-error'          => 'O ficheiro não passou a verificação de ficheiros.',
+'hookaborted'                 => 'A modificação que pretendia foi abortada pelo hook de uma extensão.',
+'illegal-filename'            => 'O nome do ficheiro não é permitido.',
+'overwrite'                   => 'Não é permitido gravar por cima de um ficheiro existente.',
+'unknown-error'               => 'Ocorreu um erro desconhecido.',
+'tmp-create-error'            => 'Não foi possível criar o ficheiro temporário.',
+'tmp-write-error'             => 'Erro na escrita do ficheiro temporário.',
 'large-file'                  => 'É recomendável que os ficheiros não sejam maiores que $1;
 este tem $2.',
 'largefileserver'             => 'O tamanho deste ficheiro é superior ao permitido pela configuração do servidor.',
@@ -1683,6 +1694,8 @@ Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envi
 'uploadedimage'               => 'carregou "[[$1]]"',
 'overwroteimage'              => 'foi enviada uma nova versão de "[[$1]]"',
 'uploaddisabled'              => 'Carregamentos impossibilitados',
+'copyuploaddisabled'          => 'Upload por URL impossibilitado.',
+'uploadfromurl-queued'        => 'O seu upload foi adicionado à fila.',
 'uploaddisabledtext'          => 'O carregamento de ficheiros está impossibilitado.',
 'php-uploaddisabledtext'      => 'O carregamento de ficheiros está impossibilitado no PHP.
 Por favor, verifique a configuração file_uploads.',

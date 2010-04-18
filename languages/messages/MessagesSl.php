@@ -1552,6 +1552,7 @@ Preverite zgodovino brisanja datoteke, preden jo ponovno naložite.',
 'overwroteimage'              => 'naložena nova različica datoteke »[[$1]]«',
 'uploaddisabled'              => 'Nalaganje je onemogočeno',
 'copyuploaddisabled'          => 'Nalaganje preko URL je onemogočeno',
+'uploadfromurl-queued'        => 'Vaše nalaganje je bilo postavljeno v čakalno vrsto.',
 'uploaddisabledtext'          => 'Nalaganje datotek je onemogočeno.',
 'php-uploaddisabledtext'      => 'Nalaganje datotek je onemogočeno v PHP.
 Prosimo preverite file_uploads nastavitev.',
