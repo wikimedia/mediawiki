@@ -23,6 +23,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   extensions has been removed.
 * $wgLogAutocreatedAccounts controls whether autocreation of accounts is logged
   to new users log.
+* $wgAllowImageTag can be set to true to whitelist the <img> tag in wikitext.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via

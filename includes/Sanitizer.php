@@ -389,6 +389,12 @@ class Sanitizer {
 				'li',
 			);
 
+			global $wgAllowImageTag;
+			if ( $wgAllowImageTag ) {
+				$htmlsingle[] = 'img';
+				$htmlsingleonly[] = 'img';
+			}
+
 			$htmlsingleallowed = array_unique( array_merge( $htmlsingle, $tabletags ) );
 			$htmlelementsStatic = array_unique( array_merge( $htmlsingle, $htmlpairsStatic, $htmlnest ) );
 
@@ -1403,8 +1409,9 @@ class Sanitizer {
 
 			# 13.2
 			# Not usually allowed, but may be used for extension-style hooks
-			# such as <math> when it is rasterized
-			'img'        => array_merge( $common, array( 'alt' ) ),
+			# such as <math> when it is rasterized, or if $wgAllowImageTag is
+			# true
+			'img'        => array_merge( $common, array( 'alt', 'src' ) ),
 
 			# 15.2.1
 			'tt'         => $common,
