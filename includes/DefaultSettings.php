@@ -1909,6 +1909,16 @@ $wgAllowExternalImagesFrom = '';
  */
 $wgEnableImageWhitelist = true;
 
+/**
+ * A different approach to the above: simply allow the <img> tag to be used.
+ * This allows you to specify alt text and other attributes, copy-paste HTML to
+ * your wiki more easily, etc.  However, allowing external images in any manner
+ * will allow anyone with editing rights to snoop on your visitors' IP
+ * addresses and so forth, if they wanted to, by inserting links to images on
+ * sites they control.
+ */
+$wgAllowImageTag = false;
+
 /** Allows to move images and other media files */
 $wgAllowImageMoving = true;
 
