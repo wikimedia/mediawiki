@@ -528,7 +528,7 @@ class SpecialUpload extends SpecialPage {
 			case UploadBase::EMPTY_FILE:
 				$this->showUploadError( wfMsgHtml( 'emptyfile' ) );
 				break;
-			case UploadBase::FILESIZE_TOO_LARGE:
+			case UploadBase::FILE_TOO_LARGE:
 				$this->showUploadError( wfMsgHtml( 'largefileserver' ) );
 				break;
 			case UploadBase::FILETYPE_BADTYPE:
