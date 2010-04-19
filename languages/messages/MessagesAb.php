@@ -178,4 +178,7 @@ $messages = array(
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Аҧшаара',
 
+# Special:SpecialPages
+'specialpages' => 'Цастәи адаҟьақәа',
+
 );

@@ -1492,6 +1492,7 @@ Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosy
 'overwroteimage'              => 'Nowa wersija "[[$1]]" jo se uploadowała.',
 'uploaddisabled'              => 'Uploadowanje jo se znjemóžniło.',
 'copyuploaddisabled'          => 'Nagraśe pśez URL znjemóžnjone.',
+'uploadfromurl-queued'        => 'Twójo nagraśe jo něnto w cakańskem rěźe.',
 'uploaddisabledtext'          => 'Nagraśa datajow su znjemóžnjone.',
 'php-uploaddisabledtext'      => 'Nagraśa PHP-datajow su znjemóžnjone. Pšosym pśekontrolěruj nastajenje file_uploads.',
 'uploadscripted'              => 'Toś ta dataja wopśimjejo HTML abo script code, kótaryž móžo wót browsera se zamólnje wuwjasć.',

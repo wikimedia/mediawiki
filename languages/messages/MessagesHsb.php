@@ -1473,6 +1473,7 @@ Jeli maš tutón wobraz z połnym rozeznaćom, nahraj tutón, hewak změń proš
 'overwroteimage'              => 'je nowu wersiju dataje „[[$1]]“ nahrał',
 'uploaddisabled'              => 'Wodaj, nahraće je znjemóžnjene.',
 'copyuploaddisabled'          => 'Nahraće přez URL znjemóžnjene.',
+'uploadfromurl-queued'        => 'Twoje nahraće je nětko w čakanskim rynku.',
 'uploaddisabledtext'          => 'Nahraće datajow je znjemóžnjene.',
 'php-uploaddisabledtext'      => 'Nahraća PHP-datajow su znjemóžnjene. Prošu skontroluj nastajenje file_uploads.',
 'uploadscripted'              => 'Dataja wobsahuje HTML- abo skriptowy kod, kotryž móhł so mylnje přez wobhladowak wuwjesć.',
