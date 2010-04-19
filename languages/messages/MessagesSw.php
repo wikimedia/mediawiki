@@ -1297,6 +1297,9 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.jpg]]</nowiki></tt>''' kwa kutumia toleo zima la faili
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.png|200px|thumb|left|maelezo ya picha]]</nowiki></tt>''' tumia pixel 200 kwa ukubwa mzuri na sehemu ya 'maelezo ya picha' ikiwa kama maelezo husika na picha iliyopo
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' kwa kuunga moja kwa moja bila kuonyesga faili",
+'upload-permitted'    => 'Aina za mafaili yanayoruhusiwa: $1.',
+'upload-preferred'    => 'Aina za mafaili yaliyopendelewa: $1.',
+'upload-prohibited'   => 'Aina za mafaili yanayokataliwa: $1.',
 'uploadlog'           => 'kumbukumbu za kupakia',
 'uploadlogpage'       => 'Kumbukumbu ya upakiaji',
 'filename'            => 'Jina la faili',
@@ -1309,6 +1312,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'ignorewarning'       => 'Hifadhi bila kujali maonyo yoyote.',
 'ignorewarnings'      => 'Usijali ilani zozote',
 'minlength1'          => 'Majina ya mafaili yanatakiwa kuwa na herufi moja au zaidi.',
+'badfilename'         => 'Jina la faili limebadilishwa kuwa "$1".',
 'successfulupload'    => 'Upakiaji ulifaulu',
 'uploadwarning'       => 'Ilani kuhusu kupakia',
 'savefile'            => 'Hifadhi faili',

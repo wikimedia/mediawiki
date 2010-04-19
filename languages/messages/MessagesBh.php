@@ -60,6 +60,17 @@ $messages = array(
 'november'  => 'नवम्बर',
 'december'  => 'दिसम्बर',
 'jan'       => 'जन',
+'feb'       => 'फर',
+'mar'       => 'मार्च',
+'apr'       => 'अप्रिल',
+'may'       => 'मई',
+'jun'       => 'जून',
+'jul'       => 'जुल',
+'aug'       => 'अग',
+'sep'       => 'सित',
+'oct'       => 'अक्टू',
+'nov'       => 'नव',
+'dec'       => 'दिस',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|श्रेणी|श्रेणी}}',
@@ -105,6 +116,7 @@ $messages = array(
 'talkpagelinktext' => 'बात-चीत',
 'personaltools'    => 'ब्यक्तिगत औजार',
 'talk'             => 'बात-चीत',
+'views'            => 'विचारसूची',
 'toolbox'          => 'औजार-पेटी',
 'userpage'         => 'प्रयोगकर्ता पन्ना देखीं',
 'projectpage'      => 'परियोजना पन्ना देखीं',
@@ -119,6 +131,7 @@ $messages = array(
 'redirectpagesub'  => 'पुन: निर्देशित पन्ना',
 'lastmodifiedat'   => '$1 के $2 पर ई पन्ना पर अन्तिम बार परिवर्तन भईल।',
 'protectedpage'    => 'सुरक्षित पन्ना',
+'jumpto'           => 'अहिजा जाईं:',
 'jumptonavigation' => 'परिभ्रमण',
 'jumptosearch'     => 'खोजीं',
 'view-pool-error'  => 'क्षमा करीं, ई समय सर्वर पर बहुत ज्यादा लोड बढ़ गईल बा।
@@ -144,18 +157,27 @@ $1',
 'badaccess'        => 'अनुमति त्रुटी',
 'badaccess-group0' => 'रउआ जवन कार्रवाई खातिर अनुरोध कईले बानी उ के निष्पादन करे के अनुमति नईखे।',
 
-'viewsourcelink'  => 'स्त्रोत देखीं',
-'editsectionhint' => 'सम्पादन खण्ड: $1',
-'toc'             => 'सामग्री',
-'showtoc'         => 'देखाईं',
-'hidetoc'         => 'छुपाईं',
-'thisisdeleted'   => 'देखीं या भंडार करीं $1?',
-'viewdeleted'     => '$1 देखब?',
-'site-rss-feed'   => '$1 आर एस एस फिड',
-'site-atom-feed'  => '$1 एटम फिड',
-'page-rss-feed'   => '"$1" आर एस एस फिड',
-'page-atom-feed'  => '"$1" एटम फिड',
-'red-link-title'  => '$1 (पन्ना मौजूद नईखे)।',
+'retrievedfrom'           => '"$1" से लियल गईल',
+'youhavenewmessages'      => 'रउआ लगे बा $1 ($2).',
+'newmessageslink'         => 'नया सन्देश',
+'newmessagesdifflink'     => 'अन्तिम परिवर्तन',
+'youhavenewmessagesmulti' => 'रउआ लगे $1 पर नया सन्देश बा',
+'editsection'             => 'सम्पादन',
+'editold'                 => 'सम्पादन',
+'viewsourceold'           => 'स्त्रोत देखीं',
+'editlink'                => 'सम्पादन',
+'viewsourcelink'          => 'स्त्रोत देखीं',
+'editsectionhint'         => 'सम्पादन खण्ड: $1',
+'toc'                     => 'सामग्री',
+'showtoc'                 => 'देखाईं',
+'hidetoc'                 => 'छुपाईं',
+'thisisdeleted'           => 'देखीं या भंडार करीं $1?',
+'viewdeleted'             => '$1 देखब?',
+'site-rss-feed'           => '$1 आर एस एस फिड',
+'site-atom-feed'          => '$1 एटम फिड',
+'page-rss-feed'           => '"$1" आर एस एस फिड',
+'page-atom-feed'          => '"$1" एटम फिड',
+'red-link-title'          => '$1 (पन्ना मौजूद नईखे)।',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'पन्ना',
@@ -176,6 +198,7 @@ $1',
 # General errors
 'error'         => 'त्रुटी',
 'databaseerror' => 'डेटाबेस त्रुटी',
+'viewsource'    => 'स्त्रोत देखीं',
 
 # Login and logout pages
 'yourname'                => 'प्रयोगकर्ता नाम',
@@ -255,7 +278,11 @@ $1',
 # Revision deletion
 'rev-delundel' => 'दिखाईं/छुपाईं',
 
+# Diffs
+'editundo' => 'पूर्ववत',
+
 # Search results
+'searchresults'             => 'खोज परिणाम',
 'searchresults-title'       => '$1 खातिर खोज परिणाम',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्द|$2 शब्द}})',
 'search-result-score'       => 'प्रासंगिकता: $1%',
@@ -286,6 +313,7 @@ $1',
 
 # Recent changes
 'recentchanges'                     => 'अन्तिम परिवर्तन',
+'rcshowhideminor'                   => '$1 छोट सम्पादन',
 'diff'                              => 'अन्तर',
 'hist'                              => 'इति',
 'hide'                              => 'छुपाँई',
@@ -302,6 +330,9 @@ $1',
 'upload' => 'फाईल लादीं',
 
 # File description page
+'filehist'          => 'पन्ना के इतिहास',
+'filehist-current'  => 'मौजूदा',
+'filehist-datetime' => 'तारिख/समय',
 'filehist-user'     => 'प्रयोगकर्ता',
 'filehist-filesize' => 'फाईल के आकार',
 'filehist-comment'  => 'टिप्पणी',
@@ -309,15 +340,22 @@ $1',
 'imagelinks'        => 'फाईल लिंक',
 
 # Miscellaneous special pages
+'nbytes'       => '$1 {{PLURAL:$1|बाईट|बाईट्स}}',
 'move'         => 'स्थान्तरण',
 'movethispage' => 'ई पन्ना के स्थांतरण करीं',
+
+# Book sources
+'booksources' => 'किताबी स्त्रोत',
 
 # E-mail user
 'emailuser' => 'ई प्रयोगकर्ता के ईमेल करीं',
 
 # Watchlist
+'watchlist'     => 'हमार ध्यानसूची',
+'mywatchlist'   => 'हमार ध्यानसूची',
 'watch'         => 'देखीं',
 'watchthispage' => 'ई पन्ना के देखीं',
+'unwatch'       => 'ध्यान से हटाईं',
 
 # Namespace form on various pages
 'blanknamespace' => '(मुख्य)',
@@ -361,6 +399,7 @@ $1',
 
 # Block/unblock
 'blockip'      => 'प्रतिबंधित प्रयोगकर्ता',
+'blocklink'    => 'निष्क्रिय',
 'contribslink' => 'योगदान',
 'blocklogpage' => 'निष्क्रिय खाता',
 
@@ -368,7 +407,16 @@ $1',
 'movepagebtn' => 'पन्ना स्थांतरण',
 
 # Tooltip help for the actions
+'tooltip-pt-login'               => 'रउआ के खाता प्रवेश खातिर प्रोत्साहित करल जा रहल बा, बाँकि ई अनिवार्य नईखे',
+'tooltip-ca-talk'                => 'सामग्री पन्ना के बारे में बात-चीत',
+'tooltip-ca-edit'                => 'रउआ ई पन्ना के सम्पादन कर सकत बानी। कृपया पन्ना सुरक्षित करे से पहिले पूर्वावलोकन बटन के इस्तेमाल करीं।',
+'tooltip-ca-history'             => 'ई पन्ना के पिछला संशोधन',
+'tooltip-ca-delete'              => 'ई पन्ना मिटाईं',
 'tooltip-ca-move'                => 'ई पन्ना के स्थांतरण करीं',
+'tooltip-search'                 => '{{SITENAME}} खोजीं',
+'tooltip-search-go'              => 'यदि पन्ना मौजूद होई त ईहे सटीक नाम के साथ उ पन्ना पर जाईं',
+'tooltip-search-fulltext'        => 'ई पाठ्य खातिर पन्ना खोजीं',
+'tooltip-p-logo'                 => 'मुख्य पन्ना पर जाईं',
 'tooltip-n-mainpage'             => 'मुख्य पन्ना पर जाईं',
 'tooltip-n-mainpage-description' => 'मुख्य पन्ना पर पधारीं',
 'tooltip-n-portal'               => 'परियोजना के बारे मेँ, रउआ का कर सकत बानी, वस्तु कहाँ खोजब',
@@ -378,8 +426,10 @@ $1',
 'tooltip-n-help'                 => 'जगह पता लगावे खातिर',
 'tooltip-t-whatlinkshere'        => 'अहिजा लिंक होखे वाला सब विकि पन्ना के सूची',
 'tooltip-t-upload'               => 'फाईल लादीं (अपलोड )',
+'tooltip-t-specialpages'         => 'ख़ाश पन्नवन के सूची',
 'tooltip-t-print'                => 'ई पन्ना के छापे लायक संस्करण।',
 'tooltip-t-permalink'            => 'ई पन्ना के संसोधन खातिर स्थायी लिंक।',
+'tooltip-ca-nstab-main'          => 'सामग्री पन्ना देखीं',
 'tooltip-save'                   => 'आपन बदलाव के सुरक्षित करीं',
 
 # Special:SpecialPages

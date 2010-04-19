@@ -292,6 +292,9 @@ oba ku gano agali ku lupapula luno.<br />
 'histfirst'           => "Tandikira ku bisinga okuba eby'edda",
 'histlast'            => 'Tandikira ku bisinga obupya',
 
+# Revision deletion
+'rev-delundel' => 'laga/kisa',
+
 # Diffs
 'history-title'           => 'Empandika eza "$1"',
 'difference'              => "(Enjawulo mu mpandika ez'olupapula)",
@@ -518,12 +521,14 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-search-go'               => "Bw'onyiga wano kinonayo olupapula olutumidwa ekigambo ky'owandise kyennyini, bwe luba nga gyeluli",
 'tooltip-search-fulltext'         => "bw'onyiga wano kinoonya empapula zonna mu Wikipediya ezirimu ebigambo by'owandise",
 'tooltip-n-mainpage'              => "Nyiga wano ob'oyagala okukebera olupapula olusooka",
+'tooltip-n-mainpage-description'  => 'Genda ku lupapula olusookerwako',
 'tooltip-n-portal'                => "Ebikutangaaza ku kawefube wa Wiki eno n'engeri naawe mw'osobolera okubyenyigiramu",
 'tooltip-n-currentevents'         => 'Nyiga wano oba oyagala okuyiga ebisingawo ku bibindabinda',
 'tooltip-n-recentchanges'         => "Nyiga wano okulaba olukalala lw'ebyakakyusibwamu ku wiki eno",
 'tooltip-n-randompage'            => 'Nnondera olupapula lwemba nkebera',
 'tooltip-n-help'                  => 'Ebikutangaaza ku nkola ya Wiki eno',
 'tooltip-t-whatlinkshere'         => "Nyiga wano okulaba empapula ez'oku wiki zonna eziriko enyunzi ezikuggusa ku luno",
+'tooltip-t-recentchangeslinked'   => "Enkyukakyuka mpya ku mpapula z'osobola okuggukako okuva ku luno",
 'tooltip-t-contributions'         => "Nyiga wano ob'oyagala okumanya memba ono by'akozeyo ku wiki eno",
 'tooltip-t-emailuser'             => "Nyiga wano ob'oyagala memba ono okumusindikira e-mail",
 'tooltip-t-upload'                => "Nyiga wano ob'oyagala okuteekayo fayiro ku wiki eno",

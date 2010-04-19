@@ -1648,6 +1648,7 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'filename-tooshort'           => 'El nombre de archivo es demasiado corto.',
 'filetype-banned'             => 'El tipo de archivo esta prohibido',
 'verification-error'          => 'Este archivo no pasó la verificación de archivos.',
+'hookaborted'                 => 'La modificación que ha intentado realizar fue cancelada por un adicional de extensión.',
 'illegal-filename'            => 'El nombre de archivo no está permitido.',
 'overwrite'                   => 'Sobrescribir un archivo existente no está permitido.',
 'unknown-error'               => 'Ocurrió un error desconocido.',

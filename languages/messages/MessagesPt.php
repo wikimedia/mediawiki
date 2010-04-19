@@ -2401,7 +2401,7 @@ Para sua referência, encontra abaixo a entrada mais recente no registo de bloqu
 'whatlinkshere'            => 'Páginas afluentes',
 'whatlinkshere-title'      => 'Páginas que possuem links para "$1"',
 'whatlinkshere-page'       => 'Página:',
-'linkshere'                => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
+'linkshere'                => "As seguintes páginas possuem links para '''[[:$1]]''':",
 'nolinkshere'              => "Não existem links para '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Não existem links para '''[[:$1]]''' no espaço nominal seleccionado.",
 'isredirect'               => 'página de redireccionamento',
