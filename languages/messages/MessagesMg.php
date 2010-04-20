@@ -813,7 +813,7 @@ Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 
 Marino raha tsara tohizana ny fanovana eto amin'ity pejy ity. Ny tantaran'asan'ny famafana pejy sy ny fanovan-toerana dia eo ambany :",
 'moveddeleted-notice'              => "Voafafa ity pejy ity. Eo ambany ny tantaran'asa ny famafana pejy ho an'ny antsipirihany.",
-'log-fulllog'                      => "Hijery ny tantaran'asa (log)",
+'log-fulllog'                      => 'Hijery ny tatitr’asa (log)',
 'edit-hook-aborted'                => 'Tsy nety ny fanovàna
 Tsy nanome antony',
 'edit-gone-missing'                => 'Tsy afaka natao update ilay pejy.
@@ -890,22 +890,32 @@ Mitadiava amin'ny '''[[Special:Search|fiasàna fitadiavina]]''' mba hitady ny pe
 'rev-deleted-user-contribs'   => "[anaram-pikambana na adiresy IP voafafa - fanovana nasitria teo amin'ny fandraisan'anjara modification]",
 'rev-deleted-text-permission' => "'''Voafafa''' ny version ny ity pejy ity.
 Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tantaran'asa ny famafàna pejy] ny antsipirihany.",
-'rev-deleted-no-diff'         => "Tsy afaka mijery anio diff io ianao satria misy version '''voafafa''' ao.
-Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tantaran'asa ny famafàna pejy] ny antsipirihany.",
+'rev-deleted-no-diff'         => "Tsy afaka mijery anio diff io ianao satria misy santôna '''voafafa''' ao aminy.
+Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME}}}} tatitr'asa momban'ny famafàna pejy] ny antsipirihany.",
+'rev-suppressed-no-diff'      => "Tsy azo jerenao io diff io satria '''voafafa''' ny iraika amin'ny reviziônany.",
+'rev-deleted-unhide-diff'     => "Nisy '''voafafa''' ny iraika amin'ny reviziôna an'ity diff ity.
+Ny antsipirihany dia mety hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana].
+Noho ianao mpandrindra,  [$1 azonao jerena foana ilay diff] raha tianao.",
+'rev-suppressed-unhide-diff'  => "Nisy '''voafafa''' ny iraika amin'ny reviziôna an'ity diff ity.
+Ny antsipirihany dia mety hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana].
+Noho ianao mpandrindra,  [$1 azonao jerena foana ilay diff] raha tianao.",
+'rev-deleted-diff-view'       => "Nisy '''voafafa''' ny iraika amin'ny reviziôna an'ity diff ity.
+Ny antsipirihany dia mety hita ao amin'ny 
+Noho ianao mpandrindra,  azonao jerena foana ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana]. raha tianao.",
 'rev-delundel'                => 'jereo/asitriho',
 'revisiondelete'              => 'Hamafa/hamerina revision',
 'revdelete-nooldid-title'     => 'tsy izy ny version tanjona',
 'revdelete-nooldid-text'      => 'Tsy nilaza ny santiôna hokendrena ianao, tsy misy izy, na santiôna ankehitriny io.',
-'revdelete-nologtype-title'   => "Tsy misy tantaran'asa nampidirana/nomena",
-'revdelete-nologtype-text'    => "Tsy nosafidianao akory ny tantaran'asa anaovana io tao io ianao",
-'revdelete-nologid-title'     => "Misy diso ny tantaran'asa nampidiranao",
-'revdelete-nologid-text'      => "Tsy nosafidianao akory ny tantaran'asa anaovana io tao io ianao, na tsy misy ilay zavatra notenenina",
+'revdelete-nologtype-title'   => "Tsy misy tatitr'asa nampidirana/nomena",
+'revdelete-nologtype-text'    => "Tsy nosafidianao akory ny tatitr'asa anaovana io tao io ianao",
+'revdelete-nologid-title'     => "Misy diso ny tatitr'asa nampidiranao",
+'revdelete-nologid-text'      => "Tsy nosafidianao akory ny tatitr'asa anaovana io tao io ianao, na tsy misy ilay zavatra notenenina",
 'revdelete-no-file'           => 'Tsy misy ilay rakitra hofafàna.',
 'revdelete-show-file-confirm' => "Tapa-kevitra hamafa ny ''revision''-n'i rakitra <nowiki>$1</nowiki> tamin'ny $2 tamin'ny $3 ve ianao ?",
 'revdelete-show-file-submit'  => 'Eny',
 'revdelete-selected'          => "'''{{PLURAL:$2|Votoatiny nosafidiana|Votoatiny nosafidiana}}n'i '''[[:$1]]''' :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1||}}Tantaran'asa voafidy :'''",
-'revdelete-text'              => "'''Mbola ao amin'ny tantaran'asa ny version voafafa, fa tsy afaka jeren'ny vahoaka ny lahatsoratra ao aminy.'''
+'revdelete-text'              => "'''Mbola ao amin'ny tatitr'asa ny santiôna voafafa, fa tsy afaka jeren'ny vahoaka ny lahatsoratra ao aminy.'''
 Afaka mijery ny lahatsoratra nasitrika sy mamerina azy ny mpandrindra hafa ny {{SITENAME}} amin'ny alalan'ity interface ity, raha tsy misy restriction hafa koa.",
 'revdelete-suppress-text'     => "Ny famafàna pejy dia ampiasaina rehefa :
 * Misy information tsy sarababem-bahoaka tsy metimety
@@ -927,7 +937,11 @@ Afaka mijery ny lahatsoratra nasitrika sy mamerina azy ny mpandrindra hafa ny {{
 'revdelete-logentry'          => "nanova ny fahitan'ny/i [[$1]]",
 'logdelete-logentry'          => "nanova ny fahitan'ny zava-mitranga ny/n'i [[$1]]",
 'revdelete-success'           => "'''Voaova soa aman-tsara ny fahitana ny santiôna.'''",
-'logdelete-success'           => "'''Voaova soa aman-tsara ny fahitan-ny tantaran'asa.'''",
+'revdelete-failure'           => "'''Ny fisehon'ity santiôna ity dia tsy afaka natao update'''
+$1",
+'logdelete-success'           => "'''Voaova soa aman-tsara ny fisehon'ny tatitr’asa.'''",
+'logdelete-failure'           => "'''Tsy afaka novaina ny fisehon'ny tatitr’asa'''
+$1",
 'revdel-restore'              => 'Ovay ny fahitàna',
 'pagehist'                    => "Tantaran'ilay pejy",
 'deletedhist'                 => 'Tantara voafafa',
@@ -940,12 +954,26 @@ Afaka mijery ny lahatsoratra nasitrika sy mamerina azy ny mpandrindra hafa ny {{
 'revdelete-unhid'             => "nanala fanitriana (hoan'(ny)) $1",
 'revdelete-log-message'       => "$1 ho an'ny{{PLURAL:$2||}} $2",
 'logdelete-log-message'       => "zava-miseho $1 amin'ny $2{{PLURAL:}}",
+'revdelete-hide-current'      => "Tsi-fetezana tamin'ny zavatra voadaty tamin'ny $1 tamin'ny $2 : io ny reviziôna ankehitriny.
+Tsy azo fafana izy.",
+'revdelete-show-no-access'    => "Tsi-fetazana teo am-panehoana ny zavatra voadaty tamin'ny $1 tamin'ny $2 : izy io dia mitondra ny marika « voafetra ».
+Tsy azo jerenao io.",
+'revdelete-modify-no-access'  => "Tsi-fetezana teo am-panovana ny zavatra voadaty tamin'ny $1 tamin'ny $2 : izy io dia mitondra ny marika « voafetra ». Tsy azonao jerena io.",
+'revdelete-modify-missing'    => "Tsi-fetezana teo am-panovana ny zavatra miaraka amin'ny marika ID $1 : tsy ao amin'ny database izy !",
+'revdelete-no-change'         => "'''Tandremo :''' ny zavatra voadaty tamin'ny $1 tamin'ny $2 dia efa manana ny parametatry ny fisehoana nangatahana.",
+'revdelete-concurrent-change' => "Tsi-fetezana teo am-panovana ny zavatra voadaty tamin'ny $1 tamin'ny $2 : ny satany dia voaovan' olon-kafa tamin'ianao nanova azy.
+Jereo ny tatitr'asa.",
+'revdelete-only-restricted'   => "Tsi-fetezana teo am-panitrihana ny zavatra voadaty tamin'ny $1 tamin'ny $2 : tsy azonao fafana ireo zavatra ireo amin'ny mpandrindra raha tsy misafidy option famafana.",
+'revdelete-reason-dropdown'   => '* Antom-pamafana matetika miasa
+** Tsi-fanajana ny Copyright
+** Fampahalalana tsy tokony apetraka eo',
 'revdelete-otherreason'       => 'Antony hafa / antony miampy :',
 'revdelete-reasonotherlist'   => 'Antony hafa',
 'revdelete-edit-reasonlist'   => "Hanova ny anton'ny famafàna",
+'revdelete-offender'          => 'Mpanao ilay reviziôna :',
 
 # Suppression log
-'suppressionlog'     => "tantaran'asa ny famafàna pejy",
+'suppressionlog'     => 'tatitr’asa momban’ny famafana pejy',
 'suppressionlogtext' => "Ity ny lisitra ny famafàna sy ny fanakanana asitrika amin'ny mpandrindra.
 Hijery ny [[Special:IPBlockList|lisitra ny adiresy IP sy mpikambana voasakana]] ho an'ny lisitra ny voaraoka sy ny fanakanana mbola miasa.",
 
@@ -975,17 +1003,19 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 'mergehistory-reason'              => 'Antony :',
 
 # Merge log
-'mergelog'           => "tantaran'asa ny fitambarana",
+'mergelog'           => 'Tatitr’asa momban’ny fitambarana',
 'pagemerge-logentry' => "voatambatra tamin'ny [[$2]] [[$1]] (fanovàna hatramin'ny $3)",
 'revertmerge'        => 'Saraho',
 'mergelogpagetext'   => 'Ity ny lisitry ny fanambarana ny tantaram-pejy vao haingana',
 
 # Diffs
-'history-title'           => "Tantara ny endrik'i « $1 »",
-'difference'              => "(Fahasamihafan'ny pejy)",
-'lineno'                  => 'Andalana $1:',
-'compareselectedversions' => 'Ampitahao ireo version voafidy',
-'editundo'                => 'esory',
+'history-title'            => "Tantara ny endrik'i « $1 »",
+'difference'               => "(Fahasamihafan'ny pejy)",
+'lineno'                   => 'Andalana $1:',
+'compareselectedversions'  => 'Ampitahao ireo version voafidy',
+'showhideselectedversions' => 'Asehoy/asitriho ny santiôna nofidiana',
+'editundo'                 => 'esory',
+'diff-multi'               => '{{PLURAL:}}(Reviziôna anelanelany nasitrika $1)',
 
 # Search results
 'searchresults'                    => 'Valim-pikarohana',
@@ -1261,7 +1291,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'right-sendemail'             => "Mandefa imailaka any amin'ny mpikambana hafa",
 
 # User rights log
-'rightslog'      => "Tantaran'asa ny fanovàna sata ny mpikambana",
+'rightslog'      => 'Tatitr’asa momban’ny fanovana satam-pikambana',
 'rightslogtext'  => "Tantaran'asa momba ny fahazoan-dàlan'ny mpikambana.",
 'rightslogentry' => "nanova ny fahefan'ny mpikambana « $1 », avy amin'ny $2 izy lasa $3",
 'rightsnone'     => '(tsy misy)',

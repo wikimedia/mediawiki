@@ -151,6 +151,7 @@ $1',
 'disclaimerpage'       => 'Project:सामान्य अस्विकरण',
 'mainpage'             => 'मुख्य पन्ना',
 'mainpage-description' => 'पहिलका पन्ना',
+'portal'               => 'सामुदायिक पन्ना',
 'privacy'              => 'गोपनीयता नीति',
 'privacypage'          => 'Project:गोपनीयता नीति',
 
@@ -205,9 +206,9 @@ $1',
 'yourpassword'            => 'गुप्त शब्द',
 'yourpasswordagain'       => 'गुप्त-शब्द पुन:डालीं:',
 'login'                   => 'खाता में प्रवेश',
-'nav-login-createaccount' => 'खाता प्रवेश / बनाईं',
+'nav-login-createaccount' => 'खाता प्रवेश / खाता बनाईं',
 'loginprompt'             => '{{SITENAME}} में प्रवेश खातिर राउर कुकिज चालू होवे के चाहीं',
-'userlogin'               => 'खाता प्रवेश / बनाईं',
+'userlogin'               => 'खाता प्रवेश / खाता बनाईं',
 'userloginnocreate'       => 'खाता में प्रवेश',
 'logout'                  => 'खाता से बाहर',
 'userlogout'              => 'खाता से बाहर',
@@ -256,8 +257,8 @@ $1',
 # Edit pages
 'summary'              => 'सारांश:',
 'minoredit'            => 'छोट परिवर्तन',
-'watchthis'            => 'ई पन्ना देखीं',
-'savearticle'          => 'पन्ना के सुरक्षित करीं',
+'watchthis'            => 'ई पन्ना ध्यानसूची में डालीं',
+'savearticle'          => 'पन्ना सुरक्षित करीं',
 'preview'              => 'पूर्वावलोकन',
 'showpreview'          => 'पूर्वावलोकन देखाईं',
 'showlivepreview'      => 'सीधा पूर्वावलोकन',
@@ -279,11 +280,13 @@ $1',
 'rev-delundel' => 'दिखाईं/छुपाईं',
 
 # Diffs
+'lineno'   => 'पंक्ति $1:',
 'editundo' => 'पूर्ववत',
 
 # Search results
 'searchresults'             => 'खोज परिणाम',
 'searchresults-title'       => '$1 खातिर खोज परिणाम',
+'searchsubtitle'            => '\'\'\'[[:$1]]\'\'\' खातिर राउर करल गईल खोज ([[Special:Prefixindex/$1| "$1" से शुरु होवे वाला सब पन्ना]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्द|$2 शब्द}})',
 'search-result-score'       => 'प्रासंगिकता: $1%',
 'search-redirect'           => '(पुन: निर्देशण $1)',
@@ -310,9 +313,10 @@ $1',
 'changepassword' => 'गुप्त शब्द बदलीं',
 'skin-preview'   => 'पूर्वावलोकन',
 'prefs-math'     => 'गणित',
+'prefs-rc'       => 'तुरंत भईल परिवर्तन',
 
 # Recent changes
-'recentchanges'                     => 'अन्तिम परिवर्तन',
+'recentchanges'                     => 'तुरंत भईल परिवर्तन',
 'rcshowhideminor'                   => '$1 छोट सम्पादन',
 'diff'                              => 'अन्तर',
 'hist'                              => 'इति',
@@ -339,6 +343,9 @@ $1',
 'filehist-missing'  => 'गायब फाईल',
 'imagelinks'        => 'फाईल लिंक',
 
+# Random page
+'randompage' => 'अविशिष्ट पन्ना',
+
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|बाईट|बाईट्स}}',
 'move'         => 'स्थान्तरण',
@@ -353,9 +360,9 @@ $1',
 # Watchlist
 'watchlist'     => 'हमार ध्यानसूची',
 'mywatchlist'   => 'हमार ध्यानसूची',
-'watch'         => 'देखीं',
-'watchthispage' => 'ई पन्ना के देखीं',
-'unwatch'       => 'ध्यान से हटाईं',
+'watch'         => 'ध्यानसूची में डालीं',
+'watchthispage' => 'ई पन्ना ध्यानसूची में डालीं',
+'unwatch'       => 'ध्यानसूची से हटाईं',
 
 # Namespace form on various pages
 'blanknamespace' => '(मुख्य)',
@@ -404,7 +411,7 @@ $1',
 'blocklogpage' => 'निष्क्रिय खाता',
 
 # Move page
-'movepagebtn' => 'पन्ना स्थांतरण',
+'movepagebtn' => 'पन्ना स्थांतरण करीं',
 
 # Tooltip help for the actions
 'tooltip-pt-login'               => 'रउआ के खाता प्रवेश खातिर प्रोत्साहित करल जा रहल बा, बाँकि ई अनिवार्य नईखे',
@@ -425,11 +432,13 @@ $1',
 'tooltip-n-randompage'           => 'बेतरतिब पन्ना लादीं (Load करीं)',
 'tooltip-n-help'                 => 'जगह पता लगावे खातिर',
 'tooltip-t-whatlinkshere'        => 'अहिजा लिंक होखे वाला सब विकि पन्ना के सूची',
+'tooltip-t-recentchangeslinked'  => 'ई पन्ना से जुड़ल पन्नवन पर तुरंत भईल परिवर्तन',
 'tooltip-t-upload'               => 'फाईल लादीं (अपलोड )',
 'tooltip-t-specialpages'         => 'ख़ाश पन्नवन के सूची',
 'tooltip-t-print'                => 'ई पन्ना के छापे लायक संस्करण।',
 'tooltip-t-permalink'            => 'ई पन्ना के संसोधन खातिर स्थायी लिंक।',
 'tooltip-ca-nstab-main'          => 'सामग्री पन्ना देखीं',
+'tooltip-ca-nstab-special'       => 'ई एगो ख़ाश पन्ना ह, रउआ ई पन्ना के सम्पादन नईखीं कर सकत',
 'tooltip-save'                   => 'आपन बदलाव के सुरक्षित करीं',
 
 # Special:SpecialPages
