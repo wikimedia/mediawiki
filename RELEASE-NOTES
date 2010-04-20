@@ -119,6 +119,7 @@ in a negative namespace (which is invalid).
 * (bug 17941) $wgMaxUploadSize is now honored by all upload sources
 * (bug 23080) New usernames now limited to 235 bytes so that custom skin files
   work.
+* (bug 23075) Correct MediaTransformError default width in gallery.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
