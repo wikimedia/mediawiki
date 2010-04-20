@@ -1411,7 +1411,7 @@ class Sanitizer {
 			# Not usually allowed, but may be used for extension-style hooks
 			# such as <math> when it is rasterized, or if $wgAllowImageTag is
 			# true
-			'img'        => array_merge( $common, array( 'alt', 'src' ) ),
+			'img'        => array_merge( $common, array( 'alt', 'src', 'width', 'height' ) ),
 
 			# 15.2.1
 			'tt'         => $common,
