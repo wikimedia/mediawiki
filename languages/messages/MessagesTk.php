@@ -3062,7 +3062,7 @@ At aýyrmak üçin gapdalyndaky gutujygy belläp, Atlary aýyr düwmesine basyň
 # Special:FilePath
 'filepath'         => 'Faýla barýan ýol',
 'filepath-page'    => 'Faýl:',
-'filepath-submit'  => 'Ýol',
+'filepath-submit'  => 'Git',
 'filepath-summary' => 'Bu ýörite sahypa faýla barýan doly ýoly gaýtaryp getirýär. 
 Suratlar doly ölçegde görkezilýär, beýleki faýl görnüşleri degişli programmalary bilen gönümel başladylýar. 
 

@@ -1297,7 +1297,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.jpg]]</nowiki></tt>''' kwa kutumia toleo zima la faili
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.png|200px|thumb|left|maelezo ya picha]]</nowiki></tt>''' tumia pixel 200 kwa ukubwa mzuri na sehemu ya 'maelezo ya picha' ikiwa kama maelezo husika na picha iliyopo
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' kwa kuunga moja kwa moja bila kuonyesga faili",
-'upload-permitted'    => 'Aina za mafaili yanayoruhusiwa: $1.',
+'upload-permitted'    => 'Aina ya mafaili yanayoruhusiwa: $1.',
 'upload-preferred'    => 'Aina za mafaili yaliyopendelewa: $1.',
 'upload-prohibited'   => 'Aina za mafaili yanayokataliwa: $1.',
 'uploadlog'           => 'kumbukumbu za kupakia',
@@ -1313,6 +1313,8 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'ignorewarnings'      => 'Usijali ilani zozote',
 'minlength1'          => 'Majina ya mafaili yanatakiwa kuwa na herufi moja au zaidi.',
 'badfilename'         => 'Jina la faili limebadilishwa kuwa "$1".',
+'tmp-create-error'    => 'Haikuweza kuanzisha faili la muda.',
+'tmp-write-error'     => 'Hitilafu ya kuandika faili la muda.',
 'successfulupload'    => 'Upakiaji ulifaulu',
 'uploadwarning'       => 'Ilani kuhusu kupakia',
 'savefile'            => 'Hifadhi faili',
@@ -1971,9 +1973,9 @@ Tafadhali jaribu tena.',
 'patrol-log-auto' => '(kwa kujiendesha)',
 
 # Image deletion
-'deletedrevision'                 => 'Pitio lililofutwa $1',
+'deletedrevision'                 => 'Pitio la awali lililofutwa $1',
 'filedeleteerror-short'           => 'Hitilafu wakati wa kufuta faili: $1',
-'filedelete-missing'              => 'Faili la "$1" haliwezi kufutwa, kwa sababu faili hili hakuna.',
+'filedelete-missing'              => 'Faili "$1" haliwezi kufutwa, kwa sababu halipo.',
 'filedelete-old-unregistered'     => 'The specified file revision "$1" is not in the database.',
 'filedelete-current-unregistered' => 'Faili lilotajwa la "$1" halipo katika hifadhidata.',
 

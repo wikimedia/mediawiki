@@ -2006,7 +2006,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 # Special:FilePath
 'filepath'        => 'Файлас яннэ',
 'filepath-page'   => 'Файл:',
-'filepath-submit' => 'Яннэ',
+'filepath-submit' => 'Ютак',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Вешнэмс кавтаське файлат',

@@ -685,7 +685,7 @@ Jekk jogħġbok, agħżel isem differenti.',
 'nocookieslogin'             => "L-aċċess għal {{SITENAME}} jagħmel użu minn ''cookies'', li bħalissa huma disattivati. Jekk jogħġbok erġa' prova idħol wara li tkun attivajt il-''cookies'' fil-browser.",
 'noname'                     => "Inti ma speċifikajtx isem ta' utent validu.",
 'loginsuccesstitle'          => "Dħalt b'suċċess",
-'loginsuccess'               => "'''Irnexxielek taqbad mas-server ta' {{SITENAME}} b'isem l-utent \"\$1\".'''",
+'loginsuccess'               => "'''Irnexxielek taqbad mas-server ta' {{SITENAME}} bl-isem tal-utent \"\$1\".'''",
 'nosuchuser'                 => 'M\'hemm l-ebda utent bl-isem ta\' "$1".<br />
 L-ismijiet tal-utenti huma sensittivi fuq kif jinkitbu.<br />
 Jekk jogħġbok kun żġur li ktibtu sew, jew minflok [[Special:UserLogin/signup|oħloq kont ġdid]].',

@@ -139,6 +139,10 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Αβούτη κατηγορίαν έχ' τ' αφκά τ' αρχείον μαναχόν.| Τ' αφκά {{PLURAL:$1|το αρχείον εν|$1 τα αρχεία είν}} απές σ' αβούτην την κατηγορίαν. Ούλ εντάμαν είν $2.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|Τ' αρχείον|$1 Τ' αρχεία}} αφκά καικά είν' σην κατηγορίαν.",
 'listingcontinuesabbrev'         => 'συνεχίζεται...',
+'index-category'                 => 'Συντεταγμένα σελίδας',
+'noindex-category'               => 'Ασύντακτα σελίδας',
+
+'mainpagetext' => "'''To λογισμικόν MediaWiki εθέκεν.'''",
 
 'about'         => 'Περί',
 'article'       => 'Σελίδαν',
@@ -166,7 +170,7 @@ $messages = array(
 'vector-action-delete'       => 'Σβήσον',
 'vector-action-move'         => 'Ετεροχλάεμαν',
 'vector-action-protect'      => 'Ασπάλιγμαν',
-'vector-action-undelete'     => 'Επαναφοράν',
+'vector-action-undelete'     => 'Κλώσιμον',
 'vector-action-unprotect'    => 'Άνοιγμαν',
 'vector-namespace-category'  => 'Κατηγορίαν',
 'vector-namespace-help'      => 'Σελίδα βοήθειας',
@@ -209,7 +213,7 @@ $messages = array(
 'create-this-page'  => 'Ποίσον τη σελίδαν',
 'delete'            => 'Σβήσον',
 'deletethispage'    => 'Σβήσεμαν τη σελίδας',
-'undelete_short'    => 'Επαναφοράν {{PLURAL:$1|αλλαγματί|$1 αλλαγματίων}}',
+'undelete_short'    => 'Κλώσιμον {{PLURAL:$1|αλλαγματί|$1 αλλαγματίων}}',
 'protect'           => 'Ασπάλιγμαν',
 'protect_change'    => 'Άλλαγμαν',
 'protectthispage'   => 'Ασπάλιγμα ατουνού τη σελίδας',
@@ -330,6 +334,8 @@ $messages = array(
 'fileexistserror'      => 'Τ\' αρχείον "$1" \'κ εγράφτεν: τ\' αρχείον υπάρχει',
 'unexpected'           => 'Άχρηστον αξία: "$1"="$2".',
 'badarticleerror'      => "Αβούτη η ενέργειαν 'κ επορεί να ίνεται σ'αβούτεν τη σελίδαν.",
+'cannotdelete'         => 'Ατό ("$1") να σβύεται \'κ ίνεται. 
+Γιαμ ενεσβύεν ασ\'άλλτς;',
 'badtitle'             => 'Άχρηστον τίτλος',
 'badtitletext'         => "Το ψαλαφεμένον ο τίτλος τη σελίδας εν άκυρον, γιά εύκαιρον γιά τσακωμένον διαγλωσσικόν σύνδεσμος.
 Τερέστεν αν έχ' έναν γιά πολλά γράμματα που 'κ ίνεται να κουλανεύκουνταν απές σε τίτλον.",
@@ -518,7 +524,7 @@ $messages = array(
 'nocreatetext'                     => "Σο {{SITENAME}} περιορίσκουτον το ποίσεμα σελιδίων.
 'Πορείτε να κλώσκεστε οπίς και ν' αλλάζετε έναν παλαιόν σελίδαν ή να [[Special:UserLogin|εμπάτε ή να εφτάτε λογαρίαν]].",
 'permissionserrorstext-withaction' => "'Κ έχετε την άδειαν για $2, για {{PLURAL:$1|τ'αφκά το λόγον|τ'αφκά τοι λόγους}}:",
-'recreate-moveddeleted-warn'       => "'''Ωρία: Εφτάτε αξάν μίαν σελίδαν ντο νεβζινέθεν οψεκές.'''
+'recreate-moveddeleted-warn'       => "'''Ωρία: Εφτάτε αξάν μίαν σελίδαν ντ' ενεσβύεν οψεκές.'''
 
 Ίσως εν καλλίον να μην εφτάτε τη σελίδαν.
 Τερέστεν για βοήθειαν σ' αρχείον σβησεματίων και ετεροχλαεματίων για την αιτίαν για το σβήσιμον:",
@@ -530,6 +536,7 @@ $messages = array(
 
 # History pages
 'viewpagelogs'           => "Τέρεν αρχεία γι' αβούτεν τη σελίδαν",
+'nohistory'              => "Αούτο η σελίδαν αλλαγάς 'κ εςς.",
 'currentrev'             => 'Ατωριζνόν μορφήν',
 'currentrev-asof'        => 'Ατωριζνόν μορφήν τη $1',
 'revisionasof'           => 'Μορφήν τη $1',
@@ -556,6 +563,7 @@ $messages = array(
 
 # Revision deletion
 'rev-delundel'               => 'δείξον/κρύψον',
+'rev-showdeleted'            => 'δείξον',
 'revdelete-show-file-submit' => 'Ναι',
 'revdel-restore'             => 'Ἀλλαγμαν ορατότητας',
 'pagehist'                   => 'Ιστορίαν σελίδας',
@@ -965,7 +973,7 @@ $messages = array(
 'addedwatchtext'    => "Η σελίδαν \"[[:\$1]]\" επήγεν σον [[Special:Watchlist|κατάλογον οριαγματί]] εσούν.
 Μελλούμενα αλλαγάς τ' ατεινές τη σελίδας θα γράφκουνταν καικά, και η σελίδαν θ' ευρίεται με γράμματα '''χοντρά''' σ' [[Special:RecentChanges|υστερνά τ' αλλαγάς]] για να τερείτετα καλίον.",
 'removedwatch'      => 'Αση λίσταν επάρθεν',
-'removedwatchtext'  => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' [[Special:Watchlist|τ\'εσόν τον κατάλογον]].',
+'removedwatchtext'  => 'Η σελίδαν "[[:$1]]" ενεσβύεν ασ\' [[Special:Watchlist|τ\'εσόν τον κατάλογον]].',
 'watch'             => 'Ωρίαγμαν',
 'watchthispage'     => 'Ωρίαν τη σελίδαν',
 'unwatch'           => "Τέλεμαν τ' ωριαγματί",
@@ -993,8 +1001,8 @@ $messages = array(
 'actioncomplete'        => 'Η ενέργειαν ετελέθεν',
 'deletedtext'           => 'Το "<nowiki>$1</nowiki>" εσβήγανατο.
 Τερέστεν το $2 και δεαβάστεν για τα υστερνά τα σβησίματα.',
-'deletedarticle'        => 'νεβζινέθεν η "[[$1]]"',
-'dellogpage'            => "Κατάλογον με τ' ατά ντ' εσβήγαν",
+'deletedarticle'        => 'ενεσβύεν η "[[$1]]"',
+'dellogpage'            => "Κατάλογον με τ' ατά ντ' ενεσβύγαν",
 'deletionlog'           => 'αρχείον ασπαλιγματίων',
 'deletecomment'         => 'Λόγον για το σβήσιμο:',
 'deleteotherreason'     => 'Άλλον/αλλομίαν λόγον:',
@@ -1168,8 +1176,8 @@ $messages = array(
 '1movedto2_redir'         => '[[$1]] ετερχλαεύτεν σο [[$2]] σε σύνδεσμον απάν',
 'movelogpage'             => 'Αρχείον ετεροχλαεματί',
 'movereason'              => 'Λόγον:',
-'revertmove'              => 'επαναφορά',
-'delete_and_move'         => 'Νεβζίνεμαν και ετεροχλάεμαν',
+'revertmove'              => 'κλώσιμον',
+'delete_and_move'         => 'Σβήσον και ετεροχλάεψον',
 
 # Export
 'export'            => 'Εξαγωγήν σελίδιων',
@@ -1414,16 +1422,18 @@ $messages = array(
 
 # Special:Version
 'version'                  => 'Έκδοση',
+'version-extensions'       => "Επεκτάσεις ντ'εθέκαν",
 'version-specialpages'     => 'Ειδικά σελίδας',
 'version-variables'        => 'Μεταβλητάς',
 'version-other'            => 'Αλλέτερα',
 'version-hooks'            => 'Αγκιστρία',
 'version-license'          => 'Ἀδεια',
+'version-software'         => "Λογισμικόν ντ'εθέκεν",
 'version-software-version' => 'Έκδοση',
 
 # Special:FilePath
 'filepath-page'   => 'Αρχείον:',
-'filepath-submit' => 'Διαδρομή',
+'filepath-submit' => 'Δέβα',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Όνεμα αρχείου:',
@@ -1448,6 +1458,7 @@ $messages = array(
 
 # HTML forms
 'htmlform-submit'              => 'Στείλον',
+'htmlform-reset'               => "Κλώσον τ'αλλαγάς",
 'htmlform-selectorother-other' => 'Άλλον',
 
 );
