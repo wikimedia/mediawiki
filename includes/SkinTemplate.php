@@ -326,6 +326,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$newtalks = $wgUser->getNewMessageLinks();
+		$ntl = '';
 
 		if( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
 			$usertitle = $this->mUser->getUserPage();
@@ -367,8 +368,6 @@ class SkinTemplate extends Skin {
 			$parts = implode( $sep, $msgs );
 			$ntl = wfMsgHtml( 'youhavenewmessagesmulti', $parts );
 			$out->setSquidMaxage( 0 );
-		} else {
-			$ntl = '';
 		}
 		wfProfileOut( __METHOD__ . '-stuff2' );
 
