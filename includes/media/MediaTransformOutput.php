@@ -215,10 +215,10 @@ class MediaTransformError extends MediaTransformOutput {
 	}
 
 	function toHtml( $options = array() ) {
-		return "<table class=\"MediaTransformError\" style=\"" .
-			"width: {$this->width}px; height: {$this->height}px;\"><tr><td>" .
+		return "<div class=\"MediaTransformError\" style=\"" .
+			"width: {$this->width}px; height: {$this->height}px; display:inline-block;\">" .
 			$this->htmlMsg .
-			"</td></tr></table>";
+			"</div>";
 	}
 
 	function toText() {
@@ -242,8 +242,8 @@ class MediaTransformError extends MediaTransformOutput {
 class TransformParameterError extends MediaTransformError {
 	function __construct( $params ) {
 		parent::__construct( 'thumbnail_error',
-			max( isset( $params['width']  ) ? $params['width']  : 0, 180 ),
-			max( isset( $params['height'] ) ? $params['height'] : 0, 180 ),
+			max( isset( $params['width']  ) ? $params['width']  : 0, 120 ),
+			max( isset( $params['height'] ) ? $params['height'] : 0, 120 ),
 			wfMsg( 'thumbnail_invalid_params' ) );
 	}
 }
