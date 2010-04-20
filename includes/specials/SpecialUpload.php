@@ -237,6 +237,21 @@ class SpecialUpload extends SpecialPage {
 			$form->addPreText( wfMsgExt( 'session_fail_preview', 'parseinline' ) );
 		}
 
+		# Give a notice if the user is uploading a file that has been deleted or moved
+		# Note that this is independent from the message 'filewasdeleted' that requires JS
+		$desiredTitleObj = Title::newFromText( $this->mDesiredDestName, NS_FILE );
+		$delNotice = ''; // empty by default
+		if ( !$desiredTitleObj->exists() ) {
+			LogEventsList::showLogExtract( &$delNotice, array( 'delete', 'move' ), 
+				$desiredTitleObj->getPrefixedText(),
+				'', array( 'lim' => 10,
+					   'conds' => array( "log_action != 'revision'" ),
+					   'showIfEmpty' => false,
+					   'msgKey' => array( 'upload-recreate-warning' ) )
+			);
+		}
+		$form->addPreText( $delNotice );
+
 		# Add text to form
 		$form->addPreText( '<div id="uploadtext">' . 
 			wfMsgExt( 'uploadtext', 'parse', array( $this->mDesiredDestName ) ) . 
