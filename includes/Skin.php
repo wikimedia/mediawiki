@@ -2189,6 +2189,7 @@ CSS;
 	function getNewtalks() {
 		global $wgUser, $wgOut;
 		$newtalks = $wgUser->getNewMessageLinks();
+		$ntl = '';
 
 		if( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
 			$userTitle = $this->mUser->getUserPage();
@@ -2232,8 +2233,6 @@ CSS;
 			$parts = implode( $sep, $msgs );
 			$ntl = wfMsgHtml( 'youhavenewmessagesmulti', $parts );
 			$wgOut->setSquidMaxage( 0 );
-		} else {
-			$ntl = '';
 		}
 		return $ntl;
 	}
