@@ -539,6 +539,18 @@ class SpecialSearch {
 			$this->sk->formatSize( $byteSize ),
 			$wgLang->formatNum( $wordCount )
 		);
+
+		if( $t->getNamespace() == NS_CATEGORY ) {
+			$cat = Category::newFromTitle( $t );
+			$size = wfMsgExt(
+				'search-result-category-size',
+				array( 'parsemag', 'escape' ),
+				$wgLang->formatNum( $cat->getPageCount() ),
+				$wgLang->formatNum( $cat->getSubcatCount() ),
+				$wgLang->formatNum( $cat->getFileCount() )
+			);
+		}
+
 		$date = $wgLang->timeanddate( $timestamp );
 
 		// link to related articles if supported
