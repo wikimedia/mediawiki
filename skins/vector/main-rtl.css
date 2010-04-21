@@ -70,6 +70,7 @@ body {
 	#p-personal {
 		position: absolute;
 		top: 0;
+		margin-right: 10em;
 		left: 0.75em;
 	}
 	#p-personal h5 {
