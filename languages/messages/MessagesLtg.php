@@ -180,15 +180,16 @@ $messages = array(
 'nstab-category' => 'Kategoreja',
 
 # General errors
-'error'           => 'Klaida',
-'missing-article' => 'Teksts lopai ar nūsaukumu "$1" $2 datu bazā nav atrūnams.
+'error'              => 'Klaida',
+'missing-article'    => 'Teksts lopai ar nūsaukumu "$1" $2 datu bazā nav atrūnams.
 
 Tys parostai nūtiek vacu saišu gadejumā: pīprosūt izmainis voi viesturi lopai, kas ir dzāsta.
 
 Ka lopai ir juobyut, tod, īspiejams, ir klaida programā.
 Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodūt ari URL.',
-'badtitletext'    => 'Pīpraseituo lopa ir ar klaidu, tukša voi napareizai saisteits dažaidu volūdu voi dažaidu wiki viersroksti. Tys var saturēt vīnu voi vairuokus simbolus, kū navar izmontuot viersrokstūs.',
-'viewsource'      => 'Apsavērt kodu',
+'missingarticle-rev' => '(Puorsavieršona#: $1)',
+'badtitletext'       => 'Pīpraseituo lopa ir ar klaidu, tukša voi napareizai saisteits dažaidu volūdu voi dažaidu wiki viersroksti. Tys var saturēt vīnu voi vairuokus simbolus, kū navar izmontuot viersrokstūs.',
+'viewsource'         => 'Apsavērt kodu',
 
 # Login and logout pages
 'yourname'                => 'Tovs lītuotuojvuords / Slāgvuords:',
@@ -227,29 +228,36 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'hr_tip'          => 'Horizontaluo lineja (nalīc bez vajadzeibys)',
 
 # Edit pages
-'summary'                => 'Kūpsavylkums',
-'subject'                => 'Tema/viersroksts:',
-'minoredit'              => 'nanūzeimeigs lobuojums',
-'watchthis'              => 'Puorraudzeit itū lopu',
-'savearticle'            => 'Saglobuot lopu',
-'preview'                => 'Apsavērt',
-'showpreview'            => 'Apsavērt',
-'showdiff'               => 'Paruodeit izmainis',
-'anoneditwarning'        => "'''Uzmaneibu:''' tu naesi īguojs kai lītuotuojs. Lopys viesturē tiks īraksteita tovs IP adress.",
-'summary-preview'        => 'Apsavērt kūpsavylkumu',
-'newarticle'             => '(Jauns roksts)',
-'newarticletext'         => "Tu ite tyki caur saitis nu, pagaidam vēļ nauzraksteitys, lopys.
+'summary'                          => 'Kūpsavylkums',
+'subject'                          => 'Tema/viersroksts:',
+'minoredit'                        => 'nanūzeimeigs lobuojums',
+'watchthis'                        => 'Puorraudzeit itū lopu',
+'savearticle'                      => 'Saglobuot lopu',
+'preview'                          => 'Apsavērt',
+'showpreview'                      => 'Apsavērt',
+'showdiff'                         => 'Paruodeit izmainis',
+'anoneditwarning'                  => "'''Uzmaneibu:''' tu naesi īguojs kai lītuotuojs. Lopys viesturē tiks īraksteita tovs IP adress.",
+'summary-preview'                  => 'Apsavērt kūpsavylkumu',
+'newarticle'                       => '(Jauns roksts)',
+'newarticletext'                   => "Tu ite tyki caur saitis nu, pagaidam vēļ nauzraksteitys, lopys.
 Kab radeitu lopu, suoc raksteit teksta lūgā apaškā (par teksta formatiešonu i seikuokai informaceja verīs [[{{MediaWiki:Helppage}}|paleigu]]).
 Ka Tu ite tyki deļ klaidys, vīnkuorši daspīd '''back''' pūgu puorlyukprogramā.",
-'noarticletext'          => 'Itymā lopā nav nikaida teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt cytuos lopuos piec ituos lopys nūsaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saisteitūs registru īrokstūs] voi ari [{{fullurl:{{FULLPAGENAME}}|action=edit}} suokt taiseit itū lopu].',
-'previewnote'            => "'''Itei ir tikai apsavieršona!'''
+'noarticletext'                    => 'Itymā lopā nav nikaida teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt cytuos lopuos piec ituos lopys nūsaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saisteitūs registru īrokstūs] voi ari [{{fullurl:{{FULLPAGENAME}}|action=edit}} suokt taiseit itū lopu].',
+'previewnote'                      => "'''Itei ir tikai apsavieršona!'''
 Jiusu izmanis vēļ nav saglobuotys!",
-'editing'                => 'Lobuot $1',
-'editingsection'         => 'Izmaineit $1 (sadaļa)',
-'templatesused'          => 'Itamā lopā {{PLURAL:$1|izmontuots šablons|izmontuoti šabloni}}:',
-'template-protected'     => '(aizsorguota)',
-'template-semiprotected' => '(daleji aizsorguota)',
-'hiddencategories'       => 'Itei lopa ir {{PLURAL:$1|1 nūglobuotajā kategorejā|$1 nuoglobuotajuos kategorejuos}}:',
+'editing'                          => 'Lobuot $1',
+'editingsection'                   => 'Izmaineit $1 (sadaļa)',
+'copyrightwarning'                 => "Lyudzu, atguodoj, ka vyss īguļdejums, kas dareits {{grammar:lokatīvs|{{SITENAME}}}}, ir skaitams par publiskuotu saskaņā ar \$2 (vairuok info verīs \$1).
+Ka nagribi, kab Tevi raksteitū kaids redigej i izplota tuoluok, tod, lyudzu, nalīc tū ite!<br />
+
+Izavieljūt \"Saglobuot lopu\", Tu aplīcynoj, ka itū rokstu esi rakstejs voi papyldynovs pats voi izmantovs informaceju nu dorba, kuru naaizsorgoj autortīseibys, voi tamleidzeiga breivi lītojama resursa.
+'''BEZ ATĻUOVIS NADAVĪNOJ DORBU, KURU AIZSORGOJ AUTORTĪSEIBYS!'''",
+'templatesused'                    => 'Itamā lopā {{PLURAL:$1|izmontuots šablons|izmontuoti šabloni}}:',
+'templatesusedpreview'             => 'Itymā izskotā {{PLURAL:$1|lītuotais šablons|lītuotī šabloni}}:',
+'template-protected'               => '(aizsorguota)',
+'template-semiprotected'           => '(daleji aizsorguota)',
+'hiddencategories'                 => 'Itei lopa ir {{PLURAL:$1|1 nūglobuotajā kategorejā|$1 nuoglobuotajuos kategorejuos}}:',
+'permissionserrorstext-withaction' => 'Tev nav atļuovis iz $2, deļ {{PLURAL:$1|itaida pamata|itaidu pamatu}}:',
 
 # History pages
 'viewpagelogs'           => 'Apsavērt ar itū lopu saisteitūs registru īrokstus',
@@ -351,6 +359,7 @@ n = nasvareigs lobuojums.',
 'rcnote'                         => 'Tagad ir {{PLURAL:$1|radzama pādejuo <strong>$1</strong> izmaiņa, kas izdareita|redzamys pādejuos <strong>$1</strong> izmainis, kas izdareitys}} {{PLURAL:$2|pādejā|pādejuos}} <strong>$2</strong> {{PLURAL:$2|dīnā|dīnuos}} (da $4, $5).',
 'rclistfrom'                     => 'Paruodeit jaunys izmainis nu $1',
 'rcshowhideminor'                => '$1 nasvareigūs',
+'rcshowhidebots'                 => '$1 robotprogramys',
 'rcshowhideliu'                  => '$1 dasaslāgtu lītuotuoju',
 'rcshowhideanons'                => '$1 anonimūs',
 'rcshowhidemine'                 => '$1 munus',
@@ -400,6 +409,7 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 'filehist-current'          => 'tagadejais',
 'filehist-datetime'         => 'Datums/Laiks',
 'filehist-thumb'            => 'Biļde',
+'filehist-thumbtext'        => 'Atzeime ? par verseji nu $1',
 'filehist-user'             => 'Lītuotuojs',
 'filehist-dimensions'       => 'Izmāri',
 'filehist-comment'          => 'Komentars',
@@ -423,12 +433,14 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 'statistics-files' => 'Īsyuteiti faili',
 
 # Miscellaneous special pages
-'nbytes'       => '$1 {{PLURAL:$1|baits|baiti|baitu}}',
-'nmembers'     => '$1 {{PLURAL:$1|lopa|lopys}}',
-'prefixindex'  => 'Meklēt piec viersroksta pyrmajim burtim',
-'newpages'     => 'Jaunys lopys',
-'move'         => 'Puorceļt',
-'movethispage' => 'Puorceļt itū lopu',
+'nbytes'        => '$1 {{PLURAL:$1|baits|baiti|baitu}}',
+'nmembers'      => '$1 {{PLURAL:$1|lopa|lopys}}',
+'prefixindex'   => 'Meklēt piec viersroksta pyrmajim burtim',
+'newpages'      => 'Jaunys lopys',
+'move'          => 'Puorceļt',
+'movethispage'  => 'Puorceļt itū lopu',
+'pager-newer-n' => '{{PLURAL:$1|jaunuoku 1|jaunuokuos $1}}',
+'pager-older-n' => '{{PLURAL:$1|vacuoku 1|vacuokys $1}}',
 
 # Book sources
 'booksources'               => 'Gruomotu olūti',
@@ -466,6 +478,9 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 'mywatchlist'       => 'Muni puorraugamī roksti',
 'watchlistfor'      => "(deļ '''$1''')",
 'addedwatch'        => 'Davīnuots puorraugamū sarokstam.',
+'addedwatchtext'    => "Lopa \"[[:\$1]]\" ir davīnuota [[Special:Watchlist|tevis puorraugamajom lopom]], kur tiks paruodeitys izmainis, kas izdareitys itymā lopā voi ituos lopys sarunu lopā, kai ari itei lopa tiks īzeimāta '''pusrasna''' [[Special:RecentChanges|pādejūs izmaiņu lopā]], lai itū byutu vīgluok pamaneit.
+
+Ka vāluok puordūmuosi i nagribiesi vairs puorraudzeit itū lopu, spīd iz saitis '''napuorraudzeit''' reiku jūslā.",
 'removedwatch'      => 'Lopa vairs nateik puorraudzeita',
 'removedwatchtext'  => 'Lopa "[[:$1]]" ir izjimta nu tova [[Special:Watchlist|puorraugamūs lopu saroksta]].',
 'watch'             => 'Puorraudzeit',
@@ -505,10 +520,12 @@ Ite var apsavērt pādejūs iztreitūs: "$2".',
 'protect-text'                => "Ite var apsavērt i izmaineit lopys '''<nowiki>$1</nowiki>''' aizsardzeibys leimini.",
 'protect-locked-access'       => "Jiusu kontam nav atļuovis maineit lopys aizsardzeibys pakuopi.
 Pašreizejī lopys '''$1''' īstatejumi ir:",
+'protect-cascadeon'           => 'Itei lopa niu ir aizsorguota, deļ tam ka tei ir īlykta {{PLURAL:$1|itadā lopā|itaiduos lopuos}} (mainūt ituos lopys aizsardzeibys leimini tuos aizsardzeiba nabyus nūjimta):',
 'protect-default'             => 'Atļaut visim lītuotuojim',
 'protect-fallback'            => 'Vajadzeiga atļuove "$1"',
 'protect-level-autoconfirmed' => 'Bloķēt jaunim i naregistrātim lītuotuojim',
 'protect-level-sysop'         => 'Viņ administratorim',
+'protect-summary-cascade'     => 'Aizsardzeibys kaskads',
 'protect-expiring'            => 'da $1 (UTC)',
 'protect-cascade'             => "Aizsorguot itymā lopā īkļautuos lopys (veidnis) ''(cascading protection)''",
 'protect-cantedit'            => 'Tu navari izmaineit ituos lopys aizsardzeibys leimiņus, deļ tuo ka tur navari izmaineit itū lopu.',
@@ -554,6 +571,7 @@ Pašreizejī lopys '''$1''' īstatejumi ir:",
 'whatlinkshere-next'       => '{{PLURAL:$1|nuokamū|nuokamūs $1}}',
 'whatlinkshere-links'      => '← saitis',
 'whatlinkshere-hideredirs' => '$1 puoradresacejis',
+'whatlinkshere-hidetrans'  => '$1 transclusions ?',
 'whatlinkshere-hidelinks'  => '$1 saitis',
 'whatlinkshere-filters'    => 'Filtri',
 
@@ -571,22 +589,40 @@ Pašreizejī lopys '''$1''' īstatejumi ir:",
 'block-log-flags-nocreate' => 'Kontu radeišonys atslāga',
 
 # Move page
-'movearticle'     => 'Puorvītuot lopu',
-'newtitle'        => 'Iz itaidu jaunu lopu:',
-'move-watch'      => 'Puorraudzeit itū lopu',
-'movepagebtn'     => 'Puorvītuot lopu',
-'pagemovedsub'    => 'Puorvītuošona nūtykuse veiksmeigai',
-'movepage-moved'  => '\'\'\'"$1" tyka puorvītuots iz "$2"\'\'\'',
-'articleexists'   => 'Lopa ar itaidu nūsaukumu jau ir voi ari tovs nūsaukums nav dereigs. Lyudzu, izavielejit cytu nūsaukumu.',
-'talkexists'      => "'''Itei lopa tyka puorvītuota veiksmeigai, bet tuos sarunu lopu navarieja puorvītuot, deļ tuo ka jaunuo nūsaukuma lopai jau ir diskuseju lopa. Lyudzu apvīnoj ituos sarunu lopys pats.'''",
-'movedto'         => 'puorvītuota iz',
-'movetalk'        => 'Puorvītuot ari sarunu lopu, ka taida ir.',
-'1movedto2'       => '"[[$1]]" puorsauču par "[[$2]]"',
-'1movedto2_redir' => '[[$1]] tyka puorsauktys par [[$2]], lītojūt puoradresaceju',
-'movelogpage'     => 'Puorvītuošonys registrs',
-'movesubpage'     => '{{PLURAL:$1|Zampuslopa|Zampuslopys}}',
-'movereason'      => 'Deļ kuo tai?',
-'revertmove'      => 'atsaukt',
+'movepagetext'     => "Itamā lopā tu vari puorsaukt voi puorlikt lopu, kūpā ar tuos izmaiņu hronologeju puorlīkūt tū iz cytu nūsaukumu.
+Īprīškejuo lopa klius par lopu, kas puoradresēs iz jaunū lopu.
+Ite var automatiskai izmaineit vysys puoradresacejis (redirektus) iz itū lopu (2. atzeime apakšā).
+Saitis puorejuos lopuos iz īprīškejū lopu nabyus maineitys. Ka gribi namaineit puoradresacejis automatiskai, puorbaud i izloboj, napīļaunūt [[Special:DoubleRedirects|dubultu puoradresaceji]] voi [[Special:BrokenRedirects|puoradresaceji iz naasūšu lopu]].
+Tev ir juopuorsalīcynoj, voi saitis vēļ vys īt iz tīni, kur tuos ir īdūmuotys.
+
+Jem vārā, ka lopa '''nabyus''' puorvītuota, ka jau eksistej kaida cyta lopa ar itaidu nūsaukumu (izjemūt gadīņus, kod tei ir tukša voi kod tei ir puoradresacejis lopa, kai ari tod, ka tai nav izmaiņu hronologejis).
+Tys zeimoj, ka tu vari puorlikt lopu atpakaļ, nu kurīnis tu jau nazkod esi tū puorlics, ka byusi pīlaids klaidu, bet tu navari puorraksteit jau asūšu lopu.
+
+'''BREIDYNUOJUMS!'''
+Popularom lopom tei var byut kruosa i nagaideita puormaiņa;
+pyrma tuoluok īsšonys apdūmoj, voi tu saprūt, kū eistyn dori.",
+'movepagetalktext' => "Saisteituo sarunu lopa, ka taida eksistej, tiks automatiski puorvītuota, '''izjemūt gadejumus, kod''':
+*tu puorlīc lopu iz cytu paleiglopu,
+*ar jaunū nūsaukumu jau eksistej sarunu lopa, voi ari
+*atzeimiesi zamuok atrūnamū lauceņu.
+
+Ka gribiesi, tod tev itei sarunu lopa byus juopuolīk voi juoapvīnoj pošam.",
+'movearticle'      => 'Puorvītuot lopu',
+'newtitle'         => 'Iz itaidu jaunu lopu:',
+'move-watch'       => 'Puorraudzeit itū lopu',
+'movepagebtn'      => 'Puorvītuot lopu',
+'pagemovedsub'     => 'Puorvītuošona nūtykuse veiksmeigai',
+'movepage-moved'   => '\'\'\'"$1" tyka puorvītuots iz "$2"\'\'\'',
+'articleexists'    => 'Lopa ar itaidu nūsaukumu jau ir voi ari tovs nūsaukums nav dereigs. Lyudzu, izavielejit cytu nūsaukumu.',
+'talkexists'       => "'''Itei lopa tyka puorvītuota veiksmeigai, bet tuos sarunu lopu navarieja puorvītuot, deļ tuo ka jaunuo nūsaukuma lopai jau ir diskuseju lopa. Lyudzu apvīnoj ituos sarunu lopys pats.'''",
+'movedto'          => 'puorvītuota iz',
+'movetalk'         => 'Puorvītuot ari sarunu lopu, ka taida ir.',
+'1movedto2'        => '"[[$1]]" puorsauču par "[[$2]]"',
+'1movedto2_redir'  => '[[$1]] tyka puorsauktys par [[$2]], lītojūt puoradresaceju',
+'movelogpage'      => 'Puorvītuošonys registrs',
+'movesubpage'      => '{{PLURAL:$1|Zampuslopa|Zampuslopys}}',
+'movereason'       => 'Deļ kuo tai?',
+'revertmove'       => 'atsaukt',
 
 # Export
 'export'            => 'Eksportēt lopu',
@@ -653,6 +689,7 @@ Pašreizejī lopys '''$1''' īstatejumi ir:",
 'tooltip-diff'                    => 'Paruodeit, kur tekstā esi kū pamainejs.',
 'tooltip-compareselectedversions' => 'Apsavērt atškireibys itamuos lopu versejuos.',
 'tooltip-watch'                   => 'Davīnuot itū lopu puorraugamajam sarokstam',
+'tooltip-rollback'                => 'Apsaver iprīškejūs lobuojumus',
 'tooltip-undo'                    => '"Atgrīzt" atceļ ituos izmainis i attaisa lobuošonys formu prīškskatejuma veidā.
 Tys ļaun davīnuot pamatuojumu kūpsavylkumā.',
 
@@ -661,16 +698,29 @@ Tys ļaun davīnuot pamatuojumu kūpsavylkumā.',
 'nextdiff'     => 'Jaunuokuo verseja →',
 
 # Media information
-'file-info-size' => '($1 × $2 pikseli, faila izmārs: $3, MIME tips: $4)',
-'file-nohires'   => '<small>Augstuoka izškirtspieja nav pīejama.</small>',
-'svg-long-desc'  => '(SVG fails, definātais lelums $1 × $2 pikseli, faila lelums: $3)',
-'show-big-image' => 'Pylnā lelumā',
+'file-info-size'       => '($1 × $2 pikseli, faila izmārs: $3, MIME tips: $4)',
+'file-nohires'         => '<small>Augstuoka izškirtspieja nav pīejama.</small>',
+'svg-long-desc'        => '(SVG fails, definātais lelums $1 × $2 pikseli, faila lelums: $3)',
+'show-big-image'       => 'Pylnā lelumā',
+'show-big-image-thumb' => '<small>Ituo pyrmsskota lelums: $1 × $2 pikseli</small>',
+
+# Bad image list
+'bad_image_list' => 'Formats ir taids: tikai saroksta elementi (ryndys, suocūt ar *), ir skaitams par failu. Pyrmuo saite iz ryndys ir saite uz nalobu failu. Sevkurys vāluokys saitis tymā pošā ryndā tīk skaiteitys par izjāmumim, t.i., lopom, kur fails var atsarast ryndys vydā.',
 
 # Metadata
 'metadata'          => 'Suokumolūts',
 'metadata-help'     => 'Itais fails satur vaira informacejis, kuru vysa dreižuok ir davīnovs digitalais fotoaparats voi cyts aparats, kas itū failu radeja. Ka itais fails piec tam ir maineits, itī dati var byut nūvacovuši.',
 'metadata-expand'   => 'Paruodeit papyldu detalis',
 'metadata-collapse' => 'Nūglobuot papyldu detalis',
+'metadata-fields'   => 'Itymā paziņuojumā asūši metadatu lauki byus radzami attāla lopā ari tod, kod metadatu tabula byus sateita.
+Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Izmaineit itū failu ar uoreju programu',

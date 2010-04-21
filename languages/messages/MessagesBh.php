@@ -354,6 +354,10 @@ $1',
 # Book sources
 'booksources' => 'किताबी स्त्रोत',
 
+# Special:AllPages
+'allpagessubmit' => 'जाईं',
+'allpagesprefix' => 'उपसर्ग के साथे पन्ना प्रदर्शन:',
+
 # E-mail user
 'emailuser' => 'ई प्रयोगकर्ता के ईमेल करीं',
 

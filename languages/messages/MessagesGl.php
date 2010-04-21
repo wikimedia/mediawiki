@@ -1158,6 +1158,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchprofile-everything-tooltip' => 'Procurar en todo o contido (incluíndo páxinas de conversa)',
 'searchprofile-advanced-tooltip'   => 'Procurar nos espazos de nomes elixidos',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 membro|$1 membros}} ({{PLURAL:$2|1 subcategoría|$2 subcategorías}}, {{PLURAL:$3|1 ficheiro|$3 ficheiros}})',
 'search-result-score'              => 'Relevancia: $1%',
 'search-redirect'                  => '(redirixido desde "$1")',
 'search-section'                   => '(sección "$1")',
@@ -1520,6 +1521,9 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'upload_directory_missing'    => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
+'upload-recreate-warning'     => "'''Atención: borrouse ou trasladouse un ficheiro con ese nome.'''
+
+Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por se quere consultalos:",
 'uploadtext'                  => "Use o formulario de embaixo para cargar ficheiros.
 Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:FileList|lista de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de cargas]] e as eliminacións no [[Special:Log/delete|rexistro de borrados]].
 

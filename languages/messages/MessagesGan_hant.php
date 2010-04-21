@@ -240,7 +240,7 @@ $messages = array(
 'variants'                   => '變換',
 
 'errorpagetitle'    => '錯誤',
-'returnto'          => '回到$1。',
+'returnto'          => '去歸$1。',
 'tagline'           => '出自{{SITENAME}}',
 'help'              => '幫助',
 'search'            => '尋',
@@ -587,7 +587,8 @@ $2',
 要新開箇隻頁面，請到下頭嗰方框裡頭編寫內容（望吖[[{{MediaWiki:Helppage}}|説明]]嗰細節）。
 要係倷伓係特試來到箇首，捺吖瀏覽器嗰「返回」鍵即可去還。',
 'anontalkpagetext'                 => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:UserLogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
-'noarticletext'                    => '眼下箇頁哈冇內容，倷可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編寫箇頁]。',
+'noarticletext'                    => '眼下箇頁哈冇內容，倷可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]，
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋吖有關日誌]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編寫箇頁]。',
 'clearyourcache'                   => "'''注意:''' 保存之後, 倷要清吥瀏覽器嗰緩存才眵得正改嗰內容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''（或按吖''Ctrl-Shift-R''，到蘋果Mac上按''Cmd-Shift-R''）；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 單只要按 ''刷新''；'''Opera:''' 用戶要到 ''工具-設置'' 完全嗰清除緩存。",
 'usercssyoucanpreview'             => "'''提示:''' 存到前請用'望吖起'來測吖倷嗰新CSS 。",
 'userjsyoucanpreview'              => "'''提示:''' 存到前請用'望吖起'來測吖倷嗰新JS 。",
@@ -606,9 +607,9 @@ $2',
 '''要係佢係合法編輯嗰，請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
 'token_suffix_mismatch'            => "'''倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
 箇種情況通常係含到好多臭蟲、以網絡為主嗰匿名代理服務扤得。'''",
-'editing'                          => '編輯嘚$1',
-'editingsection'                   => '編輯嘚$1 （段落）',
-'editingcomment'                   => '編輯嘚$1 （新段落）',
+'editing'                          => '編輯嘚「$1」',
+'editingsection'                   => '編輯嘚「$1」（段落）',
+'editingcomment'                   => '編輯嘚「$1」（新段落）',
 'editconflict'                     => '編輯仗: $1',
 'explainconflict'                  => "倷起手編輯之後有人動過箇頁。
 上首嗰方框顯示嗰係眼下本頁嗰內容。
@@ -635,8 +636,8 @@ $2',
 'semiprotectedpagewarning'         => "'''注意：'''箇頁拕鎖到嘞，單只註冊用戶編得正。",
 'cascadeprotectedwarning'          => '警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正，因為箇頁同底下嗰連鎖保護嗰{{PLURAL:$1|一隻|多隻}}頁面包到嘞:',
 'titleprotectedwarning'            => "'''警告：箇隻頁鎖到嘍，只有一滴子人才建得正。'''",
-'templatesused'                    => '箇隻頁面使用嗰模板有:',
-'templatesusedpreview'             => '箇隻預覽使用嗰模板有:',
+'templatesused'                    => '箇隻頁面使用嗰有{{PLURAL:$1|模板|模板}}:',
+'templatesusedpreview'             => '箇隻預覽使用嗰有{{PLURAL:$1|模板|模板}}',
 'templatesusedsection'             => '箇隻段落使用嗰模板有:',
 'template-protected'               => '（保護）',
 'template-semiprotected'           => '（半保護）',
@@ -766,7 +767,7 @@ $2',
 'notextmatches'             => '冇頁面內容符合',
 'prevn'                     => '前{{PLURAL:$1|$1}}隻',
 'nextn'                     => '後{{PLURAL:$1|$1}}隻',
-'viewprevnext'              => '眵吖（$1） （$2） （$3）',
+'viewprevnext'              => '眵吖（$1 {{int:pipe-separator}} $2） （$3）',
 'searchhelp-url'            => 'Help:説明',
 'search-result-size'        => '$1 （$2隻字）',
 'search-redirect'           => '（重定向 $1）',
@@ -1046,7 +1047,11 @@ $2',
 'imagelinks'                => '連結',
 'linkstoimage'              => '底下嗰$1隻頁面連結到箇隻檔案：',
 'nolinkstoimage'            => '冇頁面連結到箇隻檔案。',
-'sharedupload'              => '箇隻檔案來自$1，佢可能到別嗰項目拕應用。',
+'sharedupload'              => '箇隻檔案來自$1，佢可能拕應用嘚別嗰項目。',
+'sharedupload-desc-there'   => '箇隻檔案來自$1，佢可能拕應用嘚別嗰項目。
+請相吖[$2 檔案描述頁面]以了解佢嗰相關資訊。',
+'sharedupload-desc-here'    => '箇隻檔案來自$1，佢可能拕應用嘚別嗰項目。
+佢嗰[$2 檔案描述頁面]顯示嘚下頭。',
 'uploadnewversion-linktext' => '上傳箇隻檔案嗰新版本',
 
 # File reversion
@@ -1272,7 +1277,7 @@ $2',
 'addedwatch'           => '加到嘞監視列表',
 'addedwatchtext'       => "頁面\"[[:\$1]]\" 加到嘞倷嗰[[Special:Watchlist|監視列表]]。箇頁同佢嗰討論頁嗰全部改動以後都會列到許首，佢會用'''粗體''' 列到[[Special:RecentChanges|最近更改]]讓倷更加容易識別。 倷以後要係拿佢到監視列表刪卟佢嗰話，就到導航條點吖「莫眏到」。",
 'removedwatch'         => '莫眏到',
-'removedwatchtext'     => '頁面"<nowiki>$1</nowiki>"到倷嗰監視列表刪卟嘞。',
+'removedwatchtext'     => '頁面[[:$1]]到[[Special:Watchlist|倷嗰監視列表]]刪卟哩。',
 'watch'                => '眏到',
 'watchthispage'        => '眏到箇頁',
 'unwatch'              => '莫眏到',
@@ -1370,7 +1375,7 @@ $NEWPAGE
 'protect-title'               => '保護“$1”中',
 'prot_1movedto2'              => '[[$1]]移到[[$2]]',
 'protect-legend'              => '確認保護',
-'protectcomment'              => '注解:',
+'protectcomment'              => '原因:',
 'protectexpiry'               => '期限:',
 'protect_expiry_invalid'      => '到期時間無效。',
 'protect_expiry_old'          => '到期時間已過。',
@@ -1584,14 +1589,14 @@ $1',
 
 # Move page
 'move-page-legend'        => '換動頁面',
-'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到拿佢嗰歷史一齊般到新頁面。
+'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到搦佢嗰歷史一齊搬到新頁面。
 舊嗰頁面就係新頁嗰重定向頁。
 連到舊頁面嗰連結伓會自動更改；
 勞煩檢查吖雙重或壞嗰重定向連結。
 倷有責任確保全部連結會連到指正嗰頁面。
 
 注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。
-噉就係話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。
+噉就係話必要時倷能等換到新頁面之後再又去歸舊嗰頁面，跟到倷也覆蓋不正目前頁面。
 
 '''警告！'''
 對一隻訪問得多嗰頁面噉會係一隻重要同關鍵嗰改動；
@@ -1714,6 +1719,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-viewsource'           => '箇頁已拕保護。但倷能望吖佢嗰原始碼。',
 'tooltip-ca-history'              => '箇頁早先嗰版本',
 'tooltip-ca-protect'              => '護到箇頁',
+'tooltip-ca-unprotect'            => '護得箇頁',
 'tooltip-ca-delete'               => '刪卟箇頁',
 'tooltip-ca-undelete'             => '拿箇頁還原到刪卟之前嗰樣子',
 'tooltip-ca-move'                 => '移動箇頁',
@@ -1724,6 +1730,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-search-fulltext'         => '尋箇隻文字嗰頁面',
 'tooltip-p-logo'                  => '封面',
 'tooltip-n-mainpage'              => '眵吖封面',
+'tooltip-n-mainpage-description'  => '眵吖封面',
 'tooltip-n-portal'                => '對於箇隻計劃，倷能做什哩，又啷做',
 'tooltip-n-currentevents'         => '提供目前嗰事嗰背景',
 'tooltip-n-recentchanges'         => '列出箇隻網站該朝子嗰改動',
@@ -1776,10 +1783,12 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => '{{SITENAME}}嗰匿名用戶',
 'siteuser'         => '{{SITENAME}}用戶$1',
+'anonuser'         => '{{SITENAME}}匿名用戶$1',
 'lastmodifiedatby' => '箇頁由$3對$1 $2最晏嗰改動。',
 'othercontribs'    => '以$1為基礎。',
 'others'           => '別嗰',
 'siteusers'        => '{{SITENAME}}用戶$1',
+'anonusers'        => '{{SITENAME}}匿名{{PLURAL:$2|用戶|用戶}}$1',
 'creditspage'      => '頁面感謝',
 'nocredits'        => '箇頁冇致謝名單。',
 
@@ -1788,7 +1797,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'spamprotectiontext'  => '倷想存嗰頁面拕垃圾廣告隔離器測到。噉可能係外部連結扤得。',
 'spamprotectionmatch' => '下底係觸發垃圾廣告隔離器嗰內容: $1',
 'spambot_username'    => 'MediaWiki 廣告清除',
-'spam_reverting'      => '返回到伓包連到$1最晏嗰版本',
+'spam_reverting'      => '去歸冇包連到$1最晏嗰版本',
 'spam_blanking'       => '全部包含連到$1嗰改動，留空',
 
 # Info page

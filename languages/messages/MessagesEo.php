@@ -2002,30 +2002,28 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'enotif_anon_editor'           => 'anonima uzanto $1',
 'enotif_body'                  => 'Kara $WATCHINGUSERNAME,
 
-La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR, vidu $PAGETITLE_URL por la nuna revizio.
+La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR; vidu $PAGETITLE_URL por la nuna revizio.
 
 $NEWPAGE
 
-Resumo de redaktinto: $PAGESUMMARY $PAGEMINOREDIT
+Resumo pri la ŝanĝo de la redaktinto: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontaktu la redaktinton:
 retpoŝte: $PAGEEDITOR_EMAIL
 vikie: $PAGEEDITOR_WIKI
 
-Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus la paĝon. 
-Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
+Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus la paĝon. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
 
              Sincere via, la avertsistemo de {{SITENAME}}
 
 --
-Por ŝanĝi la elektojn de via atentaro, bv viziti
+Por ŝanĝi la elektojn de via atentaro, bonvolu viziti
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-
-Por forigi la paĝon el via atentaro, bv viziti
+Por forigi la paĝon el via atentaro, bonvolu viziti
 $UNWATCHURL
 
-Reagoj kaj plia helpo:
+Por viaj reagoj kaj por obteni plian helpon:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete

@@ -1262,6 +1262,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searchprofile-everything-tooltip' => 'Rechercher dans tout le site (y compris dans les pages de discussion)',
 'searchprofile-advanced-tooltip'   => 'Choisir les espaces de noms pour la recherche',
 'search-result-size'               => '$1 ($2 mot{{PLURAL:$2||s}})',
+'search-result-category-size'      => '$1 membre{{PLURAL:$1||s}} ($2 sous-catégorie{{PLURAL:$2||s}}, $3 fichier{{PLURAL:$3||s}})',
 'search-result-score'              => 'Pertinence : $1%',
 'search-redirect'                  => '(redirection depuis $1)',
 'search-section'                   => '(section $1)',

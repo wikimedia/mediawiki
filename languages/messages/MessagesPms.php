@@ -975,6 +975,7 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'searchprofile-everything-tooltip' => 'Sërché daspërtut (ëdcò ant le pàgine ëd discussion)',
 'searchprofile-advanced-tooltip'   => 'Sërché ant jë spassi nominaj përsonalisà',
 'search-result-size'               => '$1 ({{PLURAL:$2|un|$2}} mòt)',
+'search-result-category-size'      => '{{PLURAL:$1|1 mèmber|$1 mèmber}} ({{PLURAL:$2|1 sot-categorìa|$2 sot-categorìe}}, {{PLURAL:$3|1 archivi|$3 archivi}})',
 'search-result-score'              => 'Arlevansa: $1%',
 'search-redirect'                  => '(ridiression $1)',
 'search-section'                   => '(session $1)',
@@ -1181,8 +1182,8 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-createtalk'            => 'Creé dle pàgine ëd discussion',
 'right-createaccount'         => 'Creé dij cont utent neuv',
 'right-minoredit'             => 'Marché le modìfiche com cite',
-'right-move'                  => 'Tramudé pàgine',
-'right-move-subpages'         => 'Tramudé pàgine con soe sotpàgine',
+'right-move'                  => 'Tramudé le pàgine',
+'right-move-subpages'         => 'Tramudé dle pàgine con soe sot-pàgine',
 'right-move-rootuserpages'    => "Tramudé pàgine prinsipaj ëd l'utent",
 'right-movefile'              => 'Tramudé file',
 'right-suppressredirect'      => 'Nen creé rediression da la pàgina sorziss an tramudand pàgine',
@@ -1340,6 +1341,9 @@ për podej carié dj'archivi.",
 'upload_directory_missing'    => 'La directory ëd caria ($1) a-i é pa e a peul pa esse creà dal webserver.',
 'upload_directory_read_only'  => 'Ël programa webserver a-i la fa nen a scrive ansima a la diretriss ëd càrich ($1).',
 'uploaderror'                 => 'Eror dëmentré che as cariava',
+'upload-recreate-warning'     => "'''Atension: n'archivi con col nòm a l'é già stàit ëscancelà o tramudà.'''
+
+Ël registr dle scancelassion e dij tramud për sta pàgina a l'é butà ambelessì për comodità:",
 'uploadtext'                  => "Dovra la forma sota për carié ëd file.
 Për vardé ò sërché figure già carià, va an sla [[Special:FileList|lista dle figure]], ij (ri)càrich a son ëdcò registrà ant ël [[Special:Log/upload|registr dij càrich]], jë scanselament ant ël [[Special:Log/delete|registr dië scanselament]].
 

@@ -1448,7 +1448,7 @@ $1",
 'prefs-watchlist-edits-max'     => 'العدد الأقصى: 1000',
 'prefs-watchlist-token'         => 'مفتاح قائمة المراقبة:',
 'prefs-misc'                    => 'متفرقات',
-'prefs-resetpass'               => 'غير كلمة السر',
+'prefs-resetpass'               => 'غيّر كلمة السر',
 'prefs-email'                   => 'خيارات البريد الإلكتروني',
 'prefs-rendering'               => 'المظهر',
 'saveprefs'                     => 'احفظ',
@@ -2151,7 +2151,7 @@ PICT # متنوع
 'alphaindexline'    => '$1 إلى $2',
 'nextpage'          => 'الصفحة التالية ($1)',
 'prevpage'          => 'الصفحة السابقة ($1)',
-'allpagesfrom'      => 'عرض الصفحات بدءا من:',
+'allpagesfrom'      => 'اعرض الصفحات بدءا من:',
 'allpagesto'        => 'اعرض الصفحات المنتهية عند:',
 'allarticles'       => 'كل الصفحات',
 'allinnamespace'    => 'كل الصفحات (في نطاق $1)',
@@ -2189,8 +2189,8 @@ PICT # متنوع
 'linksearch-error' => 'الكروت الخاصة يمكن أن تظهر فقط في بداية اسم المضيف.',
 
 # Special:ListUsers
-'listusersfrom'      => 'عرض المستخدمين بدءا من:',
-'listusers-submit'   => 'عرض',
+'listusersfrom'      => 'اعرض المستخدمين بدءا من:',
+'listusers-submit'   => 'اعرض',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 'listusers-blocked'  => '({{GENDER:$1|ممنوع|ممنوعة}})',
 
@@ -2199,8 +2199,8 @@ PICT # متنوع
 'activeusers-intro'      => 'هذه قائمة بالمستخدمين الذين مارسوا نوعًا من النشاط خلال {{PLURAL:$1||اليوم الماضي|اليومين الماضيين|ال$1 أيام الماضية|ال$1 يومًا ماضيًا|ال$1 يوم ماضي}}.',
 'activeusers-count'      => '{{PLURAL:$1|لا تعديلات حديثة|تعديل حديث واحد|تعديلان حديثان|$1 تعديلات حديثة|$1 تعديلًا حديثًا|$1 تعديل حديث}} في {{PLURAL:$3||اليوم الماضي|اليومين الماضيين|$3 أيام ماضية|$3 يومًا ماضية|ال$1 يوم ماضي}}',
 'activeusers-from'       => 'اعرض المستخدمين بدءًا من:',
-'activeusers-hidebots'   => 'أخف البوتات',
-'activeusers-hidesysops' => 'أخف الإداريين',
+'activeusers-hidebots'   => 'أخفِ البوتات',
+'activeusers-hidesysops' => 'أخفِ الإداريين',
 'activeusers-noresult'   => 'لا مستخدمون تم إيجادهم.',
 
 # Special:Log/newusers

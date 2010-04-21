@@ -1249,6 +1249,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchprofile-everything-tooltip' => 'Buscar en todo el contenido (incluyendo páginas de discusión)',
 'searchprofile-advanced-tooltip'   => 'Buscar en espacios de nombre personalizados',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 miembro|$1 miembros}} ({{PLURAL:$2|1 subcategoría|$2 subcategorías}}, {{PLURAL:$3|1 fichero|$3 ficheros}})',
 'search-result-score'              => 'Relevancia: $1%',
 'search-redirect'                  => '(redirige desde $1)',
 'search-section'                   => '(sección $1)',
@@ -1608,6 +1609,9 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'upload_directory_missing'    => 'El directorio de subida de archivos ($1) no existe, y no puede ser creado por el servidor.',
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
+'upload-recreate-warning'     => "''Atención: Un archivo con ese nombre ha sido eliminado o renombrado.'''
+
+Para su conveniencia se muestra aquí el registro de supresiones y traslados de esta página:",
 'uploadtext'                  => "Utiliza el siguiente formulario para subir archivos.
 Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:FileList|lista de archivos subidos]].
 Los archivos subidos quedarán registrados además en el [[Special:Log/upload|registro de archivos subidos]] y los borrados en el [[Special:Log/delete|registro de borrados]].
