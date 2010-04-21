@@ -640,7 +640,7 @@ class Preferences {
 	}
 
 	static function editingPreferences( $user, &$defaultPreferences ) {
-		global $wgUseExternalEditor, $wgLivePreview, $wgAllowUserCssPrefs;
+		global $wgUseExternalEditor, $wgAllowUserCssPrefs;
 
 		## Editing #####################################
 		$defaultPreferences['cols'] = array(
@@ -729,13 +729,12 @@ class Preferences {
 			'label-message' => 'tog-forceeditsummary',
 		);
 
-		if ( $wgLivePreview ) {
-			$defaultPreferences['uselivepreview'] = array(
-				'type' => 'toggle',
-				'section' => 'editing/advancedediting',
-				'label-message' => 'tog-uselivepreview',
-			);
-		}
+				
+		$defaultPreferences['uselivepreview'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/advancedediting',
+			'label-message' => 'tog-uselivepreview',
+		);
 	}
 
 	static function rcPreferences( $user, &$defaultPreferences ) {
