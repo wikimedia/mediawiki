@@ -241,7 +241,7 @@ class SpecialUpload extends SpecialPage {
 		# Note that this is independent from the message 'filewasdeleted' that requires JS
 		$desiredTitleObj = Title::newFromText( $this->mDesiredDestName, NS_FILE );
 		$delNotice = ''; // empty by default
-		if ( !$desiredTitleObj->exists() ) {
+		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
 			LogEventsList::showLogExtract( &$delNotice, array( 'delete', 'move' ), 
 				$desiredTitleObj->getPrefixedText(),
 				'', array( 'lim' => 10,
