@@ -26,7 +26,7 @@ function doLivePreview( e ) {
 		target = window.location.href;
 	}
 	
-	page.load( target, postData,
+	page.load( target + ' ' + copySelector, postData,
 		function() {
 			
 			for( var i=0; i<copyElements.length; ++i) {
