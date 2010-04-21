@@ -49,6 +49,8 @@ further.
 * (bug 23117) Fixed API rollback, was returning "badtoken" for valid requests
 * (bug 23127) Re-added missing $1 parameter to the uploadtext message
 * Fixed a bug in the Vector skin where personal tools display behind the logo
+* (bug 23139) Fixed a bug in edit conflict resolution, where both textboxes 
+  showed the same text.
 
 === Changes since 1.16 beta 1 ===
 
