@@ -45,6 +45,7 @@ further.
 * Fixed bugs in the [[Special:Userlogin]] and [[Special:Emailuser]] handling of
   invalid usernames.
 * Fixed sorting in [[Special:Allmessages]]
+* (bug 23113) Fixed title in the show/hide links on diff pages
 
 === Changes since 1.16 beta 1 ===
 
