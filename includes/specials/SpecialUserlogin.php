@@ -453,7 +453,7 @@ class LoginForm {
 		# TODO: Allow some magic here for invalid external names, e.g., let the
 		# user choose a different wiki name.
 		$u = User::newFromName( $this->mName );
-		if( is_null( $u ) || !User::isUsableName( $u->getName() ) ) {
+		if( !( $u instanceof User ) || !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
 		}
 
@@ -708,7 +708,7 @@ class LoginForm {
 			return;
 		}
 		$u = User::newFromName( $this->mName );
-		if( is_null( $u ) ) {
+		if( !$u instanceof User ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
 		}
