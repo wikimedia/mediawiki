@@ -83,15 +83,6 @@ $ourdb['sqlite'] = array(
 	'serverless' =>  true
 );
 
-$ourdb['mssql'] = array(
-	'fullname'   => 'MSSQL',
-	'havedriver' => 0,
-	'compile'    => 'mssql_not_ready', # Change to 'mssql' after includes/DatabaseMssql.php added;
-	'bgcolor'    => '#ffc0cb',
-	'rootuser'   => 'administrator',
-	'serverless' => false
-);
-
 $ourdb['ibm_db2'] = array(
 	'fullname'   => 'DB2',
 	'havedriver' => 0,
@@ -639,10 +630,6 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	## SQLite specific
 	$conf->SQLiteDataDir = importPost( "SQLiteDataDir", "$IP/../data" );
 
-	## MSSQL specific
-	// We need a second field so it doesn't overwrite the MySQL one
-	$conf->DBprefix2 = importPost( "DBprefix2" );
-
 	## DB2 specific:
 	// New variable in order to have a different default port number
 	$conf->DBport_db2   = importPost( "DBport_db2",      "50000" );
@@ -831,10 +818,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$wgDBmwschema = $conf->DBdb2schema;
 		}
 
-		if( $conf->DBprefix2 != '' ) {
-			// For MSSQL
-			$wgDBprefix = $conf->DBprefix2;
-		} elseif( $conf->DBprefix_ora != '' ) {
+		if( $conf->DBprefix_ora != '' ) {
 			// For Oracle
 			$wgDBprefix = $conf->DBprefix_ora;
 		}
@@ -1659,19 +1643,6 @@ if( count( $errs ) ) {
 	</div>
 	</fieldset>
 
-	<?php database_switcher('mssql'); ?>
-	<div class="config-input"><?php
-		aField( $conf, "DBprefix2", "Database table prefix:" );
-	?></div>
-	<div class="config-desc">
-		<p>If you need to share one database between multiple wikis, or
-		between MediaWiki and another web application, you may choose to
-		add a prefix to all the table names to avoid conflicts.</p>
-
-		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
-	</div>
-	</fieldset>
-
 	<?php database_switcher('ibm_db2'); ?>
 	<div class="config-input"><?php
 		aField( $conf, "DBport_db2", "Database port:" );
@@ -1873,10 +1844,6 @@ function writeLocalSettings( $conf ) {
 		$dbsettings =
 "# SQLite-specific settings
 \$wgSQLiteDataDir    = \"{$sqliteDataDir}\";";
-	} elseif( $conf->DBtype == 'mssql' ) {
-		$dbsettings =
-"# MSSQL specific settings
-\$wgDBprefix         = \"{$slconf['DBprefix2']}\";";
 	} elseif( $conf->DBtype == 'ibm_db2' ) {
 		$dbsettings =
 "# DB2 specific settings
