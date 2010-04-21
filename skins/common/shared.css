@@ -109,6 +109,10 @@ td.mw-submit { white-space: nowrap; }
 
 table.mw-htmlform-nolabel td.mw-label { width: 0 !important; }
 
+input#wpSummary {
+	width: 80%;
+}
+
 /**
  * Image captions
  */
