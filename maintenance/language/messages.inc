@@ -1189,6 +1189,7 @@ $wgMessageStructure = array(
 		'upload_directory_read_only',
 		'uploaderror',
 		'upload-summary',
+		'upload-recreate-warning',
 		'uploadtext',
 		'upload-permitted',
 		'upload-preferred',
