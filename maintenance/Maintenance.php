@@ -644,9 +644,7 @@ abstract class Maintenance {
 		}
 
 		$wgShowSQLErrors = true;
-		wfSuppressWarnings();
-		set_time_limit( 0 );
-		wfRestoreWarnings();
+		@set_time_limit( 0 );
 		ini_set( 'memory_limit', $this->memoryLimit() );
 
 		$wgProfiling = false; // only for Profiler.php mode; avoids OOM errors
