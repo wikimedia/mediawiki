@@ -799,15 +799,6 @@ class Article {
 			wfIncrStats( 'pcache_miss_stub' );
 		}
 
-		# For the main page, overwrite the <title> element with the con-
-		# tents of 'pagetitle-view-mainpage' instead of the default (if
-		# that's not empty).
-		if ( $this->mTitle->equals( Title::newMainPage() )
-			&& ( $m = wfMsgForContent( 'pagetitle-view-mainpage' ) ) !== '' )
-		{
-			$wgOut->setHTMLTitle( $m );
-		}
-
 		$wasRedirected = $this->showRedirectedFromHeader();
 		$this->showNamespaceHeader();
 
@@ -815,6 +806,7 @@ class Article {
 		# Keep going until $outputDone is set, or we run out of things to do.
 		$pass = 0;
 		$outputDone = false;
+		$this->mParserOutput = false;
 		while ( !$outputDone && ++$pass ) {
 			switch( $pass ) {
 				case 1:
@@ -921,6 +913,23 @@ class Article {
 				default:
 					break 2;
 			}
+		}
+
+		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
+		if ( $this->mParserOutput ) {
+			$titleText = $this->mParserOutput->getTitleText();
+			if ( strval( $titleText ) !== '' ) {
+				$wgOut->setPageTitle( $titleText );
+			}
+		}
+
+		# For the main page, overwrite the <title> element with the con-
+		# tents of 'pagetitle-view-mainpage' instead of the default (if
+		# that's not empty).
+		if ( $this->mTitle->equals( Title::newMainPage() )
+			&& ( $m = wfMsgForContent( 'pagetitle-view-mainpage' ) ) !== '' )
+		{
+			$wgOut->setHTMLTitle( $m );
 		}
 
 		# Now that we've filled $this->mParserOutput, we know whether

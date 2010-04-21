@@ -305,7 +305,7 @@ class Parser
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgUser, $wgRequest, $wgDisableTitleConversion;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgDisableTitleConversion;
 		$fname = __METHOD__.'-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -379,16 +379,16 @@ class Parser
 		 */
 		if ( !( $wgDisableLangConversion
 				|| $wgDisableTitleConversion
-				|| $wgRequest->getText( 'redirect', 'yes' ) == 'no'
-				|| $wgRequest->getText( 'linkconvert', 'yes' ) == 'no'
 				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
 				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
-				|| $wgUser->getOption( 'noconvertlink' ) == 1 ) ) {
+				|| $this->mOutput->getDisplayTitle() !== false ) ) 
+		{
 			$convruletitle = $wgContLang->getConvRuleTitle();
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$this->mOutput->setTitleText( $wgContLang->convert( $title->getPrefixedText(), true ) );
+				$titleText = $wgContLang->convertTitle( $title );
+				$this->mOutput->setTitleText( $titleText );
 			}
 		}
 
