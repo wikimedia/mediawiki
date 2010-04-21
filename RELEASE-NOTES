@@ -46,6 +46,7 @@ further.
   invalid usernames.
 * Fixed sorting in [[Special:Allmessages]]
 * (bug 23113) Fixed title in the show/hide links on diff pages
+* (bug 23117) Fixed API rollback, was returning "badtoken" for valid requests
 
 === Changes since 1.16 beta 1 ===
 
