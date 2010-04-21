@@ -707,6 +707,9 @@ blockquote {
 	font-family: Times, "Times New Roman", serif;
 	font-style: italic;
 }*/
+pre, code, tt {
+	font-family: monospace, sans-serif;
+}
 code {
 	background-color: #f9f9f9;
 }
@@ -715,7 +718,6 @@ pre {
 	border: 1px dashed #2f6fab;
 	color: black;
 	background-color: #f9f9f9;
-	font-size: 1.25em;
 	line-height: 1.1em;
 }
 ul {
