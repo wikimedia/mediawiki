@@ -53,6 +53,8 @@ further.
   showed the same text.
 * (bug 23115, bug 23124) Fixed various problems with <title> and <h1> elements
   in page views and previews when the language converter is enabled.
+* (bug 23148) Fixed a local path disclosure vulnerability in ImageMagick image
+  scaling, which was introduced in 1.16 beta 1. 
 
 === Changes since 1.16 beta 1 ===
 
