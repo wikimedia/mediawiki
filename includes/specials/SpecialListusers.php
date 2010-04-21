@@ -120,6 +120,9 @@ class UsersPager extends AlphabeticPager {
 	function formatRow( $row ) {
 		global $wgLang;
 
+		if ($row->user_id == 0) #Bug 16487
+			return '';
+
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
 		$name = $this->getSkin()->link( $userPage, htmlspecialchars( $userPage->getText() ) );
 
