@@ -169,7 +169,7 @@ $messages = array(
 'index-category'                 => 'Indeksētās lapas',
 'noindex-category'               => 'Neindeksētās lapas',
 
-'mainpagetext'      => "<big>'''MediaWiki veiksmīgi ieinstalēts'''</big>",
+'mainpagetext'      => "'''MediaWiki veiksmīgi ieinstalēts'''",
 'mainpagedocfooter' => 'Izlasi [http://meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.
 
 == Pirmie soļi ==
@@ -369,6 +369,7 @@ Tas parasti notiek novecojušu saišu gadījumā: pieprasot izmaiņas vai hronol
 
 Ja lapai ir jābūt, tad, iespējams, ir kļūda programmā.
 Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot arī URL.',
+'missingarticle-rev'   => '(Pārskatīšana #: $1)',
 'missingarticle-diff'  => '(Salīdz.: $1, $2)',
 'internalerror'        => 'Iekšēja kļūda',
 'internalerror_info'   => 'Iekšējā kļūda: $1',
@@ -479,6 +480,7 @@ Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt 
 
 # Password reset dialog
 'resetpass'                 => 'Mainīt paroli',
+'resetpass_header'          => 'Mainīt konta paroli',
 'oldpassword'               => 'Vecā parole',
 'newpassword'               => 'Jaunā parole',
 'retypenew'                 => 'Atkārto jauno paroli',
@@ -528,7 +530,7 @@ Ja tu vēlreiz uzspiedīsi uz Saglabāt, tavas izmaiņas tiks saglabātas bez t�
 'summary-preview'               => 'Kopsavilkuma pirmskats:',
 'subject-preview'               => 'Kopsavilkuma/virsraksta pirmskats:',
 'blockedtitle'                  => 'Lietotājs ir bloķēts.',
-'blockedtext'                   => "<big>'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''</big>
+'blockedtext'                   => "'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''
 
 \$1 nobloķēja tavu lietotāja vārdu vai IP adresi.
 Bloķējot norādītais iemesls bija: ''\$2''.
@@ -709,12 +711,17 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'rev-deleted-event'          => '(reģistra ieraksts nodzēsts)',
 'rev-delundel'               => 'rādīt/slēpt',
 'rev-showdeleted'            => 'parādīt',
+'revisiondelete'             => 'Dzēst / atjaunot versijas',
 'revdelete-nooldid-title'    => 'Nederīga mērķa versija',
 'revdelete-nologtype-title'  => 'Nav dots reģistra veids.',
 'revdelete-nologid-title'    => 'Nederīgs reģistra ieraksts',
 'revdelete-show-file-submit' => 'Jā',
 'revdelete-hide-text'        => 'Paslēpt versijas tekstu',
 'revdelete-hide-image'       => 'Paslēpt faila saturu',
+'revdelete-radio-same'       => '(nemainīt)',
+'revdelete-radio-set'        => 'Jā',
+'revdelete-radio-unset'      => 'Nē',
+'revdelete-log'              => 'Dzēšanas iemesls:',
 'revdel-restore'             => 'mainīt redzamību',
 'pagehist'                   => 'Lapas vēsture',
 'revdelete-content'          => 'saturs',
@@ -1521,7 +1528,7 @@ Vai nu tu šeit esi nonācis lietojot kļūdainu saiti, vai arī šī versija ja
 'undeletedfiles'           => '{{PLURAL:$1|1 fails atjaunots|$1 faili atjaunoti}}',
 'cannotundelete'           => 'Atjaunošana neizdevās;
 kāds cits iespējams to ir atjaunojis ātrāk.',
-'undeletedpage'            => "<big>'''$1 tika atjaunots'''</big>
+'undeletedpage'            => "'''$1 tika atjaunots'''
 
 [[Special:Log/delete|Dzēšanas reģistrā]] ir informācija par pēdējām dzēšanām un atjaunošanām.",
 
@@ -1682,7 +1689,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'move-watch'              => 'Uzraudzīt šo lapu',
 'movepagebtn'             => 'Pārvietot lapu',
 'pagemovedsub'            => 'Pārvietošana notikusi veiksmīgi',
-'movepage-moved'          => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>',
+'movepage-moved'          => '\'\'\'"$1" tika pārvietots uz "$2"\'\'\'',
 'movepage-moved-redirect' => 'Tika izveidota pāradresācija.',
 'articleexists'           => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'cantmove-titleprotected' => 'Tu nevari pārvietot lapu uz šo nosaukumu, tāpēc, ka jaunais nosaukums (lapa) ir aizsargāta pret izveidošanu',

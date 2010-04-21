@@ -176,7 +176,7 @@ $messages = array(
 'hidden-category-category' => 'Nā mahele hūnā',
 'listingcontinuesabbrev'   => '(ho‘omau ‘ia)',
 
-'mainpagetext' => "<big>'''Ua pono ka ho‘ouka ‘ana o MediaWiki.'''</big>",
+'mainpagetext' => "'''Ua pono ka ho‘ouka ‘ana o MediaWiki.'''",
 
 'about'         => 'E pili ana',
 'cancel'        => 'Ho‘ōki',
@@ -711,7 +711,7 @@ E ʻike iā $2 no ka papa o nā kāpae ʻana hou.',
 'move-watch'              => 'E nānā pono i kēia mea',
 'movepagebtn'             => 'Hoʻoneʻe i ka ʻaoʻao',
 'pagemovedsub'            => 'Kūleʻa ka hoʻoneʻe ʻana',
-'movepage-moved'          => '<big>\'\'\'Ua hoʻoneʻe ʻia ʻo "$1" iā "$2"\'\'\'</big>',
+'movepage-moved'          => '\'\'\'Ua hoʻoneʻe ʻia ʻo "$1" iā "$2"\'\'\'',
 '1movedto2'               => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'movereason'              => 'Kumu:',
 'delete_and_move'         => 'E kāpae a e ho‘ololi i ka inoa',

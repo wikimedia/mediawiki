@@ -22,6 +22,8 @@ $messages = array(
 'tog-newpageshidepatrolled' => 'Nascònd al pàgin verifichèdi da la lèsta dal pàgin növi',
 'tog-extendwatchlist'       => "Slèrga la funziòn \"tènn sot occ\" d'mod ch'us pòsa avdé toti al mudefchi, no sol l'ultma.",
 'tog-usenewrc'              => "Drova agl'j ultmi mudèfchi avanzëdi (u j vô JavaScript)",
+'tog-numberheadings'        => "Titul d'paràgraf<br/>chi à un nòmar daparlò",
+'tog-showtoolbar'           => "Fam avdé la bara d'j strumént (u j vó JavaScript)",
 
 # Dates
 'january'       => 'Znèr',
@@ -529,7 +531,7 @@ In tot sti chès, s'et pazienzia, t'pù spustè a man tot quel c'u j è scrètt 
 'move-watch'       => "Ten sot'öcc sta pàgina",
 'movepagebtn'      => 'Sposta la pàgina',
 'pagemovedsub'     => "T'cì ste brev! T'a j é fata.",
-'movepage-moved'   => "<big>'''\"\$1\" l'à cambié post a \"\$2\"'''</big>",
+'movepage-moved'   => "'''\"\$1\" l'à cambié post a \"\$2\"'''",
 'articleexists'    => "La j è za una pàgina ch'la s-cjama acsè. O e nom ch'ta j e dë un va brisa ben.
 Par piaser, daij un ètar nom.",
 'talkexists'       => "'''La pàgina l'è stëda spusteda ben, invezi la pàgina d'cunversaziòn l'è andëda a cuzè cun òna ch'l'à ê stes nom. Csa fasègna?

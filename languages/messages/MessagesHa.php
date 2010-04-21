@@ -591,7 +591,7 @@ A waɗannan halaye, dole ku gusar ko ku game shafin da hannu, idan kuna so.",
 'move-watch'       => 'Bin sawun wannan shafi',
 'movepagebtn'      => 'Gusar da shafin',
 'pagemovedsub'     => 'Gusarwa ta cika',
-'movepage-moved'   => '<big>\'\'\'"$1" an gusar da shi zuwa "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" an gusar da shi zuwa "$2"\'\'\'',
 'articleexists'    => 'Akwai wani shafi mai wannan suna, koko sunan da kuka zaɓa ba shi da tasiri.
 Don Allah ku zaɓi wani suna.',
 'talkexists'       => "'''An gusar da shafin shi kansa, amma an kasa gusar da dangantaccen shafin muhawarar, don akwai wani sahfin mai amfani da sunansa.

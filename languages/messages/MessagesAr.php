@@ -545,7 +545,7 @@ $messages = array(
 'index-category'                 => 'صفحات مفهرسة',
 'noindex-category'               => 'صفحات غير مفهرسة',
 
-'mainpagetext'      => "<big>'''تم تثبيت ميدياويكي بنجاح.'''</big>",
+'mainpagetext'      => "'''تم تثبيت ميدياويكي بنجاح.'''",
 'mainpagedocfooter' => 'استشر [http://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.
 
 == البداية ==
@@ -975,7 +975,7 @@ $2',
 'summary-preview'                  => 'معاينة الملخص:',
 'subject-preview'                  => 'معاينة للموضوع/العنوان:',
 'blockedtitle'                     => 'المستخدم ممنوع',
-'blockedtext'                      => "<big>'''اسم المستخدم أو عنوان الأيبي الخاص بك تم منعه.'''</big>
+'blockedtext'                      => "'''اسم المستخدم أو عنوان الأيبي الخاص بك تم منعه.'''
 
 قام بالمنع $1.
 سبب المنع هو: ''$2''.
@@ -1443,7 +1443,7 @@ $1",
 'prefs-watchlist-edits-max'     => 'العدد الأقصى: 1000',
 'prefs-watchlist-token'         => 'مفتاح قائمة المراقبة:',
 'prefs-misc'                    => 'متفرقات',
-'prefs-resetpass'               => 'غير كلمة السر',
+'prefs-resetpass'               => 'غيّر كلمة السر',
 'prefs-email'                   => 'خيارات البريد الإلكتروني',
 'prefs-rendering'               => 'المظهر',
 'saveprefs'                     => 'احفظ',
@@ -2145,7 +2145,7 @@ PICT # متنوع
 'alphaindexline'    => '$1 إلى $2',
 'nextpage'          => 'الصفحة التالية ($1)',
 'prevpage'          => 'الصفحة السابقة ($1)',
-'allpagesfrom'      => 'عرض الصفحات بدءا من:',
+'allpagesfrom'      => 'اعرض الصفحات بدءا من:',
 'allpagesto'        => 'اعرض الصفحات المنتهية عند:',
 'allarticles'       => 'كل الصفحات',
 'allinnamespace'    => 'كل الصفحات (في نطاق $1)',
@@ -2183,8 +2183,8 @@ PICT # متنوع
 'linksearch-error' => 'الكروت الخاصة يمكن أن تظهر فقط في بداية اسم المضيف.',
 
 # Special:ListUsers
-'listusersfrom'      => 'عرض المستخدمين بدءا من:',
-'listusers-submit'   => 'عرض',
+'listusersfrom'      => 'اعرض المستخدمين بدءا من:',
+'listusers-submit'   => 'اعرض',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 'listusers-blocked'  => '({{GENDER:$1|ممنوع|ممنوعة}})',
 
@@ -2193,8 +2193,8 @@ PICT # متنوع
 'activeusers-intro'      => 'هذه قائمة بالمستخدمين الذين مارسوا نوعًا من النشاط خلال {{PLURAL:$1||اليوم الماضي|اليومين الماضيين|ال$1 أيام الماضية|ال$1 يومًا ماضيًا|ال$1 يوم ماضي}}.',
 'activeusers-count'      => '{{PLURAL:$1|لا تعديلات حديثة|تعديل حديث واحد|تعديلان حديثان|$1 تعديلات حديثة|$1 تعديلًا حديثًا|$1 تعديل حديث}} في {{PLURAL:$3||اليوم الماضي|اليومين الماضيين|$3 أيام ماضية|$3 يومًا ماضية|ال$1 يوم ماضي}}',
 'activeusers-from'       => 'اعرض المستخدمين بدءًا من:',
-'activeusers-hidebots'   => 'أخف البوتات',
-'activeusers-hidesysops' => 'أخف الإداريين',
+'activeusers-hidebots'   => 'أخفِ البوتات',
+'activeusers-hidesysops' => 'أخفِ الإداريين',
 'activeusers-noresult'   => 'لا مستخدمون تم إيجادهم.',
 
 # Special:Log/newusers
@@ -2475,7 +2475,7 @@ $NEWPAGE
 'undeletedfiles'               => '{{PLURAL:$1|ملف|ملفات}} $1 تم استرجاع',
 'cannotundelete'               => 'فشل الاسترجاع؛
 ربما قام شخص آخر باسترجاع الصفحة بالفعل.',
-'undeletedpage'                => "<big>'''تم استرجاع $1'''</big>
+'undeletedpage'                => "'''تم استرجاع $1'''
 
 راجع [[Special:Log/delete|سجل الحدف]] لمعاينة عمليات الحذف والاسترجاعات الحديثة.",
 'undelete-header'              => 'انظر الصفحات المحذوفة حديثا في [[Special:Log/delete|سجل الحذف]].',
@@ -2715,7 +2715,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'move-watch'                   => 'راقب هذه الصفحة',
 'movepagebtn'                  => 'انقل الصفحة',
 'pagemovedsub'                 => 'تم النقل بنجاح',
-'movepage-moved'               => '<big>\'\'\'"$1" تم نقلها إلى "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" تم نقلها إلى "$2"\'\'\'',
 'movepage-moved-redirect'      => 'تم إنشاء تحويلة.',
 'movepage-moved-noredirect'    => 'إنشاء التحويلة تم التغاضي عنه.',
 'articleexists'                => 'توجد صفحة بهذا الاسم، أو أن الاسم الذي تم اختياره غير صالح.
@@ -3639,7 +3639,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'مسار ملف',
 'filepath-page'    => 'الملف:',
-'filepath-submit'  => 'المسار',
+'filepath-submit'  => 'اذهب',
 'filepath-summary' => 'هذه الصفحة الخاصة تعرض المسار الكامل لملف.
 ستعرض الصور بأقصى دقة، ستعمل أنواع الملفات الأخرى بالبرنامج المخصص لهم مباشرة.
 

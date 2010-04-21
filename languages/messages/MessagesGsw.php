@@ -245,7 +245,7 @@ $messages = array(
 'index-category'                 => 'Verzeichneti Syte',
 'noindex-category'               => 'Syte wu nit verzeichnet sin',
 
-'mainpagetext'      => "<big>'''MediaWiki isch erfolgrich inschtalliert worre.'''</big>",
+'mainpagetext'      => "'''MediaWiki isch erfolgrich inschtalliert worre.'''",
 'mainpagedocfooter' => 'Lueg uf d [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle.',
 
 'about'         => 'Über',
@@ -655,17 +655,19 @@ Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagford
 'summary-preview'                  => 'Vorschou vor Zämefassig:',
 'subject-preview'                  => 'Vorschau vum Betreff:',
 'blockedtitle'                     => 'Benutzer isch gsperrt.',
-'blockedtext'                      => "<big>'''Dy Benutzernamen oder dyni IP-Adrässen isch gsperrt worde.'''</big>
+'blockedtext'                      => "'''Dyy Benutzername oder Dyyni IP-Adräss isch gsperrt wore.'''
 
-Du chasch $1 oder en anderen [[{{MediaWiki:Grouppage-sysop}}|Administrator]] kontaktiere, für die Sperrig z diskutiere. Vergis i däm Fall bitte keni vo de folgenden Agabe:
+D Sperrig isch vu $1 uusgfiert wore.
+As Grund isch ''$2'' aagee wore.
 
-*Administrator, wo het gsperrt: $1
-*Grund für d Sperrig: $2
-*Afang vor Sperrig: $8
-*Ändi vor Sperrig: $6
-*IP-Adrässe: $3
-*Sperrig betrifft: $7
-*ID vor Sperrig: #$5",
+* Aafang vu dr Sperrig: $8
+* Ändi vu dr Sperrig: $6
+* Sperrig betrifft: $7
+
+Du chasch $1 oder e andere [[{{MediaWiki:Grouppage-sysop}}|Ammann]] kontaktiere go dischpetiere iber die Sperrig.
+Du chasch d „E-Mail an dää Benutzer“-Funktion nit bruche, solang kei giltigi E-Mail-Adräss in Dyyne [[Special:Preferences|Benutzerkonto-Yystellige]] yydrait isch, oder solang die Funktion fir Di gsperrt isch.
+Dyy aktuälli IP-Adräss isch $3, un d Sperr-ID isch #$5.
+Bitte fieg in jedi Aafrog, wu du stellsch, alli Information yy.",
 'autoblockedtext'                  => 'Dyyni IP-Adräss isch automatisch gsperrt wore, wel si vu me andere Benutzer brucht woren isch, wu dur $1 gsperrt woren isch.
 As Grund isch aagee wore:
 
@@ -2295,7 +2297,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'move-watch'                   => 'Die Syte beobachte',
 'movepagebtn'                  => 'Artikel verschiebe',
 'pagemovedsub'                 => 'Verschiebig erfolgrych',
-'movepage-moved'               => '<big>\'\'\'"$1" isch verschobe wore uf "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" isch verschobe wore uf "$2"\'\'\'',
 'movepage-moved-redirect'      => 'E Wyterleitig isch aagleit wore.',
 'movepage-moved-noredirect'    => 'D Erstellig vonere Wyterleitig isch unterdruggt worde.',
 'articleexists'                => 'E Syte mit däm Name git s scho oder de Name isch nid giltig. Bitte nimm en andere.',
@@ -3057,7 +3059,7 @@ Du chasch au d [[Special:Watchlist/edit|Standard-Bearbeitigssyte]] bruuche.',
 # Special:FilePath
 'filepath'         => 'Dateipfad',
 'filepath-page'    => 'Datei:',
-'filepath-submit'  => 'Pfad sueche',
+'filepath-submit'  => 'Gang',
 'filepath-summary' => 'Mit däre Spezialsyte losst sich dr komplett Pfad vu dr aktuälle Version vun ere Datei ohni Umwäg abfroge. Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gstartet.
 
 D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',

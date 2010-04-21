@@ -251,7 +251,7 @@ $messages = array(
 'index-category'                 => 'Indexatutako orrialdeak',
 'noindex-category'               => 'Indexatugabeko orrialdeak',
 
-'mainpagetext'      => "<big>'''MediaWiki arrakastaz instalatu da.'''</big>",
+'mainpagetext'      => "'''MediaWiki arrakastaz instalatu da.'''",
 'mainpagedocfooter' => 'Ikus [http://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.
 
 == Nola hasi ==
@@ -665,7 +665,7 @@ Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat
 'summary-preview'                  => 'Laburpenaren aurreikuspena:',
 'subject-preview'                  => 'Gaia/Izenburuaren aurreikuspena:',
 'blockedtitle'                     => 'Erabiltzailea blokeatuta dago',
-'blockedtext'                      => "<big>'''Zure lankide izena edo IP helbidea blokeaturik dago'''</big>
+'blockedtext'                      => "'''Zure lankide izena edo IP helbidea blokeaturik dago'''
 Blokeoa $1(e)k egin zuen.
 Emandako arrazoia ''$2'' da.
 
@@ -2020,7 +2020,7 @@ In such cases, you must uncheck or unhide the newest deleted revision.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|berrikuspen|berrikuspen}} eta {{PLURAL:$2|fitxategi|fitxategi}} leheneratu dira',
 'undeletedfiles'               => '{{PLURAL:$1|fitxategi|fitxategi}} leheneratu dira',
 'cannotundelete'               => 'Errorea birsortzerakoan; baliteke beste norbaitek lehenago birsortu izana.',
-'undeletedpage'                => "<big>'''$1 leheneratu egin da'''</big>
+'undeletedpage'                => "'''$1 leheneratu egin da'''
 
 [[Special:Log/delete|Ezabaketa erregistrora]] jo azken ezabaketa eta leheneraketak ikusteko.",
 'undelete-header'              => 'Berriki ezabatutako orrialdeak ikusteko [[Special:Log/delete|ezabaketa erregistrora]] jo.',
@@ -2244,7 +2244,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'move-watch'                   => 'Orrialde hau jarraitu',
 'movepagebtn'                  => 'Orrialde mugitu',
 'pagemovedsub'                 => 'Mugimendua eginda',
-'movepage-moved'               => '<big>\'\'\'"$1" "$2"(e)ra mugitu da\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" "$2"(e)ra mugitu da\'\'\'',
 'movepage-moved-redirect'      => 'Birzuzenketa orrialde bat sortu da.',
 'movepage-moved-noredirect'    => 'Birzuzenketa baten sorrera kendu da.',
 'articleexists'                => 'Izen hori duen artikulu bat badago edo hautatutako izena ez da baliozkoa. Mesedez, beste izen bat aukeratu.',

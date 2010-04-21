@@ -46,13 +46,17 @@ $messages = array(
 'navigation' => 'Анавигациа',
 
 # Cologne Blue skin
+'qbfind'         => 'Аҧшаара',
 'qbedit'         => 'Ариашара',
 'qbpageoptions'  => 'Ари адаҟьа',
 'qbspecialpages' => 'Цастәи адаҟьақәа',
 
 # Vector skin
 'vector-namespace-category' => 'Акатегориа',
+'vector-namespace-help'     => 'Ацхыраара адаҟьа',
+'vector-namespace-image'    => 'Афаил',
 'vector-namespace-main'     => 'Адаҟьа',
+'vector-namespace-project'  => 'Апроект',
 'vector-namespace-special'  => 'Цастәи адаҟьа',
 'vector-namespace-talk'     => 'Ахцәажәара',
 'vector-namespace-template' => 'Ашаблон',
@@ -73,6 +77,7 @@ $messages = array(
 'permalink'        => 'Еисымшатәи ахьарҧш',
 'edit'             => 'Ариашамҭа',
 'create'           => 'Арҿиара',
+'newpage'          => 'Адаҟьа Ҿыц',
 'talkpagelinktext' => 'Ахцәажәара',
 'specialpage'      => 'Цастәи адаҟьа',
 'talk'             => 'Ахцәажәара',
@@ -97,6 +102,7 @@ $messages = array(
 'nstab-main'     => 'Адаҟьа',
 'nstab-user'     => 'Иалахә',
 'nstab-special'  => 'Цастәи адаҟьа',
+'nstab-image'    => 'Афаил',
 'nstab-template' => 'Ашаблон',
 'nstab-help'     => 'Ацхыраара',
 'nstab-category' => 'Акатегориа',
@@ -121,7 +127,7 @@ $messages = array(
 'group-user-member' => 'Иалахә',
 
 # Recent changes
-'recentchanges' => 'Аҽыц риашарақәа',
+'recentchanges' => 'Арҽеира ҿыцқәа',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Еимадоу ариашарақәа',
@@ -171,5 +177,8 @@ $messages = array(
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Аҧшаара',
+
+# Special:SpecialPages
+'specialpages' => 'Цастәи адаҟьақәа',
 
 );

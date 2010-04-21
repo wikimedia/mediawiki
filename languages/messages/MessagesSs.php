@@ -75,7 +75,7 @@ $messages = array(
 'index-category'           => 'Makhasi lacokelelwe',
 'noindex-category'         => 'Makhasi lasabalele',
 
-'mainpagetext' => "<big>'''i-MediaWiki seyifakeke ngalokuphelele.'''</big>",
+'mainpagetext' => "'''i-MediaWiki seyifakeke ngalokuphelele.'''",
 
 'about'         => 'Kabanti',
 'article'       => 'Likhasi lentfo',

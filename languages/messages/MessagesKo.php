@@ -395,7 +395,7 @@ $messages = array(
 'index-category'                 => '색인된 문서',
 'noindex-category'               => '색인에서 제외되는 문서',
 
-'mainpagetext'      => "<big>'''미디어위키가 성공적으로 설치되었습니다.'''</big>",
+'mainpagetext'      => "'''미디어위키가 성공적으로 설치되었습니다.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
 
 == 시작하기 ==
@@ -798,7 +798,7 @@ $2',
 'summary-preview'                  => '편집 요약 미리 보기:',
 'subject-preview'                  => '주제/제목 미리 보기:',
 'blockedtitle'                     => '차단됨',
-'blockedtext'                      => "<big>'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''</big>
+'blockedtext'                      => "'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''
 
 차단한 사람은 $1이고, 차단한 이유는 다음과 같습니다: $2
 
@@ -2240,7 +2240,7 @@ $NEWPAGE
 'undeletedfiles'               => '파일 $1개를 복구했습니다',
 'cannotundelete'               => '복구에 실패했습니다.
 다른 사용자가 이미 복구했을 수도 있습니다.',
-'undeletedpage'                => "<big>'''$1 문서가 복구되었습니다.'''</big>
+'undeletedpage'                => "'''$1 문서가 복구되었습니다.'''
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
 'undelete-header'              => '최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
@@ -2469,7 +2469,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-watch'                   => '이 문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
-'movepage-moved'               => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'',
 'movepage-moved-redirect'      => '넘겨주기 문서를 만들었습니다.',
 'movepage-moved-noredirect'    => '넘겨주기 문서를 만들지 못했습니다.',
 'articleexists'                => '문서가 이미 존재하거나 이름이 올바르지 않습니다.
@@ -3263,7 +3263,7 @@ $1',
 # Special:FilePath
 'filepath'         => '파일 경로',
 'filepath-page'    => '파일:',
-'filepath-submit'  => '경로',
+'filepath-submit'  => '가기',
 'filepath-summary' => '파일의 실제 URL 주소를 엽니다.
 그림 파일일 경우 원본 해상도의 파일이 열립니다. 다른 종류의 파일일 경우 그 파일의 종류에 맞는 프로그램이 실행됩니다.
 

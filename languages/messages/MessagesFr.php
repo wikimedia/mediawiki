@@ -464,7 +464,7 @@ $messages = array(
 'index-category'                 => 'Pages indexées',
 'noindex-category'               => 'Pages non indexées',
 
-'mainpagetext'      => "<big>'''MediaWiki a été installé avec succès.'''</big>",
+'mainpagetext'      => "'''MediaWiki a été installé avec succès.'''",
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
 
 == Démarrer avec MediaWiki ==
@@ -880,7 +880,7 @@ Si vous cliquez de nouveau sur « {{MediaWiki:Savearticle}} », votre modificati
 'summary-preview'                  => 'Aperçu du résumé :',
 'subject-preview'                  => 'Prévisualisation du sujet/titre :',
 'blockedtitle'                     => 'L’utilisateur est bloqué.',
-'blockedtext'                      => "<big>'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''</big>
+'blockedtext'                      => "'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''
 
 Le blocage a été effectué par $1.
 La raison invoquée est la suivante : ''$2''.
@@ -1442,12 +1442,12 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'group-suppress'      => 'Superviseurs',
 'group-all'           => 'Tous',
 
-'group-user-member'          => 'Utilisateur',
-'group-autoconfirmed-member' => 'Utilisateur enregistré',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrateur',
-'group-bureaucrat-member'    => 'Bureaucrate',
-'group-suppress-member'      => 'Superviseur',
+'group-user-member'          => 'utilisateur',
+'group-autoconfirmed-member' => 'utilisateur enregistré',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrateur',
+'group-bureaucrat-member'    => 'bureaucrate',
+'group-suppress-member'      => 'superviseur',
 
 'grouppage-user'          => '{{ns:project}}:Utilisateurs',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilisateurs enregistrés',
@@ -2337,7 +2337,7 @@ Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou sup
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichier restauré|fichiers restaurés}}',
 'cannotundelete'               => 'La restauration a échoué ;
 un autre utilisateur a probablement déjà restauré la page.',
-'undeletedpage'                => "<big>'''La page $1 a été restaurée.'''</big>
+'undeletedpage'                => "'''La page $1 a été restaurée.'''
 
 Consultez le [[Special:Log/delete|journal des suppressions]] pour obtenir la liste des récentes suppressions et restaurations.",
 'undelete-header'              => 'Consultez le [[Special:Log/delete|journal des suppressions]] pour lister les pages récemment supprimées.',
@@ -2567,7 +2567,7 @@ Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion man
 'move-watch'                   => 'Suivre les pages originale et nouvelle',
 'movepagebtn'                  => 'Renommer la page',
 'pagemovedsub'                 => 'Déplacement réussi',
-'movepage-moved'               => "<big>'''« $1 »''' a été renommé '''« $2 »'''</big>",
+'movepage-moved'               => "'''« $1 »''' a été renommé '''« $2 »'''",
 'movepage-moved-redirect'      => 'Une redirection depuis l’ancien nom a été créée.',
 'movepage-moved-noredirect'    => 'La création d’une redirection depuis l’ancien nom a été annulée.',
 'articleexists'                => 'Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n’est pas correct.
@@ -3336,7 +3336,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'size-gigabytes' => '$1 Gio',
 
 # Live preview
-'livepreview-loading' => 'Chargement …',
+'livepreview-loading' => 'Chargement…',
 'livepreview-ready'   => 'Chargement … terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',
@@ -3407,7 +3407,7 @@ Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
 # Special:FilePath
 'filepath'         => 'Chemin d’accès du fichier',
 'filepath-page'    => 'Fichier :',
-'filepath-submit'  => 'Chemin d’accès',
+'filepath-submit'  => 'Aller',
 'filepath-summary' => 'Cette page spéciale retourne le chemin d’accès complet d’un fichier.
 Les images sont montrées dans leur pleine résolution, les autres fichiers sont chargés et démarrés directement avec leur programme associé.
 

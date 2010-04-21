@@ -12,6 +12,7 @@
  * @author BrokenArrow
  * @author Brownout
  * @author Candalua
+ * @author Civvì
  * @author Cruccone
  * @author Cryptex
  * @author Dakrismeno
@@ -361,7 +362,7 @@ $messages = array(
 'index-category'                 => 'Pagine indicizzate',
 'noindex-category'               => 'Pagine non indicizzate',
 
-'mainpagetext'      => "<big>'''Installazione di MediaWiki completata correttamente.'''</big>",
+'mainpagetext'      => "'''Installazione di MediaWiki completata correttamente.'''",
 'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
 
 == Per iniziare ==
@@ -639,7 +640,7 @@ Nota che alcune pagine potrebbero continuare ad apparire come se il logout non f
 'welcomecreation'            => "== Benvenuto, $1! ==
 
 L'account è stato creato correttamente. Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITENAME}}]].",
-'yourname'                   => 'Nome utente',
+'yourname'                   => 'Nome utente:',
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => 'Ripeti la password:',
 'remembermypassword'         => 'Ricorda la password su questo computer',
@@ -771,7 +772,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'summary-preview'                  => "Anteprima dell'oggetto:",
 'subject-preview'                  => 'Anteprima oggetto/intestazione:',
 'blockedtitle'                     => 'Utente bloccato.',
-'blockedtext'                      => "<big>'''Questo nome utente o indirizzo IP sono stati bloccati.'''</big>
+'blockedtext'                      => "'''Questo nome utente o indirizzo IP sono stati bloccati.'''
 
 Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2''
 
@@ -1023,7 +1024,7 @@ Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti
 'revdelete-hide-user'         => "Nascondi il nome o l'indirizzo IP dell'autore",
 'revdelete-hide-restricted'   => 'Nascondi le informazioni indicate anche agli amministratori',
 'revdelete-radio-same'        => '(non cambiare)',
-'revdelete-radio-set'         => 'Si',
+'revdelete-radio-set'         => 'Sì',
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Nascondi le informazioni anche agli amministratori',
 'revdelete-unsuppress'        => 'Elimina le limitazioni sulle revisioni ripristinate',
@@ -1125,7 +1126,7 @@ $1",
 'viewprevnext'                     => 'Vedi ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opzioni di ricerca',
 'searchmenu-exists'                => "'''Sul sito esiste una pagina il cui nome è \"[[:\$1]]\"'''",
-'searchmenu-new'                   => "'''Crea la pagina \"[[:\$1]]\" su questo sito'''",
+'searchmenu-new'                   => 'Crea la pagina "[[:$1]]" su questo sito',
 'searchhelp-url'                   => 'Help:Indice',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Visualizza le pagine con questo prefisso]]',
 'searchprofile-articles'           => 'Pagine di contenuti',
@@ -1185,7 +1186,7 @@ $1",
 'prefsnologintext'              => 'Per poter personalizzare le preferenze è necessario effettuare l\'<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} accesso]</span>.',
 'changepassword'                => 'Cambia password',
 'prefs-skin'                    => 'Aspetto grafico (skin)',
-'skin-preview'                  => 'anteprima',
+'skin-preview'                  => 'Anteprima',
 'prefs-math'                    => 'Formule matematiche',
 'datedefault'                   => 'Nessuna preferenza',
 'prefs-datetime'                => 'Data e ora',
@@ -1296,7 +1297,7 @@ L'operazione non può essere annullata.",
 * Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo
 * Una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.
 * Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o vice versa).",
-'userrights-reason'            => 'Motivo della modifica:',
+'userrights-reason'            => 'Motivo:',
 'userrights-no-interwiki'      => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'        => 'Il database $1 non esiste o non è un database locale.',
 'userrights-nologin'           => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
@@ -1306,7 +1307,7 @@ L'operazione non può essere annullata.",
 
 # Groups
 'group'               => 'Gruppo:',
-'group-user'          => 'Utenti registrati',
+'group-user'          => 'utenti',
 'group-autoconfirmed' => 'Utenti autoconvalidati',
 'group-bot'           => 'Bot',
 'group-sysop'         => 'Amministratori',
@@ -2101,7 +2102,7 @@ Consultare la [[Special:ProtectedPages|lista delle pagine protette]] per l'elenc
 'protect-title'               => 'Modifica del livello di protezione per "$1"',
 'prot_1movedto2'              => 'ha spostato [[$1]] a [[$2]]',
 'protect-legend'              => 'Conferma la protezione',
-'protectcomment'              => 'Motivo della protezione:',
+'protectcomment'              => 'Motivo:',
 'protectexpiry'               => 'Scadenza:',
 'protect_expiry_invalid'      => 'Scadenza non valida.',
 'protect_expiry_old'          => 'Scadenza già trascorsa.',
@@ -2179,7 +2180,7 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisione|$1 revisioni}} e $2 file recuperati',
 'undeletedfiles'               => '{{PLURAL:$1|Un file recuperato|$1 file recuperati}}',
 'cannotundelete'               => 'Ripristino non riuscito; è possibile che la pagina sia già stata recuperata da un altro utente.',
-'undeletedpage'                => "<big>'''La pagina $1 è stata recuperata'''</big>
+'undeletedpage'                => "'''La pagina $1 è stata recuperata'''
 
 Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni e i recuperi più recenti.",
 'undelete-header'              => 'Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni più recenti.',
@@ -2399,7 +2400,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'move-watch'                   => 'Aggiungi la pagina agli osservati speciali',
 'movepagebtn'                  => 'Sposta la pagina',
 'pagemovedsub'                 => 'Spostamento effettuato con successo',
-'movepage-moved'               => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" è stata spostata a "$2"\'\'\'',
 'movepage-moved-redirect'      => 'È stato creato un redirect.',
 'movepage-moved-noredirect'    => 'La creazione di un redirect è stata soppressa.',
 'articleexists'                => 'Una pagina con questo nome esiste già oppure il nome scelto non è valido.
@@ -3201,7 +3202,7 @@ Usare l\'anteprima standard.',
 # Special:FilePath
 'filepath'         => 'Percorso di un file',
 'filepath-page'    => 'Nome del file:',
-'filepath-submit'  => 'Percorso',
+'filepath-submit'  => 'Vai',
 'filepath-summary' => 'Questa pagina speciale restituisce il percorso completo di un file. Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri tipi di file viene avviato direttamente il programma associato.
 
 Inserire il nome del file senza il prefisso "{{ns:file}}:"',

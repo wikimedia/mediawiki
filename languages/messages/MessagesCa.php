@@ -310,7 +310,7 @@ $messages = array(
 'index-category'                 => 'Pàgines indexades',
 'noindex-category'               => 'Pàgines no indexades',
 
-'mainpagetext'      => "<big>'''El programari del MediaWiki s'ha instaŀlat correctament.'''</big>",
+'mainpagetext'      => "'''El programari del MediaWiki s'ha instaŀlat correctament.'''",
 'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
 
 == Per a començar ==
@@ -719,7 +719,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'summary-preview'                  => 'Previsualització del resum:',
 'subject-preview'                  => 'Previsualització de tema/capçalera:',
 'blockedtitle'                     => "L'usuari està blocat",
-'blockedtext'                      => "<big>'''S'ha procedit al blocatge del vostre compte d'usuari o la vostra adreça IP.'''</big>
+'blockedtext'                      => "'''S'ha procedit al blocatge del vostre compte d'usuari o la vostra adreça IP.'''
 
 El blocatge l'ha dut a terme l'usuari $1.
 El motiu donat és ''$2''.
@@ -1279,18 +1279,18 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'group'               => 'Grup:',
 'group-user'          => 'Usuaris',
 'group-autoconfirmed' => 'Usuaris autoconfirmats',
-'group-bot'           => 'bots',
-'group-sysop'         => 'administradors',
-'group-bureaucrat'    => 'buròcrates',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Administradors',
+'group-bureaucrat'    => 'Buròcrates',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(tots)',
 
-'group-user-member'          => 'Usuari',
-'group-autoconfirmed-member' => 'Usuari autoconfirmat',
+'group-user-member'          => 'usuari',
+'group-autoconfirmed-member' => 'usuari autoconfirmat',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administrador',
 'group-bureaucrat-member'    => 'buròcrata',
-'group-suppress-member'      => 'Oversight',
+'group-suppress-member'      => 'oversight',
 
 'grouppage-user'          => '{{ns:project}}:Usuaris',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuaris autoconfirmats',
@@ -2156,7 +2156,7 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un fitxer|$2 fitxers}} restaurats',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fitxer restaurat|fitxers restaurats}}',
 'cannotundelete'               => "No s'ha pogut restaurar; algú altre pot estar restaurant la mateixa pàgina.",
-'undeletedpage'                => "<big>'''S'ha restaurat «$1»'''</big>
+'undeletedpage'                => "'''S'ha restaurat «$1»'''
 
 Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborraments i els restauraments més recents.",
 'undelete-header'              => "Vegeu [[Special:Log/delete|el registre d'eliminació]] per a veure les pàgines eliminades recentment.",
@@ -2396,7 +2396,7 @@ per reanomenar una pàgina.",
 'move-watch'                   => 'Vigila aquesta pàgina',
 'movepagebtn'                  => 'Reanomena la pàgina',
 'pagemovedsub'                 => 'Reanomenament amb èxit',
-'movepage-moved'               => "<big>'''«$1» s'ha mogut a «$2»'''</big>",
+'movepage-moved'               => "'''«$1» s'ha mogut a «$2»'''",
 'movepage-moved-redirect'      => "S'ha creat una redirecció.",
 'movepage-moved-noredirect'    => "La creació d'una redirecció s'ha suprimit.",
 'articleexists'                => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.
@@ -3187,7 +3187,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 # Special:FilePath
 'filepath'         => 'Camí del fitxer',
 'filepath-page'    => 'Fitxer:',
-'filepath-submit'  => 'Camí',
+'filepath-submit'  => 'Vés-hi',
 'filepath-summary' => "Aquesta pàgina especial retorna un camí complet d'un fitxer.
 Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien directament amb el seu programa associat.
 

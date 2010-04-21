@@ -18,6 +18,7 @@
  * @author BicScope
  * @author Boivie
  * @author Candalua
+ * @author Capmo
  * @author Cerealito
  * @author Clerc
  * @author Crazymadlover
@@ -439,7 +440,7 @@ $messages = array(
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas no indexadas',
 
-'mainpagetext'      => "<big>'''MediaWiki ha sido instalado con éxito.'''</big>",
+'mainpagetext'      => "'''MediaWiki ha sido instalado con éxito.'''",
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
 
 == Empezando ==
@@ -853,7 +854,7 @@ Tu dirección IP será guardada en el historial de ediciones de la página.",
 'summary-preview'                  => 'Previsualización del resumen:',
 'subject-preview'                  => 'Previsualización del tema/título:',
 'blockedtitle'                     => 'El usuario está bloqueado',
-'blockedtext'                      => "<big>'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</big>
+'blockedtext'                      => "'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''
 
 El bloqueo fue hecho por $1.
 La razón dada es ''$2''.
@@ -1088,8 +1089,8 @@ Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAM
 'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
 Como administrador podrá seguir [$1 viendo este cambio] si así lo deseas.",
-'rev-suppressed-unhide-diff'  => "Una de las revisiones de este cambio ha sido '''suprimida'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE=}}}} registro de supresión].
+'rev-suppressed-unhide-diff'  => "Una de las revisiones de este diff ha sido '''suprimida'''.
+Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
 Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
 'rev-deleted-diff-view'       => "Una de las revisiones de este diff ha sido '''borrada'''.
 Como administrador puede ver el contenido; puede que existan más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
@@ -1138,7 +1139,7 @@ $1",
 'logdelete-success'           => 'Visibilidad de eventos cambiada correctamente.',
 'logdelete-failure'           => "'''La visibilidad del registro no pudo ser ajustada:'''
 $1",
-'revdel-restore'              => 'Cambiar visibilidad',
+'revdel-restore'              => 'cambiar visibilidad',
 'pagehist'                    => 'Historial de la página',
 'deletedhist'                 => 'Historial borrado',
 'revdelete-content'           => 'contenido',
@@ -2020,7 +2021,7 @@ Protocolos soportados: <tt>$1</tt>',
 'listusersfrom'      => 'Mostrar usuarios que empiecen por:',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'No se encontró al usuario.',
-'listusers-blocked'  => '(bloqueado)',
+'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista de usuarios activos',
@@ -2302,7 +2303,7 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo restaurado|archivos restaurados}}',
 'cannotundelete'               => 'Ha fallado el deshacer el borrado;
 alguien más puede haber deshecho el borrado antes.',
-'undeletedpage'                => "<big>'''Se ha restaurado $1'''</big>
+'undeletedpage'                => "'''Se ha restaurado $1'''
 
 Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de los últimos borrados y restauraciones.",
 'undelete-header'              => 'En el [[Special:Log/delete|registro de borrados]] se listan las páginas eliminadas.',
@@ -2531,7 +2532,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'                   => 'Vigilar este artículo',
 'movepagebtn'                  => 'Renombrar página',
 'pagemovedsub'                 => 'Renombrado realizado con éxito',
-'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" ha sido trasladado a "$2".\'\'\'',
 'movepage-moved-redirect'      => 'Se ha creado una redirección.',
 'movepage-moved-noredirect'    => 'Se ha suprimido la creación de la redirección.',
 'articleexists'                => 'Ya existe una página con ese nombre, o el nombre que has escogido no es válido.
@@ -3332,7 +3333,7 @@ También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
 # Special:FilePath
 'filepath'         => 'Ruta de archivo',
 'filepath-page'    => 'Archivo:',
-'filepath-submit'  => 'Ruta',
+'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
 Las imágenes se muestran en resolución máxima, otros tipos de archivo se inician directamente con su programa asociado.
 

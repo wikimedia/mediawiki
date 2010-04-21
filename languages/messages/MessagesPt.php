@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Capmo
  * @author Crazymadlover
  * @author Daemorris
  * @author Giro720
@@ -289,7 +290,7 @@ $messages = array(
 'tog-hideminor'               => 'Esconder edições menores nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled'   => 'Esconder páginas patrulhadas na lista de páginas novas',
-'tog-extendwatchlist'         => 'Listagem expandida de todas as alterações às páginas vigiadas, não apenas das mais recentes',
+'tog-extendwatchlist'         => 'Listagem expandida de todas as mudanças às páginas vigiadas, não apenas das mais recentes',
 'tog-usenewrc'                => 'Usar a versão melhorada das mudanças recentes (requer JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
@@ -318,7 +319,7 @@ $messages = array(
 'tog-externaldiff'            => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador)',
 'tog-showjumplinks'           => 'Possibilitar links de acessibilidade "{{int:jumpto}}"',
 'tog-uselivepreview'          => 'Usar a antevisão em tempo real (JavaScript) (Experimental)',
-'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
+'tog-forceeditsummary'        => 'Avisar-me ao introduzir um resumo vazio',
 'tog-watchlisthideown'        => 'Esconder as minhas edições ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidebots'       => 'Esconder edições de robôs ao listar mudanças às páginas vigiadas',
 'tog-watchlisthideminor'      => 'Esconder edições menores ao listar mudanças às páginas vigiadas',
@@ -334,30 +335,30 @@ $messages = array(
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
-'underline-default' => 'Usar a configuração do navegador',
+'underline-default' => 'Usar a configuração do browser',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Fonte de edição:',
-'editfont-default'   => 'Fonte por omissão, do navegador',
+'editfont-default'   => 'Fonte por omissão, do browser',
 'editfont-monospace' => 'Fonte monoespaçada',
 'editfont-sansserif' => 'Fonte sans-serif',
 'editfont-serif'     => 'Fonte serifada',
 
 # Dates
-'sunday'        => 'domingo',
-'monday'        => 'segunda-feira',
-'tuesday'       => 'terça-feira',
-'wednesday'     => 'quarta-feira',
-'thursday'      => 'quinta-feira',
-'friday'        => 'sexta-feira',
-'saturday'      => 'sábado',
-'sun'           => 'dom',
-'mon'           => 'seg',
-'tue'           => 'ter',
-'wed'           => 'qua',
-'thu'           => 'qui',
-'fri'           => 'sex',
-'sat'           => 'sáb',
+'sunday'        => 'Domingo',
+'monday'        => 'Segunda-feira',
+'tuesday'       => 'Terça-feira',
+'wednesday'     => 'Quarta-feira',
+'thursday'      => 'Quinta-feira',
+'friday'        => 'Sexta-feira',
+'saturday'      => 'Sábado',
+'sun'           => 'Dom',
+'mon'           => 'Seg',
+'tue'           => 'Ter',
+'wed'           => 'Qua',
+'thu'           => 'Qui',
+'fri'           => 'Sex',
+'sat'           => 'Sáb',
 'january'       => 'Janeiro',
 'february'      => 'Fevereiro',
 'march'         => 'Março',
@@ -413,7 +414,7 @@ $messages = array(
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas não indexadas',
 
-'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
+'mainpagetext'      => "'''MediaWiki instalado com sucesso.'''",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações sobre o uso do software wiki.
 
 == Onde começar ==
@@ -427,8 +428,8 @@ $messages = array(
 'newwindow'     => '(abre numa nova janela)',
 'cancel'        => 'Cancelar',
 'moredotdotdot' => 'Mais...',
-'mypage'        => 'Minha página',
-'mytalk'        => 'Minha discussão',
+'mypage'        => 'Utilizador',
+'mytalk'        => 'Discussão',
 'anontalk'      => 'Discussão para este IP',
 'navigation'    => 'Navegação',
 'and'           => '&#32;e',
@@ -688,7 +689,7 @@ A justificação foi "\'\'$2\'\'".',
 'logouttext'                 => "'''Já não está autenticado.'''
 
 Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de utilizador ou com um nome de utilizador diferente.
-Tenha em atenção que algumas páginas poderão continuar a ser apresentadas como se ainda estivesse autenticado até limpar a ''cache'' do seu navegador.",
+Tenha em atenção que algumas páginas poderão continuar a ser apresentadas como se ainda estivesse autenticado até limpar a cache do seu browser.",
 'welcomecreation'            => '== Bem-vindo, $1! ==
 A sua conta foi criada.
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
@@ -700,7 +701,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'externaldberror'            => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
 'login'                      => 'Autenticação',
 'nav-login-createaccount'    => 'Entrar / criar conta',
-'loginprompt'                => "É necessário ter os ''cookies'' activados no seu navegador para poder autenticar-se na {{SITENAME}}.",
+'loginprompt'                => "É necessário ter os ''cookies'' activados no seu browser para poder autenticar-se na {{SITENAME}}.",
 'userlogin'                  => 'Criar uma conta ou entrar',
 'userloginnocreate'          => 'Autenticação',
 'logout'                     => 'Sair',
@@ -719,10 +720,10 @@ Escolha um nome diferente.',
 'createaccounterror'         => 'Não foi possível criar a conta: $1',
 'nocookiesnew'               => "A conta de utilizador foi criada, mas neste momento não está autenticado.
 A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
-Os ''cookies'' estão desactivados no seu navegador.
+Os ''cookies'' estão desactivados no seu browser.
 Por favor, active-os e autentique-se com o seu nome de utilizador e a sua palavra-chave.",
 'nocookieslogin'             => "A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
-Os ''cookies'' estão desactivados no seu navegador.
+Os ''cookies'' estão desactivados no seu browser.
 Por favor, active-os e tente novamente.",
 'noname'                     => 'Não especificou um nome de utilizador válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
@@ -774,7 +775,7 @@ Se a conta foi criada por engano, pode ignorar esta mensagem.',
 'login-throttled'            => 'Realizou demasiadas tentativas de autenticação com esta conta.
 Por favor, aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Língua: $1',
-'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com caching.',
+'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com cache.',
 
 # Password reset dialog
 'resetpass'                 => 'Alterar palavra-chave',
@@ -818,7 +819,7 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'hr_tip'          => 'Linha horizontal (utilize moderadamente)',
 
 # Edit pages
-'summary'                          => 'Sumário:',
+'summary'                          => 'Resumo:',
 'subject'                          => 'Assunto/cabeçalho:',
 'minoredit'                        => 'Marcar como edição menor',
 'watchthis'                        => 'Vigiar esta página',
@@ -829,14 +830,14 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'showdiff'                         => 'Mostrar alterações',
 'anoneditwarning'                  => "'''Aviso''': Não se encontra autenticado.
 O seu endereço IP será registado no histórico de edições desta página.",
-'missingsummary'                   => "'''Atenção:''' Não introduziu um sumário de edição.
-Se clicar novamente em \"Gravar página\" a sua edição será gravada sem sumário.",
+'missingsummary'                   => "'''Atenção:''' Não introduziu um resumo da edição.
+Se clicar novamente em \"Gravar página\" a sua edição será gravada sem resumo.",
 'missingcommenttext'               => 'Por favor, introduzida um comentário abaixo.',
 'missingcommentheader'             => "'''Atenção:''' Não introduziu um assunto ou cabeçalho para este comentário. Se clicar novamente em \"Gravar página\" a sua edição será gravada sem assunto ou cabeçalho.",
-'summary-preview'                  => 'Antevisão do sumário:',
+'summary-preview'                  => 'Antevisão do resumo:',
 'subject-preview'                  => 'Antevisão do assunto/cabeçalho:',
 'blockedtitle'                     => 'O utilizador está bloqueado',
-'blockedtext'                      => '<big>O seu nome de utilizador ou endereço IP foram bloqueados</big>
+'blockedtext'                      => 'O seu nome de utilizador ou endereço IP foram bloqueados
 
 O bloqueio foi realizado por $1.
 O motivo apresentado foi \'\'$2\'\'.
@@ -886,7 +887,7 @@ A palavra-chave para esta nova conta pode ser alterada na página [[Special:Chan
 'newarticle'                       => '(Nova)',
 'newarticletext'                   => "Seguiu um link para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
-Se chegou aqui por engano, clique o botão '''voltar''' (ou ''back'') do seu navegador.",
+Se chegou aqui por engano, clique o botão '''voltar''' (ou ''back'') do seu browser.",
 'anontalkpagetext'                 => "----''Esta é a página de discussão de um utilizador anónimo que ainda não criou uma conta ou não a utiliza, pelo que temos de utilizar o endereço IP para identificá-lo(a).
 Um endereço IP pode ser partilhado por vários utilizadores.
 Se é um utilizador anónimo e sente que lhe foram direccionados comentários irrelevantes, por favor [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
@@ -902,7 +903,7 @@ Por favor, verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'blocked-notice-logextract'        => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
-'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
+'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' num Macintosh);
 '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5'';
 '''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'');
@@ -928,7 +929,8 @@ Caso continue a não funcionar, tente [[Special:UserLogout|sair]] e voltar a ent
 
 '''Se esta é uma tentativa legítima de edição tente novamente, por favor.'''
 Caso continue a não funcionar, tente [[Special:UserLogout|{{lc:{{MediaWiki:logout/pt}}}}]] e voltar a entrar na sua conta.",
-'token_suffix_mismatch'            => "'''A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação no identificador de edição. A edição foi rejeitada para evitar perdas no texto da página.
+'token_suffix_mismatch'            => "'''A edição foi rejeitada porque o seu browser alterou os sinais de pontuação no editor.'''
+A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (secção)',
@@ -941,7 +943,7 @@ Terá de reintegrar as suas mudanças no texto da caixa acima.
 '''Só''' o texto na caixa acima será gravado quando clicar \"Gravar página\".<br />",
 'yourtext'                         => 'O seu texto',
 'storedversion'                    => 'Versão guardada',
-'nonunicodebrowser'                => "'''Aviso: O seu navegador não é compatível com as especificações Unicode.
+'nonunicodebrowser'                => "'''Aviso: O seu browser não é compatível com as especificações Unicode.
 Foi activado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
 'editingold'                       => "'''Aviso: Está editando uma revisão desactualizada desta página.'''
 Se gravar, todas as mudanças feitas a partir desta revisão serão perdidas.",
@@ -953,8 +955,8 @@ Garante-nos também que isto é algo escrito por si, ou copiado do domínio púb
 Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (veja $1 para detalhes).<br />
 '''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
 'longpagewarning'                  => "'''AVISO:''' Esta página possui $1 kilobytes; alguns
-navegadores possuem problemas em editar páginas maiores que 32 kb.
-Por favor, considere seccionar a página em secções de menor dimensão.",
+browsers possuem problemas em editar páginas maiores que 32 kb.
+Por favor, considere dividir a página em secções de menor dimensão.",
 'longpageerror'                    => "'''Erro: O texto que submeteu ocupa $1 KB, um espaço superior ao máximo de $2 KB.
 A página não pode ser gravada.'''",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
@@ -1012,7 +1014,7 @@ Estes argumentos foram omitidos.',
 'post-expand-template-argument-category'  => 'Páginas com omissões de argumentos em predefinições',
 'parser-template-loop-warning'            => 'Ciclo de predefinições detectado: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Atingido o limite de profundidade de recursividade de predefinição ($1)',
-'language-converter-depth-warning'        => 'O limite de profundidade do conversor de línguas foi excedido ($1)',
+'language-converter-depth-warning'        => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
 
 # "Undo" feature
 'undo-success' => 'A edição pode ser desfeita.
@@ -1117,7 +1119,7 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-hide-text'         => 'Ocultar texto da edição',
 'revdelete-hide-image'        => 'Ocultar conteúdo do ficheiro',
 'revdelete-hide-name'         => 'Ocultar acção e alvo',
-'revdelete-hide-comment'      => 'Ocultar sumário de edição',
+'revdelete-hide-comment'      => 'Ocultar resumo da edição',
 'revdelete-hide-user'         => 'Ocultar nome de utilizador/IP',
 'revdelete-hide-restricted'   => 'Ocultar dados dos administradores e de todos os outros',
 'revdelete-radio-same'        => '(manter)',
@@ -1139,7 +1141,7 @@ $1",
 'pagehist'                    => 'Histórico da página',
 'deletedhist'                 => 'Histórico de eliminações',
 'revdelete-content'           => 'conteúdo',
-'revdelete-summary'           => 'sumário de edição',
+'revdelete-summary'           => 'resumo da edição',
 'revdelete-uname'             => 'nome de utilizador',
 'revdelete-restricted'        => 'restrições a administradores aplicadas',
 'revdelete-unrestricted'      => 'restrições a administradores removidas',
@@ -1233,7 +1235,7 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'searchmenu-exists'                => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
 'searchmenu-new'                   => "'''Crie a página \"[[:\$1]]\" nesta wiki!'''",
 'searchhelp-url'                   => 'Help:Conteúdos',
-'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue por páginas com este prefixo]]',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegar as páginas com este prefixo]]',
 'searchprofile-articles'           => 'Páginas de conteúdo',
 'searchprofile-project'            => 'Páginas de Ajuda e de Projecto',
 'searchprofile-images'             => 'Multimédia',
@@ -1288,7 +1290,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 
 # Preferences page
 'preferences'                   => 'Preferências',
-'mypreferences'                 => 'Minhas preferências',
+'mypreferences'                 => 'Preferências',
 'prefs-edits'                   => 'Número de edições:',
 'prefsnologin'                  => 'Não autenticado',
 'prefsnologintext'              => 'Precisa de estar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autenticado]</span> para definir as suas preferências.',
@@ -1336,7 +1338,7 @@ Eis um valor gerado aleatoriamente, que pode usar: $1",
 'timezoneuseoffset'             => 'Outro (especificar diferença)',
 'timezoneoffset'                => 'Diferença horária¹:',
 'servertime'                    => 'Hora do servidor:',
-'guesstimezone'                 => 'Preencher a partir do navegador',
+'guesstimezone'                 => 'Preencher a partir do browser',
 'timezoneregion-africa'         => 'África',
 'timezoneregion-america'        => 'América',
 'timezoneregion-antarctica'     => 'Antártida',
@@ -1624,7 +1626,7 @@ Para utilizar um ficheiro numa página, depois de carregado, insira um link com 
 Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualização mais amigável.',
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Descrição do ficheiro',
-'fileuploadsummary'           => 'Sumário:',
+'fileuploadsummary'           => 'Resumo:',
 'filereuploadsummary'         => 'Alterações ao ficheiro:',
 'filestatus'                  => 'Estado dos direitos de autor:',
 'filesource'                  => 'Fonte:',
@@ -1634,7 +1636,7 @@ Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualizaç�
 'minlength1'                  => 'Os nomes de ficheiros devem de ter pelo menos uma letra.',
 'illegalfilename'             => 'O ficheiro "$1" possui caracteres que não são permitidos no título de uma página. Por favor, altere o nome do ficheiro e tente carregar novamente.',
 'badfilename'                 => 'O nome do ficheiro foi alterado para "$1".',
-'filetype-mime-mismatch'      => 'Extensão do ficheiro não corresponde ao tipo MIME.',
+'filetype-mime-mismatch'      => 'A extensão do ficheiro não corresponde ao tipo MIME.',
 'filetype-badmime'            => 'Não é permitido carregar ficheiros do tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'Este ficheiro não pôde ser carregado porque o Internet Explorer o iria detectar como "$1", que é um tipo de ficheiro não permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' não é um tipo de ficheiro desejado.
@@ -1650,7 +1652,7 @@ este tem $2.',
 Por favor, verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza se deseja alterar o ficheiro actual.
 [[$1|thumb]]",
 'filepageexists'              => "A página de descrição deste ficheiro já foi criada em '''<tt>[[:$1]]</tt>''', mas neste momento não existe nenhum ficheiro com este nome.
-O sumário que introduzir não aparecerá na página de descrição.
+O resumo que introduzir não aparecerá na página de descrição.
 Para fazê-lo aparecer, terá de editar a página manualmente.
 [[$1|thumb]]",
 'fileexists-extension'        => "Já existe um ficheiro de nome semelhante: [[$2|thumb]]
@@ -1680,7 +1682,7 @@ Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envi
 'uploaddisabledtext'          => 'O carregamento de ficheiros está impossibilitado.',
 'php-uploaddisabledtext'      => 'O carregamento de ficheiros está impossibilitado no PHP.
 Por favor, verifique a configuração file_uploads.',
-'uploadscripted'              => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um navegador.',
+'uploadscripted'              => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um browser.',
 'uploadvirus'                 => 'O ficheiro contém um vírus! Detalhes: $1',
 'upload-source'               => 'Ficheiro de origem',
 'sourcefilename'              => 'Nome do ficheiro de origem:',
@@ -1745,7 +1747,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
-'http-invalid-scheme'   => 'URLs começadas pelo prefixo "$1" não são suportadas.',
+'http-invalid-scheme'   => 'URLs iniciadas pelo prefixo "$1" não são aceites.',
 'http-request-error'    => 'O pedido HTTP falhou devido a um erro desconhecido.',
 'http-read-error'       => 'Erro de leitura HTTP.',
 'http-timed-out'        => 'O pedido HTTP expirou.',
@@ -2225,7 +2227,7 @@ prossiga com precaução.',
 alguém editou ou já reverteu a página.
 
 A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'       => "O sumário de edição era: \"''\$1''\".",
+'editcomment'       => "O resumo da edição era: \"''\$1''\".",
 'revertpage'        => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]',
 'revertpage-nouser' => 'Revertidas as edições de (nome de utilizador removido) para a última revisão por [[User:$1|$1]]',
 'rollback-success'  => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
@@ -2327,7 +2329,7 @@ Pode ter usado um link incorrecto ou talvez a revisão tenha sido restaurada ou 
 'undeletedrevisions-files'     => '$1 {{PLURAL:$2|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
 'undeletedfiles'               => '{{PLURAL:$1|ficheiro restaurado|$1 ficheiros restaurados}}',
 'cannotundelete'               => 'Restauração falhada; alguém talvez já restaurou a página.',
-'undeletedpage'                => "<big>'''$1 foi restaurada'''</big>
+'undeletedpage'                => "'''$1 foi restaurada'''
 
 Consulte o [[Special:Log/delete|registo de eliminações]] para um registo das eliminações e restaurações mais recentes.",
 'undelete-header'              => 'Consulte o [[Special:Log/delete|registo de eliminações]] para ver as páginas eliminadas recentemente.',
@@ -2354,7 +2356,7 @@ $1',
 # Contributions
 'contributions'       => 'Contribuições do utilizador',
 'contributions-title' => 'Contribuições {{GENDER:$1|do utilizador|da utilizadora}} $1',
-'mycontris'           => 'Minhas contribuições',
+'mycontris'           => 'Contribuições',
 'contribsub2'         => 'Para $1 ($2)',
 'nocontribs'          => 'Não foram encontradas alterações com este critério.',
 'uctop'               => ' (edição actual)',
@@ -2557,8 +2559,8 @@ Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la co
 'move-watch'                   => 'Vigiar esta página',
 'movepagebtn'                  => 'Mover página',
 'pagemovedsub'                 => 'Página movida com sucesso',
-'movepage-moved'               => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>',
-'movepage-moved-redirect'      => 'Um redireccionamento foi criado.',
+'movepage-moved'               => '\'\'\'"$1" foi movida para "$2"\'\'\'',
+'movepage-moved-redirect'      => 'Foi criado um redireccionamento.',
 'movepage-moved-noredirect'    => 'A criação de um redirecionamento foi suprimida.',
 'articleexists'                => 'Uma página com este título já existe, ou o título que escolheu é inválido.
 Por favor, escolha outro nome.',
@@ -2676,13 +2678,13 @@ Grave o ficheiro no seu computador e importe-o aqui.',
 'import-revision-count'      => '{{PLURAL:$1|uma edição|$1 edições}}',
 'importnopages'              => 'Não existem páginas a importar.',
 'importfailed'               => 'A importação falhou: $1',
-'importunknownsource'        => 'Tipo de fonte de importação desconhecida',
-'importcantopen'             => 'Não foi possível abrir o ficheiro de importação',
+'importunknownsource'        => 'Tipo da fonte de importação desconhecido',
+'importcantopen'             => 'Não foi possível abrir o ficheiro a importar',
 'importbadinterwiki'         => 'Link interwikis incorrecto',
 'importnotext'               => 'Vazio ou sem texto',
 'importsuccess'              => 'Importação completa!',
-'importhistoryconflict'      => 'Existem conflitos de edições no histórico (talvez esta página já foi importada antes)',
-'importnosources'            => 'Não foram definidas fontes de importação transwiki e o carregamento directo de históricos encontra-se desactivado.',
+'importhistoryconflict'      => 'Existem conflitos de edições no histórico (talvez esta página já tenha sido importada anteriormente)',
+'importnosources'            => 'Não foram definidas fontes de importação transwikis e o carregamento directo de históricos encontra-se desactivado.',
 'importnofile'               => 'Nenhum ficheiro de importação foi carregado.',
 'importuploaderrorsize'      => 'O carregamento do ficheiro importado falhou.
 O ficheiro é maior do que o tamanho máximo permitido.',
@@ -2692,7 +2694,7 @@ O ficheiro foi recebido parcialmente.',
 Não há um directório temporário.',
 'import-parse-failure'       => 'Falha ao importar dados XML',
 'import-noarticle'           => 'Sem páginas para importar!',
-'import-nonewrevisions'      => 'Todas as edições já foram importadas.',
+'import-nonewrevisions'      => 'Todas as revisões já tinham sido importadas anteriormente.',
 'xml-error-string'           => '$1 na linha $2, coluna $3 (byte $4): $5',
 'import-upload'              => 'Enviar dados em XML',
 'import-token-mismatch'      => 'Perda dos dados da sessão. Por favor tente novamente.',
@@ -2701,18 +2703,18 @@ Não há um directório temporário.',
 # Import log
 'importlogpage'                    => 'Registo de importações',
 'importlogpagetext'                => 'Importações administrativas de páginas com a preservação do histórico de edição de outras wikis.',
-'import-logentry-upload'           => 'importou [[$1]] através de ficheiro de importação',
+'import-logentry-upload'           => 'importou [[$1]] por upload de ficheiro',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|uma edição|$1 edições}}',
 'import-logentry-interwiki'        => 'transwikis $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 edição|$1 edições}} de $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'A sua página de utilizador',
-'tooltip-pt-anonuserpage'         => 'A página de utilizador para o ip que está a utilizar para editar',
+'tooltip-pt-anonuserpage'         => 'A página de utilizador para o endereço IP que está a usar',
 'tooltip-pt-mytalk'               => 'A sua página de discussão',
 'tooltip-pt-anontalk'             => 'Discussão sobre edições feitas a partir deste endereço IP',
-'tooltip-pt-preferences'          => 'Configuração dos comportamentos da wiki que prefere',
-'tooltip-pt-watchlist'            => 'Lista das páginas cujas alterações está a vigiar',
+'tooltip-pt-preferences'          => 'Configuração dos comportamentos que prefere da wiki',
+'tooltip-pt-watchlist'            => 'Lista de mudanças nas páginas que está a vigiar',
 'tooltip-pt-mycontris'            => 'Lista das suas edições de páginas',
 'tooltip-pt-login'                => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
 'tooltip-pt-anonlogin'            => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
@@ -2771,7 +2773,7 @@ Por favor, utilize o botão "Antever resultado" antes de gravar.',
 'tooltip-upload'                  => 'Iniciar o carregamento',
 'tooltip-rollback'                => '"{{int:rollbacklink}}" reverte, com um só clique, as edições do último editor desta página.',
 'tooltip-undo'                    => '"desfazer" reverte esta edição e apresenta a página de edição no modo de antevisão.
-Permite colocar uma justificação no sumário da edição.',
+Permite colocar uma justificação no resumo da edição.',
 
 # Stylesheets
 'common.css'      => '/* Código CSS colocado aqui será aplicado a todos os temas */',
@@ -2848,8 +2850,8 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'mw_math_png'    => 'Gerar sempre como PNG',
 'mw_math_simple' => 'HTML caso seja simples, caso contrário, PNG',
 'mw_math_html'   => 'HTML se possível, caso contrário, PNG',
-'mw_math_source' => 'Deixar como TeX (para navegadores de texto)',
-'mw_math_modern' => 'Recomendado para navegadores modernos',
+'mw_math_source' => 'Deixar como TeX (para browsers de texto)',
+'mw_math_modern' => 'Recomendado para browsers modernos',
 'mw_math_mathml' => 'MathML se possível (experimental)',
 
 # Math errors
@@ -3227,7 +3229,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'confirmemail_text'        => 'A {{SITENAME}} requer que valide o seu endereço de correio electrónico antes de usar as funcionalidades de correio.
 Clique o botão abaixo para enviar uma mensagem de confirmação para o seu endereço.
 A mensagem incluíra uma URL que contém um código;
-insira a URL no seu navegador para confirmar que o seu endereço de correio electrónico é válido.',
+insira a URL no seu browser para confirmar que o seu endereço de correio electrónico é válido.',
 'confirmemail_pending'     => 'Um código de confirmação já lhe foi enviado;
 caso tenha criado a conta recentemente, é recomendado que aguarde alguns minutos até o receber antes de tentar pedir um novo código.',
 'confirmemail_send'        => 'Enviar código de confirmação',
@@ -3250,7 +3252,7 @@ registou uma conta "$2" com este endereço de correio electrónico na {{SITENAME
 
 Para confirmar que esta conta é realmente sua e activar
 as funcionalidades de correio electrónico na {{SITENAME}},
-abra o seguinte link no seu navegador:
+abra o seguinte link no seu browser:
 
 $3
 
@@ -3377,10 +3379,10 @@ Também pode [[Special:Watchlist/edit|editar a lista da maneira convencional]].'
 # Special:FilePath
 'filepath'         => 'Endereço de ficheiro',
 'filepath-page'    => 'Ficheiro:',
-'filepath-submit'  => 'Endereço',
-'filepath-summary' => 'Esta página especial retorna o endereço completo de um ficheiro ao seu navegador, que irá processá-lo.
-Imagens serão apresentadas pelo navegador na resolução máxima.
-Ficheiros de outro tipo serão arrancados pelo navegador directamente no programa que lhes está associado no seu computador.
+'filepath-submit'  => 'Ir',
+'filepath-summary' => 'Esta página especial retorna o endereço completo de um ficheiro ao seu browser, que irá processá-lo.
+Imagens serão apresentadas pelo browser na resolução máxima.
+Ficheiros de outro tipo serão abertos pelo browser directamente no programa que lhes está associado no seu computador.
 
 Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 
@@ -3465,7 +3467,7 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 'ajax-add-category'            => 'Adicionar categoria',
 'ajax-add-category-submit'     => 'Adicionar',
 'ajax-confirm-title'           => 'Confirme a acção',
-'ajax-confirm-prompt'          => 'Pode colocar abaixo um sumário da edição.
+'ajax-confirm-prompt'          => 'Pode colocar abaixo um resumo da edição.
 Clique em "Gravar página" para gravar a sua edição.',
 'ajax-confirm-save'            => 'Gravar',
 'ajax-add-category-summary'    => 'Adicionado categoria "$1"',

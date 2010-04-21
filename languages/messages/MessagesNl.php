@@ -437,7 +437,7 @@ $messages = array(
 'index-category'                 => "Te indexeren pagina's",
 'noindex-category'               => "Niet te indexeren pagina's",
 
-'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",
+'mainpagetext'      => "'''De installatie van MediaWiki is geslaagd.'''",
 'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 
 == Meer hulp over MediaWiki ==
@@ -879,7 +879,7 @@ Als u opnieuw op \"opslaan\" klikt, wordt uw wijziging zonder een onderwerp/kop 
 'summary-preview'                  => 'Samenvatting nakijken:',
 'subject-preview'                  => 'Nakijken onderwerp/kop:',
 'blockedtitle'                     => 'Gebruiker is geblokkeerd',
-'blockedtext'                      => '<big>\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'
 
 De blokkade is uitgevoerd door $1.
 De opgegeven reden is \'\'$2\'\'.
@@ -2041,7 +2041,7 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 # Book sources
 'booksources'               => 'Boekinformatie',
 'booksources-search-legend' => 'Bronnen en informatie over een boek zoeken',
-'booksources-go'            => 'Zoeken',
+'booksources-go'            => 'OK',
 'booksources-text'          => 'Hieronder staat een lijst met koppelingen naar andere websites die nieuwe of gebruikte boeken verkopen, en die wellicht meer informatie over het boek dat u zoekt hebben:',
 'booksources-invalid-isbn'  => 'Het ingegeven ISBN lijkt niet geldig te zijn.
 Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
@@ -2239,7 +2239,7 @@ Feedback en andere assistentie:
 
 # Delete
 'deletepage'             => 'Deze pagina verwijderen',
-'confirm'                => 'Bevestig',
+'confirm'                => 'Bevestigen',
 'excontent'              => "De inhoud was: '$1'",
 'excontentauthor'        => 'De inhoud was: "$1" ([[Special:Contributions/$2|$2]] was de enige auteur)',
 'exbeforeblank'          => "De inhoud was: '$1'",
@@ -2389,7 +2389,7 @@ Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undeletedfiles'               => '{{PLURAL:$1|1 bestand|$1 bestanden}} teruggeplaatst',
 'cannotundelete'               => 'Het terugplaatsen is mislukt.
 Misschien heeft een andere gebruiker de pagina al teruggeplaatst.',
-'undeletedpage'                => "<big>'''$1 is teruggeplaatst'''</big>
+'undeletedpage'                => "'''$1 is teruggeplaatst'''
 
 In het [[Special:Log/delete|verwijderingslogboek]] staan recente verwijderingen en herstelhandelingen.",
 'undelete-header'              => "Zie het [[Special:Log/delete|verwijderingslogboek]] voor recent verwijderde pagina's.",
@@ -2629,7 +2629,7 @@ Houd er rekening mee dat alleen de pagina wordt hernoemd, ''niet'' de gebruiker.
 'move-watch'                   => 'Deze pagina volgen',
 'movepagebtn'                  => 'Pagina hernoemen',
 'pagemovedsub'                 => 'De pagina is hernoemd',
-'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" is hernoemd naar "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Er is een doorverwijzing aangemaakt.',
 'movepage-moved-noredirect'    => 'Er is geen doorverwijzing aangemaakt.',
 'articleexists'                => 'De pagina bestaat al of de paginanaam is ongeldig.
@@ -3474,7 +3474,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 # Special:FilePath
 'filepath'         => 'Bestandslocatie',
 'filepath-page'    => 'Bestand:',
-'filepath-submit'  => 'Zoeken',
+'filepath-submit'  => 'OK',
 'filepath-summary' => 'Deze speciale pagina geeft het volledige pad voor een bestand.
 Afbeeldingen worden in hun volledige resolutie weergegeven.
 Andere bestandstypen worden direct in het met het MIME-type verbonden programma geopend.

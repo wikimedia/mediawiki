@@ -741,7 +741,7 @@ XHTML id names.
 'noindex-category'               => 'Noindexed pages',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
-'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
+'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
 == Getting started ==
@@ -1134,7 +1134,7 @@ Please wait before trying again.',
 * Español|es
 * Italiano|it
 * Nederlands|nl', # do not translate or duplicate this message to other languages
-'suspicious-userlogout'     => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
+'suspicious-userlogout'      => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Change password',
@@ -1198,7 +1198,7 @@ If you click Save again, your edit will be saved without one.",
 'summary-preview'                  => 'Summary preview:',
 'subject-preview'                  => 'Subject/headline preview:',
 'blockedtitle'                     => 'User is blocked',
-'blockedtext'                      => "<big>'''Your user name or IP address has been blocked.'''</big>
+'blockedtext'                      => "'''Your user name or IP address has been blocked.'''
 
 The block was made by $1.
 The reason given is ''$2''.
@@ -1828,12 +1828,12 @@ You can also choose to let others contact you through your user or talk page wit
 'group-suppress'      => 'Oversights',
 'group-all'           => '(all)',
 
-'group-user-member'          => 'User',
-'group-autoconfirmed-member' => 'Autoconfirmed user',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Bureaucrat',
-'group-suppress-member'      => 'Oversight',
+'group-user-member'          => 'user',
+'group-autoconfirmed-member' => 'autoconfirmed user',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrator',
+'group-bureaucrat-member'    => 'bureaucrat',
+'group-suppress-member'      => 'oversight',
 
 'grouppage-user'          => '{{ns:project}}:Users',
 'grouppage-autoconfirmed' => '{{ns:project}}:Autoconfirmed users',
@@ -2087,7 +2087,7 @@ You should check that file's deletion history before proceeding to re-upload it.
 'savefile'                    => 'Save file',
 'uploadedimage'               => 'uploaded "[[$1]]"',
 'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
-'uploaddisabled'              => 'Uploads disabled',
+'uploaddisabled'              => 'Uploads disabled.',
 'uploaddisabledtext'          => 'File uploads are disabled.',
 'php-uploaddisabledtext'      => 'File uploads are disabled in PHP.
 Please check the file_uploads setting.',
@@ -2198,42 +2198,42 @@ A click on a column header changes the sorting.',
 'listfiles_count'       => 'Versions',
 
 # File description page
-'file-anchor-link'          => 'File',
-'filehist'                  => 'File history',
-'filehist-help'             => 'Click on a date/time to view the file as it appeared at that time.',
-'filehist-deleteall'        => 'delete all',
-'filehist-deleteone'        => 'delete',
-'filehist-revert'           => 'revert',
-'filehist-current'          => 'current',
-'filehist-datetime'         => 'Date/Time',
-'filehist-thumb'            => 'Thumbnail',
-'filehist-thumbtext'        => 'Thumbnail for version as of $1',
-'filehist-nothumb'          => 'No thumbnail',
-'filehist-user'             => 'User',
-'filehist-dimensions'       => 'Dimensions',
-'filehist-filesize'         => 'File size',
-'filehist-comment'          => 'Comment',
-'filehist-missing'          => 'File missing',
-'imagelinks'                => 'File links',
-'linkstoimage'              => 'The following {{PLURAL:$1|page links|$1 pages link}} to this file:',
-'linkstoimage-more'         => 'More than $1 {{PLURAL:$1|page links|pages link}} to this file.
+'file-anchor-link'                  => 'File',
+'filehist'                          => 'File history',
+'filehist-help'                     => 'Click on a date/time to view the file as it appeared at that time.',
+'filehist-deleteall'                => 'delete all',
+'filehist-deleteone'                => 'delete',
+'filehist-revert'                   => 'revert',
+'filehist-current'                  => 'current',
+'filehist-datetime'                 => 'Date/Time',
+'filehist-thumb'                    => 'Thumbnail',
+'filehist-thumbtext'                => 'Thumbnail for version as of $1',
+'filehist-nothumb'                  => 'No thumbnail',
+'filehist-user'                     => 'User',
+'filehist-dimensions'               => 'Dimensions',
+'filehist-filesize'                 => 'File size',
+'filehist-comment'                  => 'Comment',
+'filehist-missing'                  => 'File missing',
+'imagelinks'                        => 'File links',
+'linkstoimage'                      => 'The following {{PLURAL:$1|page links|$1 pages link}} to this file:',
+'linkstoimage-more'                 => 'More than $1 {{PLURAL:$1|page links|pages link}} to this file.
 The following list shows the {{PLURAL:$1|first page link|first $1 page links}} to this file only.
 A [[Special:WhatLinksHere/$2|full list]] is available.',
-'nolinkstoimage'            => 'There are no pages that link to this file.',
-'morelinkstoimage'          => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
-'redirectstofile'           => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
-'duplicatesoffile'          => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
-'sharedupload'              => 'This file is from $1 and may be used by other projects.',
-'sharedupload-desc-there'   => 'This file is from $1 and may be used by other projects.
+'nolinkstoimage'                    => 'There are no pages that link to this file.',
+'morelinkstoimage'                  => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
+'redirectstofile'                   => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
+'duplicatesoffile'                  => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
+'sharedupload'                      => 'This file is from $1 and may be used by other projects.',
+'sharedupload-desc-there'           => 'This file is from $1 and may be used by other projects.
 Please see the [$2 file description page] for further information.',
-'sharedupload-desc-here'    => 'This file is from $1 and may be used by other projects.
+'sharedupload-desc-here'            => 'This file is from $1 and may be used by other projects.
 The description on its [$2 file description page] there is shown below.',
-'shareddescriptionfollows'  => '-', # do not translate or duplicate this message to other languages
-'filepage-nofile'           => 'No file by this name exists.',
-'filepage-nofile-link'      => 'No file by this name exists, but you can [$1 upload it].',
-'uploadnewversion-linktext' => 'Upload a new version of this file',
-'shared-repo-from'          => 'from $1',
-'shared-repo'               => 'a shared repository',
+'shareddescriptionfollows'          => '-', # do not translate or duplicate this message to other languages
+'filepage-nofile'                   => 'No file by this name exists.',
+'filepage-nofile-link'              => 'No file by this name exists, but you can [$1 upload it].',
+'uploadnewversion-linktext'         => 'Upload a new version of this file',
+'shared-repo-from'                  => 'from $1',
+'shared-repo'                       => 'a shared repository',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons', # only translate this message to other languages if you have to change it
 
 # File reversion
@@ -2805,7 +2805,7 @@ You may have a bad link, or the revision may have been restored or removed from 
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} restored',
 'cannotundelete'               => 'Undelete failed;
 someone else may have undeleted the page first.',
-'undeletedpage'                => "<big>'''$1 has been restored'''</big>
+'undeletedpage'                => "'''$1 has been restored'''
 
 Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
 'undelete-header'              => 'See [[Special:Log/delete|the deletion log]] for recently deleted pages.',
@@ -3053,7 +3053,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 'move-watch'                   => 'Watch source page and target page',
 'movepagebtn'                  => 'Move page',
 'pagemovedsub'                 => 'Move succeeded',
-'movepage-moved'               => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" has been moved to "$2"\'\'\'',
 'movepage-moved-redirect'      => 'A redirect has been created.',
 'movepage-moved-noredirect'    => 'The creation of a redirect has been suppressed.',
 'articleexists'                => 'A page of that name already exists, or the name you have chosen is not valid.
@@ -4132,7 +4132,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 # Special:FilePath
 'filepath'         => 'File path',
 'filepath-page'    => 'File:',
-'filepath-submit'  => 'Path',
+'filepath-submit'  => 'Go',
 'filepath-summary' => 'This special page returns the complete path for a file.
 Images are shown in full resolution, other file types are started with their associated program directly.
 
@@ -4140,7 +4140,7 @@ Enter the file name without the "{{ns:file}}:" prefix.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Search for duplicate files',
-'fileduplicatesearch-summary'  => 'Search for duplicate files on base of its hash value.
+'fileduplicatesearch-summary'  => 'Search for duplicate files based on hash values.
 
 Enter the filename without the "{{ns:file}}:" prefix.',
 'fileduplicatesearch-legend'   => 'Search for a duplicate',

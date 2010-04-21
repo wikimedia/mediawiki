@@ -332,7 +332,7 @@ $messages = array(
 'tog-shownumberswatching'     => 'Prikaži broj suradnika koji prate stranicu (u nedavnim izmjenama, popisu praćenja i samim člancima)',
 'tog-oldsig'                  => 'Pregled postojećeg potpisa:',
 'tog-fancysig'                => 'Običan potpis kao wikitekst (bez automatske poveznice)',
-'tog-externaleditor'          => 'Uvijek koristi vanjski editor',
+'tog-externaleditor'          => 'Uvijek rabi vanjski program za uređivanje (samo za napredne, potrebne su posebne postavke na računalu)',
 'tog-externaldiff'            => 'Uvijek koristi vanjski program za usporedbu',
 'tog-showjumplinks'           => 'Uključi pomoćne poveznice "Skoči na"',
 'tog-uselivepreview'          => 'Uključi trenutačni pretpregled (JavaScript) (eksperimentalno)',
@@ -430,7 +430,7 @@ $messages = array(
 'index-category'                 => 'Indeksirane stranice',
 'noindex-category'               => 'Neindeksirane stranice',
 
-'mainpagetext'      => "<big>'''Softver MediaWiki je uspješno instaliran.'''</big>",
+'mainpagetext'      => "'''Softver MediaWiki je uspješno instaliran.'''",
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
 i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.',
 
@@ -474,7 +474,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'vector-namespace-talk'      => 'Razgovor',
 'vector-namespace-template'  => 'Predložak',
 'vector-namespace-user'      => 'Suradnička stranica',
-'vector-view-create'         => 'Stvori',
+'vector-view-create'         => 'Započni',
 'vector-view-edit'           => 'Uredi',
 'vector-view-history'        => 'Vidi stare izmjene',
 'vector-view-view'           => 'Čitaj',
@@ -836,7 +836,7 @@ Možda ste već uspješno promijenili vašu lozinku ili ste zatražili novu priv
 'summary-preview'                  => 'Pregled sažetka:',
 'subject-preview'                  => 'Pregled predmeta:',
 'blockedtitle'                     => 'Suradnik je blokiran',
-'blockedtext'                      => '<big>\'\'\'Vaše suradničko ime ili IP adresa je blokirana\'\'\'</big>
+'blockedtext'                      => '\'\'\'Vaše suradničko ime ili IP adresa je blokirana\'\'\'
 
 Blokirao vas je $1.
 Iz sljedećeg razloga: \'\'$2\'\'.
@@ -941,10 +941,13 @@ Molimo razmislite o rastavljanju stranice na manje odjeljke.',
 promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je snimite za kasnije.'''
 
 Administrator je zaključao bazu iz razloga: $1",
-'protectedpagewarning'             => "'''UPOZORENJE: ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima.'''",
-'semiprotectedpagewarning'         => "'''Napomena:''' Ovu stranicu mogu uređivati samo prijavljeni suradnici.",
+'protectedpagewarning'             => "'''UPOZORENJE: Ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima.'''
+Posljednja stavka u evidenciji navedena je niže kao napomena:",
+'semiprotectedpagewarning'         => "'''Napomena:''' Ova stranica je zaključana tako da je mogu uređivati samo prijavljeni suradnici.
+Posljednja stavka u evidenciji navedena je niže kao napomena:",
 'cascadeprotectedwarning'          => "'''UPOZORENJE:''' Ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima, jer je uključena u {{PLURAL:\$1|slijedeću stranicu|slijedeće stranice}} koje su zaštićene \"prenosivom\" zaštitom:",
-'titleprotectedwarning'            => "'''UPOZORENJE:  Ova stranica je zaključana i samo je suradnici sa [[Special:ListGroupRights|slijedećim pravima]] mogu stvoriti.'''",
+'titleprotectedwarning'            => "'''UPOZORENJE:  Ova stranica je zaključana i samo je suradnici s [[Special:ListGroupRights|dodatnim pravima]] mogu stvoriti.'''
+Posljednja stavka u evidenciji navedena je niže kao napomena:",
 'templatesused'                    => '{{PLURAL:$1|Predložak koji se rabi|Predlošci koji se rabe}} na ovoj stranici:',
 'templatesusedpreview'             => '{{PLURAL:$1|Predložak koji se rabi|Predlošci koji se rabe}} u ovom predpregledu:',
 'templatesusedsection'             => '{{PLURAL:$1|Predložak koji se rabi|Predlošci koji se rabe}} u ovom odjeljku:',
@@ -988,6 +991,7 @@ Neki predlošci neće biti uključeni.',
 'post-expand-template-argument-category'  => 'Stranice koje sadrže izostavljene argumente za predloške',
 'parser-template-loop-warning'            => 'Otkrivena petlja predloška: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Dubina rekurzije predloška je izvan granice ($1)',
+'language-converter-depth-warning'        => 'Prekoračena granica dubine jezičnog pretvarača ($1)',
 
 # "Undo" feature
 'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži zadnju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
@@ -1050,6 +1054,7 @@ Kao administrator na ovom projektu možete ju vidjeti; detalji se vjerojatno nal
 Kao administrator možete ju pregledati; vjerojatno postoji više podataka u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].",
 'rev-deleted-no-diff'         => "Ne možete vidjeti ovu inačicu zbog toga što je jedna od izmjena '''izbrisana'''.
 Možda postoji više informacija u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
+'rev-suppressed-no-diff'      => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.",
 'rev-deleted-unhide-diff'     => "Jedna od inačica ove izmjene je '''izbrisana'''. 
 Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja]. Kao administrator, možete i dalje [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
 'rev-suppressed-unhide-diff'  => "Jedna od revizija ove razlike je '''uklonjena'''.
@@ -1410,7 +1415,7 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'right-move-subpages'         => 'Premještanje stranica s njihovim podstranicama',
 'right-move-rootuserpages'    => 'Premještanje osnovne stranice suradnika',
 'right-movefile'              => 'Premještanje datoteka',
-'right-suppressredirect'      => 'Ne radi preusmjeravanje od starog imena prilikom premještanja stranice',
+'right-suppressredirect'      => 'Ne raditi preusmjeravanje od starog imena prilikom premještanja stranice',
 'right-upload'                => 'Postavljanje datoteka',
 'right-reupload'              => 'Postavljanje nove inačice datoteke',
 'right-reupload-own'          => 'Postavljanje nove inačice vlastite datoteke',
@@ -1587,6 +1592,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'minlength1'                  => 'Ime datoteke mora imati barem jedno slovo.',
 'illegalfilename'             => 'Ime datoteke "$1" sadrži znakove koji nisu dopušteni u imenima stranica. Preimenujte datoteku i ponovno je postavite.',
 'badfilename'                 => 'Ime slike automatski je promijenjeno u "$1".',
+'filetype-mime-mismatch'      => 'Proširenje datoteke ne odgovara MIME tipu.',
 'filetype-badmime'            => 'Datoteke MIME tipa "$1" ne mogu se snimati.',
 'filetype-bad-ie-mime'        => 'Nemogu postaviti ovu datoteku zato što ju Internet Explorer prepoznaje kao "$1", koji nije dopušten i potencijalno je opasan tip datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je neželjena vrsta datoteke. {{PLURAL:\$3|Preporučena vrsta je|Preporučene vrste su}} \$2.",
@@ -1673,6 +1679,16 @@ Ovaj wiki je postavljena kao javni wiki.
 Za optimalnu sigurnost, img_auth.php je onemogućena.',
 'img-auth-noread'       => 'Suradnik nema pristup za čitanje "$1".',
 
+# HTTP errors
+'http-invalid-url'      => 'Nevaljan URL: $1',
+'http-invalid-scheme'   => 'URL-ovi s prefiksom "$1" nisu podržani.',
+'http-request-error'    => 'HTTP zahtjev nije uspio zbog nepoznate pogreške.',
+'http-read-error'       => 'Greška pri čitanju HTTP.',
+'http-timed-out'        => 'HTTP zahtjev je istekao.',
+'http-curl-error'       => 'Greška pri otvaranju URL-a: $1',
+'http-host-unreachable' => 'URL nije dostupan.',
+'http-bad-status'       => 'Došlo je do problema tijekom HTTP zahtjeva: $1 $2',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL nije dostupan',
 'upload-curl-error6-text'  => 'Dani URL nije dostupan. Provjerite da li je URL ispravno upisan i da li su web stranice dostupne.',
@@ -1681,7 +1697,7 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 
 'license'            => 'Licencija:',
 'license-header'     => 'Licencija',
-'nolicense'          => 'Molim odaberite:',
+'nolicense'          => 'Ništa nije odabrano',
 'license-nopreview'  => '(Prikaz nije moguć)',
 'upload_source_url'  => ' (valjani, javno dostupni URL)',
 'upload_source_file' => ' (datoteka na vašem računalu)',
@@ -2241,7 +2257,7 @@ ili je promjena vraćena ili uklonjena iz arhive.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|$1 promjena|$1 promjene|$1 promjena}} i {{PLURAL:$2|$2 datoteka vraćena|$2 datototeke vraćene|$2 datoteka vraćeno}}',
 'undeletedfiles'               => '{{PLURAL:$1|$1 datoteka vraćena|$1 datoteke vraćene|$1 datoteka vraćeno}}',
 'cannotundelete'               => 'Vraćanje obrisane inačice nije uspjelo; netko drugi je stranicu već vratio.',
-'undeletedpage'                => "<big>'''$1 je vraćena'''</big>
+'undeletedpage'                => "'''$1 je vraćena'''
 
 Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanja i vraćanja.",
 'undelete-header'              => 'Pogledaj [[Special:Log/delete|evidenciju brisanja]] za nedavno obrisane stranice.',
@@ -2471,7 +2487,7 @@ ako to želite.",
 'move-watch'                   => 'Prati ovu stranicu',
 'movepagebtn'                  => 'Premjesti stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
-'movepage-moved'               => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" je premješteno na "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Napravljeno je preusmjeravanje.',
 'movepage-moved-noredirect'    => 'Stvaranje preusmjeravanja je izostavljeno.',
 'articleexists'                => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
@@ -2513,8 +2529,10 @@ Odredišni članak "[[:$1]]" već postoji. Želite li ga obrisati da biste napra
 'imageinvalidfilename'         => 'Ciljano ime datoteke je nevaljano',
 'fix-double-redirects'         => 'Ažuriraj sva preusmjeravanja koja vode na originalni naslov',
 'move-leave-redirect'          => 'Ostavi preusmjeravanje',
-'protectedpagemovewarning'     => "'''Upozorenje:''' Ova je stranica zaključana tako da je mogu premjestiti samo suradnici s administratorskim privilegijama.",
-'semiprotectedpagemovewarning' => "'''Napomena:''' Ova je stranica zaključana tako da je samo registrirani suradnici mogu premjestiti.",
+'protectedpagemovewarning'     => "'''Upozorenje:''' Ova je stranica zaključana tako da je mogu premjestiti samo suradnici s administratorskim pravima.
+Posljednja stavka u evidenciji navedena je niže kao napomena:",
+'semiprotectedpagemovewarning' => "'''Napomena:''' Ova je stranica zaključana tako da je samo prijavljeni suradnici mogu premjestiti.
+Posljednja stavka u evidenciji navedena je niže kao napomena:",
 'move-over-sharedrepo'         => '== Datoteka postoji ==
 [[:$1]] postoji na zajednički korištenom repozitoriju. Premještanje datoteke na ovaj naslov će prepisati zajednički korištenu datoteku.',
 'file-exists-sharedrepo'       => 'Naziv datoteke koje ste odabrali već se rabi na zajednički korištenom repozitoriju. 
@@ -3256,7 +3274,7 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 # Special:FilePath
 'filepath'         => 'Putanja datoteke',
 'filepath-page'    => 'Datoteka:',
-'filepath-submit'  => 'Putanja',
+'filepath-submit'  => 'Idi',
 'filepath-summary' => "Ova posebna stranica daje Vam kompletnu putanju do neke datoteke. Slike se na taj način prikazuju u punoj rezoluciji, drugi tipovi datoteka se otvaraju na klik (kako je već namješteno u vašem operacijskom sustavu).
 
 Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:file}}:\".",

@@ -426,7 +426,7 @@ $messages = array(
 'index-category'                 => 'صفحات متفهرسه',
 'noindex-category'               => 'صفحات مش متفهرسه',
 
-'mainpagetext'      => "<big>''' ميدياويكى اتنزلت بنجاح.'''</big>",
+'mainpagetext'      => "''' ميدياويكى اتنزلت بنجاح.'''",
 'mainpagedocfooter' => 'اسال [http://meta.wikimedia.org/wiki/Help:Contents دليل اليوزر] للمعلومات حوالين استخدام برنامج الويكى.
 
 == البداية ==
@@ -848,7 +848,7 @@ $2',
 'summary-preview'                  => 'بروفه للملخص:',
 'subject-preview'                  => 'بروفة للعنوان/للموضوع',
 'blockedtitle'                     => 'اليوزر ممنوع',
-'blockedtext'                      => "<big>'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''</big>
+'blockedtext'                      => "'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''
 
 سبب المنع هو: ''$2''. وقام بالمنع $1.
 
@@ -2334,7 +2334,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 نسخة|$1 نسخة}} و {{PLURAL:$2|1 ملف|$2 ملف}} رجعو تاني',
 'undeletedfiles'               => '{{PLURAL:$1|ملف|ملفات}} $1 رجعو تاني',
 'cannotundelete'               => 'الترجيع ما نفعش :ممكن يكون فى حد تانى رجع الصفحة قبل كدا.',
-'undeletedpage'                => "<big>'''اترجع $1'''</big>
+'undeletedpage'                => "'''اترجع $1'''
 
 بص على [[Special:Log/delete|سجل المسح]] علشان تشوف عمليات المسح و الترجيع الاخيرة.",
 'undelete-header'              => 'شوف الصفحات الممسوحة قريب فى [[Special:Log/delete|سجل المسح]].',
@@ -2571,7 +2571,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'move-watch'                   => 'راقب الصفحه دى',
 'movepagebtn'                  => 'نقل الصفحه',
 'pagemovedsub'                 => 'تم  النقل بنجاح',
-'movepage-moved'               => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'',
 'movepage-moved-redirect'      => 'فى تحويله اتعملت.',
 'movepage-moved-noredirect'    => 'التحويله ما اتعملتش.',
 'articleexists'                => 'يا اما فيه صفحه  بالاسم ده، او ان الاسم اللى  تم اختياره مش صالح.

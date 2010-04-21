@@ -58,8 +58,8 @@ Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software 
 'actionthrottledtext'  => 'Sie haben diese Aktion zu oft innerhalb eines kurzen Zeitraums ausgeführt. Bitte warten Sie ein paar Minuten und probieren Sie es dann erneut.',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text.
 Änderungen wirken sich auf die Benutzeroberfläche aus.
-Für Übersetzungen ziehen Sie bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
-'namespaceprotected'   => "Sie haben keine Berechtigung, die Seite im '''$1'''-Namensraum zu bearbeiten.",
+Für Übersetzungen ziehen Sie bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de-formal Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
+'namespaceprotected'   => "Sie haben keine Berechtigung, Seiten im '''$1'''-Namensraum zu bearbeiten.",
 'customcssjsprotected' => 'Sie sind nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 
 # Login and logout pages
@@ -119,6 +119,7 @@ Bitte warten Sie, bevor Sie es erneut probierst.',
 
 # Password reset dialog
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, müssen Sie jetzt ein neues Passwort wählen.',
+'resetpass_text'          => '<!-- Ergänzen Sie den Text hier -->',
 'resetpass_success'       => 'Ihr Passwort wurde erfolgreich geändert. Es folgt die Anmeldung …',
 'resetpass-no-info'       => 'Sie müssen sich anmelden, um auf diese Seite direkt zuzugreifen.',
 'resetpass-wrong-oldpass' => 'Ungültiges temporäres oder aktuelles Passwort.
@@ -132,7 +133,7 @@ Möglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein ne
 'missingsummary'                   => "'''Hinweis:''' Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Änderung ohne Zusammenfassung übernommen.",
 'missingcommenttext'               => 'Bitte geben Sie eine Zusammenfassung ein.',
 'missingcommentheader'             => "'''ACHTUNG:''' Sie haben keine Überschrift im Feld „Betreff:“ eingegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Bearbeitung ohne Überschrift gespeichert.",
-'blockedtext'                      => "<big>'''Ihr Benutzername oder Ihre IP-Adresse wurde gesperrt.'''</big>
+'blockedtext'                      => "'''Ihr Benutzername oder Ihre IP-Adresse wurde gesperrt.'''
 
 Die Sperrung wurde von $1 durchgeführt.
 Als Grund wurde ''$2'' angegeben.

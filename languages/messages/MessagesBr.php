@@ -230,7 +230,7 @@ $messages = array(
 'index-category'                 => 'Pajennoù menegeret',
 'noindex-category'               => "Pajennoù n'int ket menegeret",
 
-'mainpagetext'      => "<big>'''Meziant MediaWiki staliet.'''</big>",
+'mainpagetext'      => "'''Meziant MediaWiki staliet.'''",
 'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
 
 == Kregiñ ganti ==
@@ -641,7 +641,7 @@ Gortozit a-raok klask en-dro.",
 'summary-preview'                  => 'Rakwelet an diverrañ :',
 'subject-preview'                  => 'Rakwelet danvez/titl :',
 'blockedtitle'                     => 'Implijer stanket',
-'blockedtext'                      => "<big>'''Stanket eo bet ho kont implijer pe ho chomlec'h IP'''</big>
+'blockedtext'                      => "'''Stanket eo bet ho kont implijer pe ho chomlec'h IP'''
 
 Gant $1 eo bet graet. 
 Setu an abeg evit se : ''$2''.
@@ -2098,7 +2098,7 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeletedrevisions-files'     => 'Adsavet ez ez eus bet {{PLURAL:$1|1 stumm|$1 stumm}} ha {{PLURAL:$2|1 restr|$2 restr}}',
 'undeletedfiles'               => '{{PLURAL:$1|1 restr|$1 restr}} adsavet',
 'cannotundelete'               => "Dibosupl eo diziverkañ; moarvat eo bet diziverket gant unan bennak all araozoc'h.",
-'undeletedpage'                => "<big>'''Diziverket eo bet $1'''</big>
+'undeletedpage'                => "'''Diziverket eo bet $1'''
 
 Sellit ouzh [[Special:Log/delete|marilh an diverkadennoù]] evit teuler ur sell ouzh an diverkadennoù diwezhañ.",
 'undelete-header'              => 'Gwelet [[Special:Log/delete|al log diverkañ]] evit ar pajennoù diverket nevez zo.',
@@ -2325,7 +2325,7 @@ En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma kari
 'move-watch'                   => 'Evezhiañ ar bajenn-mañ',
 'movepagebtn'                  => 'Adenvel ar pennad',
 'pagemovedsub'                 => "Dilec'hiadenn kaset da benn vat",
-'movepage-moved'               => '<big>\'\'\'Adkaset eo bet "$1" war-du "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'Adkaset eo bet "$1" war-du "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Krouet ez eus bet un adkas.',
 'movepage-moved-noredirect'    => 'Nullet eo bet krouidigezeh un adkas adal an anv kozh.',
 'articleexists'                => "Ur pennad gantañ an anv-se zo dija pe n'eo ket reizh an titl hoc'h eus dibabet.
@@ -2662,7 +2662,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Diwallit :''' Kodoù siek a c'hall bezañ er seurt restr-mañ. 
 Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.<hr />",
-'imagemaxsize'         => "Bevenn ment ar skeudennoù vrasañ ar skeudennoù :<br />''(evit ar pajennoù deskrivañ)''",
+'imagemaxsize'         => "Bevenn ment vrasañ ar skeudennoù :<br />''(evit ar pajennoù deskrivañ)''",
 'thumbsize'            => 'Ment an alberz :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pajenn|pajenn}}',
 'file-info'            => '(ment ar restr : $1, seurt MIME : $2)',
@@ -3149,7 +3149,7 @@ Klaskit rakwelet er mod boutin.',
 # Special:FilePath
 'filepath'         => 'Hent moned ur restr',
 'filepath-page'    => 'Restr :',
-'filepath-submit'  => 'Hent moned',
+'filepath-submit'  => 'Mont',
 'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr. Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.
 
 Merkit anv ar restr hep ar rakger "{{ns:file}} :"',

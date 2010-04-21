@@ -149,7 +149,7 @@ $messages = array(
 'category-article-count'   => '{{PLURAL:$2|Тиде категорийыш ик лаштык гына пура.|{{PLURAL:$1|Тыгай $1 лаштык|Тыгане $1 лаштык-влак}} тиде категорийыште, чыла $2.}}',
 'listingcontinuesabbrev'   => '(умбакыжым)',
 
-'mainpagetext' => "<big>'''MediaWiki сай шындыме.'''</big>",
+'mainpagetext' => "'''MediaWiki сай шындыме.'''",
 
 'about'         => 'Нерген',
 'article'       => 'Возымо лаштык',
@@ -917,7 +917,7 @@ $messages = array(
 'move-watch'                => 'Тиде лаштыкым эскераш',
 'movepagebtn'               => 'Лаштыкым кусараш',
 'pagemovedsub'              => 'Кусарымаш сайын эртен',
-'movepage-moved'            => '<big>\'\'\'"$1" лаштыкым "$2" лаштыкыш кусарыме\'\'\'</big>',
+'movepage-moved'            => '\'\'\'"$1" лаштыкым "$2" лаштыкыш кусарыме\'\'\'',
 'movepage-moved-redirect'   => 'Вес верек колтымаш ыштыме.',
 'movepage-moved-noredirect' => 'Вес верек колтымаш ыштыме огыл.',
 'articleexists'             => 'Тыгай лӱман лаштык уло але тиде лӱмым кучылташ огеш лий. Вес лӱмым ойыро.',

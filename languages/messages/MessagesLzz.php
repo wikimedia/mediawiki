@@ -91,7 +91,7 @@ $messages = array(
 'index-category'                => "Indexi na uğun but'k'ape",
 'noindex-category'              => 'Indexi muşi na var uğun sayfape',
 
-'mainpagetext'      => "<big>'''Mediawiki dido k'ai ik'idu.'''</big>",
+'mainpagetext'      => "'''Mediawiki dido k'ai ik'idu.'''",
 'mainpagedocfooter' => "Vik'i şeni muç'o ixmarinen ya mutxanepe oguru şeni [http://meta.wikimedia.org/wiki/Help:Contents oxmaruşi rexberis] o3'k'edit.
 
 == Ağani na gyoç’k’u maxmarepe ==
@@ -625,7 +625,7 @@ Am situa3yonepes, butʼkʼa skanişkʼelen otiruşi ren.",
 'move-watch'       => 'Am butʼkʼa gatxozi',
 'movepagebtn'      => 'Coxo-muşi doktiri',
 'pagemovedsub'     => 'Coxo iktirinu.',
-'movepage-moved'   => '<big>\'\'\'"$1",  "$2" butʼkʼa muşişa itirinu\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1",  "$2" butʼkʼa muşişa itirinu\'\'\'',
 'articleexists'    => 'Am coxos ar butʼkʼa koren varna na çʼari coxo mtini va ren.
 Mu iqʼven başka coxo doçʼari.',
 'talkexists'       => "'''Butʼkʼa dido kʼai itirinu, mara oğarğaluşi butʼkʼa var itirinu çunki na itirinasen coxos zate ar butʼkʼa rtʼu. Mu iqʼven butʼkʼaşi doloçʼareli nç'arape majurani butʼkʼaşa ti-skani kʼala itirini.'''",

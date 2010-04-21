@@ -525,7 +525,7 @@ Tí ẹ bá tẹ Ìmúpamọ́ lẹ́ẹ̀kansi, àtúnṣe yín yíò jẹ́ m�
 'summary-preview'                  => 'Àkọ́kọ́yẹ̀wò àkótán:',
 'subject-preview'                  => 'Àyẹ̀wò àkọlé',
 'blockedtitle'                     => 'Ìdínà oníṣe',
-'blockedtext'                      => "<big>'''A ti dínà orúkọ oníṣe tàbí ojúọ̀nà IP yín.'''</big>
+'blockedtext'                      => "'''A ti dínà orúkọ oníṣe tàbí ojúọ̀nà IP yín.'''
 
 $1 ni ó ṣe ìdínà.
 Ìdí tó fun ni ''$2''.
@@ -1452,7 +1452,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'move-watch'              => 'Mójútó ojúewé yìí',
 'movepagebtn'             => 'Yípò ojúewé',
 'pagemovedsub'            => 'Ìyípò ti já sí rere',
-'movepage-moved'          => '<big>\'\'\'"$1" ti yípò sí "$2"\'\'\'</big>.',
+'movepage-moved'          => '\'\'\'"$1" ti yípò sí "$2"\'\'\'.',
 'movepage-moved-redirect' => 'Àtúndarí ti jẹ́ dídá.',
 'articleexists'           => 'Ojúewé pẹ̀lú orúkọ un wà tẹ́lẹ̀, tàbí kójẹ́pé orúkọ tí ẹ yàn kò ní ìbámu.
 Ẹ jọ̀wọ́ ẹ yan orúkọ mìíràn.',

@@ -330,7 +330,7 @@ $messages = array(
 'index-category'                 => 'Páxinas indexadas',
 'noindex-category'               => 'Páxinas non indexadas',
 
-'mainpagetext'      => "<big>'''O programa Wiki foi instalado con éxito.'''</big>",
+'mainpagetext'      => "'''MediaWiki instalouse correctamente.'''",
 'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.
 
 == Comezando ==
@@ -741,7 +741,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 
 # Edit pages
 'summary'                          => 'Resumo:',
-'subject'                          => 'Asunto/cabeceira:',
+'subject'                          => 'Asunto/título:',
 'minoredit'                        => 'Esta é unha edición pequena',
 'watchthis'                        => 'Vixiar esta páxina',
 'savearticle'                      => 'Gardar a páxina',
@@ -757,9 +757,9 @@ Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrici
 'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/cabeceira deste comentario.
 Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'                  => 'Vista previa do resumo:',
-'subject-preview'                  => 'Vista previa do asunto/cabeceira:',
+'subject-preview'                  => 'Vista previa do asunto/título:',
 'blockedtitle'                     => 'O usuario está bloqueado',
-'blockedtext'                      => '<big>\'\'\'O seu nome de usuario ou enderezo IP foi bloqueado.\'\'\'</big>
+'blockedtext'                      => '\'\'\'O seu nome de usuario ou enderezo IP foi bloqueado.\'\'\'
 
 O bloqueo foi realizado por $1.
 A razón que deu foi \'\'$2\'\'.
@@ -845,9 +845,9 @@ Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver
 
 '''Se este é un intento de facer unha edición lexítima, por favor, inténteo de novo.
 Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver entrar.'''",
-'token_suffix_mismatch'            => "'''Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.
-Rexeitouse a edición para evitar que se corrompa o texto do artigo. Isto pode acontecer porque estea a
-empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.'''",
+'token_suffix_mismatch'            => "'''Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.'''
+Rexeitouse a edición para evitar que se corrompa o texto do artigo.
+Isto pode acontecer porque estea a empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.",
 'editing'                          => 'Editando "$1"',
 'editingsection'                   => 'Editando unha sección de "$1"',
 'editingcomment'                   => 'Editando unha nova sección de "$1"',
@@ -950,8 +950,8 @@ A razón dada por $3 foi ''$2''",
 'viewpagelogs'           => 'Ver os rexistros desta páxina',
 'nohistory'              => 'Esta páxina non posúe ningún historial de edicións.',
 'currentrev'             => 'Revisión actual',
-'currentrev-asof'        => 'Revisión actual ás $3 do $2',
-'revisionasof'           => 'Revisión como estaba ás $3 do $2',
+'currentrev-asof'        => 'Revisión actual feita o $2 ás $3',
+'revisionasof'           => 'Revisión como estaba o $2 ás $3',
 'revision-info'          => 'Revisión feita o $4 ás $5 por $2',
 'previousrevision'       => '← Revisión máis antiga',
 'nextrevision'           => 'Revisión máis nova →',
@@ -1144,7 +1144,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'viewprevnext'                     => 'Ver as ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Opcións de busca',
 'searchmenu-exists'                => "* Páxina \"'''[[\$1]]'''\"",
-'searchmenu-new'                   => "'''Crear a páxina \"''[[:\$1|\$1]]''\" neste wiki!'''",
+'searchmenu-new'                   => "'''Crear a páxina \"[[:\$1]]\" neste wiki!'''",
 'searchhelp-url'                   => 'Help:Contidos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue polas páxinas que comezan coas mesmas iniciais]]',
 'searchprofile-articles'           => 'Páxinas de contido',
@@ -1218,7 +1218,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-days-max'      => '(máximo 7 días)',
 'prefs-watchlist-edits'         => 'Número de edicións para mostrar na lista de vixilancia completa:',
 'prefs-watchlist-edits-max'     => '(número máximo: 1000)',
-'prefs-watchlist-token'         => 'Token para a lista de vixilancia:',
+'prefs-watchlist-token'         => 'Pase para a lista de vixilancia:',
 'prefs-misc'                    => 'Preferencias varias',
 'prefs-resetpass'               => 'Cambiar o contrasinal',
 'prefs-email'                   => 'Opcións de correo electrónico',
@@ -1553,7 +1553,7 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'filetype-banned-type'        => "'''\".\$1\"''' non é un tipo de ficheiro permitido.
 {{PLURAL:\$3|O tipo de ficheiro permitido é|Os tipos de ficheiros permitidos son}} \$2.",
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
-'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere $1; este ficheiro ocupa $2.',
+'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere os $1; este ficheiro ocupa $2.',
 'largefileserver'             => 'Este ficheiro é de maior tamaño có permitido pola configuración do servidor.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro.
 Isto pode deberse a un erro ortográfico no seu nome.
@@ -1588,7 +1588,7 @@ Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
 'uploadedimage'               => 'cargou "[[$1]]"',
 'overwroteimage'              => 'enviou unha nova versión de "[[$1]]"',
 'uploaddisabled'              => 'Sentímolo, a subida de ficheiros está desactivada.',
-'uploaddisabledtext'          => 'A carga de ficheiros está deshabilitada.',
+'uploaddisabledtext'          => 'A carga de ficheiros está desactivada.',
 'php-uploaddisabledtext'      => 'As cargas de ficheiros PHP están desactivadas. Por favor, comprobe a característica file_uploads.',
 'uploadscripted'              => 'Este ficheiro contén HTML ou código (script code) que pode producir erros ao ser interpretado polo navegador.',
 'uploadvirus'                 => 'O ficheiro contén un virus! Detalles: $1',
@@ -1754,7 +1754,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'filedelete-otherreason'      => 'Outro motivo:',
 'filedelete-reason-otherlist' => 'Outra razón',
 'filedelete-reason-dropdown'  => '*Motivos frecuentes para borrar
-** Violación do copyright
+** Violación dos dereitos de autor
 ** Ficheiro duplicado',
 'filedelete-edit-reasonlist'  => 'Editar os motivos de borrado',
 'filedelete-maintenance'      => 'Os borrados e restauracións de ficheiros están desactivados temporalmente durante o mantemento.',
@@ -2241,7 +2241,7 @@ O texto destas revisións eliminadas só está á disposición dos administrador
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revisión|revisións}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|ficheiro restaurado|ficheiros restaurados}}',
 'cannotundelete'               => 'Non se restaurou a páxina porque alguén xa o fixo antes.',
-'undeletedpage'                => "<big>'''A páxina \"\$1\" foi restaurada'''</big>
+'undeletedpage'                => "'''A páxina \"\$1\" foi restaurada'''
 
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
 'undelete-header'              => 'Vexa [[Special:Log/delete|no rexistro de borrados]] as páxinas eliminadas recentemente.',
@@ -2473,7 +2473,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'move-watch'                   => 'Vixiar esta páxina',
 'movepagebtn'                  => 'Mover a páxina',
 'pagemovedsub'                 => 'O movemento foi un éxito',
-'movepage-moved'               => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'A páxina "$1" foi movida a "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Creouse unha redirección da primeira cara á segunda.',
 'movepage-moved-noredirect'    => 'A creación da redirección da primeira cara á segunda foi cancelada.',
 'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
@@ -3203,7 +3203,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'autosumm-new'     => 'Nova páxina: "$1"',
 
 # Live preview
-'livepreview-loading' => 'Cargando…',
+'livepreview-loading' => 'Cargando...',
 'livepreview-ready'   => 'Cargando… Listo!',
 'livepreview-failed'  => 'Fallou a vista previa en tempo real! Inténteo coa vista previa normal.',
 'livepreview-error'   => 'Fallou a conexión: $1 "$2"
@@ -3267,8 +3267,8 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 # Special:FilePath
 'filepath'         => 'Ruta do ficheiro',
 'filepath-page'    => 'Ficheiro:',
-'filepath-submit'  => 'Ruta',
-'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro.
+'filepath-submit'  => 'Ir',
+'filepath-summary' => 'Esta páxina especial devolve a ruta completa dun ficheiro.
 As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
 
 Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',

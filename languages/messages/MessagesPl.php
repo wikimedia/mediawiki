@@ -16,6 +16,7 @@
  * @author Lajsikonik
  * @author Leinad
  * @author Maikking
+ * @author Marcin Łukasz Kiejzik
  * @author Masti
  * @author Matma Rex
  * @author McMonster
@@ -354,7 +355,7 @@ $messages = array(
 'index-category'                 => 'Strony indeksowane',
 'noindex-category'               => 'Strony nieindeksowane',
 
-'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",
+'mainpagetext'      => "'''Instalacja MediaWiki powiodła się.'''",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
 
 == Na początek ==
@@ -650,7 +651,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'createaccount'              => 'Załóż nowe konto',
 'gotaccount'                 => "Masz już konto? '''$1'''.",
 'gotaccountlink'             => 'Zaloguj się',
-'createaccountmail'          => '– wyślij w tym celu wiadomość e‐mail',
+'createaccountmail'          => 'poprzez e‐mail',
 'badretype'                  => 'Wprowadzone hasła różnią się między sobą.',
 'userexists'                 => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
 Wybierz inną nazwę użytkownika.',
@@ -779,7 +780,7 @@ Jeśli tego nie zrobisz, Twój komentarz zostanie zapisany bez nagłówka.",
 'summary-preview'                  => 'Podgląd opisu:',
 'subject-preview'                  => 'Podgląd nagłówka:',
 'blockedtitle'                     => 'Użytkownik jest zablokowany',
-'blockedtext'                      => "<big>'''Twoje konto lub adres IP zostały zablokowane.'''</big>
+'blockedtext'                      => "'''Twoje konto lub adres IP zostały zablokowane.'''
 
 Blokada została nałożona przez $1.
 Podany powód to: ''$2''.
@@ -956,7 +957,7 @@ Argument ten będzie pominięty.',
 'undo-success' => 'Edycja może zostać wycofana. Porównaj ukazane poniżej różnice między wersjami, a następnie zapisz zmiany.',
 'undo-failure' => 'Edycja nie może zostać wycofana z powodu konfliktu z wersjami pośrednimi.',
 'undo-norev'   => 'Edycja nie może być cofnięta, ponieważ nie istnieje lub została usunięta.',
-'undo-summary' => 'Wycofanie wersji $1 utworzonej przez [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]])',
+'undo-summary' => 'Anulowanie wersji nr $1 utworzonej przez [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nie można utworzyć konta',
@@ -2186,7 +2187,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'protect-default'             => 'Dostęp mają wszyscy użytkownicy',
 'protect-fallback'            => 'Wymaga uprawnień „$1”',
 'protect-level-autoconfirmed' => 'Blokuj nowych i niezarejestrowanych użytkowników',
-'protect-level-sysop'         => 'tylko administratorzy',
+'protect-level-sysop'         => 'Dostęp mają tylko administratorzy',
 'protect-summary-cascade'     => 'dziedziczenie',
 'protect-expiring'            => 'wygasa $1 (UTC)',
 'protect-expiry-indefinite'   => 'na zawsze',
@@ -2249,14 +2250,14 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeleteviewlink'             => 'pokaż',
 'undeletereset'                => 'Wyczyść',
 'undeleteinvert'               => 'Odwróć zaznaczenie',
-'undeletecomment'              => 'Powód odtworzenia',
+'undeletecomment'              => 'Komentarz',
 'undeletedarticle'             => 'odtworzył [[$1]]',
 'undeletedrevisions'           => 'odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
 'undeletedrevisions-files'     => 'odtworzono $1 {{PLURAL:$1|wersję|wersje|wersji}} i $2 {{PLURAL:$2|plik|pliki|plików}}',
 'undeletedfiles'               => 'odtworzył $1 {{PLURAL:$1|plik|pliki|plików}}',
 'cannotundelete'               => 'Odtworzenie nie powiodło się.
 Ktoś inny prawdopodobnie odtworzył już tę stronę.',
-'undeletedpage'                => "<big>'''Odtworzono stronę $1.'''</big>
+'undeletedpage'                => "'''Odtworzono stronę $1.'''
 
 Zobacz [[Special:Log/delete|rejestr usunięć]], jeśli chcesz przejrzeć ostatnie operacje usuwania i odtwarzania stron.",
 'undelete-header'              => 'Zobacz [[Special:Log/delete|rejestr usunięć]], aby sprawdzić ostatnio usunięte strony.',
@@ -2332,7 +2333,7 @@ Blokować należy jedynie po to, by zapobiec wandalizmom, zgodnie z [[{{MediaWik
 Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandalizmu).',
 'ipaddress'                       => 'Adres IP',
 'ipadressorusername'              => 'Adres IP lub nazwa użytkownika',
-'ipbexpiry'                       => 'Czas blokady',
+'ipbexpiry'                       => 'Upływa',
 'ipbreason'                       => 'Powód',
 'ipbreasonotherlist'              => 'Inny powód',
 'ipbreason-dropdown'              => '*Najczęstsze przyczyny blokad
@@ -2491,7 +2492,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'move-watch'                   => 'Obserwuj',
 'movepagebtn'                  => 'Przenieś stronę',
 'pagemovedsub'                 => 'Przeniesienie powiodło się',
-'movepage-moved'               => "<big>'''„$1” została przeniesiona do „$2”'''</big>",
+'movepage-moved'               => "'''„$1” została przeniesiona do „$2”'''",
 'movepage-moved-redirect'      => 'Zostało utworzone przekierowanie.',
 'movepage-moved-noredirect'    => 'Nie zostało utworzone przekierowanie.',
 'articleexists'                => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
@@ -2604,7 +2605,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-interwiki-submit'    => 'Importuj',
 'import-interwiki-namespace' => 'Docelowa przestrzeń nazw',
 'import-upload-filename'     => 'Nazwa pliku',
-'import-comment'             => 'Komentarz',
+'import-comment'             => 'Komentarz:',
 'importtext'                 => 'Używając narzędzia [[Special:Export|eksportu]], wyeksportuj plik ze źródłowej wiki, zapisz go na swoim dysku, a następnie prześlij go tutaj.',
 'importstart'                => 'Trwa importowanie stron...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
@@ -3352,7 +3353,7 @@ Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
 # Special:FilePath
 'filepath'         => 'Ścieżka do pliku',
 'filepath-page'    => 'Plik',
-'filepath-submit'  => 'Ścieżka',
+'filepath-submit'  => 'Przejdź',
 'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku.
 Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie.
 

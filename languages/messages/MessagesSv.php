@@ -23,6 +23,7 @@
  * @author Micke
  * @author NH
  * @author Najami
+ * @author Nghtwlkr
  * @author Ozp
  * @author Per
  * @author Petter Strandmark
@@ -430,7 +431,7 @@ $messages = array(
 'index-category'                 => 'Indexerade sidor',
 'noindex-category'               => 'Icke-indexerade sidor',
 
-'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
+'mainpagetext'      => "'''MediaWiki har installerats utan problem.'''",
 'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
 
 == Att komma igång ==
@@ -655,6 +656,7 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror'        => 'Internt fel',
 'internalerror_info'   => 'Internt fel: $1',
+'fileappenderrorread'  => 'Kunde inte läsa "$1" medan data skulle tillföras.',
 'fileappenderror'      => 'Kunde inte bifoga "$1" till "$2".',
 'filecopyerror'        => 'Kunde inte kopiera filen "$1" till "$2".',
 'filerenameerror'      => 'Kunde inte byta namn på filen "$1" till "$2".',
@@ -782,6 +784,7 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'login-throttled'            => 'Du har gjort för många misslyckade inloggningsförsök till det här kontot.
 Vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
+'suspicious-userlogout'      => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Ändra lösenord',
@@ -842,7 +845,7 @@ Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'summary-preview'                  => 'Förhandsgranskning av sammanfattning:',
 'subject-preview'                  => 'Rubrikförhandsgranskning:',
 'blockedtitle'                     => 'Användaren är blockerad',
-'blockedtext'                      => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.'''</big>
+'blockedtext'                      => "'''Din IP-adress eller ditt användarnamn är blockerat.'''
 
 Blockeringen utfördes av $1 med motiveringen: ''$2''.
 
@@ -1225,7 +1228,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'searchhelp-url'                   => 'Help:Innehåll',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Bläddra igenom sidor med detta prefix]]',
 'searchprofile-articles'           => 'Innehållssidor',
-'searchprofile-project'            => 'Hjälp och projektsidor',
+'searchprofile-project'            => 'Hjälp- och projektsidor',
 'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Allt',
 'searchprofile-advanced'           => 'Avancerad',
@@ -1342,8 +1345,8 @@ Här är ett slumpmässigt genererat värde som du kan använda: $1',
 'defaultns'                     => 'Sök annars i dessa namnrymder:',
 'default'                       => 'ursprungsinställning',
 'prefs-files'                   => 'Filer',
-'prefs-custom-css'              => 'Personlig CSS',
-'prefs-custom-js'               => 'Personlig JavaScript',
+'prefs-custom-css'              => 'personlig CSS',
+'prefs-custom-js'               => 'personlig JavaScript',
 'prefs-reset-intro'             => 'Du kan använda den här sidan till att återställa dina inställningar till webbplatsens standardinställningar.
 Detta kan inte återställas.',
 'prefs-emailconfirm-label'      => 'E-postbekräftelse:',
@@ -1620,6 +1623,7 @@ Se [[Special:NewFiles|galleriet över nya filer]] för en mer visuell översikt.
 'minlength1'                  => 'Filens namn måste innehålla minst ett tecken.',
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
 'badfilename'                 => 'Filens namn har blivit ändrat till "$1".',
+'filetype-mime-mismatch'      => 'Filnamnsändelse matchar inte MIME-typ.',
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
 'filetype-bad-ie-mime'        => 'Kan inte ladda upp denna fil på grund av att Internet Explorer skulle upptäcka att den är "$1", vilket är en otillåten och möjligtvis farlig filtyp.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' är en oönskad filtyp.
@@ -1729,7 +1733,11 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 'http-invalid-url'      => 'Ogiltig URL: $1',
 'http-invalid-scheme'   => 'URLer med "$1"-formen stöds inte',
 'http-request-error'    => 'HTTP-begäran misslyckades på grund av okänt fel.',
+'http-read-error'       => 'HTTP-läsfel.',
+'http-timed-out'        => 'Time out för HTTP-begäran.',
+'http-curl-error'       => 'Fel vid hämtning av URL: $1',
 'http-host-unreachable' => 'URL:en kunde inte nås.',
+'http-bad-status'       => 'Det uppstod ett problem under HTTP-begäran: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
@@ -2296,7 +2304,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|version|versioner}} och $2 {{PLURAL:$2|fil|filer}} återställda',
 'undeletedfiles'               => '{{PLURAL:$1|en fil återställd|$1 filer återställda}}',
 'cannotundelete'               => 'Återställning misslyckades; kanske någon redan har återställt sidan.',
-'undeletedpage'                => "<big>'''$1 har återställts'''</big>
+'undeletedpage'                => "'''$1 har återställts'''
 
 Se [[Special:Log/delete|raderingsloggen]] för en förteckning över de senaste raderingarna och återställningarna.",
 'undelete-header'              => 'Se [[Special:Log/delete|raderingsloggen]] för nyligen raderade sidor.',
@@ -2528,7 +2536,7 @@ I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'move-watch'                   => 'Bevaka denna sida',
 'movepagebtn'                  => 'Flytta sidan',
 'pagemovedsub'                 => 'Flyttningen lyckades',
-'movepage-moved'               => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" har flyttats till "$2"\'\'\'',
 'movepage-moved-redirect'      => 'En omdirigering har skapats.',
 'movepage-moved-noredirect'    => 'Skapandet av en omdirigering avbröts.',
 'articleexists'                => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
@@ -2737,7 +2745,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-watch'                   => 'Lägg till den här sidan i din bevakningslista',
 'tooltip-recreate'                => 'Återskapa sidan fast den har tagits bort',
 'tooltip-upload'                  => 'Starta uppladdning',
-'tooltip-rollback'                => '"Tillbakarullning" tar med en knapptryckning bort ändringar som gjorts av den som senast redigerade sidan.',
+'tooltip-rollback'                => '"Tillbakarullning" tar med en knapptryckning bort ändringar som gjorts av den som senast redigerade sidan',
 'tooltip-undo'                    => '"Gör ogjord" återställer denna redigering och öppnar redigeringsrutan med förhandsgranskning.
 Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
 

@@ -282,7 +282,7 @@ $messages = array(
 'index-category'                 => 'Indicěrowane boki',
 'noindex-category'               => 'Njeindicěrowane boki',
 
-'mainpagetext'      => "<big>'''MediaWiki jo se wuspěšnje instalěrowało.'''</big>",
+'mainpagetext'      => "'''MediaWiki jo se wuspěšnje instalěrowało.'''",
 'mainpagedocfooter' => "Pomoc pśi wužywanju softwary wiki namakajoš pód [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
 
 == Na zachopjenje ==
@@ -684,7 +684,7 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'summary-preview'                  => 'Pśeglěd zespominanja:',
 'subject-preview'                  => 'Pśeglěd nadpisma:',
 'blockedtitle'                     => 'Wužywaŕ jo se blokěrował',
-'blockedtext'                      => "<big>'''Twójo wužywarske mě abo IP-adresa stej se blokěrowałej.'''</big>
+'blockedtext'                      => "'''Twójo wužywarske mě abo IP-adresa stej se blokěrowałej.'''
 
 Blokěrowanje pśez $1. 
 Pódana pśicyna: ''$2''.
@@ -729,9 +729,8 @@ Jo se snaź pśesunuł abo wulašował, mjaztym až woglědujoš se bok.',
 
 Gronidło za toś to nowe konto dajo se na boku ''[[Special:ChangePassword|Gronidło změniś]]'' pśi pśizjawjenju změniś.",
 'newarticle'                       => '(Nowy nastawk)',
-'newarticletext'                   => 'Sy slědował wótkaz na bok, kótaryž hyšći njeeksistěrujo.
-Aby bok wutwórił, ga napiš do kašćika spózy.
-(Dokradnjejše informacije pód: [[{{MediaWiki:Helppage}}|help page]]).',
+'newarticletext'                   => "Sy slědował wótkaz na bok, kótaryž hyšći njeeksistěrujo.
+Aby bok napórał, zapiš do kašćika dołojce (glědaj [[{{MediaWiki:Helppage}}|bok pomocy]] za dalšne informacije). Jolic sy zamólnje how, klikni na tłocašk '''Slědk'' w swójom wobglědowaku.",
 'anontalkpagetext'                 => "---- ''Toś jo diskusijny bok za anonymnego wužywarja, kótaryž njejo dotychměst žedno wužywarske konto załožył abo swójo konto njewužywa. Togodla dejmy numerisku IP-adresu wužywaś, aby jogo/ju identificěrowali. Taka IP-adresa dajo se wót wšakich wužywarjow wužywaś. Jolic sy anonymny wužywaŕ a se mysliš, až su se njerelewantne komentary na tebje měrili, [[Special:UserLogin/signup|załož konto]] abo [[Special:UserLogin|pśizjaw se]], aby se w pśichoźe zmuśenje z drugimi anonymnymi wužywarjami wobinuł.''",
 'noarticletext'                    => 'Dotychměst toś ten bok hyšći njewopśimujo žeden tekst. Móžoš w drugich bokach [[Special:Search/{{PAGENAME}}|titel togo boka pytaś]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} toś ten bok wobźěłaś]</span>.',
 'noarticletext-nopermission'       => 'Tuchylu njejo žeden tekst na toś tom boku.
@@ -2328,7 +2327,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'move-watch'                   => 'Toś ten bok wobglědowaś',
 'movepagebtn'                  => 'Bok pśesunuś',
 'pagemovedsub'                 => 'Bok jo se pśesunuł.',
-'movepage-moved'               => '<big>\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</big>',
+'movepage-moved'               => '\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'',
 'movepage-moved-redirect'      => 'Dalejpósrědnjenje jo se napórało.',
 'movepage-moved-noredirect'    => 'Napóranje dalejpósrědnjenja jo se pódtłocyło.',
 'articleexists'                => 'Bok z takim mjenim južo eksistěrujo abo mě, kótarež sćo wuwzólił jo njepłaśece. Pšosym wuzwól nowe mě.',
@@ -2344,7 +2343,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movepage-max-pages'           => 'Maksimalna licba $1 {{PLURAL:$1|boka|bokowu|bokow|bokow}} jo se pśesunuła a žedne dalšne wěcej njedaje se awtomatiski pśesunuś.',
 '1movedto2'                    => '„[[$1]]“ pśesunjone na „[[$2]]“',
 '1movedto2_redir'              => 'Nastawk „[[$1]]“ jo se pśesunuł na „[[$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
-'move-redirect-suppressed'     => 'dakejpósrědnjenje pódtłocone',
+'move-redirect-suppressed'     => 'dalejpósrědnjenje pódtłocone',
 'movelogpage'                  => 'Protokol pśesunjenjow',
 'movelogpagetext'              => 'How jo lisćina wšyknych pśesunjonych bokow.',
 'movesubpage'                  => '{{PLURAL:$1|Pódbok|Pódboka|Pódboki|Pódbokow}}',
@@ -3118,7 +3117,7 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 # Special:FilePath
 'filepath'         => 'Datajowa droga',
 'filepath-page'    => 'Dataja:',
-'filepath-submit'  => 'Droga',
+'filepath-submit'  => 'Pytaś',
 'filepath-summary' => 'Toś ten specialny bok wróśa dopołnu drogu za dataju. Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwězanym programom direktnje startuju.
 
 Zapódaj datajowe mě bźez dodanka "{{ns:file}}:".',

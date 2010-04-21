@@ -141,7 +141,7 @@ $messages = array(
 'index-category'                 => 'Na-index nga mga pahina',
 'noindex-category'               => 'Wala na-index nga mga pahina',
 
-'mainpagetext'      => "<big>'''Madalag-on nga na-install ang MediaWiki.'''</big>",
+'mainpagetext'      => "'''Madalag-on nga na-install ang MediaWiki.'''",
 'mainpagedocfooter' => 'Kunsultahon ang [http://meta.wikimedia.org/wiki/Help:Pagtuytoy sa Manug-usar] para sa impormasyon sa paggamit sang wiki nga "software".
 
 ==Pag-umpisa==
@@ -816,7 +816,7 @@ Sa mga mini nga kaso, kinahanglan mo hulagon ang pahina nga ikaw mismo, kung gus
 'move-watch'       => 'Bantayan ang mini nga pahina',
 'movepagebtn'      => 'Sayluhon mini nga pahina',
 'pagemovedsub'     => 'Nadayon ang pagsaylo',
-'movepage-moved'   => '<big>\'\'\'"Nasaylo na ang "$1" pakadto sa "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"Nasaylo na ang "$1" pakadto sa "$2"\'\'\'',
 'articleexists'    => 'May-ara na sang pahina nga kapareho sang imo titulo, ukon ang ngalan nga imo ginpili indi pwede.
 Palihog pili liwat sang bag-o nga ngalan.',
 'talkexists'       => "'''Nasaylo na mismo ang mina nga pahina, pero ang pahina sang istoryahanay indi masaylo kay may ara na sang nakakuha sang bag-o nga titulo.

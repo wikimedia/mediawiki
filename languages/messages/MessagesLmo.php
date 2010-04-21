@@ -822,6 +822,7 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'uploadnewversion-linktext' => 'Carga una versión növa de quel file chì',
 
 # File reversion
+'filerevert-intro'          => "Te seet adree a bütà turna el file '''[[Media:$1|$1]]''' a la [$4 version del $2, $3].",
 'filerevert-comment'        => 'Uget:',
 'filerevert-defaultcomment' => 'Bütada turna la versión di $2, $1',
 
@@ -1201,7 +1202,7 @@ In quij cas chì, se'l var la pena, ghe sarà de spustà a man i infurmazión de
 'move-watch'              => "Gionta chela pagina chí ai pàgin à tegní d'œucc.",
 'movepagebtn'             => 'Sposta quela pagina chì',
 'pagemovedsub'            => "San Martin l'è bele fat!",
-'movepage-moved'          => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>",
+'movepage-moved'          => "'''\"\$1\" l'è staa muvüü a \"\$2\"'''",
 'movepage-moved-redirect' => "L'è staa creaa un redirect.",
 'articleexists'           => "Una pagina che la se ciama cumpagn la gh'è giamò, opüra el nom che hii scernüü al va minga ben. <br />
 Che 'l scerna, per piasè, un nom diferent per quel articul chì.",

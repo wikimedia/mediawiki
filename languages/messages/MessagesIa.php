@@ -261,7 +261,7 @@ $messages = array(
 'index-category'                 => 'Paginas indexate',
 'noindex-category'               => 'Paginas non indexate',
 
-'mainpagetext'      => "<big>'''MediaWiki ha essite installate con successo.'''</big>",
+'mainpagetext'      => "'''MediaWiki ha essite installate con successo.'''",
 'mainpagedocfooter' => 'Consulta le [http://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.
 
 == Pro initiar ==
@@ -692,7 +692,7 @@ Si tu clicca super Publicar de novo, tu commento essera publicate sin subjecto/t
 'summary-preview'                  => 'Previsualisation del summario:',
 'subject-preview'                  => 'Previsualisation del subjecto/titulo:',
 'blockedtitle'                     => 'Le usator es blocate',
-'blockedtext'                      => "<big>'''Tu nomine de usator o adresse IP ha essite blocate.'''</big>
+'blockedtext'                      => "'''Tu nomine de usator o adresse IP ha essite blocate.'''
 
 Le blocada esseva facite per $1.
 Le motivo presentate es ''$2''.
@@ -2197,7 +2197,7 @@ Es possibile que le adresse URL es invalide, o que le version ha essite restaura
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo|archivos}} restaurate',
 'cannotundelete'               => 'Le restauration ha fallite;
 es possibile que un altere persona ha ja restaurate le pagina.',
-'undeletedpage'                => "<big>'''$1 ha essite restaurate'''</big>
+'undeletedpage'                => "'''$1 ha essite restaurate'''
 
 Consulta le [[Special:Log/delete|registro de deletiones]] pro un lista de deletiones e restaurationes recente.",
 'undelete-header'              => 'Vide [[Special:Log/delete|le registro de deletiones]] pro un lista de paginas recentemente delite.',
@@ -2292,7 +2292,7 @@ specific que ha essite vandalisate).',
 'ipbemailban'                     => 'Impedir que le usator invia e-mail',
 'ipbenableautoblock'              => 'Blocar automaticamente le adresse IP usate le plus recentemente per iste usator, e omne IPs successive desde le quales ille/-a tenta facer modificationes',
 'ipbsubmit'                       => 'Blocar iste adresse',
-'ipbother'                        => 'Altere tempore:',
+'ipbother'                        => 'Altere durata:',
 'ipboptions'                      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite',
 'ipbotheroption'                  => 'altere',
 'ipbotherreason'                  => 'Motivo altere/additional:',
@@ -2440,7 +2440,7 @@ Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate."
 'move-watch'                   => 'Observar le paginas de origine e de destination',
 'movepagebtn'                  => 'Renominar pagina',
 'pagemovedsub'                 => 'Renomination succedite',
-'movepage-moved'               => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" ha essite renominate a "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Un redirection ha essite create.',
 'movepage-moved-noredirect'    => 'Le creation de un redirection ha essite supprimite.',
 'articleexists'                => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
@@ -3258,7 +3258,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 # Special:FilePath
 'filepath'         => 'Cammino del file',
 'filepath-page'    => 'File:',
-'filepath-submit'  => 'Cammino',
+'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Iste pagina special contine le cammino complete de un file.
 Le imagines se monstra in plen resolution, le altere typos de file se executa directemente con lor programmas associate.
 

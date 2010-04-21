@@ -193,6 +193,7 @@ $messages = array(
 'aboutpage'            => 'Project:Дугайында',
 'currentevents'        => 'Амгы үеде болуушкуннар',
 'currentevents-url'    => 'Project:Амгы үеде болуушкуннар',
+'disclaimers'          => 'Ажыглаарынка чомпээрежил',
 'edithelp'             => 'Өскертиринге дуза',
 'edithelppage'         => 'Help:Өскертири',
 'helppage'             => 'Help:Допчузу',
@@ -276,8 +277,9 @@ $messages = array(
 'oldpassword'               => 'Эгри чажыт сөс:',
 'newpassword'               => 'Чаа чажыт сөс:',
 'resetpass_submit'          => 'Чажыт сөстү чоогадып кылыр база кирер.',
-'resetpass_forbidden'       => '{{grammar:locative|{{SITENAME}}}} чажыт сөстү өскертивейн болбас',
+'resetpass_forbidden'       => 'Чажыт сөстү өскертивейн болбас',
 'resetpass-submit-loggedin' => 'Чажыт сөзү өскертир',
+'resetpass-submit-cancel'   => 'Соксаары',
 
 # Edit page toolbar
 'bold_sample'     => 'Карартыр',
@@ -354,13 +356,16 @@ $messages = array(
 'compareselectedversions' => 'Шилип алган хевирлери деңнээри',
 
 # Search results
-'searchresults'      => 'Түңнелдер',
-'prevn'              => 'бүрүнгү {{PLURAL:$1|$1}}',
-'nextn'              => 'соонда {{PLURAL:$1|$1}}',
-'viewprevnext'       => '($1 {{int:pipe-separator}} $2) ($3) көөрү',
-'searchhelp-url'     => 'Help:Допчузу',
-'search-result-size' => '$1 ({{PLURAL:$2|$2 сөс}})',
-'powersearch'        => 'Дилээр',
+'searchresults'            => 'Түңнелдер',
+'prevn'                    => 'бүрүнгү {{PLURAL:$1|$1}}',
+'nextn'                    => 'соонда {{PLURAL:$1|$1}}',
+'viewprevnext'             => '($1 {{int:pipe-separator}} $2) ($3) көөрү',
+'searchhelp-url'           => 'Help:Допчузу',
+'searchprofile-everything' => 'Бүгүде',
+'search-result-size'       => '$1 ({{PLURAL:$2|$2 сөс}})',
+'searchall'                => 'шупту',
+'powersearch'              => 'Дилээр',
+'powersearch-toggleall'    => 'Шупту',
 
 # Preferences page
 'preferences'               => 'Шилиирилер',
@@ -399,11 +404,14 @@ $messages = array(
 'editinguser' => '<b>$1</b> деп ажыглакчыны өскертип турар ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 
 # Groups
-'group'     => 'Бөлүк:',
-'group-bot' => 'Боттар',
-'group-all' => '(шупту)',
+'group'       => 'Бөлүк:',
+'group-bot'   => 'Боттар',
+'group-sysop' => 'Администраторлар',
+'group-all'   => '(шупту)',
 
-'group-bot-member' => 'Бот',
+'group-user-member'  => 'ажыглакчы',
+'group-bot-member'   => 'Бот',
+'group-sysop-member' => 'администратор',
 
 'grouppage-sysop' => '{{ns:project}}:Администраторлар',
 
@@ -439,7 +447,7 @@ $messages = array(
 'fileuploadsummary' => 'Түңнел:',
 'filesource'        => 'Эгези:',
 'savefile'          => 'файлды шыгжаар',
-'watchthisupload'   => 'Бо арынны хайгаараар',
+'watchthisupload'   => 'Бо арынны хайгаараары',
 
 'upload-file-error' => 'Иштики алдаг',
 'upload-misc-error' => 'Билбес кииреринге алдаг',
@@ -671,7 +679,7 @@ $messages = array(
 'tooltip-feed-atom'         => 'Бо арының Атом медээ агымы',
 'tooltip-t-contributions'   => 'Бо ажыглакчының немелделериниң даңзазын көөрү.',
 'tooltip-t-emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаары',
-'tooltip-t-upload'          => 'Файлдар киирери',
+'tooltip-t-upload'          => 'Файлды киирери',
 'tooltip-t-specialpages'    => 'Шупту тускай арыннар даңзызы',
 'tooltip-ca-nstab-main'     => 'Допчы арынын көөрү',
 'tooltip-ca-nstab-user'     => 'Ажыглакчының арынын көөрү',
@@ -728,6 +736,7 @@ $messages = array(
 'watchlistall2'    => 'шупту',
 'namespacesall'    => 'шупту',
 'monthsall'        => 'шупту',
+'limitall'         => 'шупту',
 
 # Multipage image navigation
 'imgmultipageprev' => '← бүрүнгү арын',

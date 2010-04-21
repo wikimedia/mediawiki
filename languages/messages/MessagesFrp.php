@@ -431,7 +431,7 @@ $messages = array(
 'index-category'                 => 'Pâges endèxâs',
 'noindex-category'               => 'Pâges pas endèxâs',
 
-'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
+'mainpagetext'      => "'''MediaWiki at étâ enstalâ avouéc reusséta.'''",
 'mainpagedocfooter' => 'Vêde lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
 
 == Dèmarrar avouéc MediaWiki ==
@@ -862,7 +862,7 @@ Se vos tornâd clicar dessus « Sôvar ceta pâge », voutron changement serat s
 'summary-preview'                  => 'Prèvisualisacion du rèsumâ :',
 'subject-preview'                  => 'Prèvisualisacion du sujèt / titro :',
 'blockedtitle'                     => 'L’utilisator est blocâ.',
-'blockedtext'                      => "<big>'''Voutron compto utilisator ou ben voutra adrèce IP at étâ blocâ.'''</big>
+'blockedtext'                      => "'''Voutron compto utilisator ou ben voutra adrèce IP at étâ blocâ.'''
 
 Lo blocâjo at étâ fêt per $1.
 La rêson balyê est ceta : ''$2''.
@@ -2372,7 +2372,7 @@ Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichiér refêt|fichiérs refêts}}',
 'cannotundelete'               => 'La rèstoracion at pas reussia ;
 un ôtro utilisator at probâblament ja refêt la pâge.',
-'undeletedpage'                => "<big>'''La pâge $1 at étâ refêta.'''</big>
+'undeletedpage'                => "'''La pâge $1 at étâ refêta.'''
 
 Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les novèles suprèssions et de les novèles rèstoracions.",
 'undelete-header'              => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les pâges suprimâs dèrriérement.',
@@ -2611,7 +2611,7 @@ Dens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo
 'move-watch'                   => 'Siuvre ceta pâge',
 'movepagebtn'                  => 'Renomar la pâge',
 'pagemovedsub'                 => 'Changement de nom reussi',
-'movepage-moved'               => "<big>'''« $1 » at étâ renomâ en « $2 »'''</big>",
+'movepage-moved'               => "'''« $1 » at étâ renomâ en « $2 »'''",
 'movepage-moved-redirect'      => 'Una redirèccion dês lo viely nom at étâ fêta.',
 'movepage-moved-noredirect'    => 'La crèacion d’una redirèccion dês lo viely nom at étâ anulâ.',
 'articleexists'                => 'Ègziste ja una pâge que pôrte cél titro, ou ben lo titro que vos éd chouèsi est fôx.
@@ -3517,7 +3517,7 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 # Special:FilePath
 'filepath'         => 'Chemin d’accès du fichiér',
 'filepath-page'    => 'Fichiér :',
-'filepath-submit'  => 'Chemin d’accès',
+'filepath-submit'  => 'Alar trovar',
 'filepath-summary' => 'Ceta pâge spèciâla montre lo chemin d’accès complèt d’un fichiér.
 Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs sont chargiês et dèmarrâs tot drêt avouéc lor programo associyê.
 

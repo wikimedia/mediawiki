@@ -124,7 +124,7 @@ $messages = array(
 'index-category'           => 'Ẹdẹle Ihü',
 'noindex-category'         => 'Ihü ẹdẹlebu',
 
-'mainpagetext' => "<big>'''MediaWiki a banyélé nke oma.'''</big>",
+'mainpagetext' => "'''MediaWiki a banyélé nke oma.'''",
 
 'about'         => 'Abwátà',
 'article'       => 'Ihü iheníle',

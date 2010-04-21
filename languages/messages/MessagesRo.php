@@ -413,7 +413,7 @@ pe titlul secţiunii (JavaScript)',
 'noindex-category'               => 'Pagini neindexate',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
+'mainpagetext'      => "'''Programul Wiki a fost instalat cu succes.'''",
 'mainpagedocfooter' => 'Consultă [http://meta.wikimedia.org/wiki/Help:Contents Ghidul utilizatorului (en)] pentru informaţii despre utilizarea programului wiki.
 
 == Primii paşi ==
@@ -635,6 +635,7 @@ Te rog anunţă acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'readonly_lag'         => 'Baza de date a fost închisă automatic în timp ce serverele secundare ale bazei de date îl urmează pe cel principal.',
 'internalerror'        => 'Eroare internă',
 'internalerror_info'   => 'Eroare internă: $1',
+'fileappenderrorread'  => 'Nu poate fi citit "$1" în timpul adăugării.',
 'fileappenderror'      => 'Nu se poate adăuga "$1" în "$2".',
 'filecopyerror'        => 'Fişierul "$1" nu a putut fi copiat la "$2".',
 'filerenameerror'      => 'Fişierul "$1" nu a putut fi mutat la "$2".',
@@ -695,6 +696,7 @@ Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi [[Special:P
 'nav-login-createaccount'    => 'Creare cont / Autentificare',
 'loginprompt'                => 'Trebuie să ai modulele cookie activate pentru a te autentifica la {{SITENAME}}.',
 'userlogin'                  => 'Creare cont / Autentificare',
+'userloginnocreate'          => 'Autentificare',
 'logout'                     => 'Închide sesiunea',
 'userlogout'                 => 'Închide sesiunea',
 'notloggedin'                => 'Nu sunteţi autentificat',
@@ -718,6 +720,7 @@ Numele de utilizatori sunt sensibile la majuscule.
 Verifică dacă ai scris corect sau [[Special:UserLogin/signup|creează un nou cont de utilizator]].',
 'nosuchusershort'            => 'Nu este nici un utilizator cu numele „<nowiki>$1</nowiki>”. Verificaţi dacă aţi scris corect.',
 'nouserspecified'            => 'Trebuie să specificaţi un nume de utilizator.',
+'login-userblocked'          => 'Acest utilizator este blocat. Logarea nu este permisă.',
 'wrongpassword'              => 'Parola pe care ai introdus-o este greşită. Te rugăm să încerci din nou.',
 'wrongpasswordempty'         => 'Spaţiul pentru introducerea parolei nu a fost completat. Vă rugăm să încercaţi din nou.',
 'passwordtooshort'           => 'Parola trebuie să aibă cel puţin {{PLURAL:$1|1 caracter|$1 caractere}}.',
@@ -749,14 +752,15 @@ Prin urmare, vizitatorii care folosesc acelaşi IP nu mai pot crea alte conturi 
 'accountcreated'             => 'Contul a fost creat.',
 'accountcreatedtext'         => 'Contul utilizatorului pentru $1 a fost creat.',
 'createaccount-title'        => 'Creare de cont la {{SITENAME}}',
-'createaccount-text'         => 'Cineva a creat un cont cu adresa dvs. de e-mail pe {{SITENAME}} ($4) numit "$2", având parola "$3".
+'createaccount-text'         => 'Cineva a creat un cont cu adresa dumneavoastră de e-mail pe {{SITENAME}} ($4) numit „$2“, având parola „$3“.
 Este de dorit să vă autentificaţi şi să schimbaţi parola cât mai repede.
 
-Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
-'usernamehasherror'          => 'Numele de utilizator nu poate conţine caractere diez',
+Ignoraţi acest mesaj dacă aceea creare a fost o greşeală.',
+'usernamehasherror'          => 'Numele de utilizator nu poate conţine caractere diez (#)',
 'login-throttled'            => 'Aţi avut prea multe încercări de a vă autentifica.
 Vă rugăm să aşteptaţi până să mai încercaţi.',
 'loginlanguagelabel'         => 'Limba: $1',
+'suspicious-userlogout'      => 'Cererea dumneavoastră de a vă loga a fost refuzată deoarece se pare că a fost trimisă de un browser rupt sau reîncărcaţi proxy-ul.',
 
 # Password reset dialog
 'resetpass'                 => 'Modifică parola',
@@ -771,6 +775,7 @@ Vă rugăm să aşteptaţi până să mai încercaţi.',
 'resetpass_forbidden'       => 'Parolele nu pot fi schimbate.',
 'resetpass-no-info'         => 'Trebuie să fiţi autentificat pentru a accesa această pagină direct.',
 'resetpass-submit-loggedin' => 'Modifică parola',
+'resetpass-submit-cancel'   => 'Revocare',
 'resetpass-wrong-oldpass'   => 'Parolă curentă sau temporară incorectă. 
 Este posibil să fi reuşit deja schimbarea parolei sau să fi cerut o parolă temporară nouă.',
 'resetpass-temp-password'   => 'Parolă temporară:',
@@ -814,7 +819,7 @@ Este posibil să fi reuşit deja schimbarea parolei sau să fi cerut o parolă t
 'summary-preview'                  => 'Previzualizare descriere:',
 'subject-preview'                  => 'Previzualizare subiect/titlu:',
 'blockedtitle'                     => 'Utilizatorul este blocat',
-'blockedtext'                      => "<big>'''Adresa IP sau contul dumneavoastră de utilizator a fost blocat.'''</big>
+'blockedtext'                      => "'''Adresa IP sau contul dumneavoastră de utilizator a fost blocat.'''
 
 Blocarea a fost făcută de $1.
 Motivul blocării este ''$2''.
@@ -847,7 +852,7 @@ Vă rugăm să includeţi detaliile de mai sus în orice interogări pe care le 
 'whitelistedittitle'               => 'Este necesară autentificarea pentru a putea modifica',
 'whitelistedittext'                => 'Trebuie să $1 pentru a edita articole.',
 'confirmedittext'                  => 'Trebuie să vă confirmaţi adresa de e-mail înainte de a edita pagini. Vă rugăm să vă setaţi şi să vă validaţi adresa de e-mail cu ajutorul [[Special:Preferences|preferinţelor utilizatorului]].',
-'nosuchsectiontitle'               => 'Nu există o astfel de secţiune',
+'nosuchsectiontitle'               => 'Nu se poate găsi secţiunea.',
 'nosuchsectiontext'                => 'Aţi încercat să modificaţi o secţiune care nu există.
 Aceasta fie a fost mutată, fie a fost ştearsă în timp ce vizualizaţi pagina.',
 'loginreqtitle'                    => 'Necesită autentificare',
@@ -871,6 +876,8 @@ Puteţi [[Special:Search/{{PAGENAME}}|căuta titlul paginii]] în alte pagini,
 sau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} să căutaţi în jurnale]</span>.',
 'userpage-userdoesnotexist'        => 'Contul de utilizator "$1" nu este înregistrat. Verificaţi dacă doriţi să creaţi/modificaţi această pagină.',
 'userpage-userdoesnotexist-view'   => 'Contul de utilizator "$1" nu este înregistrat.',
+'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
+Ultima blocare este indicată mai jos pentru informare:',
 'clearyourcache'                   => "'''Notă:''' După salvare, trebuie să treceţi peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' ţineţi apăsat ''Shift'' în timp ce apăsaţi ''Reload'' (sau apăsaţi ''Ctrl-Shift-R''), '''IE:''' apăsaţi ''Ctrl-F5'', '''Opera:''' apăsaţi ''F5''.",
 'usercssyoucanpreview'             => "'''Sfat:''' Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
 'userjsyoucanpreview'              => "'''Sfat:''' Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
@@ -920,10 +927,10 @@ ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este pos
 'readonlywarning'                  => "'''ATENŢIE: Baza de date a fost blocată pentru întreţinere, deci nu veţi putea salva modificările în acest moment. Puteţi copia textul într-un fişier text local pentru a-l salva când va fi posibil.'''
 
 Administratorul care a efectuat blocarea a oferit următoarea explicaţie: $1",
-'protectedpagewarning'             => "'''ATENŢIE! Această pagină a fost protejată la scriere şi numai utilizatorii cu privilegii de administrator o pot modifica.'''",
+'protectedpagewarning'             => "'''ATENŢIE!''' Această pagină a fost protejată la scriere şi numai utilizatorii cu privilegii de administrator o pot modifica.",
 'semiprotectedpagewarning'         => "'''Atenţie:''' Această pagină poate fi modificată numai de utilizatorii înregistraţi.",
 'cascadeprotectedwarning'          => "'''Atenţie:''' Această pagină a fost blocată astfel încât numai administratorii o pot modifica, deoarece este inclusă în {{PLURAL:$1|următoarea pagină protejată|următoarele pagini protejate}} în cascadă:",
-'titleprotectedwarning'            => "'''ATENŢIE:  Această pagină a fost protejată, doar anumiţi [[Special:ListGroupRights|utilizatori]] o pot crea.'''",
+'titleprotectedwarning'            => "'''ATENŢIE:'''  Această pagină a fost protejată, doar anumiţi [[Special:ListGroupRights|utilizatori]] o pot crea.",
 'templatesused'                    => '{{PLURAL:$1|Format folosit|Formate folosite}} în această pagină:',
 'templatesusedpreview'             => '{{PLURAL:$1|Format folosit|Formate folosite}} în această previzualizare:',
 'templatesusedsection'             => '{{PLURAL:$1|Format utilizat|Formate utilizate}} în această secţiune:',
@@ -969,6 +976,7 @@ Acsete argumente au fost omise.',
 'post-expand-template-argument-category'  => 'Pagini care conţin formate cu argumente omise',
 'parser-template-loop-warning'            => 'Buclă de formate detectată: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limită de adâncime a recursiei depăşită ($1)',
+'language-converter-depth-warning'        => 'Limba a depăşit limita de adâncime a convertorului ($1)',
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificaţi diferenţa de dedesupt şi apoi salvaţi pentru a termina anularea modificării.',
@@ -1033,6 +1041,7 @@ Ca administrator puteţi să o vedeţi; s-ar putea să găsiţi mai multe detali
 Ca administrator puteţi să o vedeţi; s-ar putea să găsiţi mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-deleted-no-diff'         => "Nu poţi vedea acestă diferenţă deoarece una dintre revizii a fost '''ştearsă'''.
 Pot exista mai multe detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
+'rev-suppressed-no-diff'      => "Nu puteţi vizualiza acest diff deoarece una dintre revizii a fost '''ştearsă'''.",
 'rev-deleted-unhide-diff'     => "Una din reviziile acestui istoric a fost '''ştearsă'''.
 Pot exista detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
 Ca administrator puteţi [$1 vedea diferenţa] în continuare, dacă doriţi acest lucru.",
@@ -1342,25 +1351,26 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'prefs-diffs'                   => 'Diferenţe',
 
 # User rights
-'userrights'                  => 'Administrarea permisiunilor de utilizator',
-'userrights-lookup-user'      => 'Administrare grupuri de utilizatori',
-'userrights-user-editname'    => 'Introdu un nume de utilizator:',
-'editusergroup'               => 'Modificare grup de utilizatori',
-'editinguser'                 => "modificare permisiuni de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Modifică grupul de utilizatori',
-'saveusergroups'              => 'Salvează grupul de utilizatori',
-'userrights-groupsmember'     => 'Membru al:',
-'userrights-groups-help'      => 'Puteţi schimba grupul căruia îi aparţine utilizatorul:
+'userrights'                   => 'Administrarea permisiunilor de utilizator',
+'userrights-lookup-user'       => 'Administrare grupuri de utilizatori',
+'userrights-user-editname'     => 'Introdu un nume de utilizator:',
+'editusergroup'                => 'Modificare grup de utilizatori',
+'editinguser'                  => "modificare permisiuni de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Modifică grupul de utilizatori',
+'saveusergroups'               => 'Salvează grupul de utilizatori',
+'userrights-groupsmember'      => 'Membru al:',
+'userrights-groupsmember-auto' => 'Membru  implicit al:',
+'userrights-groups-help'       => 'Puteţi schimba grupul căruia îi aparţine utilizatorul:
 *Căsuţa bifată înseamnă că utilizatorul este în acel grup.
 *Căsuţa nebifată înseamnă că utilizatorul nu este în acel grup.
 *Steluţa (*) indică faptul că utilizatorul nu poate fi eliminat din grup odată adăugat, sau invers',
-'userrights-reason'           => 'Motivul schimbării:',
-'userrights-no-interwiki'     => 'Nu aveţi permisiunea de a modifica permisiunile utilizatorilor pe alte wiki.',
-'userrights-nodatabase'       => 'Baza de date $1 nu există sau nu este locală.',
-'userrights-nologin'          => 'Trebuie să te [[Special:UserLogin|autentifici]] cu un cont de administrator pentru a atribui permisiuni utilizatorilor.',
-'userrights-notallowed'       => 'Contul dumneavoastră nu are permisiunea de a acorda permisiuni utilizatorilor.',
-'userrights-changeable-col'   => 'Grupuri pe care le puteţi schimba',
-'userrights-unchangeable-col' => 'Grupuri pe care nu le puteţi schimba',
+'userrights-reason'            => 'Motivul schimbării:',
+'userrights-no-interwiki'      => 'Nu aveţi permisiunea de a modifica permisiunile utilizatorilor pe alte wiki.',
+'userrights-nodatabase'        => 'Baza de date $1 nu există sau nu este locală.',
+'userrights-nologin'           => 'Trebuie să te [[Special:UserLogin|autentifici]] cu un cont de administrator pentru a atribui permisiuni utilizatorilor.',
+'userrights-notallowed'        => 'Contul dumneavoastră nu are permisiunea de a acorda permisiuni utilizatorilor.',
+'userrights-changeable-col'    => 'Grupuri pe care le puteţi schimba',
+'userrights-unchangeable-col'  => 'Grupuri pe care nu le puteţi schimba',
 
 # Groups
 'group'               => 'Grup:',
@@ -1577,6 +1587,7 @@ Vezi [[Special:NewFiles|galeria fişierelor noi]] pentru o mai bună vizualizare
 'minlength1'                  => 'Numele fişierelor trebuie să fie cel puţin o literă.',
 'illegalfilename'             => 'Numele fişierului "$1" conţine caractere care nu sunt permise în titlurile paginilor. Vă rugăm redenumiţi fişierul şi încercaţi să îl încărcaţi din nou.',
 'badfilename'                 => 'Numele fişierului a fost schimbat în „$1”.',
+'filetype-mime-mismatch'      => 'Extensia nu se potriveşte cu tipul MIME.',
 'filetype-badmime'            => 'Nu este permisă încărcarea de fişiere de tipul MIME "$1".',
 'filetype-bad-ie-mime'        => 'Nu puteţi încărca acest fişier deoarece Internet Explorer îl va detecta ca şi "$1", care este nepermis şi poate fi un format periculos.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fişier nedorit.
@@ -1666,6 +1677,16 @@ Numai accesul la fişiere este permis.',
 Acest wiki este configurat ca unul public.
 Pentru securitate optimă, img_auth.php este dezactivat.',
 'img-auth-noread'       => 'Acest utilizator nu are acces să citească "$1".',
+
+# HTTP errors
+'http-invalid-url'      => 'URL invalid: $1',
+'http-invalid-scheme'   => 'URL-urile cu schema "$1" nu sunt acceptate.',
+'http-request-error'    => 'Cerearea HTTP a eşaut din cauza unei erori necunoscute.',
+'http-read-error'       => 'HTTP a citit o eroare.',
+'http-timed-out'        => 'HTTP a cerut o pauză.',
+'http-curl-error'       => 'Eroare la preluarea URL-ului: $1',
+'http-host-unreachable' => 'Nu se poate găsi adresa URL.',
+'http-bad-status'       => 'A fost o problemă în tiompul solicitării HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nu pot găsi adresa URL',
@@ -2244,7 +2265,7 @@ S-ar putea ca această legătură să fie greşită, sau revizia a fost restaura
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revizie|revizii}} şi $2 {{PLURAL:$2|fişier|fişiere}} recuperate',
 'undeletedfiles'               => '$1 {{PLURAL:$1|revizie recuperată|revizii recuperate}}',
 'cannotundelete'               => 'Recuperarea a eşuat; este posibil ca altcineva să fi recuperat pagina deja.',
-'undeletedpage'                => "<big>'''$1 a fost recuperat'''</big>
+'undeletedpage'                => "'''$1 a fost recuperat'''
 
 Consultaţi [[Special:Log/delete|jurnalul ştergerilor]] pentru a vedea toate ştergerile şi recuperările recente.",
 'undelete-header'              => 'Vezi [[Special:Log/delete|logul de ştergere]] pentru paginile şterse recent.',
@@ -2413,6 +2434,7 @@ $1 este deja blocat. Vrei să schimbi parametrii?',
 'ipb_blocked_as_range'            => 'Eroare: Adresa IP $1 nu este blocată direct deci nu poate fi deblocată.
 Face parte din area de blocare $2, care nu poate fi deblocată.',
 'ip_range_invalid'                => 'Serie IP invalidă.',
+'ip_range_toolarge'               => 'Blocările mai mari decât /$1 nu sunt permise.',
 'blockme'                         => 'Blochează-mă',
 'proxyblocker'                    => 'Blocaj de proxy',
 'proxyblocker-disabled'           => 'Această funcţie este dezactivată.',
@@ -2473,6 +2495,7 @@ automat odată cu aceasta '''afară de cazul că''':
 În oricare din cazurile de mai sus va trebui să muţi sau să unifici
 manual paginile de discuţii, dacă doreşti acest lucru.",
 'movearticle'                  => 'Mută pagina',
+'moveuserpage-warning'         => "'''Atenţie''':Sunteţi pe cale de a muta o pagină de utilizator. Vă rugăm să reţineţi că numai pagina va fi mutată şi utilizatorul '''nu''' va fii redenumit.",
 'movenologin'                  => 'Nu eşti autentificat',
 'movenologintext'              => 'Trebuie să fii un utilizator înregistrat şi să te [[Special:UserLogin|autentifici]] pentru a muta o pagină.',
 'movenotallowed'               => 'Nu ai permisiunea să muţi pagini.',
@@ -2483,7 +2506,7 @@ manual paginile de discuţii, dacă doreşti acest lucru.",
 'move-watch'                   => 'Urmăreşte această pagină',
 'movepagebtn'                  => 'Mută pagina',
 'pagemovedsub'                 => 'Pagina a fost mutată',
-'movepage-moved'               => '<big>\'\'\'Pagina "$1" a fost mutată la pagina "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'Pagina "$1" a fost mutată la pagina "$2"\'\'\'',
 'movepage-moved-redirect'      => 'O redirecţionare a fost creată.',
 'movepage-moved-noredirect'    => 'Crearea redirecţionărilor a fost suprimată.',
 'articleexists'                => 'O pagină cu acelaşi nume există deja, sau numele pe care l-aţi ales este invalid. Sunteţi rugat să alegeţi un alt nume.',
@@ -2772,7 +2795,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'markaspatrolleddiff'                 => 'Marchează ca patrulat',
 'markaspatrolledtext'                 => 'Marchează acest articol ca patrulat',
 'markedaspatrolled'                   => 'A fost marcat ca patrulat',
-'markedaspatrolledtext'               => 'Modificarea selectată a fost marcată ca patrulată.',
+'markedaspatrolledtext'               => 'Modificarea selectată a [[:$1]] a fost marcată ca patrulată.',
 'rcpatroldisabled'                    => 'Opţiunea de patrulare a modificărilor recente este dezactivată',
 'rcpatroldisabledtext'                => 'Patrularea modificărilor recente este în prezent dezactivată.',
 'markedaspatrollederror'              => 'Nu se poate marca ca patrulat',

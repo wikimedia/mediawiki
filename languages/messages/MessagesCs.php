@@ -9,6 +9,7 @@
  *
  * @author Danny B.
  * @author Helix84
+ * @author Kuvaly
  * @author Li-sung
  * @author Martin Kozák
  * @author Matěj Grabovský
@@ -460,7 +461,7 @@ $messages = array(
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'Neindexované stránky',
 
-'mainpagetext'      => "<big>'''MediaWiki byla úspěšně nainstalována.'''</big>",
+'mainpagetext'      => "'''MediaWiki bylo úspěšně nainstalováno.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
 
 == Začínáme ==
@@ -733,8 +734,8 @@ $2',
 Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete [[Special:UserLogin|znovu přihlásit]] jako stejný či jiný uživatel.
 Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni, pokud nevymažete cache prohlížeče.",
 'welcomecreation'            => '== Vítejte, $1! ==
-Váš účet byl vytvořen.
-Nezapomeňte si upravit [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
+Váš účet byl úspěšně vytvořen.
+Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
 'yourname'                   => 'Uživatelské jméno:',
 'yourpassword'               => 'Vaše heslo',
 'yourpasswordagain'          => 'Zopakujte heslo:',
@@ -870,7 +871,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'summary-preview'                  => 'Náhled shrnutí:',
 'subject-preview'                  => 'Náhled předmětu/nadpisu:',
 'blockedtitle'                     => 'Uživatel zablokován',
-'blockedtext'                      => "<big>'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''</big>
+'blockedtext'                      => "'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
 
 Zablokování provedl $1.
 Udaným důvodem bylo „$2“.
@@ -1930,7 +1931,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'mostcategories'          => 'Stránky s nejvyšším počtem kategorií',
 'mostimages'              => 'Nejpoužívanější soubory',
 'mostrevisions'           => 'Stránky s nejvíce revizemi',
-'prefixindex'             => 'Seznam stránek podle začátku názvu',
+'prefixindex'             => 'Seznam stránek dle začátku názvu',
 'shortpages'              => 'Nejkratší stránky',
 'longpages'               => 'Nejdelší stránky',
 'deadendpages'            => 'Slepé stránky',
@@ -1969,7 +1970,7 @@ Uvědomte si, že jiné webové stránky mohou na soubor odkazovat pomocí pří
 'booksources-search-legend' => 'Vyhledat knižní zdroje',
 'booksources-go'            => 'Vyhledat',
 'booksources-text'          => 'Níže je seznam odkazů na servery prodávající knihy, nebo které mohou mít další informace o knihách, které hledáte.',
-'booksources-invalid-isbn'  => 'Zadané ISBN se zdá být nevalidní. Zkontrolujte jej s originálním zdrojem.',
+'booksources-invalid-isbn'  => 'Zadané ISBN se zdá být neplatné. Zkontrolujte jej s originálním zdrojem.',
 
 # Special:Log
 'specialloguserlabel'  => 'Uživatel:',
@@ -2295,7 +2296,7 @@ Archiv může být pravidelně vyprazdňován.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{PLURAL:$2|soubor|soubory|souborů}}.',
 'undeletedfiles'               => '{{PLURAL:$1|obnoven $1 soubor|obnoveny $1 soubory|obnoveno $1 souborů}}',
 'cannotundelete'               => 'Obnovení se nepovedlo; někdo jiný pravděpodobně obnovil stránku dřív než Vy.',
-'undeletedpage'                => "<big>'''$1 byla obnovena'''</big>
+'undeletedpage'                => "'''$1 byla obnovena'''
 
 Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|knize smazaných stránek]].",
 'undelete-header'              => 'Vizte nedávno smazané stránky v [[Special:Log/delete|knize smazaných stránek]].',
@@ -2519,7 +2520,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-watch'                   => 'Sledovat tuto stránku',
 'movepagebtn'                  => 'Přesunout stránku',
 'pagemovedsub'                 => 'Úspěšně přesunuto',
-'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>",
+'movepage-moved'               => "'''Stránka „$1“ byla přesunuta na „$2“'''",
 'movepage-moved-redirect'      => 'Bylo vytvořeno přesměrování.',
 'movepage-moved-noredirect'    => 'Přesměrování nebylo vytvořeno.',
 'articleexists'                => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
@@ -3369,7 +3370,7 @@ Opravdu si přejete znovu tuto stránku založit?',
 # Special:FilePath
 'filepath'         => 'Cesta k souboru',
 'filepath-page'    => 'Soubor:',
-'filepath-submit'  => 'Cesta',
+'filepath-submit'  => 'Přejít',
 'filepath-summary' => 'Tato speciální stránka vrátí úplnou cestu k souboru. Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v  přiřazených programech.
 
 Jméno souboru vkládejte bez označení "{{ns:file}}:" .',

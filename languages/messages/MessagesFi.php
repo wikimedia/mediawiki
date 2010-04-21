@@ -418,7 +418,7 @@ $messages = array(
 'index-category'                 => 'Indeksoidut sivut',
 'noindex-category'               => 'Indeksointikiellolliset sivut',
 
-'mainpagetext'      => "<big>'''MediaWiki on onnistuneesti asennettu.'''</big>",
+'mainpagetext'      => "'''MediaWiki on onnistuneesti asennettu.'''",
 'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
 
 === Lisäohjeita ===
@@ -695,7 +695,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'welcomecreation'            => '== Tervetuloa $1! ==
 Käyttäjätunnuksesi on luotu.
 Älä unohda virittää {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|asetuksiasi]].',
-'yourname'                   => 'Käyttäjätunnus',
+'yourname'                   => 'Käyttäjätunnus:',
 'yourpassword'               => 'Salasana',
 'yourpasswordagain'          => 'Salasana uudelleen',
 'remembermypassword'         => 'Muista minut',
@@ -814,14 +814,15 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'showpreview'                      => 'Esikatsele',
 'showlivepreview'                  => 'Pikaesikatselu',
 'showdiff'                         => 'Näytä muutokset',
-'anoneditwarning'                  => 'Et ole kirjautunut sisään. IP-osoitteesi kirjataan tämän sivun muokkaushistoriaan.',
+'anoneditwarning'                  => "'''Varoitus:''' Et ole kirjautunut sisään.
+IP-osoitteesi kirjataan tämän sivun muutoshistoriaan.",
 'missingsummary'                   => 'Et ole antanut yhteenvetoa. Jos valitset Tallenna uudelleen, niin muokkauksesi tallennetaan ilman yhteenvetoa.',
 'missingcommenttext'               => 'Kirjoita viesti alle.',
 'missingcommentheader'             => 'Et ole antanut otsikkoa kommentillesi. Valitse <em>Tallenna</em>, jos et halua antaa otsikkoa.',
 'summary-preview'                  => 'Yhteenvedon esikatselu:',
 'subject-preview'                  => 'Otsikon esikatselu:',
 'blockedtitle'                     => 'Pääsy estetty',
-'blockedtext'                      => "<big>'''Käyttäjätunnuksesi tai IP-osoitteesi on estetty.'''</big>
+'blockedtext'                      => "'''Käyttäjätunnuksesi tai IP-osoitteesi on estetty.'''
 
 Eston on asettanut $1.
 Syy: '''$2'''
@@ -1301,7 +1302,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'prefs-emailconfirm-label'      => 'Sähköpostin varmistus',
 'prefs-textboxsize'             => 'Muokkauskentän koko',
 'youremail'                     => 'Sähköpostiosoite',
-'username'                      => 'Tunnus',
+'username'                      => 'Käyttäjätunnus:',
 'uid'                           => 'Numero',
 'prefs-memberingroups'          => 'Jäsenenä {{PLURAL:$1|ryhmässä|ryhmissä}}',
 'prefs-registration'            => 'Rekisteröintiaika',
@@ -1866,7 +1867,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'usereditcount'           => '$1 {{PLURAL:$1|muokkaus|muokkausta}}',
 'usercreated'             => 'Luotu $1 kello $2',
 'newpages'                => 'Uudet sivut',
-'newpages-username'       => 'Käyttäjätunnus',
+'newpages-username'       => 'Käyttäjätunnus:',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
 'move'                    => 'Siirrä',
 'movethispage'            => 'Siirrä tämä sivu',
@@ -1885,7 +1886,7 @@ Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla,
 'booksources'               => 'Kirjalähteet',
 'booksources-search-legend' => 'Etsi kirjalähteitä',
 'booksources-isbn'          => 'ISBN',
-'booksources-go'            => 'Etsi',
+'booksources-go'            => 'Siirry',
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
 'booksources-invalid-isbn'  => 'Annettu ISBN-numero ei ole kelvollinen. Tarkista alkuperäisestä lähteestä kirjoitusvirheiden varalta.',
 
@@ -2208,7 +2209,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'undeletedrevisions-files'     => '{{PLURAL:$1|Yksi versio|$1 versiota}} ja {{PLURAL:$2|yksi tiedosto|$2 tiedostoa}} palautettiin',
 'undeletedfiles'               => '{{PLURAL:$1|1 tiedosto|$1 tiedostoa}} palautettiin',
 'cannotundelete'               => 'Palauttaminen epäonnistui.',
-'undeletedpage'                => "<big>'''$1 on palautettu.'''</big>
+'undeletedpage'                => "'''$1 on palautettu.'''
 
 [[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.",
 'undelete-header'              => '[[Special:Log/delete|Poistolokissa]] on lista viimeisimmistä poistoista.',
@@ -2430,7 +2431,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'move-watch'                   => 'Tarkkaile tätä sivua',
 'movepagebtn'                  => 'Siirrä sivu',
 'pagemovedsub'                 => 'Siirto onnistui',
-'movepage-moved'               => "<big>'''$1 on siirretty nimelle $2'''</big>",
+'movepage-moved'               => "'''$1 on siirretty nimelle $2'''",
 'movepage-moved-redirect'      => 'Ohjaus luotiin.',
 'movepage-moved-noredirect'    => 'Ohjausta ei luotu.',
 'articleexists'                => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
@@ -3089,7 +3090,7 @@ Varmenna, että tämä tunnus kuuluu sinulle avaamalla seuraava linkki selaimell
 
 $3
 
-Jos et ole rekisteröinyt tätä tunnusta, peruuta sähköpostiosoitteen varmistus avaamalla seuraava linkki:
+Jos et ole rekisteröinyt tätä tunnusta, peruuta sähköpostiosoitteen varmennus avaamalla seuraava linkki:
 
 $5
 
@@ -3216,7 +3217,7 @@ Yritä normaalia esikatselua.',
 # Special:FilePath
 'filepath'         => 'Tiedoston osoite',
 'filepath-page'    => 'Tiedosto',
-'filepath-submit'  => 'Selvitä osoite',
+'filepath-submit'  => 'Siirry',
 'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen. Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
 
 # Special:FileDuplicateSearch

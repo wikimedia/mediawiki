@@ -251,7 +251,7 @@ $messages = array(
 'index-category'                 => 'Kurasa kuu',
 'noindex-category'               => 'Kurasa zisizokuu',
 
-'mainpagetext'      => "<big>'''MediaWiki imefanikiwa kuingizwa.'''</big>",
+'mainpagetext'      => "'''MediaWiki imefanikiwa kuingizwa.'''",
 'mainpagedocfooter' => 'Shauriana na [http://meta.wikimedia.org/wiki/Help:Contents Mwongozo wa Mtumiaji] kwa habari juu ya utumiaji wa bidhaa pepe ya wiki.
 
 == Msaada wa kianzio ==
@@ -670,7 +670,7 @@ Iwapo utabonyeza tena Hifadhi, haririo lako litahifadhiwa bila kichwa cha habari
 'summary-preview'                  => 'Hakikisho la muhtasari:',
 'subject-preview'                  => 'Hakikisha kichwa cha habari/mada:',
 'blockedtitle'                     => 'Mtumiaji amezuiwa',
-'blockedtext'                      => "<big>'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</big>
+'blockedtext'                      => "'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''
 
 Umezuiwa na $1. 
 Sababu aliyetambua ni ''$2''
@@ -945,13 +945,17 @@ alibadilisha uwezo wa kuona maelezo ya mapitio ya ukurasa wa [[$1]]',
 ** Taarifa zinazowezekana kwamba ni za kukashifu',
 'revdelete-otherreason'       => 'Sababu nyingine:',
 'revdelete-reasonotherlist'   => 'Sababu nyingine',
-'revdelete-edit-reasonlist'   => 'Kuhariri sababu za kufuta',
+'revdelete-edit-reasonlist'   => 'Kuhariri orodha ya sababu za kufuta',
 'revdelete-offender'          => 'Mhariri wa pitio:',
 
 # Suppression log
 'suppressionlog' => 'Kumbukumbu za kuficha',
 
 # History merging
+'mergehistory'             => 'Unganisha historia za kurasa',
+'mergehistory-box'         => 'Unganisha mapitio ya kurasa mbili:',
+'mergehistory-from'        => 'Ukurasa wa chanzo:',
+'mergehistory-into'        => 'Ukurasa wa mwishilio:',
 'mergehistory-autocomment' => '[[:$1]] uliunganishwa ndani wa [[:$2]]',
 'mergehistory-comment'     => '[[:$1]] uliunganishwa ndani wa [[:$2]]: $3',
 'mergehistory-reason'      => 'Sababu:',
@@ -1282,6 +1286,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'upload'              => 'Pakia faili',
 'uploadbtn'           => 'Pakia faili',
 'reuploaddesc'        => 'Kubatilisha kupakia na kurudi kwenye fomu ya kupakia',
+'upload-tryagain'     => 'Wasilisha maelezo ya faili lililobadilishwa',
 'uploadnologin'       => 'Hujaingia',
 'uploadnologintext'   => 'Lazima [[Special:UserLogin|uingie akaunti yako]] ile upakie mafaili.',
 'uploaderror'         => 'Hitilafu ya kupia',
@@ -1292,6 +1297,9 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.jpg]]</nowiki></tt>''' kwa kutumia toleo zima la faili
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.png|200px|thumb|left|maelezo ya picha]]</nowiki></tt>''' tumia pixel 200 kwa ukubwa mzuri na sehemu ya 'maelezo ya picha' ikiwa kama maelezo husika na picha iliyopo
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' kwa kuunga moja kwa moja bila kuonyesga faili",
+'upload-permitted'    => 'Aina ya mafaili yanayoruhusiwa: $1.',
+'upload-preferred'    => 'Aina za mafaili yaliyopendelewa: $1.',
+'upload-prohibited'   => 'Aina za mafaili yanayokataliwa: $1.',
 'uploadlog'           => 'kumbukumbu za kupakia',
 'uploadlogpage'       => 'Kumbukumbu ya upakiaji',
 'filename'            => 'Jina la faili',
@@ -1299,10 +1307,12 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'fileuploadsummary'   => 'Muhtasari:',
 'filereuploadsummary' => 'Mabadiliko ya faili:',
 'filestatus'          => 'Hali ya hatimiliki:',
+'filesource'          => 'Chanzo:',
 'uploadedfiles'       => 'Mafaili yaliyopakiwa:',
 'ignorewarning'       => 'Hifadhi bila kujali maonyo yoyote.',
 'ignorewarnings'      => 'Usijali ilani zozote',
 'minlength1'          => 'Majina ya mafaili yanatakiwa kuwa na herufi moja au zaidi.',
+'badfilename'         => 'Jina la faili limebadilishwa kuwa "$1".',
 'successfulupload'    => 'Upakiaji ulifaulu',
 'uploadwarning'       => 'Ilani kuhusu kupakia',
 'savefile'            => 'Hifadhi faili',
@@ -1377,10 +1387,12 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
 'filedelete-comment'          => 'Sababu ya kufuta:',
 'filedelete-submit'           => 'Futa',
+'filedelete-success'          => "'''$1''' limefutwa.",
 'filedelete-success-old'      => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
 'filedelete-nofile-old'       => "There is no archived version of '''$1''' with the specified attributes.",
 'filedelete-otherreason'      => 'Sababu nyingine:',
 'filedelete-reason-otherlist' => 'Sababu nyingine',
+'filedelete-edit-reasonlist'  => 'Kuhariri orodha ya sababu za kufuta',
 
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
@@ -1621,7 +1633,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 ** Ombi la mmiliki
 ** Ukiukaji wa hakimiliki
 ** Uharabu',
-'delete-edit-reasonlist' => 'Uhariri sababu za kufuta',
+'delete-edit-reasonlist' => 'Uhariri orodha ya sababu za kufuta',
 
 # Rollback
 'rollback'         => 'Rejesha masahihisho',
@@ -1679,16 +1691,23 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 
 # Undelete
 'undelete'                  => 'Kuzitazama kurasa zilizofutwa',
+'undeletepage'              => 'Kutazama na kurudisha kurasa zilizofutwa',
 'viewdeletedpage'           => 'Tazama kurasa zilizofutwa',
+'undelete-fieldset-title'   => 'Kurudisha mapitio',
 'undeletebtn'               => 'Rudisha',
 'undeletelink'              => 'onyesha/rejesha',
 'undeleteviewlink'          => 'tazama',
 'undeletecomment'           => 'Sababu:',
 'undeletedarticle'          => 'alirudisha "[[$1]]"',
+'undeletedrevisions'        => '{{PLURAL:$1|pitio 1 lilirudishwa|mapitio $1 yalirudishwa}}',
+'undeletedfiles'            => '{{PLURAL:$1|faili 1 lilirudishwa|mafaili $1 yalirudishwa}}',
+'cannotundelete'            => 'Kurudisha ukurasa imeshindikana;
+huenda ikawa mtu mwingine ameurudisha tayari.',
 'undelete-header'           => 'Tazama [[Special:Log/delete|kumbukumbu za ufutaji]] ili kujua kurasa zipi zilizofutwa hivi karibuni.',
 'undelete-search-box'       => 'Tafuta kwenye kurasa zilizofutwa',
 'undelete-search-prefix'    => 'Onyesha kurasa kuanzia na:',
 'undelete-search-submit'    => 'Tafuta',
+'undelete-error-short'      => 'Hitilafu wakati wa kurudisha faili: $1',
 'undelete-show-file-submit' => 'Ndiyo',
 
 # Namespace form on various pages
@@ -1809,7 +1828,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'move-watch'              => 'Fuatilia ukurasa huu',
 'movepagebtn'             => 'Sogeza ukurasa',
 'pagemovedsub'            => 'Umefaulu kusogeza ukurasa',
-'movepage-moved'          => '<big>\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'</big>',
+'movepage-moved'          => '\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'',
 'articleexists'           => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',
@@ -1821,6 +1840,7 @@ Chagua jina lengine.',
 'movelogpage'             => 'Kumbukumbu ya uhamiaji',
 'movereason'              => 'Sababu:',
 'revertmove'              => 'rejesha',
+'delete_and_move'         => 'Kufuta na kusogeza',
 'delete_and_move_confirm' => 'Ndiyo, ukurasa ufutwe',
 
 # Export
@@ -1938,19 +1958,36 @@ Tafadhali jaribu tena.',
 'nocredits'        => 'Taarifa kuhusu wandishi wa ukurasa huu haipatikana.',
 
 # Info page
-'infosubtitle' => 'Taarifa juu ya ukurasa',
+'infosubtitle'   => 'Taarifa juu ya ukurasa',
+'numedits'       => 'Idadi ya haririo (ukurasa): $1',
+'numtalkedits'   => 'Idadi ya uhariri (ukurasa wa majadiliano): $1',
+'numwatchers'    => 'Idadi ya wanaofuatilia ukurasa: $1',
+'numauthors'     => 'Idadi ya waandishi tofauti (ukurasa): $1',
+'numtalkauthors' => 'Idadi ya waandishi tofauti (ukurasa wa majadiliano): $1',
 
 # Math errors
 'math_unknown_error' => 'hitilafu isiyojulikana',
 
+# Patrol log
+'patrol-log-auto' => '(kwa kujiendesha)',
+
 # Image deletion
-'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
+'deletedrevision'                 => 'Pitio la awali lililofutwa $1',
+'filedeleteerror-short'           => 'Hitilafu wakati wa kufuta faili: $1',
+'filedelete-missing'              => 'Faili "$1" haliwezi kufutwa, kwa sababu halipo.',
+'filedelete-old-unregistered'     => 'The specified file revision "$1" is not in the database.',
+'filedelete-current-unregistered' => 'Faili lilotajwa la "$1" halipo katika hifadhidata.',
 
 # Browsing diffs
 'previousdiff' => '← Badilisho lililopita',
 'nextdiff'     => 'Badilisho lijalo →',
 
 # Media information
+'mediawarning'         => 'Ilani: Huenda faili hili lina msimbo mbaya.
+Ukilitekeleza faili, mashine yako huenda ikawa matatani.<hr />',
+'thumbsize'            => 'Ukubwa wa picha ndogo:',
+'widthheightpage'      => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
+'file-info'            => '(ukubwa wa faili: $1, aina ya MIME: $2)',
 'file-info-size'       => '(piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4)',
 'file-nohires'         => '<small>Hakuna saizi kubwa zaidi.</small>',
 'svg-long-desc'        => '(faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3)',
@@ -1958,10 +1995,16 @@ Tafadhali jaribu tena.',
 'show-big-image-thumb' => '<small>Ukubwa wa hakikisho hili: piseli $1 x $2</small>',
 
 # Special:NewFiles
-'newimages'        => 'Mkusanyiko wa faili jipya',
-'newimages-legend' => 'Chuja',
-'noimages'         => 'Hakuna picha.',
-'ilsubmit'         => 'Tafuta',
+'newimages'             => 'Mkusanyiko wa faili jipya',
+'imagelisttext'         => "Orodha iliyopo chini inataja {{PLURAL:$1|faili '''$1''' lililopangwa|mafaili '''$1''' yaliyopangwa}} $2.",
+'newimages-summary'     => 'Ukurasa maalum huu unaonyesha mafaili yaliyopakiwa hivi karibuni.',
+'newimages-legend'      => 'Chuja',
+'newimages-label'       => 'Jina la faili (au sehemu yake):',
+'showhidebots'          => '($ 1 roboti)',
+'noimages'              => 'Hakuna picha.',
+'ilsubmit'              => 'Tafuta',
+'bydate'                => 'kwa tarehe',
+'sp-newimages-showfrom' => 'Onyesha mafaili mapya kuanzia saa $2, tarehe $1',
 
 # Bad image list
 'bad_image_list' => 'Fomati ni hii:
@@ -1998,6 +2041,9 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gaincontrol-0' => 'Bila',
 
 'exif-subjectdistancerange-0' => 'Haujulikani',
+'exif-subjectdistancerange-1' => 'Mandhari ya karibu mno',
+'exif-subjectdistancerange-2' => 'Mandhari ya karibu',
+'exif-subjectdistancerange-3' => 'Mandhari ya mbali',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Latitudo ya kaskazini',
@@ -2007,9 +2053,16 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpslongitude-e' => 'Longitudo kwenda mashariki',
 'exif-gpslongitude-w' => 'Longitudo kwenda magharibi',
 
+'exif-gpsstatus-a' => 'Kipimo kinaendelea',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometa kwa saa',
 'exif-gpsspeed-m' => 'Maili kwa saa',
+'exif-gpsspeed-n' => 'Noti',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Mwelekeo halisi',
+'exif-gpsdirection-m' => 'Mwelekeo wa sumaku',
 
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',
@@ -2062,6 +2115,10 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'confirmemail_invalidated' => 'Uthibitisho wa barua pepe umebatilishwa.',
 'invalidateemail'          => 'Batilisha barua pepe ya uthibitisho.',
 
+# Scary transclusion
+'scarytranscludefailed'  => '[Kuleta kigezo imeshindikana kwa ajili ya $1]',
+'scarytranscludetoolong' => '[URL ni ndefu mno]',
+
 # Delete conflict
 'deletedwhileediting' => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
 'confirmrecreate'     => "Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri, akaandika sababu hii ya kufuta:
@@ -2092,10 +2149,22 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 'table_pager_empty'        => 'Hakuna matokeo',
 
 # Auto-summaries
-'autosumm-blank' => 'Ukurasa ulimwagika',
+'autosumm-blank'   => 'Ukurasa ulimwagika',
+'autosumm-replace' => "Maandishi yaliyokuwepo yalichukuliwa nafasi na '$1'",
+'autoredircomment' => 'Ukurasa umeelekezwa kwenda [[$1]]',
+'autosumm-new'     => "Ukurasa ulianzishwa kwa kuandika '$1'",
 
 # Live preview
 'livepreview-loading' => 'Inapakizwa...',
+'livepreview-ready'   => 'Inapakizwa... Tayari!',
+'livepreview-failed'  => 'Hakikisho la kisasa hakufaulu!
+Jaribu hakikisho la kawaida.',
+'livepreview-error'   => 'Imeshindikana kuunganisha: $1 "$2".
+Jaribu hakikisho la kawaida.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Huenda mabadiliko yaliyowekwa tangu sekunde $1 {{PLURAL:$1|iliyopita|zilizopita}} hayataonyeshwa katika orodha hii.',
+'lag-warn-high'   => 'Kutokana na seva ya hifadhidata kukawia sana, huenda mabadiliko yaliyowekwa tangu sekunde $1 {{PLURAL:$1|iliyopita|zilizopita}} yanaweza yasioneshwe kwenye orodha hii.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Orodha ya maangalizi yako ina {{PLURAL:$1|ukurasa 1|kurasa $1}}, bila kuhesabu kurasa za majadiliano.',
@@ -2134,14 +2203,25 @@ Ama utumie [[Special:Watchlist/edit|ukurasa wa kuhariri wa kawaida]].',
 'version-software-version' => 'Toleo',
 
 # Special:FilePath
-'filepath'        => 'Njia ya faili',
-'filepath-page'   => 'Faili:',
-'filepath-submit' => 'Njia',
+'filepath'         => 'Njia ya faili',
+'filepath-page'    => 'Faili:',
+'filepath-submit'  => 'Nenda',
+'filepath-summary' => 'Ukurasa maalum huu unakwenda kwenye faili pamoja na kuonyesha anwani yake kamili (URL) katika sanduku la anwani juu.
+Picha zinaonyeshwa kwenye ukubwa mzima, na mafaili ya aina zingine yanaanzishwa kwa kutumia programu zinazozihusika moja kwa moja.
+
+Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-legend'   => 'Tafuta kifani',
+'fileduplicatesearch'          => 'Tafuta mafaili ya nakili',
+'fileduplicatesearch-summary'  => 'Kutafuta mafaili ya nakili kwa kuzingatia thamani za reli.
+
+Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
+'fileduplicatesearch-legend'   => 'Kutafuta kifani',
 'fileduplicatesearch-filename' => 'Jina la faili:',
 'fileduplicatesearch-submit'   => 'Tafuta',
+'fileduplicatesearch-info'     => 'Piseli $1 × $2<br />Ukubwa wa faili: $3<br />Aina ya MIME: $4',
+'fileduplicatesearch-result-1' => 'Faili la "$1" halina kifani.',
+'fileduplicatesearch-result-n' => 'Faili la "$1" lina {{PLURAL:$2|kifani 1|vifani $2}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Kurasa maalum',

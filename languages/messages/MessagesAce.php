@@ -18,24 +18,32 @@ $fallback = 'id';
 
 $messages = array(
 # User preference toggles
-'tog-underline'             => 'Bôh garéh yup bak hubông:',
-'tog-highlightbroken'       => 'Beuntuk hubông reuloh <a href="" class="new">lagèë nyoë</a> (peuniléh: lagèë nyoë<a href="" class="internal">?</a>).',
-'tog-justify'               => 'Peurata paragraf',
-'tog-hideminor'             => 'Peusom neuandam bacut bak neuubah paléng barô',
-'tog-hidepatrolled'         => 'Peusom neuandam teupatroli bak neuubah paléng barô',
-'tog-newpageshidepatrolled' => 'Peusom ôn teupatroli nibak dapeuta ôn barô',
-'tog-extendwatchlist'       => 'Peuhah dapeuta keunalön keu peuleumah ban dum neuubah, kon nyang paléng barô mantöng',
-'tog-usenewrc'              => 'Nguy neuleumah neuubah paléng barô tingkat lanjut (peureulèë JavaScript)',
-'tog-numberheadings'        => 'Bôh numbô nan keudroë',
-'tog-showtoolbar'           => 'Peuleumah <em>toolbar</em> (bateuëng alat) andam',
-'tog-editondblclick'        => 'Andam ôn deungon duagoe klik',
-'tog-rememberpassword'      => 'Ingat lageuëm rahsia lôn bak komputer nyoë',
-'tog-editwidth'             => 'Peurayeuk kotak andam ube layeu komputer',
-'tog-watchlisthideown'      => 'Peusöm nyang lôn andam nibak dapeuta keunalön',
-'tog-watchlisthidebots'     => 'Peusöm nyang teu andam nibak sagoö nyang bak dapeuta keunalön',
-'tog-watchlisthideminor'    => 'Peusöm Andam Bacut bak dapeuta keunalön',
-'tog-watchlisthideliu'      => 'Peusöm andam ureuëng nguy nyang tamöng nibak dapeuta keunalön',
-'tog-watchlisthideanons'    => 'Peusöm andam ureuëng nguy hana taturi nibak dapeuta keunalön',
+'tog-underline'               => 'Bôh garéh yup bak hubông:',
+'tog-highlightbroken'         => 'Beuntuk hubông reuloh <a href="" class="new">lagèë nyoë</a> (peuniléh: lagèë nyoë<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Peurata paragraf',
+'tog-hideminor'               => 'Peusom neuandam bacut bak neuubah paléng barô',
+'tog-hidepatrolled'           => 'Peusom neuandam teupatroli bak neuubah paléng barô',
+'tog-newpageshidepatrolled'   => 'Peusom ôn teupatroli nibak dapeuta ôn barô',
+'tog-extendwatchlist'         => 'Peuhah dapeuta keunalön keu peuleumah ban dum neuubah, kon nyang paléng barô mantöng',
+'tog-usenewrc'                => 'Nguy neuleumah neuubah paléng barô tingkat lanjut (peureulèë JavaScript)',
+'tog-numberheadings'          => 'Bôh numbô nan keudroë',
+'tog-showtoolbar'             => 'Peuleumah <em>toolbar</em> (bateuëng alat) andam',
+'tog-editondblclick'          => 'Andam ôn deungon duagoe klik',
+'tog-editsection'             => 'Peujeuet andam bideueng rot hubong [andam]',
+'tog-editsectiononrightclick' => 'Peujeuet andam bideueng ngon teugon blah uneun bak nan bideueng (peureulee JavaScript)',
+'tog-showtoc'                 => 'Peuleumah dapeuta asoe (keu on-on nyang na leubeh nibak 3 boh aneuk ulee)',
+'tog-rememberpassword'        => 'Ingat lageuëm rahsia lôn bak komputer nyoë',
+'tog-editwidth'               => 'Peurayeuk kotak andam ube layeu komputer',
+'tog-watchcreations'          => 'Tamah on-on nyang lonpeugot u dapeuta kalon',
+'tog-watchdefault'            => 'Tamah on-on nyang lon-andam u dapeuta kalon',
+'tog-watchmoves'              => 'Tamah on-on nyang lonpeupinah u dapeuta kalon',
+'tog-watchdeletion'           => 'Tamah on-on nyang lonsampoh u dapeuta kalon',
+'tog-minordefault'            => 'Boh tanda mandum neuandam sibagoe neuandam bacut ngon baku',
+'tog-watchlisthideown'        => 'Peusöm nyang lôn andam nibak dapeuta keunalön',
+'tog-watchlisthidebots'       => 'Peusöm nyang teu andam nibak sagoö nyang bak dapeuta keunalön',
+'tog-watchlisthideminor'      => 'Peusöm Andam Bacut bak dapeuta keunalön',
+'tog-watchlisthideliu'        => 'Peusöm andam ureuëng nguy nyang tamöng nibak dapeuta keunalön',
+'tog-watchlisthideanons'      => 'Peusöm andam ureuëng nguy hana taturi nibak dapeuta keunalön',
 
 'underline-always' => 'Sabe',
 
@@ -312,7 +320,7 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'showdiff'                         => 'Peuleumah neu’ubah',
 'anoneditwarning'                  => 'Droëneuh   hana teudapeuta tamong. Alamat IP Droëneuh   teucatat lam tarèh (riwayat away) ôn nyoë.',
 'summary-preview'                  => 'Eu dilèë reuningkah:',
-'blockedtext'                      => "<big>'''Nan ureuëng nguy atawa alamat IP Droëneuh  ka geutheun.'''</big> 
+'blockedtext'                      => "'''Nan ureuëng nguy atawa alamat IP Droëneuh  ka geutheun.''' 
 
 Geutheun lé $1. Dalèh jih nakeuh ''$2''. 
 
@@ -726,7 +734,7 @@ Lam masalah nyoë, meunyo neuhawa, Droëneuh jeuët neupeupinah atawa neupeugab�
 'move-watch'       => 'Kalön ôn nyoë',
 'movepagebtn'      => 'Peupinah ôn',
 'pagemovedsub'     => 'Peupinah meuhasé',
-'movepage-moved'   => '<big>\'\'\'"$1" ka geupeupinah u "$2".\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" ka geupeupinah u "$2".\'\'\'',
 'articleexists'    => 'Ôn ngön nan nyan ka na atawa nan nyang neupiléh hana sah. Neupiléh nan la’én.',
 'talkexists'       => 'Ôn nyan ka geupeupinah, tapi ôn peugah haba bak ôn nyan h‘an jeuët geupeupinah kareuna ka na ôn peugah haba bak nan barô. Neupeusapat mantöng ôn ôn peugah haba nyan keudroë.',
 'movedto'          => 'geupeupinah u',

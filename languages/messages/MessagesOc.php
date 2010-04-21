@@ -419,7 +419,7 @@ $messages = array(
 'index-category'                 => 'Paginas indexadas',
 'noindex-category'               => 'Paginas pas indexadas',
 
-'mainpagetext'      => "<big>'''MediaWiki es estat installat amb succès.'''</big>",
+'mainpagetext'      => "'''MediaWiki es estat installat amb succès.'''",
 'mainpagedocfooter' => "Consultatz lo [http://meta.wikimedia.org/wiki/Ajuda:Contengut Guida de l'utilizaire] per mai d'entresenhas sus l'utilizacion d'aqueste logicial.
 
 == Començar amb MediaWiki ==
@@ -786,6 +786,7 @@ Esperatz abans d’ensajar tornamai.',
 'resetpass_forbidden'       => 'Los senhals pòdon pas èsser cambiats',
 'resetpass-no-info'         => 'Vos cal èsser connectat per aver accès a aquesta pagina.',
 'resetpass-submit-loggedin' => 'Modificar lo senhal',
+'resetpass-submit-cancel'   => 'Anullar',
 'resetpass-wrong-oldpass'   => 'Senhal actual o temporari invalid.
 Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl.',
 'resetpass-temp-password'   => 'Senhal temporari :',
@@ -830,7 +831,7 @@ Vòstra adreça IP serà enregistrada dins l’istoric d'aquesta pagina.",
 'summary-preview'                  => 'Previsualizacion del resumit :',
 'subject-preview'                  => 'Previsualizacion del subjècte/títol :',
 'blockedtitle'                     => "L'utilizaire es blocat",
-'blockedtext'                      => "<big>'''Vòstre compte d'utilizaire o vòstra adreça IP es estat blocat'''</big>
+'blockedtext'                      => "'''Vòstre compte d'utilizaire o vòstra adreça IP es estat blocat'''
 
 Lo blocatge es estat efectuat per $1.
 La rason invocada es la seguenta : ''$2''.
@@ -2268,7 +2269,7 @@ S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, 
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} e {{PLURAL:$2|1 fichièr restablit|$2 fichièrs restablits}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichièr restablit|fichièrs restablits}}',
 'cannotundelete'               => 'Lo restabliment a pas capitat. Un autre utilizaire a probablament restablit la pagina abans.',
-'undeletedpage'                => "<big>'''La pagina $1 es estada restablida'''.</big>
+'undeletedpage'                => "'''La pagina $1 es estada restablida'''.
 
 Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas e restablidas.",
 'undelete-header'              => 'Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas.',
@@ -3311,7 +3312,7 @@ Ensajatz la previsualizacion normala.',
 # Special:FilePath
 'filepath'         => "Camin d'accès d'un fichièr",
 'filepath-page'    => 'Fichièr :',
-'filepath-submit'  => "Camin d'accès",
+'filepath-submit'  => 'Validar',
 'filepath-summary' => "Aquesta pagina especiala balha lo camin d'accès complet d’un fichièr ; los imatges son mostrats en nauta resolucion, los fichièrs audiò e vidèo s’executan amb lor programa associat.
 
 Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",

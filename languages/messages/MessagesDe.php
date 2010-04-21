@@ -16,6 +16,7 @@
  * @author Jan Luca
  * @author Jens Liebenau
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Kghbln
  * @author Khaledelmansoury
  * @author Li-sung
  * @author Lyzzy
@@ -41,6 +42,7 @@
  * @author UV
  * @author Umherirrender
  * @author W (aka Wuzur)
+ * @author Ziko
  * @author לערי ריינהארט
  */
 
@@ -369,8 +371,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-oldsig'                  => 'Vorschau der aktuellen Signatur:',
 'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
-'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
+'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer)',
+'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede als Standard benutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer)',
 'tog-showjumplinks'           => '„Wechseln zu“-Links aktivieren',
 'tog-uselivepreview'          => 'Live-Vorschau nutzen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
@@ -468,7 +470,7 @@ $messages = array(
 'index-category'                 => 'Indizierte Seiten',
 'noindex-category'               => 'Nichtindizierte Seiten',
 
-'mainpagetext'      => "<big>'''MediaWiki wurde erfolgreich installiert.'''</big>",
+'mainpagetext'      => "'''MediaWiki wurde erfolgreich installiert.'''",
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 
 == Starthilfen ==
@@ -726,7 +728,7 @@ Für Übersetzungen ziehe bitte in Betracht, diese im [http://translatewiki.net/
 'sqlhidden'            => '(SQL-Abfrage versteckt)',
 'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
-'namespaceprotected'   => "Du hast keine Berechtigung, die Seite im '''$1'''-Namensraum zu bearbeiten.",
+'namespaceprotected'   => "Du hast keine Berechtigung, Seiten im '''$1'''-Namensraum zu bearbeiten.",
 'customcssjsprotected' => 'Du bist nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 'ns-specialprotected'  => 'Spezialseiten können nicht bearbeitet werden.',
 'titleprotected'       => "Eine Seite mit diesem Namen kann nicht angelegt werden.
@@ -881,7 +883,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'summary-preview'                  => 'Vorschau der Zusammenfassungszeile:',
 'subject-preview'                  => 'Vorschau des Betreffs:',
 'blockedtitle'                     => 'Benutzer ist gesperrt',
-'blockedtext'                      => "<big>'''Dein Benutzername oder deine IP-Adresse wurde gesperrt.'''</big>
+'blockedtext'                      => "'''Dein Benutzername oder deine IP-Adresse wurde gesperrt.'''
 
 Die Sperrung wurde von $1 durchgeführt.
 Als Grund wurde ''$2'' angegeben.
@@ -938,7 +940,7 @@ Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|such
 oder in den zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen].</span>',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'userpage-userdoesnotexist-view'   => 'Benutzerkonto „$1“ existiert nicht.',
-'blocked-notice-logextract'        => 'Dieser Benutzer ist zur Zeit gesperrt.
+'blocked-notice-logextract'        => 'Dieser Benutzer ist zurzeit gesperrt.
 Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
 'usercssyoucanpreview'             => "'''Tipp:''' Benutze den Vorschau-Button, um dein neues CSS vor dem Speichern zu testen.",
@@ -963,9 +965,9 @@ Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und da
 Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und danach wieder an.'''",
 'token_suffix_mismatch'            => "'''Deine Bearbeitung wurde zurückgewiesen, da dein Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.'''",
-'editing'                          => 'Bearbeiten von $1',
-'editingsection'                   => 'Bearbeiten von $1 (Abschnitt)',
-'editingcomment'                   => 'Bearbeiten von $1 (Neuer Abschnitt)',
+'editing'                          => 'Bearbeiten von „$1“',
+'editingsection'                   => 'Bearbeiten von „$1“ (Abschnitt)',
+'editingcomment'                   => 'Bearbeiten von „$1“ (Neuer Abschnitt)',
 'editconflict'                     => 'Bearbeitungskonflikt: $1',
 'explainconflict'                  => "Jemand anders hat diese Seite geändert, nachdem du angefangen hast diese zu bearbeiten.
 Das obere Textfeld enthält den aktuellen Stand.
@@ -1124,8 +1126,8 @@ Als Administrator kannst du diesen Versionsunterschied sehen. Details finden sic
 'revdelete-no-file'           => 'Die angegebene Datei existiert nicht.',
 'revdelete-show-file-confirm' => 'Bist du sicher, dass du die gelöschte Version der Datei „<nowiki>$1</nowiki>“ vom $2 um $3 Uhr ansehen willst?',
 'revdelete-show-file-submit'  => 'Ja',
-'revdelete-selected'          => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von [[:$1]]:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
+'revdelete-selected'          => "'''{{PLURAL:$2|Gewählte Version|Gewählte Versionen}} von [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Gewählter Logbucheintrag|Gewählte Logbucheinträge}}:'''",
 'revdelete-text'              => "'''Gelöschte Versionen und Aktionen verbleiben in der Versionsgeschichte und den Logbüchern, jedoch sind Teile davon für die Öffentlichkeit unzugänglich.'''
 Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.",
 'revdelete-confirm'           => 'Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.',
@@ -1145,7 +1147,7 @@ Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt
 'revdelete-suppress'          => 'Grund der Löschung auch vor Administratoren verstecken',
 'revdelete-unsuppress'        => 'Einschränkungen für wiederhergestellte Versionen aufheben',
 'revdelete-log'               => 'Grund der Löschung:',
-'revdelete-submit'            => 'Auf ausgewählte {{PLURAL:$1|Version|Versionen}} anwenden',
+'revdelete-submit'            => 'Auf gewählte {{PLURAL:$1|Version|Versionen}} anwenden',
 'revdelete-logentry'          => 'hat die Versionsansicht für „[[$1]]“ geändert',
 'logdelete-logentry'          => 'hat die Sichtbarkeit für „[[$1]]“ geändert',
 'revdelete-success'           => "'''Die Versionsansicht wurde aktualisiert.'''",
@@ -1224,7 +1226,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'difference'               => '(Unterschied zwischen Versionen)',
 'lineno'                   => 'Zeile $1:',
 'compareselectedversions'  => 'Gewählte Versionen vergleichen',
-'showhideselectedversions' => 'Ausgewählte Versionen zeigen/verstecken',
+'showhideselectedversions' => 'Gewählte Versionen zeigen/verstecken',
 'editundo'                 => 'rückgängig',
 'diff-multi'               => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischenliegende Version|$1 dazwischenliegende Versionen}} mit ein.)',
 
@@ -1478,7 +1480,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-apihighlimits'         => 'Höhere Limits in API-Abfragen',
 'right-writeapi'              => 'Benutzung der writeAPI',
 'right-delete'                => 'Seiten löschen',
-'right-bigdelete'             => 'Seiten löschen mit großer Versionsgeschichte',
+'right-bigdelete'             => 'Seiten mit großer Versionsgeschichte löschen',
 'right-deleterevision'        => 'Einzelne Versionen einer Seite löschen und wiederherstellen',
 'right-deletedhistory'        => 'Gelöschte Versionen in der Versionsgeschichte ansehen, ohne zugehörigen Text',
 'right-deletedtext'           => 'Gelöschte Texte und Versionsunterschiede zwischen gelöschten Versionen ansehen',
@@ -1705,14 +1707,14 @@ Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorh
 Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.",
 'filename-prefix-blacklist'   => ' #<!-- Diese Zeile darf nicht verändert werden! --> <pre>
 #  Syntax:
-#   * Alles von einem #-Zeichen bis zum Ende der Zeile ist ein Kommentar
-#   * Jede nicht-leere Zeile ist ein ist ein Anfang für einen Typischen Dateinamen der automatisch von einer Digitalkamera erzeugt wird
+#   * Alles von einem #-Zeichen bis zum Ende der Zeile ist ein Kommentar.
+#   * Jede nicht-leere Zeile ist der Anfang eines typischen Dateinamens, der automatisch von einer Digitalkamera erzeugt wird.
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
 DSCN # Nikon
-DUW # gewisse Mobiltelefone
-IMG # generisch
+DUW # einige Mobiltelefone
+IMG # allgemein
 JD # Jenoptik
 MGP # Pentax
 PICT # verschiedene
@@ -2185,7 +2187,7 @@ Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 # Delete
 'deletepage'             => 'Seite löschen',
 'confirm'                => 'Bestätigen',
-'excontent'              => 'Alter Inhalt: „$1“',
+'excontent'              => 'Inhalt war: „$1“',
 'excontentauthor'        => 'Inhalt war: „$1“ (einziger Bearbeiter: [[Special:Contributions/$2|$2]])',
 'exbeforeblank'          => 'Inhalt vor dem Leeren der Seite: „$1“',
 'exblank'                => 'Seite war leer',
@@ -2245,7 +2247,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protectexpiry'               => 'Sperrdauer:',
 'protect_expiry_invalid'      => 'Die eingegebene Dauer ist ungültig.',
 'protect_expiry_old'          => 'Die Sperrzeit liegt in der Vergangenheit.',
-'protect-unchain-permissions' => 'Vorherige Sperroptionen aufheben',
+'protect-unchain-permissions' => 'Separate Sperroptionen aktivieren',
 'protect-text'                => 'Hier kannst du den Schutzstatus für die Seite „$1“ einsehen und ändern.',
 'protect-locked-blocked'      => "Du kannst den Seitenschutz nicht ändern, da dein Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite '''„$1“:'''",
 'protect-locked-dblock'       => "Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite '''„$1“:'''",
@@ -2548,7 +2550,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'move-watch'                   => 'Quell- und Zielseite beobachten',
 'movepagebtn'                  => 'Seite verschieben',
 'pagemovedsub'                 => 'Verschiebung erfolgreich',
-'movepage-moved'               => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>",
+'movepage-moved'               => "'''Die Seite „$1“ wurde nach „$2“ verschoben.'''",
 'movepage-moved-redirect'      => 'Es wurde eine Weiterleitung erstellt.',
 'movepage-moved-noredirect'    => 'Die Erstellung einer Weiterleitung wurde unterdrückt.',
 'articleexists'                => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
@@ -3366,7 +3368,7 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 # Special:FilePath
 'filepath'         => 'Dateipfad',
 'filepath-page'    => 'Datei:',
-'filepath-submit'  => 'Pfad suchen',
+'filepath-submit'  => 'Los',
 'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.
 
 Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',

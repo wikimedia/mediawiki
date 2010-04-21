@@ -266,17 +266,17 @@ $messages = array(
 'category-empty'                 => "''Ta kategorija trenutno ne vsebuje člankov ali drugega gradiva.''",
 'hidden-categories'              => '{{PLURAL:$1|Skrita kategorija|Skriti kategoriji|Skrite kategorije}}',
 'hidden-category-category'       => 'Skrite kategorije',
-'category-subcat-count'          => 'Ta del kategorije ima {{PLURAL:$1|$1 sledečo podkategorijo|$1 sledeči podkategoriji|$1 sledeče podkategorije|$1 sledečih podkategorij|$1 sledečih podkategorij}}{{PLURAL:$2||, od skupno $2}}.',
-'category-subcat-count-limited'  => 'Ta kategorija ima {{PLURAL:$1|$1 sledečo podkategorijo|$1 sledeči podkategoriji|$1 sledeče podkategorije|$1 sledečih podkategorij|$1 sledečih podkategorij}}.',
+'category-subcat-count'          => 'Ta del kategorije ima $1 {{PLURAL:$1|naslednjo podkategorijo|naslednji podkategoriji|naslednje podkategorije|naslednjih podkategorij}}{{PLURAL:$2||, od skupno $2}}.',
+'category-subcat-count-limited'  => 'Ta kategorija ima {{PLURAL:$1|$1 naslednjo podkategorijo|$1 naslednji podkategoriji|$1 naslednje podkategorije|$1 naslednjih podkategorij}}.',
 'category-article-count'         => 'Ta del kategorije vsebuje $1 {{PLURAL:$1|naslednjo stran|naslednji strani|naslednje strani|naslednjih strani}}{{PLURAL:$2||, od skupno $2}}.',
-'category-article-count-limited' => 'V tej kategoriji {{PLURAL:$1|je $1 sledeča stran|sta $1 sledeči strani|so $1 sledeče strani|je $1 sledečih strani|je $1 sledečih strani}}.',
-'category-file-count'            => 'Ta del kategorije vsebuje {{PLURAL:$1|$1 sledečo datoteko|$1 sledeči datoteki|$1 sledeče datoteke|$1 sledečih datotek|$1 sledečih datotek}}{{PLURAL:$2||, od skupno $2}}.',
-'category-file-count-limited'    => 'V tej kategoriji {{PLURAL:$1|je $1 sledeča datoteka|sta $1 sledeči datoteki|so $1 sledeče datoteke|je $1 sledečih datotek|je $1 sledečih datotek}}.',
+'category-article-count-limited' => 'V tej kategoriji {{PLURAL:$1|je $1 naslednja stran|sta $1 naslednji strani|so $1 naslednje strani|je $1 naslednjih strani}}.',
+'category-file-count'            => 'Ta kategorija vsebuje $1 {{PLURAL:$1|naslednjo datoteko|naslednji datoteki|naslednje datoteke|naslednjih datotek}}{{PLURAL:$2||, od skupno $2}}.',
+'category-file-count-limited'    => 'V tej kategoriji {{PLURAL:$1|je $1 naslednja datoteka|sta $1 naslednji datoteki|so $1 naslednje datoteke|je $1 naslednjih datotek}}.',
 'listingcontinuesabbrev'         => 'nadalj.',
 'index-category'                 => 'Indeksirane strani',
 'noindex-category'               => 'Neindeksirane strani',
 
-'mainpagetext'      => "<big>'''Programje MediaWiki je bilo uspešno nameščeno.'''</big>",
+'mainpagetext'      => "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
 'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
 in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
 
@@ -694,11 +694,12 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'anoneditwarning'                  => "'''Opozorilo''': niste prijavljeni. V zgodovino strani se bo zapisal vaš IP-naslov.",
 'missingsummary'                   => "'''Opozorilo:''' Niste napisali povzetka urejanja. Ob ponovnem kliku gumba ''Shrani'' se bo vaše urejanje shranilo brez njega.",
 'missingcommenttext'               => 'Prosimo, vpišite v spodnje polje komentar.',
-'missingcommentheader'             => "'''Opozorilo:''' Niste vnesli zadeve/naslova za ta komentar. Če boste ponovno kliknili Shrani, bo vaše urejanje shranjeno brez le-tega.",
+'missingcommentheader'             => "'''Opozorilo:''' Niste vnesli zadeve/naslova za ta komentar.
+Če boste ponovno kliknili Shrani stran, bo vaše urejanje shranjeno brez le-tega.",
 'summary-preview'                  => 'Predogled povzetka',
 'subject-preview'                  => 'Predogled zadeve/naslova:',
 'blockedtitle'                     => 'Uporabnik je blokiran',
-'blockedtext'                      => "<big>'''Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je bilo onemogočeno.'''</big>
+'blockedtext'                      => "'''Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je bilo onemogočeno.'''
 
 Blokiral vas je $1.
 Podan razlog je ''$2''.
@@ -759,7 +760,7 @@ Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov te strani]] v drug
 Prosimo preverite, ali res želite ustvariti/urediti to stran.',
 'userpage-userdoesnotexist-view'   => 'Uporabniški račun "$1" ni registriran.',
 'blocked-notice-logextract'        => 'Ta uporabnik je trenutno blokiran.
-Najnovejši vnos v dnevniku blokiranja je prikazan spodaj:',
+Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 'clearyourcache'                   => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika: '''Mozilla/Safari:''' držite ''Shift'' in kliknite ''Reload'' (ali pritisnite ''Ctrl-Shift-R''), '''Internet Explorer:''' ''Ctrl-F5'', '''Opera/Konqueror:''' ''F5''.",
 'usercssyoucanpreview'             => "'''Nasvet:''' Za preizkušanje svojega novega CSS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
 'userjsyoucanpreview'              => "'''Nasvet:''' Za preizkušanje svojega novega JS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
@@ -1702,7 +1703,8 @@ Povzetek na njeni [$2 opisni strani datoteke] je prikazan spodaj.',
 
 # MIME search
 'mimesearch'         => 'Iskanje po vrsti MIME',
-'mimesearch-summary' => 'Ta stran omogoča filtriranje datotek po njihovi vrsti MIME. Vnesite: vrstavsebine/podvrsta, npr. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ta stran omogoča filtriranje datotek po njihovi vrsti MIME.
+Vnesite: vrstavsebine/podvrsta, npr. <tt>image/jpeg</tt>.',
 'mimetype'           => 'Vrsta MIME:',
 'download'           => 'prenesi',
 
@@ -1797,7 +1799,7 @@ Sedaj je preusmeritev na [[$2]].',
 'wantedtemplates'         => 'Želene predloge',
 'mostlinked'              => 'Strani, na katere se največ povezuje',
 'mostlinkedcategories'    => 'Kategorije z največ elementi',
-'mostlinkedtemplates'     => 'Najbolj uporabljene predloge',
+'mostlinkedtemplates'     => 'Najbolj uporabljane predloge',
 'mostcategories'          => 'Članki z največ kategorijami',
 'mostimages'              => 'Najbolj uporabljane datoteke',
 'mostrevisions'           => 'Največkrat urejane strani',
@@ -2183,7 +2185,7 @@ Morda imate napačno povezavo ali pa je bila redakcija obnovljena ali odstranjen
 'undeletedfiles'               => '{{PLURAL:$1|obnovljena je $1 datoteka|obnovljeni sta $1 datoteki|obnovljene so $1 datoteke|obnovljenih je $1 datotek}}',
 'cannotundelete'               => 'Obnova ni uspela;
 morda je stran obnovil že kdo drug.',
-'undeletedpage'                => "<big>'''Obnovili ste stran $1.'''</big>
+'undeletedpage'                => "'''Obnovili ste stran $1.'''
 
 Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]].",
 'undelete-header'              => 'Glej [[Special:Log/delete|dnevnik brisanja]] za nedavno izbrisane strani.',
@@ -2415,7 +2417,7 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'move-watch'                   => 'Opazuj to stran',
 'movepagebtn'                  => 'Prestavi stran',
 'pagemovedsub'                 => 'Uspešno prestavljeno',
-'movepage-moved'               => "<big>Stran '''»$1«''' je prestavljena na naslov '''»$2«'''.</big>",
+'movepage-moved'               => "Stran '''»$1«''' je prestavljena na naslov '''»$2«'''.",
 'movepage-moved-redirect'      => 'Preusmeritev je bila ustvarjena.',
 'movepage-moved-noredirect'    => 'Izdelava preusmeritve je bila zatrta.',
 'articleexists'                => 'Izbrano ime je že zasedeno ali pa ni veljavno. 
@@ -2673,7 +2675,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'mw_math_html'   => 'Kadar je mogoče, uporabi HTML, sicer pa PNG',
 'mw_math_source' => 'Pusti v TeX-ovi obliki (za besedilne brskalnike)',
 'mw_math_modern' => 'Priporočeno za sodobne brskalnike',
-'mw_math_mathml' => 'če je le mogoče, uporabi MathML (preizkusno)',
+'mw_math_mathml' => 'Če je le mogoče, uporabi MathML (preizkusno)',
 
 # Math errors
 'math_failure'          => 'Ni mi uspelo razčleniti',
@@ -2683,8 +2685,8 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'math_syntax_error'     => 'skladenjska napaka',
 'math_image_error'      => 'Pretvarjanje v PNG ni uspelo;
 preverite, ali so latex, dvips, gs, in convert pravilno nameščeni.',
-'math_bad_tmpdir'       => 'Začasne mape za matematiko ne morem ustvariti ali pisati vanjo.',
-'math_bad_output'       => 'Izhodne mape za matematiko ne morem ustvariti ali pisati vanjo.',
+'math_bad_tmpdir'       => 'Začasne mape za math ne morem ustvariti ali pisati vanjo.',
+'math_bad_output'       => 'Izhodne mape za math ne morem ustvariti ali pisati vanjo.',
 'math_notexvc'          => 'Manjka izvedbena datoteka texvc;
 za njeno namestitev si poglejte math/README.',
 
@@ -2762,7 +2764,8 @@ Z njenim zagonom lahko ogrozite vaš sistem.<hr />",
 'metadata-help'     => 'Datoteka vsebuje še druge podatke, ki jih je verjetno dodal za njeno ustvaritev oziroma digitalizacijo uporabljeni fotografski aparat ali optični bralnik. Če je bila datoteka pozneje spremenjena, podatki sprememb morda ne izražajo popolnoma.',
 'metadata-expand'   => 'Razširi seznam',
 'metadata-collapse' => 'Skrči seznam',
-'metadata-fields'   => 'V skrčeni razpredelnici metapodatkov EXIF bodo prikazana le v tem sporočilu našteta polja. Druga bodo po privzetem skrita.
+'metadata-fields'   => 'V skrčeni razpredelnici metapodatkov EXIF bodo prikazana le v tem sporočilu našteta polja.
+Druga bodo po privzetem skrita.
 * make
 * model
 * datetimeoriginal
@@ -3202,7 +3205,7 @@ Uporabite lahko tudi [[Special:Watchlist/edit|standardni urejevalnik]].',
 # Special:FilePath
 'filepath'         => 'Pot do datoteke',
 'filepath-page'    => 'Datoteka:',
-'filepath-submit'  => 'Pot',
+'filepath-submit'  => 'Pojdi',
 'filepath-summary' => 'Ta posebna stran vrne polno pot do datoteke.
 Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.
 

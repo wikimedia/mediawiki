@@ -455,7 +455,7 @@ $messages = array(
 'index-category'                 => 'דפים המופיעים במנועי חיפוש',
 'noindex-category'               => 'דפים המוסתרים ממנועי חיפוש',
 
-'mainpagetext'      => "<big>'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''</big>",
+'mainpagetext'      => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
 'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
 
 == קישורים שימושיים ==
@@ -859,7 +859,7 @@ $2',
 'summary-preview'                  => 'תצוגה מקדימה של התקציר:',
 'subject-preview'                  => 'תצוגה מקדימה של הנושא/הכותרת:',
 'blockedtitle'                     => 'המשתמש חסום',
-'blockedtext'                      => '<big>\'\'\'שם המשתמש או כתובת ה־IP שלכם נחסמו.\'\'\'</big>
+'blockedtext'                      => '\'\'\'שם המשתמש או כתובת ה־IP שלכם נחסמו.\'\'\'
 
 החסימה בוצעה על ידי $1. הסיבה שניתנה לכך היא \'\'\'$2\'\'\'.
 
@@ -1505,7 +1505,7 @@ $1",
 # User rights log
 'rightslog'      => 'יומן תפקידים',
 'rightslogtext'  => 'זהו יומן השינויים בתפקידי המשתמשים.',
-'rightslogentry' => 'שינה את ההרשאות של $1 מ־$2 ל־$3',
+'rightslogentry' => 'שינה את ההרשאות של $1 מ$2 ל$3',
 'rightsnone'     => '(כלום)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2352,7 +2352,8 @@ $1',
 'sp-contributions-logs'           => 'יומנים',
 'sp-contributions-talk'           => 'שיחה',
 'sp-contributions-userrights'     => 'ניהול הרשאות משתמש',
-'sp-contributions-blocked-notice' => 'משתמש זה חסום כרגע. הפעולה האחרונה ביומן החסימות מוצגת להלן:',
+'sp-contributions-blocked-notice' => 'משתמש זה חסום כרגע.
+הפעולה האחרונה ביומן החסימות מוצגת להלן:',
 'sp-contributions-search'         => 'חיפוש תרומות',
 'sp-contributions-username'       => 'שם משתמש או כתובת IP:',
 'sp-contributions-submit'         => 'חיפוש',
@@ -2545,7 +2546,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'move-watch'                   => 'מעקב אחרי דף המקור ואחרי דף היעד',
 'movepagebtn'                  => 'העברה',
 'pagemovedsub'                 => 'ההעברה הושלמה בהצלחה',
-'movepage-moved'               => '<big>הדף "$1" הועבר לשם "$2".</big>',
+'movepage-moved'               => 'הדף "$1" הועבר לשם "$2".',
 'movepage-moved-redirect'      => 'נוצרה הפניה.',
 'movepage-moved-noredirect'    => 'יצירת ההפניה בוטלה.',
 'articleexists'                => 'קיים כבר דף עם אותו שם, או שהשם שבחרתם אינו חוקי.
@@ -3406,7 +3407,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'נתיב לקובץ',
 'filepath-page'    => 'הקובץ:',
-'filepath-submit'  => 'מציאת הנתיב',
+'filepath-submit'  => 'הצגה',
 'filepath-summary' => 'דף זה מציג את הנתיב המלא לקבצים שהועלו.
 תמונות מוצגות ברזולוציה מלאה, ואילו סוגי קבצים אחרים מוצגים ישירות באמצעות התוכנה שהוגדרה להצגתם.
 

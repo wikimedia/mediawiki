@@ -427,7 +427,7 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'movearticle'      => 'Ɖɔli eƒe nɔƒe:',
 'move-watch'       => 'Le ŋku ɖe axa sia ŋu',
 'movepagebtn'      => 'Ɖɔli eƒe nɔƒe',
-'movepage-moved'   => '<big>\'\'\'Wohe "$1" vayi "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'Wohe "$1" vayi "$2"\'\'\'',
 'articleexists'    => 'Tanya alo ŋkɔ sia nye axa bubu aɖe tɔ xoxo, alo eda se dzi.
 Tia ŋkɔ alo tanya bubu.',
 'movedto'          => 'wohee yi',

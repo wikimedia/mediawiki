@@ -16,6 +16,7 @@
  * @author H92
  * @author Jan Friberg
  * @author Jon Harald Søby
+ * @author Kwi
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Leolaursen
  * @author MGA73
@@ -23,6 +24,7 @@
  * @author MinuteElectron
  * @author Morten LJ
  * @author Najami
+ * @author Nghtwlkr
  * @author Peter Andersen
  * @author Purodha
  * @author Qaqqalik
@@ -296,7 +298,7 @@ $messages = array(
 'index-category'                 => 'Indekserede sider',
 'noindex-category'               => 'Ikke-indekserede sider',
 
-'mainpagetext'      => "<big>'''MediaWiki er nu installeret.'''</big>",
+'mainpagetext'      => "'''MediaWiki er nu installeret.'''",
 'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
 
 'about'         => 'Om',
@@ -564,7 +566,7 @@ Bemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du
 'welcomecreation'            => '== Velkommen, $1! ==
 
 Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Preferences|{{SITENAME}}-indstillinger]].',
-'yourname'                   => 'Dit brugernavn',
+'yourname'                   => 'Dit brugernavn:',
 'yourpassword'               => 'Din adgangskode:',
 'yourpasswordagain'          => 'Gentag adgangskode',
 'remembermypassword'         => 'Husk min adgangskode til næste gang.',
@@ -648,14 +650,15 @@ Vent venligst før du prøver igen.',
 'resetpass_announce'        => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
 'resetpass_text'            => '<!-- Tilføj tekst her -->',
 'resetpass_header'          => 'Skift adgangskode',
-'oldpassword'               => 'Gammel adgangskode',
-'newpassword'               => 'Ny adgangskode',
-'retypenew'                 => 'Gentag ny adgangskode',
-'resetpass_submit'          => 'Send password og log på',
-'resetpass_success'         => 'Dit password er nu ændret. Nu følger tilmelding …',
-'resetpass_forbidden'       => 'Dette password kan ikke ændres.',
+'oldpassword'               => 'Gammel adgangskode:',
+'newpassword'               => 'Ny adgangskode:',
+'retypenew'                 => 'Gentag ny adgangskode:',
+'resetpass_submit'          => 'Gem adgangskode og log på',
+'resetpass_success'         => 'Din adgangskode er nu ændret. Logger ind...',
+'resetpass_forbidden'       => 'Adgangskoder kan ikke ændres',
 'resetpass-no-info'         => 'Du skal være logget på for at komme direkte til denne side.',
 'resetpass-submit-loggedin' => 'Skift adgangskode',
+'resetpass-submit-cancel'   => 'Annuller',
 'resetpass-wrong-oldpass'   => 'Ugyldig midlertidig eller gældende adgangskode. 
 Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlertidig kode.',
 'resetpass-temp-password'   => 'Midlertidig adgangskode',
@@ -699,7 +702,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'summary-preview'                  => 'Forhåndsvisning af beskrivelsen:',
 'subject-preview'                  => 'Forhåndsvisning af emnet:',
 'blockedtitle'                     => 'Brugeren er blokeret',
-'blockedtext'                      => "<big>'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''</big>
+'blockedtext'                      => "'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''
 
 Blokeringen er foretaget af $1.
 Den anførte grund er ''$2''.
@@ -863,6 +866,7 @@ Der bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 k
 'post-expand-template-argument-category'  => 'Sider med udeladte skabelonparametre',
 'parser-template-loop-warning'            => 'Skabelonløkke fundet: [[$1]]',
 'parser-template-recursion-depth-warning' => 'En skabelon er rekursivt inkluderet for mange gange ($1)',
+'language-converter-depth-warning'        => 'Dybdegrænse for sprogkonvertering overskredet ($1)',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan fjernes.
@@ -1071,7 +1075,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'prevn-title'                      => 'Forrige $1 {{PLURAL:$1|resultat|resultater}}',
 'nextn-title'                      => 'Næste $1 {{PLURAL:$1|resultat|resultater}}',
 'shown-title'                      => 'Vis $1 {{PLURAL:$1|resultat|resultater}} per side',
-'viewprevnext'                     => 'Vis ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => 'Vis ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Søgemuligheder',
 'searchmenu-exists'                => "'''Der er en side med navnet \"[[:\$1]]\" på denne wiki'''",
 'searchmenu-new'                   => "'''Opret siden \"[[:\$1]]\" i denne wiki'''",
@@ -1237,25 +1241,26 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'prefs-diffs'                   => 'Forskelle',
 
 # User rights
-'userrights'                  => 'Håndtering af brugerrettigheder',
-'userrights-lookup-user'      => 'Administrér brugergrupper',
-'userrights-user-editname'    => 'Skriv et brugernavn:',
-'editusergroup'               => 'Redigér brugergrupper',
-'editinguser'                 => "Ændrer brugerrettigheder for bruger '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Redigér brugergrupper',
-'saveusergroups'              => 'Gem brugergrupper',
-'userrights-groupsmember'     => 'Medlem af:',
-'userrights-groups-help'      => 'Du kan ændre denne brugers gruppermedlemsskaber:
+'userrights'                   => 'Håndtering af brugerrettigheder',
+'userrights-lookup-user'       => 'Administrér brugergrupper',
+'userrights-user-editname'     => 'Skriv et brugernavn:',
+'editusergroup'                => 'Redigér brugergrupper',
+'editinguser'                  => "Ændrer brugerrettigheder for bruger '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Redigér brugergrupper',
+'saveusergroups'               => 'Gem brugergrupper',
+'userrights-groupsmember'      => 'Medlem af:',
+'userrights-groupsmember-auto' => 'Implicit medlem af:',
+'userrights-groups-help'       => 'Du kan ændre denne brugers gruppermedlemsskaber:
 * Et markeret afkrydsningsfelt betyder at brugeren er medlen af den pågældende gruppe..
 * Et umarkeret felt betyder at brugeren ikke er medlem af gruppen.
 * En * betyder at du ikke kan fravælge gruppen, når den først er tilføjet og omvendt.',
-'userrights-reason'           => 'Årsag:',
-'userrights-no-interwiki'     => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
-'userrights-nodatabase'       => 'Databasen $1 eksisterer ikke lokalt.',
-'userrights-nologin'          => 'Du skal [[Special:UserLogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
-'userrights-notallowed'       => 'Din konto har ikke andgang til at ændre brugerrettigheder.',
-'userrights-changeable-col'   => 'Redigerbare grupper',
-'userrights-unchangeable-col' => 'Uredigerbare grupper',
+'userrights-reason'            => 'Årsag:',
+'userrights-no-interwiki'      => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
+'userrights-nodatabase'        => 'Databasen $1 eksisterer ikke lokalt.',
+'userrights-nologin'           => 'Du skal [[Special:UserLogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
+'userrights-notallowed'        => 'Din konto har ikke andgang til at ændre brugerrettigheder.',
+'userrights-changeable-col'    => 'Redigerbare grupper',
+'userrights-unchangeable-col'  => 'Uredigerbare grupper',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1470,6 +1475,7 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'minlength1'                  => 'Navnet på filen skal være på mindst et bogstav.',
 'illegalfilename'             => 'Filnavnet "$1" indeholder tegn, der ikke er tilladte i sidetitler. Omdøb filen og prøv at lægge den op igen.',
 'badfilename'                 => 'Navnet på filen er blevet ændret til "$1".',
+'filetype-mime-mismatch'      => 'Filendelsen svarer ikke til MIME-typen.',
 'filetype-badmime'            => 'Filer med MIME-typen „$1“ må ikke uploades.',
 'filetype-bad-ie-mime'        => 'Kan ikke lægge denne fil op fordi Internet Explorer ville betragte den som værende af typen "$1", som er en ikke-tilladt og en potentiel farlig filtype.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' er ikke en foretrukken filtype. {{PLURAL:\$3|Den foretrukne filtype|De foretrukne filtyper}} er \$2.",
@@ -1559,7 +1565,13 @@ For optimal sikkerhed er img_auth.php deaktiveret.",
 
 # HTTP errors
 'http-invalid-url'      => 'Ugyldig webadresse: $1',
+'http-invalid-scheme'   => 'URL\'er af typen "$1" er ikke understøttet.',
+'http-request-error'    => 'HTTP-forespørgslen fejlede af ukendte årsager.',
+'http-read-error'       => 'HTTP-læsefejl.',
+'http-timed-out'        => 'HTTP-forespørgslen tog for lang tid.',
+'http-curl-error'       => 'Fejl under hentning af URL: $1',
 'http-host-unreachable' => 'Webadresse er ikke tilgængelig.',
+'http-bad-status'       => 'Der opstod et problem under HTTP-forespørgslen: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL er utilgængelig',
@@ -2013,7 +2025,7 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 # Rollback
 'rollback'          => 'Fjern redigeringer',
 'rollback_short'    => 'Fjern redigering',
-'rollbacklink'      => 'fjern redigering',
+'rollbacklink'      => 'rul tilbage',
 'rollbackfailed'    => 'Kunne ikke fjerne redigeringen',
 'cantrollback'      => 'Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.',
 'alreadyrolled'     => 'Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -2334,7 +2346,7 @@ I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'move-watch'                   => 'Overvåg siden',
 'movepagebtn'                  => 'Flyt side',
 'pagemovedsub'                 => 'Flytning gennemført',
-'movepage-moved'               => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>',
+'movepage-moved'               => 'Siden \'\'\'"$1" er flyttet til "$2"\'\'\'',
 'movepage-moved-redirect'      => 'En omdirigering er oprettet.',
 'movepage-moved-noredirect'    => 'Der oprettedes ikke en omdirigering.',
 'articleexists'                => 'En side med det navn eksisterer allerede, eller det
@@ -2494,7 +2506,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-ca-addsection'           => 'Start et nyt afsnit',
 'tooltip-ca-viewsource'           => 'Denne side er beskyttet.
 Du kan se på kildeteksten.',
-'tooltip-ca-history'              => 'Tidligere versioner af denne side.',
+'tooltip-ca-history'              => 'Tidligere versioner af denne side',
 'tooltip-ca-protect'              => 'Beskyt denne side',
 'tooltip-ca-unprotect'            => 'Fjern beskyttelsen af siden',
 'tooltip-ca-delete'               => 'Slet denne side',
@@ -2526,7 +2538,7 @@ Du kan se på kildeteksten.',
 'tooltip-ca-nstab-main'           => 'Se indholdet',
 'tooltip-ca-nstab-user'           => 'Se brugersiden',
 'tooltip-ca-nstab-media'          => 'Se mediasiden',
-'tooltip-ca-nstab-special'        => 'Dette er en speciel side; man kan ikke redigere sådanne sider.',
+'tooltip-ca-nstab-special'        => 'Dette er en speciel side; man kan ikke redigere sådanne sider',
 'tooltip-ca-nstab-project'        => 'Vis projektsiden',
 'tooltip-ca-nstab-image'          => 'Se filsiden',
 'tooltip-ca-nstab-mediawiki'      => 'Se systembeskeden',
@@ -2980,7 +2992,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'confirmemail_text'        => '{{SITENAME}} kræver, at du bekræfter en e-mail-adresse (autentificering), før du kan bruge de udvidede e-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en e-mail til dig. Denne e-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at e-mail-adressen er gyldig.',
 'confirmemail_pending'     => 'En bekræftelsesmail er allerede sendt til dig. Hvis du først for nylig har oprettet brugerkontoen, vent da et par minutter på denne e-mail, før du bestiller en ny kode.',
 'confirmemail_send'        => 'Send bekræftelseskode',
-'confirmemail_sent'        => 'Bekræftelses-e-amil afsendt.',
+'confirmemail_sent'        => 'Bekræftelses-e-mail afsendt.',
 'confirmemail_oncreate'    => 'En bekræftelseskode er sendt til din e-mail-adresse. Denne kode skal ikke bruges til anmeldelsen, den kræves dog til aktiveringen af e-mail-funktionerne indenfor Wikien.',
 'confirmemail_sendfailed'  => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at e-mail-adressen er korrekt.
 

@@ -442,7 +442,7 @@ Spetga per plaschair avant ch'empruvar anc ina giada.",
 'missingcommenttext'               => 'Endatescha per plaschair ina resumaziun.',
 'summary-preview'                  => 'prevista da la resumaziun:',
 'blockedtitle'                     => 'Utilisader è bloccà',
-'blockedtext'                      => "<big>'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</big>
+'blockedtext'                      => "'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''
 
 ''$1'' ha bloccà tai.
 Il motiv inditgà è: ''$2''.
@@ -1257,7 +1257,7 @@ En quests cas as ti da spustar u colliar manualmain las paginas, sche giavischà
 'move-watch'                => 'Observar questa pagina',
 'movepagebtn'               => 'Spustar la pagina',
 'pagemovedsub'              => 'Spustà cun success',
-'movepage-moved'            => '<big>\'\'\'"$1" è vegnì spustà a "$2"\'\'\'</big>',
+'movepage-moved'            => '\'\'\'"$1" è vegnì spustà a "$2"\'\'\'',
 'movepage-moved-redirect'   => 'In renviament è vegnì creà.',
 'movepage-moved-noredirect' => 'I è vegnì impedì da crear in renviament.',
 'articleexists'             => 'I exista gia in artitgel cun quai num. Tscherni per plaschair in auter.',

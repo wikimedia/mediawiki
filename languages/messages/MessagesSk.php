@@ -405,7 +405,7 @@ $messages = array(
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'neindexované stránky',
 
-'mainpagetext'      => "<big>'''Softvér MediaWiki bol úspešne nainštalovaný.'''</big>",
+'mainpagetext'      => "'''Softvér MediaWiki bol úspešne nainštalovaný.'''",
 'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [http://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
 
 == Začíname ==
@@ -821,7 +821,7 @@ Vaša IP adresa bude zaznamenaná v histórii úprav tejto stránky.",
 'summary-preview'                  => 'Náhľad zhrnutia:',
 'subject-preview'                  => 'Náhľad predmetu/hlavičky:',
 'blockedtitle'                     => 'Používateľ je zablokovaný',
-'blockedtext'                      => "<big>'''Vaše používateľské meno alebo IP adresa bola zablokovaná.'''</big>
+'blockedtext'                      => "'''Vaše používateľské meno alebo IP adresa bola zablokovaná.'''
 
 Zablokoval vás správca $1. Udáva tento dôvod:<br />''$2''
 
@@ -2277,7 +2277,7 @@ Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, obnovené rev
 'undeletedrevisions-files'     => '{{PLURAL:$1|Jedna revízia|$1 revízie|$1 revízií}} a {{PLURAL:$2|jeden súbor bol obnovený|$2 súbory boli obnovené|$2 súborov bolo obnovených}}',
 'undeletedfiles'               => '{{PLURAL:$1|Jeden súbor bol obnovený|$1 súbory boli obnovené|$1 súborov bolo obnovených}}',
 'cannotundelete'               => 'Obnovenie sa nepodarilo; pravdepodobne niekto iný obnovil stránku skôr ako vy.',
-'undeletedpage'                => "<big>'''$1 bol obnovený'''</big>
+'undeletedpage'                => "'''$1 bol obnovený'''
 
 Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname mazaní]].",
 'undelete-header'              => 'Pozri nedávno zmazané stránky v [[Special:Log/delete|zázname mazaní]].',
@@ -2515,7 +2515,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'move-watch'                   => 'Sledovať túto stránku',
 'movepagebtn'                  => 'Presunúť stránku',
 'pagemovedsub'                 => 'Presun bol úspešný',
-'movepage-moved'               => "<big>'''„$1” bolo presunuté na „$2”'''</big>",
+'movepage-moved'               => "'''„$1” bolo presunuté na „$2”'''",
 'movepage-moved-redirect'      => 'Bolo vytvorené presmerovanie.',
 'movepage-moved-noredirect'    => 'Vytvorenie presmerovania bolo potlačené.',
 'articleexists'                => 'Stránka s týmto názvom už existuje alebo

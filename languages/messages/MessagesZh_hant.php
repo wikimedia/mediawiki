@@ -313,7 +313,7 @@ $messages = array(
 'index-category'                 => '已做索引的頁面',
 'noindex-category'               => '未做索引的頁面',
 
-'mainpagetext'      => "<big>'''已成功安裝 MediaWiki。'''</big>",
+'mainpagetext'      => "'''已成功安裝 MediaWiki。'''",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟件的訊息！
 
 == 入門 ==
@@ -719,7 +719,7 @@ $2',
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '主題/標題預覽:',
 'blockedtitle'                     => '用戶被查封',
-'blockedtext'                      => "<big>{{GENDER:|你|妳|你}}的用戶名或IP地址已經被$1查封。</big>
+'blockedtext'                      => "{{GENDER:|你|妳|你}}的用戶名或IP地址已經被$1查封。
 
 這次查封是由$1所封的。當中的原因是''$2''。
 
@@ -750,7 +750,7 @@ $2',
 'whitelistedittitle'               => '登入後才可編輯',
 'whitelistedittext'                => '您必須先$1才可編輯頁面。',
 'confirmedittext'                  => '在編輯此頁之前您必須確認您的郵箱位址。請透過[[Special:Preferences|參數設定]]設定並驗証您的郵箱位址。',
-'nosuchsectiontitle'               => '沒有這個段落',
+'nosuchsectiontitle'               => '找不到段落',
 'nosuchsectiontext'                => '您嘗試編輯的章節並不存在。
 可能在您查看頁面時已經移動或刪除。',
 'loginreqtitle'                    => '需要登入',
@@ -2148,7 +2148,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 個版本和 $2 個檔案被恢復',
 'undeletedfiles'               => '$1 個檔案被恢復',
 'cannotundelete'               => '恢復失敗；可能之前已經被其他人恢復。',
-'undeletedpage'                => "<big>'''$1已經被恢復'''</big> 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
+'undeletedpage'                => "'''$1已經被恢復''' 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
 'undelete-header'              => '如要查詢最近的記錄請參閱[[Special:Log/delete|刪除日誌]]。',
 'undelete-search-box'          => '搜尋已刪除頁面',
 'undelete-search-prefix'       => '顯示頁面自:',
@@ -2188,7 +2188,8 @@ $1',
 'sp-contributions-logs'           => '日誌',
 'sp-contributions-talk'           => '對話',
 'sp-contributions-userrights'     => '用戶權限管理',
-'sp-contributions-blocked-notice' => '這位用戶現時正在被封鎖中。最近的封鎖日誌項目在下面提供以便參考：',
+'sp-contributions-blocked-notice' => '這位用戶現時正在被封鎖中。
+最近的封鎖日誌項目在下面提供以便參考：',
 'sp-contributions-search'         => '搜尋貢獻記錄',
 'sp-contributions-username'       => 'IP位址或用戶名稱：',
 'sp-contributions-submit'         => '搜尋',
@@ -2378,7 +2379,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'move-watch'                   => '監視來源以及目標頁',
 'movepagebtn'                  => '移動頁面',
 'pagemovedsub'                 => '移動成功',
-'movepage-moved'               => "<big>'''「$1」已經移動到「$2」'''</big>",
+'movepage-moved'               => "'''「$1」已經移動到「$2」'''",
 'movepage-moved-redirect'      => '一個重新定向已經被創建。',
 'movepage-moved-noredirect'    => '已經壓制創建重新定向。',
 'articleexists'                => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
@@ -3201,7 +3202,7 @@ $1',
 # Special:FilePath
 'filepath'         => '檔案路徑',
 'filepath-page'    => '檔案名:',
-'filepath-submit'  => '搜尋路徑',
+'filepath-submit'  => '前往',
 'filepath-summary' => '這個特殊頁面擷取一個檔案的完整路徑。圖片會以完整的解像度顯示，其它的檔案類型會以同它們已關聯程式啟動。
 
 請輸入檔名，不要包含"{{ns:file}}:"開頭。',

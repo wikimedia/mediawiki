@@ -262,7 +262,7 @@ $messages = array(
 'index-category'                 => 'Indicěrowane strony',
 'noindex-category'               => 'Njeindicěrowane strony',
 
-'mainpagetext'      => "<big>'''MediaWiki bu wuspěšnje instalowany.'''</big>",
+'mainpagetext'      => "'''MediaWiki bu wuspěšnje instalowany.'''",
 'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
 
 == Za nowačkow ==
@@ -666,7 +666,7 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 'summary-preview'                  => 'Přehlad zjeća:',
 'subject-preview'                  => 'Přehlad temy:',
 'blockedtitle'                     => 'Wužiwar je zablokowany',
-'blockedtext'                      => "<big>'''Twoje wužiwarske mjeno abo twoja IP-adresa bu zablokowane.'''</big>
+'blockedtext'                      => "'''Twoje wužiwarske mjeno abo twoja IP-adresa bu zablokowane.'''
 
 Blokowar je $1.
 Podata přičina je ''$2''.
@@ -2083,7 +2083,7 @@ W tutym padźe dyrbiš najnowšu wušmórnjenu wersiju znjemóžnić abo pokaza�
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} a $2 {{PLURAL:$2|dataja|dataji|dataje|datajow}} {{PLURAL:$2|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|dataja|dataji|dataje|datajow}} {{PLURAL:$1|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}.',
 'cannotundelete'               => 'Wobnowjenje zwrěšćiło; něchtó druhi je stronu prjedy wobnowił.',
-'undeletedpage'                => "<big>'''Strona $1 bu z wuspěchom wobnowjena.'''</big>
+'undeletedpage'                => "'''Strona $1 bu z wuspěchom wobnowjena.'''
 
 Hlej [[Special:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenjow a wobnowjenjow.",
 'undelete-header'              => 'Hlej [[Special:Log/delete|protokol wušmórnjenjow]] za njedawno wušmórnjene strony.',
@@ -2300,7 +2300,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-watch'                   => 'Stronu wobkedźbować',
 'movepagebtn'                  => 'Stronu přesunyć',
 'pagemovedsub'                 => 'Přesunjenje wuspěšne',
-'movepage-moved'               => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>',
+'movepage-moved'               => '\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'',
 'movepage-moved-redirect'      => 'Daleposrědkowanje je so wutworiło.',
 'movepage-moved-noredirect'    => 'Wutworjenje daleposrědkowanja bu potłóčene.',
 'articleexists'                => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił, płaćiwe njeje. Prošu wuzwol druhe mjeno.',
@@ -3080,7 +3080,7 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 # Special:FilePath
 'filepath'         => 'Datajowy puć',
 'filepath-page'    => 'Dataja:',
-'filepath-submit'  => 'Puć',
+'filepath-submit'  => 'Pytać',
 'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.
 
 Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',

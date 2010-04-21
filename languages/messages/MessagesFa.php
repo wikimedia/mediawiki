@@ -527,7 +527,7 @@ $messages = array(
 'index-category'                 => 'صفحه‌های نمایه شده',
 'noindex-category'               => 'صفحه‌های نمایه نشده',
 
-'mainpagetext'      => "<big>'''نرم‌افزار ویکی با موفقیت نصب شد.'''</big>",
+'mainpagetext'      => "'''نرم‌افزار ویکی با موفقیت نصب شد.'''",
 'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
 برای استفاده از نرم‌افزار ویکی کمک بگیرید.
 
@@ -944,7 +944,7 @@ $2',
 'summary-preview'                  => 'پیش‌نمایش خلاصه:',
 'subject-preview'                  => 'پیش‌نمایش موضوع/عنوان:',
 'blockedtitle'                     => 'کاربر بسته شد.',
-'blockedtext'                      => "<big>'''دسترسی نام کاربری یا نشانی آی‌پی شما بسته شده است.'''</big>
+'blockedtext'                      => "'''دسترسی نام کاربری یا نشانی آی‌پی شما بسته شده است.'''
 
 این کار توسط $1 انجام شده‌است.
 دلیل داده‌شده این است: $2''
@@ -1915,7 +1915,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'filedelete-nofile'           => "'''$1''' وجود ندارد.",
 'filedelete-nofile-old'       => "نسخه بایگانی شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد..",
 'filedelete-otherreason'      => 'دلیل دیگر/اضافی:',
-'filedelete-reason-otherlist' => 'دیگر',
+'filedelete-reason-otherlist' => 'دلیل دیگر',
 'filedelete-reason-dropdown'  => '
 *دلایل متداول حذف
 ** نقض حق تکثیر
@@ -2285,7 +2285,7 @@ $NEWPAGE
 'reverted'               => 'به نسخهٔ قدیمی‌تر واگردانده شد.',
 'deletecomment'          => 'توضیح حذف:',
 'deleteotherreason'      => 'دلیل دیگر/اضافی:',
-'deletereasonotherlist'  => 'دیگر',
+'deletereasonotherlist'  => 'دلیل دیگر',
 'deletereason-dropdown'  => '*دلایل متداول حذف
 ** درخواست کاربر
 ** نقض حق تکثیر
@@ -2348,7 +2348,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'زمانی دیگر',
 'protect-existing-expiry'     => 'زمان انقضای موجود: $2، $3',
 'protect-otherreason'         => 'دلیل دیگر/اضافی:',
-'protect-otherreason-op'      => 'دلیل دیگر/اضافی',
+'protect-otherreason-op'      => 'دلیل دیگر',
 'protect-dropdown'            => '*دلایل متداول محافظت
 ** خرابکاری گسترده
 ** هرزنگاری گسترده
@@ -2405,7 +2405,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'undeletedfiles'               => '$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'cannotundelete'               => 'نشد احیا کرد. ممکن است کس دیگری پیشتر این صفحه را احیا کرده باشد.',
-'undeletedpage'                => "<big> '''$1 احیا شد.'''</big>
+'undeletedpage'                => " '''$1 احیا شد.'''
 برای دیدن سیاههٔ حذفها و احیاهای اخیر به  [[Special:Log/delete|سیاههٔ حذف]] رجوع کنید.",
 'undelete-header'              => 'برای دیدن صفحه‌های حذف‌شدهٔ اخیر [[Special:Log/delete|سیاههٔ حذف]] را ببینید.',
 'undelete-search-box'          => 'جستجوی صفحه‌های حذف‌شده.',
@@ -2481,7 +2481,7 @@ $1',
 'ipadressorusername'              => 'نشانی آی‌پی یا نام کاربری',
 'ipbexpiry'                       => 'خاتمه',
 'ipbreason'                       => 'دلیل',
-'ipbreasonotherlist'              => 'دیگر دلایل',
+'ipbreasonotherlist'              => 'دلیل دیگر',
 'ipbreason-dropdown'              => '*دلایل متداول قطع دسترسی
 **وارد کردن اطلاعات نادرست
 **پاک کردن اطلاعات مفید از صفحه‌ها
@@ -2636,7 +2636,7 @@ $1',
 'move-watch'                   => 'پی‌گیری این صفحه',
 'movepagebtn'                  => 'صفحه منتقل شود',
 'pagemovedsub'                 => 'انتقال با موفقیت انجام شد',
-'movepage-moved'               => "<big>'''«$1» به «$2» منتقل شد'''</big>",
+'movepage-moved'               => "'''«$1» به «$2» منتقل شد'''",
 'movepage-moved-redirect'      => 'یک تغییر مسیر ایجاد شد.',
 'movepage-moved-noredirect'    => 'از ایجاد تغییر مسیر ممانعت شد.',
 'articleexists'                => 'صفحه‌ای با این نام از قبل وجود دارد، یا نامی که انتخاب کرده‌اید معتبر نیست.
@@ -3492,7 +3492,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'مسیر پرونده',
 'filepath-page'    => 'پرونده:',
-'filepath-submit'  => 'مسیر',
+'filepath-submit'  => 'برو',
 'filepath-summary' => 'این صفحهٔ ویژه نشانی کامل برای یک پرونده را نشان می‌دهد. تصاویر با کیفیت وضوح کامل نشان داده می‌شوند، سایر انواع پرونده با برنامه مخصوص به خودشان باز می‌شوند.
 
 نشانی پرونده را بدون پیشوند «{{ns:file}}:» وارد کنید.',

@@ -36,6 +36,7 @@
  * @author Huji
  * @author IAlex
  * @author INkubusse
+ * @author Iwan Novirion
  * @author Jon Harald Søby
  * @author Karduelis
  * @author Kizito
@@ -470,28 +471,28 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedic additions. The message has to be neutral for all projects.",
 'pagetitle-view-mainpage' => '{{optional}}',
 'retrievedfrom'           => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
-'youhavenewmessages'      => 'The orange message appearing when someone edited your user talk page.
-The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
-'newmessageslink'         => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
+'youhavenewmessages'      => 'Pesan dengan pita warna oranye muncul saat seseorang menyunting halaman Pembicaraan_Pengguna anda.
+Formatnya adalah: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
+'newmessageslink'         => 'Ini adalah pranala pertama yang tampak pada pita oranye saat pengguna mendapat pesan pada pembicaraan_penggunanya. Tampak pada pesan {{msg-mw|youhavenewmessages}} (sebagai parameter $1).
 
 {{Identical|New messages}}',
-'newmessagesdifflink'     => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
-'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
-The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
-'editsection'             => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
+'newmessagesdifflink'     => 'Ini adalah pranala kedua yang tampak pada pita oranye saat pengguna mendapat pesan pada pembicaraan_penggunanya. Tampak pada pesan {{msg-mw|youhavenewmessages}} (sebagai parameter $2).',
+'youhavenewmessagesmulti' => 'Alternatif dari {{msg|youhavenewmessages}} yang di pakai pada wikis dengan konfigurasi khusus sehingga dapat menerima pemberitahuan "pesan baru" pada wikis yang lain dengan baik. Digunakan pada [http://www.wikia.com/ Wikia].
+Format penggunaannya adalah : "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
+'editsection'             => 'Menunjukkan nama dari pranala untuk menyunting bagian dari isi halaman. Contoh: [{{MediaWiki:Editsection}}].
 
 {{Identical|Edit}}',
 'editsection-brackets'    => '{{optional}}',
 'editold'                 => '{{Identical|Edit}}',
 'viewsourceold'           => '{{Identical|View source}}',
-'editlink'                => 'Text of the edit link shown next to every (editable) template in the list of used templates below the edit window. See also {{msg-mw|Viewsourcelink}}.
+'editlink'                => 'Text dari pranala yang terlihat disebelah setiap templat yang dapat disunting (tidak di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
-'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.
+'viewsourcelink'          => 'Text dari pranala yang terlihat disebelah setiap templat yang tidak dapat disunting (di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Editlink}}.
 
 {{Identical|View source}}',
 'editsectionhint'         => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
-'toc'                     => 'This is the title of the table of contents displayed in pages with more than 3 sections
+'toc'                     => 'Ini adalah judul "Daftar isi" yang terlihat pada halaman yang memiliki lebih dari 3 bagian
 
 {{Identical|Contents}}',
 'showtoc'                 => 'This is the link used to show the table of contents
@@ -992,7 +993,8 @@ The name of the user who did this task appears before this message.',
 'revdel-restore'              => '{{RevisionDelete}}',
 'pagehist'                    => 'Links to page history at Special:RevisionDelete header together with links to the logs and Special:Undelete.',
 'deletedhist'                 => 'Links to Special:Undelete at Special:RevisionDelete header together with links to the logs and page history.',
-'revdelete-content'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision or event.',
+'revdelete-content'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision or event.
+{{Identical|Content}}',
 'revdelete-summary'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the edit summary of a revision or event.',
 'revdelete-uname'             => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the username for a revision or event.
 
@@ -1083,13 +1085,14 @@ Please note that the parameters in a log entry will appear in the log only in th
 'mergelogpagetext'   => 'Description of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=merge&user=&page=&year=&month=-1 merge log], on the log. The associated [[Special:MergeHistory|Merge]] special page is not enabled by default.',
 
 # Diffs
-'history-title'           => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
-'difference'              => 'Displayed under the title when viewing the difference between two or more edits.',
-'lineno'                  => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
-'compareselectedversions' => 'Used as button in history pages.',
-'editundo'                => 'Undo link when viewing diffs
+'history-title'            => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
+'difference'               => 'Displayed under the title when viewing the difference between two or more edits.',
+'lineno'                   => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
+'compareselectedversions'  => 'Used as button in history pages.',
+'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu.',
+'editundo'                 => 'Undo link when viewing diffs
 {{Identical|Undo}}',
-'diff-multi'              => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
+'diff-multi'               => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
 
 # Search results
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
@@ -1698,7 +1701,7 @@ Extensions making use of it:
 Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and in that not allowing anything but "http://" request. So if this for example is "irc://" or "https://", $1 would be "irc" or "https" respectively.
 
 If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.',
-'http-bad-status'     => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
+'http-bad-status'     => '$1 ini adalah kode kesalahan HTTP (contoh 404), $2 ini adalah pesan kesalahan HTTP (contoh File Not Found)',
 
 'license'           => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense'         => '{{Identical|None selected}}',
@@ -3229,7 +3232,9 @@ See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography 
 * {{msg|Exif-subjectdistancerange-0}}
 * {{msg|Exif-subjectdistancerange-1}}
 * {{msg|Exif-subjectdistancerange-2}}
-* {{msg|Exif-subjectdistancerange-3}}',
+* {{msg|Exif-subjectdistancerange-3}}
+
+Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_photography Wikipedia].',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => "Knots: ''Knot'' is a unit of speed on water used for ships, etc., equal to one nautical mile per hour.",
@@ -3472,20 +3477,24 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 'version-software-version'         => '{{Identical|Version}}',
 
 # Special:FilePath
-'filepath'         => 'Shown in [[Special:FilePath]]',
-'filepath-page'    => 'Shown in [[Special:FilePath]]
+'filepath'         => 'Legend of fieldset around input box in [[Special:FilePath]].',
+'filepath-page'    => 'Shown next to input box in [[Special:FilePath]]
 
 {{Identical|File}}',
-'filepath-submit'  => 'Shown in [[Special:FilePath]]',
+'filepath-submit'  => 'Button label in [[Special:FilePath]].
+{{Identical|Go}}',
 'filepath-summary' => 'Shown in [[Special:FilePath]]',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Name of special page [[Special:FileDuplicateSearch]].',
 'fileduplicatesearch-summary'  => 'Summary of [[Special:FileDuplicateSearch]]',
 'fileduplicatesearch-legend'   => 'Legend of the fieldset around the input form of [[Special:FileDuplicateSearch]]',
 'fileduplicatesearch-filename' => 'Input form of [[Special:FileDuplicateSearch]]:
 
 {{Identical|Filename}}',
-'fileduplicatesearch-submit'   => '{{Identical|Search}}',
+'fileduplicatesearch-submit'   => 'Button label on [[Special:FileDuplicateSearch]].
+
+{{Identical|Search}}',
 'fileduplicatesearch-info'     => 'Information beneath the thumbnail on the right side shown after a successful search via [[Special:FileDuplicateSearch]]
 
 * $1: width of the file

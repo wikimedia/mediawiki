@@ -182,7 +182,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Kjo skedë âsht|$1 skeda janë}} në këtë kategori.',
 'listingcontinuesabbrev'         => 'vazh.',
 
-'mainpagetext'      => "<big>'''MediaWiki software u instalue me sukses.'''</big>",
+'mainpagetext'      => "'''MediaWiki software u instalue me sukses.'''",
 'mainpagedocfooter' => 'Për mâ shumë informata rreth përdorimit të softwareit wiki, ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin].
 
 
@@ -610,7 +610,7 @@ Nëse klikoni në regjistro prap, redaktimi juej do të ruhet pa tê.",
 'summary-preview'                  => 'Parapâmja e përmbledhjes:',
 'subject-preview'                  => 'Parapâmja e temës/kryetitullit:',
 'blockedtitle'                     => 'Përdoruesi âsht i bllokuem',
-'blockedtext'                      => "<big>'''Llogaria juej apo adresa IP âsht bllokue.'''</big>
+'blockedtext'                      => "'''Llogaria juej apo adresa IP âsht bllokue.'''
 
 Bllokim âsht bâ prej $1.
 Arsyeja e dhânë âsht ''$2''.
@@ -1213,7 +1213,7 @@ Në këto raste, duheni me i bashkue manualisht këto faqe nëse dëshironi.",
 'move-watch'       => 'Mbikqyre kët faqe',
 'movepagebtn'      => 'Zhvendose faqen',
 'pagemovedsub'     => 'Zhvendosja u kry',
-'movepage-moved'   => '<big>\'\'\'"$1" âsht zhvendosë te "$2"\'\'\'</big>',
+'movepage-moved'   => '\'\'\'"$1" âsht zhvendosë te "$2"\'\'\'',
 'articleexists'    => 'Nji faqe me këtë titull tashmâ ekziston, apo keni zgjedhë nji titull të pavlefshëm.
 Ju lutemi zgjedhni nji titull tjetër.',
 'talkexists'       => "'''Vetë faqja u zhvendos me sukses, por faqja e diskutimit nuk mujti me u zhvendosë sepse tashmâ ekziston te titulli i ri.

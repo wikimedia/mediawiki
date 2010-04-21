@@ -283,7 +283,7 @@ $messages = array(
 'index-category'                 => 'Laman terindeks',
 'noindex-category'               => 'Laman tak diindeks',
 
-'mainpagetext'      => "<big>'''MediaWiki telah berjaya dipasang.'''</big>",
+'mainpagetext'      => "'''MediaWiki telah berjaya dipasang.'''",
 'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
 
 == Untuk bermula ==
@@ -691,7 +691,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'summary-preview'                  => 'Pratonton ringkasan:',
 'subject-preview'                  => 'Pratonton tajuk:',
 'blockedtitle'                     => 'Pengguna disekat',
-'blockedtext'                      => '<big>\'\'\'Nama pengguna atau alamat IP anda telah disekat.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Nama pengguna atau alamat IP anda telah disekat.\'\'\'
 
 Sekatan ini dilakukan oleh $1 dengan sebab \'\'$2\'\'.
 
@@ -2059,7 +2059,7 @@ atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undeletedrevisions-files'     => '$1 semakan dan $2 fail dipulihkan',
 'undeletedfiles'               => '$1 fail dipulihkan',
 'cannotundelete'               => 'Penyahhapusan gagal; mungkin orang lain telah pun mengnyahhapuskannya.',
-'undeletedpage'                => "<big>'''$1 telah dipulihkan'''</big>
+'undeletedpage'                => "'''$1 telah dipulihkan'''
 
 Sila rujuk [[Special:Log/delete|log penghapusan]] untuk rekod penghapusan terkini.",
 'undelete-header'              => 'Lihat [[Special:Log/delete|log penghapusan]] untuk laman-laman yang baru dihapuskan.',
@@ -2280,7 +2280,7 @@ Dalam kes tersebut, anda terpaksa melencongkan atau menggabungkan laman secara m
 'move-watch'                   => 'Pantau laman ini',
 'movepagebtn'                  => 'Pindah laman',
 'pagemovedsub'                 => 'Pemindahan berjaya',
-'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>',
+'movepage-moved'               => '\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Sebuah lencongan telah dicipta.',
 'movepage-moved-noredirect'    => 'Penciptaan lencongan telah dihalang.',
 'articleexists'                => 'Laman dengan nama tersebut telah pun wujud,
