@@ -1106,6 +1106,7 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 'searchprofile-everything-tooltip' => 'Išči po vsej vsebini (vključno s pogovornimi stranmi)',
 'searchprofile-advanced-tooltip'   => 'Iskanje v imenskih prostorih po meri',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 beseda|2 besedi|$2 besede|$2 besed|$2 besed}})',
+'search-result-category-size'      => '$1 {{PLURAL:$1|član|člana|člani|članov}} ($1 {{PLURAL:$2|podkategorija|podkategoriji|podkategorije|podkategorij}}, $1 {{PLURAL:$3|datoteka|datoteki|datoteke|datotek}})',
 'search-result-score'              => 'Ustreznost: $1%',
 'search-redirect'                  => '(preusmeritev $1)',
 'search-section'                   => '(razdelek $1)',
@@ -1469,6 +1470,9 @@ Strani iz [[Special:Watchlist|vašega spiska nadzorov]] so '''odebeljene'''.",
 'upload_directory_missing'    => 'Mapa za nalaganje datotek ($1) manjka in je ni bilo mogoče ustvariti s spletnim strežnikom.',
 'upload_directory_read_only'  => 'V mapo za nalaganje datotek ($1) spletni strežnik ne more pisati.',
 'uploaderror'                 => 'Napaka',
+'upload-recreate-warning'     => "'''Opozorilo: Datoteka s tem imenom je bila izbrisana ali prestavljena.'''
+
+Dnevnik brisanja in prestavitev za to stran sta navedena tukaj:",
 'uploadtext'                  => "Spodnji obrazec lahko uporabite za nalaganje datotek.
 Za ogled ali iskanje že naloženih pojdite na [[Special:FileList|seznam naloženih datotek]], ponovne naložitve so zapisane tudi v [[Special:Log/upload|dnevniku nalaganja]], izbrisi pa v [[Special:Log/delete|dnevniku brisanja]].
 

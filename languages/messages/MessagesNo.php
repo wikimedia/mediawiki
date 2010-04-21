@@ -1146,6 +1146,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'searchprofile-everything-tooltip' => 'Søk i alt innhold (inkldert diskusjonssider)',
 'searchprofile-advanced-tooltip'   => 'Søk i visse navnerom',
 'search-result-size'               => '$1 ({{PLURAL:$2|ett|$2}} ord)',
+'search-result-category-size'      => '{{PLURAL:$1|1 medlem|$1 medlemmer}} ({{PLURAL:$2|1 underkategori|$2 underkategorier}}, {{PLURAL:$3|1 fil|$3 filer}})',
 'search-result-score'              => 'Relevans: $1&nbsp;%',
 'search-redirect'                  => '(omdirigering $1)',
 'search-section'                   => '(avsnitt $1)',
@@ -1506,6 +1507,9 @@ Sider på [[Special:Watchlist|overvåkningslisten din]] er i '''fet skrift'''.",
 'upload_directory_missing'    => 'Oppplastingsmappen ($1) mangler og kunne ikke opprettes av tjeneren.',
 'upload_directory_read_only'  => 'Opplastingsmappa ($1) er ikke skrivbar for tjeneren.',
 'uploaderror'                 => 'Feil under opplasting av fil',
+'upload-recreate-warning'     => "'''Advarsel: En fil med det navnet har blitt slettet eller flyttet.'''
+
+Slette- og flytteloggen for denne siden gjengis her:",
 'uploadtext'                  => "Bruk skjemaet nedenfor for å laste opp filer.
 For å se eller søke i eksisterende filer, gå til [[Special:FileList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
 

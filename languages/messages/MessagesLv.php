@@ -368,6 +368,7 @@ Tas parasti notiek novecojušu saišu gadījumā: pieprasot izmaiņas vai hronol
 
 Ja lapai ir jābūt, tad, iespējams, ir kļūda programmā.
 Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot arī URL.',
+'missingarticle-rev'   => '(Pārskatīšana #: $1)',
 'missingarticle-diff'  => '(Salīdz.: $1, $2)',
 'internalerror'        => 'Iekšēja kļūda',
 'internalerror_info'   => 'Iekšējā kļūda: $1',

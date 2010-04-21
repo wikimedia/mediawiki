@@ -1098,6 +1098,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'searchprofile-everything-tooltip' => 'Cercar in tote le contento (includente le paginas de discussion)',
 'searchprofile-advanced-tooltip'   => 'Cercar in spatios de nomines personalisate',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 parola|$2 parolas}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 membro|$1 membros}} ({{PLURAL:$2|1 subcategoria|$2 subcategorias}}, {{PLURAL:$3|1 file|$3 files}})',
 'search-result-score'              => 'Relevantia: $1%',
 'search-redirect'                  => '(redirection ab $1)',
 'search-section'                   => '(section $1)',
@@ -1460,6 +1461,9 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] appare in litteras 
 'upload_directory_missing'    => 'Le directorio de incargamento ($1) manca, e le servitor de web non poteva crear lo.',
 'upload_directory_read_only'  => 'Le servitor web non ha le permission de scriber in le directorio de incargamento ($1).',
 'uploaderror'                 => 'Error de incargamento',
+'upload-recreate-warning'     => "'''Attention: Un file con iste nomine ha ja essite delite o renominate.'''
+
+Le registro de deletiones e renominationes pro iste pagina es fornite hic pro major commoditate:",
 'uploadtext'                  => "Con le formulario sequente tu pote incargar un nove file in le wiki.
 Pro vider o cercar files ja incargate, visita le [[Special:FileList|lista de files incargate]]. In ultra, le (re)incargamentos es registrate in le [[Special:Log/upload|registro de incargamentos]], le deletiones in le [[Special:Log/delete|registro de deletiones]].
 

@@ -473,7 +473,7 @@ $messages = array(
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'Neindexované stránky',
 
-'mainpagetext'      => "'''Gratulujeme! MediaWiki bylo úspěšně nainstalováno.'''",
+'mainpagetext'      => "'''MediaWiki bylo úspěšně nainstalováno.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
 
 == Začínáme ==
