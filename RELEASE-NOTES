@@ -144,6 +144,7 @@ changes to languages because of MediaZilla reports.
 
 * (bug 23156) Commafy and search normalization updated for Belarusian
   (Taraškievica)
+* (bug 23283) Native name for Old English -> Ænglisc
 
 == Compatibility ==
 
