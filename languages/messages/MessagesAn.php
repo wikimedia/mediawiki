@@ -504,10 +504,10 @@ No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAM
 'remembermypassword'         => "Remerar datos d'usuario entre sesions.",
 'yourdomainname'             => 'Dominio:',
 'externaldberror'            => "Bi abió una error d'autenticazión esterna d'a base de datos u bien no tiene premisos ta esbiellar a suya cuenta esterna.",
-'login'                      => 'Enzetar sesión',
+'login'                      => 'Encetar sesión',
 'nav-login-createaccount'    => 'Encetar una sesión / creyar cuenta',
 'loginprompt'                => "Ta rechistrar-se en {{SITENAME}} ha d'autibar as cookies en o nabegador.",
-'userlogin'                  => 'Enzetar una sesión / creyar cuenta',
+'userlogin'                  => 'Encetar una sesión / creyar cuenta',
 'userloginnocreate'          => 'Enzetar una sesión',
 'logout'                     => "Salir d'a sesión",
 'userlogout'                 => 'Salir',
@@ -664,8 +664,7 @@ Talment bell un l'haiga mobiu u borrau entre que vusté vesitaba a pachina.",
 A contrasenya ta ista nueva cuenta la puet cambiar en a pachina ''[[Special:ChangePassword|cambiar contrasenya]]'' dimpués d'haber dentrato en ella.",
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => "Ha siguito un vinclo ta una pachina que encara no existe.
-Ta creyar a pachina, prencipie a escribir en a caixa d'abaixo
-(mire-se l'[[{{MediaWiki:Helppage}}|aduya]] ta más informazión).
+Ta creyar a pachina, prencipie a escribir en a caixa d'abaixo (mire-se l'[[{{MediaWiki:Helppage}}|aduya]] ta más información).
 Si ye plegau por error, punche o botón \"enta zaga\" d'o suyo navegador.",
 'anontalkpagetext'                 => "----''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito serbir. Por ixo, emos d'emplegar a suya adreza IP ta identificar-lo/a. 
 Barios usuarios pueden compartir una mesma adreza IP. 
@@ -944,7 +943,7 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'searchall'                        => 'toz',
 'showingresults'                   => "Contino se bi {{PLURAL:$1|amuestra '''1''' resultau|amuestran '''$1''' resultaus}} prenzipiando por o numero '''$2'''.",
 'showingresultsnum'                => "Contino se bi {{PLURAL:$3|amuestra '''1''' resultau|amuestran os '''$3''' resultaus}} prenzipiando por o numero '''$2'''.",
-'nonefound'                        => "'''Pare cuenta''': Por defecto nomás se mira en bells espacios de nombres. Si quiere mirar en totz os contenius (incluyendo-ie pachinas de descusión, plantillas, etc), mire d'emplegar o prefixo ''all:'' u clave como prefixo o espazio de nombres deseyau.",
+'nonefound'                        => "'''Pare cuenta''': Por defecto nomás se mira en bells espacios de nombres. Si quiere mirar en totz os contenius (incluyendo-ie pachinas de descusión, plantillas, etc), mire d'emplegar o prefixo ''all:'' u clave como prefixo o espacio de nombres deseyau.",
 'search-nonefound'                 => "No s'ha trobato garra resultau que cumpla os criterios.",
 'powersearch'                      => 'Busca avanzata',
 'powersearch-legend'               => 'Busca avanzata',
@@ -963,7 +962,7 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'qbsettings-floatingright' => 'Flotant á la dreita',
 
 # Preferences page
-'preferences'                 => 'Preferenzias',
+'preferences'                 => 'Preferencias',
 'mypreferences'               => 'Preferencias',
 'prefs-edits'                 => "Numero d'edizions:",
 'prefsnologin'                => 'No ye identificato',
@@ -1212,7 +1211,7 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 'rclinks'                           => 'Amostrar os zaguers $1 cambeos en os zaguers $2 días.<br />$3',
 'diff'                              => 'esf',
 'hist'                              => 'hist',
-'hide'                              => 'amagar',
+'hide'                              => 'Amagar',
 'show'                              => 'Amostrar',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
@@ -1553,7 +1552,7 @@ Por fabor, pare cuenta que atros puestos web pueden tener vinclos ta fichers con
 'notargettext'            => 'No ha espezificato en que pachina quiere aplicar ista funzión.',
 'nopagetitle'             => 'No esiste ixa pachina',
 'nopagetext'              => 'A pachina que ha espezificato no esiste.',
-'pager-newer-n'           => '{{PLURAL:$1|1 más rezient|$1 más rezients}}',
+'pager-newer-n'           => '{{PLURAL:$1|1 más recient|$1 más recients}}',
 'pager-older-n'           => '{{PLURAL:$1|1 más antiga|$1 más antigas}}',
 'suppress'                => 'Superbisión',
 
@@ -1579,7 +1578,7 @@ Puede reduzir o listau trigando un tipo de rechistro, o nombre de l'usuario (sen
 'alphaindexline'    => '$1 á $2',
 'nextpage'          => 'Siguient pachina ($1)',
 'prevpage'          => 'Pachina anterior ($1)',
-'allpagesfrom'      => 'Amostrar pachinas que prenzipien por:',
+'allpagesfrom'      => 'Amostrar as pachinas que prencipien por:',
 'allpagesto'        => 'Amostrar as pachinas que rematen en:',
 'allarticles'       => 'Toz os articlos',
 'allinnamespace'    => 'Todas as pachinas (espazio $1)',
@@ -1674,7 +1673,7 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias
 'watchnologin'         => 'No ha enzetato a sesión',
 'watchnologintext'     => "Ha d'estar [[Special:UserLogin|identificato]] ta poder cambiar a suya lista de seguimiento.",
 'addedwatch'           => 'Adibiu á la suya lista de seguimiento',
-'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdebenideros en ista pachina y en a suya pachina de descusión asoziata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:RecentChanges|lista de cambeos rezients]] ta que se beiga millor. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de cosirar\" en o menú.",
+'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibhito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdevenideros en ista pachina y en a suya pachina de descusión asociata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:RecentChanges|lista de cambios recients]] ta que se veiga millor. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de cosirar\" en o menú.",
 'removedwatch'         => "Borrata d'a lista de seguimiento",
 'removedwatchtext'     => 'A pachina "[[:$1]]" s\'ha sacau d\'a suya [[Special:Watchlist|lista de seguimiento]].',
 'watch'                => 'Cosirar',
@@ -1751,8 +1750,8 @@ Ta obtenir más informazión y aduya:
 Por favor, confirme que reyalment ye mirando de fer ixo, que entiende as conseqüencias, y que lo fa d'alcuerdo con as [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
 'actioncomplete'         => 'Acción rematada',
 'actionfailed'           => "L'acción ha feito fallita",
-'deletedtext'            => '"<nowiki>$1</nowiki>" ha estato borrato.
-Se beiga en $2 un rechistro d\'os borraus rezients.',
+'deletedtext'            => 'S\'ha borrau "<nowiki>$1</nowiki>".
+Se veiga en $2 un rechistro d\'os borraus recients.',
 'deletedarticle'         => 'borrato "$1"',
 'suppressedarticle'      => 's\'ha supreso "[[$1]]"',
 'dellogpage'             => 'Rechistro de borraus',
@@ -1791,22 +1790,22 @@ Por fabor, prete "Entazaga", recargue a pachina d\'a que benió, y torne á preb
 'protectlogpage'              => 'Rechistro de proteccions de pachinas',
 'protectlogtext'              => 'Contino se i amuestra una lista de protezions y esprotezions de pachinas. Se beiga [[Special:ProtectedPages|lista de pachinas protechitas]] ta más informazión.',
 'protectedarticle'            => "s'ha protechito [[$1]]",
-'modifiedarticleprotection'   => 's\'ha cambiato o libel de protezión de "[[$1]]"',
+'modifiedarticleprotection'   => 's\'ha cambiato o livel de protección de "[[$1]]"',
 'unprotectedarticle'          => "s'ha esprotechito [[$1]]",
 'movedarticleprotection'      => 'camiatos os parametros de protezión de "[[$2]]" á "[[$1]]"',
 'protect-title'               => 'Protechendo "$1"',
 'prot_1movedto2'              => '[[$1]] tresladada á [[$2]]',
 'protect-legend'              => 'Confirmar protezión',
 'protectcomment'              => 'Razón:',
-'protectexpiry'               => 'Calendata de caduzidat:',
-'protect_expiry_invalid'      => 'Tiempo de zircunduzión incorreuto.',
-'protect_expiry_old'          => 'O tiempo de caduzidat ye una calendata ya pasata.',
-'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina '''<nowiki>$1</nowiki>'''.",
+'protectexpiry'               => 'Calendata de circundución:',
+'protect_expiry_invalid'      => 'O tiempo de circunducción ye incorrecto.',
+'protect_expiry_old'          => 'O tiempo de circumducción ye una calendata ya pasata.',
+'protect-text'                => "Puetz veyer y cambiar o livel e protección d'a pachina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "No puede cambiar os libels de protezión mientres ye bloqueyato. Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
 'protect-locked-dblock'       => "Os libels de protezión no se pueden cambiar por un bloqueyo autibo d'a base de datos.
 Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
-'protect-locked-access'       => "A suya cuenta no tiene premiso ta cambiar os libels de protezión d'as pachinas. Aquí bi son as propiedaz autuals d'a pachina '''$1''':",
-'protect-cascadeon'           => "Ista pachina ye autualment protechita por estar encluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que tienen autibata a opzión de protezión en cascada. Puede cambiar o libel de protezión d'ista pachina, pero no afeutará á la protezión en cascada.",
+'protect-locked-access'       => "A suya cuenta no tiene premiso ta cambiar os livels de protección d'as pachinas. Aquí bi son as propiedatz actuals d'a pachina '''$1''':",
+'protect-cascadeon'           => "Ista pachina ye actualment protechita por estar encluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que tienen activata a opción de protección en cascada. Puede cambiar o livel de protección d'ista pachina, pero no afectará á la protección en cascada.",
 'protect-default'             => 'Premitir á toz os usuarios',
 'protect-fallback'            => 'Amenista o premiso "$1"',
 'protect-level-autoconfirmed' => 'Bloqueyar os usuarios nuevos y no rechistratos',
@@ -1814,8 +1813,8 @@ Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'caduca o $1 (UTC)',
 'protect-expiry-indefinite'   => 'indefinito',
-'protect-cascade'             => 'Protezión en cascada - protecher totas as pachinas encluyidas en ista.',
-'protect-cantedit'            => "No puede cambiar os libels de protezión d'ista pachina, porque no tiene premiso ta editar-la.",
+'protect-cascade'             => 'Protección en cascada - protecher totas as pachinas encluyidas en ista.',
+'protect-cantedit'            => "No puet cambiar os livels de protección d'ista pachina, porque no tiene premiso ta editar-la.",
 'protect-othertime'           => 'atro periodo:',
 'protect-othertime-op'        => 'atra (espezificar)',
 'protect-existing-expiry'     => 'Calendata de zircunduzión autual: $2 a las $3',
@@ -1893,12 +1892,12 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Espacio de nombres:',
-'invert'         => 'Contornar selezión',
+'invert'         => 'Contornar selección',
 'blanknamespace' => '(Prencipal)',
 
 # Contributions
 'contributions'       => "Contrebucions de l'usuario",
-'contributions-title' => "Contrebuzions de l'usuario $1",
+'contributions-title' => "Contribucions de l'usuario $1",
 'mycontris'           => 'Contrebucions',
 'contribsub2'         => 'De $1 ($2)',
 'nocontribs'          => "No s'han trobato cambeos que concordasen con ixos criterios",
@@ -1911,7 +1910,7 @@ $1',
 'sp-contributions-newbies-title' => "Contrebucions d'os nuevos usuarios",
 'sp-contributions-blocklog'      => 'Rechistro de bloqueyos',
 'sp-contributions-talk'          => 'descusión',
-'sp-contributions-search'        => 'Mirar contrebuzions',
+'sp-contributions-search'        => 'Mirar contribucions',
 'sp-contributions-username'      => "Adreza IP u nombre d'usuario:",
 'sp-contributions-submit'        => 'Mirar',
 
@@ -2011,7 +2010,7 @@ as pachinas que s'han bandalizato).",
 'blocklogtext'                    => "Isto ye un rechistro de bloqueyos y esbloqueyos d'usuarios. As adrezas bloqueyatas automaticament no amaneixen aquí. Mire-se a [[Special:IPBlockList|lista d'adrezas IP bloqueyatas]] ta beyer a lista autual de biedas y bloqueyos.",
 'unblocklogentry'                 => 'ha esbloqueyato á "$1"',
 'block-log-flags-anononly'        => 'nomás os usuarios anonimos',
-'block-log-flags-nocreate'        => "s'ha desautibato a creyazión de cuentas",
+'block-log-flags-nocreate'        => "s'ha desactivato a creyación de cuentas",
 'block-log-flags-noautoblock'     => "s'ha desautibato o bloqueyo automatico",
 'block-log-flags-noemail'         => "s'ha desautibato o nimbío de mensaches por correu electronico",
 'block-log-flags-nousertalk'      => 'no puet editar a suya pachina de descusión',
@@ -2059,15 +2058,15 @@ Alcuerde-se-ne d'[[Special:UnlockDB|estrancar a base de datos]] dimpués de rema
 'movepagetext'                 => "Fendo servir o formulario siguient se cambiará o nombre d'a pachina, tresladando tot o suyo historial t'o nuevo nombre.
 O títol anterior se tornará en una reendrecera ta o nuevo títol.
 Puede esviellar automaticament as reendreceras que plegan ta o títol orichinal.
-Si s'estima más de no fer-lo, asegure-se de no deixar [[Special:DoubleRedirects|reendrezeras doples]] u [[Special:BrokenRedirects|trencatas]].
+Si s'estima más de no fer-lo, asegure-se de no deixar [[Special:DoubleRedirects|reendreceras doples]] u [[Special:BrokenRedirects|trencatas]].
 Ye a suya responsabilidat d'asegurar-se que os vinclos continan endrezando t'a on que habrían de fer-lo.
 
-Remere que a pachina '''no''' se renombrará si ya esiste una pachina con o nuebo títol, si no ye que estase una pachina vueda u una ''reendrecera'' sin historial.
+Remere que a pachina '''no''' se renombrará si ya existe una pachina con o nuebo títol, si no ye que estase una pachina vueda u una ''reendrecera'' sin historial.
 Isto significa que podrá tresladar una pachina ta o suyo títol orichinal si ha feito una error, pero no podrá escribir dencima d'una pachina ya existent.
 
 '''¡PARE CUENTA!'''
 Iste puede estar un cambio drastico e inasperato ta una pachina popular;
-por favor, asegure-se d'entender as conseqüencias que tendrá ista acción antes de seguir entadebant.",
+por favor, asegure-se d'entender as conseqüencias que tendrá ista acción antes de seguir enta debant.",
 'movepagetalktext'             => "A pachina de descusión asociata será tresladata automaticament '''de no estar que:'''
 
 *Ya exista una pachina de descusión no vueda con o nombre nuevo, u
@@ -2092,7 +2091,7 @@ En ixos casos, si lo deseya, habrá de tresladar u combinar manualment o conteni
 'cantmove-titleprotected'      => 'No puede tresladar una pachina ta íste títol porque o nuevo títol ye protechito y no puede estar creyato',
 'talkexists'                   => "A pachina s'ha tresladato correctament, pero a descusión no s'ha puesto tresladar porque ya en existe una con o nuebo títol. Por favor, incorpore manualment o suyo conteniu.",
 'movedto'                      => 'tresladato ta',
-'movetalk'                     => 'Tresladar a pachina de descusión asoziata.',
+'movetalk'                     => 'Tresladar a pachina de descusión asociata.',
 'move-subpages'                => 'Tresladar as sozpachinas (dica $1)',
 'move-talk-subpages'           => "Tresladar todas as sozpachinas d'a pachina de descusión (dica $1)",
 'movepage-page-exists'         => 'A pachina $1 ya esiste y no se puede sobrescribir automaticament.',
@@ -2100,7 +2099,7 @@ En ixos casos, si lo deseya, habrá de tresladar u combinar manualment o conteni
 'movepage-page-unmoved'        => "No s'ha puesto tresladar a pachina $1 ta $2.",
 'movepage-max-pages'           => "S'han tresladato o masimo posible de $1 {{PLURAL:$1|pachina|pachinas}} y no se tresladarán más automaticament.",
 '1movedto2'                    => '[[$1]] tresladada á [[$2]]',
-'1movedto2_redir'              => '[[$1]] tresladada á [[$2]] sobre una reendrezera',
+'1movedto2_redir'              => '[[$1]] tresladada á [[$2]] sobre una reendrecera',
 'move-redirect-suppressed'     => 'reendrezera eliminata',
 'movelogpage'                  => 'Rechistro de treslatos',
 'movelogpagetext'              => 'Contino se i amuestra una lista de pachinas tresladatas.',
@@ -2357,7 +2356,7 @@ $1",
 
 # Browsing diffs
 'previousdiff' => "← Ir t'a edición anterior",
-'nextdiff'     => "Ir t'a edizión siguient →",
+'nextdiff'     => "Ir t'a edición siguient →",
 
 # Media information
 'mediawarning'         => "'''Pare cuenta!''': Iste tipo de fichero puet contener codigo endino. 

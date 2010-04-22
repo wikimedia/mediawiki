@@ -115,9 +115,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Ronney|Ronnaghyn}}',
-'category_header'                => 'Duillagyn ayns ronney "$1"',
+'category_header'                => 'Duillagyn \'sy ronney "$1"',
 'subcategories'                  => 'Fo-ronnaghyn',
-'category-media-header'          => 'Meanyn ayns ronney "$1"',
+'category-media-header'          => 'Meanyn \'sy ronney "$1"',
 'category-empty'                 => "''Cha nel duillagyn ny meanyn ayns y ronney shoh ec y traa t'ayn.''",
 'hidden-categories'              => '{{PLURAL:$1|Ronney follit|Ronnaghyn follit}}',
 'hidden-category-category'       => 'Ronnaghyn follit',
@@ -888,7 +888,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'addedwatchtext'    => "Va'n duillag \"[[:\$1]]\" currit lesh dty [[Special:Watchlist|rolley arrey]].<br />
 Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y rolley shoh, as bee '''clou trome''' er ayns rolley ny [[Special:RecentChanges|caghlaaghyn s'noa]].",
 'removedwatch'      => 'Gowit ass y rolley arrey',
-'removedwatchtext'  => 'Va\'n duillag "[[:$1]]" gowit ass dty [[Special:Watchlist|rolley arrey]].',
+'removedwatchtext'  => 'Va\'n duillag "[[:$1]]" goit veih dty [[Special:Watchlist|rolley arrey]].',
 'watch'             => 'Freill arrey',
 'watchthispage'     => 'Freill arrey er y duillag shoh',
 'unwatch'           => 'Cur stap er arrey',
