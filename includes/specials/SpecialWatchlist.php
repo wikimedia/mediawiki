@@ -191,6 +191,9 @@ function wfSpecialWatchlist( $par ) {
 	if ( $wgUser->useRCPatrol() && $hidePatrolled ) {
 		$conds[] = 'rc_patrolled != 1';
 	}
+	if( $nameSpaceClause ) {
+		$conds[] = $nameSpaceClause;
+	}
 
 	# Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
