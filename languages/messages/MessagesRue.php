@@ -666,7 +666,13 @@ $1',
 'rightslog' => 'Лоґ хосновательскых прав',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'едітованя той сторінкы',
+'action-read'          => 'прочітати тоту сторінку',
+'action-edit'          => 'едітованя той сторінкы',
+'action-createpage'    => 'створіня сторінок',
+'action-createtalk'    => 'Вытворїня сторінок діскузії',
+'action-createaccount' => 'Вытворїня того конта хоснователя',
+'action-move'          => 'Переменовати тоту сторінку',
+'action-delete'        => 'Вымазати тоту сторінку',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|зміна|зміны|змін}}',
@@ -776,24 +782,33 @@ $1',
 'withoutinterwiki-submit' => 'Вказати',
 
 # Miscellaneous special pages
-'nbytes'             => '$1 {{PLURAL:$1|байт|байты|байтів}}',
-'ncategories'        => '$1 {{PLURAL:$1|катеґорія|катеґорії|катеґорій}}',
-'nmembers'           => '$1 {{PLURAL:$1|обєкт|обєкты|обєктів}}',
-'nrevisions'         => '$1 {{PLURAL:$1|ревізія|ревізії|ревізій}}',
-'uncategorizedpages' => 'Некатеґоризованы сторінкы',
-'prefixindex'        => 'Вшыткы сторінкы з початком назв',
-'shortpages'         => 'Курты статї',
-'longpages'          => 'Найдовшы статті',
-'deadendpages'       => 'Слїпы сторінкы',
-'protectedpages'     => 'Замкнуты сторінкы',
-'listusers'          => 'Список хоснователїв',
-'newpages'           => 'Новы сторінкы',
-'newpages-username'  => 'Мено хоснователя:',
-'move'               => 'Переменовати',
-'movethispage'       => 'Переменовати тоту сторінку',
-'pager-newer-n'      => '{{PLURAL:$1|новша|новшы|новшых}} $1',
-'pager-older-n'      => '{{PLURAL:$1|старша|старшы|старшых}} $1',
-'suppress'           => 'Ревізор',
+'nbytes'                  => '$1 {{PLURAL:$1|байт|байты|байтів}}',
+'ncategories'             => '$1 {{PLURAL:$1|катеґорія|катеґорії|катеґорій}}',
+'nmembers'                => '$1 {{PLURAL:$1|обєкт|обєкты|обєктів}}',
+'nrevisions'              => '$1 {{PLURAL:$1|ревізія|ревізії|ревізій}}',
+'uncategorizedpages'      => 'Некатеґоризованы сторінкы',
+'uncategorizedcategories' => 'Некатеґоризованы катеґорії',
+'uncategorizedimages'     => 'Некатеґоризованы файлы',
+'uncategorizedtemplates'  => 'Некатеґоризованы шаблоны',
+'unusedcategories'        => 'Нехоснованы катеґорії',
+'unusedimages'            => 'Нехоснованы файлы',
+'popularpages'            => 'Популарны статї',
+'wantedcategories'        => 'Жаданы катеґорії',
+'wantedpages'             => 'Пожадованы статї',
+'wantedfiles'             => 'Жаданы файлы',
+'prefixindex'             => 'Вшыткы сторінкы з початком назв',
+'shortpages'              => 'Курты статї',
+'longpages'               => 'Найдовшы статті',
+'deadendpages'            => 'Слїпы сторінкы',
+'protectedpages'          => 'Замкнуты сторінкы',
+'listusers'               => 'Список хоснователїв',
+'newpages'                => 'Новы сторінкы',
+'newpages-username'       => 'Мено хоснователя:',
+'move'                    => 'Переменовати',
+'movethispage'            => 'Переменовати тоту сторінку',
+'pager-newer-n'           => '{{PLURAL:$1|новша|новшы|новшых}} $1',
+'pager-older-n'           => '{{PLURAL:$1|старша|старшы|старшых}} $1',
+'suppress'                => 'Ревізор',
 
 # Book sources
 'booksources'               => 'Джерела книг',
@@ -825,6 +840,7 @@ $1',
 'categoriesfrom' => 'Вказати сторінкы, што ся зачінають на:',
 
 # Special:DeletedContributions
+'deletedcontributions'             => 'Вымазаны приспевкы хоснователя',
 'sp-deletedcontributions-contribs' => 'приспевкы',
 
 # Special:LinkSearch
@@ -833,10 +849,12 @@ $1',
 'linksearch-ok' => 'Глядати',
 
 # Special:ListUsers
-'listusersfrom'    => 'Вказати хоснователів, што ся зачінають на:',
-'listusers-submit' => 'Вказати',
+'listusersfrom'      => 'Вказати хоснователів, што ся зачінають на:',
+'listusers-submit'   => 'Вказати',
+'listusers-noresult' => 'Ненайдженый жаден хоснователь.',
 
 # Special:ActiveUsers
+'activeusers'            => 'Список актівных хоснователїв',
 'activeusers-from'       => 'Вказати хоснователів, што ся зачінають на:',
 'activeusers-hidebots'   => 'Сховати ботів',
 'activeusers-hidesysops' => 'Сховати адміністраторів',
@@ -885,6 +903,7 @@ $1',
 
 # Delete
 'deletepage'            => 'Змазати сторінку',
+'confirm'               => 'Підтверджіня',
 'confirmdeletetext'     => 'Рыхтуєте ся вымазати сторінку і вшыткы єй лоґы едітовань.
 Просиме Вас, потвердьте, же справды тото хочете зробити, повнї розумієте наслыдкы і же робите тото в одповідности з [[{{MediaWiki:Policy-url}}|правилами]].',
 'actioncomplete'        => 'Дїя выконана',
@@ -897,7 +916,9 @@ $1',
 'deletereasonotherlist' => 'Інша причіна',
 
 # Rollback
-'rollbacklink' => 'вернути назад',
+'rollback_short' => 'Вернути назад',
+'rollbacklink'   => 'вернути назад',
+'rollbackfailed' => 'Не годно было ся вернути назад',
 
 # Protect
 'protectlogpage'              => 'Лоґ охраны',
@@ -966,7 +987,7 @@ $1',
 'whatlinkshere'            => 'Одказы на тоту сторінку',
 'whatlinkshere-title'      => 'Сторінкы, што ся одказують на "$1"',
 'whatlinkshere-page'       => 'Сторінка:',
-'linkshere'                => "Наступнї сторінкы ся одказують на '''[[:$1]]''':",
+'linkshere'                => "Наслїдуючі сторінкы ся одказують на '''[[:$1]]''':",
 'isredirect'               => 'сторінка напрямлена',
 'istemplate'               => 'вложиня',
 'isimage'                  => 'одказ на зображіня',
@@ -1127,6 +1148,9 @@ $1',
 'tooltip-rollback'                => 'Єдным кликом вернути зміны, зроблены послїдным приспівателём',
 'tooltip-undo'                    => 'Зрушыти зміны і вказати попереднїй перегляд. Доволяє придати причіну до ресуме.',
 
+# Attribution
+'others' => 'іншы',
+
 # Browsing diffs
 'previousdiff' => '← Старше едітованя',
 'nextdiff'     => 'Новше едітованя →',
@@ -1162,29 +1186,58 @@ $1',
 * focallength',
 
 # EXIF tags
+'exif-imagewidth'  => 'Шырька',
+'exif-imagelength' => 'Вышка',
 'exif-orientation' => 'Орієнтація',
+
+'exif-meteringmode-1' => 'Середнїй',
+
+'exif-lightsource-9'   => 'Ясно',
+'exif-lightsource-10'  => 'Захмарено',
+'exif-lightsource-11'  => 'Тїнь',
+'exif-lightsource-12'  => 'Лампа денного світла тіп D (5700 − 7100K)',
+'exif-lightsource-13'  => 'Лампа денного світла тіп N (4600 − 5400K)',
+'exif-lightsource-14'  => 'Лампа денного світла тіп W (3900 − 4500K)',
+'exif-lightsource-15'  => 'Лампа денного світла тіп WW (3200 − 3700K)',
+'exif-lightsource-17'  => 'Штандартне світло тіпу A',
+'exif-lightsource-18'  => 'Штандартне світло тіпу B',
+'exif-lightsource-19'  => 'Штандартне світло тіпу C',
+'exif-lightsource-255' => 'Інше джерело світла',
 
 # External editor support
 'edit-externally'      => 'Едітовати тот файл хоснувчі екстерну аплікацію',
 'edit-externally-help' => '(Вецей інформації найдете в [http://www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлиня].)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'вшыткы',
-'namespacesall' => 'вшыткы',
-'monthsall'     => 'вшыткы',
+'recentchangesall' => 'вшыткы',
+'imagelistall'     => 'вшыткы',
+'watchlistall2'    => 'вшыткы',
+'namespacesall'    => 'вшыткы',
+'monthsall'        => 'вшыткы',
+'limitall'         => 'вшыткы',
 
 # action=purge
 'confirm_purge_button' => 'OK',
 
 # Multipage image navigation
 'imgmultipageprev' => '← попередня сторінка',
+'imgmultipagenext' => 'далша сторінка →',
 'imgmultigo'       => 'Перейти!',
 'imgmultigoto'     => 'Перейти на сторінку $1',
 
 # Table pager
+'table_pager_next'         => 'Далша сторінка',
+'table_pager_prev'         => 'Попередня сторінка',
 'table_pager_first'        => 'Перша сторінка',
 'table_pager_last'         => 'Послїдня сторінка',
 'table_pager_limit_submit' => 'Выконати',
+
+# Auto-summaries
+'autosumm-new' => 'Створена сторінка: $1',
+
+# Live preview
+'livepreview-loading' => 'Награваня...',
+'livepreview-ready'   => 'Награваня… Готово!',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Зміны на сторінках зо списку',

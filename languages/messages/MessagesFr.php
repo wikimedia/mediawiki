@@ -1622,6 +1622,9 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'upload_directory_missing'    => 'Le répertoire de téléversement ($1) est introuvable et n’a pas pu être créé par le serveur web.',
 'upload_directory_read_only'  => 'Le répertoire de téléversement ($1) n’est pas accessible en écriture depuis le serveur web.',
 'uploaderror'                 => 'Erreur de téléversement',
+'upload-recreate-warning'     => "'''Attention : Un fichier portant ce nom a été supprimé ou déplacé.'''
+
+Le journal des suppressions et celui des déplacements de cette page sont affichés ici pour informations :",
 'uploadtext'                  => "Utilisez ce formulaire pour téléverser des fichiers sur le serveur.
 Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. Les téléversements sont aussi enregistrés dans le [[Special:Log/upload|journal des téléversements]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
 
