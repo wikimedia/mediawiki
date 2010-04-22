@@ -700,7 +700,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 					$radio['disabled'] = 'disabled';
 					$checkmark = array(); // We will check the next possible one
-				} else if( $counter == 2 || !$this->oldIdChecked ) {
+				} else if( !$this->oldIdChecked ) {
 					$checkmark = array( 'checked' => 'checked' );
 					$this->oldIdChecked = $id;
 				} else {
