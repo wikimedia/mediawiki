@@ -1435,14 +1435,12 @@ class Title {
 
 		if( $action == 'create' ) {
 			$title_protection = $this->getTitleProtection();
-			if( is_array($title_protection) ) {
-				extract($title_protection); // is this extract() really needed?
-
-				if( $pt_create_perm == 'sysop' ) {
-					$pt_create_perm = 'protect'; // B/C
+			if( $title_protection ) {
+				if( $title_protection['pt_create_perm'] == 'sysop' ) {
+					$title_protection['pt_create_perm'] = 'protect'; // B/C
 				}
-				if( $pt_create_perm == '' || !$user->isAllowed($pt_create_perm) ) {
-					$errors[] = array( 'titleprotected', User::whoIs($pt_user), $pt_reason );
+				if( $title_protection['pt_create_perm'] == '' || !$user->isAllowed($title_proection['pt_create_perm']) ) {
+					$errors[] = array( 'titleprotected', User::whoIs($title_protection['pt_user']), $title_protection['pt_reason'] );
 				}
 			}
 		} elseif( $action == 'move' ) {
@@ -2081,16 +2079,14 @@ class Title {
 			} else {
 				$title_protection = $this->getTitleProtection();
 
-				if (is_array($title_protection)) {
-					extract($title_protection);
-
+				if ($title_protection) {
 					$now = wfTimestampNow();
-					$expiry = Block::decodeExpiry($pt_expiry);
+					$expiry = Block::decodeExpiry($title_protection['pt_expiry']);
 
 					if (!$expiry || $expiry > $now) {
 						// Apply the restrictions
 						$this->mRestrictionsExpiry['create'] = $expiry;
-						$this->mRestrictions['create'] = explode(',', trim($pt_create_perm) );
+						$this->mRestrictions['create'] = explode(',', trim($title_protection['pt_create_perm']) );
 					} else { // Get rid of the old restrictions
 						Title::purgeExpiredRestrictions();
 					}
