@@ -944,26 +944,26 @@ Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAM
 'rev-deleted-text-unhide'     => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
 Kiel administranto, vi ankoraŭ povas [$1 vidi ĉi tiun revizio] se vi volas kontinui.",
-'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''subpremita'''.
-Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].
-Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun revizion] se vi volas kontinui.",
+'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''forigita'''.
+Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
+Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun revizion] se vi volas daŭrigi.",
 'rev-deleted-text-view'       => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
-'rev-suppressed-text-view'    => "Ĉi tiu paĝa revizio estis '''subpremita'''.
-Kiel administranto, vi povas vidi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].",
+'rev-suppressed-text-view'    => "Ĉi tiu paĝa revizio estis '''forigita'''.
+Kiel administranto, vi povas vidi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-deleted-no-diff'         => "Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigitaj'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-suppressed-no-diff'      => "Vi ne povas rigardi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigita'''.",
 'rev-deleted-unhide-diff'     => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
 Kiel administranto vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volas kontinui.",
-'rev-suppressed-unhide-diff'  => "Unu el la revizioj de ĉi tiu diferenco estis '''subpremita'''.
-Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} subpremada protokolo].
-Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volus.",
+'rev-suppressed-unhide-diff'  => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
+Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} forigada protokolo].
+Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi deziras.",
 'rev-deleted-diff-view'       => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
 Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
-'rev-suppressed-diff-view'    => "Unu el la revizioj de ĉi tiu diferenco estis '''subpremita'''.
-Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].",
+'rev-suppressed-diff-view'    => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
+Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigadoj].",
 'rev-delundel'                => 'montri/kaŝi',
 'rev-showdeleted'             => 'montri',
 'revisiondelete'              => 'Forigi/malforigi versiojn',
@@ -1114,6 +1114,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'searchprofile-everything-tooltip' => 'Traserĉi ĉiun enhavon (inkluzivante diskuto-paĝojn)',
 'searchprofile-advanced-tooltip'   => 'Serĉi en specialaj nomspacoj',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 vorto|$2 vortoj}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 membro|$1 membroj}} ({{PLURAL:$2|1 subkategorio|$2 subkategorioj}}, {{PLURAL:$3|1 dosiero|$3 dosieroj}})',
 'search-result-score'              => 'Trafeco: $1%',
 'search-redirect'                  => '(alidirektilo $1)',
 'search-section'                   => '(sekcio $1)',
@@ -1508,6 +1509,10 @@ Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 'filetype-unwanted-type'      => "'''\".\$1\"''' estas nevolata dosiero-tipo. {{PLURAL:\$3|Preferata dosiero-tipo|Prefereataj dosiero-tipoj}} estas \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' ne estas permesita dosiero-tipo. {{PLURAL:\$3|Permesita dosiero-tipo|Permesitaj dosiero-tipoj}} estas \$2.",
 'filetype-missing'            => 'Ĉi tiu dosiero ne inkluzivas finaĵon de dosiernomo (kiel ".jpg").',
+'empty-file'                  => 'La dosiero kiun vi sendis estis malplena.',
+'filename-tooshort'           => 'La dosiera nomo estas tro mallonga.',
+'filetype-banned'             => 'Ĉi tiu tipo de dosiero estas malpermesita.',
+'unknown-error'               => 'Malkonata eraro okazis.',
 'large-file'                  => 'Estas rekomendite, ke dosieroj ne superas grandon de $1 bitokoj; 
 tiu ĉi tiu dosiero pezas $2 bitokojn.',
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
@@ -2425,7 +2430,7 @@ Bonvolu permane kunigi ilin.',
 'movepage-max-pages'           => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
 '1movedto2'                    => '[[$1]] movita al [[$2]]',
 '1movedto2_redir'              => '[[$1]] movita al [[$2]], redirekto lasita',
-'move-redirect-suppressed'     => 'alidirektilo subpremita',
+'move-redirect-suppressed'     => 'alidirektilo forigita',
 'movelogpage'                  => 'Protokolo pri paĝmovoj',
 'movelogpagetext'              => 'Jen listo de movitaj paĝoj',
 'movesubpage'                  => '{{PLURAL:$1|Subpaĝo|Subpaĝoj}}',

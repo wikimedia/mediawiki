@@ -577,6 +577,7 @@ Virificari lu nomu nziritu o [[Special:UserLogin/signup|criari un novu accessu]]
 Ti cummeni fari n\'accessu quantu prima e canciari la password pi sùbbitu. La tò password timpuranea scadrà dopu {{PLURAL:$5|nu jornu|$5 jorna}}. 
 Siddu nun fusti tu a fari la dumanna, oppuru arrittruvasti la password e nun addisìi cchiù canciàrila, poi non tèniri cuntu di stu missaggiu e cuntinuari a usari la password vecchia.',
 'noemail'                    => 'Nuddu ndirizzu e-mail riggistratu pi l\'utenti "$1".',
+'noemailcreate'              => 'Aviti a dari nu nnirizzu e-mail validu',
 'passwordsent'               => 'Na password nova hà statu mannata a lu ndirizzu e-mail riggistratu pi l\'utenti "$1". Pi favuri, effèttua un accessu nun appena l\'arricevi.',
 'blocked-mailpassword'       => 'Pi privèniri abbusi, nun è cunzititu usari la funzioni "Nvia nova password" d\'un ndirizzu IP bluccatu.',
 'eauthentsent'               => "Un missaggiu e-mail di cunferma hà statu spiditu a lu ndirizzu ndicatu. Pi abbilitari la mannata di missaggi e-mail pi st'accessu è nicissariu sèquiri li istruzzioni ca vi sunnu ndicati, 'n modu di cunfirmari ca s'è li liggìttimi prupitari di lu ndirizzu",
@@ -596,6 +597,7 @@ Pi favuri nziriti nu nnirizzu vàlidu o svacantati la casella.',
 'createaccount-text'         => 'Qualcuno criau n\'accessu a {{SITENAME}} ($4) a nomu di $2, associatu cu stu ndirizzu di posta elettronica. La password pi l\'utenti "$2" è mpustata a "$3". È opportunu trasiri quantu prima e canciari la password subbutu.
 
 Si l\'accessu fu criatu pi sbagghiu, si può gnurari stu missaggiu.',
+'usernamehasherror'          => "Lu nomu di l'utenti nun pò cuntèniri caràttiri hash",
 'login-throttled'            => "Facisti troppi tintativi sùpira la password di chistu account. Aspetta anticchia prima di pruvari  n'àutra vota.",
 'loginlanguagelabel'         => 'Lingua: $1',
 

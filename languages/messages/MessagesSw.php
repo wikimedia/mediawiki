@@ -2041,6 +2041,15 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 
 'exif-gaincontrol-0' => 'Bila',
 
+'exif-contrast-1' => 'Laini',
+'exif-contrast-2' => 'Gumu',
+
+'exif-saturation-0' => 'Kawaida',
+
+'exif-sharpness-0' => 'Kawaida',
+'exif-sharpness-1' => 'Laini',
+'exif-sharpness-2' => 'Gumu',
+
 'exif-subjectdistancerange-0' => 'Haujulikani',
 'exif-subjectdistancerange-1' => 'Mandhari ya karibu mno',
 'exif-subjectdistancerange-2' => 'Mandhari ya karibu',
@@ -2210,8 +2219,8 @@ Ama utumie [[Special:Watchlist/edit|ukurasa wa kuhariri wa kawaida]].',
 'version-other'            => 'Zingine',
 'version-version'          => '(Toleo $1)',
 'version-license'          => 'Ruhusa',
-'version-software'         => 'Bidhaa pepe iliyosakinishwa',
-'version-software-product' => 'Bidhaa',
+'version-software'         => ' Bidhaa pepe iliyosakinishwa',
+'version-software-product' => ' Bidhaa',
 'version-software-version' => 'Toleo',
 
 # Special:FilePath
@@ -2241,7 +2250,7 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 * Kurasa maalum ya kawaida.
 * <strong class="mw-specialpagerestricted">Kurasa maalum zisizoonekana na wote.</strong>',
 'specialpages-group-maintenance' => 'Ripoti za kurekebisha na kutunza kurasa',
-'specialpages-group-other'       => 'Kurasa maalum zingine',
+'specialpages-group-other'       => ' Kurasa maalum zingine',
 'specialpages-group-login'       => 'Ingia / sajili akaunti',
 'specialpages-group-changes'     => 'Mabadiliko ya karibuni na kumbukumbu',
 'specialpages-group-media'       => 'Ripoti za mafaili na kuyapakia',
@@ -2250,7 +2259,7 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'specialpages-group-pages'       => 'Orodha za kurasa',
 'specialpages-group-pagetools'   => 'Zana za kuushughulika ukurasa',
 'specialpages-group-wiki'        => 'Zana na data za wiki',
-'specialpages-group-redirects'   => 'Kurasa maalum za kuelekeza',
+'specialpages-group-redirects'   => ' Kurasa maalum za kuelekeza',
 
 # Special:BlankPage
 'blankpage'              => 'Ukurasa tupu',
@@ -2286,7 +2295,7 @@ Bonyeza "Hifadhi" ili kuhifadhi sahihisho yako.',
 'ajax-confirm-actionsummary'   => 'Chagua kitendo:',
 'ajax-error-title'             => 'Hitilafu',
 'ajax-error-dismiss'           => 'Sawa',
-'ajax-remove-category-error'   => 'Jamii hii haikuweza kuondolewa.
+'ajax-remove-category-error'   => ' Jamii hii haikuweza kuondolewa.
 Huwa jamii haiwezi kuondolewa kwenye ukurasa wakati jamii imeingizwa ndani ya kigezo fulani.',
 
 );

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alma
+ * @author Gallaecio
  * @author Lameiro
  * @author Prevert
  * @author Toliño
@@ -1908,8 +1909,8 @@ Por favor, teña en conta que outras páxinas web poden ligar cara a un ficheiro
 'notargettext'            => 'Non especificou a páxina ou o usuario no cal levar a cabo esta función.',
 'nopagetitle'             => 'Non existe esa páxina',
 'nopagetext'              => 'A páxina que especificou non existe.',
-'pager-newer-n'           => '{{PLURAL:$1|1 máis recente|$1 máis recentes}}',
-'pager-older-n'           => '{{PLURAL:$1|1 máis vella|$1 máis vellas}}',
+'pager-newer-n'           => '{{PLURAL:$1|unha posterior|$1 posteriores}}',
+'pager-older-n'           => '{{PLURAL:$1|unha anterior|$1 anteriores}}',
 'suppress'                => 'Supervisor',
 
 # Book sources

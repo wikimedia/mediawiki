@@ -1209,6 +1209,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'searchprofile-everything-tooltip' => 'Tüm içeriği ara (tartışma sayfaları dahil)',
 'searchprofile-advanced-tooltip'   => 'Özel ad alanlarında ara',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 kelime|$2 kelime}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 üye|$1 üye}} ({{PLURAL:$2|1 altkategori|$2 altkategori}}, {{PLURAL:$3|1 dosya|$3 dosya}})',
 'search-result-score'              => 'Uygunluk: $1%',
 'search-redirect'                  => '(yönlendirme $1)',
 'search-section'                   => '(bölüm $1)',
@@ -1568,6 +1569,9 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'upload_directory_missing'    => 'Yükleme dizini ($1) kayıp ve websunucusu tarafından oluşturulamıyor.',
 'upload_directory_read_only'  => 'Dosya yükleme dizinine ($1) web sunucusunun yazma izni yok.',
 'uploaderror'                 => 'Yükleme hatası',
+'upload-recreate-warning'     => "'''Uyarı: Bu adı taşıyan bir dosya silindi veya taşındı.'''
+
+Bu sayfanın silme ve taşıma günlüğü kolaylık için burada sağlanmıştır:",
 'uploadtext'                  => "Dosya yüklemek için aşağıdaki formu kullanın.
 Önceden yüklenmiş dosyaları görmek ya da aramak için [[Special:FileList|yüklenmiş dosyalar listesine]] bakın, (tekrar) yüklenenler [[Special:Log/upload|yükleme günlüğü]]nde, silinenler [[Special:Log/delete|silinme günlüğü]]nde tutulumaktadır.
 

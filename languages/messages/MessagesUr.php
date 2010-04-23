@@ -745,7 +745,8 @@ $1",
 'mergehistory-reason'              => 'وجہ:',
 
 # Merge log
-'mergelog' => 'نوشتہ کا انضمام',
+'mergelog'    => 'نوشتہ کا انضمام',
+'revertmerge' => 'غیر ضم',
 
 # Diffs
 'difference'              => '(اصلاحات میں فرق)',
@@ -1060,6 +1061,8 @@ HTML tags جانچئے.',
 'ancientpages'            => 'قدیم ترین صفحات',
 'move'                    => 'منتقـل',
 'movethispage'            => 'یہ صفحہ منتقل کیجئے',
+'pager-newer-n'           => '{{PLURAL:$1|جدید 1|جدید $1}}',
+'pager-older-n'           => '{{PLURAL:$1|پُرانا 1|پُرانے $1}}',
 
 # Book sources
 'booksources'    => 'کتابی وسائل',
@@ -1192,6 +1195,8 @@ HTML tags جانچئے.',
 'ipbsubmit'         => 'اس صارف کا داخلہ ممنوع کریں',
 'ipblocklist'       => 'ممنوع آئی.پی پتے اور اسم ہائے صارفین',
 'blocklink'         => 'پابندی لگائیں',
+'unblocklink'       => 'پابندی ختم',
+'change-blocklink'  => 'پابندی میں تبدیلی',
 'contribslink'      => 'شـراکـت',
 'blocklogpage'      => 'نوشتۂ پابندی',
 'proxyblocksuccess' => 'کردیا.',

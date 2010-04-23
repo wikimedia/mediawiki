@@ -40,6 +40,7 @@
  * @author Tonyfroio
  * @author Trixt
  * @author Una giornata uggiosa '94
+ * @author Vajotwo
  * @author Xpensive
  * @author לערי ריינהארט
  */
@@ -1140,6 +1141,7 @@ $1",
 'searchprofile-everything-tooltip' => 'Cerca ovunque (incluse le pagine di discussione)',
 'searchprofile-advanced-tooltip'   => 'Cerca nei namespace personalizzati',
 'search-result-size'               => '$1 ({{PLURAL:$2|una parola|$2 parole}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 utente|$1 utenti}} ({{PLURAL:$2|1 sottocategoria|$2 sottocategorie}}, {{PLURAL:$3|1 file|$3 files}})',
 'search-result-score'              => 'Rilevanza: $1%',
 'search-redirect'                  => '(redirect $1)',
 'search-section'                   => '(sezione $1)',
@@ -1495,6 +1497,8 @@ Le pagine contenute nella propria lista degli [[Special:Watchlist|Osservati spec
 'upload_directory_missing'    => 'La directory di upload ($1) non esiste e non può essere creata dal server web.',
 'upload_directory_read_only'  => 'Il server web non è in grado di scrivere nella directory di upload ($1).',
 'uploaderror'                 => 'Errore nel caricamento',
+'upload-recreate-warning'     => "'Attenzione'': un file con questo nome è stato cancellato o spostato.''' 
+Ill log delle cancellazioni e degli spostamenti di questa pagina viene qui riportato per comodità:",
 'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:FileList|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].
 
 Per inserire un file all'interno di una pagina, fare un collegamento di questo tipo:
@@ -1531,6 +1535,7 @@ Consultare la [[Special:NewFiles|galleria dei nuovi file]] per una visione d'ins
 'filename-tooshort'           => 'Il nome del file è troppo breve.',
 'filetype-banned'             => 'Questo tipo di file è vietato.',
 'verification-error'          => 'Questo file non ha superato la verifica.',
+'hookaborted'                 => "La modifica che si è tentato di fare è stata interrotta da un hook di un'estensione.",
 'illegal-filename'            => 'Il nome del file non è ammesso.',
 'overwrite'                   => 'Sovrascrivere un file esistente non è permesso.',
 'unknown-error'               => 'Si è verificato un errore sconosciuto.',
@@ -1565,6 +1570,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'overwroteimage'              => 'ha caricato una nuova versione di "[[$1]]"',
 'uploaddisabled'              => 'Il caricamento dei file è temporaneamente sospeso.',
 'copyuploaddisabled'          => 'Il caricamento tramite URL è disabilitato.',
+'uploadfromurl-queued'        => 'Il caricamento è stato accodato.',
 'uploaddisabledtext'          => 'Il caricamento dei file non è attivo.',
 'php-uploaddisabledtext'      => 'Il caricamento di file tramite PHP è disabilitato. Controlla la configurazione di file_uploads.',
 'uploadscripted'              => 'Questo file contiene codice HTML o di script, che potrebbe essere interpretato erroneamente da un browser web.',

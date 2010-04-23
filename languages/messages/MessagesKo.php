@@ -1540,6 +1540,9 @@ $1",
 'upload_directory_missing'    => '파일 올리기용 디렉토리($1)가 없고 웹 서버가 생성하지 못했습니다.',
 'upload_directory_read_only'  => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
 'uploaderror'                 => '올리기 오류',
+'upload-recreate-warning'     => "'''경고: 이 파일로 된 이름이 삭제되었거나 옮겨졌습니다.'''
+
+이 문서의 최근 삭제 기록과 이동 기록을 참고하십시오:",
 'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요.
 [[Special:FileList|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다. [[Special:Log/upload|올리기 기록]]에는 파일이 올라온 기록이 남습니다. 삭제 기록은 [[Special:Log/delete|삭제 로그]]에서 볼 수 있습니다.
 
