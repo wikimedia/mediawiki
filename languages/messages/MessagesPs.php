@@ -1720,6 +1720,8 @@ $messages = array(
 
 'exif-sensingmethod-1' => 'ناڅرګنده',
 
+'exif-scenecapturetype-0' => 'معيار',
+
 'exif-gaincontrol-0' => 'هېڅ',
 
 'exif-contrast-0' => 'نورمال',
@@ -1846,7 +1848,8 @@ $5
 'version-software-version' => 'بڼه',
 
 # Special:FilePath
-'filepath-page' => 'دوتنه:',
+'filepath-page'   => 'دوتنه:',
+'filepath-submit' => 'ورځه',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'د دوه ګونو دوتنو پلټنه',

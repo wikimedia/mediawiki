@@ -1636,6 +1636,7 @@ Text displayed when uploading a file using [[Special:Upload]].",
 * $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
 * $3 is the number of allowed file formats (to be used for the PLURAL function)",
 'filetype-missing'            => 'Error when uploading a file with no extension',
+'verification-error'          => 'Error message shown when an uploaded file contents does not pass verification, i.e. the file is corrupted, it is not the type it claims to be etc.',
 'large-file'                  => 'Variables $1 and $2 have appropriate unit symbols already. See for example [[Mediawiki:size-kilobytes]].',
 'largefileserver'             => 'Error message when uploading a file whose size is larger than the maximum allowed',
 'emptyfile'                   => 'Error message when trying to upload an empty file',
@@ -2123,29 +2124,30 @@ See also {{msg|listgrouprights-addgroup}}.',
 'listgrouprights-removegroup-all' => '{{doc-right}}',
 
 # E-mail user
-'emailuser'       => 'Link in the sidebar',
-'emailpagetext'   => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
+'emailuser'        => 'Link in the sidebar',
+'emailpagetext'    => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
 
 Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser.',
-'noemailtitle'    => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
-'noemailtext'     => 'The text of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
-'email-legend'    => 'Title of the box in [[Special:EmailUser]]',
-'emailfrom'       => 'Field in [[Special:EmailUser]].
+'usermaildisabled' => 'Caption for an error message ({{msg-mw|Usermaildisabledtext}}) shown when the user-to-user e-mail feature is disabled on the wiki (see [[mw:Manual:$wgEnableEmail]], [[mw:Manual:$wgEnableUserEmail]]).',
+'noemailtitle'     => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
+'noemailtext'      => 'The text of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
+'email-legend'     => 'Title of the box in [[Special:EmailUser]]',
+'emailfrom'        => 'Field in [[Special:EmailUser]].
 {{Identical|From}}',
-'emailto'         => 'Field in [[Special:EmailUser]].
+'emailto'          => 'Field in [[Special:EmailUser]].
 {{Identical|To}}',
-'emailsubject'    => 'Field in [[Special:EmailUser]].
+'emailsubject'     => 'Field in [[Special:EmailUser]].
 
 {{Identical|Subject}}',
-'emailmessage'    => 'Field in [[Special:EmailUser]].
+'emailmessage'     => 'Field in [[Special:EmailUser]].
 
 {{Identical|Message}}',
-'emailsend'       => 'Button name in [[Special:EmailUser]].
+'emailsend'        => 'Button name in [[Special:EmailUser]].
 
 {{Identical|Send}}',
-'emailccme'       => 'Used at [[Special:Preferences]] > E-mail',
-'emailccsubject'  => 'Subject of the carbon-copied  email for the sender sent through MediaWiki.',
-'emailuserfooter' => 'This message is appended to every email sent through the "Email user" function.
+'emailccme'        => 'Used at [[Special:Preferences]] > E-mail',
+'emailccsubject'   => 'Subject of the carbon-copied  email for the sender sent through MediaWiki.',
+'emailuserfooter'  => 'This message is appended to every email sent through the "Email user" function.
 
 * $1: username of the sender
 * $2: username of the recipient',
