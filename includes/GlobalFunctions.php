@@ -708,8 +708,8 @@ function wfMsgNoDBForContent( $key ) {
  * @param $key String: key to get.
  * @param $args
  * @param $useDB Boolean
- * @param $transform Boolean: Whether or not to transform the message.
  * @param $forContent Mixed: Language code, or false for user lang, true for content lang.
+ * @param $transform Boolean: Whether or not to transform the message.
  * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform = true ) {
