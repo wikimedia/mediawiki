@@ -1408,7 +1408,7 @@ class Title {
 			# Several cascading protected pages may include this page...
 			# Check each cascading level
 			# This is only for protection restrictions, not for all actions
-			if( $cascadingSources > 0 && isset($restrictions[$action]) ) {
+			if( isset($restrictions[$action]) ) {
 				foreach( $restrictions[$action] as $right ) {
 					$right = ( $right == 'sysop' ) ? 'protect' : $right;
 					if( $right != '' && !$user->isAllowed( $right ) ) {
