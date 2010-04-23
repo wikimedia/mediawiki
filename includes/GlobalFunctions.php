@@ -648,8 +648,8 @@ function wfMsgNoTrans( $key ) {
  *
  * Be wary of this distinction: If you use wfMsg() where you should
  * use wfMsgForContent(), a user of the software may have to
- * customize over 70 messages in order to, e.g., fix a link in every
- * possible language.
+ * customize potentially hundreds of messages in
+ * order to, e.g., fix a link in every possible language.
  *
  * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
