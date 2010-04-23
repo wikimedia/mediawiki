@@ -57,6 +57,7 @@ class Title {
 	var $mRestrictions = array();     ///< Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
 	var $mCascadeRestriction;         ///< Cascade restrictions on this page to included templates and images?
+	var $mCascadingRestrictions;      // Caching the results of getCascadeProtectionSources
 	var $mRestrictionsExpiry = array(); ///< When do the restrictions on this page expire?
 	var $mHasCascadingRestrictions;   ///< Are cascading restrictions in effect on this page?
 	var $mCascadeSources;             ///< Where are the cascading restrictions coming from on this page?
