@@ -1440,7 +1440,7 @@ class Title {
 				if( $title_protection['pt_create_perm'] == 'sysop' ) {
 					$title_protection['pt_create_perm'] = 'protect'; // B/C
 				}
-				if( $title_protection['pt_create_perm'] == '' || !$user->isAllowed($title_proection['pt_create_perm']) ) {
+				if( $title_protection['pt_create_perm'] == '' || !$user->isAllowed($title_protection['pt_create_perm']) ) {
 					$errors[] = array( 'titleprotected', User::whoIs($title_protection['pt_user']), $title_protection['pt_reason'] );
 				}
 			}
