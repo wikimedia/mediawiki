@@ -205,7 +205,7 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Obtain information about certain API parameters';
+		return 'Obtain information about certain API parameters and errors';
 	}
 
 	protected function getExamples() {
