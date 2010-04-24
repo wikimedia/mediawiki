@@ -1140,6 +1140,8 @@ class Preferences {
 		$htmlForm = new PreferencesForm( $formDescriptor, 'prefs' );
 
 		$htmlForm->setSubmitText( wfMsg( 'saveprefs' ) );
+		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
+		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setTitle( SpecialPage::getTitleFor( 'Preferences' ) );
 		$htmlForm->setSubmitID( 'prefsubmit' );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryFormSubmit' ) );
