@@ -1472,6 +1472,11 @@ $movePage: MovePageForm object
 $oldTitle: old title (object)
 $newTitle: new title (object)
 
+'SpecialNewpagesConditions': called when building sql query for Special:NewPages
+&$special: NewPagesPager object (subclass of ReverseChronologicalPager)
+&opts: FormOptions object containing special page options
+&$conds: array of WHERE conditionals for query
+
 'SpecialPage_initList': called when setting up SpecialPage::$mList, use this
 hook to remove a core special page
 $list: list (array) of core special pages

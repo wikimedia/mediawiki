@@ -435,6 +435,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 		if ( $this->opts->getValue( 'hideredirs' ) ) {
 			$conds['page_is_redirect'] = 0;
 		}
+  
+		// Allow changes to the New Pages query
+		wfRunHooks('SpecialNewpagesConditions', array(&$this, $this->opts, &$conds));
 
 		$info = array(
 			'tables' => array( 'recentchanges', 'page' ),
