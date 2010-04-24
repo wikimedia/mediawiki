@@ -1474,7 +1474,7 @@ $newTitle: new title (object)
 
 'SpecialNewpagesConditions': called when building sql query for Special:NewPages
 &$special: NewPagesPager object (subclass of ReverseChronologicalPager)
-&opts: FormOptions object containing special page options
+$opts: FormOptions object containing special page options
 &$conds: array of WHERE conditionals for query
 
 'SpecialPage_initList': called when setting up SpecialPage::$mList, use this
