@@ -52,6 +52,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * When visiting a "red link" of a deleted file, a deletion and move log excerpt
   is provided on the Upload form.
 * (bug 22647) Add category details in search results.
+* (bug 23276) Add hook to Special:NewPages to modify query
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
