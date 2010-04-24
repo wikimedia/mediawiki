@@ -63,6 +63,7 @@ class Title {
 	var $mCascadeSources;             ///< Where are the cascading restrictions coming from on this page?
 	var $mRestrictionsLoaded = false; ///< Boolean for initialisation on demand
 	var $mPrefixedText;               ///< Text form including namespace/interwiki, initialised on demand
+	var $mTitleProtection;            ///< Cached value of getTitleProtection
 	# Don't change the following default, NS_MAIN is hardcoded in several
 	# places.  See bug 696.
 	var $mDefaultNamespace = NS_MAIN; ///< Namespace index when there is no namespace
@@ -1481,16 +1482,16 @@ class Title {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'protected_titles', '*',
-			array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
-			__METHOD__ );
+		if ( !isset( $this->mTitleProtection ) ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$res = $dbr->select( 'protected_titles', '*',
+				array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
+				__METHOD__ );
 
-		if ($row = $dbr->fetchRow( $res )) {
-			return $row;
-		} else {
-			return false;
+			// fetchRow returns false if there are no rows.
+			$this->mTitleProtection = $dbr->fetchRow( $res );
 		}
+		return $this->mTitleProtection;
 	}
 
 	/**
