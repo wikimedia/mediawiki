@@ -1274,7 +1274,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-nominornewtalk'        => 'Snadne změny na diskusijnych bokach njedowjedu k pokazanjeju "Nowe powěsći"',
 'right-apihighlimits'         => 'Wuše limity w API-wótpšašanjach wužywaś',
 'right-writeapi'              => 'writeAPI wužywaś',
-'right-delete'                => 'lašowaś boki',
+'right-delete'                => 'Boki wulašowaś',
 'right-bigdelete'             => 'lašowaś boki, kótarež maju wjelike stawizny',
 'right-deleterevision'        => 'Specifiske boki lašowaś a wótnowiś',
 'right-deletedhistory'        => 'Wulašowane wersiji w stawiznach se bśez pśisłušnego teksta wobglědaś',

@@ -2141,7 +2141,7 @@ PICT # misc.
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Набљудување...',
-'unwatching' => 'Откажување на набљудување...',
+'unwatching' => 'Отстранувам од набљудувани...',
 
 'enotif_mailer'                => '{{SITENAME}} Систем за известување',
 'enotif_reset'                 => 'Означи ги сите страници како посетени',
