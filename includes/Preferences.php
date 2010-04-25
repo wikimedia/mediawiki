@@ -844,6 +844,14 @@ class Preferences {
 			'label-message' => 'tog-watchlisthideliu',
 		);
 
+		if ( $wgUseRCPatrol ) {
+			$defaultPreferences['watchlisthidepatrolled'] = array(
+				'type' => 'toggle',
+				'section' => 'watchlist/advancedwatchlist',
+				'label-message' => 'tog-watchlisthidepatrolled',
+			);
+		}
+
 		if ( $wgEnableAPI ) {
 			# Some random gibberish as a proposed default
 			$hash = sha1( mt_rand() . microtime( true ) );
@@ -853,14 +861,6 @@ class Preferences {
 				'section' => 'watchlist/advancedwatchlist',
 				'label-message' => 'prefs-watchlist-token',
 				'help' => wfMsgHtml( 'prefs-help-watchlist-token', $hash )
-			);
-		}
-
-		if ( $wgUseRCPatrol ) {
-			$defaultPreferences['watchlisthidepatrolled'] = array(
-				'type' => 'toggle',
-				'section' => 'watchlist/advancedwatchlist',
-				'label-message' => 'tog-watchlisthidepatrolled',
 			);
 		}
 
