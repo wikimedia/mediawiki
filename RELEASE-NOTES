@@ -123,8 +123,10 @@ in a negative namespace (which is invalid).
 * (bug 23080) New usernames now limited to 235 bytes so that custom skin files
   work.
 * (bug 23075) Correct MediaTransformError default width in gallery.
-* (bug 16487) The Anonymous user account used on Postgres is no longer 
+* (bug 16487) The Anonymous user account used on Postgres is no longer
   displayed on Special:Listusers.
+* (bug 23313) Move watchlisthidepatrolled above token in watchlist preferences
+  to enhance preference grouping.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
