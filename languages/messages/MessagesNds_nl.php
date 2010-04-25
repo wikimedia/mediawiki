@@ -1221,6 +1221,7 @@ Kiek de logboeken nao.",
 'searchprofile-everything-tooltip' => "Alle inhoud deurzeuken (oek overlegpagina's)",
 'searchprofile-advanced-tooltip'   => 'Zeuken in de an-egeven naamruumtes',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 woord|$2 woorden}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 kattegerielid|$1 kattegerielejen}} ({{PLURAL:$2|1 onderkattegerie|$2 onderkattegerieën}}, {{PLURAL:$3|1 bestaand|$3 bestanen}})',
 'search-result-score'              => 'Rillevantie: $1%',
 'search-redirect'                  => '(deurverwiezing $1)',
 'search-section'                   => '(onderwarp $1)',
@@ -1581,6 +1582,9 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'upload_directory_missing'    => 'De bestaanstoevoegingsmap ($1) is vort en kon neet an-emaak wönnen deur de webserver.',
 'upload_directory_read_only'  => "Op 't mement ku-j gien bestanen toevoegen vanwegen technische preblemen ($1).",
 'uploaderror'                 => "Fout bie 't toevoegen van 't bestaand",
+'upload-recreate-warning'     => "'''Waorschuwing: der is een bestaand mit disse naam vort-edaon of herneumd.'''
+
+Hieronder steet 't vortdologboek en 't herneumlogboek veur disse pagina:",
 'uploadtext'                  => "Gebruuk 't formelier hieronder um bestanen derbie te zetten.
 Um bestanen te bekieken of te zeuken dee-j der eerder al bie ezet hemmen, ku-j naor de [[Special:FileList|bestaanslieste]] gaon.
 Bestanen en media dee nao 't vortdoon opniej derbie zet wönnen ku-j in de smiezen houwen in 't [[Special:Log/upload|logboek mit nieje bestanen]] en 't [[Special:Log/delete|vortdologboek]].
@@ -2306,19 +2310,21 @@ $1",
 'month'               => 'Maond:',
 'year'                => 'Jaor:',
 
-'sp-contributions-newbies'        => 'Allinnig biedragen van anwas bekieken',
-'sp-contributions-newbies-sub'    => 'Veur anwas',
-'sp-contributions-newbies-title'  => 'Biedragen van anwas',
-'sp-contributions-blocklog'       => 'blokkeerlogboek',
-'sp-contributions-deleted'        => 'vort-edaone gebrukersbiedragen',
-'sp-contributions-logs'           => 'logboeken',
-'sp-contributions-talk'           => 'overleg',
-'sp-contributions-userrights'     => 'gebrukersrechenbeheer',
-'sp-contributions-blocked-notice' => "Disse gebruker is op 't mement eblokkeerd.
+'sp-contributions-newbies'             => 'Allinnig biedragen van anwas bekieken',
+'sp-contributions-newbies-sub'         => 'Veur anwas',
+'sp-contributions-newbies-title'       => 'Biedragen van anwas',
+'sp-contributions-blocklog'            => 'blokkeerlogboek',
+'sp-contributions-deleted'             => 'vort-edaone gebrukersbiedragen',
+'sp-contributions-logs'                => 'logboeken',
+'sp-contributions-talk'                => 'overleg',
+'sp-contributions-userrights'          => 'gebrukersrechenbeheer',
+'sp-contributions-blocked-notice'      => "Disse gebruker is op 't mement eblokkeerd.
 De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
-'sp-contributions-search'         => 'Zeuken naor biedragen',
-'sp-contributions-username'       => 'IP-adres of gebrukersnaam:',
-'sp-contributions-submit'         => 'Zeuk',
+'sp-contributions-blocked-notice-anon' => "Dit IP-adres is eblokkeerd.
+De leste regel uut 't blokkeerlogboek steet as rifferentie",
+'sp-contributions-search'              => 'Zeuken naor biedragen',
+'sp-contributions-username'            => 'IP-adres of gebrukersnaam:',
+'sp-contributions-submit'              => 'Zeuk',
 
 # What links here
 'whatlinkshere'            => 'Verwiezingen naor disse pagina',
@@ -2713,6 +2719,7 @@ De tiedelijke map is neet anwezig.",
 'tooltip-rollback'                => 'Mit "weerummedreien" ku-j mit één klik de bewarking(en) van de leste gebruker dee disse pagina bewark hef weerummezetten.',
 'tooltip-undo'                    => 'A-j op "weerummedreien" klikken geet \'t bewarkingsvienster los en ku-j de veurige versie weerummezetten.
 Je kunnen in de bewarkingssamenvatting een reden opgeven.',
+'tooltip-preferences-save'        => 'Veurkeuren opslaon',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metadata is uut-eschakeld op disse server.',
@@ -3368,6 +3375,7 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'htmlform-float-invalid'       => 'De weerde dee-j op-egeven hemmen is gien getal.',
 'htmlform-int-toolow'          => 'De in-egeven weerde lig onder de minimumweerde van $1',
 'htmlform-int-toohigh'         => 'De in-egeven weerde lig boven de maximumweerde van $1',
+'htmlform-required'            => 'Disse weerde is verplich',
 'htmlform-submit'              => 'Opslaon',
 'htmlform-reset'               => 'Wiezigingen ongedaonmaken',
 'htmlform-selectorother-other' => 'Aanders',

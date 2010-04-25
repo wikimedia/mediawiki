@@ -2677,6 +2677,7 @@ Tu pote vider su codice-fonte.',
 'tooltip-rollback'                => '"Revocar" reverte le modification(es) de iste pagina del ultime contributor con un singule clic.',
 'tooltip-undo'                    => '"Disfacer" reverte iste modification e aperi le formulario de modification in modo de previsualisation.
 Es possibile adder un motivo in le summario.',
+'tooltip-preferences-save'        => 'Confirmar preferentias',
 
 # Stylesheets
 'common.css'      => '/* Le CSS placiate hic se applicara a tote le stilos */',

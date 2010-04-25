@@ -2590,7 +2590,7 @@ De blokkade is onderdeel van de reeks $2, waarvan de blokkade wel opgeheven kan 
 'proxyblocker-disabled'           => 'Deze functie is uitgeschakeld.',
 'proxyblockreason'                => 'Dit is een automatische preventieve blokkade omdat u gebruik maakt van een open proxyserver.
 Neem contact op met uw Internet-provider of uw helpdesk en stel die op de hoogte van dit ernstige beveiligingsprobleem.',
-'proxyblocksuccess'               => 'Uitgevoerd.',
+'proxyblocksuccess'               => 'Afgerond.',
 'sorbsreason'                     => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.',
 'sorbs_create_account_reason'     => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
 U kunt geen gebruiker registreren.',
@@ -2873,6 +2873,7 @@ Gebruik dit!',
 'tooltip-rollback'                => 'Met "terugdraaien" draait u met één klik de bewerking(en) terug van de laatste gebruiker die deze pagina heeft bewerkt.',
 'tooltip-undo'                    => 'Met "ongedaan maken" draait u deze bewerking terug en komt in het bewerkingsvenster.
 U kunt in de bewerkingssamenvatting een reden opgeven.',
+'tooltip-preferences-save'        => 'Voorkeuren opslaan',
 
 # Stylesheets
 'common.css'      => '/** CSS die hier wordt geplaatst heeft invloed op alle skins */',

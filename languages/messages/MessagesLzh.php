@@ -1260,7 +1260,7 @@ $1",
 'upload_directory_missing'   => '目錄$1已失，無建之。',
 'upload_directory_read_only' => '目錄$1禁入，無可獻。',
 'uploaderror'                => '進獻有變',
-'upload-recreate-warning'     => "'''警：同名之檔曾刪或遷之。'''
+'upload-recreate-warning'    => "'''警：同名之檔曾刪或遷之。'''
 
 此頁之誌刪與移於此示之以參詳也：",
 'uploadtext'                 => "下表以獻，[[Special:FileList|載獻]]覽之。或見[[Special:Log/upload|誌獻]]與[[Special:Log/delete|誌刪]]。
@@ -1318,7 +1318,6 @@ $1",
 'savefile'                   => '存之',
 'uploadedimage'              => '進獻"[[$1]]"',
 'overwroteimage'             => '新置「[[$1]]」矣',
-'uploaddisabledtext'         => '貢被禁也。',
 'copyuploaddisabled'         => '由URL之貢被禁也。',
 'uploadfromurl-queued'       => '爾之貢已排之。',
 'uploaddisabledtext'         => '檔之貢被禁也。',

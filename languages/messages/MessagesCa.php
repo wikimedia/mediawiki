@@ -1106,6 +1106,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'searchprofile-everything-tooltip' => "Cerca tot tipus de contingut (s'hi inclouen pàgines de discussió)",
 'searchprofile-advanced-tooltip'   => 'Cerca als espais de noms predefinits',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 paraula|$2 paraules}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 membre|$1 membres}} ({{PLURAL:$2|1 subcategoria|$2 subcategories}}, {{PLURAL:$3|1 fitxer|$3 fitxers}})',
 'search-result-score'              => 'Rellevància: $1%',
 'search-redirect'                  => '(redirigit des de $1)',
 'search-section'                   => '(secció $1)',

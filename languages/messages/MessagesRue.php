@@ -599,7 +599,13 @@ $1',
 'yournick'                    => 'Підпис:',
 'badsiglength'                => 'Ваш підпис барз довгый.
 Мусить быти куртшый як $1 {{PLURAL:$1|сімвол|сімволы|сімволів}}.',
+'yourgender'                  => 'Поглавя:',
+'gender-male'                 => 'Мужске',
+'gender-female'               => 'Женьске',
 'email'                       => 'Електронічна пошта',
+'prefs-help-realname'         => 'Скуточне мено (волительно): кідь го задаєте, буде поужыте про означіня авторства вашой роботы на сторінцї.',
+'prefs-help-email'            => 'Адреса електронічной пошты не є повинна, але є потрібна про засыланя нового гесла в припадї, же сьте своє гесло забыли.
+Тыж можете доволити іншым хоснователям вас контактовати з помочов вашой сторінкы, без того жебы была ваша адреса прозраджена.',
 'prefs-help-email-required'   => 'Адреса електронічной пошты є потрібна.',
 'prefs-info'                  => 'Основны інформації',
 'prefs-i18n'                  => 'Інтернаціоналізація',
@@ -611,18 +617,29 @@ $1',
 'prefs-advancedrendering'     => 'Розшырены можности',
 'prefs-advancedsearchoptions' => 'Розшырены можности',
 'prefs-advancedwatchlist'     => 'Розшырены можности',
+'prefs-display'               => 'Наставлїня  взгляду',
 'prefs-diffs'                 => 'Порівнаня верзії',
 
 # User rights
-'userrights-lookup-user'      => 'Управовати хосновательскы ґрупы',
-'userrights-user-editname'    => 'Задайте мено хоснователя:',
-'editusergroup'               => 'Едітовати хосновательскы ґрупы',
-'userrights-editusergroup'    => 'Змінити ґрупы хоснователя',
-'saveusergroups'              => 'Уложыти хосновательскы ґрупы',
-'userrights-groupsmember'     => 'Член ґруп:',
-'userrights-reason'           => 'Причіна:',
-'userrights-changeable-col'   => 'Ґрупы, котры можете змінити',
-'userrights-unchangeable-col' => 'Ґрупы, котры не можете змінити',
+'userrights'                   => 'Справа хосновательскых ґруп',
+'userrights-lookup-user'       => 'Управовати хосновательскы ґрупы',
+'userrights-user-editname'     => 'Задайте мено хоснователя:',
+'editusergroup'                => 'Едітовати хосновательскы ґрупы',
+'editinguser'                  => "Зміна прав хоснователя '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Змінити ґрупы хоснователя',
+'saveusergroups'               => 'Уложыти хосновательскы ґрупы',
+'userrights-groupsmember'      => 'Член ґруп:',
+'userrights-groupsmember-auto' => 'Автоматічный  член ґруп:',
+'userrights-groups-help'       => 'Можете мінити ґрупы, до котрых належыть хоснователь:
+* Кідь є позначене  поличко, хоснователь належыть до той ґрупы.
+* Не позначене  поличко значіть, же хоснователь у тій ґрупі не є.
+* Звіздочка (*) значіть, же не можете тоту ґрупу одобрати, буде ли придана, або наспак.',
+'userrights-reason'            => 'Причіна:',
+'userrights-no-interwiki'      => 'Не маєте поволїня мінити права хоснователїв на іншых вікі.',
+'userrights-nodatabase'        => 'Датабаза $1 не екзістує або не є місцёва.',
+'userrights-nologin'           => 'Мусите ся [[Special:UserLogin|приголосити]] на конто адміністратора, жебы сьте могли мінити права хоснователїв.',
+'userrights-changeable-col'    => 'Ґрупы, котры можете змінити',
+'userrights-unchangeable-col'  => 'Ґрупы, котры не можете змінити',
 
 # Groups
 'group'               => 'Ґрупа:',
@@ -649,21 +666,28 @@ $1',
 'grouppage-suppress'      => '{{ns:project}}:Ревізоры',
 
 # Rights
-'right-read'          => 'Чітаня сторінок',
-'right-edit'          => 'Едітованя сторінок',
-'right-createtalk'    => 'Вытворїня сторінок діскузії',
-'right-createaccount' => 'Вытворїня новых конт хоснователїв',
-'right-move'          => 'Переменованя сторінок',
-'right-move-subpages' => 'Переменованя сторінок і їх підсторінок',
-'right-movefile'      => 'Переменовати файлы',
-'right-upload'        => 'Награваня файлів',
-'right-delete'        => 'Змазаня сторінок',
-'right-unblockself'   => 'Одблоковати самого себе',
-'right-editinterface' => 'Едітованя інтерфейсу хоснователя',
-'right-import'        => 'Імпорт сторінок з іншых вікі',
+'right-read'               => 'Чітаня сторінок',
+'right-edit'               => 'Едітованя сторінок',
+'right-createpage'         => 'Вытворїня сторінок (не діскузных)',
+'right-createtalk'         => 'Вытворїня сторінок діскузії',
+'right-createaccount'      => 'Вытворїня новых конт хоснователїв',
+'right-minoredit'          => 'Означованя  едітовань як малых',
+'right-move'               => 'Переменованя сторінок',
+'right-move-subpages'      => 'Переменованя сторінок і їх підсторінок',
+'right-move-rootuserpages' => 'Переменованя корінёвых сторінок хоснователїв',
+'right-movefile'           => 'Переменовати файлы',
+'right-upload'             => 'Награваня файлів',
+'right-reupload'           => 'Переписованя екзістуючіх файлів',
+'right-delete'             => 'Змазаня сторінок',
+'right-browsearchive'      => 'Гляданя вымазаных сторінок',
+'right-undelete'           => 'Обновлїня вымазаных сторінок',
+'right-unblockself'        => 'Одблоковати самого себе',
+'right-editinterface'      => 'Едітованя інтерфейсу хоснователя',
+'right-import'             => 'Імпорт сторінок з іншых вікі',
 
 # User rights log
-'rightslog' => 'Лоґ хосновательскых прав',
+'rightslog'  => 'Лоґ хосновательскых прав',
+'rightsnone' => '(жадне)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'          => 'прочітати тоту сторінку',
@@ -679,6 +703,12 @@ $1',
 'recentchanges'                  => 'Послїднї зміны',
 'recentchanges-legend'           => 'Можности послїднїх змін',
 'recentchanges-feed-description' => 'На тотїм каналу слїдуєте послїднї зміны на {{grammar:6sg|{{SITENAME}}}}.',
+'recentchanges-label-legend'     => 'Леґенда: $1.',
+'recentchanges-legend-newpage'   => '$1 — нова сторінка',
+'recentchanges-legend-minor'     => '$1 малы едітованя',
+'recentchanges-label-minor'      => 'Тото є мала зміна',
+'recentchanges-legend-bot'       => '$1 — ботове едітованя',
+'recentchanges-label-bot'        => 'Тото едітованя зроблене ботом',
 'rcnote'                         => "{{PLURAL:$1|Послїдня '''$1''' зміна|Послїднї '''$1''' зміны|Послїднїх '''$1''' змін}} за '''$2''' {{PLURAL:$2|день|днї|днїв}}, на час $5, $4.",
 'rclistfrom'                     => 'Вказати едітованя починаючі з $1.',
 'rcshowhideminor'                => '$1 незначны едітованя',
@@ -706,10 +736,21 @@ $1',
 'recentchangeslinked-to'      => 'Вказати зміны на сторінках, одказуючіх на задану сторінку',
 
 # Upload
-'upload'        => 'Награти файл',
-'uploadlogpage' => 'Лоґ награных файлів',
-'savefile'      => 'Уложыти файл',
-'uploadedimage' => 'награв "[[$1]]"',
+'upload'              => 'Награти файл',
+'uploadlogpage'       => 'Лоґ награных файлів',
+'filename'            => 'Назва файлу:',
+'filedesc'            => 'Попис',
+'fileuploadsummary'   => 'Попис:',
+'filereuploadsummary' => 'Зміны у файлі:',
+'filestatus'          => 'Авторьскы права:',
+'filesource'          => 'Джерело:',
+'uploadedfiles'       => 'Начітаны файлы',
+'ignorewarning'       => 'Іґноровати варованя тай начітати файл.',
+'ignorewarnings'      => 'Іґноровати вшыткы варованя',
+'minlength1'          => 'Назва файлу мусить мати холем єдну літеру.',
+'savefile'            => 'Уложыти файл',
+'uploadedimage'       => 'награв "[[$1]]"',
+'uploadvirus'         => 'Файл обсягує вірус! Детайлы: $1',
 
 # Special:ListFiles
 'imgfile'               => 'файл',
@@ -900,6 +941,8 @@ $1',
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Придаваня до списку слїдованя...',
 'unwatching' => 'Одобратя зо списку слїдованя...',
+
+'enotif_newpagetext' => 'Тото є нова сторінка.',
 
 # Delete
 'deletepage'            => 'Змазати сторінку',
@@ -1151,6 +1194,10 @@ $1',
 # Attribution
 'others' => 'іншы',
 
+# Patrol log
+'patrol-log-auto' => '(автоматічно)',
+'patrol-log-diff' => 'ревізію $1',
+
 # Browsing diffs
 'previousdiff' => '← Старше едітованя',
 'nextdiff'     => 'Новше едітованя →',
@@ -1161,6 +1208,14 @@ $1',
 'svg-long-desc'        => '(SVG-файл, номінално $1 × $2 пікселів, розмір файлу: $3)',
 'show-big-image'       => 'Повне розлишіня',
 'show-big-image-thumb' => '<small>Розмір перегляду: $1 × $2 пікселів</small>',
+
+# Special:NewFiles
+'newimages-legend' => 'Філтер',
+'newimages-label'  => 'Назва файлу (або єй частина):',
+'showhidebots'     => '($1 ботів)',
+'noimages'         => 'Не є што відїти.',
+'ilsubmit'         => 'Глядати',
+'bydate'           => 'подля датуму',
 
 # Bad image list
 'bad_image_list' => 'Формат має быти наступным:
@@ -1203,6 +1258,9 @@ $1',
 'exif-lightsource-18'  => 'Штандартне світло тіпу B',
 'exif-lightsource-19'  => 'Штандартне світло тіпу C',
 'exif-lightsource-255' => 'Інше джерело світла',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'км/год',
 
 # External editor support
 'edit-externally'      => 'Едітовати тот файл хоснувчі екстерну аплікацію',

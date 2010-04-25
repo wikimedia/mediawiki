@@ -942,7 +942,7 @@ N\'oc\'h ket aotreet da vont outi.',
 'revdelete-modify-missing'    => "Fazi ;en ur zegas kemmoù en elfenn gant ID $1: n'emañ ket er bank roadennoù !",
 'revdelete-no-change'         => "'''Evezh :''' emañ an arventennoù gweluster goulennet gant an elfenn deiziataet eus an $1 da $2 dija",
 'revdelete-concurrent-change' => "Fazi pa'z eus bet bet degaset kemmoù en elfenn deiziataet eus an $1 da $2 : cheñchet eo bet e statud gant unan bennak all dres pa oac'h-chwi o kemmañ anezhi. Gwiriit ar marilhoù.",
-'revdelete-only-restricted'   => "Ur fazi 'zo bet pa oac'h o tennañ an danvez eus an $1 da $2 : n'hallit ket tennañ an elfennoù-mañ digant ar verourien ma ne zibabit ket ivez an dibarzhioù diverkañ all.",
+'revdelete-only-restricted'   => "Ur fazi zo bet en ur guzhat an elfenn deiziadet eus an $1 da $2 : n'hallit ket kuzhat an elfennoù-mañ ouzh ar verourien hep dibab ivez unan eus an dibarzhioù gweluster all.",
 'revdelete-reason-dropdown'   => '*Abegoù diverkañ boutin
 **Gaou ouzh ar gwirioù implijout
 ** Titouroù personel dizereat',

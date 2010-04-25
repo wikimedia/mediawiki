@@ -1179,6 +1179,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'searchprofile-everything-tooltip' => 'Tìm tất cả nội dung (gồm cả các trang thảo luận)',
 'searchprofile-advanced-tooltip'   => 'Tìm trong không gian tên tùy chọn',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 từ|$2 từ}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 trang thành viên|$1 trang thành viên}} ({{PLURAL:$2|1 tiểu thể loại|$2 tiểu thể loại}}, {{PLURAL:$3|1 tập tin|$3 tập tin}})',
 'search-result-score'              => 'Độ phù hợp: $1%',
 'search-redirect'                  => '(đổi hướng $1)',
 'search-section'                   => '(đề mục $1)',
@@ -1540,6 +1541,9 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 'upload_directory_missing'    => 'Thư mục tải lên ($1) không có hoặc máy chủ web không thể tạo được.',
 'upload_directory_read_only'  => 'Máy chủ không thể sửa đổi thư mục tải lên ($1) được.',
 'uploaderror'                 => 'Lỗi khi tải lên',
+'upload-recreate-warning'     => "'''Cảnh báo: Một tập tin với tên này đã từng bị xóa hoặc di chuyển.'''
+
+Nhật trình xóa và di chuyển của trang này được ghi ở dưới để bạn tiện theo dõi:",
 'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin lên.
 Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:FileList|danh sách các tập tin đã tải lên]]. 
 việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]],  việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
@@ -2708,6 +2712,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-upload'                  => 'Bắt đầu tải lên',
 'tooltip-rollback'                => '"Lùi tất cả" sẽ lùi mọi sửa đổi của người sửa đổi cuối cùng chỉ bằng một cú nhấp chuột.',
 'tooltip-undo'                    => '"Lùi lại" sẽ lùi sửa đổi này và mở trang sửa đổi ở chế độ xem thử. Cho phép thêm lý do vào tóm lược.',
+'tooltip-preferences-save'        => 'Lưu tùy chọn',
 
 # Stylesheets
 'common.css'      => '/* Mã CSS đặt ở đây sẽ áp dụng cho mọi hình dạng */',
