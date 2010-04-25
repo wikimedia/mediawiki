@@ -242,7 +242,7 @@ class SpecialUpload extends SpecialPage {
 		$desiredTitleObj = Title::newFromText( $this->mDesiredDestName, NS_FILE );
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
-			LogEventsList::showLogExtract( &$delNotice, array( 'delete', 'move' ), 
+			LogEventsList::showLogExtract( $delNotice, array( 'delete', 'move' ), 
 				$desiredTitleObj->getPrefixedText(),
 				'', array( 'lim' => 10,
 					   'conds' => array( "log_action != 'revision'" ),
