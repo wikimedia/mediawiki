@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1104,6 +1104,7 @@ $1",
 'searchprofile-everything-tooltip' => '搜索全部（包括讨论页面）',
 'searchprofile-advanced-tooltip'   => '在自定义的名字空间中搜索',
 'search-result-size'               => '$1（$2个字）',
+'search-result-category-size'      => '$1位成员（$2个子分类，$3个文件）',
 'search-result-score'              => '相关度：$1%',
 'search-redirect'                  => '（重定向 $1）',
 'search-section'                   => '（段落 $1）',
@@ -1460,6 +1461,9 @@ $1",
 'upload_directory_missing'    => '上传目录（$1）遗失，不能由网页服务器建立。',
 'upload_directory_read_only'  => '上传目录（$1）不存在或无写权限。',
 'uploaderror'                 => '上传错误',
+'upload-recreate-warning'     => "'''警告：一个相同名字的文件曾经被删除或者移动至别处。'''
+
+这个页面的删除和移动日志在这里提供以便参考：",
 'uploadtext'                  => "使用下面的表单来上传文件。
 要查看或搜索以前上传的文件
 可以进入[[Special:FileList|文件上传列表]]，
@@ -1497,12 +1501,12 @@ $1",
 'filetype-banned-type'        => "'''\".\$1\"'''是一种不准许的文件类型。
 容许的{{PLURAL:\$3|一种|多种}}文件类型有\$2。",
 'filetype-missing'            => '该文件名称并没有扩展名（例如“.jpg”）。',
-'empty-file'                  => '提交的文件为空文件。',
-'file-too-large'              => '提交的文件过大。',
+'empty-file'                  => '您所提交的文件为空文件。',
+'file-too-large'              => '您所提交的文件过大。',
 'filename-tooshort'           => '文件名过短。',
 'filetype-banned'             => '此类文件被禁止。',
 'verification-error'          => '文件未通过验证。',
-'hookaborted'                 => '你的修改被插件钩子舍弃。',
+'hookaborted'                 => '您所尝试的修改被插件钩子舍弃。',
 'illegal-filename'            => '文件名非法。',
 'overwrite'                   => '不允许覆盖现有文件。',
 'unknown-error'               => '发生未知错误。',
@@ -1536,7 +1540,7 @@ $1",
 'savefile'                    => '保存文件',
 'uploadedimage'               => '已上传“[[$1]]”',
 'overwroteimage'              => '已上传“[[$1]]”的新版本',
-'uploaddisabled'              => '无法上传',
+'uploaddisabled'              => '上传己停用。',
 'copyuploaddisabled'          => '通过网址上传功能未开通。',
 'uploadfromurl-queued'        => '上传已被列入队列。',
 'uploaddisabledtext'          => '文件上传不可用。',
@@ -1931,6 +1935,8 @@ Template:消除歧義',
 您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
 'usermailererror'      => 'Mail 对象返回错误：',
 'defemailsubject'      => '{{SITENAME}}电子邮件',
+'usermaildisabled'     => '用户电邮已停用',
+'usermaildisabledtext' => '您不可以发送电邮到这个wiki上的其他用户',
 'usermaildisabled'     => '电子邮件功能未开通',
 'usermaildisabledtext' => '此维基未开通电子邮件发送功能',
 'noemailtitle'         => '无电子邮件地址',
@@ -2605,6 +2611,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-upload'                  => '开始上传',
 'tooltip-rollback'                => '“回退”单击恢复上一位贡献者对此页面作出的编辑',
 'tooltip-undo'                    => '“撤销”可以恢复该编辑并在预览模式下打开编辑表单。它允许在摘要中加入原因。',
+'tooltip-preferences-save'        => '保存设定',
 
 # Stylesheets
 'common.css'      => '/* 此处的 CSS 将应用于所有的皮肤 */',
@@ -3308,7 +3315,7 @@ $1',
 'htmlform-float-invalid'       => '您所指定的值不是一个数字。',
 'htmlform-int-toolow'          => '您所指定的值低于最小值$1',
 'htmlform-int-toohigh'         => '您所指定的值高于最大值$1',
-'htmlform-required'            => '此项目是必填项',
+'htmlform-required'            => '此值是必填项',
 'htmlform-submit'              => '提交',
 'htmlform-reset'               => '撤销更改',
 'htmlform-selectorother-other' => '其他',
