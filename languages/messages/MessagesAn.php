@@ -282,8 +282,18 @@ $messages = array(
 'faqpage'        => 'Project:Preguntas freqüents',
 
 # Vector skin
-'vector-action-delete'  => 'Borrar',
-'vector-namespace-help' => "Pachina d'aduya",
+'vector-action-addsection'   => 'Adhibir nueva sección',
+'vector-action-delete'       => 'Borrar',
+'vector-action-move'         => 'Tresladar',
+'vector-action-protect'      => 'Protecher',
+'vector-action-undelete'     => 'Restaurar',
+'vector-action-unprotect'    => 'Desprotecher',
+'vector-namespace-category'  => 'Categoría',
+'vector-namespace-help'      => "Pachina d'aduya",
+'vector-namespace-image'     => 'Fichero',
+'vector-namespace-main'      => 'Pachina',
+'vector-namespace-media'     => 'Pachina multimedia',
+'vector-namespace-mediawiki' => 'Mensache',
 
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Tornar ta $1.',
@@ -405,7 +415,7 @@ $1",
 'nstab-media'     => 'Pachina multimedia',
 'nstab-special'   => 'Pachina especial',
 'nstab-project'   => "Pachina d'o prochecto",
-'nstab-image'     => 'Imachen',
+'nstab-image'     => 'Fichero',
 'nstab-mediawiki' => 'Mensache',
 'nstab-template'  => 'Plantilla',
 'nstab-help'      => 'Aduya',
@@ -589,7 +599,7 @@ Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya t
 'link_sample'     => "Títol d'o vinclo",
 'link_tip'        => 'Vinclo interno',
 'extlink_sample'  => "http://www.example.com Títol d'o vinclo",
-'extlink_tip'     => "Vinclo externo  (alcuerde-se-ne, d'adibir o prefixo http://)",
+'extlink_tip'     => 'Vinclo externo  (recuerde o prefixo http://)',
 'headline_sample' => 'Texto de subtítol',
 'headline_tip'    => 'Soztítol de livel 2',
 'math_sample'     => 'Escriba aquí a formula',
@@ -1058,10 +1068,10 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 'userrights-editusergroup'    => "Editar as collas d'usuarios",
 'saveusergroups'              => "Alzar as collas d'usuarios",
 'userrights-groupsmember'     => 'Miembro de:',
-'userrights-groups-help'      => "Puede cambiar as collas an que bi ye iste usuario.
-* Un caxa siñalata sinnifica que l'usuario bi ye en ixa colla.
-* Una caxa no siñalata sinnifica que l'usuario no ye en ixa colla.
-* Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa.",
+'userrights-groups-help'      => "Puede cambiar as collas a on que bi ye iste usuario.
+* Un caixa sinyalata significa que l'usuario ye en ixa colla.
+* Una caixa no sinyalata significa que l'usuario no ye en ixa colla.
+* Un * endica que vusté no puet sacar a colla dimpués d'adhibir-la, u vice-versa.",
 'userrights-reason'           => 'Razón:',
 'userrights-no-interwiki'     => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
 'userrights-nodatabase'       => 'A base de datos $1 no esiste u no ye local.',
@@ -1360,7 +1370,7 @@ PICT # misz.
 Por defeuto os zaguers archibos cargatos s'amuestran en o cobalto d'a lista.
 Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'listfiles_search_for'  => "Mirar por nombre de l'archibo:",
-'imgfile'               => 'archibo',
+'imgfile'               => 'fichero',
 'listfiles'             => 'Lista de imachens',
 'listfiles_date'        => 'Calendata:',
 'listfiles_name'        => 'Nombre',
@@ -1370,7 +1380,7 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'listfiles_count'       => 'Versions',
 
 # File description page
-'file-anchor-link'          => 'Imachen',
+'file-anchor-link'          => 'Fichero',
 'filehist'                  => "Historial d'o fichero",
 'filehist-help'             => 'Punche en una calendata/hora ta veyer o fichero como amaneixeba por ixas envueltas.',
 'filehist-deleteall'        => 'borrar-lo tot',
@@ -1634,9 +1644,9 @@ Protocolos suportados: <tt>$1</tt>',
 'listgrouprights-rights'          => 'Dreitos',
 'listgrouprights-helppage'        => "Help:Dreitos d'a colla",
 'listgrouprights-members'         => '(lista de miembros)',
-'listgrouprights-addgroup'        => 'Puede adibir {{PLURAL:$2|colla|collas}}: $1',
+'listgrouprights-addgroup'        => 'Puet adhibir {{PLURAL:$2|colla|collas}}: $1',
 'listgrouprights-removegroup'     => 'Puede borrar {{PLURAL:$2|colla|collas}}: $1',
-'listgrouprights-addgroup-all'    => 'Puede adibir todas as collas',
+'listgrouprights-addgroup-all'    => 'Puede adhibir todas as collas',
 'listgrouprights-removegroup-all' => 'Puede borrar todas as collas',
 
 # E-mail user
@@ -1962,7 +1972,7 @@ as pachinas que s'han bandalizato).",
 'ipbsubmit'                       => 'bloqueyar á iste usuario',
 'ipbother'                        => 'Espezificar atro periodo',
 'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 anyo:1 year,ta cutio:infinite',
-'ipbotheroption'                  => 'atro',
+'ipbotheroption'                  => 'un atra',
 'ipbotherreason'                  => 'Razons diferens u adizionals',
 'ipbhidename'                     => "Amagar o nombre d'usuario en edizions y listas",
 'ipbwatchuser'                    => "Cosirar as pachinas d'usuario y de descusión d'iste usuario",
@@ -2820,7 +2830,7 @@ Tamién puede fer serbir o [[Special:Watchlist/edit|editor estándar]].",
 
 # Special:FilePath
 'filepath'         => "Camín de l'archibo",
-'filepath-page'    => 'Archibo:',
+'filepath-page'    => 'Fichero:',
 'filepath-submit'  => 'Camín',
 'filepath-summary' => "Ista pachina espezial le retorna o camín completo d'un archibo.
 As imachens s'amuestran en resoluzión completa, a resta d'archibos fan enzetar dreitament os suyos programas asoziatos.
@@ -2887,9 +2897,15 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:file}}:".',
 'dberr-info' => "(No s'ha puesto contactar con o serbidor d'a base de datos: $1)",
 
 # HTML forms
-'htmlform-reset' => 'Desfer cambios',
+'htmlform-reset'               => 'Desfer cambios',
+'htmlform-selectorother-other' => 'Atros',
 
 # Add categories per AJAX
+'ajax-add-category'            => 'Adhibir categoría',
+'ajax-add-category-submit'     => 'Adhibir',
+'ajax-confirm-title'           => 'Confirmar acción',
+'ajax-confirm-prompt'          => 'Puet furnir debaixo un resumen d\'edición.
+Punche en "Grabar" ta grabar a suya edición.',
 'ajax-confirm-save'            => 'Alzar',
 'ajax-add-category-summary'    => 'Adibir categoría "$1"',
 'ajax-remove-category-summary' => 'Sacar a categoría "$1"',

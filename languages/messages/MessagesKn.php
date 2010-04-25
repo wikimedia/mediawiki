@@ -1274,7 +1274,8 @@ $2',
 'sp-deletedcontributions-contribs' => 'ಕಾಣಿಕೆಗಳು',
 
 # Special:LinkSearch
-'linksearch' => 'ಹೊರಗಿನ ಸಂಪರ್ಕಗಳು',
+'linksearch'    => 'ಹೊರಗಿನ ಸಂಪರ್ಕಗಳು',
+'linksearch-ok' => 'ಹುಡುಕು',
 
 # Special:ListUsers
 'listusersfrom'      => 'ಇದರಿಂದ ಪ್ರಾರಂಭವಾಗುವ ಬಳಕೆದಾರರನ್ನು ತೋರಿಸು:',
@@ -1982,8 +1983,9 @@ $5
 'version-software-version' => 'ಆವೃತ್ತಿ',
 
 # Special:FilePath
-'filepath'      => 'ಫೈಲಿನ ಮಾರ್ಗ',
-'filepath-page' => 'ಫೈಲು:',
+'filepath'        => 'ಫೈಲಿನ ಮಾರ್ಗ',
+'filepath-page'   => 'ಫೈಲು:',
+'filepath-submit' => 'ಹೋಗು',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'ದ್ವಿಪ್ರತಿ ಫೈಲುಗಳಿಗೆ ಹುಡುಕು',

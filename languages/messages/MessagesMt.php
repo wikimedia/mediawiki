@@ -658,7 +658,7 @@ Kun af li ċerti paġni jistgħu jkomplu jidhru bħallikieku l-illogjar 'l barra
 'welcomecreation'            => "== Merħba, $1! ==
 Il-kont tiegħek ġie maħluq.<br />
 Tinsiex tippersonalizza l-[[Special:Preferences|preferenzi]] ta' {{SITENAME}}.",
-'yourname'                   => 'Isem l-utent:',
+'yourname'                   => 'Isem tal-utent:',
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => "Erġa' ikteb il-password:",
 'remembermypassword'         => 'Ftakar il-login tiegħi fuq dan il-kompjuter',
@@ -678,8 +678,7 @@ Tinsiex tippersonalizza l-[[Special:Preferences|preferenzi]] ta' {{SITENAME}}.",
 'gotaccountlink'             => 'Idħol',
 'createaccountmail'          => 'bil-posta elettronika',
 'badretype'                  => 'Il-passwords li daħħalt ma jaqblux.',
-'userexists'                 => 'Isem l-utent li daħħalt huwa diġà meħud.
-Jekk jogħġbok, agħżel isem differenti.',
+'userexists'                 => 'L-isem tal-utent li daħħalt huwa diġà meħud. Jekk jogħġbok, agħżel isem differenti.',
 'loginerror'                 => 'Problemi fil-login',
 'nocookiesnew'               => "Il-Kont tal-utent għal l-aċċess ġie maħluq, però ma kienx possibli li tagħmel aċċess għal {{SITENAME}} għax il-''cookies'' huma disattivati. Erġa' prova l-aċċess bl-isem tal-utent u l-password wara li tkun attivajt il-''cookies'' tal-''browser''.",
 'nocookieslogin'             => "L-aċċess għal {{SITENAME}} jagħmel użu minn ''cookies'', li bħalissa huma disattivati. Jekk jogħġbok erġa' prova idħol wara li tkun attivajt il-''cookies'' fil-browser.",
@@ -691,7 +690,7 @@ L-ismijiet tal-utenti huma sensittivi fuq kif jinkitbu.<br />
 Jekk jogħġbok kun żġur li ktibtu sew, jew minflok [[Special:UserLogin/signup|oħloq kont ġdid]].',
 'nosuchusershort'            => 'M\'hemm l-ebda utent bl-isem "<nowiki>$1</nowiki>".
 Agħmel żġur li ktibta sew.',
-'nouserspecified'            => 'Trid tispeċifika isem l-utent.',
+'nouserspecified'            => 'Trid tispeċifika isem tal-utent.',
 'wrongpassword'              => "Il-password li daħħalt mhijiex tajba. 
 Jekk jogħġbok, erġa' pprova.",
 'wrongpasswordempty'         => "Ma ddaħlet l-ebda password. 
@@ -793,7 +792,7 @@ Jekk terġa' tagħfas Modifika, l-modifika tiegħek se tiġi salvata mingħajr w
 'summary-preview'                  => 'Dehra proviżorja tat-taqsira:',
 'subject-preview'                  => 'Dehra proviżorja tat-taqsira/suġġett:',
 'blockedtitle'                     => 'L-utent ġie bblokkjat',
-'blockedtext'                      => "'''L-isem ta' l-utent jew l-indirizz IP tiegħek ġew imblukkati.'''
+'blockedtext'                      => "'''L-isem tal-utent jew l-indirizz IP tiegħek ġew imblukkat.'''
 
 Il-blokk twettaq minn \$1. Ir-raġuni mogħtiha kienet ''\$2''.
 
@@ -803,9 +802,9 @@ Il-blokk twettaq minn \$1. Ir-raġuni mogħtiha kienet ''\$2''.
 
 Tista' tikkuntattja lil \$1 jew xi [[{{MediaWiki:Grouppage-sysop}}|amministratur]] ieħor biex tiddiskuti dan il-blokk.
 
-Ma tistax tuża l-faċilità \"ibgħat email lil dan l-utent\" sakemm m'għandekx indirizz validu tal-email fil-[[Special:Preferences|preferenzi tal-kont]] tiegħek u ma ġejtx miżmum milli tużah.
+Ma tistax tuża' l-faċilità \"ikteb lil dan l-utent\" sakemm m'għandekx indirizz validu tal-email fil-[[Special:Preferences|preferenzi tal-kont]] tiegħek u ma ġejtx miżmum milli tużah.
 
-L-IP kurrenti tiegħek huwa \$3, u l-ID ta' l-imblukkar huwa #\$5.<br />Jekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
+L-IP kurrenti tiegħek huwa \$3, u l-ID tal-imblukkar huwa #\$5.<br />Jekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
 'autoblockedtext'                  => "L-indirizz IP tiegħek ġie awtomatikament imblukkat minħabba li kienet qiegħed jiġi wżat minn utent ieħor, u ġie imblukkat minn \$1.
 Ir-raġuni li ġiet mogħtiha kienet:
 
@@ -1030,7 +1029,7 @@ L-amminstraturi l-oħrajn fuq {{SITENAME}} xorta jkunu jistgħu jidħlu fuq il-k
 'deletedhist'                 => 'Kronoloġija mħassra',
 'revdelete-content'           => 'kontenut',
 'revdelete-summary'           => 'Taqsira tal-modifika',
-'revdelete-uname'             => 'isem l-utent',
+'revdelete-uname'             => 'isem tal-utent',
 'revdelete-restricted'        => "limiti applikati 'l amministraturi",
 'revdelete-unrestricted'      => "neħħi l-limiti 'l amministraturi",
 'revdelete-hid'               => 'aħbi $1',
@@ -1211,7 +1210,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'default'                       => 'predefinit',
 'prefs-files'                   => 'Fajls',
 'youremail'                     => 'E-mail:',
-'username'                      => 'Isem l-utent:',
+'username'                      => 'Isem tal-utent:',
 'uid'                           => 'L-ID tal-utent:',
 'prefs-memberingroups'          => 'Membru tal-{{PLURAL:$1|grupp|gruppi}}:',
 'prefs-memberingroups-type'     => '$1',
@@ -1245,7 +1244,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 # User rights
 'userrights'                  => 'Ġestjoni tad-drittijiet tal-utent',
 'userrights-lookup-user'      => 'Ġestjoni tal-gruppi tal-utent',
-'userrights-user-editname'    => 'Daħħal isem l-utent:',
+'userrights-user-editname'    => 'Daħħal isem tal-utent:',
 'editusergroup'               => "Modifika l-gruppijiet ta' l-utenti",
 'editinguser'                 => "Modifika tad-drittijiet tal-utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Immodifika l-gruppi tal-utent',
@@ -1717,7 +1716,7 @@ Kull filliera għandha ħolqa għall-ewwel u t-tieni riindirizz, kif ukoll fejn 
 'listusers'               => 'Lista tal-utenti',
 'usereditcount'           => '$1 {{PLURAL:$1|kontribuzzjonijiet|kontribuzzjoni}}',
 'newpages'                => 'Paġni ġodda',
-'newpages-username'       => 'Isem l-utent:',
+'newpages-username'       => 'Isem tal-utent:',
 'ancientpages'            => 'L-iktar paġni qodma',
 'move'                    => 'Mexxi',
 'movethispage'            => 'Ċaqlaq din il-paġna',
@@ -2065,7 +2064,7 @@ $1',
 'sp-contributions-deleted'       => 'kontribuzzjonijiet imħassra tal-utent',
 'sp-contributions-talk'          => 'diskussjoni',
 'sp-contributions-search'        => 'Fittex għal kontribuzzjonijiet',
-'sp-contributions-username'      => 'Indirizz IP jew isem l-utent:',
+'sp-contributions-username'      => 'Indirizz IP jew isem tal-utent:',
 'sp-contributions-submit'        => 'Fittex',
 
 # What links here
@@ -2094,7 +2093,7 @@ $1',
 Il-blokk irid ikun użat biss sabiex jitnaqqas iċ-ċans ta' vandaliżmu, u għandu josservja b'mod strett il-[[{{MediaWiki:Policy-url}}|politika ta' {{SITENAME}}]]. 
 Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempju, billi turi l-paġni partikolari li ġew ivvandalizzati).",
 'ipaddress'                       => 'Indirizz tal-IP:',
-'ipadressorusername'              => 'Indirizz tal-IP jew isem l-utent:',
+'ipadressorusername'              => 'Indirizz tal-IP jew isem tal-utent:',
 'ipbexpiry'                       => 'Skadenza tal-imblokk:',
 'ipbreason'                       => 'Raġuni:',
 'ipbreasonotherlist'              => 'Raġuni oħra',
@@ -2123,7 +2122,7 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 Ara l-[[Special:IPBlockList|lista tal-blokki ta' l-IP]] biex tara l-blokki attivi.",
 'ipb-edit-dropdown'               => 'Modifika r-raġuni tal-blokkar',
 'ipb-unblock-addr'                => 'Żblokkja $1',
-'ipb-unblock'                     => 'Żblokkja isem l-utent jew l-indirizz tal-IP',
+'ipb-unblock'                     => 'Żblokka isem tal-utent jew indirizz IP',
 'ipb-blocklist-addr'              => 'Uri l-blokki attivi għal $1',
 'ipb-blocklist'                   => 'Uri blokki attivi',
 'unblockip'                       => 'Żblokkja l-utent',
@@ -2146,7 +2145,7 @@ Ara l-[[Special:IPBlockList|lista tal-blokki ta' l-IP]] biex tara l-blokki attiv
 'createaccountblock'              => 'ħolqien tal-kont blokkat',
 'emailblock'                      => 'posta elettronika blokkata',
 'ipblocklist-empty'               => 'Il-Lista tal-blokki hija vojta.',
-'ipblocklist-no-results'          => 'L-Indirizz tal-IP jew isem l-utent rikjestr, mhux ibblokkjat.',
+'ipblocklist-no-results'          => 'L-indirizz IP jew isem tal-utent rikjest mhuwiex imblukkat.',
 'blocklink'                       => 'blokkja',
 'unblocklink'                     => 'żblokkja',
 'change-blocklink'                => 'biddel il-blokk',
