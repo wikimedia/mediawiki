@@ -402,6 +402,7 @@ $messages = array(
 'ignorewarning'               => '忽略警告並儲存檔案。',
 'illegalfilename'             => '檔案名"$1"包含有頁面標題所禁止的字符。請改名後重新上傳。',
 'badfilename'                 => '檔案名已被改為"$1"。',
+'hookaborted'                 => '您所嘗試的修改被擴展鉤捨棄。',
 'fileexists-thumbnail-yes'    => "這個檔案好像是一幅圖片的縮圖版本''(縮圖)''。 [[$1|thumb]]
 請檢查清楚該檔案'''<tt>[[:$1]]</tt>'''。
 如果檢查後的檔案是同原本圖片的大小是一樣的話，就不用再上載多一幅縮圖。",
