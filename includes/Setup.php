@@ -39,6 +39,7 @@ if( $wgArticlePath === false ) {
 }
 
 if( $wgStylePath === false ) $wgStylePath = "$wgScriptPath/skins";
+if( $wgLocalStylePath === false ) $wgLocalStylePath = "$wgScriptPath/skins";
 if( $wgStyleDirectory === false) $wgStyleDirectory   = "$IP/skins";
 if( $wgExtensionAssetsPath === false ) $wgExtensionAssetsPath = "$wgScriptPath/extensions";
 

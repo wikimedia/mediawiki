@@ -26,7 +26,7 @@ class SkinVector extends SkinTemplate {
 	 * @param object $out Output page object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
-		global $wgStylePath;
+		global $wgLocalStylePath;
 		
 		parent::initPage( $out );
 
@@ -35,7 +35,7 @@ class SkinVector extends SkinTemplate {
 		// wait for the CSS file to load before fetching the HTC file.
 		$out->addScript(
 			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
-				$wgStylePath .
+				$wgLocalStylePath .
 				'/vector/csshover.htc")}</style><![endif]-->'
 		);
 	}
