@@ -2752,6 +2752,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-rollback'                => '„Rollback” vracia úpravy posledného prispievateľa tejto stránky jedným kliknutím.',
 'tooltip-undo'                    => '„Vrátiť” vráti túto úpravu a otvorí formulár úprav v režime náhľadu.
 Umožnuje do zhrnutia pridanie dôvodu.',
+'tooltip-preferences-save'        => 'Uložiť nastavenia',
 
 # Stylesheets
 'common.css'      => '/* Tu umiestnené CSS bude ovplyvňovať všetky štýly */',

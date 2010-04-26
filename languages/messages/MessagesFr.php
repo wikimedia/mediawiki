@@ -2806,6 +2806,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-rollback'                => '« Révoquer » annule en un clic la ou les modification(s) de cette page par son dernier contributeur.',
 'tooltip-undo'                    => '« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
 Permet de rétablir la version précédente et d’ajouter un motif dans la boîte de résumé.',
+'tooltip-preferences-save'        => 'Sauvegarder les préférences',
 
 # Stylesheets
 'common.css'      => '/* Le CSS placé ici sera appliqué à tous les habillages. */',

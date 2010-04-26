@@ -2528,6 +2528,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'tooltip-upload'                  => 'nahraće startować',
 'tooltip-rollback'                => '"Rollback" anuluje změny strony poslednjeho sobudźěłaćerja přez jedne kliknjenje.',
 'tooltip-undo'                    => 'anuluje tutu změnu a wočinja wobdźěłowanski formular w přehladowym modusu. Zmóžnja přičinu w zjeću přidać.',
+'tooltip-preferences-save'        => 'Nastajenja składować',
 
 # Stylesheets
 'common.css'   => '/* CSS w tutej dataji budźe so na wšěch stronow wuskutkować. */',

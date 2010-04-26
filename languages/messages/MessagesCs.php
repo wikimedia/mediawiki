@@ -2762,6 +2762,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http:
 'tooltip-upload'                  => 'Odesílání souboru',
 'tooltip-rollback'                => '„Vrácení zpět“ jedním kliknutím zruší všechny editace provedené posledním uživatelem.',
 'tooltip-undo'                    => '„Zrušit editaci“ otevře okno editace, které neobsahuje změny provedené v rušené editaci. Je možné doplnit zdůvodnění do shrnutí editace.',
+'tooltip-preferences-save'        => 'Uložit nastavení',
 
 # Stylesheets
 'common.css'      => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',

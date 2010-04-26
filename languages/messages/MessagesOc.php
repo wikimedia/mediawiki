@@ -1711,6 +1711,7 @@ Per una seguretat optimala, img_auth.php es desactivat.",
 'http-timed-out'        => 'HTTP request timed out.',
 'http-curl-error'       => "Error al moment de la recuperacion de l'URL : $1",
 'http-host-unreachable' => "Impossible d'aténher l'URL",
+'http-bad-status'       => 'I a agut un problèma al moment de la requèsta HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Pòt pas aténher l’URL',
@@ -2493,6 +2494,7 @@ Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar ca
 
 Dins aqueste cas, vos caldrà desplaçar o fusionar la pagina manualament se o volètz.",
 'movearticle'                  => "Tornar nomenar l'article",
+'moveuserpage-warning'         => "'''Atencion :''' Sètz a mand de tornar nomenar una pagina d’utilizaire. Notatz que sola la pagina serà renomenada e que l’utilizaire '''ne''' serà '''pas''' renomenat.",
 'movenologin'                  => 'Vos sètz pas identificat(ada)',
 'movenologintext'              => "Per poder tornar nomenar un article, vos cal èsser [[Special:UserLogin|connectat(ada)]]
 en tant qu'utilizaire enregistrat.",
