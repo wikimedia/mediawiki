@@ -721,27 +721,6 @@ CREATE TABLE log_search (
 CREATE UNIQUE INDEX ls_field_val ON log_search (ls_field,ls_value,ls_log_id);
 CREATE INDEX ls_log_id ON log_search (ls_log_id);
 
-CREATE TABLE mediawiki_version (
-  type         VARCHAR(1024)         NOT NULL,
-  mw_version   VARCHAR(1024)         NOT NULL,
-  notes        VARCHAR(1024)         ,
-
-  pg_version   VARCHAR(1024)         ,
-  pg_dbname    VARCHAR(1024)         ,
-  pg_user      VARCHAR(1024)         ,
-  pg_port      VARCHAR(1024)         ,
-  mw_schema    VARCHAR(1024)         ,
-  ts2_schema   VARCHAR(1024)         ,
-  ctype        VARCHAR(1024)         ,
-
-  sql_version  VARCHAR(1024)         ,
-  sql_date     VARCHAR(1024)         ,
-  cdate        TIMESTAMP(3)  NOT NULL DEFAULT CURRENT TIMESTAMP
-);
-
-INSERT INTO mediawiki_version (type,mw_version,sql_version,sql_date)
-  VALUES ('Creation','??','$LastChangedRevision: 34049 $','$LastChangedDate: 2008-04-30 10:20:36 -0400 (Wed, 30 Apr 2008) $');
-
 -- Table for storing localisation data
 CREATE TABLE l10n_cache (
   -- Language code

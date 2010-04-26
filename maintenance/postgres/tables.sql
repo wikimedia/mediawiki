@@ -609,27 +609,6 @@ CREATE TABLE user_properties (
 CREATE UNIQUE INDEX user_properties_user_property ON user_properties (up_user,up_property);
 CREATE INDEX user_properties_property ON user_properties (up_property);
 
-CREATE TABLE mediawiki_version (
-  type         TEXT         NOT NULL,
-  mw_version   TEXT         NOT NULL,
-  notes        TEXT             NULL,
-
-  pg_version   TEXT             NULL,
-  pg_dbname    TEXT             NULL,
-  pg_user      TEXT             NULL,
-  pg_port      TEXT             NULL,
-  mw_schema    TEXT             NULL,
-  ts2_schema   TEXT             NULL,
-  ctype        TEXT             NULL,
-
-  sql_version  TEXT             NULL,
-  sql_date     TEXT             NULL,
-  cdate        TIMESTAMPTZ  NOT NULL DEFAULT now()
-);
-
-INSERT INTO mediawiki_version (type,mw_version,sql_version,sql_date)
-  VALUES ('Creation','??','$LastChangedRevision$','$LastChangedDate$');
-
 CREATE TABLE l10n_cache (
   lc_lang     TEXT    NOT NULL,
   lc_key      TEXT    NOT NULL,

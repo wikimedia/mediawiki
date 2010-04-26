@@ -421,12 +421,6 @@ SELECT setval('trackbacks_tb_id_seq',  1+coalesce(max(tb_id)  ,0),false) FROM tr
 SELECT setval('user_user_id_seq',      1+coalesce(max(user_id),0),false) FROM mwuser;
 };
 
-## Finally, make a record in the mediawiki_version table about this import
-print qq{
-INSERT INTO mediawiki_version (type,mw_version,notes) VALUES ('MySQL import','??',
-'Imported from file created on $now. Old version: $current_version');
-};
-
 print "COMMIT;\n\\o\n\n-- End of dump\n\n";
 select $oldselect;
 close $mdump or die qq{Could not close "$MYSQLDUMPFILE": $!\n};
@@ -438,7 +432,6 @@ __DATA__
 ## or leave blank if it should be skipped
 pagecontent text
 mwuser user
-mediawiki_version
 archive2
 profiling
 objectcache

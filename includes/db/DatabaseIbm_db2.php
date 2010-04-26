@@ -747,8 +747,6 @@ EOF;
 			
 			$res = $this->sourceFile( "../maintenance/ibm_db2/tables.sql" );
 			$res = null;
-	
-			// TODO: update mediawiki_version table
 			
 			// TODO: populate interwiki links
 			
