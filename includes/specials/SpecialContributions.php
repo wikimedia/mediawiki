@@ -64,6 +64,8 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['namespace'] = '';
 		}
 
+		$this->opts['deletedOnly'] = ( $wgRequest->getVal( 'deletedOnly' ) == '1' );
+
 		$this->opts['tagfilter'] = (string) $wgRequest->getVal( 'tagfilter' );
 	
 		// Allows reverts to have the bot flag in recent changes. It is just here to
@@ -93,7 +95,8 @@ class SpecialContributions extends SpecialPage {
 
 			$wgOut->addHTML( $this->getForm() );
 
-			$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'], $this->opts['month'] );
+			$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'], 
+				$this->opts['month'], false, $this->opts['deletedOnly'] );
 			if( !$pager->getNumRows() ) {
 				$wgOut->addWikiMsg( 'nocontribs', $target );
 			} else {
@@ -296,9 +299,11 @@ class SpecialContributions extends SpecialPage {
 		}
 	
 		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		# Add hidden params for tracking
+
+		# Add hidden params for tracking except for parameters in $skipParameters
+		$skipParameters = array( 'namespace', 'deletedOnly', 'target', 'contribs', 'year', 'month' );
 		foreach ( $this->opts as $name => $value ) {
-			if( in_array( $name, array( 'namespace', 'target', 'contribs', 'year', 'month' ) ) ) {
+			if( in_array( $name, $skipParameters ) ) {
 				continue;
 			}
 			$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
@@ -320,6 +325,8 @@ class SpecialContributions extends SpecialPage {
 			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
 			Xml::namespaceSelector( $this->opts['namespace'], '' ) .
 			'</span>' .
+			Xml::checkLabel( wfMsg( 'history-show-deleted' ),
+				'deletedOnly', 'mw-show-deleted-only', $this->opts['deletedOnly'] ) . 
 			( $tagFilter ? Xml::tags( 'p', null, implode( '&nbsp;', $tagFilter ) ) : '' ) .
 			Xml::openElement( 'p' ) .
 			'<span style="white-space: nowrap">' .
@@ -367,7 +374,7 @@ class SpecialContributions extends SpecialPage {
 		$target = $this->opts['target'] == 'newbies' ? 'newbies' : $nt->getText();
 			
 		$pager = new ContribsPager( $target, $this->opts['namespace'], 
-			$this->opts['year'], $this->opts['month'], $this->opts['tagfilter'] );
+			$this->opts['year'], $this->opts['month'], $this->opts['tagfilter'], $this->opts['deletedOnly'] );
 
 		$pager->mLimit = min( $this->opts['limit'], $wgFeedLimit );
 
@@ -431,7 +438,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	var $messages, $target;
 	var $namespace = '', $mDb;
 
-	function __construct( $target, $namespace = false, $year = false, $month = false, $tagFilter = false ) {
+	function __construct( $target, $namespace = false, $year = false, $month = false, $tagFilter = false, $deletedOnly = false ) {
 		parent::__construct();
 
 		$msgs = array( 'uctop', 'diff', 'newarticle', 'rollbacklink', 'diff', 'hist', 'rev-delundel', 'pipe-separator' );
@@ -443,6 +450,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->target = $target;
 		$this->namespace = $namespace;
 		$this->tagFilter = $tagFilter;
+		$this->deletedOnly = $deletedOnly;
 
 		$this->getDateCond( $year, $month );
 
@@ -509,6 +517,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$tables = array( 'page', 'revision' );
 			$condition['rev_user_text'] = $this->target;
 			$index = 'usertext_timestamp';
+		}
+		if ( $this->deletedOnly ) {
+			$condition[] = "rev_deleted != '0'";
 		}
 		return array( $tables, $index, $condition, $join_conds );
 	}
@@ -671,6 +682,17 @@ class ContribsPager extends ReverseChronologicalPager {
 	 */
 	public function getDatabase() {
 		return $this->mDb;
+	}
+
+	/**
+	 * Overwrite Pager function and return a helpful comment
+	 */
+	function getSqlComment() {
+		if ( $this->namespace || $this->deletedOnly ) {
+			return 'contributions page filtered for namespace or RevisionDeleted edits'; // potentially slow, see CR r58153
+		} else {
+			return 'contributions page unfiltered';
+		}
 	}
 
 }
