@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1935,8 +1935,8 @@ Template:消除歧義',
 您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
 'usermailererror'      => 'Mail 对象返回错误：',
 'defemailsubject'      => '{{SITENAME}}电子邮件',
-'usermaildisabled'     => '电子邮件功能未开通',
-'usermaildisabledtext' => '此维基未开通电子邮件发送功能',
+'usermaildisabled'     => '用户电邮已停用',
+'usermaildisabledtext' => '您不可以发送电邮到这个wiki上的其他用户',
 'noemailtitle'         => '无电子邮件地址',
 'noemailtext'          => '该用户还没有指定一个有效的电子邮件地址。',
 'nowikiemailtitle'     => '不容许电子邮件',
