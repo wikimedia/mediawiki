@@ -574,5 +574,4 @@ __DATA__
 OLD: searchindex          ## We use tsearch2 directly on the page table instead
 RENAME: user mwuser       ## Reserved word causing lots of problems
 RENAME: text pagecontent  ## Reserved word
-NEW: mediawiki_version    ## Just us, for now
 XFILE: ../archives/patch-profiling.sql

@@ -1580,7 +1580,6 @@ function do_postgres_updates() {
 
 	$newtables = array(
 		array("category",          "patch-category.sql"),
-		array("mediawiki_version", "patch-mediawiki_version.sql"),
 		array("mwuser",            "patch-mwuser.sql"),
 		array("pagecontent",       "patch-pagecontent.sql"),
 		array("querycachetwo",     "patch-querycachetwo.sql"),
@@ -2032,16 +2031,5 @@ function do_postgres_updates() {
 	## in case they have the old 'default' versions
 	if ( $numver >= 8.3 )
 		$wgDatabase->sourceFile(archive('patch-tsearch2funcs.sql'));
-
-	## Put a new row in the mediawiki_version table
-	$wgDatabase->insert( 'mediawiki_version',
-		array(
-			'type' => 'Update',
-			'ctype' => 'U',
-			'mw_version' => $wgVersion,
-			'pg_version' => $version,
-			'sql_version' => '$LastChangedRevision$',
-			'sql_date' => '$LastChangedDate$',
-		) );
 	return;
 }
