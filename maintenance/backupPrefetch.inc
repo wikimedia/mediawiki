@@ -51,7 +51,7 @@ foreach( $xmlReaderConstants as $name ) {
  * - text contents are immutable and should not change once
  *   recorded, so the previous dump is a reliable source
  *
- * Requires PHP 5 and the XMLReader PECL extension.
+ * Requires the XMLReader PECL extension.
  * @ingroup Maintenance
  */
 class BaseDump {
@@ -71,8 +71,8 @@ class BaseDump {
 	 * from the dump stream. May return null if the page is
 	 * unavailable.
 	 *
-	 * @param int $page ID number of page to read
-	 * @param int $rev ID number of revision to read
+	 * @param $page Integer: ID number of page to read
+	 * @param $rev Integer: ID number of revision to read
 	 * @return string or null
 	 */
 	function prefetch( $page, $rev ) {
@@ -166,7 +166,8 @@ class BaseDump {
 	 * Shouldn't something like this be built-in to XMLReader?
 	 * Fetches text contents of the current element, assuming
 	 * no sub-elements or such scary things.
-	 * @return string
+	 *
+	 * @return String
 	 * @access private
 	 */
 	function nodeContents() {
