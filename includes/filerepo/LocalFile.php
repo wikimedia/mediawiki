@@ -661,7 +661,11 @@ class LocalFile extends File {
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
 		$r = array();
 		while( $row = $dbr->fetchObject( $res ) ) {
-			$r[] = OldLocalFile::newFromRow( $row, $this->repo );
+			if ( $this->repo->oldFileFromRowFactory ) {
+				$r[] = call_user_func( $this->repo->oldFileFromRowFactory, $row, $this->repo );
+			} else {
+				$r[] = OldLocalFile::newFromRow( $row, $this->repo );
+			}
 		}
 		if( $order == 'ASC' ) {
 			$r = array_reverse( $r ); // make sure it ends up descending
