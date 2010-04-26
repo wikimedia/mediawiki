@@ -145,6 +145,7 @@ $wgRedirectScript   = false; ///< defaults to "{$wgScriptPath}/redirect{$wgScrip
  * asset paths as seen by users
  */
 $wgStylePath   = false; ///< defaults to "{$wgScriptPath}/skins"
+$wgLocalStylePath   = false; ///< defaults to the same value as $wgStylePath, and shouldn't point to an external domain
 $wgExtensionAssetsPath = false; ///< defaults to "{$wgScriptPath}/extensions"
 
 /**
