@@ -234,7 +234,7 @@ $messages = array(
 'printableversion'  => 'ಪ್ರಿಂಟ್ ಆವೃತ್ತಿ',
 'permalink'         => 'ಸ್ಥಿರ ಸಂಪರ್ಕ',
 'print'             => 'ಮುದ್ರಿಸು',
-'edit'              => 'ಸಂಪಾದಿಸಿ (edit this page)',
+'edit'              => 'ಸಂಪಾದಿಸಿ',
 'create'            => 'ಸೃಷ್ಟಿಸು',
 'editthispage'      => 'ಈ ಪುಟವನ್ನು ಬದಲಾಯಿಸಿ',
 'create-this-page'  => 'ಈ ಪುಟವನ್ನು ಸೃಷ್ಟಿಸು',
@@ -1168,6 +1168,7 @@ $2',
 # Statistics
 'statistics'              => 'ಅಂಕಿ ಅಂಶಗಳು',
 'statistics-header-users' => 'ಸದಸ್ಯರ ಅಂಕಿ ಅಂಶ',
+'statistics-pages'        => 'ಪುಟಗಳು',
 'statistics-mostpopular'  => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ವೀಕ್ಷಿತ ಪುಟಗಳು',
 
 'disambiguations'     => 'ದ್ವಂದ್ವನಿವಾರಣಾ ಪುಟಗಳು',

@@ -2322,7 +2322,7 @@ $1',
 'sp-contributions-deleted'             => 'usunięty wkład użytkownika',
 'sp-contributions-logs'                => 'rejestry',
 'sp-contributions-talk'                => 'dyskusja',
-'sp-contributions-userrights'          => 'zarządzanie uprawnieniami użytkowników',
+'sp-contributions-userrights'          => 'zarządzanie uprawnieniami użytkownika',
 'sp-contributions-blocked-notice'      => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}. Ostatni wpis rejestru blokad jest pokazany poniżej.',
 'sp-contributions-blocked-notice-anon' => 'Ten adres IP jest obecnie zablokowany.
 Poniżej znajduje się ostatni wpis w rejestrze blokowania.',

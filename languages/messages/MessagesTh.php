@@ -1869,7 +1869,7 @@ $1",
 'newuserlog-autocreate-entry' => 'ชื่อบัญชีถูกสร้างอัตโนมัติ',
 
 # Special:ListGroupRights
-'listgrouprights'                      => 'สิทธิกลุ่มผู้ใช้งาน',
+'listgrouprights'                      => 'สิทธิของกลุ่มผู้ใช้',
 'listgrouprights-summary'              => 'รายชื่อกลุ่มผู้ใช้ต่อไปนี้ถูกกำหนดไว้บน {{SITENAME}} โดยมีสิทธิการเข้าถึงที่เกี่ยวข้อง และอาจมี[[{{MediaWiki:Listgrouprights-helppage}}|ข้อมูลเพิ่มเติม]]เกี่ยวกับสิทธิของแต่ละบุคคล',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">สิทธิ์ที่ถูกให้</span>
 * <span class="listgrouprights-revoked">สิทธิ์ที่ถูกยกเลิก</span>',
@@ -2494,7 +2494,7 @@ $1 ถูกบล็อกแล้ว คุณต้องการแก้�
 'tooltip-pt-logout'               => 'ล็อกเอาต์',
 'tooltip-ca-talk'                 => 'พูคุยเกี่ยวกับเนื้อหา',
 'tooltip-ca-edit'                 => 'หน้านี้แก้ไขได้ ก่อนทำการบันทึกให้กรุณากดปุ่มดูตัวอย่างก่อน แน่ใจว่าได้ตามที่ต้องการ',
-'tooltip-ca-addsection'           => 'เริ่มส่วนย่อยใหม่',
+'tooltip-ca-addsection'           => 'เริ่มหัวข้อย่อยใหม่',
 'tooltip-ca-viewsource'           => 'หน้านี้ถูกล็อก แต่ยังคงดูโค้ดได้',
 'tooltip-ca-history'              => 'รุ่นที่แล้วของหน้านี้',
 'tooltip-ca-protect'              => 'ล็อกหน้านี้',

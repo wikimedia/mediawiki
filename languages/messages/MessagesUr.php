@@ -1181,6 +1181,7 @@ HTML tags جانچئے.',
 'sp-contributions-talk'       => 'گفتگو',
 'sp-contributions-userrights' => 'صارف کے حقوق کا انتظام',
 'sp-contributions-username'   => 'آئی.پی پتہ یا اسمِ صارف:',
+'sp-contributions-submit'     => 'تلاش',
 
 # What links here
 'whatlinkshere'      => 'ادھر کس کا جوڑ ہے',
