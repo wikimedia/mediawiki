@@ -204,8 +204,9 @@ body {
 		direction: ltr;
 		float: left;
 		background-image: url(images/arrow-down-icon.png);
-		background-position: center center;
+		background-position: 100% 60%;
 		background-repeat: no-repeat;
+		cursor: pointer;
 	}
 	/* @noflip */
 	body.rtl div.vectorMenu {
@@ -225,6 +226,15 @@ body {
 	#head div.vectorMenu h5 {
 		background-position: bottom right;
 		margin-right: -1px;
+	}
+	#head div.vectorMenu h4 {
+		display: inline-block;
+		float: right;
+		font-size: 0.8em;
+		padding-right: 0.5em;
+		padding-top: 1.375em;
+		font-weight: normal;
+		border: none;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	/* @noflip */
