@@ -1114,7 +1114,9 @@ class Linker {
 
 			$target = Title::newFromText( $linkTarget );
 			if( $target ) {
-				if( $target->getText() == '' && !$this->commentLocal && $this->commentContextTitle ) {
+				if( $target->getText() == '' && !$target->getInterwiki() === ''
+					&& !$this->commentLocal && $this->commentContextTitle )
+				{
 					$newTarget = clone( $this->commentContextTitle );
 					$newTarget->setFragment( '#' . $target->getFragment() );
 					$target = $newTarget;

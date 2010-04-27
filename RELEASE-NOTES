@@ -133,6 +133,8 @@ in a negative namespace (which is invalid).
   displayed on Special:Listusers.
 * (bug 23313) Move watchlisthidepatrolled above token in watchlist preferences
   to enhance preference grouping.
+* (bug 23298) Interwiki links with prefix only in log summaries now link to the
+  correct link
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
