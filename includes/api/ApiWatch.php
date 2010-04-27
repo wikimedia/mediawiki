@@ -57,9 +57,11 @@ class ApiWatch extends ApiBase {
 
 		if ( $params['unwatch'] ) {
 			$res['unwatched'] = '';
+			$res['message'] = wfMsgExt( 'removedwatchtext', array( 'parse' ), $title->getPrefixedText() );
 			$success = $article->doUnwatch();
 		} else {
 			$res['watched'] = '';
+			$res['message'] = wfMsgExt( 'addedwatchtext', array( 'parse' ), $title->getPrefixedText() );
 			$success = $article->doWatch();
 		}
 		if ( !$success ) {

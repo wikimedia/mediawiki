@@ -74,60 +74,6 @@ function code2utf( $num ) {
 }
 
 /**
- * Called for AJAX watch/unwatch requests.
- * @param $pagename Prefixed title string for page to watch/unwatch
- * @param $watch String 'w' to watch, 'u' to unwatch
- * @return String '<w#>' or '<u#>' on successful watch or unwatch,
- *   respectively, followed by an HTML message to display in the alert box; or
- *   '<err#>' on error
- */
-function wfAjaxWatch( $pagename = "", $watch = "" ) {
-	if ( wfReadOnly() ) {
-		// redirect to action=(un)watch, which will display the database lock
-		// message
-		return '<err#>';
-	}
-
-	if ( 'w' !== $watch && 'u' !== $watch ) {
-		return '<err#>';
-	}
-	$watch = 'w' === $watch;
-
-	$title = Title::newFromDBkey( $pagename );
-	if ( !$title ) {
-		// Invalid title
-		return '<err#>';
-	}
-	$article = new Article( $title );
-	$watching = $title->userIsWatching();
-
-	if ( $watch ) {
-		if ( !$watching ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
-			$ok = $article->doWatch();
-			$dbw->commit();
-		}
-	} else {
-		if ( $watching ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
-			$ok = $article->doUnwatch();
-			$dbw->commit();
-		}
-	}
-	// Something stopped the change
-	if ( isset( $ok ) && !$ok ) {
-		return '<err#>';
-	}
-	if ( $watch ) {
-		return '<w#>' . wfMsgExt( 'addedwatchtext', array( 'parse' ), $title->getPrefixedText() );
-	} else {
-		return '<u#>' . wfMsgExt( 'removedwatchtext', array( 'parse' ), $title->getPrefixedText() );
-	}
-}
-
-/**
  * Called in some places (currently just extensions)
  * to get the thumbnail URL for a given file at a given resolution.
  */
