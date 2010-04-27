@@ -4203,6 +4203,13 @@ $wgVectorUseSimpleSearch = false;
 $wgVectorUseIconWatch = false;
 
 /**
+ * Show the name of the current variant as a label in the variants drop-down menu
+ * true = Show the label
+ * false = Do not show the label
+ */
+$wgVectorShowVariantName = false;
+
+/**
  * Add extra stylesheets for Vector - This is only being used so that we can play around with different options while
  * keeping our CSS code in the SVN and not having to change the main Vector styles. This will probably go away later on.
  * null = add no extra styles
