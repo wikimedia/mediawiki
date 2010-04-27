@@ -331,7 +331,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Enviar-me cópias dos correios electrónicos que eu enviar a outros utilizadores',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats'          => 'Mostrar categorias ocultas',
-'tog-noconvertlink'           => 'Impossibilitar a conversão dos títulos de ligações',
+'tog-noconvertlink'           => 'Impossibilitar a conversão dos títulos de links',
 'tog-norollbackdiff'          => 'Omitir diferenças depois de reverter edições em bloco',
 
 'underline-always'  => 'Sempre',
@@ -2805,6 +2805,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-rollback'                => '"{{int:rollbacklink}}" reverte, com um só clique, as edições do último editor desta página.',
 'tooltip-undo'                    => '"desfazer" reverte esta edição e apresenta a página de edição no modo de antevisão.
 Permite colocar uma justificação no resumo da edição.',
+'tooltip-preferences-save'        => 'Gravar preferências',
 
 # Stylesheets
 'common.css'      => '/* Código CSS colocado aqui será aplicado a todos os temas */',

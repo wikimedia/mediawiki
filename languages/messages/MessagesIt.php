@@ -1649,7 +1649,7 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 'upload-curl-error28-text' => 'Il sito remoto ha impiegato troppo tempo a rispondere. Verificare che il sito sia attivo, attendere qualche minuto e provare di nuovo, eventualmente in un momento di minore traffico.',
 
 'license'            => 'Licenza:',
-'license-header'     => "Licenza d'uso",
+'license-header'     => 'Licenza',
 'nolicense'          => 'Nessuna licenza indicata',
 'license-nopreview'  => '(Anteprima non disponibile)',
 'upload_source_url'  => ' (una URL corretta e accessibile)',
@@ -2631,6 +2631,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-upload'                  => 'Inizia il caricamento',
 'tooltip-rollback'                => '"Rollback" annulla le modifiche a questa pagina dell\'ultimo contributore con un solo clic.',
 'tooltip-undo'                    => '"Annulla" permette di annullare questa modifica e apre il modulo di modifica in modalità di anteprima. Permette di inserire una motivazione nell\'oggetto della modifica.',
+'tooltip-preferences-save'        => 'Salva le preferenze',
 
 # Stylesheets
 'common.css'      => '/* Gli stili CSS inseriti qui si applicano a tutte le skin */',
