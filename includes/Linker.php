@@ -1114,7 +1114,7 @@ class Linker {
 
 			$target = Title::newFromText( $linkTarget );
 			if( $target ) {
-				if( $target->getText() == '' && !$target->getInterwiki() === ''
+				if( $target->getText() == '' && $target->getInterwiki() === ''
 					&& !$this->commentLocal && $this->commentContextTitle )
 				{
 					$newTarget = clone( $this->commentContextTitle );
