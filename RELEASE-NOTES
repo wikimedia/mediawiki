@@ -60,6 +60,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on, allowing skins to use .htc files which are not cross-domain friendly.
 * ajaxwatch now uses the API and JQuery, and can be used to animate arbitrary 
   watch links, not just to watch the page the link is on.
+* (bug 20193) Added $wgVectorShowVariantName global configuration varaible
+  which causes Vector to render the the variants drop-down menu with a label
+  showing the current variant name. This is off by default, pending further
+  research into it's user experience implications.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
