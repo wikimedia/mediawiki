@@ -1518,6 +1518,7 @@ class OutputPage {
 			wfRunHooks( 'AjaxAddScript', array( &$this ) );
 
 			if( $wgAjaxWatch && $wgUser->isLoggedIn() ) {
+				$this->includeJQuery();
 				$this->addScriptFile( 'ajaxwatch.js' );
 			}
 

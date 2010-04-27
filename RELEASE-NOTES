@@ -58,6 +58,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22858) $wgLocalStylePath is by default set to the same value as
   $wgStylePath but should never point to a different domain than the site is
   on, allowing skins to use .htc files which are not cross-domain friendly.
+* ajaxwatch now uses the API and JQuery, and can be used to animate arbitrary 
+  watch links, not just to watch the page the link is on.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
