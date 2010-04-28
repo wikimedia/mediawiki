@@ -34,6 +34,8 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['contribs'] = 'newbie';
 		}
 
+		$this->opts['deletedOnly'] = ( $wgRequest->getVal( 'deletedOnly' ) == '1' );
+
 		if( !strlen( $target ) ) {
 			$wgOut->addHTML( $this->getForm() );
 			return;
@@ -63,8 +65,6 @@ class SpecialContributions extends SpecialPage {
 		} else {
 			$this->opts['namespace'] = '';
 		}
-
-		$this->opts['deletedOnly'] = ( $wgRequest->getVal( 'deletedOnly' ) == '1' );
 
 		$this->opts['tagfilter'] = (string) $wgRequest->getVal( 'tagfilter' );
 	
