@@ -83,7 +83,7 @@ $j(document).ready( function(){
 	$links.click( function(event){
 		var $link = $j(this);
 
-		if( wgAjaxWatch.supported === false || !wfSupportsAjax() ) {
+		if( wgAjaxWatch.supported === false || !wgEnableWriteAPI || !wfSupportsAjax() ) {
 			// Lazy initialization so we don't toss up
 			// ActiveX warnings on initial page load
 			// for IE 6 users with security settings.
@@ -93,8 +93,8 @@ $j(document).ready( function(){
 		
 		wgAjaxWatch.setLinkText( $link, $link.data('action')+'ing' );
 		$j.get( wgScriptPath 
-				+ '/api.php?action=watch&format=json&title='
-				+ $link.data('target')
+				+ '/api' + wgScriptExtension + '?action=watch&format=json&title='
+				+ encodeURIComponent( $link.data('target') )
 				+ ( $link.data('action')=='unwatch' ? '&unwatch' : '' ),
 			{},
 			wgAjaxWatch.processResult,
