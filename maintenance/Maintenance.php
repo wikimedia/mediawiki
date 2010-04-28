@@ -606,7 +606,7 @@ abstract class Maintenance {
 	 */
 	public function finalSetup() {
 		global $wgCommandLineMode, $wgShowSQLErrors;
-		global $wgTitle, $wgProfiling, $IP, $wgDBadminuser, $wgDBadminpassword;
+		global $wgProfiling, $IP, $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
 		# Turn off output buffering again, it might have been turned on in the settings files
