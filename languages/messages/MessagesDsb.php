@@ -2560,6 +2560,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-undo'                    => 'Anulěrujo toś tu změnu a wócynijo wobźěłański formular w pśeglědowem modusu.
 W zespominanju dajo se pśicyna pódaś.',
 'tooltip-preferences-save'        => 'Nastajenja składowaś',
+'tooltip-summary'                 => 'Zapódaj krotke zespominanje',
 
 # Stylesheets
 'common.css'   => '/** Na toś tom městnje wustatkujo se CSS na wšykne šaty. */',

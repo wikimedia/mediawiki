@@ -559,7 +559,7 @@ Peto: $2',
 'protectedpagetext'    => 'Tiu ĉi paĝo estas ŝlosita por malebligi redaktadon.',
 'viewsourcetext'       => 'Vi povas rigardi kaj kopii la fonton de la paĝo:',
 'protectedinterface'   => 'Ĉi tiu paĝo provizas interfacan tekston por la softvaro, kaj estas ŝlosita por malabeligi misuzon.',
-'editinginterface'     => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la softvaro. Ŝanĝoj de tiu ĉi teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj. Por tradukojn, bonvolu uzi [http://translatewiki.net/wiki/Main_Page?setlang=eo translatewiki.net], la projekto por fari lokajn versiojn de MediaWiki.",
+'editinginterface'     => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la rogramaro. Ŝanĝoj de ĉi tiu teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj. Por tradukojn, bonvolu uzi [http://translatewiki.net/wiki/Main_Page?setlang=eo translatewiki.net], la MediaWiki-projekton por lingvigaj versioj.",
 'sqlhidden'            => '(SQL serĉomendo kaŝita)',
 'cascadeprotected'     => 'Ĉi tiu paĝo estas protektita kontraŭ redaktado, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan paĝon, kiu|sekvajn paĝojn, kiuj}} estas {{PLURAL:$1|protektata|protektataj}} kun la "kaskada" opcio turnita sur:
 $2',
@@ -837,7 +837,7 @@ Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.'''",
 Vi eble volus elkopii kaj englui la tekston al tekstdosiero por konservi ĝin por posta uzo.'''
 
 La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1",
-'protectedpagewarning'             => "'''Averto: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj.'''
+'protectedpagewarning'             => "'''Averto: Ĉi tiu paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj.'''
 Jen la lasta protokolero provizita por via referenco:",
 'semiprotectedpagewarning'         => "'''Notu:''' Ĉi tiu paĝo estas ŝlosita tial ke nur ensalutintaj uzantoj povas redakti ĝin.
 Jen la lasta protokolero por via referenco:",
@@ -1534,8 +1534,9 @@ Se la kontrolita dosiero estas la sama bildo kiel la originala grandeco, ĝi ne 
 'file-thumbnail-no'           => "La dosiernomo komencas kun '''<tt>$1</tt>'''. 
 Ĝi ŝajnas kiel bildo de malgrandigita grandeco ''(thumbnail)''.
 Se vi havas ĉi tiun bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.",
-'fileexists-forbidden'        => 'Dosiero kun tiu ĉi nomo jam ekzistas, kaj ne povas anstataŭigi ĝin.
-Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu reprovi kun nova nomo. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Dosiero kun ĉi tiu nomo jam ekzistas kaj ne povas anstataŭigi ĝin.
+Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu reprovi kun nova nomo.
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dosiero kun ĉi tia nomo jam ekzistas en la komuna dosierujo.
 Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon.[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ĉi tiu dosiero estas duplikato de la {{PLURAL:$1|jena dosiero|jenaj dosieroj}}:',

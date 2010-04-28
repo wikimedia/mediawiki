@@ -74,6 +74,7 @@ $messages = array(
 'subcategories'          => 'Amatabi',
 'category-media-header'  => 'Mediya eziri mu ttuluba lya "$1"',
 'category-empty'         => "''Ettuluba lino temuli mpapula oba mediya.''",
+'category-subcat-count'  => '{{PLURAL:$2|Ettuluba lino lirimu ettabi lino lyokka:|Ettuluba lino lirimu {{PLURAL:$1|ettabi lino:|amatabi $1 gano}}, ku $2 awamu.}}',
 'listingcontinuesabbrev' => 'era...',
 
 'about'      => 'Okutangaaza',

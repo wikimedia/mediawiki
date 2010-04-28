@@ -1270,7 +1270,7 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1–$2''' de '''$3'''}} para '''$4'''",
 'nonefound'                        => "'''Nota''': Por omissão, só alguns dos espaços nominais são pesquisados.
 Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (incluindo páginas de discussão, predefinições, etc.), ou use como prefixo o espaço nominal desejado.",
-'search-nonefound'                 => 'Não houve resultados para a pesquisa.',
+'search-nonefound'                 => 'A pesquisa não produziu quaisquer resultados.',
 'powersearch'                      => 'Pesquisa avançada',
 'powersearch-legend'               => 'Pesquisa avançada',
 'powersearch-ns'                   => 'Pesquisar nos espaços nominais:',
