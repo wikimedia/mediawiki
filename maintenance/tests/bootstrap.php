@@ -12,6 +12,7 @@ $IP = dirname( dirname( dirname( __FILE__ ) ) );
 define( 'MW_PHPUNIT_TEST', true );
 
 require_once( "$IP/maintenance/commandLine.inc" );
+$wgLocaltimezone = 'UTC';
 
 if( !version_compare(PHPUnit_Runner_Version::id(), "3.4.1", ">") ) {
   echo <<<EOF
