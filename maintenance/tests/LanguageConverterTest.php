@@ -75,6 +75,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 
 		$wgUser = new User;
 		$wgUser->setId(1);
+		$wgUser->mDataLoaded = true;
 		$wgUser->setOption('variant', 'tg-latn');
 
 		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));

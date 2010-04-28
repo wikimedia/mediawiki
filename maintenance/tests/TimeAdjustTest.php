@@ -1,9 +1,18 @@
 <?php
 
 class TimeAdjustTest extends PHPUnit_Framework_TestCase {
+	static $offset;
 
 	public function setUp() {
+		global $wgLocalTZoffset;
+		self::$offset = $wgLocalTZoffset;
+
 		$this->iniSet( 'precision', 15 );
+	}
+
+	public function tearDown() {
+		global $wgLocalTZoffset;
+		$wgLocalTZoffset = self::$offset;
 	}
 
 	# Test offset usage for a given language::userAdjust

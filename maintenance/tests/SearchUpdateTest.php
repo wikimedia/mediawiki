@@ -43,6 +43,10 @@ class MockSearch extends SearchEngine {
 }
 
 class SearchUpdateTest extends PHPUnit_Framework_TestCase {
+	static $searchType;
+	static $dbtype;
+	static $factoryconf;
+	static $dbservers;
 
 	function update( $text, $title = 'Test', $id = 1 ) {
 		$u = new SearchUpdate( $id, $title, $text );
@@ -58,6 +62,12 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 
 	function setUp() {
 		global $wgSearchType, $wgDBtype, $wgLBFactoryConf, $wgDBservers;
+
+		self::$searchType  = $wgSearchType;
+		self::$dbtype      = $wgDBtype;
+		self::$factoryconf = $wgLBFactoryConf;
+		self::$dbservers   = $wgDBservers;
+
 		$wgSearchType = 'MockSearch';
 		$wgDBtype = 'mock';
 		$wgLBFactoryConf['class'] = 'LBFactory_Simple';
@@ -66,7 +76,14 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function tearDown() {
+		global $wgSearchType, $wgDBtype, $wgLBFactoryConf, $wgDBservers;
+
 		LBFactory::destroyInstance();
+
+		$wgSearchType = self::$searchType;
+		$wgDBtype = self::$dbtype;
+		$wgLBFactoryConf = self::$factoryconf;
+		$wgDBservers = self::$dbservers;
 	}
 
 	function testUpdateText() {

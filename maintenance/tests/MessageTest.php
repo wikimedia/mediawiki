@@ -25,7 +25,7 @@ class MessageTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException
+	 * @expectedException MWException
 	 */
 	function testInLanguageThrows() {
 		Message::key( 'foo' )->inLanguage( 123 );
