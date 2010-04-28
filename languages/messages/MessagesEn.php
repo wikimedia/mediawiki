@@ -3295,6 +3295,7 @@ Please try again.',
 'accesskey-watch'                   => 'w', # do not translate or duplicate this message to other languages
 'accesskey-upload'                  => 's', # do not translate or duplicate this message to other languages
 'accesskey-preferences-save'        => 's', # do not translate or duplicate this message to other languages
+'accesskey-summary'                 => 'b', # do not translate or duplicate this message to other languages
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Your user page',
@@ -3362,6 +3363,7 @@ You can view its source',
 'tooltip-rollback'                => '"Rollback" reverts edit(s) to this page of the last contributor in one click',
 'tooltip-undo'                    => '"Undo" reverts this edit and opens the edit form in preview mode. It allows adding a reason in the summary.',
 'tooltip-preferences-save'        => 'Save preferences',
+'tooltip-summary'                 => 'Enter a short summary',
 
 # Stylesheets
 'common.css'      => '/* CSS placed here will be applied to all skins */', # only translate this message to other languages if you have to change it

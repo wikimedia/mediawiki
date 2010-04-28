@@ -54,6 +54,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22647) Add category details in search results.
 * (bug 23276) Add hook to Special:NewPages to modify query
 * Add accesskey 's' and tooltip to 'Save' button at Special:Preferences
+* Add accesskey 'b' and tooltip to the summary field of edit mode
 * (bug 20186) Allow filtering Special:Contributions for RevisionDeleted edits
 * (bug 22858) $wgLocalStylePath is by default set to the same value as
   $wgStylePath but should never point to a different domain than the site is

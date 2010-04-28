@@ -1485,14 +1485,15 @@ HTML
 	 * @return array An array in the format array( $label, $input )
 	 */
 	function getSummaryInput($summary = "", $labelText = null, $inputAttrs = null, $spanLabelAttrs = null) {
+		global $wgUser;
 		$inputAttrs = ( is_array($inputAttrs) ? $inputAttrs : array() ) + array(
 			'id' => 'wpSummary',
 			'maxlength' => '200',
 			'tabindex' => '1',
 			'size' => 60,
 			'spellcheck' => 'true',
-		);
-		
+		) + $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'summary' );
+
 		$spanLabelAttrs = ( is_array($spanLabelAttrs) ? $spanLabelAttrs : array() ) + array(
 			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',
 			'id' => "wpSummaryLabel"
