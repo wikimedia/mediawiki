@@ -141,7 +141,9 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-ccmeonemails'            => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]].',
 'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]].',
-'tog-noconvertlink'           => '{{optional}}',
+'tog-noconvertlink'           => "{{optional}}
+
+''(the message is considered optional because it is only used in wikis with language variants)''",
 'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that.
 {{Identical|Rollback}}",
 

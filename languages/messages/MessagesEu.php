@@ -1390,6 +1390,12 @@ Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
 'filetype-banned-type'        => '\'\'\'".$1"\'\'\' ez dago baimendutako fitxategi moten artean.
 Baimendutako fitxategi {{PLURAL:$3|mota $2 da|motak $2 dira}}.',
 'filetype-missing'            => 'Fitxategi honek ez du luzapenik (adibidez, ".jpg").',
+'empty-file'                  => 'Bidali duzun fitxategia hutsik dago.',
+'file-too-large'              => 'Bidali duzun fitxategia handiegia zen.',
+'filename-tooshort'           => 'Fitxategiaren izena laburregia da.',
+'filetype-banned'             => 'Mota horretako fitxategiak debekatuta daude.',
+'illegal-filename'            => 'Fitxategiaren izena ez da onartzen.',
+'tmp-create-error'            => 'Ezin izan da behin-behineko fitxategirik sortu.',
 'large-file'                  => 'Ez da gomendagarria fitxategiak $1 baino handiagoak izatea; fitxategi honen tamaina: $2.',
 'largefileserver'             => 'Fitxategi hau zerbitzariak baimentzen duena baino handiagoa da.',
 'emptyfile'                   => 'Badirudi igotzen ari zaren fitxategia hutsik dagoela. Mesedez, egiaztatu fitxategi hori dela igo nahi duzuna.',
@@ -1784,6 +1790,7 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 [[Special:Preferences|Hobespenetan]] daukazun e-posta helbidea azalduko da mezuaren bidaltzaile bezala eta beraz erantzun ahal izango dizu.',
 'usermailererror'  => 'Mail objektuak errore hau itzuli du:',
 'defemailsubject'  => 'E-posta {{SITENAME}}(e)tik',
+'usermaildisabled' => 'Erabiltzailearen e-maila desaktibatuta',
 'noemailtitle'     => 'Posta helbiderik ez',
 'noemailtext'      => 'Erabiltzaile honek ez du baliozko e-posta helbiderik zehaztu.',
 'nowikiemailtitle' => 'Ezin da e-postarik bidali',
@@ -2192,6 +2199,7 @@ Hala ere, $2-(r)en parte denez, blokeoa kendu daiteke.',
 'sorbsreason'                     => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan.',
 'sorbs_create_account_reason'     => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan. Ezin duzu kontua sortu.',
 'cant-block-while-blocked'        => 'Blokeatuta zauden bitartean ezin dituzu beste lankideak blokeatu.',
+'ipbnounblockself'                => 'Ez duzu baimenik zure buruari blokeoa kentzeko',
 
 # Developer tools
 'lockdb'              => 'Datu-basea blokeatu',
@@ -2447,6 +2455,7 @@ Fitxategiaren atal bat baino ez zen igo.',
 'tooltip-rollback'                => '"Desegin" ekintzak orriaren azken egilearen ekarpena ezabatzen du klik batean',
 'tooltip-undo'                    => '"Desegin" botoiak egindako aldaketa ezeztatzen du eta aurreikuspen bista erakusten du.
 Laburpenean arrazoi bat gehitzea baimentzen du',
+'tooltip-preferences-save'        => 'Hobespenak gorde',
 
 # Stylesheets
 'common.css'   => '/** Hemen idatzitako CSS kodeak itxura guztietan izango du eragina */',
@@ -3042,7 +3051,7 @@ Halaber [[Special:Watchlist/edit|aldatzaile estandarra]] erabil dezakezu.',
 # Special:FilePath
 'filepath'         => 'Fitxategi bidea',
 'filepath-page'    => 'Fitxategia:',
-'filepath-submit'  => 'Ibilbidea',
+'filepath-submit'  => 'Joan',
 'filepath-summary' => 'Orri berezi honek fitxategiaren ibilbidea itzultzen du.
 Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutako programarekin hasiko dira zuzenean.
 

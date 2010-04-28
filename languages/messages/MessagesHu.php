@@ -2742,6 +2742,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'tooltip-upload'                  => 'Feltöltés indítása',
 'tooltip-rollback'                => '„Visszaállítás”: egy kattintással visszavonja az utolsó felhasználó egy vagy több szerkesztését.',
 'tooltip-undo'                    => '„Visszavonás”: visszavonja ezt a szerkesztést, valamint megnyitja a szerkesztőt előnézet módban. A szerkesztési összefoglalóban meg lehet adni a visszavonás okát.',
+'tooltip-preferences-save'        => 'Beállítások mentése',
 
 # Stylesheets
 'common.css'   => '/* Közös CSS az összes felszínnek */',

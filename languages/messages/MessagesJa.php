@@ -1149,6 +1149,7 @@ $1",
 'searchprofile-everything-tooltip' => '全ページ (ノート、会話ページ含む) を検索',
 'searchprofile-advanced-tooltip'   => '名前空間を指定して検索',
 'search-result-size'               => '$1 ({{PLURAL:$2|$2語}})',
+'search-result-category-size'      => 'ページ$1件 サブカテゴリ$2件 ファイル$3件',
 'search-result-score'              => '関連度: $1%',
 'search-redirect'                  => '($1 のリダイレクト)',
 'search-section'                   => '(セクション $1)',
@@ -1504,6 +1505,9 @@ $1",
 'upload_directory_missing'    => 'アップロードディレクトリ ($1) が見つからずウェブサーバーによっても作成できませんでした。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロードのエラー',
+'upload-recreate-warning'     => "'''警告: 同じ名前のファイルが以前に削除または移動されています。'''
+
+便宜のため、当該ページの削除・移動の記録を以下に提示しています:",
 'uploadtext'                  => "ファイルをアップロードするには、以下のフォームを利用してください。過去にアップロードされたファイルの表示・検索には[[Special:FileList|{{int:listfiles}}]]をご利用ください。アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
@@ -2604,6 +2608,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-upload'                  => 'アップロードを開始',
 'tooltip-rollback'                => '「ロールバック」はこのページの最後の編集者によるこのページへのすべての編集を1回のクリックで差し戻します。',
 'tooltip-undo'                    => '「取り消し」 (undo) はこの編集を差し戻し、プレビュー付きの編集画面を開きます。要約欄に取り消しの理由を追加することができます。',
+'tooltip-preferences-save'        => '設定を保存',
 
 # Stylesheets
 'common.css'      => '/* ここに書いた CSS はすべての外装に反映されます */',
