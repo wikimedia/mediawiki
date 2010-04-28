@@ -2263,6 +2263,7 @@ $wgMessageStructure = array(
 		'accesskey-watch',
 		'accesskey-upload',
 		'accesskey-preferences-save',
+		'accesskey-summary',
 	),
 	'tooltips' => array(
 		'tooltip-pt-userpage',
@@ -2330,6 +2331,7 @@ $wgMessageStructure = array(
 		'tooltip-rollback',
 		'tooltip-undo',
 		'tooltip-preferences-save',
+		'tooltip-summary',
 	),
 	'stylesheets' => array(
 		'common.css',
