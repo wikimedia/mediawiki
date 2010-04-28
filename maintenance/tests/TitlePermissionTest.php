@@ -620,6 +620,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 
 		global $wgLocalTZoffset;
 		$wgLocalTZoffset = -60;
+		self::$user->mBlockedby = self::$user->getName();
 		self::$user->mBlock = new Block('127.0.8.1', 2, 1, 'no reason given', $now, 0, 10 );
 		$this->assertEquals( array( array( 'blockedtext',
 			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
