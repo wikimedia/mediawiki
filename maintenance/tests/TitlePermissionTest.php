@@ -10,29 +10,33 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 	static $altUserName;
 
 	function setUp() {
-		global $wgAutoloadLocalClasses;
+		global $wgAutoloadLocalClasses, $wgLocaltimezone, $wgLocalTZoffset;
 		self::$userName = "Useruser";
 		self::$altUserName = "Altuseruser";
+		date_default_timezone_set( $wgLocaltimezone );
+		$wgLocalTZoffset = date("Z") / 60;
 
 		self::$title = Title::makeTitle(NS_MAIN, "Main Page");
-		self::$userUser = User::newFromName(self::$userName);
-		if ( !self::$userUser->getID() ) {
-			self::$userUser = User::createNew(self::$userName, array(
-				"email" => "test@example.com",
-				"real_name" => "Test User"));
+		if( !isset(self::$userUser) || !(self::$userUser instanceOf User) ) {
+			self::$userUser = User::newFromName(self::$userName);
+
+			if ( !self::$userUser->getID() ) {
+				self::$userUser = User::createNew(self::$userName, array(
+					"email" => "test@example.com",
+					"real_name" => "Test User"));
+			}
+
+			self::$altUser = User::newFromName(self::$altUserName);
+			if ( !self::$altUser->getID() ) {
+				self::$altUser = User::createNew(self::$altUserName, array(
+					"email" => "alttest@example.com",
+					"real_name" => "Test User Alt"));
+			}
+
+			self::$anonUser = User::newFromId(0);
+
+			self::$user = self::$userUser;
 		}
-
-		self::$altUser = User::newFromName(self::$altUserName);
-		if ( !self::$altUser->getID() ) {
-			self::$altUser = User::createNew(self::$altUserName, array(
-				"email" => "alttest@example.com",
-				"real_name" => "Test User Alt"));
-		}
-
-		self::$anonUser = User::newFromId(0);
-
-		self::$user = self::$userUser;
-
 	}
 
 	function setUserPerm( $perm ) {
@@ -56,6 +60,9 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		} else {
 			self::$user = self::$altUser;
 		}
+
+		global $wgUser;
+		$wgUser = self::$user;
 	}
 
 	function testQuickPermissions() {
@@ -316,7 +323,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 
 		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'ns-specialprotected' ) ),
 							 self::$title->getUserPermissionsErrors( 'bogus', self::$user ) );
-		$this->assertEquals( array(  ),
+		$this->assertEquals( array( array( 'badaccess-groups', '*, [[Mw:Administrators|Administrators]]', 2 ) ),
 							 self::$title->getUserPermissionsErrors( 'createaccount', self::$user ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ) ),
 							 self::$title->getUserPermissionsErrors( 'execute', self::$user ) );
@@ -369,7 +376,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 
 		$this->setTitle( NS_USER, self::$altUserName .'/test.js' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'customcssjsprotected' ) ), 
+			array( array( 'badaccess-group0' ), array( 'customcssjsprotected' ) ),
 			array( array( 'badaccess-group0' ), array( 'customcssjsprotected'  ) ),
 			array( array( 'badaccess-group0' ) ) );
 
@@ -511,12 +518,12 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$this->setUserPerm( array( "createpage" ) );
 		$this->setTitle(NS_MAIN, "test page");
 		self::$title->mTitleProtection['pt_create_perm'] = '';
-		self::$title->mTitleProtection['pt_user'] = 1;
+		self::$title->mTitleProtection['pt_user'] = self::$user->getID();
 		self::$title->mTitleProtection['pt_expiry'] = Block::infinity();
 		self::$title->mTitleProtection['pt_reason'] = 'test';
 		self::$title->mCascadeRestriction = false;
 
-		$this->assertEquals( array( array( 'titleprotected', 'WikiSysop', 'test' ) ),
+		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
 							 self::$title->getUserPermissionsErrors( 'create', self::$user ) );
 		$this->assertEquals( false,
 							 self::$title->userCan( 'create' ) );
@@ -530,7 +537,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 
 
 		$this->setUserPerm( array( 'createpage' ) );
-		$this->assertEquals( array( array( 'titleprotected', 'WikiSysop', 'test' ) ),
+		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
 							 self::$title->getUserPermissionsErrors( 'create', self::$user ) );
 		$this->assertEquals( false,
 							 self::$title->userCan( 'create' ) );
@@ -594,24 +601,29 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 							 self::$title->getUserPermissionsErrors( 'move-target',
 			self::$user ) );
 
-		self::$user->mBlockedby = 1;
-		self::$user->mBlock = new Block('127.0.8.1', 2, 1, 'no reason given', '888', 10);
+		global $wgLang;
+		$prev = time();
+		$now = time() + 120;
+		self::$user->mBlockedby = self::$user->getId();
+		self::$user->mBlock = new Block('127.0.8.1', self::$user->getId(), self::$user->getId(),
+										'no reason given', $prev + 3600, 1, 0);
+		self::$user->mBlock->mTimestamp = 0;
 		$this->assertEquals( array( array( 'autoblockedtext',
-			'[[User:WikiSysop|WikiSysop]]', 'no reason given', '127.0.0.1',
-			'WikiSysop', 0, 'infinite', '127.0.8.1', '00:14, 1 January 1970' ) ),
+			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
+			'Useruser', 0, 'infinite', '127.0.8.1',
+			$wgLang->timeanddate( wfTimestamp( TS_MW, $prev ), true ) ) ),
 			self::$title->getUserPermissionsErrors( 'move-target',
 			self::$user ) );
 
 		$this->assertEquals( true,
 							 self::$title->userCan( 'move-target', self::$user ) );
 
-		global $wgLang;
-		$now = time() + 120;
-		self::$user->mBlockedby = 'WikiSysop';
+		global $wgLocalTZoffset;
+		$wgLocalTZoffset = -60;
 		self::$user->mBlock = new Block('127.0.8.1', 2, 1, 'no reason given', $now, 0, 10 );
 		$this->assertEquals( array( array( 'blockedtext',
-			'[[User:WikiSysop|WikiSysop]]', 'no reason given', '127.0.0.1',
-			'WikiSysop', 0, '00:00, 1 January 1970', '127.0.8.1',
+			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
+			'Useruser', 0, '23:00, 31 December 1969', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ) ),
 			self::$title->getUserPermissionsErrors( 'move-target', self::$user ) );
 
