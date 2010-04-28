@@ -353,6 +353,7 @@ abstract class DatabaseBase {
 	 */
 	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 )
 	{
+		wfDeprecated( __METHOD__ );
 		return new DatabaseMysql( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 
@@ -402,7 +403,7 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * @param $error String: fallback error message, used if none is given by MySQL
+	 * @param $error String: fallback error message, used if none is given by DB
 	 */
 	function reportConnectionError( $error = 'Unknown error' ) {
 		$myError = $this->lastError();
@@ -595,7 +596,7 @@ abstract class DatabaseBase {
 	}
 
 	function freePrepared( $prepared ) {
-		/* No-op for MySQL */
+		/* No-op by default */
 	}
 
 	/**
@@ -687,7 +688,7 @@ abstract class DatabaseBase {
 	 * member variables.
 	 *
 	 * @param $res SQL result object as returned from Database::query(), etc.
-	 * @return MySQL row object
+	 * @return Row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	abstract function fetchObject( $res );
@@ -697,7 +698,7 @@ abstract class DatabaseBase {
 	 * form.  Fields are retrieved with $row['fieldname'].
 	 *
 	 * @param $res SQL result object as returned from Database::query(), etc.
-	 * @return MySQL row object
+	 * @return Row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	abstract function fetchRow( $res );
