@@ -1215,7 +1215,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				}
 			}
 
-			# FIXME: Check for errors
 			print "<li>Creating tables...";
 			if ($conf->DBtype == 'mysql') {
 				$res = $wgDatabase->sourceFile( "../maintenance/tables.sql" );
