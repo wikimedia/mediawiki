@@ -172,54 +172,6 @@ if( !function_exists( 'mb_strrpos' ) ) {
 	}
 }
 
-if ( !function_exists( 'array_diff_key' ) ) {
-	/**
-	 * Exists in PHP 5.1.0+
-	 * Not quite compatible, two-argument version only
-	 * Null values will cause problems due to this use of isset()
-	 */
-	function array_diff_key( $left, $right ) {
-		$result = $left;
-		foreach ( $left as $key => $unused ) {
-			if ( isset( $right[$key] ) ) {
-				unset( $result[$key] );
-			}
-		}
-		return $result;
-	}
-}
-
-if ( !function_exists( 'array_intersect_key' ) ) {
-	/**
-	* Exists in 5.1.0+
-	* Define our own array_intersect_key function
-	*/
-	function array_intersect_key( $isec, $keys ) {
-		$argc = func_num_args();
-
-		if ( $argc > 2 ) {
-			for ( $i = 1; $isec && $i < $argc; $i++ ) {
-				$arr = func_get_arg( $i );
-
-				foreach ( array_keys( $isec ) as $key ) {
-					if ( !isset( $arr[$key] ) )
-						unset( $isec[$key] );
-				}
-			}
-
-			return $isec;
-		} else {
-			$res = array();
-			foreach ( array_keys( $isec ) as $key ) {
-				if ( isset( $keys[$key] ) )
-					$res[$key] = $isec[$key];
-			}
-
-			return $res;
-		}
-	}
-}
-
 // Support for Wietse Venema's taint feature
 if ( !function_exists( 'istainted' ) ) {
 	function istainted( $var ) {
