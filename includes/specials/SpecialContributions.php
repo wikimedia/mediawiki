@@ -34,7 +34,7 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['contribs'] = 'newbie';
 		}
 
-		$this->opts['deletedOnly'] = ( $wgRequest->getVal( 'deletedOnly' ) == '1' );
+		$this->opts['deletedOnly'] = $wgRequest->getCheck( 'deletedOnly' );
 
 		if( !strlen( $target ) ) {
 			$wgOut->addHTML( $this->getForm() );
