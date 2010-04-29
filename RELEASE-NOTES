@@ -140,6 +140,7 @@ in a negative namespace (which is invalid).
   to enhance preference grouping.
 * (bug 23298) Interwiki links with prefix only in log summaries now link to the
   correct link
+* (bug 23284) Times are now rounded correctly
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
