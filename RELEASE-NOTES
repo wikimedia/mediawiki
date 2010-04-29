@@ -55,6 +55,7 @@ further.
   in page views and previews when the language converter is enabled.
 * (bug 23148) Fixed a local path disclosure vulnerability in ImageMagick image
   scaling, which was introduced in 1.16 beta 1. 
+* Improved error checking on installer.
 
 === Changes since 1.16 beta 1 ===
 
