@@ -564,6 +564,7 @@ $messages = array(
 Πληροφορία: (ατωριζνόν) = διαφοράς με τ\' ατωριζνόν τη μορφήν,
 (υστερνόν) = διαφοράς με τ\' υστερνόν τη μορφήν, μ = μικρά διαφοράς.',
 'history-fieldset-title' => 'Εύρον σο ιστορικόν',
+'history-show-deleted'   => "Ατά ντ'ενεσβύαν μαναχόν",
 'histfirst'              => "Ασ' όλεα παλαιόν",
 'histlast'               => "Ασ' όλεα καινούρ'",
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -613,6 +614,7 @@ $messages = array(
 'viewprevnext'              => 'Τέρεν ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'            => 'Help:Περιεχόμενα',
 'searchprofile-images'      => 'Πολυμέσα',
+'searchprofile-everything'  => 'Όλεα',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 λέξη|$2 λέξεις}})',
 'search-redirect'           => '(το διπλόν ο σύνδεσμον $1)',
 'search-section'            => "(κομμάτ' $1)",
@@ -972,6 +974,7 @@ $messages = array(
 # E-mail user
 'emailuser'    => 'Στείλον μένεμαν σον χρήστεν ατόν',
 'emailfrom'    => 'Ασά:',
+'emailto'      => 'Σο:',
 'emailsubject' => 'Θέμαν:',
 'emailmessage' => 'Μένεμαν:',
 'emailsend'    => 'Αποστολήν',
@@ -980,6 +983,7 @@ $messages = array(
 'watchlist'         => "Σελίδας ντ' ωριάζω",
 'mywatchlist'       => "Σελίδας ντ' ωριάζω",
 'watchlistfor'      => "(για '''$1''')",
+'watchnologin'      => "'Κ είστουν συνδεμένος",
 'addedwatch'        => 'Εθέκεν σην λίσταν ωριαγματί',
 'addedwatchtext'    => "Η σελίδαν \"[[:\$1]]\" επήγεν σον [[Special:Watchlist|κατάλογον οριαγματί]] εσούν.
 Μελλούμενα αλλαγάς τ' ατεινές τη σελίδας θα γράφκουνταν καικά, και η σελίδαν θ' ευρίεται με γράμματα '''χοντρά''' σ' [[Special:RecentChanges|υστερνά τ' αλλαγάς]] για να τερείτετα καλίον.",
@@ -1005,6 +1009,7 @@ $messages = array(
 # Delete
 'deletepage'            => 'Σβήσον τη σελίδαν',
 'exblank'               => 'σελίδα έτον εύκαιρον',
+'delete-confirm'        => 'Σβήσον "$1"',
 'delete-legend'         => 'Σβήσεμαν',
 'historywarning'        => "Ωρία: Η σελίδαν που θα σβήετε έχ' ιστορικόν:",
 'confirmdeletetext'     => "Είστουν σουμά σο σβήσεμαν είνος σελίδας και ούλ' τ' ιστορίασατς εντάμαν.
@@ -1063,6 +1068,7 @@ $messages = array(
 'undeleteviewlink'          => 'τέρεμα',
 'undeletecomment'           => 'Σχόλιον:',
 'undeletedarticle'          => 'επαναφορά τη "[[$1]]"',
+'undelete-search-box'       => "Αράεμαν σελιδίων ντ'ενεσβύαν",
 'undelete-search-submit'    => 'Εύρον',
 'undelete-show-file-submit' => 'Ναι',
 

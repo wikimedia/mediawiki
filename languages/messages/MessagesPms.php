@@ -2528,6 +2528,8 @@ Për piasì preuva torna.',
 'tooltip-rollback'                => '"Rollback" a scansela con un clich le modìfiche fàite a costa pagina da l\'ùltim contribudor',
 'tooltip-undo'                    => '"Undo" a scansela costa modìfica e a deurb la fnestra ëd modìfica an manera ëd vardé prima.
 At lassa gionté na spiegassion ëd la modìfica.',
+'tooltip-preferences-save'        => 'Salva preferense',
+'tooltip-summary'                 => 'Ansëriss un curt somari',
 
 # Stylesheets
 'common.css'   => '/** Ël còdes CSS che as buta ambelessì a resta dovrà ant tute le "facie" */',

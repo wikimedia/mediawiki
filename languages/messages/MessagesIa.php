@@ -2678,6 +2678,7 @@ Tu pote vider su codice-fonte.',
 'tooltip-undo'                    => '"Disfacer" reverte iste modification e aperi le formulario de modification in modo de previsualisation.
 Es possibile adder un motivo in le summario.',
 'tooltip-preferences-save'        => 'Confirmar preferentias',
+'tooltip-summary'                 => 'Entra un curte summario',
 
 # Stylesheets
 'common.css'      => '/* Le CSS placiate hic se applicara a tote le stilos */',

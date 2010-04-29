@@ -2874,6 +2874,7 @@ Gebruik dit!',
 'tooltip-undo'                    => 'Met "ongedaan maken" draait u deze bewerking terug en komt in het bewerkingsvenster.
 U kunt in de bewerkingssamenvatting een reden opgeven.',
 'tooltip-preferences-save'        => 'Voorkeuren opslaan',
+'tooltip-summary'                 => 'Voer een korte samenvatting in',
 
 # Stylesheets
 'common.css'      => '/** CSS die hier wordt geplaatst heeft invloed op alle skins */',
