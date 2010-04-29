@@ -98,6 +98,7 @@ $messages = array(
 'vector-view-edit'       => 'Kyusa',
 'vector-view-viewsource' => "Kebera obulambike obw'ennono obw'olupapula luno",
 
+'errorpagetitle'   => 'Kiremya',
 'returnto'         => 'Dda ku $1.',
 'tagline'          => 'Bisangiddwa ku {{SITENAME}}',
 'help'             => 'Nyamba',
@@ -113,9 +114,10 @@ $messages = array(
 'edit'             => 'Kyusa',
 'create'           => 'Kolawo',
 'editthispage'     => 'Olupapula luno lukyusemu',
-'delete'           => 'Gyawo omuko guno',
+'delete'           => 'Gyawo olupapula luno',
 'deletethispage'   => 'Olupapula luno lugyewo',
 'protect'          => 'Ssiba',
+'protect_change'   => 'lusibe/lusumulule',
 'protectthispage'  => 'Siba olupapula luno',
 'newpage'          => 'Lupapula lupya',
 'talkpage'         => "W'ebirowozo ku lupapula luno",
@@ -183,9 +185,18 @@ $messages = array(
 'nstab-category' => 'Ttuluba lya',
 
 # General errors
-'viewsource'       => "Kebera obulambike obw'ennono obw'olupapula luno",
-'viewsourcefor'    => 'obwa $1',
-'editinginterface' => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo.
+'missing-article'     => "Mu ggwanika ya data mubadde musuubidwamu bigambo ebikola olupapula \"\$1\" \$2, tebisangidwamu.
+
+Kino kitera okubawo singa likoda y'enjawulo mu mpandika z'olupapula eba nsobu oba singa enyunzi egguka
+ku nnanda yalwo eba nga egyidwawo.
+
+Ebyo bwe biba nga ssi bye bikireesewo, oyinz'okuba nga ozudde nsobi mu sofutiweya ono.
+Ensobi eno gimanyise [[Special:ListUsers/sysop|omuteesiteesi]], nga omulaga n'endagiriro (URL) kw'ogisanze.",
+'missingarticle-rev'  => '(olukyusa#: $1)',
+'missingarticle-diff' => '(Enjawulo wakati wa: $1, $2)',
+'viewsource'          => "Kebera obulambike obw'ennono obw'olupapula luno",
+'viewsourcefor'       => 'obwa $1',
+'editinginterface'    => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo.
 Enkyukakyuka z'okola wano zigyakubaako kye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
 
 # Login and logout pages
@@ -324,7 +335,7 @@ oba ku gano agali ku lupapula luno.<br />
 'searchsubtitle'           => 'Onoonyezza \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|empapula zonna ezitandika ne "$1"]]{{int:pipe-separator}}
 [[Special:WhatLinksHere/$1|empapula zonna ezikuggusa ku "$1"]])',
 'searchsubtitleinvalid'    => "Onoonyezza '''$1'''",
-'notitlematches'           => 'Tewali miko egirina mutwe guno',
+'notitlematches'           => 'Tewali mpapula zirina mutwe guno',
 'notextmatches'            => 'Tewali mpapula ziriko bigambo bino',
 'prevn'                    => '{{PLURAL:$1|$1}} ezikulembedde zino',
 'nextn'                    => '{{PLURAL:$1|$1}} eziddako',
@@ -490,7 +501,8 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'restriction-move' => 'Simbuliza',
 
 # Undelete
-'undeletebtn' => 'Luzzewo',
+'undeletebtn'  => 'Luzzewo',
+'undeletelink' => 'lukebere/luzzewo',
 
 # Namespace form on various pages
 'namespace'      => 'Kuŋaanyizo:',
@@ -505,6 +517,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 
 'sp-contributions-blocklog' => 'Ebifa ku bagaanidwa',
 'sp-contributions-talk'     => 'Yogera nange',
+'sp-contributions-submit'   => 'Noonya',
 
 # What links here
 'whatlinkshere'           => 'Empapula ezikuggusa ku luno',
@@ -517,6 +530,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'whatlinkshere-next'      => '{{PLURAL:$1|oluddako|$1 eziddako}}',
 'whatlinkshere-links'     => '← Empapula eziriko enyunzi ezigguka ku luno',
 'whatlinkshere-hidelinks' => '$1 nyunzi',
+'whatlinkshere-filters'   => 'Ensunsula',
 
 # Block/unblock
 'blockip'           => 'Gaana memba okuwandiika',
@@ -559,7 +573,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-pt-mycontris'            => 'Nyiga wano okulaba olukalala lwa bye wakakolawo ku wiki eno',
 'tooltip-pt-login'                => "Nyiga wano osobole okulambula wiki eno ng'okozesa buyinza obwa memba",
 'tooltip-pt-logout'               => 'Nyiga wano oba oyagala okulambula wiki eno nga tokozesa buyinza obwa memba',
-'tooltip-ca-talk'                 => "Wano osobola okusoma ebirowozo abantu byebawaddeyo ku muko guno era naawe n'owayo ebibyo",
+'tooltip-ca-talk'                 => "Wano osobola okusoma ebirowozo abantu byebawaddeyo ku lupapula luno era naawe n'owayo ebibyo",
 'tooltip-ca-edit'                 => "Nyiga wano ob'oyagala okukyusakyusaamu lupapula luno. Bw'omala okuwandiika enkyukakyuka zo, nyiga ku kapeesa aka 'Sooka ondageko' ozikebere nga tonnazikariza ddala kulabibwa bonna.",
 'tooltip-ca-addsection'           => 'Nyiga wano oba oyagala okuwayo ekirowozo ku kintu kipya mu kuwanyisigana ebirowozo kuno.',
 'tooltip-ca-viewsource'           => "Olupapula luno lusibidwa - tosobola okulukyusa, naye okkirizibwa okulaba obulambike obw'ennono bwalwo.",
@@ -587,8 +601,9 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-t-specialpages'          => "Nyiga wano okulaba olukalala olw'empapula ez'enjawulo zonna",
 'tooltip-t-print'                 => "Bw'onyiga wano olupapula luno lwetereeza mu ngeri erulabisa obulungi nga lukubisidwa ku kyapa (pulinta)",
 'tooltip-t-permalink'             => "Kolawo ennyunzi egguka ku luwandika luno olw'olupapula luno",
+'tooltip-ca-nstab-main'           => 'Nyiga wano osome olupapula luno',
 'tooltip-ca-nstab-user'           => "Nyiga wano ob'oyagala okulaba enfo ya memba",
-'tooltip-ca-nstab-special'        => 'Guno muko mwawule, gwe tosobola okulukolako enkuyukakyuka',
+'tooltip-ca-nstab-special'        => 'Luno lupapula olwawule, gwe tosobola okulukolako enkuyukakyuka',
 'tooltip-ca-nstab-project'        => "Nyiga wano ob'oyagala okukebera ekkuŋaanizo erya kawefube ono",
 'tooltip-ca-nstab-image'          => 'Nyiga wano okugenda ku lupapula oluliko ekifaananyi',
 'tooltip-ca-nstab-category'       => "Nyiga wano ob'oyagala okulaba olupapula olw'ettuluba lino",
@@ -614,6 +629,13 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'svg-long-desc'        => '(Fayiro ya kika  kya SVG, ya pikselo $1 ku $2 awamu, ya obunene bwa: $3)',
 'show-big-image'       => 'Laga ekifaananyi ekijjuvu',
 'show-big-image-thumb' => '<small>Akalingize kano ka pikseli: $1 ku $2</small>',
+
+# Bad image list
+'bad_image_list' => 'Empandika entuufu:
+
+Ennyiriri ezikola lukalala (ezitandika ne *) ze zokka ezikola.
+Enyunzi esoka mu lunyiriri eteekwa okuba nga egguka ku fayiro eriko kiremya.
+Enyunzi endala eziba ku lunyiriri olwo zibalibwa nga ezigguka ku mpapula ezikozesa fayiro eya kiremya eyo.',
 
 # Metadata
 'metadata'          => 'Ebikwata ku kifaananyi',
@@ -647,8 +669,11 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'watchlisttools-view' => 'Kebera ebikyuse',
 'watchlisttools-edit' => "Kola ku lukalala lwe'mpapula z'ogoberera",
 
+# Special:Version
+'version-specialpages' => 'Empapula enjawule',
+
 # Special:SpecialPages
-'specialpages' => "Empapula ez'enjawulo",
+'specialpages' => 'Empapula enjawule',
 
 # Special:Tags
 'tags-edit' => 'kyusa',

@@ -2753,6 +2753,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-undo'                    => '„Vrátiť” vráti túto úpravu a otvorí formulár úprav v režime náhľadu.
 Umožnuje do zhrnutia pridanie dôvodu.',
 'tooltip-preferences-save'        => 'Uložiť nastavenia',
+'tooltip-summary'                 => 'Zadajte krátke zhrnutie',
 
 # Stylesheets
 'common.css'      => '/* Tu umiestnené CSS bude ovplyvňovať všetky štýly */',

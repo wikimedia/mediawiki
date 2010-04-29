@@ -1424,8 +1424,11 @@ S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'file-too-large'              => 'Ar restr o peus roet a oa re vras.',
 'filename-tooshort'           => 'Re verr eo anv ar restr.',
 'filetype-banned'             => 'Difennet eo ar seurt restroù',
+'hookaborted'                 => "Ar c'hemm o peus klasket ober a zo bet paouezet gant ur sonnell astenn.",
 'illegal-filename'            => "N'eo ket aotreet anv ar restr.",
 'unknown-error'               => 'Ur gudenn dizanv a zo bet.',
+'tmp-create-error'            => 'Dibosupl eo krouiñ ur restr padennek.',
+'tmp-write-error'             => 'Ur gudenn skrivañ a zo bet evit ar restr padennek.',
 'large-file'                  => "Erbediñ a reer ne vefe ket brasoc'h ar restroù eget $1; $2 eo ment ar restr-mañ.",
 'largefileserver'             => "Brasoc'h eo ar restr-mañ eget ar pezh a c'hall ar servijer aotren.",
 'emptyfile'                   => "Evit doare eo goullo ar restr bet karget ganeoc'h. Moarvat eo abalamour d'an tipo en anv ar restr. Gwiriit mat e fell deoc'h pellgargañ ar restr-mañ.",
@@ -2549,6 +2552,8 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'tooltip-rollback'                => "\"Disteuler\" a zistaol en ur c'hlik ar c'hemm(où) bet degaset d'ar bajenn-mañ gant an implijer diwezhañ.",
 'tooltip-undo'                    => '"Dizober" a zistaol ar c\'hemm-mañ hag a zigor ar prenestr skridaozañ er mod rakwelet.
 Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
+'tooltip-preferences-save'        => 'Enrollañ ar penndibaboù',
+'tooltip-summary'                 => 'Skrivit un diveradenn verr',
 
 # Stylesheets
 'common.css'      => '/** Talvezout a raio ar CSS lakaet amañ evit an holl gwiskadurioù */',

@@ -2671,6 +2671,7 @@ Prosimo, poskusite znova.',
 'tooltip-undo'                    => '"Razveljavi" vrne to urejanje in odpre predogled v oknu za urejanje.
 Omogoča vnos pojasnila v povzetku urejanja.',
 'tooltip-preferences-save'        => 'Shrani nastavitve',
+'tooltip-summary'                 => 'Vnesite kratek povzetek',
 
 # Metadata
 'nodublincore'      => 'Metapodatki Dublin Core RDF so na tem strežniku onemogočeni.',
