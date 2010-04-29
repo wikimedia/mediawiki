@@ -2193,9 +2193,23 @@ abstract class DatabaseBase {
 	function sourceFile( $filename, $lineCallback = false, $resultCallback = false ) {
 		$fp = fopen( $filename, 'r' );
 		if ( false === $fp ) {
-			throw new MWException( "Could not open \"{$filename}\".\n" );
+			if (!defined("MEDIAWIKI_INSTALL"))
+				throw new MWException( "Could not open \"{$filename}\".\n" );
+			else
+				return "Could not open \"{$filename}\".\n";
 		}
-		$error = $this->sourceStream( $fp, $lineCallback, $resultCallback );
+		try {
+			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback );
+		}
+		catch( MWException $e ) {
+			if ( defined("MEDIAWIKI_INSTALL") ) {
+				$error = $e->getMessage();
+			} else {
+				fclose( $fp );
+				throw $e;
+			}
+		}
+		
 		fclose( $fp );
 		return $error;
 	}

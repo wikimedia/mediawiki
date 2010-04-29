@@ -1330,11 +1330,17 @@ SQL;
 		if (!$res) {
 			print "<b>FAILED</b>. Make sure that the user \"" . htmlspecialchars( $wgDBuser ) . 
 				"\" can write to the schema \"" . htmlspecialchars( $wgDBmwschema ) . "\"</li>\n";
-			dieout("</ul>");
+			dieout(""); # Will close the main list <ul> and finish the page.
 		}
 		$this->doQuery("DROP TABLE $safeschema.$ctest");
 
 		$res = $this->sourceFile( "../maintenance/postgres/tables.sql" );
+		if ($res === true) {
+			print " done.</li>\n";
+		} else {
+			print " <b>FAILED</b></li>\n";
+			dieout( htmlspecialchars( $res ) );
+		}
 
 		## Update version information
 		$mwv = $this->addQuotes($wgVersion);
@@ -1346,10 +1352,12 @@ SQL;
 		$dbn = $this->addQuotes($this->mDBname);
 		$ctype = $this->addQuotes( pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0) );
 
+		echo "<li>Populating interwiki table... ";
 		## Avoid the non-standard "REPLACE INTO" syntax
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
 		if ($f == false ) {
-			dieout( "<li>Could not find the interwiki.sql file");
+			print "<b>FAILED</b></li>";
+			dieout( "Could not find the interwiki.sql file" );
 		}
 		## We simply assume it is already empty as we have just created it
 		$SQL = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
@@ -1361,7 +1369,7 @@ SQL;
 			}
 			$this->query("$SQL $matches[1],$matches[2])");
 		}
-		print " (table interwiki successfully populated)...\n";
+		print " successfully populated.</li>\n";
 
 		$this->doQuery("COMMIT");
 	}

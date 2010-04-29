@@ -487,13 +487,17 @@ class DatabaseSqlite extends DatabaseBase {
 		# Process common MySQL/SQLite table definitions
 		$err = $this->sourceFile( "$IP/maintenance/tables.sql" );
 		if ( $err !== true ) {
-			$this->reportQueryError( $err, 0, $sql, __FUNCTION__ );
-			exit( 1 );
+			echo " <b>FAILED</b></li>";
+			dieout( htmlspecialchars( $err ) );
 		}
+		echo " done.</li>";
 
 		# Use DatabasePostgres's code to populate interwiki from MySQL template
 		$f = fopen( "$IP/maintenance/interwiki.sql", 'r' );
-		if ( $f == false ) dieout( "<li>Could not find the interwiki.sql file" );
+		if ( $f == false ) {
+			dieout( "Could not find the interwiki.sql file." );
+		}
+		
 		$sql = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
 		while ( !feof( $f ) ) {
 			$line = fgets( $f, 1024 );
