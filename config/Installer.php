@@ -1004,7 +1004,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						if ($wgDatabase->isOpen()) {
 							$wgDBOracleDefTS = $conf->DBdefTS_ora;
 							$wgDBOracleTempTS = $conf->DBtempTS_ora;
-							$wgDatabase->sourceFile( "../maintenance/ora/user.sql"  );
+							$res = $wgDatabase->sourceFile( "../maintenance/ora/user.sql"  );
+							if ($res !== true) dieout($res);
 						} else {
 							echo "<li>Invalid database superuser, please supply a valid superuser account.</li>";
 							echo "<li>ERR: ".print_r(oci_error(), true)."</li>";
@@ -1181,7 +1182,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 							print " <b class='error'>If the next step fails, see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
 						}
 						print "</li>\n";
-						$wgDatabase->sourceFile( "../maintenance/users.sql" );
+						$res = $wgDatabase->sourceFile( "../maintenance/users.sql" );
+						if ($res !== true) dieout($res);
 					}
 				}
 			}
@@ -1216,8 +1218,17 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			# FIXME: Check for errors
 			print "<li>Creating tables...";
 			if ($conf->DBtype == 'mysql') {
-				$wgDatabase->sourceFile( "../maintenance/tables.sql" );
-				$wgDatabase->sourceFile( "../maintenance/interwiki.sql" );
+				$res = $wgDatabase->sourceFile( "../maintenance/tables.sql" );
+				if ($res === true) {
+					print " done.</li>\n<li>Populating interwiki table... \n";
+					$res = $wgDatabase->sourceFile( "../maintenance/interwiki.sql" );
+				}
+				if ($res === true) {
+					print " done.</li>\n";
+				} else {
+					print " <b>FAILED</b></li>\n";
+					dieout( htmlspecialchars( $res ) );
+				}
 			} elseif (is_callable(array($wgDatabase, 'setup_database'))) {
 				$wgDatabase->setup_database();
 			}
@@ -1225,8 +1236,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				$errs["DBtype"] = "Do not know how to handle database type '$conf->DBtype'";
 				continue;
 			}
-
-			print " done.</li>\n";
 
 
 			if ( $conf->DBtype == 'ibm_db2' ) {
@@ -1268,8 +1277,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				} else {
 					# Yes, so run the grants
 					echo( "<li>" . htmlspecialchars( "Granting user permissions to $wgDBuser on $wgDBname..." ) );
-					$wgDatabase->sourceFile( "../maintenance/users.sql" );
-					echo( "success.</li>\n" );
+					$res = $wgDatabase->sourceFile( "../maintenance/users.sql" );
+					if ( $res === true ) {
+						echo( " success.</li>\n" );
+					} else {
+						echo( " <b>FAILED</b>.</li>\n" );
+						dieout( $res );
+					}
 				}
 			}
 

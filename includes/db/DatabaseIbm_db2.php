@@ -746,6 +746,11 @@ EOF;
 			$this->begin();
 			
 			$res = $this->sourceFile( "../maintenance/ibm_db2/tables.sql" );
+			if ($res !== true) {
+				print " <b>FAILED</b>: " . htmlspecialchars( $res ) . "</li>";
+			} else {
+				print " done</li>";
+			}
 			$res = null;
 			
 			// TODO: populate interwiki links

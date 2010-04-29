@@ -978,14 +978,19 @@ class DatabaseOracle extends DatabaseBase {
 	function setup_database() {
 		global $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgDBport, $wgDBuser;
 
-		echo "<li>Creating DB objects</li>\n";
 		$res = $this->sourceFile( "../maintenance/ora/tables.sql" );
+		if ($res === true) {
+			print " done.</li>\n";
+		} else {
+			print " <b>FAILED</b></li>\n";
+			dieout( htmlspecialchars( $res ) );
+		}
 
 		// Avoid the non-standard "REPLACE INTO" syntax
-		echo "<li>Populating table interwiki</li>\n";
+		echo "<li>Populating interwiki table</li>\n";
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
 		if ( $f == false ) {
-			dieout( "<li>Could not find the interwiki.sql file</li>" );
+			dieout( "Could not find the interwiki.sql file" );
 		}
 
 		// do it like the postgres :D
