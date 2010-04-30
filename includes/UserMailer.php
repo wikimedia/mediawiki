@@ -75,6 +75,8 @@ class MailAddress {
  * Collection of static functions for sending mail
  */
 class UserMailer {
+	static $mErrorString;
+	
 	/**
 	 * Send mail using a PEAR mailer
 	 */
@@ -106,7 +108,7 @@ class UserMailer {
 	 * @return mixed True on success, a WikiError object on failure.
 	 */
 	static function send( $to, $from, $subject, $body, $replyto=null, $contentType=null ) {
-		global $wgSMTP, $wgOutputEncoding, $wgErrorString, $wgEnotifImpersonal;
+		global $wgSMTP, $wgOutputEncoding, $wgEnotifImpersonal;
 		global $wgEnotifMaxRecips;
 
 		if ( is_array( $to ) ) {
@@ -190,7 +192,7 @@ class UserMailer {
 
 			wfDebug( "Sending mail via internal mail() function\n" );
 			
-			$wgErrorString = '';
+			self::$mErrorString = '';
 			$html_errors = ini_get( 'html_errors' );
 			ini_set( 'html_errors', '0' );
 			set_error_handler( array( 'UserMailer', 'errorHandler' ) );
@@ -204,19 +206,19 @@ class UserMailer {
 					$sent = mail( $to->toString(), wfQuotedPrintable( $subject ), $body, $headers );
 				}
 			} else {
-				$wgErrorString = 'PHP is not configured to send mail';
+				self::$mErrorString = 'PHP is not configured to send mail';
 			}
 
 			restore_error_handler();
 			ini_set( 'html_errors', $html_errors );
 
-			if ( $wgErrorString ) {
-				wfDebug( "Error sending mail: $wgErrorString\n" );
-				return new WikiError( $wgErrorString );
-			} elseif (! $sent) {
+			if ( self::$mErrorString ) {
+				wfDebug( "Error sending mail: " . self::$mErrorString . "\n" );
+				return new WikiError( self::$mErrorString );
+			} elseif (! $sent ) {
 				//mail function only tells if there's an error
 				wfDebug( "Error sending mail\n" );
-				return new WikiError( 'mailer error' );
+				return new WikiError( 'mail() failed' );
 			} else {
 				return true;
 			}
@@ -224,14 +226,13 @@ class UserMailer {
 	}
 
 	/**
-	 * Get the mail error message in global $wgErrorString
+	 * Set the mail error message in self::$mErrorString
 	 *
 	 * @param $code Integer: error number
 	 * @param $string String: error message
 	 */
 	static function errorHandler( $code, $string ) {
-		global $wgErrorString;
-		$wgErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
+		self::$mErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
 	}
 
 	/**
