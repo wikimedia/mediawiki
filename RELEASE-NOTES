@@ -56,6 +56,8 @@ further.
 * (bug 23148) Fixed a local path disclosure vulnerability in ImageMagick image
   scaling, which was introduced in 1.16 beta 1. 
 * Improved error checking on installer.
+* (bug 22970) Fixed a JavaScript error in the upload destination conflict 
+  check.
 
 === Changes since 1.16 beta 1 ===
 

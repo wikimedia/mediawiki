@@ -43,17 +43,20 @@ function wgUploadSetup() {
 	
 	// AJAX wpDestFile warnings
 	if ( wgAjaxUploadDestCheck ) {
+		// Insert an event handler that fetches upload warnings when wpDestFile
+		// has been changed
 		document.getElementById( 'wpDestFile' ).onchange = function ( e ) { 
 			wgUploadWarningObj.checkNow(this.value);
 		};
+		// Insert a row where the warnings will be displayed just below the 
+		// wpDestFile row
 		var optionsTable = document.getElementById( 'mw-htmlform-description' ).tBodies[0];
-		var row = document.createElement( 'tr' );
+		var row = optionsTable.insertRow( 1 );
 		var td = document.createElement( 'td' );
 		td.id = 'wpDestFile-warning';
 		td.colSpan = 2;
 		
 		row.appendChild( td );
-		optionsTable.insertBefore( row, optionsTable.children[1] );
 	}
 	
 	if ( wgAjaxLicensePreview ) {
