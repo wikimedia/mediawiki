@@ -11,30 +11,30 @@ define('MW_TESTLOGGER_RESULT_ERROR', 3);
 
 class SeleniumTestSuite extends PHPUnit_Framework_TestSuite
 {
-    private $selenium;
+	private $selenium;
 
-    public function setUp()
-    {
+	public function setUp()
+	{
 
-        $this->selenium = Selenium::getInstance();
-        $this->selenium->start();
-        $this->login();
-        //$this->loadPage('Testpage', 'edit');
-    }
+		$this->selenium = Selenium::getInstance();
+		$this->selenium->start();
+		$this->login();
+		//$this->loadPage('Testpage', 'edit');
+	}
 
-    public function tearDown()
-    {
-        $this->selenium->stop();
-    }
+	public function tearDown()
+	{
+		$this->selenium->stop();
+	}
 
-    public function login()
-    {
-        $this->selenium->login();
-    }
+	public function login()
+	{
+		$this->selenium->login();
+	}
 
-    public function loadPage($title, $action)
-    {
-        $this->selenium->loadPage($title, $action);
-    }
+	public function loadPage($title, $action)
+	{
+		$this->selenium->loadPage($title, $action);
+	}
 }
 
