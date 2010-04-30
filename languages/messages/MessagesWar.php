@@ -360,7 +360,7 @@ Nagbalik hin sayop an database nga "$3: $4"',
 'viewsourcetext'     => 'Puydi ka kinmita ngan kinmopya han gintikangan han pakli:',
 
 # Login and logout pages
-'yourname'                => 'Agnay (o ngaran) han nagamit:',
+'yourname'                => 'Agnay han nagamit (Username):',
 'yourpassword'            => 'Tigaman han pagsulod (password):',
 'login'                   => 'Sakob',
 'nav-login-createaccount' => 'Sakob / paghimo hin bag-o nga akawnt',
