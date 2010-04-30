@@ -58,6 +58,8 @@ further.
 * Improved error checking on installer.
 * (bug 22970) Fixed a JavaScript error in the upload destination conflict 
   check.
+* (bug 23167) Check the watch checkbox by default if the watchcreations 
+  preference is set.
 
 === Changes since 1.16 beta 1 ===
 
