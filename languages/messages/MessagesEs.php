@@ -2604,7 +2604,7 @@ A continuación se muestra la última entrada de registro para referencia:",
 'semiprotectedpagemovewarning' => "'''Nota:''' Esta página ha sido bloqueada para que  solamente usuarios registrados pueden moverla.
 A continuación se muestra la última entrada de registro para referencia:",
 'move-over-sharedrepo'         => '== El archivo existe ==
- [[:$1]] existe en un repositorio compartido. Mover el archivo a este título invalidará el archivo compartido.',
+[[:$1]] existe en un repositorio compartido. Mover el archivo a este título invalidará el archivo compartido.',
 'file-exists-sharedrepo'       => 'El nombre de archivo elegido ya está siendo usado en un repositorio compartido.
 Por favor, elija otro nombre.',
 

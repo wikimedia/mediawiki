@@ -2696,6 +2696,8 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 'tooltip-upload'                  => 'Mulai pemuatan',
 'tooltip-rollback'                => 'Mengembalikan suntingan-suntingan di halaman ini ke kontributor terakhir dalam satu kali klik.',
 'tooltip-undo'                    => 'Mengembalikan revisi ini dan membuka kotak penyuntingan dengan mode pratayang. Alasan dapat ditambahkan di kotak ringkasan.',
+'tooltip-preferences-save'        => 'Simpan preferensi',
+'tooltip-summary'                 => 'Masukkan sebuah ringkasan pendek',
 
 # Stylesheets
 'common.css'      => '/* CSS yang ada di sini akan diterapkan untuk semua kulit. */',

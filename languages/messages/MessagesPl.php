@@ -1816,7 +1816,7 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'unusedtemplateswlh'  => 'linkujące',
 
 # Random page
-'randompage'         => 'Losuj stronę',
+'randompage'         => 'Losowa strona',
 'randompage-nopages' => 'Brak stron w {{PLURAL:$2|przestrzeni nazw|przestrzeniach nazw:}} $1.',
 
 # Random redirect
@@ -2732,6 +2732,7 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-undo'                    => '„anuluj edycję” wycofuje tę edycję i otwiera okno edycji w trybie podglądu.
 Pozwala na wpisanie powodu w opisie zmian.',
 'tooltip-preferences-save'        => 'Zapisz preferencje',
+'tooltip-summary'                 => 'Wpisz krótki opis',
 
 # Stylesheets
 'common.css'      => '/* Umieszczony tutaj kod CSS zostanie zastosowany we wszystkich skórkach */',
