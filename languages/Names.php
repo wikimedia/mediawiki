@@ -25,7 +25,7 @@
 	'av' => 'Авар',	# Avar
 	'avk' => 'Kotava', # Kotava
 	'ay' => 'Aymar aru',	# Aymara
-	'az' => 'Azərbaycan',	# Azerbaijani
+	'az' => 'Azərbaycanca',	# Azerbaijani
 	'ba' => 'Башҡорт',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
 	'bat-smg' => 'Žemaitėška', # Samogitian
