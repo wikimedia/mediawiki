@@ -22,7 +22,7 @@ $messages = array(
 'tog-newpageshidepatrolled' => 'Nascònd al pàgin verifichèdi da la lèsta dal pàgin növi',
 'tog-extendwatchlist'       => "Slèrga la funziòn \"tènn sot occ\" d'mod ch'us pòsa avdé toti al mudefchi, no sol l'ultma.",
 'tog-usenewrc'              => "Drova agl'j ultmi mudèfchi avanzëdi (u j vô JavaScript)",
-'tog-numberheadings'        => "Titul d'paràgraf<br/>chi à un nòmar daparlò",
+'tog-numberheadings'        => "Titul d'un paràgraf ch'l'à un nòmar daparlò",
 'tog-showtoolbar'           => "Fam avdé la bara d'j strumént (u j vó JavaScript)",
 
 # Dates

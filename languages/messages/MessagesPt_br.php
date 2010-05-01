@@ -3369,7 +3369,7 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'specialpages-group-pages'       => 'Listas de páginas',
 'specialpages-group-pagetools'   => 'Ferramentas de páginas',
 'specialpages-group-wiki'        => 'Dados e ferramentas sobre este wiki',
-'specialpages-group-redirects'   => 'Páginas especias redirecionadas',
+'specialpages-group-redirects'   => 'Páginas especiais redirecionadas',
 'specialpages-group-spam'        => 'Ferramentas anti-spam',
 
 # Special:BlankPage
