@@ -1683,7 +1683,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches do not keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '274';
+$wgStyleVersion = '275';
 
 
 # Server-side caching:
@@ -4204,8 +4204,6 @@ $wgVectorUseIconWatch = false;
 
 /**
  * Show the name of the current variant as a label in the variants drop-down menu
- * true = Show the label
- * false = Do not show the label
  */
 $wgVectorShowVariantName = false;
 
