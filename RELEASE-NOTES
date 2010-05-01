@@ -40,6 +40,9 @@ set $wgCacheDirectory to a writable path on the local filesystem. Make sure
 you have the DBA extension for PHP installed, this will improve performance 
 further.
 
+* (bug 23371) Fixed holes in Special:Userlogin which could lead to abuse of
+the system, and disclosure of information from private wikis.
+
 == Changes since 1.16 beta 2 ==
 
 * Fixed bugs in the [[Special:Userlogin]] and [[Special:Emailuser]] handling of
