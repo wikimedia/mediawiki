@@ -1604,7 +1604,7 @@ class Article {
 	/**
 	 * Insert a new empty page record for this article.
 	 * This *must* be followed up by creating a revision
-	 * and running $this->updateToLatest( $rev_id );
+	 * and running $this->updateRevisionOn( ... );
 	 * or else the record will be left in a funky state.
 	 * Best if all done inside a transaction.
 	 *
