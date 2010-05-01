@@ -13,9 +13,10 @@ class nullClass {
 class UploadFromUrlTest extends ApiSetup {
 
 	function setUp() {
-		global $wgEnableUploads, $wgLocalFileRepo;
+		global $wgEnableUploads, $wgLocalFileRepo, $wgAllowCopyUploads;
 
 		$wgEnableUploads = true;
+		$wgAllowCopyUploads = true;
 		parent::setup();
 		$wgLocalFileRepo = array(
 			'class' => 'LocalRepo',
@@ -172,7 +173,7 @@ class UploadFromUrlTest extends ApiSetup {
 		$job = Job::pop();
 		$this->assertEquals( 'UploadFromUrlJob', get_class($job) );
 
-		$status = $job->run();
+ 		$status = $job->run();
 		$this->assertTrue( $status->isOk() );
 
 		return $data;
