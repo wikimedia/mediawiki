@@ -25,8 +25,14 @@ if (clientPC.indexOf('opera') != -1) {
 	var opera7_bugs = is_opera_seven && !is_opera_95;
 	var opera95_bugs = /opera\/(9\.5)/.test( clientPC );
 }
-// Start at 4 to minimize the chance of breaking on IE10 :)
-var ie6_bugs = /msie [4-6]/.test( clientPC );
+// As recommended by <http://msdn.microsoft.com/en-us/library/ms537509.aspx>,
+// avoiding false positives from moronic extensions that append to the IE UA
+// string (bug 23171)
+var ie6_bugs = false;
+if ( /MSIE ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
+&& parseFloat( RegExp.$1 ) <= 6.0 ) {
+	ie6_bugs = true;
+}
 
 // Global external objects used by this script.
 /*extern ta, stylepath, skin */
