@@ -130,13 +130,14 @@ class SpecialUpload extends SpecialPage {
 
 		# Check permissions
 		global $wgGroupPermissions;
-		if( !$wgUser->isAllowed( 'upload' ) ) {
+		$permissionRequired = UploadBase::isAllowed( $wgUser );
+		if( $permissionRequired !== true ) {
 			if( !$wgUser->isLoggedIn() && ( $wgGroupPermissions['user']['upload']
 				|| $wgGroupPermissions['autoconfirmed']['upload'] ) ) {
 				// Custom message if logged-in users without any special rights can upload
 				$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
 			} else {
-				$wgOut->permissionRequired( 'upload' );
+				$wgOut->permissionRequired( $permissionRequired );
 			}
 			return;
 		}

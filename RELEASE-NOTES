@@ -142,6 +142,9 @@ in a negative namespace (which is invalid).
   correct link
 * (bug 23284) Times are now rounded correctly
 * (bug 23375) Added ogv, oga, spx as extensions for ogg files 
+* (bug 18408) All required permissions for uploading (upload, edit, create) 
+  are now checked when loading Special:Upload. Toolbar link for Special:Upload
+  is no longer shown if the user does not have the required permissions.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
