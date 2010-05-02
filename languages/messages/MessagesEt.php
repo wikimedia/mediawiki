@@ -1182,7 +1182,7 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'searchprofile-project'            => 'Abi- ja projektilehed',
 'searchprofile-images'             => 'Multimeedia',
 'searchprofile-everything'         => 'Kõik',
-'searchprofile-advanced'           => 'Detailne otsing',
+'searchprofile-advanced'           => 'Täpsem otsing',
 'searchprofile-articles-tooltip'   => 'Otsi nimeruumist $1',
 'searchprofile-project-tooltip'    => 'Otsi nimeruumidest $1',
 'searchprofile-images-tooltip'     => 'Failiotsing',
@@ -1211,7 +1211,7 @@ Kui soovid otsida ühekorraga kõigist nimeruumidest (kaasa arvatud arutelulehed
 päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta prefiksina sele nimeruumi nime.",
 'search-nonefound'                 => 'Päringule ei leitud vasteid.',
 'powersearch'                      => 'Otsi',
-'powersearch-legend'               => 'Detailne otsing',
+'powersearch-legend'               => 'Täpsem otsing',
 'powersearch-ns'                   => 'Otsing nimeruumidest:',
 'powersearch-redir'                => 'Loetle ümbersuunamised',
 'powersearch-field'                => 'Otsi fraasi',
@@ -1340,10 +1340,10 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 
 # User rights
 'userrights'                   => 'Kasutaja õiguste muutmine',
-'userrights-lookup-user'       => 'Muuda kasutajarühma',
+'userrights-lookup-user'       => 'Kasutajarühma muutmine',
 'userrights-user-editname'     => 'Sisesta kasutajatunnus:',
 'editusergroup'                => 'Muuda kasutajarühma',
-'editinguser'                  => "Muudan kasutaja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) õigusi",
+'editinguser'                  => "Kasutaja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) õiguste muutmine",
 'userrights-editusergroup'     => 'Kasutajarühma valik',
 'saveusergroups'               => 'Salvesta rühma muudatused',
 'userrights-groupsmember'      => 'Kuulub rühmadesse:',
@@ -2248,6 +2248,8 @@ Nupu '''''Tühjenda''''' vajutamine tühjendab põhjusevälja ja eemaldab kõik 
 'undeleterevisions'            => '$1 arhiivitud {{PLURAL:$1|redaktsioon|redaktsiooni}}',
 'undeletehistory'              => 'Kui taastate lehekülje, taastuvad kõik versioonid artikli ajaloona. 
 Kui vahepeal on loodud uus samanimeline lehekülg, ilmuvad taastatud versioonid varasema ajaloona.',
+'undeleterevdel'               => 'Lehekülge ei taastata, kui viimane redaktsioon või failiversioon kustub seeläbi osaliselt.
+Sellisel juhul tuleb uusima kustutatud redaktsiooni juurest linnuke eemaldada või see peitmata jätta.',
 'undeletehistorynoadmin'       => 'See lehekülg on kustutatud.
 Kustutamise põhjus ning selle lehekülje kustutamiseelne redigeerimislugu on näha allolevas kokkuvõttes.
 Lehekülje kustutamiseelsed redaktsioonid on kättesaadavad ainult ülematele.',
@@ -2334,7 +2336,7 @@ $1',
 'whatlinkshere-filters'    => 'Filtrid',
 
 # Block/unblock
-'blockip'                      => 'IP-aadressi blokeerimine',
+'blockip'                      => 'Kasutaja blokeerimine',
 'blockip-title'                => 'Kasutaja blokeerimine',
 'blockip-legend'               => 'Blokeeri kasutaja',
 'blockiptext'                  => 'See vorm on kindla IP-aadressi või kasutajanime kirjutamisõiguste blokeerimiseks.
@@ -2355,7 +2357,7 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'ipbanononly'                  => 'Blokeeri ainult anonüümsed kasutajad',
 'ipbcreateaccount'             => 'Takista konto loomist',
 'ipbemailban'                  => 'Takista kasutajal e-kirjade saatmine',
-'ipbenableautoblock'           => 'Blokeeri automaatselt viimane IP-aadress, mida see kasutaja kasutas, ja ka järgnevad, mille alt ta võib proovida kaastööd teha.',
+'ipbenableautoblock'           => 'Blokeeri automaatselt viimane IP-aadress, mida see kasutaja kasutas, ja ka järgnevad, mille alt ta võib proovida kaastööd teha',
 'ipbsubmit'                    => 'Blokeeri see aadress',
 'ipbother'                     => 'Muu tähtaeg',
 'ipboptions'                   => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite',

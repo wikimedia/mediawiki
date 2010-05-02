@@ -14,16 +14,22 @@ $fallback = 'it';
 
 $messages = array(
 # User preference toggles
-'tog-underline'             => 'Link cun la sotliniadura',
-'tog-highlightbroken'       => 'Fa avdé i link sbajé <a href="" class="new">scrètt acsè</a> (alternativa: scrètt acsè<a href="" class="internal">?</a>)',
-'tog-justify'               => 'Paràgraf: giustifiché',
-'tog-hideminor'             => 'Nascond al mudefghi znini int la pàgina "Ultum mudèfghi"',
-'tog-hidepatrolled'         => "Nascònd j cambiamént verifichèdi int'aglj ultum mudèfigh",
-'tog-newpageshidepatrolled' => 'Nascònd al pàgin verifichèdi da la lèsta dal pàgin növi',
-'tog-extendwatchlist'       => "Slèrga la funziòn \"tènn sot occ\" d'mod ch'us pòsa avdé toti al mudefchi, no sol l'ultma.",
-'tog-usenewrc'              => "Drova agl'j ultmi mudèfchi avanzëdi (u j vô JavaScript)",
-'tog-numberheadings'        => "Titul d'un paràgraf ch'l'à un nòmar daparlò",
-'tog-showtoolbar'           => "Fam avdé la bara d'j strumént (u j vó JavaScript)",
+'tog-underline'               => 'Link cun la sotliniadura',
+'tog-highlightbroken'         => 'Fa avdé i link sbajé <a href="" class="new">scrètt acsè</a> (alternativa: scrètt acsè<a href="" class="internal">?</a>)',
+'tog-justify'                 => 'Paràgraf: giustifiché',
+'tog-hideminor'               => 'Nascond al mudefghi znini int la pàgina "Ultum mudèfghi"',
+'tog-hidepatrolled'           => "Nascònd j cambiamént verifichèdi int'aglj ultum mudèfigh",
+'tog-newpageshidepatrolled'   => 'Nascònd al pàgin verifichèdi da la lèsta dal pàgin növi',
+'tog-extendwatchlist'         => "Slèrga la funziòn \"tènn sot occ\" d'mod ch'us pòsa avdé toti al mudefchi, no sol l'ultma.",
+'tog-usenewrc'                => "Drova agl'j ultmi mudèfchi avanzëdi (u j vô JavaScript)",
+'tog-numberheadings'          => "Titul d'un paràgraf ch'l'à un nòmar daparlò",
+'tog-showtoolbar'             => "Fam avdé la bara d'j strumént (u j vó JavaScript)",
+'tog-editondblclick'          => 'Mudèfiga al pàgin scjazènd do volt (u j vò JavaScript)',
+'tog-editsection'             => "S't'vù l'abilitaziòn ad'cambié al seziòn cum e' link [mudèfica]",
+'tog-editsectiononrightclick' => "S't'vù l'abilitaziòn ad cambié al seziòn <br />scjazénd e tast a dèstra sora e titul (u j vò JavaScript)",
+'tog-showtoc'                 => "Fam avdé l'indiz (sol par al pàgin cun piò d'3 seziòn)",
+'tog-rememberpassword'        => "Arcurdam la parola d'ordin, par piasé",
+'tog-watchcreations'          => "Mett insèn al pàgin ch't'e' fat adès, intla lèsta da tní sot'occ",
 
 # Dates
 'january'       => 'Znèr',

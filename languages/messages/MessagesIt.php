@@ -2632,6 +2632,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-rollback'                => '"Rollback" annulla le modifiche a questa pagina dell\'ultimo contributore con un solo clic.',
 'tooltip-undo'                    => '"Annulla" permette di annullare questa modifica e apre il modulo di modifica in modalità di anteprima. Permette di inserire una motivazione nell\'oggetto della modifica.',
 'tooltip-preferences-save'        => 'Salva le preferenze',
+'tooltip-summary'                 => 'Inserire una breve sintesi',
 
 # Stylesheets
 'common.css'      => '/* Gli stili CSS inseriti qui si applicano a tutte le skin */',
