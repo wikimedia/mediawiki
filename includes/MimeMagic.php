@@ -9,7 +9,7 @@
  * the file mime.types in the includes directory.
  */
 define('MM_WELL_KNOWN_MIME_TYPES',<<<END_STRING
-application/ogg ogg ogm ogv
+application/ogg ogx ogg ogm ogv oga spx
 application/pdf pdf
 application/vnd.oasis.opendocument.chart odc
 application/vnd.oasis.opendocument.chart-template otc
@@ -33,7 +33,7 @@ audio/midi mid midi kar
 audio/mpeg mpga mpa mp2 mp3
 audio/x-aiff aif aiff aifc
 audio/x-wav wav
-audio/ogg ogg
+audio/ogg oga spx ogg
 image/x-bmp bmp
 image/gif gif
 image/jpeg jpeg jpg jpe
@@ -45,7 +45,7 @@ image/x-portable-pixmap ppm
 image/x-xcf xcf
 text/plain txt
 text/html html htm
-video/ogg ogm ogg ogv
+video/ogg ogv ogm ogg
 video/mpeg mpg mpeg
 END_STRING
 );
@@ -396,7 +396,7 @@ class MimeMagic {
 			'xbm',
 
 			// Formats we recognize magic numbers for
-			'djvu', 'ogg', 'ogv', 'mid', 'pdf', 'wmf', 'xcf',
+			'djvu', 'ogx', 'ogg', 'ogv', 'oga', 'spx', 'mid', 'pdf', 'wmf', 'xcf',
 
 			// XML formats we sure hope we recognize reliably
 			'svg',
