@@ -63,6 +63,7 @@ the system, and disclosure of information from private wikis.
   check.
 * (bug 23167) Check the watch checkbox by default if the watchcreations 
   preference is set.
+* (bug 23171) Improve IE6 version check to avoid false positives.
 
 === Changes since 1.16 beta 1 ===
 
