@@ -174,11 +174,28 @@ $messages = array(
 'tog-watchmoves'              => 'Tamah on-on nyang lonpeupinah u dapeuta kalon',
 'tog-watchdeletion'           => 'Tamah on-on nyang lonsampoh u dapeuta kalon',
 'tog-minordefault'            => 'Boh tanda mandum neuandam sibagoe neuandam bacut ngon baku',
+'tog-previewontop'            => 'Peuleumah hase yoh goh kutak andam',
+'tog-previewonfirst'          => 'Peuleumah hase bak neuandam phon',
+'tog-nocache'                 => 'Peumate <em>cache</em> on',
+'tog-enotifwatchlistpages'    => "Peu'ek surat-e keu lon meunyo saboh halaman nyang lonkalon meuubah",
+'tog-enotifusertalkpages'     => "Peu'ek keu lon surat-e meunyo on marit lon meuubah",
+'tog-enotifminoredits'        => "Peu'ek cit surat-e keu lon bak neuandam bacut",
+'tog-enotifrevealaddr'        => 'Peuleumah alamat surat-e lon bak neubrithee surat-e',
+'tog-shownumberswatching'     => 'Peuleumah jumeulah ureueng kalon',
+'tog-oldsig'                  => 'Peuleumah tanda jaroe:',
+'tog-fancysig'                => 'Peujeuet tanda jaroe sibagoe naseukah wiki (hana hubong keudroe)',
+'tog-externaleditor'          => 'Nguy alat leumiek keu ngon peugot kata luwa',
+'tog-externaldiff'            => 'Nguy alat leumiek luwa keu eu bida neuandam',
+'tog-showjumplinks'           => 'Peuudep hubong keu ngon bantu "langsong u"',
+'tog-uselivepreview'          => 'Nguy peuleumah hase langsong (JavaScript) (baci)',
+'tog-forceeditsummary'        => 'Peuingat lon meunyo plok neuringkaih neuandam mantong soh',
 'tog-watchlisthideown'        => 'Peusöm nyang lôn andam nibak dapeuta keunalön',
 'tog-watchlisthidebots'       => 'Peusöm nyang teu andam nibak sagoö nyang bak dapeuta keunalön',
 'tog-watchlisthideminor'      => 'Peusöm Andam Bacut bak dapeuta keunalön',
 'tog-watchlisthideliu'        => 'Peusöm andam ureuëng nguy nyang tamöng nibak dapeuta keunalön',
 'tog-watchlisthideanons'      => 'Peusöm andam ureuëng nguy hana taturi nibak dapeuta keunalön',
+'tog-watchlisthidepatrolled'  => 'Peusom neuandam teukaway bak dapeuta keunalon',
+'tog-ccmeonemails'            => "Peu'ek keu lon seunalen surat-e nyang lonpeu'ek keu ureueng la'en",
 
 'underline-always' => 'Sabe',
 
@@ -328,7 +345,7 @@ $messages = array(
 'currentevents'        => 'Haba barô',
 'currentevents-url'    => 'Project:Haba barô',
 'disclaimers'          => 'Beunantah',
-'disclaimerpage'       => 'Project:Beunantah umôm',
+'disclaimerpage'       => 'Project:Beunantah umom',
 'edithelp'             => 'Bantu andam',
 'edithelppage'         => 'Help:Andam',
 'helppage'             => 'Help:Asoë',
@@ -354,9 +371,9 @@ $messages = array(
 'toc'                 => 'Asoë',
 'showtoc'             => 'peuleumah',
 'hidetoc'             => 'peusom',
-'site-rss-feed'       => 'Eumpeuën RSS $1',
+'site-rss-feed'       => 'Umpeuën RSS $1',
 'site-atom-feed'      => 'Eumpeuën Atôm $1',
-'page-rss-feed'       => 'Eumpeuën RSS "$1"',
+'page-rss-feed'       => 'Umpeuën RSS "$1"',
 'page-atom-feed'      => 'Umpeuën Atom "$1"',
 'red-link-title'      => '$1 (ôn goh na)',
 
@@ -392,7 +409,7 @@ Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam softwa
 'login'                   => 'Tamöng',
 'nav-login-createaccount' => 'Tamöng / dapeuta',
 'loginprompt'             => "Droëneuh payah neupeu’udép ''cookies'' beujeuët neutamong u {{SITENAME}}",
-'userlogin'               => 'Tamong / dapeuta',
+'userlogin'               => 'Tamöng / dapeuta',
 'logout'                  => 'Teubiët',
 'userlogout'              => 'Teubiët',
 'nologin'                 => "Goh na nan ureuëng nguy? '''$1'''.",
@@ -519,7 +536,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'revdel-restore' => 'Ubah leumah',
 
 # Merge log
-'revertmerge' => 'Hana  jadèh peugabông',
+'revertmerge' => 'Hana jadèh peugabông',
 
 # Diffs
 'history-title'           => 'Riwayat geunantoë nibak "$1"',
@@ -552,7 +569,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'search-mwsuggest-disabled' => 'hana saran',
 'nonefound'                 => "'''Ceunatat''': Cit ladôm ruweuëng nyang seucara baku geupeutamöng lam meunita. Ci neupuphôn leunakèë Droëneuh ngön ''all:'' keu mita ban dum asoë (rôh cit ôn peugah haba, tèmplat, ngön nyang la’én (nnl)), atawa neunguy ruweuëng nan nyang neumeuh’eut sibagoë neu’away.",
 'powersearch'               => 'Mita lanjut',
-'powersearch-legend'        => 'Mita lanjôt',
+'powersearch-legend'        => 'Mita lanjut',
 'powersearch-ns'            => 'Mita bak ruweuëng nan:',
 'powersearch-redir'         => 'Dapeuta peuninah',
 'powersearch-field'         => 'Mita',
@@ -578,7 +595,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|neu’ubah|neu’ubah}}',
-'recentchanges'                  => 'Ban',
+'recentchanges'                  => 'Neuubah barô',
 'recentchanges-legend'           => 'Peuniléh neuubah paléng barô',
 'recentchanges-feed-description' => 'Peutumèë neu’ubah paléng barô lam wiki bak eumpeuën nyoë.',
 'rcnote'                         => "Di yup nyoë nakeuh {{PLURAL:$1|nakeuh '''1''' neu’ubah paléng barô |nakeuh '''$1''' neu’ubah paléng barô}} lam {{PLURAL:$2|'''1''' uroë|'''$2''' uroë}} nyoë, trôk ‘an $5, $4.",
@@ -598,8 +615,8 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'minoreditletter'                => 'b',
 'newpageletter'                  => 'B',
 'boteditletter'                  => 'b',
-'rc-enhanced-expand'             => 'Peuleumah reuninci (peureulèë JavaScript)',
-'rc-enhanced-hide'               => 'Peusom reuninci',
+'rc-enhanced-expand'             => 'Peuleumah neurinci (peureulèë JavaScript)',
+'rc-enhanced-hide'               => 'Peusom neurinci',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Seundi meuhubông',
@@ -728,7 +745,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 
 # Special:Log/newusers
 'newuserlogpage'          => 'ureuëng nguy barô',
-'newuserlog-create-entry' => 'dapeuta  jeuët anggèëta',
+'newuserlog-create-entry' => 'dapeuta jeuët anggèëta',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(dapeuta anggèëta)',
@@ -786,7 +803,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'protect-default'             => 'Peuidin ban dum ureuëng nguy',
 'protect-fallback'            => 'Peureulèë hak peuhah "$1"',
 'protect-level-autoconfirmed' => 'Theun ureuëng nguy barô ngön hana teudapeuta',
-'protect-level-sysop'         => 'Nyang urôh mantöng',
+'protect-level-sysop'         => 'Ureuëng urôh mantöng',
 'protect-summary-cascade'     => 'riti',
 'protect-expiring'            => 'maté tanggay $1 (UTC)',
 'protect-cascade'             => 'Peulindông ban mandum ôn nyang rôh lam ôn nyoë (lindông meuturôt).',

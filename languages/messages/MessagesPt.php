@@ -2917,7 +2917,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'log-show-hide-patrol' => '$1 registo de edições patrulhadas',
 
 # Image deletion
-'deletedrevision'                 => 'Apagada a versão antiga $1',
+'deletedrevision'                 => 'Apagou a versão antiga $1',
 'filedeleteerror-short'           => 'Erro ao eliminar ficheiro: $1',
 'filedeleteerror-long'            => 'Foram encontrados erros ao tentar eliminar o ficheiro:
 
@@ -2956,7 +2956,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.<hr />",
 'noimages'              => 'Nada para ver.',
 'ilsubmit'              => 'Procurar',
 'bydate'                => 'por data',
-'sp-newimages-showfrom' => 'Mostrar novos ficheiros a partir de $2, $1',
+'sp-newimages-showfrom' => 'Mostrar novos ficheiros a partir das $2 de $1',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:

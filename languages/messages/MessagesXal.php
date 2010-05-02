@@ -824,7 +824,23 @@ $1',
 'randompage' => 'Уршг зүүл',
 
 # Statistics
-'statistics' => 'То бүрткл',
+'statistics'                   => 'То бүрткл',
+'statistics-header-pages'      => 'Халхарн то бүрткл',
+'statistics-header-edits'      => 'Сольлһна то бүрткл',
+'statistics-header-views'      => 'Хәләврин то бүрткл',
+'statistics-header-users'      => 'Демнчәрн то бүрткл',
+'statistics-articles'          => 'Зүүлс',
+'statistics-pages'             => 'Халхс',
+'statistics-pages-desc'        => 'Цуг бикид бәәдг халхс, тер тоот меткән халхс, авч одлһн, болв нань чигн.',
+'statistics-files'             => 'Тәвсн боомгуд',
+'statistics-edits'             => '{{SITENAME}} эклсн цагас авн сольлһна то',
+'statistics-edits-average'     => 'Халхарн сольлһна то',
+'statistics-views-total'       => 'Цуг хәләврин то',
+'statistics-views-peredit'     => 'Сольлһарн хәләврин то',
+'statistics-users'             => 'Бичгдлһтә [[Special:ListUsers|демнчнр]]',
+'statistics-users-active'      => 'Үүлтә демнчнр',
+'statistics-users-active-desc' => '{{PLURAL:$1|$1 өдрт|$1 өдрмүдт|$1 өдрмүдт}} болв чигн үүл кесн демнчнр',
+'statistics-mostpopular'       => 'Маш хәләсн халхс',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|байд|байдуд|байдуд}}',
@@ -1058,7 +1074,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'revertmove'       => 'хәрүлһн',
 
 # Export
-'export'        => 'Халхин экспорт',
+'export'        => 'Халхин һазадлт',
 'export-addcat' => 'Немх',
 'export-addns'  => 'Немх',
 
