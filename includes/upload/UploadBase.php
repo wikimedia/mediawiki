@@ -91,7 +91,7 @@ abstract class UploadBase {
 	 * Can be overriden by subclasses.
 	 */
 	public static function isAllowed( $user ) {
-		foreach ( self::getRequiredPermissions as $permission ) {
+		foreach ( self::getRequiredPermissions() as $permission ) {
 			if ( !$user->isAllowed( $permission ) ) {
 				return $permission;
 			}
