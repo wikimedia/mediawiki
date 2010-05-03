@@ -307,12 +307,14 @@ class DatabaseOracle extends DatabaseBase {
 		if ( ( $this->mLastResult = $stmt = oci_parse( $this->mConn, $sql ) ) === false ) {
 			$e = oci_error( $this->mConn );
 			$this->reportQueryError( $e['message'], $e['code'], $sql, __FUNCTION__ );
+			return false;
 		}
 
 		if ( oci_execute( $stmt, $this->execFlags() ) == false ) {
 			$e = oci_error( $stmt );
 			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __FUNCTION__ );
+				return false;
 			}
 		}
 		
@@ -494,6 +496,7 @@ class DatabaseOracle extends DatabaseBase {
 				$val = ( $wgLang != null ) ? $wgLang->checkTitleEncoding( $val ) : $val;
 				if ( oci_bind_by_name( $stmt, ":$col", $val ) === false ) {
 					$this->reportQueryError( $this->lastErrno(), $this->lastError(), $sql, __METHOD__ );
+					return false;
 				}
 			} else {
 				if ( ( $lob[$col] = oci_new_descriptor( $this->mConn, OCI_D_LOB ) ) === false ) {
@@ -518,6 +521,7 @@ class DatabaseOracle extends DatabaseBase {
 
 			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
+				return false;
 			} else {
 				$this->mAffectedRows = oci_num_rows( $stmt );
 			}
