@@ -2350,7 +2350,7 @@ Pode ter usado um link incorrecto ou talvez a revisão tenha sido restaurada ou 
 'undeletereset'                => 'Limpar',
 'undeleteinvert'               => 'Inverter selecção',
 'undeletecomment'              => 'Comentário:',
-'undeletedarticle'             => 'restaurado "[[$1]]"',
+'undeletedarticle'             => 'restaurou "[[$1]]"',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|edição restaurada|edições restauradas}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$2|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
 'undeletedfiles'               => '{{PLURAL:$1|ficheiro restaurado|$1 ficheiros restaurados}}',
@@ -2806,6 +2806,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-undo'                    => '"desfazer" reverte esta edição e apresenta a página de edição no modo de antevisão.
 Permite colocar uma justificação no resumo da edição.',
 'tooltip-preferences-save'        => 'Gravar preferências',
+'tooltip-summary'                 => 'Introduza um resumo breve',
 
 # Stylesheets
 'common.css'      => '/* Código CSS colocado aqui será aplicado a todos os temas */',

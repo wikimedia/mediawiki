@@ -1220,6 +1220,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-block'            => 'Kuwazuia watumiaji wengine wasihariri',
 'right-blockemail'       => 'Kumzuia mtumiaji asitume barua-pepe',
 'right-import'           => 'Kuleta kurasa kutoka kwa wiki zingine',
+'right-userrights'       => 'Kubadilisha wezo zote za watumiaji',
 'right-siteadmin'        => 'Kufunga na kufungua hifadhidata',
 'right-sendemail'        => 'Kutuma barua-pepe kwa watumiaji wengine',
 
@@ -1232,6 +1233,8 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-read'             => 'kusoma ukurasa huu',
 'action-edit'             => 'kuhariri ukurasa huu',
 'action-createpage'       => 'kuanzisha kurasa',
+'action-createtalk'       => 'kuanzisha kurasa za majadiliano',
+'action-createaccount'    => 'kusajili akaunti hii ya mtumiaji',
 'action-minoredit'        => 'kutia alama ya badiliko dogo',
 'action-move'             => 'kusogeza ukurasa huu',
 'action-move-subpages'    => 'kusogeza ukurasa huu, pamoja na kurasa zake ndogo',
@@ -1248,6 +1251,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-suppressionlog'   => 'kutazama kumbukumbu za faragha',
 'action-block'            => 'Kumzuia mtumiaji huyu asihariri',
 'action-import'           => 'kuleta ukurasa huu kutoka kwa wiki nyingine',
+'action-userrights'       => 'kubadilisha wezo zote za watumiaji',
 'action-siteadmin'        => 'kufunga na kufungua hifadhidata',
 
 # Recent changes
@@ -1332,7 +1336,10 @@ Tazama [[Special:NewFiles|mkusanyiko wa mafaili mapya]] kuona picha zenyewe.',
 'ignorewarning'           => 'Hifadhi bila kujali maonyo yoyote.',
 'ignorewarnings'          => 'Usijali ilani zozote',
 'minlength1'              => 'Majina ya mafaili yanatakiwa kuwa na herufi moja au zaidi.',
+'illegalfilename'         => 'Jina la faili la "$1" lina herufi zisizoruhusiwa katika majina ya kurasa.
+Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'badfilename'             => 'Jina la faili limebadilishwa kuwa "$1".',
+'filetype-mime-mismatch'  => 'Tawi (extension) la faili halingani na aina ya MIME.',
 'unknown-error'           => 'Ilitokea hitilafu isiyojulikana.',
 'tmp-create-error'        => 'Haikuweza kuanzisha faili la muda.',
 'tmp-write-error'         => 'Hitilafu ya kuandika faili la muda.',
@@ -1535,7 +1542,8 @@ Maelezo mengine: $1',
 'allpages-bad-ns' => 'Eneo la "$1" halipatikani kwenye {{SITENAME}}.',
 
 # Special:Categories
-'categories' => 'Jamii',
+'categories'     => 'Jamii',
+'categoriesfrom' => 'Tandaza jamii kuanzia na:',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'Michango ya mtumiaji aliyefutwa',
@@ -1559,25 +1567,33 @@ Maelezo mengine: $1',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Kumbukumbu za kuanzisha akaunti za watumiaji',
+'newuserlog-byemail'      => 'neno la siri limetumwa kwa barua pepe',
 'newuserlog-create-entry' => 'Akaunti ya mtumiaji mgeni',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Kundi',
+'listgrouprights-rights'  => 'Wezo',
 'listgrouprights-members' => '(orodha ya wanachama)',
 
 # E-mail user
-'emailuser'       => 'Mtumie mtumiaji huyu barua pepe',
-'emailpage'       => 'Kumtumia mtumiaji barua pepe',
-'defemailsubject' => 'Barua pepe ya {{SITENAME}}',
-'noemailtitle'    => 'Anwani ya barua pepe hakuna',
-'emailfrom'       => 'Kutoka kwa:',
-'emailto'         => 'Kwa:',
-'emailsubject'    => 'Mada:',
-'emailmessage'    => 'Ujumbe:',
-'emailsend'       => 'Tuma',
-'emailccme'       => 'Tuma nakala ya barua yangu ya pepe kwangu.',
-'emailccsubject'  => 'Nakala ya barua pepe uliotuma kwa $1: $2',
-'emailsent'       => 'Barua pepe imetumwa',
+'mailnologin'          => 'Hakuna anwani wa kutuma',
+'emailuser'            => 'Mtumie mtumiaji huyu barua pepe',
+'emailpage'            => 'Kumtumia mtumiaji barua pepe',
+'defemailsubject'      => 'Barua pepe ya {{SITENAME}}',
+'usermaildisabledtext' => 'Huwezi kutuma barua pepe kwa watumiaji wengine wa wiki hii',
+'noemailtitle'         => 'Anwani ya barua pepe hakuna',
+'nowikiemailtitle'     => 'Barua pepe haziruhusiwi',
+'nowikiemailtext'      => 'Mtumiaji huyu hajakubali kupokea barua pepe kutoka kwa watumiaji wengine.',
+'email-legend'         => 'Tuma barua pepe kwa mtumiaji mwingine wa {{SITENAME}}',
+'emailfrom'            => 'Kutoka kwa:',
+'emailto'              => 'Kwa:',
+'emailsubject'         => 'Mada:',
+'emailmessage'         => 'Ujumbe:',
+'emailsend'            => 'Tuma',
+'emailccme'            => 'Tuma nakala ya barua yangu ya pepe kwangu.',
+'emailccsubject'       => 'Nakala ya barua pepe uliotuma kwa $1: $2',
+'emailsent'            => 'Barua pepe imetumwa',
+'emailsenttext'        => 'Barua pepe yako imetumwa.',
 
 # Watchlist
 'watchlist'         => 'Maangalizi yangu',

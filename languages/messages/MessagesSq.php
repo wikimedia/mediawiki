@@ -12,6 +12,7 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author MicroBoy
  * @author Puntori
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -435,13 +436,13 @@ Edit section: $1',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Burim Atom',
-'red-link-title'          => '$1 (nuk është shkruar akoma)',
+'red-link-title'          => '$1 (faqja nuk ekziston)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulli',
 'nstab-user'      => 'Përdoruesi',
 'nstab-media'     => 'Media-faqe',
-'nstab-special'   => 'Speciale',
+'nstab-special'   => 'Faqe speciale',
 'nstab-project'   => 'Projekt-faqe',
 'nstab-image'     => 'Figura',
 'nstab-mediawiki' => 'Porosia',
@@ -544,7 +545,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'login'                      => 'Hyni',
 'nav-login-createaccount'    => 'Hyni ose hapni një llogari',
 'loginprompt'                => 'Duhet të pranoni "biskota" për të hyrë brënda në {{SITENAME}}.',
-'userlogin'                  => 'Hyni ose hapni një llogari',
+'userlogin'                  => 'Hyni / hapni llogari',
 'logout'                     => 'Dalje',
 'userlogout'                 => 'Dalje',
 'notloggedin'                => 'Nuk keni hyrë brenda',
@@ -1756,9 +1757,9 @@ Shih listën e [[Special:ProtectedPages|faqeve të mbrojtura]] nga lista e mbroj
 'protect-locked-access'       => "Llogaria juaj nuk ka privilegjet e nevojitura për të ndryshuar nivelin e mbrojtjes. Kufizimet e kësaj faqeje janë '''$1''':",
 'protect-cascadeon'           => 'Kjo faqe është e mbrojtur pasi është përfshirë {{PLURAL:$1|këtë faqe që është|këto faqe që janë}} nën mbrojtje "ujëvarë".
 Mund të ndryshoni nivelin e mbrojtjes të kësaj faqeje por kjo nuk do të ndryshojë mbrojtjen "ujëvarë".',
-'protect-default'             => '(parazgjedhje)',
+'protect-default'             => 'Lejoni të gjithë përdoruesit',
 'protect-fallback'            => 'Kërko "$1" leje',
-'protect-level-autoconfirmed' => 'Blloko përdoruesit pa llogari',
+'protect-level-autoconfirmed' => 'Blloko përdoruesit e rinj dhe pa llogari',
 'protect-level-sysop'         => 'Lejo vetëm administruesit',
 'protect-summary-cascade'     => 'të varura',
 'protect-expiring'            => 'skadon me $1 (UTC)',
@@ -1803,7 +1804,7 @@ Arkivi, kohëpaskohe është e mundur të pastrohet.',
 'undelete-revision'          => 'Revizioni i grisur i $1 (nga $4, në $5) nga $3:',
 'undelete-nodiff'            => 'Nuk u gjetën revizione të mëparshme.',
 'undeletebtn'                => 'Restauro!',
-'undeletelink'               => 'rikthe',
+'undeletelink'               => 'shiko/rikthe',
 'undeletereset'              => 'Boshatis',
 'undeleteinvert'             => 'Selektim anasjelltas',
 'undeletecomment'            => 'Arsyeja:',

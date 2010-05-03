@@ -1186,9 +1186,9 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-move-subpages'         => 'Tramudé dle pàgine con soe sot-pàgine',
 'right-move-rootuserpages'    => "Tramudé le pàgine prinsipaj ëd j'utent",
 'right-movefile'              => "Tramudé j'archivi",
-'right-suppressredirect'      => 'Nen creé rediression da la pàgina sorziss an tramudand pàgine',
-'right-upload'                => 'Carié file',
-'right-reupload'              => 'Coaté file esistent',
+'right-suppressredirect'      => 'Creé nen ëd ridiression da la pàgina sorgiss an tramudand le pàgine',
+'right-upload'                => "Carié d'archivi",
+'right-reupload'              => "Coaté n'archivi esistent",
 'right-reupload-own'          => 'Coaté file esistent carià dal midem utent',
 'right-reupload-shared'       => "Coaté file an sl'archivi local condivis",
 'right-upload_by_url'         => 'Carié file da na URL',
@@ -2528,8 +2528,8 @@ Për piasì preuva torna.',
 'tooltip-rollback'                => '"Rollback" a scansela con un clich le modìfiche fàite a costa pagina da l\'ùltim contribudor',
 'tooltip-undo'                    => '"Undo" a scansela costa modìfica e a deurb la fnestra ëd modìfica an manera ëd vardé prima.
 At lassa gionté na spiegassion ëd la modìfica.',
-'tooltip-preferences-save'        => 'Salva preferense',
-'tooltip-summary'                 => 'Ansëriss un curt somari',
+'tooltip-preferences-save'        => 'Salvé ij sò gust',
+'tooltip-summary'                 => 'Anserì un curt resumé',
 
 # Stylesheets
 'common.css'   => '/** Ël còdes CSS che as buta ambelessì a resta dovrà ant tute le "facie" */',

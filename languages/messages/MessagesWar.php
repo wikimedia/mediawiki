@@ -371,7 +371,12 @@ Nagbalik hin sayop an database nga "$3: $4"',
 'loginlanguagelabel'      => 'Yinaknan: $1',
 
 # Edit pages
-'watchthis' => 'Bantayi ini nga pakli',
+'summary'          => 'Pahapyaw nga sumat han pagliwat (Summary):',
+'minoredit'        => 'Gutiay ini nga pagliwat',
+'watchthis'        => 'Bantayi ini nga pakli',
+'copyrightwarning' => "Iginpapasabot nga an ngatanan nga imo gin-amot ha {{SITENAME}} iginhatag mo ha ilarom han $2 (kitaa an $1 para han mga detalye).  Kun diri mo igkakalipay nga an imo ginsurat waray kalooy nga liliwaton ngan igpapakalat hit bisan hin-o nga it may gusto, alayon ayaw hiton igsumitir dinhi. <br />
+Nasaad ka liwat nga imo ini kalugaringon nga ginsurat, o ginkopya nimo ini tikang ha panimongto nga dominyo o kapareho nga waray-sabit nga kuruhaon.
+'''Ayaw igsumitir an mga buhat nga may ''copyright'' hin waray sarit!'''",
 
 # History pages
 'viewpagelogs' => 'Kitaa an mga log para hini nga pakli',
@@ -392,6 +397,7 @@ Nagbalik hin sayop an database nga "$3: $4"',
 'search-mwsuggest-enabled'  => 'upod hin mga suhestyon',
 'search-mwsuggest-disabled' => 'waray mga suhestyon',
 'powersearch'               => 'Bilnga',
+'powersearch-field'         => 'Bilnga an',
 
 # Preferences page
 'preferences'       => 'Mga karuyag',
@@ -425,6 +431,7 @@ Nagbalik hin sayop an database nga "$3: $4"',
 # File description page
 'file-anchor-link'        => 'Fayl',
 'filehist-datetime'       => 'Pitsa/Oras',
+'filehist-user'           => 'Nagamit',
 'imagelinks'              => 'Mga sumpay hin fayl',
 'linkstoimage'            => 'An nasunod nga {{PLURAL:$1|pakli nasumpay|$1 mga pakli nasumpay}} hini nga fayl:',
 'nolinkstoimage'          => 'Waray mga pakli nga nasumpay hini nga fayl.',
