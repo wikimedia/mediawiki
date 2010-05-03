@@ -618,7 +618,15 @@ function ts_resortTable( lnk ) {
 	// Work out a type for the column
 	// Skip the first row if that's where the headings are
 	var rowStart = ( table.tHead && table.tHead.rows.length > 0 ? 0 : 1 );
-
+	var bodyRows = 0;
+	if (rowStart == 0 && table.tBodies) {
+		for (var i=0; i < table.tBodies.length; i++ ) {
+			bodyRows += table.tBodies[i].rows.length;
+		}
+		if (bodyRows < table.rows.length)
+			rowStart = 1;
+	}
+	
 	var itm = '';
 	for ( var i = rowStart; i < table.rows.length; i++ ) {
 		if ( table.rows[i].cells.length > column ) {
