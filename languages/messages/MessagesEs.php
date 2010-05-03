@@ -2770,6 +2770,7 @@ No hay un directorio temporal.',
 'tooltip-undo'                    => '«Deshacer» revierte la edición seleccionada y abre la página de edición en el modo de previsualización.
 Permite añadir una razón al resumen de edición.',
 'tooltip-preferences-save'        => 'Guardar preferencias',
+'tooltip-summary'                 => 'Ingresar un breve resumen',
 
 # Stylesheets
 'common.css'   => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',

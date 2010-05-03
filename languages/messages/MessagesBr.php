@@ -1387,6 +1387,9 @@ E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
 'upload_directory_missing'    => "Mankout a ra ar c'havlec'h enporzhiañ ($1) ha n'eo ket bet ar servijer Web evit e grouiñ.",
 'upload_directory_read_only'  => "N'hall ket ar servijer skrivañ e renkell ar c'hargadennoù ($1).",
 'uploaderror'                 => 'Fazi',
+'upload-recreate-warning'     => "'''Diwallit''' : Diverket pe dilec'hiet ez eus bet ur restr gant an anv-se.'''
+
+Deoc'h da c'houzout, setu aze marilh an diverkañ hag an dilec'hiañ evit ar bajenn-mañ.",
 'uploadtext'                  => "Grit gant ar furmskrid a-is evit enporzhiañ restroù war ar servijer.
 Evit sellet pe klask skeudennoù bet enporzhiet a-raok sellit ouzh [[Special:FileList|roll ar skeudennoù]]. Kavet e vo ar skeudennoù enporzhiet war [[Special:Log/upload|marilh ar pajennoù enporzhiet]] hag an diverkadennoù war [[Special:Log/delete|istor an diverkadennoù]].
 
@@ -1424,8 +1427,10 @@ S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'file-too-large'              => "Ar restr hoc'h eus roet a oa re vras.",
 'filename-tooshort'           => 'Re verr eo anv ar restr.',
 'filetype-banned'             => 'Difennet eo ar seurt restroù',
+'verification-error'          => 'Korbellet eo bet ar restr-mañ gant ar gwiriañ restroù.',
 'hookaborted'                 => "Ar c'hemm hoc'h eus klasket ober a zo bet paouezet gant ur sonnell astenn.",
 'illegal-filename'            => "N'eo ket aotreet anv ar restr.",
+'overwrite'                   => "N'eo ket aotreet frikañ ur restr zo anezhi c'hoazh.",
 'unknown-error'               => 'Ur gudenn dizanv a zo bet.',
 'tmp-create-error'            => 'Dibosupl eo krouiñ ur restr padennek.',
 'tmp-write-error'             => 'Ur gudenn skrivañ a zo bet evit ar restr padennek.',
@@ -1462,6 +1467,7 @@ Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit 
 'uploadedimage'               => '"[[$1]]" enporzhiet',
 'overwroteimage'              => 'enporzhiet ur stumm nevez eus "[[$1]]"',
 'uploaddisabled'              => 'Ho tigarez, diweredekaet eo bet kas ar restr-mañ.',
+'copyuploaddisabled'          => 'Diweredekaet eo bet ar pellgargañ dre URL.',
 'uploadfromurl-queued'        => 'Lakaet eo bet ho pellgargadenn er roll gortoz.',
 'uploaddisabledtext'          => 'Diweredekaet eo an enporzhiañ restroù.',
 'php-uploaddisabledtext'      => 'Diweredekaet eo bet ar pellgargañ e PHP. Gwiriit an dibarzh arventennoù file_uploads.',

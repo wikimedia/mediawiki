@@ -1,5 +1,5 @@
 <?php
-/** Old English (Anglo-Saxon)
+/** Old English (Ænglisc)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -257,6 +257,7 @@ $1',
 'currentevents'        => 'Efenealde belimpas',
 'currentevents-url'    => 'Project:Efenealde belimpas',
 'disclaimers'          => 'Ymbcƿidas',
+'disclaimerpage'       => 'Ƿeorc:Ymbcƿidas',
 'edithelp'             => 'Ādihtan help',
 'edithelppage'         => 'Help:Ādihtan',
 'helppage'             => 'Help:Innoþ',
@@ -347,6 +348,7 @@ Cnāw þæt sume sīdan cunnon gelǣstende ēowod wesan swā þū wǣre gīet in
 'logout'                     => 'Ūtmeldian',
 'userlogout'                 => 'Ūtmeldian',
 'notloggedin'                => 'Ne inȝemelded',
+'nologinlink'                => 'Hordcleofan scieppan',
 'createaccount'              => 'Hordcleofan scieppan',
 'gotaccountlink'             => 'Inmeldian',
 'badretype'                  => 'Þā þafungƿord þe ƿrite þū, bēoþ unȝemæcca.',
@@ -690,6 +692,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'filehist-thumb'            => 'Lȳtlbiliþ',
 'filehist-thumbtext'        => 'Lȳtlbiliþ for fadunge sƿā $1',
 'filehist-user'             => 'Brūcend',
+'filehist-dimensions'       => 'Miċela',
 'filehist-comment'          => 'Ymbsprǣċ',
 'imagelinks'                => 'Fīlhlenċan',
 'linkstoimage'              => 'Þā folgendan {{PLURAL:$1|sīde hæfþ hlenċe|sīdan habbaþ hlenċan}} for þissum fīle:',
@@ -872,6 +875,8 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'prot_1movedto2'              => '[[$1]] ȝefered tō [[$2]]',
 'protectcomment'              => 'Racu:',
 'protectexpiry'               => 'Endaþ:',
+'protect_expiry_invalid'      => 'Endende tīde is unriht.',
+'protect_expiry_old'          => 'Endende tīde is in ȝēara dagum.',
 'protect-text'                => "Þū meaht þæt beorges emnet sēon and hƿeorfan hēr for þǣre sīdan '''<nowiki>$1</nowiki>'''.",
 'protect-default'             => 'Eall brūcendas þafian',
 'protect-fallback'            => '"$1" þafunge ābiddan',
@@ -938,10 +943,10 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'whatlinkshere-filters'    => 'Seohhunga',
 
 # Block/unblock
-'blockip'            => 'Brūcend fortȳnan',
-'ipbreason'          => 'Racu',
-'ipbreasonotherlist' => 'Ōðeru racu',
-'ipbreason-dropdown' => '*Gemǣna gǣlungraca
+'blockip'                  => 'Brūcend fortȳnan',
+'ipbreason'                => 'Racu',
+'ipbreasonotherlist'       => 'Ōðeru racu',
+'ipbreason-dropdown'       => '*Gemǣna gǣlungraca
 ** Insettung falses gefrǣges
 ** Āfēorsung innunge of trametum
 ** Spamming benda tō ūtanweardum webbstedum
@@ -949,20 +954,21 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 ** Þrǣstiendlicu gebǣrnes/tirgung
 ** Miswendung manigfealdra brūcendhorda
 ** Uncwēme brūcendnama',
-'ipbsubmit'          => 'Þisne brūcend gǣlan',
-'ipbother'           => 'Ōðeru tīd',
-'ipboptions'         => '2 stunda:2 hours,1 dæȝ:1 day,3 dagas:3 days,1 ƿucu:1 week,2 ƿuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 ȝēar:1 year,unendiend:infinite',
-'ipbotheroption'     => 'ōðer',
-'ipbotherreason'     => 'Ōðeru/geīecendlicu racu:',
-'ipblocklist-submit' => 'Sēċan',
-'infiniteblock'      => 'unendiende',
-'expiringblock'      => 'forealdaþ $1 $2',
-'blocklink'          => 'fortȳnan',
-'unblocklink'        => 'unfortȳnan',
-'change-blocklink'   => 'Fortȳne hƿeorfan',
-'contribslink'       => 'forðunga',
-'unblocklogentry'    => 'unfortȳnode $1',
-'proxyblocksuccess'  => 'Ȝedōn.',
+'ipbsubmit'                => 'Þisne brūcend gǣlan',
+'ipbother'                 => 'Ōðeru tīd',
+'ipboptions'               => '2 stunda:2 hours,1 dæȝ:1 day,3 dagas:3 days,1 ƿucu:1 week,2 ƿuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 ȝēar:1 year,unendiend:infinite',
+'ipbotheroption'           => 'ōðer',
+'ipbotherreason'           => 'Ōðeru/geīecendlicu racu:',
+'ipblocklist-submit'       => 'Sēċan',
+'infiniteblock'            => 'unendiende',
+'expiringblock'            => 'forealdaþ $1 $2',
+'blocklink'                => 'fortȳnan',
+'unblocklink'              => 'unfortȳnan',
+'change-blocklink'         => 'Fortȳne hƿeorfan',
+'contribslink'             => 'forðunga',
+'unblocklogentry'          => 'unfortȳnode $1',
+'block-log-flags-nocreate' => 'Hordcleofan scieppende forboden',
+'proxyblocksuccess'        => 'Ȝedōn.',
 
 # Move page
 'movearticle'     => 'Sīdan ȝeferan:',

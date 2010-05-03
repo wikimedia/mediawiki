@@ -547,7 +547,7 @@ Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|
 'login'                      => 'Přizjewić',
 'nav-login-createaccount'    => 'Konto wutworić abo so přizjewić',
 'loginprompt'                => 'Zo by so pola {{GRAMMAR:genitiw|{{SITENAME}}}} přizjewić móhł, dyrbja so placki (cookies) zmóžnić.',
-'userlogin'                  => 'Załožće konto abo přizjewće',
+'userlogin'                  => 'Załožće konto abo přizjewće so',
 'userloginnocreate'          => 'Přizjewić',
 'logout'                     => 'wotzjewić',
 'userlogout'                 => 'wotzjewić',

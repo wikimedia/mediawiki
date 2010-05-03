@@ -1505,7 +1505,7 @@ IP nó ainm úsáideora a raibh faoi chosc roimhe seo.',
 'autoblocker'             => 'Coisceadh go huathoibríoch thú dá bharr gur úsáid an t-úsáideoir "[[User:$1|$1]]" do sheoladh IP le déanaí.
 Is é seo an chúis don chosc ar $1: "$2".',
 'blocklogpage'            => 'Cuntas_coisc',
-'blocklogentry'           => 'coisceadh [[$1]]; is é $2 an am éaga $3',
+'blocklogentry'           => 'coisceadh [[$1]]; am éaga $2. $3',
 'blocklogtext'            => 'Seo é cuntas de gníomhartha coisc úsáideoirí agus míchoisc úsáideoirí. Ní cuirtear
 seoltaí IP a raibh coiscthe go huathoibríoch ar an liosta seo. Féach ar an
 [[Special:IPBlockList|Liosta coisc IP]] chun
