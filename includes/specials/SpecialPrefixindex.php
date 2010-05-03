@@ -45,8 +45,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 	
 	/**
 	* HTML for the top form
-	* @param integer $namespace A namespace constant (default NS_MAIN).
-	* @param string $from dbKey we are starting listing at.
+	* @param $namespace Integer: a namespace constant (default NS_MAIN).
+	* @param $from String: dbKey we are starting listing at.
 	*/
 	function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
 		global $wgScript;
@@ -83,8 +83,9 @@ class SpecialPrefixindex extends SpecialAllpages {
 	}
 
 	/**
-	 * @param integer $namespace (Default NS_MAIN)
-	 * @param string $from list all pages from this name (default FALSE)
+	 * @param $namespace Integer, default NS_MAIN
+	 * @param $prefix String
+	 * @param $from String: list all pages from this name (default FALSE)
 	 */
 	function showPrefixChunk( $namespace = NS_MAIN, $prefix, $from = null ) {
 		global $wgOut, $wgUser, $wgContLang, $wgLang;
