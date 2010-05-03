@@ -191,6 +191,14 @@ class HTMLForm {
 	 * @return Bool whether submission was successful.
 	 */
 	function show() {
+		// Check if we have the info we need
+		if ( ! $this->mTitle ) {
+			throw new MWException( "You must call setTitle() on an HTMLForm" );
+		}
+		if ( ! $this->mSubmitCallback ) {
+			throw new MWException( "You must set a submission callback" );
+		}
+		
 		$html = '';
 
 		self::addJS();
