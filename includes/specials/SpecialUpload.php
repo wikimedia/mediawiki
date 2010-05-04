@@ -925,17 +925,19 @@ class UploadForm extends HTMLForm {
 			'EditTools' => array(
 				'type' => 'edittools',
 				'section' => 'description',
-			),
-			'License' => array(
+			)
+		);
+
+		if ( $this->mForReUpload ) {
+			$descriptor['DestFile']['readonly'] = true;
+		} else {
+			$descriptor['License'] = array(
 				'type' => 'select',
 				'class' => 'Licenses',
 				'section' => 'description',
 				'id' => 'wpLicense',
 				'label-message' => 'license',
-			),
-		);
-		if ( $this->mForReUpload ) {
-			$descriptor['DestFile']['readonly'] = true;
+			);
 		}
 
 		global $wgUseCopyrightUpload;
