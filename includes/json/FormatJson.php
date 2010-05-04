@@ -6,7 +6,7 @@ if( !(defined( 'MEDIAWIKI' ) ) ) {
 	die( 1 );
 }
 
-class FormatJson{
+class FormatJson {
 	public static function encode($value, $isHtml=false){
 		// Some versions of PHP have a broken json_encode, see PHP bug
 		// 46944. Test encoding an affected character (U+20000) to
