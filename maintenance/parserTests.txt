@@ -2603,7 +2603,7 @@ BUG 41: Template parameters shown as broken links
 Template:MSGNW test
 !! text
 ''None'' of '''this''' should be 
-* interepreted
+* interpreted
  but rather passed unmodified
 {{test}}
 !! endarticle
@@ -2617,7 +2617,7 @@ disabled
 {{msgnw:MSGNW test}}
 !! result
 <p>''None'' of '''this''' should be 
-* interepreted
+* interpreted
  but rather passed unmodified
 {{test}}
 </p>
@@ -4821,7 +4821,7 @@ disabled
 !! input
 <br id=9 />
 !! result
-Something, but defenetly not <br id="9" />...
+Something, but definitely not <br id="9" />...
 !! end
 
 !! test
@@ -6718,12 +6718,14 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! test
 Parents of subpages, two levels up
 !! options
-disabled
 subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../../|L1]]2
+
+[[../../|L1]]l
 !! result
-<p><a href="/index.php?title=Subpage_test/L1&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (page does not exist)">L1</a>
+<p><a href="/index.php?title=Subpage_test/L1&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (page does not exist)">L1</a>2
+</p><p><a href="/index.php?title=Subpage_test/L1&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (page does not exist)">L1l</a>
 </p>
 !! end
 
