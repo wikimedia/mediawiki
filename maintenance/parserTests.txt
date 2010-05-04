@@ -7420,6 +7420,20 @@ Line two
 
 !! end
 
+!! test
+Nesting tags, paragraphs on lines which begin with <div>
+!! options
+disabled
+!! input
+<div></div><strong>A
+B</strong>
+!! result
+<div></div>
+<p><strong>A
+B</strong>
+</p>
+!! end
+
 # Bug 6200: <blockquote> should behave like <div> with respect to line breaks
 !! test
 Bug 6200: paragraphs inside blockquotes (no extra line breaks)

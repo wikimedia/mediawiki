@@ -3455,8 +3455,7 @@ This is probably caused by a link to a blacklisted external site.',
 check for correct installation of latex, dvips, gs, and convert',
 'math_bad_tmpdir'       => 'Cannot write to or create math temp directory',
 'math_bad_output'       => 'Cannot write to or create math output directory',
-'math_notexvc'          => 'Missing texvc executable;
-please see math/README to configure.',
+'math_notexvc'          => 'Missing texvc executable; please see math/README to configure.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Mark as patrolled',
