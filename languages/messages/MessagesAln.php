@@ -10,6 +10,7 @@
  * @author Bresta
  * @author Cradel
  * @author Dardan
+ * @author Mdupont
  */
 
 $fallback = 'sq';
@@ -734,8 +735,8 @@ Administruesi që e ka mshelë e ka dhânë këtë shpjegim: $1",
 'semiprotectedpagewarning'         => "'''Shenim:''' Kjo faqe âsht e mshelun dhe mundet me u redaktue vetëm prej përdoruesve të regjistruem.",
 'cascadeprotectedwarning'          => "'''Veni re:''' Kjo faqe âsht e mshelun dhe vetëm përdoruesit me tagër administruesi munden me e redaktue, tue qenë se âsht e përfshime në mbrojtje mvarësie në {{PLURAL:$1|faqen e|faqet e}} mâposhtme:",
 'titleprotectedwarning'            => "'''Veni re:  Kjo faqe âsht e mshelun dhe vetëm përdorues me [[Special:ListGroupRights|tagër të veçantë]] munden me e krijue.'''",
-'templatesused'                    => '{{PLURAL:$1|Shabllon|Shabllona}} janë përdorë në kët faqe:',
-'templatesusedpreview'             => '{{PLURAL:$1|Shabllon|Shabllona}} janë përdorë në këtë parapâmje:',
+'templatesused'                    => '{{PLURAL:$1|Stamp|Stampa}} janë përdorë në kët faqe:',
+'templatesusedpreview'             => '{{PLURAL:$1|Stamp|Stampa}} janë përdorë në këtë parapâmje:',
 'templatesusedsection'             => 'Stampat e përdoruna në këtë sekcion:',
 'template-protected'               => '(e mbrojtme)',
 'template-semiprotected'           => '(gjysë-mbrojtun)',

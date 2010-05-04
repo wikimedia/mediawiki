@@ -1527,23 +1527,29 @@ Maelezo mengine: $1',
 'log-title-wildcard'   => 'Tafuta kurasa zenye vichwa vinavyoanza na maandishi haya',
 
 # Special:AllPages
-'allpages'        => 'Kurasa zote',
-'alphaindexline'  => '$1 hadi $2',
-'nextpage'        => 'Ukurasa ujao ($1)',
-'prevpage'        => 'Ukurasa uliotangulia ($1)',
-'allpagesfrom'    => 'Onyesha kurasa zinazoanza kutoka:',
-'allpagesto'      => 'Onyesha kurasa zinazoishia na:',
-'allarticles'     => 'Kurasa zote',
-'allinnamespace'  => 'Kurasa zote (eneo la wiki $1)',
-'allpagesprev'    => 'Iliyotangulia',
-'allpagesnext'    => 'Ijayo',
-'allpagessubmit'  => 'Nenda',
-'allpagesprefix'  => 'Onyesha kurasa zenye kiambishi awali:',
-'allpages-bad-ns' => 'Eneo la "$1" halipatikani kwenye {{SITENAME}}.',
+'allpages'          => 'Kurasa zote',
+'alphaindexline'    => '$1 hadi $2',
+'nextpage'          => 'Ukurasa ujao ($1)',
+'prevpage'          => 'Ukurasa uliotangulia ($1)',
+'allpagesfrom'      => 'Onyesha kurasa zinazoanza kutoka:',
+'allpagesto'        => 'Onyesha kurasa zinazoishia na:',
+'allarticles'       => 'Kurasa zote',
+'allinnamespace'    => 'Kurasa zote (eneo la wiki $1)',
+'allnotinnamespace' => 'Kurasa zote (zisizo katika eneo la wiki ya $1)',
+'allpagesprev'      => 'Iliyotangulia',
+'allpagesnext'      => 'Ijayo',
+'allpagessubmit'    => 'Nenda',
+'allpagesprefix'    => 'Onyesha kurasa zenye kiambishi awali:',
+'allpages-bad-ns'   => 'Eneo la "$1" halipatikani kwenye {{SITENAME}}.',
 
 # Special:Categories
-'categories'     => 'Jamii',
-'categoriesfrom' => 'Tandaza jamii kuanzia na:',
+'categories'                    => 'Jamii',
+'categoriespagetext'            => 'Jamii {{PLURAL:$1|inayofuata ina|zinazofuata zina}} kurasa au mafaili ya picha au sauti.
+[[Special:UnusedCategories|Jamii zisizotumiwa]] hazitandazwi hapa.
+Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
+'categoriesfrom'                => 'Tandaza jamii kuanzia na:',
+'special-categories-sort-count' => 'panga kwa idadi',
+'special-categories-sort-abc'   => 'panga kwa herufi',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'Michango ya mtumiaji aliyefutwa',
@@ -1577,6 +1583,7 @@ Maelezo mengine: $1',
 
 # E-mail user
 'mailnologin'          => 'Hakuna anwani wa kutuma',
+'mailnologintext'      => 'Ukitaka kutuma barua pepe kwa watumiaji wengine inabidi uwe [[Special:UserLogin|umeshaingia kwenye akaunti yako]] na pia uwe na anwani ya barua pepe sahihi pale [[Special:Preferences|mapendekezo yako]].',
 'emailuser'            => 'Mtumie mtumiaji huyu barua pepe',
 'emailpage'            => 'Kumtumia mtumiaji barua pepe',
 'defemailsubject'      => 'Barua pepe ya {{SITENAME}}',

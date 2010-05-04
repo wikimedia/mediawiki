@@ -823,7 +823,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'blanknamespace' => '(Utama)',
 
 # Contributions
-'contributions'       => 'Nyang ka jituléh lé ureuëng nguy',
+'contributions'       => 'Peuneugöt',
 'contributions-title' => 'Peuneugöt ureuëng nguy keu $1',
 'mycontris'           => 'Peuneugöt lôn',
 'contribsub2'         => 'Keu $1 ($2)',
