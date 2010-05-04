@@ -65,6 +65,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   which causes Vector to render the variants drop-down menu with a label
   showing the current variant name. This is off by default, pending further
   research into its user experience implications.
+* (bug 20976) "searchmenu-new-nocreate" message now displayed when when there
+  is no title match in search and the user has no rights to create pages.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

@@ -327,6 +327,8 @@ class SpecialSearch {
 				$messageName = 'searchmenu-exists';
 			} elseif( $t->userCan( 'create' ) ) {
 				$messageName = 'searchmenu-new';
+			} else {
+				$messageName = 'searchmenu-new-nocreate';
 			}
 		} 
 		if( $messageName ) {
