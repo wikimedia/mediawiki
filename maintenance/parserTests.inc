@@ -1687,8 +1687,8 @@ class TestFileIterator implements Iterator {
 					if (!isset( $data['config'] ) )
 						$data['config'] = '';
 
-					if ( $this->parser && (preg_match('/\\bdisabled\\b/i', $data['options'])
-						|| !preg_match("/{$this->parser->regex}/i", $data['test'])) && !$this->parser->runDisabled ) {
+					if ( $this->parser && (preg_match('/\\bdisabled\\b/i', $data['options']) && !$this->parser->runDisabled)
+						|| !preg_match("/{$this->parser->regex}/i", $data['test'])  ) {
 						# disabled test
 						$data = array();
 						$section = null;
