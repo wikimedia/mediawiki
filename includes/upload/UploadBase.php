@@ -83,7 +83,7 @@ abstract class UploadBase {
 	 * @return array
 	 */
 	public static function getRequiredPermissions() {
-		return array( 'upload', 'create', 'edit' );
+		return array( 'upload', 'edit' );
 	}
 	/**
 	 * Returns true if the user can use this upload module or else a string
@@ -396,7 +396,11 @@ abstract class UploadBase {
 		}
 		$permErrors = $nt->getUserPermissionsErrors( 'edit', $user );
 		$permErrorsUpload = $nt->getUserPermissionsErrors( 'upload', $user );
-		$permErrorsCreate = ( $nt->exists() ? array() : $nt->getUserPermissionsErrors( 'create', $user ) );
+		if ( $nt->exists() ) {
+			$permErrorsCreate = $nt->getUserPermissionsErrors( 'createpage', $user );
+		} else {
+			$permErrorsCreate = array();
+		}
 		if( $permErrors || $permErrorsUpload || $permErrorsCreate ) {
 			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsUpload, $permErrors ) );
 			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsCreate, $permErrors ) );
