@@ -289,7 +289,7 @@ class ParserTest {
 
 	function runTests($tests) {
 		$ok = true;
-  foreach($tests as $i => $t) {
+		foreach($tests as $i => $t) {
 			$result =
 				$this->runTest($t['test'], $t['input'], $t['result'], $t['options'], $t['config']);
 			$ok = $ok && $result;
@@ -1592,10 +1592,10 @@ class TestFileIterator implements Iterator {
 		if(fseek($this->fh, 0)) {
 			wfDie( "Couldn't fseek to the start of '$filename'\n" );
 		}
-		$this->index = 0;
+		$this->index = -1;
 		$this->lineNum = 0;
 		$this->eof = false;
-		$this->readNextTest();
+		$this->next();
 
 		return true;
     }
