@@ -145,6 +145,7 @@ in a negative namespace (which is invalid).
 * (bug 18408) All required permissions for uploading (upload, edit, create) 
   are now checked when loading Special:Upload. Toolbar link for Special:Upload
   is no longer shown if the user does not have the required permissions.
+* (Bug 23397) texvc in html mode renders \sim as &tilde; not &sim;
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent

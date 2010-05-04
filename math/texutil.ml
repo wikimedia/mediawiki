@@ -119,7 +119,7 @@ let find = function
     | "\\Rho"              -> (tex_use_ams (); LITERAL (HTMLABLEC (FONT_UF,
     "\\mathrm{P}", "&Rho;")))
     | "\\varrho"           -> LITERAL (TEX_ONLY "\\varrho ")
-    | "\\sim"              -> LITERAL (HTMLABLEC (FONT_UF,  "\\sim ", "&tilde;"))
+    | "\\sim"              -> LITERAL (HTMLABLEC (FONT_UF,  "\\sim ", "&sim;"))
     | "\\sigma"            -> LITERAL (HTMLABLEC (FONT_UF,  "\\sigma ", "&sigma;"))
     | "\\Sigma"            -> LITERAL (HTMLABLEC (FONT_UF, "\\Sigma ", "&Sigma;"))
     | "\\varsigma"         -> LITERAL (TEX_ONLY "\\varsigma ")
