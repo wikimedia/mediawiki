@@ -2662,6 +2662,8 @@ Du kan se på kildeteksten',
 'tooltip-upload'                  => 'Start opplasting',
 'tooltip-rollback'                => '«Tilbakestill»-knappen tilbakestiller den siste bidragsyterens endring(er) på denne siden med ett klikk',
 'tooltip-undo'                    => '«Angre» tilbakestiller denne endringen og åpner redigeringsskjemaet i forhåndsvisningsmodus. Det tillater en å legge til en begrunnelse i redigeringsforklaringen.',
+'tooltip-preferences-save'        => 'Lagre innstillinger',
+'tooltip-summary'                 => 'Skriv et kort sammendrag',
 
 # Stylesheets
 'common.css'      => '/* CSS plassert i denne fila vil gjelde for alle utseender. */',

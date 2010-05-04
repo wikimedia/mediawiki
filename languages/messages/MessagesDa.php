@@ -2838,7 +2838,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsdestdistance'             => 'Motivafstand',
 'exif-gpsprocessingmethod'         => 'GPS-metodens navn',
 'exif-gpsareainformation'          => 'GPS-områdets navn',
-'exif-gpsdatestamp'                => 'GPS-fato',
+'exif-gpsdatestamp'                => 'GPS-dato',
 'exif-gpsdifferential'             => 'GPS-differentialkorrektur',
 
 # EXIF attributes

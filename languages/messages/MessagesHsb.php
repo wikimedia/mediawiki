@@ -2546,13 +2546,13 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymny wužiwar|Anonymnaj wužiwarjej|Anonymni wužiwarjo|Anonymni wužiwarjo}} we {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'siteuser'         => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
-'anonuser'         => '{{SITENAME}} anonymny wužiwar $1',
+'siteuser'         => 'wužiwarja $1 na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'anonuser'         => 'anonymny wužiwar $1 na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot $3 změnjena.',
-'othercontribs'    => 'Bazěruje na dźěle $1.',
+'othercontribs'    => 'Bazěruje na dźěle wužiwarja $1.',
 'others'           => 'druhich',
-'siteusers'        => '{{SITENAME}}  {{PLURAL:$2|wužiwar|wužiwarjej|wužiwarjo|wužiwarjow}} $1',
-'anonusers'        => '{{SITENAME}} {{PLURAL:$2|anonymny wužiwar|anonymnaj wužiwarjej|anonymni wužiwarjo|anonymnych wužiwarjow}} $1',
+'siteusers'        => ' {{PLURAL:$2|wužiwarja|wužiwarjeju|wužiwarjow|wužiwarjow}} $1 na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'anonusers'        => ' {{PLURAL:$2|anonymny wužiwar|anonymnaj wužiwarjej|anonymni wužiwarjo|anonymnych wužiwarjow}} $1 na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'creditspage'      => 'Dźak awtoram',
 'nocredits'        => 'Za tutu stronu žane informacije wo zasłužbach njejsu.',
 

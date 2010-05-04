@@ -12,6 +12,7 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author Mdupont
  * @author MicroBoy
  * @author Puntori
  * @author Urhixidur
@@ -753,7 +754,7 @@ Administruesi që ka bërë mbylljen ka dhënë këtë sqarim: $1.",
 'semiprotectedpagewarning'         => "'''Shënim:''' Redaktimi i kësaj faqeje mund të bëhet vetëm nga përdorues të regjistruar.",
 'cascadeprotectedwarning'          => "'''Vini re:''' Kjo faqe është e mbrojtur dhe vetëm përdoruesit me privilegje administrative mund ta redaktojnë pasi është përfshirë në mbrotjen \"ujëvarë\" të {{PLURAL:\$1|faqes së|faqeve të}} mëposhtme:",
 'titleprotectedwarning'            => "'''VINI RE:  Kjo faqe është e mbrojtur dhe vetëm disa përdorues mund ta krijojnë.'''",
-'templatesused'                    => 'Stampa të përdorura në këtë faqe:',
+'templatesused'                    => '{{PLURAL:$1|Stamp|Stampa}} të përdorura në këtë faqe:',
 'templatesusedpreview'             => 'Stampa të përdorur në ketë parapamje:',
 'templatesusedsection'             => 'Stampat e përdorura në këtë seksion:',
 'template-protected'               => '(mbrojtur)',

@@ -2624,6 +2624,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-upload'                  => 'Ekalŝuti',
 'tooltip-rollback'                => '"Restarigi antaŭan" restarigas redakto(j)n al ĉi tiu paĝo de la lasta kontribuanto per unu klako.',
 'tooltip-undo'                    => '"Malfari" malfaris ĉi tiun redakton kaj malfermas la redakto-paĝon en antaŭvida reĝimo. Permesas aldoni kialon en la resumo.',
+'tooltip-summary'                 => 'Enigu mallongan resumon',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadatumo estas malebligita por ĉi servilo.',
