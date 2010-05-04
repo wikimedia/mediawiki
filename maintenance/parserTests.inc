@@ -1541,7 +1541,7 @@ class RemoteTestRecorder extends TestRecorder {
 			print "CodeReview info upload failed to reach server.\n";
 			exit( 1 );
 		}
-		$responseData = json_decode( $response, true );
+		$responseData = FormatJson::decode( $response, true );
 		if( !is_array( $responseData ) ) {
 			print "CodeReview API response not recognized...\n";
 			wfDebug( "Unrecognized CodeReview API response: $response\n" );
