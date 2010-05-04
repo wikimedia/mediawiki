@@ -85,8 +85,8 @@ class SpecialNewpages extends SpecialPage {
 	/**
 	 * Show a form for filtering namespace and username
 	 *
-	 * @param string $par
-	 * @return string
+	 * @param $par String
+	 * @return String
 	 */
 	public function execute( $par ) {
 		global $wgLang, $wgOut;
@@ -240,9 +240,8 @@ class SpecialNewpages extends SpecialPage {
 	/**
 	 * Format a row, providing the timestamp, links to the page/history, size, user links, and a comment
 	 *
-	 * @param $skin Skin to use
 	 * @param $result Result row
-	 * @return string
+	 * @return String
 	 */
 	public function formatRow( $result ) {
 		global $wgLang, $wgContLang;
@@ -293,7 +292,7 @@ class SpecialNewpages extends SpecialPage {
 	 * Should a specific result row provide "patrollable" links?
 	 *
 	 * @param $result Result row
-	 * @return bool
+	 * @return Boolean
 	 */
 	protected function patrollable( $result ) {
 		global $wgUser;
@@ -302,7 +301,8 @@ class SpecialNewpages extends SpecialPage {
 
 	/**
 	 * Output a subscription feed listing recent edits to this page.
-	 * @param string $type
+	 *
+	 * @param $type String
 	 */
 	protected function feed( $type ) {
 		global $wgFeed, $wgFeedClasses, $wgFeedLimit;
