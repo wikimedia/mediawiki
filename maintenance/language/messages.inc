@@ -804,6 +804,7 @@ $wgMessageStructure = array(
 		'searchmenu-legend',
 		'searchmenu-exists',
 		'searchmenu-new',
+		'searchmenu-new-nocreate',
 		'searchhelp-url',
 		'searchmenu-prefix',
 		'searchmenu-help',
