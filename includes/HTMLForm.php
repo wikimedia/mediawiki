@@ -195,9 +195,6 @@ class HTMLForm {
 		if ( ! $this->mTitle ) {
 			throw new MWException( "You must call setTitle() on an HTMLForm" );
 		}
-		if ( ! $this->mSubmitCallback ) {
-			throw new MWException( "You must set a submission callback" );
-		}
 		
 		$html = '';
 
