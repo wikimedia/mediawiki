@@ -865,7 +865,7 @@ class UndeleteForm {
 	function showDiff( $previousRev, $currentRev ) {
 		global $wgOut;
 
-		$diffEngine = new DifferenceEngine();
+		$diffEngine = new DifferenceEngine( $previousRev->getTitle() );
 		$diffEngine->showDiffStyle();
 		$wgOut->addHTML(
 			"<div>" .
