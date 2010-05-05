@@ -39,6 +39,15 @@ class GIFHandler extends BitmapHandler {
 			return $width * $height;
 		}
 	}
+
+	function isAnimatedImage( $image ) {
+		$ser = $image->getMetadata();
+		if ($ser) {
+			$metadata = unserialize($ser);
+			if( $metadata['frameCount'] > 1 ) return true;
+		}
+		return false;
+	}
 	
 	function getMetadataType( $image ) {
 		return 'parsed-gif';

@@ -424,6 +424,10 @@ abstract class ImageHandler extends MediaHandler {
 		return $gis;
 	}
 
+	function isAnimatedImage( $image ) {
+		return false;
+	}
+
 	function getShortDesc( $file ) {
 		global $wgLang;
 		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
