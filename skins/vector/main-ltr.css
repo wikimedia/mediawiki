@@ -25,13 +25,13 @@ body {
 }
 body {
 	background-color: #f3f3f3;
-	background-image: url(images/page-base.png);
+	background-image: url(images/page-base.png?1);
 }
 /* Content */
 #content {
 	margin-left: 10em;
 	padding: 1em;
-	background-image: url(images/border.png);
+	background-image: url(images/border.png?1);
 	background-position: top left;
 	background-repeat: repeat-y;
 	background-color: white;
@@ -41,7 +41,7 @@ body {
 #page-base {
 	height: 5em;
 	background-color: white;
-	background-image: url(images/page-fade.png);
+	background-image: url(images/page-fade.png?1);
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
@@ -49,7 +49,7 @@ body {
 	margin-top: -5em;
 	margin-left: 10em;
 	height: 5em;
-	background-image: url(images/border.png);
+	background-image: url(images/border.png?1);
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
@@ -113,7 +113,7 @@ body {
 		float: left;
 	}
 	div.vectorTabs {
-		background-image: url(images/tab-break.png);
+		background-image: url(images/tab-break.png?1);
 		background-position: bottom left;
 		background-repeat: no-repeat;
 		padding-left: 1px;
@@ -140,7 +140,7 @@ body {
 		margin: 0;
 		padding: 0;
 		background-color: #f3f3f3;
-		background-image: url(images/tab-normal-fade.png);
+		background-image: url(images/tab-normal-fade.png?1);
 		background-position: bottom left;
 		background-repeat: repeat-x;
 		white-space:nowrap;
@@ -150,7 +150,7 @@ body {
 		display: block;
 	}
 	div.vectorTabs li.selected {
-		background-image: url(images/tab-current-fade.png);
+		background-image: url(images/tab-current-fade.png?1);
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorTabs li a {
@@ -158,7 +158,7 @@ body {
 		height: 2.5em;
 		padding-left: 0.4em;
 		padding-right: 0.4em;
-		background-image: url(images/tab-break.png);
+		background-image: url(images/tab-break.png?1);
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
@@ -203,7 +203,7 @@ body {
 	div.vectorMenu {
 		direction: ltr;
 		float: left;
-		background-image: url(images/arrow-down-icon.png);
+		background-image: url(images/arrow-down-icon.png?1);
 		background-position: 100% 60%;
 		background-repeat: no-repeat;
 		cursor: pointer;
@@ -216,7 +216,7 @@ body {
 	/* @noflip */
 	#head div.vectorMenu h5 {
 		float: left;
-		background-image: url(images/tab-break.png);
+		background-image: url(images/tab-break.png?1);
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
@@ -243,7 +243,7 @@ body {
 		width: 24px;
 		height: 2.5em;
 		text-decoration: none;
-		background-image: url(images/tab-break.png);
+		background-image: url(images/tab-break.png?1);
 		background-repeat: no-repeat;
 	}
 	div.vectorMenu h5 a{
@@ -350,7 +350,7 @@ body {
 		position: relative;
 		border: solid 1px #AAAAAA;
 		background-color: white;
-		background-image: url(images/search-fade.png);
+		background-image: url(images/search-fade.png?1);
 		background-position: top left;
 		background-repeat: repeat-x;
 	}
@@ -376,7 +376,7 @@ body {
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
-		background-image: url(images/search-ltr.png);
+		background-image: url(images/search-ltr.png?1);
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
@@ -409,7 +409,7 @@ body {
 		margin: 0;
 		padding-top: 0.5em;
 		margin-left: 1.25em;
-		background-image: url(images/portal-break.png);
+		background-image: url(images/portal-break.png?1);
 		background-repeat: no-repeat;
 		background-position: top left;
 	}
@@ -439,7 +439,7 @@ body {
 	margin-left: 10em;
 	margin-top: 0;
 	padding: 0.75em;
-	background-image: url(images/border.png);
+	background-image: url(images/border.png?1);
 	background-position: top left;
 	background-repeat: repeat-x;
 }
@@ -510,7 +510,7 @@ body.ltr #footer #footer-places {
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
-	background-image: url(images/preferences-break.png);
+	background-image: url(images/preferences-break.png?1);
 	background-position: bottom left;
 	background-repeat: no-repeat;
 }
@@ -524,7 +524,7 @@ body.ltr #footer #footer-places {
 		white-space: nowrap;
 		list-style-type: none;
 		list-style-image: none;
-		background-image: url(images/preferences-break.png);
+		background-image: url(images/preferences-break.png?1);
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
@@ -546,7 +546,7 @@ body.ltr #footer #footer-places {
 		text-decoration: underline;
 	}
 	#preftoc li.selected a {
-		background-image: url(images/preferences-fade.png);
+		background-image: url(images/preferences-fade.png?1);
 		background-position: bottom;
 		background-repeat: repeat-x;
 		color: #333333;
@@ -560,7 +560,7 @@ body.ltr #footer #footer-places {
 	clear: both;
 	border: solid 1px #cccccc;
 	background-color: #f9f9f9;
-	background-image: url(images/preferences-base.png);
+	background-image: url(images/preferences-base.png?1);
 }
 #preferences fieldset.prefsection {
 	border: none;
@@ -735,7 +735,7 @@ ul {
 	list-style-type: square;
 	margin: .3em 0 0 1.5em;
 	padding: 0;
-	list-style-image: url(images/bullet-icon.png);
+	list-style-image: url(images/bullet-icon.png?1);
 }
 ol {
 	line-height: 1.5em;
@@ -993,32 +993,32 @@ h3, h4, h5 {
 }
 #content a.external,
 #content a[href ^="gopher://"] {
-	background: url(images/external-link-ltr-icon.png) center right no-repeat;
+	background: url(images/external-link-ltr-icon.png?1) center right no-repeat;
 	padding: 0 13px 0 0;
 }
 #content a[href ^="https://"],
 .link-https {
-	background: url(images/lock-icon.png) center right no-repeat;
+	background: url(images/lock-icon.png?1) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a[href ^="mailto:"],
 .link-mailto {
-	background: url(images/mail-icon.png) center right no-repeat;
+	background: url(images/mail-icon.png?1) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a[href ^="news://"] {
-	background: url(images/news-icon.png) center right no-repeat;
+	background: url(images/news-icon.png?1) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a[href ^="ftp://"],
 .link-ftp {
-	background: url(images/file-icon.png) center right no-repeat;
+	background: url(images/file-icon.png?1) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a[href ^="irc://"],
 #content a.extiw[href ^="irc://"],
 .link-irc {
-	background: url(images/talk-icon.png) center right no-repeat;
+	background: url(images/talk-icon.png?1) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a.external[href $=".ogg"], #content a.external[href $=".OGG"],
@@ -1063,7 +1063,7 @@ h3, h4, h5 {
 #pt-userpage,
 #pt-anonuserpage,
 #pt-login {
-	background: url(images/user-icon.png) left top no-repeat;
+	background: url(images/user-icon.png?1) left top no-repeat;
 	padding-left: 15px !important;
 	text-transform: none;
 }
@@ -1100,24 +1100,24 @@ div#bodyContent {
 	height: 2.5em;
 }
 #ca-unwatch.icon a {
-	background-image: url(images/watch-icons.png);
+	background-image: url(images/watch-icons.png?1);
 	background-position: -43px 60%;
 }
 #ca-watch.icon a {
-	background-image: url(images/watch-icons.png);
+	background-image: url(images/watch-icons.png?1);
 	background-position: 5px 60%;
 }
 #ca-unwatch.icon a:hover {
-	background-image: url(images/watch-icons.png);
+	background-image: url(images/watch-icons.png?1);
 	background-position: -67px 60%;
 }
 #ca-watch.icon a:hover {
-	background-image: url(images/watch-icons.png);
+	background-image: url(images/watch-icons.png?1);
 	background-position: -19px 60%;
 }
 #ca-unwatch.icon a.loading,
 #ca-watch.icon a.loading {
-	background-image: url(images/watch-icon-loading.gif);
+	background-image: url(images/watch-icon-loading.gif?1);
 	background-position: center 60%;
 }
 #ca-unwatch.icon a span,
@@ -1125,7 +1125,7 @@ div#bodyContent {
 	display: none;
 }
 div.vectorTabs ul {
-	background-image:url(images/tab-break.png);
+	background-image:url(images/tab-break.png?1);
 	background-position:right bottom;
 	background-repeat:no-repeat;
 }
