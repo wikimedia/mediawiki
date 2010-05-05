@@ -2926,6 +2926,26 @@ $wgUseSiteJs = true;
 $wgUseSiteCss = true;
 
 /**
+ * Version of jQuery to use. Currently available versions are 1.3.2 and 1.4.2 .
+ * Other versions can be installed by hand at your own risk, see
+ * http://www.mediawiki.org/wiki/Manual:$wgJQueryVersion
+ */
+$wgJQueryVersion = '1.4.2';
+
+/**
+ * Use a minified version of jQuery. If enabled, jquery-versionnumber.min.js
+ * will be used instead of jquery-versionnumber.js . It is recommended you only
+ * disable this for debugging purposes.
+ */
+$wgJQueryMinified = true;
+
+/**
+ * Include jQuery on every page served by MediaWiki. You can disable this if
+ * your user/site-wide JS doesn't need it and you want to save bandwidth.
+ */
+$wgJQueryOnEveryPage = true;
+
+/**
  * Filter for Special:Randompage. Part of a WHERE clause
  * @deprecated as of 1.16, use the SpecialRandomGetRandomTitle hook
 */

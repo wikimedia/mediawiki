@@ -67,6 +67,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   research into its user experience implications.
 * (bug 20976) "searchmenu-new-nocreate" message now displayed when when there
   is no title match in search and the user has no rights to create pages.
+* Added $wgJQueryVersion, $wgJQueryMinified and $wgJQueryOnEveryPage (true by
+  default) to configure loading of jQuery by MediaWiki
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
