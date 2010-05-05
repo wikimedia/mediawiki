@@ -732,6 +732,8 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'showlivepreview'                  => 'Lewendige voorskou',
 'showdiff'                         => 'Wys veranderings',
 'anoneditwarning'                  => "'''Waarskuwing:''' Aangesien u nie aangeteken is nie, sal u IP-adres in dié blad se wysigingsgeskiedenis gestoor word.",
+'anonpreviewwarning'               => "''U is nie aangeteken nie.''
+''As u die bladsy stoor sal u IP-adres in die bladsy se geskeidenis aangeteken word.''",
 'missingsummary'                   => "'''Onthou:''' Geen opsomming van die wysiging is verskaf nie. As \"Stoor\" weer geklik word, word die wysiging sonder opsomming gestoor.",
 'missingcommenttext'               => 'Tik die opsomming onder.',
 'missingcommentheader'             => "'''Let op:''' U het geen onderwerp/opskrif vir die opmerking verskaf nie. As u weer op \"Stoor\" klik, sal u wysiging sonder die onderwerp/opskrif gestoor word.",
@@ -1128,6 +1130,7 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'searchprofile-everything-tooltip' => 'Soek deur alle inhoud (ook besprekingsbladsye)',
 'searchprofile-advanced-tooltip'   => 'Soek in spesifieke naamruimtes',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 woord|$2 woorde}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 kategorielid|$1 kategorielede}} ({{PLURAL:$2|1 subkategorie|$2 subkategorieë}}, {{PLURAL:$3|1 lêer|$3 lêers}})',
 'search-result-score'              => 'Relevansie: $1%',
 'search-redirect'                  => '(aanstuur $1)',
 'search-section'                   => '(afdeling $1)',
@@ -1491,6 +1494,9 @@ om lêers te laai.',
 'upload_directory_missing'    => 'Die oplaaigids ($1) bestaan nie en kon nie deur die webbediener geskep word nie.',
 'upload_directory_read_only'  => 'Die webbediener kan nie na die oplaai gids ($1) skryf nie.',
 'uploaderror'                 => 'Laaifout',
+'upload-recreate-warning'     => "'''Waarskuwing:' n lêer met dieselfde naam is verwyder of geskuif.'''
+
+Die verwyder- en skuiflogboeke van hierdie bladsy word hier vir verdere inligting vertoon:",
 'uploadtext'                  => "Gebruik die vorm hier onder om nuwe lêers te laai wat u in u artikels wil gebruik.
 Om lêers wat voorheen opgelaai is te sien of te deursoek, gaan na die [[Special:FileList|lêerlys]].
 Die laai van lêers word in die [[Special:Log/upload|laailog]] aangeteken.
@@ -1532,6 +1538,17 @@ Aanbevole {{PLURAL:\$3|lêertipe|lêertipes}} is \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' is nie 'n toegelate lêertipe nie.
 Toelaatbare {{PLURAL:\$3|lêertipes|lêertipes}} is \$2.",
 'filetype-missing'            => 'Die lêer het geen uitbreiding (soos ".jpg").',
+'empty-file'                  => 'Die lêer wat u probeer oplaai is leeg.',
+'file-too-large'              => 'Die lêer wat u probeer oplaai is te groot.',
+'filename-tooshort'           => 'Die lêernaam is te kort.',
+'filetype-banned'             => 'Hierdie tipe lêer is verban en word nie toegelaat nie.',
+'verification-error'          => 'Verifikasie van die lêer wat u probeer oplaai het gefaal.',
+'hookaborted'                 => "Die wysiging wat u probeer maak is deur 'n uitbreiding gekanselleer.",
+'illegal-filename'            => 'Die lêernaam word nie toegelaat nie.',
+'overwrite'                   => "Die oorskryf van 'n bestaande lêer word nie toegelaat nie.",
+'unknown-error'               => "'n Onbekende fout voorgekom het.",
+'tmp-create-error'            => 'Kon nie tydelike lêer skep nie.',
+'tmp-write-error'             => 'Fout met skryf van tydelike lêer.',
 'large-file'                  => 'Aanbeveling: maak lêer kleiner as $1;
 die lêer is $2.',
 'largefileserver'             => 'Hierdie lêer is groter as wat die bediener se opstelling toelaat.',
@@ -1570,6 +1587,8 @@ Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om d
 'uploadedimage'               => 'het "[[$1]]" gelaai',
 'overwroteimage'              => 'het een nuwe weergawe van "[[$1]]" gelaai',
 'uploaddisabled'              => 'Laai is uitgeskakel',
+'copyuploaddisabled'          => 'Die oplaai van lêers per URL is afgeskakel.',
+'uploadfromurl-queued'        => 'U oplaai is in die wagtou geplaas.',
 'uploaddisabledtext'          => 'Die oplaai van lêers is afgeskakel.',
 'php-uploaddisabledtext'      => 'Die oplaai van lêers is in PHP afgeskakel.
 Kyk na die "file_uploads"-instelling.',
@@ -1964,28 +1983,30 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'listgrouprights-removegroup-self-all' => 'Alle groepe verwyder van eie gebruiker',
 
 # E-mail user
-'mailnologin'      => 'Geen versendadres beskikbaar',
-'mailnologintext'  => "U moet [[Special:UserLogin|ingeteken]] wees en 'n geldige e-posadres in die [[Special:Preferences|voorkeure]] hê om e-pos aan ander gebruikers te stuur.",
-'emailuser'        => 'Stuur e-pos na hierdie gebruiker',
-'emailpage'        => 'Stuur e-pos na gebruiker',
-'emailpagetext'    => 'As dié gebruiker \'n geldige e-posadres in sy/haar gebruikersvoorkeure het, sal hierdie vorm \'n enkele boodskap stuur. Die e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] sal verkyn as die "Van"-adres van die pos. Dus sal die ontvanger kan terug antwoord.',
-'usermailererror'  => 'Fout met versending van e-pos:',
-'defemailsubject'  => '{{SITENAME}}-epos',
-'noemailtitle'     => 'Geen e-posadres',
-'noemailtext'      => "Hierdie gebruiker het nie 'n geldige e-posadres gespesifiseer nie.",
-'nowikiemailtitle' => 'Geen E-pos toegelaat nie',
-'nowikiemailtext'  => 'Hierdie gebruiker wil geen e-pos van andere gebruikers ontvang nie.',
-'email-legend'     => "Stuur 'n E-pos na 'n ander gebruiker van {{SITENAME}}",
-'emailfrom'        => 'Van:',
-'emailto'          => 'Aan:',
-'emailsubject'     => 'Onderwerp:',
-'emailmessage'     => 'Boodskap:',
-'emailsend'        => 'Stuur',
-'emailccme'        => "E-pos vir my 'n kopie van my boodskap.",
-'emailccsubject'   => 'Kopie van u boodskap aan $1: $2',
-'emailsent'        => 'E-pos gestuur',
-'emailsenttext'    => 'U e-pos is gestuur.',
-'emailuserfooter'  => 'Hierdie e-pos is gestuur deur $1 aan $2 met behulp van die "Stuur e-pos aan die gebruiker"-funksie van {{SITENAME}}.',
+'mailnologin'          => 'Geen versendadres beskikbaar',
+'mailnologintext'      => "U moet [[Special:UserLogin|ingeteken]] wees en 'n geldige e-posadres in die [[Special:Preferences|voorkeure]] hê om e-pos aan ander gebruikers te stuur.",
+'emailuser'            => 'Stuur e-pos na hierdie gebruiker',
+'emailpage'            => 'Stuur e-pos na gebruiker',
+'emailpagetext'        => 'As dié gebruiker \'n geldige e-posadres in sy/haar gebruikersvoorkeure het, sal hierdie vorm \'n enkele boodskap stuur. Die e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] sal verkyn as die "Van"-adres van die pos. Dus sal die ontvanger kan terug antwoord.',
+'usermailererror'      => 'Fout met versending van e-pos:',
+'defemailsubject'      => '{{SITENAME}}-epos',
+'usermaildisabled'     => 'E-pos deur gebruikers is gedeaktiveer.',
+'usermaildisabledtext' => 'U kan nie e-pos aan ander gebruikers op hierdie wiki stuur nie',
+'noemailtitle'         => 'Geen e-posadres',
+'noemailtext'          => "Hierdie gebruiker het nie 'n geldige e-posadres gespesifiseer nie.",
+'nowikiemailtitle'     => 'Geen E-pos toegelaat nie',
+'nowikiemailtext'      => 'Hierdie gebruiker wil geen e-pos van andere gebruikers ontvang nie.',
+'email-legend'         => "Stuur 'n E-pos na 'n ander gebruiker van {{SITENAME}}",
+'emailfrom'            => 'Van:',
+'emailto'              => 'Aan:',
+'emailsubject'         => 'Onderwerp:',
+'emailmessage'         => 'Boodskap:',
+'emailsend'            => 'Stuur',
+'emailccme'            => "E-pos vir my 'n kopie van my boodskap.",
+'emailccsubject'       => 'Kopie van u boodskap aan $1: $2',
+'emailsent'            => 'E-pos gestuur',
+'emailsenttext'        => 'U e-pos is gestuur.',
+'emailuserfooter'      => 'Hierdie e-pos is gestuur deur $1 aan $2 met behulp van die "Stuur e-pos aan die gebruiker"-funksie van {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'My dophoulys',
@@ -2245,18 +2266,20 @@ $1',
 'month'               => 'Vanaf maand (en vroeër):',
 'year'                => 'Vanaf jaar (en vroeër):',
 
-'sp-contributions-newbies'        => 'Wys slegs bydraes van nuwe gebruikers',
-'sp-contributions-newbies-sub'    => 'Vir nuwe gebruikers',
-'sp-contributions-newbies-title'  => 'Bydraes van nuwe gebruikers',
-'sp-contributions-blocklog'       => 'Blokkeer-logboek',
-'sp-contributions-deleted'        => 'geskrapte gebruikersbydraes',
-'sp-contributions-logs'           => 'logboeke',
-'sp-contributions-talk'           => 'bespreking',
-'sp-contributions-userrights'     => 'bestuur gebruikersregte',
-'sp-contributions-blocked-notice' => 'Hierdie gebruiker is tans geblokkeer. Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
-'sp-contributions-search'         => 'Soek na bydraes',
-'sp-contributions-username'       => 'IP-adres of gebruikersnaam:',
-'sp-contributions-submit'         => 'Vertoon',
+'sp-contributions-newbies'             => 'Wys slegs bydraes van nuwe gebruikers',
+'sp-contributions-newbies-sub'         => 'Vir nuwe gebruikers',
+'sp-contributions-newbies-title'       => 'Bydraes van nuwe gebruikers',
+'sp-contributions-blocklog'            => 'Blokkeer-logboek',
+'sp-contributions-deleted'             => 'geskrapte gebruikersbydraes',
+'sp-contributions-logs'                => 'logboeke',
+'sp-contributions-talk'                => 'bespreking',
+'sp-contributions-userrights'          => 'bestuur gebruikersregte',
+'sp-contributions-blocked-notice'      => 'Hierdie gebruiker is tans geblokkeer. Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
+'sp-contributions-blocked-notice-anon' => 'Hierdie IP-adres is tans geblokkeer.
+Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:',
+'sp-contributions-search'              => 'Soek na bydraes',
+'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
+'sp-contributions-submit'              => 'Vertoon',
 
 # What links here
 'whatlinkshere'            => 'Skakels hierheen',
@@ -2660,6 +2683,8 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'tooltip-rollback'                => '"Terugrol" rol met een kliek wysiging(s) terug wat die laaste gebruiker aan hierdie bladsy aangebring het.',
 'tooltip-undo'                    => 'Met "ongedaan maak" maak u hierdie wysiging ongedaan en land u in die wysigingsvenster.
 U kan daar \'n wysigingsopsomming byvoeg.',
+'tooltip-preferences-save'        => 'Stoor voorkeure',
+'tooltip-summary'                 => "Verskaf 'n kort opsomming",
 
 # Stylesheets
 'common.css' => '/** Gemeenskaplike CSS vir alle omslae */',
@@ -3083,26 +3108,26 @@ Ander velde sal versteek wees.
 'limitall'         => 'alle',
 
 # E-mail address confirmation
-'confirmemail'             => 'Bevestig e-posadres',
-'confirmemail_noemail'     => "U het nie 'n geldige e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] gestel nie.",
-'confirmemail_text'        => "Hierdie wiki vereis dat u e-posadres bevestig word voordat epos-funksies gebruik word. Klik onderstaande knoppie om 'n bevestigingspos na u adres te stuur. Die pos sal 'n skakel met 'n kode insluit; maak hierdie skakel oop in u webblaaier om te bevestig dat die adres geldig is.",
-'confirmemail_pending'     => "'n Bevestigings-kode is reeds per e-pos aan u gestuur. 
+'confirmemail'              => 'Bevestig e-posadres',
+'confirmemail_noemail'      => "U het nie 'n geldige e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] gestel nie.",
+'confirmemail_text'         => "Hierdie wiki vereis dat u e-posadres bevestig word voordat epos-funksies gebruik word. Klik onderstaande knoppie om 'n bevestigingspos na u adres te stuur. Die pos sal 'n skakel met 'n kode insluit; maak hierdie skakel oop in u webblaaier om te bevestig dat die adres geldig is.",
+'confirmemail_pending'      => "'n Bevestigings-kode is reeds per e-pos aan u gestuur. 
 As u onlangs u gebruiker geskep het, wag asseblief 'n paar minute vir aflewering alvorens u 'n nuwe kode versoek.",
-'confirmemail_send'        => "Pos 'n bevestigingkode",
-'confirmemail_sent'        => 'Bevestigingpos gestuur.',
-'confirmemail_oncreate'    => "'n Bevestigings-kode is na u e-posadres gestuur. 
+'confirmemail_send'         => "Pos 'n bevestigingkode",
+'confirmemail_sent'         => 'Bevestigingpos gestuur.',
+'confirmemail_oncreate'     => "'n Bevestigings-kode is na u e-posadres gestuur. 
 Hierdie kode word nie benodig om aan te teken nie, maar u moet dit bevestig alvorens u enige van die wiki se e-posfunksies kan gebruik.",
-'confirmemail_sendfailed'  => '{{SITENAME}} kon nie u bevestigings-epos uitstuur nie.
+'confirmemail_sendfailed'   => '{{SITENAME}} kon nie u bevestigings-epos uitstuur nie.
 Kontroleer u e-posadres vir ongeldige karakters.
 
 Die e-posprogram meld: $1',
-'confirmemail_invalid'     => 'Ongeldige bevestigingkode. Die kode het moontlik verval.',
-'confirmemail_needlogin'   => 'U moet $1 om u e-posadres te bevestig.',
-'confirmemail_success'     => 'U e-posadres is bevestig. U kan nou aanteken en die wiki gebruik.',
-'confirmemail_loggedin'    => 'U e-posadres is nou bevestig.',
-'confirmemail_error'       => 'Iets het foutgegaan met die stoor van u bevestiging.',
-'confirmemail_subject'     => '{{SITENAME}}: E-posadres-bevestiging',
-'confirmemail_body'        => 'Iemand, waarskynlik u vanaf IP-adres: $1, het \'n rekening "$2" met hierdie e-posadres by {{SITENAME}} geregistreer.
+'confirmemail_invalid'      => 'Ongeldige bevestigingkode. Die kode het moontlik verval.',
+'confirmemail_needlogin'    => 'U moet $1 om u e-posadres te bevestig.',
+'confirmemail_success'      => 'U e-posadres is bevestig. U kan nou aanteken en die wiki gebruik.',
+'confirmemail_loggedin'     => 'U e-posadres is nou bevestig.',
+'confirmemail_error'        => 'Iets het foutgegaan met die stoor van u bevestiging.',
+'confirmemail_subject'      => '{{SITENAME}}: E-posadres-bevestiging',
+'confirmemail_body'         => 'Iemand, waarskynlik u vanaf IP-adres: $1, het \'n rekening "$2" met hierdie e-posadres by {{SITENAME}} geregistreer.
 
 Om te bevestig dat hierdie adres werklik aan u behoort, en om die posfasiliteite by {{SITENAME}} te aktiveer, besoek hierdie skakel in u webblaaier:
 
@@ -3114,8 +3139,20 @@ Volg hierdie skakel om die bevestiging van u e-posadres te kanselleer:
 $5
 
 Hierdie bevestigingkode verval om $4.',
-'confirmemail_invalidated' => 'Die e-pos bevestiging is gekanselleer.',
-'invalidateemail'          => 'Kanselleer e-pos bevestiging',
+'confirmemail_body_changed' => 'Iemand, waarskynlik u vanaf IP-adres $1
+het die e-posadres van rekening "$2" na hierdie adres op {{SITENAME}} verander.
+
+Om te bevestig dat hierdie adres werklik aan u behoort, en die e-pos-funksies op {{SITENAME}} te aktiveer, maak hierdie skakel in u blaaier oop: 
+
+$3
+
+Indien die rekening *nie* aan u behoort nie, volg hierdie skakel om die bevestiging te kanselleer: 
+
+$5
+
+Die bevestigingskode sal om $4 verval.',
+'confirmemail_invalidated'  => 'Die e-pos bevestiging is gekanselleer.',
+'invalidateemail'           => 'Kanselleer e-pos bevestiging',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-invoeging van sjablone is afgeskakel]',
@@ -3236,7 +3273,7 @@ U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].",
 # Special:FilePath
 'filepath'         => 'Lêerpad',
 'filepath-page'    => 'Lêer:',
-'filepath-submit'  => 'Pad',
+'filepath-submit'  => 'OK',
 'filepath-summary' => 'Die spesiale bladsy wys die volledige pad vir \'n lêer. 
 Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hulle MIME-geskakelde programme geopen.
 
@@ -3315,6 +3352,7 @@ Verskaf die lêernaam sonder die "{{ns:file}}:" voorvoegsel.',
 'htmlform-float-invalid'       => "Die waarde wat u ingevoer het is nie 'n getal nie.",
 'htmlform-int-toolow'          => 'Die ingevoerde waarde is laer as die minimum van $1',
 'htmlform-int-toohigh'         => 'Die ingevoerde waarde is groter as die maksimum van $1',
+'htmlform-required'            => 'Hierdie waarde is verpligtend',
 'htmlform-submit'              => 'Dien in',
 'htmlform-reset'               => 'Maak wysigings ongedaan',
 'htmlform-selectorother-other' => 'Ander',

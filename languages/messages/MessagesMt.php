@@ -1786,9 +1786,17 @@ Ara wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].',
 'linksearch-ok' => 'Fittex',
 
 # Special:ListUsers
-'listusersfrom'      => 'Uri utenti minn:',
+'listusersfrom'      => 'Uri utenti li jibdew minn:',
 'listusers-submit'   => 'Uri',
 'listusers-noresult' => 'l-Ebda utent insab għal din il-kriterja.',
+
+# Special:ActiveUsers
+'activeusers'            => 'Lista tal-utenti attivi',
+'activeusers-intro'      => "Din hija lista ta' utenti li kellhom xi tip ta' attività f'dawn l-aħħar $1 {{PLURAL:$1|ġurnata|ġurnata}}.",
+'activeusers-count'      => '$1 {{PLURAL:$1|modifika|modifika}} fl-aħħar {{PLURAL:$3|jum|$3 jum}}',
+'activeusers-from'       => 'Uri utenti li jibdew minn:',
+'activeusers-hidebots'   => 'Aħbi l-bots',
+'activeusers-hidesysops' => 'Aħbi amministraturi',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Utenti ġodda',
@@ -2056,7 +2064,7 @@ $1',
 'mycontris'           => 'kontributi tiegħi',
 'contribsub2'         => 'Għal $1 ($2)',
 'nocontribs'          => 'L-Ebda modifiki li jisodisfa l-kriterji tat-tfittxija.',
-'uctop'               => '(l-aħħar għal paġna)',
+'uctop'               => '(l-aħħar fil-paġna)',
 'month'               => 'Mix-xahar (u qabel):',
 'year'                => 'Mis-sena (u qabel):',
 
