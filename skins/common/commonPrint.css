@@ -10,14 +10,16 @@
 a.stub,
 a.new{ color:#ba0000; text-decoration:none; }
 
-#toc { 
-    /*border:1px solid #2f6fab;*/
+#toc {
     border:1px solid #aaaaaa;
     background-color:#f9f9f9;
     padding:5px;
 }
-.tocindent {
+body.ltr .tocindent {
 	margin-left: 2em;
+}
+body.rtl .tocindent {
+	margin-right: 2em;
 }
 .tocline {
 	margin-bottom: 0px;
@@ -27,51 +29,78 @@ a.new{ color:#ba0000; text-decoration:none; }
 div.floatright { 
     float: right;
     clear: right;
-    margin: 0;
-    position:relative;
-    border: 0.5em solid White;
-    border-width: 0.5em 0 0.8em 1.4em;
+    position: relative;
+    margin: 0.5em 0 0.8em 1.4em;
+}
+body.rtl div.floatright { 
+    float: left;
+    clear: left;
+    margin: 0.5em 1.4em 0.8em 0;
 }
 div.floatright p { font-style: italic;} 
 div.floatleft { 
-    float: left; 
-    margin: 0.3em 0.5em 0.5em 0;
-    position:relative;
-    border: 0.5em solid White;
-    border-width: 0.5em 1.4em 0.8em 0;
+    float: left;
+    clear: left;
+    position: relative;
+    margin: 0.5em 1.4em 0.8em 0;
 }
-div.floatleft p { font-style: italic; } 
+body.rtl div.floatleft { 
+    float: right;
+    clear: right;
+    margin: 0.5em 0 0.8em 1.4em;
+}
+div.floatleft p { font-style: italic; }
+
 /* thumbnails */
 div.thumb {
-    margin-bottom: 0.5em;
-    border-style: solid; border-color: White;
+    border: none;
     width: auto;
-    overflow: hidden;
+    margin-top: 0.5em;
+    margin-bottom: 0.8em;
+    background-color: transparent;
 }
 div.thumbinner {
     border:1px solid #cccccc;
     padding: 3px !important;
-    background-color:#f9f9f9;
+    background-color: White;
     font-size: 94%;
     text-align: center;
+    overflow: hidden;
 }
 html .thumbimage {
     border:1px solid #cccccc;
 }
 html .thumbcaption {
-    border: none;
-    padding: 0.3em 0 0.1em 0;
+	border: none;
+    text-align: left;
+    line-height: 1.4em;
+	padding: 3px !important;
+    font-size: 94%;
 }
+body.rtl .thumbcaption {
+	text-align: right;
+}
+
 div.magnify { display: none; }
 div.tright {
     float: right;
     clear: right;
-    border-width: 0.5em 0 0.8em 1.4em;
+    margin: 0.5em 0 0.8em 1.4em;
 }
 div.tleft {
     float: left;
-    margin-right:0.5em;
+    clear: left;
+    margin: 0.5em 1.4em 0.8em 0;
+}
+body.rtl div.tright {
+    float: left;
+    clear: left;
     border-width: 0.5em 1.4em 0.8em 0;
+}
+body.rtl div.tleft {
+    float: right;
+    clear: right;
+    border-width: 0.5em 0 0.8em 1.4em;
 }
 img.thumbborder {
 	border: 1px solid #dddddd;
@@ -206,21 +235,50 @@ a, a.external, a.new, a.stub {
 	text-decoration: inherit ! important;
 }
 
-img { border: none; }
-img.tex { vertical-align: middle; }
+img {
+	border: none;
+	vertical-align: middle;
+}
+
+/* math */
 span.texhtml { font-family: serif; }
 
 #siteNotice { display: none; }
 
+/* image galleries */
+table.gallery {
+    border: 1px solid #ccc;
+    margin: 2px;
+    padding: 2px;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+table.gallery tr {
+    vertical-align: top;
+}
+
+table.gallery td {
+    vertical-align: top;
+    padding: 1px;
+    border: 1px solid #ccc;
+}
+
 div.gallerybox {
-	border: 1px solid #cccccc;
-	background-color:#f9f9f9;
-	width:  150px;
+    margin: 2px;
+}
+
+div.gallerybox div.thumb {
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 2px;
 }
 
 div.gallerytext {
-	overflow: visible;
-}       
+    overflow: hidden;
+    font-size: 94%;
+    padding: 2px 4px;
+}
 
 /*
 ** Diff rendering
