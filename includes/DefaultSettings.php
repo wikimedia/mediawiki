@@ -4015,6 +4015,7 @@ $wgAPICacheHelpTimeout = 60*60;
  */
 $wgParserTestFiles = array(
 	"$IP/maintenance/parserTests.txt",
+	"$IP/maintenance/ExtraParserTests.txt"
 );
 
 /**
