@@ -153,6 +153,7 @@ in a negative namespace (which is invalid).
 * (Bug 23241) Remove License selector, because it is not used when uploading a
   new version.
 * (bug 23240) Add ID to namespace selector form on Special:Watchlist
+* The pipe | character in urls is now escaped.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent

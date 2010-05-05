@@ -1514,7 +1514,7 @@ Piped link to URL
 !! input
 Piped link to URL: [[http://www.example.com|an example URL]]
 !! result
-<p>Piped link to URL: [<a href="http://www.example.com|an" class="external text" rel="nofollow">example URL</a>]
+<p>Piped link to URL: [<a href="http://www.example.com%7Can" class="external text" rel="nofollow">example URL</a>]
 </p>
 !! end
 
@@ -6649,12 +6649,10 @@ disabled
 # Images with the "|" character in external URLs in comment tags; Eats half the comment, leaves unmatched "</a>" tag.
 !! test
 Images with the "|" character in the comment
-!! options
-disabled
 !! input
 [[image:Foobar.jpg|thumb|An [http://test/?param1=|left|&param2=|x external] URL]]
 !! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="An external URL" src="http://example.com/images/3/3a/Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>An <a href="http://test/?param1=|left|&amp;param2=|x" class="external text" rel="nofollow">external</a> URL</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>An <a href="http://test/?param1=%7Cleft%7C&amp;param2=%7Cx" class="external text" rel="nofollow">external</a> URL</div></div></div>
 
 !!end
 
