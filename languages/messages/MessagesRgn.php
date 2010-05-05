@@ -30,6 +30,9 @@ $messages = array(
 'tog-showtoc'                 => "Fam avdé l'indiz (sol par al pàgin cun piò d'3 seziòn)",
 'tog-rememberpassword'        => "Arcurdam la parola d'ordin, par piasé",
 'tog-watchcreations'          => "Mett insèn al pàgin ch't'e' fat adès, intla lèsta da tní sot'occ",
+'tog-watchdefault'            => "Mett insèn al pàgin ch'a j ò lavurè sora int la lèsta dal pàgin da tnì sot'òcc",
+'tog-watchmoves'              => "Mett insèn al pàgin ch'a j ò spustè int la lèsta dal pàgin da tnì sot'òcc",
+'tog-watchdeletion'           => "Mett insèn al pàgin ch'a j ò scanzlè int la lèsta dal pàgin da tnì d'occ",
 
 # Dates
 'january'       => 'Znèr',
