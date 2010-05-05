@@ -298,7 +298,7 @@ class ParserTest {
 		if ( $this->showProgress ) {
 			print "\n";
 		}
-  return $ok;
+		return $ok;
 	}
 
 	/**
@@ -352,7 +352,7 @@ class ParserTest {
 
 		$noxml = isset( $opts['noxml'] );
 		$local = isset( $opts['local'] );
-		$preprocessor = @$opts['preprocessor'];
+		$preprocessor = isset( $opts['preprocessor'] ) ? $opts['preprocessor'] : null;
 		$parser = $this->getParser( $preprocessor );
 		$title = Title::newFromText( $titleText );
 
@@ -1638,8 +1638,10 @@ class TestFileIterator implements Iterator {
 					if( !isset( $data['article'] ) ) {
 						wfDie( "'endarticle' without 'article' at line {$this->lineNum} of $filename\n" );
 					}
-					if( $this->parser ) $this->parser->addArticle($this->parser->chomp($data['article']), $this->parser->chomp($data['text']),
-											  $this->lineNum);
+					if( $this->parser ) {
+						$this->parser->addArticle($this->parser->chomp($data['article']), $this->parser->chomp($data['text']),
+							$this->lineNum);
+					}
 					$data = array();
 					$section = null;
 					continue;
@@ -1688,8 +1690,9 @@ class TestFileIterator implements Iterator {
 					if (!isset( $data['config'] ) )
 						$data['config'] = '';
 
-					if ( $this->parser && (preg_match('/\\bdisabled\\b/i', $data['options']) && !$this->parser->runDisabled)
-						|| !preg_match("/{$this->parser->regex}/i", $data['test'])  ) {
+					if ( $this->parser
+						 && ((preg_match('/\\bdisabled\\b/i', $data['options']) && !$this->parser->runDisabled)
+							 || !preg_match("/".$this->parser->regex."/i", $data['test']))  ) {
 						# disabled test
 						$data = array();
 						$section = null;
