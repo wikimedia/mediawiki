@@ -865,18 +865,6 @@ BUG 289: literal double quote in bracketed URL
 !!end
 
 !! test
-External links: invalid character
-Fixme: the missing char seems to have gone missing
-!! options
-disabled
-!! input
-[http://www.example.com  test]
-!! result
-<p>[<a href="http://www.example.com" class="external free" rel="nofollow">http://www.example.com</a>  test]
-</p>
-!! end
-
-!! test
 External links: multiple legal whitespace is fine, Magnus. Don't break it please. (bug 5081)
 !! input
 [http://www.example.com  test]

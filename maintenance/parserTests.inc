@@ -304,10 +304,10 @@ class ParserTest {
 	/**
 	 * Get a Parser object
 	 */
-	function getParser() {
+	function getParser($preprocessor = null) {
 		global $wgParserConf;
 		$class = $wgParserConf['class'];
-		$parser = new $class( $wgParserConf );
+		$parser = new $class( array( 'preprocessorClass'=>$preprocessor ) + $wgParserConf );
 		foreach( $this->hooks as $tag => $callback ) {
 			$parser->setHook( $tag, $callback );
 		}
@@ -352,7 +352,8 @@ class ParserTest {
 
 		$noxml = isset( $opts['noxml'] );
 		$local = isset( $opts['local'] );
-		$parser = $this->getParser();
+		$preprocessor = @$opts['preprocessor'];
+		$parser = $this->getParser( $preprocessor );
 		$title = Title::newFromText( $titleText );
 
 		$matches = array();
