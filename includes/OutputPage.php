@@ -1475,7 +1475,7 @@ class OutputPage {
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgEnableMWSuggest, $wgUniversalEditButton;
-		global $wgArticle;
+		global $wgArticle, $wgJQueryOnEveryPage;
 
 		if( $this->mDoNothing ){
 			return;
@@ -1549,6 +1549,10 @@ class OutputPage {
 					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
 				) );
 			}
+		}
+		
+		if ( $wgJQueryOnEveryPage ) {
+			$this->includeJQuery();
 		}
 
 		# Buffer output; final headers may depend on later processing
@@ -2610,12 +2614,13 @@ class OutputPage {
 	 * @since 1.16
 	 */
 	public function includeJQuery( $modules = array() ) {
-		global $wgStylePath, $wgStyleVersion;
+		global $wgStylePath, $wgStyleVersion, $wgJQueryVersion, $wgJQueryMinified;
 
 		$supportedModules = array( /** TODO: add things here */ );
 		$unsupported = array_diff( $modules, $supportedModules );
 
-		$url = "$wgStylePath/common/jquery.min.js?$wgStyleVersion";
+		$min = $wgJQueryMinified ? '.min' : '';
+		$url = "$wgStylePath/common/jquery-$wgJQueryVersion$min.js?$wgStyleVersion";
 		if ( !$this->mJQueryDone ) {
 			$this->mJQueryDone = true;
 			$this->mScripts = Html::linkedScript( $url ) . "\n" . $this->mScripts;
