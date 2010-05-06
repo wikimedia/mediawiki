@@ -16,6 +16,7 @@
  * @author Theklan
  * @author Unai Fdz. de Betoño
  * @author Urhixidur
+ * @author Xabier Armendaritz
  * @author לערי ריינהארט
  */
 
@@ -473,6 +474,7 @@ Mesedez, bidali gertakar hau administradore bati, URLaren izena jarriz.',
 'readonly_lag'         => 'Datu-basea automatikoki blokeatu da menpeko zerbitzariak nagusiarekin sinkronizatu bitartean',
 'internalerror'        => 'Barne errorea',
 'internalerror_info'   => 'Barne errorea: $1',
+'fileappenderrorread'  => 'Ezin izan da "$1" irakurri, gehitzean.',
 'fileappenderror'      => 'Ezin da gehitu "$1" "$2"(e)ra.',
 'filecopyerror'        => 'Ezin izan da "$1" fitxategia "$2"(e)ra kopiatu.',
 'filerenameerror'      => 'Ezin izan zaio "$1" fitxategiari "$2" izen berria eman.',
@@ -606,6 +608,7 @@ Kontu honen sorrera akats bat dela uste baduzu mezu honi ez diozu zertan jaramon
 'login-throttled'            => 'Saioa hasteko saiakera gehiegi egin berri dituzu.
 Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
+'suspicious-userlogout'      => 'Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.',
 
 # Password reset dialog
 'resetpass'                 => 'Pasahitza aldatu',
@@ -658,6 +661,7 @@ Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat
 'showlivepreview'                  => 'Zuzeneko aurrebista',
 'showdiff'                         => 'Aldaketak erakutsi',
 'anoneditwarning'                  => "'''Oharra:''' Ez duzu saioa hasi. Zure IP helbidea orrialde honetako historian gordeko da.",
+'anonpreviewwarning'               => "''Ez duzu saioa hasi. Gordez gero, zure IP helbidea grabatuko da orri honen edizio historian.''",
 'missingsummary'                   => "'''Gogorarazpena:''' Ez duzu aldaketa laburpen bat zehaztu. Berriz ere gordetzeko aukeratzen baduzu, laburpen mezurik gordeko da.",
 'missingcommenttext'               => 'Mesedez, iruzkin bat idatzi jarraian.',
 'missingcommentheader'             => "'''Oharra:''' Ez duzu iruzkin honentzako gai/goiburuko bat ezarri. Berriz gordetzeko aukeratzen baduzu, hutsune horrekin gorde egingo da.",
@@ -722,6 +726,8 @@ Beste orrietan [[Special:Search/{{PAGENAME}}|testua bilatu dezakezu]],
 edo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} erlazionatutako erregistroak ikusi]</span>.',
 'userpage-userdoesnotexist'        => '"$1" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
 'userpage-userdoesnotexist-view'   => '"$1" erabiltzaile-kontua ez dago erregistraturik.',
+'blocked-notice-logextract'        => 'Erabiltzaile hau blokeatuta dago une honetan.
+Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'clearyourcache'                   => "'''Oharra - Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.''' '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''Internet Explorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
 'usercssyoucanpreview'             => "'''Laguntza:''' Zure CSS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
 'userjsyoucanpreview'              => "'''Laguntza:''' Zure JS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
@@ -866,6 +872,12 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 'rev-deleted-user-contribs'   => '[lankide izena edo Ip helbidea ezabatua - aldatu ezkutapena ekarpenetatik]',
 'rev-deleted-text-permission' => "Orrialdearen berrikuspen hau '''ezabatua''' izan da.
 Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] ikus daitezke.",
+'rev-deleted-text-unhide'     => "Orriaren bertsio hau '''ezabatu''' da.
+Xehetasunak ikusgai daude [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabatze erregistroan].
+Administratzailea zarenez, oraindik [$1 bertsio hau ikus dezakezu], nahi izanez gero.",
+'rev-suppressed-text-unhide'  => "Orriaren bertsio hau '''ezeztatu''' da.
+Xehetasunak ikusgai daude [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ezeztatze erregistroan].
+Administratzailea zarenez, oraindik [$1 bertsio hau ikus dezakezu], nahi izanez gero.",
 'rev-deleted-text-view'       => "Orrialdearen berrikuspen hau '''ezabatua''' izan da. 
 Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] ikus ditzakezu.",
 'rev-suppressed-text-view'    => "Berrikuspen hau '''ezabatua''' izan da.
@@ -873,6 +885,16 @@ Administratzaile bezala ikus dezakezu; xehetasun gehiagorako [{{fullurl:{{#Speci
 'rev-deleted-no-diff'         => "Ezin duzu ezberdintasun hau ikusi, berrikuspenetako bat '''ezabatua''' izan delako.
 Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] aurki ditzakezu.",
 'rev-suppressed-no-diff'      => "Ezin duzu ezberdintasunik ikusi berrikuspenen bat '''ezabatua''' izan delako.",
+'rev-deleted-unhide-diff'     => "diff honen bertsioetako bat '''ezabatu''' da.
+Xehetasunak ikusgai daude [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabatze erregistroan].
+Administratzailea zarenez, oraindik [$1 diff hau ikus dezakezu], nahi izanez gero.",
+'rev-suppressed-unhide-diff'  => "diff honen bertsioetako bat '''ezeztatu''' da.
+Xehetasunak ikusgai daude [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ezeztatze erregistroan].
+Administratzailea zarenez, oraindik [$1 diff hau ikus dezakezu], nahi izanez gero.",
+'rev-deleted-diff-view'       => "diff honen bertsioetako bat '''ezabatu''' da.
+Administratzailea zarenez, diff hau ikus dezakezu. Xehetasunak ikusgai daude [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabatze erregistroan].",
+'rev-suppressed-diff-view'    => "diff honen bertsioetako bat '''ezeztatu''' da.
+Administratzailea zarenez, diff hau ikus dezakezu. Xehetasunak ikusgai daude [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ezeztatze erregistroan].",
 'rev-delundel'                => 'erakutsi/ezkutatu',
 'rev-showdeleted'             => 'erakutsi',
 'revisiondelete'              => 'Berrikuspenak ezabatu/leheneratu',
@@ -883,11 +905,13 @@ Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaket
 'revdelete-nologid-title'     => 'Log sarrera okerra',
 'revdelete-nologid-text'      => 'Ez duzu log helburu ekintzarik zehaztu funtzioa betetzeko, edo zehaztutako sarrera ez da existitzen.',
 'revdelete-no-file'           => 'Zehazturiko fitxategia ez da existitzen.',
+'revdelete-show-file-confirm' => '"<nowiki>$1</nowiki>" fitxategiaren bertsio ezabatua (eguna: $2; ordua: $3) ikusi nahi duzu?',
 'revdelete-show-file-submit'  => 'Bai',
 'revdelete-selected'          => "'''{{PLURAL:$2|[[:$1]](r)en hautatutako berrikuspena:|[[:$1]](r)en hautatutako berrikuspenak}}'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:'''",
 'revdelete-text'              => "'''Ezabatutako berrikuspenek orrialdearen historian agertzen jarraituko dute, baina bere edukiak ez dira publikoki eskuratu ahal izango.'''
 {{SITENAME}}ko administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.",
+'revdelete-confirm'           => 'Baiezta ezazu hori dela zure asmoa, ulertzen dituzula ondorioak, eta [[{{MediaWiki:Policy-url}}|irizpideak]] errespetatuz egiten ari zarela hau.',
 'revdelete-suppress-text'     => "Ezabaketa '''bakarrik''' arrazoi hauek direla eta erabili beharko litzateke:
 * Informazio pertsonal desegokia
 *: ''etxeko helbideak eta telefono zenbakiak, segurtasun sozial zenbakiak, etab.''",
@@ -911,6 +935,8 @@ Xehetasunak [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ezabaket
 'revdelete-failure'           => "'''Ezin da berrikuspenaren ikuspena eguneratu:'''
 $1",
 'logdelete-success'           => "'''Log ikusgarritasuna ondo ezarri da.'''",
+'logdelete-failure'           => "'''Erregistroaren ikusgaitasuna ezin da honela ezarri:'''
+$1",
 'revdel-restore'              => 'Ikusgarritasuna aldatu',
 'pagehist'                    => 'Orriaren historia',
 'deletedhist'                 => 'Ezabatutako historia',
@@ -923,6 +949,16 @@ $1",
 'revdelete-unhid'             => '$1 azalarazi',
 'revdelete-log-message'       => '$1 {{PLURAL:$2|berrikusketara 1erako|$2 berrikuspenerako}}',
 'logdelete-log-message'       => '$1(e)tik {{PLURAL:$2|gertakari $2|$2 gertakari}}',
+'revdelete-hide-current'      => 'Errorea, $1 $2 data duen elementua ezkutatzean: hau da oraingo bertsioa.
+Ezin da ezkutatu.',
+'revdelete-show-no-access'    => 'Errorea, $1 $2 data duen elementua erakustean: elementu hau «mugatua» dela markatu da.
+Ezin duzu atzitu.',
+'revdelete-modify-no-access'  => 'Errorea, $1 $2 data duen elementua aldatzean: elementu hau «mugatua» dela markatu da.
+Ezin duzu atzitu.',
+'revdelete-modify-missing'    => 'Errorea, $1 identifikazioa duen elementua aldatzean: datu basean ez da ageri.',
+'revdelete-no-change'         => "'''Abisua:''' $1 $2 data duen elementuak jadanik bazituen eskatutako ikusgaitasun ezarpenak.",
+'revdelete-concurrent-change' => 'Errorea, $1 $2 data duen elementua aldatzean: badirudi haren egoera aldatu duela nor edo nork, zu aldatzen saiatzen ari zinela.
+Begira itzazu erregistroak.',
 'revdelete-reason-dropdown'   => '*Ezabatzeko ohiko arrazoiak
 **Copyright urraketa
 **Informazio pertsonal desegokia
@@ -1394,7 +1430,10 @@ Baimendutako fitxategi {{PLURAL:$3|mota $2 da|motak $2 dira}}.',
 'file-too-large'              => 'Bidali duzun fitxategia handiegia zen.',
 'filename-tooshort'           => 'Fitxategiaren izena laburregia da.',
 'filetype-banned'             => 'Mota horretako fitxategiak debekatuta daude.',
+'verification-error'          => 'Fitxategiak ez du egiaztapena gainditu.',
 'illegal-filename'            => 'Fitxategiaren izena ez da onartzen.',
+'overwrite'                   => 'Jada existitzen den fitxategi bat ezin da berridatzi.',
+'unknown-error'               => 'Ezezaguna den errorea gertatu da.',
 'tmp-create-error'            => 'Ezin izan da behin-behineko fitxategirik sortu.',
 'large-file'                  => 'Ez da gomendagarria fitxategiak $1 baino handiagoak izatea; fitxategi honen tamaina: $2.',
 'largefileserver'             => 'Fitxategi hau zerbitzariak baimentzen duena baino handiagoa da.',
@@ -1428,6 +1467,8 @@ Oraindik ere fitxategia igo nahi baduzu atzera itzuli eta izen berri bat erabili
 'uploadedimage'               => '"[[$1]]" igo da',
 'overwroteimage'              => '"[[$1]]"ren bertsio berri bat igo',
 'uploaddisabled'              => 'Igoerak ezgaituta daude',
+'copyuploaddisabled'          => 'URL bidezko igoera desaktibatuta.',
+'uploadfromurl-queued'        => 'Zure igoera ilaran jarri da.',
 'uploaddisabledtext'          => 'Fitxategiak igotzea ezgaituta dago.',
 'php-uploaddisabledtext'      => 'Fitxategi igoerak PHP-n ezinduta daude. Ikusi fitxategi_igoerak mesedez.',
 'uploadscripted'              => 'Fitxategi honek web zerbitzariak modu ezegokian interpretatu lezakeen HTML edo script kodea dauka.',
@@ -1467,7 +1508,10 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 # HTTP errors
 'http-invalid-url'      => 'URL baliogabea: $1',
 'http-read-error'       => 'HTTP irakurketa-akatsa.',
+'http-timed-out'        => 'HTTP eskaera iraungi da.',
+'http-curl-error'       => 'Errorea URLa bilatzerakoan: $1',
 'http-host-unreachable' => 'Ezin da URL-a atzeman.',
+'http-bad-status'       => 'Arazo bat egon da HTTP eskaera bitartean: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ezin izan da URLa eskuratu',
@@ -1782,30 +1826,31 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 'listgrouprights-removegroup-self-all' => 'Talde guztiak norbere kontutik ezabatu',
 
 # E-mail user
-'mailnologin'      => 'Bidalketa helbiderik ez',
-'mailnologintext'  => 'Beste erabiltzaileei e-posta mezuak bidaltzeko [[Special:UserLogin|saioa hasi]] eta baliozko e-posta helbidea behar duzu izan zure [[Special:Preferences|hobespenetan]].',
-'emailuser'        => 'Erabiltzaile honi e-posta bidali',
-'emailpage'        => 'Erabiltzaileari e-posta bidali',
-'emailpagetext'    => 'Erabiltzaile honek baliozko e-posta helbide bat ezarri badu bere hobespenetan, beheko formularioa erabiliz mezu bat bidal dakioke. 
+'mailnologin'          => 'Bidalketa helbiderik ez',
+'mailnologintext'      => 'Beste erabiltzaileei e-posta mezuak bidaltzeko [[Special:UserLogin|saioa hasi]] eta baliozko e-posta helbidea behar duzu izan zure [[Special:Preferences|hobespenetan]].',
+'emailuser'            => 'Erabiltzaile honi e-posta bidali',
+'emailpage'            => 'Erabiltzaileari e-posta bidali',
+'emailpagetext'        => 'Erabiltzaile honek baliozko e-posta helbide bat ezarri badu bere hobespenetan, beheko formularioa erabiliz mezu bat bidal dakioke. 
 [[Special:Preferences|Hobespenetan]] daukazun e-posta helbidea azalduko da mezuaren bidaltzaile bezala eta beraz erantzun ahal izango dizu.',
-'usermailererror'  => 'Mail objektuak errore hau itzuli du:',
-'defemailsubject'  => 'E-posta {{SITENAME}}(e)tik',
-'usermaildisabled' => 'Erabiltzailearen e-maila desaktibatuta',
-'noemailtitle'     => 'Posta helbiderik ez',
-'noemailtext'      => 'Erabiltzaile honek ez du baliozko e-posta helbiderik zehaztu.',
-'nowikiemailtitle' => 'Ezin da e-postarik bidali',
-'nowikiemailtext'  => 'Erabiltzaile honek beste erabiltzaileengandik e-postak ez jasotzea hautatu du.',
-'email-legend'     => 'Bidali e-posta bat {{SITENAME}}(e)ko beste lankide bati',
-'emailfrom'        => 'Nork:',
-'emailto'          => 'Nori:',
-'emailsubject'     => 'Gaia:',
-'emailmessage'     => 'Mezua:',
-'emailsend'        => 'Mezua',
-'emailccme'        => 'Mezu honen kopia bat niri bidali.',
-'emailccsubject'   => 'Zure mezuaren kopia $1(r)i: $2',
-'emailsent'        => 'Mezua bidali egin da',
-'emailsenttext'    => 'Zure e-posta mezua bidali egin da.',
-'emailuserfooter'  => 'E-posta hau $1(e)k bidali dio $2(r)i {{SITENAME}}ko "E-posta bidali" funtzioa erabiliz.',
+'usermailererror'      => 'Mail objektuak errore hau itzuli du:',
+'defemailsubject'      => 'E-posta {{SITENAME}}(e)tik',
+'usermaildisabled'     => 'Erabiltzailearen e-maila desaktibatuta',
+'usermaildisabledtext' => 'Wiki honetan ezin diezu beste erabiltzaileei posta elektronikorik bidali',
+'noemailtitle'         => 'Posta helbiderik ez',
+'noemailtext'          => 'Erabiltzaile honek ez du baliozko e-posta helbiderik zehaztu.',
+'nowikiemailtitle'     => 'Ezin da e-postarik bidali',
+'nowikiemailtext'      => 'Erabiltzaile honek beste erabiltzaileengandik e-postak ez jasotzea hautatu du.',
+'email-legend'         => 'Bidali e-posta bat {{SITENAME}}(e)ko beste lankide bati',
+'emailfrom'            => 'Nork:',
+'emailto'              => 'Nori:',
+'emailsubject'         => 'Gaia:',
+'emailmessage'         => 'Mezua:',
+'emailsend'            => 'Mezua',
+'emailccme'            => 'Mezu honen kopia bat niri bidali.',
+'emailccsubject'       => 'Zure mezuaren kopia $1(r)i: $2',
+'emailsent'            => 'Mezua bidali egin da',
+'emailsenttext'        => 'Zure e-posta mezua bidali egin da.',
+'emailuserfooter'      => 'E-posta hau $1(e)k bidali dio $2(r)i {{SITENAME}}ko "E-posta bidali" funtzioa erabiliz.',
 
 # Watchlist
 'watchlist'            => 'Nire jarraipen zerrenda',
@@ -2199,6 +2244,7 @@ Hala ere, $2-(r)en parte denez, blokeoa kendu daiteke.',
 'sorbsreason'                     => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan.',
 'sorbs_create_account_reason'     => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan. Ezin duzu kontua sortu.',
 'cant-block-while-blocked'        => 'Blokeatuta zauden bitartean ezin dituzu beste lankideak blokeatu.',
+'ipbblocked'                      => 'Ezin dituzu beste erabiltzaileak blokeatu edo desblokeatu, zu zeu blokeatuta zaudelako',
 'ipbnounblockself'                => 'Ez duzu baimenik zure buruari blokeoa kentzeko',
 
 # Developer tools
@@ -2456,6 +2502,7 @@ Fitxategiaren atal bat baino ez zen igo.',
 'tooltip-undo'                    => '"Desegin" botoiak egindako aldaketa ezeztatzen du eta aurreikuspen bista erakusten du.
 Laburpenean arrazoi bat gehitzea baimentzen du',
 'tooltip-preferences-save'        => 'Hobespenak gorde',
+'tooltip-summary'                 => 'Laburpen labur bat sar ezazu',
 
 # Stylesheets
 'common.css'   => '/** Hemen idatzitako CSS kodeak itxura guztietan izango du eragina */',
@@ -3130,6 +3177,7 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'htmlform-float-invalid'       => 'Zuk zehaztutako balioa ez da zenbakia.',
 'htmlform-int-toolow'          => 'Zuk zehaztutako balioa $1 minimoaren azpitik dago',
 'htmlform-int-toohigh'         => 'Zuk zehaztutako balioa $1 maximoaren gainetik dago',
+'htmlform-required'            => 'Balio hori beharrezkoa da',
 'htmlform-submit'              => 'Bidali',
 'htmlform-reset'               => 'Aldaketak desegin',
 'htmlform-selectorother-other' => 'Beste bat',

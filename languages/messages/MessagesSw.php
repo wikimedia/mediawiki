@@ -1565,6 +1565,7 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'listusersfrom'      => 'Onyesha watumiaji kuanzia:',
 'listusers-submit'   => 'Onyesha',
 'listusers-noresult' => 'Mtumiaji hakupatikana.',
+'listusers-blocked'  => '(amezuluiwa)',
 
 # Special:ActiveUsers
 'activeusers-count'    => '{{PLURAL:$1|haririo|maharirio}} $1 katika siku $3 {{PLURAL:$3|iliyopita|zilizopita}}',
