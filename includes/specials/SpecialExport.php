@@ -22,22 +22,22 @@
  */
 
 class SpecialExport extends SpecialPage {
-	
+
 	private $curonly, $doExport, $pageLinkDepth, $templates;
 	private $images;
-	
+
 	public function __construct() {
 		parent::__construct( 'Export' );
 	}
-	
+
 	public function execute( $par ) {
 		global $wgOut, $wgRequest, $wgSitename, $wgExportAllowListContributors;
 		global $wgExportAllowHistory, $wgExportMaxHistory, $wgExportMaxLinkDepth;
 		global $wgExportFromNamespaces;
-		
+
 		$this->setHeaders();
 		$this->outputHeader();
-		
+
 		// Set some variables
 		$this->curonly = true;
 		$this->doExport = false;
@@ -46,11 +46,11 @@ class SpecialExport extends SpecialPage {
 		$this->pageLinkDepth = $this->validateLinkDepth(
 			$wgRequest->getIntOrNull( 'pagelink-depth' ) );
 		$nsindex = '';
-		
+
 		if ( $wgRequest->getCheck( 'addcat' ) ) {
 			$page = $wgRequest->getText( 'pages' );
 			$catname = $wgRequest->getText( 'catname' );
-			
+
 			if ( $catname !== '' && $catname !== null && $catname !== false ) {
 				$t = Title::makeTitleSafe( NS_MAIN, $catname );
 				if ( $t ) {
@@ -67,7 +67,7 @@ class SpecialExport extends SpecialPage {
 		else if( $wgRequest->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
 			$page = $wgRequest->getText( 'pages' );
 			$nsindex = $wgRequest->getText( 'nsindex', '' );
-			
+
 			if ( strval( $nsindex ) !== ''  ) {
 				/**
 				 * Same implementation as above, so same @todo
@@ -106,7 +106,7 @@ class SpecialExport extends SpecialPage {
 					$history['dir'] = 'desc';
 				}
 			}
-			
+
 			if( $page != '' ) $this->doExport = true;
 		} else {
 			// Default to current-only for GET requests
@@ -117,18 +117,18 @@ class SpecialExport extends SpecialPage {
 			} else {
 				$history = WikiExporter::CURRENT;
 			}
-			
+
 			if( $page != '' ) $this->doExport = true;
 		}
-		
+
 		if( !$wgExportAllowHistory ) {
 			// Override
 			$history = WikiExporter::CURRENT;
 		}
-		
+
 		$list_authors = $wgRequest->getCheck( 'listauthors' );
 		if ( !$this->curonly || !$wgExportAllowListContributors ) $list_authors = false ;
-		
+
 		if ( $this->doExport ) {
 			$wgOut->disable();
 			// Cancel output buffering and gzipping if set
@@ -143,22 +143,22 @@ class SpecialExport extends SpecialPage {
 			$this->doExport( $page, $history, $list_authors );
 			return;
 		}
-		
+
 		$wgOut->addWikiMsg( 'exporttext' );
-		
+
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalUrl( 'action=submit' ) ) );
 		$form .= Xml::inputLabel( wfMsg( 'export-addcattext' )    , 'catname', 'catname', 40 ) . '&nbsp;';
 		$form .= Xml::submitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
-		
+
 		if ( $wgExportFromNamespaces ) {
 			$form .= Xml::namespaceSelector( $nsindex, null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&nbsp;';
 			$form .= Xml::submitButton( wfMsg( 'export-addns' ), array( 'name' => 'addns' ) ) . '<br />';
 		}
-		
+
 		$form .= Xml::element( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ), $page, false );
 		$form .= '<br />';
-		
+
 		if( $wgExportAllowHistory ) {
 			$form .= Xml::checkLabel( wfMsg( 'exportcuronly' ), 'curonly', 'curonly', true ) . '<br />';
 		} else {
@@ -171,28 +171,31 @@ class SpecialExport extends SpecialPage {
 		// Enable this when we can do something useful exporting/importing image information. :)
 		//$form .= Xml::checkLabel( wfMsg( 'export-images' ), 'images', 'wpExportImages', false ) . '<br />';
 		$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
-		
+
 		$form .= Xml::submitButton( wfMsg( 'export-submit' ), array( 'accesskey' => 's' ) );
 		$form .= Xml::closeElement( 'form' );
 		$wgOut->addHTML( $form );
 	}
-	
+
 	private function userCanOverrideExportDepth() {
-		global $wgUser;   
+		global $wgUser;
 
 		return $wgUser->isAllowed( 'override-export-depth' );
 	}
-	
+
 	/**
 	 * Do the actual page exporting
-	 * @param string $page User input on what page(s) to export
-	 * @param mixed  $history one of the WikiExporter history export constants
+	 *
+	 * @param $page String: user input on what page(s) to export
+	 * @param $history Mixed: one of the WikiExporter history export constants
+	 * @param $list_authors Boolean: Whether to add distinct author list (when
+	 *                      not returning full history)
 	 */
 	private function doExport( $page, $history, $list_authors ) {
 		global $wgExportMaxHistory;
-		
+
 		$pageSet = array(); // Inverted index of all pages to look up
-		
+
 		// Split up and normalize input
 		foreach( explode( "\n", $page ) as $pageName ) {
 			$pageName = trim( $pageName );
@@ -202,26 +205,26 @@ class SpecialExport extends SpecialPage {
 				$pageSet[$title->getPrefixedText()] = true;
 			}
 		}
-		
+
 		// Set of original pages to pass on to further manipulation...
 		$inputPages = array_keys( $pageSet );
-		
+
 		// Look up any linked pages if asked...
 		if( $this->templates ) {
 			$pageSet = $this->getTemplates( $inputPages, $pageSet );
 		}
-		
+
 		if( $linkDepth = $this->pageLinkDepth ) {
 			$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
 		}
-		
+
 		/*
 		 // Enable this when we can do something useful exporting/importing image information. :)
 		 if( $this->images ) ) {
 		 $pageSet = $this->getImages( $inputPages, $pageSet );
 		 }
 		 */
-		
+
 		$pages = array_keys( $pageSet );
 
 		// Normalize titles to the same format and remove dupes, see bug 17374
@@ -240,7 +243,7 @@ class SpecialExport extends SpecialPage {
 			$lb = wfGetLBFactory()->newMainLB();
 			$db = $lb->getConnection( DB_SLAVE );
 			$buffer = WikiExporter::STREAM;
-			
+
 			// This might take a while... :D
 			wfSuppressWarnings();
 			set_time_limit(0);
@@ -266,10 +269,10 @@ class SpecialExport extends SpecialPage {
 			$title = Title::newFromText( $page );
 			if( is_null( $title ) ) continue; #TODO: perhaps output an <error> tag or something.
 			if( !$title->userCanRead() ) continue; #TODO: perhaps output an <error> tag or something.
-			
+
 			$exporter->pageByTitle( $title );
 		}
-		
+
 		$exporter->closeStream();
 		if( $lb ) {
 			$lb->closeAll();
@@ -278,15 +281,15 @@ class SpecialExport extends SpecialPage {
 
 	private function getPagesFromCategory( $title ) {
 		global $wgContLang;
-		
+
 		$name = $title->getDBkey();
-		
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array('page', 'categorylinks' ),
 							array( 'page_namespace', 'page_title' ),
 							array('cl_from=page_id', 'cl_to' => $name ),
 							__METHOD__, array('LIMIT' => '5000'));
-		
+
 		$pages = array();
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$n = $row->page_title;
@@ -294,22 +297,22 @@ class SpecialExport extends SpecialPage {
 				$ns = $wgContLang->getNsText( $row->page_namespace );
 				$n = $ns . ':' . $n;
 			}
-			
+
 			$pages[] = $n;
 		}
 		$dbr->freeResult($res);
-		
+
 		return $pages;
 	}
-	
+
 	private function getPagesFromNamespace( $nsindex ) {
 		global $wgContLang;
-		
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page', array('page_namespace', 'page_title'),
 							array('page_namespace' => $nsindex),
 							__METHOD__, array('LIMIT' => '5000') );
-		
+
 		$pages = array();
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$n = $row->page_title;
@@ -317,13 +320,14 @@ class SpecialExport extends SpecialPage {
 				$ns = $wgContLang->getNsText( $row->page_namespace );
 				$n = $ns . ':' . $n;
 			}
-			
+
 			$pages[] = $n;
 		}
 		$dbr->freeResult($res);
-		
+
 		return $pages;
 	}
+
 	/**
 	 * Expand a list of pages to include templates used in those pages.
 	 * @param $inputPages array, list of titles to look up
@@ -336,7 +340,7 @@ class SpecialExport extends SpecialPage {
 							   array( 'tl_namespace AS namespace', 'tl_title AS title' ),
 							   array( 'page_id=tl_from' ) );
 	}
-	
+
 	/**
 	 * Validate link depth setting, if available.
 	 */
@@ -357,7 +361,7 @@ class SpecialExport extends SpecialPage {
 		 */
 		return intval( min( $depth, 5 ) );
 	}
-	
+
 	/** Expand a list of pages to include pages linked to from that page. */
 	private function getPageLinks( $inputPages, $pageSet, $depth ) {
 		for( $depth=$depth; $depth>0; --$depth ) {
@@ -368,7 +372,7 @@ class SpecialExport extends SpecialPage {
 		}
 		return $pageSet;
 	}
-	
+
 	/**
 	 * Expand a list of pages to include images used in those pages.
 	 * @param $inputPages array, list of titles to look up
@@ -381,7 +385,7 @@ class SpecialExport extends SpecialPage {
 							   array( NS_FILE . ' AS namespace', 'il_to AS title' ),
 							   array( 'page_id=il_from' ) );
 	}
-	
+
 	/**
 	 * Expand a list of pages to include items used in those pages.
 	 * @private
