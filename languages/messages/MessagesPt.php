@@ -1028,9 +1028,9 @@ Por favor, verifique a seguinte comparação para se certificar de que é o que 
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Não é possível criar uma conta',
-'cantcreateaccount-text' => "Este IP ('''$1''') foi bloqueado de criar novas contas por [[User:$3|$3]].
+'cantcreateaccount-text' => "A criação de contas a partir deste endereço IP ('''$1''') foi bloqueada por [[User:$3|$3]].
 
-A justificativa apresentada por $3 foi ''$2''",
+O motivo apresentado por $3 foi ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Ver registos para esta página',
@@ -1378,8 +1378,8 @@ Esta operação não pode ser desfeita.',
 'yournick'                      => 'Assinatura:',
 'prefs-help-signature'          => 'Ao inserir comentários em páginas de discussão, assine-os colocando quatro tiles "<nowiki>~~~~</nowiki>" no fim dos comentários. Ao gravar, estes serão convertidos na sua assinatura mais a data e a hora da edição.',
 'badsig'                        => 'Assinatura inválida; verifique o código HTML utilizado.',
-'badsiglength'                  => 'A sua assinatura é muito longa.
-Não deverá ter mais de $1 {{PLURAL:$1|caráter|carateres}}.',
+'badsiglength'                  => 'A sua assinatura é demasiado longa.
+Não deverá conter mais de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'yourgender'                    => 'Sexo:',
 'gender-unknown'                => 'Não especificado',
 'gender-male'                   => 'Masculino',
