@@ -217,8 +217,8 @@ class LBFactory_Simple extends LBFactory {
 /**
  * LBFactory class that throws an error on any attempt to use it.
  * This will typically be done via wfGetDB().
- * Call LBFactory::disable() to start using this, and LBFactory::enable() to
- * return to normal behavior
+ * Call LBFactory::disableBackend() to start using this, and
+ * LBFactory::enableBackend() to return to normal behavior
  */
 class LBFactory_Fake extends LBFactory {
 	function __construct( $conf ) {}
