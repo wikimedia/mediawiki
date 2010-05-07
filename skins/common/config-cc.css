@@ -1,0 +1,56 @@
+/**
+ * Copy of CC standard stylesheet, plus tweaks for iframe usage
+ */
+
+body {
+	margin:0px;
+	background:#eee;
+	font-family:verdana;
+	color:#333;
+}
+
+#main {
+	border:1px solid #D0D0D0; 
+	background:#fff;
+	margin: 0.5em;
+}
+
+/* Looks like you have to specify the width of #menu
+or IE5 Mac stretches it all the way across the div, and 
+Opera streches it half way. */
+
+#main #menu {
+	border-left:1px dotted #ccc; 
+	/*		border-bottom:1px solid #000;*/
+	float:right;
+	width:230px;
+	background:white;
+	margin:0px 0px 10px 10px;
+}
+
+td, h3, p,h1,pre {
+	margin:0px 20px 20px 20px;
+	font-size:11px;
+	line-height:140%;
+}
+
+.header {
+	padding-left: 10px;
+	padding-top:10px;
+}
+
+.nav {
+	padding-left:10px;
+	padding-bottom:10px;
+	font-size:11px;
+	margin-bottom:16px;
+}
+
+#menu p { 
+	font-size:11px;
+}
+
+.dent {
+	margin-left:64px;
+}
+

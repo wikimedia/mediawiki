@@ -422,6 +422,18 @@ $wgAutoloadLocalClasses = array(
 	'RepoGroup' => 'includes/filerepo/RepoGroup.php',
 	'UnregisteredLocalFile' => 'includes/filerepo/UnregisteredLocalFile.php',
 
+	# includes/installer
+	'Installer' => 'includes/installer/Installer.php',
+	'InstallerDBType' => 'includes/installer/InstallerDBType.php',
+	'LBFactory_InstallerFake' => 'includes/installer/Installer.php',
+	'LocalSettingsGenerator' => 'includes/installer/LocalSettingsGenerator.php',
+	'WebInstaller' => 'includes/installer/WebInstaller.php',
+	'WebInstallerOutput' => 'includes/installer/WebInstallerOutput.php',
+	'MysqlInstaller' => 'includes/installer/MysqlInstaller.php',
+	'PostgresInstaller' => 'includes/installer/PostgresInstaller.php',
+	'SqliteInstaller' => 'includes/installer/SqliteInstaller.php',
+	'OracleInstaller' => 'includes/installer/OracleInstaller.php',
+
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
 	'BitmapHandler_ClientOnly' => 'includes/media/Bitmap_ClientOnly.php',

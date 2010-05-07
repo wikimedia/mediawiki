@@ -12,6 +12,23 @@ abstract class LBFactory {
 	static $instance;
 
 	/**
+	 * Disables all access to the load balancer, will cause all database access
+	 * to throw a DBAccessError
+	 */
+	public static function disableBackend() {
+		global $wgLBFactoryConf;
+		self::$instance = new LBFactory_Fake( $wgLBFactoryConf );
+	}
+
+	/**
+	 * Resets the singleton for use if it's been disabled. Does nothing otherwise
+	 */
+	public static function enableBackend() {
+		if( self::$instance instanceof LBFactory_Fake )
+			self::$instance = null;
+	}
+
+	/**
 	 * Get an LBFactory instance
 	 */
 	static function &singleton() {
@@ -194,6 +211,39 @@ class LBFactory_Simple extends LBFactory {
 		}
 		$this->chronProt->shutdown();
 		$this->commitMasterChanges();
+	}
+}
+
+/**
+ * LBFactory class that throws an error on any attempt to use it.
+ * This will typically be done via wfGetDB().
+ * Call LBFactory::disable() to start using this, and LBFactory::enable() to
+ * return to normal behavior
+ */
+class LBFactory_Fake extends LBFactory {
+	function __construct( $conf ) {}
+
+	function newMainLB( $wiki = false) {
+		throw new DBAccessError;
+	}
+	function getMainLB( $wiki = false ) {
+		throw new DBAccessError;
+	}
+	function newExternalLB( $cluster, $wiki = false ) {
+		throw new DBAccessError;
+	}
+	function &getExternalLB( $cluster, $wiki = false ) {
+		throw new DBAccessError;
+	}
+	function forEachLB( $callback, $params = array() ) {}
+}
+
+/**
+ * Exception class for attempted DB access
+ */
+class DBAccessError extends MWException {
+	function __construct() {
+		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). This is not allowed." );
 	}
 }
 
