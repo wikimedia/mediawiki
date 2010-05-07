@@ -32,8 +32,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * Entry point : initialise variables and call subfunctions.
+	 *
 	 * @param $par String: becomes "FOO" when called like Special:Allpages/FOO (default NULL)
-	 * @param $specialPage See the SpecialPage object.
 	 */
 	function execute( $par ) {
 		global $wgRequest, $wgOut, $wgContLang;
@@ -65,9 +65,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * HTML for the top form
-	 * @param integer $namespace A namespace constant (default NS_MAIN).
-	 * @param string $from dbKey we are starting listing at.
-	 * @param string $to dbKey we are ending listing at.
+	 *
+	 * @param $namespace Integer: a namespace constant (default NS_MAIN).
+	 * @param $from String: dbKey we are starting listing at.
+	 * @param $to String: dbKey we are ending listing at.
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '' ) {
 		global $wgScript;
@@ -112,7 +113,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param integer $namespace (default NS_MAIN)
+	 * @param $namespace Integer (default NS_MAIN)
+	 * @param $from String: list all pages from this name
+	 * @param $to String: list all pages to this name
 	 */
 	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '' ) {
 		global $wgOut;
@@ -233,9 +236,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * Show a line of "ABC to DEF" ranges of articles
-	 * @param string $inpoint Lower limit of pagenames
-	 * @param string $outpout Upper limit of pagenames
-	 * @param integer $namespace (Default NS_MAIN)
+	 *
+	 * @param $inpoint String: lower limit of pagenames
+	 * @param $outpoint String: upper limit of pagenames
+	 * @param $namespace Integer (Default NS_MAIN)
 	 */
 	function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 		global $wgContLang;
@@ -257,9 +261,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param integer $namespace (Default NS_MAIN)
-	 * @param string $from list all pages from this name (default FALSE)
-	 * @param string $to list all pages to this name (default FALSE)
+	 * @param $namespace Integer (Default NS_MAIN)
+	 * @param $from String: list all pages from this name (default FALSE)
+	 * @param $to String: list all pages to this name (default FALSE)
 	 */
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false ) {
 		global $wgOut, $wgUser, $wgContLang, $wgLang;
@@ -436,8 +440,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param int $ns the namespace of the article
-	 * @param string $text the name of the article
+	 * @param $ns Integer: the namespace of the article
+	 * @param $text String: the name of the article
 	 * @return array( int namespace, string dbkey, string pagename ) or NULL on error
 	 * @static (sort of)
 	 * @access private
