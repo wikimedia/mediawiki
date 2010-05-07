@@ -1815,7 +1815,7 @@ function wfSuppressWarnings( $end = false ) {
 		}
 	} else {
 		if ( !$suppressCount ) {
-			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE ) );
+			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE | E_USER_WARNING | E_USER_NOTICE ) );
 		}
 		++$suppressCount;
 	}
@@ -3325,4 +3325,15 @@ function wfBCP47( $code ) {
 	}
 	$langCode = implode ( '-' , $codeBCP );
 	return $langCode;
+}
+
+function wfArrayMap( $function, $input ) {
+	$ret = array_map( $function, $input );
+	foreach ( $ret as $key => $value ) {
+		$taint = istainted( $input[$key] );
+		if ( $taint ) {
+			taint( $ret[$key], $taint );
+		}
+	}
+	return $ret;
 }
