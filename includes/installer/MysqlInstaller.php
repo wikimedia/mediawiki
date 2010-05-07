@@ -383,9 +383,7 @@ class MysqlInstaller extends InstallerDBType {
 			return $status;
 		}
 		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
-		if ( !$this->db->sourceFile( "$IP/maintenance/tables.sql" )
-			|| !$this->db->sourceFile( "$IP/maintenance/interwiki.sql" ) )
-		{
+		if ( !$this->db->sourceFile( "$IP/maintenance/tables.sql" ) ) {
 			//@todo
 		}
 		return Status::newGood();

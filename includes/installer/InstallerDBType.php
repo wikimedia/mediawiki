@@ -337,21 +337,27 @@ abstract class InstallerDBType {
 	/**
 	 * Common function for databases that don't understand the MySQLish syntax of interwiki.sql
 	 */
-	protected function populateInterwikiTable( $db ) {
+	public function populateInterwikiTable() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
 		global $IP;
-		// Originally from DatabasePostgres
-		$f = fopen( "$IP/maintenance/interwiki.sql", 'r' );
-		if ( $f == false ) {
+		$rows = file( "$IP/maintenance/interwiki.list",
+			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
+		$interwikis = array();
+		if ( !$rows ) {
 			return Status::newFatal( 'config-install-interwiki-sql' );
 		}
-		$table = $db->tableName( 'interwiki' );
-		$sql = "INSERT INTO $table(iw_prefix,iw_url,iw_local) VALUES ";
-		while ( !feof( $f ) ) {
-			$line = fgets( $f, 1024 );
-			$matches = array();
-			if ( !preg_match( '/^\s*(\(.+?),(\d)\)/', $line, $matches ) ) continue;
-			$db->query( "$sql $matches[1],$matches[2])" );
+		foreach( $rows as $row ) {
+			if( substr( $row, 0, 2 ) == '--' ) continue; // skip comments -- Whee
+			$interwikis[] = array_combine(
+				array( 'iw_prefix', 'iw_url', 'iw_local' ),
+				explode( '|', $row )
+			);
 		}
+		$this->db->insert( 'interwiki', $interwikis, __METHOD__ );
 		return Status::newGood();
 	}
 

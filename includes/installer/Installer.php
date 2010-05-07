@@ -129,6 +129,7 @@ abstract class Installer {
 	var $installSteps = array(
 		'database',
 		'tables',
+		'interwiki',
 		'secretkey',
 		'sysop',
 		'localsettings',
@@ -852,6 +853,11 @@ abstract class Installer {
 			LBFactory::enableBackend();
 		}
 		return $status;
+	}
+
+	public function installInterwiki() {
+		$installer = $this->getDBInstaller();
+		return $installer->populateInterwikiTable();
 	}
 
 	public function installSecretKey() {

@@ -417,6 +417,7 @@ They may require additional configuration, but you can enable them now',
 	'config-install-pg-schema-failed' => 'Tables creation failed.
 Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-tables'           => 'Creating tables',
+	'config-install-interwiki'        => 'Populating default interwiki table',
 	'config-install-interwiki-sql'    => 'Could not find file <code>interwiki.sql</code>',
 	'config-install-secretkey'        => 'Generating secret key',
 	'config-insecure-secretkey'       => "'''Warning:''' Unable to create secure <code>\$wgSecretKey</code>.

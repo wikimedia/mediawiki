@@ -160,7 +160,7 @@ class SqliteInstaller extends InstallerDBType {
 		}
 		//@todo set up searchindex
 		// Create default interwikis
-		return $this->populateInterwikiTable( $this->db );
+		return Status::newGood();
 	}
 
 	function doUpgrade() {
