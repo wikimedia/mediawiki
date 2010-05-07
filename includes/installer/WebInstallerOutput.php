@@ -112,7 +112,7 @@ class WebInstallerOutput {
 <?php echo "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) . ";\n"; ?>
 	// -->
 	</script>
-	<script type="text/javascript" src="../skins/common/jquery.min.js"></script>
+	<?php $this->outputJQuery(); ?>
 	<script type="text/javascript" src="../skins/common/config.js"></script>
 </head>
 
@@ -168,6 +168,7 @@ class WebInstallerOutput {
 	}
 
 	function outputShortHeader() {
+		
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
@@ -177,7 +178,7 @@ class WebInstallerOutput {
 	<title><?php $this->outputTitle(); ?></title>
 	<link rel="stylesheet" type="text/css" href="../skins/monobook/main.css"/>
 	<link rel="stylesheet" type="text/css" href="../skins/common/config.css"/>
-	<script type="text/javascript" src="../skins/common/jquery.min.js"></script>
+	<?php $this->outputJQuery(); ?>
 	<script type="text/javascript" src="../skins/common/config.js"></script>
 </head>
 
@@ -188,6 +189,12 @@ class WebInstallerOutput {
 	function outputTitle() {
 		global $wgVersion;
 		echo htmlspecialchars( wfMsg( 'config-title', $wgVersion ) );
+	}
+
+	function outputJQuery() {
+		global $wgJQueryVersion;
+		echo '<script type="text/javascript" src="../skins/common/jquery-' .
+			$wgJQueryVersion . '.min.js"></script>';
 	}
 
 	function outputWarnings() {
