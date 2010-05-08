@@ -674,13 +674,19 @@ class ApiMain extends ApiBase {
 			'or file a bug report at http://bugzilla.wikimedia.org/'
 		);
 	}
+	/**
+	 * Sets whether the pretty-printer should format *bold* and $italics$
+	 */
+	public function setHelp( $help = true ) {
+		$this->mPrinter->setHelp( $help );
+	}
 
 	/**
 	 * Override the parent to generate help messages for all available modules.
 	 */
 	public function makeHelpMsg() {
 		global $wgMemc, $wgAPICacheHelp, $wgAPICacheHelpTimeout;
-		$this->mPrinter->setHelp();
+		$this->setHelp();
 		// Get help text from cache if present
 		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
 			SpecialVersion::getVersion( 'nodb' ) .
@@ -699,7 +705,7 @@ class ApiMain extends ApiBase {
 	}
 
 	public function reallyMakeHelpMsg() {
-		$this->mPrinter->setHelp();
+		$this->setHelp();
 
 		// Use parent to make default message for the main module
 		$msg = parent::makeHelpMsg();
@@ -736,7 +742,6 @@ class ApiMain extends ApiBase {
 		}
 
 		$msg .= "\n*** Credits: ***\n   " . implode( "\n   ", $this->getCredits() ) . "\n";
-
 
 		return $msg;
 	}

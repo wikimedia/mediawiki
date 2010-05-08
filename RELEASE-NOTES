@@ -163,6 +163,7 @@ in a negative namespace (which is invalid).
 * (bug 22868) don't list infinite block expiry date as "now" in API logevents
 * (bug 22290) prop=revisions now outputs "comment" field even when comment
   is empty, for consistency with list=recentchanges
+* (bug 19721) API action=help should have a way to just list for a specific module
 
 === Languages updated in 1.17 ===
 
