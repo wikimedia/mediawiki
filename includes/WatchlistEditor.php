@@ -431,10 +431,13 @@ class WatchlistEditor {
 				array( 'known', 'noclasses' )
 			);
 		}
+
+		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $redirect, $skin ) );
+
 		return "<li>"
 			. Xml::check( 'titles[]', false, array( 'value' => $title->getPrefixedText() ) )
 			. $link . " (" . $wgLang->pipeList( $tools ) . ")" . "</li>\n";
-		}
+	}
 
 	/**
 	 * Show a form for editing the watchlist in "raw" mode
