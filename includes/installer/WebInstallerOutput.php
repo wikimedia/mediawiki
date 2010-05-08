@@ -79,6 +79,21 @@ class WebInstallerOutput {
 			return 'rtl';
 	}
 
+	function getLanguageCode() {
+		global $wgLang;
+		if( !is_object( $wgLang ) )
+			return 'en';
+		else
+			return $wgLang->getCode();
+	}
+
+	function getHeadAttribs() {
+		return array(
+			'dir' => $this->getDir(),
+			'lang' => $this->getLanguageCode(),
+		);
+	}
+
 	function headerDone() {
 		return $this->headerDone;
 	}
@@ -99,24 +114,20 @@ class WebInstallerOutput {
 		}
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
 <head>
 	<meta name="robots" content="noindex, nofollow" />
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><?php $this->outputTitle(); ?></title>
-	<link rel="stylesheet" type="text/css" href="../skins/common/shared.css"/>
-	<link rel="stylesheet" type="text/css" href="../skins/monobook/main.css"/>
-	<link rel="stylesheet" type="text/css" href="../skins/common/config.css"/>
-	<script type="text/javascript"><!--
-<?php echo "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) . ";\n"; ?>
-	// -->
-	</script>
-	<?php $this->outputJQuery(); ?>
-	<script type="text/javascript" src="../skins/common/config.js"></script>
+	<?php echo Html::linkedStyle( '../skins/common/shared.css' ) . "\n"; ?>
+	<?php echo Html::linkedStyle( '../skins/monobook/main.css' ) . "\n"; ?>
+	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
+	<?php echo Html::inlineScript(  "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
+	<?php $this->outputJQuery() . "\n"; ?>
+	<?php echo Html::linkedScript( '../skins/common/config.js' ) . "\n"; ?>
 </head>
 
-<body class="<?php print $this->getDir(); ?>">
+<?php echo Html::openElement( 'body', array( 'class' => $this->getDir() ) ) . "\n"; ?>
 <noscript>
 <style type="text/css">
 .config-help-message { display: block; }
@@ -168,18 +179,16 @@ class WebInstallerOutput {
 	}
 
 	function outputShortHeader() {
-		
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex, nofollow" />
 	<title><?php $this->outputTitle(); ?></title>
-	<link rel="stylesheet" type="text/css" href="../skins/monobook/main.css"/>
-	<link rel="stylesheet" type="text/css" href="../skins/common/config.css"/>
+	<?php echo Html::linkedStyle( '../skins/monobook/main.css' ) . "\n"; ?>
+	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
 	<?php $this->outputJQuery(); ?>
-	<script type="text/javascript" src="../skins/common/config.js"></script>
+	<?php echo Html::linkedScript( '../skins/common/config.js' ); ?>
 </head>
 
 <body style="background-image: none">
@@ -193,8 +202,7 @@ class WebInstallerOutput {
 
 	function outputJQuery() {
 		global $wgJQueryVersion;
-		echo '<script type="text/javascript" src="../skins/common/jquery-' .
-			$wgJQueryVersion . '.min.js"></script>';
+		echo Html::linkedScript( "../skins/common/jquery-$wgJQueryVersion.min.js" );
 	}
 
 	function outputWarnings() {
