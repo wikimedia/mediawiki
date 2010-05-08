@@ -132,7 +132,7 @@ Installation aborted.",
 	'config-dir-not-writable-group'   => "'''Error:''' Cannot write config file.
 Installation aborted.
 
-We've determined the user your webserver is running as. Make the
+We have determined the user your webserver is running as. Make the
 <code><nowiki>config</nowiki></code> directory writable by it to continue. On a Unix/Linux system:
 
 <pre>cd $1
@@ -232,7 +232,7 @@ Do not use spaces or hyphens.
 This will be used for the SQLite data file name.',
 	'config-sqlite-parent-unwritable-group' => 'Cannot create the data directory <code><nowiki>$1</nowiki></code>, because the parent directory <code><nowiki>$2</nowiki></code> is not writable by the webserver.
 
-We\'ve determined the user your webserver is running as. Make the <code><nowiki>$3</nowiki></code>
+We have determined the user your webserver is running as. Make the <code><nowiki>$3</nowiki></code>
 directory writable by it to continue. On a Unix/Linux system do:
 
 <pre>cd $2
@@ -429,7 +429,7 @@ Create it yourself, using the following text:',
 	'config-install-done'             => "'''Congratulations!'''
 You have successfully installed MediaWiki.
 
-We've generated a <code>LocalSettings.php</code> file for you. It contains all your configuration.
+We have generated a <code>LocalSettings.php</code> file for you. It contains all your configuration.
 
 You will need to move it from <code>./config/LocalSettings.php</code> to <code>./LocalSettings.php</code> in order for MediaWiki to work:
 
