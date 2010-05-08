@@ -54,7 +54,7 @@ function wfSpecialLinkSearch( $par ) {
 		Xml::inputLabel( wfMsg( 'linksearch-pat' ), 'target', 'target', 50, $target ) . ' ';
 	if ( !$wgMiserMode ) {
 		$s .= Xml::label( wfMsg( 'linksearch-ns' ), 'namespace' ) . ' ' .
-			XML::namespaceSelector( $namespace, '' );
+			Xml::namespaceSelector( $namespace, '' );
 	}
 	$s .=	Xml::submitButton( wfMsg( 'linksearch-ok' ) ) .
 		'</fieldset>' .
