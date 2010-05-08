@@ -561,4 +561,66 @@ class Html {
 		}
 		return self::element( 'textarea', $attribs, $value );
 	}
+
+	/**
+	 * Constructs the opening html-tag with necessary doctypes depending on
+	 * global variables.
+	 *
+	 * @param $attribs array  Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element() of html tag.
+	 * @return string  Raw HTML
+	 */
+	public static function htmlHeader( $attribs = array() ) {
+		$ret = '';
+
+		global $wgMimeType, $wgOutputEncoding;
+		if ( self::isXmlMimeType( $wgMimeType ) ) {
+			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
+		}
+
+		global $wgHtml5, $wgHtml5Version, $wgWellFormedXml, $wgDocType, $wgDTD;
+		global $wgXhtmlNamespaces, $wgXhtmlDefaultNamespace;
+		if ( $wgHtml5 ) {
+			if ( $wgWellFormedXml ) {
+				# Unknown elements and attributes are okay in XML, but unknown
+				# named entities are well-formedness errors and will break XML
+				# parsers.  Thus we need a doctype that gives us appropriate
+				# entity definitions.  The HTML5 spec permits four legacy
+				# doctypes as obsolete but conforming, so let's pick one of
+				# those, although it makes our pages look like XHTML1 Strict.
+				# Isn't compatibility great?
+				$ret .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
+			} else {
+				# Much saner.
+				$ret .= "<!doctype html>\n";
+			}
+			if ( $wgHtml5Version ) {
+				$attribs['version'] = $wgHtml5Version;
+			}
+		} else {
+			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
+			$attribs['xmlns'] = $wgXhtmlDefaultNamespace;
+			foreach ( $wgXhtmlNamespaces as $tag => $ns ) {
+				$attribs["xmlns:$tag"] = $ns;
+			}
+		}
+		return $ret . Html::openElement( 'html', $attribs ) . "\n";
+	}
+
+	/**
+	 * Determines if the given mime type is xml.
+	 *
+	 * @param $mimetype    string MimeType
+	 * @return Boolean
+	 */
+	public static function isXmlMimeType( $mimetype ) {
+		switch ( $mimetype ) {
+		case 'text/xml':
+		case 'application/xhtml+xml':
+		case 'application/xml':
+			return true;
+		default:
+			return false;
+		}
+	}
 }

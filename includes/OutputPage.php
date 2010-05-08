@@ -2079,9 +2079,8 @@ class OutputPage {
 	 * @return String: The doctype, opening <html>, and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
-		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
-		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5, $wgWellFormedXml;
+		global $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
+		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5;
 		global $wgUser, $wgRequest, $wgLang;
 
 		if ( $sk->commonPrintStylesheet() ) {
@@ -2089,58 +2088,29 @@ class OutputPage {
 		}
 		$sk->setupUserCss( $this );
 
-		$ret = '';
-
-		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
-			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
-		}
+		$dir = $wgContLang->getDir();
+		$htmlAttribs = array( 'lang' => $wgContLanguageCode, 'dir' => $dir );
+		$ret = Html::htmlHeader( $htmlAttribs );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( wfMsg( 'pagetitle', $this->getPageTitle() ) );
 		}
 
-		$dir = $wgContLang->getDir();
-
-		$htmlAttribs = array( 'lang' => $wgContLanguageCode, 'dir' => $dir );
 		if ( $wgHtml5 ) {
-			if ( $wgWellFormedXml ) {
-				# Unknown elements and attributes are okay in XML, but unknown
-				# named entities are well-formedness errors and will break XML
-				# parsers.  Thus we need a doctype that gives us appropriate
-				# entity definitions.  The HTML5 spec permits four legacy
-				# doctypes as obsolete but conforming, so let's pick one of
-				# those, although it makes our pages look like XHTML1 Strict.
-				# Isn't compatibility great?
-				$ret .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
-			} else {
-				# Much saner.
-				$ret .= "<!doctype html>\n";
-			}
-			if ( $wgHtml5Version ) {
-				$htmlAttribs['version'] = $wgHtml5Version;
-			}
+			# More succinct than <meta http-equiv=Content-Type>, has the
+			# same effect
+			$ret .= Html::element( 'meta', array( 'charset' => $wgOutputEncoding ) ) . "\n";
 		} else {
-			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
-			$htmlAttribs['xmlns'] = $wgXhtmlDefaultNamespace;
-			foreach ( $wgXhtmlNamespaces as $tag => $ns ) {
-				$htmlAttribs["xmlns:$tag"] = $ns;
-			}
 			$this->addMeta( 'http:Content-Type', "$wgMimeType; charset=$wgOutputEncoding" );
 		}
-		$ret .= Html::openElement( 'html', $htmlAttribs ) . "\n";
 
 		$openHead = Html::openElement( 'head' );
 		if ( $openHead ) {
 			# Don't bother with the newline if $head == ''
 			$ret .= "$openHead\n";
 		}
-		$ret .= "<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
+		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
-		if ( $wgHtml5 ) {
-			# More succinct than <meta http-equiv=Content-Type>, has the
-			# same effect
-			$ret .= Html::element( 'meta', array( 'charset' => $wgOutputEncoding ) ) . "\n";
-		}
 
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
