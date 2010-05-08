@@ -73,8 +73,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Main entry point.
-	 * @param array $session Initial session array
-	 * @return array New session array
+	 * @param $session Array: initial session array
+	 * @return Array: new session array
 	 */
 	function execute( $session ) {
 		$this->session = $session;
@@ -238,7 +238,7 @@ class WebInstaller extends Installer {
 	 * this might have some additional preceding parts which need to be
 	 * ditched
 	 *
-	 * @return string
+	 * @return String
 	 */
 	private function getSessionSavePath() {
 		$path = ini_get( 'session.save_path' );
@@ -452,7 +452,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get HTML for an error box with an icon
-	 * @param string $text Wikitext, get this with wfMsgNoTrans()
+	 *
+	 * @param $text String: wikitext, get this with wfMsgNoTrans()
 	 */
 	function getErrorBox( $text ) {
 		return $this->getInfoBox( $text, 'critical-32.png', 'config-error-box' );
@@ -460,7 +461,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get HTML for a warning box with an icon
-	 * @param string $text Wikitext, get this with wfMsgNoTrans()
+	 *
+	 * @param $text String: wikitext, get this with wfMsgNoTrans()
 	 */
 	function getWarningBox( $text ) {
 		return $this->getInfoBox( $text, 'warning-32.png', 'config-warning-box' );
@@ -468,9 +470,10 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get HTML for an info box with an icon
-	 * @param string $text Wikitext, get this with wfMsgNoTrans()
-	 * @param string $icon Icon name, file in skins/common/images
-	 * @param string $class Additional class name to add to the wrapper div
+	 *
+	 * @param $text String: wikitext, get this with wfMsgNoTrans()
+	 * @param $icon String: icon name, file in skins/common/images
+	 * @param $class String: additional class name to add to the wrapper div
 	 */
 	function getInfoBox( $text, $icon = 'info-32.png', $class = false ) {
 		$s =
@@ -566,7 +569,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get a labelled text box to configure a variable
-	 * @param array $params
+	 *
+	 * @param $params Array
 	 *    Parameters are:
 	 *      var:        The variable to be configured (required)
 	 *      label:      The message name for the label (required)
@@ -603,8 +607,9 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get a labelled password box to configure a variable
+	 *
 	 * Implements password hiding
-	 * @param array $params
+	 * @param $params Array
 	 *    Parameters are:
 	 *      var:        The variable to be configured (required)
 	 *      label:      The message name for the label (required)
@@ -626,7 +631,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get a labelled checkbox to configure a boolean variable
-	 * @param array $params
+	 *
+	 * @param $params Array
 	 *    Parameters are:
 	 *      var:        The variable to be configured (required)
 	 *      label:      The message name for the label (required)
@@ -669,7 +675,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a set of labelled radio buttons
 	 *
-	 * @param array $params
+	 * @param $params Array
 	 *    Parameters are:
 	 *      var:            The variable to be configured (required)
 	 *      label:          The message name for the label (required)
@@ -742,8 +748,9 @@ class WebInstaller extends Installer {
 	 * Convenience function to set variables based on form data.
 	 * Assumes that variables containing "password" in the name are (potentially
 	 * fake) passwords.
-	 * @param array $varNames
-	 * @param string $prefix The prefix added to variables to obtain form names
+	 *
+	 * @param $varNames Array
+	 * @param $prefix String: the prefix added to variables to obtain form names
 	 */
 	function setVarsFromRequest( $varNames, $prefix = 'config_' ) {
 		$newValues = array();
@@ -766,7 +773,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get the starting tags of a fieldset
-	 * @param string $legend Message name
+	 *
+	 * @param $legend String: message name
 	 */
 	function getFieldsetStart( $legend ) {
 		return "\n<fieldset><legend>" . wfMsgHtml( $legend ) . "</legend>\n";
