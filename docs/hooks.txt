@@ -1796,6 +1796,13 @@ $article: article object to be watched
 $user: user that watched
 $article: article object watched
 
+'WatchlistEditorBuildRemoveLine': when building remove lines in
+	Special:Watchlist/edit
+&$tools: array of extra links
+$title: Title object
+$redirect: whether the page is a redirect
+$skin: Skin object
+
 'WikiExporter::dumpStableQuery': Get the SELECT query for "stable" revisions
 dumps
 One, and only one hook should set this, and return false.
