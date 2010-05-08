@@ -171,6 +171,27 @@ class ApiQuery extends ApiBase {
 	function getModules() {
 		return array_merge( $this->mQueryPropModules, $this->mQueryListModules, $this->mQueryMetaModules );
 	}
+	
+	/**
+	 * Get whether the specified module is a prop, list or a meta query module
+	 * @param $moduleName string Name of the module to find type for
+	 * @return mixed string or null
+	 */
+	function getModuleType( $moduleName ) {
+		if ( array_key_exists ( $moduleName, $this->mQueryPropModules ) ) {
+			return 'prop';
+		}
+		
+		if ( array_key_exists ( $moduleName, $this->mQueryListModules ) ) {
+			return 'list';
+		}
+		
+		if ( array_key_exists ( $moduleName, $this->mQueryMetaModules ) ) {
+			return 'meta';
+		}
+		
+		return null;
+	}
 
 	public function getCustomPrinter() {
 		// If &exportnowrap is set, use the raw formatter

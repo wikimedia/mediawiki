@@ -40,10 +40,67 @@ class ApiHelp extends ApiBase {
 	}
 
 	/**
-	 * Stub module for displaying help when no parameters are given
+	 * Module for displaying help
 	 */
 	public function execute() {
-		$this->dieUsage( '', 'help' );
+		// Get parameters
+		$params = $this->extractRequestParams();
+		
+		if ( !isset( $params['modules'] ) && !isset( $params['querymodules'] ) ) {
+			$this->dieUsage( '', 'help' );
+		}
+		
+		$this->getMain()->setHelp();
+		
+		$result = $this->getResult();
+		$queryObj = new ApiQuery( $this->getMain(), 'query' );
+		$r = array();
+		if ( is_array( $params['modules'] ) ) {
+			$modArr = $this->getMain()->getModules();
+
+			foreach ( $params['modules'] as $m ) {
+				if ( !isset( $modArr[$m] ) ) {
+					$r[] = array( 'name' => $m, 'missing' => '' );
+					continue;
+				}
+				$module = new $modArr[$m]( $this->getMain(), $m );
+
+				$r[] = $this->buildModuleHelp( $module, 'action' );
+			}
+		}
+
+		if ( is_array( $params['querymodules'] ) ) {
+			$qmodArr = $queryObj->getModules();
+
+			foreach ( $params['querymodules'] as $qm ) {
+				if ( !isset( $qmodArr[$qm] ) ) {
+					$r[] = array( 'name' => $qm, 'missing' => '' );
+					continue;
+				}
+				$module = new $qmodArr[$qm]( $this, $qm );
+				$type = $queryObj->getModuleType( $qm );
+				
+				if ( $type === null ) {
+					$r[] = array( 'name' => $qm, 'missing' => '' );
+					continue;
+				}
+				
+				$r[] = $this->buildModuleHelp( $module, $type );
+			}
+		}
+		$result->setIndexedTagName( $r, 'module' );
+		$result->addValue( null, $this->getModuleName(), $r );
+	}
+	
+	private function buildModuleHelp( $module, $type ) {
+		$msg = ApiMain::makeHelpMsgHeader( $module, $type );
+		
+		$msg2 = $module->makeHelpMsg();
+		if ( $msg2 !== false ) {
+			$msg .= $msg2;
+		}
+		
+		return $msg;
 	}
 
 	public function shouldCheckMaxlag() {
@@ -53,10 +110,39 @@ class ApiHelp extends ApiBase {
 	public function isReadMode() {
 		return false;
 	}
+	
+	public function getAllowedParams() {
+		return array(
+			'modules' => array(
+				ApiBase::PARAM_ISMULTI => true
+			),
+			'querymodules' => array(
+				ApiBase::PARAM_ISMULTI => true
+			),
+		);
+	}
+
+	public function getParamDescription() {
+		return array(
+			'modules' => 'List of module names (value of the action= parameter)',
+			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
+		);
+	}
 
 	public function getDescription() {
 		return array(
-			'Display this help screen.'
+			'Display this help screen. Or the help screen for the specified module'
+		);
+	}
+	
+	protected function getExamples() {
+		return array(
+			'Whole help page:',
+			'  api.php?action=help',
+			'Module help page:',
+			'  api.php?action=help&modules=protect',
+			'Query modules help page:',
+			'  api.php?action=help&querymodules=categorymembers',
 		);
 	}
 
