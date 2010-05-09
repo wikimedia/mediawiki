@@ -545,9 +545,9 @@ abstract class Installer {
 	 * executable name if found. Also checks the version string returned 
 	 * by each executable
 	 *
-	 * @param string $path Path to search
-	 * @param array $names Array of executable names
-	 * @param string $versionInfo Array with two members:
+	 * @param $path String: path to search
+	 * @param $names Array of executable names
+	 * @param $versionInfo Boolean false or array with two members:
 	 *       0 => Command to run for version check, with $1 for the path
 	 *       1 => String to compare the output with
 	 *
@@ -770,8 +770,9 @@ abstract class Installer {
 	 * whatever, this function is guarded to catch attempted DB access and to present 
 	 * some fallback text.
 	 *
-	 * @param string $text
-	 * @return string
+	 * @param $text String
+	 * @param $lineStart Boolean
+	 * @return String
 	 */
 	function parse( $text, $lineStart = false ) {
 		global $wgParser;
@@ -919,7 +920,7 @@ abstract class Installer {
 	 *
 	 * Public because SqliteInstaller needs it, and doesn't subclass Installer.
 	 *
-	 * @return string
+	 * @return String
 	 */
 	public static function maybeGetWebserverPrimaryGroup() {
 		if ( ! function_exists('posix_getegid') || ! function_exists('posix_getpwuid') ) {

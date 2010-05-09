@@ -226,7 +226,7 @@ abstract class InstallerDBType {
 	/**
 	 * Get a set of labelled radio buttons
 	 *
-	 * @param array $params
+	 * @param $params Array:
 	 *    Parameters are:
 	 *      var:            The variable to be configured (required)
 	 *      label:          The message name for the label (required)
@@ -245,7 +245,7 @@ abstract class InstallerDBType {
 	 * Convenience function to set variables based on form data.
 	 * Assumes that variables containing "password" in the name are (potentially
 	 * fake) passwords.
-	 * @param array $varNames
+	 * @param $varNames Array
 	 */
 	function setVarsFromRequest( $varNames ) {
 		return $this->parent->setVarsFromRequest( $varNames, $this->getName() . '_' );
@@ -259,7 +259,7 @@ abstract class InstallerDBType {
 	 * Traditionally, this is done by testing for the existence of either 
 	 * the revision table or the cur table.
 	 *
-	 * @return boolean
+	 * @return Boolean
 	 */
 	function needsUpgrade() {
 		$status = $this->getConnection();
@@ -296,7 +296,7 @@ abstract class InstallerDBType {
 
 	/**
 	 * Get a standard web-user fieldset
-	 * @param string $noCreateMsg Message to display instead of the creation checkbox. 
+	 * @param $noCreateMsg String: Message to display instead of the creation checkbox.
 	 *   Set this to false to show a creation checkbox.
 	 */
 	function getWebUserBox( $noCreateMsg = false ) {
