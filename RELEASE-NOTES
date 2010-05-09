@@ -156,6 +156,8 @@ in a negative namespace (which is invalid).
 * (bug 23240) Add ID to namespace selector form on Special:Watchlist
 * The pipe | character in urls is now escaped.
 * (bug 23422) mp3 files can now be moved
+* (bug 23448) MediaWiki:Summary-preview is now displayed instead of
+  MediaWiki:Subject-preview when previewing summary
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
