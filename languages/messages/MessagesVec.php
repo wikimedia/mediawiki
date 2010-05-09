@@ -341,7 +341,7 @@ I seguenti cołegamenti i xé en łengua inglese:
 'updatedmarker'     => 'modifegà da ła me ultema visita',
 'info_short'        => 'Informasion',
 'printableversion'  => 'Version stanpabiłe',
-'permalink'         => 'Link permanente',
+'permalink'         => 'Link parmanente',
 'print'             => 'Stanpa',
 'edit'              => 'Modifega',
 'create'            => 'Crea',
@@ -382,7 +382,7 @@ I seguenti cołegamenti i xé en łengua inglese:
 'jumpto'            => 'Va a:',
 'jumptonavigation'  => 'navigasion',
 'jumptosearch'      => 'serca',
-'view-pool-error'   => 'En sto momento i server i xé sovracarichi.
+'view-pool-error'   => 'En sto momento i server i xè sovracarichi.
 Tropi utenti i sta tentando de visuałisare sta pajina.
 Atendare qualche minudo prima de riprovare a cargare ła pajina.
 
@@ -403,8 +403,8 @@ $1',
 'mainpage'             => 'Pajina prinsipałe',
 'mainpage-description' => 'Pajina prinsipałe',
 'policy-url'           => 'Project:Policy',
-'portal'               => 'Portałe comunidà',
-'portal-url'           => 'Project:Portałe Comunità',
+'portal'               => 'Portałe Comunidà',
+'portal-url'           => 'Project:Portałe Comunidà',
 'privacy'              => 'Informasion so ła privacy',
 'privacypage'          => 'Project:Informassion su la privacy',
 
@@ -509,24 +509,23 @@ Se prega de segnałare l\'acaduo a on [[Special:ListUsers/sysop|aministradore]] 
 'cannotdelete'         => 'No xè sta posibiłe scansełare el file "$1". 
 Podaria esare sta zà scansełà da qualcun altro.',
 'badtitle'             => 'Titoło no coreto',
-'badtitletext'         => 'El titolo de la pagina richiesta el xe vodo, sbalià o con caràteri mia amessi, opure el deriva da un eròr in tei colegamenti tra siti wiki diversi o version in lengoe diverse del stesso sito.',
-'perfcached'           => "Sta qua la xè na copia ''cache'' e quindi la podarìa no èssar conpletamente agiornà.",
-'perfcachedts'         => "I dati che segue i xe tirà fora da na copia ''cache'' del database. Ultimo agiornamento: $1.",
-'querypage-no-updates' => 'I agiornamenti de la pagina i xe tenporaneamente sospesi. I dati contegnù ne la pagina no i vegnarà mìa agiornà.',
-'wrong_wfQuery_params' => 'Parametri sbagliè par wfQuery()<br />
+'badtitletext'         => "El titoło de ła pajina richiesta xè vodo, erà o con carateri no amesi opure el deriva da n'erore ne i cołegamenti tra siti wiki diversi o version en łengue diverse de ło steso sito.",
+'perfcached'           => 'I dati che segue i xè estrati da na copia "cache" del database, no ajornà en tenpo reałe.',
+'perfcachedts'         => 'I dati che segue i xè estrati da na copia "cache" del database. Ultemo ajornamento: $1.',
+'querypage-no-updates' => 'I azornamenti de ła pajina i xè tenporaneamente sospesi. I dati en esa contegnui no i verà ajornà.',
+'wrong_wfQuery_params' => 'Erore ne i parametri invià a ła funsion wfQuery()<br />
 Funsion: $1<br />
 Query: $2',
-'viewsource'           => 'Varda el testo',
+'viewsource'           => 'Visuałiza sorzente',
 'viewsourcefor'        => 'de $1',
-'actionthrottled'      => 'Azion ritardà',
-'actionthrottledtext'  => "Come misura de sicureza contro el spam, l'esecuzion de serte azioni la xe limità a un nùmaro massimo de olte in un determinato periodo de tenpo, limite che in sto caso te ghè superà. Par piaser ripróa tra qualche minuto.",
-'protectedpagetext'    => 'Sta pagina la xe stà proteta par inpedìrghene la modifica.',
-'viewsourcetext'       => 'Se pol vardar e copiar el codice sorgente de sta pagina:',
-'protectedinterface'   => "Sta pàxena la contien un elemento che fa parte de l'interfacia utente del software; e quindi la xè proteta par evitar possibiłi abusi.",
-'editinginterface'     => "'''Ocio:''' Te stè modificando na pagina che la fa parte de l'interfacia utente del sito. 
-Tute le modifiche che te fè a sta pagina le se riflete su l'aspeto de l'interfacia grafica visualizà da tuti i altri utenti.
-Se te ghè bisogno de tradur in veneto un messagio de l'interfacia utente, te pol doparar [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el progeto de localizazion de MediaWiki.",
-'sqlhidden'            => '(la query SQL la xe stà sconta)',
+'actionthrottled'      => 'Asion ritardà',
+'actionthrottledtext'  => "Come misura de sicuresa contro e o spam, l'esecusion de alcune asion e a xè limità a on numaro masimo de volte en on determinà periodo de tenpo, limite che en questo caso xè sta superà. Se prega de riprovare tra qualche minuto.",
+'protectedpagetext'    => 'Sta pajina xè sta proteta par inpedirne ła modifega.',
+'viewsourcetext'       => 'Xè posibiłe visuałizare e copiare el codexe sorzente de sta pajina:',
+'protectedinterface'   => "Sta pajina contien on elemento che fa parte de l'interfacia utente del software; xè quindi proteta par evitare posibiłi abusi.",
+'editinginterface'     => "'''Ocio:''' El testo de sta pajina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałizà par tuti i utenti. 
+Par łe tradusion, considera ła posibiłità de usare [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el projeto MediaWiki par ła localizasion.",
+'sqlhidden'            => '(ła query SQL ła xè sta sconta)',
 'cascadeprotected'     => 'Su sta pàxena no se pol far modifighe parché ła xe stà inclusa {{PLURAL:$1|ne ła pàxena indicà de seguito, che ła xe stà proteta|ne łe pàxene indicae de seguito, che łe xe stà protete}} selezionando ła protesion "ricorsiva":
 $2',
 'namespaceprotected'   => "No te ghè i permessi necessari par modificar le pagine del namespace '''$1'''.",
@@ -1379,7 +1378,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'recentchanges-label-bot'           => 'Sta modifica el la ga fata un bot',
 'recentchanges-legend-unpatrolled'  => '$1 - modifica mia verificà',
 'recentchanges-label-unpatrolled'   => 'Sta modifica no la xe stà gnancora verificà',
-'rcnote'                            => "Qua soto ghe xe {{PLURAL:$1|l'ultimo canbiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultimo giòrno|i ultimi '''$2''' giòrni}}; i dati i xe agiornà a le ore $5 del $4.",
+'rcnote'                            => "De seguito {{PLURAL:$1|xè elencà ła modifega pì resente aportà|xè elencae łe '''$1''' modifeghe pì resenti aportà}} al sito {{PLURAL:$2|ne łe ulteme 24 ore|ne i scorsi '''$2''' jorni}}; i dati i xè ajornà a łe $5 del $4.",
 'rcnotefrom'                        => " Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
 'rclistfrom'                        => 'Mostra łe modìfeghe fate a partir da le $1',
 'rcshowhideminor'                   => '$1 le modìfeghe picenine',
@@ -1407,7 +1406,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'recentchangeslinked'          => 'Modifeghe corełae',
 'recentchangeslinked-feed'     => 'Modìfeghe ligà a sta pàxena',
 'recentchangeslinked-toolbox'  => 'Modìfeghe ligà a sta pàxena',
-'recentchangeslinked-title'    => 'Modìfeghe ligà a "$1"',
+'recentchangeslinked-title'    => 'Modifeghe corełae a "$1"',
 'recentchangeslinked-noresult' => 'Nel periodo specificà no ghe xe stà nissuna modifica a le pagine colegà.',
 'recentchangeslinked-summary'  => "Sta pajina spesałe e a mostra łe modifeghe pi resenti a łe pajine cołegà da queła spesifegà (o contenue ne ła categoria spesifegà).
 Łe pajine contenue ne ła propria lista de i [[Special:Watchlist|Oservai spesałi]] e xé evidensiae en '''graseto'''.",
@@ -1659,7 +1658,7 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 'unusedtemplateswlh'  => 'altri cołegamenti',
 
 # Random page
-'randompage'         => 'Na pàxena a ocio',
+'randompage'         => 'Na pajina a ocio',
 'randompage-nopages' => 'No ghe xe nissuna pàxena in {{PLURAL:$2|tel|tei}} namespace "$1".',
 
 # Random redirect
@@ -2531,7 +2530,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-ca-nstab-project'        => 'Varda la pàxena del projeto',
 'tooltip-ca-nstab-image'          => 'Varda la pàxena del file',
 'tooltip-ca-nstab-mediawiki'      => 'Varda el messajo de sistema',
-'tooltip-ca-nstab-template'       => 'Varda el modèl',
+'tooltip-ca-nstab-template'       => 'Varda el modeło',
 'tooltip-ca-nstab-help'           => 'Varda la pàxena de ajuto',
 'tooltip-ca-nstab-category'       => 'Varda la pàxena de la categoria',
 'tooltip-minoredit'               => 'Segna come modìfega picenina',

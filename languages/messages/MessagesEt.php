@@ -994,7 +994,7 @@ Kasutaja $3 märkis põhjuseks ''$2''",
 'histlegend'             => 'Märgi versioonid, mida tahad võrrelda ja vajuta võrdlemisnupule.
 Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 (eel) = erinevused võrreldes eelmise redaktsiooniga, P = pisimuudatus',
-'history-fieldset-title' => 'Lehitse ajalugu.',
+'history-fieldset-title' => 'Ajaloo sirvimine',
 'history-show-deleted'   => 'Üksnes kustutatud',
 'histfirst'              => 'Esimesed',
 'histlast'               => 'Viimased',

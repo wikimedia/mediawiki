@@ -22,6 +22,7 @@
  * @author JtFuruhata
  * @author Kahusi
  * @author Kkkdc
+ * @author Klutzy
  * @author Koba-chan
  * @author Lovekhmer
  * @author Marine-Blue
@@ -701,7 +702,7 @@ $2',
 'logout'                     => 'ログアウト',
 'userlogout'                 => 'ログアウト',
 'notloggedin'                => 'ログインしていません',
-'nologin'                    => "まだアカウントをお持ちでないのですか？'''$1'''。",
+'nologin'                    => 'まだアカウントをお持ちでないのですか？$1。',
 'nologinlink'                => 'アカウントを作成してください',
 'createaccount'              => 'アカウント作成',
 'gotaccount'                 => "すでにアカウントをお持ちですか？'''$1'''。",
@@ -1474,9 +1475,9 @@ $1",
 'hist'                              => '履歴',
 'hide'                              => '非表示',
 'show'                              => '表示',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
+'minoreditletter'                   => '細',
+'newpageletter'                     => '新',
+'boteditletter'                     => 'ボ',
 'unpatrolledletter'                 => '未',
 'number_of_watching_users_pageview' => '[$1{{PLURAL:$1|人}}がウォッチしています]',
 'rc_categories'                     => 'カテゴリを制限 ("|" で区切る)',

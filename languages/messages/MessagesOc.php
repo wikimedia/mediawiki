@@ -1609,6 +1609,17 @@ Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacio
 'filetype-banned-type'        => "'''\".\$1\"''' es dins un format pas admes.
 {{PLURAL:\$3|Lo qu'es acceptat es|Los que son acceptats son}} \$2.",
 'filetype-missing'            => "Lo fichièr a pas cap d'extension (coma « .jpg » per exemple).",
+'empty-file'                  => "Lo fichièr qu'avètz somés èra void.",
+'file-too-large'              => "Lo fichièr qu'avètz somés èra tròp grand.",
+'filename-tooshort'           => 'Lo nom de fichièr es tròp cort.',
+'filetype-banned'             => 'Aqueste tipe de fichièr es interdich',
+'verification-error'          => 'Aqueste fichièr passa pas la verificacion dels fichièrs.',
+'hookaborted'                 => "La modificacion qu'avètz ensajat de realizar es estada anullada per un croquet d'extension.",
+'illegal-filename'            => 'Lo nom del fichièr es pas autorizat.',
+'overwrite'                   => 'Espotir un fichièr existent es pas autorizat.',
+'unknown-error'               => "Una error desconeguda s'es producha.",
+'tmp-create-error'            => 'Impossible de crear lo fichièr temporari.',
+'tmp-write-error'             => "Error d'escritura del fichièr temporari.",
 'large-file'                  => 'Los fichièrs importats deurián pas èsser mai gros que $1 ; aqueste fichièr fa $2.',
 'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximum autorizat.",
 'emptyfile'                   => 'Lo fichièr que volètz importar sembla void. Aquò pòt èsser degut a una error dins lo nom del fichièr. Verificatz que desiratz vertadièrament copiar aqueste fichièr.',
@@ -1641,6 +1652,8 @@ S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom
 'uploadedimage'               => '«[[$1]]» copiat sul servidor',
 'overwroteimage'              => 'a importat una version novèla de « [[$1]] »',
 'uploaddisabled'              => 'O planhèm, lo mandadís de fichièr es desactivat.',
+'copyuploaddisabled'          => 'Mandadís de fichièr per URL desactivat.',
+'uploadfromurl-queued'        => "Vòstre mandadís es estat mes dins la fila d'espèra.",
 'uploaddisabledtext'          => "L'impòrt de fichièrs cap al servidor es desactivat.",
 'php-uploaddisabledtext'      => "Lo telecargament de fichièrs es estat desactivat dins PHP. Verificatz l'opcion de configuracion file_uploads.",
 'uploadscripted'              => "Aqueste fichièr conten de còde HTML o un escript que poiriá èsser interpretat d'un biais incorrècte per un navigador Internet.",
@@ -2038,31 +2051,33 @@ I pòt aver [[{{MediaWiki:Listgrouprights-helppage}}|d'entresenhas complementàr
 'listgrouprights-removegroup-self-all' => 'Se pòt levar totes los gropes de son compte pròpri',
 
 # E-mail user
-'mailnologin'      => "Pas d'adreça",
-'mailnologintext'  => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
+'mailnologin'          => "Pas d'adreça",
+'mailnologintext'      => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 e aver indicat una adreça electronica valida dins vòstras [[Special:Preferences|preferéncias]]
 per poder mandar un messatge a un autre utilizaire.',
-'emailuser'        => 'Mandar un messatge a aqueste utilizaire',
-'emailpage'        => 'Mandar un corrièr electronic a l’utilizaire',
-'emailpagetext'    => "Podètz utilizar lo formulari çaijós per mandar un corrièr electronic a aqueste utilizaire.
+'emailuser'            => 'Mandar un messatge a aqueste utilizaire',
+'emailpage'            => 'Mandar un corrièr electronic a l’utilizaire',
+'emailpagetext'        => "Podètz utilizar lo formulari çaijós per mandar un corrièr electronic a aqueste utilizaire.
 L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras preferéncias]] apareisserà dins lo camp « Expeditor » de vòstre messatge. E mai, lo destinatari vos poirà respondre dirèctament.",
-'usermailererror'  => 'Error dins lo subjècte del corrièr electronic :',
-'defemailsubject'  => 'Corrièr electronic mandat dempuèi {{SITENAME}}',
-'noemailtitle'     => "Pas d'adreça electronica",
-'noemailtext'      => "Aqueste utilizaire a pas especificat d'adreça electronica valida.",
-'nowikiemailtitle' => 'Pas de corrièr electronic autorizat',
-'nowikiemailtext'  => "Aqueste utilizaire a causit de recebre pas de corrièr electronic de la part d'autres utilizaires.",
-'email-legend'     => 'Mandar un corrièr electronic a un autre utilizaire de {{SITENAME}}',
-'emailfrom'        => 'Expeditor :',
-'emailto'          => 'Destinatari :',
-'emailsubject'     => 'Subjècte :',
-'emailmessage'     => 'Messatge :',
-'emailsend'        => 'Mandar',
-'emailccme'        => 'Me mandar per corrièr electronic una còpia de mon messatge.',
-'emailccsubject'   => 'Còpia de vòstre messatge a $1 : $2',
-'emailsent'        => 'Messatge mandat',
-'emailsenttext'    => 'Vòstre messatge es estat mandat.',
-'emailuserfooter'  => 'Aqueste corrièr electronic es estat mandat per « $1 » a « $2 » per la foncion « Mandar un corrièr electronic a l’utilizaire » sus {{SITENAME}}.',
+'usermailererror'      => 'Error dins lo subjècte del corrièr electronic :',
+'defemailsubject'      => 'Corrièr electronic mandat dempuèi {{SITENAME}}',
+'usermaildisabled'     => 'Lo mandadís de corrièrs electronics entre utilizairers es desactivat',
+'usermaildisabledtext' => "Podètz pas mandar de corrièrs electronics a d'autres utilizaires sur aquel wiki",
+'noemailtitle'         => "Pas d'adreça electronica",
+'noemailtext'          => "Aqueste utilizaire a pas especificat d'adreça electronica valida.",
+'nowikiemailtitle'     => 'Pas de corrièr electronic autorizat',
+'nowikiemailtext'      => "Aqueste utilizaire a causit de recebre pas de corrièr electronic de la part d'autres utilizaires.",
+'email-legend'         => 'Mandar un corrièr electronic a un autre utilizaire de {{SITENAME}}',
+'emailfrom'            => 'Expeditor :',
+'emailto'              => 'Destinatari :',
+'emailsubject'         => 'Subjècte :',
+'emailmessage'         => 'Messatge :',
+'emailsend'            => 'Mandar',
+'emailccme'            => 'Me mandar per corrièr electronic una còpia de mon messatge.',
+'emailccsubject'       => 'Còpia de vòstre messatge a $1 : $2',
+'emailsent'            => 'Messatge mandat',
+'emailsenttext'        => 'Vòstre messatge es estat mandat.',
+'emailuserfooter'      => 'Aqueste corrièr electronic es estat mandat per « $1 » a « $2 » per la foncion « Mandar un corrièr electronic a l’utilizaire » sus {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Ma lista de seguiment',
@@ -2314,18 +2329,20 @@ $1",
 'month'               => 'A partir del mes (e precedents) :',
 'year'                => 'A partir de l’annada (e precedentas) :',
 
-'sp-contributions-newbies'        => 'Far veire sonque las contribucions dels utilizaires novèls',
-'sp-contributions-newbies-sub'    => 'Lista de las contribucions dels utilizaires novèls. Las paginas que son estadas suprimidas son pas afichadas.',
-'sp-contributions-newbies-title'  => 'Las contribucions de l’utilizaire pels comptes novèls',
-'sp-contributions-blocklog'       => 'Istoric dels blocatges',
-'sp-contributions-deleted'        => 'contribucions suprimidas',
-'sp-contributions-logs'           => 'jornals',
-'sp-contributions-talk'           => 'Discutir',
-'sp-contributions-userrights'     => 'gerir los dreches',
-'sp-contributions-blocked-notice' => 'Aqueste utilizaire es actualament blocat. La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
-'sp-contributions-search'         => 'Cercar las contribucions',
-'sp-contributions-username'       => 'Adreça IP o nom d’utilizaire :',
-'sp-contributions-submit'         => 'Cercar',
+'sp-contributions-newbies'             => 'Far veire sonque las contribucions dels utilizaires novèls',
+'sp-contributions-newbies-sub'         => 'Lista de las contribucions dels utilizaires novèls. Las paginas que son estadas suprimidas son pas afichadas.',
+'sp-contributions-newbies-title'       => 'Las contribucions de l’utilizaire pels comptes novèls',
+'sp-contributions-blocklog'            => 'Istoric dels blocatges',
+'sp-contributions-deleted'             => 'contribucions suprimidas',
+'sp-contributions-logs'                => 'jornals',
+'sp-contributions-talk'                => 'Discutir',
+'sp-contributions-userrights'          => 'gerir los dreches',
+'sp-contributions-blocked-notice'      => 'Aqueste utilizaire es actualament blocat. La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
+'sp-contributions-blocked-notice-anon' => 'Aquesta adreça IP es actualament blocada.
+La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
+'sp-contributions-search'              => 'Cercar las contribucions',
+'sp-contributions-username'            => 'Adreça IP o nom d’utilizaire :',
+'sp-contributions-submit'              => 'Cercar',
 
 # What links here
 'whatlinkshere'            => 'Paginas ligadas a aquesta',
@@ -2457,6 +2474,8 @@ $1 ja es blocat. Volètz modificar los paramètres ?',
 Podètz pas crear un compte',
 'cant-block-while-blocked'        => "Podètz pas blocar d'autres utilizaires pendent que sètz blocat(ada).",
 'cant-see-hidden-user'            => "L'utilizaire qu'ensajatz de blocar es ja estat blocat e amagat. Sens lo drech hideuser, podètz pas veire o modificar lo blocatge de l'utilizaire.",
+'ipbblocked'                      => "Podètz pas blocar o desblocar d'autres utilizaire, perque vos {{GENDER:|meteis|meteissa|meteis}} sètz {{GENDER:|blocat|blocada|blocat}}.",
+'ipbnounblockself'                => 'Sètz pas autorizat a vos desblocar vos meteis',
 
 # Developer tools
 'lockdb'              => 'Varrolhar la banca',
@@ -2714,6 +2733,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-upload'                  => 'Amodar lo mandadís',
 'tooltip-rollback'                => '"Revocar" anulla en un clic la o las edicion(s) sus aquesta pagina del darrièr contributor.',
 'tooltip-undo'                    => '"Desfar" revòca aquesta edicion e dobrís la fenèstra d’edicion en mòde previsualizacion. Permet d’apondre una rason dins la bóstia de resumit.',
+'tooltip-preferences-save'        => 'Salvar las preferéncias',
+'tooltip-summary'                 => 'Apondètz un brèu resumit',
 
 # Stylesheets
 'common.css'      => '/** Lo CSS plaçat aicí serà aplicat a totas las aparéncias. */',
@@ -3172,25 +3193,25 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'limitall'         => 'totes',
 
 # E-mail address confirmation
-'confirmemail'             => "Confirmar l'adreça de corrièr electronic",
-'confirmemail_noemail'     => 'L’adreça de corrièr electronic configurada dins vòstras [[Special:Preferences|preferéncias]] es pas valida.',
-'confirmemail_text'        => '{{SITENAME}} necessita la verificacion de vòstra adreça de corrièr electronic abans de poder utilizar tota foncion de messatjariá. Utilizatz lo boton çaijós per mandar un corrièr electronic de confirmacion a vòstra adreça. Lo corrièr contendrà un ligam contenent un còde, cargatz aqueste ligam dins vòstre navigador per validar vòstra adreça.',
-'confirmemail_pending'     => 'Un còde de confirmacion ja vos es estat mandat per corrièr electronic ; se venètz de crear vòstre compte, esperatz qualques minutas que l’e-mail arribe abans de demandar un còde novèl.',
-'confirmemail_send'        => 'Mandar un còde de confirmacion',
-'confirmemail_sent'        => 'Corrièr electronic de confirmacion mandat.',
-'confirmemail_oncreate'    => "Un còde de confirmacion es estat mandat a vòstra adreça de corrièr electronic.
+'confirmemail'              => "Confirmar l'adreça de corrièr electronic",
+'confirmemail_noemail'      => 'L’adreça de corrièr electronic configurada dins vòstras [[Special:Preferences|preferéncias]] es pas valida.',
+'confirmemail_text'         => '{{SITENAME}} necessita la verificacion de vòstra adreça de corrièr electronic abans de poder utilizar tota foncion de messatjariá. Utilizatz lo boton çaijós per mandar un corrièr electronic de confirmacion a vòstra adreça. Lo corrièr contendrà un ligam contenent un còde, cargatz aqueste ligam dins vòstre navigador per validar vòstra adreça.',
+'confirmemail_pending'      => 'Un còde de confirmacion ja vos es estat mandat per corrièr electronic ; se venètz de crear vòstre compte, esperatz qualques minutas que l’e-mail arribe abans de demandar un còde novèl.',
+'confirmemail_send'         => 'Mandar un còde de confirmacion',
+'confirmemail_sent'         => 'Corrièr electronic de confirmacion mandat.',
+'confirmemail_oncreate'     => "Un còde de confirmacion es estat mandat a vòstra adreça de corrièr electronic.
 Aqueste còde es pas requerit per se connectar, mas n'aurètz besonh per activar las foncionalitats ligadas als corrièrs electronics sus aqueste wiki.",
-'confirmemail_sendfailed'  => '{{SITENAME}} pòt pas mandar lo corrièr de confirmacion.
+'confirmemail_sendfailed'   => '{{SITENAME}} pòt pas mandar lo corrièr de confirmacion.
 Verificatz se vòstra adreça conten pas de caractèrs interdiches.
 
 Retorn del programa de corrièr : $1',
-'confirmemail_invalid'     => 'Còde de confirmacion incorrècte. Benlèu lo còde a expirat.',
-'confirmemail_needlogin'   => 'Vos cal vos $1 per confirmar vòstra adreça de corrièr electronic.',
-'confirmemail_success'     => 'Vòstra adreça de corrièr electronic es confirmada. Ara, vos podètz connectar e aprofechar del wiki.',
-'confirmemail_loggedin'    => 'Ara, vòstra adreça es confirmada',
-'confirmemail_error'       => "Un problèma s'es produch en volent enregistrar vòstra confirmacion.",
-'confirmemail_subject'     => 'Confirmacion d’adreça de corrièr electronic per {{SITENAME}}',
-'confirmemail_body'        => "Qualqu’un, probablament vos,e amb l’adreça IP $1, a enregistrat un compte « $2 » amb aquesta adreça de corrièr electronic sul site {{SITENAME}}.
+'confirmemail_invalid'      => 'Còde de confirmacion incorrècte. Benlèu lo còde a expirat.',
+'confirmemail_needlogin'    => 'Vos cal vos $1 per confirmar vòstra adreça de corrièr electronic.',
+'confirmemail_success'      => 'Vòstra adreça de corrièr electronic es confirmada. Ara, vos podètz connectar e aprofechar del wiki.',
+'confirmemail_loggedin'     => 'Ara, vòstra adreça es confirmada',
+'confirmemail_error'        => "Un problèma s'es produch en volent enregistrar vòstra confirmacion.",
+'confirmemail_subject'      => 'Confirmacion d’adreça de corrièr electronic per {{SITENAME}}',
+'confirmemail_body'         => "Qualqu’un, probablament vos,e amb l’adreça IP $1, a enregistrat un compte « $2 » amb aquesta adreça de corrièr electronic sul site {{SITENAME}}.
 
 Per confirmar qu'aqueste compte vos aparten vertadièrament e activar las foncions de messatjariá sus {{SITENAME}}, seguissètz lo ligam çaijós dins vòstre navigador :
 
@@ -3202,8 +3223,25 @@ Aqueste còde de confirmacion expirarà lo $4, seguissètz l’autre ligam çaij
 $5
 
 Aqueste còde de confirmacion expirarà lo $4.",
-'confirmemail_invalidated' => 'Confirmacion de l’adreça de corrièr electronic anullada',
-'invalidateemail'          => 'Anullar la confirmacion del corrièr electronic',
+'confirmemail_body_changed' => "Qualqu’un, probablament vos, a partir de l’adreça IP $1,
+a modificat l’adreça de corrièr associada al compte « $2 » de {{SITENAME}}
+en aquesta adreça.
+
+Per confirmar qu'aqueste compte vos aparten vertadièrament e per tal
+de reactivar las foncions de messatjariá sus {{SITENAME}},
+seguissètz aqueste ligam dins vòstre navigador :
+
+$3
+
+S'aqueste compte vos aparten *pas*, dobriscatz pas aqueste ligam ;
+podètz seguir l’autre ligam çaijós per anullar la
+confirmacion de vòstra adreça de corrièl :
+
+$5
+
+Aqueste còde de confirmacion expirarà lo $4.",
+'confirmemail_invalidated'  => 'Confirmacion de l’adreça de corrièr electronic anullada',
+'invalidateemail'           => 'Anullar la confirmacion del corrièr electronic',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki es desactivada]',
@@ -3402,6 +3440,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'htmlform-float-invalid'       => "La valor qu'avètz especificada es pas un nombre.",
 'htmlform-int-toolow'          => "La valor qu'avètz especificada es en dejós del minimum de $1",
 'htmlform-int-toohigh'         => "La valor qu'avètz especificada es en dessús del minimum de $1",
+'htmlform-required'            => 'Aquesta valor es obligatòria',
 'htmlform-submit'              => 'Sometre',
 'htmlform-reset'               => 'Desfar las modificacions',
 'htmlform-selectorother-other' => 'Autre',

@@ -1512,6 +1512,7 @@ Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 'empty-file'                  => 'La dosiero kiun vi sendis estis malplena.',
 'filename-tooshort'           => 'La dosiera nomo estas tro mallonga.',
 'filetype-banned'             => 'Ĉi tiu tipo de dosiero estas malpermesita.',
+'illegal-filename'            => 'La dosiernomo ne estas permesata.',
 'unknown-error'               => 'Malkonata eraro okazis.',
 'large-file'                  => 'Estas rekomendite, ke dosieroj ne superas grandon de $1 bitokoj; 
 tiu ĉi tiu dosiero pezas $2 bitokojn.',
@@ -1548,6 +1549,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'uploadedimage'               => 'alŝutis "[[$1]]"',
 'overwroteimage'              => 'alŝutis novan version de "[[$1]]"',
 'uploaddisabled'              => 'Alŝutado estas malŝaltita',
+'copyuploaddisabled'          => 'Alŝuto de URL malfunkciigita.',
 'uploaddisabledtext'          => 'Alŝutado de dosieroj estas malebligita.',
 'php-uploaddisabledtext'      => 'Dosiera alŝutado estas malŝalta en PHP. Bonvolu kontroli la preferon file_uploads.',
 'uploadscripted'              => 'HTML-aĵo aŭ skriptokodaĵo troviĝas en tiu ĉi tiu dosiero, kiun TTT-foliumilo eble interpretus erare.',
@@ -2624,6 +2626,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-upload'                  => 'Ekalŝuti',
 'tooltip-rollback'                => '"Restarigi antaŭan" restarigas redakto(j)n al ĉi tiu paĝo de la lasta kontribuanto per unu klako.',
 'tooltip-undo'                    => '"Malfari" malfaris ĉi tiun redakton kaj malfermas la redakto-paĝon en antaŭvida reĝimo. Permesas aldoni kialon en la resumo.',
+'tooltip-preferences-save'        => 'Konservi preferojn',
 'tooltip-summary'                 => 'Enigu mallongan resumon',
 
 # Metadata
