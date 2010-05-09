@@ -14,6 +14,7 @@
  * @author Christian List
  * @author EPO
  * @author H92
+ * @author Hylle
  * @author Jan Friberg
  * @author Jon Harald Søby
  * @author Kwi
@@ -1092,6 +1093,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'searchprofile-everything-tooltip' => 'Søg i alt indhold (inklusive diskussionssider)',
 'searchprofile-advanced-tooltip'   => 'Søg i bestemte navnerum',
 'search-result-size'               => '$1 ({{PLURAL:$2|et ord|$2 ord}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 medlem|$1 medlemmer}} ({{PLURAL:$2|1 underkategori|$2 underkategorier}}, {{PLURAL:$3|1 fil|$3 filer}})',
 'search-result-score'              => 'Relevans: $1%',
 'search-redirect'                  => '(omdiriger $1)',
 'search-section'                   => '(sektion $1)',
@@ -1452,6 +1454,9 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'upload_directory_missing'    => 'upload-kataloget ($1) findes ikke. Webserveren har ikke mulighed for at oprette kataloget.',
 'upload_directory_read_only'  => 'Webserveren har ingen skriverettigheder for upload-kataloget ($1).',
 'uploaderror'                 => 'Fejl under oplægning af fil',
+'upload-recreate-warning'     => "'''Advarsel: En fil med det navn, er blevet slettet eller flyttet.'''
+
+Sletnings- og flytnings-loggen for denne side leveres her for nemheds skyld:",
 'uploadtext'                  => "Brug formularen herunder til at lægge filer op.
 Gå til [[Special:FileList|listen over filer]] for at se eller søge i eksisterende filer. (Gen-)oplægnigner logges i [[Special:Log/upload|oplægningsloggen]], sletninger i [[Special:Log/delete|sletteloggen]].
 
@@ -1483,8 +1488,13 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'filetype-unwanted-type'      => "'''\".\$1\"''' er ikke en foretrukken filtype. {{PLURAL:\$3|Den foretrukne filtype|De foretrukne filtyper}} er \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' er en uønsket filtype. {{PLURAL:\$3|Den tilladte filtype|De tillatdte filtyper}} er \$2.",
 'filetype-missing'            => 'Filen der skal uploades har ingen endelse (f.eks. „.jpg“).',
+'empty-file'                  => 'Den fil du indsendte var tom.',
+'file-too-large'              => 'Den fil du indsendte var for stor.',
+'filename-tooshort'           => 'Filnavnet er for kort.',
 'filetype-banned'             => 'Denne type fil er ikke tilladt',
 'illegal-filename'            => 'Filnavnet er ikke tilladt.',
+'tmp-create-error'            => 'Kunne ikke oprette temporær fil.',
+'tmp-write-error'             => 'Fejl ved skrivning af temporær fil.',
 'large-file'                  => 'Filstørrelsen skal så vidt muligt ikke overstige $1. Denne fil er $2 stor.',
 'largefileserver'             => 'Filen er større end den på serveren indstillede maksimale størrelse.',
 'emptyfile'                   => 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
@@ -1972,19 +1982,20 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'enotif_lastvisited'           => 'Se $1 for alle ændringer siden dit sidste besøg.',
 'enotif_lastdiff'              => 'Se $1 for at vise denne ændring.',
 'enotif_anon_editor'           => 'anonym bruger $1',
-'enotif_body'                  => 'Kære $WATCHINGUSERNAME
+'enotif_body'                  => 'Kære $WATCHINGUSERNAME,
 
-{{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED $PAGEEDITDATE af $PAGEEDITOR. Se $PAGETITLE_URL for den nyeste version.
+
+{{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED den $PAGEEDITDATE af $PAGEEDITOR, se $PAGETITLE_URL for den aktuelle version.
 
 $NEWPAGE
 
-Bidragyderens beskrivelse: $PAGESUMMARY $PAGEMINOREDIT
+Bidragyderens opsummering: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontakt bidragyderen:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du vil ikke modtage flere beskeder om yderligere ændringer af denne side med mindre du besøger den.
+Du vil ikke modtage flere beskeder om yderligere ændringer med mindre du besøger denne side.
 På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
 
              Med venlig hilsen {{SITENAME}}s informationssystem
@@ -2078,7 +2089,7 @@ og den seneste version af $2 er gendannet.',
 'protect-othertime-op'        => 'anden tid',
 'protect-existing-expiry'     => 'Nugældende udløbstid: $2 $3',
 'protect-otherreason'         => 'Anden/uddybende årsag:',
-'protect-otherreason-op'      => 'anden/uddybende årsag',
+'protect-otherreason-op'      => 'Anden årsag',
 'protect-dropdown'            => '* Almindelge besyttelsesårsager
 ** Gentagen hærværk
 ** Gentagen spam
@@ -2566,6 +2577,8 @@ Du kan se på kildeteksten.',
 'tooltip-rollback'                => '"Rul tilbage" fjerner den sidste bidragsyders redigering(er) af denne side med et klik',
 'tooltip-undo'                    => '"Fjern redigering" fjerner denne redigering og åbner redigeringssiden med forhåndsvisning.
 Det giver mulighed for at tilføje en begrundelse i beskrivelsen.',
+'tooltip-preferences-save'        => 'Gem indstillinger',
+'tooltip-summary'                 => 'Indtast en kort opsummering',
 
 # Stylesheets
 'common.css'   => '/** CSS inkluderet her vil være aktivt for alle brugere. */',

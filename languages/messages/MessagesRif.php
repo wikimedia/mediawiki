@@ -47,8 +47,8 @@ $messages = array(
 'october-gen'   => 'Ktubar',
 'november-gen'  => 'Nuwanbir',
 'december-gen'  => 'Dujanbir',
-'jan'           => 'Ynnayr',
-'feb'           => 'Ybrayr',
+'jan'           => 'Yennayer',
+'feb'           => 'Yebrayer',
 'mar'           => 'Mars',
 'apr'           => 'Ybrir',
 'may'           => 'May',
@@ -576,7 +576,7 @@ Tezemred ad tbedeld aswir n uḥeṭṭu n Tasna ya, maca war itegg walu i uḥe
 'undelete-search-submit' => 'Tarzzut',
 
 # Namespace form on various pages
-'namespace'      => 'Raq n isem:',
+'namespace'      => 'Tallunt-izwel:',
 'invert'         => 'Dren mayn testid (tixtard)',
 'blanknamespace' => '(Amezwaru)',
 
@@ -654,7 +654,7 @@ snaqlitent s ufus.'''",
 '1movedto2'        => '[[$1]] twaneql ɣa [[$2]]',
 'movelogpage'      => 'Snaql aɣmis',
 'movereason'       => 'Ssebba:',
-'revertmove'       => 'sdwl',
+'revertmove'       => 'sedwel',
 
 # Export
 'export' => 'Sekk tasniwin',

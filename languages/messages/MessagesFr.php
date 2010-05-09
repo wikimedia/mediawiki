@@ -30,6 +30,7 @@
  * @author Jean-Frédéric
  * @author JeanVoisin
  * @author Jens Liebenau
+ * @author Klutzy
  * @author Korg
  * @author Korrigan
  * @author Kropotkine 113
@@ -754,7 +755,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'logout'                     => 'Se déconnecter',
 'userlogout'                 => 'Déconnexion',
 'notloggedin'                => 'Non connecté',
-'nologin'                    => "Vous n’êtes pas encore inscrit ? '''$1'''.",
+'nologin'                    => 'Vous n’êtes pas encore inscrit ? $1.',
 'nologinlink'                => 'Créer un compte',
 'createaccount'              => 'Créer un compte',
 'gotaccount'                 => "Vous avez déjà un compte ? '''$1'''.",
@@ -2807,6 +2808,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-undo'                    => '« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
 Permet de rétablir la version précédente et d’ajouter un motif dans la boîte de résumé.',
 'tooltip-preferences-save'        => 'Sauvegarder les préférences',
+'tooltip-summary'                 => 'Entrez un bref résumé',
 
 # Stylesheets
 'common.css'      => '/* Le CSS placé ici sera appliqué à tous les habillages. */',

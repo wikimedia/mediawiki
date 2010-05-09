@@ -469,8 +469,8 @@ Ja paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies sa
 'throttled-mailpassword'     => 'Paroles atgādinājums jau ir ticis nosūtīts {{PLURAL:$1|pēdējās stundas|pēdējo $1 stundu}} laikā.
 Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt tikai vienu paroles atgādinājumu, {{PLURAL:$1|katru stundu|katras $1 stundas}}.',
 'mailerror'                  => 'E-pasta sūtīšanas kļūda: $1',
-'acct_creation_throttle_hit' => 'Lietotāji no tavas IP adreses šajā viki pēdējo 24 stundu laikā jau ir izveidojuši {{PLURAL:$1|1 kontu|$1 kontus}}, kas ir maksimālais atļautais skaits, šajā laika periodā.
-Šī iemesla dēļ, šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
+'acct_creation_throttle_hit' => 'Lietotāji no tavas IP adreses šajā viki pēdējo 24 stundu laikā jau ir izveidojuši {{PLURAL:$1|1 kontu|$1 kontus}}, kas ir maksimālais atļautais skaits šajā laika periodā.
+Šī iemesla dēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
 'emailauthenticated'         => 'Tava e-pasta adrese tika apstiprināta $2, $3.',
 'emailnotauthenticated'      => 'Tava e-pasta adrese <strong>vēl nav apstiprināta</strong> un zemāk norādītās iespējas nav pieejamas.',
 'noemailprefs'               => 'Norādi e-pasta adresi, lai lietotu šīs iespējas.',
@@ -573,9 +573,9 @@ Norādi un apstiprini e-pasta adresi savos [[Special:Preferences|lietotāja uzst
 'loginreqtitle'                 => 'Nepieciešama ieiešana',
 'loginreqlink'                  => 'login',
 'accmailtitle'                  => 'Parole izsūtīta.',
-'accmailtext'                   => "Nejauši ģenerēta parole lietotājam [[User talk:$1|$1]], tika nosūtīta uz $2.
+'accmailtext'                   => "Nejauši ģenerēta parole lietotājam [[User talk:$1|$1]] tika nosūtīta uz $2.
 
-Šī konta paroli, pēc ielogošanās var nomainīt ''[[Special:ChangePassword|šeit]]''.",
+Šī konta paroli pēc ielogošanās varēs nomainīt ''[[Special:ChangePassword|šeit]]''.",
 'newarticle'                    => '(Jauns raksts)',
 'newarticletext'                => "Tu šeit nonāci sekojot saitei uz, pagaidām vēl neuzrakstītu, lapu.
 Lai izveidotu lapu, sāc rakstīt teksta logā apakšā (par teksta formatēšanu un sīkākai informācija skatīt [[{{MediaWiki:Helppage}}|palīdzības lapu]]).
@@ -682,7 +682,7 @@ $3 norādītais iemesls ir ''$2''",
 'currentrev-asof'        => 'Pašreizējā versija, $1',
 'revisionasof'           => 'Versija, kas saglabāta $1',
 'revision-info'          => 'Versija $1 laikā, kādu to atstāja $2',
-'previousrevision'       => '←Senāka versija',
+'previousrevision'       => '← Senāka versija',
 'nextrevision'           => 'Jaunāka versija →',
 'currentrevisionlink'    => 'skatīt pašreizējo versiju',
 'cur'                    => 'ar pašreizējo',
@@ -1355,8 +1355,8 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 'nowatchlist'          => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchnologin'         => 'Neesi iegājis',
 'watchnologintext'     => 'Tev ir [[Special:UserLogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',
-'addedwatch'           => 'Pievienots uzraugāmo sarakstam.',
-'addedwatchtext'       => "Lapa \"<nowiki>\$1</nowiki>\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:RecentChanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.
+'addedwatch'           => 'Lapa pievienota uzraugāmo lapu sarakstam',
+'addedwatchtext'       => "Lapa \"[[:\$1]]\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:RecentChanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.
 
 Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz saites '''neuzraudzīt''' rīku joslā.",
 'removedwatch'         => 'Lapa vairs netiek uzraudzīta',
