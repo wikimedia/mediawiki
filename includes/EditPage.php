@@ -1551,7 +1551,9 @@ HTML
 		if ( $isSubjectPreview )
 			$summary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $summary ) );
 
-		$summary = wfMsgExt( 'subject-preview', 'parseinline' ) . $sk->commentBlock( $summary, $this->mTitle, !!$isSubjectPreview );
+		$message = $isSubjectPreview ? 'subject-preview' : 'summary-preview';
+
+		$summary = wfMsgExt( $message, 'parseinline' ) . $sk->commentBlock( $summary, $this->mTitle, $isSubjectPreview );
 		return Xml::tags( 'div', array( 'class' => 'mw-summary-preview' ), $summary );
 	}
 
