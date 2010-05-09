@@ -24,6 +24,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgLogAutocreatedAccounts controls whether autocreation of accounts is logged
   to new users log.
 * $wgAllowImageTag can be set to true to whitelist the <img> tag in wikitext.
+* (bug 12797) Add $wgGalleryOptions for adjusting of default gallery display
+  options
+* $wgAllowUserCssPrefs option allows disabling CSS-based preferences; which can
+  improve page loading speed.
 * (bug 22858) $wgLocalStylePath is by default set to the same value as
   $wgStylePath but should never point to a different domain than the site is
   on, allowing skins to use .htc files which are not cross-domain friendly.
@@ -40,10 +44,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22748) Add anchors on Special:ListGroupRights
 * (bug 21981) Add parameter 'showfilename' to <gallery> to automatically apply
   the names of the individual files within the gallery
-* (bug 12797) Add $wgGalleryOptions for adjusting of default gallery display
-  options
-* $wgAllowUserCssPrefs option allows disabling CSS-based preferences; which can
-  improve page loading speed.
 * Future-proof redirection to fragments in Gecko, so things work a little nicer
   if they fix <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
 * Support git:// and mms:// protocols by default for external links
