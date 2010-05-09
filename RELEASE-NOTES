@@ -76,7 +76,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   without updating database
 * (bug 22666) Submitting user block form with an invalid user name no longer
   throws an error
-* (bugs 22665 and 22667) User '0' can now be unblocked and have its block
+* (bug 22665, bug 22667) User '0' can now be unblocked and have its block
   settings changed
 * (bug 22606) The body of e-mail address confirmation message is now different
   when the address changed
