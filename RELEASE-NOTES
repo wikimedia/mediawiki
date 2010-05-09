@@ -42,8 +42,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10183) Users can now add personal styles and scripts to all skins via
   User:<name>/common.css and /common.js (if user css/js is enabled)
 * (bug 22748) Add anchors on Special:ListGroupRights
-* (bug 21981) Add parameter 'showfilename' to <gallery> to automatically apply
-  the names of the individual files within the gallery
+* (bug 21981) Add parameter 'showfilename' to <nowiki><gallery></nowiki> to
+  automatically apply the names of the individual files within the gallery
 * Future-proof redirection to fragments in Gecko, so things work a little nicer
   if they fix <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
 * Support git:// and mms:// protocols by default for external links
