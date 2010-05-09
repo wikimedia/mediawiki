@@ -83,6 +83,7 @@ class Html {
 		'reversed',
 		'scoped',
 		'seamless',
+		'selected',
 	);
 
 	/**
