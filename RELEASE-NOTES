@@ -37,6 +37,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   research into its user experience implications.
 * Added $wgJQueryVersion, $wgJQueryMinified and $wgJQueryOnEveryPage (true by
   default) to configure loading of jQuery by MediaWiki
+* XmlFunctions.php has been removed. Use Xml the or Html classes as appropriate
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
