@@ -209,8 +209,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		if ( $enumRevMode ) {
 			// This is mostly to prevent parameter errors (and optimize SQL?)
-			if ( !is_null( $params['startid'] ) && !is_null( $params['start'] ) )
-			{
+			if ( !is_null( $params['startid'] ) && !is_null( $params['start'] ) ) {
 				$this->dieUsage( 'start and startid cannot be used together', 'badparams' );
 			}
 
@@ -218,8 +217,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$this->dieUsage( 'end and endid cannot be used together', 'badparams' );
 			}
 
-			if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) )
-			{
+			if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
 				$this->dieUsage( 'user and excludeuser cannot be used together', 'badparams' );
 			}
 
