@@ -45,11 +45,18 @@ class ApiParse extends ApiBase {
 		$page = $params['page'];
 		$pageid = $params['pageid'];
 		$oldid = $params['oldid'];
+
 		if ( !is_null( $page ) && ( !is_null( $text ) || $title != 'API' ) ) {
 			$this->dieUsage( 'The page parameter cannot be used together with the text and title parameters', 'params' );
 		}
 		$prop = array_flip( $params['prop'] );
 		$revid = false;
+		
+		if ( isset( $params['section'] ) ) {
+			$this->section = $params['section'];
+		} else {
+			$this->section = false;
+		}
 
 		// The parser needs $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
@@ -80,6 +87,11 @@ class ApiParse extends ApiBase {
 				$text = $rev->getText( Revision::FOR_THIS_USER );
 				$titleObj = $rev->getTitle();
 				$wgTitle = $titleObj;
+
+				if ( $this->section !== false ) {
+					$text = $this->getSectionText( $text, 'r' . $rev );
+				}
+
 				$p_result = $wgParser->parse( $text, $titleObj, $popts );
 			} else {
 				if ( !is_null ( $pageid ) ) {
@@ -117,17 +129,23 @@ class ApiParse extends ApiBase {
 				if ( isset( $prop['revid'] ) ) {
 					$oldid = $articleObj->getRevIdFetched();
 				}
-				// Try the parser cache first
-				$p_result = false;
-				$pcache = ParserCache::singleton();
-				if ( $wgEnableParserCache ) {
-					$p_result = $pcache->get( $articleObj, $wgUser );
-				}
-				if ( !$p_result ) {
-					$p_result = $wgParser->parse( $articleObj->getContent(), $titleObj, $popts );
 
+				if ( $this->section !== false ) {
+					$text = $this->getSectionText( $text, !is_null ( $pageid ) ? 'page id ' . $pageid : $titleObj->getText() );
+					$p_result = $wgParser->parse( $text, $titleObj, $popts );
+				} else {
+					// Try the parser cache first
+					$p_result = false;
+					$pcache = ParserCache::singleton();
 					if ( $wgEnableParserCache ) {
-						$pcache->save( $p_result, $articleObj, $popts );
+						$p_result = $pcache->get( $articleObj, $wgUser );
+					}
+					if ( !$p_result ) {
+						$p_result = $wgParser->parse( $articleObj->getContent(), $titleObj, $popts );
+
+						if ( $wgEnableParserCache ) {
+							$pcache->save( $p_result, $articleObj, $popts );
+						}
 					}
 				}
 			}
@@ -137,6 +155,11 @@ class ApiParse extends ApiBase {
 				$titleObj = Title::newFromText( 'API' );
 			}
 			$wgTitle = $titleObj;
+
+			if ( $this->section !== false ) {
+				$text = $this->getSectionText( $text, $titleObj->getText() );
+			}
+
 			if ( $params['pst'] || $params['onlypst'] ) {
 				$text = $wgParser->preSaveTransform( $text, $titleObj, $wgUser, $popts );
 			}
@@ -228,6 +251,15 @@ class ApiParse extends ApiBase {
 		}
 	}
 
+	private function getSectionText( $text, $what ) {
+		global $wgParser;
+		$text = $wgParser->getSection( $text, $this->section, false );
+		if ( $text === false ) {
+			$this->dieUsage( "There is no section {$this->section} in " . $what, 'nosuchsection' );
+		}
+		return $text;
+	}
+
 	private function formatLangLinks( $links ) {
 		$result = array();
 		foreach ( $links as $link ) {
@@ -317,6 +349,8 @@ class ApiParse extends ApiBase {
 			),
 			'pst' => false,
 			'onlypst' => false,
+			'uselang' => null,
+			'section' => null,
 		);
 	}
 
@@ -338,7 +372,8 @@ class ApiParse extends ApiBase {
 			'onlypst' => array( 'Do a pre-save transform (PST) on the input, but don\'t parse it.',
 					'Returns the same wikitext, after a PST has been applied. Ignored if page, pageid or oldid is used.'
 			),
-			'uselang' => 'Which language to parse the request in.'
+			'uselang' => 'Which language to parse the request in.',
+			'section' => 'Only retrieve the content of this section number',
 		);
 	}
 
@@ -352,6 +387,7 @@ class ApiParse extends ApiBase {
 			array( 'code' => 'missingrev', 'info' => 'There is no revision ID oldid' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revisions' ),
 			array( 'code' => 'missingtitle', 'info' => 'The page you specified doesn\'t exist' ),
+			array( 'code' => 'nosuchsection', 'info' => 'There is no section  in '),
 			array( 'nosuchpageid' ),
 		) );
 	}

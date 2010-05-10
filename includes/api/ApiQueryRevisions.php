@@ -425,12 +425,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		$text = null;
 		if ( $this->fld_content || !is_null( $this->difftotext ) ) {
-			global $wgParser;
 			$text = $revision->getText();
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
 			// will have less input
 			if ( $this->section !== false ) {
+				global $wgParser;
+
 				$text = $wgParser->getSection( $text, $this->section, false );
 				if ( $text === false ) {
 					$this->dieUsage( "There is no section {$this->section} in r" . $revision->getId(), 'nosuchsection' );
@@ -557,7 +558,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'excludeuser' => 'Exclude revisions made by user',
 			'expandtemplates' => 'Expand templates in revision content',
 			'generatexml' => 'Generate XML parse tree for revision content',
-			'section' => 'Only retrieve the content of this section',
+			'section' => 'Only retrieve the content of this section number',
 			'token' => 'Which tokens to obtain for each revision',
 			'continue' => 'When more results are available, use this to continue',
 			'diffto' => array( 'Revision ID to diff each revision to.',
