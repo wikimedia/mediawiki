@@ -194,10 +194,9 @@ class SiteConfiguration {
 
 	/**
 	 * Retrieves a configuration setting for a given wiki, forced to a boolean.
-	 * @param $settingName String ID of the setting name to retrieve
+	 * @param $setting String ID of the setting name to retrieve
 	 * @param $wiki String Wiki ID of the wiki in question.
 	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $params Array List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param $wikiTags Array The tags assigned to the wiki.
 	 * @return bool The value of the setting requested.
 	 */
@@ -216,7 +215,7 @@ class SiteConfiguration {
 
 	/**
 	 * Retrieves the value of a given setting, and places it in a variable passed by reference.
-	 * @param $settingName String ID of the setting name to retrieve
+	 * @param $setting String ID of the setting name to retrieve
 	 * @param $wiki String Wiki ID of the wiki in question.
 	 * @param $suffix String The suffix of the wiki in question.
 	 * @param $var Reference The variable to insert the value into.
@@ -232,7 +231,7 @@ class SiteConfiguration {
 
 	/**
 	 * Retrieves the value of a given setting, and places it in its corresponding global variable.
-	 * @param $settingName String ID of the setting name to retrieve
+	 * @param $setting String ID of the setting name to retrieve
 	 * @param $wiki String Wiki ID of the wiki in question.
 	 * @param $suffix String The suffix of the wiki in question.
 	 * @param $params Array List of parameters. $.'key' is replaced by $value in all returned data.
