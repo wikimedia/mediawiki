@@ -334,7 +334,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 				break;
 			}
 
-			//
 			$fit = $this->addPageSubItem( $row->rev_page, $this->extractRowInfo( $row ), 'rev' );
 			if ( !$fit ) {
 				if ( $enumRevMode ) {
