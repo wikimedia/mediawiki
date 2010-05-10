@@ -323,8 +323,8 @@ class ApiParse extends ApiBase {
 			'pst' => array(	'Do a pre-save transform on the input before parsing it.',
 					'Ignored if page or oldid is used.'
 			),
-			'onlypst' => array( 'Do a PST on the input, but don\'t parse it.',
-					'Returns PSTed wikitext. Ignored if page or oldid is used.'
+			'onlypst' => array( 'Do a pre-save transform (PST) on the input, but don\'t parse it.',
+					'Returns the same wikitext, after a PST has been applied. Ignored if page or oldid is used.'
 			),
 			'uselang' => 'Which language to parse the request in.'
 		);
