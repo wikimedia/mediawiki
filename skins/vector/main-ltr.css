@@ -993,32 +993,32 @@ h3, h4, h5 {
 }
 #content a.external,
 #content a[href ^="gopher://"] {
-	background: url(images/external-link-ltr-icon.png?1) center right no-repeat;
+	background: url(images/external-link-ltr-icon.png?2) center right no-repeat;
 	padding: 0 13px 0 0;
 }
 #content a[href ^="https://"],
 .link-https {
-	background: url(images/lock-icon.png?1) center right no-repeat;
+	background: url(images/lock-icon.png?2) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a[href ^="mailto:"],
 .link-mailto {
-	background: url(images/mail-icon.png?1) center right no-repeat;
+	background: url(images/mail-icon.png?2) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a[href ^="news://"] {
-	background: url(images/news-icon.png?1) center right no-repeat;
+	background: url(images/news-icon.png?2) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a[href ^="ftp://"],
 .link-ftp {
-	background: url(images/file-icon.png?1) center right no-repeat;
+	background: url(images/file-icon.png?2) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a[href ^="irc://"],
 #content a.extiw[href ^="irc://"],
 .link-irc {
-	background: url(images/talk-icon.png?1) center right no-repeat;
+	background: url(images/talk-icon.png?2) center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a.external[href $=".ogg"], #content a.external[href $=".OGG"],
@@ -1028,7 +1028,7 @@ h3, h4, h5 {
 #content a.external[href $=".wav"], #content a.external[href $=".WAV"],
 #content a.external[href $=".wma"], #content a.external[href $=".WMA"],
 .link-audio {
-	background: url("images/audio-icon.png") center right no-repeat;
+	background: url("images/audio-icon.png?2") center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a.external[href $=".ogm"], #content a.external[href $=".OGM"],
@@ -1036,14 +1036,14 @@ h3, h4, h5 {
 #content a.external[href $=".mpeg"], #content a.external[href $=".MPEG"],
 #content a.external[href $=".mpg"], #content a.external[href $=".MPG"],
 .link-video {
-	background: url("images/video-icon.png") center right no-repeat;
+	background: url("images/video-icon.png?2") center right no-repeat;
 	padding: 0 18px 0 0;
 }
 #content a.external[href $=".pdf"], #content a.external[href $=".PDF"],
 #content a.external[href *=".pdf#"], #content a.external[href *=".PDF#"],
 #content a.external[href *=".pdf?"], #content a.external[href *=".PDF?"],
 .link-document {
-	background: url("images/document-icon.png") center right no-repeat;
+	background: url("images/document-icon.png?2") center right no-repeat;
 	padding: 0 18px 0 0;
 }
 /* Interwiki Styling  (Disabled) */
