@@ -999,27 +999,27 @@ h3, h4, h5 {
 #content a[href ^="https://"],
 .link-https {
 	background: url(images/lock-icon.png?2) center right no-repeat;
-	padding: 0 18px 0 0;
+	padding: 0 13px 0 0;
 }
 #content a[href ^="mailto:"],
 .link-mailto {
 	background: url(images/mail-icon.png?2) center right no-repeat;
-	padding: 0 18px 0 0;
+	padding: 0 13px 0 0;
 }
 #content a[href ^="news://"] {
 	background: url(images/news-icon.png?2) center right no-repeat;
-	padding: 0 18px 0 0;
+	padding: 0 13px 0 0;
 }
 #content a[href ^="ftp://"],
 .link-ftp {
 	background: url(images/file-icon.png?2) center right no-repeat;
-	padding: 0 18px 0 0;
+	padding: 0 13px 0 0;
 }
 #content a[href ^="irc://"],
 #content a.extiw[href ^="irc://"],
 .link-irc {
 	background: url(images/talk-icon.png?2) center right no-repeat;
-	padding: 0 18px 0 0;
+	padding: 0 13px 0 0;
 }
 #content a.external[href $=".ogg"], #content a.external[href $=".OGG"],
 #content a.external[href $=".mid"], #content a.external[href $=".MID"],
@@ -1029,7 +1029,7 @@ h3, h4, h5 {
 #content a.external[href $=".wma"], #content a.external[href $=".WMA"],
 .link-audio {
 	background: url("images/audio-icon.png?2") center right no-repeat;
-	padding: 0 18px 0 0;
+	padding: 0 13px 0 0;
 }
 #content a.external[href $=".ogm"], #content a.external[href $=".OGM"],
 #content a.external[href $=".avi"], #content a.external[href $=".AVI"],
@@ -1037,14 +1037,14 @@ h3, h4, h5 {
 #content a.external[href $=".mpg"], #content a.external[href $=".MPG"],
 .link-video {
 	background: url("images/video-icon.png?2") center right no-repeat;
-	padding: 0 18px 0 0;
+	padding: 0 13px 0 0;
 }
 #content a.external[href $=".pdf"], #content a.external[href $=".PDF"],
 #content a.external[href *=".pdf#"], #content a.external[href *=".PDF#"],
 #content a.external[href *=".pdf?"], #content a.external[href *=".PDF?"],
 .link-document {
 	background: url("images/document-icon.png?2") center right no-repeat;
-	padding: 0 18px 0 0;
+	padding: 0 13px 0 0;
 }
 /* Interwiki Styling  (Disabled) */
 #content a.extiw,
