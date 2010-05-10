@@ -172,6 +172,7 @@ in a negative namespace (which is invalid).
 * (bug 19721) API action=help should have a way to just list for a specific module
 * (bug 23458) Add support for pageid parameter to action=parse requests
 * (bug 23460) Parse action should have a section option
+* (bug 21346) Make deleted images searchable by hash
 
 === Languages updated in 1.17 ===
 

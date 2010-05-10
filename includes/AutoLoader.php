@@ -313,6 +313,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryDisabled' => 'includes/api/ApiQueryDisabled.php',
 	'ApiQueryDuplicateFiles' => 'includes/api/ApiQueryDuplicateFiles.php',
 	'ApiQueryExtLinksUsage' => 'includes/api/ApiQueryExtLinksUsage.php',
+	'ApiQueryFilearchive' => 'includes/api/ApiQueryFilearchive.php',
 	'ApiQueryExternalLinks' => 'includes/api/ApiQueryExternalLinks.php',
 	'ApiQueryGeneratorBase' => 'includes/api/ApiQueryBase.php',
 	'ApiQueryImageInfo' => 'includes/api/ApiQueryImageInfo.php',
