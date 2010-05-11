@@ -119,14 +119,18 @@ class Credits {
 			$cnt--;
 			if ( $user->isLoggedIn() ) {
 				$link = self::link( $user );
-				if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() )
+				if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {
 					$real_names[] = $link;
-				else
+				} else {
 					$user_names[] = $link;
+				}
 			} else {
 				$anon_ips[] = self::link( $user );
 			}
-			if ( $cnt == 0 ) break;
+
+			if ( $cnt == 0 ) {
+				break;
+			}
 		}
 
 		if ( count( $real_names ) ) {
@@ -137,15 +141,21 @@ class Credits {
 
 		# "ThisSite user(s) A, B and C"
 		if ( count( $user_names ) ) {
-			$user = wfMsgExt( 'siteusers', array( 'parsemag' ),
-				$wgLang->listToText( $user_names ), count( $user_names ) );
+			$user = wfMsgExt(
+				'siteusers',
+				'parsemag',
+				$wgLang->listToText( $user_names ), count( $user_names )
+			);
 		} else {
 			$user = false;
 		}
 
 		if ( count( $anon_ips ) ) {
-			$anon = wfMsgExt( 'anonusers', array( 'parsemag' ),
-				$wgLang->listToText( $anon_ips ), count( $anon_ips ) );
+			$anon = wfMsgExt(
+				'anonusers',
+				'parsemag',
+				$wgLang->listToText( $anon_ips ), count( $anon_ips )
+			);
 		} else {
 			$anon = false;
 		}
@@ -174,10 +184,11 @@ class Credits {
 	 */
 	protected static function link( User $user ) {
 		global $wgUser, $wgHiddenPrefs;
-		if ( !in_array( 'realname', $wgHiddenPrefs ) && !$user->isAnon() )
+		if ( !in_array( 'realname', $wgHiddenPrefs ) && !$user->isAnon() ) {
 			$real = $user->getRealName();
-		else
+		} else {
 			$real = false;
+		}
 
 		$skin = $wgUser->getSkin();
 		$page = $user->isAnon() ?
@@ -198,10 +209,11 @@ class Credits {
 			return wfMsgExt( 'anonuser', array( 'parseinline', 'replaceafter' ), $link );
 		} else {
 			global $wgHiddenPrefs;
-			if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() )
+			if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {
 				return $link;
-			else
-				return wfMsgExt( 'siteuser', array( 'parseinline', 'replaceafter' ), $link );
+			} else {
+				return wfMsgExt( 'siteuser', 'parsemag', $link, $user->getName() );
+			}
 		}
 	}
 
