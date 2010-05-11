@@ -29,6 +29,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * API JSON output formatter
  * @ingroup API
  */
 class ApiFormatJson extends ApiFormatBase {

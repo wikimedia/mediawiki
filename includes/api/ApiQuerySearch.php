@@ -209,14 +209,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		return array(
-			'search' => 'Search for all page titles (or content) that has this value.',
-			'namespace' => 'The namespace(s) to enumerate.',
-			'what' => 'Search inside the text or titles.',
-			'info' => 'What metadata to return.',
-			'prop' => 'What properties to return.',
-			'redirects' => 'Include redirect pages in the search.',
+			'search' => 'Search for all page titles (or content) that has this value',
+			'namespace' => 'The namespace(s) to enumerate',
+			'what' => 'Search inside the text or titles',
+			'info' => 'What metadata to return',
+			'prop' => 'What properties to return',
+			'redirects' => 'Include redirect pages in the search',
 			'offset' => 'Use this value to continue paging (return by query)',
-			'limit' => 'How many total pages to return.'
+			'limit' => 'How many total pages to return'
 		);
 	}
 

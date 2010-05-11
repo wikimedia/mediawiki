@@ -182,9 +182,10 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+	$desc = $this->description;
 		return array(
-			'namespace' => "Show {$this->description}s in this namespace(s) only",
-			'limit' => "How many {$this->description}s to return",
+			'namespace' => "Show {$desc}s in this namespace(s) only",
+			'limit' => "How many {$desc}s to return",
 			'continue' => 'When more results are available, use this to continue',
 		);
 	}

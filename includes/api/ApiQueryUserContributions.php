@@ -410,18 +410,19 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'limit' => 'The maximum number of contributions to return.',
-			'start' => 'The start timestamp to return from.',
-			'end' => 'The end timestamp to return to.',
-			'continue' => 'When more results are available, use this to continue.',
-			'user' => 'The user to retrieve contributions for.',
-			'userprefix' => 'Retrieve contibutions for all users whose names begin with this value. Overrides ucuser.',
-			'dir' => 'The direction to search (older or newer).',
+			'limit' => 'The maximum number of contributions to return',
+			'start' => 'The start timestamp to return from',
+			'end' => 'The end timestamp to return to',
+			'continue' => 'When more results are available, use this to continue',
+			'user' => 'The user to retrieve contributions for',
+			'userprefix' => "Retrieve contibutions for all users whose names begin with this value. Overrides {$p}user",
+			'dir' => 'The direction to search (older or newer)',
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => 'Include additional pieces of information',
-			'show' => array( 'Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
-					'NOTE: if show=patrolled or show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown', ),
+			'show' => array( "Show only items that meet this criteria, e.g. non minor edits only: {$p}show=!minor",
+					"NOTE: if show=patrolled or {$p}show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown", ),
 			'tag' => 'Only list revisions tagged with this tag',
 		);
 	}

@@ -247,17 +247,18 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'from' => 'The page title to start enumerating from.',
-			'prefix' => 'Search for all page titles that begin with this value.',
-			'namespace' => 'The namespace to enumerate.',
-			'filterredir' => 'Which pages to list.',
+			'from' => 'The page title to start enumerating from',
+			'prefix' => 'Search for all page titles that begin with this value',
+			'namespace' => 'The namespace to enumerate',
+			'filterredir' => 'Which pages to list',
 			'dir' => 'The direction in which to list',
 			'minsize' => 'Limit to pages with at least this many bytes',
 			'maxsize' => 'Limit to pages with at most this many bytes',
 			'prtype' => 'Limit to protected pages only',
-			'prlevel' => 'The protection level (must be used with apprtype= parameter)',
-			'prfiltercascade' => 'Filter protections based on cascadingness (ignored when apprtype isn\'t set)',
+			'prlevel' => "The protection level (must be used with {$p}prtype= parameter)",
+			'prfiltercascade' => "Filter protections based on cascadingness (ignored when {$p}prtype isn't set)",
 			'filterlanglinks' => 'Filter based on whether a page has langlinks',
 			'limit' => 'How many total pages to return.'
 		);

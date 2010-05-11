@@ -169,7 +169,7 @@ class ApiBlock extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Block a user.'
+			'Block a user'
 		);
 	}
 	

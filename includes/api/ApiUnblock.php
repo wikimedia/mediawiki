@@ -103,10 +103,11 @@ class ApiUnblock extends ApiBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'id' => 'ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with user',
-			'user' => 'Username, IP address or IP range you want to unblock. Cannot be used together with id',
-			'token' => 'An unblock token previously obtained through the gettoken parameter or prop=info',
+			'id' => "ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with {$p}user",
+			'user' => "Username, IP address or IP range you want to unblock. Cannot be used together with {$p}id",
+			'token' => "An unblock token previously obtained through the gettoken parameter or {$p}prop=info",
 			'gettoken' => 'If set, an unblock token will be returned, and no other action will be taken',
 			'reason' => 'Reason for unblock (optional)',
 		);
@@ -114,7 +115,7 @@ class ApiUnblock extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Unblock a user.'
+			'Unblock a user'
 		);
 	}
 

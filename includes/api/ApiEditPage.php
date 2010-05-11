@@ -433,6 +433,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	protected function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'title' => 'Page title',
 			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
@@ -446,7 +447,7 @@ class ApiEditPage extends ApiBase {
 						'Used to detect edit conflicts; leave unset to ignore conflicts.'
 			),
 			'starttimestamp' => array( 'Timestamp when you obtained the edit token.',
-						'Used to detect edit conflicts; leave unset to ignore conflicts.'
+						'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
 			'createonly' => 'Don\'t edit the page if it exists already',
@@ -456,11 +457,11 @@ class ApiEditPage extends ApiBase {
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 			'captchaid' => 'CAPTCHA ID from previous request',
 			'captchaword' => 'Answer to the CAPTCHA',
-			'md5' => array(	'The MD5 hash of the text parameter, or the prependtext and appendtext parameters concatenated.',
+			'md5' => array(	"The MD5 hash of the {$p}text parameter, or the {$p}prependtext and {$p}appendtext parameters concatenated.",
 				 	'If set, the edit won\'t be done unless the hash is correct' ),
-			'prependtext' => 'Add this text to the beginning of the page. Overrides text.',
-			'appendtext' => 'Add this text to the end of the page. Overrides text',
-			'undo' => 'Undo this revision. Overrides text, prependtext and appendtext',
+			'prependtext' => "Add this text to the beginning of the page. Overrides {$p}text",
+			'appendtext' => "Add this text to the end of the page. Overrides {$p}text",
+			'undo' => "Undo this revision. Overrides {$p}text, {$p}prependtext and {$p}appendtext",
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
 		);
 	}

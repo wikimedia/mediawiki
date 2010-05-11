@@ -221,13 +221,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 	public function getParamDescription() {
 		return array(
-			'from' => 'The user name to start enumerating from.',
-			'prefix' => 'Search for all page titles that begin with this value.',
+			'from' => 'The user name to start enumerating from',
+			'prefix' => 'Search for all page titles that begin with this value',
 			'group' => 'Limit users to a given group name',
 			'prop' => array(
 				'What pieces of information to include.',
-				'`groups` property uses more server resources and may return fewer results than the limit.' ),
-			'limit' => 'How many total user names to return.',
+				'`groups` property uses more server resources and may return fewer results than the limit' ),
+			'limit' => 'How many total user names to return',
 			'witheditsonly' => 'Only list users who have made edits',
 		);
 	}

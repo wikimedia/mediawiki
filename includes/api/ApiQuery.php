@@ -573,7 +573,7 @@ class ApiQuery extends ApiBase {
 			'generator' => array( 'Use the output of a list as the input for other prop/list/meta items',
 					'NOTE: generator parameter names must be prefixed with a \'g\', see examples.' ),
 			'redirects' => 'Automatically resolve redirects',
-			'indexpageids' => 'Include an additional pageids section listing all returned page IDs.',
+			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
 			'export' => 'Export the current revisions of all given or generated pages',
 			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
 		);
@@ -583,7 +583,7 @@ class ApiQuery extends ApiBase {
 		return array(
 			'Query API module allows applications to get needed pieces of data from the MediaWiki databases,',
 			'and is loosely based on the old query.php interface.',
-			'All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.'
+			'All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites'
 		);
 	}
 

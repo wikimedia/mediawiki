@@ -486,7 +486,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Return general information about the site.';
+		return 'Return general information about the site';
 	}
 
 	public function getPossibleErrors() {

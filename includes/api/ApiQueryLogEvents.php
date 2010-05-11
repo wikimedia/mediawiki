@@ -356,18 +356,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'prop' => 'Which properties to get',
 			'type' => 'Filter log entries to only this type(s)',
 			'action' => "Filter log actions to only this type. Overrides {$this->getModulePrefix()}type",
-			'start' => 'The timestamp to start enumerating from.',
-			'end' => 'The timestamp to end enumerating.',
-			'dir' => 'In which direction to enumerate.',
-			'user' => 'Filter entries to those made by the given user.',
-			'title' => 'Filter entries to those related to a page.',
-			'limit' => 'How many total event entries to return.',
-			'tag' => 'Only list event entries tagged with this tag.',
+			'start' => 'The timestamp to start enumerating from',
+			'end' => 'The timestamp to end enumerating',
+			'dir' => 'In which direction to enumerate',
+			'user' => 'Filter entries to those made by the given user',
+			'title' => 'Filter entries to those related to a page',
+			'limit' => 'How many total event entries to return',
+			'tag' => 'Only list event entries tagged with this tag',
 		);
 	}
 
 	public function getDescription() {
-		return 'Get events from logs.';
+		return 'Get events from logs';
 	}
 
 	public function getPossibleErrors() {

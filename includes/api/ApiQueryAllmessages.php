@@ -165,7 +165,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Return messages from this site.';
+		return 'Return messages from this site';
 	}
 
 	protected function getExamples() {

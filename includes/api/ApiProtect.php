@@ -179,7 +179,7 @@ class ApiProtect extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'title' => 'Title of the page you want to (un)protect.',
+			'title' => 'Title of the page you want to (un)protect',
 			'token' => 'A protect token previously retrieved through prop=info',
 			'protections' => 'Pipe-separated list of protection levels, formatted action=group (e.g. edit=sysop)',
 			'expiry' => array( 'Expiry timestamps. If only one timestamp is set, it\'ll be used for all protections.',
@@ -194,7 +194,7 @@ class ApiProtect extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Change the protection level of a page.'
+			'Change the protection level of a page'
 		);
 	}
 

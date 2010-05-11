@@ -189,12 +189,13 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'prop' => 'What pieces of information to include',
 			'offset' => 'Used for paging. Use the value returned for "continue"',
 			'protocol' => array(
-				'Protocol of the url. If empty and euquery set, the protocol is http.',
-				'Leave both this and euquery empty to list all external links'
+				"Protocol of the url. If empty and {$p}query set, the protocol is http.",
+				"Leave both this and {$p}query empty to list all external links"
 			),
 			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links',
 			'namespace' => 'The page namespace(s) to enumerate.',

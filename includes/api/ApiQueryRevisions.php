@@ -546,8 +546,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'prop' => 'Which properties to get for each revision.',
+			'prop' => 'Which properties to get for each revision',
 			'limit' => 'Limit how many revisions will be returned (enum)',
 			'startid' => 'From which revision id to start enumeration (enum)',
 			'endid' => 'Stop revision enumeration on this revid (enum)',
@@ -562,21 +563,21 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'token' => 'Which tokens to obtain for each revision',
 			'continue' => 'When more results are available, use this to continue',
 			'diffto' => array( 'Revision ID to diff each revision to.',
-				'Use "prev", "next" and "cur" for the previous, next and current revision respectively.' ),
+				'Use "prev", "next" and "cur" for the previous, next and current revision respectively' ),
 			'difftotext' => array( 'Text to diff each revision to. Only diffs a limited number of revisions.',
-				'Overrides diffto. If rvsection is set, only that section will be diffed against this text.' ),
+				"Overrides {$p}diffto. If {$p}section is set, only that section will be diffed against this text" ),
 			'tag' => 'Only list revisions tagged with this tag',
 		);
 	}
 
 	public function getDescription() {
 		return array(
-			'Get revision information.',
+			'Get revision information',
 			'This module may be used in several ways:',
-			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
-			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params.',
-			' 3) Get data about a set of revisions by setting their IDs with revids parameter.',
-			'All parameters marked as (enum) may only be used with a single page (#2).'
+			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter',
+			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params',
+			' 3) Get data about a set of revisions by setting their IDs with revids parameter',
+			'All parameters marked as (enum) may only be used with a single page (#2)'
 		);
 	}
 

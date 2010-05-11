@@ -29,6 +29,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * API Serialized PHP output formatter
  * @ingroup API
  */
 class ApiFormatPhp extends ApiFormatBase {

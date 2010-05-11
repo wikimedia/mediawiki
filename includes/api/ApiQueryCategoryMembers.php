@@ -258,16 +258,17 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		global $wgMiserMode;
+		$p = $this->getModulePrefix();
 		$desc = array(
 			'title' => 'Which category to enumerate (required). Must include Category: prefix',
 			'prop' => 'What pieces of information to include',
 			'namespace' => 'Only include pages in these namespaces',
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',
-			'start' => 'Timestamp to start listing from. Can only be used with cmsort=timestamp',
-			'end' => 'Timestamp to end listing at. Can only be used with cmsort=timestamp',
-			'startsortkey' => 'Sortkey to start listing from. Can only be used with cmsort=sortkey',
-			'endsortkey' => 'Sortkey to end listing at. Can only be used with cmsort=sortkey',
+			'start' => "Timestamp to start listing from. Can only be used with {$p}sort=timestamp",
+			'end' => "Timestamp to end listing at. Can only be used with {$p}sort=timestamp",
+			'startsortkey' => "Sortkey to start listing from. Can only be used with {$p}sort=sortkey",
+			'endsortkey' => "Sortkey to end listing at. Can only be used with {$p}sort=sortkey",
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
@@ -275,7 +276,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$desc['namespace'] = array(
 				$desc['namespace'],
 				'NOTE: Due to $wgMiserMode, using this may result in fewer than "limit" results',
-				'returned before continuing; in extreme cases, zero results may be returned.',
+				'returned before continuing; in extreme cases, zero results may be returned',
 			);
 		}
 		return $desc;

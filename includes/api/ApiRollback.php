@@ -98,8 +98,8 @@ class ApiRollback extends ApiBase {
 		return array(
 			'title' => 'Title of the page you want to rollback.',
 			'user' => 'Name of the user whose edits are to be rolled back. If set incorrectly, you\'ll get a badtoken error.',
-			'token' => 'A rollback token previously retrieved through prop=revisions',
-			'summary' => 'Custom edit summary. If not set, default summary will be used.',
+			'token' => "A rollback token previously retrieved through {$this->getModulePrefix()}prop=revisions",
+			'summary' => 'Custom edit summary. If not set, default summary will be used',
 			'markbot' => 'Mark the reverted edits and the revert as bot edits',
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 		);
@@ -108,7 +108,7 @@ class ApiRollback extends ApiBase {
 	public function getDescription() {
 		return array(
 			'Undo the last edit to the page. If the last user who edited the page made multiple edits in a row,',
-			'they will all be rolled back.'
+			'they will all be rolled back'
 		);
 	}
 

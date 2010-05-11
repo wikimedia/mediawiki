@@ -269,14 +269,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 			'ids' => 'Pipe-separated list of block IDs to list (optional)',
 			'users' => 'Pipe-separated list of users to search for (optional)',
 			'ip' => array(	'Get all blocks applying to this IP or CIDR range, including range blocks.',
-					'Cannot be used together with bkusers. CIDR ranges broader than /16 are not accepted.' ),
+					'Cannot be used together with bkusers. CIDR ranges broader than /16 are not accepted' ),
 			'limit' => 'The maximum amount of blocks to list',
 			'prop' => 'Which properties to get',
 		);
 	}
 
 	public function getDescription() {
-		return 'List all blocked users and IP addresses.';
+		return 'List all blocked users and IP addresses';
 	}
 
 	public function getPossibleErrors() {

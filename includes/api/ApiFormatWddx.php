@@ -29,6 +29,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * API WDDX output formatter
  * @ingroup API
  */
 class ApiFormatWddx extends ApiFormatBase {

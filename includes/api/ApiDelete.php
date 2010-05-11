@@ -221,11 +221,12 @@ class ApiDelete extends ApiBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'title' => 'Title of the page you want to delete. Cannot be used together with pageid',
-			'pageid' => 'Page ID of the page you want to delete. Cannot be used together with title',
+			'title' => "Title of the page you want to delete. Cannot be used together with {$p}pageid",
+			'pageid' => "Page ID of the page you want to delete. Cannot be used together with {$p}title",
 			'token' => 'A delete token previously retrieved through prop=info',
-			'reason' => 'Reason for the deletion. If not set, an automatically generated reason will be used.',
+			'reason' => 'Reason for the deletion. If not set, an automatically generated reason will be used',
 			'watch' => 'Add the page to your watchlist',
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 			'unwatch' => 'Remove the page from your watchlist',
@@ -235,7 +236,7 @@ class ApiDelete extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Delete a page.'
+			'Delete a page'
 		);
 	}
 

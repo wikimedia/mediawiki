@@ -145,7 +145,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all files that are duplicates of the given file(s).';
+		return 'List all files that are duplicates of the given file(s)';
 	}
 
 	public function getPossibleErrors() {
