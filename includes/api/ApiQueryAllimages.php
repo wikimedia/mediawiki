@@ -185,7 +185,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			'minsize' => 'Limit to images with at least this many bytes',
 			'maxsize' => 'Limit to images with at most this many bytes',
 			'limit' => 'How many total images to return.',
-			'sha1' => 'SHA1 hash of image',
+			'sha1' => 'SHA1 hash of image. Overrides sha1base36',
 			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
 			'prop' => 'Which properties to get',
 		);

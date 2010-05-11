@@ -73,15 +73,13 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFieldsIf( 'fa_size', $fld_size );
 
 		if ( $fld_dimensions ) {
-			$this->addFields( 'fa_height' );
-			$this->addFields( 'fa_width' );
+			$this->addFields( array( 'fa_height', 'fa_width' ) );
 		}
 
 		$this->addFieldsIf( 'fa_description', $fld_description );
 
 		if ( $fld_mime ) {
-			$this->addFields( 'fa_major_mime' );
-			$this->addFields( 'fa_minor_mime' );
+			$this->addFields( array( 'fa_major_mime', 'fa_minor_mime' ) );
 		}
 
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
@@ -219,7 +217,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			'minsize' => 'Limit to images with at least this many bytes',
 			'maxsize' => 'Limit to images with at most this many bytes',
 			'limit' => 'How many total images to return.',
-			'sha1' => 'SHA1 hash of image',
+			'sha1' => 'SHA1 hash of image. Overrides sha1base36',
 			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
 			'prop' => 'Which properties to get',
 		);
