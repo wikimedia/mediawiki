@@ -79,6 +79,7 @@ class MagicWord {
 		'revisionday',
 		'revisionday2',
 		'revisionmonth',
+		'revisionmonth1',
 		'revisionyear',
 		'revisiontimestamp',
 		'revisionuser',
