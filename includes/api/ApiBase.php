@@ -223,13 +223,13 @@ abstract class ApiBase {
 			$msg = $lnPrfx . implode( $lnPrfx, $msg ) . "\n";
 
 			if ( $this->isReadMode() ) {
-				$msg .= "\nThis module requires read rights.";
+				$msg .= "\nThis module requires read rights";
 			}
 			if ( $this->isWriteMode() ) {
-				$msg .= "\nThis module requires write rights.";
+				$msg .= "\nThis module requires write rights";
 			}
 			if ( $this->mustBePosted() ) {
-				$msg .= "\nThis module only accepts POST requests.";
+				$msg .= "\nThis module only accepts POST requests";
 			}
 			if ( $this->isReadMode() || $this->isWriteMode() ||
 					$this->mustBePosted() )
@@ -325,7 +325,7 @@ abstract class ApiBase {
 								$desc .= $paramPrefix . $prompt . implode( ', ', ApiBase::getValidNamespaces() );
 								break;
 							case 'limit':
-								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]} ({$paramSettings[self::PARAM_MAX2]} for bots) allowed.";
+								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]} ({$paramSettings[self::PARAM_MAX2]} for bots) allowed";
 								break;
 							case 'integer':
 								$hasMin = isset( $paramSettings[self::PARAM_MIN] );
