@@ -61,7 +61,7 @@ class ApiDisabled extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'This module has been disabled.'
+			'This module has been disabled'
 		);
 	}
 

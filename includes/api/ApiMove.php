@@ -28,6 +28,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * API Module to move pages
  * @ingroup API
  */
 class ApiMove extends ApiBase {
@@ -202,13 +203,14 @@ class ApiMove extends ApiBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'from' => 'Title of the page you want to move. Cannot be used together with fromid.',
-			'fromid' => 'Page ID of the page you want to move. Cannot be used together with from.',
-			'to' => 'Title you want to rename the page to.',
+			'from' => "Title of the page you want to move. Cannot be used together with {$p}fromid",
+			'fromid' => "Page ID of the page you want to move. Cannot be used together with {$p}from",
+			'to' => 'Title you want to rename the page to',
 			'token' => 'A move token previously retrieved through prop=info',
-			'reason' => 'Reason for the move (optional).',
-			'movetalk' => 'Move the talk page, if it exists.',
+			'reason' => 'Reason for the move (optional)',
+			'movetalk' => 'Move the talk page, if it exists',
 			'movesubpages' => 'Move subpages, if applicable',
 			'noredirect' => 'Don\'t create a redirect',
 			'watch' => 'Add the page and the redirect to your watchlist',
@@ -220,7 +222,7 @@ class ApiMove extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Move a page.'
+			'Move a page'
 		);
 	}
 

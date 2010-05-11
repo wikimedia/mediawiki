@@ -338,7 +338,7 @@ class ApiUpload extends ApiBase {
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
 			'sending the "file". Note also that queries using session keys must be',
 			'done in the same login session as the query that originally returned the key (i.e. do not',
-			'log out and then log back in). Also you must get and send an edit token before doing any upload stuff.'
+			'log out and then log back in). Also you must get and send an edit token before doing any upload stuff'
 		);
 	}
 

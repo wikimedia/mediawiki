@@ -54,6 +54,29 @@ class ApiUserrights extends ApiBase {
 		$this->getResult()->setIndexedTagName( $r['removed'], 'group' );
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
+	
+	private function getUser() {
+		if ( $this->mUser !== null ) {
+			return $this->mUser;
+		}
+
+		$params = $this->extractRequestParams();
+		if ( is_null( $params['user'] ) ) {
+			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
+		}
+
+		$form = new UserrightsPage;
+		$status = $form->fetchUser( $params['user'] );
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsArray();
+			$this->dieUsageMsg( $errors[0] );
+		} else {
+			$user = $status->value;
+		}
+
+		$this->mUser = $user;
+		return $user;
+	}
 
 	public function mustBePosted() {
 		return true;
@@ -105,29 +128,6 @@ class ApiUserrights extends ApiBase {
 
 	public function getTokenSalt() {
 		return $this->getUser()->getName();
-	}
-
-	private function getUser() {
-		if ( $this->mUser !== null ) {
-			return $this->mUser;
-		}
-
-		$params = $this->extractRequestParams();
-		if ( is_null( $params['user'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
-		}
-
-		$form = new UserrightsPage;
-		$status = $form->fetchUser( $params['user'] );
-		if ( !$status->isOK() ) {
-			$errors = $status->getErrorsArray();
-			$this->dieUsageMsg( $errors[0] );
-		} else {
-			$user = $status->value;
-		}
-
-		$this->mUser = $user;
-		return $user;
 	}
 
 	protected function getExamples() {

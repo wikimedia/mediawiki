@@ -183,7 +183,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			'start' => 'Start listing at this protection timestamp',
 			'end' => 'Stop listing at this protection timestamp',
 			'dir' => 'The direction in which to list',
-			'limit' => 'How many total pages to return.',
+			'limit' => 'How many total pages to return',
 			'prop' => 'Which properties to get',
 			'level' => 'Only list titles with these protection levels',
 		);

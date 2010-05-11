@@ -84,7 +84,7 @@ class ApiPatrol extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Patrol a page or revision. '
+			'Patrol a page or revision'
 		);
 	}
 

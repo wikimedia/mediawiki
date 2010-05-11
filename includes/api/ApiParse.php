@@ -355,24 +355,25 @@ class ApiParse extends ApiBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'text' => 'Wikitext to parse.',
-			'summary' => 'Summary to parse.',
-			'redirects' => 'If the page parameter is set to a redirect, resolve it.',
-			'title' => 'Title of page the text belongs to.',
-			'page' => 'Parse the content of this page. Cannot be used together with text and title.',
-			'pageid' => 'Parse the content of this page. Overrides page.',
-			'oldid' => 'Parse the content of this revision. Overrides page and pageid.',
-			'prop' => array( 'Which pieces of information to get.',
-					'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present.'
+			'text' => 'Wikitext to parse',
+			'summary' => 'Summary to parse',
+			'redirects' => "If the {$p}page parameter is set to a redirect, resolve it",
+			'title' => 'Title of page the text belongs to',
+			'page' => "Parse the content of this page. Cannot be used together with {$p}text and {$p}title",
+			'pageid' => "Parse the content of this page. Overrides {$p}page",
+			'oldid' => "Parse the content of this revision. Overrides {$p}page and {$p}pageid",
+			'prop' => array( 'Which pieces of information to get',
+					'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present'
 			),
-			'pst' => array(	'Do a pre-save transform on the input before parsing it.',
-					'Ignored if page, pageid or oldid is used.'
+			'pst' => array(	'Do a pre-save transform on the input before parsing it',
+					'Ignored if page, pageid or oldid is used'
 			),
-			'onlypst' => array( 'Do a pre-save transform (PST) on the input, but don\'t parse it.',
-					'Returns the same wikitext, after a PST has been applied. Ignored if page, pageid or oldid is used.'
+			'onlypst' => array( 'Do a pre-save transform (PST) on the input, but don\'t parse it',
+					'Returns the same wikitext, after a PST has been applied. Ignored if page, pageid or oldid is used'
 			),
-			'uselang' => 'Which language to parse the request in.',
+			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
 		);
 	}

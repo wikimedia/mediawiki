@@ -435,9 +435,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$retval = array(
-			'title' => 'Title to search.',
-			'continue' => 'When more results are available, use this to continue.',
-			'namespace' => 'The namespace to enumerate.',
+			'title' => 'Title to search',
+			'continue' => 'When more results are available, use this to continue',
+			'namespace' => 'The namespace to enumerate',
 		);
 		if ( $this->getModuleName() != 'embeddedin' ) {
 			return array_merge( $retval, array(
@@ -448,7 +448,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 		return array_merge( $retval, array(
 			'filterredir' => 'How to filter for redirects',
-			'limit' => 'How many total pages to return.'
+			'limit' => 'How many total pages to return'
 		) );
 	}
 

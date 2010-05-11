@@ -29,6 +29,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * API XML output formatter
  * @ingroup API
  */
 class ApiFormatXml extends ApiFormatBase {
@@ -196,7 +197,7 @@ class ApiFormatXml extends ApiFormatBase {
 
 	public function getParamDescription() {
 		return array(
-			'xmldoublequote' => 'If specified, double quotes all attributes and content.',
+			'xmldoublequote' => 'If specified, double quotes all attributes and content',
 			'xslt' => 'If specified, adds <xslt> as stylesheet',
 		);
 	}

@@ -164,10 +164,10 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	public function getParamDescription() {
 		return array(
 			'continue' => 'When more results are available, use this to continue',
-			'namespace' => 'Only list pages in the given namespace(s).',
-			'limit' => 'How many total results to return per request.',
-			'prop' => 'Which additional properties to get (non-generator mode only).',
-			'show' => 'Only list items that meet these criteria.',
+			'namespace' => 'Only list pages in the given namespace(s)',
+			'limit' => 'How many total results to return per request',
+			'prop' => 'Which additional properties to get (non-generator mode only)',
+			'show' => 'Only list items that meet these criteria',
 		);
 	}
 

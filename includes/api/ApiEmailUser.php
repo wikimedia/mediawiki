@@ -28,6 +28,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * API Module to facilitate sending of emails to users
  * @ingroup API
  */
 class ApiEmailUser extends ApiBase {

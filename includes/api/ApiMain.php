@@ -634,7 +634,7 @@ class ApiMain extends ApiBase {
 			'',
 			'Status:          All features shown on this page should be working, but the API',
 			'                 is still in active development, and  may change at any time.',
-			'                 Make sure to monitor our mailing list for any updates.',
+			'                 Make sure to monitor our mailing list for any updates',
 			'',
 			'Documentation:   http://www.mediawiki.org/wiki/API',
 			'Mailing list:    http://lists.wikimedia.org/mailman/listinfo/mediawiki-api',

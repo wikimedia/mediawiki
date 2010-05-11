@@ -29,6 +29,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * API YAML output formatter
  * @ingroup API
  */
 class ApiFormatYaml extends ApiFormatBase {

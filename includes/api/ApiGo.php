@@ -33,10 +33,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup API
  */
 class ApiGo extends ApiBase {
-
-	/**
-	 * Std ctor.
-	 */
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 	}

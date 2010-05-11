@@ -154,10 +154,10 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		return array(
-			'from' => 'The category to start enumerating from.',
-			'prefix' => 'Search for all category titles that begin with this value.',
-			'dir' => 'Direction to sort in.',
-			'limit' => 'How many categories to return.',
+			'from' => 'The category to start enumerating from',
+			'prefix' => 'Search for all category titles that begin with this value',
+			'dir' => 'Direction to sort in',
+			'limit' => 'How many categories to return',
 			'prop' => 'Which properties to get',
 		);
 	}

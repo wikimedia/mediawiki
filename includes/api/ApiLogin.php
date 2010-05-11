@@ -179,7 +179,7 @@ class ApiLogin extends ApiBase {
 			'In the event of a successful log-in, a cookie will be attached',
 			'to your session. In the event of a failed log-in, you will not ',
 			'be able to attempt another log-in through this method for 5 seconds.',
-			'This is to prevent password guessing by automated password crackers.'
+			'This is to prevent password guessing by automated password crackers'
 		);
 	}
 
