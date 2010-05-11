@@ -123,17 +123,19 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		while ( $row = $db->fetchObject( $res ) ) {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// TODO: Security issue - if the user has no right to view next title, it will still be shown
 				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->fa_name ) );
 				break;
 			}
 			
 			$file = array();
 			$file['name'] = $row->fa_name;
+
 			if ( $fld_sha1 ) {
-				$file['sha1'] = $row->fa_storage_key;
+				$file['sha1'] = wfBaseConvert( $row->fa_storage_key, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
-				$file['timestamp'] = $row->fa_timestamp;
+				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
 			}
 			if ( $fld_user ) {
 				$file['user'] = $row->fa_user;
@@ -149,7 +151,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['description'] = $row->fa_description;
 			}
 			if ( $fld_metadata ){
-				$file['metadata'] = $row->fa_metadata;
+				$file['metadata'] = $row->fa_metadata ? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result ) : null;
 			}
 			if ( $fld_bitdepth ){
 				$file['bitdepth'] = $row->fa_bitdepth;
@@ -158,7 +160,11 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['mime'] = "$row->fa_major_mime/$row->fa_minor_mime";
 			}
 			
-			$result->addValue( array( 'query', $this->getModuleName() ), null, $file );
+			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
+			if ( !$fit ) {
+				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->fa_name ) );
+				break;
+			}
 		}
 		$db->freeResult( $res );
 
