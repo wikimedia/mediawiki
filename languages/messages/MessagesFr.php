@@ -47,6 +47,7 @@
  * @author Seb35
  * @author Sherbrooke
  * @author Skalman
+ * @author The Evil IP address
  * @author Urhixidur
  * @author Verdy p
  * @author Zetud
@@ -2607,7 +2608,7 @@ Veuillez en choisir un autre.',
 'movepage-page-moved'          => 'La page $1 a été renommée en $2.',
 'movepage-page-unmoved'        => 'La page $1 n’a pas pu être renommée en $2.',
 'movepage-max-pages'           => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne sera renommée automatiquement.',
-'1movedto2'                    => 'a renommé [[$1]] en [[$2]]',
+'1movedto2'                    => 'a déplacé [[$1]] vers [[$2]]',
 '1movedto2_redir'              => 'a déplacé [[$1]] vers [[$2]] en écrasant sa redirection',
 'move-redirect-suppressed'     => 'redirection supprimée',
 'movelogpage'                  => 'Journal des déplacements',

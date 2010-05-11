@@ -2602,6 +2602,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-undo'                    => '"Zréck" setzt dës Ännerung zréck a mécht den Ännerungsformulaire am Modus "kucken ouni ofzespäicheren" op.
 Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'tooltip-preferences-save'        => 'Astellungen späicheren',
+'tooltip-summary'                 => 'Gitt e kuerze Resumé an',
 
 # Stylesheets
 'common.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Chick''  */",

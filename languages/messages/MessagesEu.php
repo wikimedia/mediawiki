@@ -1191,25 +1191,26 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'prefs-diffs'                   => 'Ezberdintasunak',
 
 # User rights
-'userrights'                  => 'Erabiltzaile baimenen kudeaketa',
-'userrights-lookup-user'      => 'Erabiltzaile taldeak kudeatu',
-'userrights-user-editname'    => 'Erabiltzaile izena idatzi:',
-'editusergroup'               => 'Erabiltzaile taldeak editatu',
-'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) lankidearen erabiltzaile-eskubideak aldatzen",
-'userrights-editusergroup'    => 'Erabiltzaile taldeak editatu',
-'saveusergroups'              => 'Erabiltzaile taldeak gorde',
-'userrights-groupsmember'     => 'Partaide da hemen:',
-'userrights-groups-help'      => 'Lankide hau dagoen taldeak aldatu dituzu:
+'userrights'                   => 'Erabiltzaile baimenen kudeaketa',
+'userrights-lookup-user'       => 'Erabiltzaile taldeak kudeatu',
+'userrights-user-editname'     => 'Erabiltzaile izena idatzi:',
+'editusergroup'                => 'Erabiltzaile taldeak editatu',
+'editinguser'                  => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) lankidearen erabiltzaile-eskubideak aldatzen",
+'userrights-editusergroup'     => 'Erabiltzaile taldeak editatu',
+'saveusergroups'               => 'Erabiltzaile taldeak gorde',
+'userrights-groupsmember'      => 'Partaide da hemen:',
+'userrights-groupsmember-auto' => 'Honen kide inplizitua:',
+'userrights-groups-help'       => 'Lankide hau dagoen taldeak aldatu dituzu:
 * Aukeratutako taulak esan nahi du lankidea talde horretan dagoela.
 * Aukeratu gabeko taulak esan nahi du lankidea ez dagoela talde horretan.
 * *-k erakusten du ezin duzula taldea ezabatu, behin gehitu ondoren, edo alderantziz.',
-'userrights-reason'           => 'Arrazoia:',
-'userrights-no-interwiki'     => 'Ez duzu beste wikietan erabiltzaile eskumenak aldatzeko baimenik.',
-'userrights-nodatabase'       => '$1 datubasea ez da existitzen edo ez dago lokalki.',
-'userrights-nologin'          => 'Administratzaile kontu batekin [[Special:UserLogin|hasi behar duzu saioa]] erabiltzaile eskubideak esleitzeko.',
-'userrights-notallowed'       => 'Zure kontuak ez du baimenik erabiltzaile eskumenak emateko.',
-'userrights-changeable-col'   => 'Alda ditzakezun taldeak',
-'userrights-unchangeable-col' => 'Aldatu ezin ditzakezun taldeak',
+'userrights-reason'            => 'Arrazoia:',
+'userrights-no-interwiki'      => 'Ez duzu beste wikietan erabiltzaile eskumenak aldatzeko baimenik.',
+'userrights-nodatabase'        => '$1 datubasea ez da existitzen edo ez dago lokalki.',
+'userrights-nologin'           => 'Administratzaile kontu batekin [[Special:UserLogin|hasi behar duzu saioa]] erabiltzaile eskubideak esleitzeko.',
+'userrights-notallowed'        => 'Zure kontuak ez du baimenik erabiltzaile eskumenak emateko.',
+'userrights-changeable-col'    => 'Alda ditzakezun taldeak',
+'userrights-unchangeable-col'  => 'Aldatu ezin ditzakezun taldeak',
 
 # Groups
 'group'               => 'Taldea:',
@@ -1394,6 +1395,7 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'upload'                      => 'Fitxategia igo',
 'uploadbtn'                   => 'Fitxategia igo',
 'reuploaddesc'                => 'Igotzeko formulariora itzuli.',
+'upload-tryagain'             => 'Aldatutako fitxategiaren deskribapena bidali',
 'uploadnologin'               => 'Saioa hasi gabe',
 'uploadnologintext'           => 'Fitxategiak igotzeko [[Special:UserLogin|saioa hasi]] behar duzu.',
 'upload_directory_missing'    => 'Igoeren direktorioa ($1) ezin da aurkitu eta web zerbitzariak ezin du sortu.',
@@ -1505,6 +1507,8 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Sarbide ukatua',
+'img-auth-notindir'     => 'Eskatutako bidea ez dago kofiguratutako igoera-direktorioan.',
+'img-auth-badtitle'     => 'Ezin izan da baleko izenbururik eraiki "$1" izenetik abiatuta',
 'img-auth-nofile'       => 'Ez dago "$1" fitxategirik.',
 'img-auth-streaming'    => '"$1" sekuentziatzen.',
 'img-auth-noread'       => 'Erabiltzaileak ez du "$1" irakurtzeko sarbiderik.',

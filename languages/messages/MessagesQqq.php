@@ -80,6 +80,7 @@
  * @author Sp5uhe
  * @author Srhat
  * @author Tgr
+ * @author The Evil IP address
  * @author UV
  * @author Umherirrender
  * @author Urhixidur
@@ -624,9 +625,11 @@ HTML markup cannot be used.",
 'login'                      => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg|nav-login-createaccount}} is shown there).
 
 {{Identical|Log in}}",
-'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.",
+'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.
+{{identical|Log in / create account}}",
 'loginprompt'                => 'A small notice in the log in form.',
-'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.',
+'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.
+{{Identical|Log in / create account}}',
 'userloginnocreate'          => 'A variant of {{msg-mw|Userlogin}} when the user is not allowed to create a new account.
 
 {{Identical|Log in}}',
@@ -1121,7 +1124,6 @@ Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|
 'searchmenu-legend'              => '{{Identical|Search options}}',
 'searchmenu-exists'              => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',
 'searchmenu-new'                 => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
-'searchmenu-new-nocreate'        => 'An option shown in a menu beside search form when users are not allowed to create new pages (when using the default MediaWiki search engine).',
 'searchhelp-url'                 => '{{Identical|HelpContent}}
 Description: The URL of the search help page.
 {{doc-important|Do not change "Help:" part.}}',
