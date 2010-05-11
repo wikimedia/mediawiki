@@ -1599,7 +1599,7 @@ Se aínda quere cargar o seu ficheiro, por favor, retroceda e use un novo nome. 
 Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate'      => 'Un ficheiro idéntico a este ("[[$1]]") foi borrado previamente. Debería comprobar o historial de borrados do ficheiro antes de proceder a cargalo de novo.',
-'successfulupload'            => 'Carga con éxito',
+'successfulupload'            => 'A carga realizouse correctamente',
 'uploadwarning'               => 'Advertencia ao cargar o ficheiro',
 'uploadwarning-text'          => 'Por favor, modifique a descrición do ficheiro e inténteo de novo.',
 'savefile'                    => 'Gardar o ficheiro',
@@ -2707,6 +2707,8 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-upload'                  => 'Comezar a enviar',
 'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último contribuínte.',
 'tooltip-undo'                    => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
+'tooltip-preferences-save'        => 'Gardar as preferencias',
+'tooltip-summary'                 => 'Escriba un breve resumo',
 
 # Stylesheets
 'common.css'   => '/** O CSS que se coloque aquí será aplicado a todas as aparencias */',

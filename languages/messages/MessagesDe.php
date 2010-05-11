@@ -719,10 +719,11 @@ Abfrage: $2',
 'viewsource'           => 'Quelltext betrachten',
 'viewsourcefor'        => 'für $1',
 'actionthrottled'      => 'Aktionsanzahl limitiert',
-'actionthrottledtext'  => 'Du hast diese Aktion zu oft innerhalb eines kurzen Zeitraums ausgeführt. Bitte warte ein paar Minuten und probiere es dann erneut.',
-'protectedpagetext'    => 'Diese Seite ist für das Bearbeiten gesperrt.',
-'viewsourcetext'       => 'Quelltext dieser Seite:',
-'protectedinterface'   => 'Diese Seite enthält Text für die Benutzeroberfläche der Software und ist gesperrt, um Missbrauch zu verhindern.',
+'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
+Bitte versuche es in ein paar Minuten erneut.',
+'protectedpagetext'    => 'Diese Seite wurde gesperrt, um Bearbeitungen zu verhindern.',
+'viewsourcetext'       => 'Du kannst den Quelltext dieser Seite betrachten und kopieren:',
+'protectedinterface'   => 'Diese Seite enthält Text für die Benutzeroberfläche der Software und ist gesperrt, um Missbrauch vorzubeugen.',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text.
 Änderungen wirken sich auf die Benutzeroberfläche aus.
 Für Übersetzungen ziehe bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
@@ -756,7 +757,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'yourdomainname'             => 'Deine Domain:',
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder du darfst dein externes Benutzerkonto nicht aktualisieren.',
 'login'                      => 'Anmelden',
-'nav-login-createaccount'    => 'Anmelden',
+'nav-login-createaccount'    => 'Anmelden / Benutzerkonto erstellen',
 'loginprompt'                => 'Zur Anmeldung müssen Cookies aktiviert sein.',
 'userlogin'                  => 'Anmelden / Benutzerkonto erstellen',
 'userloginnocreate'          => 'Anmelden',
@@ -783,7 +784,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfe die Schreibweise.',
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
 'login-userblocked'          => 'Dieser Benutzer ist gesperrt. Anmeldung nicht erlaubt.',
-'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuche es erneut.',
+'wrongpassword'              => 'Das Passwort ist falsch. Bitte versuche es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuche es erneut.',
 'passwordtooshort'           => 'Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
 'password-name-match'        => 'Dein Passwort muss sich von deinem Benutzernamen unterscheiden.',
@@ -1387,7 +1388,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-registration-date-time'  => '$2, $3 Uhr',
 'yourrealname'                  => 'Bürgerlicher Name:',
 'yourlanguage'                  => 'Sprache der Benutzeroberfläche:',
-'yourvariant'                   => 'Variante',
+'yourvariant'                   => 'Variante:',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Beiträge auf Diskussionsseiten sollten mit „<nowiki>~~~~</nowiki>“ signiert werden, was dann in die Signatur mit Zeitstempel umgewandelt wird.',
 'badsig'                        => 'Die Syntax der Unterschrift ist ungültig; bitte HTML überprüfen.',
@@ -2903,7 +2904,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'log-show-hide-patrol' => 'Kontroll-Logbuch $1',
 
 # Image deletion
-'deletedrevision'                 => 'alte Version: $1',
+'deletedrevision'                 => 'alte Version $1 gelöscht',
 'filedeleteerror-short'           => 'Fehler bei Datei-Löschung: $1',
 'filedeleteerror-long'            => 'Bei der Datei-Löschung wurden Fehler festgestellt:
 

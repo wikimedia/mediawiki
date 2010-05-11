@@ -783,7 +783,7 @@ Dindan emañ ar marilh diverkañ hag adenvel.',
 Abeg dianav.",
 'edit-gone-missing'                => 'Dibosupl hizivaat ar bajenn.
 Diverket eo bet evit doare.',
-'edit-conflict'                    => 'Kemmañ an dizemglev',
+'edit-conflict'                    => 'Tabut kemmañ.',
 'edit-no-change'                   => "N'eo ket bet kemeret ho tegasadenn e kont rak ne oa ket bet kemmet netra en destenn.",
 'edit-already-exists'              => "N'eus ket bet gallet krouiñ ur bajenn nevez.
 Krouet e oa bet c'hoazh.",

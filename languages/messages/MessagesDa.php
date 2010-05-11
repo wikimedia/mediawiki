@@ -13,6 +13,7 @@
  * @author Byrial
  * @author Christian List
  * @author EPO
+ * @author Emilkris33
  * @author H92
  * @author Hylle
  * @author Jan Friberg
@@ -516,6 +517,7 @@ Gør venligst en [[Special:ListUsers/sysop|administrator]] opmærksom på det, o
 'readonly_lag'         => 'Databasen er automatisk blevet låst mens slave database serverne synkronisere med master databasen',
 'internalerror'        => 'Intern fejl',
 'internalerror_info'   => 'Internal fejl: $1',
+'fileappenderrorread'  => 'Kunne ikke læse "$1" under tilføjelsen.',
 'fileappenderror'      => 'Kunne ikke tilføje "$1" til "$2".',
 'filecopyerror'        => 'Kunne ikke kopiere filen "$1" til "$2".',
 'filerenameerror'      => 'Kunne ikke omdøbe filen "$1" til "$2".',
@@ -644,6 +646,7 @@ Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
 'login-throttled'            => 'Du har forsøgt at logge på for mange gange.
 Vent venligst før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
+'suspicious-userlogout'      => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Skift adgangskode',
@@ -1492,7 +1495,11 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'file-too-large'              => 'Den fil du indsendte var for stor.',
 'filename-tooshort'           => 'Filnavnet er for kort.',
 'filetype-banned'             => 'Denne type fil er ikke tilladt',
+'verification-error'          => 'Denne fil bestod ikke fil verifikationen.',
+'hookaborted'                 => '↓ Ændringen du forsøgte at gøre blev afbrudt af en udvidelses hook.',
 'illegal-filename'            => 'Filnavnet er ikke tilladt.',
+'overwrite'                   => 'Overskrivning af en eksisterende fil er ikke tilladt.',
+'unknown-error'               => 'En ukendt fejl opstod.',
 'tmp-create-error'            => 'Kunne ikke oprette temporær fil.',
 'tmp-write-error'             => 'Fejl ved skrivning af temporær fil.',
 'large-file'                  => 'Filstørrelsen skal så vidt muligt ikke overstige $1. Denne fil er $2 stor.',
@@ -1530,6 +1537,7 @@ Hvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.
 'overwroteimage'              => 'lagde en ny version af "[[$1]]" op',
 'uploaddisabled'              => 'Desværre er funktionen til at lægge filer op afbrudt på denne server.',
 'copyuploaddisabled'          => 'Upload via URL er slået fra.',
+'uploadfromurl-queued'        => 'Din upload er blevet sat i kø.',
 'uploaddisabledtext'          => 'Oplægning af filer er deaktiveret.',
 'php-uploaddisabledtext'      => 'Oplægning af filer er forhindret i PHP. Tjek indstillingen for file_uploads.',
 'uploadscripted'              => 'Denne fil indeholder HTML eller script-kode, der i visse tilfælde can fejlfortolkes af en browser.',
