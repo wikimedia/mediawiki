@@ -290,7 +290,7 @@ class Skin extends Linker {
 
 	/**
 	 * Set the title
-	 * @param Title $t The title to use
+	 * @param $t Title object to use
 	 */
 	public function setTitle( $t ) {
 		$this->mTitle = $t;
@@ -356,7 +356,7 @@ class Skin extends Linker {
 	 * Make a <script> tag containing global variables
 	 * @param $skinName string Name of the skin
 	 * The odd calling convention is for backwards compatibility
-	 * @TODO @FIXME Make this not depend on $wgTitle!
+	 * @todo FIXME: Make this not depend on $wgTitle!
 	 */
 	static function makeGlobalVariablesScript( $skinName ) {
 		if ( is_array( $skinName ) ) {
