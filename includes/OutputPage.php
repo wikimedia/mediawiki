@@ -643,7 +643,11 @@ class OutputPage {
 	 * @param $href String: URL
 	 */
 	public function addFeedLink( $format, $href ) {
-		$this->mFeedLinks[$format] = $href;
+		global $wgAdvertisedFeedTypes;
+
+		if ( in_array( $format, $wgAdvertisedFeedTypes ) ) {
+			$this->mFeedLinks[$format] = $href;
+		}
 	}
 
 	/**
