@@ -2528,6 +2528,13 @@ class Parser {
 				# *after* a revision ID has been assigned. This is for null edits.
 				$this->mOutput->setFlag( 'vary-revision' );
 				wfDebug( __METHOD__ . ": {{REVISIONMONTH}} used, setting vary-revision...\n" );
+				$value = substr( $this->getRevisionTimestamp(), 4, 2 );
+				break;
+			case 'revisionmonth1':
+				# Let the edit saving system know we should parse the page
+				# *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONMONTH1}} used, setting vary-revision...\n" );
 				$value = intval( substr( $this->getRevisionTimestamp(), 4, 2 ) );
 				break;
 			case 'revisionyear':

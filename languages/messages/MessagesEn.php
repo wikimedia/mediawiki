@@ -311,6 +311,7 @@ $magicWords = array(
 	'revisionday'            => array( 1,    'REVISIONDAY'            ),
 	'revisionday2'           => array( 1,    'REVISIONDAY2'           ),
 	'revisionmonth'          => array( 1,    'REVISIONMONTH'          ),
+	'revisionmonth1'         => array( 1,    'REVISIONMONTH1'         ),
 	'revisionyear'           => array( 1,    'REVISIONYEAR'           ),
 	'revisiontimestamp'      => array( 1,    'REVISIONTIMESTAMP'      ),
 	'revisionuser'           => array( 1,    'REVISIONUSER'           ),

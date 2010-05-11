@@ -160,6 +160,8 @@ in a negative namespace (which is invalid).
 * (bug 23422) mp3 files can now be moved
 * (bug 23448) MediaWiki:Summary-preview is now displayed instead of
   MediaWiki:Subject-preview when previewing summary
+* (bug 23426) The {{REVISIONMONTH}} variable is now zero-padded and added new
+  variable {{REVISIONMONTH1}} when unpadded version is needed.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
