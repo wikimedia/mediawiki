@@ -4614,7 +4614,7 @@ jQuery.extend({
 
 		name = name.replace(rdashAlpha, fcamelCase);
 
-		if ( set ) {
+		if ( set && value !== 'NaNpx' && value !== 'nullpx' ) {
 			style[ name ] = value;
 		}
 
