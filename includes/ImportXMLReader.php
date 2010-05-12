@@ -3,12 +3,15 @@
  * implements Special:Import
  * @ingroup SpecialPage
  */
-class ImportXMLReader {
+class WikiImporter {
 	private $reader = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
 	private $mSiteInfoCallback, $mTargetNamespace, $mPageOutCallback;
 	private $mDebug;
 
+	/**
+	 * Creates an ImportXMLReader drawing from the source provided
+	*/
 	function __construct( $source ) {
 		$this->reader = new XMLReader();
 		
@@ -22,22 +25,22 @@ class ImportXMLReader {
 		$this->setLogItemCallback( array( $this, 'importLogItem' ) );
 	}
 
-	function throwXmlError( $err ) {
+	private function throwXmlError( $err ) {
 		$this->debug( "FAILURE: $err" );
 		wfDebug( "WikiImporter XML error: $err\n" );
 	}
 
-	function debug( $data ) {
+	private function debug( $data ) {
  		if( $this->mDebug ) {
 			wfDebug( "IMPORT: $data\n" );
  		}
 	}
 	
-	function warn( $data ) {
+	private function warn( $data ) {
 		wfDebug( "IMPORT: $data\n" );
 	}
 
-	function notice( $data ) {
+	private function notice( $data ) {
 		global $wgCommandLineMode;
 		if( $wgCommandLineMode ) {
 			print "$data\n";
@@ -59,7 +62,7 @@ class ImportXMLReader {
 	 * @param $callback callback
 	 * @return callback
 	 */
-	function setPageCallback( $callback ) {
+	public function setPageCallback( $callback ) {
 		$previous = $this->mPageCallback;
 		$this->mPageCallback = $callback;
 		return $previous;
@@ -74,7 +77,7 @@ class ImportXMLReader {
 	 * @param $callback callback
 	 * @return callback
 	 */
-	function setPageOutCallback( $callback ) {
+	public function setPageOutCallback( $callback ) {
 		$previous = $this->mPageOutCallback;
 		$this->mPageOutCallback = $callback;
 		return $previous;
@@ -85,7 +88,7 @@ class ImportXMLReader {
 	 * @param $callback callback
 	 * @return callback
 	 */
-	function setRevisionCallback( $callback ) {
+	public function setRevisionCallback( $callback ) {
 		$previous = $this->mRevisionCallback;
 		$this->mRevisionCallback = $callback;
 		return $previous;
@@ -96,7 +99,7 @@ class ImportXMLReader {
 	 * @param $callback callback
 	 * @return callback
 	 */
-	function setUploadCallback( $callback ) {
+	public function setUploadCallback( $callback ) {
 		$previous = $this->mUploadCallback;
 		$this->mUploadCallback = $callback;
 		return $previous;
@@ -107,7 +110,7 @@ class ImportXMLReader {
 	 * @param $callback callback
 	 * @return callback
 	 */
-	function setLogItemCallback( $callback ) {
+	public function setLogItemCallback( $callback ) {
 		$previous = $this->mLogItemCallback;
 		$this->mLogItemCallback = $callback;
 		return $previous;
@@ -118,7 +121,7 @@ class ImportXMLReader {
 	 * @param $callback callback
 	 * @return callback
 	 */
-	function setSiteInfoCallback( $callback ) {
+	public function setSiteInfoCallback( $callback ) {
 		$previous = $this->mSiteInfoCallback;
 		$this->mSiteInfoCallback = $callback;
 		return $previous;
@@ -127,7 +130,7 @@ class ImportXMLReader {
 	/**
 	 * Set a target namespace to override the defaults
 	 */
-	function setTargetNamespace( $namespace ) {
+	public function setTargetNamespace( $namespace ) {
 		if( is_null( $namespace ) ) {
 			// Don't override namespaces
 			$this->mTargetNamespace = null;
@@ -142,9 +145,8 @@ class ImportXMLReader {
 	/**
 	 * Default per-revision callback, performs the import.
 	 * @param $revision WikiRevision
-	 * @private
 	 */
-	function importRevision( $revision ) {
+	public function importRevision( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
 		return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
 	}
@@ -152,9 +154,8 @@ class ImportXMLReader {
 	/**
 	 * Default per-revision callback, performs the import.
 	 * @param $rev WikiRevision
-	 * @private
 	 */
-	function importLogItem( $rev ) {
+	public function importLogItem( $rev ) {
 		$dbw = wfGetDB( DB_MASTER );
 		return $dbw->deadlockLoop( array( $rev, 'importLogItem' ) );
 	}
@@ -162,7 +163,7 @@ class ImportXMLReader {
 	/**
 	 * Dummy for now...
 	 */
-	function importUpload( $revision ) {
+	public function importUpload( $revision ) {
 		//$dbw = wfGetDB( DB_MASTER );
 		//return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 		return false;
@@ -171,9 +172,8 @@ class ImportXMLReader {
 	/**
 	 * Alternate per-revision callback, for debugging.
 	 * @param $revision WikiRevision
-	 * @private
 	 */
-	function debugRevisionHandler( &$revision ) {
+	public function debugRevisionHandler( &$revision ) {
 		$this->debug( "Got revision:" );
 		if( is_object( $revision->title ) ) {
 			$this->debug( "-- Title: " . $revision->title->getPrefixedText() );
@@ -189,7 +189,6 @@ class ImportXMLReader {
 	/**
 	 * Notify the callback function when a new <page> is reached.
 	 * @param $title Title
-	 * @private
 	 */
 	function pageCallback( $title ) {
 		if( is_callable( $this->mPageCallback ) ) {
@@ -203,16 +202,19 @@ class ImportXMLReader {
 	 * @param $origTitle Title
 	 * @param $revisionCount int
 	 * @param $successCount Int: number of revisions for which callback returned true
-	 * @private
 	 */
-	function pageOutCallback( $title, $origTitle, $revisionCount, $successCount ) {
+	private function pageOutCallback( $title, $origTitle, $revisionCount, $successCount ) {
 		if( is_callable( $this->mPageOutCallback ) ) {
 			call_user_func_array( $this->mPageOutCallback,
 				array( $title, $origTitle, $revisionCount, $successCount ) );
 		}
 	}
 	
-	function revisionCallback( $revision ) {
+	/**
+	 * Notify the callback function of a revision
+	 * @param $revision A WikiRevision object
+	 */
+	private function revisionCallback( $revision ) {
 		if ( is_callable( $this->mRevisionCallback ) ) {
 			return call_user_func_array( $this->mRevisionCallback,
 					array( $revision, $this ) );
@@ -221,7 +223,11 @@ class ImportXMLReader {
 		}
 	}
 	
-	function logItemCallback( $revision ) {
+	/**
+	 * Notify the callback function of a new log item
+	 * @param $revision A WikiRevision object
+	 */
+	private function logItemCallback( $revision ) {
 		if ( is_callable( $this->mLogItemCallback ) ) {
 			return call_user_func_array( $this->mLogItemCallback,
 					array( $revision, $this ) );
@@ -237,7 +243,7 @@ class ImportXMLReader {
 	 * @return string
 	 * @access private
 	 */
-	function nodeContents() {
+	private function nodeContents() {
 		if( $this->reader->isEmptyElement ) {
 			return "";
 		}
@@ -257,7 +263,8 @@ class ImportXMLReader {
 
 	# --------------
 	
-	function dumpElement() {
+	/** Left in for debugging */
+	private function dumpElement() {
 		static $lookup = null;
 		if (!$lookup) {
 			$xmlReaderConstants = array(
@@ -294,7 +301,10 @@ class ImportXMLReader {
 		)."\n\n" );
 	}
 
-	function doImport() {	
+	/**
+	 * Primary entry point
+	 */
+	public function doImport() {	
 		$this->reader->read();
 		
 		if ( $this->reader->name != 'mediawiki' ) {
@@ -339,7 +349,7 @@ class ImportXMLReader {
 		return true;
 	}
 	
-	function handleSiteInfo() {
+	private function handleSiteInfo() {
 		// Site info is useful, but not actually used for dump imports.
 		// Includes a quick short-circuit to save performance.
 		if ( ! $this->mSiteInfoCallback ) {
@@ -349,7 +359,7 @@ class ImportXMLReader {
 		throw new MWException( "SiteInfo tag is not yet handled, do not set mSiteInfoCallback" );
 	}
 	
-	function handleLogItem() {
+	private function handleLogItem() {
 		$this->debug( "Enter log item handler." );
 		$logInfo = array();
 		
@@ -380,7 +390,7 @@ class ImportXMLReader {
 		$this->processLogItem( $logInfo );
 	}
 	
-	function processLogItem( $logInfo ) {
+	private function processLogItem( $logInfo ) {
 		$revision = new WikiRevision;
 		
 		$revision->setID( $logInfo['id'] );
@@ -404,7 +414,7 @@ class ImportXMLReader {
 		return $this->logItemCallback( $revision );
 	}
 	
-	function handlePage() {
+	private function handlePage() {
 		// Handle page data.
 		$this->debug( "Enter page handler." );
 		$pageInfo = array( 'revisionCount' => 0, 'successfulRevisionCount' => 0 );
@@ -457,7 +467,7 @@ class ImportXMLReader {
 					$pageInfo['successfulRevisionCount'] );
 	}
 	
-	function handleRevision( &$pageInfo ) {
+	private function handleRevision( &$pageInfo ) {
 		$this->debug( "Enter revision handler" );
 		$revisionInfo = array();
 		
@@ -492,7 +502,7 @@ class ImportXMLReader {
 		}
 	}
 	
-	function processRevision( $pageInfo, $revisionInfo ) {
+	private function processRevision( $pageInfo, $revisionInfo ) {
 		$revision = new WikiRevision;
 		
 		$revision->setID( $revisionInfo['id'] );
@@ -517,7 +527,7 @@ class ImportXMLReader {
 		return $this->revisionCallback( $revision );
 	}
 	
-	function handleUpload( &$pageInfo ) {
+	private function handleUpload( &$pageInfo ) {
 		$this->debug( "Enter upload handler" );
 		$uploadInfo = array();
 		
@@ -550,7 +560,7 @@ class ImportXMLReader {
 		return $this->processUpload( $pageInfo, $uploadInfo );
 	}
 	
-	function processUpload( $pageInfo, $uploadInfo ) {
+	private function processUpload( $pageInfo, $uploadInfo ) {
 		$revision = new WikiRevision;
 		
 		$revision->setTitle( $pageInfo['_title'] );
@@ -572,7 +582,7 @@ class ImportXMLReader {
 		return $this->uploadCallback( $revision );
 	}
 	
-	function handleContributor() {
+	private function handleContributor() {
 		$fields = array( 'id', 'ip', 'username' );
 		$info = array();
 		
@@ -592,7 +602,7 @@ class ImportXMLReader {
 		return $info;
 	}
 	
-	function processTitle( $text ) {
+	private function processTitle( $text ) {
 		$workTitle = $text;
 		$origTitle = Title::newFromText( $workTitle );
 		$title = null;
@@ -616,6 +626,7 @@ class ImportXMLReader {
 	}
 }
 
+/** This is a horrible hack used to keep source compatibility */
 class UploadSourceAdapter {
 	static $sourceRegistrations = array();
 	

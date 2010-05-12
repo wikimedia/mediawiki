@@ -74,7 +74,7 @@ class ApiImport extends ApiBase {
 			$this->dieUsageMsg( array( 'import-unknownerror', $source->getMessage() ) );
 		}
 
-		$importer = new ImportXMLReader( $source );
+		$importer = new WikiImporter( $source );
 		if ( isset( $params['namespace'] ) ) {
 			$importer->setTargetNamespace( $params['namespace'] );
 		}
