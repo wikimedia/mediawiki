@@ -826,7 +826,7 @@ abstract class Installer {
 			$this->installSteps = array( 'localsettings' );
 		}
 		if( count( $this->getVar( '_Extensions' ) ) ) {
-			$this->installSteps = array_unshift( $this->installSteps, 'extensions' );
+			array_unshift( $this->installSteps, 'extensions' );
 		}
 		return $this->installSteps;
 	}
