@@ -564,9 +564,9 @@ CONTROL;
 	/**
 	 * Get complete diff table, including header
 	 *
-	 * @param Title $otitle Old title
-	 * @param Title $ntitle New title
-	 * @param string $notice HTML between diff header and body
+	 * @param $otitle Title: old title
+	 * @param $ntitle Title: new title
+	 * @param $notice String: HTML between diff header and body
 	 * @return mixed
 	 */
 	function getDiff( $otitle, $ntitle, $notice = '' ) {
@@ -665,7 +665,9 @@ CONTROL;
 
 	/**
 	 * Generate a diff, no caching
-	 * $otext and $ntext must be already segmented
+	 *
+	 * @param $otext String: old text, must be already segmented
+	 * @param $ntext String: new text, must be already segmented
 	 */
 	function generateDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
