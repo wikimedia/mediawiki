@@ -83,7 +83,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		}
 
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
-		$this->addFieldsIf( 'fa_bitdepth', $fld_bitdepths );
+		$this->addFieldsIf( 'fa_bitdepth', $fld_bitdepth );
 
 		// Image filters
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
