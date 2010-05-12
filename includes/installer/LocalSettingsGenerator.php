@@ -24,6 +24,7 @@ class LocalSettingsGenerator {
 			'wgRightsText', 'wgRightsCode', 'wgMainCacheType', 'wgEnableUploads',
 			'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
 			'wgDBpassword' ), $db->getGlobalNames() );
+		$unescaped = array( 'wgRightsIcon' );
 		$boolItems = array( 'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
 			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads' );
 		foreach( $confItems as $c ) {
@@ -31,12 +32,14 @@ class LocalSettingsGenerator {
 			if( in_array( $c, $boolItems ) ) {
 				$val = wfBoolToStr( $val );
 			}
+			if ( !in_array( $c, $unescaped ) ) {
+				$val = self::escapePhpString( $val );
+			}
 			$this->values[$c] = $val;
 		}
 		$this->dbSettings = $db->getLocalSettings();
 		$this->safeMode = $installer->getVar( '_SafeMode' );
 		$this->values['wgEmergencyContact'] = $this->values['wgPasswordSender'];
-		$this->values = wfArrayMap( array( 'LocalSettingsGenerator', 'escapePhpString' ), $this->values );
 	}
 
 	public static function escapePhpString( $string ) {
