@@ -46,7 +46,7 @@ class DumpRenderer extends Maintenance {
 		$this->startTime = wfTime();
 
 		$source = new ImportStreamSource( $this->getStdin() );
-		$importer = new ImportXMLReader( $source );
+		$importer = new WikiImporter( $source );
 
 		$importer->setRevisionCallback(
 			array( &$this, 'handleRevision' ) );

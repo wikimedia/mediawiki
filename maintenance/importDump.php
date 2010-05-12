@@ -140,7 +140,7 @@ class BackupReader {
 		$this->startTime = wfTime();
 
 		$source = new ImportStreamSource( $handle );
-		$importer = new ImportXMLReader( $source );
+		$importer = new WikiImporter( $source );
 
 		$importer->setDebug( $this->debug );
 		$importer->setPageCallback( array( &$this, 'reportPage' ) );
