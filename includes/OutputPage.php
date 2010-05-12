@@ -2100,6 +2100,12 @@ class OutputPage {
 			$this->setHTMLTitle( wfMsg( 'pagetitle', $this->getPageTitle() ) );
 		}
 
+		$openHead = Html::openElement( 'head' );
+		if ( $openHead ) {
+			# Don't bother with the newline if $head == ''
+			$ret .= "$openHead\n";
+		}
+
 		if ( $wgHtml5 ) {
 			# More succinct than <meta http-equiv=Content-Type>, has the
 			# same effect
@@ -2108,13 +2114,7 @@ class OutputPage {
 			$this->addMeta( 'http:Content-Type', "$wgMimeType; charset=$wgOutputEncoding" );
 		}
 
-		$openHead = Html::openElement( 'head' );
-		if ( $openHead ) {
-			# Don't bother with the newline if $head == ''
-			$ret .= "$openHead\n";
-		}
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
-
 
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
