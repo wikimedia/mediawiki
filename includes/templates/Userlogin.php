@@ -100,7 +100,7 @@ class UserloginTemplate extends QuickTemplate {
 			'tabindex' => '5'
 		) );
 		if ( $this->data['useemail'] && $this->data['canreset'] ) {
-			echo '&nbsp;';
+			echo '&#160;';
 			echo Html::input( 'wpMailmypassword', wfMsg( 'mailmypassword' ), 'submit', array(
 				'id' => 'wpMailmypassword',
 				'tabindex' => '6'

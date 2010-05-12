@@ -382,7 +382,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$f .= ' ';
 
 		# Namespace selector
-		$f .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;' .
+		$f .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&#160;' .
 			Xml::namespaceSelector( $namespace, '' );
 
 		$f .= ' ';

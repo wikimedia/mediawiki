@@ -559,7 +559,7 @@ class HTMLForm {
 					: $value->getDefault();
 				$tableHtml .= $value->getTableRow( $v );
 
-				if( $value->getLabel() != '&nbsp;' )
+				if( $value->getLabel() != '&#160;' )
 					$hasLeftColumn = true;
 			} elseif ( is_array( $value ) ) {
 				$section = $this->displaySection( $value, $key );
@@ -1040,7 +1040,7 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['disabled'] = 'disabled';
 		}
 
-		return Xml::check( $this->mName, $value, $attr ) . '&nbsp;' .
+		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
 				Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 	}
 
@@ -1049,7 +1049,7 @@ class HTMLCheckField extends HTMLFormField {
 	 * added in getInputHTML(), rather than HTMLFormField::getRow()
 	 */
 	function getLabel() {
-		return '&nbsp;';
+		return '&#160;';
 	}
 
 	function loadDataFromRequest( $request ) {
@@ -1225,7 +1225,7 @@ class HTMLMultiSelectField extends HTMLFormField {
 				
 				$checkbox = Xml::check( $this->mName . '[]', in_array( $info, $value ),
 								$attribs + $thisAttribs );
-				$checkbox .= '&nbsp;' . Html::rawElement( 'label', array( 'for' => $this->mID . "-$info" ), $label );
+				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => $this->mID . "-$info" ), $label );
 
 				$html .= $checkbox . '<br />';
 			}
@@ -1307,7 +1307,7 @@ class HTMLRadioField extends HTMLFormField {
 				$id = Sanitizer::escapeId( $this->mID . "-$info" );
 				$html .= Xml::radio( $this->mName, $info, $info == $value,
 										$attribs + array( 'id' => $id ) );
-				$html .= '&nbsp;' .
+				$html .= '&#160;' .
 						Html::rawElement( 'label', array( 'for' => $id ), $label );
 
 				$html .= "<br />\n";

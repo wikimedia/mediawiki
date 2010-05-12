@@ -773,7 +773,7 @@ abstract class TablePager extends IndexPager {
 		# Make table header
 		foreach ( $fields as $field => $name ) {
 			if ( strval( $name ) == '' ) {
-				$s .= "<th>&nbsp;</th>\n";
+				$s .= "<th>&#160;</th>\n";
 			} elseif ( $this->isFieldSortable( $field ) ) {
 				$query = array( 'sort' => $field, 'limit' => $this->mLimit );
 				if ( $field == $this->mSort ) {
@@ -826,7 +826,7 @@ abstract class TablePager extends IndexPager {
 			$value = isset( $row->$field ) ? $row->$field : null;
 			$formatted = strval( $this->formatValue( $field, $value ) );
 			if ( $formatted == '' ) {
-				$formatted = '&nbsp;';
+				$formatted = '&#160;';
 			}
 			$s .= Xml::tags( 'td', $this->getCellAttrs( $field, $value ), $formatted );
 		}
@@ -1007,7 +1007,7 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * Format a table cell. The return value should be HTML, but use an empty
-	 * string not &nbsp; for empty cells. Do not include the <td> and </td>.
+	 * string not &#160; for empty cells. Do not include the <td> and </td>.
 	 *
 	 * The current result row is available as $this->mCurrentRow, in case you
 	 * need more context.

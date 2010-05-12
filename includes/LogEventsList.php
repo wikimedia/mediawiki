@@ -106,7 +106,7 @@ class LogEventsList {
 
 		// Tag filter
 		if ($tagSelector) {
-			$html .= Xml::tags( 'p', null, implode( '&nbsp;', $tagSelector ) );
+			$html .= Xml::tags( 'p', null, implode( '&#160;', $tagSelector ) );
 		}
 
 		// Filter links

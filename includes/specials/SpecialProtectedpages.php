@@ -139,16 +139,16 @@ class ProtectedPagesForm {
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'protectedpages' ) ) .
 			Xml::hidden( 'title', $title->getPrefixedDBkey() ) . "\n" .
-			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
-			$this->getTypeMenu( $type ) . "&nbsp;\n" .
-			$this->getLevelMenu( $level ) . "&nbsp;\n" .
+			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
+			$this->getTypeMenu( $type ) . "&#160;\n" .
+			$this->getLevelMenu( $level ) . "&#160;\n" .
 			"<br /><span style='white-space: nowrap'>" .
-			$this->getExpiryCheck( $indefOnly ) . "&nbsp;\n" .
-			$this->getCascadeCheck( $cascadeOnly ) . "&nbsp;\n" .
+			$this->getExpiryCheck( $indefOnly ) . "&#160;\n" .
+			$this->getCascadeCheck( $cascadeOnly ) . "&#160;\n" .
 			"</span><br /><span style='white-space: nowrap'>" .
-			$this->getSizeLimit( $sizetype, $size ) . "&nbsp;\n" .
+			$this->getSizeLimit( $sizetype, $size ) . "&#160;\n" .
 			"</span>" .
-			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
+			"&#160;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 	}
@@ -162,7 +162,7 @@ class ProtectedPagesForm {
 	 */
 	protected function getNamespaceMenu( $namespace = null ) {
 		return "<span style='white-space: nowrap'>" .
-			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;'
+			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&#160;'
 			. Xml::namespaceSelector( $namespace, '' ) . "</span>";
 	}
 
@@ -190,11 +190,11 @@ class ProtectedPagesForm {
 
 		return
 			Xml::radioLabel( wfMsg('minimum-size'), 'sizetype', 'min', 'wpmin', !$max ) .
-			'&nbsp;' .
+			'&#160;' .
 			Xml::radioLabel( wfMsg('maximum-size'), 'sizetype', 'max', 'wpmax', $max ) .
-			'&nbsp;' .
+			'&#160;' .
 			Xml::input( 'size', 9, $size, array( 'id' => 'wpsize' ) ) .
-			'&nbsp;' .
+			'&#160;' .
 			Xml::label( wfMsg('pagesize'), 'wpsize' );
 	}
 
@@ -222,7 +222,7 @@ class ProtectedPagesForm {
 		}
 
 		return "<span style='white-space: nowrap'>" .
-			Xml::label( wfMsg('restriction-type') , $this->IdType ) . '&nbsp;' .
+			Xml::label( wfMsg('restriction-type') , $this->IdType ) . '&#160;' .
 			Xml::tags( 'select',
 				array( 'id' => $this->IdType, 'name' => $this->IdType ),
 				implode( "\n", $options ) ) . "</span>";

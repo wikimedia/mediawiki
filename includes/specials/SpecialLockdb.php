@@ -77,7 +77,7 @@ class DBLockForm {
 		<td align="left">{$lc}</td>
 	</tr>
 	<tr>
-		<td>&nbsp;</td>
+		<td>&#160;</td>
 		<td align="left">
 			<input type="submit" name="wpLock" value="{$lb}" />
 		</td>

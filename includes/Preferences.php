@@ -450,7 +450,7 @@ class Preferences {
 				array(
 					'type' => 'radio',
 					'options' => self::generateSkinOptions( $user ),
-					'label' => '&nbsp;',
+					'label' => '&#160;',
 					'section' => 'rendering/skin',
 				);
 
@@ -478,7 +478,7 @@ class Preferences {
 						'type' => 'radio',
 						'options' =>
 							array_flip( array_map( 'wfMsgHtml', $wgLang->getMathNames() ) ),
-						'label' => '&nbsp;',
+						'label' => '&#160;',
 						'section' => 'rendering/math',
 					);
 		}
@@ -512,7 +512,7 @@ class Preferences {
 					array(
 						'type' => 'radio',
 						'options' => $dateOptions,
-						'label' => '&nbsp;',
+						'label' => '&#160;',
 						'section' => 'datetime/dateformat',
 					);
 		}

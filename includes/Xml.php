@@ -147,7 +147,7 @@ class Xml {
 			. "\n"
 			. Xml::closeElement( 'select' );
 		if ( !is_null( $label ) ) {
-			$ret = Xml::label( $label, $element_name ) . '&nbsp;' . $ret;
+			$ret = Xml::label( $label, $element_name ) . '&#160;' . $ret;
 		}
 		return $ret;
 	}
@@ -355,7 +355,7 @@ class Xml {
 	 */
 	public static function inputLabel( $label, $name, $id, $size=false, $value=false, $attribs=array() ) {
 		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
-		return $label . '&nbsp;' . $input;
+		return $label . '&#160;' . $input;
 	}
 
 	/**
@@ -374,7 +374,7 @@ class Xml {
 	 */
 	public static function checkLabel( $label, $name, $id, $checked=false, $attribs=array() ) {
 		return self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
-			'&nbsp;' .
+			'&#160;' .
 			self::label( $label, $id );
 	}
 
@@ -384,7 +384,7 @@ class Xml {
 	 */
 	public static function radioLabel( $label, $name, $value, $id, $checked=false, $attribs=array() ) {
 		return self::radio( $name, $value, $checked, array( 'id' => $id ) + $attribs ) .
-			'&nbsp;' .
+			'&#160;' .
 			self::label( $label, $id );
 	}
 

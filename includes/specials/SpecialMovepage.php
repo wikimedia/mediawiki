@@ -277,7 +277,7 @@ class MovePageForm {
 					# move and we aren't moving the talk page.
 					$this->moveSubpages && ($this->oldTitle->hasSubpages() || $this->moveTalk),
 					array( 'id' => 'wpMovesubpages' )
-				) . '&nbsp;' .
+				) . '&#160;' .
 				Xml::tags( 'label', array( 'for' => 'wpMovesubpages' ),
 					wfMsgExt(
 						( $this->oldTitle->hasSubpages()
@@ -310,7 +310,7 @@ class MovePageForm {
 		$wgOut->addHTML( "	
 				{$confirm}
 			<tr>
-				<td>&nbsp;</td>
+				<td>&#160;</td>
 				<td class='mw-submit'>" .
 					Xml::submitButton( $movepagebtn, array( 'name' => $submitVar ) ) .
 				"</td>
