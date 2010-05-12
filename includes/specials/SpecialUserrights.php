@@ -77,7 +77,7 @@ class UserrightsPage extends SpecialPage {
 				$this->mTarget = $wgUser->getName();
 		}
 
-		if ( $this->mTarget == $wgUser->getName() )
+		if ( User::getCanonicalName( $this->mTarget ) == $wgUser->getName() )
 			$this->isself = true;
 
 		if( !$this->userCanChangeRights( $wgUser, true ) ) {
