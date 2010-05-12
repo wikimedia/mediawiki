@@ -8,6 +8,7 @@
  * @file
  *
  * @author .anaconda
+ * @author Andria
  * @author Broc
  * @author BrokenArrow
  * @author Brownout
@@ -1421,7 +1422,7 @@ L'operazione non può essere annullata.",
 'action-deleterevision'       => 'cancellare questa versione',
 'action-deletedhistory'       => 'visualizzare la cronologia cancellata di questa pagina',
 'action-browsearchive'        => 'cercare pagine cancellate',
-'action-undelete'             => 'recuperare questa pagina',
+'action-undelete'             => 'recuperare custa pàgina',
 'action-suppressrevision'     => 'rivedere e ripristinare le modifiche nascoste',
 'action-suppressionlog'       => 'visionare questo log privato',
 'action-block'                => 'bloccare questo utente in scrittura',

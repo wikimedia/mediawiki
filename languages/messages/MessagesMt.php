@@ -775,7 +775,7 @@ Jista' jkun li int diġà biddilt il-password, jew għamilt rikjesta għal passw
 # Edit pages
 'summary'                          => 'Taqsira:',
 'subject'                          => 'Suġġett/Titlu:',
-'minoredit'                        => 'Din hija modifika żgħira',
+'minoredit'                        => "Din hija modifika ta' importanza minuri",
 'watchthis'                        => 'Segwi din il-paġna',
 'savearticle'                      => 'Salva l-paġna',
 'preview'                          => 'Dehra proviżorja',
@@ -1075,7 +1075,7 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'mergelogpagetext'   => "Hawn taħt hawn lista ta' l-aktar tgħaqqid riċenti ta' paġna waħda ta' storja f'oħra.",
 
 # Diffs
-'history-title'           => 'Storja ta\' reviżjoni ta\' "$1"',
+'history-title'           => 'Kronoloġija tal-modifiki ta\' "$1"',
 'difference'              => '(Differenzi bejn ir-reviżjonijiet)',
 'lineno'                  => 'Linja $1:',
 'compareselectedversions' => 'Qabbel il-verżjonijiet magħżula',
@@ -1807,9 +1807,9 @@ Ara wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].',
 'newuserlog-autocreate-entry' => 'Kont maħluq awtomatikament',
 
 # Special:ListGroupRights
-'listgrouprights'          => "Drittijiet tal-grupp ta' l-utenti",
-'listgrouprights-summary'  => "Il-lista segwenti hija dwar gruppi ta' l-utenti għal din il-wiki, bl-aċċess tad-drittijiet assoċjati.<br />
-Aktar informazzjoni dwar drittijiet tal-individwi tista' tinstab fuq [[{{MediaWiki:Listgrouprights-helppage}}]].",
+'listgrouprights'          => 'Drittijiet tal-grupp tal-utenti',
+'listgrouprights-summary'  => "Hawn taħt hawn elenkati l-gruppi tal-utenti għal din il-wiki, bid-drittijiet ta' aċċess rispettiv.
+Jista' jkun hemm [[{{MediaWiki:Listgrouprights-helppage}}|aktar informazzjoni]] fuq id-drittjiet individwali.",
 'listgrouprights-group'    => 'Grupp',
 'listgrouprights-rights'   => 'Drittijiet',
 'listgrouprights-helppage' => 'Help:Drittijiet tal-grupp',

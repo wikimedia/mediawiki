@@ -2654,6 +2654,7 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 'importstart'                => 'Importando páginas...',
 'import-revision-count'      => '{{PLURAL:$1|uma edição|$1 edições}}',
 'importnopages'              => 'Não existem páginas a importar.',
+'imported-log-entries'       => '{{PLURAL:$1|Importado|Importados}} $1 {{PLURAL:$1|entradas de log|entradas de log}}.',
 'importfailed'               => 'A importação falhou: $1',
 'importunknownsource'        => 'Tipo de fonte de importação desconhecida',
 'importcantopen'             => 'Não foi possível abrir o arquivo de importação',

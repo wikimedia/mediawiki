@@ -982,7 +982,7 @@ $3による理由は以下の通りです: ''$2''",
 'histfirst'              => '最古',
 'histlast'               => '最新',
 'historysize'            => '({{PLURAL:$1|$1バイト}})',
-'historyempty'           => '(なし)',
+'historyempty'           => '(空)',
 
 # Revision feed
 'history-feed-title'          => '変更履歴',

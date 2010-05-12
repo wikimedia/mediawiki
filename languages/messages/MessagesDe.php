@@ -2691,6 +2691,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'importstart'                => 'Importiere Seite …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versionen}}',
 'importnopages'              => 'Keine Seite zum Importieren vorhanden.',
+'imported-log-entries'       => '$1 {{PLURAL:$1|lLogbucheintrag|Logbucheinträge}} importiert.',
 'importfailed'               => 'Import fehlgeschlagen: $1',
 'importunknownsource'        => 'Unbekannte Importquelle',
 'importcantopen'             => 'Importdatei konnte nicht geöffnet werden',
