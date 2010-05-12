@@ -107,7 +107,7 @@ class SpecialImport extends SpecialPage {
 		} else {
 			$wgOut->addWikiMsg( "importstart" );
 
-			$importer = new ImportXMLReader( $source );
+			$importer = new WikiImporter( $source );
 			if( !is_null( $this->namespace ) ) {
 				$importer->setTargetNamespace( $this->namespace );
 			}
