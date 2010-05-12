@@ -605,7 +605,7 @@ $wgAutoloadLocalClasses = array(
 	'WantedPagesPage' => 'includes/specials/SpecialWantedpages.php',
 	'WantedTemplatesPage' => 'includes/specials/SpecialWantedtemplates.php',
 	'WhatLinksHerePage' => 'includes/specials/SpecialWhatlinkshere.php',
-	'WikiImporter' => 'includes/Import.php',
+	'ImportXMLReader' => 'includes/ImportXMLReader.php',
 	'WikiRevision' => 'includes/Import.php',
 	'WithoutInterwikiPage' => 'includes/specials/SpecialWithoutinterwiki.php',
 

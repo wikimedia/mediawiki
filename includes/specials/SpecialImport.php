@@ -107,7 +107,7 @@ class SpecialImport extends SpecialPage {
 		} else {
 			$wgOut->addWikiMsg( "importstart" );
 
-			$importer = new WikiImporter( $source );
+			$importer = new ImportXMLReader( $source );
 			if( !is_null( $this->namespace ) ) {
 				$importer->setTargetNamespace( $this->namespace );
 			}
@@ -274,9 +274,13 @@ class SpecialImport extends SpecialPage {
  */
 class ImportReporter {
 	private $reason=false;
+	private $mOriginalLogCallback = null;
+	private $mLogItemCount = 0;
 
 	function __construct( $importer, $upload, $interwiki , $reason=false ) {
 		$importer->setPageOutCallback( array( $this, 'reportPage' ) );
+		$this->mOriginalLogCallback =
+			$importer->setLogItemCallback( array( $this, 'reportLogItem' ) );
 		$this->mPageCount = 0;
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
@@ -286,6 +290,13 @@ class ImportReporter {
 	function open() {
 		global $wgOut;
 		$wgOut->addHTML( "<ul>\n" );
+	}
+	
+	function reportLogItem( /* ... */ ) {
+		$this->mLogItemCount++;
+		if ( is_callable( $this->mOriginalLogCallback ) ) {
+			call_user_func_array( $this->mOriginalLogCallback, func_get_args() );
+		}
 	}
 
 	function reportPage( $title, $origTitle, $revisionCount, $successCount ) {
@@ -340,7 +351,12 @@ class ImportReporter {
 
 	function close() {
 		global $wgOut;
-		if( $this->mPageCount == 0 ) {
+		
+		if ( $this->mLogItemCount > 0 ) {
+			$msg = wfMsgExt( 'imported-log-entries', 'parseinline',
+						$this->mLogItemCount );
+			$wgOut->addHTML( Xml::tags( 'li', null, $msg ) );
+		} elseif( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
 			$wgOut->addHTML( "</ul>\n" );
 			return new WikiErrorMsg( "importnopages" );
 		}
