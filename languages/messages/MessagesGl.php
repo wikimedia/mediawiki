@@ -2202,7 +2202,7 @@ Pode mudar o nivel de protección da páxina pero iso non afectará á protecci�
 'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten os permisos necesarios para editala.',
 'protect-othertime'           => 'Outro período:',
 'protect-othertime-op'        => 'outro período',
-'protect-existing-expiry'     => 'Período de caducidade existente: $2, $3',
+'protect-existing-expiry'     => 'Período de caducidade actual: $2 ás $3',
 'protect-otherreason'         => 'Outro motivo:',
 'protect-otherreason-op'      => 'Outro motivo',
 'protect-dropdown'            => '*Motivos frecuentes para a protección
