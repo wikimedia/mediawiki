@@ -195,7 +195,7 @@ class UsersPager extends AlphabeticPager {
 			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
 		$out .= Xml::closeElement( 'select' ) . '<br />';
 		$out .= Xml::checkLabel( wfMsg('listusers-editsonly'), 'editsOnly', 'editsOnly', $this->editsOnly );
-		$out .= '&#160;';
+		$out .= '&nbsp;';
 		$out .= Xml::checkLabel( wfMsg('listusers-creationsort'), 'creationSort', 'creationSort', $this->creationSort );
 		$out .= '<br />';
 

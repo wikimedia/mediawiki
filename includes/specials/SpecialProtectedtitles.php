@@ -99,10 +99,10 @@ class ProtectedTitlesForm {
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'protectedtitles' ) ) .
-			Xml::hidden( 'title', $special ) . "&#160;\n" .
-			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
-			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"&#160;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
+			Xml::hidden( 'title', $special ) . "&nbsp;\n" .
+			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
+			$this->getLevelMenu( $level ) . "&nbsp;\n" .
+			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
 	}
 
@@ -115,7 +115,7 @@ class ProtectedTitlesForm {
 	 */
 	function getNamespaceMenu( $namespace = null ) {
 		return Xml::label( wfMsg( 'namespace' ), 'namespace' )
-			. '&#160;'
+			. '&nbsp;'
 			. Xml::namespaceSelector( $namespace, '' );
 	}
 
@@ -147,7 +147,7 @@ class ProtectedTitlesForm {
 		}
 
 		return
-			Xml::label( wfMsg('restriction-level') , $this->IdLevel ) . '&#160;' .
+			Xml::label( wfMsg('restriction-level') , $this->IdLevel ) . '&nbsp;' .
 			Xml::tags( 'select',
 				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
 				implode( "\n", $options ) );

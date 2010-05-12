@@ -642,7 +642,7 @@ class SpecialUpload extends SpecialPage {
 			// if there isn't an exact match...
 			$file = wfLocalFile( $filename );
 		}
-		$s = '&#160;';
+		$s = '&nbsp;';
 		if ( $file ) {
 			$exists = UploadBase::getExistsWarning( $file );
 			$warning = self::getExistsWarning( $exists );

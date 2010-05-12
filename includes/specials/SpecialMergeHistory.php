@@ -177,7 +177,7 @@ class MergehistoryForm {
 						"</td>
 					</tr>
 					<tr>
-						<td>&#160;</td>
+						<td>&nbsp;</td>
 						<td class='mw-submit'>" .
 							Xml::submitButton( wfMsg( 'mergehistory-submit' ), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
 						"</td>

@@ -568,7 +568,6 @@ class MessageCache {
 				'&#32;' => ' ',
 				# Fix for NBSP, converted to space by firefox
 				'&nbsp;' => "\xc2\xa0",
-				'&#160;' => "\xc2\xa0",
 			) );
 
 		return $message;
