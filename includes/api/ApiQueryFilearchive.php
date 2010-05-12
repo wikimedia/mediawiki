@@ -83,7 +83,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		}
 
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
-		$this->addFieldsIf( 'fa_bitdepth', $fld_bitdepth );
+		$this->addFieldsIf( 'fa_bits', $fld_bitdepth );
 
 		// Image filters
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
@@ -154,7 +154,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['metadata'] = $row->fa_metadata ? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result ) : null;
 			}
 			if ( $fld_bitdepth ){
-				$file['bitdepth'] = $row->fa_bitdepth;
+				$file['bitdepth'] = $row->fa_bits;
 			}
 			if ( $fld_mime ) {
 				$file['mime'] = "$row->fa_major_mime/$row->fa_minor_mime";
