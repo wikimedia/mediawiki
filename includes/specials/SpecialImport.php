@@ -350,11 +350,11 @@ class ImportReporter {
 	}
 
 	function close() {
-		global $wgOut;
+		global $wgOut, $wgLang;
 		
 		if ( $this->mLogItemCount > 0 ) {
 			$msg = wfMsgExt( 'imported-log-entries', 'parseinline',
-						$this->mLogItemCount );
+						$wgLang->formatNum( $this->mLogItemCount ) );
 			$wgOut->addHTML( Xml::tags( 'li', null, $msg ) );
 		} elseif( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
 			$wgOut->addHTML( "</ul>\n" );

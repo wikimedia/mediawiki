@@ -2173,6 +2173,7 @@ $wgMessageStructure = array(
 		'importstart',
 		'import-revision-count',
 		'importnopages',
+		'imported-log-entries',
 		'importfailed',
 		'importunknownsource',
 		'importcantopen',
