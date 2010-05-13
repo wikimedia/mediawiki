@@ -118,7 +118,7 @@ class Services_JSON
 	/**
 	 * constructs a new JSON instance
 	 *
-	 * @param int $use object behavior flags; combine with boolean-OR
+	 * @param $use Integer: object behavior flags; combine with boolean-OR
 	 *
 	 *	possible values:
 	 *	- SERVICES_JSON_LOOSE_TYPE:  loose typing.
@@ -156,8 +156,8 @@ class Services_JSON
 	 * provides a slower PHP-only method for installations
 	 * that lack the multibye string extension.
 	 *
-	 * @param string  $utf16  UTF-16 character
-	 * @return string  UTF-8 character
+	 * @param $utf16 String: UTF-16 character
+	 * @return String: UTF-8 character
 	 * @access private
 	 */
 	function utf162utf8($utf16)
@@ -211,8 +211,8 @@ class Services_JSON
 	 * provides a slower PHP-only method for installations
 	 * that lack the multibye string extension.
 	 *
-	 * @param string  $utf8   UTF-8 character
-	 * @return string  UTF-16 character
+	 * @param $utf8 String: UTF-8 character
+	 * @return String: UTF-16 character
 	 * @access private
 	 */
 	function utf82utf16($utf8)
@@ -265,11 +265,11 @@ class Services_JSON
 	/**
 	 * encodes an arbitrary variable into JSON format
 	 *
-	 * @param mixed $var any number, boolean, string, array, or object to be encoded.
+	 * @param $var Mixed: any number, boolean, string, array, or object to be encoded.
 	 *			see argument 1 to Services_JSON() above for array-parsing behavior.
 	 *			if var is a strng, note that encode() always expects it
 	 *			to be in ASCII or UTF-8 format!
-	 * @param bool $pretty pretty-print output with indents and newlines
+	 * @param $pretty Boolean: pretty-print output with indents and newlines
 	 *
 	 * @return mixed JSON string representation of input var or an error if a problem occurs
 	 * @access public
@@ -285,7 +285,7 @@ class Services_JSON
    	/**
 	 * encodes an arbitrary variable into JSON format
 	 *
-	 * @param mixed $var any number, boolean, string, array, or object to be encoded.
+	 * @param $var Mixed: any number, boolean, string, array, or object to be encoded.
 	 *			see argument 1 to Services_JSON() above for array-parsing behavior.
 	 *			if var is a strng, note that encode() always expects it
 	 *			to be in ASCII or UTF-8 format!
@@ -479,10 +479,10 @@ class Services_JSON
 	/**
 	 * array-walking function for use in generating JSON-formatted name-value pairs
 	 *
-	 * @param string $name name of key to use
-	 * @param mixed $value reference to an array element to be encoded
+	 * @param $name String: name of key to use
+	 * @param $value Mixed: reference to an array element to be encoded
 	 *
-	 * @return string JSON-formatted name-value pair, like '"name":value'
+	 * @return String: JSON-formatted name-value pair, like '"name":value'
 	 * @access private
 	 */
 	function name_value($name, $value)
@@ -499,9 +499,9 @@ class Services_JSON
 	/**
 	 * reduce a string by removing leading and trailing comments and whitespace
 	 *
-	 * @param $str string string value to strip of comments and whitespace
+	 * @param $str String: string value to strip of comments and whitespace
 	 *
-	 * @return string string value stripped of comments and whitespace
+	 * @return String: string value stripped of comments and whitespace
 	 * @access private
 	 */
 	function reduce_string($str)
@@ -526,7 +526,7 @@ class Services_JSON
 	/**
 	 * decodes a JSON string into appropriate variable
 	 *
-	 * @param string $str JSON-formatted string
+	 * @param $str String: JSON-formatted string
 	 *
 	 * @return mixed number, boolean, string, array, or object
 	 *		   corresponding to given JSON input string.
