@@ -569,7 +569,8 @@ Lūdzu iekļauj šos visos ziņojumos, kurus sūti adminiem, apspriežot šo blo
 'confirmedittext'               => 'Lai varētu izmainīt lapas, vispirms jāapstiprina savu e-pasta adresi.
 Norādi un apstiprini e-pasta adresi savos [[Special:Preferences|lietotāja uzstādījumos]].',
 'nosuchsectiontitle'            => 'Nevaru atrast sadaļu',
-'nosuchsectiontext'             => 'Tu mēģināji izmainīt neeksistējošu nodaļu.',
+'nosuchsectiontext'             => 'Jūs mēģinājāt rediģēt sadaļu, kas neeksistē.
+Tā var būt pārvietota vai dzēsta, kamēr jūs apskatījāt lapu.',
 'loginreqtitle'                 => 'Nepieciešama ieiešana',
 'loginreqlink'                  => 'login',
 'accmailtitle'                  => 'Parole izsūtīta.',

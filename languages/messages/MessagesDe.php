@@ -2829,7 +2829,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymer Benutzer|Anonyme Benutzer}} auf {{SITENAME}}',
-'siteuser'         => '{{SITENAME}}-Benutzer $1',
+'siteuser'         => '{{SITENAME}}-{{GENDER:$2|Benutzer|Benutzerin|Benutzer}} $1',
 'anonuser'         => 'Anonymer {{SITENAME}}-Benutzer $1',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.',
 'othercontribs'    => 'Basierend auf der Arbeit von $1.',

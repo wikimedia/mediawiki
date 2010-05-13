@@ -2436,6 +2436,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'importstart'                => 'Importuju…',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}}',
 'importnopages'              => 'Žane strony za importowanje.',
+'imported-log-entries'       => '$1 {{PLURAL:$1|protokolowy zapisk importowany|protokolowej zapiskaj importowanej|protokolowe zapiski importowane|protokolowych zapiskow importowanych}}.',
 'importfailed'               => 'Import zwrěšćił: $1',
 'importunknownsource'        => 'Njeznate importowe žórło',
 'importcantopen'             => 'Importowa dataja njeda so wočinjeć.',

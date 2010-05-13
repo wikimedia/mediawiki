@@ -1744,7 +1744,7 @@ PICT # misc.
 'upload-file-error'         => 'Erro interno',
 'upload-file-error-text'    => 'Ocorreu um erro interno ao tentar criar um ficheiro temporário no servidor.
 Contacte um [[Special:ListUsers/sysop|administrador]], por favor.',
-'upload-misc-error'         => 'Erro desconhecido de envio',
+'upload-misc-error'         => 'Erro de carregamento desconhecido',
 'upload-misc-error-text'    => 'Ocorreu um erro desconhecido durante o envio.
 Verifique se o endereço (URL) é válido e acessível e tente novamente.
 Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].',
