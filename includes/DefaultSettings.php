@@ -2676,7 +2676,7 @@ $wgDebugTidy = false;
 $wgValidateAllHtml = false;
 
 /** See list of skins and their symbolic names in languages/Language.php */
-$wgDefaultSkin = 'monobook';
+$wgDefaultSkin = 'vector';
 
 /**
 * Should we allow the user's to select their own skin that will override the default?
