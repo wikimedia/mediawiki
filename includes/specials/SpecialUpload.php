@@ -732,8 +732,11 @@ class UploadForm extends HTMLForm {
 		$this->mHideIgnoreWarning = !empty( $options['hideignorewarning'] );
 		$this->mDestWarningAck = !empty( $options['destwarningack'] );
 
-		$this->mTextTop = $options['texttop'];
-		$this->mTextAfterSummary = $options['textaftersummary'];
+		$this->mTextTop = isset( $options['texttop'] )
+			? $options['texttop'] : '';
+
+		$this->mTextAfterSummary = isset( $options['textaftersummary'] )
+			? $options['textaftersummary'] : ''; 
 
 		$sourceDescriptor = $this->getSourceSection();
 		$descriptor = $sourceDescriptor
