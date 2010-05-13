@@ -115,7 +115,8 @@ The installation may fail!",
 	'config-xcache'                   => '[http://trac.lighttpd.net/xcache/ XCache] installed',
 	'config-apc'                      => '[http://www.php.net/apc APC] installed',
 	'config-eaccel'                   => '[http://eaccelerator.sourceforge.net/ eAccelerator] installed',
-	'config-no-cache'                 => "'''Warning:''' Could not find [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC] or [http://trac.lighttpd.net/xcache/ XCache].
+	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] installed',
+	'config-no-cache'                 => "'''Warning:''' Could not find [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].
 Object caching is not enabled.",
 	'config-diff3-good'               => 'Found GNU diff3: <code>$1</code>.',
 	'config-diff3-bad'                => 'GNU diff3 not found.',
@@ -399,7 +400,7 @@ Enter the license name manually.',
 Medium to large sites are highly encouraged to enable this, and small sites will see benefits as well.',
 	'config-cache-none'               => 'No caching.
 No functionality is removed, but speed may be impacted.',
-	'config-cache-accel'              => 'PHP object caching (APC, eAccelerator or XCache)',
+	'config-cache-accel'              => 'PHP object caching (APC, eAccelerator, XCache or WinCache)',
 	'config-cache-memcached'          => 'Use Memcached (requires additional setup and configuration)',
 	'config-cache-db'                 => 'Cache data into the database',
 	'config-cache-anything'           => 'MediaWiki will attempt to cache data anywhere possible, except in Memcached, unless indicated explicitely',
