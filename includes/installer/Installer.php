@@ -142,7 +142,8 @@ abstract class Installer {
 	var $objectCaches = array( 
 		'xcache' => 'xcache_get',
 		'apc' => 'apc_fetch',
-		'eaccel' => 'eaccelerator_get'
+		'eaccel' => 'eaccelerator_get',
+		'wincache' => 'wincache_ucache_get'
 	);
 
 	/**
