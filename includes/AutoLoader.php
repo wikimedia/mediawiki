@@ -254,6 +254,7 @@ $wgAutoloadLocalClasses = array(
 	'WikiMap' => 'includes/WikiMap.php',
 	'WikiReference' => 'includes/WikiMap.php',
 	'WikiXmlError' => 'includes/WikiError.php',
+	'WinCacheBagOStuff' => 'includes/BagOStuff.php',
 	'XCacheBagOStuff' => 'includes/BagOStuff.php',
 	'XmlDumpWriter' => 'includes/Export.php',
 	'Xml' => 'includes/Xml.php',
