@@ -72,6 +72,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   is no title match in search and the user has no rights to create pages.
 * (bug 23429) Added new hook WatchlistEditorBuildRemoveLine
 * (bug 18488) Added maintenance script refreshCategoryCounts.php
+* (bug 22844) Added support for WinCache object caching
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
