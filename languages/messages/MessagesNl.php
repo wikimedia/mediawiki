@@ -1679,7 +1679,7 @@ Zie de [[Special:NewFiles|galerij met nieuwe bestanden]] voor een visueler overz
 'filedesc'                    => 'Beschrijving',
 'fileuploadsummary'           => 'Samenvatting:',
 'filereuploadsummary'         => 'Bestandswijzigingen:',
-'filestatus'                  => 'Auteursrechtensituatie:',
+'filestatus'                  => 'Auteursrechtenstatus:',
 'filesource'                  => 'Bron:',
 'uploadedfiles'               => 'Geüploade bestanden',
 'ignorewarning'               => 'Deze waarschuwing negeren en het bestand toch opslaan',

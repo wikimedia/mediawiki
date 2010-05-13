@@ -2907,7 +2907,7 @@ Os demais agocharanse por omisión.
 'exif-pixelxdimension'             => 'Altura de imaxe válida',
 'exif-makernote'                   => 'Notas do fabricante',
 'exif-usercomment'                 => 'Comentarios do usuario',
-'exif-relatedsoundfile'            => 'Ficheiro de audio relacionado',
+'exif-relatedsoundfile'            => 'Ficheiro de son relacionado',
 'exif-datetimeoriginal'            => 'Data e hora de xeración do ficheiro',
 'exif-datetimedigitized'           => 'Data e hora de dixitalización',
 'exif-subsectime'                  => 'DataHora subsegundos',

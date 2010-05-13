@@ -82,6 +82,7 @@ $messages = array(
 'specialpage'      => 'Цастәи адаҟьа',
 'talk'             => 'Ахцәажәара',
 'toolbox'          => 'Амаҵыругақәа',
+'otherlanguages'   => 'Абызшәақәа',
 'lastmodifiedat'   => 'Ацыхәтәантәи аҧсахрақәа абри адаҟьа аҟны: $2, $1.',
 'jumptonavigation' => 'Анавигациа',
 'jumptosearch'     => 'Аҧшаара',
