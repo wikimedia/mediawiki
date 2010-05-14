@@ -2774,6 +2774,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'importstart'                => "Pagina's aan het importeren…",
 'import-revision-count'      => '$1 {{PLURAL:$1|versie|versies}}',
 'importnopages'              => "Geen pagina's te importeren.",
+'imported-log-entries'       => '$1 {{PLURAL:$1|logboekregel|logboekregels}} geïmporteerd.',
 'importfailed'               => 'Import is mislukt: $1',
 'importunknownsource'        => 'Onbekend importbrontype',
 'importcantopen'             => 'Kon het importbestand niet openen',

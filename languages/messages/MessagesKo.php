@@ -2611,6 +2611,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'importstart'                => '문서를 가져오는 중...',
 'import-revision-count'      => '판 $1개',
 'importnopages'              => '가져올 문서가 없습니다.',
+'imported-log-entries'       => '로그 항목 $1개를 가져왔습니다.',
 'importfailed'               => '가져오기 실패: <nowiki>$1</nowiki>',
 'importunknownsource'        => '알 수 없는 가져오기 자료 유형',
 'importcantopen'             => '파일을 열 수 없습니다.',

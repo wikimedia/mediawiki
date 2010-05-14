@@ -2659,6 +2659,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'importstart'                => 'Importujú sa stránky...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revízia|revízie|revízií}}',
 'importnopages'              => 'Žiadne stránky pre import.',
+'imported-log-entries'       => '{{PLURAL:$1|Importovaná $1 položka záznamu|Importované $1 položky záznamu|Importovaných $1 položiek záznamu}}.',
 'importfailed'               => 'Chyba pri importe: $1',
 'importunknownsource'        => 'Neznámy typ zdroja pre import',
 'importcantopen'             => 'Nedal sa otvoriť súbor importu',

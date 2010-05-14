@@ -9,6 +9,7 @@
  *
  * @author Ainali
  * @author Boivie
+ * @author Dafer45
  * @author Fluff
  * @author GameOn
  * @author Grillo
@@ -2678,6 +2679,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'importstart'                => 'Importerar sidor....',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versioner}}',
 'importnopages'              => 'Det finns inga sidor att importera.',
+'imported-log-entries'       => 'Importerade $1 {{PLURAL: $1 |loggpost|loggposter}}.',
 'importfailed'               => 'Importen misslyckades: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'Okänd typ av importkälla',
 'importcantopen'             => 'Misslyckades med att öppna importfilen.',

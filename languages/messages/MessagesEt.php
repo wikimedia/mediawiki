@@ -1753,7 +1753,7 @@ Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esime
 'duplicatesoffile'          => '{{PLURAL:$1|Järgnev fail|Järgnevad $1 faili}} on selle faili {{PLURAL:$1|duplikaat|duplikaadid}} ([[Special:FileDuplicateSearch/$2|üksikasjad]]):',
 'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there'   => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
-'sharedupload-desc-here'    => 'See on jagutud fail allikast $1 ja seda saab kasutada ka teistes projektides. Faili sealne [$2 kirjeldus] on kuvatud allpool.',
+'sharedupload-desc-here'    => 'See on jagatud fail allikast $1 ja seda saab kasutada ka teistes projektides. Faili sealne [$2 kirjeldus] on kuvatud allpool.',
 'filepage-nofile'           => 'Sellenimelist faili ei ole.',
 'filepage-nofile-link'      => 'Sellenimelist faili ei ole, kuid sa saad selle [$1 üles laadida].',
 'uploadnewversion-linktext' => 'Laadi üles selle faili uus versioon',

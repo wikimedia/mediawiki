@@ -526,11 +526,10 @@ Query: $2',
 'editinginterface'     => "'''Ocio:''' El testo de sta pajina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałizà par tuti i utenti. 
 Par łe tradusion, considera ła posibiłità de usare [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el projeto MediaWiki par ła localizasion.",
 'sqlhidden'            => '(ła query SQL ła xè sta sconta)',
-'cascadeprotected'     => 'Su sta pàxena no se pol far modifighe parché ła xe stà inclusa {{PLURAL:$1|ne ła pàxena indicà de seguito, che ła xe stà proteta|ne łe pàxene indicae de seguito, che łe xe stà protete}} selezionando ła protesion "ricorsiva":
-$2',
-'namespaceprotected'   => "No te ghè i permessi necessari par modificar le pagine del namespace '''$1'''.",
-'customcssjsprotected' => "No te pol mìa modificar sta pagina, parché la contien le inpostazion personali de n'altro utente.",
-'ns-specialprotected'  => 'No se pol modificar le pagine speciali.',
+'cascadeprotected'     => 'So sta pajina no xè posibiłe efetuare modifeghe parché xè sta inclusa {{PLURAL:$1|ne ła pajina indicà de seguito, che xè sta proteta|ne łe pajine indicae de seguito, che e xè sta protete}} sełesionando ła protesion "ricorsiva":',
+'namespaceprotected'   => "No se dispone de i parmesi nesesari par modifegare łe pajine del namespace '''$1'''.",
+'customcssjsprotected' => "No se dispone de i parmesi nesesari a ła modifega de ła pajina, en quanto contien łe inpostasion parsonałi de n'altro utente.",
+'ns-specialprotected'  => 'No xè posibiłe modifegare łe pajine spesałi.',
 'titleprotected'       => "La creazion de na pagina con sto titolo la xe stà blocà da [[User:$1|$1]].
 La motivazion la xe sta qua: ''$2''.",
 

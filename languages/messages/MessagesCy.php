@@ -2467,6 +2467,7 @@ Mae cofnod o bob weithred o fewnforio i'w gweld ar y [[Special:Log/import|lòg m
 'importstart'                => "Wrthi'n mewnforio...",
 'import-revision-count'      => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
 'importnopages'              => "Dim tudalennau i gael i'w mewnforio.",
+'imported-log-entries'       => 'Mewnforiwyd $1 {{PLURAL:$1|cofnod|cofnod|gofnod|cofnod|cofnod|o gofnodion}} lòg.',
 'importfailed'               => 'Mewnforio wedi methu: $1',
 'importunknownsource'        => "Y gwreiddiol i'w fewnforio o fath anhysbys",
 'importcantopen'             => "Ni ellid agor y ffeil i'w fewnforio",

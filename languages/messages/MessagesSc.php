@@ -576,6 +576,7 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente,
 'notextmatches'                  => "Peruna currispondèntzia in su testu de s'artìculu",
 'prevn'                          => '{{PLURAL:$1|cabudianu|cabudianos $1}}',
 'nextn'                          => '{{PLURAL:$1|imbeniente|imbenientes $1}}',
+'shown-title'                    => 'Ammustra $1 {{PLURAL:$1|resurtadu|resurtados}} pro pàgina',
 'viewprevnext'                   => 'Càstia ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'                 => 'Help:Agiudu',
 'searchprofile-everything'       => 'Totu',
@@ -713,6 +714,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'rightsnone' => '(nesciunu)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read'          => 'lègher custa pàgina',
 'action-edit'          => 'acontzare custa pàgina',
 'action-createpage'    => 'creare pàginas',
 'action-move'          => 'mòvere custa pàgina',
@@ -725,6 +727,10 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'recentchanges'                  => 'Ùrtimas mudàntzias',
 'recentchanges-legend'           => 'Possibilidades subra ùrtimas mudàntzias',
 'recentchanges-feed-description' => 'Custu feed riportada is ùrtimas mudàntzias a is cuntènnidos de su giassu.',
+'recentchanges-legend-newpage'   => '$1 - pàgina noa',
+'recentchanges-legend-minor'     => '$1 - acontzu minore',
+'recentchanges-legend-bot'       => '$1 - acontzu dae bot',
+'recentchanges-label-bot'        => 'Custu acontzu est stadu fatu dae unu bot',
 'rcnote'                         => "Innoe sighende {{PLURAL:$1|du est s'ùrtima mudàntzia|is ùrtimas '''$1''' mudàntzias}} {{PLURAL:$2|in s'ùrtima die|in is ùrtimas '''$2''' dies}}; is datos funt agiornaus a  $5, $4.",
 'rcnotefrom'                     => "Sas chi sighint sunt sas mudàntzias dae '''$2''' (fintzas a '''$1''').",
 'rclistfrom'                     => 'Amosta mudàntzias dae $1',
@@ -844,8 +850,9 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'disambiguationspage' => 'Template:Disambìgua',
 
 'doubleredirects'     => 'Redirects dòpius',
-'doubleredirectstext' => '<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br />
-Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il "reale" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.',
+'doubleredirectstext' => 'Custa pàgina cuntenet una lista de pàginas ki re-indiritzant a àteras pàginas de re-indiritzamentu.
+Ogni lìnia cuntenet ligàmines a su primu e a su de duos re-indiritzamentu, aici comente sa prima lìnia de sa de duos re-indiritzamentos, chi de sòlitu adòbiat s\'artìculu "beru", a sa cale fintzas su primu re-indiritzamentu dia depet puntare.
+Is re-indiritzamentos <s>cantzellados</s> sunt stados curretos.',
 
 'brokenredirects'        => 'Redirects isballiaus',
 'brokenredirectstext'    => 'Custus redirects ligant cun pàginas chi no esistint.',
@@ -879,7 +886,8 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'newpages-username' => 'Nòmene usuàriu:',
 'move'              => 'Movi',
 'movethispage'      => 'Movi custa pàgina',
-'unusedimagestext'  => '<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.',
+'unusedimagestext'  => 'Is files ki sighint sunt stados carrigados ma non sunt impreados.
+Dia podent essere immàgines impreadas dae àteros giassos cun unu ligàmine diretu, e tando podent essere listados inoghe comente usu ativu.',
 'notargettitle'     => 'Non ddoi est sa pàgina obietivu',
 'notargettext'      => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 'pager-newer-n'     => '{{PLURAL:$1|1 prus nou|$1 prus nous}}',
@@ -1137,10 +1145,10 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 'unlockdbsuccesstext' => 'Su database est istadu sbloccau.',
 
 # Move page
-'move-page'          => 'Movimentu de $1',
-'move-page-backlink' => '← $1',
-'move-page-legend'   => 'Movimentu pàgina',
-'movepagetext'       => "Cun custu mòdulu podes renomenare una pàgina, movende totu s'istòria sua a sa pàgina noa. 
+'move-page'               => 'Movimentu de $1',
+'move-page-backlink'      => '← $1',
+'move-page-legend'        => 'Movimentu pàgina',
+'movepagetext'            => "Cun custu mòdulu podes renomenare una pàgina, movende totu s'istòria sua a sa pàgina noa. 
 Su tìtulu bèciu at a diventare una pàgina redirect a su tìtulu nou. 
 Podes agiornare automaticamente is redirects ca ligant a su tìtulu originale. 
 Chi scioberas de no, assicuradia de cuntrollare pro [[Special:DoubleRedirects| redirect dòpius]] o [[Special:BrokenRedirects|isballiaus]]. 
@@ -1151,37 +1159,40 @@ Annota ca sa pàgina '''non''' s'at a mòvere chi nde esistet giai un'àtera a s
 '''ATENTZIONE:'''
 Unu cambiamentu dràsticu podet creare problemas, mescamente a is pàginas prus populares; 
 pro preghere depis èssere siguru de àere cumpresu is cunseguèntzias prima de andare a in antis.",
-'movepagetalktext'   => "Sa pàgina cuntierras asotziada, chi esistit, at a èssere movida automaticamenti impare a sa pàgina base, '''a parte in custos casos''':
+'movepagetalktext'        => "Sa pàgina cuntierras asotziada, chi esistit, at a èssere movida automaticamenti impare a sa pàgina base, '''a parte in custos casos''':
 * su movimentu de sa pàgina est intre namespaces diversos;
 * in currispondèntzia de su tìtulu nou esistit giai una pàgina de cuntierras (non bùida);
 * sa casella inoe in bàsciu no est istata sceberada.
 
 In custos casos, si cheres, depes mòvere a manu su cuntènnidu de sa pàgina.",
-'movearticle'        => 'Movi sa pàgina:',
-'movenologin'        => 'Non hai effettuato il login',
-'movenologintext'    => 'Depis èssere unu usuàriu registrau e [[Special:UserLogin|intrau]] pro poder mòvere una pàgina',
-'newtitle'           => 'Tìtulu nou:',
-'move-watch'         => 'Pone ogru a custa pàgina',
-'movepagebtn'        => 'Movi sa pàgina',
-'pagemovedsub'       => 'Movimentu andau beni',
-'movepage-moved'     => '\'\'\'"$1" est istada mòvida a "$2"\'\'\'',
-'articleexists'      => 'Una pàgina cun custu nòmene esistit giai, o su nòmene chi as sceberau no est bàlidu.
+'movearticle'             => 'Movi sa pàgina:',
+'movenologin'             => 'Non hai effettuato il login',
+'movenologintext'         => 'Depis èssere unu usuàriu registrau e [[Special:UserLogin|intrau]] pro poder mòvere una pàgina',
+'newtitle'                => 'Tìtulu nou:',
+'move-watch'              => 'Pone ogru a custa pàgina',
+'movepagebtn'             => 'Movi sa pàgina',
+'pagemovedsub'            => 'Movimentu andau beni',
+'movepage-moved'          => '\'\'\'"$1" est istada mòvida a "$2"\'\'\'',
+'articleexists'           => 'Una pàgina cun custu nòmene esistit giai, o su nòmene chi as sceberau no est bàlidu.
 Pro pregheri scebera un àteru nòmene.',
-'talkexists'         => "'''Su movimentu de sa pàgina est andau beni, ma no est istadu possibile moviri sa pàgina de cuntierras proite ndi esistit giai un àtera cun su stessu tìtulu. Pro preghere aciungi tue su cuntestu de sa pàgina becia.'''",
-'movedto'            => 'mòvida a',
-'movetalk'           => 'Movi puru sa pàgina de cuntierras',
-'1movedto2'          => 'at mòvidu [[$1]] a [[$2]]',
-'1movedto2_redir'    => 'at mòvidu [[$1]] a [[$2]] subra redirect',
-'movelogpage'        => 'Moviduras',
-'movereason'         => 'Motivu:',
-'revertmove'         => 'fùrria',
+'talkexists'              => "'''Su movimentu de sa pàgina est andau beni, ma no est istadu possibile moviri sa pàgina de cuntierras proite ndi esistit giai un àtera cun su stessu tìtulu. Pro preghere aciungi tue su cuntestu de sa pàgina becia.'''",
+'movedto'                 => 'mòvida a',
+'movetalk'                => 'Movi puru sa pàgina de cuntierras',
+'1movedto2'               => 'at mòvidu [[$1]] a [[$2]]',
+'1movedto2_redir'         => 'at mòvidu [[$1]] a [[$2]] subra redirect',
+'movelogpage'             => 'Moviduras',
+'movereason'              => 'Motivu:',
+'revertmove'              => 'fùrria',
+'delete_and_move_confirm' => 'Eja, cantzella sa pàgina',
 
 # Export
 'export'          => 'Esporta pàginas',
 'export-download' => 'Sarva comente file',
 
 # Namespace 8 related
-'allmessagesname' => 'Nòmene',
+'allmessagesname'        => 'Nòmene',
+'allmessages-filter-all' => 'Totu',
+'allmessages-language'   => 'Limba:',
 
 # Thumbnails
 'thumbnail-more' => 'Amannia',
@@ -1247,6 +1258,9 @@ Podes castiare sa mitza sua',
 'tooltip-rollback'                => '"Rollback" annudda is mudàntzias de custa pàgina fatas dae s\'ùrtimu contribudori',
 'tooltip-undo'                    => '"Annudda" fùrriat custu acontzu e aberit su mòdulu de acontzu comente antiprima.
 Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
+
+# Attribution
+'others' => 'àteros',
 
 # Browsing diffs
 'previousdiff' => '← Acontzu in antis',
@@ -1325,6 +1339,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'watchlistall2'    => 'totu',
 'namespacesall'    => 'totu',
 'monthsall'        => 'totu',
+'limitall'         => 'totu',
 
 # E-mail address confirmation
 'confirmemail' => "Cunfirma s'indiritzu e-mail",
@@ -1378,11 +1393,13 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 # Special:Version
 'version'                  => 'Versione',
 'version-specialpages'     => 'Pàginas ispetziales',
+'version-other'            => 'Àteru',
 'version-version'          => '(Versione $1)',
 'version-software-version' => 'Versione',
 
 # Special:FilePath
-'filepath-page' => 'Nòmene de su file:',
+'filepath-page'   => 'Nòmene de su file:',
+'filepath-submit' => 'Bae',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Chirca',
@@ -1390,7 +1407,13 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 # Special:SpecialPages
 'specialpages' => 'Pàginas ispetziales',
 
+# Special:Tags
+'tags-edit' => 'acontza',
+
 # HTML forms
 'htmlform-selectorother-other' => 'Àteru',
+
+# Add categories per AJAX
+'ajax-confirm-save' => 'Sarba',
 
 );
