@@ -2517,6 +2517,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'importstart'                => 'ページを取り込んでいます...',
 'import-revision-count'      => '$1{{PLURAL:$1|版}}',
 'importnopages'              => 'インポートするページがありません',
+'imported-log-entries'       => '$1件の{{PLURAL:$1|ログ項目}}を取り込みました。',
 'importfailed'               => '取り込みに失敗しました: $1',
 'importunknownsource'        => 'インポート元のファイルタイプが不明です',
 'importcantopen'             => 'インポートファイルを開けませんでした',

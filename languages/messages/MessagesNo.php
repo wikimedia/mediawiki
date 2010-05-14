@@ -2569,6 +2569,7 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'importstart'                => 'Importerer sider&nbsp;…',
 'import-revision-count'      => '({{PLURAL:$1|Én revisjon|$1 revisjoner}})',
 'importnopages'              => 'Ingen sider å importere.',
+'imported-log-entries'       => 'Importerte $1 {{PLURAL:$1|loggoppføring|loggoppføringer}}.',
 'importfailed'               => 'Importering mislyktes: $1',
 'importunknownsource'        => 'Ukjent importkildetype',
 'importcantopen'             => 'Kunne ikke åpne importfil',
