@@ -129,8 +129,9 @@ class SearchPostgres extends SearchEngine {
 
 	/**
 	 * Construct the full SQL query to do the search.
-	 * @param $filteredTerm String
+	 * @param $term String
 	 * @param $fulltext String
+	 * @param $colname
 	 */
 	function searchQuery( $term, $fulltext, $colname ) {
 		global $wgDBversion;

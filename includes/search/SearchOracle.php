@@ -248,8 +248,8 @@ class SearchOracle extends SearchEngine {
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
 	 *
-	 * @param int $id
-	 * @param string $title
+	 * @param $id Integer
+	 * @param $title String
 	 */
 	function updateTitle($id, $title) {
 		$dbw = wfGetDB(DB_MASTER);

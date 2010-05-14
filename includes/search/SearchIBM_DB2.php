@@ -102,8 +102,8 @@ class SearchIBM_DB2 extends SearchEngine {
 	/**
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
-	 * @param string $filteredTerm String
-	 * @param bool $fulltext Boolean
+	 * @param $filteredTerm String
+	 * @param $fulltext Boolean
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit($this->queryMain($filteredTerm, $fulltext) . ' ' .
@@ -125,8 +125,8 @@ class SearchIBM_DB2 extends SearchEngine {
 	/**
 	 * Get the base part of the search query.
 	 *
-	 * @param string $filteredTerm String
-	 * @param bool $fulltext Boolean
+	 * @param $filteredTerm String
+	 * @param $fulltext Boolean
 	 * @return String
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
