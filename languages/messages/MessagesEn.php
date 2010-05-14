@@ -2149,6 +2149,9 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->', # only translate this message to other languages if you have to change it
+'upload-successful-msg'     => 'Your upload is available here: $1',
+'upload-failure-subj'       => 'Upload Problem',
+'upload-failure-msg'        => 'There was a problem with your upload:\n $1',
 
 'upload-proto-error'        => 'Incorrect protocol',
 'upload-proto-error-text'   => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
@@ -2601,6 +2604,10 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'emailsent'            => 'E-mail sent',
 'emailsenttext'        => 'Your e-mail message has been sent.',
 'emailuserfooter'      => 'This e-mail was sent by $1 to $2 by the "E-mail user" function at {{SITENAME}}.',
+
+# User Message
+'usermessage-summary'  => 'Leave system message.',
+'usermessage-editor'   => 'System messenger',
 
 # Watchlist
 'watchlist'            => 'My watchlist',

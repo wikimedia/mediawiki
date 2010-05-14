@@ -3748,4 +3748,64 @@ class User {
 
 		return $ret;
 	}
+
+	/**
+	 * Leave a user a message
+	 * @param $text String the message to leave
+	 * @param $summary String the summary for this change, defaults to
+	 *                        "Leave system message."
+	 * @param $article Article The article to update, defaults to the
+	 *                        user's talk page.
+	 * @param $editor User The user leaving the message, defaults to
+	 *                        "SystemMessage"
+	 * @param $flags Int default edit flags
+	 *
+	 * @return boolean true if it was successful
+	 */
+	public function leaveUserMessage( $subject, $text, $signature = "",
+			$summary = null, $editor = null, $flags = 0 ) {
+		if ( !isset( $summary ) ) {
+			$summary = wfMsgForContent( 'usermessage-summary' );
+		}
+
+		if ( !isset( $editor ) ) {
+			$editor = User::newFromName( wfMsgForContent( 'usermessage-editor' ) );
+			if ( !$editor->isLoggedIn() ) {
+				$editor->addToDatabase();
+			}
+		}
+
+		$article = new Article( $this->getTalkPage() );
+		wfRunHooks( 'SetupUserMessageArticle',
+			array( &$article, $subject, $this, $editor ) );
+
+		$flags = $article->checkFlags( $flags );
+
+		if ( $flags & EDIT_UPDATE ) {
+			$text .= $article->getContent();
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
+
+		try {
+			$status = $article->doEdit( $text, $summary, $flags, false, $editor );
+		} catch ( DBQueryError $e ) {
+			$status = Status::newFatal("DB Error");
+		}
+
+		if ( $status->isGood() ) {
+			// Set newtalk with the right user ID
+			$this->setNewtalk( true );
+			wfRunHooks( 'AfterUserMessage',
+				array( $this, $article, $summary, $signature, $editor, $text ) );
+			$dbw->commit();
+		} else {
+			// The article was concurrently created
+			wfDebug( __METHOD__ . ": Error ".$status->getWikiText() );
+			$dbw->rollback();
+		}
+
+		return $status->isGood();
+	}
 }

@@ -1265,6 +1265,9 @@ $wgMessageStructure = array(
 		'upload-wasdeleted',
 		'filename-bad-prefix',
 		'filename-prefix-blacklist',
+		'upload-successful-msg',
+		'upload-failure-subj',
+		'upload-failure-msg',
 	),
 	'upload-errors' => array(
 		'upload-proto-error',
@@ -1695,6 +1698,10 @@ $wgMessageStructure = array(
 		'emailsent',
 		'emailsenttext',
 		'emailuserfooter',
+	),
+	'usermessage' => array(
+		'usermessage-summary',
+		'usermessage-editor',
 	),
 	'watchlist' => array(
 		'watchlist',
@@ -3258,6 +3265,7 @@ XHTML id names.",
 	'newuserlog'          => 'Special:Log/newusers',
 	'listgrouprights'     => 'Special:ListGroupRights',
 	'emailuser'           => 'E-mail user',
+	'usermessage'         => 'User Messenger',
 	'watchlist'           => 'Watchlist',
 	'watching'            => 'Displayed when you click the "watch" button and it is in the process of watching',
 	'enotif'              => '',
