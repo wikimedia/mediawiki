@@ -320,6 +320,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryImageInfo' => 'includes/api/ApiQueryImageInfo.php',
 	'ApiQueryImages' => 'includes/api/ApiQueryImages.php',
 	'ApiQueryInfo' => 'includes/api/ApiQueryInfo.php',
+	'ApiQueryIWLinks' => 'includes/api/ApiQueryIWLinks.php',
 	'ApiQueryLangLinks' => 'includes/api/ApiQueryLangLinks.php',
 	'ApiQueryLinks' => 'includes/api/ApiQueryLinks.php',
 	'ApiQueryLogEvents' => 'includes/api/ApiQueryLogEvents.php',
