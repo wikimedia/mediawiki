@@ -2150,7 +2150,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->', # only translate this message to other languages if you have to change it
 'upload-successful-msg'     => 'Your upload is available here: $1',
-'upload-failure-subj'       => 'Upload Problem',
+'upload-failure-subj'       => 'Upload problem',
 'upload-failure-msg'        => 'There was a problem with your upload:\n $1',
 
 'upload-proto-error'        => 'Incorrect protocol',
