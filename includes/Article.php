@@ -1871,6 +1871,22 @@ class Article {
 	}
 
 	/**
+	 * Check flags and add EDIT_NEW or EDIT_UPDATE to them as needed.
+	 * @param $flags Int
+	 * @return Int updated $flags
+	 */
+	function checkFlags( $flags ) {
+		if ( !( $flags & EDIT_NEW ) && !( $flags & EDIT_UPDATE ) ) {
+			if ( $this->mTitle->getArticleID() ) {
+				$flags |= EDIT_UPDATE;
+			} else {
+				$flags |= EDIT_NEW;
+			}
+		}
+
+		return $flags;
+	}
+	/**
 	 * Article::doEdit()
 	 *
 	 * Change an existing article or create a new article. Updates RC and all necessary caches,
@@ -1936,14 +1952,7 @@ class Article {
 		# Load $this->mTitle->getArticleID() and $this->mLatest if it's not already
 		$this->loadPageData();
 
-		if ( !( $flags & EDIT_NEW ) && !( $flags & EDIT_UPDATE ) ) {
-			$aid = $this->mTitle->getArticleID();
-			if ( $aid ) {
-				$flags |= EDIT_UPDATE;
-			} else {
-				$flags |= EDIT_NEW;
-			}
-		}
+		$flags = $this->checkFlags( $flags );
 
 		if ( !wfRunHooks( 'ArticleSave', array( &$this, &$user, &$text, &$summary,
 			$flags & EDIT_MINOR, null, null, &$flags, &$status ) ) )

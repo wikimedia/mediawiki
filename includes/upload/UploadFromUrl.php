@@ -143,11 +143,11 @@ class UploadFromUrl extends UploadBase {
 		}
 
 		$status = $this->saveTempFile( $req );
-		$this->mRemoveTempFile = true;
-
-		if( !$status->isOk() ) {
+		if ( !$status->isGood() ) {
 			return $status;
 		}
+
+		$this->mRemoveTempFile = true;
 
 		$v = $this->verifyUpload();
 		if( $v['status'] !== UploadBase::OK ) {
@@ -162,12 +162,17 @@ class UploadFromUrl extends UploadBase {
 		// This comes from ApiBase
 		/* $watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() ); */
 
-		if ( !$status->isGood() ) {
-			return $status;
-		}
-
 		$status = $this->getLocalFile()->upload( $this->mTempPath, $this->comment,
 			$this->comment, File::DELETE_SOURCE, $this->mFileProps, false, $wgUser );
+
+		if ( $status->isGood() ) {
+			$url = $this->getLocalFile()->getDescriptionUrl();
+			$wgUser->leaveUserMessage( wfMsg( 'successfulupload' ),
+				wfMsg( 'upload-success-msg', $url ) );
+		} else {
+			$wgUser->leaveUserMessage( wfMsg( 'upload-failure-subj' ),
+				wfMsg( 'upload-failure-msg', $status->getWikiText() ) );
+		}
 
 		return $status;
 	}
