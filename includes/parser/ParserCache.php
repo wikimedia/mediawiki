@@ -20,7 +20,7 @@ class ParserCache {
 	 * Setup a cache pathway with a given back-end storage mechanism.
 	 * May be a memcached client or a BagOStuff derivative.
 	 *
-	 * @param object $memCached
+	 * @param $memCached Object
 	 */
 	function __construct( $memCached ) {
 		$this->mMemc = $memCached;
