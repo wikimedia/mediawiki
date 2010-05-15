@@ -607,7 +607,7 @@ class ApiMain extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'format' => 'The format of the output',
-			'action' => 'What action you would like to perform',
+			'action' => 'What action you would like to perform. See below for module help',
 			'version' => 'When showing help, include version for each module',
 			'maxlag' => 'Maximum lag',
 			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',

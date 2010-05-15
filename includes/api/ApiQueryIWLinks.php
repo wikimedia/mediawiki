@@ -30,7 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
- * A query module to list all interwiki links
+ * A query module to list all interwiki links on a page
  *
  * @ingroup API
  */
