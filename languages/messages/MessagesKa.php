@@ -104,7 +104,7 @@ $magicWords = array(
 	'img_thumbnail'         => array( '1', 'მინიატიურა', 'მინი', 'მინიასლი', 'thumbnail', 'thumb' ),
 	'img_right'             => array( '1', 'მარჯვნივ', 'right' ),
 	'img_left'              => array( '1', 'მარცხნივ', 'left' ),
-	'img_width'             => array( '1', '$1 პქ', '$1px' ),
+	'img_width'             => array( '1', '$1პქ', '$1px' ),
 	'img_center'            => array( '1', 'ცენტრი', 'center', 'centre' ),
 );
 

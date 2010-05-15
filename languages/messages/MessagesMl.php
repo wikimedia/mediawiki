@@ -227,6 +227,7 @@ $magicWords = array(
 	'img_width'             => array( '1', '$1ബിന്ദു', '$1px' ),
 	'img_center'            => array( '1', 'നടുവിൽ', 'നടുക്ക്‌', 'center', 'centre' ),
 	'img_framed'            => array( '1', 'ചട്ടം', 'ചട്ടത്തിൽ', 'framed', 'enframed', 'frame' ),
+	'img_frameless'         => array( '1', 'ചട്ടരഹിതം', 'frameless' ),
 	'img_page'              => array( '1', 'താൾ=$1', 'താൾ $1', 'page=$1', 'page $1' ),
 	'img_border'            => array( '1', 'അതിർവര', 'border' ),
 	'img_top'               => array( '1', 'മേലെ', 'top' ),
@@ -284,6 +285,9 @@ $magicWords = array(
 	'noindex'               => array( '1', '__സൂചികവേണ്ട__', '__NOINDEX__' ),
 	'protectionlevel'       => array( '1', 'സംരക്ഷണതലം', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'ദിനരേഖീകരണരീതി', 'ദിവസരേഖീകരണരീതി', 'formatdate', 'dateformat' ),
+	'url_path'              => array( '0', 'പഥം', 'PATH' ),
+	'url_wiki'              => array( '0', 'വിക്കി', 'WIKI' ),
+	'url_query'             => array( '0', 'ക്വറി', 'QUERY' ),
 );
 
 $messages = array(
