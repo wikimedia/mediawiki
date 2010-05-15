@@ -353,7 +353,7 @@ class SpecialVersion extends SpecialPage {
 
 		if( !$this->firstExtOpened ) {
 			// Insert a spacing line
-			$out .= '<tr class="sv-space">' . Xml::element( 'td', $opt ) . "</tr>\n";
+			$out .= '<tr class="sv-space">' . Xml::element( 'td', $opt, '', false ) . "</tr>\n";
 		}
 		$this->firstExtOpened = false;
 
