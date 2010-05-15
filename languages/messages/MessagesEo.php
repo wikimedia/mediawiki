@@ -27,7 +27,7 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => 'Aŭdvidaĵo',
 	NS_SPECIAL          => 'Speciala',
 	NS_TALK             => 'Diskuto',
 	NS_USER             => 'Vikipediisto',

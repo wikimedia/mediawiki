@@ -15,6 +15,38 @@
 
 $fallback = 'ru';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Амедиа',
+	NS_TALK             => 'Ахцәажәара',
+	NS_USER             => 'Иалахә',
+	NS_PROJECT_TALK     => '$1_ахцәажәара',
+	NS_FILE             => 'Афаил',
+	NS_MEDIAWIKI        => 'Амедиавики',
+	NS_TEMPLATE         => 'Ашаблон',
+	NS_HELP             => 'Ацхыраара',
+	NS_CATEGORY         => 'Акатегориа',
+);
+
+$namespaceAliases = array(
+	// Backward compat. Fallbacks from 'ru'.
+	'Медиа'                => NS_MEDIA,
+	'Служебная'            => NS_SPECIAL,
+	'Обсуждение'           => NS_TALK,
+	'Участник'             => NS_USER,
+	'Обсуждение_участника' => NS_USER_TALK,
+	'Обсуждение_$1'        => NS_PROJECT_TALK,
+	'Файл'                 => NS_FILE,
+	'Обсуждение_файла'     => NS_FILE_TALK,
+	'MediaWiki'            => NS_MEDIAWIKI,
+	'Обсуждение_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Шаблон'               => NS_TEMPLATE,
+	'Обсуждение_шаблона'   => NS_TEMPLATE_TALK,
+	'Справка'              => NS_HELP,
+	'Обсуждение_справки'   => NS_HELP_TALK,
+	'Категория'            => NS_CATEGORY,
+	'Обсуждение_категории' => NS_CATEGORY_TALK
+);
+
 $messages = array(
 # Dates
 'sunday'       => 'амҽыш',

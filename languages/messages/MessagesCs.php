@@ -26,22 +26,22 @@
 $fallback8bitEncoding = 'cp1250';
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Média',
-	NS_SPECIAL        => 'Speciální',
-	NS_TALK           => 'Diskuse',
-	NS_USER           => 'Uživatel',
-	NS_USER_TALK      => 'Diskuse_s_uživatelem',
-	NS_PROJECT_TALK   => 'Diskuse_k_{{grammar:3sg|$1}}',
-	NS_FILE           => 'Soubor',
-	NS_FILE_TALK      => 'Diskuse_k_souboru',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Diskuse_k_MediaWiki',
-	NS_TEMPLATE       => 'Šablona',
-	NS_TEMPLATE_TALK  => 'Diskuse_k_šabloně',
-	NS_HELP           => 'Nápověda',
-	NS_HELP_TALK      => 'Diskuse_k_nápovědě',
-	NS_CATEGORY       => 'Kategorie',
- 	NS_CATEGORY_TALK  => 'Diskuse_ke_kategorii',
+	NS_MEDIA            => 'Média',
+	NS_SPECIAL          => 'Speciální',
+	NS_TALK             => 'Diskuse',
+	NS_USER             => 'Uživatel',
+	NS_USER_TALK        => 'Diskuse_s_uživatelem',
+	NS_PROJECT_TALK     => 'Diskuse_k_{{grammar:3sg|$1}}',
+	NS_FILE             => 'Soubor',
+	NS_FILE_TALK        => 'Diskuse_k_souboru',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Diskuse_k_MediaWiki',
+	NS_TEMPLATE         => 'Šablona',
+	NS_TEMPLATE_TALK    => 'Diskuse_k_šabloně',
+	NS_HELP             => 'Nápověda',
+	NS_HELP_TALK        => 'Diskuse_k_nápovědě',
+	NS_CATEGORY         => 'Kategorie',
+	NS_CATEGORY_TALK    => 'Diskuse_ke_kategorii',
 );
 
 $namespaceAliases = array(

@@ -17,6 +17,42 @@
 
 $fallback = 'es';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Meddia',
+	NS_TALK             => 'Diskussión',
+	NS_USER             => 'Empleador',
+	NS_USER_TALK        => 'Message de Empleador',
+	NS_PROJECT_TALK     => 'Diskussión de Vikipeddia',
+	NS_FILE             => 'Dossia',
+	NS_FILE_TALK        => 'Diskussión de Dossia',
+	NS_MEDIAWIKI_TALK   => 'Diskussión de MediaWiki',
+	NS_TEMPLATE         => 'Xabblón',
+	NS_TEMPLATE_TALK    => 'Diskussión de Xabblón',
+	NS_HELP             => 'Ayudo',
+	NS_HELP_TALK        => 'Diskussión de Ayudo',
+	NS_CATEGORY         => 'Kateggoría',
+	NS_CATEGORY_TALK    => 'Diskussión de Kateggoría',
+);
+
+$namespaceAliases = array(
+	// Backward compat. Fallbacks from 'es'.
+	'Especial'            => NS_SPECIAL,
+	'Discusión'           => NS_TALK,
+	'Usuario'             => NS_USER,
+	'Usuario_Discusión'   => NS_USER_TALK,
+	'$1_Discusión'        => NS_PROJECT_TALK,
+	'Archivo'             => NS_FILE,
+	'Archivo_Discusión'   => NS_FILE_TALK,
+	'MediaWiki'           => NS_MEDIAWIKI,
+	'MediaWiki_Discusión' => NS_MEDIAWIKI_TALK,
+	'Plantilla'           => NS_TEMPLATE,
+	'Plantilla_Discusión' => NS_TEMPLATE_TALK,
+	'Ayuda'               => NS_HELP,
+	'Ayuda_Discusión'     => NS_HELP_TALK,
+	'Categoría'           => NS_CATEGORY,
+	'Categoría_Discusión' => NS_CATEGORY_TALK,
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Subrayar linkes',
