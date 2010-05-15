@@ -173,7 +173,7 @@ class Xml {
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );
 	}
-	
+
 	/**
 	 * @param $year Integer
 	 * @param $month Integer
@@ -248,7 +248,7 @@ class Xml {
 	 * @param $text content of the element, will be escaped
 	 * @param $class class name of the span element
 	 * @param $attribs other attributes
-	 * @return string 
+	 * @return string
 	 */
 	public static function span( $text, $class, $attribs=array() ) {
 		return self::element( 'span', array( 'class' => $class ) + $attribs, $text );
@@ -260,7 +260,7 @@ class Xml {
 	 * @param $class class name of the span element
 	 * @param $tag element name
 	 * @param $attribs other attributes
-	 * @return string 
+	 * @return string
 	 */
 	public static function wrapClass( $text, $class, $tag='span', $attribs=array() ) {
 		return self::tags( $tag, array( 'class' => $class ) + $attribs, $text );
@@ -275,10 +275,18 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function input( $name, $size=false, $value=false, $attribs=array() ) {
-		return self::element( 'input', array(
-			'name' => $name,
-			'size' => $size,
-			'value' => $value ) + $attribs );
+		$attributes = array();
+		if( $size ) {
+			$attributes['size'] = $size;
+		}
+
+		if( $size ) {
+			$attributes['value'] = $value;
+		}
+
+		$attributes['name'] = $name;
+
+		return self::element( 'input', $attributes + $attribs );
 	}
 
 	/**
@@ -337,7 +345,7 @@ class Xml {
 	 * Convenience function to build an HTML form label
 	 * @param $label text of the label
 	 * @param $id
-	 * @param $attribs Array, other attributes 
+	 * @param $attribs Array, other attributes
 	 * @return string HTML
 	 */
 	public static function label( $label, $id, $attribs=array() ) {
@@ -506,7 +514,7 @@ class Xml {
 
 		return $s;
 	}
-	
+
 	/**
 	 * Shortcut for creating textareas.
 	 *
@@ -660,7 +668,7 @@ class Xml {
 			array( '&quot;', '&gt;', '&lt;' ),
 			$in );
 	}
-	
+
 	/**
 	* Generate a form (without the opening form element).
 	* Output optionally includes a submit button.
@@ -671,7 +679,7 @@ class Xml {
 	public static function buildForm( $fields, $submitLabel = null ) {
 		$form = '';
 		$form .= "<table><tbody>";
-	
+
 		foreach( $fields as $labelmsg => $input ) {
 			$id = "mw-$labelmsg";
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
@@ -686,13 +694,13 @@ class Xml {
 			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMsg( $submitLabel ) ) . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
-	
+
 		$form .= "</tbody></table>";
 
-	
+
 		return $form;
 	}
-	
+
 	/**
 	 * Build a table of data
 	 * @param $rows An array of arrays of strings, each to be a row in a table
@@ -717,7 +725,7 @@ class Xml {
 		$s .= Xml::closeElement( 'table' );
 		return $s;
 	}
-	
+
 	/**
 	 * Build a row for a table
 	 * @param $attribs An array of attributes to apply to the tr tag
@@ -768,7 +776,7 @@ class XmlSelect {
 		$value = ($value !== false) ? $value : $name;
 		$this->options[] = Xml::option( $name, $value, $value === $this->default );
 	}
-	
+
 	// This accepts an array of form
 	// label => value
 	// label => ( label => value, label => value )
@@ -778,7 +786,7 @@ class XmlSelect {
 
 	// This accepts an array of form
 	// label => value
-	// label => ( label => value, label => value )	
+	// label => ( label => value, label => value )
 	static function formatOptions( $options, $default = false ) {
 		$data = '';
 		foreach( $options as $label => $value ) {
@@ -789,7 +797,7 @@ class XmlSelect {
 				$data .= Xml::option( $label, $value, $value === $default ) . "\n";
 			}
 		}
-		
+
 		return $data;
 	}
 
