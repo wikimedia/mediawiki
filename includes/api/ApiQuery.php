@@ -568,9 +568,9 @@ class ApiQuery extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'prop' => 'Which properties to get for the titles/revisions/pageids',
-			'list' => 'Which lists to get',
-			'meta' => 'Which metadata to get about the site',
+			'prop' => 'Which properties to get for the titles/revisions/pageids. Module help is available below',
+			'list' => 'Which lists to get. Module help is available below',
+			'meta' => 'Which metadata to get about the site. Module help is available below',
 			'generator' => array( 'Use the output of a list as the input for other prop/list/meta items',
 					'NOTE: generator parameter names must be prefixed with a \'g\', see examples' ),
 			'redirects' => 'Automatically resolve redirects',
