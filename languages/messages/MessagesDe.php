@@ -1044,7 +1044,8 @@ Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} 
 'language-converter-depth-warning'        => 'Sprachkonvertertiefenlimit überschritten ($1)',
 
 # "Undo" feature
-'undo-success' => 'Um die Änderung rückgängig zu machen, bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken.',
+'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
+Bitte prüfe den Vergleich unten um sicherzustellen, dass du dies tun möchtest, und speichere dann unten deine Änderungen, um die Bearbeitung rückgängig zu machen.',
 'undo-failure' => 'Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.',
 'undo-norev'   => 'Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.',
 'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) wurde rückgängig gemacht.',
@@ -1741,6 +1742,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # verschiedene
  #</pre> <!-- Diese Zeile darf nicht verändert werden!-->',
+'upload-successful-msg'       => 'Dein Upload ist hier verfügbar: $1',
+'upload-failure-subj'         => 'Hochladefehler',
+'upload-failure-msg'          => 'Es gab ein Problem mit deinem Upload:
+
+$1',
 
 'upload-proto-error'        => 'Falsches Protokoll',
 'upload-proto-error-text'   => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',
@@ -2132,6 +2138,10 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'emailsent'            => 'E-Mail verschickt',
 'emailsenttext'        => 'Deine E-Mail wurde verschickt.',
 'emailuserfooter'      => 'Diese E-Mail wurde von {{SITENAME}}-Benutzer „$1“ an „$2“ gesendet.',
+
+# User Messenger
+'usermessage-summary' => 'Systemnachricht verlassen.',
+'usermessage-editor'  => 'System-Messenger',
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
@@ -3374,7 +3384,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 Pro Zeile ist ein Eintrag erlaubt. Wenn du fertig bist, klicke auf „Beobachtungsliste speichern“.
 Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutzen.',
 'watchlistedit-raw-titles'     => 'Einträge:',
-'watchlistedit-raw-submit'     => 'Beobachtungsliste speichern',
+'watchlistedit-raw-submit'     => 'Beobachtungsliste aktualisieren',
 'watchlistedit-raw-done'       => 'Deine Beobachtungsliste wurde gespeichert.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} hinzugefügt:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} entfernt:',

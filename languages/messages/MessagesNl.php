@@ -1784,6 +1784,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # overig
  #</pre> <!-- leave this line exactly as it is -->',
+'upload-successful-msg'       => 'Uw upload is hier beschikbaar: $1',
+'upload-failure-subj'         => 'Uploadprobleem',
+'upload-failure-msg'          => 'Er was een probleem met uw upload:
+
+$1',
 
 'upload-proto-error'        => 'Verkeerd protocol',
 'upload-proto-error-text'   => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",
@@ -2189,6 +2194,10 @@ De ontvanger kan dus direct naar u reageren.',
 'emailsent'            => 'E-mail verzonden',
 'emailsenttext'        => 'Uw e-mail is verzonden.',
 'emailuserfooter'      => 'Deze e-mail is verstuurd door $1 aan $2 door de functie "Deze gebruiker e-mailen" van {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Systeembericht achtergelaten',
+'usermessage-editor'  => 'Systeembericht',
 
 # Watchlist
 'watchlist'            => 'Volglijst',

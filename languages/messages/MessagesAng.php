@@ -269,7 +269,8 @@ $1',
 'privacy'              => 'Ānlīepnesse þēaƿ',
 'privacypage'          => 'Project:Ānlīepnesse þēaƿ',
 
-'badaccess' => 'Þafunge ƿōh',
+'badaccess'        => 'Þafunge ƿōh',
+'badaccess-group0' => 'Þū ne mōst dōn þā dǣde þǣre þe þū hafast abitt.',
 
 'versionrequired' => 'Fadunge $1 þæs MediaWicis nēodaþ',
 
@@ -316,6 +317,7 @@ $1',
 'error'               => 'Ƿōh',
 'databaseerror'       => 'Cȳþþuhordes ƿōh',
 'laggedslavemode'     => "'''Ƿarnung:''' Sīde ne mihteliċ ne hæfþ nīƿa nīƿunga.",
+'enterlockreason'     => 'Wrīt race þǣre forwiernunge and apunsunge be þǣm tīman on þǣm bēo sēo forwiernung forlǣten',
 'missingarticle-rev'  => '(nīƿung#: $1)',
 'internalerror'       => 'Innan ƿōh',
 'internalerror_info'  => 'Innan ƿōh: $1',
@@ -351,10 +353,16 @@ Cnāw þæt sume sīdan cunnon gelǣstende ēowod wesan swā þū wǣre gīet in
 'nologinlink'                => 'Hordcleofan scieppan',
 'createaccount'              => 'Hordcleofan scieppan',
 'gotaccountlink'             => 'Inmeldian',
+'createaccountmail'          => 'Þurh spearcenaǣrend',
 'badretype'                  => 'Þā þafungƿord þe ƿrite þū, bēoþ unȝemæcca.',
 'userexists'                 => 'Hƿā hæfþ þæt brūcendnama.
 Bidde ōðer brūcendnama ċēosan.',
 'loginerror'                 => 'Inmeldunge ƿōh',
+'createaccounterror'         => 'Ne cūðe macian reccend: $1',
+'nocookiesnew'               => 'Se brūcendreccend wæs gemacod, ac þū neart inmedlod.
+{{SITENAME}} brȳcþ tācninclu tō inmeldienne brūcendas.
+Þū hafast forwierned tācninclu. 
+Bidde þē, lǣt hīe tō twyrcenne, and þǣræfter inmelda þurh þīnne nīwan brūcendnaman and gelēafnessword.',
 'loginsuccesstitle'          => 'Inmeldung gesǣlde',
 'loginsuccess'               => "'''Þu eart nū inmeldod tō {{SITENAME}} swā \"\$1\".'''",
 'nosuchuser'                 => 'Þǣr is nān brūcere be þǣm naman "$1".

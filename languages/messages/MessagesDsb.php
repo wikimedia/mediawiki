@@ -2466,6 +2466,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'importstart'                => 'Importěrowanje bokow...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersija|wersiji|wersije}}',
 'importnopages'              => 'Boki za importěrowanje njeeksistěruju.',
+'imported-log-entries'       => '$1 {{PLURAL:$1|portokolowy zapisk importěrowany|protokolowej zapiska inmportěrowanej|protokolowe zapiski importěrowane|protokolowych zapiskow importěrowanych}}.',
 'importfailed'               => 'Zmólka pśi importěrowanju: $1',
 'importunknownsource'        => 'Njeznate źrědło importěrowanja.',
 'importcantopen'             => 'Dataja za importěrowanje njejo se dała wócyniś.',

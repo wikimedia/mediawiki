@@ -1467,6 +1467,9 @@ per a penjar-hi fitxers.",
 'upload_directory_missing'    => "No s'ha trobat el directori de càrrega ($1) i tampoc no ha pogut ser creat pel servidor web.",
 'upload_directory_read_only'  => 'El servidor web no pot escriure al directori de càrrega ($1)',
 'uploaderror'                 => "S'ha produït un error en l'intent de carregar",
+'upload-recreate-warning'     => "'''Atenció: S'ha eliminat o reanomenat un arxiu amb aquest mateix nom.'''
+
+S'hi mostren els registres de supressió i reanomenament per a aquesta pàgina:",
 'uploadtext'                  => "Feu servir el formulari de sota per a carregar fitxers.
 Per a visualitzar o cercar fitxers que s'hagen carregat prèviament, aneu a la [[Special:FileList|llista de fitxers carregats]]. Les càrregues es registren en el [[Special:Log/upload|registre de càrregues]] i els fitxers esborrats en el [[Special:Log/delete|registre d'esborrats]].
 
@@ -1499,6 +1502,16 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'filetype-unwanted-type'      => "Els fitxers del tipus «'''.$1'''» no són desitjats. {{PLURAL:$3|Es prefereix el tipus de fitxer|Els tipus de fitxer preferits són}} $2.",
 'filetype-banned-type'        => "Els fitxers del tipus «'''.$1'''» no estan permesos. {{PLURAL:$3|Només s'admeten els fitxers del tipus|Els tipus de fitxer permesos són}} $2.",
 'filetype-missing'            => 'El fitxer no té extensió (com ara «.jpg»).',
+'empty-file'                  => 'El fitxer que vau submetre estava buit.',
+'file-too-large'              => 'El fitxer que vau submetre era massa gran.',
+'filename-tooshort'           => 'El nom del fitxer és massa curt.',
+'filetype-banned'             => 'Aquest tipus de fitxer està prohibit.',
+'verification-error'          => 'Aquest fitxer no ha passat la verificació de fitxers.',
+'hookaborted'                 => "La modificació que vau tractar de fer ha estat cancel.lada per un lligam d'extensió.",
+'illegal-filename'            => 'El nom del fitxer no està permès.',
+'overwrite'                   => 'No es permet sobreescriure un fitxer existent.',
+'unknown-error'               => "S'ha produït un error desconegut.",
+'tmp-create-error'            => "No s'ha pogut crear l'arxiu temporal.",
 'large-file'                  => 'Els fitxers importants no haurien de ser més grans de $1; aquest fitxer ocupa $2.',
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
 'emptyfile'                   => 'El fitxer que heu carregat sembla estar buit. Açò por ser degut a un mal caràcter en el nom del fitxer. Si us plau, reviseu si realment voleu carregar aquest arxiu.',
@@ -1530,6 +1543,7 @@ Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carreg
 'overwroteimage'              => "s'ha penjat una nova versió de «[[$1]]»",
 'uploaddisabled'              => "S'ha inhabilitat la càrrega",
 'copyuploaddisabled'          => 'Càrrega per URL deshabilitada.',
+'uploadfromurl-queued'        => "S'ha encuat la vostra càrrega.",
 'uploaddisabledtext'          => "S'ha inhabilitat la càrrega de fitxers.",
 'php-uploaddisabledtext'      => 'La càrrega de fitxer està desactivada al PHP. Comproveu les opcions del fitxer file_uploads.',
 'uploadscripted'              => 'Aquest fitxer conté codi HTML o de seqüències que pot ser interpretat equivocadament per un navegador.',
@@ -1548,6 +1562,10 @@ Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carreg
 Hauríeu de considerar si és realment adequat continuar carregant aquest fitxer, perquè potser també acaba eliminat.
 A continuació teniu el registre d'eliminació per a que pugueu comprovar els motius que van portar a la seua eliminació:",
 'filename-bad-prefix'         => "El nom del fitxer que esteu penjant comença amb '''«$1»''', que és un nom no descriptiu que les càmeres digitals normalment assignen de forma automàtica. Trieu un de més descriptiu per al vostre fitxer.",
+'upload-failure-subj'         => 'Problema en la càrrega',
+'upload-failure-msg'          => 'Hi ha hagut un problema amb la vostra càrrega:
+
+$1',
 
 'upload-proto-error'        => 'El protocol és incorrecte',
 'upload-proto-error-text'   => 'Per a les càrregues remotes cal que els URL comencin amb <code>http://</code> o <code>ftp://</code>.',

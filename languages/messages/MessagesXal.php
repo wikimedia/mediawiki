@@ -954,7 +954,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 
 # Rollback
 'rollback_short' => 'Хәрүллһн',
-'rollbacklink'   => 'хәрү кех',
+'rollbacklink'   => 'хәрүлх',
 
 # Protect
 'protectlogpage'              => 'Харсллһна сеткүл',
@@ -1143,7 +1143,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'tooltip-diff'                    => 'Эн бичгәс хүврлһиг үзүлх',
 'tooltip-compareselectedversions' => 'Тер халхин хойр янзин йилһән үзулх',
 'tooltip-watch'                   => 'Эн халхиг тана шинҗллһнә сеткүлд немх',
-'tooltip-rollback'                => 'Шидрә демнчна сольлһн нег дарцар хәрү кех',
+'tooltip-rollback'                => 'Шидрә демнчна сольлһн нег дарцар уга кех',
 'tooltip-undo'                    => 'Эн хүврлһиг уга келһн, хәләвртә болн  учрта.',
 
 # Browsing diffs
