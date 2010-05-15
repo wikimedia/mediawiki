@@ -516,7 +516,7 @@ class Parser {
 	/**
 	 * Process the wikitext for the ?preload= feature. (bug 5210)
 	 *
-	 * <noinclude>, <includeonly> etc. are parsed as for template transclusion, 
+	 * <noinclude>, <includeonly> etc. are parsed as for template transclusion,
 	 * comments, templates, arguments, tags hooks and parser functions are untouched.
 	 */
 	public function getPreloadText( $text, $title, $options ) {
@@ -524,7 +524,7 @@ class Parser {
 		$this->clearState();
 		$this->setOutputType( self::OT_PLAIN );
 		$this->mOptions = $options;
-		$this->setTitle( $title ); 
+		$this->setTitle( $title );
 
 		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
 		$dom = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
@@ -1163,12 +1163,12 @@ class Parser {
 					}
 					# Count the number of occurrences of bold and italics mark-ups.
 					# We are not counting sequences of five apostrophes.
-					if ( strlen( $arr[$i] ) == 2 ) { 
+					if ( strlen( $arr[$i] ) == 2 ) {
 						$numitalics++;
-					} elseif ( strlen( $arr[$i] ) == 3 ) { 
+					} elseif ( strlen( $arr[$i] ) == 3 ) {
 						$numbold++;
-					} elseif ( strlen( $arr[$i] ) == 5 ) { 
-						$numitalics++; 
+					} elseif ( strlen( $arr[$i] ) == 5 ) {
+						$numitalics++;
 						$numbold++;
 					}
 				}
@@ -1193,7 +1193,7 @@ class Parser {
 								$firstspace = $i;
 							}
 						} elseif ( $x2 === ' ') {
-							if ( $firstsingleletterword == -1 ) { 
+							if ( $firstsingleletterword == -1 ) {
 								$firstsingleletterword = $i;
 							}
 						} else {
@@ -1613,10 +1613,10 @@ class Parser {
 				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
 				# the real problem is with the $e1 regex
 				# See bug 1300.
-				# 
+				#
 				# Still some problems for cases where the ] is meant to be outside punctuation,
 				# and no image is in sight. See bug 2095.
-				# 
+				#
 				if ( $text !== '' &&
 					substr( $m[3], 0, 1 ) === ']' &&
 					strpos( $text, '[' ) !== false
@@ -1827,7 +1827,7 @@ class Parser {
 			wfProfileIn( __METHOD__."-always_known" );
 			# Some titles, such as valid special pages or files in foreign repos, should
 			# be shown as bluelinks even though they're not included in the page table
-			# 
+			#
 			# FIXME: isAlwaysKnown() can be expensive for file links; we should really do
 			# batch file existence checks for NS_FILE and NS_MEDIA
 			if ( $iw == '' && $nt->isAlwaysKnown() ) {
@@ -1928,18 +1928,18 @@ class Parser {
 	/**
 	 * getCommon() returns the length of the longest common substring
 	 * of both arguments, starting at the beginning of both.
-	 * @private 
-	 */ 
+	 * @private
+	 */
 	function getCommon( $st1, $st2 ) {
 		$fl = strlen( $st1 );
 		$shorter = strlen( $st2 );
-		if ( $fl < $shorter ) { 
-			$shorter = $fl; 
+		if ( $fl < $shorter ) {
+			$shorter = $fl;
 		}
 
 		for ( $i = 0; $i < $shorter; ++$i ) {
-			if ( $st1{$i} != $st2{$i} ) { 
-				break; 
+			if ( $st1{$i} != $st2{$i} ) {
+				break;
 			}
 		}
 		return $i;
@@ -1947,22 +1947,22 @@ class Parser {
 	/**
 	 * These next three functions open, continue, and close the list
 	 * element appropriate to the prefix character passed into them.
-	 * @private 
+	 * @private
 	 */
 	function openList( $char ) {
 		$result = $this->closeParagraph();
 
-		if ( '*' === $char ) { 
-			$result .= '<ul><li>'; 
-		} elseif ( '#' === $char ) { 
-			$result .= '<ol><li>'; 
-		} elseif ( ':' === $char ) { 
-			$result .= '<dl><dd>'; 
+		if ( '*' === $char ) {
+			$result .= '<ul><li>';
+		} elseif ( '#' === $char ) {
+			$result .= '<ol><li>';
+		} elseif ( ':' === $char ) {
+			$result .= '<dl><dd>';
 		} elseif ( ';' === $char ) {
 			$result .= '<dl><dt>';
 			$this->mDTopen = true;
-		} else { 
-			$result = '<!-- ERR 1 -->'; 
+		} else {
+			$result = '<!-- ERR 1 -->';
 		}
 
 		return $result;
@@ -1974,12 +1974,12 @@ class Parser {
 	 * @private
 	 */
 	function nextItem( $char ) {
-		if ( '*' === $char || '#' === $char ) { 
-			return '</li><li>'; 
+		if ( '*' === $char || '#' === $char ) {
+			return '</li><li>';
 		} elseif ( ':' === $char || ';' === $char ) {
 			$close = '</dd>';
-			if ( $this->mDTopen ) { 
-				$close = '</dt>'; 
+			if ( $this->mDTopen ) {
+				$close = '</dt>';
 			}
 			if ( ';' === $char ) {
 				$this->mDTopen = true;
@@ -1998,10 +1998,10 @@ class Parser {
 	 * @private
 	 */
 	function closeList( $char ) {
-		if ( '*' === $char ) { 
-			$text = '</li></ul>'; 
-		} elseif ( '#' === $char ) { 
-			$text = '</li></ol>'; 
+		if ( '*' === $char ) {
+			$text = '</li></ul>';
+		} elseif ( '#' === $char ) {
+			$text = '</li></ol>';
 		} elseif ( ':' === $char ) {
 			if ( $this->mDTopen ) {
 				$this->mDTopen = false;
@@ -2009,8 +2009,8 @@ class Parser {
 			} else {
 				$text = '</dd></dl>';
 			}
-		} else {	
-			return '<!-- ERR 3 -->'; 
+		} else {
+			return '<!-- ERR 3 -->';
 		}
 		return $text."\n";
 	}
@@ -2029,7 +2029,7 @@ class Parser {
 		# Parsing through the text line by line.  The main thing
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
-		# 
+		#
 		$textLines = StringUtils::explode( "\n", $text );
 
 		$lastPrefix = $output = '';
@@ -2680,7 +2680,7 @@ class Parser {
 	}
 
 	/**
-	 * initialise the magic variables (like CURRENTMONTHNAME) and substitution modifiers 
+	 * initialise the magic variables (like CURRENTMONTHNAME) and substitution modifiers
 	 *
 	 * @private
 	 */
@@ -2804,14 +2804,14 @@ class Parser {
 	 * Will warn at most once the user per limitation type
 	 *
 	 * @param string $limitationType, should be one of:
-	 *   'expensive-parserfunction' (corresponding messages: 
-	 *       'expensive-parserfunction-warning', 
+	 *   'expensive-parserfunction' (corresponding messages:
+	 *       'expensive-parserfunction-warning',
 	 *       'expensive-parserfunction-category')
-	 *   'post-expand-template-argument' (corresponding messages: 
-	 *       'post-expand-template-argument-warning', 
+	 *   'post-expand-template-argument' (corresponding messages:
+	 *       'post-expand-template-argument-warning',
 	 *       'post-expand-template-argument-category')
-	 *   'post-expand-template-inclusion' (corresponding messages: 
-	 *       'post-expand-template-inclusion-warning', 
+	 *   'post-expand-template-inclusion' (corresponding messages:
+	 *       'post-expand-template-inclusion-warning',
 	 *       'post-expand-template-inclusion-category')
 	 * @params int $current, $max When an explicit limit has been
 	 *	 exceeded, provide the values (optional)
@@ -3016,8 +3016,8 @@ class Parser {
 				$limit = $this->mOptions->getMaxTemplateDepth();
 				if ( $frame->depth >= $limit ) {
 					$found = true;
-					$text = '<span class="error">' 
-						. wfMsgForContent( 'parser-template-recursion-depth-warning', $limit ) 
+					$text = '<span class="error">'
+						. wfMsgForContent( 'parser-template-recursion-depth-warning', $limit )
 						. '</span>';
 				}
 			}
@@ -3027,9 +3027,9 @@ class Parser {
 		if ( !$found && $title ) {
 			wfProfileIn( __METHOD__ . '-loadtpl' );
 			if ( !$title->isExternal() ) {
-				if ( $title->getNamespace() == NS_SPECIAL 
-					&& $this->mOptions->getAllowSpecialInclusion() 
-					&& $this->ot['html'] ) 
+				if ( $title->getNamespace() == NS_SPECIAL
+					&& $this->mOptions->getAllowSpecialInclusion()
+					&& $this->ot['html'] )
 				{
 					$text = SpecialPage::capturePath( $title );
 					if ( is_string( $text ) ) {
@@ -3119,7 +3119,7 @@ class Parser {
 			# Escape nowiki-style return values
 			$text = wfEscapeWikiText( $text );
 		} elseif ( is_string( $text )
-			&& !$piece['lineStart'] 
+			&& !$piece['lineStart']
 			&& preg_match( '/^(?:{\\||:|;|#|\*)/', $text ) )
 		{
 			# Bug 529: if the template begins with a table or block-level
@@ -3507,7 +3507,7 @@ class Parser {
 			$this->addTrackingCategory( 'hidden-category-category' );
 		}
 		# (bug 8068) Allow control over whether robots index a page.
-		# 
+		#
 		# FIXME (bug 14899): __INDEX__ always overrides __NOINDEX__ here!  This
 		# is not desirable, the last one on the page should win.
 		if ( isset( $this->mDoubleUnderscores['noindex'] ) && $this->mTitle->canUseNoindex() ) {
@@ -3741,7 +3741,7 @@ class Parser {
 			if ( $wgHtml5 && $wgExperimentalHtmlIds ) {
 				# For reverse compatibility, provide an id that's
 				# HTML4-compatible, like we used to.
-				# 
+				#
 				# It may be worth noting, academically, that it's possible for
 				# the legacy anchor to conflict with a non-legacy headline
 				# anchor on the page.  In this case likely the "correct" thing
@@ -4704,13 +4704,13 @@ class Parser {
 		# came to also set the caption, ordinary text after the image -- which
 		# makes no sense, because that just repeats the text multiple times in
 		# screen readers.  It *also* came to set the title attribute.
-		# 
+		#
 		# Now that we have an alt attribute, we should not set the alt text to
 		# equal the caption: that's worse than useless, it just repeats the
 		# text.  This is the framed/thumbnail case.  If there's no caption, we
 		# use the unnamed parameter for alt text as well, just for the time be-
 		# ing, if the unnamed param is set and the alt param is not.
-		# 
+		#
 		# For the future, we need to figure out if we want to tweak this more,
 		# e.g., introducing a title= parameter for the title; ignoring the un-
 		# named parameter entirely for images without a caption; adding an ex-
@@ -4807,8 +4807,8 @@ class Parser {
 	/**#@+
 	 * Accessor
 	 */
-	function getTags() { 
-		return array_merge( array_keys( $this->mTransparentTagHooks ), array_keys( $this->mTagHooks ) ); 
+	function getTags() {
+		return array_merge( array_keys( $this->mTransparentTagHooks ), array_keys( $this->mTagHooks ) );
 	}
 	/**#@-*/
 
@@ -4971,7 +4971,7 @@ class Parser {
 
 			# The cryptic '' timezone parameter tells to use the site-default
 			# timezone offset instead of the user settings.
-			# 
+			#
 			# Since this value will be saved into the parser cache, served
 			# to other users, and potentially even used inside links and such,
 			# it needs to be consistent for all visitors.
@@ -5018,7 +5018,7 @@ class Parser {
 		if ( $this->mDefaultSort !== false ) {
 			return $this->mDefaultSort;
 		} elseif ( $this->mTitle->getNamespace() == NS_CATEGORY ||
-			!$wgCategoryPrefixedDefaultSortkey ) 
+			!$wgCategoryPrefixedDefaultSortkey )
 		{
 			return $this->mTitle->getText();
 		} else {
@@ -5159,8 +5159,8 @@ class Parser {
 		#  data in an array.
 		$stripState = new StripState;
 		$pos = 0;
-		while ( ( $start_pos = strpos( $text, $this->mUniqPrefix, $pos ) ) 
-			&& ( $end_pos = strpos( $text, self::MARKER_SUFFIX, $pos ) ) ) 
+		while ( ( $start_pos = strpos( $text, $this->mUniqPrefix, $pos ) )
+			&& ( $end_pos = strpos( $text, self::MARKER_SUFFIX, $pos ) ) )
 		{
 			$end_pos += strlen( self::MARKER_SUFFIX );
 			$marker = substr( $text, $start_pos, $end_pos-$start_pos );
