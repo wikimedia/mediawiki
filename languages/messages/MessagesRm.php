@@ -13,6 +13,25 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Multimedia',
+	NS_SPECIAL          => 'Spezial',
+	NS_TALK             => 'Discussiun',
+	NS_USER             => 'Utilisader',
+	NS_USER_TALK        => 'Utilisader_discussiun',
+	NS_PROJECT_TALK     => '$1_discussiun',
+	NS_FILE             => 'Datoteca',
+	NS_FILE_TALK        => 'Datoteca_discussiun',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_discussiun',
+	NS_TEMPLATE         => 'Model',
+	NS_TEMPLATE_TALK    => 'Model_discussiun',
+	NS_HELP             => 'Agid',
+	NS_HELP_TALK        => 'Agid_discussiun',
+	NS_CATEGORY         => 'Categoria',
+	NS_CATEGORY_TALK    => 'Categoria_discussiun',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'suttastritgar colliaziuns:',
