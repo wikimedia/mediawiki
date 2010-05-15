@@ -101,8 +101,8 @@ class ParserOutput
 	/**
 	 * Record a local or interwiki inline link for saving in future link tables.
 	 *
-	 * @param Title $title
-	 * @param mixed $id optional known page_id so we can skip the lookup
+	 * @param $title Title object
+	 * @param $id Mixed: optional known page_id so we can skip the lookup
 	 */
 	function addLink( $title, $id = null ) {
 		if ( $title->isExternal() ) {
@@ -150,7 +150,7 @@ class ParserOutput
 	}
 	
 	/**
-	 * @param Title $title object, must be an interwiki link
+	 * @param $title Title object, must be an interwiki link
 	 * @throws MWException if given invalid input
 	 */
 	function addInterwikiLink( $title ) {
@@ -169,11 +169,10 @@ class ParserOutput
 	 * per-article cache invalidation timestamps, or if it comes from
 	 * an incompatible older version.
 	 *
-	 * @param string $touched the affected article's last touched timestamp
-	 * @return bool
-	 * @public
+	 * @param $touched String: the affected article's last touched timestamp
+	 * @return Boolean
 	 */
-	function expired( $touched ) {
+	public function expired( $touched ) {
 		global $wgCacheEpoch;
 		return $this->getCacheTime() == -1 || // parser says it's uncacheable
 		       $this->getCacheTime() < $touched ||
@@ -200,7 +199,7 @@ class ParserOutput
 	 * -- this is assumed to have been validated
 	 * (check equal normalisation, etc.)
 	 *
-	 * @param string $text Desired title text
+	 * @param $text String: desired title text
 	 */
 	public function setDisplayTitle( $text ) {
 		$this->setTitleText( $text );
@@ -209,7 +208,7 @@ class ParserOutput
 	/**
 	 * Get the title to be used for display
 	 *
-	 * @return string
+	 * @return String
 	 */
 	public function getDisplayTitle() {
 		$t = $this->getTitleText( );
