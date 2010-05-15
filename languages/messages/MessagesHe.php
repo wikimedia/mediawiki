@@ -1726,6 +1726,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # שונות
  #</pre> <!-- נא להשאיר שורה זו בדיוק כפי שהיא -->',
+'upload-successful-msg'       => 'הקובץ שהעלית זמין כאן: $1',
+'upload-failure-subj'         => 'בעיה בהעלאה',
+'upload-failure-msg'          => 'הייתה בעיה עם הקובץ שהעלית:
+
+$1',
 
 'upload-proto-error'        => 'פרוטוקול שגוי',
 'upload-proto-error-text'   => 'בהעלאה מרוחקת, יש להשתמש בכתובות URL המתחילות עם <code>http://</code> או <code>ftp://</code>.',
@@ -2121,6 +2126,10 @@ PICT # שונות
 'emailsent'            => 'הדואר נשלח',
 'emailsenttext'        => 'הודעת הדואר האלקטרוני שלך נשלחה.',
 'emailuserfooter'      => 'דואר זה נשלח על ידי $1 למשתמש $2 באמצעות תכונת "שליחת דואר אלקטרוני למשתמש זה" ב{{grammar:תחילית|{{SITENAME}}}}.',
+
+# User Messenger
+'usermessage-summary' => 'השארת הודעת מערכת.',
+'usermessage-editor'  => 'שולח הודעות המערכת',
 
 # Watchlist
 'watchlist'            => 'רשימת המעקב שלי',
