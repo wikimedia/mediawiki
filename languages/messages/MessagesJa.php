@@ -57,25 +57,33 @@ $dateFormats = array(
 $namespaceNames = array(
 	NS_MEDIA            => 'メディア',
 	NS_SPECIAL          => '特別',
-	NS_TALK             => 'ノート',
+	NS_TALK             => 'トーク',
 	NS_USER             => '利用者',
-	NS_USER_TALK        => '利用者‐会話',
-	NS_PROJECT_TALK     => '$1‐ノート',
+	NS_USER_TALK        => '利用者・トーク',
+	NS_PROJECT_TALK     => '$1・トーク',
 	NS_FILE             => 'ファイル',
-	NS_FILE_TALK        => 'ファイル‐ノート',
+	NS_FILE_TALK        => 'ファイル・トーク',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki‐ノート',
-	NS_TEMPLATE         => 'Template',
-	NS_TEMPLATE_TALK    => 'Template‐ノート',
-	NS_HELP             => 'Help',
-	NS_HELP_TALK        => 'Help‐ノート',
-	NS_CATEGORY         => 'Category',
-	NS_CATEGORY_TALK    => 'Category‐ノート',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki・トーク',
+	NS_TEMPLATE         => 'テンプレート',
+	NS_TEMPLATE_TALK    => 'テンプレート・トーク',
+	NS_HELP             => 'ヘルプ',
+	NS_HELP_TALK        => 'ヘルプ・トーク',
+	NS_CATEGORY         => 'カテゴリ',
+	NS_CATEGORY_TALK    => 'カテゴリ・トーク',
 );
 
 $namespaceAliases = array(
-	'画像' => NS_FILE,
-	'画像‐ノート' => NS_FILE_TALK,
+	'ノート'           => NS_TALK,
+	'利用者‐会話'        => NS_USER_TALK,
+	'$1‐ノート'        => NS_PROJECT_TALK,
+	'画像'            => NS_FILE,
+	'画像‐ノート'        => NS_FILE_TALK,
+	'ファイル‐ノート'      => NS_FILE_TALK,
+	'MediaWiki‐ノート' => NS_MEDIAWIKI_TALK,
+	'Template‐ノート'  => NS_TEMPLATE_TALK,
+	'Help‐ノート'      => NS_HELP_TALK,
+	'Category‐ノート'  => NS_CATEGORY_TALK
 );
 
 $specialPageAliases = array(
