@@ -193,6 +193,7 @@ $messages = array(
 'vector-namespace-image'     => 'File',
 'vector-namespace-main'      => 'Pàgina',
 'vector-namespace-mediawiki' => 'Messàgiu',
+'vector-namespace-special'   => 'Pàgina spetziale',
 'vector-namespace-talk'      => 'Cuntierra',
 'vector-namespace-template'  => 'Template',
 'vector-namespace-user'      => 'Pàgina usuàriu',
@@ -201,6 +202,7 @@ $messages = array(
 'vector-view-history'        => 'Càstia istòria',
 'vector-view-view'           => 'Leghe',
 'vector-view-viewsource'     => 'Càstia mitza',
+'actions'                    => 'Atziones',
 'variants'                   => 'Variantes',
 
 'errorpagetitle'    => 'Faddina',
@@ -1115,6 +1117,7 @@ Abàida sa [[Special:IPBlockList|lista de IP bloccados]] pro bider sas bloccadur
 'ipblocklist'              => 'Usuàrios e indiritzos bloccados',
 'ipblocklist-submit'       => 'Chirca',
 'blocklistline'            => '$1, $2 ha bloccato $3 ($4)',
+'infiniteblock'            => 'infinitu',
 'blocklink'                => 'blocca',
 'unblocklink'              => 'sblocca',
 'change-blocklink'         => 'tramuda su bloccu',
@@ -1260,7 +1263,8 @@ Podes castiare sa mitza sua',
 Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 
 # Attribution
-'others' => 'àteros',
+'siteuser' => '$1, {{GENDER:$1|usuàriu|usuària}} de {{SITENAME}}',
+'others'   => 'àteros',
 
 # Browsing diffs
 'previousdiff' => '← Acontzu in antis',
@@ -1306,6 +1310,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 * focallength",
 
 # EXIF tags
+'exif-artist'              => 'Autore',
 'exif-exposuretime-format' => '$1 s ($2)',
 'exif-fnumber-format'      => 'f/$1',
 'exif-flash'               => 'Flash',
@@ -1316,6 +1321,8 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
+
+'exif-orientation-1' => 'Normale',
 
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
@@ -1328,6 +1335,14 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'exif-componentsconfiguration-3' => 'Cr',
 
 'exif-subjectdistance-value' => '$1 metros',
+
+'exif-lightsource-4' => 'Lampu',
+
+'exif-gaincontrol-0' => 'Nudda',
+
+'exif-contrast-0' => 'Normale',
+
+'exif-sharpness-0' => 'Normale',
 
 # External editor support
 'edit-externally'      => 'Acontza custu file usendi unu programma de foras',
@@ -1380,7 +1395,8 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'size-gigabytes' => '$1 GB',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'Tìtulos:',
+'watchlistedit-normal-title' => 'Acontza sa watchlist',
+'watchlistedit-raw-titles'   => 'Tìtulos:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Càstia mudàntzias de importu',
@@ -1395,6 +1411,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'version-specialpages'     => 'Pàginas ispetziales',
 'version-other'            => 'Àteru',
 'version-version'          => '(Versione $1)',
+'version-license'          => 'Licèntzia',
 'version-software-version' => 'Versione',
 
 # Special:FilePath
@@ -1405,7 +1422,8 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'fileduplicatesearch-submit' => 'Chirca',
 
 # Special:SpecialPages
-'specialpages' => 'Pàginas ispetziales',
+'specialpages'             => 'Pàginas ispetziales',
+'specialpages-group-pages' => 'Listas de is pàginas',
 
 # Special:Tags
 'tags-edit' => 'acontza',

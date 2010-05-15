@@ -1683,6 +1683,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
+'upload-successful-msg'       => 'Yüklemeniz burada mevcut: $1',
+'upload-failure-subj'         => 'Yükleme sorunu',
+'upload-failure-msg'          => 'Yüklemenizle ilgili bir sorun var:
+
+$1',
 
 'upload-proto-error'        => 'Hatalı protokol',
 'upload-proto-error-text'   => "Uzaktan yükleme, <code>http://</code> veya <code>ftp://</code> ile başlayan URL'ler gerektirmektedir.",
@@ -2075,6 +2080,10 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'emailsent'            => 'E-posta gönderildi',
 'emailsenttext'        => 'E-postanız gönderildi.',
 'emailuserfooter'      => 'Bu e-posta $1 tarafından $2 kullanıcısına, {{SITENAME}} sitesindeki "Kullanıcıya e-posta gönder" fonksiyonu ile gönderilmiştir.',
+
+# User Messenger
+'usermessage-summary' => 'Sistem mesajı bırakın.',
+'usermessage-editor'  => 'Sistem habercisi',
 
 # Watchlist
 'watchlist'            => 'izleme listem',
@@ -2650,6 +2659,7 @@ Bilgisayarınıza kaydedin ve buraya yükleyin.',
 'importstart'                => 'Sayfalar aktarmaktadır...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revizyon|revizyon}}',
 'importnopages'              => 'Aktarılacak dosya yok.',
+'imported-log-entries'       => '$1 {{PLURAL:$1|günlük girdisi|günlük girdisi}} içe aktardı.',
 'importfailed'               => '$1 aktarımı başarısız',
 'importunknownsource'        => 'Bilinmeyen içeri aktarım kaynak türü',
 'importcantopen'             => 'İçeri aktarma dosyası açılamadı',
@@ -2746,6 +2756,8 @@ Geçici dosya kayıp.',
 'tooltip-rollback'                => '"Geri dönüş" tek tıklamayla bu sayfaya son katkı yapanın değişikliklerini geri döndürür',
 'tooltip-undo'                    => '"Geri al" bu değişikliği geri döndürür ve değişiklik formunu önizleme modunda açar.
 Özet için bir sebep eklemeye izin verir',
+'tooltip-preferences-save'        => 'Tercihleri kaydet',
+'tooltip-summary'                 => 'Kısa bir özet girin',
 
 # Stylesheets
 'common.css'   => '/* Buraya konulacak CSS kodu tüm temalarda etkin olur */',

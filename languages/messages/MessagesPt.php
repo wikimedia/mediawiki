@@ -1738,6 +1738,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- deixe esta linha exactamente como está -->',
+'upload-successful-msg'       => 'O ficheiro carregado está disponível aqui: $1',
+'upload-failure-subj'         => 'Problema no upload',
+'upload-failure-msg'          => 'Ocorreu um problema com o seu upload:
+
+$1',
 
 'upload-proto-error'        => 'Protocolo incorrecto',
 'upload-proto-error-text'   => 'O carregamento remoto de ficheiros requer endereços URL começados por <code>http://</code> ou <code>ftp://</code>.',
@@ -2132,6 +2137,10 @@ O endereço de correio que introduziu nas suas [[Special:Preferences|preferênci
 'emailsent'            => 'Mensagem enviada',
 'emailsenttext'        => 'A sua mensagem foi enviada.',
 'emailuserfooter'      => 'Esta mensagem foi enviada por $1 para $2 usando a opção "Contactar este utilizador" da {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Deixar mensagem de sistema.',
+'usermessage-editor'  => 'Mensagens de sistema',
 
 # Watchlist
 'watchlist'            => 'Páginas vigiadas',
@@ -2697,7 +2706,7 @@ Por favor, visite [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisa
 As datas das edições e os seus editores serão mantidos.
 Todas as acções de importação transwikis são registadas no [[Special:Log/import|Registo de importações]].',
 'import-interwiki-source'    => 'Wiki ou página de origem:',
-'import-interwiki-history'   => 'Copiar todas as edições desta página',
+'import-interwiki-history'   => 'Copiar todas as edições para esta página',
 'import-interwiki-templates' => 'Incluir todas as predefinições',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Espaço nominal de destino:',

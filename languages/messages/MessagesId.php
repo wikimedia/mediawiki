@@ -1210,6 +1210,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'searchprofile-everything-tooltip' => 'Pencarian di seluruh situs (termasuk halaman pembicaraan)',
 'searchprofile-advanced-tooltip'   => 'Pencarian di ruang nama tertentu',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 kata|$2 kata}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 anggota|$1 anggota}} ({{PLURAL:$2|1 subkategori|$2 subkategori}}, {{PLURAL:$3|1 berkas|$3 berkas}})',
 'search-result-score'              => 'Relevansi: $1%',
 'search-redirect'                  => '(pengalihan $1)',
 'search-section'                   => '(bagian $1)',
@@ -1571,6 +1572,9 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'upload_directory_missing'    => 'Direktori pemuatan ($1) tidak ditemukan dan tidak dapat dibuat oleh server web.',
 'upload_directory_read_only'  => 'Direktori pemuatan ($1) tidak dapat ditulis oleh server web.',
 'uploaderror'                 => 'Kesalahan pemuatan',
+'upload-recreate-warning'     => "'''Peringatan: Berkas dengan nama itu telah dihapus atau dipindahkan.'''
+
+Log penghapusan dan pemindahan laman ini adalah sebagai berikut:",
 'uploadtext'                  => "Gunakan formulir di bawah untuk memuat berkas.
 Untuk menampilkan atau mencari berkas-berkas yang sebelumnya dimuatkan, gunakan [[Special:FileList|daftar pemuatan berkas]]. Pemuatan dan pemuatan kembali juga dicatat dalam [[Special:Log/upload|log pemuatan]]. Penghapusan berkas dicatat dalam [[Special:Log/delete|log penghapusan]].
 
@@ -1604,12 +1608,17 @@ Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pra
 'filetype-banned-type'        => "'''\".\$1\"''' termasuk dalam jenis berkas yang tidak diijinkan.
 {{PLURAL:\$3|Jenis berkas yang diijinkan adalah|Jenis berkas yang diijinkan adalah}} \$2.",
 'filetype-missing'            => 'Berkas tak memiliki ekstensi (misalnya ".jpg").',
-'empty-file'                  => 'Berkas yang Anda muat kosong.',
+'empty-file'                  => 'Berkas yang Anda kirim kosong.',
 'file-too-large'              => 'Ukuran berkas yang Anda muat terlalu besar.',
 'filename-tooshort'           => 'Nama berkas terlalu pendek.',
+'filetype-banned'             => 'Jenis berkas ini dilarang.',
 'verification-error'          => 'Berkas ini tidak lulus verifikasi.',
+'hookaborted'                 => 'Modifikasi yang coba Anda lakukan dibatalkan oleh suatu kaitan ekstensi.',
 'illegal-filename'            => 'Nama berkas tidak diperbolehkan.',
+'overwrite'                   => 'Tidak diizinkan untuk menimpa berkas yang telah ada.',
 'unknown-error'               => 'Terjadi sebuah kesalahan yang tidak diketahui.',
+'tmp-create-error'            => 'Tidak dapat membuat berkas sementara.',
+'tmp-write-error'             => 'Kesalahan sewaktu menulis berkas sementara.',
 'large-file'                  => 'Ukuran berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita.',
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile'                   => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
@@ -1640,6 +1649,7 @@ Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain
 'uploadedimage'               => 'memuat "[[$1]]"',
 'overwroteimage'              => 'memuat versi baru dari "[[$1]]"',
 'uploaddisabled'              => 'Maaf, fasilitas pemuatan dimatikan.',
+'copyuploaddisabled'          => 'Pengunggahan dengan URL dimatikan.',
 'uploadfromurl-queued'        => 'Pengunggahan Anda telah terantri.',
 'uploaddisabledtext'          => 'Pemuatan berkas tidak diizinkan.',
 'php-uploaddisabledtext'      => 'Pemuatan berkas dimatikan di PHP. Silakan cek pengaturan file_uploads.',
@@ -1659,6 +1669,11 @@ Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain
 Anda harus mempertimbangkan apakah perlu untuk melanjutkan pemuatan berkas ini.
 Log penghapusan berkas adalah sebagai berikut:",
 'filename-bad-prefix'         => "Nama berkas yang Anda muat diawali dengan '''\"\$1\"''', yang merupakan nama non-deskriptif yang biasanya diberikan secara otomatis oleh kamera digital. Harap pilih nama lain yang lebih deskriptif untuk berkas Anda.",
+'upload-successful-msg'       => 'Unggahan Anda tersedia di sini: $1',
+'upload-failure-subj'         => 'Masalah pengunggahan',
+'upload-failure-msg'          => 'Ada masalah pada unggahan Anda:
+
+$1',
 
 'upload-proto-error'        => 'Protokol tak tepat',
 'upload-proto-error-text'   => 'Pemuatan jarak jauh membutuhkan URL yang diawali dengan <code>http://</code> atau <code>ftp://</code>.',
@@ -2049,6 +2064,10 @@ Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] 
 'emailsent'            => 'Surel terkirim',
 'emailsenttext'        => 'Surel Anda telah dikirimkan.',
 'emailuserfooter'      => 'Surel ini dikirimkan oleh $1 kepada $2 menggunakan fungsi "Suratepengguna" di {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Tinggalkan pesan sistem.',
+'usermessage-editor'  => 'Penyampai pesan sistem',
 
 # Watchlist
 'watchlist'            => 'Daftar pantauan saya',
@@ -2604,6 +2623,7 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 'importstart'                => 'Mengimpor halaman...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisi|revisi}}',
 'importnopages'              => 'Tidak ada halaman untuk diimpor.',
+'imported-log-entries'       => 'Telah diimpor $1 {{PLURAL:$1|entri log|entri log}}.',
 'importfailed'               => 'Impor gagal: $1',
 'importunknownsource'        => 'Sumber impor tidak dikenali',
 'importcantopen'             => 'Berkas impor tidak dapat dibuka',

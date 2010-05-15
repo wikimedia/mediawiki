@@ -1741,6 +1741,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # divers
  #</pre><!-- laisser cette ligne telle quelle -->',
+'upload-successful-msg'       => 'Votre téléversement est disponible ici : $1',
+'upload-failure-subj'         => 'Problème de téléversement',
+'upload-failure-msg'          => 'Il y a eu un problème avec votre téléversement :
+
+$1',
 
 'upload-proto-error'        => 'Protocole incorrect',
 'upload-proto-error-text'   => 'Le téléversement requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.',
@@ -1911,7 +1916,7 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 'statistics-articles'          => 'Pages de contenu',
 'statistics-pages'             => 'Pages',
 'statistics-pages-desc'        => 'Toutes les pages du wiki, y compris les pages de discussion, les redirections, etc.',
-'statistics-files'             => 'Fichers Téléversés',
+'statistics-files'             => 'Fichers téléversés',
 'statistics-edits'             => 'Modifications de pages depuis l’installation de {{SITENAME}}',
 'statistics-edits-average'     => 'Nombre moyen de modifications par page',
 'statistics-views-total'       => 'Visites',
@@ -2135,6 +2140,10 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'emailsent'            => 'Courriel envoyé',
 'emailsenttext'        => 'Votre message a été envoyé par courriel.',
 'emailuserfooter'      => 'Ce courriel a été envoyé par « $1 » à « $2 » par la fonction « Envoyer un courriel à l’utilisateur » de {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'A laissé un message système.',
+'usermessage-editor'  => 'Messagerie système',
 
 # Watchlist
 'watchlist'            => 'Liste de suivi',
@@ -2911,11 +2920,11 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme patrouillées.',
 
 # Patrol log
-'patrol-log-page'      => 'Journal des versions patrouillées',
-'patrol-log-header'    => 'Voici un journal des versions patrouillées.',
-'patrol-log-line'      => 'a marqué la version $1 de $2 comme patrouillée $3',
+'patrol-log-page'      => 'Journal des modifications patrouillées',
+'patrol-log-header'    => 'Voici un journal des modifications patrouillées.',
+'patrol-log-line'      => 'a marqué la $1 de $2 comme patrouillée $3',
 'patrol-log-auto'      => '(automatique)',
-'patrol-log-diff'      => 'v$1',
+'patrol-log-diff'      => 'modification $1',
 'log-show-hide-patrol' => '$1 l’historique des versions patrouillées',
 
 # Image deletion
@@ -3460,16 +3469,16 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Recherche des copies de fichiers identiques',
+'fileduplicatesearch'          => 'Recherche de doublons',
 'fileduplicatesearch-summary'  => 'Recherche des copies de fichiers identiques d’après leur empreinte de hachage.
 
 Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
-'fileduplicatesearch-legend'   => 'Recherche d’une copie identique',
+'fileduplicatesearch-legend'   => 'Rechercher un doublon',
 'fileduplicatesearch-filename' => 'Nom du fichier :',
 'fileduplicatesearch-submit'   => 'Rechercher',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Taille du fichier : $3<br />Type MIME : $4',
-'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a aucune copie identique.',
-'fileduplicatesearch-result-n' => 'Le fichier « $1 » a $2 {{PLURAL:$2|copie identique|copies identiques}}.',
+'fileduplicatesearch-result-1' => "Le fichier « $1 » n'a pas de doublon.",
+'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 doublon|$2 doublons}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pages spéciales',

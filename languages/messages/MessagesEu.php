@@ -1494,6 +1494,10 @@ Kontuan izan fitxategia igotzea egokia ote den.
 Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'filename-bad-prefix'         => "Igotzen ari zaren fitxategiaren izena '''\"\$1\"'''ekin hasten da, normalki kamera digitalek automatikoki ezartzen duten izen ez deskriptibo bat.
 Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
+'upload-failure-subj'         => 'Igoera-arazoa',
+'upload-failure-msg'          => 'Hurrengo arazoa egon da zure igoerarekin:
+
+$1',
 
 'upload-proto-error'        => 'Protokolo ezegokia',
 'upload-proto-error-text'   => 'Kanpo igoerak <code>http://</code> edo <code>ftp://</code> hasiera duen URLa izan behar du.',
@@ -1507,9 +1511,16 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Sarbide ukatua',
+'img-auth-nopathinfo'   => 'PATH_INFO falta da.
+Zure zerbitzaria ez dago informazio hau pasatzeko konfiguratuta.
+CGI-oinarriduna izan daiteke, img_auth onartzen ez duena.
+Ikus http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Eskatutako bidea ez dago kofiguratutako igoera-direktorioan.',
 'img-auth-badtitle'     => 'Ezin izan da baleko izenbururik eraiki "$1" izenetik abiatuta',
+'img-auth-nologinnWL'   => 'Ez duzu saioa hasi eta "$1" ez dago zerrenda zurian.',
 'img-auth-nofile'       => 'Ez dago "$1" fitxategirik.',
+'img-auth-isdir'        => '"$1" direktorio batera iristen saiatzen ari zara.
+Fitxategien sarbidea baino ez da onartzen.',
 'img-auth-streaming'    => '"$1" sekuentziatzen.',
 'img-auth-noread'       => 'Erabiltzaileak ez du "$1" irakurtzeko sarbiderik.',
 
