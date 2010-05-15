@@ -410,6 +410,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
+		global $wgRCMaxAge;
 		$p = $this->getModulePrefix();
 		return array(
 			'limit' => 'The maximum number of contributions to return',
