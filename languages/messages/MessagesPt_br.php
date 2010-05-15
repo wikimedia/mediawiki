@@ -124,6 +124,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'Todas as páginas', 'Todos os artigos', 'Todas páginas', 'Todos artigos' ),
 	'Prefixindex'               => array( 'Índice de prefixo', 'Índice por prefixo' ),
 	'Ipblocklist'               => array( 'Registro de bloqueios', 'IPs bloqueados', 'Utilizadores bloqueados', 'Usuários bloqueados', 'Registo de bloqueios' ),
+	'Unblock'                   => array( 'Desbloquear' ),
 	'Specialpages'              => array( 'Páginas especiais' ),
 	'Contributions'             => array( 'Contribuições' ),
 	'Emailuser'                 => array( 'Contatar usuário', 'Contactar usuário', 'Contactar utilizador' ),
@@ -166,6 +167,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Página em branco' ),
 	'LinkSearch'                => array( 'Pesquisar links' ),
 	'DeletedContributions'      => array( 'Contribuições eliminadas', 'Edições eliminadas' ),
+	'Tags'                      => array( 'Etiquetas' ),
 	'Activeusers'               => array( 'Usuários ativos' ),
 );
 

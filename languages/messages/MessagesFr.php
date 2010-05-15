@@ -288,6 +288,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'Toutes les pages', 'ToutesLesPages' ),
 	'Prefixindex'               => array( 'Index', 'Préfixes', 'Prefixes' ),
 	'Ipblocklist'               => array( 'Liste des blocages', 'ListeDesBlocages', 'Blocages', 'Utilisateurs bloqués', 'UtilisateursBloqués', 'Utilisateurs bloques', 'UtilisateursBloques', 'IP bloquées', 'IPBloquees', 'IPBloquées' ),
+	'Unblock'                   => array( 'Débloquer', 'Déblocage' ),
 	'Specialpages'              => array( 'Pages spéciales', 'PagesSpéciales', 'Pages speciales', 'PagesSpeciales' ),
 	'Emailuser'                 => array( 'Envoyer un courriel', 'EnvoyerUnCourriel', 'Courriel', 'Envoyer un e-mail', 'EnvoyerUnEMail', 'E-mail', 'EMail' ),
 	'Confirmemail'              => array( 'Confirmer l\'adresse de contact', 'Confirmer le courriel', 'ConfirmerLeCourriel' ),

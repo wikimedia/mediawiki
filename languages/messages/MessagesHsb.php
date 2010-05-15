@@ -55,7 +55,7 @@ $specialPageAliases = array(
 	'Listfiles'                 => array( 'Dataje' ),
 	'Newimages'                 => array( 'Nowe dataje' ),
 	'Listusers'                 => array( 'Wužiwarjo' ),
-	'Listgrouprights'           => array( 'Skupinske prawa' ),
+	'Listgrouprights'           => array( 'Prawa skupinow', 'Skupinske prawa' ),
 	'Statistics'                => array( 'Statistika' ),
 	'Randompage'                => array( 'Připadna strona' ),
 	'Lonelypages'               => array( 'Wosyroćene strony' ),
@@ -129,6 +129,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Wotkazowe pytanje' ),
 	'DeletedContributions'      => array( 'Zničene přinoški' ),
 	'Tags'                      => array( 'Taflički' ),
+	'Activeusers'               => array( 'Aktiwni wužiwarjo' ),
 );
 
 $messages = array(

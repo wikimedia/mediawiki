@@ -123,6 +123,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'ページ一覧', '全ページ' ),
 	'Prefixindex'               => array( '前方一致ページ一覧', '始点指定ページ一覧' ),
 	'Ipblocklist'               => array( 'ブロック一覧', 'ブロックの一覧' ),
+	'Unblock'                   => array( 'ブロック解除' ),
 	'Specialpages'              => array( '特別ページ一覧' ),
 	'Contributions'             => array( '投稿記録' ),
 	'Emailuser'                 => array( 'メール送信', 'ウィキメール' ),

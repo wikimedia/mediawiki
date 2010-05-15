@@ -85,6 +85,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'All Säiten' ),
 	'Prefixindex'               => array( 'Indexsich' ),
 	'Ipblocklist'               => array( 'Lëscht vu gespaarten IPen a Benotzer' ),
+	'Unblock'                   => array( 'Spär ophiewen' ),
 	'Specialpages'              => array( 'Spezialsäiten' ),
 	'Contributions'             => array( 'Kontributiounen' ),
 	'Emailuser'                 => array( 'Dësem Benotzer eng E-Mail schécken' ),
