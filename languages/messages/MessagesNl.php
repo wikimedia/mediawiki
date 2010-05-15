@@ -132,6 +132,7 @@ $magicWords = array(
 	'subjectpagenamee'      => array( '1', 'ONDERWERPPAGINANAAME', 'ARTIKELPAGINANAAME', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'msg'                   => array( '0', 'BERICHT:', 'MSG:' ),
 	'subst'                 => array( '0', 'VERV:', 'SUBST:' ),
+	'safesubst'             => array( '0', 'VEILIGVERV:', 'SAFESUBST:' ),
 	'msgnw'                 => array( '0', 'BERICHTNW', 'MSGNW:' ),
 	'img_thumbnail'         => array( '1', 'miniatuur', 'thumbnail', 'thumb' ),
 	'img_manualthumb'       => array( '1', 'miniatuur=$1', 'thumbnail=$1', 'thumb=$1' ),
@@ -210,6 +211,8 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__STATISCHEDOORVERWIJZING__', '__STATISCHEREDIRECT__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'BEVEILIGINGSNIVEAU', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'datumopmaak', 'formatdate', 'dateformat' ),
+	'url_path'              => array( '0', 'PAD', 'PATH' ),
+	'url_query'             => array( '0', 'ZOEKOPDRACHT', 'QUERY' ),
 );
 
 $specialPageAliases = array(
