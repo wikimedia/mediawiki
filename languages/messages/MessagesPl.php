@@ -124,6 +124,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'Wszystkie strony' ),
 	'Prefixindex'               => array( 'Strony według prefiksu' ),
 	'Ipblocklist'               => array( 'Zablokowani' ),
+	'Unblock'                   => array( 'Odblokuj' ),
 	'Specialpages'              => array( 'Strony specjalne' ),
 	'Contributions'             => array( 'Wkład' ),
 	'Emailuser'                 => array( 'E-mail' ),
