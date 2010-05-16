@@ -112,6 +112,11 @@ function os_MWSuggestInit() {
 /** Init Result objects and event handlers */
 function os_initHandlers( name, formname, element ) {
 	var r = new os_Results( name, formname );
+	var formElement = document.getElementById( formname );
+	if( !formElement ) {
+		// Older browsers (Opera 8) cannot get form elements
+		return;
+	}
 	// event handler
 	os_hookEvent( element, 'keyup', function( event ) { os_eventKeyup( event ); } );
 	os_hookEvent( element, 'keydown', function( event ) { os_eventKeydown( event ); } );
@@ -126,7 +131,7 @@ function os_initHandlers( name, formname, element ) {
 		element.setAttribute( 'autocomplete', 'off' );
 	}
 	// stopping handler
-	os_hookEvent( document.getElementById( formname ), 'submit', function( event ) { return os_eventOnsubmit( event ); } );
+	os_hookEvent( formElement, 'submit', function( event ) { return os_eventOnsubmit( event ); } );
 	os_map[name] = r;
 	// toggle link
 	if( document.getElementById( r.toggle ) == null ) {
