@@ -10,14 +10,14 @@
 #preftoc li { list-style: none; }
 #prefcontrol { float: right; }
 fieldset.prefsection,
-fieldset.operaprefsection { 
-    margin-left: 0;
-    margin-right: 18em;
+fieldset.operaprefsection {
+	margin-left: 0;
+	margin-right: 18em;
 }
 /* page history */
-#pagehistory .history-user { 
-    margin-right: 1.4em;
-    margin-left: 0.4em;
+#pagehistory .history-user {
+	margin-right: 1.4em;
+	margin-left: 0.4em;
 }
 .editsection {
 	float: left;
