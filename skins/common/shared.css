@@ -584,7 +584,9 @@ a.feedlink {
 	padding: 0 !important;
 }
 
-/* wikitable class for skinning normal tables */
+/* wikitable class for skinning normal tables
+ * keep on sync with commonPrint.css
+ */
 table.wikitable {
 	margin: 1em 1em 1em 0;
 	background: #f9f9f9;
