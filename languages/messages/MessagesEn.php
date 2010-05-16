@@ -2608,7 +2608,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'emailuserfooter'      => 'This e-mail was sent by $1 to $2 by the "E-mail user" function at {{SITENAME}}.',
 
 # User Messenger
-'usermessage-summary' => 'Leave system message.',
+'usermessage-summary' => 'Leaving system message.',
 'usermessage-editor'  => 'System messenger',
 
 # Watchlist
