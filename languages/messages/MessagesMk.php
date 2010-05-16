@@ -1705,6 +1705,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- Не менувај ја содржината на оваа редица, остави ја како што е -->',
+'upload-successful-msg'       => 'Подигнатото е достапно овде: $1',
+'upload-failure-subj'         => 'Проблем при подигањето',
+'upload-failure-msg'          => 'Се појави проблем со вашето подигање:
+
+$1',
 
 'upload-proto-error'        => 'Погрешен протокол',
 'upload-proto-error-text'   => 'За далечинско подигнување потребно е URL-то да почнува со <code>http://</code> или <code>ftp://</code>.',
@@ -2107,6 +2112,10 @@ PICT # misc.
 'emailsent'            => 'Е-поштата е пратена',
 'emailsenttext'        => 'Вашата е-пошта е пратена.',
 'emailuserfooter'      => 'Оваа е-порака беше пратена од $1 до $2 со помош на функцијата Е-пошта на {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Оставете системска порака.',
+'usermessage-editor'  => 'Системски гласник',
 
 # Watchlist
 'watchlist'            => 'мои набљудувања',
@@ -3435,7 +3444,7 @@ $1',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 наслов беше|$1 наслови беа}} избришани од вашата листа на набљудувања:',
 'watchlistedit-raw-title'      => 'Напредно уредување на листата на набљудувања',
 'watchlistedit-raw-legend'     => 'Уредување на листа на набљудувања',
-'watchlistedit-raw-explain'    => 'Насловите во вашата листа на набљудувања се прикажани подолу, може да се уредува со додавање или бришење на наслови од листата; еден наслов во линија. Кога ќе завршите, кликнете на Ажурирај. 
+'watchlistedit-raw-explain'    => 'Насловите во вашата листа на набљудувања се прикажани подолу, и можат да се уредуваат со додавање или бришење на наслови од листата; еден наслов по ред. Кога ќе завршите, кликнете на „{{int:Watchlistedit-raw-submit}}“.
 Исто така за ова може да [[Special:Watchlist/edit|користите стандарден уредувач на текст]].',
 'watchlistedit-raw-titles'     => 'Наслови:',
 'watchlistedit-raw-submit'     => 'Ажурирај',
@@ -3452,22 +3461,22 @@ $1',
 'iranian-calendar-m1' => 'Farvardin',
 
 # Core parser functions
-'unknown_extension_tag' => 'Непозната ознака на проширување "$1"',
+'unknown_extension_tag' => 'Непозната ознака на додатокот „$1“',
 'duplicate-defaultsort' => 'Предупредување: Основниот клуч за подредување "$2" го поништува претходниот основен клуч за подредување "$1".',
 
 # Special:Version
 'version'                          => 'Верзија',
-'version-extensions'               => 'Инсталирани проширувања',
+'version-extensions'               => 'Инсталирани додатоци',
 'version-specialpages'             => 'Специјални страници',
 'version-parserhooks'              => 'Парсер куки',
 'version-variables'                => 'Променливи',
 'version-other'                    => 'Друго',
 'version-mediahandlers'            => 'Медија ракувачи',
 'version-hooks'                    => 'Куки',
-'version-extension-functions'      => 'Функции на проширувања',
-'version-parser-extensiontags'     => 'Ознаки за парсер проширувања',
+'version-extension-functions'      => 'Функции на додатоците',
+'version-parser-extensiontags'     => 'Ознаки за парсерски додатоци',
 'version-parser-function-hooks'    => 'Куки на парсер функција',
-'version-skin-extension-functions' => 'Функции на проширување на изглед',
+'version-skin-extension-functions' => 'Функции за обогатување на изгледот',
 'version-hook-name'                => 'Име на кука',
 'version-hook-subscribedby'        => 'Претплатено од',
 'version-version'                  => '(Верзија $1)',

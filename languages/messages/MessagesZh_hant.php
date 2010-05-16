@@ -11,6 +11,7 @@
  * @author Bencmq
  * @author FireJackey
  * @author Gaoxuewei
+ * @author Horacewai2
  * @author Jidanni
  * @author KaiesTse
  * @author Liangent
@@ -1560,6 +1561,11 @@ $1",
 您應該要考慮一下繼續上傳一個檔案頁面是否合適。
 為方便起見，這一個檔案的刪除記錄已經在下面提供:",
 'filename-bad-prefix'         => "您上傳的檔案名稱是以'''「$1」'''作為開頭，通常這種沒有含意的檔案名稱是由數碼相機中自動編排。請在您的檔案中重新選擇一個更加有意義的檔案名稱。",
+'upload-successful-msg'       => '你可以在這裡找到你的上傳：$1',
+'upload-failure-subj'         => '上傳問題',
+'upload-failure-msg'          => '有一個問題與您的上傳有關：
+
+$1',
 
 'upload-proto-error'        => '協議錯誤',
 'upload-proto-error-text'   => '遠程上傳要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 開頭。',
@@ -1956,6 +1962,10 @@ Template:消除歧義',
 'emailsent'            => '電子郵件已發送',
 'emailsenttext'        => '您的電子郵件已經發出。',
 'emailuserfooter'      => '這封電郵是由$1寄給$2經{{SITENAME}}的「電郵用戶」功能發出的。',
+
+# User Messenger
+'usermessage-summary' => '給系統消息',
+'usermessage-editor'  => '系統界面',
 
 # Watchlist
 'watchlist'            => '監視列表',
@@ -2522,6 +2532,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'importstart'                => '正在匯入頁面...',
 'import-revision-count'      => '$1個修訂',
 'importnopages'              => '沒有匯入的頁面。',
+'imported-log-entries'       => '導入$1個日誌',
 'importfailed'               => '匯入失敗: <nowiki>$1</nowiki>',
 'importunknownsource'        => '未知的源匯入類型',
 'importcantopen'             => '無法打開匯入檔案',
@@ -2615,6 +2626,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'tooltip-rollback'                => '『反轉』可以一按恢復上一位貢獻者對這個頁面的編輯',
 'tooltip-undo'                    => '『復原』可以在編輯模式上開啟編輯表格以便復原。它容許在摘要中加入原因。',
 'tooltip-preferences-save'        => '保存設定',
+'tooltip-summary'                 => '輸入一個簡短的摘要',
 
 # Stylesheets
 'common.css'      => '/* 此處的 CSS 將應用於所有的面板 */',
@@ -2703,7 +2715,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 
 # Patrolling
 'markaspatrolleddiff'                 => '標記為已檢查',
-'markaspatrolledtext'                 => '標記此頁面為已檢查',
+'markaspatrolledtext'                 => '標記此頁面為已巡查',
 'markedaspatrolled'                   => '標記為已檢查',
 'markedaspatrolledtext'               => '[[:$1]]的已選定修訂版本已被標識為已巡查。',
 'rcpatroldisabled'                    => '最新更改檢查被關閉',

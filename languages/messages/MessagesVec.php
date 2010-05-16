@@ -530,32 +530,32 @@ Par łe tradusion, considera ła posibiłità de usare [http://translatewiki.net
 'namespaceprotected'   => "No se dispone de i parmesi nesesari par modifegare łe pajine del namespace '''$1'''.",
 'customcssjsprotected' => "No se dispone de i parmesi nesesari a ła modifega de ła pajina, en quanto contien łe inpostasion parsonałi de n'altro utente.",
 'ns-specialprotected'  => 'No xè posibiłe modifegare łe pajine spesałi.',
-'titleprotected'       => "La creazion de na pagina con sto titolo la xe stà blocà da [[User:$1|$1]].
-La motivazion la xe sta qua: ''$2''.",
+'titleprotected'       => 'Ła creasion de na pajina con sto titoło xè sta blocà da [[User:$1|$1]].
+Ła modivasion xè ła seguente: "$2".',
 
 # Virus scanner
-'virus-badscanner'     => "Eror de configurassion: antivirus sconossiùo: ''$1''",
-'virus-scanfailed'     => 'scansion mìa riussìa (codice de eror $1)',
-'virus-unknownscanner' => 'antivirus sconossiùo:',
+'virus-badscanner'     => 'Erore de configurasion: antivirus sconossuo: "$1"',
+'virus-scanfailed'     => 'scansion fałia (codexe $1)',
+'virus-unknownscanner' => 'antivirus sconossuo:',
 
 # Login and logout pages
 'logouttext'                 => "'''Logout efetuà.'''
 
-Ora te podi continuar a doparar {{SITENAME}} come utente anonimo, opure te podi far [[Special:UserLogin|de novo el login]] col nome utente de prima, opure con uno difarente. 
-Ocio che serte pagine le podarìa èssar visualizà come se te fussi ancora loggà, fin che no te neti la cache del to browser.",
+Se poe continuare ad usare {{SITENAME}} come utente anonimo opure [[Special:UserLogin|eseguire on novo aceso]], con ło steso nome utente o on nome difarente. 
+Nota che alcune pajine e potrebe continuare ad aparire come se el logout no el fosse avegnù finché no a vien pułia la cache del proprio browser.",
 'welcomecreation'            => "== Benvegnù, $1! ==
-El to account l'è stà creà con sucesso.
-No sta desmentegarte de personalixare le to [[Special:Preferences|preferense de {{SITENAME}}]].",
+
+L'acount el xè sta creà coretamente. No dismentegare de personałizare łe [[Special:Preferences|prefarense de {{SITENAME}}]].",
 'yourname'                   => 'Nome utente:',
-'yourpassword'               => 'Scegli na password',
-'yourpasswordagain'          => 'Scrivi la password de novo',
-'remembermypassword'         => 'Ricorda la me password par più sessioni (ghe vol i cookies).',
-'yourdomainname'             => 'Specifica el dominio:',
-'externaldberror'            => 'Se gà verificà un erór con el server de autenticassion esterno, oppure no se dispone de łe autorixassion necessarie par agiornar el proprio acesso esterno.',
+'yourpassword'               => 'Password:',
+'yourpasswordagain'          => 'Ripeti ła password:',
+'remembermypassword'         => 'Ricorda ła password so sto computer',
+'yourdomainname'             => 'Spesifegare el dominio',
+'externaldberror'            => "Se xè verifegà n'erore con el server de autenticasion esterno, opure no se dispone de łe autorizasion nesesarie par ajornare el proprio aceso esterno.",
 'login'                      => 'Entra',
 'nav-login-createaccount'    => 'Entra / Rejistrate',
-'loginprompt'                => 'Par acédere a {{SITENAME}} ti gà da abiłitare i cookie.',
-'userlogin'                  => 'Entra / Regìstrete',
+'loginprompt'                => 'Par asedare a {{SITENAME}} xè nesesario abiłitare i cookie.',
+'userlogin'                  => 'Entra / Rejistrate',
 'userloginnocreate'          => 'Entra',
 'logout'                     => 'Và fora',
 'userlogout'                 => 'và fora',

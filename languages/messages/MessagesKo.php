@@ -1673,6 +1673,11 @@ JD # 제놉틱
 MGP # 펜탁스
 PICT # 기타
  #</pre> <!-- 이 줄은 그대로 두십시오. -->',
+'upload-successful-msg'       => '당신이 올린 파일이 여기 있습니다: $1',
+'upload-failure-subj'         => '올리기 실패',
+'upload-failure-msg'          => '파일을 올리는 중 문제가 발생했습니다:
+
+$1',
 
 'upload-proto-error'        => '잘못된 프로토콜',
 'upload-proto-error-text'   => '파일을 URL로 올리려면 <code>http://</code>이나 <code>ftp://</code>로 시작해야 합니다.',
@@ -1881,7 +1886,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'ncategories'             => '분류 $1개',
 'nlinks'                  => '링크 $1개',
 'nmembers'                => '문서 $1개',
-'nrevisions'              => '판 $1개',
+'nrevisions'              => '편집 $1개',
 'nviews'                  => '$1 번 읽음',
 'specialpage-empty'       => '명령에 대한 결과가 없습니다.',
 'lonelypages'             => '외톨이 문서 목록',
@@ -2064,6 +2069,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'emailsent'            => '이메일 보냄',
 'emailsenttext'        => '이메일을 보냈습니다.',
 'emailuserfooter'      => '이 이메일은 {{SITENAME}}의 $1 사용자가 $2 사용자에게 "이메일 보내기" 기능을 통해 전송되었습니다.',
+
+# User Messenger
+'usermessage-summary' => '시스템 메시지 남기기',
+'usermessage-editor'  => '시스템 메신저',
 
 # Watchlist
 'watchlist'            => '주시문서 목록',
@@ -3280,8 +3289,9 @@ $1',
 'watchlistedit-normal-done'    => '다음 $1 항목을 주시하지 않습니다:',
 'watchlistedit-raw-title'      => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-legend'     => '주시문서 목록 직접 편집하기',
-'watchlistedit-raw-explain'    => "주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다. 각 줄마다 하나의 제목을 쓰고, '주시문서 목록 갱신'을 누르면 됩니다.
-또는 [[Special:Watchlist/edit|일반적인 편집창]]을 쓸 수도 있습니다.",
+'watchlistedit-raw-explain'    => "주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다.
+각 줄마다 하나의 제목을 쓰고, 수정을 마쳤다면 '{{int:Watchlistedit-raw-submit}}'을 누르면 됩니다.
+또는 [[Special:Watchlist/edit|일반적인 편집기]]를 쓸 수도 있습니다.",
 'watchlistedit-raw-titles'     => '목록:',
 'watchlistedit-raw-submit'     => '주시문서 목록 갱신',
 'watchlistedit-raw-done'       => '주시문서 목록을 갱신했습니다.',

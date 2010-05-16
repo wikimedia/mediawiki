@@ -19,6 +19,7 @@
  * @author Hisagi
  * @author Hosiryuhosi
  * @author Iwai.masaharu
+ * @author Joe Elkins
  * @author JtFuruhata
  * @author Kahusi
  * @author Kkkdc
@@ -1618,6 +1619,11 @@ JD # Jenoptik
 MGP # ペンタックス
 PICT # その他
  #</pre> <!-- この行はそのままにしておいてください -->',
+'upload-successful-msg'       => 'あなたのアップロードは右記で可能です: $1',
+'upload-failure-subj'         => 'アップロードトラブル',
+'upload-failure-msg'          => '下記のファイルにてアップロード中にトラブルが発生しました:
+
+$1',
 
 'upload-proto-error'        => '不正なプロトコル',
 'upload-proto-error-text'   => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
@@ -1988,6 +1994,10 @@ PICT # その他
 'emailsent'            => 'メールを送りました',
 'emailsenttext'        => 'メールは無事送信されました。',
 'emailuserfooter'      => 'この電子メールは $1 から $2 へ、{{SITENAME}}の「利用者へメールを送信」機能を使って送られました。',
+
+# User Messenger
+'usermessage-summary' => 'システムメッセージを残す。',
+'usermessage-editor'  => 'システムメッセンジャー',
 
 # Watchlist
 'watchlist'            => 'ウォッチリスト',

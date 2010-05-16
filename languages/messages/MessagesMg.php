@@ -1632,7 +1632,7 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'randomredirect-nopages' => "Tsy misy pejy fihodinana eo amin'ny anaran-tsehatra «$1»",
 
 # Statistics
-'statistics'                   => 'Fanao pejy',
+'statistics'                   => 'Statistika',
 'statistics-header-pages'      => "Statistikan'ny pejy",
 'statistics-header-edits'      => "Statistikan'ny fanovana",
 'statistics-header-views'      => "Statistikan'ny tsidika",
@@ -2356,14 +2356,14 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'importcantopen'             => 'Tsy mety sokafana ilay rakitra ho ampidirina',
 'importbadinterwiki'         => 'Rohy interwiki tsy izy',
 'importnotext'               => 'Tsy misy votoatiny',
-'importsuccess'              => 'Nandeha ilay fampidirana !',
+'importsuccess'              => 'Tafiditra soa aman-tsara !',
 'importhistoryconflict'      => "Misy ady hita ao amin'y tantaran-tsantiôna (nety nalefa io pejy io taloha).",
 'importnosources'            => 'Mbola tsy voatono ny loharano interwiki fampidiram-pejy ary mbola tsy mandeha ny fandefasana tantaram-pejy.',
 'importnofile'               => 'Tsy nisy rakitra fandefasana nalefa.',
-'importuploaderrorsize'      => "Tsy nandeha ny fampidirana ilay rakitra.
-Ambony nohon'ny lanja ahazon-dalana ny lanjany.",
-'importuploaderrorpartial'   => 'Tsy nandeha ny fampidirana ilay rakitra.
-Singam-votoatiny fotsiny no nalefa.',
+'importuploaderrorsize'      => "Tsy tafiditra soa aman-tsara ilay rakitra.
+Ambony nohon'ny lanja ahazoan-dalana ny lanjany.",
+'importuploaderrorpartial'   => 'Tsy tafiditra tato ilay rakitra.
+Singam-botoatiny fotsiny no nalefa.',
 'importuploaderrortemp'      => 'Ny fandefasana ilay rakitra dia tsy nety.
 Tsy hita ny rakitra miserana.',
 'import-parse-failure'       => 'Tsy fetezana teo am-pandinihana ny XML ho ampidirina',

@@ -3345,7 +3345,9 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 başlık|$1 başlık}} izleme listenizden çıkarıldı:',
 'watchlistedit-raw-title'      => 'Ham izleme listesini düzenle',
 'watchlistedit-raw-legend'     => 'Ham izleme listesini düzenle',
-'watchlistedit-raw-explain'    => "İzleme listenizdeki başlıklar aşağıda gösterilmektedir. Her satırda bir başlık olmak üzere, başlıkları ekleyerek ya da silerek listeyi düzenleyebilirsiniz. Bittiğinde ''İzleme listesini güncelle'''ye tıklayınız. Ayrıca [[Special:Watchlist/edit|standart düzenleme sayfasını]] da kullanabilirsiniz.",
+'watchlistedit-raw-explain'    => 'İzleme listenizdeki başlıklar aşağıda gösterilmektedir. Her satırda bir başlık olmak üzere, başlıkları ekleyerek ya da silerek listeyi düzenleyebilirsiniz.
+Bittiğinde "{{int:Watchlistedit-raw-submit}}"ye tıklayınız.
+Ayrıca [[Special:Watchlist/edit|standart düzenleme sayfasını]] da kullanabilirsiniz.',
 'watchlistedit-raw-titles'     => 'Başlıklar:',
 'watchlistedit-raw-submit'     => 'İzleme listesini güncelle',
 'watchlistedit-raw-done'       => 'İzleme listeniz güncellendi.',

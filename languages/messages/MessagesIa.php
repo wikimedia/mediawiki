@@ -1582,6 +1582,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- non modificar de alcun modo iste linea -->',
+'upload-successful-msg'       => 'Tu file incargate es disponibile a: $1',
+'upload-failure-subj'         => 'Problema de incargamento',
+'upload-failure-msg'          => 'Il ha occurrite un problema con tu incargamento:
+
+$1',
 
 'upload-proto-error'        => 'Protocollo incorrecte',
 'upload-proto-error-text'   => 'Le incargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
@@ -1985,6 +1990,10 @@ como le adresse del expeditor del e-mail, de modo que le destinatario pote respo
 'emailsent'            => 'E-mail inviate',
 'emailsenttext'        => 'Tu message de e-mail ha essite inviate.',
 'emailuserfooter'      => 'Iste e-mail esseva inviate per $1 a $2 con le function "Inviar e-mail al usator" a {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Lassar un message de systema.',
+'usermessage-editor'  => 'Messagero de systema',
 
 # Watchlist
 'watchlist'            => 'Mi observatorio',

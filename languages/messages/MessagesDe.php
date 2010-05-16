@@ -1742,9 +1742,9 @@ JD # Jenoptik
 MGP # Pentax
 PICT # verschiedene
  #</pre> <!-- Diese Zeile darf nicht verändert werden!-->',
-'upload-successful-msg'       => 'Dein Upload ist hier verfügbar: $1',
+'upload-successful-msg'       => 'Deine hochgeladene Datei ist hier verfügbar: $1',
 'upload-failure-subj'         => 'Hochladefehler',
-'upload-failure-msg'          => 'Es gab ein Problem mit deinem Upload:
+'upload-failure-msg'          => 'Es gab ein Problem mit deiner hochgeladenen Datei:
 
 $1',
 
@@ -3381,7 +3381,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'watchlistedit-raw-title'      => 'Beobachtungsliste im Listenformat bearbeiten',
 'watchlistedit-raw-legend'     => 'Beobachtungsliste im Listenformat bearbeiten',
 'watchlistedit-raw-explain'    => 'Dies sind die Einträge deiner Beobachtungsliste im Listenformat. Die Einträge können zeilenweise gelöscht oder hinzugefügt werden.
-Pro Zeile ist ein Eintrag erlaubt. Wenn du fertig bist, klicke auf „Beobachtungsliste speichern“.
+Pro Zeile ist ein Eintrag erlaubt. Wenn du fertig bist, klicke auf „{{int:Watchlistedit-raw-submit}}“.
 Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutzen.',
 'watchlistedit-raw-titles'     => 'Einträge:',
 'watchlistedit-raw-submit'     => 'Beobachtungsliste aktualisieren',

@@ -3472,7 +3472,7 @@ U kunt ook [[Special:Watchlist/raw|de ruwe lijst bewerken]].',
 'watchlistedit-raw-explain'    => 'Hieronder staan pagina’s op uw volglijst.
 U kunt de lijst bewerken door pagina’s te verwijderen en toe te voegen.
 Eén pagina per regel.
-Als u klaar bent, klik dan op ‘Volglijst bijwerken’.
+Als u klaar bent, klik dan op "{{int:Watchlistedit-raw-submit}}".
 U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].',
 'watchlistedit-raw-titles'     => 'Pagina’s:',
 'watchlistedit-raw-submit'     => 'Volglijst bijwerken',

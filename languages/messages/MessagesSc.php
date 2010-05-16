@@ -185,7 +185,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-delete'       => 'Cantzella',
-'vector-action-move'         => 'Movi',
+'vector-action-move'         => 'Move',
 'vector-action-protect'      => 'Ampara',
 'vector-action-undelete'     => 'Recùpera',
 'vector-namespace-category'  => 'Categoria',

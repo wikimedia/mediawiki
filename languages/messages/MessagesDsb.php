@@ -1529,6 +1529,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń nic na toś tej rědce! -->',
+'upload-successful-msg'       => 'Twójo nagraśe stoj how k dispoziciji: $1',
+'upload-failure-subj'         => 'Nagrawański problem',
+'upload-failure-msg'          => 'Jo był problem z twójim nagraśim:
+
+$1',
 
 'upload-proto-error'        => 'Njekorektny protokol',
 'upload-proto-error-text'   => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
@@ -1911,6 +1916,10 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 'emailsent'            => 'e-mail wótposłany',
 'emailsenttext'        => 'Twój e-mail jo se wótpósłał.',
 'emailuserfooter'      => 'Toś ta e-mailka jo se z pomocu funkcije "Toś tomu wužywarjeju e-mail pósłaś" na {{SITENAME}} wót $1 do $2 pósłała.',
+
+# User Messenger
+'usermessage-summary' => 'Systemowu powěźeńku zawóstajis.',
+'usermessage-editor'  => 'Systemowy powěstnik',
 
 # Watchlist
 'watchlist'            => 'Wobglědowańka',
@@ -3100,8 +3109,9 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 'watchlistedit-normal-done'    => '{{PLURAL:$1 zapisk jo|$1 zapiska stej|$1 zapiski su|$1 zapiskow jo}} se z twójeje wobglědowańki {{PLURAL:wulašował|wulašowałej|wulašowali|wulašowało}}.',
 'watchlistedit-raw-title'      => 'Samu wobglědowańku wobźěłaś',
 'watchlistedit-raw-legend'     => 'Samu wobglědowańku wobźěłaś',
-'watchlistedit-raw-explain'    => 'Zapiski, kótarež namakaju se w twójej wobglědowańce pokazuju se dołojce. Wóni mógu se wobźěłaś pśez to, až do lisćiny se dodawaju resp. z njeje se wulašuju (stawnje jaden zapisk na smužku). Gaž sy gótowy, tłoc "Lisćinu aktualizěrowaś".
-Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
+'watchlistedit-raw-explain'    => 'Titele, kótarež namakaju se w twójej wobglědowańce pokazuju se dołojce a daju se lisćinje pśidaś a z njeje wótpóraś; jaden titel na smužku.
+Gaž sy gótowy, klikni na "{{int:Watchlistedit-raw-submit}}".
+Móžoš teke [[Special:Watchlist/edit|standardny wobźěłowański bok wužywaś]].',
 'watchlistedit-raw-titles'     => 'Zapise:',
 'watchlistedit-raw-submit'     => 'Lisćinu aktualizěrowaś',
 'watchlistedit-raw-done'       => 'Twója wobglědowańka jo se zaktualizěrowała.',
