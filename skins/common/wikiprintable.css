@@ -1,9 +1,9 @@
 /* MediaWiki print stylesheet */
 
 body {
-	color: #000000; background: #ffffff;
+	color: #000000;
+	background: #ffffff;
 }
-
 
 /* MSIE/Win doesn't understand 'inherit' */
 a, a.external, a.new, a.stub {

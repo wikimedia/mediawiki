@@ -12,7 +12,9 @@ h2 { font-size: 1.5em; }
 h3 { font-size: 1.17em; }
 h5 { font-size: .83em; }
 h6 { font-size: .75em; }
-h1, h2, h3, h4, h5, h6 { font-weight: bolder }
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bolder;
+}
 
 /* Now the custom parts */
 
@@ -20,32 +22,47 @@ h1, h2, h3, h4, h5, h6 { font-weight: bolder }
 .editsection {
 	font-weight: normal;
 }
-h1 .editsection { font-size: 50% }
-h2 .editsection { font-size: 66.7% }
-h3 .editsection { font-size: 85.5% }
-h5 .editsection { font-size: 120% }
-h6 .editsection { font-size: 133% }
+h1 .editsection { font-size: 50%; }
+h2 .editsection { font-size: 66.7%; }
+h3 .editsection { font-size: 85.5%; }
+h5 .editsection { font-size: 120%; }
+h6 .editsection { font-size: 133%; }
 
 #footer { clear: both }
 /* images */
-div.floatright { float: right; clear: right; margin: 0 0 1em 1em; }
-div.floatright p { font-style: italic; }
-div.floatleft { float: left; clear: left; margin: 0.3em 0.5em 0.5em 0; }
-div.floatleft p { font-style: italic; }
+div.floatright {
+	float: right;
+	clear: right;
+	margin: 0 0 1em 1em;
+}
+
+div.floatright p {
+	font-style: italic;
+}
+
+div.floatleft {
+	float: left;
+	clear: left;
+	margin: 0.3em 0.5em 0.5em 0;
+}
+
+div.floatleft p {
+	font-style: italic;
+}
 
 
 /* Print-specific things to hide */
 .printfooter {
-        display: none;
+	display: none;
 }
 
 /* table standards */
 table.rimage {
-        float:right;
-        margin-left:1em;
-        margin-bottom:1em;
-        text-align:center;
-        font-size:smaller;
+	float: right;
+	margin-left: 1em;
+	margin-bottom: 1em;
+	text-align: center;
+	font-size: smaller;
 }
 
 /* thumbnails */
@@ -137,7 +154,6 @@ img { border: none; }
 	font-size: 94%;
 }
 
-
 .error {
 	color: red;
 	font-size: larger;
@@ -148,77 +164,88 @@ img { border: none; }
 	clear: both;
 }
 #preftoc {
-    float: left;
-    margin: 1em 1em 1em 1em;
-    width: 13em;
+	float: left;
+	margin: 1em 1em 1em 1em;
+	width: 13em;
 }
-#preftoc li { border: 1px solid White; }
+#preftoc li {
+	border: 1px solid White;
+}
 #preftoc li.selected {
-    background-color:#f9f9f9;
-    border:1px dashed #aaaaaa;
+	background-color:#f9f9f9;
+	border:1px dashed #aaaaaa;
 }
 #preftoc a,
 #preftoc a:active {
-    display: block;
-    color: #005189;
+	display: block;
+	color: #005189;
 }
 .mw-prefs-buttons {
-    clear: left;
-    float: left;
-    margin-top: 1em;
+	clear: left;
+	float: left;
+	margin-top: 1em;
 }
 div.htmlform-tip {
-    font-size: 94%;
-    margin-top: 0.4em;
-    color: #666;
+	font-size: 94%;
+	margin-top: 0.4em;
+	color: #666;
 }
-fieldset.prefsection { margin-top: 1em }
-fieldset.operaprefsection { margin-left: 15em }
+fieldset.prefsection {
+	margin-top: 1em;
+}
+fieldset.operaprefsection {
+	margin-left: 15em;
+}
 
 /* emulate center */
 .center {
-    width: 100%;
-    text-align: center;
+	width: 100%;
+	text-align: center;
 }
 *.center * {
-    margin-left: auto;
-    margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
+
 /* small for tables and similar */
-.small, .small * { font-size: 94%; }
-table.small { font-size: 100% }
+.small, .small * {
+	font-size: 94%;
+}
+table.small {
+	font-size: 100%;
+}
 
 /* use this instead of #toc for page content */
 .toccolours {
-    border:1px solid #aaaaaa;
-    background-color:#f9f9f9;
-    padding:5px;
-    font-size: 95%;
+	border: 1px solid #aaaaaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
 }
 #siteNotice {
-    border:1px solid #aaaaaa;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+	border: 1px solid #aaaaaa;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 }
 .redirectText {
-	font-size:150%;
-	margin:5px;
+	font-size: 150%;
+	margin: 5px;
 }
 .sharedUploadNotice {
 	font-style: italic;
 }
 span.unpatrolled {
-	font-weight:bold;
-	color:red;
+	font-weight: bold;
+	color: red;
 }
 
 span.updatedmarker {
-	color:black;
-	background-color:#00FF00;
+	color: black;
+	background-color: #00FF00;
 }
 
 div.gallerybox {
-	width:  150px;
+	width: 150px;
 }
 
 span.comment {
@@ -234,19 +261,19 @@ span.changedby {
 	color: #cc0000;
 }
 .editExternally {
-        border-style:solid;
-        border-width:1px;
-        border-color:gray;
-        background: #ffffff;
-        padding:3px;
-        margin-top:0.5em;
-        float:left;
-        font-size:small;
-        text-align:center;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+	background: #ffffff;
+	padding: 3px;
+	margin-top: 0.5em;
+	float: left;
+	font-size: small;
+	text-align: center;
 }
 .editExternallyHelp {
-        font-style:italic;
-        color:gray;
+	font-style: italic;
+	color: gray;
 }
 
 li span.deleted {
@@ -260,9 +287,15 @@ table.mw_metadata {
 	margin-left: 0.5em;
 }
 
-table.mw_metadata caption { font-weight: bold; }
-table.mw_metadata th { font-weight: normal; }
-table.mw_metadata td { padding: 0.1em; }
+table.mw_metadata caption {
+	font-weight: bold;
+}
+table.mw_metadata th {
+	font-weight: normal;
+}
+table.mw_metadata td {
+	padding: 0.1em;
+}
 
 table.mw_metadata {
 	border: none;
@@ -289,11 +322,10 @@ table.collapsed tr.collapsable {
 }
 
 .visualClear {
-    clear: both;
+	clear: both;
 }
 
 /* Allmessages table */
-
 #allmessagestable th {
 	background-color: #b2b2ff;
 }
@@ -311,28 +343,28 @@ table.collapsed tr.collapsable {
 }
 
 #jump-to-nav {
-  display: none;
+	display: none;
 }
 
 div.multipageimagenavbox {
-   border: solid 1px silver;
-   padding: 4px;
-   margin: 1em;
-   background: #f0f0f0;
+	border: solid 1px silver;
+	padding: 4px;
+	margin: 1em;
+	background: #f0f0f0;
 }
 
 div.multipageimagenavbox div.thumb {
-   border: none;
-   margin-left: 2em;
-   margin-right: 2em;
+	border: none;
+	margin-left: 2em;
+	margin-right: 2em;
 }
 
 div.multipageimagenavbox hr {
-   margin: 6px;
+	margin: 6px;
 }
 
 table.multipageimage td {
-   text-align: center;
+	text-align: center;
 }
 
 /*
@@ -343,22 +375,42 @@ table.multipageimage td {
   - remove line wrapping for all td and th, set background color
   - restore line wrapping for the last two table cells (description and size)
 */
-.TablePager_nav a { text-decoration: none; }
-.TablePager { border-collapse: collapse; }
-.TablePager, .TablePager td, .TablePager th { 
+.TablePager_nav a {
+	text-decoration: none;
+}
+.TablePager {
+	border-collapse: collapse;
+}
+.TablePager, .TablePager td, .TablePager th {
 	border: 0.15em solid #777777;
 	padding: 0 0.15em 0 0.15em;
 }
-.TablePager th { background-color: #eeeeff }
-.TablePager td { background-color: #ffffff }
-.TablePager tr:hover td { background-color: #eeeeff }
+.TablePager th {
+	background-color: #eeeeff;
+}
+.TablePager td {
+	background-color: #ffffff;
+}
+.TablePager tr:hover td {
+	background-color: #eeeeff;
+}
 
-.imagelist td, .imagelist th { white-space: nowrap }
-.imagelist .TablePager_col_links { background-color: #eeeeff }
-.imagelist .TablePager_col_img_description { white-space: normal }
-.imagelist th.TablePager_sort { background-color: #ccccff }
+.imagelist td, .imagelist th {
+	white-space: nowrap;
+}
+.imagelist .TablePager_col_links {
+	background-color: #eeeeff;
+}
+.imagelist .TablePager_col_img_description {
+	white-space: normal;
+}
+.imagelist th.TablePager_sort {
+	background-color: #ccccff;
+}
 
-.templatesUsed { margin-top: 1em; }
+.templatesUsed {
+	margin-top: 1em;
+}
 
 .MediaTransformError {
 	border: thin solid #777;
