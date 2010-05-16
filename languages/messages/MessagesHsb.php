@@ -1512,6 +1512,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń tutu linku! -->',
+'upload-successful-msg'       => 'Twoje nahraće steji tu k dispoziciji: $1',
+'upload-failure-subj'         => 'Nahrawanski problem',
+'upload-failure-msg'          => 'Bě problem z twojim nahraćom:
+
+$1',
 
 'upload-proto-error'        => 'Wopačny protokol',
 'upload-proto-error-text'   => 'URL dyrbi so z <code>http://</code> abo <code>ftp://</code> započeć.',
@@ -1892,6 +1897,10 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 'emailsent'            => 'Mejlka wotesłana',
 'emailsenttext'        => 'Twoja mejlka bu wotesłana.',
 'emailuserfooter'      => 'Tuta e-mejlka bu z pomocu funkcije "Wužiwarjej mejlku pósłać" na {{SITENAME}} wot $1 do $2 pósłana.',
+
+# User Messenger
+'usermessage-summary' => 'Systemowu  zdźělenku zawostajić.',
+'usermessage-editor'  => 'Systemowy powěstnik',
 
 # Watchlist
 'watchlist'            => 'wobkedźbowanki',
@@ -3073,9 +3082,9 @@ Spytaj normalny přehlad.',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 zapisk bu|$1 zapiskaj buštej|$1 zapiski buchu|$1 zapiskow  buchu}} z twojich wobkedźbowankow {{PLURAL:$1|wotstronjeny|wotstronjenej|wotstronjene|wotstronjene}}:',
 'watchlistedit-raw-title'      => 'Wobkedźbowanki w lisćinowym formaće wobdźěłać',
 'watchlistedit-raw-legend'     => 'Wobkedźbowanki w lisćinowym formaće wobdźěłać',
-'watchlistedit-raw-explain'    => 'To su twoje wobkedźbowanki w lisćinowym formaće. Zapiski hodźa so po linkach wušmórnyć abo přidać.
-Na linku je jedyn zapisk dowoleny.
-Hdyž sy hotowy, klikń na „wobkedźbowanki składować“.
+'watchlistedit-raw-explain'    => 'Titule mjez twojimi wobkedźbowankach so deleka pokazuja, a dadźa so lisćinje přidać abo z njeje wotstronić;
+jedyn titul na linku.
+Hdyž sy hotowy, klikń na "{{int:Watchlistedit-raw-submit}}".
 Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wužiwać.',
 'watchlistedit-raw-titles'     => 'Zapiski:',
 'watchlistedit-raw-submit'     => 'Wobkedźbowanki składować',

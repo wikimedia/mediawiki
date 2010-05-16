@@ -1592,6 +1592,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # mešano
  #</pre> <!-- pustite to vrstico takšno, kot je -->',
+'upload-successful-msg'       => 'Vaša naložena datoteka je na voljo tukaj: $1',
+'upload-failure-subj'         => 'Težava pri nalaganju',
+'upload-failure-msg'          => 'Prišlo je do težave z vašo naloženo datoteko:
+
+$1',
 
 'upload-proto-error'        => 'Nepravilni protokol',
 'upload-proto-error-text'   => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
@@ -1994,6 +1999,10 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'emailsenttext'        => 'E-pismo je poslano.',
 'emailuserfooter'      => 'To e-poštno sporočilo je bilo poslano od $1 uporabniku $2 preko funkcije »{{int:emailpage}}« na {{GRAMMAR:dative|{{SITENAME}}}}.',
 
+# User Messenger
+'usermessage-summary' => 'Pusti sistemsko sporočilo.',
+'usermessage-editor'  => 'Sistemski sporočevalec',
+
 # Watchlist
 'watchlist'            => 'Spisek nadzorov',
 'mywatchlist'          => 'Spisek nadzorov',
@@ -2281,7 +2290,7 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'whatlinkshere-next'       => '{{PLURAL:$1|naslednji|naslednja $1|naslednji $1|naslednjih $1|naslednjih $1}}',
 'whatlinkshere-links'      => '← povezave',
 'whatlinkshere-hideredirs' => '$1 preusmeritve',
-'whatlinkshere-hidetrans'  => '$1 translukcije',
+'whatlinkshere-hidetrans'  => '$1 vključitve',
 'whatlinkshere-hidelinks'  => '$1 povezave',
 'whatlinkshere-hideimages' => '$1 povezave slik',
 'whatlinkshere-filters'    => 'Filtri',

@@ -1518,6 +1518,11 @@ $1",
 你應該要考慮吓繼續上載呢個檔案係唔係適合嘅。
 為咗方便起見，呢個檔案嘅刪除記錄已經響下面提供:",
 'filename-bad-prefix'         => "你上載嘅檔名係以'''\"\$1\"'''做開頭，通常呢種無含意嘅檔名係響數碼相機度自動編排。請響你個檔案度揀過一個更加有意義嘅檔名。",
+'upload-successful-msg'       => '你嘅上傳可以係$1搵到。',
+'upload-failure-subj'         => '上傳出錯',
+'upload-failure-msg'          => '問題係：
+
+$1',
 
 'upload-proto-error'        => '唔正確嘅協議',
 'upload-proto-error-text'   => '遙遠上載需要一個以 <code>http://</code> 或者 <code>ftp://</code> 作為開頭嘅URL。',
@@ -1906,6 +1911,10 @@ Template:搞清楚',
 'emailsent'            => '電郵已傳送',
 'emailsenttext'        => '你嘅電郵信息已傳送。',
 'emailuserfooter'      => '呢封電郵係由$1寄畀$2經{{SITENAME}}嘅「電郵用戶」功能發出嘅。',
+
+# User Messenger
+'usermessage-summary' => '留低系統信息',
+'usermessage-editor'  => '系統信息',
 
 # Watchlist
 'watchlist'            => '監視清單',
@@ -2458,6 +2467,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'importstart'                => '倒入緊...',
 'import-revision-count'      => '$1次修訂',
 'importnopages'              => '冇頁面去倒入。',
+'imported-log-entries'       => '導入{{PLURAL:$1|1|$1}}個日誌記錄',
 'importfailed'               => '倒入失敗：<nowiki>$1</nowiki>',
 'importunknownsource'        => '不明嘅倒入來源類型',
 'importcantopen'             => '唔能夠開個倒入檔案',
@@ -2551,6 +2561,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-rollback'                => '『反轉』可以一撳復原上一位貢獻者對呢版嘅編輯',
 'tooltip-undo'                    => '『復原』可以響編輯模式度開編輯表以便復原。佢容許響摘要度加入原因。',
 'tooltip-preferences-save'        => '保存設定',
+'tooltip-summary'                 => '輸入一個短少嘅摘要',
 
 # Stylesheets
 'common.css'      => '/* 響呢度放 CSS 碼來改成個網站嘅畫面 */',
@@ -2644,7 +2655,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 
 # Patrolling
 'markaspatrolleddiff'                 => '標示為已巡查嘅',
-'markaspatrolledtext'                 => '標示呢版為已巡查嘅',
+'markaspatrolledtext'                 => '標示呢版做查咗嘅',
 'markedaspatrolled'                   => '已經標示做已巡查嘅',
 'markedaspatrolledtext'               => '已經選擇咗[[:$1]]嘅修訂已經標示咗做已巡查嘅。',
 'rcpatroldisabled'                    => '最近修改巡查已經停用',

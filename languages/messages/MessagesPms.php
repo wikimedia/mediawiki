@@ -1459,6 +1459,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # vàire marche diferente
  #</pre> <!-- ch'a lassa sta riga-sì tanme ch'a l'é -->",
+'upload-successful-msg'       => "Tò upload a l'é disponìbil ambelessì: $1",
+'upload-failure-subj'         => 'Problem a carié',
+'upload-failure-msg'          => "A l'é stàit-ie un problem con tò upload:
+
+$1",
 
 'upload-proto-error'        => 'Protocòl cioch',
 'upload-proto-error-text'   => "Për carié da dij servent lontan a venta buté dj'anliure ch'as anandio për <code>http://</code> ò pura <code>ftp://</code>.",
@@ -1854,6 +1859,10 @@ L'adrëssa e-mail ch'it l'has butà an [[Special:Preferences|Ij sò gust]] a sar
 'emailsent'            => 'Messagi eletrònich mandà',
 'emailsenttext'        => "Sò messagi eletrònich a l'é stait mandà",
 'emailuserfooter'      => 'St\'e-mail-sì a l\'é stàita mandà da $1 a $2 con la fonsion "E-mail utent" a {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Lassa mëssagi ëd sistem.',
+'usermessage-editor'  => 'Mëssagiador ëd sistem',
 
 # Watchlist
 'watchlist'            => 'Ròba che im ten-o sot euj',
@@ -3090,9 +3099,9 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 tìtol a l'é|$1 tìtoj a son}} stait gavà via da 'nt la lista ëd lòn ch'as ten sot euj:",
 'watchlistedit-raw-title'      => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
 'watchlistedit-raw-legend'     => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
-'watchlistedit-raw-explain'    => "Ij tìtoj ch'a l'é antramentr ch'as ten sot euj a son ambelessì sota, e a peulo modifichesse
-	ën giontand-ne e gavand-ne via da 'nt la lista; un tìtol për riga. Quand a l'ha finì, ch'ai bata ansima a Agiorna la Lista.
-	As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
+'watchlistedit-raw-explain'    => "Ij tìtoj ch'a l'é antramentr ch'as ten sot euj a son ambelessì sota, e a peulo modifichesse ën giontand-ne e gavand-ne via da 'nt la lista; un tìtol për riga. 
+Quand a l'ha finì, ch'ai bata ansima a \"{{int:Watchlistedit-raw-submit}}\".
+As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
 'watchlistedit-raw-titles'     => 'Tìtoj:',
 'watchlistedit-raw-submit'     => 'Agiorné la Lista',
 'watchlistedit-raw-done'       => "La lista ëd lòn ch'as ten sot euj a l'é staita agiornà.",

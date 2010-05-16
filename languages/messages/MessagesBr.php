@@ -1516,6 +1516,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->",
+'upload-successful-msg'       => "Ho kargadenn a c'heller kavout amañ : $1",
+'upload-failure-subj'         => 'Kudenn kargañ',
+'upload-failure-msg'          => "Ur gudenn 'zo bet e-pad ho kargadenn :
+
+$1",
 
 'upload-proto-error'        => 'Protokol direizh',
 'upload-proto-error-text'   => 'Rekis eo an URLoù a grog gant <code>http://</code> pe <code>ftp://</code> evit enporzhiañ.',
@@ -1913,6 +1918,9 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 'emailsent'            => 'Postel kaset',
 'emailsenttext'        => 'Kaset eo bet ho postel.',
 'emailuserfooter'      => 'Kaset eo bet ar postel-mañ gant $1 da $2 dre an arc\'hwel "Kas ur postel d\'an implijer" war {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'En deus laosket ur gemennadenn sistem.',
 
 # Watchlist
 'watchlist'            => 'Roll evezhiañ',

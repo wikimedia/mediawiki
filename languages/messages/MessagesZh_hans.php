@@ -13,6 +13,7 @@
  * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
+ * @author Horacewai2
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author KaiesTse
@@ -2697,7 +2698,7 @@ $1已经被封锁。您是否想更改这个设置？',
 
 # Patrolling
 'markaspatrolleddiff'                 => '标记为已检查',
-'markaspatrolledtext'                 => '标记此页面为已检查',
+'markaspatrolledtext'                 => '标记此页面为已巡查',
 'markedaspatrolled'                   => '标记为已检查',
 'markedaspatrolledtext'               => '[[:$1]]的已选中修订版本已被标识为已巡查。',
 'rcpatroldisabled'                    => '最新更改检查被关闭',

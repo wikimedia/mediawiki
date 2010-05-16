@@ -1225,6 +1225,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'searchprofile-everything-tooltip' => 'Minden névtérben keres (a vitalapokat is beleértve)',
 'searchprofile-advanced-tooltip'   => 'Keresés adott névterekben',
 'search-result-size'               => '$1 ({{PLURAL:$2|egy|$2}} szó)',
+'search-result-category-size'      => '$1 oldal, $2 alkategória, $3 fájl',
 'search-result-score'              => 'Relevancia: $1%',
 'search-redirect'                  => '(átirányítva innen: $1)',
 'search-section'                   => '($1 szakasz)',
@@ -1583,6 +1584,9 @@ A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' v
 'upload_directory_missing'    => 'A feltöltési könyvtár ($1) nem létezik vagy nem tudja létrehozni a kiszolgáló.',
 'upload_directory_read_only'  => 'A kiszolgálónak nincs írási jogosultsága a feltöltési könyvtárban ($1).',
 'uploaderror'                 => 'Feltöltési hiba',
+'upload-recreate-warning'     => "'''Figyelmeztetés: az ilyen nevű fájlt törölték vagy átnevezték.'''
+
+Az oldalhoz tartozó törlési és átnevezési naplóbejegyzések:",
 'uploadtext'                  => "Az alábbi űrlap használatával tölthetsz fel fájlokat.
 A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:FileList|feltöltött fájlok listájához]], a(z újra)feltöltések a [[Special:Log/upload|feltöltési naplóban]], a törlések a [[Special:Log/upload|törlési naplóban]] vannak jegyezve.
 
@@ -1597,7 +1601,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'uploadlogpagetext'           => 'Lentebb látható a legutóbbi felküldések listája.
 Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'filename'                    => 'Fájlnév',
-'filedesc'                    => 'Összegzés',
+'filedesc'                    => 'Összefoglaló',
 'fileuploadsummary'           => 'Összefoglaló:',
 'filereuploadsummary'         => 'Változtatások:',
 'filestatus'                  => 'Szerzői jogi állapot:',
@@ -1616,6 +1620,17 @@ Az ajánlott {{PLURAL:$3|típus|típusok}}: $2.",
 'filetype-banned-type'        => "A(z) '''„.$1”''' nem megengedett fájltípus. 
 Az engedélyezett {{PLURAL:$3|típus|típusok}}: $2.",
 'filetype-missing'            => 'A fájlnak nincs kiterjesztése (pl. „.jpg”).',
+'empty-file'                  => 'Az elküldött fájl üres volt.',
+'file-too-large'              => 'Az elküldött fájl túl nagy volt.',
+'filename-tooshort'           => 'A fájlnév túl rövid.',
+'filetype-banned'             => 'Az ilyen típusú fájlok tiltva vannak.',
+'verification-error'          => 'Ez a fájl nem felelt meg az ellenőrzésen (hibás, rossz kiterjesztés, stb.).',
+'hookaborted'                 => 'A módosítást, amit próbáltál elvégezni megszakította egy kiterjesztés-hook.',
+'illegal-filename'            => 'A fájlnév nem engedélyezett.',
+'overwrite'                   => 'Nem engedélyezett felülírni egy létező fájlt.',
+'unknown-error'               => 'Ismeretlen hiba történt.',
+'tmp-create-error'            => 'Nem sikerült létrehozni az ideiglenes fájlt.',
+'tmp-write-error'             => 'Hiba az ideiglenes fájl írásakor.',
 'large-file'                  => 'Javasoljuk, hogy ne tölts fel olyan fájlokat, melyek nagyobbak, mint $1;
 ez a fájl $2.',
 'largefileserver'             => 'A fájl mérete meghaladja a kiszolgálón beállított maximális értéket.',
@@ -1650,6 +1665,8 @@ Ha még mindig fel szeretnéd tölteni a fájlt, menj vissza, és adj meg egy ú
 'uploadedimage'               => '„[[$1]]” felküldve',
 'overwroteimage'              => 'feltöltötte a(z) „[[$1]]” fájl új változatát',
 'uploaddisabled'              => 'Feltöltések kikapcsolva',
+'copyuploaddisabled'          => 'A feltöltés URL alapján le van tiltva.',
+'uploadfromurl-queued'        => 'A feltöltésed a várakozási sorba került.',
 'uploaddisabledtext'          => 'A fájlfeltöltés nem engedélyezett.',
 'php-uploaddisabledtext'      => 'A PHP-s fájlfeltöltés le van tiltva. Ellenőrizd a file_uploads beállítást.',
 'uploadscripted'              => 'Ez a fájl olyan HTML- vagy parancsfájlkódot tartalmaz, melyet tévedésből egy webböngésző esetleg értelmezni próbálhatna.',
@@ -1681,6 +1698,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # ált.
  #</pre> <!-- ezt a sort hagyd így -->',
+'upload-successful-msg'       => 'A feltöltésed itt érhető el: $1',
+'upload-failure-subj'         => 'Feltöltési hiba',
+'upload-failure-msg'          => 'Probléma történt a feltöltéseddel:
+
+$1',
 
 'upload-proto-error'        => 'Hibás protokoll',
 'upload-proto-error-text'   => 'A távoli feltöltéshez <code>http://</code> vagy <code>ftp://</code> kezdetű URL-ekre van szükség.',
@@ -2072,6 +2094,10 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'emailsent'            => 'E-mail elküldve',
 'emailsenttext'        => 'Az e-mail üzenetedet elküldtem.',
 'emailuserfooter'      => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
+
+# User Messenger
+'usermessage-summary' => 'Rendszerüzenet megadása.',
+'usermessage-editor'  => 'Rendszerüzenetek',
 
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
@@ -2650,6 +2676,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'importstart'                => 'Lapok importálása...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revision|változatok}}',
 'importnopages'              => 'Nincs importálandó lap.',
+'imported-log-entries'       => 'Importálva $1 logbejegyzés.',
 'importfailed'               => 'Az importálás nem sikerült: $1',
 'importunknownsource'        => 'Ismeretlen import forrástípus',
 'importcantopen'             => 'Nem nyitható meg az importfájl',
@@ -2743,6 +2770,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'tooltip-rollback'                => '„Visszaállítás”: egy kattintással visszavonja az utolsó felhasználó egy vagy több szerkesztését.',
 'tooltip-undo'                    => '„Visszavonás”: visszavonja ezt a szerkesztést, valamint megnyitja a szerkesztőt előnézet módban. A szerkesztési összefoglalóban meg lehet adni a visszavonás okát.',
 'tooltip-preferences-save'        => 'Beállítások mentése',
+'tooltip-summary'                 => 'Adj meg egy rövid összefoglalót',
 
 # Stylesheets
 'common.css'   => '/* Közös CSS az összes felszínnek */',
@@ -3305,7 +3333,7 @@ Ha el szeretnél távolítani egy lapot, jelöld be a címe melletti jelölőné
 'watchlistedit-raw-legend'     => 'A nyers figyelőlista szerkesztése',
 'watchlistedit-raw-explain'    => 'A figyelőlistádra felvett lapok az alábbi listában találhatók. A lista szerkeszthető;
 minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt található
-„Mentés” feliratú gombra. Használhatod a [[Special:Watchlist/edit|hagyományos listaszerkesztőt]] is.',
+„{{int:Watchlistedit-raw-submit}}” feliratú gombra. Használhatod a [[Special:Watchlist/edit|hagyományos listaszerkesztőt]] is.',
 'watchlistedit-raw-titles'     => 'A figyelőlistádon található cikkek:',
 'watchlistedit-raw-submit'     => 'Mentés',
 'watchlistedit-raw-done'       => 'A figyelőlistád változtatásait elmentettem.',

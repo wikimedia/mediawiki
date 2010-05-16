@@ -3395,8 +3395,7 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 'watchlistedit-raw-legend'     => 'Heading of dialogue box on [[Special:Watchlist/raw]].
 
 {{Identical|Edit raw watchlist}}',
-'watchlistedit-raw-explain'    => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].
-Hint: the text "Update Watchlist" is in {{msg-mw|watchlistedit-raw-submit}}',
+'watchlistedit-raw-explain'    => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].',
 'watchlistedit-raw-titles'     => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-submit'     => 'Text of submit button on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-done'       => 'A message which appears after the raw watchlist has been updated using [[Special:Watchlist/raw]].',

@@ -2709,7 +2709,7 @@ Por favor, visite [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisa
 As datas das edições e os seus editores serão mantidos.
 Todas as acções de importação transwikis são registadas no [[Special:Log/import|Registo de importações]].',
 'import-interwiki-source'    => 'Wiki ou página de origem:',
-'import-interwiki-history'   => 'Copiar todas as edições para esta página',
+'import-interwiki-history'   => 'Copiar todo o histórico de revisões desta página',
 'import-interwiki-templates' => 'Incluir todas as predefinições',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Espaço nominal de destino:',
@@ -3397,9 +3397,9 @@ Também pode [[Special:Watchlist/raw|editar a lista de páginas vigiadas em form
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Foi removida uma página|Foram removidas $1 páginas}} da sua lista de páginas vigiadas:',
 'watchlistedit-raw-title'      => 'Editar a lista de páginas vigiadas em forma de texto',
 'watchlistedit-raw-legend'     => 'Editar a lista de páginas vigiadas em forma de texto',
-'watchlistedit-raw-explain'    => 'A sua lista de páginas vigiadas é apresentada abaixo.
+'watchlistedit-raw-explain'    => 'A lista de páginas vigiadas é apresentada abaixo.
 Pode adicionar novas linhas ou remover linhas para aumentar ou reduzir a lista, desde que mantenha uma única página por linha.
-Quando terminar, clique no botão "Actualizar a lista de páginas vigiadas".
+Quando terminar, clique "{{int:Watchlistedit-raw-submit}}".
 Também pode [[Special:Watchlist/edit|editar a lista da maneira convencional]].',
 'watchlistedit-raw-titles'     => 'Páginas:',
 'watchlistedit-raw-submit'     => 'Actualizar a lista de páginas vigiadas',

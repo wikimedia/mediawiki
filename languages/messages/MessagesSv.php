@@ -1718,6 +1718,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # allmänt bildprefix
  #</pre> <!-- ändra inte den här raden -->',
+'upload-successful-msg'       => 'Din uppladdade fil finns tillgänglig här: $1',
+'upload-failure-subj'         => 'Uppladdningsproblem',
+'upload-failure-msg'          => 'Det uppstod ett problem med din uppladdning:
+
+$1',
 
 'upload-proto-error'        => 'Felaktigt protokoll',
 'upload-proto-error-text'   => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
