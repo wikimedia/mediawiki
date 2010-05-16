@@ -4084,7 +4084,7 @@ You can also [[Special:Watchlist/raw|edit the raw list]].',
 'watchlistedit-raw-legend'     => 'Edit raw watchlist',
 'watchlistedit-raw-explain'    => 'Titles on your watchlist are shown below, and can be edited by adding to and removing from the list;
 one title per line.
-When finished, click Update Watchlist.
+When finished, click "{{int:Watchlistedit-raw-submit}}".
 You can also [[Special:Watchlist/edit|use the standard editor]].',
 'watchlistedit-raw-titles'     => 'Titles:',
 'watchlistedit-raw-submit'     => 'Update watchlist',
