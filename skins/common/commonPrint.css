@@ -323,10 +323,12 @@ td.diff-context {
 
 /*
 ** Table rendering
+** As on shared.css but with white background.
 */
 table.wikitable {
 	margin: 1em 1em 1em 0;
 	border: 1px #aaa solid;
+	background: white;
 	border-collapse: collapse;
 }
 .wikitable th, .wikitable td {
@@ -335,7 +337,7 @@ table.wikitable {
 }
 .wikitable th {
 	text-align: center;
-	background: #F9F9F9;
+	background: white;
 	font-weight: bold;
 }
 .wikitable caption {
