@@ -180,6 +180,7 @@ in a negative namespace (which is invalid).
 * (bug 23460) Parse action should have a section option
 * (bug 21346) Make deleted images searchable by hash
 * (bug 23461) Normalise usage of parameter names in parameter descriptions
+* (bug 23548) Allow access of another users watchlist through watchlistraw using token and username
 
 === Languages updated in 1.17 ===
 

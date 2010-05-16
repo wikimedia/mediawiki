@@ -49,14 +49,12 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	}
 
 	private function run( $resultPageSet = null ) {
-		global $wgUser;
-
 		$this->selectNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
-
-		if ( !$wgUser->isLoggedIn() ) {
-			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
-		}
+		
 		$params = $this->extractRequestParams();
+
+		$user = ApiQueryWatchlist::getWatchlistUser( $params );
+
 		$prop = array_flip( (array)$params['prop'] );
 		$show = array_flip( (array)$params['show'] );
 		if ( isset( $show['changed'] ) && isset( $show['!changed'] ) ) {
@@ -66,7 +64,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$this->addTables( 'watchlist' );
 		$this->addFields( array( 'wl_namespace', 'wl_title' ) );
 		$this->addFieldsIf( 'wl_notificationtimestamp', isset( $prop['changed'] ) );
-		$this->addWhereFld( 'wl_user', $wgUser->getId() );
+		$this->addWhereFld( 'wl_user', $user->getId() );
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
 		$this->addWhereIf( 'wl_notificationtimestamp IS NOT NULL', isset( $show['changed'] ) );
 		$this->addWhereIf( 'wl_notificationtimestamp IS NULL', isset( $show['!changed'] ) );
@@ -157,6 +155,12 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 					'changed',
 					'!changed',
 				)
+			),
+			'owner' => array(
+				ApiBase::PARAM_TYPE => 'user'
+			),
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string'
 			)
 		);
 	}
@@ -168,6 +172,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			'limit' => 'How many total results to return per request',
 			'prop' => 'Which additional properties to get (non-generator mode only)',
 			'show' => 'Only list items that meet these criteria',
+			'owner' => 'The name of the user whose watchlist you\'d like to access',
+			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist',
 		);
 	}
 
@@ -179,6 +185,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
 			array( 'show' ),
+			array( 'code' => 'bad_wlowner', 'info' => 'Specified user does not exist' ),
+			array( 'code' => 'bad_wltoken', 'info' => 'Incorrect watchlist token provided -- please set a correct token in Special:Preferences' ),
 		) );
 	}
 
