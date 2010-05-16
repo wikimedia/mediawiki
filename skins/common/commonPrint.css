@@ -309,6 +309,24 @@ td.diff-context {
 /*
 ** Table rendering
 */
+table.wikitable {
+    margin: 1em 1em 1em 0;
+    border: 1px #aaa solid;
+    border-collapse: collapse;
+}
+.wikitable th, .wikitable td {
+    border: 1px #aaa solid;
+    padding: 0.2em;
+}
+.wikitable th {
+    text-align: center;
+    background: #F9F9F9;
+    font-weight: bold;
+}
+.wikitable caption {
+    font-weight: bold;
+}
+ 
 a.sortheader {
     margin: 0px 0.3em;
 }
