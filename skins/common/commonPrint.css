@@ -305,3 +305,10 @@ td.diff-context {
     font-weight: bold;
     text-decoration: underline;
 }
+
+/*
+** Table rendering
+*/
+a.sortheader {
+    margin: 0px 0.3em;
+}
