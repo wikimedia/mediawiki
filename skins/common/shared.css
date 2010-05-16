@@ -19,7 +19,10 @@ span.changedby {
 }
 
 /* Math */
-.texvc { direction: ltr; unicode-bidi: embed; }
+.texvc {
+	direction: ltr;
+	unicode-bidi: embed;
+}
 img.tex { vertical-align: middle; }
 span.texhtml { font-family: serif; }
 
@@ -28,7 +31,9 @@ span.texhtml { font-family: serif; }
 #wikiPreview.ontop { margin-bottom: 1em; }
 
 /* Stop floats from intruding into edit area in previews */
-#editform, #toolbar, #wpTextbox1 { clear: both; }
+#editform, #toolbar, #wpTextbox1 {
+	clear: both;
+}
 
 div#mw-js-message {
 	margin: 1em 5%;
@@ -52,14 +57,14 @@ h2#filehistory {
 
 table.filehistory th,
 table.filehistory td {
-	vertical-align:top;
+	vertical-align: top;
 }
 table.filehistory th {
 	text-align: left;
 }
 table.filehistory td.mw-imagepage-filesize,
 table.filehistory th.mw-imagepage-filesize {
-	white-space:nowrap;
+	white-space: nowrap;
 }
 
 table.filehistory td.filehistory-selected {
@@ -107,7 +112,9 @@ td.mw-label { vertical-align: top; }
 .prefsection table { width: 100%; }
 td.mw-submit { white-space: nowrap; }
 
-table.mw-htmlform-nolabel td.mw-label { width: 0 !important; }
+table.mw-htmlform-nolabel td.mw-label {
+	width: 0 !important;
+}
 
 input#wpSummary {
 	width: 80%;
@@ -116,11 +123,11 @@ input#wpSummary {
 /**
  * Image captions
  */
-body.rtl .thumbcaption { text-align:right; }
-body.rtl .magnify { float:left; }
+body.rtl .thumbcaption { text-align: right; }
+body.rtl .magnify { float: left; }
 
-body.ltr .thumbcaption { text-align:left; }
-body.ltr .magnify { float:right; }
+body.ltr .thumbcaption { text-align: left; }
+body.ltr .magnify { float: right; }
 
 /**
  * Hidden categories
@@ -148,7 +155,7 @@ p.mw-revdel-editreasons {
 
 div.searchresult {
 	font-size: 95%;
-	width:38em;
+	width: 38em;
 }
 
 .mw-search-results {
@@ -157,8 +164,8 @@ div.searchresult {
 
 .mw-search-results li {
 	padding-bottom: 1em;
-	list-style:none;
-	list-style-image:none;
+	list-style: none;
+	list-style-image: none;
 }
 .mw-search-results li a {
 	font-size: 108%;
@@ -175,7 +182,7 @@ div.searchresult {
 	border: 1px solid silver;
 }
 .mw-search-formheader div.search-types {
-	float:left;
+	float: left;
 	padding-left: 0.25em;
 }
 .rtl .mw-search-formheader div.search-types {
@@ -319,8 +326,8 @@ div#mw-search-interwiki-caption {
 	padding-right: 0.15em;
 	padding-bottom: 0.2em;
 	padding-top: 0.15em;
-	background-color:#ececec;
-	border-top:1px solid #BBBBBB;
+	background-color: #ececec;
+	border-top: 1px solid #BBBBBB;
 }
 
 .rtl .mw-search-interwiki-project {
@@ -354,19 +361,17 @@ table#mw-search-top-table {
 /*
  * Advanced PowerSearch box
  */
-
 td#mw-search-togglebox {
-        text-align: right;
+	text-align: right;
 }
 
 table#mw-search-powertable {
-	width:100%;
+	width: 100%;
 }
 
 form#powersearch {
 	clear: both;
 }
-
 
 /*
  * UserRights stuff
@@ -443,14 +448,18 @@ table.os-suggest-results {
 /* the auto-generated edit comments */
 .autocomment { color: gray; }
 #pagehistory .history-user {
-    margin-left: 0.4em;
-    margin-right: 0.2em;
+	margin-left: 0.4em;
+	margin-right: 0.2em;
 }
-#pagehistory span.minor { font-weight: bold; }
-#pagehistory li { border: 1px solid white; }
+#pagehistory span.minor {
+	font-weight: bold;
+}
+#pagehistory li {
+	border: 1px solid white;
+}
 #pagehistory li.selected {
-    background-color: #f9f9f9;
-    border: 1px dashed #aaa;
+	background-color: #f9f9f9;
+	border: 1px dashed #aaa;
 }
 
 /** Generic minor/bot/newpage styling */
@@ -464,10 +473,12 @@ table.os-suggest-results {
 }
 
 /* Special:ListGroupRights styling */
-table.mw-listgrouprights-table tr  {
+table.mw-listgrouprights-table tr {
 	vertical-align: top;
 }
-.listgrouprights-revoked { text-decoration: line-through; }
+.listgrouprights-revoked {
+	text-decoration: line-through;
+}
 
 /* Special:Statistics styling */
 td.mw-statistics-numbers {
@@ -512,7 +523,7 @@ td.mw-allpages-nav, p.mw-allpages-nav {
 	font-size: smaller;
 	margin-bottom: 1em;
 }
-table.mw-allpages-table-form tr  {
+table.mw-allpages-table-form tr {
 	vertical-align: top;
 }
 
@@ -522,7 +533,7 @@ table#mw-prefixindex-nav-table {
 	width: 98%;
 	background-color: transparent;
 }
-td#mw-prefixindex-nav-form  {
+td#mw-prefixindex-nav-form {
 	font-size: smaller;
 	margin-bottom: 1em;
 	text-align: right;
@@ -566,30 +577,30 @@ a.feedlink {
 	padding-left: 16px;
 }
 
-/* Plainlinks - this can be used to switch 
+/* Plainlinks - this can be used to switch
  * off special external link styling */
 .plainlinks a {
-		background: none !important;
-		padding: 0 !important;
+	background: none !important;
+	padding: 0 !important;
 }
 
 /* wikitable class for skinning normal tables */
 table.wikitable {
-    margin: 1em 1em 1em 0;
-    background: #f9f9f9;
-    border: 1px #aaa solid;
-    border-collapse: collapse;
+	margin: 1em 1em 1em 0;
+	background: #f9f9f9;
+	border: 1px #aaa solid;
+	border-collapse: collapse;
 }
 .wikitable th, .wikitable td {
-    border: 1px #aaa solid;
-    padding: 0.2em;
+	border: 1px #aaa solid;
+	padding: 0.2em;
 }
 .wikitable th {
-    background: #f2f2f2;
-    text-align: center;
+	background: #f2f2f2;
+	text-align: center;
 }
 .wikitable caption {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 /* hide initially collapsed collapsable tables */
@@ -648,21 +659,41 @@ table.collapsed tr.collapsable {
   - remove line wrapping for all td and th, set background color
   - restore line wrapping for the last two table cells (description and size)
 */
-.TablePager { min-width: 80%; }
-.TablePager_nav a { text-decoration: none; }
-.TablePager { border-collapse: collapse; }
-.TablePager, .TablePager td, .TablePager th { 
+.TablePager {
+	min-width: 80%;
+}
+.TablePager_nav a {
+	text-decoration: none;
+}
+.TablePager {
+	border-collapse: collapse;
+}
+.TablePager, .TablePager td, .TablePager th {
 	border: 1px solid #aaaaaa;
 	padding: 0 0.15em 0 0.15em;
 }
-.TablePager th { background-color: #eeeeff }
-.TablePager td { background-color: #ffffff }
-.TablePager tr:hover td { background-color: #eeeeff }
+.TablePager th {
+	background-color: #eeeeff;
+}
+.TablePager td {
+	background-color: #ffffff;
+}
+.TablePager tr:hover td {
+	background-color: #eeeeff;
+}
 
-.imagelist td, .imagelist th { white-space: nowrap }
-.imagelist .TablePager_col_links { background-color: #eeeeff }
-.imagelist .TablePager_col_img_description { white-space: normal }
-.imagelist th.TablePager_sort { background-color: #ccccff }
+.imagelist td, .imagelist th {
+	white-space: nowrap;
+}
+.imagelist .TablePager_col_links {
+	background-color: #eeeeff;
+}
+.imagelist .TablePager_col_img_description {
+	white-space: normal;
+}
+.imagelist th.TablePager_sort {
+	background-color: #ccccff;
+}
 
  /* Allmessages table */
 #mw-allmessagestable .allmessages-customised td.am_default {
@@ -792,19 +823,19 @@ td.mw-enhanced-rc {
 	display: inline;
 	margin-left: 1em;
 }
- 
+
 #mw-addcategory-prompt input {
 	margin-left: 0.5em;
 	margin-right: 0.5em;
 }
- 
+
 .mw-remove-category {
 	padding: 8px;
 	background-image: url(images/remove.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 }
- 
+
 .mw-ajax-addcategory {
 	padding-left: 20px;
 	background-image: url(images/add.png);
