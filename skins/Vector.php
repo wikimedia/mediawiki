@@ -23,7 +23,7 @@ class SkinVector extends SkinTemplate {
 
 	/**
 	 * Initializes output page and sets up skin-specific parameters
-	 * @param object $out Output page object to initialize
+	 * @param $out Output page object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
 		global $wgLocalStylePath;
@@ -43,7 +43,7 @@ class SkinVector extends SkinTemplate {
 	/**
 	 * Load skin and user css files in the correct order
 	 * fixes bug 22916
-	 * @param object $out OutputPage object
+	 * @param $out OutputPage object
 	 */
 
 	function setupSkinUserCss( OutputPage $out ){
