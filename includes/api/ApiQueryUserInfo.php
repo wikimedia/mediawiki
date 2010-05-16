@@ -190,7 +190,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  changeablegroups - lists the groups the current user can add to and remove from',
 				'  options    - lists all preferences the current user has set',
 				'  editcount  - adds the current user\'s edit count',
-				'  ratelimits - lists all rate limits applying to the current user'
+				'  ratelimits - lists all rate limits applying to the current user',
+				'  email      - adds the user\'s email address and email authentication date',
 			)
 		);
 	}
