@@ -80,7 +80,7 @@ let find = function
     | "\\Gamma"            -> LITERAL (HTMLABLEC (FONT_UF, "\\Gamma ", "&Gamma;"))
     | "\\delta"            -> LITERAL (HTMLABLEC (FONT_UF,  "\\delta ", "&delta;"))
     | "\\Delta"            -> LITERAL (HTMLABLEC (FONT_UF, "\\Delta ", "&Delta;"))
-    | "\\epsilon"          -> LITERAL (HTMLABLEC (FONT_UF,  "\\epsilon ", "&epsilon;"))
+    | "\\epsilon"          -> LITERAL (TEX_ONLY "\\epsilon ")
     | "\\Epsilon"          -> (tex_use_ams (); LITERAL (HTMLABLEC (FONT_UF,
     "\\mathrm{E}", "&Epsilon;")))
     | "\\varepsilon"       -> LITERAL (TEX_ONLY "\\varepsilon ")

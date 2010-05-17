@@ -168,6 +168,7 @@ in a negative namespace (which is invalid).
 * (bug 19586) Avoid JS errors in mwsuggest when using old browsers such as Opera 8.
 * (bug 23563) Old skins now support $wgUploadNavigationUrl and take into account upload rights.
 * (bug 1347) Render \phi in math using images, in order to create consistent and correct render results.
+* (bug 16573) Render \epsilon in math using images, in order to create consistent and correct render results.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
