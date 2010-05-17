@@ -865,7 +865,7 @@ $2',
 или '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
 'noarticletext-nopermission'       => 'В настоящее время на этой странице нет текста.
 Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] в других статьях,
-или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].',
+или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].</span>',
 'userpage-userdoesnotexist'        => 'Учётной записи «$1» не существует. Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
 'userpage-userdoesnotexist-view'   => 'Не зарегистрировано учётной записи участника «$1».',
 'blocked-notice-logextract'        => 'Этот участник в данный момент заблокирован.
