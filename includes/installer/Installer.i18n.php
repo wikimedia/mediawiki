@@ -345,18 +345,19 @@ A '''private wiki''' only allows approved users to view pages, with the same gro
 More complex user rights configurations are available after installation, see the [http://www.mediawiki.org/wiki/Manual:User_rights relevant manual entry].",
 	'config-license'                  => 'Copyright and license:',
 	'config-license-none'             => 'No license footer',
-	'config-license-gfdl-old'         => 'GNU Free Documentation License 1.2 or later',
+	'config-license-cc-by-sa'         => 'Creative Commons Attribution Share Alike (Wikipedia-compatible)',
+	'config-license-cc-by-nc-sa'      => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-gfdl-old'         => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current'     => 'GNU Free Documentation License 1.3 or later',
 	'config-license-pd'               => 'Public Domain',
-	'config-license-cc-choose'        => 'A Creative Commons license',
+	'config-license-cc-choose'        => 'Select a custom Creative Commons license',
 	'config-license-help'             => "Many public wikis put all contributions under a [http://freedomdefined.org/Definition free license].
 This helps to create a sense of community ownership and encourages long-term contribution.
 It is not generally necessary for a private or corporate wiki.
 
-If you want to be able to use text from Wikipedia, and you want Wikipedia to be able to accept text copied from your wiki, you should choose '''GNU Free Documentation License 1.2'''.
-However, this license has some features which make reuse and interpretation difficult.
+If you want to be able to use text from Wikipedia, and you want Wikipedia to be able to accept text copied from your wiki, you should choose '''Creative Commons Attribution Share Alike'''.
 
-If Wikipedia-compatibility is not important, '''Creative Commons''' with the '''Share Alike''' option (cc-by-sa) is a good choice.",
+The GNU Free Documentation License was the old license Wikipedia was under. It is still a valid license, however, this license has some features which make reuse and interpretation difficult.",
 	'config-email-settings'           => 'E-mail settings',
 	'config-enable-email'             => 'Enable outbound e-mail',
 	'config-enable-email-help'        => "If you want e-mail to work, [http://www.php.net/manual/en/mail.configuration.php PHP's mail settings] need to be configured correctly.
