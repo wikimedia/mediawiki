@@ -40,7 +40,7 @@ class mcTest extends Maintenance {
 			$wgMemCachedServers = array( $this->getArg() );
 
 		foreach ( $wgMemCachedServers as $server ) {
-			$this->output( $server . " " );
+			$this->output( $server . " ", $server );
 			$mcc = new MemCachedClientforWiki( array('persistant' => true) );
 			$mcc->set_servers( array( $server ) );
 			$set = 0;
@@ -65,7 +65,7 @@ class mcTest extends Maintenance {
 			}
 			$exectime = $this->microtime_float() - $time_start;
 	
-			$this->output( "set: $set   incr: $incr   get: $get time: $exectime\n" );
+			$this->output( "set: $set   incr: $incr   get: $get time: $exectime", $server );
 		}
 	}
 
