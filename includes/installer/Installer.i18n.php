@@ -425,7 +425,7 @@ Make sure that the user "$1" can write to the schema "$2".',
 	'config-insecure-secretkey'       => "'''Warning:''' Unable to create secure <code>\$wgSecretKey</code>.
 Consider changing it manually.",
 	'config-install-sysop'            => 'Creating administrator user account',
-	'config-install-localsettings'    => 'Creating <code>LocalSettings.php</code>',
+	'config-install-localsettings'    => 'Creating LocalSettings.php',
 	'config-install-localsettings-unwritable' => 'Warning: Could not write <code>LocalSettings.php</code>.
 Create it yourself, using the following text:',
 	'config-install-done'             => "'''Congratulations!'''
