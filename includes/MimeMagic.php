@@ -409,9 +409,9 @@ class MimeMagic {
 	* but applies additional checks to determine some well known file formats that may be missed
 	* or misinterpreter by the default mime detection (namely xml based formats like XHTML or SVG).
 	*
-	* @param string $file The file to check
-	* @param mixed $ext The file extension, or true to extract it from the filename.
-	*                   Set it to false to ignore the extension.
+	* @param $file String: the file to check
+	* @param $ext Mixed: the file extension, or true to extract it from the filename.
+	*             Set it to false to ignore the extension.
 	*
 	* @return string the mime type of $file
 	*/
@@ -576,7 +576,7 @@ class MimeMagic {
 	 * header data.  Currently works for OpenDocument types...
 	 * If can't tell, returns 'application/zip'.
 	 *
-	 * @param string $header Some reasonably-sized chunk of file header
+	 * @param $header String: some reasonably-sized chunk of file header
 	 * @return string
 	 */
 	function detectZipType( $header ) {
@@ -621,9 +621,9 @@ class MimeMagic {
 	* If the mime type is still unknown, getimagesize is used to detect the mime type if the file is an image.
 	* If no mime type can be determined, this function returns "unknown/unknown".
 	*
-	* @param string $file The file to check
-	* @param mixed $ext The file extension, or true to extract it from the filename.
-	*                   Set it to false to ignore the extension.
+	* @param $file String: the file to check
+	* @param $ext Mixed: the file extension, or true to extract it from the filename.
+	*             Set it to false to ignore the extension.
 	*
 	* @return string the mime type of $file
 	* @access private
@@ -717,9 +717,9 @@ class MimeMagic {
 	* @todo analyse file if need be
 	* @todo look at multiple extension, separately and together.
 	*
-	* @param string $path full path to the image file, in case we have to look at the contents
+	* @param $path String: full path to the image file, in case we have to look at the contents
 	*        (if null, only the mime type is used to determine the media type code).
-	* @param string $mime mime type. If null it will be guessed using guessMimeType.
+	* @param $mime String: mime type. If null it will be guessed using guessMimeType.
 	*
 	* @return (int?string?) a value to be used with the MEDIATYPE_xxx constants.
 	*/
@@ -819,9 +819,9 @@ class MimeMagic {
 	 * Get the MIME types that various versions of Internet Explorer would 
 	 * detect from a chunk of the content.
 	 *
-	 * @param string $fileName The file name (unused at present)
-	 * @param string $chunk The first 256 bytes of the file
-	 * @param string $proposed The MIME type proposed by the server
+	 * @param $fileName String: the file name (unused at present)
+	 * @param $chunk String: the first 256 bytes of the file
+	 * @param $proposed String: the MIME type proposed by the server
 	 */
 	public function getIEMimeTypes( $fileName, $chunk, $proposed ) {
 		$ca = $this->getIEContentAnalyzer();
