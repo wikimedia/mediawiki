@@ -2143,7 +2143,7 @@ O endereço de correio que introduziu nas suas [[Special:Preferences|preferênci
 
 # User Messenger
 'usermessage-summary' => 'Deixar mensagem de sistema.',
-'usermessage-editor'  => 'Mensagens de sistema',
+'usermessage-editor'  => 'Editor de mensagens de sistema',
 
 # Watchlist
 'watchlist'            => 'Páginas vigiadas',

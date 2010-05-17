@@ -18,6 +18,7 @@
  * @author Michawiki
  * @author MinuteElectron
  * @author Omnipaedista
+ * @author Petrus Adamus
  * @author Smeira
  * @author Tlustulimu
  * @author Urhixidur
@@ -276,7 +277,7 @@ $messages = array(
 'tog-editsection'             => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc'                 => 'Montri liston de enhavoj (por paĝojn kun pli ol 3 sekciojn)',
-'tog-rememberpassword'        => 'Rememori mian pasvorton',
+'tog-rememberpassword'        => 'Memori mian pasvorton por ĉi tiu komputilo',
 'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
 'tog-watchdefault'            => 'Priatenti redaktintajn paĝojn de vi',
 'tog-watchmoves'              => 'Aldoni paĝojn, kiujn mi movas, al mia atentaro',

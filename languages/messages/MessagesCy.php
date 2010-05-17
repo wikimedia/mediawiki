@@ -1500,6 +1500,11 @@ Dylech ddarllen y $1 cyn bwrw ati i'w uwchlwytho unwaith eto.",
 Ail-feddyliwch a ddylech barhau i uwchlwytho'r ffel hon.
 Dyma'r lòg dileu ar gyfer y ffeil i chi gael gweld:",
 'filename-bad-prefix'         => "Mae'r enw ar y ffeil yr ydych yn ei uwchlwytho yn dechrau gyda '''\"\$1\"'''. Mae'r math hwn o enw diystyr fel arfer yn cael ei osod yn awtomatig gan gamerâu digidol. Mae'n well gosod enw sy'n disgrifio'r ffeil arno.",
+'upload-successful-msg'       => "Mae'r ffeil a wnaethoch uwchlwytho ar gael yma: $1",
+'upload-failure-subj'         => 'Cafwyd problem wrth uwchlwytho',
+'upload-failure-msg'          => 'Cafwyd problem with uwchlwytho:
+
+$1',
 
 'upload-proto-error'        => 'Protocol gwallus',
 'upload-proto-error-text'   => "Rhaid cael URLs yn dechrau gyda <code>http://</code> neu <code>ftp://</code> wrth uwchlwytho'n bell.",
@@ -1897,6 +1902,9 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chith
 'emailsent'            => "Neges e-bost wedi'i hanfon",
 'emailsenttext'        => 'Mae eich neges e-bost wedi cael ei hanfon.',
 'emailuserfooter'      => 'Anfonwyd yr e-bost hwn oddi wrth $1 at $2 trwy ddefnyddio\'r teclyn "Anfon e-bost at ddefnyddiwr" ar {{SITENAME}}.',
+
+# User Messenger
+'usermessage-editor' => 'Golygydd neges y system',
 
 # Watchlist
 'watchlist'            => 'Fy rhestr gwylio',
@@ -3099,8 +3107,9 @@ Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 'watchlistedit-normal-done'    => 'Tynnwyd {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} oddi ar eich rhestr wylio:',
 'watchlistedit-raw-title'      => 'Golygu ffeil y rhestr wylio',
 'watchlistedit-raw-legend'     => 'Golygu ffeil y rhestr wylio',
-'watchlistedit-raw-explain'    => "Rhestrir y teitlau ar eich rhestr wylio isod. Gellir newid y rhestr drwy ychwanegu neu dynnu teitlau; gyda llinell yr un i bob teitl. Pan yn barod, pwyswch ar Diweddaru'r rhestr wylio.
-Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
+'watchlistedit-raw-explain'    => 'Rhestrir y teitlau ar eich rhestr wylio isod. Gellir newid y rhestr drwy ychwanegu neu dynnu teitlau; gyda llinell yr un i bob teitl. 
+Pan yn barod, pwyswch ar "{{int:Watchlistedit-raw-submit}}".
+Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio\'r rhestr arferol]].',
 'watchlistedit-raw-titles'     => 'Teitlau:',
 'watchlistedit-raw-submit'     => "Diweddaru'r rhestr wylio",
 'watchlistedit-raw-done'       => 'Diweddarwyd eich rhestr wylio.',

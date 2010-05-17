@@ -2140,7 +2140,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'emailuserfooter'      => 'Diese E-Mail wurde von {{SITENAME}}-Benutzer „$1“ an „$2“ gesendet.',
 
 # User Messenger
-'usermessage-summary' => 'Systemnachricht verlassen.',
+'usermessage-summary' => 'Systemnachricht gespeichert.',
 'usermessage-editor'  => 'System-Messenger',
 
 # Watchlist

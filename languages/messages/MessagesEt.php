@@ -445,7 +445,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'vector-namespace-template'  => 'Mall',
 'vector-namespace-user'      => 'Kasutaja leht',
 'vector-view-create'         => 'Loo',
-'vector-view-edit'           => 'Toimeta',
+'vector-view-edit'           => 'Redigeeri',
 'vector-view-history'        => 'Näita ajalugu',
 'vector-view-view'           => 'Loe',
 'vector-view-viewsource'     => 'Vaata lähteteksti',
@@ -1594,6 +1594,7 @@ Eelistatud {{PLURAL:\$3|failitüüp on|failitüübid on}} \$2.",
 'overwrite'                   => 'Olemasoleva faili ülekirjutamine ei ole lubatud.',
 'unknown-error'               => 'Tundmatu tõrge.',
 'tmp-create-error'            => 'Ajutise faili loomine ebaõnnestus.',
+'tmp-write-error'             => 'Viga ajutise faili kirjutamisel.',
 'large-file'                  => 'On soovitatav, et üleslaaditavad failid ei oleks suuremad kui $1. Selle faili suurus on $2.',
 'largefileserver'             => 'Antud fail on suurem lubatud failisuurusest.',
 'emptyfile'                   => 'Fail, mille Te üles laadisite, paistab olevat tühi.
@@ -3198,10 +3199,10 @@ Et lehti jälgimisloendist eemaldada, tehke vastava lehe ees olevasse kastikesse
 'watchlistedit-normal-done'    => 'Teie jälgimisloendist eemaldati {{PLURAL:$1|1 leht|$1 lehte}}:',
 'watchlistedit-raw-title'      => 'Jälgimisloendi algandmed',
 'watchlistedit-raw-legend'     => 'Redigeeritavad jälgimisloendi algandmed',
-'watchlistedit-raw-explain'    => 'Sinu jälgimisloendi pealkirjad on kuvatud all asuvas tekstikastis, kus sa saad neid lisada ja/või eemaldada;
+'watchlistedit-raw-explain'    => 'Sinu jälgimisloendis olevad leheküljed on kuvatud allpool asuvas tekstikastis, kus sa saad neid lisada või eemaldada;
 Iga pealkiri asub ise real.
-Kui sa oled lõpetanud, vajuta all nuppu Uuenda jälgimisloendit.
-Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
+Kui sa oled lõpetanud, kliki nuppu "{{int:Watchlistedit-raw-submit}}".
+Sa võid [[Special:Watchlist/edit|kasutada ka harilikku tekstiredaktorit]].',
 'watchlistedit-raw-titles'     => 'Pealkirjad:',
 'watchlistedit-raw-submit'     => 'Uuenda jälgimisloendit',
 'watchlistedit-raw-done'       => 'Teie jälgimisloend on uuendatud.',

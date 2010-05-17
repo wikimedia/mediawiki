@@ -1196,9 +1196,9 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-autoconfirmed'         => 'Modifiché le pàgine semi-protegiùe',
 'right-bot'                   => 'Esse tratà com un process automàtich',
 'right-nominornewtalk'        => "Fé nen comparì l'avis ëd mëssagi neuv, an fasend ëd modìfiche cite a le pàgine ëd discussion",
-'right-apihighlimits'         => 'Dovré ël lìmit pì àut ant le anterogassion API',
+'right-apihighlimits'         => "Dovré ël lìmit pì àut ant j'anterogassion API",
 'right-writeapi'              => "Dovré l'API dë scritura",
-'right-delete'                => 'Scanselé pàgine',
+'right-delete'                => 'Scancelé dle pàgine',
 'right-bigdelete'             => 'Scanselé pàgine con stòrie longhe',
 'right-deleterevision'        => 'Scanselé e dëscanselé spessìfiche vërsion ëd pàgine',
 'right-deletedhistory'        => 'Vardé le revision ëd la stòria scanselà, sensa ël test associà',
@@ -1459,9 +1459,9 @@ JD # Jenoptik
 MGP # Pentax
 PICT # vàire marche diferente
  #</pre> <!-- ch'a lassa sta riga-sì tanme ch'a l'é -->",
-'upload-successful-msg'       => "Tò upload a l'é disponìbil ambelessì: $1",
-'upload-failure-subj'         => 'Problem a carié',
-'upload-failure-msg'          => "A l'é stàit-ie un problem con tò upload:
+'upload-successful-msg'       => "Lòn ch'a l'ha carià a l'é disponìbil ambelessì: $1",
+'upload-failure-subj'         => 'Problema a carié',
+'upload-failure-msg'          => "A-i é staje un problema con lòn ch'a l'ha carià:
 
 $1",
 
@@ -1861,8 +1861,8 @@ L'adrëssa e-mail ch'it l'has butà an [[Special:Preferences|Ij sò gust]] a sar
 'emailuserfooter'      => 'St\'e-mail-sì a l\'é stàita mandà da $1 a $2 con la fonsion "E-mail utent" a {{SITENAME}}.',
 
 # User Messenger
-'usermessage-summary' => 'Lassa mëssagi ëd sistem.',
-'usermessage-editor'  => 'Mëssagiador ëd sistem',
+'usermessage-summary' => "A l'ha lassà un mëssagi ëd sistema.",
+'usermessage-editor'  => 'Mëssagerìa ëd sistema',
 
 # Watchlist
 'watchlist'            => 'Ròba che im ten-o sot euj',
@@ -3099,8 +3099,8 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 tìtol a l'é|$1 tìtoj a son}} stait gavà via da 'nt la lista ëd lòn ch'as ten sot euj:",
 'watchlistedit-raw-title'      => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
 'watchlistedit-raw-legend'     => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
-'watchlistedit-raw-explain'    => "Ij tìtoj ch'a l'é antramentr ch'as ten sot euj a son ambelessì sota, e a peulo modifichesse ën giontand-ne e gavand-ne via da 'nt la lista; un tìtol për riga. 
-Quand a l'ha finì, ch'ai bata ansima a \"{{int:Watchlistedit-raw-submit}}\".
+'watchlistedit-raw-explain'    => "Ij tìtoj ch'a l'é antramentr ch'as ten sot euj a son ambelessì-sota, e a peulo modifichesse ën giontand-ne e gavand-ne via da 'nt la lista; un tìtol për riga. 
+Quand a l'ha finì, ch'a-i bata ansima a \"{{int:Watchlistedit-raw-submit}}\".
 As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
 'watchlistedit-raw-titles'     => 'Tìtoj:',
 'watchlistedit-raw-submit'     => 'Agiorné la Lista',

@@ -1340,9 +1340,17 @@ Tazama [[Special:NewFiles|mkusanyiko wa mafaili mapya]] kuona picha zenyewe.',
 Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'badfilename'             => 'Jina la faili limebadilishwa kuwa "$1".',
 'filetype-mime-mismatch'  => 'Tawi (extension) la faili halingani na aina ya MIME.',
+'empty-file'              => 'Faili ulilowasilisha ni tupu.',
+'file-too-large'          => 'Faili ulilowasilisha ni kubwa mno.',
+'filename-tooshort'       => 'Jina la faili ni fupi mno.',
+'filetype-banned'         => 'Aina hili la faili haliruhusiwi.',
+'illegal-filename'        => 'Jina hilo la faili haliruhusiwi.',
+'overwrite'               => 'Kuandikiza faili lililopo tayari hairuhusiwi.',
 'unknown-error'           => 'Ilitokea hitilafu isiyojulikana.',
 'tmp-create-error'        => 'Haikuweza kuanzisha faili la muda.',
 'tmp-write-error'         => 'Hitilafu ya kuandika faili la muda.',
+'large-file'              => 'Tunashauri mafaili yasizidi $1;
+faili hili lina $2.',
 'successfulupload'        => 'Upakiaji ulifaulu',
 'uploadwarning'           => 'Ilani kuhusu kupakia',
 'savefile'                => 'Hifadhi faili',
@@ -1355,7 +1363,12 @@ Maelezo mengine: $1',
 'destfilename'            => 'Jina la faili la mwishilio:',
 'upload-maxfilesize'      => 'Ukubwa wa faili lisizidi: $1',
 'upload-description'      => 'Elezo la faili',
+'upload-options'          => 'Machaguo ya kupakia',
 'watchthisupload'         => 'Kufuatilia faili hili',
+'upload-failure-subj'     => 'Hitilafu ya kupakia',
+'upload-failure-msg'      => 'Kulikuwa na tatizo ulipopakia faili yako:
+
+$1',
 
 'upload-file-error'   => 'Hitilafu ya ndani',
 'upload-misc-error'   => 'Hitilafu ya kupakia isiyojulikana',
@@ -1406,6 +1419,7 @@ Maelezo mengine: $1',
 'sharedupload'              => 'Faili hili linatoka $1 na linaweza kushirikiwa na miradi mingine.',
 'filepage-nofile'           => 'Hakuna faili yenye jina hili.',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
+'shared-repo-from'          => 'kutoka kwa $1',
 
 # File reversion
 'filerevert'                => 'Rejesha $1',
@@ -1430,6 +1444,9 @@ Maelezo mengine: $1',
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
 'mimetype'   => 'Aina ya MIME:',
+
+# Unwatched pages
+'unwatchedpages' => 'Kurasa zisizofuatiliwa',
 
 # List redirects
 'listredirects' => 'Maelekezo',
@@ -1483,6 +1500,7 @@ Maelezo mengine: $1',
 'nlinks'                  => '{{PLURAL:$1|kiungo|viungo}} $1',
 'nmembers'                => '{{PLURAL:$1|kitu|vitu}} $1',
 'nrevisions'              => '{{PLURAL:$1|pitio|mapitio}} $1',
+'specialpage-empty'       => 'Hakuna matokeo katika taarifa hii.',
 'lonelypages'             => 'Kurasa ambazo haziungwi kutoka ukurasa mwingine wowote',
 'uncategorizedpages'      => 'Kurasa ambazo hazijawekwa katika jamii',
 'uncategorizedcategories' => 'Jamii ambazo hazijawekwa katika jamii',
@@ -1492,6 +1510,7 @@ Maelezo mengine: $1',
 'unusedimages'            => 'Mafaili ambayo hayatumiwi',
 'wantedcategories'        => 'Jamii zinazotakiwa',
 'wantedpages'             => 'Kurasa zinazotakiwa',
+'wantedfiles'             => 'Mafaili yanayokosekana',
 'mostlinked'              => 'Kurasa zinazoungwa kuliko zote',
 'mostlinkedcategories'    => 'Jamii zinazoungwa kuliko zote',
 'mostlinkedtemplates'     => 'Vigezo vinavyoungwa kuliko zote',
@@ -1587,7 +1606,7 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 # Special:ListGroupRights
 'listgrouprights-group'    => 'Kundi',
 'listgrouprights-rights'   => 'Wezo',
-'listgrouprights-helppage' => 'Msaada:Uwezo wa makundi',
+'listgrouprights-helppage' => 'Help:Uwezo wa makundi',
 'listgrouprights-members'  => '(orodha ya wanachama)',
 
 # E-mail user
@@ -1619,6 +1638,7 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'watchlist'         => 'Maangalizi yangu',
 'mywatchlist'       => 'Maangalizi yangu',
 'watchlistfor'      => "(kwa '''$1''')",
+'nowatchlist'       => 'Hamna vitu katika maangalizi yako.',
 'watchnologin'      => 'Hujaingia',
 'addedwatch'        => 'Imeongezwa kwenye maangalizi yako',
 'addedwatchtext'    => "Ukurasa \"[[:\$1]]\" umewekwa kwenye [[Special:Watchlist|maangalizi]] yako.
@@ -2007,6 +2027,8 @@ Tafadhali jaribu tena.',
 'tooltip-upload'                  => 'Kuanza kupakia',
 'tooltip-rollback'                => '"Rejesha" inarejesha (ma)sahihisho ya ukurasa huu yaliyofanyika na yule aliyeuhariri mwishoni, kwa kubofya mara moja tu.',
 'tooltip-undo'                    => 'Ukibonyeza "tengua" sahihisho hili litarejeshwa na hakiki yake itaonekana pamoja na dirisha la kuhariri, ili uweze kuandika sababu na maelezo kwenye muhtasari.',
+'tooltip-preferences-save'        => 'Uhifadhi mapendekezo',
+'tooltip-summary'                 => 'Andika muhtasari mfupi',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|mtumiaji bila jina|watumiaji bila majina}} wa {{SITENAME}}',
@@ -2261,9 +2283,9 @@ Unaweza pia [[Special:watchlist/raw|kuhariri orodha ya ghafi]].',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Jina 1 iliondolewa|Majina $1 yaliondolewa}} kutoka kwa orodha yako ya maangalizi:',
 'watchlistedit-raw-title'      => 'Kuhariri maangalizi ghafi',
 'watchlistedit-raw-legend'     => 'Kuhariri maangalizi ghafi',
-'watchlistedit-raw-explain'    => 'Majina ya kurasa za maangalizi yako yanaorodheshwa chini. Unaweza kuhariri orodha kwa kuandika au kutoa majina; na liwe jina moja tu kwa kila mstari.
-Unapomaliza bonyeza Sasisha Orodha ya Maangalizi.
-Ama utumie [[Special:Watchlist/edit|ukurasa wa kuhariri wa kawaida]].',
+'watchlistedit-raw-explain'    => 'Majina ya kwenye ukurasa wako wa maangalizi yananekana hapo chini, na yanaweza kuharirika kwa kuongezea au hata kuondo katika orodha; na liwe jina moja kwa mstari.
+Ukimaliza, bonyeza "{{int:Watchlistedit-raw-submit}}".
+Pia unaweza [[Special:Watchlist/edit|kutumia kihariri cha kawaida]].',
 'watchlistedit-raw-titles'     => 'Majina:',
 'watchlistedit-raw-submit'     => 'Sasisha orodha ya maangalizi',
 'watchlistedit-raw-done'       => 'Orodha yako ya maangalizi imesasishwa.',

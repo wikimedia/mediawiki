@@ -2172,6 +2172,9 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 * $1: username of the sender
 * $2: username of the recipient',
 
+# User Messenger
+'usermessage-editor' => 'The user that is the editor of system messages',
+
 # Watchlist
 'watchlist'            => '{{Identical|My watchlist}}',
 'mywatchlist'          => 'Link at the upper right corner of the screen.
