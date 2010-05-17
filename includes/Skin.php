@@ -1994,7 +1994,7 @@ CSS;
 		if( $wgUploadNavigationUrl ) {
 			$title = Title::newFromText( $wgUploadNavigationUrl );
 		}
-		if( !$title ) {
+		if( !isset( $title ) ) {
 			$title = SpecialPage::getTitleFor('Upload');
 		}
 
