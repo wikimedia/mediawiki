@@ -307,8 +307,8 @@ class SkinCologneBlue extends Skin {
 			. $this->specialLink( 'newpages' )
 			. $sep . $this->specialLink( 'listfiles' )
 			. $sep . $this->specialLink( 'statistics' );
-		if ( $wgUser->isLoggedIn() && $wgEnableUploads ) {
-			$s .= $sep . $this->specialLink( 'upload' );
+		if( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
+			$s .= $sep . $this->uploadLink();
 		}
 
 		global $wgSiteSupportPage;

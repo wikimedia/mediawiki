@@ -89,9 +89,10 @@ class SkinNostalgia extends Skin {
 			/* show my preferences link */
 			$s .= $sep . $this->specialLink( 'preferences' );
 			/* show upload file link */
-			if ( $wgEnableUploads ) {
-				$s .= $sep . $this->specialLink( 'upload' );
+			if( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
+				$s .= $sep . $this->uploadLink();
 			}
+
 			/* show log out link */
 			$s .= $sep . $this->specialLink( 'userlogout' );
 		}
