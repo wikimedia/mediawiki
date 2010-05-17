@@ -3360,7 +3360,10 @@ $1',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|כותרת אחת הוסרה|$1 כותרות הוסרו}} מרשימת המעקב:',
 'watchlistedit-raw-title'      => 'עריכת הרשימה הגולמית',
 'watchlistedit-raw-legend'     => 'עריכת הרשימה הגולמית',
-'watchlistedit-raw-explain'    => 'הדפים ברשימת המעקב מוצגים להלן, וניתן לערוך אותם באמצעות הוספה והסרה שלהם מהרשימה; כל כותרת מופיעה בשורה נפרדת. לאחר סיום העריכה, יש ללחוץ על "עדכון הרשימה". באפשרותכם גם [[Special:Watchlist/edit|להשתמש בעורך הרגיל]].',
+'watchlistedit-raw-explain'    => 'הדפים ברשימת המעקב מוצגים להלן, וניתן לערוך אותם באמצעות הוספה והסרה שלהם מהרשימה;
+כל כותרת מופיעה בשורה נפרדת.
+לאחר סיום העריכה, יש ללחוץ על "{{int:Watchlistedit-raw-submit}}".
+באפשרותכם גם [[Special:Watchlist/edit|להשתמש בעורך הרגיל]].',
 'watchlistedit-raw-titles'     => 'דפים:',
 'watchlistedit-raw-submit'     => 'עדכון הרשימה',
 'watchlistedit-raw-done'       => 'רשימת המעקב עודכנה.',
