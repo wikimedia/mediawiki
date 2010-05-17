@@ -826,7 +826,6 @@ li#pt-login {
 }
 #p-cactions li.selected a {
 	z-index: 3;
-	padding: 0 1em .2em!important;
 	background-color: white;
 }
 #p-cactions .new a {
