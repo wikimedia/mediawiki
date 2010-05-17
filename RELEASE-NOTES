@@ -166,6 +166,7 @@ in a negative namespace (which is invalid).
 * Special:Userrights didn't recognize user as changing his/her own rights if user did not capitalize first letter of username.
 * (bug 23507) Add styles for printing wikitables
 * (bug 19586) Avoid JS errors in mwsuggest when using old browsers such as Opera 8.
+* (bug 23563) Old skins now support $wgUploadNavigationUrl and take into account upload rights.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent

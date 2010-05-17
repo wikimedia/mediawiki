@@ -1988,6 +1988,25 @@ CSS;
 		);
 	}
 
+	function uploadLink() {
+		global $wgUploadNavigationUrl;
+
+		if( $wgUploadNavigationUrl ) {
+			$title = Title::newFromText( $wgUploadNavigationUrl );
+		}
+		if( !$title ) {
+			$title = SpecialPage::getTitleFor('Upload');
+		}
+
+		return $this->link(
+                        $title,
+                        wfMsgHtml( 'upload' ),
+                        array(),
+                        array(),
+                        array( 'known', 'noclasses' )
+                );
+	}
+
 	/* these are used extensively in SkinTemplate, but also some other places */
 	static function makeMainPageUrl( $urlaction = '' ) {
 		$title = Title::newMainPage();
