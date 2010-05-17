@@ -1556,6 +1556,11 @@ Hvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.
 Overvej om det er passende at fortsætte med uploadet.
 Sletningsloggen for denne fil er gengivet herunder.",
 'filename-bad-prefix'         => "Navnet på filen du er ved at lægge op begynder med '''\"\$1\"'''. Dette er et ikkebeskrivende navn, der typisk er skabt automatisk af et digitalkamera. Vær venlig at vælge et mere beskrivende navn på dit billede.",
+'upload-successful-msg'       => 'Din upload er tilgængelig her: $1',
+'upload-failure-subj'         => 'Upload problem',
+'upload-failure-msg'          => 'Der var et problem med din upload:
+
+$1',
 
 'upload-proto-error'        => 'Forkert protokol',
 'upload-proto-error-text'   => 'Adressen skal begynde med <code>http://</code> eller <code>ftp://</code>.',
@@ -1945,6 +1950,10 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'emailsent'            => 'E-mail sendt',
 'emailsenttext'        => 'Din e-mail er blevet sendt.',
 'emailuserfooter'      => 'Denne e-mail er sendt af $1 til $2 ved hjælp af funktionen "E-mail til denne bruger" på {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Efterlader system besked.',
+'usermessage-editor'  => 'System messenger',
 
 # Watchlist
 'watchlist'            => 'Overvågningsliste',
@@ -2491,6 +2500,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'importstart'                => 'Importerer sider …',
 'import-revision-count'      => '– {{PLURAL:$1|1 version|$1 versioner}}',
 'importnopages'              => 'Ingen sider fundet til import.',
+'imported-log-entries'       => 'Importere $1 {{PLURAL:$1|log post|log poster}}.',
 'importfailed'               => 'Importering fejlede: $1',
 'importunknownsource'        => 'Ukendt fejlkilde',
 'importcantopen'             => 'Importfil kunne ikke åbnes',
@@ -3131,7 +3141,10 @@ Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].'
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
 'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',
 'watchlistedit-raw-legend'     => 'Direkte redigering af overvågningsliste',
-'watchlistedit-raw-explain'    => 'Siderne i din overvågningsliste er vist nedenfor. Du kan ændre din overvågningsliste ved at tilføje og fjerne sidenavne. Du kan gemme din nye overvågningsliste ved at trykke på Opdater overvågningsliste nedenfor. Du kan også redigere overvågningslisten i [[Special:Watchlist/edit|sorteret form]].',
+'watchlistedit-raw-explain'    => 'Siderne i din overvågningsliste er vist nedenfor, og kan ændres ved at tilføje og fjerne fra listen;
+en side per linie
+Når du er færdig, klik "{{int:Watchlistedit-raw-submit}}".
+Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'watchlistedit-raw-titles'     => 'Sider:',
 'watchlistedit-raw-submit'     => 'Opdater overvågningsliste',
 'watchlistedit-raw-done'       => 'Din overvågningsliste blev opdateret.',
