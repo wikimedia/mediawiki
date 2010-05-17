@@ -178,6 +178,14 @@ abstract class Installer {
 			'icon' => '',
 			'text' => ''
 		),
+		'cc-by-sa' => array(
+			'url' => 'http://creativecommons.org/licenses/by-sa/3.0/',
+			'icon' => '{$wgStylePath}/common/images/cc-by-sa.png',
+		),
+		'cc-by-nc-sa' => array(
+			'url' => 'http://creativecommons.org/licenses/by-nc-sa/3.0/',
+			'icon' => '{$wgStylePath}/common/images/cc-by-nc-sa.png',
+		),
 		'pd' => array(
 			'url' => 'http://creativecommons.org/licenses/publicdomain/',
 			'icon' => '{$wgStylePath}/common/images/public-domain.png',
