@@ -200,7 +200,8 @@ class NamespaceConflictChecker extends Maintenance {
 		$sql = "SELECT {$page}_id    AS id,
 		               {$page}_title AS oldtitle,
 		               $encNamespace + {$page}_namespace AS namespace,
-		               $titleSql     AS title
+			       $titleSql     AS title,
+			       {$page}_namespace AS oldnamespace
 		          FROM {$table}
 		         WHERE ( {$page}_namespace=0 OR {$page}_namespace=1 )
 		           AND {$page}_title " . $this->db->buildLike( $name . ':', $this->db->anyString() );
@@ -224,15 +225,17 @@ class NamespaceConflictChecker extends Maintenance {
 		if( is_null($newTitle) || !$newTitle->canExist() ) {
 			// Title is also an illegal title...
 			// For the moment we'll let these slide to cleanupTitles or whoever.
-			$this->output( sprintf( "... %d (0,\"%s\")\n",
+			$this->output( sprintf( "... %d (%d,\"%s\")\n",
 				$row->id,
+				$row->oldnamespace,
 				$row->oldtitle ) );
 			$this->output( "...  *** cannot resolve automatically; illegal title ***\n" );
 			return false;
 		}
 
-		$this->output( sprintf( "... %d (0,\"%s\") -> (%d,\"%s\") [[%s]]\n",
+		$this->output( sprintf( "... %d (%d,\"%s\") -> (%d,\"%s\") [[%s]]\n",
 			$row->id,
+			$row->oldnamespace,
 			$row->oldtitle,
 			$newTitle->getNamespace(),
 			$newTitle->getDBkey(),
@@ -291,8 +294,9 @@ class NamespaceConflictChecker extends Maintenance {
 				"{$prefix}_title"     => $newTitle->getDBkey(),
 			),
 			array(
-				"{$prefix}_namespace" => 0,
-				"{$prefix}_title"     => $row->oldtitle,
+				// "{$prefix}_namespace" => 0,
+				// "{$prefix}_title"     => $row->oldtitle,
+				"{$prefix}_id"		 => $row->id,
 			),
 			__METHOD__ );
 		$this->output( "ok.\n" );
