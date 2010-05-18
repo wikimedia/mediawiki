@@ -1992,19 +1992,17 @@ CSS;
 		global $wgUploadNavigationUrl;
 
 		if( $wgUploadNavigationUrl ) {
-			$title = Title::newFromText( $wgUploadNavigationUrl );
+			# Using an empty class attribute to avoid automatic setting of "external" class
+			return $this->makeExternalLink( $wgUploadNavigationUrl, wfMsgHtml( 'upload' ), false, null, array( 'class' => '') );
+		} else {
+			return $this->link(
+				SpecialPage::getTitleFor('Upload'),
+				wfMsgHtml( 'upload' ),
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			);
 		}
-		if( !isset( $title ) ) {
-			$title = SpecialPage::getTitleFor('Upload');
-		}
-
-		return $this->link(
-                        $title,
-                        wfMsgHtml( 'upload' ),
-                        array(),
-                        array(),
-                        array( 'known', 'noclasses' )
-                );
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */
