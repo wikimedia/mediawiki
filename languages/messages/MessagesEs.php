@@ -2111,7 +2111,8 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 'emailuserfooter'      => 'Este correo electrónico fue enviado por $1 a $2 a través de la función «Enviar correo electrónico a este usuario» en {{SITENAME}}.',
 
 # User Messenger
-'usermessage-editor' => 'Mensajero del sistema',
+'usermessage-summary' => 'Dejando un mensaje de sistema.',
+'usermessage-editor'  => 'Mensajero del sistema',
 
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',

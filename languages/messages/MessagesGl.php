@@ -1022,7 +1022,7 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-no-file'           => 'O ficheiro especificado non existe.',
 'revdelete-show-file-confirm' => 'Está seguro de querer ver unha revisión borrada do ficheiro "<nowiki>$1</nowiki>" do día $2 ás $3?',
 'revdelete-show-file-submit'  => 'Si',
-'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:'''",
+'revdelete-selected'          => "'''{{PLURAL:\$2|Revisión seleccionada|Revisións seleccionadas}} de \"[[:\$1]]\":'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
 'revdelete-text'              => "'''As revisións borradas seguirán aparecendo no historial da páxina e nos rexistros, pero partes do seu contido serán inaccesibles de cara ao público.'''
 Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que se estableza algunha restrición adicional.",
@@ -1031,21 +1031,21 @@ Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e
 * Información persoal inapropiada
 *: ''domicilios e números de teléfono, números da seguridade social, etc.''",
 'revdelete-legend'            => 'Aplicar restricións de visibilidade',
-'revdelete-hide-text'         => 'Agochar texto da revisión',
+'revdelete-hide-text'         => 'Agochar o texto da revisión',
 'revdelete-hide-image'        => 'Agochar o contido do ficheiro',
-'revdelete-hide-name'         => 'Agochar acción e destino',
-'revdelete-hide-comment'      => 'Agochar comentario da edición',
-'revdelete-hide-user'         => 'Agochar nome de usuario/IP do editor',
+'revdelete-hide-name'         => 'Agochar a acción e o destino',
+'revdelete-hide-comment'      => 'Agochar o resumo de edición',
+'revdelete-hide-user'         => 'Agochar o nome de usuario ou o enderezo IP do editor',
 'revdelete-hide-restricted'   => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-radio-same'        => '(non cambiar)',
 'revdelete-radio-set'         => 'Si',
 'revdelete-radio-unset'       => 'Non',
-'revdelete-suppress'          => 'Eliminar os datos tanto dos administradores como dos demais',
+'revdelete-suppress'          => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-unsuppress'        => 'Retirar as restricións sobre as revisións restauradas',
 'revdelete-log'               => 'Motivo para o borrado:',
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|á revisión seleccionada|ás revisións seleccionadas}}',
 'revdelete-logentry'          => 'mudou a visibilidade dunha revisión de "[[$1]]"',
-'logdelete-logentry'          => 'mudouse a visibilidade do evento para [[$1]]',
+'logdelete-logentry'          => 'mudou a visibilidade do evento de [[$1]]',
 'revdelete-success'           => "'''Actualizouse sen problemas a visibilidade da revisión.'''",
 'revdelete-failure'           => "'''Non se puido actualizar a visibilidade da revisión:'''
 $1",
@@ -1642,6 +1642,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # varias
  #</pre> <!-- deixe esta liña exactamente como está -->',
+'upload-successful-msg'       => 'O ficheiro cargado está dispoñible aquí: $1',
+'upload-failure-subj'         => 'Problema ao cargar',
+'upload-failure-msg'          => 'Houbo un problema durante a carga:
+
+$1',
 
 'upload-proto-error'        => 'Protocolo erróneo',
 'upload-proto-error-text'   => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
@@ -2040,6 +2045,10 @@ O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]]
 'emailsenttext'        => 'A súa mensaxe de correo electrónico foi enviada.',
 'emailuserfooter'      => 'Este correo electrónico foi enviado por $1 a $2 mediante a función "Enviar un correo electrónico a este usuario" de {{SITENAME}}.',
 
+# User Messenger
+'usermessage-summary' => 'Mensaxe deixada polo sistema.',
+'usermessage-editor'  => 'Editor das mensaxes do sistema',
+
 # Watchlist
 'watchlist'            => 'A miña lista de vixilancia',
 'mywatchlist'          => 'A miña lista de vixilancia',
@@ -2134,7 +2143,7 @@ No $2 pode ver unha lista dos borrados máis recentes.',
 'dellogpage'             => 'Rexistro de borrados',
 'dellogpagetext'         => 'A continuación atópase a lista cos borrados máis recentes.',
 'deletionlog'            => 'rexistro de borrados',
-'reverted'               => 'Devolto a unha versión anterior',
+'reverted'               => 'Volveuse a unha versión anterior',
 'deletecomment'          => 'Razón para o borrado:',
 'deleteotherreason'      => 'Outro motivo:',
 'deletereasonotherlist'  => 'Outro motivo',
@@ -2615,6 +2624,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'importstart'                => 'Importando páxinas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisións}}',
 'importnopages'              => 'Non hai páxinas para importar.',
+'imported-log-entries'       => '{{PLURAL:$1|Importouse unha entrada|Importáronse $1 entradas}} do rexisto.',
 'importfailed'               => 'A importación fallou: $1',
 'importunknownsource'        => 'Fonte de importación descoñecida',
 'importcantopen'             => 'Non se pode abrir o ficheiro importado',
@@ -3266,8 +3276,8 @@ Tamén pode [[Special:Watchlist/raw|editar a lista simple]].',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eliminouse un título|Elimináronse $1 títulos}} da súa lista de vixilancia:',
 'watchlistedit-raw-title'      => 'Editar a lista de vixilancia simple',
 'watchlistedit-raw-legend'     => 'Editar a lista de vixilancia simple',
-'watchlistedit-raw-explain'    => 'Os títulos da súa lista de vixilancia aparecen embaixo e pódense editar engadíndoos ou retirándoos da lista; un título por liña.
-Ao rematar, prema en "Actualizar a lista de vixilancia".
+'watchlistedit-raw-explain'    => 'Os títulos da súa lista de vixilancia aparecen a continuación. Pódense editar engadíndoos ou retirándoos da lista; un título por liña.
+Ao rematar, prema en "{{int:Watchlistedit-raw-submit}}".
 Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'watchlistedit-raw-titles'     => 'Títulos:',
 'watchlistedit-raw-submit'     => 'Actualizar a lista de vixilancia',

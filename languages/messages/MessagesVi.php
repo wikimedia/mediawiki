@@ -1655,6 +1655,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # khác
  #</pre> <!-- xin để nguyên hàng này -->',
+'upload-successful-msg'       => 'Tập tin tải lên có sẵn tại: $1',
+'upload-failure-subj'         => 'Vấn đề tải lên',
+'upload-failure-msg'          => 'Tập tin bạn tải lên có một vấn đề:
+
+$1',
 
 'upload-proto-error'        => 'Giao thức sai',
 'upload-proto-error-text'   => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để tải lên tập tin từ trang web khác.',
@@ -2047,6 +2052,10 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'emailsent'            => 'Đã gửi',
 'emailsenttext'        => 'Thư của bạn đã được gửi.',
 'emailuserfooter'      => 'Thư điện tử này được $1 gửi đến $2 thông qua chức năng “Gửi thư cho người này” của {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Đang để lại thông báo hệ thống.',
+'usermessage-editor'  => 'Trình thông báo hệ thống',
 
 # Watchlist
 'watchlist'            => 'Trang tôi theo dõi',
@@ -2620,6 +2629,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'importstart'                => 'Đang nhập các trang…',
 'import-revision-count'      => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
 'importnopages'              => 'Không có trang để nhập vào.',
+'imported-log-entries'       => 'Đã nhập {{PLURAL:$1|mục nhật trình|$1 mục nhật trình}}.',
 'importfailed'               => 'Không nhập được: $1',
 'importunknownsource'        => 'Không hiểu nguồn trang để nhập vào',
 'importcantopen'             => 'Không có thể mở tập tin để nhập vào',
@@ -2713,6 +2723,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-rollback'                => '"Lùi tất cả" sẽ lùi mọi sửa đổi của người sửa đổi cuối cùng chỉ bằng một cú nhấp chuột.',
 'tooltip-undo'                    => '"Lùi lại" sẽ lùi sửa đổi này và mở trang sửa đổi ở chế độ xem thử. Cho phép thêm lý do vào tóm lược.',
 'tooltip-preferences-save'        => 'Lưu tùy chọn',
+'tooltip-summary'                 => 'Hãy nhập câu tóm lược',
 
 # Stylesheets
 'common.css'      => '/* Mã CSS đặt ở đây sẽ áp dụng cho mọi hình dạng */',
@@ -3296,9 +3307,9 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|tựa đề|tựa đề}} đã được xóa khỏi danh sách các trang theo dõi:',
 'watchlistedit-raw-title'      => 'Sửa danh sách theo dõi dạng thô',
 'watchlistedit-raw-legend'     => 'Sửa danh sách theo dõi dạng thô',
-'watchlistedit-raw-explain'    => 'Tên các trang bạn theo dõi đuọc hiển thị dưới đây, và có thể được sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng.
-Khi xong, nhấn nút ”Cập nhật Trang tôi theo dõi”.
-Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩn]] để sửa danh sách này.',
+'watchlistedit-raw-explain'    => 'Danh sách này có tên các trang bạn theo dõi để bạn sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng.
+Khi xong, nhấn nút ”{{int:Watchlistedit-raw-submit}}”.
+Bạn cũng có thể [[Special:Watchlist/edit|dùng trang sửa đổi bình thường]] để sửa danh sách này.',
 'watchlistedit-raw-titles'     => 'Tên các trang:',
 'watchlistedit-raw-submit'     => 'Cập nhật Trang tôi theo dõi',
 'watchlistedit-raw-done'       => 'Danh sách các trang bạn theo dõi đã được cập nhật.',

@@ -2670,6 +2670,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http:
 'importstart'                => 'Stránky se importují…',
 'import-revision-count'      => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'importnopages'              => 'Není co importovat.',
+'imported-log-entries'       => '{{PLURAL:$1|Naimportován 1 protokolovací záznam|Naimportovány $1 protokolovací záznamy|Naimportováno $1 protokolovacích záznamů}}.',
 'importfailed'               => 'Import selhal: $1',
 'importunknownsource'        => 'Neznámý typ zdroje importu',
 'importcantopen'             => 'Nepodařilo se otevřít importní soubor',
@@ -3329,7 +3330,9 @@ Opravdu si přejete znovu tuto stránku založit?',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Byla odstraněna 1 položka|Byly odstraněny $1 položky|Bylo odstraněno $1 položek}} z Vašeho seznamu sledovaných stránek:',
 'watchlistedit-raw-title'      => 'Textový režim editace seznamu',
 'watchlistedit-raw-legend'     => 'Editace textového souboru sledovaných stránek',
-'watchlistedit-raw-explain'    => 'Položky na vašem seznamu sledovaných stránek jsou zobrazeny dole. Můžete je přidávat, odstraňovat či měnit v zobrazeném seznamu – jedna řádka je jedna položka. Pro uložení změn stiskněte tlačítko Aktualizovat seznam. Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve standardním editoru]].',
+'watchlistedit-raw-explain'    => 'Položky na vašem seznamu sledovaných stránek jsou zobrazeny níže. Můžete je přidávat, odstraňovat či měnit v zobrazeném seznamu – jedna řádka je jedna položka.
+Pro uložení změn stiskněte tlačítko „{{int:Watchlistedit-raw-submit}}“.
+Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve standardním editoru]].',
 'watchlistedit-raw-titles'     => 'Položky:',
 'watchlistedit-raw-submit'     => 'Aktualizovat seznam',
 'watchlistedit-raw-done'       => 'Seznam vašich sledovaných stránek byl aktualizován.',

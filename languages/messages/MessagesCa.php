@@ -1512,6 +1512,7 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'overwrite'                   => 'No es permet sobreescriure un fitxer existent.',
 'unknown-error'               => "S'ha produït un error desconegut.",
 'tmp-create-error'            => "No s'ha pogut crear l'arxiu temporal.",
+'tmp-write-error'             => 'Error en escriure el fitxer temporal.',
 'large-file'                  => 'Els fitxers importants no haurien de ser més grans de $1; aquest fitxer ocupa $2.',
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
 'emptyfile'                   => 'El fitxer que heu carregat sembla estar buit. Açò por ser degut a un mal caràcter en el nom del fitxer. Si us plau, reviseu si realment voleu carregar aquest arxiu.',
@@ -1562,6 +1563,7 @@ Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carreg
 Hauríeu de considerar si és realment adequat continuar carregant aquest fitxer, perquè potser també acaba eliminat.
 A continuació teniu el registre d'eliminació per a que pugueu comprovar els motius que van portar a la seua eliminació:",
 'filename-bad-prefix'         => "El nom del fitxer que esteu penjant comença amb '''«$1»''', que és un nom no descriptiu que les càmeres digitals normalment assignen de forma automàtica. Trieu un de més descriptiu per al vostre fitxer.",
+'upload-successful-msg'       => 'El material carregat està disponible ací: $1',
 'upload-failure-subj'         => 'Problema en la càrrega',
 'upload-failure-msg'          => 'Hi ha hagut un problema amb la vostra càrrega:
 
@@ -1957,6 +1959,10 @@ L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres prefe
 'emailsent'            => 'Correu electrònic enviat',
 'emailsenttext'        => 'El vostre correu electrònic ha estat enviat.',
 'emailuserfooter'      => "Aquest missatge de correu electrònic l'ha enviat $1 a $2 amb la funció «e-mail» del projecte {{SITENAME}}.",
+
+# User Messenger
+'usermessage-summary' => 'Deixant missatges de sistema.',
+'usermessage-editor'  => 'Missatger del sistema',
 
 # Watchlist
 'watchlist'            => 'Llista de seguiment',
@@ -2540,6 +2546,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'importstart'                => "S'estan important pàgines...",
 'import-revision-count'      => '$1 {{PLURAL:$1|revisió|revisions}}',
 'importnopages'              => 'No hi ha cap pàgina per importar.',
+'imported-log-entries'       => "{{PLURAL:$1|S'ha importat una entrada del registre|S'han importat $1 entrades del registre}}.",
 'importfailed'               => 'La importació ha fallat: $1',
 'importunknownsource'        => "No es reconeix el tipus de la font d'importació",
 'importcantopen'             => "No ha estat possible d'obrir el fitxer a importar",
@@ -2633,6 +2640,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'tooltip-rollback'                => "«Rollback» reverteix les edicions del darrer contribuïdor d'aquesta pàgina en un clic.",
 'tooltip-undo'                    => '«Desfés» reverteix aquesta modificació i obre un formulari de previsualització.
 Permet afegir un motiu al resum.',
+'tooltip-preferences-save'        => 'Desa preferències',
 'tooltip-summary'                 => 'Afegiu un breu resum',
 
 # Stylesheets
@@ -3187,7 +3195,9 @@ Proveu-ho amb la previsualització normal.',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 títol s'ha|$1 títols s'han}} eliminat de la vostra llista de seguiment:",
 'watchlistedit-raw-title'      => 'Edita la llista de seguiment crua',
 'watchlistedit-raw-legend'     => 'Edita la llista de seguiment crua',
-'watchlistedit-raw-explain'    => "Els títols de la vostra llista de seguiment es mostren a continuació, i poden modificar-se afegint-los o suprimint-los de la llista; un títol per línia. En acabar, feu clic a Actualitza la llista de seguiment.
+'watchlistedit-raw-explain'    => "Els títols de la vostra llista de seguiment es mostren a continuació, i poden modificar-se afegint-los o suprimint-los de la llista; 
+un títol per línia. 
+En acabar, feu clic a «{{int:Watchlistedit-raw-submit}}».
 També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'watchlistedit-raw-titles'     => 'Títols:',
 'watchlistedit-raw-submit'     => 'Actualitza la llista de seguiment',

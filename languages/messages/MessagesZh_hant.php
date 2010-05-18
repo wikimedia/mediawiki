@@ -2714,7 +2714,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'math_notexvc'          => '無法執行"texvc"；請參照 math/README 進行配置。',
 
 # Patrolling
-'markaspatrolleddiff'                 => '標記為已檢查',
+'markaspatrolleddiff'                 => '標記為已巡查',
 'markaspatrolledtext'                 => '標記此頁面為已巡查',
 'markedaspatrolled'                   => '標記為已檢查',
 'markedaspatrolledtext'               => '[[:$1]]的已選定修訂版本已被標識為已巡查。',

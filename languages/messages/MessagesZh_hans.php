@@ -2697,7 +2697,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'math_notexvc'          => '无法执行texvc；请参照math/README进行配置。',
 
 # Patrolling
-'markaspatrolleddiff'                 => '标记为已检查',
+'markaspatrolleddiff'                 => '标记为已巡查',
 'markaspatrolledtext'                 => '标记此页面为已巡查',
 'markedaspatrolled'                   => '标记为已检查',
 'markedaspatrolledtext'               => '[[:$1]]的已选中修订版本已被标识为已巡查。',

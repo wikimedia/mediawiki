@@ -2173,7 +2173,8 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 * $2: username of the recipient',
 
 # User Messenger
-'usermessage-editor' => 'The user that is the editor of system messages',
+'usermessage-summary' => 'Translate "leaving" in the sense of: to leave behind, to have remaining.',
+'usermessage-editor'  => 'The user that is the editor of system messages',
 
 # Watchlist
 'watchlist'            => '{{Identical|My watchlist}}',
