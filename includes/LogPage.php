@@ -45,10 +45,10 @@ class LogPage {
 	/**
 	  * Constructor
 	  *
-	  * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
+	  * @param $type String: one of '', 'block', 'protect', 'rights', 'delete',
 	  *               'upload', 'move'
-	  * @param bool $rc Whether to update recent changes as well as the logging table
-	  * @param bool $udp Whether to send to the UDP feed if NOT sent to RC
+	  * @param $rc Boolean: whether to update recent changes as well as the logging table
+	  * @param $udp String: pass 'UDP' to send to the UDP feed if NOT sent to RC
 	  */
 	public function __construct( $type, $rc = true, $udp = 'skipUDP' ) {
 		$this->type = $type;
@@ -121,7 +121,9 @@ class LogPage {
 	}
 
 	/**
-	 * @static
+	 * Get the list of valid log types
+	 *
+	 * @return Array of strings
 	 */
 	public static function validTypes() {
 		global $wgLogTypes;
@@ -129,15 +131,20 @@ class LogPage {
 	}
 
 	/**
-	 * @static
+	 * Is $type a valid log type
+	 *
+	 * @param $type String: log type to check
+	 * @return Boolean
 	 */
 	public static function isLogType( $type ) {
 		return in_array( $type, LogPage::validTypes() );
 	}
 
 	/**
-	 * @static
-	 * @param string $type logtype
+	 * Get the name for the given log type
+	 *
+	 * @param $type String: logtype
+	 * @return String: log name
 	 */
 	public static function logName( $type ) {
 		global $wgLogNames, $wgMessageCache;
@@ -152,9 +159,11 @@ class LogPage {
 	}
 
 	/**
+	 * Get the log header for the given log type
+	 *
 	 * @todo handle missing log types
-	 * @param string $type logtype
-	 * @return string Headertext of this logtype
+	 * @param $type String: logtype
+	 * @return String: headertext of this logtype
 	 */
 	public static function logHeader( $type ) {
 		global $wgLogHeaders, $wgMessageCache;
@@ -163,12 +172,18 @@ class LogPage {
 	}
 
 	/**
-	 * @static
-	 * Note that if $skin is null, we want to use the wiki content language, since that 
-	 * will go to the irc feed.
+	 * Generate text for a log entry
+	 *
+	 * @param $type String: log type
+	 * @param $action String: log action
+	 * @param $title Mixed: Title object or null
+	 * @param $skin Mixed: Skin object or null. If null, we want to use the wiki
+	 *              content language, since that will go to the irc feed.
+	 * @param $params Array: parameters
+	 * @param $filterWikilinks Boolean: whether to filter wiki links
 	 * @return HTML string
 	 */
-	public static function actionText( $type, $action, $title = null, $skin = null, 
+	public static function actionText( $type, $action, $title = null, $skin = null,
 		$params = array(), $filterWikilinks = false ) 
 	{
 		global $wgLang, $wgContLang, $wgLogActions, $wgMessageCache;
@@ -374,11 +389,12 @@ class LogPage {
 
 	/**
 	 * Add a log entry
-	 * @param string $action one of '', 'block', 'protect', 'rights', 'delete', 'upload', 'move', 'move_redir'
-	 * @param object &$target A title object.
-	 * @param string $comment Description associated
-	 * @param array $params Parameters passed later to wfMsg.* functions
-	 * @param User $doer The user doing the action
+	 *
+	 * @param $action String: one of '', 'block', 'protect', 'rights', 'delete', 'upload', 'move', 'move_redir'
+	 * @param $target Title object
+	 * @param $comment String: description associated
+	 * @param $params Array: parameters passed later to wfMsg.* functions
+	 * @param $doer User object: the user doing the action
 	 */
 	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		if ( !is_array( $params ) ) {
@@ -408,7 +424,11 @@ class LogPage {
 	
 	/**
 	 * Add relations to log_search table
-	 * @static
+	 *
+	 * @param $field String
+	 * @param $values Array
+	 * @param $logid Integer
+	 * @return Boolean
 	 */
 	public function addRelations( $field, $values, $logid ) {
 		if( !strlen($field) || empty($values) )
@@ -424,7 +444,9 @@ class LogPage {
 
 	/**
 	 * Create a blob from a parameter array
-	 * @static
+	 *
+	 * @param $params Array
+	 * @return String
 	 */
 	public static function makeParamBlob( $params ) {
 		return implode( "\n", $params );
@@ -432,7 +454,9 @@ class LogPage {
 
 	/**
 	 * Extract a parameter array from a blob
-	 * @static
+	 *
+	 * @param $blob String
+	 * @return Array
 	 */
 	public static function extractParams( $blob ) {
 		if ( $blob === '' ) {
@@ -449,7 +473,7 @@ class LogPage {
 	 * @param $flags Flags to format
 	 * @param $forContent Whether to localize the message depending of the user
 	 *                    language
-	 * @return string
+	 * @return String
 	 */
 	public static function formatBlockFlags( $flags, $forContent = false ) {
 		global $wgLang;
@@ -470,7 +494,7 @@ class LogPage {
 	 * @param $flag Flag to translate
 	 * @param $forContent Whether to localize the message depending of the user
 	 *                    language
-	 * @return string
+	 * @return String
 	 */
 	public static function formatBlockFlag( $flag, $forContent = false ) {
 		static $messages = array();
