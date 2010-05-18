@@ -3757,7 +3757,7 @@ class User {
 	 * @param $article Article The article to update, defaults to the
 	 *                        user's talk page.
 	 * @param $editor User The user leaving the message, defaults to
-	 *                        "SystemMessage"
+	 *                        "{{MediaWiki:usermessage-editor}}"
 	 * @param $flags Int default edit flags
 	 *
 	 * @return boolean true if it was successful
