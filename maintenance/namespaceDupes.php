@@ -199,10 +199,10 @@ class NamespaceConflictChecker extends Maintenance {
                                      
 		$sql = "SELECT {$page}_id    AS id,
 		               {$page}_title AS oldtitle,
-		               $encNamespace AS namespace,
+		               $encNamespace + {$page}_namespace AS namespace,
 		               $titleSql     AS title
 		          FROM {$table}
-		         WHERE {$page}_namespace=0
+		         WHERE ( {$page}_namespace=0 OR {$page}_namespace=1 )
 		           AND {$page}_title " . $this->db->buildLike( $name . ':', $this->db->anyString() );
 
 		$result = $this->db->query( $sql, __METHOD__ );
