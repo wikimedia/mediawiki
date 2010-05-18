@@ -20,6 +20,7 @@
  * @author Masti
  * @author Matma Rex
  * @author McMonster
+ * @author Nux
  * @author Remember the dot
  * @author Saper
  * @author Sp5uhe
@@ -1661,6 +1662,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # wiele różnych
   #</pre> <!-- nie modyfikuj tej linii -->',
+'upload-successful-msg'       => 'Przesłany plik jest dostępny tutaj: $1',
+'upload-failure-subj'         => 'Problem z przesyłaniem pliku',
+'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu twojego pliku:
+
+$1',
 
 'upload-proto-error'        => 'Nieprawidłowy protokół',
 'upload-proto-error-text'   => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się od <code>http://</code> lub <code>ftp://</code>.',
@@ -2638,6 +2644,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'importstart'                => 'Trwa importowanie stron...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'importnopages'              => 'Brak stron do importu.',
+'imported-log-entries'       => 'Zaimportowano $1 {{PLURAL:$1|wpis|wpisy|wpisów}} logu.',
 'importfailed'               => 'Import nie powiódł się: $1',
 'importunknownsource'        => 'Nieznany format importowanych danych',
 'importcantopen'             => 'Nie można otworzyć importowanego pliku',
@@ -2889,7 +2896,9 @@ Jeśli go otworzysz, możesz zarazić swój system.<hr />",
 'sp-newimages-showfrom' => 'pokaż nowe pliki począwszy od $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'g',
+'seconds-abbrev' => ' s',
+'minutes-abbrev' => ' m',
+'hours-abbrev'   => ' g',
 
 # Bad image list
 'bad_image_list' => 'Dane należy wprowadzić w formacie:
@@ -3317,8 +3326,9 @@ Możesz także skorzystać z [[Special:Watchlist/raw|tekstowego edytora listy ob
 'watchlistedit-normal-done'    => 'Z Twojej listy obserwowanych {{PLURAL:$1|została usunięta 1 strona|zostały usunięte $1 strony|zostało usuniętych $1 stron}}:',
 'watchlistedit-raw-title'      => 'Tekstowy edytor listy obserwowanych',
 'watchlistedit-raw-legend'     => 'Tekstowy edytor listy obserwowanych',
-'watchlistedit-raw-explain'    => 'Poniżej znajduje się lista obserwowanych stron. W każdej linii znajduje się tytuł jednej strony. Listę możesz modyfikować poprzez dodawanie nowych i usuwanie obecnych. Gdy zakończysz, kliknij przycisk „Uaktualnij listę”.
-Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
+'watchlistedit-raw-explain'    => 'Poniżej wypisane zostały tytuły stron znajdujących się na twojej liście obserwowanych. Możesz dodać lub usunąć dowolny tytuł z tej listy – jeden wiersz to jeden tytuł.
+Aby zatwierdzić zmiany kliknij „{{int:Watchlistedit-raw-submit}}”.
+Możesz także użyć [[Special:Watchlist/edit|standardowego edytora obserwowanych]].',
 'watchlistedit-raw-titles'     => 'Obserwowane strony:',
 'watchlistedit-raw-submit'     => 'Uaktualnij listę',
 'watchlistedit-raw-done'       => 'Lista obserwowanych stron została uaktualniona.',

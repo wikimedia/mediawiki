@@ -1992,8 +1992,8 @@ como le adresse del expeditor del e-mail, de modo que le destinatario pote respo
 'emailuserfooter'      => 'Iste e-mail esseva inviate per $1 a $2 con le function "Inviar e-mail al usator" a {{SITENAME}}.',
 
 # User Messenger
-'usermessage-summary' => 'Lassar un message de systema.',
-'usermessage-editor'  => 'Messagero de systema',
+'usermessage-summary' => 'Lassante un message de systema.',
+'usermessage-editor'  => 'Messagero del systema',
 
 # Watchlist
 'watchlist'            => 'Mi observatorio',

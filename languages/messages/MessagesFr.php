@@ -1131,7 +1131,7 @@ En tant qu’administrateur vous pouvez voir ce diff ; des détails sont disponi
 'revdelete-selected'          => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''[[:$1]]''' :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :'''",
 'revdelete-text'              => "'''Les versions et événements supprimés seront encore présents dans l’historique de la page et dans les journaux, mais leur contenu textuel sera inaccessible au public.'''
-Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soit mises en place.",
+Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soient mises en place.",
 'revdelete-confirm'           => 'Confirmez que vous voulez effectuer cette action, que vous en comprenez les conséquences, et que vous le faites en accord avec [[{{MediaWiki:Policy-url}}|les règles]].',
 'revdelete-suppress-text'     => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
 * Informations personnelles inappropriées
@@ -2144,7 +2144,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 
 # User Messenger
 'usermessage-summary' => 'A laissé un message système.',
-'usermessage-editor'  => 'Messagerie système',
+'usermessage-editor'  => 'Messager du système',
 
 # Watchlist
 'watchlist'            => 'Liste de suivi',
