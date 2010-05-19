@@ -28,7 +28,7 @@ body {
 	background-image: url(images/page-base.png?1);
 }
 /* Content */
-#content {
+div#content {
 	margin-right: 10em;
 	padding: 1em;
 	background-image: url(images/border.png?1);
@@ -45,7 +45,7 @@ body {
 	background-position: bottom right;
 	background-repeat: repeat-x;
 }
-#head-base {
+div#head-base {
 	margin-top: -5em;
 	margin-right: 10em;
 	height: 5em;
@@ -53,13 +53,13 @@ body {
 	background-position: bottom right;
 	background-repeat: repeat-x;
 }
-#head {
+div#head {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 }
-#head h5 {
+div#head h5 {
 	margin: 0;
 	padding: 0;
 }
@@ -214,20 +214,20 @@ body {
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	/* @noflip */
-	#head div.vectorMenu h5 {
+	div#head div.vectorMenu h5 {
 		float: left;
 		background-image: url(images/tab-break.png?1);
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	#head div.vectorMenu > h5 {
+	div#head div.vectorMenu > h5 {
 		background-image: none;
 	}
-	#head div.vectorMenu h5 {
+	div#head div.vectorMenu h5 {
 		background-position: bottom right;
 		margin-right: -1px;
 	}
-	#head div.vectorMenu h4 {
+	div#head div.vectorMenu h4 {
 		display: inline-block;
 		float: right;
 		font-size: 0.8em;
@@ -345,7 +345,7 @@ body {
 		margin: 0;
 		margin-top: 0.4em;
 	}
-	#simpleSearch {
+	input#simpleSearch {
 		margin-top: 0.5em;
 		position: relative;
 		border: solid 1px #AAAAAA;
@@ -354,11 +354,11 @@ body {
 		background-position: top right;
 		background-repeat: repeat-x;
 	}
-	#simpleSearch label {
+	input#simpleSearch label {
 		font-size: 0.8em;
 		top: 0.25em;
 	}
-	#simpleSearch input#searchInput {
+	input#simpleSearch input#searchInput {
 		margin: 0;
 		border-width: 0;
 		padding: 0.25em;
@@ -368,7 +368,7 @@ body {
 		background-color: transparent;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	#simpleSearch button#searchButton {
+	input#simpleSearch button#searchButton {
 		margin: 0;
 		padding: 0;
 		width: 1.75em;
@@ -381,21 +381,21 @@ body {
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	#simpleSearch > button#searchButton {
+	input#simpleSearch > button#searchButton {
 		height: 100%;
 	}
 /* Panel */
-#panel {
+div#panel {
 	position: absolute;
 	top: 160px;
 	padding-top: 1em;
 	width: 10em;
 	right: 0;
 }
-	#panel div.portal {
+	div#panel div.portal {
 		padding-bottom: 1.5em;
 	}
-	#panel div.portal h5 {
+	div#panel div.portal h5 {
 		font-weight: normal;
 		color: #444444;
 		padding: 0.25em;
@@ -405,7 +405,7 @@ body {
 		border: none;
 		font-size: 0.75em;
 	}
-	#panel div.portal div.body {
+	div#panel div.portal div.body {
 		margin: 0;
 		padding-top: 0.5em;
 		margin-right: 1.25em;
@@ -413,14 +413,14 @@ body {
 		background-repeat: no-repeat;
 		background-position: top right;
 	}
-	#panel div.portal div.body ul {
+	div#panel div.portal div.body ul {
 		list-style: none;
 		list-style-image: none;
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
 	}
-	#panel div.portal div.body ul li {
+	div#panel div.portal div.body ul li {
 		line-height: 1.125em;
 		padding: 0;
 		padding-bottom: 0.5em;
@@ -428,14 +428,14 @@ body {
 		overflow: hidden;
 		font-size: 0.75em;
 	}
-	#panel div.portal div.body ul li a {
+	div#panel div.portal div.body ul li a {
 		color: #0645ad;
 	}
-	#panel div.portal div.body ul li a:visited {
+	div#panel div.portal div.body ul li a:visited {
 		color: #0b0080;
 	}
 /* Footer */
-#footer {
+div#footer {
 	margin-right: 10em;
 	margin-top: 0;
 	padding: 0.75em;
@@ -443,14 +443,14 @@ body {
 	background-position: top right;
 	background-repeat: repeat-x;
 }
-#footer ul {
+div#footer ul {
 	list-style: none;
 	list-style-image: none;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
-#footer ul li {
+div#footer ul li {
 	margin: 0;
 	padding: 0;
 	padding-top: 0.5em;
@@ -458,22 +458,22 @@ body {
 	color: #333333;
 	font-size: 0.7em;
 }
-#footer #footer-icons {
+div#footer div#footer-icons {
 	float: left;
 }
 /* @noflip */
-body.ltr #footer #footer-places {
+body.ltr div#footer div#footer-places {
 	float: left;
 }
-#footer #footer-info li {
+div#footer div#footer-info li {
 	line-height: 1.4em;
 }
-#footer #footer-icons li {
+div#footer div#footer-icons li {
 	float: right;
 	margin-right: 0.5em;
 	line-height: 2em;
 }
-#footer #footer-places li {
+div#footer div#footer-places li {
 	float: right;
 	margin-left: 1em;
 	line-height: 2em;
@@ -614,7 +614,7 @@ body.ltr #footer #footer-places {
  * The following code is slightly modified from monobook
  * 
  */
-#content {
+div#content {
 	line-height: 1.5em;
 }
 #bodyContent {
@@ -949,7 +949,7 @@ img.thumbborder {
 #jump-to-nav {
 	display: none;
 }
-#contentSub, #contentSub2 {
+div#contentSub, div#contentSub2 {
 	font-size: 84%;
 	line-height: 1.2em;
 	margin: 0 1em 1.4em 0;
@@ -991,72 +991,72 @@ h3, h4, h5 {
 	font-size: 1.6em;
 	padding-bottom: 0;
 }
-#content a.external,
-#content a[href ^="gopher://"] {
+div#content a.external,
+div#content a[href ^="gopher://"] {
 	background: url(images/external-link-rtl-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
-#content a[href ^="https://"],
+div#content a[href ^="https://"],
 .link-https {
 	background: url(images/lock-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
-#content a[href ^="mailto:"],
+div#content a[href ^="mailto:"],
 .link-mailto {
 	background: url(images/mail-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
-#content a[href ^="news://"] {
+div#content a[href ^="news://"] {
 	background: url(images/news-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
-#content a[href ^="ftp://"],
+div#content a[href ^="ftp://"],
 .link-ftp {
 	background: url(images/file-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
-#content a[href ^="irc://"],
-#content a.extiw[href ^="irc://"],
+div#content a[href ^="irc://"],
+div#content a.extiw[href ^="irc://"],
 .link-irc {
 	background: url(images/talk-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
-#content a.external[href $=".ogg"], #content a.external[href $=".OGG"],
-#content a.external[href $=".mid"], #content a.external[href $=".MID"],
-#content a.external[href $=".midi"], #content a.external[href $=".MIDI"],
-#content a.external[href $=".mp3"], #content a.external[href $=".MP3"],
-#content a.external[href $=".wav"], #content a.external[href $=".WAV"],
-#content a.external[href $=".wma"], #content a.external[href $=".WMA"],
+div#content a.external[href $=".ogg"], div#content a.external[href $=".OGG"],
+div#content a.external[href $=".mid"], div#content a.external[href $=".MID"],
+div#content a.external[href $=".midi"], div#content a.external[href $=".MIDI"],
+div#content a.external[href $=".mp3"], div#content a.external[href $=".MP3"],
+div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"],
+div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
 .link-audio {
 	background: url("images/audio-icon.png?2") center left no-repeat;
 	padding: 0 0 0 13px;
 }
-#content a.external[href $=".ogm"], #content a.external[href $=".OGM"],
-#content a.external[href $=".avi"], #content a.external[href $=".AVI"],
-#content a.external[href $=".mpeg"], #content a.external[href $=".MPEG"],
-#content a.external[href $=".mpg"], #content a.external[href $=".MPG"],
+div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"],
+div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"],
+div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"],
+div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
 .link-video {
 	background: url("images/video-icon.png?2") center left no-repeat;
 	padding: 0 0 0 13px;
 }
-#content a.external[href $=".pdf"], #content a.external[href $=".PDF"],
-#content a.external[href *=".pdf#"], #content a.external[href *=".PDF#"],
-#content a.external[href *=".pdf?"], #content a.external[href *=".PDF?"],
+div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
+div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
+div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 .link-document {
 	background: url("images/document-icon.png?2") center left no-repeat;
 	padding: 0 0 0 13px;
 }
 /* Interwiki Styling  (Disabled) */
-#content a.extiw,
-#content a.extiw:active {
+div#content a.extiw,
+div#content a.extiw:active {
 	color: #36b;
 	background: none;
 	padding: 0;
 }
-#content a.external {
+div#content a.external {
 	color: #36b;
 }
-#content .printfooter {
+div#content .printfooter {
 	display: none;
 }
 /* Icon for Usernames */
