@@ -74,7 +74,7 @@ class DatabaseMysql extends DatabaseBase {
 			}
 			if ($this->mConn === false) {
 				#$iplus = $i + 1;
-				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
+				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n");
 			}
 		}
 		$phpError = $this->restoreErrorHandler();
@@ -90,7 +90,7 @@ class DatabaseMysql extends DatabaseBase {
 				substr( $password, 0, 3 ) . "..., error: " . mysql_error() . "\n" );
 			$success = false;
 		}
-		
+
 		wfProfileOut("dbconnect-$server");
 
 		if ( $dbName != '' && $this->mConn !== false ) {
@@ -233,7 +233,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
-	
+
 	/**
 	 * Estimate rows in dataset
 	 * Returns estimated count, based on EXPLAIN output
@@ -255,7 +255,7 @@ class DatabaseMysql extends DatabaseBase {
 		}
 
 		$this->freeResult($res);
-		return $rows;		
+		return $rows;
 	}
 
 	function fieldInfo( $table, $field ) {
@@ -277,28 +277,26 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	function strencode( $s ) {
-		return mysql_real_escape_string( $s, $this->mConn );
+		$sQuoted = mysql_real_escape_string( $s, $this->mConn );
+
+		if($sQuoted === false) {
+			$this->ping();
+			$sQuoted = mysql_real_escape_string( $s, $this->mConn );
+		}
+		return $sQuoted;
 	}
 
 	function ping() {
-		if( !function_exists( 'mysql_ping' ) ) {
-			wfDebug( "Tried to call mysql_ping but this is ancient PHP version. Faking it!\n" );
-			return true;
-		}
 		$ping = mysql_ping( $this->mConn );
 		if ( $ping ) {
 			return true;
 		}
 
-		// Need to reconnect manually in MySQL client 5.0.13+
-		if ( version_compare( mysql_get_client_info(), '5.0.13', '>=' ) ) {
-			mysql_close( $this->mConn );
-			$this->mOpened = false;
-			$this->mConn = false;
-			$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
-			return true;
-		}
-		return false;
+		mysql_close( $this->mConn );
+		$this->mOpened = false;
+		$this->mConn = false;
+		$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
+		return true;
 	}
 
 	function getServerVersion() {
@@ -351,8 +349,8 @@ class DatabaseMysql extends DatabaseBase {
 		$items = array();
 
 		foreach( $write as $table ) {
-			$tbl = $this->tableName( $table ) . 
-					( $lowPriority ? ' LOW_PRIORITY' : '' ) . 
+			$tbl = $this->tableName( $table ) .
+					( $lowPriority ? ' LOW_PRIORITY' : '' ) .
 					' WRITE';
 			$items[] = $tbl;
 		}
@@ -382,7 +380,7 @@ class DatabaseMysql extends DatabaseBase {
 		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
 	}
 
-	
+
 	/**
 	 * Determines if the last failure was due to a deadlock
 	 */
@@ -391,7 +389,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * Determines if the last query error was something that should be dealt 
+	 * Determines if the last query error was something that should be dealt
 	 * with by pinging the connection and reissuing the query
 	 */
 	function wasErrorReissuable() {
@@ -402,7 +400,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * Determines if the last failure was due to the database being read-only.
 	 */
 	function wasReadOnlyError() {
-		return $this->lastErrno() == 1223 || 
+		return $this->lastErrno() == 1223 ||
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
 	}
 
@@ -420,7 +418,7 @@ class DatabaseMysql extends DatabaseBase {
 			$res = $this->query( "SHOW CREATE TABLE $oldName" );
 			$row = $this->fetchRow( $res );
 			$oldQuery = $row[1];
-			$query = preg_replace( '/CREATE TABLE `(.*?)`/', 
+			$query = preg_replace( '/CREATE TABLE `(.*?)`/',
 				"CREATE $tmp TABLE `$newName`", $oldQuery );
 			if ($oldQuery === $query) {
 				# Couldn't do replacement
