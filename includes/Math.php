@@ -56,7 +56,7 @@ class MathRenderer {
 				}
 			}
 
-			if( function_exists( 'is_executable' ) && !is_executable( $wgTexvc ) ) {
+			if( !is_executable( $wgTexvc ) ) {
 				return $this->_error( 'math_notexvc' );
 			}
 			$cmd = $wgTexvc . ' ' .

@@ -197,16 +197,12 @@ class UserMailer {
 			ini_set( 'html_errors', '0' );
 			set_error_handler( array( 'UserMailer', 'errorHandler' ) );
 
-			if (function_exists('mail')) {
-				if (is_array($to)) {
-					foreach ($to as $recip) {
-						$sent = mail( $recip->toString(), wfQuotedPrintable( $subject ), $body, $headers );
-					}
-				} else {
-					$sent = mail( $to->toString(), wfQuotedPrintable( $subject ), $body, $headers );
+			if (is_array($to)) {
+				foreach ($to as $recip) {
+					$sent = mail( $recip->toString(), wfQuotedPrintable( $subject ), $body, $headers );
 				}
 			} else {
-				self::$mErrorString = 'PHP is not configured to send mail';
+				$sent = mail( $to->toString(), wfQuotedPrintable( $subject ), $body, $headers );
 			}
 
 			restore_error_handler();
