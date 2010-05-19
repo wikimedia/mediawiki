@@ -447,6 +447,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Lietotājvārdi ir reģistrjutīgi (lielie un mazie burti nav viens un tas pats) Pārbaudi, vai pareizi uzrakstīts, vai arī [[Special:UserLogin/signup|izveido jaunu kontu]].',
 'nosuchusershort'            => 'Šeit nav lietotāja ar vārdu "<nowiki>$1</nowiki>". Pārbaudi, vai nav drukas kļūda.',
 'nouserspecified'            => 'Tev jānorāda lietotājvārds.',
+'login-userblocked'          => 'Šis lietotājs ir bloķēts. Pieslēgšanās nav atļauta.',
 'wrongpassword'              => 'Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.',
 'wrongpasswordempty'         => 'Parole bija tukša. Lūdzu mēģini vēlreiz.',
 'passwordtooshort'           => 'Tava parole ir pārāk īsa.
@@ -732,6 +733,9 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'revdelete-content'          => 'saturs',
 'revdelete-summary'          => 'izmaiņu kopsavilkums',
 'revdelete-uname'            => 'lietotāja vārds',
+'revdelete-hid'              => 'paslēpa $ 1',
+'revdelete-unhid'            => 'atjaunoja $ 1',
+'revdelete-reasonotherlist'  => 'Cits iemesls',
 'revdelete-edit-reasonlist'  => 'Izmainīt dzēšanas iemeslus',
 
 # History merging

@@ -1563,6 +1563,11 @@ $1",
 您应该要考虑一下继续上传一个文件页面是否合适。
 为方便起见，这一个文件的删除记录已经在下面提供:",
 'filename-bad-prefix'         => '您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。',
+'upload-successful-msg'       => '你的上传可以在这里找到：$1',
+'upload-failure-subj'         => '上传错误',
+'upload-failure-msg'          => '这是你的错误：
+
+$1',
 
 'upload-proto-error'        => '协议错误',
 'upload-proto-error-text'   => '远程上传要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 开头。',
@@ -1953,6 +1958,10 @@ Template:消除歧義',
 'emailsent'            => '电子邮件已发送',
 'emailsenttext'        => '您的电子邮件已经发出。',
 'emailuserfooter'      => '这封电邮是由$1寄给$2经{{SITENAME}}的“电邮用户”功能发出的。',
+
+# User Messenger
+'usermessage-summary' => '留下系统信息',
+'usermessage-editor'  => '系统界面',
 
 # Watchlist
 'watchlist'            => '监视列表',
@@ -2518,6 +2527,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'importstart'                => '正在导入页面...',
 'import-revision-count'      => '$1个修订',
 'importnopages'              => '没有导入的页面。',
+'imported-log-entries'       => '导入了$1个{{PLURAL:$1|日志|日志}}记录。',
 'importfailed'               => '导入失败：<nowiki>$1</nowiki>',
 'importunknownsource'        => '未知的源导入类型',
 'importcantopen'             => '无法打开导入文件',
@@ -2611,6 +2621,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-rollback'                => '“回退”单击恢复上一位贡献者对此页面作出的编辑',
 'tooltip-undo'                    => '“撤销”可以恢复该编辑并在预览模式下打开编辑表单。它允许在摘要中加入原因。',
 'tooltip-preferences-save'        => '保存设定',
+'tooltip-summary'                 => '输入一个短小的摘要',
 
 # Stylesheets
 'common.css'      => '/* 此处的 CSS 将应用于所有的皮肤 */',
@@ -3190,12 +3201,14 @@ $1',
 'watchlistedit-noitems'        => '您的监视列表并无标题。',
 'watchlistedit-normal-title'   => '编辑监视列表',
 'watchlistedit-normal-legend'  => '从监视列表中移除标题',
-'watchlistedit-normal-explain' => '在您的监视列表中的标题在下面显示。要移除一个标题，在它前面剔一下，接着点击“移除标题”。您亦都可以[[Special:Watchlist/raw|编辑原始监视列表]]。',
+'watchlistedit-normal-explain' => '在您的监视列表中的标题在下面显示。
+要移除一个标题，在它前面剔一下，接着点击“{{int:Watchlistedit-normal-submit}}”。
+您亦都可以[[Special:Watchlist/raw|编辑原始监视列表]]。',
 'watchlistedit-normal-submit'  => '移除标题',
 'watchlistedit-normal-done'    => '$1个标题已经从您的监视列表中移除：',
 'watchlistedit-raw-title'      => '编辑原始监视列表',
 'watchlistedit-raw-legend'     => '编辑原始监视列表',
-'watchlistedit-raw-explain'    => '您的监视列表中的标题在下面显示，同时亦都可以通过编辑这个表去加入以及移除标题；一行一个标题。当完成以后，点击更新监视列表。你亦都可以去用[[Special:Watchlist/edit|标准编辑器]]。',
+'watchlistedit-raw-explain'    => '您的监视列表中的标题在下面显示，同时亦都可以通过编辑这个表去加入以及移除标题；一行一个标题。当完成以后，点击{{int:Watchlistedit-raw-submit}}。你亦都可以去用[[Special:Watchlist/edit|标准编辑器]]。',
 'watchlistedit-raw-titles'     => '标题：',
 'watchlistedit-raw-submit'     => '更新监视列表',
 'watchlistedit-raw-done'       => '您的监视列表已经更新。',
