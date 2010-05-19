@@ -35,6 +35,7 @@ $messages = array(
 'tog-watchdeletion'           => "Mett insèn al pàgin ch'a j ò scanzlè int la lèsta dal pàgin da tnì d'occ",
 'tog-minordefault'            => 'Ségna tot al mudèfic coma "zníni" s\'l\'utent làsa la casèla vuta',
 'tog-previewontop'            => "Fam avdé l'anteprèma sora casèla d'mudèfica invezi che dciotta",
+'tog-previewonfirst'          => "Fa' avdé l'anteprèma dop c'u's fa la prèma mudèfica",
 
 # Dates
 'january'       => 'Znèr',

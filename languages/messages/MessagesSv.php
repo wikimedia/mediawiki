@@ -1131,7 +1131,7 @@ $1",
 'logdelete-success'           => "'''Loggåtgärdens synlighet har ändrats.'''",
 'logdelete-failure'           => "'''Loggens synlighet kunde inte ställas in:'''
 $1",
-'revdel-restore'              => 'Ändra synlighet',
+'revdel-restore'              => 'ändra synlighet',
 'pagehist'                    => 'Sidhistorik',
 'deletedhist'                 => 'Raderad historik',
 'revdelete-content'           => 'innehåll',

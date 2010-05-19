@@ -2163,7 +2163,7 @@ proceda con coidado.',
 'rollback_short'    => 'Reverter',
 'rollbacklink'      => 'reverter',
 'rollbackfailed'    => 'Houbo un fallo ao reverter as edicións',
-'cantrollback'      => 'Non se pode desfacer a edición; o último contribuínte é o único autor desta páxina.',
+'cantrollback'      => 'Non se pode desfacer a edición; o último colaborador é o único autor desta páxina.',
 'alreadyrolled'     => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 
 A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
@@ -2715,7 +2715,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-watch'                   => 'Engadir esta páxina á súa lista de vixilancia [alt-w]',
 'tooltip-recreate'                => 'Recrear a páxina a pesar de que foi borrada',
 'tooltip-upload'                  => 'Comezar a enviar',
-'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último contribuínte.',
+'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último colaborador.',
 'tooltip-undo'                    => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
 'tooltip-preferences-save'        => 'Gardar as preferencias',
 'tooltip-summary'                 => 'Escriba un breve resumo',
@@ -3257,8 +3257,8 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'livepreview-loading' => 'Cargando...',
 'livepreview-ready'   => 'Cargando… Listo!',
 'livepreview-failed'  => 'Fallou a vista previa en tempo real! Inténteo coa vista previa normal.',
-'livepreview-error'   => 'Fallou a conexión: $1 "$2"
-Tente a vista previa normal.',
+'livepreview-error'   => 'Fallou a conexión: $1 "$2".
+Probe coa vista previa normal.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Pode que os cambios feitos {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} non aparezan nesta lista.',
@@ -3269,8 +3269,8 @@ Tente a vista previa normal.',
 'watchlistedit-noitems'        => 'A súa lista de vixilancia non contén ningún título.',
 'watchlistedit-normal-title'   => 'Editar a lista de vixilancia',
 'watchlistedit-normal-legend'  => 'Eliminar títulos da lista de vixilancia',
-'watchlistedit-normal-explain' => 'Os títulos da súa lista de vixilancia aparecen embaixo.
-Para eliminar un título, escóllao na súa caixa de selección e prema en "Eliminar os títulos".
+'watchlistedit-normal-explain' => 'Os títulos da súa lista de vixilancia aparecen a continuación.
+Para eliminar un título, escóllao na súa caixa de selección e prema en "{{int:Watchlistedit-normal-submit}}".
 Tamén pode [[Special:Watchlist/raw|editar a lista simple]].',
 'watchlistedit-normal-submit'  => 'Eliminar os títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eliminouse un título|Elimináronse $1 títulos}} da súa lista de vixilancia:',
