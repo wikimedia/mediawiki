@@ -3130,8 +3130,16 @@ class Parser {
 
 		if ( is_string( $text ) && !$this->incrementIncludeSize( 'post-expand', strlen( $text ) ) ) {
 			# Error, oversize inclusion
-			$text = "[[$originalTitle]]" .
-				$this->insertStripItem( '<!-- WARNING: template omitted, post-expand include size too large -->' );
+			if ( $titleText !== false ) {
+				# Make a working, properly escaped link if possible (bug 23588)
+				$text = "[[:$titleText]]";
+			} else {
+				# This will probably not be a working link, but at least it may
+				# provide some hint of where the problem is
+				preg_replace( '/^:/', '', $originalTitle );
+				$text = "[[:$originalTitle]]";
+			}
+			$text .= $this->insertStripItem( '<!-- WARNING: template omitted, post-expand include size too large -->' );
 			$this->limitationWarn( 'post-expand-template-inclusion' );
 		}
 
