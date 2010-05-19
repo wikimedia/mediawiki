@@ -345,7 +345,7 @@ div#head h5 {
 		margin: 0;
 		margin-top: 0.4em;
 	}
-	input#simpleSearch {
+	div#simpleSearch {
 		margin-top: 0.5em;
 		position: relative;
 		border: solid 1px #AAAAAA;
@@ -354,11 +354,11 @@ div#head h5 {
 		background-position: top left;
 		background-repeat: repeat-x;
 	}
-	input#simpleSearch label {
+	div#simpleSearch label {
 		font-size: 0.8em;
 		top: 0.25em;
 	}
-	input#simpleSearch input#searchInput {
+	div#simpleSearch input#searchInput {
 		margin: 0;
 		border-width: 0;
 		padding: 0.25em;
@@ -368,7 +368,7 @@ div#head h5 {
 		background-color: transparent;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	input#simpleSearch button#searchButton {
+	div#simpleSearch button#searchButton {
 		margin: 0;
 		padding: 0;
 		width: 1.75em;
@@ -381,7 +381,7 @@ div#head h5 {
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	input#simpleSearch > button#searchButton {
+	div#simpleSearch > button#searchButton {
 		height: 100%;
 	}
 /* Panel */
