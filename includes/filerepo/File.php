@@ -438,20 +438,15 @@ abstract class File {
 	/**
 	 * Get a ThumbnailImage which is the same size as the source
 	 */
-	function getUnscaledThumb( $page = false ) {
+	function getUnscaledThumb( $handlerParams = array() ) {
+		$hp =& $handlerParams;
+		$page = isset( $hp['page'] ) ? $hp['page'] : false;
 		$width = $this->getWidth( $page );
 		if ( !$width ) {
 			return $this->iconThumb();
 		}
-		if ( $page ) {
-			$params = array(
-				'page' => $page,
-				'width' => $this->getWidth( $page )
-			);
-		} else {
-			$params = array( 'width' => $this->getWidth() );
-		}
-		return $this->transform( $params );
+		$hp['width'] = $width;
+		return $this->transform( $hp );
 	}
 
 	/**
