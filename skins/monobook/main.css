@@ -9,22 +9,22 @@
 ** All you guys rock :)
 */
 
-#column-content {
+div#column-content {
 	width: 100%;
 	float: right;
 	margin: 0 0 .6em -12.2em;
 	padding: 0;
 }
-#content {
+div#content {
 	margin: 2.8em 0 0 12.2em;
 	padding: 0 1em 1em 1em;
 	position: relative;
 	z-index: 2;
 }
-#column-one {
+div#column-one {
 	padding-top: 160px;
 }
-#content {
+div#content {
 	background: white;
 	color: black;
 	border: 1px solid #aaa;
@@ -48,7 +48,7 @@ body {
 }
 
 /* scale back up to a sane default */
-#globalWrapper {
+div#globalWrapper {
 	font-size: 127%;
 	width: 100%;
 	margin: 0;
@@ -893,7 +893,7 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 /*
 ** footer
 */
-#footer {
+div#footer {
 	background-color: white;
 	border-top: 1px solid #fabd23;
 	border-bottom: 1px solid #fabd23;
@@ -902,7 +902,7 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 	text-align: center;
 	font-size: 90%;
 }
-#footer li {
+div#footer li {
 	display: inline;
 	margin: 0 1.3em;
 }
