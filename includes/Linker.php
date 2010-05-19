@@ -594,14 +594,14 @@ class Linker {
 				if( $manual_title ) {
 					$manual_img = wfFindFile( $manual_title );
 					if ( $manual_img ) {
-						$thumb = $manual_img->getUnscaledThumb();
+						$thumb = $manual_img->getUnscaledThumb( $hp );
 					} else {
 						$exists = false;
 					}
 				}
 			} elseif ( isset( $fp['framed'] ) ) {
 				// Use image dimensions, don't scale
-				$thumb = $file->getUnscaledThumb( $page );
+				$thumb = $file->getUnscaledThumb( $hp );
 			} else {
 				# Do not present an image bigger than the source, for bitmap-style images
 				# This is a hack to maintain compatibility with arbitrary pre-1.10 behaviour
