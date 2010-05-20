@@ -3765,7 +3765,7 @@ class User {
 			if ( !$template
 					|| $template->getNamespace() !== NS_TEMPLATE
 					|| !$template->exists() ) {
-				$text = "== $subject ==\n\n$text\n\n-- $signature"
+				$text = "== $subject ==\n\n$text\n\n-- $signature";
 			} else {
 				$text = '{{'. $template->getText()
 					. " | subject=$subject | body=$text | signature=$signature }}";
