@@ -401,7 +401,7 @@ CONTROL;
 				$link = $sk->revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 			}
-			$link = '&nbsp;&nbsp;&nbsp'.$link.' ';
+			$link = '&nbsp;&nbsp;&nbsp;' . $link . ' ';
 		}
 		return $link;
 	}
