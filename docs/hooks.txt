@@ -263,6 +263,16 @@ $message: out parameter: error message to display on abort
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
 
+‘AfterUserMessage': After a user message has been left, this hook is
+called to take care of any cleanup.
+$user: The user who we left the message for.
+$article: The article the message was left on.
+$subject: The subject of the message
+$text: The text of the message.
+$signature: The signature we used.
+$summary: The edit summary.
+$editor: The editor that performed the edit.
+
 'AjaxAddScript': Called in output page just before the initialisation
 of the javascript ajax engine. The hook is only called when ajax
 is enabled ( $wgUseAjax = true; ).
@@ -1326,6 +1336,16 @@ $query : Original query.
 &$arr : Array of namespaces ($nsId => $name) which will be used.
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
+
+‘SetupUserMessageArticle': Called in User::leaveUserMessage() after
+before anything has been posted to the article.
+$user: The user who we left the message for.
+&$article: The article that will be posted to.
+$subject: The subject of the message
+$text: The text of the message.
+$signature: The signature we used.
+$summary: The edit summary.
+$editor: The editor that performed the edit.
 
 'ShowMissingArticle': Called when generating the output for a non-existent page
 $article: The article object corresponding to the page
