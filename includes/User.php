@@ -3777,7 +3777,7 @@ class User {
 
 		$article = new Article( $this->getTalkPage() );
 		wfRunHooks( 'SetupUserMessageArticle',
-			array( &$article, $subject, $this, $editor ) );
+			array( $this, &$article, $subject, $text, $signature, $summary, $editor ) );
 
 		$flags = $article->checkFlags( $flags );
 
@@ -3798,7 +3798,7 @@ class User {
 			// Set newtalk with the right user ID
 			$this->setNewtalk( true );
 			wfRunHooks( 'AfterUserMessage',
-				array( $this, $article, $summary, $signature, $editor, $text ) );
+				array( $this, $article, $summary, $text, $signature, $summary, $editor ) );
 			$dbw->commit();
 		} else {
 			// The article was concurrently created
