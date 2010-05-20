@@ -785,6 +785,12 @@ $fileVersions: array of undeleted versions. Empty if all versions were restored
 $user: user who performed the undeletion
 $reason: reason
 
+'FormatUserMessage': Hook to format a message if you want to override
+the internal formatter.
+$subject: Title of the message.
+&$text: Text of the message.
+$signature: Signature that they would like to leave.
+
 'GetAutoPromoteGroups': When determining which autopromote groups a user
 is entitled to be in.
 &$user: user to promote.

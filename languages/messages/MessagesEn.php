@@ -2610,6 +2610,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 # User Messenger
 'usermessage-summary' => 'Leaving system message.',
 'usermessage-editor'  => 'System messenger',
+'usermessage-template' => 'Template:UserMessage',
 
 # Watchlist
 'watchlist'            => 'My watchlist',
