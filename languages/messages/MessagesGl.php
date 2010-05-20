@@ -388,7 +388,7 @@ $messages = array(
 'variants'                   => 'Variantes',
 
 'errorpagetitle'    => 'Erro',
-'returnto'          => 'Voltar a "$1".',
+'returnto'          => 'Volver a "$1".',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Axuda',
 'search'            => 'Procura',
