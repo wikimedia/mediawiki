@@ -83,6 +83,15 @@
 			value = value.substr( 0, 1 ).toUpperCase() + value.substr( 1 );
 			$label.text( labelText.replace( '$1', value ) );
 		}
-		
+
+		// Show/Hide memcached servers when needed
+		$("input[name$='config_wgMainCacheType']").change( function() {
+			var $memc = $( "#config-memcachewrapper" );
+			if( $( "input[name$='config_wgMainCacheType']:checked" ).val() == 'memcached' ) {
+				$memc.show( 'slow' );
+			} else {
+				$memc.hide( 'slow' );
+			}
+		} );
 	} );
 })(jQuery);
