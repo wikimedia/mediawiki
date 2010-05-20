@@ -24,6 +24,7 @@
  * @author Onecountry
  * @author PhiLiP
  * @author Shinjiman
+ * @author Shizhao
  * @author Wmr89502270
  * @author Wong128hk
  */
@@ -1242,7 +1243,7 @@ $1",
 'prefs-i18n'                    => '国际化',
 'prefs-signature'               => '签名',
 'prefs-dateformat'              => '日期格式',
-'prefs-timeoffset'              => '时间偏移',
+'prefs-timeoffset'              => '时差',
 'prefs-advancedediting'         => '高级选项',
 'prefs-advancedrc'              => '高级选项',
 'prefs-advancedrendering'       => '高级选项',

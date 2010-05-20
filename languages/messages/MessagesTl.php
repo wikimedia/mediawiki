@@ -139,7 +139,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Ikubli ang napatrolyang mga pagbabagong nasa kamakailang mga pagbabago',
 'tog-newpageshidepatrolled'   => 'Itago ang napatrolyang mga pahina mula talaan ng bagong pahina',
 'tog-extendwatchlist'         => 'Palawigin ang talaan ng mga binabantayan upang maipakita ang lahat ng mga pagbabago, hindi lamang ang pinakakamakailan lamang',
-'tog-usenewrc'                => 'Pinadagdagang huling binago (kailangan ng JavaScript)',
+'tog-usenewrc'                => 'Gamitin ang pinadagdagang huling binago (kailangan ng JavaScript)',
 'tog-numberheadings'          => 'Automatikong bilangin ang mga pamagat',
 'tog-showtoolbar'             => "Ipakita ang ''toolbar'' ng pagbabago (JavaScript)",
 'tog-editondblclick'          => 'Magbago ng mga pahina sa dalawahang pagpindot (JavaScript)',
@@ -160,6 +160,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Padalhan din ako ng e-liham para sa mga maliliit na pagbabago ng mga pahina',
 'tog-enotifrevealaddr'        => 'Ipakita ang adres ng e-liham ko sa loob ng mga e-liham ng pagpapahayag',
 'tog-shownumberswatching'     => 'Ipakita ang bilang ng nagbabantay na mga tagagamit',
+'tog-oldsig'                  => 'Paunang tingin ng kasalukuyang lagda:',
 'tog-fancysig'                => 'Ituring ang lagda bilang teksto ng wiki (walang automatikong pagkawing)',
 'tog-externaleditor'          => 'Gumamit ng nakatakdang panlabas na pambago (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter)',
 'tog-externaldiff'            => 'Gumamit ng nakatakdang ibang panlabas (para sa mga dalubhasa lamang, kailangan ng natatanging pagtatakda sa iyong kompyuter)',
@@ -236,14 +237,14 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|Kaurian|Mga kaurian}}',
+'pagecategories'                 => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
 'category_header'                => 'Mga pahina sa kategoryang "$1"',
 'subcategories'                  => 'Mga subkategorya',
 'category-media-header'          => 'Mga midya sa kategoryang "$1"',
 'category-empty'                 => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
 'hidden-categories'              => '{{PLURAL:$1|Nakatagong kategorya|Mga nakatagong kategorya}}',
 'hidden-category-category'       => 'Mga nakatagong kategorya',
-'category-subcat-count'          => '{{PLURAL:$2|Ang kauriang ito ay mayroon lamang na sumusunod na subkaurian.|Ang kauriang ito ay mayroong sumusunod na {{PLURAL:$1|subkaurian|$1 mga subkaurian}}, mula sa $2 kabuoan.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Ang kategoryang ito ay mayroong sumusunod na subkategorya lamang.|Ang kategoryang ito ay mayroong sumusunod na {{PLURAL:$1|subkategorya|$1 mga subkategorya}}, mula sa kabuuan na $2.}}',
 'category-subcat-count-limited'  => 'Ang kauriang ito ay mayroong sumusunod na {{PLURAL:$1|subkaurian|$1 mga subkaurian}}.',
 'category-article-count'         => '{{PLURAL:$2|Ang kauriang ito ay naglalaman lamang ng sumusunod na pahina.|Ang sumusunod na following {{PLURAL:$1|pahina ay|$1 mga pahina ay}} nasa kauriang ito, mula sa $2 kabuoan.}}',
 'category-article-count-limited' => 'Ang sumusunod na {{PLURAL:$1|pahina ay|$1 mga pahina ay}} nasa pangkasalukuyang kaurian.',
@@ -263,7 +264,7 @@ $messages = array(
 'about'         => 'Patungkol',
 'article'       => 'Pahina ng nilalaman',
 'newwindow'     => '(magbubukas sa bagong bintana)',
-'cancel'        => 'Ikansela',
+'cancel'        => 'Kanselahin',
 'moredotdotdot' => 'Damihan pa...',
 'mypage'        => 'Pahina ko',
 'mytalk'        => 'Usapan ko',
@@ -282,6 +283,31 @@ $messages = array(
 'faq'            => "Mga malimit itanong (''FAQ'')",
 'faqpage'        => "Project:Mga malimit itanong (''FAQ'')",
 
+# Vector skin
+'vector-action-addsection'   => 'Magdagdag ng paksa',
+'vector-action-delete'       => 'Burahin',
+'vector-action-move'         => 'Ilipat',
+'vector-action-protect'      => 'Ipagsanggalang',
+'vector-action-undelete'     => 'Alisin ang pagbubura',
+'vector-action-unprotect'    => 'Alisin ang pagsasanggalang',
+'vector-namespace-category'  => 'Kategorya',
+'vector-namespace-help'      => 'Pahina ng tulong',
+'vector-namespace-image'     => 'Talaksan',
+'vector-namespace-main'      => 'Pahina',
+'vector-namespace-media'     => 'Pahina ng midya',
+'vector-namespace-mediawiki' => 'Mensahe',
+'vector-namespace-project'   => 'Pahina ng proyekto',
+'vector-namespace-special'   => 'Natatanging pahina',
+'vector-namespace-talk'      => 'Usapan',
+'vector-namespace-template'  => 'Suleras',
+'vector-namespace-user'      => 'Pahina ng tagagamit',
+'vector-view-create'         => 'Likhain',
+'vector-view-edit'           => 'Baguhin',
+'vector-view-history'        => 'Tingnan ang kasaysayan',
+'vector-view-view'           => 'Basahin',
+'vector-view-viewsource'     => 'Tingnan ang pinagmulan',
+'namespaces'                 => 'Mga ngalan-espasyo',
+
 'errorpagetitle'    => 'Pagkakamali',
 'returnto'          => 'Bumalik sa $1.',
 'tagline'           => 'Mula sa {{SITENAME}}',
@@ -299,8 +325,8 @@ $messages = array(
 'print'             => 'Ilimbag',
 'edit'              => 'Baguhin',
 'create'            => 'Likhain',
-'editthispage'      => 'Baguhin itong pahina',
-'create-this-page'  => 'Likhain itong pahina',
+'editthispage'      => 'Baguhin ang pahinang ito',
+'create-this-page'  => 'Likhain ang pahinang ito',
 'delete'            => 'Burahin',
 'deletethispage'    => 'Burahin itong pahina',
 'undelete_short'    => 'Baligtarin ang pagbura ng {{PLURAL:$1|isang pagbabago|$1 mga pagbabago}}',
@@ -336,6 +362,11 @@ $messages = array(
 'jumpto'            => 'Tumalon sa:',
 'jumptonavigation'  => 'paglilibot (nabigasyon)',
 'jumptosearch'      => 'Paghahanap',
+'view-pool-error'   => 'Paumanhin, ngunit masyado pong abala ang mga serbidor sa sandaling ito.
+Masyadong maraming tagagamit ay sinusubukang tingnan ang pahinang ito.
+Mangyari lamang na maghintay po nang sandali bago niyo pong subukang abutin muli ang pahinang ito.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tungkol sa {{SITENAME}}',
@@ -401,7 +432,7 @@ $messages = array(
 'nstab-mediawiki' => 'Mensahe',
 'nstab-template'  => 'Suleras',
 'nstab-help'      => 'Pahina ng tulong',
-'nstab-category'  => 'Kaurian',
+'nstab-category'  => 'Kategorya',
 
 # Main script and global functions
 'nosuchaction'      => 'Walang ganitong galaw',
@@ -416,12 +447,12 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 # General errors
 'error'                => 'Kamalian',
 'databaseerror'        => 'Kamalian sa kalipunan ng datos',
-'dberrortext'          => 'Naganap ang isang pagkakamali sa usisang pampalaugnayan sa kalipunan ng datos.
+'dberrortext'          => 'Nagkaroon po ng isang pagkakamali sa usisang pampalaugnayan sa kalipunan ng datos.
 Maaaring dahil ito sa depekto sa sopwer (\'\'software\'\').
 Ang huling sinubukang paguusisa sa kalipunan ng datos ay:
 <blockquote><tt>$1</tt></blockquote>
 mula sa gawaing "<tt>$2</tt>".
-Nagbalik ng pagkakamaling "<tt>$3: $4</tt>" ang MySQL.',
+Ibinalik ng kalipunan ng datos ang kamaliang "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Naganap ang isang pagkakamali sa usisang pampalaugnayang sa kalipunan ng datos.
 Ang huling sinubukang paguusisa sa kalipunan ng datos ay:
 "$1"
@@ -507,8 +538,9 @@ Huwag kalimutang baguhin ang [[Special:Preferences|mga kagustuhan mo sa {{SITENA
 'externaldberror'            => 'Maaaring may kamalian sa pagpapatotoo ng kalipunan ng mga dato o kaya hindi ka pinahintulutang isapanahon ng iyong panlabas na kuwenta o patnugutan.',
 'login'                      => 'Lumagda',
 'nav-login-createaccount'    => 'Lumagda / lumikha ng kuwenta',
-'loginprompt'                => "Dapat na pinapahintulutan mo ang mga \"otap\" (''cookie'') upang makalagda sa {{SITENAME}}.",
+'loginprompt'                => "Dapat na pinapahintulutan mo ang mga kuki (''cookie'') upang makalagda sa {{SITENAME}}.",
 'userlogin'                  => 'Lumagda / lumikha ng kuwenta',
+'userloginnocreate'          => 'Lumagda',
 'logout'                     => 'Umalis sa pagkakalagda',
 'userlogout'                 => 'Umalis sa pagkakalagda',
 'notloggedin'                => 'Hindi nakalagda',
@@ -522,6 +554,7 @@ Huwag kalimutang baguhin ang [[Special:Preferences|mga kagustuhan mo sa {{SITENA
 'userexists'                 => 'May gumagamit na ng ganyang pangalang pantagagamit.
 Pumili lamang ng iba pang pangalan.',
 'loginerror'                 => 'Kamalian sa paglagda',
+'createaccounterror'         => 'Hindi mailikha ang kuwenta: $ 1',
 'nocookiesnew'               => 'Nilikha na ang kuwentang pantagagamit, ngunit hindi ka nakalagda.
 Gumagamit ang {{SITENAME}} ng mga "otap" (\'\'cookies\'\') para mailagda ang mga tagagamit.
 Hindi mo pinagagana ang mga "otap".
@@ -541,8 +574,7 @@ Suriin ang iyong pagbabaybay, o [[Special:UserLogin/signup|lumikha ng bagong aka
 Pakisubok muli.',
 'wrongpasswordempty'         => 'Walang laman ang pinasok na hudyat.
 Pakisubok muli.',
-'passwordtooshort'           => 'Hindi tanggap o napakaikli ng iyong hudyat.  
-Dapat na mayroon itong {{PLURAL:$1|1 panitik|$1 mga panitik}} (karakter) at naiiba sa iyong pangalang pantagagamit.',
+'passwordtooshort'           => 'Ang mga hudyat ay dapat mayroong {{PLURAL:$1|1 panitik|$1 mga panitik}} (karakter).',
 'mailmypassword'             => 'Ipadala sa pamamagitan ng e-liham ang bagong hudyat',
 'passwordremindertitle'      => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
 'passwordremindertext'       => 'Mayroong (na maaaring ikaw, mula sa adres ng IP na $1) humiling ng isang bagong 
@@ -555,6 +587,7 @@ Kung ibang tao ang humiling nito, o kung naalala mo na ang iyong hudyat,
 at hindi mo na ibig pang baguhin ito, maaari mong huwag pansinin ang mensaheng ito at
 magpatuloy sa paggamit ng iyong lumang hudyat.',
 'noemail'                    => 'Walang nakatalang adres ng e-liham para sa tagagamit na "$1".',
+'noemailcreate'              => "Kailangan mong magbigay ng may-bisang adres ng e-liham (''e-mail address'')",
 'passwordsent'               => 'Isang bagong hudyat ang ipinadala sa adres ng e-liham na nakatala para kay "$1".
 Lumagda/Tumala lang po muli pagkaraan mong matanggap ito.',
 'blocked-mailpassword'       => 'Hinarangan sa paggawa ng mga pagbabago ang iyong adres ng IP, at kaya hindi rin pinapahintulutang gumamit ng tungkuling makabawi ng hudyat para maiwasan ang pangaabuso.',
@@ -596,6 +629,7 @@ Para tapusin ang paglagda, dapat kang magtakda ng isang bagong hudyat dito:',
 'resetpass_forbidden'       => 'Hindi mababago ang mga hudyat',
 'resetpass-no-info'         => 'Nakalagda ka dapat para tuwirang mapuntahan ang pahina ito.',
 'resetpass-submit-loggedin' => 'Baguhin ang hudyat',
+'resetpass-submit-cancel'   => 'Kanselahin',
 'resetpass-wrong-oldpass'   => 'Hindi tanggap na pansamantala o pangkasalukuyang hudyat.
 Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 'resetpass-temp-password'   => 'Pansamantalang hudyat:',
@@ -634,6 +668,7 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 'showdiff'                         => 'Ipakita ang mga pagbabago',
 'anoneditwarning'                  => "'''Babala:''' Hindi ka nakalagda.
 Matatala ang adres ng IP mo sa kasaysayan ng pagbabago ng pahinang ito.",
+'anonpreviewwarning'               => "''Hindi ka nakalagda.  Itatala sa inyong pagtatala ang inyong adres ng IP sa kasaysayan ng pagbabago ng pahinang ito.''",
 'missingsummary'                   => "'''Paalala:''' Hindi ka nagbigay ng buod ng pagbabago.
 Kapag pinindot mo uli ang Sagip, masasagip ang pagbabago mo na wala nito.",
 'missingcommenttext'               => 'Magbigay ng isang kumento/puna sa ibaba.',
@@ -676,8 +711,9 @@ Pakisama ang lahat ng mga detalyeng nasa itaas sa anumang pagtatanong na gagawin
 'whitelistedittext'                => 'Kailangan mong $1 para makapagbago ng mga pahina.',
 'confirmedittext'                  => 'Kailangang kumpirmahin mo muna ang adres ng iyong e-liham bago makapagbago ng mga pahina.
 Pakihanda at patotohanan ang adres ng e-liham sa pamamagitan ng iyong [[Special:Preferences|kagustuhan ng tagagamit]].',
-'nosuchsectiontitle'               => 'Walang ganyang seksyon',
-'nosuchsectiontext'                => 'Sinubok mong baguhin ang isang seksyong hindi umiiral.',
+'nosuchsectiontitle'               => 'Hindi mahanap ang seksyon',
+'nosuchsectiontext'                => 'Sinubukan mong baguhin ang isang seksyong hindi umiiral.
+Maaaring inilipat o ibinura ito habang tinitingnan mo ang pahina.',
 'loginreqtitle'                    => 'Paglagda/Pagtala Kailangan',
 'loginreqlink'                     => 'lumagda/tumala',
 'loginreqpagetext'                 => 'Kailangan mong $1 para matanaw ang ibang mga pahina.',
@@ -697,6 +733,9 @@ Kung isa kang hindi nagpapakilalang tagagamit at nakadaramang may mga walang say
 Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa loob iba pang mga pahina, 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa kaugnay na mga talaan],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahinang ito]</span>.',
+'noarticletext-nopermission'       => 'Kasalukuyang walang teksto sa pahinang ito.
+Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa ibang mga pahina,
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa kaugnay na mga talaan]</span>.',
 'userpage-userdoesnotexist'        => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".
 Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
 'clearyourcache'                   => "'''Tandaan:''' Pagkatapos magtala, dapat linisin mo ang ''cache'' ng iyong ''browser'' upang makita ang mga pagbabago: '''Mozilla:''' pindutin ang ''reload'' (o ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
@@ -755,7 +794,8 @@ Nagbigay ng ganitong paliwanag ang tagapangasiwang nagkandado nito: $1",
 'protectedpagewarning'             => "'''BABALA: Ikinandado ang pahinang ito upang mga tagagamit na may mga karapatang pang-''sysop'' lamang ang makapagbago nito.'''",
 'semiprotectedpagewarning'         => "'''Paunawa:''' Ikinandado ang pahinang ito upang tanging nakatalang mga tagagamit lamang ang makapagbago nito.",
 'cascadeprotectedwarning'          => "'''Babala:''' Ikinandado ang pahinang ito upang tanging mga tagagamit na may mga karapatang pang-''sysop'' lamang ang makapagbago nito, dahil kabilang ito sa sumusunod na mga {{PLURAL:$1|pahinang|mga pahinang}} may baita-baitang na panananggalang:",
-'titleprotectedwarning'            => "'''BABALA:  Ikinandado ang pahinang ito upang [[Special:ListGroupRights|partikular na mga karapatan]] ang kailanganin upang malikha ito.'''",
+'titleprotectedwarning'            => "'''BABALA:  Ikinandado ang pahinang ito upang [[Special:ListGroupRights|partikular na mga karapatan]] ang kailanganin upang malikha ito.'''
+Ang pinakahuling entrada sa talaan ay ibinigay sa baba para sa inyong pagsasangguni:",
 'templatesused'                    => '{{PLURAL:$1|Suleras|Mga suleras}} na ginagamit sa pahinang ito:',
 'templatesusedpreview'             => '{{PLURAL:$1|Suleras|Mga suleras}} na ginagamit sa paunang-tinging ito:',
 'templatesusedsection'             => 'Mga suleras na ginagamit para sa bahaging ito:',
@@ -767,7 +807,7 @@ Nagbigay ng ganitong paliwanag ang tagapangasiwang nagkandado nito: $1",
 'nocreatetext'                     => 'Naglagay ng hangganan (restriksyon/limitasyon) ang {{SITENAME}} sa kakayahang makalikha ng bagong mga pahina.
 Maaari kang bumalik at magbago ng isang umiiral na pahina, o kaya [[Special:UserLogin|lumagda o lumikha ng kuwenta/akawnt]].',
 'nocreate-loggedin'                => 'Walang kang pahintulot para lumikha ng bagong mga pahina.',
-'permissionserrors'                => 'Mga Kamalian sa Mga Pagpapahintulot',
+'permissionserrors'                => 'Mga kamalian sa mga pahintulot',
 'permissionserrorstext'            => 'Wala kang pahintulot na gawin iyan, dahil sa sumusunod na {{PLURAL:$1|dahilan|mga dahilan}}:',
 'permissionserrorstext-withaction' => 'Wala kang pahintulot na $2, dahil sa sumusunod na {{PLURAL:$1|dahilan|mga dahilan}}:',
 'recreate-moveddeleted-warn'       => "'''Babala: Muli mong nililikha ang isang pahinang binura na dati.'''
@@ -776,6 +816,7 @@ Dapat mong isaalang-alang kung nararapat bang ipagpatuloy ang pagbago sa pahinan
 Ibinigay dito ang tala ng pagbubura para sa pahinang ito para sa kaginhawahan mo:",
 'moveddeleted-notice'              => 'Nabura na dati ang pahinang ito.
 Ibinigay sa ibaba ang tala ng pagbubura para sa pahinang ito bilang sanggunian.',
+'log-fulllog'                      => 'Tingnan ang buong talaan',
 'edit-hook-aborted'                => 'Pinigil ng sungkit ang pagbabago.
 Walang ibinigay na paliwanag.',
 'edit-gone-missing'                => 'Hindi maisapanahon ang pahina.

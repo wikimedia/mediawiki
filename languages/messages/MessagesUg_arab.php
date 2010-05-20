@@ -61,6 +61,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'بەت ئازراقلا تەھرىرلەنگەندىمۇ ئېلخەت يوللا',
 'tog-enotifrevealaddr'        => 'ئۇقتۇرۇش ئېلخەت تىزىملىكىدە ئېلخەت ئادرېسىمنى ئاشكارىلا',
 'tog-shownumberswatching'     => 'بۇ بەتنى كۆزىتىۋاتقان ئىشلەتكۈچى سانىنى كۆرسەت',
+'tog-oldsig'                  => 'نۆۋەتتىكى ئىمزانى ئالدىن كۆزەت:',
 'tog-fancysig'                => 'ئىمزاغا wiki تېكستى سۈپىتىدە مۇئامىلە قىل (ئۆزلۈكىدىن ئۇلانما ھاسىل بولمايدۇ)',
 'tog-externaleditor'          => 'كۆڭۈلدىكى ئەھۋالدا سىرتقى تەھرىرلىگۈچ ئىشلەت (ئالىي ئىشلەتكۈچىگە تەمىنلىنىدۇ، كومپيۇتېرىڭىزدا بىر قىسىم ئالاھىدە تەڭشەش ئېلىپ بېرىشىڭىز لازىم)',
 'tog-externaldiff'            => 'كۆڭۈلدىكى ئەھۋالدا سىرتقى پەرق تەھلىلى ئىشلەت (ئالىي ئىشلەتكۈچىگە تەمىنلىنىدۇ، كومپيۇتېرىڭىزدا بىر قىسىم ئالاھىدە تەڭشەش ئېلىپ بېرىشىڭىز لازىم)',
@@ -81,6 +82,13 @@ $messages = array(
 'underline-always'  => 'دائىم',
 'underline-never'   => 'ھەرگىز',
 'underline-default' => 'توركۆرگۈ كۆڭۈلدىكى',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'تەھرىرلەش رايونىنىڭ خەت نۇسخا ئۇسلۇبى:',
+'editfont-default'   => 'توركۆرگۈ كۆڭۈلدىكى',
+'editfont-monospace' => 'تەڭ كەڭلىكتىكى خەت نۇسخا',
+'editfont-sansserif' => 'Sans-serif خەت نۇسخا',
+'editfont-serif'     => 'Serif خەت نۇسخا',
 
 # Dates
 'sunday'        => 'يەكشەنبە',
@@ -149,6 +157,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2| بۇ تۈرنىڭ تۆۋەندىكى ھۆججىتىلا بار.| بۇ تۈردە تۆۋەندىكى $1 ھۆججەت، جەمئى $2 ھۆججەت بار.}}',
 'category-file-count-limited'    => 'نۆۋەتتىكى تۈردە تۆۋەندىكى {{PLURAL:$1|ھۆججەت|$1 ھۆججەت}}  بار.',
 'listingcontinuesabbrev'         => 'داۋاملاشتۇر',
+'index-category'                 => 'ئىندېكسلانغان بەتلەر',
+'noindex-category'               => 'ئىندېكسلانمىغان بەتلەر',
 
 'mainpagetext'      => "'''MediaWiki مۇۋەپپەقىيەتلىك قاچىلاندى.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents ئىشلەتكۈچى قوللانمىسى] نى زىيارەت قىلىپ wiki يۇمشاق دېتالىنى ئىشلىتىش ئۇچۇرىغا ئېرىشىڭ.
@@ -179,6 +189,30 @@ $messages = array(
 'qbspecialpages' => 'ئالاھىدە بەتلەرى',
 'faq'            => 'كۆپ كۆرۈلىدىغان مەسىلىلەر',
 'faqpage'        => 'Project:كۆپ كۆرۈلىدىغان مەسىلىلەر',
+
+# Vector skin
+'vector-action-addsection'   => 'يېڭى باش تېما قوش',
+'vector-action-delete'       => 'ئۆچۈر',
+'vector-action-move'         => 'يۆتكە',
+'vector-action-protect'      => 'قوغدا',
+'vector-action-undelete'     => 'ئەسلىگە قايتۇر',
+'vector-action-unprotect'    => 'قوغدىما',
+'vector-namespace-category'  => 'تۈر',
+'vector-namespace-help'      => 'ياردەم بەت',
+'vector-namespace-image'     => 'ھۆججەت',
+'vector-namespace-main'      => 'بەت',
+'vector-namespace-media'     => 'ۋاسىتە بېتى',
+'vector-namespace-mediawiki' => 'ئۇچۇر',
+'vector-namespace-project'   => 'قۇرۇلۇش بېتى',
+'vector-namespace-special'   => 'ئالاھىدە بەت',
+'vector-namespace-talk'      => 'مۇنازىرە',
+'vector-namespace-template'  => 'قېلىپ',
+'vector-namespace-user'      => 'ئىشلەتكۈچى بېتى',
+'vector-view-create'         => 'قۇر',
+'vector-view-edit'           => 'تەھرىر',
+'vector-view-history'        => 'تارىخ كۆرسەت',
+'vector-view-view'           => 'ئوقۇ',
+'vector-view-viewsource'     => 'مەنبەنى كۆرسەت',
 
 'errorpagetitle'    => 'خاتالىق',
 'returnto'          => '$1 غا قايت.',
@@ -515,6 +549,7 @@ $2',
 'resetpass_forbidden'       => 'ئىمنى ئۆزگەرتەلمىدى',
 'resetpass-no-info'         => 'سىز تىزىمغا كىرگەندىن كېيىن بىۋاسىتە بۇ بەتكە كىرىشىڭىز لازىم.',
 'resetpass-submit-loggedin' => 'ئىم ئۆزگەرت',
+'resetpass-submit-cancel'   => 'ۋاز كەچ',
 'resetpass-wrong-oldpass'   => 'ۋاقىتلىق ياكى نۆۋەتتىكى ئىم ئىناۋەتسىز.
 
 ئىمنى ئاللىبۇرۇن ئۆزگەرتىپ بولدىڭىز ياكى يېڭى ۋاقىتلىق ئىم ئىلتىماس قىلدىڭىز.',
@@ -763,6 +798,7 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'rev-deleted-user'          => '(ئىشلەتكۈچى ئاتى چىقىرىۋېتىلدى)',
 'rev-deleted-event'         => '(خاتىرە مەشغۇلاتى چىقىرىۋېتىلدى)',
 'rev-delundel'              => 'كۆرسەت/يوشۇر',
+'rev-showdeleted'           => 'كۆرسەت',
 'revisiondelete'            => 'تۈزىتىلگەن نەشرىنى ئۆچۈر/ئەسلىگە كەلتۈر',
 'revdelete-nooldid-title'   => 'ئىناۋەتسىز نىشان تۈزىتىش نەشرى',
 'revdelete-nooldid-text'    => 'سىز تېخى نىشان تۈزىتىش نەشرىدىن بىرنى بەلگىلىمىدىڭىز،
@@ -771,6 +807,7 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'revdelete-nologtype-text'  => 'سىز تېخى خاتىرە تىپىدىن بىرنى بەلگىلەپ بۇ مەشغۇلاتنى ئىجرا قىلىشنى بېكىتمىدىڭىز.',
 'revdelete-nologid-title'   => 'ئىناۋەتسىز خاتىرە تۈرى',
 'revdelete-nologid-text'    => 'سىز بۇ مەشغۇلات بىجىرىشكە تېخى نىشان خاتىرە تۈرىدىن بىرنى بەلگىلىمىدىڭىز ياكى بەلگىلەنگەن تۈر مەۋجۇد ئەمەس.',
+'revdelete-no-file'         => 'ھۆججەت بەلگىلىمىسى مەۋجۇد ئەمەس.',
 'revdelete-selected'        => "'''[[:$1]] نىڭ {{PLURAL:$2|تاللانغان تۈزىتىش نەشرى|تاللانغان تۈزىتىش نەشرى}}:'''",
 'logdelete-selected'        => "'''{{PLURAL:$1|تاللانغان خاتىرە تۈرى|تاللانغان خاتىرە تۈرى}}:'''",
 'revdelete-suppress-text'   => "'''پەقەت''' تۆۋەندىكى ئەھۋاللار يۈز بەرگەندىلا زىيارەت چەكلىنىدۇ:
@@ -783,6 +820,8 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'revdelete-hide-comment'    => 'تەھرىر ئىزاھاتىنى يوشۇر',
 'revdelete-hide-user'       => 'تەھرىرلىگۈچىنىڭ ئىشلەتكۈچى ئاتى/IP ئادرېس يوشۇر',
 'revdelete-hide-restricted' => 'مەشغۇلاتچى ۋە باشقا ئىشلەتكۈچىنىڭ سانلىق مەلۇمات كۆرۈشىنىمۇ چەكلە',
+'revdelete-radio-set'       => 'ھەئە',
+'revdelete-radio-unset'     => 'ياق',
 'revdelete-suppress'        => 'مەشغۇلاتچى ۋە باشقا ئىشلەتكۈچىنىڭ سانلىق مەلۇمات كۆرۈشىنىمۇ چەكلە',
 'revdelete-unsuppress'      => 'ئەسلىگە كەلتۈرۈلگەن تۈزىتىلگەن نەشرىدىن چەكلىمىنى چىقىرىۋەت',
 'revdelete-log'             => 'ئۆچۈرۈش سەۋەبى:',
@@ -900,6 +939,8 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'powersearch-ns'                   => 'ئات بوشلۇقىدىن ئىزدە:',
 'powersearch-redir'                => 'قايتا نىشانلانغان بەت تىزىملىكى',
 'powersearch-field'                => 'ئىزدە',
+'powersearch-toggleall'            => 'ھەممىسى',
+'powersearch-togglenone'           => 'يوق',
 'search-external'                  => 'ئالىي ئىزدەش',
 'searchdisabled'                   => '{{SITENAME}} نىڭ ئىزدىشى چەكلەنگەن. سىز ھازىرچە Google ئىشلىتىپ ئىزدەپ تۇرۇڭ،.
 دىققەت ئۇلار ئىندېكسلىغان {{SITENAME}} مەزمۇنىنىڭ ۋاقتى ئۆتكەن بولۇشى مۇمكىن.',
@@ -913,91 +954,99 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'qbsettings-floatingright' => 'ئوڭ تەرەپ لەيلىمە',
 
 # Preferences page
-'preferences'               => 'مايىللىق',
-'mypreferences'             => 'مايىللىق تەڭشىكىم',
-'prefs-edits'               => 'تەھرىر سانى:',
-'prefsnologin'              => 'تىزىمغا كىرمىدى',
-'changepassword'            => 'ئىم ئۆزگەرت',
-'skin-preview'              => 'ئالدىن كۆزەت',
-'datedefault'               => 'مايىللىق يوق',
-'prefs-datetime'            => 'چېسلا ۋە ۋاقىت',
-'prefs-personal'            => 'ئىشلەتكۈچى سەپلىمە ھۆججىتى',
-'prefs-rc'                  => 'ئاخىرقى ئۆزگەرتىشلەر',
-'prefs-watchlist'           => 'كۆزەت تىزىملىكى',
-'prefs-watchlist-days'      => 'كۆزەت تىزىملىكىدە كۆرۈنىدىغان كۈن سانى:',
-'prefs-watchlist-edits'     => 'كۈچەيتىلگەن كۆزەت تىزىملىكىدە ئەڭ كۆپ ئۆزگەرتىش سانى:',
-'prefs-misc'                => 'ئارىلاشما تۈر',
-'prefs-resetpass'           => 'ئىم ئۆزگەرت',
-'prefs-email'               => 'ئېلخەت تاللانما',
-'saveprefs'                 => 'ساقلا',
-'resetprefs'                => 'ساقلىمىغان ئۆزگەرتىشلەرنى تازىلا',
-'restoreprefs'              => 'بارلىق كۆڭۈلدىكى تەڭشەكنى ئەسلىگە كەلتۈر',
-'prefs-editing'             => 'تەھرىرلەۋاتىدۇ',
-'prefs-edit-boxsize'        => 'تەھرىرلەش كۆزنىكىنىڭ چوڭلۇقى',
-'rows'                      => 'قۇر:',
-'columns'                   => 'ستون:',
-'searchresultshead'         => 'ئىزدەش',
-'resultsperpage'            => 'ھەر بەتتىكى ئۇلانما سانى:',
-'contextlines'              => 'ھەر ئۇلانمىدىكى قۇر سانى:',
-'contextchars'              => 'ھەر قۇردىكى ھەرپ سانى:',
-'stub-threshold'            => '<a href=\\"#\\" class=\\"stub\\">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :',
-'recentchangesdays'         => 'يېقىنقى ئۆزگەرتىشنىڭ كۆرۈنىدىغان كۈن سانى:',
-'savedprefs'                => 'مايىللىق تەڭشىكىڭىز ساقلاندى.',
-'timezonelegend'            => 'ۋاقىت رايونى:',
-'localtime'                 => 'يەرلىك ۋاقىت:',
-'timezoneuseserverdefault'  => 'مۇلازىمىتىرنىڭ كۆڭۈلدىكى تەڭشىكىنى ئىشلەت',
-'timezoneuseoffset'         => 'باشقا (بەلگىلەنگەن  چەتنەش)',
-'timezoneoffset'            => '¹ۋاقىت پەرقى:',
-'servertime'                => 'مۇلازىمىتىر ۋاقتى:',
-'guesstimezone'             => 'توركۆرگۈدىن تولدۇر',
-'timezoneregion-africa'     => 'ئافرىقا',
-'timezoneregion-america'    => 'ئامېرىكا',
-'timezoneregion-antarctica' => 'ئانتاركتىكا',
-'timezoneregion-arctic'     => 'شىمالىي قۇتۇپ',
-'timezoneregion-asia'       => 'ئاسىيا',
-'timezoneregion-atlantic'   => 'ئاتلانتىك ئوكيان',
-'timezoneregion-australia'  => 'ئاۋسترالىيە',
-'timezoneregion-europe'     => 'ياۋروپا',
-'timezoneregion-indian'     => 'ھىندى ئوكيان',
-'timezoneregion-pacific'    => 'تىنچ ئوكيان',
-'allowemail'                => 'باشقا ئىشلەتكۈچىلەر ئېلخەت ئەۋەتىشنى قوزغات',
-'prefs-searchoptions'       => 'ئىزدەش تاللانما',
-'prefs-namespaces'          => 'ئات بوشلۇقى',
-'default'                   => 'كۆڭۈلدىكى',
-'prefs-custom-css'          => 'ئىختىيارى CSS',
-'prefs-custom-js'           => 'ئىختىيارى JS',
-'prefs-emailconfirm-label'  => 'ئېلخەت جەزملەش:',
-'youremail'                 => 'ئېلخەت:',
-'username'                  => 'ئىشلەتكۇچى ئىسمى:',
-'uid'                       => 'ئىشلەتكۈچى كىملىك:',
-'prefs-memberingroups'      => '{{PLURAL:$1|بىر|كۆپ}} گۇرۇپپا ئەزاسى:',
-'yourrealname'              => 'ﺗﻮﻟﯘﻕ ئىسىم:',
-'yourlanguage'              => 'تىل:',
-'yournick'                  => 'ئىمزا:',
-'badsig'                    => 'ئەسلى ئىمزا خاتا.
+'preferences'                 => 'مايىللىق',
+'mypreferences'               => 'مايىللىق تەڭشىكىم',
+'prefs-edits'                 => 'تەھرىر سانى:',
+'prefsnologin'                => 'تىزىمغا كىرمىدى',
+'changepassword'              => 'ئىم ئۆزگەرت',
+'skin-preview'                => 'ئالدىن كۆزەت',
+'datedefault'                 => 'مايىللىق يوق',
+'prefs-datetime'              => 'چېسلا ۋە ۋاقىت',
+'prefs-personal'              => 'ئىشلەتكۈچى سەپلىمە ھۆججىتى',
+'prefs-rc'                    => 'ئاخىرقى ئۆزگەرتىشلەر',
+'prefs-watchlist'             => 'كۆزەت تىزىملىكى',
+'prefs-watchlist-days'        => 'كۆزەت تىزىملىكىدە كۆرۈنىدىغان كۈن سانى:',
+'prefs-watchlist-edits'       => 'كۈچەيتىلگەن كۆزەت تىزىملىكىدە ئەڭ كۆپ ئۆزگەرتىش سانى:',
+'prefs-misc'                  => 'ئارىلاشما تۈر',
+'prefs-resetpass'             => 'ئىم ئۆزگەرت',
+'prefs-email'                 => 'ئېلخەت تاللانما',
+'saveprefs'                   => 'ساقلا',
+'resetprefs'                  => 'ساقلىمىغان ئۆزگەرتىشلەرنى تازىلا',
+'restoreprefs'                => 'بارلىق كۆڭۈلدىكى تەڭشەكنى ئەسلىگە كەلتۈر',
+'prefs-editing'               => 'تەھرىرلەۋاتىدۇ',
+'prefs-edit-boxsize'          => 'تەھرىرلەش كۆزنىكىنىڭ چوڭلۇقى',
+'rows'                        => 'قۇر:',
+'columns'                     => 'ستون:',
+'searchresultshead'           => 'ئىزدە',
+'resultsperpage'              => 'ھەر بەتتىكى ئۇلانما سانى:',
+'contextlines'                => 'ھەر ئۇلانمىدىكى قۇر سانى:',
+'contextchars'                => 'ھەر قۇردىكى ھەرپ سانى:',
+'stub-threshold'              => '<a href=\\"#\\" class=\\"stub\\">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :',
+'recentchangesdays'           => 'يېقىنقى ئۆزگەرتىشنىڭ كۆرۈنىدىغان كۈن سانى:',
+'savedprefs'                  => 'مايىللىق تەڭشىكىڭىز ساقلاندى.',
+'timezonelegend'              => 'ۋاقىت رايونى:',
+'localtime'                   => 'يەرلىك ۋاقىت:',
+'timezoneuseserverdefault'    => 'مۇلازىمىتىرنىڭ كۆڭۈلدىكى تەڭشىكىنى ئىشلەت',
+'timezoneuseoffset'           => 'باشقا (بەلگىلەنگەن  چەتنەش)',
+'timezoneoffset'              => '¹ۋاقىت پەرقى:',
+'servertime'                  => 'مۇلازىمىتىر ۋاقتى:',
+'guesstimezone'               => 'توركۆرگۈدىن تولدۇر',
+'timezoneregion-africa'       => 'ئافرىقا',
+'timezoneregion-america'      => 'ئامېرىكا',
+'timezoneregion-antarctica'   => 'ئانتاركتىكا',
+'timezoneregion-arctic'       => 'شىمالىي قۇتۇپ',
+'timezoneregion-asia'         => 'ئاسىيا',
+'timezoneregion-atlantic'     => 'ئاتلانتىك ئوكيان',
+'timezoneregion-australia'    => 'ئاۋسترالىيە',
+'timezoneregion-europe'       => 'ياۋروپا',
+'timezoneregion-indian'       => 'ھىندى ئوكيان',
+'timezoneregion-pacific'      => 'تىنچ ئوكيان',
+'allowemail'                  => 'باشقا ئىشلەتكۈچىلەر ئېلخەت ئەۋەتىشنى قوزغات',
+'prefs-searchoptions'         => 'ئىزدەش تاللانما',
+'prefs-namespaces'            => 'ئات بوشلۇقى',
+'default'                     => 'كۆڭۈلدىكى',
+'prefs-custom-css'            => 'ئىختىيارى CSS',
+'prefs-custom-js'             => 'ئىختىيارى JS',
+'prefs-emailconfirm-label'    => 'ئېلخەت جەزملەش:',
+'youremail'                   => 'ئېلخەت:',
+'username'                    => 'ئىشلەتكۇچى ئىسمى:',
+'uid'                         => 'ئىشلەتكۈچى كىملىك:',
+'prefs-memberingroups'        => '{{PLURAL:$1|بىر|كۆپ}} گۇرۇپپا ئەزاسى:',
+'yourrealname'                => 'ﺗﻮﻟﯘﻕ ئىسىم:',
+'yourlanguage'                => 'تىل:',
+'yournick'                    => 'ئىمزا:',
+'badsig'                      => 'ئەسلى ئىمزا خاتا.
 
 HTML بەلگىسىنى تەكشۈرۈڭ.',
-'badsiglength'              => 'ئىمزايىڭىز بەك ئۇزۇن.
+'badsiglength'                => 'ئىمزايىڭىز بەك ئۇزۇن.
 
 ئىمزانىڭ ئۇزۇنلۇقى {{PLURAL:$1| ھەرپ| ھەرپ}}تىن ئاشسا بولمايدۇ.',
-'yourgender'                => 'جىنسى:',
-'gender-unknown'            => 'بەلگىلەنمىگەن',
-'gender-male'               => 'ئەر',
-'gender-female'             => 'ئايال',
-'prefs-help-gender'         => 'تاللاشچان: يۇمشاق دېتالنىڭ خاراكتىرى تەرىپىدىن بەلگىلىنىدۇ
+'yourgender'                  => 'جىنسى:',
+'gender-unknown'              => 'بەلگىلەنمىگەن',
+'gender-male'                 => 'ئەر',
+'gender-female'               => 'ئايال',
+'prefs-help-gender'           => 'تاللاشچان: يۇمشاق دېتالنىڭ خاراكتىرى تەرىپىدىن بەلگىلىنىدۇ
 
 بۇ ئۇچۇر كۆپچىلىككە ئاشكارىلىنىدۇ.',
-'email'                     => 'ئېلخەت',
-'prefs-help-realname'       => 'ھەقىقىي ئات تاللاشچان.
+'email'                       => 'ئېلخەت',
+'prefs-help-realname'         => 'ھەقىقىي ئات تاللاشچان.
 
 ئەگەر تەمىنلەشنى تاللىسىڭىز، ئۇ سىزنىڭ تۆھپىڭىزنىڭ ئىمزاسى بولىدۇ.',
-'prefs-help-email'          => 'ئېلخەت تاللاشچان، ئەمما سىز ئىمنى ئۇنتۇلۇپ قالغاندا يېڭى ئىمنى سىزنىڭ ئېلخىتىڭىزگە ئەۋەتىپ بېرىدۇ
+'prefs-help-email'            => 'ئېلخەت تاللاشچان، ئەمما سىز ئىمنى ئۇنتۇلۇپ قالغاندا يېڭى ئىمنى سىزنىڭ ئېلخىتىڭىزگە ئەۋەتىپ بېرىدۇ
 
 سىز ئۆزىڭىزنىڭ سالاھىيىتىنى ئاشكارىلىمىغاندا ئىشلەتكۈچى بېتىڭىز ياكى مۇنازىرە بېتىڭىز ئارقىلىق ئالاقىلىشالايدۇ.',
-'prefs-help-email-required' => 'ئېلخەت ئارېس زۆرۈر.',
-'prefs-advancedediting'     => 'ئالىي تاللانما',
-'prefs-advancedrc'          => 'ئالىي تاللانما',
-'prefs-advancedrendering'   => 'ئالىي تاللانما',
+'prefs-help-email-required'   => 'ئېلخەت ئارېس زۆرۈر.',
+'prefs-info'                  => 'ئاساسىي ئۇچۇر',
+'prefs-i18n'                  => 'خەلقئارالاشتۇرۇش',
+'prefs-signature'             => 'ئىمزا',
+'prefs-dateformat'            => 'چېسلا فورماتى',
+'prefs-timeoffset'            => 'ۋاقىت پەرقى',
+'prefs-advancedediting'       => 'ئالىي تاللانما',
+'prefs-advancedrc'            => 'ئالىي تاللانما',
+'prefs-advancedrendering'     => 'ئالىي تاللانما',
+'prefs-advancedsearchoptions' => 'ئالىي تاللانما',
+'prefs-advancedwatchlist'     => 'ئالىي تاللانما',
+'prefs-display'               => 'كۆرسىتىش تاللانما',
 
 # User rights
 'userrights'                  => 'ئىشلەتكۈچى ھوقۇقى باشقۇرۇش',
@@ -1268,9 +1317,13 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'uploadscripted'              => 'بۇ ھۆججەتتە توركۆرگۈ خاتا يېشىدىغان HTML ياكى قوليازما كودىنى ئۆز ئىچىگە ئالغان.',
 'uploadvirus'                 => 'بۇ ھۆججەتتە ۋىرۇس بار!
 تەپسىلاتى: $1',
+'upload-source'               => 'مەنبە ھۆججەت',
 'sourcefilename'              => 'مەنبە ھۆججەت ئاتى:',
+'sourceurl'                   => 'مەنبە URL:',
 'destfilename'                => 'نىشان ھۆججەت ئاتى:',
 'upload-maxfilesize'          => 'ئەڭ چوڭ ھۆججەت چوڭلۇقى: $1',
+'upload-description'          => 'ھۆججەت چۈشەندۈرۈشى',
+'upload-options'              => 'يۈكلەش تاللانما',
 'watchthisupload'             => 'بۇ ھۆججەتنى كۆزەت',
 'filewasdeleted'              => 'بايىلا ئوخشاش ئاتتىكى بىر ھۆججەت يوللىنىپ، ئارقىدىنلا ئۆچۈرۈلگەن.
 بۇ ھۆججەتنى يۈكلەشتىن ئىلگىرى، $1 نى تەكشۈرۈپ بېقىڭ.',
@@ -1337,13 +1390,13 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'filehist-comment'          => 'ئىزاھات',
 'imagelinks'                => 'ھۆججەت ئۇلىنىشى',
 'linkstoimage'              => 'تۆۋەندىكى {{PLURAL:$1|بەت|$1 بەت}}  بۇ ھۆججەتكە ئۇلانغان:',
-'linkstoimage-more'         => '$1 دىن كۆپ بەت بۇ ھۆججەتكە ئۇلانغان.
-تۆۋەندىكى تىزىملىك پەقەت بۇ ھۆججەتنىڭ ئەڭ بېشىدىكى $1 بەت ئۇلىنىشىنىلا كۆرسىتىدۇ. 
+'linkstoimage-more'         => '{{PLURAL:$1|دىن كۆپ بەت ئۇلانما|دىن كۆپ بەت ئۇلانما}}  بۇ ھۆججەتكە ئۇلانغان.
+تۆۋەندىكى تىزىملىك پەقەت بۇ ھۆججەتنىڭ ئەڭ بېشىدىكى {{PLURAL:$1|بەت| $1 بەت}} ئۇلىنىشىنىلا كۆرسىتىدۇ. 
  [[Special:WhatLinksHere/$2|تولۇق تىزىملىك]]نى تەمىنلىيەلەيدۇ.',
 'nolinkstoimage'            => 'بۇ ھۆججەتكە ئۇلانغان بەت يوق.',
 'morelinkstoimage'          => 'بۇ ھۆججەتكە ئۇلانغان [[Special:WhatLinksHere/$1|تېخىمۇكۆپ ئۇلانما]] كۆرسەت.',
-'redirectstofile'           => 'تۆۋەندىكى $1 ھۆججەت بۇ ھۆججەتكە نىشانلانغان.',
-'duplicatesoffile'          => 'تۆۋەندىكى $1 ھۆججەت بۇ ھۆججەت بىلەن تەكرارلانغان  ([[Special:FileDuplicateSearch/$2|تېخىمۇ كۆپ تەپسىلاتى]]):',
+'redirectstofile'           => 'تۆۋەندىكى {{PLURAL:$1|ھۆججەت|$1 ھۆججەت}}  بۇ ھۆججەتكە نىشانلانغان.',
+'duplicatesoffile'          => 'تۆۋەندىكى {{PLURAL:$1|ھۆججەت|$1 ھۆججەت}}  بۇ ھۆججەت بىلەن تەكرارلانغان  ([[Special:FileDuplicateSearch/$2|تېخىمۇ كۆپ تەپسىلاتى]]):',
 'sharedupload'              => 'بۇ ھۆججەت $1 دىن كەلگەن، ئۇ باشقا قۇرۇلۇشتا ئىشلىتىلىۋاتقان بولۇشى مۇمكىن.',
 'uploadnewversion-linktext' => 'بۇ ھۆججەتنىڭ يېڭى نەشرىنى يۈكلە',
 'shared-repo-from'          => 'مەنبەسى $1',
@@ -1419,7 +1472,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'statistics-views-peredit'     => 'ھەر قېتىملىق تەھرىرنى كۆرسىتىش سانى',
 'statistics-users'             => 'خەتلەتكەن [[Special:ListUsers|ئىشلەتكۈچى]]',
 'statistics-users-active'      => 'ئاكتىپ ئىشلەتكۈچى',
-'statistics-users-active-desc' => 'ئالدىنقى $1 كۈندىكى مەشغۇلات قىلغان ئىشلەتكۈچىلەر',
+'statistics-users-active-desc' => 'ئالدىنقى {{PLURAL:$1|كۈن|$1 كۈن}} دىكى مەشغۇلات قىلغان ئىشلەتكۈچىلەر',
 'statistics-mostpopular'       => 'ئەڭ كۆپ كۆرۈلگەن بەتلەر',
 
 'disambiguations'      => 'ئىككى بىسلىق بەتنى يوقىتىش',
@@ -1663,7 +1716,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'deletepage'             => 'بەت ئۆچۈر',
 'confirm'                => 'جەزملە',
 'excontent'              => "مەزمۇنى: '$1'",
-'excontentauthor'        => "مەزمۇنى: '$1' (بىردىنبىر تۆھپىكار$2')",
+'excontentauthor'        => "مەزمۇنى: '$1' (بىردىنبىر تۆھپىكار '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "تازىلاشتىن ئىلگىرىكى مەزمۇن: '$1'",
 'exblank'                => 'بەت بوش',
 'delete-confirm'         => 'ئۆچۈر "$1"',
@@ -1999,9 +2052,9 @@ $1 ئاللىبۇرۇن چەكلەنگەن.
 'databasenotlocked'   => 'ساندان قۇلۇپلانمىغان.',
 
 # Move page
-'move-page'                 => '$1 يۆتكە',
-'move-page-legend'          => 'بەت يۆتكە',
-'movepagetext'              => "تۆۋەندىكى جەدۋەلنى ئىشلىتىپ بىر بەتنىڭ ئاتىنى ئۆزگەرتىپ، شۇنىڭ بىلەن بىللە تۈزىتىش نەشر تارىخىنى يېڭى بەتكە يۆتكەڭ.
+'move-page'                    => '$1 يۆتكە',
+'move-page-legend'             => 'بەت يۆتكە',
+'movepagetext'                 => "تۆۋەندىكى جەدۋەلنى ئىشلىتىپ بىر بەتنىڭ ئاتىنى ئۆزگەرتىپ، شۇنىڭ بىلەن بىللە تۈزىتىش نەشر تارىخىنى يېڭى بەتكە يۆتكەڭ.
 كونا بەت يېڭى بەتنىڭ قايتا نىشان بەلگىلەنگەن بېتى بولىدۇ.
 سىز بەلگىلەنگەن ئەسلىدىكى ماۋزۇنىڭ قايتا نىشان بەلگىلىشىنى يېڭىلىيالايسىز.
 ئەگەر تاللىمىسىڭىز، [[Special:DoubleRedirects|قوش]] ياكى [[Special:BrokenRedirects|بۇزۇلغان قايتا نىشان بەلگىلەش]]نى تەكشۈرۈڭ.
@@ -2015,50 +2068,172 @@ $1 ئاللىبۇرۇن چەكلەنگەن.
 '''ئاگاھلاندۇرۇش!'''
 دائىم زىيارەت قىلىنىدىغان تور ؛بەتكە نىسبەتەن بۇ زور ياكى  ئويلانمايلا ئېلىپ بېرىلغان ئۆزگەرتىش
 مەشغۇلات قىلىشتىن ئىلگىرى ئېلىپ كېلىدىغان ئاقىۋىتىنى چۈشىنىڭ.",
-'movepagetalktext'          => "مۇناسىۋەتلىك مۇنازىرە بېتى مۇشۇ بەت بىلەن بىللە ئۆزلۈكىدىن يۆتكىلىدۇ، ئۇنداق '''بولمىغاندا:'''
+'movepagetalktext'             => "مۇناسىۋەتلىك مۇنازىرە بېتى مۇشۇ بەت بىلەن بىللە ئۆزلۈكىدىن يۆتكىلىدۇ، ئۇنداق '''بولمىغاندا:'''
 *يېڭى بەتنىڭ مەزمۇنى بار مۇنازىرە بېتى مەۋجۇد ياكى 
 *تۆۋەندىكى كۆپ تاللاش رامكىسىنى تاللىمىدىڭىز.
 
 بۇ خىل ئەھۋاللاردا، زۆرۈر تېپىلغاندا ئۆزىڭىز بەتنى يۆتكىشىڭىز ياكى بىرلەشتۈرۈشىڭىز لازىم.",
-'movearticle'               => 'بەت يۆتكە:',
-'movenologin'               => 'تىزىمغا كىرمىدى',
-'movenologintext'           => 'سىز چوقۇم تىزىمغا كىرگەن ئىشلەتكۈچى ھەمدە [[Special:UserLogin|تىزىمغا كىر]]گەندىن كېيىن ئاندىن بەتنى يۆتكىيەلەيسىز.',
-'movenotallowed'            => 'سىزنىڭ بەت يۆتكەش ھوقۇقىڭىز يوق.',
-'movenotallowedfile'        => 'سىزنىڭ ھۆججەت يۆتكەش ھوقۇقىڭىز يوق.',
-'cant-move-user-page'       => 'سىزنىڭ ئىشلەتكۈچى بېتىنى يۆتكەش ھوقۇقىڭىز يوق (ئۇنىڭ تارماق بېتى بۇنىڭ سىرتىدا)',
-'cant-move-to-user-page'    => 'سىزنىڭ ئىشلەتكۈچى بېتىگە يۆتكەش ھوقۇقىڭىز يوق (تارماق بېتى بۇنىڭ سىرتىدا)',
-'newtitle'                  => 'يېڭى ماۋزۇ:',
-'move-watch'                => 'بۇ بەتنى كۆزەت',
-'movepagebtn'               => 'بەت يۆتكە',
-'pagemovedsub'              => 'مۇۋەپپەقىيەتلىك يۆتكەلدى',
-'movepage-moved'            => '\'\'\'"$1" دىن\\"$2" گە يۆتكەلدى\'\'\'',
-'movepage-moved-redirect'   => 'قايتا نىشانلاشتىن بىرى قۇرۇلدى.',
-'movepage-moved-noredirect' => 'قايتا نىشانلاش قۇرۇش تىزگىنلەندى.',
-'articleexists'             => 'مۇشۇ ئاتلىق بەت مەۋجۇد ياكى سىز تاللىغان بەت ئاتى ئىناۋەتسىز.
+'movearticle'                  => 'بەت يۆتكە:',
+'movenologin'                  => 'تىزىمغا كىرمىدى',
+'movenologintext'              => 'سىز چوقۇم تىزىمغا كىرگەن ئىشلەتكۈچى ھەمدە [[Special:UserLogin|تىزىمغا كىر]]گەندىن كېيىن ئاندىن بەتنى يۆتكىيەلەيسىز.',
+'movenotallowed'               => 'سىزنىڭ بەت يۆتكەش ھوقۇقىڭىز يوق.',
+'movenotallowedfile'           => 'سىزنىڭ ھۆججەت يۆتكەش ھوقۇقىڭىز يوق.',
+'cant-move-user-page'          => 'سىزنىڭ ئىشلەتكۈچى بېتىنى يۆتكەش ھوقۇقىڭىز يوق (ئۇنىڭ تارماق بېتى بۇنىڭ سىرتىدا)',
+'cant-move-to-user-page'       => 'سىزنىڭ ئىشلەتكۈچى بېتىگە يۆتكەش ھوقۇقىڭىز يوق (تارماق بېتى بۇنىڭ سىرتىدا)',
+'newtitle'                     => 'يېڭى ماۋزۇ:',
+'move-watch'                   => 'بۇ بەتنى كۆزەت',
+'movepagebtn'                  => 'بەت يۆتكە',
+'pagemovedsub'                 => 'مۇۋەپپەقىيەتلىك يۆتكەلدى',
+'movepage-moved'               => '\'\'\'"$1" دىن\\"$2" گە يۆتكەلدى\'\'\'',
+'movepage-moved-redirect'      => 'قايتا نىشانلاشتىن بىرى قۇرۇلدى.',
+'movepage-moved-noredirect'    => 'قايتا نىشانلاش قۇرۇش تىزگىنلەندى.',
+'articleexists'                => 'مۇشۇ ئاتلىق بەت مەۋجۇد ياكى سىز تاللىغان بەت ئاتى ئىناۋەتسىز.
 باشقا ئات تاللاڭ.',
-'talkexists'                => "'''بەتنىڭ ئۆزىنى يۆتكەش مۇۋەپپەقىيەتلىك، ئەمما مۇنازىرە بېتىنى يۆتكىيەلمىدى،چۈنكى يېڭى ماۋزۇلۇق مۇنازىرە بېتى مەۋجۇد.
+'cantmove-titleprotected'      => 'بۇ بەتنى مەزكۇر ئورۇنغا يۆتكىيەلمەيسىز، چۈنكى بۇ يېڭى ماۋزۇ قۇرۇشتىن ساقلىنىش ئۈچۈن قوغدالدى.',
+'talkexists'                   => "'''بەتنىڭ ئۆزىنى يۆتكەش مۇۋەپپەقىيەتلىك، ئەمما مۇنازىرە بېتىنى يۆتكىيەلمىدى،چۈنكى يېڭى ماۋزۇلۇق مۇنازىرە بېتى مەۋجۇد.
 ئۇلارنى ئۆزىڭىز قولدا بىرلەشتۈرۈڭ.'''",
-'movedto'                   => 'يۆتكەلگەن ئورنى',
-'movetalk'                  => 'يۆتكەش ئۇلانغان مۇنازىرە بېتى',
-'1movedto2'                 => '[[$1]] دىن [[$2]] غا يۆتكەلدى',
-'1movedto2_redir'           => 'قايتا نىشان بەلگىلەپ [[$1]] دىن [[$2]] غا يۆتكەلدى',
-'movelogpage'               => 'خاتىرىنى يۆتكە',
-'movereason'                => 'سەۋەب:',
-'revertmove'                => 'قايتۇر',
+'movedto'                      => 'يۆتكەلگەن ئورنى',
+'movetalk'                     => 'يۆتكەش ئۇلانغان مۇنازىرە بېتى',
+'move-subpages'                => 'تارماق بەتنى يۆتكە (ئۈستىگە $1 بەت)',
+'move-talk-subpages'           => 'تارماق مۇنازىرە بېتىنى يۆتكە (ئۈستىگە $1 بەت)',
+'movepage-page-exists'         => '$1 بەت مەۋجۇد، ئۆزلۈكىدىن قاپلىۋەتكىلى بولمايدۇ.',
+'movepage-page-moved'          => '$1 بەت $2 گە يۆتكەلدى.',
+'movepage-page-unmoved'        => '$1 بەتنى $2 گە يۆتكىيەلمىدى.',
+'movepage-max-pages'           => ' $1 {{PLURAL:$1|بەت|بەت}} يۆتكەش سانى ئەڭ يۇقىرى چەككە يەتتى، بىرلا ۋاقىتتا تېخىمۇ كۆپ بەتنى ئۆزلۈكىدىن يۆتكىيەلمەيدۇ.',
+'1movedto2'                    => '[[$1]] دىن [[$2]] غا يۆتكەلدى',
+'1movedto2_redir'              => 'قايتا نىشان بەلگىلەپ [[$1]] دىن [[$2]] غا يۆتكەلدى',
+'move-redirect-suppressed'     => 'قايتا نىشانلاش تىزگىنلەندى',
+'movelogpage'                  => 'خاتىرىنى يۆتكە',
+'movelogpagetext'              => 'تۆۋەندىكىسى يۆتكەلگەن ھەممە بەتلەرنىڭ تىزىملىكى.',
+'movesubpage'                  => '{{PLURAL:$1|تارماق بەت|تارماق بەت}}',
+'movesubpagetext'              => 'بۇ بەتنىڭ $1 {{PLURAL:$1|تارماق بەت|تارماق بەت}}ى بار، تۆۋەندە كۆرسىتىلگەندەك.',
+'movenosubpage'                => 'بۇ بەتنىڭ تارماق بېتى يوق',
+'movereason'                   => 'سەۋەب:',
+'revertmove'                   => 'قايتۇر',
+'delete_and_move'              => 'ئۆچۈرۈپ يۆتكە',
+'delete_and_move_text'         => '== ئۆچۈرۈش زۆرۈر ==
+نىشان بەت "[[:$1]]" مەۋجۇد.
+يۆتكەشكە قولاي بولۇشى ئۈچۈن بۇ بەتنى ئۆچۈرەمسىز؟',
+'delete_and_move_confirm'      => 'ھەئە، بۇ بەتنى ئۆچۈر',
+'delete_and_move_reason'       => 'يۆتكەشكە قولاي بولۇشى ئۈچۈن ئۆچۈر',
+'selfmove'                     => 'ئەسلى ماۋزۇ بىلەن نىشان ماۋزۇ ئوخشاش؛
+بەتنى ئۆزىدىن ئۆزىگە يۆتكىگىلى بولمايدۇ.',
+'immobile-source-namespace'    => 'ئات بوشلۇقى "$1" بولغان بەتنى يۆتكىگىلى بولمايدۇ.',
+'immobile-target-namespace'    => 'بەتنى "$1" ئات بوشلۇقىغا يۆتكىگىلى بولمايدۇ.',
+'immobile-target-namespace-iw' => 'بەت يۆتكىگەندە wiki دىن ھالقىغان ئۇلانما ئىناۋەتلىك نىشان ئەمەس.',
+'immobile-source-page'         => 'بۇ بەتنى يۆتكىگىلى بولمايدۇ.',
+'immobile-target-page'         => 'بۇ نىشان ماۋزۇغا يۆتكىگىلى بولمايدۇ.',
+'imagenocrossnamespace'        => 'ھۆججەتنى غەيرى ھۆججەت ئات بوشلۇقىغا يۆتكىگىلى بولمايدۇ.',
+'imagetypemismatch'            => 'بۇ يېڭى كېڭەيتىلگەن ئات بىلەن باشقا تىپ ماسلاشمىدى.',
+'imageinvalidfilename'         => 'نىشان ھۆججەت ئاتى ئىناۋەتسىز',
+'fix-double-redirects'         => 'ئەسلى ماۋزۇغا قايتا نىشانلانغان ھەممە ئۇلىنىشنى يېڭىلا.',
+'move-leave-redirect'          => 'قايتا نىشانلاشنى ساقلاپ قال',
 
 # Export
-'export' => 'بەت چىقار',
+'export'            => 'بەت چىقار',
+'exporttext'        => 'سىز بەلگىلەنگەن بىر ياكى بىر گۇرۇپپا بەتنىڭ تېكستى ۋە  تەھرىرلەش تارىخىنى XML فورماتىدا چىقىرالايسىز.
+بۇنداق بولغاندا مۇناسىۋەتلىك بەتلەر [[Special:Import|بەت  ئەكىر ]]ىش ئارقىلىق MediaWiki ئىجرا قىلىنىۋاتقان باشقا بەتكە  ئەكىرگىلى بولىدۇ.
+
+بەت چىقىرىشتا، تۆۋەندىكى تېكست رامكىسىغا بەت ماۋزۇسىنى  كىرگۈزۈپ، ھەر بىر قۇردا بىر ماۋزۇ، ھەمدە بەت تارىخ بار  ئىلگىرىكى تۈزىتىلگەن نەشرىنى تاللامسىز يوق، ياكى پەقەت  ئاخىرقى قېتىملىق تەھرىر ئۇچۇرى بار نۆۋەتتىكى تۈزىتىلگەن  نەشرىنى چىقىرىشنى تاللاڭ.
+
+ئۇنىڭدىن باشقا ئۇلانمىدىن پايدىلىنىپ ھۆججەت چىقىرالايسىز،  مەسىلەن سىز [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] دىن پايدىلىنىپ  "[[{{MediaWiki:Mainpage}}]]"بەت چىقىرالايسىز.',
+'exportcuronly'     => 'ھەممە تارىخنى ئەمەس بەلكى نۆۋەتتىكى تۈزىتىلگەن نەشرىنىلا ئۆز ئىچىگە ئالىدۇ.',
+'exportnohistory'   => "----
+'''دىققەت:''' ئىقتىدار سەۋەبلىك بۇ جەدۋەلدىن ھەممە تارىخنى چىقىرىش چەكلەنگەن.",
+'export-submit'     => 'چىقار',
+'export-addcattext' => 'تۈردىن بەت قوش:',
+'export-addcat'     => 'قوش',
+'export-addnstext'  => 'ئات بوشلۇقىدىن بەت قوش:',
+'export-addns'      => 'قوش',
+'export-download'   => 'ھۆججەتكە ساقلا',
+'export-templates'  => 'قېلىپنى ئۆز ئىچىگە ئالىدۇ',
+'export-pagelinks'  => 'ئۆز ئىچىگە ئالغان ئۇلانما بەتنىڭ ئىزدەش چوڭقۇرلۇقى:',
+
+# Namespace 8 related
+'allmessages'                   => 'سىستېما ئۇچۇرلىرى',
+'allmessagesname'               => 'ئاتى',
+'allmessagesdefault'            => 'كۆڭۈلدىكى ئۇچۇر تېكستى',
+'allmessagescurrent'            => 'نۆۋەتتىكى ئۇچۇر تېكستى',
+'allmessagestext'               => 'بۇ جايدا تەڭشىگىلى بولىدىغان ھەممە سىستېما كۆرۈنۈش ئۇچۇرلىرى كۆرسىتىلدى.
+ئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[http://www.mediawiki.org/wiki/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [http://translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.',
+'allmessagesnotsupportedDB'     => "بۇ بەتنى ئىشلەتكىلى بولمايدۇ، سەۋەبى '''\$wgUseDatabaseMessages''' چەكلەنگەن.",
+'allmessages-filter-legend'     => 'سۈزگۈچ',
+'allmessages-filter-unmodified' => 'ئۆزگەرتىلمىگەن',
+'allmessages-filter-all'        => 'ھەممىسى',
+'allmessages-filter-modified'   => 'ئۆزگەرتىلگەن',
+'allmessages-language'          => 'تىل:',
+'allmessages-filter-submit'     => 'يۆتكەل',
 
 # Thumbnails
-'thumbnail-more' => 'چوڭايت',
+'thumbnail-more'           => 'چوڭايت',
+'filemissing'              => 'ھۆججەت يوقالغان',
+'thumbnail_error'          => 'كىچىك رەسىم قۇرۇش خاتالىقى: $1',
+'djvu_page_error'          => 'DjVu بېتى دائىرىدىن ھالقىپ كەتتى',
+'djvu_no_xml'              => 'DjVu ھۆججىتىدىن XML گە ئېرىشەلمىدى',
+'thumbnail_invalid_params' => 'ئىناۋەتسىز كىچىك رەسىم پارامېتىرى',
+'thumbnail_dest_directory' => 'نىشان مۇندەرىجە قۇرالمىدى',
+'thumbnail_image-type'     => 'سۈرەت فورماتىنى قوللىمايدۇ',
+
+# Special:Import
+'import'                     => 'بەت ئەكىر',
+'importinterwiki'            => 'wiki ھالقىپ ئەكىر',
+'import-interwiki-text'      => 'wiki دىن بىرنى ۋە بەت ماۋزۇسىنى تاللاپ ئەكىرىڭ.
+تۈزىتىلگەن ۋاقىت ۋە تەھرىرلىگۈچى ئاتى بىرلا ۋاقىتتا ساقلىنىدۇ.
+بارلىق wiki ھالقىغان ئەكىرىش مەشغۇلاتى  [[Special:Log/import|ئەكىرىش خاتىرىسى]]غا خاتىرىلىنىدۇ.',
+'import-interwiki-source'    => 'مەنبە wiki /بەت:',
+'import-interwiki-history'   => 'بۇ بەتنىڭ ھەممە تارىخى تۈزىتىلگەن نەشرىنى كۆچۈر.',
+'import-interwiki-templates' => 'ھەممە قېلىپىنى ئۆز ئىچىگە ئالىدۇ',
+'import-interwiki-submit'    => 'ئەكىر',
+'import-interwiki-namespace' => 'نىشان ئات بوشلۇقى:',
+'import-upload-filename'     => ':ھۆججەت ئاتى',
+'import-comment'             => 'ئىزاھات:',
+'importtext'                 => ' [[Special:Export|چىقىرىش ئىقتىدارى]]نى ئىشلىتىپ ئەسلى wiki دىن ھۆججەت چىقىرىڭ .
+كومپيۇتېرىڭىزدا ساقلاپ ئاندىن بۇ جايغا يۈكلەڭ.',
+'importstart'                => 'بەت ئەكىرىۋاتىدۇ…',
+'import-revision-count'      => '$1 {{PLURAL:$1|تۈزىتىش|تۈزىتىش}}',
+'importnopages'              => 'ئەكىرىدىغان بەت يوق.',
+'importfailed'               => 'ئەكىرىش مەغلۇپ بولدى: <nowiki>$1</nowiki>',
+'importunknownsource'        => 'نامەلۇم مەنبە ئەكىرىش تىپى',
+'importcantopen'             => 'ئەكىرگەن ھۆججەتنى ئاچالمىدى',
+'importbadinterwiki'         => 'بۇزۇلغان wiki ئىچكى ئۇلانمىسى',
+'importnotext'               => 'بوش ياكى تېكست يوق',
+'importsuccess'              => 'ئەكىرىش تاماملاندى!',
+'importhistoryconflict'      => 'توقۇنۇشىدىغان تەھرىرلەش تارىخ مەۋجۇد (بەلكىم ئىلگىرى بۇ بەت ئەكىرىلگەن بولۇشى مۇمكىن)',
+'importnosources'            => 'wiki ھالقىپ ئەكىرگەن مەنبەگە ئېنىقلىما بېرىلمىگەن، ئۇنىڭ ئۈستىگە بىۋاسىتە تارىخ يوللاشقا يول قويۇلمايدۇ.',
+'importnofile'               => 'ئەكىرىدىغان ھۆججەت يۈكلەنمىدى.',
+'importuploaderrorsize'      => 'ئەكىرگەن ھۆججەتنى يۈكلەش مەغلۇپ بولدى.
+يۈكلىنىدىغان ھۆججەت يول قويۇلىدىغان ھۆججەت چوڭلۇق چېكىدىن ئېشىپ كەتتى.',
+'importuploaderrorpartial'   => 'ئەكىرگەن ھۆججەتنى يۈكلەش مەغلۇپ بولدى.
+ھۆججەتنىڭ بىر قىسمىلا يۈكلەندى.',
+'importuploaderrortemp'      => 'ئەكىرگەن ھۆججەتنى يۈكلەش مەغلۇپ بولدى.
+ۋاقىتلىق قىسقۇچ يوقالغان.',
+'import-parse-failure'       => 'XML ئەكىرىش تەھلىل خاتالىقى',
+'import-noarticle'           => 'ئەكىرىدىغان بەت يوق!',
+'import-nonewrevisions'      => 'ھەممە تۈزىتىش بايىلا ئەكىرىلگەن.',
+'xml-error-string'           => '$2 قۇردىكى $1، ستون $3 ($4 بايت): $5',
+'import-upload'              => 'XML سانلىق مەلۇماتى يۈكلە',
+'import-token-mismatch'      => 'جەريان سانلىق مەلۇماتى يوقالدى.
+ قايتا سىناڭ.',
+'import-invalid-interwiki'   => 'بەلگىلەنگەن wiki دىن ئەكىرەلمىدى.',
+
+# Import log
+'importlogpage'                    => 'ئەكىرىش خاتىرىسى',
+'importlogpagetext'                => 'باشقا wiki دىن تارىخ خاتىرىسىنى قوشۇپ باشقۇرغۇچى سۈپىتىدە ئەكىرىش.',
+'import-logentry-upload'           => 'ھۆججەت يۈكلەپ [[$1]] ئەكىرىلدى',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|تۈزىتىش|تۈزىتىش}}',
+'import-logentry-interwiki'        => 'wiki ھالقىغان $1',
+'import-logentry-interwiki-detail' => '$2 دىن كەلگەن $1 {{PLURAL:$1|تۈزىتىش|تۈزىتىش}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'ئىشلەتكۈچى بېتىڭىز',
+'tooltip-pt-anonuserpage'         => 'بۇ بېكەتنى تەھرىرلىگەندە ئىشلەتكەن IP ماس كەلگەن ئىشلەتكۈچى بېتى',
 'tooltip-pt-mytalk'               => 'مۇنازىرە بېتىڭىز',
+'tooltip-pt-anontalk'             => 'مەزكۇر IP ئادرېستىن كەلگەن تەھرىرنىڭ مۇنازىرىسى',
 'tooltip-pt-preferences'          => 'مايىللىق تەڭشىىڭىز',
 'tooltip-pt-watchlist'            => 'ئۆزگىرىشنى كۆزەت قىلىۋاتقان بەت تىزىملىكىڭىز',
 'tooltip-pt-mycontris'            => 'تۆھپە تىزىملىكىڭىز',
 'tooltip-pt-login'                => 'تىزىمغا كىرىشىڭىزنى تەۋسىيە قىلىمىز ئەمما مەجبۇرىي ئەمەس',
+'tooltip-pt-anonlogin'            => 'تىزىمغا كىرىشىڭىزنى تەۋسىيە قىلىمىز ئەمما مەجبۇرىي ئەمەس',
 'tooltip-pt-logout'               => 'تىزىمدىن چىق',
 'tooltip-ca-talk'                 => 'بەت مەزمۇنى ھەققىدىكى مۇنازىرە',
 'tooltip-ca-edit'                 => 'بۇ بەتنى تەھرىرلىيەلەيسىز.
@@ -2069,12 +2244,14 @@ $1 ئاللىبۇرۇن چەكلەنگەن.
 'tooltip-ca-history'              => 'بۇ بەتنىڭ بۇرۇنقى نەشرى',
 'tooltip-ca-protect'              => 'بۇ بەتنى قوغدا',
 'tooltip-ca-delete'               => 'بۇ بەتنى ئۆچۈر',
+'tooltip-ca-undelete'             => 'بۇ بەتنى ئۆچۈرۈلۈشتىن ئىلگىرىكى ھالەتكە ئەسلىگە كەلتۈر',
 'tooltip-ca-move'                 => 'بۇ بەتنى يۆتكە',
 'tooltip-ca-watch'                => 'بۇ بەتنى كۆزەت تىزىملىكىگە قوش',
 'tooltip-ca-unwatch'              => 'بۇ بەتنى كۆزەت تىزىملىكىمدىن چىقىرىۋەت',
 'tooltip-search'                  => '{{SITENAME}} ئىزدە',
 'tooltip-search-go'               => 'ئەگەر بۇ ئاتتىكى بەت مەۋجۇد بولسا شۇ بەتكە يۆتكەل',
 'tooltip-search-fulltext'         => 'بۇ تېكست بار بەتنى ئىزدە',
+'tooltip-p-logo'                  => 'باش بەتنى زىيارەت قىل',
 'tooltip-n-mainpage'              => 'باش بەتنى زىيارەت قىل',
 'tooltip-n-portal'                => 'بۇ قۇرۇلۇش ھەققىدە، سىز نېمە ئىش قىلالايسىز، قانداق قىلىش لازىم',
 'tooltip-n-currentevents'         => 'نۆۋەتتىكى ھادىسىنىڭ ئارقا كۆرۈنۈش ئۇچۇرىنى ئىزدە',
@@ -2093,10 +2270,13 @@ $1 ئاللىبۇرۇن چەكلەنگەن.
 'tooltip-t-permalink'             => 'ئۆزگەرتىلگەن نەشرىدىكى بۇ بەتنىڭ مەڭگۈلۈك ئۇلانمىسى',
 'tooltip-ca-nstab-main'           => 'مەزمۇن بېتىنى كۆرسەت',
 'tooltip-ca-nstab-user'           => 'ئىشلەتكۈچى بېتىنى كۆرسەت',
+'tooltip-ca-nstab-media'          => 'ۋاسىتە بېتىنى كۆرسەت',
 'tooltip-ca-nstab-special'        => 'بۇ ئالاھىدە بەت، بۇ بەتنى تەھرىرلىيەلمەيسىز.',
 'tooltip-ca-nstab-project'        => 'قۇرۇلۇش بېتىنى كۆرسەت',
 'tooltip-ca-nstab-image'          => 'ھۆججەت بېتى كۆرسەت',
+'tooltip-ca-nstab-mediawiki'      => 'سىستېما ئۇچۇرىنى كۆرسەت',
 'tooltip-ca-nstab-template'       => 'قېلىپ كۆرسەت',
+'tooltip-ca-nstab-help'           => 'ياردەم بېتىنى كۆرسەت',
 'tooltip-ca-nstab-category'       => 'تۈر بېتىنى كۆرسەت',
 'tooltip-minoredit'               => 'بۇنىڭغا ئازراقلا تەھرىرلەش بەلگىسى قوي',
 'tooltip-save'                    => 'ئۆزگەرتىشىڭىزنى ساقلاڭ',
@@ -2104,9 +2284,53 @@ $1 ئاللىبۇرۇن چەكلەنگەن.
 'tooltip-diff'                    => 'بۇ تېكستكە ئېلىپ بارغان ئۆزگەرتىشنى كۆرسەت',
 'tooltip-compareselectedversions' => 'بۇ بەتتە تاللانغان ئىككى نەشرىنىڭ پەرقىنى كۆرسەت',
 'tooltip-watch'                   => 'بۇ بەتنى كۆزەت تىزىملىكىگە قوش',
+'tooltip-recreate'                => 'ئۆچۈرۈلگەن بولسىمۇ بۇ بەتنى قايتا قۇر',
+'tooltip-upload'                  => 'يۈكلەشنى باشلا',
 'tooltip-rollback'                => '"ئەسلىگە قايتۇر" بىر چېكىلسە ئالدىنقى تۆھپىكارنىڭ تەھرىرىلىگەن ھالىتىگە قايتۇرىدۇ.',
 'tooltip-undo'                    => '\\"يېنىۋال\\"  تەھرىرلەش ھالىتىدە ئەسلىگە كەلتۈرۈش ئۈچۈن ئالدىن كۆزىتىش ھالىتىدىن تەھرىرلەشنى ئاچىدۇ
 ئۇ قىسقىچە مەزمۇنغا سەۋەبىنى قوشۇشغا يول قويىدۇ.',
+'tooltip-preferences-save'        => 'مايىللىق ساقلا',
+'tooltip-summary'                 => 'قىسقىچە ئۈزۈندە كىرگۈزۈڭ',
+
+# Metadata
+'nodublincore'      => 'Dublin Core RDF مېتا سانلىق مەلۇماتىنى بۇ مۇلازىمىتىردا ئىشلەتكىلى بولمايدۇ.',
+'nocreativecommons' => 'Creative Commons RDF مېتا سانلىق مەلۇماتىنى بۇ مۇلازىمىتىردا ئىشلەتكىلى بولمايدۇ.',
+'notacceptable'     => 'wiki مۇلازىمىتىرى سىزنىڭ خېرىدار تەرىپىڭىز ئوقۇيالايدىغان سانلىق مەلۇمات فورماتى بىلەن تەمىنلىيەلمەيدۇ.',
+
+# Attribution
+'anonymous'        => ' {{SITENAME}} نىڭ ئىمزاسىز {{PLURAL:$1|ئىشلەتكۈچى|ئىشلەتكۈچى}}',
+'siteuser'         => '{{SITENAME}} ئىشلەتكۈچى $1',
+'lastmodifiedatby' => 'بۇ بەتنى $3 ئاخىرقى قېتىم $2 ئۆزگەرتكەن $1',
+'othercontribs'    => '$1 نىڭ خىزمىتى ئاساسىدا.',
+'others'           => 'باشقا',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|ئىشلەتكۈچى|ئىشلەتكۈچى}} $1',
+'creditspage'      => 'بەت تەشەككۈرى',
+'nocredits'        => 'بۇ بەتنىڭ تەشەككۈر تىزىملىك ئۇچۇرى يوق.',
+
+# Spam protection
+'spamprotectiontitle' => 'ئېلان قوغداش سۈزگۈچى',
+'spamprotectiontext'  => 'سىز ساقلىماقچى بولغان بەتنى ئېلان سۈزگۈچ چەكلىدى.
+بۇ سىرتقى تور بېكەت ئۇلانمىسىدىن كېلىپ چىققان بولۇشى مۇمكىن.',
+'spamprotectionmatch' => 'تۆۋەندىكىسى ئېلان سۈزگۈچىگە ئۇرۇلغاندىكى تېكست: $1',
+'spambot_username'    => 'MediaWiki ئېلان تازىلىغۇچ',
+'spam_reverting'      => 'ئۇلانمىسى يوق $1 نىڭ ئاخىرقى تۈزىتىلگەن نەشرىگە ئەسلىگە كەلتۈرۈۋاتىدۇ',
+'spam_blanking'       => 'ھەممە ئۇلانمىنى ئۆز ئىچىگە ئالغان $1 نىڭ تۈزىتىلگەن نەشرى، توسۇۋاتىدۇ',
+
+# Info page
+'infosubtitle'   => 'بەت ئۇچۇرى',
+'numedits'       => 'تەھرىر سانى (بەت): $1',
+'numtalkedits'   => 'تەھرىر سانى (مۇنازىرە بېتى): $1',
+'numwatchers'    => 'كۆزەتكۈچىلەر سانى: $1',
+'numauthors'     => 'ئاپتورلار سانى (بەت): $1',
+'numtalkauthors' => 'ئاپتورلار سانى (مۇنازىرە بېتى): $1',
+
+# Math options
+'mw_math_png'    => 'ھەمىشە PNG ئىشلەت',
+'mw_math_simple' => 'ئەگەر ئاددىي فورمۇلا بولسا HTML ئىشلەت بولمىسا PNG سۈرەت ئىشلەت',
+'mw_math_html'   => 'ئەگەر HTML ئىشلەتكىلى بولسا شۇنى بولمىسا PNG سۈرەت ئىشلەت',
+'mw_math_source' => 'TeX كودى كۆرسەت (تېكست توركۆرگۈ ئىشلەتكەندە)',
+'mw_math_modern' => 'يېڭى نەشرىدىكى توركۆرگۈ ئىشلىتىش تەۋسىيە قىلىنىدۇ',
+'mw_math_mathml' => 'ئامال بار MathML ئىشلىتىدۇ (سىناق)',
 
 # Math errors
 'math_failure'          => 'تەھلىل قىلالمىدى',
@@ -2120,11 +2344,44 @@ latex، dvips، gs، ۋە convert توغرا قاچىلانغانلىقىنى ت
 'math_bad_output'       => 'ماتېماتېكىلىق فورمۇلا چىقىرىدىغان مۇندەرىجىگە يازالمىدى ياكى قۇرالمىدى',
 'math_notexvc'          => ' texvc ئىجرا قىلالمىدى؛ math/README دىن پايدىلىنىپ سەپلەڭ.',
 
+# Patrolling
+'markaspatrolleddiff'                 => 'چارلاش بەلگىسى قوي',
+'markaspatrolledtext'                 => 'بۇ بەتكە چارلاش بەلگىسى قوي',
+'markedaspatrolled'                   => 'چارلاش بەلگىسى قويۇلغان',
+'rcpatroldisabled'                    => 'يېقىنقى ئۆزگەرتىشتە نازارەت قىلىش چەكلەنگەن',
+'rcpatroldisabledtext'                => 'يېقىندا ئۆزگەرتىشنى چارلاش ئىقتىدارى نۆۋەتتە تاقالغان.',
+'markedaspatrollederror'              => 'چارلاش بەلگىسى قويغىلى بولمايدۇ',
+'markedaspatrollederrortext'          => 'مەلۇم نەشرىنى تاللىسىڭىز ئاندىن چارلاش بەلگىسى قويغىلى بولىدۇ.',
+'markedaspatrollederror-noautopatrol' => 'سىز ئۆزىڭىزنىڭ ئۆزگەرتىشىگە چارلاش بەلگىسى قويالمايسىز.',
+
+# Patrol log
+'patrol-log-page'      => 'چارلاش خاتىرىسى',
+'patrol-log-header'    => 'بۇ چارلانغان تۈزىتىلگەن نەشرى.',
+'patrol-log-line'      => '$2 نىڭ نەشرى $1 غا چارلاش بەلگىسى قويۇلغان $3',
+'patrol-log-auto'      => '(ئاپتوماتىك)',
+'patrol-log-diff'      => 'تۈزىتىش $1',
+'log-show-hide-patrol' => '$1 چارلاش خاتىرىسى',
+
+# Image deletion
+'deletedrevision'                 => '$1 كونا تۈزىتىلگەن نەشرى ئۆچۈرۈلدى',
+'filedeleteerror-short'           => 'ھۆججەت ئۆچۈرۈش خاتالىقى: $1',
+'filedeleteerror-long'            => 'ھۆججەت ئۆچۈرۈۋاتقاندا خاتالىق كۆرۈلدى:
+
+$1',
+'filedelete-missing'              => '"$1" ھۆججەت مەۋجۇد بولمىغانلىقتىن ئۇنى ئۆچۈرگىلى بولمايدۇ.',
+'filedelete-old-unregistered'     => 'بەلگىلەنگەن ھۆججەتنىڭ "$1" تۈزىتىلگەن نەشرى سانداندا يوق.',
+'filedelete-current-unregistered' => 'بەلگىلەنگەن ھۆججەت "$1" سانداندا يوق.',
+'filedelete-archive-read-only'    => 'تور بەت مۇلازىمىتىرىدىكى ئارخىپ مۇندەرىجىسى "$1"  گە يازغىلى بولمايدۇ.',
+
 # Browsing diffs
 'previousdiff' => '← ئالدىنقى نەشرى',
 'nextdiff'     => 'يېڭى نەشرى →',
 
 # Media information
+'mediawarning'         => "'''ئاگاھلاندۇرۇش''': بۇ ھۆججەتتە زەھەرخەندە كود بولۇشى مۇمكىن، ئۇنى ئىجرا قىلسىڭىز سىستېمىڭىزغا خەۋپ ئېلىپ كېلىشى مۇمكىن.<hr />",
+'thumbsize'            => 'كىچىك سۈرەت چوڭلۇقى:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|بەت|بەت}}',
+'file-info'            => '(ھۆججەت چوڭلۇقى: $1, MIME تىپى: $2)',
 'file-info-size'       => '($1×$2 پىكسېل، ھۆججەت چوڭلۇقى: $3، MIME تىپى: $4)',
 'file-nohires'         => '<small>يۇقىرىراق پەرق ئېتىش نىسبىتى يوق.</small>',
 'svg-long-desc'        => '(SVG ھۆججىتى، ئاتاقتىكى چوڭلۇقى $1×$2 نۇقتا، ھۆججەت چوڭلۇقى: $3)',
@@ -2132,7 +2389,16 @@ latex، dvips، gs، ۋە convert توغرا قاچىلانغانلىقىنى ت
 'show-big-image-thumb' => '<small>بۇ ئالدىن كۆزىتىشنىڭ چوڭلۇقى: $1 × $2 نۇقتا</small>',
 
 # Special:NewFiles
-'ilsubmit' => 'ئىزدەش',
+'newimages'             => 'يېڭى ھۆججەت كارىدورى',
+'imagelisttext'         => "تۆۋەندىكىسى $2 غا ئاساسەن تەرتىپلەنگەن'''$1''' {{PLURAL:$1|ھۆججەت|ھۆججەت}} sorted تىزىملىكى.",
+'newimages-summary'     => 'بۇ ئالاھىدە بەتتە ئەڭ ئاخىرىدا يۈكلەنگەن ھۆججەت كۆرسىتىلىدۇ.',
+'newimages-legend'      => 'سۈزگۈچ',
+'newimages-label'       => 'ھۆججەت ئاتى (ياكى ئۇنىڭ پارچىسى):',
+'showhidebots'          => '($1 ماشىنا ئادەم)',
+'noimages'              => 'كۆرۈدىغان ھېچنېمە يوق.',
+'ilsubmit'              => 'ئىزدەش',
+'bydate'                => 'چېسلا بويىچە',
+'sp-newimages-showfrom' => '$2 دىن $1 باشلاپ يېڭى ھۆججەت كۆرسىتىۋاتىدۇ',
 
 # Bad image list
 'bad_image_list' => 'تۆۋەندىكى فورماتتا يېزىڭ:
@@ -2158,39 +2424,506 @@ latex، dvips، gs، ۋە convert توغرا قاچىلانغانلىقىنى ت
 * isospeedratings
 * focallength',
 
+# EXIF tags
+'exif-imagewidth'                  => 'كەڭلىك',
+'exif-imagelength'                 => 'ئېگىزلىك',
+'exif-bitspersample'               => 'ھەر بىر نۇقتىنىڭ بىت سانى',
+'exif-compression'                 => 'پرىس لايىھىسى',
+'exif-photometricinterpretation'   => 'نۇقتا بېرىكتۈرۈش',
+'exif-orientation'                 => 'يۆنىلىش',
+'exif-samplesperpixel'             => 'نۇقتا سانى',
+'exif-planarconfiguration'         => 'سانلىق مەلۇمات جايلىشىشى',
+'exif-ycbcrsubsampling'            => 'سېرىق ۋە ئاچ قىزىل نۇسخا ئېلىش نىسبىتى',
+'exif-ycbcrpositioning'            => 'سېرىق ۋە ئاچ قىزىل سەپلىمىسى',
+'exif-xresolution'                 => 'توغرىسىغا پەرق ئېتىش نىسبىتى',
+'exif-yresolution'                 => 'بويىغا پەرق ئېتىش نىسبىتى',
+'exif-resolutionunit'              => 'X ۋە Y ئوقى پەرق ئېتىش نىسبىتى بىرلىكى',
+'exif-stripoffsets'                => 'سۈرەت سانلىق مەلۇمات ئورنى',
+'exif-rowsperstrip'                => 'ھەر بىر تاسماقنىڭ قۇر سانى',
+'exif-stripbytecounts'             => 'ھەر بىر پرىسلانغان تاسماقنىڭ بايت سانى',
+'exif-jpeginterchangeformat'       => 'JPEG SOI چەتنەش',
+'exif-jpeginterchangeformatlength' => 'JPEG سانلىق مەلۇماتى بايت',
+'exif-transferfunction'            => 'يۆتكەش ئىقتىدارى',
+'exif-whitepoint'                  => 'ئاق نۇقتا رەڭ دەرىجىسى',
+'exif-primarychromaticities'       => 'ئاساسىي رەڭ دەرىجىسى',
+'exif-ycbcrcoefficients'           => 'رەڭ بوشلۇقىنى ئالماشتۇرۇش سانلار قاتارى كوئېففىتىسېنت',
+'exif-referenceblackwhite'         => 'ئاق قارا پايدىلىنىش قىممىتى',
+'exif-datetime'                    => 'ھۆججەت ئۆزگەرتىلگەن چېسلا ۋە ۋاقىت',
+'exif-imagedescription'            => 'سۈرەت ماۋزۇسى',
+'exif-make'                        => 'فوتو ئاپپارات ياسىغان زاۋۇت',
+'exif-model'                       => 'فوتو ئاپپارات تىپى',
+'exif-software'                    => 'ئىشلەتكەن يۇمشاق دېتال',
+'exif-artist'                      => 'ئاپتور',
+'exif-copyright'                   => 'نەشر ھوقۇقىغا ئىگىدارلىق قىلغۇچى',
+'exif-exifversion'                 => 'Exif نەشرى',
+'exif-flashpixversion'             => 'قوللايدىغان Flashpix نەشرى',
+'exif-colorspace'                  => 'رەڭ بوشلۇقى',
+'exif-componentsconfiguration'     => 'ھەر بىر تەركىپنىڭ سالمىقى',
+'exif-compressedbitsperpixel'      => 'سۈرەت پرىسلاش شەكلى',
+'exif-pixelydimension'             => 'ئىناۋەتلىك سۈرەت كەڭلىكى',
+'exif-pixelxdimension'             => 'ئىناۋەتلىك سۈرەت ئېگىزلىكى',
+'exif-makernote'                   => 'زاۋۇت ئىزاھاتى',
+'exif-usercomment'                 => 'ئىشلەتكۈچى ئىزاھاتى',
+'exif-relatedsoundfile'            => 'مۇناسىۋەتلىك ئۈن ھۆججىتى',
+'exif-datetimeoriginal'            => 'سانلىق مەلۇمات قۇرۇلغان چېسلا ۋە ۋاقىت',
+'exif-datetimedigitized'           => 'رەقەملەشتۈرۈلگەن چېسلا ۋە ۋاقىت',
+'exif-subsectime'                  => 'چېسلا ۋاقىت سېكۇنت',
+'exif-subsectimeoriginal'          => 'ئەسلى چېسلا ۋاقىت سېكۇنت',
+'exif-subsectimedigitized'         => 'رەقەملەشتۈرۈلگەن چېسلا ۋاقىت سېكۇنت',
+'exif-exposuretime'                => 'ئاشكارىلانغان ۋاقتى',
+'exif-exposuretime-format'         => '$1 سېكۇنت ($2)',
+'exif-fnumber'                     => 'F قىممىتى',
+'exif-exposureprogram'             => 'يورۇتۇش پروگراممىسى',
+'exif-spectralsensitivity'         => 'سپېكتىر سەزگۈرلۈكى',
+'exif-isospeedratings'             => 'ISO سۈرئەت نىسبىتى',
+'exif-oecf'                        => 'فوتو ئېلېكتىر ئايلاندۇرۇش فاكتورى',
+'exif-shutterspeedvalue'           => 'تېز قاپقاق سۈرئىتى',
+'exif-aperturevalue'               => 'نۇر گەردىشى',
+'exif-brightnessvalue'             => 'يورۇقلۇق',
+'exif-exposurebiasvalue'           => 'يورۇتۇش تولۇقلاش',
+'exif-maxaperturevalue'            => 'ئەڭ چوڭ قۇرۇقلۇق نۇر گەردىشى',
+'exif-subjectdistance'             => 'جىسىم ئارىلىقى',
+'exif-meteringmode'                => 'ئۆلچەش ھالىتى',
+'exif-lightsource'                 => 'يورۇقلۇق مەنبەسى',
+'exif-flash'                       => 'چاقماق لامپا',
+'exif-focallength'                 => 'فوكۇس ئارىلىقى',
+'exif-subjectarea'                 => 'جىسىم دائىرىسى',
+'exif-flashenergy'                 => 'چاقماق لامپا كۈچى',
+'exif-spatialfrequencyresponse'    => 'بوشلۇق چاستوتا ئىنكاسى',
+'exif-focalplanexresolution'       => 'X ئوقى فوكال تەكشىلىك پەرق ئېتىش نىسبىتى',
+'exif-focalplaneyresolution'       => 'Y ئوقى فوكال تەكشىلىك پەرق ئېتىش نىسبىتى',
+'exif-focalplaneresolutionunit'    => 'فوكال تەكشىلىك پەرق ئېتىش نىسبىتى بىرلىكى',
+'exif-subjectlocation'             => 'تېما ئورنى',
+'exif-exposureindex'               => 'يورۇتۇش كۆرسەتكۈچى',
+'exif-sensingmethod'               => 'يورۇقلۇق سەزگۈچ ھالىتى',
+'exif-filesource'                  => 'ھۆججەت مەنبەسى',
+'exif-scenetype'                   => 'مەنزىرە تىپى',
+'exif-cfapattern'                  => 'CFA ئەندىزىسى',
+'exif-customrendered'              => 'ئىختىيارىچە سۈرەت بىر تەرەپ قىلىش',
+'exif-exposuremode'                => 'يورۇتۇش ھالىتى',
+'exif-whitebalance'                => 'ئاق بالانس',
+'exif-digitalzoomratio'            => 'رەقەملىك فوكۇس ئۆزگەرتىش نىسبىتى',
+'exif-focallengthin35mmfilm'       => '35 مىللىمېتىر فىلىم فوكۇس ئارىلىقى',
+'exif-scenecapturetype'            => 'مەنزىرە سۈرەت تارتىش تىپى',
+'exif-gaincontrol'                 => 'مەنزىرە كونترول',
+'exif-contrast'                    => 'ئاق-قارىلىقى',
+'exif-saturation'                  => 'تويۇنۇش',
+'exif-sharpness'                   => 'ئۆتكۈرلۈك',
+'exif-devicesettingdescription'    => 'ئۈسكۈنە تەڭشەك چۈشەندۈرۈشى',
+'exif-subjectdistancerange'        => 'جىسىم ئارىلىق دائىرىسى',
+'exif-imageuniqueid'               => 'بىردىنبىر سۈرەت كىملىكى',
+'exif-gpsversionid'                => 'GPS بەلگە نەشرى',
+'exif-gpslatituderef'              => 'شىمالىي ياكى جەنۇبىي كەڭلىك',
+'exif-gpslatitude'                 => 'كەڭلىك',
+'exif-gpslongituderef'             => 'شەرقىي ياكى غەربىي ئۇزۇنلۇق',
+'exif-gpslongitude'                => 'ئۇزۇنلۇق',
+'exif-gpsaltituderef'              => 'دېڭىز يۈزىدىن ئېگىزلىك پايدىلىنىش نۇقتىسى',
+'exif-gpsaltitude'                 => 'دېڭىز يۈزىدىن ئېگىزلىك',
+'exif-gpstimestamp'                => 'GPS ۋاقتى (ئاتوم سائىتى)',
+'exif-gpssatellites'               => 'ئۆلچەشكە ئىشلەتكەن سۈنئىي ھەمراھ',
+'exif-gpsstatus'                   => 'قوبۇللىغۇچ ھالىتى',
+'exif-gpsmeasuremode'              => 'ئۆلچەش ھالىتى',
+'exif-gpsdop'                      => 'ئۆلچەش ئېنىقلىقى',
+'exif-gpsspeedref'                 => 'سۈرئەت بىرلىكى',
+'exif-gpsspeed'                    => 'GPS قوبۇللىغۇچ سۈرئىتى',
+'exif-gpstrackref'                 => 'ھەرىكەتچان يۆنىلىش پايدىلىنىش نۇقتىسى',
+'exif-gpstrack'                    => 'ھەرىكەتچان يۆنىلىش',
+'exif-gpsimgdirectionref'          => 'سۈرەت يۆنىلىش پايدىلىنىش نۇقتىسى',
+'exif-gpsimgdirection'             => 'سۈرەت يۆنىلىشى',
+'exif-gpsmapdatum'                 => 'جۇغراپىيىلىك ئۆلچەپ سىزىش سانلىق مەلۇماتى ئىشلەتكەن',
+'exif-gpsdestlatituderef'          => 'نىشان كەڭلىك پايدىلىنىش نۇقتىسى',
+'exif-gpsdestlatitude'             => 'نىشان كەڭلىك',
+'exif-gpsdestlongituderef'         => 'نىشان ئۇزۇنلۇق پايدىلىنىش نۇقتىسى',
+'exif-gpsdestlongitude'            => 'نىشان ئۇزۇنلۇق',
+'exif-gpsdestbearingref'           => 'نىشان ئورنى پايدىلىنىش نۇقتىسى',
+'exif-gpsdestbearing'              => 'نىشان ئورنى',
+'exif-gpsdestdistanceref'          => 'نىشان ئارىلىق پايدىلىنىش نۇقتىسى',
+'exif-gpsdestdistance'             => 'نىشان ئارىلىقى',
+'exif-gpsprocessingmethod'         => 'GPS بىر تەرەپ قىلىش ئۇسۇلىنىڭ ئاتى',
+'exif-gpsareainformation'          => 'GPS دائىرە ئاتى',
+'exif-gpsdatestamp'                => 'GPS چېسلا',
+'exif-gpsdifferential'             => 'GPS دىففېرېنسىئال تۈزىتىش',
+
+# EXIF attributes
+'exif-compression-1' => 'پرىسلانمىغان',
+
+'exif-unknowndate' => 'نامەلۇم چېسلا',
+
+'exif-orientation-1' => 'نورمال',
+'exif-orientation-2' => 'توغرىسىغا ئايلاندۇر',
+'exif-orientation-3' => '180° ئايلاندۇر',
+'exif-orientation-4' => 'بويىغا ئايلاندۇر',
+'exif-orientation-5' => 'سولغا 90°  بويىغا ئايلاندۇر',
+'exif-orientation-6' => 'ئوڭغا 90° ئايلاندۇر',
+'exif-orientation-7' => 'ئوڭغا 90°  بويىغا ئايلاندۇر',
+'exif-orientation-8' => 'سولغا 90° ئايلاندۇر',
+
+'exif-planarconfiguration-1' => 'دوغىلاق ئەندىزىسى',
+'exif-planarconfiguration-2' => 'تەكشىلىك ئەندىزىسى',
+
+'exif-componentsconfiguration-0' => 'مەۋجۇد ئەمەس',
+
+'exif-exposureprogram-0' => 'ئېنىقلىما بېرىلمىگەن',
+'exif-exposureprogram-1' => 'قولدا',
+'exif-exposureprogram-2' => 'نورمال پروگرامما',
+'exif-exposureprogram-3' => 'نۇرچەمبىرى ئالدىنلىق ھالىتى',
+'exif-exposureprogram-4' => 'تېز قاپقاق ئالدىنلىق ھالىتى',
+'exif-exposureprogram-5' => 'ئۆزگىچە پروگرامما (مەنزىرە چوڭقۇرلۇقى ئالدىنلىق)',
+'exif-exposureprogram-6' => 'ھەرىكەتچان پروگرامما (تېز سۈرئەتلىك تېز قاپقاق سۈرئىتى ئالدىنلىق)',
+'exif-exposureprogram-7' => 'تەسۋىر ھالىتى (مەنزىرە فوكۇس ئارىلىقىنىڭ سىرتىدىكى يېقىن ئارىلىقتا سۈرەت تارتىشقا ئىشلىتىشكە ماس كېلىدۇ)',
+'exif-exposureprogram-8' => 'مەنزىرە ھالىتى (مەنزىرە فوكۇس ئارىلىقىنىڭ ئۈستىدىكى مەنزىرە سۈرەتكە ماس كېىلىدۇ)',
+
+'exif-subjectdistance-value' => '$1 مېتىر',
+
+'exif-meteringmode-0'   => 'نامەلۇم',
+'exif-meteringmode-1'   => 'ئوتتۇرىچە',
+'exif-meteringmode-2'   => 'مەركەزدىن ۋەزىنلىك ئوتتۇرىچە ئۆلچەش قىممىتى',
+'exif-meteringmode-3'   => 'نۇقتا',
+'exif-meteringmode-4'   => 'كۆپ نۇقتا',
+'exif-meteringmode-5'   => 'ئەندىزە',
+'exif-meteringmode-6'   => 'قىسمەن',
+'exif-meteringmode-255' => 'باشقا',
+
+'exif-lightsource-0'   => 'نامەلۇم',
+'exif-lightsource-1'   => 'كۈن نۇرى',
+'exif-lightsource-2'   => 'يالتىراق لامپا',
+'exif-lightsource-3'   => 'ۋولفرام لامپا (چوغلانما لامپا)',
+'exif-lightsource-4'   => 'چاقماق لامپا',
+'exif-lightsource-9'   => 'ئوچۇق',
+'exif-lightsource-10'  => 'بۇلۇتلۇق',
+'exif-lightsource-11'  => 'سايە',
+'exif-lightsource-12'  => 'كۈن نۇرى نەي لامپا (D 5700-7100K)',
+'exif-lightsource-13'  => 'كۈن نۇرى ئاق رەڭلىك نەي لامپا (N 4600-5400K)',
+'exif-lightsource-14'  => 'سوغۇق ئاق رەڭلىك نەي لامپا (W 3900-4500K)',
+'exif-lightsource-15'  => 'ئاق رەڭلىك نەي لامپا (WW 3200-3700K)',
+'exif-lightsource-17'  => 'ئۆلچەملىك چىراغ A',
+'exif-lightsource-18'  => 'ئۆلچەملىك چىراغ B',
+'exif-lightsource-19'  => 'ئۆلچەملىك چىراغ C',
+'exif-lightsource-24'  => 'ISO سۈرەتكە ئېلىش چىرىغى',
+'exif-lightsource-255' => 'باشقا نۇر مەنبەسى',
+
+# Flash modes
+'exif-flash-fired-0'    => 'چاقماق لامپا يانمىدى',
+'exif-flash-fired-1'    => 'چاقماق لامپا يېقىلدى',
+'exif-flash-return-0'   => 'زەرەتسىزلەش تەكشۈرۈش ئىقتىدارى يوق',
+'exif-flash-return-2'   => 'زەرەتسىزلەش لامپىسى يوق',
+'exif-flash-return-3'   => 'زەرەتسىزلەش لامپىسى بايقالدى',
+'exif-flash-mode-1'     => 'چاقماق لامپىنى مەجبۇرىي ياندۇر',
+'exif-flash-mode-2'     => 'چاقماق لامپىنى مەجبۇرىي ئۆچۈر',
+'exif-flash-mode-3'     => 'ئاپتوماتىك ھالەت',
+'exif-flash-function-1' => 'چاقماق لامپا ئىقتىدارى يوق',
+'exif-flash-redeye-1'   => 'قىزىل كۆزنى ئاجىزلىتىش ھالىتى',
+
+'exif-focalplaneresolutionunit-2' => 'ديۇيم',
+
+'exif-sensingmethod-1' => 'ئېنىقلىمىسىز',
+'exif-sensingmethod-2' => 'بىر بۆلەك رايون رەڭ سەزگۈچ',
+'exif-sensingmethod-3' => 'ئىككى بۆلەك رايون رەڭ سەزگۈچ',
+'exif-sensingmethod-4' => 'ئۈچ بۆلەك رايون  رەڭ سەزگۈچ',
+'exif-sensingmethod-5' => 'تۇتاش رايون رەڭ سەزگۈچ',
+'exif-sensingmethod-7' => 'ئۈچ سىزىقلىق سەزگۈچ',
+'exif-sensingmethod-8' => 'تۇتاش سىزىقلىق رەڭ سەزگۈچ',
+
+'exif-scenetype-1' => 'بىۋاسىتە تارتىلغان سۈرەت',
+
+'exif-customrendered-0' => 'نورمال بىر تەرەپ قىلىش',
+'exif-customrendered-1' => 'ئىختىيارىچە بىر تەرەپ قىلىش',
+
+'exif-exposuremode-0' => 'ئۆزلۈكىدىن نۇرلاندۇرۇش',
+'exif-exposuremode-1' => 'قولدا نۇرلاندۇرۇش',
+'exif-exposuremode-2' => 'ئۆزلۈكىدىن نۇرلاندۇرۇش تەڭشەش',
+
+'exif-whitebalance-0' => 'ئاپتوماتىك ئاق بالانس',
+'exif-whitebalance-1' => 'قولدا ئاق بالانس',
+
+'exif-scenecapturetype-0' => 'ئۆلچەملىك',
+'exif-scenecapturetype-1' => 'مەنزىرە',
+'exif-scenecapturetype-2' => 'تەسۋىر',
+'exif-scenecapturetype-3' => 'كەچلىك مەنزىرە',
+
+'exif-gaincontrol-0' => 'يوق',
+'exif-gaincontrol-1' => 'تۆۋەن ئارتىش',
+'exif-gaincontrol-2' => 'يۇقىرى ئارتىش',
+'exif-gaincontrol-3' => 'ئاستا تۆۋەنلەش',
+'exif-gaincontrol-4' => 'تېز تۆۋەنلەش',
+
+'exif-contrast-0' => 'نورمال',
+'exif-contrast-1' => 'تۆۋەن',
+'exif-contrast-2' => 'يۇقىرى',
+
+'exif-saturation-0' => 'نورمال',
+'exif-saturation-1' => 'تۆۋەن تويۇنۇش',
+'exif-saturation-2' => 'يۇقىرى تويۇنۇش',
+
+'exif-sharpness-0' => 'نورمال',
+'exif-sharpness-1' => 'تۆۋەن',
+'exif-sharpness-2' => 'يۇقىرى',
+
+'exif-subjectdistancerange-0' => 'نامەلۇم',
+'exif-subjectdistancerange-1' => 'ماكرو',
+'exif-subjectdistancerange-2' => 'يېقىن مەنزىرە',
+'exif-subjectdistancerange-3' => 'يىراق مەنزىرە',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'شىمالىي كەڭلىك',
+'exif-gpslatitude-s' => 'جەنۇبىي كەڭلىك',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'شەرقىي ئۇزۇنلۇق',
+'exif-gpslongitude-w' => 'غەربىي ئۇزۇنلۇق',
+
+'exif-gpsstatus-a' => 'ئۆلچەش جەريانى',
+'exif-gpsstatus-v' => 'ھەمكارلىشىپ ئۆلچەش',
+
+'exif-gpsmeasuremode-2' => 'ئىككى ئۆلچەملىك ئۆلچەش',
+'exif-gpsmeasuremode-3' => 'ئۈچ ئۆلچەملىك ئۆلچەش',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'سائىتىگە كىلومېتىر',
+'exif-gpsspeed-m' => 'سائىتىگە ئىنگلىز مىلى',
+'exif-gpsspeed-n' => 'دېڭىز مىلى',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'ھەقىقىي يۆنىلىش',
+'exif-gpsdirection-m' => 'يەر ماگنىتى يۆنىلىش',
+
 # External editor support
 'edit-externally'      => 'بۇ ھۆججەتنى سىرتقى قوللىنىشچان پروگراممىدا تەھرىرلە',
 'edit-externally-help' => '( [http://www.mediawiki.org/wiki/Manual:External_editors تەڭشەك قەدىمى] نى كۆرۈپ تەپسىلاتىنى چۈشىنىڭ)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'ھەممىسى',
-'namespacesall' => 'ھەممىسى',
-'monthsall'     => 'ھەممىسى',
+'recentchangesall' => 'ھەممىسى',
+'imagelistall'     => 'ھەممىسى',
+'watchlistall2'    => 'ھەممىسى',
+'namespacesall'    => 'ھەممىسى',
+'monthsall'        => 'ھەممىسى',
+'limitall'         => 'ھەممىسى',
+
+# E-mail address confirmation
+'confirmemail'             => 'جەزملەش ئېلخەت ئادرېسى',
+'confirmemail_noemail'     => 'سىز ئۆزىڭىزنىڭ [[Special:Preferences|user مايىللىق]] تەڭشىكىڭىزگە ئىناۋەتلىك ئېلخەت ئادرېسى كىرگۈزمەپسىز.',
+'confirmemail_text'        => '{{SITENAME}} ئېلخەت ئىقتىدارى ئىشلىتىشتىن ئىلگىرى ئېلخەت ئادرېسىڭىزنى دەلىللەشنى تەلەپ قىلىدۇ.
+تۆۋەندىكى كۇنۇپكىنى چەكسىڭىز ئاكتىپلاش ئېلخىتىدىن بىرنى سىزگە ئەۋەتىدۇ.
+ئۇ ئىلخەتتە بىر قۇر ئۇلانما كود بار؛
+توركۆرگۈڭىزدە بۇ ئۇلانمىنى يۈكلەپ ئېلخەت ئادرېسىڭىزنىڭ ئىناۋەتلىكلىكىنى جەزملەڭ.',
+'confirmemail_pending'     => 'جەزملەش كودى ئېلخەت ئادرېسىڭىزغا يوللاندى؛
+ئەگەر ھېساباتىڭىزنى يېقىندا قۇرغان بولسىڭىز، بىر قانچە مىنۇتتىن كېيىن تاپشۇرۇۋېلىشىڭىز مۇمكىن. ئەگەر تاپشۇرۇۋالمىغان بولسىڭىز، يېڭىدىن بىرنى ئىلتىماس قىلىڭ.',
+'confirmemail_send'        => 'جەزملەش كودىنى ئېلخەتكە يوللا',
+'confirmemail_sent'        => 'جەزملەش ئېلخىتى يوللاندى.',
+'confirmemail_oncreate'    => 'جەزملەش كودى ئېلخەت ئادرېسىڭىزغا يوللاندى.
+بۇ كود سىزنىڭ تىزىمغا كىرىشىڭىزنى تەلەپ قىلمايدۇ، ئەمما سىز بۇ wiki دىكى ھەر قانداق ئېلخەت ئىقتىدارىنى قوزغاتماقچى بولسىڭىز چوقۇم بۇ كودنى تاپشۇرۇشىڭىز لازىم.',
+'confirmemail_sendfailed'  => '{{SITENAME}} جەزملەش ئېلخىتى يوللىيالمىدى
+ئېلخەت ئادرېسىڭىزدا قانۇنسىز ھەرپ بار يوقلۇقىنى تەكشۈرۈڭ.
+
+ئېلخەت يوللىغۇچى جاۋابى: $1',
+'confirmemail_invalid'     => 'ئىناۋەتسىز جەزملەش كودى.
+بۇ كودنىڭ ۋاقتى ئۆتكەن بولۇشى مۇمكىن.',
+'confirmemail_needlogin'   => 'سىز $1 ئارقىلىق ئېلخەت ئادرېسىڭىزنى جەزملەڭ.',
+'confirmemail_success'     => 'ئېلخەت ئادرېسىڭىز جەزملەندى.
+سىز ھازىر [[Special:UserLogin|تىزىمغا كىر]]ىپ، wiki بېكەتنى ئىشلىتەلەيسىز.',
+'confirmemail_loggedin'    => 'ئېلخەت ئادرېسىڭىز ھازىر جەزملەندى.',
+'confirmemail_error'       => 'جەزملەش جەريانىدا خاتالىق كۆرۈلدى.',
+'confirmemail_subject'     => '{{SITENAME}} ئېلخەت ئادرېس جەزملەش',
+'confirmemail_invalidated' => 'ئېلخەت ئادرېس جەزملەش بىكار قىلىندى',
+'invalidateemail'          => 'ئېلخەت جەزملەشتىن ۋاز كەچ',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[بېكەت ئاتلىغان كود ئايلاندۇرۇش چەكلەنگەن]',
+'scarytranscludefailed'   => '[$1 نىڭ قېلىپىنى ئېلىش مەغلۇپ بولدى]',
+'scarytranscludetoolong'  => '[URL بەك ئۇزۇن]',
+
+# Trackbacks
+'trackbackbox'      => 'بۇ بەتنىڭ نەقىلى: <br />
+$1',
+'trackbackremove'   => '([$1 ئۆچۈر])',
+'trackbacklink'     => 'نەقىل',
+'trackbackdeleteok' => 'بۇ نەقىل مۇۋەپپەقىيەتلىك ئۆچۈرۈلدى.',
+
+# Delete conflict
+'deletedwhileediting' => "'''ئاگاھلاندۇرۇش''': بۇ بەت تەھرىرلەشكە باشلىغاندىن كېيىن ئۆچۈرۈلگەن!",
+'confirmrecreate'     => "سىز بۇ بەتنى تەھرىرلىگەندىن كېيىن ئىشلەتكۈچى [[User:$1|$1]] ([[User talk:$1|مۇنازىرە]])  تۆۋەندىكى سەۋەب تۈپەيلىدىن بۇ بەت ئۆچۈرۈلدى:
+: ''$2''
+راستىنلا بۇ بەتنى قايتا قۇرۇشتىن ئىلگىرى ئويلىنىڭ.",
+'recreate'            => 'قايتا قۇر',
 
 # action=purge
 'confirm_purge_button' => 'ماقۇل',
+'confirm-purge-top'    => 'بۇ بەتنىڭ غەملىكىنى تازىلامسىز؟',
+'confirm-purge-bottom' => 'بىر بەتنى تازىلىغاندا غەملەك ۋە مەجبۇرىي كۆرسىتىدىغان نۆۋەتتىكى تۈزىتىلگەن نەشرى تازىلىنىدۇ.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ئالدىنقى بەت',
 'imgmultipagenext' => 'كېيىنكى بەت →',
 'imgmultigo'       => 'كۆچۈش!',
+'imgmultigoto'     => '$1 بەتكە يۆتكەل',
 
 # Table pager
+'ascending_abbrev'         => 'ئۆسكۈچى',
+'descending_abbrev'        => 'كېمەيگۈچى',
 'table_pager_next'         => 'كېيىنكى بەت',
 'table_pager_prev'         => 'ئالدىنقى بەت',
 'table_pager_first'        => 'بىرىنچى بەت',
 'table_pager_last'         => 'ئەڭ ئاخىرقى بەت',
+'table_pager_limit'        => 'ھەر بىر بەتتە $1 تۈر كۆرسەت',
 'table_pager_limit_submit' => 'كۆچۈش',
+'table_pager_empty'        => 'نەتىجە يوق',
+
+# Auto-summaries
+'autosumm-blank'   => 'بەتنى قۇرۇقدا',
+'autosumm-replace' => "ئالماشتۇرۇلغان مەزمۇن '$1'",
+'autoredircomment' => 'قايتا نىشانلانغان بەت [[$1]]',
+'autosumm-new'     => "قۇرۇلغان بەت '$1'",
+
+# Live preview
+'livepreview-loading' => 'يۈكلەۋاتىدۇ…',
+'livepreview-ready'   => 'يۈكلەۋاتىدۇ… تەييارلاندى!',
+'livepreview-failed'  => 'رىئال ئالدىن كۆزىتىش مەغلۇپ بولدى! نورمال ئالدىن كۆزىتىشنى سىناڭ.',
+'livepreview-error'   => 'ئۇلىنىش مەغلۇپ بولدى: $1 "$2".
+نورمال ئالدىن كۆزىتىشنى سىناڭ.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'ئۆتكەن $1 {{PLURAL:$1|سېكۇنت|سېكۇنت}} ئىچىدىكى ئۆزگەرتىش تىزىملىكتە كۆرسىتىلمەسلىكى مۇمكىن.',
+'lag-warn-high'   => 'ساندان ئۆتە كېچىككەنلىكتىن، ئۆتكەن $1 {{PLURAL:$1|سېكۇنت|سېكۇنت}} ئىچىدىكى ئۆزگەرتىش تىزىملىكتە كۆرسىتىلمەسلىكى مۇمكىن.',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'كۆزەت تىزىملىكىڭىزدە{{PLURAL:$1|1 ماۋزۇ|$1 ماۋزۇ}}, بار، مۇنازىرە بېتى بۇنىڭ سىرتىدا.',
+'watchlistedit-noitems'        => 'كۆزەت تىزىملىكىڭىزنىڭ ماۋزۇسى يوق',
+'watchlistedit-normal-title'   => 'كۆزەت تىزىملىك تەھرىرى',
+'watchlistedit-normal-legend'  => 'كۆزەت تىزىملىكىدىن ماۋزۇنى چىقىرىۋەت',
+'watchlistedit-normal-explain' => 'كۆزەت تىزىملىكىڭىزدىكى ماۋزۇ تۆۋەندە كۆرسىتىلىدۇ.
+ماۋزۇنى بىرنى چىقىرىۋېتىشتە، ئۇنىڭ ئالدىدىكى تاللاشنى چىقىرىۋېتىپ، ئاندىن ماۋزۇ چىقىرىۋەتنى چېكىڭ.
+سىز [[Special:Watchlist/raw|/ئەسلى كۆزەت تىزىملىكى تەھرىر]]لىيەلەيسىز.',
+'watchlistedit-normal-submit'  => 'ماۋزۇ چىقىرىۋەت',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 ماۋزۇ|$1 ماۋزۇ}}  كۆزەت تىزىملىكىڭىزدىن چىقىرىۋېتىلدى:',
+'watchlistedit-raw-title'      => 'ئەسلى كۆزەت تىزىملىك تەھرىرى',
+'watchlistedit-raw-legend'     => 'ئەسلى كۆزەت تىزىملىك تەھرىرى',
+'watchlistedit-raw-explain'    => 'كۆزەت تىزىملىكىڭىزدىكى ماۋزۇ تۆۋەندە كۆرسىتىلىدۇ، شۇنداقلا بۇ جەدۋەلنى تەھرىرلەش ئارقىلىق ماۋزۇ قوشالايسىز ياكى چىقىرىۋېتەلەيسىز؛
+ھەر قۇردا بىردىن ماۋزۇ.
+تاماملانغاندا كۆزەت تىزىملىكى يېڭىلانى چېكىڭ.
+سىز [[Special:Watchlist/edit| ئۆلچەملىك تەھرىرلىگۈچ]] ئىشلەتسىڭىز بولىدۇ.',
+'watchlistedit-raw-titles'     => 'ماۋزۇلار:',
+'watchlistedit-raw-submit'     => 'كۆزەت تىزىملىكى يېڭىلا',
+'watchlistedit-raw-done'       => 'كۆزەت تىزىملىكىڭىز يېڭىلاندى.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 ماۋزۇ|$1 ماۋزۇ}} قوشۇلدى:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 ماۋزۇ|$1 ماۋزۇ}} چىقىرىۋېتىلدى:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'مۇناسىۋەتلىك ئۆزگەرتىشنى كۆرسەت',
 'watchlisttools-edit' => 'كۆزەت تىزىملىكىنى كۆرۈپ تەھرىرلەش',
 'watchlisttools-raw'  => 'ئەسلى كۆزەت تىزىملىك تەھرىرى',
 
+# Core parser functions
+'unknown_extension_tag' => 'نامەلۇم كېڭەيتىلگەن خەتكۈچ "$1"',
+'duplicate-defaultsort' => '\'\'\'ئاگاھلاندۇرۇش:\'\'\' كۆڭۈلدىكى تەرتىپلەش كۇنۇپكىسى "$2" ئىلگىرىكى كۆڭۈلدىكى تەرتىپلەش كۇنۇپكىسى "$1" نى قاپلىۋېتىدۇ.',
+
+# Special:Version
+'version'                          => 'نەشرى',
+'version-extensions'               => 'قاچىلانغان كېڭەيتىلمە',
+'version-specialpages'             => 'ئالاھىدە بەتلەر',
+'version-parserhooks'              => 'تەھلىلچى ئىلمىكى',
+'version-variables'                => 'ئۆزگەرگۈچى مىقدار',
+'version-other'                    => 'باشقا',
+'version-mediahandlers'            => 'ۋاسىتە بىر تەرەپ قىلغۇچ',
+'version-hooks'                    => 'ئىلمەك',
+'version-extension-functions'      => 'تەھلىلچى فونكسىيە',
+'version-parser-extensiontags'     => 'تەھلىلچى كېڭەيتىلمە خەتكۈچ',
+'version-parser-function-hooks'    => 'تەھلىلچى فونكسىيە ئىلمىكى',
+'version-skin-extension-functions' => 'تېرە تەھلىلچى فونكسىيە',
+'version-hook-name'                => 'ئىلمەك ئاتى',
+'version-hook-subscribedby'        => 'ئىمزا قويغۇچى',
+'version-license'                  => 'ئىجازەتنامە',
+'version-software'                 => 'قاچىلانغان يۇمشاق دېتال',
+'version-software-product'         => 'مەھسۇلات',
+'version-software-version'         => 'نەشرى',
+
+# Special:FilePath
+'filepath'         => 'ھۆججەت يولى',
+'filepath-page'    => 'ھۆججەت:',
+'filepath-submit'  => 'يۆتكەل',
+'filepath-summary' => 'بۇ ئالاھىدە بەت ھۆججەتنىڭ تولۇق يولىنى قايتۇرىدۇ.
+سۈرەت تولۇق ئېنىقلىقتا كۆرسىتىلىدۇ، باشقا ھۆججەت تىپى بىۋاسىتە ئۇلانغان قوللىنىشچان پروگراممىدا ئېچىلىدۇ
+
+ھۆججەت ئاتىنى كۆرسەت، ئالدى قوشۇلغۇچى"{{ns:file}}:" نى ئۆز ئىچىگە ئالمىسۇن.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'تەكرار ھۆججەت ئىزدە',
+'fileduplicatesearch-summary'  => 'چاچما (hash) قىممىتىگە ئاساسەن تەكرار ھۆججەت ئىزدە. 
+
+ھۆججەت ئاتى كىرگۈزگەندە ئالدى قوشۇلغۇچى "{{ns:file}}:" كىرگۈزمىسىڭىزمۇ بولىدۇ.',
+'fileduplicatesearch-legend'   => 'تەكرار ھۆججەت ئىزدە',
+'fileduplicatesearch-filename' => ':ھۆججەت ئاتى',
+'fileduplicatesearch-submit'   => 'ئىزدە',
+'fileduplicatesearch-info'     => '$1 × $2 نۇقتا<br />ھۆججەت چوڭلۇقى: $3<br />MIME تىپى: $4',
+'fileduplicatesearch-result-1' => '"$1" ھۆججەتنىڭ تامامەن ئوخشاش تەكرار نۇسخىسى يوق.',
+'fileduplicatesearch-result-n' => ' "$1" ھۆججەتنىڭ تامامەن ئوخشاش {{PLURAL:$2|1 تەكرار|$2 تەكرار}} نۇسخىسى بار.',
+
 # Special:SpecialPages
-'specialpages' => 'ئالاھىدە بەتلەر',
+'specialpages'                   => 'ئالاھىدە بەتلەر',
+'specialpages-note'              => '----
+* نورمال ئالاھىدە بەت.
+* <strong class=\\"mw-specialpagerestricted\\">چەكلىمىلىك ئالاھىدە بەتلەر.</strong>',
+'specialpages-group-maintenance' => 'ئاسراش دوكلاتى',
+'specialpages-group-other'       => 'باشقا ئالاھىدە بەتلەر',
+'specialpages-group-login'       => 'تىزىمغا كىر / قۇر',
+'specialpages-group-changes'     => 'يېقىنقى ئۆزگەرتىش ۋە خاتىرە',
+'specialpages-group-media'       => 'ۋاسىتە دوكلاتى ۋە يۈكلەر',
+'specialpages-group-users'       => 'ئىشلەتكۈچى ۋە ھوقۇقى',
+'specialpages-group-highuse'     => 'كۆپ ئىشلىتىلگەن بەت',
+'specialpages-group-pages'       => 'بەت تىزىملىكى',
+'specialpages-group-pagetools'   => 'بەت قورالى',
+'specialpages-group-wiki'        => 'Wiki سانلىق مەلۇماتى ۋە قورال',
+'specialpages-group-redirects'   => 'قايتا نىشانلانغان ئالاھىدە بەت',
+'specialpages-group-spam'        => 'ئەخلەتكە قارشى قورال',
+
+# Special:BlankPage
+'blankpage'              => 'بوش بەت',
+'intentionallyblankpage' => 'بۇ بەت قەستەن بوش قالدۇرۇلغان.',
+
+# External image whitelist
+'external_image_whitelist' => ' #بۇ قۇرغا ئوخشاش خەتنى قالدۇرۇپ قويۇڭ<pre>
+#تۆۋەندىكى (// ئارىسىدىكى قىسمى)غا رەسمىي ئىپادە كىرگۈزۈڭ
+#بۇلار سىرتقى (ئۇلانغان) سۈرەتكە ماسلاشتۇرۇلىدۇ
+#ئاشۇ ماسلاشتۇرۇلغانلىرى سۈرەت قىلىپ كۆرسىتىلىدۇ بولمىسا ئۇلانما سۈپىتىدە كۆرسىتىدۇ
+# # دىن باشلانغان قۇر ئىزاھات دەپ قارىلىدۇ
+#چوڭ كىچىك يېزىلىشنى پەرقلەندۈرمەيدۇ
+
+#بۇ قۇرغا ھەممە  regex كىرگۈزۈلىدۇ. بۇ قۇرغا ئوخشاش خەت قالدۇرۇپ قويۇلىدۇ </pre>',
 
 # Special:Tags
-'tags-edit' => 'ئۆزگەرتىش',
+'tags'                    => 'ئىناۋەتلىك ئۆزگەرتىلگەن خەتكۈچ',
+'tag-filter'              => '[[Special:Tags|Tag]]سۈزگۈچ:',
+'tag-filter-submit'       => 'سۈزگۈچ',
+'tags-title'              => 'خەتكۈچ',
+'tags-intro'              => 'بۇ بەتتە يۇمشاق دېتالدا بەلگە سېلىنغان تەھرىر ۋە ئۇلارنىڭ ئىزاھاتى كۆرسىتىلدى.',
+'tags-tag'                => 'خەتكۈچ ئاتى',
+'tags-display-header'     => 'ئۆزگەرتىش تىزىملىكىدە كۆرسىتىلىش شەكلى',
+'tags-description-header' => 'مەناسىنىڭ تولۇق چۈشەندۈرۈلۈشى',
+'tags-hitcount-header'    => 'بەلگە سېلىنغان ئۆزگەرتىش',
+'tags-edit'               => 'ئۆزگەرتىش',
+'tags-hitcount'           => '$1 {{PLURAL:$1|ئۆزگەرتىش|ئۆزگەرتىش}}',
+
+# Database error messages
+'dberr-header'      => 'بۇ wiki مەسىلىگە يولۇقتى',
+'dberr-problems'    => 'كەچۈرۈڭ!
+بۇ بېكەتتە تېخنىكىلىق قىيىنچىلىق كۆرۈلدى.',
+'dberr-again'       => 'بىر قانچە مىنۇت كۈتۈپ ئاندىن قايتا يۈكلەڭ.',
+'dberr-info'        => '(ساندان مۇلازىمىتىرىغا ئۇلىنالمىدى:  $1)',
+'dberr-usegoogle'   => 'بۇ ۋاقىتتا Google ئىزدىگۈچتىن ئىزدەشنى سىناپ بېقىڭ.',
+'dberr-outofdate'   => 'دىققەت ئۇلار ئىندىكېسلىغان مەزمۇن ئەڭ يېڭى بولماسلىقى مۇمكىن.',
+'dberr-cachederror' => 'بۇ ئىلتىماس قىلغان بەتنىڭ غەملەنگەن كۆپەيتىلمىسى، ئەڭ يېڭىسى بولماسلىقى مۇمكىن.',
+
+# HTML forms
+'htmlform-submit'              => 'تاپشۇر',
+'htmlform-reset'               => 'ئۆزگەرتىشتىن يېنىۋال',
+'htmlform-selectorother-other' => 'باشقا',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'تۈر قوش',
+'ajax-add-category-submit'     => 'قوش',
+'ajax-confirm-save'            => 'ساقلا',
+'ajax-add-category-summary'    => '"$1" تۈرنى قوش',
+'ajax-remove-category-summary' => '"$1" تۈرنى چىقىرىۋەت',
+'ajax-error-title'             => 'خاتالىق',
+'ajax-error-dismiss'           => 'جەزملە',
 
 );
