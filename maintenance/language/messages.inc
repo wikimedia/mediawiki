@@ -1702,6 +1702,7 @@ $wgMessageStructure = array(
 	'usermessage' => array(
 		'usermessage-summary',
 		'usermessage-editor',
+		'usermessage-template',
 	),
 	'watchlist' => array(
 		'watchlist',

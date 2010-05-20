@@ -3750,8 +3750,36 @@ class User {
 	}
 
 	/**
+	 * Format the user message using a hook, a template, or, failing these, a static format.
+	 * @param $subject   String the subject of the message
+	 * @param $text      String the content of the message
+	 * @param $signature String the signature, if provided.
+	 */
+	static protected function formatUserMessage( $subject, $text, $signature ) {
+		if ( wfRunHooks( 'FormatUserMessage',
+				array( $subject, &$text, $signature ) ) ) {
+
+			$signature = empty($signature) ? "~~~~~" : "{$signature} ~~~~~";
+
+			$template = Title::newFromText( wfMsg( 'usermessage-template' ) );
+			if ( !$template
+					|| $template->getNamespace() !== NS_TEMPLATE
+					|| !$template->exists() ) {
+				$text = "== $subject ==\n\n$text\n\n-- $signature"
+			} else {
+				$text = '{{'. $template->getText()
+					. " | subject=$subject | body=$text | signature=$signature }}";
+			}
+		}
+
+		return $text;
+	}
+
+	/**
 	 * Leave a user a message
+	 * @param $subject String the subject of the message
 	 * @param $text String the message to leave
+	 * @param $signature String Text to leave in the signature
 	 * @param $summary String the summary for this change, defaults to
 	 *                        "Leave system message."
 	 * @param $article Article The article to update, defaults to the
@@ -3779,6 +3807,8 @@ class User {
 		wfRunHooks( 'SetupUserMessageArticle',
 			array( $this, &$article, $subject, $text, $signature, $summary, $editor ) );
 
+
+		$text = self::formatUserMessage( $subject, $text, $signature );
 		$flags = $article->checkFlags( $flags );
 
 		if ( $flags & EDIT_UPDATE ) {
