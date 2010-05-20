@@ -3339,8 +3339,8 @@ Normal önizlemeyi deneyin.',
 'watchlistedit-normal-title'   => 'İzleme listesini düzenle',
 'watchlistedit-normal-legend'  => 'İzleme listesinden başlıkları kaldır',
 'watchlistedit-normal-explain' => 'İzleme listenizdeki başlıklar aşağıda gösterilmiştir.
-Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlıkları Çıkar butonuna tıklayın
-[[Special:Watchlist/raw|Satır listesini]] de düzenleyebilirsiniz',
+Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin ve "{{int:Watchlistedit-normal-submit}}" düğmesine tıklayın.
+[[Special:Watchlist/raw|Satır listesini]] de düzenleyebilirsiniz.',
 'watchlistedit-normal-submit'  => 'Başlıkları kaldır',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 başlık|$1 başlık}} izleme listenizden çıkarıldı:',
 'watchlistedit-raw-title'      => 'Ham izleme listesini düzenle',

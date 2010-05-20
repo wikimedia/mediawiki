@@ -3315,9 +3315,9 @@ Tente a previsão comum.',
 'watchlistedit-noitems'        => 'A sua lista de páginas vigiadas não possui títulos.',
 'watchlistedit-normal-title'   => 'Editar lista de páginas vigiadas',
 'watchlistedit-normal-legend'  => 'Remover títulos da lista de páginas vigiadas',
-'watchlistedit-normal-explain' => 'Os títulos de sua lista de páginas vigiadas são exibidos a seguir.
-Para remover um título, marque a caixa ao lado do mesmo e clique no botão Remover Títulos.
-Você também pode [[Special:Watchlist/raw|editar a lista crua]].',
+'watchlistedit-normal-explain' => 'Os títulos das páginas de sua lista de vigiados são exibidos abaixo.
+Para remover um título, marque a caixa ao lado do mesmo e clique "{{int:Watchlistedit-normal-submit}}".
+Você pode também [[Special:Watchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
 'watchlistedit-normal-submit'  => 'Remover Títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de páginas vigiadas:',
 'watchlistedit-raw-title'      => 'Edição crua da lista de páginas vigiadas',

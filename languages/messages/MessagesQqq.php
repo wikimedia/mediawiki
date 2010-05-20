@@ -490,7 +490,7 @@ Format penggunaannya adalah : "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmes
 'editlink'                => 'Text dari pranala yang terlihat disebelah setiap templat yang dapat disunting (tidak di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
-'viewsourcelink'          => 'Text dari pranala yang terlihat disebelah setiap templat yang tidak dapat disunting (di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Editlink}}.
+'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.
 
 {{Identical|View source}}',
 'editsectionhint'         => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
@@ -771,6 +771,7 @@ Tip for internal links',
 'anonpreviewwarning'               => 'See also {{msg-mw|Anoneditwarning}}',
 'missingsummary'                   => 'The text "sdit summary" is in {{msg-mw|summary}}.
 The text "Save" is in {{msg-mw|savearticle}}.',
+'missingcommenttext'               => 'This message is shown, when the textbox by a new-section is empty.',
 'missingcommentheader'             => '
 The text "Save" is in {{msg-mw|savearticle}}.',
 'summary-preview'                  => 'Preview of the edit summary, shown under the edit summary itself.

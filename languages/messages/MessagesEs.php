@@ -3332,8 +3332,8 @@ Intenta la previsualización normal.',
 'watchlistedit-noitems'        => 'Tu lista de seguimiento está vacía.',
 'watchlistedit-normal-title'   => 'Editar lista de seguimiento',
 'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
-'watchlistedit-normal-explain' => "Las páginas de tu lista de seguimiento se muestran debajo.
-Para eliminar una página, marca la casilla junto a la página, y haz clic en ''Borrar páginas''.
+'watchlistedit-normal-explain' => "Los títulos de tu lista de seguimiento se muestran debajo.
+Para remover un título, marca la casilla junto a él, y haz clic en ''{{int:Watchlistedit-normal-submit}}''.
 También puedes [[Special:Watchlist/raw|editar la lista en crudo]].",
 'watchlistedit-normal-submit'  => 'Borrar páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',

@@ -665,7 +665,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'userexists'                 => 'Il nome utente inserito è già utilizzato. 
 Scegliere un nome utente diverso.',
 'loginerror'                 => "Errore nell'accesso",
-'createaccounterror'         => "Impossibile creare l'account: $1",
+'createaccounterror'         => "Impossìbile creare s'account: $1",
 'nocookiesnew'               => "La registrazione è stata completata, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin'             => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
 'noname'                     => 'Il nome utente indicato non è valido.',

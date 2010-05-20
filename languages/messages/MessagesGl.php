@@ -540,7 +540,7 @@ A base de datos devolveu o erro "$3: $4"',
 'laggedslavemode'      => "'''Aviso:''' a páxina pode non conter as actualizacións recentes.",
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
-'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que voltará á normalidade.
+'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que volverá á normalidade.
 
 O administrador que a pechou deu esta explicación: $1',
 'missing-article'      => 'A base de datos non atopa o texto da páxina chamada "$1" $2, que debera ter atopado.
@@ -896,7 +896,7 @@ Velaquí está a última entrada no rexistro, por se quere consultala:",
 'edittools'                        => '<!-- O texto que apareza aquí mostrarase por debaixo dos formularios de edición e envío. -->',
 'nocreatetitle'                    => 'Limitada a creación de páxinas',
 'nocreatetext'                     => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
-Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta]].',
+Pode volver e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta]].',
 'nocreate-loggedin'                => 'Non dispón dos permisos necesarios para crear páxinas novas.',
 'sectioneditnotsupported-title'    => 'A edición de seccións non está soportada',
 'sectioneditnotsupported-text'     => 'A edición de seccións non está soportada nesta páxina.',
@@ -1515,7 +1515,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 # Upload
 'upload'                      => 'Cargar un ficheiro',
 'uploadbtn'                   => 'Cargar o ficheiro',
-'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
+'reuploaddesc'                => 'Cancelar a carga e volver ao formulario de carga',
 'upload-tryagain'             => 'Enviar a descrición do ficheiro modificada',
 'uploadnologin'               => 'Non accedeu ao sistema',
 'uploadnologintext'           => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
