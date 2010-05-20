@@ -356,6 +356,7 @@ $wgOptionalMessages = array(
 	'prefs-registration-date-time',
 	'prefs-memberingroups-type',
 	'shared-repo-name-wikimediacommons',
+	'usermessage-template',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
