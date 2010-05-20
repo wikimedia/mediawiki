@@ -1430,11 +1430,12 @@ class WebInstaller_Options extends WebInstallerPage {
 				'value' => $selected,
 			) ) .
 			$this->parent->getHelpBox( 'config-cache-help' ) .
+			'<div id="config-memcachewrapper">' .
 			$this->parent->getTextBox( array(
 				'var' => '_MemCachedServers',
 				'label' => 'config-memcached-servers',
 			) ) .
-			$this->parent->getHelpBox( 'config-memcached-help' ) .
+			$this->parent->getHelpBox( 'config-memcached-help' ) . '</div>' .
 			$this->parent->getFieldsetEnd()
 		);
 		$this->endForm();
