@@ -45,7 +45,7 @@ div#content {
 	background-position: bottom right;
 	background-repeat: repeat-x;
 }
-div#head-base {
+#head-base {
 	margin-top: -5em;
 	margin-right: 10em;
 	height: 5em;
@@ -458,22 +458,22 @@ div#footer ul li {
 	color: #333333;
 	font-size: 0.7em;
 }
-div#footer div#footer-icons {
+div#footer #footer-icons {
 	float: left;
 }
 /* @noflip */
-body.ltr div#footer div#footer-places {
+body.ltr div#footer #footer-places {
 	float: left;
 }
-div#footer div#footer-info li {
+div#footer #footer-info li {
 	line-height: 1.4em;
 }
-div#footer div#footer-icons li {
+div#footer #footer-icons li {
 	float: right;
 	margin-right: 0.5em;
 	line-height: 2em;
 }
-div#footer div#footer-places li {
+div#footer #footer-places li {
 	float: right;
 	margin-left: 1em;
 	line-height: 2em;
@@ -949,7 +949,7 @@ img.thumbborder {
 #jump-to-nav {
 	display: none;
 }
-div#contentSub, div#contentSub2 {
+#contentSub, #contentSub2 {
 	font-size: 84%;
 	line-height: 1.2em;
 	margin: 0 1em 1.4em 0;
