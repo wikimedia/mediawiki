@@ -4,6 +4,8 @@
 
 function doLivePreview( e ) {
 	e.preventDefault();
+
+	$j( mw ).trigger( 'LivePreviewPrepare' );
 	
 	var postData = $j('#editform').formToArray();
 	postData.push( { 'name' : 'wpPreview', 'value' : '1' } );
@@ -45,6 +47,8 @@ function doLivePreview( e ) {
 			} );
 			
 			loadSpinner.remove();
+
+			$j( mw ).trigger( 'LivePreviewDone', [copyElements] );
 		} );
 }
 
