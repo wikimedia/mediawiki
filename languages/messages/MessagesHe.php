@@ -3355,7 +3355,9 @@ $1',
 'watchlistedit-noitems'        => 'רשימת המעקב ריקה.',
 'watchlistedit-normal-title'   => 'עריכת רשימת המעקב',
 'watchlistedit-normal-legend'  => 'הסרת דפים מרשימת המעקב',
-'watchlistedit-normal-explain' => 'כל הדפים ברשימת המעקב מוצגים להלן. כדי להסיר דף, יש לסמן את התיבה לידו, וללחוץ על "הסרת הדפים". באפשרותכם גם [[Special:Watchlist/raw|לערוך את הרשימה הגולמית]].',
+'watchlistedit-normal-explain' => 'כל הדפים ברשימת המעקב מוצגים להלן.
+כדי להסיר דף, יש לסמן את התיבה לידו, וללחוץ על "{{int:Watchlistedit-normal-submit}}".
+באפשרותכם גם [[Special:Watchlist/raw|לערוך את הרשימה הגולמית]].',
 'watchlistedit-normal-submit'  => 'הסרת הדפים',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|כותרת אחת הוסרה|$1 כותרות הוסרו}} מרשימת המעקב:',
 'watchlistedit-raw-title'      => 'עריכת הרשימה הגולמית',
