@@ -524,7 +524,7 @@ $messages = array(
 'vector-view-edit'           => 'Bearbeiten',
 'vector-view-history'        => 'Versionsgeschichte',
 'vector-view-view'           => 'Lesen',
-'vector-view-viewsource'     => 'Quelltext betrachten',
+'vector-view-viewsource'     => 'Quelltext anzeigen',
 'actions'                    => 'Aktionen',
 'namespaces'                 => 'Namensräume',
 'variants'                   => 'Varianten',
@@ -716,7 +716,7 @@ Möglicherweise wurde sie bereits von jemand anders entfernt.',
 'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Abfrage: $2',
-'viewsource'           => 'Quelltext betrachten',
+'viewsource'           => 'Quelltext anzeigen',
 'viewsourcefor'        => 'für $1',
 'actionthrottled'      => 'Aktionsanzahl limitiert',
 'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
@@ -2140,8 +2140,9 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'emailuserfooter'      => 'Diese E-Mail wurde von {{SITENAME}}-Benutzer „$1“ an „$2“ gesendet.',
 
 # User Messenger
-'usermessage-summary' => 'Systemnachricht gespeichert.',
-'usermessage-editor'  => 'System-Messenger',
+'usermessage-summary'  => 'Systemnachricht gespeichert.',
+'usermessage-editor'   => 'System-Messenger',
+'usermessage-template' => 'Vorlage:Benutzernachricht',
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',

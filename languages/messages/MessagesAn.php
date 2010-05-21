@@ -707,6 +707,9 @@ Si busté ye un usuario anonimo y creye que l'han escrito comentarios no releban
 Puet [[Special:Search/{{PAGENAME}}|mirar iste títol]] en atras páginas,
 u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mirar en os rechistros relacionatos]</span>.',
 'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "$1" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
+'userpage-userdoesnotexist-view'   => 'A cuenta d\'usuario "$1" no ye rechistrada.',
+'blocked-notice-logextract'        => "Ista cuenta d'usuario ye actualment bloqueyata.
+A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 'clearyourcache'                   => "'''Pare cuenta: Si quiere beyer os cambeos dimpués d'alzar l'archibo, puede estar que tienga que refrescar a caché d'o suyo nabegador ta beyer os cambeos.''' 
 
 *'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Macintosh); 
@@ -769,6 +772,8 @@ Como información adicional s'amuestra contino a zaguera dentrada en o rechistro
 'nocreatetitle'                    => "S'ha restrinchito a creyazión de pachinas",
 'nocreatetext'                     => '{{SITENAME}} ha restrinchito a creyación de nuevas pachinas. Puede tornar entazaga y editar una pachina ya existent, [[Special:UserLogin|identificarse u creyar una cuenta]].',
 'nocreate-loggedin'                => 'No tiene premiso ta creyar nuevas pachinas.',
+'sectioneditnotsupported-title'    => 'A edición por seccions no ye suportada',
+'sectioneditnotsupported-text'     => 'A edición por seccions no ye suportada en ista pachina',
 'permissionserrors'                => 'Errors de premisos',
 'permissionserrorstext'            => 'No tiene premisos ta fer-lo, por {{PLURAL:$1|ista razón|istas razons}}:',
 'permissionserrorstext-withaction' => 'No tiene premisos ta $2, por {{PLURAL:$1|ista razón|istas razons}}:',
@@ -778,6 +783,7 @@ Considere si ye preciso continar editando ista pachina.
 Contino s'amuestra o rechistro de borraus y treslaus ta ista pachina:",
 'moveddeleted-notice'              => "Ista pachina s'ha borrato.
 Contino s'amuestra o rechistro de borraus y treslaus como referenzia.",
+'log-fulllog'                      => 'Veyer o rechistro completo',
 'edit-hook-aborted'                => 'Edizión albortada por o grifio (hook). 
 No dio garra esplicazión.',
 'edit-gone-missing'                => "No s'ha puesto esbiellar a pachina.
@@ -799,6 +805,7 @@ Bellas plantillas no se bi encluyen.",
 'post-expand-template-argument-category'  => 'Pachinas con argumentos de plantilla omesos',
 'parser-template-loop-warning'            => "S'ha deteutato un bucle de plantillas: [[$1]]",
 'parser-template-recursion-depth-warning' => "S'ha brincato o limite de recursión de plantillas ($1)",
+'language-converter-depth-warning'        => "S'ha blincau o limite de profundidat d'o conversor d'idiomas ($1)",
 
 # "Undo" feature
 'undo-success' => 'A edición se puet desfer. 
@@ -831,6 +838,7 @@ A razón endicata por $3 ye ''$2''",
 'histlegend'             => "Selección de diferencias: sinyale as versions a comparar y prete \"enter\" u o botón d'o cobaixo.<br />
 Leyenda: '''({{int:cur}})''' = esferencias con a versión actual, '''({{int:last}})''' = esferencias con a versión anterior, '''{{int:minoreditletter}}''' = edición menor",
 'history-fieldset-title' => 'Mirar en o historial',
+'history-show-deleted'   => 'Nomás os borratos',
 'histfirst'              => 'Primeras contrebucions',
 'histlast'               => 'Zagueras',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -848,11 +856,30 @@ Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
 'rev-deleted-comment'         => "(s'ha sacato iste comentario)",
 'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'           => "(Aizión borrata d'o rechistro)",
+'rev-deleted-user-contribs'   => "[nombre d'usuario u adreza IP elminada - edición amagada d'as contribucions]",
 'rev-deleted-text-permission' => "Ista versión d'a pachina s'ha '''borrato'''.
 Talment pueda trobe más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+'rev-deleted-text-unhide'     => "Ista versión d'a pachina ha estau '''borrada'''.
+Puede trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
+Como administrador encara puet [$1 veyer ista versión ] si lo deseya.",
 'rev-deleted-text-view'       => "Ista versión d'a pachina s'ha '''borrato'''.
 Como admenistrador, la puet beyer; talment trobe más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+'rev-suppressed-text-view'    => "Ista versión d'a pachina s'ha '''borrato'''. 
+Como administrador, la puet veyer; puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+'rev-deleted-no-diff'         => "No puede veyer ista comparanza de pachinas porque una d'as versions s'ha '''borrato'''. 
+Puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+'rev-deleted-unhide-diff'     => "Una d'as versions d'ista comparanza s'ha '''borrato'''.
+Puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
+Como administrador podrá seguir [$1 veyendo ista comparanza] si lo deseya.",
+'rev-suppressed-unhide-diff'  => "Una d'as versions d'ista comparanza s'ha '''borrato'''. 
+Puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus]. 
+Como administrador encara puet seguir [$1 veyendo ista comparanza] si lo deseya.",
+'rev-deleted-diff-view'       => "Una d'as versions d'ista comparanza s'ha '''borrato'''.
+Como administrador puede veyer o conteniu; puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+'rev-suppressed-diff-view'    => "Una d'as versions d'ista comparanza s'ha '''borrato'''.
+Como administrador encara puet veyer o conteniu; puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
 'rev-delundel'                => 'amostrar/amagar',
+'rev-showdeleted'             => 'amostrar',
 'revisiondelete'              => 'Borrar/restaurar versions',
 'revdelete-nooldid-title'     => 'A versión de destino no ye conforme',
 'revdelete-nooldid-text'      => "No ha endicato sobre qué versión u versions de destino s'ha d'aplicar ista función, a versión especificata no existe u ye mirando d'amagar a versión actual.",
@@ -860,6 +887,9 @@ Como admenistrador, la puet beyer; talment trobe más detalles en o [{{fullurl:{
 'revdelete-nologtype-text'    => 'No ha endicato sobre qué tipo de rechistro quiere fer ista azión.',
 'revdelete-nologid-title'     => 'Dentrada de rechistro imbalida',
 'revdelete-nologid-text'      => 'No ha endicau sobre qué ebento rechistrau quiere fer serbir ista funzión u bien no esiste a dentrada de rechistro que ha endicau.',
+'revdelete-no-file'           => 'O fichero especificato no existe.',
+'revdelete-show-file-confirm' => 'Seguro que quiere veyer una versión borrata d\'o fichero "<nowiki>$1</nowiki>" d\'o $2 a las $3?',
+'revdelete-show-file-submit'  => 'Sí',
 'revdelete-selected'          => "'''{{PLURAL:$2|Versión trigata|Versions trigatas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Escaizimiento d'o rechistro trigato|Escaizimientos d'o rechistro trigatos}}:'''",
 'revdelete-text'              => "'''As versions y esdevenimientos borratos encara apareixerán en o istorial d'a pachina y en os rechistros, pero bellas partes d'o suyo conteniu serán inaccesibles ta o publico.'''
@@ -986,6 +1016,9 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'powersearch-ns'                   => 'Mirar en os espacios de nombres:',
 'powersearch-redir'                => 'Listar reendreceras',
 'powersearch-field'                => 'Mirar',
+'powersearch-togglelabel'          => 'Marcar:',
+'powersearch-toggleall'            => 'Totz',
+'powersearch-togglenone'           => 'Denguno',
 'search-external'                  => 'Busca externa',
 'searchdisabled'                   => 'A busca en {{SITENAME}} ye temporalment desautibata. Entremistanto, puede mirar en {{SITENAME}} fendo serbir buscadors esternos, pero pare cuenta que os suyos endizes de {{SITENAME}} puede no estar esbiellatos.',
 
@@ -1079,6 +1112,7 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 'prefs-help-realname'         => "* Nombre reyal (opzional): si esliche escribir-lo, se ferá serbir ta l'atribuzión d'a suya faina.",
 'prefs-help-email'            => "L'adreza de correu-e ye opcional, pero ye precisa ta que le ninviemos una nueva contrasenya si nunc la xublidase. Tamién puede fer que atros usuarios puedan contactar con vusté dende a suya pachina d'usuario u de descusión d'usuario sin haber de revelar a suya identidat.",
 'prefs-help-email-required'   => 'Cal una adreza de correu-e.',
+'prefs-signature'             => 'Sinyatura',
 'prefs-advancedediting'       => 'Opzions abanzadas',
 'prefs-advancedrc'            => 'Opzions abanzadas',
 'prefs-advancedrendering'     => 'Opzions abanzadas',
@@ -1377,6 +1411,13 @@ PICT # misz.
 'upload-file-error-text'  => "Ha escaizito una error interna entre que se prebaba de creyar un archibo temporal en o serbidor. Por fabor, contaute con un [[Special:ListUsers/sysop|almenistrador]] d'o sistema.",
 'upload-misc-error'       => 'Error esconoixita en a carga',
 'upload-misc-error-text'  => "Ha escaizito una error entre que se cargaba l'archibo. Por fabor, comprebe que a URL ye conforme y aczesible y dimpués prebe de fer-lo una atra begada. Si o problema contina, contaute con un [[Special:ListUsers/sysop|almenistrador]] d'o sistema.",
+'upload-http-error'       => 'Ha ocorriu una error HTTP: $1',
+
+# HTTP errors
+'http-invalid-url'    => 'URL incorrecta: $1',
+'http-invalid-scheme' => 'As URLs con con prefixo "S1" no son compatibles',
+'http-request-error'  => 'A demanda HTTP ha fallau por una error desconoixida.',
+'http-read-error'     => 'Error de lectura HTTP.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No se podió aczeder dica la URL',

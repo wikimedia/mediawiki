@@ -82,7 +82,7 @@ $messages = array(
 'pagecategories'         => '{{PLURAL:$1|Abdeeling|Abdeelinge}}',
 'category_header'        => 'Bledder in Abdeeling „$1“',
 'subcategories'          => 'Unnerabdeeling',
-'listingcontinuesabbrev' => '(weiter)',
+'listingcontinuesabbrev' => '(weider)',
 
 'about'         => 'Iwwer',
 'article'       => 'Blatt',
@@ -116,6 +116,7 @@ $messages = array(
 'vector-namespace-user'     => 'Yuuser-Blatt',
 'vector-view-edit'          => 'Ennere',
 'vector-view-view'          => 'Lese',
+'namespaces'                => 'Blatznaame',
 
 'errorpagetitle'   => 'Mischteek',
 'returnto'         => 'Zerick zum Blatt $1.',
@@ -303,7 +304,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'searchprofile-project-tooltip'  => 'Uffgucke in $1',
 'searchprofile-images-tooltip'   => 'Nooch Feils uffgucke',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
-'search-redirect'                => '(Weiterleitung vun „$1“)',
+'search-redirect'                => '(Weiderleiding vun „$1“)',
 'search-section'                 => '(Abschnitt $1)',
 'search-suggest'                 => 'Iss „$1“ gmeent?',
 'search-interwiki-caption'       => 'Schweschder Projects',
@@ -332,6 +333,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'prefs-resetpass'          => 'Paesswatt ennere',
 'prefs-editing'            => 'Ennere',
 'searchresultshead'        => 'Guck uff',
+'recentchangesdays-max'    => 'Max. $1 {{PLURAL:$1|Daag|Daag}}',
 'timezoneregion-africa'    => 'Afrikaa',
 'timezoneregion-america'   => 'Amerikaa',
 'timezoneregion-asia'      => 'Asie',
@@ -482,6 +484,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 
 # Statistics
 'statistics'              => 'Nummere',
+'statistics-header-pages' => 'Nummere vun Bledder',
 'statistics-header-edits' => 'Nummere vun Enneringe',
 'statistics-header-users' => 'Nummere vun Yuuser',
 'statistics-pages'        => 'Bledder',
@@ -511,8 +514,12 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'pager-newer-n'     => '{{PLURAL:$1|neegscht|neegscht $1}}',
 'pager-older-n'     => '{{PLURAL:$1|letscht|letscht $1}}',
 
+# Book sources
+'booksources-go' => 'Uffgucke',
+
 # Special:Log
-'specialloguserlabel' => 'Yuuser:',
+'specialloguserlabel'  => 'Yuuser:',
+'speciallogtitlelabel' => 'Titel:',
 
 # Special:AllPages
 'allpages'          => 'Alle Bledder',
@@ -543,7 +550,13 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'activeusers-hidesysops' => 'Verwalter verschwinne losse',
 
 # Special:ListGroupRights
-'listgrouprights-group' => 'Druppe',
+'listgrouprights'              => 'Benutzergruppen-Rechte
+Rechte vun Yuuser-Druppe',
+'listgrouprights-group'        => 'Druppe',
+'listgrouprights-rights'       => 'Rechte',
+'listgrouprights-helppage'     => 'Help:Rechte vun Druppe',
+'listgrouprights-addgroup'     => 'Yuuser zu {{PLURAL:$2|daer Druppe|denne Druppe}} dezu duh: $1',
+'listgrouprights-addgroup-all' => 'Yuuser zu alle Druppe dezu duh',
 
 # E-mail user
 'defemailsubject' => '{{SITENAME}}-E-Poschde',
@@ -592,8 +605,10 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'protect-othertime'         => 'Annre Zeit:',
 'protect-othertime-op'      => 'annre Zeit',
 'protect-otherreason'       => 'Annerer Grund:',
-'protect-otherreason-op'    => 'annerer Grund',
+'protect-otherreason-op'    => 'Annerer Grund',
 'protect-expiry-options'    => '1 Schtund:1 hour,1 Daag:1 day,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Munede:6 months,1 Yaar:1 year,Fer immer:infinite',
+'minimum-size'              => 'Min. Grees',
+'maximum-size'              => 'Max. Grees:',
 'pagesize'                  => '(Bytes)',
 
 # Restrictions (nouns)
@@ -670,6 +685,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'allmessages-filter-all'        => 'All',
 'allmessages-filter-modified'   => 'Gennert',
 'allmessages-language'          => 'Schprooch:',
+'allmessages-filter-submit'     => 'Los',
 
 # Thumbnails
 'thumbnail-more' => 'greeser mache',
@@ -677,6 +693,11 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # Special:Import
 'import-upload-filename' => 'Feilnaame:',
 'import-comment'         => 'Anmaerricking:',
+'import-revision-count'  => '– {{PLURAL:$1|1 Version|$1 Versione}}',
+
+# Import log
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Version|Versione}}',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} vun $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Dei Yuuser-Blatt',
@@ -785,7 +806,9 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'version-software-version' => 'Version',
 
 # Special:FilePath
-'filepath-submit' => 'Paad',
+'filepath'        => 'Feilpaad',
+'filepath-page'   => 'Feil:',
+'filepath-submit' => 'Geh',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Uffgucke',
@@ -793,6 +816,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # Special:SpecialPages
 'specialpages'                 => 'Besunnere Bledder',
 'specialpages-group-login'     => 'Kumm nei',
+'specialpages-group-users'     => 'Yuuser unn Rechte',
 'specialpages-group-pages'     => 'Lischde vun Bledder',
 'specialpages-group-pagetools' => 'Gscharr fer Bledder',
 'specialpages-group-spam'      => 'Spam-Gscharr',
@@ -809,7 +833,9 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'htmlform-selectorother-other' => 'Annere',
 
 # Add categories per AJAX
-'ajax-add-category-submit' => 'Dezu duh',
-'ajax-error-dismiss'       => 'OK',
+'ajax-add-category'         => 'Abdeeling dezu duh',
+'ajax-add-category-submit'  => 'Dezu duh',
+'ajax-add-category-summary' => 'Abdeeling „$1“ dezu duh',
+'ajax-error-dismiss'        => 'OK',
 
 );
