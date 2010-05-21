@@ -3761,7 +3761,7 @@ class User {
 
 			$signature = empty($signature) ? "~~~~~" : "{$signature} ~~~~~";
 
-			$template = Title::newFromText( wfMsg( 'usermessage-template' ) );
+			$template = Title::newFromText( wfMsgForContent( 'usermessage-template' ) );
 			if ( !$template
 					|| $template->getNamespace() !== NS_TEMPLATE
 					|| !$template->exists() ) {
