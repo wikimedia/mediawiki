@@ -1343,8 +1343,8 @@ $query : Original query.
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
-‘SetupUserMessageArticle': Called in User::leaveUserMessage() after
-before anything has been posted to the article.
+‘SetupUserMessageArticle': Called in User::leaveUserMessage() before
+anything has been posted to the article.
 $user: The user who we left the message for.
 &$article: The article that will be posted to.
 $subject: The subject of the message
