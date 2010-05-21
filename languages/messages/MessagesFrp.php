@@ -911,8 +911,8 @@ Lo mot de pâssa por cél compto novél pôt étre changiê sur la pâge de ''[[
 'newarticletext'                   => "Vos éd siuvu un lim de vers una pâge qu’ègziste p’oncor ou ben qu’at étâ [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} suprimâ].
 Por fâre cela pâge, buchiéd voutron tèxto dens la bouèta ce-desot (vos pouede vêre la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacions).
 Se vos éte arrevâ ice per èrror, clicâd sur lo boton '''Devant''' de voutron navigator.",
-'anontalkpagetext'                 => "---- ''Vos éte sur la pâge de discussion a un utilisator pas encartâ qu’at p’oncor fêt un compto ou ben que nen utilise pas.
-Por celes rêsons, nos devens utilisar son adrèce IP por l’identifiar.
+'anontalkpagetext'                 => "---- ''O est la pâge de discussion a un utilisator pas encartâ qu’at p’oncor fêt un compto ou ben que nen utilise pas.
+Por celes rêsons, nos devens utilisar son adrèce IP numerica por l’identifiar.
 Una adrèce IP pôt étre partagiê per un mouél d’utilisators.
 Se vos éte un utilisator pas encartâ et pués se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede [[Special:UserLogin/signup|fâre un compto]] ou ben [[Special:UserLogin|vos branchiér]] por èvitar tota confusion a vegnir avouéc d’ôtros contributors pas encartâs.''",
 'noarticletext'                    => 'Ora, y at gins de tèxto dens ceta pâge.

@@ -1661,7 +1661,7 @@ Daħħal: tip/subtip, e.ż. <tt>image/jpeg</tt>.",
 'randomredirect-nopages' => 'M\'hawnx riindirizzi fl-ispazju tal-isem "$1".',
 
 # Statistics
-'statistics'               => 'Statistiċi',
+'statistics'               => 'Statistika',
 'statistics-header-pages'  => 'Statistika tal-paġna',
 'statistics-header-edits'  => 'Statistika tal-immodifikar',
 'statistics-header-views'  => 'Statistika tal-viżwalizzazzjoni',

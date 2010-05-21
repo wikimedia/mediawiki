@@ -36,6 +36,7 @@ $messages = array(
 'tog-minordefault'            => 'Ségna tot al mudèfic coma "zníni" s\'l\'utent làsa la casèla vuta',
 'tog-previewontop'            => "Fam avdé l'anteprèma sora casèla d'mudèfica invezi che dciotta",
 'tog-previewonfirst'          => "Fa' avdé l'anteprèma dop c'u's fa la prèma mudèfica",
+'tog-nocache'                 => "T'an stêga a tní in memoria al pàgin",
 
 # Dates
 'january'       => 'Znèr',
