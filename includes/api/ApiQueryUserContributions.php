@@ -417,7 +417,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'start' => 'The start timestamp to return from',
 			'end' => 'The end timestamp to return to',
 			'continue' => 'When more results are available, use this to continue',
-			'user' => 'The user to retrieve contributions for',
+			'user' => 'The users to retrieve contributions for',
 			'userprefix' => "Retrieve contibutions for all users whose names begin with this value. Overrides {$p}user",
 			'dir' => 'The direction to search (older or newer)',
 			'namespace' => 'Only list contributions in these namespaces',
