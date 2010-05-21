@@ -4055,7 +4055,7 @@ class Parser {
 		$ts = date( 'YmdHis', $unixts );
 		$tzMsg = date( 'T', $unixts );  # might vary on DST changeover!
 
-		# Allow translation of timezones trough wiki. date() can return
+		# Allow translation of timezones through wiki. date() can return
 		# whatever crap the system uses, localised or not, so we cannot
 		# ship premade translations.
 		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
