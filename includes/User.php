@@ -2160,7 +2160,7 @@ class User {
 					'ug_user'  => $this->getID(),
 					'ug_group' => $group,
 				),
-				'User::addGroup',
+				__METHOD__,
 				array( 'IGNORE' ) );
 		}
 
@@ -2183,8 +2183,7 @@ class User {
 			array(
 				'ug_user'  => $this->getID(),
 				'ug_group' => $group,
-			),
-			'User::removeGroup' );
+			), __METHOD__ );
 
 		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
@@ -2777,7 +2776,7 @@ class User {
 			return $res;
 		else {
 			$dbr = wfGetDB( DB_SLAVE );
-			return $res = $dbr->selectField( 'user', 'max(user_id)', false, 'User::getMaxID' );
+			return $res = $dbr->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 		}
 	}
 
