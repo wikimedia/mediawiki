@@ -17,9 +17,22 @@ class ForeignAPIFile extends File {
 	}
 	
 	static function newFromTitle( $title, $repo ) {
-		$info = $repo->getImageInfo( $title );
-		if( $info ) {
-			return new ForeignAPIFile( $title, $repo, $info, true );
+		$data = $repo->fetchImageQuery( array(
+                        'titles' => 'File:' . $title->getText(),
+                        'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime',
+                        'prop' => 'imageinfo' ) );
+
+		$info = $repo->getImageInfo( $data );
+
+		if( $data && $info) {
+			if( isset( $data['query']['redirects'][0] ) ) {
+				$newtitle = Title::newFromText( $data['query']['redirects'][0]['to']);
+				$img = new ForeignAPIFile( $newtitle, $repo, $info, true );
+				if( $img ) $img->redirectedFrom( $title->getDBkey() );
+			} else {
+				$img = new ForeignAPIFile( $title, $repo, $info, true );
+			}
+			return $img;
 		} else {
 			return null;
 		}

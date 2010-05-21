@@ -103,20 +103,7 @@ class ForeignAPIRepo extends FileRepo {
 		return false;
 	}
 
-	protected function queryImage( $query ) {
-		$data = $this->fetchImageQuery( $query );
-
-		if( isset( $data['query']['pages'] ) ) {
-			foreach( $data['query']['pages'] as $pageid => $info ) {
-				if( isset( $info['imageinfo'][0] ) ) {
-					return $info['imageinfo'][0];
-				}
-			}
-		}
-		return false;
-	}
-
-	protected function fetchImageQuery( $query ) {
+	function fetchImageQuery( $query ) {
 		global $wgMemc;
 
 		$url = $this->mApiBase .
@@ -125,7 +112,8 @@ class ForeignAPIRepo extends FileRepo {
 				array_merge( $query,
 					array(
 						'format' => 'json',
-						'action' => 'query' ) ) );
+						'action' => 'query',
+						'redirects' => 'true' ) ) );
 
 		if( !isset( $this->mQueryCache[$url] ) ) {
 			$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
@@ -147,11 +135,15 @@ class ForeignAPIRepo extends FileRepo {
 		return FormatJson::decode( $this->mQueryCache[$url], true );
 	}
 
-	function getImageInfo( $title, $time = false ) {
-		return $this->queryImage( array(
-			'titles' => 'Image:' . $title->getText(),
-			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime',
-			'prop' => 'imageinfo' ) );
+	function getImageInfo( $data ) {
+		if( $data && isset( $data['query']['pages'] ) ) {
+			foreach( $data['query']['pages'] as $pageid => $info ) {
+				if( isset( $info['imageinfo'][0] ) ) {
+					return $info['imageinfo'][0];
+				}
+			}
+		}
+		return false;
 	}
 
 	function findBySha1( $hash ) {
@@ -169,13 +161,15 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	function getThumbUrl( $name, $width=-1, $height=-1 ) {
-		$info = $this->queryImage( array(
-			'titles' => 'Image:' . $name,
+		$data = $this->fetchImageQuery( array(
+			'titles' => 'File:' . $name,
 			'iiprop' => 'url',
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
 			'prop' => 'imageinfo' ) );
-		if( $info && $info['thumburl'] ) {
+		$info = $this->getImageInfo( $data );
+
+		if( $data && $info && $info['thumburl'] ) {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
 			return $info['thumburl'];
 		} else {
