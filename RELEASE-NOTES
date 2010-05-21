@@ -171,6 +171,7 @@ in a negative namespace (which is invalid).
 * (bug 23563) Old skins now support $wgUploadNavigationUrl and take into account upload rights.
 * (bug 1347) Render \phi in math using images, in order to create consistent and correct render results.
 * (bug 16573) Render \epsilon in math using images, in order to create consistent and correct render results.
+* (bug 22541) Support image redirects when using ForeignAPIRepo
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent
