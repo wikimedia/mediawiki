@@ -423,7 +423,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => 'Include additional pieces of information',
 			'show' => array( "Show only items that meet this criteria, e.g. non minor edits only: {$p}show=!minor",
-					"NOTE: if show=patrolled or {$p}show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown", ),
+					"NOTE: if {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown", ),
 			'tag' => 'Only list revisions tagged with this tag',
 		);
 	}
