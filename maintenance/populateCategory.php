@@ -7,7 +7,7 @@
 
 $optionsWithArgs = array( 'begin', 'max-slave-lag', 'throttle' );
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 
 class PopulateCategory extends Maintenance {
@@ -31,7 +31,7 @@ added after the software update and so will be populated anyway.
 When the script has finished, it will make a note of this in the database, and
 will not run again without the --force option.
 TEXT;
-#'
+# '
 		$this->addOption( 'begin', 'Only do categories whose names are alphabetically after the provided name', false, true );
 		$this->addOption( 'max-slave-lag', 'If slave lag exceeds this many seconds, wait until it drops before continuing.  Default: 10', false, true );
 		$this->addOption( 'throttle', 'Wait this many milliseconds after each category.  Default: 0', false, true );
@@ -49,16 +49,16 @@ TEXT;
 	private function doPopulateCategory( $begin, $maxlag, $throttle, $force ) {
 		$dbw = wfGetDB( DB_MASTER );
 	
-		if( !$force ) {
+		if ( !$force ) {
 			$row = $dbw->selectRow(
 				'updatelog',
 				'1',
 				array( 'ul_key' => 'populate category' ),
 				__FUNCTION__
 			);
-			if( $row ) {
-				$this->output( "Category table already populated.  Use php ".
-				"maintenance/populateCategory.php\n--force from the command line ".
+			if ( $row ) {
+				$this->output( "Category table already populated.  Use php " .
+				"maintenance/populateCategory.php\n--force from the command line " .
 				"to override.\n" );
 				return true;
 			}
@@ -67,14 +67,14 @@ TEXT;
 		$maxlag = intval( $maxlag );
 		$throttle = intval( $throttle );
 		$force = (bool)$force;
-		if( $begin !== '' ) {
-			$where = 'cl_to > '.$dbw->addQuotes( $begin );
+		if ( $begin !== '' ) {
+			$where = 'cl_to > ' . $dbw->addQuotes( $begin );
 		} else {
 			$where = null;
 		}
 		$i = 0;
 	
-		while( true ) {
+		while ( true ) {
 			# Find which category to update
 			$row = $dbw->selectRow(
 				'categorylinks',
@@ -85,30 +85,30 @@ TEXT;
 					'ORDER BY' => 'cl_to'
 				)
 			);
-			if( !$row ) {
+			if ( !$row ) {
 				# Done, hopefully.
 				break;
 			}
 			$name = $row->cl_to;
-			$where = 'cl_to > '.$dbw->addQuotes( $name );
+			$where = 'cl_to > ' . $dbw->addQuotes( $name );
 	
 			# Use the row to update the category count
 			$cat = Category::newFromName( $name );
-			if( !is_object( $cat ) ) {
+			if ( !is_object( $cat ) ) {
 				$this->output( "The category named $name is not valid?!\n" );
 			} else {
 				$cat->refreshCounts();
 			}
 	
 			++$i;
-			if( !($i % self::REPORTING_INTERVAL) ) {
+			if ( !( $i % self::REPORTING_INTERVAL ) ) {
 				$this->output( "$name\n" );
 				wfWaitForSlaves( $maxlag );
 			}
-			usleep( $throttle*1000 );
+			usleep( $throttle * 1000 );
 		}
 	
-		if( $dbw->insert(
+		if ( $dbw->insert(
 				'updatelog',
 				array( 'ul_key' => 'populate category' ),
 				__FUNCTION__,

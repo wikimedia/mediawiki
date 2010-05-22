@@ -18,7 +18,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class Protect extends Maintenance {
 	public function __construct() {
@@ -37,9 +37,9 @@ class Protect extends Maintenance {
 		$reason = $this->getOption( 'r', '' );
 
 		$protection = "sysop";
-		if ( $this->hasOption('semiprotect') ) {
+		if ( $this->hasOption( 'semiprotect' ) ) {
 			$protection = "autoconfirmed";
-		} elseif ( $this->hasOption('unprotect') ) {
+		} elseif ( $this->hasOption( 'unprotect' ) ) {
 			$protection = "";
 		}
 
@@ -55,7 +55,7 @@ class Protect extends Maintenance {
 
 		# un/protect the article
 		$this->output( "Updating protection status... " );
-		$success = $wgArticle->updateRestrictions($restrictions, $reason);
+		$success = $wgArticle->updateRestrictions( $restrictions, $reason );
 		if ( $success ) {
 			$this->output( "done\n" );
 		} else {

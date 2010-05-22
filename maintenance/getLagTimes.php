@@ -18,7 +18,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class GetLagTimes extends Maintenance {
 	public function __construct() {
@@ -29,14 +29,14 @@ class GetLagTimes extends Maintenance {
 	public function execute() {
 		$lb = wfGetLB();
 
-		if( $lb->getServerCount() == 1 ) {
+		if ( $lb->getServerCount() == 1 ) {
 			$this->error( "This script dumps replication lag times, but you don't seem to have\n"
 		 				  . "a multi-host db server configuration." );
 		} else {
 			$lags = $lb->getLagTimes();
-			foreach( $lags as $n => $lag ) {
+			foreach ( $lags as $n => $lag ) {
 				$host = $lb->getServerName( $n );
-				if( IP::isValid( $host ) ) {
+				if ( IP::isValid( $host ) ) {
 					$ip = $host;
 					$host = gethostbyaddr( $host );
 				} else {

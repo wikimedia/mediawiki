@@ -24,7 +24,7 @@
 
 $optionsWithArgs = array( 'report' );
 
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 
 /**
  * @ingroup Maintenance
@@ -48,7 +48,7 @@ class BackupReader {
 
 	function handleRevision( $rev ) {
 		$title = $rev->getTitle();
-		if( !$title ) {
+		if ( !$title ) {
 			$this->progress( "Got bogus revision with null title!" );
 			return;
 		}
@@ -56,20 +56,20 @@ class BackupReader {
 		$this->revCount++;
 		$this->report();
 
-		if( !$this->dryRun ) {
+		if ( !$this->dryRun ) {
 			call_user_func( $this->importCallback, $rev );
 		}
 	}
 	
 	function handleUpload( $revision ) {
-		if( $this->uploads ) {
+		if ( $this->uploads ) {
 			$this->uploadCount++;
-			//$this->report();
+			// $this->report();
 			$this->progress( "upload: " . $revision->getFilename() );
 			
-			if( !$this->dryRun ) {
+			if ( !$this->dryRun ) {
 				// bluuuh hack
-				//call_user_func( $this->uploadCallback, $revision );
+				// call_user_func( $this->uploadCallback, $revision );
 				$dbw = wfGetDB( DB_MASTER );
 				return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 			}
@@ -80,34 +80,34 @@ class BackupReader {
 		$this->revCount++;
 		$this->report();
 
-		if( !$this->dryRun ) {
+		if ( !$this->dryRun ) {
 			call_user_func( $this->logItemCallback, $rev );
 		}
 	}
 
 	function report( $final = false ) {
-		if( $final xor ( $this->pageCount % $this->reportingInterval == 0 ) ) {
+		if ( $final xor ( $this->pageCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
 	}
 
 	function showReport() {
-		if( $this->reporting ) {
+		if ( $this->reporting ) {
 			$delta = wfTime() - $this->startTime;
-			if( $delta ) {
-				$rate = sprintf("%.2f", $this->pageCount / $delta);
-				$revrate = sprintf("%.2f", $this->revCount / $delta);
+			if ( $delta ) {
+				$rate = sprintf( "%.2f", $this->pageCount / $delta );
+				$revrate = sprintf( "%.2f", $this->revCount / $delta );
 			} else {
 				$rate = '-';
 				$revrate = '-';
 			}
 			# Logs dumps don't have page tallies
-			if( $this->pageCount )
+			if ( $this->pageCount )
 				$this->progress( "$this->pageCount ($rate pages/sec $revrate revs/sec)" );
 			else
 				$this->progress( "$this->revCount ($revrate revs/sec)" );
 		}
-		wfWaitForSlaves(5);
+		wfWaitForSlaves( 5 );
 	}
 
 	function progress( $string ) {
@@ -116,18 +116,18 @@ class BackupReader {
 
 	function importFromFile( $filename ) {
 		$t = true;
-		if( preg_match( '/\.gz$/', $filename ) ) {
+		if ( preg_match( '/\.gz$/', $filename ) ) {
 			$filename = 'compress.zlib://' . $filename;
 		}
-		elseif( preg_match( '/\.bz2$/', $filename ) ) {
+		elseif ( preg_match( '/\.bz2$/', $filename ) ) {
 			$filename = 'compress.bzip2://' . $filename;
 		}
-		elseif( preg_match( '/\.7z$/', $filename ) ) {
+		elseif ( preg_match( '/\.7z$/', $filename ) ) {
 			$filename = 'mediawiki.compress.7z://' . $filename;
 			$t = false;
 		}
 
-		$file = fopen( $filename, $t ? 'rt' : 't' ); //our 7zip wrapper uses popen, which seems not to like two-letter modes
+		$file = fopen( $filename, $t ? 'rt' : 't' ); // our 7zip wrapper uses popen, which seems not to like two-letter modes
 		return $this->importFromHandle( $file );
 	}
 
@@ -155,34 +155,34 @@ class BackupReader {
 	}
 }
 
-if( wfReadOnly() ) {
+if ( wfReadOnly() ) {
 	wfDie( "Wiki is in read-only mode; you'll need to disable it for import to work.\n" );
 }
 
 $reader = new BackupReader();
-if( isset( $options['quiet'] ) ) {
+if ( isset( $options['quiet'] ) ) {
 	$reader->reporting = false;
 }
-if( isset( $options['report'] ) ) {
+if ( isset( $options['report'] ) ) {
 	$reader->reportingInterval = intval( $options['report'] );
 }
-if( isset( $options['dry-run'] ) ) {
+if ( isset( $options['dry-run'] ) ) {
 	$reader->dryRun = true;
 }
-if( isset( $options['debug'] ) ) {
+if ( isset( $options['debug'] ) ) {
 	$reader->debug = true;
 }
-if( isset( $options['uploads'] ) ) {
+if ( isset( $options['uploads'] ) ) {
 	$reader->uploads = true; // experimental!
 }
 
-if( isset( $args[0] ) ) {
+if ( isset( $args[0] ) ) {
 	$result = $reader->importFromFile( $args[0] );
 } else {
 	$result = $reader->importFromStdin();
 }
 
-if( WikiError::isError( $result ) ) {
+if ( WikiError::isError( $result ) ) {
 	echo $result->getMessage() . "\n";
 } else {
 	echo "Done!\n";

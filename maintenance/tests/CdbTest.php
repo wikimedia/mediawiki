@@ -51,7 +51,7 @@ class CdbTest extends PHPUnit_Framework_TestCase {
 			$v1 = $v1 === false ? '(not found)' : $v1;
 			$v2 = $v2 === false ? '(not found)' : $v2;
 
-			#cdbAssert( 'Mismatch', $key, $v1, $v2 );
+			# cdbAssert( 'Mismatch', $key, $v1, $v2 );
 			$this->cdbAssert( "PHP error", $key, $v1, $value );
 			$this->cdbAssert( "DBA error", $key, $v2, $value );
 		}

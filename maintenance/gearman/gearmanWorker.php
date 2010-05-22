@@ -1,10 +1,10 @@
 <?php
 
 $optionsWithArgs = array( 'fake-job', 'procs' );
-require( dirname(__FILE__).'/../commandLine.inc' );
-require( dirname(__FILE__).'/gearman.inc' );
+require( dirname( __FILE__ ) . '/../commandLine.inc' );
+require( dirname( __FILE__ ) . '/gearman.inc' );
 
-ini_set('memory_limit', '150M' );
+ini_set( 'memory_limit', '150M' );
 
 if ( isset( $options['procs'] ) ) {
 	$procs = $options['procs'];

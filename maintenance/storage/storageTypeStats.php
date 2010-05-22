@@ -1,6 +1,6 @@
 <?php
 
-require_once( dirname(__FILE__).'/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class StorageTypeStats extends Maintenance {
 	function execute() {
@@ -86,7 +86,7 @@ SQL;
 		echo str_repeat( '-', 120 ) . "\n";
 		foreach ( $stats as $flags => $flagStats ) {
 			foreach ( $flagStats as $class => $entry ) {
-				printf( $format, $flags, $class, $entry['count'], 
+				printf( $format, $flags, $class, $entry['count'],
 					sprintf( "%-13d - %-13d", $entry['first'], $entry['last'] ) );
 			}
 		}

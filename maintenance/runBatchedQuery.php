@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class BatchedQueryRunner extends Maintenance {
 	public function __construct() {

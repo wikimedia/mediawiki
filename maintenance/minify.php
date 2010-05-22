@@ -10,15 +10,15 @@ class MinifyScript extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( 'outfile', 
-			'File for output. Only a single file may be specified for input.', 
+		$this->addOption( 'outfile',
+			'File for output. Only a single file may be specified for input.',
 			false, true );
 		$this->addOption( 'outdir',
-			"Directory for output. If this is not specified, and neither is --outfile, then the\n" . 
+			"Directory for output. If this is not specified, and neither is --outfile, then the\n" .
 			"output files will be sent to the same directories as the input files.",
 			false, true );
 		$this->mDescription = "Minify a file or set of files.\n\n" .
-			"If --outfile is not specified, then the output file names will have a .min extension\n" . 
+			"If --outfile is not specified, then the output file names will have a .min extension\n" .
 			"added, e.g. jquery.js -> jquery.min.js.";
 
 	}

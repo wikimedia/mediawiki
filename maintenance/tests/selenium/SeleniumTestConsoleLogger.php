@@ -17,9 +17,9 @@ class SeleniumTestConsoleLogger {
 
 	public function write( $message, $mode = false ) {
 		$out = '';
-		//if ( $mode == MW_TESTLOGGER_RESULT_OK ) $out .= '<font color="green">';
+		// if ( $mode == MW_TESTLOGGER_RESULT_OK ) $out .= '<font color="green">';
 		$out .= htmlentities( $message );
-		//if ( $mode == MW_TESTLOGGER_RESULT_OK ) $out .= '</font>';
+		// if ( $mode == MW_TESTLOGGER_RESULT_OK ) $out .= '</font>';
 		if ( $mode != MW_TESTLOGGER_CONTINUE_LINE ) {
 			$out .= "\n";
 		}

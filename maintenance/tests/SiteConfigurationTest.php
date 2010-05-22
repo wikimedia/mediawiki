@@ -3,7 +3,7 @@
 function getSiteParams( $conf, $wiki ) {
 	$site = null;
 	$lang = null;
-	foreach( $conf->suffixes as $suffix ) {
+	foreach ( $conf->suffixes as $suffix ) {
 		if ( substr( $wiki, -strlen( $suffix ) ) == $suffix ) {
 			$site = $suffix;
 			$lang = substr( $wiki, 0, -strlen( $suffix ) );
@@ -196,7 +196,7 @@ class SiteConfigurationTest extends PHPUnit_Framework_TestCase {
 			$this->mConf->get( 'merge', 'enwiki', 'wiki', array(), array( 'tag' ) ),
 			'get(): merging setting on an existing wiki (with tag)'
 		);
-		$this->assertEquals( 
+		$this->assertEquals(
 			array( 'dewiki' => 'dewiki' ) + $common,
 			$this->mConf->get( 'merge', 'dewiki', 'wiki' ),
 			'get(): merging setting on an existing wiki (2)'

@@ -90,7 +90,7 @@ class BackupDumper {
 	 * @param $file String: full or relative path to the PHP file to load, or empty
 	 */
 	function loadPlugin( $class, $file ) {
-		if( $file != '' ) {
+		if ( $file != '' ) {
 			require_once( $file );
 		}
 		$register = array( $class, 'register' );
@@ -104,30 +104,30 @@ class BackupDumper {
 	function processArgs( $args ) {
 		$sink = null;
 		$sinks = array();
-		foreach( $args as $arg ) {
+		foreach ( $args as $arg ) {
 			$matches = array();
-			if( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
+			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
 				@list( /* $full */ , $opt, $val, $param ) = $matches;
 				switch( $opt ) {
 				case "plugin":
 					$this->loadPlugin( $val, $param );
 					break;
 				case "output":
-					if( !is_null( $sink ) ) {
+					if ( !is_null( $sink ) ) {
 						$sinks[] = $sink;
 					}
-					if( !isset( $this->outputTypes[$val] ) ) {
+					if ( !isset( $this->outputTypes[$val] ) ) {
 						wfDie( "Unrecognized output sink type '$val'\n" );
 					}
 					$type = $this->outputTypes[$val];
 					$sink = new $type( $param );
 					break;
 				case "filter":
-					if( is_null( $sink ) ) {
+					if ( is_null( $sink ) ) {
 						$this->progress( "Warning: assuming stdout for filter output\n" );
 						$sink = new DumpOutput();
 					}
-					if( !isset( $this->filterTypes[$val] ) ) {
+					if ( !isset( $this->filterTypes[$val] ) ) {
 						wfDie( "Unrecognized filter type '$val'\n" );
 					}
 					$type = $this->filterTypes[$val];
@@ -145,9 +145,9 @@ class BackupDumper {
 					$this->server = $val;
 					break;
 				case "force-normal":
-					if( !function_exists( 'utf8_normalize' ) ) {
+					if ( !function_exists( 'utf8_normalize' ) ) {
 						dl( "php_utfnormal.so" );
-						if( !function_exists( 'utf8_normalize' ) ) {
+						if ( !function_exists( 'utf8_normalize' ) ) {
 							wfDie( "Failed to load UTF-8 normalization extension. " .
 								"Install or remove --force-normal parameter to use slower code.\n" );
 						}
@@ -159,12 +159,12 @@ class BackupDumper {
 			}
 		}
 
-		if( is_null( $sink ) ) {
+		if ( is_null( $sink ) ) {
 			$sink = new DumpOutput();
 		}
 		$sinks[] = $sink;
 
-		if( count( $sinks ) > 1 ) {
+		if ( count( $sinks ) > 1 ) {
 			return new DumpMultiWriter( $sinks );
 		} else {
 			return $sink;
@@ -178,7 +178,7 @@ class BackupDumper {
 	function dump( $history, $text = WikiExporter::TEXT ) {
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.
-		if( ini_get( 'display_errors' ) )
+		if ( ini_get( 'display_errors' ) )
 			ini_set( 'display_errors', 'stderr' );
 
 		$this->initProgress( $history );
@@ -190,18 +190,18 @@ class BackupDumper {
 		$wrapper = new ExportProgressFilter( $this->sink, $this );
 		$exporter->setOutputSink( $wrapper );
 
-		if( !$this->skipHeader )
+		if ( !$this->skipHeader )
 			$exporter->openStream();
 		# Log item dumps: all or by range
-		if( $history & WikiExporter::LOGS ) {
-			if( $this->startId || $this->endId ) {
+		if ( $history & WikiExporter::LOGS ) {
+			if ( $this->startId || $this->endId ) {
 				$exporter->logsByRange( $this->startId, $this->endId );
 			} else {
 				$exporter->allLogs();
 			}
 		# Page dumps: all or by page ID range
-		} else if( is_null( $this->pages ) ) {
-			if( $this->startId || $this->endId ) {
+		} else if ( is_null( $this->pages ) ) {
+			if ( $this->startId || $this->endId ) {
 				$exporter->pagesByRange( $this->startId, $this->endId );
 			} else {
 				$exporter->allPages();
@@ -211,7 +211,7 @@ class BackupDumper {
 			$exporter->pagesByName( $this->pages );
 		}
 
-		if( !$this->skipFooter )
+		if ( !$this->skipFooter )
 			$exporter->closeStream();
 
 		$this->report( true );
@@ -224,8 +224,8 @@ class BackupDumper {
 	 * @param $history Integer: WikiExporter::CURRENT or WikiExporter::FULL
 	 */
 	function initProgress( $history = WikiExporter::FULL ) {
-		$table = ($history == WikiExporter::CURRENT) ? 'page' : 'revision';
-		$field = ($history == WikiExporter::CURRENT) ? 'page_id' : 'rev_id';
+		$table = ( $history == WikiExporter::CURRENT ) ? 'page' : 'revision';
+		$field = ( $history == WikiExporter::CURRENT ) ? 'page_id' : 'rev_id';
 		
 		$dbr = wfGetDB( DB_SLAVE );
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', 'BackupDumper::dump' );
@@ -249,7 +249,7 @@ class BackupDumper {
 	}
 	
 	function __destruct() {
-		if( isset( $this->lb ) ) {
+		if ( isset( $this->lb ) ) {
 			$this->lb->closeAll();
 		}
 	}
@@ -271,16 +271,16 @@ class BackupDumper {
 	}
 
 	function report( $final = false ) {
-		if( $final xor ( $this->revCount % $this->reportingInterval == 0 ) ) {
+		if ( $final xor ( $this->revCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
 	}
 
 	function showReport() {
-		if( $this->reporting ) {
+		if ( $this->reporting ) {
 			$delta = wfTime() - $this->startTime;
 			$now = wfTimestamp( TS_DB );
-			if( $delta ) {
+			if ( $delta ) {
 				$rate = $this->pageCount / $delta;
 				$revrate = $this->revCount / $delta;
 				$portion = $this->revCount / $this->maxCount;

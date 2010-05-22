@@ -12,20 +12,20 @@ function install_version_checks() {
 	# if PHP is globally configured to run through a gzip filter.
 	@ob_implicit_flush( true );
 
-	if( !function_exists( 'version_compare' ) ) {
+	if ( !function_exists( 'version_compare' ) ) {
 		# version_compare was introduced in 4.1.0
 		echo "Your PHP version is much too old; 4.0.x will _not_ work. 5.1.0 or higher is required. ABORTING.\n";
 		die( 1 );
 	}
-	if( version_compare( phpversion(), '5.1.0' ) < 0 ) {
-		echo "PHP 5.1.0 or higher is required. If PHP 5 is available only when \n".
-   "PHP files have a .php5 extension, please navigate to <a href=\"index.php5\">index.php5</a> \n".
+	if ( version_compare( phpversion(), '5.1.0' ) < 0 ) {
+		echo "PHP 5.1.0 or higher is required. If PHP 5 is available only when \n" .
+   "PHP files have a .php5 extension, please navigate to <a href=\"index.php5\">index.php5</a> \n" .
    "to continue installation. ABORTING.\n";
 		die( 1 );
 	}
 
 	$test = new PhpXmlBugTester();
-	if( !$test->ok ) {
+	if ( !$test->ok ) {
 		echo "Your system has a combination of PHP and libxml2 versions which is buggy\n" .
 			"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
 			"Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later!\n" .
@@ -63,10 +63,10 @@ class PhpXmlBugTester {
 
 		$parser = xml_parser_create();
 		xml_set_character_data_handler( $parser, array( $this, 'chardata' ) );
-		$parsedOk = xml_parse($parser, $xml, true);
-		$this->ok = $parsedOk && ($this->parsedData == $charData);
+		$parsedOk = xml_parse( $parser, $xml, true );
+		$this->ok = $parsedOk && ( $this->parsedData == $charData );
 	}
-	public function chardata($parser, $data) {
+	public function chardata( $parser, $data ) {
 		$this->parsedData .= $data;
 	}
 }
@@ -122,10 +122,10 @@ function readconsole( $prompt = '' ) {
 			if ( feof( STDIN ) ) {
 				$st = false;
 			} else {
-				$st = fgets(STDIN, 1024);
+				$st = fgets( STDIN, 1024 );
 			}
 		}
-		if ($st === false) return false;
+		if ( $st === false ) return false;
 		$resp = trim( $st );
 		return $resp;
 	}
@@ -133,10 +133,10 @@ function readconsole( $prompt = '' ) {
 
 function findExecutable( $name ) {
 	$paths = explode( PATH_SEPARATOR, getenv( "PATH" ) );
-	foreach( $paths as $path ) {
+	foreach ( $paths as $path ) {
 		$full = $path . DIRECTORY_SEPARATOR . $name;
-		if( file_exists( $full ) ) {
-			if( wfIsWindows() || is_executable( $full ) ) {
+		if ( file_exists( $full ) ) {
+			if ( wfIsWindows() || is_executable( $full ) ) {
 				return $full;
 			}
 		}
@@ -146,16 +146,16 @@ function findExecutable( $name ) {
 
 function readlineEmulation( $prompt ) {
 	$bash = "bash";
-	if( !wfIsWindows() && findExecutable( $bash ) ) {
+	if ( !wfIsWindows() && findExecutable( $bash ) ) {
 		$retval = false;
 		$encPrompt = wfEscapeShellArg( $prompt );
 		$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
 		$encCommand = wfEscapeShellArg( $command );
 		$line = wfShellExec( "$bash -c $encCommand", $retval );
 
-		if( $retval == 0 ) {
+		if ( $retval == 0 ) {
 			return $line;
-		} elseif( $retval == 127 ) {
+		} elseif ( $retval == 127 ) {
 			// Couldn't execute bash even though we thought we saw it.
 			// Shell probably spit out an error message, sorry :(
 			// Fall through to fgets()...
@@ -170,7 +170,7 @@ function readlineEmulation( $prompt ) {
 		return false;
 	}
 	print $prompt;
-	return fgets(STDIN, 1024);
+	return fgets( STDIN, 1024 );
 }
 
 
@@ -192,7 +192,7 @@ function dbsource( $fname, $db = false ) {
 	$error = $db->sourceFile( $fname );
 	if ( $error !== true ) {
 		print $error;
-		exit(1);
+		exit( 1 );
 	}
 }
 

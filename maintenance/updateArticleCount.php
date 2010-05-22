@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UpdateArticleCount extends Maintenance {
 
@@ -41,9 +41,9 @@ class UpdateArticleCount extends Maintenance {
 		$this->output( "Counting articles..." );
 		$result = $this->count();
 	
-		if( $result !== false ) {
+		if ( $result !== false ) {
 			$this->output( "found {$result}.\n" );
-			if( $this->hasOption( 'update' ) ) {
+			if ( $this->hasOption( 'update' ) ) {
 				$this->output( "Updating site statistics table... " );
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->update( 'site_stats', array( 'ss_good_articles' => $result ), array( 'ss_row_id' => 1 ), __METHOD__ );
@@ -63,7 +63,7 @@ class UpdateArticleCount extends Maintenance {
 	 * @return string
 	 */
 	private function makeNsSet() {
-		foreach( $this->namespaces as $namespace )
+		foreach ( $this->namespaces as $namespace )
 			$namespaces[] = intval( $namespace );
 		return implode( ', ', $namespaces );
 	}

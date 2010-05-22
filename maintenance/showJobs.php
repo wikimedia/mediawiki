@@ -24,7 +24,7 @@
  * @author Ashar Voultoiz
  */
  
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ShowJobs extends Maintenance {
 	public function __construct() {
@@ -42,7 +42,7 @@ class ShowJobs extends Maintenance {
 				__METHOD__,
 				array( 'GROUP BY' => 'job_cmd' )
 			);
-			foreach( $res as $row ) {
+			foreach ( $res as $row ) {
 				$this->output( $row->job_cmd . ': ' . $row->count . "\n" );
 			}
 		} else {

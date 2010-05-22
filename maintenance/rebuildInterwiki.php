@@ -13,7 +13,7 @@
 $oldCwd = getcwd();
 
 $optionsWithArgs = array( "d" );
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 require( "rebuildInterwiki.inc" );
 chdir( $oldCwd );
 

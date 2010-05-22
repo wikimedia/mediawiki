@@ -2,8 +2,8 @@
 
 $optionsWithArgs = array( 'fake-job' );
 
-require( dirname(__FILE__).'/../commandLine.inc' );
-require( dirname(__FILE__).'/gearman.inc' );
+require( dirname( __FILE__ ) . '/../commandLine.inc' );
+require( dirname( __FILE__ ) . '/gearman.inc' );
 
 if ( !$args ) {
 	$args = array( 'localhost' );
@@ -15,12 +15,12 @@ $dbr = wfGetDB( DB_SLAVE );
 $startId = 0;
 $endId = $dbr->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
 while ( true ) {
-	$res = $dbr->select( 
-		'page', 
+	$res = $dbr->select(
+		'page',
 		array( 'page_namespace', 'page_title', 'page_id' ),
-		array( 'page_id > ' . intval( $startId ) ), 
+		array( 'page_id > ' . intval( $startId ) ),
 		__METHOD__,
-		array( 'LIMIT' => $batchSize ) 
+		array( 'LIMIT' => $batchSize )
 	);
 
 	if ( $res->numRows() == 0 ) {

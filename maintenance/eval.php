@@ -16,7 +16,7 @@
  * @ingroup Maintenance
  */
 
-$wgUseNormalUser = (bool)getenv('MW_WIKIUSER');
+$wgUseNormalUser = (bool)getenv( 'MW_WIKIUSER' );
 
 $optionsWithArgs = array( 'd' );
 
@@ -39,8 +39,8 @@ if ( isset( $options['d'] ) ) {
 	}
 }
 
-if ( function_exists( 'readline_add_history' ) 
-	&& posix_isatty( 0 /*STDIN*/ ) ) 
+if ( function_exists( 'readline_add_history' )
+	&& posix_isatty( 0 /*STDIN*/ ) )
 {
 	$useReadline = true;
 } else {
@@ -58,9 +58,9 @@ while ( ( $line = readconsole( '> ' ) ) !== false ) {
 		readline_write_history( $historyFile );
 	}
 	$val = eval( $line . ";" );
-	if( is_null( $val ) ) {
+	if ( is_null( $val ) ) {
 		echo "\n";
-	} elseif( is_string( $val ) || is_numeric( $val ) ) {
+	} elseif ( is_string( $val ) || is_numeric( $val ) ) {
 		echo "$val\n";
 	} else {
 		var_dump( $val );

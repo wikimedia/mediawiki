@@ -27,7 +27,7 @@
  * @ingroup Maintenance
  */
  
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UpdateSearchIndex extends Maintenance {
 
@@ -48,8 +48,8 @@ class UpdateSearchIndex extends Maintenance {
 		$posFile = $this->getOption( 'p', 'searchUpdate.' . wfWikiId() . '.pos' );
 		$end = $this->getOption( 'e', wfTimestampNow() );
 		if ( $this->hasOption( 's' ) ) {
-			$start = $this->getOption('s');
-		} elseif( is_readable( 'searchUpdate.pos' ) ) {
+			$start = $this->getOption( 's' );
+		} elseif ( is_readable( 'searchUpdate.pos' ) ) {
 			# B/c to the old position file name which was hardcoded
 			# We can safely delete the file when we're done though.
 			$start = file_get_contents( 'searchUpdate.pos' );
@@ -63,9 +63,9 @@ class UpdateSearchIndex extends Maintenance {
 		$lockTime = $this->getOption( 'l', 20 );
 		
 		$this->doUpdateSearchIndex( $start, $end, $lockTime );
-		if( is_writable( dirname( realpath( $posFile ) ) ) ) {
+		if ( is_writable( dirname( realpath( $posFile ) ) ) ) {
 			$file = fopen( $posFile, 'w' );
-			if( $file !== false ) {
+			if ( $file !== false ) {
 				fwrite( $file, $end );
 				fclose( $file );
 			} else {
@@ -97,12 +97,12 @@ class UpdateSearchIndex extends Maintenance {
 		  ";
 		$res = $dbw->query( $sql, __METHOD__ );
 
-		$this->updateSearchIndex($maxLockTime, array($this, 'searchIndexUpdateCallback'), $dbw, $res);
+		$this->updateSearchIndex( $maxLockTime, array( $this, 'searchIndexUpdateCallback' ), $dbw, $res );
 
 		$this->output( "Done\n" );
 	}
 
-	public function searchIndexUpdateCallback($dbw, $row) {
+	public function searchIndexUpdateCallback( $dbw, $row ) {
 		if ( $row->rc_type == RC_MOVE || $row->rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Rename searchindex entry
 			$titleObj = Title::makeTitle( $row->rc_moved_to_ns, $row->rc_moved_to_title );

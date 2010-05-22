@@ -20,7 +20,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( dirname(__FILE__) . '/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class CountMessages extends Maintenance {
 	public function __construct() {
@@ -35,12 +35,12 @@ class CountMessages extends Maintenance {
 		$nonZero = 0;
 		foreach ( glob( "$dir/*.php" ) as $file ) {
 			$baseName = basename( $file );
-			if( !preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $baseName, $m ) ) {
+			if ( !preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $baseName, $m ) ) {
 				continue;
 			}
 			$code = str_replace( '_', '-', strtolower( $m[1] ) );
 			$numMessages = $this->getNumMessages( $file );
-			//print "$code: $numMessages\n";
+			// print "$code: $numMessages\n";
 			$total += $numMessages;
 			if ( $numMessages > 0 ) {
 				$nonZero ++;

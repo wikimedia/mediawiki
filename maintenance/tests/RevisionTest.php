@@ -11,14 +11,14 @@ class RevisionTest extends PHPUnit_Framework_TestCase {
 			'wgCompressRevisions' => false,
 			'wgInputEncoding' => 'utf-8',
 			'wgOutputEncoding' => 'utf-8' );
-		foreach( $globalSet as $var => $data ) {
+		foreach ( $globalSet as $var => $data ) {
 			$this->saveGlobals[$var] = $GLOBALS[$var];
 			$GLOBALS[$var] = $data;
 		}
 	}
 
 	function tearDown() {
-		foreach( $this->saveGlobals as $var => $data ) {
+		foreach ( $this->saveGlobals as $var => $data ) {
 			$GLOBALS[$var] = $data;
 		}
 	}

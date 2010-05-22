@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class DeleteOldRevisions extends Maintenance {
 	public function __construct() {
@@ -60,7 +60,7 @@ class DeleteOldRevisions extends Maintenance {
 		# Get "active" revisions from the page table
 		$this->output( "Searching for active revisions..." );
 		$res = $dbw->query( "SELECT page_latest FROM $tbl_pag{$pageIdClause}" );
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$cur[] = $row->page_latest;
 		}
 		$this->output( "done.\n" );
@@ -70,7 +70,7 @@ class DeleteOldRevisions extends Maintenance {
 		$this->output( "Searching for inactive revisions..." );
 		$set = implode( ', ', $cur );
 		$res = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_id NOT IN ( $set ){$revPageClause}" );
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$old[] = $row->rev_id;
 		}
 		$this->output( "done.\n" );
@@ -80,7 +80,7 @@ class DeleteOldRevisions extends Maintenance {
 		$this->output( "$count old revisions found.\n" );
 	
 		# Delete as appropriate
-		if( $delete && $count ) {
+		if ( $delete && $count ) {
 			$this->output( "Deleting..." );
 			$set = implode( ', ', $old );
 			$dbw->query( "DELETE FROM $tbl_rev WHERE rev_id IN ( $set )" );
@@ -90,7 +90,7 @@ class DeleteOldRevisions extends Maintenance {
 		# This bit's done
 		# Purge redundant text records
 		$dbw->commit();
-		if( $delete ) {
+		if ( $delete ) {
 			$this->purgeRedundantText( true );
 		}
 	}

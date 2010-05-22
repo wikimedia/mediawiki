@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RemoveUnusedAccounts extends Maintenance {
 	public function __construct() {
@@ -41,20 +41,20 @@ class RemoveUnusedAccounts extends Maintenance {
 		$del = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'user', array( 'user_id', 'user_name', 'user_touched' ), '', __METHOD__ );
-		if( $this->hasOption('ignore-groups') ) {
-			$excludedGroups = explode( ',', $this->getOption('ignore-groups') );
-		} else { 
+		if ( $this->hasOption( 'ignore-groups' ) ) {
+			$excludedGroups = explode( ',', $this->getOption( 'ignore-groups' ) );
+		} else {
 			$excludedGroups = array();
 		}
 		$touched = $this->getOption( 'ignore-touched', "1" );
-		if( !ctype_digit( $touched ) ) {
+		if ( !ctype_digit( $touched ) ) {
 			$this->error( "Please put a valid positive integer on the --ignore-touched parameter.", true );
 		}
 		$touchedSeconds = 86400 * $touched;
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			# Check the account, but ignore it if it's within a $excludedGroups group or if it's touched within the $touchedSeconds seconds.
 			$instance = User::newFromId( $row->user_id );
-			if( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
+			if ( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
 				&& $this->isInactiveAccount( $row->user_id, true )
 				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds )
 				) {
@@ -67,7 +67,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		$this->output( "...found {$count}.\n" );
 	
 		# If required, go back and delete each marked account
-		if( $count > 0 && $this->hasOption('delete') ) {
+		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
 			$this->output( "\nDeleting inactive accounts..." );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user', array( 'user_id' => $del ), __METHOD__ );
@@ -75,7 +75,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			# Update the site_stats.ss_users field
 			$users = $dbw->selectField( 'user', 'COUNT(*)', array(), __METHOD__ );
 			$dbw->update( 'site_stats', array( 'ss_users' => $users ), array( 'ss_row_id' => 1 ), __METHOD__ );
-		} elseif( $count > 0 ) {
+		} elseif ( $count > 0 ) {
 			$this->output( "\nRun the script again with --delete to remove them from the database.\n" );
 		}
 		$this->output( "\n" );
@@ -96,7 +96,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		$count = 0;
 	
 		$dbo->begin();
-		foreach( $checks as $table => $fprefix ) {
+		foreach ( $checks as $table => $fprefix ) {
 			$conds = array( $fprefix . '_user' => $id );
 			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
 		}

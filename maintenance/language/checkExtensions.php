@@ -6,11 +6,11 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( dirname(__FILE__).'/../commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 require_once( 'languages.inc' );
 require_once( 'checkLanguage.inc' );
 
-if( !class_exists( 'MessageGroups' ) || !class_exists( 'PremadeMediawikiExtensionGroups' ) ) {
+if ( !class_exists( 'MessageGroups' ) || !class_exists( 'PremadeMediawikiExtensionGroups' ) ) {
 	echo <<<TEXT
 Please add the Translate extension to LocalSettings.php, and enable the extension groups:
 	require_once( 'extensions/Translate/Translate.php' );
@@ -18,7 +18,7 @@ Please add the Translate extension to LocalSettings.php, and enable the extensio
 If you still get this message, update Translate to its latest version.
 
 TEXT;
-	exit(-1);
+	exit( -1 );
 }
 
 $cli = new CheckExtensionsCLI( $options, $argv[0] );

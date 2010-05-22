@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class TableCleanup extends Maintenance {
 	protected $defaultParams = array(
@@ -44,7 +44,7 @@ class TableCleanup extends Maintenance {
 		global $wgUser;
 		$wgUser->setName( 'Conversion script' );
 		$this->dryrun = $this->hasOption( 'dry-run' );
-		if( $this->dryrun ) {
+		if ( $this->dryrun ) {
 			$this->output( "Checking for bad titles...\n" );
 		} else {
 			$this->output( "Checking and fixing bad titles...\n" );
@@ -63,7 +63,7 @@ class TableCleanup extends Maintenance {
 	protected function progress( $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
-		if( $this->processed % $this->reportInterval != 0 ) {
+		if ( $this->processed % $this->reportInterval != 0 ) {
 			return;
 		}
 		$portion = $this->processed / $this->count;
@@ -74,7 +74,7 @@ class TableCleanup extends Maintenance {
 		$estimatedTotalTime = $delta / $portion;
 		$eta = $this->startTime + $estimatedTotalTime;
 
-		$this->output( 
+		$this->output(
 			sprintf( "%s %s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
 				wfWikiID(),
 				wfTimestamp( TS_DB, intval( $now ) ),
@@ -84,7 +84,7 @@ class TableCleanup extends Maintenance {
 				$this->processed,
 				$this->count,
 				$this->processed / $delta,
-				$updateRate * 100.0 
+				$updateRate * 100.0
 			)
 		);
 		flush();
@@ -94,9 +94,9 @@ class TableCleanup extends Maintenance {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( array_diff( array_keys( $params ),
-			array( 'table', 'conds', 'index', 'callback' ) ) ) 
+			array( 'table', 'conds', 'index', 'callback' ) ) )
 		{
-			throw new MWException( __METHOD__.': Missing parameter ' . implode( ', ', $params ) );
+			throw new MWException( __METHOD__ . ': Missing parameter ' . implode( ', ', $params ) );
 		}
 
 		$table = $params['table'];

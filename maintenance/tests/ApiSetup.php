@@ -10,12 +10,12 @@ abstract class ApiSetup extends PHPUnit_Framework_TestCase {
 		global $wgServerName, $wgServer, $wgContLang, $wgAuth, $wgScriptPath,
 			$wgScriptExtension, $wgMemc, $wgRequest;
 
-		self::$apiUrl = $wgServer.$wgScriptPath."/api".$wgScriptExtension;
+		self::$apiUrl = $wgServer . $wgScriptPath . "/api" . $wgScriptExtension;
 
 		$wgMemc = new FakeMemCachedClient;
 		$wgContLang = Language::factory( 'en' );
 		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
-		$wgRequest = new FauxRequest(array());
+		$wgRequest = new FauxRequest( array() );
 		self::setupUser();
 	}
 
@@ -24,13 +24,13 @@ abstract class ApiSetup extends PHPUnit_Framework_TestCase {
 			self::$userName = "Useruser";
 			self::$passWord = User::randomPassword();
 
-			self::$user = User::newFromName(self::$userName);
+			self::$user = User::newFromName( self::$userName );
 			if ( !self::$user->getID() ) {
-				self::$user = User::createNew(self::$userName, array(
+				self::$user = User::createNew( self::$userName, array(
 					"email" => "test@example.com",
-					"real_name" => "Test User"));
+					"real_name" => "Test User" ) );
 			}
-			self::$user->setPassword(self::$passWord);
+			self::$user->setPassword( self::$passWord );
 			self::$user->saveSettings();
 		}
 	}

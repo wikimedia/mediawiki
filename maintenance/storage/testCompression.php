@@ -1,7 +1,7 @@
 <?php
 
 $optionsWithArgs = array( 'start', 'limit', 'type' );
-require( dirname(__FILE__).'/../commandLine.inc' );
+require( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 if ( !isset( $args[0] )  ) {
 	echo "Usage: php testCompression.php [--type=<type>] [--start=<start-date>] [--limit=<num-revs>] <page-title>\n";
@@ -26,10 +26,10 @@ $type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryB
 
 
 $dbr = wfGetDB( DB_SLAVE );
-$res = $dbr->select( 
+$res = $dbr->select(
 	array( 'page', 'revision', 'text' ),
 	'*',
-	array( 
+	array(
 		'page_namespace' => $title->getNamespace(),
 		'page_title' => $title->getDBkey(),
 		'page_id=rev_page',
@@ -56,9 +56,9 @@ foreach ( $res as $row ) {
 
 $serialized = serialize( $blob );
 $t += microtime( true );
-#print_r( $blob->mDiffMap );
+# print_r( $blob->mDiffMap );
 
-printf( "%s\nCompression ratio for %d revisions: %5.2f, %s -> %d\n", 
+printf( "%s\nCompression ratio for %d revisions: %5.2f, %s -> %d\n",
 	$type,
 	count( $hashes ),
 	$uncompressedSize / strlen( $serialized ),
@@ -73,7 +73,7 @@ foreach ( $keys as $id => $key ) {
 	$text = $blob->getItem( $key );
 	if ( md5( $text ) != $hashes[$id] ) {
 		echo "Content hash mismatch for rev_id $id\n";
-		#var_dump( $text );
+		# var_dump( $text );
 	}
 }
 $t += microtime( true );

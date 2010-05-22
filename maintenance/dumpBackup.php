@@ -26,12 +26,12 @@ $originalDir = getcwd();
 
 $optionsWithArgs = array( 'pagelist', 'start', 'end' );
 
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 require_once( 'backup.inc' );
 
 $dumper = new BackupDumper( $argv );
 
-if( isset( $options['quiet'] ) ) {
+if ( isset( $options['quiet'] ) ) {
 	$dumper->reporting = false;
 }
 
@@ -47,10 +47,10 @@ if ( isset( $options['pagelist'] ) ) {
 	$dumper->pages = array_filter( $pages, create_function( '$x', 'return $x !== "";' ) );
 }
 
-if( isset( $options['start'] ) ) {
+if ( isset( $options['start'] ) ) {
 	$dumper->startId = intval( $options['start'] );
 }
-if( isset( $options['end'] ) ) {
+if ( isset( $options['end'] ) ) {
 	$dumper->endId = intval( $options['end'] );
 }
 $dumper->skipHeader = isset( $options['skip-header'] );
@@ -59,13 +59,13 @@ $dumper->dumpUploads = isset( $options['uploads'] );
 
 $textMode = isset( $options['stub'] ) ? WikiExporter::STUB : WikiExporter::TEXT;
 
-if( isset( $options['full'] ) ) {
+if ( isset( $options['full'] ) ) {
 	$dumper->dump( WikiExporter::FULL, $textMode );
-} elseif( isset( $options['current'] ) ) {
+} elseif ( isset( $options['current'] ) ) {
 	$dumper->dump( WikiExporter::CURRENT, $textMode );
-} elseif( isset( $options['stable'] ) ) {
+} elseif ( isset( $options['stable'] ) ) {
 	$dumper->dump( WikiExporter::STABLE, $textMode );
-} elseif( isset( $options['logs'] ) ) {
+} elseif ( isset( $options['logs'] ) ) {
 	$dumper->dump( WikiExporter::LOGS );
 } else {
 	$dumper->progress( <<<ENDS

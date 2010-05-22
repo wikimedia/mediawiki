@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RebuildFileCache extends Maintenance {
 	public function __construct() {
@@ -34,22 +34,22 @@ class RebuildFileCache extends Maintenance {
 	public function execute() {
 		global $wgUseFileCache, $wgDisableCounters, $wgContentNamespaces, $wgRequestTime;
 		global $wgTitle, $wgArticle, $wgOut, $wgUser;
-		if( !$wgUseFileCache ) {
+		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
 		$wgDisableCounters = false;
 		$start = $this->getArg( 0, "0" );
-		if( !ctype_digit($start) ) {
+		if ( !ctype_digit( $start ) ) {
 			$this->error( "Invalid value for start parameter.", true );
 		}
-		$start = intval($start);
-		$overwrite = $this->hasArg(1) && $this->getArg(1) === 'overwrite';
+		$start = intval( $start );
+		$overwrite = $this->hasArg( 1 ) && $this->getArg( 1 ) === 'overwrite';
 		$this->output( "Building content page file cache from page {$start}!\n" );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$start = $start > 0 ? $start : $dbr->selectField( 'page', 'MIN(page_id)', false, __FUNCTION__ );
 		$end = $dbr->selectField( 'page', 'MAX(page_id)', false, __FUNCTION__ );
-		if( !$start ) {
+		if ( !$start ) {
 			$this->error( "Nothing to do.", true );
 		}
 
@@ -63,18 +63,18 @@ class RebuildFileCache extends Maintenance {
 	
 		$dbw = wfGetDB( DB_MASTER );
 		// Go through each page and save the output
-		while( $blockEnd <= $end ) {
+		while ( $blockEnd <= $end ) {
 			// Get the pages
-			$res = $dbr->select( 'page', array('page_namespace','page_title','page_id'),
-				array('page_namespace' => $wgContentNamespaces,
+			$res = $dbr->select( 'page', array( 'page_namespace', 'page_title', 'page_id' ),
+				array( 'page_namespace' => $wgContentNamespaces,
 					"page_id BETWEEN $blockStart AND $blockEnd" ),
-				array('ORDER BY' => 'page_id ASC','USE INDEX' => 'PRIMARY')
+				array( 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' )
 			);
-			foreach( $res as $row ) {
+			foreach ( $res as $row ) {
 				$rebuilt = false;
 				$wgRequestTime = wfTime(); # bug 22852
 				$wgTitle = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-				if( null == $wgTitle ) {
+				if ( null == $wgTitle ) {
 					$this->output( "Page {$row->page_id} has bad title\n" );
 					continue; // broken title?
 				}
@@ -82,10 +82,10 @@ class RebuildFileCache extends Maintenance {
 				$wgUser->getSkin( $wgTitle ); // set skin title
 				$wgArticle = new Article( $wgTitle );
 				// If the article is cacheable, then load it
-				if( $wgArticle->isFileCacheable() ) {
+				if ( $wgArticle->isFileCacheable() ) {
 					$cache = new HTMLFileCache( $wgTitle );
-					if( $cache->isFileCacheGood() ) {
-						if( $overwrite ) {
+					if ( $cache->isFileCacheGood() ) {
+						if ( $overwrite ) {
 							$rebuilt = true;
 						} else {
 							$this->output( "Page {$row->page_id} already cached\n" );
@@ -99,7 +99,7 @@ class RebuildFileCache extends Maintenance {
 					$wgUseFileCache = true;
 					ob_end_clean(); // clear buffer
 					$wgOut = new OutputPage(); // empty out any output page garbage
-					if( $rebuilt )
+					if ( $rebuilt )
 						$this->output( "Re-cached page {$row->page_id}\n" );
 					else
 						$this->output( "Cached page {$row->page_id}\n" );
@@ -115,10 +115,10 @@ class RebuildFileCache extends Maintenance {
 		$this->output( "Done!\n" );
 	
 		// Remove these to be safe
-		if( isset($wgTitle) )
-			unset($wgTitle);
-		if( isset($wgArticle) )
-			unset($wgArticle);
+		if ( isset( $wgTitle ) )
+			unset( $wgTitle );
+		if ( isset( $wgArticle ) )
+			unset( $wgArticle );
 	}
 }
 

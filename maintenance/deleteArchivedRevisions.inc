@@ -31,7 +31,7 @@ class DeleteArchivedRevisionsImplementation {
 	 * purgeRedundantText().  See Maintenance for a description of
 	 * those methods.
 	 */
-	static public function doDelete($maint) {
+	static public function doDelete( $maint ) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->begin();
@@ -50,7 +50,7 @@ class DeleteArchivedRevisionsImplementation {
 		# This bit's done
 		# Purge redundant text records
 		$dbw->commit();
-		if( $deletedRows ) {
+		if ( $deletedRows ) {
 			$maint->purgeRedundantText( true );
 		}
 	}

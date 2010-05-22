@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UpdateDoubleWidthSearch extends Maintenance {
 
@@ -43,22 +43,22 @@ class UpdateDoubleWidthSearch extends Maintenance {
 		$lockTime = time();
 
 		$dbw = wfGetDB( DB_MASTER );
-		if( $dbw->getType() !== 'mysql' ) {
+		if ( $dbw->getType() !== 'mysql' ) {
 			$this->output( "This change is only needed on MySQL, quitting..." );
-			exit(1);
+			exit( 1 );
 		}
 
-		$res = $this->findRows($dbw);
-		$this->updateSearchIndex($maxLockTime, array($this, 'searchIndexUpdateCallback'), $dbw, $res);
+		$res = $this->findRows( $dbw );
+		$this->updateSearchIndex( $maxLockTime, array( $this, 'searchIndexUpdateCallback' ), $dbw, $res );
 
 		$this->output( "Done\n" );
 	}
 
-	public function searchIndexUpdateCallback($dbw, $row) {
+	public function searchIndexUpdateCallback( $dbw, $row ) {
 		return $this->updateSearchIndexForPage( $dbw, $row->si_page );
 	}
 
-	private function findRows($dbw) {
+	private function findRows( $dbw ) {
 		$searchindex = $dbw->tableName( 'searchindex' );
 		$regexp = '[[:<:]]u8efbd([89][1-9a]|8[b-f]|90)[[:>:]]';
 		$sql = "SELECT si_page FROM $searchindex

@@ -1,6 +1,6 @@
 <?php
 
-require( dirname( __FILE__ ) .'/../commandLine.inc' );
+require( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 
 if ( count( $args ) < 1 ) {
@@ -49,15 +49,15 @@ class TrackBlobs {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Scan for HistoryBlobStub objects in the text table (bug 20757)
-		
+
 		$exists = $dbr->selectField( 'text', 1,
-			'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\' ' . 
+			'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\' ' .
 			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
 			__METHOD__
 		);
 		
 		if ( $exists ) {
-			echo "Integrity check failed: found HistoryBlobStub objects in your text table.\n".
+			echo "Integrity check failed: found HistoryBlobStub objects in your text table.\n" .
 				"This script could destroy these objects if it continued. Run resolveStubs.php\n" .
 				"to fix this.\n";
 			exit( 1 );
@@ -66,13 +66,13 @@ class TrackBlobs {
 		// Scan the archive table for HistoryBlobStub objects or external flags (bug 22624)
 		$flags = $dbr->selectField( 'archive', 'ar_flags',
 			'ar_flags LIKE \'%external%\' OR (' .
-			'ar_flags LIKE \'%object%\' ' . 
+			'ar_flags LIKE \'%object%\' ' .
 			'AND LOWER(CONVERT(LEFT(ar_text,22) USING latin1)) = \'o:15:"historyblobstub"\' )',
 			__METHOD__
 		);
 
 		if ( strpos( $flags, 'external' ) !== false ) {
-			echo "Integrity check failed: found external storage pointers in your archive table.\n" . 
+			echo "Integrity check failed: found external storage pointers in your archive table.\n" .
 				"Run normaliseArchiveTable.php to fix this.\n";
 			exit( 1 );
 		} elseif ( $flags ) {
@@ -212,9 +212,9 @@ class TrackBlobs {
 
 		# Scan the text table for orphan text
 		while ( true ) {
-			$res = $dbr->select( array( 'text', 'blob_tracking' ), 
+			$res = $dbr->select( array( 'text', 'blob_tracking' ),
 				array( 'old_id', 'old_flags', 'old_text' ),
-				array( 
+				array(
 					'old_id>' . $dbr->addQuotes( $startId ),
 					$textClause,
 					'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
@@ -223,7 +223,7 @@ class TrackBlobs {
 				__METHOD__,
 				array(
 					'ORDER BY' => 'old_id',
-					'LIMIT' => $this->batchSize 
+					'LIMIT' => $this->batchSize
 				),
 				array( 'blob_tracking' => array( 'LEFT JOIN', 'bt_text_id=old_id' ) )
 			);
@@ -317,8 +317,8 @@ class TrackBlobs {
 
 			// Build a bitmap of actual blob rows
 			while ( true ) {
-				$res = $extDB->select( $table, 
-					array( 'blob_id' ), 
+				$res = $extDB->select( $table,
+					array( 'blob_id' ),
 					array( 'blob_id > ' . $extDB->addQuotes( $startId ) ),
 					__METHOD__,
 					array( 'LIMIT' => $this->batchSize, 'ORDER BY' => 'blob_id' )

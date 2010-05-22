@@ -76,8 +76,8 @@ function getRebuildInterwikiDump() {
 	# Special case prefix rewrites, for the benefit of Swedish which uses s:t
 	# as an abbreviation for saint
 	$prefixRewrites = array(
-                'svwiki' => array ( 's' => 'src'),
-	); 
+                'svwiki' => array ( 's' => 'src' ),
+	);
 
 	# Construct a list of reserved prefixes
 	$reserved = array();
@@ -87,7 +87,7 @@ function getRebuildInterwikiDump() {
 	foreach ( $languageAliases as $alias => $lang ) {
 		$reserved[$alias] = 1;
 	}
-	foreach( $sites as $site ) {
+	foreach ( $sites as $site ) {
 		$reserved[$site->lateral] = 1;
 	}
 
@@ -112,17 +112,17 @@ function getRebuildInterwikiDump() {
 
 			if ( empty( $reserved[$prefix] ) ) {
 			    $imap  = array( "iw_prefix" => $prefix, "iw_url" => $url, "iw_local" => $local );
-                            makeLink ($imap, "__global");
+                            makeLink ( $imap, "__global" );
 			}
 		}
 	}
 
         # Exclude Wikipedia for Wikipedia
-        makeLink ( array ('iw_prefix' => 'wikipedia', 'is_url' => null ), "_wiki" );
+        makeLink ( array ( 'iw_prefix' => 'wikipedia', 'is_url' => null ), "_wiki" );
         
-        #Multilanguage sites
-        foreach ($sites as $site) 
-            makeLanguageLinks ( $site, "_".$site->suffix );
+        # Multilanguage sites
+        foreach ( $sites as $site )
+            makeLanguageLinks ( $site, "_" . $site->suffix );
 
 
         foreach ( $dblist as $db ) {
@@ -130,25 +130,25 @@ function getRebuildInterwikiDump() {
 			# Special wiki
 			# Has interwiki links and interlanguage links to wikipedia
 
-                        makeLink( array( 'iw_prefix' => $db, 'iw_url' => "wiki"), "__sites" );
+                        makeLink( array( 'iw_prefix' => $db, 'iw_url' => "wiki" ), "__sites" );
 			# Links to multilanguage sites
 			foreach ( $sites as $targetSite ) {
-				makeLink( array( 'iw_prefix' => $targetSite->lateral, 
-                                                    'iw_url' =>$targetSite->getURL( 'en' ),
+				makeLink( array( 'iw_prefix' => $targetSite->lateral,
+                                                    'iw_url' => $targetSite->getURL( 'en' ),
                                                     'iw_local' => 1 ), $db );
 			}
 
 		} else {
 			# Find out which site this DB belongs to
 			$site = false;
-			foreach( $sites as $candidateSite ) {
+			foreach ( $sites as $candidateSite ) {
 				$suffix = $candidateSite->suffix;
 				if ( preg_match( "/(.*)$suffix$/", $db, $matches ) ) {
 				$site = $candidateSite;
 					break;
 				}
 			}
-                        makeLink( array( 'iw_prefix' => $db, 'iw_url' => $site->suffix), "__sites" );
+                        makeLink( array( 'iw_prefix' => $db, 'iw_url' => $site->suffix ), "__sites" );
 			if ( !$site ) {
 				print "Invalid database $db\n";
 				continue;
@@ -158,16 +158,16 @@ function getRebuildInterwikiDump() {
 			# Lateral links
 			foreach ( $sites as $targetSite ) {
 				if ( $targetSite->suffix != $site->suffix ) {
-					makeLink( array( 'iw_prefix' => $targetSite->lateral, 
-                                                            'iw_url' => $targetSite->getURL( $lang ), 
+					makeLink( array( 'iw_prefix' => $targetSite->lateral,
+                                                            'iw_url' => $targetSite->getURL( $lang ),
                                                             'iw_local' => 1 ), $db );
 				}
 			}
 
 			if ( $site->suffix == "wiki" ) {
-				makeLink( array('iw_prefix' => 'w', 
-                                                'iw_url' => "http://en.wikipedia.org/wiki/$1", 
-                                                'iw_local' => 1), $db );
+				makeLink( array( 'iw_prefix' => 'w',
+                                                'iw_url' => "http://en.wikipedia.org/wiki/$1",
+                                                'iw_local' => 1 ), $db );
 			}
 
 		}
@@ -196,13 +196,13 @@ function makeLink( $entry, $source ) {
 	global $prefixRewrites, $dbFile;
 	if ( isset( $prefixRewrites[$source] ) && isset( $prefixRewrites[$source][$entry[0]] ) )
 		$entry[0] = $prefixRewrites[$source][$entry[0]];
-        if (!array_key_exists("iw_prefix",$entry))
-            $entry = array("iw_prefix" => $entry[0], "iw_url" => $entry[1], "iw_local" => $entry[2]);
-        if ( array_key_exists($source,$prefixRewrites) && 
-                array_key_exists($entry['iw_prefix'],$prefixRewrites[$source]))
+        if ( !array_key_exists( "iw_prefix", $entry ) )
+            $entry = array( "iw_prefix" => $entry[0], "iw_url" => $entry[1], "iw_local" => $entry[2] );
+        if ( array_key_exists( $source, $prefixRewrites ) &&
+                array_key_exists( $entry['iw_prefix'], $prefixRewrites[$source] ) )
                     $entry['iw_prefix'] = $prefixRewrites[$source][$entry['iw_prefix']];
-        if ($dbFile)
-            $dbFile->set( "{$source}:{$entry['iw_prefix']}", trim("{$entry['iw_local']} {$entry['iw_url']}") );
+        if ( $dbFile )
+            $dbFile->set( "{$source}:{$entry['iw_prefix']}", trim( "{$entry['iw_local']} {$entry['iw_url']}" ) );
         else
             print "{$source}:{$entry['iw_prefix']} {$entry['iw_url']} {$entry['iw_local']}\n";
 

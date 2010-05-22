@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class CreateAndPromote extends Maintenance {
 
@@ -35,22 +35,22 @@ class CreateAndPromote extends Maintenance {
 	}
 
 	public function execute() {
-		$username = $this->getArg(0);
-		$password = $this->getArg(1);
+		$username = $this->getArg( 0 );
+		$password = $this->getArg( 1 );
 		
 		$this->output( wfWikiID() . ": Creating and promoting User:{$username}..." );
 		
 		$user = User::newFromName( $username );
-		if( !is_object( $user ) ) {
+		if ( !is_object( $user ) ) {
 			$this->error( "invalid username.", true );
-		} elseif( 0 != $user->idForName() ) {
+		} elseif ( 0 != $user->idForName() ) {
 			$this->error( "account exists.", true );
 		}
 
 		# Try to set the password
 		try {
 			$user->setPassword( $password );
-		} catch( PasswordError $pwe ) {
+		} catch ( PasswordError $pwe ) {
 			$this->error( $pwe->getText(), true );
 		}
 
@@ -60,7 +60,7 @@ class CreateAndPromote extends Maintenance {
 	
 		# Promote user
 		$user->addGroup( 'sysop' );
-		if( $this->hasOption( 'bureaucrat' ) )
+		if ( $this->hasOption( 'bureaucrat' ) )
 			$user->addGroup( 'bureaucrat' );
 	
 		# Increment site_stats.ss_users

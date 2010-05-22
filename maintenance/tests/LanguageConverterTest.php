@@ -8,7 +8,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		global $wgMemc, $wgRequest, $wgUser, $wgContLang;
 
 		$wgUser = new User;
-		$wgRequest = new FauxRequest(array());
+		$wgRequest = new FauxRequest( array() );
 		$wgMemc = new FakeMemCachedClient;
 		$wgContLang = Language::factory( 'tg' );
 		$this->lang = new LanguageTest();
@@ -18,83 +18,83 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 
 	function tearDown() {
 		global $wgMemc;
-		unset($wgMemc);
-		unset($this->lc);
-		unset($this->lang);
+		unset( $wgMemc );
+		unset( $this->lc );
+		unset( $this->lang );
 	}
 
 	function testGetPreferredVariantDefaults() {
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, true));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
 	}
 
 	function testGetPreferredVariantHeaders() {
 		global $wgRequest;
-		$wgRequest->setHeader('Accept-Language', 'tg-latn');
+		$wgRequest->setHeader( 'Accept-Language', 'tg-latn' );
 
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, true));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
 	}
 
 	function testGetPreferredVariantHeaderWeight() {
 		global $wgRequest;
-		$wgRequest->setHeader('Accept-Language', 'tg;q=1');
+		$wgRequest->setHeader( 'Accept-Language', 'tg;q=1' );
 
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, true));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
 	}
 
 	function testGetPreferredVariantHeaderWeight2() {
 		global $wgRequest;
-		$wgRequest->setHeader('Accept-Language', 'tg-latn;q=1');
+		$wgRequest->setHeader( 'Accept-Language', 'tg-latn;q=1' );
 
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, true));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
 	}
 
 	function testGetPreferredVariantHeaderMulti() {
 		global $wgRequest;
-		$wgRequest->setHeader('Accept-Language', 'en, tg-latn;q=1');
+		$wgRequest->setHeader( 'Accept-Language', 'en, tg-latn;q=1' );
 
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, true));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
 	}
 
 	function testGetPreferredVariantUserOption() {
 		global $wgUser;
 
 		$wgUser = new User;
-		$wgUser->setId(1);
+		$wgUser->setId( 1 );
 		$wgUser->mDataLoaded = true;
-		$wgUser->setOption('variant', 'tg-latn');
+		$wgUser->setOption( 'variant', 'tg-latn' );
 
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, true));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true,  false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true,  true));
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, true ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true,  false ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true,  true ) );
 	}
 
 	function testGetPreferredVariantHeaderUserVsUrl() {
 		global $wgRequest, $wgUser, $wgContLang;
 
 		$wgContLang = Language::factory( 'tg-latn' );
-		$wgRequest->setVal('variant', 'tg');
-		$wgUser = User::newFromId("admin");
-		$wgUser->setId(1);
-		$wgUser->setOption('variant', 'tg-latn'); // The user's data is ignored
+		$wgRequest->setVal( 'variant', 'tg' );
+		$wgUser = User::newFromId( "admin" );
+		$wgUser->setId( 1 );
+		$wgUser->setOption( 'variant', 'tg-latn' ); // The user's data is ignored
 		                                          // because the variant is set in the URL.
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true,  false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(true,  true));
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true,  false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true,  true ) );
 	}
 
 
@@ -102,10 +102,10 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		global $wgDefaultLanguageVariant;
 
 		$wgDefaultLanguageVariant = 'tg-latn';
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(false, true));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, true));
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, false ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, true ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true, false ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true, true ) );
 	}
 
 	function testGetPreferredVariantDefaultLanguageVsUrlVariant() {
@@ -113,11 +113,11 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 
 		$wgContLang = Language::factory( 'tg-latn' );
 		$wgDefaultLanguageVariant = 'tg';
-		$wgRequest->setVal('variant', null);
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, false));
-		$this->assertEquals('tg', $this->lc->getPreferredVariant(false, true));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, false));
-		$this->assertEquals('tg-latn', $this->lc->getPreferredVariant(true, true));
+		$wgRequest->setVal( 'variant', null );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, true ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true, false ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true, true ) );
 	}
 }
 

@@ -28,7 +28,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RebuildLocalisationCache extends Maintenance {
 	public function __construct() {
@@ -45,17 +45,17 @@ class RebuildLocalisationCache extends Maintenance {
 	public function execute() {
 		global $wgLocalisationCacheConf;
 
-		$force = $this->hasOption('force');
+		$force = $this->hasOption( 'force' );
 		$threads = $this->getOption( 'threads', 1 );
-		if( $threads < 1 || $threads != intval( $threads ) ) {
+		if ( $threads < 1 || $threads != intval( $threads ) ) {
 			$this->output( "Invalid thread count specified; running single-threaded.\n" );
 			$threads = 1;
 		}
-		if( $threads > 1 && wfIsWindows() ) {
+		if ( $threads > 1 && wfIsWindows() ) {
 			$this->output( "Threaded rebuild is not supported on Windows; running single-threaded.\n" );
 			$threads = 1;
 		}
-		if( $threads > 1 && !function_exists( 'pcntl_fork' ) ) {
+		if ( $threads > 1 && !function_exists( 'pcntl_fork' ) ) {
 			$this->output( "PHP pcntl extension is not present; running single-threaded.\n" );
 			$threads = 1;
 		}
@@ -72,8 +72,8 @@ class RebuildLocalisationCache extends Maintenance {
 
 		// Initialise and split into chunks
 		$numRebuilt = 0;
-		$total = count($codes);
-		$chunks = array_chunk( $codes, ceil(count($codes)/$threads) );
+		$total = count( $codes );
+		$chunks = array_chunk( $codes, ceil( count( $codes ) / $threads ) );
 		$pids = array();
 		foreach ( $chunks as $codes ) {
 			// Do not fork for only one thread
@@ -82,11 +82,11 @@ class RebuildLocalisationCache extends Maintenance {
 			if ( $pid === 0 ) {
 				// Child, reseed because there is no bug in PHP:
 				// http://bugs.php.net/bug.php?id=42465
-				mt_srand(getmypid());
+				mt_srand( getmypid() );
 				$numRebuilt = $this->doRebuild( $codes, $lc, $force );
 				// Abuse the exit value for the count of rebuild languages
-				exit($numRebuilt);
-			} elseif ($pid === -1) {
+				exit( $numRebuilt );
+			} elseif ( $pid === -1 ) {
 				// Fork failed or one thread, do it serialized
 				$numRebuilt += $this->doRebuild( $codes, $lc, $force );
 			} else {
@@ -97,9 +97,9 @@ class RebuildLocalisationCache extends Maintenance {
 		// Wait for all children
 		foreach ( $pids as $pid ) {
 			$status = 0;
-			pcntl_waitpid($pid, $status);
+			pcntl_waitpid( $pid, $status );
 			// Fetch the count from the return value
-			$numRebuilt += pcntl_wexitstatus($status);
+			$numRebuilt += pcntl_wexitstatus( $status );
 		}
 
 		$this->output( "$numRebuilt languages rebuilt out of $total\n" );

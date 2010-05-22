@@ -1,8 +1,8 @@
 <?php
 
 class MockCookie extends Cookie {
-	public function canServeDomain($arg) { return parent::canServeDomain($arg); }
-	public function canServePath($arg) { return parent::canServePath($arg); }
+	public function canServeDomain( $arg ) { return parent::canServeDomain( $arg ); }
+	public function canServePath( $arg ) { return parent::canServePath( $arg ); }
 	public function isUnExpired() { return parent::isUnExpired(); }
 }
 
@@ -25,15 +25,15 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	var $test_posturl = array( "http://www.comp.leeds.ac.uk/cgi-bin/Perl/environment-example" => "review=test" );
 
 	function setup() {
-		putenv("http_proxy"); /* Remove any proxy env var, so curl doesn't get confused */
+		putenv( "http_proxy" ); /* Remove any proxy env var, so curl doesn't get confused */
 		if ( is_array( self::$content ) ) {
 			return;
 		}
 		self::$has_curl = function_exists( 'curl_init' );
 		self::$has_fopen = wfIniGetBool( 'allow_url_fopen' );
 
-		if ( !file_exists("/usr/bin/curl") ) {
-			$this->markTestIncomplete("This test requires the curl binary at /usr/bin/curl.	 If you have curl, please file a bug on this test, or, better yet, provide a patch.");
+		if ( !file_exists( "/usr/bin/curl" ) ) {
+			$this->markTestIncomplete( "This test requires the curl binary at /usr/bin/curl.	 If you have curl, please file a bug on this test, or, better yet, provide a patch." );
 		}
 
 		$content = tempnam( wfTempDir(), "" );
@@ -43,9 +43,9 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		// This probably isn't the best test for a proxy, but it works on my system!
-		system("curl -0 -o $content -s ".self::$proxy);
+		system( "curl -0 -o $content -s " . self::$proxy );
 		$out = file_get_contents( $content );
-		if( $out ) {
+		if ( $out ) {
 			self::$has_proxy = true;
 		}
 
@@ -73,29 +73,29 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	function testInstantiation() {
 		Http::$httpEngine = false;
 
-		$r = HttpRequest::factory("http://www.example.com/");
+		$r = HttpRequest::factory( "http://www.example.com/" );
 		if ( self::$has_curl ) {
-			$this->assertThat($r, $this->isInstanceOf( 'CurlHttpRequest' ));
+			$this->assertThat( $r, $this->isInstanceOf( 'CurlHttpRequest' ) );
 		} else {
-			$this->assertThat($r, $this->isInstanceOf( 'PhpHttpRequest' ));
+			$this->assertThat( $r, $this->isInstanceOf( 'PhpHttpRequest' ) );
 		}
-		unset($r);
+		unset( $r );
 
-		if( !self::$has_fopen ) {
+		if ( !self::$has_fopen ) {
 			$this->setExpectedException( 'MWException' );
 		}
 		Http::$httpEngine = 'php';
-		$r = HttpRequest::factory("http://www.example.com/");
-		$this->assertThat($r, $this->isInstanceOf( 'PhpHttpRequest' ));
-		unset($r);
+		$r = HttpRequest::factory( "http://www.example.com/" );
+		$this->assertThat( $r, $this->isInstanceOf( 'PhpHttpRequest' ) );
+		unset( $r );
 
-		if( !self::$has_curl ) {
+		if ( !self::$has_curl ) {
 			$this->setExpectedException( 'MWException' );
 		}
 		Http::$httpEngine = 'curl';
-		$r = HttpRequest::factory("http://www.example.com/");
-		if( self::$has_curl ) {
-			$this->assertThat($r, $this->isInstanceOf( 'CurlHttpRequest' ));
+		$r = HttpRequest::factory( "http://www.example.com/" );
+		if ( self::$has_curl ) {
+			$this->assertThat( $r, $this->isInstanceOf( 'CurlHttpRequest' ) );
 		}
 	}
 
@@ -104,22 +104,22 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 		$timeout = 1;
 		$start_time = time();
-		$r = HTTP::get( "http://www.example.com:1/", $timeout);
+		$r = HTTP::get( "http://www.example.com:1/", $timeout );
 		$end_time = time();
-		$this->assertLessThan($timeout+2, $end_time - $start_time,
-							  "Request took less than {$timeout}s via ".Http::$httpEngine);
-		$this->assertEquals($r, false, "false -- what we get on error from Http::get()");
+		$this->assertLessThan( $timeout + 2, $end_time - $start_time,
+							  "Request took less than {$timeout}s via " . Http::$httpEngine );
+		$this->assertEquals( $r, false, "false -- what we get on error from Http::get()" );
 
-		$r = HTTP::get( "http://www.example.com/this-file-does-not-exist", $timeout);
-		$this->assertFalse($r, "False on 404s");
+		$r = HTTP::get( "http://www.example.com/this-file-does-not-exist", $timeout );
+		$this->assertFalse( $r, "False on 404s" );
 
 
 		$r = HttpRequest::factory( "http://www.example.com/this-file-does-not-exist" );
 		$er = $r->execute();
-		if ( is_a($r, 'PhpHttpRequest') && version_compare( '5.2.10', phpversion(), '>' ) ) {
-			$this->assertRegexp("/HTTP request failed/", $er->getWikiText());
+		if ( is_a( $r, 'PhpHttpRequest' ) && version_compare( '5.2.10', phpversion(), '>' ) ) {
+			$this->assertRegexp( "/HTTP request failed/", $er->getWikiText() );
 		} else {
-			$this->assertRegexp("/404 Not Found/", $er->getWikiText());
+			$this->assertRegexp( "/404 Not Found/", $er->getWikiText() );
 		}
 	}
 
@@ -149,19 +149,19 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	/* ./phase3/includes/Import.php:1108:		$data = Http::request( $method, $url ); */
 	/* ./includes/Import.php:1124:			$link = Title::newFromText( "$interwiki:Special:Export/$page" ); */
 	/* ./includes/Import.php:1134:			return ImportStreamSource::newFromURL( $url, "POST" ); */
-	function runHTTPRequests($proxy=null) {
+	function runHTTPRequests( $proxy = null ) {
 		$opt = array();
 
-		if($proxy) {
+		if ( $proxy ) {
 			$opt['proxy'] = $proxy;
-		} elseif( $proxy === false ) {
+		} elseif ( $proxy === false ) {
 			$opt['noProxy'] = true;
 		}
 
 		/* no postData here because the only request I could find in code so far didn't have any */
 		foreach ( $this->test_requesturl as $u ) {
 			$r = Http::request( "POST", $u, $opt );
-			$this->assertEquals( self::$content["POST $u"], "$r", "POST $u with ".Http::$httpEngine );
+			$this->assertEquals( self::$content["POST $u"], "$r", "POST $u with " . Http::$httpEngine );
 		}
 	}
 
@@ -232,18 +232,18 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	/* ./extensions/APC/SpecialAPC.php:245:		$rss = Http::get( 'http://pecl.php.net/feeds/pkg_apc.rss' ); */
 	/* ./extensions/Interlanguage/Interlanguage.php:56:		$a = Http::get( $url ); */
 	/* ./extensions/MWSearch/MWSearch_body.php:492:		$data = Http::get( $searchUrl, $wgLuceneSearchTimeout, $httpOpts);	*/
-	function runHTTPGets($proxy=null) {
+	function runHTTPGets( $proxy = null ) {
 		$opt = array();
 
-		if($proxy) {
+		if ( $proxy ) {
 			$opt['proxy'] = $proxy;
-		} elseif( $proxy === false ) {
+		} elseif ( $proxy === false ) {
 			$opt['noProxy'] = true;
 		}
 
 		foreach ( $this->test_geturl as $u ) {
 			$r = Http::get( $u, 30, $opt ); /* timeout of 30s */
-			$this->assertEquals( self::$content["GET $u"], "$r", "Get $u with ".Http::$httpEngine );
+			$this->assertEquals( self::$content["GET $u"], "$r", "Get $u with " . Http::$httpEngine );
 		}
 	}
 
@@ -271,12 +271,12 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	/* ./phase3/maintenance/parserTests.inc:1618:		return Http::post( $url, array( 'postData' => wfArrayToCGI( $data ) ) ); */
-	function runHTTPPosts($proxy=null) {
+	function runHTTPPosts( $proxy = null ) {
 		$opt = array();
 
-		if($proxy) {
+		if ( $proxy ) {
 			$opt['proxy'] = $proxy;
-		} elseif( $proxy === false ) {
+		} elseif ( $proxy === false ) {
 			$opt['noProxy'] = true;
 		}
 
@@ -284,7 +284,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 			$opt['postData'] = $postData;
 			$r = Http::post( $u, $opt );
 			$this->assertEquals( self::$content["POST $u => $postData"], "$r",
-								 "POST $u (postData=$postData) with ".Http::$httpEngine );
+								 "POST $u (postData=$postData) with " . Http::$httpEngine );
 		}
 	}
 
@@ -312,17 +312,17 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function runProxyRequests() {
-		if(!self::$has_proxy) {
+		if ( !self::$has_proxy ) {
 			$this->markTestIncomplete( "This test requires a proxy." );
 		}
-		self::runHTTPGets(self::$proxy);
-		self::runHTTPPosts(self::$proxy);
-		self::runHTTPRequests(self::$proxy);
+		self::runHTTPGets( self::$proxy );
+		self::runHTTPPosts( self::$proxy );
+		self::runHTTPRequests( self::$proxy );
 
 		// Set false here to do noProxy
-		self::runHTTPGets(false);
-		self::runHTTPPosts(false);
-		self::runHTTPRequests(false);
+		self::runHTTPGets( false );
+		self::runHTTPPosts( false );
+		self::runHTTPRequests( false );
 	}
 
 	function testProxyDefault() {
@@ -389,7 +389,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 								 "domain" => "ac.th",
 								 "path" => "/path/",
 							 ) );
-		$this->assertFalse($c->canServeDomain("ac.th"));
+		$this->assertFalse( $c->canServeDomain( "ac.th" ) );
 
 		$c = new MockCookie( "name", "value",
 							 array(
@@ -397,8 +397,8 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 								 "path" => "/path/",
 							 ) );
 
-		$this->assertTrue($c->canServeDomain("example.com"));
-		$this->assertFalse($c->canServeDomain("www.example.com"));
+		$this->assertTrue( $c->canServeDomain( "example.com" ) );
+		$this->assertFalse( $c->canServeDomain( "www.example.com" ) );
 
 		$c = new MockCookie( "name", "value",
 							 array(
@@ -406,29 +406,29 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 								 "path" => "/path/",
 							 ) );
 
-		$this->assertFalse($c->canServeDomain("www.example.net"));
-		$this->assertFalse($c->canServeDomain("example.com"));
-		$this->assertTrue($c->canServeDomain("www.example.com"));
+		$this->assertFalse( $c->canServeDomain( "www.example.net" ) );
+		$this->assertFalse( $c->canServeDomain( "example.com" ) );
+		$this->assertTrue( $c->canServeDomain( "www.example.com" ) );
 
-		$this->assertFalse($c->canServePath("/"));
-		$this->assertFalse($c->canServePath("/bogus/path/"));
-		$this->assertFalse($c->canServePath("/path"));
-		$this->assertTrue($c->canServePath("/path/"));
+		$this->assertFalse( $c->canServePath( "/" ) );
+		$this->assertFalse( $c->canServePath( "/bogus/path/" ) );
+		$this->assertFalse( $c->canServePath( "/path" ) );
+		$this->assertTrue( $c->canServePath( "/path/" ) );
 
-		$this->assertTrue($c->isUnExpired());
+		$this->assertTrue( $c->isUnExpired() );
 
-		$this->assertEquals("", $c->serializeToHttpRequest("/path/", "www.example.net"));
-		$this->assertEquals("", $c->serializeToHttpRequest("/", "www.example.com"));
-		$this->assertEquals("name=value", $c->serializeToHttpRequest("/path/", "www.example.com"));
+		$this->assertEquals( "", $c->serializeToHttpRequest( "/path/", "www.example.net" ) );
+		$this->assertEquals( "", $c->serializeToHttpRequest( "/", "www.example.com" ) );
+		$this->assertEquals( "name=value", $c->serializeToHttpRequest( "/path/", "www.example.com" ) );
 
 		$c = new MockCookie( "name", "value",
 							 array(
 								 "domain" => "www.example.com",
 								 "path" => "/path/",
 							 ) );
-		$this->assertFalse($c->canServeDomain("example.com"));
-		$this->assertFalse($c->canServeDomain("www.example.net"));
-		$this->assertTrue($c->canServeDomain("www.example.com"));
+		$this->assertFalse( $c->canServeDomain( "example.com" ) );
+		$this->assertFalse( $c->canServeDomain( "www.example.net" ) );
+		$this->assertTrue( $c->canServeDomain( "www.example.com" ) );
 
 		$c = new MockCookie( "name", "value",
 						 array(
@@ -436,8 +436,8 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 							 "path" => "/path/",
 							 "expires" => "-1 day",
 						 ) );
-		$this->assertFalse($c->isUnExpired());
-		$this->assertEquals("", $c->serializeToHttpRequest("/path/", "www.example.com"));
+		$this->assertFalse( $c->isUnExpired() );
+		$this->assertEquals( "", $c->serializeToHttpRequest( "/path/", "www.example.com" ) );
 
 		$c = new MockCookie( "name", "value",
 						 array(
@@ -445,8 +445,8 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 							 "path" => "/path/",
 							 "expires" => "+1 day",
 						 ) );
-		$this->assertTrue($c->isUnExpired());
-		$this->assertEquals("name=value", $c->serializeToHttpRequest("/path/", "www.example.com"));
+		$this->assertTrue( $c->isUnExpired() );
+		$this->assertEquals( "name=value", $c->serializeToHttpRequest( "/path/", "www.example.com" ) );
 	}
 
 	function testCookieJarSetCookie() {
@@ -478,9 +478,9 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 							 "expires" => "-1 day",
 						 ) );
 
-		$this->assertEquals("name4=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
-		$this->assertEquals("name3=value", $cj->serializeToHttpRequest("/", "www.example.com"));
-		$this->assertEquals("name=value; name3=value", $cj->serializeToHttpRequest("/path/", "www.example.com"));
+		$this->assertEquals( "name4=value", $cj->serializeToHttpRequest( "/path/", "www.example.net" ) );
+		$this->assertEquals( "name3=value", $cj->serializeToHttpRequest( "/", "www.example.com" ) );
+		$this->assertEquals( "name=value; name3=value", $cj->serializeToHttpRequest( "/path/", "www.example.com" ) );
 
 		$cj->setCookie( "name5", "value",
 						 array(
@@ -488,7 +488,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 							 "path" => "/path/",
 							 "expires" => "+1 day",
 						 ) );
-		$this->assertEquals("name4=value; name5=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+		$this->assertEquals( "name4=value; name5=value", $cj->serializeToHttpRequest( "/path/", "www.example.net" ) );
 
 		$cj->setCookie( "name4", "value",
 						 array(
@@ -496,7 +496,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 							 "path" => "/path/",
 							 "expires" => "-1 day",
 						 ) );
-		$this->assertEquals("name5=value", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+		$this->assertEquals( "name5=value", $cj->serializeToHttpRequest( "/path/", "www.example.net" ) );
 	}
 
 	function testParseResponseHeader() {
@@ -504,28 +504,28 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 		$h[] = "Set-Cookie: name4=value; domain=.example.com; path=/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[0], "www.example.com" );
-		$this->assertEquals("name4=value", $cj->serializeToHttpRequest("/", "www.example.com"));
+		$this->assertEquals( "name4=value", $cj->serializeToHttpRequest( "/", "www.example.com" ) );
 
 		$h[] = "name4=value2; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[1], "www.example.com" );
-		$this->assertEquals("", $cj->serializeToHttpRequest("/", "www.example.com"));
-		$this->assertEquals("name4=value2", $cj->serializeToHttpRequest("/path/", "www.example.com"));
+		$this->assertEquals( "", $cj->serializeToHttpRequest( "/", "www.example.com" ) );
+		$this->assertEquals( "name4=value2", $cj->serializeToHttpRequest( "/path/", "www.example.com" ) );
 
 		$h[] = "name5=value3; domain=.example.com; path=/path/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[2], "www.example.com" );
-		$this->assertEquals("name4=value2; name5=value3", $cj->serializeToHttpRequest("/path/", "www.example.com"));
+		$this->assertEquals( "name4=value2; name5=value3", $cj->serializeToHttpRequest( "/path/", "www.example.com" ) );
 
 		$h[] = "name6=value3; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[3], "www.example.com" );
-		$this->assertEquals("", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+		$this->assertEquals( "", $cj->serializeToHttpRequest( "/path/", "www.example.net" ) );
 
 		$h[] = "name6=value0; domain=.example.net; path=/path/; expires=Mon, 09-Dec-1999 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[4], "www.example.net" );
-		$this->assertEquals("", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+		$this->assertEquals( "", $cj->serializeToHttpRequest( "/path/", "www.example.net" ) );
 
 		$h[] = "name6=value4; domain=.example.net; path=/path/; expires=Mon, 09-Dec-2029 13:46:00 GMT";
 		$cj->parseCookieResponseHeader( $h[5], "www.example.net" );
-		$this->assertEquals("name6=value4", $cj->serializeToHttpRequest("/path/", "www.example.net"));
+		$this->assertEquals( "name6=value4", $cj->serializeToHttpRequest( "/path/", "www.example.net" ) );
 	}
 
 	function runCookieRequests() {
@@ -535,7 +535,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		$jar = $r->getCookieJar();
 		$this->assertThat( $jar, $this->isInstanceOf( 'CookieJar' ) );
 
-		if ( is_a($r, 'PhpHttpRequest') && version_compare( '5.1.7', phpversion(), '>' ) ) {
+		if ( is_a( $r, 'PhpHttpRequest' ) && version_compare( '5.1.7', phpversion(), '>' ) ) {
 			$this->markTestSkipped( 'Redirection fails or crashes PHP on 5.1.6 and prior' );
 		}
 		$serialized = $jar->serializeToHttpRequest( "/search?q=test", "www.php.net" );

@@ -23,7 +23,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class DeleteImageCache extends Maintenance {
 	public function __construct() {
@@ -36,8 +36,8 @@ class DeleteImageCache extends Maintenance {
 	public function execute() {
 		global $wgMemc;
 
-		$until = preg_replace( "/[^\d]/", '', $this->getOption('until') );
-		$sleep = (int)$this->getOption('sleep') * 1000; // milliseconds
+		$until = preg_replace( "/[^\d]/", '', $this->getOption( 'until' ) );
+		$sleep = (int)$this->getOption( 'sleep' ) * 1000; // milliseconds
 
 		ini_set( 'display_errors', false );
 
@@ -53,12 +53,12 @@ class DeleteImageCache extends Maintenance {
 		$total = $this->getImageCount();
 
 		foreach ( $res as $row ) {
-			if ($i % $this->report == 0)
-				$this->output( sprintf("%s: %13s done (%s)\n", wfWikiID(), "$i/$total", wfPercent( $i / $total * 100 ) ) );
+			if ( $i % $this->report == 0 )
+				$this->output( sprintf( "%s: %13s done (%s)\n", wfWikiID(), "$i/$total", wfPercent( $i / $total * 100 ) ) );
 			$md5 = md5( $row->img_name );
 			$wgMemc->delete( wfMemcKey( 'Image', $md5 ) );
 
-			if ($sleep != 0)
+			if ( $sleep != 0 )
 				usleep( $sleep );
 
 			++$i;

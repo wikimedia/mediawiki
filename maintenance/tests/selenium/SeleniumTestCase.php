@@ -4,7 +4,7 @@ if ( !defined( 'MEDIAWIKI' ) || !defined( 'SELENIUMTEST' ) ) {
 	exit( 1 );
 }
 
-class SeleniumTestCase extends PHPUnit_Framework_TestCase { //PHPUnit_Extensions_SeleniumTestCase
+class SeleniumTestCase extends PHPUnit_Framework_TestCase { // PHPUnit_Extensions_SeleniumTestCase
 	protected $selenium;
 
 	public function setUp() {

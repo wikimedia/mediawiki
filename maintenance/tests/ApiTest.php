@@ -3,10 +3,10 @@
 require_once( "ApiSetup.php" );
 
 class MockApi extends ApiBase {
-	public function execute() {}
-	public function getVersion() {}
+	public function execute() { }
+	public function getVersion() { }
 
-	public function __construct() {}
+	public function __construct() { }
 
 	public function getAllowedParams() {
 		$params = array(
@@ -30,8 +30,8 @@ class ApiTest extends ApiSetup {
 		$mock = new MockApi();
 
 		$this->assertEquals(
-			null, $mock->requireOnlyOneParameter(array("filename" => "foo.txt",
-													   "enablechunks" => false), "filename", "enablechunks"));
+			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
+													   "enablechunks" => false ), "filename", "enablechunks" ) );
 	}
 
 	/**
@@ -41,8 +41,8 @@ class ApiTest extends ApiSetup {
 		$mock = new MockApi();
 
 		$this->assertEquals(
-			null, $mock->requireOnlyOneParameter(array("filename" => "foo.txt",
-													   "enablechunks" => 0), "filename", "enablechunks"));
+			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
+													   "enablechunks" => 0 ), "filename", "enablechunks" ) );
 	}
 
 	/**
@@ -52,18 +52,18 @@ class ApiTest extends ApiSetup {
 		$mock = new MockApi();
 
 		$this->assertEquals(
-			null, $mock->requireOnlyOneParameter(array("filename" => "foo.txt",
-													   "enablechunks" => true), "filename", "enablechunks"));
+			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
+													   "enablechunks" => true ), "filename", "enablechunks" ) );
 	}
 
 	function testApi() {
 		global $wgServerName, $wgServer, $wgDBprefix, $wgDBtype;
 
-		if($wgDBprefix === "parsertest_" || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_'))
-			$this->markTestSkipped("This test can't (yet?) be run with the parser tests");
-		if(!isset($wgServerName) || !isset($wgServer)) {
-			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
-									  'be set in LocalSettings.php');
+		if ( $wgDBprefix === "parsertest_" || ( $wgDBtype == 'oracle' && $wgDBprefix === 'pt_' ) )
+			$this->markTestSkipped( "This test can't (yet?) be run with the parser tests" );
+		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
+									  'be set in LocalSettings.php' );
 		}
 		/* Haven't thought about test ordering yet -- but this depends on HttpTest.php */
 		$resp = Http::get( self::$apiUrl . "?format=xml" );
@@ -77,11 +77,11 @@ class ApiTest extends ApiSetup {
 	function testApiLoginNoName() {
 		global $wgServerName, $wgServer, $wgDBprefix, $wgDBtype;
 
-		if($wgDBprefix === "parsertest_" || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_'))
-			$this->markTestSkipped("This test can't (yet?) be run with the parser tests");
-		if(!isset($wgServerName) || !isset($wgServer)) {
-			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
-									  'be set in LocalSettings.php');
+		if ( $wgDBprefix === "parsertest_" || ( $wgDBtype == 'oracle' && $wgDBprefix === 'pt_' ) )
+			$this->markTestSkipped( "This test can't (yet?) be run with the parser tests" );
+		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
+									  'be set in LocalSettings.php' );
 		}
 		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
 						   array( "postData" => array(
@@ -98,11 +98,11 @@ class ApiTest extends ApiSetup {
 	function testApiLoginBadPass() {
 		global $wgServerName, $wgServer, $wgDBprefix, $wgDBtype;
 
-		if($wgDBprefix === "parsertest_" || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_'))
-			$this->markTestSkipped("This test can't (yet?) be run with the parser tests");
-		if(!isset($wgServerName) || !isset($wgServer)) {
-			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
-									  'be set in LocalSettings.php');
+		if ( $wgDBprefix === "parsertest_" || ( $wgDBtype == 'oracle' && $wgDBprefix === 'pt_' ) )
+			$this->markTestSkipped( "This test can't (yet?) be run with the parser tests" );
+		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
+									  'be set in LocalSettings.php' );
 		}
 		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
 						   array( "postData" => array(
@@ -135,13 +135,13 @@ class ApiTest extends ApiSetup {
 	function testApiLoginGoodPass() {
 		global $wgServerName, $wgServer, $wgDBprefix, $wgDBtype;
 
-		if($wgDBprefix === "parsertest_" || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_'))
-			$this->markTestSkipped("This test can't (yet?) be run with the parser tests");
-		if(!isset($wgServerName) || !isset($wgServer)) {
-			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
-									  'be set in LocalSettings.php');
+		if ( $wgDBprefix === "parsertest_" || ( $wgDBtype == 'oracle' && $wgDBprefix === 'pt_' ) )
+			$this->markTestSkipped( "This test can't (yet?) be run with the parser tests" );
+		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
+									  'be set in LocalSettings.php' );
 		}
-		$req = HttpRequest::factory(self::$apiUrl . "?action=login&format=xml",
+		$req = HttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 			array( "method" => "POST",
 				"postData" => array(
 				"lgname" => self::$userName,
@@ -157,7 +157,7 @@ class ApiTest extends ApiSetup {
 		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
 		$token = (string)$sxe->login[0]->attributes()->token;
 
-		$req->setData(array(
+		$req->setData( array(
 			"lgtoken" => $token,
 			"lgname" => self::$userName,
 			"lgpassword" => self::$passWord ) );
@@ -175,13 +175,13 @@ class ApiTest extends ApiSetup {
 	function testApiGotCookie() {
 		global $wgServerName, $wgServer, $wgScriptPath, $wgDBprefix, $wgDBtype;
 
-		if($wgDBprefix === "parsertest_" || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_'))
-			$this->markTestSkipped("This test can't (yet?) be run with the parser tests");
-		if(!isset($wgServerName) || !isset($wgServer)) {
-			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
-									  'be set in LocalSettings.php');
+		if ( $wgDBprefix === "parsertest_" || ( $wgDBtype == 'oracle' && $wgDBprefix === 'pt_' ) )
+			$this->markTestSkipped( "This test can't (yet?) be run with the parser tests" );
+		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
+									  'be set in LocalSettings.php' );
 		}
-		$req = HttpRequest::factory(self::$apiUrl . "?action=login&format=xml",
+		$req = HttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 			array( "method" => "POST",
 				"postData" => array(
 				"lgname" => self::$userName,
@@ -197,7 +197,7 @@ class ApiTest extends ApiSetup {
 		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
 		$token = (string)$sxe->login[0]->attributes()->token;
 
-		$req->setData(array(
+		$req->setData( array(
 			"lgtoken" => $token,
 			"lgname" => self::$userName,
 			"lgpassword" => self::$passWord ) );
@@ -214,19 +214,19 @@ class ApiTest extends ApiSetup {
 	/**
 	 * @depends testApiGotCookie
 	 */
-	function testApiListPages(CookieJar $cj) {
-		$this->markTestIncomplete("Not done with this yet");
+	function testApiListPages( CookieJar $cj ) {
+		$this->markTestIncomplete( "Not done with this yet" );
 		global $wgServerName, $wgServer, $wgDBprefix, $wgDBtype;
 
-		if($wgDBprefix === "parsertest_" || ($wgDBtype == 'oracle' && $wgDBprefix === 'pt_'))
-			$this->markTestSkipped("This test can't (yet?) be run with the parser tests");
-		if($wgServerName == "localhost" || $wgServer == "http://localhost") {
-			$this->markTestIncomplete('This test needs $wgServerName and $wgServer to '.
-									  'be set in LocalSettings.php');
+		if ( $wgDBprefix === "parsertest_" || ( $wgDBtype == 'oracle' && $wgDBprefix === 'pt_' ) )
+			$this->markTestSkipped( "This test can't (yet?) be run with the parser tests" );
+		if ( $wgServerName == "localhost" || $wgServer == "http://localhost" ) {
+			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
+									  'be set in LocalSettings.php' );
 		}
-		$req = HttpRequest::factory( self::$apiUrl . "?action=query&format=xml&prop=revisions&".
+		$req = HttpRequest::factory( self::$apiUrl . "?action=query&format=xml&prop=revisions&" .
 									 "titles=Main%20Page&rvprop=timestamp|user|comment|content" );
-		$req->setCookieJar($cj);
+		$req->setCookieJar( $cj );
 		$req->execute();
 		libxml_use_internal_errors( true );
 		$sxe = simplexml_load_string( $req->getContent() );

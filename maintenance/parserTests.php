@@ -23,9 +23,9 @@
  */
 
 /** */
-require('parserTests.inc');
+require( 'parserTests.inc' );
 
-if( isset( $options['help'] ) ) {
+if ( isset( $options['help'] ) ) {
     echo <<<ENDS
 MediaWiki $wgVersion parser test suite
 Usage: php parserTests.php [options...]
@@ -69,7 +69,7 @@ if ( $wgDBtype == 'sqlite' ) {
 $wgTitle = Title::newFromText( 'Parser test script do not use' );
 $tester = new ParserTest();
 
-if( isset( $options['file'] ) ) {
+if ( isset( $options['file'] ) ) {
 	$files = array( $options['file'] );
 } else {
 	// Default parser tests and any set from extensions or local config
@@ -84,5 +84,5 @@ if ( isset( $options['fuzz'] ) ) {
 	$tester->fuzzTest( $files );
 } else {
 	$ok = $tester->runTestsFromFiles( $files );
-	exit ($ok ? 0 : 1);
+	exit ( $ok ? 0 : 1 );
 }

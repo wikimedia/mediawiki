@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class SqliteMaintenance extends Maintenance {
 	public function __construct() {
@@ -66,14 +66,14 @@ class SqliteMaintenance extends Maintenance {
 		$prevSize = filesize( $this->db->mDatabaseFile );
 		if ( $prevSize == 0 ) {
 			$this->error( "Can't vacuum an empty database.\n", true );
-		}			
+		}
 
 		$this->output( 'VACUUM: ' );
 		if ( $this->db->query( 'VACUUM' ) ) {
 			clearstatcache();
 			$newSize = filesize( $this->db->mDatabaseFile );
 			$this->output( sprintf( "Database size was %d, now %d (%.1f%% reduction).\n",
-				$prevSize, $newSize, ( $prevSize - $newSize) * 100.0 / $prevSize ) );
+				$prevSize, $newSize, ( $prevSize - $newSize ) * 100.0 / $prevSize ) );
 		} else {
 			$this->output( 'Error\n' );
 		}

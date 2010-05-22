@@ -34,7 +34,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public Licence 2.0 or later
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class FindHooks extends Maintenance {
 	public function __construct() {
@@ -54,22 +54,22 @@ class FindHooks extends Maintenance {
 		$potential = array();
 		$bad = array();
 		$pathinc = array(
-			$IP.'/',
-			$IP.'/includes/',
-			$IP.'/includes/api/',
-			$IP.'/includes/db/',
-			$IP.'/includes/diff/',
-			$IP.'/includes/filerepo/',
-			$IP.'/includes/parser/',
-			$IP.'/includes/search/',
-			$IP.'/includes/specials/',
-			$IP.'/includes/upload/',
-			$IP.'/languages/',
-			$IP.'/maintenance/',
-			$IP.'/skins/',
+			$IP . '/',
+			$IP . '/includes/',
+			$IP . '/includes/api/',
+			$IP . '/includes/db/',
+			$IP . '/includes/diff/',
+			$IP . '/includes/filerepo/',
+			$IP . '/includes/parser/',
+			$IP . '/includes/search/',
+			$IP . '/includes/specials/',
+			$IP . '/includes/upload/',
+			$IP . '/languages/',
+			$IP . '/maintenance/',
+			$IP . '/skins/',
 		);
 
-		foreach( $pathinc as $dir ) {
+		foreach ( $pathinc as $dir ) {
 			$potential = array_merge( $potential, $this->getHooksFromPath( $dir ) );
 			$bad = array_merge( $bad, $this->getBadHooksFromPath( $dir ) );
 		}
@@ -80,11 +80,11 @@ class FindHooks extends Maintenance {
 		$deprecated = array_diff( $documented, $potential );
 	
 		// let's show the results:
-		$this->printArray('Undocumented', $todo );
-		$this->printArray('Documented and not found', $deprecated );
-		$this->printArray('Unclear hook calls', $bad );
+		$this->printArray( 'Undocumented', $todo );
+		$this->printArray( 'Documented and not found', $deprecated );
+		$this->printArray( 'Unclear hook calls', $bad );
 	
-		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 ) 
+		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 )
 			$this->output( "Looks good!\n" );
 	}
 
@@ -93,14 +93,14 @@ class FindHooks extends Maintenance {
 	 * @return array of documented hooks
 	 */
 	private function getHooksFromDoc( $doc ) {
-		if( $this->hasOption( 'online' ) ){
+		if ( $this->hasOption( 'online' ) ) {
 			// All hooks
 			$allhookdata = Http::get( 'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php' );
 			$allhookdata = unserialize( $allhookdata );
 			$allhooks = array();
-			foreach( $allhookdata['query']['categorymembers'] as $page ) {
+			foreach ( $allhookdata['query']['categorymembers'] as $page ) {
 				$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
-				if( $found ) {
+				if ( $found ) {
 					$hook = str_replace( ' ', '_', $matches[1] );
 					$allhooks[] = $hook;
 				}
@@ -109,9 +109,9 @@ class FindHooks extends Maintenance {
 			$oldhookdata = Http::get( 'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Removed_hooks&cmlimit=500&format=php' );
 			$oldhookdata = unserialize( $oldhookdata );
 			$removed = array();
-			foreach( $oldhookdata['query']['categorymembers'] as $page ) {
+			foreach ( $oldhookdata['query']['categorymembers'] as $page ) {
 				$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
-				if( $found ) {
+				if ( $found ) {
 					$hook = str_replace( ' ', '_', $matches[1] );
 					$removed[] = $hook;
 				}
@@ -133,7 +133,7 @@ class FindHooks extends Maintenance {
 	private function getHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
 		$m = array();
-		preg_match_all( '/wfRunHooks\(\s*([\'"])(.*?)\1/', $content, $m);
+		preg_match_all( '/wfRunHooks\(\s*([\'"])(.*?)\1/', $content, $m );
 		return $m[2];
 	}
 
@@ -144,13 +144,13 @@ class FindHooks extends Maintenance {
 	 */
 	private function getHooksFromPath( $path ) {
 		$hooks = array();
-		if( $dh = opendir($path) ) {
-			while(($file = readdir($dh)) !== false) {
-				if( filetype($path.$file) == 'file' ) {
-					$hooks = array_merge( $hooks, $this->getHooksFromFile($path.$file) );
+		if ( $dh = opendir( $path ) ) {
+			while ( ( $file = readdir( $dh ) ) !== false ) {
+				if ( filetype( $path . $file ) == 'file' ) {
+					$hooks = array_merge( $hooks, $this->getHooksFromFile( $path . $file ) );
 				}
 			}
-			closedir($dh);
+			closedir( $dh );
 		}
 		return $hooks;
 	}
@@ -164,9 +164,9 @@ class FindHooks extends Maintenance {
 		$content = file_get_contents( $file );
 		$m = array();
 		# We want to skip the "function wfRunHooks()" one.  :)
-		preg_match_all( '/(?<!function )wfRunHooks\(\s*[^\s\'"].*/', $content, $m);
+		preg_match_all( '/(?<!function )wfRunHooks\(\s*[^\s\'"].*/', $content, $m );
 		$list = array();
-		foreach( $m[0] as $match ){
+		foreach ( $m[0] as $match ) {
 			$list[] = $match . "(" . $file . ")";
 		}
 		return $list;
@@ -179,14 +179,14 @@ class FindHooks extends Maintenance {
 	 */
 	private function getBadHooksFromPath( $path ) {
 		$hooks = array();
-		if( $dh = opendir($path) ) {
-			while(($file = readdir($dh)) !== false) {
+		if ( $dh = opendir( $path ) ) {
+			while ( ( $file = readdir( $dh ) ) !== false ) {
 				# We don't want to read this file as it contains bad calls to wfRunHooks()
-				if( filetype( $path.$file ) == 'file' && !$path.$file == __FILE__ ) {
-					$hooks = array_merge( $hooks, $this->getBadHooksFromFile($path.$file) );
+				if ( filetype( $path . $file ) == 'file' && !$path . $file == __FILE__ ) {
+					$hooks = array_merge( $hooks, $this->getBadHooksFromFile( $path . $file ) );
 				}
 			}
-			closedir($dh);
+			closedir( $dh );
 		}
 		return $hooks;
 	}
@@ -198,8 +198,8 @@ class FindHooks extends Maintenance {
 	 * @param $sort Boolean : wheter to sort the array (Default: true)
 	 */
 	private function printArray( $msg, $arr, $sort = true ) {
-		if($sort) asort($arr); 
-		foreach($arr as $v) $this->output( "$msg: $v\n" );
+		if ( $sort ) asort( $arr );
+		foreach ( $arr as $v ) $this->output( "$msg: $v\n" );
 	}
 }
 

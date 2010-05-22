@@ -25,7 +25,7 @@ class LocalFileTest extends PHPUnit_Framework_TestCase {
 
 	function tearDown() {
 		global $wgContLang;
-		unset($wgContLang);
+		unset( $wgContLang );
 	}
 
 	function testGetHashPath() {
@@ -53,7 +53,7 @@ class LocalFileTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( '/testdir/archive/a/a2/!', $this->file_hl2->getArchivePath( '!' ) );
 	}
 
-	function testGetThumbPath() { 
+	function testGetThumbPath() {
 		$this->assertEquals( '/testdir/thumb/Test!', $this->file_hl0->getThumbPath() );
 		$this->assertEquals( '/testdir/thumb/a/a2/Test!', $this->file_hl2->getThumbPath() );
 		$this->assertEquals( '/testdir/thumb/Test!/x', $this->file_hl0->getThumbPath( 'x' ) );

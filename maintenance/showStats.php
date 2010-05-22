@@ -28,7 +28,7 @@
  * @license GNU General Public License 2.0 or later
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ShowStats extends Maintenance {
 	public function __construct() {
@@ -51,13 +51,13 @@ class ShowStats extends Maintenance {
 	
 		// Get maximum size for each column
 		$max_length_value = $max_length_desc = 0;
-		foreach( $fields as $field => $desc ) {
+		foreach ( $fields as $field => $desc ) {
 			$max_length_value = max( $max_length_value, strlen( $stats->$field ) );
-			$max_length_desc  = max( $max_length_desc , strlen( $desc )) ;
+			$max_length_desc  = max( $max_length_desc , strlen( $desc ) ) ;
 		}
 	
 		// Show them
-		foreach( $fields as $field => $desc ) {
+		foreach ( $fields as $field => $desc ) {
 			$this->output( sprintf( "%-{$max_length_desc}s: %{$max_length_value}d\n", $desc, $stats->$field ) );
 		}
 	}

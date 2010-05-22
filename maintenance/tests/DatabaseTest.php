@@ -51,7 +51,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 			'SELECT * FROM interwiki', array() );
 		$this->assertEquals(
 			"SELECT * FROM interwiki",
-			$sql);
+			$sql );
 	}
 
 	function testFillPreparedQuestion() {
@@ -84,7 +84,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 			array( '"user"', "Slash's Dot" ) );
 		$this->assertEquals(
 			"SELECT * FROM cur WHERE cur_title='This_&_that,_WTF?!'",
-			$sql);
+			$sql );
 	}
 
 }

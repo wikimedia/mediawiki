@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class GetTextMaint extends Maintenance {
 	public function __construct() {
@@ -45,7 +45,7 @@ class GetTextMaint extends Maintenance {
 			$titleText = $title->getPrefixedText();
 			$this->error( "Page $titleText does not exist.\n", true );
 		}
-		$text = $rev->getText( $this->hasOption('show-private') ? Revision::RAW : Revision::FOR_PUBLIC );
+		$text = $rev->getText( $this->hasOption( 'show-private' ) ? Revision::RAW : Revision::FOR_PUBLIC );
 		if ( $text === false ) {
 			$titleText = $title->getPrefixedText();
 			$this->error( "Couldn't extract the text from $titleText.\n", true );

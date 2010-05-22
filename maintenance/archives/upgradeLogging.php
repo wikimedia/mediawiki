@@ -6,7 +6,7 @@
  * @ingroup MaintenanceArchive
  */
 
-require( dirname(__FILE__).'/../commandLine.inc' );
+require( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 class UpdateLogging {
 	var $dbw;
@@ -130,7 +130,7 @@ EOT;
 			} else {
 				$conds = array( 'log_timestamp > ' . $this->dbw->addQuotes( $copyPos ) );
 			}
-			$srcRes = $this->dbw->select( $srcTable, '*', $conds, __METHOD__, 
+			$srcRes = $this->dbw->select( $srcTable, '*', $conds, __METHOD__,
 				array( 'LIMIT' => $batchSize, 'ORDER BY' => 'log_timestamp' ) );
 
 			if ( ! $srcRes->numRows() ) {

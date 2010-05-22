@@ -22,7 +22,7 @@
  * @todo Document
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RebuildRecentchanges extends Maintenance {
 	public function __construct() {
@@ -57,10 +57,10 @@ class RebuildRecentchanges extends Maintenance {
 	
 		$this->output( '$wgRCMaxAge=' . $wgRCMaxAge );
 		$days = $wgRCMaxAge / 24 / 3600;
-		if ( intval($days) == $days ) {
+		if ( intval( $days ) == $days ) {
 				$this->output( " (" . $days . " days)\n" );
 		} else {
-				$this->output( " (approx. " .  intval($days) . " days)\n" );
+				$this->output( " (approx. " .  intval( $days ) . " days)\n" );
 		}
 	
 		$cutoff = time() - $wgRCMaxAge;
@@ -96,7 +96,7 @@ class RebuildRecentchanges extends Maintenance {
 	 */
 	private function rebuildRecentChangesTablePass2() {
 		$dbw = wfGetDB( DB_MASTER );
-		list ($recentchanges, $revision) = $dbw->tableNamesN( 'recentchanges', 'revision' );
+		list ( $recentchanges, $revision ) = $dbw->tableNamesN( 'recentchanges', 'revision' );
 	
 		$this->output( "Updating links and size differences...\n" );
 	
@@ -109,19 +109,19 @@ class RebuildRecentchanges extends Maintenance {
 		$lastOldId = 0;
 		foreach ( $res as $obj ) {
 			$new = 0;
-			if( $obj->rc_cur_id != $lastCurId ) {
+			if ( $obj->rc_cur_id != $lastCurId ) {
 				# Switch! Look up the previous last edit, if any
 				$lastCurId = intval( $obj->rc_cur_id );
 				$emit = $obj->rc_timestamp;
 				$sql2 = "SELECT rev_id,rev_len FROM $revision " .
-					"WHERE rev_page={$lastCurId} ".
+					"WHERE rev_page={$lastCurId} " .
 					"AND rev_timestamp<'{$emit}' ORDER BY rev_timestamp DESC";
-				$sql2 = $dbw->limitResult($sql2, 1, false);
+				$sql2 = $dbw->limitResult( $sql2, 1, false );
 				$res2 = $dbw->query( $sql2 );
-				if( $row = $dbw->fetchObject( $res2 ) ) {
-					$lastOldId = intval($row->rev_id);
+				if ( $row = $dbw->fetchObject( $res2 ) ) {
+					$lastOldId = intval( $row->rev_id );
 					# Grab the last text size if available
-					$lastSize = !is_null($row->rev_len) ? intval($row->rev_len) : 'NULL';
+					$lastSize = !is_null( $row->rev_len ) ? intval( $row->rev_len ) : 'NULL';
 				} else {
 					# No previous edit
 					$lastOldId = 0;
@@ -130,12 +130,12 @@ class RebuildRecentchanges extends Maintenance {
 				}
 				$dbw->freeResult( $res2 );
 			}
-			if( $lastCurId == 0 ) {
+			if ( $lastCurId == 0 ) {
 				$this->output( "Uhhh, something wrong? No curid\n" );
 			} else {
 				# Grab the entry's text size
-				$size = $dbw->selectField( 'revision', 'rev_len', array('rev_id' => $obj->rc_this_oldid ) );
-				$size = !is_null($size) ? intval($size) : 'NULL';
+				$size = $dbw->selectField( 'revision', 'rev_len', array( 'rev_id' => $obj->rc_this_oldid ) );
+				$size = !is_null( $size ) ? intval( $size ) : 'NULL';
 	
 				$sql3 = "UPDATE $recentchanges SET rc_last_oldid=$lastOldId,rc_new=$new,rc_type=$new," .
 					"rc_old_len=$lastSize,rc_new_len=$size " .
@@ -164,13 +164,13 @@ class RebuildRecentchanges extends Maintenance {
 	
 		// Escape...blah blah
 		$selectLogs = array();
-		foreach( $basicRCLogs as $logtype ) {
+		foreach ( $basicRCLogs as $logtype ) {
 			$safetype = $dbw->strencode( $logtype );
 			$selectLogs[] = "'$safetype'";
 		}
 	
 		$cutoff = time() - $wgRCMaxAge;
-		list($logging, $page) = $dbw->tableNamesN( 'logging', 'page' );
+		list( $logging, $page ) = $dbw->tableNamesN( 'logging', 'page' );
 		$dbw->insertSelect( 'recentchanges', array( 'user', "$logging LEFT JOIN $page ON (log_namespace=page_namespace AND log_title=page_title)" ),
 			array(
 				'rc_timestamp'  => 'log_timestamp',
@@ -196,7 +196,7 @@ class RebuildRecentchanges extends Maintenance {
 			), array(
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
 				'log_user=user_id',
-				'log_type IN(' . implode(',',$selectLogs) . ')'
+				'log_type IN(' . implode( ',', $selectLogs ) . ')'
 			), __METHOD__,
 			array(), // INSERT options
 			array( 'ORDER BY' => 'log_timestamp DESC', 'LIMIT' => 5000 ) // SELECT options
@@ -212,20 +212,20 @@ class RebuildRecentchanges extends Maintenance {
 	
 		$dbw = wfGetDB( DB_MASTER );
 	
-		list($recentchanges,$usergroups,$user) = $dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
+		list( $recentchanges, $usergroups, $user ) = $dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
 	
 		$botgroups = $autopatrolgroups = array();
-		foreach( $wgGroupPermissions as $group => $rights ) {
-			if( isset( $rights['bot'] ) && $rights['bot'] == true ) {
+		foreach ( $wgGroupPermissions as $group => $rights ) {
+			if ( isset( $rights['bot'] ) && $rights['bot'] == true ) {
 				$botgroups[] = $dbw->addQuotes( $group );
 			}
-			if( $wgUseRCPatrol && isset( $rights['autopatrol'] ) && $rights['autopatrol'] == true ) {
+			if ( $wgUseRCPatrol && isset( $rights['autopatrol'] ) && $rights['autopatrol'] == true ) {
 				$autopatrolgroups[] = $dbw->addQuotes( $group );
 			}
 		}
 		# Flag our recent bot edits
-		if( !empty($botgroups) ) {
-			$botwhere = implode(',',$botgroups);
+		if ( !empty( $botgroups ) ) {
+			$botwhere = implode( ',', $botgroups );
 			$botusers = array();
 	
 			$this->output( "Flagging bot account edits...\n" );
@@ -235,12 +235,12 @@ class RebuildRecentchanges extends Maintenance {
 				"WHERE ug_group IN($botwhere) AND user_id = ug_user";
 			$res = $dbw->query( $sql, DB_MASTER );
 	
-			foreach( $res as $obj ) {
+			foreach ( $res as $obj ) {
 				$botusers[] = $dbw->addQuotes( $obj->user_name );
 			}
 			# Fill in the rc_bot field
-			if( !empty($botusers) ) {
-				$botwhere = implode(',',$botusers);
+			if ( !empty( $botusers ) ) {
+				$botwhere = implode( ',', $botusers );
 				$sql2 = "UPDATE $recentchanges SET rc_bot=1 " .
 					"WHERE rc_user_text IN($botwhere)";
 				$dbw->query( $sql2 );
@@ -248,8 +248,8 @@ class RebuildRecentchanges extends Maintenance {
 		}
 		global $wgMiserMode;
 		# Flag our recent autopatrolled edits
-		if( !$wgMiserMode && !empty($autopatrolgroups) ) {
-			$patrolwhere = implode(',',$autopatrolgroups);
+		if ( !$wgMiserMode && !empty( $autopatrolgroups ) ) {
+			$patrolwhere = implode( ',', $autopatrolgroups );
 			$patrolusers = array();
 	
 			$this->output( "Flagging auto-patrolled edits...\n" );
@@ -259,13 +259,13 @@ class RebuildRecentchanges extends Maintenance {
 				"WHERE ug_group IN($patrolwhere) AND user_id = ug_user";
 			$res = $dbw->query( $sql, DB_MASTER );
 	
-			foreach( $res as $obj ) {
+			foreach ( $res as $obj ) {
 				$patrolusers[] = $dbw->addQuotes( $obj->user_name );
 			}
 	
 			# Fill in the rc_patrolled field
-			if( !empty($patrolusers) ) {
-				$patrolwhere = implode(',',$patrolusers);
+			if ( !empty( $patrolusers ) ) {
+				$patrolwhere = implode( ',', $patrolusers );
 				$sql2 = "UPDATE $recentchanges SET rc_patrolled=1 " .
 					"WHERE rc_user_text IN($patrolwhere)";
 				$dbw->query( $sql2 );
@@ -283,7 +283,7 @@ class RebuildRecentchanges extends Maintenance {
 
 		$this->output( "Deleting feed timestamps.\n" );
 
-		foreach( $wgFeedClasses as $feed => $className ) {
+		foreach ( $wgFeedClasses as $feed => $className ) {
 			$messageMemc->delete( wfMemcKey( 'rcfeed', $feed, 'timestamp' ) ); # Good enough for now.
 		}
 	}

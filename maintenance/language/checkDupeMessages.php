@@ -5,22 +5,22 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( dirname(__FILE__).'/../commandLine.inc' );
-$messagesDir = dirname(__FILE__).'/../../languages/messages/';
+require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
+$messagesDir = dirname( __FILE__ ) . '/../../languages/messages/';
 $runTest = false;
 $run = false;
 $runMode = 'text';
 
 // Check parameters
-if ( isset( $options['lang'] ) && isset( $options['clang'] )) {
-	if (!isset( $options['mode'] )) {
+if ( isset( $options['lang'] ) && isset( $options['clang'] ) ) {
+	if ( !isset( $options['mode'] ) ) {
 		$runMode = 'text';
 	} else {
-		if (!strcmp($options['mode'],'wiki')) {
+		if ( !strcmp( $options['mode'], 'wiki' ) ) {
 			$runMode = 'wiki';
-		} else if (!strcmp($options['mode'],'php')) {
+		} else if ( !strcmp( $options['mode'], 'php' ) ) {
 			$runMode = 'php';
-		} else if (!strcmp($options['mode'],'raw')) {
+		} else if ( !strcmp( $options['mode'], 'raw' ) ) {
 			$runMode = 'raw';
 		} else {
 		}
@@ -45,11 +45,11 @@ TEXT;
 if ( $runTest ) {
 	$langCode = $options['lang'];
 	$langCodeC = $options['clang'];
-	$langCodeF = ucfirst(strtolower(preg_replace('/-/','_',$langCode)));
-	$langCodeFC = ucfirst(strtolower(preg_replace('/-/','_',$langCodeC)));
-	$messagesFile = $messagesDir.'Messages'.$langCodeF.'.php';
-	$messagesFileC = $messagesDir.'Messages'.$langCodeFC.'.php';
-	if (file_exists($messagesFile) && file_exists($messagesFileC)) {
+	$langCodeF = ucfirst( strtolower( preg_replace( '/-/', '_', $langCode ) ) );
+	$langCodeFC = ucfirst( strtolower( preg_replace( '/-/', '_', $langCodeC ) ) );
+	$messagesFile = $messagesDir . 'Messages' . $langCodeF . '.php';
+	$messagesFileC = $messagesDir . 'Messages' . $langCodeFC . '.php';
+	if ( file_exists( $messagesFile ) && file_exists( $messagesFileC ) ) {
 		$run = true;
 	}
 	else {
@@ -59,60 +59,60 @@ if ( $runTest ) {
 
 // Run to check the dupes
 if ( $run ) {
-	if (!strcmp($runMode,'wiki')) {
+	if ( !strcmp( $runMode, 'wiki' ) ) {
 		$runMode = 'wiki';
-	} else if (!strcmp($runMode,'raw')) {
+	} else if ( !strcmp( $runMode, 'raw' ) ) {
 		$runMode = 'raw';
 	}
 	include( $messagesFile );
-	$messageExist = isset($messages);
-	if ($messageExist)
+	$messageExist = isset( $messages );
+	if ( $messageExist )
 		$wgMessages[$langCode] = $messages;
 	include( $messagesFileC );
-	$messageCExist = isset($messages);
-	if ($messageCExist)
+	$messageCExist = isset( $messages );
+	if ( $messageCExist )
 		$wgMessages[$langCodeC] = $messages;
 	$count = 0;
 
-	if (($messageExist) && ($messageCExist)) {
+	if ( ( $messageExist ) && ( $messageCExist ) ) {
 
-		if (!strcmp($runMode,'php')) {
-			print("<?php\n");
-			print('$dupeMessages = array('."\n");
+		if ( !strcmp( $runMode, 'php' ) ) {
+			print( "<?php\n" );
+			print( '$dupeMessages = array(' . "\n" );
 		}
-		foreach ($wgMessages[$langCodeC] as $key => $value) {
-			foreach ($wgMessages[$langCode] as $ckey => $cvalue) {
-				if (!strcmp($key,$ckey)) {
-					if ((!strcmp($key,$ckey)) && (!strcmp($value,$cvalue))) {
-						if (!strcmp($runMode,'raw')) {
-							print("$key\n");
-						} else if (!strcmp($runMode,'php')) {
-							print("'$key' => '',\n");
-						} else if (!strcmp($runMode,'wiki')) {
-							$uKey = ucfirst($key);
-							print("* MediaWiki:$uKey/$langCode\n");
+		foreach ( $wgMessages[$langCodeC] as $key => $value ) {
+			foreach ( $wgMessages[$langCode] as $ckey => $cvalue ) {
+				if ( !strcmp( $key, $ckey ) ) {
+					if ( ( !strcmp( $key, $ckey ) ) && ( !strcmp( $value, $cvalue ) ) ) {
+						if ( !strcmp( $runMode, 'raw' ) ) {
+							print( "$key\n" );
+						} else if ( !strcmp( $runMode, 'php' ) ) {
+							print( "'$key' => '',\n" );
+						} else if ( !strcmp( $runMode, 'wiki' ) ) {
+							$uKey = ucfirst( $key );
+							print( "* MediaWiki:$uKey/$langCode\n" );
 						} else {
-							print("* $key\n");
+							print( "* $key\n" );
 						}
 						$count++;
 					}
 				}
 			}
 		}
-		if (!strcmp($runMode,'php')) {
-			print(");\n");
+		if ( !strcmp( $runMode, 'php' ) ) {
+			print( ");\n" );
 		}
-		if (!strcmp($runMode,'text')) {
-			if ($count == 1) {
+		if ( !strcmp( $runMode, 'text' ) ) {
+			if ( $count == 1 ) {
 				echo "\nThere are $count duplicated message in $langCode, against to $langCodeC.\n";
 			} else {
 				echo "\nThere are $count duplicated messages in $langCode, against to $langCodeC.\n";
 			}
 		}
 	} else {
-		if (!$messageExist)
+		if ( !$messageExist )
 			echo "There are no messages defined in $langCode.\n";
-		if (!$messageCExist)
+		if ( !$messageCExist )
 			echo "There are no messages defined in $langCodeC.\n";
-	}	
+	}
 }

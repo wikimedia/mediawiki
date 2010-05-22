@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ClearInterwikiCache extends Maintenance {
 
@@ -42,7 +42,7 @@ class ClearInterwikiCache extends Maintenance {
 		foreach ( $wgLocalDatabases as $db ) {
 			$this->output( "$db..." );
 			foreach ( $prefixes as $prefix ) {
-				$wgMemc->delete("$db:interwiki:$prefix");
+				$wgMemc->delete( "$db:interwiki:$prefix" );
 			}
 			$this->output( "done\n" );
 		}

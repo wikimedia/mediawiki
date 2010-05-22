@@ -18,7 +18,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-require_once( dirname(__FILE__) . '/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class DumpRev extends Maintenance {
 	public function __construct() {
@@ -28,9 +28,9 @@ class DumpRev extends Maintenance {
 
 	public function execute() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 
-			array( 'text', 'revision' ), 
-			array( 'old_flags', 'old_text' ), 
+		$row = $dbr->selectRow(
+			array( 'text', 'revision' ),
+			array( 'old_flags', 'old_text' ),
 			array( 'old_id=rev_text_id', 'rev_id' => $this->getArg() )
 		);
 		if ( !$row ) {
@@ -69,7 +69,7 @@ class DumpRev extends Maintenance {
 		if ( is_object( $text ) ) {
 			$this->error( "Unexpectedly got object of type: " . get_class( $text ) );
 		} else {
-			$this->output( "Text length: " . strlen( $text ) ."\n" );
+			$this->output( "Text length: " . strlen( $text ) . "\n" );
 			$this->output( substr( $text, 0, 100 ) . "\n" );
 		}
 	}

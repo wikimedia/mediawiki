@@ -22,8 +22,8 @@
  */
 
 /** This is a command line script */
-require_once( dirname(__FILE__) . '/../Maintenance.php' );
-require_once( dirname(__FILE__) . '/languages.inc' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/languages.inc' );
 
 class LangMemUsage extends Maintenance {
 
@@ -45,13 +45,13 @@ class LangMemUsage extends Maintenance {
 		foreach ( $langtool->getLanguages() as $langcode ) {
 			Language::factory( $langcode );
 			$memstep = memory_get_usage();
-			$this->output( sprintf( "%12s: %d\n", $langcode, ($memstep- $memlast) ) );
+			$this->output( sprintf( "%12s: %d\n", $langcode, ( $memstep - $memlast ) ) );
 			$memlast = $memstep;
 		}
 
 		$memend = memory_get_usage();
 
-		$this->output( ' Total Usage: '.($memend - $memstart)."\n" );
+		$this->output( ' Total Usage: ' . ( $memend - $memstart ) . "\n" );
 	}
 }
 

@@ -76,7 +76,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 }
 
 class UploadTestHandler extends UploadBase {
-		public function initializeFromRequest( &$request ) {}
+		public function initializeFromRequest( &$request ) { }
 		public function testTitleValidation( $name ) {
 			$this->mTitle = false;
 			$this->mDesiredDestName = $name;

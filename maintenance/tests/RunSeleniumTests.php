@@ -27,14 +27,14 @@ define( 'SELENIUMTEST', true );
 
 // Command line only
 $wgSeleniumTestsRunMode = 'cli';
-if( $wgSeleniumTestsRunMode == 'cli' && php_sapi_name() != 'cli' ) {
+if ( $wgSeleniumTestsRunMode == 'cli' && php_sapi_name() != 'cli' ) {
 	echo 'Must be run from the command line.';
 	die( -1 );
 }
 // include path and installation instructions
 
 // URL: http://localhost/tests/RunSeleniumTests.php
-//set_include_path( get_include_path() . PATH_SEPARATOR . './PEAR/' );
+// set_include_path( get_include_path() . PATH_SEPARATOR . './PEAR/' );
 
 // Hostname of selenium server
 $wgSeleniumTestsSeleniumHost = 'http://localhost';
@@ -49,7 +49,7 @@ $wgSeleniumTestsWikiPassword  = 'password';
 // Common browsers on Windows platform
 // Use the *chrome handler in order to be able to test file uploads
 // further solution suggestions: http://www.brokenbuild.com/blog/2007/06/07/testing-file-uploads-with-selenium-rc-and-firefoxor-reducing-javascript-security-in-firefox-for-fun-and-profit/
-//$wgSeleniumTestsBrowsers['firefox']   = '*firefox c:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe';
+// $wgSeleniumTestsBrowsers['firefox']   = '*firefox c:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe';
 $wgSeleniumTestsBrowsers['firefox']   = '*chrome c:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe';
 $wgSeleniumTestsBrowsers['iexplorer'] = '*iexploreproxy';
 
@@ -84,7 +84,7 @@ $result->addListener( new SeleniumTestListener( $logger ) );
 $wgSeleniumTestSuites = array();
 
 // Todo: include automatically
-#include_once '<your tests>';
+# include_once '<your tests>';
 
 // Here, you can override standard setting
 if ( file_exists( 'LocalSeleniumSettings.php' ) ) {

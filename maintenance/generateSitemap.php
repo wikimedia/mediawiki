@@ -31,7 +31,7 @@ define( 'GS_TALK', -1 );
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class GenerateSitemap extends Maintenance {
 	/**
@@ -182,15 +182,15 @@ class GenerateSitemap extends Maintenance {
 	 * Create directory if it does not exist and return pathname with a trailing slash
 	 */
 	private static function init_path( $fspath ) {
-		if( !isset( $fspath ) ) {
+		if ( !isset( $fspath ) ) {
 			return null;
 		}
 		# Create directory if needed
-		if( $fspath && !is_dir( $fspath ) ) {
-			wfMkdirParents( $fspath ) or die("Can not create directory $fspath.\n");
+		if ( $fspath && !is_dir( $fspath ) ) {
+			wfMkdirParents( $fspath ) or die( "Can not create directory $fspath.\n" );
 		}
 
-		return realpath( $fspath ). DIRECTORY_SEPARATOR ;
+		return realpath( $fspath ) . DIRECTORY_SEPARATOR ;
 	}
 
 	/**
@@ -199,7 +199,7 @@ class GenerateSitemap extends Maintenance {
 	function generateNamespaces() {
 		// Only generate for specific namespaces if $wgSitemapNamespaces is an array.
 		global $wgSitemapNamespaces;
-		if( is_array( $wgSitemapNamespaces ) ) {
+		if ( is_array( $wgSitemapNamespaces ) ) {
 			$this->namespaces = $wgSitemapNamespaces;
 			return;
 		}
@@ -301,11 +301,11 @@ class GenerateSitemap extends Maintenance {
 				$length += strlen( $entry );
 				$this->write( $this->file, $entry );
 				// generate pages for language variants
-				if($wgContLang->hasVariants()){
+				if ( $wgContLang->hasVariants() ) {
 					$variants = $wgContLang->getVariants();
-					foreach($variants as $vCode){
-						if($vCode==$wgContLang->getCode()) continue; // we don't want default variant
-						$entry = $this->fileEntry( $title->getFullURL('',$vCode), $date, $this->priority( $namespace ) );
+					foreach ( $variants as $vCode ) {
+						if ( $vCode == $wgContLang->getCode() ) continue; // we don't want default variant
+						$entry = $this->fileEntry( $title->getFullURL( '', $vCode ), $date, $this->priority( $namespace ) );
 						$length += strlen( $entry );
 						$this->write( $this->file, $entry );
 					}
@@ -361,7 +361,7 @@ class GenerateSitemap extends Maintenance {
 	 */
 	function sitemapFilename( $namespace, $count ) {
 		$ext = $this->compress ? '.gz' : '';
-		return "sitemap-".wfWikiID()."-NS_$namespace-$count.xml$ext";
+		return "sitemap-" . wfWikiID() . "-NS_$namespace-$count.xml$ext";
 	}
 
 	/**

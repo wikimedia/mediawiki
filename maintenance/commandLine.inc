@@ -3,7 +3,7 @@
 /**
  * Backwards-compatibility wrapper for old-style maintenance scripts
  */
-require( dirname(__FILE__) . '/Maintenance.php' );
+require( dirname( __FILE__ ) . '/Maintenance.php' );
 
 if ( !isset( $optionsWithArgs ) ) {
     $optionsWithArgs = array();

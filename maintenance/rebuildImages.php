@@ -32,7 +32,7 @@
 
 $options = array( 'missing', 'dry-run' );
 
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
 class ImageBuilder extends FiveUpgrade {
@@ -69,7 +69,7 @@ class ImageBuilder extends FiveUpgrade {
 	function progress( $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
-		if( $this->processed % 100 != 0 ) {
+		if ( $this->processed % 100 != 0 ) {
 			return;
 		}
 		$portion = $this->processed / $this->count;
@@ -103,9 +103,9 @@ class ImageBuilder extends FiveUpgrade {
 		$sql = "SELECT * FROM $tableName";
 		$result = $this->dbr->query( $sql, $fname );
 
-		while( $row = $this->dbr->fetchObject( $result ) ) {
+		while ( $row = $this->dbr->fetchObject( $result ) ) {
 			$update = call_user_func( $callback, $row, null );
-			if( $update ) {
+			if ( $update ) {
 				$this->progress( 1 );
 			} else {
 				$this->progress( 0 );
@@ -151,10 +151,10 @@ class ImageBuilder extends FiveUpgrade {
 	function checkMissingImage( $fullpath ) {
 		$fname = 'ImageBuilder::checkMissingImage';
 		$filename = wfBaseName( $fullpath );
-		if( is_dir( $fullpath ) ) {
+		if ( is_dir( $fullpath ) ) {
 			return;
 		}
-		if( is_link( $fullpath ) ) {
+		if ( is_link( $fullpath ) ) {
 			$this->log( "skipping symlink at $fullpath" );
 			return;
 		}
@@ -163,7 +163,7 @@ class ImageBuilder extends FiveUpgrade {
 			array( 'img_name' => $filename ),
 			$fname );
 
-		if( $row ) {
+		if ( $row ) {
 			// already known, move on
 			return;
 		} else {
@@ -178,8 +178,8 @@ class ImageBuilder extends FiveUpgrade {
 
 		global $wgContLang;
 		$altname = $wgContLang->checkTitleEncoding( $filename );
-		if( $altname != $filename ) {
-			if( $this->dryrun ) {
+		if ( $altname != $filename ) {
+			if ( $this->dryrun ) {
 				$filename = $altname;
 				$this->log( "Estimating transcoding... $altname" );
 			} else {
@@ -187,13 +187,13 @@ class ImageBuilder extends FiveUpgrade {
 			}
 		}
 
-		if( $filename == '' ) {
+		if ( $filename == '' ) {
 			$this->log( "Empty filename for $fullpath" );
 			return;
 		}
 		if ( !$this->dryrun ) {
 			$file = wfLocalFile( $filename );
-			if ( !$file->recordUpload( '', '(recovered file, missing upload log entry)', '', '', '', 
+			if ( !$file->recordUpload( '', '(recovered file, missing upload log entry)', '', '', '',
 				false, $timestamp ) )
 			{
 				$this->log( "Error uploading file $fullpath" );
@@ -205,7 +205,7 @@ class ImageBuilder extends FiveUpgrade {
 }
 
 $builder = new ImageBuilder( isset( $options['dry-run'] ) );
-if( isset( $options['missing'] ) ) {
+if ( isset( $options['missing'] ) ) {
 	$builder->crawlMissing();
 } else {
 	$builder->build();

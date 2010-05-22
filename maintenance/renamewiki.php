@@ -23,7 +23,7 @@
  * @ingroup Wikimedia
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RenameWiki extends Maintenance {
 	public function __construct() {
@@ -45,7 +45,7 @@ class RenameWiki extends Maintenance {
 		$to = $this->getArg( 1 );
 		$this->output( "Renaming blob tables in ES from $from to $to...\n" );
 		$this->output( "Sleeping 5 seconds...\n" );
-		sleep(5);
+		sleep( 5 );
 
 		# Initialise external storage
 		if ( is_array( $wgDefaultExternalStore ) ) {

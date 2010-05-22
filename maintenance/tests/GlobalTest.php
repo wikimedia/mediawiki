@@ -4,13 +4,13 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 	function setUp() {
 		global $wgReadOnlyFile;
 		$this->originals['wgReadOnlyFile'] = $wgReadOnlyFile;
-		$wgReadOnlyFile = tempnam(wfTempDir(), "mwtest_readonly");
+		$wgReadOnlyFile = tempnam( wfTempDir(), "mwtest_readonly" );
 		unlink( $wgReadOnlyFile );
 	}
 	
 	function tearDown() {
 		global $wgReadOnlyFile;
-		if( file_exists( $wgReadOnlyFile ) ) {
+		if ( file_exists( $wgReadOnlyFile ) ) {
 			unlink( $wgReadOnlyFile );
 		}
 		$wgReadOnlyFile = $this->originals['wgReadOnlyFile'];
@@ -200,9 +200,9 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 			'C:\\Progra~1\\Wikime~1\\Wikipe~1\\VIEWER.EXE' => 'VIEWER.EXE',
 			'Östergötland_coat_of_arms.png' => 'Östergötland_coat_of_arms.png',
 			);
-		foreach( $sets as $from => $to ) {
+		foreach ( $sets as $from => $to ) {
 			$this->assertEquals( $to, wfBaseName( $from ),
-				"wfBaseName('$from') => '$to'");
+				"wfBaseName('$from') => '$to'" );
 		}
 	}
 

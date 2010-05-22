@@ -28,7 +28,7 @@
  * @ingroup Maintenance
  */
  
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class DumpRenderer extends Maintenance {
 
@@ -60,7 +60,7 @@ class DumpRenderer extends Maintenance {
 	 */
 	private function handleRevision( $rev ) {
 		$title = $rev->getTitle();
-		if (!$title) {
+		if ( !$title ) {
 			$this->error( "Got bogus revision with null title!" );
 			return;
 		}
@@ -69,7 +69,7 @@ class DumpRenderer extends Maintenance {
 		$this->count++;
 
 		$sanitized = rawurlencode( $display );
-		$filename = sprintf( "%s/wiki-%07d-%s.html", 
+		$filename = sprintf( "%s/wiki-%07d-%s.html",
 			$this->outputDirectory,
 			$this->count,
 			$sanitized );
@@ -89,7 +89,7 @@ class DumpRenderer extends Maintenance {
 			"<head>\n" .
 			"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n" .
 			"<title>" . htmlspecialchars( $display ) . "</title>\n" .
-			"</head>\n" . 
+			"</head>\n" .
 			"<body>\n" .
 			$output->getText() .
 			"</body>\n" .

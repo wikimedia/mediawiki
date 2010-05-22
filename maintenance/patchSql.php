@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class PatchSql extends Maintenance {
 	public function __construct() {
@@ -36,14 +36,14 @@ class PatchSql extends Maintenance {
 
 	public function execute() {
 		$dbw = wfGetDB( DB_MASTER );
-		foreach( $this->mArgs as $arg ) {
+		foreach ( $this->mArgs as $arg ) {
 			$files = array(
 				$arg,
 				DatabaseBase::patchPath( $arg ),
 				DatabaseBase::patchPath( "patch-$arg.sql" ),
 			);
-			foreach( $files as $file ) {
-				if( file_exists( $file ) ) {
+			foreach ( $files as $file ) {
+				if ( file_exists( $file ) ) {
 					$this->output( "$file ...\n" );
 					$dbw->sourceFile( $file );
 					continue 2;

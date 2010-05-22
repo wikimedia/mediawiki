@@ -10,7 +10,7 @@ define( 'DO_MAINTENANCE', dirname( __FILE__ ) . '/doMaintenance.php' );
 $maintClass = false;
 
 // Make sure we're on PHP5 or better
-if( version_compare( PHP_VERSION, '5.0.0' ) < 0 ) {
+if ( version_compare( PHP_VERSION, '5.0.0' ) < 0 ) {
 	echo( "Sorry! This version of MediaWiki requires PHP 5; you are running " .
 		PHP_VERSION . ".\n\n" .
 		"If you are sure you already have PHP 5 installed, it may be installed\n" .
@@ -135,7 +135,7 @@ abstract class Maintenance {
 	 * @return mixed
 	 */
 	protected function getOption( $name, $default = null ) {
-		if( $this->hasOption( $name ) ) {
+		if ( $this->hasOption( $name ) ) {
 			return $this->mOptions[$name];
 		} else {
 			// Set it so we don't have to provide the default again
@@ -151,10 +151,10 @@ abstract class Maintenance {
 	 * @param $required Boolean Is this required?
 	 */
 	protected function addArg( $arg, $description, $required = true ) {
-		$this->mArgList[] = array( 
+		$this->mArgList[] = array(
 			'name' => $arg,
-			'desc' => $description, 
-			'require' => $required 
+			'desc' => $description,
+			'require' => $required
 		);
 	}
 
@@ -204,7 +204,7 @@ abstract class Maintenance {
 		if ( $len == Maintenance::STDIN_ALL )
 			return file_get_contents( 'php://stdin' );
 		$f = fopen( 'php://stdin', 'rt' );
-		if( !$len )
+		if ( !$len )
 			return $f;
 		$input = fgets( $f, $len );
 		fclose( $f );
@@ -218,7 +218,7 @@ abstract class Maintenance {
 	 * @param $channel Mixed Unique identifier for the channel. See function outputChanneled.
 	 */
 	protected function output( $out, $channel = null ) {
-		if( $this->mQuiet ) {
+		if ( $this->mQuiet ) {
 			return;
 		}
 		$out = preg_replace( '/\n\z/', '', $out );
@@ -236,11 +236,11 @@ abstract class Maintenance {
 		if ( php_sapi_name() == 'cli' ) {
 			fwrite( STDERR, $err . "\n" );
 		} else {
-			$f = fopen( 'php://stderr', 'w' ); 
+			$f = fopen( 'php://stderr', 'w' );
 			fwrite( $f, $err . "\n" );
 			fclose( $f );
 		}
-		if( $die ) die();
+		if ( $die ) die();
 	}
 
 	private $atLineStart = true;
@@ -254,7 +254,7 @@ abstract class Maintenance {
 	 * @param $channel Channel identifier or null for no channel. Channel comparison uses ===.
 	 */
 	public function outputChanneled( $msg, $channel = null ) {
-		$handle = fopen( 'php://stdout', 'w' ); 
+		$handle = fopen( 'php://stdout', 'w' );
 
 		if ( $msg === false ) {
 			// For cleanup
@@ -306,12 +306,12 @@ abstract class Maintenance {
 		$this->addOption( 'wiki', "For specifying the wiki ID", false, true );
 		$this->addOption( 'globals', "Output globals at the end of processing for debugging" );
 		// If we support a DB, show the options
-		if( $this->getDbType() > 0 ) {
+		if ( $this->getDbType() > 0 ) {
 			$this->addOption( 'dbuser', "The DB user to use for this script", false, true );
 			$this->addOption( 'dbpass', "The password to use for this script", false, true );
 		}
 		// If we support $mBatchSize, show the option
-		if( $this->mBatchSize ) {
+		if ( $this->mBatchSize ) {
 			$this->addOption( 'batch-size', 'Run this many operations ' .
 				'per batch, default: ' . $this->mBatchSize , false, true );
 		}
@@ -330,11 +330,11 @@ abstract class Maintenance {
 		self::disableSetup();
 
 		// Make sure the class is loaded first
-		if( !class_exists( $maintClass ) ) {
-			if( $classFile ) {
+		if ( !class_exists( $maintClass ) ) {
+			if ( $classFile ) {
 				require_once( $classFile );
 			}
-			if( !class_exists( $maintClass ) ) {
+			if ( !class_exists( $maintClass ) ) {
 				$this->error( "Cannot spawn child: $maintClass" );
 			}
 		}
@@ -348,7 +348,7 @@ abstract class Maintenance {
 	 * Disable Setup.php mostly
 	 */
 	protected static function disableSetup() {
-		if( !defined( 'MW_NO_SETUP' ) )
+		if ( !defined( 'MW_NO_SETUP' ) )
 			define( 'MW_NO_SETUP', true );
 	}
 
@@ -364,15 +364,15 @@ abstract class Maintenance {
 		}
 
 		# Make sure we can handle script parameters
-		if( !ini_get( 'register_argc_argv' ) ) {
+		if ( !ini_get( 'register_argc_argv' ) ) {
 			$this->error( "Cannot get command line arguments, register_argc_argv is set to false", true );
 		}
 
-		if( version_compare( phpversion(), '5.2.4' ) >= 0 ) {
+		if ( version_compare( phpversion(), '5.2.4' ) >= 0 ) {
 			// Send PHP warnings and errors to stderr instead of stdout.
 			// This aids in diagnosing problems, while keeping messages
 			// out of redirected output.
-			if( ini_get( 'display_errors' ) ) {
+			if ( ini_get( 'display_errors' ) ) {
 				ini_set( 'display_errors', 'stderr' );
 			}
 
@@ -440,15 +440,15 @@ abstract class Maintenance {
 	 */
 	public function loadParamsAndArgs( $self = null, $opts = null, $args = null ) {
 		# If we were given opts or args, set those and return early
-		if( $self ) {
+		if ( $self ) {
 			$this->mSelf = $self;
 			$this->mInputLoaded = true;
 		}
-		if( $opts ) {
+		if ( $opts ) {
 			$this->mOptions = $opts;
 			$this->mInputLoaded = true;
 		}
-		if( $args ) {
+		if ( $args ) {
 			$this->mArgs = $args;
 			$this->mInputLoaded = true;
 		}
@@ -456,7 +456,7 @@ abstract class Maintenance {
 		# If we've already loaded input (either by user values or from $argv)
 		# skip on loading it again. The array_shift() will corrupt values if
 		# it's run again and again
-		if( $this->mInputLoaded ) {
+		if ( $this->mInputLoaded ) {
 			$this->loadSpecialVars();
 			return;
 		}
@@ -468,11 +468,11 @@ abstract class Maintenance {
 		$args = array();
 
 		# Parse arguments
-		for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
+		for ( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
 			if ( $arg == '--' ) {
 				# End of options, remainder should be considered arguments
 				$arg = next( $argv );
-				while( $arg !== false ) {
+				while ( $arg !== false ) {
 					$args[] = $arg;
 					$arg = next( $argv );
 				}
@@ -489,7 +489,7 @@ abstract class Maintenance {
 					$options[$option] = $param;
 				} else {
 					$bits = explode( '=', $option, 2 );
-					if( count( $bits ) > 1 ) {
+					if ( count( $bits ) > 1 ) {
 						$option = $bits[0];
 						$param = $bits[1];
 					} else {
@@ -499,8 +499,8 @@ abstract class Maintenance {
 				}
 			} elseif ( substr( $arg, 0, 1 ) == '-' ) {
 				# Short options
-				for ( $p=1; $p<strlen( $arg ); $p++ ) {
-					$option = $arg{$p};
+				for ( $p = 1; $p < strlen( $arg ); $p++ ) {
+					$option = $arg { $p } ;
 					if ( isset( $this->mParams[$option]['withArg'] ) && $this->mParams[$option]['withArg'] ) {
 						$param = next( $argv );
 						if ( $param === false ) {
@@ -529,34 +529,34 @@ abstract class Maintenance {
 	protected function validateParamsAndArgs() {
 		$die = false;
 		# Check to make sure we've got all the required options
-		foreach( $this->mParams as $opt => $info ) {
-			if( $info['require'] && !$this->hasOption( $opt ) ) {
+		foreach ( $this->mParams as $opt => $info ) {
+			if ( $info['require'] && !$this->hasOption( $opt ) ) {
 				$this->error( "Param $opt required!" );
 				$die = true;
 			}
 		}
 		# Check arg list too
-		foreach( $this->mArgList as $k => $info ) {
-			if( $info['require'] && !$this->hasArg($k) ) {
+		foreach ( $this->mArgList as $k => $info ) {
+			if ( $info['require'] && !$this->hasArg( $k ) ) {
 				$this->error( "Argument <" . $info['name'] . "> required!" );
 				$die = true;
 			}
 		}
 		
-		if( $die ) $this->maybeHelp( true );
+		if ( $die ) $this->maybeHelp( true );
 	}
 
 	/**
 	 * Handle the special variables that are global to all scripts
 	 */
 	protected function loadSpecialVars() {
-		if( $this->hasOption( 'dbuser' ) )
+		if ( $this->hasOption( 'dbuser' ) )
 			$this->mDbUser = $this->getOption( 'dbuser' );
-		if( $this->hasOption( 'dbpass' ) )
+		if ( $this->hasOption( 'dbpass' ) )
 			$this->mDbPass = $this->getOption( 'dbpass' );
-		if( $this->hasOption( 'quiet' ) )
+		if ( $this->hasOption( 'quiet' ) )
 			$this->mQuiet = true;
-		if( $this->hasOption( 'batch-size' ) )
+		if ( $this->hasOption( 'batch-size' ) )
 			$this->mBatchSize = $this->getOption( 'batch-size' );
 	}
 
@@ -570,30 +570,30 @@ abstract class Maintenance {
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
 		
 		ksort( $this->mParams );
-		if( $this->hasOption( 'help' ) || $force ) {
+		if ( $this->hasOption( 'help' ) || $force ) {
 			$this->mQuiet = false;
 
-			if( $this->mDescription ) {
+			if ( $this->mDescription ) {
 				$this->output( "\n" . $this->mDescription . "\n" );
 			}
 			$output = "\nUsage: php " . basename( $this->mSelf );
-			if( $this->mParams ) {
+			if ( $this->mParams ) {
 				$output .= " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]";
 			}
-			if( $this->mArgList ) {
+			if ( $this->mArgList ) {
 				$output .= " <";
-				foreach( $this->mArgList as $k => $arg ) {
+				foreach ( $this->mArgList as $k => $arg ) {
 					$output .= $arg['name'] . ">";
-					if( $k < count( $this->mArgList ) - 1 )
+					if ( $k < count( $this->mArgList ) - 1 )
 						$output .= " <";
 				}
 			}
 			$this->output( "$output\n" );
-			foreach( $this->mParams as $par => $info ) {
-				$this->output( wordwrap( "$tab$par : " . $info['desc'], $descWidth, 
+			foreach ( $this->mParams as $par => $info ) {
+				$this->output( wordwrap( "$tab$par : " . $info['desc'], $descWidth,
 				               "\n$tab$tab" ) . "\n" );
 			}
-			foreach( $this->mArgList as $info ) {
+			foreach ( $this->mArgList as $info ) {
 				$this->output( wordwrap( "$tab<" . $info['name'] . "> : " .
 				               $info['desc'], $descWidth, "\n$tab$tab" ) . "\n" );
 			}
@@ -610,29 +610,29 @@ abstract class Maintenance {
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
 		# Turn off output buffering again, it might have been turned on in the settings files
-		if( ob_get_level() ) {
+		if ( ob_get_level() ) {
 			ob_end_flush();
 		}
 		# Same with these
 		$wgCommandLineMode = true;
 
 		# If these were passed, use them
-		if( $this->mDbUser )
+		if ( $this->mDbUser )
 			$wgDBadminuser = $this->mDbUser;
-		if( $this->mDbPass )
+		if ( $this->mDbPass )
 			$wgDBadminpassword = $this->mDbPass;
 
 		if ( $this->getDbType() == self::DB_ADMIN && isset( $wgDBadminuser ) ) {
 			$wgDBuser = $wgDBadminuser;
 			$wgDBpassword = $wgDBadminpassword;
 
-			if( $wgDBservers ) {
+			if ( $wgDBservers ) {
 				foreach ( $wgDBservers as $i => $server ) {
 					$wgDBservers[$i]['user'] = $wgDBuser;
 					$wgDBservers[$i]['password'] = $wgDBpassword;
 				}
 			}
-			if( isset( $wgLBFactoryConf['serverTemplate'] ) ) {
+			if ( isset( $wgLBFactoryConf['serverTemplate'] ) ) {
 				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
 				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
@@ -655,7 +655,7 @@ abstract class Maintenance {
 	 * for refreshLinks
 	 */
 	public function globals() {
-		if( $this->hasOption( 'globals' ) ) {
+		if ( $this->hasOption( 'globals' ) ) {
 			print_r( $GLOBALS );
 		}
 	}
@@ -696,7 +696,7 @@ abstract class Maintenance {
 		# This is for the IRC scripts, which now run as the apache user
 		# The apache user doesn't have access to the wikiadmin_pass command
 		if ( $_ENV['USER'] == 'apache' ) {
-		#if ( posix_geteuid() == 48 ) {
+		# if ( posix_geteuid() == 48 ) {
 			$wgUseNormalUser = true;
 		}
 
@@ -758,7 +758,7 @@ abstract class Maintenance {
 		# Get "active" text records from the revisions table
 		$this->output( "Searching for active text records in revisions table..." );
 		$res = $dbw->query( "SELECT DISTINCT rev_text_id FROM $tbl_rev" );
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$cur[] = $row->rev_text_id;
 		}
 		$this->output( "done.\n" );
@@ -766,7 +766,7 @@ abstract class Maintenance {
 		# Get "active" text records from the archive table
 		$this->output( "Searching for active text records in archive table..." );
 		$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$cur[] = $row->ar_text_id;
 		}
 		$this->output( "done.\n" );
@@ -776,7 +776,7 @@ abstract class Maintenance {
 		$set = implode( ', ', $cur );
 		$res = $dbw->query( "SELECT old_id FROM $tbl_txt WHERE old_id NOT IN ( $set )" );
 		$old = array();
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$old[] = $row->old_id;
 		}
 		$this->output( "done.\n" );
@@ -786,7 +786,7 @@ abstract class Maintenance {
 		$this->output( "$count inactive items found.\n" );
 
 		# Delete as appropriate
-		if( $delete && $count ) {
+		if ( $delete && $count ) {
 			$this->output( "Deleting..." );
 			$set = implode( ', ', $old );
 			$dbw->query( "DELETE FROM $tbl_txt WHERE old_id IN ( $set )" );
@@ -820,7 +820,7 @@ abstract class Maintenance {
 	 * @return array
 	 */
 	protected static function getCoreScripts() {
-		if( !self::$mCoreScripts ) {
+		if ( !self::$mCoreScripts ) {
 			self::disableSetup();
 			$paths = array(
 				dirname( __FILE__ ),
@@ -829,19 +829,19 @@ abstract class Maintenance {
 				dirname( __FILE__ ) . '/storage',
 			);
 			self::$mCoreScripts = array();
-			foreach( $paths as $p ) {
+			foreach ( $paths as $p ) {
 				$handle = opendir( $p );
-				while( ( $file = readdir( $handle ) ) !== false ) {
-					if( $file == 'Maintenance.php' )
+				while ( ( $file = readdir( $handle ) ) !== false ) {
+					if ( $file == 'Maintenance.php' )
 						continue;
 					$file = $p . '/' . $file;
-					if( is_dir( $file ) || !strpos( $file, '.php' ) || 
+					if ( is_dir( $file ) || !strpos( $file, '.php' ) ||
 						( strpos( file_get_contents( $file ), '$maintClass' ) === false ) ) {
 						continue;
 					}
 					require( $file );
 					$vars = get_defined_vars();
-					if( array_key_exists( 'maintClass', $vars ) ) {
+					if ( array_key_exists( 'maintClass', $vars ) ) {
 						self::$mCoreScripts[$vars['maintClass']] = $file;
 					}
 				}
@@ -925,7 +925,7 @@ abstract class Maintenance {
 		// Get current revision
 		$rev = Revision::loadFromPageId( $dbw, $pageId );
 		$title = null;
-		if( $rev ) {
+		if ( $rev ) {
 			$titleObj = $rev->getTitle();
 			$title = $titleObj->getPrefixedDBkey();
 			$this->output( "$title..." );

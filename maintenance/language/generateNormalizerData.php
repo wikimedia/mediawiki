@@ -87,8 +87,8 @@ class GenerateNormalizerData extends Maintenance {
 					// No decomposition
 					continue;
 				}
-				if ( !preg_match( '/^ *(<\w*>) +([0-9A-F ]*)$/', 
-					$data['Decomposition_Type_Mapping'], $m ) ) 
+				if ( !preg_match( '/^ *(<\w*>) +([0-9A-F ]*)$/',
+					$data['Decomposition_Type_Mapping'], $m ) )
 				{
 					$this->error( "Can't parse Decomposition_Type/Mapping on line $lineNum" );
 					$this->error( $line );

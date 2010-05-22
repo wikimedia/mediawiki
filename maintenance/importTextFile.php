@@ -11,30 +11,30 @@
 
 $options = array( 'help', 'nooverwrite', 'norc' );
 $optionsWithArgs = array( 'title', 'user', 'comment' );
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 echo( "Import Text File\n\n" );
 
-if( count( $args ) < 1 || isset( $options['help'] ) ) {
+if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 	showHelp();
 } else {
 
 	$filename = $args[0];
 	echo( "Using {$filename}..." );
-	if( is_file( $filename ) ) {
+	if ( is_file( $filename ) ) {
 
 		$title = isset( $options['title'] ) ? $options['title'] : titleFromFilename( $filename );
 		$title = Title::newFromURL( $title );
 
-		if( is_object( $title ) ) {
+		if ( is_object( $title ) ) {
 
 			echo( "\nUsing title '" . $title->getPrefixedText() . "'..." );
-			if( !$title->exists() || !isset( $options['nooverwrite'] ) ) {
+			if ( !$title->exists() || !isset( $options['nooverwrite'] ) ) {
 
 				$text = file_get_contents( $filename );
 				$user = isset( $options['user'] ) ? $options['user'] : 'Maintenance script';
 				$user = User::newFromName( $user );
 
-				if( is_object( $user ) ) {
+				if ( is_object( $user ) ) {
 
 					echo( "\nUsing username '" . $user->getName() . "'..." );
 					$wgUser =& $user;

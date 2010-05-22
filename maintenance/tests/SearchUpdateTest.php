@@ -9,22 +9,22 @@ class DatabaseMock extends DatabaseBase {
 	}
 
 	function open( $server, $user, $password, $dbName ) { return true; }
-	function doQuery( $sql ) {}
-	function fetchObject( $res ) {}
-	function fetchRow( $res ) {}
-	function numRows( $res ) {}
-	function numFields( $res ) {}
-	function fieldName( $res, $n ) {}
-	function insertId() {}
-	function dataSeek( $res, $row ) {}
+	function doQuery( $sql ) { }
+	function fetchObject( $res ) { }
+	function fetchRow( $res ) { }
+	function numRows( $res ) { }
+	function numFields( $res ) { }
+	function fieldName( $res, $n ) { }
+	function insertId() { }
+	function dataSeek( $res, $row ) { }
 	function lastErrno() { return 0; }
 	function lastError() { return ''; }
-	function affectedRows() {}
-	function fieldInfo( $table, $field ) {}
-	function strencode( $s ) {}
-	function getSoftwareLink() {}
-	function getServerVersion() {}
-	function getType() {}
+	function affectedRows() { }
+	function fieldInfo( $table, $field ) { }
+	function strencode( $s ) { }
+	function getSoftwareLink() { }
+	function getServerVersion() { }
+	function getType() { }
 }
 
 class MockSearch extends SearchEngine {
