@@ -988,7 +988,7 @@ class OutputPage {
 	}
 
 	/**
-	 * Add wikitext with a custom Title object and 
+	 * Add wikitext with a custom Title object and
 	 *
 	 * @param $text String: wikitext
 	 * @param $title Title object
@@ -1304,13 +1304,13 @@ class OutputPage {
 	 */
 	public function getXVO() {
 		$cvCookies = $this->getCacheVaryCookies();
-		
+
 		$cookiesOption = array();
 		foreach ( $cvCookies as $cookieName ) {
 			$cookiesOption[] = 'string-contains=' . $cookieName;
 		}
 		$this->addVaryHeader( 'Cookie', $cookiesOption );
-		
+
 		$headers = array();
 		foreach( $this->mVaryHeader as $header => $option ) {
 			$newheader = $header;
@@ -1319,7 +1319,7 @@ class OutputPage {
 			$headers[] = $newheader;
 		}
 		$xvo = 'X-Vary-Options: ' . implode( ',', $headers );
-		
+
 		return $xvo;
 	}
 
@@ -1554,7 +1554,7 @@ class OutputPage {
 				) );
 			}
 		}
-		
+
 		if ( $wgJQueryOnEveryPage ) {
 			$this->includeJQuery();
 		}
@@ -2035,8 +2035,8 @@ class OutputPage {
 	public function addReturnTo( $title, $query=array(), $text=null ) {
 		global $wgUser;
 		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullUrl() ) );
-		$link = wfMsgHtml( 
-			'returnto', 
+		$link = wfMsgHtml(
+			'returnto',
 			$wgUser->getSkin()->link( $title, $text, array(), $query )
 		);
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
@@ -2581,7 +2581,7 @@ class OutputPage {
 
 	/**
 	 * Include jQuery core. Use this to avoid loading it multiple times
-	 * before we get a usable script loader. 
+	 * before we get a usable script loader.
 	 *
 	 * @param $modules Array: list of jQuery modules which should be loaded
 	 * @return Array: the list of modules which were not loaded.
