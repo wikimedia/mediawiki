@@ -7,9 +7,9 @@ abstract class MediaWiki_Setup extends PHPUnit_Framework_TestCase {
 
 		$db = wfGetDB( DB_MASTER );
 		$oldTableNames = array();
-		foreach( $tables as $table )
+		foreach ( $tables as $table )
 			$oldTableNames[$table] = $db->tableName( $table );
-		if($db->getType() == 'oracle') {
+		if ( $db->getType() == 'oracle' ) {
 			$wgDBprefix = 'pt_';
 		} else {
 			$wgDBprefix = 'parsertest_';
@@ -17,7 +17,7 @@ abstract class MediaWiki_Setup extends PHPUnit_Framework_TestCase {
 
 		$db->tablePrefix( $wgDBprefix );
 
-		if( $db->isOpen() ) {
+		if ( $db->isOpen() ) {
 			foreach ( $tables as $tbl ) {
 				$newTableName = $db->tableName( $tbl );
 				$tableName = $oldTableNames[$tbl];

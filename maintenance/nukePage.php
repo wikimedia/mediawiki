@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class NukePage extends Maintenance {
 	public function __construct() {
@@ -47,7 +47,7 @@ class NukePage extends Maintenance {
 		# Get page ID
 		$this->output( "Searching for \"$name\"..." );
 		$title = Title::newFromText( $name );
-		if( $title ) {
+		if ( $title ) {
 			$id   = $title->getArticleID();
 			$real = $title->getPrefixedText();
 			$isGoodArticle = $title->isContentPage();
@@ -56,14 +56,14 @@ class NukePage extends Maintenance {
 			# Get corresponding revisions
 			$this->output( "Searching for revisions..." );
 			$res = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_page = $id" );
-			foreach( $res as $row ) {
+			foreach ( $res as $row ) {
 				$revs[] = $row->rev_id;
 			}
 			$count = count( $revs );
 			$this->output( "found $count.\n" );
 
 			# Delete the page record and associated recent changes entries
-			if( $delete ) {
+			if ( $delete ) {
 				$this->output( "Deleting page record..." );
 				$dbw->query( "DELETE FROM $tbl_pag WHERE page_id = $id" );
 				$this->output( "done.\n" );
@@ -75,7 +75,7 @@ class NukePage extends Maintenance {
 			$dbw->commit();
 
 			# Delete revisions as appropriate
-			if( $delete && $count ) {
+			if ( $delete && $count ) {
 				$this->output( "Deleting revisions..." );
 				$this->deleteRevisions( $revs );
 				$this->output( "done.\n" );
@@ -105,7 +105,7 @@ class NukePage extends Maintenance {
 		$set = implode( ', ', $ids );
 		$dbw->query( "DELETE FROM $tbl_rev WHERE rev_id IN ( $set )" );
 
-		$dbw->commit();	
+		$dbw->commit();
 	}
 }
 

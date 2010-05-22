@@ -24,7 +24,7 @@
  * @licence GNU General Public Licence 2.0 or later
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class InitStats extends Maintenance {
 	public function __construct() {
@@ -56,13 +56,13 @@ class InitStats extends Maintenance {
 		$image = $counter->files();
 		$this->output( "{$image}\n" );
 
-		if( !$this->hasOption('noviews') ) {
+		if ( !$this->hasOption( 'noviews' ) ) {
 			$this->output( "Counting total page views..." );
 			$views = $counter->views();
 			$this->output( "{$views}\n" );
 		}
 
-		if( $this->hasOption( 'active' ) ) {
+		if ( $this->hasOption( 'active' ) ) {
 			$this->output( "Counting active users..." );
 			$active = SiteStatsUpdate::cacheUpdate();
 			$this->output( "{$active}\n" );
@@ -70,7 +70,7 @@ class InitStats extends Maintenance {
 
 		$this->output( "\nUpdating site statistics..." );
 
-		if( $this->hasOption( 'update' ) ) {
+		if ( $this->hasOption( 'update' ) ) {
 			$counter->update();
 		} else {
 			$counter->refresh();

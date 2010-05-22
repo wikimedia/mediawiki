@@ -23,8 +23,8 @@
  * Based on deleteOldRevisions.php by Rob Church
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
-require_once( dirname(__FILE__) . '/deleteArchivedFiles.inc' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/deleteArchivedFiles.inc' );
 
 class DeleteArchivedFiles extends Maintenance {
 	public function __construct() {
@@ -34,17 +34,17 @@ class DeleteArchivedFiles extends Maintenance {
 		$this->addOption( 'force', 'Force deletion of rows from filearchive' );
 	}
 
-	public function handleOutput($str) {
-		return $this->output($str);
+	public function handleOutput( $str ) {
+		return $this->output( $str );
 	}
 
 	public function execute() {
-		if( !$this->hasOption('delete') ) {
+		if ( !$this->hasOption( 'delete' ) ) {
 			$this->output( "Use --delete to actually confirm this script\n" );
 			return;
 		}
 		$force = $this->hasOption( 'force' );
-		DeleteArchivedFilesImplementation::doDelete($this, $force);
+		DeleteArchivedFilesImplementation::doDelete( $this, $force );
 	}
 }
 

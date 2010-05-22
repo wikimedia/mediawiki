@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class CheckAutoLoader extends Maintenance {
 	public function __construct() {
@@ -31,8 +31,8 @@ class CheckAutoLoader extends Maintenance {
 		global $wgAutoloadLocalClasses, $IP;
 		$files = array_unique( $wgAutoloadLocalClasses );
 
-		foreach( $files as $file ) {
-			if( function_exists( 'parsekit_compile_file' ) ){
+		foreach ( $files as $file ) {
+			if ( function_exists( 'parsekit_compile_file' ) ) {
 				$parseInfo = parsekit_compile_file( "$IP/$file" );
 				$classes = array_keys( $parseInfo['class_table'] );
 			} else {
@@ -43,7 +43,7 @@ class CheckAutoLoader extends Maintenance {
 			}
 			foreach ( $classes as $class ) {
 				if ( !isset( $wgAutoloadLocalClasses[$class] ) ) {
-					//printf( "%-50s Unlisted, in %s\n", $class, $file );
+					// printf( "%-50s Unlisted, in %s\n", $class, $file );
 					$this->output( "\t'$class' => '$file',\n" );
 				} elseif ( $wgAutoloadLocalClasses[$class] !== $file ) {
 					$this->output( "$class: Wrong file: found in $file, listed in " . $wgAutoloadLocalClasses[$class] . "\n" );

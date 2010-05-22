@@ -15,21 +15,21 @@ class SevenZipStream {
 	}
 	
 	function stream_open( $path, $mode, $options, &$opened_path ) {
-		if( $mode[0] == 'r' ) {
+		if ( $mode[0] == 'r' ) {
 			$options = 'e -bd -so';
-		} elseif( $mode[0] == 'w' ) {
+		} elseif ( $mode[0] == 'w' ) {
 			$options = 'a -bd -si';
 		} else {
 			return false;
 		}
 		$arg = wfEscapeShellArg( $this->stripPath( $path ) );
 		$command = "7za $options $arg";
-		if( !wfIsWindows() ) {
+		if ( !wfIsWindows() ) {
 			// Suppress the stupid messages on stderr
 			$command .= ' 2>/dev/null';
 		}
 		$this->stream = popen( $command, $mode );
-		return ($this->stream !== false);
+		return ( $this->stream !== false );
 	}
 	
 	function url_stat( $path, $flags ) {
@@ -37,7 +37,7 @@ class SevenZipStream {
 	}
 	
 	// This is all so lame; there should be a default class we can extend
-	
+
 	function stream_close() {
 		return fclose( $this->stream );
 	}

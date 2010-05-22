@@ -14,7 +14,7 @@ class PHPUnitTestRecorder extends TestRecorder {
 
 	}
 
-	function reportPercentage( $success, $total ) {}
+	function reportPercentage( $success, $total ) { }
 }
 
 class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
@@ -22,7 +22,7 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 	static public $parser;
 	static public $iter;
 
-	public static function addTables(&$tables) {
+	public static function addTables( &$tables ) {
 		$tables[] = 'user_properties';
 		$tables[] = 'filearchive';
 		$tables[] = 'logging';
@@ -39,14 +39,14 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 
 		self::$iter = new TestFileIterator( PARSER_TESTS );
 
-		foreach(self::$iter as $i => $test) {
-			$suite->addTest(new ParserUnitTest($i, $test['test']));
+		foreach ( self::$iter as $i => $test ) {
+			$suite->addTest( new ParserUnitTest( $i, $test['test'] ) );
 			self::$count++;
 		}
-		unset($tests);
+		unset( $tests );
 
 		self::$parser = new PTShell;
-		self::$iter->setParser(self::$parser);
+		self::$iter->setParser( self::$parser );
 		self::$parser->recorder->start();
 		self::$parser->setupDatabase();
 		self::$iter->rewind();
@@ -94,7 +94,7 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
 										  array( $messageMemc, $wgUseDatabaseMessages,
 												 $wgMsgCacheExpiry, wfWikiID() ) );
-		if( $wgStyleDirectory === false) $wgStyleDirectory   = "$IP/skins";
+		if ( $wgStyleDirectory === false ) $wgStyleDirectory   = "$IP/skins";
 
 		return $suite;
 	}
@@ -103,10 +103,10 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 		/* $this->teardownDatabase(); */
 		$this->recorder->report();
 		$this->recorder->end();
-		$this->teardownUploadDir($this->uploadDir);
+		$this->teardownUploadDir( $this->uploadDir );
 	}
 
-	public function count() {return self::$count;}
+	public function count() { return self::$count; }
 
 	public function toString() {
 		return "MediaWiki Parser Tests";
@@ -160,8 +160,8 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 	 * @param array $files full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
-		foreach( $files as $file ) {
-			if( file_exists( $file ) ) {
+		foreach ( $files as $file ) {
+			if ( file_exists( $file ) ) {
 				unlink( $file );
 			}
 		}
@@ -171,8 +171,8 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 	 * @param array $dirs full paths to directories to delete.
 	 */
 	private static function deleteDirs( $dirs ) {
-		foreach( $dirs as $dir ) {
-			if( is_dir( $dir ) ) {
+		foreach ( $dirs as $dir ) {
+			if ( is_dir( $dir ) ) {
 				rmdir( $dir );
 			}
 		}
@@ -216,37 +216,37 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 	private $test = "";
 
 	public function testBogus() {
-		$this->markTestSkipped("This is a stub");
+		$this->markTestSkipped( "This is a stub" );
 	}
 
-	public function __construct($number = null, $test = null) {
+	public function __construct( $number = null, $test = null ) {
 		$this->number = $number;
 		$this->test = $test;
 	}
 
-	function count() {return 1;}
+	function count() { return 1; }
 
-	public function run(PHPUnit_Framework_TestResult $result = NULL) {
+	public function run( PHPUnit_Framework_TestResult $result = NULL ) {
         PHPUnit_Framework_Assert::resetCount();
-        if ($result === NULL) {
+        if ( $result === NULL ) {
             $result = new PHPUnit_Framework_TestResult;
         }
 
 		$t = MediaWikiParserTestSuite::$iter->current();
 		$k = MediaWikiParserTestSuite::$iter->key();
 
-		if(!MediaWikiParserTestSuite::$iter->valid()) {
+		if ( !MediaWikiParserTestSuite::$iter->valid() ) {
 			return;
 		}
 
 		// The only way this should happen is if the parserTest.txt
 		// file were modified while the script is running.
-		if($k != $this->number) {
+		if ( $k != $this->number ) {
 			$i = $this->number;
-			wfDie("I got confused!\n");
+			wfDie( "I got confused!\n" );
 		}
 
-		$result->startTest($this);
+		$result->startTest( $this );
 		PHPUnit_Util_Timer::start();
 
 		$r = false;
@@ -254,21 +254,21 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 			$r = MediaWikiParserTestSuite::$parser->runTest(
 				$t['test'], $t['input'], $t['result'], $t['options'], $t['config']
   			);
-			PHPUnit_Framework_Assert::assertTrue(true, $t['test']);
+			PHPUnit_Framework_Assert::assertTrue( true, $t['test'] );
 		}
-		catch (PHPUnit_Framework_AssertionFailedError $e) {
-			$result->addFailure($this, $e, PHPUnit_Util_Timer::stop());
+		catch ( PHPUnit_Framework_AssertionFailedError $e ) {
+			$result->addFailure( $this, $e, PHPUnit_Util_Timer::stop() );
 		}
-		catch (Exception $e) {
-			$result->addError($this, $e, PHPUnit_Util_Timer::stop());
+		catch ( Exception $e ) {
+			$result->addError( $this, $e, PHPUnit_Util_Timer::stop() );
 		}
-		PHPUnit_Framework_Assert::assertTrue(true, $t['test']);
+		PHPUnit_Framework_Assert::assertTrue( true, $t['test'] );
 
-		$result->endTest($this, PHPUnit_Util_Timer::stop());
+		$result->endTest( $this, PHPUnit_Util_Timer::stop() );
 
-		MediaWikiParserTestSuite::$parser->recorder->record($t['test'], $r);
+		MediaWikiParserTestSuite::$parser->recorder->record( $t['test'], $r );
 		MediaWikiParserTestSuite::$iter->next();
-		$this->addToAssertionCount(PHPUnit_Framework_Assert::getCount());
+		$this->addToAssertionCount( PHPUnit_Framework_Assert::getCount() );
 
 		return $result;
 	}
@@ -283,12 +283,12 @@ class PTShell extends ParserTest {
 	}
 
 	function showSuccess( $desc ) {
-		PHPUnit_Framework_Assert::assertTrue(true, $desc);
+		PHPUnit_Framework_Assert::assertTrue( true, $desc );
 		return true;
 	}
 
 	function showFailure( $desc, $expected, $got ) {
-		PHPUnit_Framework_Assert::assertEquals($expected, $got, $desc);
+		PHPUnit_Framework_Assert::assertEquals( $expected, $got, $desc );
 	}
 
 }

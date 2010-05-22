@@ -31,7 +31,7 @@ class FixBug20757 extends Maintenance {
 
 		$totalRevs = $dbr->selectField( 'text', 'MAX(old_id)', false, __METHOD__ );
 
-		if ( $dbr->getType() == 'mysql' 
+		if ( $dbr->getType() == 'mysql'
 			&& version_compare( $dbr->getServerVersion(), '4.1.0', '>=' ) )
 		{
 			// In MySQL 4.1+, the binary field old_text has a non-working LOWER() function
@@ -47,13 +47,13 @@ class FixBug20757 extends Maintenance {
 			$res = $dbr->select(
 				'text',
 				array( 'old_id', 'old_flags', 'old_text' ),
-				array( 
+				array(
 					'old_id > ' . intval( $startId ),
 					'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\'',
 					"$lowerLeft = 'o:15:\"historyblobstub\"'",
 				),
 				__METHOD__,
-				array( 
+				array(
 					'ORDER BY' => 'old_id',
 					'LIMIT' => $this->batchSize,
 				)
@@ -78,7 +78,7 @@ class FixBug20757 extends Maintenance {
 				}
 
 				if ( !is_object( $obj ) ) {
-					print "{$row->old_id}: unrecoverable: unserialized to type " . 
+					print "{$row->old_id}: unrecoverable: unserialized to type " .
 						gettype( $obj ) . ", possible double-serialization\n";
 					++$numBad;
 					continue;
@@ -135,10 +135,10 @@ class FixBug20757 extends Maintenance {
 				$secondaryId = $stub['secondaryId'];
 				if ( !isset( $trackedBlobs[$secondaryId] ) ) {
 					// No tracked blob. Work out what went wrong
-					$secondaryRow = $dbr->selectRow( 
-						'text', 
+					$secondaryRow = $dbr->selectRow(
+						'text',
 						array( 'old_flags', 'old_text' ),
-						array( 'old_id' => $secondaryId ), 
+						array( 'old_id' => $secondaryId ),
 						__METHOD__
 					);
 					if ( !$secondaryRow ) {
@@ -265,7 +265,7 @@ class FixBug20757 extends Maintenance {
 
 			$dbr = wfGetDB( DB_SLAVE );
 			$map = array();
-			$res = $dbr->select( 'revision', 
+			$res = $dbr->select( 'revision',
 				array( 'rev_id', 'rev_text_id' ),
 				array( 'rev_page' => $pageId ),
 				__METHOD__
@@ -286,7 +286,7 @@ class FixBug20757 extends Maintenance {
 	function isUnbrokenStub( $stub, $secondaryRow ) {
 		$flags = explode( ',', $secondaryRow->old_flags );
 		$text = $secondaryRow->old_text;
-		if( in_array( 'external', $flags ) ) {
+		if ( in_array( 'external', $flags ) ) {
 			$url = $text;
 			@list( /* $proto */ , $path ) = explode( '://', $url, 2 );
 			if ( $path == "" ) {
@@ -294,17 +294,17 @@ class FixBug20757 extends Maintenance {
 			}
 			$text = ExternalStore::fetchFromUrl( $url );
 		}
-		if( !in_array( 'object', $flags ) ) {
+		if ( !in_array( 'object', $flags ) ) {
 			return false;
 		}
 
-		if( in_array( 'gzip', $flags ) ) {
+		if ( in_array( 'gzip', $flags ) ) {
 			$obj = unserialize( gzinflate( $text ) );
 		} else {
 			$obj = unserialize( $text );
 		}
 
-		if( !is_object( $obj ) ) {
+		if ( !is_object( $obj ) ) {
 			// Correct for old double-serialization bug.
 			$obj = unserialize( $obj );
 		}

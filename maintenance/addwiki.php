@@ -27,7 +27,7 @@
  * @ingroup Wikimedia
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class AddWiki extends Maintenance {
 	public function __construct() {
@@ -46,9 +46,9 @@ class AddWiki extends Maintenance {
 		global $IP, $wgDefaultExternalStore, $wgNoDBParam;
 
 		$wgNoDBParam = true;
-		$lang = $this->getArg(0);
-		$site = $this->getArg(1);
-		$dbName = $this->getArg(2);
+		$lang = $this->getArg( 0 );
+		$site = $this->getArg( 1 );
+		$dbName = $this->getArg( 2 );
 		$languageNames = Language::getLanguageNames();
 
 		if ( !isset( $languageNames[$lang] ) ) {
@@ -140,11 +140,11 @@ class AddWiki extends Maintenance {
 		fclose( $file );
 
 		# Update the sublists
-		shell_exec("cd $common && ./refresh-dblist");
+		shell_exec( "cd $common && ./refresh-dblist" );
 
-		#print "Constructing interwiki SQL\n";
+		# print "Constructing interwiki SQL\n";
 		# Rebuild interwiki tables
-		#passthru( '/home/wikipedia/conf/interwiki/update' );
+		# passthru( '/home/wikipedia/conf/interwiki/update' );
 
 		$this->output( "Script ended. You still have to:
 	* Add any required settings in InitialiseSettings.php

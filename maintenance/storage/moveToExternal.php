@@ -11,7 +11,7 @@ define( 'REPORTING_INTERVAL', 1 );
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithArgs = array( 'e', 's' );
 
-	require_once( dirname(__FILE__) . '/../commandLine.inc' );
+	require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 	require_once( 'ExternalStoreDB.php' );
 	require_once( 'resolveStubs.php' );
 
@@ -54,7 +54,7 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 		$blockStart = $block * $blockSize + $minID;
 		$blockEnd = $blockStart + $blockSize - 1;
 		
-		if ( !($block % REPORTING_INTERVAL) ) {
+		if ( !( $block % REPORTING_INTERVAL ) ) {
 			print "oldid=$blockStart, moved=$numMoved\n";
 			wfWaitForSlaves( 2 );
 		}
@@ -78,8 +78,8 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 				$obj = unserialize( $text );
 				$className = strtolower( get_class( $obj ) );
 				if ( $className == 'historyblobstub' ) {
-					#resolveStub( $id, $row->old_text, $row->old_flags );
-					#$numStubs++;
+					# resolveStub( $id, $row->old_text, $row->old_flags );
+					# $numStubs++;
 					continue;
 				} elseif ( $className == 'historyblobcurstub' ) {
 					$text = gzdeflate( $obj->getText() );
@@ -99,8 +99,8 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 				continue;
 			}
 
-			#print "Storing "  . strlen( $text ) . " bytes to $url\n";
-			#print "old_id=$id\n";
+			# print "Storing "  . strlen( $text ) . " bytes to $url\n";
+			# print "old_id=$id\n";
 
 			$url = $ext->store( $cluster, $text );
 			if ( !$url ) {

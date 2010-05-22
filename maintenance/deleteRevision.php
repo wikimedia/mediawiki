@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class DeleteRevision extends Maintenance {
 	
@@ -30,11 +30,11 @@ class DeleteRevision extends Maintenance {
 	}
 	
 	public function execute() {
-		if( count( $this->mArgs ) == 0 ) {
+		if ( count( $this->mArgs ) == 0 ) {
 			$this->error( "No revisions specified", true );
 		}
 
-		$this->output( "Deleting revision(s) " . implode( ',', $this->mArgs ) . 
+		$this->output( "Deleting revision(s) " . implode( ',', $this->mArgs ) .
 						" from " . wfWikiID() . "...\n" );
 		$dbw = wfGetDB( DB_MASTER );
 		

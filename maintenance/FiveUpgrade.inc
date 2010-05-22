@@ -50,14 +50,14 @@ class FiveUpgrade {
 			'ipblocks',
 			'recentchanges',
 			'querycache' );
-		foreach( $tables as $table ) {
-			if( $this->doing( $table ) ) {
+		foreach ( $tables as $table ) {
+			if ( $this->doing( $table ) ) {
 				$method = 'upgrade' . ucfirst( $table );
 				$this->$method();
 			}
 		}
 
-		if( $this->doing( 'cleanup' ) ) {
+		if ( $this->doing( 'cleanup' ) ) {
 			$this->upgradeCleanup();
 		}
 	}
@@ -80,7 +80,7 @@ class FiveUpgrade {
 	 * Commit transactions and close the connections when we're done...
 	 */
 	function close() {
-		foreach( $this->loadBalancers as $lb ) {
+		foreach ( $this->loadBalancers as $lb ) {
 			$lb->commitMasterChanges();
 			$lb->closeAll();
 		}
@@ -99,7 +99,7 @@ class FiveUpgrade {
 		$timeout = 3600 * 24;
 		$db = $this->newConnection();
 		$db->bufferResults( false );
-		if ($wgDBtype == 'mysql') {
+		if ( $wgDBtype == 'mysql' ) {
 			$db->query( "SET net_read_timeout=$timeout" );
 			$db->query( "SET net_write_timeout=$timeout" );
 		}
@@ -119,41 +119,41 @@ class FiveUpgrade {
 		# Mappings from:
 		# http://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP1252.TXT
 		static $cp1252 = array(
-			0x80 => 0x20AC,	#EURO SIGN
-			0x81 => 0xFFFD, #REPLACEMENT CHARACTER (no mapping)
-			0x82 => 0x201A,	#SINGLE LOW-9 QUOTATION MARK
-			0x83 => 0x0192,	#LATIN SMALL LETTER F WITH HOOK
-			0x84 => 0x201E,	#DOUBLE LOW-9 QUOTATION MARK
-			0x85 => 0x2026,	#HORIZONTAL ELLIPSIS
-			0x86 => 0x2020,	#DAGGER
-			0x87 => 0x2021,	#DOUBLE DAGGER
-			0x88 => 0x02C6,	#MODIFIER LETTER CIRCUMFLEX ACCENT
-			0x89 => 0x2030,	#PER MILLE SIGN
-			0x8A => 0x0160,	#LATIN CAPITAL LETTER S WITH CARON
-			0x8B => 0x2039,	#SINGLE LEFT-POINTING ANGLE QUOTATION MARK
-			0x8C => 0x0152,	#LATIN CAPITAL LIGATURE OE
-			0x8D => 0xFFFD, #REPLACEMENT CHARACTER (no mapping)
-			0x8E => 0x017D,	#LATIN CAPITAL LETTER Z WITH CARON
-			0x8F => 0xFFFD, #REPLACEMENT CHARACTER (no mapping)
-			0x90 => 0xFFFD, #REPLACEMENT CHARACTER (no mapping)
-			0x91 => 0x2018,	#LEFT SINGLE QUOTATION MARK
-			0x92 => 0x2019,	#RIGHT SINGLE QUOTATION MARK
-			0x93 => 0x201C,	#LEFT DOUBLE QUOTATION MARK
-			0x94 => 0x201D,	#RIGHT DOUBLE QUOTATION MARK
-			0x95 => 0x2022,	#BULLET
-			0x96 => 0x2013,	#EN DASH
-			0x97 => 0x2014,	#EM DASH
-			0x98 => 0x02DC,	#SMALL TILDE
-			0x99 => 0x2122,	#TRADE MARK SIGN
-			0x9A => 0x0161,	#LATIN SMALL LETTER S WITH CARON
-			0x9B => 0x203A,	#SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
-			0x9C => 0x0153,	#LATIN SMALL LIGATURE OE
-			0x9D => 0xFFFD, #REPLACEMENT CHARACTER (no mapping)
-			0x9E => 0x017E,	#LATIN SMALL LETTER Z WITH CARON
-			0x9F => 0x0178,	#LATIN CAPITAL LETTER Y WITH DIAERESIS
+			0x80 => 0x20AC,	# EURO SIGN
+			0x81 => 0xFFFD, # REPLACEMENT CHARACTER (no mapping)
+			0x82 => 0x201A,	# SINGLE LOW-9 QUOTATION MARK
+			0x83 => 0x0192,	# LATIN SMALL LETTER F WITH HOOK
+			0x84 => 0x201E,	# DOUBLE LOW-9 QUOTATION MARK
+			0x85 => 0x2026,	# HORIZONTAL ELLIPSIS
+			0x86 => 0x2020,	# DAGGER
+			0x87 => 0x2021,	# DOUBLE DAGGER
+			0x88 => 0x02C6,	# MODIFIER LETTER CIRCUMFLEX ACCENT
+			0x89 => 0x2030,	# PER MILLE SIGN
+			0x8A => 0x0160,	# LATIN CAPITAL LETTER S WITH CARON
+			0x8B => 0x2039,	# SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+			0x8C => 0x0152,	# LATIN CAPITAL LIGATURE OE
+			0x8D => 0xFFFD, # REPLACEMENT CHARACTER (no mapping)
+			0x8E => 0x017D,	# LATIN CAPITAL LETTER Z WITH CARON
+			0x8F => 0xFFFD, # REPLACEMENT CHARACTER (no mapping)
+			0x90 => 0xFFFD, # REPLACEMENT CHARACTER (no mapping)
+			0x91 => 0x2018,	# LEFT SINGLE QUOTATION MARK
+			0x92 => 0x2019,	# RIGHT SINGLE QUOTATION MARK
+			0x93 => 0x201C,	# LEFT DOUBLE QUOTATION MARK
+			0x94 => 0x201D,	# RIGHT DOUBLE QUOTATION MARK
+			0x95 => 0x2022,	# BULLET
+			0x96 => 0x2013,	# EN DASH
+			0x97 => 0x2014,	# EM DASH
+			0x98 => 0x02DC,	# SMALL TILDE
+			0x99 => 0x2122,	# TRADE MARK SIGN
+			0x9A => 0x0161,	# LATIN SMALL LETTER S WITH CARON
+			0x9B => 0x203A,	# SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+			0x9C => 0x0153,	# LATIN SMALL LIGATURE OE
+			0x9D => 0xFFFD, # REPLACEMENT CHARACTER (no mapping)
+			0x9E => 0x017E,	# LATIN SMALL LETTER Z WITH CARON
+			0x9F => 0x0178,	# LATIN CAPITAL LETTER Y WITH DIAERESIS
 			);
 		$pairs = array();
-		for( $i = 0; $i < 0x100; $i++ ) {
+		for ( $i = 0; $i < 0x100; $i++ ) {
 			$unicode = isset( $cp1252[$i] ) ? $cp1252[$i] : $i;
 			$pairs[chr( $i )] = codepointToUtf8( $unicode );
 		}
@@ -221,7 +221,7 @@ class FiveUpgrade {
 	 * @access private
 	 */
 	function addChunk( &$chunk, $key = null ) {
-		if( count( $chunk ) >= $this->chunkSize ) {
+		if ( count( $chunk ) >= $this->chunkSize ) {
 			$this->insertChunk( $chunk );
 
 			$this->chunkCount += count( $chunk );
@@ -229,7 +229,7 @@ class FiveUpgrade {
 			$delta = $now - $this->chunkStartTime;
 			$rate = $this->chunkCount / $delta;
 
-			if( is_null( $key ) ) {
+			if ( is_null( $key ) ) {
 				$completed = $this->chunkCount;
 			} else {
 				$completed = $key;
@@ -260,7 +260,7 @@ class FiveUpgrade {
 	 */
 	function lastChunk( &$chunk ) {
 		$n = count( $chunk );
-		if( $n > 0 ) {
+		if ( $n > 0 ) {
 			$this->insertChunk( $chunk );
 		}
 		$this->log( "100.00% done on $this->chunkTable (last chunk $n rows)." );
@@ -316,20 +316,20 @@ class FiveUpgrade {
 			$fname );
 
 		$add = array();
-		while( $row = $this->dbr->fetchObject( $result ) ) {
+		while ( $row = $this->dbr->fetchObject( $result ) ) {
 			$copy = array();
-			foreach( $fields as $field => $source ) {
-				if( $source === MW_UPGRADE_COPY ) {
+			foreach ( $fields as $field => $source ) {
+				if ( $source === MW_UPGRADE_COPY ) {
 					$copy[$field] = $row->$field;
-				} elseif( $source === MW_UPGRADE_ENCODE ) {
+				} elseif ( $source === MW_UPGRADE_ENCODE ) {
 					$copy[$field] = $this->conv( $row->$field );
-				} elseif( $source === MW_UPGRADE_NULL ) {
+				} elseif ( $source === MW_UPGRADE_NULL ) {
 					$copy[$field] = null;
 				} else {
 					$this->log( "Unknown field copy type: $field => $source" );
 				}
 			}
-			if( is_callable( $callback ) ) {
+			if ( is_callable( $callback ) ) {
 				$copy = call_user_func( $callback, $row, $copy );
 			}
 			$add[] = $copy;
@@ -346,7 +346,7 @@ class FiveUpgrade {
 		$fname = "FiveUpgrade::upgradePage";
 		$chunksize = 100;
 
-		if( $this->dbw->tableExists( 'page' ) ) {
+		if ( $this->dbw->tableExists( 'page' ) ) {
 			$this->log( 'Page table already exists; aborting.' );
 			die( -1 );
 		}
@@ -356,10 +356,10 @@ class FiveUpgrade {
 
 		$this->log( "...converting from cur/old to page/revision/text DB structure." );
 
-		list ($cur, $old, $page, $revision, $text) = $this->dbw->tableNamesN( 'cur', 'old', 'page', 'revision', 'text' );
+		list ( $cur, $old, $page, $revision, $text ) = $this->dbw->tableNamesN( 'cur', 'old', 'page', 'revision', 'text' );
 
 		$this->log( "Creating page and revision tables..." );
-		$this->dbw->query("CREATE TABLE $page (
+		$this->dbw->query( "CREATE TABLE $page (
   			page_id int(8) unsigned NOT NULL auto_increment,
   			page_namespace int NOT NULL,
   			page_title varchar(255) binary NOT NULL,
@@ -377,7 +377,7 @@ class FiveUpgrade {
   			INDEX (page_random),
   			INDEX (page_len)
 			) TYPE=InnoDB", $fname );
-		$this->dbw->query("CREATE TABLE $revision (
+		$this->dbw->query( "CREATE TABLE $revision (
   			rev_id int(8) unsigned NOT NULL auto_increment,
   			rev_page int(8) unsigned NOT NULL,
   			rev_text_id int(8) unsigned NOT NULL,
@@ -400,7 +400,7 @@ class FiveUpgrade {
 		$this->log( "Last old record is {$maxold}" );
 
 		global $wgLegacySchemaConversion;
-		if( $wgLegacySchemaConversion ) {
+		if ( $wgLegacySchemaConversion ) {
 			// Create HistoryBlobCurStub entries.
 			// Text will be pulled from the leftover 'cur' table at runtime.
 			echo "......Moving metadata from cur; using blob references to text in cur table.\n";
@@ -430,7 +430,7 @@ class FiveUpgrade {
   			FROM $cur
   			ORDER BY cur_id", $fname );
   		$add = array();
-		while( $row = $this->dbr->fetchObject( $result ) ) {
+		while ( $row = $this->dbr->fetchObject( $result ) ) {
 			$add[] = array(
 				'old_namespace'  => $row->cur_namespace,
 				'old_title'      => $row->cur_title,
@@ -450,9 +450,9 @@ class FiveUpgrade {
 		 * Copy revision metadata from old into revision.
 		 * We'll also do UTF-8 conversion of usernames and comments.
 		 */
-		#$newmaxold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
-		#$this->setChunkScale( $chunksize, $newmaxold, 'revision', $fname );
-		#$countold = $this->dbw->selectField( 'old', 'count(old_id)', '', $fname );
+		# $newmaxold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
+		# $this->setChunkScale( $chunksize, $newmaxold, 'revision', $fname );
+		# $countold = $this->dbw->selectField( 'old', 'count(old_id)', '', $fname );
 		$countold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
 		$this->setChunkScale( $chunksize, $countold, 'revision', $fname );
 
@@ -464,7 +464,7 @@ class FiveUpgrade {
 			$fname );
 
 		$add = array();
-		while( $row = $this->dbr->fetchObject( $result ) ) {
+		while ( $row = $this->dbr->fetchObject( $result ) ) {
 			$add[] = array(
 				'rev_id'         =>              $row->old_id,
 				'rev_page'       =>              $row->cur_id,
@@ -493,7 +493,7 @@ class FiveUpgrade {
   			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}
   			ORDER BY cur_id", $fname );
 		$add = array();
-		while( $row = $this->dbr->fetchObject( $result ) ) {
+		while ( $row = $this->dbr->fetchObject( $result ) ) {
 			$add[] = array(
 				'page_id'           =>              $row->cur_id,
 				'page_namespace'    =>              $row->cur_namespace,
@@ -506,7 +506,7 @@ class FiveUpgrade {
 				'page_touched'      =>              $this->dbw->timestamp(),
 				'page_latest'       =>              $row->rev_id,
 				'page_len'          =>              $row->len );
-			#$this->addChunk( $add, $row->cur_id );
+			# $this->addChunk( $add, $row->cur_id );
 			$this->addChunk( $add );
 		}
 		$this->lastChunk( $add );
@@ -518,10 +518,10 @@ class FiveUpgrade {
 	function upgradeLinks() {
 		$fname = 'FiveUpgrade::upgradeLinks';
 		$chunksize = 200;
-		list ($links, $brokenlinks, $pagelinks, $cur) = $this->dbw->tableNamesN( 'links', 'brokenlinks', 'pagelinks', 'cur' );
+		list ( $links, $brokenlinks, $pagelinks, $cur ) = $this->dbw->tableNamesN( 'links', 'brokenlinks', 'pagelinks', 'cur' );
 
 		$this->log( 'Checking for interwiki table change in case of bogus items...' );
-		if( $this->dbw->fieldExists( 'interwiki', 'iw_trans' ) ) {
+		if ( $this->dbw->fieldExists( 'interwiki', 'iw_trans' ) ) {
 			$this->log( 'interwiki has iw_trans.' );
 		} else {
 			global $IP;
@@ -550,14 +550,14 @@ CREATE TABLE $pagelinks (
 
 		$this->log( 'Importing live links -> pagelinks' );
 		$nlinks = $this->dbw->selectField( 'links', 'count(*)', '', $fname );
-		if( $nlinks ) {
+		if ( $nlinks ) {
 			$this->setChunkScale( $chunksize, $nlinks, 'pagelinks', $fname );
 			$result = $this->dbr->query( "
 			  SELECT l_from,cur_namespace,cur_title
 				FROM $links, $cur
 				WHERE l_to=cur_id", $fname );
 			$add = array();
-			while( $row = $this->dbr->fetchObject( $result ) ) {
+			while ( $row = $this->dbr->fetchObject( $result ) ) {
 				$add[] = array(
 					'pl_from'      =>              $row->l_from,
 					'pl_namespace' =>              $row->cur_namespace,
@@ -571,16 +571,16 @@ CREATE TABLE $pagelinks (
 
 		$this->log( 'Importing brokenlinks -> pagelinks' );
 		$nbrokenlinks = $this->dbw->selectField( 'brokenlinks', 'count(*)', '', $fname );
-		if( $nbrokenlinks ) {
+		if ( $nbrokenlinks ) {
 			$this->setChunkScale( $chunksize, $nbrokenlinks, 'pagelinks', $fname );
 			$result = $this->dbr->query(
 				"SELECT bl_from, bl_to FROM $brokenlinks",
 				$fname );
 			$add = array();
-			while( $row = $this->dbr->fetchObject( $result ) ) {
+			while ( $row = $this->dbr->fetchObject( $result ) ) {
 				$pagename = $this->conv( $row->bl_to );
 				$title = Title::newFromText( $pagename );
-				if( is_null( $title ) ) {
+				if ( is_null( $title ) ) {
 					$this->log( "** invalid brokenlink: $row->bl_from -> '$pagename' (converted from '$row->bl_to')" );
 				} else {
 					$add[] = array(
@@ -601,11 +601,11 @@ CREATE TABLE $pagelinks (
 	function upgradeUser() {
 		// Apply unique index, if necessary:
 		$duper = new UserDupes( $this->dbw );
-		if( $duper->hasUniqueIndex() ) {
+		if ( $duper->hasUniqueIndex() ) {
 			$this->log( "Already have unique user_name index." );
 		} else {
 			$this->log( "Clearing user duplicates..." );
-			if( !$duper->clearDupes() ) {
+			if ( !$duper->clearDupes() ) {
 				$this->log( "WARNING: Duplicate user accounts, may explode!" );
 			}
 		}
@@ -697,7 +697,7 @@ END;
 
 	function imageCallback( $row, $copy ) {
 		global $options;
-		if( !isset( $options['noimage'] ) ) {
+		if ( !isset( $options['noimage'] ) ) {
 			// Fill in the new image info fields
 			$info = $this->imageInfo( $row->img_name );
 
@@ -763,22 +763,22 @@ END;
 	 * @param string $basename pre-conversion base filename for dir hashing, if an archive
 	 * @access private
 	 */
-	function renameFile( $oldname, $subdirCallback='wfImageDir', $basename=null ) {
+	function renameFile( $oldname, $subdirCallback = 'wfImageDir', $basename = null ) {
 		$newname = $this->conv( $oldname );
-		if( $newname == $oldname ) {
+		if ( $newname == $oldname ) {
 			// No need to rename; another field triggered this row.
 			return false;
 		}
 
-		if( is_null( $basename ) ) $basename = $oldname;
+		if ( is_null( $basename ) ) $basename = $oldname;
 		$ubasename = $this->conv( $basename );
 		$oldpath = call_user_func( $subdirCallback, $basename ) . '/' . $oldname;
 		$newpath = call_user_func( $subdirCallback, $ubasename ) . '/' . $newname;
 
 		$this->log( "$oldpath -> $newpath" );
-		if( rename( $oldpath, $newpath ) ) {
+		if ( rename( $oldpath, $newpath ) ) {
 			$relpath = wfRelativePath( $newpath, dirname( $oldpath ) );
-			if( !symlink( $relpath, $oldpath ) ) {
+			if ( !symlink( $relpath, $oldpath ) ) {
 				$this->log( "... symlink failed!" );
 			}
 			return $newname;
@@ -829,7 +829,7 @@ END;
 
 	function oldimageCallback( $row, $copy ) {
 		global $options;
-		if( !isset( $options['noimage'] ) ) {
+		if ( !isset( $options['noimage'] ) ) {
 			// Fill in the new image info fields
 			$info = $this->imageInfo( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
 			$copy['oi_width' ] = $info['width' ];
@@ -848,7 +848,7 @@ END;
 		$fname = 'FiveUpgrade::upgradeWatchlist';
 		$chunksize = 100;
 
-		list ($watchlist, $watchlist_temp) = $this->dbw->tableNamesN( 'watchlist', 'watchlist_temp' );
+		list ( $watchlist, $watchlist_temp ) = $this->dbw->tableNamesN( 'watchlist', 'watchlist_temp' );
 
 		$this->log( 'Migrating watchlist table to watchlist_temp...' );
 		$this->dbw->query(
@@ -886,7 +886,7 @@ END;
 			$fname );
 
 		$add = array();
-		while( $row = $this->dbr->fetchObject( $result ) ) {
+		while ( $row = $this->dbr->fetchObject( $result ) ) {
 			$add[] = array(
 				'wl_user'      =>                          $row->wl_user,
 				'wl_namespace' => MWNamespace::getSubject( $row->wl_namespace ),
@@ -991,7 +991,7 @@ ENDS;
 
 	function upgradeImagelinks() {
 		global $wgUseLatin1;
-		if( $wgUseLatin1 ) {
+		if ( $wgUseLatin1 ) {
 			$tabledef = <<<ENDS
 CREATE TABLE $1 (
   -- Key to page_id of the page containing the image / media link.
@@ -1016,7 +1016,7 @@ ENDS;
 
 	function upgradeCategorylinks() {
 		global $wgUseLatin1;
-		if( $wgUseLatin1 ) {
+		if ( $wgUseLatin1 ) {
 			$tabledef = <<<ENDS
 CREATE TABLE $1 (
   cl_from int(8) unsigned NOT NULL default '0',
@@ -1040,7 +1040,7 @@ ENDS;
 
 	function upgradeIpblocks() {
 		global $wgUseLatin1;
-		if( $wgUseLatin1 ) {
+		if ( $wgUseLatin1 ) {
 			$tabledef = <<<ENDS
 CREATE TABLE $1 (
   ipb_id int(8) NOT NULL auto_increment,
@@ -1169,7 +1169,7 @@ ENDS;
 	function upgradeCleanup() {
 		$this->renameTable( 'old', 'text' );
 
-		foreach( $this->cleanupSwaps as $table ) {
+		foreach ( $this->cleanupSwaps as $table ) {
 			$this->swap( $table );
 		}
 	}

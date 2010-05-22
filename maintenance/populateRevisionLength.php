@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class PopulateRevisionLength extends Maintenance {
 	public function __construct() {
@@ -37,7 +37,7 @@ class PopulateRevisionLength extends Maintenance {
 		$this->output( "Populating rev_len column\n" );
 		$start = $db->selectField( 'revision', 'MIN(rev_id)', false, __FUNCTION__ );
 		$end = $db->selectField( 'revision', 'MAX(rev_id)', false, __FUNCTION__ );
-		if( is_null( $start ) || is_null( $end ) ){
+		if ( is_null( $start ) || is_null( $end ) ) {
 			$this->output( "...revision table seems to be empty.\n" );
 			$db->insert( 'updatelog',
 				array( 'ul_key' => 'populate rev_len' ),
@@ -50,7 +50,7 @@ class PopulateRevisionLength extends Maintenance {
 		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
 		$count = 0;
 		$missing = 0;
-		while( $blockStart <= $end ) {
+		while ( $blockStart <= $end ) {
 			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
 			$res = $db->select( 'revision',
 					    Revision::selectFields(),
@@ -59,12 +59,12 @@ class PopulateRevisionLength extends Maintenance {
 						   "rev_len IS NULL" ),
 					    __METHOD__ );
 			# Go through and update rev_len from these rows.
-			foreach( $res as $row ) {
+			foreach ( $res as $row ) {
 				$rev = new Revision( $row );
 				$text = $rev->getRawText();
-				if( !is_string( $text ) ) {
+				if ( !is_string( $text ) ) {
 					# This should not happen, but sometimes does (bug 20757)
-					$this->output("Text of revision {$row->rev_id} unavailable!\n"); 
+					$this->output( "Text of revision {$row->rev_id} unavailable!\n" );
 					$missing++;
 				}
 				else {
@@ -84,7 +84,7 @@ class PopulateRevisionLength extends Maintenance {
 			array( 'ul_key' => 'populate rev_len' ),
 			__METHOD__,
 			'IGNORE' );
-		if( $logged ) {
+		if ( $logged ) {
 			$this->output( "rev_len population complete ... {$count} rows changed ({$missing} missing)\n" );
 			return true;
 		} else {

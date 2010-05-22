@@ -13,9 +13,9 @@
  */
 $optionsWithArgs = array( 'output' );
 
-require_once( dirname(__FILE__).'/../commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 require_once( 'languages.inc' );
-require_once( dirname(__FILE__).'/StatOutputs.php' );
+require_once( dirname( __FILE__ ) . '/StatOutputs.php' );
 
 
 if ( isset( $options['help'] ) ) {
@@ -39,7 +39,7 @@ Usage: php transstat.php [--help] [--output=csv|text|wiki]
 Example: php maintenance/transstat.php --output=text
 
 TEXT;
-	exit(1);
+	exit( 1 );
 }
 
 

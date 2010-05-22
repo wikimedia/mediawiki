@@ -20,7 +20,7 @@
  *
  * @ingroup Maintenance ExternalStorage
  */
-require_once( dirname(__FILE__) . '/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class OrphanStats extends Maintenance {
 	public function __construct() {
@@ -36,7 +36,7 @@ class OrphanStats extends Maintenance {
 	public function execute() {
 		$extDBs = array();
 		$dbr = wfGetDB( DB_SLAVE );
-		if( !$dbr->tableExists( 'blob_orphans' ) ) {
+		if ( !$dbr->tableExists( 'blob_orphans' ) ) {
 			$this->error( "blob_orphans doesn't seem to exist, need to run trackBlobs.php first", true );
 		}
 		$res = $dbr->select( 'blob_orphans', '*', false, __METHOD__ );
@@ -61,7 +61,7 @@ class OrphanStats extends Maintenance {
 		$this->output( "Number of orphans: $num\n" );
 		if ( $num > 0 ) {
 			$this->output( "Average size: " . round( $totalSize / $num, 0 ) . " bytes\n" .
-			"Max size: $maxSize\n" . 
+			"Max size: $maxSize\n" .
 			"Number of unique texts: " . count( $hashes ) . "\n" );
 		}
 	}

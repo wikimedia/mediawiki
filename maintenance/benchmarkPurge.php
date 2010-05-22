@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class BenchmarkPurge extends Maintenance {
 	
@@ -32,16 +32,16 @@ class BenchmarkPurge extends Maintenance {
 	
 	public function execute() {
 		global $wgUseSquid;
-		if( !$wgUseSquid ) {
-			$this->error( "Squid purge benchmark doesn't do much without squid support on.". true );
+		if ( !$wgUseSquid ) {
+			$this->error( "Squid purge benchmark doesn't do much without squid support on." . true );
 		} else {
 			$this->output( "There are " . count( $wgSquidServers ) . " defined squid servers:\n" );
-			if( $this->hasOption( 'count' ) ) {
-				$lengths = array( intval( $this->getOption('count') ) );
+			if ( $this->hasOption( 'count' ) ) {
+				$lengths = array( intval( $this->getOption( 'count' ) ) );
 			} else {
 				$lengths = array( 1, 10, 100 );
 			}
-			foreach( $lengths as $length ) {
+			foreach ( $lengths as $length ) {
 				$urls = $this->randomUrlList( $length );
 				$trial = $this->benchSquid( $urls );
 				$this->output( $trial . "\n" );
@@ -57,7 +57,7 @@ class BenchmarkPurge extends Maintenance {
 	 */
 	private function benchSquid( $urls, $trials = 1 ) {
 		$start = wfTime();
-		for( $i = 0; $i < $trials; $i++) {
+		for ( $i = 0; $i < $trials; $i++ ) {
 			SquidUpdate::purge( $urls );
 		}
 		$delta = wfTime() - $start;
@@ -73,7 +73,7 @@ class BenchmarkPurge extends Maintenance {
 	 */
 	private function randomUrlList( $length ) {
 		$list = array();
-		for( $i = 0; $i < $length; $i++ ) {
+		for ( $i = 0; $i < $length; $i++ ) {
 			$list[] = $this->randomUrl();
 		}
 		return $list;
@@ -95,8 +95,8 @@ class BenchmarkPurge extends Maintenance {
 	private function randomTitle() {
 		$str = '';
 		$length = mt_rand( 1, 20 );
-		for( $i = 0; $i < $length; $i++ ) {
-			$str .= chr( mt_rand( ord('a'), ord('z') ) );
+		for ( $i = 0; $i < $length; $i++ ) {
+			$str .= chr( mt_rand( ord( 'a' ), ord( 'z' ) ) );
 		}
 		return ucfirst( $str );
 	}

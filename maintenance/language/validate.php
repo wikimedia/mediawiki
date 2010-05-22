@@ -29,7 +29,7 @@ foreach ( $files as $filename ) {
 	$keys = array_keys( $vars );
 	$diff = array_diff( $keys, Language::$mLocalisationKeys );
 	if ( $diff ) {
-		print "\nWarning: unrecognised variable(s): " . implode( ', ', $diff ) ."\n";
+		print "\nWarning: unrecognised variable(s): " . implode( ', ', $diff ) . "\n";
 	} else {
 		print " ok\n";
 	}

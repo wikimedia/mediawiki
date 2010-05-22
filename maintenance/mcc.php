@@ -8,14 +8,14 @@
  */
 
 /** */
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 
-$mcc = new MWMemcached( array('persistant' => true/*, 'debug' => true*/) );
+$mcc = new MWMemcached( array( 'persistant' => true/*, 'debug' => true*/ ) );
 $mcc->set_servers( $wgMemCachedServers );
-#$mcc->set_debug( true );
+# $mcc->set_debug( true );
 
-function mccShowHelp($command) {
-	$commandList = array( 
+function mccShowHelp( $command ) {
+	$commandList = array(
 		'get' => 'grabs something',
 		'getsock' => 'lists sockets',
 		'set' => 'changes something',
@@ -27,14 +27,14 @@ function mccShowHelp($command) {
 		'quit' => 'exit mcc',
 		'help' => 'help about a command',
 	);
-	if( !$command ) { 
+	if ( !$command ) {
 		$command = 'fullhelp';
 	}
-	if( $command === 'fullhelp' ) {
-		foreach( $commandList as $cmd => $desc ) {
+	if ( $command === 'fullhelp' ) {
+		foreach ( $commandList as $cmd => $desc ) {
 			print "$cmd: $desc\n";
 		}
-	} elseif( isset( $commandList[$command] ) ) {
+	} elseif ( isset( $commandList[$command] ) ) {
 		print "$command: $commandList[$command]\n";
 	} else {
 		print "$command: command does not exist or no help for it\n";
@@ -47,7 +47,7 @@ do {
 	$quit = false;
 
 	$line = readconsole( '> ' );
-	if ($line === false) exit;
+	if ( $line === false ) exit;
 
 	$args = explode( ' ', $line );
 	$command = array_shift( $args );
@@ -56,7 +56,7 @@ do {
 	switch ( $command ) {
 		case 'help':
 			// show an help message
-			mccShowHelp(array_shift($args));
+			mccShowHelp( array_shift( $args ) );
 		break;
 
 		case 'get':
@@ -70,7 +70,7 @@ do {
 				$res = $res[$args[1]];
 			}
 			if ( $res === false ) {
-				#print 'Error: ' . $mcc->error_string() . "\n";
+				# print 'Error: ' . $mcc->error_string() . "\n";
 				print "MemCached error\n";
 			} elseif ( is_string( $res ) ) {
 				print "$res\n";
@@ -106,7 +106,7 @@ do {
 				$value = implode( ' ', $args );
 			}
 			if ( !$mcc->set( $key, $value, 0 ) ) {
-				#print 'Error: ' . $mcc->error_string() . "\n";
+				# print 'Error: ' . $mcc->error_string() . "\n";
 				print "MemCached error\n";
 			}
 			break;
@@ -114,14 +114,14 @@ do {
 		case 'delete':
 			$key = implode( ' ', $args );
 			if ( !$mcc->delete( $key ) ) {
-				#print 'Error: ' . $mcc->error_string() . "\n";
+				# print 'Error: ' . $mcc->error_string() . "\n";
 				print "MemCached error\n";
 			}
 			break;
 
 		case 'history':
 			if ( function_exists( 'readline_list_history' ) ) {
-				foreach( readline_list_history() as $num => $line) {
+				foreach ( readline_list_history() as $num => $line ) {
 					print "$num: $line\n";
 				}
 			} else {

@@ -7,7 +7,7 @@ class SearchDbTest extends SearchEngineTest {
 	function setUp() {
 		global $wgDBprefix, $wgDBtype;
 		$this->db = wfGetDB( DB_MASTER );
-		if( !$this->db  ) {
+		if ( !$this->db  ) {
 			$this->markTestIncomplete( "Can't find a database to test with." );
  		}
 
@@ -15,14 +15,14 @@ class SearchDbTest extends SearchEngineTest {
 		$this->insertSearchData();
 
 		$this->insertSearchData();
-		$searchType = preg_replace("/Database/", "Search",
-								   get_class($this->db));
+		$searchType = preg_replace( "/Database/", "Search",
+								   get_class( $this->db ) );
 		$this->search = new $searchType( $this->db );
 	}
 
 	function tearDown() {
 		$this->removeSearchData();
-		if( !is_null( $this->db ) ) {
+		if ( !is_null( $this->db ) ) {
 			wfGetLB()->closeConnecton( $this->db );
 		}
 		unset( $this->db );

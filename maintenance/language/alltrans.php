@@ -20,7 +20,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( dirname(__FILE__) . '/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class AllTrans extends Maintenance {
 	public function __construct() {
@@ -30,7 +30,7 @@ class AllTrans extends Maintenance {
 
 	public function execute() {
 		$wgEnglishMessages = array_keys( Language::getMessagesFor( 'en' ) );
-		foreach( $wgEnglishMessages as $key ) {
+		foreach ( $wgEnglishMessages as $key ) {
 			$this->output( "$key\n" );
 		}
 	}

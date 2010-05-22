@@ -18,7 +18,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class FixSlaveDesync extends Maintenance {
 	public function __construct() {
@@ -97,9 +97,9 @@ class FixSlaveDesync extends Maintenance {
 		# Check for a corrupted page_latest
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
-		$realLatest = $dbw->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ), 
+		$realLatest = $dbw->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ),
 			__METHOD__, 'FOR UPDATE' );
-		#list( $masterFile, $masterPos ) = $dbw->getMasterPos();
+		# list( $masterFile, $masterPos ) = $dbw->getMasterPos();
 		$found = false;
 		foreach ( $slaveIndexes as $i ) {
 			$db = wfGetDB( $i );
@@ -109,7 +109,7 @@ class FixSlaveDesync extends Maintenance {
 				   $dbw->commit();
 				   sleep(10);
 				   return;
-			}*/	       
+			}*/
 			$latest = $db->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ), __METHOD__ );
 			$max = $db->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
 			if ( $latest != $realLatest && $realLatest < $max ) {
@@ -125,7 +125,7 @@ class FixSlaveDesync extends Maintenance {
 		}
 
 		# Find the missing revisions
-		$res = $dbw->select( 'revision', array( 'rev_id' ), array( 'rev_page' => $pageID ), 
+		$res = $dbw->select( 'revision', array( 'rev_id' ), array( 'rev_page' => $pageID ),
 			__METHOD__, 'FOR UPDATE' );
 		$masterIDs = array();
 		foreach ( $res as $row ) {
@@ -167,7 +167,7 @@ class FixSlaveDesync extends Maintenance {
 				# Revision
 				$row = $dbFrom->selectRow( 'revision', '*', array( 'rev_id' => $rid ), __METHOD__ );
 				if ( $toMaster ) {
-					$id = $dbw->selectField( 'revision', 'rev_id', array( 'rev_id' => $rid ), 
+					$id = $dbw->selectField( 'revision', 'rev_id', array( 'rev_id' => $rid ),
 						__METHOD__, 'FOR UPDATE' );
 					if ( $id ) {
 						$this->output( "Revision already exists\n" );
@@ -200,7 +200,7 @@ class FixSlaveDesync extends Maintenance {
 		if ( $found ) {
 			$this->output( "Fixing page_latest... " );
 			if ( $toMaster ) {
-				#$dbw->update( 'page', array( 'page_latest' => $realLatest ), array( 'page_id' => $pageID ), __METHOD__ );
+				# $dbw->update( 'page', array( 'page_latest' => $realLatest ), array( 'page_id' => $pageID ), __METHOD__ );
 			} else {
 				foreach ( $slaveIndexes as $i ) {
 					$db = wfGetDB( $i );

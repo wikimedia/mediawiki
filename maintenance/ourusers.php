@@ -32,12 +32,12 @@ $databases = array(
 print "/*!40100 set old_passwords=1 */;\n";
 print "/*!40100 set global old_passwords=1 */;\n";
 
-foreach( $hosts as $host ) {
+foreach ( $hosts as $host ) {
 	print "--\n-- $host\n--\n";
 	print "\n-- wikiuser\n\n";
 	print "GRANT REPLICATION CLIENT,PROCESS ON *.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
 	print "GRANT ALL PRIVILEGES ON `boardvote%`.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
-	foreach( $databases as $db ) {
+	foreach ( $databases as $db ) {
 		print "GRANT SELECT, INSERT, UPDATE, DELETE ON `$db`.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
 	}
 

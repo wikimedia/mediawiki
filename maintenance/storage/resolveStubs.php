@@ -9,7 +9,7 @@ define( 'REPORTING_INTERVAL', 100 );
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithArgs = array( 'm' );
 
-	require_once( dirname(__FILE__) . '/../commandLine.inc' );
+	require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 	resolveStubs();
 }
@@ -30,13 +30,13 @@ function resolveStubs() {
 		wfWaitForSlaves( 2 );
 		
 		printf( "%5.2f%%\n", $b / $numBlocks * 100 );
-		$start = intval($maxID / $numBlocks) * $b + 1;
-		$end = intval($maxID / $numBlocks) * ($b + 1);
+		$start = intval( $maxID / $numBlocks ) * $b + 1;
+		$end = intval( $maxID / $numBlocks ) * ( $b + 1 );
 		
 		$res = $dbr->select( 'text', array( 'old_id', 'old_text', 'old_flags' ),
 			"old_id>=$start AND old_id<=$end " .
-			"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' ".
-			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'', 
+			"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' " .
+			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
 			$fname );
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			resolveStub( $row->old_id, $row->old_text, $row->old_flags );
@@ -84,7 +84,7 @@ function resolveStub( $id, $stubText, $flags ) {
 	}
 
 	# Update the row
-	#print "oldid=$id\n";
+	# print "oldid=$id\n";
 	$dbw->update( 'text',
 		array( /* SET */
 			'old_flags' => $newFlags,

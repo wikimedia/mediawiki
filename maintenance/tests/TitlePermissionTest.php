@@ -14,26 +14,26 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		self::$userName = "Useruser";
 		self::$altUserName = "Altuseruser";
 		date_default_timezone_set( $wgLocaltimezone );
-		$wgLocalTZoffset = date("Z") / 60;
+		$wgLocalTZoffset = date( "Z" ) / 60;
 
-		self::$title = Title::makeTitle(NS_MAIN, "Main Page");
-		if( !isset(self::$userUser) || !(self::$userUser instanceOf User) ) {
-			self::$userUser = User::newFromName(self::$userName);
+		self::$title = Title::makeTitle( NS_MAIN, "Main Page" );
+		if ( !isset( self::$userUser ) || !( self::$userUser instanceOf User ) ) {
+			self::$userUser = User::newFromName( self::$userName );
 
 			if ( !self::$userUser->getID() ) {
-				self::$userUser = User::createNew(self::$userName, array(
+				self::$userUser = User::createNew( self::$userName, array(
 					"email" => "test@example.com",
-					"real_name" => "Test User"));
+					"real_name" => "Test User" ) );
 			}
 
-			self::$altUser = User::newFromName(self::$altUserName);
+			self::$altUser = User::newFromName( self::$altUserName );
 			if ( !self::$altUser->getID() ) {
-				self::$altUser = User::createNew(self::$altUserName, array(
+				self::$altUser = User::createNew( self::$altUserName, array(
 					"email" => "alttest@example.com",
-					"real_name" => "Test User Alt"));
+					"real_name" => "Test User Alt" ) );
 			}
 
-			self::$anonUser = User::newFromId(0);
+			self::$anonUser = User::newFromId( 0 );
 
 			self::$user = self::$userUser;
 		}
@@ -41,15 +41,15 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 
 	function setUserPerm( $perm ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol;
-		if( is_array( $perm ) ) {
+		if ( is_array( $perm ) ) {
 			self::$user->mRights = $perm;
 		} else {
-			self::$user->mRights = array($perm);
+			self::$user->mRights = array( $perm );
 		}
 	}
 
 	function setTitle( $ns, $title = "Main_Page" ) {
-		self::$title = Title::makeTitle($ns, $title);
+		self::$title = Title::makeTitle( $ns, $title );
 	}
 
 	function setUser( $userName = null ) {
@@ -70,121 +70,121 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createtalk" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array(), $res);
+		$this->assertEquals( array(), $res );
 
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createpage" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( array( "nocreatetext") ), $res);
+		$this->assertEquals( array( array( "nocreatetext" ) ), $res );
 
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( array( 'nocreatetext' ) ), $res);
+		$this->assertEquals( array( array( 'nocreatetext' ) ), $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "createpage" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( ), $res);
+		$this->assertEquals( array( ), $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "createtalk" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( array( 'nocreatetext' ) ), $res);
+		$this->assertEquals( array( array( 'nocreatetext' ) ), $res );
 
 		$this->setUser( self::$userName );
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createtalk" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( ), $res);
+		$this->assertEquals( array( ), $res );
 
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createpage" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res);
+		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res );
 
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res);
+		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "createpage" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( ), $res);
+		$this->assertEquals( array( ), $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "createtalk" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res);
+		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'create', self::$user );
-		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res);
+		$this->assertEquals( array( array( 'nocreate-loggedin' ) ), $res );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_USER, self::$userName . '' );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'cant-move-user-page' ), array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'cant-move-user-page' ), array( 'movenologintext' ) ), $res );
 
 		$this->setTitle( NS_USER, self::$userName . '/subpage' );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
 
 		$this->setTitle( NS_USER, self::$userName . '' );
 		$this->setUserPerm( "move-rootuserpages" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
 
 		$this->setTitle( NS_USER, self::$userName . '/subpage' );
 		$this->setUserPerm( "move-rootuserpages" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals(array( array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
 
 		$this->setTitle( NS_USER, self::$userName . '' );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'cant-move-user-page' ), array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'cant-move-user-page' ), array( 'movenologintext' ) ), $res );
 
 		$this->setTitle( NS_USER, self::$userName . '/subpage' );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
 
 		$this->setTitle( NS_USER, self::$userName . '' );
 		$this->setUserPerm( "move-rootuserpages" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
 
 		$this->setTitle( NS_USER, self::$userName . '/subpage' );
 		$this->setUserPerm( "move-rootuserpages" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals(array( array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
 
 		$this->setUser( self::$userName );
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) ), $res);
+		$this->assertEquals( array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) ), $res );
 
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->setUserPerm( "movefile" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'movenotallowed' ) ), $res);
+		$this->assertEquals( array( array( 'movenotallowed' ) ), $res );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->setUserPerm( "" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'movenotallowedfile' ), array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'movenotallowedfile' ), array( 'movenologintext' ) ), $res );
 
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->setUserPerm( "movefile" );
 		$res = self::$title->getUserPermissionsErrors( 'move', self::$user );
-		$this->assertEquals( array( array( 'movenologintext' ) ), $res);
+		$this->assertEquals( array( array( 'movenologintext' ) ), $res );
 
 		$this->setUser( self::$userName );
 		$this->setUserPerm( "move" );
@@ -260,7 +260,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 						'' => array( array( ), array( ), array( ), true ) );
 		global $wgUser;
 		$wgUser = self::$user;
-   		foreach(array("edit", "protect", "") as $action) {
+   		foreach ( array( "edit", "protect", "" ) as $action ) {
 			$this->setUserPerm( null );
 			$this->assertEquals( $check[$action][0],
 				self::$title->getUserPermissionsErrors( $action, self::$user, true ) );
@@ -290,7 +290,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 	function runGroupPermissions( $action, $result, $result2 = null ) {
 		global $wgGroupPermissions;
 
-		if( $result2 === null ) $result2 = $result;
+		if ( $result2 === null ) $result2 = $result;
 
 		$wgGroupPermissions['autoconfirmed']['move'] = false;
 		$wgGroupPermissions['user']['move'] = false;
@@ -313,7 +313,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$this->assertEquals( $result2, $res );
 	}
 
-	function testPermissionHooks() {}
+	function testPermissionHooks() { }
 	function testSpecialsAndNSPermissions() {
 		$this->setUser( self::$userName );
 		global $wgUser;
@@ -342,7 +342,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$wgNamespaceProtection[NS_USER] = array ( 'bogus' );
 		$this->setTitle( NS_USER );
 		$this->setUserPerm( '' );
-		$this->assertEquals( array( array( 'badaccess-group0'), array( 'namespaceprotected', 'User' ) ),
+		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'namespaceprotected', 'User' ) ),
 							 self::$title->getUserPermissionsErrors( 'bogus', self::$user ) );
 
 		$this->setTitle( NS_MEDIAWIKI );
@@ -374,19 +374,19 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		global $wgUser;
 		$wgUser = self::$user;
 
-		$this->setTitle( NS_USER, self::$altUserName .'/test.js' );
+		$this->setTitle( NS_USER, self::$altUserName . '/test.js' );
 		$this->runCSSandJSPermissions(
 			array( array( 'badaccess-group0' ), array( 'customcssjsprotected' ) ),
 			array( array( 'badaccess-group0' ), array( 'customcssjsprotected'  ) ),
 			array( array( 'badaccess-group0' ) ) );
 
-		$this->setTitle( NS_USER, self::$altUserName .'/test.css' );
+		$this->setTitle( NS_USER, self::$altUserName . '/test.css' );
 		$this->runCSSandJSPermissions(
 			array( array( 'badaccess-group0' ), array( 'customcssjsprotected' ) ),
 			array( array( 'badaccess-group0' ) ),
 			array( array( 'badaccess-group0' ),  array( 'customcssjsprotected' ) ) );
 
-		$this->setTitle( NS_USER, self::$altUserName .'/tempo' );
+		$this->setTitle( NS_USER, self::$altUserName . '/tempo' );
 		$this->runCSSandJSPermissions(
 			array( array( 'badaccess-group0' ) ),
 			array( array( 'badaccess-group0' ) ),
@@ -425,8 +425,8 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$wgUser = self::$user;
 		$this->setTitle( NS_MAIN );
 		self::$title->mRestrictionsLoaded = true;
-		$this->setUserPerm("edit");
-		self::$title->mRestrictions= array("bogus" => array('bogus', "sysop", "protect", ""));
+		$this->setUserPerm( "edit" );
+		self::$title->mRestrictions = array( "bogus" => array( 'bogus', "sysop", "protect", "" ) );
 
 		$this->assertEquals( array( ),
 							 self::$title->getUserPermissionsErrors( 'edit',
@@ -434,8 +434,8 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 
 		$this->assertEquals( true,
 							 self::$title->quickUserCan( 'edit', false ) );
-		self::$title->mRestrictions= array("edit" => array('bogus', "sysop", "protect", ""),
-										   "bogus" => array('bogus', "sysop", "protect", ""));
+		self::$title->mRestrictions = array( "edit" => array( 'bogus', "sysop", "protect", "" ),
+										   "bogus" => array( 'bogus', "sysop", "protect", "" ) );
 
 		$this->assertEquals( array( array( 'badaccess-group0' ),
 									array( 'protectedpagetext', 'bogus' ),
@@ -448,7 +448,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 									array( 'protectedpagetext', 'protect' ) ),
 							 self::$title->getUserPermissionsErrors( 'edit',
 																	 self::$user ) );
-		$this->setUserPerm("");
+		$this->setUserPerm( "" );
 		$this->assertEquals( array( array( 'badaccess-group0' ),
 									array( 'protectedpagetext', 'bogus' ),
 									array( 'protectedpagetext', 'protect' ),
@@ -461,7 +461,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 									array( 'protectedpagetext', 'protect' ) ),
 							 self::$title->getUserPermissionsErrors( 'edit',
 																	 self::$user ) );
-		$this->setUserPerm(array("edit", "editprotected") );
+		$this->setUserPerm( array( "edit", "editprotected" ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ),
 									array( 'protectedpagetext', 'bogus' ),
 									array( 'protectedpagetext', 'protect' ),
@@ -492,11 +492,11 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 	function testCascadingSourcesRestrictions() {
 		global $wgUser;
 		$wgUser = self::$user;
-		$this->setTitle(NS_MAIN, "test page");
-		$this->setUserPerm(array("edit", "bogus"));
+		$this->setTitle( NS_MAIN, "test page" );
+		$this->setUserPerm( array( "edit", "bogus" ) );
 
-		self::$title->mCascadeSources = array( Title::makeTitle(NS_MAIN, "Bogus"), Title::makeTitle(NS_MAIN, "UnBogus") );
-		self::$title->mCascadingRestrictions = array( "bogus" => array('bogus', "sysop", "protect", "" ) );
+		self::$title->mCascadeSources = array( Title::makeTitle( NS_MAIN, "Bogus" ), Title::makeTitle( NS_MAIN, "UnBogus" ) );
+		self::$title->mCascadingRestrictions = array( "bogus" => array( 'bogus', "sysop", "protect", "" ) );
 
 		$this->assertEquals( false,
 							 self::$title->userCan( 'bogus' ) );
@@ -516,7 +516,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$wgUser = self::$user;
 
 		$this->setUserPerm( array( "createpage" ) );
-		$this->setTitle(NS_MAIN, "test page");
+		$this->setTitle( NS_MAIN, "test page" );
 		self::$title->mTitleProtection['pt_create_perm'] = '';
 		self::$title->mTitleProtection['pt_user'] = self::$user->getID();
 		self::$title->mTitleProtection['pt_expiry'] = Block::infinity();
@@ -588,7 +588,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$wgUser = self::$user;
 
 		$this->setUserPerm( array( "createpage", "move" ) );
-		$this->setTitle(NS_MAIN, "test page");
+		$this->setTitle( NS_MAIN, "test page" );
 
 		# $short
 		$this->assertEquals( array( array( 'confirmedittext' ) ),
@@ -605,8 +605,8 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$prev = time();
 		$now = time() + 120;
 		self::$user->mBlockedby = self::$user->getId();
-		self::$user->mBlock = new Block('127.0.8.1', self::$user->getId(), self::$user->getId(),
-										'no reason given', $prev + 3600, 1, 0);
+		self::$user->mBlock = new Block( '127.0.8.1', self::$user->getId(), self::$user->getId(),
+										'no reason given', $prev + 3600, 1, 0 );
 		self::$user->mBlock->mTimestamp = 0;
 		$this->assertEquals( array( array( 'autoblockedtext',
 			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
@@ -621,7 +621,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		global $wgLocalTZoffset;
 		$wgLocalTZoffset = -60;
 		self::$user->mBlockedby = self::$user->getName();
-		self::$user->mBlock = new Block('127.0.8.1', 2, 1, 'no reason given', $now, 0, 10 );
+		self::$user->mBlock = new Block( '127.0.8.1', 2, 1, 'no reason given', $now, 0, 10 );
 		$this->assertEquals( array( array( 'blockedtext',
 			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
 			'Useruser', 0, '23:00, 31 December 1969', '127.0.8.1',

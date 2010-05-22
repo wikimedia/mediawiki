@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class MigrateUserGroup extends Maintenance {
 	public function __construct() {
@@ -37,10 +37,10 @@ class MigrateUserGroup extends Maintenance {
 		$newGroup = $this->getArg( 1 );
 		$dbw = wfGetDB( DB_MASTER );
 		$start = $dbw->selectField( 'user_groups', 'MIN(ug_user)',
-			array('ug_group' => $oldGroup), __FUNCTION__ );
+			array( 'ug_group' => $oldGroup ), __FUNCTION__ );
 		$end = $dbw->selectField( 'user_groups', 'MAX(ug_user)',
-			array('ug_group' => $oldGroup), __FUNCTION__ );
-		if( $start === null ) {
+			array( 'ug_group' => $oldGroup ), __FUNCTION__ );
+		if ( $start === null ) {
 			$this->error( "Nothing to do - no users in the '$oldGroup' group", true );
 		}
 		# Do remaining chunk
@@ -48,12 +48,12 @@ class MigrateUserGroup extends Maintenance {
 		$blockStart = $start;
 		$blockEnd = $start + $this->mBatchSize - 1;
 		// Migrate users over in batches...
-		while( $blockEnd <= $end ) {
+		while ( $blockEnd <= $end ) {
 			$this->output( "Doing users $blockStart to $blockEnd\n" );
 			$dbw->begin();
 			$dbw->update( 'user_groups',
-				array('ug_group' => $newGroup),
-				array('ug_group' => $oldGroup,
+				array( 'ug_group' => $newGroup ),
+				array( 'ug_group' => $oldGroup,
 					"ug_user BETWEEN $blockStart AND $blockEnd" )
 			);
 			$count += $dbw->affectedRows();

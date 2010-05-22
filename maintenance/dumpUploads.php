@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UploadDumper extends Maintenance {
 	public function __construct() {
@@ -40,16 +40,16 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 		$this->mShared = false;
 		$this->mSharedSupplement = false;
 
-		if( $this->hasOption('local') ) {
+		if ( $this->hasOption( 'local' ) ) {
 			$this->mAction = 'fetchLocal';
 		}
 		
-		if( $this->hasOption('used') ) {
+		if ( $this->hasOption( 'used' ) ) {
 			$this->mAction = 'fetchUsed';
 		}
 		
-		if( $this->hasOption('shared') ) {
-			if( $this->hasOption('used') ) {
+		if ( $this->hasOption( 'shared' ) ) {
+			if ( $this->hasOption( 'used' ) ) {
 				// Include shared-repo files in the used check
 				$this->mShared = true;
 			} else {
@@ -57,8 +57,8 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 				$this->mSharedSupplement = true;
 			}
 		}
-		$this->{$this->mAction}( $this->mShared );
-		if( $this->mSharedSupplement ) {
+		$this-> { $this->mAction } ( $this->mShared );
+		if ( $this->mSharedSupplement ) {
 			$this->fetchUsed( true );
 		}
 	}
@@ -79,7 +79,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 			ON il_to=img_name";
 		$result = $dbr->query( $sql );
 		
-		foreach( $result as $row ) {
+		foreach ( $result as $row ) {
 			$this->outputItem( $row->il_to, $shared );
 		}
 		$dbr->freeResult( $result );
@@ -97,7 +97,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 			'',
 			__METHOD__ );
 		
-		foreach( $result as $row ) {
+		foreach ( $result as $row ) {
 			$this->outputItem( $row->img_name, $shared );
 		}
 		$dbr->freeResult( $result );
@@ -105,7 +105,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 	
 	function outputItem( $name, $shared ) {
 		$file = wfFindFile( $name );
-		if( $file && $this->filterItem( $file, $shared ) ) {
+		if ( $file && $this->filterItem( $file, $shared ) ) {
 			$filename = $file->getFullPath();
 			$rel = wfRelativePath( $filename, $this->mBasePath );
 			$this->output( "$rel\n" );

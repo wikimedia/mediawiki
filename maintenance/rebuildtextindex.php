@@ -24,7 +24,7 @@
  * @todo document
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RebuildTextIndex extends Maintenance {
  	const RTI_CHUNK_SIZE = 500;
@@ -67,7 +67,7 @@ class RebuildTextIndex extends Maintenance {
 	 */
 	protected function populateSearchIndex() {
 		$res = $this->db->select( 'page', 'MAX(page_id) AS count' );
-		$s = $this->db->fetchObject($res);
+		$s = $this->db->fetchObject( $res );
 		$count = $s->count;
 		$this->output( "Rebuilding index fields for {$count} pages...\n" );
 		$n = 0;
@@ -76,13 +76,13 @@ class RebuildTextIndex extends Maintenance {
 			$this->output( $n . "\n" );
 			$end = $n + self::RTI_CHUNK_SIZE - 1;
 
-			$res = $this->db->select( array( 'page', 'revision', 'text' ), 
+			$res = $this->db->select( array( 'page', 'revision', 'text' ),
 				array( 'page_id', 'page_namespace', 'page_title', 'old_flags', 'old_text' ),
 				array( "page_id BETWEEN $n AND $end", 'page_latest = rev_id', 'rev_text_id = old_id' ),
 				__METHOD__
 				);
 	
-			foreach( $res as $s ) {
+			foreach ( $res as $s ) {
 				$revtext = Revision::getRevisionText( $s );
 				$u = new SearchUpdate( $s->page_id, $s->page_title, $revtext );
 				$u->doUpdate();
@@ -100,7 +100,7 @@ class RebuildTextIndex extends Maintenance {
 		if ( $this->db->indexExists( 'searchindex', 'si_title' ) ) {
 			$this->output( "Dropping index...\n" );
 			$sql = "ALTER TABLE $searchindex DROP INDEX si_title, DROP INDEX si_text";
-			$this->db->query($sql, __METHOD__ );
+			$this->db->query( $sql, __METHOD__ );
 		}
 	}
 

@@ -21,7 +21,7 @@
  */
 
 class DeleteArchivedFilesImplementation {
-	static public function doDelete($output, $force) {
+	static public function doDelete( $output, $force ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
@@ -31,21 +31,21 @@ class DeleteArchivedFilesImplementation {
 		$output->handleOutput( "Searching for and deleting archived files...\n" );
 		$res = $dbw->query( "SELECT fa_id,fa_storage_group,fa_storage_key FROM $tbl_arch" );
 		$count = 0;
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$key = $row->fa_storage_key;
 			$group = $row->fa_storage_group;
 			$id = $row->fa_id;
-			$path = $repo->getZonePath( 'deleted' ).'/'.$repo->getDeletedHashPath($key).$key;
+			$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
 			$sha1 = substr( $key, 0, strcspn( $key, '.' ) );
 			// Check if the file is used anywhere...
 			$inuse = $dbw->selectField( 'oldimage', '1',
 				array( 'oi_sha1' => $sha1,
-				'oi_deleted & '.File::DELETED_FILE => File::DELETED_FILE ),
+				'oi_deleted & ' . File::DELETED_FILE => File::DELETED_FILE ),
 				__METHOD__,
 				array( 'FOR UPDATE' )
 			);
-			if ( $path && file_exists($path) && !$inuse ) {
-				unlink($path); // delete
+			if ( $path && file_exists( $path ) && !$inuse ) {
+				unlink( $path ); // delete
 				$count++;
 				$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
 			} else {

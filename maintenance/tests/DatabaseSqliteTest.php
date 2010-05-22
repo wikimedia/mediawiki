@@ -51,7 +51,7 @@ class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 			);
 		
 		$this->assertEquals( "ALTER TABLE foo ADD COLUMN foo_bar INTEGER DEFAULT 42",
-			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42")
+			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42" )
 			);
 	}
 }

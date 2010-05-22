@@ -33,7 +33,7 @@
  * e.g. immobile_namespace for namespaces which can't be moved
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class MoveBatch extends Maintenance {
 	public function __construct() {
@@ -56,14 +56,14 @@ class MoveBatch extends Maintenance {
 		$user = $this->getOption( 'u', 'Move page script' );
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
-		if( $this->hasArg() ) {
+		if ( $this->hasArg() ) {
 			$file = fopen( $this->getArg(), 'r' );
 		} else {
 			$file = $this->getStdin();
 		}
 
 		# Setup
-		if( !$file ) {
+		if ( !$file ) {
 			$this->error( "Unable to read file, exiting", true );
 		}
 		$wgUser = User::newFromName( $user );
@@ -91,7 +91,7 @@ class MoveBatch extends Maintenance {
 			$this->output( $source->getPrefixedText() . ' --> ' . $dest->getPrefixedText() );
 			$dbw->begin();
 			$err = $source->moveTo( $dest, false, $reason );
-			if( $err !== true ) {
+			if ( $err !== true ) {
 				$msg = array_shift( $err[0] );
 				$this->output( "\nFAILED: " . wfMsg( $msg, $err[0] ) );
 			}

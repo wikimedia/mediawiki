@@ -19,8 +19,8 @@ if ( ! defined( 'MEDIAWIKI' ) )
 $wgHooks['ParserGetVariableValueTs'][] = 'wfParserTimeSetup';
 
 function wfParserTimeSetup( &$parser, &$ts ) {
-	$ts = 123; //$ perl -le 'print scalar localtime 123' ==> Thu Jan  1 00:02:03 1970
-	
+	$ts = 123; // $ perl -le 'print scalar localtime 123' ==> Thu Jan  1 00:02:03 1970
+
 	return true;
 }
 

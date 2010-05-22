@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class FetchText extends Maintenance {
 	public function __construct() {
@@ -31,15 +31,15 @@ class FetchText extends Maintenance {
 	public function execute() {
 		$db = wfGetDB( DB_SLAVE );
 		$stdin = $this->getStdin();
-		while( !feof( $stdin ) ) {
+		while ( !feof( $stdin ) ) {
 			$line = fgets( $stdin );
-			if( $line === false ) {
+			if ( $line === false ) {
 				// We appear to have lost contact...
 				break;
 			}
 			$textId = intval( $line );
 			$text = $this->doGetText( $db, $textId );
-			$this->output( strlen( $text ) . "\n". $text );
+			$this->output( strlen( $text ) . "\n" . $text );
 		}
 	}
 	
@@ -56,7 +56,7 @@ class FetchText extends Maintenance {
 			array( 'old_id' => $id ),
 			'TextPassDumper::getText' );
 		$text = Revision::getRevisionText( $row );
-		if( $text === false ) {
+		if ( $text === false ) {
 			return false;
 		}
 		return $text;

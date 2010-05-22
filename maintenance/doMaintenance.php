@@ -31,12 +31,12 @@ if ( !defined( 'DO_MAINTENANCE' ) ) {
 	exit( 1 );
 }
 
-if( !$maintClass || !class_exists( $maintClass ) ) {
+if ( !$maintClass || !class_exists( $maintClass ) ) {
 	echo "\$maintClass is not set or is set to a non-existent class.\n";
 	exit( 1 );
 }
 
-if( defined( 'MW_NO_SETUP' ) ) {
+if ( defined( 'MW_NO_SETUP' ) ) {
 	return;
 }
 
@@ -63,7 +63,7 @@ require_once( "$IP/includes/Defines.php" );
 
 // Load settings, using wikimedia-mode if needed
 // Fixme: replace this hack with general farm-friendly code
-if( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
+if ( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
 	# TODO FIXME! Wikimedia-specific stuff needs to go away to an ext
 	# Maybe a hook?
 	global $cluster;
@@ -72,7 +72,7 @@ if( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
 	require_once( "$IP/includes/SiteConfiguration.php" );
 	require( "$IP/wmf-config/wgConf.php" );
 	$maintenance->loadWikimediaSettings();
-	require( $IP.'/wmf-config/CommonSettings.php' );
+	require( $IP . '/wmf-config/CommonSettings.php' );
 } else {
 	require_once( $maintenance->loadSettings() );
 }
@@ -87,7 +87,7 @@ require_once( "$IP/includes/Setup.php" );
 require_once( "$IP/maintenance/install-utils.inc" );
 
 // Much much faster startup than creating a title object
-$wgTitle = null; 
+$wgTitle = null;
 
 // Do the work
 try {
@@ -95,7 +95,7 @@ try {
 
 	// Potentially debug globals
 	$maintenance->globals();
-} catch( MWException $mwe ) {
+} catch ( MWException $mwe ) {
 	echo( $mwe->getText() );
 	exit( 1 );
 }

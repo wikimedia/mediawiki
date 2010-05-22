@@ -1,10 +1,10 @@
 <?php
 
-require_once('UploadFromUrlTest.php');
+require_once( 'UploadFromUrlTest.php' );
 
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 {
-	public static function addTables(&$tables) {
+	public static function addTables( &$tables ) {
 		$tables[] = 'user_properties';
 		$tables[] = 'filearchive';
 		$tables[] = 'logging';
@@ -56,12 +56,12 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 		$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
 										  array( $messageMemc, $wgUseDatabaseMessages,
 												 $wgMsgCacheExpiry, wfWikiID() ) );
-		if( $wgStyleDirectory === false) $wgStyleDirectory   = "$IP/skins";
+		if ( $wgStyleDirectory === false ) $wgStyleDirectory   = "$IP/skins";
 
 	}
 
 	public function tearDown() {
-		$this->teardownUploadDir($this->uploadDir);
+		$this->teardownUploadDir( $this->uploadDir );
 	}
 
 	private $uploadDir;
@@ -112,8 +112,8 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 	 * @param array $files full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
-		foreach( $files as $file ) {
-			if( file_exists( $file ) ) {
+		foreach ( $files as $file ) {
+			if ( file_exists( $file ) ) {
 				unlink( $file );
 			}
 		}
@@ -123,8 +123,8 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 	 * @param array $dirs full paths to directories to delete.
 	 */
 	private static function deleteDirs( $dirs ) {
-		foreach( $dirs as $dir ) {
-			if( is_dir( $dir ) ) {
+		foreach ( $dirs as $dir ) {
+			if ( is_dir( $dir ) ) {
 				rmdir( $dir );
 			}
 		}
@@ -161,7 +161,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 
     public static function suite()
     {
-        return new UploadFromUrlTestSuite('UploadFromUrlTest');
+        return new UploadFromUrlTestSuite( 'UploadFromUrlTest' );
     }
 
 }

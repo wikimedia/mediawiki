@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class nextJobDB extends Maintenance {
 	public function __construct() {
@@ -39,13 +39,13 @@ class nextJobDB extends Maintenance {
 		$pendingDBs = $wgMemc->get( $mckey );
 
 		# If we didn't get it from the cache
-		if( !$pendingDBs ) {
+		if ( !$pendingDBs ) {
 			$pendingDBs = $this->getPendingDbs( $type );
 			$wgMemc->get( $mckey, $pendingDBs, 300 );
 		}
 		# If we've got a pending job in a db, display it.
 		if ( $pendingDBs ) {
-			$this->output( $pendingDBs[mt_rand(0, count( $pendingDBs ) - 1)] );
+			$this->output( $pendingDBs[mt_rand( 0, count( $pendingDBs ) - 1 )] );
 		}
 	}
 
@@ -61,7 +61,7 @@ class nextJobDB extends Maintenance {
 		$dbsByMaster = array();
 		foreach ( $wgLocalDatabases as $db ) {
 			$lb = wfGetLB( $db );
-			$dbsByMaster[$lb->getServerName(0)][] = $db;
+			$dbsByMaster[$lb->getServerName( 0 )][] = $db;
 		}
 
 		foreach ( $dbsByMaster as $master => $dbs ) {

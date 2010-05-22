@@ -27,7 +27,7 @@
  * @ingroup Maintenance
  */
  
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class DeleteBatch extends Maintenance {
 	
@@ -51,14 +51,14 @@ class DeleteBatch extends Maintenance {
 		$user = $this->getOption( 'u', 'Delete page script' );
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
-		if( $this->hasArg() ) {
+		if ( $this->hasArg() ) {
 			$file = fopen( $this->getArg(), 'r' );
 		} else {
 			$file = $this->getStdin();
 		}
 
 		# Setup
-		if( !$file ) {
+		if ( !$file ) {
 			$this->error( "Unable to read file, exiting", true );
 		}
 		$wgUser = User::newFromName( $user );
@@ -75,7 +75,7 @@ class DeleteBatch extends Maintenance {
 				$this->output( "Invalid title '$line' on line $linenum\n" );
 				continue;
 			}
-			if( !$page->exists() ) {
+			if ( !$page->exists() ) {
 				$this->output( "Skipping nonexistent page '$line'\n" );
 				continue;
 			}
@@ -83,10 +83,10 @@ class DeleteBatch extends Maintenance {
 	
 			$this->output( $page->getPrefixedText() );
 			$dbw->begin();
-			if( $page->getNamespace() == NS_FILE ) {
+			if ( $page->getNamespace() == NS_FILE ) {
 				$art = new ImagePage( $page );
 				$img = wfFindFile( $art->mTitle );
-				if( !$img || !$img->delete( $reason ) ) {
+				if ( !$img || !$img->delete( $reason ) ) {
 					$this->output( "FAILED to delete image file... " );
 				}
 			} else {

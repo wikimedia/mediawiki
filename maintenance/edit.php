@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class EditCLI extends Maintenance {
 	public function __construct() {
@@ -65,9 +65,9 @@ class EditCLI extends Maintenance {
 		
 		# Do the edit
 		$this->output( "Saving... " );
-		$status = $wgArticle->doEdit( $text, $summary, 
+		$status = $wgArticle->doEdit( $text, $summary,
 			( $minor ? EDIT_MINOR : 0 ) |
-			( $bot ? EDIT_FORCE_BOT : 0 ) | 
+			( $bot ? EDIT_FORCE_BOT : 0 ) |
 			( $autoSummary ? EDIT_AUTOSUMMARY : 0 ) |
 			( $noRC ? EDIT_SUPPRESS_RC : 0 ) );
 		if ( $status->isOK() ) {

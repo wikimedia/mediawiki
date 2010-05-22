@@ -31,9 +31,9 @@ class ImageFunctionsTest extends PHPUnit_Framework_TestCase {
 					50 => 12,
 					17 => 4,
 					18 => 4 ) ) );
-		foreach( $vals as $row ) {
+		foreach ( $vals as $row ) {
 			extract( $row );
-			foreach( $tests as $max => $expected ) {
+			foreach ( $tests as $max => $expected ) {
 				$y = round( $expected * $height / $width );
 				$result = wfFitBoxWidth( $width, $height, $max );
 				$y2 = round( $result * $height / $width );

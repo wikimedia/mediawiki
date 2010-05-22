@@ -23,7 +23,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ChangePassword extends Maintenance {
 	public function __construct() {
@@ -34,15 +34,15 @@ class ChangePassword extends Maintenance {
 	}
 	
 	public function execute() {
-		$user = User::newFromName( $this->getOption('user') );
-		if( !$user->getId() ) {
-			$this->error( "No such user: " . $this->getOption('user'), true );
+		$user = User::newFromName( $this->getOption( 'user' ) );
+		if ( !$user->getId() ) {
+			$this->error( "No such user: " . $this->getOption( 'user' ), true );
 		}
 		try {
-			$user->setPassword( $this->getOption('password') );
+			$user->setPassword( $this->getOption( 'password' ) );
 			$user->saveSettings();
 			$this->output( "Password set for " . $user->getName() . "\n" );
-		} catch( PasswordError $pwe ) {
+		} catch ( PasswordError $pwe ) {
 			$this->error( $pwe->getText(), true );
 		}
 	}

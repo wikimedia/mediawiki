@@ -23,8 +23,8 @@
  * Shamelessly stolen from deleteOldRevisions.php by Rob Church :)
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
-require_once( dirname(__FILE__) . '/deleteArchivedRevisions.inc' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/deleteArchivedRevisions.inc' );
 
 class DeleteArchivedRevisions extends Maintenance {
 	public function __construct() {
@@ -33,15 +33,15 @@ class DeleteArchivedRevisions extends Maintenance {
 		$this->addOption( 'delete', 'Performs the deletion' );
 	}
 
-	public function handleOutput($str) {
-		$this->output($str);
+	public function handleOutput( $str ) {
+		$this->output( $str );
 	}
 
 	public function execute() {
 		$this->output( "Delete archived revisions\n\n" );
 		# Data should come off the master, wrapped in a transaction
-		if( $this->hasOption('delete') ) {
-			DeleteArchivedRevisionsImplementation::doDelete($this);
+		if ( $this->hasOption( 'delete' ) ) {
+			DeleteArchivedRevisionsImplementation::doDelete( $this );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$res = $dbw->selectRow( 'archive', 'COUNT(*) as count', array(), __FUNCTION__ );

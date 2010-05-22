@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ConvertUserOptions extends Maintenance {
 
@@ -36,9 +36,9 @@ class ConvertUserOptions extends Maintenance {
 		$id = 0;
 		$dbw = wfGetDB( DB_MASTER );
 
-		while ($id !== null) {
-			$idCond = 'user_id>'.$dbw->addQuotes( $id );
-			$optCond = "user_options!=".$dbw->addQuotes( '' ); // For compatibility
+		while ( $id !== null ) {
+			$idCond = 'user_id>' . $dbw->addQuotes( $id );
+			$optCond = "user_options!=" . $dbw->addQuotes( '' ); // For compatibility
 			$res = $dbw->select( 'user', '*',
 					array( $optCond, $idCond ), __METHOD__,
 					array( 'LIMIT' => 50, 'FOR UPDATE' ) );
@@ -47,7 +47,7 @@ class ConvertUserOptions extends Maintenance {
 	
 			wfWaitForSlaves( 1 );
 	
-			if ($id)
+			if ( $id )
 				$this->output( "--Converted to ID $id\n" );
 		}
 		$this->output( "Conversion done. Converted " . $this->mConversionCount . " user records.\n" );

@@ -23,11 +23,11 @@
 
 $optionsWithArgs = array( 'target', 'repository', 'repos' );
 
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 
-define('EXTINST_NOPATCH', 0);
-define('EXTINST_WRITEPATCH', 6);
-define('EXTINST_HOTPATCH', 10);
+define( 'EXTINST_NOPATCH', 0 );
+define( 'EXTINST_WRITEPATCH', 6 );
+define( 'EXTINST_HOTPATCH', 10 );
 
 /**
  * @ingroup Maintenance
@@ -41,11 +41,11 @@ class InstallerRepository {
 
 	function printListing( ) {
 		trigger_error( 'override InstallerRepository::printListing()', E_USER_ERROR );
-	}        
+	}
 
 	function getResource( $name ) {
 		trigger_error( 'override InstallerRepository::getResource()', E_USER_ERROR );
-	}        
+	}
 	
 	static function makeRepository( $path, $type = NULL ) {
 		if ( !$type ) {
@@ -55,8 +55,8 @@ class InstallerRepository {
 			
 			if ( !$proto ) {
 				$type = 'dir';
-			} else if ( ( $proto == 'http' || $proto == 'https' ) && preg_match( '!([^\w]svn|svn[^\w])!i', $path) ) {
-				$type = 'svn'; #HACK!
+			} else if ( ( $proto == 'http' || $proto == 'https' ) && preg_match( '!([^\w]svn|svn[^\w])!i', $path ) ) {
+				$type = 'svn'; # HACK!
 			} else  {
 				$type = $proto;
 			}
@@ -85,7 +85,7 @@ class LocalInstallerRepository extends InstallerRepository {
 		}
 		
 		foreach ( $ff as $f ) {
-			$n = basename($f);
+			$n = basename( $f );
 			
 			if ( !is_dir( $f ) ) {
 				$m = array();
@@ -95,7 +95,7 @@ class LocalInstallerRepository extends InstallerRepository {
 
 			print "\t$n\n";
 		}
-	}        
+	}
 
 	function getResource( $name ) {
 		$path = $this->path . '/' . $name;
@@ -105,7 +105,7 @@ class LocalInstallerRepository extends InstallerRepository {
 		if ( !file_exists( $path ) ) $path = $this->path . '/' . $name . '.zip';
 
 		return new LocalInstallerResource( $path );
-	}        
+	}
 }
 
 /**
@@ -134,7 +134,7 @@ class WebInstallerRepository extends InstallerRepository {
 			}
 
 			$m = array();
-			$ok = preg_match_all( '!<a\s[^>]*href\s*=\s*['."'".'"]([^/'."'".'"]+)\.tgz['."'".'"][^>]*>.*?</a>!si', $txt, $m, PREG_SET_ORDER ); 
+			$ok = preg_match_all( '!<a\s[^>]*href\s*=\s*[' . "'" . '"]([^/' . "'" . '"]+)\.tgz[' . "'" . '"][^>]*>.*?</a>!si', $txt, $m, PREG_SET_ORDER );
 			if ( !$ok ) {
 				ExtensionInstaller::error( "listing index from {$this->path} does not match!" );
 				print ( $txt );
@@ -146,12 +146,12 @@ class WebInstallerRepository extends InstallerRepository {
 				print "\t$n\n";
 			}
 		}
-	}        
+	}
 
 	function getResource( $name ) {
 		$path = $this->path . '/' . $name . '.tgz';
 		return new WebInstallerResource( $path );
-	}        
+	}
 }
 
 /**
@@ -172,21 +172,21 @@ class SVNInstallerRepository extends InstallerRepository {
 			return false;
 		}
 		
-		$ll = preg_split('/(\s*[\r\n]\s*)+/', $txt);
+		$ll = preg_split( '/(\s*[\r\n]\s*)+/', $txt );
 		
 		foreach ( $ll as $line ) {
 			$m = array();
-			if ( !preg_match('!^(.*)/$!', $line, $m) ) continue;
+			if ( !preg_match( '!^(.*)/$!', $line, $m ) ) continue;
 			$n = $m[1];
 			          
 			print "\t$n\n";
 		}
-	}        
+	}
 
 	function getResource( $name ) {
 		$path = $this->path . '/' . $name;
 		return new SVNInstallerResource( $path );
-	}        
+	}
 }
 
 /**
@@ -200,7 +200,7 @@ class InstallerResource {
 	function InstallerResource( $path, $isdir, $islocal ) {
 		$this->path = $path;
 		
-		$this->isdir= $isdir;
+		$this->isdir = $isdir;
 		$this->islocal = $islocal;
 
 		$m = array();
@@ -214,11 +214,11 @@ class InstallerResource {
 
 	function fetch( $target ) {
 		trigger_error( 'override InstallerResource::fetch()', E_USER_ERROR );
-	}        
+	}
 
 	function extract( $file, $target ) {
 		
-		if ( $this->extensions == '.tgz' || $this->extensions == '.tar.gz' ) { #tgz file
+		if ( $this->extensions == '.tgz' || $this->extensions == '.tar.gz' ) { # tgz file
 			ExtensionInstaller::note( "extracting $file..." );
 			$code = null; // shell Exec return value.
 			wfShellExec( 'tar zxvf ' . escapeshellarg( $file ) . ' -C ' . escapeshellarg( $target ), $code );
@@ -228,7 +228,7 @@ class InstallerResource {
 				return false;
 			}
 		}
-		else if ( $this->extensions == '.zip' ) { #zip file
+		else if ( $this->extensions == '.zip' ) { # zip file
 			ExtensionInstaller::note( "extracting $file..." );
 			$code = null; // shell Exec return value.
 			wfShellExec( 'unzip ' . escapeshellarg( $file ) . ' -d ' . escapeshellarg( $target ) , $code );
@@ -238,13 +238,13 @@ class InstallerResource {
 				return false;
 			}
 		}
-		else { 
+		else {
 			ExtensionInstaller::error( "unknown extension {$this->extensions}!" );
 			return false;
 		}
 
 		return true;
-	}        
+	}
 
 	/*static*/ function makeResource( $url ) {
 		$m = array();
@@ -294,10 +294,10 @@ class WebInstallerResource extends InstallerResource {
 		}
 		
 		$this->extract( $tmp, dirname( $target ) );
-		unlink($tmp);
+		unlink( $tmp );
 		
 		return true;
-	}        
+	}
 }
 
 /**
@@ -319,7 +319,7 @@ class SVNInstallerResource extends InstallerResource {
 		}
 		
 		return true;
-	}        
+	}
 }
 
 /**
@@ -343,8 +343,8 @@ class ExtensionInstaller {
 		$this->incpath = "extensions/$name";
 		$this->tasks = array();
 		
-		#TODO: allow a subdir different from "extensions"
-		#TODO: allow a config file different from "LocalSettings.php"
+		# TODO: allow a subdir different from "extensions"
+		# TODO: allow a config file different from "LocalSettings.php"
 	}
 
 	static function note( $msg ) {
@@ -374,13 +374,13 @@ class ExtensionInstaller {
 		}
 		
 		$s = trim( $s );
-		return $s;                
+		return $s;
 	}
 
 	function confirm( $msg ) {
-		while ( true ) {        
-			$s = $this->prompt( $msg . " [yes/no]: ");
-			$s = strtolower( trim($s) );
+		while ( true ) {
+			$s = $this->prompt( $msg . " [yes/no]: " );
+			$s = strtolower( trim( $s ) );
 			
 			if ( $s == 'yes' || $s == 'y' ) { return true; }
 			else if ( $s == 'no' || $s == 'n' ) { return false; }
@@ -438,11 +438,11 @@ class ExtensionInstaller {
 		if ( $ff === false || $ff === NULL ) return false;
 
 		foreach ( $ff as $f ) {
-			$n= basename( $f );
-			if ( $n{0} == '.' ) continue; #HACK: skip dot files
-			
-			if ( is_link( $f ) ) continue; #skip link
-			
+			$n = basename( $f );
+			if ( $n { 0 } == '.' ) continue; # HACK: skip dot files
+
+			if ( is_link( $f ) ) continue; # skip link
+
 			if ( is_dir( $f ) ) {
 				ExtensionInstaller::setPermissions( $f, $dirbits, $filebits );
 			}
@@ -463,10 +463,10 @@ class ExtensionInstaller {
 		if ( file_exists( $this->dir ) && glob( $this->dir . "/*" ) ) {
 			if ( $this->confirm( "{$this->dir} exists and is not empty.\nDelete all files in that directory?" ) ) {
 				$this->deleteContents( $this->dir );
-			}                        
+			}
 			else {
 				return false;
-			}                        
+			}
 		}
 
 		$ok = $this->source->fetch( $this->dir );
@@ -481,7 +481,7 @@ class ExtensionInstaller {
 		if ( file_exists( $this->dir . '/INSTALL' ) ) $this->tasks[] = "read the INSTALL file in {$this->dir}";
 		if ( file_exists( $this->dir . '/RELEASE-NOTES' ) ) $this->tasks[] = "read the RELEASE-NOTES file in {$this->dir}";
 
-		#TODO: configure this smartly...?
+		# TODO: configure this smartly...?
 		$this->setPermissions( $this->dir, 0755, 0644 );
 
 		$this->note( "fetched extension to {$this->dir}" );
@@ -489,14 +489,14 @@ class ExtensionInstaller {
 	}
 
 	function patchLocalSettings( $mode ) {
-		#NOTE: if we get a better way to hook up extensions, that should be used instead.
+		# NOTE: if we get a better way to hook up extensions, that should be used instead.
 
 		$f = $this->dir . '/install.settings';
 		$t = $this->target . '/LocalSettings.php';
 		
-		#TODO: assert version ?!
-		#TODO: allow custom installer scripts + sql patches
-		
+		# TODO: assert version ?!
+		# TODO: allow custom installer scripts + sql patches
+
 		if ( !file_exists( $f ) ) {
 			self::warn( "No install.settings file provided!" );
 			$this->tasks[] = "Please read the instructions and edit LocalSettings.php manually to activate the extension.";
@@ -522,8 +522,8 @@ class ExtensionInstaller {
 		}
 		
 		if ( $mode == EXTINST_HOTPATCH ) {
-			#NOTE: keep php extension for backup file!
-			$bak = $this->target . '/LocalSettings.install-' . $this->name . '-' . wfTimestamp(TS_MW) . '.bak.php';
+			# NOTE: keep php extension for backup file!
+			$bak = $this->target . '/LocalSettings.install-' . $this->name . '-' . wfTimestamp( TS_MW ) . '.bak.php';
 			                
 			$ok = copy( $t, $bak );
 			                
@@ -551,12 +551,12 @@ class ExtensionInstaller {
 			$this->warn( "removed old configuration block for extension {$this->name}!" );
 		}
 		
-		$newblock= "\n# BEGIN $marker\n$settings\n# END $marker\n";
+		$newblock = "\n# BEGIN $marker\n$settings\n# END $marker\n";
 		
 		$localsettings = preg_replace( "/\?>\s*$/si", "$newblock?>", $localsettings );
 		
 		if ( $mode != EXTINST_HOTPATCH ) {
-			$t = $this->target . '/LocalSettings.install-' . $this->name . '-' . wfTimestamp(TS_MW) . '.php';
+			$t = $this->target . '/LocalSettings.install-' . $this->name . '-' . wfTimestamp( TS_MW ) . '.php';
 		}
 		
 		$ok = file_put_contents( $t, $localsettings );
@@ -570,7 +570,7 @@ class ExtensionInstaller {
 		}
 		else  {
 			self::note( "created patched settings file $t" );
-			$this->tasks[] = "Replace your current LocalSettings.php with ".basename($t);
+			$this->tasks[] = "Replace your current LocalSettings.php with " . basename( $t );
 		}
 		
 		return true;
@@ -603,7 +603,7 @@ $repos = @$options['repository'];
 if ( !$repos ) $repos = @$options['repos'];
 if ( !$repos ) $repos = @$wgExtensionInstallerRepository;
 
-if ( !$repos && file_exists("$tgt/.svn") && is_dir("$tgt/.svn") ) {
+if ( !$repos && file_exists( "$tgt/.svn" ) && is_dir( "$tgt/.svn" ) ) {
 	$svn = file_get_contents( "$tgt/.svn/entries" );
 	
 	$m = array();
@@ -614,18 +614,18 @@ if ( !$repos && file_exists("$tgt/.svn") && is_dir("$tgt/.svn") ) {
 
 if ( !$repos ) $repos = 'http://svn.wikimedia.org/svnroot/mediawiki/trunk/extensions';
 
-if( !isset( $args[0] ) && !@$options['list'] ) {
+if ( !isset( $args[0] ) && !@$options['list'] ) {
 	die( "USAGE: installExtension.php [options] <name> [source]\n" .
-		"OPTIONS: \n" . 
+		"OPTIONS: \n" .
 		"    --list            list available extensions. <name> is ignored / may be omitted.\n" .
 		"    --repository <n>  repository to fetch extensions from. May be a local directoy,\n" .
 		"                      an SVN repository or a HTTP directory\n" .
 		"    --target <dir>    mediawiki installation directory to use\n" .
 		"    --nopatch         don't create a patched LocalSettings.php\n" .
 		"    --hotpatch        patched LocalSettings.php directly (creates a backup)\n" .
-		"SOURCE: specifies the package source directly. If given, the repository is ignored.\n" . 
+		"SOURCE: specifies the package source directly. If given, the repository is ignored.\n" .
 		"        The source my be a local file (tgz or zip) or directory, the URL of a\n" .
-		"        remote file (tgz or zip), or a SVN path.\n" 
+		"        remote file (tgz or zip), or a SVN path.\n"
                 );
 }
 
@@ -633,33 +633,33 @@ $repository = InstallerRepository::makeRepository( $repos );
 
 if ( isset( $options['list'] ) ) {
 	$repository->printListing();
-	exit(0);
+	exit( 0 );
 }
 
 $name = $args[0];
 
 $src = isset( $args[1] ) ? $args[1] : $repository->getResource( $name );
 
-#TODO: detect $source mismatching $name !!
+# TODO: detect $source mismatching $name !!
 
 $mode = EXTINST_WRITEPATCH;
 if ( isset( $options['nopatch'] ) || @$wgExtensionInstallerNoPatch ) { $mode = EXTINST_NOPATCH; }
 else if ( isset( $options['hotpatch'] ) || @$wgExtensionInstallerHotPatch ) { $mode = EXTINST_HOTPATCH; }
 
 if ( !file_exists( "$tgt/LocalSettings.php" ) ) {
-	die("can't find $tgt/LocalSettings.php\n");
+	die( "can't find $tgt/LocalSettings.php\n" );
 }
 
 if ( $mode == EXTINST_HOTPATCH && !is_writable( "$tgt/LocalSettings.php" ) ) {
-	die("can't write to  $tgt/LocalSettings.php\n");
+	die( "can't write to  $tgt/LocalSettings.php\n" );
 }
 
 if ( !file_exists( "$tgt/extensions" ) ) {
-	die("can't find $tgt/extensions\n");
+	die( "can't find $tgt/extensions\n" );
 }
 
 if ( !is_writable( "$tgt/extensions" ) ) {
-	die("can't write to  $tgt/extensions\n");
+	die( "can't write to  $tgt/extensions\n" );
 }
 
 $installer = new ExtensionInstaller( $name, $src, $tgt );
@@ -671,7 +671,7 @@ print "\tTHIS TOOL IS EXPERIMENTAL!\n";
 print "\tEXPECT THE UNEXPECTED!\n";
 print "\n";
 
-if ( !$installer->confirm("continue") ) die("aborted\n");
+if ( !$installer->confirm( "continue" ) ) die( "aborted\n" );
 
 $ok = $installer->fetchExtension();
 

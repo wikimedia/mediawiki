@@ -93,7 +93,7 @@ function makeInterwikiSQL( $destDir ) {
 	foreach ( $languageAliases as $alias => $lang ) {
 		$reserved[$alias] = 1;
 	}
-	foreach( $sites as $site ) {
+	foreach ( $sites as $site ) {
 		$reserved[$site->lateral] = 1;
 	}
 
@@ -161,7 +161,7 @@ function makeInterwikiSQL( $destDir ) {
 		} else {
 			# Find out which site this DB belongs to
 			$site = false;
-			foreach( $sites as $candidateSite ) {
+			foreach ( $sites as $candidateSite ) {
 				$suffix = $candidateSite->suffix;
 				if ( preg_match( "/(.*)$suffix$/", $db, $matches ) ) {
 					$site = $candidateSite;
@@ -205,11 +205,11 @@ function makeInterwikiSQL( $destDir ) {
 			# w link within wikipedias
 			# Other sites already have it as a lateral link
 			if ( $site->suffix == "wiki" ) {
-				$sql .= makeLink( array("w", "http://en.wikipedia.org/wiki/$1", 1), $first, $db );
+				$sql .= makeLink( array( "w", "http://en.wikipedia.org/wiki/$1", 1 ), $first, $db );
 			}
 
 			# Extra links
-			foreach ( $extraLinks as $link ){
+			foreach ( $extraLinks as $link ) {
 					$sql .= makeLink( $link, $first, $db );
 			}
 			$sql .= ";\n";

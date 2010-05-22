@@ -20,7 +20,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( dirname(__FILE__) . '/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class DateFormats extends Maintenance {
 
@@ -60,7 +60,7 @@ class DateFormats extends Maintenance {
 				}
 				$this->output( $lang->time( $this->ts, false, $pref ) );
 			}
-			$this->output( "\n$code both: " ); 
+			$this->output( "\n$code both: " );
 			foreach ( $prefs as $index => $pref ) {
 				if ( $index > 0 ) {
 					$this->output( ' | ' );

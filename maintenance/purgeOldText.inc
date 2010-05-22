@@ -21,7 +21,7 @@ function PurgeRedundantText( $delete = false ) {
 	# Get "active" text records from the revisions table
 	echo( "Searching for active text records in revisions table..." );
 	$res = $dbw->query( "SELECT DISTINCT rev_text_id FROM $tbl_rev" );
-	while( $row = $dbw->fetchObject( $res ) ) {
+	while ( $row = $dbw->fetchObject( $res ) ) {
 		$cur[] = $row->rev_text_id;
 	}
 	echo( "done.\n" );
@@ -29,7 +29,7 @@ function PurgeRedundantText( $delete = false ) {
 	# Get "active" text records from the archive table
 	echo( "Searching for active text records in archive table..." );
 	$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
-	while( $row = $dbw->fetchObject( $res ) ) {
+	while ( $row = $dbw->fetchObject( $res ) ) {
 		$cur[] = $row->ar_text_id;
 	}
 	echo( "done.\n" );
@@ -39,7 +39,7 @@ function PurgeRedundantText( $delete = false ) {
 	$set = implode( ', ', $cur );
 	$res = $dbw->query( "SELECT old_id FROM $tbl_txt WHERE old_id NOT IN ( $set )" );
 	$old = array();
-	while( $row = $dbw->fetchObject( $res ) ) {
+	while ( $row = $dbw->fetchObject( $res ) ) {
 		$old[] = $row->old_id;
 	}
 	echo( "done.\n" );
@@ -49,7 +49,7 @@ function PurgeRedundantText( $delete = false ) {
 	echo( "$count inactive items found.\n" );
 	
 	# Delete as appropriate
-	if( $delete && $count ) {
+	if ( $delete && $count ) {
 		echo( "Deleting..." );
 		$set = implode( ', ', $old );
 		$dbw->query( "DELETE FROM $tbl_txt WHERE old_id IN ( $set )" );

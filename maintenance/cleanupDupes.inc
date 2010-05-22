@@ -25,7 +25,7 @@
  * @ingroup Maintenance
  */
 
-function fixDupes( $fixthem = false) {
+function fixDupes( $fixthem = false ) {
 	$dbw = wfGetDB( DB_MASTER );
 	$cur = $dbw->tableName( 'cur' );
 	$old = $dbw->tableName( 'old' );
@@ -40,13 +40,13 @@ END
 	);
 	$n = $dbw->numRows( $res );
 	echo "Found $n titles with duplicate entries.\n";
-	if( $n > 0 ) {
-		if( $fixthem ) {
+	if ( $n > 0 ) {
+		if ( $fixthem ) {
 			echo "Correcting...\n";
 		} else {
 			echo "Just a demo...\n";
 		}
-		while( $row = $dbw->fetchObject( $res ) ) {
+		while ( $row = $dbw->fetchObject( $res ) ) {
 			$ns = intval( $row->cur_namespace );
 			$title = $dbw->addQuotes( $row->cur_title );
 
@@ -56,17 +56,17 @@ END
 				'cur_title'     => $row->cur_title ) );
 
 			echo "$ns:$row->cur_title (canonical ID $id)\n";
-			if( $id != $row->id ) {
+			if ( $id != $row->id ) {
 				echo "  ** minimum ID $row->id; ";
 				$timeMin = $dbw->selectField( 'cur', 'cur_timestamp', array(
 					'cur_id' => $row->id ) );
 				$timeFirst = $dbw->selectField( 'cur', 'cur_timestamp', array(
 					'cur_id' => $id ) );
-				if( $timeMin == $timeFirst ) {
+				if ( $timeMin == $timeFirst ) {
 					echo "timestamps match at $timeFirst; ok\n";
 				} else {
 					echo "timestamps don't match! min: $timeMin, first: $timeFirst; ";
-					if( $timeMin > $timeFirst ) {
+					if ( $timeMin > $timeFirst ) {
 						$id = $row->id;
 						echo "keeping minimum: $id\n";
 					} else {
@@ -75,7 +75,7 @@ END
 				}
 			}
 
-			if( $fixthem ) {
+			if ( $fixthem ) {
 				$dbw->query( <<<END
 INSERT
   INTO $old
@@ -105,7 +105,7 @@ END
 		}
 	}
 	$dbw->query( 'UNLOCK TABLES' );
-	if( $fixthem ) {
+	if ( $fixthem ) {
 		echo "Done.\n";
 	} else {
 		echo "Run again with --fix option to delete the duplicates.\n";
@@ -114,14 +114,14 @@ END
 
 function checkDupes( $fixthem = false, $indexonly = false ) {
 	$dbw = wfGetDB( DB_MASTER );
-	if( $dbw->indexExists( 'cur', 'name_title' ) &&
+	if ( $dbw->indexExists( 'cur', 'name_title' ) &&
 	    $dbw->indexUnique( 'cur', 'name_title' ) ) {
-		echo wfWikiID().": cur table has the current unique index; no duplicate entries.\n";
-	} elseif( $dbw->indexExists( 'cur', 'name_title_dup_prevention' ) ) {
-		echo wfWikiID().": cur table has a temporary name_title_dup_prevention unique index; no duplicate entries.\n";
+		echo wfWikiID() . ": cur table has the current unique index; no duplicate entries.\n";
+	} elseif ( $dbw->indexExists( 'cur', 'name_title_dup_prevention' ) ) {
+		echo wfWikiID() . ": cur table has a temporary name_title_dup_prevention unique index; no duplicate entries.\n";
 	} else {
-		echo wfWikiID().": cur table has the old non-unique index and may have duplicate entries.\n";
-		if( !$indexonly ) {
+		echo wfWikiID() . ": cur table has the old non-unique index and may have duplicate entries.\n";
+		if ( !$indexonly ) {
 			fixDupes( $fixthem );
 		}
 	}

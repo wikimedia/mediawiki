@@ -56,19 +56,19 @@ class ApiWatchTest extends ApiSetup {
 			'action' => 'query',
 			'titles' => 'Main Page',
 			'intoken' => 'edit|delete|protect|move|block|unblock',
-			'prop' => 'info'), $data);
+			'prop' => 'info' ), $data );
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
 		$key = array_pop( array_keys( $data[0]['query']['pages'] ) );
 
 		$this->assertArrayHasKey( $key, $data[0]['query']['pages'] );
-		$this->assertArrayHasKey( 'edittoken', $data[0]['query']['pages'][$key]);
-		$this->assertArrayHasKey( 'movetoken', $data[0]['query']['pages'][$key]);
-		$this->assertArrayHasKey( 'deletetoken', $data[0]['query']['pages'][$key]);
-		$this->assertArrayHasKey( 'blocktoken', $data[0]['query']['pages'][$key]);
-		$this->assertArrayHasKey( 'unblocktoken', $data[0]['query']['pages'][$key]);
-		$this->assertArrayHasKey( 'protecttoken', $data[0]['query']['pages'][$key]);
+		$this->assertArrayHasKey( 'edittoken', $data[0]['query']['pages'][$key] );
+		$this->assertArrayHasKey( 'movetoken', $data[0]['query']['pages'][$key] );
+		$this->assertArrayHasKey( 'deletetoken', $data[0]['query']['pages'][$key] );
+		$this->assertArrayHasKey( 'blocktoken', $data[0]['query']['pages'][$key] );
+		$this->assertArrayHasKey( 'unblocktoken', $data[0]['query']['pages'][$key] );
+		$this->assertArrayHasKey( 'protecttoken', $data[0]['query']['pages'][$key] );
 
 		return $data;
 	}
@@ -85,7 +85,7 @@ class ApiWatchTest extends ApiSetup {
 			'title' => 'Main Page',
 			'text' => 'new text',
 			'token' => $pageinfo['edittoken'],
-			'watchlist' => 'watch'), $data);
+			'watchlist' => 'watch' ), $data );
 		$this->assertArrayHasKey( 'edit', $data[0] );
 		$this->assertArrayHasKey( 'result', $data[0]['edit'] );
 		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
@@ -101,24 +101,24 @@ class ApiWatchTest extends ApiSetup {
 		global $wgUser;
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
-			'list' => 'watchlist'), $data);
+			'list' => 'watchlist' ), $data );
 
-		if(isset($data[0]['query']['watchlist'])) {
+		if ( isset( $data[0]['query']['watchlist'] ) ) {
 			$wl = $data[0]['query']['watchlist'];
 
-			foreach($wl as $page) {
+			foreach ( $wl as $page ) {
 				$data = $this->doApiRequest( array(
 					'action' => 'watch',
 					'title' => $page['title'],
-					'unwatch' => true), $data);
+					'unwatch' => true ), $data );
 			}
 		}
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
-			'list' => 'watchlist'), $data);
+			'list' => 'watchlist' ), $data );
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'watchlist', $data[0]['query'] );
-		$this->assertEquals( 0, count($data[0]['query']['watchlist']) );
+		$this->assertEquals( 0, count( $data[0]['query']['watchlist'] ) );
 
 		return $data;
 	}
@@ -135,11 +135,11 @@ class ApiWatchTest extends ApiSetup {
 			'token' => $pageinfo['protecttoken'],
 			'title' => 'Main Page',
 			'protections' => 'edit=sysop',
-			'watchlist' => 'unwatch'), $data);
+			'watchlist' => 'unwatch' ), $data );
 
 		$this->assertArrayHasKey( 'protect', $data[0] );
 		$this->assertArrayHasKey( 'protections', $data[0]['protect'] );
-		$this->assertEquals( 1, count($data[0]['protect']['protections']) );
+		$this->assertEquals( 1, count( $data[0]['protect']['protections'] ) );
 		$this->assertArrayHasKey( 'edit', $data[0]['protect']['protections'][0] );
 	}
 
@@ -151,14 +151,14 @@ class ApiWatchTest extends ApiSetup {
 			'action' => 'query',
 			'prop' => 'revisions',
 			'titles' => 'Main Page',
-			'rvtoken' => 'rollback'), $data);
+			'rvtoken' => 'rollback' ), $data );
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
 		$key = array_pop( array_keys( $data[0]['query']['pages'] ) );
 
-		$this->assertArrayHasKey( 'pageid', $data[0]['query']['pages'][$key]);
-		$this->assertArrayHasKey( 'revisions', $data[0]['query']['pages'][$key]);
+		$this->assertArrayHasKey( 'pageid', $data[0]['query']['pages'][$key] );
+		$this->assertArrayHasKey( 'revisions', $data[0]['query']['pages'][$key] );
 		$this->assertArrayHasKey( 0, $data[0]['query']['pages'][$key]['revisions'] );
 		$this->assertArrayHasKey( 'rollbacktoken', $data[0]['query']['pages'][$key]['revisions'][0] );
 
@@ -177,7 +177,7 @@ class ApiWatchTest extends ApiSetup {
 			'title' => 'Main Page',
 			'user' => 'WikiSysop',
 			'token' => $pageinfo['rollbacktoken'],
-			'watchlist' => 'watch'), $data);
+			'watchlist' => 'watch' ), $data );
 
 		$this->assertArrayHasKey( 'rollback', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
@@ -193,13 +193,13 @@ class ApiWatchTest extends ApiSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'delete',
 			'token' => $pageinfo['deletetoken'],
-			'title' => 'Main Page'), $data);
+			'title' => 'Main Page' ), $data );
 		$this->assertArrayHasKey( 'delete', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['delete'] );
 
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
-			'list' => 'watchlist'), $data);
+			'list' => 'watchlist' ), $data );
 	}
 
 }

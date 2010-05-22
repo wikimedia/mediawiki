@@ -48,7 +48,7 @@ class Selenium extends Testing_Selenium {
 	}
 
 	// Prevent external cloning
-	protected function __clone() {}
+	protected function __clone() { }
 	// Prevent external construction
-	//protected function __construct() {}
+	// protected function __construct() {}
 }

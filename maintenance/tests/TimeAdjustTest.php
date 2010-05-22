@@ -21,7 +21,7 @@ class TimeAdjustTest extends PHPUnit_Framework_TestCase {
 
 		$wgContLang = $en = Language::factory( 'en' );
 
-		# Collection of parameters for Language_t_Offset.
+		#  Collection of parameters for Language_t_Offset.
 		# Format: date to be formatted, localTZoffset value, expected date
 		$userAdjust_tests = array(
 			array( 20061231235959,   0, 20061231235959 ),
@@ -36,7 +36,7 @@ class TimeAdjustTest extends PHPUnit_Framework_TestCase {
 			array( 20061231235959, -60, 20061231225959 ),
 		);
 
-		foreach( $userAdjust_tests as $data ) {
+		foreach ( $userAdjust_tests as $data ) {
 			$wgLocalTZoffset = $data[1];
 
 			$this->assertEquals(

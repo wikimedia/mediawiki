@@ -24,7 +24,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class DumpSisterSites extends Maintenance {
 	public function __construct() {
@@ -42,7 +42,7 @@ class DumpSisterSites extends Maintenance {
 			),
 			__METHOD__ );
 
-		foreach( $result as $row ) {
+		foreach ( $result as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$url = $title->getFullUrl();
 			$text = $title->getPrefixedText();

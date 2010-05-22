@@ -15,7 +15,7 @@
 
 $options = array( 'step', 'noimages' );
 
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
 echo "ATTENTION: This script is for upgrades from 1.4 to 1.5 (NOT 1.15) in very special cases.\n";

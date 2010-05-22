@@ -24,7 +24,7 @@
 
 $originalDir = getcwd();
 
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 require_once( 'backup.inc' );
 
 /**
@@ -40,7 +40,7 @@ class TextPassDumper extends BackupDumper {
 	var $failures = 0;
 	var $maxFailures = 200;
 	var $failureTimeout = 5; // Seconds to sleep after db failure
-	
+
 	var $php = "php";
 	var $spawn = false;
 	var $spawnProc = false;
@@ -54,7 +54,7 @@ class TextPassDumper extends BackupDumper {
 
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.
-		if( ini_get( 'display_errors' ) )
+		if ( ini_get( 'display_errors' ) )
 			ini_set( 'display_errors', 'stderr' );
 
 		$this->initProgress( $this->history );
@@ -66,11 +66,11 @@ class TextPassDumper extends BackupDumper {
 		$input = fopen( $this->input, "rt" );
 		$result = $this->readDump( $input );
 
-		if( WikiError::isError( $result ) ) {
+		if ( WikiError::isError( $result ) ) {
 			wfDie( $result->getMessage() );
 		}
 		
-		if( $this->spawnProc ) {
+		if ( $this->spawnProc ) {
 			$this->closeSpawn();
 		}
 
@@ -97,7 +97,7 @@ class TextPassDumper extends BackupDumper {
 			break;
 		case 'spawn':
 			$this->spawn = true;
-			if( $val ) {
+			if ( $val ) {
 				$this->php = $val;
 			}
 			break;
@@ -123,14 +123,14 @@ class TextPassDumper extends BackupDumper {
 	 * Overridden to include prefetch ratio if enabled.
 	 */
 	function showReport() {
-		if( !$this->prefetch ) {
+		if ( !$this->prefetch ) {
 			return parent::showReport();
 		}
 		
-		if( $this->reporting ) {
+		if ( $this->reporting ) {
 			$delta = wfTime() - $this->startTime;
 			$now = wfTimestamp( TS_DB );
-			if( $delta ) {
+			if ( $delta ) {
 				$rate = $this->pageCount / $delta;
 				$revrate = $this->revCount / $delta;
 				$portion = $this->revCount / $this->maxCount;
@@ -167,12 +167,12 @@ class TextPassDumper extends BackupDumper {
 		$bufferSize = 512 * 1024;
 		do {
 			$chunk = fread( $input, $bufferSize );
-			if( !xml_parse( $parser, $chunk, feof( $input ) ) ) {
+			if ( !xml_parse( $parser, $chunk, feof( $input ) ) ) {
 				wfDebug( "TextDumpPass::readDump encountered XML parsing error\n" );
 				return new WikiXmlError( $parser, 'XML import parse failure', $chunk, $offset );
 			}
 			$offset += strlen( $chunk );
-		} while( $chunk !== false && !feof( $input ) );
+		} while ( $chunk !== false && !feof( $input ) );
 		xml_parser_free( $parser );
 		
 		return true;
@@ -180,11 +180,11 @@ class TextPassDumper extends BackupDumper {
 
 	function getText( $id ) {
 		$this->fetchCount++;
-		if( isset( $this->prefetch ) ) {
+		if ( isset( $this->prefetch ) ) {
 			$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
-			if( $text === null ) {
+			if ( $text === null ) {
 				// Entry missing from prefetch dump
-			} elseif( $text === "" ) {
+			} elseif ( $text === "" ) {
 				// Blank entries may indicate that the prior dump was broken.
 				// To be safe, reload it.
 			} else {
@@ -196,7 +196,7 @@ class TextPassDumper extends BackupDumper {
 	}
 	
 	private function doGetText( $id ) {
-		if( $this->spawn ) {
+		if ( $this->spawn ) {
 			return $this->getTextSpawned( $id );
 		} else {
 			return $this->getTextDbSafe( $id );
@@ -209,16 +209,16 @@ class TextPassDumper extends BackupDumper {
 	 * may not survive a long-term server outage.
 	 */
 	private function getTextDbSafe( $id ) {
-		while( true ) {
+		while ( true ) {
 			try {
 				$text = $this->getTextDb( $id );
-				$ex = new MWException("Graceful storage failure");
-			} catch (DBQueryError $ex) {
+				$ex = new MWException( "Graceful storage failure" );
+			} catch ( DBQueryError $ex ) {
 				$text = false;
 			}
-			if( $text === false ) {
+			if ( $text === false ) {
 				$this->failures++;
-				if( $this->failures > $this->maxFailures ) {
+				if ( $this->failures > $this->maxFailures ) {
 					throw $ex;
 				} else {
 					$this->progress( "Database failure $this->failures " .
@@ -243,7 +243,7 @@ class TextPassDumper extends BackupDumper {
 			array( 'old_id' => $id ),
 			'TextPassDumper::getText' );
 		$text = Revision::getRevisionText( $row );
-		if( $text === false ) {
+		if ( $text === false ) {
 			return false;
 		}
 		$stripped = str_replace( "\r", "", $text );
@@ -253,15 +253,15 @@ class TextPassDumper extends BackupDumper {
 	
 	private function getTextSpawned( $id ) {
 		wfSuppressWarnings();
-		if( !$this->spawnProc ) {
+		if ( !$this->spawnProc ) {
 			// First time?
 			$this->openSpawn();
 		}
-		while( true ) {
+		while ( true ) {
 			
 			$text = $this->getTextSpawnedOnce( $id );
-			if( !is_string( $text ) ) {
-				$this->progress("Database subprocess failed. Respawning...");
+			if ( !is_string( $text ) ) {
+				$this->progress( "Database subprocess failed. Respawning..." );
 				
 				$this->closeSpawn();
 				sleep( $this->failureTimeout );
@@ -291,7 +291,7 @@ class TextPassDumper extends BackupDumper {
 		
 		$this->progress( "Spawning database subprocess: $cmd" );
 		$this->spawnProc = proc_open( $cmd, $spec, $pipes );
-		if( !$this->spawnProc ) {
+		if ( !$this->spawnProc ) {
 			// shit
 			$this->progress( "Subprocess spawn failed." );
 			return false;
@@ -306,16 +306,16 @@ class TextPassDumper extends BackupDumper {
 	
 	private function closeSpawn() {
 		wfSuppressWarnings();
-		if( $this->spawnRead )
+		if ( $this->spawnRead )
 			fclose( $this->spawnRead );
 		$this->spawnRead = false;
-		if( $this->spawnWrite )
+		if ( $this->spawnWrite )
 			fclose( $this->spawnWrite );
 		$this->spawnWrite = false;
-		if( $this->spawnErr )
+		if ( $this->spawnErr )
 			fclose( $this->spawnErr );
 		$this->spawnErr = false;
-		if( $this->spawnProc )
+		if ( $this->spawnProc )
 			pclose( $this->spawnProc );
 		$this->spawnProc = false;
 		wfRestoreWarnings();
@@ -325,30 +325,30 @@ class TextPassDumper extends BackupDumper {
 		global $wgContLang;
 
 		$ok = fwrite( $this->spawnWrite, "$id\n" );
-		//$this->progress( ">> $id" );
-		if( !$ok ) return false;
+		// $this->progress( ">> $id" );
+		if ( !$ok ) return false;
 		
 		$ok = fflush( $this->spawnWrite );
-		//$this->progress( ">> [flush]" );
-		if( !$ok ) return false;
+		// $this->progress( ">> [flush]" );
+		if ( !$ok ) return false;
 		
 		$len = fgets( $this->spawnRead );
-		//$this->progress( "<< " . trim( $len ) );
-		if( $len === false ) return false;
+		// $this->progress( "<< " . trim( $len ) );
+		if ( $len === false ) return false;
 		
 		$nbytes = intval( $len );
 		$text = "";
 		
 		// Subprocess may not send everything at once, we have to loop.
-		while( $nbytes > strlen( $text ) ) {
+		while ( $nbytes > strlen( $text ) ) {
 			$buffer = fread( $this->spawnRead, $nbytes - strlen( $text ) );
-			if( $buffer === false ) break;
+			if ( $buffer === false ) break;
 			$text .= $buffer;
 		}
 		
 		$gotbytes = strlen( $text );
-		if( $gotbytes != $nbytes ) {
-			$this->progress( "Expected $nbytes bytes from database subprocess, got $gotbytes ");
+		if ( $gotbytes != $nbytes ) {
+			$this->progress( "Expected $nbytes bytes from database subprocess, got $gotbytes " );
 			return false;
 		}
 		
@@ -362,23 +362,23 @@ class TextPassDumper extends BackupDumper {
 		$this->clearOpenElement( null );
 		$this->lastName = $name;
 
-		if( $name == 'revision' ) {
+		if ( $name == 'revision' ) {
 			$this->state = $name;
 			$this->egress->writeOpenPage( null, $this->buffer );
 			$this->buffer = "";
-		} elseif( $name == 'page' ) {
+		} elseif ( $name == 'page' ) {
 			$this->state = $name;
-			if( $this->atStart ) {
+			if ( $this->atStart ) {
 				$this->egress->writeOpenStream( $this->buffer );
 				$this->buffer = "";
 				$this->atStart = false;
 			}
 		}
 
-		if( $name == "text" && isset( $attribs['id'] ) ) {
+		if ( $name == "text" && isset( $attribs['id'] ) ) {
 			$text = $this->getText( $attribs['id'] );
 			$this->openElement = array( $name, array( 'xml:space' => 'preserve' ) );
-			if( strlen( $text ) > 0 ) {
+			if ( strlen( $text ) > 0 ) {
 				$this->characterData( $parser, $text );
 			}
 		} else {
@@ -387,21 +387,21 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function endElement( $parser, $name ) {
-		if( $this->openElement ) {
+		if ( $this->openElement ) {
 			$this->clearOpenElement( "" );
 		} else {
 			$this->buffer .= "</$name>";
 		}
 
-		if( $name == 'revision' ) {
+		if ( $name == 'revision' ) {
 			$this->egress->writeRevision( null, $this->buffer );
 			$this->buffer = "";
 			$this->thisRev = "";
-		} elseif( $name == 'page' ) {
+		} elseif ( $name == 'page' ) {
 			$this->egress->writeClosePage( $this->buffer );
 			$this->buffer = "";
 			$this->thisPage = "";
-		} elseif( $name == 'mediawiki' ) {
+		} elseif ( $name == 'mediawiki' ) {
 			$this->egress->writeCloseStream( $this->buffer );
 			$this->buffer = "";
 		}
@@ -409,10 +409,10 @@ class TextPassDumper extends BackupDumper {
 
 	function characterData( $parser, $data ) {
 		$this->clearOpenElement( null );
-		if( $this->lastName == "id" ) {
-			if( $this->state == "revision" ) {
+		if ( $this->lastName == "id" ) {
+			if ( $this->state == "revision" ) {
 				$this->thisRev .= $data;
-			} elseif( $this->state == "page" ) {
+			} elseif ( $this->state == "page" ) {
 				$this->thisPage .= $data;
 			}
 		}
@@ -420,7 +420,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function clearOpenElement( $style ) {
-		if( $this->openElement ) {
+		if ( $this->openElement ) {
 			$this->buffer .= Xml::element( $this->openElement[0], $this->openElement[1], $style );
 			$this->openElement = false;
 		}
@@ -430,7 +430,7 @@ class TextPassDumper extends BackupDumper {
 
 $dumper = new TextPassDumper( $argv );
 
-if( true ) {
+if ( true ) {
 	$dumper->dump();
 } else {
 	$dumper->progress( <<<ENDS

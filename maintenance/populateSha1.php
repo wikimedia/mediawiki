@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__).'/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class PopulateSha1 extends Maintenance {
 	public function __construct() {
@@ -37,14 +37,14 @@ class PopulateSha1 extends Maintenance {
 
 		$t = -microtime( true );
 		$dbw = wfGetDB( DB_MASTER );
-		if( $file ) {
-			$res = $dbw->selectRow( 
-				'image', 
-				array( 'img_name' ), 
+		if ( $file ) {
+			$res = $dbw->selectRow(
+				'image',
+				array( 'img_name' ),
 				array( 'img_name' => $dbw->addQuotes( $file ) ),
 				__METHOD__
 			);
-			if( !$res ) {
+			if ( !$res ) {
 				$this->error( "No such file: $file", true );
 				return;
 			}
@@ -58,7 +58,7 @@ class PopulateSha1 extends Maintenance {
 		if ( $method == 'pipe' ) {
 			// @fixme kill this and replace with a second unbuffered DB connection.
 			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;
-			$cmd = 'mysql -u' . wfEscapeShellArg( $wgDBuser ) . 
+			$cmd = 'mysql -u' . wfEscapeShellArg( $wgDBuser ) .
 				' -h' . wfEscapeShellArg( $wgDBserver ) .
 				' -p' . wfEscapeShellArg( $wgDBpassword, $wgDBname );
 			$this->output( "Using pipe method\n" );

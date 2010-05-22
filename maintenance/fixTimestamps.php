@@ -24,7 +24,7 @@
  * @ingroup Maintenance
  */
  
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class FixTimestamps extends Maintenance {
 	public function __construct() {
@@ -36,11 +36,11 @@ class FixTimestamps extends Maintenance {
 	}
 
 	public function execute() {
-		$offset = $this->getArg(0) * 3600;
-		$start = $this->getArg(1);
-		$end = $this->getArg(2);
+		$offset = $this->getArg( 0 ) * 3600;
+		$start = $this->getArg( 1 );
+		$end = $this->getArg( 2 );
 		$grace = 60; // maximum normal clock offset
-	
+
 		# Find bounding revision IDs
 		$dbw = wfGetDB( DB_MASTER );
 		$revisionTable = $dbw->tableName( 'revision' );
@@ -93,7 +93,7 @@ class FixTimestamps extends Maintenance {
 	
 		$numBadRevs = count( $badRevs );
 		if ( $numBadRevs > $numGoodRevs ) {
-			$this->error( 
+			$this->error(
 		"The majority of revisions in the search interval are marked as bad.
 
 		Are you sure the offset ($offset) has the right sign? Positive means the clock 
@@ -103,11 +103,11 @@ class FixTimestamps extends Maintenance {
 		good revisions to provide a majority reference.", true );
 		} elseif ( $numBadRevs == 0 ) {
 			$this->output( "No bad revisions found.\n" );
-			exit(0);
+			exit( 0 );
 		}
 	
-		$this->output( sprintf( "Fixing %d revisions (%.2f%% of revisions in search interval)\n", 
-			$numBadRevs, $numBadRevs / ($numGoodRevs + $numBadRevs) * 100 ) );
+		$this->output( sprintf( "Fixing %d revisions (%.2f%% of revisions in search interval)\n",
+			$numBadRevs, $numBadRevs / ( $numGoodRevs + $numBadRevs ) * 100 ) );
 	
 		$fixup = -$offset;
 		$sql = "UPDATE $revisionTable " .

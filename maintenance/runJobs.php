@@ -24,7 +24,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RunJobs extends Maintenance {
 	public function __construct() {
@@ -43,7 +43,7 @@ class RunJobs extends Maintenance {
 	public function execute() {
 		global $wgTitle;
 		if ( $this->hasOption( 'procs' ) ) {
-			$procs = intval( $this->getOption('procs') );
+			$procs = intval( $this->getOption( 'procs' ) );
 			if ( $procs < 1 || $procs > 1000 ) {
 				$this->error( "Invalid argument to --procs", true );
 			}
@@ -58,22 +58,22 @@ class RunJobs extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$n = 0;
 		$conds = '';
-		if ($type !== false)
-			$conds = "job_cmd = " . $dbw->addQuotes($type);
+		if ( $type !== false )
+			$conds = "job_cmd = " . $dbw->addQuotes( $type );
 
 		while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
-			$offset=0;
-			for (;;) {
-				$job = ($type == false) ?
-						Job::pop($offset)
-						: Job::pop_type($type);
+			$offset = 0;
+			for ( ; ; ) {
+				$job = ( $type == false ) ?
+						Job::pop( $offset )
+						: Job::pop_type( $type );
 
-				if ($job == false)
+				if ( $job == false )
 					break;
 
 				wfWaitForSlaves( 5 );
 				$t = microtime( true );
-				$offset=$job->id;
+				$offset = $job->id;
 				$status = $job->run();
 				$t = microtime( true ) - $t;
 				$timeMs = intval( $t * 1000 );

@@ -6,8 +6,8 @@ require_once( dirname( dirname( __FILE__ ) ) . "/deleteArchivedFiles.inc" );
 require_once( dirname( dirname( __FILE__ ) ) . "/deleteArchivedRevisions.inc" );
 
 class nullClass {
-	public function handleOutput(){}
-	public function purgeRedundantText(){}
+	public function handleOutput() { }
+	public function purgeRedundantText() { }
 }
 
 class UploadFromUrlTest extends ApiSetup {
@@ -44,8 +44,8 @@ class UploadFromUrlTest extends ApiSetup {
 	}
 
 	function testClearQueue() {
-		while ( $job = Job::pop() ) {}
-		$this->assertFalse($job);
+		while ( $job = Job::pop() ) { }
+		$this->assertFalse( $job );
 	}
 
 	function testLogin() {
@@ -119,7 +119,7 @@ class UploadFromUrlTest extends ApiSetup {
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
-		$wgUser->removeGroup('sysop');
+		$wgUser->removeGroup( 'sysop' );
 		$exception = false;
 		try {
 			$this->doApiRequest( array(
@@ -134,8 +134,8 @@ class UploadFromUrlTest extends ApiSetup {
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
-		$wgUser->addGroup('*');
-		$wgUser->addGroup('sysop');
+		$wgUser->addGroup( '*' );
+		$wgUser->addGroup( 'sysop' );
 		$exception = false;
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
@@ -144,7 +144,7 @@ class UploadFromUrlTest extends ApiSetup {
 			'token' => $token,
 		), $data );
 
-		$this->assertTrue( $data[0]['upload']['queued'], 'Job added');
+		$this->assertTrue( $data[0]['upload']['queued'], 'Job added' );
 
 		$job = Job::pop();
 		$this->assertThat( $job, $this->isInstanceOf( 'UploadFromUrlJob' ),
@@ -162,7 +162,7 @@ class UploadFromUrlTest extends ApiSetup {
 		$data[2]['wsEditToken'] = $data[2]['wsToken'];
 		$token = md5( $data[2]['wsToken'] ) . EDIT_TOKEN_SUFFIX;
 
-		$wgUser->addGroup('users');
+		$wgUser->addGroup( 'users' );
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'filename' => 'Test.png',
@@ -171,7 +171,7 @@ class UploadFromUrlTest extends ApiSetup {
 		), $data );
 
 		$job = Job::pop();
-		$this->assertEquals( 'UploadFromUrlJob', get_class($job) );
+		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
 
  		$status = $job->run();
 		$this->assertTrue( $status->isOk() );
@@ -183,8 +183,8 @@ class UploadFromUrlTest extends ApiSetup {
 	 * @depends testDoDownload
 	 */
 	function testVerifyDownload( $data ) {
-		$t = Title::newFromText("Test.png", NS_FILE);
+		$t = Title::newFromText( "Test.png", NS_FILE );
 
-		$this->assertTrue($t->exists());
+		$this->assertTrue( $t->exists() );
 	}
 }

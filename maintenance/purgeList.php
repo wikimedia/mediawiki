@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class PurgeList extends Maintenance {
 	public function __construct() {
@@ -32,17 +32,17 @@ class PurgeList extends Maintenance {
 		$stdin = $this->getStdin();
 		$urls = array();
 
-		while( !feof( $stdin ) ) {
+		while ( !feof( $stdin ) ) {
 			$page = trim( fgets( $stdin ) );
 			if ( substr( $page, 0, 7 ) == 'http://' ) {
 				$urls[] = $page;
-			} elseif( $page !== '' ) {
+			} elseif ( $page !== '' ) {
 				$title = Title::newFromText( $page );
-				if( $title ) {
+				if ( $title ) {
 					$url = $title->getFullUrl();
 					$this->output( "$url\n" );
 					$urls[] = $url;
-					if( isset( $options['purge'] ) ) {
+					if ( isset( $options['purge'] ) ) {
 						$title->invalidateCache();
 					}
 				} else {

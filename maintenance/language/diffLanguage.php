@@ -40,16 +40,16 @@
  */
 
 /** This script run from the commandline */
-require_once( dirname(__FILE__).'/../parserTests.inc' );
-require_once( dirname(__FILE__).'/../commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/../parserTests.inc' );
+require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 
-if( isset($options['help']) ) { usage(); wfDie(); }
+if ( isset( $options['help'] ) ) { usage(); wfDie(); }
 
-$wgLanguageCode = ucfirstlcrest($wgLanguageCode);
+$wgLanguageCode = ucfirstlcrest( $wgLanguageCode );
 /** Language messages we will use as reference. By default 'en' */
 $referenceMessages = $wgAllMessagesEn;
 $referenceLanguage = 'En';
-$referenceFilename = 'Language'.$referenceLanguage.'.php';
+$referenceFilename = 'Language' . $referenceLanguage . '.php';
 /** Language messages we will test. */
 $testMessages = array();
 $testLanguage = '';
@@ -59,12 +59,12 @@ $externalRef = false;
 # FUNCTIONS
 /** @todo more informations !! */
 function usage() {
-echo 'php DiffLanguage.php [lang [file]] [--color=(yes|no|light)]'."\n";
+echo 'php DiffLanguage.php [lang [file]] [--color=(yes|no|light)]' . "\n";
 }
 
 /** Return a given string with first letter upper case, the rest lowercase */
-function ucfirstlcrest($string) {
-	return strtoupper(substr($string,0,1)).strtolower(substr($string,1));
+function ucfirstlcrest( $string ) {
+	return strtoupper( substr( $string, 0, 1 ) ) . strtolower( substr( $string, 1 ) );
 }
 
 /**
@@ -72,20 +72,20 @@ function ucfirstlcrest($string) {
  * @param $languageCode String: formated language code
  * @return array The MediaWiki default $wgAllMessages array requested
  */
-function getMediawikiMessages($languageCode = 'En') {
+function getMediawikiMessages( $languageCode = 'En' ) {
 
 	$foo = "wgAllMessages$languageCode";
 	global $$foo;
 	global $wgSkinNamesEn; // potentially unused global declaration?
 
 	// it might already be loaded in LocalSettings.php
-	if(!isset($$foo)) {
+	if ( !isset( $$foo ) ) {
 		global $IP;
-		$langFile = $IP.'/languages/classes/Language'.$languageCode.'.php';
-		if (file_exists( $langFile ) ) {
+		$langFile = $IP . '/languages/classes/Language' . $languageCode . '.php';
+		if ( file_exists( $langFile ) ) {
 			print "Including $langFile\n";
-			include($langFile);
-		} else wfDie("ERROR: The file $langFile does not exist !\n");
+			include( $langFile );
+		} else wfDie( "ERROR: The file $langFile does not exist !\n" );
 	}
 	return $$foo;
 }
@@ -97,20 +97,20 @@ function getMediawikiMessages($languageCode = 'En') {
  * @param $languageCode String: language of the external array
  * @return array A $wgAllMessages array from an external file.
  */
-function getExternalMessages($filename, $languageCode) {
+function getExternalMessages( $filename, $languageCode ) {
 	print "Including external file $filename.\n";
-	include($filename);
+	include( $filename );
 	$foo = "wgAllMessages$languageCode";
 	return $$foo;
 }
 
 # MAIN ENTRY
-if ( isset($args[0]) ) {
-	$lang = ucfirstlcrest($args[0],1);
+if ( isset( $args[0] ) ) {
+	$lang = ucfirstlcrest( $args[0], 1 );
 
 	// eventually against another language file we will use as reference instead
 	// of the default english language.
-	if( isset($args[1])) {
+	if ( isset( $args[1] ) ) {
 		// we assume the external file contain an array of messages for the
 		// lang we are testing
 		$referenceMessages = getExternalMessages( $args[1], $lang );
@@ -120,7 +120,7 @@ if ( isset($args[0]) ) {
 	}
 
 	// Load datas from MediaWiki
-	$testMessages = getMediawikiMessages($lang);
+	$testMessages = getMediawikiMessages( $lang );
 	$testLanguage = $lang;
 } else {
 	usage();
@@ -134,26 +134,26 @@ $myParserTest = new ParserTest();
 $i = 0;
 
 $msg = "MW Language{$testLanguage}.php against ";
-if($externalRef) { $msg .= 'external file '; }
+if ( $externalRef ) { $msg .= 'external file '; }
 else { $msg .= 'internal file '; }
-$msg .= $referenceFilename.' ('.$referenceLanguage."):\n----\n";
+$msg .= $referenceFilename . ' (' . $referenceLanguage . "):\n----\n";
 echo $msg;
 
 // process messages
-foreach($referenceMessages as $index => $ref)
+foreach ( $referenceMessages as $index => $ref )
 {
 	// message is not localized
-	if(!(isset($testMessages[$index]))) {
+	if ( !( isset( $testMessages[$index] ) ) ) {
 		$i++;
 		print "'$index' => \"$ref\",\n";
 	// Messages in the same language differs
-	} elseif( ($lang == $referenceLanguage) AND ($testMessages[$index] != $ref)) {
+	} elseif ( ( $lang == $referenceLanguage ) AND ( $testMessages[$index] != $ref ) ) {
 		print "\n$index differs:\n";
-		print $myParserTest->quickDiff($testMessages[$index],$ref,'tested','reference');
+		print $myParserTest->quickDiff( $testMessages[$index], $ref, 'tested', 'reference' );
 	}
 }
 
-echo "\n----\n".$msg;
-echo "$referenceLanguage language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
-echo "$i unlocalised messages of the ".count($wgAllMessagesEn)." messages available.\n";
+echo "\n----\n" . $msg;
+echo "$referenceLanguage language is complete at " . number_format( ( 100 - $i / count( $wgAllMessagesEn ) * 100 ), 2 ) . "%\n";
+echo "$i unlocalised messages of the " . count( $wgAllMessagesEn ) . " messages available.\n";
 

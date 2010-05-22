@@ -4,28 +4,28 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 
 $wgHooks['BeforeParserFetchTemplateAndtitle'][] = 'PPFuzzTester::templateHook';
 
 class PPFuzzTester {
 	var $hairs = array(
-		'[[', ']]', '{{', '{{', '}}', '}}', '{{{', '}}}', 
+		'[[', ']]', '{{', '{{', '}}', '}}', '{{{', '}}}',
 		'<', '>', '<nowiki', '<gallery', '</nowiki>', '</gallery>', '<nOwIkI>', '</NoWiKi>',
 		'<!--' , '-->',
 		"\n==", "==\n",
 		'|', '=', "\n", ' ', "\t", "\x7f",
 		'~~', '~~~', '~~~~', 'subst:',
-		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
 		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
 
 		// extensions
-		//'<ref>', '</ref>', '<references/>',
+		// '<ref>', '</ref>', '<references/>',
 	);
 	var $minLength = 0;
 	var $maxLength = 20;
 	var $maxTemplates = 5;
-	//var $outputTypes = array( 'OT_HTML', 'OT_WIKI', 'OT_PREPROCESS' );
+	// var $outputTypes = array( 'OT_HTML', 'OT_WIKI', 'OT_PREPROCESS' );
 	var $entryPoints = array( 'testSrvus', 'testPst', 'testPreprocess' );
 	var $verbose = false;
 	static $currentTest = false;
@@ -51,7 +51,7 @@ class PPFuzzTester {
 				$exceptionReport = $e->getText();
 				$hash = md5( $testReport );
 				file_put_contents( "results/ppft-$hash.in", serialize( self::$currentTest ) );
-				file_put_contents( "results/ppft-$hash.fail", 
+				file_put_contents( "results/ppft-$hash.fail",
 					"Input:\n$testReport\n\nException report:\n$exceptionReport\n" );
 				print "Test $hash failed\n";
 				$passed = 'failed';
@@ -131,9 +131,9 @@ class PPFuzzTest {
 		$this->parent = $tester;
 		$this->mainText = $tester->makeInputText();
 		$this->title = $tester->makeTitle();
-		//$this->outputType = $tester->pickOutputType();
+		// $this->outputType = $tester->pickOutputType();
 		$this->entryPoint = $tester->pickEntryPoint();
-		$this->nickname = $tester->makeInputText( $wgMaxSigChars + 10);
+		$this->nickname = $tester->makeInputText( $wgMaxSigChars + 10 );
 		$this->fancySig = (bool)mt_rand( 0, 1 );
 		$this->templates = array();
 	}
@@ -183,8 +183,8 @@ class PPFuzzTest {
 	function getReport() {
 		$s = "Title: " . $this->title->getPrefixedDBkey() . "\n" .
 //			"Output type: {$this->outputType}\n" . 
-			"Entry point: {$this->entryPoint}\n" . 
-			"User: " . ( $this->fancySig ? 'fancy' : 'no-fancy' ) . ' ' . var_export( $this->nickname, true ) . "\n" . 
+			"Entry point: {$this->entryPoint}\n" .
+			"User: " . ( $this->fancySig ? 'fancy' : 'no-fancy' ) . ' ' . var_export( $this->nickname, true ) . "\n" .
 			"Main text: " . var_export( $this->mainText, true ) . "\n";
 		foreach ( $this->templates as $titleText => $template ) {
 			$finalTitle = $template['finalTitle'];

@@ -20,7 +20,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class CleanupSpam extends Maintenance {
 	public function __construct() {
@@ -45,14 +45,14 @@ class CleanupSpam extends Maintenance {
 			$this->error( "Not a valid hostname specification: $spec", true );
 		}
 	
-		if ( $this->hasOption('all') ) {
+		if ( $this->hasOption( 'all' ) ) {
 			// Clean up spam on all wikis
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
 			foreach ( $wgLocalDatabases as $wikiID ) {
 				$dbr = wfGetDB( DB_SLAVE, array(), $wikiID );
 
-				$count = $dbr->selectField( 'externallinks', 'COUNT(*)', 
+				$count = $dbr->selectField( 'externallinks', 'COUNT(*)',
 					array( 'el_index' . $dbr->buildLike( $like ) ), __METHOD__ );
 				if ( $count ) {
 					$found = true;
@@ -68,7 +68,7 @@ class CleanupSpam extends Maintenance {
 			// Clean up spam on this wiki
 
 			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ), 
+			$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ),
 				array( 'el_index' . $dbr->buildLike( $like ) ), __METHOD__ );
 			$count = $dbr->numRows( $res );
 			$this->output( "Found $count articles containing $spec\n" );
@@ -95,7 +95,7 @@ class CleanupSpam extends Maintenance {
 	
 		while ( $rev && LinkFilter::matchEntry( $rev->getText() , $domain ) ) {
 			# Revision::getPrevious can't be used in this way before MW 1.6 (Revision.php 1.26)
-			#$rev = $rev->getPrevious();
+			# $rev = $rev->getPrevious();
 			$revId = $title->getPreviousRevisionID( $revId );
 			if ( $revId ) {
 				$rev = Revision::newFromTitle( $title, $revId );

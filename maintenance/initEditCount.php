@@ -18,7 +18,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class InitEditCount extends Maintenance {
 	public function __construct() {
@@ -44,15 +44,15 @@ in $wgDBservers, usually indicating a replication environment.' );
 
 		// Autodetect mode...
 		$backgroundMode = count( $wgDBservers ) > 1 ||
-			($dbw instanceof DatabaseMySql && version_compare( $dbver, '4.1' ) < 0);
+			( $dbw instanceof DatabaseMySql && version_compare( $dbver, '4.1' ) < 0 );
 	
-		if( $this->hasOption('background') ) {
+		if ( $this->hasOption( 'background' ) ) {
 			$backgroundMode = true;
-		} elseif( $this->hasOption('quick') ) {
+		} elseif ( $this->hasOption( 'quick' ) ) {
 			$backgroundMode = false;
 		}
 
-		if( $backgroundMode ) {
+		if ( $backgroundMode ) {
 			$this->output( "Using replication-friendly background mode...\n" );
 
 			$dbr = wfGetDB( DB_SLAVE );
@@ -61,7 +61,7 @@ in $wgDBservers, usually indicating a replication environment.' );
 
 			$start = microtime( true );
 			$migrated = 0;
-			for( $min = 0; $min <= $lastUser; $min += $chunkSize ) {
+			for ( $min = 0; $min <= $lastUser; $min += $chunkSize ) {
 				$max = $min + $chunkSize;
 				$result = $dbr->query(
 					"SELECT
@@ -73,7 +73,7 @@ in $wgDBservers, usually indicating a replication environment.' );
 					GROUP BY user_id",
 					__METHOD__ );
 
-				foreach( $result as $row ) {
+				foreach ( $result as $row ) {
 					$dbw->update( 'user',
 						array( 'user_editcount' => $row->user_editcount ),
 						array( 'user_id' => $row->user_id ),
@@ -83,7 +83,7 @@ in $wgDBservers, usually indicating a replication environment.' );
 				$dbr->freeResult( $result );
 
 				$delta = microtime( true ) - $start;
-				$rate = ($delta == 0.0) ? 0.0 : $migrated / $delta;
+				$rate = ( $delta == 0.0 ) ? 0.0 : $migrated / $delta;
 				$this->output( sprintf( "%s %d (%0.1f%%) done in %0.1f secs (%0.3f accounts/sec).\n",
 					wfWikiID(),
 					$migrated,

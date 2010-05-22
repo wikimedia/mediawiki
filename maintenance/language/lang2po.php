@@ -25,18 +25,18 @@
  */
 
 /** This is a command line script */
-require_once(dirname(__FILE__) . '/../Maintenance.php' );
-require_once(dirname(__FILE__) . '/languages.inc' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/languages.inc' );
 
-define('ALL_LANGUAGES',    true);
-define('XGETTEXT_BIN',     'xgettext');
-define('MSGMERGE_BIN',     'msgmerge');
+define( 'ALL_LANGUAGES',    true );
+define( 'XGETTEXT_BIN',     'xgettext' );
+define( 'MSGMERGE_BIN',     'msgmerge' );
 
 // used to generate the .pot
-define('XGETTEXT_OPTIONS', '-n --keyword=wfMsg --keyword=wfMsgForContent --keyword=wfMsgHtml --keyword=wfMsgWikiHtml ');
-define('MSGMERGE_OPTIONS', ' -v ');
+define( 'XGETTEXT_OPTIONS', '-n --keyword=wfMsg --keyword=wfMsgForContent --keyword=wfMsgHtml --keyword=wfMsgWikiHtml ' );
+define( 'MSGMERGE_OPTIONS', ' -v ' );
 
-define('LOCALE_OUTPUT_DIR', $IP.'/locale');
+define( 'LOCALE_OUTPUT_DIR', $IP . '/locale' );
 
 class Lang2Po extends Maintenance {
 	public function __construct() {
@@ -53,20 +53,20 @@ class Lang2Po extends Maintenance {
 
 
 		$langTool = new languages();
-		if( $this->getOption( 'lang', ALL_LANGUAGES ) === ALL_LANGUAGES ) {
+		if ( $this->getOption( 'lang', ALL_LANGUAGES ) === ALL_LANGUAGES ) {
 			$codes = $langTool->getLanguages();
 		} else {
 			$codes = array( $this->getOption( 'lang' ) );
 		}
 
 		// Do all languages
-		foreach ( $codes as $langcode) {
+		foreach ( $codes as $langcode ) {
 			$this->output( "Loading messages for $langcode:\n" );
-			if( !$this->generatePo($langcode, $langTool->getMessages($langcode) ) ) {
+			if ( !$this->generatePo( $langcode, $langTool->getMessages( $langcode ) ) ) {
 				$this->error( "ERROR: Failed to write file." );
 			} else {
 				$this->output( "Applying template:" );
-				$this->applyPot($langcode);
+				$this->applyPot( $langcode );
 			}
 		}
 	}
@@ -103,30 +103,30 @@ msgstr ""
 	 * @param array &$messages Array containing the various messages.
 	 * @return string Filename where stuff got saved or false.
 	 */
-	private function generatePo($langcode, $messages) {
+	private function generatePo( $langcode, $messages ) {
 		$data = $this->poHeader();
 
 		// Generate .po entries
-		foreach( $messages['all'] as $identifier => $content ) {
+		foreach ( $messages['all'] as $identifier => $content ) {
 			$data .= "msgid \"$identifier\"\n";
 
 			// Escape backslashes
-			$tmp = str_replace('\\', '\\\\', $content);
+			$tmp = str_replace( '\\', '\\\\', $content );
 			// Escape doublelquotes
-			$tmp = preg_replace( "/(?<!\\\\)\"/", '\"', $tmp);
+			$tmp = preg_replace( "/(?<!\\\\)\"/", '\"', $tmp );
 			// Rewrite multilines to gettext format
-			$tmp = str_replace("\n", "\"\n\"", $tmp);
+			$tmp = str_replace( "\n", "\"\n\"", $tmp );
 
-			$data .= 'msgstr "'. $tmp . "\"\n\n";
+			$data .= 'msgstr "' . $tmp . "\"\n\n";
 		}
 
 		// Write the content to a file in locale/XX/messages.po
-		$dir = LOCALE_OUTPUT_DIR.'/'.$langcode;
-		if( !is_dir($dir) ) { mkdir( $dir, 0770 ); }
-		$filename = $dir.'/fromlanguagefile.po';
+		$dir = LOCALE_OUTPUT_DIR . '/' . $langcode;
+		if ( !is_dir( $dir ) ) { mkdir( $dir, 0770 ); }
+		$filename = $dir . '/fromlanguagefile.po';
 	
 		$file = fopen( $filename , 'wb' );
-		if( fwrite( $file, $data ) ) {
+		if ( fwrite( $file, $data ) ) {
 			fclose( $file );
 			return $filename;
 		} else {
@@ -138,24 +138,24 @@ msgstr ""
 	private function generatePot() {
 		global $IP;
 		$curdir = getcwd();
-		chdir($IP);
+		chdir( $IP );
 		exec( XGETTEXT_BIN
-		  .' '.XGETTEXT_OPTIONS
-		  .' -o '.LOCALE_OUTPUT_DIR.'/wfMsg.pot'
-		  .' includes/*php'
+		  . ' ' . XGETTEXT_OPTIONS
+		  . ' -o ' . LOCALE_OUTPUT_DIR . '/wfMsg.pot'
+		  . ' includes/*php'
 		  );
-		chdir($curdir);
+		chdir( $curdir );
 	}
 	
-	private function applyPot($langcode) {
-		$langdir = LOCALE_OUTPUT_DIR.'/'.$langcode;
+	private function applyPot( $langcode ) {
+		$langdir = LOCALE_OUTPUT_DIR . '/' . $langcode;
 	
-		$from = $langdir.'/fromlanguagefile.po';
-		$pot = LOCALE_OUTPUT_DIR.'/wfMsg.pot';
-		$dest = $langdir.'/messages.po';
+		$from = $langdir . '/fromlanguagefile.po';
+		$pot = LOCALE_OUTPUT_DIR . '/wfMsg.pot';
+		$dest = $langdir . '/messages.po';
 	
 		// Merge template and generate file to get final .po
-		exec(MSGMERGE_BIN.MSGMERGE_OPTIONS." $from $pot -o $dest ");
+		exec( MSGMERGE_BIN . MSGMERGE_OPTIONS . " $from $pot -o $dest " );
 		// delete no more needed file
 		//	unlink($from);
 	}

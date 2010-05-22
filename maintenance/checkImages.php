@@ -19,7 +19,7 @@
  *
  * @ingroup Maintenance
  */
-require_once( dirname(__FILE__) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class CheckImages extends Maintenance {
 
@@ -37,7 +37,7 @@ class CheckImages extends Maintenance {
 		$numGood = 0;
 	
 		do {
-			$res = $dbr->select( 'image', '*', array( 'img_name > ' . $dbr->addQuotes( $start ) ), 
+			$res = $dbr->select( 'image', '*', array( 'img_name > ' . $dbr->addQuotes( $start ) ),
 				__METHOD__, array( 'LIMIT' => $this->mBatchSize ) );
 			foreach ( $res as $row ) {
 				$numImages++;

@@ -26,7 +26,7 @@
  * @ingroup Maintenance
  */
 
-if( php_sapi_name() != 'cli' ) {
+if ( php_sapi_name() != 'cli' ) {
 	echo "Please customize the settings and run me from the command line.";
 	die( -1 );
 }
@@ -41,9 +41,9 @@ $wgRootDirectory = "/kalman/Projects/wiki2002/wiki/lib-http/db/wiki";
 /* globals */
 $wgFieldSeparator = "\xb3"; # Some wikis may use different char
 	$FS = $wgFieldSeparator ;
-	$FS1 = $FS."1" ;
-	$FS2 = $FS."2" ;
-	$FS3 = $FS."3" ;
+	$FS1 = $FS . "1" ;
+	$FS2 = $FS . "2" ;
+	$FS3 = $FS . "3" ;
 
 # Unicode sanitization tools
 require_once( dirname( dirname( __FILE__ ) ) . '/includes/normal/UtfNormal.php' );
@@ -74,9 +74,9 @@ XML;
 		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
 		'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
 		'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'other' );
-	foreach( $letters as $letter ) {
+	foreach ( $letters as $letter ) {
 		$dir = "$wgRootDirectory/page/$letter";
-		if( is_dir( $dir ) )
+		if ( is_dir( $dir ) )
 			importPageDirectory( $dir );
 	}
 	echo <<<XML
@@ -89,13 +89,13 @@ function importPageDirectory( $dir, $prefix = "" )
 {
 	echo "\n<!-- Checking page directory " . xmlCommentSafe( $dir ) . " -->\n";
 	$mydir = opendir( $dir );
-	while( $entry = readdir( $mydir ) ) {
+	while ( $entry = readdir( $mydir ) ) {
 		$m = array();
-		if( preg_match( '/^(.+)\.db$/', $entry, $m ) ) {
+		if ( preg_match( '/^(.+)\.db$/', $entry, $m ) ) {
 			echo importPage( $prefix . $m[1] );
 		} else {
-			if( is_dir( "$dir/$entry" ) ) {
-				if( $entry != '.' && $entry != '..' ) {
+			if ( is_dir( "$dir/$entry" ) ) {
+				if ( $entry != '.' && $entry != '..' ) {
 					importPageDirectory( "$dir/$entry", "$entry/" );
 				}
 			} else {
@@ -114,7 +114,7 @@ function importPageDirectory( $dir, $prefix = "" )
 
 function useModFilename( $title ) {
 	$c = substr( $title, 0, 1 );
-	if(preg_match( '/[A-Z]/i', $c ) ) {
+	if ( preg_match( '/[A-Z]/i', $c ) ) {
 		return strtoupper( $c ) . "/$title";
 	}
 	return "other/$title";
@@ -122,10 +122,10 @@ function useModFilename( $title ) {
 
 function fetchPage( $title )
 {
-	global $FS1,$FS2,$FS3, $wgRootDirectory;
+	global $FS1, $FS2, $FS3, $wgRootDirectory;
 
 	$fname = $wgRootDirectory . "/page/" . useModFilename( $title ) . ".db";
-	if( !file_exists( $fname ) ) {
+	if ( !file_exists( $fname ) ) {
 		echo "Couldn't open file '$fname' for page '$title'.\n";
 		die( -1 );
 	}
@@ -141,19 +141,19 @@ function fetchPage( $title )
 
 function fetchKeptPages( $title )
 {
-	global $FS1,$FS2,$FS3, $wgRootDirectory;
+	global $FS1, $FS2, $FS3, $wgRootDirectory;
 
 	$fname = $wgRootDirectory . "/keep/" . useModFilename( $title ) . ".kp";
-	if( !file_exists( $fname ) ) return array();
+	if ( !file_exists( $fname ) ) return array();
 
 	$keptlist = explode( $FS1, file_get_contents( $fname ) );
 	array_shift( $keptlist ); # Drop the junk at beginning of file
 
 	$revisions = array();
-	foreach( $keptlist as $rev ) {
+	foreach ( $keptlist as $rev ) {
 		$section = splitHash( $FS2, $rev );
 		$text = splitHash( $FS3, $section["data"] );
-		if ( $text["text"] && $text["minor"] != "" && ( $section["ts"]*1 > 0 ) ) {
+		if ( $text["text"] && $text["minor"] != "" && ( $section["ts"] * 1 > 0 ) ) {
 			array_push( $revisions, array2object( array ( "text" => $text["text"] , "summary" => $text["summary"] ,
 				"minor" => $text["minor"] , "ts" => $section["ts"] ,
 				"username" => $section["username"] , "host" => $section["host"] ) ) );
@@ -167,7 +167,7 @@ function fetchKeptPages( $title )
 function splitHash ( $sep , $str ) {
 	$temp = explode ( $sep , $str ) ;
 	$ret = array () ;
-	for ( $i = 0; $i+1 < count ( $temp ) ; $i++ ) {
+	for ( $i = 0; $i + 1 < count ( $temp ) ; $i++ ) {
 		$ret[$temp[$i]] = $temp[++$i] ;
 		}
 	return $ret ;
@@ -182,8 +182,8 @@ function checkUserCache( $name, $host )
 {
 	global $usercache;
 
-	if( $name ) {
-		if( in_array( $name, $usercache ) ) {
+	if ( $name ) {
+		if ( in_array( $name, $usercache ) ) {
 			$userid = $usercache[$name];
 		} else {
 			# If we haven't imported user accounts
@@ -207,7 +207,7 @@ function importPage( $title )
 	$newtitle = xmlsafe( str_replace( '_', ' ', recodeText( $title ) ) );
 
 	$munged = mungeFormat( $page->text );
-	if( $munged != $page->text ) {
+	if ( $munged != $page->text ) {
 		/**
 		 * Save a *new* revision with the conversion, and put the
 		 * previous last version into the history.
@@ -235,13 +235,13 @@ XML;
 
 	# History
 	$revisions = array_merge( $revisions, fetchKeptPages( $title ) );
-	if(count( $revisions ) == 0 ) {
+	if ( count( $revisions ) == 0 ) {
 		return NULL; // Was "$sql", which does not appear to be defined.
 	}
 
-	foreach( $revisions as $rev ) {
+	foreach ( $revisions as $rev ) {
 		$text      = xmlsafe( recodeText( $rev->text ) );
-		$minor     = ($rev->minor ? '<minor/>' : '');
+		$minor     = ( $rev->minor ? '<minor/>' : '' );
 		list( /* $userid */ , $username ) = checkUserCache( $rev->username, $rev->host );
 		$username  = xmlsafe( recodeText( $username ) );
 		$timestamp = xmlsafe( timestamp2ISO8601( $rev->ts ) );
@@ -272,22 +272,22 @@ function recodeText( $string ) {
 	return $string;
 }
 
-function wfUtf8Sequence($codepoint) {
-	if($codepoint <     0x80) return chr($codepoint);
-	if($codepoint <    0x800) return chr($codepoint >>  6 & 0x3f | 0xc0) .
-                                     chr($codepoint       & 0x3f | 0x80);
-    if($codepoint <  0x10000) return chr($codepoint >> 12 & 0x0f | 0xe0) .
-                                     chr($codepoint >>  6 & 0x3f | 0x80) .
-                                     chr($codepoint       & 0x3f | 0x80);
-	if($codepoint < 0x100000) return chr($codepoint >> 18 & 0x07 | 0xf0) . # Double-check this
-	                                 chr($codepoint >> 12 & 0x3f | 0x80) .
-                                     chr($codepoint >>  6 & 0x3f | 0x80) .
-                                     chr($codepoint       & 0x3f | 0x80);
+function wfUtf8Sequence( $codepoint ) {
+	if ( $codepoint <     0x80 ) return chr( $codepoint );
+	if ( $codepoint <    0x800 ) return chr( $codepoint >>  6 & 0x3f | 0xc0 ) .
+                                     chr( $codepoint       & 0x3f | 0x80 );
+    if ( $codepoint <  0x10000 ) return chr( $codepoint >> 12 & 0x0f | 0xe0 ) .
+                                     chr( $codepoint >>  6 & 0x3f | 0x80 ) .
+                                     chr( $codepoint       & 0x3f | 0x80 );
+	if ( $codepoint < 0x100000 ) return chr( $codepoint >> 18 & 0x07 | 0xf0 ) . # Double-check this
+	                                 chr( $codepoint >> 12 & 0x3f | 0x80 ) .
+                                     chr( $codepoint >>  6 & 0x3f | 0x80 ) .
+                                     chr( $codepoint       & 0x3f | 0x80 );
 	# Doesn't yet handle outside the BMP
 	return "&#$codepoint;";
 }
 
-function wfMungeToUtf8($string) {
+function wfMungeToUtf8( $string ) {
 	$string = preg_replace ( '/&#([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
 	$string = preg_replace ( '/&#x([0-9a-f]+);/ie', 'wfUtf8Sequence(0x$1)', $string );
 	# Should also do named entities here
@@ -295,7 +295,7 @@ function wfMungeToUtf8($string) {
 }
 
 function timestamp2ISO8601( $ts ) {
-	#2003-08-05T18:30:02Z
+	# 2003-08-05T18:30:02Z
 	return gmdate( 'Y-m-d', $ts ) . 'T' . gmdate( 'H:i:s', $ts ) . 'Z';
 }
 
@@ -318,7 +318,7 @@ function xmlCommentSafe( $text ) {
 
 function array2object( $arr ) {
 	$o = (object)0;
-	foreach( $arr as $x => $y ) {
+	foreach ( $arr as $x => $y ) {
 		$o->$x = $y;
 	}
 	return $o;
