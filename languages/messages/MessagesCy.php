@@ -1904,7 +1904,8 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chith
 'emailuserfooter'      => 'Anfonwyd yr e-bost hwn oddi wrth $1 at $2 trwy ddefnyddio\'r teclyn "Anfon e-bost at ddefnyddiwr" ar {{SITENAME}}.',
 
 # User Messenger
-'usermessage-editor' => 'Golygydd neges y system',
+'usermessage-summary' => 'Yn gadael neges am ddigwyddiad yn y sustem.',
+'usermessage-editor'  => 'Golygydd neges y system',
 
 # Watchlist
 'watchlist'            => 'Fy rhestr gwylio',
@@ -3102,7 +3103,9 @@ Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 'watchlistedit-noitems'        => "Mae'ch rhestr wylio'n wag.",
 'watchlistedit-normal-title'   => "Golygu'r rhestr wylio",
 'watchlistedit-normal-legend'  => 'Tynnu tudalennau oddi ar y rhestr wylio',
-'watchlistedit-normal-explain' => "Rhestrir y teitlau ar eich rhestr wylio isod. I dynnu teitl oddi ar y rhestr, ticiwch y blwch ar ei gyfer, yna cliciwch 'Tynnu'r tudalennau'. Gallwch hefyd ddewis golygu'r rhestr wylio ar ei [[Special:Watchlist/raw|ffurf syml]].",
+'watchlistedit-normal-explain' => 'Rhestrir y teitlau ar eich rhestr wylio isod. 
+I dynnu teitl oddi ar y rhestr, ticiwch y blwch ar ei gyfer, yna cliciwch "{{int:Watchlistedit-normal-submit}}". 
+Gallwch hefyd ddewis golygu\'r rhestr wylio ar ei [[Special:Watchlist/raw|ffurf syml]].',
 'watchlistedit-normal-submit'  => "Tynnu'r tudalennau",
 'watchlistedit-normal-done'    => 'Tynnwyd {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} oddi ar eich rhestr wylio:',
 'watchlistedit-raw-title'      => 'Golygu ffeil y rhestr wylio',

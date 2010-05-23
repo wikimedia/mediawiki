@@ -1428,22 +1428,22 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burócratas',
-'group-suppress'      => 'Supervisores',
+'group-suppress'      => 'Supresores',
 'group-all'           => '(todos)',
 
 'group-user-member'          => 'Usuario',
 'group-autoconfirmed-member' => 'Usuario autoconfirmado',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrador',
-'group-bureaucrat-member'    => 'Burócrata',
-'group-suppress-member'      => 'Supervisor',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrador',
+'group-bureaucrat-member'    => 'burócrata',
+'group-suppress-member'      => 'supresor',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
 'grouppage-bot'           => '{{ns:project}}:Bot',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
-'grouppage-suppress'      => '{{ns:project}}:Supervisor',
+'grouppage-suppress'      => '{{ns:project}}:Supresores',
 
 # Rights
 'right-read'                  => 'Leer páginas',

@@ -3153,7 +3153,9 @@ Klaskit rakwelet er mod boutin.',
 'watchlistedit-noitems'        => "N'eus pajenn ebet war ho roll evezhiañ.",
 'watchlistedit-normal-title'   => 'Kemmañ ar roll evezhiañ',
 'watchlistedit-normal-legend'  => 'Tennañ ar pajennoù a-ziwar ho roll evezhiañ',
-'watchlistedit-normal-explain' => 'Dindan emañ diskouezet ar pajennoù zo war ho roll evezhiañ. Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war Tennañ ar pajennoù. Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]].',
+'watchlistedit-normal-explain' => 'Dindan emañ diskouezet titloù ar pajennoù zo war ho roll evezhiañ. 
+Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war "{{int:Watchlistedit-normal-submit}}". 
+Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]].',
 'watchlistedit-normal-submit'  => 'Tennañ ar pajennoù',
 'watchlistedit-normal-done'    => 'Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ :',
 'watchlistedit-raw-title'      => 'Kemmañ ar roll evezhiañ (mod diginkl)',

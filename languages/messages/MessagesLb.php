@@ -3149,7 +3149,7 @@ Benotzt w.e.g. d'Funktioun fir déi nach net gespäichert Versioun ze kucken (Ku
 'watchlistedit-normal-title'   => 'Iwwerwaachungslëscht änneren',
 'watchlistedit-normal-legend'  => 'Säite vun der Iwwerwaachungslëscht erofhuelen',
 'watchlistedit-normal-explain' => 'D\'Säite vun ärer Iwwerwaachungslëscht ginn drënner gewisen.
-Fir eng Säit erofzehuelen, klickt op d\'Haischen niewendrunn a klickt duerno op "Säiten erofhuelen".
+Fir eng Säit erofzehuelen, klickt op d\'Haischen niewendrun a klickt duerno op "{{int:Watchlistedit-normal-submit}}".
 Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslëscht änneren]].',
 'watchlistedit-normal-submit'  => 'Säiten erofhuelen',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufe}} vun ärer Iwwerwaachungslëscht erofgeholl:',
