@@ -41,7 +41,7 @@ class LogEventsList {
 		if( !isset( $this->message ) ) {
 			$messages = array( 'revertmerge', 'protect_change', 'unblocklink', 'change-blocklink',
 				'revertmove', 'undeletelink', 'undeleteviewlink', 'revdel-restore', 'hist', 'diff',
-				'pipe-separator' );
+				'pipe-separator', 'revdel-restore-deleted', 'revdel-restore-visible' );
 			foreach( $messages as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
 			}
@@ -450,57 +450,8 @@ class LogEventsList {
 			) . ')';
 		// If an edit was hidden from a page give a review link to the history
 		} else if( self::typeAction( $row, array( 'delete', 'suppress' ), 'revision', 'deletedhistory' ) ) {
-			if( count($paramArray) >= 2 ) {
-				// Different revision types use different URL params...
-				$key = $paramArray[0];
-				// $paramArray[1] is a CSV of the IDs
-				$Ids = explode( ',', $paramArray[1] );
-				$query = $paramArray[1];
-				$revert = array();
-				// Diff link for single rev deletions
-				if( count($Ids) == 1 ) {
-					// Live revision diffs...
-					if( in_array( $key, array( 'oldid', 'revision' ) ) ) {
-						$revert[] = $this->skin->link(
-							$title,
-							$this->message['diff'],
-							array(),
-							array(
-								'diff' => intval( $Ids[0] ),
-								'unhide' => 1
-							),
-							array( 'known', 'noclasses' )
-						);
-					// Deleted revision diffs...
-					} else if( in_array( $key, array( 'artimestamp','archive' ) ) ) {
-						$revert[] = $this->skin->link(
-							SpecialPage::getTitleFor( 'Undelete' ),
-							$this->message['diff'], 
-							array(),
-							array(
-								'target'    => $title->getPrefixedDBKey(),
-								'diff'      => 'prev',
-								'timestamp' => $Ids[0]
-							),
-							array( 'known', 'noclasses' )
-						);
-					}
-				}
-				// View/modify link...
-				$revert[] = $this->skin->link(
-					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					$this->message['revdel-restore'],
-					array(),
-					array(
-						'target' => $title->getPrefixedText(),
-						'type' => $key,
-						'ids' => $query
-					),
-					array( 'known', 'noclasses' )
-				);
-				// Pipe links
-				$revert = wfMsg( 'parentheses', $wgLang->pipeList( $revert ) );
-			}
+			$revert = RevisionDeleter::getLogLinks( $title, $paramArray,
+								$this->skin, $this->message );
 		// Hidden log items, give review link
 		} else if( self::typeAction( $row, array( 'delete', 'suppress' ), 'event', 'deletedhistory' ) ) {
 			if( count($paramArray) >= 1 ) {
