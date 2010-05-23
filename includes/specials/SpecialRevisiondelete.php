@@ -808,7 +808,7 @@ class RevisionDeleter {
 				// FIXME THIS IS A HORRIBLE HORRIBLE HACK AND SHOULD DIE
 				// It's not possible to pass a list of both deleted and
 				// undeleted revisions to SpecialRevisionDelete, so we're
-				// stuck with two links. See bug 
+				// stuck with two links. See bug 23363.
 				$restoreLinks = array();
 				
 				$restoreLinks[] = $skin->link(
