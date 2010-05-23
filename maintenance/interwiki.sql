@@ -87,7 +87,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('wikimedia','http://wikimediafoundation.org/wiki/$1',0),
 ('wikinews','http://en.wikinews.org/wiki/$1',1),
 ('wikiquote','http://en.wikiquote.org/wiki/$1',1),
-('wikipedia', 'http://en.wikipedia.org/wiki/$1', 1),
+('wikipedia','http://en.wikipedia.org/wiki/$1',1),
 ('wikisource','http://wikisource.org/wiki/$1',1),
 ('wikispecies','http://species.wikimedia.org/wiki/$1',1),
 ('wikitravel','http://wikitravel.org/en/$1',0),
