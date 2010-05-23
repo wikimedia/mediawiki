@@ -719,6 +719,143 @@ class RevisionDeleter {
 			return null;
 		}
 	}
+	
+	// Checks if a revision still exists in the revision table.
+	//  If it doesn't, returns the corresponding ar_timestamp field
+	//  so that this key can be used instead.
+	public static function checkRevisionExistence( $title, $revid ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$exists = $dbr->selectField( 'revision', '1',
+				array( 'rev_id' => $revid ), __METHOD__ );
+				
+		if ( $exists ) {
+			return true;
+		}
+		
+		$timestamp = $dbr->selectField( 'archive', 'ar_timestamp',
+				array( 'ar_namespace' => $title->getNamespace(),
+					'ar_title' => $title->getDBkey(),
+					'ar_rev_id' => $revid ), __METHOD__ );
+		
+		return $timestamp;
+	}
+	
+	// Creates utility links for log entries.
+	public static function getLogLinks( $title, $paramArray, $skin, $messages ) {
+		global $wgLang;
+		
+		if( count($paramArray) >= 2 ) {
+			// Different revision types use different URL params...
+			$originalKey = $key = $paramArray[0];
+			// $paramArray[1] is a CSV of the IDs
+			$Ids = explode( ',', $paramArray[1] );
+			$query = $paramArray[1];
+			$revert = array();
+			
+			// For if undeleted revisions are found amidst deleted ones.
+			$undeletedRevisions = array();
+			
+			// This is not going to work if some revs are deleted and some
+			//  aren't.
+			if ($key == 'revision') {
+				foreach( $Ids as $k => $id ) {
+					$existResult =
+						self::checkRevisionExistence( $title, $id );
+					
+					if ($existResult !== true) {
+						$key = 'archive';
+						$Ids[$k] = $existResult;
+					} elseif ($key != $originalKey) {
+						// Undeleted revision amidst deleted ones
+						unset($Ids[$k]);
+						$undeletedRevisions[] = $id;
+					}
+				}
+			}
+			
+			// Diff link for single rev deletions
+			if( count($Ids) == 1 && !count($undeletedRevisions) ) {
+				// Live revision diffs...
+				if( in_array( $key, array( 'oldid', 'revision' ) ) ) {
+					$revert[] = $skin->link(
+						$title,
+						$messages['diff'],
+						array(),
+						array(
+							'diff' => intval( $Ids[0] ),
+							'unhide' => 1
+						),
+						array( 'known', 'noclasses' )
+					);
+				// Deleted revision diffs...
+				} else if( in_array( $key, array( 'artimestamp','archive' ) ) ) {
+					$revert[] = $skin->link(
+						SpecialPage::getTitleFor( 'Undelete' ),
+						$messages['diff'], 
+						array(),
+						array(
+							'target'    => $title->getPrefixedDBKey(),
+							'diff'      => 'prev',
+							'timestamp' => $Ids[0]
+						),
+						array( 'known', 'noclasses' )
+					);
+				}
+			}
+			
+			// View/modify link...
+			if ( count($undeletedRevisions) ) {
+				// FIXME THIS IS A HORRIBLE HORRIBLE HACK AND SHOULD DIE
+				// It's not possible to pass a list of both deleted and
+				// undeleted revisions to SpecialRevisionDelete, so we're
+				// stuck with two links. See bug 
+				$restoreLinks = array();
+				
+				$restoreLinks[] = $skin->link(
+					SpecialPage::getTitleFor( 'Revisiondelete' ),
+					$messages['revdel-restore-visible'],
+					array(),
+					array(
+						'target' => $title->getPrefixedText(),
+						'type' => $originalKey,
+						'ids' => implode(',', $undeletedRevisions),
+					),
+					array( 'known', 'noclasses' )
+				);
+				
+				$restoreLinks[] = $skin->link(
+					SpecialPage::getTitleFor( 'Revisiondelete' ),
+					$messages['revdel-restore-deleted'],
+					array(),
+					array(
+						'target' => $title->getPrefixedText(),
+						'type' => $key,
+						'ids' => implode(',', $Ids),
+					),
+					array( 'known', 'noclasses' )
+				);
+				
+				$revert[] = $messages['revdel-restore'] . ' [' .
+						$wgLang->pipeList( $restoreLinks ) . ']';
+			} else {
+				$revert[] = $skin->link(
+					SpecialPage::getTitleFor( 'Revisiondelete' ),
+					$messages['revdel-restore'],
+					array(),
+					array(
+						'target' => $title->getPrefixedText(),
+						'type' => $key,
+						'ids' => implode(',', $Ids),
+					),
+					array( 'known', 'noclasses' )
+				);
+			}
+			
+			// Pipe links
+			$revert = wfMsg( 'parentheses', $wgLang->pipeList( $revert ) );
+		}
+		return $revert;
+	}	
 }
 
 /**
