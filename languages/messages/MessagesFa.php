@@ -10,6 +10,7 @@
  * @author Alnokta
  * @author Asoxor
  * @author Behdarvandyani
+ * @author Ebraminio
  * @author Huji
  * @author Ibrahim
  * @author Ladsgroup
@@ -1410,7 +1411,7 @@ $1",
 'saveprefs'                     => 'ذخیرهٔ ترجیحات',
 'resetprefs'                    => 'صفر کردن ترجیحات',
 'restoreprefs'                  => 'باز گرداندن تمام تنظیمات پیش‌فرض',
-'prefs-editing'                 => 'ابعاد جعبهٔ متن',
+'prefs-editing'                 => 'ویرایش',
 'prefs-edit-boxsize'            => 'اندازهٔ پنجرهٔ ویرایش.',
 'rows'                          => 'تعداد سطرها',
 'columns'                       => 'تعداد ستون‌ها',

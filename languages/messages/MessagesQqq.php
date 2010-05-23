@@ -992,10 +992,18 @@ This is the message for the log entry in [[Special:Log/delete]] when changing vi
 The parameter $1 is the log name in brackets.
 
 The name of the user who did this task appears before this message.',
-'revdelete-success'           => '{{RevisionDelete}}',
-'revdelete-failure'           => '{{RevisionDelete}}',
-'logdelete-success'           => '{{RevisionDelete}}',
-'logdelete-failure'           => '{{RevisionDelete}}',
+'revdelete-success'           => "{{RevisionDelete}}
+
+Possible alternative text - 'Restrictions on the revision visibility were successfully changed.'",
+'revdelete-failure'           => "{{RevisionDelete}}
+
+Possible alternative text - 'Restrictions on the revision visibility could not be changed'",
+'logdelete-success'           => "{{RevisionDelete}}
+
+Possible alternative message - 'Restrictions on log entry visibility successfully set.'",
+'logdelete-failure'           => "{{RevisionDelete}}
+
+Possible alternative message - 'Restrictions could not be set on the visibility of the log entry.'",
 'revdel-restore'              => '{{RevisionDelete}}',
 'pagehist'                    => 'Links to page history at Special:RevisionDelete header together with links to the logs and Special:Undelete.',
 'deletedhist'                 => 'Links to Special:Undelete at Special:RevisionDelete header together with links to the logs and page history.',
@@ -2175,8 +2183,8 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 * $2: username of the recipient',
 
 # User Messenger
-'usermessage-summary' => 'Translate "leaving" in the sense of: to leave behind, to have remaining.',
-'usermessage-editor'  => 'The user that is the editor of system messages',
+'usermessage-summary' => 'This message is used as an edit summary for any message that is posted because of a system event. Translate "leaving" in the sense of: to leave behind, to have remaining.',
+'usermessage-editor'  => 'The user name for the user that is the editor of system messages.',
 
 # Watchlist
 'watchlist'            => '{{Identical|My watchlist}}',

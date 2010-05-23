@@ -793,6 +793,7 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'currentrev'             => 'نۆۋەتتىكى تۈزىتىش',
 'currentrev-asof'        => '$1 نىڭ نۆۋەتتىكى تۈزىتىلگەن نەشرى',
 'revisionasof'           => '$1 تۈزەتكەن نەشرى',
+'revision-info'          => '$1 دىكى $2 ئۆزگەرتكەن نەشرى',
 'previousrevision'       => '← كونا نەشرى',
 'nextrevision'           => 'يېڭىراق تۈزىتىش →',
 'currentrevisionlink'    => 'نۆۋەتتىكى تۈزىتىش',
@@ -806,15 +807,17 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
  '''({{int:last}})''' ئالدىنقى ئۆزگەرتىلگەن نەشرى بىلەن سېلىشتۇرۇشنى كۆرسىتىدۇ.
  '''{{int:minoreditletter}}''' ئازراقلا ئۆزگەرتىش.",
 'history-fieldset-title' => 'كۆز يۈگۈرتۈش تارىخى',
+'history-show-deleted'   => 'ئۆچۈرۈلگەنلا',
 'histfirst'              => 'تۇنجى',
 'histlast'               => 'ئاخىرقى',
 'historysize'            => '$1 {{PLURAL:$1|بايت|بايت}}',
 'historyempty'           => '(بوش)',
 
 # Revision feed
-'history-feed-title'       => 'ئۆزگەرتىش تارىخى',
-'history-feed-description' => 'مەزكۇر بەتنىڭ بۇ بېكەتتىكى ئۆزگەرتىش تارىخى',
-'history-feed-empty'       => 'ئىلتىماس قىلغان بەت مەۋجۇد ئەمەس
+'history-feed-title'          => 'ئۆزگەرتىش تارىخى',
+'history-feed-description'    => 'مەزكۇر بەتنىڭ بۇ بېكەتتىكى ئۆزگەرتىش تارىخى',
+'history-feed-item-nocomment' => '$2 دىكى $1',
+'history-feed-empty'          => 'ئىلتىماس قىلغان بەت مەۋجۇد ئەمەس
 ئۇ ئۆچۈرۈلگەن ياكى ئاتى ئۆزگەرتىلگەن بولۇشى مۇمكىن
  [[Special:Search|wiki دىن ئىزدە]] نى سىناپ مۇناسىۋەتلىك يېڭى بەتكە ئېرىشىڭ.',
 
@@ -822,6 +825,7 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'rev-deleted-comment'        => '(ئىزاھات چىقىرىۋېتىلدى)',
 'rev-deleted-user'           => '(ئىشلەتكۈچى ئاتى چىقىرىۋېتىلدى)',
 'rev-deleted-event'          => '(خاتىرە مەشغۇلاتى چىقىرىۋېتىلدى)',
+'rev-deleted-user-contribs'  => '[ئىشلەتكۈچى ئاتى ياكى IP ئادرېس چىقىرىۋېتىلدى - تۆھپىدىن تەھرىرنى يوشۇر]',
 'rev-delundel'               => 'كۆرسەت/يوشۇر',
 'rev-showdeleted'            => 'كۆرسەت',
 'revisiondelete'             => 'تۈزىتىلگەن نەشرىنى ئۆچۈر/ئەسلىگە كەلتۈر',
@@ -846,15 +850,21 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'revdelete-hide-comment'     => 'تەھرىر ئىزاھاتىنى يوشۇر',
 'revdelete-hide-user'        => 'تەھرىرلىگۈچىنىڭ ئىشلەتكۈچى ئاتى/IP ئادرېس يوشۇر',
 'revdelete-hide-restricted'  => 'مەشغۇلاتچى ۋە باشقا ئىشلەتكۈچىنىڭ سانلىق مەلۇمات كۆرۈشىنىمۇ چەكلە',
+'revdelete-radio-same'       => '(ئۆزگەرتمە)',
 'revdelete-radio-set'        => 'ھەئە',
 'revdelete-radio-unset'      => 'ياق',
 'revdelete-suppress'         => 'مەشغۇلاتچى ۋە باشقا ئىشلەتكۈچىنىڭ سانلىق مەلۇمات كۆرۈشىنىمۇ چەكلە',
 'revdelete-unsuppress'       => 'ئەسلىگە كەلتۈرۈلگەن تۈزىتىلگەن نەشرىدىن چەكلىمىنى چىقىرىۋەت',
 'revdelete-log'              => 'ئۆچۈرۈش سەۋەبى:',
+'revdelete-submit'           => 'تاللانغان {{PLURAL:$1|تۈزىتىش|تۈرىتىش}}نى قوللان',
 'revdelete-logentry'         => '[[$1]] نىڭ تۈزىتىش نەشرىنىڭ كۆرۈنۈشچانلىقى ئۆزگەرتىلدى',
 'logdelete-logentry'         => '[[$1]] نىڭ ھادىسە كۆرۈنۈشچانلىقى ئۆزگەرتىلدى',
 'revdelete-success'          => "'''تۈزىتىلگەن نەشرىنىڭ كۆرۈنۈشچانلىقى مۇۋەپپەقىيەتلىك تەڭشەلدى.'''",
+'revdelete-failure'          => "'''تۈزىتىشنىڭ كۆرۈنۈشچانلىقىنى يېڭىلىيالمىدى:'''
+$1",
 'logdelete-success'          => "'''خاتىرە كۆرۈنۈشچانلىقى مۇۋەپپەقىيەتلىك تەڭشەلدى.'''",
+'logdelete-failure'          => "'''خاتىرىنىڭ كۆرۈنۈشچانلىقىنى تەڭشىيەلمىدى:'''
+$1",
 'revdel-restore'             => 'كۆرۈنۈشچانلىقنى ئۆزگەرت',
 'pagehist'                   => 'بەتنىڭ تارىخى',
 'deletedhist'                => 'ئۆچۈرۈلگەن تارىخ',
@@ -1043,9 +1053,12 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'allowemail'                  => 'باشقا ئىشلەتكۈچىلەر ئېلخەت ئەۋەتىشنى قوزغات',
 'prefs-searchoptions'         => 'ئىزدەش تاللانما',
 'prefs-namespaces'            => 'ئات بوشلۇقى',
+'defaultns'                   => 'بولمىسا بۇ ئات بوشلۇقلىرىدىن ئىزدە:',
 'default'                     => 'كۆڭۈلدىكى',
+'prefs-files'                 => 'ھۆججەتلەر',
 'prefs-custom-css'            => 'ئىختىيارى CSS',
 'prefs-custom-js'             => 'ئىختىيارى JS',
+'prefs-common-css-js'         => 'ھەممە تېرىدە ھەمبەھىرلەنگەن CSS/JS:',
 'prefs-emailconfirm-label'    => 'ئېلخەت جەزملەش:',
 'youremail'                   => 'ئېلخەت:',
 'username'                    => 'ئىشلەتكۇچى ئىسمى:',
@@ -1331,6 +1344,13 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'file-too-large'              => 'يوللىغان ھۆججىتىڭىز بەك چوڭ.',
 'filename-tooshort'           => 'ھۆججەت ئاتى بەك قىسقا.',
 'filetype-banned'             => 'بۇ خىل ھۆججەت چەكلەنگەن.',
+'verification-error'          => 'ھۆججەت دەلىللەشتىن ئۆتەلمىدى.',
+'hookaborted'                 => 'سىز سىنىغان ئۆزگەرتىش قىستۇرما ئىلمەك تەرىپىدىن توختىتىلدى.',
+'illegal-filename'            => 'ھۆججەت ئاتىغا يول قويمايدۇ.',
+'overwrite'                   => 'مەۋجۇد ھۆججەت قاپلاشقا يول قويمايدۇ.',
+'unknown-error'               => 'نامەلۇم خاتالىق كۆرۈلدى.',
+'tmp-create-error'            => 'ۋاقىتلىق ھۆججەت قۇرالمىدى.',
+'tmp-write-error'             => 'ۋاقىتلىق ھۆججەت يېزىش خاتالىقى.',
 'large-file'                  => 'تەۋسىيە قىلىنىدىغان ھۆججەت چوڭلۇقى $1 دىن ئېشىپ كەتمەيدۇ؛ 
 بۇ ھۆججەتنىڭ چوڭلۇقى $2.',
 'largefileserver'             => 'بۇ ھۆججەتنىڭ چوڭلۇقى مۇلازىمىتىر سەپلىمىسى يول قويىدىغان ھۆججەتتىنمۇ چوڭ.',
@@ -1363,10 +1383,13 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 سىز قايتا يۈكلەشتىن ئىلگىرى شۇ ھۆججەتنىڭ ئۆچۈرۈش خاتىرىسىنى تەكشۈرۈپ بېقىڭ.',
 'successfulupload'            => 'مۇۋەپپەقىيەتلىك يۈكلەندى',
 'uploadwarning'               => 'يۈكلەش ئاگاھلاندۇرۇشى',
+'uploadwarning-text'          => 'تۆۋەندىكى ھۆججەت چۈشەندۈرۈشىنى ئۆزگەرتىپ ئاندىن قايتا سىناڭ.',
 'savefile'                    => 'ھۆججەت ساقلا',
 'uploadedimage'               => '"[[$1]]" يۈكلەنگەن',
 'overwroteimage'              => ' "[[$1]]" نىڭ يېڭى نەشرى يۈكلەندى',
 'uploaddisabled'              => 'يۈكلەش چەكلەنگەن',
+'copyuploaddisabled'          => 'URL ئارقىلىق يۈكلەش ئىقتىدارى چەكلەنگەن.',
+'uploadfromurl-queued'        => 'يۈكلەش قاتارغا تىزىلدى.',
 'uploaddisabledtext'          => 'ھۆججەت يۈكلەش چەكلەنگەن.',
 'php-uploaddisabledtext'      => 'PHP ھۆججەت يۈكلەش چەكلەنگەن.
  file_uploads تەڭشىكىنى تەكشۈرۈڭ.',
@@ -1388,16 +1411,27 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 قولايلىق بولۇشى ئۈچۈن بۇ ھۆججەتنىڭ ئۆچۈرۈش خاتىرىسى تۆۋەندە تەمىنلەندى:",
 'filename-bad-prefix'         => "سىز يۈكلىگەن ھۆججەتنىڭ ئاتى'''\\\"\$1\\\"''' دىن باشلىنىپتۇ، بۇ خىل مەنىسى يوق ھۆججەت ئاتىنى رەقەملىك فوتو ئاپپارات ئۆزلۈكىدىن ھاسىل قىلىدۇ.
 ھۆججىتىڭىزگە تېخىمۇ ئەھمىيەتلىك ھۆججەت ئاتىدىن بىرنى تاللاڭ.",
+'upload-successful-msg'       => 'يۈكلەشىڭىز بۇ جايدا مەۋجۇد: $1',
+'upload-failure-subj'         => 'يۈكلەش كاشىلىسى',
+'upload-failure-msg'          => 'بۇ سىزنىڭ يۈكلەش خاتالىقىڭىز:
 
-'upload-proto-error'      => 'كېلىشىم خاتالىقى',
-'upload-proto-error-text' => 'يىراقتىن يۈكلەيدىغان  URL <code>http://</code> ياكى <code>ftp://</code> دىن باشلىنىدۇ.',
-'upload-file-error'       => 'ئىچكى خاتالىق',
-'upload-file-error-text'  => 'مۇلازىمىتىردا ۋاقىتلىق ھۆججەت قۇرۇۋاتقاندا ئىچكى خاتالىق يۈز بەردى.
+$1',
+
+'upload-proto-error'        => 'كېلىشىم خاتالىقى',
+'upload-proto-error-text'   => 'يىراقتىن يۈكلەيدىغان  URL <code>http://</code> ياكى <code>ftp://</code> دىن باشلىنىدۇ.',
+'upload-file-error'         => 'ئىچكى خاتالىق',
+'upload-file-error-text'    => 'مۇلازىمىتىردا ۋاقىتلىق ھۆججەت قۇرۇۋاتقاندا ئىچكى خاتالىق يۈز بەردى.
  [[Special:ListUsers/sysop|باشقۇرغۇچى]] بىلەن ئالاقىلىشىڭ.',
-'upload-misc-error'       => 'نامەلۇم يۈكلەش خاتالىقى',
-'upload-misc-error-text'  => 'يۈكلىگەندە نامەلۇم خاتالىق يۈز بەردى.
+'upload-misc-error'         => 'نامەلۇم يۈكلەش خاتالىقى',
+'upload-misc-error-text'    => 'يۈكلىگەندە نامەلۇم خاتالىق يۈز بەردى.
 سىز ئىشلەتكەن URL نىڭ توغرا ھەمدە زىيارەت قىلغىلى بولىدىغانلىقىنى جەزملەپ ئاندىن قايتا سىناڭ.
 ئەگەر مەسىلە يەنىلا مەۋجۇد بولسا [[Special:ListUsers/sysop|باشقۇرغۇچى]] بىلەن ئالاقىلىشىڭ.',
+'upload-too-many-redirects' => 'URL دا بەك كۆپ قايتا نىشانلاش مەۋجۇد',
+'upload-unknown-size'       => 'نامەلۇم چوڭلۇق',
+'upload-http-error'         => 'بىر HTTP خاتالىقى مەۋجۇد: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'زىيارەت رەت قىلىندى',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL زىيارەت قىلالمىدى.',
@@ -1409,6 +1443,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 تور زىيارەت قىلىش ئارىسالدى ۋاقتىدا قايتا سىناپ بېقىڭ.',
 
 'license'            => 'ئىجازەت:',
+'license-header'     => 'ئىجازەت',
 'nolicense'          => 'تاللانمىغان',
 'license-nopreview'  => '(ئالدىن كۆزىتەلمەيدۇ)',
 'upload_source_url'  => '(ئىناۋەتلىك، URL نى ئاشكارا زىيارەت قىلغىلى بولىدۇ)',
@@ -1444,6 +1479,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'filehist-dimensions'       => 'ئۆلچەم',
 'filehist-filesize'         => 'ھۆججەت چوڭلۇقى',
 'filehist-comment'          => 'ئىزاھات',
+'filehist-missing'          => 'ھۆججەت يوقالغان',
 'imagelinks'                => 'ھۆججەت ئۇلىنىشى',
 'linkstoimage'              => 'تۆۋەندىكى {{PLURAL:$1|بەت|$1 بەت}}  بۇ ھۆججەتكە ئۇلانغان:',
 'linkstoimage-more'         => '{{PLURAL:$1|دىن كۆپ بەت ئۇلانما|دىن كۆپ بەت ئۇلانما}}  بۇ ھۆججەتكە ئۇلانغان.
@@ -1454,6 +1490,8 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'redirectstofile'           => 'تۆۋەندىكى {{PLURAL:$1|ھۆججەت|$1 ھۆججەت}}  بۇ ھۆججەتكە نىشانلانغان.',
 'duplicatesoffile'          => 'تۆۋەندىكى {{PLURAL:$1|ھۆججەت|$1 ھۆججەت}}  بۇ ھۆججەت بىلەن تەكرارلانغان  ([[Special:FileDuplicateSearch/$2|تېخىمۇ كۆپ تەپسىلاتى]]):',
 'sharedupload'              => 'بۇ ھۆججەت $1 دىن كەلگەن، ئۇ باشقا قۇرۇلۇشتا ئىشلىتىلىۋاتقان بولۇشى مۇمكىن.',
+'filepage-nofile'           => 'بۇ ئاتلىق ھۆججەت مەۋجۇد ئەمەس.',
+'filepage-nofile-link'      => '[$1 يۈكلىيەلەيسىز]بۇ ئاتلىق ھۆججەت مەۋجۇد ئەمەس، ئەمما سىز.',
 'uploadnewversion-linktext' => 'بۇ ھۆججەتنىڭ يېڭى نەشرىنى يۈكلە',
 'shared-repo-from'          => 'مەنبەسى $1',
 'shared-repo'               => 'ھەمبەھىر ھۆججەت ئامبىرى',
@@ -1518,6 +1556,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'statistics-header-edits'      => 'تەھرىر ستاتىستىكا',
 'statistics-header-views'      => 'كۆرۈش ستاتىستىكا',
 'statistics-header-users'      => 'ئىشلەتكۈچى ستاتىستىكا',
+'statistics-header-hooks'      => 'باشقا سىتاتىستىكا',
 'statistics-articles'          => 'مەزمۇن بېتى',
 'statistics-pages'             => 'بەتلەر',
 'statistics-pages-desc'        => 'wiki دىكى ھەممە بەتلەر، مۇنازىرە بېتى، قايتا نىشانلاش قاتارلىقلارنى ئۆز ئىچىگە ئالىدۇ.',
@@ -1544,8 +1583,10 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 ھازىر [[$2]] نى قايتا نىشانلىدى.',
 'double-redirect-fixer'      => 'قايتا نىشانلانغان تۈزەتكۈچ',
 
-'brokenredirects'     => 'بۇزۇق قايتا نىشانلانغان بەت',
-'brokenredirectstext' => 'تۆۋەندىكى قايتا نىشانلانغان بەت مەۋجۇد بولمىغان بەتنى كۆرسەتكەن:',
+'brokenredirects'        => 'بۇزۇق قايتا نىشانلانغان بەت',
+'brokenredirectstext'    => 'تۆۋەندىكى قايتا نىشانلانغان بەت مەۋجۇد بولمىغان بەتنى كۆرسەتكەن:',
+'brokenredirects-edit'   => 'تەھرىر',
+'brokenredirects-delete' => 'ئۆچۈر',
 
 'withoutinterwiki'         => 'تىل ئۇلانمىسى يوق بەت',
 'withoutinterwiki-summary' => 'تۆۋەندىكى بەت باشقا تىلدىكى نەشرىگە ئۇلانمايدۇ.',
@@ -1657,8 +1698,9 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'special-categories-sort-abc'   => 'ئېلىپبە بويىچە تەرتىپلە',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'ئۆچۈرۈلگەن ئىشلەتكۈچى تۆھپىسى',
-'deletedcontributions-title' => 'ئۆچۈرۈلگەن ئىشلەتكۈچى تۆھپىسى',
+'deletedcontributions'             => 'ئۆچۈرۈلگەن ئىشلەتكۈچى تۆھپىسى',
+'deletedcontributions-title'       => 'ئۆچۈرۈلگەن ئىشلەتكۈچى تۆھپىسى',
+'sp-deletedcontributions-contribs' => 'تۆھپە',
 
 # Special:LinkSearch
 'linksearch'       => 'سىرتقى ئۇلانما',
@@ -1674,6 +1716,14 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'listusersfrom'      => 'بېرىلگەن ئىشلەتكۈچى كۆرسىتىش شەرتى:',
 'listusers-submit'   => 'كۆرسەت',
 'listusers-noresult' => 'ئىشلەتكۈچى تېپىلمىدى.',
+'listusers-blocked'  => '(چەكلەنگەن)',
+
+# Special:ActiveUsers
+'activeusers'            => 'ئاكتىپ ئەزالار تىزىملىكى',
+'activeusers-from'       => 'باشلانغان ئىشلەتكۈچىنى كۆرسەت:',
+'activeusers-hidebots'   => 'ماشىنا ئادەمنى يوشۇر',
+'activeusers-hidesysops' => 'باشقۇرغۇچىنى يوشۇر',
+'activeusers-noresult'   => 'ئىشلەتكۈچى تېپىلمىدى.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'ئىشلەتكۈچى قۇرغان خاتىرە',
@@ -1956,6 +2006,8 @@ $1',
 'sp-contributions-newbies-title' => 'يېڭى ھېساباتنىڭ ئىشلەتكۈچى تۆھپىسى',
 'sp-contributions-blocklog'      => 'چەكلەنگەن خاتىرە',
 'sp-contributions-logs'          => 'خاتىرە',
+'sp-contributions-talk'          => 'مۇنازىرە',
+'sp-contributions-userrights'    => 'ئىشلەتكۈچى ھوقۇقى باشقۇرۇش',
 'sp-contributions-search'        => 'تۆھپە ئىزدە',
 'sp-contributions-username'      => 'IP ئادرېس ياكى ئىشلەتكۈچى ئاتى:',
 'sp-contributions-submit'        => 'ئىزدە',

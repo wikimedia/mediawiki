@@ -1660,6 +1660,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 Vi konsideru ĉu taŭgas alŝuti ĉi tiu dosiero.
 jen la protokolo pri forigado por ĉi tiu dosiero por via oportuneco:",
 'filename-bad-prefix'         => "La nomo de la dosiero kiun vi alŝutas komencas kun '''\"\$1\"''', kiu estas nepriskriba nomo ofte aŭtomate donata de ciferecaj fotiloj. Bonvolu elekti pli priskriban nomon por via bildo.",
+'upload-failure-subj'         => 'Alŝuta problemo',
 
 'upload-proto-error'        => 'Malvalida protokolo',
 'upload-proto-error-text'   => 'Fora alŝuto devas URL-on komence de <code>http://</code> aŭ <code>ftp://</code>.',
@@ -2055,6 +2056,9 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'emailsent'            => 'Retmesaĝo sendita',
 'emailsenttext'        => 'Via retmesaĝo estas sendita.',
 'emailuserfooter'      => 'Ĉi tiun retpoŝton sendis $1 al $2 per funkcio "Email user" ĉe {{SITENAME}}.',
+
+# User Messenger
+'usermessage-editor' => 'Mesaĝanto de sistemo',
 
 # Watchlist
 'watchlist'            => 'Atentaro',

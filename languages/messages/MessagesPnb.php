@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Arslan
  * @author Khalid Mahmood
  * @author ZaDiak
  */
@@ -24,20 +25,26 @@ $defaultUserOptionOverrides = array(
 
 $messages = array(
 # User preference toggles
-'tog-justify'              => 'پیراگراف ثابت کرو',
-'tog-hideminor'            => 'چھوٹیاں تبدیلیاں چھپاؤ',
-'tog-extendwatchlist'      => 'نظر تھلے رکھے صفحے نوں کھلا کرو تاکہ اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
-'tog-watchcreations'       => 'جیڈے صفحے میں بناندا واں اوہ میری اکھ تھلے کر دیو',
-'tog-watchdefault'         => 'جیڈے صفحیاں چ میں لکھداں اوہ میری اکھ تھلے کر دیو',
-'tog-watchmoves'           => 'جیڈے صفحے میں لے چلداں اوہ میری اکھ تھلے کر دیو',
-'tog-watchdeletion'        => 'جیڈے صفحے میں مٹانداں اوہ میری اکھ تھلے کر دیو',
-'tog-enotifwatchlistpages' => 'اگر میری اکھ تھلیاں صفحیاں چوں کسے چ تبدیلی ہوۓ، تے مینوں ای میل کر دیو',
-'tog-enotifusertalkpages'  => 'اگر میرے گلاں باتاں آلے صفحے چ کوئی تبدیلی کرے، تے مینوں ای میل کر دیو',
-'tog-enotifminoredits'     => 'صفحیاں چ چھوٹیاں موٹیاں تبدیلیاں تے وی مینوں ای میل کر دیو',
-'tog-watchlisthideown'     => 'میری اپنی لکھائی نوں اکھ تھلیوں لکاؤ',
-'tog-watchlisthidebots'    => 'بوٹ دی لکھائی اکھ تھلیوں لکاؤ',
-'tog-watchlisthideminor'   => 'چھوٹی موٹی لکھائی اکھ تھلیوں لکاؤ',
-'tog-showhiddencats'       => 'لکیاں کیٹاگریاں وکھاؤ',
+'tog-justify'                => 'پیراگراف ثابت کرو',
+'tog-hideminor'              => 'چھوٹیاں تبدیلیاں چھپاؤ',
+'tog-extendwatchlist'        => 'نظر تھلے رکھے صفحے نوں ودھاو, تاکہ اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
+'tog-watchcreations'         => 'جیڈے صفحے میں بناندا واں اوہ میری اکھ تھلے کر دیو',
+'tog-watchdefault'           => 'جیڈے صفحیاں چ میں لکھداں اوہ میری اکھ تھلے کر دیو',
+'tog-watchmoves'             => 'جیڈے صفحے میں لے چلداں اوہ میری اکھ تھلے کر دیو',
+'tog-watchdeletion'          => 'جیڈے صفحے میں مٹانداں اوہ میری اکھ تھلے کر دیو',
+'tog-enotifwatchlistpages'   => 'اگر میری اکھ تھلیاں صفحیاں چوں کسے چ تبدیلی ہوۓ، تے مینوں ای میل کر دیو',
+'tog-enotifusertalkpages'    => 'اگر میرے گلاں باتاں آلے صفحے چ کوئی تبدیلی کرے، تے مینوں ای میل کر دیو',
+'tog-enotifminoredits'       => 'صفحیاں چ چھوٹیاں موٹیاں تبدیلیاں تے وی مینوں ای میل کر دیو',
+'tog-enotifrevealaddr'       => 'میرے ای میل دے پتے نوں سندیسے آلی ای میل دے وچ وکھاؤ۔',
+'tog-shownumberswatching'    => 'ویکھن آلے لوکاں دی گنتی وکھاؤ۔',
+'tog-oldsig'                 => 'ہلے آلے دستخط وکھاؤ۔',
+'tog-fancysig'               => 'دستخط نوں وکی ٹیکسڈ ونگوں؎ ورتو(without an automatic link)',
+'tog-watchlisthideown'       => 'میری اپنی لکھائی نوں اکھ تھلیوں لکاؤ',
+'tog-watchlisthidebots'      => 'بوٹ دی لکھائی اکھ تھلیوں لکاؤ',
+'tog-watchlisthideminor'     => 'چھوٹی موٹی لکھائی اکھ تھلیوں لکاؤ',
+'tog-watchlisthidepatrolled' => 'نکی لکھائی اکھ تھلوں لکاؤ',
+'tog-ccmeonemails'           => 'مینوں اوہناں ای میلاں دیاں کاپیاں بھیجو جیہڑیاں میں دوجیاں نوں بھیجاں۔',
+'tog-showhiddencats'         => 'لکیاں کیٹاگریاں وکھاؤ',
 
 'underline-always' => 'ہمیشہ',
 'underline-never'  => 'کدی وی نئیں',
@@ -125,6 +132,16 @@ $messages = array(
 'qbmyoptions'    => 'میرے صفحے',
 'qbspecialpages' => 'خاص صفحے',
 
+# Vector skin
+'vector-action-delete'      => 'مکاؤ',
+'vector-action-move'        => 'ٹرو',
+'vector-action-protect'     => 'بچاؤ',
+'vector-namespace-category' => 'ونڈ',
+'vector-namespace-help'     => 'مدد آلا ورقا',
+'vector-namespace-main'     => 'ورقہ',
+'vector-namespace-media'    => ' میڈیا آلا ورقہ',
+'vector-namespace-project'  => 'بجایا ورقہ',
+
 'errorpagetitle'    => 'مسئلہ',
 'returnto'          => 'واپس $1 چلو',
 'tagline'           => 'سے {{SITENAME}}',
@@ -155,7 +172,7 @@ $messages = array(
 'talkpagelinktext'  => 'گل بات',
 'specialpage'       => 'خاص صفحہ',
 'personaltools'     => 'ذاتی اوزار',
-'postcomment'       => 'گل کرو',
+'postcomment'       => 'نویں ونڈ',
 'articlepage'       => 'مضمون آلا صفحہ',
 'talk'              => 'گل بات',
 'views'             => 'منظر',
@@ -369,7 +386,7 @@ $messages = array(
 'newarticletext'                   => 'تسی ایسے صفحے دے جوڑ توں ایتھے پہنچے او جیڑا ھلے تک نہیں بنیا۔<br />
 اس صفحہ بنانے آسطے تھلے دتے گۓ ڈبے وچ لکھنا شروع کر دیو(زیادہ رہنمائی آستے اے ویکھو [[{{MediaWiki:Helppage}}|<br />مدد دا صفحہ]])۔
 اگر تسی ایتھے غلطی نال پہنچے او تے اپنے کھوجی توں "بیک" دا بٹن دبا دیو۔',
-'noarticletext'                    => 'اس ویلے اس صفحے تے کج نہیں لکھیا ہویا تسی [[Special:Search/{{PAGENAME}}|اس صفحے دے ناں نوں دوجے صفحیاں تے کھوج سکدے او]] یا فیر [{{fullurl:{{FULLPAGENAME}}|action=edit}} اس صفحے نوں لکھ سکدے او۔]',
+'noarticletext'                    => 'اس ویلے اس صفحے تے کج نہیں لکھیا ہویا تسیں [[Special:Search/{{PAGENAME}}|اس صفحے دے ناں نوں دوجے صفحیاں تے کھوج سکدے او]] یا فیر [{{fullurl:{{FULLPAGENAME}}|action=edit}} اس صفحے نوں لکھ سکدے او۔]',
 'updated'                          => '(نواں کیتا گیا)',
 'previewnote'                      => "'''اے ہلے کچا کم اے؛ تبدیلیاں بچائیاں نہیں گئیاں'''",
 'editing'                          => 'تسی "$1" لکھ رہے او',
@@ -383,8 +400,8 @@ $messages = array(
 '''ایتھے او کم بغیر اجازت توں نا لکھو جیدے حق راکھویں نے '''",
 'longpagewarning'                  => "'''ہوشیار: اے صفحہ $1 کلوبائیٹ لمبا اے؛ کچھ کھوجیاں نو 32 کلوبائیٹ توں لمبے صفحے لکھنا یا پہنچنا مسئلہ ہوندا اے۔ <br />
 اس صفحہ نوں چھوٹے ٹوٹیاں چ تقسیم کرن دے بارے چ سوچ لو۔'''",
-'templatesused'                    => 'اس صفحے تے استعمال کیتے گۓ سانچے:',
-'templatesusedpreview'             => 'اس کچے کم تے استعمال ہوۓ سانچے:',
+'templatesused'                    => 'اس صفحے تے  ورتے گۓ {{PLURAL:$1|سانچے|سانچہ}}:',
+'templatesusedpreview'             => 'اس کچے کم تے ورتے گئے {{PLURAL:$1|سانچے|سانچہ}} :',
 'templatesusedsection'             => 'اس ٹوٹے چ استعمال کیتے گۓ سچے:',
 'template-protected'               => '(بچایا گیا)',
 'template-semiprotected'           => '(کج بچایا ہویا)',
@@ -835,7 +852,7 @@ $messages = array(
 'addedwatchtext'    => 'اے صفحہ "[[:$1]] تواڈیاں اکھاں تھلے آگیا اے۔<br />
 مستقبل وچ اس صفحہ تے ایدے بارے چ گل بات نویاں تبدیلیاں وچ موٹے نظر آن گے تا کہ آسانی نال کھوجیا جا سکے۔',
 'removedwatch'      => 'اکھ تھلیوں ہٹا لیا گیا',
-'removedwatchtext'  => 'اے صفحہ "[[:$1]]" تواڈی اکھ تھلیوں ہٹا لیا گیا اے۔',
+'removedwatchtext'  => 'ایہ صفحہ "[[:$1]]" [[Special:Watchlist|تہاڈی اکھ ]]تھلوں ہٹا لیتا گیا اے۔',
 'watch'             => 'نظر رکھو',
 'watchthispage'     => 'اس صفحے تے اکھ رکھو',
 'unwatch'           => 'نظر ھٹاؤ',
@@ -885,7 +902,7 @@ $messages = array(
 'modifiedarticleprotection'   => '"[[$1]]" آستے بچاؤ بدلیا',
 'unprotectedarticle'          => '"[[$1]]" نئیں بچایا گیا',
 'protect-legend'              => 'بچاؤ پکا کرو',
-'protectcomment'              => 'را‌ۓ:',
+'protectcomment'              => 'وجہ:',
 'protectexpiry'               => 'انت ہوندا اے:',
 'protect_expiry_invalid'      => 'اکسپائری ٹیم غلط اے۔',
 'protect_expiry_old'          => 'ایدا اکسپائری ٹائم گزر چکیا اے۔',
@@ -1119,6 +1136,7 @@ $messages = array(
 'tooltip-search-fulltext'         => 'اس لفظ نوں صفحیاں چ لبو',
 'tooltip-p-logo'                  => 'پہلا صفہ',
 'tooltip-n-mainpage'              => 'پہلے صفحے دی سیر',
+'tooltip-n-mainpage-description'  => 'پہلے ورقے تے جاؤ',
 'tooltip-n-portal'                => 'منصوبے دے بارے وچ، توسی کی کر سکدے او تے کنج کھوج سکدے او',
 'tooltip-n-currentevents'         => 'موجودہ حالات تے پچھلیاں معلومات دیکھو',
 'tooltip-n-recentchanges'         => 'وکی تے نویاں تبدیلیاں۔',

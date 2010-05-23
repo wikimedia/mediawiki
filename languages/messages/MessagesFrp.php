@@ -1434,10 +1434,10 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'saveusergroups'               => 'Sôvar les tropes a l’utilisator',
 'userrights-groupsmember'      => 'Membro de :',
 'userrights-groupsmember-auto' => 'Membro emplicito de :',
-'userrights-groups-help'       => 'Vos pouede changiér les tropes a lesquintes apartint ceti utilisator.
+'userrights-groups-help'       => 'Vos pouede changiér les tropes a lesquintes est ceti utilisator.
 * Una câsa pouentâ vôt dére que l’utilisator sè trove dens cela tropa.
 * Una câsa pas pouentâ vôt dére qu’y sè trove pas.
-* Una ètêla (*) endique que vos porréd pas enlevar cela tropa setout que vos l’aréd apondua et l’un l’ôtro.',
+* Una petiôta ètêla (*) endique que vos porréd pas enlevar cela tropa setout que vos l’aréd apondua et l’un l’ôtro.',
 'userrights-reason'            => 'Rêson :',
 'userrights-no-interwiki'      => 'Vos avéd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
 'userrights-nodatabase'        => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas locala.',
@@ -2466,7 +2466,7 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 'ipbanononly'                     => 'Blocar ren que los utilisators pas encartâs',
 'ipbcreateaccount'                => 'Empachiér la crèacion de compto',
 'ipbemailban'                     => 'Empachiér l’utilisator de mandar des mèssâjos',
-'ipbenableautoblock'              => 'Blocar ôtomaticament la dèrriére adrèce IP utilisâ per l’utilisator et pués totes ses adrèces IP a vegnir et que porrêt èprovar',
+'ipbenableautoblock'              => 'Blocar ôtomaticament la dèrriére adrèce IP utilisâ per l’utilisator et pués totes ses adrèces IP a vegnir que porrêt èprovar',
 'ipbsubmit'                       => 'Blocar ceti utilisator',
 'ipbother'                        => 'Ôtro temps :',
 'ipboptions'                      => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite',
