@@ -195,8 +195,6 @@ class HTMLForm {
 		if ( ! $this->mTitle ) {
 			throw new MWException( "You must call setTitle() on an HTMLForm" );
 		}
-		
-		$html = '';
 
 		self::addJS();
 
