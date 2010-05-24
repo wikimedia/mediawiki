@@ -2415,15 +2415,18 @@ class OutputPage {
 	 * These will be applied to various media & IE conditionals.
 	 */
 	public function buildCssLinks() {
+		return implode( "\n", $this->buildCssLinksArray() );
+	}
+
+	public function buildCssLinksArray() {
 		$links = array();
 		foreach( $this->styles as $file => $options ) {
 			$link = $this->styleLink( $file, $options );
 			if( $link ) {
-				$links[] = $link;
+				$links[$file] = $link;
 			}
 		}
-
-		return implode( "\n", $links );
+		return $links;
 	}
 
 	/**
