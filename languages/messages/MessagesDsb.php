@@ -953,6 +953,8 @@ $1",
 'logdelete-failure'           => "'''Protokolowa wiźobnosć njejo se dała nastajiś:'''
 $1",
 'revdel-restore'              => 'Widobnosć změniś',
+'revdel-restore-deleted'      => 'wulašowane wersije',
+'revdel-restore-visible'      => 'widobne wersije',
 'pagehist'                    => 'stawizny boka',
 'deletedhist'                 => 'wulašowane stawizny',
 'revdelete-content'           => 'wopśimjeśe',

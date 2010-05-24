@@ -57,7 +57,7 @@ $linkTrail = "/^([a-z]+)(.*)\$/sD";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sutalìnea is cullegamentos',
-'tog-highlightbroken'         => 'Evidèntzia <a href="" class="new">aici</a> is cullegamentos a pàginas inesistentes (si disativadu: aici<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Evidèntzia <a href="" class="new">de aici</a> is cullegamentos a pàginas inesistentes (si disativadu: de aici<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Alliniamentu paràgrafos giustificados',
 'tog-hideminor'               => 'Cua is acontzos minores in sa pàgina de is ùrtimas mudàntzias',
 'tog-hidepatrolled'           => 'Cua is acontzos verificados in is ùrtimas mudàntzias',
@@ -199,10 +199,11 @@ $messages = array(
 'qbpageinfo'     => 'Cuntestu de sa pàgina',
 'qbmyoptions'    => 'Is preferèntzias meas',
 'qbspecialpages' => 'Pàginas spetziales',
-'faq'            => 'Pregontas/Rispostas (FAQ)',
+'faq'            => 'Pregontas/Respostas (FAQ)',
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
+'vector-action-addsection'   => 'Agiungi cuntierra',
 'vector-action-delete'       => 'Cantzella',
 'vector-action-move'         => 'Move',
 'vector-action-protect'      => 'Ampara',
@@ -237,6 +238,7 @@ $messages = array(
 'searcharticle'     => 'Bae',
 'history'           => 'Istòria de sa pàgina',
 'history_short'     => 'Istòria',
+'updatedmarker'     => "agiornada dae s'ùrtima bìsita mia",
 'info_short'        => 'Informatziones',
 'printableversion'  => 'Versione de imprenta',
 'permalink'         => 'Acàpiu fitianu',
@@ -597,6 +599,7 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'history-fieldset-title' => 'Sfògia sa stòria',
 'histfirst'              => 'Prima',
 'histlast'               => 'Ùrtima',
+'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'           => '(bùida)',
 
 # Revision feed
@@ -655,6 +658,7 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'searchprofile-project-tooltip'  => 'Chirca in $1',
 'searchprofile-images-tooltip'   => 'Chirca files',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 faeddu|$2 faeddos}})',
+'search-result-score'            => 'Rilevàntzia: $1%',
 'search-redirect'                => '(redirect $1)',
 'search-section'                 => '(setzione $1)',
 'search-suggest'                 => 'Fortzis fias chirkende: $1',
@@ -726,6 +730,7 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'yourlanguage'                => 'Limba:',
 'yournick'                    => 'Sa firma tua:',
 'yourgender'                  => 'Natura:',
+'gender-unknown'              => 'Non spetzificadu',
 'gender-male'                 => 'Mascu',
 'gender-female'               => 'Fèmina',
 'email'                       => 'E-mail',
@@ -784,7 +789,7 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 
 # User rights log
 'rightslog'  => 'Deretos de is usuàrios',
-'rightsnone' => '(nesciunu)',
+'rightsnone' => '(nisciunu)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'          => 'lègher custa pàgina',
@@ -859,6 +864,7 @@ Pro insertare unu file aintru de una pàgina, tocat a faghere unu cullegamentu t
 Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus bisuale.',
 'filename'            => 'Nùmene file',
 'filedesc'            => 'Ogetu',
+'fileuploadsummary'   => 'Ogetu:',
 'filereuploadsummary' => 'Mudàntzias a su file:',
 'filesource'          => 'Orìgine:',
 'uploadedfiles'       => 'Files carrigadus',
@@ -906,8 +912,8 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'filehist-comment'          => 'Cummentu',
 'filehist-missing'          => 'File pèrdidu',
 'imagelinks'                => 'Ligant a custu file',
-'linkstoimage'              => '{{PLURAL:$1|Sa pàgina chi sighit ligat|$1 Sas pàginas chi sighint ligant}} a custu file:',
-'nolinkstoimage'            => 'Peruna pàgina ligat cun custu file.',
+'linkstoimage'              => '{{PLURAL:$1|Sa pàgina ki sighit ligat|Is $1 pàginas ki sighint ligant}} a custu file:',
+'nolinkstoimage'            => 'Peruna pàgina ligat a custu file.',
 'sharedupload'              => 'Custu file benit dae $1 e podet èssere impreau in àteros progetos.',
 'uploadnewversion-linktext' => 'Carriga una versione noa de custu file',
 'shared-repo-from'          => 'dae $1',
@@ -920,7 +926,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'filedelete'                  => 'Cantzella $1',
 'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'Cantzella su file',
-'filedelete-submit'           => 'Fùlia',
+'filedelete-submit'           => 'Cantzella',
 'filedelete-success'          => "Su file '''$1''' est istadu fuliau.",
 'filedelete-reason-otherlist' => 'Àteru motivu',
 
@@ -934,13 +940,13 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'randompage' => 'Pàgina a sa tzurpa',
 
 # Statistics
-'statistics'              => 'Istatìsticas',
-'statistics-header-users' => 'Istatìsticas subra is usuàrios',
+'statistics'              => 'Statìsticas',
+'statistics-header-users' => 'Statìsticas subra is usuàrios',
 'statistics-pages'        => 'Pàginas',
 
 'disambiguationspage' => 'Template:Disambìgua',
 
-'doubleredirects'     => 'Redirects dòpius',
+'doubleredirects'     => 'Redirects dòpios',
 'doubleredirectstext' => 'Custa pàgina cuntenet una lista de pàginas ki re-indiritzant a àteras pàginas de re-indiritzamentu.
 Ogni lìnia cuntenet ligàmines a su primu e a su de duos re-indiritzamentu, aici comente sa prima lìnia de sa de duos re-indiritzamentos, chi de sòlitu adòbiat s\'artìculu "beru", a sa cale fintzas su primu re-indiritzamentu dia depet puntare.
 Is re-indiritzamentos <s>cantzellados</s> sunt stados curretos.',
@@ -948,7 +954,7 @@ Is re-indiritzamentos <s>cantzellados</s> sunt stados curretos.',
 'brokenredirects'        => 'Redirects isballiaus',
 'brokenredirectstext'    => 'Custus redirects ligant cun pàginas chi no esistint.',
 'brokenredirects-edit'   => 'acontza',
-'brokenredirects-delete' => 'fùlia',
+'brokenredirects-delete' => 'cantzella',
 
 'withoutinterwiki-legend' => 'Prefissu',
 'withoutinterwiki-submit' => 'Ammustra',

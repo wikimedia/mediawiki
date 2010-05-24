@@ -1114,6 +1114,8 @@ $1",
 'logdelete-failure'           => "'''Дневникот на видливост не може да биде нагоден:'''
 $1",
 'revdel-restore'              => 'Промена на видливост',
+'revdel-restore-deleted'      => 'избришани ревизии',
+'revdel-restore-visible'      => 'видливи ревизии',
 'pagehist'                    => 'Историја на страница',
 'deletedhist'                 => 'Историја на бришења',
 'revdelete-content'           => 'содржина',

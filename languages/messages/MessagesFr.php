@@ -1159,6 +1159,8 @@ $1",
 'logdelete-failure'           => "'''La visibilité du journal n’a pas pu être définie :'''
 $1",
 'revdel-restore'              => 'modifier la visibilité',
+'revdel-restore-deleted'      => 'révisions supprimées',
+'revdel-restore-visible'      => 'révisions visibles',
 'pagehist'                    => 'Historique de la page',
 'deletedhist'                 => 'Historique supprimé',
 'revdelete-content'           => 'contenu',

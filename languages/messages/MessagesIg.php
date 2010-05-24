@@ -579,11 +579,15 @@ I na á banye...',
 'recentchangeslinked'      => 'Ihe gbanwere bu nwanne',
 'recentchangeslinked-page' => 'Áhà ihü:',
 
+# Upload
+'upload' => 'Tịnyé ihe na orunotu',
+
 # Special:ListFiles
 'listfiles_date' => 'Aka',
 'listfiles_name' => 'Áhà',
 
 # File description page
+'filehist'            => 'Akikó mbu nke akwukwu orúnotu',
 'filehist-deleteone'  => 'gbakashia',
 'filehist-current'    => 'nka',
 'filehist-datetime'   => 'Afọ/Ogẹ',
@@ -678,15 +682,20 @@ Ubwa, o na ga [[$2]].',
 'delete-legend'  => 'Gbakashia',
 'deletedarticle' => 'gbakashịrị "[[$1]]"',
 
+# Rollback
+'rollbacklink' => 'fifie àzú',
+
 # Protect
-'protectcomment' => 'Mgbaghaputa:',
-'protectexpiry'  => 'Na gba okạ:',
+'protectedarticle' => 'chédòlù "[[$1]]"',
+'protectcomment'   => 'Mgbaghaputa:',
+'protectexpiry'    => 'Na gba okạ:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Rüwa',
 'restriction-create' => 'Ké',
 
 # Undelete
+'undeletelink'           => 'lé/dosimá',
 'undeleteviewlink'       => 'lé',
 'undeletereset'          => 'Hafù ya otụ o di',
 'undeletedarticle'       => "dọsèwàrị ''[[$1]]''",
@@ -708,6 +717,10 @@ Ubwa, o na ga [[$2]].',
 # What links here
 'whatlinkshere'            => 'Ihe na bia nga',
 'whatlinkshere-page'       => 'Ihü:',
+'linkshere'                => "Ihüá na gá '''[[:$1]]''':",
+'isredirect'               => 'ihü nke nkúfù',
+'isimage'                  => 'jikodo nnunuuche',
+'whatlinkshere-links'      => ' jikodo',
 'whatlinkshere-hideredirs' => '$1 nke kufùrù',
 'whatlinkshere-filters'    => 'Ihe na záfụ',
 
@@ -782,11 +795,13 @@ Biko meríáríá ozor.',
 'tooltip-t-whatlinkshere'        => 'Détụ ihü wiki nílé na ga ngà',
 'tooltip-feed-rss'               => 'Ntá RSS maka ihüá',
 'tooltip-feed-atom'              => 'Nta Atom maka ihüá',
+'tooltip-t-upload'               => 'Tịnyé ihe na orunotu',
 'tooltip-t-specialpages'         => 'Ndetu ihü mkpà níle',
 'tooltip-t-print'                => 'Ihü nka nke Í nweríkí dótù',
 'tooltip-ca-nstab-main'          => 'Zi ihe nor na ihüá',
 'tooltip-ca-nstab-user'          => 'Zi ihü onyé né ké',
 'tooltip-ca-nstab-special'       => 'Ihü mkpà, a nweriki ru na ya onwe ya',
+'tooltip-ca-nstab-project'       => 'Lé ihü hé chèdòlù',
 'tooltip-ca-nstab-image'         => 'Zi ihü akwukwu orúnotu',
 'tooltip-ca-nstab-template'      => 'Zi mkpurụ ihü',
 'tooltip-diff'                   => 'Zi ihe Í gbanwere na édémédé',
@@ -804,6 +819,9 @@ Biko meríáríá ozor.',
 # Special:NewFiles
 'ilsubmit' => 'Chöwá',
 'bydate'   => 'shi afọ',
+
+# Metadata
+'metadata' => 'Ómárí nso',
 
 # EXIF tags
 'exif-imagelength' => 'Ógólógó',

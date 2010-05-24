@@ -1161,6 +1161,8 @@ $1",
 'logdelete-failure'           => "'''Logbuchsichtbarkeit kann nicht geändert werden:'''
 $1",
 'revdel-restore'              => 'Sichtbarkeit ändern',
+'revdel-restore-deleted'      => 'gelöschte Versionen',
+'revdel-restore-visible'      => 'sichtbare Versionen',
 'pagehist'                    => 'Versionsgeschichte',
 'deletedhist'                 => 'Gelöschte Versionen',
 'revdelete-content'           => 'Seiteninhalt',

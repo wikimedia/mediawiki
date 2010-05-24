@@ -1489,8 +1489,9 @@ $1',
 'brokenredirects-edit'   => 'hariri',
 'brokenredirects-delete' => 'futa',
 
-'withoutinterwiki'        => 'Kurasa bila viungo kwenye lugha zingine',
-'withoutinterwiki-submit' => 'Onyesha',
+'withoutinterwiki'         => 'Kurasa bila viungo kwenye lugha zingine',
+'withoutinterwiki-summary' => 'Kurasa zinazofuata hazijalinganishwa na kurasa za lugha zingine.',
+'withoutinterwiki-submit'  => 'Onyesha',
 
 'fewestrevisions' => 'Kurasa zenye mapitio machache kuliko zote',
 
