@@ -200,6 +200,7 @@ $wgAutoloadLocalClasses = array(
 	'Replacer' => 'includes/StringUtils.php',
 	'ReverseChronologicalPager' => 'includes/Pager.php',
 	'Revision' => 'includes/Revision.php',
+	'RevisionDelete' => 'includes/RevisionDelete.php',
 	'RSSFeed' => 'includes/Feed.php',
 	'Sanitizer' => 'includes/Sanitizer.php',
 	'SiteConfiguration' => 'includes/SiteConfiguration.php',
