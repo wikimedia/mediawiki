@@ -40,7 +40,7 @@ class DifferenceEngine {
 	// readability and conserve space with many small diffs.
 	protected $mReducedLineNumbers = false;
 
-	protected $unhide = false;
+	protected $unhide = false; # show rev_deleted content if allowed
 	/**#@-*/
 
 	/**
