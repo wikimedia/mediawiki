@@ -2136,6 +2136,9 @@ CSS;
 				}
 			} else {
 				if( strpos( $line, '|' ) !== false ) { // sanity check
+					global $wgMessageCache;
+					$line = $wgMessageCache->transform( $line );
+					
 					$line = array_map( 'trim', explode( '|', trim( $line, '* ' ), 2 ) );
 					$link = wfMsgForContent( $line[0] );
 					if( $link == '-' ) {
