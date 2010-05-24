@@ -2138,8 +2138,7 @@ class OutputPage {
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
 			$this->buildCssLinks(),
-			$this->getHeadScripts( $sk ),
-			$this->getHeadItems(),
+			$this->getHeadScripts( $sk ) . $this->getHeadItems(),
 		) );
 		if ( $sk->usercss ) {
 			$ret .= Html::inlineStyle( $sk->usercss );
@@ -2202,7 +2201,7 @@ class OutputPage {
 		global $wgUser, $wgRequest, $wgJsMimeType, $wgUseSiteJs;
 		global $wgStylePath, $wgStyleVersion;
 
-		$scripts = Skin::makeGlobalVariablesScript( $sk->getSkinName() );
+		$scripts = Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
 		$scripts .= Html::linkedScript( "{$wgStylePath}/common/wikibits.js?$wgStyleVersion" );
 
 		// add site JS if enabled
