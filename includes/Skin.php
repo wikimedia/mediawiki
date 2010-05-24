@@ -2104,7 +2104,7 @@ CSS;
 		}
 
 		$bar = array();
-		$this->addToSidebar( $bar, 'sidebar' );
+		$this->addToSidebar( $bar, wfMsgForContentNoTrans( 'sidebar' ) );
 
 		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) {
@@ -2113,26 +2113,16 @@ CSS;
 		wfProfileOut( __METHOD__ );
 		return $bar;
 	}
-	/**
-	 * Add content from a sidebar system message
-	 * Currently only used for MediaWiki:Sidebar (but may be used by Extensions)
-	 *
-	 * This is just a wrapper around addToSidebarPlain() for backwards compatibility
-	 * 
-	 * @param &$bar array
-	 * @param $message String
-	 */
-	function addToSidebar( &$bar, $message ) {
-		$this->addToSidebarPlain( $bar, wfMsgForContent( $message ) );
-	}
 	
 	/**
-	 * Add content from plain text
-	 * @since 1.17
+	 * Add content to the sidebar from text
+	 * @since 1.16
 	 * @param &$bar array
 	 * @param $text string
+	 * 
+	 * @return array
 	 */
-	function addToSidebarPlain( &$bar, $text ) {
+	function addToSidebar( &$bar, $text ) {
 		$lines = explode( "\n", $text );
 		$heading = '';
 		foreach( $lines as $line ) {
