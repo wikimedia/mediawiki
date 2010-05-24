@@ -412,7 +412,7 @@ CREATE TABLE /*_*/archive (
   ar_page_id int unsigned,
   
   -- Original previous revision
-  ar_parent_id int unsigned default NULL,
+  ar_parent_id int unsigned default NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
