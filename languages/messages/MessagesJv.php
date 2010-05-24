@@ -475,6 +475,7 @@ Jeneng panganggo iku mbédakaké kapitalisasi.
 Coba dipriksa manèh pasang aksarané, utawa [[Special:UserLogin/signup|gawé akun anyar]].',
 'nosuchusershort'            => 'Ora ana panganggo mawa asma "$1". Coba dipriksa manèh pasang aksarané (éjaané).',
 'nouserspecified'            => 'Panjenengan kudu milih asma panganggo.',
+'login-userblocked'          => 'Panganggé punika dipunblok. Login boten dipunidinaken',
 'wrongpassword'              => 'Tembung sandhi sing dipilih salah. Mangga coba manèh.',
 'wrongpasswordempty'         => 'Panjenengan ora milih tembung sandhi. Mangga dicoba manèh.',
 'passwordtooshort'           => 'Tembung sesinglon paling sethithik cacahé {{PLURAL:$1|1 aksara|$1 aksara}}.',

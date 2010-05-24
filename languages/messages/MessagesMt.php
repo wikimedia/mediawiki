@@ -1635,7 +1635,7 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'filedelete-success-old'      => "Il-verżjoni tal-fajl '''[[Media:$1|$1]]''' tal-$2, $3 ġiet mħassra.",
 'filedelete-nofile'           => "'''$1''' ma jeżistix.",
 'filedelete-nofile-old'       => "Fl-Arkivju m'hemmx verżjoni ta' '''$1''' bil-karrateristiċi indikati.",
-'filedelete-otherreason'      => 'Oħrajn/aktar raġunijiet:',
+'filedelete-otherreason'      => 'Raġuni oħra/addizzjonali:',
 'filedelete-reason-otherlist' => 'Raġuni oħra',
 'filedelete-reason-dropdown'  => "*Raġunijiet aktar komuni dwar tħassir
 ** Vjolazzjoni ta' copyright
@@ -2102,7 +2102,7 @@ $1',
 
 'sp-contributions-newbies'       => 'Uri biss il-kontribuzzjonijiet tal-utenti l-ġodda',
 'sp-contributions-newbies-sub'   => 'Għall-utenti l-ġodda',
-'sp-contributions-newbies-title' => 'Kontribuzzjonijiet tal-utent għal kontijiet ġodda',
+'sp-contributions-newbies-title' => "Kontribuzzjonijiet ta' utenti ġodda",
 'sp-contributions-blocklog'      => 'blokki',
 'sp-contributions-deleted'       => 'kontribuzzjonijiet imħassra tal-utent',
 'sp-contributions-talk'          => 'diskussjoni',
@@ -2162,8 +2162,8 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 'ipbwatchuser'                    => "Osserva l-paġni u d-diskussjonijiet ta' dan l-utent",
 'badipaddress'                    => "Indirizz ta' IP invalidu",
 'blockipsuccesssub'               => 'Il-blokk irnexxa',
-'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] ġie blokkat.<br />
-Ara l-[[Special:IPBlockList|lista tal-blokki ta' l-IP]] biex tara l-blokki attivi.",
+'blockipsuccesstext'              => 'L-utent [[Special:Contributions/$1|$1]] ġie imblukkat.<br />
+Ara l-[[Special:IPBlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.',
 'ipb-edit-dropdown'               => 'Modifika r-raġuni tal-blokkar',
 'ipb-unblock-addr'                => 'Żblokkja $1',
 'ipb-unblock'                     => 'Żblokka isem tal-utent jew indirizz IP',
@@ -2186,7 +2186,7 @@ Ara l-[[Special:IPBlockList|lista tal-blokki ta' l-IP]] biex tara l-blokki attiv
 'expiringblock'                   => 'jiskadi sa $1 fil-$2',
 'anononlyblock'                   => 'anonimu biss',
 'noautoblockblock'                => 'bla blokk awtomatiku',
-'createaccountblock'              => 'ħolqien tal-kont blokkat',
+'createaccountblock'              => 'ħolqien tal-kont imblukkat',
 'emailblock'                      => 'posta elettronika blokkata',
 'ipblocklist-empty'               => 'Il-Lista tal-blokki hija vojta.',
 'ipblocklist-no-results'          => 'L-indirizz IP jew isem tal-utent rikjest mhuwiex imblukkat.',
@@ -2200,7 +2200,7 @@ Ara l-[[Special:IPBlockList|lista tal-blokki ta' l-IP]] biex tara l-blokki attiv
 'blocklogtext'                    => "Dan huwa log tal-azzjonijiet tal-blokkar u sblokkar ta' utent. Indirizzi tal-IP blokkati awtomatikament m'humiex fil-lista. Ara l-[[Special:IPBlockList|lista tal-IP blokkati]] għal lista tal-blokki attivi bħalissa.",
 'unblocklogentry'                 => 'żblokkjajt $1',
 'block-log-flags-anononly'        => 'utenti anonimi biss',
-'block-log-flags-nocreate'        => 'ħolqien tal-kont blokkat',
+'block-log-flags-nocreate'        => 'ħolqien tal-kont imblukkat',
 'block-log-flags-noautoblock'     => 'blokkar awtomatiku disattivat',
 'block-log-flags-noemail'         => 'posta elettronika blokkata',
 'block-log-flags-angry-autoblock' => 'blokkar awtomatiku avvanzat attivat',
@@ -3001,10 +3001,10 @@ Uża previżjoni standard.',
 'watchlistedit-noitems'        => "Il-lista ta' osservazzjoni tiegħek hija vojta.",
 'watchlistedit-normal-title'   => 'Modifika l-lista tal-osservazzjonijiet speċjali',
 'watchlistedit-normal-legend'  => 'Neħħi titli mil-lista tal-osservazzjonijiet speċjali',
-'watchlistedit-normal-explain' => "Titli tal-lista tal-osservazzjonijiet speċjali tiegħek huwa mogħrija hija taħt.
-Biex tneħħi titlu, għażel il-kaxxa ħdejja, u agħfas neħħi titli.
-Int tista' ukoll tagħmel fil-[[Special:Watchlist/raw|lista ta' format testwali]].",
-'watchlistedit-normal-submit'  => 'Ħassar it-titli',
+'watchlistedit-normal-explain' => "Titli fil-lista ta' osservazzjoni tiegħek huma murija hawn taħt.
+Biex tneħħi titlu, agħżel il-kaxxa ħdejn l-istess titlu, u agħfas \"{{int:Watchlistedit-normal-submit}}\".
+Int tista' wkoll [[Special:Watchlist/raw|timmodifika l-lista f'format testwali]].",
+'watchlistedit-normal-submit'  => 'Neħħi t-titli',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Titlu kien imħassar|$1 titli kienu mħassra}} mil-lista tal-osservazzjonijiet speċjali tiegħek:',
 'watchlistedit-raw-title'      => 'Modifiki osservazzjonijiet speċjali fil-forma testwali',
 'watchlistedit-raw-legend'     => 'Modifika osservazzjonijiet speċjali testwali',

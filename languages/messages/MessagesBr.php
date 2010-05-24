@@ -937,6 +937,8 @@ $1",
 'logdelete-failure'           => "'''N'eus ket bet gallet termeniñ gweluster ar marilh :'''
 $1",
 'revdel-restore'              => 'Cheñch ar gweluster',
+'revdel-restore-deleted'      => 'adweladennoù bet diverket',
+'revdel-restore-visible'      => "adweladennoù a c'heller gwelet",
 'pagehist'                    => 'Istor ar bajenn',
 'deletedhist'                 => 'Diverkañ an istor',
 'revdelete-content'           => 'danvez',
@@ -1082,7 +1084,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 
 # Preferences page
 'preferences'                   => 'Penndibaboù',
-'mypreferences'                 => 'penndibaboù',
+'mypreferences'                 => 'Penndibaboù',
 'prefs-edits'                   => 'Niver a zegasadennoù :',
 'prefsnologin'                  => 'Digevreet',
 'prefsnologintext'              => 'Ret eo deoc\'h bezañ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kevreet]</span> a-benn gellout cheñch ho tibaboù implijer.',
@@ -1925,7 +1927,7 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 
 # Watchlist
 'watchlist'            => 'Roll evezhiañ',
-'mywatchlist'          => 'ma roll evezhiañ',
+'mywatchlist'          => 'Ma roll evezhiañ',
 'watchlistfor'         => "(evit '''$1''')",
 'nowatchlist'          => "N'eus pennad ebet en ho roll evezhiañ.",
 'watchlistanontext'    => "Ret eo deoc'h $1 evit gwelet pe kemmañ an elfennoù zo en ho roll evezhiañ.",

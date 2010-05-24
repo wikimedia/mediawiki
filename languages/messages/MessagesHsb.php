@@ -929,6 +929,8 @@ $1",
 'logdelete-failure'           => "'''Protokolowa widźomnosć njeda so nastajić:'''
 $1",
 'revdel-restore'              => 'Widźomnosć změnić',
+'revdel-restore-deleted'      => 'zhašane wersije',
+'revdel-restore-visible'      => 'widźomne wersije',
 'pagehist'                    => 'Stawizny strony',
 'deletedhist'                 => 'Wušmórnjene stawizny',
 'revdelete-content'           => 'wobsah',
