@@ -204,7 +204,7 @@ $wgUpdates = array(
 		array( 'sqlite_setup_searchindex' ),
 
 		// 1.17
-		array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ), // @fixme so far untested on sqlite 2010-04-16
+		array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ),
 	),
 );
 
