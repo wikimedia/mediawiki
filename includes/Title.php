@@ -1272,12 +1272,12 @@ class Title {
 		}
 		// Check getUserPermissionsErrors hook
 		if ( !wfRunHooks( 'getUserPermissionsErrors', array( &$this, &$user, $action, &$result ) ) ) {
-			$errors[] = $this->resultToError( $errors, $result );
+			$errors = $this->resultToError( $errors, $result );
 		}
 		// Check getUserPermissionsErrorsExpensive hook
 		if ( $doExpensiveQueries && !( $short && count( $errors ) > 0 ) &&
 			 !wfRunHooks( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) ) ) {
-			$errors[] = $this->resultToError( $errors, $result );
+			$errors = $this->resultToError( $errors, $result );
 		}
 
 		return $errors;
