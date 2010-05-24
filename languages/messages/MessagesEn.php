@@ -1515,6 +1515,8 @@ $1",
 'logdelete-failure'           => "'''Log visibility could not be set:'''
 $1",
 'revdel-restore'              => 'change visibility',
+'revdel-restore-deleted'      => 'deleted revisions',
+'revdel-restore-visible'      => 'visible revisions',
 'pagehist'                    => 'Page history',
 'deletedhist'                 => 'Deleted history',
 'revdelete-content'           => 'content',
