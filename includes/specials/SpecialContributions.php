@@ -604,15 +604,18 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
-		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$d = '<span class="history-deleted">' . $date . '</span>';
-		} else {
+		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
 			$d = $sk->linkKnown(
 				$page,
 				htmlspecialchars($date),
 				array(),
 				array( 'oldid' => intval( $row->rev_id ) )
 			);
+		} else {
+			$d = $date;
+		}
+		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			$d = '<span class="history-deleted">' . $d . '</span>';
 		}
 
 		if( $this->target == 'newbies' ) {
