@@ -217,15 +217,26 @@ class ApiParse extends ApiBase {
 							$titleObj->getPrefixedText();
 		}
 
+		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
+			$out = new OutputPage;
+			$out->addParserOutputNoText( $p_result );
+			$userSkin = $wgUser->getSkin();
+		}
+
 		if ( isset( $prop['headitems'] ) ) {
-			$result_array['headitems'] = $this->formatHeadItems( $p_result->getHeadItems() );
+			$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
+
+			$userSkin->setupUserCss( $out );
+			$css = $this->formatCss( $out->buildCssLinksArray() );
+
+			$scripts = array( $out->getHeadScripts( $userSkin ) );
+
+			$result_array['headitems'] = array_merge( $headItems , $css, $scripts );
 		}
 
 		if ( isset( $prop['headhtml'] ) ) {
-			$out = new OutputPage;
-			$out->addParserOutputNoText( $p_result );
 			$result_array['headhtml'] = array();
-			$result->setContent( $result_array['headhtml'], $out->headElement( $wgUser->getSkin() ) );
+			$result->setContent( $result_array['headhtml'], $out->headElement( $userSkin ) );
 		}
 
 		if ( !is_null( $oldid ) ) {
@@ -241,7 +252,7 @@ class ApiParse extends ApiBase {
 			'images' => 'img',
 			'externallinks' => 'el',
 			'sections' => 's',
-			'headitems' => 'hi'
+			'headitems' => 'hi',
 		);
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
@@ -305,6 +316,17 @@ class ApiParse extends ApiBase {
 			$entry = array();
 			$entry['tag'] = $tag;
 			$this->getResult()->setContent( $entry, $content );
+			$result[] = $entry;
+		}
+		return $result;
+	}
+
+	private function formatCss( $css ) {
+		$result = array();
+		foreach ( $css as $file => $link ) {
+			$entry = array();
+			$entry['file'] = $file;
+			$this->getResult()->setContent( $entry, $link );
 			$result[] = $entry;
 		}
 		return $result;
