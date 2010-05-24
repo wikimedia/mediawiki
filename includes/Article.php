@@ -3487,8 +3487,7 @@ class Article {
 			return;
 		}
 
-		$unhide = $wgRequest->getInt( 'unhide' ) == 1 &&
-			$wgUser->matchEditToken( $wgRequest->getVal( 'token' ), $oldid );
+		$unhide = $wgRequest->getInt( 'unhide' ) == 1;
 		# Cascade unhide param in links for easy deletion browsing
 		$extraParams = array();
 		if ( $wgRequest->getVal( 'unhide' ) ) {
