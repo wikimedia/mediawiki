@@ -73,6 +73,7 @@ class ApiQuery extends ApiBase {
 		'embeddedin' => 'ApiQueryBacklinks',
 		'filearchive' => 'ApiQueryFilearchive',
 		'imageusage' => 'ApiQueryBacklinks',
+		'iwbacklinks' => 'ApiQueryIWBacklinks',
 		'logevents' => 'ApiQueryLogEvents',
 		'recentchanges' => 'ApiQueryRecentChanges',
 		'search' => 'ApiQuerySearch',

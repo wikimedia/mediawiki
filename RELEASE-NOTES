@@ -187,6 +187,7 @@ in a negative namespace (which is invalid).
 * (bug 21346) Make deleted images searchable by hash
 * (bug 23461) Normalise usage of parameter names in parameter descriptions
 * (bug 23548) Allow access of another users watchlist through watchlistraw using token and username
+* (bug 23524) Api Modules as followup to bug 14473 (Add iwlinks table to track inline interwiki link usage
 
 === Languages updated in 1.17 ===
 
