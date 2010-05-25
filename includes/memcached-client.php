@@ -239,7 +239,7 @@ class MWMemcached {
 	/**
 	 * Memcache initializer
 	 *
-	 * @param   array    $args    Associative array of settings
+	 * @param $args Associative array of settings
 	 *
 	 * @return  mixed
 	 */
@@ -270,11 +270,11 @@ class MWMemcached {
 	 * Adds a key/value to the memcache server if one isn't already set with
 	 * that key
 	 *
-	 * @param   string  $key     Key to set with data
-	 * @param   mixed   $val     Value to store
-	 * @param   integer $exp     (optional) Time to expire data at
+	 * @param $key String: key to set with data
+	 * @param $val Mixed: value to store
+	 * @param $exp Integer: (optional) time to expire data at
 	 *
-	 * @return  boolean
+	 * @return Boolean
 	 */
 	public function add( $key, $val, $exp = 0 ) {
 		return $this->_set( 'add', $key, $val, $exp );
@@ -286,10 +286,10 @@ class MWMemcached {
 	/**
 	 * Decriment a value stored on the memcache server
 	 *
-	 * @param   string   $key     Key to decriment
-	 * @param   integer  $amt     (optional) Amount to decriment
+	 * @param $key String: key to decriment
+	 * @param $amt Integer: (optional) amount to decriment
 	 *
-	 * @return  mixed    FALSE on failure, value on success
+	 * @return Mixed: FALSE on failure, value on success
 	 */
 	public function decr( $key, $amt = 1 ) {
 		return $this->_incrdecr( 'decr', $key, $amt );
@@ -301,10 +301,10 @@ class MWMemcached {
 	/**
 	 * Deletes a key from the server, optionally after $time
 	 *
-	 * @param   string   $key     Key to delete
-	 * @param   integer  $time    (optional) How long to wait before deleting
+	 * @param $key String: key to delete
+	 * @param $time Integer: (optional) how long to wait before deleting
 	 *
-	 * @return  boolean  TRUE on success, FALSE on failure
+	 * @return Boolean: TRUE on success, FALSE on failure
 	 */
 	public function delete( $key, $time = 0 ) {
 		if ( !$this->_active ) {
@@ -356,7 +356,7 @@ class MWMemcached {
 	/**
 	 * Enable / Disable compression
 	 *
-	 * @param   boolean  $enable  TRUE to enable, FALSE to disable
+	 * @param $enable Boolean: TRUE to enable, FALSE to disable
 	 */
 	public function enable_compress( $enable ) {
 		$this->_compress_enable = $enable;
@@ -378,9 +378,9 @@ class MWMemcached {
 	/**
 	 * Retrieves the value associated with the key from the memcache server
 	 *
-	 * @param  string   $key     Key to retrieve
+	 * @param $key Mixed: key to retrieve
 	 *
-	 * @return  mixed
+	 * @return Mixed
 	 */
 	public function get( $key ) {
 		wfProfileIn( __METHOD__ );
@@ -429,9 +429,9 @@ class MWMemcached {
 	/**
 	 * Get multiple keys from the server(s)
 	 *
-	 * @param   array    $keys    Keys to retrieve
+	 * @param $keys Array: keys to retrieve
 	 *
-	 * @return  array
+	 * @return Array
 	 */
 	public function get_multi( $keys ) {
 		if ( !$this->_active ) {
@@ -490,10 +490,10 @@ class MWMemcached {
 	/**
 	 * Increments $key (optionally) by $amt
 	 *
-	 * @param   string   $key     Key to increment
-	 * @param   integer  $amt     (optional) amount to increment
+	 * @param $key String: key to increment
+	 * @param $amt Integer: (optional) amount to increment
 	 *
-	 * @return  integer  New key value?
+	 * @return Integer: new key value?
 	 */
 	public function incr( $key, $amt = 1 ) {
 		return $this->_incrdecr( 'incr', $key, $amt );
@@ -505,11 +505,11 @@ class MWMemcached {
 	/**
 	 * Overwrites an existing value for key; only works if key is already set
 	 *
-	 * @param   string   $key     Key to set value as
-	 * @param   mixed    $value   Value to store
-	 * @param   integer  $exp     (optional) Experiation time
+	 * @param $key String: key to set value as
+	 * @param $value Mixed: value to store
+	 * @param $exp Integer: (optional) experiation time
 	 *
-	 * @return  boolean
+	 * @return Boolean
 	 */
 	public function replace( $key, $value, $exp = 0 ) {
 		return $this->_set( 'replace', $key, $value, $exp );
@@ -528,13 +528,12 @@ class MWMemcached {
 	 *       with a \n.  This is with the PHP flag auto_detect_line_endings set
 	 *       to falase (the default).
 	 *
-	 * @param   resource $sock    Socket to send command on
-	 * @param   string   $cmd     Command to run
+	 * @param $sock Ressource: socket to send command on
+	 * @param $cmd String: command to run
 	 *
-	 * @return  array    Output array
-	 * @access  public
+	 * @return Array: output array
 	 */
-	function run_command( $sock, $cmd ) {
+	public function run_command( $sock, $cmd ) {
 		if ( !is_resource( $sock ) ) {
 			return array();
 		}
@@ -563,11 +562,11 @@ class MWMemcached {
 	 * Unconditionally sets a key to a given value in the memcache.  Returns true
 	 * if set successfully.
 	 *
-	 * @param   string   $key     Key to set value as
-	 * @param   mixed    $value   Value to set
-	 * @param   integer  $exp     (optional) Experiation time
+	 * @param $key String: key to set value as
+	 * @param $value Mixed: value to set
+	 * @param $exp Integer: (optional) Experiation time
 	 *
-	 * @return  boolean  TRUE on success
+	 * @return Boolean: TRUE on success
 	 */
 	public function set( $key, $value, $exp = 0 ) {
 		return $this->_set( 'set', $key, $value, $exp );
@@ -579,7 +578,7 @@ class MWMemcached {
 	/**
 	 * Sets the compression threshold
 	 *
-	 * @param   integer  $thresh  Threshold to compress if larger than
+	 * @param $thresh Integer: threshold to compress if larger than
 	 */
 	public function set_compress_threshold( $thresh ) {
 		$this->_compress_threshold = $thresh;
@@ -591,7 +590,7 @@ class MWMemcached {
 	/**
 	 * Sets the debug flag
 	 *
-	 * @param   boolean  $dbg     TRUE for debugging, FALSE otherwise
+	 * @param $dbg Boolean: TRUE for debugging, FALSE otherwise
 	 *
 	 * @see     MWMemcached::__construct
 	 */
@@ -605,7 +604,7 @@ class MWMemcached {
 	/**
 	 * Sets the server list to distribute key gets and puts between
 	 *
-	 * @param   array    $list    Array of servers to connect to
+	 * @param $list Array of servers to connect to
 	 *
 	 * @see     MWMemcached::__construct()
 	 */
@@ -624,8 +623,8 @@ class MWMemcached {
 	/**
 	 * Sets the timeout for new connections
 	 *
-	 * @param   integer  $seconds Number of seconds
-	 * @param   integer  $microseconds  Number of microseconds
+	 * @param $seconds Integer: number of seconds
+	 * @param $microseconds Integer: number of microseconds
 	 */
 	public function set_timeout( $seconds, $microseconds ) {
 		$this->_timeout_seconds = $seconds;
@@ -640,7 +639,7 @@ class MWMemcached {
 	/**
 	 * Close the specified socket
 	 *
-	 * @param   string   $sock    Socket to close
+	 * @param $sock String: socket to close
 	 *
 	 * @access  private
 	 */
@@ -656,8 +655,8 @@ class MWMemcached {
 	/**
 	 * Connects $sock to $host, timing out after $timeout
 	 *
-	 * @param   integer  $sock    Socket to connect
-	 * @param   string   $host    Host:IP to connect to
+	 * @param $sock Integer: socket to connect
+	 * @param $host String: Host:IP to connect to
 	 *
 	 * @return  boolean
 	 * @access  private
@@ -693,7 +692,7 @@ class MWMemcached {
 	/**
 	 * Marks a host as dead until 30-40 seconds in the future
 	 *
-	 * @param   string   $sock    Socket to mark as dead
+	 * @param $sock String: socket to mark as dead
 	 *
 	 * @access  private
 	 */
@@ -715,10 +714,10 @@ class MWMemcached {
 	/**
 	 * get_sock
 	 *
-	 * @param   string   $key     Key to retrieve value for;
+	 * @param $key String: key to retrieve value for;
 	 *
-	 * @return  mixed    resource on success, false on failure
-	 * @access  private
+	 * @return Mixed: resource on success, false on failure
+	 * @access private
 	 */
 	function get_sock( $key ) {
 		if ( !$this->_active ) {
@@ -764,12 +763,12 @@ class MWMemcached {
 	// {{{ _hashfunc()
 
 	/**
-	 * Creates a hash integer	based on the $key
+	 * Creates a hash integer based on the $key
 	 *
-	 * @param   string   $key     Key to hash
+	 * @param $key String: key to hash
 	 *
-	 * @return  integer  Hash value
-	 * @access  private
+	 * @return Integer: hash value
+	 * @access private
 	 */
 	function _hashfunc( $key ) {
 		# Hash function must on [0,0x7ffffff]
@@ -784,12 +783,12 @@ class MWMemcached {
 	/**
 	 * Perform increment/decriment on $key
 	 *
-	 * @param   string   $cmd     Command to perform
-	 * @param   string   $key     Key to perform it on
-	 * @param   integer  $amt     Amount to adjust
+	 * @param $cmd String: command to perform
+	 * @param $key String: key to perform it on
+	 * @param $amt Integer: amount to adjust
 	 *
-	 * @return  integer     New value of $key
-	 * @access  private
+	 * @return Integer: new value of $key
+	 * @access private
 	 */
 	function _incrdecr( $cmd, $key, $amt = 1 ) {
 		if ( !$this->_active ) {
@@ -821,10 +820,10 @@ class MWMemcached {
 	/**
 	 * Load items into $ret from $sock
 	 *
-	 * @param   resource $sock    Socket to read from
-	 * @param   array    $ret     Returned values
+	 * @param $sock Ressource: socket to read from
+	 * @param $ret Array: returned values
 	 *
-	 * @access  private
+	 * @access private
 	 */
 	function _load_items( $sock, &$ret ) {
 		while ( 1 ) {
@@ -881,13 +880,13 @@ class MWMemcached {
 	/**
 	 * Performs the requested storage operation to the memcache server
 	 *
-	 * @param   string   $cmd     Command to perform
-	 * @param   string   $key     Key to act on
-	 * @param   mixed    $val     What we need to store
-	 * @param   integer  $exp     When it should expire
+	 * @param $cmd String: command to perform
+	 * @param $key String: key to act on
+	 * @param $val Mixed: what we need to store
+	 * @param $exp Integer: when it should expire
 	 *
-	 * @return  boolean
-	 * @access  private
+	 * @return Boolean
+	 * @access private
 	 */
 	function _set( $cmd, $key, $val, $exp ) {
 		if ( !$this->_active ) {
@@ -949,10 +948,10 @@ class MWMemcached {
 	/**
 	 * Returns the socket for the host
 	 *
-	 * @param   string   $host    Host:IP to get socket for
+	 * @param $host String: Host:IP to get socket for
 	 *
-	 * @return  mixed    IO Stream or false
-	 * @access  private
+	 * @return Mixed: IO Stream or false
+	 * @access private
 	 */
 	function sock_to_host( $host ) {
 		if ( isset( $this->_cache_sock[$host] ) ) {
@@ -987,7 +986,7 @@ class MWMemcached {
 	/**
 	 * Write to a stream, timing out after the correct amount of time
 	 *
-	 * @return bool false on failure, true on success
+	 * @return Boolean: false on failure, true on success
 	 */
 	/*
 	function _safe_fwrite( $f, $buf, $len = false ) {
