@@ -23,7 +23,7 @@ class SkinVector extends SkinTemplate {
 
 	/**
 	 * Initializes output page and sets up skin-specific parameters
-	 * @param $out Output page object to initialize
+	 * @param $out OutputPage object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
 		global $wgLocalStylePath;
