@@ -322,7 +322,13 @@ class ApiParse extends ApiBase {
 			foreach ( $titles as $title => $id ) {
 				$entry = array();
 				$entry['prefix'] = $prefix;
-				$this->getResult()->setContent( $entry, Title::makeTitle( $ns, $title )->getFullText() );
+				
+				$title = Title::newFromText( "{$prefix}:{$title}" );
+				if ( $title ) {
+					$entry['url'] = $title->getFullURL();
+				}
+				
+				$this->getResult()->setContent( $entry, $title->getFullText() );
 				$result[] = $entry;
 			}
 		}
