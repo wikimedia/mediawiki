@@ -550,8 +550,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'activeusers-hidesysops' => 'Verwalter verschwinne losse',
 
 # Special:ListGroupRights
-'listgrouprights'              => 'Benutzergruppen-Rechte
-Rechte vun Yuuser-Druppe',
+'listgrouprights'              => 'Rechte vun Yuuser-Druppe',
 'listgrouprights-group'        => 'Druppe',
 'listgrouprights-rights'       => 'Rechte',
 'listgrouprights-helppage'     => 'Help:Rechte vun Druppe',

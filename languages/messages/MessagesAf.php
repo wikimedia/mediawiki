@@ -1024,6 +1024,8 @@ $1",
 'logdelete-failure'           => "'''Sigbaarheid kon nie vir die logboekreël gestel word nie:'''
 $1",
 'revdel-restore'              => 'Verander sigbaarheid',
+'revdel-restore-deleted'      => 'geskrapte wysigings',
+'revdel-restore-visible'      => 'sigbare wysigings',
 'pagehist'                    => 'Bladsy geskiedenis',
 'deletedhist'                 => 'Verwyderde geskiedenis',
 'revdelete-content'           => 'inhoud',
@@ -1610,6 +1612,11 @@ Dink twee keer na of dit wel gepas is om die lêer hier op te laai.
 Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'filename-bad-prefix'         => "Die naam van die lêer wat u besig is om op te laai begin met '''\"\$1\"''', wat 'n nie-beskrywende term is, gewoonlik outomaties toegedien deur digitale kameras.
 Kies asseblief 'n meer beskrywende naam vir die lêer.",
+'upload-successful-msg'       => 'U oplaai is hier beskikbaar: $1',
+'upload-failure-subj'         => 'Oplaaiprobleem',
+'upload-failure-msg'          => "Daar was 'n probleem met u oplaai:
+
+$1",
 
 'upload-proto-error'        => 'Verkeerde protokol',
 'upload-proto-error-text'   => 'Oplaaie via hierdie metode vereis dat die URL met <code>http://</code> of <code>ftp://</code> begin.',
@@ -2007,6 +2014,10 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'emailsent'            => 'E-pos gestuur',
 'emailsenttext'        => 'U e-pos is gestuur.',
 'emailuserfooter'      => 'Hierdie e-pos is gestuur deur $1 aan $2 met behulp van die "Stuur e-pos aan die gebruiker"-funksie van {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Verlaat stelselboodskap.',
+'usermessage-editor'  => 'Stelselboodskapper',
 
 # Watchlist
 'watchlist'            => 'My dophoulys',
@@ -2587,6 +2598,7 @@ Alle transwiki-laaie word opgeteken in die [[Special:Log/import|invoer-logboek]]
 'importstart'                => 'Importeer bladsye...',
 'import-revision-count'      => '$1 {{PLURAL:$1|weergawe|weergawes}}',
 'importnopages'              => 'Geen bladsye om te importeer nie.',
+'imported-log-entries'       => '$1 {{PLURAL:$1|logboekreël|logboekreëls}} geïmporteer.',
 'importfailed'               => 'Intrek onsuksesvol: $1',
 'importunknownsource'        => 'Onbekende brontipe.',
 'importcantopen'             => 'Kon nie lêer oopmaak nie',
@@ -3223,17 +3235,17 @@ Probeer normale voorskou.',
 'watchlistedit-noitems'        => 'U dophoulys bevat geen bladsye.',
 'watchlistedit-normal-title'   => 'Wysig dophoulys',
 'watchlistedit-normal-legend'  => 'Verwyder titels van dophoulys',
-'watchlistedit-normal-explain' => "Die bladsye in u dophoulys word hier onder vertoon. 
-Selekteer die titels wat verwyder moet word en kliek op 'Verwyder Titels' onder aan die bladsy.
-Alternatiewelik kan u die [[Special:Watchlist/raw|bronkode wysig]].",
+'watchlistedit-normal-explain' => 'Die bladsye in u dophoulys word hier onder vertoon. 
+Selekteer die titels wat verwyder moet word en kliek op {{int:Watchlistedit-normal-submit}}" onder aan die bladsy.
+Alternatiewelik kan u die [[Special:Watchlist/raw|bronkode wysig]].',
 'watchlistedit-normal-submit'  => 'Verwyder Titels',
 'watchlistedit-normal-done'    => 'Daar is {{PLURAL:$1|1 bladsy|$1 bladsye}} van u dophoulys verwyder:',
 'watchlistedit-raw-title'      => 'Wysig u dophoulys se bronkode',
 'watchlistedit-raw-legend'     => 'Wysig u dophoulys se bronkode',
-'watchlistedit-raw-explain'    => "Die bladsye in u dophoulys word hier onder vertoon.
+'watchlistedit-raw-explain'    => 'Die bladsye in u dophoulys word hier onder vertoon.
 U kan die lys wysig deur titels by te sit of te verwyder (een bladsy per lyn).
-As u klaar is, klik op 'Opdateer dophoulys' onder aan die bladsy.
-U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].",
+As u klaar is, klik op "{{int:Watchlistedit-raw-submit}}" onder aan die bladsy.
+U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].',
 'watchlistedit-raw-titles'     => 'Titels:',
 'watchlistedit-raw-submit'     => 'Opdateer dophoulys',
 'watchlistedit-raw-done'       => 'U dophoulys is opgedateer.',
