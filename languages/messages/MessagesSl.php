@@ -997,6 +997,8 @@ $1",
 'logdelete-failure'           => "'''Vidnost dnevnika ne more biti nastavljena!:'''
 $1",
 'revdel-restore'              => 'Spremeni vidnost',
+'revdel-restore-deleted'      => 'izbrisane redakcije',
+'revdel-restore-visible'      => 'vidne redakcije',
 'pagehist'                    => 'Zgodovina strani',
 'deletedhist'                 => 'Zgodovina brisanja',
 'revdelete-content'           => 'vsebino',

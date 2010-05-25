@@ -149,6 +149,7 @@ $messages = array(
 # Edit pages
 'summary'     => 'Ятарлă саспаллисем:',
 'savearticle' => 'Адаҟьа ахьчара',
+'editing'     => 'Ариашамҭа: $1',
 
 # Preferences page
 'uid'          => 'Иалоу ID:',

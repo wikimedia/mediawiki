@@ -1003,6 +1003,8 @@ $1",
 'logdelete-failure'           => "'''Sąrašo rodomumas negali būti nustatytas:'''
 $1",
 'revdel-restore'              => 'Keisti matomumą',
+'revdel-restore-deleted'      => 'Ištrintos versijos',
+'revdel-restore-visible'      => 'Matomos versijos',
 'pagehist'                    => 'Puslapio istorija',
 'deletedhist'                 => 'Ištrinta istorija',
 'revdelete-content'           => 'turinys',
@@ -1111,6 +1113,7 @@ Prašome patikrinti sąrašus.',
 'searchprofile-everything-tooltip' => 'Ieškoti viso turinio (tame tarpe aptarimų puslapių)',
 'searchprofile-advanced-tooltip'   => 'Ieškoti skirtingose vardų srityse',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 žodis|$2 žodžiai|$2 žodžių}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 narys|$1 narių}} ({{PLURAL:$2|1 subkategorijoje|$2 subkategorijų}}, {{PLURAL:$3|1 failas|$3 failų}})',
 'search-result-score'              => 'Tinkamumas: $1%',
 'search-redirect'                  => '(peradresavimas $1)',
 'search-section'                   => '(skyrius $1)',
@@ -1472,6 +1475,9 @@ Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra '''paryškin
 'upload_directory_missing'    => 'Nėra įkėlimo aplanko ($1) ir negali būti sukurtas tinklo serverio.',
 'upload_directory_read_only'  => 'Tinklapio serveris negali rašyti į įkėlimo aplanką ($1).',
 'uploaderror'                 => 'Įkėlimo klaida',
+'upload-recreate-warning'     => "'''Dėmėsio: Failas šiuo pavadinimu buvo ištrintas arba pervadintas.'''
+
+Jūsų patogumui pateiktas įrašas apie šio puslapio trynimą ar pervadinimą:",
 'uploadtext'                  => "Naudokitės žemiau pateikta forma failų įkėlimui.
 Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai yra registruojami [[Special:Log/upload|įkėlimų istorijoje]], trynimai — [[Special:Log/delete|trynimų istorijoje]].
 
@@ -1503,6 +1509,16 @@ Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
 'filetype-unwanted-type'      => "„.$1“''' yra nepageidautinas failo tipas. {{PLURAL:$3|Pageidautinas failų tipas|pageidautini failų tipai}} yra $2.",
 'filetype-banned-type'        => "„.$1“''' nėra leistinas failo tipas. {{PLURAL:$3|Leistinas failų tipas|Leistini failų tipai}} yra $2.",
 'filetype-missing'            => 'Failas neturi galūnės (pavyzdžiui „.jpg“).',
+'empty-file'                  => 'Failas, kurį patvirtinote, tuščias.',
+'file-too-large'              => 'Failas, kurį patvirtinote, pernelyg didelis.',
+'filename-tooshort'           => 'Failo pavadinimas per trumpas.',
+'filetype-banned'             => 'Šis failo tipas yra uždraustas.',
+'verification-error'          => 'Šis failas nepraėjo patikrinimo.',
+'illegal-filename'            => 'Failo vardas neleidžiamas.',
+'overwrite'                   => 'Perrašyti esamą failą neleidžiama.',
+'unknown-error'               => 'Įvyko nežinoma klaida.',
+'tmp-create-error'            => 'Nepavyko sukurti laikino failo.',
+'tmp-write-error'             => 'Klaida rašant laikinąjį failą.',
 'large-file'                  => 'Rekomenduojama, kad failų dydis būtų nedidesnis nei $1; šio failo dydis yra $2.',
 'largefileserver'             => 'Šis failas yra didesnis nei serveris yra sukonfigūruotas leisti.',
 'emptyfile'                   => 'Panašu, kad failas, kurį įkėlėte yra tuščias. Tai gali būti dėl klaidos failo pavadinime. Pasitikrinkite ar tikrai norite įkelti šitą failą.',
@@ -1535,6 +1551,8 @@ Jei visvien norite įkelti savo failą, prašome eiti atgal ir įkelti šį fail
 'uploadedimage'               => 'įkėlė „[[$1]]“',
 'overwroteimage'              => 'įkėlė naują „[[$1]]“ versiją',
 'uploaddisabled'              => 'Įkėlimai uždrausti',
+'copyuploaddisabled'          => 'Įkėlimas pagal URL išjungtas.',
+'uploadfromurl-queued'        => 'Jūsų įkėlimas įtrauktas į eilę.',
 'uploaddisabledtext'          => 'Failų įkėlimai yra uždrausti.',
 'php-uploaddisabledtext'      => "Failų įkėlimai uždrausti PHP nustatymuose.
 Patikrinkite ''file_uploads'' nustatą.",
@@ -1554,6 +1572,11 @@ Patikrinkite ''file_uploads'' nustatą.",
 Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 Šio failo šalinimų istorija yra pateikta dėl patogumo:",
 'filename-bad-prefix'         => "Jūsų įkeliamas failas prasideda su '''„$1“''', bet tai yra neapibūdinantis pavadinimas, dažniausiai priskirtas skaitmeninių kamerų. Prašome suteikti labiau apibūdinantį pavadinimą savo failui.",
+'upload-successful-msg'       => 'Jūsų įkėlimą galima rasti čia: $ 1',
+'upload-failure-subj'         => 'Įkėlimo problema',
+'upload-failure-msg'          => 'Įvyko įkėlimo problema:
+
+$1',
 
 'upload-proto-error'        => 'Neteisingas protokolas',
 'upload-proto-error-text'   => 'Nuotoliniai įkėlimas reikalauja, kad URL prasidėtų <code>http://</code> arba <code>ftp://</code>.',
@@ -1920,29 +1943,35 @@ Palaikomi protokolai: <tt>$1</tt>',
 'listgrouprights-removegroup-self-all' => 'Pašalinti visas grupes iš savo paskyros',
 
 # E-mail user
-'mailnologin'      => 'Nėra adreso',
-'mailnologintext'  => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]] ir turi būti įvestas teisingas el. pašto adresas jūsų [[Special:Preferences|nustatymuose]], kad siųstumėte el. laiškus kitiems nautotojams.',
-'emailuser'        => 'Rašyti laišką šiam naudotojui',
-'emailpage'        => 'Siųsti el. laišką naudotojui',
-'emailpagetext'    => 'Jūs gali pasinaudoti šia forma norėdami nusiųsti el. laišką šiam naudotojui.
+'mailnologin'          => 'Nėra adreso',
+'mailnologintext'      => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]] ir turi būti įvestas teisingas el. pašto adresas jūsų [[Special:Preferences|nustatymuose]], kad siųstumėte el. laiškus kitiems nautotojams.',
+'emailuser'            => 'Rašyti laišką šiam naudotojui',
+'emailpage'            => 'Siųsti el. laišką naudotojui',
+'emailpagetext'        => 'Jūs gali pasinaudoti šia forma norėdami nusiųsti el. laišką šiam naudotojui.
 El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustatymuose]], bus rodomas kaip el. pašto siuntėjo adresas, tam, kad gavėjas galėtų jums iškart atsakyti.',
-'usermailererror'  => 'Pašto objektas grąžino klaidą:',
-'defemailsubject'  => '{{SITENAME}} el. paštas',
-'noemailtitle'     => 'Nėra el. pašto adreso',
-'noemailtext'      => 'Šis naudotojas nėra nurodęs teisingo el. pašto adreso, arba yra pasirinkęs negauti el. pašto iš kitų naudotojų.',
-'nowikiemailtitle' => 'El. laiškai neleidžiami',
-'nowikiemailtext'  => 'Šis naudotojas yra pasirinkęs negauti elektroninių laiškų iš kitų naudotojų.',
-'email-legend'     => 'Siųsti elektroninį laišką kitam {{SITENAME}} naudotojui',
-'emailfrom'        => 'Nuo:',
-'emailto'          => 'Kam:',
-'emailsubject'     => 'Tema:',
-'emailmessage'     => 'Tekstas:',
-'emailsend'        => 'Siųsti',
-'emailccme'        => 'Siųsti man mano laiško kopiją.',
-'emailccsubject'   => 'Laiško kopija naudotojui $1: $2',
-'emailsent'        => 'El. laiškas išsiųstas',
-'emailsenttext'    => 'Jūsų el. pašto žinutė išsiųsta.',
-'emailuserfooter'  => 'Šis elektroninis laiškas buvo išsiųstas naudotojo $1 naudotojui $2 naudojant „Rašyti elektroninį laišką“ funkciją projekte {{SITENAME}}.',
+'usermailererror'      => 'Pašto objektas grąžino klaidą:',
+'defemailsubject'      => '{{SITENAME}} el. paštas',
+'usermaildisabled'     => 'Naudotojo elektroninis paštas išjungtas',
+'usermaildisabledtext' => 'Jūs negalite siūlsti el. laiško kitiems šio wiki projekto naudotojams.',
+'noemailtitle'         => 'Nėra el. pašto adreso',
+'noemailtext'          => 'Šis naudotojas nėra nurodęs teisingo el. pašto adreso, arba yra pasirinkęs negauti el. pašto iš kitų naudotojų.',
+'nowikiemailtitle'     => 'El. laiškai neleidžiami',
+'nowikiemailtext'      => 'Šis naudotojas yra pasirinkęs negauti elektroninių laiškų iš kitų naudotojų.',
+'email-legend'         => 'Siųsti elektroninį laišką kitam {{SITENAME}} naudotojui',
+'emailfrom'            => 'Nuo:',
+'emailto'              => 'Kam:',
+'emailsubject'         => 'Tema:',
+'emailmessage'         => 'Tekstas:',
+'emailsend'            => 'Siųsti',
+'emailccme'            => 'Siųsti man mano laiško kopiją.',
+'emailccsubject'       => 'Laiško kopija naudotojui $1: $2',
+'emailsent'            => 'El. laiškas išsiųstas',
+'emailsenttext'        => 'Jūsų el. pašto žinutė išsiųsta.',
+'emailuserfooter'      => 'Šis elektroninis laiškas buvo išsiųstas naudotojo $1 naudotojui $2 naudojant „Rašyti elektroninį laišką“ funkciją projekte {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Paliekamas sistemos pranešimas.',
+'usermessage-editor'  => 'Sistemos pranešėjas',
 
 # Watchlist
 'watchlist'            => 'Stebimi puslapiai',
@@ -2529,6 +2558,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'importstart'                => 'Imporuojami puslapiai...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versija|versijos|versijų}}',
 'importnopages'              => 'Nėra puslapių importavimui.',
+'imported-log-entries'       => 'Importuota $1 {{PLURAL:$1|prisijungimo įrašas|prisijungimo įrašai}}.',
 'importfailed'               => 'Importavimas nepavyko: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'Nežinomas importo šaltinio tipas',
 'importcantopen'             => 'Nepavyksta atverti importo failo',
@@ -2622,6 +2652,8 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-rollback'                => 'Atšaukti atmestus šio puslapio pakeitimus į paskutinę versiją vienu spustelėjimu',
 'tooltip-undo'                    => '„Anuliuoti“ atmeta šį keitimą ir atveria ankstesnės versijos redagavimo formą.
 Leidžia pridėti atmetimo priežastį komentaruose',
+'tooltip-preferences-save'        => 'Išsaugoti nustatymus',
+'tooltip-summary'                 => 'Įvesti trumpą santrauką',
 
 # Stylesheets
 'common.css'   => '/** Čia įdėtas CSS bus taikomas visoms išvaizdoms */',
@@ -3170,14 +3202,16 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'watchlistedit-noitems'        => 'Jūsų stebimųjų sąraše nėra jokių puslapių.',
 'watchlistedit-normal-title'   => 'Redaguoti stebimųjų sąrašą',
 'watchlistedit-normal-legend'  => 'Šalinti puslapius iš stebimųjų sąrašo',
-'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše. Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „Šalinti puslapius“. Jūs taip pat galite [[Special:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]].',
+'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše. 
+Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „{{int:Watchlistedit-normal-submit}}“. 
+Jūs taip pat galite [[Special:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]].',
 'watchlistedit-normal-submit'  => 'Šalinti puslapius',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}} iš jūsų stebimųjų sąrašo:',
 'watchlistedit-raw-title'      => 'Redaguoti grynąjį stebimųjų sąrašą',
 'watchlistedit-raw-legend'     => 'Redaguoti grynąjį stebimųjų sąrašą',
 'watchlistedit-raw-explain'    => 'Žemiau rodomi puslapiai jūsų stebimųjų sąraše, ir gali būti pridėti į ar pašalinti iš sąrašo;
 vienas puslapis eilutėje.
-Baigę paspauskite „Atnaujinti stebimųjų sąrašą“.
+Baigę paspauskite „{{int:Watchlistedit-raw-submit}}“.
 Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]].',
 'watchlistedit-raw-titles'     => 'Puslapiai:',
 'watchlistedit-raw-submit'     => 'Atnaujinti stebimųjų sąrašą',
@@ -3296,6 +3330,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'htmlform-float-invalid'       => 'Nurodyta reikšmė nėra skaičius.',
 'htmlform-int-toolow'          => 'Reikšmė, kurią nurodėte, yra mažesnė nei mažiausia leistina $1',
 'htmlform-int-toohigh'         => 'Reikšmė, kurią nurodėte, yra didesnė nei didžiausia leistina $1',
+'htmlform-required'            => 'Ši vertė būtina',
 'htmlform-submit'              => 'Siųsti',
 'htmlform-reset'               => 'Atšaukti pakeitimus',
 'htmlform-selectorother-other' => 'Kita',

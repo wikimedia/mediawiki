@@ -320,8 +320,8 @@ $messages = array(
 'editfont-style'     => 'Фонт кој се користи во прозорецот за уредување:',
 'editfont-default'   => 'Основен прелистувач:',
 'editfont-monospace' => 'Пропорционален фонт',
-'editfont-sansserif' => 'Фонт без шерифи',
-'editfont-serif'     => 'Шериф фонт',
+'editfont-sansserif' => 'Бессерифен фонт',
+'editfont-serif'     => 'Серифен фонт',
 
 # Dates
 'sunday'        => 'Недела',
