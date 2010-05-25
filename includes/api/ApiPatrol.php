@@ -83,9 +83,7 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Patrol a page or revision'
-		);
+		return 'Patrol a page or revision';
 	}
 
 	public function getPossibleErrors() {

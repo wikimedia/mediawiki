@@ -115,9 +115,7 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Add/remove a user to/from groups',
-		);
+		return 'Add/remove a user to/from groups';
 	}
 
 	public function getPossibleErrors() {

@@ -332,9 +332,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Returns image information and upload history'
-		);
+		return 'Returns image information and upload history';
 	}
 
 	public function getPossibleErrors() {

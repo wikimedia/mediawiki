@@ -89,9 +89,7 @@ class ApiWatch extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Add or remove a page from/to the current user\'s watchlist'
-		);
+		return 'Add or remove a page from/to the current user\'s watchlist';
 	}
 
 	public function getPossibleErrors() {

@@ -109,9 +109,7 @@ class ApiEmailUser extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Email a user.'
-		);
+		return 'Email a user.';
 	}
 
 	public function getPossibleErrors() {

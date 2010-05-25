@@ -98,9 +98,7 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Purge the cache for the given titles'
-		);
+		return 'Purge the cache for the given titles';
 	}
 
 	public function getPossibleErrors() {
