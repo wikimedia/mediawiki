@@ -74,9 +74,7 @@ class ApiGo extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Determine the title one will be taken to by a "Go" search, if any'
-		);
+		return 'Determine the title one will be taken to by a "Go" search, if any';
 	}
 	
 	public function getPossibleErrors() {

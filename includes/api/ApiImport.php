@@ -141,9 +141,7 @@ class ApiImport extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Import a page from another wiki, or an XML file'
-		);
+		return 'Import a page from another wiki, or an XML file';
 	}
 
 	public function getPossibleErrors() {

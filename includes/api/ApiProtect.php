@@ -193,9 +193,7 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function getDescription() {
-		return array(
-			'Change the protection level of a page'
-		);
+		return 'Change the protection level of a page';
 	}
 
 	public function getPossibleErrors() {
