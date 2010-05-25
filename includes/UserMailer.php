@@ -99,7 +99,7 @@ class UserMailer {
 	 * array of parameters. It requires PEAR:Mail to do that.
 	 * Otherwise it just uses the standard PHP 'mail' function.
 	 *
-	 * @param $to MailAddress: recipient's email
+	 * @param $to MailAddress: recipient's email (or an array of them)
 	 * @param $from MailAddress: sender's email
 	 * @param $subject String: email's subject.
 	 * @param $body String: email's text.
@@ -112,6 +112,12 @@ class UserMailer {
 		global $wgEnotifMaxRecips;
 
 		if ( is_array( $to ) ) {
+			// This wouldn't be necessary if implode() worked on arrays of
+			// objects using __toString(). http://bugs.php.net/bug.php?id=36612
+			foreach( $to as $t ) {
+				$emails .= $t->toString() . ",";
+			}
+			$emails = rtrim( $emails, ',' );
 			wfDebug( __METHOD__.': sending mail to ' . implode( ',', $to ) . "\n" );
 		} else {
 			wfDebug( __METHOD__.': sending mail to ' . implode( ',', array( $to->toString() ) ) . "\n" );
