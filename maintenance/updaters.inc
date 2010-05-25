@@ -205,6 +205,7 @@ $wgUpdates = array(
 
 		// 1.17
 		array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ),
+		array( 'add_index', 'iwlinks', 'iwl_prefix', 			 'patch-rename-iwl_prefix.sql' ),
 	),
 );
 
@@ -312,6 +313,21 @@ function add_index( $table, $index, $patch, $fullpath = false ) {
 			$wgDatabase->sourceFile( archive( $patch ) );
 		}
 		wfOut( "ok\n" );
+	}
+}
+
+function drop_index_if_exists( $table, $index, $patch, $fullpath = false ) {
+	global $wgDatabase;
+	if ( $wgDatabase->indexExists( $table, $index ) ) {
+		wfOut( "Dropping $index from table $table... " );
+		if ( $fullpath ) {
+			$wgDatabase->sourceFile( $patch );
+		} else {
+			$wgDatabase->sourceFile( archive( $patch ) );
+		}
+		wfOut( "ok\n" );
+	} else {
+		wfOut( "...$index doesn't exist.\n" );
 	}
 }
 
