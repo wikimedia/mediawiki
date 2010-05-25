@@ -2056,9 +2056,6 @@ class Article {
 			Article::onArticleEdit( $this->mTitle );
 			# Update links tables, site stats, etc.
 			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
-			
-			$extraQuery = ''; # Give extensions a chance to modify URL query on update
-			wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this, &$sectionanchor, &$extraQuery ) );
 		} else {
 			# Create new article
 			$status->value['new'] = true;
@@ -2138,20 +2135,23 @@ class Article {
 			&$redirect) );
 		
 		# Watch or unwatch the page
-		if ( $watchthis == true) {
+		if ( $watchthis === true ) {
 			if ( !$this->mTitle->userIsWatching() ) {
 				$dbw->begin();
 				$this->doWatch();
 				$dbw->commit();
 			}
-		} elseif ($watchthis == false) {
+		} elseif ( $watchthis === false ) {
 			if ( $this->mTitle->userIsWatching() ) {
 				$dbw->begin();
 				$this->doUnwatch();
 				$dbw->commit();
 			}
 		}
-		
+			
+		# Give extensions a chance to modify URL query on update
+		$extraQuery = ''; 
+		wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this, &$sectionanchor, &$extraQuery ) );
 		if ( $redirect ) {
 			if ( $sectionanchor || $extraQuery ) {
 				$this->doRedirect( $this->isRedirect( $text ), $sectionanchor, $extraQuery );
