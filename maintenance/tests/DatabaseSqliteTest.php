@@ -54,4 +54,31 @@ class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42" )
 			);
 	}
+
+	function testEntireSchema() {
+		global $IP;
+
+		$allowedTypes = array_flip( array(
+			'integer',
+			'real',
+			'text',
+			'blob', // NULL type is omitted intentionally
+		) );
+
+		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db->sourceFile( "$IP/maintenance/tables.sql" );
+
+		$tables = $db->query( "SELECT name FROM sqlite_master WHERE type='table'", __METHOD__ );
+		foreach ( $tables as $table ) {
+			if ( strpos( $table->name, 'sqlite_' ) === 0 ) continue;
+
+			$columns = $db->query( "PRAGMA table_info({$table->name})", __METHOD__ );
+			foreach ( $columns as $col ) {
+				if ( !isset( $allowedTypes[strtolower( $col->type )] ) ) {
+					$this->fail( "Table {$table->name} has column {$col->name} with non-native type '{$col->type}'" );
+				}
+			}
+		}
+		$db->close();
+	}
 }
