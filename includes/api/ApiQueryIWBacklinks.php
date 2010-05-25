@@ -156,7 +156,11 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Find all pages that link to the given interwiki link';
+		return array('Find all pages that link to the given interwiki link.',
+			'Can be used to find all links with a prefix, or',
+			'all links to a title (any prefix).',
+			'Using neither parameter is effectively "All IW Links"',
+			);
 	}
 
 	public function getPossibleErrors() {
