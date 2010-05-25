@@ -1966,6 +1966,12 @@ function do_postgres_updates() {
 		wfOut( "Adding ipb_address_unique index\n" );
 		$wgDatabase->sourceFile( archive( 'patch-ipb_address_unique.sql' ) );
 	}
+	
+	# Fix iwlinks index
+	if ( pg_index_exists( 'iwlinks', 'iwl_prefix' ) ) {
+		wfOut( "Replacing index 'iwl_prefix' with 'iwl_prefix_from_title'...\n" );
+		$wgDatabase->sourceFile( archive( 'patch-ipb_address_unique.sql' ) );
+	}
 
 	global $wgExtNewTables, $wgExtPGNewFields, $wgExtPGAlteredFields, $wgExtNewIndexes;
 	# Add missing extension tables
