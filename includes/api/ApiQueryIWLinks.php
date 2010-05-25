@@ -54,6 +54,14 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 		$this->addTables( 'iwlinks' );
 		$this->addWhereFld( 'iwl_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+
+		$url = !is_null( $params['url'] );
+		if ( $url ) {
+			$this->addTables( 'interwiki' );
+			$this->addJoinConds( array( 'interwiki' => array( 'INNER JOIN', 'iw_prefix=iwl_prefix' ) ) );
+			$this->addFields( 'iw_url' );
+		}
+
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
 			if ( count( $cont ) != 3 ) {
@@ -91,6 +99,12 @@ class ApiQueryIWLinks extends ApiQueryBase {
 				break;
 			}
 			$entry = array( 'prefix' => $row->iwl_prefix );
+
+			if ( $url ) {
+				$rowUrl = str_replace( '$1', $row->iwl_title, $row->iw_url );
+				$entry = array_merge( $entry, array( 'url' => $rowUrl ) );
+			}
+
 			ApiResult::setContent( $entry, $row->iwl_title );
 			$fit = $this->addPageSubItem( $row->iwl_from, $entry );
 			if ( !$fit ) {
@@ -103,6 +117,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
+			'url' => null,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -116,6 +131,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 	public function getParamDescription() {
 		return array(
+			'url' => 'Whether to get the full URL',
 			'limit' => 'How many interwiki links to return',
 			'continue' => 'When more results are available, use this to continue',
 		);
