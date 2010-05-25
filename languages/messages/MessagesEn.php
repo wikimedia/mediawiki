@@ -1408,22 +1408,22 @@ The reason given by $3 is ''$2''",
 # History pages
 'viewpagelogs'           => 'View logs for this page',
 'nohistory'              => 'There is no edit history for this page.',
-'currentrev'             => 'Current revision',
-'currentrev-asof'        => 'Current revision as of $1',
+'currentrev'             => 'Latest revision',
+'currentrev-asof'        => 'Latest revision as of $1',
 'revisionasof'           => 'Revision as of $1',
 'revision-info'          => 'Revision as of $1 by $2',
 'revision-info-current'  => '-', # do not translate or duplicate this message to other languages
 'revision-nav'           => '($1) $2{{int:pipe-separator}}$3 ($4){{int:pipe-separator}}$5 ($6)', # do not translate or duplicate this message to other languages
 'previousrevision'       => '← Older revision',
 'nextrevision'           => 'Newer revision →',
-'currentrevisionlink'    => 'Current revision',
+'currentrevisionlink'    => 'Latest revision',
 'cur'                    => 'cur',
 'next'                   => 'next',
 'last'                   => 'prev',
 'page_first'             => 'first',
 'page_last'              => 'last',
 'histlegend'             => "Diff selection: mark the radio boxes of the revisions to compare and hit enter or the button at the bottom.<br />
-Legend: '''({{int:cur}})''' = difference with current revision, '''({{int:last}})''' = difference with preceding revision, '''{{int:minoreditletter}}''' = minor edit.",
+Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})''' = difference with preceding revision, '''{{int:minoreditletter}}''' = minor edit.",
 'history-fieldset-title' => 'Browse history',
 'history-show-deleted'   => 'Deleted only',
 'history_copyright'      => '-', # do not translate or duplicate this message to other languages
