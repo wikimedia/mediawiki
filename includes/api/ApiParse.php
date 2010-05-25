@@ -51,7 +51,7 @@ class ApiParse extends ApiBase {
 		}
 		$prop = array_flip( $params['prop'] );
 		$revid = false;
-		
+
 		if ( isset( $params['section'] ) ) {
 			$this->section = $params['section'];
 		} else {
@@ -211,6 +211,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['sections'] ) ) {
 			$result_array['sections'] = $p_result->getSections();
 		}
+
 		if ( isset( $prop['displaytitle'] ) ) {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?
 							$p_result->getDisplayTitle() :
@@ -238,6 +239,10 @@ class ApiParse extends ApiBase {
 			$result_array['headhtml'] = array();
 			$result->setContent( $result_array['headhtml'], $out->headElement( $userSkin ) );
 		}
+		
+		if ( isset( $prop['iwlinks'] ) ) {
+			$result_array['iwlinks'] = $this->formatIWLinks( $p_result->getInterwikiLinks() );
+		}
 
 		if ( !is_null( $oldid ) ) {
 			$result_array['revid'] = intval( $oldid );
@@ -251,6 +256,7 @@ class ApiParse extends ApiBase {
 			'templates' => 'tl',
 			'images' => 'img',
 			'externallinks' => 'el',
+			'iwlinks' => 'iw',
 			'sections' => 's',
 			'headitems' => 'hi',
 		);
@@ -304,6 +310,19 @@ class ApiParse extends ApiBase {
 				if ( $id != 0 ) {
 					$entry['exists'] = '';
 				}
+				$result[] = $entry;
+			}
+		}
+		return $result;
+	}
+
+	private function formatIWLinks( $iw ) {
+		$result = array();
+		foreach ( $iw as $prefix => $titles ) {
+			foreach ( $titles as $title => $id ) {
+				$entry = array();
+				$entry['prefix'] = $prefix;
+				$this->getResult()->setContent( $entry, Title::makeTitle( $ns, $title )->getFullText() );
 				$result[] = $entry;
 			}
 		}
@@ -366,7 +385,8 @@ class ApiParse extends ApiBase {
 					'revid',
 					'displaytitle',
 					'headitems',
-					'headhtml'
+					'headhtml',
+					'iwlinks',
 				)
 			),
 			'pst' => false,
