@@ -175,6 +175,7 @@ $wgUpdates = array(
 
 		// 1.17
 		array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ),
+		array( 'add_index', 'iwlinks', 'iwl_prefix_from_title',  'patch-rename-iwl_prefix.sql' ),
 	),
 
 	'sqlite' => array(
