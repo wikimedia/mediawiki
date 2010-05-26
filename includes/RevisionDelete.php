@@ -166,11 +166,16 @@ class RevisionDeleter {
 					if ($existResult !== true) {
 						$key = 'archive';
 						$Ids[$k] = $existResult;
-					} elseif ($key != $originalKey) {
+					} else {
 						// Undeleted revision amidst deleted ones
 						unset($Ids[$k]);
 						$undeletedRevisions[] = $id;
 					}
+				}
+				
+				if ( $key == $originalKey ) {
+					$Ids = $undeletedRevisions;
+					$undeletedRevisions = array();
 				}
 			}
 			
