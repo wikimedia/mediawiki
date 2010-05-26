@@ -2685,7 +2685,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'imported-log-entries'       => 'Importados $1 {{PLURAL:$1|entradas de registro|entradas de registro}}.',
 'importfailed'               => 'La importación ha fallado: $1',
 'importunknownsource'        => 'Tipo de fuente de importación desconocida',
-'importcantopen'             => 'No se puedo importar este archivo',
+'importcantopen'             => 'No se pudo importar el archivo',
 'importbadinterwiki'         => 'Enlace interwiki anómalo',
 'importnotext'               => 'Vacío o sin texto',
 'importsuccess'              => '¡La importación se ha realizado con éxito!',

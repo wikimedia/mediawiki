@@ -1182,6 +1182,8 @@ $1",
 'logdelete-failure'           => "'''De zichtbaarheid van de logboekregel kon niet ingesteld worden:'''
 $1",
 'revdel-restore'              => 'Zichtbaarheid wijzigen',
+'revdel-restore-deleted'      => 'verwijderde versies',
+'revdel-restore-visible'      => 'zichtbare versies',
 'pagehist'                    => 'paginageschiedenis',
 'deletedhist'                 => 'verwijderde geschiedenis',
 'revdelete-content'           => 'inhoud',
