@@ -13,8 +13,13 @@ class CdbTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testCdb() {
-		$w1 = new CdbWriter_PHP( 'php.cdb' );
-		$w2 = new CdbWriter_DBA( 'dba.cdb' );
+		$dir = wfTempDir();
+		if ( !is_writable( $dir ) ) {
+			$this->markTestSkipped( "Temp dir isn't writable" );
+		}
+
+		$w1 = new CdbWriter_PHP( "$dir/php.cdb" );
+		$w2 = new CdbWriter_DBA( "$dir/dba.cdb" );
 
 		$data = array();
 		for ( $i = 0; $i < 1000; $i++ ) {
@@ -32,13 +37,13 @@ class CdbTest extends PHPUnit_Framework_TestCase {
 		$w2->close();
 
 		$this->assertEquals(
-			md5_file( 'dba.cdb' ),
-			md5_file( 'php.cdb' ),
+			md5_file( "$dir/dba.cdb" ),
+			md5_file( "$dir/php.cdb" ),
 			'same hash'
 		);
 
-		$r1 = new CdbReader_PHP( 'php.cdb' );
-		$r2 = new CdbReader_DBA( 'dba.cdb' );
+		$r1 = new CdbReader_PHP( "$dir/php.cdb" );
+		$r2 = new CdbReader_DBA( "$dir/dba.cdb" );
 
 		foreach ( $data as $key => $value ) {
 			if ( $key === '' ) {
@@ -56,8 +61,8 @@ class CdbTest extends PHPUnit_Framework_TestCase {
 			$this->cdbAssert( "DBA error", $key, $v2, $value );
 		}
 
-		unlink( 'dba.cdb' );
-		unlink( 'php.cdb' );
+		unlink( "$dir/dba.cdb" );
+		unlink( "$dir/php.cdb" );
 	}
 
 	private function randomString() {

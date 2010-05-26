@@ -30,7 +30,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 		$wgLocalFileRepo = array(
 			'class' => 'LocalRepo',
 			'name' => 'local',
-			'directory' => 'test-repo',
+			'directory' => wfTempDir().'/test-repo',
 			'url' => 'http://example.com/images',
 			'hashLevels' => 2,
 			'transformVia404' => false,
