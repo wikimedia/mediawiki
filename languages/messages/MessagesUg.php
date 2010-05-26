@@ -6,7 +6,7 @@
  *
  * @ingroup Language
  * @file
- * @comment falls back to Uyghurche‎ (Latin)
+ * @comment falls back to Uighur (Arabic script) - ug-arab.
  */
 
-$fallback = 'ug-latn';
+$fallback = 'ug-arab';
