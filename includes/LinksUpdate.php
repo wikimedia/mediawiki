@@ -26,9 +26,9 @@ class LinksUpdate {
 	/**
 	 * Constructor
 	 *
-	 * @param Title $title Title of the page we're updating
-	 * @param ParserOutput $parserOutput Output from a full parse of this page
-	 * @param bool $recursive Queue jobs for recursive updates?
+	 * @param $title Title of the page we're updating
+	 * @param $parserOutput ParserOutput: output from a full parse of this page
+	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 */
 	function LinksUpdate( $title, $parserOutput, $recursive = true ) {
 		global $wgAntiLockFlags;
@@ -226,8 +226,8 @@ class LinksUpdate {
 	/**
 	 * Invalidate the cache of a list of pages from a single namespace
 	 *
-	 * @param integer $namespace
-	 * @param array $dbkeys
+	 * @param $namespace Integer
+	 * @param $dbkeys Array
 	 */
 	function invalidatePages( $namespace, $dbkeys ) {
 		if ( !count( $dbkeys ) ) {
@@ -421,7 +421,8 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of category insertions
-	 * @param array $existing Array mapping existing category names to sort keys. If both
+	 *
+	 * @param $existing Array mapping existing category names to sort keys. If both
 	 * match a link in $this, the link will be omitted from the output
 	 * @private
 	 */
@@ -444,7 +445,8 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of interlanguage link insertions
-	 * @param array $existing Array mapping existing language codes to titles
+	 *
+	 * @param $existing Array mapping existing language codes to titles
 	 * @private
 	 */
 	function getInterlangInsertions( $existing = array() ) {
