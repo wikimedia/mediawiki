@@ -1486,6 +1486,7 @@ HTML
 	 */
 	function getSummaryInput($summary = "", $labelText = null, $inputAttrs = null, $spanLabelAttrs = null) {
 		global $wgUser;
+		//Note: the maxlength is overriden in JS to 250 and to make it use UTF-8 bytes, not characters.
 		$inputAttrs = ( is_array($inputAttrs) ? $inputAttrs : array() ) + array(
 			'id' => 'wpSummary',
 			'maxlength' => '200',
