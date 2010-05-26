@@ -1091,6 +1091,8 @@ $1",
 'logdelete-failure'           => "'''Видимость журнала не установлена:'''
 $1",
 'revdel-restore'              => 'Изменить видимость',
+'revdel-restore-deleted'      => 'удалённые версии',
+'revdel-restore-visible'      => 'видимые версии',
 'pagehist'                    => 'История страницы',
 'deletedhist'                 => 'История удалений',
 'revdelete-content'           => 'содержимое',

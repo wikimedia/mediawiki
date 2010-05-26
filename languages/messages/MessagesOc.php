@@ -1105,6 +1105,8 @@ $1",
 'logdelete-failure'           => "'''La visibilitat del jornal a pas pogut èsser definida :'''
 $1",
 'revdel-restore'              => 'Modificar la visibilitat',
+'revdel-restore-deleted'      => 'revisions suprimidas',
+'revdel-restore-visible'      => 'revisions visiblas',
 'pagehist'                    => 'Istoric de la pagina',
 'deletedhist'                 => 'Istoric de las supressions',
 'revdelete-content'           => 'contengut',
@@ -1685,6 +1687,9 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- daissatz aquesta linha coma es -->',
+'upload-successful-msg'       => 'Çò mandat es disponible aicí : $1',
+'upload-failure-subj'         => 'Problèma de mandadís',
+'upload-failure-msg'          => 'I a agut un problèma amb vòstre mandadís :$1',
 
 'upload-proto-error'        => 'Protocòl incorrècte',
 'upload-proto-error-text'   => "L’impòrt requerís d'URLs començant per <code>http://</code> o <code>ftp://</code>.",
@@ -2078,6 +2083,10 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'emailsent'            => 'Messatge mandat',
 'emailsenttext'        => 'Vòstre messatge es estat mandat.',
 'emailuserfooter'      => 'Aqueste corrièr electronic es estat mandat per « $1 » a « $2 » per la foncion « Mandar un corrièr electronic a l’utilizaire » sus {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'A daissat un messatge de sistèma.',
+'usermessage-editor'  => 'Messatgièr del sistèma',
 
 # Watchlist
 'watchlist'            => 'Ma lista de seguiment',
@@ -2641,6 +2650,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'importstart'                => 'Impòrt de las paginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versions}}',
 'importnopages'              => "Cap de pagina d'importar.",
+'imported-log-entries'       => '$1 {{PLURAL:$1|entrada|entradas}} del jornal {{PLURAL:$1|importada|importadas}}.',
 'importfailed'               => 'Fracàs de l’impòrt : $1',
 'importunknownsource'        => 'Tipe de la font d’impòrt desconegut',
 'importcantopen'             => "Impossible de dobrir lo fichièr d'importar",

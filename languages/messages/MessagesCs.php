@@ -1732,6 +1732,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # různé
  #</pre> <!-- tuto řádku ponechte beze změny -->',
+'upload-successful-msg'       => 'Vámi načtený soubor je dostupný na $1',
+'upload-failure-subj'         => 'Problém s načítaným souborem',
+'upload-failure-msg'          => 'U vámi načítaného souboru se vyskytl problém:
+
+$1',
 
 'upload-proto-error'        => 'Neplatný protokol',
 'upload-proto-error-text'   => 'Nahrání vzdáleného souboru vyžaduje zadání URLs začínající na <code>http://</code> nebo <code>ftp://</code>.',
@@ -2125,7 +2130,8 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'emailuserfooter'      => 'Tento e-mail byl odeslán z {{grammar:2sg|{{SITENAME}}}} pomocí funkce „Poslat e-mail“; odeslal ho uživatel $1 uživateli $2',
 
 # User Messenger
-'usermessage-editor' => 'Systémový poslíček',
+'usermessage-summary' => 'Doručena zpráva od systému.',
+'usermessage-editor'  => 'Systémový poslíček',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',

@@ -473,8 +473,8 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedic additions. The message has to be neutral for all projects.",
 'pagetitle-view-mainpage' => '{{optional}}',
 'retrievedfrom'           => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
-'youhavenewmessages'      => 'Pesan dengan pita warna oranye muncul saat seseorang menyunting halaman Pembicaraan_Pengguna anda.
-Formatnya adalah: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
+'youhavenewmessages'      => 'The orange message appearing when someone edited your user talk page.
+The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
 'newmessageslink'         => 'Ini adalah pranala pertama yang tampak pada pita oranye saat pengguna mendapat pesan pada pembicaraan_penggunanya. Tampak pada pesan {{msg-mw|youhavenewmessages}} (sebagai parameter $1).
 
 {{Identical|New messages}}',
@@ -511,10 +511,14 @@ View or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>
 'feed-unavailable'        => 'This message is displayed when a user tries to use an RSS or Atom feed on a wiki where such feeds have been disabled.',
 'site-rss-feed'           => "Used in the HTML header of a wiki's RSS feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
-HTML markup cannot be used.",
+HTML markup cannot be used.
+{{Identical|S1 RSS/Atom feed}}",
 'site-atom-feed'          => "Used in the HTML header of a wiki's Atom feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
-HTML markup cannot be used.",
+HTML markup cannot be used.
+{{Identical|S1 RSS/Atom feed}}",
+'page-rss-feed'           => '{{Identical|S1 RSS/Atom feed}}',
+'page-atom-feed'          => '{{Identical|S1 RSS/Atom feed}}',
 'feed-atom'               => '{{optional}}',
 'feed-rss'                => '{{optional}}',
 'red-link-title'          => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
@@ -2183,7 +2187,7 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 * $2: username of the recipient',
 
 # User Messenger
-'usermessage-summary' => 'This message is used as an edit summary for any message that is posted because of a system event. Translate "leaving" in the sense of: to leave behind, to have remaining.',
+'usermessage-summary' => 'This message is used as an edit summary for any message that is posted because of a system event. Translate "leaving a message" in the sense of: to give a message to someone; to deliver a message somewhere; to deposit.',
 'usermessage-editor'  => 'The user name for the user that is the editor of system messages.',
 
 # Watchlist

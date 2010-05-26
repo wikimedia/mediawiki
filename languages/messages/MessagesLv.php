@@ -9,6 +9,7 @@
  *
  * @author Dark Eagle
  * @author FnTmLV
+ * @author GreenZeb
  * @author Kikos
  * @author Knakts
  * @author Marozols
@@ -222,6 +223,7 @@ $messages = array(
 'vector-view-view'           => 'Skatīt',
 'vector-view-viewsource'     => 'Aplūkot kodu',
 'actions'                    => 'Darbības',
+'namespaces'                 => 'Vārdtelpas',
 'variants'                   => 'Varianti',
 
 'errorpagetitle'    => 'Kļūda',
@@ -780,6 +782,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'searchprofile-everything-tooltip' => 'Meklēt visur (ieskaitot diskusiju lapas)',
 'searchprofile-advanced-tooltip'   => 'Izvēlēties nosaukumvietas, kurās meklēt',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 vārds|$2 vārdi}})',
+'search-redirect'                  => '(pāradresēts no $1)',
 'search-section'                   => '(sadaļa $1)',
 'search-suggest'                   => 'Vai jūs domājāt: $1',
 'search-interwiki-caption'         => 'Citi projekti',
@@ -793,6 +796,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'showingresultsnum'                => "Šobrīd ir {{PLURAL:$3|redzama|redzamas}} '''$3''' {{PLURAL:$3|lapa|lapas}}, sākot ar #'''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Šobrīd ir redzama '''$1''' lapa no '''$3'''|Šobrīd ir redzamas '''$1 — $2''' lapas no '''$3'''}}, kas satur '''$4'''",
 'nonefound'                        => "'''Piezīme:''' bieži vien meklēšana ir neveiksmīga, meklējot plaši izplatītus vārdus, piemēram, \"un\" vai \"ir\", jo tie netiek iekļauti meklēšanas datubāzē, vai arī meklējot vairāk par vienu vārdu (jo rezultātos parādīsies tikai lapas, kurās ir visi meklētie vārdi). Vēl, pēc noklusējuma, pārmeklē tikai dažas ''namespaces''. Lai meklētu visās, meklēšanas pieprasījumam priekšā jāieliek ''all:'', vai arī analogā veidā jānorāda pārmeklējamo ''namespaci''.",
+'search-nonefound'                 => 'Nav atrasti pieprasījumam atbilstoši rezultāti.',
 'powersearch'                      => 'Izvērstā meklēšana',
 'powersearch-legend'               => 'Izvērstā meklēšana',
 'powersearch-ns'                   => 'Meklēt šajās lapu grupās:',
@@ -867,9 +871,12 @@ Ja vēlies, tu vari izmantot šo nejauši uzģenerēto kodu: $1',
 'timezoneregion-pacific'        => 'Klusais okeāns',
 'allowemail'                    => 'Atļaut saņemt e-pastus no citiem lietotājiem',
 'prefs-searchoptions'           => 'Meklēšanas opcijas',
+'prefs-namespaces'              => 'Vārdtelpas',
 'defaultns'                     => 'Meklēt šajās palīglapās pēc noklusējuma:',
 'default'                       => 'pēc noklusējuma',
 'prefs-files'                   => 'Attēli',
+'prefs-custom-css'              => 'Personīgais CSS',
+'prefs-custom-js'               => 'Personīgais JS',
 'prefs-emailconfirm-label'      => 'E-pasta statuss:',
 'prefs-textboxsize'             => 'Rediģēšanas loga izmērs',
 'youremail'                     => 'Tava e-pasta adrese:',
@@ -930,16 +937,19 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'userrights-unchangeable-col' => 'Grupas, kuras tu nevari izmainīt',
 
 # Groups
-'group'            => 'Grupa:',
-'group-user'       => 'Lietotāji',
-'group-bot'        => 'Boti',
-'group-sysop'      => 'Administratori',
-'group-bureaucrat' => 'Birokrāti',
+'group'               => 'Grupa:',
+'group-user'          => 'Lietotāji',
+'group-autoconfirmed' => 'Automātiski apstiprinātie lietotāji',
+'group-bot'           => 'Boti',
+'group-sysop'         => 'Administratori',
+'group-bureaucrat'    => 'Birokrāti',
+'group-all'           => '(visi)',
 
-'group-user-member'       => 'Lietotājs',
-'group-bot-member'        => 'Bots',
-'group-sysop-member'      => 'Administrators',
-'group-bureaucrat-member' => 'Birokrāts',
+'group-user-member'          => 'Lietotājs',
+'group-autoconfirmed-member' => 'automātiski apstiprinātais lietotājs',
+'group-bot-member'           => 'Bots',
+'group-sysop-member'         => 'Administrators',
+'group-bureaucrat-member'    => 'Birokrāts',
 
 'grouppage-sysop' => '{{ns:project}}:Administratori',
 
@@ -1103,9 +1113,12 @@ Ja tu joprojām gribi augšuplādēt šo failu, tad mēģini vēlreiz, ar citu f
 'uploaddisabledtext'     => 'Failu augšupielāde ir atslēgta.',
 'uploadscripted'         => 'Šis fails satur HTML vai skriptu kodu, kuru, interneta pārlūks, var kļūdas pēc, mēģināt interpretēt (ar potenciāli sliktām sekām).',
 'uploadvirus'            => 'Šis fails satur vīrusu! Sīkāk: $1',
+'upload-source'          => 'Augšuplādējamais fails',
 'sourcefilename'         => 'Augšuplādējamais fails:',
 'destfilename'           => 'Vajadzīgais faila nosaukums:',
 'upload-maxfilesize'     => 'Maksimālais faila izmērs: $1',
+'upload-description'     => 'Faila apraksts',
+'upload-options'         => 'Augšupielādes iestatījumi',
 'watchthisupload'        => 'Uzraudzīt šo failu',
 'filewasdeleted'         => 'Fails ar šādu nosaukumu jau ir bijis augšuplādēts un pēc tam izdzēsts.
 Apskaties $1 pirms turpini šo failu augšuplādēt atkārtoti.',
@@ -1142,6 +1155,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'filehist-current'          => 'tagadējais',
 'filehist-datetime'         => 'Datums/Laiks',
 'filehist-thumb'            => 'Attēls',
+'filehist-thumbtext'        => '$1 versijas sīktēls',
 'filehist-user'             => 'Lietotājs',
 'filehist-dimensions'       => 'Izmēri',
 'filehist-filesize'         => 'Faila izmērs',
@@ -1402,7 +1416,7 @@ e-pasts: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Ja šo uzraugāmo lapu izmainīs vēl, turpmāku paziņojumu par to nebūs, kamēr tu to neatvērsi.
-Tu arī vari noresetot visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu sarakstā.
+Tu arī vari atstatīt visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu sarakstā.
 
              {{grammar:ģenitīvs|{{SITENAME}}}} paziņojumu sistēma
 
@@ -1410,7 +1424,7 @@ Tu arī vari noresetot visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu
 Lai izmainītu uzraugāmo lapu saraksta uzstādījumus:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Papildus informācija:
+Papildinformācija:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -1913,31 +1927,36 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'       => 'platums',
-'exif-imagelength'      => 'augstums',
-'exif-bitspersample'    => 'biti komponentē',
-'exif-compression'      => 'Saspiešanas veids',
-'exif-orientation'      => 'Orientācija',
-'exif-samplesperpixel'  => 'Komponentu skaits',
-'exif-xresolution'      => 'Horizontālā izšķirtspēja',
-'exif-yresolution'      => 'Vertikālā izšķirtspēja',
-'exif-resolutionunit'   => 'X un Y izšķirtspējas mērvienība',
-'exif-make'             => 'Fotoaparāta ražotājs',
-'exif-model'            => 'Fotoaparāta modelis',
-'exif-software'         => 'Lietotā programma',
-'exif-artist'           => 'Autors',
-'exif-copyright'        => 'Autortiesību īpašnieks',
-'exif-exifversion'      => 'EXIF versija',
-'exif-pixelxdimension'  => 'Valind image height',
-'exif-datetimeoriginal' => 'Izveidošanas datums un laiks',
-'exif-contrast'         => 'Kontrasts',
-'exif-saturation'       => 'Piesātinājums',
-'exif-sharpness'        => 'Asums',
-'exif-gpslatituderef'   => 'Ziemeļu vai dienvidu platums',
-'exif-gpslatitude'      => 'Platums',
-'exif-gpslongituderef'  => 'Austrumu vai rietumu garums',
-'exif-gpslongitude'     => 'Garums',
-'exif-gpsaltitude'      => 'Augstums',
+'exif-imagewidth'        => 'platums',
+'exif-imagelength'       => 'augstums',
+'exif-bitspersample'     => 'biti komponentē',
+'exif-compression'       => 'Saspiešanas veids',
+'exif-orientation'       => 'Orientācija',
+'exif-samplesperpixel'   => 'Komponentu skaits',
+'exif-xresolution'       => 'Horizontālā izšķirtspēja',
+'exif-yresolution'       => 'Vertikālā izšķirtspēja',
+'exif-resolutionunit'    => 'X un Y izšķirtspējas mērvienība',
+'exif-make'              => 'Fotoaparāta ražotājs',
+'exif-model'             => 'Fotoaparāta modelis',
+'exif-software'          => 'Lietotā programma',
+'exif-artist'            => 'Autors',
+'exif-copyright'         => 'Autortiesību īpašnieks',
+'exif-exifversion'       => 'EXIF versija',
+'exif-pixelxdimension'   => 'Valind image height',
+'exif-datetimeoriginal'  => 'Izveidošanas datums un laiks',
+'exif-exposuretime'      => 'Ekspozīcijas laiks',
+'exif-fnumber'           => 'Diafragmas atvērums',
+'exif-isospeedratings'   => 'ISO jutība',
+'exif-shutterspeedvalue' => 'Slēdža ātrums',
+'exif-flash'             => 'Zibspuldze',
+'exif-contrast'          => 'Kontrasts',
+'exif-saturation'        => 'Piesātinājums',
+'exif-sharpness'         => 'Asums',
+'exif-gpslatituderef'    => 'Ziemeļu vai dienvidu platums',
+'exif-gpslatitude'       => 'Platums',
+'exif-gpslongituderef'   => 'Austrumu vai rietumu garums',
+'exif-gpslongitude'      => 'Garums',
+'exif-gpsaltitude'       => 'Augstums',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Ziemeļu platums',
@@ -2028,7 +2047,7 @@ Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'table_pager_empty'        => 'Neko neatrada',
 
 # Auto-summaries
-'autosumm-blank'   => 'Nodzēsa lapu pa tīro',
+'autosumm-blank'   => 'Nodzēsa lapu',
 'autosumm-replace' => "Aizvieto lapas saturu ar '$1'",
 'autoredircomment' => 'Pāradresē uz [[$1]]',
 'autosumm-new'     => 'Jauna lapa: $1',
