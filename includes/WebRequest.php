@@ -432,6 +432,21 @@ class WebRequest {
 	}
 
 	/**
+	 * Get a cookie from the $_COOKIE jar
+	 * @param String $key The name of the cookie
+	 * @param mixed $default What to return if the value isn't found
+	 * @param String $prefix A prefix to use for the cookie name, if not $wgCookiePrefix
+	 * @return <type>
+	 */
+	public function getCookie( $key, $default = null, $prefix = '' ) {
+		if( !$prefix ) {
+			global $wgCookiePrefix;
+			$prefix = $wgCookiePrefix;
+		}
+		return $this->getGPCVal( $_COOKIE, $prefix . $key , $default );
+	}
+
+	/**
 	 * Return the path portion of the request URI.
 	 * @return string
 	 */
