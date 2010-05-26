@@ -66,6 +66,9 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function testQuickPermissions() {
+		global $wgContLang;
+		$prefix = $wgContLang->getNsText( NS_PROJECT );
+
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_TALK );
 		$this->setUserPerm( "createtalk" );
@@ -251,10 +254,10 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$this->assertEquals( array( ), $res );
 
 		$this->setUser( 'anon' );
-		$check = array( 'edit' => array( array( array( 'badaccess-groups', "*, [[Mw:Users|Users]]", 2 ) ),
+		$check = array( 'edit' => array( array( array( 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ) ),
 										 array( array( 'badaccess-group0' ) ),
 										 array( ), true ),
-						'protect' => array( array( array( 'badaccess-groups', "[[Mw:Administrators|Administrators]]", 1 ), array( 'protect-cantedit' ) ),
+						'protect' => array( array( array( 'badaccess-groups', "[[$prefix:Administrators|Administrators]]", 1 ), array( 'protect-cantedit' ) ),
 											array( array( 'badaccess-group0' ), array( 'protect-cantedit' ) ),
 											array( array( 'protect-cantedit' ) ), false ),
 						'' => array( array( ), array( ), array( ), true ) );
@@ -316,14 +319,15 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 	function testPermissionHooks() { }
 	function testSpecialsAndNSPermissions() {
 		$this->setUser( self::$userName );
-		global $wgUser;
+		global $wgUser, $wgContLang;
 		$wgUser = self::$user;
+		$prefix = $wgContLang->getNsText( NS_PROJECT );
 
 		$this->setTitle( NS_SPECIAL );
 
 		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'ns-specialprotected' ) ),
 							 self::$title->getUserPermissionsErrors( 'bogus', self::$user ) );
-		$this->assertEquals( array( array( 'badaccess-groups', '*, [[Mw:Administrators|Administrators]]', 2 ) ),
+		$this->assertEquals( array( array( 'badaccess-groups', "*, [[$prefix:Administrators|Administrators]]", 2 ) ),
 							 self::$title->getUserPermissionsErrors( 'createaccount', self::$user ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ) ),
 							 self::$title->getUserPermissionsErrors( 'execute', self::$user ) );
@@ -421,7 +425,10 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function testPageRestrictions() {
-		global $wgUser;
+		global $wgUser, $wgContLang;
+
+		$prefix = $wgContLang->getNsText( NS_PROJECT );
+
 		$wgUser = self::$user;
 		$this->setTitle( NS_MAIN );
 		self::$title->mRestrictionsLoaded = true;
@@ -455,7 +462,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 									array( 'protectedpagetext', 'protect' ) ),
 							 self::$title->getUserPermissionsErrors( 'bogus',
 																	 self::$user ) );
-		$this->assertEquals( array( array( 'badaccess-groups', '*, [[Mw:Users|Users]]', 2 ),
+		$this->assertEquals( array( array( 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ),
 									array( 'protectedpagetext', 'bogus' ),
 									array( 'protectedpagetext', 'protect' ),
 									array( 'protectedpagetext', 'protect' ) ),

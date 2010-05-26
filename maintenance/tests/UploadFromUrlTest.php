@@ -18,14 +18,6 @@ class UploadFromUrlTest extends ApiSetup {
 		$wgEnableUploads = true;
 		$wgAllowCopyUploads = true;
 		parent::setup();
-		$wgLocalFileRepo = array(
-			'class' => 'LocalRepo',
-			'name' => 'local',
-			'directory' => 'test-repo',
-			'url' => 'http://example.com/images',
-			'hashLevels' => 2,
-			'transformVia404' => false,
-		);
 
 		ini_set( 'log_errors', 1 );
 		ini_set( 'error_reporting', 1 );
@@ -174,6 +166,7 @@ class UploadFromUrlTest extends ApiSetup {
 		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
 
  		$status = $job->run();
+
 		$this->assertTrue( $status->isOk() );
 
 		return $data;

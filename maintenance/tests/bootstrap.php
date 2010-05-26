@@ -14,6 +14,10 @@ define( 'MW_PHPUNIT_TEST', true );
 require_once( "$IP/maintenance/commandLine.inc" );
 $wgLocaltimezone = 'UTC';
 
+/* Tests were failing with sqlite */
+global $wgCaches;
+$wgCaches[CACHE_DB] = false;
+
 if ( !version_compare( PHPUnit_Runner_Version::id(), "3.4.1", ">" ) ) {
   echo <<<EOF
 ************************************************************

@@ -45,6 +45,7 @@ class SearchEngineTest extends MediaWiki_Setup {
  	}
 
 	function fetchIds( $results ) {
+		if ( $this->db->getType() !== 'mysql' ) $this->markTestSkipped( "MySQL only" );
 		$matches = array();
 		while ( $row = $results->next() ) {
 			$matches[] = $row->getTitle()->getPrefixedText();
@@ -130,8 +131,8 @@ class SearchEngineTest extends MediaWiki_Setup {
                 "Search for normalized from Full-width Lower" );
 	}
 
-        function testTextSearch() {
-            $this->assertEquals(
+	function testTextSearch() {
+		$this->assertEquals(
                 array( 'Smithee' ),
                 $this->fetchIds( $this->search->searchText( 'smithee' ) ),
                 "Plain search failed" );
