@@ -231,7 +231,10 @@ hookEvent( 'load', function() {
 
 //make sure edit summary does not exceed byte limit
 addOnloadHook(function () {
-	var summary = document.getElementById('wpSummary');
+	var summary = document.getElementById( 'wpSummary' );
+	if ( !summary ) {
+		return;
+	}
 	summary.maxLength = 250; //L must be capitalized in length.
 
 	checkSummary = function (e) {
