@@ -436,7 +436,7 @@ class EmailNotification {
 		$this->composed_common = true;
 
 		$summary = ($this->summary == '') ? ' - ' : $this->summary;
-		$medit   = ($this->minorEdit) ? wfMsg( 'minoredit' ) : '';
+		$medit   = ($this->minorEdit) ? wfMsgForContent( 'minoredit' ) : '';
 
 		# You as the WikiAdmin and Sysops can make use of plenty of
 		# named variables when composing your notification emails while
