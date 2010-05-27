@@ -308,10 +308,15 @@ class SpecialUpload extends SpecialPage {
 	protected function showUploadWarning( $warnings ) {
 		global $wgUser;
 
-		# If there are no warnings, or warnings we can ignore, return early
+		# If there are no warnings, or warnings we can ignore, return early.
+		# mDestWarningAck is set when some javascript has shown the warning
+		# to the user. mForReUpload is set when the user clicks the "upload a
+		# new version" link.
 		if ( !$warnings || ( count( $warnings ) == 1 && 
-				 isset( $warnings['exists']) && $this->mDestWarningAck ) ) {
-			return false;				 	
+			isset( $warnings['exists'] ) && 
+			( $this->mDestWarningAck || $this->mForReUpload ) ) )
+		{
+			return false;
 		}
 
 		$sessionKey = $this->mUpload->stashSession();
@@ -950,11 +955,19 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		$descriptor['wpDestFileWarningAck'] = array(
+		$descriptor['DestFileWarningAck'] = array(
 			'type' => 'hidden',
 			'id' => 'wpDestFileWarningAck',
 			'default' => $this->mDestWarningAck ? '1' : '',
 		);
+		
+		if ( $this->mForReUpload ) {
+			$descriptor['ForReUpload'] = array(
+				'type' => 'hidden',
+				'id' => 'wpForReUpload',
+				'default' => '1',
+			);
+		}
 
 		return $descriptor;
 
