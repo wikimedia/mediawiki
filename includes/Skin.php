@@ -2142,7 +2142,7 @@ CSS;
 					global $wgMessageCache;
 					$line = $wgMessageCache->transform( $line );
 					
-					$line = array_map( 'trim', explode( '|', explode( '|', $line, 2 ), 2 ) );
+					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					$link = wfMsgForContent( $line[0] );
 					if( $link == '-' ) {
 						continue;
