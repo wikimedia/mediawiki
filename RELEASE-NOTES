@@ -75,7 +75,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22844) Added support for WinCache object caching
 * (bug 23580) Add two new events to LivePreview so that scripts can be
   notified about the beginning and finishing of LivePreview actions
-
+* (bug 21278) Now the sidebar allows inclusion of wiki markup.
+ 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
   without updating database

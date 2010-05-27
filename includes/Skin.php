@@ -2124,6 +2124,8 @@ CSS;
 	 */
 	function addToSidebar( &$bar, $text ) {
 		$lines = explode( "\n", $text );
+		$wikiBar = array(); # We need to handle the wikitext on a different variable, to avoid trying to do an array operation on text, which would be a fatal error.
+
 		$heading = '';
 		foreach( $lines as $line ) {
 			if( strpos( $line, '*' ) !== 0 ) {
@@ -2135,11 +2137,12 @@ CSS;
 					$bar[$heading] = array();
 				}
 			} else {
+				$line = trim( $line, '* ' );
 				if( strpos( $line, '|' ) !== false ) { // sanity check
 					global $wgMessageCache;
 					$line = $wgMessageCache->transform( $line );
 					
-					$line = array_map( 'trim', explode( '|', trim( $line, '* ' ), 2 ) );
+					$line = array_map( 'trim', explode( '|', explode( '|', $line, 2 ), 2 ) );
 					$link = wfMsgForContent( $line[0] );
 					if( $link == '-' ) {
 						continue;
@@ -2171,11 +2174,26 @@ CSS;
 						'id' => 'n-' . strtr( $line[1], ' ', '-' ),
 						'active' => false
 					);
+				} else if ( (substr($line, 0, 2) == '{{') && (substr($line, -2) == '}}') ) {
+					global $wgParser, $wgTitle;
+					
+					$line = substr($line, 2, strlen($line) - 4 );
+					
+					if (is_null($wgParser->mOptions))
+						$wgParser->mOptions = new ParserOptions();
+					
+					$wgParser->mOptions->setEditSection(false);
+					$wikiBar[$heading] = $wgParser->parse( wfMsgForContentNoTrans( $line ) , $wgTitle, $wgParser->mOptions )->getText();
 				} else {
 					continue;
 				}
 			}
 		}
+		
+		if ( count($wikiBar) > 0 )
+			$bar = array_merge($bar, $wikiBar);
+		
+		return $bar;
 	}
 
 	/**
