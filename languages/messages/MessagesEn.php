@@ -1403,22 +1403,22 @@ The reason given by $3 is ''$2''",
 # History pages
 'viewpagelogs'           => 'View logs for this page',
 'nohistory'              => 'There is no edit history for this page.',
-'currentrev'             => 'Current revision',
-'currentrev-asof'        => 'Current revision as of $1',
+'currentrev'             => 'Latest revision',
+'currentrev-asof'        => 'Latest revision as of $1',
 'revisionasof'           => 'Revision as of $1',
 'revision-info'          => 'Revision as of $1 by $2',
 'revision-info-current'  => '-', # do not translate or duplicate this message to other languages
 'revision-nav'           => '($1) $2{{int:pipe-separator}}$3 ($4){{int:pipe-separator}}$5 ($6)', # do not translate or duplicate this message to other languages
 'previousrevision'       => '← Older revision',
 'nextrevision'           => 'Newer revision →',
-'currentrevisionlink'    => 'Current revision',
+'currentrevisionlink'    => 'Latest revision',
 'cur'                    => 'cur',
 'next'                   => 'next',
 'last'                   => 'prev',
 'page_first'             => 'first',
 'page_last'              => 'last',
 'histlegend'             => "Diff selection: mark the radio boxes of the revisions to compare and hit enter or the button at the bottom.<br />
-Legend: '''({{int:cur}})''' = difference with current revision, '''({{int:last}})''' = difference with preceding revision, '''{{int:minoreditletter}}''' = minor edit.",
+Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})''' = difference with preceding revision, '''{{int:minoreditletter}}''' = minor edit.",
 'history-fieldset-title' => 'Browse history',
 'history-show-deleted'   => 'Deleted only',
 'history_copyright'      => '-', # do not translate or duplicate this message to other languages
@@ -2241,7 +2241,7 @@ The description on its [$2 file description page] there is shown below.',
 'filerevert-backlink'       => '← $1', # only translate this message to other languages if you have to change it
 'filerevert-legend'         => 'Revert file',
 'filerevert-intro'          => "You are about to revert the file '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].",
-'filerevert-comment'        => 'Comment:',
+'filerevert-comment'        => 'Reason:',
 'filerevert-defaultcomment' => 'Reverted to version as of $2, $1',
 'filerevert-submit'         => 'Revert',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' has been reverted to the [$4 version as of $3, $2].",
@@ -2798,7 +2798,7 @@ You may have a bad link, or the revision may have been restored or removed from 
 'undeleteviewlink'             => 'view',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Invert selection',
-'undeletecomment'              => 'Comment:',
+'undeletecomment'              => 'Reason:',
 'undeletedarticle'             => 'restored "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisions}} restored',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} and {{PLURAL:$2|1 file|$2 files}} restored',
@@ -3422,8 +3422,7 @@ This is probably caused by a link to a blacklisted external site.',
 check for correct installation of latex, dvips, gs, and convert',
 'math_bad_tmpdir'       => 'Cannot write to or create math temp directory',
 'math_bad_output'       => 'Cannot write to or create math output directory',
-'math_notexvc'          => 'Missing texvc executable;
-please see math/README to configure.',
+'math_notexvc'          => 'Missing texvc executable; please see math/README to configure.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Mark as patrolled',
@@ -4019,7 +4018,7 @@ Try normal preview.',
 'watchlistedit-normal-title'   => 'Edit watchlist',
 'watchlistedit-normal-legend'  => 'Remove titles from watchlist',
 'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below.
-To remove a title, check the box next to it, and click "Remove titles".
+To remove a title, check the box next to it, and click "{{int:Watchlistedit-normal-submit}}".
 You can also [[Special:Watchlist/raw|edit the raw list]].',
 'watchlistedit-normal-submit'  => 'Remove titles',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed from your watchlist:',
@@ -4027,7 +4026,7 @@ You can also [[Special:Watchlist/raw|edit the raw list]].',
 'watchlistedit-raw-legend'     => 'Edit raw watchlist',
 'watchlistedit-raw-explain'    => 'Titles on your watchlist are shown below, and can be edited by adding to and removing from the list;
 one title per line.
-When finished, click Update Watchlist.
+When finished, click "{{int:Watchlistedit-raw-submit}}".
 You can also [[Special:Watchlist/edit|use the standard editor]].',
 'watchlistedit-raw-titles'     => 'Titles:',
 'watchlistedit-raw-submit'     => 'Update watchlist',
