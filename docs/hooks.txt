@@ -439,7 +439,7 @@ $moveonly: boolean whether it was for move only or not
 'ArticlePurge': before executing "&action=purge"
 $article: article (object) to purge
 
-'ArticleRevisionVisiblitySet': called when changing visibility of one or more
+'ArticleRevisionVisibilitySet': called when changing visibility of one or more
 revision of an article
 &$title: title object of the article
 
