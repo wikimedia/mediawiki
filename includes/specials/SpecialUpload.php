@@ -955,14 +955,14 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		$descriptor['DestFileWarningAck'] = array(
+		$descriptor['wpDestFileWarningAck'] = array(
 			'type' => 'hidden',
 			'id' => 'wpDestFileWarningAck',
 			'default' => $this->mDestWarningAck ? '1' : '',
 		);
 		
 		if ( $this->mForReUpload ) {
-			$descriptor['ForReUpload'] = array(
+			$descriptor['wpForReUpload'] = array(
 				'type' => 'hidden',
 				'id' => 'wpForReUpload',
 				'default' => '1',
