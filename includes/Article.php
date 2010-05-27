@@ -2845,7 +2845,7 @@ class Article {
 				) ) .
 				"</td>
 			</tr>";
-		# Dissalow watching is user is not logged in
+		# Disallow watching if user is not logged in
 		if ( $wgUser->isLoggedIn() ) {
 			$form .= "
 			<tr>
