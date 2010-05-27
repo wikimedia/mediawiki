@@ -454,8 +454,9 @@ class wikiFuzz {
             "&#x7C;",     // hex version.
             "&#xFC;",     // malformed hex variant, MSB not zero.
 
-            // a "lignature" - http://www.robinlionheart.com/stds/html4/spchars#ligature
-            "&zwnj;"
+			// a "lignature" - http://www.robinlionheart.com/stds/html4/spchars#ligature
+			// &#8204; == &zwnj;
+            "&#8204;"
                 );
 
     // Defines various wiki-related bits of syntax, that can potentially cause 
