@@ -1547,7 +1547,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|pemantau|pemantau}}]',
 'rc_categories'                     => 'Batasi sampai kategori (dipisah dengan "|")',
-'rc_categories_any'                 => 'Apapun',
+'rc_categories_any'                 => 'Apa pun',
 'newsectionsummary'                 => '/* $1 */ bagian baru',
 'rc-enhanced-expand'                => 'Tampilkan rincian (memerlukan JavaScript)',
 'rc-enhanced-hide'                  => 'Sembunyikan rincian',
@@ -1596,7 +1596,7 @@ Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pra
 'filesource'                  => 'Sumber:',
 'uploadedfiles'               => 'Berkas yang telah dimuat',
 'ignorewarning'               => 'Abaikan peringatan dan langsung simpan berkas.',
-'ignorewarnings'              => 'Abaikan peringatan apapun',
+'ignorewarnings'              => 'Abaikan peringatan apa pun',
 'minlength1'                  => 'Nama berkas paling tidak harus terdiri dari satu huruf.',
 'illegalfilename'             => 'Nama berkas "$1" mengandung aksara yang tidak diperbolehkan ada dalam judul halaman. Silakan ubah nama berkas tersebut dan cobalah memuatkannya kembali.',
 'badfilename'                 => 'Nama berkas telah diubah menjadi "$1".',
@@ -2137,7 +2137,7 @@ Untuk mengubah preferensi daftar pantauan anda, kunjungi
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Untuk menghapus halaman dari daftar pantauan anda, kunjungi
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Umpan balik dan bantuan lebih lanjut:
 {{fullurl:{{MediaWiki:Helppage}}}}',

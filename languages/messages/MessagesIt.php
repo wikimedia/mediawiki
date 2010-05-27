@@ -1045,7 +1045,7 @@ $1",
 'pagehist'                    => 'Cronologia della pagina',
 'deletedhist'                 => 'Cronologia cancellata',
 'revdelete-content'           => 'contenuto',
-'revdelete-summary'           => 'riassunto della modifica',
+'revdelete-summary'           => 'oggetto della modifica',
 'revdelete-uname'             => 'nome utente',
 'revdelete-restricted'        => 'limitazioni ai soli amministratori attivate',
 'revdelete-unrestricted'      => 'limitazioni ai soli amministratori rimosse',
@@ -2046,7 +2046,7 @@ la pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED in data $PAGEEDI
 
 $NEWPAGE
 
-Riassunto della modifica, inserito dall\'autore: $PAGESUMMARY $PAGEMINOREDIT
+Oggetto della modifica, inserito dall\'autore: $PAGESUMMARY $PAGEMINOREDIT
 
 Contatta l\'autore della modifica:
 via e-mail: $PAGEEDITOR_EMAIL
