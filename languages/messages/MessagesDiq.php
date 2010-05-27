@@ -135,7 +135,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'dewam',
 
 'linkprefix'        => "<big>'''MediaWiki niya ro.'''</big>",
-'mainpagetext'      => "<big>'''MediaWiki vıst ra ser, vıraziya.'''</big>",
+'mainpagetext'      => "'''MediaWiki vıst ra ser, vıraziya.'''",
 'mainpagedocfooter' => "Gurenayış u ayarkerdena Wiki-Software rê yardım etıya de vênenay: [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
 
 == Yardımê Sıftekerdene ==
@@ -534,7 +534,7 @@ Eke şıma reyna butonê qaydker ser a ne pel bê kılmnuşte qayd beno.",
 'summary-preview'                  => 'Verqeydê qıssa:',
 'subject-preview'                  => 'Mesela/Sername  verqayd seyr kerdış:',
 'blockedtitle'                     => 'Karber (eza) blok biyo',
-'blockedtext'                      => '<big>\'\'\'No name ya zi na IP adresê şıma ri musade çino.\'\'\'</big>
+'blockedtext'                      => '\'\'\'No name ya zi na IP adresê şıma ri musade çino.\'\'\'
 
 Oyo ke musade nêkeno: $1.<br />
 Sebebê musade nêdayiş: \'\'$2\'\'.
@@ -1773,7 +1773,7 @@ Revizyoni ya hewn a biyê ya arşiw ra veciyayê ya zi cıresayişê şımayi ş
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revizyon|$1 revizyon}} u {{PLURAL:$2|1 dosya|$2 dosya}} ameyê halê xo yê verıni',
 'undeletedfiles'               => '{{PLURAL:$1|1 dosya|$1 dosya}} tepiya anciyayi.',
 'cannotundelete'               => 'şıma ya ver yewna ten pel u medya tepiya ard u ê ra tepiya ardışê şıma meqbul niyo.',
-'undeletedpage'                => "<big>'''$1 pel tepiya anciya'''</big>
+'undeletedpage'                => "'''$1 pel tepiya anciya'''
 
 qey karê tepiya ardışi u qey karê hewn a kerdışê verıni bıewnê [[Special:Log/delete|qeydê hewn a kerdışi]].",
 'undelete-header'              => 'qey vinayişê peli yê ke cıwa ver hewn a biyê: [[Special:Log/delete|qeydê hewn a kerdışi]].',
@@ -1990,7 +1990,7 @@ Oturse, tı gani peleyê mınaqeşeyê manually beri.",
 'move-watch'                   => 'Ena pele seyr ke',
 'movepagebtn'                  => 'Pele bere',
 'pagemovedsub'                 => 'Berdışi kerd temam',
-'movepage-moved'               => '<big>\'\'\'"$1" berd "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" berd "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'yew rayberdışi vıraziya',
 'movepage-moved-noredirect'    => 'yew rayberdışi çap bı',
 'articleexists'                => 'Ena nameyê pela database ma dı esta ya zi tı raşt nınuşt. .

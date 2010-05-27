@@ -331,7 +331,7 @@ $messages = array(
 'category-file-count-limited'    => 'Sledeći {{PLURAL:$1|fajl je|$1 fajlovi su}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
 
-'mainpagetext'      => "<big>'''MedijaViki je uspešno instaliran.'''</big>",
+'mainpagetext'      => "'''MedijaViki je uspešno instaliran.'''",
 'mainpagedocfooter' => 'Molimo vidite [http://meta.wikimedia.org/wiki/Help:Contents korisnički vodič] za informacije o upotrebi viki softvera.
 
 == Za početak ==
@@ -746,7 +746,7 @@ Možda ste već uspešno promenili lozinku ili zatražili novu privremenu.',
 'summary-preview'                  => 'Pretpregled opisa izmene:',
 'subject-preview'                  => 'Pretpregled predmeta/odeljka:',
 'blockedtitle'                     => 'Korisnik je blokiran',
-'blockedtext'                      => '<big>\'\'\'Vaše korisničko ime ili IP adresa je blokirano.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Vaše korisničko ime ili IP adresa je blokirano.\'\'\'
 
 Blokirao vas je korisnik $1. 
 Razlog za blokiranje je \'\'$2\'\'.
@@ -2049,7 +2049,7 @@ U ovakvim slučajevima morate skinuti oznaku sa ili ponovo prikazati najnoviju o
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revizija|revizije|revizija}} i $2 {{PLURAL:$2|fajl|fajla|fajlova}} vraćeno',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fajl vraćen|fajla vraćena|fajlova vraćeno}}',
 'cannotundelete'               => 'Vraćanje obrisane verzije nije uspelo; neko drugi je vratio stranicu pre vas.',
-'undeletedpage'                => "<big>'''Strana $1 je vraćena'''</big>
+'undeletedpage'                => "'''Strana $1 je vraćena'''
 
 Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih brisanja i vraćanja.",
 'undelete-header'              => 'Vidi [[Special:Log/delete|log brisanja]] za skoro obrisane strane.',
@@ -2281,7 +2281,7 @@ da biste premestili stranicu.',
 'move-watch'                   => 'Nadgledaj ovu stranicu',
 'movepagebtn'                  => 'premesti stranicu',
 'pagemovedsub'                 => 'Premeštanje uspelo',
-'movepage-moved'               => '<big>\'\'\'Strana "$1" je preimenovana u "$2"!\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'Strana "$1" je preimenovana u "$2"!\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Preusmerenje je naprevljeno.',
 'movepage-moved-noredirect'    => 'Pravljenje preusmerenja je zadržano.',
 'articleexists'                => 'Stranica pod tim imenom već postoji, ili je

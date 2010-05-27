@@ -197,7 +197,7 @@ $messages = array(
 'category-file-count-limited'    => 'Wii wàll moo ëmb {{PLURAL:$1|dencukaay biy toftal|$1 dencukaay yiy toftal}}.',
 'listingcontinuesabbrev'         => '(desit)',
 
-'mainpagetext'      => "<big>'''Campug MediaWiki gi sotti na . '''</big>",
+'mainpagetext'      => "'''Campug MediaWiki gi sotti na . '''",
 'mainpagedocfooter' => 'Saytul [http://meta.wikimedia.org/wiki/Ndimbal:Ndefu Gindikaayu jëfandikukat bi] ngir yeneeni xibaar ci jëfandiku gu tëriin gi.
 
 == Tambali ak MediaWiki ==
@@ -587,7 +587,7 @@ Xèj-na baatujàll bi soppi nga ko ba noppi, walla xéj-na it dangaa laaj beneen
 'summary-preview'                  => 'Wonendig tënk bu:',
 'subject-preview'                  => 'Wonendi gu tëriit/koj:',
 'blockedtitle'                     => 'Bii jëfandikukat dañ kaa téye',
-'blockedtext'                      => '<big>\'\'\'Sa sàqum jëfandikukat walla sa màkkaanu IP dañ koo téye .\'\'\'</big>
+'blockedtext'                      => '\'\'\'Sa sàqum jëfandikukat walla sa màkkaanu IP dañ koo téye .\'\'\'
 
 Ki def téye gi mooy $ te lii mooy ngirte li : \'\'$2\'\'.
 
@@ -1767,7 +1767,7 @@ Nii-nii kocc-koccalu xët wii ñooy '''$1''':",
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|sumb|sumb}} ak $2 {{PLURAL:$2|ŋara|ŋara}} loppanti nañu leen',
 'undeletedfiles'               => '{{PLURAL:$1|1 dencukaay|$1 dencukaay}} lañu delloowaat',
 'cannotundelete'               => 'Delloowaat gi antuwul. Xéj-na keneen delloowaat na ko ba noppi.',
-'undeletedpage'                => "<big>'''Xët wii di $1 delloowaat nañu ko.'''</big>
+'undeletedpage'                => "'''Xët wii di $1 delloowaat nañu ko.'''
 
 Saytul [[Special:Log/delete|jaar-jaaru far bi]] ngir xool far yi ak delloowaat yu mujj yi.",
 'undelete-header'              => 'Saltul [[Special:Log/delete|jaar-jaaru far bi ]] ngir xool far yi mujj.',
@@ -1978,7 +1978,7 @@ Ci yii anam, faww nga tuddewaat walla yokk wii xëtu waxtaanuwaay ak sa loxo, su
 'move-watch'                   => 'Topp xët wii',
 'movepagebtn'                  => 'Tuddewaat xët wi',
 'pagemovedsub'                 => 'Tuddewaat gi antu na',
-'movepage-moved'               => "<big>'''« $1 »''' lañu tuddewaat '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "'''« $1 »''' lañu tuddewaat '''« $2 »'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Sosees na ab jubluwaat',
 'movepage-moved-noredirect'    => 'Sosug ab jubluwaat far nañu ko.',
 'articleexists'                => 'Am na ba noppi ab jukki bu am bii koj, walla koj bi nga tànn baaxul. tànnal bennen.',

@@ -13,15 +13,19 @@
  * @author Byrial
  * @author Christian List
  * @author EPO
+ * @author Emilkris33
  * @author H92
+ * @author Hylle
  * @author Jan Friberg
  * @author Jon Harald Søby
+ * @author Kwi
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Leolaursen
  * @author Masz
  * @author MinuteElectron
  * @author Morten LJ
  * @author Najami
+ * @author Nghtwlkr
  * @author Peter Andersen
  * @author Qaqqalik
  * @author Remember the dot
@@ -284,7 +288,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kategorien indeholder {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}.',
 'listingcontinuesabbrev'         => ' forts.',
 
-'mainpagetext'      => "<big>'''MediaWiki er nu installeret.'''</big>",
+'mainpagetext'      => "'''MediaWiki er nu installeret.'''",
 'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
 
 'about'          => 'Om',
@@ -525,7 +529,7 @@ Bemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du
 
 Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Preferences|{{SITENAME}}-indstillinger]].',
 'loginpagetitle'             => 'Bruger log på',
-'yourname'                   => 'Dit brugernavn',
+'yourname'                   => 'Dit brugernavn:',
 'yourpassword'               => 'Din adgangskode:',
 'yourpasswordagain'          => 'Gentag adgangskode',
 'remembermypassword'         => 'Husk min adgangskode til næste gang.',
@@ -624,13 +628,13 @@ Vent venligst før du prøver igen.',
 'resetpass_announce'        => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
 'resetpass_text'            => '<!-- Tilføj tekst her -->',
 'resetpass_header'          => 'Skift adgangskode',
-'oldpassword'               => 'Gammel adgangskode',
-'newpassword'               => 'Ny adgangskode',
-'retypenew'                 => 'Gentag ny adgangskode',
-'resetpass_submit'          => 'Send password og log på',
-'resetpass_success'         => 'Dit password er nu ændret. Nu følger tilmelding …',
+'oldpassword'               => 'Gammel adgangskode:',
+'newpassword'               => 'Ny adgangskode:',
+'retypenew'                 => 'Gentag ny adgangskode:',
+'resetpass_submit'          => 'Gem adgangskode og log på',
+'resetpass_success'         => 'Din adgangskode er nu ændret. Logger ind...',
 'resetpass_bad_temporary'   => 'Ugyldigt foreløbigt password. Du har allerede ændret dit password eller bestilt et nyt foreløbigt password.',
-'resetpass_forbidden'       => 'Dette password kan ikke ændres.',
+'resetpass_forbidden'       => 'Adgangskoder kan ikke ændres',
 'resetpass-no-info'         => 'Du skal være logget på for at komme direkte til denne side.',
 'resetpass-submit-loggedin' => 'Skift adgangskode',
 'resetpass-wrong-oldpass'   => 'Ugyldig midlertidig eller gældende adgangskode. 
@@ -680,7 +684,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'summary-preview'                  => 'Forhåndsvisning af beskrivelsen:',
 'subject-preview'                  => 'Forhåndsvisning af emnet:',
 'blockedtitle'                     => 'Brugeren er blokeret',
-'blockedtext'                      => "<big>'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''</big>
+'blockedtext'                      => "'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''
 
 Blokeringen er foretaget af $1.
 Den anførte grund er ''$2''.
@@ -1890,7 +1894,7 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 # Rollback
 'rollback'         => 'Fjern redigeringer',
 'rollback_short'   => 'Fjern redigering',
-'rollbacklink'     => 'fjern redigering',
+'rollbacklink'     => 'rul tilbage',
 'rollbackfailed'   => 'Kunne ikke fjerne redigeringen',
 'cantrollback'     => 'Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.',
 'alreadyrolled'    => 'Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -1936,7 +1940,7 @@ og den seneste version af $2 er gendannet.',
 'protect-othertime-op'        => 'anden tid',
 'protect-existing-expiry'     => 'Nugældende udløbstid: $2 $3',
 'protect-otherreason'         => 'Anden/uddybende årsag:',
-'protect-otherreason-op'      => 'anden/uddybende årsag',
+'protect-otherreason-op'      => 'Anden årsag',
 'protect-dropdown'            => '* Almindelge besyttelsesårsager
 ** Gentagen hærværk
 ** Gentagen spam
@@ -2195,7 +2199,7 @@ I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'move-watch'                   => 'Overvåg siden',
 'movepagebtn'                  => 'Flyt side',
 'pagemovedsub'                 => 'Flytning gennemført',
-'movepage-moved'               => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => 'Siden \'\'\'"$1" er flyttet til "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'En omdirigering er oprettet.',
 'movepage-moved-noredirect'    => 'Der oprettedes ikke en omdirigering.',
 'articleexists'                => 'En side med det navn eksisterer allerede, eller det
@@ -2338,7 +2342,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-ca-addsection'           => 'Start et nyt afsnit',
 'tooltip-ca-viewsource'           => 'Denne side er beskyttet.
 Du kan se på kildeteksten.',
-'tooltip-ca-history'              => 'Tidligere versioner af denne side.',
+'tooltip-ca-history'              => 'Tidligere versioner af denne side',
 'tooltip-ca-protect'              => 'Beskyt denne side',
 'tooltip-ca-delete'               => 'Slet denne side',
 'tooltip-ca-undelete'             => 'Gendan de redigeringer der blev lavet på denne side før den blev slettet',
@@ -2368,7 +2372,7 @@ Du kan se på kildeteksten.',
 'tooltip-ca-nstab-main'           => 'Se indholdet',
 'tooltip-ca-nstab-user'           => 'Se brugersiden',
 'tooltip-ca-nstab-media'          => 'Se mediasiden',
-'tooltip-ca-nstab-special'        => 'Dette er en speciel side; man kan ikke redigere sådanne sider.',
+'tooltip-ca-nstab-special'        => 'Dette er en speciel side; man kan ikke redigere sådanne sider',
 'tooltip-ca-nstab-project'        => 'Vis projektsiden',
 'tooltip-ca-nstab-image'          => 'Se filsiden',
 'tooltip-ca-nstab-mediawiki'      => 'Se systembeskeden',
@@ -2646,7 +2650,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsdestdistance'             => 'Motivafstand',
 'exif-gpsprocessingmethod'         => 'GPS-metodens navn',
 'exif-gpsareainformation'          => 'GPS-områdets navn',
-'exif-gpsdatestamp'                => 'GPS-fato',
+'exif-gpsdatestamp'                => 'GPS-dato',
 'exif-gpsdifferential'             => 'GPS-differentialkorrektur',
 
 # EXIF attributes
@@ -2809,7 +2813,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'confirmemail_text'        => '{{SITENAME}} kræver, at du bekræfter en e-mail-adresse (autentificering), før du kan bruge de udvidede e-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en e-mail til dig. Denne e-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at e-mail-adressen er gyldig.',
 'confirmemail_pending'     => 'En bekræftelsesmail er allerede sendt til dig. Hvis du først for nylig har oprettet brugerkontoen, vent da et par minutter på denne e-mail, før du bestiller en ny kode.',
 'confirmemail_send'        => 'Send bekræftelseskode',
-'confirmemail_sent'        => 'Bekræftelses-e-amil afsendt.',
+'confirmemail_sent'        => 'Bekræftelses-e-mail afsendt.',
 'confirmemail_oncreate'    => 'En bekræftelseskode er sendt til din e-mail-adresse. Denne kode skal ikke bruges til anmeldelsen, den kræves dog til aktiveringen af e-mail-funktionerne indenfor Wikien.',
 'confirmemail_sendfailed'  => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at e-mail-adressen er korrekt.
 
@@ -2906,7 +2910,10 @@ Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].'
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
 'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',
 'watchlistedit-raw-legend'     => 'Direkte redigering af overvågningsliste',
-'watchlistedit-raw-explain'    => 'Siderne i din overvågningsliste er vist nedenfor. Du kan ændre din overvågningsliste ved at tilføje og fjerne sidenavne. Du kan gemme din nye overvågningsliste ved at trykke på Opdater overvågningsliste nedenfor. Du kan også redigere overvågningslisten i [[Special:Watchlist/edit|sorteret form]].',
+'watchlistedit-raw-explain'    => 'Siderne i din overvågningsliste er vist nedenfor, og kan ændres ved at tilføje og fjerne fra listen;
+en side per linie
+Når du er færdig, klik "{{int:Watchlistedit-raw-submit}}".
+Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'watchlistedit-raw-titles'     => 'Sider:',
 'watchlistedit-raw-submit'     => 'Opdater overvågningsliste',
 'watchlistedit-raw-done'       => 'Din overvågningsliste blev opdateret.',

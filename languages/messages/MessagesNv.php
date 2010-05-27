@@ -354,7 +354,7 @@ $3',
 'newtitle'        => 'naaltsoos bizhiʼ ániidí:',
 'move-watch'      => 'shinááł',
 'movepagebtn'     => '✔ bee lą́ ashłeeh',
-'movepage-moved'  => '<big>\'\'\'"$1" kʼad "$2" wolyé\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'  => '\'\'\'"$1" kʼad "$2" wolyé\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'       => 'naaltsoos "[[$1]]" → "[[$2]]"-góó yidiyiznááʼ',
 '1movedto2_redir' => 'naaltsoos "[[$1]]" → "[[$2]]"-góó yidiyiznááʼ (dah astsihí ńtʼę́ę́ʼ)',
 'revertmove'      => 'ńdíídleeł!',

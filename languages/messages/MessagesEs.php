@@ -340,7 +340,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El siguiente fichero pertenece|Los siguientes $1 ficheros pertenecen}} a esta categoría.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext'      => "<big>'''MediaWiki ha sido instalado con éxito.'''</big>",
+'mainpagetext'      => "'''MediaWiki ha sido instalado con éxito.'''",
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
 
 == Empezando ==
@@ -417,7 +417,7 @@ $messages = array(
 'otherlanguages'    => 'Otros idiomas',
 'redirectedfrom'    => '(Redirigido desde $1)',
 'redirectpagesub'   => 'Página redirigida',
-'lastmodifiedat'    => 'Esta página fue modificada por última vez el $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Esta página fue modificada por última vez el $1, a las $2.', # $1 date, $2 time
 'viewcount'         => 'Esta página ha sido visitada {{PLURAL:$1|una vez|$1 veces}}.',
 'protectedpage'     => 'Página protegida',
 'jumpto'            => 'Saltar a',
@@ -737,15 +737,15 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'showpreview'                      => 'Mostrar previsualización',
 'showlivepreview'                  => 'Previsualización inmediata',
 'showdiff'                         => 'Mostrar cambios',
-'anoneditwarning'                  => "'''Aviso:''' No has introducido tu nombre de usuario.
-Tu dirección IP será guardada en el historial de ediciones de la página.",
+'anoneditwarning'                  => "'''Aviso:''' No ha iniciado sesión con una cuenta de usuario.
+Tu dirección IP se almacenará en el historial de ediciones de la página.",
 'missingsummary'                   => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{MediaWiki:Savearticle}}» tu edición se grabará sin él.",
 'missingcommenttext'               => 'Por favor introduce texto debajo.',
 'missingcommentheader'             => "'''Atención:''' No has escrito un título para este comentario. Si haces clic nuevamente en Grabar tu edición se grabará sin él.",
 'summary-preview'                  => 'Previsualización del resumen:',
 'subject-preview'                  => 'Previsualización del tema/título:',
 'blockedtitle'                     => 'El usuario está bloqueado',
-'blockedtext'                      => "<big>'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</big>
+'blockedtext'                      => "'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''
 
 El bloqueo fue hecho por $1.
 La razón dada es ''$2''.
@@ -994,7 +994,7 @@ Por favor confirme que está intentando hacer esto, que usted entiende las conse
 'logdelete-logentry'             => 'cambió la visibilidad de eventos de [[$1]]',
 'revdelete-success'              => "'''La visibilidad de revisiones ha sido cambiada correctamente.'''",
 'logdelete-success'              => 'Visibilidad de eventos cambiada correctamente.',
-'revdel-restore'                 => 'Cambiar visibilidad',
+'revdel-restore'                 => 'cambiar visibilidad',
 'pagehist'                       => 'Historial de la página',
 'deletedhist'                    => 'Historial borrado',
 'revdelete-content'              => 'contenido',
@@ -1285,22 +1285,22 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burócratas',
-'group-suppress'      => 'Supervisores',
+'group-suppress'      => 'Supresores',
 'group-all'           => '(todos)',
 
 'group-user-member'          => 'Usuario',
 'group-autoconfirmed-member' => 'Usuario autoconfirmado',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrador',
-'group-bureaucrat-member'    => 'Burócrata',
-'group-suppress-member'      => 'Supervisor',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrador',
+'group-bureaucrat-member'    => 'burócrata',
+'group-suppress-member'      => 'supresor',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
 'grouppage-bot'           => '{{ns:project}}:Bot',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
-'grouppage-suppress'      => '{{ns:project}}:Supervisor',
+'grouppage-suppress'      => '{{ns:project}}:Supresores',
 
 # Rights
 'right-read'                  => 'Leer páginas',
@@ -1605,7 +1605,7 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 'filerevert'                => 'Revertir $1',
 'filerevert-legend'         => 'Reversión de archivos',
 'filerevert-intro'          => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [$4 versión del $2 a las $3].",
-'filerevert-comment'        => 'Comentario:',
+'filerevert-comment'        => 'Razón:',
 'filerevert-defaultcomment' => 'Revertido a la versión subida el $1 a las $2',
 'filerevert-submit'         => 'Revertir',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ha sido revertido a la [$4 versión del $2 a las $3].",
@@ -2075,14 +2075,14 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletelink'                 => 'ver/restaurar',
 'undeletereset'                => 'Cancelar',
 'undeleteinvert'               => 'Invertir selección',
-'undeletecomment'              => 'Razón para restaurar:',
+'undeletecomment'              => 'Razón:',
 'undeletedarticle'             => 'restauró «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Una edición restaurada|$1 ediciones restauradas}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|ediciones restauradas y $2 archivo restaurado|ediciones y $2 archivos restaurados}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo restaurado|archivos restaurados}}',
 'cannotundelete'               => 'Ha fallado el deshacer el borrado;
 alguien más puede haber deshecho el borrado antes.',
-'undeletedpage'                => "<big>'''Se ha restaurado $1'''</big>
+'undeletedpage'                => "'''Se ha restaurado $1'''
 
 Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de los últimos borrados y restauraciones.",
 'undelete-header'              => 'En el [[Special:Log/delete|registro de borrados]] se listan las páginas eliminadas.',
@@ -2299,7 +2299,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'                   => 'Vigilar este artículo',
 'movepagebtn'                  => 'Renombrar página',
 'pagemovedsub'                 => 'Renombrado realizado con éxito',
-'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" ha sido trasladado a "$2".\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Se ha creado una redirección.',
 'movepage-moved-noredirect'    => 'Se ha suprimido la creación de la redirección.',
 'articleexists'                => 'Ya existe una página con ese nombre, o el nombre que has escogido no es válido.
@@ -2400,7 +2400,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'importnopages'              => 'No hay páginas que importar.',
 'importfailed'               => 'La importación ha fallado: $1',
 'importunknownsource'        => 'Tipo de fuente de importación desconocida',
-'importcantopen'             => 'No se puedo importar este archivo',
+'importcantopen'             => 'No se pudo importar el archivo',
 'importbadinterwiki'         => 'Enlace interwiki anómalo',
 'importnotext'               => 'Vacío o sin texto',
 'importsuccess'              => '¡La importación se ha realizado con éxito!',
@@ -3015,17 +3015,17 @@ Intenta la previsualización normal.',
 'watchlistedit-noitems'        => 'Tu lista de seguimiento está vacía.',
 'watchlistedit-normal-title'   => 'Editar lista de seguimiento',
 'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
-'watchlistedit-normal-explain' => "Las páginas de tu lista de seguimiento se muestran debajo.
-Para eliminar una página, marca la casilla junto a la página, y haz clic en ''Borrar páginas''.
+'watchlistedit-normal-explain' => "Los títulos de tu lista de seguimiento se muestran debajo.
+Para remover un título, marca la casilla junto a él, y haz clic en ''{{int:Watchlistedit-normal-submit}}''.
 También puedes [[Special:Watchlist/raw|editar la lista en crudo]].",
 'watchlistedit-normal-submit'  => 'Borrar páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',
 'watchlistedit-raw-title'      => 'Editar lista de seguimiento en crudo',
 'watchlistedit-raw-legend'     => 'Editar tu lista de seguimiento en modo texto',
-'watchlistedit-raw-explain'    => 'Las páginas de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista;
-una página por línea.
-Cuando acabes, haz clic en Actualizar lista de seguimiento.
-También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
+'watchlistedit-raw-explain'    => 'Los títulos de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista;
+un título por línea.
+Cuando acabes, haz clic en "{{int:Watchlistedit-raw-submit}}".
+También puedes [[Special:Watchlist/edit|usar el editor estándar]].',
 'watchlistedit-raw-titles'     => 'Páginas:',
 'watchlistedit-raw-submit'     => 'Actualizar lista de seguimiento',
 'watchlistedit-raw-done'       => 'Tu lista de seguimiento se ha actualizado.',
@@ -3065,7 +3065,7 @@ También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
 # Special:FilePath
 'filepath'         => 'Ruta de archivo',
 'filepath-page'    => 'Archivo:',
-'filepath-submit'  => 'Ruta',
+'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
 Las imágenes se muestran en resolución máxima, otros tipos de archivo se inician directamente con su programa asociado.
 

@@ -133,7 +133,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ii vibhag me etna {{PLURAL:$1|file hai|$1 files hai}}.',
 'listingcontinuesabbrev'         => 'aur',
 
-'mainpagetext'      => "<big>'''MediaWiki ke safalta se install kar dewa gais hai.'''</big>",
+'mainpagetext'      => "'''MediaWiki ke safalta se install kar dewa gais hai.'''",
 'mainpagedocfooter' => "Wiki software ke use kare ke aur jaankari ke khatir [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.
 
 == Getting started ==
@@ -548,7 +548,7 @@ Agar aap Save pe click karaa tab bina vishay ke iske save kar lewa jaai.",
 'summary-preview'                  => 'Sanchhep jhalak:',
 'subject-preview'                  => 'Suchi ke jhalak:',
 'blockedtitle'                     => 'Sadasya ke rok dewa gais hai',
-'blockedtext'                      => "<big>'''Aapke user name nai to IP address ke rok dewa gae hai.'''</big>
+'blockedtext'                      => "'''Aapke user name nai to IP address ke rok dewa gae hai.'''
 
 Roke waala hai $1. 
 Iske kaaran hai ''$2''.
@@ -1913,7 +1913,7 @@ Sait aap ke kharaab link hoi, nai to badlao ke sait pahile jaise kar dewa gais h
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} ke pahile jaise kar dewa gais hai',
 'cannotundelete'               => 'Pahile jaise nai kare sakaa;
 saait aur koi panna ke pahile jaise kar diis hai.',
-'undeletedpage'                => "<big>'''$1 ke pahile jaise kar dewa gais hai'''</big>
+'undeletedpage'                => "'''$1 ke pahile jaise kar dewa gais hai'''
 
 Nawaa mitawa gais aur badlao ke ulta karaa gais panna ke dekhe ke khatir [[Special:Log/delete|deletion log]] ke dekho.",
 'undelete-header'              => 'Nawaa mitawa gais panna ke dekhe ke khatir [[Special:Log/delete|the deletion log]] ke dekho.',
@@ -2136,7 +2136,7 @@ Ii prastithi me, aap ke manually move yah merge kare ke parri.",
 'move-watch'                   => 'Ii panna pe dhyan rakho',
 'movepagebtn'                  => 'Panna ke naam badlo',
 'pagemovedsub'                 => 'Panna ke naam badle me safalta',
-'movepage-moved'               => '<big>\'\'\'"$1" ke naam badal ke "$2" kar dewa gais hai\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" ke naam badal ke "$2" kar dewa gais hai\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Ek redirect ke banae dewa gais hai.',
 'movepage-moved-noredirect'    => 'Ek redirect ke banae pe rukawat lagae dewa gais hai.',
 'articleexists'                => 'Uu naam ke panna abhi hai, nai to jon naam aap choose karaa hai valid nai hai.

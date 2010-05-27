@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Arslan
  * @author Khalid Mahmood
  * @author ZaDiak
  */
@@ -15,20 +16,25 @@ $fallback8bitEncoding = 'windows-1256';
 
 $messages = array(
 # User preference toggles
-'tog-justify'              => 'پیراگراف ثابت کرو',
-'tog-hideminor'            => 'چھوٹیاں تبدیلیاں چھپاؤ',
-'tog-extendwatchlist'      => 'نظر تھلے رکھے صفحے نوں کھلا کرو تاکہ اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
-'tog-watchcreations'       => 'جیڈے صفحے میں بناندا واں اوہ میری اکھ تھلے کر دیو',
-'tog-watchdefault'         => 'جیڈے صفحیاں چ میں لکھداں اوہ میری اکھ تھلے کر دیو',
-'tog-watchmoves'           => 'جیڈے صفحے میں لے چلداں اوہ میری اکھ تھلے کر دیو',
-'tog-watchdeletion'        => 'جیڈے صفحے میں مٹانداں اوہ میری اکھ تھلے کر دیو',
-'tog-enotifwatchlistpages' => 'اگر میری اکھ تھلیاں صفحیاں چوں کسے چ تبدیلی ہوۓ، تے مینوں ای میل کر دیو',
-'tog-enotifusertalkpages'  => 'اگر میرے گلاں باتاں آلے صفحے چ کوئی تبدیلی کرے، تے مینوں ای میل کر دیو',
-'tog-enotifminoredits'     => 'صفحیاں چ چھوٹیاں موٹیاں تبدیلیاں تے وی مینوں ای میل کر دیو',
-'tog-watchlisthideown'     => 'میری اپنی لکھائی نوں اکھ تھلیوں لکاؤ',
-'tog-watchlisthidebots'    => 'بوٹ دی لکھائی اکھ تھلیوں لکاؤ',
-'tog-watchlisthideminor'   => 'چھوٹی موٹی لکھائی اکھ تھلیوں لکاؤ',
-'tog-showhiddencats'       => 'لکیاں کیٹاگریاں وکھاؤ',
+'tog-justify'                => 'پیراگراف ثابت کرو',
+'tog-hideminor'              => 'چھوٹیاں تبدیلیاں چھپاؤ',
+'tog-extendwatchlist'        => 'نظر تھلے رکھے صفحے نوں ودھاو, تاکہ اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
+'tog-watchcreations'         => 'جیڈے صفحے میں بناندا واں اوہ میری اکھ تھلے کر دیو',
+'tog-watchdefault'           => 'جیڈے صفحیاں چ میں لکھداں اوہ میری اکھ تھلے کر دیو',
+'tog-watchmoves'             => 'جیڈے صفحے میں لے چلداں اوہ میری اکھ تھلے کر دیو',
+'tog-watchdeletion'          => 'جیڈے صفحے میں مٹانداں اوہ میری اکھ تھلے کر دیو',
+'tog-enotifwatchlistpages'   => 'اگر میری اکھ تھلیاں صفحیاں چوں کسے چ تبدیلی ہوۓ، تے مینوں ای میل کر دیو',
+'tog-enotifusertalkpages'    => 'اگر میرے گلاں باتاں آلے صفحے چ کوئی تبدیلی کرے، تے مینوں ای میل کر دیو',
+'tog-enotifminoredits'       => 'صفحیاں چ چھوٹیاں موٹیاں تبدیلیاں تے وی مینوں ای میل کر دیو',
+'tog-enotifrevealaddr'       => 'میرے ای میل دے پتے نوں سندیسے آلی ای میل دے وچ وکھاؤ۔',
+'tog-shownumberswatching'    => 'ویکھن آلے لوکاں دی گنتی وکھاؤ۔',
+'tog-fancysig'               => 'دستخط نوں وکی ٹیکسڈ ونگوں؎ ورتو(without an automatic link)',
+'tog-watchlisthideown'       => 'میری اپنی لکھائی نوں اکھ تھلیوں لکاؤ',
+'tog-watchlisthidebots'      => 'بوٹ دی لکھائی اکھ تھلیوں لکاؤ',
+'tog-watchlisthideminor'     => 'چھوٹی موٹی لکھائی اکھ تھلیوں لکاؤ',
+'tog-watchlisthidepatrolled' => 'نکی لکھائی اکھ تھلوں لکاؤ',
+'tog-ccmeonemails'           => 'مینوں اوہناں ای میلاں دیاں کاپیاں بھیجو جیہڑیاں میں دوجیاں نوں بھیجاں۔',
+'tog-showhiddencats'         => 'لکیاں کیٹاگریاں وکھاؤ',
 
 'underline-always' => 'ہمیشہ',
 'underline-never'  => 'کدی وی نئیں',
@@ -147,7 +153,7 @@ $messages = array(
 'talkpagelinktext'  => 'گل بات',
 'specialpage'       => 'خاص صفحہ',
 'personaltools'     => 'ذاتی اوزار',
-'postcomment'       => 'گل کرو',
+'postcomment'       => 'نویں ونڈ',
 'articlepage'       => 'مضمون آلا صفحہ',
 'talk'              => 'گل بات',
 'views'             => 'منظر',
@@ -350,7 +356,7 @@ $messages = array(
 'missingcommenttext'               => 'تھلے اپنی گل لکھو۔',
 'summary-preview'                  => 'کچے کم دا خلاصہ:',
 'blockedtitle'                     => 'ورتن آلے نوں روکیا ہویا اے',
-'blockedtext'                      => "<big>'''تواڈا ورتن والا ناں یا فیر آئی پی ایڈریس روک دتا گیا اے۔'''</big>
+'blockedtext'                      => "'''تواڈا ورتن والا ناں یا فیر آئی پی ایڈریس روک دتا گیا اے۔'''
 
 توانوں $1 نے روکیا اے۔<br />
 ایدی وجہ ''$2'' اے۔
@@ -372,7 +378,7 @@ $messages = array(
 'newarticletext'                   => 'تسی ایسے صفحے دے جوڑ توں ایتھے پہنچے او جیڑا ھلے تک نہیں بنیا۔<br />
 اس صفحہ بنانے آسطے تھلے دتے گۓ ڈبے وچ لکھنا شروع کر دیو(زیادہ رہنمائی آستے اے ویکھو [[{{MediaWiki:Helppage}}|<br />مدد دا صفحہ]])۔
 اگر تسی ایتھے غلطی نال پہنچے او تے اپنے کھوجی توں "بیک" دا بٹن دبا دیو۔',
-'noarticletext'                    => 'اس ویلے اس صفحے تے کج نہیں لکھیا ہویا تسی [[Special:Search/{{PAGENAME}}|اس صفحے دے ناں نوں دوجے صفحیاں تے کھوج سکدے او]] یا فیر [{{fullurl:{{FULLPAGENAME}}|action=edit}} اس صفحے نوں لکھ سکدے او۔]',
+'noarticletext'                    => 'اس ویلے اس صفحے تے کج نہیں لکھیا ہویا تسیں [[Special:Search/{{PAGENAME}}|اس صفحے دے ناں نوں دوجے صفحیاں تے کھوج سکدے او]] یا فیر [{{fullurl:{{FULLPAGENAME}}|action=edit}} اس صفحے نوں لکھ سکدے او۔]',
 'updated'                          => '(نواں کیتا گیا)',
 'previewnote'                      => "'''اے ہلے کچا کم اے؛ تبدیلیاں بچائیاں نہیں گئیاں'''",
 'editing'                          => 'تسی "$1" لکھ رہے او',
@@ -832,7 +838,7 @@ $messages = array(
 'addedwatchtext'    => 'اے صفحہ "[[:$1]] تواڈیاں اکھاں تھلے آگیا اے۔<br />
 مستقبل وچ اس صفحہ تے ایدے بارے چ گل بات نویاں تبدیلیاں وچ موٹے نظر آن گے تا کہ آسانی نال کھوجیا جا سکے۔',
 'removedwatch'      => 'اکھ تھلیوں ہٹا لیا گیا',
-'removedwatchtext'  => 'اے صفحہ "[[:$1]]" تواڈی اکھ تھلیوں ہٹا لیا گیا اے۔',
+'removedwatchtext'  => 'ایہ صفحہ "[[:$1]]" [[Special:Watchlist|تہاڈی اکھ ]]تھلوں ہٹا لیتا گیا اے۔',
 'watch'             => 'نظر رکھو',
 'watchthispage'     => 'اس صفحے تے اکھ رکھو',
 'unwatch'           => 'نظر ھٹاؤ',
@@ -882,7 +888,7 @@ $messages = array(
 'modifiedarticleprotection'   => '"[[$1]]" آستے بچاؤ بدلیا',
 'unprotectedarticle'          => '"[[$1]]" نئیں بچایا گیا',
 'protect-legend'              => 'بچاؤ پکا کرو',
-'protectcomment'              => 'را‌ۓ:',
+'protectcomment'              => 'وجہ:',
 'protectexpiry'               => 'انت ہوندا اے:',
 'protect_expiry_invalid'      => 'اکسپائری ٹیم غلط اے۔',
 'protect_expiry_old'          => 'ایدا اکسپائری ٹائم گزر چکیا اے۔',
@@ -1043,7 +1049,7 @@ $messages = array(
 'move-watch'              => 'صفحے اکھ تھلے رکھو',
 'movepagebtn'             => 'صفحہ لے جاؤ',
 'pagemovedsub'            => 'لے جانا کامیاب ریا',
-'movepage-moved'          => '<big>\'\'\'"$1" نوں "$2" لے جایا گیا اے\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1" نوں "$2" لے جایا گیا اے\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'اس ناں دا صفحہ یا تے پہلاں توں ہی موجود اے یا فیر جیڑا ناں تسی چنیا اے درست نہیں۔<br />
 کوئی دوجا ناں چنو۔',
 'talkexists'              => "'''اے صفحہ کامیابی دے نال ے جایا گیا مگر ایدا گلاں باتاں آلا صفحہ رنہیں لے جایا جا سکدا کیونکہ اک نیا اسی ناں نال موجود اے۔ ایناں نوں ہتھ نال ملا دیو۔'''",

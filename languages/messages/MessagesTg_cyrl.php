@@ -190,7 +190,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|парвандаи|$1 парвандаҳои}} зерин дар гурӯҳи феълӣ қарор {{PLURAL:дорад|доранд}}.',
 'listingcontinuesabbrev'         => 'идома',
 
-'mainpagetext'      => "<big>'''Нармафзори МедиаВики бо муваффақият насб шуд.'''</big>",
+'mainpagetext'      => "'''Нармафзори МедиаВики бо муваффақият насб шуд.'''",
 'mainpagedocfooter' => 'Аз [http://meta.wikimedia.org/wiki/Help:Contents Роҳнамои Корбарон] барои истифодаи нармафзори вики кӯмак бигиред.
 
 == Оғоз ба кор ==
@@ -579,7 +579,7 @@ $1',
 'summary-preview'                  => 'Пешнамоиши хулоса:',
 'subject-preview'                  => 'Пешнамоиши мавзӯъ/унвон:',
 'blockedtitle'                     => 'Корбар баста шудааст',
-'blockedtext'                      => "<big>'''Номи корбарии Шумо ё нишонаи IP баста шудааст.'''</big>
+'blockedtext'                      => "'''Номи корбарии Шумо ё нишонаи IP баста шудааст.'''
 
 Бастан аз тарафи $1 иҷро шуд. 
 Сабаби он ''$2'' аст.
@@ -1640,7 +1640,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 нусха ва $2 парванда барқарор {{PLURAL:$1|шуд|шуданд}}',
 'undeletedfiles'               => '$1 парванда барқарор {{PLURAL:$1|шуд|шуданд}}',
 'cannotundelete'               => 'Барқароркунӣ нашуд; мумкин аст касе дигаре пештар ин саҳифаро барқарор карда бошад.',
-'undeletedpage'                => "<big>'''$1 барқарор шуд'''</big>
+'undeletedpage'                => "'''$1 барқарор шуд'''
 
 Барои дидани гузориши ҳазфҳо ва барқароркуниҳои охирин ба [[Special:Log/delete|гузориши ҳазф]] нигаред.",
 'undelete-header'              => 'Барои дидани саҳифаҳои ҳазфшудаи охир [[Special:Log/delete|гузоришҳои ҳазфро]] нигаред.',
@@ -1833,7 +1833,7 @@ $1',
 'move-watch'                => 'Назар кардани ин саҳифа',
 'movepagebtn'               => 'Кӯчонидани саҳифа',
 'pagemovedsub'              => 'Кӯчониш бомуваффақият анҷом ёфт',
-'movepage-moved'            => '<big>\'\'\'"$1" ба "$2" кӯчонида шуд\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '\'\'\'"$1" ба "$2" кӯчонида шуд\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'   => 'Як тағйири масир эҷод шуд.',
 'movepage-moved-noredirect' => 'Аз эҷоди тағйири масир маъмониат шуд.',
 'articleexists'             => 'Саҳифае бо ин ном вуҷуд надорад, ё номе, ки интихоб кардаед мӯътабар нест.

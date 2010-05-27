@@ -154,7 +154,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(малалли)',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff«"]+)$/sD',
-'mainpagetext'      => "<big>'''«MediaWiki» вики-движока лартасси ăнăçлă вĕçленчĕ.'''</big>",
+'mainpagetext'      => "'''«MediaWiki» вики-движока лартасси ăнăçлă вĕçленчĕ.'''",
 'mainpagedocfooter' => 'Ку википе ĕçлеме пулăшакан информацине [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 усăç руководствинче] тупма пултаратăр.
 
 == Пулăшма пултарĕç ==
@@ -490,7 +490,7 @@ $1',
 'summary-preview'        => 'Ăнлантару çапла пулĕ:',
 'subject-preview'        => 'Статья ячĕ çапла пулĕ:',
 'blockedtitle'           => 'Хутшăнакана ĕçлеме чарнă',
-'blockedtext'            => "<big>'''Ку аккаунта е IP-адреса ĕçлеме чарнă.'''</big>
+'blockedtext'            => "'''Ку аккаунта е IP-адреса ĕçлеме чарнă.'''
 
 $1 администратор ĕçлеме чарнă. Сăлтавĕ çакă: ''«$2»''.
 

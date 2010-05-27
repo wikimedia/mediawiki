@@ -140,7 +140,7 @@ $messages = array(
 'category-file-count-limited'    => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
 'listingcontinuesabbrev'         => 'cond.',
 
-'mainpagetext'      => "<big>'''MediaUicchi ha state 'nstallete.'''</big>",
+'mainpagetext'      => "'''MediaUicchi ha state 'nstallete.'''",
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
 
 == Pe accumenzà ==
@@ -570,7 +570,7 @@ Ce tu cazze Reggistre 'n'otra vote, 'u cangiamende tue avène memorizzete senze 
 'summary-preview'                  => "Andeprime d'u riepileghe:",
 'subject-preview'                  => "Andeprime de l'Oggette/Testete:",
 'blockedtitle'                     => "L'utende è blocchete",
-'blockedtext'                      => "<big>''''U nome de l'utende o l'indirizze IP ha state blocchete.'''</big>
+'blockedtext'                      => "''''U nome de l'utende o l'indirizze IP ha state blocchete.'''
 
 'U blocche ha state fatte da $1.
 'U mutive date jè ''$2''.
@@ -1954,7 +1954,7 @@ Tu puè avè 'nu collegamende sbagliate o 'a revisione pò essere ca ha state re
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 file}} ripristinete',
 'cannotundelete'               => "Repristine fallite;
 quaccheotre pò essere ca ha repristinate 'a pàgene apprime.",
-'undeletedpage'                => "<big>'''$1 ha state repristinate'''</big>
+'undeletedpage'                => "'''$1 ha state repristinate'''
 
 Ligge l'[[Special:Log/delete|archivije de le scangellaminde]] pe 'nu report de le urteme scangellaminde e repristinaminde.",
 'undelete-header'              => "Vide [[Special:Log/delete|l'archivije de le scangellaminde]] pe l'urteme pàggene scangellete.",
@@ -2182,7 +2182,7 @@ Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u c
 'move-watch'                   => 'condrolle sta pàgene',
 'movepagebtn'                  => "Spueste 'a pàgene",
 'pagemovedsub'                 => 'Spustaminde eseguite',
-'movepage-moved'               => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "'''\"\$1\" ha state spustate jndr'à \"\$2\"'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => "'Nu redirezionamende ha state ccrejate.",
 'movepage-moved-noredirect'    => "'A ccrejazzione de 'nu redirezionamende ha state soppresse.",
 'articleexists'                => "'Na pàgene cu stu nome già esiste, o 'u nome ca tu è scacchiete non g'è valide.
@@ -2934,7 +2934,7 @@ Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
 # Special:FilePath
 'filepath'         => "Percorse d'u fail",
 'filepath-page'    => 'File:',
-'filepath-submit'  => 'Percorse',
+'filepath-submit'  => 'Véje',
 'filepath-summary' => "Sta pàgena speciale retorne 'u percorse comblete pe 'nu file.<br />
 Le immaggine sonde mostrate jndr'à resoluziona megghie, otre tipe de file rechiamane 'u lore programme associate direttamende.
 

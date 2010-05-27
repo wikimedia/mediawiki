@@ -153,7 +153,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Τὸ|Τὰ}} ἑξῆς {{PLURAL:$1|ἀρχεῖον εἰσὶν|$1 ἀρχεῖα εἰσὶν}} ἐν τῇ τρεχούσῃ κατηγορίᾳ.',
 'listingcontinuesabbrev'         => 'συνεχίζεται',
 
-'mainpagetext'      => "<big>'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''</big>",
+'mainpagetext'      => "'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''",
 'mainpagedocfooter' => 'Βουλευθήσεσθε τὰς [http://meta.wikimedia.org/wiki/Help:Contents βουλὰς τοῖς Χρωμένοις] ἵνα πληροφορηθῇτε ἐπὶ τοῦ βίκι-λογισμικοῦ.
 
 == Ἄρξασθε ==
@@ -532,7 +532,7 @@ $2',
 'summary-preview'                  => 'Προθεώρησις συνόψεως:',
 'subject-preview'                  => 'Ἀντικειμένου/ἐπικεφαλίδος προθεώρησις:',
 'blockedtitle'                     => 'Ἀποκεκλεισμένος ὁ χρώμενος',
-'blockedtext'                      => "<big>'''Τὸ ὄνομα χρωμένου σου ἢ ἡ IP-διεύθυνσις σου πεφραγμένα εἰσίν.'''</big>
+'blockedtext'                      => "'''Τὸ ὄνομα χρωμένου σου ἢ ἡ IP-διεύθυνσις σου πεφραγμένα εἰσίν.'''
 
 Ἡ φραγὴ γέγονε ὑπὸ τὸν/τὴν $1.
 Ἡ δεδομένη αἰτιολογία ἐστίν: ''$2''.
@@ -1123,8 +1123,8 @@ $2',
 'rcshowhideliu'                     => '$1 χρωμένους συνδεδεμένους',
 'rcshowhideanons'                   => '$1 χρώμενοι ἀνώνυμοι',
 'rcshowhidepatr'                    => '$1 τὰς περιπολουμένας μεταγραφάς',
-'rcshowhidemine'                    => '$1 μεταβολὰς μου',
-'rclinks'                           => 'Ἐμφάνισις τῶν τελευταίων $1 ἀλλαγῷν τῷ χρονικῷ διαστήματι τῶν τελευταίων $2 ἡμερῷν <br />$3',
+'rcshowhidemine'                    => 'Ἐμφάνισις τῶν τελευταίων $1 ἀλλαγῶν τῷ χρονικῷ διαστήματι τῶν τελευταίων $2 ἡμερῶν <br />$3',
+'rclinks'                           => 'Ἐμφάνισις τῶν τελευταίων $1 ἀλλαγῶν τῷ χρονικῷ διαστήματι τῶν τελευταίων $2 ἡμερῶν <br />$3',
 'diff'                              => 'διαφ.',
 'hist'                              => 'Προτ.',
 'hide'                              => 'Κρύπτειν',
@@ -1889,7 +1889,7 @@ $1',
 'move-watch'                   => 'Ἑφορᾶν τήνδε τὴν δέλτον',
 'movepagebtn'                  => 'Κινεῖν τὴν δέλτον',
 'pagemovedsub'                 => 'Κεκίνηται ἡ δέλτος',
-'movepage-moved'               => '<big>\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Ἁναδιεύθυνσίς τις ἐποιήθη.',
 'movepage-moved-noredirect'    => 'Ποίησις ἀνακατευθύνσεως τινὸς ἐκεκώλυτο.',
 'articleexists'                => 'Εἶτε ἢ ἐστὶ δέλτος τις οὕτως ὀνομαστὴ ἢ ἄκυρον ἐστι τὸ ἐπειλεγμένον ὄνομα.

@@ -570,7 +570,7 @@ $1',
 'summary-preview'                  => 'সাৰাংশৰ খচৰা:',
 'subject-preview'                  => 'বিষয়/শিৰোণামাৰ খচৰা:',
 'blockedtitle'                     => 'সদস্যজনক অবৰোধ কৰা হৈছে',
-'blockedtext'                      => "<big>'''আপোনাৰ সদস্যনাম অথবা আই-পি ঠিকণা অবৰোধ কৰা হৈছে ।'''</big>
+'blockedtext'                      => "'''আপোনাৰ সদস্যনাম অথবা আই-পি ঠিকণা অবৰোধ কৰা হৈছে ।'''
 
 $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে । 
 ইয়াৰ বাবে দিয়া কাৰণ হৈছে ''$2'' ।
@@ -1166,7 +1166,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'move-watch'      => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
 'movepagebtn'     => 'পৃষ্ঠাটো স্থানান্তৰ কৰক',
 'pagemovedsub'    => 'স্থানান্তৰ সফল হল',
-'movepage-moved'  => "<big>'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'  => "'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'   => 'সেই নামৰ পৃষ্ঠা এটা আগৰ পৰাই আছে, বা সেই নামতো অযোগ্য।
 বেলেগ নাম এটা বাছি লওক।',
 'talkexists'      => "'''পৃষ্ঠাটো স্থানান্তৰ কৰা হৈছে, কিন্তু ইয়াৰ লগত জৰিত বার্তা পৃষ্ঠাটো স্থানান্তৰ কৰা নহল, কাৰণ নতুন ঠাইত বার্তা পৃষ্ঠা এটা আগৰ পৰাই আছে।

@@ -154,7 +154,7 @@ $messages = array(
 'hidden-category-category' => 'Nā mahele hūnā', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => '(ho‘omau ‘ia)',
 
-'mainpagetext' => "<big>'''Ua pono ka ho‘ouka ‘ana o MediaWiki.'''</big>",
+'mainpagetext' => "'''Ua pono ka ho‘ouka ‘ana o MediaWiki.'''",
 
 'about'          => 'E pili ana',
 'cancel'         => 'Ho‘ōki',
@@ -200,7 +200,7 @@ $messages = array(
 'talkpage'         => 'Kūkākūkā i keia ‘ao‘ao',
 'talkpagelinktext' => 'Kūkākūkā',
 'specialpage'      => '‘Ao‘ao kūikawā',
-'personaltools'    => 'Nā mea hana pilikino',
+'personaltools'    => 'Nā mea hana ponoʻī',
 'talk'             => 'Kūkākūkā',
 'views'            => 'Nā nānaina',
 'toolbox'          => 'Pahu mea hana',
@@ -687,7 +687,7 @@ E ʻike iā $2 no ka papa o nā kāpae ʻana hou.',
 'move-watch'              => 'E nānā pono i kēia mea',
 'movepagebtn'             => 'Hoʻoneʻe i ka ʻaoʻao',
 'pagemovedsub'            => 'Kūleʻa ka hoʻoneʻe ʻana',
-'movepage-moved'          => '<big>\'\'\'Ua hoʻoneʻe ʻia ʻo "$1" iā "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'Ua hoʻoneʻe ʻia ʻo "$1" iā "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'               => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'movereason'              => 'Kumu:',
 'delete_and_move'         => 'E kāpae a e ho‘ololi i ka inoa',

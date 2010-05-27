@@ -378,7 +378,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins la presenta categoria.',
 'listingcontinuesabbrev'         => '(seguida)',
 
-'mainpagetext'      => "<big>'''MediaWiki es estat installat amb succès.'''</big>",
+'mainpagetext'      => "'''MediaWiki es estat installat amb succès.'''",
 'mainpagedocfooter' => "Consultatz lo [http://meta.wikimedia.org/wiki/Ajuda:Contengut Guida de l'utilizaire] per mai d'entresenhas sus l'utilizacion d'aqueste logicial.
 
 == Començar amb MediaWiki ==
@@ -511,13 +511,13 @@ $messages = array(
 'thisisdeleted'           => 'Desiratz afichar o restablir $1?',
 'viewdeleted'             => 'Veire $1?',
 'restorelink'             => '{{PLURAL:$1|una edicion escafada|$1 edicions escafadas}}',
-'feedlinks'               => 'Flus :',
-'feed-invalid'            => 'Tipe de flus invalid.',
+'feedlinks'               => 'Flux :',
+'feed-invalid'            => 'Tipe de flux invalid.',
 'feed-unavailable'        => 'Los fluxes de sindicacion son pas disponibles',
-'site-rss-feed'           => 'Flus RSS de $1',
-'site-atom-feed'          => 'Flus Atom de $1',
-'page-rss-feed'           => 'Flus RSS de "$1"',
-'page-atom-feed'          => 'Flus Atom de "$1"',
+'site-rss-feed'           => 'Flux RSS de $1',
+'site-atom-feed'          => 'Flux Atom de $1',
+'page-rss-feed'           => 'Flux RSS de "$1"',
+'page-atom-feed'          => 'Flux Atom de "$1"',
 'red-link-title'          => '$1 (la pagina existís pas)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -784,7 +784,7 @@ Vòstra adreça IP serà enregistrada dins l’istoric d'aquesta pagina.",
 'summary-preview'                  => 'Previsualizacion del resumit :',
 'subject-preview'                  => 'Previsualizacion del subjècte/títol :',
 'blockedtitle'                     => "L'utilizaire es blocat",
-'blockedtext'                      => "<big>'''Vòstre compte d'utilizaire o vòstra adreça IP es estat blocat'''</big>
+'blockedtext'                      => "'''Vòstre compte d'utilizaire o vòstra adreça IP es estat blocat'''
 
 Lo blocatge es estat efectuat per $1.
 La rason invocada es la seguenta : ''$2''.
@@ -1430,7 +1430,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'recentchanges'                     => 'Darrièrs cambiaments',
 'recentchanges-legend'              => 'Opcions dels darrièrs cambiaments',
 'recentchangestext'                 => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
-'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flus.",
+'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flux.",
 'rcnote'                            => 'Vaquí {{PLURAL:$1|lo darrièr cambiament|los $1 darrièrs cambiaments}} dempuèi {{PLURAL:$2|lo darrièr jorn|los <b>$2</b> darrièrs jorns}}, determinat{{PLURAL:$1||s}} lo $4, a $5.',
 'rcnotefrom'                        => "Vaquí los cambiaments efectuats dempuèi lo '''$2''' ('''$1''' al maximum).",
 'rclistfrom'                        => 'Afichar las modificacions novèlas dempuèi lo $1.',
@@ -2117,7 +2117,7 @@ S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, 
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} e {{PLURAL:$2|1 fichièr restablit|$2 fichièrs restablits}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichièr restablit|fichièrs restablits}}',
 'cannotundelete'               => 'Lo restabliment a pas capitat. Un autre utilizaire a probablament restablit la pagina abans.',
-'undeletedpage'                => "<big>'''La pagina $1 es estada restablida'''.</big>
+'undeletedpage'                => "'''La pagina $1 es estada restablida'''.
 
 Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas e restablidas.",
 'undelete-header'              => 'Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas.',
@@ -2494,8 +2494,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-n-help'                  => "L'endrech per s'assabentar.",
 'tooltip-t-whatlinkshere'         => 'Lista de las paginas ligadas a aquesta',
 'tooltip-t-recentchangeslinked'   => 'Lista dels darrièrs cambiaments de las paginas ligadas a aquesta',
-'tooltip-feed-rss'                => 'Flus RSS per aquesta pagina',
-'tooltip-feed-atom'               => 'Flus Atom per aquesta pagina',
+'tooltip-feed-rss'                => 'Flux RSS per aquesta pagina',
+'tooltip-feed-atom'               => 'Flux Atom per aquesta pagina',
 'tooltip-t-contributions'         => "Veire la lista de las contribucions d'aqueste utilizaire",
 'tooltip-t-emailuser'             => 'Mandar un corrièr electronic a aqueste utilizaire',
 'tooltip-t-upload'                => 'Mandar un imatge o fichièr mèdia sul servidor',
@@ -3118,7 +3118,7 @@ Ensajatz la previsualizacion normala.',
 # Special:FilePath
 'filepath'         => "Camin d'accès d'un fichièr",
 'filepath-page'    => 'Fichièr :',
-'filepath-submit'  => "Camin d'accès",
+'filepath-submit'  => 'Validar',
 'filepath-summary' => "Aquesta pagina especiala balha lo camin d'accès complet d’un fichièr ; los imatges son mostrats en nauta resolucion, los fichièrs audiò e vidèo s’executan amb lor programa associat.
 
 Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",

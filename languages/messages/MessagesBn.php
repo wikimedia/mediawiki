@@ -174,7 +174,7 @@ $messages = array(
 'category-file-count-limited'    => 'নিচের {{PLURAL:$1|ফাইলটি|$1 ফাইলগুলো}} এই বিষয়শ্রেণীতে রয়েছে।',
 'listingcontinuesabbrev'         => 'আরও আছে',
 
-'mainpagetext'      => "<big>'''মিডিয়াউইকি সফলভাবে ইন্সটল করা হয়েছে।'''</big>",
+'mainpagetext'      => "'''মিডিয়াউইকি সফলভাবে ইন্সটল করা হয়েছে।'''",
 'mainpagedocfooter' => 'কী ভাবে উইকি সফটওয়্যারটি ব্যবহারকার করবেন, তা জানতে [http://meta.wikimedia.org/wiki/Help:Contents ব্যবহারকারী সহায়িকা] দেখুন।
 
 == কোথা থেকে শুরু করবেন ==
@@ -1756,7 +1756,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '{{PLURAL:$1|১টি সংশোধন|$1টি সংশোধন}} এবং {{PLURAL:$2|১টি ফাইল|$2টি ফাইল}} পুনরুদ্ধার করা হয়েছে',
 'undeletedfiles'               => '{{PLURAL:$1|১টি ফাইল|$1টি ফাইল}} পুনরুদ্ধার করা হয়েছে',
 'cannotundelete'               => 'মুছে ফেলা বাতিল করা যায়নি; অন্য কেউ হয়ত আগেই পাতাটি মুছে ফেলা বাতিল করেছেন।',
-'undeletedpage'                => "<big>'''$1 পুনরুদ্ধার করা হয়েছে'''</big>
+'undeletedpage'                => "'''$1 পুনরুদ্ধার করা হয়েছে'''
 
 সাম্প্রতিক মুছে ফেলা ও পুনরুদ্ধারের ঘটনাগুলির জন্য [[Special:Log/delete|অবলুপ্তি লগ]] দেখুন।",
 'undelete-header'              => 'সাম্প্রতিক সময়ে মুছে ফেলা পাতাগুলি দেখতে [[Special:Log/delete|অবলুপ্তি লগ]] দেখুন।',
@@ -1772,7 +1772,7 @@ $NEWPAGE
 'undelete-error-long'          => 'ফাইলটি মোছা বাতিল করতে গিয়ে ত্রুটি ঘটেছে:
 
 $1',
-'undelete-show-file-submit'    => 'হ্যা',
+'undelete-show-file-submit'    => 'হ্যাঁ',
 
 # Namespace form on various pages
 'namespace'      => 'নামস্থান:',
@@ -1949,7 +1949,7 @@ $1',
 'move-watch'              => 'এই পাতাটি নজরে রাখুন',
 'movepagebtn'             => 'পাতা সরান',
 'pagemovedsub'            => 'সরিয়ে নেওয়া হয়েছে',
-'movepage-moved'          => '<big>\'\'\'"$1"-কে "$2" শিরোনামে স্থানান্তর করা হয়েছে\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1"-কে "$2" শিরোনামে স্থানান্তর করা হয়েছে\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect' => 'একটি পুনর্নির্দেশনা তৈরি হয়েছে।',
 'articleexists'           => 'হয় এই শিরোনামের একটি নিবন্ধ ইতোমধ্যে সৃষ্টি হযে গেছে, অথবা আপনি যে শিরোনামটি পছন্দ করেছেন তা গ্রহণযোগ্য নয়। দয়া করে অন্য একটি শিরোনাম দিয়ে চেষ্টা করুন।',
 'cantmove-titleprotected' => 'আপনি এই অবস্থানে পাতাটিকে স্থানান্তর করতে পারেন না, কারণ এই নতুন শিরোনামটি সৃষ্টি করা থেকে সুরক্ষিত।',

@@ -136,7 +136,7 @@ $messages = array(
 'hidden-category-category' => 'Categorias ascondeda', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'cont.',
 
-'mainpagetext'      => "<big>'''MediaWiki es aora instalada.'''</big>",
+'mainpagetext'      => "'''MediaWiki es aora instalada.'''",
 'mainpagedocfooter' => 'Atenda la [http://meta.wikimedia.org/wiki/Help:Contents Gida per Usores] per informa supra la usa de la programa de vici.
 
 == Comensa ==
@@ -381,7 +381,7 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 Tu adirije de IP va es memorada en la istoria de revisas de esta paje.",
 'summary-preview'        => 'Previde soma:',
 'blockedtitle'           => 'Usor es impedida',
-'blockedtext'            => "<big>'''Tu nom de usor o adirije de IP ia es impedida.'''</big>
+'blockedtext'            => "'''Tu nom de usor o adirije de IP ia es impedida.'''
 
 La impedi ia es fada par $1.
 La razon donada es ''$2''.
@@ -840,7 +840,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'move-watch'       => 'Oserva esta paje',
 'movepagebtn'      => 'Move paje',
 'pagemovedsub'     => 'La move ia susede',
-'movepage-moved'   => '<big>\'\'\'"$1" ia es moveda a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '\'\'\'"$1" ia es moveda a "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Un paje con acel nom esiste ja, o la nom ce tu ia eleje no es un nom legal. Per favore, eleje un otra nom.',
 'talkexists'       => "'''La paje se mesma ia es moveda, ma la paje de discutes no pote es moveda, per ce un esiste ja a la titulo nova. Per favore, fusa los per mano'''",
 'movedto'          => 'moveda a',

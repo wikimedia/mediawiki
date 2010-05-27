@@ -146,7 +146,7 @@ $messages = array(
 'category-file-count-limited'    => 'निम्न  {{PLURAL:$1|फाइल|$1 फाइलहरु}} यस श्रेणीमा रहेको ।',
 'listingcontinuesabbrev'         => 'निरन्तरता...',
 
-'mainpagetext'      => "<big>'''MediaWiki सफलतापूर्वक स्थापना भयो ।'''</big>",
+'mainpagetext'      => "'''MediaWiki सफलतापूर्वक स्थापना भयो ।'''",
 'mainpagedocfooter' => " विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] हेर्नुहोस् 
 
 == सुरू गर्नको लागि  ==
@@ -515,7 +515,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'summary-preview'                  => 'सारांश पूर्वालोकन:',
 'subject-preview'                  => 'विषय/शिर्षपंंक्ति पूर्वरुप:',
 'blockedtitle'                     => 'प्रयोककर्तालाई रोक लगाइएको छ',
-'blockedtext'                      => "<big>'''तपाईँको प्रयोगकर्ता नाम या IP ठेगानालाई रोक लगाइएको छ ।'''</big>
+'blockedtext'                      => "'''तपाईँको प्रयोगकर्ता नाम या IP ठेगानालाई रोक लगाइएको छ ।'''
 
 रोक लगाउने  $1.
 रोक लगाउनाको कारण ''$2''.
@@ -1585,7 +1585,7 @@ $1को बन्देजको कारण : "$2" हो',
 'move-watch'                => 'यो पृष्ठ निगरानीमा राख्नुहोस्',
 'movepagebtn'               => 'पृष्ठ सार्नुहोस्',
 'pagemovedsub'              => 'सार्ने काम सफल भयो',
-'movepage-moved'            => '<big>\'\'\'"$1" लाई "$2"मा सारिएको छ\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '\'\'\'"$1" लाई "$2"मा सारिएको छ\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'   => 'रिडाइरेक्ट पृष्ठ शृजना गरियो',
 'movepage-moved-noredirect' => 'रिडाइरेक्ट पृष',
 'articleexists'             => 'यस नामको पृष्ठ पहिले देखि नै रहेको ,या तपाईँले छान्नु भएको नाम अमान्य छ।

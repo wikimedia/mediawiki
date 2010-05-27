@@ -478,7 +478,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ағымдағы санатта келесі $1 файл бар.',
 'listingcontinuesabbrev'         => '(жалғ.)',
 
-'mainpagetext'      => "<big>'''МедиаУики бумасы сәтті орнатылды.'''</big>",
+'mainpagetext'      => "'''МедиаУики бумасы сәтті орнатылды.'''",
 'mainpagedocfooter' => 'Уики бағдарламалық жасақтамасын қалай қолданатын ақпараты үшін [http://meta.wikimedia.org/wiki/Help:Contents Пайдаланушылық нұсқауларынан] кеңес алыңыз.
 
 == Бастау үшін ==
@@ -530,7 +530,7 @@ $messages = array(
 'deletethispage'    => 'Бетті жою',
 'undelete_short'    => '$1 өңдеме жоюын болдырмау',
 'protect'           => 'Қорғау',
-'protect_change'    => 'қорғауды өзгерту',
+'protect_change'    => 'өзгерту',
 'protectthispage'   => 'Бетті қорғау',
 'unprotect'         => 'Қорғамау',
 'unprotectthispage' => 'Бетті қорғамау',
@@ -539,14 +539,14 @@ $messages = array(
 'talkpagelinktext'  => 'Талқылауы',
 'specialpage'       => 'Арнайы бет',
 'personaltools'     => 'Жеке құралдар',
-'postcomment'       => 'Мәндеме жөнелту',
+'postcomment'       => 'Жаңа бөлім',
 'articlepage'       => 'Мағлұмат бетін қарау',
 'talk'              => 'Талқылау',
 'views'             => 'Көрініс',
 'toolbox'           => 'Құралдар',
 'userpage'          => 'Қатысушы бетін қарау',
 'projectpage'       => 'Жоба бетін қарау',
-'imagepage'         => 'Таспа бетін қарау',
+'imagepage'         => 'Файл бетін қарау',
 'mediawikipage'     => 'Хабар бетін қарау',
 'templatepage'      => 'Үлгі бетін қарау',
 'viewhelppage'      => 'Анықтама бетін қарау',
@@ -602,6 +602,8 @@ $messages = array(
 'editsection'             => 'өңдеу',
 'editold'                 => 'өңдеу',
 'viewsourceold'           => 'қайнар көзін қарау',
+'editlink'                => 'өңдеу',
+'viewsourcelink'          => 'қайнар көзін қарау',
 'editsectionhint'         => 'Мына бөлімді өңдеу: $1',
 'toc'                     => 'Мазмұны',
 'showtoc'                 => 'көрсет',
@@ -622,7 +624,7 @@ $messages = array(
 'nstab-main'      => 'Бет',
 'nstab-user'      => 'Жеке бет',
 'nstab-media'     => 'Таспа беті',
-'nstab-special'   => 'Арнайы',
+'nstab-special'   => 'Арнайы бет',
 'nstab-project'   => 'Жоба беті',
 'nstab-image'     => 'Файл беті',
 'nstab-mediawiki' => 'Хабар',
@@ -870,7 +872,7 @@ IP мекенжайыңыз бұл беттің түзету тарихында 
 'summary-preview'                  => 'Қысқаша мазмұндамасын қарап шығу:',
 'subject-preview'                  => 'Тақырыбын/бас жолын қарап шығу:',
 'blockedtitle'                     => 'Қатысушы бұғатталған',
-'blockedtext'                      => "<big>'''Қатысушы атыңыз не IP мекенжайыңыз бұғатталған.'''</big>
+'blockedtext'                      => "'''Қатысушы атыңыз не IP мекенжайыңыз бұғатталған.'''
 
 Осы бұғаттауды $1 істеген. Келтірілген себебі: ''$2''.
 
@@ -1355,6 +1357,7 @@ latex, dvips, gs және convert бағдарламаларының дұрыс 
 # Recent changes
 'nchanges'                          => '$1 өзгеріс',
 'recentchanges'                     => 'Жуықтағы өзгерістер',
+'recentchanges-legend'              => 'Жуықтағы өзгерістер баптаулары',
 'recentchangestext'                 => 'Бұл бетте осы уикидегі болған жуықтағы өзгерістер байқалады.',
 'recentchanges-feed-description'    => 'Бұл арнаменен уикидегі ең соңғы өзгерістер қадағаланады.',
 'rcnote'                            => "$3 кезіне дейін — төменде соңғы {{PLURAL:$2|күндегі|'''$2''' күндегі}}, соңғы '''$1''' өзгеріс көрсетіледі.",
@@ -1974,7 +1977,7 @@ $2 соңғы нұсқасына өзгертті.',
 'undeletedfiles'               => '$1 файл қалпына келтірілді',
 'cannotundelete'               => 'Жою болдырмауы сәтсіз бітті;
 басқа біреу алғашында беттің жоюдың болдырмауы мүмкін.',
-'undeletedpage'                => "<big>'''$1 қалпына келтірілді'''</big>
+'undeletedpage'                => "'''$1 қалпына келтірілді'''
 
 Жуықтағы жоюлар мен қалпына келтірулер жөнінде [[{{#special:Log}}/delete|жою журналын]] қараңыз.",
 'undelete-header'              => 'Жуықтағы жойылған беттер жөнінде [[{{#special:Log}}/delete|жою журналын]] қараңыз.',
@@ -2170,7 +2173,7 @@ $1 бұғаттауы үшін келтірілген себебі: «$2».',
 'move-watch'              => 'Бұл бетті бақылау',
 'movepagebtn'             => 'Бетті жылжыт',
 'pagemovedsub'            => 'Жылжыту сәтті аяқталды',
-'movepage-moved'          => '<big>\'\'\'"$1" беті "$2" бетіне жылжытылды\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1" беті "$2" бетіне жылжытылды\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Осылай аталған бет алдақашан бар, не таңдаған атауыңыз жарамды емес.
 Өзге атауды таңдаңыз',
 'cantmove-titleprotected' => 'Бетті осы орынға жылжыта алмайсыз, себебі жаңа тақырып аты бастаудан қорғалған',

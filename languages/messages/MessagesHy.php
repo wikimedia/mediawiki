@@ -387,7 +387,7 @@ $messages = array(
 'category-file-count-limited'    => 'Այս կատեգորիան պարունակում է հետևյալ {{PLURAL:$1|ֆայլը|$1 ֆայլերը}}։',
 'listingcontinuesabbrev'         => 'շարունակ.',
 
-'mainpagetext'      => "<big>'''«MediaWiki» ծրագիրը հաջողությամբ տեղադրվեց։'''</big>",
+'mainpagetext'      => "'''«MediaWiki» ծրագիրը հաջողությամբ տեղադրվեց։'''",
 'mainpagedocfooter' => "Այցելեք [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]՝ վիքի ծրագրային ապահովման օգտագործման մասին տեղեկությունների համար։
 
 == Որոշ օգտակար ռեսուրսներ ==
@@ -780,7 +780,7 @@ $2',
 'summary-preview'                  => 'Ամփոփման նախադիտում:',
 'subject-preview'                  => 'Վերնագրի նախադիտում:',
 'blockedtitle'                     => 'Մասնակիցը արգելափակված է',
-'blockedtext'                      => "<big>'''Ձեր մասնակցի անունը կամ IP-հասցեն արգելափակված է։'''</big>
+'blockedtext'                      => "'''Ձեր մասնակցի անունը կամ IP-հասցեն արգելափակված է։'''
 
 Արգելափակումը կատարվել է $1 ադմինիստրատորի կողմից։
 Տրված պատճառն է. ''«$2»''
@@ -1746,7 +1746,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => 'վերականգնվեց $1 տարբերակ և $2 ֆայլ',
 'undeletedfiles'               => 'վերականգնվեց $1 ֆայլ',
 'cannotundelete'               => 'Վերականգնումը ձախողվեց։ Հնարավոր է մեկ ուրիշն արդեն վերականգնել է այս էջը։',
-'undeletedpage'                => "<big>'''«$1» էջը վերականգնված է։'''</big>
+'undeletedpage'                => "'''«$1» էջը վերականգնված է։'''
 
 Տես [[Special:Log/delete|ջնջման տեղեկամատյանը]]` վերջին ջնջումների և վերականգնումների համար։",
 'undelete-header'              => 'Տես [[Special:Log/delete|ջնջման տեղեկամատյանը]]՝ վերջին ջնջումների և վերականգնումների համար։',
@@ -1934,7 +1934,7 @@ $1',
 'move-watch'              => 'Հսկել էջը',
 'movepagebtn'             => 'Տեղափոխել էջը',
 'pagemovedsub'            => 'Էջը տեղափոխվեց',
-'movepage-moved'          => "<big>'''«$1» էջը վերանվանվել է «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "'''«$1» էջը վերանվանվել է «$2»'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect' => 'Ստեղծվել է վերահղում։',
 'articleexists'           => 'Այդ անվանմամբ էջ արդեն գոյություն ունի կամ ձեր ընտրած անվանումը անթույլատրելի է։
 Խնդրում ենք ընտրել այլ անվանում։',

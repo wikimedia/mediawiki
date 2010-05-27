@@ -9,6 +9,7 @@
  *
  * @author Asoxor
  * @author Behdarvandyani
+ * @author Ebraminio
  * @author Huji
  * @author Ladsgroup
  * @author Mardetanha
@@ -510,7 +511,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|پروندهٔ|$1 پروندهٔ}} زیر در ردهٔ فعلی قرار دارند.',
 'listingcontinuesabbrev'         => '(ادامه)',
 
-'mainpagetext'      => "<big>'''نرم‌افزار ویکی با موفقیت نصب شد.'''</big>",
+'mainpagetext'      => "'''نرم‌افزار ویکی با موفقیت نصب شد.'''",
 'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
 برای استفاده از نرم‌افزار ویکی کمک بگیرید.
 
@@ -556,9 +557,9 @@ $messages = array(
 'printableversion'  => 'نسخهٔ قابل چاپ',
 'permalink'         => 'پیوند دائمی',
 'print'             => 'چاپ',
-'edit'              => 'ويرايش',
+'edit'              => 'این صفحه را ویرایش کنید',
 'create'            => 'ایجاد',
-'editthispage'      => 'اين صفحه را ويرايش كنيد',
+'editthispage'      => 'ویرایش این صفحه',
 'create-this-page'  => 'این صفحه را ایجاد کنید',
 'delete'            => 'حذف',
 'deletethispage'    => 'حذف این صفحه',
@@ -603,9 +604,9 @@ $messages = array(
 'copyrightpagename'    => 'حق تکثیر {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:حق_تکثیر',
 'currentevents'        => 'رویدادهای کنونی',
-'currentevents-url'    => 'Project:وقایع کنونی',
+'currentevents-url'    => 'درگاه:رویدادهای کنونی',
 'disclaimers'          => 'تکذیب‌نامه‌ها',
-'disclaimerpage'       => 'Project:تکذیب‌نامهٔ عمومی',
+'disclaimerpage'       => '{{ns:project}}:تکذیب‌نامهٔ عمومی',
 'edithelp'             => 'راهنمای ویرایش کردن',
 'edithelppage'         => 'Help:چگونه صفحه‌ها را ویرایش کنیم',
 'faq'                  => 'سوال‌های متداول',
@@ -651,6 +652,8 @@ $messages = array(
 'site-atom-feed'          => 'خبرخوان Atom برای $1',
 'page-rss-feed'           => 'خبرخوان RSS برای «$1»',
 'page-atom-feed'          => 'خبرخوان Atom برای «$1»',
+'feed-atom'               => 'اتم',
+'feed-rss'                => 'آراس‌اس',
 'red-link-title'          => '$1 (صفحه وجود ندارد)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -888,7 +891,7 @@ $2',
 'link_sample'     => 'عنوان پیوند',
 'link_tip'        => 'پیوند داخلی',
 'extlink_sample'  => 'http://www.example.com عنوان پیوند',
-'extlink_tip'     => 'پیوند به بیرون (پیشوند http:// را فراموش نکنید)',
+'extlink_tip'     => 'پیوند به بیرون (پیشوند http://‎ را فراموش نکنید)',
 'headline_sample' => 'متن عنوان',
 'headline_tip'    => 'عنوان سطح ۲',
 'math_sample'     => 'درج فرمول در اینجا',
@@ -920,7 +923,7 @@ $2',
 'summary-preview'                  => 'پیش‌نمایش خلاصه:',
 'subject-preview'                  => 'پیش‌نمایش موضوع/عنوان:',
 'blockedtitle'                     => 'کاربر بسته شد.',
-'blockedtext'                      => "<big>'''دسترسی نام کاربری یا نشانی آی‌پی شما بسته شده است.'''</big>
+'blockedtext'                      => "'''دسترسی نام کاربری یا نشانی آی‌پی شما بسته شده است.'''
 
 این کار توسط $1 انجام شده‌است.
 دلیل داده‌شده این است: $2''
@@ -970,7 +973,7 @@ $2',
 'accmailtitle'                     => 'گذرواژه فرستاده شد.',
 'accmailtext'                      => "یک گذرواژهٔ تصادفی ساخته شده برای [[User talk:$1|$1]] برای $2 ارسال شد.
 
-گذرواژهٔ این حساب کاربری تازه، پس از ورود به سیستم از طریق ''[[Special:ChangePassword|تغییر گذرواژه]]'' قابل تغییر است.",
+گذرواژهٔ این حساب کاربری تازه، پس از ورود به سامانه از طریق ''[[Special:ChangePassword|تغییر گذرواژه]]'' قابل تغییر است.",
 'newarticle'                       => '(جدید)',
 'newarticletext'                   => 'شما پیوندی را دنبال کرده‌اید و به صفحه‌ای رسیده‌اید که هنوز وجود ندارد.
 برای ایجاد صفحه، در مستطیل زیر شروع به نوشتن کنید (برای اطلاعات بیشتر به [[{{MediaWiki:Helppage}}|صفحهٔ راهنما]] مراجعه کنید).
@@ -1789,7 +1792,7 @@ $2',
 
 # File deletion
 'filedelete'                  => 'حذف $1',
-'filedelete-backlink'         => '→ $1',
+'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'حذف پرونده',
 'filedelete-intro'            => "شما در حال حذف کردن پروندهٔ '''[[Media:$1|$1]]''' به همراه تمام تاریخچه‌اش هستید.",
 'filedelete-intro-old'        => '<span class="plainlinks">شما در حال حذف نسخه \'\'\'[[Media:$1|$1]]\'\'\' به تاریخ [$4 $3، $2] هستید.</span>',
@@ -1800,7 +1803,7 @@ $2',
 'filedelete-nofile'           => "'''$1''' وجود ندارد.",
 'filedelete-nofile-old'       => "نسخه بایگانی شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد..",
 'filedelete-otherreason'      => 'دلیل دیگر/اضافی:',
-'filedelete-reason-otherlist' => 'دیگر',
+'filedelete-reason-otherlist' => 'دلیل دیگر',
 'filedelete-reason-dropdown'  => '
 *دلایل متداول حذف
 ** نقض حق تکثیر
@@ -2132,7 +2135,7 @@ $NEWPAGE
 'exbeforeblank'          => "محتوای صفحه قبل از خالی‌کردن '$1' بود.",
 'exblank'                => 'صفحه خالی بود',
 'delete-confirm'         => 'حذف «$1»',
-'delete-backlink'        => '→ $1',
+'delete-backlink'        => '← $1',
 'delete-legend'          => 'حذف',
 'historywarning'         => 'هشدار! صفحه‌ای که دارید حذف می‌کنید، تاریخچه‌ای دارد:',
 'confirmdeletetext'      => 'شما در حال حذف کردن یک صفحه یا تصویر از پایگاه‌ داده همراه با تمام تاریخچهٔ آن هستید. لطفاً این عمل را تأیید کنید و اطمینان حاصل کنید که عواقب این کار را می‌دانید و این عمل را مطابق با [[{{MediaWiki:Policy-url}}|سیاست‌ها]] انجام می‌دهید.',
@@ -2146,9 +2149,9 @@ $NEWPAGE
 همهٔ زمان‌های نشان‌داده‌شده زمان خادم (وقت گرینویچ) است.',
 'deletionlog'            => 'سیاههٔ حذف',
 'reverted'               => 'به نسخهٔ قدیمی‌تر واگردانده شد.',
-'deletecomment'          => 'توضیح حذف:',
+'deletecomment'          => 'توضیح حذف',
 'deleteotherreason'      => 'دلیل دیگر/اضافی:',
-'deletereasonotherlist'  => 'دیگر',
+'deletereasonotherlist'  => 'دلیل دیگر',
 'deletereason-dropdown'  => '*دلایل متداول حذف
 ** درخواست کاربر
 ** نقض حق تکثیر
@@ -2210,7 +2213,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'زمانی دیگر',
 'protect-existing-expiry'     => 'زمان انقضای موجود: $2، $3',
 'protect-otherreason'         => 'دلیل دیگر/اضافی:',
-'protect-otherreason-op'      => 'دلیل دیگر/اضافی',
+'protect-otherreason-op'      => 'دلیل دیگر',
 'protect-dropdown'            => '*دلایل متداول محافظت
 ** خرابکاری گسترده
 ** هرزنگاری گسترده
@@ -2266,7 +2269,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'undeletedfiles'               => '$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'cannotundelete'               => 'نشد احیا کرد. ممکن است کس دیگری پیشتر این صفحه را احیا کرده باشد.',
-'undeletedpage'                => "<big> '''$1 احیا شد.'''</big>
+'undeletedpage'                => " '''$1 احیا شد.'''
 برای دیدن سیاههٔ حذفها و احیاهای اخیر به  [[Special:Log/delete|سیاههٔ حذف]] رجوع کنید.",
 'undelete-header'              => 'برای دیدن صفحه‌های حذف‌شدهٔ اخیر [[Special:Log/delete|سیاههٔ حذف]] را ببینید.',
 'undelete-search-box'          => 'جستجوی صفحه‌های حذف‌شده.',
@@ -2337,7 +2340,7 @@ $1',
 'ipadressorusername'              => 'نشانی آی‌پی یا نام کاربری',
 'ipbexpiry'                       => 'خاتمه',
 'ipbreason'                       => 'دلیل',
-'ipbreasonotherlist'              => 'دیگر دلایل',
+'ipbreasonotherlist'              => 'دلیل دیگر',
 'ipbreason-dropdown'              => '*دلایل متداول قطع دسترسی
 **وارد کردن اطلاعات نادرست
 **پاک کردن اطلاعات مفید از صفحه‌ها
@@ -2400,7 +2403,7 @@ $1',
 دلیل قطع دسترسی $1 چنین است: «$2»',
 'blocklogpage'                    => 'سیاههٔ_بسته‌شدن‌ها',
 'blocklog-fulllog'                => 'سیاه بستن کامل',
-'blocklogentry'                   => 'دسترسی [[$1]] را $2 قطع کرد $3',
+'blocklogentry'                   => '‏$1 را $2 بست $3',
 'reblock-logentry'                => 'تنظیم‌های قطع دسترسی [[$1]] را تغییر داد به پایان قطع دسترسی در $2 ساعت $3',
 'blocklogtext'                    => 'این سیاهه‌ای از اعمال بستن و باز کردن کاربرها است.
 نشانی‌های IPی که به طور خودکار بسته شده‌اند فهرست نشده‌اند.
@@ -2485,7 +2488,7 @@ $1',
 'move-watch'                   => 'پی‌گیری این صفحه',
 'movepagebtn'                  => 'صفحه منتقل شود',
 'pagemovedsub'                 => 'انتقال با موفقیت انجام شد',
-'movepage-moved'               => "<big>'''«$1» به «$2» منتقل شد'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "'''«$1» به «$2» منتقل شد'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'یک تغییر مسیر ایجاد شد.',
 'movepage-moved-noredirect'    => 'از ایجاد تغییر مسیر ممانعت شد.',
 'articleexists'                => 'صفحه‌ای با این نام از قبل وجود دارد، یا نامی که انتخاب کرده‌اید معتبر نیست.
@@ -3216,14 +3219,14 @@ $1',
 'watchlistedit-normal-title'   => 'ویرایش فهرست پی‌گیری‌ها',
 'watchlistedit-normal-legend'  => 'حذف عنوان‌ها از فهرست پی‌گیری‌ها',
 'watchlistedit-normal-explain' => 'عنوان‌های موجود در فهرست پیگیری شما در زیر نشان داده شده‌اند.
-برای حذف یک عنوان جعبهٔ کنار آن را علامت بزنید و دکمهٔ حذف عنوان‌ها را بزنید.
+برای حذف یک عنوان جعبهٔ کنار آن را علامت بزنید و دکمهٔ «{{int:Watchlistedit-normal-submit}}» را بزنید.
 شما هم‌چنین می‌توانید [[Special:Watchlist/raw|فهرست خام را ویرایش کنید]].',
 'watchlistedit-normal-submit'  => 'حذف عنوان‌ها',
 'watchlistedit-normal-done'    => '$1 عنوان از فهرست پی‌گیری‌های شما حذف {{PLURAL:$1|شد|شدند}}:',
 'watchlistedit-raw-title'      => 'ویرایش فهرست خام پی‌گیری‌ها',
 'watchlistedit-raw-legend'     => 'ویرایش فهرست خام پی‌گیری‌ها',
-'watchlistedit-raw-explain'    => 'عنوان‌های موجود در فهرست پی‌گیری‌های شما در زیر نشان داده شده‌اند، و شما می‌توانید مواردی را حذف یا اضافه کنید. 
-هر مورد در یک سطر جداگانه باید قرار بگیرد. در پایان، دکمهٔ «به روز رساندن پی‌گیری‌ها» را بفشارید. 
+'watchlistedit-raw-explain'    => 'عنوان‌های موجود در فهرست پی‌گیری‌های شما در زیر نشان داده شده‌اند، و شما می‌توانید مواردی را حذف یا اضافه کنید؛ هر مورد در یک سطر جداگانه باید قرار بگیرد.
+در پایان، دکمهٔ «{{int:Watchlistedit-raw-submit}}» را بفشارید. 
 توجه کنید که شما می‌توانید از [[Special:Watchlist/edit|ویرایشگر استاندارد فهرست پی‌گیری‌ها]] هم استفاده کنید.',
 'watchlistedit-raw-titles'     => 'عنوان‌ها:',
 'watchlistedit-raw-submit'     => 'به روز رساندن پی‌گیری‌ها',
@@ -3308,7 +3311,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'مسیر پرونده',
 'filepath-page'    => 'پرونده:',
-'filepath-submit'  => 'مسیر',
+'filepath-submit'  => 'برو',
 'filepath-summary' => 'این صفحهٔ ویژه نشانی کامل برای یک پرونده را نشان می‌دهد. تصاویر با کیفیت وضوح کامل نشان داده می‌شوند، سایر انواع پرونده با برنامه مخصوص به خودشان باز می‌شوند.
 
 نشانی پرونده را بدون پیشوند «{{ns:file}}:» وارد کنید.',

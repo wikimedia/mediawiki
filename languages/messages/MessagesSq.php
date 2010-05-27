@@ -12,6 +12,8 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author Mdupont
+ * @author MicroBoy
  * @author Puntori
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -293,7 +295,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Kjo skedë është|$1 skeda janë}} në këtë kategori.',
 'listingcontinuesabbrev'         => 'vazh.',
 
-'mainpagetext'      => "<big>'''MediaWiki software u instalua me sukses.'''</big>",
+'mainpagetext'      => "'''MediaWiki software u instalua me sukses.'''",
 'mainpagedocfooter' => 'Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
 
 == Sa për fillim==
@@ -433,13 +435,13 @@ Edit section: $1',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Burim Atom',
-'red-link-title'          => '$1 (nuk është shkruar akoma)',
+'red-link-title'          => '$1 (faqja nuk ekziston)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulli',
 'nstab-user'      => 'Përdoruesi',
 'nstab-media'     => 'Media-faqe',
-'nstab-special'   => 'Speciale',
+'nstab-special'   => 'Faqe speciale',
 'nstab-project'   => 'Projekt-faqe',
 'nstab-image'     => 'Figura',
 'nstab-mediawiki' => 'Porosia',
@@ -548,7 +550,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'login'                      => 'Hyni',
 'nav-login-createaccount'    => 'Hyni ose hapni një llogari',
 'loginprompt'                => 'Duhet të pranoni "biskota" për të hyrë brënda në {{SITENAME}}.',
-'userlogin'                  => 'Hyni ose hapni një llogari',
+'userlogin'                  => 'Hyni / hapni llogari',
 'logout'                     => 'Dalje',
 'userlogout'                 => 'Dalje',
 'notloggedin'                => 'Nuk keni hyrë brenda',
@@ -574,6 +576,8 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'gender-unknown'             => 'Pacaktuar',
 'gender-male'                => 'Mashkull',
 'gender-female'              => 'Femër',
+'prefs-help-gender'          => 'Opcionale: përdoret për adresim korrekt në relacion me gjininë nga softwarei.
+Kjo informatë del publike.',
 'email'                      => 'Email',
 'prefs-help-realname'        => '* Emri i vërtetë (opsion): Për të përmendur emrin tuaj si kontribuues në varësi nga puna juaj këtu.',
 'loginerror'                 => 'Gabim hyrje',
@@ -677,7 +681,7 @@ Nëse kryeni ndryshimet redaktimi juaj do të ruhet pa titull.",
 'summary-preview'                  => 'Parapamja e përmbledhjes:',
 'subject-preview'                  => 'Parapamja e titullit:',
 'blockedtitle'                     => 'Përdoruesi është bllokuar',
-'blockedtext'                      => "<big>'''Llogaria juaj ose adresa e IP-së është bllokuar'''</big>
+'blockedtext'                      => "'''Llogaria juaj ose adresa e IP-së është bllokuar'''
 
 Bllokimi u bë nga $1 dhe arsyeja e dhënë ishte '''$2'''.
 
@@ -718,15 +722,21 @@ Ju lutemi përfshini këto detaje në të gjitha kërkesat që i bëni.',
 'loginreqlink'                     => 'hyni',
 'loginreqpagetext'                 => 'Ju duhet $1 për të parë faqe e tjera.',
 'accmailtitle'                     => 'Fjalëkalimi u dërgua.',
-'accmailtext'                      => "Fjalëkalimi për '$1' u dërgua tek $2.",
+'accmailtext'                      => "Nji fjalëkalim i krijuem rastësisht për [[User talk:$1|$1]] u dërgue në $2.
+
+Fjalëkalimi për këtë llogari mundet me u ndryshue në faqen ''[[Special:ChangePassword|ndrysho fjalëkalimin]]'' mbas kyçjes.",
 'newarticle'                       => '(I Ri)',
-'newarticletext'                   => "{{SITENAME}} nuk ka akoma një ''faqe {{NAMESPACE}}'' të quajtur '''{{PAGENAME}}'''. Shtypni '''redaktoni''' më sipër ose [[Speciale:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]] (Shikoni [[{{MediaWiki:Helppage}}|faqen për ndihmë]] për më shumë informacion).
-Nëse gjetët këtë faqe aksidentalisht, shtypni butonin mbrapsh të shfletuesit tuaj.",
+'newarticletext'                   => "Keni përcjellë nji vegëz te nji faqe që nuk ekziston.
+Për me krijue këtë faqe, shkrueni në kutinë mâ poshtë (shih [[{{MediaWiki:Helppage}}|faqja e ndihmës]] për mâ shumë informata).
+Nëse keni hy këtu gabimisht klikoni butonin '''mbrapa''' të shfletuesit.",
 'anontalkpagetext'                 => "---- ''Kjo është faqe diskutimi për një përdorues anonim i cili nuk ka hapur akoma një llogari ose nuk e përdor atë.
 Prandaj, duhet të përdorim numrin e adresës IP për ta identifikuar.
 Kjo adresë mund të përdoret nga disa përdorues.
 Në qoftë se jeni përdorues anonim dhe mendoni se komente kot janë drejtuar ndaj jush, ju lutemi [[Special:UserLogin|krijoni një llogari]] ose [[Special:UserLogin|kyçuni]] për tu mos u ngatërruar me përdorues të tjerë anonim.''",
-'noarticletext'                    => 'Tani për tani nuk ka tekst në këtë faqe, mund ta [[Special:Search/{{PAGENAME}}|kërkoni]] këtë titull në faqe të tjera ose mund ta [{{fullurl:{{FULLPAGENAME}}|action=edit}} filloni] atë.',
+'noarticletext'                    => 'Momentalisht nuk ka tekst në këtë faqe.
+Ju mundeni [[Special:Search/{{PAGENAME}}|me kërkue këtë titull]] në faqe tjera,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërkue në regjistrat tematikisht të afërm],
+apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktue këtë faqe]</span>.',
 'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "$1" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
 'clearyourcache'                   => "'''Shënim:''' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni ''cache''-në e shfletuesit tuaj për të parë ndryshimet: për '''Mozilla/Safari/Konqueror''' shtypni ''Ctrl+Shift+Reload'' (ose ''ctrl+shift+r''), për '''IE''' ''Ctrl+f5'', '''Opera''': ''F5''.",
 'usercssjsyoucanpreview'           => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
@@ -747,7 +757,7 @@ Në qoftë se jeni përdorues anonim dhe mendoni se komente kot janë drejtuar n
 Kjo ndodh ndonjëherë kur përdoren shërbime ndërjmetësash anonim.'''",
 'editing'                          => 'Duke redaktuar $1',
 'editingsection'                   => 'Duke redaktuar $1 (seksion)',
-'editingcomment'                   => 'Duke redaktuar $1 (koment)',
+'editingcomment'                   => 'Tue redaktue (sekcionin e ri) $1',
 'editconflict'                     => 'Konflikt redaktimi: $1',
 'explainconflict'                  => "Dikush tjetër ka ndryshuar këtë faqe kur ju po e redaktonit.
 Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani.
@@ -1003,6 +1013,7 @@ Ju mund [[:\$1|të e krijoni këtë faqe]].",
 'searchprofile-project-tooltip'    => 'Kërko në $1',
 'searchprofile-images-tooltip'     => 'Kërko skedarë',
 'searchprofile-everything-tooltip' => 'Kërko gjithë përmbajtjen (duke përfshirë edhe faqet e diskutimit)',
+'searchprofile-advanced-tooltip'   => 'Kërkimi në hapësina',
 'prefs-search-nscustom'            => 'Kërko hapësirën e zakonshme:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 fjalë|$2 fjalë}})',
 'search-result-score'              => 'Përkatësia: $1%',
@@ -1022,6 +1033,7 @@ Ju mund [[:\$1|të e krijoni këtë faqe]].",
 'showingresultsnum'                => "Më poshtë tregohen {{PLURAL:$3|'''1''' përfundim|'''$3''' përfundime}} duke filluar nga #'''$2'''.",
 'showingresultstotal'              => "Duke treguar më poshtë {{PLURAL:$4|rezultatin '''$1''' nga '''$3'''|rezultatet '''$1 - $2''' nga '''$3'''}}",
 'nonefound'                        => '<strong>Shënim</strong>: Kërkimet pa rezultate ndodhin kur kërkoni për fjalë që rastisen shpesh si "ke" dhe "nga", të cilat nuk janë të futura në regjistër, ose duke dhënë më shumë se një fjalë (vetëm faqet që i kanë të gjitha ato fjalë do të tregohen si rezultate).',
+'search-nonefound'                 => 'Nuk ka rezultate që përputhen me kërkesën.',
 'powersearch'                      => 'Kërko',
 'powersearch-legend'               => 'Kërkim i përparuar',
 'powersearch-ns'                   => 'Kërkim në hapësira:',
@@ -1073,18 +1085,18 @@ Ju mund [[:\$1|të e krijoni këtë faqe]].",
 'restoreprefs'              => 'Rikthe të gjitha të dhënat e mëparshme',
 'textboxsize'               => 'Redaktimi',
 'prefs-edit-boxsize'        => 'Madhësia e dritares së redaktimit.',
-'rows'                      => 'Rreshta',
-'columns'                   => 'Kolona',
+'rows'                      => 'Rreshta:',
+'columns'                   => 'Kolona:',
 'searchresultshead'         => 'Kërkimi',
-'resultsperpage'            => 'Sa përputhje të tregohen për faqe',
-'contextlines'              => 'Sa rreshta të tregohen për përputhje',
-'contextchars'              => 'Sa germa të tregohen për çdo rresht',
+'resultsperpage'            => 'Sa përputhje të tregohen për faqe:',
+'contextlines'              => 'Sa rreshta të tregohen për përputhje:',
+'contextchars'              => 'Sa germa të tregohen për çdo rresht:',
 'stub-threshold'            => 'Kufiri për formatin e <a href="#" class="stub">lidhjeve cung</a> (B):',
 'recentchangesdays'         => 'Numri i ditëve të treguara në ndryshime së fundmi:',
 'recentchangesdays-max'     => '(maksimum $1 {{PLURAL:$1|dit|ditë}})',
 'recentchangescount'        => 'Numri i titujve në ndryshime së fundmi',
 'savedprefs'                => 'Parapëlqimet tuaja janë ruajtur.',
-'timezonelegend'            => 'Zona kohore',
+'timezonelegend'            => 'Zona kohore:',
 'timezonetext'              => 'Fusni numrin e orëve prej të cilave ndryshon ora lokale nga ajo e shërbyesit (UTC).',
 'localtime'                 => 'Ora lokale:',
 'timezoneselect'            => 'Zona kohore:',
@@ -1093,16 +1105,24 @@ Ju mund [[:\$1|të e krijoni këtë faqe]].",
 'timezoneoffset'            => 'Ofset¹:',
 'servertime'                => 'Ora e shërbyesit:',
 'guesstimezone'             => 'Gjeje nga shfletuesi',
+'timezoneregion-africa'     => 'Afrikë',
+'timezoneregion-america'    => 'Amerikë',
+'timezoneregion-antarctica' => 'Antarktik',
+'timezoneregion-arctic'     => 'Arktik',
+'timezoneregion-asia'       => 'Azi',
 'timezoneregion-atlantic'   => 'Oqeani Atlantik',
-'timezoneregion-pacific'    => 'Pacific Ocean
-
-Oqeani Paqësor',
+'timezoneregion-australia'  => 'Australi',
+'timezoneregion-europe'     => 'Europë',
+'timezoneregion-indian'     => 'Oqeani Indian',
+'timezoneregion-pacific'    => 'Oqeani Paqësor',
 'allowemail'                => 'Lejo përdoruesit të më dërgojnë email',
 'prefs-searchoptions'       => 'Mundësi kërkimi',
 'prefs-namespaces'          => 'Hapësirat',
 'defaultns'                 => 'Kërko automatikisht vetëm në këto hapësira:',
 'default'                   => 'parazgjedhje',
 'files'                     => 'Figura',
+'prefs-custom-css'          => 'CSS i përpunuem',
+'prefs-custom-js'           => 'JavaScripti i përpunuem',
 
 # User rights
 'userrights'                  => 'Ndrysho privilegjet e përdoruesve', # Not used as normal message but as header for the special page itself
@@ -1516,7 +1536,7 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories'             => '$1 {{PLURAL:$1|kategori|kategori}}',
 'nlinks'                  => '$1 {{PLURAL:$1|lidhje|lidhje}}',
-'nmembers'                => '{{PLURAL:$1|anëtarë|anëtarë}}',
+'nmembers'                => '$1 {{PLURAL:$1|antar|antarë}}',
 'nrevisions'              => '$1 {{PLURAL:$1|version|versione}}',
 'nviews'                  => '$1 {{PLURAL:$1|shikim|shikime}}',
 'specialpage-empty'       => 'Kjo faqe është boshe.',
@@ -1807,9 +1827,9 @@ Shih listën e [[Special:ProtectedPages|faqeve të mbrojtura]] nga lista e mbroj
 'protect-locked-access'       => "Llogaria juaj nuk ka privilegjet e nevojitura për të ndryshuar nivelin e mbrojtjes. Kufizimet e kësaj faqeje janë '''$1''':",
 'protect-cascadeon'           => 'Kjo faqe është e mbrojtur pasi është përfshirë {{PLURAL:$1|këtë faqe që është|këto faqe që janë}} nën mbrojtje "ujëvarë".
 Mund të ndryshoni nivelin e mbrojtjes të kësaj faqeje por kjo nuk do të ndryshojë mbrojtjen "ujëvarë".',
-'protect-default'             => '(parazgjedhje)',
+'protect-default'             => 'Lejoni të gjithë përdoruesit',
 'protect-fallback'            => 'Kërko "$1" leje',
-'protect-level-autoconfirmed' => 'Blloko përdoruesit pa llogari',
+'protect-level-autoconfirmed' => 'Blloko përdoruesit e rinj dhe pa llogari',
 'protect-level-sysop'         => 'Lejo vetëm administruesit',
 'protect-summary-cascade'     => 'të varura',
 'protect-expiring'            => 'skadon me $1 (UTC)',
@@ -1854,7 +1874,7 @@ Arkivi, kohëpaskohe është e mundur të pastrohet.',
 'undelete-revision'          => 'Revizioni i grisur i $1 (nga $4, në $5) nga $3:',
 'undelete-nodiff'            => 'Nuk u gjetën revizione të mëparshme.',
 'undeletebtn'                => 'Restauro!',
-'undeletelink'               => 'rikthe',
+'undeletelink'               => 'shiko/rikthe',
 'undeletereset'              => 'Boshatis',
 'undeleteinvert'             => 'Selektim anasjelltas',
 'undeletecomment'            => 'Arsyeja:',
@@ -1863,7 +1883,7 @@ Arkivi, kohëpaskohe është e mundur të pastrohet.',
 'undeletedrevisions-files'   => '$1 {{PLURAL:$1|version|versione}} dhe $2 {{PLURAL:$2|skedë|skeda}} janë restauruar',
 'undeletedfiles'             => '$1 {{PLURAL:$1|skedë u restaurua|skeda u restauruan}}',
 'cannotundelete'             => 'Restaurimi dështoi; dikush tjetër mund ta ketë restauruar faqen përpara jush.',
-'undeletedpage'              => "<big>'''$1 është restauruar'''</big>
+'undeletedpage'              => "'''$1 është restauruar'''
 
 Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurimet së fundmi.",
 'undelete-header'            => 'Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për faqet e grisura së fundmi.',
@@ -2053,7 +2073,7 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'move-watch'                => 'Mbikqyre këtë faqe',
 'movepagebtn'               => 'Zhvendose faqen',
 'pagemovedsub'              => 'Zhvendosja doli me sukses',
-'movepage-moved'            => '<big>\'\'\'"$1" u zhvendos tek "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '\'\'\'"$1" u zhvendos tek "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => 'Një faqe me atë titull ekziston, ose titulli që zgjodhët nuk është i saktë. Ju lutem zgjidhni një tjetër.',
 'cantmove-titleprotected'   => 'Nuk mund të zhvendosni një faqe në këtë titull pasi ky titull është mbrojtur kundrejt krijimit',
 'talkexists'                => 'Faqja për vete u zhvendos, ndërsa faqja e diskutimit nuk u zhvendos sepse një e tillë ekziston tek titulli i ri. Ju lutem, përpuqini vetë.',
@@ -2209,7 +2229,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'lastmodifiedatby' => 'Kjo faqe është redaktuar së fundit më $2, $1 nga $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bazuar në punën e: $1',
 'others'           => 'të tjerë',
-'siteusers'        => 'Përdoruesit $1 e {{SITENAME}}',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|përdorues|përdorues}} $1',
 'creditspage'      => 'Statistika e faqes',
 'nocredits'        => 'Për këtë faqe nuk ka informacione.',
 
@@ -2276,7 +2296,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'imagemaxsize'         => 'Kufizo pamjen e figurave në faqet përshkruese në rezolucionin:',
 'thumbsize'            => 'Madhësia fotove përmbledhëse:',
 'file-info'            => '(madhësia skedës: $1, lloji MIME: $2)',
-'file-info-size'       => '($1 × $2 pixel, madhësia e skedës: $3, MIME type: $4)',
+'file-info-size'       => '($1 × $2 pixela, madhësia e skedës: $3, tipi MIME: $4)',
 'file-nohires'         => '<small>Nuk ka rezolucion më të madh.</small>',
 'svg-long-desc'        => '(skedë SVG, fillimisht $1 × $2 pixel, madhësia e skedës: $3)',
 'show-big-image'       => 'Rezolucion i plotë',

@@ -43,6 +43,7 @@ $messages = array(
 'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
 
 'article'        => 'Адаҟьа',
+'qbfind'         => 'Аҧшаара',
 'qbedit'         => 'Ариашара',
 'qbpageoptions'  => 'Ари адаҟьа',
 'qbspecialpages' => 'Цастәи адаҟьақәа',
@@ -58,10 +59,12 @@ $messages = array(
 'permalink'        => 'Еисымшатәи ахьарҧш',
 'edit'             => 'Ариашамҭа',
 'create'           => 'Арҿиара',
+'newpage'          => 'Адаҟьа Ҿыц',
 'talkpagelinktext' => 'Ахцәажәара',
 'specialpage'      => 'Цастәи адаҟьа',
 'talk'             => 'Ахцәажәара',
 'toolbox'          => 'Амаҵыругақәа',
+'otherlanguages'   => 'Абызшәақәа',
 'lastmodifiedat'   => 'Ацыхәтәантәи аҧсахрақәа абри адаҟьа аҟны: $2, $1.', # $1 date, $2 time
 'jumptonavigation' => 'Анавигациа',
 'jumptosearch'     => 'Аҧшаара',
@@ -82,6 +85,7 @@ $messages = array(
 'nstab-main'     => 'Адаҟьа',
 'nstab-user'     => 'Иалахә',
 'nstab-special'  => 'Цастәи адаҟьа',
+'nstab-image'    => 'Афаил',
 'nstab-template' => 'Ашаблон',
 'nstab-help'     => 'Ацхыраара',
 'nstab-category' => 'Акатегориа',
@@ -97,6 +101,7 @@ $messages = array(
 # Edit pages
 'summary'     => 'Ятарлă саспаллисем:',
 'savearticle' => 'Адаҟьа ахьчара',
+'editing'     => 'Ариашамҭа: $1',
 
 # Groups
 'group-user' => 'Иалоуқәа',
@@ -104,7 +109,7 @@ $messages = array(
 'group-user-member' => 'Иалахә',
 
 # Recent changes
-'recentchanges' => 'Аҽыц риашарақәа',
+'recentchanges' => 'Арҽеира ҿыцқәа',
 
 # Recent changes linked
 'recentchangeslinked' => 'Еимадоу ариашарақәа',
@@ -146,5 +151,8 @@ $messages = array(
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Аҧшаара',
+
+# Special:SpecialPages
+'specialpages' => 'Цастәи адаҟьақәа',
 
 );

@@ -605,7 +605,7 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'summary-preview'                  => 'Praevisum summarii:',
 'subject-preview'                  => 'Praevisum rei/tituli:',
 'blockedtitle'                     => 'Usor obstructus est',
-'blockedtext'                      => '<big>\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\'</big> a magistratu $1.
+'blockedtext'                      => '\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\' a magistratu $1.
 
 Ratio data est: \'\'$2\'\'.
 
@@ -880,7 +880,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'prevn-title'                    => '{{PLURAL:$1|Eventus prior|Eventus priores}} $1',
 'nextn-title'                    => '{{PLURAL:$1|Eventus proximus|Eventus proximi}} $1',
 'shown-title'                    => 'Monstrare $1 {{PLURAL:$1|eventum|eventus}} per paginam',
-'viewprevnext'                   => 'Videre ($1) ($2) ($3).',
+'viewprevnext'                   => 'Videre ($1) ($2) ($3)',
 'searchmenu-legend'              => 'Optiones',
 'searchmenu-exists'              => "'''Iam est pagina \"[[:\$1]]\"'''",
 'searchmenu-new'                 => "'''Creare paginam \"[[:\$1]]\"'''",
@@ -1713,6 +1713,14 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipbexpiry'                    => 'Exitus:',
 'ipbreason'                    => 'Causa:',
 'ipbreasonotherlist'           => 'Causa alia',
+'ipbreason-dropdown'           => '*Rationes crebriter adductae
+** Ob scripta falsa
+** Ob textum remotum
+** Ob nexus externos multiplicatos
+** Ob scripta sensu sive et Latinitate carentia
+** Ob scripta inurbana 
+** Ob rationes perniciose multiplicatas
+** Ob nomen inurbanum sive inconveniens',
 'ipbanononly'                  => 'Solum usores anonymi obstruere',
 'ipbcreateaccount'             => 'Creationem rationum obstruere',
 'ipbemailban'                  => 'Litteras electronicas vetare',
@@ -1827,7 +1835,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'move-watch'                => 'Hanc paginam custodire',
 'movepagebtn'               => 'Paginam movere',
 'pagemovedsub'              => 'Pagina mota est',
-'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '\'\'\'"$1" mota est ad "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'   => 'Redirectio creata est.',
 'movepage-moved-noredirect' => 'Redirectio non creata est.',
 'articleexists'             => 'Pagina huius tituli iam est, aut invalidum est nomen electum.
@@ -2353,7 +2361,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Special:FilePath
 'filepath'        => 'Fasciculorum inscriptio',
 'filepath-page'   => 'Fasciculus:',
-'filepath-submit' => 'Via',
+'filepath-submit' => 'Ire',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-legend'   => 'Duplicatum quaerere',

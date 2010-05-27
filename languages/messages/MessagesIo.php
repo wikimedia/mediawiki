@@ -153,7 +153,7 @@ $messages = array(
 'category-file-count-limited'    => 'La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en la aktuala kategorio.',
 'listingcontinuesabbrev'         => 'seq.',
 
-'mainpagetext'      => "<big>'''MediaWiki instalesis sucese.'''</big>",
+'mainpagetext'      => "'''MediaWiki instalesis sucese.'''",
 'mainpagedocfooter' => "Videz la [http://meta.wikimedia.org/wiki/Help:Contents Guidilo por Uzanti] por informo pri uzar la wiki programo.
 
 == Komencar ==
@@ -1209,7 +1209,7 @@ voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'move-watch'              => 'Surveyar ca pagino',
 'movepagebtn'             => 'Movar pagino',
 'pagemovedsub'            => 'Rinomizita sucese',
-'movepage-moved'          => '<big>\'\'\'"$1" esas movata ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1" esas movata ad "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Pagino kun sama nomo ja existas od la nomo
 qua vu selektis ne esas valida.
 Voluntez selektar altra nomo.',

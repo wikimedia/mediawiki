@@ -87,7 +87,7 @@ $messages = array(
 'category-article-count'        => '{{PLURAL:$2|Am kʼatʼegoris, xvala, tude na ren kʼatʼegori uğun.|Tʼoplami $2 şen, tude na ren {{PLURAL:$1|butʼkʼa|$1 butʼkʼa}} am kʼatʼegoris ren.}}',
 'listingcontinuesabbrev'        => '(naqona)',
 
-'mainpagetext'      => "<big>'''Mediawiki dido k'ai ik'idu.'''</big>",
+'mainpagetext'      => "'''Mediawiki dido k'ai ik'idu.'''",
 'mainpagedocfooter' => "Vik'i şeni muç'o ixmarinen ya mutxanepe oguru şeni [http://meta.wikimedia.org/wiki/Help:Contents oxmaruşi rexberis] o3'k'edit.
 
 == Ağani na gyoç’k’u maxmarepe ==
@@ -598,7 +598,7 @@ Am situa3yonepes, butʼkʼa skanişkʼelen otiruşi ren.",
 'move-watch'       => 'Am butʼkʼa gatxozi',
 'movepagebtn'      => 'Coxo-muşi doktiri',
 'pagemovedsub'     => 'Coxo iktirinu.',
-'movepage-moved'   => '<big>\'\'\'"$1",  "$2" butʼkʼa muşişa itirinu\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '\'\'\'"$1",  "$2" butʼkʼa muşişa itirinu\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Am coxos ar butʼkʼa koren varna na çʼari coxo mtini va ren.
 Mu iqʼven başka coxo doçʼari.',
 'talkexists'       => "'''Butʼkʼa dido kʼai itirinu, mara oğarğaluşi butʼkʼa var itirinu çunki na itirinasen coxos zate ar butʼkʼa rtʼu. Mu iqʼven butʼkʼaşi doloçʼareli nç'arape majurani butʼkʼaşa ti-skani kʼala itirini.'''",

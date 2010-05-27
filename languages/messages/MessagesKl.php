@@ -421,7 +421,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'move-watch'      => 'Qupperneq ersersimatiguk',
 'movepagebtn'     => 'Qupperneq nuuguk',
 'pagemovedsub'    => 'Nuunnera iluatsippoq',
-'movepage-moved'  => '<big>Qupperneq \'\'\'"$1" uunga nuuppoq "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'  => 'Qupperneq \'\'\'"$1" uunga nuuppoq "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'       => '[[$1]] nuuppaa [[$2]]-mut',
 '1movedto2_redir' => '[[$1]] nuunneqarsimavoq [[$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
 

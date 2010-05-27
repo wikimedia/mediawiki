@@ -186,7 +186,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Nece fail om|$1 Nened failad oma}} neciš kategorijas.',
 'listingcontinuesabbrev'         => 'jatktand',
 
-'mainpagetext'      => "<big>'''MediaWiki-likutim om seižutadud jügedusita.'''</big>",
+'mainpagetext'      => "'''MediaWiki-likutim om seižutadud jügedusita.'''",
 'mainpagedocfooter' => 'Kc. [http://meta.wikimedia.org/wiki/Help:Kävutajan abukirj], miše sada informacijad wikin kävutamižes.
 
 == Erased tarbhaižed resursad ==
@@ -577,7 +577,7 @@ Ku tö valičet völ kerdan \"Kirjutada lehtpol'\", ka teiden toižetusiden ümb
 'summary-preview'                  => 'Ümbrikacund linneb mugoi:',
 'subject-preview'                  => 'Ümbrikacundan pälkirjutez linneb mugoi:',
 'blockedtitle'                     => 'Kävutai om blokiruidud',
-'blockedtext'                      => "<big>'''Teiden kävutajan nimi vai IP-adres om blokiruidud.'''</big>
+'blockedtext'                      => "'''Teiden kävutajan nimi vai IP-adres om blokiruidud.'''
 
 Teid om blokiruinu $1.
 Sü: ''$2''.
@@ -1781,7 +1781,7 @@ Sab toižetada necen lehtpolen kaičendpind, no se ei voi toižetada kaskadkaič
 'undeletedfiles'             => '{{PLURAL:$1|1 fail om|$1 failad oma}} endištadud',
 'cannotundelete'             => 'Endištandan petuz;
 Voib olda, ken-se om jo endištanu necen lehtpolen ende.',
-'undeletedpage'              => "<big>'''$1-lehtpol' om endištadud'''</big>
+'undeletedpage'              => "'''$1-lehtpol' om endištadud'''
 
 Kc. [[Special:Log/delete|čudandoiden aigkirj]], miše tedištada tantoižiš čudandoiš da endištandoiš.",
 'undelete-header'            => 'Kc. [[Special:Log/delete|čudendoiden aigkirj]], miše tedištada tantoi čudud lehtpoliš.',
@@ -1985,7 +1985,7 @@ Nenil statjoil tegese sirta vai ühtenzoitta lehtpoled ičeksaz.",
 'move-watch'                => "Kacelta necidä lehtpol't",
 'movepagebtn'               => "Udesnimitada lehtpol'",
 'pagemovedsub'              => "Lehtpol' om nimitadud udes",
-'movepage-moved'            => "<big>'''\"\$1\" om nimitadud udes; uz' nimi om \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "'''\"\$1\" om nimitadud udes; uz' nimi om \"\$2\"'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'   => 'Läbikosketuz om tehtud.',
 'movepage-moved-noredirect' => "Läbikosketusen sämine om kel'tud.",
 'articleexists'             => "Lehtpol' mugoižen nimenke om jo wikiš, vai valitud nimi ei sättu. Olgat hüväd, valikat toine nimi.",

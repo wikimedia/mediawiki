@@ -136,7 +136,7 @@ $messages = array(
 'newtitle'       => 'Zina ya nkaka:',
 'movepagebtn'    => 'Nata lukaya',
 'pagemovedsub'   => 'Kunata me nunga',
-'movepage-moved' => '<big>\'\'\'"$1" me natama na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved' => '\'\'\'"$1" me natama na "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'  => 'Lukaya ya nkaka kele na zina yango, to zina yango kele ya mbote ve.
 Sola zina ya nkaka.',
 'movereason'     => 'Samu:',

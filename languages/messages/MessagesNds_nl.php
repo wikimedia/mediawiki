@@ -402,7 +402,7 @@ $messages = array(
 'category-file-count-limited'    => "Disse kattegerie bevat {{PLURAL:$1|'t volgende bestaand|de volgende $1 bestanen}}.",
 'listingcontinuesabbrev'         => '(vervolg)',
 
-'mainpagetext'      => "<big>'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''</big>",
+'mainpagetext'      => "'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''",
 'mainpagedocfooter' => "Bekiek de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
 
 == Meer hulpe ==
@@ -810,7 +810,7 @@ As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbao
 'summary-preview'                  => 'Samenvatting naokieken:',
 'subject-preview'                  => 'Onderwarp/kop naokieken:',
 'blockedtitle'                     => 'Gebruker is eblokkeerd',
-'blockedtext'                      => "<big>'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''</big>
+'blockedtext'                      => "'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''
 
 Je bin eblokkeerd deur: $1.
 De op-egeven reden is: ''$2''.
@@ -2128,7 +2128,7 @@ In dat geval mu-j de leste versie as zichbaor instellen.",
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestaand|$2 bestanen}} bin weerummeplaos',
 'undeletedfiles'               => '{{PLURAL:$1|1 bestaand|$1 bestanen}} weerummeplaos',
 'cannotundelete'               => "Weerummeplaosen van 't bestaand is mislok; een aander hef disse pagina meschien al weerummeplaos.",
-'undeletedpage'                => "<big>'''$1 is weerummeplaos'''</big>
+'undeletedpage'                => "'''$1 is weerummeplaos'''
 
 Bekiek 't [[Special:Log/delete|vortdologboek]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
 'undelete-header'              => "Zie 't [[Special:Log/delete|vortdologboek ]] veur spul dat krek vort-edaon is.",
@@ -2342,7 +2342,7 @@ Zörg derveur da-j de gevolgen overzien veurda-j veerder gaon.",
 'move-watch'                   => 'volg disse pagina',
 'movepagebtn'                  => 'Herneum',
 'pagemovedsub'                 => 'Naamwieziging succesvol',
-'movepage-moved'               => '<big>\'\'\'"$1" is ewiezig naor "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" is ewiezig naor "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Der is een deurverwiezing an-emaak.',
 'movepage-moved-noredirect'    => 'Der is gien deurverwiezing an-emaak.',
 'articleexists'                => 'Onder disse naam besteet al een pagina. Kies een aandere naam.',

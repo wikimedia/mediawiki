@@ -18,6 +18,7 @@
  * @author Ferrer
  * @author Flrn
  * @author HalanTul
+ * @author Huuchin
  * @author Illusion
  * @author Innv
  * @author Jl
@@ -368,7 +369,7 @@ $messages = array(
 'category-file-count-limited'    => 'В этой категории {{PLURAL:$1|$1 файл|$1 файла|$1 файлов}}.',
 'listingcontinuesabbrev'         => '(продолжение)',
 
-'mainpagetext'      => "<big>'''Вики-движок «MediaWiki» успешно установлен.'''</big>",
+'mainpagetext'      => "'''Вики-движок «MediaWiki» успешно установлен.'''",
 'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 справочном руководстве].
 
 == Некоторые полезные ресурсы ==
@@ -778,7 +779,7 @@ $2',
 'summary-preview'                  => 'Описание будет:',
 'subject-preview'                  => 'Заголовок будет:',
 'blockedtitle'                     => 'Участник заблокирован',
-'blockedtext'                      => "<big>'''Ваша учётная запись или IP-адрес заблокированы.'''</big>
+'blockedtext'                      => "'''Ваша учётная запись или IP-адрес заблокированы.'''
 
 Блокировка произведена администратором $1.
 Указана следующая причина: ''«$2»''.
@@ -1641,7 +1642,7 @@ PICT # различные
 'filerevert'                => 'Возврат к старой версии $1',
 'filerevert-legend'         => 'Возвратить версию файла',
 'filerevert-intro'          => '<span class="plainlinks">Вы возвращаете \'\'\'[[Media:$1|$1]]\'\'\' к [$4 версии от $3, $2].</span>',
-'filerevert-comment'        => 'Примечание:',
+'filerevert-comment'        => 'Причина:',
 'filerevert-defaultcomment' => 'Возврат к версии от $2, $1',
 'filerevert-submit'         => 'Возвратить',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' был возвращён к [$4 версии от $3, $2].",
@@ -2111,13 +2112,13 @@ $NEWPAGE
 'undeletelink'                 => 'просмотреть/восстановить',
 'undeletereset'                => 'Очистить',
 'undeleteinvert'               => 'Обратить выделение',
-'undeletecomment'              => 'Комментарий:',
+'undeletecomment'              => 'Причина:',
 'undeletedarticle'             => 'восстановлена «[[$1]]»',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|изменение|изменения|изменений}} восстановлено',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|версия|версии|версий}} и $2 {{PLURAL:$2|файл|файла|файлов}} восстановлено',
 'undeletedfiles'               => '$1 {{PLURAL:$1|файл восстановлен|файла восстановлено|файлов восстановлено}}',
 'cannotundelete'               => 'Ошибка восстановления. Возможно, кто-то другой уже восстановил страницу.',
-'undeletedpage'                => "<big>'''Страница «$1» была восстановлена.'''</big>
+'undeletedpage'                => "'''Страница «$1» была восстановлена.'''
 
 Для просмотра списка последних удалений и восстановлений см. [[Special:Log/delete|журнал удалений]].",
 'undelete-header'              => 'Список недавно удалённых страниц можно посмотреть в [[Special:Log/delete|журнале удалений]].',
@@ -2340,7 +2341,7 @@ $1',
 'move-watch'                   => 'Включить эту страницу в список наблюдения',
 'movepagebtn'                  => 'Переименовать страницу',
 'pagemovedsub'                 => 'Страница переименована',
-'movepage-moved'               => "<big>'''Страница «$1» переименована в «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "'''Страница «$1» переименована в «$2»'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Было создано перенаправление.',
 'movepage-moved-noredirect'    => 'Создание перенаправления было подавлено.',
 'articleexists'                => 'Страница с таким именем уже существует или указанное вами название недопустимо.
@@ -2472,8 +2473,8 @@ $1',
 'tooltip-pt-anonuserpage'         => 'Страница участника для моего IP',
 'tooltip-pt-mytalk'               => 'Ваша страница обсуждений',
 'tooltip-pt-anontalk'             => 'Страница обсуждений для моего IP',
-'tooltip-pt-preferences'          => 'Мои настройки',
-'tooltip-pt-watchlist'            => 'Список страниц моего наблюдения',
+'tooltip-pt-preferences'          => 'Ваши настройки',
+'tooltip-pt-watchlist'            => 'Список страниц, изменения в которых вы отслеживаете',
 'tooltip-pt-mycontris'            => 'Список ваших правок',
 'tooltip-pt-login'                => 'Здесь можно зарегистрироваться в системе, но это необязательно.',
 'tooltip-pt-anonlogin'            => 'Здесь можно зарегистрироваться в системе, но это необязательно.',
@@ -3071,16 +3072,16 @@ $1',
 'watchlistedit-noitems'        => 'Ваш список наблюдения не содержит записей.',
 'watchlistedit-normal-title'   => 'Изменение списка наблюдения',
 'watchlistedit-normal-legend'  => 'Удаление записей из списка наблюдения',
-'watchlistedit-normal-explain' => "Ниже перечислены страницы, находящиеся в вашем списке наблюдения.
-Для удаления записей отметьте соответствующие позиции и нажмите кнопку '''«Удалить записи»'''.
-Вы также можете [[Special:Watchlist/raw|править список как текст]].",
+'watchlistedit-normal-explain' => 'Ниже перечислены страницы, находящиеся в вашем списке наблюдения.
+Для удаления записей отметьте соответствующие позиции и нажмите кнопку «{{int:Watchlistedit-normal-submit}}».
+Вы также можете [[Special:Watchlist/raw|править список как текст]].',
 'watchlistedit-normal-submit'  => 'Удалить записи',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|$1 запись была удалена|$1 записи были удалены|$1 записей были удалены}} из вашего списка наблюдения:',
 'watchlistedit-raw-title'      => 'Изменение «сырого» списка наблюдения',
 'watchlistedit-raw-legend'     => 'Изменение «сырого» списка наблюдения',
-'watchlistedit-raw-explain'    => 'Ниже перечислены страницы, находящиеся в вашем списке наблюдения. Вы можете изменять этот список, добавляя и удаляя из него строки с названиями.
-После завершения правок нажмите кнопку «Сохранить список».
-Вы также можете удалять страницы из списка [[Special:Watchlist/edit|обычным способом]].',
+'watchlistedit-raw-explain'    => 'Ниже перечислены страницы, находящиеся в вашем списке наблюдения. Вы можете изменять этот список, добавляя и удаляя из него строки с названиями, по одному названию на строке.
+После завершения правок нажмите кнопку «{{int:Watchlistedit-raw-submit}}».
+Вы также можете [[Special:Watchlist/edit|использовать стандартный редактор]].',
 'watchlistedit-raw-titles'     => 'Записи:',
 'watchlistedit-raw-submit'     => 'Сохранить список',
 'watchlistedit-raw-done'       => 'Ваш список наблюдения сохранён.',
@@ -3163,7 +3164,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'Путь к файлу',
 'filepath-page'    => 'Файл:',
-'filepath-submit'  => 'Путь',
+'filepath-submit'  => 'Перейти',
 'filepath-summary' => 'Данная служебная страница возвращает полный путь к файлу в том виде, в котором он хранится на диске.
 
 Введите имя файла без префикса <code>{{ns:file}}:</code>.',

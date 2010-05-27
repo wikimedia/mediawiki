@@ -331,7 +331,7 @@ $messages = array(
 'category-file-count-limited'    => 'De Kategorie bargt disse {{PLURAL:$1|Datei|$1 Datein}}:',
 'listingcontinuesabbrev'         => 'wieder',
 
-'mainpagetext'      => "<big>'''De MediaWiki-Software is mit Spood installeert worrn.'''</big>",
+'mainpagetext'      => "'''De MediaWiki-Software is mit Spood installeert worrn.'''",
 'mainpagedocfooter' => 'Kiek de [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
 un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.',
 
@@ -2018,7 +2018,7 @@ Den Text vun de wegsmetene Sied köönt blot Administraters sehn.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Ene Version|$1 Versionen}} un {{PLURAL:$2|ene Datei|$2 Datein}} wedderhaalt',
 'undeletedfiles'               => '{{PLURAL:$1|ene Datei|$1 Datein}} wedderhaalt',
 'cannotundelete'               => 'Wedderhalen güng nich; en annern hett de Siet al wedderhaalt.',
-'undeletedpage'                => "<big>'''$1''' wedderhaalt.</big>
+'undeletedpage'                => "'''$1''' wedderhaalt.
 
 In dat [[Special:Log/delete|Lösch-Logbook]] steiht en Översicht över de wegsmetenen un wedderhaalten Sieden.",
 'undelete-header'              => 'Kiek in dat [[Special:Log/delete|Lösch-Logbook]] för Sieden, de nuletzt wegsmeten worrn sünd.',
@@ -2234,7 +2234,7 @@ In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'move-watch'                   => 'Op disse Siet oppassen',
 'movepagebtn'                  => 'Siet schuven',
 'pagemovedsub'                 => 'Schuven hett Spood',
-'movepage-moved'               => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "'''De Sied „$1“ is na „$2“ schaven worrn.'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Redirect opstellt.',
 'movepage-moved-noredirect'    => 'Dat Opstellen vun en Redirect is ünnerdrückt worrn.',
 'articleexists'                => 'Ünner dissen Naam gifft dat al ene Siet.

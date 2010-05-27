@@ -257,7 +257,7 @@ $messages = array(
 'category-file-count-limited'    => 'Вага {{PLURAL:$1|файл|$1 файлхт}} тя категориеса.',
 'listingcontinuesabbrev'         => 'полатксоц',
 
-'mainpagetext'      => "<big>'''МедиаВикить арафтозь лац.'''</big>",
+'mainpagetext'      => "'''МедиаВикить арафтозь лац.'''",
 'mainpagedocfooter' => 'Ванк [http://meta.wikimedia.org/wiki/Help:Contents Ветямовал Тиинди] тяса ули кода содамс Вики програпнень эрявикснень колга.
 
 == Эрявикс сюлмафксне ==
@@ -645,7 +645,7 @@ $2',
 'summary-preview'                  => 'Нюрьхкяня лихтемать сядынголень  няфтема:',
 'subject-preview'                  => 'Тема/конякс сядынгольдень няфтема:',
 'blockedtitle'                     => 'Тиить сёлгозь',
-'blockedtext'                      => '\'\'\'Тонь тиить лемцень эли IP адресцень сёлгозь.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Тонь тиить лемцень эли IP адресцень сёлгозь.\'\'\'
 
 Тонь сёлгозе $1. 
 Туфталсь \'\'$2\'\'.
@@ -1925,7 +1925,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 верзие|$1 верзиет}} эди {{PLURAL:$2|1 файл|$2 файлхт}} мърдафтфт',
 'undeletedfiles'               => '{{PLURAL:$1|1 файл|$1 файлхт}} мърдафтфт',
 'cannotundelete'               => 'Мърдафтома изь лисев; иля тиись, улема, ульсь васенцекс кие сонь мърдафтозе.',
-'undeletedpage'                => "<big>'''$1 мърдафтфоль'''</big>
+'undeletedpage'                => "'''$1 мърдафтфоль'''
 
 Ванк [[Special:Log/delete|нардамань лувомась]] мекольце нардаматнень эди мърдафтоматнень няфтеманкса.",
 'undelete-header'              => 'Ванк [[Special:Log/delete|нардамань лувомась]] улхкомба нардаф лопатнень няфтеманкса.',
@@ -2140,7 +2140,7 @@ $1 сёлкф ни. Мяльце полафтомс латцематнень?',
 'move-watch'                   => 'Ваномс тя лопать мельге',
 'movepagebtn'                  => 'Шашфтомс лопать иля вастс',
 'pagemovedsub'                 => 'Шашфтомась ётась лац',
-'movepage-moved'               => '<big>\'\'\'"$1"сь шашфтфоль "$2"с\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1"сь шашфтфоль "$2"с\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Умборондафтфкс тифоль.',
 'movepage-moved-noredirect'    => 'Умборондафтфксонь тиемась лоткафоль.',
 'articleexists'                => 'Тя лем мархта лопась ульсь ни эли лемсь, кона тон кочкать аф кондясти.

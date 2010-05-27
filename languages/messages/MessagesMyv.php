@@ -282,7 +282,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Те файлась|$1 Не файлатне}} вановиця категориянтень кандови.',
 'listingcontinuesabbrev'         => 'поладксозо моли',
 
-'mainpagetext' => "<big>'''МедияВикинь тевс аравтомазо парсте лиссь.'''</big>",
+'mainpagetext' => "'''МедияВикинь тевс аравтомазо парсте лиссь.'''",
 
 'about'          => 'Эстедензэ',
 'article'        => 'Потмокслопа',
@@ -516,6 +516,10 @@ $messages = array(
 'prefs-help-realname'        => 'Алкуксонь леметь (арась мелеть, иляк путо): путсак, ды сон карми неявомо не таркатнесэ, косо тон тев теят.',
 'loginerror'                 => 'Совамсто ильведькс',
 'prefs-help-email-required'  => 'Е-сёрмань адресэть эряви.',
+'nocookiesnew'               => 'Совамо таркась шкавсь, ансяк зярс эзить сова.
+ {{SITENAME}} сайтэв совават cookies функция вельде.
+Содымашинасот cookies функциятне тевс апак нолда.
+Васня нолдытя функциятнень тевс, мейле совак: сёрмадыть од теицянь леметь ды совамо валот.',
 'noname'                     => 'Зярс эзить максо кемекстазь теицянь лем.',
 'loginsuccesstitle'          => 'Совавить',
 'loginsuccess'               => "'''Тон совить {{SITENAME}}-с кода \"\$1\".'''",
@@ -598,7 +602,7 @@ $messages = array(
 'summary-preview'                  => 'Цётомань седеикелев вановкс:',
 'subject-preview'                  => 'Темань/коняксонь васнянь невтема:',
 'blockedtitle'                     => 'Совицясь кардазь',
-'blockedtext'                      => "<big>'''Тонть теицянь леметь эли IP-тешкстэть совавтозь саймас.'''</big>
+'blockedtext'                      => "'''Тонть теицянь леметь эли IP-тешкстэть совавтозь саймас.'''
 
 Саймас совавтынзеть $1 прявт кирдицясь. Максозь истямо тувталось: ''«$2»''.
 
@@ -1286,6 +1290,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # Special:Log/newusers
 'newuserlogpage'           => 'Теицянь шкамодо-теемадо конёв',
+'newuserlogpagetext'       => 'Те теицянь шкавксто журнал',
 'newuserlog-byemail'       => 'совамо вал кучозь е-сёрмасо',
 'newuserlog-create-entry'  => 'Од совиця',
 'newuserlog-create2-entry' => 'шкизе од совамо тарканть $1',
@@ -1555,7 +1560,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'move-watch'                => 'Ваномс лопанть',
 'movepagebtn'               => 'Печтевтемс лопанть',
 'pagemovedsub'              => 'Лопась печтевтевсь',
-'movepage-moved'            => "<big>'''«$1»-сь печтевтезь «$2»-с'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "'''«$1»-сь печтевтезь «$2»-с'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => 'Лопась истямо лем марто ули али невтезь тынк эйсэ лемесь анолдавиксев.<br />Инескеть, кочкадо лия лем.',
 'talkexists'                => "'''Сонсь лопась печтевтевсь, ансяк кортамонь лопась кодаяк эзь печтевтеве, вана мекс,  истямо лем марто лопась ули. Инеськеть, пурныть сынст вейтьс кедьсэ.'''",
 'movedto'                   => 'печтевтезь',
@@ -1995,7 +2000,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 # Special:FilePath
 'filepath'        => 'Файлас яннэ',
 'filepath-page'   => 'Файл:',
-'filepath-submit' => 'Яннэ',
+'filepath-submit' => 'Ютак',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Вешнэмс кавтаське файлат',

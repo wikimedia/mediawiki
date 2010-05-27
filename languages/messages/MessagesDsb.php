@@ -269,7 +269,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Slědujuca dataja jo|Slědujucej $1 dataji stej|Slědujuce $1 dataje su|Slědujucych $1 datajow jo}} w toś tej kategoriji {{PLURAL:$1|wopśimjona|wopśimjonej|wopśimjone|wopsímjone}}:',
 'listingcontinuesabbrev'         => 'dalej',
 
-'mainpagetext'      => "<big>'''MediaWiki jo se wuspěšnje instalěrowało.'''</big>",
+'mainpagetext'      => "'''MediaWiki jo se wuspěšnje instalěrowało.'''",
 'mainpagedocfooter' => "Pomoc pśi wužywanju softwary wiki namakajoš pód [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
 
 == Na zachopjenje ==
@@ -661,7 +661,7 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'summary-preview'                  => 'Pśeglěd zespominanja:',
 'subject-preview'                  => 'Pśeglěd nadpisma:',
 'blockedtitle'                     => 'Wužywaŕ jo se blokěrował',
-'blockedtext'                      => "<big>'''Twójo wužywarske mě abo IP-adresa stej se blokěrowałej.'''</big>
+'blockedtext'                      => "'''Twójo wužywarske mě abo IP-adresa stej se blokěrowałej.'''
 
 Blokěrowanje pśez $1. 
 Pódana pśicyna: ''$2''.
@@ -707,9 +707,8 @@ Jo se snaź pśesunuł abo wulašował, mjaztym až woglědujoš se bok.',
 
 Gronidło za toś to nowe konto dajo se na boku ''[[Special:ChangePassword|Gronidło změniś]]'' pśi pśizjawjenju změniś.",
 'newarticle'                       => '(Nowy nastawk)',
-'newarticletext'                   => 'Sy slědował wótkaz na bok, kótaryž hyšći njeeksistěrujo.
-Aby bok wutwórił, ga napiš do kašćika spózy.
-(Dokradnjejše informacije pód: [[{{MediaWiki:Helppage}}|help page]]).',
+'newarticletext'                   => "Sy slědował wótkaz na bok, kótaryž hyšći njeeksistěrujo.
+Aby bok napórał, zapiš do kašćika dołojce (glědaj [[{{MediaWiki:Helppage}}|bok pomocy]] za dalšne informacije). Jolic sy zamólnje how, klikni na tłocašk '''Slědk'' w swójom wobglědowaku.",
 'anontalkpagetext'                 => "---- ''Toś jo diskusijny bok za anonymnego wužywarja, kótaryž njejo dotychměst žedno wužywarske konto załožył abo swójo konto njewužywa. Togodla dejmy numerisku IP-adresu wužywaś, aby jogo/ju identificěrowali. Taka IP-adresa dajo se wót wšakich wužywarjow wužywaś. Jolic sy anonymny wužywaŕ a se mysliš, až su se njerelewantne komentary na tebje měrili, [[Special:UserLogin/signup|załož konto]] abo [[Special:UserLogin|pśizjaw se]], aby se w pśichoźe zmuśenje z drugimi anonymnymi wužywarjami wobinuł.''",
 'noarticletext'                    => 'Dotychměst toś ten bok hyšći njewopśimujo žeden tekst. Móžoš w drugich bokach [[Special:Search/{{PAGENAME}}|titel togo boka pytaś]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} toś ten bok wobźěłaś]</span>.',
 'userpage-userdoesnotexist'        => 'Wužywarske konto "$1" njejo zregistrěrowane. Pšosym pśeglědaj, lěc coš toś ten bok wopšawdu napóraś/wobźěłaś.',
@@ -1206,7 +1205,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'right-move-rootuserpages'    => 'Głowne wužywarske boki pśesunuś',
 'right-movefile'              => 'Dataje pśesunuś',
 'right-suppressredirect'      => 'Pśi pśesunjenju žedno dalejpósrědnjenje ze starego mjenja napóraś',
-'right-upload'                => 'lódowaś dataje',
+'right-upload'                => 'Dataje nagraś',
 'right-reupload'              => 'Eksistěrujucu dataju pśepisaś',
 'right-reupload-own'          => 'Dataju nagratu wót togo samogo wužywarja pśepisaś',
 'right-reupload-shared'       => 'Dataje w zgromadnje wužywanem repozitoriju lokalnje pśepisaś',
@@ -1217,7 +1216,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'right-nominornewtalk'        => 'Snadne změny na diskusijnych bokach njedowjedu k pokazanjeju "Nowe powěsći"',
 'right-apihighlimits'         => 'Wuše limity w API-wótpšašanjach wužywaś',
 'right-writeapi'              => 'writeAPI wužywaś',
-'right-delete'                => 'lašowaś boki',
+'right-delete'                => 'Boki wulašowaś',
 'right-bigdelete'             => 'lašowaś boki, kótarež maju wjelike stawizny',
 'right-deleterevision'        => 'Specifiske boki lašowaś a wótnowiś',
 'right-deletedhistory'        => 'Wulašowane wersiji w stawiznach se bśez pśisłušnego teksta wobglědaś',
@@ -1270,7 +1269,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'action-movefile'             => 'Toś tu dataju pśesunuś',
 'action-upload'               => 'toś tu dataju nagraś',
 'action-reupload'             => 'toś tu eksistěrujucu dataju pśepisaś',
-'action-reupload-shared'      => 'toś tu dataju w zgroamdnem repozitoriumje pśepisaś',
+'action-reupload-shared'      => 'toś tu dataju w zgromadnem repozitoriumje pśepisaś',
 'action-upload_by_url'        => 'toś tu dataju z webadrese (URL) nagraś',
 'action-writeapi'             => 'API za pisanje wužywaś',
 'action-delete'               => 'Toś ten bok lasowaś',
@@ -1333,15 +1332,15 @@ Boki na [[Special:Watchlist|wobglědowańce]] su '''tucne'''.",
 'recentchangeslinked-to'       => 'Změny pokazaś, kótarež město togo na dany bok wótkazuju.',
 
 # Upload
-'upload'                      => 'Dataju pósłaś',
-'uploadbtn'                   => 'Dataju pósłaś',
+'upload'                      => 'Dataju nagraś',
+'uploadbtn'                   => 'Dataju nagraś',
 'reupload'                    => 'Dataju hyšći raz pósłaś.',
-'reuploaddesc'                => 'Upload pśetergnuś a slědk k uploadowemu formularoju',
-'uploadnologin'               => 'Njepśizjawjony(a)',
-'uploadnologintext'           => 'Dejš se [[Special:UserLogin|pśizjawiś]], aby mógał dataje uploadowaś.',
+'reuploaddesc'                => 'Nagraśe pśetergnuś a slědk k nagrawańskemu formularoju',
+'uploadnologin'               => 'Njepśizjawjony',
+'uploadnologintext'           => 'Dejš se [[Special:UserLogin|pśizjawiś]], aby mógał dataje nagraś.',
 'upload_directory_missing'    => 'Nagrawański zapis ($1) felujo a njejo se pśez webserwer napóraś dał.',
-'upload_directory_read_only'  => 'Seśowy serwer njamóžo do uploadowego zapisa ($1) pisaś.',
-'uploaderror'                 => 'Zmólka pśi uploadowanju',
+'upload_directory_read_only'  => 'Nagrawański zapisk ($1) njedajo se pśez webserwer pisaś.',
+'uploaderror'                 => 'Nagrawańska zmólka',
 'uploadtext'                  => "Wužyj toś ten formular za nagraśe nowych datajow.
 
 Źi na [[Special:FileList|lisćinu nagratych datajow]], aby mógł južo nagrate dataje se wobglědaś abo pytaś, nagraśa protokolěruju se w [[Special:Log/upload|protokolu nagraśow]], wulašowanja w [[Special:Log/upload|protokolu wulašowanjow]].
@@ -1363,13 +1362,13 @@ Glědaj [[Special:NewFiles|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'filereuploadsummary'         => 'Datajowe změny:',
 'filestatus'                  => 'Status copyrighta:',
 'filesource'                  => 'Žrědło:',
-'uploadedfiles'               => 'Uploadowane dataje',
+'uploadedfiles'               => 'Nagrate dataje',
 'ignorewarning'               => 'Warnowanje ignorěrowaś a dataju składowaś',
 'ignorewarnings'              => 'Wše warnowanja ignorěrowaś',
 'minlength1'                  => 'Mjenja datajow muse wopśimjeś nanejmjenjej jaden pismik.',
-'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška. Pšosym pśemjeni dataju a wopytaj ju wótnowotki uploadowaś.',
+'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška, kótarež njejsu dowólone w titulami bokow. Pšosym pśemjeń dataju a wopytaj ju wótnowotki nagraś.',
 'badfilename'                 => 'Mě dataje jo se změniło na „$1“.',
-'filetype-badmime'            => 'Dataje z MIME-typom „$1“ njesměju se uploadowaś.',
+'filetype-badmime'            => 'Dataje z MIME-typom „$1“ njesměju se nagraś.',
 'filetype-bad-ie-mime'        => 'Toś ta dataja njedajo se nagraś, dokulaž Internet Explorer by ju ako "$1" interpretěrował, kótaryž jo njedowólony a potencielnje tšachotny datajowy typ.',
 'filetype-unwanted-type'      => "'''„.$1“''' jo njewitany datajowy typ. 
 {{PLURAL:$3|Dowólony datajowy typ jo|Dowólonej datajowej typa stej|Dowólene datajowe typy su}}: $2.",
@@ -1378,7 +1377,7 @@ Glědaj [[Special:NewFiles|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'filetype-missing'            => 'Dataja njama žedno rozšyrjenje (na pś. „.jpg“).',
 'large-file'                  => 'Pó móžnosći njedejała dataja wětša byś ako $1. Toś ta dataja jo $2 wjelika.',
 'largefileserver'             => 'Dataja jo wětša ako serwer dopušćijo.',
-'emptyfile'                   => 'Dataja jo prozna. Pśicyna togo móžo byś zmólka w mjenju dataje. Kontrolěruj pšosym, lic coš dataju napšawdu uploadowaś.',
+'emptyfile'                   => 'Dataja, kótaruž sy nagrał, jo prozna. Pśicyna móžo byś zmólka w mjenju dataje. Kontrolěruj pšosym, lěc coš dataju napšawdu nagraś.',
 'fileexists'                  => "Dataja z toś tym mjenim južo eksistěrujo.
 Tłocyš-lic na \"Dataju składowaś\", ga se dataja pśepišo.
 Pšosym kontrolěruj '''<tt>[[:\$1]]</tt>''', gaž njejsy se kradu wěsty.
@@ -1390,9 +1389,9 @@ Pšosym kontrolěruj '''<tt>[[:\$1]]</tt>''', gaž njejsy se kradu wěsty.
 * Mě eksistěrujuceje dataje: '''<tt>[[:$2]]</tt>'''
 Pšosym wubjeŕ druge mě.",
 'fileexists-thumb'            => "<center>'''Eksistěrujucy wobraz'''</center>",
-'fileexists-thumbnail-yes'    => "Zazdaśim ma wobraz reducěrowanu wjelikosć ''(thumbnail)''. [[$1|thumb]]
+'fileexists-thumbnail-yes'    => "Zazdaśim ma dataja reducěrowanu wjelikosć ''(thumbnail)''. [[$1|thumb]]
 Kontrolěruj pšosym dataju '''<tt>[[:$1]]</tt>'''.
-Jadna-lic se wó wobraz w originalnej wjelikosći, pón njejo notne, separatny pśeglědowy wobraz uploadowaś.",
+Jolic skontrolěrowana dataja jo ten samy wobraz w originalnej wjelikosći, pón njejo notne, separatny pśeglědowy wobraz nagraś.",
 'file-thumbnail-no'           => "Mě dataje zachopijo z '''<tt>$1</tt>'''. Zda se, až to jo wobraz z reducěrowaneju wjelikosću. ''(thumbnail)''.
 Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosym mě dataje.",
 'fileexists-forbidden'        => 'Dataja z toś tym mjenim južo eksistěrujo a njedajo se pśepisaś. Jolic coš hyšći swóju dataju nagraś, źi pšosym slědk a wuž nowe mě. [[File:$1|thumb|center|$1]]',
@@ -1400,12 +1399,12 @@ Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosy
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Toś ta dataja jo duplikat {{PLURAL:$1|slědujuceje dataje|slědujuceju datajow|slědujucych datajow|slědujucych datajow}}:',
 'file-deleted-duplicate'      => 'Dataja, kótaraž jo identiska z toś teju dataju ([[$1]]) jo se pjerwjej wulašowała. Ty měł stawizny wulašowanja toś teje dataje pśeglědaś, pjerwjej až pokšacujoš z jeje zasejnagrawanjom.',
-'successfulupload'            => 'Upload jo był wuspěšny.',
+'successfulupload'            => 'Nagraśe jo było wuspěšne.',
 'uploadwarning'               => 'Warnowanje',
 'savefile'                    => 'Dataju składowaś',
-'uploadedimage'               => 'Dataja "[[$1]]" jo uploadowana.',
-'overwroteimage'              => 'Nowa wersija "[[$1]]" jo se uploadowała.',
-'uploaddisabled'              => 'Uploadowanje jo se znjemóžniło.',
+'uploadedimage'               => 'jo  "[[$1]]" nagrał.',
+'overwroteimage'              => 'Jo nowu wersiju "[[$1]]" nagrał.',
+'uploaddisabled'              => 'Nagrawanje jo se znjemóžniło.',
 'uploaddisabledtext'          => 'Nagraśa datajow su znjemóžnjone.',
 'php-uploaddisabledtext'      => 'Nagraśa PHP-datajow su znjemóžnjone. Pšosym pśekontrolěruj nastajenje file_uploads.',
 'uploadscripted'              => 'Toś ta dataja wopśimjejo HTML abo script code, kótaryž móžo wót browsera se zamólnje wuwjasć.',
@@ -1415,12 +1414,12 @@ Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosy
 'destfilename'                => 'Celowe mě:',
 'upload-maxfilesize'          => 'Maksimalna datajowa wjelikosć: $1',
 'watchthisupload'             => 'Toś tu dataju wobglědowaś',
-'filewasdeleted'              => 'Dataja z toś tym mjenim jo była južo raz uploadowana a mjaztym zasej wulašowana. Pšosym kontrolěruj pjerwjej $1, nježli až dataju napšawdu składujoš.',
+'filewasdeleted'              => 'Dataja z toś tym mjenim jo se južo raz nagrała a mjaztym zasej wulašowała. Pšosym kontrolěruj pjerwjej $1, nježli až nagrajoš dataju znowego.',
 'upload-wasdeleted'           => "'''Glědaj: Nagrawaš dataju, kótaraž jo južo raz se wulašowała.'''
 
 Pšosym kontrolěruj, lic wótpowědujo nowe nagraśe směrnicam.
 Aby se mógał informěrowaś jo how protokol z pśicynu wulašowanja:",
-'filename-bad-prefix'         => "Mě dataje, kótaruž uploadujoš, zachopijo na '''„$1“'''. Take mě jo wót digitalneje kamery pśedpódane a toś wjele njewugroni. Pšosym pómjeni dataju tak, aby mě wěcej wó jeje wopśimjeśu wugroniło.",
+'filename-bad-prefix'         => "Mě dataje, kótaruž nagrawaš, zachopijo z '''„$1“'''. Take mě jo wót digitalneje kamery pśedpódane a toś wjele njewugroni. Pšosym pómjeni dataju tak, aby mě wěcej wó jeje wopśimjeśu wugroniło.",
 'filename-prefix-blacklist'   => ' #<!-- Njezměń nic na toś tej rědce! --> <pre>
 # Syntaksa jo slědujuca:
 #   * Wšykno wót "#" znamuška až ku kóńcoju rědki jo komentar.
@@ -1440,13 +1439,13 @@ PICT # misc.
 'upload-proto-error-text' => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
 'upload-file-error'       => 'Interna zmólka',
 'upload-file-error-text'  => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|systemowym administratorom]] do zwiska.',
-'upload-misc-error'       => 'Njeznata zmólka pśi uploadowanju.',
+'upload-misc-error'       => 'Njeznata zmólka pśi nagrawanju.',
 'upload-misc-error-text'  => 'Pśi nagrawanju jo nastała njeznata zmólka. Kontrolěruj pšosym, lěc URL jo płaśiwy a pśistupny a wopytaj hyšći raz. Jolic problem dalej eksistěrujo, staj se z [[Special:ListUsers/sysop|administratorom]] do zwiska.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL njejo pśistupna.',
 'upload-curl-error6-text'  => 'Pódana URL njejo pśistupna. Pśeglěduj URL na zmólki a kontrolěruj online-status boka.',
-'upload-curl-error28'      => 'Pśi uploadowanju jo cas se pśekšocył.',
+'upload-curl-error28'      => 'Pśi nagrawanju jo se cas pśekšocył.',
 'upload-curl-error28-text' => 'Bok pśedłujko njejo wótegronił. Kontrolěruj, lic jo bok online, pócakaj wokognuśe a wopytaj pón hyšći raz. Móžo byś zmysłapołne, w drugem casu hyšći raz proběrowaś.',
 
 'license'            => 'Licenca:',
@@ -1456,7 +1455,7 @@ PICT # misc.
 'upload_source_file' => ' (dataja na twójom kompjuterje)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Toś ten specialny bok nalicyjo wšykne uploadowane dataje. Normalnje pokazuje se te dataje, ako su slědne se uploadowali, ako prědne w lisćinje. Tłocenje na napise špaltow změnijo sortěrowanje.',
+'listfiles-summary'     => 'Toś ten specialny bok nalicyjo wšykne nagrate dataje. Normalnje pokazuju se te dataje, kótarež su se ako slědne nagrali, ako prědne w lisćinje. Kliknjenje na napise špaltow změnijo sortěrowanje.',
 'listfiles_search_for'  => 'Za medijowym mjenim pytaś:',
 'imgfile'               => 'dataja',
 'listfiles'             => 'Lisćina datajow',
@@ -1497,7 +1496,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'shareduploadwiki-linktext' => 'boku wopisanja dataje',
 'noimage'                   => 'Dataja z takim mjenim njeeksistěrujo, ale móžoš ju $1.',
 'noimage-linktext'          => 'nagraś',
-'uploadnewversion-linktext' => 'Uploaduj nowu wersiju toś teje dataje.',
+'uploadnewversion-linktext' => 'Nowu wersiju toś teje dataje nagraś',
 'shared-repo-from'          => 'z $1', # $1 is the repository name
 'shared-repo'               => 'zgromadny repozitorium', # used when shared-repo-NAME does not exist
 
@@ -1928,7 +1927,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'restriction-edit'   => 'wobźěłaś',
 'restriction-move'   => 'pśesunuś',
 'restriction-create' => 'Natwóriś',
-'restriction-upload' => 'lódowaś',
+'restriction-upload' => 'Nagraś',
 
 # Restriction levels
 'restriction-level-sysop'         => 'połnje šćitane',
@@ -2176,7 +2175,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'move-watch'                   => 'Toś ten bok wobglědowaś',
 'movepagebtn'                  => 'Bok pśesunuś',
 'pagemovedsub'                 => 'Bok jo se pśesunuł.',
-'movepage-moved'               => '<big>\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Dalejpósrědnjenje jo se napórało.',
 'movepage-moved-noredirect'    => 'Napóranje dalejpósrědnjenja jo se pódtłocyło.',
 'articleexists'                => 'Bok z takim mjenim južo eksistěrujo abo mě, kótarež sćo wuwzólił jo njepłaśece. Pšosym wuzwól nowe mě.',
@@ -2192,7 +2191,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movepage-max-pages'           => 'Maksimalna licba $1 {{PLURAL:$1|boka|bokowu|bokow|bokow}} jo se pśesunuła a žedne dalšne wěcej njedaje se awtomatiski pśesunuś.',
 '1movedto2'                    => '„[[$1]]“ pśesunjone na „[[$2]]“',
 '1movedto2_redir'              => 'Nastawk „[[$1]]“ jo se pśesunuł na „[[$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
-'move-redirect-suppressed'     => 'dakejpósrědnjenje pódtłocone',
+'move-redirect-suppressed'     => 'dalejpósrědnjenje pódtłocone',
 'movelogpage'                  => 'Protokol pśesunjenjow',
 'movelogpagetext'              => 'How jo lisćina wšyknych pśesunjonych bokow.',
 'movesubpage'                  => '{{PLURAL:$1|Pódbok|Pódboka|Pódboki|Pódbokow}}',
@@ -2281,11 +2280,11 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'importnotext'               => 'Prozdne abo bźez teksta',
 'importsuccess'              => 'Import dokóńcony!',
 'importhistoryconflict'      => 'Konflikt wersijow (snaź jo toś ten bok južo raz se importěrował)',
-'importnosources'            => 'Za transwikijowe importěrowanje njejsu žrědła definěrowane, direktne stawizny uploadowanja su znjemóžnjone.',
-'importnofile'               => 'Žedna dataja za importěrowanje njejo se uploadowała.',
-'importuploaderrorsize'      => 'Uploadowanje importoweje dataje jo se njeraźiło. Dataja jo wětša ako dowólona wjelikosć datajow.',
-'importuploaderrorpartial'   => 'Uploadowanje importoweje dataje jo se njeraźiło. Dataja jo se jano pó źělach uploadowała.',
-'importuploaderrortemp'      => 'Uploadowanje importoweje dataje jo se njeraźiło. Temporarny zapis feluje.',
+'importnosources'            => 'Za transwikijowe importěrowanje njejsu žrědła definěrowane, direktne stawizny nagraśow su znjemóžnjone.',
+'importnofile'               => 'Žedna dataja za importěrowanje njejo se nagrała.',
+'importuploaderrorsize'      => 'Nagrawanje importoweje dataje jo se njeraźiło. Dataja jo wětša ako dowólona wjelikosć nagraśow.',
+'importuploaderrorpartial'   => 'Nagrawanje importoweje dataje jo se njeraźiło. Dataja jo se jano pó źělach nagrała.',
+'importuploaderrortemp'      => 'Nagrawanje importoweje dataje jo se njeraźiło. Temporarny zapis feluje.',
 'import-parse-failure'       => 'Zmólka pśi XML-imporśe:',
 'import-noarticle'           => 'Žeden bok za import!',
 'import-nonewrevisions'      => 'Wšykne wersije buchu južo pjerwjej importowane.',
@@ -2297,7 +2296,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 # Import log
 'importlogpage'                    => 'Log-lisćinu importěrowaś',
 'importlogpagetext'                => 'Administratiwne importěrowanje bokow ze stawiznami z drugich wikijow.',
-'import-logentry-upload'           => 'Dataja [[$1]] jo pśez uploadowanje se importěrowała.',
+'import-logentry-upload'           => 'jo se [[$1]]  pśez nagrawańske nagraśe importěrowała.',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|$1 wersija|$1 wersiji|$1 wersije}}',
 'import-logentry-interwiki'        => 'Dataja $1 jo se importěrowała (transwiki).',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 wersija|$1 wersiji|$1 wersije}} wót $2',
@@ -2361,7 +2360,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-compareselectedversions' => 'Wuzwólonej wersiji boka pśirownowaś',
 'tooltip-watch'                   => 'Toś ten bok wobglědowańce dodaś',
 'tooltip-recreate'                => 'Bok nawrośiś, lěcrowno jo był wulašowany',
-'tooltip-upload'                  => 'Z uploadowanim zachopiś',
+'tooltip-upload'                  => 'Nagraśe zachopiś',
 'tooltip-rollback'                => '"Roolback" anulěrujo změny slědnego wužywarja na toś tom boku z jadnym kliknjenim.',
 'tooltip-undo'                    => 'Anulěrujo toś tu změnu a wócynijo wobźěłański formular w pśeglědowem modusu.
 W zespominanju dajo se pśicyna pódaś.',
@@ -2475,7 +2474,7 @@ $1',
 # Special:NewFiles
 'newimages'             => 'Nowe dataje',
 'imagelisttext'         => "How jo lisćina '''$1''' {{PLURAL:$1|dataje|datajowu|datajow}}, sortěrowane $2.",
-'newimages-summary'     => 'Toś ten specialny bok pokazujo wobraze a dataje, kótarež ako slědne su se uploadowali.',
+'newimages-summary'     => 'Toś ten specialny bok pokazujo dataje, kótarež su se ako slědne nagrali.',
 'newimages-legend'      => 'Filter',
 'newimages-label'       => 'Datajowe mě (abo źěl z togo):',
 'showhidebots'          => '(awtomatiske programy (boty) $1)',
@@ -2874,13 +2873,14 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 'watchlistedit-noitems'        => 'Twója wobglědowańka jo prozna.',
 'watchlistedit-normal-title'   => 'Zapise wobźěłaś',
 'watchlistedit-normal-legend'  => 'Zapiski z wobglědowańki wulašowaś',
-'watchlistedit-normal-explain' => 'To su zapiski w twójej wobglědowańce. Coš-lic zapisk wulašowaś, markěruj kašćik pódla zapiska a tłoc na "zapiski wulašowaś". Móžoš swóju wobglědowańku teke w [[Special:Watchlist/raw|lisćinowem formaśe]] wobźěłaś.',
+'watchlistedit-normal-explain' => 'Zapiski w twójej wobglědowańce pokazuju se dołojce. Aby zapisk wulašował, markěruj kašćik pódla zapiska a klikni na "{{int:Watchlistedit-normal-submit}}". Móžoš swóju wobglědowańku teke w [[Special:Watchlist/raw|lisćinowem formaśe]] wobźěłaś.',
 'watchlistedit-normal-submit'  => 'Zapise wulašowaś',
 'watchlistedit-normal-done'    => '{{PLURAL:$1 zapisk jo|$1 zapiska stej|$1 zapiski su|$1 zapiskow jo}} se z twójeje wobglědowańki {{PLURAL:wulašował|wulašowałej|wulašowali|wulašowało}}.',
 'watchlistedit-raw-title'      => 'Samu wobglědowańku wobźěłaś',
 'watchlistedit-raw-legend'     => 'Samu wobglědowańku wobźěłaś',
-'watchlistedit-raw-explain'    => 'Zapiski, kótarež namakaju se w twójej wobglědowańce pokazuju se dołojce. Wóni mógu se wobźěłaś pśez to, až do lisćiny se dodawaju resp. z njeje se wulašuju (stawnje jaden zapisk na smužku). Gaž sy gótowy, tłoc "Lisćinu aktualizěrowaś".
-Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
+'watchlistedit-raw-explain'    => 'Titele, kótarež namakaju se w twójej wobglědowańce pokazuju se dołojce a daju se lisćinje pśidaś a z njeje wótpóraś; jaden titel na smužku.
+Gaž sy gótowy, klikni na "{{int:Watchlistedit-raw-submit}}".
+Móžoš teke [[Special:Watchlist/edit|standardny wobźěłowański bok wužywaś]].',
 'watchlistedit-raw-titles'     => 'Zapise:',
 'watchlistedit-raw-submit'     => 'Lisćinu aktualizěrowaś',
 'watchlistedit-raw-done'       => 'Twója wobglědowańka jo se zaktualizěrowała.',
@@ -2934,7 +2934,7 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 # Special:FilePath
 'filepath'         => 'Datajowa droga',
 'filepath-page'    => 'Dataja:',
-'filepath-submit'  => 'Droga',
+'filepath-submit'  => 'Pytaś',
 'filepath-summary' => 'Toś ten specialny bok wróśa dopołnu drogu za dataju. Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwězanym programom direktnje startuju.
 
 Zapódaj datajowe mě bźez dodanka "{{ns:file}}:".',

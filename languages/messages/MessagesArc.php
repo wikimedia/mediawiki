@@ -857,7 +857,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'protect-othertime'           => 'ܥܕܢܐ ܐܚܪܬܐ:',
 'protect-othertime-op'        => 'ܥܕܢܐ ܐܚܪܬܐ',
 'protect-otherreason'         => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ:',
-'protect-otherreason-op'      => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ',
+'protect-otherreason-op'      => 'ܥܠܬܐ ܐܚܪܬܐ',
 'protect-edit-reasonlist'     => 'ܫܚܠܦ ܥܠܬܐ ܕܢܛܪܐ',
 'protect-expiry-options'      => '1 ܫܥܬܐ:1 hour,1 ܝܘܡܐ:1 day,1 ܫܒܘܥܐ:1 week,2 ܫܒܘܥ̈ܐ:2 weeks,1 ܝܪܚܐ:1 month,3 ܝܪ̈ܚܐ:3 months,6 ܝܪ̈ܚܐ:6 months,1 ܫܢܬܐ:1 year,ܕܠܐ ܣܟ:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'ܦܣܣܐ:',
@@ -976,7 +976,7 @@ Do you want to change the settings?',
 'move-watch'              => 'ܪܗܝ ܦܐܬܐ ܗܕܐ',
 'movepagebtn'             => 'ܫܢܝ ܦܐܬܐ',
 'pagemovedsub'            => 'ܫܘܢܝܐ ܓܡܪ',
-'movepage-moved'          => '<big>\'\'\'"$1" ܐܫܬܢܝܬ ܠ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1" ܐܫܬܢܝܬ ܠ "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect' => 'ܨܘܝܒܐ ܐܬܒܪܝ',
 'movedto'                 => 'ܐܬܫܢܝ ܠ',
 '1movedto2'               => 'ܫܢܐ [[$1]] ܠ [[$2]]',
@@ -1172,7 +1172,7 @@ Do you want to change the settings?',
 # Special:FilePath
 'filepath'        => 'ܫܒܝܠܐ ܕܠܦܦܐ',
 'filepath-page'   => 'ܠܦܦܐ',
-'filepath-submit' => 'ܫܒܝܠܐ',
+'filepath-submit' => 'ܙܠ',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'ܫܡܐ ܕܠܦܦܐ:',

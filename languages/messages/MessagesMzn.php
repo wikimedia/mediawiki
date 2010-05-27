@@ -38,6 +38,8 @@ $messages = array(
 'tog-usenewrc'                => 'استفاده از تازه دگارسه‌ئون گت تر بئی (نیازمند جاوااسکریپت)',
 'tog-numberheadings'          => 'شماره بشتن خدکار عناوین',
 'tog-showtoolbar'             => 'نشون هدائن نوار ابزار جعبه دچی ین',
+'tog-editondblclick'          => 'دچی ین ولگون با دتا کلیک (نیازمند جاوااسکریپت)',
+'tog-editsection'             => 'به کار دمبدائن تیکه ئون دچی ین از طریق پیوندون [ویرایش]',
 'tog-editsectiononrightclick' => 'به کار دمبدائن دچیه‌ن قسمت‌ئون با راست کیلیک<br />عناوین قسمت‌ئون ِرو (جاوااسکریپت)',
 
 'underline-default' => 'مه چأرخ‌گأر ده‌لخاء',
@@ -485,7 +487,7 @@ $2، $1', # $1 date, $2 time
 
 # Move page
 'newtitle'                => 'ته‌رنـه نـوم:',
-'movepage-moved'          => "<big>'''ای «$1» ولـگ،  بورده «$2» ره.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "'''ای «$1» ولـگ،  بورده «$2» ره.'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movetalk'                => '«گپ» ولـگ هم، اگه بونه، بوره.',
 '1movedto2'               => '[[$1]] بـورده [[$2]] ره',
 'revertmove'              => 'واچـیـه‌ن',

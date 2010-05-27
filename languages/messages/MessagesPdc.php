@@ -82,7 +82,7 @@ $messages = array(
 'pagecategories'         => '{{PLURAL:$1|Abdeeling|Abdeelinge}}',
 'category_header'        => 'Bledder in Abdeeling „$1“',
 'subcategories'          => 'Unnerabdeeling',
-'listingcontinuesabbrev' => '(weiter)',
+'listingcontinuesabbrev' => '(weider)',
 
 'about'          => 'Iwwer',
 'article'        => 'Blatt',
@@ -249,6 +249,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'editingcomment'  => 'Ennere vun $1 (Neier Abschnitt)',
 'editconflict'    => 'Druwwel beim Ennere: $1',
 'yourdiff'        => 'Unnerschidde',
+'templatesused'   => 'Moddle gyuused uff dem Blatt:',
 
 # History pages
 'previousrevision' => '← letscht Version',
@@ -292,23 +293,28 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'diff-b'            => "'''fett'''",
 
 # Search results
-'prevn'                     => 'Letscht $1',
-'nextn'                     => 'neegschte $1',
-'viewprevnext'              => 'Zeige ($1) ($2) ($3)',
-'searchhelp-url'            => 'Help:Hilf',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
-'search-redirect'           => '(Weiterleitung vun „$1“)',
-'search-section'            => '(Abschnitt $1)',
-'search-suggest'            => 'Iss „$1“ gmeent?',
-'search-interwiki-caption'  => 'Schweschder Projects',
-'search-interwiki-more'     => '(weidere)',
-'search-mwsuggest-enabled'  => 'mit Vorschläch',
-'search-mwsuggest-disabled' => 'kee Vorschläch',
-'searchall'                 => 'all',
-'powersearch'               => 'Guck uff',
-'powersearch-redir'         => 'Lischt vun Weiterleidinge',
-'powersearch-field'         => 'Such fer',
-'search-external'           => 'Guck im Gewebb',
+'prevn'                          => 'Letscht $1',
+'nextn'                          => 'neegschte $1',
+'viewprevnext'                   => 'Zeige ($1) ($2) ($3)',
+'searchhelp-url'                 => 'Help:Hilf',
+'searchprofile-images'           => 'Feils',
+'searchprofile-articles-tooltip' => 'Uffgucke in $1',
+'searchprofile-project-tooltip'  => 'Uffgucke in $1',
+'searchprofile-images-tooltip'   => 'Nooch Feils uffgucke',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
+'search-redirect'                => '(Weiderleiding vun „$1“)',
+'search-section'                 => '(Abschnitt $1)',
+'search-suggest'                 => 'Iss „$1“ gmeent?',
+'search-interwiki-caption'       => 'Schweschder Projects',
+'search-interwiki-more'          => '(weidere)',
+'search-mwsuggest-enabled'       => 'mit Vorschläch',
+'search-mwsuggest-disabled'      => 'kee Vorschläch',
+'searchall'                      => 'all',
+'powersearch'                    => 'Guck uff',
+'powersearch-ns'                 => 'Guck uff in Blatznaame:',
+'powersearch-redir'              => 'Lischt vun Weiterleidinge',
+'powersearch-field'              => 'Such fer',
+'search-external'                => 'Guck im Gewebb',
 
 # Preferences page
 'preferences'              => 'paerseenlich Profil',
@@ -318,6 +324,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'prefs-personal'           => 'Yuuser Profile',
 'prefs-watchlist'          => 'Watsch-Lischt',
 'prefs-watchlist-days'     => 'Daage in de Watsch-Lischt:',
+'prefs-watchlist-days-max' => '(max. 7 Daag)',
 'prefs-resetpass'          => 'Paesswatt ennere',
 'textboxsize'              => 'Ennere',
 'searchresultshead'        => 'Guck uff',
@@ -382,7 +389,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'show'              => 'zeige',
 'minoreditletter'   => 'g',
 'newpageletter'     => 'N',
-'boteditletter'     => 'B',
+'boteditletter'     => 'W',
 'rc_categories_any' => 'All',
 'newsectionsummary' => 'Neier Abschnitt /* $1 */',
 
@@ -449,6 +456,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 
 # Statistics
 'statistics'              => 'Nummere',
+'statistics-header-pages' => 'Nummere vun Bledder',
 'statistics-header-edits' => 'Nummere vun Enneringe',
 'statistics-header-users' => 'Nummere vun Yuuser',
 'statistics-pages'        => 'Bledder',
@@ -477,8 +485,12 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'pager-newer-n'     => '{{PLURAL:$1|neegscht|neegscht $1}}',
 'pager-older-n'     => '{{PLURAL:$1|letscht|letscht $1}}',
 
+# Book sources
+'booksources-go' => 'Uffgucke',
+
 # Special:Log
-'specialloguserlabel' => 'Yuuser:',
+'specialloguserlabel'  => 'Yuuser:',
+'speciallogtitlelabel' => 'Titel:',
 
 # Special:AllPages
 'allpages'          => 'Alle Bledder',
@@ -505,7 +517,12 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'listusers-noresult' => 'Ken Yuuser gfunne.',
 
 # Special:ListGroupRights
-'listgrouprights-group' => 'Druppe',
+'listgrouprights'              => 'Rechte vun Yuuser-Druppe',
+'listgrouprights-group'        => 'Druppe',
+'listgrouprights-rights'       => 'Rechte',
+'listgrouprights-helppage'     => 'Help:Rechte vun Druppe',
+'listgrouprights-addgroup'     => 'Yuuser zu {{PLURAL:$2|daer Druppe|denne Druppe}} dezu duh: $1',
+'listgrouprights-addgroup-all' => 'Yuuser zu alle Druppe dezu duh',
 
 # E-mail user
 'defemailsubject' => '{{SITENAME}}-E-Poschde',
@@ -554,8 +571,10 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'protect-othertime'         => 'Annre Zeit:',
 'protect-othertime-op'      => 'annre Zeit',
 'protect-otherreason'       => 'Annerer Grund:',
-'protect-otherreason-op'    => 'annerer Grund',
+'protect-otherreason-op'    => 'Annerer Grund',
 'protect-expiry-options'    => '1 Schtund:1 hour,1 Daag:1 day,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Munede:6 months,1 Yaar:1 year,Fer immer:infinite', # display1:time1,display2:time2,...
+'minimum-size'              => 'Min. Grees',
+'maximum-size'              => 'Max. Grees:',
 'pagesize'                  => '(Bytes)',
 
 # Restrictions (nouns)
@@ -614,7 +633,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'movearticle'             => 'Blatt ziehe:',
 'move-watch'              => 'watsch des Blatt',
 'movepagebtn'             => 'Blatt ziehe',
-'movepage-moved'          => "<big>'''Es Blatt „$1“ iss gezoge warre uff „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "'''Es Blatt „$1“ iss gezoge warre uff „$2“'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'gezoge uff',
 '1movedto2'               => 'hot „[[$1]]“ nooch „[[$2]]“ gezoge',
 'movereason'              => 'Grund:',
@@ -634,6 +653,11 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # Special:Import
 'import-upload-filename' => 'Feilnaame:',
 'import-comment'         => 'Anmaerricking:',
+'import-revision-count'  => '– {{PLURAL:$1|1 Version|$1 Versione}}',
+
+# Import log
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Version|Versione}}',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} vun $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'      => 'Dei Yuuser-Blatt',
@@ -740,7 +764,9 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'version-software-version' => 'Version',
 
 # Special:FilePath
-'filepath-submit' => 'Paad',
+'filepath'        => 'Feilpaad',
+'filepath-page'   => 'Feil:',
+'filepath-submit' => 'Geh',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Uffgucke',
@@ -748,6 +774,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # Special:SpecialPages
 'specialpages'                 => 'Besunnere Bledder',
 'specialpages-group-login'     => 'Kumm nei',
+'specialpages-group-users'     => 'Yuuser unn Rechte',
 'specialpages-group-pages'     => 'Lischde vun Bledder',
 'specialpages-group-pagetools' => 'Gscharr fer Bledder',
 'specialpages-group-spam'      => 'Spam-Gscharr',

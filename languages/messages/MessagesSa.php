@@ -350,7 +350,7 @@ $messages = array(
 'jul'           => 'जूल॰',
 'aug'           => 'ओग॰',
 'sep'           => 'सप्तं॰',
-'oct'           => 'अष्टो॰',
+'oct'           => 'अक्टू.',
 'nov'           => 'नवं॰',
 'dec'           => 'दशं॰',
 
@@ -817,6 +817,7 @@ $messages = array(
 
 # Delete
 'deletepage'            => 'पृष्ठं निराकरोतु।',
+'confirmdeletetext'     => 'भवान् एकं पृष्ठं तस्य अखिलेन इतिहासेन सहितं अपाकर्तुं प्रवृत्तोऽस्ति। कृपया सुपुष्टीकरोतु यत् भवतः एतदेव आशयः, यद् भवता अस्य परिणामाः सुविज्ञाताः सन्ति तथा च भवता क्रियैषा [[{{MediaWiki:Policy-url}}| यथानीति]] सम्पाद्यते।',
 'actioncomplete'        => 'कार्य समापनम्',
 'deletedtext'           => '"<nowiki>$1</nowiki>" इत्येतद् अपाकृतमस्ति।
 सद्यःकृतानां अपाकरणानाम् अभिलेखः $2 इत्यस्मिन् पश्यतु।',
@@ -909,7 +910,7 @@ $messages = array(
 'move-watch'      => 'इदं पृष्ठं निरीक्षताम्।',
 'movepagebtn'     => 'पृष्ठं चालयतु।',
 'pagemovedsub'    => 'चालनं सिद्धम्।',
-'movepage-moved'  => '<big>\'\'\'"$1" इत्येतद् "$2" इत्येतद् प्रति चालितमस्ति \'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'  => '\'\'\'"$1" इत्येतद् "$2" इत्येतद् प्रति चालितमस्ति \'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'   => 'अनेन नाम्ना पृष्ठमेकं पूर्वेऽपि विद्यते, अथवा भवता चितं नाम तु अमान्यमस्ति। कृपया इतरं किमपि नाम चिनोतु।',
 'talkexists'      => "'''पृष्ठं साफल्येन चालितमस्ति, परं चर्चापृष्ठं चालयितुं न शक्यम्, यतो नवेऽपि पृष्ठे चर्चापृष्ठं विद्यते। कृपया तं स्वयमेव चालयतु।'''",
 'movedto'         => 'इदं प्रति चालितम्।',

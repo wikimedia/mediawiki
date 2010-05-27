@@ -111,9 +111,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Ronney|Ronnaghyn}}',
-'category_header'                => 'Duillagyn ayns ronney "$1"',
+'category_header'                => 'Duillagyn \'sy ronney "$1"',
 'subcategories'                  => 'Fo-ronnaghyn',
-'category-media-header'          => 'Meanyn ayns ronney "$1"',
+'category-media-header'          => 'Meanyn \'sy ronney "$1"',
 'category-empty'                 => "''Cha nel duillagyn ny meanyn ayns y ronney shoh ec y traa t'ayn.''",
 'hidden-categories'              => '{{PLURAL:$1|Ronney follit|Ronnaghyn follit}}',
 'hidden-category-category'       => 'Ronnaghyn follit', # Name of the category where hidden categories will be listed
@@ -124,7 +124,7 @@ $messages = array(
 'category-file-count-limited'    => "Ta{{PLURAL:$1|'n $1 coadan|'n $1 choadan|'n $1 choadan| ny $1 coadanyn}} heese 'sy ronney shoh.",
 'listingcontinuesabbrev'         => 'tooil.',
 
-'mainpagetext' => "<big>'''Ta MediaWiki currit stiagh nish.'''</big>",
+'mainpagetext' => "'''Ta MediaWiki currit stiagh nish.'''",
 
 'about'          => 'Mychione',
 'article'        => 'Duillag chummal',
@@ -390,7 +390,7 @@ Bee dt'enmys IP recortyssit ayns shennaghys reaghey yn duillag shoh.",
 'summary-preview'                  => 'Roie-haishbynys y ghiare-choontey:',
 'subject-preview'                  => 'Roie-haishbynys cooish/kione-linney:',
 'blockedtitle'                     => "Ta'n ymmydeyr glast magh",
-'blockedtext'                      => "<big>'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''</big>
+'blockedtext'                      => "'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''
 
 V'ou glassit magh ec $1. T'eh yn oyr na ''$2''.
 
@@ -867,7 +867,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'addedwatchtext'    => "Va'n duillag \"[[:\$1]]\" currit lesh dty [[Special:Watchlist|rolley arrey]].<br />
 Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y rolley shoh, as bee '''clou trome''' er ayns rolley ny [[Special:RecentChanges|caghlaaghyn s'noa]].",
 'removedwatch'      => 'Gowit ass y rolley arrey',
-'removedwatchtext'  => 'Va\'n duillag "[[:$1]]" gowit ass dty [[Special:Watchlist|rolley arrey]].',
+'removedwatchtext'  => 'Va\'n duillag "[[:$1]]" goit veih dty [[Special:Watchlist|rolley arrey]].',
 'watch'             => 'Freill arrey',
 'watchthispage'     => 'Freill arrey er y duillag shoh',
 'unwatch'           => 'Cur stap er arrey',
@@ -1092,7 +1092,7 @@ Foddee oo y duillag resooney y scughey er lheh ny yei shen.",
 'move-watch'              => 'Freill arrey er y duillag shoh',
 'movepagebtn'             => 'Yn duillag y scughey',
 'pagemovedsub'            => "Va'n scughey rahoil",
-'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => 'Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ta duillag ayn lesh yn ennym shen, ny ta ennym mee-chiart reiht ayd.<br />
 Reih ennym elley, my sailliu.',
 'talkexists'              => "'''Va'n duillag hene scughit, agh cha nod y duillag resoonaght y scughey er yn oyr dy row fer ec yn enmys shen hannah.<br />

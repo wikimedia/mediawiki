@@ -154,7 +154,7 @@ $messages = array(
 'category-file-count-limited'    => 'Энэ ангилалд дараах {{PLURAL:$1|файл|$1 файлнууд}} байна.',
 'listingcontinuesabbrev'         => '-н үргэлжлэл',
 
-'mainpagetext'      => "<big>'''МедиаВики амжилттай суулаа.'''</big>",
+'mainpagetext'      => "'''МедиаВики амжилттай суулаа.'''",
 'mainpagedocfooter' => 'Вики программыг хэрэглэх талаар заавар авахын тулд [http://meta.wikimedia.org/wiki/Help:Contents хэрэглэгчийн гарын авлага]-г үзнэ үү.
 
 == Эхлэх ==
@@ -566,7 +566,7 @@ $1 тэмдэгтээс богино байх ёстой.',
 'summary-preview'                  => 'Товч агуулгын урьдчилж харсан байдал:',
 'subject-preview'                  => 'Сэдэв/гарчигийн урьдчилж харсан байдал:',
 'blockedtitle'                     => 'Хэрэглэгч түгжигдлээ.',
-'blockedtext'                      => "<big>'''Таны хэрэглэгчийн нэр эсвэл IP хаяг түгжигдсэн байна.'''</big>
+'blockedtext'                      => "'''Таны хэрэглэгчийн нэр эсвэл IP хаяг түгжигдсэн байна.'''
 
 Түгжээг $1 хийсэн. Шалтгаан нь ''$2'' байна.
 
@@ -1854,7 +1854,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 засвар|$1 засвар}} ба {{PLURAL:$2|1 файл|$2 файл}} сэргээгдлээ',
 'undeletedfiles'               => '{{PLURAL:$1|1 файл|$1 файл}} сэргээгдлээ',
 'cannotundelete'               => 'Устгасан хуудсыг буцааж сэргээх үйлдэл амжилтгүй боллоо. Хэн нэгэн уг хуудсыг өрсөж сэргээсэн байх боломжтой.',
-'undeletedpage'                => "<big>'''$1 сэргээгдэв'''</big>
+'undeletedpage'                => "'''$1 сэргээгдэв'''
 
 Сүүлийн үед устгагдсан ба сэргээгдсэн зүйлүүдийн жагсаалтыг [[Special:Log/delete|устгалын бүртгэл]] дээрээс харна уу.",
 'undelete-header'              => '[[Special:Log/delete|Устгалын бүртгэл]]ээс сүүлд устгагдсан хуудсуудыг харна уу.',
@@ -2067,7 +2067,7 @@ $1 нь аль хэдийнээ түгжигдсэн байна.
 'move-watch'                   => 'Энэ хуудсыг хянах',
 'movepagebtn'                  => 'Хуудсыг зөөх',
 'pagemovedsub'                 => 'Амжилттай зөөгдлөө',
-'movepage-moved'               => '<big>\'\'\'"$1" нь "$2" руу зөөгдлөө\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" нь "$2" руу зөөгдлөө\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Чиглүүлэгч хуудас үүсгэгдэв.',
 'movepage-moved-noredirect'    => 'Чиглүүлэгч хуудас үүсгэхийг хориглолоо.',
 'articleexists'                => 'Ийм нэртэй хуудсыг өмнө нь үүсгэсэн, эсвэл сонгосон нэр тань хүчингүй байна.

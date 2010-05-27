@@ -264,7 +264,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|A file disi|Den $1 file disi}} de ini a grupu disi.',
 'listingcontinuesabbrev'         => 'moro',
 
-'mainpagetext'      => "<big>'''MediaWiki seti kon bun.'''</big>",
+'mainpagetext'      => "'''MediaWiki seti kon bun.'''",
 'mainpagedocfooter' => 'Luku na ini a [http://meta.wikimedia.org/wiki/Help:Yepi yepibuku] fu si fa fu kebrouki a wikisoftware.
 
 == Moro yepi ==
@@ -574,7 +574,7 @@ Bifo tra e-mail kan seni go na a account, yu musu du san skrifi ini a e-mail fu 
 'summary-preview'        => "Luku In'syatu na fesi:",
 'subject-preview'        => 'Ondroinfru/edelen fusi:',
 'blockedtitle'           => 'Masyin ben spikri',
-'blockedtext'            => "<big>'''Pasi tapu gi yu kebroikiman-nen noso IP.'''</big>
+'blockedtext'            => "'''Pasi tapu gi yu kebroikiman-nen noso IP.'''
 
 $1 tapu pasi gi yu. Disi na fu sanede ''$2''.
 

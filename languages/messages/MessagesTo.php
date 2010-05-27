@@ -868,7 +868,7 @@ Ko e fatu fakamuimui naʻe fatu ʻe [[User:$3|$3]] ([[User talk:$3|Alea]]).',
 'undeletedrevisions' => 'Kuo fakafoki ʻa e paaki ʻe $1',
 'undeletedfiles'     => 'Kuo fakafoki ʻa e faile ʻe $1',
 'cannotundelete'     => 'Naʻe movete ʻa e taʻetāmateʻi; mahalo pē kuo taʻetāmateʻi ʻuluaki ia ʻe he ʻetita kehe.',
-'undeletedpage'      => "<big>'''Kuo fakafoki ko e $1'''</big>
+'undeletedpage'      => "'''Kuo fakafoki ko e $1'''
 
 Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaahi tāmateʻi mo e taʻetāmateʻi onopooni.",
 

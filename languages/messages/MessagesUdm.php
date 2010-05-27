@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author ОйЛ
  * @author לערי ריינהארט
  */
@@ -42,7 +43,8 @@ $messages = array(
 'linkprefix' => '/^(.*?)(„|«)$/sDu',
 
 'article'        => 'Статья',
-'qbspecialpages' => 'Панельёс',
+'qbspecialpages' => 'Ваньмыз панельёс',
+'mypage'         => 'Ас бам',
 'mytalk'         => 'викиавтор сярысь вераськон',
 
 'help'             => 'Валэктонъёс',
@@ -61,26 +63,41 @@ $messages = array(
 'helppage'             => 'Help:Валэктон',
 'mainpage'             => 'Кутскон бам',
 'mainpage-description' => 'Кутскон бам',
+'portal'               => 'Сообщество',
 
 'editsection' => 'тупатыны',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user' => 'викиавтор',
+'nstab-user'      => 'викиавтор',
+'nstab-mediawiki' => 'Ивортон',
 
 # General errors
 'viewsource' => 'Кодзэ учкыны',
 
 # Login and logout pages
-'login'         => 'Википедие пырон',
-'logout'        => 'Кошкыны',
-'userlogout'    => 'Кошкыны',
-'createaccount' => 'выль вики-авторлэн регистрациез',
+'login'                   => 'Википедие пырон',
+'nav-login-createaccount' => 'Нимдэс вераны / Регистрациез ортчытыны',
+'userlogin'               => 'Регистрациез ортчытыны яке Википедие пырыны',
+'logout'                  => 'Кошкыны',
+'userlogout'              => 'Кошкыны',
+'createaccount'           => 'выль вики-авторлэн регистрациез',
+
+# Edit pages
+'summary'       => 'Мар но малы тупатэмын? (вакчияк):',
+'minoredit'     => 'Ичи воштон',
+'noarticletext' => "В настоящий момент текст на данной странице отсутствует.
+Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] на других страницах,
+<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов],
+или '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
 
 # Search results
-'searchhelp-url' => 'Help:Валэктон',
+'searchresulttext' => 'Для получения более подробной информации о поиске на страницах проекта, см. [[{{MediaWiki:Helppage}}|справочный раздел]].',
+'searchhelp-url'   => 'Help:Валэктон',
 
 # Preferences page
-'preferences' => 'настройкаос',
+'preferences'     => 'настройкаос',
+'mypreferences'   => 'Настройкаос',
+'prefs-watchlist' => 'Чаклан список',
 
 # Recent changes
 'recentchanges' => 'Выль тупатонъёс',
@@ -92,16 +109,23 @@ $messages = array(
 # Upload
 'upload' => 'Файл поныны',
 
+# File description page
+'sharedupload' => 'Этот файл из $1 и может использоваться в других проектах.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+
 # Random page
 'randompage' => 'Олокыӵе статья',
 
 # Miscellaneous special pages
 'move' => 'Мукет интые выжтыны',
 
+# E-mail user
+'emailmessage' => 'Ивортон:',
+
 # Watchlist
-'watchlist' => 'Чаклано статьяос',
-'watch'     => 'Чаклано',
-'unwatch'   => 'Чакламысь дугдыны',
+'watchlist'   => 'Чаклано статьяос',
+'mywatchlist' => 'Чаклан список',
+'watch'       => 'Чаклано',
+'unwatch'     => 'Чакламысь дугдыны',
 
 # Contributions
 'mycontris' => 'мынам статьяосы',
@@ -111,7 +135,11 @@ $messages = array(
 
 # Move page
 'movearticle'     => 'Статьяез мукет интые выжтыны',
+'move-watch'      => 'Та бамез чаклан списоке пыртыны',
 'delete_and_move' => 'Быдтыны но мукет интые выжтыны',
+
+# Namespace 8 related
+'allmessagesname' => 'Ивортон',
 
 # Special:SpecialPages
 'specialpages' => 'Ваньмыз панельёс',

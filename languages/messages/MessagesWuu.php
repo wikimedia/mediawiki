@@ -105,7 +105,7 @@ $messages = array(
 'hidden-category-category'      => '囥脱分类', # Name of the category where hidden categories will be listed
 'category-subcat-count-limited' => '该个分类中有个亚类。',
 
-'mainpagetext'      => "<big>'''已成功安装MediaWiki！'''</big>",
+'mainpagetext'      => "'''已成功安装MediaWiki！'''",
 'mainpagedocfooter' => '请访问[http://meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件的信息！
 
 == 入门 ==

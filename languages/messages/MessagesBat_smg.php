@@ -496,7 +496,7 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'summary-preview'                  => 'Kuomentara parvaiza:',
 'subject-preview'                  => 'Skėrsnelė/ontraštės parvaiza:',
 'blockedtitle'                     => 'Nauduotuos īr ožblokouts',
-'blockedtext'                      => "<big>'''Tamstas nauduotuojė vards a IP adresos īr ožblokouts.'''</big>
+'blockedtext'                      => "'''Tamstas nauduotuojė vards a IP adresos īr ožblokouts.'''
 
 Ožbluokava $1. 
 Nuruodīta prižastis īr ''$2''.
@@ -1402,7 +1402,7 @@ lėgė trīnima. Ėštrintū poslapiu tekstos īr galėmas tėk admėnėstratuor
 'undeletedrevisions'         => 'atkorta $1 {{PLURAL:$1|versėjė|versėjės|versėju}}',
 'undeletedrevisions-files'   => 'atkorta $1 {{PLURAL:$1|versėjė|versėjės|versėju}} ėr $2 {{PLURAL:$2|fails|failā|failu}}',
 'undeletedfiles'             => 'atkorta $1 {{PLURAL:$1|fails|failā|failu}}',
-'undeletedpage'              => "<big>'''$1 bova atkurts'''</big>
+'undeletedpage'              => "'''$1 bova atkurts'''
 Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė paskotėniu trīnimu ėr atkorėmu sāraša.",
 'undelete-header'            => 'Veizėkit [[Special:Log/delete|trīnima istuorėjuo]] paskoteniausē ėštrintū poslapiu.',
 'undelete-search-box'        => 'Ėiškuotė ėštrintū poslapiu',
@@ -1564,7 +1564,7 @@ kū soprantat vėsas pasiekmes.",
 'move-watch'              => 'Keravuotė šėta poslapi',
 'movepagebtn'             => 'Parvadintė poslapė',
 'pagemovedsub'            => 'Parvadinta siekmingā',
-'movepage-moved'          => '<big>\'\'\'"$1" bova parvadints i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1" bova parvadints i "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect' => 'Nukreipims bova sokorts.',
 'articleexists'           => 'Straipsnis so tuokiu vardo jau īr
 a parinktāsis vards īr bluogs.

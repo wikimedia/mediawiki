@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Horacewai2
  * @author Philip
  * @author Wong128hk
  */
@@ -178,6 +179,10 @@ $messages = array(
 
 # Move page
 'move-redirect-suppressed' => '已禁止重新定向',
+
+# Patrolling
+'markaspatrolleddiff' => '标记为已巡查',
+'markaspatrolledtext' => '标记此页面为已巡查',
 
 /*
 Short names for language variants used for language conversion links.

@@ -303,7 +303,7 @@ $messages = array(
 'category-file-count-limited'    => 'खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात आहेत.',
 'listingcontinuesabbrev'         => 'पुढे.',
 
-'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''</big>",
+'mainpagetext'      => "'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''",
 'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
 
 == सुरुवात ==
@@ -681,7 +681,7 @@ $2',
 'summary-preview'                  => 'आढाव्याची झलक:',
 'subject-preview'                  => 'विषय/मथळा झलक:',
 'blockedtitle'                     => 'या सदस्यासाठी प्रवेश नाकारण्यात आलेला आहे.',
-'blockedtext'                      => "<big>'''तुमचे सदस्यनाव अथवा IP पत्ता ब्लॉक केलेला आहे.'''</big>
+'blockedtext'                      => "'''तुमचे सदस्यनाव अथवा IP पत्ता ब्लॉक केलेला आहे.'''
 
 हा ब्लॉक $1 यांनी केलेला आहे.
 यासाठी ''$2'' हे कारण दिलेले आहे.
@@ -1738,7 +1738,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}}आणि {{PLURAL:$2|1 संचिका|$2 संचिका}} पुनर्स्थापित',
 'undeletedfiles'               => '{{PLURAL:$1|1 संचिका|$1 संचिका}} पुनर्स्थापित',
 'cannotundelete'               => 'वगळणे उलटवणे फसले; इतर कुणी तुमच्या आधी वगळणे उलटवले असु शकते.',
-'undeletedpage'                => "<big>'''$1ला पुनर्स्थापित केले'''</big>
+'undeletedpage'                => "'''$1ला पुनर्स्थापित केले'''
 
 अलिकडिल वगळलेल्या आणि पुनर्स्थापितांच्या नोंदीकरिता [[Special:Log/delete|वगळल्याच्या नोंदी]] पहा .",
 'undelete-header'              => 'अलिकडील वगळलेल्या पानांकरिता [[Special:Log/delete|वगळलेल्या नोंदी]] पहा.',
@@ -1932,7 +1932,7 @@ $1',
 'move-watch'              => 'या पानावर लक्ष ठेवा',
 'movepagebtn'             => 'स्थानांतरण करा',
 'pagemovedsub'            => 'स्थानांतरण यशस्वी',
-'movepage-moved'          => '<big>\'\'\'"$1" ला "$2" मथळ्याखाली स्थानांतरीत केले\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1" ला "$2" मथळ्याखाली स्थानांतरीत केले\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'त्या नावाचे पृष्ठ अगोदरच अस्तित्वात आहे, किंवा तुम्ही निवडलेले
 नाव योग्य नाही आहे.
 कृपया दुसरे नाव शोधा.',

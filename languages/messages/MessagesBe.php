@@ -179,7 +179,7 @@ $messages = array(
 'category-file-count-limited'    => 'У гэтай катэгорыі ёсць наступны{{PLURAL:$1| файл|я $1 файлаў}}.',
 'listingcontinuesabbrev'         => 'працяг',
 
-'mainpagetext'      => "<big>'''MediaWiki паспяхова ўсталяваная.'''</big>",
+'mainpagetext'      => "'''MediaWiki паспяхова ўсталяваная.'''",
 'mainpagedocfooter' => 'Гл. [http://meta.wikimedia.org/wiki/Help:Contents Дапаможнік карыстальніка (англ.)] па далейшыя звесткі аб карыстанні вікі-праграмамі.
 
 == З чаго пачаць ==
@@ -573,7 +573,7 @@ $2',
 'summary-preview'                  => 'Перадпаказ апісання:',
 'subject-preview'                  => 'Перадпаказ тэмы/загалоўка:',
 'blockedtitle'                     => 'Удзельнік заблакаваны',
-'blockedtext'                      => "<big>'''Ваша імя ўдзельніка або адрас IP былі пастаўлены пад блок.'''</big>
+'blockedtext'                      => "'''Ваша імя ўдзельніка або адрас IP былі пастаўлены пад блок.'''
 
 Блок быў пастаўлены ўдзельнікам: $1. Пададзеная прычына: ''$2''.
 
@@ -1863,7 +1863,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => 'Адноўлен{{PLURAL:$1|а 1 версія|ыя $1 версій}} і {{PLURAL:$2|1 файл|$2 файлаў}}',
 'undeletedfiles'               => 'Адноўлен{{PLURAL:$1|ы 1 файл|ыя $1 файлаў}}',
 'cannotundelete'               => 'Не ўдалося аднавіць; магчыма, нехта іншы ўжо аднавіў старонку.',
-'undeletedpage'                => "<big>'''$1 была адноўлена'''</big>
+'undeletedpage'                => "'''$1 была адноўлена'''
 
 Праверце пералік нядаўніх сціранняў і аднаўленняў у [[Special:Log/delete|журнале сціранняў]].",
 'undelete-header'              => 'Бач нядаўна сцёртыя старонкі ў [[Special:Log/delete|журнале сціранняў]].',
@@ -2078,7 +2078,7 @@ $1 ужо знаходзіцца пад блокам. Ці жадаеце змя
 'move-watch'                   => 'Назіраць за старонкай',
 'movepagebtn'                  => 'Перанесці старонку',
 'pagemovedsub'                 => 'Паспяховы перанос',
-'movepage-moved'               => '<big>\'\'\'"$1" перанесена ў "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" перанесена ў "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Была створаная перасылка.',
 'movepage-moved-noredirect'    => 'Не была створаная перасылка.',
 'articleexists'                => 'Старонка з такой назвай ужо існуе, або

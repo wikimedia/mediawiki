@@ -140,7 +140,7 @@ $messages = array(
 'category-file-count-limited'    => 'Бу төркемдә {{PLURAL:$1|$1 файл}} бар.',
 'listingcontinuesabbrev'         => 'дәвамы',
 
-'mainpagetext'      => '<big>«MediaWiki» уңышлы куелды.</big>',
+'mainpagetext'      => '«MediaWiki» уңышлы куелды.',
 'mainpagedocfooter' => "Бу вики турында мәгълүматны [http://meta.wikimedia.org/wiki/Ярдәм:Эчтәлек биредә] табып була.
 
 == Кайбер файдалы ресурслар ==
@@ -525,7 +525,7 @@ $2',
 'summary-preview'                  => 'Тасвирламаны алдан карау:',
 'subject-preview'                  => 'Башисемне алдан карау:',
 'blockedtitle'                     => 'Кулланучы бикләнгән',
-'blockedtext'                      => "<big>'''Сезнең хисап язмагыз яки IP-адресыгыз бикләнгән.'''</big>
+'blockedtext'                      => "'''Сезнең хисап язмагыз яки IP-адресыгыз бикләнгән.'''
 
 Бикләүче администратор: $1.
 Күрсәтелгән сәбәп: ''$2''.
@@ -801,6 +801,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'math'                      => 'Формулалар',
 'dateformat'                => 'Датаның форматы',
 'datetime'                  => 'Дата һәм вакыт',
+'math_unknown_error'        => 'беленмәгән хата',
 'prefs-personal'            => 'Шәхси мәгълүматлар',
 'prefs-rc'                  => 'Соңгы үзгәртүләр',
 'prefs-watchlist'           => 'Күзәтү исемлеге',
@@ -1256,7 +1257,7 @@ $1',
 'move-watch'                => 'Бу битне күзәтергә',
 'movepagebtn'               => 'Битне күчерү',
 'pagemovedsub'              => 'Бит күчерелде',
-'movepage-moved'            => "<big>'''«$1» бите «$2» битенә күчерелде'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "'''«$1» бите «$2» битенә күчерелде'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'   => 'Юнәлтү ясалды.',
 'movepage-moved-noredirect' => 'Юнәлтүне ясау тыелды',
 'articleexists'             => 'Мондый исемле бит бар инде, яисә мондый исем рөхсәт ителми.
@@ -1274,10 +1275,12 @@ $1',
 'move-leave-redirect'       => 'Юнәлтүне калдырырга',
 
 # Export
-'export' => 'Битләрне чыгаруы',
+'export'       => 'Битләрне чыгаруы',
+'export-addns' => 'Өстәргә',
 
 # Namespace 8 related
-'allmessages' => 'Система хәбәрләре',
+'allmessages'     => 'Система хәбәрләре',
+'allmessagesname' => 'Исем',
 
 # Thumbnails
 'thumbnail-more'  => 'Зурайтырга',
@@ -1389,9 +1392,10 @@ $1',
 'edit-externally-help' => '(тулырак мәгълүмат өчен [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'барлык',
-'namespacesall' => 'барлык',
-'monthsall'     => 'барлык',
+'recentchangesall' => 'Барлык',
+'watchlistall2'    => 'барлык',
+'namespacesall'    => 'барлык',
+'monthsall'        => 'барлык',
 
 # Multipage image navigation
 'imgmultipagenext' => 'алдагы бит →',

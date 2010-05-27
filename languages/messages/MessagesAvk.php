@@ -210,7 +210,7 @@ $messages = array(
 'category-file-count-limited'    => 'Bat iyeltak {{PLURAL:$1|tir|$1 tid}} koe noeltafa loma.',
 'listingcontinuesabbrev'         => 'loon',
 
-'mainpagetext' => "<big>'''MediaWiki inkeyen talpeyot.'''</big>",
+'mainpagetext' => "'''MediaWiki inkeyen talpeyot.'''",
 
 'about'          => 'Icdeuca',
 'article'        => 'Teliz',
@@ -563,7 +563,7 @@ Rin lanon vaon al betanhal oke va warzaf al kucilal.',
 'summary-preview'                  => 'Abdinedira va vildeks:',
 'subject-preview'                  => 'Abdinedira va detce ik kroj:',
 'blockedtitle'                     => 'Elekan favesik',
-'blockedtext'                      => '<big>\'\'\'Rinafa favesikpata oku IP mane tid elekayane.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Rinafa favesikpata oku IP mane tid elekayane.\'\'\'
 
 Elekara skuyuna gan $1. 
 Lazava tir \'\'$2\'\'.
@@ -1748,7 +1748,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-watch'              => 'Busuzdara',
 'movepagebtn'             => 'Tolyoltara va teliz',
 'pagemovedsub'            => 'Tolyoltanhara',
-'movepage-moved'          => '<big>\'\'\'"$1" zo arrundayar kal "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1" zo arrundayar kal "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Milvergumveltaf teliz ixam krulder, oke kiblayan vergumvelt tir meenaf. Va ar kiblal !',
 'cantmove-titleprotected' => 'Va bu me milinde rotarrundal kire warzaf vergumvelt icde redura zo nendar',
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",

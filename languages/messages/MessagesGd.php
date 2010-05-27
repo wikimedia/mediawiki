@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Akerbeltz
  * @author Alison
  * @author Caoimhin
  * @author Sionnach
@@ -16,7 +17,14 @@
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'Cuimhnichear air a’ choimpiutair seo gu bheil mi logged a-stigh',
+'tog-underline'             => 'Fo-loidhneadh nan ceanglaichean:',
+'tog-highlightbroken'       => 'An cleachdar am fòrmat <a href="" class="new">seo</a> airson ceanglaichean briste (no am fear seo<a href="" class="internal">?</a>)',
+'tog-justify'               => 'Taobhaich na h-earrannan',
+'tog-hideminor'             => 'Falaich mùthaidhean beaga ann an liosta nam mùthaidhean ùra',
+'tog-hidepatrolled'         => 'Falaich mùthaidhean fo fhaire ann an liosta nam mùthaidhean ùra',
+'tog-newpageshidepatrolled' => 'Falaich duilleagan fo fhaire ann an liosta nan duilleagan ùra',
+'tog-extendwatchlist'       => "Leudaich an clàr-faire gus an seall e gach mùthadh 's chan ann an fheadhainn as ùire a-mhàin",
+'tog-rememberpassword'      => "Cuimhnichear air a' choimpiutair seo gu bheil mi air logadh a-steach",
 
 # Dates
 'sunday'        => 'Didòmhnaich',
@@ -443,6 +451,7 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'ipblocklist'        => 'Liosta seòlaidhean IP agus ainmean-cleachdair air am bacadh',
 'blocklink'          => 'bac',
 'unblocklink'        => 'neo-bhac',
+'contribslink'       => 'mùthaidhean',
 'blocklogentry'      => 'Chaidh [[$1]] a bhacadh le ùine crìochnachaidh de $2 $3',
 'unblocklogentry'    => '"$1" air neo-bhacadh',
 'ipb_expiry_invalid' => 'Ùine-crìochnaidh neo-iomchaidh.',

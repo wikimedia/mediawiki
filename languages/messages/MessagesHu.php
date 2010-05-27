@@ -16,6 +16,7 @@
  * @author Dorgan
  * @author Glanthor Reviol
  * @author Gondnok
+ * @author Hunyadym
  * @author KossuthRad
  * @author Samat
  * @author Terik
@@ -400,7 +401,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Egy|$1}} fájl található ebben a kategóriában.',
 'listingcontinuesabbrev'         => 'folyt.',
 
-'mainpagetext'      => "<big>'''A MediaWiki telepítése sikeresen befejeződött.'''</big>",
+'mainpagetext'      => "'''A MediaWiki telepítése sikeresen befejeződött.'''",
 'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
 
 == Alapok (angol nyelven) ==
@@ -805,7 +806,7 @@ Ha ismét a Mentés gombra kattintasz, akkor a szerkesztésed nélküle kerül m
 'summary-preview'                  => 'A szerkesztési összefoglaló előnézete:',
 'subject-preview'                  => 'A téma/főcím előnézete:',
 'blockedtitle'                     => 'A szerkesztő blokkolva van',
-'blockedtext'                      => "<big>'''A szerkesztőnevedet vagy az IP-címedet blokkoltuk.'''</big>
+'blockedtext'                      => "'''A szerkesztőnevedet vagy az IP-címedet blokkoltuk.'''
 
 A blokkolást $1 végezte el.
 Az általa felhozott indok: ''$2''.
@@ -1045,7 +1046,7 @@ Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a köve
 'revdelete-legend'               => 'Korlátozások megadása:',
 'revdelete-hide-text'            => 'Változat szövegének elrejtése',
 'revdelete-hide-name'            => 'Művelet és cél elrejtése',
-'revdelete-hide-comment'         => 'Megjegyzés módosításának elrejtése',
+'revdelete-hide-comment'         => 'Összefoglaló elrejtése',
 'revdelete-hide-user'            => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
 'revdelete-hide-restricted'      => 'Adatok elrejtése az adminisztrátorok és mindenki más elől',
 'revdelete-suppress'             => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
@@ -1053,7 +1054,7 @@ Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a köve
 'revdelete-unsuppress'           => 'Korlátozások eltávolítása a visszaállított változatokról',
 'revdelete-log'                  => 'A törlés oka:',
 'revdelete-submit'               => 'Alkalmazás a kiválasztott változatra',
-'revdelete-logentry'             => 'módosította [[$1]] változatának láthatóságát',
+'revdelete-logentry'             => 'módosította a(z) [[$1]] lap egy vagy több változatának láthatóságát',
 'logdelete-logentry'             => '[[$1]] eseményének láthatóságának módosítása',
 'revdelete-success'              => "'''A változat láthatósága sikeresen frissítve.'''",
 'logdelete-success'              => "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
@@ -1067,7 +1068,7 @@ Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a köve
 'revdelete-unrestricted'         => 'felfedett az adminisztrátoroknak',
 'revdelete-hid'                  => 'elrejtette $1',
 'revdelete-unhid'                => 'felfedte $1',
-'revdelete-log-message'          => '$1 {{PLURAL:$1|egy|$2}} változatot',
+'revdelete-log-message'          => '$1 {{PLURAL:$1|egy|$2}} változatnak',
 'logdelete-log-message'          => '$1 {{PLURAL:$2|egy|$2}} eseményt',
 
 # Suppression log
@@ -1519,7 +1520,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'uploadlogpagetext'           => 'Lentebb látható a legutóbbi felküldések listája.
 Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'filename'                    => 'Fájlnév',
-'filedesc'                    => 'Összegzés',
+'filedesc'                    => 'Összefoglaló',
 'fileuploadsummary'           => 'Összefoglaló:',
 'filereuploadsummary'         => 'Változtatások:',
 'filestatus'                  => 'Szerzői jogi állapot:',
@@ -2153,7 +2154,7 @@ változatot visszaállították vagy eltávolították az archívumból.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|egy|$1}} változat és {{PLURAL:$2|egy|$2}} fájl visszaállítva',
 'undeletedfiles'               => '{{PLURAL:$1|egy|$1}} fájl visszaállítva',
 'cannotundelete'               => 'Nem lehet a lapot visszaállítani; lehet, hogy azt már valaki visszaállította.',
-'undeletedpage'                => "<big>'''$1 helyreállítva'''</big>
+'undeletedpage'                => "'''$1 helyreállítva'''
 
 Lásd a [[Special:Log/delete|törlési naplót]] a legutóbbi törlések és helyreállítások listájához.",
 'undelete-header'              => 'A legutoljára törölt lapokat lásd a [[Special:Log/delete|törlési naplóban]].',
@@ -2372,7 +2373,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'move-watch'                   => 'Figyeld a lapot',
 'movepagebtn'                  => 'Lap átnevezése',
 'pagemovedsub'                 => 'Átnevezés sikeres',
-'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "'''„$1” átnevezve „$2” névre'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Átirányítás létrehozva.',
 'movepage-moved-noredirect'    => 'A régi címről nem sikerült átirányítást készíteni.',
 'articleexists'                => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
@@ -3093,7 +3094,7 @@ Ha el szeretnél távolítani egy lapot, jelöld be a címe melletti jelölőné
 'watchlistedit-raw-legend'     => 'A nyers figyelőlista szerkesztése',
 'watchlistedit-raw-explain'    => 'A figyelőlistádra felvett lapok az alábbi listában találhatók. A lista szerkeszthető;
 minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt található
-„Mentés” feliratú gombra. Használhatod a [[Special:Watchlist/edit|hagyományos listaszerkesztőt]] is.',
+„{{int:Watchlistedit-raw-submit}}” feliratú gombra. Használhatod a [[Special:Watchlist/edit|hagyományos listaszerkesztőt]] is.',
 'watchlistedit-raw-titles'     => 'A figyelőlistádon található cikkek:',
 'watchlistedit-raw-submit'     => 'Mentés',
 'watchlistedit-raw-done'       => 'A figyelőlistád változtatásait elmentettem.',
@@ -3133,7 +3134,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 # Special:FilePath
 'filepath'         => 'Fájlelérés',
 'filepath-page'    => 'Fájl:',
-'filepath-submit'  => 'Elérés',
+'filepath-submit'  => 'Elérési út',
 'filepath-summary' => 'Ezen lap segítségével lekérheted egy adott fájl pontos útvonalát. A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozzájuk rendelt programmal indulnak el.
 
 Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',

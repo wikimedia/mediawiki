@@ -36,6 +36,7 @@
  * @author Huji
  * @author IAlex
  * @author INkubusse
+ * @author Iwan Novirion
  * @author Jon Harald Søby
  * @author Karduelis
  * @author Kizito
@@ -77,6 +78,7 @@
  * @author Sp5uhe
  * @author Srhat
  * @author Tgr
+ * @author The Evil IP address
  * @author UV
  * @author Umherirrender
  * @author Urhixidur
@@ -138,7 +140,9 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-ccmeonemails'            => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]].',
 'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]].',
-'tog-noconvertlink'           => '{{optional}}',
+'tog-noconvertlink'           => "{{optional}}
+
+''(the message is considered optional because it is only used in wikis with language variants)''",
 'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that.
 {{Identical|Rollback}}",
 
@@ -412,26 +416,26 @@ Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedi
 'retrievedfrom'           => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
 'youhavenewmessages'      => 'The orange message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
-'newmessageslink'         => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
+'newmessageslink'         => 'Ini adalah pranala pertama yang tampak pada pita oranye saat pengguna mendapat pesan pada pembicaraan_penggunanya. Tampak pada pesan {{msg-mw|youhavenewmessages}} (sebagai parameter $1).
 
 {{Identical|New messages}}',
-'newmessagesdifflink'     => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
-'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
-The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
-'editsection'             => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
+'newmessagesdifflink'     => 'Ini adalah pranala kedua yang tampak pada pita oranye saat pengguna mendapat pesan pada pembicaraan_penggunanya. Tampak pada pesan {{msg-mw|youhavenewmessages}} (sebagai parameter $2).',
+'youhavenewmessagesmulti' => 'Alternatif dari {{msg|youhavenewmessages}} yang di pakai pada wikis dengan konfigurasi khusus sehingga dapat menerima pemberitahuan "pesan baru" pada wikis yang lain dengan baik. Digunakan pada [http://www.wikia.com/ Wikia].
+Format penggunaannya adalah : "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
+'editsection'             => 'Menunjukkan nama dari pranala untuk menyunting bagian dari isi halaman. Contoh: [{{MediaWiki:Editsection}}].
 
 {{Identical|Edit}}',
 'editsection-brackets'    => '{{optional}}',
 'editold'                 => '{{Identical|Edit}}',
 'viewsourceold'           => '{{Identical|View source}}',
-'editlink'                => 'Text of the edit link shown next to every (editable) template in the list of used templates below the edit window. See also {{msg-mw|Viewsourcelink}}.
+'editlink'                => 'Text dari pranala yang terlihat disebelah setiap templat yang dapat disunting (tidak di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
 'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.
 
 {{Identical|View source}}',
 'editsectionhint'         => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
-'toc'                     => 'This is the title of the table of contents displayed in pages with more than 3 sections
+'toc'                     => 'Ini adalah judul "Daftar isi" yang terlihat pada halaman yang memiliki lebih dari 3 bagian
 
 {{Identical|Contents}}',
 'showtoc'                 => 'This is the link used to show the table of contents
@@ -448,10 +452,14 @@ View or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>
 'feed-unavailable'        => 'This message is displayed when a user tries to use an RSS or Atom feed on a wiki where such feeds have been disabled.',
 'site-rss-feed'           => "Used in the HTML header of a wiki's RSS feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
-HTML markup cannot be used.",
+HTML markup cannot be used.
+{{Identical|S1 RSS/Atom feed}}",
 'site-atom-feed'          => "Used in the HTML header of a wiki's Atom feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
-HTML markup cannot be used.",
+HTML markup cannot be used.
+{{Identical|S1 RSS/Atom feed}}",
+'page-rss-feed'           => '{{Identical|S1 RSS/Atom feed}}',
+'page-atom-feed'          => '{{Identical|S1 RSS/Atom feed}}',
 'feed-atom'               => '{{optional}}',
 'feed-rss'                => '{{optional}}',
 'red-link-title'          => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
@@ -562,9 +570,11 @@ HTML markup cannot be used.",
 'login'                      => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg|nav-login-createaccount}} is shown there).
 
 {{Identical|Log in}}",
-'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.",
+'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.
+{{identical|Log in / create account}}",
 'loginprompt'                => 'A small notice in the log in form.',
-'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.',
+'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.
+{{Identical|Log in / create account}}',
 'logout'                     => '{{Identical|Log out}}',
 'userlogout'                 => '{{Identical|Log out}}',
 'notloggedin'                => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
@@ -629,7 +639,10 @@ $1 is the minimum number of characters in the password.',
 * $3 is a password. Example: er##@fdas!
 * $4 is a URL. Example: http://wiki.example.com
 * $5 is a number of days in which the temporary password will expire',
-'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
+'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup register user link]).
+
+Parameters:
+* $1 is a user name. This parameter can be used with GENDER.',
 'eauthentsent'               => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
 "in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
@@ -725,6 +738,7 @@ Tip for internal links',
 'anoneditwarning'                  => 'Shown when editing a page anonymously.',
 'missingsummary'                   => 'The text "sdit summary" is in {{msg-mw|summary}}.
 The text "Save" is in {{msg-mw|savearticle}}.',
+'missingcommenttext'               => 'This message is shown, when the textbox by a new-section is empty.',
 'missingcommentheader'             => '
 The text "Save" is in {{msg-mw|savearticle}}.',
 'summary-preview'                  => 'Preview of the edit summary, shown under the edit summary itself.
@@ -897,12 +911,17 @@ This is the message for the log entry in [[Special:Log/delete]] when changing vi
 The parameter $1 is the log name in brackets.
 
 The name of the user who did this task appears before this message.',
-'revdelete-success'         => '{{RevisionDelete}}',
-'logdelete-success'         => '{{RevisionDelete}}',
+'revdelete-success'         => "{{RevisionDelete}}
+
+Possible alternative text - 'Restrictions on the revision visibility were successfully changed.'",
+'logdelete-success'         => "{{RevisionDelete}}
+
+Possible alternative message - 'Restrictions on log entry visibility successfully set.'",
 'revdel-restore'            => '{{RevisionDelete}}',
 'pagehist'                  => 'Links to page history at Special:RevisionDelete header together with links to the logs and Special:Undelete.',
 'deletedhist'               => 'Links to Special:Undelete at Special:RevisionDelete header together with links to the logs and page history.',
-'revdelete-content'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision or event.',
+'revdelete-content'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision or event.
+{{Identical|Content}}',
 'revdelete-summary'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the edit summary of a revision or event.',
 'revdelete-uname'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the username for a revision or event.
 
@@ -1041,6 +1060,7 @@ $1 is the relevance of this result in per cent.
 'search-redirect'                 => "\$1 is a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from'''). \"Redirect\" is a noun here, not a verb.",
 'search-section'                  => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.',
 'search-interwiki-default'        => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
+'search-interwiki-more'           => '{{Identical|More}}',
 'search-relatedarticle'           => '{{Identical|Related}}
 
 This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]',
@@ -1583,7 +1603,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $3 is a hour
 * $4 is an URL and must follow square bracket: [$4
 {{Identical|Revert}}',
-'filerevert-comment'        => '{{Identical|Comment}}',
+'filerevert-comment'        => '{{Identical|Reason}}',
 'filerevert-defaultcomment' => '* $1 is a date
 * $2 is an hour
 {{Identical|Revert}}',
@@ -1838,9 +1858,24 @@ $1 is a page title",
 {{Identical|Deleted user contributions}}',
 
 # Special:LinkSearch
-'linksearch'    => '{{Identical|External link}}',
-'linksearch-ns' => '{{Identical|Namespace}}',
-'linksearch-ok' => '{{Identical|Search}}',
+'linksearch'       => 'Title of [[Special:LinkSearch|special page]] and legend of fieldset on that page.
+
+{{Identical|External link}}',
+'linksearch-pat'   => 'Legend for input box on [[Special:LinkSearch]].',
+'linksearch-ns'    => 'Legend for dropdown box on [[Special:LinkSearch|special page]].
+
+{{Identical|Namespace}}',
+'linksearch-ok'    => 'Button label on [[Special:LinkSearch|special page]]e
+
+{{Identical|Search}}',
+'linksearch-text'  => 'Introduction to special page [[Special:LinkSearch]].
+
+$1 is a list of internet protocols.',
+'linksearch-line'  => 'Text for the results of a search using [[Special:LinkSearch]].
+
+*$1 is the address of an external link
+*$2 is the page containing the external link',
+'linksearch-error' => 'Error message generated by [[Special:LinkSearch]].',
 
 # Special:ListUsers
 'listusersfrom'      => 'identical with {{msg-mw|activeusers-from}}',
@@ -2100,7 +2135,7 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'undeletereset'              => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
 'undeleteinvert'             => '{{Identical|Invert selection}}',
-'undeletecomment'            => '{{Identical|Comment}}',
+'undeletecomment'            => '{{Identical|Reason}}',
 'undelete-search-submit'     => '{{Identical|Search}}',
 'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 * <code>$1</code> is the name of the file being undeleted.
@@ -2472,11 +2507,11 @@ If the length of the translated message is over 60 characters (including spaces)
 This message appears at the very end of the list of names in the message [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]]. If there are no anonymous users in the credits list then this message does not appear at all.
 
 * $1 is the number of anonymous users in the message',
-'siteuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
+'siteuser'         => "This message is shown when viewing the credits of a page ([{{fullurl:Main Page|action=credits}} example]). Note that this action is disabled by default, but currently enabled on translatewiki.net. This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if a user has not entered their 'real name' in their preferences. See also {{msg-mw|Siteusers}}.
 
-This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.
-
-See also {{msg-mw|Siteusers}}.",
+Parameters:
+* $1 is a link to a user page with the user name as link text
+* $2 is a user name for use with GENDER (optional)",
 'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
 * $1: date
 * $2: time
@@ -2908,7 +2943,9 @@ See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography 
 * {{msg|Exif-subjectdistancerange-0}}
 * {{msg|Exif-subjectdistancerange-1}}
 * {{msg|Exif-subjectdistancerange-2}}
-* {{msg|Exif-subjectdistancerange-3}}',
+* {{msg|Exif-subjectdistancerange-3}}
+
+Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_photography Wikipedia].',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-n' => "Knots: ''Knot'' is a unit of speed on water used for ships, etc., equal to one nautical mile per hour.",
@@ -2995,6 +3032,7 @@ Do ''not'' change the leading ;  and the first : as it is wiki markup.
 Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.
 
 {{optional}}',
+'percent'         => '{{optional}}',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',
@@ -3039,8 +3077,7 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 'watchlistedit-raw-legend'     => 'Heading of dialogue box on [[Special:Watchlist/raw]].
 
 {{Identical|Edit raw watchlist}}',
-'watchlistedit-raw-explain'    => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].
-Hint: the text "Update Watchlist" is in {{msg-mw|watchlistedit-raw-submit}}',
+'watchlistedit-raw-explain'    => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].',
 'watchlistedit-raw-titles'     => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-submit'     => 'Text of submit button on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-done'       => 'A message which appears after the raw watchlist has been updated using [[Special:Watchlist/raw]].',
@@ -3144,20 +3181,24 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 'version-software-version'         => '{{Identical|Version}}',
 
 # Special:FilePath
-'filepath'         => 'Shown in [[Special:FilePath]]',
-'filepath-page'    => 'Shown in [[Special:FilePath]]
+'filepath'         => 'Legend of fieldset around input box in [[Special:FilePath]].',
+'filepath-page'    => 'Shown next to input box in [[Special:FilePath]]
 
 {{Identical|File}}',
-'filepath-submit'  => 'Shown in [[Special:FilePath]]',
+'filepath-submit'  => 'Button label in [[Special:FilePath]].
+{{Identical|Go}}',
 'filepath-summary' => 'Shown in [[Special:FilePath]]',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Name of special page [[Special:FileDuplicateSearch]].',
 'fileduplicatesearch-summary'  => 'Summary of [[Special:FileDuplicateSearch]]',
 'fileduplicatesearch-legend'   => 'Legend of the fieldset around the input form of [[Special:FileDuplicateSearch]]',
 'fileduplicatesearch-filename' => 'Input form of [[Special:FileDuplicateSearch]]:
 
 {{Identical|Filename}}',
-'fileduplicatesearch-submit'   => '{{Identical|Search}}',
+'fileduplicatesearch-submit'   => 'Button label on [[Special:FileDuplicateSearch]].
+
+{{Identical|Search}}',
 'fileduplicatesearch-info'     => 'Information beneath the thumbnail on the right side shown after a successful search via [[Special:FileDuplicateSearch]]
 
 * $1: width of the file

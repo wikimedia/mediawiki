@@ -73,7 +73,7 @@ $messages = array(
 'hidden-category-category' => 'Mikhakha lefihliwe', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'chubeka.',
 
-'mainpagetext' => "<big>'''i-MediaWiki seyifakeke ngalokuphelele.'''</big>",
+'mainpagetext' => "'''i-MediaWiki seyifakeke ngalokuphelele.'''",
 
 'about'          => 'Kabanti',
 'article'        => 'Likhasi lentfo',

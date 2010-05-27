@@ -8,6 +8,7 @@
  * @file
  *
  * @author Kaszeba
+ * @author Kuvaly
  * @author Leinad
  * @author MinuteElectron
  * @author Warszk
@@ -141,7 +142,7 @@ $messages = array(
 'category-empty'         => "''Ta ktegòrëja nie zamëkô w se terô niżódnëch artiklów ni mediów.''",
 'listingcontinuesabbrev' => 'kònt.',
 
-'mainpagetext' => "<big>'''MediaWiki òsta zainstalowónô.'''</big>",
+'mainpagetext' => "'''MediaWiki òsta zainstalowónô.'''",
 
 'about'          => 'Ò serwise',
 'article'        => 'Artikel',
@@ -311,6 +312,7 @@ Mòżesz prôcowac z {{SITENAME}} jakno anonimòwi brëkòwnik abò wlogòwac s�
 'yourname'                   => 'Miono brëkòwnika',
 'yourpassword'               => 'Twòja parola',
 'yourpasswordagain'          => 'Pòwtórzë parolã',
+'remembermypassword'         => 'Wdôrzë mòjé miono brëkòwnika na tim kòmpùtrze',
 'yourdomainname'             => 'Twòjô domena',
 'login'                      => 'Wlogùjë mie',
 'nav-login-createaccount'    => 'Logòwanié',
@@ -372,11 +374,13 @@ Ni mòżesz miec ju wicy.',
 'accountcreated'             => 'Konto założone',
 'accountcreatedtext'         => 'Konto brëkòwnika dlô $1 je założone.',
 'createaccount-title'        => 'Kònto ùsôdzoné dlô {{SITENAME}}',
+'loginlanguagelabel'         => 'Jãzëk: $1',
 
 # Password reset dialog
-'oldpassword' => 'Stôrô parola:',
-'newpassword' => 'Nowô parola',
-'retypenew'   => 'Napiszë nową parolã jesz rôz',
+'oldpassword'               => 'Stôrô parola:',
+'newpassword'               => 'Nowô parola',
+'retypenew'                 => 'Napiszë nową parolã jesz rôz',
+'resetpass-submit-loggedin' => 'Zmiana parolë',
 
 # Edit page toolbar
 'bold_sample'     => 'Wëtłëszczony drëk',
@@ -412,7 +416,7 @@ Ni mòżesz miec ju wicy.',
 'showdiff'               => 'Wëskrzëni zmianë',
 'anoneditwarning'        => "'''Bôczë:''' Të nie je wlogòwóny. Twòjô adresa IP mdze zapisónô w historëji edicëji ti starnë.",
 'blockedtitle'           => 'Brëkòwnik je zascëgóny',
-'blockedtext'            => "<big>'''Twòje kònto abò ë IP-adresa òstałë zablokòwóné.'''</big>
+'blockedtext'            => "'''Twòje kònto abò ë IP-adresa òstałë zablokòwóné.'''
 
 Zablokòwôł je $1. 
 Pòdónô przëczëna to:''$2''.
@@ -487,6 +491,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 # Revision deletion
 'rev-delundel'   => 'pòkażë/zatacë',
 'revdel-restore' => 'Zjinaczë widzawnotã',
+'pagehist'       => 'Historëjô starnë',
 
 # Merge log
 'revertmerge' => 'Rozdzélë',
@@ -561,6 +566,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'guesstimezone'         => 'Wezmi z przezérnika',
 'allowemail'            => 'Włączë mòżlewòtã sélaniô e-mailów òd jinëch brëkòwników',
 'defaultns'             => 'Domëslno przeszëkùjë nôslédné rëmnotë mionów:',
+'default'               => 'domëszlné',
 'files'                 => 'Lopczi',
 
 # User rights
@@ -568,6 +574,9 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 
 # Groups
 'group-sysop' => 'Sprôwnicë',
+
+'group-user-member'  => 'Brëkòwnik',
+'group-sysop-member' => 'Sprôwnicë',
 
 'grouppage-sysop' => '{{ns:project}}:Administratorzë',
 
@@ -872,7 +881,7 @@ Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbacz�
 'move-watch'              => 'Ùzérôj tã starnã',
 'movepagebtn'             => 'Przeniesë starnã',
 'pagemovedsub'            => 'Przeniesenié darzëło sã',
-'movepage-moved'          => '<big>\'\'\'"$1" òsta przeniosłô do "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '\'\'\'"$1" òsta przeniosłô do "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Starna ò taczim mionie ju je abò nie je òno bezzmiłkòwé. Wëbierzë nowé miono.',
 'movedto'                 => 'przeniesłô do',
 'movetalk'                => 'Przeniesë téż starnã <i>Diskùsëje</i>, jeżle je to mòżlëwé.',

@@ -204,7 +204,7 @@ $messages = array(
 'category-empty'         => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
 'listingcontinuesabbrev' => 'frh.',
 
-'mainpagetext' => "<big>'''Innlegging av Wiki-ritbúnaði væleydnað.'''</big>",
+'mainpagetext' => "'''Innlegging av Wiki-ritbúnaði væleydnað.'''",
 
 'about'          => 'Um',
 'article'        => 'Innihaldssíða',

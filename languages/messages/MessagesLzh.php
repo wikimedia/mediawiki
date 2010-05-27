@@ -186,7 +186,7 @@ $messages = array(
 'category-file-count-limited'    => '門有檔$1。',
 'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'      => "<big>'''共筆臺已立'''</big>",
+'mainpagetext'      => "'''共筆臺已立'''",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
 
 == 始 ==
@@ -553,7 +553,7 @@ $2',
 'summary-preview'                  => '覽概：',
 'subject-preview'                  => '覽題：',
 'blockedtitle'                     => '子見禁',
-'blockedtext'                      => "<big>'''子名、IP見禁。'''</big>禁者$1也，因''$2''故。
+'blockedtext'                      => "'''子名、IP見禁。'''禁者$1也，因''$2''故。
 
 * 始之時為：$8
 * 終之時為：$6
@@ -1232,7 +1232,7 @@ $2',
 'savefile'                   => '存之',
 'uploadedimage'              => '進獻"[[$1]]"',
 'overwroteimage'             => '新置「[[$1]]」矣',
-'uploaddisabledtext'         => '貢被禁也。',
+'uploaddisabledtext'         => '檔之貢被禁也。',
 'php-uploaddisabledtext'     => 'PHP之貢被禁也。查 file_uploads 之。',
 'uploadvirus'                => '此檔含毒也！
 詳：$1',
@@ -1743,7 +1743,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1審、$2檔已還',
 'undeletedfiles'               => '$1檔已還',
 'cannotundelete'               => '無以還檔；或復矣。',
-'undeletedpage'                => "<big>'''$1還矣'''</big>
+'undeletedpage'                => "'''$1還矣'''
 近刪新還，見[[Special:Log/delete|刪還誌]]。",
 'undelete-header'              => '欲覽近刪，見[[Special:Log/delete|誌刪]]。',
 'undelete-search-box'          => '尋刪',
@@ -1934,7 +1934,7 @@ $1已被禁矣。爾是否改此置？',
 'move-watch'                   => '派哨至自與至之頁',
 'movepagebtn'                  => '遷文',
 'pagemovedsub'                 => '遷成矣',
-'movepage-moved'               => "<big>'''「$1」已遷至「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "'''「$1」已遷至「$2」'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => '一渡已建。',
 'movepage-moved-noredirect'    => '建渡已押。',
 'articleexists'                => '此題早存，或名謬焉；請更之。',
@@ -2446,7 +2446,7 @@ $1',
 # Special:FilePath
 'filepath'         => '檔路',
 'filepath-page'    => '檔名：',
-'filepath-submit'  => '尋路',
+'filepath-submit'  => '往',
 'filepath-summary' => '此奇頁取一檔之整路。圖以全解像示之，他檔會以有關之程式啟動也。
 
 輸檔名之，不包「{{ns:file}}:」開頭也。',

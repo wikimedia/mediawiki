@@ -217,6 +217,7 @@ $messages = array(
 'site-rss-feed'           => "$1 lqm n' RSS",
 'site-atom-feed'          => "$1 lqm n' atom",
 'page-rss-feed'           => '"$1" tlqim RSS',
+'page-atom-feed'          => '$1 azday atom',
 'red-link-title'          => '$1 (tasna yad ur tlli)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -288,6 +289,7 @@ lcont nek  tuyskar .
 'loginlanguagelabel'      => 'tutlayt: $1',
 
 # Edit page toolbar
+'bold_sample'     => 'ⴰⵟⵕⵉⵚ ⵉⴹⵏⵉⵏ',
 'bold_tip'        => 'Aţŗş aťťuz',
 'italic_sample'   => 'Aţŗiş iknan',
 'italic_tip'      => 'Aţŗiş italik',
@@ -296,8 +298,15 @@ lcont nek  tuyskar .
 'extlink_sample'  => 'http://www.example.com azwl n uzday',
 'extlink_tip'     => 'Azday n berra (isktayn http://prefix)',
 'headline_sample' => 'Aţŗiş n uswer amuqran',
+'headline_tip'    => 'ⵜⴰⵏⵙⴰ ⵙ ⵓⵙⵡⵉⵔ ⵡⵉⵙⵙⵉⵏ',
+'math_sample'     => 'ⵙⴽⵛⵎ ⵜⴰⵍⵖⴰ ⵖⵉⴷ (skcm talɣat ɣid)',
+'math_tip'        => 'ⵜⴰⵍⵖⴰⵜ ⵜⵓⵙⵏⴰⴽⵜ (talɣat tusnakt)',
 'nowiki_sample'   => 'Kcm s uţŗiş li ur igddan ɣid',
 'nowiki_tip'      => 'Zri Taseddast nwiki',
+'image_tip'       => 'ⴰⵙⴷⴰⵡ ⵏ ⵉⵍⵍⵏ (asdaw n illan)',
+'media_tip'       => 'ⴰⵣⴷⴰⵢ ⵏ ⵓⵙⴷⴰⵡ',
+'sig_tip'         => 'ⴰⴽⵔⵔⴰⵊ ⵏⴽ ⵖⵉⴷ ⵙ ⵓⵙⴰⴽⵓⵜ ⴷ ⴰⴽⵓⴷ',
+'hr_tip'          => 'ⵉⵣⵔⵉⵔⵉ ⵉⵖⵣⵉⴼⵏ (izriri iɣzzifn)',
 
 # Edit pages
 'summary'            => 'Tadusi',
@@ -307,9 +316,11 @@ lcont nek  tuyskar .
 'savearticle'        => 'Ḥbu tasna',
 'showpreview'        => 'Iẓṛi amzwaru',
 'showdiff'           => 'Mel imbddeln',
+'anoneditwarning'    => "Balak ''' ur tkcmt ''' rad ibayn IP nk ɣ umzrut n tasna yad, ur sul  iḥba tamagit nk",
 'noarticletext'      => 'ɣilad ur illa walu may ityuran  f tasnatad ad, tzdart at [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 ulla cabba  [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
+'editing'            => 'taẓṛgt $1',
 'copyrightwarning'   => "ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
 iɣ ortrit ayg ɣayli torit ḥor artisbadal wnna ka-iran, attid ortgt ɣid.<br />
 ikhssak ola kiyi ador tnqilt ɣtamani yadni.
@@ -331,6 +342,7 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'revertmerge' => 'ḥiyyd tazdayt',
 
 # Diffs
+'difference'           => 'laḥna gr tamzwarut d tamǧarut',
 'lineno'               => 'Izriri $1:',
 'editundo'             => 'Urri',
 'diff-multi'           => '({{PLURAL:$1|Gr yan usurri|$1 gr isuritn}} ura tuyfsar)',
@@ -390,6 +402,7 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'search-section'                   => 'Ayyaw $1',
 'search-suggest'                   => 'Is trit att nnit: $1',
 'search-interwiki-caption'         => 'Tiwuriwin taytmatin',
+'search-interwiki-default'         => '$1 imyakkatn',
 'search-interwiki-more'            => '(Uggar)',
 'search-mwsuggest-enabled'         => 'D mara ittuyskar',
 'search-mwsuggest-disabled'        => 'Ur illa marayttuskar',
@@ -432,6 +445,11 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
 # Recent changes
 'recentchanges'                     => 'Imbddeln imggura',
+'rcshowhideminor'                   => '$1 iẓṛign fssusnin',
+'rcshowhidebots'                    => '$1 butn',
+'rcshowhideliu'                     => '$1 midn li ttuyqqiyadnin',
+'rcshowhideanons'                   => '$1 midn ur ttuyssan nin',
+'rcshowhidemine'                    => '$1 iẓṛign inu',
 'diff'                              => 'Gar',
 'hist'                              => 'Amzruy',
 'hide'                              => 'Ḥbu',
@@ -475,6 +493,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'filehist-comment'    => 'Aɣfawal',
 'imagelinks'          => 'Izdayn n usdaw',
 'linkstoimage'        => 'Tasna yad {{PLURAL:$1|izdayn n tasna|$1 azday n tasniwin}} s usdaw:',
+'sharedupload'        => 'Asdawad z $1 tẓḍart at tsxdmt gr iswirn yaḍnin', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byt|byt}}',
@@ -539,6 +558,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Delete
 'deletedarticle' => 'Kkiss "[[$1]]"',
+'dellogpage'     => 'Qqiyd akkas ad',
 
 # Rollback
 'rollbacklink' => 'Rard',
@@ -551,11 +571,13 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Namespace form on various pages
 'namespace'      => 'Taɣult',
+'invert'         => 'amglb n ustay',
 'blanknamespace' => '(Amuqran)',
 
 # Contributions
-'mycontris' => 'Tiwuriwin inu',
-'year'      => 'Z usggas (d urbur):',
+'contributions' => 'Tiwuriwin n umsaws',
+'mycontris'     => 'Tiwuriwin inu',
+'year'          => 'Z usggas (d urbur):',
 
 # What links here
 'whatlinkshere'            => 'May izdayn ɣid',
@@ -583,6 +605,9 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Move page
 'revertmove' => 'Rard',
+
+# Export
+'export' => 'assufɣ n tasniwin',
 
 # Thumbnails
 'thumbnail-more' => 'Simɣur',
@@ -644,8 +669,16 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'tooltip-upload'                  => 'Izwir siɣ tullt.',
 'tooltip-rollback'                => '"Rard" s yan klik ażrig (iżrign) s ɣiklli sttin kkan tiklit li igguran',
 
+# Browsing diffs
+'previousdiff' => 'Imbddln imzwura',
+
 # Media information
-'file-info-size' => '($1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4)',
+'file-info-size'       => '($1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4)',
+'show-big-image'       => 'balak',
+'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
+
+# Metadata
+'metadata' => 'isfka n mita',
 
 'exif-gaincontrol-0' => 'walo',
 

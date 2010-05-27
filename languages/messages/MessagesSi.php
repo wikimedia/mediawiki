@@ -290,7 +290,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'ඉතිරිය.',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''මාධ්‍යවිකි සාර්ථක ලෙස ස්ථාපනය කරන ලදි.'''</big>",
+'mainpagetext'      => "'''මාධ්‍යවිකි සාර්ථක ලෙස ස්ථාපනය කරන ලදි.'''",
 'mainpagedocfooter' => 'විකි මෘදුකාංග භාවිතා කිරීම පිළිබඳ තොරතුරු සඳහා  [http://meta.wikimedia.org/wiki/Help:Contents පරිශීලකයන් සඳහා නියමුව] හදාරන්න.
 
 == ඇරඹුම ==
@@ -719,7 +719,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'summary-preview'                  => 'සාරාංශ පෙර-දසුන:',
 'subject-preview'                  => 'විෂයය/සිරස්තලය හි පෙර-දසුන:',
 'blockedtitle'                     => 'පරිශීලකයා වාරණය කර ඇත',
-'blockedtext'                      => "<big>ඔබගේ පරිශීලක නාමය හෝ අන්තර්ජාල ලිපිනය හෝ වාරණය කොට ඇත.'''</big>
+'blockedtext'                      => "ඔබගේ පරිශීලක නාමය හෝ අන්තර්ජාල ලිපිනය හෝ වාරණය කොට ඇත.'''
 
 මෙම වාරණය සිදුකොට ඇත්තේ  $1 විසිනි.
 මේ සඳහා දී ඇති හේතුව ''$2'' වේ.
@@ -2117,7 +2117,7 @@ $2 ගේ අවසන් අනුවාදය වෙතට යළි වෙන
 'undeletedfiles'               => '{{PLURAL:$1|එක් ගොනුවක්|ගොනු $1 ක්}} ප්‍රතිෂ්ඨාපනය කෙරිණි',
 'cannotundelete'               => 'මකාදැමීම ප්‍රතිලෝම කිරීම අසාර්ථක විය;
 මෙම පිටුවේ මකාදැමීම ප්‍රතිලෝම කිරීම යමෙකු මීට කලින්  කර ඇතුවා විය හැක.',
-'undeletedpage'                => "<big>'''$1 ප්‍රතිෂ්ඨාපනය කෙරී ඇත'''</big>
+'undeletedpage'                => "'''$1 ප්‍රතිෂ්ඨාපනය කෙරී ඇත'''
 
 මෑතදී සිදුවූ මකාදැමීම් හා ප්‍රතිෂ්ඨාපනයන් හි වාර්තාවක් උදෙසා [[Special:Log/delete|මකාදැමීම් ලඝු-සටහන]] පරිශීලනය කරන්න.",
 'undelete-header'              => 'මෑතදී මකාදැමුණු පිටු සඳහා  [[Special:Log/delete|මකාදැමුම්  ලඝු-සටහන]] බලන්න.',
@@ -2343,7 +2343,7 @@ $1 දැනටමත් වාරණය කොට ඇත. පරිස්ථි
 'move-watch'                   => 'මෙම පිටුව මුර කරන්න',
 'movepagebtn'                  => 'පිටුව ගෙන යන්න',
 'pagemovedsub'                 => 'ගෙන යාම සාර්ථකයි',
-'movepage-moved'               => '<big>\'\'\'"$1" යන පිටුව  "$2"\'\'\' වෙත ගෙන යන ලදි</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" යන පිටුව  "$2"\'\'\' වෙත ගෙන යන ලදි', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'යළි-යොමුවක් නිමැවිණි.',
 'movepage-moved-noredirect'    => 'යළි-යොමුවක් නිමැවීම යටපත් කෙරිණි.',
 'articleexists'                => 'එක්කෝ මෙම නම ඇති පිටුවක් දැනටමත් පවතී, නැත්නම් ඔබ විසින් තෝරා ගෙන ඇති පිටුව වලංගු එකක් නොවේ.

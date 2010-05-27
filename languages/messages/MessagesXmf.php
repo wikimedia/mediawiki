@@ -252,7 +252,7 @@ $messages = array(
 'showdiff'                         => 'თირაფეფიშ ძირაფა',
 'anoneditwarning'                  => "'''გათხილება:''' თქვა ვარეთ რეგისტრირებულ. თქვან IP მისამართ დინოჭარილ იჸიი თე ხასილაშ რედაქტირაფაშ ისტორიას.",
 'summary-preview'                  => 'რეზიუმეშ ოწოხიან გინოჯინა:',
-'blockedtext'                      => "<big>'''თქვან მახვარებუშ ჯოხო ვარა IP მიოწურაფუქ ბლოკირქ იჸუ. '''</big> 
+'blockedtext'                      => "'''თქვან მახვარებუშ ჯოხო ვარა IP მიოწურაფუქ ბლოკირქ იჸუ. ''' 
 
 ბლოკირაფა ღოლუ $-ქ. 
 სამანჯელო წუმორინაფილქ იჸუ გეჸვენჯიქ: ''$2''.
@@ -600,7 +600,7 @@ $messages = array(
 'move-watch'       => 'თე ხასილაშ კონტროლ',
 'movepagebtn'      => 'ხასილაშ გინოღალა',
 'pagemovedsub'     => 'გინოღალა რსულებულ რე',
-'movepage-moved'   => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '\'\'\'"$1" გინოღალულ რე "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'გინაღალულ რე',
 'movetalk'         => 'აკოხვალამირ სხუნუაშ გინოღალა',
 '1movedto2'        => '[[$1]] გინოღალირიე ხასილაშა [[$2]]',

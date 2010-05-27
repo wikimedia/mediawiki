@@ -148,7 +148,7 @@ $messages = array(
 'category-file-count-limited'    => '个只类别里头有$1只档案。',
 'listingcontinuesabbrev'         => '续',
 
-'mainpagetext'      => "<big>'''安装正MediaWiki喽。'''</big>",
+'mainpagetext'      => "'''安装正MediaWiki喽。'''",
 'mainpagedocfooter' => '参看[http://meta.wikimedia.org/wiki/Help:Contents 用户指南]里头会话到啷用wiki软件
 
 == 开始使用 ==
@@ -504,7 +504,7 @@ $2',
 'summary-preview'                  => '摘要预览:',
 'subject-preview'                  => '主题/头条预览:',
 'blockedtitle'                     => '用户封到嘞',
-'blockedtext'                      => "<big>倷𠮶用户名或IP地址拖$1封到嘞。</big>
+'blockedtext'                      => "倷𠮶用户名或IP地址拖$1封到嘞。
 
 个道封锁系$1封𠮶。个中原因系''$2''。
 
@@ -1364,7 +1364,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1只修改版本同$2只档案恢复正嘞',
 'undeletedfiles'               => '$1只档案恢复正嘞',
 'cannotundelete'               => '反删除伓正；话伓定别𠮶人先倷恢复嘞个只页面。',
-'undeletedpage'                => "<big>'''$1恢复正嘞'''</big>
+'undeletedpage'                => "'''$1恢复正嘞'''
 
 望吖[[Special:Log/delete|删除日志]]𠮶删除同恢复记录。",
 'undelete-header'              => '要查最晏𠮶记录𠮶话请望[[Special:Log/delete|删除日志]]。',
@@ -1542,7 +1542,7 @@ $1',
 'move-watch'              => '眏到个页',
 'movepagebtn'             => '换卟个页',
 'pagemovedsub'            => '移正嘞',
-'movepage-moved'          => "<big>'''“$1”拖移到“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "'''“$1”拖移到“$2”'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '已经有页面叫个只名字，要伓倷拣𠮶名字冇用。请拣过只名字。',
 'cantmove-titleprotected' => '倷移伓正一只页面到个只位置，个只新题目已经拖保护起来嘞，新建伓正。',
 'talkexists'              => '页面本身移动正嘞，但系新标题下底有嘞对话页，所以对话页移伓正。请手工合并两页。',

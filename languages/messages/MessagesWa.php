@@ -179,7 +179,7 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Dins cisse categoreye ci, gn a k' ene pådje.|{{PLURAL:$1|Gn a cisse pådje ci|Gn a les $1 pådjes ki shuvèt}} dins cisse categoreye ci, po $2 pådjes å totå.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|Gn a k' cisse pådje cial|Gn a les $1 pådjes ciddé padzo}} dins cisse categoreye ci.",
 
-'mainpagetext' => "<big>'''Li programe Wiki a stî astalé a l' idêye.'''</big>",
+'mainpagetext' => "'''Li programe Wiki a stî astalé a l' idêye.'''",
 
 'about'          => 'Åd fwait',
 'article'        => 'Årtike',
@@ -1137,7 +1137,7 @@ ni pout esse veyou ki des manaedjeus.",
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 modêye|$1 modêyes}} et {{PLURAL:$2|1 fitchî|$2 fitchîs}} di rapexhîs',
 'undeletedfiles'               => '{{PLURAL:$1|1 fitchî|$1 fitchîs}} di rapexhîs',
 'cannotundelete'               => "Li rapexhaedje a fwait berwete; motoit bén k' ene ôte sakî l' a ddja rapexhî.",
-'undeletedpage'                => "<big>'''Li pådje $1 a stî rapexheye.'''
+'undeletedpage'                => "'''Li pådje $1 a stî rapexheye.'''
 
 Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des dierins disfaçaedjes eyet rapexhaedjes.",
 'undelete-search-submit'       => 'Cweri',

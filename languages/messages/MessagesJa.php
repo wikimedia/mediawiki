@@ -21,6 +21,7 @@
  * @author JtFuruhata
  * @author Kahusi
  * @author Kkkdc
+ * @author Klutzy
  * @author Koba-chan
  * @author Lovekhmer
  * @author Marine-Blue
@@ -300,7 +301,7 @@ $messages = array(
 'tog-previewonfirst'          => '編集開始時にもプレビューを表示する',
 'tog-nocache'                 => 'ページをキャッシュしない',
 'tog-enotifwatchlistpages'    => 'ウォッチリストにあるページが更新されたときにメールを受け取る',
-'tog-enotifusertalkpages'     => '自分の会話ページが更新されたときにメールを受け取る',
+'tog-enotifusertalkpages'     => '自分のトークページが更新されたときにメールを受け取る',
 'tog-enotifminoredits'        => '細部の編集でもメールを受け取る',
 'tog-enotifrevealaddr'        => '通知メールに自分のメールアドレスを記載する',
 'tog-shownumberswatching'     => 'ページをウォッチしている利用者数を表示する',
@@ -395,7 +396,7 @@ $messages = array(
 'category-file-count-limited'    => 'このカテゴリへは以下の{{PLURAL:$1|ファイル $1 個}}が属しています。',
 'listingcontinuesabbrev'         => 'の続き',
 
-'mainpagetext'      => "<big>'''MediaWikiが正常にインストールされました。'''</big>",
+'mainpagetext'      => "'''MediaWikiが正常にインストールされました。'''",
 'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/%E3%83%98%E3%83%AB%E3%83%97:%E7%9B%AE%E6%AC%A1 ユーザーズガイド]を参照してください。
 
 == はじめましょう ==
@@ -417,8 +418,8 @@ $messages = array(
 'qbspecialpages' => '特別ページ',
 'moredotdotdot'  => '続き…',
 'mypage'         => '自分のページ',
-'mytalk'         => '自分の会話',
-'anontalk'       => 'このIP利用者の会話',
+'mytalk'         => '自分のトーク',
+'anontalk'       => 'このIP利用者のトーク',
 'navigation'     => '案内',
 'and'            => 'および',
 
@@ -454,12 +455,12 @@ $messages = array(
 'unprotectthispage' => 'このページを保護解除',
 'newpage'           => '新規ページ',
 'talkpage'          => 'このページについて話し合う',
-'talkpagelinktext'  => '会話',
+'talkpagelinktext'  => 'トーク',
 'specialpage'       => '特別ページ',
 'personaltools'     => '個人用ツール',
 'postcomment'       => '新しいセクション',
 'articlepage'       => '記事を表示',
-'talk'              => 'ノート',
+'talk'              => 'トーク',
 'views'             => '表示',
 'toolbox'           => 'ツールボックス',
 'userpage'          => '利用者ページを表示',
@@ -469,7 +470,7 @@ $messages = array(
 'templatepage'      => 'テンプレートページを表示',
 'viewhelppage'      => 'ヘルプページを表示',
 'categorypage'      => 'カテゴリページを表示',
-'viewtalkpage'      => 'ノートを表示',
+'viewtalkpage'      => 'トークを表示',
 'otherlanguages'    => '他の言語',
 'redirectedfrom'    => '($1 から転送)',
 'redirectpagesub'   => 'リダイレクトページ',
@@ -492,8 +493,8 @@ $messages = array(
 'disclaimerpage'       => 'Project:免責事項',
 'edithelp'             => '編集の仕方',
 'edithelppage'         => 'Help:編集',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
+'faq'                  => 'よくある質問と回答',
+'faqpage'              => 'Project:よくある質問と回答',
 'helppage'             => 'Help:目次',
 'mainpage'             => 'メインページ',
 'mainpage-description' => 'メインページ',
@@ -652,7 +653,7 @@ $2',
 'logout'                     => 'ログアウト',
 'userlogout'                 => 'ログアウト',
 'notloggedin'                => 'ログインしていません',
-'nologin'                    => "まだアカウントをお持ちでないのですか？'''$1'''。",
+'nologin'                    => 'まだアカウントをお持ちでないのですか？$1。',
 'nologinlink'                => 'アカウントを作成してください',
 'createaccount'              => 'アカウント作成',
 'gotaccount'                 => "すでにアカウントをお持ちですか？'''$1'''。",
@@ -778,7 +779,7 @@ $2',
 'summary-preview'                  => '要約のプレビュー:',
 'subject-preview'                  => '題名・見出しのプレビュー:',
 'blockedtitle'                     => '投稿ブロックされています',
-'blockedtext'                      => "<big>'''この利用者名またはIPアドレスでの投稿はブロックされています。'''</big>
+'blockedtext'                      => "'''この利用者名またはIPアドレスでの投稿はブロックされています。'''
 
 ブロックは $1 によって実施されました。
 ブロックの理由は「$2」です。
@@ -821,7 +822,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 この新アカウントのパスワードはログインした際に[[Special:ChangePassword|パスワード変更]]ページで変更できます。',
 'newarticle'                       => '(新規)',
 'newarticletext'                   => 'あなたがクリックしたリンク先のページはまだ存在していません。このページを新規に作成するには、下のボックスに内容を書き込んでください (詳しくは[[{{MediaWiki:Helppage}}|ヘルプページ]]を参照してください)。ページを作成するつもりがない場合には、ブラウザの「戻る」ボタンを使って前のページに戻ってください。',
-'anontalkpagetext'                 => "----''このページはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。匿名利用者を識別する際には、利用者名のかわりにIPアドレスを用いる必要があります。IPアドレスは複数の利用者の間で共有されていることがあります。もしあなたが匿名利用者であり、自分に関係のないコメントが寄せられているとお考えの場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。''",
+'anontalkpagetext'                 => "----''このページはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための議論用ページです。匿名利用者を識別する際には、利用者名のかわりにIPアドレスを用いる必要があります。IPアドレスは複数の利用者の間で共有されていることがあります。もしあなたが匿名利用者であり、自分に関係のないコメントが寄せられているとお考えの場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。''",
 'noarticletext'                    => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを作成]</span>することができます。',
 'userpage-userdoesnotexist'        => '「$1」という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'                   => "'''注意:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
@@ -909,7 +910,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'undo-success' => '編集の取り消しが可能です。これがあなたの意図した編集であるか、下に表示されている差分を確認してください。保存ボタンを押すと取り消しが確定されます。',
 'undo-failure' => '中間の版での編集と競合したため、取り消せませんでした。',
 'undo-norev'   => '取り消そうとした編集は存在しないかすでに削除されたために取り消せませんでした。',
-'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による第$1版を取り消し',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による第$1版を取り消し',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'アカウントを作成できません',
@@ -939,7 +940,7 @@ $3による理由は以下の通りです: ''$2''",
 'histfirst'              => '最古',
 'histlast'               => '最新',
 'historysize'            => '({{PLURAL:$1|$1バイト}})',
-'historyempty'           => '(なし)',
+'historyempty'           => '(空)',
 
 # Revision feed
 'history-feed-title'          => '変更履歴',
@@ -1131,7 +1132,7 @@ $3による理由は以下の通りです: ''$2''",
 'searchprofile-articles-tooltip'   => '$1 名前空間を検索',
 'searchprofile-project-tooltip'    => '$1 名前空間を検索',
 'searchprofile-images-tooltip'     => 'ファイルを検索',
-'searchprofile-everything-tooltip' => '全ページ (ノート、会話ページ含む) を検索',
+'searchprofile-everything-tooltip' => '全ページ (トークページ含む) を検索',
 'searchprofile-advanced-tooltip'   => '名前空間を指定して検索',
 'prefs-search-nsdefault'           => '標準の設定で検索:',
 'prefs-search-nscustom'            => '指定した名前空間を検索:',
@@ -1292,8 +1293,8 @@ $3による理由は以下の通りです: ''$2''",
 # Rights
 'right-read'                  => 'ページの閲覧',
 'right-edit'                  => 'ページの編集',
-'right-createpage'            => '(ノートページ以外の) ページの作成',
-'right-createtalk'            => 'ノートページの作成',
+'right-createpage'            => '(トークページ以外の) ページの作成',
+'right-createtalk'            => 'トークページの作成',
 'right-createaccount'         => '新しい利用者アカウントの作成',
 'right-minoredit'             => '細部の編集の印づけ',
 'right-move'                  => 'ページの移動',
@@ -1309,7 +1310,7 @@ $3による理由は以下の通りです: ''$2''",
 'right-purge'                 => '確認を省略したサイトキャッシュの破棄',
 'right-autoconfirmed'         => '半保護されたページの編集',
 'right-bot'                   => '自動処理として認識',
-'right-nominornewtalk'        => 'ノートページへ細部の編集が行われた際の「新しいメッセージのお知らせ」の非表示',
+'right-nominornewtalk'        => 'トークページへ細部の編集が行われた際の「新しいメッセージのお知らせ」の非表示',
 'right-apihighlimits'         => '標準より高いAPIクエリ制限値',
 'right-writeapi'              => '編集APIの使用',
 'right-delete'                => 'ページの削除',
@@ -1356,7 +1357,7 @@ $3による理由は以下の通りです: ''$2''",
 'action-read'                 => 'このページの閲覧',
 'action-edit'                 => 'このページの編集',
 'action-createpage'           => 'ページの新規作成',
-'action-createtalk'           => 'ノートページの新規作成',
+'action-createtalk'           => 'トークページの新規作成',
 'action-createaccount'        => 'このアカウントの作成',
 'action-minoredit'            => '細部の編集の印つけ',
 'action-move'                 => 'このページの移動',
@@ -1408,9 +1409,9 @@ $3による理由は以下の通りです: ''$2''",
 'hist'                              => '履歴',
 'hide'                              => '非表示',
 'show'                              => '表示',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
+'minoreditletter'                   => '細',
+'newpageletter'                     => '新',
+'boteditletter'                     => 'ボ',
 'number_of_watching_users_pageview' => '[$1{{PLURAL:$1|人}}がウォッチしています]',
 'rc_categories'                     => 'カテゴリを制限 ("|" で区切る)',
 'rc_categories_any'                 => 'すべて',
@@ -1587,7 +1588,7 @@ PICT # その他
 'filerevert'                => '$1 を差し戻す',
 'filerevert-legend'         => 'ファイルを差し戻す',
 'filerevert-intro'          => "ファイル '''[[Media:$1|$1]]'''を[$4 $2$3の版]に差し戻そうとしています。",
-'filerevert-comment'        => 'コメント:',
+'filerevert-comment'        => '理由:',
 'filerevert-defaultcomment' => '$1 $2 の版へ差し戻し',
 'filerevert-submit'         => '差し戻す',
 'filerevert-success'        => "'''[[Media:$1|$1]]'''は[$4  $2$3の版]に差し戻されました。",
@@ -1645,7 +1646,7 @@ PICT # その他
 'statistics-header-users'      => '登録利用者に関する統計',
 'statistics-articles'          => '記事数',
 'statistics-pages'             => '総ページ数',
-'statistics-pages-desc'        => 'ノートページやリダイレクトなどを含んだこのウィキ内のすべてのページです。',
+'statistics-pages-desc'        => 'トークページやリダイレクトなどを含んだこのウィキ内のすべてのページです。',
 'statistics-files'             => 'アップロードされたファイル数',
 'statistics-edits'             => '編集回数の総計',
 'statistics-edits-average'     => '1ページあたりの編集回数',
@@ -1851,7 +1852,7 @@ PICT # その他
 'watchnologin'         => 'ログインしていません',
 'watchnologintext'     => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
 'addedwatch'           => 'ウォッチリストに追加しました',
-'addedwatchtext'       => "ページ 「[[:$1]]」をあなたの[[Special:Watchlist|ウォッチリスト]]に追加しました。このページと付属のノートページに変更があった際には、ウォッチリストに表示されます。また、ウォッチリストに登録されているページは[[Special:RecentChanges|最近の更新の一覧]]に'''太字'''で表示され、見つけやすくなります。",
+'addedwatchtext'       => "ページ 「[[:$1]]」をあなたの[[Special:Watchlist|ウォッチリスト]]に追加しました。このページと付属のトークページに変更があった際には、ウォッチリストに表示されます。また、ウォッチリストに登録されているページは[[Special:RecentChanges|最近の更新の一覧]]に'''太字'''で表示され、見つけやすくなります。",
 'removedwatch'         => 'ウォッチリストから削除しました',
 'removedwatchtext'     => 'ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]から削除しました。',
 'watch'                => 'ウォッチ',
@@ -1861,7 +1862,7 @@ PICT # その他
 'notanarticle'         => '記事ではありません',
 'notvisiblerev'        => 'この版は削除されました',
 'watchnochange'        => 'ウォッチリストに登録しているページに指定期間内に編集されたものはありません。',
-'watchlist-details'    => 'あなたのウォッチリストには$1{{PLURAL:$1|件}}のページが入っています (ノートページは数えません)。',
+'watchlist-details'    => 'あなたのウォッチリストには$1{{PLURAL:$1|件}}のページが入っています (トークページは数えません)。',
 'wlheader-enotif'      => '* メール通知が有効になっています',
 'wlheader-showupdated' => "* あなたが最後に訪問したあとに変更されたページは'''太字'''で表示されます",
 'watchmethod-recent'   => '最近の更新内のウォッチしているページを確認中',
@@ -1948,11 +1949,11 @@ $NEWPAGE
 'rollbacklink'     => 'ロールバック',
 'rollbackfailed'   => 'ロールバックに失敗しました',
 'cantrollback'     => '投稿者がただ一人であるため、編集を差し戻せません。',
-'alreadyrolled'    => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
+'alreadyrolled'    => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|トーク]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
 
-このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
+このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|トーク]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
 'editcomment'      => "編集内容の要約: 「''$1''」", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による直前の版へ差し戻し', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による編集を [[User:$1|$1]] による直前の版へ差し戻し', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 による編集を取り消して $2 による最後の版へ差し戻しました。',
 'sessionfailure'   => 'ログイン・セッションに問題が発生しました。セッションハイジャックを防ぐために操作は取り消されました。ブラウザの「戻る」を押して直前のページを再度読み込んだ後に、もう一度操作を行ってください。',
 
@@ -2033,13 +2034,13 @@ $NEWPAGE
 'undeletelink'                 => '閲覧・復帰',
 'undeletereset'                => 'リセット',
 'undeleteinvert'               => '選択を逆転する',
-'undeletecomment'              => 'コメント:',
+'undeletecomment'              => '理由:',
 'undeletedarticle'             => '「$1」を復帰しました',
 'undeletedrevisions'           => '$1{{PLURAL:$1|版}}を復帰しました',
 'undeletedrevisions-files'     => '$1{{PLURAL:$1|版}}と$2{{PLURAL:$2|個}}のファイルを復帰しました',
 'undeletedfiles'               => '$1{{PLURAL:$1|個}}のファイルを復帰しました',
 'cannotundelete'               => '復帰に失敗しました。誰かがすでにこのページを復帰した可能性があります。',
-'undeletedpage'                => "<big>'''$1 を復帰しました。'''</big>
+'undeletedpage'                => "'''$1 を復帰しました。'''
 
 最近の削除と復帰については[[Special:Log/delete|削除記録]]を参照してください。",
 'undelete-header'              => '最近削除されたページは[[Special:Log/delete|削除記録]]で確認できます。',
@@ -2128,8 +2129,8 @@ $1',
 'ipbotheroption'                  => 'その他',
 'ipbotherreason'                  => 'その他の理由・追加の理由:',
 'ipbhidename'                     => '利用者名を編集履歴や各種一覧から秘匿する',
-'ipbwatchuser'                    => 'この利用者の利用者ページと会話ページをウォッチする',
-'ipballowusertalk'                => 'この利用者に対してブロック中の自身の会話ページ編集を許可',
+'ipbwatchuser'                    => 'この利用者の利用者ページとトークページをウォッチする',
+'ipballowusertalk'                => 'この利用者に対してブロック中の自身のトークページ編集を許可',
 'ipb-change-block'                => '上記の設定で利用者を再びブロック',
 'badipaddress'                    => '無効なIPアドレス',
 'blockipsuccesssub'               => 'ブロックしました',
@@ -2160,7 +2161,7 @@ $1',
 'noautoblockblock'                => '自動ブロックなし',
 'createaccountblock'              => 'アカウント作成のブロック',
 'emailblock'                      => 'メール送信のブロック',
-'blocklist-nousertalk'            => '自身の会話ページ編集禁止',
+'blocklist-nousertalk'            => '自身のトークページ編集禁止',
 'ipblocklist-empty'               => '{{int:ipblocklist}}はありません。',
 'ipblocklist-no-results'          => '指定されたIPアドレスまたは利用者名はブロックされていません。',
 'blocklink'                       => 'ブロック',
@@ -2178,7 +2179,7 @@ $1',
 'block-log-flags-nocreate'        => 'アカウント作成のブロック',
 'block-log-flags-noautoblock'     => '自動ブロック無効',
 'block-log-flags-noemail'         => 'メール送信のブロック',
-'block-log-flags-nousertalk'      => '自身の会話ページの編集禁止',
+'block-log-flags-nousertalk'      => '自身のトークページの編集禁止',
 'block-log-flags-angry-autoblock' => '拡張自動ブロック有効',
 'block-log-flags-hiddenname'      => '利用者名非表示',
 'range_block_disabled'            => '広域ブロックは無効に設定されています。',
@@ -2230,14 +2231,14 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 '''注意！'''
 よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。ページの移動に伴う影響をよく考えてから踏み切るようにしてください。",
-'movepagetalktext'             => '付随するノートのページがある場合には、基本的には、一緒に移動されることになります。
+'movepagetalktext'             => '付随するトークページがある場合には、基本的には、一緒に移動されることになります。
 
 ただし、以下の場合については別です。
 *名前空間をまたがる移動の場合
-*移動先に既に履歴のあるノートページが存在する場合
+*移動先に既に履歴のあるトークページが存在する場合
 *下のチェックボックスのチェックマークを消した場合
 
-これらの場合、ノートページを移動する場合には、別に作業する必要があります。',
+これらの場合、トークページを移動する場合には、別に作業する必要があります。',
 'movearticle'                  => '移動するページ',
 'movenologin'                  => 'ログインしていません',
 'movenologintext'              => 'ページを移動するためには、アカウント作成の上、[[Special:UserLogin|ログイン]]している必要があります。',
@@ -2249,16 +2250,16 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'move-watch'                   => '移動するページをウォッチ',
 'movepagebtn'                  => 'ページを移動',
 'pagemovedsub'                 => '移動しました',
-'movepage-moved'               => "<big>'''「$1」は「$2」へ移動されました'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "'''「$1」は「$2」へ移動されました'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'リダイレクトが作成されました。',
 'movepage-moved-noredirect'    => 'リダイレクトは作成されませんでした。',
 'articleexists'                => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'cantmove-titleprotected'      => '移動先ページが作成保護対象となっているため、ページを移動できません。',
-'talkexists'                   => "'''ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。'''",
+'talkexists'                   => "'''ページ自身は移動されましたが、付随のトークページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。'''",
 'movedto'                      => '移動先:',
-'movetalk'                     => 'ノートページが付随する場合には、それも一緒に移動する',
+'movetalk'                     => 'トークページが付随する場合には、それも一緒に移動する',
 'move-subpages'                => 'サブページも移動する ($1個まで)',
-'move-talk-subpages'           => 'ノートページのサブページも移動する ($1個まで)',
+'move-talk-subpages'           => 'トークページのサブページも移動する ($1個まで)',
 'movepage-page-exists'         => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
 'movepage-page-moved'          => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'        => '$1 を $2 へ移動できませんでした。',
@@ -2374,7 +2375,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'あなたの利用者ページ',
 'tooltip-pt-anonuserpage'         => 'あなたのIPアドレス用の利用者ページ',
-'tooltip-pt-mytalk'               => 'あなたの会話ページ',
+'tooltip-pt-mytalk'               => 'あなたのトークページ',
 'tooltip-pt-anontalk'             => 'このIPアドレスからなされた編集についての議論',
 'tooltip-pt-preferences'          => '個人設定',
 'tooltip-pt-watchlist'            => '変更を監視しているページの一覧',
@@ -2484,10 +2485,10 @@ $1 は、すでにブロックされています。設定を変更しますか�
 # Info page
 'infosubtitle'   => 'ページ情報',
 'numedits'       => '編集数(ページ): $1',
-'numtalkedits'   => '編集数 (ノート): $1',
+'numtalkedits'   => '編集数 (トークページ): $1',
 'numwatchers'    => 'ウォッチしている利用者数: $1',
 'numauthors'     => '投稿者数(ページ): $1',
-'numtalkauthors' => '投稿者数 (ノート): $1',
+'numtalkauthors' => '投稿者数 (トークページ): $1',
 
 # Skin names
 'skinname-standard'    => 'クラシック',
@@ -2931,7 +2932,7 @@ $1',
 
 # Delete conflict
 'deletedwhileediting' => "'''警告:''' このページはあなたが編集し始めた後、削除されました！",
-'confirmrecreate'     => "あなたがこのページを編集し始めた後に、このページは[[User:$1|$1]] ([[User talk:$1|会話]]) によって削除されました。理由は次の通りです:
+'confirmrecreate'     => "あなたがこのページを編集し始めた後に、このページは[[User:$1|$1]] ([[User talk:$1|トーク]]) によって削除されました。理由は次の通りです:
 : ''$2''
 このままこのページを新規作成して良いか確認してください。",
 'recreate'            => '新規作成する',
@@ -2987,16 +2988,16 @@ $1',
 'lag-warn-high'   => 'データベースサーバーへの負荷のため同期が遅れています。この一覧には$1{{PLURAL:$1|秒}}前までの編集が反映されていない可能性があります。',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'あなたのウォッチリストには $1{{PLURAL:$1|件}}のページが登録されています (ノートページは数えません)。',
+'watchlistedit-numitems'       => 'あなたのウォッチリストには $1{{PLURAL:$1|件}}のページが登録されています (トークページは数えません)。',
 'watchlistedit-noitems'        => 'あなたのウォッチリストには項目がありません。',
 'watchlistedit-normal-title'   => 'ウォッチリストの編集',
 'watchlistedit-normal-legend'  => 'ウォッチリストから項目を削除',
-'watchlistedit-normal-explain' => 'ウォッチリストに入っている項目が以下に表示されています。項目の横にあるチェックボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」を選べば削除できます。また、[[Special:Watchlist/raw|一覧をテキストで編集]]することもできます。',
+'watchlistedit-normal-explain' => 'ウォッチリストに入っている項目が以下に表示されています。削除するには、項目の横にあるチェックボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」をクリックしてください。また、[[Special:Watchlist/raw|一覧をテキストで編集]]することもできます。',
 'watchlistedit-normal-submit'  => '項目の削除',
 'watchlistedit-normal-done'    => 'ウォッチリストから $1{{PLURAL:$1|件}}を削除しました:',
 'watchlistedit-raw-title'      => 'ウォッチリストをテキストで編集',
 'watchlistedit-raw-legend'     => 'ウォッチリストをテキストで編集',
-'watchlistedit-raw-explain'    => 'ウォッチリストに含まれるページが以下に表示されています。1行につき1つのページを表し、リストから追加・削除することにより編集できます。編集を反映させるには「{{int:Watchlistedit-raw-submit}}」を選びます。この編集方法の他に、[[Special:Watchlist/edit|標準のエディタ]]も利用できます。',
+'watchlistedit-raw-explain'    => 'ウォッチリストに含まれるページが以下に表示されています。1行につき1つのページを表し、リストから追加・削除することにより編集できます。編集を反映させるには「{{int:Watchlistedit-raw-submit}}」をクリックします。この編集方法の他に、[[Special:Watchlist/edit|標準のエディタ]]も利用できます。',
 'watchlistedit-raw-titles'     => '項目:',
 'watchlistedit-raw-submit'     => 'ウォッチリストを更新',
 'watchlistedit-raw-done'       => 'ウォッチリストを更新しました。',
@@ -3094,7 +3095,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'パスの取得',
 'filepath-page'    => 'ファイル:',
-'filepath-submit'  => 'パスを取得',
+'filepath-submit'  => '取得',
 'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。
 
 ファイル名は接頭辞「{{ns:file}}:」を付けずに入力してください。',

@@ -134,7 +134,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'category-file-count-limited'    => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.',
 'listingcontinuesabbrev'         => '(dowamy)',
 
-'mainpagetext'      => "<big>'''MediaWiki şowlulyk bilen guruldy.'''</big>",
+'mainpagetext'      => "'''MediaWiki şowlulyk bilen guruldy.'''",
 'mainpagedocfooter' => 'Wiki programmasynyň ulanylyşy hakynda maglumat almak üçin [http://meta.wikimedia.org/wiki/Help:Contents ulanyjy gollanmasyna] serediň.
 
 == Öwrenjeler ==
@@ -543,7 +543,7 @@ Sahypany ýazdyr düwmesine ýene bir gezek bassaňyz, özgerdişiňiz mazmunsyz
 'summary-preview'                  => 'Deslapky synyň mazmuny:',
 'subject-preview'                  => 'Temanyň/adyň deslapky syny:',
 'blockedtitle'                     => 'Ulanyjy blokirlenen',
-'blockedtext'                      => '<big>\'\'\'Ulanyjy adyňyz ýa-da IP adresiňiz blokirlenipdir.\'\'\'</big>
+'blockedtext'                      => '\'\'\'Ulanyjy adyňyz ýa-da IP adresiňiz blokirlenipdir.\'\'\'
 
 Sizi blokirlän administrator: $1.<br />
 Blokirlemäniň sebäbi: \'\'$2\'\'.
@@ -1913,7 +1913,7 @@ Ulanan çykgydyňyz nädogry bolmagy ýa-da onuň arhiwden dikeldilen ýa-da aý
 'undeletedfiles'               => '{{PLURAL:$1|1 faýl|$1 faýl}} dikeldildi',
 'cannotundelete'               => 'Yzyna dikeltmeklik başa barmady;
 kimdir biri eýýäm sahypany yzyna dikelden bolmagy ahmal.',
-'undeletedpage'                => "<big>'''$1 yzyna dikeldildi'''</big>
+'undeletedpage'                => "'''$1 yzyna dikeldildi'''
 
 Ýaňy-ýakyndaky öçürmeleriň we dikeltmeleriň ýazgysy üçin [[Special:Log/delete|öçürme gündeligine]] serediň.",
 'undelete-header'              => 'Ýaňy-ýakynda öçürilen sahypalary görmek üçin [[Special:Log/delete|öçürme gündeligine]] serediň.',
@@ -2131,7 +2131,7 @@ Bu üýtgeşiklik giňden tanalýan bir sahypa üçin garaşylmaýan netijelere 
 'move-watch'                   => 'Bu sahypany gözegçilikde sakla',
 'movepagebtn'                  => 'Adyny üýtget',
 'pagemovedsub'                 => 'At üýtgedildi',
-'movepage-moved'               => '<big>\'\'\'"$1" sahypasy "$2" sahypasyna geçirildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '\'\'\'"$1" sahypasy "$2" sahypasyna geçirildi\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => 'Gönükdirme döredildi.',
 'movepage-moved-noredirect'    => 'Gönükdirme döretmeklik bökdeldi.',
 'articleexists'                => 'Şu atda eýýämden bir sahypa bar ýa-da saýlap alan adyňyz nädogry.
@@ -2869,7 +2869,7 @@ At aýyrmak üçin gapdalyndaky gutujygy belläp, Atlary aýyr düwmesine basyň
 # Special:FilePath
 'filepath'         => 'Faýla barýan ýol',
 'filepath-page'    => 'Faýl:',
-'filepath-submit'  => 'Ýol',
+'filepath-submit'  => 'Git',
 'filepath-summary' => 'Bu ýörite sahypa faýla barýan doly ýoly gaýtaryp getirýär. 
 Suratlar doly ölçegde görkezilýär, beýleki faýl görnüşleri degişli programmalary bilen gönümel başladylýar. 
 

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Diego Grez
  * @author Gadao01
  * @author Jatrobat
  * @author Magalahi
@@ -243,6 +244,7 @@ $messages = array(
 'editsection'             => 'tulaika',
 'editold'                 => 'tulaika',
 'viewsourceold'           => 'atan i code',
+'editlink'                => 'tulaika',
 'editsectionhint'         => 'Tulaika i patte: $1',
 'toc'                     => 'Guihana',
 'showtoc'                 => "na'anok",
@@ -276,6 +278,13 @@ $messages = array(
 # General errors
 'error'                => 'Linachi',
 'laggedslavemode'      => "Adahi: Buente ha' tataigue i tinilaika gi halacha.",
+'missing-article'      => 'Ti ha sodda\' i database i palabras i pahina ni debi di u sodda\', i mafa\'na\'an "$1" $2.
+
+Tenga, masusesedi este yanggen un klik i ti fafacho\'cho\' na diff pat historia na inachetton i pahina ni mana\'suha.
+
+Yanggen ti este i rason, buente mañodda\' hao "bug" gi "software".
+
+Pot fabot ripotta este para un [[Special:ListUsers/sysop|administrator]], ya un nota i URL.',
 'missingarticle-rev'   => '(tinilaika#: $1)',
 'missingarticle-diff'  => '(Dif: $1, $2)',
 'internalerror'        => 'Linachi sanhalom',
@@ -431,7 +440,7 @@ Yanggen un yemme' \"Såtba\" ta'lo, masåtba tinilaika-mu sin titulo.",
 'summary-preview'                  => 'Ripasun sumaria:',
 'subject-preview'                  => 'Ripasun suhetu/titulo:',
 'blockedtitle'                     => "Machoma' i muna'sesetbi",
-'blockedtext'                      => "<big>'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''</big>
+'blockedtext'                      => "'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''
 
 Manchomma' as $1. 
 Pot i rason: ''$2''.
@@ -480,7 +489,8 @@ Anggen lachi finatto-mu mågi, yemme' i batunes '''back''' ni iyo-mu browser.",
 'anontalkpagetext'                 => "----''Este na påhinan kombetsasion muna'sesetbi taina'an ni ti ha fa'tinas kuenta-ña pat ti ha u'usa i kuenta. Entonses na in i'isa i numiron IP para in aidentifika gue'.
 Buente ha' na guåha unos kuantos na muna'sesetbi ni ma u'usa i enao na IP.
 An un muna'sesetbi taina'an hao ya manñiente hao na guåha na kommentu ti prisisu ni manadirihiyi hao, pot fabot [[Special:UserLogin|fa'tinas kuenta-mu pat log in]] para mansuhayi yinaoyao yan i otru na muna'sesetbi siha.''",
-'noarticletext'                    => "Tåya' tinige'-ña i påhina este, siña un [[Special:Search/{{PAGENAME}}|aligao i titulon påhina]] gi halom otru na påhina siha pat [{{fullurl:{{FULLPAGENAME}}|action=edit}} tulaika i påhina].",
+'noarticletext'                    => 'Tåya\' tinige\'-ña este na påhina gi este na momento.
+Siña un [[Special:Search/{{PAGENAME}}|aligao este na titulon påhina]] gi halom otro na påhina siha, <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} tulaika este na påhina]</span>.',
 'userpage-userdoesnotexist'        => 'Ti marehistra i kuenata muna\'sesetbi "$1". Pot fabot chek kao malago\' hao un fa\'tinas/tulaika este na påhina.',
 'usercsspreview'                   => "'''Hasso fan na un ripapasa iyo-mu CSS muna'sesetbi, trabiha ti masåtba ha'!'''",
 'userjspreview'                    => "'''Hasso fan na un chachagi/ripapasa iyo-mu JavaScript muna'sesetbi, trabiha ti masåtba ha'!'''",
@@ -652,6 +662,7 @@ Fanapunta na para u na'nuebu i kolumna anggen un usa i inachetton nabegasion.",
 
 # Search results
 'searchresults'             => 'Humuyongña i inaligao',
+'searchresults-title'       => 'Risutton i inaligao "$1"',
 'searchresulttext'          => 'Para mas infotmasion nu manaliligao {{SITENAME}}, hånao para [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Un aligao '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Un aligao '''$1'''",
@@ -807,7 +818,7 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'filehist-dimensions'       => 'Mineddong',
 'filehist-filesize'         => 'Mineddong atkibu',
 'filehist-comment'          => 'Komentu',
-'imagelinks'                => 'Inachetton',
+'imagelinks'                => 'Inachetton dokumento',
 'linkstoimage'              => 'Umachetton i sigiente {{PLURAL:$1|na påhina|$1 na påhina siha}} yan este na atkibu:',
 'nolinkstoimage'            => "Tåya' na påhina siha umachetton yan este na atkibu.",
 'sharedupload'              => "Ma'apatte este na atkibu ya buente ha' ma'usa gi otru proyektu siha.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
@@ -965,6 +976,7 @@ Estague taiguini i nibet i påhina '''$1''':",
 
 # Undelete
 'undeletebtn'            => "Fa'tinas ta'lo",
+'undeletelink'           => 'atan/rinueba',
 'undelete-search-submit' => 'Aligao',
 
 # Namespace form on various pages
@@ -1029,7 +1041,7 @@ Pot sienkasu i hilo', nesesario ha' na un kånya pat un na'daña i påhina yangg
 'move-watch'       => 'Pulan este na påhina',
 'movepagebtn'      => 'Kånya i påhina',
 'pagemovedsub'     => 'Munhåyan i siniha',
-'movepage-moved'   => '<big>\'\'\'Makånya "$1" para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '\'\'\'Makånya "$1" para "$2"\'\'\'', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => "Esta guåha un påhina mafa'na'an enao, pat ti masedi ni inayek-mu.
 Ayek fan otru nå'an-ña.",
 'talkexists'       => "'''Munhåyan i siniha i påhina mismo, lao ti siña ha kånya i påhinan kombetsasion sa' guåha esta otru ni titulon nuebu.'''",
@@ -1054,7 +1066,7 @@ Ayek fan otru nå'an-ña.",
 'importlogpage' => 'Impotta i log',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => "Påhina-hu muna'setbi",
+'tooltip-pt-userpage'             => "I påhina-mu i muna'sesetbi",
 'tooltip-pt-mytalk'               => 'Kometsasion-hu',
 'tooltip-pt-preferences'          => "I ga'ña-hu",
 'tooltip-pt-watchlist'            => 'I listan påhina siha ni un pupulan.',
@@ -1065,6 +1077,7 @@ Ayek fan otru nå'an-ña.",
 'tooltip-ca-edit'                 => 'Siña un tulaika este na påhina. Pot fabot usa i batunes ni manchek åntes di un satba.',
 'tooltip-ca-addsection'           => "Nå'ye komentu gi kometsasion.",
 'tooltip-ca-viewsource'           => "Maprotehi i påhina. Siña un li'e' iyo-ña code.",
+'tooltip-ca-history'              => 'I uttimo siha na tinilaika para este na påhina',
 'tooltip-ca-protect'              => 'Protehi i påhina este',
 'tooltip-ca-delete'               => "Na'suha i påhina",
 'tooltip-ca-move'                 => 'Kånya i påhina',
@@ -1072,6 +1085,7 @@ Ayek fan otru nå'an-ña.",
 'tooltip-ca-unwatch'              => "Na'suha i påhina gi i listan pinilan-mu",
 'tooltip-search'                  => 'Aligao gi {{SITENAME}}',
 'tooltip-search-go'               => "Ir na páhina'i e ma'nome si cumplido",
+'tooltip-search-fulltext'         => 'Aligao todu siha i pahina para este na palabras.',
 'tooltip-p-logo'                  => 'Fanhaluman',
 'tooltip-n-mainpage'              => 'Bisita i Fanhaluman',
 'tooltip-n-portal'                => "Pot i proyektu, håfa siña hao chumo'gue, månu na siña masodda' kosas",
@@ -1080,11 +1094,15 @@ Ayek fan otru nå'an-ña.",
 'tooltip-n-randompage'            => "Ta'yoki guatu maseha håfa na påhina",
 'tooltip-n-help'                  => "Estegue' siña hao kumunprende.",
 'tooltip-t-whatlinkshere'         => "Listan todu i påhinan wiki siha ni ma na'chetton guini",
+'tooltip-t-recentchangeslinked'   => 'I tinilaika siha gi halacha gi todu pahina ni ha ma-link ginen este na pahina.',
 'tooltip-t-contributions'         => "Atan i listan kontribusion siha ni este na muna'sesetbi",
 'tooltip-t-emailuser'             => "Na'hanague i muna'sesetbi ni e-mail",
 'tooltip-t-upload'                => "Na'kåtga hulu' atkibu",
 'tooltip-t-specialpages'          => 'Lista ni manespesiat na påhina',
+'tooltip-t-print'                 => "I emprentåyon na pinila' este na påhina.",
+'tooltip-t-permalink'             => 'I petmanente na inachetton para este na tinilaikan i påhina.',
 'tooltip-ca-nstab-user'           => "Atan i påhina ni muna'sesetbi",
+'tooltip-ca-nstab-special'        => 'Espesiat este na påhina, ti siña un tulaika i mismo påhina.',
 'tooltip-ca-nstab-project'        => 'Atan i påhinan proyekto',
 'tooltip-ca-nstab-image'          => 'Atan i påhinan atkibu',
 'tooltip-ca-nstab-template'       => 'Atan i plantiyas',
