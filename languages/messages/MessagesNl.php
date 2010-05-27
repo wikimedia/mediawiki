@@ -1077,8 +1077,8 @@ De door $3 opgegeven reden is ''$2''",
 'currentrev-asof'        => 'Huidige versie van $2 om $3',
 'revisionasof'           => 'Versie van $2 om $3',
 'revision-info'          => 'Versie op $1 van $2',
-'previousrevision'       => '←Oudere versie',
-'nextrevision'           => 'Nieuwere versie→',
+'previousrevision'       => '← Oudere versie',
+'nextrevision'           => 'Nieuwere versie →',
 'currentrevisionlink'    => 'Huidige versie',
 'cur'                    => 'huidig',
 'next'                   => 'volgende',
@@ -1103,7 +1103,7 @@ Wellicht is die verwijderd of hernoemd.
 [[Special:Search|Doorzoek de wiki]] voor relevante pagina's.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(opmerking verwijderd)',
+'rev-deleted-comment'         => '(reden verwijderd)',
 'rev-deleted-user'            => '(gebruiker verwijderd)',
 'rev-deleted-event'           => '(logboekregel verwijderd)',
 'rev-deleted-user-contribs'   => '[gebruikersnaam of IP-adres verwijderd - bewerking verborgen in bijdragen]',
@@ -1672,7 +1672,7 @@ Zie de [[Special:NewFiles|galerij met nieuwe bestanden]] voor een visueler overz
 'filedesc'                    => 'Beschrijving',
 'fileuploadsummary'           => 'Samenvatting:',
 'filereuploadsummary'         => 'Bestandswijzigingen:',
-'filestatus'                  => 'Auteursrechtensituatie:',
+'filestatus'                  => 'Auteursrechtenstatus:',
 'filesource'                  => 'Bron:',
 'uploadedfiles'               => 'Geüploade bestanden',
 'ignorewarning'               => 'Deze waarschuwing negeren en het bestand toch opslaan',
@@ -1875,7 +1875,7 @@ De [$2 pagina met de bestandsbeschrijving] wordt hieronder weergegeven.',
 'filerevert'                => '$1 terugdraaien',
 'filerevert-legend'         => 'Bestand terugdraaien',
 'filerevert-intro'          => "U bent '''[[Media:$1|$1]]''' aan het terugdraaien tot de [$4 versie op $2, $3].",
-'filerevert-comment'        => 'Opmerking:',
+'filerevert-comment'        => 'Reden:',
 'filerevert-defaultcomment' => 'Teruggedraaid tot de versie op $1, $2',
 'filerevert-submit'         => 'Terugdraaien',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' is teruggedraaid tot de [$4 versie op $2, $3].",
@@ -2020,7 +2020,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'listusers-editsonly'     => 'Alleen gebruikers met bewerkingen weergeven',
 'listusers-creationsort'  => 'Sorteren op registratiedatum',
 'usereditcount'           => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
-'usercreated'             => 'aangemaakt op $1 om $2',
+'usercreated'             => 'geregistreerd op $1 om $2',
 'newpages'                => "Nieuwe pagina's",
 'newpages-username'       => 'Gebruikersnaam:',
 'ancientpages'            => "Oudste pagina's",
@@ -2232,7 +2232,7 @@ U kunt uw volglijstinstellingen wijzigen op:
 {{fullurl:Special:Watchlist/edit}}
 
 U kunt de pagina van uw volglijst verwijderen via de volgende verwijzing:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Feedback en andere assistentie:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2382,7 +2382,7 @@ Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undeleteviewlink'             => 'bekijken',
 'undeletereset'                => 'Herinstellen',
 'undeleteinvert'               => 'Omgekeerde selectie',
-'undeletecomment'              => 'Toelichting:',
+'undeletecomment'              => 'Reden:',
 'undeletedarticle'             => '"[[$1]]" is teruggeplaatst',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} teruggeplaatst',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestand|$2 bestanden}} teruggeplaatst',
@@ -2567,7 +2567,7 @@ De blokkade is onderdeel van de reeks $2, waarvan de blokkade wel opgeheven kan 
 'proxyblocker-disabled'           => 'Deze functie is uitgeschakeld.',
 'proxyblockreason'                => 'Dit is een automatische preventieve blokkade omdat u gebruik maakt van een open proxyserver.
 Neem contact op met uw Internet-provider of uw helpdesk en stel die op de hoogte van dit ernstige beveiligingsprobleem.',
-'proxyblocksuccess'               => 'Uitgevoerd.',
+'proxyblocksuccess'               => 'Afgerond.',
 'sorbsreason'                     => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.',
 'sorbs_create_account_reason'     => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
 U kunt geen gebruiker registreren.',
@@ -3410,8 +3410,8 @@ Probeer normale voorvertoning.',
 'watchlistedit-normal-title'   => 'Volglijst bewerken',
 'watchlistedit-normal-legend'  => 'Pagina’s van uw volglijst verwijderen',
 'watchlistedit-normal-explain' => 'Hieronder worden de pagina’s op uw volglijst weergegeven.
-Klik op het vierkantje ernaast en daarna op ‘Pagina’s verwijderen’ om een pagina te verwijderen.
-U kunt ook [[Special:Watchlist/raw|de ruwe lijst bewerken]].',
+Klik op het vierkantje ernaast en daarna op "{{int:Watchlistedit-normal-submit}}" om een pagina te verwijderen.
+U kunt ook de [[Special:Watchlist/raw|ruwe lijst bewerken]].',
 'watchlistedit-normal-submit'  => "Pagina's verwijderen",
 'watchlistedit-normal-done'    => 'Er {{PLURAL:$1|is 1 pagina|zijn $1 pagina’s}} verwijderd van uw volglijst:',
 'watchlistedit-raw-title'      => 'Ruwe volglijst bewerken',
@@ -3419,7 +3419,7 @@ U kunt ook [[Special:Watchlist/raw|de ruwe lijst bewerken]].',
 'watchlistedit-raw-explain'    => 'Hieronder staan pagina’s op uw volglijst.
 U kunt de lijst bewerken door pagina’s te verwijderen en toe te voegen.
 Eén pagina per regel.
-Als u klaar bent, klik dan op ‘Volglijst bijwerken’.
+Als u klaar bent, klik dan op "{{int:Watchlistedit-raw-submit}}".
 U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].',
 'watchlistedit-raw-titles'     => 'Pagina’s:',
 'watchlistedit-raw-submit'     => 'Volglijst bijwerken',

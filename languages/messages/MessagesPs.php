@@ -366,6 +366,11 @@ $messages = array(
 'jumpto'            => 'ورټوپ کړه:',
 'jumptonavigation'  => 'ګرځښت',
 'jumptosearch'      => 'پلټل',
+'view-pool-error'   => 'اوبخښۍ، دم ګړۍ پالنګران د ډېر بارېدو ستونزې سره مخامخ شوي.
+ډېر زيات کارنان د همدې مخ د کتلو په هڅه کې دي.
+لطفاً د دې مخ د کتلو د بيا هڅې نه دمخه يو څو شېبې صبر وکړۍ.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'د {{SITENAME}} په اړه',
@@ -393,7 +398,7 @@ $messages = array(
 
 'versionrequired' => 'د ميډياويکي $1 بڼې ته اړتيا ده',
 
-'ok'                      => 'هو',
+'ok'                      => 'ښه',
 'retrievedfrom'           => '"$1" نه اخيستل شوی',
 'youhavenewmessages'      => 'تاسې $1 لری  ($2).',
 'newmessageslink'         => 'نوي پيغامونه',
@@ -558,9 +563,13 @@ $messages = array(
 'oldpassword'               => 'زوړ پټنوم:',
 'newpassword'               => 'نوی پټنوم:',
 'retypenew'                 => 'نوی پټنوم بيا وليکه:',
+'resetpass_submit'          => 'پټنوم مو وټاکۍ او بيا غونډال ته ورننوځۍ',
+'resetpass_success'         => 'ستاسې پټنوم په برياليتوب سره بدل شو!
+اوس غونډال کې د ورننوتلو په حال کې يو ...',
 'resetpass_forbidden'       => 'پټنومونه مو نه شي بدلېدلای',
 'resetpass-no-info'         => 'همدې مخ ته د لاسرسي موندلو پخاطر تاسې ته پکار ده چې لومړی غونډال ته ورننوځۍ.',
 'resetpass-submit-loggedin' => 'پټنوم بدلول',
+'resetpass-submit-cancel'   => 'ناګارل',
 'resetpass-temp-password'   => 'لنډمهالی پټنوم:',
 
 # Edit page toolbar
@@ -642,8 +651,13 @@ $messages = array(
 لطفاً د مخ په لنډولو او په وړو برخو وېشلو باندې غور وکړی.'''",
 'longpageerror'                    => "'''ستونزه: کوم متن چې دلته تاسو ليکلی، $1 کيلوبايټه اوږد دی او دا د همدې مخ د لوړترين ټاکلي بريده، $2 کيلوبايټه، څخه اوږد دی.
 ستاسو متن نه شي خوندي کېدلای.'''",
-'semiprotectedpagewarning'         => "'''يادونه:''' همدا مخ تړل شوی دی او يواځې ثبت شوي کارونکي کولای شي چې په دې مخ کې بدلونونه راولي.",
-'titleprotectedwarning'            => "'''ګواښنه: همدا مخ تړل شوی دی او د دې د جوړولو لپاره تاسې ته د [[Special:ListGroupRights|ځانګړو رښتو]] د ترلاسه کولو اړتيا ده.'''",
+'protectedpagewarning'             => "'''ګواښنه: همدا مخ تړل شوی او يوازې هغه کارنان په دې مخ کې بدلونونه راوستلای شي چې د پازوالۍ د آسانتياوو نه برخمن دي.'''
+ستاسې د مالوماتو لپاره د وروستني يادښت متن دلته په دې توګه راوړل شوی:",
+'semiprotectedpagewarning'         => "'''پاملرنه:''' دا مخ تړل شوی او يواځې ثبت شوي کارنان کولای شي چې په دې مخ کې بدلونونه راولي.
+ستاسې د مالوماتو لپاره د وروستني يادښت متن دلته په دې توګه راوړل شوی:",
+'cascadeprotectedwarning'          => "'''ګواښنه:''' همدا مخ تړل شوی دی او يوازې هغه کارنان په دې مخ کې بدلونونه راوستلای شي چې د پازوالۍ د آسانتياوو نه برخمن دي، دا په دې خاطر چې همدا مخ د {{PLURAL:$1|لانديني مخ|لاندينيو مخونو}} په ځوړاوبيزې ژغورنې کې ورګډ دی:",
+'titleprotectedwarning'            => "'''ګواښنه: همدا مخ تړل شوی دی او د دې د جوړولو لپاره تاسې ته د [[Special:ListGroupRights|ځانګړو رښتو]] د ترلاسه کولو اړتيا ده.'''
+ستاسې د مالوماتو لپاره د وروستني يادښت متن دلته په دې توګه راوړل شوی:",
 'templatesused'                    => 'په دې مخ کارېدلې {{PLURAL:$1|کينډۍ|کينډۍ}}:',
 'templatesusedpreview'             => 'يه دې مخليدنه کارېدلې {{PLURAL:$1|کينډۍ|کينډۍ}}:',
 'templatesusedsection'             => 'په دې برخه کې کارېدلي {{PLURAL:$1|کينډۍ|کينډۍ}}:',
@@ -694,11 +708,13 @@ $messages = array(
 'historyempty'           => '(تش)',
 
 # Revision feed
+'history-feed-title'          => 'د مخکتنو پېښليک',
 'history-feed-item-nocomment' => '$1 په $2',
 
 # Revision deletion
 'rev-delundel'               => 'ښکاره کول/ پټول',
 'rev-showdeleted'            => 'ښکاره کول',
+'revisiondelete'             => 'د ړنګولو/ناړنګولو مخکتنې',
 'revdelete-show-file-submit' => 'هو',
 'revdelete-radio-same'       => '(مه بدلوه)',
 'revdelete-radio-set'        => 'هو',
@@ -718,9 +734,11 @@ $messages = array(
 ** Potentially libelous information',
 'revdelete-otherreason'      => 'بل/اضافي سبب:',
 'revdelete-reasonotherlist'  => 'بل سبب',
+'revdelete-offender'         => 'د مخکتنې ليکوال:',
 
 # History merging
 'mergehistory-from'   => 'د سرچينې مخ:',
+'mergehistory-into'   => 'د موخې مخ:',
 'mergehistory-reason' => 'سبب:',
 
 # Merge log
@@ -744,6 +762,7 @@ $messages = array(
 'notextmatches'                  => 'د هېڅ کوم مخ متن ورسره سمون نه خوري',
 'prevn'                          => 'تېر {{PLURAL:$1|$1}}',
 'nextn'                          => 'راتلونکي {{PLURAL:$1|$1}}',
+'prevn-title'                    => 'تېر $1 {{PLURAL:$1|پايله|پايلې}}',
 'viewprevnext'                   => '($1 {{int:pipe-separator}} $2) ($3) کتل',
 'searchmenu-legend'              => 'د پلټلو خوښنې',
 'searchhelp-url'                 => 'Help:لړليک',
@@ -830,6 +849,7 @@ $messages = array(
 'defaultns'                   => 'او يا هم په دغو نوم-تشيالونو کې پلټل:',
 'default'                     => 'تلواليز',
 'prefs-files'                 => 'دوتنې',
+'prefs-textboxsize'           => 'د سمون کړکۍ کچه',
 'youremail'                   => 'برېښليک *',
 'username'                    => 'کارن-نوم:',
 'uid'                         => 'د کارن پېژندنه:',
@@ -1047,6 +1067,7 @@ $messages = array(
 'filedelete-comment'          => 'تبصره:',
 'filedelete-submit'           => 'ړنګول',
 'filedelete-success'          => "'''$1''' ړنګ شو.",
+'filedelete-nofile'           => "'''$1''' نشته.",
 'filedelete-otherreason'      => 'بل/اضافه سبب:',
 'filedelete-reason-otherlist' => 'بل سبب',
 'filedelete-reason-dropdown'  => '*د ړنګولو ټولګړی سبب
@@ -1085,6 +1106,7 @@ $messages = array(
 'statistics-pages'        => 'مخونه',
 'statistics-files'        => 'پورته شوې دوتنې',
 'statistics-views-total'  => 'ټولټال کتنې',
+'statistics-users-active' => 'فعاله کارنان',
 'statistics-mostpopular'  => 'تر ټولو ډېر کتل شوي مخونه',
 
 'disambiguations' => 'د څرګندونې مخونه',
@@ -1496,6 +1518,7 @@ $messages = array(
 '1movedto2_redir'         => '[[$1]] د [[$2]] مخ ته د مخ ګرځونې په توګه ولېږدېده',
 'movelogpage'             => 'د لېږدولو يادښت',
 'movelogpagetext'         => 'دا لاندې د لېږدول شوو مخونو لړليک دی.',
+'movesubpage'             => '{{PLURAL:$1|څېرمه مخ|څېرمه مخونه}}',
 'movereason'              => 'سبب',
 'revertmove'              => 'په څټ ګرځول',
 'delete_and_move'         => 'ړنګول او لېږدول',
@@ -1692,8 +1715,11 @@ $messages = array(
 'exif-artist'             => 'ليکوال',
 'exif-usercomment'        => 'د کارونکي تبصرې',
 'exif-datetimedigitized'  => 'د ګڼياليز کېدنې وخت او نېټه',
+'exif-fnumber'            => 'F شمېره',
 'exif-flash'              => 'فلش',
 'exif-filesource'         => 'د دوتنې سرچينه',
+'exif-gpsaltituderef'     => 'د لوړوالي سرچينه',
+'exif-gpsaltitude'        => 'لوړوالی',
 'exif-gpsareainformation' => 'د جي پي اس د سيمې نوم',
 'exif-gpsdatestamp'       => 'د جي پي اس نېټه',
 
@@ -1717,6 +1743,8 @@ $messages = array(
 'exif-focalplaneresolutionunit-2' => 'انچه',
 
 'exif-sensingmethod-1' => 'ناڅرګنده',
+
+'exif-scenecapturetype-0' => 'معيار',
 
 'exif-gaincontrol-0' => 'هېڅ',
 
@@ -1776,7 +1804,7 @@ $5
 'recreate' => 'بياجوړول',
 
 # action=purge
-'confirm_purge_button' => 'ښه/هو',
+'confirm_purge_button' => 'ښه',
 'confirm-purge-top'    => 'په رښتيا د همدې مخ حافظه سپينول غواړۍ؟',
 
 # Multipage image navigation
@@ -1839,12 +1867,14 @@ $5
 'version'                  => 'بڼه',
 'version-specialpages'     => 'ځانګړي مخونه',
 'version-other'            => 'بل',
+'version-version'          => '(بڼه $1)',
 'version-license'          => 'اجازتليک',
 'version-software'         => 'نصب شوی ساوتری',
 'version-software-version' => 'بڼه',
 
 # Special:FilePath
-'filepath-page' => 'دوتنه:',
+'filepath-page'   => 'دوتنه:',
+'filepath-submit' => 'ورځه',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'د دوه ګونو دوتنو پلټنه',
@@ -1870,11 +1900,17 @@ $5
 # Special:Tags
 'tag-filter-submit' => 'چاڼګر',
 'tags-edit'         => 'سمول',
+'tags-hitcount'     => '$1 {{PLURAL:$1|بدلون|بدلونونه}}',
 
 # Database error messages
-'dberr-header' => 'دا ويکي يوه ستونزه لري',
+'dberr-header'   => 'دا ويکي يوه ستونزه لري',
+'dberr-problems' => 'اوبخښۍ!
+دم مهال دا وېبپاڼه د تخنيکي ستونزو سره مخامخ شوې.',
 
 # HTML forms
+'htmlform-select-badoption'    => 'کوم څه چې تاسو ځانګړي کړي هغه د منلو وړ خوښه نه ده.',
+'htmlform-int-invalid'         => 'کوم څه چې تاسو ځانګړي کړي هغه يوه سمه شمېره نه ده.',
+'htmlform-float-invalid'       => 'کوم څه چې تاسو ځانګړي کړي هغه يوه شمېره نه ده.',
 'htmlform-submit'              => 'سپارل',
 'htmlform-reset'               => 'بدلونونه ناکړل',
 'htmlform-selectorother-other' => 'بل',

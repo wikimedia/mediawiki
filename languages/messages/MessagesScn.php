@@ -458,12 +458,12 @@ L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:SpecialPages|Alenc
 # General errors
 'error'                => 'Erruri',
 'databaseerror'        => 'Erruri dû database',
-'dberrortext'          => 'Erruri di sintassi ntâ richiesta nultrata a lu database. 
+'dberrortext'          => 'Erruri di sintassi ntâ richiesta nultrata a lu databbasi. 
 Chistu putissi innicari la prisenza d\'un bug ntô software. 
-L\'ùrtima query mannata a lu database hà stata: 
+L\'ùrtima query mannata a lu database fu: 
 <blockquote><tt>$1</tt></blockquote> 
 richiamata dâ funzioni "<tt>$2</tt>". 
-MySQL hà ristituitu lu siquenti erruri "<tt>$3: $4</tt>".',
+Lu databbasi desi l\'erruri "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Erruri di sintassi ntâ richiesta nultrata a lu database. 
 L\'ùrtima query mannata a lu database hà stata: 
 "$1" 
@@ -484,6 +484,7 @@ V\'arringrazziamu si signaliati zoccu succidìu a nu [[Special:ListUsers/sysop|a
 'readonly_lag'         => 'Lu database hà statu bluccatu automaticamenti, mentri li server cu li database slave si sincrunìzzanu cu lu master',
 'internalerror'        => 'Erruri nternu',
 'internalerror_info'   => 'Erruri nternu: $1',
+'fileappenderrorread'  => 'Nu fu pussìbbili di lèggiri "$1" nta mentri lu juncìa.',
 'fileappenderror'      => 'Nun è possibi junciri "$1" a "$2".',
 'filecopyerror'        => 'Mpussìbbili cupiari lu file "$1" n "$2".',
 'filerenameerror'      => 'Mpussìbbili rinuminari lu file "$1" \'n "$2".',
@@ -494,7 +495,7 @@ V\'arringrazziamu si signaliati zoccu succidìu a nu [[Special:ListUsers/sysop|a
 'unexpected'           => 'Valuri mpruvistu: "$1"="$2".',
 'formerror'            => 'Erruri: mpussìbbili mannari lu mòdulu',
 'badarticleerror'      => 'Opirazzioni nun cunzintita pi sta pàggina.',
-'cannotdelete'         => 'Mpussìbbili cancillari la pàggina o lu file addumannatu. (Putissi aviri statu già cancillatu.)',
+'cannotdelete'         => 'Mpussìbbili cancillari la pàggina o lu file "$1" addumannatu. Putissi siri già cancillatu di quarcun\'àutru.',
 'badtitle'             => 'Tìtulu nun currettu',
 'badtitletext'         => "Lu tìtulu dâ pàggina addumannata è vacanti, erratu o cu caràttiri nun ammessi oppuru diriva di n'erruri ntê culligamenti tra siti wiki diversi o virsioni n lingui diversi dû stissu situ.",
 'perfcached'           => "'''Nota:''' li dati ca sèquinu sunnu stratti di na copia ''cache'' dû database, nun aggiurnati n tempu riali.",
@@ -526,9 +527,9 @@ La mutivazzioni è chista: ''$2''.",
 'virus-unknownscanner' => 'antivirus scanusciutu:',
 
 # Login and logout pages
-'logouttext'                 => "'''Ora tu niscisti.'''
+'logouttext'                 => "'''Nisciuta. Ora siti fora.'''
 
-Poi cuntinuari a usari {{SITENAME}} di manera anònima, o poi tràsiri n'àutra vota cu lu stissu o cu n'àutru nomu d'utenti.
+Poi cuntinuari a usari {{SITENAME}} di manera anònima, o poi [[Special:UserLogin|tràsiri n'àutra vota]] cu lu stissu o cu n'àutru nomu d'utenti.
 Accura chi quarchi pàggina pò cuntinuari a èssiri ammustrata comu si nun avissi nisciutu nzinu a quannu tu nun scancelli tutta la mimoria dû tò browser.",
 'welcomecreation'            => "== Bonvinutu, $1! ==
 
@@ -556,7 +557,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li [
 'badretype'                  => "La ''password'' chi mittisti nun è bona.",
 'userexists'                 => 'Lu nomu utenti nzeritu è già usatu. Ti prijamu pirciò di vuliri scègghiri nu nomu utenti diversu.',
 'loginerror'                 => "Erruri nta l'accessu",
-'createaccounterror'         => "Mpussibbili di criari l'account",
+'createaccounterror'         => "Mpussibbili di criari l'account $1",
 'nocookiesnew'               => 'Lu nomu utenti pi tràsiri fu criatu, ma nun hai effittuatu lu log in. {{SITENAME}} usa li cookies pi gistiri li log in. Lu tò browser havi li cookies disabbilitati. Abbìlita li cookies, appoi effèttua lu login cu li tò username e password novi.',
 'nocookieslogin'             => '{{SITENAME}} usa li cookies pi gistiri lu log in. Lu tò browser havi li cookies disabbilitati. Abbìlita li cookies, appoi effèttua lu login cu li tò username e password.',
 'noname'                     => 'Lu nomu utenti innicatu nun è vàlidu, nun è pussìbbili criari un account a stu nomu.',
@@ -570,7 +571,7 @@ Virificari lu nomu nziritu o [[Special:UserLogin/signup|criari un novu accessu]]
 'login-userblocked'          => "St'utilizzaturi è bluccatu. Nun è pussibbili di tràsiri",
 'wrongpassword'              => "La ''password'' chi mittisti nun è giusta. Prova n'àutra vota.",
 'wrongpasswordempty'         => 'Nun hà statu nzirita arcuna password. Ripruvari.',
-'passwordtooshort'           => 'La tò password è troppu brivi. Havi a cuntèniri armenu {{PLURAL:$1|1 caràttiri|$1 caràttiri}}.',
+'passwordtooshort'           => 'La tò password è troppu curta. Havi a cuntèniri armenu {{PLURAL:$1|1 caràttiri|$1 caràttiri}}.',
 'password-name-match'        => 'La tou password havi a essiri diversa dô tou nnomu utenti.',
 'mailmypassword'             => "Mànnimi n'àutra password",
 'passwordremindertitle'      => 'Sirvizziu Password Reminder di {{SITENAME}}',
@@ -578,6 +579,7 @@ Virificari lu nomu nziritu o [[Special:UserLogin/signup|criari un novu accessu]]
 Ti cummeni fari n\'accessu quantu prima e canciari la password pi sùbbitu. La tò password timpuranea scadrà dopu {{PLURAL:$5|nu jornu|$5 jorna}}. 
 Siddu nun fusti tu a fari la dumanna, oppuru arrittruvasti la password e nun addisìi cchiù canciàrila, poi non tèniri cuntu di stu missaggiu e cuntinuari a usari la password vecchia.',
 'noemail'                    => 'Nuddu ndirizzu e-mail riggistratu pi l\'utenti "$1".',
+'noemailcreate'              => 'Aviti a dari nu nnirizzu e-mail validu',
 'passwordsent'               => 'Na password nova hà statu mannata a lu ndirizzu e-mail riggistratu pi l\'utenti "$1". Pi favuri, effèttua un accessu nun appena l\'arricevi.',
 'blocked-mailpassword'       => 'Pi privèniri abbusi, nun è cunzititu usari la funzioni "Nvia nova password" d\'un ndirizzu IP bluccatu.',
 'eauthentsent'               => "Un missaggiu e-mail di cunferma hà statu spiditu a lu ndirizzu ndicatu. Pi abbilitari la mannata di missaggi e-mail pi st'accessu è nicissariu sèquiri li istruzzioni ca vi sunnu ndicati, 'n modu di cunfirmari ca s'è li liggìttimi prupitari di lu ndirizzu",
@@ -597,8 +599,11 @@ Pi favuri nziriti nu nnirizzu vàlidu o svacantati la casella.',
 'createaccount-text'         => 'Qualcuno criau n\'accessu a {{SITENAME}} ($4) a nomu di $2, associatu cu stu ndirizzu di posta elettronica. La password pi l\'utenti "$2" è mpustata a "$3". È opportunu trasiri quantu prima e canciari la password subbutu.
 
 Si l\'accessu fu criatu pi sbagghiu, si può gnurari stu missaggiu.',
-'login-throttled'            => "Facisti troppi tintativi sùpira la password di chistu account. Aspetta anticchia prima di pruvari  n'àutra vota.",
+'usernamehasherror'          => "Lu nomu di l'utenti nun pò cuntèniri caràttiri hash",
+'login-throttled'            => "Facisti troppi tintativi. 
+Aspetta tanticchia prima di pruvari  n'àutra vota.",
 'loginlanguagelabel'         => 'Lingua: $1',
+'suspicious-userlogout'      => 'La tò dumanna di discunnissioni fu niàta prichì pari ca veni di nu browser nun funziunanti o nu proxy di caching.',
 
 # Password reset dialog
 'resetpass'                 => "Scrivi n'àutra vota la password",
@@ -613,6 +618,7 @@ Si l\'accessu fu criatu pi sbagghiu, si può gnurari stu missaggiu.',
 'resetpass_forbidden'       => 'Li password nun ponnu èssiri canciati sùpira sta wiki',
 'resetpass-no-info'         => 'Pi tràsiri nta sta pàggina hà èssiri riggistratu',
 'resetpass-submit-loggedin' => 'Cancia la password',
+'resetpass-submit-cancel'   => 'Annulla',
 'resetpass-wrong-oldpass'   => "La password timpurrània nun è giusta. 
 Pò èssiri ca ggià canciasti cu successu la tò password o c'addumannasti na nova password timpurrània.",
 'resetpass-temp-password'   => 'Password timpurrània:',
@@ -692,8 +698,9 @@ Pi favuri nclùdilu nta tutti li dumanni chi fai.",
 'whitelistedittitle'               => 'Ci voli èssiri riggistrati pi putiri canciari la pàggina.',
 'whitelistedittext'                => "Hai a $1 pi canciari l'artìculi.",
 'confirmedittext'                  => "P'èssiri abbilitati a lu canciamentu dî pàggini è nicissariu cunfirmari lu propiu ndirizzu e-mail. Pi mpustari e cunfirmari lu ndirizzu sirvìrisi dî [[Special:Preferences|prifirenzi]].",
-'nosuchsectiontitle'               => 'Sta sezzioni nun esisti',
-'nosuchsectiontext'                => 'Pruvasti a canciari na sezzioni chi nun esisti.',
+'nosuchsectiontitle'               => 'Lu paràgrafu nun fu truvatu',
+'nosuchsectiontext'                => 'Pruvasti a canciari na sezzioni chi nun esisti.
+Forsi ca fu spustata o cancillata na mentri ca stàvutu taliannu la pàggina.',
 'loginreqtitle'                    => 'Login nicissariu',
 'loginreqlink'                     => "esèquiri l'accessu",
 'loginreqpagetext'                 => 'Pi vìdiri àutri pàggini è nicissariu $1.',
@@ -705,7 +712,10 @@ La password pi stu novu account pò essiri canciata â accessu nâ pàggina pi [
 'newarticletext'                   => "Sta pàggina ancora nun esisti. 
 Pi criari na pàggina cu stu tìtulu, accumenza a scrìviri ccassutta (talìa la [[{{MediaWiki:Helppage}}|pàggina d'aiutu]] pi aviri maiuri nfurmazzioni).
 Si agghicasti ccà pi sbagghiu, clicca lu buttuni ''''n arreri (back)''' dû tò browser.",
-'anontalkpagetext'                 => "----''Chista è la pàggina di discussioni di n’utenti anònimu, ca nun hà ancora criatu n’accessu o comu è gghiè nun l’usa. P’idintificàrilu è quinni nicissariu usari lu nùmmiru di lu sò nnirizzu IP. Li nnirizzi IP ponnu pirò èssiri cunnivisi di cchiù utenti. Siddu sî n’utenti anònimu e riteni ca li cummenti prisenti nta sta pàggina nun si rifirìscinu a tia, [[Special:UserLogin|crea n’accessu novu o trasi]] cu chiddu ca già hai p’evitari d’èssiri cunfusu cu àutri utenti anònimi ‘n futuru''",
+'anontalkpagetext'                 => "----''Chista è la pàggina di discussioni di n’utenti anònimu, ca nun criau ancora n’accessu o ca nun l’usa. 
+P’idintificàrilu è pirciò nicissariu usari lu nùmmiru di lu sò nnirizzu IP. 
+Li nnirizzi IP ponnu pirò èssiri spartuti di cchiù utenti. 
+Siddu sî n’utenti anònimu e riteni ca li cummenti prisenti nta sta pàggina nun si rifirìscinu a tia, [[Special:UserLogin/signup|crea n’accessu novu]] o [[Special:UserLogin|trasi]] cu chiddu ca già hai p’evitari d’èssiri cunfusu cu àutri utenti anònimi ‘n futuru.''",
 'noarticletext'                    => "Nta stu mumentu la pàggina addumannata è vacanti. È pussìbbili [[Special:Search/{{PAGENAME}}|circari stu tìtulu]] nta l'àutri pàggini dû situ oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} canciari la pàggina ora].",
 'userpage-userdoesnotexist'        => 'L\'account "$1" nun currispunni a n\'utenti riggistratu. Virificari si si voli criari o canciari sta pàggina.',
 'clearyourcache'                   => "'''Nota:''' doppu aviri sarvatu è nicissariu puliri la cache dû propiu browser pi vìdiri li canciamenti. Pi '''Mozilla / Firefox / Safari''': fari clic supra ''Ricarica'' tinnennu primutu lu tastu dî maiùsculi, oppuru prèmiri ''Ctrl-Maiusc-R'' (''Cmd-Maiusc-R'' supra Mac); pi '''Internet Explorer:''' mantèniri primutu lu tastu ''Ctrl'' mentri si premi lu pulsanti ''Aggiorna'' o prèmiri ''Ctrl-F5''; pi '''Konqueror''': prèmiri lu pulsanti ''Ricarica'' o lu tastu ''F5''; pi '''Opera''' pò èssiri nicissariu svacantari cumpletamenti la cache dû menu ''Strumenti → Preferenze''.",

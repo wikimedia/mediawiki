@@ -545,7 +545,7 @@ $messages = array(
 'otherlanguages'    => 'Otros idiomas',
 'redirectedfrom'    => '(Redirigido desde $1)',
 'redirectpagesub'   => 'Página redirigida',
-'lastmodifiedat'    => 'Esta página fue modificada por última vez el $2, $1.',
+'lastmodifiedat'    => 'Esta página fue modificada por última vez el $1, a las $2.',
 'viewcount'         => 'Esta página ha sido visitada {{PLURAL:$1|una vez|$1 veces}}.',
 'protectedpage'     => 'Página protegida',
 'jumpto'            => 'Saltar a',
@@ -846,8 +846,8 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'showpreview'                      => 'Mostrar previsualización',
 'showlivepreview'                  => 'Previsualización inmediata',
 'showdiff'                         => 'Mostrar cambios',
-'anoneditwarning'                  => "'''Aviso:''' No has introducido tu nombre de usuario.
-Tu dirección IP será guardada en el historial de ediciones de la página.",
+'anoneditwarning'                  => "'''Aviso:''' No ha iniciado sesión con una cuenta de usuario.
+Tu dirección IP se almacenará en el historial de ediciones de la página.",
 'missingsummary'                   => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{MediaWiki:Savearticle}}» tu edición se grabará sin él.",
 'missingcommenttext'               => 'Por favor introduce texto debajo.',
 'missingcommentheader'             => "'''Atención:''' No has escrito un título para este comentario. Si haces clic nuevamente en Grabar tu edición se grabará sin él.",
@@ -1425,22 +1425,22 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burócratas',
-'group-suppress'      => 'Supervisores',
+'group-suppress'      => 'Supresores',
 'group-all'           => '(todos)',
 
 'group-user-member'          => 'Usuario',
 'group-autoconfirmed-member' => 'Usuario autoconfirmado',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrador',
-'group-bureaucrat-member'    => 'Burócrata',
-'group-suppress-member'      => 'Supervisor',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrador',
+'group-bureaucrat-member'    => 'burócrata',
+'group-suppress-member'      => 'supresor',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
 'grouppage-bot'           => '{{ns:project}}:Bot',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
-'grouppage-suppress'      => '{{ns:project}}:Supervisor',
+'grouppage-suppress'      => '{{ns:project}}:Supresores',
 
 # Rights
 'right-read'                  => 'Leer páginas',
@@ -1800,7 +1800,7 @@ La descripción en su [$2 página de descripción del archivo] está mostrada de
 'filerevert'                => 'Revertir $1',
 'filerevert-legend'         => 'Reversión de archivos',
 'filerevert-intro'          => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [$4 versión del $2 a las $3].",
-'filerevert-comment'        => 'Comentario:',
+'filerevert-comment'        => 'Razón:',
 'filerevert-defaultcomment' => 'Revertido a la versión subida el $1 a las $2',
 'filerevert-submit'         => 'Revertir',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ha sido revertido a la [$4 versión del $2 a las $3].",
@@ -2153,7 +2153,7 @@ Para cambiar las opciones de tu lista de seguimiento, visita:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Para borrar la página de tu lista de seguimiento visita:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Retroalimentación y asistencia adicional:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2296,7 +2296,7 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeleteviewlink'             => 'ver',
 'undeletereset'                => 'Cancelar',
 'undeleteinvert'               => 'Invertir selección',
-'undeletecomment'              => 'Razón para restaurar:',
+'undeletecomment'              => 'Razón:',
 'undeletedarticle'             => 'restauró «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Una edición restaurada|$1 ediciones restauradas}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|ediciones restauradas y $2 archivo restaurado|ediciones y $2 archivos restaurados}}',
@@ -2579,7 +2579,7 @@ A continuación se muestra la última entrada de registro para referencia:",
 'semiprotectedpagemovewarning' => "'''Nota:''' Esta página ha sido bloqueada para que  solamente usuarios registrados pueden moverla.
 A continuación se muestra la última entrada de registro para referencia:",
 'move-over-sharedrepo'         => '== El archivo existe ==
- [[:$1]] existe en un repositorio compartido. Mover el archivo a este título invalidará el archivo compartido.',
+[[:$1]] existe en un repositorio compartido. Mover el archivo a este título invalidará el archivo compartido.',
 'file-exists-sharedrepo'       => 'El nombre de archivo elegido ya está siendo usado en un repositorio compartido.
 Por favor, elija otro nombre.',
 
@@ -2650,7 +2650,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'importnopages'              => 'No hay páginas que importar.',
 'importfailed'               => 'La importación ha fallado: $1',
 'importunknownsource'        => 'Tipo de fuente de importación desconocida',
-'importcantopen'             => 'No se puedo importar este archivo',
+'importcantopen'             => 'No se pudo importar el archivo',
 'importbadinterwiki'         => 'Enlace interwiki anómalo',
 'importnotext'               => 'Vacío o sin texto',
 'importsuccess'              => '¡La importación se ha realizado con éxito!',
@@ -3283,17 +3283,17 @@ Intenta la previsualización normal.',
 'watchlistedit-noitems'        => 'Tu lista de seguimiento está vacía.',
 'watchlistedit-normal-title'   => 'Editar lista de seguimiento',
 'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
-'watchlistedit-normal-explain' => "Las páginas de tu lista de seguimiento se muestran debajo.
-Para eliminar una página, marca la casilla junto a la página, y haz clic en ''Borrar páginas''.
+'watchlistedit-normal-explain' => "Los títulos de tu lista de seguimiento se muestran debajo.
+Para remover un título, marca la casilla junto a él, y haz clic en ''{{int:Watchlistedit-normal-submit}}''.
 También puedes [[Special:Watchlist/raw|editar la lista en crudo]].",
 'watchlistedit-normal-submit'  => 'Borrar páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',
 'watchlistedit-raw-title'      => 'Editar lista de seguimiento en crudo',
 'watchlistedit-raw-legend'     => 'Editar tu lista de seguimiento en modo texto',
-'watchlistedit-raw-explain'    => 'Las páginas de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista;
-una página por línea.
-Cuando acabes, haz clic en Actualizar lista de seguimiento.
-También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
+'watchlistedit-raw-explain'    => 'Los títulos de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista;
+un título por línea.
+Cuando acabes, haz clic en "{{int:Watchlistedit-raw-submit}}".
+También puedes [[Special:Watchlist/edit|usar el editor estándar]].',
 'watchlistedit-raw-titles'     => 'Páginas:',
 'watchlistedit-raw-submit'     => 'Actualizar lista de seguimiento',
 'watchlistedit-raw-done'       => 'Tu lista de seguimiento se ha actualizado.',

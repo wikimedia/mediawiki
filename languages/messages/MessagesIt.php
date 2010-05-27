@@ -8,6 +8,8 @@
  * @file
  *
  * @author .anaconda
+ * @author Andria
+ * @author Beta16
  * @author Broc
  * @author BrokenArrow
  * @author Brownout
@@ -664,7 +666,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'userexists'                 => 'Il nome utente inserito è già utilizzato. 
 Scegliere un nome utente diverso.',
 'loginerror'                 => "Errore nell'accesso",
-'createaccounterror'         => "Impossibile creare l'account: $1",
+'createaccounterror'         => "Impossìbile creare s'account: $1",
 'nocookiesnew'               => "La registrazione è stata completata, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin'             => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
 'noname'                     => 'Il nome utente indicato non è valido.',
@@ -1417,7 +1419,7 @@ L'operazione non può essere annullata.",
 'action-deleterevision'       => 'cancellare questa versione',
 'action-deletedhistory'       => 'visualizzare la cronologia cancellata di questa pagina',
 'action-browsearchive'        => 'cercare pagine cancellate',
-'action-undelete'             => 'recuperare questa pagina',
+'action-undelete'             => 'recuperare custa pàgina',
 'action-suppressrevision'     => 'rivedere e ripristinare le modifiche nascoste',
 'action-suppressionlog'       => 'visionare questo log privato',
 'action-block'                => 'bloccare questo utente in scrittura',
@@ -1630,7 +1632,7 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 'upload-curl-error28-text' => 'Il sito remoto ha impiegato troppo tempo a rispondere. Verificare che il sito sia attivo, attendere qualche minuto e provare di nuovo, eventualmente in un momento di minore traffico.',
 
 'license'            => 'Licenza:',
-'license-header'     => "Licenza d'uso",
+'license-header'     => 'Licenza',
 'nolicense'          => 'Nessuna licenza indicata',
 'license-nopreview'  => '(Anteprima non disponibile)',
 'upload_source_url'  => ' (una URL corretta e accessibile)',
@@ -2039,7 +2041,7 @@ Per modificare le impostazioni della lista degli osservati speciali, visita
 {{fullurl:Special:Watchlist/edit}}
 
 Per cancellare la pagina della lista degli osservati speciali, visita 
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Per dare il tuo feedback e ricevere ulteriore assistenza:
 {{fullurl:Help:Aiuto}}',
@@ -3153,12 +3155,16 @@ Usare l\'anteprima standard.',
 'watchlistedit-noitems'        => 'La lista degli osservati speciali è vuota.',
 'watchlistedit-normal-title'   => 'Modifica osservati speciali',
 'watchlistedit-normal-legend'  => 'Eliminazione di pagine dagli osservati speciali',
-'watchlistedit-normal-explain' => 'Di seguito sono elencate tutte le pagine osservate. Per rimuovere una o più pagine dalla lista, selezionare le caselle relative e fare clic sul pulsante "Elimina pagine" in fondo all\'elenco. Si noti che è anche possibile [[Special:Watchlist/raw|modificare la lista in formato testuale]].',
+'watchlistedit-normal-explain' => 'Di seguito sono elencate tutte le pagine osservate.
+Per rimuovere una o più pagine dalla lista, selezionare le caselle relative e fare clic sul pulsante "{{int:Watchlistedit-normal-submit}}" in fondo all\'elenco.
+Si noti che è anche possibile [[Special:Watchlist/raw|modificare la lista in formato testuale]].',
 'watchlistedit-normal-submit'  => 'Elimina pagine',
 'watchlistedit-normal-done'    => 'Dalla lista degli osservati speciali {{PLURAL:$1|è stata eliminata una pagina|sono state eliminate $1 pagine}}:',
 'watchlistedit-raw-title'      => 'Modifica degli osservati speciali in forma testuale',
 'watchlistedit-raw-legend'     => 'Modifica testuale osservati speciali',
-'watchlistedit-raw-explain'    => 'Di seguito sono elencate tutte le pagine osservate. Per modificare la lista aggiungere o rimuovere i rispettivi titoli, uno per riga. Una volta terminato, fare clic su "Aggiorna la lista" in fondo all\'elenco. Si noti che è anche possibile [[Special:Watchlist/edit|modificare la lista con l\'interfaccia standard]].',
+'watchlistedit-raw-explain'    => 'Di seguito sono elencate tutte le pagine osservate. Per modificare la lista aggiungere o rimuovere i rispettivi titoli, uno per riga.
+Una volta terminato, fare clic su "{{int:Watchlistedit-raw-submit}}" in fondo all\'elenco.
+Si noti che è anche possibile [[Special:Watchlist/edit|modificare la lista con l\'interfaccia standard]].',
 'watchlistedit-raw-titles'     => 'Titoli delle pagine:',
 'watchlistedit-raw-submit'     => 'Aggiorna la lista',
 'watchlistedit-raw-done'       => 'La lista degli osservati speciali è stata aggiornata.',

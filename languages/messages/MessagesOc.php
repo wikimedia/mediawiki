@@ -582,13 +582,13 @@ $1",
 'thisisdeleted'           => 'Desiratz afichar o restablir $1?',
 'viewdeleted'             => 'Veire $1?',
 'restorelink'             => '{{PLURAL:$1|una edicion escafada|$1 edicions escafadas}}',
-'feedlinks'               => 'Flus :',
-'feed-invalid'            => 'Tipe de flus invalid.',
+'feedlinks'               => 'Flux :',
+'feed-invalid'            => 'Tipe de flux invalid.',
 'feed-unavailable'        => 'Los fluxes de sindicacion son pas disponibles',
-'site-rss-feed'           => 'Flus RSS de $1',
-'site-atom-feed'          => 'Flus Atom de $1',
-'page-rss-feed'           => 'Flus RSS de "$1"',
-'page-atom-feed'          => 'Flus Atom de "$1"',
+'site-rss-feed'           => 'Flux RSS de $1',
+'site-atom-feed'          => 'Flux Atom de $1',
+'page-rss-feed'           => 'Flux RSS de "$1"',
+'page-atom-feed'          => 'Flux Atom de "$1"',
 'red-link-title'          => '$1 (la pagina existís pas)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -644,6 +644,7 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 'readonly_lag'         => 'La banca de donadas es estada automaticament clavada pendent que los servidors segondaris ratrapan lor retard sul servidor principal.',
 'internalerror'        => 'Error intèrna',
 'internalerror_info'   => 'Error intèrna: $1',
+'fileappenderrorread'  => 'Impossible de legir « $1 » al moment de l’insercion',
 'fileappenderror'      => "Impossible d'apondre « $1 » a « $2 ».",
 'filecopyerror'        => 'Impossible de copiar lo fichièr « $1 » cap a « $2 ».',
 'filerenameerror'      => 'Impossible de tornar nomenar lo fichièr « $1 » en « $2 ».',
@@ -772,6 +773,7 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'login-throttled'            => 'Avètz ensajat tròp de temptativas de connexion darrièrament.
 Esperatz abans d’ensajar tornamai.',
 'loginlanguagelabel'         => 'Lenga: $1',
+'suspicious-userlogout'      => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en amagatal d’un proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar lo senhal del compte',
@@ -889,6 +891,8 @@ Podètz [[Special:Search/{{PAGENAME}}|far una recèrca sul títol de la pagina]]
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} recercar dins los jornals associats]</span>.',
 'userpage-userdoesnotexist'        => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'userpage-userdoesnotexist-view'   => "Lo compte d'utilizaire « $1 » es pas enregistrat.",
+'blocked-notice-logextract'        => 'Aqueste utilizaire es actualament blocat.
+La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
 'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple Mac) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Astúcia :''' Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.",
 'userjsyoucanpreview'              => "'''Astúcia :''' Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.",
@@ -1287,7 +1291,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'recentchangesdays-max'         => '(maximum $1 {{PLURAL:$1|jorn|jorns}})',
 'recentchangescount'            => "Nombre de modificacions d'afichar per defaut :",
 'prefs-help-recentchangescount' => 'Aquò inclutz las modificacions recentas, las paginas d’istorics e los jornals.',
-'prefs-help-watchlist-token'    => 'Emplenar aquò amb una valor secreta generarà un flus RSS per vòstra lista de seguiment.
+'prefs-help-watchlist-token'    => 'Emplenar aquò amb una valor secreta generarà un flux RSS per vòstra lista de seguiment.
 Tota persona que coneis aqueste geton poirà legir vòstra lista de seguiment, causissètz doncas una valor securizada.
 Vaquí una valor generada aleatòriament que podètz utilizar : $1',
 'savedprefs'                    => 'Las preferéncias son estadas salvadas.',
@@ -1510,7 +1514,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'recentchanges'                     => 'Darrièrs cambiaments',
 'recentchanges-legend'              => 'Opcions dels darrièrs cambiaments',
 'recentchangestext'                 => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
-'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flus.",
+'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flux.",
 'recentchanges-label-legend'        => 'Legenda : $1.',
 'recentchanges-legend-newpage'      => '$1 - pagina novèla',
 'recentchanges-label-newpage'       => 'Aquesta modificacion a creat una pagina novèla',
@@ -1591,6 +1595,7 @@ Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacio
 'minlength1'                  => 'Los noms de fichièrs devon comprendre almens una letra.',
 'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo tornar nomenar e de lo copiar tornarmai.',
 'badfilename'                 => "L'imatge es estat renomenat « $1 ».",
+'filetype-mime-mismatch'      => 'L’extension del fichier correspond pas al tipe MIME.',
 'filetype-badmime'            => 'Los fichièrs del tipe MIME « $1 » pòdon pas èsser importats.',
 'filetype-bad-ie-mime'        => 'Lo fichièr pòt pas èsser importat perque serià detectat coma « $1 » per Internet Explorer, tipe de fichièr interdich perque potencialament dangierós.',
 'filetype-unwanted-type'      => "«.$1»''' es un format de fichièr pas desirat.
@@ -1700,6 +1705,7 @@ Per una seguretat optimala, img_auth.php es desactivat.",
 'http-timed-out'        => 'HTTP request timed out.',
 'http-curl-error'       => "Error al moment de la recuperacion de l'URL : $1",
 'http-host-unreachable' => "Impossible d'aténher l'URL",
+'http-bad-status'       => 'I a agut un problèma al moment de la requèsta HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Pòt pas aténher l’URL',
@@ -2121,7 +2127,7 @@ Per modificar los paramètres de vòstra lista de seguiment, visitatz
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Per suprimir la pagina de vòstra lista de seguiment, visitatz
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Retorn e assisténcia :
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2483,6 +2489,7 @@ Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar ca
 
 Dins aqueste cas, vos caldrà desplaçar o fusionar la pagina manualament se o volètz.",
 'movearticle'                  => "Tornar nomenar l'article",
+'moveuserpage-warning'         => "'''Atencion :''' Sètz a mand de tornar nomenar una pagina d’utilizaire. Notatz que sola la pagina serà renomenada e que l’utilizaire '''ne''' serà '''pas''' renomenat.",
 'movenologin'                  => 'Vos sètz pas identificat(ada)',
 'movenologintext'              => "Per poder tornar nomenar un article, vos cal èsser [[Special:UserLogin|connectat(ada)]]
 en tant qu'utilizaire enregistrat.",
@@ -2674,8 +2681,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-n-help'                  => "L'endrech per s'assabentar.",
 'tooltip-t-whatlinkshere'         => 'Lista de las paginas ligadas a aquesta',
 'tooltip-t-recentchangeslinked'   => 'Lista dels darrièrs cambiaments de las paginas ligadas a aquesta',
-'tooltip-feed-rss'                => 'Flus RSS per aquesta pagina',
-'tooltip-feed-atom'               => 'Flus Atom per aquesta pagina',
+'tooltip-feed-rss'                => 'Flux RSS per aquesta pagina',
+'tooltip-feed-atom'               => 'Flux Atom per aquesta pagina',
 'tooltip-t-contributions'         => "Veire la lista de las contribucions d'aqueste utilizaire",
 'tooltip-t-emailuser'             => 'Mandar un corrièr electronic a aqueste utilizaire',
 'tooltip-t-upload'                => 'Mandar un imatge o fichièr mèdia sul servidor',

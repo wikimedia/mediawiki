@@ -682,7 +682,7 @@ $2',
 'logout'                     => '로그아웃',
 'userlogout'                 => '로그아웃',
 'notloggedin'                => '로그인하고 있지 않음',
-'nologin'                    => "계정이 없나요? '''$1'''.",
+'nologin'                    => '계정이 없나요? $1.',
 'nologinlink'                => '계정을 만들 수 있습니다',
 'createaccount'              => '계정 만들기',
 'gotaccount'                 => "계정이 이미 있다면, '''$1'''.",
@@ -847,7 +847,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'noarticletext'                    => '이 문서가 존재하지 않습니다.
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나, 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
 'noarticletext-nopermission'       => '‘{{FULLPAGENAME}}’ 문서가 존재하지 않습니다.
-이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.',
+이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나, 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span>',
 'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'userpage-userdoesnotexist-view'   => '"$1" 사용자 계정은 등록되지 않았습니다.',
 'blocked-notice-logextract'        => '이 사용자는 현재 차단되어 있습니다.
@@ -1845,7 +1845,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'ncategories'             => '분류 $1개',
 'nlinks'                  => '링크 $1개',
 'nmembers'                => '문서 $1개',
-'nrevisions'              => '판 $1개',
+'nrevisions'              => '편집 $1개',
 'nviews'                  => '$1 번 읽음',
 'specialpage-empty'       => '명령에 대한 결과가 없습니다.',
 'lonelypages'             => '외톨이 문서 목록',
@@ -2094,7 +2094,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 주시문서에서 이 문서를 지우려면 이곳을 방문해주세요:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 도움을 얻거나 피드백 하기:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2685,6 +2685,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Stylesheets
 'common.css'   => '/** 이 CSS 설정은 모든 스킨에 적용됩니다 */',
 'monobook.css' => '/* 이 CSS 설정은 모든 모노북 스킨에 적용됩니다 */',
+'modern.css'   => '/* 이 CSS 설정은 모든 모던 스킨에 적용됩니다 */',
+'vector.css'   => '/* 이 CSS 설정은 모든 벡터 스킨에 적용됩니다 */',
 
 # Scripts
 'common.js'   => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
@@ -3217,13 +3219,16 @@ $1',
 'watchlistedit-noitems'        => '주시문서 목록이 비어 있습니다.',
 'watchlistedit-normal-title'   => '주시문서 목록 편집하기',
 'watchlistedit-normal-legend'  => '목록에서 문서 제거하기',
-'watchlistedit-normal-explain' => "주시문서 목록에서 제거하려는 문서가 있으면, 각 항목의 체크박스를 선책한 다음 '항목 삭제'를 클릭해주세요. 또는 [[Special:Watchlist/raw|목록을 직접 편집할 수도 있습니다]].",
+'watchlistedit-normal-explain' => "주시문서 목록에 있는 문서의 제목이 아래에 나열되어 있습니다.
+주시문서 목록에서 제거하려는 문서가 있으면, 각 항목의 체크박스를 선택한 다음 '{{int:Watchlistedit-normal-submit}}'를 클릭해주세요.
+또는 [[Special:Watchlist/raw|목록을 직접 편집]]할 수도 있습니다.",
 'watchlistedit-normal-submit'  => '항목 삭제',
 'watchlistedit-normal-done'    => '다음 $1 항목을 주시하지 않습니다:',
 'watchlistedit-raw-title'      => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-legend'     => '주시문서 목록 직접 편집하기',
-'watchlistedit-raw-explain'    => "주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다. 각 줄마다 하나의 제목을 쓰고, '주시문서 목록 갱신'을 누르면 됩니다.
-또는 [[Special:Watchlist/edit|일반적인 편집창]]을 쓸 수도 있습니다.",
+'watchlistedit-raw-explain'    => "주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다.
+각 줄마다 하나의 제목을 쓰고, 수정을 마쳤다면 '{{int:Watchlistedit-raw-submit}}'을 누르면 됩니다.
+또는 [[Special:Watchlist/edit|일반적인 편집기]]를 쓸 수도 있습니다.",
 'watchlistedit-raw-titles'     => '목록:',
 'watchlistedit-raw-submit'     => '주시문서 목록 갱신',
 'watchlistedit-raw-done'       => '주시문서 목록을 갱신했습니다.',

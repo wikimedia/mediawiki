@@ -638,7 +638,7 @@ Du koast dissen Tittel ap do uur Sieden [[Special:Search/{{PAGENAME}}|säike]],
 <span class="plainlinks"> in do touheerige [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbouke säike] of disse Siede [{{fullurl:{{FULLPAGENAME}}|action=edit}} beoarbaidje]</span>.',
 'noarticletext-nopermission'       => 'Der is apstuuns noch naan Text ap disse Siede.
 Du koast dissen Tittel ap do uur Sieden [[Special:Search/{{PAGENAME}}|säike]]
-of <span class="plainlinks">in do touheerige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbouke säike].',
+of <span class="plainlinks">in do touheerige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbouke säike].</span>',
 'userpage-userdoesnotexist'        => 'Dät Benutserkonto „$1“ is nit deer. Pröif, of du disse Siede wuddelk moakje/beoarbaidje wolt.',
 'userpage-userdoesnotexist-view'   => 'Benutserkonto „$1“ bestoant nit.',
 'blocked-notice-logextract'        => 'Dissen Benutser is apstuuns speerd. 
@@ -1864,7 +1864,7 @@ Uum do Ienstaalengen fon dien Beooboachtengslieste antoupaasjen, besäik
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Uum ju Siede fon dien Kontrollieste tou läskjen, besäik
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Touräächmäldengen un wiedere Hälpe: {{fullurl:{{MediaWiki:Helppage}}}}',
 

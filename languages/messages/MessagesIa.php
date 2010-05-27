@@ -751,7 +751,7 @@ Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in alter
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
 'noarticletext-nopermission'       => 'Al momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].',
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].</span>',
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'userpage-userdoesnotexist-view'   => 'Le conto de usator "$1" non es registrate.',
 'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
@@ -2036,7 +2036,7 @@ Pro cambiar le configuration de tu observatorio, visita
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Pro retirar le pagina de tu observatorio, visita
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Feedback e ulterior assistentia:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3208,16 +3208,16 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'watchlistedit-noitems'        => 'Tu observatorio contine nulle titulos.',
 'watchlistedit-normal-title'   => 'Modificar observatorio',
 'watchlistedit-normal-legend'  => 'Eliminar titulos del observatorio',
-'watchlistedit-normal-explain' => 'Le titulos in tu observatorio se monstra infra.
-Pro eliminar un titulo, marca le quadrato correspondente, e clicca "Eliminar titulos".
+'watchlistedit-normal-explain' => 'Le titulos in tu observatorio es monstrate hic infra.
+Pro eliminar un titulo, marca le quadrato correspondente, e clicca "{{int:Watchlistedit-normal-submit}}".
 Tu pote etiam [[Special:Watchlist/raw|modificar le lista in forma crude]].',
 'watchlistedit-normal-submit'  => 'Eliminar titulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate de tu observatorio:',
 'watchlistedit-raw-title'      => 'Modification del observatorio in forma crude',
 'watchlistedit-raw-legend'     => 'Modification del observatorio in forma de un lista simple de titulos',
-'watchlistedit-raw-explain'    => 'Le titulos in tu observatorio se monstra infra, e tu pote adder e eliminar entratas del lista;
+'watchlistedit-raw-explain'    => 'Le titulos in tu observatorio es monstrate hic infra, e pote esser modificate per adder e eliminar entratas del lista;
 un titulo per linea.
-Quando tu ha finite, clicca "Actualisar observatorio".
+Quando tu ha finite, clicca super "{{int:Watchlistedit-raw-submit}}".
 Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'watchlistedit-raw-titles'     => 'Titulos:',
 'watchlistedit-raw-submit'     => 'Actualisar observatorio',

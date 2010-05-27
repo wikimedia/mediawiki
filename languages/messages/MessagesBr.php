@@ -555,9 +555,9 @@ Mard eo se a felle deoc'h ober e vo ret deoc'h kevreañ ha cheñch ho ker-tremen
 
 Mard eo bet graet ar goulenn gant unan bennak all, pe m'hoc'h eus soñj eus ho ker-tremen bremañ ha
 ma ne fell ket deoc'h cheñch anezhañ ken, e c'hallit leuskel ar postel-mañ a-gostez ha kenderc'hel d'ober gant ho ker-tremen kozh.",
-'noemail'                    => 'N\'eus bet enrollet chomlec\'h elektronek ebet evit an implijer "$1".',
+'noemail'                    => 'N\'eus bet enrollet chomlec\'h postel ebet evit an implijer "$1".',
 'noemailcreate'              => "Ret eo deoc'h merkañ ur chomlec'h postel reizh",
-'passwordsent'               => 'Kaset ez eus bet ur ger-tremen nevez da chomlec\'h elektronek an implijer "$1".
+'passwordsent'               => 'Kaset ez eus bet ur ger-tremen nevez da chomlec\'h postel an implijer "$1".
 Trugarez deoc\'h da gevreañ kerkent ha ma vo bet resevet ganeoc\'h.',
 'blocked-mailpassword'       => "N'haller ket degas kemmoù adal ar chomlec'h IP-mañ ken, gant se n'hallit ket implijout an arc'hwel adtapout gerioù-tremen, kuit m'en em ledfe kammvoazioù.",
 'eauthentsent'               => "Kaset ez eus bet ur postel kadarnaat war-du ar chomlec'h postel spisaet.
@@ -783,7 +783,7 @@ Dindan emañ ar marilh diverkañ hag adenvel.',
 Abeg dianav.",
 'edit-gone-missing'                => 'Dibosupl hizivaat ar bajenn.
 Diverket eo bet evit doare.',
-'edit-conflict'                    => 'Kemmañ an dizemglev',
+'edit-conflict'                    => 'Tabut kemmañ.',
 'edit-no-change'                   => "N'eo ket bet kemeret ho tegasadenn e kont rak ne oa ket bet kemmet netra en destenn.",
 'edit-already-exists'              => "N'eus ket bet gallet krouiñ ur bajenn nevez.
 Krouet e oa bet c'hoazh.",
@@ -942,7 +942,7 @@ N\'oc\'h ket aotreet da vont outi.',
 'revdelete-modify-missing'    => "Fazi ;en ur zegas kemmoù en elfenn gant ID $1: n'emañ ket er bank roadennoù !",
 'revdelete-no-change'         => "'''Evezh :''' emañ an arventennoù gweluster goulennet gant an elfenn deiziataet eus an $1 da $2 dija",
 'revdelete-concurrent-change' => "Fazi pa'z eus bet bet degaset kemmoù en elfenn deiziataet eus an $1 da $2 : cheñchet eo bet e statud gant unan bennak all dres pa oac'h-chwi o kemmañ anezhi. Gwiriit ar marilhoù.",
-'revdelete-only-restricted'   => "Ur fazi 'zo bet pa oac'h o tennañ an danvez eus an $1 da $2 : n'hallit ket tennañ an elfennoù-mañ digant ar verourien ma ne zibabit ket ivez an dibarzhioù diverkañ all.",
+'revdelete-only-restricted'   => "Ur fazi zo bet en ur guzhat an elfenn deiziadet eus an $1 da $2 : n'hallit ket kuzhat an elfennoù-mañ ouzh ar verourien hep dibab ivez unan eus an dibarzhioù gweluster all.",
 'revdelete-reason-dropdown'   => '*Abegoù diverkañ boutin
 **Gaou ouzh ar gwirioù implijout
 ** Titouroù personel dizereat',
@@ -1066,7 +1066,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 
 # Preferences page
 'preferences'                   => 'Penndibaboù',
-'mypreferences'                 => 'penndibaboù',
+'mypreferences'                 => 'Penndibaboù',
 'prefs-edits'                   => 'Niver a zegasadennoù :',
 'prefsnologin'                  => 'Digevreet',
 'prefsnologintext'              => 'Ret eo deoc\'h bezañ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kevreet]</span> a-benn gellout cheñch ho tibaboù implijer.',
@@ -1399,11 +1399,11 @@ Evit enklozañ ur skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'uploadlogpagetext'           => "Setu a-is marilh ar restroù diwezhañ bet karget war ar servijer.
 S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'filename'                    => 'Anv&nbsp;',
-'filedesc'                    => 'Deskrivadur&nbsp;',
+'filedesc'                    => 'Deskrivadur',
 'fileuploadsummary'           => 'Diverrañ :',
 'filereuploadsummary'         => 'Kemmoù er restr :',
 'filestatus'                  => 'Statud ar gwirioù aozer:',
-'filesource'                  => 'Mammenn:',
+'filesource'                  => 'Mammenn :',
 'uploadedfiles'               => 'Restroù karget',
 'ignorewarning'               => "Na ober van ouzh ar c'hemennoù diwall ha saveteiñ ar restr forzh penaos",
 'ignorewarnings'              => "Na ober van ouzh ar c'hemennoù diwall",
@@ -1863,7 +1863,7 @@ evit gallout kas ur postel d'un implijer all.",
 E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h-c'hwi en ho [[Special:Preferences|Penndibaboù]], d'ar resever da c'hallout respont deoc'h war-eeun ma kar.",
 'usermailererror'  => 'Fazi postel :',
 'defemailsubject'  => 'postel kaset eus {{SITENAME}}',
-'noemailtitle'     => "Chomlec'h elektronek ebet",
+'noemailtitle'     => "Chomlec'h postel ebet",
 'noemailtext'      => "N'en deus ket an implijer-mañ resisaet chomlec'h postel reizh ebet.",
 'nowikiemailtitle' => 'Berzet kas posteloù',
 'nowikiemailtext'  => 'Dibabet ez eus bet gant an implijerien-mañ chom hep resev posteloù a-berzh implijerien all.',
@@ -1881,7 +1881,7 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 
 # Watchlist
 'watchlist'            => 'Roll evezhiañ',
-'mywatchlist'          => 'ma roll evezhiañ',
+'mywatchlist'          => 'Ma roll evezhiañ',
 'watchlistfor'         => "(evit '''$1''')",
 'nowatchlist'          => "N'eus pennad ebet en ho roll evezhiañ.",
 'watchlistanontext'    => "Ret eo deoc'h $1 evit gwelet pe kemmañ an elfennoù zo en ho roll evezhiañ.",
@@ -1949,7 +1949,7 @@ A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 A-benn dilemel ar bajenn eus ho rollad evezhiañ, sellit ouzh 
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Evezhiadennoù ha skoazell pelloc\'h :
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1963,7 +1963,7 @@ Evezhiadennoù ha skoazell pelloc\'h :
 'exblank'                => "pajenn c'houllo",
 'delete-confirm'         => 'Diverkañ "$1"',
 'delete-legend'          => 'Diverkañ',
-'historywarning'         => "'''Diwallit :''' War-nes diverkañ ur bajenn dezhi un istor hag he deus tro {{PLURAL:$1|adweladenn|adweladenn}} emaoc'h :",
+'historywarning'         => "'''Diwallit :''' Emaoc'h war-nes diverkañ ur bajenn dezhi un istor gant e-tro {{PLURAL:$1|adweladenn|adweladenn}} :",
 'confirmdeletetext'      => "War-nes diverkañ da viken ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc'h. Diverket e vo ivez an holl stummoù kozh stag outi.
 Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat an heuliadoù, hag e rit se diouzh ar [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Diverkadenn kaset da benn',
@@ -3088,14 +3088,15 @@ Klaskit rakwelet er mod boutin.',
 'watchlistedit-noitems'        => "N'eus pajenn ebet war ho roll evezhiañ.",
 'watchlistedit-normal-title'   => 'Kemmañ ar roll evezhiañ',
 'watchlistedit-normal-legend'  => 'Tennañ ar pajennoù a-ziwar ho roll evezhiañ',
-'watchlistedit-normal-explain' => 'Dindan emañ diskouezet ar pajennoù zo war ho roll evezhiañ. Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war Tennañ ar pajennoù. Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]].',
+'watchlistedit-normal-explain' => 'Dindan emañ diskouezet titloù ar pajennoù zo war ho roll evezhiañ. 
+Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war "{{int:Watchlistedit-normal-submit}}". 
+Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]].',
 'watchlistedit-normal-submit'  => 'Tennañ ar pajennoù',
 'watchlistedit-normal-done'    => 'Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ :',
 'watchlistedit-raw-title'      => 'Kemmañ ar roll evezhiañ (mod diginkl)',
 'watchlistedit-raw-legend'     => 'Kemmañ ar roll evezhiañ (mod diginkl)',
-'watchlistedit-raw-explain'    => 'Dindan emañ roll ar pajennoù zo war ho roll evezhiañ; gallout a rit kemmañ anezhañ en ur
-	ouzhpennañ pe dennañ pajennoù a-ziwarnañ; ur bajenn dre linenn. Ur wech graet, klikañ war Nevesaat ar roll evezhiañ.
-	Tu zo da [[Special:Watchlist/edit|implijout an aozer boutin ivez]].',
+'watchlistedit-raw-explain'    => 'Dindan emañ titloù ar pajennoù zo war ho roll evezhiañ; gallout a rit kemmañ anezho en ur ouzhpennañ pe tennañ pajennoù a-ziwar ar roll; un titl dre linenn. Ur wech graet, klikañ war "{{int:Watchlistedit-raw-submit}}".
+Gallout a rit [[Special:Watchlist/edit|implijout an aozer boutin ivez]].',
 'watchlistedit-raw-titles'     => 'Titloù :',
 'watchlistedit-raw-submit'     => 'Nevesaat ar roll evezhiañ',
 'watchlistedit-raw-done'       => 'Nevesaet eo bet ho roll evezhiañ.',
@@ -3141,7 +3142,7 @@ Klaskit rakwelet er mod boutin.',
 'version-hook-name'                => 'Anv ar galv',
 'version-hook-subscribedby'        => 'Termenet gant',
 'version-version'                  => '(Stumm $1)',
-'version-license'                  => 'Aotre implijout',
+'version-license'                  => 'Aotre-implijout',
 'version-software'                 => 'Meziant staliet',
 'version-software-product'         => 'Produ',
 'version-software-version'         => 'Stumm',

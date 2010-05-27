@@ -20,6 +20,7 @@
  * @author Flrn
  * @author Grigol
  * @author HalanTul
+ * @author Huuchin
  * @author Illusion
  * @author Innv
  * @author Jl
@@ -863,7 +864,7 @@ $2',
 или '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
 'noarticletext-nopermission'       => 'В настоящее время на этой странице нет текста.
 Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] в других статьях,
-или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].',
+или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].</span>',
 'userpage-userdoesnotexist'        => 'Учётной записи «$1» не существует. Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
 'userpage-userdoesnotexist-view'   => 'Не зарегистрировано учётной записи участника «$1».',
 'blocked-notice-logextract'        => 'Этот участник в данный момент заблокирован.
@@ -1763,7 +1764,7 @@ PICT # различные
 'filerevert'                => 'Возврат к старой версии $1',
 'filerevert-legend'         => 'Возвратить версию файла',
 'filerevert-intro'          => '<span class="plainlinks">Вы возвращаете \'\'\'[[Media:$1|$1]]\'\'\' к [$4 версии от $3, $2].</span>',
-'filerevert-comment'        => 'Примечание:',
+'filerevert-comment'        => 'Причина:',
 'filerevert-defaultcomment' => 'Возврат к версии от $2, $1',
 'filerevert-submit'         => 'Возвратить',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' был возвращён к [$4 версии от $3, $2].",
@@ -2114,7 +2115,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Удалить страницы из вашего списка наблюдения
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Обратная связь и помощь
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2259,7 +2260,7 @@ $NEWPAGE
 'undeleteviewlink'             => 'просмотреть',
 'undeletereset'                => 'Очистить',
 'undeleteinvert'               => 'Обратить выделение',
-'undeletecomment'              => 'Комментарий:',
+'undeletecomment'              => 'Причина:',
 'undeletedarticle'             => 'восстановлена «[[$1]]»',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|изменение|изменения|изменений}} восстановлено',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|версия|версии|версий}} и $2 {{PLURAL:$2|файл|файла|файлов}} восстановлено',
@@ -3265,16 +3266,16 @@ $1',
 'watchlistedit-noitems'        => 'Ваш список наблюдения не содержит записей.',
 'watchlistedit-normal-title'   => 'Изменение списка наблюдения',
 'watchlistedit-normal-legend'  => 'Удаление записей из списка наблюдения',
-'watchlistedit-normal-explain' => "Ниже перечислены страницы, находящиеся в вашем списке наблюдения.
-Для удаления записей отметьте соответствующие позиции и нажмите кнопку '''«Удалить записи»'''.
-Вы также можете [[Special:Watchlist/raw|править список как текст]].",
+'watchlistedit-normal-explain' => 'Ниже перечислены страницы, находящиеся в вашем списке наблюдения.
+Для удаления записей отметьте соответствующие позиции и нажмите кнопку «{{int:Watchlistedit-normal-submit}}».
+Вы также можете [[Special:Watchlist/raw|править список как текст]].',
 'watchlistedit-normal-submit'  => 'Удалить записи',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|$1 запись была удалена|$1 записи были удалены|$1 записей были удалены}} из вашего списка наблюдения:',
 'watchlistedit-raw-title'      => 'Изменение «сырого» списка наблюдения',
 'watchlistedit-raw-legend'     => 'Изменение «сырого» списка наблюдения',
-'watchlistedit-raw-explain'    => 'Ниже перечислены страницы, находящиеся в вашем списке наблюдения. Вы можете изменять этот список, добавляя и удаляя из него строки с названиями.
-После завершения правок нажмите кнопку «Сохранить список».
-Вы также можете удалять страницы из списка [[Special:Watchlist/edit|обычным способом]].',
+'watchlistedit-raw-explain'    => 'Ниже перечислены страницы, находящиеся в вашем списке наблюдения. Вы можете изменять этот список, добавляя и удаляя из него строки с названиями, по одному названию на строке.
+После завершения правок нажмите кнопку «{{int:Watchlistedit-raw-submit}}».
+Вы также можете [[Special:Watchlist/edit|использовать стандартный редактор]].',
 'watchlistedit-raw-titles'     => 'Записи:',
 'watchlistedit-raw-submit'     => 'Сохранить список',
 'watchlistedit-raw-done'       => 'Ваш список наблюдения сохранён.',

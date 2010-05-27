@@ -2097,7 +2097,7 @@ Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả cá
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Phản hồi và cần sự hỗ trợ:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3253,14 +3253,14 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'watchlistedit-noitems'        => 'Danh sách các trang bạn theo dõi hiện không có gì.',
 'watchlistedit-normal-title'   => 'Sửa các trang tôi theo dõi',
 'watchlistedit-normal-legend'  => 'Bỏ các trang đang theo dõi ra khỏi danh sách',
-'watchlistedit-normal-explain' => 'Tên các trang bạn theo dõi được hiển thị dưới đây. Để xóa một tên trang, chọn vào hộp kiểm bên cạnh nó, rồi nhấn “Bỏ trang đã chọn”. Bạn cũng có thể [[Special:Watchlist/raw|sửa danh sách theo dạng thô]].',
+'watchlistedit-normal-explain' => 'Tên các trang bạn theo dõi được hiển thị dưới đây. Để xóa một tên trang, chọn vào hộp kiểm bên cạnh nó, rồi nhấn “{{int:Watchlistedit-normal-submit}}”. Bạn cũng có thể [[Special:Watchlist/raw|sửa danh sách theo dạng thô]].',
 'watchlistedit-normal-submit'  => 'Bỏ trang đã chọn',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|tựa đề|tựa đề}} đã được xóa khỏi danh sách các trang theo dõi:',
 'watchlistedit-raw-title'      => 'Sửa danh sách theo dõi dạng thô',
 'watchlistedit-raw-legend'     => 'Sửa danh sách theo dõi dạng thô',
-'watchlistedit-raw-explain'    => 'Tên các trang bạn theo dõi đuọc hiển thị dưới đây, và có thể được sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng.
-Khi xong, nhấn nút ”Cập nhật Trang tôi theo dõi”.
-Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩn]] để sửa danh sách này.',
+'watchlistedit-raw-explain'    => 'Danh sách này có tên các trang bạn theo dõi để bạn sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng.
+Khi xong, nhấn nút ”{{int:Watchlistedit-raw-submit}}”.
+Bạn cũng có thể [[Special:Watchlist/edit|dùng trang sửa đổi bình thường]] để sửa danh sách này.',
 'watchlistedit-raw-titles'     => 'Tên các trang:',
 'watchlistedit-raw-submit'     => 'Cập nhật Trang tôi theo dõi',
 'watchlistedit-raw-done'       => 'Danh sách các trang bạn theo dõi đã được cập nhật.',

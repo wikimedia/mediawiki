@@ -1023,7 +1023,7 @@ Som administrator kan du sjå dette oversynet; det kan vera detaljar i [{{fullur
 'revdelete-show-file-confirm' => 'Er du viss på at du ynskjer å sjå ein sletta versjon av fila "<nowiki>$1</nowiki>" frå $2 ved $3?',
 'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vald versjon|Valde versjonar}} av [[:$1]]:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}} for [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}}:'''",
 'revdelete-text'              => "Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
 Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.",
 'revdelete-confirm'           => 'Stadfest at du ynskjer å gjera dette, at du skjønar konsekvensane, og at du gjer det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinene]].',
@@ -1052,7 +1052,7 @@ $1",
 'logdelete-success'           => "'''Visinga av loggoppføringar er endra.'''",
 'logdelete-failure'           => "'''Korleis loggen skal vera synleg kunne ikkje verta stilt inn:'''
 $1",
-'revdel-restore'              => 'Endr synlegheita',
+'revdel-restore'              => 'endra synlegheita',
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Sletta historikk',
 'revdelete-content'           => 'innhald',
@@ -2063,7 +2063,7 @@ For å endre innstillingane for overvakingslista di, gå til
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 For hjelp og meir informasjon:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Tilbakemeldingar og anna hjelp:
 {{fullurl:{{MediaWiki:Helppage}}}}',

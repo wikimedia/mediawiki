@@ -2056,7 +2056,7 @@ U kan u dophoulys wysig by:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Om die bladsy vanaf u dophoulys te verwyder, besoek:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Terugvoer en verdere bystand:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3184,17 +3184,17 @@ Probeer normale voorskou.',
 'watchlistedit-noitems'        => 'U dophoulys bevat geen bladsye.',
 'watchlistedit-normal-title'   => 'Wysig dophoulys',
 'watchlistedit-normal-legend'  => 'Verwyder titels van dophoulys',
-'watchlistedit-normal-explain' => "Die bladsye in u dophoulys word hier onder vertoon. 
-Selekteer die titels wat verwyder moet word en kliek op 'Verwyder Titels' onder aan die bladsy.
-Alternatiewelik kan u die [[Special:Watchlist/raw|bronkode wysig]].",
+'watchlistedit-normal-explain' => 'Die bladsye in u dophoulys word hier onder vertoon. 
+Selekteer die titels wat verwyder moet word en kliek op {{int:Watchlistedit-normal-submit}}" onder aan die bladsy.
+Alternatiewelik kan u die [[Special:Watchlist/raw|bronkode wysig]].',
 'watchlistedit-normal-submit'  => 'Verwyder Titels',
 'watchlistedit-normal-done'    => 'Daar is {{PLURAL:$1|1 bladsy|$1 bladsye}} van u dophoulys verwyder:',
 'watchlistedit-raw-title'      => 'Wysig u dophoulys se bronkode',
 'watchlistedit-raw-legend'     => 'Wysig u dophoulys se bronkode',
-'watchlistedit-raw-explain'    => "Die bladsye in u dophoulys word hier onder vertoon.
+'watchlistedit-raw-explain'    => 'Die bladsye in u dophoulys word hier onder vertoon.
 U kan die lys wysig deur titels by te sit of te verwyder (een bladsy per lyn).
-As u klaar is, klik op 'Opdateer dophoulys' onder aan die bladsy.
-U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].",
+As u klaar is, klik op "{{int:Watchlistedit-raw-submit}}" onder aan die bladsy.
+U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].',
 'watchlistedit-raw-titles'     => 'Titels:',
 'watchlistedit-raw-submit'     => 'Opdateer dophoulys',
 'watchlistedit-raw-done'       => 'U dophoulys is opgedateer.',
@@ -3234,7 +3234,7 @@ U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].",
 # Special:FilePath
 'filepath'         => 'Lêerpad',
 'filepath-page'    => 'Lêer:',
-'filepath-submit'  => 'Pad',
+'filepath-submit'  => 'OK',
 'filepath-summary' => 'Die spesiale bladsy wys die volledige pad vir \'n lêer. 
 Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hulle MIME-geskakelde programme geopen.
 

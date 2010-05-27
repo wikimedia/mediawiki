@@ -2012,7 +2012,7 @@ Norėdami pakeisti stebimų puslapių nustatymus, užeikite į
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Norėdami puslapį iš stebimų puslapių sąrašo, užeikite į
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Atsiliepimai ir pagalba:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3151,14 +3151,16 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'watchlistedit-noitems'        => 'Jūsų stebimųjų sąraše nėra jokių puslapių.',
 'watchlistedit-normal-title'   => 'Redaguoti stebimųjų sąrašą',
 'watchlistedit-normal-legend'  => 'Šalinti puslapius iš stebimųjų sąrašo',
-'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše. Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „Šalinti puslapius“. Jūs taip pat galite [[Special:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]].',
+'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše. 
+Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „{{int:Watchlistedit-normal-submit}}“. 
+Jūs taip pat galite [[Special:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]].',
 'watchlistedit-normal-submit'  => 'Šalinti puslapius',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}} iš jūsų stebimųjų sąrašo:',
 'watchlistedit-raw-title'      => 'Redaguoti grynąjį stebimųjų sąrašą',
 'watchlistedit-raw-legend'     => 'Redaguoti grynąjį stebimųjų sąrašą',
 'watchlistedit-raw-explain'    => 'Žemiau rodomi puslapiai jūsų stebimųjų sąraše, ir gali būti pridėti į ar pašalinti iš sąrašo;
 vienas puslapis eilutėje.
-Baigę paspauskite „Atnaujinti stebimųjų sąrašą“.
+Baigę paspauskite „{{int:Watchlistedit-raw-submit}}“.
 Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]].',
 'watchlistedit-raw-titles'     => 'Puslapiai:',
 'watchlistedit-raw-submit'     => 'Atnaujinti stebimųjų sąrašą',

@@ -638,7 +638,7 @@ IP-аадырыһа эрэ көстөр.
 эбэтэр [{{fullurl:{{FULLPAGENAME}}|action=edit}} маннык ааттаах саҥа ыстатыйаны суруйуоххун] сөп</span>.',
 'noarticletext-nopermission'       => 'Билигин бу сирэй кураанах.
 Бу [[Special:Search/{{PAGENAME}}|тылы атын сирэйдэргэ көрдөөн көрүөххүн]] сөп,
-эбэтэр <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} сурунаалларга манна сыһыаннаах суруктары булуоххун сөп].',
+эбэтэр <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} сурунаалларга манна сыһыаннаах суруктары булуоххун сөп].</span>',
 'userpage-userdoesnotexist'        => '"$1" аат бэлиэтэммэтэх. Бу сирэйи оҥорор/уларытар баҕалааххын дуо?',
 'userpage-userdoesnotexist-view'   => '"$1" кыттааччы аата бэлиэтэниллибэтэх.',
 'blocked-notice-logextract'        => 'Бу кыттааччы билигин бобуллубут.
@@ -1892,7 +1892,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Бу сирэйи кэтэбил тиһигиттэн соторго манна киир:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Көмөлөһүннэрэр уонна быһаартарар сир: 
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1985,7 +1985,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'атын кэм',
 'protect-existing-expiry'     => 'Билиҥҥи болдьоҕо: $3, $2',
 'protect-otherreason'         => 'Атын/эбии төрүөтэ:',
-'protect-otherreason-op'      => 'атын/эбии төрүөтэ',
+'protect-otherreason-op'      => 'Атын төрүөт',
 'protect-dropdown'            => '*Уларытыыны хааччахтааһын сүрүн төрүөттэрэ
 ** дьаныардаах вандааллааһын
 ** наһаалыыр спаамнааһын
@@ -2086,7 +2086,7 @@ $1',
 'sp-contributions-logs'           => 'сурунааллар',
 'sp-contributions-talk'           => 'ырытыы',
 'sp-contributions-userrights'     => 'кыттааччылар бырааптарын салайыы',
-'sp-contributions-blocked-notice' => 'Бу кыттааччы бырайыаакка кыттара билигин бобуллубут. Хааччах сурунаалыгар ол туһунан бүтэһик сурук:',
+'sp-contributions-blocked-notice' => 'Бу кыттааччы бырайыакка кыттара билигин бобуллубут. Хааччах сурунаалыгар ол туһунан бүтэһик сурук:',
 'sp-contributions-search'         => 'Кыттааччы оҥорбут уларытыыларын көрдөөһүн',
 'sp-contributions-username'       => 'IP аадырыһа эбэтэр аата:',
 'sp-contributions-submit'         => 'Көрдөө',
@@ -3021,13 +3021,15 @@ $1',
 'watchlistedit-normal-title'   => 'Кэтэбил тиһигин уларытыы',
 'watchlistedit-normal-legend'  => 'Кэтэбил тиһигиттэн пууннары сотуу',
 'watchlistedit-normal-explain' => 'Манна кэтиир сирэйдэриҥ тиһигэ көстөр.
-Биири эмит сотоору гынар буоллаххына кинини бэлиэтээ, онтон "Пууннары сот" тимэҕи баттаа.
-Өссө манна [[Special:Watchlist/raw|«сиикэй» тиһиги уларытыаххын]] сөп.',
+Биири эмит сотоору гынар буоллаххына кинини бэлиэтээ, онтон "{{int:Watchlistedit-normal-submit}}" тимэҕи баттаа.
+Өссө манна [[Special:Watchlist/raw|тиһиги тиэкис быһыытынан уларытыаххын]] сөп.',
 'watchlistedit-normal-submit'  => 'Пууннары сот',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 сурук|$1 пуун}} эн кэтээн көрүүҥ тиһигиттэн сотулунна:',
 'watchlistedit-raw-title'      => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
 'watchlistedit-raw-legend'     => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
-'watchlistedit-raw-explain'    => 'Манна кэтээн көрөр сирэйдэриҥ көстөллөр. Испииһэги строка эбэн-көҕүрэтэн уларытыаххын сөп. Уларытан бүтэн баран "Испииһэги бигэргэт" тимэҕи баттаа. Өссө испииһэги  [[Special:Watchlist/edit|уларытыы көннөрү ньыматын]] туһаныаххын сөп.',
+'watchlistedit-raw-explain'    => 'Манна кэтээн көрөр сирэйдэриҥ көстөллөр. Тиһиги устуруокатын эбэн-көҕүрэтэн уларытыаххын сөп (биирдии устуруокаҕа биирдии аат). 
+Уларытан бүтэн баран «{{int:Watchlistedit-raw-submit}}» тимэҕи баттаа. 
+Өссө тиһиги  [[Special:Watchlist/edit|уларытыы эрэдээктэрин]] туһанан уларытаххын сөп.',
 'watchlistedit-raw-titles'     => 'Пууннар:',
 'watchlistedit-raw-submit'     => 'Испииһэги бигэргэт',
 'watchlistedit-raw-done'       => 'Саҥа испииһэк бигэргэтилиннэ.',
@@ -3067,7 +3069,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'Билэ суола',
 'filepath-page'    => 'Билэ:',
-'filepath-submit'  => 'Суол',
+'filepath-submit'  => 'Көс',
 'filepath-summary' => 'Бу аналлаах сирэй билэ толору суолун (дисскэҕэ ханна сытарын) көрдөрөр.
 
 Билэ аатын префикса суох киллэр <code>{{ns:file}}:</code>.',

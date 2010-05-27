@@ -80,6 +80,7 @@
  * @author Sp5uhe
  * @author Srhat
  * @author Tgr
+ * @author The Evil IP address
  * @author UV
  * @author Umherirrender
  * @author Urhixidur
@@ -142,7 +143,9 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-ccmeonemails'            => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]].',
 'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]].',
-'tog-noconvertlink'           => '{{optional}}',
+'tog-noconvertlink'           => "{{optional}}
+
+''(the message is considered optional because it is only used in wikis with language variants)''",
 'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that.
 {{Identical|Rollback}}",
 
@@ -471,8 +474,8 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedic additions. The message has to be neutral for all projects.",
 'pagetitle-view-mainpage' => '{{optional}}',
 'retrievedfrom'           => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
-'youhavenewmessages'      => 'Pesan dengan pita warna oranye muncul saat seseorang menyunting halaman Pembicaraan_Pengguna anda.
-Formatnya adalah: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
+'youhavenewmessages'      => 'The orange message appearing when someone edited your user talk page.
+The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
 'newmessageslink'         => 'Ini adalah pranala pertama yang tampak pada pita oranye saat pengguna mendapat pesan pada pembicaraan_penggunanya. Tampak pada pesan {{msg-mw|youhavenewmessages}} (sebagai parameter $1).
 
 {{Identical|New messages}}',
@@ -488,7 +491,7 @@ Format penggunaannya adalah : "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmes
 'editlink'                => 'Text dari pranala yang terlihat disebelah setiap templat yang dapat disunting (tidak di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
-'viewsourcelink'          => 'Text dari pranala yang terlihat disebelah setiap templat yang tidak dapat disunting (di proteksi) pada daftar templat dibawah jendela penyuntingan. Lihat juga {{msg-mw|Editlink}}.
+'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.
 
 {{Identical|View source}}',
 'editsectionhint'         => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
@@ -509,10 +512,14 @@ View or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>
 'feed-unavailable'        => 'This message is displayed when a user tries to use an RSS or Atom feed on a wiki where such feeds have been disabled.',
 'site-rss-feed'           => "Used in the HTML header of a wiki's RSS feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
-HTML markup cannot be used.",
+HTML markup cannot be used.
+{{Identical|S1 RSS/Atom feed}}",
 'site-atom-feed'          => "Used in the HTML header of a wiki's Atom feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
-HTML markup cannot be used.",
+HTML markup cannot be used.
+{{Identical|S1 RSS/Atom feed}}",
+'page-rss-feed'           => '{{Identical|S1 RSS/Atom feed}}',
+'page-atom-feed'          => '{{Identical|S1 RSS/Atom feed}}',
 'feed-atom'               => '{{optional}}',
 'feed-rss'                => '{{optional}}',
 'red-link-title'          => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
@@ -623,9 +630,11 @@ HTML markup cannot be used.",
 'login'                      => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg|nav-login-createaccount}} is shown there).
 
 {{Identical|Log in}}",
-'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.",
+'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.
+{{identical|Log in / create account}}",
 'loginprompt'                => 'A small notice in the log in form.',
-'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.',
+'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.
+{{Identical|Log in / create account}}',
 'userloginnocreate'          => 'A variant of {{msg-mw|Userlogin}} when the user is not allowed to create a new account.
 
 {{Identical|Log in}}',
@@ -669,7 +678,10 @@ $1 is the minimum number of characters in the password.',
 * $3 is a password. Example: er##@fdas!
 * $4 is a URL. Example: http://wiki.example.com
 * $5 is a number of days in which the temporary password will expire',
-'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
+'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup register user link]).
+
+Parameters:
+* $1 is a user name. This parameter can be used with GENDER.',
 'eauthentsent'               => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
 "in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
@@ -766,6 +778,7 @@ Tip for internal links',
 'anoneditwarning'                  => 'Shown when editing a page anonymously.',
 'missingsummary'                   => 'The text "sdit summary" is in {{msg-mw|summary}}.
 The text "Save" is in {{msg-mw|savearticle}}.',
+'missingcommenttext'               => 'This message is shown, when the textbox by a new-section is empty.',
 'missingcommentheader'             => '
 The text "Save" is in {{msg-mw|savearticle}}.',
 'summary-preview'                  => 'Preview of the edit summary, shown under the edit summary itself.
@@ -812,6 +825,8 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'noarticletext-nopermission'       => 'See also {{msg-mw|Noarticletext}}.',
 'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki',
 'userpage-userdoesnotexist-view'   => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo].',
+'blocked-notice-logextract'        => 'Parameters:
+* $1 is the name of the blocked user (optional). Can be used for GENDER.',
 'clearyourcache'                   => 'Text at the top of .js/.css pages',
 'usercssyoucanpreview'             => "Text displayed on every css page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
 'userjsyoucanpreview'              => "Text displayed on every js page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
@@ -986,10 +1001,18 @@ This is the message for the log entry in [[Special:Log/delete]] when changing vi
 The parameter $1 is the log name in brackets.
 
 The name of the user who did this task appears before this message.',
-'revdelete-success'           => '{{RevisionDelete}}',
-'revdelete-failure'           => '{{RevisionDelete}}',
-'logdelete-success'           => '{{RevisionDelete}}',
-'logdelete-failure'           => '{{RevisionDelete}}',
+'revdelete-success'           => "{{RevisionDelete}}
+
+Possible alternative text - 'Restrictions on the revision visibility were successfully changed.'",
+'revdelete-failure'           => "{{RevisionDelete}}
+
+Possible alternative text - 'Restrictions on the revision visibility could not be changed'",
+'logdelete-success'           => "{{RevisionDelete}}
+
+Possible alternative message - 'Restrictions on log entry visibility successfully set.'",
+'logdelete-failure'           => "{{RevisionDelete}}
+
+Possible alternative message - 'Restrictions could not be set on the visibility of the log entry.'",
 'revdel-restore'              => '{{RevisionDelete}}',
 'pagehist'                    => 'Links to page history at Special:RevisionDelete header together with links to the logs and Special:Undelete.',
 'deletedhist'                 => 'Links to Special:Undelete at Special:RevisionDelete header together with links to the logs and page history.',
@@ -1148,6 +1171,7 @@ $1 is the relevance of this result in per cent.
 'search-redirect'                => "\$1 is a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from'''). \"Redirect\" is a noun here, not a verb.",
 'search-section'                 => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.',
 'search-interwiki-default'       => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
+'search-interwiki-more'          => '{{Identical|More}}',
 'search-relatedarticle'          => '{{Identical|Related}}
 
 This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]',
@@ -1810,7 +1834,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $3 is a hour
 * $4 is an URL and must follow square bracket: [$4
 {{Identical|Revert}}',
-'filerevert-comment'        => '{{Identical|Comment}}',
+'filerevert-comment'        => '{{Identical|Reason}}',
 'filerevert-defaultcomment' => '* $1 is a date
 * $2 is an hour
 {{Identical|Revert}}',
@@ -2067,9 +2091,24 @@ $1 is a page title",
 'sp-deletedcontributions-contribs' => 'Link to user’s contributions on [[Special:DeletedContributions]]',
 
 # Special:LinkSearch
-'linksearch'    => '{{Identical|External link}}',
-'linksearch-ns' => '{{Identical|Namespace}}',
-'linksearch-ok' => '{{Identical|Search}}',
+'linksearch'       => 'Title of [[Special:LinkSearch|special page]] and legend of fieldset on that page.
+
+{{Identical|External link}}',
+'linksearch-pat'   => 'Legend for input box on [[Special:LinkSearch]].',
+'linksearch-ns'    => 'Legend for dropdown box on [[Special:LinkSearch|special page]].
+
+{{Identical|Namespace}}',
+'linksearch-ok'    => 'Button label on [[Special:LinkSearch|special page]]e
+
+{{Identical|Search}}',
+'linksearch-text'  => 'Introduction to special page [[Special:LinkSearch]].
+
+$1 is a list of internet protocols.',
+'linksearch-line'  => 'Text for the results of a search using [[Special:LinkSearch]].
+
+*$1 is the address of an external link
+*$2 is the page containing the external link',
+'linksearch-error' => 'Error message generated by [[Special:LinkSearch]].',
 
 # Special:ListUsers
 'listusersfrom'      => 'identical with {{msg-mw|activeusers-from}}',
@@ -2351,7 +2390,7 @@ This message was something like "unlock move protection" in the past.',
 'undeletereset'              => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
 'undeleteinvert'             => '{{Identical|Invert selection}}',
-'undeletecomment'            => '{{Identical|Comment}}',
+'undeletecomment'            => '{{Identical|Reason}}',
 'undelete-search-submit'     => '{{Identical|Search}}',
 'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 * <code>$1</code> is the name of the file being undeleted.
@@ -2773,11 +2812,11 @@ If the length of the translated message is over 60 characters (including spaces)
 This message appears at the very end of the list of names in the message [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]]. If there are no anonymous users in the credits list then this message does not appear at all.
 
 * $1 is the number of anonymous users in the message',
-'siteuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
+'siteuser'         => "This message is shown when viewing the credits of a page ([{{fullurl:Main Page|action=credits}} example]). Note that this action is disabled by default, but currently enabled on translatewiki.net. This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if a user has not entered their 'real name' in their preferences. See also {{msg-mw|Siteusers}}.
 
-This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.
-
-See also {{msg-mw|Siteusers}}.",
+Parameters:
+* $1 is a link to a user page with the user name as link text
+* $2 is a user name for use with GENDER (optional)",
 'anonuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
 
 This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user is anonymous. The variable $1 in this message is a link to the user's contributions.
@@ -3325,6 +3364,8 @@ Do ''not'' change the leading ;  and the first : as it is wiki markup.
 Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.
 
 {{optional}}',
+'percent'         => '{{optional}}',
+'parentheses'     => '{{optional}}',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',
@@ -3369,8 +3410,7 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 'watchlistedit-raw-legend'     => 'Heading of dialogue box on [[Special:Watchlist/raw]].
 
 {{Identical|Edit raw watchlist}}',
-'watchlistedit-raw-explain'    => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].
-Hint: the text "Update Watchlist" is in {{msg-mw|watchlistedit-raw-submit}}',
+'watchlistedit-raw-explain'    => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].',
 'watchlistedit-raw-titles'     => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-submit'     => 'Text of submit button on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-done'       => 'A message which appears after the raw watchlist has been updated using [[Special:Watchlist/raw]].',

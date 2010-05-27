@@ -1648,7 +1648,7 @@ $NEWPAGE
 --
 Настаўленні спісу назіранага: {{fullurl:{{#special:Watchlist}}/edit}}
 
-Выняцце старонкі з ліку назіраных: {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+Выняцце старонкі з ліку назіраных: $UNWATCHURL
 
 Зваротная сувязь і далейшая дапамога: {{fullurl:{{MediaWiki:Helppage}}}}',
 

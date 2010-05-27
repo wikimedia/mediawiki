@@ -13,7 +13,9 @@
  * @author Byrial
  * @author Christian List
  * @author EPO
+ * @author Emilkris33
  * @author H92
+ * @author Hylle
  * @author Jan Friberg
  * @author Jon Harald Søby
  * @author Kwi
@@ -516,6 +518,7 @@ Gør venligst en [[Special:ListUsers/sysop|administrator]] opmærksom på det, o
 'readonly_lag'         => 'Databasen er automatisk blevet låst mens slave database serverne synkronisere med master databasen',
 'internalerror'        => 'Intern fejl',
 'internalerror_info'   => 'Internal fejl: $1',
+'fileappenderrorread'  => 'Kunne ikke læse "$1" under tilføjelsen.',
 'fileappenderror'      => 'Kunne ikke tilføje "$1" til "$2".',
 'filecopyerror'        => 'Kunne ikke kopiere filen "$1" til "$2".',
 'filerenameerror'      => 'Kunne ikke omdøbe filen "$1" til "$2".',
@@ -644,6 +647,7 @@ Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
 'login-throttled'            => 'Du har forsøgt at logge på for mange gange.
 Vent venligst før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
+'suspicious-userlogout'      => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Skift adgangskode',
@@ -1966,19 +1970,20 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'enotif_lastvisited'           => 'Se $1 for alle ændringer siden dit sidste besøg.',
 'enotif_lastdiff'              => 'Se $1 for at vise denne ændring.',
 'enotif_anon_editor'           => 'anonym bruger $1',
-'enotif_body'                  => 'Kære $WATCHINGUSERNAME
+'enotif_body'                  => 'Kære $WATCHINGUSERNAME,
 
-{{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED $PAGEEDITDATE af $PAGEEDITOR. Se $PAGETITLE_URL for den nyeste version.
+
+{{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED den $PAGEEDITDATE af $PAGEEDITOR, se $PAGETITLE_URL for den aktuelle version.
 
 $NEWPAGE
 
-Bidragyderens beskrivelse: $PAGESUMMARY $PAGEMINOREDIT
+Bidragyderens opsummering: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontakt bidragyderen:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du vil ikke modtage flere beskeder om yderligere ændringer af denne side med mindre du besøger den.
+Du vil ikke modtage flere beskeder om yderligere ændringer med mindre du besøger denne side.
 På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
 
              Med venlig hilsen {{SITENAME}}s informationssystem
@@ -2072,7 +2077,7 @@ og den seneste version af $2 er gendannet.',
 'protect-othertime-op'        => 'anden tid',
 'protect-existing-expiry'     => 'Nugældende udløbstid: $2 $3',
 'protect-otherreason'         => 'Anden/uddybende årsag:',
-'protect-otherreason-op'      => 'anden/uddybende årsag',
+'protect-otherreason-op'      => 'Anden årsag',
 'protect-dropdown'            => '* Almindelge besyttelsesårsager
 ** Gentagen hærværk
 ** Gentagen spam
@@ -2828,7 +2833,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsdestdistance'             => 'Motivafstand',
 'exif-gpsprocessingmethod'         => 'GPS-metodens navn',
 'exif-gpsareainformation'          => 'GPS-områdets navn',
-'exif-gpsdatestamp'                => 'GPS-fato',
+'exif-gpsdatestamp'                => 'GPS-dato',
 'exif-gpsdifferential'             => 'GPS-differentialkorrektur',
 
 # EXIF attributes
@@ -3089,7 +3094,10 @@ Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].'
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
 'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',
 'watchlistedit-raw-legend'     => 'Direkte redigering af overvågningsliste',
-'watchlistedit-raw-explain'    => 'Siderne i din overvågningsliste er vist nedenfor. Du kan ændre din overvågningsliste ved at tilføje og fjerne sidenavne. Du kan gemme din nye overvågningsliste ved at trykke på Opdater overvågningsliste nedenfor. Du kan også redigere overvågningslisten i [[Special:Watchlist/edit|sorteret form]].',
+'watchlistedit-raw-explain'    => 'Siderne i din overvågningsliste er vist nedenfor, og kan ændres ved at tilføje og fjerne fra listen;
+en side per linie
+Når du er færdig, klik "{{int:Watchlistedit-raw-submit}}".
+Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'watchlistedit-raw-titles'     => 'Sider:',
 'watchlistedit-raw-submit'     => 'Opdater overvågningsliste',
 'watchlistedit-raw-done'       => 'Din overvågningsliste blev opdateret.',

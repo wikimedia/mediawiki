@@ -1761,12 +1761,13 @@ $1",
 'listgrouprights-addgroup-all'         => 'רשות צוצולייגן אלע גרופעס',
 'listgrouprights-removegroup-all'      => 'רשות אוועקצונעמען אלע גרופעס',
 'listgrouprights-addgroup-self'        => 'צולייגן {{PLURAL:$2|גרופע|גרופעס}} צו אייגענער קאנטע: $1',
-'listgrouprights-removegroup-self'     => 'אראָפנעמען ((PLURAL: $ 2 | גרופּע | גרופּעס)) פון אייגענער קאנטע: $ 1',
+'listgrouprights-removegroup-self'     => 'א§ראָפנעמען {{PLURAL:$2|גרופּע |גרופּעס}} פון אייגענער קאנטע: $1',
 'listgrouprights-addgroup-self-all'    => 'צולייגן אַלע גרופעס צו אייגענער קאנטע',
 'listgrouprights-removegroup-self-all' => 'אראָפנעמען אַלע גרופעס פֿון אייגענער קאנטע',
 
 # E-mail user
 'mailnologin'      => 'נישטא קיין אדרעס צו שיקן',
+'mailnologintext'  => 'איר ברויכט זײַן [[Special:UserLogin|אַרײַנלאגירט]] און האָבן א גילטיגן ע־פאסט אַדרעס אין אײַער [[Special:Preferences|פרעפֿערענצן]] צו שיקן ע־פאסט צו אַנדערע באַניצער.',
 'emailuser'        => 'אַרויסשיקן ע-פאסט צו דעם באַניצער',
 'emailpage'        => 'אַרויסשיקן ע-פאסט צו באַניצער.',
 'emailpagetext'    => 'איר קענט ניצן דעם פֿארעם אונטן צו שיקן אן בליצבריוו צו דעם דאזיגן באַניצער.
@@ -2395,6 +2396,7 @@ $1 איז שוין בלאקירט. צי ווילט איר טוישן די באַ
 # Stylesheets
 'common.css'   => '/* CSS געשריבן דא וועט אפילירן און באיינפלוסן אלע סקינס */',
 'monobook.css' => '/* סטייל דא געלייגט וועט באיינפלוסן די בעקגראונד Monobook בלויז */',
+'vector.css'   => '/* CSS געשטעלט דא ווירקט נאר אויפן Vector סקין */',
 
 # Scripts
 'common.js' => '/* אלע סקריפטן פון JavaScript דא געשריבן וועט לויפן פאר אלע באנוצער ווען זיי וועלן לאדירן דעם בלאט */',

@@ -1735,7 +1735,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Лопать тонь мельгеваномастот нардаманди сашентт
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Азома мекпяли ди иля лезкс:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2237,6 +2237,7 @@ $1 сёлкф ни. Мяльце полафтомс латцематнень?',
 'tooltip-search-fulltext'         => 'Вешендемс тя текссть лопава',
 'tooltip-p-logo'                  => 'Пря лопа',
 'tooltip-n-mainpage'              => 'Сувак Пря лопас',
+'tooltip-n-mainpage-description'  => 'Сашентт Пря лопас',
 'tooltip-n-portal'                => 'Проектть колга, мезьса лездомс, коста мумс мезь',
 'tooltip-n-currentevents'         => 'Ванк мезе молихть тя пингста',
 'tooltip-n-recentchanges'         => 'Мекольце Викиса полафнематнень лувомась.',

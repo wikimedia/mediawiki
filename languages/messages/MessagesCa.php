@@ -2005,7 +2005,7 @@ Per a canviar les opcions de la vostra llista de seguiment aneu a
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Per eliminar la pàgina de la vostra llista de seguiment aneu a
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Suggeriments i ajuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3146,7 +3146,9 @@ Proveu-ho amb la previsualització normal.',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 títol s'ha|$1 títols s'han}} eliminat de la vostra llista de seguiment:",
 'watchlistedit-raw-title'      => 'Edita la llista de seguiment crua',
 'watchlistedit-raw-legend'     => 'Edita la llista de seguiment crua',
-'watchlistedit-raw-explain'    => "Els títols de la vostra llista de seguiment es mostren a continuació, i poden modificar-se afegint-los o suprimint-los de la llista; un títol per línia. En acabar, feu clic a Actualitza la llista de seguiment.
+'watchlistedit-raw-explain'    => "Els títols de la vostra llista de seguiment es mostren a continuació, i poden modificar-se afegint-los o suprimint-los de la llista; 
+un títol per línia. 
+En acabar, feu clic a «{{int:Watchlistedit-raw-submit}}».
 També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'watchlistedit-raw-titles'     => 'Títols:',
 'watchlistedit-raw-submit'     => 'Actualitza la llista de seguiment',

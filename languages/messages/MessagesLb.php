@@ -587,12 +587,12 @@ Kuckt w.e.g. op d\'Schreifweis richteg ass, oder [[Special:UserLogin/signup|maac
 'wrongpassword'              => 'Dir hutt e falscht (oder kee) Passwuert aginn. Probéiert w.e.g. nach eng Kéier.',
 'wrongpasswordempty'         => "D'Passwuert dat Dir aginn hutt war eidel. Probéiert w.e.g. nach eng Kéier.",
 'passwordtooshort'           => 'Passwierder musse mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.',
-'password-name-match'        => 'Ärt Passwuert muss verschidde vun Ärem Benotzernumm sinn.',
+'password-name-match'        => 'Äert Passwuert muss verschidde vun Ärem Benotzernumm sinn.',
 'mailmypassword'             => 'Neit Passwuert per E-Mail kréien',
 'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkont',
-'passwordremindertext'       => 'Iergend een (waarscheinlech Dir, mat der IP-Adress $1) huet en neit Passwuert fir {{SITENAME}} ($4) gefrot. Een temporärt Passwuert fir de Benotzer $2 gouf ugeluecht an et ass: $3. Wann et dëst ass wat Dir wollt, da sollt Dir Iech elo aloggen an en neit Passwuert eraussichen. Ärt temporärt Passwuert leeft a(n) {{PLURAL:$5|engem Dag| $5 Deeg}} of.
+'passwordremindertext'       => 'Iergend een (waarscheinlech Dir, mat der IP-Adress $1) huet en neit Passwuert fir {{SITENAME}} ($4) gefrot. Een temporäert Passwuert fir de Benotzer $2 gouf ugeluecht an et ass: $3. Wann et dëst ass wat Dir wollt, da sollt Dir Iech elo aloggen an en neit Passwuert eraussichen. Äert temporärt Passwuert leeft a(n) {{PLURAL:$5|engem Dag| $5 Deeg}} of.
 
-Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir Iech an der Zwëschenzäit nees un Ärt Passwuert erënnere kënnt an Dir ärt Passwuert net ännere wëllt da kënnt Dir weider Ärt aalt Passwuert benotzen.',
+Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir Iech an der Zwëschenzäit nees un Äert Passwuert erënnere kënnt, an Dir Äert Passwuert net ännere wëllt, da kënnt Dir weider Äert aalt Passwuert benotzen.',
 'noemail'                    => 'De Benotzer "$1" huet keng E-Mailadress uginn.',
 'noemailcreate'              => 'Dir musst eng valabel E-Mailadress uginn',
 'passwordsent'               => 'Een neit Passwuert gouf un déi fir de Benotzer "$1" gespäichert E-Mailadress geschéckt.
@@ -616,7 +616,7 @@ Gitt eng valabel E-Mailadress an oder loosst dëst Feld eidel.',
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 'createaccount-title'        => 'Opmaache vun engem Benotzerkont op {{SITENAME}}',
 'createaccount-text'         => 'Et gouf e Benotzerkont "$2" fir iech op {{SITENAME}} ($4) ugeluecht mat dem Passwuert "$3".
-Dir sollt Iech aloggen an Ärt Passwuert elo änneren.
+Dir sollt Iech aloggen an Äert Passwuert elo änneren.
 
 Falls dëse Benotzerkont ongewollt ugeluecht ginn ass kënnt Dir dës Noriicht einfach ignoréieren.',
 'usernamehasherror'          => "Am Benotzernumm däerfe keng ''hash'' Zeeche sinn",
@@ -635,14 +635,14 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'newpassword'               => 'Neit Passwuert:',
 'retypenew'                 => 'Neit Passwuert nach eemol antippen:',
 'resetpass_submit'          => 'Passwuert aginn an umellen',
-'resetpass_success'         => 'Ärt Passwuert gouf geännert. Loggt iech elo an ...',
+'resetpass_success'         => 'Äert Passwuert gouf geännert. Loggt iech elo an ...',
 'resetpass_forbidden'       => 'Passwierder kënnen net geännert ginn.',
 'resetpass-no-info'         => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
 'resetpass-submit-loggedin' => 'Passwuert änneren',
 'resetpass-submit-cancel'   => 'Annulléieren',
-'resetpass-wrong-oldpass'   => 'Net valabelt temporärt oder aktuellt Passwuert.
-Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuert ugefrot.',
-'resetpass-temp-password'   => 'Temporärt Passwuert:',
+'resetpass-wrong-oldpass'   => 'Net valabelt temporäert oder aktuellt Passwuert.
+Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwuert ugefrot.',
+'resetpass-temp-password'   => 'Temporäert Passwuert:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fettgedréckten Text',
@@ -1201,8 +1201,8 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'prefs-help-gender'             => "Fakultativ: gëtt benotzt fir eng ''Gender-korrekt'' Uried duerch d'Software. Dës Informatioun ass ëffentlech.",
 'email'                         => 'E-Mail',
 'prefs-help-realname'           => 'Äre richtegen Numm ass fakultativ. Wann Dir en ugitt, gëtt e benotzt fir Iech Är Kontributiounen zouzeuerdnen.',
-'prefs-help-email'              => "D'E-Mailadress ass fakultativ, awer si erméiglecht et Iech ärt Passwuert ze mailen wann Dir et vergiess hutt.
-Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Benotzersäit oder ärer diskussiounssäit - kontaktéiere kënnen ouni datt Dir är Identitéit präisgitt.",
+'prefs-help-email'              => "D'E-Mailadress ass fakultativ, awer si erméiglecht et Iech Äert Passwuert ze mailen wann Dir et vergiess hutt.
+Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Benotzersäit oder Ärer Diskussiounssäit - kontaktéiere kënnen ouni datt Dir är Identitéit präisgitt.",
 'prefs-help-email-required'     => 'Eng gëlteg E-Mailadress gëtt heifir gebraucht.',
 'prefs-info'                    => 'Grondinformatioun',
 'prefs-i18n'                    => 'Internationalisatioun',
@@ -1454,6 +1454,7 @@ Kuckt [[Special:NewFiles|d'Gallerie vun de neie Fichieren]] wann Dir méi e visu
 'minlength1'                  => "D'Nimm vu Fichiere musse mindestens e Buschtaf am Numm hunn.",
 'illegalfilename'             => 'Am Fichiersnumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
 'badfilename'                 => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
+'filetype-mime-mismatch'      => 'Dateierweiderung passt net op de MIME-Typ.',
 'filetype-badmime'            => 'Fichiere vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
 'filetype-bad-ie-mime'        => 'Dëse Fichier kann net eropgeluede ginn, well den Internet Explorer en als „$1“ erkennt, deen net erlaabt ass well et e potentiell geféierleche Fichierstyp ass.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' ass een onerwënschte Fichiersformat. 
@@ -1619,7 +1620,7 @@ D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnedrënner.",
 'filerevert'                => '"$1" zrécksetzen',
 'filerevert-legend'         => 'De Fichier zrécksetzen.',
 'filerevert-intro'          => "Dir setzt de Fichier '''[[Media:$1|$1]]''' op d'[$4 Versioun vum $2, $3 Auer] zréck.",
-'filerevert-comment'        => 'Grond:',
+'filerevert-comment'        => 'Bemierkung:',
 'filerevert-defaultcomment' => "zréckgesat op d'Versioun vum $1, $2 Auer",
 'filerevert-submit'         => 'Zrécksetzen',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' gouf op d'[$4 Versioun vum $2, $3 Auer] zréckgesat.",
@@ -1972,7 +1973,7 @@ Fir d\'Astellungen op ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
 {{fullurl:Special:Watchlist/edit}}
 
 Fir d\'Säit vun Ärer Iwwerwaachungslëscht erofzehuelen, gitt w.e.g. op 
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Reaktiounen a méi Hëllef:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2043,7 +2044,7 @@ Kuckt d'[[Special:ProtectedPages|Lëscht vun de gespaarte Säite]] fir eng Lësc
 'protect-legend'              => "Confirméiert d'Protectioun",
 'protectcomment'              => 'Grond:',
 'protectexpiry'               => 'Dauer vun der Spär:',
-'protect_expiry_invalid'      => "D'Dauer déi Dir uginn hutt ass ongültig.",
+'protect_expiry_invalid'      => "D'Dauer déi Dir uginn hutt ass ongëlteg.",
 'protect_expiry_old'          => "D'Spärzäit läit an der Vergaangenheet.",
 'protect-unchain-permissions' => "D'Spär vu weidere Spär-Optioune ophiewen",
 'protect-text'                => "Hei kënnt Dir de Protectiounsstatus fir d'Säit '''$1''' kucken an änneren.",
@@ -3082,14 +3083,16 @@ Benotzt w.e.g. d'Funktioun fir déi nach net gespäichert Versioun ze kucken (Ku
 'watchlistedit-noitems'        => 'Är Iwwerwaachungslëscht ass eidel.',
 'watchlistedit-normal-title'   => 'Iwwerwaachungslëscht änneren',
 'watchlistedit-normal-legend'  => 'Säite vun der Iwwerwaachungslëscht erofhuelen',
-'watchlistedit-normal-explain' => 'D\'Säite vun ärer Iwwerwaachungslëscht ginn ënnendrenner gewisen.
-Fir eng Säit erofzehuelen, klickt op d\'Haischen niewen drunn a klickt duerno op "Säiten erofhuelen".
+'watchlistedit-normal-explain' => 'D\'Säite vun ärer Iwwerwaachungslëscht ginn drënner gewisen.
+Fir eng Säit erofzehuelen, klickt op d\'Haischen niewendrun a klickt duerno op "{{int:Watchlistedit-normal-submit}}".
 Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslëscht änneren]].',
 'watchlistedit-normal-submit'  => 'Säiten erofhuelen',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufe}} vun ärer Iwwerwaachungslëscht erofgeholl:',
 'watchlistedit-raw-title'      => 'Iwwerwaachungslëscht onformatéiert änneren',
 'watchlistedit-raw-legend'     => 'Iwwerwaachungslëscht onformatéiert änneren',
-'watchlistedit-raw-explain'    => "D'Säite vun ärer Iwwerwaachungslëscht ginn ënnendrenner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetzt oder erofhuelt; eng Säit pro Linn. Wann Dir fäerdeg sidd, klickt Iwwerwaachungslëscht aktualiséieren. Dir kënnt och [[Special:Watchlist/edit|de Standard Editeur benotzen]].",
+'watchlistedit-raw-explain'    => "D'Säite vun ärer Iwwerwaachungslëscht ginn hei drënner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetze oder erofhuelt; eng Säit pro Linn.
+Wann Dir fäerdeg sidd, klickt \"{{int:Watchlistedit-raw-submit}}\".
+Dir kënnt och [[Special:Watchlist/edit|de Standard Editeur benotzen]].",
 'watchlistedit-raw-titles'     => 'Säiten:',
 'watchlistedit-raw-submit'     => 'Iwwerwaachungslëscht aktualiséieren',
 'watchlistedit-raw-done'       => 'Är Iwwerwaachungslëscht gouf aktualiséiert.',
@@ -3201,7 +3204,7 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'dberr-cachederror' => 'Dëst ass eng tëschegespäichert Kopie vun der gefroter Säit, a si kann eventuell net aktuell sinn.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Et gëtt Problemer mat de Werter déi dir aginn hutt.',
+'htmlform-invalid-input'       => 'Et gëtt Problemer mat de Wäerter déi dir aginn hutt.',
 'htmlform-select-badoption'    => 'De Wert deen Dir aginn hutt ass keng valabel Optioun.',
 'htmlform-int-invalid'         => 'De Wert deen dir aginn hutt ass keng ganz Zuel.',
 'htmlform-float-invalid'       => 'De Wert deen Dir uginn hutt ass keng Zuel.',

@@ -392,7 +392,7 @@ $messages = array(
 'vector-action-addsection'   => 'Добавяне на тема',
 'vector-action-delete'       => 'Изтриване',
 'vector-action-move'         => 'Преместване',
-'vector-action-protect'      => 'Защитаване',
+'vector-action-protect'      => 'Защита',
 'vector-action-undelete'     => 'Възстановяване',
 'vector-action-unprotect'    => 'Сваляне на защитата',
 'vector-namespace-category'  => 'Категория',
@@ -1619,7 +1619,7 @@ $1",
 
 # HTTP errors
 'http-invalid-url'      => 'Невалиден адрес: $1',
-'http-invalid-scheme'   => 'Не се поддържат URL адреси с префикс "$ 1".',
+'http-invalid-scheme'   => 'Не се поддържат URL адреси с префикс "$1".',
 'http-request-error'    => 'HTTP заявката пропадна поради неизвестна грешка.',
 'http-read-error'       => 'HTTP грешка при четене.',
 'http-timed-out'        => 'Пресрочено време за HTTP заявка.',
@@ -2041,7 +2041,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 За да изтриете страницата от списъка си за наблюдение, посетете 
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 За обратна връзка и помощ:
 {{fullurl:{{MediaWiki:Helppage}}}}',

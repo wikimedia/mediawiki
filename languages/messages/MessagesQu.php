@@ -732,6 +732,7 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'usernamehasherror'          => 'Ruraqpa sutinqa ama iskaychakana (<nowiki>#</nowiki>) sananchayuqchu kachun',
 'login-throttled'            => 'Nisyu kutitachá kay rakiqunapaq yaykuna rimawan ñaqha yaykuykachanki. Ama hina kaspa, suyariy manaraq musuqmanta yaykuykachaspa.',
 'loginlanguagelabel'         => 'Rimay: $1',
+'suspicious-userlogout'      => "Lluqsiy mañakuyniykiqa mananchasqam karqan, waqllisqa wamp'unamanta icha pakaq proksimanta kachasqa kaspanchá.",
 
 # Password reset dialog
 'resetpass'                 => 'Ruraqpa yaykuna rimanta hukchay',
@@ -2045,7 +2046,7 @@ Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhawa
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 P\'anqata watiqana sutisuyuykimanta qichunaykipaqqa kay p\'anqatam qhaway:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Yanapasunaykipaq:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2135,7 +2136,7 @@ Kay qatiqpiqa '''$1''' sutiyuq p'anqap kunan allinkachinankunatam rikunki:",
 'protect-othertime-op'        => 'huk pacha',
 'protect-existing-expiry'     => 'Kunanraq nispaqa kay pachakama: $3, $2',
 'protect-otherreason'         => 'Huk/wakin rayku:',
-'protect-otherreason-op'      => 'huk/wakin rayku',
+'protect-otherreason-op'      => 'Huk/wakin rayku',
 'protect-dropdown'            => "*Amachaypaq sapsi imaraykukuna
 ** Achka wandalismu
 ** Achka spam yapay
@@ -3191,7 +3192,7 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 # Special:FilePath
 'filepath'         => 'Willañiqi ñan',
 'filepath-page'    => 'Willañiqi:',
-'filepath-submit'  => 'Ñan',
+'filepath-submit'  => 'Riy',
 'filepath-summary' => "Kay sapaq p'anqaqa willañiqipaq tukuy ñannintam kutichin.
 Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapusqa wakichiwanmi chiqalla kicharikun.
 

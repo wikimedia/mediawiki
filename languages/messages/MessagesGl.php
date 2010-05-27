@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alma
+ * @author Gallaecio
  * @author Lameiro
  * @author Prevert
  * @author Toliño
@@ -388,7 +389,7 @@ $messages = array(
 'variants'                   => 'Variantes',
 
 'errorpagetitle'    => 'Erro',
-'returnto'          => 'Voltar a "$1".',
+'returnto'          => 'Volver a "$1".',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Axuda',
 'search'            => 'Procura',
@@ -540,7 +541,7 @@ A base de datos devolveu o erro "$3: $4"',
 'laggedslavemode'      => "'''Aviso:''' a páxina pode non conter as actualizacións recentes.",
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
-'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que voltará á normalidade.
+'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que volverá á normalidade.
 
 O administrador que a pechou deu esta explicación: $1',
 'missing-article'      => 'A base de datos non atopa o texto da páxina chamada "$1" $2, que debera ter atopado.
@@ -895,7 +896,7 @@ Velaquí está a última entrada no rexistro, por se quere consultala:",
 'edittools'                        => '<!-- O texto que apareza aquí mostrarase por debaixo dos formularios de edición e envío. -->',
 'nocreatetitle'                    => 'Limitada a creación de páxinas',
 'nocreatetext'                     => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
-Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta]].',
+Pode volver e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta]].',
 'nocreate-loggedin'                => 'Non dispón dos permisos necesarios para crear páxinas novas.',
 'sectioneditnotsupported-title'    => 'A edición de seccións non está soportada',
 'sectioneditnotsupported-text'     => 'A edición de seccións non está soportada nesta páxina.',
@@ -1021,7 +1022,7 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-no-file'           => 'O ficheiro especificado non existe.',
 'revdelete-show-file-confirm' => 'Está seguro de querer ver unha revisión borrada do ficheiro "<nowiki>$1</nowiki>" do día $2 ás $3?',
 'revdelete-show-file-submit'  => 'Si',
-'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:'''",
+'revdelete-selected'          => "'''{{PLURAL:\$2|Revisión seleccionada|Revisións seleccionadas}} de \"[[:\$1]]\":'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
 'revdelete-text'              => "'''As revisións borradas seguirán aparecendo no historial da páxina e nos rexistros, pero partes do seu contido serán inaccesibles de cara ao público.'''
 Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que se estableza algunha restrición adicional.",
@@ -1030,21 +1031,21 @@ Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e
 * Información persoal inapropiada
 *: ''domicilios e números de teléfono, números da seguridade social, etc.''",
 'revdelete-legend'            => 'Aplicar restricións de visibilidade',
-'revdelete-hide-text'         => 'Agochar texto da revisión',
+'revdelete-hide-text'         => 'Agochar o texto da revisión',
 'revdelete-hide-image'        => 'Agochar o contido do ficheiro',
-'revdelete-hide-name'         => 'Agochar acción e destino',
-'revdelete-hide-comment'      => 'Agochar comentario da edición',
-'revdelete-hide-user'         => 'Agochar nome de usuario/IP do editor',
+'revdelete-hide-name'         => 'Agochar a acción e o destino',
+'revdelete-hide-comment'      => 'Agochar o resumo de edición',
+'revdelete-hide-user'         => 'Agochar o nome de usuario ou o enderezo IP do editor',
 'revdelete-hide-restricted'   => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-radio-same'        => '(non cambiar)',
 'revdelete-radio-set'         => 'Si',
 'revdelete-radio-unset'       => 'Non',
-'revdelete-suppress'          => 'Eliminar os datos tanto dos administradores como dos demais',
+'revdelete-suppress'          => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-unsuppress'        => 'Retirar as restricións sobre as revisións restauradas',
 'revdelete-log'               => 'Motivo para o borrado:',
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|á revisión seleccionada|ás revisións seleccionadas}}',
 'revdelete-logentry'          => 'mudou a visibilidade dunha revisión de "[[$1]]"',
-'logdelete-logentry'          => 'mudouse a visibilidade do evento para [[$1]]',
+'logdelete-logentry'          => 'mudou a visibilidade do evento de [[$1]]',
 'revdelete-success'           => "'''Actualizouse sen problemas a visibilidade da revisión.'''",
 'revdelete-failure'           => "'''Non se puido actualizar a visibilidade da revisión:'''
 $1",
@@ -1511,7 +1512,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 # Upload
 'upload'                      => 'Cargar un ficheiro',
 'uploadbtn'                   => 'Cargar o ficheiro',
-'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
+'reuploaddesc'                => 'Cancelar a carga e volver ao formulario de carga',
 'upload-tryagain'             => 'Enviar a descrición do ficheiro modificada',
 'uploadnologin'               => 'Non accedeu ao sistema',
 'uploadnologintext'           => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
@@ -1578,10 +1579,11 @@ Se dispón dunha versión desta imaxe de maior resolución, se non, múdelle o n
 'fileexists-forbidden'        => 'Xa existe un ficheiro co mesmo nome e este non pode ser sobrescrito.
 Se aínda quere cargar o seu ficheiro, por favor, retroceda e use un novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no repositorio de ficheiros compartidos.
-Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome. [[File:$1|thumb|center|$1]]',
+Se aínda quere cargar o seu ficheiro, volva atrás e use outro nome.
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate'      => 'Un ficheiro idéntico a este ("[[$1]]") foi borrado previamente. Debería comprobar o historial de borrados do ficheiro antes de proceder a cargalo de novo.',
-'successfulupload'            => 'Carga con éxito',
+'successfulupload'            => 'A carga realizouse correctamente',
 'uploadwarning'               => 'Advertencia ao cargar o ficheiro',
 'uploadwarning-text'          => 'Por favor, modifique a descrición do ficheiro e inténteo de novo.',
 'savefile'                    => 'Gardar o ficheiro',
@@ -1890,8 +1892,8 @@ Por favor, teña en conta que outras páxinas web poden ligar cara a un ficheiro
 'notargettext'            => 'Non especificou a páxina ou o usuario no cal levar a cabo esta función.',
 'nopagetitle'             => 'Non existe esa páxina',
 'nopagetext'              => 'A páxina que especificou non existe.',
-'pager-newer-n'           => '{{PLURAL:$1|1 máis recente|$1 máis recentes}}',
-'pager-older-n'           => '{{PLURAL:$1|1 máis vella|$1 máis vellas}}',
+'pager-newer-n'           => '{{PLURAL:$1|unha posterior|$1 posteriores}}',
+'pager-older-n'           => '{{PLURAL:$1|unha anterior|$1 anteriores}}',
 'suppress'                => 'Supervisor',
 
 # Book sources
@@ -2087,7 +2089,7 @@ Para cambiar a súa lista de vixilancia, visite
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Para borrar a páxina da súa lista de vixilancia, visite
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Axuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2113,7 +2115,7 @@ No $2 pode ver unha lista dos borrados máis recentes.',
 'dellogpage'             => 'Rexistro de borrados',
 'dellogpagetext'         => 'A continuación atópase a lista cos borrados máis recentes.',
 'deletionlog'            => 'rexistro de borrados',
-'reverted'               => 'Devolto a unha versión anterior',
+'reverted'               => 'Volveuse a unha versión anterior',
 'deletecomment'          => 'Razón para o borrado:',
 'deleteotherreason'      => 'Outro motivo:',
 'deletereasonotherlist'  => 'Outro motivo',
@@ -2133,7 +2135,7 @@ proceda con coidado.',
 'rollback_short'    => 'Reverter',
 'rollbacklink'      => 'reverter',
 'rollbackfailed'    => 'Houbo un fallo ao reverter as edicións',
-'cantrollback'      => 'Non se pode desfacer a edición; o último contribuínte é o único autor desta páxina.',
+'cantrollback'      => 'Non se pode desfacer a edición; o último colaborador é o único autor desta páxina.',
 'alreadyrolled'     => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 
 A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
@@ -2181,7 +2183,7 @@ Pode mudar o nivel de protección da páxina pero iso non afectará á protecci�
 'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten os permisos necesarios para editala.',
 'protect-othertime'           => 'Outro período:',
 'protect-othertime-op'        => 'outro período',
-'protect-existing-expiry'     => 'Período de caducidade existente: $2, $3',
+'protect-existing-expiry'     => 'Período de caducidade actual: $2 ás $3',
 'protect-otherreason'         => 'Outro motivo:',
 'protect-otherreason-op'      => 'Outro motivo',
 'protect-dropdown'            => '*Motivos frecuentes para a protección
@@ -2680,7 +2682,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-watch'                   => 'Engadir esta páxina á súa lista de vixilancia [alt-w]',
 'tooltip-recreate'                => 'Recrear a páxina a pesar de que foi borrada',
 'tooltip-upload'                  => 'Comezar a enviar',
-'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último contribuínte.',
+'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último colaborador.',
 'tooltip-undo'                    => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
 
 # Stylesheets
@@ -2880,7 +2882,7 @@ Os demais agocharanse por omisión.
 'exif-pixelxdimension'             => 'Altura de imaxe válida',
 'exif-makernote'                   => 'Notas do fabricante',
 'exif-usercomment'                 => 'Comentarios do usuario',
-'exif-relatedsoundfile'            => 'Ficheiro de audio relacionado',
+'exif-relatedsoundfile'            => 'Ficheiro de son relacionado',
 'exif-datetimeoriginal'            => 'Data e hora de xeración do ficheiro',
 'exif-datetimedigitized'           => 'Data e hora de dixitalización',
 'exif-subsectime'                  => 'DataHora subsegundos',
@@ -3206,8 +3208,8 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'livepreview-loading' => 'Cargando...',
 'livepreview-ready'   => 'Cargando… Listo!',
 'livepreview-failed'  => 'Fallou a vista previa en tempo real! Inténteo coa vista previa normal.',
-'livepreview-error'   => 'Fallou a conexión: $1 "$2"
-Tente a vista previa normal.',
+'livepreview-error'   => 'Fallou a conexión: $1 "$2".
+Probe coa vista previa normal.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Pode que os cambios feitos {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} non aparezan nesta lista.',
@@ -3218,15 +3220,15 @@ Tente a vista previa normal.',
 'watchlistedit-noitems'        => 'A súa lista de vixilancia non contén ningún título.',
 'watchlistedit-normal-title'   => 'Editar a lista de vixilancia',
 'watchlistedit-normal-legend'  => 'Eliminar títulos da lista de vixilancia',
-'watchlistedit-normal-explain' => 'Os títulos da súa lista de vixilancia aparecen embaixo.
-Para eliminar un título, escóllao na súa caixa de selección e prema en "Eliminar os títulos".
+'watchlistedit-normal-explain' => 'Os títulos da súa lista de vixilancia aparecen a continuación.
+Para eliminar un título, escóllao na súa caixa de selección e prema en "{{int:Watchlistedit-normal-submit}}".
 Tamén pode [[Special:Watchlist/raw|editar a lista simple]].',
 'watchlistedit-normal-submit'  => 'Eliminar os títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eliminouse un título|Elimináronse $1 títulos}} da súa lista de vixilancia:',
 'watchlistedit-raw-title'      => 'Editar a lista de vixilancia simple',
 'watchlistedit-raw-legend'     => 'Editar a lista de vixilancia simple',
-'watchlistedit-raw-explain'    => 'Os títulos da súa lista de vixilancia aparecen embaixo e pódense editar engadíndoos ou retirándoos da lista; un título por liña.
-Ao rematar, prema en "Actualizar a lista de vixilancia".
+'watchlistedit-raw-explain'    => 'Os títulos da súa lista de vixilancia aparecen a continuación. Pódense editar engadíndoos ou retirándoos da lista; un título por liña.
+Ao rematar, prema en "{{int:Watchlistedit-raw-submit}}".
 Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'watchlistedit-raw-titles'     => 'Títulos:',
 'watchlistedit-raw-submit'     => 'Actualizar a lista de vixilancia',

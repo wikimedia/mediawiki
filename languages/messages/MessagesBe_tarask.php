@@ -11,6 +11,7 @@
  * @author EugeneZelenko
  * @author Jim-by
  * @author Red Winged Duck
+ * @author Wizardist
  * @author Zedlik
  */
 
@@ -1733,7 +1734,7 @@ $1",
 'filerevert'                => 'Вярнуць $1',
 'filerevert-legend'         => 'Вярнуць папярэднюю вэрсію файла',
 'filerevert-intro'          => "Вы вяртаеце '''[[Media:$1|$1]]''' да [вэрсіі $4 ад $3, $2].",
-'filerevert-comment'        => 'Камэнтар:',
+'filerevert-comment'        => 'Прычына:',
 'filerevert-defaultcomment' => 'Вернутая вэрсія ад $2, $1',
 'filerevert-submit'         => 'Вярнуць',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' быў вернуты да [вэрсіі $4 ад $3, $2].",
@@ -2082,7 +2083,7 @@ $NEWPAGE
 
 --
 Каб зьмяніць устаноўкі сьпісу назіраньня, наведайце:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Зваротная сувязь і дапамога:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2230,7 +2231,7 @@ $NEWPAGE
 'undeleteviewlink'             => 'паказаць',
 'undeletereset'                => 'Скінуць',
 'undeleteinvert'               => 'Адваротны выбар',
-'undeletecomment'              => 'Камэнтар:',
+'undeletecomment'              => 'Прычына:',
 'undeletedarticle'             => 'адноўленая «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|адноўленая $1 вэрсія|адноўленыя $1 вэрсіі|адноўленыя $1 вэрсій}}',
 'undeletedrevisions-files'     => 'адноўненыя $1 {{PLURAL:$1|вэрсія|вэрсіі|вэрсій}} і $2 {{PLURAL:$2|файл|файлы|файлаў}}',
@@ -3210,7 +3211,7 @@ $1',
 'watchlistedit-normal-title'   => 'Рэдагаваць сьпіс назіраньня',
 'watchlistedit-normal-legend'  => 'Выдаленьне старонак са сьпісу назіраньня',
 'watchlistedit-normal-explain' => 'Ніжэй паданыя старонкі з Вашага сьпісу назіраньня.
-Для выдаленьня старонкі са сьпісу пазначце адпаведныя пазыцыі і націсьніце кнопку «Выдаліць са сьпісу».
+Для выдаленьня старонкі са сьпісу пазначце адпаведныя пазыцыі і націсьніце кнопку «{{int:Watchlistedit-normal-submit}}».
 Таксама Вы можаце [[Special:Watchlist/raw|рэдагаваць нефарматаваны сьпіс назіраньня]].',
 'watchlistedit-normal-submit'  => 'Выдаліць са сьпісу',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|запіс быў выдалены|запісы былі выдаленыя|запісаў былі выдаленыя}} з Вашага сьпісу назіраньня:',
@@ -3218,7 +3219,7 @@ $1',
 'watchlistedit-raw-legend'     => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
 'watchlistedit-raw-explain'    => 'Ніжэй пададзены сьпіс старонак Вашага сьпісу назіраньня, і Вы можаце яго рэдагаваць, дадаючы і выдаляючы радкі з назвамі старонак;
 адна назва старонкі ў радку.
-Пасьля заканчэньня рэдагаваньня, націсьніце «Абнавіць сьпіс назіраньня».
+Пасьля заканчэньня рэдагаваньня, націсьніце «{{int:Watchlistedit-raw-submit}}».
 Таксама Вы можаце [[Special:Watchlist/edit|выкарыстаць стандартны інтэрфэйс рэдагаваньня]].',
 'watchlistedit-raw-titles'     => 'Назвы:',
 'watchlistedit-raw-submit'     => 'Абнавіць сьпіс назіраньня',

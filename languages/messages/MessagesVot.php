@@ -8,11 +8,15 @@
  * @file
  *
  * @author 2Q
+ * @author Trần Nguyễn Minh Huy
  */
 
 $fallback = 'fi';
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'Gạch chân liên kết:',
+
 # Dates
 'january'       => 'janvaari',
 'february'      => 'fevraaľi',

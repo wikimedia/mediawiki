@@ -10,6 +10,7 @@
  * @author ChrisiPK
  * @author Imre
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Kghbln
  * @author Leithian
  * @author MichaelFrey
  * @author Michawiki
@@ -17,6 +18,7 @@
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author The Evil IP address
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
+ * @author Tischbeinahe
  * @author Umherirrender
  * @author Urhixidur
  */
@@ -55,7 +57,9 @@ Grund der Sperrung: $1',
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
 Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software gefunden. Bitte melden Sie dies einem [[Special:ListUsers/sysop|Administrator]] unter Nennung der URL.',
-'actionthrottledtext'  => 'Sie haben diese Aktion zu oft innerhalb eines kurzen Zeitraums ausgeführt. Bitte warten Sie ein paar Minuten und probieren Sie es dann erneut.',
+'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze haben Sie überschritten.
+Bitte versuchen Sie es in ein paar Minuten erneut.',
+'viewsourcetext'       => 'Sie können den Quelltext dieser Seite betrachten und kopieren:',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text.
 Änderungen wirken sich auf die Benutzeroberfläche aus.
 Für Übersetzungen ziehen Sie bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de-formal Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
@@ -72,7 +76,7 @@ Beachten Sie, das einige Seiten noch anzeigen können, das Sie angemeldet sind, 
 Ihr Benutzerkonto wurde eingerichtet.
 Vergessen Sie nicht, Ihre [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupassen.',
 'yourdomainname'             => 'Ihre Domain:',
-'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
+'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
 'nologin'                    => "Sie haben kein Benutzerkonto? '''$1'''.",
 'gotaccount'                 => "Haben Sie bereits ein Benutzerkonto? '''$1'''.",
 'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.',
@@ -86,7 +90,7 @@ Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen Sie es e
 Überprüfen Sie die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melden Sie sich als neuer Benutzer an]].',
 'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 'nouserspecified'            => 'Bitte geben Sie einen Benutzernamen an.',
-'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.',
+'wrongpassword'              => 'Das Passwort ist falsch. Bitte versuchen Sie es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuchen Sie es erneut.',
 'password-name-match'        => 'Ihr Passwort muss sich von Ihrem Benutzernamen unterscheiden.',
 'passwordremindertext'       => 'Jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
@@ -131,7 +135,7 @@ Möglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein ne
 # Edit pages
 'anoneditwarning'                  => "Sie bearbeiten diese Seite unangemeldet. Wenn Sie speichern, wird Ihre aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
 'missingsummary'                   => "'''Hinweis:''' Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Änderung ohne Zusammenfassung übernommen.",
-'missingcommenttext'               => 'Bitte geben Sie eine Zusammenfassung ein.',
+'missingcommenttext'               => 'Ihr Abschnitt enthält keinen Text.',
 'missingcommentheader'             => "'''ACHTUNG:''' Sie haben keine Überschrift im Feld „Betreff:“ eingegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Bearbeitung ohne Überschrift gespeichert.",
 'blockedtext'                      => "'''Ihr Benutzername oder Ihre IP-Adresse wurde gesperrt.'''
 
@@ -232,6 +236,10 @@ Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien e
 Zu Ihrer Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'edit-no-change'                   => 'Ihre Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenomme wurde.',
 
+# "Undo" feature
+'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
+Bitte prüfen Sie den Vergleich unten um sicherzustellen, dass Sie dies tun möchten, und speicheren Sie dann unten Ihre Änderungen, um die Bearbeitung rückgängig zu machen.',
+
 # Revision deletion
 'rev-deleted-text-unhide'     => "Diese Version wurde '''gelöscht'''.
 Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
@@ -285,7 +293,7 @@ Hier ein zufällig generierter Wert, den Sie verwenden können: $1',
 'savedprefs'                 => 'Ihre Einstellungen wurden gespeichert.',
 'prefs-reset-intro'          => 'Sie können diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.
 Dies kann nicht mehr rückgängig gemacht werden.',
-'prefs-help-realname'        => 'Optional. Ihr echter Name wird Ihren Beiträgen zugeordnet.',
+'prefs-help-realname'        => 'Optional. Damit kann Ihr bürgerlicher Name Ihren Beiträgen zugeordnet werden.',
 'prefs-help-email'           => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn Sie Ihr Passwort vergessen haben.
 Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass Sie Ihre Identität offenlegen müssen.',
 
@@ -440,7 +448,7 @@ Es werden solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis Sie die
 --
 Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie: {{fullurl:{{#special:Watchlist}}/edit}}
 
-Um die Seite von Ihrer Beobachtungsliste zu entfernen, besuchen Sie {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+Um die Seite von Ihrer Beobachtungsliste zu entfernen, besuchen Sie $UNWATCHURL
 
 Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -543,13 +551,14 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuchen Sie es erneut.',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'Ihre Benutzerseite',
-'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
-'tooltip-pt-mytalk'       => 'Ihre Diskussionsseite',
-'tooltip-pt-mycontris'    => 'Liste Ihrer Beiträge',
-'tooltip-n-mainpage'      => 'Besuchen Sie die Hauptseite',
-'tooltip-n-portal'        => 'Über das Portal, was Sie tun können, wo was zu finden ist',
-'tooltip-watch'           => 'Fügt diese Seite Ihrer Beobachtungsliste hinzu',
+'tooltip-pt-userpage'            => 'Ihre Benutzerseite',
+'tooltip-pt-anonuserpage'        => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
+'tooltip-pt-mytalk'              => 'Ihre Diskussionsseite',
+'tooltip-pt-mycontris'           => 'Liste Ihrer Beiträge',
+'tooltip-n-mainpage'             => 'Besuchen Sie die Hauptseite',
+'tooltip-n-mainpage-description' => 'Besuchen Sie die Hauptseite',
+'tooltip-n-portal'               => 'Über das Portal, was Sie tun können, wo was zu finden ist',
+'tooltip-watch'                  => 'Fügt diese Seite Ihrer Beobachtungsliste hinzu',
 
 # Metadata
 'notacceptable' => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',
@@ -607,10 +616,10 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ihre Beobachtungsliste enthält {{PLURAL:$1|1 Eintrag |$1 Einträge}}, Diskussionsseiten werden nicht gezählt.',
 'watchlistedit-noitems'        => 'Ihre Beobachtungsliste ist leer.',
-'watchlistedit-normal-explain' => 'Dies sind die Einträge Ihrer Beobachtungsliste. Um Einträge zu entfernen, markieren Sie die Kästchen neben den Einträgen und klicken Sie am Ende der Seite auf „Einträge entfernen“. Sie können Ihre Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]].',
+'watchlistedit-normal-explain' => 'Dies sind die Einträge Ihrer Beobachtungsliste. Um Einträge zu entfernen, markieren Sie die Kästchen neben den Einträgen und klicken Sie am Ende der Seite auf „{{int:Watchlistedit-normal-submit}}“. Sie können Ihre Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]].',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} von Ihrer Beobachtungsliste entfernt:',
 'watchlistedit-raw-explain'    => 'Dies sind die Einträge Ihrer Beobachtungsliste im Listenformat. Die Einträge können zeilenweise gelöscht oder hinzugefügt werden.
-Pro Zeile ist ein Eintrag erlaubt. Wenn Sie fertig sind, klicken Sie auf „Beobachtungsliste speichern“.
+Pro Zeile ist ein Eintrag erlaubt. Wenn Sie fertig sind, klicken Sie auf „{{int:Watchlistedit-raw-submit}}“.
 Sie können auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutzen.',
 'watchlistedit-raw-done'       => 'Ihre Beobachtungsliste wurde gespeichert.',
 

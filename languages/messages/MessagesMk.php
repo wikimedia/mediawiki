@@ -305,7 +305,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Сокриј ситни уредувања во листата на набљудувања',
 'tog-watchlisthideliu'        => 'Сокриј уредувања на најавени корисници во мојата листа на набљудувања',
 'tog-watchlisthideanons'      => 'Сокриј уредувања од анонимни корисници во мојата листа на набљудувања',
-'tog-watchlisthidepatrolled'  => 'Сокриј патролирани уредувања од листа на набљудувања',
+'tog-watchlisthidepatrolled'  => 'Сокриј патролирани уредувања од мојата листа на набљудувања',
 'tog-nolangconversion'        => 'Оневозможи различни конверзии',
 'tog-ccmeonemails'            => 'Праќај ми копии од е-пораките што ги праќам до други корисници',
 'tog-diffonly'                => 'Не ја покажувај содржината на страницата под разликите',
@@ -321,8 +321,8 @@ $messages = array(
 'editfont-style'     => 'Фонт кој се користи во прозорецот за уредување:',
 'editfont-default'   => 'Основен прелистувач:',
 'editfont-monospace' => 'Пропорционален фонт',
-'editfont-sansserif' => 'Фонт без шерифи',
-'editfont-serif'     => 'Шериф фонт',
+'editfont-sansserif' => 'Бессерифен фонт',
+'editfont-serif'     => 'Серифен фонт',
 
 # Dates
 'sunday'        => 'Недела',
@@ -379,13 +379,13 @@ $messages = array(
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Категорија|Категории}}',
 'category_header'                => 'Статии во категоријата "$1"',
-'subcategories'                  => 'Поткатегории',
+'subcategories'                  => 'Подкатегории',
 'category-media-header'          => 'Медии во категорија „$1“',
 'category-empty'                 => "''Оваа категорија моментално не содржи страници или медија.''",
 'hidden-categories'              => '{{PLURAL:$1|Скриена категорија|Скриени категории}}',
 'hidden-category-category'       => 'Скриени категории',
-'category-subcat-count'          => '{{PLURAL:$2|Оваа категорија ја содржи само следната поткатегорија.|Оваа категорија {{PLURAL:$1|ја содржи следнава поткатегорија|ги содржи следниве $1 поткатегории}}, од вкупно $2.}}',
-'category-subcat-count-limited'  => 'Оваа категорија {{PLURAL:$1|ја содржи следнава поткатегорија|ги содржи следниве $1 поткатегории}}.',
+'category-subcat-count'          => '{{PLURAL:$2|Оваа категорија ја содржи само следнава подкатегорија.|Оваа категорија {{PLURAL:$1|ја содржи следнава подкатегорија|ги содржи следниве $1 подкатегории}}, од вкупно $2.}}',
+'category-subcat-count-limited'  => 'Оваа категорија {{PLURAL:$1|ја содржи следнава подкатегорија|ги содржи следниве $1 подкатегории}}.',
 'category-article-count'         => '{{PLURAL:$2|Оваа категорија ја содржи само следната страница.|{{PLURAL:$1|Следната страница е|Следните $1 страници се}} во оваа категорија, од вкупно $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Следната страница е|Следните $1 страници се}} во оваа категорија.',
 'category-file-count'            => '{{PLURAL:$2|Оваа категорија ја содржи само следната податотека.|{{PLURAL:$1|Следната податотека е|Следните $1 податотеки се}} во оваа категорија, од вкупно $2.}}',
@@ -631,7 +631,7 @@ $1',
 'fileexistserror'      => 'Не може да се запишува во податотеката „$1“: податотеката постои',
 'unexpected'           => 'Неочекувана вредност: "$1"="$2".',
 'formerror'            => 'Грешка: не можам да го испратам образецот',
-'badarticleerror'      => 'Ова дејство не може да се спроведе на наведената страница.',
+'badarticleerror'      => 'Ова дејство не може да се спроведе на оваа страница.',
 'cannotdelete'         => 'Страницата или податотеката „$1“ не можеше да се избрише.
 Можеби некој друг веќе ја избришал.',
 'badtitle'             => 'Лош наслов',
@@ -1024,9 +1024,8 @@ $2',
 'last'                   => 'посл',
 'page_first'             => 'прв',
 'page_last'              => 'последен',
-'histlegend'             => "Разлика помеѓу верзии: означете ги верзиите кои сакате да ги споредите и притиснете ентер или копчето на дното од страницата.<br />
-Легенда: '''({{int:cur}})''' = разлика со последна верзија, 
-'''({{int:last}})''' = разлика со претходна верзија, '''{{int:minoreditletter}}''' = ситна промена.",
+'histlegend'             => "Разлика помеѓу ревизии: означете ги ревизиите кои сакате да ги споредите и притиснете ентер или копчето на дното од страницата.<br />
+Легенда: '''({{int:cur}})''' = разлика со последна ревизија, '''({{int:last}})''' = разлика со претходна ревизија, '''{{int:minoreditletter}}''' = ситна промена.",
 'history-fieldset-title' => 'Прелистување на историја',
 'history-show-deleted'   => 'Само избришани',
 'histfirst'              => 'Први',
@@ -1223,7 +1222,7 @@ $1",
 'search-redirect'                  => '(пренасочување $1)',
 'search-section'                   => '(пасус $1)',
 'search-suggest'                   => 'Дали мислевте на: $1',
-'search-interwiki-caption'         => 'Сестрински проекти',
+'search-interwiki-caption'         => 'Збратимени проекти',
 'search-interwiki-default'         => '$1 резултати:',
 'search-interwiki-more'            => '(уште)',
 'search-mwsuggest-enabled'         => 'со сугестии',
@@ -1801,7 +1800,7 @@ PICT # misc.
 'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'Врати податотека',
 'filerevert-intro'          => "Ја враќате '''[[Media:$1|$1]]''' на [$4 верзијата од $3, $2].",
-'filerevert-comment'        => 'Коментар:',
+'filerevert-comment'        => 'Причина:',
 'filerevert-defaultcomment' => 'Вратена на верзија од $2, $1',
 'filerevert-submit'         => 'Врати',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' е вратен на [$4 верзијата од $3, $2].",
@@ -2121,7 +2120,7 @@ PICT # misc.
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Набљудување...',
-'unwatching' => 'Откажување на набљудување...',
+'unwatching' => 'Отстранувам од набљудувани...',
 
 'enotif_mailer'                => '{{SITENAME}} Систем за известување',
 'enotif_reset'                 => 'Означи ги сите страници како посетени',
@@ -2156,7 +2155,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 За да ја избришете страницата од листата на набљудувања, посетете ја страницата
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Повратни информации и помош:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2306,7 +2305,7 @@ $NEWPAGE
 'undeleteviewlink'             => 'преглед',
 'undeletereset'                => 'Врати',
 'undeleteinvert'               => 'Обратен избор',
-'undeletecomment'              => 'Коментар:',
+'undeletecomment'              => 'Причина:',
 'undeletedarticle'             => 'обновена "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 измена е обновена|$1 измени се обновени}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 измена|$1 измени}} и {{PLURAL:$2|1 податотека|$2 податотеки}} се вратени',
@@ -3388,14 +3387,14 @@ $1',
 'watchlistedit-noitems'        => 'Вашата листа на набљудувања не содржи ниту еден наслов.',
 'watchlistedit-normal-title'   => 'Уредување на листа на набљудувања',
 'watchlistedit-normal-legend'  => 'Бришење на наслови од листа на набљудување',
-'watchlistedit-normal-explain' => "Насловите во вашата листа на набљудувања се прикажани подолу.
-За бришење на наслов, маркирајте го квадратчето лево од насловот, и кликнете на копчето '''Бриши Налов'''.
-Исто така можете да ја ажурирате листата со [[Special:Watchlist/raw|напредно уредување на листата]].",
+'watchlistedit-normal-explain' => 'Насловите во вашата листа на набљудувања се прикажани подолу.
+За да избришете наслов, штиклирајте го квадратчето лево од насловот, и кликнете на „{{int:Watchlistedit-normal-submit}}“.
+Исто така можете да ја [[Special:Watchlist/raw|уредувате листата како текст]].',
 'watchlistedit-normal-submit'  => 'Бриши Наслови',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 наслов беше|$1 наслови беа}} избришани од вашата листа на набљудувања:',
 'watchlistedit-raw-title'      => 'Напредно уредување на листата на набљудувања',
 'watchlistedit-raw-legend'     => 'Уредување на листа на набљудувања',
-'watchlistedit-raw-explain'    => 'Насловите во вашата листа на набљудувања се прикажани подолу, може да се уредува со додавање или бришење на наслови од листата; еден наслов во линија. Кога ќе завршите, кликнете на Ажурирај. 
+'watchlistedit-raw-explain'    => 'Насловите во вашата листа на набљудувања се прикажани подолу, и можат да се уредуваат со додавање или бришење на наслови од листата; еден наслов по ред. Кога ќе завршите, кликнете на „{{int:Watchlistedit-raw-submit}}“.
 Исто така за ова може да [[Special:Watchlist/edit|користите стандарден уредувач на текст]].',
 'watchlistedit-raw-titles'     => 'Наслови:',
 'watchlistedit-raw-submit'     => 'Ажурирај',
@@ -3412,22 +3411,22 @@ $1',
 'iranian-calendar-m1' => 'Farvardin',
 
 # Core parser functions
-'unknown_extension_tag' => 'Непозната ознака на проширување "$1"',
+'unknown_extension_tag' => 'Непозната ознака на додатокот „$1“',
 'duplicate-defaultsort' => 'Предупредување: Основниот клуч за подредување "$2" го поништува претходниот основен клуч за подредување "$1".',
 
 # Special:Version
 'version'                          => 'Верзија',
-'version-extensions'               => 'Инсталирани проширувања',
+'version-extensions'               => 'Инсталирани додатоци',
 'version-specialpages'             => 'Специјални страници',
 'version-parserhooks'              => 'Парсер куки',
 'version-variables'                => 'Променливи',
 'version-other'                    => 'Друго',
 'version-mediahandlers'            => 'Медија ракувачи',
 'version-hooks'                    => 'Куки',
-'version-extension-functions'      => 'Функции на проширувања',
-'version-parser-extensiontags'     => 'Ознаки за парсер проширувања',
+'version-extension-functions'      => 'Функции на додатоците',
+'version-parser-extensiontags'     => 'Ознаки за парсерски додатоци',
 'version-parser-function-hooks'    => 'Куки на парсер функција',
-'version-skin-extension-functions' => 'Функции на проширување на изглед',
+'version-skin-extension-functions' => 'Функции за обогатување на изгледот',
 'version-hook-name'                => 'Име на кука',
 'version-hook-subscribedby'        => 'Претплатено од',
 'version-version'                  => '(Верзија $1)',

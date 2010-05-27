@@ -20,6 +20,7 @@
  * @author Masti
  * @author Matma Rex
  * @author McMonster
+ * @author Nux
  * @author Remember the dot
  * @author Saper
  * @author Sp5uhe
@@ -1794,7 +1795,7 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'unusedtemplateswlh'  => 'linkujące',
 
 # Random page
-'randompage'         => 'Losuj stronę',
+'randompage'         => 'Losowa strona',
 'randompage-nopages' => 'Brak stron w {{PLURAL:$2|przestrzeni nazw|przestrzeniach nazw:}} $1.',
 
 # Random redirect
@@ -2103,7 +2104,7 @@ W celu zmiany ustawień swojej listy obserwowanych odwiedź
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Usunięcie strony z listy obserwowanych możliwe jest na stronie
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Pomoc
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2299,7 +2300,7 @@ $1',
 'sp-contributions-deleted'        => 'usunięty wkład użytkownika',
 'sp-contributions-logs'           => 'rejestry',
 'sp-contributions-talk'           => 'dyskusja',
-'sp-contributions-userrights'     => 'zarządzanie uprawnieniami użytkowników',
+'sp-contributions-userrights'     => 'zarządzanie uprawnieniami użytkownika',
 'sp-contributions-blocked-notice' => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}. Ostatni wpis rejestru blokad jest pokazany poniżej.',
 'sp-contributions-search'         => 'Szukaj wkładu',
 'sp-contributions-username'       => 'Adres IP lub nazwa użytkownika',
@@ -2841,7 +2842,7 @@ Jeśli go otworzysz, możesz zarazić swój system.<hr />",
 'file-info-size'       => '($1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4)',
 'file-nohires'         => '<small>Grafika w wyższej rozdzielczości jest niedostępna.</small>',
 'svg-long-desc'        => '(Plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3)',
-'show-big-image'       => 'Oryginalna rozdzielczość',
+'show-big-image'       => 'Pełna rozdzielczość',
 'show-big-image-thumb' => '<small>Rozmiar podglądu: $1 × $2 pikseli</small>',
 'file-info-gif-looped' => 'zapętlona',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|klatka|klatki|klatek}}',
@@ -2859,7 +2860,9 @@ Jeśli go otworzysz, możesz zarazić swój system.<hr />",
 'sp-newimages-showfrom' => 'pokaż nowe pliki począwszy od $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'g',
+'seconds-abbrev' => ' s',
+'minutes-abbrev' => ' m',
+'hours-abbrev'   => ' g',
 
 # Bad image list
 'bad_image_list' => 'Dane należy wprowadzić w formacie:
@@ -3273,8 +3276,9 @@ Możesz także skorzystać z [[Special:Watchlist/raw|tekstowego edytora listy ob
 'watchlistedit-normal-done'    => 'Z Twojej listy obserwowanych {{PLURAL:$1|została usunięta 1 strona|zostały usunięte $1 strony|zostało usuniętych $1 stron}}:',
 'watchlistedit-raw-title'      => 'Tekstowy edytor listy obserwowanych',
 'watchlistedit-raw-legend'     => 'Tekstowy edytor listy obserwowanych',
-'watchlistedit-raw-explain'    => 'Poniżej znajduje się lista obserwowanych stron. W każdej linii znajduje się tytuł jednej strony. Listę możesz modyfikować poprzez dodawanie nowych i usuwanie obecnych. Gdy zakończysz, kliknij przycisk „Uaktualnij listę”.
-Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
+'watchlistedit-raw-explain'    => 'Poniżej wypisane zostały tytuły stron znajdujących się na twojej liście obserwowanych. Możesz dodać lub usunąć dowolny tytuł z tej listy – jeden wiersz to jeden tytuł.
+Aby zatwierdzić zmiany kliknij „{{int:Watchlistedit-raw-submit}}”.
+Możesz także użyć [[Special:Watchlist/edit|standardowego edytora obserwowanych]].',
 'watchlistedit-raw-titles'     => 'Obserwowane strony:',
 'watchlistedit-raw-submit'     => 'Uaktualnij listę',
 'watchlistedit-raw-done'       => 'Lista obserwowanych stron została uaktualniona.',

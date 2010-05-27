@@ -30,6 +30,7 @@
  * @author Jean-Frédéric
  * @author JeanVoisin
  * @author Jens Liebenau
+ * @author Klutzy
  * @author Korg
  * @author Korrigan
  * @author Kropotkine 113
@@ -46,6 +47,7 @@
  * @author Seb35
  * @author Sherbrooke
  * @author Skalman
+ * @author The Evil IP address
  * @author Urhixidur
  * @author Verdy p
  * @author Zetud
@@ -755,7 +757,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'logout'                     => 'Se déconnecter',
 'userlogout'                 => 'Déconnexion',
 'notloggedin'                => 'Non connecté',
-'nologin'                    => "Vous n’êtes pas encore inscrit ? '''$1'''.",
+'nologin'                    => 'Vous n’êtes pas encore inscrit ? $1.',
 'nologinlink'                => 'Créer un compte',
 'createaccount'              => 'Créer un compte',
 'gotaccount'                 => "Vous avez déjà un compte ? '''$1'''.",
@@ -1128,7 +1130,7 @@ En tant qu’administrateur vous pouvez voir ce diff ; des détails sont disponi
 'revdelete-selected'          => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''[[:$1]]''' :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :'''",
 'revdelete-text'              => "'''Les versions et événements supprimés seront encore présents dans l’historique de la page et dans les journaux, mais leur contenu textuel sera inaccessible au public.'''
-Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soit mises en place.",
+Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soient mises en place.",
 'revdelete-confirm'           => 'Confirmez que vous voulez effectuer cette action, que vous en comprenez les conséquences, et que vous le faites en accord avec [[{{MediaWiki:Policy-url}}|les règles]].',
 'revdelete-suppress-text'     => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
 * Informations personnelles inappropriées
@@ -1890,7 +1892,7 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 'statistics-articles'          => 'Pages de contenu',
 'statistics-pages'             => 'Pages',
 'statistics-pages-desc'        => 'Toutes les pages du wiki, y compris les pages de discussion, les redirections, etc.',
-'statistics-files'             => 'Fichers Téléversés',
+'statistics-files'             => 'Fichers téléversés',
 'statistics-edits'             => 'Modifications de pages depuis l’installation de {{SITENAME}}',
 'statistics-edits-average'     => 'Nombre moyen de modifications par page',
 'statistics-views-total'       => 'Visites',
@@ -2180,7 +2182,7 @@ Pour modifier les paramètres de votre liste de suivi, visitez
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Pour supprimer la page de votre liste de suivi, visitez
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Retour et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2582,7 +2584,7 @@ Veuillez en choisir un autre.',
 'movepage-page-moved'          => 'La page $1 a été renommée en $2.',
 'movepage-page-unmoved'        => 'La page $1 n’a pas pu être renommée en $2.',
 'movepage-max-pages'           => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne sera renommée automatiquement.',
-'1movedto2'                    => 'a renommé [[$1]] en [[$2]]',
+'1movedto2'                    => 'a déplacé [[$1]] vers [[$2]]',
 '1movedto2_redir'              => 'a déplacé [[$1]] vers [[$2]] en écrasant sa redirection',
 'move-redirect-suppressed'     => 'redirection supprimée',
 'movelogpage'                  => 'Journal des déplacements',
@@ -2814,7 +2816,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} sur {{SITENAME}}',
-'siteuser'         => 'l’utilisateur $1 de {{SITENAME}}',
+'siteuser'         => '{{GENDER:$2|l’utilisateur|l’utilisatrice|l’utilisateur}} $1 de {{SITENAME}}',
 'anonuser'         => 'l’utilisateur anonyme $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.',
 'othercontribs'    => 'Basé sur le travail de $1.',
@@ -2882,11 +2884,11 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme patrouillées.',
 
 # Patrol log
-'patrol-log-page'      => 'Journal des versions patrouillées',
-'patrol-log-header'    => 'Voici un journal des versions patrouillées.',
-'patrol-log-line'      => 'a marqué la version $1 de $2 comme patrouillée $3',
+'patrol-log-page'      => 'Journal des modifications patrouillées',
+'patrol-log-header'    => 'Voici un journal des modifications patrouillées.',
+'patrol-log-line'      => 'a marqué la $1 de $2 comme patrouillée $3',
 'patrol-log-auto'      => '(automatique)',
-'patrol-log-diff'      => 'v$1',
+'patrol-log-diff'      => 'modification $1',
 'log-show-hide-patrol' => '$1 l’historique des versions patrouillées',
 
 # Image deletion
@@ -3353,14 +3355,14 @@ Essayez la prévisualisation normale.',
 'watchlistedit-normal-title'   => 'Modifier la liste de suivi',
 'watchlistedit-normal-legend'  => 'Retirer des titres de la liste de suivi',
 'watchlistedit-normal-explain' => 'Les titres de votre liste de suivi sont visibles ci-dessous.
-Pour retirer un titre de la liste (et sa page de discussion), cochez la case à côté puis cliquez sur le bouton « Retirer les titres sélectionnés ».
+Pour retirer un titre de la liste (et sa page de discussion), cochez la case à côté puis cliquez sur le bouton « {{int:Watchlistedit-normal-submit}} ».
 Vous pouvez aussi [[Special:Watchlist/raw|modifier la liste en mode brut]].',
 'watchlistedit-normal-submit'  => 'Retirer les titres sélectionnés',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Un titre a été enlevé|$1 titres ont été enlevés}} de votre liste de suivi :',
 'watchlistedit-raw-title'      => 'Modifier la liste de suivi en mode brut',
 'watchlistedit-raw-legend'     => 'Modification de la liste de suivi en mode brut',
 'watchlistedit-raw-explain'    => 'Les titres de votre liste de suivi sont affichés ci-dessous et peuvent être modifiés en les ajoutant ou les retirant de la liste (un titre par ligne).
-Lorsque vous avez fini, cliquez sur le bouton « Mettre à jour la liste de suivi » en bas.
+Lorsque vous avez fini, cliquez sur le bouton « {{int:Watchlistedit-raw-submit}} » en bas.
 Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
 'watchlistedit-raw-titles'     => 'Titres :',
 'watchlistedit-raw-submit'     => 'Mettre à jour la liste de suivi',
@@ -3414,16 +3416,16 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Recherche des copies de fichiers identiques',
+'fileduplicatesearch'          => 'Recherche de doublons',
 'fileduplicatesearch-summary'  => 'Recherche des copies de fichiers identiques d’après leur empreinte de hachage.
 
 Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
-'fileduplicatesearch-legend'   => 'Recherche d’une copie identique',
+'fileduplicatesearch-legend'   => 'Rechercher un doublon',
 'fileduplicatesearch-filename' => 'Nom du fichier :',
 'fileduplicatesearch-submit'   => 'Rechercher',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Taille du fichier : $3<br />Type MIME : $4',
-'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a aucune copie identique.',
-'fileduplicatesearch-result-n' => 'Le fichier « $1 » a $2 {{PLURAL:$2|copie identique|copies identiques}}.',
+'fileduplicatesearch-result-1' => "Le fichier « $1 » n'a pas de doublon.",
+'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 doublon|$2 doublons}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pages spéciales',

@@ -714,7 +714,7 @@ Wänn do nid hesch welle aane goh, no druck in Dyynem Browser uf '''Zruck'''.",
 oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite]</span>.',
 'noarticletext-nopermission'       => 'In däre Syte het s zur Zyt no kei Text.
 Du chasch dää Titel uf andre Syte [[Special:Search/{{PAGENAME}}|sueche]]
-oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbiecher sueche].',
+oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbiecher sueche].</span>',
 'userpage-userdoesnotexist'        => 'S Benutzerkonto „$1“ git s nit. Bitte prief, eb Du die Syte wirkli wit aalege/bearbeite.',
 'userpage-userdoesnotexist-view'   => 'S Benutzerkonto „$1“ isch nit registriert.',
 'blocked-notice-logextract'        => 'Dää Benutzer isch zur Zyt gsperrt.
@@ -1938,7 +1938,7 @@ Uf Dyyre Beobachtigssyte chasch d Beobachtigsmarker fir alli Syte zrucksetze, wu
 Go d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{fullurl:Special:Watchlist/edit}}
 
 Go d Syte us Dyyre Beobachtigslischte uuseneh, gang uf
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Ruckmäldig un wyteri Hilf:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3012,13 +3012,13 @@ Bitte bstätig, ass Du die Syte wirkli wit nej aalege.",
 'watchlistedit-noitems'        => 'Du hesch kei Syte uf dynrer Beobachtigslischt.',
 'watchlistedit-normal-title'   => 'D Beobachtigslischt bearbeite',
 'watchlistedit-normal-legend'  => 'Yträg vo dynrer Beobachtigslischt entferne',
-'watchlistedit-normal-explain' => 'Doo unte sihsch d Yträg uf dynrer Beobachtigslischt. Zume en Ytrag useznää muesch s Chäschtli dernäbe markiere un denoo ganz unte uf „Yträg usenää“ drugge. Du chasch syni Beobachtigslischt au als [[Special:Watchlist/raw|Lischte bearbeite]].',
+'watchlistedit-normal-explain' => 'Doo unte sihsch d Yytreg uf Dyyre Beobachtigslischt. Zum e Yytrag uusenee muesch s Chäschtli dernäbe markiere un derno ganz unte uf „{{int:Watchlistedit-normal-submit}}“ drucke. Du chasch Dyyni Beobachtigslischt au als [[Special:Watchlist/raw|Lischte bearbeite]].',
 'watchlistedit-normal-submit'  => 'Yträg usenää',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|ei Ytrag isch|$1 Yträg sin}} vo dynrer Beobachtigslischt entfernt worde:',
 'watchlistedit-raw-title'      => 'D Beobachtigslischt als Lischte bearbeite',
 'watchlistedit-raw-legend'     => 'D Beobachtigslischt als Lischte bearbeite',
-'watchlistedit-raw-explain'    => 'Doo unte sihsch d Yträg uf dynrer Beobachtigslischt. Du chasch die Yträg jetz usenää oder hinzuefüge.
-Pro Zyle isch ei Ytrag erlaubt. Wenn fertig bisch, drugg uf „Beobachtigslischt aktualisiere“.
+'watchlistedit-raw-explain'    => 'Do unte sihsch d Yytreg uf Dyyre Beobachtigslischt im Lischteformat. Du chasch die Yytreg zyyledewyys uusenee oder zuefiege.
+Pro Zyylede isch ei Yytrag erlaubt. Wänn fertig bisch, druck uf „{{int:Watchlistedit-raw-submit}}“.
 Du chasch au d [[Special:Watchlist/edit|Standard-Bearbeitigssyte]] bruuche.',
 'watchlistedit-raw-titles'     => 'Yträg:',
 'watchlistedit-raw-submit'     => 'D Beobachtigslischt aktualisiere',

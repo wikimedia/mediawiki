@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Airon90
  * @author Amikeco
  * @author ArnoLagrange
  * @author Castelobranco
@@ -17,6 +18,7 @@
  * @author Michawiki
  * @author MinuteElectron
  * @author Omnipaedista
+ * @author Petrus Adamus
  * @author Smeira
  * @author Tlustulimu
  * @author Urhixidur
@@ -184,7 +186,7 @@ $messages = array(
 'tog-editsection'             => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc'                 => 'Montri liston de enhavoj (por paĝojn kun pli ol 3 sekciojn)',
-'tog-rememberpassword'        => 'Rememori mian pasvorton',
+'tog-rememberpassword'        => 'Memori mian pasvorton por ĉi tiu komputilo',
 'tog-editwidth'               => 'Plenekranigi la redaktilon',
 'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
 'tog-watchdefault'            => 'Priatenti redaktintajn paĝojn de vi',
@@ -559,7 +561,7 @@ Peto: $2',
 'protectedpagetext'    => 'Tiu ĉi paĝo estas ŝlosita por malebligi redaktadon.',
 'viewsourcetext'       => 'Vi povas rigardi kaj kopii la fonton de la paĝo:',
 'protectedinterface'   => 'Ĉi tiu paĝo provizas interfacan tekston por la softvaro, kaj estas ŝlosita por malabeligi misuzon.',
-'editinginterface'     => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la softvaro. Ŝanĝoj de tiu ĉi teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj. Por tradukojn, bonvolu uzi [http://translatewiki.net/wiki/Main_Page?setlang=eo translatewiki.net], la projekto por fari lokajn versiojn de MediaWiki.",
+'editinginterface'     => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la rogramaro. Ŝanĝoj de ĉi tiu teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj. Por tradukojn, bonvolu uzi [http://translatewiki.net/wiki/Main_Page?setlang=eo translatewiki.net], la MediaWiki-projekton por lingvigaj versioj.",
 'sqlhidden'            => '(SQL serĉomendo kaŝita)',
 'cascadeprotected'     => 'Ĉi tiu paĝo estas protektita kontraŭ redaktado, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan paĝon, kiu|sekvajn paĝojn, kiuj}} estas {{PLURAL:$1|protektata|protektataj}} kun la "kaskada" opcio turnita sur:
 $2',
@@ -836,7 +838,7 @@ Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.'''",
 Vi eble volus elkopii kaj englui la tekston al tekstdosiero por konservi ĝin por posta uzo.'''
 
 La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1",
-'protectedpagewarning'             => "'''Averto: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj.'''
+'protectedpagewarning'             => "'''Averto: Ĉi tiu paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj.'''
 Jen la lasta protokolero provizita por via referenco:",
 'semiprotectedpagewarning'         => "'''Notu:''' Ĉi tiu paĝo estas ŝlosita tial ke nur ensalutintaj uzantoj povas redakti ĝin.
 Jen la lasta protokolero por via referenco:",
@@ -943,26 +945,26 @@ Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAM
 'rev-deleted-text-unhide'     => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
 Kiel administranto, vi ankoraŭ povas [$1 vidi ĉi tiun revizio] se vi volas kontinui.",
-'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''subpremita'''.
-Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].
-Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun revizion] se vi volas kontinui.",
+'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''forigita'''.
+Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
+Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun revizion] se vi volas daŭrigi.",
 'rev-deleted-text-view'       => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
-'rev-suppressed-text-view'    => "Ĉi tiu paĝa revizio estis '''subpremita'''.
-Kiel administranto, vi povas vidi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].",
+'rev-suppressed-text-view'    => "Ĉi tiu paĝa revizio estis '''forigita'''.
+Kiel administranto, vi povas vidi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-deleted-no-diff'         => "Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigitaj'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-suppressed-no-diff'      => "Vi ne povas rigardi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigita'''.",
 'rev-deleted-unhide-diff'     => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
 Kiel administranto vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volas kontinui.",
-'rev-suppressed-unhide-diff'  => "Unu el la revizioj de ĉi tiu diferenco estis '''subpremita'''.
-Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} subpremada protokolo].
-Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volus.",
+'rev-suppressed-unhide-diff'  => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
+Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} forigada protokolo].
+Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi deziras.",
 'rev-deleted-diff-view'       => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
 Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
-'rev-suppressed-diff-view'    => "Unu el la revizioj de ĉi tiu diferenco estis '''subpremita'''.
-Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].",
+'rev-suppressed-diff-view'    => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
+Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigadoj].",
 'rev-delundel'                => 'montri/kaŝi',
 'rev-showdeleted'             => 'montri',
 'revisiondelete'              => 'Forigi/malforigi versiojn',
@@ -1526,8 +1528,9 @@ Se la kontrolita dosiero estas la sama bildo kiel la originala grandeco, ĝi ne 
 'file-thumbnail-no'           => "La dosiernomo komencas kun '''<tt>$1</tt>'''. 
 Ĝi ŝajnas kiel bildo de malgrandigita grandeco ''(thumbnail)''.
 Se vi havas ĉi tiun bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.",
-'fileexists-forbidden'        => 'Dosiero kun tiu ĉi nomo jam ekzistas, kaj ne povas anstataŭigi ĝin.
-Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu reprovi kun nova nomo. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Dosiero kun ĉi tiu nomo jam ekzistas kaj ne povas anstataŭigi ĝin.
+Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu reprovi kun nova nomo.
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dosiero kun ĉi tia nomo jam ekzistas en la komuna dosierujo.
 Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon.[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ĉi tiu dosiero estas duplikato de la {{PLURAL:$1|jena dosiero|jenaj dosieroj}}:',
@@ -1998,30 +2001,28 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'enotif_anon_editor'           => 'anonima uzanto $1',
 'enotif_body'                  => 'Kara $WATCHINGUSERNAME,
 
-La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR, vidu $PAGETITLE_URL por la nuna revizio.
+La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR; vidu $PAGETITLE_URL por la nuna revizio.
 
 $NEWPAGE
 
-Resumo de redaktinto: $PAGESUMMARY $PAGEMINOREDIT
+Resumo pri la ŝanĝo de la redaktinto: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontaktu la redaktinton:
 retpoŝte: $PAGEEDITOR_EMAIL
 vikie: $PAGEEDITOR_WIKI
 
-Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus la paĝon. 
-Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
+Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus la paĝon. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
 
              Sincere via, la avertsistemo de {{SITENAME}}
 
 --
-Por ŝanĝi la elektojn de via atentaro, bv viziti
+Por ŝanĝi la elektojn de via atentaro, bonvolu viziti
 {{fullurl:{{#special:Watchlist}}/edit}}
 
+Por forigi la paĝon el via atentaro, bonvolu viziti
+$UNWATCHURL
 
-Por forigi la paĝon el via atentaro, bv viziti
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
-
-Reagoj kaj plia helpo:
+Por viaj reagoj kaj por obteni plian helpon:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2419,7 +2420,7 @@ Bonvolu permane kunigi ilin.',
 'movepage-max-pages'           => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
 '1movedto2'                    => '[[$1]] movita al [[$2]]',
 '1movedto2_redir'              => '[[$1]] movita al [[$2]], redirekto lasita',
-'move-redirect-suppressed'     => 'alidirektilo subpremita',
+'move-redirect-suppressed'     => 'alidirektilo forigita',
 'movelogpage'                  => 'Protokolo pri paĝmovoj',
 'movelogpagetext'              => 'Jen listo de movitaj paĝoj',
 'movesubpage'                  => '{{PLURAL:$1|Subpaĝo|Subpaĝoj}}',

@@ -18,6 +18,7 @@
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Kghbln
  * @author Khaledelmansoury
+ * @author Kwin
  * @author Li-sung
  * @author Lyzzy
  * @author MF-Warburg
@@ -459,7 +460,7 @@ $messages = array(
 'category-media-header'          => 'Medien in der Kategorie „$1“',
 'category-empty'                 => "''Diese Kategorie enthält zurzeit keine Seiten oder Medien.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
-'hidden-category-category'       => 'Versteckte Kategorie',
+'hidden-category-category'       => 'Versteckte Kategorien',
 'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält folgende Unterkategorie:|{{PLURAL:$1|Folgende Unterkategorie ist eine von insgesamt $2 Unterkategorien in dieser Kategorie:|Es werden $1 von insgesamt $2 Unterkategorien in dieser Kategorie angezeigt:}}}}',
 'category-subcat-count-limited'  => 'Diese Kategorie enthält folgende {{PLURAL:$1|Unterkategorie|$1 Unterkategorien}}:',
 'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält folgende Seite:|{{PLURAL:$1|Folgende Seite ist eine von insgesamt $2 Seiten in dieser Kategorie:|Es werden $1 von insgesamt $2 Seiten in dieser Kategorie angezeigt:}}}}',
@@ -523,7 +524,7 @@ $messages = array(
 'vector-view-edit'           => 'Bearbeiten',
 'vector-view-history'        => 'Versionsgeschichte',
 'vector-view-view'           => 'Lesen',
-'vector-view-viewsource'     => 'Quelltext betrachten',
+'vector-view-viewsource'     => 'Quelltext anzeigen',
 'actions'                    => 'Aktionen',
 'namespaces'                 => 'Namensräume',
 'variants'                   => 'Varianten',
@@ -638,8 +639,8 @@ Siehe die [[Special:Version|Versionsseite]]',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ungültiger Feed-Abonnement-Typ.',
 'feed-unavailable'        => 'Es stehen keine Feeds zur Verfügung.',
-'site-rss-feed'           => 'RSS-Feed für $1',
-'site-atom-feed'          => 'Atom-Feed für $1',
+'site-rss-feed'           => 'RSS-Feed für „$1“',
+'site-atom-feed'          => 'Atom-Feed für „$1“',
 'page-rss-feed'           => 'RSS-Feed für „$1“',
 'page-atom-feed'          => 'Atom-Feed für „$1“',
 'red-link-title'          => '$1 (Seite nicht vorhanden)',
@@ -688,7 +689,7 @@ Grund der Sperrung: $1',
 
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
-Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software gefunden. Bitte melde dies einem [[Special:ListUsers/sysop|Administrator]] unter Nennung der URL.',
+Falls dies nicht  zutrifft, hast du eventuell einen Fehler in der Software gefunden. Bitte melde dies einem [[Special:ListUsers/sysop|Administrator]] unter Nennung der URL.',
 'missingarticle-rev'   => '(Versionsnummer: $1)',
 'missingarticle-diff'  => '(Unterschied zwischen Versionen: $1, $2)',
 'readonly_lag'         => 'Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.',
@@ -706,7 +707,7 @@ Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software ge
 'formerror'            => 'Fehler: Die Eingaben konnten nicht verarbeitet werden.',
 'badarticleerror'      => 'Diese Aktion kann auf diese Seite nicht angewendet werden.',
 'cannotdelete'         => 'Die Seite oder Datei „$1“ kann nicht gelöscht werden.
-Möglicherweise wurde sie bereits von jemand anders entfernt.',
+Möglicherweise wurde sie bereits von jemand anders gelöscht.',
 'badtitle'             => 'Ungültiger Titel',
 'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
@@ -715,13 +716,14 @@ Möglicherweise wurde sie bereits von jemand anders entfernt.',
 'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Abfrage: $2',
-'viewsource'           => 'Quelltext betrachten',
+'viewsource'           => 'Quelltext anzeigen',
 'viewsourcefor'        => 'für $1',
 'actionthrottled'      => 'Aktionsanzahl limitiert',
-'actionthrottledtext'  => 'Du hast diese Aktion zu oft innerhalb eines kurzen Zeitraums ausgeführt. Bitte warte ein paar Minuten und probiere es dann erneut.',
-'protectedpagetext'    => 'Diese Seite ist für das Bearbeiten gesperrt.',
-'viewsourcetext'       => 'Quelltext dieser Seite:',
-'protectedinterface'   => 'Diese Seite enthält Text für die Benutzeroberfläche der Software und ist gesperrt, um Missbrauch zu verhindern.',
+'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
+Bitte versuche es in ein paar Minuten erneut.',
+'protectedpagetext'    => 'Diese Seite wurde gesperrt, um Bearbeitungen zu verhindern.',
+'viewsourcetext'       => 'Du kannst den Quelltext dieser Seite betrachten und kopieren:',
+'protectedinterface'   => 'Diese Seite enthält Text für die Benutzeroberfläche der Software und ist gesperrt, um Missbrauch vorzubeugen.',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text.
 Änderungen wirken sich auf die Benutzeroberfläche aus.
 Für Übersetzungen ziehe bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
@@ -742,8 +744,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 # Login and logout pages
 'logouttext'                 => "'''Du bist nun abgemeldet.'''
 
-Du kannst {{SITENAME}} jetzt anonym weiter benutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
-Beachte, das einige Seiten noch anzeigen können, das du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
+Du kannst {{SITENAME}} jetzt anonym weiternutzen, oder dich erneut unter demselben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
+Beachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
 'welcomecreation'            => '== Willkommen, $1! ==
 
 Dein Benutzerkonto wurde eingerichtet.
@@ -753,9 +755,9 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'yourpasswordagain'          => 'Passwort wiederholen:',
 'remembermypassword'         => 'dauerhaft anmelden',
 'yourdomainname'             => 'Deine Domain:',
-'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder du darfst dein externes Benutzerkonto nicht aktualisieren.',
+'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor oder du darfst dein externes Benutzerkonto nicht aktualisieren.',
 'login'                      => 'Anmelden',
-'nav-login-createaccount'    => 'Anmelden',
+'nav-login-createaccount'    => 'Anmelden / Benutzerkonto erstellen',
 'loginprompt'                => 'Zur Anmeldung müssen Cookies aktiviert sein.',
 'userlogin'                  => 'Anmelden / Benutzerkonto erstellen',
 'userloginnocreate'          => 'Anmelden',
@@ -781,8 +783,8 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 Überprüfe die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melde dich als neuer Benutzer an]].',
 'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfe die Schreibweise.',
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
-'login-userblocked'          => 'Dieser Benutzer ist gesperrt. Anmeldung nicht erlaubt.',
-'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuche es erneut.',
+'login-userblocked'          => '{{GENDER:$1|Dieser Benutzer|Dieser Benutzerin|Dieser Benutzer}} ist gesperrt. Anmeldung nicht erlaubt.',
+'wrongpassword'              => 'Das Passwort ist falsch. Bitte versuche es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuche es erneut.',
 'passwordtooshort'           => 'Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
 'password-name-match'        => 'Dein Passwort muss sich von deinem Benutzernamen unterscheiden.',
@@ -878,7 +880,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'showdiff'                         => 'Änderungen zeigen',
 'anoneditwarning'                  => "Du bearbeitest diese Seite unangemeldet. Wenn du speicherst, wird deine aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
 'missingsummary'                   => "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „Seite speichern“ klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
-'missingcommenttext'               => 'Bitte gib eine Zusammenfassung ein.',
+'missingcommenttext'               => 'Dein Abschnitt enthält keinen Text.',
 'missingcommentheader'             => "'''ACHTUNG:''' Du hast keine Überschrift im Feld „Betreff:“ eingegeben. Wenn du erneut auf „Seite speichern“ klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
 'summary-preview'                  => 'Vorschau der Zusammenfassungszeile:',
 'subject-preview'                  => 'Vorschau des Betreffs:',
@@ -1031,7 +1033,7 @@ Sie wurde anscheinend gelöscht.',
 'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.
 
 Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} sein.',
-'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
+'expensive-parserfunction-category'       => 'Seiten mit zu vielen aufwändigen Parserfunktionen',
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden.',
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
 'post-expand-template-argument-warning'   => 'Warnung: Diese Seite enthält mindestens ein Argument in einer Vorlage, das expandiert zu groß ist. Diese Argumente werden ignoriert.',
@@ -1041,7 +1043,8 @@ Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} 
 'language-converter-depth-warning'        => 'Sprachkonvertertiefenlimit überschritten ($1)',
 
 # "Undo" feature
-'undo-success' => 'Um die Änderung rückgängig zu machen, bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken.',
+'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
+Bitte prüfe den Vergleich unten um sicherzustellen, dass du dies tun möchtest, und speichere dann unten deine Änderungen, um die Bearbeitung rückgängig zu machen.',
 'undo-failure' => 'Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.',
 'undo-norev'   => 'Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.',
 'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) wurde rückgängig gemacht.',
@@ -1068,8 +1071,8 @@ Grund der Sperre: ''$2''",
 'page_first'             => 'Anfang',
 'page_last'              => 'Ende',
 'histlegend'             => 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
-* (Aktuell) = Unterschied zur aktuellen Version, (Vorherige) = Unterschied zur vorherigen Version
-* Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, K = Kleine Änderung',
+* ({{int:cur}}) = Unterschied zur aktuellen Version, ({{int:last}}) = Unterschied zur vorherigen Version
+* Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, {{int:minoreditletter}} = Kleine Änderung',
 'history-fieldset-title' => 'Suche in der Versionsgeschichte',
 'history-show-deleted'   => 'nur gelöschte Versionen',
 'histfirst'              => 'Älteste',
@@ -1381,9 +1384,9 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-memberingroups-type'     => '$2',
 'prefs-registration'            => 'Anmeldezeitpunkt:',
 'prefs-registration-date-time'  => '$2, $3 Uhr',
-'yourrealname'                  => 'Echter Name:',
+'yourrealname'                  => 'Bürgerlicher Name:',
 'yourlanguage'                  => 'Sprache der Benutzeroberfläche:',
-'yourvariant'                   => 'Variante',
+'yourvariant'                   => 'Variante:',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Beiträge auf Diskussionsseiten sollten mit „<nowiki>~~~~</nowiki>“ signiert werden, was dann in die Signatur mit Zeitstempel umgewandelt wird.',
 'badsig'                        => 'Die Syntax der Unterschrift ist ungültig; bitte HTML überprüfen.',
@@ -1392,9 +1395,9 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'gender-unknown'                => 'Nicht angegeben',
 'gender-male'                   => 'Männlich',
 'gender-female'                 => 'Weiblich',
-'prefs-help-gender'             => 'Optional: Wird für die geschlechtskorrekte Anrede seitens der Software benutzt. Diese Information ist öffentlich.',
+'prefs-help-gender'             => 'Optional: Wird von der Software für die geschlechtsspezifische Anrede genutzt. Diese Information ist öffentlich.',
 'email'                         => 'E-Mail',
-'prefs-help-realname'           => 'Optional. Dein echter Name wird deinen Beiträgen zugeordnet.',
+'prefs-help-realname'           => 'Optional. Damit kann dein bürgerlicher Name deinen Beiträgen zugeordnet werden.',
 'prefs-help-email'              => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn du dein Passwort vergessen hast.
 Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass du deine Identität offenlegen musst.',
 'prefs-help-email-required'     => 'Es wird eine gültige E-Mail-Adresse benötigt.',
@@ -2180,7 +2183,7 @@ Es werden solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die 
 --
 Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{fullurl:{{#special:Watchlist}}/edit}}
 
-Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche {{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL
 
 Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -2365,7 +2368,7 @@ $1',
 'sp-contributions-logs'           => 'Logbücher',
 'sp-contributions-talk'           => 'Diskussion',
 'sp-contributions-userrights'     => 'Benutzerrechteverwaltung',
-'sp-contributions-blocked-notice' => 'Dieser Benutzer ist derzeit gesperrt. Es folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:',
+'sp-contributions-blocked-notice' => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist derzeit gesperrt. Es folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:',
 'sp-contributions-search'         => 'Suche nach Benutzerbeiträgen',
 'sp-contributions-username'       => 'IP-Adresse oder Benutzername:',
 'sp-contributions-submit'         => 'Suchen',
@@ -2462,8 +2465,8 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'contribslink'                    => 'Beiträge',
 'autoblocker'                     => 'Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[User:$1|$1]] benutzt. Grund der Benutzersperre: „$2“.',
 'blocklogpage'                    => 'Benutzersperr-Logbuch',
-'blocklog-showlog'                => 'Dieser Benutzer wurde schon früher gesperrt. Es folgt der Eintrag aus dem Benutzersperr-Logbuch:',
-'blocklog-showsuppresslog'        => 'Dieser Benutzer wurde schon früher gesperrt und versteckt.
+'blocklog-showlog'                => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} wurde schon früher gesperrt. Es folgt der Eintrag aus dem Benutzersperr-Logbuch:',
+'blocklog-showsuppresslog'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} wurde schon früher gesperrt und versteckt.
 Es folgt der Eintrag aus dem Unterdrückungs-Logbuch:',
 'blocklogentry'                   => 'sperrte „[[$1]]“ für den Zeitraum: $2 $3',
 'reblock-logentry'                => 'änderte die Sperre für „[[$1]]“ für den Zeitraum: $2 $3',
@@ -2799,7 +2802,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymer Benutzer|Anonyme Benutzer}} auf {{SITENAME}}',
-'siteuser'         => '{{SITENAME}}-Benutzer $1',
+'siteuser'         => '{{SITENAME}}-{{GENDER:$2|Benutzer|Benutzerin|Benutzer}} $1',
 'anonuser'         => 'Anonymer {{SITENAME}}-Benutzer $1',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.',
 'othercontribs'    => 'Basierend auf der Arbeit von $1.',
@@ -2875,7 +2878,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'log-show-hide-patrol' => 'Kontroll-Logbuch $1',
 
 # Image deletion
-'deletedrevision'                 => 'alte Version: $1',
+'deletedrevision'                 => 'alte Version $1 gelöscht',
 'filedeleteerror-short'           => 'Fehler bei Datei-Löschung: $1',
 'filedeleteerror-long'            => 'Bei der Datei-Löschung wurden Fehler festgestellt:
 
@@ -3321,16 +3324,16 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'watchlistedit-noitems'        => 'Deine Beobachtungsliste ist leer.',
 'watchlistedit-normal-title'   => 'Beobachtungsliste bearbeiten',
 'watchlistedit-normal-legend'  => 'Einträge von der Beobachtungsliste entfernen',
-'watchlistedit-normal-explain' => 'Dies sind die Einträge deiner Beobachtungsliste. Um Einträge zu entfernen, markiere die Kästchen neben den Einträgen und klicke am Ende der Seite auf „Einträge entfernen“. Du kannst deine Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]].',
+'watchlistedit-normal-explain' => 'Dies sind die Einträge deiner Beobachtungsliste. Um Einträge zu entfernen, markiere die Kästchen neben den Einträgen und klicke am Ende der Seite auf „{{int:Watchlistedit-normal-submit}}“. Du kannst deine Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]].',
 'watchlistedit-normal-submit'  => 'Einträge entfernen',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} von deiner Beobachtungsliste entfernt:',
 'watchlistedit-raw-title'      => 'Beobachtungsliste im Listenformat bearbeiten',
 'watchlistedit-raw-legend'     => 'Beobachtungsliste im Listenformat bearbeiten',
 'watchlistedit-raw-explain'    => 'Dies sind die Einträge deiner Beobachtungsliste im Listenformat. Die Einträge können zeilenweise gelöscht oder hinzugefügt werden.
-Pro Zeile ist ein Eintrag erlaubt. Wenn du fertig bist, klicke auf „Beobachtungsliste speichern“.
+Pro Zeile ist ein Eintrag erlaubt. Wenn du fertig bist, klicke auf „{{int:Watchlistedit-raw-submit}}“.
 Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutzen.',
 'watchlistedit-raw-titles'     => 'Einträge:',
-'watchlistedit-raw-submit'     => 'Beobachtungsliste speichern',
+'watchlistedit-raw-submit'     => 'Beobachtungsliste aktualisieren',
 'watchlistedit-raw-done'       => 'Deine Beobachtungsliste wurde gespeichert.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} hinzugefügt:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} entfernt:',

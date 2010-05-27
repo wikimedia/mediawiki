@@ -12,6 +12,7 @@
  * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
+ * @author Horacewai2
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author KaiesTse
@@ -22,6 +23,7 @@
  * @author Onecountry
  * @author PhiLiP
  * @author Shinjiman
+ * @author Shizhao
  * @author Wmr89502270
  * @author Wong128hk
  */
@@ -1238,7 +1240,7 @@ $1",
 'prefs-i18n'                    => '国际化',
 'prefs-signature'               => '签名',
 'prefs-dateformat'              => '日期格式',
-'prefs-timeoffset'              => '时间偏移',
+'prefs-timeoffset'              => '时差',
 'prefs-advancedediting'         => '高级选项',
 'prefs-advancedrc'              => '高级选项',
 'prefs-advancedrendering'       => '高级选项',
@@ -1522,7 +1524,7 @@ $1",
 'savefile'                    => '保存文件',
 'uploadedimage'               => '已上传“[[$1]]”',
 'overwroteimage'              => '已上传“[[$1]]”的新版本',
-'uploaddisabled'              => '无法上传',
+'uploaddisabled'              => '上传己停用。',
 'uploaddisabledtext'          => '文件上传不可用。',
 'php-uploaddisabledtext'      => 'PHP 文件上传已经停用。请检查 file_uploads 设置。',
 'uploadscripted'              => '该文件包含可能被网络浏览器错误解释的 HTML 或脚本代码。',
@@ -1999,7 +2001,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 要删除您监视列表中的该页面，请访问
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 反馈和进一步的帮助:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2670,8 +2672,8 @@ $1已经被封锁。您是否想更改这个设置？',
 'math_notexvc'          => '无法执行texvc；请参照math/README进行配置。',
 
 # Patrolling
-'markaspatrolleddiff'                 => '标记为已检查',
-'markaspatrolledtext'                 => '标记此页面为已检查',
+'markaspatrolleddiff'                 => '标记为已巡查',
+'markaspatrolledtext'                 => '标记此页面为已巡查',
 'markedaspatrolled'                   => '标记为已检查',
 'markedaspatrolledtext'               => '[[:$1]]的已选中修订版本已被标识为已巡查。',
 'rcpatroldisabled'                    => '最新更改检查被关闭',
@@ -3150,12 +3152,14 @@ $1',
 'watchlistedit-noitems'        => '您的监视列表并无标题。',
 'watchlistedit-normal-title'   => '编辑监视列表',
 'watchlistedit-normal-legend'  => '从监视列表中移除标题',
-'watchlistedit-normal-explain' => '在您的监视列表中的标题在下面显示。要移除一个标题，在它前面剔一下，接着点击“移除标题”。您亦都可以[[Special:Watchlist/raw|编辑原始监视列表]]。',
+'watchlistedit-normal-explain' => '在您的监视列表中的标题在下面显示。
+要移除一个标题，在它前面剔一下，接着点击“{{int:Watchlistedit-normal-submit}}”。
+您亦都可以[[Special:Watchlist/raw|编辑原始监视列表]]。',
 'watchlistedit-normal-submit'  => '移除标题',
 'watchlistedit-normal-done'    => '$1个标题已经从您的监视列表中移除：',
 'watchlistedit-raw-title'      => '编辑原始监视列表',
 'watchlistedit-raw-legend'     => '编辑原始监视列表',
-'watchlistedit-raw-explain'    => '您的监视列表中的标题在下面显示，同时亦都可以通过编辑这个表去加入以及移除标题；一行一个标题。当完成以后，点击更新监视列表。你亦都可以去用[[Special:Watchlist/edit|标准编辑器]]。',
+'watchlistedit-raw-explain'    => '您的监视列表中的标题在下面显示，同时亦都可以通过编辑这个表去加入以及移除标题；一行一个标题。当完成以后，点击{{int:Watchlistedit-raw-submit}}。你亦都可以去用[[Special:Watchlist/edit|标准编辑器]]。',
 'watchlistedit-raw-titles'     => '标题：',
 'watchlistedit-raw-submit'     => '更新监视列表',
 'watchlistedit-raw-done'       => '您的监视列表已经更新。',

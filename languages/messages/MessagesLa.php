@@ -1719,6 +1719,14 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipbexpiry'                    => 'Exitus:',
 'ipbreason'                    => 'Causa:',
 'ipbreasonotherlist'           => 'Causa alia',
+'ipbreason-dropdown'           => '*Rationes crebriter adductae
+** Ob scripta falsa
+** Ob textum remotum
+** Ob nexus externos multiplicatos
+** Ob scripta sensu sive et Latinitate carentia
+** Ob scripta inurbana 
+** Ob rationes perniciose multiplicatas
+** Ob nomen inurbanum sive inconveniens',
 'ipbanononly'                  => 'Solum usores anonymi obstruere',
 'ipbcreateaccount'             => 'Creationem rationum obstruere',
 'ipbemailban'                  => 'Litteras electronicas vetare',

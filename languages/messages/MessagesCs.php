@@ -1808,7 +1808,7 @@ Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s 
 'filerevert'                => 'Vrátit zpět $1',
 'filerevert-legend'         => 'Vrátit zpět soubor',
 'filerevert-intro'          => "Vracíte zpět '''[[Media:$1|$1]]''' na [$4 verzi z $3 $2].",
-'filerevert-comment'        => 'Zdůvodnění:',
+'filerevert-comment'        => 'Důvod:',
 'filerevert-defaultcomment' => 'Navrácena verze nahraná v $2 dne $1.',
 'filerevert-submit'         => 'Vrátit zpět',
 'filerevert-success'        => "Soubor '''[[Media:$1|$1]]''' byl vrácen zpět na [$4 verzi z $3 $2].",
@@ -2156,7 +2156,7 @@ Nastavení sledovaných stránek může změnit na
 {{fullurl:Special:Watchlist/edit}}
 
 Stránku můžete ze svých sledovaných vyřadit na
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Rady a kontakt:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2290,7 +2290,7 @@ Archiv může být pravidelně vyprazdňován.',
 'undeleteviewlink'             => 'prohlédnout',
 'undeletereset'                => 'Resetovat',
 'undeleteinvert'               => 'Invertovat výběr',
-'undeletecomment'              => 'Komentář:',
+'undeletecomment'              => 'Důvod:',
 'undeletedarticle'             => 'obnovuje „[[$1]]“',
 'undeletedrevisions'           => '{{PLURAL:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{PLURAL:$2|soubor|soubory|souborů}}.',
@@ -3270,12 +3270,16 @@ Opravdu si přejete znovu tuto stránku založit?',
 'watchlistedit-noitems'        => 'Váš seznam sledovaných stránek neobsahuje žádnou položku.',
 'watchlistedit-normal-title'   => 'Editace seznamu sledovaných stránek',
 'watchlistedit-normal-legend'  => 'Odstranění položek ze seznamu sledovaných stránek',
-'watchlistedit-normal-explain' => 'Položky vašeho seznamu sledovaných stránek jsou zobrazeny níže. Ty, které chcete ze seznamu odstranit, označte zaškrtnutím a poté stiskněte tlačítko Odstranit položky. Editovat seznam sledovaných stránek můžete také [[Special:Watchlist/raw|v textové podobě]].',
+'watchlistedit-normal-explain' => 'Položky vašeho seznamu sledovaných stránek jsou zobrazeny níže.
+Stránku můžete ze seznamu odstranit tak, že zaškrtnete její políčko a kliknete na tlačítko „{{int:Watchlistedit-normal-submit}}“.
+Také můžete [[Special:Watchlist/raw|editovat seznam v textové podobě]].',
 'watchlistedit-normal-submit'  => 'Odstranit položky',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Byla odstraněna 1 položka|Byly odstraněny $1 položky|Bylo odstraněno $1 položek}} z Vašeho seznamu sledovaných stránek:',
 'watchlistedit-raw-title'      => 'Textový režim editace seznamu',
 'watchlistedit-raw-legend'     => 'Editace textového souboru sledovaných stránek',
-'watchlistedit-raw-explain'    => 'Položky na vašem seznamu sledovaných stránek jsou zobrazeny dole. Můžete je přidávat, odstraňovat či měnit v zobrazeném seznamu – jedna řádka je jedna položka. Pro uložení změn stiskněte tlačítko Aktualizovat seznam. Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve standardním editoru]].',
+'watchlistedit-raw-explain'    => 'Položky na vašem seznamu sledovaných stránek jsou zobrazeny níže. Můžete je přidávat, odstraňovat či měnit v zobrazeném seznamu – jedna řádka je jedna položka.
+Pro uložení změn stiskněte tlačítko „{{int:Watchlistedit-raw-submit}}“.
+Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve standardním editoru]].',
 'watchlistedit-raw-titles'     => 'Položky:',
 'watchlistedit-raw-submit'     => 'Aktualizovat seznam',
 'watchlistedit-raw-done'       => 'Seznam vašich sledovaných stránek byl aktualizován.',

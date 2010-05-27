@@ -1114,7 +1114,7 @@ A(z) {{SITENAME}} adminisztrátorai továbbra is meg tudják tekinteni az elrejt
 'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
 'revdelete-log'               => 'A törlés oka:',
 'revdelete-submit'            => 'Alkalmazás a kiválasztott {{PLURAL:$1|változatra|változatokra}}',
-'revdelete-logentry'          => 'módosította [[$1]] változatának láthatóságát',
+'revdelete-logentry'          => 'módosította a(z) [[$1]] lap egy vagy több változatának láthatóságát',
 'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
 'revdelete-success'           => "'''A változat láthatósága sikeresen frissítve.'''",
 'revdelete-failure'           => "'''Nem sikerült frissíteni a változat láthatóságát:'''
@@ -1132,7 +1132,7 @@ $1",
 'revdelete-unrestricted'      => 'felfedett az adminisztrátoroknak',
 'revdelete-hid'               => 'elrejtette $1',
 'revdelete-unhid'             => 'felfedte $1',
-'revdelete-log-message'       => '$1 {{PLURAL:$1|egy|$2}} változatot',
+'revdelete-log-message'       => '$1 {{PLURAL:$1|egy|$2}} változatnak',
 'logdelete-log-message'       => '$1 {{PLURAL:$2|egy|$2}} eseményt',
 'revdelete-hide-current'      => 'Nem sikerült elrejteni a $1 $2-kori elemet: ez a jelenlegi változat, amit nem lehet elrejteni.',
 'revdelete-show-no-access'    => 'Nem lehet megjeleníteni a $2 $1-kori elemet, mert „korlátozottnak” van jelölve.',
@@ -1595,7 +1595,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'uploadlogpagetext'           => 'Lentebb látható a legutóbbi felküldések listája.
 Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'filename'                    => 'Fájlnév',
-'filedesc'                    => 'Összegzés',
+'filedesc'                    => 'Összefoglaló',
 'fileuploadsummary'           => 'Összefoglaló:',
 'filereuploadsummary'         => 'Változtatások:',
 'filestatus'                  => 'Szerzői jogi állapot:',
@@ -2137,7 +2137,7 @@ A figyelőlistád módosításához keresd fel a
 {{fullurl:{{#special:Watchlist}}/edit}} címet
 
 A lap figyelőlistádról való törléséhez keresd fel a
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}} címet
+$UNWATCHURL címet
 
 Visszajelzés és további segítség:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3284,7 +3284,7 @@ Ha el szeretnél távolítani egy lapot, jelöld be a címe melletti jelölőné
 'watchlistedit-raw-legend'     => 'A nyers figyelőlista szerkesztése',
 'watchlistedit-raw-explain'    => 'A figyelőlistádra felvett lapok az alábbi listában találhatók. A lista szerkeszthető;
 minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt található
-„Mentés” feliratú gombra. Használhatod a [[Special:Watchlist/edit|hagyományos listaszerkesztőt]] is.',
+„{{int:Watchlistedit-raw-submit}}” feliratú gombra. Használhatod a [[Special:Watchlist/edit|hagyományos listaszerkesztőt]] is.',
 'watchlistedit-raw-titles'     => 'A figyelőlistádon található cikkek:',
 'watchlistedit-raw-submit'     => 'Mentés',
 'watchlistedit-raw-done'       => 'A figyelőlistád változtatásait elmentettem.',

@@ -2127,7 +2127,7 @@ Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka değişiklik
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 Sayfayı izleme listenizden silmek için:
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Geridönüt ve daha fazla yardım için:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3289,13 +3289,15 @@ Normal önizlemeyi deneyin.',
 'watchlistedit-normal-title'   => 'İzleme listesini düzenle',
 'watchlistedit-normal-legend'  => 'İzleme listesinden başlıkları kaldır',
 'watchlistedit-normal-explain' => 'İzleme listenizdeki başlıklar aşağıda gösterilmiştir.
-Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlıkları Çıkar butonuna tıklayın
-[[Special:Watchlist/raw|Satır listesini]] de düzenleyebilirsiniz',
+Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin ve "{{int:Watchlistedit-normal-submit}}" düğmesine tıklayın.
+[[Special:Watchlist/raw|Satır listesini]] de düzenleyebilirsiniz.',
 'watchlistedit-normal-submit'  => 'Başlıkları kaldır',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 başlık|$1 başlık}} izleme listenizden çıkarıldı:',
 'watchlistedit-raw-title'      => 'Ham izleme listesini düzenle',
 'watchlistedit-raw-legend'     => 'Ham izleme listesini düzenle',
-'watchlistedit-raw-explain'    => "İzleme listenizdeki başlıklar aşağıda gösterilmektedir. Her satırda bir başlık olmak üzere, başlıkları ekleyerek ya da silerek listeyi düzenleyebilirsiniz. Bittiğinde ''İzleme listesini güncelle'''ye tıklayınız. Ayrıca [[Special:Watchlist/edit|standart düzenleme sayfasını]] da kullanabilirsiniz.",
+'watchlistedit-raw-explain'    => 'İzleme listenizdeki başlıklar aşağıda gösterilmektedir. Her satırda bir başlık olmak üzere, başlıkları ekleyerek ya da silerek listeyi düzenleyebilirsiniz.
+Bittiğinde "{{int:Watchlistedit-raw-submit}}"ye tıklayınız.
+Ayrıca [[Special:Watchlist/edit|standart düzenleme sayfasını]] da kullanabilirsiniz.',
 'watchlistedit-raw-titles'     => 'Başlıklar:',
 'watchlistedit-raw-submit'     => 'İzleme listesini güncelle',
 'watchlistedit-raw-done'       => 'İzleme listeniz güncellendi.',

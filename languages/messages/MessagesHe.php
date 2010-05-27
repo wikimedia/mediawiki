@@ -913,17 +913,17 @@ $2',
 או [{{fullurl:{{FULLPAGENAME}}|action=edit}} לערוך דף זה]</span>.',
 'noarticletext-nopermission'       => 'אין כרגע טקסט בדף זה.
 באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,
-או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים].',
+או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים].</span>',
 'userpage-userdoesnotexist'        => 'חשבון המשתמש "$1" אינו רשום.
 אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
 'userpage-userdoesnotexist-view'   => 'חשבון המשתמש "$1" אינו רשום.',
 'blocked-notice-logextract'        => 'משתמש זה חסום כרגע.
 פעולת יומן החסימות האחרונה מוצגת להלן:',
-'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זכרון המטמון (Cache) של הדפדפן על־מנת להבחין בשינויים.
-* ב'''מוזילה''', ב'''פיירפוקס''' או ב'''ספארי''', לחצו על מקש ה־Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו Ctrl+Shift+R (או Cmd+Shift+R במקינטוש של אפל).
-* ב'''אינטרנט אקספלורר''', לחצו על מקש ה־Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על Ctrl+F5.
-* ב־'''Konqueror''', לחצו על '''העלה מחדש''' (Reload), או הקישו על F5.
-* ב'''אופרה''', ייתכן שתצטרכו להשתמש ב'''כלים''' (Tools) > '''העדפות''' (Preferences) כדי לנקות לחלוטין את זכרון המטמון.",
+'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (Cache) של הדפדפן כדי להבחין בשינויים.
+* '''מוזילה / פיירפוקס / ספארי:''' לחצו על מקש ה־Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו על ''Ctrl+F5'' או על ''Ctrl+R'' (או על ''Command+R'' במקינטוש).
+* '''Konqueror:''' לחצו על '''העלה מחדש''' (Reload), או הקישו על ''F5''.
+* '''אופרה''': נקו את המטמון ב'''כלים''' (Tools) > '''העדפות''' (Preferences).
+* '''אינטרנט אקספלורר:''' לחצו על מקש ה־Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl+F5''.",
 'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"תצוגה מקדימה\" כדי לבחון את גליון ה־CSS החדש שלכם לפני השמירה.",
 'userjsyoucanpreview'              => "'''עצה:''' השתמשו בלחצן \"תצוגה מקדימה\" כדי לבחון את סקריפט ה־JavaScript החדש שלכם לפני השמירה.",
 'usercsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גליון ה־CSS שלכם.'''
@@ -1034,20 +1034,20 @@ $2',
 # History pages
 'viewpagelogs'           => 'הצגת יומנים עבור דף זה',
 'nohistory'              => 'אין היסטוריית שינויים עבור דף זה.',
-'currentrev'             => 'גרסה נוכחית',
-'currentrev-asof'        => 'גרסה נוכחית מתאריך $1',
+'currentrev'             => 'גרסה אחרונה',
+'currentrev-asof'        => 'גרסה אחרונה מתאריך $1',
 'revisionasof'           => 'גרסה מתאריך $1',
 'revision-info'          => 'גרסה מתאריך $1 מאת $2',
 'previousrevision'       => '→ הגרסה הקודמת',
 'nextrevision'           => 'הגרסה הבאה ←',
-'currentrevisionlink'    => 'הגרסה הנוכחית',
+'currentrevisionlink'    => 'הגרסה האחרונה',
 'cur'                    => 'נוכ',
 'next'                   => 'הבא',
 'last'                   => 'אחרון',
 'page_first'             => 'ראשון',
 'page_last'              => 'אחרון',
 'histlegend'             => "השוואת גרסאות: סמנו את תיבות האפשרויות של הגרסאות המיועדות להשוואה, והקישו על Enter או על הכפתור שלמעלה או למטה.<br />
-מקרא: '''({{int:cur}})''' = הבדלים עם הגרסה הנוכחית, '''({{int:last}})''' = הבדלים עם הגרסה הקודמת, '''{{int:minoreditletter}}''' = שינוי משני.",
+מקרא: '''({{int:cur}})''' = הבדלים עם הגרסה האחרונה, '''({{int:last}})''' = הבדלים עם הגרסה הקודמת, '''{{int:minoreditletter}}''' = שינוי משני.",
 'history-fieldset-title' => 'חיפוש בהיסטוריית הדף',
 'history-show-deleted'   => 'רק מחוקות',
 'histfirst'              => 'ראשונות',
@@ -2103,7 +2103,7 @@ PICT # שונות
 'watchlistfor'         => "(עבור '''$1''')",
 'nowatchlist'          => 'אין דפים ברשימת המעקב.',
 'watchlistanontext'    => 'עליכם $1 כדי לצפות או לערוך פריטים ברשימת המעקב.',
-'watchnologin'         => 'לא נכנסתם לאתר',
+'watchnologin'         => 'לא נכנסתם לחשבון',
 'watchnologintext'     => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] כדי לערוך את רשימת המעקב.',
 'addedwatch'           => 'הדף נוסף לרשימת המעקב',
 'addedwatchtext'       => 'הדף [[:$1]] נוסף ל[[Special:Watchlist|רשימת המעקב]]. שינויים שייערכו בעתיד, בדף זה ובדף השיחה שלו, יוצגו ברשימת המעקב.
@@ -2164,7 +2164,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 כדי למחוק את הדף מרשימת המעקב שלכם, בקרו בדף
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 למשוב ולעזרה נוספת:
 {{fullurl::{{MediaWiki:Helppage}}}}',
@@ -2842,8 +2842,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'math_image_error'      => 'ההמרה ל־PNG נכשלה; אנא בדקו אם התקנתם נכון את latex, את dvips, את gs ואת convert.',
 'math_bad_tmpdir'       => 'התוכנה לא הצליחה לכתוב או ליצור את הספרייה הזמנית של המתמטיקה',
 'math_bad_output'       => 'התוכנה לא הצליחה לכתוב או ליצור את ספריית הפלט של המתמטיקה',
-'math_notexvc'          => 'קובץ בר־ביצוע של texvc אינו זמין;
-אנא צפו בקובץ math/README למידע על ההגדרות.',
+'math_notexvc'          => 'קובץ בר־ביצוע של texvc אינו זמין; אנא צפו בקובץ math/README למידע על ההגדרות.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'סימון השינוי כבדוק',
@@ -3304,12 +3303,17 @@ $1',
 'watchlistedit-noitems'        => 'רשימת המעקב ריקה.',
 'watchlistedit-normal-title'   => 'עריכת רשימת המעקב',
 'watchlistedit-normal-legend'  => 'הסרת דפים מרשימת המעקב',
-'watchlistedit-normal-explain' => 'כל הדפים ברשימת המעקב מוצגים להלן. כדי להסיר דף, יש לסמן את התיבה לידו, וללחוץ על "הסרת הדפים". באפשרותכם גם [[Special:Watchlist/raw|לערוך את הרשימה הגולמית]].',
+'watchlistedit-normal-explain' => 'כל הדפים ברשימת המעקב מוצגים להלן.
+כדי להסיר דף, יש לסמן את התיבה לידו, וללחוץ על "{{int:Watchlistedit-normal-submit}}".
+באפשרותכם גם [[Special:Watchlist/raw|לערוך את הרשימה הגולמית]].',
 'watchlistedit-normal-submit'  => 'הסרת הדפים',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|כותרת אחת הוסרה|$1 כותרות הוסרו}} מרשימת המעקב:',
 'watchlistedit-raw-title'      => 'עריכת הרשימה הגולמית',
 'watchlistedit-raw-legend'     => 'עריכת הרשימה הגולמית',
-'watchlistedit-raw-explain'    => 'הדפים ברשימת המעקב מוצגים להלן, וניתן לערוך אותם באמצעות הוספה והסרה שלהם מהרשימה; כל כותרת מופיעה בשורה נפרדת. לאחר סיום העריכה, יש ללחוץ על "עדכון הרשימה". באפשרותכם גם [[Special:Watchlist/edit|להשתמש בעורך הרגיל]].',
+'watchlistedit-raw-explain'    => 'הדפים ברשימת המעקב מוצגים להלן, וניתן לערוך אותם באמצעות הוספה והסרה שלהם מהרשימה;
+כל כותרת מופיעה בשורה נפרדת.
+לאחר סיום העריכה, יש ללחוץ על "{{int:Watchlistedit-raw-submit}}".
+באפשרותכם גם [[Special:Watchlist/edit|להשתמש בעורך הרגיל]].',
 'watchlistedit-raw-titles'     => 'דפים:',
 'watchlistedit-raw-submit'     => 'עדכון הרשימה',
 'watchlistedit-raw-done'       => 'רשימת המעקב עודכנה.',

@@ -1525,7 +1525,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'filestatus'                  => 'Opphavsrettsstatus:',
 'filesource'                  => 'Kilde:',
 'uploadedfiles'               => 'Filer som er lastet opp',
-'ignorewarning'               => 'Lagre fila likevel',
+'ignorewarning'               => 'Ignorer advarselen og lagre filen likevel',
 'ignorewarnings'              => 'Ignorer eventuelle advarsler',
 'minlength1'                  => 'Filnavn må være på minst én bokstav.',
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
@@ -2057,7 +2057,7 @@ For å endre innstillingene i overvåkningslisten din, besøk
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 For å slette siden fra overvåkningslisten din, besøk
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Tilbakemeldinger og videre assistanse:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -3181,12 +3181,17 @@ Prøv vanlig forhåndsvisning.',
 'watchlistedit-noitems'        => 'Overvåkningslisten din inneholder ingen titler.',
 'watchlistedit-normal-title'   => 'Rediger overvåkningsliste',
 'watchlistedit-normal-legend'  => 'Fjern titler fra overvåkninglisten',
-'watchlistedit-normal-explain' => 'Titler på overvåkningslisten din vises nedenunder. For å fjerne en tittel, merk av boksen ved siden av den og klikk «fjern titler». Du kan også [[Special:Watchlist/raw|redigere den rå overvåkningslisten]].',
+'watchlistedit-normal-explain' => 'Titler på overvåkningslisten din vises nedenfor.
+For å fjerne en tittel, merk av boksen ved siden av den og klikk på «{{int:Watchlistedit-normal-submit}}».
+Du kan også [[Special:Watchlist/raw|redigere den rå overvåkningslisten]].',
 'watchlistedit-normal-submit'  => 'Fjern titler',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Én tittel|$1 titler}} ble fjernet fra overvåkningslisten din:',
 'watchlistedit-raw-title'      => 'Rediger rå overvåkningsliste',
 'watchlistedit-raw-legend'     => 'Rediger rå overvåkningsliste',
-'watchlistedit-raw-explain'    => 'Titler på overvåkningslisten din vises nedenunder, og kan redigeres ved å legge til eller fjerne fra listen; én tittel per linje. Når du er ferdig, trykk Oppdater overvåkningsliste. Du kan også [[Special:Watchlist/edit|bruke standardverktøyet]].',
+'watchlistedit-raw-explain'    => 'Titler på overvåkningslisten din vises nedenunder, og kan redigeres ved å legge til eller fjerne fra listen;
+én tittel per linje.
+Når du er ferdig, trykk «{{int:Watchlistedit-raw-submit}}».
+Du kan også [[Special:Watchlist/edit|bruke standardverktøyet]].',
 'watchlistedit-raw-titles'     => 'Titler:',
 'watchlistedit-raw-submit'     => 'Oppdater overvåkningsliste',
 'watchlistedit-raw-done'       => 'Overvåkningslisten din er oppdatert.',

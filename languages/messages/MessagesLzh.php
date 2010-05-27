@@ -1301,7 +1301,7 @@ $1",
 'savefile'                   => '存之',
 'uploadedimage'              => '進獻"[[$1]]"',
 'overwroteimage'             => '新置「[[$1]]」矣',
-'uploaddisabledtext'         => '貢被禁也。',
+'uploaddisabledtext'         => '檔之貢被禁也。',
 'php-uploaddisabledtext'     => 'PHP之貢被禁也。查 file_uploads 之。',
 'uploadvirus'                => '此檔含毒也！
 詳：$1',
@@ -1747,7 +1747,7 @@ $NEWPAGE
 --
 欲更哨令，惠訪{{fullurl:{{#special:Watchlist}}/edit}}
 
-欲刪之頁，惠訪{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+欲刪之頁，惠訪$UNWATCHURL
 
 饋助之，惠訪{{fullurl:{{MediaWiki:Helppage}}}}',
 

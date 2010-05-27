@@ -1479,7 +1479,7 @@ $1",
 'savefile'                    => '儲存檔案',
 'uploadedimage'               => '上載咗"[[$1]]"',
 'overwroteimage'              => '已經上載咗"[[$1]]"嘅新版本',
-'uploaddisabled'              => '上載已停用',
+'uploaddisabled'              => '上載已停用。',
 'uploaddisabledtext'          => '檔案上載已經停用。',
 'php-uploaddisabledtext'      => 'PHP 檔案上載已經停用。請檢查 file_uploads 設定。',
 'uploadscripted'              => '呢個檔案包含可能會誤被瀏覽器解釋執行嘅 HTML 或 script 代碼。',
@@ -1951,7 +1951,7 @@ wiki: $PAGEEDITOR_WIKI
 --
 要修改你嘅監視清單設定，請睇{{fullurl:{{#special:Watchlist}}/edit}}
 
-要刪除你嘅監視清單度嘅呢一版，請睇{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+要刪除你嘅監視清單度嘅呢一版，請睇$UNWATCHURL
 
 回饋及更多幫助：
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2619,7 +2619,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 
 # Patrolling
 'markaspatrolleddiff'                 => '標示為已巡查嘅',
-'markaspatrolledtext'                 => '標示呢版為已巡查嘅',
+'markaspatrolledtext'                 => '標示呢版做查咗嘅',
 'markedaspatrolled'                   => '已經標示做已巡查嘅',
 'markedaspatrolledtext'               => '已經選擇咗[[:$1]]嘅修訂已經標示咗做已巡查嘅。',
 'rcpatroldisabled'                    => '最近修改巡查已經停用',

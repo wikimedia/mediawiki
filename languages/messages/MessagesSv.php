@@ -1130,7 +1130,7 @@ $1",
 'logdelete-success'           => "'''Loggåtgärdens synlighet har ändrats.'''",
 'logdelete-failure'           => "'''Loggens synlighet kunde inte ställas in:'''
 $1",
-'revdel-restore'              => 'Ändra synlighet',
+'revdel-restore'              => 'ändra synlighet',
 'pagehist'                    => 'Sidhistorik',
 'deletedhist'                 => 'Raderad historik',
 'revdelete-content'           => 'innehåll',
@@ -1908,7 +1908,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'ncategories'             => '$1 {{PLURAL:$1|kategori|kategorier}}',
 'nlinks'                  => '$1 {{PLURAL:$1|länk|länkar}}',
 'nmembers'                => '$1 {{PLURAL:$1|medlem|medlemmar}}',
-'nrevisions'              => '$1 {{PLURAL:$1|ändring|ändringar}}',
+'nrevisions'              => '$1 {{PLURAL:$1|version|versioner}}',
 'nviews'                  => '$1 {{PLURAL:$1|visning|visningar}}',
 'specialpage-empty'       => 'Den här sidan är tom.',
 'lonelypages'             => 'Föräldralösa sidor',
@@ -2157,7 +2157,7 @@ För att ändra inställningarna i din bevakningslista, besök
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 För att radera sidan från din bevakningslista, besök
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 Feedback och ytterligare hjälp:
 {{fullurl:{{MediaWiki:Helppage}}}}',

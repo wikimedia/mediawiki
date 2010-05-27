@@ -630,7 +630,7 @@ $2',
 йәки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бындай исемле яңы бит яһай]''' алаһығыҙ.",
 'noarticletext-nopermission'       => 'Хәҙерге ваҡытта был биттә текст юҡ.
 Һеҙ башҡа мәҡәләләрҙә [[Special:Search/{{PAGENAME}}|был исемде]] йәки 
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ.</span>',
 'userpage-userdoesnotexist'        => '«$1» иҫәп яҙыуы юҡ. Һеҙ бындай бит яһарға йәки битте үҙгәртергә теләһәгеҙ яңынан тикшерегеҙ.',
 'userpage-userdoesnotexist-view'   => '«$1» исемле иҫәп яҙыуы юҡ.',
 'clearyourcache'                   => "'''Иҫкәрмә:''' Битте һаҡлағандан һуң үҙгәртеүҙерегеҙ күренһен өсөн браузерығыҙҙың кэшын таҙартығыҙ.

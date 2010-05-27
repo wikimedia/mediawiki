@@ -11,6 +11,7 @@
  * @author Bencmq
  * @author FireJackey
  * @author Gaoxuewei
+ * @author Horacewai2
  * @author Jidanni
  * @author KaiesTse
  * @author Liangent
@@ -1521,7 +1522,7 @@ $1",
 'savefile'                    => '保存檔案',
 'uploadedimage'               => '已上載「[[$1]]」',
 'overwroteimage'              => '已經上載"[[$1]]"的新版本',
-'uploaddisabled'              => '無法上傳',
+'uploaddisabled'              => '上傳己停用。',
 'uploaddisabledtext'          => '檔案上傳不可用。',
 'php-uploaddisabledtext'      => 'PHP 檔案上載已經停用。請檢查 file_uploads 設定。',
 'uploadscripted'              => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
@@ -2005,7 +2006,7 @@ $NEWPAGE
 {{fullurl:{{#special:Watchlist}}/edit}}
 
 要刪除您監視清單中的該頁面，請參閱
-{{fullurl:{{FULLPAGENAMEE}}|action=unwatch}}
+$UNWATCHURL
 
 回饋和進一步的幫助:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2677,8 +2678,8 @@ $1已經被封鎖。您是否想更改這個設定？',
 'math_notexvc'          => '無法執行"texvc"；請參照 math/README 進行配置。',
 
 # Patrolling
-'markaspatrolleddiff'                 => '標記為已檢查',
-'markaspatrolledtext'                 => '標記此頁面為已檢查',
+'markaspatrolleddiff'                 => '標記為已巡查',
+'markaspatrolledtext'                 => '標記此頁面為已巡查',
 'markedaspatrolled'                   => '標記為已檢查',
 'markedaspatrolledtext'               => '[[:$1]]的已選定修訂版本已被標識為已巡查。',
 'rcpatroldisabled'                    => '最新更改檢查被關閉',
@@ -3157,7 +3158,7 @@ $1',
 'watchlistedit-noitems'        => '您的監視列表並無標題。',
 'watchlistedit-normal-title'   => '編輯監視列表',
 'watchlistedit-normal-legend'  => '從監視列表中移除標題',
-'watchlistedit-normal-explain' => '在您的監視列表中的標題在下面顯示。要移除一個標題，在它前面剔一下，接著點擊「移除標題」。您亦都可以[[Special:Watchlist/raw|編輯原始監視列表]]。',
+'watchlistedit-normal-explain' => '在您的監視列表中的標題在下面顯示。要移除一個標題，在它前面剔一下，接著點擊「{{int:Watchlistedit-normal-submit}}」。您亦可以[[Special:Watchlist/raw|編輯原始監視列表]]。',
 'watchlistedit-normal-submit'  => '移除標題',
 'watchlistedit-normal-done'    => '$1個標題已經從您的監視列表中移除:',
 'watchlistedit-raw-title'      => '編輯原始監視列表',
