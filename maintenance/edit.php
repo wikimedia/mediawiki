@@ -36,7 +36,7 @@ class EditCLI extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUser, $wgTitle, $wgArticle;
+		global $wgUser, $wgArticle;
 
 		$userName = $this->getOption( 'u', 'Maintenance script' );
 		$summary = $this->getOption( 's', '' );
@@ -53,12 +53,12 @@ class EditCLI extends Maintenance {
 			$wgUser->addToDatabase();
 		}
 	
-		$wgTitle = Title::newFromText( $this->getArg() );
-		if ( !$wgTitle ) {
+		$title = Title::newFromText( $this->getArg() );
+		if ( !$title ) {
 			$this->error( "Invalid title", true );
 		}
 	
-		$wgArticle = new Article( $wgTitle );
+		$wgArticle = new Article( $title );
 	
 		# Read the text
 		$text = $this->getStdin( Maintenance::STDIN_ALL );
