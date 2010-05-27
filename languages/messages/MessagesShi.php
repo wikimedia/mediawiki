@@ -342,6 +342,7 @@ lcont nek  tuyskar .
 'savearticle'                => 'Ḥbu tasna',
 'showpreview'                => 'Iẓṛi amzwaru',
 'showdiff'                   => 'Mel imbddeln',
+'anoneditwarning'            => "Balak ''' ur tkcmt ''' rad ibayn IP nk ɣ umzrut n tasna yad, ur sul  iḥba tamagit nk",
 'noarticletext'              => 'ɣilad ur illa walu may ityuran  f tasnatad ad, tzdart at [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 ulla cabba  [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
@@ -449,6 +450,7 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
 # Recent changes
 'recentchanges'                     => 'Imbddeln imggura',
+'rcshowhideminor'                   => '$1 iẓṛign fssusnin',
 'rcshowhidebots'                    => '$1 butn',
 'rcshowhideliu'                     => '$1 midn li ttuyqqiyadnin',
 'rcshowhideanons'                   => '$1 midn ur ttuyssan nin',
@@ -578,11 +580,13 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Namespace form on various pages
 'namespace'      => 'Taɣult',
+'invert'         => 'amglb n ustay',
 'blanknamespace' => '(Amuqran)',
 
 # Contributions
-'mycontris' => 'Tiwuriwin inu',
-'year'      => 'Z usggas (d urbur):',
+'contributions' => 'Tiwuriwin n umsaws',
+'mycontris'     => 'Tiwuriwin inu',
+'year'          => 'Z usggas (d urbur):',
 
 'sp-contributions-talk' => 'assays',
 
@@ -682,7 +686,9 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'previousdiff' => 'Imbddln imzwura',
 
 # Media information
-'file-info-size' => '($1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4)',
+'file-info-size'       => '($1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4)',
+'show-big-image'       => 'balak',
+'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 
 # Metadata
 'metadata' => 'isfka n mita',

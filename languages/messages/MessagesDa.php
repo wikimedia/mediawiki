@@ -2001,7 +2001,6 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'enotif_anon_editor'           => 'anonym bruger $1',
 'enotif_body'                  => 'Kære $WATCHINGUSERNAME,
 
-
 {{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED den $PAGEEDITDATE af $PAGEEDITOR, se $PAGETITLE_URL for den aktuelle version.
 
 $NEWPAGE

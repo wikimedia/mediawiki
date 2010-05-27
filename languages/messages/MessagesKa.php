@@ -1911,6 +1911,7 @@ $1',
 
 # User Messenger
 'usermessage-summary' => 'სისტემური შეტყობინების დატოვება.',
+'usermessage-editor'  => 'სისტემური მესენჯერი',
 
 # Watchlist
 'watchlist'            => 'ჩემი კონტროლის სია',

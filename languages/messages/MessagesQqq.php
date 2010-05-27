@@ -677,7 +677,10 @@ $1 is the minimum number of characters in the password.',
 * $3 is a password. Example: er##@fdas!
 * $4 is a URL. Example: http://wiki.example.com
 * $5 is a number of days in which the temporary password will expire',
-'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
+'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup register user link]).
+
+Parameters:
+* $1 is a user name. This parameter can be used with GENDER.',
 'eauthentsent'               => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
 "in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
@@ -822,6 +825,8 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'noarticletext-nopermission'       => 'See also {{msg-mw|Noarticletext}}.',
 'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki',
 'userpage-userdoesnotexist-view'   => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo].',
+'blocked-notice-logextract'        => 'Parameters:
+* $1 is the name of the blocked user (optional). Can be used for GENDER.',
 'clearyourcache'                   => 'Text at the top of .js/.css pages',
 'usercssyoucanpreview'             => "Text displayed on every css page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
 'userjsyoucanpreview'              => "Text displayed on every js page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
@@ -1830,7 +1835,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $3 is a hour
 * $4 is an URL and must follow square bracket: [$4
 {{Identical|Revert}}',
-'filerevert-comment'        => '{{Identical|Comment}}',
+'filerevert-comment'        => '{{Identical|Reason}}',
 'filerevert-defaultcomment' => '* $1 is a date
 * $2 is an hour
 {{Identical|Revert}}',
@@ -2390,7 +2395,7 @@ This message was something like "unlock move protection" in the past.',
 'undeletereset'              => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
 'undeleteinvert'             => '{{Identical|Invert selection}}',
-'undeletecomment'            => '{{Identical|Comment}}',
+'undeletecomment'            => '{{Identical|Reason}}',
 'undelete-search-submit'     => '{{Identical|Search}}',
 'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 * <code>$1</code> is the name of the file being undeleted.
