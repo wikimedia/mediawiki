@@ -68,6 +68,7 @@ the system, and disclosure of information from private wikis.
   broken in 1.16 beta 1.
 * Fixed regression in unwatch links sent out in notification emails. When the 
   mailing job was deferred via the job queue, the title was incorrect.
+* (bug 23534) Fixed SQL query error in API list=allusers.
 
 === Changes since 1.16 beta 1 ===
 

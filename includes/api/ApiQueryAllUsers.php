@@ -74,7 +74,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		if ( $params['witheditsonly'] )
-			$this->addWhere( 'user_editcount > 0' );
+			$this->addWhere( 'u1.user_editcount > 0' );
 
 		if ( $fld_groups ) {
 			// Show the groups the given users belong to
