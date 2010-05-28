@@ -610,16 +610,16 @@ CREATE UNIQUE INDEX user_properties_user_property ON user_properties (up_user,up
 CREATE INDEX user_properties_property ON user_properties (up_property);
 
 CREATE TABLE l10n_cache (
-  lc_lang     TEXT    NOT NULL,
-  lc_key      TEXT    NOT NULL,
-  lc_value    TEXT    NOT NULL
+  lc_lang   TEXT  NOT NULL,
+  lc_key    TEXT  NOT NULL,
+  lc_value  TEXT  NOT NULL
 );
 CREATE INDEX l10n_cache_lc_lang_key ON l10n_cache (lc_lang, lc_key);
 
 CREATE TABLE iwlinks (
-        iwl_from INTEGER NOT NULL DEFAULT 0,
-        iwl_prefix TEXT NOT NULL DEFAULT '',
-        iwl_title TEXT NOT NULL DEFAULT ''
+  iwl_from    INTEGER  NOT NULL DEFAULT 0,
+  iwl_prefix  TEXT     NOT NULL DEFAULT '',
+  iwl_title   TEXT     NOT NULL DEFAULT ''
 );
 CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
 CREATE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
