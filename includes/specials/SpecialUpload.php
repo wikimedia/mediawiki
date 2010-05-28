@@ -69,8 +69,8 @@ class SpecialUpload extends SpecialPage {
 
 		// Guess the desired name from the filename if not provided
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
-		if( !$this->mDesiredDestName )
-			$this->mDesiredDestName = $request->getText( 'wpUploadFile' );
+		if( !$this->mDesiredDestName && $request->getFileName( 'wpUploadFile' ) !== null )
+			$this->mDesiredDestName = $request->getFileName( 'wpUploadFile' );
 		$this->mComment           = $request->getText( 'wpUploadDescription' );
 		$this->mLicense           = $request->getText( 'wpLicense' );
 
@@ -221,6 +221,7 @@ class SpecialUpload extends SpecialPage {
 			
 			'texttop' => $this->uploadFormTextTop,
 			'textaftersummary' => $this->uploadFormTextAfterSummary,
+			'destfile' => $this->mDesiredDestName,
 		) );
 		$form->setTitle( $this->getTitle() );
 
@@ -691,7 +692,8 @@ class UploadForm extends HTMLForm {
 	protected $mSessionKey;
 	protected $mHideIgnoreWarning;
 	protected $mDestWarningAck;
-	
+	protected $mDestFile;
+
 	protected $mTextTop;
 	protected $mTextAfterSummary;
 	
@@ -709,6 +711,7 @@ class UploadForm extends HTMLForm {
 		
 		$this->mTextTop = $options['texttop'];
 		$this->mTextAfterSummary = $options['textaftersummary'];
+		$this->mDestFile = isset( $options['destfile'] ) ? $options['destfile'] : '';
 
 		$sourceDescriptor = $this->getSourceSection();
 		$descriptor = $sourceDescriptor
@@ -870,6 +873,9 @@ class UploadForm extends HTMLForm {
 				'id' => 'wpDestFile',
 				'label-message' => 'destfilename',
 				'size' => 60,
+				'default' => $this->mDestFile,
+				# FIXME: hack to work around poor handling of the 'default' option in HTMLForm
+				'nodata' => strval( $this->mDestFile ) !== '',
 			),
 			'UploadDescription' => array(
 				'type' => 'textarea',

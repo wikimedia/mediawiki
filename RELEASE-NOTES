@@ -69,6 +69,9 @@ the system, and disclosure of information from private wikis.
 * Fixed regression in unwatch links sent out in notification emails. When the 
   mailing job was deferred via the job queue, the title was incorrect.
 * (bug 23534) Fixed SQL query error in API list=allusers.
+* Fixed a bug in uploads for non-JavaScript clients. An empty string was used
+  as the default destination filename, instead of the source filename as 
+  expected.
 
 === Changes since 1.16 beta 1 ===
 
