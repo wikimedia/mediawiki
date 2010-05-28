@@ -2,6 +2,8 @@
 
 == MediaWiki 1.16 beta 3 ==
 
+2010-05-28
+
 This is a pre-release beta of the MediaWiki 1.16 branch.
 
 === Summary of selected changes in 1.16 ===
@@ -40,9 +42,6 @@ set $wgCacheDirectory to a writable path on the local filesystem. Make sure
 you have the DBA extension for PHP installed, this will improve performance 
 further.
 
-* (bug 23371) Fixed holes in Special:Userlogin which could lead to abuse of
-the system, and disclosure of information from private wikis.
-
 == Changes since 1.16 beta 2 ==
 
 * Fixed bugs in the [[Special:Userlogin]] and [[Special:Emailuser]] handling of
@@ -72,6 +71,10 @@ the system, and disclosure of information from private wikis.
 * Fixed a bug in uploads for non-JavaScript clients. An empty string was used
   as the default destination filename, instead of the source filename as 
   expected.
+* (bug 23371) Fixed CSRF vulnerability in "e-mail me my password", "create 
+  account" and "create by e-mail" features of [[Special:Userlogin]]
+* (bug 23687) Fixed XSS vulnerability affecting IE clients only, due to a CSS 
+  validation issue.
 
 === Changes since 1.16 beta 1 ===
 
