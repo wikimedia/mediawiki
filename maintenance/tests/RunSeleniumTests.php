@@ -4,7 +4,7 @@
  * @ingroup Maintenance
  * @copyright Copyright © Wikimedia Deuschland, 2009
  * @author Hallo Welt! Medienwerkstatt GmbH
- * @author Markus Glaser
+ * @author Markus Glaser, Dan Nessett
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
