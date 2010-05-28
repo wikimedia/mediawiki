@@ -374,7 +374,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
 
-		$wgOut->wrapWikiMsg( "<div class='mw-history-legend'>\n$1</div>", 'histlegend' );
+		$wgOut->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
 		$s = Xml::openElement( 'form', array( 'action' => $wgScript,
 			'id' => 'mw-history-compare' ) ) . "\n";
 		$s .= Xml::hidden( 'title', $this->title->getPrefixedDbKey() ) . "\n";

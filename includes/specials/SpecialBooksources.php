@@ -35,7 +35,7 @@ class SpecialBookSources extends SpecialPage {
 		$wgOut->addHTML( $this->makeForm() );
 		if( strlen( $this->isbn ) > 0 ) {
 			if( !self::isValidISBN( $this->isbn ) ) {
-				$wgOut->wrapWikiMsg( "<div class=\"error\">\n$1</div>", 'booksources-invalid-isbn' );
+				$wgOut->wrapWikiMsg( "<div class=\"error\">\n$1\n</div>", 'booksources-invalid-isbn' );
 			}
 			$this->showList();
 		}

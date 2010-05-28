@@ -52,7 +52,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 		}
 		$title = Title::newFromURL( $target );
 		if( !$title || $title->getInterwiki() != '' ){
-			$wgOut->wrapWikiMsg( "<div class=\"errorbox\">\n$1</div><br style=\"clear: both\" />", 'allpagesbadtitle' );
+			$wgOut->wrapWikiMsg( "<div class=\"errorbox\">\n$1\n</div><br style=\"clear: both\" />", 'allpagesbadtitle' );
 			return false;
 		}
 

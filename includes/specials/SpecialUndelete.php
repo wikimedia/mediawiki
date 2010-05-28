@@ -665,7 +665,7 @@ class UndeleteForm {
 		if( $this->mRestore && $this->mAction == "submit" ) {
 			global $wgUploadMaintenance;
 			if( $wgUploadMaintenance && $this->mTargetObj && $this->mTargetObj->getNamespace() == NS_FILE ) {
-				$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n", array( 'filedelete-maintenance' ) );
+				$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n", array( 'filedelete-maintenance' ) );
 				return;
 			}
 			return $this->undelete();
@@ -746,10 +746,10 @@ class UndeleteForm {
 
 		if( $rev->isDeleted(Revision::DELETED_TEXT) ) {
 			if( !$rev->userCan(Revision::DELETED_TEXT) ) {
-				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
 				return;
 			} else {
-				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
 				$wgOut->addHTML( '<br />' );
 				// and we are allowed to see...
 			}
@@ -1001,7 +1001,7 @@ class UndeleteForm {
 			$wgOut->setPagetitle( wfMsg( 'viewdeletedpage' ) );
 		}
 
-		$wgOut->wrapWikiMsg(  "<div class='mw-undelete-pagetitle'>\n$1</div>\n", array ( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() ) );
+		$wgOut->wrapWikiMsg(  "<div class='mw-undelete-pagetitle'>\n$1\n</div>\n", array ( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() ) );
 
 		$archive = new PageArchive( $this->mTargetObj );
 		/*

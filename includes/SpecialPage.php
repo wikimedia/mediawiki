@@ -832,7 +832,7 @@ Perhaps no page aliases are defined for it?" );
 		}
 		$out = wfMsgNoTrans( $msg );
 		if ( ! wfEmptyMsg( $msg, $out ) and  $out !== '' and ! $this->including() ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-specialpage-summary'>\n$1</div>", $msg );
+			$wgOut->wrapWikiMsg( "<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
 
 	}

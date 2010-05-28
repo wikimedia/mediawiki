@@ -103,7 +103,7 @@ class SpecialImport extends SpecialPage {
 		}
 
 		if( WikiError::isError( $source ) ) {
-			$wgOut->wrapWikiMsg( '<p class="error">$1</p>', array( 'importfailed', $source->getMessage() ) );
+			$wgOut->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $source->getMessage() ) );
 		} else {
 			$wgOut->addWikiMsg( "importstart" );
 
@@ -119,10 +119,10 @@ class SpecialImport extends SpecialPage {
 
 			if( WikiError::isError( $result ) ) {
 				# No source or XML parse error
-				$wgOut->wrapWikiMsg( '<p class="error">$1</p>', array( 'importfailed', $result->getMessage() ) );
+				$wgOut->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $result->getMessage() ) );
 			} elseif( WikiError::isError( $resultCount ) ) {
 				# Zero revisions
-				$wgOut->wrapWikiMsg( '<p class="error">$1</p>', array( 'importfailed', $resultCount->getMessage() ) );
+				$wgOut->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $resultCount->getMessage() ) );
 			} else {
 				# Success!
 				$wgOut->addWikiMsg( 'importsuccess' );

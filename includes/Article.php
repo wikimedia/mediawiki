@@ -1186,7 +1186,7 @@ class Article {
 		if ( $this->mTitle->isTalkPage() ) {
 			$msg = wfMsgNoTrans( 'talkpageheader' );
 			if ( $msg !== '-' && !wfEmptyMsg( 'talkpageheader', $msg ) ) {
-				$wgOut->wrapWikiMsg( "<div class=\"mw-talkpageheader\">\n$1</div>", array( 'talkpageheader' ) );
+				$wgOut->wrapWikiMsg( "<div class=\"mw-talkpageheader\">\n$1\n</div>", array( 'talkpageheader' ) );
 			}
 		}
 	}
@@ -1259,7 +1259,7 @@ class Article {
 			$user = User::newFromName( $rootPart, false /* allow IP users*/ );
 			$ip = User::isIP( $rootPart );
 			if ( !$user->isLoggedIn() && !$ip ) { # User does not exist
-				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1</div>",
+				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					array( 'userpage-userdoesnotexist-view', $rootPart ) );
 			} else if ( $user->isBlocked() ) { # Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
@@ -1329,7 +1329,7 @@ class Article {
 		}
 		// If the user is not allowed to see it...
 		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT ) ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'rev-deleted-text-permission' );
 			return false;
 		// If the user needs to confirm that they want to see it...
@@ -1339,14 +1339,14 @@ class Article {
 			$link = $this->mTitle->getFullUrl( "oldid={$oldid}&unhide=1" );
 			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				array( $msg, $link ) );
 			return false;
 		// We are allowed to see...
 		} else {
 			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-view' : 'rev-deleted-text-view';
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", $msg );
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
 			return true;
 		}
 	}
@@ -1513,7 +1513,7 @@ class Article {
 					$o->tb_name,
 					$rmvtxt );
 		}
-		$wgOut->wrapWikiMsg( "<div id='mw_trackbacks'>$1</div>\n", array( 'trackbackbox', $tbtext ) );
+		$wgOut->wrapWikiMsg( "<div id='mw_trackbacks'>\n$1\n</div>\n", array( 'trackbackbox', $tbtext ) );
 	}
 
 	/**
@@ -2673,7 +2673,7 @@ class Article {
 		$bigHistory = $this->isBigDeletion();
 		if ( $bigHistory && !$this->mTitle->userCan( 'bigdelete' ) ) {
 			global $wgLang, $wgDeleteRevisionsLimit;
-			$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n",
+			$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 				array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 			return;
 		}
@@ -2704,7 +2704,7 @@ class Article {
 			);
 			if ( $bigHistory ) {
 				global $wgDeleteRevisionsLimit;
-				$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n",
+				$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 					array( 'delete-warning-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 			}
 		}
