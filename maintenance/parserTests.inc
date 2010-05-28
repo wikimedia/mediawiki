@@ -1591,7 +1591,7 @@ class TestFileIterator implements Iterator {
 
 	function rewind() {
 		if ( fseek( $this->fh, 0 ) ) {
-			wfDie( "Couldn't fseek to the start of '$filename'\n" );
+			wfDie( "Couldn't fseek to the start of '$this->file'\n" );
 		}
 		$this->index = -1;
 		$this->lineNum = 0;
@@ -1633,10 +1633,10 @@ class TestFileIterator implements Iterator {
 				$section = strtolower( $matches[1] );
 				if ( $section == 'endarticle' ) {
 					if ( !isset( $data['text'] ) ) {
-						wfDie( "'endarticle' without 'text' at line {$this->lineNum} of $filename\n" );
+						wfDie( "'endarticle' without 'text' at line {$this->lineNum} of $this->file\n" );
 					}
 					if ( !isset( $data['article'] ) ) {
-						wfDie( "'endarticle' without 'article' at line {$this->lineNum} of $filename\n" );
+						wfDie( "'endarticle' without 'article' at line {$this->lineNum} of $this->file\n" );
 					}
 					if ( $this->parser ) {
 						$this->parser->addArticle( $this->parser->chomp( $data['article'] ), $this->parser->chomp( $data['text'] ),
@@ -1648,7 +1648,7 @@ class TestFileIterator implements Iterator {
 				}
 				if ( $section == 'endhooks' ) {
 					if ( !isset( $data['hooks'] ) ) {
-						wfDie( "'endhooks' without 'hooks' at line {$this->lineNum} of $filename\n" );
+						wfDie( "'endhooks' without 'hooks' at line {$this->lineNum} of $this->file\n" );
 					}
 					foreach ( explode( "\n", $data['hooks'] ) as $line ) {
 						$line = trim( $line );
@@ -1662,7 +1662,7 @@ class TestFileIterator implements Iterator {
 				}
 				if ( $section == 'endfunctionhooks' ) {
 					if ( !isset( $data['functionhooks'] ) ) {
-						wfDie( "'endfunctionhooks' without 'functionhooks' at line {$this->lineNum} of $filename\n" );
+						wfDie( "'endfunctionhooks' without 'functionhooks' at line {$this->lineNum} of $this->file\n" );
 					}
 					foreach ( explode( "\n", $data['functionhooks'] ) as $line ) {
 						$line = trim( $line );
@@ -1676,13 +1676,13 @@ class TestFileIterator implements Iterator {
 				}
 				if ( $section == 'end' ) {
 					if ( !isset( $data['test'] ) ) {
-						wfDie( "'end' without 'test' at line {$this->lineNum} of $filename\n" );
+						wfDie( "'end' without 'test' at line {$this->lineNum} of $this->file\n" );
 					}
 					if ( !isset( $data['input'] ) ) {
-						wfDie( "'end' without 'input' at line {$this->lineNum} of $filename\n" );
+						wfDie( "'end' without 'input' at line {$this->lineNum} of $this->file\n" );
 					}
 					if ( !isset( $data['result'] ) ) {
-						wfDie( "'end' without 'result' at line {$this->lineNum} of $filename\n" );
+						wfDie( "'end' without 'result' at line {$this->lineNum} of $this->file\n" );
 					}
 					if ( !isset( $data['options'] ) ) {
 						$data['options'] = '';
@@ -1719,7 +1719,7 @@ class TestFileIterator implements Iterator {
 					return true;
 				}
 				if ( isset ( $data[$section] ) ) {
-					wfDie( "duplicate section '$section' at line {$this->lineNum} of $filename\n" );
+					wfDie( "duplicate section '$section' at line {$this->lineNum} of $this->file\n" );
 				}
 				$data[$section] = '';
 				continue;
