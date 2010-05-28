@@ -30,13 +30,13 @@ class SpecialPreferences extends SpecialPage {
 
 		if ( $wgRequest->getCheck( 'success' ) ) {
 			$wgOut->wrapWikiMsg(
-				'<div class="successbox"><strong>$1</strong></div><div id="mw-pref-clear"></div>',
+				"<div class=\"successbox\"><strong>\n$1\n</strong></div><div id=\"mw-pref-clear\"></div>",
 				'savedprefs'
 			);
 		}
 		
 		if ( $wgRequest->getCheck( 'eauth' ) ) {
-			$wgOut->wrapWikiMsg( "<div class='error' style='clear: both;'>\n$1</div>",
+			$wgOut->wrapWikiMsg( "<div class='error' style='clear: both;'>\n$1\n</div>",
 									'eauthentsent', $wgUser->getName() );
 		}
 

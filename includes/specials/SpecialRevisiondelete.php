@@ -533,7 +533,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function success() {
 		global $wgOut;
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-		$wgOut->wrapWikiMsg( '<span class="success">$1</span>', $this->typeInfo['success'] );
+		$wgOut->wrapWikiMsg( "<span class=\"success\">\n$1\n</span>", $this->typeInfo['success'] );
 		$this->list->reloadFromMaster();
 		$this->showForm();
 	}

@@ -353,7 +353,7 @@ CONTROL;
 			if( !$allowed ) {
 				$msg = $suppressed ? 'rev-suppressed-no-diff' : 'rev-deleted-no-diff';
 				# Give explanation for why revision is not visible
-				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 					array( $msg ) );
 			} else {
 				# Give explanation and add a link to view the diff...
@@ -363,7 +363,7 @@ CONTROL;
 					'unhide' => 1
 				) );
 				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
-				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", array( $msg, $link ) );
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", array( $msg, $link ) );
 			}
 		# Otherwise, output a regular diff...
 		} else {
@@ -416,9 +416,9 @@ CONTROL;
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 		# Add deleted rev tag if needed
 		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
 		} else if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
 		}
 
 		if( !$this->mNewRev->isCurrent() ) {

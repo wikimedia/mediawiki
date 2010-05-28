@@ -174,7 +174,7 @@ class MovePageForm {
 				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";
 				$wgOut->addHTML( $errMsg );
 			} else {
-				$wgOut->wrapWikiMsg( '<p><strong class="error">$1</strong></p>', $err );
+				$wgOut->wrapWikiMsg( "<p><strong class=\"error\">\n$1\n</strong></p>", $err );
 			}
 		}
 

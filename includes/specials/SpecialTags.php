@@ -16,7 +16,7 @@ class SpecialTags extends SpecialPage {
 
 		$sk = $wgUser->getSkin();
 		$wgOut->setPageTitle( wfMsg( 'tags-title' ) );
-		$wgOut->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1</div>", 'tags-intro' );
+		$wgOut->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		// Write the headers
 		$html = '';
