@@ -36,6 +36,7 @@
  * @author Skalman
  * @author StefanB
  * @author Steinninn
+ * @author Str4nd
  * @author Where next Columbus
  * @author Where next Columbus?
  * @author לערי ריינהארט
@@ -1603,7 +1604,7 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 'uploaderror'                 => 'Fel vid uppladdningen',
 'upload-recreate-warning'     => "'''Varning: En fil med det namnet har tagits bort eller flyttats.'''
 
-Raderings-och sidflyttningsloggen för denna sida återges här:",
+Raderings- och sidflyttningsloggen för denna sida återges här:",
 'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer.
 För att titta på eller leta efter filer som redan har laddats upp, se [[Special:FileList|listan över uppladdade filer]]. Uppladdningar loggförs även i [[Special:Log/upload|uppladdningsloggen]], och raderingar i [[Special:Log/delete|raderingsloggen]].
 

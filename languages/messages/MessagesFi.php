@@ -1085,6 +1085,8 @@ $1",
 'logdelete-failure'           => "'''Lokin näkyvyyttä ei voitu asettaa:'''
 $1",
 'revdel-restore'              => 'Muuta näkyvyyttä',
+'revdel-restore-deleted'      => 'poistetut muutokset',
+'revdel-restore-visible'      => 'näkyvät muutokset',
 'pagehist'                    => 'Sivun muutoshistoria',
 'deletedhist'                 => 'Poistettujen versioiden historia',
 'revdelete-content'           => 'sisällön',
@@ -1547,6 +1549,9 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'upload_directory_missing'    => 'Tallennushakemisto $1 puuttuu, eikä palvelin pysty luomaan sitä.',
 'upload_directory_read_only'  => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon ”<tt>$1</tt>”.',
 'uploaderror'                 => 'Tallennusvirhe',
+'upload-recreate-warning'     => "'''Varoitus: Tiedosto tällä nimellä on poistettu tai siirretty.'''
+
+Poisto- ja siirtoloki tälle sivulle näkyy alla:",
 'uploadtext'                  => "Voit tallentaa tiedostoja alla olevalla lomakkeella. [[Special:FileList|Tiedostoluettelo]] sisältää listan tallennetuista tiedostoista. Tallennukset kirjataan myös [[Special:Log/upload|tallennuslokiin]], ja poistot [[Special:Log/delete|poistolokiin]].
 
 Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
@@ -1581,6 +1586,8 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'file-too-large'              => 'Lähettämäsi tiedosto oli liian suuri.',
 'filename-tooshort'           => 'Tiedostonimi on liian lyhyt.',
 'filetype-banned'             => 'Tämä tiedostomuoto on estetty.',
+'verification-error'          => 'Tämä tiedosto ei läpäissyt tiedoston tarkistusta.',
+'hookaborted'                 => 'Laajennuksen kytköspiste keskeytti muutoksen, jota yritit tehdä.',
 'illegal-filename'            => 'Tiedostonimi ei ole sallittu.',
 'overwrite'                   => 'Olemassa olevan tiedoston korvaaminen ei ole sallittu.',
 'unknown-error'               => 'Tapahtui tuntematon virhe.',
@@ -1616,6 +1623,8 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'uploadedimage'               => 'tallensi tiedoston [[$1]]',
 'overwroteimage'              => 'tallensi uuden version [[$1]]',
 'uploaddisabled'              => 'Tiedostojen tallennus ei ole käytössä.',
+'copyuploaddisabled'          => 'Tallennus URL:n kautta on poistettu käytöstä.',
+'uploadfromurl-queued'        => 'Tallennuksesi on siirretty jonoon.',
 'uploaddisabledtext'          => 'Tiedostojen tallennus on poistettu käytöstä.',
 'php-uploaddisabledtext'      => 'PHP:n tiedostojen lähetys ei ole käytössä. Tarkista asetukset kohdasta file_uploads.',
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
@@ -1633,6 +1642,11 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 
 Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki näkyy tässä:",
 'filename-bad-prefix'         => "Tallentamasi tiedoston nimi alkaa merkkijonolla '''$1''', joka on yleensä digitaalikameroiden automaattisesti antama nimi, joka ei kuvaa tiedoston sisältöä. Anna tiedostolle kuvaavampi nimi.",
+'upload-successful-msg'       => 'Tallennuksesi on saatavilla täällä: $1',
+'upload-failure-subj'         => 'Tallennusongelma',
+'upload-failure-msg'          => 'Tallennuksessasi esiintyi ongelma:
+
+$1',
 
 'upload-proto-error'        => 'Virheellinen protokolla',
 'upload-proto-error-text'   => 'Etälähetys on mahdollista vain osoitteista, jotka alkavat merkkijonolla <code>http://</code> tai <code>ftp://</code>.',
@@ -2003,6 +2017,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailpagetext'        => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror'      => 'Postitus palautti virheen:',
 'defemailsubject'      => 'Sähköpostia sivustolta {{SITENAME}}',
+'usermaildisabled'     => 'Käyttäjien sähköposti poistettu käytöstä',
 'usermaildisabledtext' => 'Et voi lähettää sähköpostia muille käyttäjille tässä wikissä',
 'noemailtitle'         => 'Ei sähköpostiosoitetta',
 'noemailtext'          => 'Tämä käyttäjä ei ole määritellyt kelvollista sähköpostiosoitetta.',
@@ -2019,6 +2034,10 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailsent'            => 'Sähköposti lähetetty',
 'emailsenttext'        => 'Sähköpostiviestisi on lähetetty.',
 'emailuserfooter'      => 'Tämän sähköpostin lähetti $1 käyttäjälle $2 käyttämällä ”Lähetä sähköpostia” -toimintoa {{GRAMMAR:inessive|{{SITENAME}}}}.',
+
+# User Messenger
+'usermessage-summary' => 'Jätetään järjestelmäviesti.',
+'usermessage-editor'  => 'Järjestelmäviestittäjä',
 
 # Watchlist
 'watchlist'            => 'Tarkkailulista',
@@ -2215,7 +2234,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'undeleteviewlink'             => 'näytä',
 'undeletereset'                => 'Tyhjennä',
 'undeleteinvert'               => 'Käänteinen valinta',
-'undeletecomment'              => 'Kommentti',
+'undeletecomment'              => 'Syy',
 'undeletedarticle'             => 'palautti sivun [[$1]]',
 'undeletedrevisions'           => '{{PLURAL:$1|Yksi versio|$1 versiota}} palautettiin',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Yksi versio|$1 versiota}} ja {{PLURAL:$2|yksi tiedosto|$2 tiedostoa}} palautettiin',
@@ -2561,6 +2580,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'importstart'                => 'Tuodaan sivuja...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versiota}}',
 'importnopages'              => 'Ei tuotavia sivuja.',
+'imported-log-entries'       => 'Tuotu $1 {{PLURAL:$1|lokitapahtuma|lokitapahtumaa}}.',
 'importfailed'               => 'Tuonti epäonnistui: $1',
 'importunknownsource'        => 'Tuntematon lähdetyyppi',
 'importcantopen'             => 'Tuontitiedoston avaus epäonnistui',
@@ -3201,12 +3221,14 @@ Yritä normaalia esikatselua.',
 'watchlistedit-noitems'        => 'Tarkkailulistasi on tyhjä.',
 'watchlistedit-normal-title'   => 'Tarkkailulistan muokkaus',
 'watchlistedit-normal-legend'  => 'Sivut',
-'watchlistedit-normal-explain' => 'Tarkkailulistasi sivut on lueteltu alla. Voit poistaa sivuja valitsemalla niitä vastaavat valintaruudut. Voit myös muokata listaa [[Special:Watchlist/raw|tekstimuodossa]].',
+'watchlistedit-normal-explain' => 'Tarkkailulistasi sivut on lueteltu alla. Voit poistaa sivuja valitsemalla niitä vastaavat valintaruudut ja napsauttamalla ”{{int:Watchlistedit-normal-submit}}”. Voit myös muokata listaa [[Special:Watchlist/raw|tekstimuodossa]].',
 'watchlistedit-normal-submit'  => 'Poista',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Yksi sivu|$1 sivua}} poistettiin tarkkailulistaltasi:',
 'watchlistedit-raw-title'      => 'Tarkkailulistan muokkaus',
 'watchlistedit-raw-legend'     => 'Tarkkailulistan muokkaus',
-'watchlistedit-raw-explain'    => 'Tarkkailulistalla olevat sivut on lueteltu alla jokainen omalla rivillään.',
+'watchlistedit-raw-explain'    => 'Tarkkailulistasi sivut on lueteltu alla jokainen omalla rivillään. Voit muokata listaa lisäämällä ja poistamalla rivejä.
+Kun olet valmis, napsauta ”{{int:Watchlistedit-raw-submit}}”.
+Voit myös muokata listaa [[Special:Watchlist/edit|tavalliseen tapaan]].',
 'watchlistedit-raw-titles'     => 'Sivut',
 'watchlistedit-raw-submit'     => 'Päivitä tarkkailulista',
 'watchlistedit-raw-done'       => 'Tarkkailulistasi on päivitetty.',

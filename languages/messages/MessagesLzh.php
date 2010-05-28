@@ -1715,8 +1715,8 @@ $1',
 'emailuserfooter'      => '此捎由$1給$2經{{SITENAME}}之「捎君」發矣。',
 
 # User Messenger
-'usermessage-summary'  => '留系信。',
-'usermessage-editor'   => '系信',
+'usermessage-summary' => '留系信。',
+'usermessage-editor'  => '系信',
 
 # Watchlist
 'watchlist'            => '哨站',

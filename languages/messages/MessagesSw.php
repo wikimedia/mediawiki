@@ -1373,12 +1373,21 @@ $1',
 'upload-file-error'   => 'Hitilafu ya ndani',
 'upload-misc-error'   => 'Hitilafu ya kupakia isiyojulikana',
 'upload-unknown-size' => 'Ukubwa haujulikani',
+'upload-http-error'   => 'Imetokea hitilafu ya HTTP: $1',
+
+# img_auth script messages
+'img-auth-nofile' => 'Hakuna faili ya "$1".',
 
 # HTTP errors
 'http-invalid-url' => 'URL batili: $1',
+'http-timed-out'   => 'Ombi la HTTP ulichelewa mno.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'KISARA (URL) haikupatikana',
+'upload-curl-error6'       => 'KISARA (URL) haikupatikana',
+'upload-curl-error28'      => 'Upakiaji umechelewa mno',
+'upload-curl-error28-text' => 'Tovuti ilichelewa mno kuamka. 
+Tafadhali uhakikishe kwamba tovuti inafanya kazi, subiri kidogo halafu jaribu tena. 
+Labda utafanikiwa wakati mwingine.',
 
 'license'            => 'Hatimiliki:',
 'license-header'     => 'Hatimiliki',
@@ -1456,7 +1465,8 @@ $1',
 'unusedtemplateswlh' => 'viungo vingine',
 
 # Random page
-'randompage' => 'Ukurasa wa bahati',
+'randompage'         => 'Ukurasa wa bahati',
+'randompage-nopages' => 'Hakuna kurasa katika {{PLURAL:$2|eneo la wiki lifuatalo|maeneo ya wiki yafuatayo}}: $1.',
 
 # Random redirect
 'randomredirect' => 'Elekezo la bahati',
@@ -1524,6 +1534,9 @@ $1',
 'deadendpages'            => 'Kurasa ambazo haziungi na ukurasa mwingine wowote',
 'protectedpages'          => 'Kurasa zinazolindwa',
 'listusers'               => 'Orodha ya Watumiaji',
+'listusers-editsonly'     => 'Onyesha watumiaji walishahariri tu',
+'listusers-creationsort'  => 'Orodhesha kwa tarehe ya kuanzisha akaunti',
+'usereditcount'           => '{{PLURAL:$1|haririo|maharirio}} $1',
 'usercreated'             => 'Iliwekewa tarehe $1 saa $2',
 'newpages'                => 'Kurasa mpya',
 'newpages-username'       => 'Jina la mtumiaji:',

@@ -848,7 +848,7 @@ Den seneste logpost vises nedenfor:",
 'permissionserrorstext-withaction' => 'Du har ikke rettigheder til at $2 af følgende {{PLURAL:$1|grund|grunde}}:',
 'recreate-moveddeleted-warn'       => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
  
-Overvej om det er passende at genoprette siden. Sletnings- og flyttelogerne for siden er vist nedenfor.",
+Overvej om det er passende at genoprette siden. Sletnings- og flytteloggerne for siden er vist nedenfor.",
 'moveddeleted-notice'              => 'Denne side er blevet slettet.
 Sletnings- og flytteloggerne for siden er vist nedenfor.',
 'log-fulllog'                      => 'Vis fuldstændig log',
@@ -2372,7 +2372,7 @@ $1 er allerede blokkeret. Vil du ændre indstillingene?',
 
 I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'movearticle'                  => 'Flyt side',
-'moveuserpage-warning'         => "'''Advarsel:''' Du er ved at flytte en brugerside. Bemærk at det kun er siden, der vil blive flyttet - brugeren bliver ''ikke'' ømdøbt.",
+'moveuserpage-warning'         => "'''Advarsel:''' Du er ved at flytte en brugerside. Bemærk at det kun er siden, der vil blive flyttet – brugeren bliver ''ikke'' omdøbt.",
 'movenologin'                  => 'Ikke logget på',
 'movenologintext'              => 'Du skal være registreret bruger og [[Special:UserLogin|logget på]] for at flytte en side.',
 'movenotallowed'               => 'Du har ikke rettigheder til at flytte sider.',
@@ -2413,7 +2413,7 @@ navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 
 Artiklen "[[:$1]]" eksisterer allerede. Vil du slette den for at gøre plads til flytningen?',
 'delete_and_move_confirm'      => 'Ja, slet siden',
-'delete_and_move_reason'       => 'Slet for at lave gøre til flyningen',
+'delete_and_move_reason'       => 'Slettet på grund af flytning',
 'selfmove'                     => 'Begge sider har samme navn. Man kan ikke flytte en side oven i sig selv.',
 'immobile-source-namespace'    => 'Kan ikke flytte sider i navnerummet "$1"',
 'immobile-target-namespace'    => 'Kan ikke flytte sider til navnerummet "$1"',
