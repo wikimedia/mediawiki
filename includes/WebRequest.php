@@ -160,6 +160,7 @@ class WebRequest {
 	/**
 	 * Recursively strips slashes from the given array;
 	 * used for undoing the evil that is magic_quotes_gpc.
+	 *
 	 * @param $arr array: will be modified
 	 * @return array the original array
 	 */
@@ -195,6 +196,7 @@ class WebRequest {
 
 	/**
 	 * Recursively normalizes UTF-8 strings in the given array.
+	 *
 	 * @param $data string or array
 	 * @return cleaned-up version of the given
 	 * @private
@@ -214,9 +216,9 @@ class WebRequest {
 	/**
 	 * Fetch a value from the given array or return $default if it's not set.
 	 *
-	 * @param $arr array
-	 * @param $name string
-	 * @param $default mixed
+	 * @param $arr Array
+	 * @param $name String
+	 * @param $default Mixed
 	 * @return mixed
 	 */
 	private function getGPCVal( $arr, $name, $default ) {
@@ -247,9 +249,9 @@ class WebRequest {
 	 * non-freeform text inputs (e.g. predefined internal text keys
 	 * selected by a drop-down menu). For freeform input, see getText().
 	 *
-	 * @param $name string
-	 * @param $default string: optional default (or NULL)
-	 * @return string
+	 * @param $name String
+	 * @param $default String: optional default (or NULL)
+	 * @return String
 	 */
 	public function getVal( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
@@ -265,9 +267,10 @@ class WebRequest {
 
 	/**
 	 * Set an aribtrary value into our get/post data.
-	 * @param $key string Key name to use
-	 * @param $value mixed Value to set
-	 * @return mixed old value if one was present, null otherwise
+	 *
+	 * @param $key String: key name to use
+	 * @param $value Mixed: value to set
+	 * @return Mixed: old value if one was present, null otherwise
 	 */
 	public function setVal( $key, $value ) {
 		$ret = isset( $this->data[$key] ) ? $this->data[$key] : null;
@@ -280,9 +283,9 @@ class WebRequest {
 	 * If source was scalar, will return an array with a single element.
 	 * If no source and no default, returns NULL.
 	 *
-	 * @param $name string
-	 * @param $default array: optional default (or NULL)
-	 * @return array
+	 * @param $name String
+	 * @param $default Array: optional default (or NULL)
+	 * @return Array
 	 */
 	public function getArray( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
@@ -299,9 +302,9 @@ class WebRequest {
 	 * If no source and no default, returns NULL.
 	 * If an array is returned, contents are guaranteed to be integers.
 	 *
-	 * @param $name string
-	 * @param $default array: option default (or NULL)
-	 * @return array of ints
+	 * @param $name String
+	 * @param $default Array: option default (or NULL)
+	 * @return Array of ints
 	 */
 	public function getIntArray( $name, $default = null ) {
 		$val = $this->getArray( $name, $default );
@@ -315,9 +318,10 @@ class WebRequest {
 	 * Fetch an integer value from the input or return $default if not set.
 	 * Guaranteed to return an integer; non-numeric input will typically
 	 * return 0.
-	 * @param $name string
-	 * @param $default int
-	 * @return int
+	 *
+	 * @param $name String
+	 * @param $default Integer
+	 * @return Integer
 	 */
 	public function getInt( $name, $default = 0 ) {
 		return intval( $this->getVal( $name, $default ) );
@@ -327,8 +331,9 @@ class WebRequest {
 	 * Fetch an integer value from the input or return null if empty.
 	 * Guaranteed to return an integer or null; non-numeric input will
 	 * typically return null.
-	 * @param $name string
-	 * @return int
+	 *
+	 * @param $name String
+	 * @return Integer
 	 */
 	public function getIntOrNull( $name ) {
 		$val = $this->getVal( $name );
@@ -341,9 +346,10 @@ class WebRequest {
 	 * Fetch a boolean value from the input or return $default if not set.
 	 * Guaranteed to return true or false, with normal PHP semantics for
 	 * boolean interpretation of strings.
-	 * @param $name string
-	 * @param $default bool
-	 * @return bool
+	 *
+	 * @param $name String
+	 * @param $default Boolean
+	 * @return Boolean
 	 */
 	public function getBool( $name, $default = false ) {
 		return $this->getVal( $name, $default ) ? true : false;
@@ -353,8 +359,9 @@ class WebRequest {
 	 * Return true if the named value is set in the input, whatever that
 	 * value is (even "0"). Return false if the named value is not set.
 	 * Example use is checking for the presence of check boxes in forms.
-	 * @param $name string
-	 * @return bool
+	 *
+	 * @param $name String
+	 * @return Boolean
 	 */
 	public function getCheck( $name ) {
 		# Checkboxes and buttons are only present when clicked
@@ -371,9 +378,9 @@ class WebRequest {
 	 * input (for which input transformations may be required - e.g. Esperanto
 	 * x-coding).
 	 *
-	 * @param $name string
-	 * @param $default string: optional
-	 * @return string
+	 * @param $name String
+	 * @param $default String: optional
+	 * @return String
 	 */
 	public function getText( $name, $default = '' ) {
 		global $wgContLang;
@@ -410,7 +417,7 @@ class WebRequest {
 	 * Note that values retrieved by the object may come from the
 	 * GET URL etc even on a POST request.
 	 *
-	 * @return bool
+	 * @return Boolean
 	 */
 	public function wasPosted() {
 		return $_SERVER['REQUEST_METHOD'] == 'POST';
@@ -425,7 +432,7 @@ class WebRequest {
 	 * during the current request (in which case the cookie will
 	 * be sent back to the client at the end of the script run).
 	 *
-	 * @return bool
+	 * @return Boolean
 	 */
 	public function checkSessionCookie() {
 		return isset( $_COOKIE[session_name()] );
@@ -433,10 +440,11 @@ class WebRequest {
 
 	/**
 	 * Get a cookie from the $_COOKIE jar
-	 * @param String $key The name of the cookie
-	 * @param mixed $default What to return if the value isn't found
-	 * @param String $prefix A prefix to use for the cookie name, if not $wgCookiePrefix
-	 * @return <type>
+	 *
+	 * @param $key String: the name of the cookie
+	 * @param $default Mixed: what to return if the value isn't found
+	 * @param $prefix String: a prefix to use for the cookie name, if not $wgCookiePrefix
+	 * @return Mixed: cookie value or $default if the cookie not set
 	 */
 	public function getCookie( $key, $default = null, $prefix = '' ) {
 		if( !$prefix ) {
@@ -448,7 +456,8 @@ class WebRequest {
 
 	/**
 	 * Return the path portion of the request URI.
-	 * @return string
+	 *
+	 * @return String
 	 */
 	public function getRequestURL() {
 		if( isset( $_SERVER['REQUEST_URI'] ) ) {
@@ -483,7 +492,8 @@ class WebRequest {
 
 	/**
 	 * Return the request URI with the canonical service and hostname.
-	 * @return string
+	 *
+	 * @return String
 	 */
 	public function getFullRequestURL() {
 		global $wgServer;
@@ -493,7 +503,8 @@ class WebRequest {
 	/**
 	 * Take an arbitrary query and rewrite the present URL to include it
 	 * @param $query String: query string fragment; do not include initial '?'
-	 * @return string
+	 *
+	 * @return String
 	 */
 	public function appendQuery( $query ) {
 		global $wgTitle;
@@ -517,8 +528,9 @@ class WebRequest {
 
 	/**
 	 * HTML-safe version of appendQuery().
+	 *
 	 * @param $query String: query string fragment; do not include initial '?'
-	 * @return string
+	 * @return String
 	 */
 	public function escapeAppendQuery( $query ) {
 		return htmlspecialchars( $this->appendQuery( $query ) );
@@ -530,10 +542,11 @@ class WebRequest {
 
 	/**
 	 * Appends or replaces value of query variables.
+	 *
 	 * @param $array Array of values to replace/add to query
 	 * @param $onlyquery Bool: whether to only return the query string and not
 	 *                   the complete URL
-	 * @return string
+	 * @return String
 	 */
 	public function appendQueryArray( $array, $onlyquery = false ) {
 		global $wgTitle;
@@ -572,6 +585,7 @@ class WebRequest {
 
 	/**
 	 * Return the path to the temporary file where PHP has stored the upload.
+	 *
 	 * @param $key String:
 	 * @return string or NULL if no such file.
 	 */
@@ -584,6 +598,7 @@ class WebRequest {
 
 	/**
 	 * Return the size of the upload, or 0.
+	 *
 	 * @param $key String:
 	 * @return integer
 	 */
@@ -596,6 +611,7 @@ class WebRequest {
 
 	/**
 	 * Return the upload error or 0
+	 *
 	 * @param $key String:
 	 * @return integer
 	 */
@@ -672,10 +688,11 @@ class WebRequest {
 		}
 	}
 
-	/*
+	/**
 	 * Get data from $_SESSION
-	 * @param $key String Name of key in $_SESSION
-	 * @return mixed
+	 *
+	 * @param $key String: name of key in $_SESSION
+	 * @return Mixed
 	 */
 	public function getSessionData( $key ) {
 		if( !isset( $_SESSION[$key] ) )
@@ -685,8 +702,9 @@ class WebRequest {
 
 	/**
 	 * Set session data
-	 * @param $key String Name of key in $_SESSION
-	 * @param $data mixed
+	 *
+	 * @param $key String: name of key in $_SESSION
+	 * @param $data Mixed
 	 */
 	public function setSessionData( $key, $data ) {
 		$_SESSION[$key] = $data;
@@ -734,6 +752,7 @@ class FauxRequest extends WebRequest {
 	 * @param $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
 	 * @param $wasPosted Bool: whether to treat the data as POST
+	 * @param $session Mixed: session array or null
 	 */
 	public function __construct( $data, $wasPosted = false, $session = null ) {
 		if( is_array( $data ) ) {
