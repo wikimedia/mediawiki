@@ -69,7 +69,7 @@ class LoginForm {
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
-		$this->mToken = $request->getVal( 'wpLoginToken' );
+		$this->mToken = ($this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
 
 		if ( $wgRedirectOnLogin ) {
 			$this->mReturnTo = $wgRedirectOnLogin;
@@ -246,6 +246,25 @@ class LoginForm {
 			return false;
 		}
 
+		# Request forgery checks.
+		if ( !self::getCreateaccountToken() ) {
+			self::setCreateaccountToken();
+			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
+			return false;
+		}
+		
+		# The user didn't pass a createaccount token
+		if ( !$this->mToken ) {
+			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
+			return false;
+		}
+		
+		# Validate the createaccount token
+		if ( $this->mToken !== self::getCreateaccountToken() ) {
+			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
+			return false;
+		}
+
 		# Check permissions
 		if ( !$wgUser->isAllowed( 'createaccount' ) ) {
 			$this->userNotPrivilegedMessage();
@@ -260,7 +279,7 @@ class LoginForm {
 		  $wgUser->inSorbsBlacklist( $ip ) )
 		{
 			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $ip ) . ')' );
-			return;
+			return false;
 		}
 
 		# Now create a dummy user ($u) and check if it is valid
@@ -336,6 +355,7 @@ class LoginForm {
 			return false;
 		}
 
+		self::clearCreateaccountToken();		
 		return $this->initUser( $u, false );
 	}
 
@@ -638,13 +658,26 @@ class LoginForm {
 			return;
 		}
 
-		# Check against blocked IPs
-		# fixme -- should we not?
+		# Check against blocked IPs so blocked users can't flood admins 
+		# with password resets
 		if( $wgUser->isBlocked() ) {
 			$this->mainLoginForm( wfMsg( 'blocked-mailpassword' ) );
 			return;
 		}
 
+		# If the user doesn't have a login token yet, set one.
+		if ( !self::getLoginToken() ) {
+			self::setLoginToken();
+			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
+			return;
+		}
+
+		# If the user didn't pass a login token, tell them we need one
+		if ( !$this->mToken ) {
+			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
+			return;
+		}
+		
 		# Check against the rate limiter
 		if( $wgUser->pingLimiter( 'mailpassword' ) ) {
 			$wgOut->rateLimited();
@@ -665,6 +698,12 @@ class LoginForm {
 			return;
 		}
 
+		# Validate the login token
+		if ( $this->mToken !== self::getLoginToken() ) {
+			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
+			return;
+		}
+
 		# Check against password throttle
 		if ( $u->isPasswordReminderThrottled() ) {
 			global $wgPasswordReminderResendTime;
@@ -680,6 +719,7 @@ class LoginForm {
 			$this->mainLoginForm( wfMsg( 'mailerror', $result->getMessage() ) );
 		} else {
 			$this->mainLoginForm( wfMsg( 'passwordsent', $u->getName() ), 'success' );
+			self::clearLoginToken();
 		}
 	}
 
@@ -911,11 +951,18 @@ class LoginForm {
 		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
 
-		if ( !self::getLoginToken() ) {
-			self::setLoginToken();
+		if ( $this->mType == 'signup' ) {
+			if ( !self::getCreateaccountToken() ) {
+				self::setCreateaccountToken();
+			}
+			$template->set( 'token', self::getCreateaccountToken() );
+		} else {
+			if ( !self::getLoginToken() ) {
+				self::setLoginToken();
+			}
+			$template->set( 'token', self::getLoginToken() );
 		}
-		$template->set( 'token', self::getLoginToken() );
-
+		
 		# Prepare language selection links as needed
 		if( $wgLoginLanguageSelector ) {
 			$template->set( 'languages', $this->makeLanguageSelector() );
@@ -974,7 +1021,7 @@ class LoginForm {
 	}
 	
 	/**
-	 * Generate a new login token and attach it to the current session
+	 * Randomly generate a new login token and attach it to the current session
 	 */
 	public static function setLoginToken() {
 		global $wgRequest;
@@ -986,9 +1033,33 @@ class LoginForm {
 	/**
 	 * Remove any login token attached to the current session
 	 */
-	public static  function clearLoginToken() {
+	public static function clearLoginToken() {
 		global $wgRequest;
 		$wgRequest->setSessionData( 'wsLoginToken', null );
+	}
+
+	/**
+	 * Get the createaccount token from the current session
+	 */
+	public static function getCreateaccountToken() {
+		global $wgRequest;
+		return $wgRequest->getSessionData( 'wsCreateaccountToken' );
+	}
+	
+	/**
+	 * Randomly generate a new createaccount token and attach it to the current session
+	 */
+	public static function setCreateaccountToken() {
+		global $wgRequest;
+		$wgRequest->setSessionData( 'wsCreateaccountToken', User::generateToken() );
+	}
+	
+	/**
+	 * Remove any createaccount token attached to the current session
+	 */
+	public static function clearCreateaccountToken() {
+		global $wgRequest;
+		$wgRequest->setSessionData( 'wsCreateaccountToken', null );
 	}
 
 	/**
