@@ -3556,7 +3556,6 @@ class User {
 	 * @return \bool
 	 */
 	static function comparePasswords( $hash, $password, $userId = false ) {
-		$m = false;
 		$type = substr( $hash, 0, 3 );
 
 		$result = false;
