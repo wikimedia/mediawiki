@@ -650,10 +650,6 @@ class Sanitizer {
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
 			if( $attribute == 'style' ) {
 				$value = Sanitizer::checkCss( $value );
-				if( $value === false ) {
-					# haxx0r
-					continue;
-				}
 			}
 
 			if ( $attribute === 'id' ) {
@@ -750,10 +746,8 @@ class Sanitizer {
 		$value = StringUtils::delimiterReplace( '/*', '*/', ' ', $value );
 
 		// Decode escape sequences and line continuation
-		// See the grammar in the CSS 2 spec, appendix D, Mozilla implements it accurately.
-		// IE 8 doesn't implement it at all, but there's no way to introduce url() into
-		// IE that doesn't hit Mozilla also.
-		static $decodeRegex;
+		// See the grammar in the CSS 2 spec, appendix D.
+		static $decodeRegex, $reencodeTable;
 		if ( !$decodeRegex ) {
 			$space = '[\\x20\\t\\r\\n\\f]';
 			$nl = '(?:\\n|\\r\\n|\\r|\\f)';
@@ -762,29 +756,40 @@ class Sanitizer {
 				(?:
 					($nl) |  # 1. Line continuation
 					([0-9A-Fa-f]{1,6})$space? |  # 2. character number
-					(.) # 3. backslash cancelling special meaning
+					(.) | # 3. backslash cancelling special meaning
+					() | # 4. backslash at end of string
 				)/xu";
 		}
-		$decoded = preg_replace_callback( $decodeRegex, 
+		$value = preg_replace_callback( $decodeRegex,
 			array( __CLASS__, 'cssDecodeCallback' ), $value );
-		if ( preg_match( '!expression|https?://|url\s*\(!i', $decoded ) ) {
-			// Not allowed
-			return false;
-		} else {
-			// Allowed, return CSS with comments stripped
-			return $value;
+
+		// Reject problematic keywords and control characters
+		if ( preg_match( '/[\000-\010\016-\037\177]/', $value ) ) {
+			return '/* invalid control char */';
+		} elseif ( preg_match( '! expression | filter\s*: | accelerator\s*: | url\s*\( !ix', $value ) ) {
+			return '/* insecure input */';
 		}
+		return $value;
 	}
 
 	static function cssDecodeCallback( $matches ) {
 		if ( $matches[1] !== '' ) {
+			// Line continuation
 			return '';
 		} elseif ( $matches[2] !== '' ) {
-			return codepointToUtf8( hexdec( $matches[2] ) );
+			$char = codepointToUtf8( hexdec( $matches[2] ) );
 		} elseif ( $matches[3] !== '' ) {
-			return $matches[3];
+			$char = $matches[3];
 		} else {
-			throw new MWException( __METHOD__.': invalid match' );
+			$char = '\\';
+		}
+		if ( $char == "\n" || $char == '"' || $char == "'" || $char == '\\' ) {
+			// These characters need to be escaped in strings
+			// Clean up the escape sequence to avoid parsing errors by clients
+			return '\\' . dechex( ord( $char ) ) . ' ';
+		} else {
+			// Decode unnecessary escape
+			return $char;
 		}
 	}
 
