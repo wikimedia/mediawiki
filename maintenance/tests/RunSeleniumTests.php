@@ -25,43 +25,45 @@
 define( 'MEDIAWIKI', true );
 define( 'SELENIUMTEST', true );
 
-// Command line only
-$wgSeleniumTestsRunMode = 'cli';
-if ( $wgSeleniumTestsRunMode == 'cli' && php_sapi_name() != 'cli' ) {
-	echo 'Must be run from the command line.';
+// Here, you can override standard setting
+if ( file_exists( 'selenium/LocalSeleniumSettings.php' ) ) {
+	include_once 'selenium/LocalSeleniumSettings.php';
+} else {
+	echo "You must provide local settings in LocalSeleniumSettings.php\n";
 	die( -1 );
 }
-// include path and installation instructions
 
-// URL: http://localhost/tests/RunSeleniumTests.php
-// set_include_path( get_include_path() . PATH_SEPARATOR . './PEAR/' );
+// Command line only
+if ( $wgSeleniumTestsRunMode == 'cli' && php_sapi_name() != 'cli' ) {
+	echo "Must be run from the command line.\n";
+	die( -1 );
+}
 
-// Hostname of selenium server
-$wgSeleniumTestsSeleniumHost = 'http://localhost';
+// Get command line parameters
+if ( $wgSeleniumTestsRunMode == 'cli' ) {
+	require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
+	if ( isset( $options['help'] ) ) {
+		echo <<<ENDS
+MediaWiki $wgVersion Selenium Framework tester
+Usage: php RunSeleniumTests.php [options...]
+Options:
+  --port=<TCP port> Port used by selenium server to accept commands
+  --help            Show this help message
+ENDS;
+		exit( 0 );
+	}
 
-// URL of the wiki to be tested.
-$wgSeleniumTestsWikiUrl = 'http://localhost';
-
-// Wiki login. Used by Selenium to log onto the wiki
-$wgSeleniumTestsWikiUser      = 'WikiSysop';
-$wgSeleniumTestsWikiPassword  = 'password';
-
-// Common browsers on Windows platform
-// Use the *chrome handler in order to be able to test file uploads
-// further solution suggestions: http://www.brokenbuild.com/blog/2007/06/07/testing-file-uploads-with-selenium-rc-and-firefoxor-reducing-javascript-security-in-firefox-for-fun-and-profit/
-// $wgSeleniumTestsBrowsers['firefox']   = '*firefox c:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe';
-$wgSeleniumTestsBrowsers['firefox']   = '*chrome c:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe';
-$wgSeleniumTestsBrowsers['iexplorer'] = '*iexploreproxy';
-
-// Actually, use this browser
-$wgSeleniumTestsUseBrowser = 'firefox';
+	if ( isset( $options['port'] ) ) {
+		$wgSeleniumServerPort = (int) $options['port'];
+	}
+}
 
 // requires PHPUnit 3.4
 require_once 'Testing/Selenium.php';
 require_once 'PHPUnit/Framework.php';
 require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
 
-// include uiTestsuite
+// include seleniumTestsuite
 require_once 'selenium/SeleniumTestHTMLLogger.php';
 require_once 'selenium/SeleniumTestConsoleLogger.php';
 require_once 'selenium/SeleniumTestListener.php';
@@ -83,12 +85,12 @@ $result->addListener( new SeleniumTestListener( $logger ) );
 
 $wgSeleniumTestSuites = array();
 
+// include tests
 // Todo: include automatically
-# include_once '<your tests>';
-
-// Here, you can override standard setting
-if ( file_exists( 'LocalSeleniumSettings.php' ) ) {
-	include_once 'LocalSeleniumSettings.php';
+if ( is_array( $wgSeleniumTestIncludes ) ) {
+	foreach ( $wgSeleniumTestIncludes as $include ) {
+		include_once $include;
+	}
 }
 
 // run tests
