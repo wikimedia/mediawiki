@@ -37,7 +37,8 @@ $messages = array(
 'tog-previewontop'            => "Fam avdé l'anteprèma sora casèla d'mudèfica invezi che dciotta",
 'tog-previewonfirst'          => "Fa' avdé l'anteprèma dop c'u's fa la prèma mudèfica",
 'tog-nocache'                 => "T'an stêga a tní in memoria al pàgin",
-'tog-enotifwatchlistpages'    => "Famâl save' par e-mail quènd una pàgina dal mij l'è steda modifichèda",
+'tog-enotifwatchlistpages'    => "Fam' save' par e-mail quènd una pàgina dal mij l'è steda modifichèda",
+'tog-enotifusertalkpages'     => "Fam' save' par e-mail quènd la mi pàgina dal discusiòn l'è steda modifichèda",
 
 # Dates
 'january'       => 'Znèr',

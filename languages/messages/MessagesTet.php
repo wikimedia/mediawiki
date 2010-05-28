@@ -375,13 +375,15 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'lineno' => 'Liña $1:',
 
 # Search results
-'prevn'              => 'molok {{PLURAL:$1|$1}}',
-'nextn'              => 'oinmai {{PLURAL:$1|$1}}',
-'viewprevnext'       => 'Haree ($1 {{int:pipe-separator}} $2) ($3)',
-'search-result-size' => '$1 ({{PLURAL:$2|liafuan ida|liafuan $2}})',
-'searchall'          => 'hotu',
-'powersearch'        => 'Buka',
-'powersearch-field'  => 'Buka',
+'prevn'                     => 'molok {{PLURAL:$1|$1}}',
+'nextn'                     => 'oinmai {{PLURAL:$1|$1}}',
+'viewprevnext'              => 'Haree ($1 {{int:pipe-separator}} $2) ($3)',
+'search-result-size'        => '$1 ({{PLURAL:$2|liafuan ida|liafuan $2}})',
+'search-mwsuggest-enabled'  => 'fó sujestaun',
+'search-mwsuggest-disabled' => 'la hatudu sujestaun',
+'searchall'                 => 'hotu',
+'powersearch'               => 'Buka',
+'powersearch-field'         => 'Buka',
 
 # Preferences page
 'preferences'               => 'Preferénsia',
@@ -513,7 +515,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'imagelinks'         => 'Ligasaun',
 
 # File reversion
-'filerevert-comment' => 'Komentáriu:',
+'filerevert-comment' => 'Razaun:',
 
 # File deletion
 'filedelete'                  => 'Halakon $1',
@@ -659,7 +661,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'undelete'               => 'Haree pájina halakon tiha',
 'undeletebtn'            => 'Restaurar',
 'undeletelink'           => 'lee/restaurar',
-'undeletecomment'        => 'Komentáriu:',
+'undeletecomment'        => 'Razaun:',
 'undeletedarticle'       => 'restaurar "[[$1]]"',
 'undeletedrevisions'     => 'restaurar {{PLURAL:$1|versaun|versaun}} $1',
 'undelete-search-submit' => 'Buka',
