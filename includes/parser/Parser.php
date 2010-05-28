@@ -721,8 +721,9 @@ class Parser {
 	 */
 	function doTableStuff( $text ) {
 		wfProfileIn( __METHOD__ );
-
+		
 		$lines = StringUtils::explode( "\n", $text );
+		$text = null;
 		$out = '';
 		$td_history = array(); # Is currently a td tag open?
 		$last_tag_history = array(); # Save history of last lag activated (td, th or caption)
@@ -734,10 +735,11 @@ class Parser {
 		foreach ( $lines as $outLine ) {
 			$line = trim( $outLine );
 
-			if ( $line == '' ) { # empty line, go to next line
+			if ( $line === '' ) { # empty line, go to next line			
 				$out .= $outLine."\n";
 				continue;
 			}
+
 			$first_character = $line[0];
 			$matches = array();
 
@@ -2156,7 +2158,7 @@ class Parser {
 						$t = substr( $t, 1 );
 					} else {
 						# paragraph
-						if ( trim( $t ) == '' ) {
+						if ( trim( $t ) === '' ) {
 							if ( $paragraphStack ) {
 								$output .= $paragraphStack.'<br />';
 								$paragraphStack = false;

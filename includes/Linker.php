@@ -1449,7 +1449,7 @@ class Linker {
 			$regex = $wgContLang->linkTrail();
 		}
 		$inside = '';
-		if ( $trail != '' ) {
+		if ( $trail !== '' ) {
 			$m = array();
 			if ( preg_match( $regex, $trail, $m ) ) {
 				$inside = $m[1];
