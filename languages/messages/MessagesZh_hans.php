@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -902,20 +902,20 @@ $2',
 # History pages
 'viewpagelogs'           => '查看此页面的日志',
 'nohistory'              => '此页没有修订记录。',
-'currentrev'             => '当前修订版本',
-'currentrev-asof'        => '在$1的当前修订版本',
+'currentrev'             => '最新修订版本',
+'currentrev-asof'        => '在$1的最新修订版本',
 'revisionasof'           => '在$1所做的修订版本',
 'revision-info'          => '在$1由$2所做的修订版本',
 'previousrevision'       => '←上一修订',
 'nextrevision'           => '下一修订→',
-'currentrevisionlink'    => '当前修订',
+'currentrevisionlink'    => '最新修订',
 'cur'                    => '当前',
 'next'                   => '后继',
 'last'                   => '先前',
 'page_first'             => '最前',
 'page_last'              => '最后',
 'histlegend'             => "差异选择：标记要比较修订版本的单选按钮并点击底部的按钮进行比较。<br />
-说明：'''（{{int:cur}}）''' 指与当前修订版本比较，'''（{{int:last}}）''' 指与前一个修订版本比较，'''{{int:minoreditletter}}''' = 小修改。",
+说明：'''（{{int:cur}}）''' 指与最新修订版本比较，'''（{{int:last}}）''' 指与前一个修订版本比较，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '浏览历史',
 'history-show-deleted'   => '仅已删除的',
 'histfirst'              => '最早版本',
@@ -1004,6 +1004,8 @@ $1",
 'logdelete-failure'           => "'''事件的可见性无法设置：'''
 $1",
 'revdel-restore'              => '更改可见性',
+'revdel-restore-deleted'      => '已删除的修订版本',
+'revdel-restore-visible'      => '可见的修订版本',
 'pagehist'                    => '页面历史',
 'deletedhist'                 => '已删除之历史',
 'revdelete-content'           => '内容',
@@ -1566,7 +1568,7 @@ $1",
 'filename-bad-prefix'         => '您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。',
 'upload-successful-msg'       => '你的上传可以在这里找到：$1',
 'upload-failure-subj'         => '上传错误',
-'upload-failure-msg'          => '这是你的错误：
+'upload-failure-msg'          => '有一个问题与您的上传有关：
 
 $1',
 
@@ -1671,7 +1673,7 @@ $1',
 'filerevert'                => '恢复$1',
 'filerevert-legend'         => '恢复文件',
 'filerevert-intro'          => "您现正在恢复文件'''[[Media:$1|$1]]'''到[$4 于$2 $3的版本]。",
-'filerevert-comment'        => '注释：',
+'filerevert-comment'        => '理由：',
 'filerevert-defaultcomment' => '已经恢复到于$1 $2的版本',
 'filerevert-submit'         => '恢复',
 'filerevert-success'        => "'''[[Media:$1|$1]]'''已经恢复到[$4 于$2 $3的版本]。",
@@ -1961,7 +1963,7 @@ Template:消除歧義',
 'emailuserfooter'      => '这封电邮是由$1寄给$2经{{SITENAME}}的“电邮用户”功能发出的。',
 
 # User Messenger
-'usermessage-summary' => '留下系统信息',
+'usermessage-summary' => '留下系统信息。',
 'usermessage-editor'  => '系统界面',
 
 # Watchlist
@@ -2166,7 +2168,7 @@ $UNWATCHURL
 'undeleteviewlink'             => '查看',
 'undeletereset'                => '重置',
 'undeleteinvert'               => '反向选择',
-'undeletecomment'              => '评论：',
+'undeletecomment'              => '理由：',
 'undeletedarticle'             => '已恢复的"[[$1]]"',
 'undeletedrevisions'           => '$1个修订版本已恢复',
 'undeletedrevisions-files'     => '$1个修订版本和$2个文件已经被恢复',
@@ -2528,7 +2530,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'importstart'                => '正在导入页面...',
 'import-revision-count'      => '$1个修订',
 'importnopages'              => '没有导入的页面。',
-'imported-log-entries'       => '导入了$1个{{PLURAL:$1|日志|日志}}记录。',
+'imported-log-entries'       => '导入了$1项日志记录。',
 'importfailed'               => '导入失败：<nowiki>$1</nowiki>',
 'importunknownsource'        => '未知的源导入类型',
 'importcantopen'             => '无法打开导入文件',
@@ -2622,7 +2624,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-rollback'                => '“回退”单击恢复上一位贡献者对此页面作出的编辑',
 'tooltip-undo'                    => '“撤销”可以恢复该编辑并在预览模式下打开编辑表单。它允许在摘要中加入原因。',
 'tooltip-preferences-save'        => '保存设定',
-'tooltip-summary'                 => '输入一个短小的摘要',
+'tooltip-summary'                 => '输入一个简短的摘要',
 
 # Stylesheets
 'common.css'      => '/* 此处的 CSS 将应用于所有的皮肤 */',
