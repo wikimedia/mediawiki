@@ -362,6 +362,7 @@ user_newpassword  tinyblob       TEXT
 user_options      blob           TEXT
 user_password     tinyblob       TEXT
 user_token        binary(32)     TEXT
+iwl_prefix      varbinary(20)  TEXT
 
 ## Text URLs:
 el_index blob           TEXT
