@@ -15,9 +15,13 @@ class Selenium extends Testing_Selenium {
 
 	public static function getInstance() {
 		global $wgSeleniumTestsBrowsers, $wgSeleniumTestsSeleniumHost, $wgSeleniumTestsUseBrowser;
+		global $wgSeleniumTestsWikiUrl, $wgSeleniumServerPort;
 		if ( null === self::$_instance ) {
-			self::$_instance = new self( $wgSeleniumTestsBrowsers[$wgSeleniumTestsUseBrowser], $wgSeleniumTestsSeleniumHost );
-		}
+			self::$_instance = new self( $wgSeleniumTestsBrowsers[$wgSeleniumTestsUseBrowser],
+							$wgSeleniumTestsWikiUrl,
+							$wgSeleniumTestsSeleniumHost,
+							$wgSeleniumServerPort );
+ 		}
 		return self::$_instance;
 	}
 
@@ -39,7 +43,7 @@ class Selenium extends Testing_Selenium {
 		$this->type( 'wpName1', $wgSeleniumTestsWikiUser );
 		$this->type( 'wpPassword1', $wgSeleniumTestsWikiPassword );
 		$this->click( "//input[@id='wpLoginAttempt']" );
-		$value = $this->doCommand( 'assertTitle', array( 'Anmeldung erfolgreich*' ) );
+		$value = $this->doCommand( 'assertTitle', array( 'Login successful*' ) );
 	}
 
 	public function loadPage( $title, $action ) {
