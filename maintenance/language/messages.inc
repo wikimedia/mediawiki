@@ -1081,7 +1081,6 @@ $wgMessageStructure = array(
 		'right-siteadmin',
 		'right-reset-passwords',
 		'right-override-export-depth',
-		'right-versiondetail',
 		'right-sendemail',
 	),
 	'rightslog' => array(
