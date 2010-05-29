@@ -1554,7 +1554,6 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-siteadmin'             => 'De database blokkeren en weer vrijgeven',
 'right-reset-passwords'       => 'Wachtwoorden van andere gebruikers opnieuw instellen',
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
-'right-versiondetail'         => 'Uitgebreide versieinformatie van de software weergeven',
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
 
 # User rights log

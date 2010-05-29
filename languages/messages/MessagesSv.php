@@ -1497,7 +1497,6 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-siteadmin'             => 'Låsa och låsa upp databasen',
 'right-reset-passwords'       => 'Återställa andra användares lösenord',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
-'right-versiondetail'         => 'Visa den utökade mjukvaruversionsinformationen',
 'right-sendemail'             => 'Skicka e-post till andra användare',
 
 # User rights log

@@ -1344,7 +1344,6 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'right-siteadmin'             => "Datebank spären an d'Spär ophiewen",
 'right-reset-passwords'       => 'Anere Benotzer hir Passwierder zrécksetzen',
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
-'right-versiondetail'         => 'Informatiounen iwwert déi erweidert Software-Versioun weisen',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
 
 # User rights log

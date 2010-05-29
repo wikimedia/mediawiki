@@ -1479,7 +1479,6 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-siteadmin'             => 'adatbázis lezárása, felnyitása',
 'right-reset-passwords'       => 'Más felhasználók jelszavának visszaállítása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
-'right-versiondetail'         => 'kibővített szoftververzió-információk tekintése',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
 
 # User rights log

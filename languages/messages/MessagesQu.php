@@ -1417,7 +1417,6 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'right-siteadmin'             => "Willañiqintinta hark'ay, paskaypas",
 'right-reset-passwords'       => 'Huk ruraqkunap yaykuna rimanta kutichiy',
 'right-override-export-depth' => "P'anqakunata hawaman quy, t'inkisqa p'anqakunatapas pichqa ñiqin t'inkipayasqakama",
-'right-versiondetail'         => "Mast'arisqa llamp'u kaqpaq musuqchasqamanta willaykunata rikuchiy",
 'right-sendemail'             => 'Huk ruraqkunaman e-chaskita kachay',
 
 # User rights log

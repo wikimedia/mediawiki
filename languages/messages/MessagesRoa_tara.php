@@ -1252,7 +1252,6 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-siteadmin'             => "Blocche e sblocche 'u database",
 'right-reset-passwords'       => "Azzere l'otre password de l'utinde",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
-'right-versiondetail'         => "Fà vedè le 'mbormaziune d'a versione estese d'u software",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
 
 # User rights log

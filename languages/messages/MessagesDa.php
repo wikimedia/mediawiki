@@ -1352,7 +1352,6 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'right-siteadmin'             => 'Låse og frigive databasen',
 'right-reset-passwords'       => 'Ændre andre brugeres adgangskode',
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
-'right-versiondetail'         => 'Se den udvidede information om programversion',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
 
 # User rights log
@@ -2699,8 +2698,8 @@ $1',
 'filedelete-archive-read-only'    => 'Webserveren har ikke skriveadgang til arkiv-kataloget "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Gå til forrige forskel',
-'nextdiff'     => 'Gå til næste forskel →',
+'previousdiff' => '← Gå til forrige ændring',
+'nextdiff'     => 'Gå til næste ændring →',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne filtype kan muligvis indeholde skadelig kode. 

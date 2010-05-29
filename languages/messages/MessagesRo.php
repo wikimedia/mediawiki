@@ -1463,7 +1463,6 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'right-siteadmin'             => 'Blochează și deblochează baza de date',
 'right-reset-passwords'       => 'Resetarea parolelor altor utilizatori',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
-'right-versiondetail'         => 'Arată informații extise despre versiunea programului',
 'right-sendemail'             => 'Trimite e-mail altor utilizatori',
 
 # User rights log

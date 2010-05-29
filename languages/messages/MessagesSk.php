@@ -1472,7 +1472,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-siteadmin'             => 'Zamykať a odomykať databázu',
 'right-reset-passwords'       => 'Zmeniť heslo iných používateľov',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
-'right-versiondetail'         => 'Zobraziť podrobné informácie o verzii softvéru',
 'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
 
 # User rights log

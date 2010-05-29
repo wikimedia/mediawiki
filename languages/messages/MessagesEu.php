@@ -1296,7 +1296,6 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'right-siteadmin'             => 'Databasea blokeatu eta desblokeatu',
 'right-reset-passwords'       => 'Bese erabiltzaile batzuen pasahitzak berritu',
 'right-override-export-depth' => '5eko sakonerararteko loturiko orrialdeak barne esportatu',
-'right-versiondetail'         => 'Software bertsio zabalduaren informazioa erakutsi',
 'right-sendemail'             => 'Beste erabiltzaileei e-posta bidali',
 
 # User rights log

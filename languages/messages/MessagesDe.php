@@ -1524,7 +1524,6 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-siteadmin'             => 'Datenbank sperren und entsperren',
 'right-reset-passwords'       => 'Passwort eines anderen Benutzers zurücksetzen',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
-'right-versiondetail'         => 'Detailinformation über die Software und ihre Versionsdaten einsehen',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
 
 # User rights log

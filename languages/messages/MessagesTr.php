@@ -1466,7 +1466,6 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-siteadmin'             => 'Veritabanını kilitle ve kilidi aç',
 'right-reset-passwords'       => 'Diğer kullanıcıların parolalarını sıfırla',
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
-'right-versiondetail'         => 'Genişletilmiş yazılım sürüm bilgilerini göster',
 'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
 
 # User rights log

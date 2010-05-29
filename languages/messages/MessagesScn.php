@@ -1242,7 +1242,6 @@ L'operazioni nun pò èssiri annullata.",
 'right-siteadmin'             => 'Blocca a sblocca lu databasi',
 'right-reset-passwords'       => 'Reimposta la password di autri utenti',
 'right-override-export-depth' => 'Esporta pàggini cumpresi li pàggini culligati finu ô quintu liveddu',
-'right-versiondetail'         => 'Talìa li informazioni cumpleti dô software',
 
 # User rights log
 'rightslog'      => "Dritti di l'utenti",

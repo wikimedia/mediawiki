@@ -1298,7 +1298,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-siteadmin'             => 'Datebank sperre un entsperre',
 'right-reset-passwords'       => 'S Passwort vun eme andere Benutzer zrucksetze',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
-'right-versiondetail'         => 'Detailinformatione iber d Software un d Versione aazeige',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
 
 # User rights log

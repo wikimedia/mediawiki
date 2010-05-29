@@ -1288,7 +1288,6 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-siteadmin'             => 'Trancar y destrancar a base de datos',
 'right-reset-passwords'       => "Reiniciar a contrasenya d'atros usuarios",
 'right-override-export-depth' => 'Exporta pachinas que incluigan as enlazadas dica un fundaria de 5',
-'right-versiondetail'         => "Amostrar a información adicional d'a versión d'o software",
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
 
 # User rights log

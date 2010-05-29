@@ -1237,7 +1237,6 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-siteadmin'             => 'Bloché e dësbloché ël database',
 'right-reset-passwords'       => "Reamposté le ciav d'àutri utent",
 'right-override-export-depth' => 'Esporté pàgine ancludend pàgine colegà fin a na profondità ëd 5',
-'right-versiondetail'         => "Mosta j'anformassion estèise dla vërsion dël software",
 'right-sendemail'             => "Manda e-mail a j'àutri utent",
 
 # User rights log

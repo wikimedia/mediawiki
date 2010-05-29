@@ -1174,7 +1174,6 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'right-siteadmin'             => 'Caabi walla caabeedi dàttub njoxe bi',
 'right-reset-passwords'       => 'Soppi baatujàllub ay jëfandikukat',
 'right-override-export-depth' => 'génne ay xët yu ëmbi xët yu lëkkaloo ba-ci xóotaay bu tolluwaayam àgg 5',
-'right-versiondetail'         => 'Wone xamle yu matale ci sumbi tëriin wi',
 
 # User rights log
 'rightslog'      => 'Sañ-sañi jëfandikukat',

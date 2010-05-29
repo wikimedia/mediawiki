@@ -1518,7 +1518,6 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-siteadmin'             => 'Zamykání a odemykání databáze',
 'right-reset-passwords'       => 'Nastavování hesel jiným uživatelům',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
-'right-versiondetail'         => 'Prohlížení podrobných informací o verzích nainstalovaného software.',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
 
 # User rights log

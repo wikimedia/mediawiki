@@ -1489,7 +1489,6 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-siteadmin'             => 'De Datebank deeschmaache un opmaache för Änderunge',
 'right-reset-passwords'       => 'Enem andere Metmaacher et Paßwoot zeröck setze',
 'right-override-export-depth' => 'Beim Sigge Expoteere de Sigge metnämme, woh Lingks drop jon — beß fönef Schredde wigk',
-'right-versiondetail'         => 'Ußföhrlesh Enfomazjuhne övver de Projramme vum Wiki aanloore',
 'right-sendemail'             => '<i lang="en">e-mail</i> aan ander Metmaacher schecke',
 
 # User rights log

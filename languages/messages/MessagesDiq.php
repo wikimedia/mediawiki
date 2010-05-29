@@ -1185,7 +1185,6 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'right-siteadmin'             => 'Database kilit bike u a bike',
 'right-reset-passwords'       => 'Parolayê karberanê binî reset bike',
 'right-override-export-depth' => 'Peleyanê ke tede linkanê 5 ra zafyer estê ay export bike',
-'right-versiondetail'         => 'Enformasyonê versiyonê software yê detayî bimocne',
 'right-sendemail'             => 'Karberanê binî ra e-mail bişirav',
 
 # User rights log

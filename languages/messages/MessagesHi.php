@@ -1230,7 +1230,6 @@ $1",
 'right-siteadmin'             => 'डाटाबेस को ताला लगायें या खोलें',
 'right-reset-passwords'       => 'अन्य सदस्यों के कूटशब्द बदलना',
 'right-override-export-depth' => 'पन्नों का निर्यात, ५वीं गहराई तक के हवाले वाले पन्नों समेत',
-'right-versiondetail'         => 'विस्तृत तंत्रांश संस्करण जानकारी देखना',
 
 # User rights log
 'rightslog'      => 'सदस्य अधिकार सूची',

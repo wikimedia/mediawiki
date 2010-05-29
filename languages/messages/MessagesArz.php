@@ -1496,7 +1496,6 @@ $1",
 'right-siteadmin'             => 'قفل وفتح قاعدة البيانات',
 'right-reset-passwords'       => 'تغيير الباوسورد بتاعة اليوزرات التانيين',
 'right-override-export-depth' => 'تصدير الصفحات مع الصفحات الموصوله لحد عمق 5',
-'right-versiondetail'         => 'عرض معلومات نسخة السوفتوير المتوسعه',
 'right-sendemail'             => 'يبعت إيميل لليوزرز التانيين',
 
 # User rights log

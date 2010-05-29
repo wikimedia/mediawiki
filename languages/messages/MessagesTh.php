@@ -1342,7 +1342,6 @@ $1",
 'right-siteadmin'             => 'ล็อกและปลดล็อกฐานข้อมูล',
 'right-reset-passwords'       => 'ตั้งรหัสผ่านของผู้ใช้อื่นใหม่',
 'right-override-export-depth' => 'ส่งออกหน้า รวมหน้าที่เชื่อมโยงกับหน้านี้สูงสุด 5 ลำดับชั้น',
-'right-versiondetail'         => 'แสดงข้อมูลรุ่นปรับปรุงของซอฟต์แวร์',
 'right-sendemail'             => 'ส่งอีเมลไปยังผู้ใช้อื่นๆ',
 
 # User rights log

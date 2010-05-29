@@ -1493,9 +1493,6 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-siteadmin'             => '{{doc-right|siteadmin}}',
 'right-reset-passwords'       => '{{doc-right}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
-'right-versiondetail'         => '{{doc-right|versiondetail}}
-
-Users having this right receive more detailed information on [[Special:Version]].',
 'right-sendemail'             => '{{doc-right}}',
 
 # User rights log

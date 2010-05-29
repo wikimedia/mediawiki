@@ -1469,7 +1469,6 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'right-siteadmin'             => 'Varrolhar e desvarrolhar la banca de donadas',
 'right-reset-passwords'       => "Cambiar lo senhal d'autres utilizaires",
 'right-override-export-depth' => 'Exportar las paginas en incluent las paginas ligadas fins a una prigondor de 5 nivèls',
-'right-versiondetail'         => 'Vejatz las entresenhas espandidas sus las versions dels logicials',
 'right-sendemail'             => 'Mandar un corrièl als autres utilizaires',
 
 # User rights log

@@ -1281,7 +1281,6 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'right-siteadmin'             => 'ساندان قۇلۇپلا ۋە قۇلۇپ ئاچ',
 'right-reset-passwords'       => 'باشقا ئىشلەتكۈچى ئىمنى ئەسلىگە قايتۇر',
 'right-override-export-depth' => 'بەت قەۋەتلىك ئۇلىنىشى بار بەتنى چىقار',
-'right-versiondetail'         => 'كېڭەيتىلگەن يۇمشاق دېتال نەشر ئۇچۇرىنى كۆرسەت',
 'right-sendemail'             => 'باشقا ئىشلەتكۈچىگە ئېلخەت يوللا',
 
 # User rights log
