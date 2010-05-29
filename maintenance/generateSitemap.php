@@ -221,11 +221,9 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get the priority of a given namespace
 	 *
-	 * @param int $namespace The namespace to get the priority for
-	 +
-	 * @return string
+	 * @param $namespace Integer: the namespace to get the priority for
+	 * @return String
 	 */
-
 	function priority( $namespace ) {
 		return isset( $this->priorities[$namespace] ) ? $this->priorities[$namespace] : $this->guessPriority( $namespace );
 	}
@@ -235,9 +233,8 @@ class GenerateSitemap extends Maintenance {
 	 * default priority for the namespace, varies depending on whether it's
 	 * a talkpage or not.
 	 *
-	 * @param int $namespace The namespace to get the priority for
-	 *
-	 * @return string
+	 * @param $namespace Integer: the namespace to get the priority for
+	 * @return String
 	 */
 	function guessPriority( $namespace ) {
 		return MWNamespace::isMain( $namespace ) ? $this->priorities[GS_MAIN] : $this->priorities[GS_TALK];
@@ -246,9 +243,8 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return a database resolution of all the pages in a given namespace
 	 *
-	 * @param int $namespace Limit the query to this namespace
-	 *
-	 * @return resource
+	 * @param $namespace Integer: limit the query to this namespace
+	 * @return Resource
 	 */
 	function getPageRes( $namespace ) {
 		return $this->dbr->select( 'page',
@@ -264,10 +260,8 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * Main loop
-	 *
-	 * @access public
 	 */
-	function main() {
+	public function main() {
 		global $wgContLang;
 
 		fwrite( $this->findex, $this->openIndex() );
@@ -323,7 +317,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * gzopen() / fopen() wrapper
 	 *
-	 * @return resource
+	 * @return Resource
 	 */
 	function open( $file, $flags ) {
 		return $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
@@ -352,12 +346,9 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get a sitemap filename
 	 *
-	 * @static
-	 *
-	 * @param int $namespace The namespace
-	 * @param int $count The count
-	 *
-	 * @return string
+	 * @param $namespace Integer: the namespace
+	 * @param $count Integer: the count
+	 * @return String
 	 */
 	function sitemapFilename( $namespace, $count ) {
 		$ext = $this->compress ? '.gz' : '';
@@ -366,8 +357,6 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * Return the XML required to open an XML file
-	 *
-	 * @static
 	 *
 	 * @return string
 	 */
@@ -378,9 +367,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML schema being used
 	 *
-	 * @static
-	 *
-	 * @returns string
+	 * @return String
 	 */
 	function xmlSchema() {
 		return 'http://www.sitemaps.org/schemas/sitemap/0.9';
@@ -389,7 +376,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to open a sitemap index file
 	 *
-	 * @return string
+	 * @return String
 	 */
 	function openIndex() {
 		return $this->xmlHead() . '<sitemapindex xmlns="' . $this->xmlSchema() . '">' . "\n";
@@ -398,11 +385,8 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML for a single sitemap indexfile entry
 	 *
-	 * @static
-	 *
-	 * @param string $filename The filename of the sitemap file
-	 *
-	 * @return string
+	 * @param $filename String: the filename of the sitemap file
+	 * @return String
 	 */
 	function indexEntry( $filename ) {
 		return
@@ -415,9 +399,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to close a sitemap index file
 	 *
-	 * @static
-	 *
-	 * @return string
+	 * @return String
 	 */
 	function closeIndex() {
 		return "</sitemapindex>\n";
@@ -426,7 +408,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to open a sitemap file
 	 *
-	 * @return string
+	 * @return String
 	 */
 	function openFile() {
 		return $this->xmlHead() . '<urlset xmlns="' . $this->xmlSchema() . '">' . "\n";
@@ -435,13 +417,10 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML for a single sitemap entry
 	 *
-	 * @static
-	 *
-	 * @param string $url An RFC 2396 compliant URL
-	 * @param string $date A ISO 8601 date
-	 * @param string $priority A priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
-	 *
-	 * @return string
+	 * @param $url String: an RFC 2396 compliant URL
+	 * @param $date String: a ISO 8601 date
+	 * @param $priority String: a priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
+	 * @return String
 	 */
 	function fileEntry( $url, $date, $priority ) {
 		return
@@ -455,8 +434,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to close sitemap file
 	 *
-	 * @static
-	 * @return string
+	 * @return String
 	 */
 	function closeFile() {
 		return "</urlset>\n";
