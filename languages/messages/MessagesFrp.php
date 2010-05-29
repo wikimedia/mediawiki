@@ -1530,7 +1530,6 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-siteadmin'             => 'Vèrrolyér ou dèvèrrolyér la bâsa de balyês',
 'right-reset-passwords'       => 'Changiér lo mot de pâssa d’ôtros utilisators',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
-'right-versiondetail'         => 'Vêre les enformacions ètendues sur les vèrsions de les programeries',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
 
 # User rights log

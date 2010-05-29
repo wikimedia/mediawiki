@@ -874,7 +874,6 @@ $2',
 'right-trackback'          => 'Засыланя Trackback',
 'right-mergehistory'       => 'Злучованя історії сторінок',
 'right-userrights'         => 'Зміна вшыткых прав остатнім хоснователям',
-'right-versiondetail'      => 'Перегляд росшыреной інформації про верзію проґрамного забезпечіня',
 'right-sendemail'          => 'Посыланя пошты іншым хоснователям',
 
 # User rights log

@@ -16,6 +16,7 @@
  * @author Nguyễn Thanh Quang
  * @author Thaisk
  * @author Tmct
+ * @author Trần Nguyễn Minh Huy
  * @author Trần Thế Trung
  * @author Tttrung
  * @author Vietbio
@@ -1436,7 +1437,6 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-siteadmin'             => 'Khóa và mở khóa cơ sở dữ liệu',
 'right-reset-passwords'       => 'Tái tạo mật khẩu của thành viên khác',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
-'right-versiondetail'         => 'Hiện thông tin phiên bản phần mềm mở rộng',
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
 
 # User rights log
@@ -2003,7 +2003,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'newuserlogpage'              => 'Nhật trình mở tài khoản',
 'newuserlogpagetext'          => 'Đây là danh sách những tài khoản thành viên mở lên gần đây.',
 'newuserlog-byemail'          => 'gửi mật khẩu qua thư điện tử',
-'newuserlog-create-entry'     => 'Tài khoản mới',
+'newuserlog-create-entry'     => 'đã mở tài khoản mới',
 'newuserlog-create2-entry'    => 'đã tạo tài khoản mới với tên $1',
 'newuserlog-autocreate-entry' => 'Tài khoản được tạo tự động',
 

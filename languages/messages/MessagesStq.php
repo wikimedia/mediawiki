@@ -1209,7 +1209,6 @@ Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme,
 'right-siteadmin'             => 'Doatenboank speere un äntspeere',
 'right-reset-passwords'       => 'Dät Paaswoud fon n uur Benutser touräächsätte',
 'right-override-export-depth' => 'Exportier Sieden touhoope mäd ferlinkede Sieden bit tou ne Djüpte fon 5',
-'right-versiondetail'         => 'Detailinformatione uur ju Software un hiere Versionsdoaten ienkiekje',
 'right-sendemail'             => 'E-Mails an uur Benutsere seende',
 
 # User rights log

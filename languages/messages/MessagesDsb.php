@@ -1313,7 +1313,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-siteadmin'             => 'Datowu banku zastajiś a zastajenje wótpóraś',
 'right-reset-passwords'       => 'Gronidła drugich wužywarjow slědk stajiś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
-'right-versiondetail'         => 'Nadrobne informacije wó wersiji softwary pokazaś',
 'right-sendemail'             => 'Drugim wužywarjam e-mail pósłaś',
 
 # User rights log

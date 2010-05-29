@@ -1370,7 +1370,6 @@ teisės",
 'right-siteadmin'             => 'Atrakinti ir užrakinti duomenų bazę',
 'right-reset-passwords'       => 'Atstatyti kitų naudotojų slaptažodžius',
 'right-override-export-depth' => 'Eksportuoti puslapius įtraukiant susietus puslapius iki 5 lygio gylio',
-'right-versiondetail'         => 'Rodyti išplėstinę programinės įrangos versijos informaciją',
 'right-sendemail'             => 'Siųsti el. laišką kitiems naudotojams',
 
 # User rights log

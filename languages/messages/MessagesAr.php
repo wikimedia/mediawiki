@@ -1644,7 +1644,6 @@ $1",
 'right-siteadmin'             => 'غلق ورفع غلق قاعدة البيانات',
 'right-reset-passwords'       => 'إعادة ضبط كلمة السر للمستخدمين الآخرين',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
-'right-versiondetail'         => 'رؤية معلومات نسخة البرنامج الممتدة',
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
 
 # User rights log

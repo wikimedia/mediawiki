@@ -1367,7 +1367,6 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'right-siteadmin'             => 'Zaklepanje in odklepanje baze podatkov',
 'right-reset-passwords'       => 'Ponastavljanje gesla drugih uporabnikov',
 'right-override-export-depth' => 'Izvoz strani, vključno s povezaimi straneh do globine 5',
-'right-versiondetail'         => 'Pregledovanje razširjenih informacij o različici programske opreme',
 'right-sendemail'             => 'Pošiljanje e-pošte drugim uporabnikom',
 
 # User rights log

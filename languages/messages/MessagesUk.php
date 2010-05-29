@@ -1081,7 +1081,7 @@ $1",
 'logdelete-failure'           => "'''Не вдалося встановити видимість журналу:'''
 $1",
 'revdel-restore'              => 'Змінити видимість',
-'revdel-restore-deleted'      => 'deleted revisions',
+'revdel-restore-deleted'      => 'вилучені версії',
 'revdel-restore-visible'      => 'видимі версії',
 'pagehist'                    => 'Історія сторінки',
 'deletedhist'                 => 'Історія вилучень',
@@ -1446,7 +1446,6 @@ $1",
 'right-siteadmin'             => 'Блокування і розблокування бази даних',
 'right-reset-passwords'       => 'скидання паролів інших користувачів',
 'right-override-export-depth' => "експорт сторінок, включаючи пов'язані сторінки з глибиною до 5",
-'right-versiondetail'         => 'Перегляд розширеної інформації про версію програмного забезпечення',
 'right-sendemail'             => 'відправляти пошту іншим користувачам',
 
 # User rights log

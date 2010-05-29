@@ -1515,7 +1515,6 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'right-siteadmin'             => 'Bloquear e desbloquear a base de dados',
 'right-reset-passwords'       => 'Repor a palavra-chave de outros utilizadores',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
-'right-versiondetail'         => 'Mostrar informações completas da versão de software',
 'right-sendemail'             => 'Enviar correio electrónico a outros utilizadores',
 
 # User rights log

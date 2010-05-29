@@ -1507,7 +1507,6 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'right-siteadmin'             => 'Bloquear y desbloquear la base de datos',
 'right-reset-passwords'       => 'Reajustar la contraseña de otros usuarios',
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
-'right-versiondetail'         => 'Mostrar información ampliada de la versión del software',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
 
 # User rights log

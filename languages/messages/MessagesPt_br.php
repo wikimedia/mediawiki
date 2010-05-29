@@ -1484,7 +1484,6 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'right-siteadmin'             => 'Bloquear e desbloquear o banco de dados',
 'right-reset-passwords'       => 'Redefinir a senha de outros usuários',
 'right-override-export-depth' => 'Export páginas incluindo páginas ligadas até uma profundidade de 5 ligações',
-'right-versiondetail'         => "Mostrar informação ampliada sobre a versão do ''software''.",
 'right-sendemail'             => 'Enviar email a outros usuários',
 
 # User rights log

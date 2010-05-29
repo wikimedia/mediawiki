@@ -1261,7 +1261,6 @@ $1",
 'right-siteadmin'             => 'کبل و پچ دیتابیس',
 'right-reset-passwords'       => 'کلمه رمز چه دگه کاربران ءَ عوض کن',
 'right-override-export-depth' => 'درگیزگ صفحات گون صفحاتی لینک بوتگین ته سطح ۵',
-'right-versiondetail'         => 'اطلاعات نسخه برنامه گیشترین پیشدار',
 
 # User rights log
 'rightslog'      => 'ورودان حقوق کاربر',

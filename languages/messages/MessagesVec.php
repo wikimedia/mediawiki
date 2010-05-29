@@ -1312,7 +1312,6 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'right-siteadmin'             => 'Bloca e desbloca el database',
 'right-reset-passwords'       => 'Reinposta la password de altri utenti',
 'right-override-export-depth' => 'Esporta le pàxene, includendo le pàxene ligàe fin a na profondità de 5',
-'right-versiondetail'         => 'Fà védar le informassion conplete su la version del software',
 'right-sendemail'             => 'Mandarghe e-mail a cheialtri utenti',
 
 # User rights log

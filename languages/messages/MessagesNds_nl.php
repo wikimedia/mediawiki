@@ -1477,7 +1477,6 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-siteadmin'             => 'De databanke blokkeren en weer vriegeven',
 'right-reset-passwords'       => 'Wachwoorden van aandere gebrukers opniej instellen',
 'right-override-export-depth' => "Pagina's uutvoeren, oek de pagina's waor naor verwezen wonnen, tot een diepte van 5",
-'right-versiondetail'         => 'Uut-ebreide versieinfermasie van de pregrammetuur laoten zien',
 'right-sendemail'             => 'Berich versturen naor aandere gebrukers',
 
 # User rights log

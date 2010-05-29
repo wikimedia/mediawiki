@@ -1467,7 +1467,6 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-siteadmin'             => 'Mengunci dan membuka kunci basis data',
 'right-reset-passwords'       => 'Mereset kata sandi pengguna lain',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
-'right-versiondetail'         => 'Melihat informasi versi piranti lunak yang lebih lengkap',
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
 
 # User rights log

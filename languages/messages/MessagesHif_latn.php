@@ -1215,7 +1215,6 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-siteadmin'             => 'Database ke band karo aur kholo',
 'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
-'right-versiondetail'         => 'Program ke baare me aur jaankari dekhao',
 'right-sendemail'             => 'Duusra sadasya ke lage e-mail bhejo',
 
 # User rights log

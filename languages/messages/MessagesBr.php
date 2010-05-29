@@ -1299,7 +1299,6 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-siteadmin'             => 'Prennañ ha dibrennañ ar bank-titouroù',
 'right-reset-passwords'       => 'Kemmañ ger-tremen implijerien all',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
-'right-versiondetail'         => 'Sellet ouzh an titouroù ouzhpenn diwar-benn stummoù ar meziantoù',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 
 # User rights log
@@ -2288,7 +2287,7 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'contribslink'                    => 'degasadennoù',
 'autoblocker'                     => 'Emstanket rak implijet eo bet ho chomlec\'h IP gant "[[User:$1|$1]]" nevez zo.
 Setu aze an abeg(où) m\'eo bet stanket $1 : "$2$',
-'blocklogpage'                    => 'Log stankañ',
+'blocklogpage'                    => 'Roll ar stankadennoù',
 'blocklog-showlog'                => "Stanket eo bet an implijer-mañ c'hoazh. A-is emañ marilh ar stankadennoù, d'ho titouriñ :",
 'blocklog-showsuppresslog'        => "Stanket ha kuzhet eo bet an implijer-mañ c'hoazh. A-is emañ marilh ar diverkadennoù, d'ho titouriñ :",
 'blocklogentry'                   => 'stanket "[[$1]]" $2 $3',

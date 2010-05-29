@@ -1509,7 +1509,6 @@ $1",
 'right-siteadmin'             => 'נעילת וביטול נעילת בסיס הנתונים',
 'right-reset-passwords'       => 'איפוס סיסמאות של משתמשים אחרים',
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
-'right-versiondetail'         => 'צפייה במידע המורחב על גרסת התוכנה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
 
 # User rights log

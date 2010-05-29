@@ -1356,7 +1356,6 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 'right-siteadmin'             => 'Ikandado at alisin ang pagkakakandado ng kalipunan ng dato',
 'right-reset-passwords'       => 'Mulng itakda ang mga hudyat ng iba pang mga tagagamit',
 'right-override-export-depth' => 'Iluwas ang mga pahina na kabilang ang mga pahinang nakakawing magpahanggang sa isang lalim na 5',
-'right-versiondetail'         => 'Ipakita ang karugtong na kabatiran ng bersyong pangsopwer',
 'right-sendemail'             => 'Magpadala ng e-liham sa ibang mga tagagamit',
 
 # User rights log

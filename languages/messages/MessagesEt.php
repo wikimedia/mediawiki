@@ -1443,7 +1443,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-userrights-interwiki' => 'Muuta teiste vikide kasutajate õigusi',
 'right-siteadmin'            => 'Panna lukku ja lukust lahti teha andmebaasi',
 'right-reset-passwords'      => 'Määrata teistele kasutajatele paroole',
-'right-versiondetail'        => 'Näha tarkvaraversiooni laiendatud teavet',
 'right-sendemail'            => 'Saata teistele kasutajatele e-kirju',
 
 # User rights log

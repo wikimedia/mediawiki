@@ -1165,7 +1165,6 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 'right-siteadmin'             => 'Kunci lan buka kunci basis data',
 'right-reset-passwords'       => 'Setèl ulang tembung sandi panganggo liya',
 'right-override-export-depth' => "Èkspor kaca klebu kaca kagandhèng nganti tataran/''depth'' 5",
-'right-versiondetail'         => 'Tuduhaké informasi vèrsi piranti alus sing luwih pepak',
 
 # User rights log
 'rightslog'      => 'Log pangowahan hak aksès',

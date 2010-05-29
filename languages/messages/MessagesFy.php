@@ -1202,7 +1202,6 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'right-siteadmin'             => 'De database blokkearje en wer frij jaan',
 'right-reset-passwords'       => "Wachtwurden fan oare meidoggers op 'e nij ynstelle",
 'right-override-export-depth' => 'Alle siden oant en mei in keppelingsdjipte fan fiif fuortskriuwe',
-'right-versiondetail'         => 'Utwreide ferzjeynformaasje sjenlitte',
 
 # User rights log
 'rightslog'      => 'Rjochten-loch',

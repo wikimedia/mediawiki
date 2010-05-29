@@ -1477,7 +1477,6 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
 'right-reset-passwords'       => 'Resetuje šifre drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
-'right-versiondetail'         => 'Pregledavanje proširenih informacija o verzijama softvera',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 
 # User rights log

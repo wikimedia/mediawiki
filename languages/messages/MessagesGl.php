@@ -1419,7 +1419,6 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-siteadmin'             => 'Fechar e abrir a base de datos',
 'right-reset-passwords'       => 'Restablecer os contrasinais doutros usuarios',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
-'right-versiondetail'         => 'Mostrar a información ampliada da versión do software',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 
 # User rights log
@@ -2130,7 +2129,7 @@ Axuda:
 'confirm'                => 'Confirmar',
 'excontent'              => 'o contido era: "$1"',
 'excontentauthor'        => 'o contido era: "$1" (e o único editor foi "[[Special:Contributions/$2|$2]]")',
-'exbeforeblank'          => 'o contido antes do baleiramento era: "$1"',
+'exbeforeblank'          => 'o contido antes do baleirado era: "$1"',
 'exblank'                => 'a páxina estaba baleira',
 'delete-confirm'         => 'Borrar "$1"',
 'delete-legend'          => 'Borrar',

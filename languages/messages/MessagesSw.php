@@ -582,7 +582,7 @@ umeamua kutoibadilisha, unaweza kupuuza ujumbe huu na
 kuendelea kulitumia neno lako la siri la awali.',
 'noemail'                    => 'Hatuna anwani ya barua pepe kwa mtumiaji  "$1".',
 'noemailcreate'              => 'Unahitajika utoe anwani halali ya barua pepe',
-'passwordsent'               => 'Neno jipya la siri limeshatumiwa kwenye anwani ya barua-pepe ya "$1".
+'passwordsent'               => 'Neno jipya la siri limeshatumwa kwenye anwani ya barua pepe ya "$1".
 Tafadhali, ingia baada ya kulipokea.',
 'blocked-mailpassword'       => 'Anwani yako ya IP imezuiwa kuhariri {{SITENAME}}, kwa hiyo hairuhusiwi kuomba neno jipya la siri, kwa lengo la kuzuia uharibifu.',
 'eauthentsent'               => 'Tumekutuma barua pepe ili kuhakikisha anwani yako.
@@ -1376,18 +1376,18 @@ $1',
 'upload-http-error'   => 'Imetokea hitilafu ya HTTP: $1',
 
 # img_auth script messages
-'img-auth-nofile' => 'Hakuna faili ya "$1".',
+'img-auth-nofile' => 'Hakuna faili la "$1".',
 
 # HTTP errors
 'http-invalid-url' => 'URL batili: $1',
-'http-timed-out'   => 'Ombi la HTTP ulichelewa mno.',
+'http-timed-out'   => 'Ombi la HTTP muda umepita.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'KISARA (URL) haikupatikana',
-'upload-curl-error28'      => 'Upakiaji umechelewa mno',
-'upload-curl-error28-text' => 'Tovuti ilichelewa mno kuamka. 
+'upload-curl-error28'      => 'Muda wa upakiaji umeisha',
+'upload-curl-error28-text' => 'Tovuti imechelewa mno kuitikia. 
 Tafadhali uhakikishe kwamba tovuti inafanya kazi, subiri kidogo halafu jaribu tena. 
-Labda utafanikiwa wakati mwingine.',
+Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 
 'license'            => 'Hatimiliki:',
 'license-header'     => 'Hatimiliki',
@@ -1448,11 +1448,16 @@ Labda utafanikiwa wakati mwingine.',
 'filedelete-nofile-old'       => "There is no archived version of '''$1''' with the specified attributes.",
 'filedelete-otherreason'      => 'Sababu nyingine:',
 'filedelete-reason-otherlist' => 'Sababu nyingine',
+'filedelete-reason-dropdown'  => '*Sababu zinazotolewa mara kwa mara
+** Kosa la hatimiliki
+** Faili la nakili',
 'filedelete-edit-reasonlist'  => 'Kuhariri orodha ya sababu za kufuta',
+'filedelete-maintenance'      => 'Tovuti inarekebishwa. Kwa muda huo kufuta na kurudisha mafaili haiwezikani.',
 
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
 'mimetype'   => 'Aina ya MIME:',
+'download'   => 'pakua',
 
 # Unwatched pages
 'unwatchedpages' => 'Kurasa zisizofuatiliwa',
@@ -1500,7 +1505,7 @@ Labda utafanikiwa wakati mwingine.',
 'brokenredirects-delete' => 'futa',
 
 'withoutinterwiki'         => 'Kurasa bila viungo kwenye lugha zingine',
-'withoutinterwiki-summary' => 'Kurasa zinazofuata hazijalinganishwa na kurasa za lugha zingine.',
+'withoutinterwiki-summary' => 'Kurasa zifuatazo hazijaunganishwa na kurasa za matoleo ya lugha nyingine.',
 'withoutinterwiki-submit'  => 'Onyesha',
 
 'fewestrevisions' => 'Kurasa zenye mapitio machache kuliko zote',
@@ -1534,8 +1539,8 @@ Labda utafanikiwa wakati mwingine.',
 'deadendpages'            => 'Kurasa ambazo haziungi na ukurasa mwingine wowote',
 'protectedpages'          => 'Kurasa zinazolindwa',
 'listusers'               => 'Orodha ya Watumiaji',
-'listusers-editsonly'     => 'Onyesha watumiaji walishahariri tu',
-'listusers-creationsort'  => 'Orodhesha kwa tarehe ya kuanzisha akaunti',
+'listusers-editsonly'     => 'Onyesha watumiaji wenye kuhariri tu',
+'listusers-creationsort'  => 'Panga kwa tarehe ya kuanzishwa',
 'usereditcount'           => '{{PLURAL:$1|haririo|maharirio}} $1',
 'usercreated'             => 'Iliwekewa tarehe $1 saa $2',
 'newpages'                => 'Kurasa mpya',
@@ -1556,6 +1561,8 @@ Labda utafanikiwa wakati mwingine.',
 'speciallogtitlelabel' => 'Kichwa:',
 'log'                  => 'Kumbukumbu',
 'all-logs-page'        => 'Kumbukumbu zote zilizo wazi',
+'alllogstext'          => 'Hapa panaonyeshwa kumbukumbu zote za {{SITENAME}} kwa pamoja.
+Unaweza kuona baadhi yao tu kwa kuchagua aina fulani ya kumbukumbu, jina la mtumiaji fulani (zingatia herufi kubwa na ndogo), au jina la ukurasa fulani (zingatia herufi kubwa na ndogo).',
 'logempty'             => 'Vitu vyenye vipengele hivi havipo kwenye kumbukumbu.',
 'log-title-wildcard'   => 'Tafuta kurasa zenye vichwa vinavyoanza na maandishi haya',
 
@@ -1573,6 +1580,8 @@ Labda utafanikiwa wakati mwingine.',
 'allpagesnext'      => 'Ijayo',
 'allpagessubmit'    => 'Nenda',
 'allpagesprefix'    => 'Onyesha kurasa zenye kiambishi awali:',
+'allpagesbadtitle'  => 'Jina la ukurasa ni batili au linatumia kiambishi awali cha mradi mwingine.
+Huwa inayo herufi isiyoweza kutumiwa ndani ya majina ya kurasa.',
 'allpages-bad-ns'   => 'Eneo la "$1" halipatikani kwenye {{SITENAME}}.',
 
 # Special:Categories
@@ -1618,6 +1627,11 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'newuserlog-autocreate-entry' => 'Akaunti imejifungua yenyewe',
 
 # Special:ListGroupRights
+'listgrouprights'          => 'Wezo za kundi za watumiaji',
+'listgrouprights-summary'  => 'Inafuata orodha ya kundi za watumiaji wa wiki hii, pamoja na maelezo ya wezo zao za kushughulika mambo.
+Labda patakuwa na [[{{MediaWiki:Listgrouprights-helppage}}|maelezo mengine]] kuhusu wezo zingine.',
+'listgrouprights-key'      => '* <span class="listgrouprights-granted">Uwezo uliopewa</span>
+* <span class="listgrouprights-revoked">Uwezo uliotolewa</span>',
 'listgrouprights-group'    => 'Kundi',
 'listgrouprights-rights'   => 'Wezo',
 'listgrouprights-helppage' => 'Help:Uwezo wa makundi',
@@ -1628,6 +1642,8 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'mailnologintext'      => 'Ukitaka kutuma barua pepe kwa watumiaji wengine inabidi uwe [[Special:UserLogin|umeshaingia kwenye akaunti yako]] na pia uwe na anwani ya barua pepe sahihi pale [[Special:Preferences|mapendekezo yako]].',
 'emailuser'            => 'Mtumie mtumiaji huyu barua pepe',
 'emailpage'            => 'Kumtumia mtumiaji barua pepe',
+'emailpagetext'        => 'Utumie fomu iliopo chini ili kutuma barua pepe kwa mtumiaji huyu.
+Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yako]] itaandikwa kwenye sanduku la anwani "Kutoka kwa" katika barua pepe, ili mtu atakayeipokea aweze kukujibu moja kwa moja.',
 'usermailererror'      => 'Chombo cha ujumbe kimerejesha hitilafu:',
 'defemailsubject'      => 'Barua pepe ya {{SITENAME}}',
 'usermaildisabled'     => 'Uwezo wa kutuma barua pepe kwa mtumiaji umesitishwa',

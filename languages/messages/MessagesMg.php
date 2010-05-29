@@ -1301,7 +1301,6 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'right-siteadmin'             => 'Manidy sy manokatra ny database',
 'right-reset-passwords'       => "Manova ny tenimiafin'ny mpikambana hafa",
 'right-override-export-depth' => "Mamoaka ny pejy miaraka amin'ny zana-pejy hatramin'ny ambaratonga fahadimy",
-'right-versiondetail'         => "Mijery ny fampahalalàna momba ny version'ny rindrankajy",
 'right-sendemail'             => "Mandefa imailaka any amin'ny mpikambana hafa",
 
 # User rights log

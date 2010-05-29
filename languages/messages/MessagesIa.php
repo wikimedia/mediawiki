@@ -1356,7 +1356,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-siteadmin'             => 'Blocar e disblocar le base de datos',
 'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
-'right-versiondetail'         => 'Monstrar le informationes complete super le versiones del software',
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
 
 # User rights log

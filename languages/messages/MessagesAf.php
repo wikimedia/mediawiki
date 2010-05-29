@@ -1390,7 +1390,6 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-siteadmin'             => 'Sluit en ontsluit die datbasis',
 'right-reset-passwords'       => 'Herstel ander gebruikers se wagwoorde',
 'right-override-export-depth' => "Eksporteer bladsye insluitend geskakelde bladsye tot 'n diepte van 5",
-'right-versiondetail'         => 'Wys omvattende sagteware weergawe inligting',
 'right-sendemail'             => 'Stuur e-pos aan ander gebruikers',
 
 # User rights log

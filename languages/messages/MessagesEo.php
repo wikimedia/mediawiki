@@ -1463,7 +1463,6 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-siteadmin'             => 'Ŝlosi kaj malŝlosi la datumbazon',
 'right-reset-passwords'       => 'Reŝanĝi pasvortojn de aliaj uzantoj',
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
-'right-versiondetail'         => 'Montri la informon pri la etendita programara versio',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
 
 # User rights log

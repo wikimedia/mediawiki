@@ -1467,7 +1467,6 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
 'right-reset-passwords'       => "Poništi (''resetiraj'') lozinku drugog suradnika",
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
-'right-versiondetail'         => 'Prikaži informaciju o proširenoj inačici softvera',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 
 # User rights log
