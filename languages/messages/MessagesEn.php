@@ -1554,7 +1554,7 @@ Please check the logs.',
 See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
 
 # SpecialRevisionMove // FIXME add to messages.inc
-'moverevlogentry'                  => 'moved {{PLURAL:$3|One revision|$3 revisions}} from $1 to $2',
+'moverevlogentry'                  => 'moved {{PLURAL:$3|one revision|$3 revisions}} from $1 to $2',
 'revisionmove'                     => 'Move revisions from "$1"',
 'revisionmove-backlink'            => '← $1',
 'revmove-explain'                  => 'The following revisions will be moved from $1 to the specified target page. If the target does not exist, it is created. Otherwise, these revisions will be merged into the page history.',
