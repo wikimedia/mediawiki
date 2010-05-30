@@ -637,10 +637,12 @@ class ParserTest {
 		$this->databaseSetupDone = true;
 		$this->oldTablePrefix = $wgDBprefix;
 
+		# SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
+		# It seems to have been fixed since (r55079?).
+		# If it fails, $wgCaches[CACHE_DB] = new HashBagOStuff(); should work around it.
+
 		# CREATE TEMPORARY TABLE breaks if there is more than one server
-		# FIXME: r40209 makes temporary tables break even with just one server
-		# FIXME: (bug 15892); disabling the feature entirely as a temporary fix
-		if ( true || wfGetLB()->getServerCount() != 1 ) {
+		if ( wfGetLB()->getServerCount() != 1 ) {
 			$this->useTemporaryTables = false;
 		}
 
