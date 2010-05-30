@@ -376,7 +376,7 @@ class WikiImporter {
 			$tag = $this->reader->name;
 			
 			if ( !wfRunHooks( 'ImportHandleLogItemXMLTag',
-						$this->reader, &$logInfo ) ) {
+						$this->reader, $logInfo ) ) {
 				// Do nothing
 			} if ( in_array( $tag, $normalFields ) ) {
 				$logInfo[$tag] = $this->nodeContents();
@@ -437,7 +437,7 @@ class WikiImporter {
 				// The title is invalid, bail out of this page
 				$skip = true;
 			} elseif ( !wfRunHooks( 'ImportHandlePageXMLTag', $this->reader,
-						&$pageInfo ) ) {
+						$pageInfo ) ) {
 				// Do nothing
 			} if ( in_array( $tag, $normalFields ) ) {
 				$pageInfo[$tag] = $this->nodeContents();
@@ -484,7 +484,7 @@ class WikiImporter {
 			$tag = $this->reader->name;
 			
 			if ( !wfRunHooks( 'ImportHandleRevisionXMLTag', $this->reader,
-						&$pageInfo, &$revisionInfo ) ) {
+						$pageInfo, $revisionInfo ) ) {
 				// Do nothing
 			} if ( in_array( $tag, $normalFields ) ) {
 				$revisionInfo[$tag] = $this->nodeContents();
@@ -545,7 +545,7 @@ class WikiImporter {
 			$tag = $this->reader->name;
 			
 			if ( !wfRunHooks( 'ImportHandleUploadXMLTag', $this->reader,
-						&$pageInfo, &$revisionInfo ) ) {
+						$pageInfo, $revisionInfo ) ) {
 				// Do nothing
 			} if ( in_array( $tag, $normalFields ) ) {
 				$uploadInfo[$tag] = $this->nodeContents();
