@@ -402,7 +402,7 @@ Regression with preformatted in <center>
 !! input
 <pre width="8" style="border-width: expression(alert(document.cookie))">Narrow screen goodies</pre>
 !! result
-<pre width="8">Narrow screen goodies</pre>
+<pre width="8" style="/* insecure input */">Narrow screen goodies</pre>
 
 !! end
 
@@ -4269,7 +4269,7 @@ Bug 2304: HTML attribute safety (dangerous style template; 2309)
 !! input
 <div style="{{dangerous style attribute}}"></div>
 !! result
-<div></div>
+<div style="/* insecure input */"></div>
 
 !! end
 
@@ -4287,7 +4287,7 @@ Bug 2304: HTML attribute safety (unsafe parameter; 2309)
 !! input
 {{div style|width: expression(alert(document.cookie))}}
 !! result
-<div>Magic div</div>
+<div style="/* insecure input */">Magic div</div>
 
 !! end
 
@@ -4396,7 +4396,7 @@ Bug 3244: HTML attribute safety (extension; unsafe)
 !! input
 <div style="<nowiki>border-left:expression(alert(document.cookie))</nowiki>"></div>
 !! result
-<div></div>
+<div style="/* insecure input */"></div>
 
 !! end
 
@@ -4416,7 +4416,7 @@ MSIE CSS safety test: spurious slash
 !! input
 <div style="background-image:u\rl(javascript:alert('boo'))">evil</div>
 !! result
-<div>evil</div>
+<div style="/* insecure input */">evil</div>
 
 !! end
 
@@ -4425,7 +4425,7 @@ MSIE CSS safety test: hex code
 !! input
 <div style="background-image:u\72l(javascript:alert('boo'))">evil</div>
 !! result
-<div>evil</div>
+<div style="/* insecure input */">evil</div>
 
 !! end
 
@@ -4471,7 +4471,7 @@ Table attribute safety
 !! result
 <table>
 <tr>
-<th> status
+<th style="/* insecure input */"> status
 </th></tr></table>
 
 !! end
@@ -4481,7 +4481,7 @@ CSS line continuation 1
 !! input
 <div style="background-image: u\&#10;rl(test.jpg);"></div>
 !! result
-<div></div>
+<div style="/* insecure input */"></div>
 
 !! end
 
@@ -4490,7 +4490,7 @@ CSS line continuation 2
 !! input
 <div style="background-image: u\&#13;rl(test.jpg); "></div>
 !! result
-<div></div>
+<div style="/* insecure input */"></div>
 
 !! end
 
