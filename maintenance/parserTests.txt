@@ -4863,7 +4863,7 @@ Punctuation: nbsp before exclamation
 !! input
 C'est grave !
 !! result
-<p>C'est grave&160;!
+<p>C'est grave&#160;!
 </p>
 !! end
 
