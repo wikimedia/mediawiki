@@ -1790,10 +1790,12 @@ class Article {
 	 *                      on.
 	 * @param $lastRevIsRedirect Boolean: if given, will optimize adding and
 	 *                           removing rows in redirect table.
+	 * @param $setNewFlag Boolean: Set to true if a page flag should be set
+	 *                    Needed when $lastRevision has to be set to sth. !=0
 	 * @return bool true on success, false on failure
 	 * @private
 	 */
-	public function updateRevisionOn( &$dbw, $revision, $lastRevision = null, $lastRevIsRedirect = null ) {
+	public function updateRevisionOn( &$dbw, $revision, $lastRevision = null, $lastRevIsRedirect = null, $setNewFlag = false ) {
 		wfProfileIn( __METHOD__ );
 
 		$text = $revision->getText();
@@ -1806,11 +1808,15 @@ class Article {
 			$conditions['page_latest'] = $lastRevision;
 		}
 
+		if ( !$setNewFlag ) {
+			$setNewFlag = ( $lastRevision === 0 );
+		}
+
 		$dbw->update( 'page',
 			array( /* SET */
 				'page_latest'      => $revision->getId(),
 				'page_touched'     => $dbw->timestamp(),
-				'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
+				'page_is_new'      => $setNewFlag,
 				'page_is_redirect' => $rt !== null ? 1 : 0,
 				'page_len'         => strlen( $text ),
 			),

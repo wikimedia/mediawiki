@@ -488,6 +488,8 @@ class MediaWiki {
 		if ( $action === 'historysubmit' ) {
 			if ( $request->getBool( 'revisiondelete' ) ) {
 				$action = 'revisiondelete';
+			} elseif ( $request->getBool( 'revisionmove' ) ) {
+				$action = 'revisionmove';
 			} else {
 				$action = 'view';
 			}
@@ -574,6 +576,11 @@ class MediaWiki {
 			case 'revisiondelete':
 				# For show/hide submission from history page
 				$special = SpecialPage::getPage( 'Revisiondelete' );
+				$special->execute( '' );
+				break;
+			case 'revisionmove':
+				# For revision move submission from history page
+				$special = SpecialPage::getPage( 'RevisionMove' );
 				$special->execute( '' );
 				break;
 			default:

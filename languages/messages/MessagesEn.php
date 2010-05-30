@@ -1553,6 +1553,27 @@ Please check the logs.',
 'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from administrators.
 See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
 
+# SpecialRevisionMove // FIXME add to messages.inc
+'moverevlogentry'                  => 'moved $3 revisions from $1 to $2',
+'revisionmove'                     => 'Move revisions from "$1"',
+'revisionmove-backlink'            => '← $1',
+'revmove-explain'                  => 'The following revisions will be moved from $1 to the specified target page. If the target doesn\'t exist, it is created. Otherwise, these revisions will be merged into the page history.',
+'revmove-legend'                   => 'Set target page and summary',
+'revmove-submit'                   => 'Move revisions to selected page',
+'revisionmoveselectedversions'     => 'Move selected revisions',
+'revmove-reasonfield'              => 'Summary and reason:',
+'revmove-titlefield'               => 'Target page:',
+'revmove-badparam-title'           => 'Bad parameters',
+'revmove-badparam'                 => '<span class="error">Your request contains illegal or insufficient parameters. Please hit "back" and try again.</span>',
+'revmove-norevisions-title'        => 'Invalid target revision',
+'revmove-norevisions'              => 'You have either not specified a target revision(s) to perform this function or the specified revision does not exist.',
+'revmove-nullmove-title'           => 'Bad title',
+'revmove-nullmove'                 => '<span class="error">Source and target page are identical. Please hit "back" and enter a page name different to "$1".</span>',
+'revmove-permissionerror-title'    => 'Blub',
+'revmove-permissionerror'          => 'Bla',
+'revmove-success-existing'         => '{{PLURAL:$1|One revision from [[$2]] has|$1 revisions from [[$2]] have}} been moved to the existing page [[$3]].',
+'revmove-success-created'          => '{{PLURAL:$1|One revision from [[$2]] has|$1 revisions from [[$2]] have}} been moved to the newly created page [[$3]].',
+
 # History merging
 'mergehistory'                     => 'Merge page histories',
 'mergehistory-header'              => 'This page lets you merge revisions of the history of one source page into a newer page.
@@ -1955,6 +1976,7 @@ You can also choose to let others contact you through your user or talk page wit
 'action-userrights'           => 'edit all user rights',
 'action-userrights-interwiki' => 'edit user rights of users on other wikis',
 'action-siteadmin'            => 'lock or unlock the database',
+'action-revisionmove'         => 'move revisions',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|change|changes}}',
@@ -2739,7 +2761,10 @@ The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe
 'revertpage-nouser' => 'Reverted edits by (username removed) to last revision by [[User:$1|$1]]',
 'rollback-success'  => 'Reverted edits by $1;
 changed back to last revision by $2.',
-'sessionfailure'    => 'There seems to be a problem with your login session;
+
+# Edit tokens
+'sessionfailure-title' => 'Session failure',
+'sessionfailure'       => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 

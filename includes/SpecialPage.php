@@ -189,6 +189,7 @@ class SpecialPage {
 		'Mypage'                    => array( 'SpecialMypage' ),
 		'Mytalk'                    => array( 'SpecialMytalk' ),
 		'Revisiondelete'            => 'SpecialRevisionDelete',
+		'RevisionMove'              => 'SpecialRevisionMove',
 		'Specialpages'              => array( 'UnlistedSpecialPage', 'Specialpages' ),
 		'Userlogout'                => array( 'UnlistedSpecialPage', 'Userlogout' ),
 	);
