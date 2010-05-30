@@ -1582,7 +1582,7 @@ if( count( $errs ) ) {
 		<div class="config-input">
 			<label class="column">Superuser account:</label>
 			<input type="checkbox" name="useroot" id="useroot" <?php if( $useRoot ) { ?>checked="checked" <?php } ?> />
-			&nbsp;<label for="useroot">Use superuser account</label>
+			&#160;<label for="useroot">Use superuser account</label>
 		</div>
 		<div class="config-input"><?php aField( $conf, "RootUser", "Superuser name:", "text" ); ?></div>
 		<div class="config-input"><?php aField( $conf, "RootPW", "Superuser password:", "password" ); ?></div>
@@ -1689,7 +1689,7 @@ if( count( $errs ) ) {
 	</fieldset>
 
 	<div class="config-input" style="padding:2em 0 3em">
-		<label class='column'>&nbsp;</label>
+		<label class='column'>&#160;</label>
 		<input type="submit" value="Install MediaWiki!" class="btn-install" />
 	</div>
 </div>

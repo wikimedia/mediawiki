@@ -101,7 +101,7 @@ class SpecialBookSources extends SpecialPage {
 		$form .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$form .= Xml::hidden( 'title', $title->getPrefixedText() );
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'booksources-isbn' ), 'isbn', 'isbn', 20, $this->isbn );
-		$form .= '&nbsp;' . Xml::submitButton( wfMsg( 'booksources-go' ) ) . '</p>';
+		$form .= '&#160;' . Xml::submitButton( wfMsg( 'booksources-go' ) ) . '</p>';
 		$form .= Xml::closeElement( 'form' );
 		$form .= '</fieldset>';
 		return $form;

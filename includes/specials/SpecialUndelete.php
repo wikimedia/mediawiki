@@ -1070,7 +1070,7 @@ class UndeleteForm {
 			if( $wgUser->isAllowed( 'suppressrevision' ) ) {
 				$unsuppressBox =
 					"<tr>
-						<td>&nbsp;</td>
+						<td>&#160;</td>
 						<td class='mw-input'>" .
 							Xml::checkLabel( wfMsg('revdelete-unsuppress'), 'wpUnsuppress',
 								'mw-undelete-unsuppress', $this->mUnsuppress ).
@@ -1096,7 +1096,7 @@ class UndeleteForm {
 						"</td>
 					</tr>
 					<tr>
-						<td>&nbsp;</td>
+						<td>&#160;</td>
 						<td class='mw-submit'>" .
 							Xml::submitButton( wfMsg( 'undeletebtn' ), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) . ' ' .
 							Xml::element( 'input', array( 'type' => 'reset', 'value' => wfMsg( 'undeletereset' ), 'id' => 'mw-undelete-reset' ) ) . ' ' .

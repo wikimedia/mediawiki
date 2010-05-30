@@ -550,7 +550,7 @@ class WebInstaller extends Installer {
 	 */
 	function label( $msg, $forId, $contents ) {
 		if ( strval( $msg ) == '' ) {
-			$labelText = '&nbsp;';
+			$labelText = '&#160;';
 		} else {
 			$labelText = wfMsgHtml( $msg );
 		}
@@ -717,7 +717,7 @@ class WebInstaller extends Installer {
 			$s .=
 				'<li>' .
 				Xml::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
-				'&nbsp;' .
+				'&#160;' .
 				Xml::tags( 'label', array( 'for' => $id ), $this->parse(
 					wfMsgNoTrans( $params['itemLabelPrefix'] . strtolower( $value ) )
 				) ) .
@@ -1492,7 +1492,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		return
 			'<p>'.
 			Xml::element( 'img', array( 'src' => $this->getVar( 'wgRightsIcon' ) ) ) .
-			'&nbsp;&nbsp;' .
+			'&#160;&#160;' .
 			htmlspecialchars( $this->getVar( 'wgRightsText' ) ) .
 			"</p>\n" .
 			"<p style=\"text-align: center\">" .
@@ -1725,6 +1725,6 @@ class WebInstaller_Copying extends WebInstaller_Document {
 	}
 
 	private static function replaceLeadingSpaces( $matches ) {
-		return "\n" . str_repeat( '&nbsp;', strlen( $matches[0] ) );
+		return "\n" . str_repeat( '&#160;', strlen( $matches[0] ) );
 	}
 }

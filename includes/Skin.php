@@ -875,7 +875,7 @@ CSS;
 	}
 
 	function getQuickbarCompensator( $rows = 1 ) {
-		return "<td width='152' rowspan='{$rows}'>&nbsp;</td>";
+		return "<td width='152' rowspan='{$rows}'>&#160;</td>";
 	}
 
 	/**
@@ -1275,7 +1275,7 @@ CSS;
 		  . '<input type="submit" name="go" value="' . wfMsg( 'searcharticle' ) . '" />';
 
 		if( $wgUseTwoButtonsSearchForm ) {
-			$s .= '&nbsp;<input type="submit" name="fulltext" value="' . wfMsg( 'searchbutton' ) . "\" />\n";
+			$s .= '&#160;<input type="submit" name="fulltext" value="' . wfMsg( 'searchbutton' ) . "\" />\n";
 		} else {
 			$s .= ' <a href="' . $this->escapeSearchLink() . '" rel="search">' . wfMsg( 'powersearch-legend' ) . "</a>\n";
 		}

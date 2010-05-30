@@ -1562,7 +1562,7 @@ class Article {
 		$imageDir = $wgContLang->getDir();
 		$imageUrl = $wgStylePath . '/common/images/redirect' . $imageDir . '.png';
 		$imageUrl2 = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
-		$alt2 = $wgContLang->isRTL() ? '&larr;' : '&rarr;'; // should -> and <- be used instead of entities?
+		$alt2 = $wgContLang->isRTL() ? '←' : '→'; // should -> and <- be used instead of Unicode?
 
 		if ( $appendSubtitle ) {
 			$wgOut->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );

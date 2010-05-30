@@ -333,10 +333,10 @@ class Parser {
 		$fixtags = array(
 			# french spaces, last one Guillemet-left
 			# only if there is something before the space
-			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&nbsp;\\2',
+			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;\\2',
 			# french spaces, Guillemet-right
-			'/(\\302\\253) /' => '\\1&nbsp;',
-			'/&nbsp;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, bug #11874.
+			'/(\\302\\253) /' => '\\1&#160;',
+			'/&#160;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, bug #11874.
 		);
 		$text = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
 
@@ -1366,7 +1366,7 @@ class Parser {
 
 			# Use the encoded URL
 			# This means that users can paste URLs directly into the text
-			# Funny characters like &ouml; aren't valid in URLs anyway
+			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
 			$s .= $sk->makeExternalLink( $url, $text, false, $linktype,
 				$this->getExternalLinkAttribs( $url ) ) . $dtrail . $trail;

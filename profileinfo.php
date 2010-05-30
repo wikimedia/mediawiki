@@ -111,7 +111,7 @@ class profile_point {
 				if ( $name != $this->name() )
 					$e += array( $name => $ep );
 
-			$extet = " <a href=\"" . makeurl( false, false, $e ) . "\">[&ndash;]</a>";
+			$extet = " <a href=\"" . makeurl( false, false, $e ) . "\">[–]</a>";
 		}
 		?>
 		<tr>

@@ -174,7 +174,7 @@ class SpecialMergeHistory extends SpecialPage {
 						"</td>
 					</tr>
 					<tr>
-						<td>&nbsp;</td>
+						<td>&#160;</td>
 						<td class='mw-submit'>" .
 							Xml::submitButton( wfMsg( 'mergehistory-submit' ), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
 						"</td>
