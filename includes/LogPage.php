@@ -253,7 +253,7 @@ class LogPage {
 						}
 
 					// Page moves
-					} else if ( $type == 'move' && count( $params ) == 3 ) {
+					} else if ( $type == 'move' && count( $params ) == 3 && $action != 'move_rev' ) {
 						if( $params[2] ) {
 							if ( $skin ) {
 								$details .= ' [' . wfMsg( 'move-redirect-suppressed' ) . ']';

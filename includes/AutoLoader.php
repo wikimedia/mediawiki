@@ -571,6 +571,7 @@ $wgAutoloadLocalClasses = array(
 	'RevDel_ArchivedFileItem' => 'includes/RevisionDelete.php',
 	'RevDel_LogList' => 'includes/RevisionDelete.php',
 	'RevDel_LogItem' => 'includes/RevisionDelete.php',
+	'SpecialRevisionMove' => 'includes/specials/SpecialRevisionMove.php',
 	'ShortPagesPage' => 'includes/specials/SpecialShortpages.php',
 	'SpecialActiveUsers' => 'includes/specials/SpecialActiveusers.php',
 	'SpecialAllpages' => 'includes/specials/SpecialAllpages.php',
