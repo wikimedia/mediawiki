@@ -1074,6 +1074,8 @@ $1",
 'logdelete-failure'           => "'''Không thể thiết lập khả năng hiện thị của nhật trình:'''
 $1",
 'revdel-restore'              => 'Thay đổi mức khả kiến',
+'revdel-restore-deleted'      => 'các phiên bản xóa',
+'revdel-restore-visible'      => 'các phiên bản được hiện',
 'pagehist'                    => 'Lịch sử trang',
 'deletedhist'                 => 'Lịch sử đã xóa',
 'revdelete-content'           => 'nội dung',

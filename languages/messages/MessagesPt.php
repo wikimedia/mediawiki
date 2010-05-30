@@ -1925,7 +1925,7 @@ A descrição na [$2 página de descrição] é mostrada abaixo.',
 'statistics-views-peredit'     => 'Visionamentos por edição',
 'statistics-users'             => '[[Special:ListUsers|Utilizadores]] registados',
 'statistics-users-active'      => 'Utilizadores activos',
-'statistics-users-active-desc' => 'Utilizadores que efectuaram uma ação {{PLURAL:$1|no último dia|nos últimos $1 dias}}',
+'statistics-users-active-desc' => 'Utilizadores que efectuaram uma operação {{PLURAL:$1|no último dia|nos últimos $1 dias}}',
 'statistics-mostpopular'       => 'Páginas mais vistas',
 
 'disambiguations'      => 'Desambiguações',
