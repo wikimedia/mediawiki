@@ -190,7 +190,10 @@ $messages = array(
 'underline-default' => 'د کتنمل تلواليزې چارې',
 
 # Font style option in Special:Preferences
-'editfont-default' => 'د کتنمل تلواليزې چارې',
+'editfont-default'   => 'د کتنمل تلواليزې چارې',
+'editfont-monospace' => 'يو واټنيزه ليکبڼه',
+'editfont-sansserif' => 'سان سېرېف ليکبڼه',
+'editfont-serif'     => 'سېرېف ليکبڼه',
 
 # Dates
 'sunday'        => 'اتوار',
@@ -723,6 +726,7 @@ $1',
 'revdelete-radio-unset'      => 'نه',
 'revdelete-log'              => 'د ړنګولو سبب:',
 'revdel-restore'             => 'ښکارېدنه بدلول',
+'revdel-restore-deleted'     => 'ړنګې شوې بڼې',
 'pagehist'                   => 'د مخ پېښليک',
 'deletedhist'                => 'د ړنګولو پېښليک',
 'revdelete-content'          => 'مېنځپانګه',
@@ -794,6 +798,7 @@ $1',
 'powersearch-ns'                 => 'په نوم-تشيالونو کې پلټل:',
 'powersearch-redir'              => 'مخ ګرځونې په لړليک کې اوډل',
 'powersearch-field'              => 'پلټنه د',
+'powersearch-togglelabel'        => 'کره کتل:',
 'powersearch-toggleall'          => 'ټول',
 'powersearch-togglenone'         => 'هېڅ',
 'search-external'                => 'باندنۍ پلټنه',
@@ -910,6 +915,7 @@ $1',
 'right-edit'          => 'مخونه سمول',
 'right-move'          => 'مخونه لېږدول',
 'right-movefile'      => 'دوتنې لېږدول',
+'right-upload'        => 'دوتنې پورته کول',
 'right-delete'        => 'مخونه ړنګول',
 'right-browsearchive' => 'ړنګ شوي مخونه پلټل',
 'right-undelete'      => 'يو مخ ناړنګول',
@@ -1060,7 +1066,7 @@ $1',
 'uploadnewversion-linktext' => 'د همدغې دوتنې نوې بڼه پورته کول',
 
 # File reversion
-'filerevert-comment' => 'تبصره:',
+'filerevert-comment' => 'سبب:',
 'filerevert-submit'  => 'په څټ ګرځول',
 
 # File deletion
@@ -1130,6 +1136,8 @@ $1',
 'ncategories'             => '$1 {{PLURAL:$1|وېشنيزه|وېشنيزې}}',
 'nlinks'                  => '$1 {{PLURAL:$1|تړنه|تړنې}}',
 'nmembers'                => '$1 {{PLURAL:$1|غړی|غړي}}',
+'nrevisions'              => '$1 {{PLURAL:$1|بڼه|بڼې}}',
+'nviews'                  => '$1 {{PLURAL:$1|کتنه|کتنې}}',
 'lonelypages'             => 'يتيم مخونه',
 'uncategorizedpages'      => 'په وېشنيزو ناوېشلي مخونه',
 'uncategorizedcategories' => 'په وېشنيزو ناوېشلې وېشنيزې',
@@ -1156,6 +1164,10 @@ $1',
 'protectedpages'          => 'ژغورلي مخونه',
 'protectedtitles'         => 'ژغورلي سرليکونه',
 'listusers'               => 'د کارونکو لړليک',
+'listusers-editsonly'     => 'يوازې هغه کارنان چې سمونونه يې کړي ښکاره کول',
+'listusers-creationsort'  => 'د جوړېدو د نېټې له مخې اوډل',
+'usereditcount'           => '{{PLURAL:$1|سمون|سمونونه}}',
+'usercreated'             => 'په $1 نېټه په $2 بجو جوړ شو',
 'newpages'                => 'نوي مخونه',
 'newpages-username'       => 'کارن-نوم:',
 'ancientpages'            => 'تر ټولو زاړه مخونه',
@@ -1194,12 +1206,13 @@ $1',
 'allpages-bad-ns'   => '{{SITENAME}} د "$1" په نامه هېڅ کوم نوم-تشيال نه لري.',
 
 # Special:Categories
-'categories'                  => 'وېشنيزې',
-'categoriespagetext'          => 'دا لاندينۍ {{PLURAL:$1|وېشنيزه|وېشنيزې}} مخونه يا رسنيزې دوتنې لري.
+'categories'                    => 'وېشنيزې',
+'categoriespagetext'            => 'دا لاندينۍ {{PLURAL:$1|وېشنيزه|وېشنيزې}} مخونه يا رسنيزې دوتنې لري.
 دلته [[Special:UnusedCategories|ناکارېدلې وېشنيزې]] نه دي ښکاره شوي.
 [[Special:WantedCategories|غوښتلې وېشنيزې]] هم وګورۍ.',
-'categoriesfrom'              => 'هغه وېشنيزې دې ښکاره شي چې پېلېږي په:',
-'special-categories-sort-abc' => 'د ابېڅو له مخې اوډل',
+'categoriesfrom'                => 'هغه وېشنيزې دې ښکاره شي چې پېلېږي په:',
+'special-categories-sort-count' => 'د شمېر له مخې اوډل',
+'special-categories-sort-abc'   => 'د ابېڅو له مخې اوډل',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'د کارونکي ونډې ړنګې شوې',
@@ -1217,6 +1230,7 @@ $1',
 'listusersfrom'      => 'هغه کارونکي ښکاره کړه چې نومونه يې پېلېږي په:',
 'listusers-submit'   => 'ښکاره کول',
 'listusers-noresult' => 'هېڅ کوم کارن و نه موندل شو.',
+'listusers-blocked'  => '(بنديز لګېدلی)',
 
 # Special:ActiveUsers
 'activeusers'            => 'د فعالو کارنانو لړليک',
@@ -1232,6 +1246,7 @@ $1',
 'newuserlog-autocreate-entry' => 'کارن-حساب په اتوماتيک ډول جوړ شو',
 
 # Special:ListGroupRights
+'listgrouprights'              => 'د کارن ډلو رښتې',
 'listgrouprights-group'        => 'ډله',
 'listgrouprights-rights'       => 'رښتې',
 'listgrouprights-members'      => '(د غړو لړليک)',
@@ -1253,6 +1268,9 @@ $1',
 'emailsent'       => 'برېښليک مو ولېږل شو',
 'emailsenttext'   => 'ستاسو برېښليکي پيغام ولېږل شو.',
 'emailuserfooter' => 'همدا برېښليک د $1 لخوا $2 ته د {{SITENAME}} په وېبځي کې د "همدې کارونکي ته برېښليک لېږل" د کړنې په مرسته لېږل شوی دی.',
+
+# User Messenger
+'usermessage-editor' => 'د غونډال پيغام رسونکی',
 
 # Watchlist
 'watchlist'            => 'زما کتنلړليک',
@@ -1282,6 +1300,7 @@ $1',
 'watching'   => 'د کتلو په حال کې...',
 'unwatching' => 'د نه کتلو په حال کې...',
 
+'enotif_reset'                 => 'ټول مخونه کتل شوي نخښه کول',
 'enotif_newpagetext'           => 'دا يوه نوې پاڼه ده.',
 'enotif_impersonal_salutation' => '{{SITENAME}} کارن',
 'changed'                      => 'بدل شو',
@@ -1375,7 +1394,7 @@ $1',
 'undeletelink'              => 'کتل/بيا پر ځای کول',
 'undeleteviewlink'          => 'کتل',
 'undeletereset'             => 'بياايښودل',
-'undeletecomment'           => 'تبصره:',
+'undeletecomment'           => 'سبب:',
 'undeletedarticle'          => '"[[$1]]" بېرته پرځای شو',
 'undelete-search-box'       => 'ړنګ شوي مخونه لټول',
 'undelete-search-prefix'    => 'هغه مخونه ښکاره کړه چې پېلېږي په:',
@@ -1481,11 +1500,13 @@ $1',
 'proxyblocksuccess'         => 'ترسره شو.',
 
 # Developer tools
-'lockdb'    => 'توکبنسټ تړل',
-'lockbtn'   => 'توکبنسټ تړل',
-'unlockbtn' => 'توکبنسټ پرانيستل',
+'lockdb'      => 'توکبنسټ تړل',
+'lockconfirm' => 'هو، زه د توکبنسټ تړل غواړم.',
+'lockbtn'     => 'توکبنسټ تړل',
+'unlockbtn'   => 'توکبنسټ پرانيستل',
 
 # Move page
+'move-page'               => '$1 لېږدول',
 'move-page-legend'        => 'مخ لېږدول',
 'movepagetext'            => "د لاندينۍ فورمې په کارولو سره تاسې د يوه مخ نوم بدلولی شی، چې په همدې توګه به د يوه مخ ټول پېښليک د هغه د نوي نوم سرليک ته ولېږدېږي.
 د يوه مخ، پخوانی نوم به د نوي نوم ورګرځونکی مخ وګرځي او نوي سرليک ته به وګرځولی شي.
@@ -1521,12 +1542,14 @@ $1',
 'movelogpage'             => 'د لېږدولو يادښت',
 'movelogpagetext'         => 'دا لاندې د لېږدول شوو مخونو لړليک دی.',
 'movesubpage'             => '{{PLURAL:$1|څېرمه مخ|څېرمه مخونه}}',
+'movenosubpage'           => 'دا مخ کوم څېرمه مخونه نه لري.',
 'movereason'              => 'سبب',
 'revertmove'              => 'په څټ ګرځول',
 'delete_and_move'         => 'ړنګول او لېږدول',
 'delete_and_move_confirm' => 'هو, دا مخ ړنګ کړه',
 'immobile-source-page'    => 'دا مخ نه لېږدېدنونکی دی',
 'imageinvalidfilename'    => 'د موخنې دوتنې نوم سم نه دی',
+'move-leave-redirect'     => 'يو ورګرځونکی مخ پر ځای پرېښودل',
 'move-over-sharedrepo'    => '== دوتنه شته ==
 د [[:$1]] دوتنه په يوه ګډ زېرمتون کې شته. دې نوم ته د يوې دوتنې لېږدون به د ګډې دوتنې د باطلېدلو سبب شي.',
 
@@ -1655,6 +1678,7 @@ $1',
 
 # Patrol log
 'patrol-log-auto' => '(خپلسر)',
+'patrol-log-diff' => 'بڼه $1',
 
 # Image deletion
 'filedeleteerror-short' => 'د دوتنې د ړنګولو ستونزه: $1',
@@ -1664,6 +1688,7 @@ $1',
 'nextdiff'     => 'بل توپير →',
 
 # Media information
+'thumbsize'            => 'د بټنوک کچه:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
 'file-info-size'       => '($1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4)',
 'file-nohires'         => '<small>تر دې کچې لوړې بېلن نښې نشته.</small>',
@@ -1741,6 +1766,7 @@ $1',
 'exif-lightsource-0'  => 'ناجوت',
 'exif-lightsource-1'  => 'د ورځې رڼا',
 'exif-lightsource-4'  => 'فلش',
+'exif-lightsource-9'  => 'ښه هوا',
 'exif-lightsource-11' => 'سيوری',
 
 'exif-focalplaneresolutionunit-2' => 'انچه',
@@ -1763,6 +1789,7 @@ $1',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'کيلومتره په يوه ساعت کې',
+'exif-gpsspeed-n' => 'غوټې',
 
 # External editor support
 'edit-externally'      => 'د باندنيو پروګرامونو په کارولو سره دا دوتنه سمول',

@@ -600,6 +600,8 @@ $1',
 'readonly_lag'         => 'База података је аутоматски закључана док помоћни сервери не сустигну мастер',
 'internalerror'        => 'Интерна грешка',
 'internalerror_info'   => 'Интерна грешка: $1',
+'fileappenderrorread'  => 'Није било могуће прочитати "$1" за време ажурирања.',
+'fileappenderror'      => 'Није било могуће ажурирати "$1" на "$2".',
 'filecopyerror'        => 'Не могу да ископирам фајл "$1" на "$2".',
 'filerenameerror'      => 'Не могу да преименујем фајл "$1" у "$2".',
 'filedeleteerror'      => 'Не могу да обришем фајл "$1".',
@@ -688,6 +690,7 @@ $2',
 Проверите да ли сте га добро укуцали, или [[Special:UserLogin/signup|направите нови кориснички налог]].',
 'nosuchusershort'            => 'Не постоји корисник са именом "<nowiki>$1</nowiki>". Проверите да ли сте добро написали.',
 'nouserspecified'            => 'Морате да назначите корисничко име.',
+'login-userblocked'          => 'Овај корисник је блокиран. Логовање није дозвољено.',
 'wrongpassword'              => 'Лозинка коју сте унели је неисправна. Молимо покушајте поново.',
 'wrongpasswordempty'         => 'Лозинка коју сте унели је празна. Молимо покушајте поново.',
 'passwordtooshort'           => 'Ваша лозинка је прекратка.
@@ -728,9 +731,11 @@ $2',
 Пријавите се и промените вашу лозинку.
 
 Можете игронисати ову поруку, уколико је налог направљен грешком.',
+'usernamehasherror'          => 'Корисничко име не може садржати знаке тарабе (#).',
 'login-throttled'            => 'Урадили сте превише скорих покушаја да се улогујете.
 Молимо вас да сачекате пар минута и покушате опет.',
 'loginlanguagelabel'         => 'Језик: $1',
+'suspicious-userlogout'      => 'Ваш захтев за излоговање није извршен зато што изгледа да је послат из неисправног браузера или преко кешираног проксија.',
 
 # Password reset dialog
 'resetpass'                 => 'Промените корисничку лозинку',
@@ -744,6 +749,7 @@ $2',
 'resetpass_forbidden'       => 'Лозинке не могу бити промењене',
 'resetpass-no-info'         => 'Морате бити улоговани да бисте овој страни приступили директно.',
 'resetpass-submit-loggedin' => 'Измени лозинку',
+'resetpass-submit-cancel'   => 'Поништи',
 'resetpass-wrong-oldpass'   => 'Неисправна привремена или актуелна лозинка.
 Можда сте већ успешно променили лозинку или затражили нову привремену.',
 'resetpass-temp-password'   => 'Привремена шифра:',
@@ -846,6 +852,8 @@ $2',
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне историје записа], или је [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити].',
 'userpage-userdoesnotexist'        => 'Налог "$1" није регистрован. Проверите да ли желите да правите/уређујете ову страницу.',
 'userpage-userdoesnotexist-view'   => 'Кориснички налог "$1" није регистрован.',
+'blocked-notice-logextract'        => 'Овај корисник је тренутно блокриан.
+Подаци о последњем блокирању су приложени испод као додатна информација:',
 'clearyourcache'                   => "'''Запамтите:''' Након снимања, можда морате очистити кеш вашег браузера да бисте видели промене. '''Mozilla / Firefox / Safari:''' држите ''Shift'' док кликћете ''Reload'' или притисните  ''Shift+Ctrl+R'' (''Cmd-Shift-R'' на ''Apple Mac'' машини); '''IE:''' држите ''Ctrl'' док кликћете ''Refresh'' или притисните ''Ctrl-F5''; '''Konqueror:''': само кликните ''Reload'' дугме или притисните ''F5''; корисници '''Оpera''' браузера можда морају да у потпуности очисте свој кеш преко ''Tools→Preferences''.",
 'usercssyoucanpreview'             => "'''Савет:''' Кориситите 'Прикажи претпреглед' дугме да тестирате свој нови CSS пре снимања.",
 'userjsyoucanpreview'              => "'''Савет:''' Кориситите 'Прикажи претпреглед' дугме да тестирате свој нови JS пре снимања.",
@@ -993,6 +1001,7 @@ $2',
 'rev-deleted-comment'         => '(коментар уклоњен)',
 'rev-deleted-user'            => '(корисничко име уклоњено)',
 'rev-deleted-event'           => '(историја уклоњена)',
+'rev-deleted-user-contribs'   => '[корисничко име или IP адреса су обрисани - измена је сакривена из списка доприноса]',
 'rev-deleted-text-permission' => "Ова ревизија странице је '''обрисана'''.
 Детаљи везани за ово брисање би се могли налазити у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
 'rev-deleted-text-unhide'     => "Ова ревизија странице је '''обрисана'''.
@@ -1002,6 +1011,7 @@ $2',
 Пошто сте администратор, можете је видети; Детаљи везани за ово брисање би се могли налазити у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
 'rev-deleted-no-diff'         => "Не можете видети ову разлику измена зато што је једна од ревизија '''обрисана'''.
 Детаљи везани за ово брисање би се могли налазити у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
+'rev-suppressed-no-diff'      => "Не можете да видите овај диф зато што је једна од ревизија '''обрисана'''.",
 'rev-deleted-unhide-diff'     => "Једна од ревизија за овај диф је '''обрисана'''.
 Детаљи везани за ово брисање би се могли налазити у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} историји брисања].
 Пошто сте администратор, ипак можете [$1 видети овај диф], ако желите да наставите.",
@@ -1014,6 +1024,8 @@ $2',
 'revdelete-nologtype-text'    => 'Нисте навели тип историје над којим желите да изведете ову акцију.',
 'revdelete-nologid-title'     => 'Неисправан унос у историју',
 'revdelete-nologid-text'      => 'Или нисте назначили циљани унос историје, зарад извођења ове функције, или унос који сте навели не постоји.',
+'revdelete-no-file'           => 'Тражени фајл не постоји.',
+'revdelete-show-file-confirm' => 'Да ли сте сигурни да желите да видите обрисану ревизију фајла "<nowiki>$1</nowiki>" од $2 у $3?',
 'revdelete-show-file-submit'  => 'Да',
 'revdelete-selected'          => "'''{{PLURAL:$2|Одабрана ревизија|Одабране ревизије}} за '''[[:$1]]''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Изабрани догађај из историје|Изабрани догађаји из историје}}:'''",
@@ -1040,6 +1052,8 @@ $2',
 'revdelete-logentry'          => 'промењен приказ ревизије за [[$1]]',
 'logdelete-logentry'          => 'промењена видност догађаја за страну [[$1]]',
 'revdelete-success'           => "'''Видљивост ревизије је успешно подешена.'''",
+'revdelete-failure'           => "'''Видљивост ревизије није могла бити ажурирана:'''
+$1",
 'logdelete-success'           => "'''Видност лога је успешно подешена.'''",
 'revdel-restore'              => 'Промена видности',
 'pagehist'                    => 'Историја стране',
@@ -1277,25 +1291,26 @@ $2',
 'prefs-diffs'                 => 'Ревизије',
 
 # User rights
-'userrights'                  => 'Управљање корисничким правима',
-'userrights-lookup-user'      => 'Управљај корисничким групама',
-'userrights-user-editname'    => 'Унесите корисничко име:',
-'editusergroup'               => 'Мењај групе корисника',
-'editinguser'                 => "Мењате корисничка права корисника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Промени корисничке групе',
-'saveusergroups'              => 'Сачувај корисничке групе',
-'userrights-groupsmember'     => 'Члан:',
-'userrights-groups-help'      => 'Можете контролисати групе у којима се овај корисник налази.
+'userrights'                   => 'Управљање корисничким правима',
+'userrights-lookup-user'       => 'Управљај корисничким групама',
+'userrights-user-editname'     => 'Унесите корисничко име:',
+'editusergroup'                => 'Мењај групе корисника',
+'editinguser'                  => "Мењате корисничка права корисника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Промени корисничке групе',
+'saveusergroups'               => 'Сачувај корисничке групе',
+'userrights-groupsmember'      => 'Члан:',
+'userrights-groupsmember-auto' => 'Имплицитни члан од:',
+'userrights-groups-help'       => 'Можете контролисати групе у којима се овај корисник налази.
 * Штиклирани квадратић означава да се корисник налази у групи.
 * Квадратић који није штиклиран означава да се корисник не налази у групи.
 * Звездица (*) означава да ви не можете уклонити групу уколико сте је додали, или обратно.',
-'userrights-reason'           => 'Разлог:',
-'userrights-no-interwiki'     => 'Немате овлашћења да мењате корисничка права на осталим викијима.',
-'userrights-nodatabase'       => 'База података $1 не постоји или је локална.',
-'userrights-nologin'          => 'Морате се [[Special:UserLogin|пријавити]] са администраторским налогом да додате корисничка права.',
-'userrights-notallowed'       => 'Ваш налог нема овлашћења да додаје корисника права.',
-'userrights-changeable-col'   => 'Групе које можете мењати',
-'userrights-unchangeable-col' => 'Групе које не можете мењати',
+'userrights-reason'            => 'Разлог:',
+'userrights-no-interwiki'      => 'Немате овлашћења да мењате корисничка права на осталим викијима.',
+'userrights-nodatabase'        => 'База података $1 не постоји или је локална.',
+'userrights-nologin'           => 'Морате се [[Special:UserLogin|пријавити]] са администраторским налогом да додате корисничка права.',
+'userrights-notallowed'        => 'Ваш налог нема овлашћења да додаје корисника права.',
+'userrights-changeable-col'    => 'Групе које можете мењати',
+'userrights-unchangeable-col'  => 'Групе које не можете мењати',
 
 # Groups
 'group'               => 'Група:',
@@ -1402,6 +1417,7 @@ $2',
 'action-reupload'             => 'поништи овај постојећи фајл',
 'action-reupload-shared'      => 'пиши преко верзије овог фајла на дељеном складишту',
 'action-upload_by_url'        => 'пошаљи овај фајл са URL адресе',
+'action-writeapi'             => 'користи API за писање',
 'action-delete'               => 'обриши ову страницу',
 'action-deleterevision'       => 'обриши ову ревизију',
 'action-deletedhistory'       => 'прегледај обрисану историју ове стране',
@@ -1507,6 +1523,7 @@ $2',
 'minlength1'                  => 'Имена фајлова морају имати најмање један карактер.',
 'illegalfilename'             => 'Фајл "$1" садржи карактере који нису дозвољени у називима страница. Молимо Вас промените име фајла и поново га пошаљите.',
 'badfilename'                 => 'Име слике је промењено у "$1".',
+'filetype-mime-mismatch'      => 'Екстензија фајла не одговара MIME типу.',
 'filetype-badmime'            => 'Није дозвољено слати фајлове MIME типа "$1".',
 'filetype-bad-ie-mime'        => 'Овај фајл не може бити послат зато што би Интернет Експлорер могао да га детектује "$1", што је онемогућен и потенцијално опасан тип фајла.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' није пожељан тип фајла. 
@@ -1543,6 +1560,7 @@ $2',
 Требало би да проверите историју брисања фајла пре поновног слања.',
 'successfulupload'            => 'Успешно слање',
 'uploadwarning'               => 'Упозорење при слању',
+'uploadwarning-text'          => 'Молимо Вас да измените опис фајла испод и покушате поново.',
 'savefile'                    => 'Сними фајл',
 'uploadedimage'               => 'послао "[[$1]]"',
 'overwroteimage'              => 'послата нова верзија "[[$1]]"',
@@ -1567,19 +1585,28 @@ $2',
 Разлог брисања овог фајла раније је:",
 'filename-bad-prefix'         => "Име овог фајла почиње са '''\"\$1\"''', што није описно име, најчешће је назван аутоматски са дигиталним фотоапаратом. Молимо изаберите описније име за ваш фајл.",
 
-'upload-proto-error'      => 'Некоректни протокол',
-'upload-proto-error-text' => 'Слање екстерних фајлова захтева УРЛове који почињу са <code>http://</code> или <code>ftp://</code>.',
-'upload-file-error'       => 'Интерна грешка',
-'upload-file-error-text'  => 'Дошло је до интерне грешке при покушају отварања привременог фајла на серверу.
+'upload-proto-error'        => 'Некоректни протокол',
+'upload-proto-error-text'   => 'Слање екстерних фајлова захтева УРЛове који почињу са <code>http://</code> или <code>ftp://</code>.',
+'upload-file-error'         => 'Интерна грешка',
+'upload-file-error-text'    => 'Дошло је до интерне грешке при покушају отварања привременог фајла на серверу.
 Контактирајте [[Special:ListUsers/sysop|администратора]].',
-'upload-misc-error'       => 'Непозната грешка при слању фајла',
-'upload-misc-error-text'  => 'Непозната грешка при слању фајла. Проверите да ли је УРЛ исправан и покушајте поново. Ако проблем остане, контактирајте систем администратора.',
-'upload-unknown-size'     => 'Непозната величина',
-'upload-http-error'       => 'Дошло је до HTTP грешке: $1',
+'upload-misc-error'         => 'Непозната грешка при слању фајла',
+'upload-misc-error-text'    => 'Непозната грешка при слању фајла. Проверите да ли је УРЛ исправан и покушајте поново. Ако проблем остане, контактирајте систем администратора.',
+'upload-too-many-redirects' => 'URL је садржао превише преусмерења',
+'upload-unknown-size'       => 'Непозната величина',
+'upload-http-error'         => 'Дошло је до HTTP грешке: $1',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Приступ онемогућен',
 'img-auth-nofile'       => 'Фајл "$1" не постоји.',
+
+# HTTP errors
+'http-invalid-url'      => 'Неисправан URL: $1',
+'http-request-error'    => 'HTTP захтев није прошао због непознате грешке.',
+'http-read-error'       => 'HTTP грешка при читању.',
+'http-timed-out'        => 'HTTP захтев је прекорачио време за испуњење.',
+'http-curl-error'       => 'Грешка при отварању URL: $1',
+'http-host-unreachable' => 'URL је био недоступан.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'УРЛ није доступан',
@@ -1622,6 +1649,7 @@ $2',
 'filehist-dimensions'       => 'Димензије',
 'filehist-filesize'         => 'Величина фајла',
 'filehist-comment'          => 'Коментар',
+'filehist-missing'          => 'Нема фајла',
 'imagelinks'                => 'Везе ка фајлу',
 'linkstoimage'              => '{{PLURAL:$1|Следећа страница користи|$1 Следеће странице користе}} овај фајл:',
 'linkstoimage-more'         => 'Више од $1 {{PLURAL:$1|странице се веше|страница се вежу}} за овај фајл.
@@ -1633,6 +1661,7 @@ $2',
 'duplicatesoffile'          => 'Следећи {{PLURAL:$1|фајл је дупликат|$1 фајла су дупликати|$1 фајлова су дупликати}} овог фајла ([[Special:FileDuplicateSearch/$2|више детаља]]):',
 'sharedupload'              => 'Овај фајл је са $1, и може се користити на другим пројектима.',
 'filepage-nofile'           => 'Не постоји фајл под тим именом.',
+'filepage-nofile-link'      => 'Не постоји фајл са овим именом, али га можете [$1 послати].',
 'uploadnewversion-linktext' => 'Пошаљите новију верзију ове датотеке',
 'shared-repo-from'          => 'од $1',
 
@@ -1640,7 +1669,7 @@ $2',
 'filerevert'                => 'Врати $1',
 'filerevert-legend'         => 'Врати фајл',
 'filerevert-intro'          => "Враћате '''[[Media:$1|$1]]''' на [$4 верзију од $3, $2].",
-'filerevert-comment'        => 'Коментар:',
+'filerevert-comment'        => 'Разлог:',
 'filerevert-defaultcomment' => 'Враћено на верзију од $2, $1',
 'filerevert-submit'         => 'Врати',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' је враћен на [$4 верзију од $3, $2].",
@@ -1861,6 +1890,7 @@ $2',
 'listusersfrom'      => 'Прикажи кориснике почевши од:',
 'listusers-submit'   => 'Прикажи',
 'listusers-noresult' => 'Није пронађен корисник.',
+'listusers-blocked'  => '(блокиран)',
 
 # Special:ActiveUsers
 'activeusers'            => 'Списак активних корисника',
@@ -1966,28 +1996,32 @@ $2',
 'enotif_anon_editor'           => 'анонимни корисник $1',
 'enotif_body'                  => 'Драги $WATCHINGUSERNAME,
 
-{{SITENAME}} страна $PAGETITLE је била $CHANGEDORCREATED $PAGEEDITDATE од стране $PAGEEDITOR,
-погледајте {{fullurl:$PAGETITLE}} за тренутну верзију.
+
+Страна $PAGETITLE на {{SITENAME}} је била $CHANGEDORCREATED дана $PAGEEDITDATE од стране $PAGEEDITOR,
+погледајте $PAGETITLE_URL за тренутну верзију.
 
 $NEWPAGE
 
-Резиме едитора: $PAGESUMMARY $PAGEMINOREDIT
+Резиме уредника: $PAGESUMMARY $PAGEMINOREDIT
 
-Контактирајте едитора:
-пошта {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
-вики {{fullurl:User:$PAGEEDITOR}}
+Контактирајте уредника:
+пошта $PAGEEDITOR_EMAIL
+вики $PAGEEDITOR_WIKI
 
 Неће бити других обавештења у случају даљих промена уколико не посетите ову страну.
 Такође можете да ресетујете заставице за обавештења за све ваше надгледане стране на вашем списку надгледања.
 
-             Ваш пријатељски {{SITENAME}} систем обавештавања
+             Срдачно, {{SITENAME}} систем обавештавања
 
 --
-Да промените подешавања везана за списак надгледања посетите
-{{fullurl:Special:Watchlist|edit=yes}}
+Да бисте променили подешавања везана за списак надгледања, посетите
+{{fullurl:{{#special:Watchlist}}/edit}}
 
-Фидбек и даља помоћ:
-{{fullurl:Help:Садржај}}',
+Да бисте уклонили ову страну са Вашег списка надгледања, посетите
+$UNWATCHURL
+
+Подршка и даља помоћ:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Обриши страницу',
@@ -2081,7 +2115,7 @@ Protect pages included in this page (cascading protection)',
 'protect-othertime-op'        => 'друго време',
 'protect-existing-expiry'     => 'Тренутно време истека: $3, $2',
 'protect-otherreason'         => 'Други/додатни разлог:',
-'protect-otherreason-op'      => 'други/додатни разлог',
+'protect-otherreason-op'      => 'Други разлог',
 'protect-dropdown'            => '*Разлози заштите
 ** Вандализам
 ** Нежењене поруке
@@ -2134,7 +2168,7 @@ Protect pages included in this page (cascading protection)',
 'undeleteviewlink'             => 'погледај',
 'undeletereset'                => 'Поништи',
 'undeleteinvert'               => 'Инвертујте избор',
-'undeletecomment'              => 'Коментар:',
+'undeletecomment'              => 'Разлог:',
 'undeletedarticle'             => 'вратио "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 ревизија враћена|$1 ревизије врећене|$1 ревизија враћено}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|ревизија|ревизије|ревизија}} и $2 {{PLURAL:$2|фајл|фајла|фајлова}} враћено',
@@ -2306,10 +2340,12 @@ $1',
 'ipb_already_blocked'             => '"$1" је већ блокиран',
 'ipb-needreblock'                 => '== Већ блокиран ==
 $1 је већ блокиран. Да ли желите да промените подешавања?',
+'ipb-otherblocks-header'          => 'Други {{PLURAL:$1|блок|блокови}}',
 'ipb_cant_unblock'                => 'Грешка: ИД блока $1 није нађен. Могуће је да је већ одблокиран.',
 'ipb_blocked_as_range'            => 'Грешка: IP $1 није директно блокиран и не може бити одблокиран.
 Међутим, блокиран је као део опсега $2, који може бити одблокиран.',
 'ip_range_invalid'                => 'Нетачан блок ИП адреса.',
+'ip_range_toolarge'               => 'Опсези блокирања шири од /$1 нису дозвољени.',
 'blockme'                         => 'Блокирај ме',
 'proxyblocker'                    => 'Блокер проксија',
 'proxyblocker-disabled'           => 'Ова фукција је искључена.',
@@ -3095,15 +3131,15 @@ $1',
 'watchlistedit-normal-title'   => 'Уреди списак надгледања',
 'watchlistedit-normal-legend'  => 'Уклони наслове са списка надгледања',
 'watchlistedit-normal-explain' => 'Списак страница које надгледате је приказан испод.
-Да уклоните страницу, обележите квадратић поред, и кликните на дугме Уклони наслове.
-Такође, можете да [[Special:Watchlist/raw|измените сиров списак]].',
+Да уклоните страницу, обележите квадратић поред, и кликните на дугме "{{int:Watchlistedit-normal-submit}}".
+Такође можете да [[Special:Watchlist/raw|измените списак у простом формату]].',
 'watchlistedit-normal-submit'  => 'Уклони наслове',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 чланак је уклоњен|$1 чланка су уклоњена|$1 чланака је уклоњено}} са вашег списка надгледања:',
 'watchlistedit-raw-title'      => 'мењање сировог списка надгледања',
 'watchlistedit-raw-legend'     => 'мењање сировог списка надгледања',
-'watchlistedit-raw-explain'    => 'Наслови у вашој страници надгледања су приказани испод, и могу се мењати додавањем или одузимањем са списка;
-један наслов по линији.
-Када завршите, кликните Освежи списак надгледања.
+'watchlistedit-raw-explain'    => 'Наслови са Вашег списка надгледања су приказани испод и могу се мењати додавањем или одузимањем;
+Пишите један наслов по линији.
+Када завршите, кликните "{{int:Watchlistedit-raw-submit}}".
 Такође, можете [[Special:Watchlist/edit|користити стандардан уређивач списка]].',
 'watchlistedit-raw-titles'     => 'Наслови:',
 'watchlistedit-raw-submit'     => 'Освежите списак надгледања',
@@ -3144,7 +3180,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'Путања фајла',
 'filepath-page'    => 'Фајл:',
-'filepath-submit'  => 'Путања',
+'filepath-submit'  => 'Пошаљи',
 'filepath-summary' => 'Ова специјална страна враћа комплетну путању за фајл.
 Слике бивају приказане у пуној резолуцији, други типови фајлова бивају директно стартовани помоћу њима придружених прогама.
 
@@ -3220,6 +3256,7 @@ $1',
 'htmlform-invalid-input'       => 'Има проблема са делом Вашег уноса',
 'htmlform-select-badoption'    => 'Вредност коју сте навели није исправна опција.',
 'htmlform-int-invalid'         => 'Вредност који сте навели није цели број.',
+'htmlform-float-invalid'       => 'Вредност коју сте задали није број.',
 'htmlform-int-toolow'          => 'Вредности коју сте навели је испод минимума од $1',
 'htmlform-int-toohigh'         => 'Вредност коју сте навели је изнад максимума од $1',
 'htmlform-submit'              => 'Пошаљи',
@@ -3230,9 +3267,12 @@ $1',
 'ajax-add-category'            => 'Додај категорију',
 'ajax-add-category-submit'     => 'Додај',
 'ajax-confirm-title'           => 'Потврди акцију',
+'ajax-confirm-prompt'          => 'Испод можете да додате опис измене.
+Притисните "Сними" да бисте снимили своју измену.',
 'ajax-confirm-save'            => 'Сачувај',
 'ajax-add-category-summary'    => 'Додај категорију "$1"',
 'ajax-remove-category-summary' => 'Уклони категорију "$1"',
+'ajax-confirm-actionsummary'   => 'Акција за извршење:',
 'ajax-error-title'             => 'Грешка',
 'ajax-error-dismiss'           => 'У реду',
 'ajax-remove-category-error'   => 'Није било могуће уклонити ову категорију.
