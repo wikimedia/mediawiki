@@ -5,6 +5,7 @@
 # Extension classes are specified with $wgAutoloadClasses
 # This array is a global instead of a static member of AutoLoader to work around a bug in APC
 global $wgAutoloadLocalClasses;
+
 $wgAutoloadLocalClasses = array(
 	# Includes
 	'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
@@ -328,7 +329,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryLogEvents' => 'includes/api/ApiQueryLogEvents.php',
 	'ApiQueryProtectedTitles' => 'includes/api/ApiQueryProtectedTitles.php',
 	'ApiQueryRandom' => 'includes/api/ApiQueryRandom.php',
-	'ApiQueryRecentChanges'=> 'includes/api/ApiQueryRecentChanges.php',
+	'ApiQueryRecentChanges' => 'includes/api/ApiQueryRecentChanges.php',
 	'ApiQueryRevisions' => 'includes/api/ApiQueryRevisions.php',
 	'ApiQuerySearch' => 'includes/api/ApiQuerySearch.php',
 	'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
@@ -652,14 +653,17 @@ class AutoLoader {
 			# The case can sometimes be wrong when unserializing PHP 4 objects
 			$filename = false;
 			$lowerClass = strtolower( $className );
+
 			foreach ( $wgAutoloadLocalClasses as $class2 => $file2 ) {
 				if ( strtolower( $class2 ) == $lowerClass ) {
 					$filename = $file2;
 				}
 			}
+
 			if ( !$filename ) {
-				if( function_exists( 'wfDebug' ) )
+				if ( function_exists( 'wfDebug' ) )
 					wfDebug( "Class {$className} not found; skipped loading\n" );
+
 				# Give up
 				return false;
 			}
@@ -670,15 +674,17 @@ class AutoLoader {
 			global $IP;
 			$filename = "$IP/$filename";
 		}
+
 		require( $filename );
+
 		return true;
 	}
 
 	static function loadAllExtensions() {
 		global $wgAutoloadClasses;
 
-		foreach( $wgAutoloadClasses as $class => $file ) {
-			if( !( class_exists( $class, false ) || interface_exists( $class, false ) ) ) {
+		foreach ( $wgAutoloadClasses as $class => $file ) {
+			if ( !( class_exists( $class, false ) || interface_exists( $class, false ) ) ) {
 				require( $file );
 			}
 		}

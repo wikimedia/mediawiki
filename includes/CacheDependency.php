@@ -5,6 +5,7 @@
  * than instantiating one of these objects directly.
  * @ingroup Cache
  */
+
 class DependencyWrapper {
 	var $value;
 	var $deps;
@@ -17,9 +18,11 @@ class DependencyWrapper {
 	 */
 	function __construct( $value = false, $deps = array() ) {
 		$this->value = $value;
+
 		if ( !is_array( $deps ) ) {
 			$deps = array( $deps );
 		}
+
 		$this->deps = $deps;
 	}
 
@@ -32,6 +35,7 @@ class DependencyWrapper {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -81,6 +85,7 @@ class DependencyWrapper {
 		$callbackParams = array(), $deps = array() )
 	{
 		$obj = $cache->get( $key );
+
 		if ( is_object( $obj ) && $obj instanceof DependencyWrapper && !$obj->isExpired() ) {
 			$value = $obj->value;
 		} elseif ( $callback ) {
@@ -91,6 +96,7 @@ class DependencyWrapper {
 		} else {
 			$value = null;
 		}
+
 		return $value;
 	}
 }
@@ -207,6 +213,7 @@ class TitleDependency extends CacheDependency {
 		if ( !isset( $this->titleObj ) ) {
 			$this->titleObj = Title::makeTitle( $this->ns, $this->dbk );
 		}
+
 		return $this->titleObj;
 	}
 
@@ -255,6 +262,7 @@ class TitleListDependency extends CacheDependency {
 		foreach ( $this->getLinkBatch()->data as $ns => $dbks ) {
 			if ( count( $dbks ) > 0 ) {
 				$timestamps[$ns] = array();
+
 				foreach ( $dbks as $dbk => $value ) {
 					$timestamps[$ns][$dbk] = false;
 				}
@@ -276,6 +284,7 @@ class TitleListDependency extends CacheDependency {
 				$timestamps[$row->page_namespace][$row->page_title] = $row->page_touched;
 			}
 		}
+
 		return $timestamps;
 	}
 
@@ -297,6 +306,7 @@ class TitleListDependency extends CacheDependency {
 
 	function isExpired() {
 		$newTimestamps = $this->calculateTimestamps();
+
 		foreach ( $this->timestamps as $ns => $dbks ) {
 			foreach ( $dbks as $dbk => $oldTimestamp ) {
 				$newTimestamp = $newTimestamps[$ns][$dbk];
@@ -319,6 +329,7 @@ class TitleListDependency extends CacheDependency {
 				}
 			}
 		}
+
 		return false;
 	}
 }

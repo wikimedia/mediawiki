@@ -41,6 +41,7 @@ class BacklinkCache {
 		if ( !isset( $this->db ) ) {
 			$this->db = wfGetDB( DB_SLAVE );
 		}
+
 		return $this->db;
 	}
 
@@ -60,14 +61,17 @@ class BacklinkCache {
 			// Partial range, not cached
 			wfDebug( __METHOD__ . ": from DB (uncacheable range)\n" );
 			$conds = $this->getConditions( $table );
+
 			// Use the from field in the condition rather than the joined page_id,
 			// because databases are stupid and don't necessarily propagate indexes.
 			if ( $startId ) {
 				$conds[] = "$fromField >= " . intval( $startId );
 			}
+
 			if ( $endId ) {
 				$conds[] = "$fromField <= " . intval( $endId );
 			}
+
 			$res = $this->getDB()->select(
 				array( $table, 'page' ),
 				array( 'page_namespace', 'page_title', 'page_id' ),
@@ -78,6 +82,7 @@ class BacklinkCache {
 					'ORDER BY' => $fromField
 				) );
 			$ta = TitleArray::newFromResult( $res );
+
 			wfProfileOut( __METHOD__ );
 			return $ta;
 		}
@@ -95,7 +100,9 @@ class BacklinkCache {
 				) );
 			$this->fullResultCache[$table] = $res;
 		}
+
 		$ta = TitleArray::newFromResult( $this->fullResultCache[$table] );
+
 		wfProfileOut( __METHOD__ );
 		return $ta;
 	}
@@ -150,6 +157,7 @@ class BacklinkCache {
 			default:
 				throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 		}
+
 		return $conds;
 	}
 
@@ -167,6 +175,7 @@ class BacklinkCache {
 		}
 
 		$titleArray = $this->getLinks( $table );
+
 		return $titleArray->count();
 	}
 
@@ -193,29 +202,35 @@ class BacklinkCache {
 		if ( isset( $this->fullResultCache[$table] ) ) {
 			$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
 			wfDebug( __METHOD__ . ": got from full result cache\n" );
+
 			return $cacheEntry['batches'];
 		}
 
 		// Try memcached
 		global $wgMemc;
+
 		$memcKey = wfMemcKey(
 			'backlinks',
 			md5( $this->title->getPrefixedDBkey() ),
 			$table,
 			$batchSize
 		);
+
 		$memcValue = $wgMemc->get( $memcKey );
 
 		if ( is_array( $memcValue ) ) {
 			$cacheEntry = $memcValue;
 			wfDebug( __METHOD__ . ": got from memcached $memcKey\n" );
+
 			return $cacheEntry['batches'];
 		}
+
 		// Fetch from database
 		$this->getLinks( $table );
 		$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
 		// Save to memcached
 		$wgMemc->set( $memcKey, $cacheEntry, self::CACHE_EXPIRY );
+
 		wfDebug( __METHOD__ . ": got from database\n" );
 		return $cacheEntry['batches'];
 	}
@@ -254,6 +269,7 @@ class BacklinkCache {
 
 			$batches[] = array( $start, $end );
 		}
+
 		return array( 'numRows' => $numRows, 'batches' => $batches );
 	}
 }

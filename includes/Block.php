@@ -63,6 +63,7 @@ class Block {
 	public static function newFromDB( $address, $user = 0, $killExpired = true ) {
 		$block = new Block;
 		$block->load( $address, $user, $killExpired );
+
 		if ( $block->isValid() ) {
 			return $block;
 		} else {
@@ -81,6 +82,7 @@ class Block {
 		$res = $dbr->resultObject( $dbr->select( 'ipblocks', '*',
 			array( 'ipb_id' => $id ), __METHOD__ ) );
 		$block = new Block;
+
 		if ( $block->loadFromResult( $res ) ) {
 			return $block;
 		} else {
@@ -142,6 +144,7 @@ class Block {
 			$db = wfGetDB( DB_SLAVE );
 			$options = array();
 		}
+
 		return $db;
 	}
 
@@ -163,6 +166,7 @@ class Block {
 		if ( 0 == $user && $address === '' ) {
 			# Invalid user specification, not blocked
 			$this->clear();
+
 			return false;
 		}
 
@@ -170,6 +174,7 @@ class Block {
 		if ( $user ) {
 			$res = $db->resultObject( $db->select( 'ipblocks', '*', array( 'ipb_user' => $user ),
 				__METHOD__, $options ) );
+
 			if ( $this->loadFromResult( $res, $killExpired ) ) {
 				return true;
 			}
@@ -190,6 +195,7 @@ class Block {
 					if ( !$this->mCreateAccount ) {
 						$this->clear();
 					}
+
 					return false;
 				} else {
 					return true;
@@ -204,6 +210,7 @@ class Block {
 				if ( !$this->mCreateAccount ) {
 					$this->clear();
 				}
+
 				return false;
 			} else {
 				return true;
@@ -266,6 +273,7 @@ class Block {
 			}
 		}
 		$res->free();
+
 		return $ret;
 	}
 
@@ -304,6 +312,7 @@ class Block {
 
 		$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
 		$success = $this->loadFromResult( $res, $killExpired );
+
 		return $success;
 	}
 
@@ -368,6 +377,7 @@ class Block {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'ipblocks', array( 'ipb_id' => $this->mId ), __METHOD__ );
+
 		return $dbw->affectedRows() > 0;
 	}
 
@@ -379,6 +389,7 @@ class Block {
 	 */
 	public function insert( $dbw = null ) {
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
+
 		if ( $dbw === null )
 			$dbw = wfGetDB( DB_MASTER );
 
@@ -476,6 +487,7 @@ class Block {
 		if ( !$this->mUser && $this->mAnonOnly ) {
 			$this->mBlockEmail = 0;
 		}
+
 		if ( !$this->mByName ) {
 			if ( $this->mBy ) {
 				$this->mByName = User::whoIs( $this->mBy );
@@ -520,8 +532,9 @@ class Block {
 				wfDebug( "No IP found to retroactively autoblock\n" );
 			} else {
 				while ( $row = $dbr->fetchObject( $res ) ) {
-					if ( $row->rc_ip )
+					if ( $row->rc_ip ) {
 						$this->doAutoblock( $row->rc_ip );
+					}
 				}
 			}
 		}
@@ -602,13 +615,16 @@ class Block {
 			# exceed the user block. If it would exceed, then do nothing, else
 			# prolong block time
 			if ( $this->mExpiry &&
-			( $this->mExpiry < Block::getAutoblockExpiry( $ipblock->mTimestamp ) ) ) {
+				( $this->mExpiry < Block::getAutoblockExpiry( $ipblock->mTimestamp ) )
+			) {
 				return;
 			}
+
 			# Just update the timestamp
 			if ( !$justInserted ) {
 				$ipblock->updateTimestamp();
 			}
+
 			return;
 		} else {
 			$ipblock = new Block;
@@ -627,6 +643,7 @@ class Block {
 		# Continue suppressing the name if needed
 		$ipblock->mHideName = $this->mHideName;
 		$ipblock->mAllowUsertalk = $this->mAllowUsertalk;
+
 		# If the user is already blocked with an expiry date, we don't
 		# want to pile on top of that!
 		if ( $this->mExpiry ) {
@@ -634,6 +651,7 @@ class Block {
 		} else {
 			$ipblock->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 		}
+
 		# Insert it
 		return $ipblock->insert();
 	}
@@ -644,6 +662,7 @@ class Block {
 	 */
 	public function deleteIfExpired() {
 		wfProfileIn( __METHOD__ );
+
 		if ( $this->isExpired() ) {
 			wfDebug( "Block::deleteIfExpired() -- deleting\n" );
 			$this->delete();
@@ -652,6 +671,7 @@ class Block {
 			wfDebug( "Block::deleteIfExpired() -- not expired\n" );
 			$retVal = false;
 		}
+
 		wfProfileOut( __METHOD__ );
 		return $retVal;
 	}
@@ -662,6 +682,7 @@ class Block {
 	 */
 	public function isExpired() {
 		wfDebug( "Block::isExpired() checking current " . wfTimestampNow() . " vs $this->mExpiry\n" );
+
 		if ( !$this->mExpiry ) {
 			return false;
 		} else {
@@ -778,6 +799,7 @@ class Block {
 	 */
 	public static function getAutoblockExpiry( $timestamp ) {
 		global $wgAutoblockExpiry;
+
 		return wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
 	}
 
@@ -813,6 +835,7 @@ class Block {
 				$range = "$newip/{$parts[1]}";
 			}
 		}
+
 		return $range;
 	}
 
@@ -849,6 +872,7 @@ class Block {
 		if ( is_null( $msg ) ) {
 			$msg = array();
 			$keys = array( 'infiniteblock', 'expiringblock' );
+
 			foreach ( $keys as $key ) {
 				$msg[$key] = wfMsgHtml( $key );
 			}
@@ -863,6 +887,7 @@ class Block {
 			$expiretimestr = htmlspecialchars( $wgLang->time( $expiry, true ) );
 			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array( $expiredatestr, $expiretimestr ) );
 		}
+
 		return $expirystr;
 	}
 
@@ -881,7 +906,7 @@ class Block {
 				return false;
 			}
 		}
+
 		return $expiry;
 	}
-
 }

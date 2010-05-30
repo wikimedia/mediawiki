@@ -3,6 +3,7 @@
  * This class checks if user can get extra rights
  * because of conditions specified in $wgAutopromote
  */
+
 class Autopromote {
 	/**
 	 * Get the groups for the given user based on $wgAutopromote.
@@ -12,9 +13,11 @@ class Autopromote {
 	 */
 	public static function getAutopromoteGroups( User $user ) {
 		global $wgAutopromote;
+
 		$promote = array();
-		foreach( $wgAutopromote as $group => $cond ) {
-			if( self::recCheckCondition( $cond, $user ) )
+
+		foreach ( $wgAutopromote as $group => $cond ) {
+			if ( self::recCheckCondition( $cond, $user ) )
 				$promote[] = $group;
 		}
 
@@ -41,38 +44,52 @@ class Autopromote {
 	 */
 	private static function recCheckCondition( $cond, User $user ) {
 		$validOps = array( '&', '|', '^', '!' );
-		if( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
+
+		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
 			# Recursive condition
-			if( $cond[0] == '&' ) {
-				foreach( array_slice( $cond, 1 ) as $subcond )
-					if( !self::recCheckCondition( $subcond, $user ) )
+			if ( $cond[0] == '&' ) {
+				foreach ( array_slice( $cond, 1 ) as $subcond ) {
+					if ( !self::recCheckCondition( $subcond, $user ) ) {
 						return false;
-				return true;
-			} elseif( $cond[0] == '|' ) {
-				foreach( array_slice( $cond, 1 ) as $subcond )
-					if( self::recCheckCondition( $subcond, $user ) )
-						return true;
-				return false;
-			} elseif( $cond[0] == '^' ) {
-				$res = null;
-				foreach( array_slice( $cond, 1 ) as $subcond ) {
-					if( is_null( $res ) )
-						$res = self::recCheckCondition( $subcond, $user );
-					else
-						$res = ($res xor self::recCheckCondition( $subcond, $user ));
+					}
 				}
+
+				return true;
+			} elseif ( $cond[0] == '|' ) {
+				foreach ( array_slice( $cond, 1 ) as $subcond ) {
+					if ( self::recCheckCondition( $subcond, $user ) ) {
+						return true;
+					}
+				}
+
+				return false;
+			} elseif ( $cond[0] == '^' ) {
+				$res = null;
+				foreach ( array_slice( $cond, 1 ) as $subcond ) {
+					if ( is_null( $res ) ) {
+						$res = self::recCheckCondition( $subcond, $user );
+					} else {
+						$res = ( $res xor self::recCheckCondition( $subcond, $user ) );
+					}
+				}
+
 				return $res;
 			} elseif ( $cond[0] = '!' ) {
-				foreach( array_slice( $cond, 1 ) as $subcond )
-					if( self::recCheckCondition( $subcond, $user ) )
+				foreach ( array_slice( $cond, 1 ) as $subcond ) {
+					if ( self::recCheckCondition( $subcond, $user ) ) {
 						return false;
+					}
+				}
+
 				return true;
 			}
 		}
 		# If we got here, the array presumably does not contain other condi-
 		# tions; it's not recursive.  Pass it off to self::checkCondition.
-		if( !is_array( $cond ) )
+		if ( !is_array( $cond ) ) {
 			$cond = array( $cond );
+		}
+
 		return self::checkCondition( $cond, $user );
 	}
 
@@ -87,13 +104,15 @@ class Autopromote {
 	 * @return bool Whether the condition is true for the user
 	 */
 	private static function checkCondition( $cond, User $user ) {
-		if( count( $cond ) < 1 )
+		if ( count( $cond ) < 1 ) {
 			return false;
+		}
+
 		switch( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
-				if( User::isValidEmailAddr( $user->getEmail() ) ) {
+				if ( User::isValidEmailAddr( $user->getEmail() ) ) {
 					global $wgEmailAuthentication;
-					if( $wgEmailAuthentication ) {
+					if ( $wgEmailAuthentication ) {
 						return (bool)$user->getEmailAuthenticationTimestamp();
 					} else {
 						return true;
@@ -120,9 +139,10 @@ class Autopromote {
 			default:
 				$result = null;
 				wfRunHooks( 'AutopromoteCondition', array( $cond[0], array_slice( $cond, 1 ), $user, &$result ) );
-				if( $result === null ) {
+				if ( $result === null ) {
 					throw new MWException( "Unrecognized condition {$cond[0]} for autopromotion!" );
 				}
+
 				return $result ? true : false;
 		}
 	}
