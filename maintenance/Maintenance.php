@@ -110,10 +110,10 @@ abstract class Maintenance {
 	 * Add a parameter to the script. Will be displayed on --help
 	 * with the associated description
 	 *
-	 * @param $name String The name of the param (help, version, etc)
-	 * @param $description String The description of the param to show on --help
-	 * @param $required boolean Is the param required?
-	 * @param $withArg Boolean Is an argument required with this option?
+	 * @param $name String: the name of the param (help, version, etc)
+	 * @param $description String: the description of the param to show on --help
+	 * @param $required Boolean: is the param required?
+	 * @param $withArg Boolean: is an argument required with this option?
 	 */
 	protected function addOption( $name, $description, $required = false, $withArg = false ) {
 		$this->mParams[$name] = array( 'desc' => $description, 'require' => $required, 'withArg' => $withArg );
@@ -121,8 +121,8 @@ abstract class Maintenance {
 
 	/**
 	 * Checks to see if a particular param exists.
-	 * @param $name String The name of the param
-	 * @return boolean
+	 * @param $name String: the name of the param
+	 * @return Boolean
 	 */
 	protected function hasOption( $name ) {
 		return isset( $this->mOptions[$name] );
@@ -130,9 +130,9 @@ abstract class Maintenance {
 
 	/**
 	 * Get an option, or return the default
-	 * @param $name String The name of the param
-	 * @param $default mixed Anything you want, default null
-	 * @return mixed
+	 * @param $name String: the name of the param
+	 * @param $default Mixed: anything you want, default null
+	 * @return Mixed
 	 */
 	protected function getOption( $name, $default = null ) {
 		if ( $this->hasOption( $name ) ) {
@@ -146,9 +146,9 @@ abstract class Maintenance {
 
 	/**
 	 * Add some args that are needed
-	 * @param $arg String Name of the arg, like 'start'
-	 * @param $description String Short description of the arg
-	 * @param $required Boolean Is this required?
+	 * @param $arg String: name of the arg, like 'start'
+	 * @param $description String: short description of the arg
+	 * @param $required Boolean: is this required?
 	 */
 	protected function addArg( $arg, $description, $required = true ) {
 		$this->mArgList[] = array(
@@ -160,8 +160,8 @@ abstract class Maintenance {
 
 	/**
 	 * Does a given argument exist?
-	 * @param $argId int The integer value (from zero) for the arg
-	 * @return boolean
+	 * @param $argId Integer: the integer value (from zero) for the arg
+	 * @return Boolean
 	 */
 	protected function hasArg( $argId = 0 ) {
 		return isset( $this->mArgs[$argId] );
@@ -169,8 +169,8 @@ abstract class Maintenance {
 
 	/**
 	 * Get an argument.
-	 * @param $argId int The integer value (from zero) for the arg
-	 * @param $default mixed The default if it doesn't exist
+	 * @param $argId Integer: the integer value (from zero) for the arg
+	 * @param $default Mixed: the default if it doesn't exist
 	 * @return mixed
 	 */
 	protected function getArg( $argId = 0, $default = null ) {
@@ -179,7 +179,7 @@ abstract class Maintenance {
 
 	/**
 	 * Set the batch size.
-	 * @param $s int The number of operations to do in a batch
+	 * @param $s Integer: the number of operations to do in a batch
 	 */
 	protected function setBatchSize( $s = 0 ) {
 		$this->mBatchSize = $s;
@@ -195,17 +195,19 @@ abstract class Maintenance {
 
 	/**
 	 * Return input from stdin.
-	 * @param $length int The number of bytes to read. If null,
+	 * @param $length Integer: the number of bytes to read. If null,
 	 *        just return the handle. Maintenance::STDIN_ALL returns
 	 *        the full length
-	 * @return mixed
+	 * @return Mixed
 	 */
 	protected function getStdin( $len = null ) {
-		if ( $len == Maintenance::STDIN_ALL )
+		if ( $len == Maintenance::STDIN_ALL ) {
 			return file_get_contents( 'php://stdin' );
+		}
 		$f = fopen( 'php://stdin', 'rt' );
-		if ( !$len )
+		if ( !$len ) {
 			return $f;
+		}
 		$input = fgets( $f, $len );
 		fclose( $f );
 		return rtrim( $input );
@@ -214,8 +216,8 @@ abstract class Maintenance {
 	/**
 	 * Throw some output to the user. Scripts can call this with no fears,
 	 * as we handle all --quiet stuff here
-	 * @param $out String The text to show to the user
-	 * @param $channel Mixed Unique identifier for the channel. See function outputChanneled.
+	 * @param $out String: the text to show to the user
+	 * @param $channel Mixed: unique identifier for the channel. See function outputChanneled.
 	 */
 	protected function output( $out, $channel = null ) {
 		if ( $this->mQuiet ) {
@@ -228,8 +230,8 @@ abstract class Maintenance {
 	/**
 	 * Throw an error to the user. Doesn't respect --quiet, so don't use
 	 * this for non-error output
-	 * @param $err String The error to display
-	 * @param $die boolean If true, go ahead and die out.
+	 * @param $err String: the error to display
+	 * @param $die Boolean: If true, go ahead and die out.
 	 */
 	protected function error( $err, $die = false ) {
 		$this->outputChanneled( false );
@@ -240,7 +242,9 @@ abstract class Maintenance {
 			fwrite( $f, $err . "\n" );
 			fclose( $f );
 		}
-		if ( $die ) die();
+		if ( $die ) {
+			die();
+		}
 	}
 
 	private $atLineStart = true;
@@ -250,7 +254,7 @@ abstract class Maintenance {
 	 * Message outputter with channeled message support. Messages on the
 	 * same channel are concatenated, but any intervening messages in another
 	 * channel start a new line.
-	 * @param $msg String The message without trailing newline
+	 * @param $msg String: the message without trailing newline
 	 * @param $channel Channel identifier or null for no channel. Channel comparison uses ===.
 	 */
 	public function outputChanneled( $msg, $channel = null ) {
@@ -258,7 +262,9 @@ abstract class Maintenance {
 
 		if ( $msg === false ) {
 			// For cleanup
-			if ( !$this->atLineStart ) fwrite( $handle, "\n" );
+			if ( !$this->atLineStart ) {
+				fwrite( $handle, "\n" );
+			}
 			fclose( $handle );
 			return;
 		}
@@ -285,12 +291,12 @@ abstract class Maintenance {
 	/**
 	 * Does the script need different DB access? By default, we give Maintenance
 	 * scripts normal rights to the DB. Sometimes, a script needs admin rights
-	 * access for a reason and sometimes they want no access. Subclasses should 
+	 * access for a reason and sometimes they want no access. Subclasses should
 	 * override and return one of the following values, as needed:
 	 *    Maintenance::DB_NONE  -  For no DB access at all
 	 *    Maintenance::DB_STD   -  For normal DB access, default
 	 *    Maintenance::DB_ADMIN -  For admin DB access
-	 * @return int
+	 * @return Integer
 	 */
 	public function getDbType() {
 		return Maintenance::DB_STD;
@@ -300,28 +306,28 @@ abstract class Maintenance {
 	 * Add the default parameters to the scripts
 	 */
 	protected function addDefaultParams() {
-		$this->addOption( 'help', "Display this help message" );
-		$this->addOption( 'quiet', "Whether to supress non-error output" );
-		$this->addOption( 'conf', "Location of LocalSettings.php, if not default", false, true );
-		$this->addOption( 'wiki', "For specifying the wiki ID", false, true );
-		$this->addOption( 'globals', "Output globals at the end of processing for debugging" );
+		$this->addOption( 'help', 'Display this help message' );
+		$this->addOption( 'quiet', 'Whether to supress non-error output' );
+		$this->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
+		$this->addOption( 'wiki', 'For specifying the wiki ID', false, true );
+		$this->addOption( 'globals', 'Output globals at the end of processing for debugging' );
 		// If we support a DB, show the options
 		if ( $this->getDbType() > 0 ) {
-			$this->addOption( 'dbuser', "The DB user to use for this script", false, true );
-			$this->addOption( 'dbpass', "The password to use for this script", false, true );
+			$this->addOption( 'dbuser', 'The DB user to use for this script', false, true );
+			$this->addOption( 'dbpass', 'The password to use for this script', false, true );
 		}
 		// If we support $mBatchSize, show the option
 		if ( $this->mBatchSize ) {
 			$this->addOption( 'batch-size', 'Run this many operations ' .
-				'per batch, default: ' . $this->mBatchSize , false, true );
+				'per batch, default: ' . $this->mBatchSize, false, true );
 		}
 	}
 
 	/**
 	 * Run a child maintenance script. Pass all of the current arguments
 	 * to it.
-	 * @param $maintClass String A name of a child maintenance class
-	 * @param $classFile String Full path of where the child is
+	 * @param $maintClass String: a name of a child maintenance class
+	 * @param $classFile String: full path of where the child is
 	 * @return Maintenance child
 	 */
 	protected function runChild( $maintClass, $classFile = null ) {
@@ -348,8 +354,9 @@ abstract class Maintenance {
 	 * Disable Setup.php mostly
 	 */
 	protected static function disableSetup() {
-		if ( !defined( 'MW_NO_SETUP' ) )
+		if ( !defined( 'MW_NO_SETUP' ) ) {
 			define( 'MW_NO_SETUP', true );
+		}
 	}
 
 	/**
@@ -360,12 +367,12 @@ abstract class Maintenance {
 
 		# Abort if called from a web server
 		if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
-			$this->error( "This script must be run from the command line", true );
+			$this->error( 'This script must be run from the command line', true );
 		}
 
 		# Make sure we can handle script parameters
 		if ( !ini_get( 'register_argc_argv' ) ) {
-			$this->error( "Cannot get command line arguments, register_argc_argv is set to false", true );
+			$this->error( 'Cannot get command line arguments, register_argc_argv is set to false', true );
 		}
 
 		if ( version_compare( phpversion(), '5.2.4' ) >= 0 ) {
@@ -538,26 +545,32 @@ abstract class Maintenance {
 		# Check arg list too
 		foreach ( $this->mArgList as $k => $info ) {
 			if ( $info['require'] && !$this->hasArg( $k ) ) {
-				$this->error( "Argument <" . $info['name'] . "> required!" );
+				$this->error( 'Argument <' . $info['name'] . '> required!' );
 				$die = true;
 			}
 		}
 		
-		if ( $die ) $this->maybeHelp( true );
+		if ( $die ) {
+			$this->maybeHelp( true );
+		}
 	}
 
 	/**
 	 * Handle the special variables that are global to all scripts
 	 */
 	protected function loadSpecialVars() {
-		if ( $this->hasOption( 'dbuser' ) )
+		if ( $this->hasOption( 'dbuser' ) ) {
 			$this->mDbUser = $this->getOption( 'dbuser' );
-		if ( $this->hasOption( 'dbpass' ) )
+		}
+		if ( $this->hasOption( 'dbpass' ) ) {
 			$this->mDbPass = $this->getOption( 'dbpass' );
-		if ( $this->hasOption( 'quiet' ) )
+		}
+		if ( $this->hasOption( 'quiet' ) ) {
 			$this->mQuiet = true;
-		if ( $this->hasOption( 'batch-size' ) )
+		}
+		if ( $this->hasOption( 'batch-size' ) ) {
 			$this->mBatchSize = $this->getOption( 'batch-size' );
+		}
 	}
 
 	/**
@@ -565,7 +578,7 @@ abstract class Maintenance {
 	 * @param $force boolean Whether to force the help to show, default false
 	 */
 	protected function maybeHelp( $force = false ) {
-		$screenWidth = 80;	// TODO: Caculate this!
+		$screenWidth = 80; // TODO: Caculate this!
 		$tab = "    ";
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
 		
@@ -590,12 +603,16 @@ abstract class Maintenance {
 			}
 			$this->output( "$output\n" );
 			foreach ( $this->mParams as $par => $info ) {
-				$this->output( wordwrap( "$tab$par : " . $info['desc'], $descWidth,
-				               "\n$tab$tab" ) . "\n" );
+				$this->output(
+					wordwrap( "$tab$par : " . $info['desc'], $descWidth,
+							"\n$tab$tab" ) . "\n"
+				);
 			}
 			foreach ( $this->mArgList as $info ) {
-				$this->output( wordwrap( "$tab<" . $info['name'] . "> : " .
-				               $info['desc'], $descWidth, "\n$tab$tab" ) . "\n" );
+				$this->output(
+					wordwrap( "$tab<" . $info['name'] . "> : " .
+						$info['desc'], $descWidth, "\n$tab$tab" ) . "\n"
+				);
 			}
 			die( 1 );
 		}
@@ -617,10 +634,12 @@ abstract class Maintenance {
 		$wgCommandLineMode = true;
 
 		# If these were passed, use them
-		if ( $this->mDbUser )
+		if ( $this->mDbUser ) {
 			$wgDBadminuser = $this->mDbUser;
-		if ( $this->mDbPass )
+		}
+		if ( $this->mDbPass ) {
 			$wgDBadminpassword = $this->mDbPass;
+		}
 
 		if ( $this->getDbType() == self::DB_ADMIN && isset( $wgDBadminuser ) ) {
 			$wgDBuser = $wgDBadminuser;
@@ -743,7 +762,7 @@ abstract class Maintenance {
 
 	/**
 	 * Support function for cleaning up redundant text records
-	 * @param $delete boolean Whether or not to actually delete the records
+	 * @param $delete Boolean: whether or not to actually delete the records
 	 * @author Rob Church <robchur@gmail.com>
 	 */
 	protected function purgeRedundantText( $delete = true ) {
@@ -756,7 +775,7 @@ abstract class Maintenance {
 		$tbl_txt = $dbw->tableName( 'text' );
 
 		# Get "active" text records from the revisions table
-		$this->output( "Searching for active text records in revisions table..." );
+		$this->output( 'Searching for active text records in revisions table...' );
 		$res = $dbw->query( "SELECT DISTINCT rev_text_id FROM $tbl_rev" );
 		foreach ( $res as $row ) {
 			$cur[] = $row->rev_text_id;
@@ -764,7 +783,7 @@ abstract class Maintenance {
 		$this->output( "done.\n" );
 
 		# Get "active" text records from the archive table
-		$this->output( "Searching for active text records in archive table..." );
+		$this->output( 'Searching for active text records in archive table...' );
 		$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
 		foreach ( $res as $row ) {
 			$cur[] = $row->ar_text_id;
@@ -772,7 +791,7 @@ abstract class Maintenance {
 		$this->output( "done.\n" );
 
 		# Get the IDs of all text records not in these sets
-		$this->output( "Searching for inactive text records..." );
+		$this->output( 'Searching for inactive text records...' );
 		$set = implode( ', ', $cur );
 		$res = $dbw->query( "SELECT old_id FROM $tbl_txt WHERE old_id NOT IN ( $set )" );
 		$old = array();
@@ -787,7 +806,7 @@ abstract class Maintenance {
 
 		# Delete as appropriate
 		if ( $delete && $count ) {
-			$this->output( "Deleting..." );
+			$this->output( 'Deleting...' );
 			$set = implode( ', ', $old );
 			$dbw->query( "DELETE FROM $tbl_txt WHERE old_id IN ( $set )" );
 			$this->output( "done.\n" );
@@ -808,7 +827,7 @@ abstract class Maintenance {
 	 * Get the list of available maintenance scripts. Note
 	 * that if you call this _before_ calling doMaintenance
 	 * you won't have any extensions in it yet
-	 * @return array
+	 * @return Array
 	 */
 	public static function getMaintenanceScripts() {
 		global $wgMaintenanceScripts;
@@ -832,8 +851,9 @@ abstract class Maintenance {
 			foreach ( $paths as $p ) {
 				$handle = opendir( $p );
 				while ( ( $file = readdir( $handle ) ) !== false ) {
-					if ( $file == 'Maintenance.php' )
+					if ( $file == 'Maintenance.php' ) {
 						continue;
+					}
 					$file = $p . '/' . $file;
 					if ( is_dir( $file ) || !strpos( $file, '.php' ) ||
 						( strpos( file_get_contents( $file ), '$maintClass' ) === false ) ) {
@@ -881,8 +901,10 @@ abstract class Maintenance {
 
 	/**
 	 * Perform a search index update with locking
-	 * @param $maxLockTime integer the maximum time to keep the search index locked.
-	 * @param $updateFunction callback the function that will update the function.
+	 * @param $maxLockTime Integer: the maximum time to keep the search index locked.
+	 * @param $callback callback String: the function that will update the function.
+	 * @param $dbw Database object
+	 * @param $results
 	 */
 	public function updateSearchIndex( $maxLockTime, $callback, $dbw, $results ) {
 		$lockTime = time();
@@ -918,8 +940,8 @@ abstract class Maintenance {
 
 	/**
 	 * Update the searchindex table for a given pageid
-	 * @param $dbw Database a database write handle
-	 * @param $pageId the page ID to update.
+	 * @param $dbw Database: a database write handle
+	 * @param $pageId Integer: the page ID to update.
 	 */
 	public function updateSearchIndexForPage( $dbw, $pageId ) {
 		// Get current revision
