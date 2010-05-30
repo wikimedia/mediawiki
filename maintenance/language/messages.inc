@@ -1815,6 +1815,10 @@ $wgMessageStructure = array(
 		'rollback-success',
 		'sessionfailure',
 	),
+	'edittokens' => array(
+		'sessionfailure-title',
+		'sessionfailure',
+	),
 	'protect' => array(
 		'protectlogpage',
 		'protectlogtext',
@@ -3295,6 +3299,7 @@ XHTML id names.",
 	'enotif'              => '',
 	'delete'              => 'Delete',
 	'rollback'            => 'Rollback',
+	'edittokens'          => 'Edit tokens',
 	'protect'             => 'Protect',
 	'restrictions'        => 'Restrictions (nouns)',
 	'restriction-levels'  => 'Restriction levels',
