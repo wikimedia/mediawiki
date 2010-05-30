@@ -414,7 +414,7 @@ Simple definition
 !! input
 ; name : Definition
 !! result
-<dl><dt> name&nbsp;</dt><dd> Definition
+<dl><dt> name&#160;</dt><dd> Definition
 </dd></dl>
 
 !! end
@@ -444,7 +444,7 @@ Definition list with URL link
 !! input
 ; http://example.com/ : definition
 !! result
-<dl><dt> <a href="http://example.com/" class="external free" rel="nofollow">http://example.com/</a>&nbsp;</dt><dd> definition
+<dl><dt> <a href="http://example.com/" class="external free" rel="nofollow">http://example.com/</a>&#160;</dt><dd> definition
 </dd></dl>
 
 !! end
@@ -495,7 +495,7 @@ Definition lists: colon in external link text
 !! input
 ; [http://www.wikipedia2.org/ Wikipedia : The Next Generation]: OK, I made that up
 !! result
-<dl><dt> <a href="http://www.wikipedia2.org/" class="external text" rel="nofollow">Wikipedia&nbsp;: The Next Generation</a></dt><dd> OK, I made that up
+<dl><dt> <a href="http://www.wikipedia2.org/" class="external text" rel="nofollow">Wikipedia&#160;: The Next Generation</a></dt><dd> OK, I made that up
 </dd></dl>
 
 !! end
@@ -516,7 +516,7 @@ Definition lists: self-closed tag
 !! input
 ;one<br/>two : two-line fun
 !! result
-<dl><dt>one<br />two&nbsp;</dt><dd> two-line fun
+<dl><dt>one<br />two&#160;</dt><dd> two-line fun
 </dd></dl>
 
 !! end
@@ -4863,7 +4863,7 @@ Punctuation: nbsp before exclamation
 !! input
 C'est grave !
 !! result
-<p>C'est grave&nbsp;!
+<p>C'est grave&160;!
 </p>
 !! end
 
@@ -6744,8 +6744,8 @@ Definition list code coverage
 ; title : def
 ;title: def
 !! result
-<dl><dt> title  &nbsp;</dt><dd> def
-</dd><dt> title&nbsp;</dt><dd> def
+<dl><dt> title  &#160;</dt><dd> def
+</dd><dt> title&#160;</dt><dd> def
 </dd><dt>title</dt><dd> def
 </dd></dl>
 
