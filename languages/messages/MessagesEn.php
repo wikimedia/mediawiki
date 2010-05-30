@@ -1499,7 +1499,7 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-hide-comment'      => 'Hide edit comment',
 'revdelete-hide-user'         => "Hide editor's username/IP address",
 'revdelete-hide-restricted'   => 'Suppress data from administrators as well as others',
-'revdelete-radio-same'        => "(don't change)",
+'revdelete-radio-same'        => "(do not change)",
 'revdelete-radio-set'         => 'Yes',
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Suppress data from administrators as well as others',
