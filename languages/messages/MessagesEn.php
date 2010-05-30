@@ -456,6 +456,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'DeletedContributions' ),
 	'Tags'                      => array( 'Tags' ),
 	'Activeusers'               => array( 'ActiveUsers' ),
+	'RevisionMove'              => array( 'RevisionMove' ),
 );
 
 /**
