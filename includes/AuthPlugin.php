@@ -1,6 +1,4 @@
 <?php
-/**
- */
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 #
@@ -105,7 +103,6 @@ class AuthPlugin {
 		return true;
 	}
 
-
 	/**
 	 * Return true if the wiki should create a new local account automatically
 	 * when asked to login a user who doesn't exist locally but does in the
@@ -131,11 +128,11 @@ class AuthPlugin {
 	 * @return Boolean
 	 */
 	public function allowPropChange( $prop = '' ) {
-		if( $prop == 'realname' && is_callable( array( $this, 'allowRealNameChange' ) ) ) {
+		if ( $prop == 'realname' && is_callable( array( $this, 'allowRealNameChange' ) ) ) {
 			return $this->allowRealNameChange();
-		} elseif( $prop == 'emailaddress' && is_callable( array( $this, 'allowEmailChange' ) ) ) {
+		} elseif ( $prop == 'emailaddress' && is_callable( array( $this, 'allowEmailChange' ) ) ) {
 			return $this->allowEmailChange();
-		} elseif( $prop == 'nickname' && is_callable( array( $this, 'allowNickChange' ) ) ) {
+		} elseif ( $prop == 'nickname' && is_callable( array( $this, 'allowNickChange' ) ) ) {
 			return $this->allowNickChange();
 		} else {
 			return true;
@@ -197,10 +194,9 @@ class AuthPlugin {
 	 * @param $realname String
 	 * @return Boolean
 	 */
-	public function addUser( $user, $password, $email='', $realname='' ) {
+	public function addUser( $user, $password, $email = '', $realname = '' ) {
 		return true;
 	}
-
 
 	/**
 	 * Return true to prevent logins that don't authenticate here from being
@@ -236,7 +232,7 @@ class AuthPlugin {
 	 * @param $user User object.
 	 * @param $autocreate Boolean: True if user is being autocreated on login
 	 */
-	public function initUser( &$user, $autocreate=false ) {
+	public function initUser( &$user, $autocreate = false ) {
 		# Override this to do something.
 	}
 
@@ -247,7 +243,7 @@ class AuthPlugin {
 	public function getCanonicalName( $username ) {
 		return $username;
 	}
-	
+
 	/**
 	 * Get an instance of a User object
 	 *
@@ -262,22 +258,22 @@ class AuthPluginUser {
 	function __construct( $user ) {
 		# Override this!
 	}
-	
+
 	public function getId() {
 		# Override this!
 		return -1;
 	}
-	
+
 	public function isLocked() {
 		# Override this!
 		return false;
 	}
-	
+
 	public function isHidden() {
 		# Override this!
 		return false;
 	}
-	
+
 	public function resetAuthToken() {
 		# Override this!
 		return true;
