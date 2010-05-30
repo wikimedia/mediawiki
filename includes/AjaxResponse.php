@@ -15,7 +15,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup Ajax
  */
 class AjaxResponse {
-
 	/** Number of seconds to get the response cached by a proxy */
 	private $mCacheDuration;
 
@@ -99,19 +98,16 @@ class AjaxResponse {
 
 		if ( $this->mLastModified ) {
 			header ( "Last-Modified: " . $this->mLastModified );
-		}
-		else {
+		} else {
 			header ( "Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . " GMT" );
 		}
 
 		if ( $this->mCacheDuration ) {
-
 			# If squid caches are configured, tell them to cache the response,
 			# and tell the client to always check with the squid. Otherwise,
 			# tell the client to use a cached copy, without a way to purge it.
 
 			if ( $wgUseSquid ) {
-
 				# Expect explicite purge of the proxy cache, but require end user agents
 				# to revalidate against the proxy on each visit.
 				# Surrogate-Control controls our Squid, Cache-Control downstream caches
@@ -156,10 +152,12 @@ class AjaxResponse {
 			wfDebug( "$fname: CACHE DISABLED, NO TIMESTAMP\n" );
 			return;
 		}
+
 		if ( !$wgCachePages ) {
 			wfDebug( "$fname: CACHE DISABLED\n", false );
 			return;
 		}
+
 		if ( $wgUser->getOption( 'nocache' ) ) {
 			wfDebug( "$fname: USER DISABLED CACHE\n", false );
 			return;
@@ -177,6 +175,7 @@ class AjaxResponse {
 			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
 			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", false );
+
 			if ( ( $ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
 				ini_set( 'zlib.output_compression', 0 );
 				$this->setResponseCode( "304 Not Modified" );
@@ -198,7 +197,10 @@ class AjaxResponse {
 
 	function loadFromMemcached( $mckey, $touched ) {
 		global $wgMemc;
-		if ( !$touched ) return false;
+
+		if ( !$touched ) {
+			return false;
+		}
 
 		$mcvalue = $wgMemc->get( $mckey );
 		if ( $mcvalue ) {
@@ -206,6 +208,7 @@ class AjaxResponse {
 			if ( $touched <= $mcvalue['timestamp'] ) {
 				wfDebug( "Got $mckey from cache\n" );
 				$this->mText = $mcvalue['value'];
+
 				return true;
 			} else {
 				wfDebug( "$mckey has expired\n" );

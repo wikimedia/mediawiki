@@ -28,6 +28,7 @@ function js_unescape( $source, $iconv_to = 'UTF-8' ) {
 		if ( $charAt == '%' ) {
 			$pos++;
 			$charAt = substr ( $source, $pos, 1 );
+
 			if ( $charAt == 'u' ) {
 				// we got a unicode character
 				$pos++;
@@ -62,14 +63,22 @@ function js_unescape( $source, $iconv_to = 'UTF-8' ) {
  * @return utf8char
  */
 function code2utf( $num ) {
-	if ( $num < 128 )
+	if ( $num < 128 ) {
 		return chr( $num );
-	if ( $num < 2048 )
+	}
+
+	if ( $num < 2048 ) {
 		return chr( ( $num >> 6 ) + 192 ) . chr( ( $num&63 ) + 128 );
-	if ( $num < 65536 )
+	}
+
+	if ( $num < 65536 ) {
 		return chr( ( $num >> 12 ) + 224 ) . chr( ( ( $num >> 6 )&63 ) + 128 ) . chr( ( $num&63 ) + 128 );
-	if ( $num < 2097152 )
+	}
+
+	if ( $num < 2097152 ) {
 		return chr( ( $num >> 18 ) + 240 ) . chr( ( ( $num >> 12 )&63 ) + 128 ) . chr( ( ( $num >> 6 )&63 ) + 128 ) . chr( ( $num&63 ) + 128 );
+	}
+
 	return '';
 }
 
@@ -80,8 +89,9 @@ function code2utf( $num ) {
 function wfAjaxGetThumbnailUrl( $file, $width, $height ) {
 	$file = wfFindFile( $file );
 
-	if ( !$file || !$file->exists() )
+	if ( !$file || !$file->exists() ) {
 		return null;
+	}
 
 	$url = $file->getThumbnail( $width, $height )->url;
 
@@ -95,8 +105,9 @@ function wfAjaxGetThumbnailUrl( $file, $width, $height ) {
 function wfAjaxGetFileUrl( $file ) {
 	$file = wfFindFile( $file );
 
-	if ( !$file || !$file->exists() )
+	if ( !$file || !$file->exists() ) {
 		return null;
+	}
 
 	$url = $file->getUrl();
 
