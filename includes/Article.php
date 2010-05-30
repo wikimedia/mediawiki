@@ -220,7 +220,7 @@ class Article {
 	/**
 	 * Note that getContent/loadContent do not follow redirects anymore.
 	 * If you need to fetch redirectable content easily, try
-	 * the shortcut in Article::followContent()
+	 * the shortcut in Article::followRedirect()
 	 *
 	 * @return Return the text of this revision
 	 */
