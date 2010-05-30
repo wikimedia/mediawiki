@@ -250,7 +250,7 @@ class IPBlockForm {
 				</td>
 			</tr>
 			<tr id='wpAnonOnlyRow'>
-				<td>&nbsp;</td>
+				<td>&#160;</td>
 				<td class='mw-input'>" .
 				Xml::checkLabel( wfMsg( 'ipbanononly' ),
 						'wpAnonOnly', 'wpAnonOnly', $this->BlockAnonOnly,
@@ -258,7 +258,7 @@ class IPBlockForm {
 				</td>
 			</tr>
 			<tr id='wpCreateAccountRow'>
-				<td>&nbsp;</td>
+				<td>&#160;</td>
 				<td class='mw-input'>" .
 					Xml::checkLabel( wfMsg( 'ipbcreateaccount' ),
 						'wpCreateAccount', 'wpCreateAccount', $this->BlockCreateAccount,
@@ -266,7 +266,7 @@ class IPBlockForm {
 				</td>
 			</tr>
 			<tr id='wpEnableAutoblockRow'>
-				<td>&nbsp;</td>
+				<td>&#160;</td>
 				<td class='mw-input'>" .
 					Xml::checkLabel( wfMsg( 'ipbenableautoblock' ),
 						'wpEnableAutoblock', 'wpEnableAutoblock', $this->BlockEnableAutoblock,
@@ -278,7 +278,7 @@ class IPBlockForm {
 		if( self::canBlockEmail( $wgUser ) ) {
 			$wgOut->addHTML("
 				<tr id='wpEnableEmailBan'>
-					<td>&nbsp;</td>
+					<td>&#160;</td>
 					<td class='mw-input'>" .
 						Xml::checkLabel( wfMsg( 'ipbemailban' ),
 							'wpEmailBan', 'wpEmailBan', $this->BlockEmail,
@@ -292,7 +292,7 @@ class IPBlockForm {
 		if( $wgUser->isAllowed( 'hideuser' ) ) {
 			$wgOut->addHTML("
 				<tr id='wpEnableHideUser'>
-					<td>&nbsp;</td>
+					<td>&#160;</td>
 					<td class='mw-input'><strong>" .
 						Xml::checkLabel( wfMsg( 'ipbhidename' ),
 							'wpHideName', 'wpHideName', $this->BlockHideName,
@@ -307,7 +307,7 @@ class IPBlockForm {
 		if( $wgUser->isLoggedIn() ) {
 			$wgOut->addHTML("
 			<tr id='wpEnableWatchUser'>
-				<td>&nbsp;</td>
+				<td>&#160;</td>
 				<td class='mw-input'>" .
 					Xml::checkLabel( wfMsg( 'ipbwatchuser' ),
 						'wpWatchUser', 'wpWatchUser', $this->BlockWatchUser,
@@ -322,7 +322,7 @@ class IPBlockForm {
 		if( $wgBlockAllowsUTEdit ){
 			$wgOut->addHTML("
 				<tr id='wpAllowUsertalkRow'>
-					<td>&nbsp;</td>
+					<td>&#160;</td>
 					<td class='mw-input'>" .
 						Xml::checkLabel( wfMsg( 'ipballowusertalk' ),
 							'wpAllowUsertalk', 'wpAllowUsertalk', $this->BlockAllowUsertalk,
@@ -334,7 +334,7 @@ class IPBlockForm {
 
 		$wgOut->addHTML("
 			<tr>
-				<td style='padding-top: 1em'>&nbsp;</td>
+				<td style='padding-top: 1em'>&#160;</td>
 				<td  class='mw-submit' style='padding-top: 1em'>" .
 					Xml::submitButton( wfMsg( $alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ),
 						array( 'name' => 'wpBlock', 'tabindex' => '13', 'accesskey' => 's' ) ) . "

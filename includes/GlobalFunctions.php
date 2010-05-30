@@ -795,7 +795,7 @@ function wfMsgWikiHtml( $key ) {
  *   <i>parseinline</i>: parses wikitext to html and removes the surrounding
  *       p's added by parser or tidy
  *   <i>escape</i>: filters message through htmlspecialchars
- *   <i>escapenoentities</i>: same, but allows entity references like &nbsp; through
+ *   <i>escapenoentities</i>: same, but allows entity references like &#160; through
  *   <i>replaceafter</i>: parameters are substituted after parsing or escaping
  *   <i>parsemag</i>: transform the message using magic phrases
  *   <i>content</i>: fetch message for content language instead of interface

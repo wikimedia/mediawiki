@@ -149,7 +149,7 @@ class IPUnblockForm {
 				"</td>
 			</tr>
 			<tr>
-				<td>&nbsp;</td>
+				<td>&#160;</td>
 				<td class='mw-submit'>" .
 					Xml::submitButton( wfMsg( 'ipusubmit' ), array( 'name' => 'wpBlock', 'tabindex' => '3' ) ) .
 				"</td>
@@ -382,7 +382,7 @@ class IPUnblockForm {
 				Xml::openElement( 'fieldset' ) .
 				Xml::element( 'legend', null, wfMsg( 'ipblocklist-legend' ) ) .
 				Xml::inputLabel( wfMsg( 'ipblocklist-username' ), 'ip', 'ip', /* size */ false, $this->ip ) .
-				'&nbsp;' .
+				'&#160;' .
 				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) . '<br />' .
 				$hl .
 				Xml::closeElement( 'fieldset' )

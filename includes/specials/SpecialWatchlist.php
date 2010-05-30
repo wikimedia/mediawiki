@@ -296,9 +296,9 @@ function wfSpecialWatchlist( $par ) {
 	$form .= $wgLang->pipeList( $links );
 	$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $thisTitle->getLocalUrl(), 'id' => 'mw-watchlist-form-namespaceselector' ) );
 	$form .= '<hr /><p>';
-	$form .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;';
-	$form .= Xml::namespaceSelector( $nameSpace, '' ) . '&nbsp;';
-	$form .= Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $invert ) . '&nbsp;';
+	$form .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&#160;';
+	$form .= Xml::namespaceSelector( $nameSpace, '' ) . '&#160;';
+	$form .= Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $invert ) . '&#160;';
 	$form .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</p>';
 	$form .= Xml::hidden( 'days', $days );
 	if( $hideMinor )

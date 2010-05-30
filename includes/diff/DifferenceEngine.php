@@ -1141,9 +1141,9 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	public static function escapeWhiteSpace( $msg ) {
-		$msg = preg_replace( '/^ /m', '&nbsp; ', $msg );
-		$msg = preg_replace( '/ $/m', ' &nbsp;', $msg );
-		$msg = preg_replace( '/  /', '&nbsp; ', $msg );
+		$msg = preg_replace( '/^ /m', '&#160; ', $msg );
+		$msg = preg_replace( '/ $/m', ' &#160;', $msg );
+		$msg = preg_replace( '/  /', '&#160; ', $msg );
 		return $msg;
 	}
 
@@ -1187,7 +1187,7 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	function emptyLine() {
-		return '<td colspan="2">&nbsp;</td>';
+		return '<td colspan="2">&#160;</td>';
 	}
 
 	function _added( $lines ) {

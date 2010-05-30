@@ -199,7 +199,7 @@ CONTROL;
 		// Check if page is editable
 		$editable = $this->mNewRev->getTitle()->userCan( 'edit' );
 		if ( $editable && $this->mNewRev->isCurrent() && $wgUser->isAllowed( 'rollback' ) ) {
-			$rollback = '&nbsp;&nbsp;&nbsp;' . $sk->generateRollback( $this->mNewRev );
+			$rollback = '&#160;&#160;&#160;' . $sk->generateRollback( $this->mNewRev );
 		} else {
 			$rollback = '';
 		}
@@ -286,7 +286,7 @@ CONTROL;
 		$query['oldid'] = $this->mNewid;
 		# Skip next link on the top revision
 		if( $this->mNewRev->isCurrent() ) {
-			$nextlink = '&nbsp;';
+			$nextlink = '&#160;';
 		} else {
 			$nextlink = $sk->link(
 				$this->mTitle,
@@ -401,7 +401,7 @@ CONTROL;
 				$link = $sk->revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 			}
-			$link = '&nbsp;&nbsp;&nbsp;' . $link . ' ';
+			$link = '&#160;&#160;&#160;' . $link . ' ';
 		}
 		return $link;
 	}

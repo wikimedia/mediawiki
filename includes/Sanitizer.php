@@ -966,7 +966,7 @@ class Sanitizer {
 
 	/**
 	 * Given HTML input, escape with htmlspecialchars but un-escape entites.
-	 * This allows (generally harmless) entities like &nbsp; to survive.
+	 * This allows (generally harmless) entities like &#160; to survive.
 	 *
 	 * @param $html String to escape
 	 * @return String: escaped input

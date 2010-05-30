@@ -327,7 +327,7 @@ class SpecialContributions extends SpecialPage {
 			'</span>' .
 			Xml::checkLabel( wfMsg( 'history-show-deleted' ),
 				'deletedOnly', 'mw-show-deleted-only', $this->opts['deletedOnly'] ) . 
-			( $tagFilter ? Xml::tags( 'p', null, implode( '&nbsp;', $tagFilter ) ) : '' ) .
+			( $tagFilter ? Xml::tags( 'p', null, implode( '&#160;', $tagFilter ) ) : '' ) .
 			Xml::openElement( 'p' ) .
 			'<span style="white-space: nowrap">' .
 			Xml::dateMenu( $this->opts['year'], $this->opts['month'] ) .

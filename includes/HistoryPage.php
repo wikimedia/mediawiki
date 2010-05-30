@@ -148,8 +148,8 @@ class HistoryPage {
 			) .
 			Xml::hidden( 'title', $this->title->getPrefixedDBKey() ) . "\n" .
 			Xml::hidden( 'action', 'history' ) . "\n" .
-			Xml::dateMenu( $year, $month ) . '&nbsp;' .
-			( $tagSelector ? ( implode( '&nbsp;', $tagSelector ) . '&nbsp;' ) : '' ) .
+			Xml::dateMenu( $year, $month ) . '&#160;' .
+			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			'</fieldset></form>'

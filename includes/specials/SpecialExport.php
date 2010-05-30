@@ -148,11 +148,11 @@ class SpecialExport extends SpecialPage {
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalUrl( 'action=submit' ) ) );
-		$form .= Xml::inputLabel( wfMsg( 'export-addcattext' )    , 'catname', 'catname', 40 ) . '&nbsp;';
+		$form .= Xml::inputLabel( wfMsg( 'export-addcattext' )    , 'catname', 'catname', 40 ) . '&#160;';
 		$form .= Xml::submitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
 
 		if ( $wgExportFromNamespaces ) {
-			$form .= Xml::namespaceSelector( $nsindex, null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&nbsp;';
+			$form .= Xml::namespaceSelector( $nsindex, null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&#160;';
 			$form .= Xml::submitButton( wfMsg( 'export-addns' ), array( 'name' => 'addns' ) ) . '<br />';
 		}
 
