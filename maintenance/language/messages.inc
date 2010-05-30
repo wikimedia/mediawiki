@@ -751,6 +751,7 @@ $wgMessageStructure = array(
 	'revisionmove' => array(
 		'moverevlogentry',
 		'revisionmove',
+		'revisionmove-backlink',
 		'revmove-explain',
 		'revmove-legend',
 		'revmove-submit',
@@ -1100,6 +1101,7 @@ $wgMessageStructure = array(
 		'right-reset-passwords',
 		'right-override-export-depth',
 		'right-sendemail',
+		'right-revisionmove',
 	),
 	'rightslog' => array(
 		'rightslog',
@@ -1142,6 +1144,7 @@ $wgMessageStructure = array(
 		'action-userrights',
 		'action-userrights-interwiki',
 		'action-siteadmin',
+		'action-revisionmove',
 	),
 	'recentchanges' => array(
 		'nchanges',
@@ -3234,6 +3237,7 @@ XHTML id names.",
 	'history-feed'        => 'Revision feed',
 	'revdelete'           => 'Revision deletion',
 	'suppression'         => 'Suppression log',
+	'revisionmove'        => 'SpecialRevisionMove',
 	'mergehistory'        => 'History merging',
 	'mergelog'            => 'Merge log',
 	'diffs'               => 'Diffs',

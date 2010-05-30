@@ -1556,7 +1556,7 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 # SpecialRevisionMove // FIXME add to messages.inc
 'moverevlogentry'                  => 'moved {{PLURAL:$3|one revision|$3 revisions}} from $1 to $2',
 'revisionmove'                     => 'Move revisions from "$1"',
-'revisionmove-backlink'            => '← $1',
+'revisionmove-backlink'            => '← $1', # only translate this message to other languages if you have to change it
 'revmove-explain'                  => 'The following revisions will be moved from $1 to the specified target page. If the target does not exist, it is created. Otherwise, these revisions will be merged into the page history.',
 'revmove-legend'                   => 'Set target page and summary',
 'revmove-submit'                   => 'Move revisions to selected page',
@@ -1932,6 +1932,7 @@ You can also choose to let others contact you through your user or talk page wit
 'right-reset-passwords'       => "Reset other users' passwords",
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-sendemail'             => 'Send e-mail to other users',
+'right-revisionmove'          => 'Move revisions',
 
 # User rights log
 'rightslog'      => 'User rights log',

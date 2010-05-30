@@ -357,6 +357,7 @@ $wgOptionalMessages = array(
 	'prefs-memberingroups-type',
 	'shared-repo-name-wikimediacommons',
 	'usermessage-template',
+	'revisionmove-backlink',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
