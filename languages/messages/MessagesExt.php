@@ -1546,7 +1546,9 @@ La úrtima eición á siu hecha pol [[User:$3|$3]] ([[User talk:$3|Caraba]]).',
 'editcomment'      => "La síntesis la eición hue: \"''\$1''\".",
 'revertpage'       => 'Án siu revertias las eicionis de [[Special:Contributions/$2|$2]] ([[User talk:$2|Caraba]]); chambau a la úrtima velsión de [[User:$1|$1]]',
 'rollback-success' => 'Revertias las eicionis de $1; chambau a la úrtima velsión de $2.',
-'sessionfailure'   => "Paci qu'ai un pobrema cola tu sesión; pol precaución
+
+# Edit tokens
+'sessionfailure' => "Paci qu'ai un pobrema cola tu sesión; pol precaución
 s'á cancelau l'ación solicitá. Pursa nel botón \"Atrás\" del
 tu escrucaol pa cargal otra vezi la páhina i güervi a ententalu.",
 

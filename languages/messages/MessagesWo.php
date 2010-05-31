@@ -1745,7 +1745,9 @@ Ki mujje soppi xët wi mooy [[User:$3|$3]] ([[User talk:$3|Waxtaan]]{{int:pipe-s
 'revertpage'       => 'Loppantig coppite gu [[Special:Contributions/$2|$2]] ([[User talk:$2|Waxtaan]]) dello ko ci sumb mu [[User:$1|$1]]',
 'rollback-success' => 'Ki loppanti mooy $1 ;
 Ki ko dello ci sumb mu mujj mi mooy $2.',
-'sessionfailure'   => 'Dafa mel ne sa dugg gi am na ay tolof-tolof ;
+
+# Edit tokens
+'sessionfailure' => 'Dafa mel ne sa dugg gi am na ay tolof-tolof ;
 Noste gi téye na sag dugg ngir wattu kaaraange. 
 Di la ñaan nga dellu ginnaaw te yesalaat xët wa jóge, te jéemaat',
 

@@ -1955,7 +1955,9 @@ Iň soňky özgerdiş eden: [[User:$3|$3]] ([[User talk:$3|Çekişme]]{{int:pipe
 'revertpage-nouser' => '(ulanyjy ady aýyrylan) tarapyndan edilen özgerdişler [[User:$1|$1]] tarapyndan redaktirlenen soňky wersiýasyna yzyna getirildi.',
 'rollback-success'  => '$1 tarapyndan edilen özgerdişler yzyna getirildi;
 $2 tarapyndan edilen soňky wersiýa gaýdyp gelindi.',
-'sessionfailure'    => 'Giriş sessiýaňyz bilen baglanyşykly bir probleme bar ýaly;
+
+# Edit tokens
+'sessionfailure' => 'Giriş sessiýaňyz bilen baglanyşykly bir probleme bar ýaly;
 sessiýaňyzyň birugsat ele geçirilmezligi üçin bu iş goýbolsun edildi.
 "Yza" düwmwsine basyň we gelen sahypaňyzy gaýtadan ýükläň, soňra ýaňadan synynyşyp görüň.',
 

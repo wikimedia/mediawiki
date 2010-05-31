@@ -2210,7 +2210,9 @@ Autorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]]{{int:pipe
 'revertpage'        => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1',
 'revertpage-nouser' => 'Vrátené úpravy (meno používateľa odstránené) na poslednú revíziu od [[User:$1|$1]]',
 'rollback-success'  => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
-'sessionfailure'    => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
+
+# Edit tokens
+'sessionfailure' => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
 táto akcia bola zrušená ako prevencia proti zneužitiu relácie (session).
 Prosím, stlačte "naspäť", obnovte stránku, z ktorej ste sa sem dostali, a skúste to znova.',
 

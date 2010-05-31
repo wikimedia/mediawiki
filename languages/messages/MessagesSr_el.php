@@ -1985,7 +1985,9 @@ Poslednja izmena od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pip
 'editcomment'      => "Komentar izmene je: \"''\$1''\".",
 'revertpage'       => 'Vraćene izmene od [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|razgovor]]) na poslednju izmenu od korisnika [[User:$1|$1]]',
 'rollback-success' => 'Vraćene izmene od strane $1; na poslednju izmenu od strane $2.',
-'sessionfailure'   => 'Izgleda da postoji problem sa vašom seansom prijave;
+
+# Edit tokens
+'sessionfailure' => 'Izgleda da postoji problem sa vašom seansom prijave;
 ova akcija je prekinuta kao predostrožnost protiv preotimanja seansi.
 Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda pokušajte ponovo.',
 

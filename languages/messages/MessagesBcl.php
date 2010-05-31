@@ -1340,7 +1340,9 @@ Huring hirá ni [[User:$3|$3]] ([[User talk:$3|Olay]]).',
 'editcomment'      => "Ini an nakakaag na komentaryo sa paghirá: \"''\$1''\".",
 'revertpage'       => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]',
 'rollback-success' => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
-'sessionfailure'   => "Garo may problema sa paglaog mo;
+
+# Edit tokens
+'sessionfailure' => "Garo may problema sa paglaog mo;
 kinanselár ining aksyón bilang sarong paglikay kontra sa ''session hijacking''.
 Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, dangan probarán giraray.",
 

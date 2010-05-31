@@ -999,6 +999,8 @@ $1",
 'logdelete-failure'           => "'''No s'ha pogut establir la visibilitat del registre:'''
 $1",
 'revdel-restore'              => "Canvia'n la visibilitat",
+'revdel-restore-deleted'      => 'revisions esborrades',
+'revdel-restore-visible'      => 'revisions visibles',
 'pagehist'                    => 'Historial',
 'deletedhist'                 => "Historial d'esborrat",
 'revdelete-content'           => 'el contingut',
@@ -1034,6 +1036,24 @@ Si us plau, verifica els registres.",
 # Suppression log
 'suppressionlog'     => 'Registre de supressió',
 'suppressionlogtext' => 'A continuació hi ha una llista de les eliminacions i bloquejos que impliquen un contingut amagat als administradors. Vegeu la [[Special:IPBlockList|llista de bloquejos]] per a consultar la llista de bandejos i bloquejos actualment en curs.',
+
+# Revision move
+'moverevlogentry'              => "{{PLURAL:$3|s'ha mogut una revisió|s'han mogut $3 revisions}} des de $1 a $2",
+'revisionmove'                 => 'Moure revisions des de «$1»',
+'revmove-explain'              => "Les següents revisions seran traslladades des de $1 a la pàgina de destinació especificada. Si la destinació no existeix, es crearà. En cas contrari, aquestes revisions es fusionaran amb l'historial de la pàgina.",
+'revmove-legend'               => 'Establir pàgina de destinació i resum',
+'revmove-submit'               => 'Moure revisions a la pàgina seleccionada',
+'revisionmoveselectedversions' => 'Moure revisions seleccionades',
+'revmove-reasonfield'          => 'Motiu:',
+'revmove-titlefield'           => 'Pàgina de destinació:',
+'revmove-badparam-title'       => 'paràmetres inadequats',
+'revmove-badparam'             => '<span class="error">La soŀlicitud conté paràmetres insuficients o erronis. Torneu enrere i intenteu-ho de nou.</span>',
+'revmove-norevisions-title'    => 'Revisió especificada no vàlida',
+'revmove-norevisions'          => '<span class="error">No heu especificat una o més revisions on aplicar aquesta funció o bé les revisions especificades no existeixen.</span>',
+'revmove-nullmove-title'       => 'Títol inadequat',
+'revmove-nullmove'             => '<span class="error">Les pàgines d\'origen i de destinació són idèntiques. Torneu enrere i escriviu una pàgina diferent de «$1».</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la pàgina existent [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la nova pàgina [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
@@ -1362,6 +1382,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-reset-passwords'       => "Reiniciar la contrasenya d'altres usuaris",
 'right-override-export-depth' => 'Exporta pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Envia un correu electrònic a altres usuaris.',
+'right-revisionmove'          => 'Moure revisions',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
@@ -1404,6 +1425,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'action-userrights'           => "modificar tots els permisos d'usuari",
 'action-userrights-interwiki' => "modificar permisos d'usuari en altres wikis",
 'action-siteadmin'            => 'bloquejar o desbloquejar la base de dades',
+'action-revisionmove'         => 'moure revisions',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|canvi|canvis}}',
@@ -1674,7 +1696,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 'filerevert'                => 'Reverteix $1',
 'filerevert-legend'         => 'Reverteix el fitxer',
 'filerevert-intro'          => "Esteu revertint '''[[Media:$1|$1]]''' a la [$4 versió de  $3, $2].",
-'filerevert-comment'        => 'Comentari:',
+'filerevert-comment'        => 'Motiu:',
 'filerevert-defaultcomment' => "S'ha revertit a la versió com de $2, $1",
 'filerevert-submit'         => 'Reverteix',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ha estat revertit a la [$4 versió de $3, $2].",
@@ -2086,7 +2108,10 @@ La darrera modificació ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$
 'revertpage'        => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]",
 'revertpage-nouser' => "Desfetes les edicions de (nom d'usuari eliminat) a l'última revisió feta per [[User:$1|$1]]",
 'rollback-success'  => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
-'sessionfailure'    => "Sembla que hi ha problema amb la vostra sessió. Aquesta acció ha estat anuŀlada en prevenció de pirateig de sessió. Si us plau, pitgeu «Torna», i recarregueu la pàgina des d'on veniu, després intenteu-ho de nou.",
+
+# Edit tokens
+'sessionfailure-title' => 'Error de sessió',
+'sessionfailure'       => "Sembla que hi ha problema amb la vostra sessió. Aquesta acció ha estat anuŀlada en prevenció de pirateig de sessió. Si us plau, pitgeu «Torna», i recarregueu la pàgina des d'on veniu, després intenteu-ho de nou.",
 
 # Protect
 'protectlogpage'              => 'Registre de protecció',
@@ -2178,7 +2203,7 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 'undeleteviewlink'             => 'veure',
 'undeletereset'                => 'Reinicia',
 'undeleteinvert'               => 'Invertir selecció',
-'undeletecomment'              => 'Comentari:',
+'undeletecomment'              => 'Motiu:',
 'undeletedarticle'             => 'restaurat «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Una revisió restaurada|$1 revisions restaurades}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un fitxer|$2 fitxers}} restaurats',
@@ -3188,9 +3213,9 @@ Proveu-ho amb la previsualització normal.',
 'watchlistedit-noitems'        => 'La vostra llista de seguiment no té cap títol.',
 'watchlistedit-normal-title'   => 'Edita la llista de seguiment',
 'watchlistedit-normal-legend'  => 'Esborra els títols de la llista de seguiment',
-'watchlistedit-normal-explain' => 'Els títols de la vostra llista de seguiment es mostren a continuació. Per a eliminar un títol, marqueu
-	el quadre del costat, i feu clic a Elimina els títols. Podeu també [[Special:Watchlist/raw|editar-ne la llista crua]].',
-'watchlistedit-normal-submit'  => 'Esborra els títols',
+'watchlistedit-normal-explain' => 'Els títols de les pàgines que estan en la vostra llista de seguiment es mostren a continuació. 
+Per a eliminar algun element, marqueu el quadre del seu costat, i feu clic al botó «{{int:Watchlistedit-normal-submit}}». També podeu [[Special:Watchlist/raw|editar-ne la llista en text pla]].',
+'watchlistedit-normal-submit'  => 'Elimina entrades',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 títol s'ha|$1 títols s'han}} eliminat de la vostra llista de seguiment:",
 'watchlistedit-raw-title'      => 'Edita la llista de seguiment crua',
 'watchlistedit-raw-legend'     => 'Edita la llista de seguiment crua',

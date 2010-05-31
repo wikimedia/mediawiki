@@ -2086,7 +2086,9 @@ Ang huling pagbabago sa pahina ay ginawa ni [[User:$3|$3]] ([[User talk:$3|Usapa
 'revertpage'        => 'Ibinalik ang mga pagbabago ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]]) patungo sa huling rebisyon ni [[User:$1|$1]]',
 'revertpage-nouser' => 'Ibinalik ang mga pagbabago ni (tinanggal ang bansag) patungo sa huling rebisyon ni [[User:$1|$1]]',
 'rollback-success'  => 'Ibinalik ang mga pagbabago ni $1; ibinalik sa huling bersyon ni $2.',
-'sessionfailure'    => "Tila mayroong suliraning may kaugnayan sa iyong sesyon/panahon ng pagkakalagda;
+
+# Edit tokens
+'sessionfailure' => "Tila mayroong suliraning may kaugnayan sa iyong sesyon/panahon ng pagkakalagda;
 Kinansela ang galaw/gawaing ito bilang pagiingat laban sa pagnanakaw (panghahaydyak) ng sesyon/panahon.
 Pakipindot ang pindutang \"ibalik\" (''back'') at ikarga uli ang pinanggalingan mong pahina, sumubok uli pagkaraan.",
 

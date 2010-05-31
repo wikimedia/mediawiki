@@ -671,6 +671,8 @@ Te var apskatīties dzēšanas un pārvietošanas reģistrus, kuros jābūt dati
 'moveddeleted-notice'           => 'Šī lapa ir tikusi izdzēsta.
 Te var apskatīties dzēšanas un pārvietošanas reģistru fragmentus, lai noskaidrotu kurš, kāpēc un kad to izdzēsa.',
 'log-fulllog'                   => 'Paskatīties pilnu reģistru',
+'edit-gone-missing'             => 'Nevar atjaunināt lapu.
+Izskatās, ka lapa ir dzēsta.',
 'edit-conflict'                 => 'Labošanas konflikts.',
 'edit-no-change'                => 'Tavs labojums tika ignorēts, jo tekstā netika izdarītas izmaiņas.',
 'edit-already-exists'           => 'Nevar izveidot jaunu lapu.
@@ -745,8 +747,8 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'revdelete-content'          => 'saturs',
 'revdelete-summary'          => 'izmaiņu kopsavilkums',
 'revdelete-uname'            => 'lietotāja vārds',
-'revdelete-hid'              => 'paslēpa $ 1',
-'revdelete-unhid'            => 'atjaunoja $ 1',
+'revdelete-hid'              => 'paslēpa $1',
+'revdelete-unhid'            => 'atjaunoja $1',
 'revdelete-reasonotherlist'  => 'Cits iemesls',
 'revdelete-edit-reasonlist'  => 'Izmainīt dzēšanas iemeslus',
 
@@ -988,7 +990,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'right-suppressrevision' => 'Apskatīt un atjaunot versijas, kas paslēptas no adminiem',
 'right-block'            => 'Bloķēt citus lietotājus (lapu izmainīšana)',
 'right-blockemail'       => 'Bloķēt citus lietotājus (iespēja sūtīt e-pastu)',
-'right-ipblock-exempt'   => 'Apiet IP blokus, autoblokus un IP apgabalu blokus',
+'right-ipblock-exempt'   => 'Apiet IP bloķēšanu, automātisku bloķēšanu un IP apgabalu bloķēšanu',
 'right-proxyunbannable'  => "Apiet ''proxy'' automātiskos blokus",
 'right-protect'          => 'Izmainīt aizsargātās lapas un to aizsardzības līmeni',
 'right-editinterface'    => 'Izmainīt lietotāja interfeisu',
@@ -997,6 +999,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'right-edituserjs'       => 'Izmainīt citu lietotāju JS failus',
 'right-import'           => 'Importēt lapas no citiem wiki',
 'right-importupload'     => 'Importēt lapas no failu augšuplādes',
+'right-userrights'       => 'Mainīt visu lietotāju tiesības',
 
 # User rights log
 'rightslog'      => 'Lietotāju tiesību reģistrs',
@@ -1349,6 +1352,7 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 # Special:LinkSearch
 'linksearch'    => 'Ārējās saites',
 'linksearch-ns' => 'Vārdtelpas:',
+'linksearch-ok' => 'Meklēt',
 
 # Special:ListUsers
 'listusersfrom' => 'Parādīt lietotājus sākot ar:',
@@ -1492,7 +1496,9 @@ Pēdējās izmaiņas saglabāja [[User:$3|$3]] ([[User talk:$3|diskusija]]{{int:
 'revertpage'       => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]',
 'rollback-success' => 'Tika novērstas $1 izdarītās izmaiņas;
 un tika atjaunota iepriekšējā versija, kuru bija izveidojis $2.',
-'sessionfailure'   => "Ir radusies problēma ar sesijas autentifikāciju;
+
+# Edit tokens
+'sessionfailure' => "Ir radusies problēma ar sesijas autentifikāciju;
 šī darbība ir atcelta, lai novērstu lietotājvārda iespējami ļaunprātīgu izmantošanu.
 Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlreiz.",
 

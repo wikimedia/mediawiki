@@ -1782,7 +1782,9 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'editcomment'      => "Komentar ngéditna: \"''\$1''\".",
 'revertpage'       => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1',
 'rollback-success' => 'Mulangkeun éditan $1; balik deui ka vérsi panungtung ku $2.',
-'sessionfailure'   => 'Sigana aya masalah jeung termin log anjeun; peta ieu geus dibolaykeun salaku pépéling pikeun ngalawan ayana pangbajak. Mangga pencét "back" jeung muat ulang ti kaca asal anjeun, lajeng cobaan deui.',
+
+# Edit tokens
+'sessionfailure' => 'Sigana aya masalah jeung termin log anjeun; peta ieu geus dibolaykeun salaku pépéling pikeun ngalawan ayana pangbajak. Mangga pencét "back" jeung muat ulang ti kaca asal anjeun, lajeng cobaan deui.',
 
 # Protect
 'protectlogpage'              => 'Log_koncian',
