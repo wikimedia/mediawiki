@@ -2270,7 +2270,9 @@ Lo dèrriér changement de la pâge at étâ fêt per [[User:$3|$3]] ([[User tal
 'revertpage-nouser' => 'Rèvocacion des changements per (nom d’utilisator suprimâ) a la dèrriére vèrsion per [[User:$1|$1]]',
 'rollback-success'  => 'Rèvocacion des changements fêts per $1 ;
 rètablissement de la dèrriére vèrsion per $2.',
-'sessionfailure'    => 'Voutra sèance de branchement semble avêr des problèmos ;
+
+# Edit tokens
+'sessionfailure' => 'Voutra sèance de branchement semble avêr des problèmos ;
 cela accion at étâ anulâ en prèvencion d’un piratâjo de sèance.
 Volyéd clicar dessus « Devant », rechargiér la pâge de yô que vos vegnéd, et pués tornar èprovar.',
 

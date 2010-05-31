@@ -1822,7 +1822,9 @@ $NEWPAGE
 'revertpage'        => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳',
 'revertpage-nouser' => '去（刪簿）之作為[[User:$1|$1]]之本耳',
 'rollback-success'  => '去$1之作，復為$2之本耳。',
-'sessionfailure'    => '登簿有變。為防盜簿，返前重取再為之。',
+
+# Edit tokens
+'sessionfailure' => '登簿有變。為防盜簿，返前重取再為之。',
 
 # Protect
 'protectlogpage'              => '誌緘',

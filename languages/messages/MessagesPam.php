@@ -1498,7 +1498,9 @@ I [[User:$3|$3]] ([[User talk:$3|Talk]]) ing tawling menalili.',
 binalik neng [[User:$1|$1]] king tauling bersion',
 'rollback-success' => 'Deng edit nang $1 a miurung;
 binalik nong $2 king sadiang bersion.',
-'sessionfailure'   => 'Balamu ating prublema king kekang login session;
+
+# Edit tokens
+'sessionfailure' => 'Balamu ating prublema king kekang login session;
 mituknang ya ing kimut (action) a ini bang milisia king session hijacking (pamaniamsam session).
 Pakitimid me ing "mibalik" ("back") at luban meng pasibayu ing bulung a penibatan mu, potang kai subukan mung pasibayu.',
 

@@ -2270,7 +2270,9 @@ A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-
 'revertpage'        => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]',
 'revertpage-nouser' => 'Revertidas as edições de (nome de utilizador removido) para a última revisão por [[User:$1|$1]]',
 'rollback-success'  => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
-'sessionfailure'    => 'Foram detectados problemas com a sua sessão;
+
+# Edit tokens
+'sessionfailure' => 'Foram detectados problemas com a sua sessão;
 esta operação foi cancelada como medida de protecção contra a intercepção de sessões.
 Clique o botão "Voltar" e recarregue a página de onde veio, depois tente novamente.',
 

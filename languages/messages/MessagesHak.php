@@ -1060,6 +1060,8 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 'alreadyrolled'  => 'Mò-fap fî-fu̍k yù [[User:$2|$2]] （[[User talk:$2|thó-lun]]） chin-hàng ke [[$1]] ke chui-heu phiên-si̍p; khì-thâ ngìn yí-kîn phiên-siá fe̍t-he fî-fu̍k liáu ke-hong. Chui-heu phiên-si̍p-chá: [[User:$3|$3]] （[[User talk:$3|Thó-lun]]）。',
 'editcomment'    => "Phiên-siá sot-mìn he: \"''\$1''\"。",
 'revertpage'     => 'Fî-fu̍k yù [[Special:Contributions/$2|$2]] （[[User talk:$2|tui-fa]]） ke phiên-cho; kiên-kói fì-fu̍k [[User:$1|$1]] ke chui-heu yit-ke pán-pún',
+
+# Edit tokens
 'sessionfailure' => 'Ngì-ke tên-ngi̍p sṳ-fû yû mun-thì, vi-liáu fòng-chṳ́ sêu-sit pûn làn-chiet, pún-chhṳ chhâu-chok yí-kîn chhí-sêu, chhiáng-on "song-yit-chông" chhùng-sîn chai-ngi̍p.',
 
 # Protect

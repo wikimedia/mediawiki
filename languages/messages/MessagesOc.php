@@ -2210,7 +2210,9 @@ La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3
 'revertpage'        => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) cap a la darrièra version de [[User:$1|$1]]',
 'revertpage-nouser' => 'Revocacion de las modificacions per (nom d’utilizaire suprimit) a la darrièra version per [[User:$1|$1]]',
 'rollback-success'  => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
-'sessionfailure'    => 'Vòstra sesilha de connexion sembla aver de problèmas ;
+
+# Edit tokens
+'sessionfailure' => 'Vòstra sesilha de connexion sembla aver de problèmas ;
 aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.
 Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi ensajatz tornarmai.',
 

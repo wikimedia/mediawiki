@@ -2122,7 +2122,9 @@ Le ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussi
 'revertpage-nouser' => 'Reverteva modificationes per (nomine de usator removite) al ultime version per [[User:$1|$1]]',
 'rollback-success'  => 'Revocava modificationes per $1;
 retornava al version per $2.',
-'sessionfailure'    => 'Il pare haber un problema con tu session de conto;
+
+# Edit tokens
+'sessionfailure' => 'Il pare haber un problema con tu session de conto;
 iste action ha essite cancellate como precaution contra le sequestramento de sessiones.
 Per favor preme "retro" e recarga le pagina de ubi tu ha venite, postea reprova.',
 

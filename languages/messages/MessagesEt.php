@@ -2170,7 +2170,9 @@ Lehte muutis viimasena [[User:$3|$3]] ([[User talk:$3|arutelu]]{{int:pipe-separa
 'revertpage-nouser' => 'Tühistati eemaldatud nimega kasutaja tehtud muudatused ja pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]].',
 'rollback-success'  => 'Tühistati $1 muudatus; 
 pöörduti tagasi viimasele muudatusele, mille tegi $2.',
-'sessionfailure'    => 'Sinu sisselogimisseansiga näib probleem olevat.
+
+# Edit tokens
+'sessionfailure' => 'Sinu sisselogimisseansiga näib probleem olevat.
 See toiming on seansiärandamise vastase ettevaatusabinõuna tühistatud.
 Mine tagasi eelmisele leheküljele ja taaslaadi see, seejärel proovi uuesti.',
 

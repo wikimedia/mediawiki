@@ -1021,8 +1021,8 @@ Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{ful
 Bħala amministratur inti xorta waħda tista' taraha; dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
 'rev-delundel'                => 'uri/aħbi',
 'revisiondelete'              => 'Ħassar/irkupra reviżjonijiet',
-'revdelete-nooldid-title'     => 'Reviżjoni tarka invalida',
-'revdelete-nooldid-text'      => 'Inti jew ma speċifikajtx reviżjoni(jiet) tarka sabiex toħloq funżjoni, ir-reviżjoni speċifikata ma teżistix, jew inkella qiegħed tiprova taħbi r-reviżjoni kurrenti.',
+'revdelete-nooldid-title'     => 'Verżjoni mhux speċifikata',
+'revdelete-nooldid-text'      => 'Ma ġiet speċifikata l-ebda reviżjoni tal-paġna fuq liema se ssir din l-azzjoni, ir-reviżjoni speċifikata ma teżistix, jew inkella qiegħed tipprova taħbi r-reviżjoni kurrenti.',
 'revdelete-show-file-submit'  => 'Iva',
 'revdelete-selected'          => "'''{{PLURAL:$2|Reviżjoni magħżula|Reviżjonijiet magħżula}} ta' [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Avveniment tar-reġistru magħżul|Avvenimenti tar-reġistri magħżula}}:'''",
@@ -1277,25 +1277,26 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-display'                 => "Opzjonijiet ta' viżwalizazzjoni",
 
 # User rights
-'userrights'                  => 'Ġestjoni tad-drittijiet tal-utent',
-'userrights-lookup-user'      => 'Ġestjoni tal-gruppi tal-utent',
-'userrights-user-editname'    => 'Daħħal isem tal-utent:',
-'editusergroup'               => 'Immodifika l-gruppi tal-utent',
-'editinguser'                 => "Modifika tad-drittijiet tal-utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Immodifika l-gruppi tal-utent',
-'saveusergroups'              => 'Salva l-gruppi tal-utent',
-'userrights-groupsmember'     => 'Appartenenti għall-grupp:',
-'userrights-groups-help'      => "Huwa possibbli li timmodifika l-gruppi li dan l-utent jinsab fihom:
+'userrights'                   => 'Ġestjoni tad-drittijiet tal-utent',
+'userrights-lookup-user'       => 'Ġestjoni tal-gruppi tal-utent',
+'userrights-user-editname'     => 'Daħħal isem tal-utent:',
+'editusergroup'                => 'Immodifika l-gruppi tal-utent',
+'editinguser'                  => "Modifika tad-drittijiet tal-utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Immodifika l-gruppi tal-utent',
+'saveusergroups'               => 'Salva l-gruppi tal-utent',
+'userrights-groupsmember'      => "Membru ta':",
+'userrights-groupsmember-auto' => "Membru impliċitu ta':",
+'userrights-groups-help'       => "Huwa possibbli li timmodifika l-gruppi li dan l-utent jinsab fihom:
 * Kaxxa bil-punta magħżula tfisser li l-utent huwa fil-grupp
 * Kaxxa bil-punta mhux magħżula tfisser li l-utent mhuwiex f'dak il-grupp
 * It-tagħrifa * tindika li mhuwiex possibbli li tneħħi l-grupp ġaladarba tkun żidtu (jew viċi versa)",
-'userrights-reason'           => 'Raġuni:',
-'userrights-no-interwiki'     => "M'għandekx permess tagħmel modifiki fid-drittijiet tal-utenti fuq siti oħrajn.",
-'userrights-nodatabase'       => 'Id-Database $1 ma jeżistix jew inkella mhux database lokali.',
-'userrights-nologin'          => "Sabiex tkun tista' tagħti d-drittijiet lill-utenti hemm bżonn li [[Special:UserLogin|tidħol]] bħalha amministratur.",
-'userrights-notallowed'       => "M'għandekx permess tagħti drittijiet lill-utenti.",
-'userrights-changeable-col'   => "Gruppi li tista' tbiddel",
-'userrights-unchangeable-col' => 'Gruppi li ma tistax tbiddel',
+'userrights-reason'            => 'Raġuni:',
+'userrights-no-interwiki'      => "M'għandekx permess tagħmel modifiki fid-drittijiet tal-utenti fuq siti oħrajn.",
+'userrights-nodatabase'        => 'Id-Database $1 ma jeżistix jew inkella mhux database lokali.',
+'userrights-nologin'           => "Sabiex tkun tista' tagħti d-drittijiet lill-utenti hemm bżonn li [[Special:UserLogin|tidħol]] bħalha amministratur.",
+'userrights-notallowed'        => "M'għandekx permess tagħti drittijiet lill-utenti.",
+'userrights-changeable-col'    => "Gruppi li tista' tbiddel",
+'userrights-unchangeable-col'  => 'Gruppi li ma tistax tbiddel',
 
 # Groups
 'group'               => 'Grupp:',
@@ -1305,13 +1306,13 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'group-sysop'         => 'Amministraturi',
 'group-bureaucrat'    => 'Burokrati',
 'group-suppress'      => "''Oversight''",
-'group-all'           => '(utenti)',
+'group-all'           => '(kollha)',
 
-'group-user-member'          => 'Utent',
-'group-autoconfirmed-member' => 'Utent konfermat awtomatikament',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Amministratur',
-'group-bureaucrat-member'    => 'Burokrata',
+'group-user-member'          => 'utent',
+'group-autoconfirmed-member' => 'utent konfermat awtomatikament',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'amministratur',
+'group-bureaucrat-member'    => 'burokrata',
 'group-suppress-member'      => "''Oversight''",
 
 'grouppage-user'          => '{{ns:project}}:Utenti',
@@ -1995,7 +1996,9 @@ L-iktar modifika riċenti fuq dil-paġna saret minn [[User:$3|$3]] ([[User talk:
 'revertpage'       => "Modifiki mneħħa minn [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) għall-aħħar verżjoni ta' [[User:$1|$1]]",
 'rollback-success' => "Modifiki mneħħa ta' $1;
 Modifikata lura għall-aħħar verżjoni ta' $2.",
-'sessionfailure'   => "Ġie verifikat problema fis-sessjoni tal-aċċess; din l-azzjoni ġiet imħassra bħalha prekawzjoni. Mur lura fil-paġna preċedenti bl-użu tal-buttuna 'Lura' tal-browser, niżżel il-paġna mill-ġdid u erġa' prova.",
+
+# Edit tokens
+'sessionfailure' => "Ġie verifikat problema fis-sessjoni tal-aċċess; din l-azzjoni ġiet imħassra bħalha prekawzjoni. Mur lura fil-paġna preċedenti bl-użu tal-buttuna 'Lura' tal-browser, niżżel il-paġna mill-ġdid u erġa' prova.",
 
 # Protect
 'protectlogpage'              => 'Protezzjoni',
@@ -2047,7 +2050,7 @@ Il-Preferenzi kurrenti ta' din il-paġni huma '''$1''':",
 
 # Undelete
 'undelete'                     => 'Ara l-paġni mħassra',
-'undeletepage'                 => 'Ara u rkupra l-paġni mħassra',
+'undeletepage'                 => 'Ara u rkupra paġni mħassra',
 'undeletepagetitle'            => "'''Hawn jinsabu reviżjonijiet imħassra ta' [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Ara l-paġni mħassra',
 'undeletepagetext'             => "Il-{{PLURAL:$1|paġna segwenti ġiet mħassra, però xorta għadha fl-arkivju u għalhekk tista' tiġi rkuprata|paġni segwenti ġew imħassra, però xorta għadhom jistgħu jiġu rkuprati}}. L-arkivju jista' jiġi mnaddaf perjodikament.",
@@ -2335,7 +2338,7 @@ Fl-aħħar każ inti tista' tuża ħolqa, per eżempju
 'export-addcat'     => 'Żied',
 'export-addnstext'  => 'Żid paġni mill-ispazju tal-isem:',
 'export-addns'      => 'Żid',
-'export-download'   => 'Salva l-fajl',
+'export-download'   => 'Salva bħala fajl',
 'export-templates'  => 'Inkludi templates',
 
 # Namespace 8 related

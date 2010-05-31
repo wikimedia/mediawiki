@@ -1380,7 +1380,9 @@ Nigared ba $2 baroi guzorişi hazfi oxirin.',
 'editcomment'      => "Xulosai viroiş in bud: \"''\$1''\".",
 'revertpage'       => 'Viroişi [[Special:Contributions/$2|$2]] ([[User talk:$2|Bahs]]) vogardonida şud ba oxirin taƣjire, ki [[User:$1|$1]] ançom doda bud',
 'rollback-success' => 'Viroişhoi $1 vogardonī şud; sahifa ba viroişi $2 bargardonida şud.',
-'sessionfailure'   => 'Ba nazar merasad, muşkilie dar mavridi nişasti korbariji şumo vuçud dorad; amali darxostşuda ba unvoni iqdomi peşgirona dar barobari rabuda şudani ittilooti nişasti korbarī, laƣv şud. Lutfan tugmai "bozgaşt"-ro dar mururgari xud paxş kuned va sahifae, ki az on inço rasidaed muçaddadan faroxonī kuned, sipas muçaddadan boz sa\'j kuned.',
+
+# Edit tokens
+'sessionfailure' => 'Ba nazar merasad, muşkilie dar mavridi nişasti korbariji şumo vuçud dorad; amali darxostşuda ba unvoni iqdomi peşgirona dar barobari rabuda şudani ittilooti nişasti korbarī, laƣv şud. Lutfan tugmai "bozgaşt"-ro dar mururgari xud paxş kuned va sahifae, ki az on inço rasidaed muçaddadan faroxonī kuned, sipas muçaddadan boz sa\'j kuned.',
 
 # Protect
 'protectlogpage'              => 'Guzorişi muhofizat',

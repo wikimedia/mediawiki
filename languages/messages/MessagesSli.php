@@ -1724,7 +1724,9 @@ De letzte Änderung stommt vu [[User:$3|$3]] ([[User talk:$3|Dischkur]]{{int:pip
 'editcomment'      => "De Änderungszusommafassung lautet: ''„$1“''.",
 'revertpage'       => 'Änderunga vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischkur]]) rickgängig gemacht und letzte Version vu [[User:$1|$1]] wiederhergestellt',
 'rollback-success' => 'De Änderunga vu $1 wurden rickgängig gemacht und de letzte Version vu $2 wurde wiederhergestellt.',
-'sessionfailure'   => "Is goab a Problem miet dar Iebertragung denner Nutzerdaten.
+
+# Edit tokens
+'sessionfailure' => "Is goab a Problem miet dar Iebertragung denner Nutzerdaten.
 Diese Aksjonn wurde daher sicherheetsholber obgebrochen, im anne foalsche Zuordnung denner Änderunga zu an'm andern Nutzer zu verhindern.
 Bitte gieh zerricke und versiche dann Vurgang erneut auszufiehrn.",
 

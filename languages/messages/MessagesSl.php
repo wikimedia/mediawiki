@@ -1035,6 +1035,24 @@ Prosimo, preverite dnevnik.',
 'suppressionlogtext' => 'Spodaj je seznam izbrisov in blokiranj, ki vključuje vsebino skrito pred administratorji.
 Oglejte si [[Special:IPBlockList|seznam blokiranih IP-jev]] za seznam trenutno aktivnih prepovedi in blokiranj.',
 
+# Revision move
+'moverevlogentry'              => 'premaknil(-a) $3 {{PLURAL:$3|redakcijo|redakciji|redakcije|redakcij}} z $1 na $2',
+'revisionmove'                 => 'Premakni redakcije z »$1«',
+'revmove-explain'              => 'Naslednje redakcije bodo prestavljene s strani $1 na določeno ciljno stran. Če cilj ne obstaja, bo ustvarjen. V nasprotnem primeru bodo redakcije združene z zgodovino strani.',
+'revmove-legend'               => 'Določite ciljno stran in povzetek',
+'revmove-submit'               => 'Prestavi redakcije na izbrano stran',
+'revisionmoveselectedversions' => 'Prestavi izbrane redakcije',
+'revmove-reasonfield'          => 'Razlog:',
+'revmove-titlefield'           => 'Ciljna stran:',
+'revmove-badparam-title'       => 'Nepravilni parametri',
+'revmove-badparam'             => '<span class="error">Vaša zahteva vsebuje neveljavne ali pomanjkljive parametre. Prosimo, izberite »nazaj« in poskusite znova.</span>',
+'revmove-norevisions-title'    => 'Neveljavna ciljna redakcija',
+'revmove-norevisions'          => '<span class="error">Niste določili ene ali več ciljnih redakcij za izvedbo te funkcije ali pa izbrana redakcija ne obstaja.</span>',
+'revmove-nullmove-title'       => 'Nepravilen naslov',
+'revmove-nullmove'             => '<span class="error">Izvorna in ciljna stran sta isti. Prosimo, kliknite »nazaj« in vnesite ime strani drugačno od »$1«.</span>',
+'revmove-success-existing'     => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na obstoječo stran [[$3]].',
+'revmove-success-created'      => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na novo ustvarjeno stran [[$3]].',
+
 # History merging
 'mergehistory'                     => 'Združi zgodovine strani',
 'mergehistory-header'              => 'Ta stran omogoča združevanje redakcij zgodovine ene izvorne strani v novejšo stran.
@@ -1071,7 +1089,7 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 'difference'               => '(Primerjava redakcij)',
 'lineno'                   => 'Vrstica $1:',
 'compareselectedversions'  => 'Primerjaj izbrani redakciji',
-'showhideselectedversions' => 'Prikaži/skrij izbrane revizije',
+'showhideselectedversions' => 'Prikaži/skrij izbrane redakcije',
 'editundo'                 => 'razveljavi',
 'diff-multi'               => '({{PLURAL:$1|$1 vmesna redakcija ni prikazana|$1 vmesni redakciji nista prikazani|$1 vmesne redakcije niso prikazane|$1 vmesnih redakcij ni prikazanih}})',
 
@@ -1368,6 +1386,7 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'right-reset-passwords'       => 'Ponastavljanje gesla drugih uporabnikov',
 'right-override-export-depth' => 'Izvoz strani, vključno s povezaimi straneh do globine 5',
 'right-sendemail'             => 'Pošiljanje e-pošte drugim uporabnikom',
+'right-revisionmove'          => 'Prestavi redakcije',
 
 # User rights log
 'rightslog'      => 'Dnevnik uporabniških pravic',
@@ -1410,6 +1429,7 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'action-userrights'           => 'upravljanje vseh uporabnikovih pravic',
 'action-userrights-interwiki' => 'upravljanje uporabniških pravic za uporabnike drugih wikijev',
 'action-siteadmin'            => 'zaklenitev ali odklepanje podatkovne baze',
+'action-revisionmove'         => 'prestavi redakcije',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
@@ -2126,7 +2146,10 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'revertpage-nouser' => 'vrnitev sprememb (uporabniško ime odstranjeno) na  zadnje urejanje uporabnika [[User:$1|$1]]',
 'rollback-success'  => 'Razveljavljene spremembe uporabnika $1;
 vrnjeno na urejanje uporabnika $2.',
-'sessionfailure'    => 'Vaša prijava ni uspela; da bi preprečili ugrabitev seje, je bilo dejanje preklicano. Prosimo, izberite »Nazaj« in ponovno naložite stran, s katere prihajate, nato poskusite znova.',
+
+# Edit tokens
+'sessionfailure-title' => 'Neuspeh seje',
+'sessionfailure'       => 'Vaša prijava ni uspela; da bi preprečili ugrabitev seje, je bilo dejanje preklicano. Prosimo, izberite »Nazaj« in ponovno naložite stran, s katere prihajate, nato poskusite znova.',
 
 # Protect
 'protectlogpage'              => 'Dnevnik zaščit strani',

@@ -1895,7 +1895,9 @@ De letzte Ännern is vun [[User:$3|$3]] ([[User talk:$3|Diskuschoon]]{{int:pipe-
 'editcomment'      => "De Ännerkommentar weer: „''$1''“.",
 'revertpage'       => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt',
 'rollback-success' => 'Ännern vun $1 trüchsett op letzte Version vun $2.',
-'sessionfailure'   => 'Dor weer en Problem mit diene Brukersitzung.
+
+# Edit tokens
+'sessionfailure' => 'Dor weer en Problem mit diene Brukersitzung.
 Disse Akschoon is nu ut Sekerheitsgrünn afbraken, dat de Ännern nich verkehrt en annern Bruker toornt warrt.
 Gah een Sied trüch un versöök dat noch wedder.',
 

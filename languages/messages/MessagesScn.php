@@ -1891,7 +1891,9 @@ Lu canciamentu cchiù ricenti â pàggina fu appurtata di [[User:$3|$3]] ([[User
 'editcomment'      => "Â discrizzioni â mudìfica era: \"''\$1''\".",
 'revertpage'       => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussioni]]) cu l'ùrtima virsioni di [[User:$1|$1]]",
 'rollback-success' => 'Annullati li canciamenti di $1; ritornata â virsioni pricidenti di $2.',
-'sessionfailure'   => 'S\'hà virificatu un prubbrema cu la tò sissioni di login;
+
+# Edit tokens
+'sessionfailure' => 'S\'hà virificatu un prubbrema cu la tò sissioni di login;
 lu sistema nun hà esiquitu lu cumannu mpartitu pi pricauzzioni.
 Pi favuri utilizza lu tastu "\'n arreri" dû tò browser, ricàrrica la pàggina e riprova di novu.',
 

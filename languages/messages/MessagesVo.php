@@ -1774,7 +1774,9 @@ Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]
 'editcomment'      => "Redakamaplän äbinon: „''$1''“.",
 'revertpage'       => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons ad fomam ma redakam lätik gebana: [[User:$1|$1]]',
 'rollback-success' => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
-'sessionfailure'   => 'Jiniko ädabinon säkäd seimik pö nunädam olik. 
+
+# Edit tokens
+'sessionfailure' => 'Jiniko ädabinon säkäd seimik pö nunädam olik. 
 Dun at no pelasumon ad vitön mögi, das votükams olik pogivulons gebane votik.
 Välolös knopi: „Geikön“ e dönulodolös padi, de kel ekömol, e tän steifülolös nogna.',
 

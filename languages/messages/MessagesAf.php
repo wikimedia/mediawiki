@@ -2142,7 +2142,9 @@ Die mees onlangse wysiging is gemaak deur [[User:$3|$3]] ([[User talk:$3|besprek
 'revertpage'        => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
 'revertpage-nouser' => 'Rol wysigings deur (gebruikersnaam verwyder) terug na die laaste weergawe deur [[User:$1|$1]]',
 'rollback-success'  => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
-'sessionfailure'    => "Dit lyk of daar 'n probleem met u sessie is.
+
+# Edit tokens
+'sessionfailure' => "Dit lyk of daar 'n probleem met u sessie is.
 Hierdie aksie is gekanselleer omdat dit 'n veiligheidsrisiko is (moontlike kaping van u sessie).
 Gaan een bladsy terug, herlaai die bladsy en probeer dan weer.",
 

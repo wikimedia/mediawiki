@@ -2269,7 +2269,9 @@ La dernière modification de la page a été effectuée par [[User:$3|$3]] ([[Us
 'revertpage-nouser' => 'Révocation des modifications par (nom d’utilisateur supprimé) à la dernière version par [[User:$1|$1]]',
 'rollback-success'  => 'Révocation des modifications effectuées par $1 ;
 rétablissement de la dernière version par $2.',
-'sessionfailure'    => 'Votre session de connexion semble avoir des problèmes ;
+
+# Edit tokens
+'sessionfailure' => 'Votre session de connexion semble avoir des problèmes ;
 cette action a été annulée en prévention d’un piratage de session.
 Veuillez cliquer sur « Précédent », rechargez la page d’où vous venez, puis réessayez.',
 

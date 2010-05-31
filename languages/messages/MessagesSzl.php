@@ -1580,7 +1580,9 @@ Autorym ostatńygo pomjyńyńo je terozki [[User:$3|$3]] ([[User talk:$3|godka]]
 Autor prziwrůcůnej wersyji to [[User:$1|$1]].',
 'rollback-success' => 'Wycofano sprowjyńa užytkowńika $1.
 Přiwrůcůno uostatńo wersyja autorstwa  $2.',
-'sessionfailure'   => 'Feler weryfikacyji zalůgowańo.
+
+# Edit tokens
+'sessionfailure' => 'Feler weryfikacyji zalůgowańo.
 Polecyńy zostouo anulowane, aby ůńiknůńć přechwycyńo sesyji.
 
 Naćiś „cofej”, přeuaduj zajta, a potym zaś wydej polecyńy',

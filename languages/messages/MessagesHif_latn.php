@@ -1930,7 +1930,9 @@ Ii panna ke pichla badla [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separat
 'revertpage-nouser' => '(sadasya ke namm ke hatae dewa gais hae) se karaa gais badlao ke  [[User:$1|$1]] ke badlao ke rakam kar dewa gais hae.',
 'rollback-success'  => '$1 ke badlao ke pahile jaise kar dewa gais hai;
 badal ke $2 ke aakhri version kar dewa gais hai.',
-'sessionfailure'    => 'Aap ke login session me kuch karrbarr hai.
+
+# Edit tokens
+'sessionfailure' => 'Aap ke login session me kuch karrbarr hai.
 iske cancel kar dewa gais hai jisse ki koi iisession ke hijack nai kar.
 Meharbani kar ke  "back" ke press kar ke jon pana se aap aae rahaa ke fir se load karo, tab fir kosis karo.',
 

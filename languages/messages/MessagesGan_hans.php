@@ -1312,7 +1312,9 @@ $NEWPAGE
 'editcomment'      => "编辑介绍: \"''\$1''\"。",
 'revertpage'       => '返回由[[Special:Contributions/$2|$2]] （[[User talk:$2|对话]]）𠮶编辑；恢复到[[User:$1|$1]]𠮶最末一只版本',
 'rollback-success' => '返回由$1𠮶编辑；恢复到$2𠮶最末一只版本。',
-'sessionfailure'   => '倷𠮶登入好像有嚸问题，为到防范未然，个只动作拖取消嘞。
+
+# Edit tokens
+'sessionfailure' => '倷𠮶登入好像有嚸问题，为到防范未然，个只动作拖取消嘞。
 
 请按吖“后退”再试过啰！',
 

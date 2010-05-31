@@ -1360,7 +1360,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'group-user'          => 'Thành viên thông thường',
 'group-autoconfirmed' => 'Thành viên tự xác nhận',
 'group-bot'           => 'Robot',
-'group-sysop'         => 'Quản lý',
+'group-sysop'         => 'Bảo quản viên',
 'group-bureaucrat'    => 'Hành chính viên',
 'group-suppress'      => 'Giám sát viên',
 'group-all'           => '(tất cả)',
@@ -1368,7 +1368,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'group-user-member'          => 'Thành viên',
 'group-autoconfirmed-member' => 'Thành viên tự động xác nhận',
 'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Quản lý',
+'group-sysop-member'         => 'bảo quản viên',
 'group-bureaucrat-member'    => 'Hành chính viên',
 'group-suppress-member'      => 'Giám sát viên',
 
@@ -2183,7 +2183,9 @@ Sửa đổi cuối cùng tại trang do [[User:$3|$3]] ([[User talk:$3|thảo l
 'revertpage-nouser' => 'Lùi sửa đổi của (tên người dùng đã xóa) quay lại phiên bản cuối của [[User:$1|$1]]',
 'rollback-success'  => 'Đã hủy sửa đổi của $1;
 quay về phiên bản cuối của $2.',
-'sessionfailure'    => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
+
+# Edit tokens
+'sessionfailure' => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
 
 # Protect
 'protectlogpage'              => 'Nhật trình khóa',

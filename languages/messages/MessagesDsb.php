@@ -989,6 +989,24 @@ Pšosym pśeglědaj protokole.',
 'suppressionlog'     => 'Protokol pódłocowanjow',
 'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo za administratorow schowane. Glědaj  [[Special:IPBlockList|lisćinu blokěrowanjow IP]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
 
+# Revision move
+'moverevlogentry'              => 'jo {{PLURAL:$3|jadnu wersiju|$3 wersiji|$3 wersije|$3 wersijow}} wót $1 do $2 pśesunuł',
+'revisionmove'                 => 'Wersije wót "$1" pśesunuś',
+'revmove-explain'              => 'Slědujuce wersije budu se wót $1 do pódanego boka pśesuwaś. Jolic cel njeeksistěrujo, buźo se napóraś. Howac budu se toś te wersije do historije boki zjadnośowaś.',
+'revmove-legend'               => 'Celowy bok a zespominanje nastajiś',
+'revmove-submit'               => 'Wersije k wubranemu bokoju pśesunuś',
+'revisionmoveselectedversions' => 'Wubrane wersije pśesunuś',
+'revmove-reasonfield'          => 'Pśicyna:',
+'revmove-titlefield'           => 'Celowy bok:',
+'revmove-badparam-title'       => 'Wopacne parametry',
+'revmove-badparam'             => '<span class="error">Twójo napšašowanje wopśimujo njedowólone abo njedosegajuce parametry. Pšosym klikni na "slědk" a wopytaj hyšći raz.</span>',
+'revmove-norevisions-title'    => 'Njepłaśiwa celowa wersija',
+'revmove-norevisions'          => '<span class="error">Njejsy jadnu celowu wersiju abo wěcej celowych wersijow pódał, aby toś tu funkciju wuwjadł abo pódana wersija njeeksistěrujo.</span>',
+'revmove-nullmove-title'       => 'Njepłaśiwy titel',
+'revmove-nullmove'             => '<span class="error">Žrědłowy a celowy bok stej identeskejl. Pšosym klikni na "slědk" a zapódaj druge mě boka  ako "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Jadna wersija jo se wót [[$2]]|$1 wersiji stej se wót [[$2]]|$1 wersije su se wót [[$2]]|$1 wersijow jo se wót [[$2]]}} k eksistěrujucemu bokoju  [[$3]] {{PLURAL:$1|pśesunuła|pśesunułej|pśesunuli|pśesunuło}}.',
+'revmove-success-created'      => '{{PLURAL:$1|Jadna wersija jo se wót [[$2]]|$1 wersiji stej se wót [[$2]]|$1 wersije su se wót [[$2]]|$1 wersijow jo se wót [[$2]]}} k rowno napóranemu bokoju  [[$3]] {{PLURAL:$1|pśesunuła|pśesunułej|pśesunuli|pśesunuło}}.',
+
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',
 'mergehistory-header'              => 'Z toś tym bokom móžoš historiju wersijow žrědłowego boka z tej celowego boka zjadnośiś.
@@ -1314,6 +1332,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-reset-passwords'       => 'Gronidła drugich wužywarjow slědk stajiś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
 'right-sendemail'             => 'Drugim wužywarjam e-mail pósłaś',
+'right-revisionmove'          => 'Wersije pśesunuś',
 
 # User rights log
 'rightslog'      => 'Protokol wužywarskich pšawow',
@@ -1356,6 +1375,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'action-userrights'           => 'wše wužywarske pšawa wobźěłaś',
 'action-userrights-interwiki' => 'wužywarske pšawa wužywarjow w drugich wikijach wobźěłaś',
 'action-siteadmin'            => 'datowu banku zastajiś abo wótworiś',
+'action-revisionmove'         => 'wersije pśesunuś',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změnje|změny}}',
@@ -2041,7 +2061,10 @@ Slědnu změnu k bokoju jo pśewjadł [[User:$3|$3]] ([[User talk:$3|diskusija]]
 'revertpage'        => 'Změny wužywarja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) su se wótwrośili a slědna wersija wužywarja [[User:$1|$1]] jo se wótnowiła.',
 'revertpage-nouser' => 'Jo změny wót (wužywarske mě wótpórane) na slědnu wersiju wót [[User:$1|$1]] slědk stajił',
 'rollback-success'  => 'Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.',
-'sessionfailure'    => 'Problem z twójim wužywarskim pósejźenim jo se wujawił.
+
+# Edit tokens
+'sessionfailure-title' => 'Pósejźeńska zmólka',
+'sessionfailure'       => 'Problem z twójim wužywarskim pósejźenim jo se wujawił.
 Wěstoty dla jo akcija se pśetergnuła, aby se zadorało wopacnemu pśirědowanjoju twójeje změny drugemu wužywarjeju.
 Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.',
 

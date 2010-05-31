@@ -1679,7 +1679,9 @@ La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]]{{in
 'editcomment'      => "El resume de la edición yera: \"''\$1''\".",
 'revertpage'       => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]',
 'rollback-success' => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
-'sessionfailure'   => 'Paez qu\'hai un problema cola to sesión; por precaución
+
+# Edit tokens
+'sessionfailure' => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
 navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 
