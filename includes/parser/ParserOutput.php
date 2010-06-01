@@ -11,6 +11,7 @@ class ParserOutput
 		$mContainsOldMagic,           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
 		$mTitleText,                  # title text of the chosen language variant
 		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
+		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncachable. Used in ParserCache.
 		$mVersion = Parser::VERSION,  # Compatibility check
 		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
 		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
@@ -64,11 +65,65 @@ class ParserOutput
 	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
 	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategories, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
-	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
+
+	/** setCacheTime() sets the timestamp expressing when the page has been rendered. 
+	 * This doesn not control expiry, see updateCacheExpiry() for that!
+	*/
+	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); } 
 	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
 	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
 	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
 	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
+
+
+	/** Sets the number of seconds after which this object should expire.
+	* This value is used with the ParserCache.
+	* If called with a value greater than the value provided at any previous call, 
+	* the new call has no effect. The value returned by getCacheExpiry is smaller
+	* or equal to the smallest number that was provided as an argument to 
+	* updateCacheExpiry().
+	*/
+	function updateCacheExpiry( $seconds ) { 
+		$seconds = (int)$seconds;
+
+		if ( $this->mCacheExpiry === null || $this->mCacheExpiry > $seconds ) 
+			$this->mCacheExpiry = $seconds; 
+
+		// hack: set old-style marker for uncacheable entries.
+		if ( $this->mCacheExpiry !== null && $this->mCacheExpiry <= 0 ) 
+			$this->mCacheTime = -1;
+	}
+
+	/** Returns the number of seconds after which this object should expire.
+	* This method is used by ParserCache to determine how long the ParserOutput can be cached.
+	* The timestamp of expiry can be calculated by adding getCacheExpiry() to getCacheTime().
+	* The value returned by getCacheExpiry is smaller or equal to the smallest number 
+	* that was provided to a call of updateCacheExpiry(), and smaller or equal to the
+	* value of $wgParserCacheExpireTime.
+	*/
+	function getCacheExpiry() { 
+		global $wgParserCacheExpireTime;
+
+		if ( $this->mCacheTime < 0 ) return 0; // old-style marker for "not cachable"
+
+		$expire = $this->mCacheExpiry; 
+
+		if ( $expire === null ) 
+			$expire = $wgParserCacheExpireTime;
+		else
+			$expire = min( $expire, $wgParserCacheExpireTime );
+
+		if( $this->containsOldMagic() ) { //compatibility hack
+			$expire = min( $expire, 3600 ); # 1 hour
+		} 
+
+		if ( $expire <= 0 ) return 0; // not cachable
+		else return $expire;
+	}
+
+	function isCacheable() { 
+		return $this->getCacheExpiry() > 0;
+	}
 
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
@@ -174,9 +229,10 @@ class ParserOutput
 	 */
 	public function expired( $touched ) {
 		global $wgCacheEpoch;
-		return $this->getCacheTime() == -1 || // parser says it's uncacheable
+		return !$this->isCacheable() || // parser says it's uncacheable
 		       $this->getCacheTime() < $touched ||
 		       $this->getCacheTime() <= $wgCacheEpoch ||
+		       $this->getCacheTime() < wfTimestamp( TS_MW, time() - $this->getCacheExpiry() ) || // expiry period has passed
 		       !isset( $this->mVersion ) ||
 		       version_compare( $this->mVersion, Parser::VERSION, "lt" );
 	}

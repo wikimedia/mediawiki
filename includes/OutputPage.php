@@ -1050,7 +1050,7 @@ class OutputPage {
 			$popts, true, true, $this->mRevisionId
 		);
 		$popts->setTidy( false );
-		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
+		if ( $cache && $article && !$parserOutput->isCacheable() ) {
 			$parserCache = ParserCache::singleton();
 			$parserCache->save( $parserOutput, $article, $popts );
 		}
@@ -1078,7 +1078,7 @@ class OutputPage {
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
 
 		$this->mParseWarnings = $parserOutput->getWarnings();
-		if ( $parserOutput->getCacheTime() == -1 ) {
+		if ( !$parserOutput->isCacheable() ) {
 			$this->enableClientCache( false );
 		}
 		$this->mNoGallery = $parserOutput->getNoGallery();
