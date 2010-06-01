@@ -181,6 +181,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22967) Make edit summary length cut-off behave correctly for 
   multibyte characters.
 * (bug 8689) Long numeric lines no longer  kill the parser.
+* (bug 23740) Article::doRedirect() now use $extraQuery parameter correctly if
+  the $noRedir parameter is set to true
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

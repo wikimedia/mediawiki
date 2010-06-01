@@ -2361,7 +2361,7 @@ class Article {
 		if ( $noRedir ) {
 			$query = 'redirect=no';
 			if ( $extraQuery )
-				$query .= "&$query";
+				$query .= "&$extraQuery";
 		} else {
 			$query = $extraQuery;
 		}
