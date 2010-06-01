@@ -440,6 +440,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 		if ( $this->fld_content && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
 			if ( $this->generateXML ) {
+				global $wgParser;
 				$wgParser->startExternalParse( $title, new ParserOptions(), OT_PREPROCESS );
 				$dom = $wgParser->preprocessToDom( $text );
 				if ( is_callable( array( $dom, 'saveXML' ) ) ) {
