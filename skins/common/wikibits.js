@@ -721,14 +721,14 @@ function ts_initTransformTable() {
 	if ( typeof wgSeparatorTransformTable == 'undefined'
 			|| ( wgSeparatorTransformTable[0] == '' && wgDigitTransformTable[2] == '' ) )
 	{
-		digitClass = "[0-9,.]";
+		var digitClass = "[0-9,.]";
 		ts_number_transform_table = false;
 	} else {
 		ts_number_transform_table = {};
 		// Unpack the transform table
 		// Separators
-		ascii = wgSeparatorTransformTable[0].split("\t");
-		localised = wgSeparatorTransformTable[1].split("\t");
+		var ascii = wgSeparatorTransformTable[0].split("\t");
+		var localised = wgSeparatorTransformTable[1].split("\t");
 		for ( var i = 0; i < ascii.length; i++ ) {
 			ts_number_transform_table[localised[i]] = ascii[i];
 		}
@@ -740,8 +740,8 @@ function ts_initTransformTable() {
 		}
 
 		// Construct regex for number identification
-		digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '\\.'];
-		maxDigitLength = 1;
+		var digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '\\.'];
+		var maxDigitLength = 1;
 		for ( var digit in ts_number_transform_table ) {
 			// Escape regex metacharacters
 			digits.push(
@@ -753,9 +753,9 @@ function ts_initTransformTable() {
 			}
 		}
 		if ( maxDigitLength > 1 ) {
-			digitClass = '[' + digits.join( '', digits ) + ']';
+			var digitClass = '[' + digits.join( '', digits ) + ']';
 		} else {
-			digitClass = '(' + digits.join( '|', digits ) + ')';
+			var digitClass = '(' + digits.join( '|', digits ) + ')';
 		}
 	}
 
@@ -824,7 +824,7 @@ function ts_dateToSortKey( date ) {
 			return date.substr( 6, 4 ) + date.substr( 3, 2 ) + date.substr( 0, 2 );
 		}
 	} else if ( date.length == 8 ) {
-		yr = date.substr( 6, 2 );
+		var yr = date.substr( 6, 2 );
 		if ( parseInt( yr ) < 50 ) {
 			yr = '20' + yr;
 		} else {
@@ -856,7 +856,7 @@ function ts_parseFloat( s ) {
 		}
 		s = newNum;
 	}
-	num = parseFloat( s.replace(/[, ]/g, '').replace("\u2212", '-') );
+	var num = parseFloat( s.replace(/[, ]/g, '').replace("\u2212", '-') );
 	return ( isNaN( num ) ? -Infinity : num );
 }
 
