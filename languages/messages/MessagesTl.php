@@ -1029,6 +1029,24 @@ Pakitingnan ang mga talaan.',
 'suppressionlogtext' => "Nasa ibaba ang isang tala ng mga pagbura at mga pagharang/paghadlang na kinakasangkutan ng nilalamang nakatago sa mga ''sysop''.
 Tingnan ang [[Special:IPBlockList|talaan ng hinarang na/hinadlangang IP]] para sa isang talaan ng mga pangkasalukuyan at gumaganang mga pinagbawalan at mga pagharang/paghadlang.",
 
+# Revision move
+'moverevlogentry'              => 'inilipat {{PLURAL:$3|isang pagbabago|$3 mga pagbabago}} mula $1 patungo sa $2',
+'revisionmove'                 => 'Ilipat ang mga pagbabago mula sa "$1"',
+'revmove-explain'              => 'Ang sumusuno na mga pagbabago ay ililipat mula sa $1 papunta sa tinukoy na puntiryang pahina.  Kapag hindi umiiral ang puntirya, lilikhain ito.  Kung hindi, ang mga pagbabagong ito ay isasanib sa kasaysayan ng pahina.',
+'revmove-legend'               => 'Itakda ang puntiryang pahina at buod',
+'revmove-submit'               => 'Ilipat ang mga pagbabago papunta sa napiling pahina',
+'revisionmoveselectedversions' => 'Ilipat ang napiling mga pagbabago',
+'revmove-reasonfield'          => 'Dahilan:',
+'revmove-titlefield'           => 'Puntiryang pahina:',
+'revmove-badparam-title'       => 'Masamang mga parametro',
+'revmove-badparam'             => '<span class="error">Naglalaman ang kahilingan mo ng ilegal o hindi sapat na mga parametro.  Pakipindot ang "bumalik" at subukan uli.</span>',
+'revmove-norevisions-title'    => 'Hindi tanggap na puntiryang pagbabago',
+'revmove-norevisions'          => '<span class="error">Hindi ka tumukoy ng isa o higit pang puntiryang mga pagbabago upang magampanan ang tungkuling ito o hindi umiiral ang tinukoy na pagbabago.</span>',
+'revmove-nullmove-title'       => 'Masamang pamagat',
+'revmove-nullmove'             => '<span class="error">Magakawangis ang pahinang pinagmulan at puntirya.  Pakipindot ang "bumalik" at maglagay ng isang pahinang naiiba sa "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Isang pagbabago mula sa [[$2]] ang|$1 mga pagbabago mula sa [[$2]] ang}} inilipat papunta sa umiiral na pahinang [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Isang pagbabago mula sa [[$2]] ang|$1 mga pagbabago mula sa [[$2]] ang}} nailipat papunta sa bagong-likhang pahinang [[$3]].',
+
 # History merging
 'mergehistory'                     => 'Pagsanibin mga pahina ng kasaysayan',
 'mergehistory-header'              => 'Pinapahintuluan ka ng pahinang ito upang mapagsanib ang mga kasaysayan ng isang pinagmulang pahina patungo sa isang mas bagong pahina.
@@ -1164,7 +1182,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'prefs-resetpass'               => 'Baguhin ang hudyat',
 'prefs-email'                   => 'Mga pagpipilian para sa e-liham',
 'prefs-rendering'               => 'Hitsura',
-'saveprefs'                     => 'Sagip',
+'saveprefs'                     => 'Sagipin',
 'resetprefs'                    => 'Hawanin ang hindi nasagip na mga pagbabago',
 'restoreprefs'                  => 'Ibalik ang lahat ng likas na mga pagtatakda',
 'prefs-editing'                 => 'May binabago',
@@ -1357,6 +1375,7 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 'right-reset-passwords'       => 'Mulng itakda ang mga hudyat ng iba pang mga tagagamit',
 'right-override-export-depth' => 'Iluwas ang mga pahina na kabilang ang mga pahinang nakakawing magpahanggang sa isang lalim na 5',
 'right-sendemail'             => 'Magpadala ng e-liham sa ibang mga tagagamit',
+'right-revisionmove'          => 'Ilipat ang mga pagbabago',
 
 # User rights log
 'rightslog'      => 'Tala ng mga karapatan ng tagagamit',
@@ -1399,6 +1418,7 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 'action-userrights'           => 'baguhin ang lahat ng karapatan ng tagagamit',
 'action-userrights-interwiki' => 'baguhin ang mga karapatan ng tagagamit na nasa ibang mga wiki',
 'action-siteadmin'            => 'ikandado o tanggalin ang pagkakakandado ng kalipunan ng dato',
+'action-revisionmove'         => 'ilipat ang mga pagbabago',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
@@ -1652,7 +1672,7 @@ Mababago ang pagkakapangkat-pangkat sa pamamagitan ng pagpindot sa isang paulo n
 'filehist-user'             => 'Tagagamit',
 'filehist-dimensions'       => 'Mga sukat',
 'filehist-filesize'         => 'Sukat ng talaksan',
-'filehist-comment'          => 'Komento',
+'filehist-comment'          => 'Puna/Kumento',
 'filehist-missing'          => 'Nawawala ang talaksan',
 'imagelinks'                => 'Mga kawing ng talaksan',
 'linkstoimage'              => 'Nakakawing ang sumusunod na {{PLURAL:$1|pahina|$1 mga pahina}} sa talaksang ito.',
@@ -2088,7 +2108,8 @@ Ang huling pagbabago sa pahina ay ginawa ni [[User:$3|$3]] ([[User talk:$3|Usapa
 'rollback-success'  => 'Ibinalik ang mga pagbabago ni $1; ibinalik sa huling bersyon ni $2.',
 
 # Edit tokens
-'sessionfailure' => "Tila mayroong suliraning may kaugnayan sa iyong sesyon/panahon ng pagkakalagda;
+'sessionfailure-title' => 'Nabigong pulong',
+'sessionfailure'       => "Tila mayroong suliraning may kaugnayan sa iyong sesyon/panahon ng pagkakalagda;
 Kinansela ang galaw/gawaing ito bilang pagiingat laban sa pagnanakaw (panghahaydyak) ng sesyon/panahon.
 Pakipindot ang pindutang \"ibalik\" (''back'') at ikarga uli ang pinanggalingan mong pahina, sumubok uli pagkaraan.",
 
@@ -2581,7 +2602,7 @@ Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwikin
 'tooltip-pt-mycontris'            => 'Talaan ng mga ambag mo',
 'tooltip-pt-login'                => 'Hinihimok kang lumagda, bagaman hindi ito kinakailangan.',
 'tooltip-pt-anonlogin'            => 'Hinihimok kang lumagda, bagaman hindi ito kinakailangan.',
-'tooltip-pt-logout'               => 'Umalis sa pagkalagda',
+'tooltip-pt-logout'               => 'Umalis sa pagkakalagda',
 'tooltip-ca-talk'                 => 'Usapan tungkol sa nilalaman ng pahinang ito',
 'tooltip-ca-edit'                 => 'Maaaring baguhin ang pahinang ito. Paki gamit ang buton ng paunang tingin bago itala.',
 'tooltip-ca-addsection'           => 'Magsimula ng isang bagong seksyon',
@@ -3192,7 +3213,7 @@ Pakitiyak kung ibig mo talagang likhain muli ang pahinang ito.",
 'autosumm-new'     => "Nilikha ang pahina na may '$1'",
 
 # Live preview
-'livepreview-loading' => 'Ikinakarga…',
+'livepreview-loading' => 'Ikinakarga...',
 'livepreview-ready'   => 'Ikinakarga… Handa na!',
 'livepreview-failed'  => 'Nabigo ang umiiral na paunang tingin!  Subukan ang normal/pangkaraniwang paunang tingin.',
 'livepreview-error'   => 'Hindi tagumpay ang pagkabit (connect): $1 "$2". Subukan ang karaniwang paunang tingin.',
@@ -3379,7 +3400,7 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'htmlform-int-toolow'          => 'Ang tinukoy mong halaga ay mas mababa kaysa sa pinakamababa ng $1',
 'htmlform-int-toohigh'         => 'Ang tinukoy mong halaga ay mahigit kaysa pinakamataas ng $1',
 'htmlform-required'            => 'Kailangan ang halagang ito',
-'htmlform-submit'              => 'Ipadala',
+'htmlform-submit'              => 'Ipasa',
 'htmlform-reset'               => 'Bawiin ang mga pagbabago',
 'htmlform-selectorother-other' => 'Iba pa',
 

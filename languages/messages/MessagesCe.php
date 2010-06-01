@@ -473,6 +473,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-ca-talk'        => 'Дийцаре чулацам агlонаши',
 'tooltip-ca-delete'      => 'Дlайайá хlара агlо',
+'tooltip-p-logo'         => 'Коьрта агIо',
 'tooltip-ca-nstab-media' => 'Медиа-хlум',
 
 # Attribution

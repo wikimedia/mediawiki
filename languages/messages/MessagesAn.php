@@ -652,7 +652,7 @@ Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya t
 'missingcommenttext'               => 'Por favor, escriba o texto astí baixo.',
 'missingcommentheader'             => "'''Pare cuenta:''' No ha escrito garra títol ta iste comentario. Si puncha de nuevas en \"Alzar\", a suya edición se grabará sin títol.",
 'summary-preview'                  => "Veyer anvista previa d'o resumen:",
-'subject-preview'                  => "Ambiesta previa d'o tema/títol:",
+'subject-preview'                  => "Anvista previa d'o tema/títol:",
 'blockedtitle'                     => "L'usuario ye bloqueyato",
 'blockedtext'                      => "'''O suyo nombre d'usuario u adreza IP ye bloqueyato.'''
 
@@ -962,6 +962,24 @@ No tien acceso a ell.',
 # Suppression log
 'suppressionlog'     => 'Rechistro de supresions',
 'suppressionlogtext' => "En o cobaixo bi ye una lista de borraus y bloqueyos referitos a contenius amagaus ta os almenistradors. Mire-se a [[Special:IPBlockList|lista d'adrezas IP bloqueyatas]] ta veyer a lista de bloqueyos y vedas bichents.",
+
+# Revision move
+'moverevlogentry'              => "S'ha tresladato {{PLURAL:$3|una versión|$3 versions}} dende $1 ta $2",
+'revisionmove'                 => 'Tresladar versions dende "$1"',
+'revmove-explain'              => "As siguients versions se tresladarán dende $1 t'a pachina destín especificata. Si o destín no existe, se creyará. D'atra traza, istas versions se fusionarán en o historial d'a pachina.",
+'revmove-legend'               => 'Establir a pachina de destín y resumen',
+'revmove-submit'               => "Tresladar versions t'a pachina trigada",
+'revisionmoveselectedversions' => 'Tresladar as versions trigadas',
+'revmove-reasonfield'          => 'Razón:',
+'revmove-titlefield'           => 'Pachina de destín:',
+'revmove-badparam-title'       => 'Parametros no conformes',
+'revmove-badparam'             => '<span class="error">A requesta contién parametros insuficients u erronios. Torne enta zaga y mire de fer-lo de nuevas.</span>',
+'revmove-norevisions-title'    => 'A versión de destino no ye conforme',
+'revmove-norevisions'          => '<span class="error">No ha especificato una u más version a on aplicar ista función u bien as versions especificatas no existen.</span>',
+'revmove-nullmove-title'       => 'Títol no conforme',
+'revmove-nullmove'             => '<span class="error">As pachinas d\'orichen y destín son a mesma. Torne enta zaga y escriba una pachina diferent de «$1».</span>',
+'revmove-success-existing'     => "S'ha tresladato {{PLURAL:$1|una versión de [[$2]]|$1 versions de [[$2]]}} t'a pachina existent [[$3]].",
+'revmove-success-created'      => "S'ha tresladato {{PLURAL:$1|una versión de [[$2]]|$1 versions de [[$2]]}} t'a pachina recient creyata [[$3]].",
 
 # History merging
 'mergehistory'                     => 'Fusionar historials',
@@ -1289,6 +1307,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-reset-passwords'       => "Reiniciar a contrasenya d'atros usuarios",
 'right-override-export-depth' => 'Exporta pachinas que incluigan as enlazadas dica un fundaria de 5',
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
+'right-revisionmove'          => 'Tresladar versions',
 
 # User rights log
 'rightslog'      => "Rechistro de cambios en os dreitos d'os usuarios",
@@ -1331,6 +1350,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'action-userrights'           => "cambiar totz os dreitos d'usuario",
 'action-userrights-interwiki' => "cambiar os dreitos d'usuario en atros wikis",
 'action-siteadmin'            => 'bloqueyar u desbloqueyar a base de datos',
+'action-revisionmove'         => 'tresladar versions',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambeo|cambeos}}',
@@ -2019,7 +2039,8 @@ A zaguer edición d'a pachina la fació [[User:$3|$3]] ([[User talk:$3|descusió
 'rollback-success'  => "Revertidas as edicions de $1; s'ha retornato t'a zaguer versión de $2.",
 
 # Edit tokens
-'sessionfailure' => 'Pareix que bi ha un problema con a suya sesión;
+'sessionfailure-title' => 'Error de sesión',
+'sessionfailure'       => 'Pareix que bi ha un problema con a suya sesión;
 s\'ha anulato ista acción como mida de precura contra seqüestros de sesión.
 Por favor, prete "Entazaga", recargue a pachina d\'a que venió, y torne a prebar alavez.',
 
@@ -2409,19 +2430,21 @@ En iste zaguer caso tamién puede usar un vinclo, por eixemplo [[{{#Special:Expo
 'export-pagelinks'  => 'Incluyir pachinas vinculadas con una fundaria de:',
 
 # Namespace 8 related
-'allmessages'               => "Mensaches d'o sistema",
-'allmessagesname'           => 'Nombre',
-'allmessagesdefault'        => 'texto por defecto',
-'allmessagescurrent'        => 'texto actual',
-'allmessagestext'           => "Ista ye una lista de totz os mensaches disponibles en o espacio de nombres MediaWiki.
+'allmessages'                   => "Mensaches d'o sistema",
+'allmessagesname'               => 'Nombre',
+'allmessagesdefault'            => 'texto por defecto',
+'allmessagescurrent'            => 'texto actual',
+'allmessagestext'               => "Ista ye una lista de totz os mensaches disponibles en o espacio de nombres MediaWiki.
 Vesite por favor [http://www.mediawiki.org/wiki/Localisation a pachina sobre localización de MediaWiki] y  [http://translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
-'allmessagesnotsupportedDB' => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desactivato.',
-'allmessages-filter-legend' => 'Filtro',
-'allmessages-filter'        => 'Filtrar por estau de personalización:',
-'allmessages-filter-all'    => 'Totz',
-'allmessages-prefix'        => 'Filtrar por prefixo:',
-'allmessages-language'      => 'Idioma:',
-'allmessages-filter-submit' => 'Ir-ie',
+'allmessagesnotsupportedDB'     => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desactivato.',
+'allmessages-filter-legend'     => 'Filtro',
+'allmessages-filter'            => 'Filtrar por estau de personalización:',
+'allmessages-filter-unmodified' => 'Sin modificar',
+'allmessages-filter-all'        => 'Totz',
+'allmessages-filter-modified'   => 'Modificato',
+'allmessages-prefix'            => 'Filtrar por prefixo:',
+'allmessages-language'          => 'Idioma:',
+'allmessages-filter-submit'     => 'Ir-ie',
 
 # Thumbnails
 'thumbnail-more'           => 'Fer más gran',
@@ -2452,6 +2475,7 @@ Todas as importacions interwiki se rechistran en o [[Special:Log/import|rechistr
 'importstart'                => 'Importando pachinas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versión|versions}}',
 'importnopages'              => 'No bi ha garra pachina ta importar.',
+'imported-log-entries'       => "S'ha importau {{PLURAL:$1|una dentrada d'o rechistro|S'han importau $1 dentradas d'o rechistro}}.",
 'importfailed'               => 'Ha fallato a importación: $1',
 'importunknownsource'        => "O tipo de fuent d'a importación ye esconoixito",
 'importcantopen'             => "No s'ha puesto importar iste fichero",
@@ -2545,6 +2569,7 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'tooltip-upload'                  => 'Prencipia a carga',
 'tooltip-rollback'                => '"Revertir" revierte todas as zagueras edicions d\'un mesmo usuario en ista pachina nomás con un clic.',
 'tooltip-undo'                    => '"Desfer" revierte a edición trigata y ubre a pachina d\'edición en o modo de previsualización. Deixa escribir una razón en o resumen d\'edición.',
+'tooltip-preferences-save'        => 'Alzar as preferencias',
 'tooltip-summary'                 => 'Escribir un breu resumen',
 
 # Metadata
@@ -2699,7 +2724,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-ycbcrsubsampling'            => 'Razón de submuestreyo de Y a C',
 'exif-ycbcrpositioning'            => 'Posición de Y y C',
 'exif-xresolution'                 => 'Resolución horizontal',
-'exif-yresolution'                 => 'Resolución bertical',
+'exif-yresolution'                 => 'Resolución vertical',
 'exif-resolutionunit'              => "Unidatz d'as resolucions en X e Y",
 'exif-stripoffsets'                => "Localización d'os datos d'a imachen",
 'exif-rowsperstrip'                => 'Numero de ringleras por faixa',
@@ -2719,7 +2744,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-artist'                      => 'Autor',
 'exif-copyright'                   => "Duenyo d'os dreitos d'autor (copyright)",
 'exif-exifversion'                 => 'Versión Exif',
-'exif-flashpixversion'             => 'Versión de Flashpix almesa',
+'exif-flashpixversion'             => 'Versión de Flashpix admesa',
 'exif-colorspace'                  => 'Espacio de colors',
 'exif-componentsconfiguration'     => 'Significación de cada component',
 'exif-compressedbitsperpixel'      => "Modo de compresión d'a imachen",
@@ -2742,7 +2767,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-oecf'                        => 'Factor de conversión optoelectronica',
 'exif-shutterspeedvalue'           => "Velocidat de l'obturador",
 'exif-aperturevalue'               => 'Obredura',
-'exif-brightnessvalue'             => 'Brilura',
+'exif-brightnessvalue'             => 'Brilor',
 'exif-exposurebiasvalue'           => "Siesco d'exposición",
 'exif-maxaperturevalue'            => 'Obredura maxima',
 'exif-subjectdistance'             => 'Distancia a o sucheto',
@@ -2815,10 +2840,10 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-orientation-1' => 'Normal',
 'exif-orientation-2' => 'Contornata horizontalment',
 'exif-orientation-3' => 'Chirata 180º',
-'exif-orientation-4' => 'Contornata berticalment',
-'exif-orientation-5' => "Chirata 90° en contra d'as agullas d'o reloch y contornata berticalment",
+'exif-orientation-4' => 'Contornata verticalment',
+'exif-orientation-5' => "Chirata 90° en contra d'as agullas d'o reloch y contornata verticalment",
 'exif-orientation-6' => "Chirata 90° como as agullas d'o reloch",
-'exif-orientation-7' => "Chirata 90° como as agullas d'o reloch y contornata berticalment",
+'exif-orientation-7' => "Chirata 90° como as agullas d'o reloch y contornata verticalment",
 'exif-orientation-8' => "Chirata 90° en contra d'as agullas d'o reloch",
 
 'exif-planarconfiguration-1' => 'formato de paquetz de píxels',
@@ -2831,7 +2856,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-exposureprogram-2' => 'Modo normal',
 'exif-exposureprogram-3' => "Prioridat a l'obredura",
 'exif-exposureprogram-4' => "Prioridat a l'obturador",
-'exif-exposureprogram-5' => 'Modo creativo (con prioridat a la fondura de campo)',
+'exif-exposureprogram-5' => 'Modo creyativo (con prioridat a la fondura de campo)',
 'exif-exposureprogram-6' => "Modo acción (alta velocidat de l'obturador)",
 'exif-exposureprogram-7' => 'Modo retrato (ta primers planos con o fundo desenfocato)',
 'exif-exposureprogram-8' => 'Modo paisache (ta fotos de paisaches con o fundo enfocato)',
@@ -2854,7 +2879,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-lightsource-4'   => 'Flash',
 'exif-lightsource-9'   => 'Buen orache',
 'exif-lightsource-10'  => 'Orache nublo',
-'exif-lightsource-11'  => 'Guambra',
+'exif-lightsource-11'  => 'Uembra',
 'exif-lightsource-12'  => 'Fluorescente de luz de día (D 5700 – 7100K)',
 'exif-lightsource-13'  => 'Fluorescent blanco de día (N 4600 – 5400K)',
 'exif-lightsource-14'  => 'Fluorescent blanco fredo (W 3900 – 4500K)',
@@ -2877,7 +2902,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-flash-function-1' => 'Modo sin de flash',
 'exif-flash-redeye-1'   => 'modo de reducción de uellos royos',
 
-'exif-focalplaneresolutionunit-2' => 'pulgadas',
+'exif-focalplaneresolutionunit-2' => 'pulzadas',
 
 'exif-sensingmethod-1' => 'No definito',
 'exif-sensingmethod-2' => "Sensor d'aria de color d'un chip",
@@ -2900,8 +2925,8 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-whitebalance-1' => 'Balance manual de blancos',
 
 'exif-scenecapturetype-0' => 'Estándar',
-'exif-scenecapturetype-1' => 'Ambiesta (orizontal)',
-'exif-scenecapturetype-2' => 'Retrato (bertical)',
+'exif-scenecapturetype-1' => 'Anvista (horizontal)',
+'exif-scenecapturetype-2' => 'Retrato (vertical)',
 'exif-scenecapturetype-3' => 'Escena de nueits',
 
 'exif-gaincontrol-0' => 'Garra',
@@ -2911,7 +2936,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-gaincontrol-4' => 'Ganancia alta ta baluras baixas (high gain down)',
 
 'exif-contrast-0' => 'Normal',
-'exif-contrast-1' => 'Suabe',
+'exif-contrast-1' => 'Suau',
 'exif-contrast-2' => 'Fuerte',
 
 'exif-saturation-0' => 'Normal',
@@ -2919,7 +2944,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-saturation-2' => 'Alta saturación',
 
 'exif-sharpness-0' => 'Normal',
-'exif-sharpness-1' => 'Suabe',
+'exif-sharpness-1' => 'Suau',
 'exif-sharpness-2' => 'Fuerte',
 
 'exif-subjectdistancerange-0' => 'Esconoixita',
@@ -2960,26 +2985,27 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'watchlistall2'    => 'totz',
 'namespacesall'    => 'totz',
 'monthsall'        => 'totz',
+'limitall'         => 'Totz',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar adreza de correu-e',
-'confirmemail_noemail'     => "No tiene una adreza de correu-e conforme en as suyas [[Special:Preferences|preferencias d'usuario]].",
-'confirmemail_text'        => "{{SITENAME}} requiere que confirme a suya adreza de correu-e antis de poder usar as funcions de correu-e. Punche o botón de baxo ta ninviar un mensache de confirmación t'a suya adreza. O mensache incluirá un vinclo con un codigo. Escriba-lo ta confirmar que a suya adreza ye conforme.",
-'confirmemail_pending'     => "Ya se le ha ninviato un codigo de confirmación; si creyó una cuenta fa poco tiempo, puede que s'estime más d'aguardar bells menutos ta veyer si le plega antes de pedir un nuevo codigo.",
-'confirmemail_send'        => 'Ninviar un codigo de confirmación.',
-'confirmemail_sent'        => "S'ha ninviato un correu de confirmación.",
-'confirmemail_oncreate'    => "S'ha ninviato un codigo de confirmación t'a suya adreza de correu-e.
+'confirmemail'              => 'Confirmar adreza de correu-e',
+'confirmemail_noemail'      => "No tiene una adreza de correu-e conforme en as suyas [[Special:Preferences|preferencias d'usuario]].",
+'confirmemail_text'         => "{{SITENAME}} requiere que confirme a suya adreza de correu-e antis de poder usar as funcions de correu-e. Punche o botón de baxo ta ninviar un mensache de confirmación t'a suya adreza. O mensache incluirá un vinclo con un codigo. Escriba-lo ta confirmar que a suya adreza ye conforme.",
+'confirmemail_pending'      => "Ya se le ha ninviato un codigo de confirmación; si creyó una cuenta fa poco tiempo, puede que s'estime más d'aguardar bells menutos ta veyer si le plega antes de pedir un nuevo codigo.",
+'confirmemail_send'         => 'Ninviar un codigo de confirmación.',
+'confirmemail_sent'         => "S'ha ninviato un correu de confirmación.",
+'confirmemail_oncreate'     => "S'ha ninviato un codigo de confirmación t'a suya adreza de correu-e.
 Iste codigo no ye necesario ta dentrar, pero amenistará escribir-lo antis d'activar qualsiquier función d'o wiki basata en o correu electronico.",
-'confirmemail_sendfailed'  => "{{SITENAME}} no ha puesto ninviar-le o mensache de confirmación. Por favor, comprebe que no bi haiga carácters no conformes en l'adreza de correu electronico indicata.
+'confirmemail_sendfailed'   => "{{SITENAME}} no ha puesto ninviar-le o mensache de confirmación. Por favor, comprebe que no bi haiga carácters no conformes en l'adreza de correu electronico indicata.
 
 O programa retornó o siguient codigo d'error: $1",
-'confirmemail_invalid'     => 'O codigo de confirmación no ye conforme. Regular que o codigo sía circumducito.',
-'confirmemail_needlogin'   => 'Amenistar $1 ta confirmar a suya adreza de correu-e.',
-'confirmemail_success'     => 'A suya adreza de correu-e ya ye confirmata. Agora puede dentrar en o wiki y espleitiar-lo.',
-'confirmemail_loggedin'    => 'A suya adreza de correu-e ya ye confirmata.',
-'confirmemail_error'       => 'Bella cosa falló en alzar a suya confirmación.',
-'confirmemail_subject'     => "confirmación de l'adreza de correu-e de {{SITENAME}}",
-'confirmemail_body'        => 'Belún, probablement vusté mesmo, ha rechistrato una cuenta "$2" con ista adreza de correu-e en {{SITENAME}} dende l\'adreza IP $1.
+'confirmemail_invalid'      => 'O codigo de confirmación no ye conforme. Regular que o codigo sía circumducito.',
+'confirmemail_needlogin'    => 'Amenistar $1 ta confirmar a suya adreza de correu-e.',
+'confirmemail_success'      => 'A suya adreza de correu-e ya ye confirmata. Agora puede dentrar en o wiki y espleitiar-lo.',
+'confirmemail_loggedin'     => 'A suya adreza de correu-e ya ye confirmata.',
+'confirmemail_error'        => 'Bella cosa falló en alzar a suya confirmación.',
+'confirmemail_subject'      => "confirmación de l'adreza de correu-e de {{SITENAME}}",
+'confirmemail_body'         => 'Belún, probablement vusté mesmo, ha rechistrato una cuenta "$2" con ista adreza de correu-e en {{SITENAME}} dende l\'adreza IP $1.
 
 Ta confirmar que ista cuenta reyalment le perteneixe y activar as funcions de correu-e en {{SITENAME}}, ubra iste vinclo en o suyo navegador:
 
@@ -2990,8 +3016,19 @@ Si a cuenta *no* ye suya, siga iste atro vinclo ta anular a confirmación d\'adr
 $5
 
 Iste codigo de confirmación circumducirá en $4.',
-'confirmemail_invalidated' => "Anular a confirmación d'adreza de correu-e",
-'invalidateemail'          => 'Anular a confirmación de correu-e',
+'confirmemail_body_changed' => 'Belún, probablement vusté mesmo, dende l\'adreza IP $1, ha cambiato l\'adreza de correu-e d\'a cuenta "$2" ta ista adreza en {{SITENAME}}. 
+
+Ta confirmar que ista cuenta reyalment le perteneix y ta reactivar as funcions de correu-e en {{SITENAME}}, ubra iste vinclo en o suyo navegador: 
+
+$3 
+
+Si a cuenta *no* ye suya, siga iste atro vinclo ta anular a confirmación d\'adreza de correu-e: 
+
+$5 
+
+Iste codigo de confirmación circumducirá en $4.',
+'confirmemail_invalidated'  => "Anular a confirmación d'adreza de correu-e",
+'invalidateemail'           => 'Anular a confirmación de correu-e',
 
 # Scary transclusion
 'scarytranscludedisabled' => "[S'ha desactivato a transclusión interwiki]",
@@ -3024,8 +3061,8 @@ Por favor, confirme que reyalment deseya tornar a creyar l'articlo.",
 'imgmultigoto'     => "Ir t'a pachina $1",
 
 # Table pager
-'ascending_abbrev'         => 'asz',
-'descending_abbrev'        => 'desz',
+'ascending_abbrev'         => 'asc',
+'descending_abbrev'        => 'desc',
 'table_pager_next'         => 'Pachina siguient',
 'table_pager_prev'         => 'Pachina anterior',
 'table_pager_first'        => 'Primera pachina',
@@ -3045,7 +3082,7 @@ Por favor, confirme que reyalment deseya tornar a creyar l'articlo.",
 'livepreview-ready'   => 'Cargando… ya!',
 'livepreview-failed'  => "A previsualización a l'inte falló!
 Prebe con a previsualización normal.",
-'livepreview-error'   => 'No s\'ha puesto connectar: $1 "$2". Prebe con l\'ambiesta previa normal.',
+'livepreview-error'   => 'No s\'ha puesto connectar: $1 "$2". Prebe con l\'anvista previa normal.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => "Talment no s'amuestren en ista lista as edicions feitas en {{PLURAL:$1|o zaguer segundo|os zaguers $1 segundos}}.",
@@ -3086,7 +3123,7 @@ Tamién puede fer servir o [[Special:Watchlist/edit|editor estándar]].",
 'version-extensions'               => 'Estensions instalatas',
 'version-specialpages'             => 'Pachinas especials',
 'version-parserhooks'              => "Grifios d'o parser (parser hooks)",
-'version-variables'                => 'Bariables',
+'version-variables'                => 'Variables',
 'version-other'                    => 'Atros',
 'version-mediahandlers'            => 'Maneyador de fichers multimedia',
 'version-hooks'                    => 'Grifios (Hooks)',
@@ -3099,7 +3136,7 @@ Tamién puede fer servir o [[Special:Watchlist/edit|editor estándar]].",
 'version-version'                  => '(Versión $1)',
 'version-license'                  => 'Licencia',
 'version-software'                 => 'Software instalato',
-'version-software-product'         => 'Produto',
+'version-software-product'         => 'Producto',
 'version-software-version'         => 'Versión',
 
 # Special:FilePath
@@ -3156,6 +3193,7 @@ Escriba o nombre d\'o fichero sin o prefixo "{{ns:file}}:".',
 #Meta totz os fragmentos de regex dencima d'ista ringlera. No faiga cambeos en ista linia</pre>",
 
 # Special:Tags
+'tags'                    => 'Cambior as etiquetas emplegadas',
 'tag-filter'              => 'Filtrar as [[Special:Tags|etiquetas]]:',
 'tag-filter-submit'       => 'Filtrar',
 'tags-title'              => 'Etiquetas',
@@ -3168,9 +3206,23 @@ Escriba o nombre d\'o fichero sin o prefixo "{{ns:file}}:".',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambeo|cambeos}}',
 
 # Database error messages
-'dberr-info' => "(No s'ha puesto contactar con o servidor d'a base de datos: $1)",
+'dberr-header'      => 'Iste wiki tiene un problema',
+'dberr-problems'    => 'Lo sentimos. Iste sitio ye experimentando dificultatz tecnicas.',
+'dberr-again'       => 'Mire de recargar en bells menutos.',
+'dberr-info'        => "(No s'ha puesto contactar con o servidor d'a base de datos: $1)",
+'dberr-usegoogle'   => 'Entremistanto puet preba a mirar a traviés de Google.',
+'dberr-outofdate'   => "Pare cuenta que o suyo endice d'o nuestro conteniu puet que no siga esviellau.",
+'dberr-cachederror' => "A siguient pachina ye una pachina alzada d'a pachina solicitada, y podría no estar actualizada.",
 
 # HTML forms
+'htmlform-invalid-input'       => "Bi ha problemas con belún d'os datos que ha escrito",
+'htmlform-select-badoption'    => 'A valura especificada no ye una opción conforme.',
+'htmlform-int-invalid'         => 'A valura que especificó no ye un entero.',
+'htmlform-float-invalid'       => 'A valura que ha especificato no ye un entero.',
+'htmlform-int-toolow'          => "A valura que ha especificato ye por debaixo d'o menimo de $1",
+'htmlform-int-toohigh'         => "A valura que ha especificato ye alto d'o maximo de $1",
+'htmlform-required'            => 'Ista valura ye necesaria',
+'htmlform-submit'              => 'Ninviar',
 'htmlform-reset'               => 'Desfer cambios',
 'htmlform-selectorother-other' => 'Atros',
 

@@ -2250,7 +2250,8 @@ Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|disku
 'rollback-success'  => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
 
 # Edit tokens
-'sessionfailure' => 'Zřejmě je nějaký problém s vaším přihlášením;
+'sessionfailure-title' => 'Chyba sezení',
+'sessionfailure'       => 'Zřejmě je nějaký problém s vaším přihlášením;
 vámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.
 Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a zkuste činnost znovu.',
 

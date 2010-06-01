@@ -1124,6 +1124,9 @@ $2',
 'sharedupload'              => 'ಈ ಫೈಲು $1 ಇಂದ. ಇದು ಇತರ ಯೋಜನೆಗಳಲ್ಲಿ ಉಪಯೋಗದಲ್ಲಿರಬಹುದು.',
 'uploadnewversion-linktext' => 'ಈ ಫೈಲಿನ ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
 
+# File reversion
+'filerevert-comment' => 'ಕಾರಣ:',
+
 # File deletion
 'filedelete'                  => '$1 ಅನ್ನು ಅಳಿಸು',
 'filedelete-legend'           => 'ಫೈಲನ್ನು ಅಳಿಸು',
@@ -1431,7 +1434,7 @@ $2',
 'undelete-nodiff'        => 'ಯಾವ ಪೂರ್ವ ಬದಲಾವಣೆಯೂ ಸಿಗಲಿಲ್ಲ.',
 'undeletebtn'            => 'ಹಿಂದೆ ಇದ್ದಂತೆ ಮಾಡು',
 'undeletelink'           => 'ವೀಕ್ಷಿಸು/ಹಿಂದಿನಂತಾಗಿಸು',
-'undeletecomment'        => 'ವಕ್ಕಣೆ:',
+'undeletecomment'        => 'ಕಾರಣ:',
 'undeletedarticle'       => '"[[$1]]" ಅನ್ನು ಹಿಂದಿನಂತೆ ಮಾಡು',
 'undelete-header'        => 'ಇತ್ತೀಚೆಗೆ ಅಳಿಸಲಾದ ಪುಟಗಳಿಗೆ [[Special:Log/delete|ಅಳಿಸುವಿಕೆ ದಿನಚರಿ]] ಅನ್ನು ನೋಡಿ.',
 'undelete-search-box'    => 'ಅಳಿಸಲ್ಪಟ್ಟ ಪುಟಗಳನ್ನು ಹುಡುಕು',
