@@ -1772,7 +1772,7 @@ Silakan lihat [$2 halaman deskripsi berkas] untuk informasi lebih lanjut.',
 'sharedupload-desc-here'    => 'Berkas ini berasal dari $1 dan mungkin digunakan oleh proyek-proyek lain.
 Deskripsi dari [$2 halaman deskripsinya] ditunjukkan di bawah ini.',
 'filepage-nofile'           => 'Tidak ada berkas dengan nama ini.',
-'filepage-nofile-link'      => 'Tidak ada berkas dengan nama ini, tapi Anda dapat [$1 memuatnya].',
+'filepage-nofile-link'      => 'Tidak ada berkas dengan nama ini, tetapi Anda dapat [$1 mengunggahnya].',
 'uploadnewversion-linktext' => 'Muatkan versi yang lebih baru dari berkas ini',
 'shared-repo-from'          => 'dari $1',
 'shared-repo'               => 'suatu repositori bersama',

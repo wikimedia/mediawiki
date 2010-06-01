@@ -712,7 +712,7 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'contextlines'                => 'Righe di testo da mostrare per ciascun risultato',
 'contextchars'                => 'Caratteri per linea',
 'recentchangescount'          => 'Nùmeru de acontzos de amostare pro definidura:',
-'savedprefs'                  => 'Le tue preferenze sono state salvate.',
+'savedprefs'                  => 'Is preferèntzias tuas sunt stadas sarbadas.',
 'localtime'                   => 'Ora locale:',
 'timezoneoffset'              => 'Diferèntzia¹:',
 'timezoneregion-africa'       => 'Àfrica',
