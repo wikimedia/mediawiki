@@ -405,7 +405,7 @@ function addCheckboxClickHandlers( inputs, start ) {
 		var end = checkboxes.length;
 		checkboxes[end] = cb;
 		cb.index = end;
-		cb.onclick = checkboxClickHandler;
+		addClickHandler( cb, checkboxClickHandler );
 	}
 
 	if ( finish < inputs.length ) {
