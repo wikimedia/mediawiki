@@ -361,8 +361,8 @@ class IPBlockForm {
 
 	/**
 	 * Can we do an email block?
-	 * @param User $user The sysop wanting to make a block
-	 * @return boolean
+	 * @param $user User: the sysop wanting to make a block
+	 * @return Boolean
 	 */
 	public static function canBlockEmail( $user ) {
 		global $wgEnableUserEmail, $wgSysopEmailBans;
@@ -814,11 +814,12 @@ class IPBlockForm {
 
 	/**
 	 * Block a list of selected users
-	 * @param array $users
-	 * @param string $reason
-	 * @param string $tag replaces user pages
-	 * @param string $talkTag replaces user talk pages
-	 * @returns array, list of html-safe usernames
+	 *
+	 * @param $users Array
+	 * @param $reason String
+	 * @param $tag String: replaces user pages
+	 * @param $talkTag String: replaces user talk pages
+	 * @return Array: list of html-safe usernames
 	 */
 	public static function doMassUserBlock( $users, $reason = '', $tag = '', $talkTag = '' ) {
 		global $wgUser;
