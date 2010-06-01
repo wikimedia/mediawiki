@@ -2,7 +2,7 @@ application/andrew-inset ez
 application/mac-binhex40 hqx
 application/mac-compactpro cpt
 application/mathml+xml mathml
-application/msword doc docx docm dot dotx dotm
+application/msword doc dot
 application/octet-stream bin dms lha lzh exe class so dll
 application/oda oda
 application/ogg ogx ogg ogm ogv oga spx
@@ -13,8 +13,8 @@ application/smil smi smil
 application/srgs gram
 application/srgs+xml grxml
 application/vnd.mif mif
-application/vnd.ms-excel xls xlsx xlsb xlam xltx xltm
-application/vnd.ms-powerpoint ppt pptm pptx pot potx potm ppsm ppam
+application/vnd.ms-excel xls xlt xla
+application/vnd.ms-powerpoint ppt pot pps ppa
 application/vnd.wap.wbxml wbxml
 application/vnd.wap.wmlc wmlc
 application/vnd.wap.wmlscriptc wmlsc
@@ -135,3 +135,20 @@ application/vnd.oasis.opendocument.formula odf
 application/vnd.oasis.opendocument.formula-template otf
 application/vnd.oasis.opendocument.text-master odm
 application/vnd.oasis.opendocument.text-web oth
+application/vnd.openxmlformats-officedocument.wordprocessingml.document docx
+application/vnd.openxmlformats-officedocument.wordprocessingml.template dotx
+application/vnd.ms-word.document.macroEnabled.12 docm
+application/vnd.ms-word.template.macroEnabled.12 dotm
+application/vnd.openxmlformats-officedocument.presentationml.template potx
+application/vnd.openxmlformats-officedocument.presentationml.slideshow ppsx
+application/vnd.openxmlformats-officedocument.presentationml.presentation pptx
+application/vnd.ms-powerpoint.addin.macroEnabled.12 ppam
+application/vnd.ms-powerpoint.presentation.macroEnabled.12 pptm
+application/vnd.ms-powerpoint.presentation.macroEnabled.12 potm
+application/vnd.ms-powerpoint.slideshow.macroEnabled.12 ppsm
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet xlsx
+application/vnd.openxmlformats-officedocument.spreadsheetml.template xltx
+application/vnd.ms-excel.sheet.macroEnabled.12 xlsm
+application/vnd.ms-excel.template.macroEnabled.12 xltm
+application/vnd.ms-excel.addin.macroEnabled.12 xlam
+application/vnd.ms-excel.sheet.binary.macroEnabled.12 xlsb

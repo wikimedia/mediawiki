@@ -183,6 +183,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8689) Long numeric lines no longer  kill the parser.
 * (bug 23740) Article::doRedirect() now use $extraQuery parameter correctly if
   the $noRedir parameter is set to true
+* (bug 23688) Correct mime types for Office 2007 OpenXML documents.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
