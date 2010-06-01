@@ -4457,7 +4457,7 @@ class Article {
 				$this->mTitle->getPrefixedDBkey() ) );
 		}
 
-		if ( $wgEnableParserCache && $cache && $this && $this->mParserOutput->getCacheTime() != -1 ) {
+		if ( $wgEnableParserCache && $cache && $this && !$this->mParserOutput->isCacheable() ) {
 			$parserCache = ParserCache::singleton();
 			$parserCache->save( $this->mParserOutput, $this, $parserOptions );
 		}
@@ -4465,7 +4465,7 @@ class Article {
 		// Make sure file cache is not used on uncacheable content.
 		// Output that has magic words in it can still use the parser cache
 		// (if enabled), though it will generally expire sooner.
-		if ( $this->mParserOutput->getCacheTime() == -1 || $this->mParserOutput->containsOldMagic() ) {
+		if ( !$this->mParserOutput->isCacheable() || $this->mParserOutput->containsOldMagic() ) {
 			$wgUseFileCache = false;
 		}
 
