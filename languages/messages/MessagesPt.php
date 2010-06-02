@@ -1182,6 +1182,24 @@ Verifique os registos, por favor.',
 'suppressionlogtext' => 'Abaixo está uma lista das remoções e bloqueios envolvendo conteúdo ocultado por administradores.
 Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
+# Revision move
+'moverevlogentry'              => 'moveu {{PLURAL:$3|uma revisão|$3 revisões}} de $1 para $2',
+'revisionmove'                 => 'Mover revisões de "$1"',
+'revmove-explain'              => 'As seguintes revisões serão movidas de $1 para a página de destino especificada. Se a página de destino não existir, será criada. Se existir, estas revisões serão fundidas no histórico de revisões da página.',
+'revmove-legend'               => 'Definir a página de destino e o resumo',
+'revmove-submit'               => 'Mover as revisões para a página seleccionada',
+'revisionmoveselectedversions' => 'Mover as revisões seleccionadas',
+'revmove-reasonfield'          => 'Motivo:',
+'revmove-titlefield'           => 'Página de destino:',
+'revmove-badparam-title'       => 'Parâmetros incorrectos',
+'revmove-badparam'             => '<span class="error">O seu pedido contém parâmetros ilegais ou insuficientes. Clique "voltar" e tente novamente.</span>',
+'revmove-norevisions-title'    => 'A revisão especificada é inválida',
+'revmove-norevisions'          => '<span class="error">Não especificou uma ou mais revisões sobre as quais deve ser executada esta operação, ou a revisão que especificou não existe.</span>',
+'revmove-nullmove-title'       => 'Titulo incorrecto',
+'revmove-nullmove'             => '<span class="error">As páginas de origem e destino são idênticas. Clique "voltar" e introduza um nome de página diferente de "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página existente [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página recém-criada [[$3]].',
+
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
 'mergehistory-header'              => 'Esta página permite fundir o histórico de revisões de uma página no de outra.
@@ -1516,6 +1534,7 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'right-reset-passwords'       => 'Repor a palavra-chave de outros utilizadores',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar correio electrónico a outros utilizadores',
+'right-revisionmove'          => 'Mover revisões',
 
 # User rights log
 'rightslog'      => 'Registo de privilégios de utilizador',
@@ -1558,6 +1577,7 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'action-userrights'           => 'editar os privilégios de utilizadores',
 'action-userrights-interwiki' => 'editar privilégios de utilizadores de outras wikis',
 'action-siteadmin'            => 'bloquear ou desbloquear a base de dados',
+'action-revisionmove'         => 'mover revisões',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
@@ -2272,7 +2292,8 @@ A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-
 'rollback-success'  => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 
 # Edit tokens
-'sessionfailure' => 'Foram detectados problemas com a sua sessão;
+'sessionfailure-title' => 'Erro de sessão',
+'sessionfailure'       => 'Foram detectados problemas com a sua sessão;
 esta operação foi cancelada como medida de protecção contra a intercepção de sessões.
 Clique o botão "Voltar" e recarregue a página de onde veio, depois tente novamente.',
 

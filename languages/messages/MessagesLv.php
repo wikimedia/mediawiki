@@ -1144,10 +1144,11 @@ Te var apskatīties dzēšanas reģistru, lai noskaidrotu kāpēc šo failu tore
 'filename-bad-prefix'    => "Faila vārds failam, kuru tu mēģini augšpulādēt, sākas ar '''\"\$1\"''', kas ir neaprakstošs vārds, kādu parasti uzģenerē digitālais fotoaparāts.
 Lūdzu izvēlies aprakstošāku vārdu šim failam.",
 
-'license'           => 'Licence:',
-'license-header'    => 'Licence',
-'nolicense'         => 'Neviena licence nav izvēlēta',
-'license-nopreview' => '(Priekšskatījums nav pieejams)',
+'license'            => 'Licence:',
+'license-header'     => 'Licence',
+'nolicense'          => 'Neviena licence nav izvēlēta',
+'license-nopreview'  => '(Priekšskatījums nav pieejams)',
+'upload_source_file' => '(fails datorā)',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Šajā lapā ir redzami visi augšuplādētie faili.

@@ -1111,6 +1111,24 @@ Xin hãy kiểm tra nhật trình.',
 'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy. 
 Xem [[Special:IPBlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
+# Revision move
+'moverevlogentry'              => 'di chuyển {{PLURAL:$3|phiên bản|$3 phiên bản}} từ $1 đến $2',
+'revisionmove'                 => 'Di chuyển phiên bản từ “$1”',
+'revmove-explain'              => 'Các phiên bản sau sẽ được di chuyển từ $1 đến trang mục tiêu được chọn. Nếu trang mục tiêu tồn tại, các phiên bản này sẽ được hợp nhất vào lịch sử của trang mục từ; không thì trang mục tiêu sẽ được tạo ra.',
+'revmove-legend'               => 'Đặt trang mục tiêu và tóm lược',
+'revmove-submit'               => 'Di chuyển các phiên bản đến trang lựa chọn',
+'revisionmoveselectedversions' => 'Di chuyển các phiên bản được chọn',
+'revmove-reasonfield'          => 'Lý do:',
+'revmove-titlefield'           => 'Trang mục tiêu:',
+'revmove-badparam-title'       => 'Tham số hỏng',
+'revmove-badparam'             => '<span class="error">Yêu cầu của bạn không đủ tham số hoặc có tham số không hợp lệ. Xin hãy bấm “Lùi” và thử lại.</span>',
+'revmove-norevisions-title'    => 'Phiên bản mục tiêu không hợp lệ',
+'revmove-norevisions'          => '<span class="error">Chưa chọn ít nhất một phiên bản mục tiêu để thực hiện tác vụ này, hoặc phiên bản được chọn không tồn tại.</span>',
+'revmove-nullmove-title'       => 'Tựa trang sai',
+'revmove-nullmove'             => '<span class="error">Không thể di chuyển phiên bản từ một trang đến cùng trang. Xin hãy bấm “Lùi” và đổi “$1” thành tên trang khác.</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Một phiên bản|$1 phiên bản}} [[$2]] đã được di chuyển đến trang tồn tại [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Một phiên bản|$1 phiên bản}} [[$2]] đã được di chuyển đên trang mới [[$3]].',
+
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
 'mergehistory-header'              => 'Trang này cho phép trộn các sửa đổi trong lịch sử của một trang nguồn vào một trang mới hơn.
@@ -1440,6 +1458,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-reset-passwords'       => 'Tái tạo mật khẩu của thành viên khác',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
+'right-revisionmove'          => 'Di chuyển phiên bản',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp quyền thành viên',
@@ -1482,6 +1501,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'action-userrights'           => 'sửa đổi mọi quyền người dùng',
 'action-userrights-interwiki' => 'sửa đổi quyền của người dùng tại wiki khác',
 'action-siteadmin'            => 'khóa hoặc mở khóa cơ sở dữ liệu',
+'action-revisionmove'         => 'di chuyển phiên bản',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',
@@ -2185,7 +2205,8 @@ Sửa đổi cuối cùng tại trang do [[User:$3|$3]] ([[User talk:$3|thảo l
 quay về phiên bản cuối của $2.',
 
 # Edit tokens
-'sessionfailure' => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
+'sessionfailure-title' => 'Phiên thất bại',
+'sessionfailure'       => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
 
 # Protect
 'protectlogpage'              => 'Nhật trình khóa',
