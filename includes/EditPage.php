@@ -1411,13 +1411,13 @@ HTML
 			if ( $this->isCssJsSubpage ) {
 				# Check the skin exists
 				if ( !$this->isValidCssJsSubpage ) {
-					$wgOut->addWikiMsg( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() );
+					$wgOut->wrapWikiMsg( "<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>", array( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() ) );
 				}
 				if ( $this->formtype !== 'preview' ) {
 					if ( $this->isCssSubpage )
-						$wgOut->addWikiMsg( 'usercssyoucanpreview' );
+						$wgOut->wrapWikiMsg( "<div id='mw-usercssyoucanpreview'>\n$1\n</div>", array( 'usercssyoucanpreview' ) );
 					if ( $this->isJsSubpage )
-						$wgOut->addWikiMsg( 'userjsyoucanpreview' );
+						$wgOut->wrapWikiMsg( "<div id='mw-userjsyoucanpreview'>\n$1\n</div>", array( 'userjsyoucanpreview' ) );
 				}
 			}
 		}
@@ -1866,9 +1866,9 @@ INPUTS
 
 		if ( $this->isCssJsSubpage ) {
 			if (preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
-				$previewtext = wfMsg( 'usercsspreview' );
+				$previewtext = "<div id='mw-usercsspreview'>\n" . wfMsg( 'usercsspreview' ) . "\n</div>";
 			} else if (preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
-				$previewtext = wfMsg( 'userjspreview' );
+				$previewtext = "<div id='mw-userjspreview'>\n" . wfMsg( 'userjspreview' ) . "\n</div>";
 			}
 			$parserOptions->setTidy( true );
 			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );

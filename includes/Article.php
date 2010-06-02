@@ -1084,7 +1084,7 @@ class Article {
 	public function showCssOrJsPage() {
 		global $wgOut;
 
-		$wgOut->addHTML( wfMsgExt( 'clearyourcache', 'parse' ) );
+		$wgOut->wrapWikiMsg( "<div class='mw-clearyourcache'>\n$1\n</div>", 'clearyourcache' );
 
 		// Give hooks a chance to customise the output
 		if ( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->mTitle, $wgOut ) ) ) {
