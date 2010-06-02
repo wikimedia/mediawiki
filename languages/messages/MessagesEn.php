@@ -1277,8 +1277,8 @@ The latest block log entry is provided below for reference:',
 '''Konqueror: '''click ''Reload'' or press ''F5'';
 '''Opera:''' clear the cache in ''Tools → Preferences'';
 '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Tip:''' Use the 'Show preview' button to test your new CSS before saving.",
-'userjsyoucanpreview'              => "'''Tip:''' Use the 'Show preview' button to test your new JS before saving.",
+'usercssyoucanpreview'             => "'''Tip:''' Use the '{{int:showpreview}}' button to test your new CSS before saving.",
+'userjsyoucanpreview'              => "'''Tip:''' Use the '{{int:showpreview}}' button to test your new JS before saving.",
 'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.'''
 '''It has not yet been saved!'''",
 'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript.'''
