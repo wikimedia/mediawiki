@@ -571,9 +571,7 @@ class ProtectionForm {
 
 	function buildScript() {
 		global $wgStylePath, $wgStyleVersion;
-		return Xml::tags( 'script', array(
-			'type' => 'text/javascript',
-			'src' => $wgStylePath . "/common/protect.js?$wgStyleVersion.1" ), '' );
+		return Html::linkedScript( "$wgStylePath/common/protect.js?$wgStyleVersion.1" );
 	}
 
 	function buildCleanupScript() {
@@ -595,7 +593,7 @@ class ProtectionForm {
 		$encOptions = Xml::encodeJsVar( $options );
 
 		$script .= "ProtectionForm.init($encOptions)";
-		return Xml::tags( 'script', array( 'type' => 'text/javascript' ), $script );
+		return Html::inlineScript( $script );
 	}
 
 	/**
