@@ -21,10 +21,11 @@ class MessageWriter {
 	/**
 	 * Write a messages array as a PHP text and write it to the messages file.
 	 *
-	 * @param $messages The messages array.
-	 * @param $code The language code.
-	 * @param $write Write to the messages file?
-	 * @param $listUnknown List the unknown messages?
+	 * @param $messages Array: the messages array.
+	 * @param $code String: the language code.
+	 * @param $write Boolean: write to the messages file?
+	 * @param $listUnknown Boolean: list the unknown messages?
+	 * @param $removeUnknown Boolean: whether to remove unkown messages
 	 */
 	public static function writeMessagesToFile( $messages, $code, $write, $listUnknown, $removeUnknown ) {
 		# Rewrite the messages array
@@ -66,8 +67,12 @@ class MessageWriter {
 	/**
 	 * Write a messages array as a PHP text.
 	 *
-	 * @param $messages The messages array.
-	 * @param $ignoredComments Show comments about ignored and optional messages? (For English.)
+	 * @param $messages Array: the messages array.
+	 * @param $ignoredComments Boolean: show comments about ignored and optional
+	 *                         messages? (For English.)
+	 * @param $prefix String: base path for messages.inc and messageTypes.inc files
+	 *                or false for default path (this directory)
+	 * @param $removeUnknown Boolean: whether to remove unkown messages
 	 *
 	 * @return Array of the PHP text and the sorted messages array.
 	 */
@@ -130,9 +135,9 @@ class MessageWriter {
 	/**
 	 * Generates an array of comments for messages.
 	 *
-	 * @param $messages Key of messages.
-	 * @param $ignored List of ingored message keys.
-	 * @param $optional List of optional message keys.
+	 * @param $messages Array: key of messages.
+	 * @param $ignored Array: list of ingored message keys.
+	 * @param $optional Array: list of optional message keys.
 	 */
 	public static function makeComments( $messages, $ignored, $optional ) {
 		# Comment collector
@@ -153,10 +158,10 @@ class MessageWriter {
 	/**
 	 * Write a block of messages to PHP.
 	 *
-	 * @param $blockComment The comment of whole block.
-	 * @param $messages The block messages.
-	 * @param $messageComments Optional comments for messages in this block.
-	 * @param $prefix Prefix for every line, for indenting purposes.
+	 * @param $blockComment String: the comment of whole block.
+	 * @param $messages Array: the block messages.
+	 * @param $messageComments Array: optional comments for messages in this block.
+	 * @param $prefix String: prefix for every line, for indenting purposes.
 	 *
 	 * @return The block, formatted in PHP.
 	 */
