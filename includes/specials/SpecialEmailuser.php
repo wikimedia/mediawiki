@@ -35,6 +35,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'id' => 'mw-emailuser-recipient',
 			),
 			'Target' => array(
+				'name' => 'wpTarget',
 				'type' => 'hidden',
 				'default' => $this->mTargetObj->getName(),
 			),
@@ -133,14 +134,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			wfDebug( "Target is empty.\n" );
 			return 'notarget';
 		}
-
-		$nt = Title::newFromURL( $target );
-		if ( !$nt instanceof Title ) {
-			wfDebug( "Target is invalid title.\n" );
-			return 'notarget';
-		}
-
-		$nu = User::newFromName( $nt->getText() );
+		
+		$nu = User::newFromName( $target );
 		if( !$nu instanceof User || !$nu->getId() ) {
 			wfDebug( "Target is invalid user.\n" );
 			return 'notarget';
