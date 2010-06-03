@@ -1956,7 +1956,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 # Special:ActiveUsers
 'activeusers'            => 'සක්‍රීය පරිශීලකයන් ලැයිස්තුව',
 'activeusers-intro'      => 'මෙය පසුගිය $1 {{PLURAL:$1|දිනය|දින}}තුළ යම් ක්‍රියාකාරකමක් කළ පරිශීලකයන්ගේ ලැයිස්තුවකි.',
-'activeusers-count'      => 'අවසන් {{PLURAL:$3|දිනය|$ දින 3}} තුළ දී කළ $1 {{PLURAL:$1|සංස්කරණය|සංස්කරණ}}',
+'activeusers-count'      => 'අවසන් {{PLURAL:$3|දිනය|දින $3}} තුළ දී කළ $1 {{PLURAL:$1|සංස්කරණය|සංස්කරණ}}',
 'activeusers-from'       => 'මෙයින් ඇරඹෙන පරිශීලකයන් පෙන්වන්න:',
 'activeusers-hidebots'   => ' bots සඟවන්න',
 'activeusers-hidesysops' => 'පරිපාලකයින් සඟවන්න',

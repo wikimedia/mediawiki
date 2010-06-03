@@ -951,8 +951,8 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'clearyourcache'                   => "'''Let op! Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.'''
 
 '''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Huidige pagina vernieuwen'' klikt, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leeg uw cache in ''Extra → Voorkeuren;'' '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Tip:''' Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS te testen alvorens op te slaan.",
-'userjsyoucanpreview'              => "'''Tip:''' Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe JS te testen alvorens op te slaan.",
+'usercssyoucanpreview'             => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om uw nieuwe CSS te testen alvorens op te slaan.",
+'userjsyoucanpreview'              => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om uw nieuwe JavaScript te testen alvorens op te slaan.",
 'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS.
 Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.'''
@@ -1142,7 +1142,7 @@ Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar 
 'rev-delundel'                => 'weergeven/verbergen',
 'rev-showdeleted'             => 'weergeven',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
-'revdelete-nooldid-title'     => 'Geen doelversie',
+'revdelete-nooldid-title'     => 'Ongeldige doelversie',
 'revdelete-nooldid-text'      => 'U hebt geen doelversie(s) voor deze handeling opgegeven, de aangegeven versie bestaat niet, of u probeert de laatste versie te verbergen.',
 'revdelete-nologtype-title'   => 'Er is geen logboektype opgegeven',
 'revdelete-nologtype-text'    => 'U hebt geen logboektype opgegeven om deze handeling op uit te voeren.',
@@ -1218,6 +1218,28 @@ Controleer de logboeken.',
 'suppressionlog'     => 'Verbergingslogboek',
 'suppressionlogtext' => 'De onderstaande lijst bevat de verwijderingen en blokkades die voor beheerders verborgen zijn.
 In de [[Special:IPBlockList|IP-blokkeerlijst]] zijn de huidige blokkades te bekijken.',
+
+# Revision move
+'moverevlogentry'              => 'heeft $3 {{PLURAL:$3|versie|versies}} verplaatst van $1 naar $2',
+'revisionmove'                 => 'Versies naar "$1" verplaatsen',
+'revmove-explain'              => 'De volgende versies worden verplaatst van $1 naar de aangegeven doelpagina.
+Als de doelpagina niet bestaat, wordt deze aangemaakt.
+Als deze wel bestaat, worden de versies ingevoegd in de paginageschiedenis.',
+'revmove-legend'               => 'Voer doelpagina en samenvatting in',
+'revmove-submit'               => 'Versies naar de aangegeven pagina verplaatsen',
+'revisionmoveselectedversions' => 'Geselecteerde versies verplaatsen',
+'revmove-reasonfield'          => 'Reden:',
+'revmove-titlefield'           => 'Doelpagina:',
+'revmove-badparam-title'       => 'Onjuiste parameters',
+'revmove-badparam'             => '<span class="error">Uw verzoek bevat ongeldige of onvoldoende parameters.
+Klik "Terug" en probeer het opnieuw.</span>',
+'revmove-norevisions-title'    => 'Ongeldige doelversie',
+'revmove-norevisions'          => '<span class="error">U hebt geen versies aangegeven om deze handeling op uit te voeren of de aangegeven versie bestaat niet.</span>',
+'revmove-nullmove-title'       => 'Ongeldige paginanaam',
+'revmove-nullmove'             => '<span class="error">De bronpagina en doelpagina zijn hetzelfde.
+Klik "Terug" en geef een andere pagina dan "$1" op.</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Een versie van[[$2]] is|$1 versies van [[$2]] zijn}} verplaatst naar de bestaande pagina [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Een versie van[[$2]] is|$1 versies van [[$2]] zijn}} verplaatst naar de nieuwe pagina [[$3]].',
 
 # History merging
 'mergehistory'                     => "Geschiedenis van pagina's samenvoegen",
@@ -1555,6 +1577,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-reset-passwords'       => 'Wachtwoorden van andere gebruikers opnieuw instellen',
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
+'right-revisionmove'          => 'Versies verplaatsen',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -1597,6 +1620,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'action-userrights'           => 'alle gebruikersrechten te bewerken',
 'action-userrights-interwiki' => "gebruikersrechten van gebruikers van andere wiki's te bewerken",
 'action-siteadmin'            => 'de database af te sluiten of open te stellen',
+'action-revisionmove'         => 'versies verplaatsen',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
@@ -2325,7 +2349,8 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 De laatste versie van $2 is hersteld.',
 
 # Edit tokens
-'sessionfailure' => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
+'sessionfailure-title' => 'Sessiefout',
+'sessionfailure'       => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
 Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie).
 Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 

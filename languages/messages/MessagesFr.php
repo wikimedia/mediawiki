@@ -1196,6 +1196,24 @@ Vérifiez les journaux.',
 'suppressionlogtext' => 'Voici la liste des suppressions et des blocages qui portent sur du contenu caché aux administrateurs.
 Voir la [[Special:IPBlockList|liste des adresses IP et utilisateurs bloqués]] pour la liste des bannissements et des blocages actuellement opérationnels.',
 
+# Revision move
+'moverevlogentry'              => 'a déplacé {{PLURAL:$3|une révision|$3 révisions}} de $1 à $2',
+'revisionmove'                 => 'Déplacer des révisions depuis « $1 »',
+'revmove-explain'              => "Les révisions suivantes seront déplacés de $1 vers la page cible spécifiée. Si la cible n'existe pas, elle sera créée, sinon ces révisions seront fusionnées avec l'historique de la page.",
+'revmove-legend'               => 'Entrez la page cible et la raison',
+'revmove-submit'               => 'Déplacer les révisions vers la page sélectionnée',
+'revisionmoveselectedversions' => 'Déplacer les révisions sélectionnées',
+'revmove-reasonfield'          => 'Motif :',
+'revmove-titlefield'           => 'Page cible :',
+'revmove-badparam-title'       => 'Mauvais paramètres',
+'revmove-badparam'             => '<span class="error">Votre requête contient des paramètres insuffisants ou illégaux. Veuillez cliquer sur « précédent » et essayez à nouveau.</span>',
+'revmove-norevisions-title'    => 'Révision cible invalide',
+'revmove-norevisions'          => '<span class="error">Vous n\'avez pas spécifié un ou plusieurs révisions cibles pour effectuer cette fonctionnalité ou la révision spécifiée n\'existe pas.</span>',
+'revmove-nullmove-title'       => 'Mauvais titre',
+'revmove-nullmove'             => '<span class="error">Les pages source et cible sont identiques. Veuillez cliquer sur « précédent » et entrez un nom de page différent de « $1 ».</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Une révision de [[$2]] a été déplacée|$1 révisions de [[$2]] ont été déplacées}} vers la page existante [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Une révision de [[$2]] a été déplacée|$1 révisions de [[$2]] ont été déplacées}} vers la page [[$3]] nouvellement créée.',
+
 # History merging
 'mergehistory'                     => 'Fusionner les historiques des pages',
 'mergehistory-header'              => 'Cette page vous permet de fusionner des versions de l’historique d’une page d’origine vers une nouvelle page.
@@ -1524,6 +1542,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-reset-passwords'       => 'Changer le mot de passe d’autres utilisateurs',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
+'right-revisionmove'          => 'Déplacer des révisions',
 
 # User rights log
 'rightslog'      => 'Journal des modifications de droits d’utilisateurs',
@@ -1566,6 +1585,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'action-userrights'           => 'modifier tous les droits d’utilisateur',
 'action-userrights-interwiki' => 'modifier les droits des utilisateurs sur d’autres wikis',
 'action-siteadmin'            => 'verrouiller ou déverrouiller la base de données',
+'action-revisionmove'         => 'déplacer des révisions',
 
 # Recent changes
 'nchanges'                          => '$1 modification{{PLURAL:$1||s}}',
@@ -2271,7 +2291,8 @@ La dernière modification de la page a été effectuée par [[User:$3|$3]] ([[Us
 rétablissement de la dernière version par $2.',
 
 # Edit tokens
-'sessionfailure' => 'Votre session de connexion semble avoir des problèmes ;
+'sessionfailure-title' => 'Erreur de session',
+'sessionfailure'       => 'Votre session de connexion semble avoir des problèmes ;
 cette action a été annulée en prévention d’un piratage de session.
 Veuillez cliquer sur « Précédent », rechargez la page d’où vous venez, puis réessayez.',
 
