@@ -3714,6 +3714,10 @@ class User {
 	 *
 	 * Obviously, you still need to do server-side checking.
 	 *
+	 * NOTE: A combination of bugs in various browsers means that this function
+	 * actually just returns array() unconditionally at the moment.  May as
+	 * well keep it around for when the browser bugs get fixed, though.
+	 *
 	 * @return array Array of HTML attributes suitable for feeding to
 	 *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
 	 *   That will potentially output invalid XHTML 1.0 Transitional, and will
@@ -3728,7 +3732,14 @@ class User {
 
 		# Note that the pattern requirement will always be satisfied if the
 		# input is empty, so we need required in all cases.
-		$ret = array( 'required' );
+		#
+		# FIXME (bug 23769): This needs to not claim the password is required
+		# if e-mail confirmation is being used.  Since HTML5 input validation
+		# is b0rked anyway in some browsers, just return nothing.  When it's
+		# re-enabled, fix this code to not output required for e-mail
+		# registration.
+		#$ret = array( 'required' );
+		$ret = array();
 
 		# We can't actually do this right now, because Opera 9.6 will print out
 		# the entered password visibly in its error message!  When other
