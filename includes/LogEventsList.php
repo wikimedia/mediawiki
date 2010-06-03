@@ -65,6 +65,7 @@ class LogEventsList {
 
 	/**
 	 * Show options for the log list
+	 *
 	 * @param $types string or Array
 	 * @param $user String
 	 * @param $page String
@@ -536,7 +537,7 @@ class LogEventsList {
 	 * @param $type Mixed: string/array
 	 * @param $action Mixed: string/array
 	 * @param $right string
-	 * @return bool
+	 * @return Boolean
 	 */
 	public static function typeAction( $row, $type, $action, $right='' ) {
 		$match = is_array($type) ?
@@ -555,6 +556,7 @@ class LogEventsList {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this log row, if it's marked as deleted.
+	 *
 	 * @param $row Row
 	 * @param $field Integer
 	 * @return Boolean
@@ -562,10 +564,11 @@ class LogEventsList {
 	public static function userCan( $row, $field ) {
 		return self::userCanBitfield( $row->log_deleted, $field );
 	}
-	
+
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this log row, if it's marked as deleted.
+	 *
 	 * @param $bitfield Integer (current field)
 	 * @param $field Integer
 	 * @return Boolean
@@ -597,6 +600,7 @@ class LogEventsList {
 
 	/**
 	 * Show log extract. Either with text and a box (set $msgKey) or without (don't set $msgKey)
+	 *
 	 * @param $out OutputPage or String-by-reference
 	 * @param $types String or Array
 	 * @param $page String The page title to show log entries for
@@ -706,9 +710,10 @@ class LogEventsList {
 
 	/**
 	 * SQL clause to skip forbidden log types for this user
+	 *
 	 * @param $db Database
 	 * @param $audience string, public/user
-	 * @return mixed (string or false)
+	 * @return Mixed: string or false
 	 */
 	public static function getExcludeClause( $db, $audience = 'public' ) {
 		global $wgLogRestrictions, $wgUser;
@@ -739,15 +744,17 @@ class LogPager extends ReverseChronologicalPager {
 	public $mLogEventsList;
 
 	/**
-	 * constructor
+	 * Constructor
+	 *
 	 * @param $list LogEventsList
-	 * @param $types String or Array log types to show
-	 * @param $user String The user who made the log entries
-	 * @param $title String The page title the log entries are for
-	 * @param $pattern String Do a prefix search rather than an exact title match
-	 * @param $conds Array Extra conditions for the query
-	 * @param $year Integer The year to start from
-	 * @param $month Integer The month to start from
+	 * @param $types String or Array: log types to show
+	 * @param $user String: the user who made the log entries
+	 * @param $title String: the page title the log entries are for
+	 * @param $pattern String: do a prefix search rather than an exact title match
+	 * @param $conds Array: extra conditions for the query
+	 * @param $year Integer: the year to start from
+	 * @param $month Integer: the month to start from
+	 * @param $tagFilter String: tag
 	 */
 	public function __construct( $list, $types = array(), $user = '', $title = '', $pattern = '',
 		$conds = array(), $year = false, $month = false, $tagFilter = '' ) 
@@ -795,6 +802,7 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Set the log reader to return only entries of the given type.
 	 * Type restrictions enforced here
+	 *
 	 * @param $types String or array: Log types ('upload', 'delete', etc);
 	 *   empty string means no restriction
 	 */
@@ -827,6 +835,7 @@ class LogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Set the log reader to return only entries by the given user.
+	 *
 	 * @param $name String: (In)valid user name
 	 */
 	private function limitUser( $name ) {
@@ -860,6 +869,7 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Set the log reader to return only entries affecting the given page.
 	 * (For the block and rights logs, this is a user page.)
+	 *
 	 * @param $page String: Title name as text
 	 * @param $pattern String
 	 */
@@ -1014,6 +1024,7 @@ class LogPager extends ReverseChronologicalPager {
  */
 class LogReader {
 	var $pager;
+
 	/**
 	 * @param $request WebRequest: for internal use use a FauxRequest object to pass arbitrary parameters.
 	 */
@@ -1102,6 +1113,7 @@ class LogViewer {
 	 * Output just the list of entries given by the linked LogReader,
 	 * with extraneous UI elements. Use for displaying log fragments in
 	 * another page (eg at Special:Undelete)
+	 *
 	 * @param $out OutputPage: where to send output
 	 */
 	public function showList( &$out ) {
