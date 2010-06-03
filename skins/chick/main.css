@@ -19,7 +19,7 @@ a:visited { color: #5a3696; }
 a:active { color: #ffa500; }
 a.stub { color: #772233; }
 a.new,
-#p-personal a.new { color:#CC2200; }
+#p-personal a.new { color:#ba0000; }
 a.new:visited,
 #p-personal a.new:visited { color:#a55858; }
 
