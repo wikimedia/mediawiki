@@ -773,8 +773,8 @@ Prosimo preverite, ali res želite ustvariti/urediti to stran.',
 'blocked-notice-logextract'        => 'Ta uporabnik je trenutno blokiran.
 Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 'clearyourcache'                   => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika: '''Mozilla/Safari:''' držite ''Shift'' in kliknite ''Reload'' (ali pritisnite ''Ctrl-Shift-R''), '''Internet Explorer:''' ''Ctrl-F5'', '''Opera/Konqueror:''' ''F5''.",
-'usercssyoucanpreview'             => "'''Nasvet:''' Za preizkušanje svojega novega CSS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
-'userjsyoucanpreview'              => "'''Nasvet:''' Za preizkušanje svojega novega JS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
+'usercssyoucanpreview'             => "'''Nasvet:''' Za preizkušanje svojega novega CSS pred shranjevanjem uporabite gumb »{{int:showpreview}}«.",
+'userjsyoucanpreview'              => "'''Nasvet:''' Za preizkušanje svojega novega JavaScripta pred shranjevanjem uporabite gumb »{{int:showpreview}}«.",
 'usercsspreview'                   => "'''Svoj uporabniški CSS le predogledujete.'''
 '''Ni še bil shranjen!'''",
 'userjspreview'                    => "'''Ne pozabite, da svoj uporabniški JavaScript le preizkušate/predogledujete.'''
@@ -1928,10 +1928,9 @@ Morda vsebuje enega ali več znakov, ki niso dovoljeni v naslovih.',
 
 # Special:Categories
 'categories'                    => 'Kategorije',
-'categoriespagetext'            => '{{PLURAL:$1|Naslednja{{#ifeq:$1|1||&nbsp;$1}} kategorija vsebuje|Naslednji{{#ifeq:$1|2||&nbsp;$1}} kategoriji vsebujeta|Naslednje $1 kategorije vsebujejo|Naslednjih $1 kategorij vsebuje}} strani ali datoteke.
-
+'categoriespagetext'            => '{{PLURAL:$1|Naslednja $1 kategorija vsebuje|Naslednji $1 kategoriji vsebujeta|Naslednje $1 kategorije vsebujejo|Naslednjih $1 kategorij vsebuje}} strani ali datoteke.
 [[Special:UnusedCategories|Neuporabljene kategorije]] niso prikazane.
-Glej tudi [[Special:WantedCategories|želena kategorije]].',
+Glej tudi [[Special:WantedCategories|želene kategorije]].',
 'categoriesfrom'                => 'Prikaži kategorije, ki se začnejo na:',
 'special-categories-sort-count' => 'razvrsti po številu',
 'special-categories-sort-abc'   => 'razvrsti po abecedi',

@@ -477,6 +477,8 @@ $messages = array(
 'blockip'            => 'Сацаве',
 'ipadressorusername' => 'IP-долу меттиг йа декъашхон цlе:',
 'blockipsuccesssub'  => 'Сацавар чакхдели',
+'blockipsuccesstext' => '[[Special:Contributions/$1|«$1»]] сацийна ву.<br />
+Хьажа. [[Special:IPBlockList|могlам сацийна IP-долу меттигаш]].',
 'unblocked'          => '[[User:$1|$1]] хьайаьстина.',
 'ipblocklist'        => 'Сацийна IP-долу меттиг а дlалаьрра язбаларш',
 'ipblocklist-submit' => 'Лаха',

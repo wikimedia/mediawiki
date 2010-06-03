@@ -516,7 +516,7 @@ $messages = array(
 'filename'        => 'Hanow-restren',
 'filesource'      => 'Pennfenten:',
 'savefile'        => 'Gwitha restren',
-'uploadedimage'   => '"[[$1]]" ughkargys',
+'uploadedimage'   => '"[[$1]]" ughkergys',
 'watchthisupload' => 'Golya an folen ma',
 
 # Special:ListFiles
