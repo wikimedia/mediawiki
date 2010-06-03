@@ -192,10 +192,7 @@ Change notes from older releases. For current info see RELEASE-NOTES.
 * The default output format is now HTML 5 instead of XHTML 1.0 Transitional.
   This can be disabled by setting $wgHtml5 = false;.  Specific features enabled
   if HTML 5 is used:
-** New HTML 5 input attributes allow JavaScript-free input validation in some
-   cutting-edge browsers.  E.g., some inputs will be autofocused, users will
-   not be allowed to submit forms with certain types of invalid values (like
-   numbers outside the permitted ranges), etc.
+** Some extra inputs will be autofocused, in supporting browsers.
 ** The summary attribute has been removed from tables of contents.  summary is
    obsolete in HTML 5 and wasn't useful here anyway.
 ** Unnecessary type="" attribute removed for CSS and JS.

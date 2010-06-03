@@ -370,6 +370,16 @@ class Html {
 			# and we'd like consistency and better compression anyway.
 			$key = strtolower( $key );
 
+			# Bug 23769: Blacklist all form validation attributes for now.  Current
+			# (June 2010) WebKit has no UI, so the form just refuses to submit
+			# without telling the user why, which is much worse than failing
+			# server-side validation.  Opera is the only other implementation at
+			# this time, and has ugly UI, so just kill the feature entirely until
+			# we have at least one good implementation.
+			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required', 'step' ) ) ) {
+				continue;
+			}
+
 			# See the "Attributes" section in the HTML syntax part of HTML5,
 			# 9.1.2.3 as of 2009-08-10.  Most attributes can have quotation
 			# marks omitted, but not all.  (Although a literal " is not
