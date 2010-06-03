@@ -26,11 +26,11 @@ body {
 	direction: rtl;
 	unicode-bidi: embed;
 }
-#column-content {
+div#column-content {
 	margin: 0 -12.2em 0 0;
 	float: left;
 }
-#column-content #content{
+div#column-content div#content{
 	margin-left: 0;
 	margin-right: 12.2em;
 	border-right: 1px solid #aaaaaa;
@@ -153,7 +153,7 @@ li#ca-watch {
 	background: none !important;
 }
 */
-#footer {
+div#footer {
 	clear: both;
 }
 #f-poweredbyico {
@@ -164,22 +164,22 @@ li#ca-watch {
 	float: right;
 	height: 1%;
 }
-* html #footer {
+* html div#footer {
 	margin-left: 0;
 	margin-right: 13.6em;
 	border-left: 0;
 	border-right: 1px solid #fabd23;
 } 
-* html #column-content { 
+* html div#column-content { 
 	float: none;
 	margin-left: 0;
 	margin-right: 0;
 }
-* html #column-content #content {
+* html div#column-content div#content {
 	margin-left: 0;
 	margin-top: 3em;
 }
-* html #column-one { right: 0; }
+* html div#column-one { right: 0; }
 
 /* js pref toc */
 
