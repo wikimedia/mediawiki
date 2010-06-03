@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 abstract class ApiFormatBase extends ApiBase {
 
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp, $mCleared;
-	private $mBufferResult = false, $mBuffer;
+	private $mBufferResult = false, $mBuffer, $mDisabled = false;
 
 	/**
 	 * Constructor
@@ -114,12 +114,27 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
+	 * Disable the formatter completely. This causes calls to initPrinter(),
+	 * printText() and closePrinter() to be ignored.
+	 */
+	public function disable() {
+		$this->mDisabled = true;
+	}
+	
+	public function isDisabled() {
+		return $this->mDisabled;
+	}
+
+	/**
 	 * Initialize the printer function and prepare the output headers, etc.
 	 * This method must be the first outputing method during execution.
 	 * A help screen's header is printed for the HTML-based output
 	 * @param $isError bool Whether an error message is printed
 	 */
 	function initPrinter( $isError ) {
+		if ( $this->mDisabled ) {
+			return;
+		}
 		$isHtml = $this->getIsHtml();
 		$mime = $isHtml ? 'text/html' : $this->getMimeType();
 		$script = wfScript( 'api' );
@@ -172,6 +187,9 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	 * Finish printing. Closes HTML tags.
 	 */
 	public function closePrinter() {
+		if ( $this->mDisabled ) {
+			return;
+		}
 		if ( $this->getIsHtml() ) {
 ?>
 
@@ -191,6 +209,9 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	 * @param $text string
 	 */
 	public function printText( $text ) {
+		if ( $this->mDisabled ) {
+			return;
+		}
 		if ( $this->mBufferResult ) {
 			$this->mBuffer = $text;
 		} elseif ( $this->getIsHtml() ) {

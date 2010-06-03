@@ -199,6 +199,13 @@ class ApiMain extends ApiBase {
 	public function getModule() {
 		return $this->mModule;
 	}
+	
+	/**
+	 * Get the result formatter object. Only works after setupExecuteAction()
+	 */
+	public function getPrinter() {
+		return $this->mPrinter;
+	}
 
 	/**
 	 * Only kept for backwards compatibility
@@ -330,7 +337,7 @@ class ApiMain extends ApiBase {
 
 		header( "Cache-Control: $ccHeader" );
 
-		if ( $this->mPrinter->getIsHtml() ) {
+		if ( $this->mPrinter->getIsHtml() && !$this->mPrinter->isDisabled() ) {
 			echo wfReportTime();
 		}
 
