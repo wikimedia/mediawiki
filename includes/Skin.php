@@ -557,7 +557,9 @@ class Skin extends Linker {
 			$underline = $undopt ? 'underline' : 'none';
 			$s .= "a { text-decoration: $underline; }\n";
 		}
-		if( !$wgUser->getOption( 'highlightbroken' ) ) {
+		if( $wgUser->getOption( 'highlightbroken' ) ) {
+			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
+		} else {
 			$s .= <<<CSS
 a.new, #quickbar a.new,
 a.stub, #quickbar a.stub {
