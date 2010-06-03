@@ -2,22 +2,22 @@
 ** IE5.0 Fix Stylesheet
 */
 
-#column-content {
+div#column-content {
 	margin: 0 !important;
 	float: none;
 }
-#column-content #content { 
+div#column-content #content { 
 	margin-top: 3em; 
 	height: 1%;
 }
-#column-one {
+div#column-one {
 	position: absolute;
 	overflow: visible;
 	top: 0;
 	left: 0;
 	z-index: 3;
 }
-#footer {
+div#footer {
 	margin: 0 0 0 13.6em;
 }
 

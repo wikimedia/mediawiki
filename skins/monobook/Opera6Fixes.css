@@ -1,5 +1,5 @@
 /* opera 6 fixes */
-#column-one {
+div#column-one {
 	position: relative;
 	max-width: 11.7em;
 }

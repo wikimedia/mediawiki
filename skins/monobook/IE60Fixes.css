@@ -1,23 +1,23 @@
 /* 6.0 - only fixes */
 /* content area */ 
 /* workaround for various ie float bugs */
-#column-content { 
+div#column-content { 
 	float: none; 
 	margin-left: 0;
 	height: 1%;
 }
-#column-content #content {
+div#column-content div#content {
 	margin-left: 12.2em;
 	margin-top: 3em;
 	height: 1%;
 }
-#column-one {
+div#column-one {
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 4;
 }
-#footer {
+div#footer {
 	margin-left: 13.6em;
 	border-left: 1px solid #fabd23;
 }
