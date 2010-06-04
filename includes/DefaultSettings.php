@@ -2674,7 +2674,12 @@ $wgDebugTidy = false;
  */
 $wgValidateAllHtml = false;
 
-/** See list of skins and their symbolic names in languages/Language.php */
+/**
+ * Default skin, for new users and anonymous visitors. Registered users may
+ * change this to any one of the other available skins in their preferences.
+ * This have completely lowercase, see the "skins" directory for the list of
+ * available skins.
+ */
 $wgDefaultSkin = 'vector';
 
 /**
