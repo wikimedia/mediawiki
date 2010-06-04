@@ -39,7 +39,7 @@ class FetchText extends Maintenance {
 			}
 			$textId = intval( $line );
 			$text = $this->doGetText( $db, $textId );
-			$this->output( strlen( $text ) . "\n" . $text );
+			$this->output( $textId . "\n" . strlen( $text ) . "\n" . $text );
 		}
 	}
 	
