@@ -183,15 +183,18 @@ class OutputPage {
 	 *
 	 * @param $file String: filename in skins/common or complete on-server path
 	 *              (/foo/bar.js)
+	 * @param $version String: style version of the file. Defaults to $wgStyleVersion
 	 */
-	public function addScriptFile( $file ) {
+	public function addScriptFile( $file, $version = null ) {
 		global $wgStylePath, $wgStyleVersion;
 		if( substr( $file, 0, 1 ) == '/' || preg_match( '#^[a-z]*://#i', $file ) ) {
 			$path = $file;
 		} else {
 			$path = "{$wgStylePath}/common/{$file}";
 		}
-		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $wgStyleVersion ) ) );
+		if ( is_null( $version ) )
+			$version = $wgStyleVersion;
+		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ) ) );
 	}
 
 	/**
