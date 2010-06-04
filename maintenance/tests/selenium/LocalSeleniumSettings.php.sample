@@ -9,7 +9,7 @@
 // will almost certainly have to uncomment the line set_include_path ... and
 // change the string 'PEAR' to the path to your PEAR library, e.g.,
 // '/usr/share/php/PEAR' for a Debian based Linux system.
-// The edited file must appear in the same directory as does RunSeleniumTests.php.
+// The edited file must appear in the ../tests/selenium directory.
 
 // include path. Set 'PEAR" to '/path/to/PEAR/library'
 
