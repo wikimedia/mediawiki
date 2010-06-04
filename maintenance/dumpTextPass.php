@@ -188,8 +188,15 @@ class TextPassDumper extends BackupDumper {
 				// Blank entries may indicate that the prior dump was broken.
 				// To be safe, reload it.
 			} else {
-				$this->prefetchCount++;
-				return $text;
+				$dbr = wfGetDB( DB_SLAVE );
+				$revID = intval($this->thisRev);
+				$revLength = $dbr->selectField( 'revision', 'rev_len', array('rev_id' => $revID ) );
+				// if length of rev text in file doesn't match length in db, we reload
+				// this avoids carrying forward broken data from previous xml dumps 
+				if( strlen($text) == $revLength ) {
+					$this->prefetchCount++;
+					return $text;
+				}
 			}
 		}
 		return $this->doGetText( $id );
