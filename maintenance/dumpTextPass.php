@@ -331,7 +331,17 @@ class TextPassDumper extends BackupDumper {
 		$ok = fflush( $this->spawnWrite );
 		// $this->progress( ">> [flush]" );
 		if ( !$ok ) return false;
-		
+
+		// check that the text id they are sending is the one we asked for
+		// this avoids out of sync revision text errors we have encountered in the past
+		$newId = fgets( $this->spawnRead );
+		if ( $newId === false ) {
+			return false;
+		}
+		if ( $id != intval( $newId ) ) {
+			return false;
+		}
+
 		$len = fgets( $this->spawnRead );
 		// $this->progress( "<< " . trim( $len ) );
 		if ( $len === false ) return false;
