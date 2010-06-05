@@ -2677,8 +2677,8 @@ $wgValidateAllHtml = false;
 /**
  * Default skin, for new users and anonymous visitors. Registered users may
  * change this to any one of the other available skins in their preferences.
- * This have completely lowercase, see the "skins" directory for the list of
- * available skins.
+ * This have to be completely lowercase; see the "skins" directory for the list
+ * of available skins.
  */
 $wgDefaultSkin = 'vector';
 
