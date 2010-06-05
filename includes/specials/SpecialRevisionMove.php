@@ -48,12 +48,10 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 
 	/**
 	 * @param $par subpage part, standard special page parameter, is ignored here
-	 * @param $request optional WebRequest object. If it isn't set, $this->request 
-	 *                 will be set to $wgRequest
 	 * 
 	 * Mostly initializes variables and calls either showForm() or submit()
 	 */
-	public function execute( $par = '', $request = null ) {
+	public function execute( $par = '' ) {
 		global $wgUser, $wgOut, $wgSkin;
 
 		$this->setHeaders();
@@ -62,10 +60,8 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		$this->mIsAllowedRevisionMove = $wgUser->isAllowed( 'revisionmove' );
 		$this->user = $wgUser;
 		$this->skin = $wgUser->getSkin();
-		if ( !$request instanceof WebRequest ) {
+		if ( !$this->request instanceof WebRequest ) {
 			$this->request = $GLOBALS['wgRequest'];
-		} else {
-			$this->request = $request;
 		}
 
 		# Get correct title
