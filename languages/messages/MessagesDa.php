@@ -988,6 +988,8 @@ $1",
 'logdelete-failure'           => "'''Kunne ikke ændre logsynligheden.''' 
 $1",
 'revdel-restore'              => 'Ændre synlighed',
+'revdel-restore-deleted'      => 'slettede redigeringer',
+'revdel-restore-visible'      => 'synlige ændringer',
 'pagehist'                    => 'Sidehistorik',
 'deletedhist'                 => 'Slettet historik',
 'revdelete-content'           => 'indhold',
@@ -1022,6 +1024,16 @@ Se venligst loglisterne.',
 'suppressionlog'     => 'Skjulningslog',
 'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer der er skjult for almindelige systemadministratorer.Below is a list of deletions and blocks involving content hidden from sysops.
 Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
+
+# Revision move
+'moverevlogentry'              => 'flyttede ((plural: $ 3 | én revision | $ 3 revisioner)) fra $ 1 til $ 2',
+'revisionmove'                 => 'Flyt ændringer fra "$ 1"',
+'revmove-explain'              => 'Følgende ændringer vil blive flyttet fra $ 1 til den angivne målside. Hvis målsiden ikke findes, vil den blive oprettet. Ellers vil disse revisioner blive flettet ind i sidens historik.',
+'revisionmoveselectedversions' => 'Flyt valgte revisioner',
+'revmove-reasonfield'          => 'Begrundelse:',
+'revmove-titlefield'           => 'Målside:',
+'revmove-badparam-title'       => 'Forkerte parametre',
+'revmove-nullmove-title'       => 'Forkert titel',
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
@@ -1353,6 +1365,7 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'right-reset-passwords'       => 'Ændre andre brugeres adgangskode',
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
+'right-revisionmove'          => 'Flyt revisioner',
 
 # User rights log
 'rightslog'      => 'Rettighedslog',
@@ -1666,7 +1679,7 @@ Indholdet på dens [$2 filbeskrivelsesside] er vist herunder.',
 'filerevert'                => 'Gendan $1',
 'filerevert-legend'         => 'Gendan fil',
 'filerevert-intro'          => '<span class="plainlinks">Du gendanner \'\'\'[[Media:$1|$1]]\'\'\' til [$4 version fra $2, $3].</span>',
-'filerevert-comment'        => 'Kommentar:',
+'filerevert-comment'        => 'Begrundelse:',
 'filerevert-defaultcomment' => 'Gendannet til version fra $1, $2',
 'filerevert-submit'         => 'Gendan',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' er gendannet til [$4 version fra $2, $3].</span>',
@@ -2071,7 +2084,8 @@ Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion
 og den seneste version af $2 er gendannet.',
 
 # Edit tokens
-'sessionfailure' => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
+'sessionfailure-title' => 'Sessionsfejl',
+'sessionfailure'       => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
 
 # Protect
 'protectlogpage'              => 'Skrivebeskyttelseslog',
@@ -3134,9 +3148,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlistedit-noitems'        => 'Din overvågningsliste er tom.',
 'watchlistedit-normal-title'   => 'Rediger overvågningsliste',
 'watchlistedit-normal-legend'  => 'Slet sider fra overvågningslisten',
-'watchlistedit-normal-explain' => 'Titlerne på din overvågningsliste er vist nedenfor.
-Du kan fjerne titler fra den ved at markere dem og trykke på Fjern valgte.
-Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].',
+'watchlistedit-normal-explain' => 'Siderne på din overvågningsliste er vist nedenfor. Hvis du vil fjerne en side, skal du markere feltet ud for den, og klik på "((int: Watchlistedit-normal-submit))". Du kan også [[Special: Watchlist / raw | redigere siden direkte]].',
 'watchlistedit-normal-submit'  => 'Fjern valgte',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
 'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',

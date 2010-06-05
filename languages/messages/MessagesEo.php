@@ -1059,7 +1059,7 @@ Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en 
 'rev-delundel'                => 'montri/kaŝi',
 'rev-showdeleted'             => 'montri',
 'revisiondelete'              => 'Forigi/malforigi versiojn',
-'revdelete-nooldid-title'     => 'Malvalida cela revizio',
+'revdelete-nooldid-title'     => 'Nevalida cela revizio',
 'revdelete-nooldid-text'      => 'Vi ne specifis celan version aŭ versiojn fari ĉi tiun 
 funkcion, la specifita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan version.',
 'revdelete-nologtype-title'   => 'Neniu protokol-tipo estis donita',
@@ -1100,6 +1100,8 @@ $1",
 'logdelete-failure'           => "'''Protokola videbleco ne estis akordebla:'''
 $1",
 'revdel-restore'              => 'Ŝanĝi videblecon',
+'revdel-restore-deleted'      => 'forigitaj revizioj',
+'revdel-restore-visible'      => 'videblaj revizioj',
 'pagehist'                    => 'Paĝa historio',
 'deletedhist'                 => 'Forigita historio',
 'revdelete-content'           => 'enhavo',
@@ -1134,6 +1136,14 @@ Bonvolu kontroli la protokolojn.',
 'suppressionlog'     => 'Protokolo pri subigado',
 'suppressionlogtext' => 'Jen listo de forigoj kaj forbaroj pri enhavo kaŝita per administrantoj. 
 Rigardu la [[Special:IPBlockList|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
+
+# Revision move
+'revmove-legend'            => 'Aldoni celan paĝon kaj resumon',
+'revmove-reasonfield'       => 'Kialo:',
+'revmove-titlefield'        => 'Cela paĝo:',
+'revmove-badparam-title'    => 'Malbonaj parametroj',
+'revmove-norevisions-title' => 'Nevalida cela revizio',
+'revmove-nullmove-title'    => 'Fuŝa titolo',
 
 # History merging
 'mergehistory'                     => 'Kunfandigi historiojn de paĝoj',
@@ -1464,6 +1474,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-reset-passwords'       => 'Reŝanĝi pasvortojn de aliaj uzantoj',
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
+'right-revisionmove'          => 'Movi reviziojn',
 
 # User rights log
 'rightslog'      => 'Protokolo de uzanto-rajtoj',
@@ -1506,6 +1517,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'action-userrights'           => 'redakti ĉiujn rajtojn de uzantoj',
 'action-userrights-interwiki' => 'redakti uzulrajtojn de uzantoj en aliaj vikioj',
 'action-siteadmin'            => 'ŝlosi aŭ malŝlosi la datumbazon',
+'action-revisionmove'         => 'movi reviziojn',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
@@ -1600,11 +1612,15 @@ Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 'filetype-unwanted-type'      => "'''\".\$1\"''' estas nevolata dosiero-tipo. {{PLURAL:\$3|Preferata dosiero-tipo|Prefereataj dosiero-tipoj}} estas \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' ne estas permesita dosiero-tipo. {{PLURAL:\$3|Permesita dosiero-tipo|Permesitaj dosiero-tipoj}} estas \$2.",
 'filetype-missing'            => 'Ĉi tiu dosiero ne inkluzivas finaĵon de dosiernomo (kiel ".jpg").',
-'empty-file'                  => 'La dosiero kiun vi sendis estis malplena.',
+'empty-file'                  => 'La dosiero kiun vi alŝutis estis malplena.',
+'file-too-large'              => 'La dosiero kiun vi alŝutis estis tro granda.',
 'filename-tooshort'           => 'La dosiera nomo estas tro mallonga.',
 'filetype-banned'             => 'Ĉi tiu tipo de dosiero estas malpermesita.',
+'verification-error'          => 'Ĉi tiu dosiero ne pasis dosieran konfirmon.',
 'illegal-filename'            => 'La dosiernomo ne estas permesata.',
 'unknown-error'               => 'Malkonata eraro okazis.',
+'tmp-create-error'            => 'Ne povis krei intertempan dosieron.',
+'tmp-write-error'             => 'Eraro skribanta intertempan dosieron.',
 'large-file'                  => 'Estas rekomendite, ke dosieroj ne superas grandon de $1 bitokoj; 
 tiu ĉi tiu dosiero pezas $2 bitokojn.',
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
@@ -1659,6 +1675,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 Vi konsideru ĉu taŭgas alŝuti ĉi tiu dosiero.
 jen la protokolo pri forigado por ĉi tiu dosiero por via oportuneco:",
 'filename-bad-prefix'         => "La nomo de la dosiero kiun vi alŝutas komencas kun '''\"\$1\"''', kiu estas nepriskriba nomo ofte aŭtomate donata de ciferecaj fotiloj. Bonvolu elekti pli priskriban nomon por via bildo.",
+'upload-successful-msg'       => 'Via alŝutdosiero estas disponebla ĉi tie: $1',
 'upload-failure-subj'         => 'Alŝuta problemo',
 
 'upload-proto-error'        => 'Malvalida protokolo',
@@ -2057,7 +2074,8 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'emailuserfooter'      => 'Ĉi tiun retpoŝton sendis $1 al $2 per funkcio "Email user" ĉe {{SITENAME}}.',
 
 # User Messenger
-'usermessage-editor' => 'Mesaĝanto de sistemo',
+'usermessage-summary' => 'Lasanta sisteman mesaĝon.',
+'usermessage-editor'  => 'Mesaĝanto de sistemo',
 
 # Watchlist
 'watchlist'            => 'Atentaro',

@@ -2077,7 +2077,7 @@ conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Poli
 'actionfailed'           => "L'acció ha fallat",
 'deletedtext'            => '«<nowiki>$1</nowiki>» ha estat esborrat.
 Vegeu $2 per a un registre dels esborrats més recents.',
-'deletedarticle'         => 'eliminat «[[$1]]»',
+'deletedarticle'         => 'ha esborrat «[[$1]]»',
 'suppressedarticle'      => "s'ha suprimit «[[$1]]»",
 'dellogpage'             => "Registre d'eliminació",
 'dellogpagetext'         => 'Davall hi ha una llista dels esborraments més recents.',

@@ -1221,7 +1221,7 @@ In de [[Special:IPBlockList|IP-blokkeerlijst]] zijn de huidige blokkades te beki
 
 # Revision move
 'moverevlogentry'              => 'heeft $3 {{PLURAL:$3|versie|versies}} verplaatst van $1 naar $2',
-'revisionmove'                 => 'Versies naar "$1" verplaatsen',
+'revisionmove'                 => 'Versies van "$1" verplaatsen',
 'revmove-explain'              => 'De volgende versies worden verplaatst van $1 naar de aangegeven doelpagina.
 Als de doelpagina niet bestaat, wordt deze aangemaakt.
 Als deze wel bestaat, worden de versies ingevoegd in de paginageschiedenis.',

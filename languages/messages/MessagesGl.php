@@ -825,8 +825,8 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 '''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5'';
 '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias'';
 '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Nota:''' use o botón \"Mostrar a vista previa\" para verificar o novo CSS antes de gardalo.",
-'userjsyoucanpreview'              => "'''Nota:''' use o botón \"Mostrar a vista previa\" para verificar o novo JS antes de gardalo.",
+'usercssyoucanpreview'             => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
+'userjsyoucanpreview'              => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
 '''Este aínda non foi gardado!'''",
 'userjspreview'                    => "'''Lembre que só está probando/previsualizando o seu JavaScript de usuario.'''
@@ -1089,6 +1089,24 @@ Por favor, comprobe o rexistros.',
 'suppressionlog'     => 'Rexistro de supresións',
 'suppressionlogtext' => 'Embaixo amósase unha lista coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores.
 Vexa a [[Special:IPBlockList|lista de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
+
+# Revision move
+'moverevlogentry'              => 'moveu {{PLURAL:$3|unha revisión|$3 revisións}} de $1 a $2',
+'revisionmove'                 => 'Mover as revisións de "$1"',
+'revmove-explain'              => 'As seguintes revisións moveranse de "$1" á páxina de destino especificada. Se a páxina de destino non existe, esta será creada. En caso de existir, estas revisións fusionaranse co historial de revisións desa páxina.',
+'revmove-legend'               => 'Establecer a páxina de destino e o resumo',
+'revmove-submit'               => 'Mover as revisións á páxina seleccionada',
+'revisionmoveselectedversions' => 'Mover as revisións seleccionadas',
+'revmove-reasonfield'          => 'Motivo:',
+'revmove-titlefield'           => 'Páxina de destino:',
+'revmove-badparam-title'       => 'Parámetros incorrectos',
+'revmove-badparam'             => '<span class="error">A súa solicitude contén parámetros insuficientes ou ilegais. Volva atrás e inténteo de novo.</span>',
+'revmove-norevisions-title'    => 'A revisión especificada é incorrecta',
+'revmove-norevisions'          => '<span class="error">Non especificou unha ou máis revisións sobre as que levar a cabo esta operación; ou poida tamén que a revisión especificada non exista.</span>',
+'revmove-nullmove-title'       => 'Título incorrecto',
+'revmove-nullmove'             => '<span class="error">As páxinas de orixe e destino son idénticas. Volva atrás e introduza un nome de páxina diferente de "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Moveuse unha revisión de "[[$2]]"|Movéronse $1 revisións de "[[$2]]"}} á páxina "[[$3]]".',
+'revmove-success-created'      => '{{PLURAL:$1|Moveuse unha revisión de "[[$2]]"|Movéronse $1 revisións de "[[$2]]"}} á nova páxina "[[$3]]", creada hai uns intres.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiais das páxinas',
@@ -1420,6 +1438,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-reset-passwords'       => 'Restablecer os contrasinais doutros usuarios',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
+'right-revisionmove'          => 'Mover revisións',
 
 # User rights log
 'rightslog'      => 'Rexistro de dereitos de usuario',
@@ -1462,6 +1481,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'action-userrights'           => 'editar todos os permisos de usuario',
 'action-userrights-interwiki' => 'editar os permisos de usuario dos usuarios doutros wikis',
 'action-siteadmin'            => 'bloquear ou desbloquear a base de datos',
+'action-revisionmove'         => 'mover revisións',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
@@ -2176,7 +2196,8 @@ A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-se
 volveuse á última edición, feita por $2.',
 
 # Edit tokens
-'sessionfailure' => 'Parece que hai un problema co rexistro da súa sesión;
+'sessionfailure-title' => 'Erro de sesión',
+'sessionfailure'       => 'Parece que hai un problema co rexistro da súa sesión;
 esta acción cancelouse como precaución fronte ao secuestro de sesións.
 Prema no botón "atrás", volva cargar a páxina da que proviña e inténteo de novo.',
 

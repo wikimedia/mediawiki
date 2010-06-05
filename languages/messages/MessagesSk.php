@@ -887,8 +887,8 @@ alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'clearyourcache'                   => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
 '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Macintosh); '''Konqueror:''': kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; '''Opera''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''; '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5'';",
-'usercssyoucanpreview'             => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.",
-'userjsyoucanpreview'              => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.",
+'usercssyoucanpreview'             => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
+'userjsyoucanpreview'              => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'usercsspreview'                   => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
 'userjspreview'                    => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
 'userinvalidcssjstitle'            => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css a nie {{ns:user}}:Foo/Monobook.css.",
@@ -1147,6 +1147,24 @@ Pozrite sa prosím do záznamov.',
 # Suppression log
 'suppressionlog'     => 'Záznam potlačení',
 'suppressionlogtext' => 'Toto je zoznam zmazaní a blokovaní vrátane obsahu, ktorý je skrytý pred správcami. Zoznam momentálne účinných blokovaní nájdete na [[Special:IPBlockList|Zoznam blokovaní IP]].',
+
+# Revision move
+'moverevlogentry'              => 'presunul {{PLURAL:$3|jednu revíziu|$3 revízie|$3 revízií}} z $1 do $2',
+'revisionmove'                 => 'Presunúť revízie z „$1“',
+'revmove-explain'              => 'Nasledovné revízie budú presnuté z $1 na uvedenú cieľovú stránku. Ak cieľová stránka neexistuje, bude vytvorená. Inak sa tieto revízie začlenia do histórie stránky.',
+'revmove-legend'               => 'Nastaviť cieľovú stránku a zhrnutie',
+'revmove-submit'               => 'Presunúť revízie na vybranú stránku',
+'revisionmoveselectedversions' => 'Presunúť vybrané revízie',
+'revmove-reasonfield'          => 'Dôvod:',
+'revmove-titlefield'           => 'Cieľová stránka:',
+'revmove-badparam-title'       => 'Chybné parametre',
+'revmove-badparam'             => '<span class="error">Vaša požiadavka obsahuje neplatné alebo nedostatočné parametre. Prosím, stlačte tlačidlo „Späť“ a skúste to znova.</span>',
+'revmove-norevisions-title'    => 'Neplatná cieľová revízia',
+'revmove-norevisions'          => '<span class="error">Buď ste neuviedli jednu alebo viac cieľových revízií alebo uvedená revízia neexistuje.</span>',
+'revmove-nullmove-title'       => 'Chybný názov',
+'revmove-nullmove'             => '<span class="error">Zdrojová a cieľová stránka sú zhodné. Prosím, stlačte „Späť“ a zadajte iný názov stránky ako „$1“.</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do existujúcej stránky [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do novo vytvorenej stránky [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Zlúčiť histórie stránok',
@@ -1473,6 +1491,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-reset-passwords'       => 'Zmeniť heslo iných používateľov',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
 'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
+'right-revisionmove'          => 'Presunúť revízie',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',
@@ -1515,6 +1534,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'action-userrights'           => 'upravovať práva všetkých používateľov',
 'action-userrights-interwiki' => 'upravovať práva používateľov na iných wiki',
 'action-siteadmin'            => 'zamykať alebo odomykať databázu',
+'action-revisionmove'         => 'presunúť revízie',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',
@@ -1804,7 +1824,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'filerevert'                => 'Obnoviť $1',
 'filerevert-legend'         => 'Obnoviť súbor',
 'filerevert-intro'          => "Obnovujete '''[[Media:$1|$1]]''' na [$4 verziu z $2, $3].",
-'filerevert-comment'        => 'komentár:',
+'filerevert-comment'        => 'Dôvod:',
 'filerevert-defaultcomment' => 'Obnovená verzia z $1, $2',
 'filerevert-submit'         => 'Obnoviť',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' bol obnovený na [$4 verziu z $2, $3].",
@@ -2212,7 +2232,8 @@ Autorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]]{{int:pipe
 'rollback-success'  => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
 
 # Edit tokens
-'sessionfailure' => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
+'sessionfailure-title' => 'Chyba relácie',
+'sessionfailure'       => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
 táto akcia bola zrušená ako prevencia proti zneužitiu relácie (session).
 Prosím, stlačte "naspäť", obnovte stránku, z ktorej ste sa sem dostali, a skúste to znova.',
 
@@ -2303,7 +2324,7 @@ Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, obnovené rev
 'undeleteviewlink'             => 'zobraziť',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Invertovať výber',
-'undeletecomment'              => 'Komentár:',
+'undeletecomment'              => 'Dôvod:',
 'undeletedarticle'             => 'obnovený „[[$1]]“',
 'undeletedrevisions'           => '{{PLURAL:$1|jedna verzia bola obnovená|$1 verzie boli obnovené|$1 verzií bolo obnovených}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Jedna revízia|$1 revízie|$1 revízií}} a {{PLURAL:$2|jeden súbor bol obnovený|$2 súbory boli obnovené|$2 súborov bolo obnovených}}',

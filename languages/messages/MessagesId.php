@@ -893,8 +893,8 @@ Hanya pengguna terdaftar yang telah masuk log yang dapat membuat artikel. Jika A
 'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
-'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji CSS baru Anda sebelum menyimpannya.",
-'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji JS baru Anda sebelum menyimpannya.",
+'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji CSS baru Anda sebelum menyimpannya.",
+'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji JS baru Anda sebelum menyimpannya.",
 'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
 Pratayang ini belum disimpan!'''",
 'userjspreview'                    => "'''Ingatlah bahwa yang Anda lihat hanyalah pratayang JavaScript Anda, dan bahwa pratayang tersebut belum disimpan!'''",
@@ -1104,6 +1104,7 @@ $1",
 'logdelete-failure'           => "'''Aturan penyembunyian tidak dapat diterapkan:'''
 $1",
 'revdel-restore'              => 'Ubah tampilan',
+'revdel-restore-deleted'      => 'Suntingan yang telah dihapus',
 'pagehist'                    => 'Sejarah halaman',
 'deletedhist'                 => 'Sejarah yang dihapus',
 'revdelete-content'           => 'konten',
@@ -1138,6 +1139,9 @@ Silakan periksa catatan log.',
 'suppressionlog'     => 'Log penyembunyian',
 'suppressionlogtext' => 'Berikut adalah daftar penghapusan dan pemblokiran, termasuk konten yang disembunyikan dari para opsis.
 Lihat [[Special:IPBlockList|daftar IP yang diblokir]] untuk daftar terkininya.',
+
+# Revision move
+'revmove-titlefield' => 'Halaman tujuan:',
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah halaman',
@@ -1781,7 +1785,7 @@ Deskripsi dari [$2 halaman deskripsinya] ditunjukkan di bawah ini.',
 'filerevert'                => 'Kembalikan $1',
 'filerevert-legend'         => 'Kembalikan berkas',
 'filerevert-intro'          => "Anda mengembalikan '''[[Media:$1|$1]]''' ke versi [$4 pada $3, $2].",
-'filerevert-comment'        => 'Komentar:',
+'filerevert-comment'        => 'Alasan:',
 'filerevert-defaultcomment' => 'Dikembalikan ke versi pada $2, $1',
 'filerevert-submit'         => 'Kembalikan',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' telah dikembalikan ke versi [$4 pada $3, $2]",
@@ -2274,7 +2278,7 @@ Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, r
 'undeleteviewlink'             => 'lihat',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Balikkan pilihan',
-'undeletecomment'              => 'Komentar:',
+'undeletecomment'              => 'Alasan:',
 'undeletedarticle'             => '"$1" telah dikembalikan',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|revisi|revisi}} telah dikembalikan',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revisi|revisi}} and $2 berkas dikembalikan',
@@ -3285,7 +3289,10 @@ Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|satu|$1}} judul telah dihapus dari daftar pantauan Anda:',
 'watchlistedit-raw-title'      => 'Sunting daftar pantauan mentah',
 'watchlistedit-raw-legend'     => 'Sunting daftar pantauan mentah',
-'watchlistedit-raw-explain'    => 'Judul-judul pada daftar pantauan Anda ditampilkan di bawah ini, dan dapat diubah dengan menambahkan atau menghapus daftar; satu judul pada setiap barisnya. Jika telah selesai, klik Perbarui daftar pantauan. Anda juga dapat [[Special:Watchlist/edit|menggunakan editor standar Anda]].',
+'watchlistedit-raw-explain'    => 'Judul pada daftar pantauan Anda ditampilkan di bawah ini, dan dapat disunting dengan menambahkan atau menghapusnya dari daftar;
+satu judul pada setiap barisnya.
+Setelah selesai, klik "{{int:Watchlistedit-raw-submit}}".
+Anda juga dapat [[Special:Watchlist/edit|menggunakan penyunting standar Anda]].',
 'watchlistedit-raw-titles'     => 'Judul:',
 'watchlistedit-raw-submit'     => 'Perbarui daftar pantauan',
 'watchlistedit-raw-done'       => 'Daftar pantauan Anda telah diperbarui.',

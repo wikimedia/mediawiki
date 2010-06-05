@@ -757,8 +757,8 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
 Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove CSS ante de publicar lo.",
-'userjsyoucanpreview'              => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove JS ante de publicar lo.",
+'usercssyoucanpreview'             => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove CSS ante de salveguardar lo.",
+'userjsyoucanpreview'              => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove JavaScript ante de salveguardar lo.",
 'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.'''
 '''Le modificationes non ha ancora essite salveguardate!'''",
 'userjspreview'                    => "'''Non oblida que isto es solmente un test/previsualisation de tu JavaScript personalisate.'''
@@ -990,6 +990,8 @@ $1",
 'logdelete-failure'           => "'''Le visibilitate del registro non poteva esser cambiate:'''
 $1",
 'revdel-restore'              => 'Cambiar visibilitate',
+'revdel-restore-deleted'      => 'versiones delite',
+'revdel-restore-visible'      => 'versiones visibile',
 'pagehist'                    => 'Historia del pagina',
 'deletedhist'                 => 'Historia delite',
 'revdelete-content'           => 'contento',
@@ -1024,6 +1026,25 @@ Per favor verifica le registros.',
 'suppressionlog'     => 'Registro de suppressiones',
 'suppressionlogtext' => 'Infra es un lista de deletiones e blocadas que involve contento que es celate de administratores.
 Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+
+# Revision move
+'moverevlogentry'              => 'displaciava {{PLURAL:$3|un version|$3 versiones}} de $1 a $2',
+'revisionmove'                 => 'Displaciar versiones de "$1"',
+'revisionmove-backlink'        => '← $1',
+'revmove-explain'              => 'Le sequente versiones essera displaciate de $1 al pagina de destination specificate. Si le destination non existe, illo essera create. Alteremente, iste versiones essera fusionate con le historia del pagina.',
+'revmove-legend'               => 'Entrar pagina de destination e summario',
+'revmove-submit'               => 'Displaciar versiones al pagina seligite',
+'revisionmoveselectedversions' => 'Displaciar versiones seligite',
+'revmove-reasonfield'          => 'Motivo:',
+'revmove-titlefield'           => 'Pagina de destination:',
+'revmove-badparam-title'       => 'Parametros incorrecte',
+'revmove-badparam'             => '<span class="error">Tu requesta contine parametros invalide o insufficiente. Per favor preme "retro" e reproba.</span>',
+'revmove-norevisions-title'    => 'Le version de destination es invalide',
+'revmove-norevisions'          => '<span class="error">Tu non ha specificate un o plus versiones de destination pro executar iste function o le version specificate non existe.</span>',
+'revmove-nullmove-title'       => 'Titulo invalide',
+'revmove-nullmove'             => '<span class="error">Le paginas de origine e de destination es identic. Per favor preme "retro" e entra un nomine de pagina differente de "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Un version|$1 versiones}} de [[$2]] ha essite displaciate al pagina existente [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Un version|$1 versiones}} de [[$2]] ha essite displaciate al nove pagina [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Fusionar historias del paginas',
@@ -1357,6 +1378,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
+'right-revisionmove'          => 'Displaciar versiones',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',
@@ -1399,6 +1421,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'action-userrights'           => 'modificar tote le derectos de usator',
 'action-userrights-interwiki' => 'modificar le derectos de usatores in altere wikis',
 'action-siteadmin'            => 'blocar e disblocar le base de datos',
+'action-revisionmove'         => 'displaciar versiones',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modification|modificationes}}',
@@ -1699,7 +1722,7 @@ Le description de su [$2 pagina de description] ibi es monstrate in basso.',
 'filerevert'                => 'Reverter $1',
 'filerevert-legend'         => 'Reverter file',
 'filerevert-intro'          => "Tu reverte '''[[Media:$1|$1]]''' al [$4 version del $3 a $2].",
-'filerevert-comment'        => 'Commento:',
+'filerevert-comment'        => 'Motivo:',
 'filerevert-defaultcomment' => 'Revertite al version del $2 a $1',
 'filerevert-submit'         => 'Reverter',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ha essite revertite al [$4 version del $3 a $2].",
@@ -2124,7 +2147,8 @@ Le ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussi
 retornava al version per $2.',
 
 # Edit tokens
-'sessionfailure' => 'Il pare haber un problema con tu session de conto;
+'sessionfailure-title' => 'Error de session',
+'sessionfailure'       => 'Il pare haber un problema con tu session de conto;
 iste action ha essite cancellate como precaution contra le sequestramento de sessiones.
 Per favor preme "retro" e recarga le pagina de ubi tu ha venite, postea reprova.',
 
@@ -2220,7 +2244,7 @@ Es possibile que le adresse URL es invalide, o que le version ha essite restaura
 'undeleteviewlink'             => 'vider',
 'undeletereset'                => 'Reinitialisar',
 'undeleteinvert'               => 'Inverter selection',
-'undeletecomment'              => 'Commento:',
+'undeletecomment'              => 'Motivo:',
 'undeletedarticle'             => 'restaurava "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 version|$1 versiones}} restaurate',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 version|$1 versiones}} e {{PLURAL:$2|1 file|$2 files}} restaurate',
