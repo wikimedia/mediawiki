@@ -51,7 +51,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	 * 
 	 * Mostly initializes variables and calls either showForm() or submit()
 	 */
-	public function execute( $par = '' ) {
+	public function execute( $par ) {
 		global $wgUser, $wgOut, $wgSkin;
 
 		$this->setHeaders();
