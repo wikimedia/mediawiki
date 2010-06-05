@@ -1081,7 +1081,7 @@ Se [[Special:IPBlockList|blokkeringslisten]] for oversikten over nåværende blo
 'moverevlogentry'              => 'flyttet {{PLURAL:$3|én revisjon|$3 revisjoner}} fra $1 til $2',
 'revisionmove'                 => 'Flytt revisjoner fra «$1»',
 'revmove-explain'              => 'Følgende revisjoner vil flyttes fra $1 til den gitte målsiden. Om målsiden ikke eksisterer vil den bli opprettet. Hvis den finnes vil disse revisjonene flettes med målsidens historikk.',
-'revmove-legend'               => 'Sett målside of sammendrag',
+'revmove-legend'               => 'Sett målside og sammendrag',
 'revmove-submit'               => 'Flytt revisjoner til valgte side',
 'revisionmoveselectedversions' => 'Flytt valgte revisjoner',
 'revmove-reasonfield'          => 'Årsak:',
@@ -2074,7 +2074,7 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 'watching'   => 'Overvåker…',
 'unwatching' => 'Fjerner fra overvåkningsliste…',
 
-'enotif_mailer'                => '{{SITENAME}} påminnelsessystem',
+'enotif_mailer'                => '{{SITENAME}}s påminnelsessystem',
 'enotif_reset'                 => 'Merk alle sider som besøkt',
 'enotif_newpagetext'           => 'Dette er en ny side.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-bruker',

@@ -930,8 +930,8 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ voutres prèferences, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
 '''Mozilla / Firefox / Konqueror / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Actualisar'' (''Reload'') ou ben prèssâd ''Maj-Ctrl-R'' (''Maj-Cmd-R'' dessus Apple Mac) ;
 '''Internet Explorer / Opera :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Actualisar'' ou ben prèssâd ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra fôlye CSS / JS novèla devant que la sôvar.",
-'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra fôlye CSS / JS novèla devant que la sôvar.",
+'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye CSS novèla devant que la sôvar.",
+'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye JS novèla devant que la sôvar.",
 'usercsspreview'                   => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye CSS.'''
 '''El at p’oncor étâ sôvâ !'''",
 'userjspreview'                    => "'''Rapelâd-vos que vos éte aprés èprovar ou ben prèvisualisar voutron code JavaScript.'''
@@ -1163,6 +1163,8 @@ $1",
 'logdelete-failure'           => "'''La visibilitât du jornal at pas possu étre dèfenia :'''
 $1",
 'revdel-restore'              => 'Changiér la visibilitât',
+'revdel-restore-deleted'      => 'vèrsions suprimâs',
+'revdel-restore-visible'      => 'vèrsions visibles',
 'pagehist'                    => 'Historico de la pâge',
 'deletedhist'                 => 'Historico suprimâ',
 'revdelete-content'           => 'contegnu',
@@ -1197,6 +1199,12 @@ Volyéd controlar los jornals.',
 'suppressionlog'     => 'Jornal de les suprèssions',
 'suppressionlogtext' => 'Vê-que la lista de les suprèssions et des blocâjos qu’ont de contegnu cachiê ux administrators.
 Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
+
+# Revision move
+'moverevlogentry'        => 'at dèplaciê {{PLURAL:$3|yona vèrsion|$3 vèrsions}} de $1 a $2',
+'revisionmove'           => 'Dèplaciér des vèrsions dês « $1 »',
+'revmove-reasonfield'    => 'Rêson :',
+'revmove-nullmove-title' => 'Crouyo titro',
 
 # History merging
 'mergehistory'                     => 'Fusionar los historicos de les pâges',
@@ -1531,6 +1539,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-reset-passwords'       => 'Changiér lo mot de pâssa d’ôtros utilisators',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
+'right-revisionmove'          => 'Dèplaciér des vèrsions',
 
 # User rights log
 'rightslog'      => 'Jornal des changements de statut d’utilisator',
@@ -1573,6 +1582,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'action-userrights'           => 'changiér tôs los drêts d’utilisator',
 'action-userrights-interwiki' => 'changiér los drêts ux utilisators sur d’ôtros vouiquis',
 'action-siteadmin'            => 'vèrrolyér ou ben dèvèrrolyér la bâsa de balyês',
+'action-revisionmove'         => 'dèplaciér des vèrsions',
 
 # Recent changes
 'nchanges'                          => '$1 changement{{PLURAL:$1||s}}',
@@ -1858,7 +1868,7 @@ La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
 'filerevert'                => 'Rètablir $1',
 'filerevert-legend'         => 'Rètablir lo fichiér',
 'filerevert-intro'          => "Vos éte prèst a rètablir lo fichiér '''[[Media:$1|$1]]''' a la [$4 vèrsion du $2 a $3].",
-'filerevert-comment'        => 'Comentèro :',
+'filerevert-comment'        => 'Rêson :',
 'filerevert-defaultcomment' => 'Vèrsion du $1 a $2 rètablia',
 'filerevert-submit'         => 'Rètablir',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' at étâ rètabli a la [$4 vèrsion du $2 a $3].",
@@ -2367,7 +2377,7 @@ Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou
 'undeleteviewlink'             => 'vêre',
 'undeletereset'                => 'Tornar inicialisar',
 'undeleteinvert'               => 'Envèrsar lo chouèx',
-'undeletecomment'              => 'Rèsumâ :',
+'undeletecomment'              => 'Rêson :',
 'undeletedarticle'             => 'at refêt « [[$1]] »',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|vèrsion refêta|vèrsions refêtes}}',
 'undeletedrevisions-files'     => '$1 vèrsion{{PLURAL:$1||s}} et $2 fichiér{{PLURAL:$2||s}} refêts',
@@ -3432,7 +3442,7 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.",
 'watchlistedit-normal-title'   => 'Changiér la lista de survelyence',
 'watchlistedit-normal-legend'  => 'Enlevar des titros de la lista de survelyence',
 'watchlistedit-normal-explain' => 'Los titros de voutra lista de survelyence sont montrâs ce-desot.
-Por enlevar un titro (et sa pâge de discussion), pouentâd la câsa a coutâ et pués clicâd sur lo boton « Enlevar los titros chouèsis ».
+Por enlevar un titro (et sa pâge de discussion), pouentâd la câsa a coutâ et pués clicâd sur lo boton « {{int:Watchlistedit-normal-submit}} ».
 Vos pouede asse-ben changiér la [[Special:Watchlist/raw|lista en fôrma bruta]].',
 'watchlistedit-normal-submit'  => 'Enlevar los titros chouèsis',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Yon titro at étâ enlevâ|$1 titros ont étâ enlevâs}} de voutra lista de survelyence :',
@@ -3440,7 +3450,7 @@ Vos pouede asse-ben changiér la [[Special:Watchlist/raw|lista en fôrma bruta]]
 'watchlistedit-raw-legend'     => 'Changement de la lista de survelyence en fôrma bruta',
 'watchlistedit-raw-explain'    => 'Los titros de voutra lista de survelyence sont montrâs ce-desot et pôvont étre changiês en los apondent ou ben en los enlevent de la lista ;
 yon titro per legne.
-Quand vos éd feni, clicâd sur lo boton « Betar a jorn la lista de survelyence ».
+Quand vos éd feni, clicâd sur lo boton « {{int:Watchlistedit-raw-submit}} ».
 Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 'watchlistedit-raw-titles'     => 'Titros :',
 'watchlistedit-raw-submit'     => 'Betar a jorn la lista de survelyence',

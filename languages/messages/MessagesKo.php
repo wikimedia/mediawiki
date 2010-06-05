@@ -873,8 +873,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
 
 '''모질라 / 파이어폭스 / 사파리''': Shift 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5 또는 Ctrl-R 을 입력 (매킨토시에서는 Command-R); '''컨커러''': 새로고침을 클릭하거나 F5를 입력; '''오페라''': 도구→설정에서 캐시를 비움; '''인터넷 익스플로러''': Ctrl 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5를 입력.",
-'usercssyoucanpreview'             => "'''안내''': CSS 문서를 저장하기 전에 ‘미리 보기’ 기능을 통해 작동을 확인해주세요.",
-'userjsyoucanpreview'              => "'''안내''': JS 문서를 저장하기 전에 ‘미리 보기’ 기능을 통해 작동을 확인해주세요.",
+'usercssyoucanpreview'             => "'''안내''': CSS 문서를 저장하기 전에 ‘{{int:showpreview}}’ 기능을 통해 작동을 확인해주세요.",
+'userjsyoucanpreview'              => "'''안내''': JS 문서를 저장하기 전에 ‘{{int:showpreview}}’ 기능을 통해 작동을 확인해주세요.",
 'usercsspreview'                   => "'''이것은 사용자 CSS의 미리 보기이며, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userjspreview'                    => "'''이것은 자바스크립트 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userinvalidcssjstitle'            => "'''경고''': ‘$1’ 스킨은 없습니다.
@@ -1126,6 +1126,12 @@ $1",
 'suppressionlog'     => '숨기기 기록',
 'suppressionlogtext' => '다음은 관리자로부터 숨겨진 내용에 대한 삭제, 차단 기록입니다.
 현재 차단된 사용자 목록을 보시려면 [[Special:IPBlockList|차단된 사용자 목록]]을 참조하십시오.',
+
+# Revision move
+'moverevlogentry'     => '$1 문서의 편집 $3개를 $2 문서로 옮김',
+'revisionmove'        => '"$1" 문서에서 특정 판 옮기기',
+'revmove-explain'     => '다음 판은 $1 문서에서 지정된 문서로 옮겨질 것입니다. 이동시킬 문서가 없다면 문서를 생성할 것이지만 그렇지 않다면 해당 판은 문서 역사에 합쳐질 것입니다.',
+'revmove-reasonfield' => '이유:',
 
 # History merging
 'mergehistory'                     => '문서 역사 합치기',
@@ -2195,7 +2201,8 @@ $UNWATCHURL
 'rollback-success'  => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
 
 # Edit tokens
-'sessionfailure' => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
+'sessionfailure-title' => '세션 손실',
+'sessionfailure'       => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 
 # Protect
 'protectlogpage'              => '문서 보호 기록',

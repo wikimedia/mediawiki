@@ -887,8 +887,8 @@ Alla on viimeisin estolokin tapahtuma:',
 *'''IE:''' napsauta ''Ctrl''-näppäin pohjassa päivitä tai paina ''Ctrl-F5''
 *'''Konqueror''': napsauta päivitä tai paina ''F5''
 *'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'').",
-'usercssyoucanpreview'             => 'Voit testata uutta CSS:ää ennen tallennusta esikatselulla.',
-'userjsyoucanpreview'              => 'Voit testata uutta JavaScriptiä ennen tallennusta esikatselulla.',
+'usercssyoucanpreview'             => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
+'userjsyoucanpreview'              => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
 'userjspreview'                    => "'''Tämä on JavaScriptin esikatselu.'''",
 'userinvalidcssjstitle'            => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/monobook.css eikä {{ns:user}}:Matti Meikäläinen/Monobook.css.",
@@ -1119,6 +1119,9 @@ Sinulla ei ole oikeutta siihen.',
 'suppressionlogtext' => 'Alla on lista uusimmista poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia.
 [[Special:IPBlockList|Muokkausestolistassa]] on tämänhetkiset muokkausestot.',
 
+# Revision move
+'revmove-reasonfield' => 'Syy',
+
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',
 'mergehistory-header'              => 'Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
@@ -1301,7 +1304,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'prefs-files'                   => 'Tiedostot',
 'prefs-custom-css'              => 'Käyttäjäkohtainen CSS-tyylisivu',
 'prefs-custom-js'               => 'Käyttäjäkohtainen JavaScript-sivu',
-'prefs-common-css-js'           => 'Yhteiset CSS/JS-sivut kaikille ulkoasuille',
+'prefs-common-css-js'           => 'Yhteiset CSS- ja JavaScript-sivut kaikille ulkoasuille',
 'prefs-reset-intro'             => 'Voit käyttää tätä sivua palauttaaksesi kaikki asetuksesi sivuston oletusasetuksiin. Tätä ei voi kumota.',
 'prefs-emailconfirm-label'      => 'Sähköpostin varmistus',
 'prefs-textboxsize'             => 'Muokkauskentän koko',
@@ -1426,9 +1429,9 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-protect'               => 'Muuttaa sivujen suojauksia ja muokata suojattuja sivuja',
 'right-editprotected'         => 'Muokata suojattuja sivuja (pois lukien laajennettu sisällytyssuojaus)',
 'right-editinterface'         => 'Muokata käyttöliittymätekstejä',
-'right-editusercssjs'         => 'Muokata toisten käyttäjien CSS- ja JS-tiedostoja',
+'right-editusercssjs'         => 'Muokata toisten käyttäjien CSS- ja JavaScript-tiedostoja',
 'right-editusercss'           => 'Muokata toisten käyttäjien CSS-tiedostoja',
-'right-edituserjs'            => 'Muokata toisten käyttäjien JS-tiedostoja',
+'right-edituserjs'            => 'Muokata toisten käyttäjien JavaScript-tiedostoja',
 'right-rollback'              => 'Palauttaa nopeasti käyttäjän viimeisimmät muokkaukset sivuun',
 'right-markbotedits'          => 'Kumota muokkauksia bottimerkinnällä',
 'right-noratelimit'           => 'Ohittaa nopeusrajoitukset',

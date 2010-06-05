@@ -41,6 +41,7 @@ $messages = array(
 'tog-enotifusertalkpages'     => "Fam' save' par e-mail quènd la mi pàgina dal discusiòn l'è steda modifichèda",
 'tog-enotifminoredits'        => "Fam' save' par e-mail tòt al mudefchi, neca al znini",
 'tog-enotifrevealaddr'        => "Lasa avdè e' mi indirèzi d'posta eletrònica int'j mesàg d'nutèfica",
+'tog-shownumberswatching'     => "Fam' avdè e' nòmar d'j utent ch'j tèn sta pàgina sot occ",
 
 # Dates
 'january'       => 'Znèr',

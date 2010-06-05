@@ -647,8 +647,8 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 *'''IE:''' che a ten-a sgnacà ''Ctrl'' antramentr che a sgnaca col rat ansima a ''Refresh'', ò pura che a sgnaca tut ansema ''Ctrl-F5'';
 *'''Konqueror:''': a basta mach sgnaché ël boton ''Reload'', ò pura sgnaché ''F5'';
 *'''Opera''' j'utent a peulo avèj da manca dë vujdé 'd continuo soa memorisassion (cache) andrinta a ''Tools&rarr;Preferences''.",
-'usercssyoucanpreview'             => "'''Drita:''' che a deuvra ël boton 'Mostra na preuva' për controlé l'efet ëd sò còdes CSS anans che salvelo.",
-'userjsyoucanpreview'              => "'''Drita:''' che a deuvra ël boton 'Mostra na preuva' për controlé l'efet ëd sò còdes JS anans che salvelo.",
+'usercssyoucanpreview'             => "'''Drita:''' che a deuvra ël boton \"{{int:showpreview}}\" për controlé l'efet ëd sò còdes CSS dnans ëd salvelo.",
+'userjsyoucanpreview'              => "'''Drita:''' che a deuvra ël boton «{{int:showpreview}}» për controlé l'efet ëd sò còdes JS dnans ëd salvelo.",
 'usercsspreview'                   => "'''Che a varda che lòn che a s-ciàira a l'é nomach na preuva ëd sò CSS.'''
 '''A l'é ancó nen stàit salvà!'''",
 'userjspreview'                    => "'''Che as visa che a l'é mach antramentr che as fa na preuva ëd sò Javascript, che a l'é ancó pa stàit salvà!'''",
@@ -905,6 +905,11 @@ It peule pa vëddlo.',
 'suppressionlog'     => 'Registr ëd le scancelassion',
 'suppressionlogtext' => "Sota a-i é na lista djë scancelament e dij blocagi che a rësguardo contnù stërmà a j'aministrator.
 Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi ativ.",
+
+# Revision move
+'moverevlogentry' => "a l'ha tramudà {{PLURAL:$3|narevision|$3 revision}} da $1 a $2",
+'revisionmove'    => 'Tramudé dle revision da «$1»',
+'revmove-explain' => 'Le revision sì-dapress a saran tramudà da $1 a la pàgina final spessificà. Se la pàgina final a esist nen, a sarà creà. Dësnò, coste revision a saran butà ansema a la stòria dla pàgina.',
 
 # History merging
 'mergehistory'                     => 'Buté ansema je stòrie',
@@ -1215,8 +1220,8 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-ipblock-exempt'        => "Dëscavalché ij blocagi ëd j'IP, ij blocagi automàtich e ij blocagi ëd partìe d'IP",
 'right-proxyunbannable'       => "Dëscavalché ij blòch automatich dij servent d'anonimà",
 'right-unblockself'           => 'Dësblochesse da soj',
-'right-protect'               => 'Cambié lìvel ëd protession e modifiché pàgine protegiùe',
-'right-editprotected'         => 'Modifiché pàgine protegiùe (sensa protession a cascada)',
+'right-protect'               => 'Cambié ij livej ëd protession e modifiché le pàgine protegiùe',
+'right-editprotected'         => 'Modifiché le pàgine protegiùe (sensa protession a cascada)',
 'right-editinterface'         => "Modifiché l'antërfacia utent",
 'right-editusercssjs'         => "Modifiché ij file CSS e JS d'àutri utent",
 'right-editusercss'           => "Modifiché ij file CSS d'àutri utent",

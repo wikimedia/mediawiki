@@ -1231,7 +1231,7 @@ Contenta [$2 paginae descriptionis fasciculi] subter monstrantur.',
 'filerevert'                => 'Revertere $1',
 'filerevert-legend'         => 'Reverti fasciculum',
 'filerevert-intro'          => "Reverteris '''[[Media:$1|$1]]''' ad [emendationem $4 ex $3, $2].",
-'filerevert-comment'        => 'Sententia:',
+'filerevert-comment'        => 'Causa:',
 'filerevert-defaultcomment' => 'Reverti ad emendationem ex $2, $1',
 'filerevert-submit'         => 'Revertere',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' reversum est ad [emendationem $4 ex $3, $2].",
@@ -1472,6 +1472,9 @@ Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis 
 'emailsenttext'    => 'Nuntium tuum missum est.',
 'emailuserfooter'  => 'Has litteras electronicas $1 ad $2 misit per "Litteras electronicas usori mittere" in {{grammar:ablative|{{SITENAME}}}}.',
 
+# User Messenger
+'usermessage-editor' => 'Nuntius systematis',
+
 # Watchlist
 'watchlist'          => 'Paginae custoditae',
 'mywatchlist'        => 'Paginae custoditae',
@@ -1650,7 +1653,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'undeleteviewlink'          => 'inspicere',
 'undeletereset'             => 'Reperscriptare',
 'undeleteinvert'            => 'Selectionem invertere',
-'undeletecomment'           => 'Sententia:',
+'undeletecomment'           => 'Causa:',
 'undeletedarticle'          => 'restituit "[[$1]]"',
 'undeletedrevisions'        => '{{PLURAL:$1|1 emendatio recuperata|$1 emendationes recuperatae}}',
 'undeletedrevisions-files'  => '{{PLURAL:$1|1 emendatio recuperata|$1 emendationes recuperatae}} et {{PLURAL:1 fasciculus recuperatus|$2 fasciculi recuperati}}',

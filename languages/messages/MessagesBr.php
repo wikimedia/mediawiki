@@ -721,8 +721,8 @@ pe <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'blocked-notice-logextract'        => "Stanket eo an implijer-mañ evit poent.
 Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'clearyourcache'                   => "'''Notenn :''' Goude bezañ enrollet ho pajenn e rankot freskaat krubuilh ho merdeer a-bennn gwelet ar c'hemmoù : '''Mozilla / Firefox / Safari : ''' dalc'hit ''Pennlizherenn'' en ur glikañ war ''Adkargañ'', pe pouezañ war ''Ctrl-F5'' pe ''Ctrl-R'' (''Command-R'' war ur Macintosh); '''Konqueror: '''klikañ war ''Adkargañ'' pe pouezañ war ''F5;'' '''Opera:''' riñsañ ar grubuilh e ''Ostilhoù → Penndibaboù;'' '''Internet Explorer:''' derc'hel ''Ctrl'' en ur glikañ war ''Freskaat,'' pe pouezañ war ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Tun :''' Grit gant ar bouton '''Rakwelet''' evit testiñ ho follenn CSS nevez a-raok enrollañ anezhi.",
-'userjsyoucanpreview'              => "'''Tun :''' Grit gant ar bouton '''Rakwelet''' evit testiñ ho follenn JS nevez a-raok enrollañ anezhi.",
+'usercssyoucanpreview'             => "'''Tun :''' Grit gant ar bouton \"{{int:showpreview}}\" evit testiñ ho follenn CSS nevez a-raok enrollañ anezhi.",
+'userjsyoucanpreview'              => "'''Tun :''' Grit gant ar bouton \"{{int:showpreview}}\" evit testiñ ho follenn JS nevez a-raok enrollañ anezhi.",
 'usercsspreview'                   => "'''Dalc'hit soñj n'emaoc'h nemet o rakwelet ho follenn CSS deoc'h.'''
 '''N'eo ket bet enrollet evit c'hoazh!'''",
 'userjspreview'                    => "'''Dalc'hit soñj emaoc'h o rakwelet pe o testiñ ho kod javascript deoc'h ha n'eo ket bet enrollet c'hoazh!'''",
@@ -971,6 +971,18 @@ N\'oc\'h ket aotreet da vont outi.',
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',
 'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. Gwelet [[Special:IPBlockList|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
+
+# Revision move
+'moverevlogentry'              => "en deus dilec'hiet {{PLURAL:$3|un adweladenn|$3 adweladenn}} eus $1 da $2",
+'revisionmove'                 => 'Dilec\'hiañ adweladennoù eus "$1"',
+'revmove-submit'               => "Dilec'hiañ an adweladennoù davet ar bajenn diuzet",
+'revisionmoveselectedversions' => "Dilec'hiañ an adweladennoù diuzet",
+'revmove-reasonfield'          => 'Abeg :',
+'revmove-badparam-title'       => 'Arventennoù fall',
+'revmove-norevisions-title'    => "N'eus stumm pal ebet evit an degasadennoù",
+'revmove-nullmove-title'       => 'Titl fall',
+'revmove-success-existing'     => "{{PLURAL:$1|Un|$1}} adweladenn eus [[$2]] a zo bet dilec'hiet davet ar bajenn ez eus outi dija [[$3]].",
+'revmove-success-created'      => "{{PLURAL:$1|Un|$1}} adweladenn eus [[$2]] a zo bet dilec'hiet davet ar bajenn [[$3]] bet krouet nevez zo.",
 
 # History merging
 'mergehistory'                     => 'Kendeuziñ istor ur bajenn',
@@ -1300,6 +1312,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-reset-passwords'       => 'Kemmañ ger-tremen implijerien all',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
+'right-revisionmove'          => "Dilec'hiañ an adweladennoù",
 
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',
@@ -1342,6 +1355,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'action-userrights'           => 'Kemmañ an holl wirioù implijer',
 'action-userrights-interwiki' => 'Kemmañ gwirioù an implijerien war wikioù all',
 'action-siteadmin'            => 'Prennañ pe dibrennañ ar bank roadennoù',
+'action-revisionmove'         => "dilec'hiañ an adweladennoù",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|kemm|kemm}}',
@@ -2050,7 +2064,8 @@ Ar c'hemm diwezhañ d'ar bajenn-mañ a oa bet graet gant [[User:$3|$3]] ([[User 
 'rollback-success'  => 'Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.',
 
 # Edit tokens
-'sessionfailure' => 'Evit doare ez eus ur gudenn gant ho talc\'h;
+'sessionfailure-title' => "Fazi dalc'h",
+'sessionfailure'       => 'Evit doare ez eus ur gudenn gant ho talc\'h;
 Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.
 Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro.',
 

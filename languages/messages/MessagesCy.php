@@ -708,8 +708,8 @@ Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau era
 Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 'clearyourcache'                   => "'''Sylwer - Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau.''' 
 '''Mozilla / Firefox / Safari:''' pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-F5'' neu ''Ctrl-R'' (''Command-R'' ar Macintosh); '''Konqueror:''' cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; '''Opera:''' gwacewch y celc yn llwyr trwy ''Offer → Dewisiadau / Tools→Preferences''; '''Internet Explorer:''' pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Tip:''' Defnyddiwch y botwm 'Dangos rhagolwg' er mwyn profi eich CSS newydd cyn ei gadw.",
-'userjsyoucanpreview'              => "'''Tip:''' Defnyddiwch y botwm 'Dangos rhagolwg' er mwyn profi eich JS newydd cyn ei gadw.",
+'usercssyoucanpreview'             => "'''Tip:''' Defnyddiwch y botwm \"{{int:showpreview}}\" er mwyn profi eich CSS newydd cyn ei gadw.",
+'userjsyoucanpreview'              => "'''Tip:''' Defnyddiwch y botwm \"{{int:showpreview}}\" er mwyn profi eich JS newydd cyn ei gadw.",
 'usercsspreview'                   => "'''Cofiwch - dim ond rhagolwg o'ch CSS defnyddiwr yw hwn.'''
 '''Nid yw wedi'i gadw eto!'''",
 'userjspreview'                    => "'''Cofiwch -- dim ond rhagolwg o'ch JavaScript yw hwn; nid yw wedi'i gadw eto!'''",
@@ -929,6 +929,7 @@ $1",
 'logdelete-failure'           => "'''Ni ellid gosod cyfyngiadau ar y gallu i weld y cofnod lòg:'''
 $1",
 'revdel-restore'              => 'Newid gwelededd',
+'revdel-restore-visible'      => 'diwygiadau gweladwy',
 'pagehist'                    => 'Hanes y dudalen',
 'deletedhist'                 => 'Hanes dilëedig',
 'revdelete-content'           => 'cynnwys',
@@ -963,6 +964,10 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 'suppressionlog'     => 'Lòg cuddio',
 'suppressionlogtext' => "Dyma restr y dileuon a'r blociau lle y cuddiwyd cynnwys rhag y gweinyddwyr.
 Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:IPBlockList|rhestr blociau IP]].",
+
+# Revision move
+'revmove-reasonfield'    => 'Rheswm:',
+'revmove-badparam-title' => 'Paramedrau gwallus',
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
@@ -1294,6 +1299,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-reset-passwords'       => 'Ailosod cyfrinair defnyddwyr eraill',
 'right-override-export-depth' => 'Allforio tudalennau gan gynnwys tudalennau cysylltiedig hyd at ddyfnder o 5',
 'right-sendemail'             => 'Anfon e-bost at ddefnyddwyr eraill',
+'right-revisionmove'          => 'Symud diwygiadau',
 
 # User rights log
 'rightslog'      => 'Lòg galluoedd defnyddiwr',
@@ -1336,6 +1342,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'action-userrights'           => 'golygu holl alluoedd y defnyddwyr',
 'action-userrights-interwiki' => 'golygu galluoedd y defnyddwyr ar wicïau eraill',
 'action-siteadmin'            => "cloi neu ddatgloi'r databas",
+'action-revisionmove'         => 'symud diwygiadau',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
@@ -1617,7 +1624,7 @@ Dangosir isod y disgrifiad sydd ar [$2 dudalen ddisgrifio'r ffeil] yno.",
 'filerevert'                => 'Gwrthdroi $1',
 'filerevert-legend'         => "Gwrthdroi'r ffeil",
 'filerevert-intro'          => "Rydych yn gwrthdroi '''[[Media:$1|$1]]''' i'r fersiwn [$4 fel ag yr oedd ar $3, $2].",
-'filerevert-comment'        => 'Sylw:',
+'filerevert-comment'        => 'Rheswm:',
 'filerevert-defaultcomment' => 'Wedi adfer fersiwn $2, $1',
 'filerevert-submit'         => 'Gwrthdroi',
 'filerevert-success'        => "Mae '''[[Media:$1|$1]]''' wedi cael ei wrthdroi i'r fersiwn [$4 fel ag yr oedd ar $3, $2].",
@@ -2031,7 +2038,8 @@ mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
 wedi gwrthdroi i'r golygiad olaf gan $2.",
 
 # Edit tokens
-'sessionfailure' => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
+'sessionfailure-title' => 'Sesiwn wedi methu',
+'sessionfailure'       => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
 
 # Protect
 'protectlogpage'              => 'Lòg diogelu',
@@ -2119,7 +2127,7 @@ Mae'n bosib bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi ei adfer neu we
 'undeleteviewlink'             => 'gweld',
 'undeletereset'                => 'Ailosoder',
 'undeleteinvert'               => "Troi'r dewis tu chwith",
-'undeletecomment'              => 'Sylwadau:',
+'undeletecomment'              => 'Rheswm:',
 'undeletedarticle'             => 'wedi adfer "[[$1]]"',
 'undeletedrevisions'           => 'wedi adfer $1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
 'undeletedrevisions-files'     => 'Adferwyd $1 {{PLURAL:$1|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn}} a $2 {{PLURAL:$2|ffeil|ffeil|ffeil|ffeil|ffeil|ffeil}}',

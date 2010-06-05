@@ -1017,12 +1017,18 @@ Kuckt [[Special:IPBlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Sp
 # Revision move
 'moverevlogentry'              => '{{PLURAL:$3|eng Versioun|$3 Versioune}} vun $1 op $2 geréckelt',
 'revisionmove'                 => 'Versioune vun "$1" réckelen',
+'revmove-explain'              => "Dës Versioune gi vu(n) $1 op déi spezifizéiert Zilsäit geréckelt. Wann et d'Zilsäit net gëtt, da gëtt se ugeluecht. Soss ginn d'Versiounen an de Versiounshistorique integréiert.",
+'revmove-legend'               => 'Zilsäit a Resumé festleeën',
 'revmove-submit'               => 'Versiounen op déi erausgesichte Säit réckelen',
 'revisionmoveselectedversions' => 'Erausgesichte Versioune réckelen',
 'revmove-reasonfield'          => 'Grond:',
 'revmove-titlefield'           => 'Zilsäit:',
 'revmove-badparam-title'       => 'Falsch Parameter',
+'revmove-norevisions-title'    => 'Net-valabel Zilversioun',
 'revmove-nullmove-title'       => 'Schlechten Titel',
+'revmove-nullmove'             => '<span class="error">D\'Quell- an d\'Zilsäit sinn déi selwëscht. Klickt w.e.g. op „zréck“ a gitt en anere Säitennumm wéi "$1" un.</span>',
+'revmove-success-existing'     => "{{PLURAL:$1|Eng Versioun vu(n) [[$2]] gouf|$1 Versioune vu(n) [[$2]] goufen}} op d'Säit [[$3]] geréckelt.",
+'revmove-success-created'      => '{{PLURAL:$1|Eng Versioun vu(n) [[$2]] gouf|$1 Versioune vu(n) [[$2]] goufen}} op déi nei Säit [[$3]] geréckelt.',
 
 # History merging
 'mergehistory'                     => 'Historiquë fusionéieren',

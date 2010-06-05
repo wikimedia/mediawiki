@@ -992,8 +992,10 @@ $1",
 ప్రస్తుతం అమల్లో ఉన్న నిషేధాలు, నిరోధాల జాబితా కోసం [[Special:IPBlockList|ఐపీ నిరోధాల జాబితా]] చూడండి.',
 
 # Revision move
+'moverevlogentry'              => '$1 నుండి {{PLURAL:$3|ఒక కూర్పుని|$3 కూర్పులని}} $2కి తరలించారు',
 'revisionmove'                 => '"$1" నుండి కూర్పులను తరలించు',
 'revmove-legend'               => 'లక్ష్యిత పుట మరియు సారాంశం',
+'revmove-submit'               => 'ఎంచుకున్న పుటకి కూర్పులను తరలించు',
 'revisionmoveselectedversions' => 'ఎంచుకున్న కూర్పులను తరలించు',
 'revmove-reasonfield'          => 'కారణం:',
 'revmove-titlefield'           => 'లక్ష్యిత పుట:',

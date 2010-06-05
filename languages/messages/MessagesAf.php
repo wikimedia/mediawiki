@@ -800,8 +800,8 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'blocked-notice-logextract'        => 'Hierdie gebruiker is tans geblokkeer.
 Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
-'usercssyoucanpreview'             => "'''Wenk:''' Gebruik die \"Wys voorskou\"-knoppie om u nuwe CSS te toets voor u stoor.",
-'userjsyoucanpreview'              => "'''Wenk:''' Gebruik die \"Wys voorskou\"-knoppie om u nuwe JS te toets voor u stoor.",
+'usercssyoucanpreview'             => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe CSS te toets voor u dit stoor.",
+'userjsyoucanpreview'              => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe JS te toets voor u dit stoor.",
 'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
 '''Dit is nog nie gestoor nie!'''",
 'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
