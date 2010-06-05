@@ -77,6 +77,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   notified about the beginning and finishing of LivePreview actions.
 * (bug 21278) Now the sidebar allows inclusion of wiki markup.
 * (bug 23733) Add IDs to messages used on CSS/JS pages
+* (bug 21312) RevisionMove allows moving individual revisions of a page to 
+  another page. Introducing 'revisionmove' user right; disabled by default;
+  experimental feature.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
