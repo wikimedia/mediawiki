@@ -276,7 +276,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	* Gets the user for whom to get the watchlist for
+	* Gets the user for whom to get the watchlist
 	*  
 	* @returns User
 	*/
