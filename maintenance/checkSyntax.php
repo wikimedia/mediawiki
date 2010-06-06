@@ -50,7 +50,7 @@ class CheckSyntax extends Maintenance {
 		$useParseKit = function_exists( 'parsekit_compile_file' ) && version_compare( PHP_VERSION, '5.3', '<' );
 
 		$str = 'Checking syntax (using ' . ( $useParseKit ?
-			'parsekit)' : ' php -l, this can take a long time)' );
+			'parsekit' : ' php -l, this can take a long time' ) . ")\n";
 		$this->output( $str );
 		foreach ( $this->mFiles as $f ) {
 			if ( $useParseKit ) {
