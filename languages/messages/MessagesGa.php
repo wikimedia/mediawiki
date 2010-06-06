@@ -779,6 +779,7 @@ Bain triail as ''all:'' a chur roimh d'iarratas chun an t-inneachar ar fad (leat
 'powersearch'                    => 'Cuardaigh',
 'powersearch-legend'             => 'Cuardach casta',
 'powersearch-ns'                 => 'Cuardaigh in ainmspásanna:',
+'powersearch-redir'              => 'Liosta athsheoltaí',
 'powersearch-field'              => 'Cuardaigh le',
 'searchdisabled'                 => "Tá brón orainn! Mhíchumasaíodh an cuardach téacs iomlán go sealadach chun luas an tsuímh a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a úsáid - b'fhéidir go bhfuil sé as dáta.",
 

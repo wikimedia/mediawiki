@@ -657,7 +657,7 @@ Gelecektä, bu sayfaya hem ilgili konuşmaa sayfasına yapılacêk diişmäkler 
 
 Ne zaman neetlendiniz sayfayı bakmaa listasınnan çıkarmaa tuşlayın "sayfaya bakmaa durgun" baalantısına.',
 'removedwatch'      => 'Bakmaa listanızdan silindi',
-'removedwatchtext'  => '"<nowiki>$1</nowiki>" yapraı siir listanızdan silindi.',
+'removedwatchtext'  => '"[[:$1]]" yapraı siir listanızdan silindi.',
 'watch'             => 'Bak',
 'watchthispage'     => 'Bak bu sayfaya',
 'unwatch'           => 'Durgun sayfa izlemää',

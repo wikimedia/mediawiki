@@ -1142,8 +1142,11 @@ Rigardu la [[Special:IPBlockList|IP-forbarliston]] por la listo de nune operacia
 'revmove-reasonfield'       => 'Kialo:',
 'revmove-titlefield'        => 'Cela paĝo:',
 'revmove-badparam-title'    => 'Malbonaj parametroj',
+'revmove-badparam'          => '<span class="error">Via peto enhavas kontraŭleĝajn aŭ nesufiĉajn parametrojn. Bonvolu premi "malantaŭen" kaj provi denove.</span>',
 'revmove-norevisions-title' => 'Nevalida cela revizio',
+'revmove-norevisions'       => '<span class="error">Vi ne specifis unu aŭ pliajn reviziojn por apliki ĉi tiun funkcion aŭ la specifita revizio ne ekzistas.</span>',
 'revmove-nullmove-title'    => 'Fuŝa titolo',
+'revmove-nullmove'          => '<span class="error">Origina kaj cela paĝoj samas. Bonvolu malantaŭeniri kaj tajpi paĝon malsaman de "$1".</span>',
 
 # History merging
 'mergehistory'                     => 'Kunfandigi historiojn de paĝoj',
@@ -1618,6 +1621,7 @@ Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 'filetype-banned'             => 'Ĉi tiu tipo de dosiero estas malpermesita.',
 'verification-error'          => 'Ĉi tiu dosiero ne pasis dosieran konfirmon.',
 'illegal-filename'            => 'La dosiernomo ne estas permesata.',
+'overwrite'                   => 'Anstataŭigo de ekzistanta dosiero ne permesitas.',
 'unknown-error'               => 'Malkonata eraro okazis.',
 'tmp-create-error'            => 'Ne povis krei intertempan dosieron.',
 'tmp-write-error'             => 'Eraro skribanta intertempan dosieron.',

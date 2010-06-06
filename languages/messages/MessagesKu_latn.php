@@ -1082,7 +1082,7 @@ Li rûpela [[Special:RecentChanges|Guherandinên dawî]] jî ji bo hasan dîtina
 
 <p>Her dem tu bixwazî ew rûpel li nav lîsteya te ya şopandinê derbikî, li ser wê rûpelê, klîk bike \"êdî neşopîne\".</p>",
 'removedwatch'         => 'Ji lîsteya şopandinê hate jêbirin',
-'removedwatchtext'     => 'Rûpela "<nowiki>$1</nowiki>" ji lîsteya te ya şopandinê hate jêbirin.',
+'removedwatchtext'     => 'Rûpela "[[:$1]]" ji lîsteya te ya şopandinê hate jêbirin.',
 'watch'                => 'Bişopîne',
 'watchthispage'        => 'Vê rûpelê bişopîne',
 'unwatch'              => 'Êdî neşopîne',
