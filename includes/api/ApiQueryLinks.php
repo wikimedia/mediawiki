@@ -46,11 +46,13 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->table = 'pagelinks';
 				$this->prefix = 'pl';
 				$this->description = 'link';
+				$this->titlesParam = 'titles';
 				break;
 			case self::TEMPLATES:
 				$this->table = 'templatelinks';
 				$this->prefix = 'tl';
 				$this->description = 'template';
+				$this->titlesParam = 'templates';
 				break;
 			default:
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
@@ -83,6 +85,22 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$this->addTables( $this->table );
 		$this->addWhereFld( $this->prefix . '_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 		$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
+		
+		if ( !is_null( $params[$this->titlesParam] ) ) {
+			$lb = new LinkBatch;
+			foreach ( $params[$this->titlesParam] as $t ) {
+				$title = Title::newFromText( $t );
+				if ( !$title ) {
+					$this->setWarning( "``$t'' is not a valid title" );
+				} else {
+					$lb->addObj( $title );
+				}
+			}
+			$cond = $lb->constructSet( $this->prefix, $this->getDB() );
+			if ( $cond ) {
+				$this->addWhere( $cond );
+			}
+		}
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
@@ -178,16 +196,25 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'continue' => null,
+			$this->titlesParam => array(
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 
 	public function getParamDescription() {
-	$desc = $this->description;
-		return array(
+		$desc = $this->description;
+		$arr = array(
 			'namespace' => "Show {$desc}s in this namespace(s) only",
 			'limit' => "How many {$desc}s to return",
 			'continue' => 'When more results are available, use this to continue',
 		);
+		if ( $this->getModuleName() == self::LINKS ) {
+			$arr[$this->titlesParam] = 'Only list links to these titles. Useful for checking whether a certain page links to a certain title.';
+		} else if ( $this->getModuleName() == self::TEMPLATES ) {
+			$arr[$this->titlesParam] = 'Only list these templates. Useful for checking whether a certain page uses a certain template.';
+		}
+		return $arr;
 	}
 
 	public function getDescription() {
