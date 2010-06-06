@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -785,8 +785,8 @@ $2',
 '''Konqueror'''：只需点击''刷新''或按下''F5''；
 '''Opera'''：在''工具→首选项''中完整清除它们的缓存，或按下''Alt-F5''；
 '''Internet Explorer'''：按住''Ctrl''再点击''刷新''，或按下''Ctrl-F5''。",
-'usercssyoucanpreview'             => "'''提示：''' 在保存前请用“显示预览”按钮来测试您新的 CSS 。",
-'userjsyoucanpreview'              => "'''提示：''' 在保存前请用“显示预览”按钮来测试您新的 JS 。",
+'usercssyoucanpreview'             => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 CSS 。",
+'userjsyoucanpreview'              => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 JavaScript 。",
 'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS。'''
 '''还没有保存！'''",
 'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript。'''
@@ -1037,6 +1037,24 @@ $1",
 'suppressionlogtext' => '以下是删除以及由操作员牵涉到内容封锁的列表。
 参看[[Special:IPBlockList|IP封锁名单]]去参看现时进行中的禁止以及封锁之名单。',
 
+# Revision move
+'moverevlogentry'              => '移动了$1的{{PLURAL:$3|一次修订版本|$3次修订版本}}至$2',
+'revisionmove'                 => '由 "$1" 移动修订版本',
+'revmove-explain'              => '以下的修订版本将会由$1移动至所指定的目标页面。如果目标不存在的话，它就将会建立。否则，这些的修订版本就将会合并到页面历史中。',
+'revmove-legend'               => '设置目标页面以及摘要',
+'revmove-submit'               => '移动修订版本到所选定的页面上',
+'revisionmoveselectedversions' => '移动已选取的修订版本',
+'revmove-reasonfield'          => '理由：',
+'revmove-titlefield'           => '目标页面：',
+'revmove-badparam-title'       => '坏的参数',
+'revmove-badparam'             => '<span class="error">您的请求含有不合法的者不足的参数。请点击「返回」再试。</span>',
+'revmove-norevisions-title'    => '无效的目标修订版本',
+'revmove-norevisions'          => '<span class="error">您尚未指定一个或者多个目标修订版本去做这项功能或者所指定的修订版本不存在。</span>',
+'revmove-nullmove-title'       => '坏的标题',
+'revmove-nullmove'             => '<span class="error">来源和目标页面相同。请点击「返回」再输入跟 "$1" 不相同的名字。</span>',
+'revmove-success-existing'     => '由[[$2]]中的{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至现有的页面[[$3]]。',
+'revmove-success-created'      => '由[[$2]]中的{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至新建的页面[[$3]]。',
+
 # History merging
 'mergehistory'                     => '合并页面历史',
 'mergehistory-header'              => '这一页可以让您将来源页面的修订历史合并到新页面中去。
@@ -1213,8 +1231,8 @@ $1",
 'default'                       => '默认',
 'prefs-files'                   => '文件',
 'prefs-custom-css'              => '自定义CSS',
-'prefs-custom-js'               => '自定义JS',
-'prefs-common-css-js'           => '共享CSS/JS于所有皮肤中：',
+'prefs-custom-js'               => '自定义JavaScript',
+'prefs-common-css-js'           => '共享CSS/JavaScript于所有皮肤中：',
 'prefs-reset-intro'             => '您可以利用这个页面去重设您的参数设置到网站默认值。这个动作无法复原。',
 'prefs-emailconfirm-label'      => '电子邮件确认：',
 'prefs-textboxsize'             => '编辑框大小',
@@ -1341,9 +1359,9 @@ $1",
 'right-protect'               => '更改保护等级以及编辑保护页面',
 'right-editprotected'         => '编辑保护页面（无连锁保护）',
 'right-editinterface'         => '编辑用户接口',
-'right-editusercssjs'         => '编辑其他用户的CSS和JS文件',
+'right-editusercssjs'         => '编辑其他用户的CSS和JavaScript文件',
 'right-editusercss'           => '编辑其他用户的CSS文件',
-'right-edituserjs'            => '编辑其他用户的JS文件',
+'right-edituserjs'            => '编辑其他用户的JavaScript文件',
 'right-rollback'              => '快速回退上一位用户对特定页面的编辑',
 'right-markbotedits'          => '标示复原编辑作机械人编辑',
 'right-noratelimit'           => '没有使用频率限制',
@@ -1361,6 +1379,7 @@ $1",
 'right-reset-passwords'       => '重设其他用户的密码',
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-sendemail'             => '发电子邮件给其他用户',
+'right-revisionmove'          => '移动修订版本',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -2084,7 +2103,8 @@ $UNWATCHURL
 'rollback-success'  => '已恢复$1的编辑；更改回$2的最后修订版本。',
 
 # Edit tokens
-'sessionfailure' => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
+'sessionfailure-title' => '登录信息失败',
+'sessionfailure'       => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 
 # Protect
 'protectlogpage'              => '保护日志',

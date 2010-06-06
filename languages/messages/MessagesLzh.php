@@ -620,8 +620,8 @@ $2',
 '''Konqueror:'''點''Reload''，或押''F5''。
 ：''Opera:'''須至''Tools→Preferences''清謄本。
 '''Internet Explorer:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。",
-'usercssyoucanpreview'             => "'''訣：'''CSS應先預覽而後存。",
-'userjsyoucanpreview'              => "'''訣：'''JS應先預覽而後存。",
+'usercssyoucanpreview'             => "'''訣：'''CSS應先「{{int:showpreview}}」而後存。",
+'userjsyoucanpreview'              => "'''訣：'''JavaScript應先「{{int:showpreview}}」而後存。",
 'usercsspreview'                   => "'''預覽CSS。'''
 '''尚未儲焉。'''",
 'userjspreview'                    => "'''預覽JavaScript。'''
@@ -841,6 +841,24 @@ $1",
 'suppressionlogtext' => '下乃刪及錮物之列也。
 [[Special:IPBlockList|IP之錮]]有現之閱。',
 
+# Revision move
+'moverevlogentry'              => '遷$1至$2有{{PLURAL:$3|審一|審$3}}',
+'revisionmove'                 => '從「$1」遷審',
+'revmove-explain'              => '下之審將由$1遷至定標也。目無存，則建之。另以併之史中。',
+'revmove-legend'               => '設標頁以之摘',
+'revmove-submit'               => '遷審至定頁上',
+'revisionmoveselectedversions' => '遷已選之審',
+'revmove-reasonfield'          => '由：',
+'revmove-titlefield'           => '標頁：',
+'revmove-badparam-title'       => '壞參數',
+'revmove-badparam'             => '<span class="error">爾之求有無足之參數也。「返」再試矣。</span>',
+'revmove-norevisions-title'    => '無效之標審',
+'revmove-norevisions'          => '<span class="error">爾未定一或多之審作此或無存也。</span>',
+'revmove-nullmove-title'       => '壞題',
+'revmove-nullmove'             => '<span class="error">源標之題同也。「返」試他名之。</span>',
+'revmove-success-existing'     => '由[[$2]]中遷現頁[[$3]]有審{{PLURAL:$1|一|$1}}。',
+'revmove-success-created'      => '由[[$2]]中遷新頁[[$3]]有審{{PLURAL:$1|一|$1}}。',
+
 # History merging
 'mergehistory'                     => '併頁之誌',
 'mergehistory-header'              => "此頁講汝併一源頁之誌至二頁也。
@@ -1012,8 +1030,8 @@ $1",
 'default'                       => '予定',
 'prefs-files'                   => '檔',
 'prefs-custom-css'              => '定之CSS',
-'prefs-custom-js'               => '定之JS',
-'prefs-common-css-js'           => '共CSS/JS於面版：',
+'prefs-custom-js'               => '定之JavaScript',
+'prefs-common-css-js'           => '共CSS/JavaScript於面版：',
 'prefs-reset-intro'             => '爾用頁重設至預之設。無修之也。',
 'prefs-emailconfirm-label'      => '確郵：',
 'prefs-textboxsize'             => '纂框量',
@@ -1141,9 +1159,9 @@ $1",
 'right-protect'               => '改錮級與纂錮頁',
 'right-editprotected'         => '纂錮頁（無連錮）',
 'right-editinterface'         => '纂要',
-'right-editusercssjs'         => '纂他簿之CSS與JS檔',
+'right-editusercssjs'         => '纂他簿之CSS與JavaScript檔',
 'right-editusercss'           => '纂他簿之CSS檔',
-'right-edituserjs'            => '纂他簿之JS檔',
+'right-edituserjs'            => '纂他簿之JavaScript檔',
 'right-rollback'              => '速復上簿頁之纂',
 'right-markbotedits'          => '標復纂為機纂',
 'right-noratelimit'           => '無率之上限',
@@ -1161,6 +1179,7 @@ $1",
 'right-reset-passwords'       => '設他簿之符節',
 'right-override-export-depth' => '出有五層深之頁',
 'right-sendemail'             => '擬書傳予他簿',
+'right-revisionmove'          => '遷審',
 
 # User rights log
 'rightslog'  => '職權志',
@@ -1824,7 +1843,8 @@ $NEWPAGE
 'rollback-success'  => '去$1之作，復為$2之本耳。',
 
 # Edit tokens
-'sessionfailure' => '登簿有變。為防盜簿，返前重取再為之。',
+'sessionfailure-title' => '登段敗也',
+'sessionfailure'       => '登簿有變。為防盜簿，返前重取再為之。',
 
 # Protect
 'protectlogpage'              => '誌緘',

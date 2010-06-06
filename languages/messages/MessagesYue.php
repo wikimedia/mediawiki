@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -738,8 +738,8 @@ $1',
 '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''；
 '''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取，又或者㩒''Alt-F5''；
 '''Internet Explorer:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣。",
-'usercssyoucanpreview'             => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS。",
-'userjsyoucanpreview'              => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新JS。",
+'usercssyoucanpreview'             => "'''提示：'''響儲存前，用「{{int:showpreview}}」個掣嚟測試你嘅新CSS。",
+'userjsyoucanpreview'              => "'''提示：'''響儲存前，用「{{int:showpreview}}」個掣嚟測試你嘅新JavaScript。",
 'usercsspreview'                   => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表。'''
 '''內容仍未儲存！'''",
 'userjspreview'                    => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript。'''
@@ -994,6 +994,24 @@ $1",
 'suppressionlogtext' => '下面係刪除同埋由操作員牽涉到內容封鎖嘅一覽。
 睇吓[[Special:IPBlockList|IP封鎖一覽]]去睇現時進行緊嘅禁止同埋封鎖表。',
 
+# Revision move
+'moverevlogentry'              => '由$1搬咗{{PLURAL:$3|一次修訂|$3次修訂}}到$2',
+'revisionmove'                 => '由 "$1" 搬修訂',
+'revmove-explain'              => '下面嘅修訂將會由$1搬到所指定嘅目標頁。如果目標唔存在嘅話，佢就將會建立。唔係嘅話，呢啲嘅修訂就將會合併到版歷史度。',
+'revmove-legend'               => '設定目標頁同埋摘要',
+'revmove-submit'               => '搬修訂到所選嘅版度',
+'revisionmoveselectedversions' => '搬揀咗嘅修訂',
+'revmove-reasonfield'          => '原因:',
+'revmove-titlefield'           => '目標頁:',
+'revmove-badparam-title'       => '壞參數',
+'revmove-badparam'             => '<span class="error">你嘅請求有唔合法嘅或者唔夠嘅參數。請撳「返轉頭」再試過。</span>',
+'revmove-norevisions-title'    => '無效嘅目標修訂',
+'revmove-norevisions'          => '<span class="error">你未指定一個或者多個目標修訂去做呢項功能或者所指定嘅修訂唔存在。</span>',
+'revmove-nullmove-title'       => '壞標題',
+'revmove-nullmove'             => '<span class="error">來源同埋目標頁係一模一樣嘅。請撳「返轉頭」再輸入同 "$1" 唔同嘅名。</span>',
+'revmove-success-existing'     => '由[[$2]]嘅{{PLURAL:$1|一次修訂|$1次修訂}}已經搬到去現有嘅頁[[$3]]。',
+'revmove-success-created'      => '由[[$2]]嘅{{PLURAL:$1|一次修訂|$1次修訂}}已經搬到去新開嘅頁[[$3]]。',
+
 # History merging
 'mergehistory'                     => '合併頁歷史',
 'mergehistory-header'              => '呢一版可以畀你去合併一個來源頁嘅修訂記錄到另一個新頁。
@@ -1172,8 +1190,8 @@ $1",
 'default'                       => '預設',
 'prefs-files'                   => '檔案',
 'prefs-custom-css'              => '自定 CSS',
-'prefs-custom-js'               => '自定 JS',
-'prefs-common-css-js'           => '共有嘅CSS同埋JS畀所有畫面用：',
+'prefs-custom-js'               => '自定 JavaScript',
+'prefs-common-css-js'           => '共有嘅CSS同埋JavaScript畀所有畫面用：',
 'prefs-reset-intro'             => '你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。',
 'prefs-emailconfirm-label'      => '電郵確認:',
 'prefs-textboxsize'             => '編輯窗大細',
@@ -1300,9 +1318,9 @@ $1",
 'right-protect'               => '改保護等級同埋編輯保護版',
 'right-editprotected'         => '編輯保護版（無連串保護）',
 'right-editinterface'         => '編輯用戶界面',
-'right-editusercssjs'         => '編輯其他用戶嘅CSS同埋JS檔',
+'right-editusercssjs'         => '編輯其他用戶嘅CSS同埋JavaScript檔',
 'right-editusercss'           => '編輯其他用戶嘅CSS檔',
-'right-edituserjs'            => '編輯其他用戶嘅JS檔',
+'right-edituserjs'            => '編輯其他用戶嘅JavaScript檔',
 'right-rollback'              => '快速反轉上位用戶對某一版嘅編輯',
 'right-markbotedits'          => '標示反轉編輯做機械人編輯',
 'right-noratelimit'           => '唔受利用率限制影響',
@@ -1320,6 +1338,7 @@ $1",
 'right-reset-passwords'       => '重設其他用戶嘅密碼',
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-sendemail'             => '寄電郵畀其他用戶',
+'right-revisionmove'          => '搬修訂',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -2033,7 +2052,8 @@ wiki: $PAGEEDITOR_WIKI
 'rollback-success'  => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後修訂。',
 
 # Edit tokens
-'sessionfailure' => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
+'sessionfailure-title' => '會話失敗',
+'sessionfailure'       => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 
 # Protect
 'protectlogpage'              => '保護日誌',
