@@ -207,7 +207,11 @@ class WebInstaller extends Installer {
 	function startSession() {
 		$sessPath = $this->getSessionSavePath();
 		if( $sessPath != '' ) {
-			if( !is_dir( $sessPath ) || !is_writeable( $sessPath ) ) {
+			if( strval( ini_get( 'open_basedir' ) ) != '' ) {
+				// we need to skip the following check when open_basedir is on.
+				// The session path probably *wont* be writable by the current
+				// user, and telling them to change it is bad. Bug 23021.
+			} elseif( !is_dir( $sessPath ) || !is_writeable( $sessPath ) ) {
 				$this->showError( 'config-session-path-bad', $sessPath );
 				return false;
 			}
