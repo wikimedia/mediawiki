@@ -1265,7 +1265,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-watchlist-token'         => 'Identyfikator listy obserwowanych',
 'prefs-misc'                    => 'Ustawienia różne',
 'prefs-resetpass'               => 'Zmień hasło',
-'prefs-email'                   => 'E-mail',
+'prefs-email'                   => 'E‐mail',
 'prefs-rendering'               => 'Wygląd',
 'saveprefs'                     => 'Zapisz',
 'resetprefs'                    => 'Cofnij niezapisane zmiany',
@@ -1315,7 +1315,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'prefs-common-css-js'           => 'Wspólny CSS/JS dla wszystkich skórek',
 'prefs-reset-intro'             => 'Na tej stronie można przywrócić domyślne ustawienia preferencji dla tej witryny.
 Tej operacji nie można później cofnąć.',
-'prefs-emailconfirm-label'      => 'Potwierdzenie adresu e-mail –',
+'prefs-emailconfirm-label'      => 'Potwierdzenie adresu e‐mail –',
 'prefs-textboxsize'             => 'Rozmiar okna edycji',
 'youremail'                     => 'Twój adres e‐mail',
 'username'                      => 'Nazwa użytkownika',
@@ -1683,7 +1683,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # wiele różnych
   #</pre> <!-- nie modyfikuj tej linii -->',
-'upload-successful-msg'       => 'Przesłany plik jest dostępny tutaj — $1',
+'upload-successful-msg'       => 'Przesłany plik jest dostępny tutaj – $1',
 'upload-failure-subj'         => 'Problem z przesyłaniem pliku',
 'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu twojego pliku:
 
@@ -2926,7 +2926,7 @@ Jeśli go otworzysz, możesz zarazić swój system.<hr />",
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => '&nbsp;s',
 'minutes-abbrev' => '&nbsp;min',
-'hours-abbrev'   => '&nbsp;g',
+'hours-abbrev'   => '&nbsp;h',
 
 # Bad image list
 'bad_image_list' => 'Dane należy wprowadzić w formacie:
@@ -3000,6 +3000,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-exposuretime'                => 'Czas ekspozycji',
 'exif-exposuretime-format'         => '$1 s ($2)',
 'exif-fnumber'                     => 'Wartość przysłony',
+'exif-fnumber-format'              => 'f&nbsp;/&nbsp;$1',
 'exif-exposureprogram'             => 'Program ekspozycji',
 'exif-spectralsensitivity'         => 'Czułość widmowa',
 'exif-isospeedratings'             => 'Szybkość aparatu zgodnie z ISO12232',
@@ -3014,6 +3015,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-lightsource'                 => 'Rodzaj źródła światła',
 'exif-flash'                       => 'Lampa błyskowa',
 'exif-focallength'                 => 'Długość ogniskowej obiektywu',
+'exif-focallength-format'          => '$1&nbsp;mm',
 'exif-subjectarea'                 => 'Położenie i obszar głównego motywu obrazu',
 'exif-flashenergy'                 => 'Energia lampy błyskowej',
 'exif-spatialfrequencyresponse'    => 'Odpowiedź częstotliwości przestrzennej zgodnie z ISO12233',
@@ -3087,6 +3089,9 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 'exif-planarconfiguration-1' => 'format masywny',
 'exif-planarconfiguration-2' => 'format powierzchniowy',
+
+'exif-xyresolution-i' => '$1&nbsp;punktów na cal',
+'exif-xyresolution-c' => '$1&nbsp;punktów na centymetr',
 
 'exif-componentsconfiguration-0' => 'nie istnieje',
 
@@ -3306,6 +3311,10 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'confirm-purge-top'    => 'Wyczyścić pamięć podręczną dla tej strony?',
 'confirm-purge-bottom' => 'Odświeżenie strony wyczyści pamięć podręczną i wymusi pokazanie jej aktualnej wersji.',
 
+# Separators for various lists, etc.
+'autocomment-prefix' => '–&#32;',
+'percent'            => '$1&nbsp;%',
+
 # Multipage image navigation
 'imgmultipageprev' => '← poprzednia strona',
 'imgmultipagenext' => 'następna strona →',
@@ -3330,7 +3339,10 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'autosumm-new'     => 'Utworzył nową stronę „$1”',
 
 # Size units
-'size-kilobytes' => '$1 kB',
+'size-bytes'     => '$1&nbsp;B',
+'size-kilobytes' => '$1&nbsp;kB',
+'size-megabytes' => '$1&nbsp;MB',
+'size-gigabytes' => '$1&nbsp;GB',
 
 # Live preview
 'livepreview-loading' => 'Trwa ładowanie…',

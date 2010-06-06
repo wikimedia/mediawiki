@@ -1470,6 +1470,7 @@ $1',
 'blockipsuccesstext'        => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
 <br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:IPBlockList|مخنيول شويو IP لړليک]] وګورۍ.',
 'ipb-edit-dropdown'         => 'د بنديز د سببونو سمول',
+'ipb-unblock-addr'          => 'له $1 بنديز ليرې کول',
 'unblockip'                 => 'کارن له بنديزه وېستل',
 'ipusubmit'                 => 'دا بنديز ليرې کول',
 'ipblocklist'               => 'د بنديز لګېدلي آی پي پتو او کارن نومونو لړليک',

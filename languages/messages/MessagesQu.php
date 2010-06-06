@@ -2681,9 +2681,7 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'tooltip-summary'                 => 'Pisichaychata yaykuchiy',
 
 # Stylesheets
-'common.css'      => '/* Churamusqa CSS chantakunaqa tukuy qarakunapim llamk\'anqa */
-
-var collapseCaption = "pakay"; var expandCaption = "rikuchiy";',
+'common.css'      => "/* Churamusqa CSS chantakunaqa tukuy qarakunapim llamk'anqa */",
 'standard.css'    => "/* Churamusqa CSS chantakunaqa ''Standard skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
 'nostalgia.css'   => "/* Churamusqa CSS chantakunaqa ''Nostalgia skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
 'cologneblue.css' => "/* Churamusqa CSS chantakunaqa ''Cologne Blue skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
