@@ -432,7 +432,7 @@ class Skin extends Linker {
 
 		// if on upload page output the extension list & js_upload
 		if( SpecialPage::resolveAlias( $wgTitle->getDBkey() ) == 'Upload' ) {
-			global $wgFileExtensions, $wgAjaxUploadInterface;
+			global $wgFileExtensions;
 			$vars['wgFileExtensions'] = $wgFileExtensions;
 		}
 
