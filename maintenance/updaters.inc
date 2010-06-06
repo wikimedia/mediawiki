@@ -1283,10 +1283,12 @@ function do_category_population() {
 		return;
 	}
 	require_once( 'populateCategory.php' );
-	wfOut( "Populating category table, printing progress markers.  " ) .
-"For large databases, you\n" .
-"may want to hit Ctrl-C and do this manually with maintenance/\n" .
-"populateCategory.php.\n";
+	wfOut(
+		"Populating category table, printing progress markers. " .
+		"For large databases, you\n" .
+		"may want to hit Ctrl-C and do this manually with maintenance/\n" .
+		"populateCategory.php.\n"
+	);
 	$task = new PopulateCategory();
 	$task->execute();
 	wfOut( "Done populating category table.\n" );
