@@ -61,10 +61,9 @@ class Html {
 	);
 
 	# Boolean attributes, which may have the value omitted entirely.  Manually
-	# collected from the HTML5 spec as of 2009-08-10.
+	# collected from the HTML5 spec as of 2010-06-07.
 	private static $boolAttribs = array(
 		'async',
-		'autobuffer',
 		'autofocus',
 		'autoplay',
 		'checked',
@@ -74,10 +73,12 @@ class Html {
 		'formnovalidate',
 		'hidden',
 		'ismap',
+		'itemscope',
 		'loop',
 		'multiple',
 		'novalidate',
 		'open',
+		'pubdate',
 		'readonly',
 		'required',
 		'reversed',
