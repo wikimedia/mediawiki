@@ -900,9 +900,9 @@ abstract class Installer {
 			} catch( PasswordError $pwe ) {
 				return Status::newFatal( 'config-admin-error-password', $name, $pwe->getMessage() );
 			}
-			$user->saveSettings();
 			$user->addGroup( 'sysop' );
 			$user->addGroup( 'bureaucrat' );
+			$user->saveSettings();
 		}
 		return Status::newGood();
 	}
