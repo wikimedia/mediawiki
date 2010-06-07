@@ -1158,6 +1158,9 @@ Por favor, verifique os registos.',
 'suppressionlogtext' => 'Abaixo está uma lista das remoções e bloqueios envolvendo conteúdo ocultado por administradores.
 Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
+# Revision move
+'revmove-nullmove-title' => 'Título incorreto',
+
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
 'mergehistory-header'              => 'A partir desta página é possível fundir históricos de edições de uma página em outra.

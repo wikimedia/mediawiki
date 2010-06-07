@@ -718,7 +718,7 @@ Möglicherweise wurde sie bereits von jemand anders gelöscht.',
 Funktion: $1<br />
 Abfrage: $2',
 'viewsource'           => 'Quelltext anzeigen',
-'viewsourcefor'        => 'für $1',
+'viewsourcefor'        => 'von $1',
 'actionthrottled'      => 'Aktionsanzahl limitiert',
 'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',
@@ -2581,7 +2581,7 @@ Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernam
 'databasenotlocked'   => 'Die Datenbank ist nicht gesperrt.',
 
 # Move page
-'move-page'                    => 'Verschiebe „$1“',
+'move-page'                    => 'Verschieben von „$1“',
 'move-page-legend'             => 'Seite verschieben',
 'movepagetext'                 => "Mit diesem Formular kannst du eine Seite umbenennen (mitsamt allen Versionen).
 Der alte Titel wird zum neuen weiterleiten.

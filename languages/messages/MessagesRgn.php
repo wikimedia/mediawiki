@@ -42,6 +42,7 @@ $messages = array(
 'tog-enotifminoredits'        => "Fam' save' par e-mail tòt al mudefchi, neca al znini",
 'tog-enotifrevealaddr'        => "Lasa avdè e' mi indirèzi d'posta eletrònica int'j mesàg d'nutèfica",
 'tog-shownumberswatching'     => "Fam' avdè e' nòmar d'j utent ch'j tèn sta pàgina sot occ",
+'tog-oldsig'                  => 'Anteprèma dla fírma bona',
 
 # Dates
 'january'       => 'Znèr',

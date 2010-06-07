@@ -720,8 +720,8 @@ oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page=
 'blocked-notice-logextract'        => 'Dää Benutzer isch zur Zyt gsperrt.
 As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
 'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
-'usercssyoucanpreview'             => "'''Tipp:''' Nimm dr Vorschau-Chnopf, zum Dyy nej CSS vor em Spichere z teschte.",
-'userjsyoucanpreview'              => "'''Tipp:''' Nimm dr Vorschau-Chnopf, zum Dyy nej JS vor em Spichere z teschte.",
+'usercssyoucanpreview'             => "'''Tipp:''' Nimm dr „{{int:showpreview}}”-Chnopf, zum Dyy nej CSS vor em Spichere z teschte.",
+'userjsyoucanpreview'              => "'''Tipp:''' „Nimm dr {{int:showpreview}}”-Chnopf, zum Dyy nej JS vor em Spichere z teschte.",
 'usercsspreview'                   => "== Vorschau vu Dyynem Benutzer-CSS. ==
 '''Wichtig:''' Noch em Spichere muesch Dyynem Browser sage, ass er die nej Version ladet:
 
@@ -973,6 +973,24 @@ Bitte prief d Logbiecher.',
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuech',
 'suppressionlogtext' => 'Des isch s Logbuech vu dr Oversight-Aktione (Änderige vu dr Sichtbarkeit vu Versione, Bearbeitigskommentar, Benutzernäme un Benutzersperrine).',
+
+# Revision move
+'moverevlogentry'              => 'het {{PLURAL:$3|ei Version|$3 Versione}} vu $1 no $2 verschobe',
+'revisionmove'                 => 'Versione verschiebe vu „$1“',
+'revmove-explain'              => 'Die Versione wäre vu $1 uf d Ziilsyte, wu aagee isch, verschobe. Wänn s d Ziilsyte nit git, no wird si aagleit. Sunscht wäre die Versione in dr Versionsgschicht zämmegfiert.',
+'revmove-legend'               => 'Ziilsyte un Zämmefassig feschtlege',
+'revmove-submit'               => 'Versione zue dr uusgwehlte Syte verschiebe',
+'revisionmoveselectedversions' => 'Uusgwehlti Versione verschiebe',
+'revmove-reasonfield'          => 'Grund:',
+'revmove-titlefield'           => 'Ziilsyte:',
+'revmove-badparam-title'       => 'Falschi Parameter',
+'revmove-badparam'             => '<span class="error">In dyyre Aafrog het s nit erlaubti oder mangelhafti Parameter. Bitte druck uf „zruck“ un versuech s nomol.</span>',
+'revmove-norevisions-title'    => 'Nit giltigi Ziilversion',
+'revmove-norevisions'          => '<span class="error">Du hesch kei Ziilversion aagee, zum die Aktion durzfiere oder d Version, wu Du aagee hesch, git s nit.</span>',
+'revmove-nullmove-title'       => 'Nit giltige Titel',
+'revmove-nullmove'             => '<span class="error">Quäll- un Ziilsyte sin idäntisch. Bitte druck uf „zruck“ un gib e andere Sytenname wie „$1“ yy.</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Ei Version vu [[$2]] isch|$1 Versione vu [[$2]] sin}} zu dr exischtänte Syte [[$3]] verschobe wore.',
+'revmove-success-created'      => '{{PLURAL:$1|Ei Version vu [[$2]] isch|$1 Versione vu [[$2]] sin}} zue dr nej aagleite Syte [[$3]] verschobe wore.',
 
 # History merging
 'mergehistory'                     => 'Versionsgschichte zämmefiere',
@@ -1299,6 +1317,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-reset-passwords'       => 'S Passwort vun eme andere Benutzer zrucksetze',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
+'right-revisionmove'          => 'Versione verschiebe',
 
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',
@@ -1341,6 +1360,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'action-userrights'           => 'Benutzerrächt z ändere',
 'action-userrights-interwiki' => 'd Rächt vu Benutzer in andere Wiki z ändere',
 'action-siteadmin'            => 'd Datebank z sperre oder frejzgee',
+'action-revisionmove'         => 'Versione verschiebe',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Änderig|Änderige}}',
@@ -2021,7 +2041,8 @@ Di letscht Änderig het [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-se
 'rollback-success'  => 'D Änderige vu $1 sin ruckgängig gmacht wore un di letscht Version vu $2 isch widerhärgstellt wore.',
 
 # Edit tokens
-'sessionfailure' => 'S het e Probläm mit em Ibertrage vu Dyyne Benutzerdate gee.
+'sessionfailure-title' => 'Sitzigsfähler',
+'sessionfailure'       => 'S het e Probläm mit em Ibertrage vu Dyyne Benutzerdate gee.
 Die Aktion isch wäge däm us Sicherheitsgrind abbroche wore go ne falschi Zueornig vu Dyyne Änderige zuen eme andere Benutzer verhindere.
 Bitte gang zruck, tue d Syte nej lade un versuech s nomol.',
 
@@ -2109,7 +2130,7 @@ In däm Fall darf di neijscht Version nit markiert wäre oder ihre Status muess 
 'undeleteviewlink'             => 'aaluege',
 'undeletereset'                => 'Abbräche',
 'undeleteinvert'               => 'Uswahl umchehre',
-'undeletecomment'              => 'Begrindig:',
+'undeletecomment'              => 'Grund:',
 'undeletedarticle'             => 'hät d Site „[[$1]]“ widderhergstellt',
 'undeletedrevisions'           => '{{PLURAL:$1|ei Revision|$1 Revisione}} wider zruckgholt.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 Version|$1 Versione}} un {{PLURAL:$2|1 Datei|$2 Dateie}} sin widerhärgstellt wore',
