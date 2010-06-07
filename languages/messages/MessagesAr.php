@@ -230,8 +230,8 @@ $magicWords = array(
 	'img_center'            => array( '1', 'مركز', 'center', 'centre' ),
 	'img_framed'            => array( '1', 'إطار', 'بإطار', 'framed', 'enframed', 'frame' ),
 	'img_frameless'         => array( '1', 'لاإطار', 'frameless' ),
-	'img_page'              => array( '1', 'صفحة=$1', 'صفحة $1', 'page=$1', 'page $1' ),
-	'img_upright'           => array( '1', 'معدول', 'معدول=$1', 'معدول $1', 'upright', 'upright=$1', 'upright $1' ),
+	'img_page'              => array( '1', 'صفحة=$1', 'صفحة_$1', 'page=$1', 'page $1' ),
+	'img_upright'           => array( '1', 'معدول', 'معدول=$1', 'معدول_$1', 'upright', 'upright=$1', 'upright $1' ),
 	'img_border'            => array( '1', 'حدود', 'border' ),
 	'img_baseline'          => array( '1', 'خط_أساسي', 'baseline' ),
 	'img_sub'               => array( '1', 'فرعي', 'sub' ),
@@ -265,6 +265,7 @@ $magicWords = array(
 	'revisionday'           => array( '1', 'يوم_المراجعة', 'REVISIONDAY' ),
 	'revisionday2'          => array( '1', 'يوم_المراجعة2', 'REVISIONDAY2' ),
 	'revisionmonth'         => array( '1', 'شهر_المراجعة', 'REVISIONMONTH' ),
+	'revisionmonth1'        => array( '1', 'شهر_المراجعة1', 'REVISIONMONTH1' ),
 	'revisionyear'          => array( '1', 'عام_المراجعة', 'REVISIONYEAR' ),
 	'revisiontimestamp'     => array( '1', 'طابع_وقت_المراجعة', 'REVISIONTIMESTAMP' ),
 	'revisionuser'          => array( '1', 'مستخدم_المراجعة', 'REVISIONUSER' ),
@@ -381,7 +382,7 @@ $specialPageAliases = array(
 	'FileDuplicateSearch'       => array( 'بحث_ملف_مكرر' ),
 	'Unwatchedpages'            => array( 'صفحات_غير_مراقبة' ),
 	'Listredirects'             => array( 'عرض_التحويلات' ),
-	'Revisiondelete'            => array( 'حذف_نسخة' ),
+	'Revisiondelete'            => array( 'حذف_مراجعة' ),
 	'Unusedtemplates'           => array( 'قوالب_غير_مستخدمة' ),
 	'Randomredirect'            => array( 'تحويلة_عشوائية' ),
 	'Mypage'                    => array( 'صفحتي' ),
@@ -401,6 +402,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 	'Tags'                      => array( 'وسوم' ),
 	'Activeusers'               => array( 'مستخدمون_نشطون' ),
+	'RevisionMove'              => array( 'نقل_مراجعة' ),
 );
 
 /**
