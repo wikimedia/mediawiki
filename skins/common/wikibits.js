@@ -145,7 +145,9 @@ function showTocToggle() {
 		var toggleLink = document.createElement( 'a' );
 		toggleLink.id = 'togglelink';
 		toggleLink.className = 'internal';
-		toggleLink.href = 'javascript:toggleToc()';
+		toggleLink.href = '#';
+		toggleLink.onclick = toggleToc;
+		
 		toggleLink.appendChild( document.createTextNode( tocHideText ) );
 
 		outerSpan.appendChild( document.createTextNode( '[' ) );
@@ -187,6 +189,7 @@ function toggleToc() {
 		document.cookie = "hidetoc=1";
 		tocmain.className = 'toc tochidden';
 	}
+	return false;
 }
 
 var mwEditButtons = [];
