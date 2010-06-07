@@ -37,12 +37,16 @@ class Selenium extends Testing_Selenium {
 	}
 
 	public function login() {
-		global $wgSeleniumTestsWikiUser, $wgSeleniumTestsWikiPassword, $wgSeleniumTestsWikiUrl;
+		global $wgSeleniumTestsWikiUser, $wgSeleniumTestsWikiPassword, $wgSeleniumTestsWikiUrl, $wgVersion;
 
 		$this->open( $wgSeleniumTestsWikiUrl . '/index.php?title=Special:Userlogin' );
 		$this->type( 'wpName1', $wgSeleniumTestsWikiUser );
 		$this->type( 'wpPassword1', $wgSeleniumTestsWikiPassword );
-		$this->click( "//input[@id='wpLoginAttempt']" );
+		if (version_compare($wgVersion, '1.15.2', '>=')) {
+			$this->click( "//input[@id='wpLoginAttempt']" );
+		} else {
+			$this->click( "//input[@id='wpLoginattempt']" );
+		}
 		$value = $this->doCommand( 'assertTitle', array( 'Login successful*' ) );
 	}
 
