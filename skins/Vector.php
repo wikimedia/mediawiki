@@ -35,7 +35,7 @@ class SkinVector extends SkinTemplate {
 		// wait for the CSS file to load before fetching the HTC file.
 		$out->addScript(
 			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
-				htmlspecialchars($wgLocalStylePath) .
+				htmlspecialchars( $wgLocalStylePath ) .
 				'/vector/csshover.htc")}</style><![endif]-->'
 		);
 	}
@@ -70,7 +70,7 @@ class SkinVector extends SkinTemplate {
 	 * @private
 	 */
 	function buildNavigationUrls() {
-		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle
+		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle;
 		global $wgDisableLangConversion, $wgVectorUseIconWatch;
 
 		wfProfileIn( __METHOD__ );
