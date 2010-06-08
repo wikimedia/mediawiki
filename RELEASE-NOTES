@@ -49,6 +49,8 @@ further.
 * (bug 23175) Re-added window.ta variable for backwards compatibility.
 * (bug 23264) Fixed breakage of various command line scripts due to extra line
   endings being inserted by Maintenance::output().
+* MonobookTemplateToolboxEnd has been deprecated. Use SkinTemplateToolboxEnd 
+  instead.
 
 == Changes since 1.16 beta 2 ==
 

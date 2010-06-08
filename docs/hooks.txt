@@ -1087,9 +1087,10 @@ $db: The database object to be queried.
 
 'MonoBookTemplateToolboxEnd': Called by Monobook skin after toolbox links have
 been rendered (useful for adding more)
-Note: this is only run for the Monobook skin.  To add items to the toolbox
-for all 'SkinTemplate'-type skins, use the SkinTemplateToolboxEnd hook
-instead.
+Note: this is only run for the Monobook skin. This hook is deprecated and
+may be removed in the future. To add items to the toolbox you should use 
+the SkinTemplateToolboxEnd hook instead, which works for all 
+'SkinTemplate'-type skins.
 $tools: array of tools
 
 'NewRevisionFromEditComplete': called when a revision was inserted
