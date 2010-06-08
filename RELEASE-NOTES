@@ -47,6 +47,8 @@ further.
 * (bug 23769) Disabled HTML 5 client-side form validation. Was introduced in 
   1.16 beta 1, but is currently poorly supported by browsers.
 * (bug 23175) Re-added window.ta variable for backwards compatibility.
+* (bug 23264) Fixed breakage of various command line scripts due to extra line
+  endings being inserted by Maintenance::output().
 
 == Changes since 1.16 beta 2 ==
 
