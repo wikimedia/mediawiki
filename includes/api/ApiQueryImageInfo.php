@@ -222,6 +222,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						$vals['thumbwidth'] = intval( $file->getWidth() );					
 						$vals['thumbheight'] = intval( $file->getHeight() );
 					}
+					
+					if ( isset( $prop['thumbmime'] ) ) {
+						$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
+						$vals['thumbmime'] = $thumbFile->getMimeType();
+					}
 				}
 			}
 			$vals['url'] = $file->getFullURL();
@@ -319,6 +324,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'dimensions', // For backwards compatibility with Allimages
 			'sha1',
 			'mime',
+			'thumbmime',
 			'metadata',
 			'archivename',
 			'bitdepth',

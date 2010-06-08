@@ -212,6 +212,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   similar to prop=categories's clcategorie
 * (bug 23834) Invalid "thumbwidth" and "thumbheight" in "imageinfo" query when
   thumbnailing larger than original image
+* (bug 23835) Need "thumbmime" result in "imageinfo" query
 
 === Languages updated in 1.17 ===
 
