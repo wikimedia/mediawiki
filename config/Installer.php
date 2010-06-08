@@ -1866,7 +1866,7 @@ function writeLocalSettings( $conf ) {
 	} elseif( $conf->DBtype == 'oracle' ) {
 		$dbsettings =
 "# Oracle specific settings
-\$wgDBprefix         = \"{$slconf['DBprefix']}\";";
+\$wgDBprefix         = \"{$slconf['DBprefix_ora']}\";";
 	} else {
 		// ummm... :D
 		$dbsettings = '';
