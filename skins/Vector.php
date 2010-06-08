@@ -439,7 +439,15 @@ class VectorTemplate extends QuickTemplate {
 				'about',
 				'disclaimer',
 			),
+			'icons' => array(
+				'poweredbyico',
+				'copyrightico',
+			),
 		);
+		$footerlinksClasses = array(
+			'icons' => array( 'noprint' )
+		);
+		
 		// Reduce footer links down to only those which are being used
 		$validFooterLinks = array();
 		foreach( $footerlinks as $category => $links ) {
@@ -543,7 +551,7 @@ class VectorTemplate extends QuickTemplate {
 		<div id="footer"<?php $this->html('userlangattributes') ?>>
 			<?php foreach( $validFooterLinks as $category => $links ): ?>
 				<?php if ( count( $links ) > 0 ): ?>
-				<ul id="footer-<?php echo $category ?>">
+				<ul id="footer-<?php echo $category ?>"<?php if (isset($footerlinksClasses[$category])) echo ' class="' . implode(" ", $footerlinksClasses[$category]) . '"'; ?>>
 					<?php foreach( $links as $link ): ?>
 						<?php if( isset( $this->data[$link] ) && $this->data[$link] ): ?>
 						<li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
@@ -552,14 +560,6 @@ class VectorTemplate extends QuickTemplate {
 				</ul>
 				<?php endif; ?>
 			<?php endforeach; ?>
-			<ul id="footer-icons" class="noprint">
-				<?php if ( $this->data['poweredbyico'] ): ?>
-				<li id="footer-icon-poweredby"><?php $this->html( 'poweredbyico' ) ?></li>
-				<?php endif; ?>
-				<?php if ( $this->data['copyrightico'] ): ?>
-				<li id="footer-icon-copyright"><?php $this->html( 'copyrightico' ) ?></li>
-				<?php endif; ?>
-			</ul>
 			<div style="clear:both"></div>
 		</div>
 		<!-- /footer -->
