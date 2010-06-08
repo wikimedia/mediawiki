@@ -111,6 +111,7 @@ div#head h5 {
 	/* @noflip */
 	div.vectorTabs {
 		float: left;
+		height: 2.5em;
 	}
 	div.vectorTabs {
 		background-image: url(images/tab-break.png?1);
