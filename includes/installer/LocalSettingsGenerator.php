@@ -231,8 +231,8 @@ if ( \$wgCommandLineMode ) {
 \$wgSecretKey = \"{$this->values['wgSecretKey']}\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
-## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
-\$wgDefaultSkin = 'monobook';
+## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook', 'vector':
+\$wgDefaultSkin = 'vector';
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
