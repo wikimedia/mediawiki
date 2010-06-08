@@ -208,6 +208,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   using token and username.
 * (bug 23524) Api Modules as followup to bug 14473 (Add iwlinks table to 
   track inline interwiki link usage.
+* (bug 23834) Invalid "thumbwidth" and "thumbheight" in "imageinfo" query when
+  thumbnailing larger than original image
 
 === Languages updated in 1.17 ===
 
