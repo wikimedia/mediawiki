@@ -42,6 +42,10 @@ set $wgCacheDirectory to a writable path on the local filesystem. Make sure
 you have the DBA extension for PHP installed, this will improve performance 
 further.
 
+== Changes since 1.16 beta 3 ==
+
+* (bug 23175) Re-added window.ta variable for backwards compatibility.
+
 == Changes since 1.16 beta 2 ==
 
 * Fixed bugs in the [[Special:Userlogin]] and [[Special:Emailuser]] handling of

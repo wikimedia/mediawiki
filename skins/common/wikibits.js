@@ -374,6 +374,7 @@ function getInnerText( el ) {
 }
 
 /* Dummy for deprecated function */
+window.ta = [];
 function akeytt( doId ) {
 }
 
