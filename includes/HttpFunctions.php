@@ -1,4 +1,4 @@
-<?php
+	<?php
 /**
  * @defgroup HTTP HTTP
  */
@@ -729,8 +729,8 @@ class CurlHttpRequest extends HttpRequest {
 		$this->curlOptions[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_1_0;
 		$this->curlOptions[CURLOPT_WRITEFUNCTION] = $this->callback;
 		$this->curlOptions[CURLOPT_HEADERFUNCTION] = array($this, "readHeader");
-		$this->curlOptions[CURLOPT_FOLLOWLOCATION] = $this->followRedirects;
 		$this->curlOptions[CURLOPT_MAXREDIRS] = $this->maxRedirects;
+		$this->curlOptions[CURLOPT_ENCODING] = ""; # Enable compression
 
 		/* not sure these two are actually necessary */
 		if(isset($this->reqHeaders['Referer'])) {
@@ -767,7 +767,13 @@ class CurlHttpRequest extends HttpRequest {
 		$this->curlOptions[CURLOPT_HTTPHEADER] = $this->getHeaderList();
 
 		$curlHandle = curl_init( $this->url );
-		curl_setopt_array( $curlHandle, $this->curlOptions );
+		if ( !curl_setopt_array( $curlHandle, $this->curlOptions ) ) {
+			throw new MWException("Error setting curl options.");
+		}
+		if ( ! @curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, $this->followRedirects ) ) {
+			wfDebug("Couldn't set CURLOPT_FOLLOWLOCATION. Probably safe_mode or open_basedir is set.");
+			/* Continue the processing. If it were in curl_setopt_array, processing would have halted on its entry */
+		}
 
 		if ( false === curl_exec( $curlHandle ) ) {
 			$code = curl_error( $curlHandle );
