@@ -1,5 +1,4 @@
 <?php
-
 /**
  * PrefixSearch - Handles searching prefixes of titles and finding any page
  * names that match. Used largely by the OpenSearch implementation.
@@ -77,6 +76,7 @@ class PrefixSearch {
 	 */
 	protected static function specialSearch( $search, $limit ) {
 		global $wgContLang;
+
 		$searchKey = $wgContLang->caseFold( $search );
 
 		// Unlike SpecialPage itself, we want the canonical forms of both
@@ -87,9 +87,11 @@ class PrefixSearch {
 		foreach( array_keys( SpecialPage::$mList ) as $page ) {
 			$keys[$wgContLang->caseFold( $page )] = $page;
 		}
+
 		foreach( $wgContLang->getSpecialPageAliases() as $page => $aliases ) {
-			if( !array_key_exists( $page, SpecialPage::$mList ) ) # bug 20885
+			if( !array_key_exists( $page, SpecialPage::$mList ) ) {# bug 20885
 				continue;
+			}
 
 			foreach( $aliases as $alias ) {
 				$keys[$wgContLang->caseFold( $alias )] = $alias;
@@ -100,12 +102,14 @@ class PrefixSearch {
 		$srchres = array();
 		foreach( $keys as $pageKey => $page ) {
 			if( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
-				$srchres[] = Title::makeTitle( NS_SPECIAL, $page )->getPrefixedText();
+				$srchres[] = SpecialPage::getTitleFor( $page )->getPrefixedText();
 			}
+
 			if( count( $srchres ) >= $limit ) {
 				break;
 			}
 		}
+
 		return $srchres;
 	}
 
