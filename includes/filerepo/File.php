@@ -1054,7 +1054,7 @@ abstract class File {
 	}
 
 	/**
-	 * Get an image size array like that returned by getimagesize(), or false if it
+	 * Get an image size array like that returned by getImageSize(), or false if it
 	 * can't be determined.
 	 *
 	 * @param $fileName String: The filename
