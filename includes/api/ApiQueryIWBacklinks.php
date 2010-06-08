@@ -40,14 +40,10 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$params = $this->extractRequestParams( false );
-
-		$userMax = ( $this->redirect ? ApiBase::LIMIT_BIG1 / 2 : ApiBase::LIMIT_BIG1 );
-		$botMax  = ( $this->redirect ? ApiBase::LIMIT_BIG2 / 2 : ApiBase::LIMIT_BIG2 );
-
-		if ( $params['limit'] == 'max' ) {
-			$params['limit'] = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$this->getResult()->addValue( 'limits', $this->getModuleName(), $params['limit'] );
+		$params = $this->extractRequestParams();
+		
+		if ( isset( $params['title'] ) && !isset( $params['prefix'] ) ) {
+			$this->dieUsageMsg( array( 'missingparam', 'prefix' ) );
 		}
 
 		if ( !is_null( $params['continue'] ) ) {
@@ -75,22 +71,19 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 		$this->addFields( array( 'page_id', 'page_title', 'page_namespace', 'page_is_redirect',
 			'iwl_from', 'iwl_prefix', 'iwl_title' ) );
 
-		if ( $params['prefix'] !== '' ) {
+		if ( isset( $params['prefix'] ) ) {
 			$this->addWhereFld( 'iwl_prefix', $params['prefix'] );
 		}
 		
-		if ( $params['title'] !== '' ) {
+		if ( isset( $params['title'] ) ) {
 			$this->addWhereFld( 'iwl_title', $params['title'] );
 		}
 
-		$this->addWhereFld( 'page_namespace', $params['namespace'] );
-
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', 'iwl_from' );
-		$this->addOption( 'STRAIGHT_JOIN' );
 
 		$db = $this->getDB();
-		$res = $this->select( __METHOD__ . '::firstQuery' );
+		$res = $this->select( __METHOD__ );
 
 		$count = 0;
 		$result = $this->getResult();
@@ -131,10 +124,6 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 			'prefix' => null,
 			'title' => null,
 			'continue' => null,
-			'namespace' => array(
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'namespace'
-			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -148,9 +137,8 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 	public function getParamDescription() {
 		return array(
 			'prefix' => 'Prefix for the interwiki',
-			'title' => 'Interwiki link to search for',
+			'title' => "Interwiki link to search for. Must be used with {$this->getModulePrefix()}prefix",
 			'continue' => 'When more results are available, use this to continue',
-			'namespace' => 'The namespace to enumerate',
 			'limit' => 'How many total pages to return',
 		);
 	}
@@ -165,17 +153,16 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'invalidtitle', 'title' ),
-			array( 'missingparam', 'title' ),
+			array( 'missingparam', 'prefix' ),
 			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 
 	protected function getExamples() {
 		return array(
-				'api.php?action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks',
-				'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
-			);
+			'api.php?action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks',
+			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
+		);
 	}
 
 	public function getVersion() {
