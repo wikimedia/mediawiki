@@ -767,7 +767,27 @@ class DatabaseOracle extends DatabaseBase {
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseOracle::duplicateTableStructure' ) {
 		$temporary = $temporary ? 'TRUE' : 'FALSE';
-		return $this->query( 'BEGIN DUPLICATE_TABLE(\'' . $oldName . '\', \'' . $newName . '\', ' . $temporary . '); END;', $fname );
+		$oldName = trim(strtoupper($oldName), '"');
+		$oldParts = explode('_', $oldName);
+		
+		$newName = trim(strtoupper($newName), '"');
+		$newParts = explode('_', $newName);
+
+		$oldPrefix = '';
+		$newPrefix = '';
+		for ($i = count($oldParts)-1; $i >= 0; $i--) {
+			if ($oldParts[$i] != $newParts[$i]) {
+				$oldPrefix = implode('_', $oldParts).'_';
+				$newPrefix = implode('_', $newParts).'_';
+				break;
+			}
+			unset($oldParts[$i]);
+			unset($newParts[$i]);
+		}
+		
+		$tabName = substr($oldName, strlen($oldPrefix));
+		
+		return $this->query( 'BEGIN DUPLICATE_TABLE(\'' . $tabName . '\', \'' . $oldPrefix . '\', \''.$newPrefix.'\', ' . $temporary . '); END;', $fname );
 	}
 
 	function timestamp( $ts = 0 ) {
@@ -855,7 +875,7 @@ class DatabaseOracle extends DatabaseBase {
 			$tableWhere = '= \''.$table.'\'';
 		}
 
-		$fieldInfoStmt = oci_parse( $this->mConn, 'SELECT * FROM '.$this->tableName('wiki_field_info_full').' WHERE table_name '.$tableWhere.' and column_name = \''.$field.'\'' );
+		$fieldInfoStmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name '.$tableWhere.' and column_name = \''.$field.'\'' );
 		if ( oci_execute( $fieldInfoStmt, OCI_DEFAULT ) === false ) {
 			$e = oci_error( $fieldInfoStmt );
 			$this->reportQueryError( $e['message'], $e['code'], 'fieldInfo QUERY', __METHOD__ );
