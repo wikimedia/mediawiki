@@ -25,6 +25,7 @@
  * @author Cvmontuy
  * @author David0811
  * @author Dferg
+ * @author Diego Grez
  * @author Dmcdevit
  * @author Drini
  * @author Dvortygirl
@@ -921,12 +922,12 @@ La última entrada del registro de bloqueos es provista debajo para mayor refere
 *'''Konqueror: '''Haz click en el botón ''Recargar'' o pulsa ''F5;''
 *'''Opera:''' Limpia la caché en ''Herramientas → Preferencias;''
 *'''Internet Explorer:''' pulsa ''Ctrl'' mientras haces click en ''Actualizar,'' o pulsa ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Consejo:''' Usa el botón «Mostrar previsualización» para probar el nuevo css/js antes de grabarlo.",
-'userjsyoucanpreview'              => "'''Consejo:''' Usa el botón «Mostrar previsualización» para probar el nuevo JS antes de grabarlo.",
+'usercssyoucanpreview'             => "'''Consejo:''' Usa el botón «{{int:showpreview}}» para probar el nuevo css/js antes de grabarlo.",
+'userjsyoucanpreview'              => "'''Consejo:''' Usa el botón «{{int:showpreview}}» para probar el nuevo JS antes de grabarlo.",
 'usercsspreview'                   => "'''Recuerda que sólo está previsualizando tu CSS de usuario.'''
 '''¡Aún no se ha grabado!'''",
 'userjspreview'                    => "'''¡Recuerde que sólo estás previsualizando tu javascript de usuario y aún no se ha grabado!'''",
-'userinvalidcssjstitle'            => "'''Aviso:''' No existe la máscara \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Aviso:''' No existe la máscara \"\$1\". Recuerda que las páginas personalizadas ''.css'' y ''.js'' tienen un título en minúsculas. Por ejemplo, {{ns:user}}:Ejemplo/monobook.css en vez de {{ns:user}}:Ejemplo/Monobook.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''¡Recuerda que esto es sólo una previsualización y aún no se ha grabado!'''",

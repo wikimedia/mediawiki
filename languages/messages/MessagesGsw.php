@@ -720,8 +720,8 @@ oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page=
 'blocked-notice-logextract'        => 'Dää Benutzer isch zur Zyt gsperrt.
 As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
 'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
-'usercssyoucanpreview'             => "'''Tipp:''' Nimm dr Vorschau-Chnopf, zum Dyy nej CSS vor em Spichere z teschte.",
-'userjsyoucanpreview'              => "'''Tipp:''' Nimm dr Vorschau-Chnopf, zum Dyy nej JS vor em Spichere z teschte.",
+'usercssyoucanpreview'             => "'''Tipp:''' Nimm dr „{{int:showpreview}}”-Chnopf, zum Dyy nej CSS vor em Spichere z teschte.",
+'userjsyoucanpreview'              => "'''Tipp:''' „Nimm dr {{int:showpreview}}”-Chnopf, zum Dyy nej JS vor em Spichere z teschte.",
 'usercsspreview'                   => "== Vorschau vu Dyynem Benutzer-CSS. ==
 '''Wichtig:''' Noch em Spichere muesch Dyynem Browser sage, ass er die nej Version ladet:
 
@@ -2077,7 +2077,7 @@ In däm Fall darf di neijscht Version nit markiert wäre oder ihre Status muess 
 'undeleteviewlink'             => 'aaluege',
 'undeletereset'                => 'Abbräche',
 'undeleteinvert'               => 'Uswahl umchehre',
-'undeletecomment'              => 'Begrindig:',
+'undeletecomment'              => 'Grund:',
 'undeletedarticle'             => 'hät d Site „[[$1]]“ widderhergstellt',
 'undeletedrevisions'           => '{{PLURAL:$1|ei Revision|$1 Revisione}} wider zruckgholt.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 Version|$1 Versione}} un {{PLURAL:$2|1 Datei|$2 Dateie}} sin widerhärgstellt wore',

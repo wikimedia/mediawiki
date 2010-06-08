@@ -765,8 +765,8 @@ Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa iny
 '''Konqueror:''' i-klik ang ''Reload'' o pindutin ang ''F5'';
 '''Opera:''' linisin ang baunan sa ''Tools → Preferences'';
 '''Internet Explorer:''' panatilihing nakapindot ang ''Ctrl'' habang kiniklik ang ''Refresh'', o pindutin ang ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Pahiwatig:''' Gamitin ang buton na 'Paunang tingin' upang masubok ang iyong bagong CSS bago ito itala.",
-'userjsyoucanpreview'              => "'''Pahiwatig:''' Gamitin ang buton na 'Paunang tingin' upang masubok ang iyong bagong JS bago ito itala.",
+'usercssyoucanpreview'             => "'''Balato:''' Gamitin ang pindutang \"{{int:showpreview}}\" upang masubok ang bago mong CSS bago sagipin.",
+'userjsyoucanpreview'              => "'''Balato:''' Gamitin ang pindutang \"{{int:showpreview}}\" upang masubok ang bago mong JavaScript bago sagipin.",
 'usercsspreview'                   => "'''Tandaan mong paunang tingin pa lamang ito ng iyong CSS na pantagagamit.'''
 '''Hindi pa ito nasasagip!'''",
 'userjspreview'                    => "'''Tandaang pagsubok/paunang tingin mo pa lang ito ng iyong JavaScript.'''
@@ -1161,7 +1161,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'prefs-resetpass'               => 'Baguhin ang hudyat',
 'prefs-email'                   => 'Mga pagpipilian para sa e-liham',
 'prefs-rendering'               => 'Hitsura',
-'saveprefs'                     => 'Sagip',
+'saveprefs'                     => 'Sagipin',
 'resetprefs'                    => 'Hawanin ang hindi nasagip na mga pagbabago',
 'restoreprefs'                  => 'Ibalik ang lahat ng likas na mga pagtatakda',
 'prefs-editing'                 => 'May binabago',
@@ -1627,7 +1627,7 @@ Mababago ang pagkakapangkat-pangkat sa pamamagitan ng pagpindot sa isang paulo n
 'filehist-user'             => 'Tagagamit',
 'filehist-dimensions'       => 'Mga sukat',
 'filehist-filesize'         => 'Sukat ng talaksan',
-'filehist-comment'          => 'Komento',
+'filehist-comment'          => 'Puna/Kumento',
 'filehist-missing'          => 'Nawawala ang talaksan',
 'imagelinks'                => 'Mga kawing ng talaksan',
 'linkstoimage'              => 'Nakakawing ang sumusunod na {{PLURAL:$1|pahina|$1 mga pahina}} sa talaksang ito.',
@@ -2544,7 +2544,7 @@ Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwikin
 'tooltip-pt-mycontris'            => 'Talaan ng mga ambag mo',
 'tooltip-pt-login'                => 'Hinihimok kang lumagda, bagaman hindi ito kinakailangan.',
 'tooltip-pt-anonlogin'            => 'Hinihimok kang lumagda, bagaman hindi ito kinakailangan.',
-'tooltip-pt-logout'               => 'Umalis sa pagkalagda',
+'tooltip-pt-logout'               => 'Umalis sa pagkakalagda',
 'tooltip-ca-talk'                 => 'Usapan tungkol sa nilalaman ng pahinang ito',
 'tooltip-ca-edit'                 => 'Maaaring baguhin ang pahinang ito. Paki gamit ang buton ng paunang tingin bago itala.',
 'tooltip-ca-addsection'           => 'Magsimula ng isang bagong seksyon',
@@ -3140,7 +3140,7 @@ Pakitiyak kung ibig mo talagang likhain muli ang pahinang ito.",
 'autosumm-new'     => "Nilikha ang pahina na may '$1'",
 
 # Live preview
-'livepreview-loading' => 'Ikinakarga…',
+'livepreview-loading' => 'Ikinakarga...',
 'livepreview-ready'   => 'Ikinakarga… Handa na!',
 'livepreview-failed'  => 'Nabigo ang umiiral na paunang tingin!  Subukan ang normal/pangkaraniwang paunang tingin.',
 'livepreview-error'   => 'Hindi tagumpay ang pagkabit (connect): $1 "$2". Subukan ang karaniwang paunang tingin.',
@@ -3326,7 +3326,7 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'htmlform-float-invalid'       => 'Ang tinukoy mong halagay ay hindi isang bilang.',
 'htmlform-int-toolow'          => 'Ang tinukoy mong halaga ay mas mababa kaysa sa pinakamababa ng $1',
 'htmlform-int-toohigh'         => 'Ang tinukoy mong halaga ay mahigit kaysa pinakamataas ng $1',
-'htmlform-submit'              => 'Ipadala',
+'htmlform-submit'              => 'Ipasa',
 'htmlform-reset'               => 'Bawiin ang mga pagbabago',
 'htmlform-selectorother-other' => 'Iba pa',
 

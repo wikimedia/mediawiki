@@ -736,7 +736,7 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass-submit-loggedin' => 'Zmień hasło',
 'resetpass-submit-cancel'   => 'Anuluj',
 'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
-Być może właśnie {{GENDER:|zmieniłeś|zmieniłaś}} swoje hasło lub {{GENDER:|poprosiłeś|poprosiłaś}} o nowe tymczasowe hasło.',
+Być może właśnie zmienił{{GENDER:|eś|aś|eś (~aś)}} swoje hasło lub poprosił{{GENDER:|eś|aś|eś (~aś)}} o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
 
 # Edit page toolbar
@@ -773,7 +773,7 @@ Być może właśnie {{GENDER:|zmieniłeś|zmieniłaś}} swoje hasło lub {{GEND
 'showdiff'                         => 'Podgląd zmian',
 'anoneditwarning'                  => "'''Uwaga:''' Nie jesteś {{GENDER:|zalogowany|zalogowana}}.
 Twój adres IP zostanie zapisany w historii edycji strony.",
-'missingsummary'                   => "'''Uwaga:''' Nie {{GENDER:|wprowadziłeś|wprowadziłaś}} opisu zmian.
+'missingsummary'                   => "'''Uwaga:''' Nie {{GENDER:|wprowadziłeś|wprowadziłaś|wprowadzono}} opisu zmian.
 Jeżeli nie chcesz go wprowadzać, naciśnij przycisk „Zapisz” jeszcze raz.",
 'missingcommenttext'               => 'Wprowadź komentarz poniżej.',
 'missingcommentheader'             => "'''Uwaga:''' Treść nagłówka jest pusta – uzupełnij go!
@@ -841,7 +841,7 @@ Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych str
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
 lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane logi].</span>',
 'userpage-userdoesnotexist'        => 'Użytkownik „$1” nie jest zarejestrowany.
-Upewnij się, czy na pewno {{GENDER:|zamierzałeś|zamierzałaś}} utworzyć lub zmodyfikować właśnie tę stronę.',
+Upewnij się, czy na pewno zamierzał{{GENDER:|eś|aś|eś (~aś)}} utworzyć lub zmodyfikować właśnie tę stronę.',
 'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
@@ -850,8 +850,8 @@ Ostatni wpis rejestru blokad jest pokazany poniżej.',
 *'''Konqueror –''' kliknij przycisk ''Odśwież'' lub wciśnij ''F5''
 *'''Opera –''' wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''
 *'''Internet Explorer –''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5''",
-'usercssyoucanpreview'             => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.",
-'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.",
+'usercssyoucanpreview'             => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
+'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
 'userjspreview'                    => "'''Pamiętaj, że to tylko podgląd Twojego kodu JavaScript – nic jeszcze nie zostało zapisane!'''",
 'userinvalidcssjstitle'            => "'''Uwaga:''' Brak skórki o nazwie „$1”.
@@ -1036,9 +1036,9 @@ Jako administrator możesz zobaczyć porównanie. Szczegóły mogą znajdować s
 'revdelete-nooldid-text'      => 'Nie wybrano wersji, na których ma zostać wykonana ta operacja,
 wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 'revdelete-nologtype-title'   => 'Brak typu rejestru',
-'revdelete-nologtype-text'    => 'Nie {{GENDER:|określiłeś|określiłaś}} rodzaju rejestru do przeprowadzenia tej operacji.',
+'revdelete-nologtype-text'    => 'Nie określił{{GENDER:|eś|aś|eś (~aś)}} rodzaju rejestru do przeprowadzenia tej operacji.',
 'revdelete-nologid-title'     => 'Nieprawidłowy wpis w rejestrze',
-'revdelete-nologid-text'      => 'Albo nie {{GENDER:|określiłeś|określiłaś}} wpisu w rejestrze do przeprowadzenia operacji albo wybrany wpis nie istnieje.',
+'revdelete-nologid-text'      => 'Nie określił{{GENDER:|eś|aś|eś (~aś)}} wpisu w rejestrze do przeprowadzenia operacji albo wybrany wpis nie istnieje.',
 'revdelete-no-file'           => 'Wybrany plik nie istnieje.',
 'revdelete-show-file-confirm' => 'Czy jesteś pewien, że chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 o $3?',
 'revdelete-show-file-submit'  => 'Tak',
@@ -1240,7 +1240,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-watchlist-token'         => 'Identyfikator listy obserwowanych',
 'prefs-misc'                    => 'Ustawienia różne',
 'prefs-resetpass'               => 'Zmień hasło',
-'prefs-email'                   => 'E-mail',
+'prefs-email'                   => 'E‐mail',
 'prefs-rendering'               => 'Wygląd',
 'saveprefs'                     => 'Zapisz',
 'resetprefs'                    => 'Cofnij niezapisane zmiany',
@@ -1289,7 +1289,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'prefs-custom-js'               => 'własny JavaScript',
 'prefs-reset-intro'             => 'Na tej stronie można przywrócić domyślne ustawienia preferencji dla tej witryny.
 Tej operacji nie można później cofnąć.',
-'prefs-emailconfirm-label'      => 'Potwierdzenie adresu e-mail –',
+'prefs-emailconfirm-label'      => 'Potwierdzenie adresu e‐mail –',
 'prefs-textboxsize'             => 'Rozmiar okna edycji',
 'youremail'                     => 'Twój adres e‐mail',
 'username'                      => 'Nazwa użytkownika',
@@ -1578,9 +1578,9 @@ Sprawdź, czy nazwa jest prawidłowa.',
 'fileexists'                  => "Plik o takiej nazwie już istnieje.
 Sprawdź '''<tt>[[:$1]]</tt>''', jeśli nie jesteś pewien czy chcesz go zastąpić.
 [[$1|thumb]]",
-'filepageexists'              => "Istnieje już strona opisu tego pliku utworzona '''<tt>[[:$1]]</tt>''', ale brak obecnie pliku o tej nazwie.
-Informacje o pliku, które {{GENDER:|wprowadziłeś|wprowadziłaś}}, nie pojawią się na stronie opisu.
-Jeśli chcesz, by informacje te zostały pokazane, musisz je ręcznie przeredagować.
+'filepageexists'              => "Istnieje już strona opisu tego pliku, została utworzona '''<tt>[[:$1]]</tt>''', ale brak jest pliku o tej nazwie.
+Informacje, które wprowadzasz o przesyłanym pliku, nie pojawią się na jego stronie opisu.
+Jeśli chcesz, by się tam pojawiły, musisz później, ręcznie przeredagować stronę opisu.
 [[$1|thumb]]",
 'fileexists-extension'        => "Plik o podobnej nazwie już istnieje: [[$2|thumb]]
 * Nazwa przesyłanego pliku: '''<tt>[[:$1]]</tt>'''
@@ -1588,7 +1588,7 @@ Jeśli chcesz, by informacje te zostały pokazane, musisz je ręcznie przeredago
 Wybierz inną nazwę.",
 'fileexists-thumbnail-yes'    => "Plik wydaje się być pomniejszoną grafiką ''(miniaturką)''. [[$1|thumb]]
 Sprawdź plik '''<tt>[[:$1]]</tt>'''.
-Jeśli wybrany plik jest tą samą grafiką co ta w oryginalnym rozmiarze, nie musisz przesyłać dodatkowej miniaturki.",
+Jeśli wybrany plik jest tą samą grafiką co ta w rozmiarze pierwotnym, nie musisz przesyłać dodatkowej miniaturki.",
 'file-thumbnail-no'           => "Nazwa pliku zaczyna się od '''<tt>$1</tt>'''.
 Wydaje się, że jest to pomniejszona grafika ''(miniaturka)''.
 Jeśli posiadasz tę grafikę w pełnym rozmiarze – prześlij ją. Jeśli chcesz wysłać tę – zmień nazwę przesyłanego obecnie pliku.",
@@ -1610,7 +1610,7 @@ Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'uploadscripted'              => 'Plik zawiera kod HTML lub skrypt, który może zostać błędnie zinterpretowany przez przeglądarkę internetową.',
 'uploadvirus'                 => 'W pliku jest wirus! Szczegóły: $1',
 'upload-source'               => 'Plik źródłowy',
-'sourcefilename'              => 'Nazwa oryginalna',
+'sourcefilename'              => 'Nazwa pierwotna',
 'sourceurl'                   => 'Źródłowy adres URL',
 'destfilename'                => 'Nazwa docelowa',
 'upload-maxfilesize'          => 'Wielkość pliku ograniczona jest do $1',
@@ -1750,7 +1750,7 @@ Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
 'filerevert'                => 'Przywracanie $1',
 'filerevert-legend'         => 'Przywracanie poprzedniej wersji pliku',
 'filerevert-intro'          => "Zamierzasz przywrócić '''[[Media:$1|$1]]''' do [wersji $4 z $3, $2].",
-'filerevert-comment'        => 'Komentarz',
+'filerevert-comment'        => 'Powód',
 'filerevert-defaultcomment' => 'Przywrócono wersję z $2, $1',
 'filerevert-submit'         => 'Przywróć',
 'filerevert-success'        => "Plik '''[[Media:$1|$1]]''' został cofnięty do [wersji $4 z $3, $2].",
@@ -2251,7 +2251,7 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeleteviewlink'             => 'pokaż',
 'undeletereset'                => 'Wyczyść',
 'undeleteinvert'               => 'Odwróć zaznaczenie',
-'undeletecomment'              => 'Komentarz',
+'undeletecomment'              => 'Powód',
 'undeletedarticle'             => 'odtworzył [[$1]]',
 'undeletedrevisions'           => 'odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
 'undeletedrevisions-files'     => 'odtworzono $1 {{PLURAL:$1|wersję|wersje|wersji}} i $2 {{PLURAL:$2|plik|pliki|plików}}',
@@ -2451,7 +2451,7 @@ Potwierdź, że to jest zgodne z Twoimi zamiarami, i że odblokujesz bazę danyc
 'unlockconfirm'       => 'Tak, naprawdę chcę odblokować bazę danych.',
 'lockbtn'             => 'Zablokuj bazę danych',
 'unlockbtn'           => 'Odblokuj bazę danych',
-'locknoconfirm'       => 'Nie {{GENDER:|zaznaczyłeś|zaznaczyłaś}} potwierdzenia.',
+'locknoconfirm'       => 'Nie zaznaczył{{GENDER:|eś|aś|eś (~aś)}} potwierdzenia.',
 'lockdbsuccesssub'    => 'Baza danych została pomyślnie zablokowana',
 'unlockdbsuccesssub'  => 'Blokada bazy danych została zdjęta',
 'lockdbsuccesstext'   => 'Baza danych została zablokowana.<br />
@@ -2860,9 +2860,9 @@ Jeśli go otworzysz, możesz zarazić swój system.<hr />",
 'sp-newimages-showfrom' => 'pokaż nowe pliki począwszy od $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => ' s',
-'minutes-abbrev' => ' m',
-'hours-abbrev'   => ' g',
+'seconds-abbrev' => '&nbsp;s',
+'minutes-abbrev' => '&nbsp;min',
+'hours-abbrev'   => '&nbsp;h',
 
 # Bad image list
 'bad_image_list' => 'Dane należy wprowadzić w formacie:
@@ -2936,6 +2936,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-exposuretime'                => 'Czas ekspozycji',
 'exif-exposuretime-format'         => '$1 s ($2)',
 'exif-fnumber'                     => 'Wartość przysłony',
+'exif-fnumber-format'              => 'f&nbsp;/&nbsp;$1',
 'exif-exposureprogram'             => 'Program ekspozycji',
 'exif-spectralsensitivity'         => 'Czułość widmowa',
 'exif-isospeedratings'             => 'Szybkość aparatu zgodnie z ISO12232',
@@ -2950,6 +2951,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-lightsource'                 => 'Rodzaj źródła światła',
 'exif-flash'                       => 'Lampa błyskowa',
 'exif-focallength'                 => 'Długość ogniskowej obiektywu',
+'exif-focallength-format'          => '$1&nbsp;mm',
 'exif-subjectarea'                 => 'Położenie i obszar głównego motywu obrazu',
 'exif-flashenergy'                 => 'Energia lampy błyskowej',
 'exif-spatialfrequencyresponse'    => 'Odpowiedź częstotliwości przestrzennej zgodnie z ISO12233',
@@ -3023,6 +3025,9 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 'exif-planarconfiguration-1' => 'format masywny',
 'exif-planarconfiguration-2' => 'format powierzchniowy',
+
+'exif-xyresolution-i' => '$1&nbsp;punktów na cal',
+'exif-xyresolution-c' => '$1&nbsp;punktów na centymetr',
 
 'exif-componentsconfiguration-0' => 'nie istnieje',
 
@@ -3169,7 +3174,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 Wciśnij przycisk poniżej aby wysłać na swój adres list z linkiem do strony WWW.
 List będzie zawierał link do strony, w którym zakodowany będzie identyfikator.
 Otwórz ten link w przeglądarce, czym potwierdzisz, że jesteś użytkownikiem tego adresu e‐mail.',
-'confirmemail_pending'     => 'Kod potwierdzenia został właśnie do Ciebie wysłany. Jeśli {{GENDER:|zarejestrowałeś|zarejestrowałaś}} się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.',
+'confirmemail_pending'     => 'Kod potwierdzenia został właśnie do Ciebie wysłany. Jeśli zarejestrował{{GENDER:|eś|aś|eś (~aś)}} się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.',
 'confirmemail_send'        => 'Wyślij kod potwierdzenia',
 'confirmemail_sent'        => 'Wiadomość e‐mail z kodem uwierzytelniającym została wysłana.',
 'confirmemail_oncreate'    => 'Link z kodem potwierdzenia został wysłany na Twój adres e‐mail.
@@ -3228,6 +3233,10 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'confirm-purge-top'    => 'Wyczyścić pamięć podręczną dla tej strony?',
 'confirm-purge-bottom' => 'Odświeżenie strony wyczyści pamięć podręczną i wymusi pokazanie jej aktualnej wersji.',
 
+# Separators for various lists, etc.
+'autocomment-prefix' => '–&#32;',
+'percent'            => '$1&nbsp;%',
+
 # Multipage image navigation
 'imgmultipageprev' => '← poprzednia strona',
 'imgmultipagenext' => 'następna strona →',
@@ -3252,7 +3261,10 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'autosumm-new'     => 'Utworzył nową stronę „$1”',
 
 # Size units
-'size-kilobytes' => '$1 kB',
+'size-bytes'     => '$1&nbsp;B',
+'size-kilobytes' => '$1&nbsp;kB',
+'size-megabytes' => '$1&nbsp;MB',
+'size-gigabytes' => '$1&nbsp;GB',
 
 # Live preview
 'livepreview-loading' => 'Trwa ładowanie…',
@@ -3270,7 +3282,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'watchlistedit-normal-title'   => 'Edytuj listę obserwowanych stron',
 'watchlistedit-normal-legend'  => 'Usuń strony z listy obserwowanych',
 'watchlistedit-normal-explain' => 'Poniżej znajduje się lista obserwowanych przez Ciebie stron.
-Aby usunąć obserwowaną stronę z listy zaznacz znajdujące się obok niej pole i naciśnij „Usuń zaznaczone pozycje”.
+Aby usunąć stronę z listy zaznacz znajdujące się obok niej pole i naciśnij „{{int:Watchlistedit-normal-submit}}”.
 Możesz także skorzystać z [[Special:Watchlist/raw|tekstowego edytora listy obserwowanych]].',
 'watchlistedit-normal-submit'  => 'Usuń zaznaczone z listy',
 'watchlistedit-normal-done'    => 'Z Twojej listy obserwowanych {{PLURAL:$1|została usunięta 1 strona|zostały usunięte $1 strony|zostało usuniętych $1 stron}}:',

@@ -905,8 +905,8 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
-'userjsyoucanpreview'              => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
+'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
+'userjsyoucanpreview'              => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
 Den har inte sparats än!'''",
 'userjspreview'                    => "'''Kom ihåg att du bara testar/förhandsgranskar ditt JavaScript, det har inte sparats än!'''",
@@ -1807,7 +1807,7 @@ Beskrivningen på dess [$2 filbeskrivningssida] visas nedan.',
 'filerevert'                => 'Återställ $1',
 'filerevert-legend'         => 'Återställ fil',
 'filerevert-intro'          => "Du återställer '''[[Media:$1|$1]]''' till [$4 versionen från $2 kl. $3].",
-'filerevert-comment'        => 'Kommentar:',
+'filerevert-comment'        => 'Anledning:',
 'filerevert-defaultcomment' => 'Återställer till versionen från $1 kl. $2.',
 'filerevert-submit'         => 'Återställ',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' har återställts till [$4 versionen från $2 kl. $3].",
@@ -2298,7 +2298,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeleteviewlink'             => 'visa',
 'undeletereset'                => 'Rensa',
 'undeleteinvert'               => 'Invertera urval',
-'undeletecomment'              => 'Kommentar:',
+'undeletecomment'              => 'Anledning:',
 'undeletedarticle'             => 'återställde "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|en version återställd|$1 versioner återställda}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|version|versioner}} och $2 {{PLURAL:$2|fil|filer}} återställda',
@@ -3302,16 +3302,16 @@ Pröva vanlig förhandsgranskning istället.',
 'watchlistedit-noitems'        => 'Din bevakningslista innehåller inga sidor.',
 'watchlistedit-normal-title'   => 'Redigera bevakningslista',
 'watchlistedit-normal-legend'  => 'Ta bort sidor från bevakningslistan',
-'watchlistedit-normal-explain' => 'Sidorna i din bevakningslista visas nedan.
-För att ta bort en sida, kryssa i rutan intill den, och tryck på "Ta bort sidor".
-Du kan även [[Special:Watchlist/raw|redigera listan i råformat]].',
+'watchlistedit-normal-explain' => 'Titlar på din bevakningslista visas nedan.
+För att ta bort en titel, markera rutan bredvid den och klicka på "{{int:Watchlistedit-normal-submit}}".
+Du kan också [[Special:Watchlist/raw|redigera listan i råformat]].',
 'watchlistedit-normal-submit'  => 'Ta bort sidor',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 sida|$1 sidor}} togs bort från din bevakningslista:',
 'watchlistedit-raw-title'      => 'Redigera bevakningslistan i råformat',
 'watchlistedit-raw-legend'     => 'Redigera bevakningslistan i råformat',
-'watchlistedit-raw-explain'    => 'Sidorna i din bevakningslista visas här nedanför, och kan redigeras genom att lägga till och ta bort från listan;
-en sida per rad.
-Tryck på "Uppdatera bevakningslista", när du är färdig.
+'watchlistedit-raw-explain'    => 'Titlar på din bevakningslista visas nedan, och kan redigeras genom att lägga till och ta bort från listan;
+en titel per rad.
+När du är klar klickar du på "{{int:Watchlistedit-raw-submit}}".
 Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
 'watchlistedit-raw-titles'     => 'Sidor:',
 'watchlistedit-raw-submit'     => 'Uppdatera bevakningslistan',

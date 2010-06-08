@@ -16,6 +16,7 @@
  * @author Nguyễn Thanh Quang
  * @author Thaisk
  * @author Tmct
+ * @author Trần Nguyễn Minh Huy
  * @author Trần Thế Trung
  * @author Tttrung
  * @author Vietbio
@@ -854,8 +855,8 @@ hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'userpage-userdoesnotexist-view'   => 'Tài khoản “$1” chưa được đăng ký.',
 'blocked-notice-logextract'        => 'Người dùng này hiện đang bị cấm sửa đổi. Nhật trình cấm gần nhất được ghi ở dưới để tiện theo dõi:',
 'clearyourcache'                   => "'''Ghi chú&nbsp;– Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (<span title=\"Command\">⌘</span>''R'' trên Macintosh); '''Konqueror:''' nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Mẹo:''' Sử dụng nút “Xem thử” để kiểm thử trang CSS của bạn trước khi lưu trang.",
-'userjsyoucanpreview'              => "'''Mẹo:''' Sử dụng nút “Xem thử” để kiểm thử trang JS của bạn trước khi lưu trang.",
+'usercssyoucanpreview'             => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản CSS của bạn trước khi lưu trang.",
+'userjsyoucanpreview'              => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản JS của bạn trước khi lưu trang.",
 'usercsspreview'                   => "'''Hãy nhớ rằng bạn chỉ đang xem thử trang CSS cá nhân của bạn.
 Nó chưa được lưu!'''",
 'userjspreview'                    => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử trang JavaScript, nó chưa được lưu!'''",
@@ -877,7 +878,7 @@ Nếu vẫn không thành công, bạn hãy thử [[Special:UserLogout|đăng xu
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.'''",
 'editing'                          => 'Sửa đổi $1',
-'editingsection'                   => 'Sửa đổi $1',
+'editingsection'                   => 'Sửa đổi $1 (đề mục)',
 'editingcomment'                   => 'Sửa đổi $1 (đề mục mới)',
 'editconflict'                     => 'Sửa đổi mâu thuẫn: $1',
 'explainconflict'                  => "Trang này có đã được lưu bởi người khác sau khi bạn bắt đầu sửa.
@@ -1355,7 +1356,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'group-user'          => 'Thành viên thông thường',
 'group-autoconfirmed' => 'Thành viên tự xác nhận',
 'group-bot'           => 'Robot',
-'group-sysop'         => 'Quản lý',
+'group-sysop'         => 'Bảo quản viên',
 'group-bureaucrat'    => 'Hành chính viên',
 'group-suppress'      => 'Giám sát viên',
 'group-all'           => '(tất cả)',
@@ -1363,7 +1364,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'group-user-member'          => 'Thành viên',
 'group-autoconfirmed-member' => 'Thành viên tự động xác nhận',
 'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Quản lý',
+'group-sysop-member'         => 'bảo quản viên',
 'group-bureaucrat-member'    => 'Hành chính viên',
 'group-suppress-member'      => 'Giám sát viên',
 
@@ -1980,7 +1981,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'newuserlogpage'              => 'Nhật trình mở tài khoản',
 'newuserlogpagetext'          => 'Đây là danh sách những tài khoản thành viên mở lên gần đây.',
 'newuserlog-byemail'          => 'gửi mật khẩu qua thư điện tử',
-'newuserlog-create-entry'     => 'Tài khoản mới',
+'newuserlog-create-entry'     => 'đã mở tài khoản mới',
 'newuserlog-create2-entry'    => 'đã tạo tài khoản mới với tên $1',
 'newuserlog-autocreate-entry' => 'Tài khoản được tạo tự động',
 

@@ -735,10 +735,10 @@ Le motif avancé est « ''$2'' ».",
 'virus-unknownscanner' => 'antivirus inconnu :',
 
 # Login and logout pages
-'logouttext'                 => "'''Vous êtes à présent déconnecté{{GENDER:||e|(e)}}.'''
+'logouttext'                 => "'''Vous êtes à présent déconnecté(e).'''
 
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, [[Special:UserLogin|vous reconnecter]] sous le même nom ou un autre.
-Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté{{GENDER:||e|(e)}}, jusqu’à ce que vous effaciez le cache de votre navigateur.",
+Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu’à ce que vous effaciez le cache de votre navigateur.",
 'welcomecreation'            => '== Bienvenue, $1 ! ==
 
 Votre compte a été créé.
@@ -772,7 +772,7 @@ Veuillez en choisir un autre.',
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle'          => 'Connexion réussie',
-'loginsuccess'               => 'Vous êtes maintenant connecté{{GENDER:||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
+'loginsuccess'               => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
 'nosuchuser'                 => 'L’utilisateur « $1 » n’existe pas.
 Les noms d’utilisateurs sont sensibles à la casse.
 Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].',
@@ -946,7 +946,7 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant sur le bouton ''Actualiser'' (''Reload'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ;
 '''Internet Explorer / Opera :''' maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille CSS avant de l’enregistrer.",
-'userjsyoucanpreview'              => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille JS avant de l’enregistrer.",
+'userjsyoucanpreview'              => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille JavaScript avant de l’enregistrer.",
 'usercsspreview'                   => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''
 '''Elle n’a pas encore été enregistrée !'''",
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
@@ -1112,9 +1112,9 @@ En tant qu’administrateur vous pouvez toujours [$1 voir cette différence] si 
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].
 En tant qu’administrateur, vous pouvez toujours [$1 voir ce diff] si vous souhaitez poursuivre.",
 'rev-deleted-diff-view'       => "Une des révisions de ce diff a été '''supprimée'''.
-En tant qu’administrateur vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
+En tant qu’administrateur, vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'rev-suppressed-diff-view'    => "Une des révisions de ce diff a été '''effacée'''.
-En tant qu’administrateur vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des effacements].",
+En tant qu’administrateur, vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-delundel'                => 'afficher/masquer',
 'rev-showdeleted'             => 'afficher',
 'revisiondelete'              => 'Supprimer ou restaurer des événements',
@@ -1498,9 +1498,9 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-protect'               => 'Modifier le niveau de protection des pages et modifier les pages protégées',
 'right-editprotected'         => 'Modifier les pages protégées (sans protection en cascade)',
 'right-editinterface'         => 'Modifier l’interface utilisateur',
-'right-editusercssjs'         => 'Modifier les fichiers CSS et JS d’autres utilisateurs',
+'right-editusercssjs'         => 'Modifier les fichiers CSS et JavaScript d’autres utilisateurs',
 'right-editusercss'           => 'Modifier les fichiers CSS d’autres utilisateurs',
-'right-edituserjs'            => 'Modifier les fichiers JS d’autres utilisateurs',
+'right-edituserjs'            => 'Modifier les fichiers JavaScript d’autres utilisateurs',
 'right-rollback'              => 'Révoquer rapidement les modifications du dernier contributeur d’une page particulière',
 'right-markbotedits'          => 'Marquer des modifications révoquées comme ayant été faites par un robot.',
 'right-noratelimit'           => 'Ne pas être affecté par les limites de taux',
@@ -1830,7 +1830,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'filerevert'                => 'Rétablir $1',
 'filerevert-legend'         => 'Rétablir le fichier',
 'filerevert-intro'          => "Vous êtes sur le point de rétablir le fichier '''[[Media:$1|$1]]''' à la [$4 version du $2 à $3].",
-'filerevert-comment'        => 'Commentaire :',
+'filerevert-comment'        => 'Motif :',
 'filerevert-defaultcomment' => 'Version du $1 à $2 rétablie',
 'filerevert-submit'         => 'Rétablir',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' a été rétabli à [$4 la version du $2 à $3].",
@@ -2332,7 +2332,7 @@ Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou sup
 'undeleteviewlink'             => 'voir',
 'undeletereset'                => 'Réinitialiser',
 'undeleteinvert'               => 'Inverser la sélection',
-'undeletecomment'              => 'Résumé :',
+'undeletecomment'              => 'Motif :',
 'undeletedarticle'             => 'a restauré « [[$1]] »',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|version restaurée|versions restaurées}}',
 'undeletedrevisions-files'     => '$1 version{{PLURAL:$1||s}} et $2 fichier{{PLURAL:$2||s}} restauré{{PLURAL:$2||s}}',

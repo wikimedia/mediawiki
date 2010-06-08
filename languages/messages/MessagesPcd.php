@@ -220,6 +220,7 @@ $messages = array(
 'helppage'             => 'Help:Étnus',
 'mainpage'             => 'Moaite Pache',
 'mainpage-description' => 'Moaite Pache',
+'portal'               => 'Portal del conmeunauté',
 'privacy'              => "Politique d'éscrè",
 'privacypage'          => "Project:Politique d'éscrè",
 
@@ -322,6 +323,7 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 
 j'm'escuse mais i feut prinde un aute nom.",
 'loginerror'              => 'Bérlurache del intrée',
+'noname'                  => "Os n'avez poin donné un nom d'uzeu valabe.",
 'loginsuccess'            => "'''Achteur os ètes intré{{GENDER:||e|(e)}} din {{SITENAME}} conme \"\$1\".'''",
 'nouserspecified'         => "Os dvez intrer un nom d'uzeu.",
 'mailmypassword'          => "Imèle un nouvieu mot d'passe",
@@ -329,6 +331,15 @@ j'm'escuse mais i feut prinde un aute nom.",
 'noemail'                 => "I n'y o poin d'adél pou echl' uzeu  « $1 ».",
 'accountcreated'          => "Ch'conpte est créé",
 'accountcreatedtext'      => "Ech conpte d'uzeu pou $1 o té créé.",
+'loginlanguagelabel'      => 'Langache: $1',
+
+# Password reset dialog
+'resetpass'                 => "Canger ch'mot d'passe",
+'resetpass_header'          => "Canger ch'mot d'passe dech conpte",
+'oldpassword'               => "Anthiu mot d'passe:",
+'newpassword'               => "Nouvieu mot d'passe:",
+'resetpass_forbidden'       => "Chés mots d'passe is n'peu'te poin ète cangés",
+'resetpass-submit-loggedin' => "Canger ch'mot d'passe",
 
 # Edit page toolbar
 'bold_sample'     => 'Cros teske',

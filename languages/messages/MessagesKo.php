@@ -855,8 +855,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
 
 '''모질라 / 파이어폭스 / 사파리''': Shift 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5 또는 Ctrl-R 을 입력 (매킨토시에서는 Command-R); '''컨커러''': 새로고침을 클릭하거나 F5를 입력; '''오페라''': 도구→설정에서 캐시를 비움; '''인터넷 익스플로러''': Ctrl 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5를 입력.",
-'usercssyoucanpreview'             => "'''안내''': CSS 문서를 저장하기 전에 ‘미리 보기’ 기능을 통해 작동을 확인해주세요.",
-'userjsyoucanpreview'              => "'''안내''': JS 문서를 저장하기 전에 ‘미리 보기’ 기능을 통해 작동을 확인해주세요.",
+'usercssyoucanpreview'             => "'''안내''': CSS 문서를 저장하기 전에 ‘{{int:showpreview}}’ 기능을 통해 작동을 확인해주세요.",
+'userjsyoucanpreview'              => "'''안내''': JS 문서를 저장하기 전에 ‘{{int:showpreview}}’ 기능을 통해 작동을 확인해주세요.",
 'usercsspreview'                   => "'''이것은 사용자 CSS의 미리 보기이며, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userjspreview'                    => "'''이것은 자바스크립트 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userinvalidcssjstitle'            => "'''경고''': ‘$1’ 스킨은 없습니다.
@@ -1742,7 +1742,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filerevert'                => '$1 되돌리기',
 'filerevert-legend'         => '파일 되돌리기',
 'filerevert-intro'          => "'''[[Media:$1|$1]]''' 파일을 [$4 $2 $3 버전]으로 되돌립니다.",
-'filerevert-comment'        => '내용:',
+'filerevert-comment'        => '이유:',
 'filerevert-defaultcomment' => '$1 $2 버전으로 되돌림',
 'filerevert-submit'         => '되돌리기',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' 파일을 [$4 $2 $3 버전]으로 되돌렸습니다.",
@@ -1823,7 +1823,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 'doubleredirects'            => '이중 넘겨주기 목록',
 'doubleredirectstext'        => '이 문서는 다른 넘겨주기 문서로 넘겨주고 있는 문서의 목록입니다.
-매 줄에는 첫번째 문서와 두번째 문서의 링크가 있습니다. 그리고 보통 첫번째 문서가 넘겨주어야 할 "실제" 문서인 두번째 넘겨주기의 대상이 있습니다.
+매 줄에는 첫 번째 문서와 두 번째 문서의 링크가 있습니다. 그리고 보통 첫 번째 문서가 넘겨주어야 할 "실제" 문서인 두 번째 넘겨주기의 대상이 있습니다.
 <s>취소선이 그인</s> 부분은 이미 해결되었습니다.',
 'double-redirect-fixed-move' => '[[$1]] 문서를 옮겼습니다. 이 문서는 이제 [[$2]] 문서로 넘겨줍니다.',
 'double-redirect-fixer'      => '넘겨주기 수리꾼',
@@ -2233,7 +2233,7 @@ $UNWATCHURL
 'undeleteviewlink'             => '보기',
 'undeletereset'                => '초기화',
 'undeleteinvert'               => '선택 반전',
-'undeletecomment'              => '설명:',
+'undeletecomment'              => '이유:',
 'undeletedarticle'             => '"[[$1]]" 문서를 복구하였습니다.',
 'undeletedrevisions'           => '판 $1개를 복구했습니다',
 'undeletedrevisions-files'     => '판 $1개와 파일 $2개를 복구했습니다.',

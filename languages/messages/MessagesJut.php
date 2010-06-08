@@ -635,7 +635,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'addedwatch'        => 'Tilføjet til din åvervågnengsliste',
 'addedwatchtext'    => "Æ side \"[[:\$1]]\" er blevet tilføjet til din [[Special:Watchlist|åvervågningsliste]]. Fremtidige ændrenger til denne side og den tilhørende diskusjeside hvil bleve listet der, og æ side hvil fremstå '''fremhævet''' i'n [[Special:RecentChanges|liste ve de seneste ændrenger]] før at gøre det lettere at finde den. Hves du senere hvilst fjerne'n side frå din åvervågningsliste, så klik \"Fjern åvervågnenge\".",
 'removedwatch'      => 'Fjernet frå åvervågnengsliste',
-'removedwatchtext'  => 'Æ side "<nowiki>$1</nowiki>" er blevet fjernet frå din åvervågnengsliste.',
+'removedwatchtext'  => 'Æ side "[[:$1]]" er blevet fjernet frå din åvervågnengsliste.',
 'watch'             => 'Åvervåg',
 'watchthispage'     => 'Åvervåg side',
 'unwatch'           => 'Fjern åvervågnenge',

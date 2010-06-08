@@ -712,7 +712,7 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'contextlines'                => 'Righe di testo da mostrare per ciascun risultato',
 'contextchars'                => 'Caratteri per linea',
 'recentchangescount'          => 'Nùmeru de acontzos de amostare pro definidura:',
-'savedprefs'                  => 'Le tue preferenze sono state salvate.',
+'savedprefs'                  => 'Is preferèntzias tuas sunt stadas sarbadas.',
 'localtime'                   => 'Ora locale:',
 'timezoneoffset'              => 'Diferèntzia¹:',
 'timezoneregion-africa'       => 'Àfrica',
@@ -920,7 +920,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 
 # File reversion
 'filerevert-backlink' => '← $1',
-'filerevert-comment'  => 'Cummentu:',
+'filerevert-comment'  => 'Motivu:',
 
 # File deletion
 'filedelete'                  => 'Cantzella $1',
@@ -1170,7 +1170,7 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is revisiones recupera
 'undeletelink'              => 'càstia/riprìstina',
 'undeleteviewlink'          => 'abbista',
 'undeleteinvert'            => 'Fùrria sa seletzione',
-'undeletecomment'           => 'Cummentu:',
+'undeletecomment'           => 'Motivu:',
 'undeletedarticle'          => 'at restauradu "$1"',
 'undelete-search-box'       => 'Chirca pàginas fuliadas',
 'undelete-search-prefix'    => 'Ammustra is pàginas ca su tìtulu cumentzat cun:',

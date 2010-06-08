@@ -1770,7 +1770,7 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'filerevert'                => '$1 weerummedreien',
 'filerevert-legend'         => 'Bestaand weerummezetten',
 'filerevert-intro'          => "Je bin '''[[Media:$1|$1]]''' an 't weerummedreien tot de [$4 versie van $2, $3]",
-'filerevert-comment'        => 'Opmarkingen:',
+'filerevert-comment'        => 'Reden:',
 'filerevert-defaultcomment' => 'Weerummedreid tot de versie van $1, $2',
 'filerevert-submit'         => 'Weerummedreien',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' is weerummedreid naor de [$4 versie op $2, $3]</span>.',
@@ -2124,6 +2124,9 @@ Groeten van \'t {{SITENAME}}-waorschuwingssysteem.
 Je kunnen de instellingen van joew volglieste wiezigen op:
 {{fullurl:Special:Watchlist/edit}}
 
+Je kunnen de pagina van joew volglieste ofhaolen deur op de volgende verwiezing te klikken:
+$UNWATCHURL
+
 Opmarkingen en veerdere hulpe:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -2263,7 +2266,7 @@ In dat geval mu-j de leste versie as zichbaor instellen.",
 'undeleteviewlink'             => 'bekieken',
 'undeletereset'                => 'Herstel',
 'undeleteinvert'               => 'Selectie ummekeren',
-'undeletecomment'              => 'Opmarking:',
+'undeletecomment'              => 'Reden:',
 'undeletedarticle'             => '"$1" is weerummeplaos',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} weerummeplaos',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestaand|$2 bestanen}} bin weerummeplaos',
@@ -3223,17 +3226,17 @@ Kiek de pagina op de normale meniere nao.',
 'watchlistedit-noitems'        => 'Joew volglieste is leeg.',
 'watchlistedit-normal-title'   => 'Volglieste bewarken',
 'watchlistedit-normal-legend'  => "Disse pagina's van mien volglieste ofhaolen.",
-'watchlistedit-normal-explain' => "Pagina's dee op joew volglieste staon zie-j hieronder.
-Um een pagina van joew volglieste of te haolen mu-j 't vakjen dernaos anklikken, en klik dan op 'Pagina's derof haolen'.
-Je kunnen oek [[Special:Watchlist/raw|de roewe lieste bewarken]].",
+'watchlistedit-normal-explain' => 'Pagina\'s dee op joew volglieste staon, zie-j hieronder.
+Um een pagina van joew volglieste of te haolen mu-j \'t vakjen dernaos anklikken, en klik dan op "{{int:Watchlistedit-normal-submit}}".
+Je kunnen oek [[Special:Watchlist/raw|de roewe lieste bewarken]].',
 'watchlistedit-normal-submit'  => "Pagina's derof haolen",
 'watchlistedit-normal-done'    => "Der {{PLURAL:$1|is 1 pagina|bin $1 pagina's}} vort-edaon uut joew volglieste:",
 'watchlistedit-raw-title'      => 'Roewe volglieste bewarken',
 'watchlistedit-raw-legend'     => 'Roewe volglieste bewarken',
-'watchlistedit-raw-explain'    => "Hieronder staon pagina’s op joew volglieste. Je kunnen de lieste bewarken deur pagina’s deruut vort te haolen en derbie te te doon. 
+'watchlistedit-raw-explain'    => "Pagina's dee op joew volglieste staon, zie-j hieronder. Je kunnen de lieste bewarken deur pagina's deruut vort te haolen en derbie te te zetten. 
 Eén pagina per regel.
-A-j ree bin, klik dan op ‘Volglieste biewarken’.
-Je kunnen oek [[Special:Watchlist/edit|'t standard bewarkingsscharm gebruken]].",
+A-j klaor bin, klik dan op \"{{int:Watchlistedit-raw-submit}}\".
+Je kunnen oek [[Special:Watchlist/edit|'t standardbewarkingsscharm gebruken]].",
 'watchlistedit-raw-titles'     => 'Titels:',
 'watchlistedit-raw-submit'     => 'Volglieste biewarken',
 'watchlistedit-raw-done'       => 'Joew volglieste is bie-ewörken.',

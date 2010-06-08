@@ -928,8 +928,8 @@ Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných
 'blocked-notice-logextract'        => 'Tento uživatel je momentálně zablokován.
 Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
-'usercssyoucanpreview'             => "'''Tip:''' Použijte tlačítko „Ukázat náhled“ k testování vašeho nového CSS před uložením.",
-'userjsyoucanpreview'              => "'''Tip:''' Použijte tlačítko „Ukázat náhled“ k testování vašeho nového JS před uložením.",
+'usercssyoucanpreview'             => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového CSS před uložením.",
+'userjsyoucanpreview'              => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového JavaScriptu před uložením.",
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
 '''Zatím nebylo uloženo!'''",
 'userjspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho uživatelského JavaScriptu, dosud nebyl uložen!'''",

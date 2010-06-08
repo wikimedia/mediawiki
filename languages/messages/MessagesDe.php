@@ -40,6 +40,7 @@
  * @author Tbleher
  * @author The Evil IP address
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
+ * @author Tischbeinahe
  * @author UV
  * @author Umherirrender
  * @author W (aka Wuzur)
@@ -355,7 +356,7 @@ $messages = array(
 'tog-editsection'             => 'Links zum Bearbeiten einzelner Abschnitte anzeigen',
 'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten (benötigt JavaScript)',
 'tog-showtoc'                 => 'Anzeigen eines Inhaltsverzeichnisses bei Seiten mit mehr als drei Überschriften',
-'tog-rememberpassword'        => 'auf diesem Computer dauerhaft angemeldet bleiben',
+'tog-rememberpassword'        => 'Auf diesem Computer dauerhaft angemeldet bleiben',
 'tog-editwidth'               => 'Eingabefeld erweitern, um den ganzen Bildschirm auszufüllen',
 'tog-watchcreations'          => 'Selbst erstellte Seiten automatisch beobachten',
 'tog-watchdefault'            => 'Selbst geänderte Seiten automatisch beobachten',
@@ -717,7 +718,7 @@ Möglicherweise wurde sie bereits von jemand anders gelöscht.',
 Funktion: $1<br />
 Abfrage: $2',
 'viewsource'           => 'Quelltext anzeigen',
-'viewsourcefor'        => 'für $1',
+'viewsourcefor'        => 'von $1',
 'actionthrottled'      => 'Aktionsanzahl limitiert',
 'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',
@@ -798,7 +799,7 @@ Falls du dies wirklich gewünscht hast, solltest du dich jetzt anmelden und das 
 Das neue Passwort ist {{PLURAL:$5|1 Tag|$5 Tage}} gültig.
 
 Bitte ignoriere diese E-Mail, falls du sie nicht selbst angefordert hast. Das alte Passwort bleibt weiterhin gültig.',
-'noemail'                    => 'Benutzer „$1“ hat keine E-Mail-Adresse angegeben.',
+'noemail'                    => '{{GENDER:$1|Benutzer|Benutzerin|Benutzer}} „$1“ hat keine E-Mail-Adresse angegeben.',
 'noemailcreate'              => 'Du musst eine gültige E-Mail-Adresse angeben',
 'passwordsent'               => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesandt.
 Bitte melde dich damit an, sobald du es erhalten hast. Das alte Passwort bleibt weiterhin gültig.',
@@ -942,14 +943,14 @@ Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|such
 oder in den zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen].</span>',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'userpage-userdoesnotexist-view'   => 'Benutzerkonto „$1“ existiert nicht.',
-'blocked-notice-logextract'        => 'Dieser Benutzer ist zurzeit gesperrt.
+'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
 Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
-'usercssyoucanpreview'             => "'''Tipp:''' Benutze den Vorschau-Button, um dein neues CSS vor dem Speichern zu testen.",
-'userjsyoucanpreview'              => "'''Tipp:''' Benutze den Vorschau-Button, um dein neues JS vor dem Speichern zu testen.",
-'usercsspreview'                   => "== Vorschau Deines Benutzer-CSS ==
+'usercssyoucanpreview'             => "'''Tipp:''' Benutze den „{{int:showpreview}}“-Button, um dein neues CSS vor dem Speichern zu testen.",
+'userjsyoucanpreview'              => "'''Tipp:''' Benutze den „{{int:showpreview}}“-Button, um dein neues JavaScript vor dem Speichern zu testen.",
+'usercsspreview'                   => "== Vorschau deines Benutzer-CSS ==
 '''Beachte:''' Nach dem Speichern musst du deinen Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userjspreview'                    => "== Vorschau Deines Benutzer-JavaScript ==
+'userjspreview'                    => "== Vorschau deines Benutzer-JavaScript ==
 '''Beachte:''' Nach dem Speichern musst du deinen Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userinvalidcssjstitle'            => "'''Achtung:''' Skin „$1“ existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/monobook.css'' an Stelle von ''{{ns:user}}:Mustermann/Monobook.css''.",
 'updated'                          => '(Geändert)',
@@ -1372,7 +1373,7 @@ Hier ein zufällig generierter Wert, den du verwenden kannst: $1',
 'default'                       => 'Voreinstellung',
 'prefs-files'                   => 'Dateien',
 'prefs-custom-css'              => 'Benutzerdefinierte CSS',
-'prefs-custom-js'               => 'Benutzerdefiniertes JS',
+'prefs-custom-js'               => 'Benutzerdefiniertes JavaScript',
 'prefs-reset-intro'             => 'Du kannst diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.
 Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-emailconfirm-label'      => 'E-Mail-Bestätigung:',
@@ -1499,9 +1500,9 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-protect'               => 'Seitenschutzstatus ändern',
 'right-editprotected'         => 'Geschützte Seiten bearbeiten (ohne Kaskadenschutz)',
 'right-editinterface'         => 'Benutzeroberfläche bearbeiten',
-'right-editusercssjs'         => 'Fremde CSS- und JS-Dateien bearbeiten',
+'right-editusercssjs'         => 'Fremde CSS- und JavaScript-Dateien bearbeiten',
 'right-editusercss'           => 'Fremde CSS-Datei bearbeiten',
-'right-edituserjs'            => 'Fremde JS-Datei bearbeiten',
+'right-edituserjs'            => 'Fremde JavaScript-Datei bearbeiten',
 'right-rollback'              => 'Schnelles zurücksetzen',
 'right-markbotedits'          => 'Schnell zurückgesetzte Bearbeitungen als Bot-Bearbeitung markieren',
 'right-noratelimit'           => 'Keine Beschränkung durch Limits',
@@ -2116,7 +2117,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
 'mywatchlist'          => 'Beobachtungsliste',
-'watchlistfor'         => "(für '''$1''')",
+'watchlistfor'         => "(von '''$1''')",
 'nowatchlist'          => 'Du hast keine Einträge auf deiner Beobachtungsliste.',
 'watchlistanontext'    => 'Du musst dich $1, um deine Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',
 'watchnologin'         => 'Du bist nicht angemeldet',
@@ -2521,7 +2522,7 @@ Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernam
 'databasenotlocked'   => 'Die Datenbank ist nicht gesperrt.',
 
 # Move page
-'move-page'                    => 'Verschiebe „$1“',
+'move-page'                    => 'Verschieben von „$1“',
 'move-page-legend'             => 'Seite verschieben',
 'movepagetext'                 => "Mit diesem Formular kannst du eine Seite umbenennen (mitsamt allen Versionen).
 Der alte Titel wird zum neuen weiterleiten.

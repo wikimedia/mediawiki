@@ -909,7 +909,7 @@ Para referência, o último registo de bloqueio é apresentado abaixo:',
 '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5'';
 '''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'');
 '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o novo CSS antes de gravar.",
+'usercssyoucanpreview'             => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo CSS antes de gravar.",
 'userjsyoucanpreview'              => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo JavaScript antes de gravar.",
 'usercsspreview'                   => "'''Lembre-se de que está apenas a antever o seu CSS particular.
 Este ainda não foi gravado!'''",
@@ -1896,7 +1896,7 @@ A descrição na [$2 página de descrição] é mostrada abaixo.',
 'statistics-jobqueue'          => 'Tamanho da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas]',
 'statistics-users'             => '[[Special:ListUsers|Utilizadores]] registados',
 'statistics-users-active'      => 'Utilizadores activos',
-'statistics-users-active-desc' => 'Utilizadores que efectuaram uma ação {{PLURAL:$1|no último dia|nos últimos $1 dias}}',
+'statistics-users-active-desc' => 'Utilizadores que efectuaram uma operação {{PLURAL:$1|no último dia|nos últimos $1 dias}}',
 'statistics-mostpopular'       => 'Páginas mais vistas',
 
 'disambiguations'      => 'Desambiguações',
@@ -3314,7 +3314,7 @@ Confirme que deseja realmente recriar esta página, por favor.",
 # Auto-summaries
 'autosumm-blank'   => 'Limpou toda a página',
 'autosumm-replace' => "Página substituída por '$1'",
-'autoredircomment' => 'Redireccionando para [[$1]]',
+'autoredircomment' => 'Redireccionamento para [[$1]]',
 'autosumm-new'     => "Criou nova página com '$1'",
 
 # Live preview

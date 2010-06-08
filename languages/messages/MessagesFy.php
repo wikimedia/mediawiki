@@ -1761,7 +1761,7 @@ De ûntfanger kin dus daliks nei jo reagearje.',
 
 At jo letter in side net mear folgje wolle, dan brûke jo op dy side de keppeling \"Ferjit dizze side.\" Jo [[Special:Watchlist|folchlist]] hat ek in keppeling \"Jo folchlist bewurkje,\" foar at jo mear as ien side \"ferjitte\" wolle.",
 'removedwatch'       => 'Net mear folgje',
-'removedwatchtext'   => 'De side "<nowiki>$1</nowiki>" stiet net mear op jo folchlist.',
+'removedwatchtext'   => 'De side "[[:$1]]" stiet net mear op jo folchlist.',
 'watch'              => 'Folgje',
 'watchthispage'      => 'Folgje dizze side',
 'unwatch'            => 'Ferjit',

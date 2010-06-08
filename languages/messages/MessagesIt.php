@@ -832,8 +832,8 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'blocked-notice-logextract'        => "Questo utente è attualmente bloccato. 
 L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
 'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Suggerimento:''' si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
-'userjsyoucanpreview'              => "'''Suggerimento:''' si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
+'usercssyoucanpreview'             => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo CSS prima di salvarlo.",
+'userjsyoucanpreview'              => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo JavaScript prima di salvarlo.",
 'usercsspreview'                   => "'''Questa è solo un'anteprima del proprio CSS personale. Le modifiche non sono ancora state salvate!'''",
 'userjspreview'                    => "'''Questa è solo un'anteprima per provare il proprio JavaScript personale; le modifiche non sono ancora state salvate!'''",
 'userinvalidcssjstitle'            => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/monobook.css e non {{ns:user}}:Esempio/Monobook.css.",
@@ -940,13 +940,13 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 # History pages
 'viewpagelogs'           => 'Visualizza i log relativi a questa pagina.',
 'nohistory'              => 'Cronologia delle versioni di questa pagina non reperibile.',
-'currentrev'             => 'Versione corrente',
-'currentrev-asof'        => 'Versione corrente delle $1',
+'currentrev'             => 'Versione attuale',
+'currentrev-asof'        => 'Versione attuale delle $1',
 'revisionasof'           => 'Versione delle $1',
 'revision-info'          => 'Versione delle $1, autore: $2',
 'previousrevision'       => '← Versione meno recente',
 'nextrevision'           => 'Versione più recente →',
-'currentrevisionlink'    => 'Versione corrente',
+'currentrevisionlink'    => 'Versione attuale',
 'cur'                    => 'corr',
 'next'                   => 'succ',
 'last'                   => 'prec',
@@ -954,7 +954,7 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 'page_last'              => 'ultima',
 'histlegend'             => "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.
 
-Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
+Legenda: '''({{int:cur}})''' = differenze con la versione attuale, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
 'history-fieldset-title' => 'Scorri nella cronologia',
 'history-show-deleted'   => 'Solo quelli cancellati',
 'histfirst'              => 'Prima',
@@ -1002,7 +1002,7 @@ In quanto amministratore puoi visualizzare questo confronto di versioni; potrebb
 'rev-showdeleted'             => 'mostra',
 'revisiondelete'              => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'     => 'Versione non specificata',
-'revdelete-nooldid-text'      => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione, la versione specificata non esiste oppure si sta tentando di nascondere la versione corrente.',
+'revdelete-nooldid-text'      => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione, la versione specificata non esiste oppure si sta tentando di nascondere la versione attuale.',
 'revdelete-nologtype-title'   => 'Nessun tipo di registro specificato',
 'revdelete-nologtype-text'    => "Non è stato specificato alcun tipo di registro su cui eseguire l'azione.",
 'revdelete-nologid-title'     => 'Errore di indicazione del log',
@@ -1040,11 +1040,11 @@ $1",
 'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
 'logdelete-failure'           => "'''La visibilità dell'evento non può essere impostata:'''
 $1",
-'revdel-restore'              => 'Cambia la visibilità',
+'revdel-restore'              => 'cambia la visibilità',
 'pagehist'                    => 'Cronologia della pagina',
 'deletedhist'                 => 'Cronologia cancellata',
 'revdelete-content'           => 'contenuto',
-'revdelete-summary'           => 'riassunto della modifica',
+'revdelete-summary'           => 'oggetto della modifica',
 'revdelete-uname'             => 'nome utente',
 'revdelete-restricted'        => 'limitazioni ai soli amministratori attivate',
 'revdelete-unrestricted'      => 'limitazioni ai soli amministratori rimosse',
@@ -1693,7 +1693,7 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 'filerevert'                => 'Ripristina $1',
 'filerevert-legend'         => 'Ripristina file',
 'filerevert-intro'          => "Si sta per ripristinare il file '''[[Media:$1|$1]]''' alla [$4 versione del $2, $3].",
-'filerevert-comment'        => 'Oggetto:',
+'filerevert-comment'        => 'Motivo:',
 'filerevert-defaultcomment' => 'Ripristinata la versione delle $2, $1',
 'filerevert-submit'         => 'Ripristina',
 'filerevert-success'        => "'''Il file [[Media:$1|$1]]''' è stato ripristinato alla [$4 versione del $2, $3].",
@@ -2026,7 +2026,7 @@ la pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED in data $PAGEEDI
 
 $NEWPAGE
 
-Riassunto della modifica, inserito dall\'autore: $PAGESUMMARY $PAGEMINOREDIT
+Oggetto della modifica, inserito dall\'autore: $PAGESUMMARY $PAGEMINOREDIT
 
 Contatta l\'autore della modifica:
 via e-mail: $PAGEEDITOR_EMAIL
@@ -2164,7 +2164,7 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 'undeleteextrahelp'            => "Per recuperare l'intera cronologia della pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reimposta''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',
 'undeletehistory'              => 'Recuperando questa pagina, tutte le sue revisioni verranno ripristinate nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia precedente.',
-'undeleterevdel'               => "Il ripristino non verrà effettuato se determina la cancellazione parziale della versione corrente della pagina o del file interessato. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti.",
+'undeleterevdel'               => "Il ripristino non verrà effettuato se determina la cancellazione parziale della versione attuale della pagina o del file interessato. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti.",
 'undeletehistorynoadmin'       => "Questa pagina è stata cancellata. 
 Il motivo della cancellazione è mostrato qui sotto, assieme ai dettagli dell'utente che ha modificato questa pagina prima della cancellazione. 
 Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.",
@@ -2176,7 +2176,7 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeleteviewlink'             => 'visualizza',
 'undeletereset'                => 'Reimposta',
 'undeleteinvert'               => 'Inverti selezione',
-'undeletecomment'              => 'Commento:',
+'undeletecomment'              => 'Motivo:',
 'undeletedarticle'             => 'ha recuperato "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisione|$1 revisioni}} e $2 file recuperati',
@@ -2457,7 +2457,7 @@ Per favore, scegli un nome diverso.',
 'export'            => 'Esporta pagine',
 'exporttext'        => "È possibile esportare il testo e la cronologia delle modifiche di una pagina o di un gruppo di pagine in formato XML per importarle in altri siti che utilizzano il software MediaWiki, attraverso la [[Special:Import|pagina delle importazioni]].
 
-Per esportare le pagine indicare i titoli nella casella di testo sottostante, uno per riga, e specificare se si desidera ottenere la versione corrente e tutte le versioni precedenti, con i dati della cronologia della pagina, oppure soltanto l'ultima versione e i dati corrispondenti all'ultima modifica.
+Per esportare le pagine indicare i titoli nella casella di testo sottostante, uno per riga, e specificare se si desidera ottenere l'ultima versione e tutte le versioni precedenti, con i dati della cronologia della pagina, oppure soltanto l'ultima versione e i dati corrispondenti all'ultima modifica.
 
 In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] per esportare \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => "Includi solo la revisione attuale, non l'intera cronologia",

@@ -757,8 +757,8 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
 Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove CSS ante de publicar lo.",
-'userjsyoucanpreview'              => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove JS ante de publicar lo.",
+'usercssyoucanpreview'             => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove CSS ante de salveguardar lo.",
+'userjsyoucanpreview'              => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove JavaScript ante de salveguardar lo.",
 'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.'''
 '''Le modificationes non ha ancora essite salveguardate!'''",
 'userjspreview'                    => "'''Non oblida que isto es solmente un test/previsualisation de tu JavaScript personalisate.'''
@@ -1676,7 +1676,7 @@ Le description de su [$2 pagina de description] ibi es monstrate in basso.',
 'filerevert'                => 'Reverter $1',
 'filerevert-legend'         => 'Reverter file',
 'filerevert-intro'          => "Tu reverte '''[[Media:$1|$1]]''' al [$4 version del $3 a $2].",
-'filerevert-comment'        => 'Commento:',
+'filerevert-comment'        => 'Motivo:',
 'filerevert-defaultcomment' => 'Revertite al version del $2 a $1',
 'filerevert-submit'         => 'Reverter',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ha essite revertite al [$4 version del $3 a $2].",
@@ -2190,7 +2190,7 @@ Es possibile que le adresse URL es invalide, o que le version ha essite restaura
 'undeleteviewlink'             => 'vider',
 'undeletereset'                => 'Reinitialisar',
 'undeleteinvert'               => 'Inverter selection',
-'undeletecomment'              => 'Commento:',
+'undeletecomment'              => 'Motivo:',
 'undeletedarticle'             => 'restaurava "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 version|$1 versiones}} restaurate',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 version|$1 versiones}} e {{PLURAL:$2|1 file|$2 files}} restaurate',

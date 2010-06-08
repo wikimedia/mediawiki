@@ -1775,7 +1775,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'filerevert'                => '$1 dosyasını eski haline döndür',
 'filerevert-legend'         => 'Dosyayı eski haline döndür',
 'filerevert-intro'          => "'''[[Media:$1|$1]]''' medyasının [$4 $3, $2 tarihli versiyonu]nu geri getiriyorsunuz.",
-'filerevert-comment'        => 'Yorum:',
+'filerevert-comment'        => 'Neden:',
 'filerevert-defaultcomment' => '$2, $1 tarihli sürüme geri döndürüldü',
 'filerevert-submit'         => 'Eski haline döndür',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' dosyası [$4 $3, $2 tarihli sürüme] geri döndürüldü.",

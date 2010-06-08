@@ -18,6 +18,7 @@
  * @author Hamaryns
  * @author Jens Liebenau
  * @author McDutchie
+ * @author Multichill
  * @author Mwpnl
  * @author Naudefj
  * @author Niels
@@ -540,7 +541,7 @@ $messages = array(
 'viewhelppage'      => 'Hulppagina bekijken',
 'categorypage'      => 'Categoriepagina bekijken',
 'viewtalkpage'      => 'Overlegpagina bekijken',
-'otherlanguages'    => 'Andere talen',
+'otherlanguages'    => 'In andere talen',
 'redirectedfrom'    => '(Doorverwezen vanaf $1)',
 'redirectpagesub'   => 'Doorverwijspagina',
 'lastmodifiedat'    => 'Deze pagina is het laatst bewerkt op $1 om $2.',
@@ -946,8 +947,8 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'clearyourcache'                   => "'''Let op! Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.'''
 
 '''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Huidige pagina vernieuwen'' klikt, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leeg uw cache in ''Extra → Voorkeuren;'' '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Tip:''' Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS te testen alvorens op te slaan.",
-'userjsyoucanpreview'              => "'''Tip:''' Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe JS te testen alvorens op te slaan.",
+'usercssyoucanpreview'             => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om uw nieuwe CSS te testen alvorens op te slaan.",
+'userjsyoucanpreview'              => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om uw nieuwe JavaScript te testen alvorens op te slaan.",
 'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS.
 Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.'''
@@ -1137,7 +1138,7 @@ Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar 
 'rev-delundel'                => 'weergeven/verbergen',
 'rev-showdeleted'             => 'weergeven',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
-'revdelete-nooldid-title'     => 'Geen doelversie',
+'revdelete-nooldid-title'     => 'Ongeldige doelversie',
 'revdelete-nooldid-text'      => 'U hebt geen doelversie(s) voor deze handeling opgegeven, de aangegeven versie bestaat niet, of u probeert de laatste versie te verbergen.',
 'revdelete-nologtype-title'   => 'Er is geen logboektype opgegeven',
 'revdelete-nologtype-text'    => 'U hebt geen logboektype opgegeven om deze handeling op uit te voeren.',
@@ -2159,7 +2160,7 @@ De ontvanger kan dus direct naar u reageren.',
 'emailto'          => 'Aan:',
 'emailsubject'     => 'Onderwerp:',
 'emailmessage'     => 'Bericht:',
-'emailsend'        => 'Versturen',
+'emailsend'        => 'Verzenden',
 'emailccme'        => 'Een kopie van dit bericht naar mijn e-mailadres sturen.',
 'emailccsubject'   => 'Kopie van uw bericht aan $1: $2',
 'emailsent'        => 'E-mail verzonden',

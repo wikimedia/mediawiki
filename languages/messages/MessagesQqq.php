@@ -386,7 +386,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 
 {{Identical|Unprotect}}',
 'unprotectthispage' => '{{Identical|Unprotect this page}}',
-'talkpagelinktext'  => 'Used as name of links going to talk page in some places, like in the subheading of [[Special:Mycontributions|Special:Contributions]], in [[Special:RecentChanges]], and in [[Special:Watchlist]].
+'talkpagelinktext'  => 'Used as name of links going to talk page in some places, like in [[Special:RecentChanges]], [[Special:Allmessages]], [[Special:Logs]], and [[Special:Watchlist/edit]].
 
 {{Identical|Talk}}',
 'personaltools'     => 'Heading for a group of links to your user page, talk page, preferences, watchlist, and contributions. This heading is visible in the sidebar in some skins. For an example, see [http://translatewiki.net/wiki/Main_Page?useskin=simple Main Page using simple skin].',
@@ -589,6 +589,9 @@ HTML markup cannot be used.
 [http://translatewiki.net/w/i.php?title=Translating:Tasks&diff=372398&oldid=371789000 Click here] to see an example of such an error message.',
 'readonly_lag'         => 'Error message displayed when the database is locked.',
 'internalerror'        => '{{Identical|Internal error}}',
+'fileappenderrorread'  => '"Append" is a computer procedure, explained on [http://en.wikipedia.org/wiki/Append Wikipedia].
+
+$1 is a filename, I think.',
 'badtitle'             => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext'         => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.',
 'perfcachedts'         => 'Used on pages that list page lists for which the displayed data is cached. Parameters:
@@ -829,7 +832,7 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 * $1 is the name of the blocked user (optional). Can be used for GENDER.',
 'clearyourcache'                   => 'Text at the top of .js/.css pages',
 'usercssyoucanpreview'             => "Text displayed on every css page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
-'userjsyoucanpreview'              => "Text displayed on every js page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
+'userjsyoucanpreview'              => 'Text displayed on every js page.',
 'updated'                          => '{{Identical|Updated}}',
 'previewnote'                      => 'Note displayed when clicking on Show preview',
 'editing'                          => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
@@ -1135,9 +1138,11 @@ $1 is the number of items shown per page. It is not used when $1 is zero; not su
 
 {{Identical|Next $1}}",
 'viewprevnext'                   => 'This is part of the navigation message on the top and bottom of Special pages which are lists of things, e.g. the User\'s contributions page (in date order) or the list of all categories (in alphabetical order). ($1) and ($2) are either {{msg-mw|Pager-older-n}} and {{msg-mw|Pager-newer-n}} (for date order) or {{msg-mw|Prevn}} and {{msg-mw|Nextn}} (for alphabetical order).
+
 It is also used by [[Special:WhatLinksHere|Whatlinkshere]] pages, where ($1) and ($2) are {{msg-mw|Whatlinkshere-prev}} and {{msg-mw|Whatlinkshere-next}}.
 ($3) is made up in all cases of the various proposed numbers of results per page, e.g. "(20 | 50 | 100 | 250 | 500)".
 For Special pages, the navigation bar is prefixed by "({{msg-mw|Page_first}} | {{msg-mw|Page_last}})" (alphabetical order) or "({{msg-mw|Histfirst}} | {{msg-mw|Histlast}})" (date order).
+
 Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|Showingresultsnum}} message (for Special pages) or by the {{msg-mw|Linkshere}} message (for Whatlinkshere pages).',
 'searchmenu-legend'              => '{{Identical|Search options}}',
 'searchmenu-exists'              => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',

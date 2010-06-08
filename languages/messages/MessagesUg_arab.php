@@ -183,11 +183,11 @@ $messages = array(
 # Cologne Blue skin
 'qbfind'         => 'ئىزدە',
 'qbbrowse'       => 'كۆز يۈگۈرت',
-'qbedit'         => 'ئۆزگەرتىش',
+'qbedit'         => 'تەھرىر',
 'qbpageoptions'  => 'بۇ بەت',
 'qbpageinfo'     => 'كونتېكست',
 'qbmyoptions'    => 'بەتلەرىم',
-'qbspecialpages' => 'ئالاھىدە بەتلەرى',
+'qbspecialpages' => 'ئالاھىدە بەتلەر',
 'faq'            => 'كۆپ كۆرۈلىدىغان مەسىلىلەر',
 'faqpage'        => 'Project:كۆپ كۆرۈلىدىغان مەسىلىلەر',
 
@@ -224,7 +224,7 @@ $messages = array(
 'help'              => 'ياردەم',
 'search'            => 'ئىزدە',
 'searchbutton'      => 'ئىزدە',
-'go'                => 'كۆچۈش',
+'go'                => 'يۆتكەل',
 'searcharticle'     => 'يۆتكەل',
 'history'           => 'بەت تارىخى',
 'history_short'     => 'تارىخ',
@@ -343,7 +343,7 @@ $1',
 'nstab-image'     => 'ھۆججەت',
 'nstab-mediawiki' => 'ئۇچۇر',
 'nstab-template'  => 'قېلىپ',
-'nstab-help'      => 'ياردەم بەتى',
+'nstab-help'      => 'ياردەم بەت',
 'nstab-category'  => 'تۈر',
 
 # Main script and global functions
@@ -3039,7 +3039,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '← ئالدىنقى بەت',
 'imgmultipagenext' => 'كېيىنكى بەت →',
-'imgmultigo'       => 'كۆچۈش!',
+'imgmultigo'       => 'يۆتكەل!',
 'imgmultigoto'     => '$1 بەتكە يۆتكەل',
 
 # Table pager
@@ -3050,7 +3050,7 @@ $1',
 'table_pager_first'        => 'بىرىنچى بەت',
 'table_pager_last'         => 'ئەڭ ئاخىرقى بەت',
 'table_pager_limit'        => 'ھەر بىر بەتتە $1 تۈر كۆرسەت',
-'table_pager_limit_submit' => 'كۆچۈش',
+'table_pager_limit_submit' => 'يۆتكەل',
 'table_pager_empty'        => 'نەتىجە يوق',
 
 # Auto-summaries

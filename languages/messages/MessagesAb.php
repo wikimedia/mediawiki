@@ -129,12 +129,17 @@ $messages = array(
 'group-user-member' => 'Иалахә',
 
 # Recent changes
-'recentchanges' => 'Арҽеира ҿыцқәа',
+'recentchanges'                => 'Арҽеира ҿыцқәа',
+'recentchanges-legend-newpage' => '$1 — адаҟьа ҿыц',
+'newpageletter'                => 'Ҿ',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Еимадоу ариашарақәа',
 'recentchangeslinked-feed'    => 'Еимадоу ариашарақәа',
 'recentchangeslinked-toolbox' => 'Еимадоу ариашарақәа',
+
+# Upload
+'upload' => 'Афаил аҭагалара',
 
 # File description page
 'filehist-user' => 'Иалоу',

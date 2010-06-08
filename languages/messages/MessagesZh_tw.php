@@ -511,7 +511,7 @@ $messages = array(
 將來有關此頁面及其討論頁的任何修改將會在那裡列出，
 而且還會在[[Special:RecentChanges|近期變動]]中
 以'''粗體'''形式列出以使起更容易識別。",
-'removedwatchtext'  => '頁面「<nowiki>$1</nowiki>」已經從您的監視頁面中移除。',
+'removedwatchtext'  => '頁面「[[:$1]]」已經從您的監視頁面中移除。',
 'watchlist-details' => '不包含討論頁，您的監視列表共有 $1 頁。',
 
 'enotif_impersonal_salutation' => '{{SITENAME}}使用者',
@@ -596,7 +596,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 個版本和 $2 個檔案被復原',
 'undeletedfiles'               => '$1 個檔案被復原',
 'cannotundelete'               => '復原失敗；可能之前已經被其他人復原。',
-'undeletedpage'                => "'''$1已經被復原''' 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及復原記錄。",
+'undeletedpage'                => "<big>'''$1已經被復原'''</big> 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及復原記錄。",
 'undelete-missing-filearchive' => '由於檔案存檔 ID $1 不在資料庫中，不能在檔案存檔中復原。它可能已經反刪除了。',
 
 # Contributions

@@ -448,7 +448,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'vector-view-create'         => 'Loo',
 'vector-view-edit'           => 'Redigeeri',
 'vector-view-history'        => 'Näita ajalugu',
-'vector-view-view'           => 'Loe',
+'vector-view-view'           => 'Vaata',
 'vector-view-viewsource'     => 'Vaata lähteteksti',
 'actions'                    => 'Toimingud',
 'namespaces'                 => 'Nimeruumid',
