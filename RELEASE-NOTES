@@ -81,6 +81,11 @@ further.
   account" and "create by e-mail" features of [[Special:Userlogin]]
 * (bug 23687) Fixed XSS vulnerability affecting IE clients only, due to a CSS 
   validation issue.
+* Fixed a DoS vulnerability in ImageMagick image scaling. ImageMagick 
+  expanded wildcard characters "?" and "*" in image filenames, potentially 
+  causing large numbers of images to be scaled in response to a single request.
+  The fix for this involves breaking the scaling of such image filenames until
+  ImageMagick 6.6.1-5 or later is deployed, see bug 23361 for more details.
 
 === Changes since 1.16 beta 1 ===
 
