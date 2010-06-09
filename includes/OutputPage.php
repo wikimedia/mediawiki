@@ -39,6 +39,7 @@ class OutputPage {
 	var $mParseWarnings = array();
 	var $mSquidMaxage = 0;
 	var $mRevisionId = null;
+	var $mPageIcons = array();
 	protected $mTitle = null;
 
 	/**
@@ -1079,6 +1080,7 @@ class OutputPage {
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
+		$this->mPageIcons = $parserOutput->getPageIcons();
 
 		$this->mParseWarnings = $parserOutput->getWarnings();
 		if ( !$parserOutput->isCacheable() ) {

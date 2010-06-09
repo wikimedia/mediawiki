@@ -698,7 +698,7 @@ Perhaps no page aliases are defined for it?" );
 		$this->mRestriction = $restriction;
 		$this->mListed = $listed;
 		$this->mIncludable = $includable;
-		if ( $function == false ) {
+		if ( !$function ) {
 			$this->mFunction = 'wfSpecial'.$name;
 		} else {
 			$this->mFunction = $function;

@@ -249,7 +249,7 @@ class DatabaseOracle extends DatabaseBase {
 			$this->mConn = oci_connect( $user, $password, $dbName, $this->defaultCharset, $session_mode );
 		}
 
-		if ( $this->mConn == false ) {
+		if ( !$this->mConn ) {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError() . "\n" );
@@ -310,7 +310,7 @@ class DatabaseOracle extends DatabaseBase {
 			return false;
 		}
 
-		if ( oci_execute( $stmt, $this->execFlags() ) == false ) {
+		if ( !oci_execute( $stmt, $this->execFlags() ) ) {
 			$e = oci_error( $stmt );
 			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __FUNCTION__ );
@@ -1013,7 +1013,7 @@ class DatabaseOracle extends DatabaseBase {
 		// Avoid the non-standard "REPLACE INTO" syntax
 		echo "<li>Populating interwiki table</li>\n";
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
-		if ( $f == false ) {
+		if ( !$f ) {
 			dieout( "Could not find the interwiki.sql file" );
 		}
 

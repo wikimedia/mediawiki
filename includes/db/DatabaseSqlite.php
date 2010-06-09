@@ -494,7 +494,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 		# Use DatabasePostgres's code to populate interwiki from MySQL template
 		$f = fopen( "$IP/maintenance/interwiki.sql", 'r' );
-		if ( $f == false ) {
+		if ( !$f ) {
 			dieout( "Could not find the interwiki.sql file." );
 		}
 		

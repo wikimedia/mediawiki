@@ -520,7 +520,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		// Rather, turn autocommit off in the begin function and turn on after a commit
 		db2_autocommit($this->mConn, DB2_AUTOCOMMIT_ON);
 
-		if ( $this->mConn == false ) {
+		if ( !$this->mConn ) {
 			$this->installPrint( "DB connection error\n" );
 			$this->installPrint( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			$this->installPrint( $this->lastError()."\n" );

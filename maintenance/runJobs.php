@@ -64,11 +64,9 @@ class RunJobs extends Maintenance {
 		while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
 			$offset = 0;
 			for ( ; ; ) {
-				$job = ( $type == false ) ?
-						Job::pop( $offset )
-						: Job::pop_type( $type );
+				$job = !$type ? Job::pop( $offset ) : Job::pop_type( $type );
 
-				if ( $job == false )
+				if ( !$job )
 					break;
 
 				wfWaitForSlaves( 5 );

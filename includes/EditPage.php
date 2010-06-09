@@ -2628,7 +2628,7 @@ INPUTS
 	}
 
 	function getBaseRevision() {
-		if ( $this->mBaseRevision == false ) {
+		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
 			$baseRevision = Revision::loadFromTimestamp(
 				$db, $this->mTitle, $this->edittime );

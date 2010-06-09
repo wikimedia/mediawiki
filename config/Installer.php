@@ -1330,7 +1330,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$localSettings = str_replace( "\r\n", "\n", $localSettings );
 		$f = fopen( "LocalSettings.php", 'xt' );
 
-		if( $f == false ) {
+		if( !$f ) {
 			print( "</li>\n" );
 			dieout( "<p>Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a file of that name here...</p>\n" .
 			"<p>Here's the file that would have been written, try to paste it into place manually:</p>\n" .

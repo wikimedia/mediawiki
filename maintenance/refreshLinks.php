@@ -176,7 +176,7 @@ class RefreshLinks extends Maintenance {
 	
 		$rt = $wgArticle->followRedirect();
 	
-		if ( $rt == false || !is_object( $rt ) ) {
+		if ( !$rt || !is_object( $rt ) ) {
 			// $wgTitle is not a redirect
 			// Delete any redirect table entry for it
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ),

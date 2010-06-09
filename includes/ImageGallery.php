@@ -183,7 +183,7 @@ class ImageGallery
 	 * @param $f Boolean: set to false to disable.
 	 */
 	function setShowBytes( $f ) {
-		$this->mShowBytes = ( $f == true);
+		$this->mShowBytes = $f;
 	}
 
 	/**
@@ -193,7 +193,7 @@ class ImageGallery
 	 * @param $f Boolean: set to false to disable.
 	 */
 	function setShowFilename( $f ) {
-		$this->mShowFilename = ( $f == true);
+		$this->mShowFilename = $f;
 	}
 
 	/**

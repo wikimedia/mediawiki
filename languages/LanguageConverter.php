@@ -698,7 +698,7 @@ class LanguageConverter {
 		}
 
 		$variants = $this->autoConvertToAllVariants( $link );
-		if ( $variants == false ) { // give up
+		if ( !$variants ) { // give up
 			return;
 		}
 

@@ -181,7 +181,7 @@ class DatabasePostgres extends DatabaseBase {
 		$this->mConn = pg_connect( $connectString );
 		$phpError = $this->restoreErrorHandler();
 
-		if ( $this->mConn == false ) {
+		if ( !$this->mConn ) {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError()."\n" );
@@ -309,7 +309,7 @@ class DatabasePostgres extends DatabaseBase {
 				$connectVars['password'] = $password;
 
 				@$this->mConn = pg_connect( $this->makeConnectionString( $connectVars ) );
-				if ( $this->mConn == false ) {
+				if ( $this->mConn ) {
 					print "<b>FAILED TO CONNECT!</b></li>";
 					dieout("</ul>");
 				}
@@ -1355,7 +1355,7 @@ SQL;
 		echo "<li>Populating interwiki table... ";
 		## Avoid the non-standard "REPLACE INTO" syntax
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
-		if ($f == false ) {
+		if ( $f ) {
 			print "<b>FAILED</b></li>";
 			dieout( "Could not find the interwiki.sql file" );
 		}
