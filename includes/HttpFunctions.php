@@ -16,16 +16,18 @@ class Http {
 	 * @param $url string Full URL to act on
 	 * @param $options options to pass to HttpRequest object
 	 *	Possible keys for the array:
-	 *		timeout				Timeout length in seconds
-	 *		postData			An array of key-value pairs or a url-encoded form data
-	 *		proxy				The proxy to use.
-	 *						Will use $wgHTTPProxy (if set) otherwise.
-	 *		noProxy			  	Override $wgHTTPProxy (if set) and don't use any proxy at all.
-	 *		sslVerifyHost 	(curl only)	Verify hostname against certificate
-	 *		sslVerifyCert 	(curl only)	Verify SSL certificate
-	 *		caInfo		(curl only)	Provide CA information
-	 *		maxRedirects	  		Maximum number of redirects to follow (defaults to 5)
-	 *		followRedirects	  Whether to follow redirects (defaults to true)
+	 *		timeout             Timeout length in seconds
+	 *		postData            An array of key-value pairs or a url-encoded form data
+	 *		proxy               The proxy to use.
+	 *                          Will use $wgHTTPProxy (if set) otherwise.
+	 *		noProxy             Override $wgHTTPProxy (if set) and don't use any proxy at all.
+	 *		sslVerifyHost       (curl only) Verify hostname against certificate
+	 *		sslVerifyCert       (curl only) Verify SSL certificate
+	 *		caInfo              (curl only) Provide CA information
+	 *		maxRedirects        Maximum number of redirects to follow (defaults to 5)
+	 *		followRedirects     Whether to follow redirects (defaults to false). 
+	 *		                    Note: this should only be used when the target URL is trusted,
+	 *		                    to avoid attacks on intranet services accessible by HTTP.
 	 * @returns mixed (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $options = array() ) {
@@ -138,7 +140,7 @@ class HttpRequest {
 	protected $parsedUrl;
 	protected $callback;
 	protected $maxRedirects = 5;
-	protected $followRedirects = true;
+	protected $followRedirects = false;
 
 	protected $cookieJar;
 
@@ -386,7 +388,7 @@ class HttpRequest {
 		}
 
 		$status = (int)$this->respStatus;
-		if ( $status >= 300 && $status < 400 ) {
+		if ( $status >= 300 && $status <= 303 ) {
 			return true;
 		}
 		return false;
@@ -480,6 +482,14 @@ class HttpRequest {
 		}
 
 		return $this->url;
+	}
+
+	/**
+	 * Returns true if the backend can follow redirects. Overridden by the 
+	 * child classes.
+	 */
+	public function canFollowRedirects() {
+		return true;
 	}
 }
 
@@ -793,11 +803,21 @@ class CurlHttpRequest extends HttpRequest {
 		$this->setStatus();
 		return $this->status;
 	}
+
+	public function canFollowRedirects() {
+		if ( strval( ini_get( 'open_basedir' ) ) !== '' || wfIniGetBool( 'safe_mode' ) ) {
+			wfDebug( "Cannot follow redirects in safe mode\n" );
+			return false;
+		}
+		if ( !defined( 'CURLOPT_REDIR_PROTOCOLS' ) ) {
+			wfDebug( "Cannot follow redirects with libcurl < 7.19.4 due to CVE-2009-0037\n" );
+			return false;
+		}
+		return true;
+	}
 }
 
 class PhpHttpRequest extends HttpRequest {
-	protected $manuallyRedirect = false;
-
 	protected function urlToTcp( $url ) {
 		$parsedUrl = parse_url( $url );
 
@@ -809,9 +829,7 @@ class PhpHttpRequest extends HttpRequest {
 
 		// At least on Centos 4.8 with PHP 5.1.6, using max_redirects to follow redirects
 		// causes a segfault
-		if ( version_compare( '5.1.7', phpversion(), '>' ) ) {
-			$this->manuallyRedirect = true;
-		}
+		$manuallyRedirect = version_compare( phpversion(), '5.1.7', '<' );
 
 		if ( $this->parsedUrl['scheme'] != 'http' ) {
 			$this->status->fatal( 'http-invalid-scheme', $this->parsedUrl['scheme'] );
@@ -830,7 +848,7 @@ class PhpHttpRequest extends HttpRequest {
 			$options['request_fulluri'] = true;
 		}
 
-		if ( !$this->followRedirects || $this->manuallyRedirect ) {
+		if ( !$this->followRedirects || $manuallyRedirect ) {
 			$options['max_redirects'] = 0;
 		} else {
 			$options['max_redirects'] = $this->maxRedirects;
@@ -864,20 +882,31 @@ class PhpHttpRequest extends HttpRequest {
 		$reqCount = 0;
 		$url = $this->url;
 		do {
-			$again = false;
 			$reqCount++;
 			wfSuppressWarnings();
 			$fh = fopen( $url, "r", false, $context );
 			wfRestoreWarnings();
-			if ( $fh ) {
-				$result = stream_get_meta_data( $fh );
-				$this->headerList = $result['wrapper_data'];
-				$this->parseHeader();
-				$url = $this->getResponseHeader("Location");
-				$again = $this->manuallyRedirect && $this->followRedirects && $url
-					&& $this->isRedirect() && $this->maxRedirects > $reqCount;
+			if ( !$fh ) {
+				break;
 			}
-		} while ( $again );
+			$result = stream_get_meta_data( $fh );
+			$this->headerList = $result['wrapper_data'];
+			$this->parseHeader();
+			if ( !$manuallyRedirect || !$this->followRedirects ) {
+				break;
+			}
+
+			# Handle manual redirection
+			if ( !$this->isRedirect() || $reqCount > $this->maxRedirects ) {
+				break;
+			}
+			# Check security of URL
+			$url = $this->getResponseHeader("Location");
+			if ( substr( $url, 0, 7 ) !== 'http://' ) {
+				wfDebug( __METHOD__.": insecure redirection\n" );
+				break;
+			}
+		} while ( true );
 
 		if ( $oldTimeout !== false ) {
 			ini_set('default_socket_timeout', $oldTimeout);
