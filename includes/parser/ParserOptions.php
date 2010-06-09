@@ -111,7 +111,9 @@ class ParserOptions {
 
 	/**
 	 * Get parser options
-	 * @static
+	 *
+	 * @param $user User object
+	 * @return ParserOptions object
 	 */
 	static function newFromUser( $user ) {
 		return new ParserOptions( $user );

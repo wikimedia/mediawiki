@@ -405,8 +405,9 @@ class LinkHolderArray {
 	/**
 	 * Replace <!--LINK--> link placeholders with plain text of links
 	 * (not HTML-formatted).
-	 * @param string $text
-	 * @return string
+	 *
+	 * @param $text String
+	 * @return String
 	 */
 	function replaceText( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -421,7 +422,9 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * @param array $matches
+	 * Callback for replaceText()
+	 *
+	 * @param $matches Array
 	 * @return string
 	 * @private
 	 */
