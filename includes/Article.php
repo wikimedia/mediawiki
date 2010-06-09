@@ -1977,6 +1977,7 @@ class Article {
 	 * @deprecated use Article::doEdit()
 	 */
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
+		wfDeprecated( __METHOD__ );
 		$flags = EDIT_UPDATE | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $minor ? EDIT_MINOR : 0 ) |
 			( $forceBot ? EDIT_FORCE_BOT : 0 );
