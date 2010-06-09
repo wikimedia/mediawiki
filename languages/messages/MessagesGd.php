@@ -466,8 +466,8 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'movepagebtn'             => 'Gluais duilleag',
 'pagemovedsub'            => 'Gluasad soirbheachail',
 'movedto'                 => 'air gluasad gu',
-'1movedto2'               => '$1 gluaiste ri $2',
-'1movedto2_redir'         => '$1 gluaiste ri $2 thairis air ath-stiùireadh',
+'1movedto2'               => '[[$1]] gluaiste ri [[$2]]',
+'1movedto2_redir'         => '[[$1]] gluaiste ri [[$2]] thairis air ath-stiùireadh',
 'delete_and_move'         => 'Sguab às agus gluais',
 'delete_and_move_confirm' => 'Siuthad, sguab às an duilleag',
 

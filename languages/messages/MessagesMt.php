@@ -1962,8 +1962,8 @@ Biex tagħti l-kumment tiegħek u biex tikseb aktar għajnuna:
 'historywarning'         => "'''Twissija:''' Il-paġna li se tħassar għandha kronoloġija b'madwar {{PLURAL:$1|reviżjoni waħda|$1 reviżjoni}}:",
 'confirmdeletetext'      => "Int se tħassar għal kollox mid-database paġna jew stampa, flimkien mal-kronoloġija kollha tagħha. Jekk jogħġbok, ikkonferma li hija x-xewqa tiegħek li tkompli bit-tħassir ta' din il-paġna, u tifhem il-konsegwenzi ta' li qiegħed tagħmel, u li qiegħed tagħmilhom skont il- [[{{MediaWiki:Policy-url}}|politika]] stabbilita.",
 'actioncomplete'         => 'Azzjoni mwettqa',
-'deletedtext'            => '"<nowiki>$1</nowiki>" ġiet imħassra.
-Ara $2 biex tara paġni mħassra riċentament.',
+'deletedtext'            => 'Il-paġna "<nowiki>$1</nowiki>" ġiet imħassra.
+Ikkonsulta r-$2 biex tara paġni li ġew imħassra riċentament.',
 'deletedarticle'         => 'ħassar "[[$1]]"',
 'suppressedarticle'      => 'Neħħi "[[$1]]"',
 'dellogpage'             => 'Tħassir',

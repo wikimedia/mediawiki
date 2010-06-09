@@ -975,6 +975,8 @@ $2',
 'uploadedimage'       => 'награв "[[$1]]"',
 'uploadvirus'         => 'Файл обсягує вірус! Детайлы: $1',
 
+'upload-file-error' => 'Інтерна хыба',
+
 # img_auth script messages
 'img-auth-nofile' => 'Файл «$1» не екзістує.',
 
@@ -1020,7 +1022,7 @@ $2',
 # File reversion
 'filerevert'         => 'Вернути назад $1',
 'filerevert-legend'  => 'Вернути назад файл',
-'filerevert-comment' => 'Комент:',
+'filerevert-comment' => 'Причіна:',
 'filerevert-submit'  => 'Вернути назад',
 
 # File deletion
