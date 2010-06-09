@@ -116,6 +116,7 @@ class DateFormatter
 	/**
 	 * @param $preference String: User preference
 	 * @param $text String: Text to reformat
+	 * @param $options Array: can contain 'linked' and/or 'match-whole'
 	 */
 	function reformat( $preference, $text, $options = array('linked') ) {
 	

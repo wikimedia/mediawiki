@@ -131,7 +131,7 @@ class CoreParserFunctions {
 	 * Or to encode a value for the HTTP "path", spaces are encoded as '%20'.
 	 * For links to "wiki"s, or similar software, spaces are encoded as '_',
 	 *
-	 * @param $parser.
+	 * @param $parser Parser object
 	 * @param $s String: The text to encode.
 	 * @param $arg String (optional): The type of encoding.
 	 */

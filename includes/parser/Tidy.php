@@ -16,8 +16,8 @@ class MWTidy {
 	 * If tidy isn't able to correct the markup, the original will be
 	 * returned in all its glory with a warning comment appended.
 	 *
-	 * @param string $text Hideous HTML input
-	 * @return string Corrected HTML output
+	 * @param $text String: hideous HTML input
+	 * @return String: corrected HTML output
 	 */
 	public static function tidy( $text ) {
 		global $wgTidyInternal;
@@ -71,7 +71,7 @@ class MWTidy {
 	 * @param $text String: HTML to check
 	 * @param $stderr Boolean: Whether to read from STDERR rather than STDOUT
 	 * @param &$retval Exit code (-1 on internal error)
-	 * @retrun mixed String or null
+	 * @return mixed String or null
 	 */
 	private static function execExternalTidy( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
