@@ -529,7 +529,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 	}
 
 	function runCookieRequests() {
-		$r = HttpRequest::factory( "http://www.php.net/manual" );
+		$r = HttpRequest::factory( "http://www.php.net/manual", array( 'followRedirects' => true ) );
 		$r->execute();
 
 		$jar = $r->getCookieJar();
