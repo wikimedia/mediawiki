@@ -7941,6 +7941,24 @@ preload
 * <!-- Hello --> ''{{world}}'' {{subst:How are you}}{{ {{{|safesubst:}}} #if:1|2|3}}
 !! end
 
+!! test
+Play a bit with r67090 and bug 3158 
+!! options
+disabled
+!! input
+<div style="width:50% !important">&nbsp;</div>
+<div style="width:50%&nbsp;!important">&nbsp;</div>
+<div style="width:50%&#160;!important">&nbsp;</div>
+<div style="border : solid;">&nbsp;</div>
+!! result
+<div style="width:50% !important">&nbsp;</div>
+<div style="width:50% !important">&nbsp;</div>
+<div style="width:50% !important">&nbsp;</div>
+<div style="border&#160;: solid;">&nbsp;</div>
+
+!! end
+
+
 TODO:
 more images
 more tables
