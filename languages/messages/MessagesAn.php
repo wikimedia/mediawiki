@@ -717,8 +717,8 @@ A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 *'''Konqueror: ''' punche ''Reload'' u prete ''F5;'' 
 *'''Opera:''' limpiar a caché en ''Tools → Preferences;'' 
 *'''Internet Explorer:''' prete ''Ctrl'' mientres puncha ''Refresh,'' u prete ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Consello:''' Faiga servir o botón «Amostrar previsualización» ta prebar o nuevo CSS antes de grabar-lo.",
-'userjsyoucanpreview'              => "'''Consello:''' Faiga servir o botón «Amostrar previsualización» ta prebar o nuevo css/js antes de grabar-lo.",
+'usercssyoucanpreview'             => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo CSS antes de no grabar-lo.",
+'userjsyoucanpreview'              => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo css/js antes de no grabar-lo.",
 'usercsspreview'                   => "'''Remere que isto no ye que una previsualización d'o suyo CSS d'usuario.'''
 '''Encara no s'ha alzato!'''",
 'userjspreview'                    => "'''Remere que sólo ye previsualizando o suyo javascript d'usuario y encara no ye grabato!'''",
@@ -2028,8 +2028,8 @@ Se veiga en $2 un rechistro d\'os borraus recients.',
 'rollback'          => 'Revertir edicions',
 'rollback_short'    => 'Revertir',
 'rollbacklink'      => 'revertir',
-'rollbackfailed'    => "No s'ha puesto esfer",
-'cantrollback'      => "No se pueden desfer as edicions; o zaguer colaborador ye o solo autor d'iste articlo.",
+'rollbackfailed'    => "No s'ha puesto revertir",
+'cantrollback'      => "No se pueden revertir as edicions; o zaguer colaborador ye o solo autor d'iste articlo.",
 'alreadyrolled'     => "No se puet desfer a zaguer edición de [[:$1]] feita por [[User:$2|$2]] ([[User talk:$2|descusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u desfeito edicions en ixa pachina. 
 
 A zaguer edición d'a pachina la fació [[User:$3|$3]] ([[User talk:$3|descusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",

@@ -369,7 +369,7 @@ Shih [[Special:Version|faqen e verzionit]].',
 'red-link-title'          => '$1 (faqja nuk ekziston)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikulli',
+'nstab-main'      => 'Faqja',
 'nstab-user'      => 'Faqja e përdoruesit',
 'nstab-media'     => 'Faqja e mediave',
 'nstab-special'   => 'Faqja speciale',

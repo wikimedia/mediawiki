@@ -637,8 +637,8 @@ Soñğı beterülär $2 bitendä terkälenä.',
 yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'movedto'          => 'küçerelde:',
 'movetalk'         => 'Mömkin bulsa, «bäxäs» biten dä küçer.',
-'1movedto2'        => '$1 moña küçte: $2',
-'1movedto2_redir'  => '$1 moña küçte: $2 (yünältü aşa)',
+'1movedto2'        => '[[$1]] moña küçte: [[$2]]',
+'1movedto2_redir'  => '[[$1]] moña küçte: [[$2]] (yünältü aşa)',
 
 # Namespace 8 related
 'allmessages'        => 'Säxifäneñ bar sätirläre',

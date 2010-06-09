@@ -18,6 +18,7 @@
  * @author Hamaryns
  * @author Jens Liebenau
  * @author McDutchie
+ * @author Multichill
  * @author Mwpnl
  * @author Naudefj
  * @author Niels
@@ -543,7 +544,7 @@ $messages = array(
 'viewhelppage'      => 'Hulppagina bekijken',
 'categorypage'      => 'Categoriepagina bekijken',
 'viewtalkpage'      => 'Overlegpagina bekijken',
-'otherlanguages'    => 'Andere talen',
+'otherlanguages'    => 'In andere talen',
 'redirectedfrom'    => '(Doorverwezen vanaf $1)',
 'redirectpagesub'   => 'Doorverwijspagina',
 'lastmodifiedat'    => 'Deze pagina is het laatst bewerkt op $1 om $2.',
@@ -2214,7 +2215,7 @@ De ontvanger kan dus direct naar u reageren.',
 'emailto'              => 'Aan:',
 'emailsubject'         => 'Onderwerp:',
 'emailmessage'         => 'Bericht:',
-'emailsend'            => 'Versturen',
+'emailsend'            => 'Verzenden',
 'emailccme'            => 'Een kopie van dit bericht naar mijn e-mailadres sturen.',
 'emailccsubject'       => 'Kopie van uw bericht aan $1: $2',
 'emailsent'            => 'E-mail verzonden',
@@ -2442,7 +2443,7 @@ Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undeletebtn'                  => 'Terugplaatsen',
 'undeletelink'                 => 'bekijken/terugplaatsen',
 'undeleteviewlink'             => 'bekijken',
-'undeletereset'                => 'Herinstellen',
+'undeletereset'                => 'Fomulier wissen',
 'undeleteinvert'               => 'Omgekeerde selectie',
 'undeletecomment'              => 'Reden:',
 'undeletedarticle'             => '"[[$1]]" is teruggeplaatst',

@@ -468,8 +468,8 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => 'Tako dejanje ne obstaja',
-'nosuchactiontext'  => 'Dejanje, ki ga označuje spletni naslov je napačno.
-Morda ste se pri naslovu zatipkali, ali pa ste sledili napačni povezavi.
+'nosuchactiontext'  => 'Dejanje, ki ga označuje spletni naslov, je napačno.
+Morda ste se pri naslovu zatipkali ali pa ste sledili napačni povezavi.
 Morda ste odkrili hrošča v programski opremi {{GRAMMAR:genitive|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Posebna stran, ki ste jo zahtevali, ne obstaja',
 'nospecialpagetext' => '<strong>Zahtevali ste neveljavno posebno stran.</strong>
@@ -493,9 +493,9 @@ Podatkovna zbirka je vrnila napako »$3: $4«.',
 'laggedslavemode'      => "'''Opozorilo:''' Stran morda ne vsebuje najnovejših posodobitev.",
 'readonly'             => 'Zbirka podatkov je zaklenjena',
 'enterlockreason'      => 'Vnesite razlog za zaklenitev in oceno, kdaj bo urejanje spet mogoče',
-'readonlytext'         => "Zbirka podatkov je za urejanja in druge spremembe začasno zaklenjena. To navadno pomeni, da nadgrajujejo programje strežnikov ali pa rutinsko vzdrževanje zbirke.
+'readonlytext'         => 'Zbirka podatkov je za urejanja in druge spremembe začasno zaklenjena, najverjetneje zaradi rutinskega vzdrževanja zbirke, po katerem bo nazaj v normalnem stanju.
 
-Sistemski skrbnik, ki jo je zaklenil, je podal naslednjo razlago: ''\"\$1\"''",
+Sistemski skrbnik, ki jo je zaklenil, je podal naslednjo razlago: $1',
 'missing-article'      => 'Podatkovna baza ni našla besedila strani, ki ga bi morala najti, z imenom »$1« $2.
 
 Ta je ponavadi posledica zastarelih sprememb ali pa je bila stran izbrisana.
@@ -611,7 +611,7 @@ Preverite črkovanje.',
 prijavno geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}} ($4). Ustvarjeno je
 bilo začasno geslo za uporabnika »$2«, ki je »$3«. Če ste to
 hoteli vi, se zdaj prijavite in izberite novo geslo.
-Vaše začasno geslo to poteklo v {{PLURAL:$5|enem dnevu|$5 dneh}}.
+Vaše začasno geslo bo poteklo v {{PLURAL:$5|enem dnevu|$5 dneh}}.
 
 Če je geslo zahteval nekdo drug ali ste se spomnili starega
 in ga ne želite več spremeniti, lahko sporočilo prezrete in
@@ -851,10 +851,10 @@ Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:User
 'permissionserrors'                => 'Napake dovoljenj',
 'permissionserrorstext'            => 'Za izvedbo tega nimate dovoljenja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov}}:',
 'permissionserrorstext-withaction' => 'Nimate dovoljenja za $2, zaradi {{PLURAL:$1|naslednjega razloga|naslednjih $1 razlogov|naslednjih $1 razlogov|naslednjih $1 razlogov}}:',
-'recreate-moveddeleted-warn'       => "''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
+'recreate-moveddeleted-warn'       => "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
 
 Premislite preden nadaljujete s pisanjem, morda bo stran zaradi istih razlogov ponovno odstranjena.
-Spodaj je prikazan dnevnik brisanja z razlogi za brisanje:",
+Spodaj je prikazan dnevnik brisanja in prestavljanja:",
 'moveddeleted-notice'              => 'Ta stran je bila izbrisana.
 Dnevnik brisanja in prestavljanja strani je na voljo spodaj.',
 'log-fulllog'                      => 'Ogled celotnih dnevniških zapiskov',
@@ -1573,8 +1573,8 @@ Preverite zgodovino brisanja datoteke, preden jo ponovno naložite.',
 'uploadwarning'               => 'Opozorilo!',
 'uploadwarning-text'          => 'Prosimo, spremenite opis datoteke spodaj in poskusite ponovno.',
 'savefile'                    => 'Shrani datoteko',
-'uploadedimage'               => '- naložena datoteka »[[$1]]«',
-'overwroteimage'              => 'naložena nova različica datoteke »[[$1]]«',
+'uploadedimage'               => 'je naložil(-a) datoteko »[[$1]]«',
+'overwroteimage'              => 'je naložil(-a) novo različico datoteke »[[$1]]«',
 'uploaddisabled'              => 'Nalaganje je onemogočeno',
 'copyuploaddisabled'          => 'Nalaganje preko URL je onemogočeno',
 'uploadfromurl-queued'        => 'Vaše nalaganje je bilo postavljeno v čakalno vrsto.',
@@ -2159,7 +2159,7 @@ Oglejte si [[Special:ProtectedPages|seznam zaščitenih strani]] za seznam trenu
 'unprotectedarticle'          => 'Zaščita strani $1 je odstranjena.',
 'movedarticleprotection'      => 'nastavitve zaščite so prestavljene iz »[[$2]]« na »[[$1]]«',
 'protect-title'               => 'Zaščita strani »$1«',
-'prot_1movedto2'              => '- prestavitev [[$1]] na [[$2]]',
+'prot_1movedto2'              => 'je prestavil(-a) [[$1]] na [[$2]]',
 'protect-legend'              => 'Potrdite zaščito',
 'protectcomment'              => 'Razlog:',
 'protectexpiry'               => 'Poteče:',
@@ -2500,8 +2500,8 @@ Prosimo, združite ju ročno.'''",
 'movepage-page-moved'          => 'Stran $1 je bila prestavljena na $2.',
 'movepage-page-unmoved'        => 'Strani $1 ni bilo mogoče premakniti na $2.',
 'movepage-max-pages'           => '{{PLURAL:$1|Premaknjena je bila največ $1 stran|Premaknjeni sta bili največ $1 strani|Premaknjene so bile največ $1 strani|Premaknjenih je bilo največ $1 strani}} in nobena več ne bo samodejno premaknjena.',
-'1movedto2'                    => '- prestavitev [[$1]] na [[$2]]',
-'1movedto2_redir'              => '- prestavitev [[$1]] na [[$2]] čez preusmeritev',
+'1movedto2'                    => 'je prestavil(-a) [[$1]] na [[$2]]',
+'1movedto2_redir'              => 'je prestavil(-a) [[$1]] na [[$2]] čez preusmeritev',
 'move-redirect-suppressed'     => 'preusmeritev zatrta',
 'movelogpage'                  => 'Dnevnik prestavljanja strani',
 'movelogpagetext'              => 'Prikazujem seznam prestavljenih strani.',

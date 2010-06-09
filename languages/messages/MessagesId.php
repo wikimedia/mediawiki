@@ -1141,7 +1141,10 @@ Silakan periksa catatan log.',
 Lihat [[Special:IPBlockList|daftar IP yang diblokir]] untuk daftar terkininya.',
 
 # Revision move
-'revmove-titlefield' => 'Halaman tujuan:',
+'revmove-reasonfield'    => 'Alasan:',
+'revmove-titlefield'     => 'Halaman tujuan:',
+'revmove-badparam-title' => 'Parameter Buruk',
+'revmove-nullmove-title' => 'Judul tidak sah',
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah halaman',
@@ -1472,6 +1475,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-reset-passwords'       => 'Mereset kata sandi pengguna lain',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
+'right-revisionmove'          => 'Pindah revisi',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
@@ -1514,6 +1518,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'action-userrights'           => 'menyunting semua hak pengguna',
 'action-userrights-interwiki' => 'menyunting hak akses dari pengguna di wiki lain',
 'action-siteadmin'            => 'mengunci atau membuka kunci basis data',
+'action-revisionmove'         => 'pindah revisi',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|perubahan|perubahan}}',
@@ -3282,8 +3287,8 @@ Coba dengan pratayang normal.',
 'watchlistedit-noitems'        => 'Daftar pantauan Anda kosong.',
 'watchlistedit-normal-title'   => 'Sunting daftar pantauan',
 'watchlistedit-normal-legend'  => 'Hapus judul dari daftar pantauan',
-'watchlistedit-normal-explain' => 'Judul-judul pada daftar pantauan Anda ditampilkan di bawah ini.
-Untuk menghapus suatu judul, berikan tanda cek pada kotak di sampingnya, dan klik Hapus Judul.
+'watchlistedit-normal-explain' => 'Judul pada daftar pantauan Anda ditampilkan di bawah ini.
+Untuk menghapus judul, berikan tanda cek pada kotak di sampingnya, dan klik "{{int:Watchlistedit-normal-submit}}".
 Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
 'watchlistedit-normal-submit'  => 'Hapus judul',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|satu|$1}} judul telah dihapus dari daftar pantauan Anda:',

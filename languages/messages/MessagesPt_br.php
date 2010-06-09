@@ -1122,6 +1122,8 @@ $1",
 'logdelete-failure'           => "'''A visibilidade do registro não pôde ser estabelecida:'''
 $1",
 'revdel-restore'              => 'Alterar visibilidade',
+'revdel-restore-deleted'      => 'revisões eliminadas',
+'revdel-restore-visible'      => 'revisões visíveis',
 'pagehist'                    => 'Histórico da página',
 'deletedhist'                 => 'Histórico de eliminações',
 'revdelete-content'           => 'conteúdo',
@@ -1159,7 +1161,22 @@ Por favor, verifique os registos.',
 Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
 # Revision move
-'revmove-nullmove-title' => 'Título incorreto',
+'moverevlogentry'              => 'moveu {{PLURAL:$3|uma revisão|$3 revisões}} de $1 para $2',
+'revisionmove'                 => 'Mover revisões de "$1"',
+'revmove-explain'              => 'As seguintes revisões serão movidas de $1 para a página de destino especificada. Se a página de destino não existir, será criada. Se existir, estas revisões serão fundidas no histórico de revisões da página.',
+'revmove-legend'               => 'Definir a página de destino e o resumo',
+'revmove-submit'               => 'Mover as revisões para a página selecionada',
+'revisionmoveselectedversions' => 'Mover as revisões selecionadas',
+'revmove-reasonfield'          => 'Motivo:',
+'revmove-titlefield'           => 'Página de destino:',
+'revmove-badparam-title'       => 'Parâmetros incorretos',
+'revmove-badparam'             => '<span class="error">O seu pedido contém parâmetros ilegais ou insuficientes. Clique "voltar" e tente novamente.</span>',
+'revmove-norevisions-title'    => 'A revisão especificada é inválida',
+'revmove-norevisions'          => '<span class="error">Você não especificou uma ou mais revisões sobre as quais deve ser executada esta operação, ou a revisão que especificou não existe.</span>',
+'revmove-nullmove-title'       => 'Título incorreto',
+'revmove-nullmove'             => '<span class="error">As páginas de origem e destino são idênticas. Clique "voltar" e introduza um nome de página diferente de "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página existente [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página recém-criada [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
@@ -1488,6 +1505,7 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'right-reset-passwords'       => 'Redefinir a senha de outros usuários',
 'right-override-export-depth' => 'Export páginas incluindo páginas ligadas até uma profundidade de 5 ligações',
 'right-sendemail'             => 'Enviar email a outros usuários',
+'right-revisionmove'          => 'Mover revisões',
 
 # User rights log
 'rightslog'      => 'Registro de privilégios de usuário',
@@ -1530,6 +1548,7 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'action-userrights'           => 'editar todos os privilégios de usuário',
 'action-userrights-interwiki' => 'editar privilégios de usuários de outras wikis',
 'action-siteadmin'            => 'bloquear ou desbloquear o banco de dados',
+'action-revisionmove'         => 'mover revisões',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
@@ -2230,7 +2249,8 @@ A última edição da página foi feita por [[User:$3|$3]] ([[User talk:$3|discu
 'rollback-success'  => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 
 # Edit tokens
-'sessionfailure' => 'Foram detetados problemas com a sua sessão;
+'sessionfailure-title' => 'Erro de sessão',
+'sessionfailure'       => 'Foram detetados problemas com a sua sessão;
 Esta ação foi cancelada como medida de proteção contra a intercepção de sessões.
 Experimente usar o botão "Voltar" e atualizar a página de onde veio e tente novamente.',
 

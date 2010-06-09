@@ -43,6 +43,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => "Lasa avdè e' mi indirèzi d'posta eletrònica int'j mesàg d'nutèfica",
 'tog-shownumberswatching'     => "Fam' avdè e' nòmar d'j utent ch'j tèn sta pàgina sot occ",
 'tog-oldsig'                  => 'Anteprèma dla fírma bona',
+'tog-fancysig'                => "Tràta la firma cumpagna e' test int'la wiki (senza nissön ligam automatich)",
 
 # Dates
 'january'       => 'Znèr',
