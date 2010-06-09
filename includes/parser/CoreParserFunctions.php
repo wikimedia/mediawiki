@@ -69,7 +69,6 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
-		$parser->setFunctionHook( 'pageicon',         array( __CLASS__, 'pageicon'        ) );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -627,14 +626,6 @@ class CoreParserFunctions {
 		} else {
 			return '';
 		}
-	}
-
-	public static function pageicon( $parser, $name = '', $alt = '' ) {
-		$file = wfFindFile( $name );
-		if( $file ) {
-			$parser->mOutput->addPageIcon( $file, $alt );
-		}
-		return '';
 	}
 
 	/**

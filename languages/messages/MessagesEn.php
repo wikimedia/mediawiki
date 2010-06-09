@@ -356,7 +356,6 @@ $magicWords = array(
 	'url_path'               => array( 0,    'PATH' ),
 	'url_wiki'               => array( 0,    'WIKI' ),
 	'url_query'              => array( 0,    'QUERY' ),
-	'pageicon'               => array( 1,    'pageicon' ),
 );
 
 /**

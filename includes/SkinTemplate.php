@@ -230,21 +230,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'pageclass', $this->getPageClasses( $this->mTitle ) );
 		$tpl->set( 'skinnameclass', ( 'skin-' . Sanitizer::escapeClass( $this->getSkinName() ) ) );
 
-		$icons = '';
-		foreach( $out->mPageIcons as $icon ) {
-			list( $file, $alt ) = $icon;
-			$fileAttr = array( 'src' => $file->createThumb( 16 ) );
-			if( $alt != '' ) {
-				$msg = wfMsg( $alt );
-				if( !wfEmptyMsg( $alt ) ) {
-					$alt = $msg;
-				}
-				$fileAttr['alt'] = htmlspecialchars( $alt );
-			}
-			$icons .= Html::element( 'img', $fileAttr ) . "&nbsp;";
-		}
-		$tpl->set( 'pageicons', $icons );
-
 		$nsname = MWNamespace::exists( $this->mTitle->getNamespace() ) ?
 					MWNamespace::getCanonicalName( $this->mTitle->getNamespace() ) :
 					$this->mTitle->getNsText();
