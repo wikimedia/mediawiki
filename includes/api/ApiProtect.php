@@ -95,7 +95,7 @@ class ApiProtect extends ApiBase {
 				$expiryarray[$p[0]] = Block::infinity();
 			} else {
 				$exp = strtotime( $expiry[$i] );
-				if ( $exp < 0 || $exp == false ) {
+				if ( $exp < 0 || !$exp ) {
 					$this->dieUsageMsg( array( 'invalidexpiry', $expiry[$i] ) );
 				}
 

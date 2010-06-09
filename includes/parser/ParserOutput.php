@@ -28,7 +28,8 @@ class ParserOutput
 		$mSections = array(),         # Table of contents
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '';	              # HTML of the TOC
-	private $mIndexPolicy = '';	      # 'index' or 'noindex'?  Any other value will result in no change.
+	private $mIndexPolicy = '',	      # 'index' or 'noindex'?  Any other value will result in no change.
+		$mPageIcons = array();        # Array of icons to show for the page (like Protect, Featured, etc)
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -59,6 +60,7 @@ class ParserOutput
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
 	function getIndexPolicy()            { return $this->mIndexPolicy; }
 	function getTOCHTML()                { return $this->mTOCHTML; }
+	function getPageIcons()              { return $this->mPageIcons; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -248,6 +250,15 @@ class ParserOutput
 		} else {
 			$this->mHeadItems[] = $section;
 		}
+	}
+
+	/**
+	 * Add page icons to the parser output.
+	 * @param File $file A valid file
+	 * @param String $alt Alt text, if any
+	 */
+	function addPageIcon( $file, $alt = '' ) {
+		$this->mPageIcons[] = array( $file, $alt );
 	}
 
 	/**

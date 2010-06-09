@@ -1500,7 +1500,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	pclose( $handle );
 	unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
 
-	if ( $result === '' && $old !== '' && $conflict == false ) {
+	if ( $result === '' && $old !== '' && !$conflict ) {
 		wfDebug( "Unexpected null result from diff3. Command: $cmd\n" );
 		$conflict = true;
 	}

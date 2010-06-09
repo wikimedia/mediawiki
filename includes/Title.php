@@ -824,7 +824,7 @@ class Title {
 		}
 
 		// internal links should point to same variant as current page (only anonymous users)
-		if ( $variant == false && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) {
+		if ( !$variant && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) {
 			$pref = $wgContLang->getPreferredVariant( false );
 			if ( $pref != $wgContLang->getCode() )
 				$variant = $pref;
@@ -843,7 +843,7 @@ class Title {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
 				if ( $variant != false && $wgContLang->hasVariants() ) {
-					if ( $wgVariantArticlePath == false ) {
+					if ( !$wgVariantArticlePath ) {
 						$variantArticlePath =  "$wgScript?title=$1&variant=$2"; // default
 					} else {
 						$variantArticlePath = $wgVariantArticlePath;
@@ -1474,7 +1474,7 @@ class Title {
 				$scBlockExpiryOptions = wfMsg( 'ipboptions' );
 
 				foreach ( explode( ',', $scBlockExpiryOptions ) as $option ) {
-					if ( strpos( $option, ':' ) == false )
+					if ( !strpos( $option, ':' ) )
 						continue;
 
 					list ( $show, $value ) = explode( ":", $option );

@@ -216,10 +216,10 @@ class RebuildRecentchanges extends Maintenance {
 	
 		$botgroups = $autopatrolgroups = array();
 		foreach ( $wgGroupPermissions as $group => $rights ) {
-			if ( isset( $rights['bot'] ) && $rights['bot'] == true ) {
+			if ( isset( $rights['bot'] ) && $rights['bot'] ) {
 				$botgroups[] = $dbw->addQuotes( $group );
 			}
-			if ( $wgUseRCPatrol && isset( $rights['autopatrol'] ) && $rights['autopatrol'] == true ) {
+			if ( $wgUseRCPatrol && isset( $rights['autopatrol'] ) && $rights['autopatrol'] ) {
 				$autopatrolgroups[] = $dbw->addQuotes( $group );
 			}
 		}

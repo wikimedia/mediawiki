@@ -102,7 +102,7 @@ abstract class BagOStuff {
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
-		if ( $this->get( $key ) == false ) {
+		if ( !$this->get( $key ) ) {
 			$this->set( $key, $value, $exptime );
 
 			return true;
