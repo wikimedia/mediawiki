@@ -788,7 +788,7 @@ abstract class Installer {
 		try {
 			$out = $wgParser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
 			$html = $out->getText();
-		} catch ( InstallerDBAccessError $e ) {
+		} catch ( DBAccessError $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
 			if ( !empty( $this->debug ) ) {
 				$html .= "<!--\n" . $e->getTraceAsString() . "\n-->";
