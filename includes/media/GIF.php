@@ -54,15 +54,19 @@ class GIFHandler extends BitmapHandler {
 	}
 	
 	function isMetadataValid( $image, $metadata ) {
-		$data = @unserialize( $metadata );
+		wfSuppressWarnings();
+		$data = unserialize( $metadata );
+		wfRestoreWarnings();
 		return (boolean) $data;
 	}
 
 	function getLongDesc( $image ) {
 		global $wgUser, $wgLang;
 		$sk = $wgUser->getSkin();
-		
-		$metadata = @unserialize($image->getMetadata());
+
+		wfSuppressWarnings();
+		$metadata = unserialize($image->getMetadata());
+		wfRestoreWarnings();
 		
 		if (!$metadata) return parent::getLongDesc( $image );
 		
