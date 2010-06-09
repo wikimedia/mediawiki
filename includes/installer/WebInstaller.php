@@ -1663,6 +1663,8 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 	}
 
 	protected function formatTextFile( $text ) {
+		$text = str_replace( array( '<', '{{', '[[' ),
+			array( '&lt;', '&#123;&#123;', '&#91;&#91;' ), $text );
 		// replace numbering with [1], [2], etc with MW-style numbering
 		$text = preg_replace( "/\r?\n(\r?\n)?\\[\\d+\\]/m", "\\1#", $text );
 		// join word-wrapped lines into one
