@@ -49,8 +49,9 @@ further.
 * (bug 23175) Re-added window.ta variable for backwards compatibility.
 * (bug 23264) Fixed breakage of various command line scripts due to extra line
   endings being inserted by Maintenance::output().
-* MonobookTemplateToolboxEnd has been deprecated. Use SkinTemplateToolboxEnd 
-  instead.
+* Fixed HTTP client functionality with safe_mode=On.
+* Fixed parser tests broken in 1.16 beta 3.
+* For Oracle DB backend: fixed parser tests and table prefix feature.
 
 == Changes since 1.16 beta 2 ==
 

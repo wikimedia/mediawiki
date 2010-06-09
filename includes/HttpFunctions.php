@@ -715,7 +715,6 @@ class CurlHttpRequest extends HttpRequest {
 		$this->curlOptions[CURLOPT_WRITEFUNCTION] = $this->callback;
 		$this->curlOptions[CURLOPT_HEADERFUNCTION] = array($this, "readHeader");
 		$this->curlOptions[CURLOPT_MAXREDIRS] = $this->maxRedirects;
-		$this->curlOptions[CURLOPT_ENCODING] = ""; # Enable compression
 
 		/* not sure these two are actually necessary */
 		if(isset($this->reqHeaders['Referer'])) {
