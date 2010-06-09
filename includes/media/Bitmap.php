@@ -372,7 +372,9 @@ class BitmapHandler extends ImageHandler {
 			# Special value indicating that there is no EXIF data in the file
 			return true;
 		}
-		$exif = @unserialize( $metadata );
+		wfSuppressWarnings();
+		$exif = unserialize( $metadata );
+		wfRestoreWarnings();
 		if ( !isset( $exif['MEDIAWIKI_EXIF_VERSION'] ) ||
 			$exif['MEDIAWIKI_EXIF_VERSION'] != Exif::version() )
 		{
