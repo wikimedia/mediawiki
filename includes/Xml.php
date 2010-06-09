@@ -275,7 +275,8 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function input( $name, $size=false, $value=false, $attribs=array() ) {
-		$attributes = array();
+		$attributes = array( 'name' => $name );
+
 		if( $size ) {
 			$attributes['size'] = $size;
 		}
@@ -283,8 +284,6 @@ class Xml {
 		if( $value !== false ) { // maybe 0
 			$attributes['value'] = $value;
 		}
-
-		$attributes['name'] = $name;
 
 		return self::element( 'input', $attributes + $attribs );
 	}
