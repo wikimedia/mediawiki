@@ -38,14 +38,14 @@ div#content {
 	color: black;
 }
 /* Head */
-#page-base {
+#mw-page-base {
 	height: 5em;
 	background-color: white;
 	background-image: url(images/page-fade.png?1);
 	background-position: bottom right;
 	background-repeat: repeat-x;
 }
-#head-base {
+#mw-head-base {
 	margin-top: -5em;
 	margin-right: 10em;
 	height: 5em;
@@ -53,13 +53,13 @@ div#content {
 	background-position: bottom right;
 	background-repeat: repeat-x;
 }
-div#head {
+div#mw-head {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 }
-div#head h5 {
+div#mw-head h5 {
 	margin: 0;
 	padding: 0;
 }
@@ -215,20 +215,20 @@ div#head h5 {
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	/* @noflip */
-	div#head div.vectorMenu h5 {
+	div#mw-head div.vectorMenu h5 {
 		float: left;
 		background-image: url(images/tab-break.png?1);
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	div#head div.vectorMenu > h5 {
+	div#mw-head div.vectorMenu > h5 {
 		background-image: none;
 	}
-	div#head div.vectorMenu h5 {
+	div#mw-head div.vectorMenu h5 {
 		background-position: bottom right;
 		margin-right: -1px;
 	}
-	div#head div.vectorMenu h4 {
+	div#mw-head div.vectorMenu h4 {
 		display: inline-block;
 		float: right;
 		font-size: 0.8em;
@@ -386,17 +386,17 @@ div#head h5 {
 		height: 100%;
 	}
 /* Panel */
-div#panel {
+div#mw-panel {
 	position: absolute;
 	top: 160px;
 	padding-top: 1em;
 	width: 10em;
 	right: 0;
 }
-	div#panel div.portal {
+	div#mw-panel div.portal {
 		padding-bottom: 1.5em;
 	}
-	div#panel div.portal h5 {
+	div#mw-panel div.portal h5 {
 		font-weight: normal;
 		color: #444444;
 		padding: 0.25em;
@@ -406,7 +406,7 @@ div#panel {
 		border: none;
 		font-size: 0.75em;
 	}
-	div#panel div.portal div.body {
+	div#mw-panel div.portal div.body {
 		margin: 0;
 		padding-top: 0.5em;
 		margin-right: 1.25em;
@@ -414,14 +414,14 @@ div#panel {
 		background-repeat: no-repeat;
 		background-position: top right;
 	}
-	div#panel div.portal div.body ul {
+	div#mw-panel div.portal div.body ul {
 		list-style: none;
 		list-style-image: none;
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
 	}
-	div#panel div.portal div.body ul li {
+	div#mw-panel div.portal div.body ul li {
 		line-height: 1.125em;
 		padding: 0;
 		padding-bottom: 0.5em;
@@ -429,10 +429,10 @@ div#panel {
 		overflow: hidden;
 		font-size: 0.75em;
 	}
-	div#panel div.portal div.body ul li a {
+	div#mw-panel div.portal div.body ul li a {
 		color: #0645ad;
 	}
-	div#panel div.portal div.body ul li a:visited {
+	div#mw-panel div.portal div.body ul li a:visited {
 		color: #0b0080;
 	}
 /* Footer */

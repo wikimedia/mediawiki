@@ -247,7 +247,7 @@ function updateTooltipAccessKeys( nodeList ) {
 		// optimization technique.
 		var linkContainers = [
 			'column-one', // Monobook and Modern
-			'head', 'panel', 'p-logo' // Vector
+			'mw-head', 'mw-panel', 'p-logo' // Vector
 		];
 		for ( var i in linkContainers ) {
 			var linkContainer = document.getElementById( linkContainers[i] );
