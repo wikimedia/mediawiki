@@ -127,7 +127,13 @@ $messages = array(
 'listingcontinuesabbrev'         => '(кхин дlа)',
 'index-category'                 => 'Меттигтерахьйо агlонаш',
 
-'mainpagetext' => "'''Вики-белха гlирс «MediaWiki» кхочуш дика дlахlоттийна.'''",
+'mainpagetext'      => "'''Вики-белха гlирс «MediaWiki» кхочуш дика дlахlоттийна.'''",
+'mainpagedocfooter' => 'Викийца болх бан хаамаш карор бу хlокху чохь [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 куьйгаллица собаркхе].
+
+== Цхьаболу пайде гlирсаш ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Гlирс нисбан тарлушболу могlам];
+* [http://www.mediawiki.org/wiki/Manual:FAQ Сих сиха лушдолу хаттарш а жоьпаш оцу MediaWiki];
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Хаам бохьуьйту араяларца башхонца керла MediaWiki].',
 
 'about'         => 'Цунах лаьцна',
 'article'       => 'Яззам',
@@ -150,6 +156,7 @@ $messages = array(
 'vector-namespace-image'     => 'Хlум',
 'vector-namespace-mediawiki' => 'Хаам',
 'vector-namespace-template'  => 'Куцкеп',
+'vector-view-edit'           => 'Нисйинарг',
 
 'errorpagetitle'    => 'Гlалат',
 'tagline'           => 'Гlирс хlокхуьна бу {{grammar:genitive|{{SITENAME}}}}',
