@@ -61,12 +61,21 @@ class ImagePage extends Article {
 
 	public function view() {
 		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
+
+		$diff = $wgRequest->getVal( 'diff' );
+		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
+
+		if ( $this->mTitle->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) ) {
+			return Article::view();
+		}
+			
 		$this->loadFile();
 
 		if ( $this->mTitle->getNamespace() == NS_FILE && $this->img->getRedirected() ) {
-			if ( $this->mTitle->getDBkey() == $this->img->getName() ) {
+			if ( $this->mTitle->getDBkey() == $this->img->getName() || isset( $diff ) ) {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
+				$wgRequest->setVal( 'diffonly', 'true' );
 				return Article::view();
 			} else {
 				// mTitle is not the same as the redirect target so it is 
@@ -79,12 +88,6 @@ class ImagePage extends Article {
 			}
 		}
 
-		$diff = $wgRequest->getVal( 'diff' );
-		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
-
-		if ( $this->mTitle->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) )
-			return Article::view();
-			
 		$this->showRedirectedFromHeader();
 
 		if ( $wgShowEXIF && $this->displayImg->exists() ) {

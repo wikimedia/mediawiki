@@ -213,6 +213,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23834) Invalid "thumbwidth" and "thumbheight" in "imageinfo" query when
   thumbnailing larger than original image
 * (bug 23835) Need "thumbmime" result in "imageinfo" query
+* (bug 23851) Repair diff for file redirect pages
 
 === Languages updated in 1.17 ===
 
