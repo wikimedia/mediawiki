@@ -905,6 +905,8 @@ class EditPage {
 
 			$isComment = ( $this->section == 'new' );
 
+			# FIXME: paste contents from Article::insertNewArticle here and 
+			# actually handle errors it may return
 			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
 				$this->minoredit, $this->watchthis, false, $isComment, $bot );
 
@@ -1051,14 +1053,20 @@ class EditPage {
 			return self::AS_MAX_ARTICLE_SIZE_EXCEEDED;
 		}
 
-		# update the article here
-		if ( $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
-			$this->watchthis, $bot, $sectionanchor ) )
+		// Update the article here
+		$flags = EDIT_UPDATE | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
+			( $this->minoredit ? EDIT_MINOR : 0 ) |
+			( $bot ? EDIT_FORCE_BOT : 0 );
+		$status = $this->mArticle->doEdit( $text, $this->summary, $flags, 
+			false, null, $this->watchthis, false, $sectionanchor, true );
+		
+		if ( $status->isOK() )
 		{
 			wfProfileOut( __METHOD__ );
 			return self::AS_SUCCESS_UPDATE;
 		} else {
 			$this->isConflict = true;
+			$result = $status->getErrorsArray();
 		}
 		wfProfileOut( __METHOD__ );
 		return self::AS_END;
