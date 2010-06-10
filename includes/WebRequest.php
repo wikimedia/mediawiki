@@ -436,7 +436,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public function getRequestURL() {
-		if( isset( $_SERVER['REQUEST_URI'] ) ) {
+		if( isset( $_SERVER['REQUEST_URI']) && strlen($_SERVER['REQUEST_URI']) ) {
 			$base = $_SERVER['REQUEST_URI'];
 		} elseif( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 			// Probably IIS; doesn't set REQUEST_URI
