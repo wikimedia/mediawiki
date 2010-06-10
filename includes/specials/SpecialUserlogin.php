@@ -982,7 +982,7 @@ class LoginForm {
 
 		# Don't show a "create account" link if the user can't
 		if( $this->showCreateOrLoginLink( $wgUser ) )
-			$template->set( 'link', wfMsgWikiHtml( $linkmsg, $link ) );
+			$template->set( 'link', preg_replace('/(^<p>|<\/p>$)/', '', wfMsgWikiHtml( $linkmsg, $link ) ) );
 		else
 			$template->set( 'link', '' );
 
