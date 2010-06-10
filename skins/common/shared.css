@@ -643,6 +643,17 @@ table.collapsed tr.collapsable {
 	border: none;
 }
 
+/* Note on preview page */
+.previewnote {
+	color: #c00;
+	margin-bottom: 1em;
+}
+
+.previewnote p {
+	text-indent: 3em;
+	margin: 0.8em 0;
+}
+
 .visualClear {
 	clear: both;
 }
