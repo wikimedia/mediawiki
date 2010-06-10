@@ -29,6 +29,30 @@ class Preprocessor_DOM implements Preprocessor {
 		return new PPCustomFrame_DOM( $this, $args );
 	}
 
+	function newPartNodeArray( $values ) {
+		//NOTE: DOM manipulation is slower than building & parsing XML! (or so Tim sais)
+		$xml = "";
+		$xml .= "<list>";
+
+		foreach ( $values as $k => $val ) {
+			 
+			if ( is_int( $k ) ) {
+				$xml .= "<part><name index=\"$k\"/><value>" . htmlspecialchars( $val ) ."</value></part>";
+			} else {
+				$xml .= "<part><name>" . htmlspecialchars( $k ) . "</name>=<value>" . htmlspecialchars( $val ) . "</value></part>";
+			}
+		}
+
+		$xml .= "</list>";
+
+		$dom = new DOMDocument();
+		$dom->loadXML( $xml );
+		$root = $dom->documentElement;
+
+		$node = new PPNode_DOM( $root->childNodes );
+		return $node;
+	}
+
 	function memCheck() {
 		if ( $this->memoryLimit === false ) {
 			return;
