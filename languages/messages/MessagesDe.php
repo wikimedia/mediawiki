@@ -2164,7 +2164,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 # User Messenger
 'usermessage-summary'  => 'Systemnachricht gespeichert.',
 'usermessage-editor'   => 'System-Messenger',
-'usermessage-template' => 'Vorlage:Benutzernachricht',
+'usermessage-template' => 'MediaWiki:Benutzernachricht',
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
@@ -2178,9 +2178,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'addedwatchtext'       => 'Die Seite „[[:$1]]“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
-in der Übersicht der [[Special:RecentChanges|letzten Änderungen]] in Fettschrift dargestellt.
-
-Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klicke auf der jeweiligen Seite auf „{{int:Unwatch}}“.',
+in der Übersicht der [[Special:RecentChanges|letzten Änderungen]] in Fettschrift dargestellt.',
 'removedwatch'         => 'Von der Beobachtungsliste entfernt',
 'removedwatchtext'     => 'Die Seite „[[:$1]]“ wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watch'                => 'Beobachten',
@@ -2465,10 +2463,10 @@ Bitte gib den Grund für die Sperre an.',
 'ipbreason-dropdown'              => '* Allgemeine Sperrgründe
 ** Einfügen falscher Informationen
 ** Leeren von Seiten
-** Fügt massenweise externe Links ein
-** Einstellen unsinniger Sachen in Seiten
-** bedrohliches Verhalten/Belästigung
-** Missbrauch durch mehrere Benutzerkonten
+** Massenweises Einfügen externer Links
+** Einstellen unsinniger Inhalte in Seiten
+** Ungebührliches Verhalten
+** Missbrauch mit mehreren Benutzerkonten
 ** Ungeeigneter Benutzername',
 'ipbanononly'                     => 'Nur anonyme Benutzer sperren',
 'ipbcreateaccount'                => 'Erstellung von Benutzerkonten verhindern',
@@ -2900,7 +2898,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'skinname-chick'       => 'Küken',
 'skinname-simple'      => 'Einfach',
 'skinname-modern'      => 'Modern',
-'skinname-vector'      => 'Vektor',
+'skinname-vector'      => 'Vector',
 
 # Math options
 'mw_math_png'    => 'Immer als PNG darstellen',

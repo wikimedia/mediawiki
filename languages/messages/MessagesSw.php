@@ -1184,12 +1184,16 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'prefs-display'                 => 'Hitiari za kutandaza',
 
 # User rights
-'userrights-user-editname'    => 'Andika jina la mtumiaji:',
-'editusergroup'               => 'Kuhariri vikundi vya watumiaji',
-'userrights-groupsmember'     => 'Mwanachama wa:',
-'userrights-reason'           => 'Sababu:',
-'userrights-changeable-col'   => 'Makundi unayoweza kuyabadilisha',
-'userrights-unchangeable-col' => 'Makundi usiyoweza kuyabadilisha',
+'userrights-lookup-user'       => 'Kusimamia kundi za watumiaji',
+'userrights-user-editname'     => 'Andika jina la mtumiaji:',
+'editusergroup'                => 'Kuhariri vikundi vya watumiaji',
+'userrights-editusergroup'     => 'Kuhariri kundi za watumiaji',
+'saveusergroups'               => 'Kuhifadhi kundi za watumiaji',
+'userrights-groupsmember'      => 'Mwanachama wa:',
+'userrights-groupsmember-auto' => 'Mwanachama moja kwa moja wa:',
+'userrights-reason'            => 'Sababu:',
+'userrights-changeable-col'    => 'Makundi unayoweza kuyabadilisha',
+'userrights-unchangeable-col'  => 'Makundi usiyoweza kuyabadilisha',
 
 # Groups
 'group'       => 'Kundi:',

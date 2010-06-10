@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Cantonese (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1381,6 +1381,7 @@ $1",
 'action-userrights'           => '編輯全部嘅權限',
 'action-userrights-interwiki' => '編輯響其它wiki用戶嘅權限',
 'action-siteadmin'            => '鎖同解鎖資料庫',
+'action-revisionmove'         => '搬修訂',
 
 # Recent changes
 'nchanges'                          => '$1次更改',
