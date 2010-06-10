@@ -2633,7 +2633,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 # User Messenger
 'usermessage-summary'  => 'Leaving system message.',
 'usermessage-editor'   => 'System messenger',
-'usermessage-template' => 'Template:UserMessage', # only translate this message to other languages if you have to change it
+'usermessage-template' => 'MediaWiki:UserMessage', # only translate this message to other languages if you have to change it
 
 # Watchlist
 'watchlist'            => 'My watchlist',
