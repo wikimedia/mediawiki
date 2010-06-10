@@ -239,52 +239,6 @@ class Parser {
 		wfProfileOut( __METHOD__ );
 	}
 
-	function setOutputType( $ot ) {
-		$this->mOutputType = $ot;
-		# Shortcut alias
-		$this->ot = array(
-			'html' => $ot == self::OT_HTML,
-			'wiki' => $ot == self::OT_WIKI,
-			'pre' => $ot == self::OT_PREPROCESS,
-			'plain' => $ot == self::OT_PLAIN,
-		);
-	}
-
-	/**
-	 * Set the context title
-	 */
-	function setTitle( $t ) {
- 		if ( !$t || $t instanceof FakeTitle ) {
- 			$t = Title::newFromText( 'NO TITLE' );
- 		}
-
-		if ( strval( $t->getFragment() ) !== '' ) {
-			# Strip the fragment to avoid various odd effects
-			$this->mTitle = clone $t;
-			$this->mTitle->setFragment( '' );
-		} else {
-			$this->mTitle = $t;
-		}
-	}
-
-	/**
-	 * Accessor for mUniqPrefix.
-	 *
-	 * @public
-	 */
-	function uniqPrefix() {
-		if ( !isset( $this->mUniqPrefix ) ) {
-			# @todo Fixme: this is probably *horribly wrong*
-			# LanguageConverter seems to want $wgParser's uniqPrefix, however
-			# if this is called for a parser cache hit, the parser may not
-			# have ever been initialized in the first place.
-			# Not really sure what the heck is supposed to be going on here.
-			return '';
-			# throw new MWException( "Accessing uninitialized mUniqPrefix" );
-		}
-		return $this->mUniqPrefix;
-	}
-
 	/**
 	 * Convert wikitext to HTML
 	 * Do not call this function recursively.
@@ -481,7 +435,7 @@ class Parser {
 	 * If $frame is not provided, then template variables (e.g., {{{1}}}) within $text are not expanded
 	 *
 	 * @param $text String: text extension wants to have parsed
-	 * @param PPFrame $frame: The frame to use for expanding any template variables
+	 * @param $frame PPFrame: The frame to use for expanding any template variables
 	 */
 	function recursiveTagParse( $text, $frame=false ) {
 		wfProfileIn( __METHOD__ );
@@ -541,11 +495,117 @@ class Parser {
 		return dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 	}
 
-	function &getTitle() { return $this->mTitle; }
-	function getOptions() { return $this->mOptions; }
-	function getRevisionId() { return $this->mRevisionId; }
-	function getOutput() { return $this->mOutput; }
-	function nextLinkID() { return $this->mLinkID++; }
+	/**
+	 * Accessor for mUniqPrefix.
+	 *
+	 * @return String
+	 */
+	public function uniqPrefix() {
+		if ( !isset( $this->mUniqPrefix ) ) {
+			# @todo Fixme: this is probably *horribly wrong*
+			# LanguageConverter seems to want $wgParser's uniqPrefix, however
+			# if this is called for a parser cache hit, the parser may not
+			# have ever been initialized in the first place.
+			# Not really sure what the heck is supposed to be going on here.
+			return '';
+			# throw new MWException( "Accessing uninitialized mUniqPrefix" );
+		}
+		return $this->mUniqPrefix;
+	}
+
+	/**
+	 * Set the context title
+	 */
+	function setTitle( $t ) {
+ 		if ( !$t || $t instanceof FakeTitle ) {
+ 			$t = Title::newFromText( 'NO TITLE' );
+ 		}
+
+		if ( strval( $t->getFragment() ) !== '' ) {
+			# Strip the fragment to avoid various odd effects
+			$this->mTitle = clone $t;
+			$this->mTitle->setFragment( '' );
+		} else {
+			$this->mTitle = $t;
+		}
+	}
+
+	/**
+	 * Accessor for the Title object
+	 *
+	 * @return Title object
+	 */
+	function &getTitle() {
+		return $this->mTitle;
+	}
+
+	/**
+	 * Accessor/mutator for the Title object
+	 *
+	 * @param $x New Title object or null to just get the current one
+	 * @return Title object
+	 */
+	function Title( $x = null ) {
+		return wfSetVar( $this->mTitle, $x );
+	}
+
+	/**
+	 * Set the output type
+	 *
+	 * @param $ot Integer: new value
+	 */
+	function setOutputType( $ot ) {
+		$this->mOutputType = $ot;
+		# Shortcut alias
+		$this->ot = array(
+			'html' => $ot == self::OT_HTML,
+			'wiki' => $ot == self::OT_WIKI,
+			'pre' => $ot == self::OT_PREPROCESS,
+			'plain' => $ot == self::OT_PLAIN,
+		);
+	}
+
+	/**
+	 * Accessor/mutator for the output type
+	 *
+	 * @param $x New value or null to just get the current one
+	 * @return Integer
+	 */
+	function OutputType( $x = null ) {
+		return wfSetVar( $this->mOutputType, $x );
+	}
+
+	/**
+	 * Get the ParserOutput object
+	 *
+	 * @return ParserOutput object
+	 */
+	function getOutput() {
+		return $this->mOutput;
+	}
+
+	/**
+	 * Get the ParserOptions object
+	 *
+	 * @return ParserOptions object
+	 */
+	function getOptions() {
+		return $this->mOptions;
+	}
+
+	/**
+	 * Accessor/mutator for the ParserOptions object
+	 *
+	 * @param $x New value or null to just get the current one
+	 * @return Current ParserOptions object
+	 */
+	function Options( $x = null ) {
+		return wfSetVar( $this->mOptions, $x );
+	}
+
+	function nextLinkID() {
+		return $this->mLinkID++;
+	}
 
 	function getFunctionLang() {
 		global $wgLang, $wgContLang;
@@ -560,6 +620,8 @@ class Parser {
 
 	/**
 	 * Get a preprocessor object
+	 *
+	 * @return Preprocessor instance
 	 */
 	function getPreprocessor() {
 		if ( !isset( $this->mPreprocessor ) ) {
@@ -582,12 +644,13 @@ class Parser {
 	 *
 	 * @param $elements list of element names. Comments are always extracted.
 	 * @param $text Source text string.
+	 * @param $matches Out parameter, Array: extarcted tags
 	 * @param $uniq_prefix
+	 * @return String: stripped text
 	 *
-	 * @public
 	 * @static
 	 */
-	function extractTagsAndParams( $elements, $text, &$matches, $uniq_prefix = '' ) {
+	public function extractTagsAndParams( $elements, $text, &$matches, $uniq_prefix = '' ) {
 		static $n = 1;
 		$stripped = '';
 		$matches = array();
@@ -1388,9 +1451,9 @@ class Parser {
 	 * (depending on configuration, namespace, and the URL's domain) and/or a
 	 * target attribute (depending on configuration).
 	 *
-	 * @param string $url Optional URL, to extract the domain from for rel =>
+	 * @param $url String: optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
-	 * @return array Associative array of HTML attributes
+	 * @return Array: associative array of HTML attributes
 	 */
 	function getExternalLinkAttribs( $url = false ) {
 		$attribs = array();
@@ -1421,9 +1484,10 @@ class Parser {
 
 	/**
 	 * Replace unusual URL escape codes with their equivalent characters
-	 * @param string
-	 * @return string
-	 * @static
+	 *
+	 * @param $url String
+	 * @return String
+	 *
 	 * @todo  This can merge genuinely required bits in the path or query string,
 	 *        breaking legit URLs. A proper fix would treat the various parts of
 	 *        the URL differently; as a workaround, just use the output for
@@ -1437,8 +1501,6 @@ class Parser {
 	/**
 	 * Callback function used in replaceUnusualEscapes().
 	 * Replaces unusual URL escape codes with their equivalent character
-	 * @static
-	 * @private
 	 */
 	private static function replaceUnusualEscapesCallback( $matches ) {
 		$char = urldecode( $matches[0] );
@@ -1864,12 +1926,12 @@ class Parser {
 	 * breaking URLs in the following text without breaking trails on the
 	 * wiki links, it's been made into a horrible function.
 	 *
-	 * @param Title $nt
-	 * @param string $text
-	 * @param string $query
-	 * @param string $trail
-	 * @param string $prefix
-	 * @return string HTML-wikitext mix oh yuck
+	 * @param $nt Title
+	 * @param $text String
+	 * @param $query String
+	 * @param $trail String
+	 * @param $prefix String
+	 * @return String: HTML-wikitext mix oh yuck
 	 */
 	function makeKnownLinkHolder( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
@@ -1886,8 +1948,8 @@ class Parser {
 	 * Not needed quite as much as it used to be since free links are a bit
 	 * more sensible these days. But bracketed links are still an issue.
 	 *
-	 * @param string more-or-less HTML
-	 * @return string less-or-more HTML with NOPARSE bits
+	 * @param $text String: more-or-less HTML
+	 * @return String: less-or-more HTML with NOPARSE bits
 	 */
 	function armorLinks( $text ) {
 		return preg_replace( '/\b(' . wfUrlProtocols() . ')/',
@@ -1896,7 +1958,7 @@ class Parser {
 
 	/**
 	 * Return true if subpage links should be expanded on this page.
-	 * @return bool
+	 * @return Boolean
 	 */
 	function areSubpagesAllowed() {
 		# Some namespaces don't allow subpages
@@ -1905,8 +1967,9 @@ class Parser {
 
 	/**
 	 * Handle link to subpage if necessary
-	 * @param string $target the source of the link
-	 * @param string &$text the link text, modified as necessary
+	 *
+	 * @param $target String: the source of the link
+	 * @param &$text String: the link text, modified as necessary
 	 * @return string the full name of the link
 	 * @private
 	 */
@@ -1927,6 +1990,7 @@ class Parser {
 		$this->mLastSection = '';
 		return $result;
 	}
+
 	/**
 	 * getCommon() returns the length of the longest common substring
 	 * of both arguments, starting at the beginning of both.
@@ -1946,6 +2010,7 @@ class Parser {
 		}
 		return $i;
 	}
+
 	/**
 	 * These next three functions open, continue, and close the list
 	 * element appropriate to the prefix character passed into them.
@@ -2021,7 +2086,8 @@ class Parser {
 	/**
 	 * Make lists from lines starting with ':', '*', '#', etc. (DBL)
 	 *
-	 * @param $linestart bool whether or not this is at the start of a line.
+	 * @param $text String
+	 * @param $linestart Boolean: whether or not this is at the start of a line.
 	 * @private
 	 * @return string the lists rendered as HTML
 	 */
@@ -2210,10 +2276,11 @@ class Parser {
 	/**
 	 * Split up a string on ':', ignoring any occurences inside tags
 	 * to prevent illegal overlapping.
-	 * @param string $str the string to split
-	 * @param string &$before set to everything before the ':'
-	 * @param string &$after set to everything after the ':'
-	 * return string the position of the ':', or false if none found
+	 *
+	 * @param $str String: the string to split
+	 * @param &$before String: set to everything before the ':'
+	 * @param &$after String: set to everything after the ':'
+	 * return String: the position of the ':', or false if none found
 	 */
 	function findColonNoLinks( $str, &$before, &$after ) {
 		wfProfileIn( __METHOD__ );
@@ -2700,8 +2767,8 @@ class Parser {
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of replace_variables().
 	 *
-	 * @param string $text The text to parse
-	 * @param integer flags Bitwise combination of:
+	 * @param $text String: The text to parse
+	 * @param $flags Integer: bitwise combination of:
 	 *          self::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being
 	 *                                     included. Default is to assume a direct page view.
 	 *
@@ -2749,11 +2816,11 @@ class Parser {
 	 *  self::OT_PREPROCESS: templates but not extension tags
 	 *  self::OT_HTML: all templates and extension tags
 	 *
-	 * @param string $tex The text to transform
-	 * @param PPFrame $frame Object describing the arguments passed to the template.
+	 * @param $text String: the text to transform
+	 * @param $frame PPFrame Object describing the arguments passed to the template.
 	 *        Arguments may also be provided as an associative array, as was the usual case before MW1.12.
 	 *        Providing arguments this way may be useful for extensions wishing to perform variable replacement explicitly.
-	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not double-brace expansion
+	 * @param $argsOnly Boolean: only do argument (triple-brace) expansion, not double-brace expansion
 	 * @private
 	 */
 	function replaceVariables( $text, $frame = false, $argsOnly = false ) {
@@ -2805,7 +2872,7 @@ class Parser {
 	 * Warn the user when a parser limitation is reached
 	 * Will warn at most once the user per limitation type
 	 *
-	 * @param string $limitationType, should be one of:
+	 * @param $limitationType String: should be one of:
 	 *   'expensive-parserfunction' (corresponding messages:
 	 *       'expensive-parserfunction-warning',
 	 *       'expensive-parserfunction-category')
@@ -2815,7 +2882,8 @@ class Parser {
 	 *   'post-expand-template-inclusion' (corresponding messages:
 	 *       'post-expand-template-inclusion-warning',
 	 *       'post-expand-template-inclusion-category')
-	 * @params int $current, $max When an explicit limit has been
+	 * @param $current Current value
+	 * @param $max Maximum allowed, when an explicit limit has been
 	 *	 exceeded, provide the values (optional)
 	 */
 	function limitationWarn( $limitationType, $current=null, $max=null) {
@@ -2829,12 +2897,12 @@ class Parser {
 	 * Return the text of a template, after recursively
 	 * replacing any variables or templates within the template.
 	 *
-	 * @param array $piece The parts of the template
+	 * @param $piece Array: the parts of the template
 	 *  $piece['title']: the title, i.e. the part before the |
 	 *  $piece['parts']: the parameter array
 	 *  $piece['lineStart']: whether the brace was at the start of a line
-	 * @param PPFrame The current frame, contains template arguments
-	 * @return string the text of the template
+	 * @param $frame PPFrame The current frame, contains template arguments
+	 * @return String: the text of the template
 	 * @private
 	 */
 	function braceSubstitution( $piece, $frame ) {
@@ -3366,13 +3434,13 @@ class Parser {
 	 * Return the text to be used for a given extension tag.
 	 * This is the ghost of strip().
 	 *
-	 * @param array $params Associative array of parameters:
+	 * @param $params Associative array of parameters:
 	 *     name       PPNode for the tag name
 	 *     attr       PPNode for unparsed text where tag attributes are thought to be
 	 *     attributes Optional associative array of parsed attributes
 	 *     inner      Contents of extension element
 	 *     noClose    Original text did not have a close tag
-	 * @param PPFrame $frame
+	 * @param $frame PPFrame
 	 */
 	function extensionSubstitution( $params, $frame ) {
 		global $wgRawHtml, $wgContLang;
@@ -3455,9 +3523,9 @@ class Parser {
 	/**
 	 * Increment an include size counter
 	 *
-	 * @param string $type The type of expansion
-	 * @param integer $size The size of the text
-	 * @return boolean False if this inclusion would take it over the maximum, true otherwise
+	 * @param $type String: the type of expansion
+	 * @param $size Integer: the size of the text
+	 * @return Boolean: false if this inclusion would take it over the maximum, true otherwise
 	 */
 	function incrementIncludeSize( $type, $size ) {
 		if ( $this->mIncludeSizes[$type] + $size > $this->mOptions->getMaxIncludeSize( $type ) ) {
@@ -3471,7 +3539,7 @@ class Parser {
 	/**
 	 * Increment the expensive function count
 	 *
-	 * @return boolean False if the limit has been exceeded
+	 * @return Boolean: false if the limit has been exceeded
 	 */
 	function incrementExpensiveFunctionCount() {
 		global $wgExpensiveParserFunctionLimit;
@@ -3536,8 +3604,9 @@ class Parser {
 	/**
 	 * Add a tracking category, getting the title from a system message,
 	 * or print a debug message if the title is invalid.
-	 * @param $msg String message key
-	 * @return Bool whether the addition was successful
+	 *
+	 * @param $msg String: message key
+	 * @return Boolean: whether the addition was successful
 	 */
 	protected function addTrackingCategory( $msg ) {
 		$cat = wfMsgForContent( $msg );
@@ -3567,9 +3636,9 @@ class Parser {
 	 * It loops through all headlines, collects the necessary data, then splits up the
 	 * string and re-inserts the newly formatted headlines.
 	 *
-	 * @param string $text
-	 * @param string $origText Original, untouched wikitext
-	 * @param boolean $isMain
+	 * @param $text String
+	 * @param $origText String: original, untouched wikitext
+	 * @param $isMain Boolean
 	 * @private
 	 */
 	function formatHeadings( $text, $origText, $isMain=true ) {
@@ -3913,12 +3982,13 @@ class Parser {
 	 * $section in $tree1 and its descendants with the sections in $tree2.
 	 * Note that in the returned section tree, only the 'index' and
 	 * 'byteoffset' fields are guaranteed to be correct.
-	 * @param $tree1 array Section tree from ParserOutput::getSectons()
-	*  @param $tree2 array Section tree
-	 * @param $section int Section index
-	 * @param $title Title Title both section trees come from
-	 * @param $len2 int Length of the original wikitext for $tree2
-	 * @return array Merged section tree
+	 *
+	 * @param $tree1 Array: section tree from ParserOutput::getSectons()
+	*  @param $tree2 Array: section tree
+	 * @param $section Integer: section index
+	 * @param $title Title: Title both section trees come from
+	 * @param $len2 Integer: length of the original wikitext for $tree2
+	 * @return Array: merged section tree
 	 */
 	public static function mergeSectionTrees( $tree1, $tree2, $section, $title, $len2 ) {
 		global $wgContLang;
@@ -3984,9 +4054,10 @@ class Parser {
 
 	/**
 	 * Increment a section number. Helper function for mergeSectionTrees()
-	 * @param $number array Array representing a section number
-	 * @param $level int Current TOC level (depth)
-	 * @param $lastLevel int Level of previous TOC entry
+	 *
+	 * @param $number Array representing a section number
+	 * @param $level Integer: current TOC level (depth)
+	 * @param $lastLevel Integer: level of previous TOC entry
 	 */
 	private static function incrementNumbering( &$number, $level, $lastLevel ) {
 		if ( $level > $lastLevel ) {
@@ -4006,15 +4077,14 @@ class Parser {
 	 * Transform wiki markup when saving a page by doing \r\n -> \n
 	 * conversion, substitting signatures, {{subst:}} templates, etc.
 	 *
-	 * @param string $text the text to transform
-	 * @param Title &$title the Title object for the current article
-	 * @param User $user the User object describing the current user
-	 * @param ParserOptions $options parsing options
-	 * @param bool $clearState whether to clear the parser state first
-	 * @return string the altered wiki markup
-	 * @public
+	 * @param $text String: the text to transform
+	 * @param &$title Title: the Title object for the current article
+	 * @param $user User: the User object describing the current user
+	 * @param $options ParserOptions: parsing options
+	 * @param $clearState Boolean: whether to clear the parser state first
+	 * @return String: the altered wiki markup
 	 */
-	function preSaveTransform( $text, Title $title, $user, $options, $clearState = true ) {
+	public function preSaveTransform( $text, Title $title, $user, $options, $clearState = true ) {
 		$this->mOptions = $options;
 		$this->setTitle( $title );
 		$this->setOutputType( self::OT_WIKI );
@@ -4120,7 +4190,10 @@ class Parser {
 	 * If you have pre-fetched the nickname or the fancySig option, you can
 	 * specify them here to save a database query.
 	 *
-	 * @param User $user
+	 * @param $user User
+	 * @param $nickname String: nickname to use or false to use user's default nickname
+	 * @param $fancySig Boolean: whether the nicknname is the complete signature
+	 *                  or null to use default value
 	 * @return string
 	 */
 	function getUserSig( &$user, $nickname = false, $fancySig = null ) {
@@ -4169,7 +4242,7 @@ class Parser {
 	/**
 	 * Check that the user's signature contains no bad XML
 	 *
-	 * @param string $text
+	 * @param $text String
 	 * @return mixed An expanded string, or false if invalid.
 	 */
 	function validateSig( $text ) {
@@ -4182,9 +4255,9 @@ class Parser {
 	 * 1) Strip ~~~, ~~~~ and ~~~~~ out of signatures @see cleanSigInSig
 	 * 2) Substitute all transclusions
 	 *
-	 * @param string $text
+	 * @param $text String
 	 * @param $parsing Whether we're cleaning (preferences save) or parsing
-	 * @return string Signature text
+	 * @return String: signature text
 	 */
 	function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
@@ -4221,8 +4294,9 @@ class Parser {
 
 	/**
 	 * Strip ~~~, ~~~~ and ~~~~~ out of signatures
-	 * @param string $text
-	 * @return string Signature text with /~{3,5}/ removed
+	 *
+	 * @param $text String
+	 * @return String: signature text with /~{3,5}/ removed
 	 */
 	function cleanSigInSig( $text ) {
 		$text = preg_replace( '/~{3,5}/', '', $text );
@@ -4232,9 +4306,8 @@ class Parser {
 	/**
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
-	 * @public
 	 */
-	function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
+	public function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
 		$this->setTitle( $title );
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
@@ -4246,12 +4319,11 @@ class Parser {
 	/**
 	 * Wrapper for preprocess()
 	 *
-	 * @param string $text the text to preprocess
-	 * @param ParserOptions $options  options
-	 * @return string
-	 * @public
+	 * @param $text String: the text to preprocess
+	 * @param $options ParserOptions: options
+	 * @return String
 	 */
-	function transformMsg( $text, $options ) {
+	public function transformMsg( $text, $options ) {
 		global $wgTitle;
 		static $executing = false;
 
@@ -4277,14 +4349,11 @@ class Parser {
 	 * Transform and return $text. Use $parser for any required context, e.g. use
 	 * $parser->getTitle() and $parser->getOptions() not $wgTitle or $wgOut->mParserOptions
 	 *
-	 * @public
-	 *
-	 * @param mixed $tag The tag to use, e.g. 'hook' for <hook>
-	 * @param mixed $callback The callback function (and object) to use for the tag
-	 *
+	 * @param $tag Mixed: the tag to use, e.g. 'hook' for <hook>
+	 * @param $callback Mixed: the callback function (and object) to use for the tag
 	 * @return The old value of the mTagHooks array associated with the hook
 	 */
-	function setHook( $tag, $callback ) {
+	public function setHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
 		$oldVal = isset( $this->mTagHooks[$tag] ) ? $this->mTagHooks[$tag] : null;
 		$this->mTagHooks[$tag] = $callback;
@@ -4327,11 +4396,9 @@ class Parser {
 	 *   nowiki                    Wiki markup in the return value should be escaped
 	 *   isHTML                    The returned text is HTML, armour it against wikitext transformation
 	 *
-	 * @public
-	 *
-	 * @param string $id The magic word ID
-	 * @param mixed $callback The callback function (and object) to use
-	 * @param integer $flags a combination of the following flags:
+	 * @param $id String: The magic word ID
+	 * @param $callback Mixed: the callback function (and object) to use
+	 * @param $flags Integer: a combination of the following flags:
 	 *     SFH_NO_HASH   No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
 	 *
 	 *     SFH_OBJECT_ARGS   Pass the template arguments as PPNode objects instead of text. This
@@ -4355,7 +4422,7 @@ class Parser {
 	 *
 	 * @return The old callback function for this name, if any
 	 */
-	function setFunctionHook( $id, $callback, $flags = 0 ) {
+	public function setFunctionHook( $id, $callback, $flags = 0 ) {
 		global $wgContLang;
 
 		$oldVal = isset( $this->mFunctionHooks[$id] ) ? $this->mFunctionHooks[$id][0] : null;
@@ -4390,7 +4457,7 @@ class Parser {
 	/**
 	 * Get all registered function hook identifiers
 	 *
-	 * @return array
+	 * @return Array
 	 */
 	function getFunctionHooks() {
 		return array_keys( $this->mFunctionHooks );
@@ -4427,8 +4494,9 @@ class Parser {
 	/**
 	 * Replace <!--LINK--> link placeholders with plain text of links
 	 * (not HTML-formatted).
-	 * @param string $text
-	 * @return string
+	 *
+	 * @param $text String
+	 * @return String
 	 */
 	function replaceLinkHoldersText( $text ) {
 		return $this->mLinkHolders->replaceText( $text );
@@ -4557,9 +4625,10 @@ class Parser {
 
 	/**
 	 * Parse image options text and use it to make an image
-	 * @param Title $title
-	 * @param string $options
-	 * @param LinkHolderArray $holders
+	 *
+	 * @param $title Title
+	 * @param $options String
+	 * @param $holders LinkHolderArray
 	 */
 	function makeImage( $title, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
@@ -4791,12 +4860,13 @@ class Parser {
 		$this->mOutput->updateCacheExpiry( 0 ); // new style, for consistency
 	}
 
-	/**#@+
+	/**
 	 * Callback from the Sanitizer for expanding items found in HTML attribute
 	 * values, so they can be safely tested and escaped.
-	 * @param string $text
-	 * @param PPFrame $frame
-	 * @return string
+	 *
+	 * @param $text String
+	 * @param $frame PPFrame
+	 * @return String
 	 * @private
 	 */
 	function attributeStripCallback( &$text, $frame = false ) {
@@ -4805,24 +4875,12 @@ class Parser {
 		return $text;
 	}
 
-	/**#@-*/
-
-	/**#@+
-	 * Accessor/mutator
-	 */
-	function Title( $x = null ) { return wfSetVar( $this->mTitle, $x ); }
-	function Options( $x = null ) { return wfSetVar( $this->mOptions, $x ); }
-	function OutputType( $x = null ) { return wfSetVar( $this->mOutputType, $x ); }
-	/**#@-*/
-
-	/**#@+
+	/**
 	 * Accessor
 	 */
 	function getTags() {
 		return array_merge( array_keys( $this->mTransparentTagHooks ), array_keys( $this->mTagHooks ) );
 	}
-	/**#@-*/
-
 
 	/**
 	 * Break wikitext input into sections, and either pull or replace
@@ -4830,8 +4888,8 @@ class Parser {
 	 *
 	 * External callers should use the getSection and replaceSection methods.
 	 *
-	 * @param string $text Page wikitext
-	 * @param string $section A section identifier string of the form:
+	 * @param $text String: Page wikitext
+	 * @param $section String: a section identifier string of the form:
 	 *   <flag1> - <flag2> - ... - <section number>
 	 *
 	 * Currently the only recognised flag is "T", which means the target section number
@@ -4844,10 +4902,10 @@ class Parser {
 	 * pull the given section along with its lower-level subsections. If the section is
 	 * not found, $mode=get will return $newtext, and $mode=replace will return $text.
 	 *
-	 * @param string $mode One of "get" or "replace"
-	 * @param string $newText Replacement text for section data.
-	 * @return string for "get", the extracted section text.
-	 *                for "replace", the whole page with the section replaced.
+	 * @param $mode String: one of "get" or "replace"
+	 * @param $newText String: replacement text for section data.
+	 * @return String: for "get", the extracted section text.
+	 *                 for "replace", the whole page with the section replaced.
 	 */
 	private function extractSections( $text, $section, $mode, $newText='' ) {
 		global $wgTitle;
@@ -4879,11 +4937,11 @@ class Parser {
 			# Section zero doesn't nest, level=big
 			$targetLevel = 1000;
 		} else {
-            while ( $node ) {
-                if ( $node->getName() === 'h' ) {
-                    $bits = $node->splitHeading();
+			while ( $node ) {
+				if ( $node->getName() === 'h' ) {
+					$bits = $node->splitHeading();
 					if ( $bits['i'] == $sectionIndex ) {
-        				$targetLevel = $bits['level'];
+						$targetLevel = $bits['level'];
 						break;
 					}
 				}
@@ -4949,9 +5007,9 @@ class Parser {
 	 *
 	 * If a section contains subsections, these are also returned.
 	 *
-	 * @param string $text text to look in
-	 * @param string $section section identifier
-	 * @param string $deftext default to return if section is not found
+	 * @param $text String: text to look in
+	 * @param $section String: section identifier
+	 * @param $deftext String: default to return if section is not found
 	 * @return string text of the requested section
 	 */
 	public function getSection( $text, $section, $deftext='' ) {
@@ -4960,6 +5018,15 @@ class Parser {
 
 	public function replaceSection( $oldtext, $section, $text ) {
 		return $this->extractSections( $oldtext, $section, "replace", $text );
+	}
+
+	/**
+	 * Get the ID of the revision we are parsing
+	 *
+	 * @return Mixed: integer or null
+	 */
+	function getRevisionId() {
+		return $this->mRevisionId;
 	}
 
 	/**
@@ -4995,6 +5062,8 @@ class Parser {
 
 	/**
 	 * Get the name of the user that edited the last revision
+	 *
+	 * @return String: user name
 	 */
 	function getRevisionUser() {
 		# if this template is subst: the revision id will be blank,
@@ -5080,7 +5149,7 @@ class Parser {
 	 * to create valid section anchors by mimicing the output of the
 	 * parser when headings are parsed.
 	 *
-	 * @param $text string Text string to be stripped of wikitext
+	 * @param $text String: text string to be stripped of wikitext
 	 * for use in a Section anchor
 	 * @return Filtered text string
 	 */

@@ -78,9 +78,9 @@ class Parser_LinkHooks extends Parser
 	 *
 	 * @public
 	 *
-	 * @param integer|string $ns The Namespace ID or regex pattern if SLH_PATTERN is set
-	 * @param mixed $callback The callback function (and object) to use
-	 * @param integer $flags a combination of the following flags:
+	 * @param $ns Integer or String: the Namespace ID or regex pattern if SLH_PATTERN is set
+	 * @param $callback Mixed: the callback function (and object) to use
+	 * @param $flags Integer: a combination of the following flags:
 	 *     SLH_PATTERN   Use a regex link pattern rather than a namespace
 	 *
 	 * @return The old callback function for this name, if any
