@@ -13,6 +13,9 @@ interface Preprocessor {
 	/** Create a new custom frame for programmatic use of parameter replacement as used in some extensions */
 	function newCustomFrame( $args );
 
+	/** Create a new custom node for programmatic use of parameter replacement as used in some extensions */
+	function newPartNodeArray( $values );
+
 	/** Preprocess text to a PPNode */
 	function preprocessToObj( $text, $flags = 0 );
 }
