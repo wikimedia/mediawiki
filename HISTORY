@@ -875,6 +875,7 @@ changes to languages because of MediaZilla reports.
 * (bug 19968) Fixed "Project talk" namespace name for Maltese (mt)
 * (bug 21168) Added áâãàéêçíóôõúü to Portuguese (pt) linktrail
 * (bug 21596) Change interwiki link for Kurdish (ku)
+* (bug 23767) PHP warning/error when REQUEST_URI returns blank (IIS issue).
 
 == MediaWiki 1.15 ==
 
