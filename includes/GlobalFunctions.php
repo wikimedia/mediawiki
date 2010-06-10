@@ -2034,7 +2034,7 @@ function wfGetCachedNotice( $name ) {
 			$notice = '';
 		}
 	}
-
+	$notice = '<div id="localNotice">'.$notice.'</div>';
 	wfProfileOut( $fname );
 	return $notice;
 }
