@@ -4458,7 +4458,7 @@ class Article {
 				$this->mTitle->getPrefixedDBkey() ) );
 		}
 
-		if ( $wgEnableParserCache && $cache && $this && !$this->mParserOutput->isCacheable() ) {
+		if ( $wgEnableParserCache && $cache && $this->mParserOutput->isCacheable() ) {
 			$parserCache = ParserCache::singleton();
 			$parserCache->save( $this->mParserOutput, $this, $parserOptions );
 		}
