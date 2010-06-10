@@ -886,8 +886,8 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 '''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
 '''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences'';
 '''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Pažnja:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS prije nego što sačuvate.",
-'userjsyoucanpreview'              => "'''Pažnja:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi JS prije nego što sačuvate.",
+'usercssyoucanpreview'             => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi CSS prije nego što sačuvate.",
+'userjsyoucanpreview'              => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi JavaScript prije nego što sačuvate.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
 '''Ovaj pregled još uvijek nije sačuvan!'''",
 'userjspreview'                    => "'''Zapamtite ovo je samo izgled vaše JavaScript-e, još uvijek nije sačuvan!'''",
@@ -1115,6 +1115,8 @@ $1",
 'logdelete-failure'           => "'''Zapisnik vidljivosti nije mogao biti postavljen:'''
 $1",
 'revdel-restore'              => 'Promijeni dostupnost',
+'revdel-restore-deleted'      => 'obrisane revizije',
+'revdel-restore-visible'      => 'vidljive revizije',
 'pagehist'                    => 'Historija stranice',
 'deletedhist'                 => 'Izbrisana historija',
 'revdelete-content'           => 'sadržaj',
@@ -1148,6 +1150,11 @@ Molimo provjerite zapise.',
 # Suppression log
 'suppressionlog'     => 'Zapisi sakrivanja',
 'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
+
+# Revision move
+'revisionmoveselectedversions' => 'Premjesti označene revizije',
+'revmove-reasonfield'          => 'Razlog:',
+'revmove-nullmove-title'       => 'Loš naslov',
 
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
@@ -1478,6 +1485,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-reset-passwords'       => 'Resetuje šifre drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
+'right-revisionmove'          => 'Premještanje revizija',
 
 # User rights log
 'rightslog'      => 'Zapisnik korisničkih prava',
@@ -1520,6 +1528,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'action-userrights'           => 'uređujete sva korisnička prava',
 'action-userrights-interwiki' => 'uređujete korisnička prava korisnika na drugim wikijima',
 'action-siteadmin'            => 'zaključavate ili otključavate bazu podataka',
+'action-revisionmove'         => 'premještanje revizija',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',
@@ -1795,7 +1804,7 @@ Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
 'filerevert'                => 'Vrati $1',
 'filerevert-legend'         => 'Vraćanje datoteke',
 'filerevert-intro'          => "Vraćate datoteku '''[[Media:$1|$1]]''' na [$4 verziju od $3, $2].",
-'filerevert-comment'        => 'Komentar:',
+'filerevert-comment'        => 'Razlog:',
 'filerevert-defaultcomment' => 'Vraćeno na verziju od $2, $1',
 'filerevert-submit'         => 'Vrati',
 'filerevert-success'        => "'''Datoteka [[Media:$1|$1]]''' je vraćena na [$4 verziju od $3, $2].",
@@ -2289,7 +2298,7 @@ Klikom na '''''Očisti''''' ćete očistiti polje za komentar i sve kutijice.",
 Ako je nova stranica istog imena napravljena od brisanja, vraćene revizije će se pojaviti u njenoj ranijoj historiji.',
 'undeleterevdel'               => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelimično obrisano.
 U takvim slučajevima, morate ukloniti označene ili otkriti sakrivene najskorije obrisane revizije.',
-'undeletehistorynoadmin'       => 'Ova stranica je izbrisana.  Ispod se nalazi dio istorije brisanja i istorija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
+'undeletehistorynoadmin'       => 'Ova stranica je izbrisana.  Ispod se nalazi dio historije brisanja i historija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
 'undelete-revision'            => 'Obrisana revizija stranice $1 (dana $4, u $5) od strane $3:',
 'undeleterevision-missing'     => 'Nepoznata ili nedostajuća revizija.
 Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arhive.',
@@ -2299,7 +2308,7 @@ Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arh
 'undeleteviewlink'             => 'pogledaj',
 'undeletereset'                => 'Očisti',
 'undeleteinvert'               => 'Izmijeni odabir',
-'undeletecomment'              => 'Komentar:',
+'undeletecomment'              => 'Razlog:',
 'undeletedarticle'             => 'vraćeno "$1"',
 'undeletedrevisions'           => '{{PLURAL:$1|$1 revizija vraćena|$1 revizije vraćene|$1 revizija vraćeno}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revizija|$1 revizije|$1 revizija}} i {{PLURAL:$2|1 datoteka|$2 datoteke|$2 datoteka}} vraćeno',
@@ -2764,6 +2773,7 @@ Nedostaje privremeni folder.',
 'tooltip-rollback'                => 'Brzo vraćanje izmjene(izmjena) ove stranice posljednjeg uređivača jednim klikom.',
 'tooltip-undo'                    => 'Vraća posljednju izmjenu i otvara formu za uređivanje u modu pregleda.
 Dopušta unos razloga u sažetak.',
+'tooltip-preferences-save'        => 'Sačuvaj podešavanja',
 
 # Stylesheets
 'common.css'      => '/* CSS umetnut ovdje primijenit će se na sve skinove */',
@@ -3331,14 +3341,14 @@ Pokušajte normalni pregled.',
 'watchlistedit-normal-title'   => 'Uredi spisak praćenja',
 'watchlistedit-normal-legend'  => 'Ukloni naslove iz spiska praćenja',
 'watchlistedit-normal-explain' => 'Naslovi na Vašem spisku praćenja su prikazani ispod.
-Da bi ste uklonili naslov, označite kutiju pored naslova, i kliknite Ukloni naslove.
+Da bi ste uklonili naslov, označite kutiju pored naslova, i kliknite "{{int:Watchlistedit-normal-submit}}".
 Također možete [[Special:Watchlist/raw|napredno urediti spisak]].',
 'watchlistedit-normal-submit'  => 'Ukloni naslove',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 naslov|$1 naslova}} je uklonjeno iz Vašeg spiska praćenja:',
 'watchlistedit-raw-title'      => 'Napredno uređivanje spiska praćenja',
 'watchlistedit-raw-legend'     => 'Napredno uređivanje spiska praćenja',
-'watchlistedit-raw-explain'    => 'Naslovi u Vašem spisku praćenja su prikazani ispod, i mogu biti uređeni dodavanje ili brisanjem sa spiska; jedan naslov u svakom redu.
-Kada završite, kliknite Ažuriraj spisak praćenja.
+'watchlistedit-raw-explain'    => 'Naslovi u Vašem spisku praćenja su prikazani ispod, i mogu biti uređeni dodavanjem ili brisanjem sa spiska; jedan naslov u svakom redu.
+Kada završite, kliknite "{{int:Watchlistedit-raw-submit}}".
 Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
 'watchlistedit-raw-titles'     => 'Naslovi:',
 'watchlistedit-raw-submit'     => 'Ažuriraj spisak praćenja',
@@ -3440,7 +3450,7 @@ Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
 # Special:FilePath
 'filepath'         => 'Putanja datoteke',
 'filepath-page'    => 'Datoteka:',
-'filepath-submit'  => 'Putanja',
+'filepath-submit'  => 'Idi',
 'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju za datoteku.
 Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktno sa, s njima povezanim, programom.
 
@@ -3519,6 +3529,7 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'htmlform-float-invalid'       => 'Vrijednost koju ste unijeli nije broj.',
 'htmlform-int-toolow'          => 'Vrijednost koju ste naveli je ispod minimuma od $1',
 'htmlform-int-toohigh'         => 'Vrijednost koju ste naveli je iznad maksimuma od $1',
+'htmlform-required'            => 'Ova vrijednost je obavezna',
 'htmlform-submit'              => 'Pošalji',
 'htmlform-reset'               => 'Vrati izmjene',
 'htmlform-selectorother-other' => 'Ostalo',

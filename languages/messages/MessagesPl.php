@@ -739,7 +739,7 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass-submit-loggedin' => 'Zmień hasło',
 'resetpass-submit-cancel'   => 'Anuluj',
 'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
-Być może właśnie zmienił{{GENDER:|eś|aś|eś (~aś)}} swoje hasło lub poprosił{{GENDER:|eś|aś|eś (~aś)}} o nowe tymczasowe hasło.',
+Być może właśnie zmienił{{GENDER:|eś|aś|eś(-aś)}} swoje hasło lub poprosił{{GENDER:|eś|aś|eś(-aś)}} o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
 
 # Edit page toolbar
@@ -777,7 +777,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś (~aś)}} swoje hasło lub pop
 'anoneditwarning'                  => "'''Uwaga:''' Nie jesteś {{GENDER:|zalogowany|zalogowana}}.
 Twój adres IP zostanie zapisany w historii edycji strony.",
 'anonpreviewwarning'               => "''Nie jesteś zalogowany. Jeśli zapiszesz zmiany w historii edycji strony zostanie umieszczony Twój adres IP.''",
-'missingsummary'                   => "'''Uwaga:''' Nie {{GENDER:|wprowadziłeś|wprowadziłaś|wprowadzono}} opisu zmian.
+'missingsummary'                   => "'''Uwaga:''' Nie wprowadz{{GENDER:|iłeś|iłaś|ono}} opisu zmian.
 Jeżeli nie chcesz go wprowadzać, naciśnij przycisk „Zapisz” jeszcze raz.",
 'missingcommenttext'               => 'Wprowadź komentarz poniżej.',
 'missingcommentheader'             => "'''Uwaga:''' Treść nagłówka jest pusta – uzupełnij go!
@@ -845,7 +845,7 @@ Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych str
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
 lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane logi].</span>',
 'userpage-userdoesnotexist'        => 'Użytkownik „$1” nie jest zarejestrowany.
-Upewnij się, czy na pewno zamierzał{{GENDER:|eś|aś|eś (~aś)}} utworzyć lub zmodyfikować właśnie tę stronę.',
+Upewnij się, czy na pewno zamierzał{{GENDER:|eś|aś|eś(-aś)}} utworzyć lub zmodyfikować właśnie tę stronę.',
 'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
@@ -939,7 +939,7 @@ Wystąpił z nieokreślonej przyczyny.',
 'edit-gone-missing'                => 'Nie udało się zaktualizować strony.
 Zdaje się, że została skasowana.',
 'edit-conflict'                    => 'Konflikt edycji.',
-'edit-no-change'                   => 'Twoja edycja została zignorowana, ponieważ nie {{GENDER:|zmieniłeś|zmieniłaś}} niczego w tekście.',
+'edit-no-change'                   => 'Twoja edycja została zignorowana, ponieważ nie zmienił{{GENDER:|eś|aś|eś(-aś)}} niczego w tekście.',
 'edit-already-exists'              => 'Nie udało się stworzyć nowej strony.
 Strona już istnieje.',
 
@@ -1040,9 +1040,9 @@ Jako administrator możesz zobaczyć porównanie. Szczegóły mogą znajdować s
 'revdelete-nooldid-text'      => 'Nie wybrano wersji, na których ma zostać wykonana ta operacja,
 wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 'revdelete-nologtype-title'   => 'Brak typu rejestru',
-'revdelete-nologtype-text'    => 'Nie określił{{GENDER:|eś|aś|eś (~aś)}} rodzaju rejestru do przeprowadzenia tej operacji.',
+'revdelete-nologtype-text'    => 'Nie określił{{GENDER:|eś|aś|eś(-aś)}} rodzaju rejestru do przeprowadzenia tej operacji.',
 'revdelete-nologid-title'     => 'Nieprawidłowy wpis w rejestrze',
-'revdelete-nologid-text'      => 'Nie określił{{GENDER:|eś|aś|eś (~aś)}} wpisu w rejestrze do przeprowadzenia operacji albo wybrany wpis nie istnieje.',
+'revdelete-nologid-text'      => 'Nie określił{{GENDER:|eś|aś|eś(-aś)}} wpisu w rejestrze do przeprowadzenia operacji albo wybrany wpis nie istnieje.',
 'revdelete-no-file'           => 'Wybrany plik nie istnieje.',
 'revdelete-show-file-confirm' => 'Czy jesteś pewien, że chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 o $3?',
 'revdelete-show-file-submit'  => 'Tak',
@@ -2358,7 +2358,7 @@ $1',
 'sp-contributions-logs'                => 'rejestry',
 'sp-contributions-talk'                => 'dyskusja',
 'sp-contributions-userrights'          => 'zarządzanie uprawnieniami użytkownika',
-'sp-contributions-blocked-notice'      => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}. Ostatni wpis rejestru blokad jest pokazany poniżej.',
+'sp-contributions-blocked-notice'      => 'Ta osoba jest obecnie zablokowana. Ostatni wpis rejestru blokad jest pokazany poniżej.',
 'sp-contributions-blocked-notice-anon' => 'Ten adres IP jest obecnie zablokowany.
 Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'sp-contributions-search'              => 'Szukaj wkładu',
@@ -2512,7 +2512,7 @@ Potwierdź, że to jest zgodne z Twoimi zamiarami, i że odblokujesz bazę danyc
 'unlockconfirm'       => 'Tak, naprawdę chcę odblokować bazę danych.',
 'lockbtn'             => 'Zablokuj bazę danych',
 'unlockbtn'           => 'Odblokuj bazę danych',
-'locknoconfirm'       => 'Nie zaznaczył{{GENDER:|eś|aś|eś (~aś)}} potwierdzenia.',
+'locknoconfirm'       => 'Nie zaznaczył{{GENDER:|eś|aś|eś(-aś)}} potwierdzenia.',
 'lockdbsuccesssub'    => 'Baza danych została pomyślnie zablokowana',
 'unlockdbsuccesssub'  => 'Blokada bazy danych została zdjęta',
 'lockdbsuccesstext'   => 'Baza danych została zablokowana.<br />
@@ -3238,7 +3238,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 Wciśnij przycisk poniżej aby wysłać na swój adres list z linkiem do strony WWW.
 List będzie zawierał link do strony, w którym zakodowany będzie identyfikator.
 Otwórz ten link w przeglądarce, czym potwierdzisz, że jesteś użytkownikiem tego adresu e‐mail.',
-'confirmemail_pending'      => 'Kod potwierdzenia został właśnie do Ciebie wysłany. Jeśli zarejestrował{{GENDER:|eś|aś|eś (~aś)}} się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.',
+'confirmemail_pending'      => 'Kod potwierdzenia został właśnie do Ciebie wysłany. Jeśli zarejestrował{{GENDER:|eś|aś|eś(-aś)}} się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.',
 'confirmemail_send'         => 'Wyślij kod potwierdzenia',
 'confirmemail_sent'         => 'Wiadomość e‐mail z kodem uwierzytelniającym została wysłana.',
 'confirmemail_oncreate'     => 'Link z kodem potwierdzenia został wysłany na Twój adres e‐mail.
@@ -3300,8 +3300,8 @@ $1',
 'trackbackdeleteok' => 'TrackBack został usunięty.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Uwaga!''' Ta strona została usunięta po tym, jak {{GENDER:|rozpocząłeś|rozpoczęłaś}} jej edycję!",
-'confirmrecreate'     => "{{GENDER:$1|Użytkownik|Użytkowniczka}} [[User:$1|$1]] ([[User talk:$1|dyskusja]]) {{GENDER:$1|usunął|usunęła}} tę stronę po tym, jak {{GENDER:|rozpocząłeś|rozpoczęłaś}} jego edycję, podając jako powód usunięcia:
+'deletedwhileediting' => "'''Uwaga!''' Ta strona została usunięta po tym, jak rozpoczął{{GENDER:|eś|aś|eś(-aś)}} jej edycję!",
+'confirmrecreate'     => "[[User:$1|$1]] ([[User talk:$1|dyskusja]]) usun{{GENDER:$1|ął|ęła|ął(-nęła)}} tę stronę po tym, jak rozpoczął{{GENDER:|eś|aś|eś(-aś)}} jego edycję, podając jako powód usunięcia:
 : ''$2''
 Czy na pewno chcesz ją ponownie utworzyć?",
 'recreate'            => 'Utwórz ponownie',
@@ -3340,7 +3340,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 
 # Size units
 'size-bytes'     => '$1&nbsp;B',
-'size-kilobytes' => '$1&nbsp;kB',
+'size-kilobytes' => '$1&nbsp;KB',
 'size-megabytes' => '$1&nbsp;MB',
 'size-gigabytes' => '$1&nbsp;GB',
 

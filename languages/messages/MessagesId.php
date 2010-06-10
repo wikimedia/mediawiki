@@ -803,7 +803,7 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'headline_tip'    => 'Subbagian tingkat 1',
 'math_sample'     => 'Masukkan rumus di sini',
 'math_tip'        => 'Rumus matematika (LaTeX)',
-'nowiki_sample'   => 'Teks ini tidak akan diformat',
+'nowiki_sample'   => 'Masukkan teks yang tidak akan diformat di sini',
 'nowiki_tip'      => 'Abaikan pemformatan wiki',
 'image_sample'    => 'Contoh.jpg',
 'image_tip'       => 'Cantumkan berkas',

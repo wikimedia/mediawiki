@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1422,6 +1422,7 @@ $1",
 'action-userrights'           => '编辑所有的权限',
 'action-userrights-interwiki' => '编辑在其它wiki上用户的权限',
 'action-siteadmin'            => '锁定和解除锁定数据库',
+'action-revisionmove'         => '移动修订',
 
 # Recent changes
 'nchanges'                          => '$1次更改',

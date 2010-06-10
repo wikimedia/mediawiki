@@ -2032,7 +2032,8 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Za urejanje spiska nadzorov morate biti [[Special:UserLogin|prijavljeni]].',
 'addedwatch'           => 'Dodano na spisek nadzorov',
-'addedwatchtext'       => "Stran »'''<nowiki>$1</nowiki>'''« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]], kjer bodo odslej navedene njene morebitne spremembe in spremembe pripadajoče pogovorne strani. Za lažjo izbiro bodo tudi v [[Special:RecentChanges|seznamu zadnjih sprememb]] prikazane <b>krepko</b>. Če jo želite odstraniti s spiska, kliknite zavihek »Prenehaj opazovati«.",
+'addedwatchtext'       => "Stran »[[:$1]]« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]].
+Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tukaj, v [[Special:RecentChanges|seznamu zadnjih sprememb]] pa bodo za lažjo izbiro označene '''krepko'''.",
 'removedwatch'         => 'Odstranjeno s spiska nadzorov',
 'removedwatchtext'     => 'Stran »[[:$1]]« je bila odstranjena z vašega [[Special:Watchlist|spiska nadzorov]].',
 'watch'                => 'Opazuj',

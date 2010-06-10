@@ -929,6 +929,7 @@ $1",
 'logdelete-failure'           => "'''Ni ellid gosod cyfyngiadau ar y gallu i weld y cofnod lòg:'''
 $1",
 'revdel-restore'              => 'Newid gwelededd',
+'revdel-restore-deleted'      => 'diwygiadau dilëedig',
 'revdel-restore-visible'      => 'diwygiadau gweladwy',
 'pagehist'                    => 'Hanes y dudalen',
 'deletedhist'                 => 'Hanes dilëedig',
@@ -966,8 +967,11 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:IPBlockList|rhestr blociau IP]].",
 
 # Revision move
+'moverevlogentry'        => 'wedi symud {{PLURAL:$3||un diwygiad|$3 ddiwygiad|$3 diwygiad|$3 diwygiad|$3 diwygiad}} o $1 i $2',
+'revisionmove'           => 'Symud diwygiadau oddi wrth "$1"',
 'revmove-reasonfield'    => 'Rheswm:',
 'revmove-badparam-title' => 'Paramedrau gwallus',
+'revmove-nullmove-title' => 'Teitl gwallus',
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
