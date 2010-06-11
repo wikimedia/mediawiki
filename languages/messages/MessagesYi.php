@@ -780,8 +780,8 @@ $2',
 '''אינטערנעט עקספלארער''': האלט ''Ctrl'' בשעתן קליקן ''Refresh'', אדער  דרוקט ''Ctrl-F5'';
 
 '''אפערע:''' מען ליידיגט אויס דעם קאש אין ''Tools → Preferences'' (''העדפות'' > ''כלים'')",
-'usercssyoucanpreview'             => "'''טיפ:''' נוצט דעם 'ווייז פאראויסדיגע ווייזונג' באטאן צו אויספרובירן אייער  CSS בעפאר אפהיטן.",
-'userjsyoucanpreview'              => "'''טיפ:''' נוצט דעם 'ווייז פאראויסדיגע ווייזונג' באטאן צו אויספרובירן אייער  JS בעפאר אפהיטן.",
+'usercssyoucanpreview'             => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער  CSS בעפאר אפהיטן.",
+'userjsyoucanpreview'              => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער  JavaScript בעפאר אפהיטן.",
 'usercsspreview'                   => "'''געדענקט אז איר טוט בלויז פאראויס זען אייער באניצער CSS.'''
 '''ער איז דערווייל נאכנישט אויפֿגעהיטן!'''",
 'userjspreview'                    => "'''געדענקט אז איר טוט בלויז טעסטן\\פאראויסזעהן אייער באנוצער JavaScript, עס איז דערווייל נאכנישט אפגעהיטן!'''",
@@ -1476,6 +1476,7 @@ $1",
 
 # HTTP errors
 'http-invalid-url'      => 'אומגילטיג URL: $1',
+'http-curl-error'       => 'גרײַז בײַם ברענגען URL: $1',
 'http-host-unreachable' => "מ'קען נישט דערגרייכן דעם URL",
 'http-bad-status'       => "ס'איז געווען א פראבלעם ביים HTTP פֿאַרלאַנג: $1 $2",
 
@@ -1541,7 +1542,7 @@ $1",
 'filerevert'                => 'צוריקדרייען $1',
 'filerevert-legend'         => 'צוריקדרייען טעקע',
 'filerevert-intro'          => "איר האַלט בײַ צוריקשטעלן די טעקע '''[[Media:$1|$1]]''' צו דער [$4 ווערסיע פֿון $3, $2].",
-'filerevert-comment'        => 'הערה:',
+'filerevert-comment'        => 'אורזאַך:',
 'filerevert-defaultcomment' => 'צוריקגעשטעלט צו דער ווערסיע פֿון $2, $1',
 'filerevert-submit'         => 'צוריקדרייען',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' צוריקגשטעלט צו דער [$4 ווערסיע פֿון $3, $2].",
@@ -1871,6 +1872,9 @@ $NEWPAGE
 צו ענדערן אייער אויפֿפאסונג ליסטע, באזוכט
 {{fullurl:{{#special:Watchlist}}/edit}}
 
+כדי אויסמעקן דעם בלאט פון אײַער אויפֿפאַסונג ליסטע, באַזוכט
+$UNWATCHURL
+
 פאר מער הילף:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -1941,6 +1945,7 @@ $NEWPAGE
 'protectexpiry'               => 'גייט אויס:',
 'protect_expiry_invalid'      => 'אויסגיין צײַט אומגילטיג.',
 'protect_expiry_old'          => 'שוין דערנאך דער אויסגיין צײַט.',
+'protect-unchain-permissions' => 'אויפֿשליסן נאך שיץ אפציעס',
 'protect-text'                => "איר מעגט זען און ענדערן דעם שוץ ניווא דא פֿארן בלאט '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "איר קען נישט ענדערן דעם שוץ ניווא בעת ווען איר זענט בלאקירט.
 פֿאלגנד זענען די לויפֿיגע שטעלונגען פֿארן בלאט '''$1''':",
@@ -2007,7 +2012,7 @@ $NEWPAGE
 'undeleteviewlink'          => 'באַקוקן',
 'undeletereset'             => 'צוריקשטעלן',
 'undeleteinvert'            => 'איבערקערן דעם אויסקלויב',
-'undeletecomment'           => 'הערה:',
+'undeletecomment'           => 'אורזאַך:',
 'undeletedarticle'          => 'צוריק געשטעלט "[[$1]]"',
 'undeletedrevisions'        => '{{PLURAL:$1|1 רעוויזיע|$1 רעוויזיעס}} צוריקגעשטעלט',
 'undeletedrevisions-files'  => '{{PLURAL:$1|1 רעוויזיע|$1 רעוויזיעס}} און  {{PLURAL:$2|1 טעקע|$2 טעקעס}} צוריקגעשטעלט',

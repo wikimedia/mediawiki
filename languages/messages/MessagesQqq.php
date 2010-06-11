@@ -1085,6 +1085,7 @@ Parameters:
 'suppressionlogtext' => 'Description text of the suppression log. Shown at top of [[Special:log/suppress]].',
 
 # Revision move
+'revisionmove'        => 'Title for a special page. $1 is the title of a page.',
 'revmove-reasonfield' => '{{Identical|Reason}}',
 
 # History merging
@@ -1355,7 +1356,8 @@ Used in [[Special:Preferences]], tab "Recent changes".',
 
 {{Identical|Reason}}',
 'userrights-no-interwiki'        => 'Error message when editing user groups',
-'userrights-nodatabase'          => 'Error message when editing user groups',
+'userrights-nodatabase'          => 'Error message when editing user groups. "Local" means databases/wikis of the same farm/cluster; that is, meta, enwiki, dewiki, commons, etc are all local databases of the Wikimedia Foundation.
+See http://meta.wikimedia.org/w/index.php?title=Special%3ALog&type=rights for a usage of local databases: username@barwiki',
 'userrights-nologin'             => "Error displayed on [[Special:UserRights]] when you aren't logged in. If you are logged in, but don't have the correct permission, you see {{msg|userrights-notallowed|pl=yes}}.",
 'userrights-notallowed'          => "Error displayed on [[Special:UserRights]] when you don't have the permission.",
 'userrights-changeable-col'      => 'Used in [[Special:UserRights]].',
@@ -2140,7 +2142,9 @@ $1 is a list of internet protocols.',
 'newuserlogpage'              => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
 'newuserlogpagetext'          => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
 'newuserlog-create-entry'     => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]].',
-'newuserlog-create2-entry'    => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1"). The name of the user doing this task appears before this message.',
+'newuserlog-create2-entry'    => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1" - a link). The name of the user doing this task appears before this message.
+
+* $2 - the user id of the user $1',
 'newuserlog-autocreate-entry' => 'This message is used in the [[:mw:Extension:Newuserlog|new user log]] to mark an account that was created by MediaWiki as part of a [[:mw:Extension:CentralAuth|CentralAuth]] global account.',
 
 # Special:ListGroupRights

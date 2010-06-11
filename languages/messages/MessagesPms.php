@@ -1226,8 +1226,8 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-editinterface'         => "Modifiché l'antërfacia utent",
 'right-editusercssjs'         => "Modifiché j'archivi CSS e JavaScript d'àutri utent",
 'right-editusercss'           => "Modifiché j'archivi CSS d'àutri utent",
-'right-edituserjs'            => "Modifiché ij file JS d'àutri utent",
-'right-rollback'              => "Fé rollback an pressa ëd le modìfiche ëd l'ùltim utent che a l'ha modificà na pàgina particolar",
+'right-edituserjs'            => "Modifiché j'archivi JavaScript d'àutri utent",
+'right-rollback'              => "Gavé an pressa le modìfiche ëd l'ùltim utent che a l'ha modificà na pàgina particolar",
 'right-markbotedits'          => "Marché le modìfiche (dont a l'é fasse rollback) com modìfiche d'un bot",
 'right-noratelimit'           => "Nen esse tocà dal lìmit d'assion",
 'right-import'                => 'Amporté pàgine da àutre wiki',
@@ -1881,10 +1881,8 @@ L'adrëssa e-mail ch'it l'has butà an [[Special:Preferences|Ij sò gust]] a sar
 'watchnologintext'     => "A l'ha da manca prima ëd tut dë [[Special:UserLogin|rintré ant ël sistema]]
 për podej modifiché soa lista dla ròba dë tnì sot euj.",
 'addedwatch'           => "Sòn a l'é stait giontà a le pàgine che it ten-e sot euj",
-'addedwatchtext'       => "La pàgina  \"<nowiki>\$1</nowiki>\" a l'é staita giontà a tua [[Special:Watchlist|lista dla ròba da tnì sot euj]].
-Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairerà ën <b>grassèt</b> ant la pàgina ëd j'[[Special:RecentChanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d'euj.
-
-Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a sgnaca \" Chita da tnì sot euj \" ant sla bara dij menù.",
+'addedwatchtext'       => 'La pàgina  "[[:$1]]" a l\'é staita giontà a soa [[Special:Watchlist|lista dla ròba da tnì sot-euj]].
+Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairërà ën <b>grassèt</b> ant la pàgina ëd j\'[[Special:RecentChanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d\'euj.',
 'removedwatch'         => "Gavà via da 'nt la lista dla ròba da tnì sot euj",
 'removedwatchtext'     => 'La pàgina "[[:$1]]" a l\'è staita gavà via da [[Special:Watchlist|soa lista dla ròba da tnì sot euj]].',
 'watch'                => 'ten sot euj',
