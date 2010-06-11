@@ -14,18 +14,18 @@ class Http {
 	 * Perform an HTTP request
 	 * @param $method string HTTP method. Usually GET/POST
 	 * @param $url string Full URL to act on
-	 * @param $options options to pass to HttpRequest object
+	 * @param $options options to pass to HttpRequest object.
 	 *	Possible keys for the array:
-	 *		timeout             Timeout length in seconds
-	 *		postData            An array of key-value pairs or a url-encoded form data
-	 *		proxy               The proxy to use.
+	 *    - timeout             Timeout length in seconds
+	 *    - postData            An array of key-value pairs or a url-encoded form data
+	 *    - proxy               The proxy to use.
 	 *                          Will use $wgHTTPProxy (if set) otherwise.
-	 *		noProxy             Override $wgHTTPProxy (if set) and don't use any proxy at all.
-	 *		sslVerifyHost       (curl only) Verify hostname against certificate
-	 *		sslVerifyCert       (curl only) Verify SSL certificate
-	 *		caInfo              (curl only) Provide CA information
-	 *		maxRedirects        Maximum number of redirects to follow (defaults to 5)
-	 *		followRedirects     Whether to follow redirects (defaults to false). 
+	 *    - noProxy             Override $wgHTTPProxy (if set) and don't use any proxy at all.
+	 *    - sslVerifyHost       (curl only) Verify hostname against certificate
+	 *    - sslVerifyCert       (curl only) Verify SSL certificate
+	 *    - caInfo              (curl only) Provide CA information
+	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
+	 *    - followRedirects     Whether to follow redirects (defaults to false). 
 	 *		                    Note: this should only be used when the target URL is trusted,
 	 *		                    to avoid attacks on intranet services accessible by HTTP.
 	 * @returns mixed (bool)false on failure or a string on success
@@ -780,9 +780,13 @@ class CurlHttpRequest extends HttpRequest {
 		if ( !curl_setopt_array( $curlHandle, $this->curlOptions ) ) {
 			throw new MWException("Error setting curl options.");
 		}
-		if ( ! @curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, $this->followRedirects ) ) {
-			wfDebug("Couldn't set CURLOPT_FOLLOWLOCATION. Probably safe_mode or open_basedir is set.");
-			/* Continue the processing. If it were in curl_setopt_array, processing would have halted on its entry */
+		if ( $this->followRedirects && $this->canFollowRedirects() ) {
+			if ( ! @curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, true ) ) {
+				wfDebug( __METHOD__.": Couldn't set CURLOPT_FOLLOWLOCATION. " .
+					"Probably safe_mode or open_basedir is set. ");
+				// Continue the processing. If it were in curl_setopt_array, 
+				// processing would have halted on its entry
+			}
 		}
 
 		if ( false === curl_exec( $curlHandle ) ) {
