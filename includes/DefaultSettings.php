@@ -1537,7 +1537,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches do not keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '288';
+$wgStyleVersion = '289';
 
 /**
  * This will cache static pages for non-logged-in users to reduce
