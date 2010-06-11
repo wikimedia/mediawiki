@@ -214,7 +214,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	}
 
 	$nextLink = wfMsgExt( 'pager-older-n', $opts, $wgLang->formatNum( $limit ) );
-	if( $shownImages > $limit && $lastTimestamp ) {
+	if( $invertSort || ( $shownImages > $limit && $lastTimestamp ) ) {
 		$query = array_merge(
 			array( 'until' => $lastTimestamp ),
 			$botpar,
