@@ -326,6 +326,7 @@ $messages = array(
 'aboutsite'            => 'Pri {{SITENAME}}',
 'aboutpage'            => 'Project:Pri {{SITENAME}}',
 'copyright'            => 'La kontenajo esas disponebla sub $1.',
+'copyrightpage'        => '{{ns:project}}:Autor-yuri',
 'currentevents'        => 'Aktualaji',
 'currentevents-url'    => 'Project:Aktualaji',
 'disclaimers'          => 'Legala averto',
@@ -437,6 +438,7 @@ Voluntez, ne obliviez chanjor vua [[Special:Preferences|preferaji en {{SITENAME}
 'nav-login-createaccount'    => 'Enirar',
 'loginprompt'                => "Vu mustas permisar ''cookies'' por enirar a {{SITENAME}}.",
 'userlogin'                  => 'Enirar / krear konto',
+'userloginnocreate'          => 'Enirar',
 'logout'                     => 'Ekirar',
 'userlogout'                 => 'Ekirar',
 'notloggedin'                => 'Sesiono ne esas iniciata',
@@ -627,6 +629,8 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'revdelete-hide-image'       => 'Celar kontenajo dil arkivo',
 'revdelete-hide-comment'     => 'Celar komento pri redakto',
 'revdelete-hide-user'        => 'Celar uzantonomo od IP di redaktanto',
+'revdelete-radio-set'        => 'Yes',
+'revdelete-radio-unset'      => 'No',
 'revdel-restore'             => 'chanjar videbleso',
 'pagehist'                   => 'Pagino-versionaro',
 'deletedhist'                => 'Efacita versionaro',
@@ -691,6 +695,8 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'powersearch-ns'            => 'Serchez en nomari:',
 'powersearch-redir'         => 'Listar ridirekti',
 'powersearch-field'         => 'Serchar',
+'powersearch-toggleall'     => 'Omna',
+'powersearch-togglenone'    => 'Nula',
 'search-external'           => 'Extera sercho',
 'searchdisabled'            => 'La sercho en la kompleta texto desaktivigesis temporale pro superkargo dil servanto. Ni esperas riaktivigar ol pos facar ula proxima aktualigi. Dum ica tempo, vu povas serchar per Google.',
 
@@ -907,7 +913,7 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'shared-repo-from'          => 'ek $1',
 
 # File reversion
-'filerevert-comment' => 'Komento:',
+'filerevert-comment' => 'Motivo:',
 
 # File deletion
 'filedelete'                  => 'Efacar $1',
@@ -1000,6 +1006,7 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'specialloguserlabel'  => 'Uzero:',
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Registrari',
+'all-logs-page'        => 'Omna publika registrari',
 
 # Special:AllPages
 'allpages'          => 'Omna pagini',
@@ -1148,7 +1155,7 @@ restauris ad lasta versiono da $2.',
 'protect-othertime'       => 'Altra tempo:',
 'protect-othertime-op'    => 'altra tempo',
 'protect-otherreason'     => 'Altra/suplementala motivo:',
-'protect-otherreason-op'  => 'altra/suplementala motivo',
+'protect-otherreason-op'  => 'Altra motivo',
 'protect-expiry-options'  => '1 horo:1 hour,1 dio:1 day,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite',
 'restriction-type'        => 'Permiso:',
 'pagesize'                => '(bicoki)',
@@ -1274,9 +1281,9 @@ Memorez [[Special:UnlockDB|efacar la blokuso]] kande vua mantenado finos.',
 'unlockdbsuccesstext' => 'La datumaro desblokusesis.',
 
 # Move page
-'move-page'               => 'Movar $1',
-'move-page-legend'        => 'Rinomizar pagino',
-'movepagetext'            => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
+'move-page'                => 'Movar $1',
+'move-page-legend'         => 'Rinomizar pagino',
+'movepagetext'             => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
 La antea titulo konvertesos a ridirektilo a la nova titulo.
 La ligili a la antea titulo dil pagino ne chanjesos.
 Voluntez certigar ke ne esas [[Special:DoubleRedirects|duopla]] o [[Special:BrokenRedirects|ruptota ridirektili]].
@@ -1288,25 +1295,26 @@ Ico signifikas ke vu povos rinomizar pagino a olua originala titulo se eroras sk
 '''EGARDEZ!'''
 Ica povas esar drastika chanjo e ne-esperinda por populara pagino;
 voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
-'movearticle'             => 'Movez pagino:',
-'movenologin'             => 'Sesiono ne iniciata',
-'movenologintext'         => 'Vu mustas esar registragita uzanto ed [[Special:UserLogin|enirir]] por rinomizar pagino.',
-'newtitle'                => 'A nova titulo:',
-'move-watch'              => 'Surveyar ca pagino',
-'movepagebtn'             => 'Movar pagino',
-'pagemovedsub'            => 'Rinomizita sucese',
-'movepage-moved'          => '\'\'\'"$1" esas movata ad "$2"\'\'\'',
-'articleexists'           => 'Pagino kun sama nomo ja existas od la nomo
+'movearticle'              => 'Movez pagino:',
+'movenologin'              => 'Sesiono ne iniciata',
+'movenologintext'          => 'Vu mustas esar registragita uzanto ed [[Special:UserLogin|enirir]] por rinomizar pagino.',
+'newtitle'                 => 'A nova titulo:',
+'move-watch'               => 'Surveyar ca pagino',
+'movepagebtn'              => 'Movar pagino',
+'pagemovedsub'             => 'Rinomizita sucese',
+'movepage-moved'           => '\'\'\'"$1" esas movata ad "$2"\'\'\'',
+'articleexists'            => 'Pagino kun sama nomo ja existas od la nomo
 qua vu selektis ne esas valida.
 Voluntez selektar altra nomo.',
-'movedto'                 => 'rinomizita ad',
-'movetalk'                => 'Rinomizar la debato-pagino se to esas aplikebla.',
-'1movedto2'               => '[[$1]] movita a [[$2]]',
-'1movedto2_redir'         => '[[$1]] movita a [[$2]] tra ridirektilo',
-'movelogpage'             => 'Movo-registraro',
-'movereason'              => 'Motivo:',
-'revertmove'              => 'rekuperar',
-'delete_and_move_confirm' => 'Yes, efacez la pagino',
+'movedto'                  => 'rinomizita ad',
+'movetalk'                 => 'Rinomizar la debato-pagino se to esas aplikebla.',
+'1movedto2'                => '[[$1]] movita a [[$2]]',
+'1movedto2_redir'          => '[[$1]] movita a [[$2]] tra ridirektilo',
+'move-redirect-suppressed' => 'ridirektilo supresita',
+'movelogpage'              => 'Movo-registraro',
+'movereason'               => 'Motivo:',
+'revertmove'               => 'rekuperar',
+'delete_and_move_confirm'  => 'Yes, efacez la pagino',
 
 # Export
 'export'            => 'Exportacar pagini',

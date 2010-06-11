@@ -309,7 +309,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
 'tog-diffonly'                => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats'          => 'Montri kaŝitajn kategoriojn',
-'tog-norollbackdiff'          => 'Mankigi ŝanĝojn post farante malfaron',
+'tog-norollbackdiff'          => 'Preterlasi ŝanĝoelmontron post malfaro',
 
 'underline-always'  => 'Ĉiam',
 'underline-never'   => 'Neniam',
@@ -1624,7 +1624,7 @@ Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 'overwrite'                   => 'Anstataŭigo de ekzistanta dosiero ne permesitas.',
 'unknown-error'               => 'Malkonata eraro okazis.',
 'tmp-create-error'            => 'Ne povis krei intertempan dosieron.',
-'tmp-write-error'             => 'Eraro skribanta intertempan dosieron.',
+'tmp-write-error'             => 'Eraro dum skribado de portempa dosiero.',
 'large-file'                  => 'Estas rekomendite, ke dosieroj ne superas grandon de $1 bitokoj; 
 tiu ĉi tiu dosiero pezas $2 bitokojn.',
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',

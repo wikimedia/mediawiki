@@ -562,8 +562,8 @@ Iedat anger mail nao dat account versjik kan weure, mós te de insjtructies in d
 óm te bevèstige dat dit wirkelik dien account is.",
 'throttled-mailpassword'     => "'n Wachwaordherinnering wörd gedurende de letste {{PLURAL:$1|1 oer|$1 oer}} verzönje. Om misbroek te veurkomme, wörd d'r sjlechs éin herinnering per {{PLURAL:$1|oer|$1 oer}} verzönje.",
 'mailerror'                  => "Fout bie 't versjture van mail: $1",
-'acct_creation_throttle_hit' => 'Bezeukers van deze wiki mit tzelfde IP-adres es öxch hebbe de aafgeloupe dag {{PLURAL:$1|al 1 gebroeker|al $1 gebroekers}} geregistreerd, wat t maximale aantal in deze periode is.
-Daarom kunt se as bezeuker van dit IP-adres op dit moment gein nije gebroeker registrere.',
+'acct_creation_throttle_hit' => "Bezeukers van deze wiki mit 'tzelfde IP-adres es doe höbbe de aafgeloupe daag {{PLURAL:$1|al 1 gebroeker|al $1 gebroekers}} geregistreerd, wat 't maximale aantal in deze periode is.
+Daorum kens doe vanaaf dit IP-adres op dit moment gein nuje gebroeker registrere.",
 'emailauthenticated'         => 'Dien e-mailadres is op $2 um $3 bevestig.',
 'emailnotauthenticated'      => 'Dien e-mailadres is nog neet geauthentiseerd. De zals gein
 e-mail óntvange veur alle volgende toepassinge.',
@@ -671,9 +671,9 @@ Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäö
 'loginreqlink'                     => 'inglogge',
 'loginreqpagetext'                 => "De mos $1 om anger pazjena's te bekieke.",
 'accmailtitle'                     => 'Wachwaord versjtuurd.',
-'accmailtext'                      => "n Willekeurig wachwaord veur [[User talk:$1|$1]] is nao $2 gestuurd.
+'accmailtext'                      => "'n Willekäörig wachwaord veur [[User talk:$1|$1]] is nao $2 gesjtuurd.
 
-t Wachwaord veur deze nuuje gebroeker kan gewiezig waere via de pagina ''[[Special:ChangePassword|Wachwaord wiezige]]'' nao t aanmelde.",
+'t Wachwaord veur deze nuje gebroeker kan gewiezig waere via de pagina ''[[Special:ChangePassword|Wachwaord wiezige]]'' nao 't aanmelje.",
 'newarticle'                       => '(Nuuj)',
 'newarticletext'                   => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit.
 Type in de box hiejónger óm de pazjena te beginne (zuug de [[{{MediaWiki:Helppage}}|helppazjena]] veur mie informatie).
@@ -730,7 +730,7 @@ t Is geslaote waenger: $1",
 'semiprotectedpagewarning'         => "'''Let op:''' Deze pagina is beveilig en kin allein door geregistreerde gebroekers bewerk waere.",
 'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveilig en kin allein door beheerders bewerk waere, omdat deze is opgenaome in de volgende {{PLURAL:$1|pagina|pagina's}} {{PLURAL:$1|dae|die}} beveilig {{PLURAL:$1|is|zeen}} met de cascade-optie:",
 'titleprotectedwarning'            => "'''WAORSJUWING: Deze pagina is beveilig zodet allein inkele gebroekers 'm kinne aanmake. De beneuds [[Special:ListGroupRights|speciale rechte]].'''",
-'templatesused'                    => 'Sjablone gebroek in dees pagina:',
+'templatesused'                    => 'Op dees pagina {{PLURAL:$1|gebroek sjabloon|gebroekde sjablone}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablone}} gebroek in dees veurvertuining:',
 'templatesusedsection'             => 'Sjablone die gebroek waere in deze subkop:',
 'template-protected'               => '(besjirmp)',
@@ -1210,7 +1210,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'action-importupload'         => "dees pagina van 'n besjtandsupload importere",
 'action-patrol'               => 'bewerkinge van angere es gecontroleerd te markere',
 'action-autopatrol'           => 'eige bewerkinge as gecontroleerd te laote markere',
-'action-unwatchedpages'       => "de lies met pagina's die neet op n volgliest staon te bekieke",
+'action-unwatchedpages'       => "de lies met pagina's die neet op 'n volglies staon bekieke",
 'action-trackback'            => 'ne trackback op te gaeve',
 'action-mergehistory'         => 'de gesjiedenis van deze pagina same te voge',
 'action-userrights'           => 'alle gebroekersrechte te bewerke',
@@ -1367,8 +1367,8 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload-curl-error28'      => 'time-out dèr upload',
 'upload-curl-error28-text' => "'t Doorde te lang veurdet de website antwaord goof. Controleer a.u.b. of de website besjikbaar is, wach effe en probeer 't dan opnuuj. De kèns 't mesjiens probere es 't minder drök is.",
 
-'license'            => 'Lisènsie:',
-'license-header'     => 'Lisènsie:',
+'license'            => 'Licentie:',
+'license-header'     => 'Licentie:',
 'nolicense'          => "Maak 'ne keuze",
 'license-nopreview'  => '(Veurvertuun neet besjikbaar)',
 'upload_source_url'  => " ('ne geldige, publiek toegankelike URL)",
@@ -1390,7 +1390,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 
 # File description page
 'file-anchor-link'          => 'Besjtandj',
-'filehist'                  => 'Bestandsgesjiedenis',
+'filehist'                  => 'Besjtandjshistorie',
 'filehist-help'             => "Klik op 'ne datum/tied om 't besjtand te zeen wie 't destieds waor.",
 'filehist-deleteall'        => 'wis alles',
 'filehist-deleteone'        => 'wis',
@@ -1404,7 +1404,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'filehist-dimensions'       => 'Aafmaetinge',
 'filehist-filesize'         => 'Besjtandjgruutde',
 'filehist-comment'          => 'Opmirking',
-'imagelinks'                => 'Besjtandsverwiezinge',
+'imagelinks'                => 'Besjtandjsverwiezinge',
 'linkstoimage'              => "Dit besjtand weurt op de volgende {{PLURAL:$1|pagina|pagina's}} gebroek:",
 'linkstoimage-more'         => "Er {{PLURAL:$2|is|zeen}} meer es $1 {{PLURAL:$1|verwiezing|verwiezinge}} nao dit bestandj.
 De volgende lies göf allein de eerste {{PLURAL:$1|verwiezing|$1 verwiezinge}} nao dit bestandj waer.
@@ -1413,11 +1413,11 @@ d'r Is ouch ne [[Special:WhatLinksHere/$2|volledige lies]].",
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mier verwijzinge]] naor dit bestaand bekèèke.',
 'redirectstofile'           => 'De volgende bestaande {{PLURAL:$1|verwèès|verwèèze}} door naor dit bestaand:',
 'duplicatesoffile'          => "{{PLURAL:$1|'t Nègsvóggendj bestandj is|De $1 nègsvóggendje bestenj zeen}} identiek aan dit bestandj ([[Special:FileDuplicateSearch/$2|deper]]):",
-'sharedupload'              => 'Dit besjtandj is van $1 en kin ouch door anger projekte waere gebroek.',
-'sharedupload-desc-there'   => 'Dit bestandj komp van $1 en kin ouch in anger projecte gebroek waere.
-Zee de [$2 pagina mit de bestandjsbesjrieving] veur meer informatie.',
-'sharedupload-desc-here'    => 'Dit bestandj komp van $1 en kin ouch in anger projecte gebroekt waere.
-De [$2 pagina mit de bestandjsbesjrieving] wurt hie ónger weergegaeve.',
+'sharedupload'              => 'Dit besjtandj kump van $1 en kin ouch door anger projekte gebroek waere.',
+'sharedupload-desc-there'   => 'Dit besjtandj kump van $1 en kin ouch in anger projekte gebroek waere.
+Bekiek de [$2 pagina mit de besjtandjsbesjrieving] veur mie infermasie.',
+'sharedupload-desc-here'    => 'Dit besjtandj kump van $1 en kin ouch in anger projekte gebroek waere.
+De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 'uploadnewversion-linktext' => "Upload 'n nuuje versie van dit bestand",
 'shared-repo-from'          => 'ven $1',
 'shared-repo'               => 'n gedeilde bestanjebank',
@@ -1826,7 +1826,7 @@ Zuug de [[Special:ProtectedPages|lies mit beveiligde pazjena's]] veur alle hujig
 'protect-locked-blocked'      => "De kèns 't beveiligingsniveau neet verangere terwiels te geblokkeerd bis.
 Hie zeen de hujige insjtèllinge veur de pazjena '''[[$1]]''':",
 'protect-locked-dblock'       => "'t Beveiligingsniveau kin neet waere gewiezig ómdet de database geslaote is.
-Hiej zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
+Hiej zeen de hujige instellinge veur de pazjena '''$1''':",
 'protect-locked-access'       => "'''Diene gebroeker haet gein rechte om 't beveiligingsniveau te wiezige.'''
 Dit zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
 'protect-cascadeon'           => "Deze pazjena is beveilig ómdet d'r in de volgende {{PLURAL:$1|pazjena|pazjena's}} is opgenaome, {{PLURAL:$1|dae|die}} beveilig {{PLURAL:$1|is|zeen}} mit de kaskaad-opsie. 't Beveiligingsniveau wiezige haet gein inkel effèk.",
