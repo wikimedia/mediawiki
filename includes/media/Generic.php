@@ -72,7 +72,7 @@ abstract class MediaHandler {
 	 * can't be determined.
 	 *
 	 * @param $image File: the image object, or false if there isn't one
-	 * @param $fileName String: the filename
+	 * @param $path String: the filename
 	 * @return Array
 	 */
 	abstract function getImageSize( $image, $path );
@@ -386,6 +386,9 @@ abstract class ImageHandler extends MediaHandler {
 	 *
 	 * @param $width Integer: specified width (input/output)
 	 * @param $height Integer: height (output only)
+	 * @param $srcWidth Integer: width of the source image
+	 * @param $srcHeight Integer: height of the source image
+	 * @param $mimeType Unused
 	 * @return false to indicate that an error should be returned to the user.
 	 */
 	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
