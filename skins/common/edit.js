@@ -256,7 +256,8 @@ addOnloadHook(function () {
 		//such as illegal sequences, but that should never happen.
 
 		len = summary.value.replace(/[\u0080-\u07FF\uD800-\uDFFF]/g, '**').replace(/[\u0800-\uD7FF\uE000-\uFFFF]/g, '***').length;
-		if (len > 250) {
+		//247 as this doesn't count character about to be inserted.
+		if (len > 247) {
 			if (e.preventDefault) e.preventDefault();
 			e.returnValue = false; //IE
 			return false;
