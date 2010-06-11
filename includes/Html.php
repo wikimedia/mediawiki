@@ -180,22 +180,6 @@ class Html {
 			if ( $element == 'textarea' && isset( $attribs['maxlength'] ) ) {
 				unset( $attribs['maxlength'] );
 			}
-			# Here we're blacklisting some HTML5-only attributes...
-			$html5attribs = array(
-				'autocomplete',
-				'autofocus',
-				'max',
-				'min',
-				'multiple',
-				'pattern',
-				'placeholder',
-				'required',
-				'step',
-				'spellcheck',
-			);
-			foreach ( $html5attribs as $badAttr ) {
-				unset( $attribs[$badAttr] );
-			}
 		}
 
 		return "<$element" . self::expandAttributes(
@@ -378,6 +362,22 @@ class Html {
 			# this time, and has ugly UI, so just kill the feature entirely until
 			# we have at least one good implementation.
 			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required', 'step' ) ) ) {
+				continue;
+			}
+
+			# Here we're blacklisting some HTML5-only attributes...
+			if ( !$wgHtml5 && in_array( $key, array(
+					'autocomplete',
+					'autofocus',
+					'max',
+					'min',
+					'multiple',
+					'pattern',
+					'placeholder',
+					'required',
+					'step',
+					'spellcheck',
+			) ) ) {
 				continue;
 			}
 
