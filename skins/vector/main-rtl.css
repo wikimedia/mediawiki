@@ -347,7 +347,7 @@ div#mw-head h5 {
 		margin-top: 0.4em;
 	}
 	div#simpleSearch {
-		margin-top: 0.5em;
+		margin-top: 0.65em;
 		position: relative;
 		border: solid 1px #AAAAAA;
 		background-color: white;
@@ -356,15 +356,15 @@ div#mw-head h5 {
 		background-repeat: repeat-x;
 	}
 	div#simpleSearch label {
-		font-size: 0.8em;
+		font-size: 13px;
 		top: 0.25em;
 	}
 	div#simpleSearch input#searchInput {
 		margin: 0;
 		border-width: 0;
-		padding: 0.25em;
+		padding: 3px;
 		line-height: 1em;
-		font-size: 0.8em;
+		font-size: 13px;
 		width: 14em;
 		background-color: transparent;
 	}
@@ -373,7 +373,7 @@ div#mw-head h5 {
 		margin: 0;
 		padding: 0;
 		width: 1.75em;
-		height: 1.5em;
+		height: 16px;
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
