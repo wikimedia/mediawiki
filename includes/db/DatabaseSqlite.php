@@ -49,7 +49,8 @@ class DatabaseSqlite extends DatabaseBase {
 
 		$fileName = self::generateFileName( $wgSQLiteDataDir, $dbName );
 		if ( !is_readable( $fileName ) ) {
-			throw new DBConnectionError( $this, "SQLite database not accessible" );		$this->mConn = false;
+			throw new DBConnectionError( $this, "SQLite database not accessible" );
+			$this->mConn = false;
 		}
 		$this->openFile( $fileName );
 		return $this->mConn;
