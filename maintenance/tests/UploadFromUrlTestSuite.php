@@ -32,6 +32,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 			'name' => 'local',
 			'directory' => wfTempDir().'/test-repo',
 			'url' => 'http://example.com/images',
+			'deletedDir' => wfTempDir().'/test-repo/delete',
 			'hashLevels' => 2,
 			'transformVia404' => false,
 		);
