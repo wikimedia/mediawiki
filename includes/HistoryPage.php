@@ -375,23 +375,20 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->oldIdChecked = 0;
 
 		$wgOut->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
-		$s = Xml::openElement( 'form', array( 'action' => $wgScript,
+		$s = Html::openElement( 'form', array( 'action' => $wgScript,
 			'id' => 'mw-history-compare' ) ) . "\n";
-		$s .= Xml::hidden( 'title', $this->title->getPrefixedDbKey() ) . "\n";
-		$s .= Xml::hidden( 'action', 'historysubmit' ) . "\n";
+		$s .= Html::hidden( 'title', $this->title->getPrefixedDbKey() ) . "\n";
+		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 
 		$this->buttons = '<div>';
 		$this->buttons .= $this->submitButton( wfMsg( 'compareselectedversions'),
-			array(
-				'class'     => 'historysubmit',
-				'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-				'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-			)
+			array( 'class' => 'historysubmit' )
+				+ $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'compareselectedversions' )
 		) . "\n";
 		if( $wgUser->isAllowed('deleterevision') ) {
 			$float = $wgContLang->alignEnd();
 			# Note bug #20966, <button> is non-standard in IE<8
-			$this->buttons .= Xml::element( 'button',
+			$this->buttons .= Html::element( 'button',
 				array(
 					'type' => 'submit',
 					'name' => 'revisiondelete',
@@ -405,7 +402,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if( $wgUser->isAllowed( 'revisionmove' ) ) {
 			$float = $wgContLang->alignEnd();
 			# Note bug #20966, <button> is non-standard in IE<8
-			$this->buttons .= Xml::element( 'button',
+			$this->buttons .= Html::element( 'button',
 				array(
 					'type' => 'submit',
 					'name' => 'revisionmove',
