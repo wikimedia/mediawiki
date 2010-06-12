@@ -62,8 +62,8 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * @todo Document
-	 * @param $fix bool Whether or not to fix broken entries
-	 * @param $suffix String Suffix to append to renamed articles
+	 * @param $fix Boolean: whether or not to fix broken entries
+	 * @param $suffix String: suffix to append to renamed articles
 	 */
 	private function checkAll( $fix, $suffix = '' ) {
 		global $wgContLang, $wgNamespaceAliases, $wgCanonicalNamespaceNames;
@@ -132,8 +132,9 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * Get the interwiki list
+	 *
 	 * @todo Needs to respect interwiki cache!
-	 * @return array
+	 * @return Array
 	 */
 	private function getInterwikiList() {
 		$result = $this->db->select( 'interwiki', array( 'iw_prefix' ) );
@@ -147,10 +148,10 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * @todo Document
-	 * @param $ns int A namespace id
+	 * @param $ns Integer: a namespace id
 	 * @param $name String
-	 * @param $fix bool Whether to fix broken entries
-	 * @param $suffix String Suffix to append to renamed articles
+	 * @param $fix Boolean: whether to fix broken entries
+	 * @param $suffix String: suffix to append to renamed articles
 	 */
 	private function checkNamespace( $ns, $name, $fix, $suffix = '' ) {
 		$conflicts = $this->getConflicts( $ns, $name );
@@ -181,8 +182,9 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Find pages in mainspace that have a prefix of the new namespace
 	 * so we know titles that will need migrating
-	 * @param $ns int Namespace id (id for new namespace?)
-	 * @param $name String Prefix that is being made a namespace
+	 *
+	 * @param $ns Integer: namespace id (id for new namespace?)
+	 * @param $name String: prefix that is being made a namespace
 	 */
 	private function getConflicts( $ns, $name ) {
 		$page  = 'page';
@@ -252,9 +254,10 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * Resolve any conflicts
-	 * @param $row Row from the page table to fix
-	 * @param $resolveable bool 
-	 * @param $suffix String Suffix to append to the fixed page
+	 *
+	 * @param $row Object: row from the page table to fix
+	 * @param $resolvable Boolean
+	 * @param $suffix String: suffix to append to the fixed page
 	 */
 	private function resolveConflict( $row, $resolvable, $suffix ) {
 		if ( !$resolvable ) {
@@ -281,9 +284,10 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * Resolve a given conflict
-	 * @param $row Row from the old broken entry
-	 * @param $table String Table to update
-	 * @param $prefix String Prefix for column name, like page or ar
+	 *
+	 * @param $row Object: row from the old broken entry
+	 * @param $table String: table to update
+	 * @param $prefix String: prefix for column name, like page or ar
 	 */
 	private function resolveConflictOn( $row, $table, $prefix ) {
 		$this->output( "... resolving on $table... " );
