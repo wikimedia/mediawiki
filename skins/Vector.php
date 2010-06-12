@@ -505,7 +505,7 @@ class VectorTemplate extends QuickTemplate {
 				<?php if ( $this->data['showjumplinks'] ): ?>
 				<!-- jumpto -->
 				<div id="jump-to-nav">
-					<?php $this->msg( 'jumpto' ) ?> <a href="#head"><?php $this->msg( 'jumptonavigation' ) ?></a>,
+					<?php $this->msg( 'jumpto' ) ?> <a href="#mw-head"><?php $this->msg( 'jumptonavigation' ) ?></a>,
 					<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
 				</div>
 				<!-- /jumpto -->
