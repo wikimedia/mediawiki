@@ -870,7 +870,7 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'minoredit'                        => 'Dit is een kleine bewerking',
 'watchthis'                        => 'Deze pagina volgen',
 'savearticle'                      => 'Pagina opslaan',
-'preview'                          => 'Nakijken',
+'preview'                          => 'Voorvertoning',
 'showpreview'                      => 'Bewerking ter controle bekijken',
 'showlivepreview'                  => 'Bewerking ter controle bekijken',
 'showdiff'                         => 'Wijzigingen bekijken',
@@ -1368,7 +1368,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'prefsnologintext'              => 'U moet <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aangemeld]</span> zijn om uw voorkeuren te kunnen instellen.',
 'changepassword'                => 'Wachtwoord wijzigen',
 'prefs-skin'                    => 'Vormgeving',
-'skin-preview'                  => 'Voorbeeld',
+'skin-preview'                  => 'Voorvertoning',
 'prefs-math'                    => 'Formules',
 'datedefault'                   => 'Geen voorkeur',
 'prefs-datetime'                => 'Datum en tijd',
@@ -2464,8 +2464,8 @@ In het [[Special:Log/delete|verwijderingslogboek]] staan recente verwijderingen 
 'undelete-filename-mismatch'   => 'Bestandsversie van tijdstip $1 kon niet hersteld worden: bestandsnaam klopte niet',
 'undelete-bad-store-key'       => 'Bestandsversie van tijdstip $1 kon niet hersteld worden: het bestand miste al voordat het werd verwijderd.',
 'undelete-cleanup-error'       => 'Fout bij het herstellen van ongebruikt archiefbestand "$1".',
-'undelete-missing-filearchive' => 'Het lukt niet om ID $1 terug te plaatsen, omdat het niet in de database is.
-Misschien is het al teruggeplaatst.',
+'undelete-missing-filearchive' => 'Het lukt niet om ID $1 terug te plaatsen, omdat deze niet in de database te vinden is.
+Misschien deze versie al teruggeplaatst.',
 'undelete-error-short'         => 'Fout bij het herstellen van bestand: $1',
 'undelete-error-long'          => 'Er zijn fouten opgetreden bij het herstellen van het bestand:
 

@@ -443,11 +443,16 @@ $2',
 'loginsuccesstitle'       => 'Успішне приголошіня',
 'loginsuccess'            => "'''Теперь працуєте {{grammar:locative|{{SITENAME}}}} під меном $1.'''",
 'nosuchuser'              => 'Не екзістує хоснователь з меном «$1». У хосновательскых мен ся розлишують малы/великы писмена. Сконтролюйте запис, або собі [[Special:UserLogin/signup|зареґіструйте нове конто]].',
+'nosuchusershort'         => 'Хоснователь з меном <nowiki>$1</nowiki> не екзістує.
+Перевірте правилность написаня мена.',
 'nouserspecified'         => 'Мусите задати мено хоснователя.',
 'login-userblocked'       => 'Тот хоснователь є заблокованый. Приголошіня не є доволене.',
 'wrongpassword'           => 'Задали сьте хыбне гесло. Спробуйте іщі раз.',
 'wrongpasswordempty'      => 'Было задане порожнє гесло. Спробуйте іщі раз.',
+'passwordtooshort'        => 'Гесло мусить быти довге холем  $1 {{PLURAL:$1|знак|знакы|знаків}}.',
+'password-name-match'     => 'Ваше гесло не може быти таке саме як і ваше хосновательске мено.',
 'mailmypassword'          => 'Послати нове гесло',
+'passwordremindertitle'   => 'Нове дочасне гесло на {{grammar:4sg|{{SITENAME}}}}',
 'noemail'                 => 'Хоснователь "$1" не має реґістровану адресу електронічной пошты.',
 'noemailcreate'           => 'Мусите задати правилну адресу електронічной пошты',
 'accountcreated'          => 'Конто вытворене',
@@ -617,6 +622,9 @@ $2',
 'revdelete-otherreason'      => 'Інша/далша причіна:',
 'revdelete-reasonotherlist'  => 'Інша причіна',
 'revdelete-offender'         => 'Автор ревізії:',
+
+# Revision move
+'revmove-reasonfield' => 'Причіна:',
 
 # History merging
 'mergehistory-box'                 => 'Злучіти ревізії двох сторінок:',

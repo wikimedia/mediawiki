@@ -14,6 +14,7 @@
  * @author Cerasus
  * @author Dani
  * @author Dorgan
+ * @author Enbéká
  * @author Glanthor Reviol
  * @author Gondnok
  * @author Hunyadym
@@ -2497,7 +2498,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'block-log-flags-noemail'         => 'e-mail blokkolva',
 'block-log-flags-nousertalk'      => 'saját vitalapját sem szerkesztheti',
 'block-log-flags-angry-autoblock' => 'bővített automatikus blokk bekapcsolva',
-'block-log-flags-hiddenname'      => 'szerkesztőnév elrejtve',
+'block-log-flags-hiddenname'      => 'rejtett felhasználónév',
 'range_block_disabled'            => 'A rendszerfelelős tartományblokkolás létrehozási képessége letiltott.',
 'ipb_expiry_invalid'              => 'Hibás lejárati dátum.',
 'ipb_expiry_temp'                 => 'A láthatatlan felhasználóinév-blokkok lehetnek állandóak.',

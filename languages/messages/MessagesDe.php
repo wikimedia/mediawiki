@@ -1049,7 +1049,7 @@ Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} 
 Bitte prüfe den Vergleich unten um sicherzustellen, dass du dies tun möchtest, und speichere dann unten deine Änderungen, um die Bearbeitung rückgängig zu machen.',
 'undo-failure' => 'Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.',
 'undo-norev'   => 'Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.',
-'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) wurde rückgängig gemacht.',
+'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden',
@@ -2812,9 +2812,9 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-save'                    => 'Änderungen speichern',
 'tooltip-preview'                 => 'Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!',
 'tooltip-diff'                    => 'Änderungen am Text zeigen',
-'tooltip-compareselectedversions' => 'Unterschied zwischen zwei ausgewählten Versionen dieser Seite anzeigen.',
+'tooltip-compareselectedversions' => 'Unterschied zwischen zwei ausgewählten Versionen dieser Seite anzeigen',
 'tooltip-watch'                   => 'Füge diese Seite deiner Beobachtungsliste hinzu',
-'tooltip-recreate'                => 'Seite neu erstellen, obwohl sie gelöscht wurde.',
+'tooltip-recreate'                => 'Seite neu erstellen, obwohl sie gelöscht wurde',
 'tooltip-upload'                  => 'Hochladen starten',
 'tooltip-rollback'                => 'Macht alle letzten Änderungen der Seite, die vom gleichen Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.',
 'tooltip-undo'                    => 'Macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',

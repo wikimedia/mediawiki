@@ -2446,7 +2446,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'movesubpagetext'              => 'Denne sida har {{PLURAL:$1|éi underside som vert synt|$1 undersider som vert synte}} nedanfor.',
 'movenosubpage'                => 'Denne sida har ingen undersider.',
 'movereason'                   => 'Årsak:',
-'revertmove'                   => 'attende',
+'revertmove'                   => 'flytt attende',
 'delete_and_move'              => 'Slett og flytt',
 'delete_and_move_text'         => '== Sletting påkrevd ==
 

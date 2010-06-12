@@ -75,6 +75,7 @@ $messages = array(
 'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
 
 'article'    => 'Адаҟьа',
+'mytalk'     => 'Сахцәажәара',
 'navigation' => 'Анавигациа',
 
 # Cologne Blue skin
@@ -109,6 +110,7 @@ $messages = array(
 'permalink'        => 'Еисымшатәи ахьарҧш',
 'edit'             => 'Ариашамҭа',
 'create'           => 'Арҿиара',
+'create-this-page' => 'Ариашара ари адаҟьа',
 'newpage'          => 'Адаҟьа Ҿыц',
 'talkpagelinktext' => 'Ахцәажәара',
 'specialpage'      => 'Цастәи адаҟьа',
@@ -144,16 +146,23 @@ $messages = array(
 'viewsource' => 'Ахәаҧшра',
 
 # Login and logout pages
-'loginlanguagelabel' => 'Бызшәа: $1',
+'login'                   => 'Урдырра',
+'nav-login-createaccount' => 'Урдырра / Арегистрациара',
+'userlogin'               => 'Урдырра/Арегистрациара',
+'logout'                  => 'Асеанс дәылҵра',
+'userlogout'              => 'Асеанс дәылҵра',
+'loginlanguagelabel'      => 'Бызшәа: $1',
 
 # Edit pages
-'summary'     => 'Ятарлă саспаллисем:',
+'summary'     => 'Описание изменений:',
 'savearticle' => 'Адаҟьа ахьчара',
 'editing'     => 'Ариашамҭа: $1',
 
 # Preferences page
-'uid'          => 'Иалоу ID:',
-'yourlanguage' => 'Абызшәа:',
+'preferences'   => 'Архиарақәа',
+'mypreferences' => 'Архиарақәа',
+'uid'           => 'Иалоу ID:',
+'yourlanguage'  => 'Абызшәа:',
 
 # Groups
 'group-user' => 'Иалоуқәа',
@@ -193,8 +202,16 @@ $messages = array(
 # Special:LinkSearch
 'linksearch-ok' => 'Аҧшаара',
 
+# Watchlist
+'watchlist'   => 'Ашклаҧшра асна',
+'mywatchlist' => 'Ашклаҧшра асна',
+
 # Restrictions (nouns)
 'restriction-edit' => 'Ариашамҭа',
+
+# Contributions
+'mycontris'   => 'Салагала',
+'contribsub2' => 'Алагала $1 ($2)',
 
 'sp-contributions-talk'   => 'ахцәажәара',
 'sp-contributions-submit' => 'Аҧшаара',
@@ -218,6 +235,7 @@ $messages = array(
 'fileduplicatesearch-submit' => 'Аҧшаара',
 
 # Special:SpecialPages
-'specialpages' => 'Цастәи адаҟьақәа',
+'specialpages'             => 'Цастәи адаҟьақәа',
+'specialpages-group-login' => 'Урдырра / Арегистрациара',
 
 );

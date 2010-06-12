@@ -908,9 +908,12 @@ It peule pa vëddlo.',
 Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi ativ.",
 
 # Revision move
-'moverevlogentry' => "a l'ha tramudà {{PLURAL:$3|narevision|$3 revision}} da $1 a $2",
-'revisionmove'    => 'Tramudé dle revision da «$1»',
-'revmove-explain' => 'Le revision sì-dapress a saran tramudà da $1 a la pàgina final spessificà. Se la pàgina final a esist nen, a sarà creà. Dësnò, coste revision a saran butà ansema a la stòria dla pàgina.',
+'moverevlogentry'              => "a l'ha tramudà {{PLURAL:$3|narevision|$3 revision}} da $1 a $2",
+'revisionmove'                 => 'Tramudé dle revision da «$1»',
+'revmove-explain'              => 'Le revision sì-dapress a saran tramudà da $1 a la pàgina final spessificà. Se la pàgina final a esist nen, a sarà creà. Dësnò, coste revision a saran butà ansema a la stòria dla pàgina.',
+'revmove-legend'               => 'Anserì la pàgina oget e ël resumé',
+'revmove-submit'               => 'Tramudé le revision vers la pàgina selessionà',
+'revisionmoveselectedversions' => 'Tramudé le revision selessionà',
 
 # History merging
 'mergehistory'                     => 'Buté ansema je stòrie',
@@ -1228,9 +1231,9 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-editusercss'           => "Modifiché j'archivi CSS d'àutri utent",
 'right-edituserjs'            => "Modifiché j'archivi JavaScript d'àutri utent",
 'right-rollback'              => "Gavé an pressa le modìfiche ëd l'ùltim utent che a l'ha modificà na pàgina particolar",
-'right-markbotedits'          => "Marché le modìfiche (dont a l'é fasse rollback) com modìfiche d'un bot",
+'right-markbotedits'          => "Marché le modìfiche tirà andré com modìfiche d'un trigomiro",
 'right-noratelimit'           => "Nen esse tocà dal lìmit d'assion",
-'right-import'                => 'Amporté pàgine da àutre wiki',
+'right-import'                => "Amporté dle pàgine da d'àutre wiki",
 'right-importupload'          => 'Amporté pàgine da un file carià',
 'right-patrol'                => "Marché le modìfiche dj'àutri com verificà",
 'right-autopatrol'            => 'Avèj na pròpria modìfica automaticament marcà com verificà',
