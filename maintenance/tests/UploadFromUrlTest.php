@@ -132,6 +132,7 @@ class UploadFromUrlTest extends ApiSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
+			'asyncdownload' => 1,
 			'filename' => 'Test.png',
 			'token' => $token,
 		), $data );
@@ -159,6 +160,7 @@ class UploadFromUrlTest extends ApiSetup {
 			'action' => 'upload',
 			'filename' => 'Test.png',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
+			'asyncdownload' => 1,
 			'token' => $token,
 		), $data );
 
@@ -173,11 +175,63 @@ class UploadFromUrlTest extends ApiSetup {
 	}
 
 	/**
+	 * @depends testLogin
+	 */
+	function testSyncDownload( $data ) {
+		global $wgUser;
+		$data[2]['wsEditToken'] = $data[2]['wsToken'];
+		$token = md5( $data[2]['wsToken'] ) . EDIT_TOKEN_SUFFIX;
+
+		$job = Job::pop();
+		$this->assertFalse( $job );
+
+		self::deleteFile( 'Test.png' );
+
+		$wgUser->addGroup( 'users' );
+		$data = $this->doApiRequest( array(
+			'action' => 'upload',
+			'filename' => 'Test.png',
+			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
+			'ignorewarnings' => true,
+			'token' => $token,
+		), $data );
+
+		$job = Job::pop();
+		$this->assertFalse( $job );
+
+		$this->assertEquals( 'Success', $data[0]['upload']['result'] );
+
+		return $data;
+	}
+
+	/**
 	 * @depends testDoDownload
 	 */
 	function testVerifyDownload( $data ) {
 		$t = Title::newFromText( "Test.png", NS_FILE );
 
 		$this->assertTrue( $t->exists() );
+
+		self::deleteFile( 'Test.png' );
+	 }
+
+	/**
+	 *
+	 */
+	function deleteFile( $name ) {
+
+		$t = Title::newFromText( $name, NS_FILE );
+		$this->assertTrue($t->exists(), "File '$name' exists");
+
+		if ( $t->exists() ) {
+			$file = wfFindFile( $name, array( 'ignoreRedirect' => true ) );
+			$empty = "";
+			$status = FileDeleteForm::doDelete( $t, $file, $empty, "none", true );
+			$a = new Article ( $t );
+			$a->doDeleteArticle( "testing" );
+		}
+		$t = Title::newFromText( $name, NS_FILE );
+
+		$this->assertFalse($t->exists(), "File '$name' was deleted");
 	}
-}
+ }

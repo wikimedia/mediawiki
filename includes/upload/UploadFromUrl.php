@@ -35,7 +35,7 @@ class UploadFromUrl extends UploadBase {
 	 * Entry point for API upload
 	 * @return bool true on success
 	 */
-	public function initialize( $name, $url, $comment, $watchList, $ignoreWarn ) {
+	public function initialize( $name, $url, $comment, $watchList = null, $ignoreWarn = null, $async = 'async') {
 		global $wgUser;
 
 		if( !Http::isValidURI( $url ) ) {
@@ -51,25 +51,21 @@ class UploadFromUrl extends UploadBase {
 			"ignorewarnings" => $ignoreWarn);
 
 		$title = Title::newFromText( $name );
-		/* // Check whether the user has the appropriate permissions to upload anyway */
-		/* $permission = $this->isAllowed( $wgUser ); */
 
-		/* if ( $permission !== true ) { */
-		/* 	if ( !$wgUser->isLoggedIn() ) { */
-		/* 		return Status::newFatal( 'uploadnologintext' ); */
-		/* 	} else { */
-		/* 		return Status::newFatal( 'badaccess-groups' ); */
-		/* 	} */
-		/* } */
+		if ( $async == 'async' ) {
+			$job = new UploadFromUrlJob( $title, $params );
+			return $job->insert();
+		}
+		else {
+			$this->mUrl = trim( $url );
+			$this->comment = $comment;
+			$this->watchList = $watchList;
+			$this->ignoreWarnings = $ignoreWarn;
+			$this->mDesiredDestName = $title;
+			$this->getTitle();
 
-		/* $permErrors = $this->verifyPermissions( $wgUser ); */
-		/* if ( $permErrors !== true ) { */
-		/* 	return Status::newFatal( 'badaccess-groups' ); */
-		/* } */
-
-
-		$job = new UploadFromUrlJob( $title, $params );
-		return $job->insert();
+			return true;
+		}
 	}
 
 	/**
@@ -101,7 +97,8 @@ class UploadFromUrl extends UploadBase {
 			$request->getVal( 'wpUploadFileURL' ),
 			$request->getVal( 'wpUploadDescription' ),
 			$request->getVal( 'wpWatchThis' ),
-			$request->getVal( 'wpIgnoreWarnings' )
+			$request->getVal( 'wpIgnoreWarnings' ),
+			'async'
 		);
 	}
 
@@ -132,9 +129,7 @@ class UploadFromUrl extends UploadBase {
 		return Status::newGood();
 	}
 
-	public function doUpload() {
-		global $wgUser;
-
+	public function retrieveFileFromUrl() {
 		$req = HttpRequest::factory($this->mUrl);
 		$status = $req->execute();
 
@@ -146,29 +141,33 @@ class UploadFromUrl extends UploadBase {
 		if ( !$status->isGood() ) {
 			return $status;
 		}
-
 		$this->mRemoveTempFile = true;
 
-		$v = $this->verifyUpload();
-		if( $v['status'] !== UploadBase::OK ) {
-			return $this->convertVerifyErrorToStatus( $v['status'], $v['details'] );
-		}
+		return $status;
+	}
 
-		// This has to come from API
-		/* $warnings = $this->checkForWarnings(); */
-		/* if( isset($warnings) ) return $warnings; */
+	public function doUpload() {
+		global $wgUser;
 
-		$file = $this->getLocalFile();
-		// This comes from ApiBase
-		/* $watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() ); */
-
-		$status = $this->getLocalFile()->upload( $this->mTempPath, $this->comment,
-			$this->comment, File::DELETE_SOURCE, $this->mFileProps, false, $wgUser );
+		$status = $this->retrieveFileFromUrl();
 
 		if ( $status->isGood() ) {
-			$url = $this->getLocalFile()->getDescriptionUrl();
+
+			$v = $this->verifyUpload();
+			if( $v['status'] !== UploadBase::OK ) {
+				return $this->convertVerifyErrorToStatus( $v['status'], $v['details'] );
+			}
+
+			$status = $this->getLocalFile()->upload( $this->mTempPath, $this->comment,
+				$this->comment, File::DELETE_SOURCE, $this->mFileProps, false, $wgUser );
+		}
+
+		if ( $status->isGood() ) {
+			global $wgLocalFileRepo;
+			$file = $this->getLocalFile();
+
 			$wgUser->leaveUserMessage( wfMsg( 'successfulupload' ),
-				wfMsg( 'upload-success-msg', $url ) );
+				wfMsg( 'upload-success-msg', $file->getDescriptionUrl() ) );
 		} else {
 			$wgUser->leaveUserMessage( wfMsg( 'upload-failure-subj' ),
 				wfMsg( 'upload-failure-msg', $status->getWikiText() ) );

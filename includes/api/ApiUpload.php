@@ -92,30 +92,41 @@ class ApiUpload extends ApiBase {
 				}
 
 				$this->mUpload = new UploadFromUrl;
-				$result = $this->mUpload->initialize( $this->mParams['filename'], $this->mParams['url'],
-											$this->mParams['comment'] );
+				$async = $this->mParams['asyncdownload'] ? 'async' : null;
 
-				$this->getResult()->addValue( null, $this->getModuleName(), array( 'queued' => $result ) );
-				return;
+				$result = $this->mUpload->initialize( $this->mParams['filename'],
+						$this->mParams['url'],
+						$this->mParams['comment'],
+						$this->mParams['watchlist'],
+						$this->mParams['ignorewarnings'],
+						$async);
+
+				$this->checkPermissions( $wgUser );
+				if ( $async ) {
+					$this->getResult()->addValue( null,
+												  $this->getModuleName(),
+												  array( 'queued' => $result ) );
+					return;
+				}
+
+				$status = $this->mUpload->retrieveFileFromUrl();
+				if ( !$status->isGood() ) {
+					$this->getResult()->addValue( null,
+												  $this->getModuleName(),
+												  array( 'error' => $status ) );
+					return;
+				}
 			}
 		} else {
 			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
 		}
 
+		$this->checkPermissions( $wgUser );
+
 		if ( !isset( $this->mUpload ) ) {
 			$this->dieUsage( 'No upload module set', 'nomodule' );
 		}
 
-		// Check whether the user has the appropriate permissions to upload anyway
-		$permission = $this->mUpload->isAllowed( $wgUser );
-
-		if ( $permission !== true ) {
-			if ( !$wgUser->isLoggedIn() ) {
-				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
-			} else {
-				$this->dieUsageMsg( array( 'badaccess-groups' ) );
-			}
-		}
 		// Perform the upload
 		$result = $this->performUpload();
 
@@ -123,6 +134,24 @@ class ApiUpload extends ApiBase {
 		$this->mUpload->cleanupTempFile();
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
+	}
+
+	/**
+	 * Checks that the user has permissions to perform this upload.
+	 * Dies with usage message on inadequate permissions.
+	 * @param $user User The user to check.
+	 */
+	protected function checkPermissions( $user ) {
+		// Check whether the user has the appropriate permissions to upload anyway
+		$permission = $this->mUpload->isAllowed( $user );
+
+		if ( $permission !== true ) {
+			if ( !$user->isLoggedIn() ) {
+				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
+			} else {
+				$this->dieUsageMsg( array( 'badaccess-groups' ) );
+			}
+		}
 	}
 
 	/**
@@ -307,6 +336,7 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => false,
 			'file' => null,
 			'url' => null,
+			'asyncdownload' => false,
 			'sessionkey' => null,
 		);
 		return $params;
@@ -323,6 +353,7 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'url' => 'Url to fetch the file from',
+			'asyncdownload' => 'Make fetching a URL asyncronous',
 			'sessionkey' => array(
 				'Session key returned by a previous upload that failed due to warnings',
 			),
