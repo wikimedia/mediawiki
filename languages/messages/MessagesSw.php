@@ -658,7 +658,7 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'minoredit'                        => 'Haya ni mabadiliko madogo',
 'watchthis'                        => 'Fuatilia ukurasa huu',
 'savearticle'                      => 'Hifadhi ukurasa',
-'preview'                          => 'Hakikisha',
+'preview'                          => 'Hakiki',
 'showpreview'                      => 'Onyesha hakikisho la mabadiliko',
 'showlivepreview'                  => 'Tazama moja kwa moja',
 'showdiff'                         => 'Onyesha mabadiliko',
@@ -1184,21 +1184,28 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'prefs-display'                 => 'Hitiari za kutandaza',
 
 # User rights
+'userrights'                   => 'Usimamizi wa haki za mtumiaji',
 'userrights-lookup-user'       => 'Kusimamia kundi za watumiaji',
 'userrights-user-editname'     => 'Andika jina la mtumiaji:',
 'editusergroup'                => 'Kuhariri vikundi vya watumiaji',
+'editinguser'                  => "Kubadilisha wezo za mtumiaji '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'     => 'Kuhariri kundi za watumiaji',
 'saveusergroups'               => 'Kuhifadhi kundi za watumiaji',
 'userrights-groupsmember'      => 'Mwanachama wa:',
 'userrights-groupsmember-auto' => 'Mwanachama moja kwa moja wa:',
+'userrights-groups-help'       => 'Unaweza kubadilisha kundi mtumiaji huyu alizokuwa mwanachama zao:
+* Mtumiaji ni mwanachama wa kundi fulani kama kisanduku chake kina alama.
+* Mtumiaji si mwanachama wa kundi fulani kama kisanduku chake hakina alama.
+* Alama ya * ina maana ya kwamba ukiongeza kundi fulani, hutaweza kuitoa tena, au ukitoa kundi fulani, hutaweza kuiongeza tena.',
 'userrights-reason'            => 'Sababu:',
+'userrights-nodatabase'        => 'Hakuna hifadhidata inayoitwa $1 au haimo katiko jumuia hii ya wiki.',
 'userrights-changeable-col'    => 'Makundi unayoweza kuyabadilisha',
 'userrights-unchangeable-col'  => 'Makundi usiyoweza kuyabadilisha',
 
 # Groups
 'group'       => 'Kundi:',
 'group-user'  => 'Watumiaji',
-'group-bot'   => 'Bot',
+'group-bot'   => 'Boti',
 'group-sysop' => 'Wakabidhi',
 'group-all'   => '(vyote)',
 
@@ -1207,6 +1214,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'group-sysop-member' => 'Mkabidhi',
 
 'grouppage-user'  => '{{ns:project}}:Watumiaji',
+'grouppage-bot'   => '{{ns:project}}:Boti',
 'grouppage-sysop' => '{{ns:project}}:Wakabidhi',
 
 # Rights

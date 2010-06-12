@@ -44,6 +44,7 @@ $messages = array(
 'tog-shownumberswatching'     => "Fam' avdè e' nòmar d'j utent ch'j tèn sta pàgina sot occ",
 'tog-oldsig'                  => 'Anteprèma dla fírma bona',
 'tog-fancysig'                => "Tràta la firma cumpagna e' test int'la wiki (senza nissön ligam automatich)",
+'tog-externaleditor'          => "Drova sempar un prugràma d'scritura esteran (editor testuale)",
 
 # Dates
 'january'       => 'Znèr',

@@ -1105,6 +1105,7 @@ $1",
 $1",
 'revdel-restore'              => 'Ubah tampilan',
 'revdel-restore-deleted'      => 'Suntingan yang telah dihapus',
+'revdel-restore-visible'      => 'tampilan revisi',
 'pagehist'                    => 'Sejarah halaman',
 'deletedhist'                 => 'Sejarah yang dihapus',
 'revdelete-content'           => 'konten',
@@ -1141,10 +1142,22 @@ Silakan periksa catatan log.',
 Lihat [[Special:IPBlockList|daftar IP yang diblokir]] untuk daftar terkininya.',
 
 # Revision move
-'revmove-reasonfield'    => 'Alasan:',
-'revmove-titlefield'     => 'Halaman tujuan:',
-'revmove-badparam-title' => 'Parameter Buruk',
-'revmove-nullmove-title' => 'Judul tidak sah',
+'moverevlogentry'              => '{{PLURAL:$3|satu revisi |$3 revisi}} pindah dari $1 ke $2',
+'revisionmove'                 => 'Revisi pindah dari "$1"',
+'revmove-explain'              => 'Revisi berikut akan dipindahkan dari $1 ke halaman tujuan yang ditetapkane. Jika tujuan tidak ada, akan dibuatkan. Sebaliknya, revisi ini akan di gabungkan dalam sejarah halaman.',
+'revmove-legend'               => 'Tetapkan halaman tujuan dan ringkasan',
+'revmove-submit'               => 'Pindahkan revisi ke halaman yang dipilih',
+'revisionmoveselectedversions' => 'Pindahkan revisi yang dipilih',
+'revmove-reasonfield'          => 'Alasan:',
+'revmove-titlefield'           => 'Halaman tujuan:',
+'revmove-badparam-title'       => 'Parameter Buruk',
+'revmove-badparam'             => '<span class="kesalahan">Permintaan Anda mengandung parameter yang tidak sah atau kurang. Silahkan tekan "kembali" dan coba lagi.</span>',
+'revmove-norevisions-title'    => 'Revisi target tak sah',
+'revmove-norevisions'          => '<span class="kesalahan">Anda belum menetapkan satu atau lebih revisi tujuan untuk menjalankan fungsi atau revisi yang diberikan tidak ada.</span>',
+'revmove-nullmove-title'       => 'Judul tidak sah',
+'revmove-nullmove'             => '<span class="kesalahan">Halaman sumber dan tujuan sama. Silahkan tekan "kembali" dan masukan nama halaman yang berbeda dari "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|satu revisi dari [[$2]] telah|$1 revisi dari [[$2]] telah}} dipindahkan ke halaman yang ada [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|satu revisi dari [[$2]] telah|$1 revisi dari [[$2]] telah}} dipindahkan ke halaman baru yang dibuat [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah halaman',
@@ -2199,7 +2212,8 @@ Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:p
 'rollback-success'  => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
 
 # Edit tokens
-'sessionfailure' => 'Sepertinya ada masalah dengan sesi log Anda; log Anda telah dibatalkan untuk mencegah pembajakan. Silakan tekan tombol "kembali" dan muat kembali halaman sebelum Anda masuk, lalu coba lagi.',
+'sessionfailure-title' => 'Kegagalan sesi',
+'sessionfailure'       => 'Sepertinya ada masalah dengan sesi log Anda; log Anda telah dibatalkan untuk mencegah pembajakan. Silakan tekan tombol "kembali" dan muat kembali halaman sebelum Anda masuk, lalu coba lagi.',
 
 # Protect
 'protectlogpage'              => 'Log perlindungan',

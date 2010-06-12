@@ -1076,8 +1076,10 @@ $1",
 'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:IPBlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
 
 # Revision move
-'revmove-badparam-title' => 'Parametri invalidi',
-'revmove-nullmove-title' => 'Titolo invalido',
+'revisionmoveselectedversions' => 'Sposta le versioni selezionate',
+'revmove-reasonfield'          => 'Motivo:',
+'revmove-badparam-title'       => 'Parametri invalidi',
+'revmove-nullmove-title'       => 'Titolo invalido',
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',
@@ -1613,6 +1615,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- lascia questa riga esattamente com\'è -->',
+'upload-successful-msg'       => 'Il tuo upload è disponibile qui: $1',
+'upload-failure-subj'         => "Problema nell'upload",
 
 'upload-proto-error'        => 'Protocollo errato',
 'upload-proto-error-text'   => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",
