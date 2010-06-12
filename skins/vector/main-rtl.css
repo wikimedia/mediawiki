@@ -923,14 +923,11 @@ img.thumbborder {
 	padding: .5em 1em;
 	vertical-align: middle;
 }
-/* Site Notice */
+/* Site Notice (includes notices from CentralNotice extension) */
 #siteNotice {
 	text-align: center;
 	font-size: 0.8em;
 	margin: 0;
-}
-#centralNotice {
-	margin-bottom: 0.9em;
 }
 #localNotice {
 	margin-bottom: 0.9em;
