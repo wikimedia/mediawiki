@@ -190,6 +190,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23688) Correct mime types for Office 2007 OpenXML documents.
 * (bug 23787) Corrected $wgDefaultSkin's comment in DefaultSettings.php
 * (bug 23797) Xml::input() now allows '0' for the value parameter
+* (bug 23747) Make sure that on History pages, the RevDel button is not
+  accidently activated when hitting enter.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
