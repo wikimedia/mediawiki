@@ -381,6 +381,13 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= Xml::hidden( 'action', 'historysubmit' ) . "\n";
 
 		$this->buttons = '<div>';
+		$this->buttons .= $this->submitButton( wfMsg( 'compareselectedversions'),
+			array(
+				'class'     => 'historysubmit',
+				'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
+				'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+			)
+		) . "\n";
 		if( $wgUser->isAllowed('deleterevision') ) {
 			$float = $wgContLang->alignEnd();
 			# Note bug #20966, <button> is non-standard in IE<8
@@ -409,13 +416,6 @@ class HistoryPager extends ReverseChronologicalPager {
 				wfMsg( 'revisionmoveselectedversions' )
 			) . "\n";
 		}
-		$this->buttons .= $this->submitButton( wfMsg( 'compareselectedversions'),
-			array(
-				'class'     => 'historysubmit',
-				'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-				'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-			)
-		) . "\n";
 		$this->buttons .= '</div>';
 		$s .= $this->buttons . '<ul id="pagehistory">' . "\n";
 		return $s;
