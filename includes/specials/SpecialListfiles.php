@@ -145,8 +145,8 @@ class ImageListPager extends TablePager {
 				static $imgfile = null;
 				if ( $imgfile === null ) $imgfile = wfMsg( 'imgfile' );
 
-				$name = $this->mCurrentRow->img_name;
-				$link = $this->getSkin()->linkKnown( Title::makeTitle( NS_FILE, $name ), htmlspecialchars( $value ) );
+				$filePage = Title::makeTitle( NS_FILE, $value );
+				$link = $this->getSkin()->linkKnown( $filePage, htmlspecialchars( $filePage->getText() ) );
 				$image = wfLocalFile( $value );
 				$url = $image->getURL();
 				$download = Xml::element('a', array( 'href' => $url ), $imgfile );
