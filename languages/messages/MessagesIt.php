@@ -1076,10 +1076,18 @@ $1",
 'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:IPBlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
 
 # Revision move
+'moverevlogentry'              => '{{PLURAL:$3|spostata una revisione|spostate $3 revisioni}} da $1 a $2',
+'revisionmove'                 => 'Sposta revisione da "$1"',
+'revmove-explain'              => 'Le seguenti revisioni saranno spostate da $1 alla pagina di destinazione specificata. Se la destinazione non esiste, sarà creata. Altrimenti, queste revisioni saranno unite nella cronologia della pagina.',
+'revmove-legend'               => "Imposta la pagina di destinazione e l'oggetto",
+'revmove-submit'               => 'Sposta le revisioni alla pagina selezionata',
 'revisionmoveselectedversions' => 'Sposta le versioni selezionate',
 'revmove-reasonfield'          => 'Motivo:',
+'revmove-titlefield'           => 'Pagina di destinazione:',
 'revmove-badparam-title'       => 'Parametri invalidi',
+'revmove-badparam'             => '<span class="error">La tua richiesta contiene parametri errati o insufficienti. Premere "indietro" e provare ancora.</span>',
 'revmove-nullmove-title'       => 'Titolo invalido',
+'revmove-nullmove'             => '<span class="error">La pagina sorgente e di destinazione sono identiche. Premere "indietro" ed inserire il nome di una pagina diverso da "$1".</span>',
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',
@@ -1617,6 +1625,9 @@ PICT # misc.
  #</pre> <!-- lascia questa riga esattamente com\'è -->',
 'upload-successful-msg'       => 'Il tuo upload è disponibile qui: $1',
 'upload-failure-subj'         => "Problema nell'upload",
+'upload-failure-msg'          => 'Si è verificato un problema con il caricamento:
+
+$1',
 
 'upload-proto-error'        => 'Protocollo errato',
 'upload-proto-error-text'   => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author (vinny)
  * @author Homo logos
  * @author Malafaya
  * @author OldakQuill
@@ -28,6 +29,7 @@ $messages = array(
 'february'      => "relma'i",
 'march'         => "cibma'i",
 'april'         => 'la vomast.',
+'may_long'      => 'Myabuyy',
 'june'          => "xavma'i",
 'july'          => "zelma'i",
 'august'        => "bivma'i",
@@ -47,6 +49,8 @@ $messages = array(
 'october-gen'   => 'la daumast.',
 'november-gen'  => 'la feimast.',
 'december-gen'  => 'la gaimast.',
+'jan'           => "pavma'i",
+'feb'           => "relma'i",
 'mar'           => "cibma'i",
 'apr'           => "vonma'i",
 'may'           => "mumyma'i",
@@ -56,13 +60,15 @@ $messages = array(
 'sep'           => "sozma'i",
 'oct'           => "pavnonma'i",
 'nov'           => "pavypavma'i",
+'dec'           => "pavrelma'i",
 
 # Categories related messages
 'pagecategories'  => '{{PLURAL:$1|klesi|klesi}}',
 'category_header' => 'fe le kibypapri cu klesi "$1"',
 'subcategories'   => "le'a ti",
 
-'mytalk' => 'casnu mi',
+'mytalk'     => 'casnu mi',
+'navigation' => 'Nyabuvyibugyabutyibuobuny',
 
 # Cologne Blue skin
 'qbedit'        => 'stika',
@@ -71,6 +77,7 @@ $messages = array(
 'faqpage'       => 'Project:FAQ',
 
 'errorpagetitle'   => 'fliba',
+'tagline'          => 'Fyryobumy {{SITENAME}}',
 'help'             => 'sidju ckupau',
 'search'           => 'sisku',
 'searchbutton'     => 'sisku',
@@ -79,18 +86,25 @@ $messages = array(
 'printableversion' => 'plepri simsa',
 'permalink'        => "vitno terjo'e",
 'edit'             => 'stika',
+'create'           => "Fi'i",
 'delete'           => 'daspo',
 'protect'          => 'bandu',
+'protect_change'   => 'binxo',
 'talkpagelinktext' => 'casnu',
 'specialpage'      => 'steci ckupau',
+'personaltools'    => 'Sivni tyobuobulysy',
 'talk'             => 'casnu',
+'views'            => 'Catlu',
 'toolbox'          => 'tutci',
 'otherlanguages'   => 'drata bangu',
 'lastmodifiedat'   => "le vi ckupau rore'u se galfi de'i li $2 $1",
+'jumpto'           => 'Jyubumypy tyobu:',
+'jumptonavigation' => 'ckupau',
 'jumptosearch'     => 'sisku',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'About {{SITENAME}}',
+'aboutpage'            => 'Project:Abubyobuubuty',
 'copyright'            => "lo selvau cu gubni ja'i la'o gy. $1 .gy.",
 'copyrightpage'        => "{{ns:project}}:fukyzifpo'e",
 'currentevents'        => "caca'a fasnu",
@@ -99,15 +113,17 @@ $messages = array(
 'disclaimerpage'       => "Project:kampu nunxusra be lo za'i na fuzme",
 'edithelp'             => 'stika nunsidju',
 'edithelppage'         => 'Help:Editing',
-'mainpage'             => 'ralju ckupau',
+'mainpage'             => 'Ralju Ckupau',
 'mainpage-description' => 'ralju ckupau',
 'portal'               => 'bende ckupau',
 'portal-url'           => 'Project:bende ckupau',
 'privacy'              => "javni be sera'a lo sivni",
+'privacypage'          => 'Project:Pyryibuvyabucyyy pyobulyibucyyy',
 
+'retrievedfrom'        => 'Ryebutyryibuebuvyebudy fyryobumy "$1"',
 'editsection'          => 'stika ti',
 'editsection-brackets' => '[$1]',
-'editold'              => 'edit',
+'editold'              => 'stika',
 'viewsourceold'        => 'catlu le mifra',
 'editlink'             => 'stika ti',
 'viewsourcelink'       => 'casnu le mifra',
@@ -121,6 +137,8 @@ $messages = array(
 'feedlinks'            => 'Feed:',
 'feed-invalid'         => 'Invalid subscription feed type.',
 'feed-unavailable'     => 'Syndication feeds are not available',
+'site-rss-feed'        => '$1 RSS fyebuebudy',
+'site-atom-feed'       => '$1 Abutyobumy fyebuebudy',
 'red-link-title'       => '$1 (le vi kibypapri cu na zasti)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -131,11 +149,18 @@ $messages = array(
 'nstab-mediawiki' => 'notci',
 'nstab-category'  => 'klesi',
 
+# General errors
+'viewsource' => 'catlu le mifra',
+
 # Login and logout pages
-'login'          => "co'a se jaspu",
-'logout'         => "co'u se jaspu",
-'userlogout'     => "co'u se jaspu",
-'gotaccountlink' => "co'a se jaspu",
+'login'                   => "co'a se jaspu",
+'nav-login-createaccount' => 'Lyobugy ibuny / finti janta',
+'logout'                  => "co'u se jaspu",
+'userlogout'              => "co'u se jaspu",
+'gotaccountlink'          => "co'a se jaspu",
+
+# Edit page toolbar
+'extlink_sample' => 'http://www.example.com link title',
 
 # Edit pages
 'minoredit'      => "ti nu na'evajni galfi",
@@ -155,8 +180,19 @@ $messages = array(
 'page_first' => 'pamoi',
 'page_last'  => 'fanmo',
 
+# Revision deletion
+'rev-delundel' => 'jarco/mipri',
+
+# Diffs
+'lineno'   => 'Linji $1',
+'editundo' => 'ubunydyobu',
+
 # Search results
-'searchresults' => "tu'a le se sisku",
+'searchresults'             => "tu'a le se sisku",
+'searchresults-title'       => 'Sisku pruce for "$1"',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 vybu.oyrydy|$2 vybu.oyrydysy}})',
+'search-mwsuggest-enabled'  => "vybuibutyy'ybu stidiiyobunysy",
+'search-mwsuggest-disabled' => 'nyobu stidiiyobunysy',
 
 # Preferences page
 'preferences'       => 'zmaselnei',
@@ -170,6 +206,9 @@ $messages = array(
 'recentchangestext' => 'liste loi nu puzi galfi la .uikis.',
 'diff'              => 'te frica',
 'hist'              => 'galfi plivei',
+'hide'              => 'Toljarco',
+'show'              => 'Jarco',
+'minoreditletter'   => 'm',
 
 # Recent changes linked
 'recentchangeslinked' => "srana nunga'i",
@@ -185,7 +224,8 @@ $messages = array(
 'move' => 'stika lo cmene',
 
 # Special:AllPages
-'allarticles' => 'ro notci',
+'allarticles'    => 'ro notci',
+'allpagessubmit' => 'jarco',
 
 # Special:Categories
 'categories' => 'klesi',
@@ -201,6 +241,9 @@ $messages = array(
 'dellogpage'     => 'plivei fi loi nu daspo',
 'deletionlog'    => 'plivei fi loi nu daspo',
 
+# Rollback
+'rollbacklink' => 'gurrix',
+
 # Restrictions (nouns)
 'restriction-edit' => 'stika',
 
@@ -215,18 +258,22 @@ $messages = array(
 'whatlinkshere' => 'ma jorne ti',
 
 # Block/unblock
-'blocklink'    => 'zunti',
-'contribslink' => 'selstika',
+'blocklink'        => 'zunti',
+'change-blocklink' => 'stika bliku',
+'contribslink'     => 'selstika',
 
 # Move page
-'movedto'   => 'te muvdu',
-'1movedto2' => "le pu se cmene lu [[$1]] li'u cu ca se cmene lu [[$2]] li'u",
+'movedto'    => 'te muvdu',
+'1movedto2'  => "le pu se cmene lu [[$1]] li'u cu ca se cmene lu [[$2]] li'u",
+'revertmove' => 'xruti',
 
 # Tooltip help for the actions
 'tooltip-pt-watchlist'          => 'le liste be lo kibypapri poi do zgana',
 'tooltip-pt-mycontris'          => 'le liste be le do selstika',
 'tooltip-pt-logout'             => "co'u se jaspu",
 'tooltip-ca-watch'              => 'jmive le vi kibypapri le do selzgaste',
+'tooltip-search'                => "Syebuaburycyy'y.bu {{SITENAME}}",
+'tooltip-search-go'             => "Litru tyobu abu kibypapri wyibutyy'y.bu tyy'y.buibusy satci cmene ibufy zasti",
 'tooltip-n-mainpage'            => 'vitke le ralju ckupau',
 'tooltip-n-randompage'          => 'jarco lo cunso ckupau',
 'tooltip-n-help'                => 'sidju kibypapri',

@@ -49,27 +49,49 @@ $namespaceAliases = array(
 
 $messages = array(
 # Dates
-'sunday'       => 'амҽыш',
-'monday'       => 'ашәахь',
-'tuesday'      => 'аҩаш',
-'wednesday'    => 'ахаш',
-'thursday'     => 'аҧшьаш',
-'friday'       => 'ахәуаш',
-'saturday'     => 'асабш',
-'january'      => 'ажьырныҳәа',
-'february'     => 'жәабран',
-'march'        => 'хәажәкыр',
-'april'        => 'мшаҧы',
-'may_long'     => 'лаҵара',
-'june'         => 'рашәара',
-'july'         => 'ҧхынгәы',
-'august'       => 'нанҳәа',
-'september'    => 'цәыббра',
-'october'      => 'жьҭаара',
-'november'     => 'абҵара',
-'december'     => 'ҧхынҷкәын',
-'january-gen'  => 'ажьырныҳәа',
-'february-gen' => 'жәабран',
+'sunday'        => 'амҽыш',
+'monday'        => 'ашәахь',
+'tuesday'       => 'аҩаш',
+'wednesday'     => 'ахаш',
+'thursday'      => 'аҧшьаш',
+'friday'        => 'ахәуаш',
+'saturday'      => 'асабш',
+'january'       => 'ажьырныҳәа',
+'february'      => 'жәабран',
+'march'         => 'хәажәкыр',
+'april'         => 'мшаҧы',
+'may_long'      => 'лаҵара',
+'june'          => 'рашәара',
+'july'          => 'ҧхынгәы',
+'august'        => 'нанҳәа',
+'september'     => 'цәыббра',
+'october'       => 'жьҭаара',
+'november'      => 'абҵара',
+'december'      => 'ҧхынҷкәын',
+'january-gen'   => 'ажьырныҳәа',
+'february-gen'  => 'жәабран',
+'march-gen'     => 'хәажәкыра',
+'april-gen'     => 'мшаҧы',
+'may-gen'       => 'лаҵара',
+'june-gen'      => 'рашәара',
+'july-gen'      => 'ҧхынгәы',
+'august-gen'    => 'нанҳәа',
+'september-gen' => 'цәыббра',
+'october-gen'   => 'жьҭаара',
+'november-gen'  => 'абҵара',
+'december-gen'  => 'ҧхынҷкәын',
+'jan'           => 'ажь',
+'feb'           => 'жәа',
+'mar'           => 'хәа',
+'apr'           => 'мша',
+'may'           => 'лаҵ',
+'jun'           => 'раш',
+'jul'           => 'ҧхг',
+'aug'           => 'нан',
+'sep'           => 'цәы',
+'oct'           => 'жьҭ',
+'nov'           => 'абҵ',
+'dec'           => 'ҧхҷ',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
@@ -158,16 +180,22 @@ $messages = array(
 'savearticle' => 'Адаҟьа ахьчара',
 'editing'     => 'Ариашамҭа: $1',
 
+# Search results
+'searchresults-title' => 'Аҧшаара «$1»',
+
 # Preferences page
-'preferences'   => 'Архиарақәа',
-'mypreferences' => 'Архиарақәа',
-'uid'           => 'Иалоу ID:',
-'yourlanguage'  => 'Абызшәа:',
+'preferences'       => 'Архиарақәа',
+'mypreferences'     => 'Архиарақәа',
+'searchresultshead' => 'Аҧшаара',
+'uid'               => 'Иалоу ID:',
+'yourlanguage'      => 'Абызшәа:',
 
 # Groups
 'group-user' => 'Иалоуқәа',
 
 'group-user-member' => 'Иалахә',
+
+'grouppage-sysop' => '{{ns:project}}:Администраторцәа',
 
 # Recent changes
 'recentchanges'                => 'Арҽеира ҿыцқәа',
@@ -219,6 +247,9 @@ $messages = array(
 # What links here
 'whatlinkshere'      => 'Арахьтәи ахьарҧшқәа',
 'whatlinkshere-page' => 'Адаҟьа:',
+
+# Block/unblock
+'contribslink' => 'алагала',
 
 # Namespace 8 related
 'allmessages-language' => 'Абызшәа:',

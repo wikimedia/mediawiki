@@ -1025,6 +1025,7 @@ Kuckt [[Special:IPBlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Sp
 'revmove-titlefield'           => 'Zilsäit:',
 'revmove-badparam-title'       => 'Falsch Parameter',
 'revmove-norevisions-title'    => 'Net-valabel Zilversioun',
+'revmove-norevisions'          => '<span class="error">Dir hutt keng Zilversioun uginn, fir dës Fonctionalitéit ze benotzen oder déi Versioun déi Dir uginn hutt gëtt et net.</span>',
 'revmove-nullmove-title'       => 'Schlechten Titel',
 'revmove-nullmove'             => '<span class="error">D\'Quell- an d\'Zilsäit sinn déi selwëscht. Klickt w.e.g. op „zréck“ a gitt en anere Säitennumm wéi "$1" un.</span>',
 'revmove-success-existing'     => "{{PLURAL:$1|Eng Versioun vu(n) [[$2]] gouf|$1 Versioune vu(n) [[$2]] goufen}} op d'Säit [[$3]] geréckelt.",
