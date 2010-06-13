@@ -15,11 +15,9 @@ class LanguageLv extends Language {
 	 *
 	 * Example: {{plural:{{NUMBEROFARTICLES}}|article|articles}}
 	 *
-	 * @param integer $count
-	 * @param string $wordform1
-	 * @param string $wordform2
-	 * @param string $wordform3 (not used)
-	 * @return string
+	 * @param $count Integer
+	 * @param $forms Array
+	 * @return String
 	 */
 	function convertPlural( $count, $forms ) {
 		if ( !count($forms) ) { return ''; }
