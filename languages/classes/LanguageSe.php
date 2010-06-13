@@ -11,11 +11,11 @@ class LanguageSe extends Language {
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ( $count == 1 ) {
-			$index = 1;
+			$index = 0;
 		} elseif( $count == 2 ) {
-			$index = 2;
+			$index = 1;
 		} else {
-			$index = 3;
+			$index = 2;
 		}
 		return $forms[$index];
 	}
