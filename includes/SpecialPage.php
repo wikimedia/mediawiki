@@ -152,8 +152,8 @@ class SpecialPage {
 		'Statistics'                => 'SpecialStatistics',
 		'Allmessages'               => 'SpecialAllmessages',
 		'Version'                   => 'SpecialVersion',
-		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
-		'Unlockdb'                  => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
+		'Lockdb'                    => 'SpecialLockdb',
+		'Unlockdb'                  => 'SpecialUnlockdb',
 
 		# Redirecting special pages
 		'LinkSearch'                => array( 'SpecialPage', 'LinkSearch' ),
