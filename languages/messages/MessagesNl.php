@@ -1189,7 +1189,7 @@ $1",
 'pagehist'                    => 'paginageschiedenis',
 'deletedhist'                 => 'verwijderde geschiedenis',
 'revdelete-content'           => 'inhoud',
-'revdelete-summary'           => 'samenvatting bewerken',
+'revdelete-summary'           => 'bewerkingssamenvatting',
 'revdelete-uname'             => 'gebruikersnaam',
 'revdelete-restricted'        => 'heeft beperkingen aan beheerders opgelegd',
 'revdelete-unrestricted'      => 'heeft beperkingen voor beheerders opgeheven',
@@ -2465,7 +2465,7 @@ In het [[Special:Log/delete|verwijderingslogboek]] staan recente verwijderingen 
 'undelete-bad-store-key'       => 'Bestandsversie van tijdstip $1 kon niet hersteld worden: het bestand miste al voordat het werd verwijderd.',
 'undelete-cleanup-error'       => 'Fout bij het herstellen van ongebruikt archiefbestand "$1".',
 'undelete-missing-filearchive' => 'Het lukt niet om ID $1 terug te plaatsen, omdat deze niet in de database te vinden is.
-Misschien deze versie al teruggeplaatst.',
+Misschien is deze versie al teruggeplaatst.',
 'undelete-error-short'         => 'Fout bij het herstellen van bestand: $1',
 'undelete-error-long'          => 'Er zijn fouten opgetreden bij het herstellen van het bestand:
 
