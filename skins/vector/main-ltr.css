@@ -357,7 +357,7 @@ div#mw-head h5 {
 	}
 	div#simpleSearch label {
 		/*
-		 * DONT PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
+		 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
 		 * this from ever being shown anyways.
 		*/
 		font-size: 13px;
@@ -369,7 +369,7 @@ div#mw-head h5 {
 		padding: 3px;
 		line-height: 1em;
 		/*
-		 * DONT PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
+		 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
 		 * this from ever being shown anyways.
 		*/
 		font-size: 13px;
