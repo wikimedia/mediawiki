@@ -337,7 +337,8 @@ class IPBlockForm {
 				<td style='padding-top: 1em'>&#160;</td>
 				<td  class='mw-submit' style='padding-top: 1em'>" .
 					Xml::submitButton( wfMsg( $alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ),
-						array( 'name' => 'wpBlock', 'tabindex' => '13', 'accesskey' => 's' ) ) . "
+						array( 'name' => 'wpBlock', 'tabindex' => '13' )
+							+ $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'blockip-block' ) ). "
 				</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .

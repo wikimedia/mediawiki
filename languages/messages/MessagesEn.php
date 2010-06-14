@@ -3335,6 +3335,10 @@ Please try again.',
 'accesskey-upload'                  => 's', # do not translate or duplicate this message to other languages
 'accesskey-preferences-save'        => 's', # do not translate or duplicate this message to other languages
 'accesskey-summary'                 => 'b', # do not translate or duplicate this message to other languages
+'accesskey-userrights-set'          => 's', # do not translate or duplicate this message to other languages
+'accesskey-blockip-block'           => 's', # do not translate or duplicate this message to other languages
+'accesskey-export'                  => 's', # do not translate or duplicate this message to other languages
+'accesskey-import'                  => 's', # do not translate or duplicate this message to other languages
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Your user page',
