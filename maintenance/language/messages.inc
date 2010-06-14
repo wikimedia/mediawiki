@@ -2299,6 +2299,10 @@ $wgMessageStructure = array(
 		'accesskey-upload',
 		'accesskey-preferences-save',
 		'accesskey-summary',
+		'accesskey-userrights-set',
+		'accesskey-blockip-block',
+		'accesskey-export',
+		'accesskey-import',
 	),
 	'tooltips' => array(
 		'tooltip-pt-userpage',
