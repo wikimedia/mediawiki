@@ -128,8 +128,7 @@ abstract class InstallerDBType {
 	 */
 	function checkExtension( $name ) {
 		wfSuppressWarnings();
-		$compiled = extension_loaded( $name )
-			|| ( $this->parent->haveDl() && dl( $name . '.' . PHP_SHLIB_SUFFIX ) );
+		$compiled = wfDl( $name );
 		wfRestoreWarnings();
 		return $compiled;
 	}

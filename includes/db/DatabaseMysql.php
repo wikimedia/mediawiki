@@ -26,9 +26,7 @@ class DatabaseMysql extends DatabaseBase {
 
 		# Test for missing mysql.so
 		# First try to load it
-		if (!@extension_loaded('mysql')) {
-			@dl('mysql.so');
-		}
+		wfDl( 'mysql' );
 
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down

@@ -657,7 +657,7 @@ CONTROL;
 		else if ( $wgExternalDiffEngine == 'wikidiff2' && !function_exists( 'wikidiff2_do_diff' ) ) {
 			wfProfileIn( __METHOD__ . '-php_wikidiff2.so' );
 			wfSuppressWarnings();
-			dl( 'php_wikidiff2.so' );
+			wfDl( 'wikidiff2' );
 			wfRestoreWarnings();
 			wfProfileOut( __METHOD__ . '-php_wikidiff2.so' );
 		}

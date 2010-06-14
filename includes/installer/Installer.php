@@ -38,6 +38,7 @@ abstract class Installer {
 		'wgLogo',
 		'wgShellLocale',
 		'wgSecretKey',
+		'wgExternalDiffEngine',
 	);
 
 	/**
@@ -349,16 +350,6 @@ abstract class Installer {
 		if ( !preg_match( '/^\*+$/', $value ) ) {
 			$this->setVar( $name, $value );
 		}
-	}
-
-	/**
-	 * Returns true if dl() can be used
-	 */
-	function haveDl() {
-		return function_exists( 'dl' )
-			&& is_callable( 'dl' )
-			&& wfIniGetBool( 'enable_dl' )
-			&& !wfIniGetBool( 'safe_mode' );
 	}
 	
 	/** Check if we're installing the latest version */

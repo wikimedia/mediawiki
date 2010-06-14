@@ -102,7 +102,7 @@ END_STRING
 global $wgLoadFileinfoExtension;
 
 if ($wgLoadFileinfoExtension) {
-	if(!extension_loaded('fileinfo')) dl('fileinfo.' . PHP_SHLIB_SUFFIX);
+	wfDl( 'fileinfo' );
 }
 
 /**
