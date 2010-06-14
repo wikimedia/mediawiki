@@ -2532,7 +2532,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'pagemovedsub'                 => '문서 이동함',
 'movepage-moved'               => '\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'',
 'movepage-moved-redirect'      => '넘겨주기 문서를 만들었습니다.',
-'movepage-moved-noredirect'    => '넘겨주기 문서를 만들지 못했습니다.',
+'movepage-moved-noredirect'    => '넘겨주기 문서를 남기지 않았습니다.',
 'articleexists'                => '문서가 이미 존재하거나 이름이 올바르지 않습니다.
 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected'      => '새로운 제목으로 문서를 만드는 것이 금지되어 있어 문서를 이동할 수 없습니다.',

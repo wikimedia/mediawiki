@@ -2656,7 +2656,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'skinname-chick'       => '俏',
 'skinname-simple'      => '簡單',
 'skinname-modern'      => '摩登',
-'skinname-vector'      => '域達',
+'skinname-vector'      => 'Vector',
 
 # Math options
 'mw_math_png'    => '全部用PNG表示',

@@ -1088,6 +1088,8 @@ $1",
 'revmove-badparam'             => '<span class="error">La tua richiesta contiene parametri errati o insufficienti. Premere "indietro" e provare ancora.</span>',
 'revmove-nullmove-title'       => 'Titolo invalido',
 'revmove-nullmove'             => '<span class="error">La pagina sorgente e di destinazione sono identiche. Premere "indietro" ed inserire il nome di una pagina diverso da "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Una revisione di [[$2]] è stata spostata|$1 revisioni di [[$2]] sono state spostate}} nella pagina esistente [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Una revisione di [[$2]] è stata spostata|$1 revisioni di [[$2]] sono state spostate}} nella nuova pagina creata [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',

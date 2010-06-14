@@ -68,7 +68,7 @@ $messages = array(
 'subcategories'   => "le'a ti",
 
 'mytalk'     => 'casnu mi',
-'navigation' => 'Nyabuvyibugyabutyibuobuny',
+'navigation' => 'ckupau',
 
 # Cologne Blue skin
 'qbedit'        => 'stika',
@@ -77,7 +77,7 @@ $messages = array(
 'faqpage'       => 'Project:FAQ',
 
 'errorpagetitle'   => 'fliba',
-'tagline'          => 'Fyryobumy {{SITENAME}}',
+'tagline'          => "ra'i {{SITENAME}}",
 'help'             => 'sidju ckupau',
 'search'           => 'sisku',
 'searchbutton'     => 'sisku',
@@ -98,13 +98,13 @@ $messages = array(
 'toolbox'          => 'tutci',
 'otherlanguages'   => 'drata bangu',
 'lastmodifiedat'   => "le vi ckupau rore'u se galfi de'i li $2 $1",
-'jumpto'           => 'Jyubumypy tyobu:',
+'jumpto'           => 'plipe tyobu:',
 'jumptonavigation' => 'ckupau',
 'jumptosearch'     => 'sisku',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'About {{SITENAME}}',
-'aboutpage'            => 'Project:Abubyobuubuty',
+'aboutpage'            => "Project:sera'a",
 'copyright'            => "lo selvau cu gubni ja'i la'o gy. $1 .gy.",
 'copyrightpage'        => "{{ns:project}}:fukyzifpo'e",
 'currentevents'        => "caca'a fasnu",
@@ -118,7 +118,7 @@ $messages = array(
 'portal'               => 'bende ckupau',
 'portal-url'           => 'Project:bende ckupau',
 'privacy'              => "javni be sera'a lo sivni",
-'privacypage'          => 'Project:Pyryibuvyabucyyy pyobulyibucyyy',
+'privacypage'          => "Project:i'inai zukselpla",
 
 'retrievedfrom'        => 'Ryebutyryibuebuvyebudy fyryobumy "$1"',
 'editsection'          => 'stika ti',
@@ -137,8 +137,8 @@ $messages = array(
 'feedlinks'            => 'Feed:',
 'feed-invalid'         => 'Invalid subscription feed type.',
 'feed-unavailable'     => 'Syndication feeds are not available',
-'site-rss-feed'        => '$1 RSS fyebuebudy',
-'site-atom-feed'       => '$1 Abutyobumy fyebuebudy',
+'site-rss-feed'        => '$1 RSS cidja',
+'site-atom-feed'       => '$1 Atom cidja',
 'red-link-title'       => '$1 (le vi kibypapri cu na zasti)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -154,7 +154,7 @@ $messages = array(
 
 # Login and logout pages
 'login'                   => "co'a se jaspu",
-'nav-login-createaccount' => 'Lyobugy ibuny / finti janta',
+'nav-login-createaccount' => 'jaspu nerkla / vreji lo cnino pilno',
 'logout'                  => "co'u se jaspu",
 'userlogout'              => "co'u se jaspu",
 'gotaccountlink'          => "co'a se jaspu",
@@ -191,8 +191,8 @@ $messages = array(
 'searchresults'             => "tu'a le se sisku",
 'searchresults-title'       => 'Sisku pruce for "$1"',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 vybu.oyrydy|$2 vybu.oyrydysy}})',
-'search-mwsuggest-enabled'  => "vybuibutyy'ybu stidiiyobunysy",
-'search-mwsuggest-disabled' => 'nyobu stidiiyobunysy',
+'search-mwsuggest-enabled'  => 'kansa stidiiyobunysy',
+'search-mwsuggest-disabled' => 'no stidiiyobunysy',
 
 # Preferences page
 'preferences'       => 'zmaselnei',
@@ -247,6 +247,9 @@ $messages = array(
 # Restrictions (nouns)
 'restriction-edit' => 'stika',
 
+# Namespace form on various pages
+'blanknamespace' => '(ralju)',
+
 # Contributions
 'contributions' => 'selstika le pilno',
 'mycontris'     => 'pu selstika mi',
@@ -272,8 +275,8 @@ $messages = array(
 'tooltip-pt-mycontris'          => 'le liste be le do selstika',
 'tooltip-pt-logout'             => "co'u se jaspu",
 'tooltip-ca-watch'              => 'jmive le vi kibypapri le do selzgaste',
-'tooltip-search'                => "Syebuaburycyy'y.bu {{SITENAME}}",
-'tooltip-search-go'             => "Litru tyobu abu kibypapri wyibutyy'y.bu tyy'y.buibusy satci cmene ibufy zasti",
+'tooltip-search'                => 'Sisku {{SITENAME}}',
+'tooltip-search-go'             => "Litru tyobu abu kibypapri kansa tyy'y.buibusy satci cmene ibufy zasti",
 'tooltip-n-mainpage'            => 'vitke le ralju ckupau',
 'tooltip-n-randompage'          => 'jarco lo cunso ckupau',
 'tooltip-n-help'                => 'sidju kibypapri',

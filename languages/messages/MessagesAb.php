@@ -151,9 +151,12 @@ $messages = array(
 'privacy'              => 'Аконфиденциалтә аполитика',
 'privacypage'          => 'Project: Аконфиденциалтә аполитика',
 
-'editsection' => 'ариашамҭа',
-'editold'     => 'ариашара',
-'editlink'    => 'ариашара',
+'youhavenewmessages'  => 'Уара $1 уауит ($2).',
+'newmessageslink'     => 'адырра ҿыцқәа',
+'newmessagesdifflink' => 'аҵыхәтәатәи аҽеиҭакра',
+'editsection'         => 'ариашамҭа',
+'editold'             => 'ариашара',
+'editlink'            => 'ариашара',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Адаҟьа',
@@ -173,7 +176,7 @@ $messages = array(
 'userlogin'               => 'Урдырра/Арегистрациара',
 'logout'                  => 'Асеанс дәылҵра',
 'userlogout'              => 'Асеанс дәылҵра',
-'loginlanguagelabel'      => 'Бызшәа: $1',
+'loginlanguagelabel'      => 'Абызшәа: $1',
 
 # Edit pages
 'summary'     => 'Описание изменений:',
