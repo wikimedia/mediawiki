@@ -80,6 +80,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21312) RevisionMove allows moving individual revisions of a page to 
   another page. Introducing 'revisionmove' user right; disabled by default;
   experimental feature.
+* Show validity period of the login cookie in Special:UserLogin and
+  Special:Preferences
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
@@ -193,6 +195,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23747) Make sure that on History pages, the RevDel button is not
   accidently activated when hitting enter.
 * (bug 23845) Special:ListFiles now uses correct file names without underscores
+* Ask for permanent login in Special:Preferences only if $wgCookieExpiration > 0
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

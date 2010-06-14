@@ -96,10 +96,12 @@ class SpecialResetpass extends SpecialPage {
 		}
 		$rememberMe = '';
 		if ( !$wgUser->isLoggedIn() ) {
+			global $wgCookieExpiration, $wgLang;
 			$rememberMe = '<tr>' .
 				'<td></td>' .
 				'<td class="mw-input">' .
-					Xml::checkLabel( wfMsg( 'remembermypassword' ),
+					Xml::checkLabel( 
+						wfMsgExt( 'remembermypassword', 'parsemag', $wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
 						'wpRemember', 'wpRemember',
 						$wgRequest->getCheck( 'wpRemember' ) ) .
 				'</td>' .
