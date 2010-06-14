@@ -144,6 +144,8 @@ class LinkHolderArray {
 		# Sort by namespace
 		ksort( $this->internals );
 
+		$linkcolour_ids = array();
+
 		# Generate query
 		$query = false;
 		$current = null;
@@ -165,6 +167,7 @@ class LinkHolderArray {
 				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
 					$colours[$pdbk] = $sk->getLinkColour( $title, $threshold );
 					$output->addLink( $title, $id );
+					$linkcolour_ids[$id] = $pdbk;
 				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
 					$colours[$pdbk] = 'new';
 				} else {
@@ -191,7 +194,6 @@ class LinkHolderArray {
 
 			# Fetch data and form into an associative array
 			# non-existent = broken
-			$linkcolour_ids = array();
 			while ( $s = $dbr->fetchObject($res) ) {
 				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				$pdbk = $title->getPrefixedDBkey();
@@ -205,6 +207,8 @@ class LinkHolderArray {
 				$linkcolour_ids[$s->page_id] = $pdbk;
 			}
 			unset( $res );
+		}
+		if ( count($linkcolour_ids) ) {
 			//pass an array of page_ids to an extension
 			wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
 		}
