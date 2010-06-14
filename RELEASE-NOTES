@@ -53,6 +53,7 @@ further.
 * Fixed parser tests broken in 1.16 beta 3.
 * For Oracle DB backend: fixed parser tests and table prefix feature.
 * (bug 23767) Fixed PHP warning when REQUEST_URI is blank (IIS issue).
+* Fixed plural function for Northern Sami (se)
 
 == Changes since 1.16 beta 2 ==
 
