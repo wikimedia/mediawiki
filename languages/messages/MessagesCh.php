@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Diego Grez
  * @author Gadao01
  * @author Jatrobat
  * @author Magalahi

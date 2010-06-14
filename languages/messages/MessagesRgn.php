@@ -46,6 +46,7 @@ $messages = array(
 'tog-fancysig'                => "Tràta la firma cumpagna e' test int'la wiki (senza nissön ligam automatich)",
 'tog-externaleditor'          => "Drova sempar un prugràma d'scritura esteran (editor testuale)",
 'tog-externaldiff'            => 'Drova sempar un prugràma comparator esteran (sol par j utent espert)',
+'tog-showjumplinks'           => "Fa' funzionè j leghèm d'acesibilitè tipo \"Va' a\"",
 
 # Dates
 'january'       => 'Znèr',

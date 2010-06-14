@@ -10,6 +10,7 @@
  * @author Flrn
  * @author Hanberke
  * @author Runningfridgesrule
+ * @author The Evil IP address
  */
 
 $namespaceNames = array(

@@ -279,10 +279,40 @@ $1',
 'yourdiff'             => 'अंतर',
 
 # History pages
-'cur' => 'हाल',
+'revisionasof'           => '$1 के रुप में संशोधन',
+'revision-info'          => '$2 में से $1 के रुप में संशोधन',
+'previousrevision'       => '← पुरान संशोधन',
+'nextrevision'           => 'नया संशोधन →',
+'currentrevisionlink'    => 'हाल के संशोधन',
+'cur'                    => 'हाल',
+'next'                   => 'अगिला',
+'last'                   => 'पछिला',
+'page_first'             => 'पहिलका',
+'page_last'              => 'आखिरी',
+'histlegend'             => "चुनाव अन्तर: तुलना करे खातिर संशोधन के रेडियो बटन पर निशान लगाईं आ enter बटन दबाईं आ चाहे निचला बटन दबाईं।<br />
+Legend: '''({{int:cur}})''' = हाल के संशोधन के साथ अंतर, '''({{int:last}})''' = पुर्ववर्ती संशोधन के साथ अंतर, '''{{int:minoreditletter}}''' = छोट सम्पादन।",
+'history-fieldset-title' => 'इतिहास निहारीं',
+'history-show-deleted'   => 'खाली मेटावल',
+'histfirst'              => 'बहुत पहिले के',
+'histlast'               => 'हाल के',
+'historysize'            => '({{PLURAL:$1|1 बाइट|$1 बाइट}})',
+'historyempty'           => '(खाली)',
+
+# Revision feed
+'history-feed-title'          => 'संशोधन इतिहास',
+'history-feed-description'    => 'विकि पर इ पन्ना के संशोधन के इतिहास',
+'history-feed-item-nocomment' => '$1 $2 पर',
+'history-feed-empty'          => 'अनुरोध करल गईल पन्ना उपलब्ध नईखे। हो सकत बा उ के विकि पर से मिटा दिहल गईल होखे, आ चाहे उ के नाम बदल देवल गईल होखे।
+प्रासंगिक पन्ना के [[Special:Search|विकि पर खोजे के]] कोशिश करत रहीं।',
 
 # Revision deletion
-'rev-delundel' => 'दिखाईं/छुपाईं',
+'rev-deleted-comment'         => '(टिप्पणी मिटा दिहल गईल बा)',
+'rev-deleted-user'            => '(प्रयोगकर्ता के नाम मिटा दिहल गईल बा)',
+'rev-deleted-event'           => '(लॉग कार्रवाई मिटा दिहल गईल बा)',
+'rev-deleted-user-contribs'   => '[प्रयोगकर्ता नाम आ चाहे आइ पी पता हटा दिहल गईल बा - योगदान से सम्पादन छुप गईल बा]',
+'rev-deleted-text-permission' => "ई पन्ना के संशोधन '''मिटा'''' दिहल गईल बा।
+मेटावल जानकारी [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} डिलेशन लॉग] में मिली।",
+'rev-delundel'                => 'दिखाईं/छुपाईं',
 
 # Diffs
 'lineno'   => 'पंक्ति $1:',
