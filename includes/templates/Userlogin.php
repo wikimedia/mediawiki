@@ -82,12 +82,15 @@ class UserloginTemplate extends QuickTemplate {
 			<td></td>
 			<td class="mw-input">
 				<?php
-		echo Html::input( 'wpRemember', '1', 'checkbox', array(
-			'tabindex' => '4',
-			'id' => 'wpRemember'
-		) + ( $this->data['remember'] ? array( 'checked' ) : array() ) ); ?>
-
-				<label for="wpRemember"><?php $this->msg('remembermypassword') ?></label>
+				global $wgCookieExpiration, $wgLang;
+				echo Xml::checkLabel(
+					wfMsgExt( 'remembermypassword', 'parsemag', $wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
+					'wpRemember',
+					'wpRemember',
+					$this->data['remember'],
+					array( 'tabindex' => '4' )
+				)
+				?>
 			</td>
 		</tr>
 <?php } ?>
@@ -245,11 +248,16 @@ class UsercreateTemplate extends QuickTemplate {
 		<tr>
 			<td></td>
 			<td class="mw-input">
-				<input type='checkbox' name="wpRemember"
-					tabindex="7"
-					value="1" id="wpRemember"
-					<?php if( $this->data['remember'] ) { ?>checked="checked"<?php } ?>
-					/> <label for="wpRemember"><?php $this->msg('remembermypassword') ?></label>
+				<?php
+				global $wgCookieExpiration, $wgLang;
+				echo Xml::checkLabel(
+					wfMsgExt( 'remembermypassword', 'parsemag', $wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
+					'wpRemember',
+					'wpRemember',
+					$this->data['remember'],
+					array( 'tabindex' => '7' )
+				)
+				?>
 			</td>
 		</tr>
 <?php   }

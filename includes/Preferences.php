@@ -217,12 +217,18 @@ class Preferences {
 				'section' => 'personal/info',
 			);
 		}
-
-		$defaultPreferences['rememberpassword'] = array(
-			'type' => 'toggle',
-			'label-message' => 'tog-rememberpassword',
-			'section' => 'personal/info',
-		);
+		global $wgCookieExpiration;
+		if ( $wgCookieExpiration > 0 ) {
+			$defaultPreferences['rememberpassword'] = array(
+				'type' => 'toggle',
+				'label' => wfMsgExt(
+					'tog-rememberpassword',
+					array( 'parsemag' ),
+					$wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )
+					),
+				'section' => 'personal/info',
+			);
+		}
 
 		// Language
 		global $wgContLanguageCode;
