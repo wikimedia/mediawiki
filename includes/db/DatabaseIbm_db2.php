@@ -484,9 +484,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		wfProfileIn( __METHOD__ );
 		
 		// Load IBM DB2 driver if missing
-		if (!@extension_loaded('ibm_db2')) {
-			@dl('ibm_db2.so');
-		}
+		wfDl( 'ibm_db2' );
+
 		// Test for IBM DB2 support, to avoid suppressed fatal error
 		if ( !function_exists( 'db2_connect' ) ) {
 			$error = "DB2 functions missing, have you enabled the ibm_db2 extension for PHP?\n";

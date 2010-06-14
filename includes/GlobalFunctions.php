@@ -2305,6 +2305,30 @@ function wfIniGetBool( $setting ) {
 }
 
 /**
+ * Wrapper function for PHP's dl(). This doesn't work in most situations from
+ * PHP 5.3 onward, and is usually disabled in shared environments anyway.
+ *
+ * @param $extension String A PHP extension. The file suffix (.so or .dll)
+ *                          should be omitted
+ * @return Bool - Whether or not the extension is loaded
+ */
+function wfDl( $extension ) {
+	if( extension_loaded( $extension ) ) {
+		return true;
+	}
+
+	$canDl = ( function_exists( 'dl' ) && is_callable( 'dl' )
+		&& wfIniGetBool( 'enable_dl' ) && !wfIniGetBool( 'safe_mode' ) );
+
+	if( $canDl ) {
+		wfSuppressWarnings();
+		dl( $extension . '.' . PHP_SHLIB_SUFFIX );
+		wfRestoreWarnings();
+	}
+	return extension_loaded( $extension );
+}
+
+/**
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
  * @param $cmd Command line, properly escaped for shell.
