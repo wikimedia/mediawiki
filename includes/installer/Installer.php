@@ -393,7 +393,6 @@ abstract class Installer {
 	/** Environment check for DB types */
 	function envCheckDB() {
 		$compiledDBs = array();
-		$haveDl = $this->haveDl();
 		$goodNames = array();
 		$allNames = array();
 		foreach ( $this->dbTypes as $name ) {
