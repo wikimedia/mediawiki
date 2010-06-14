@@ -38,7 +38,6 @@ abstract class Installer {
 		'wgLogo',
 		'wgShellLocale',
 		'wgSecretKey',
-		'wgExternalDiffEngine',
 	);
 
 	/**
