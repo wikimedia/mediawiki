@@ -196,6 +196,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   accidently activated when hitting enter.
 * (bug 23845) Special:ListFiles now uses correct file names without underscores
 * Ask for permanent login in Special:Preferences only if $wgCookieExpiration > 0
+* (bug 16356) Repair dumpInterwiki.inc to use proper normalization.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
