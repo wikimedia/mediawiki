@@ -433,6 +433,7 @@ class SkinTemplate extends Skin {
 						'href' => $nt->getFullURL(),
 						'text' => ( $wgContLang->getLanguageName( $nt->getInterwiki() ) != '' ?
 									$wgContLang->getLanguageName( $nt->getInterwiki() ) : $l ),
+						'title' => $nt->getText(),
 						'class' => $class
 					);
 				}

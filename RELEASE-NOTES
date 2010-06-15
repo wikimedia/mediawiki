@@ -82,6 +82,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   experimental feature.
 * Show validity period of the login cookie in Special:UserLogin and
   Special:Preferences
+* Interlanguage links display the page title in their tooltip.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

@@ -1894,12 +1894,13 @@ CSS;
 			$nt = Title::newFromText( $l );
 			$url = $nt->escapeFullURL();
 			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
+			$title = htmlspecialchars( $nt->getText() );
 
 			if ( $text == '' ) {
 				$text = $l;
 			}
 			$style = $this->getExternalLinkAttributes();
-			$s .= "<a href=\"{$url}\"{$style}>{$text}</a>";
+			$s .= "<a href=\"{$url}\" title=\"{$title}\"{$style}>{$text}</a>";
 		}
 		if( $wgContLang->isRTL() ) {
 			$s .= '</span>';

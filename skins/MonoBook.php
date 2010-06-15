@@ -310,7 +310,8 @@ if($this->data['copyrightico']) { ?>
 			<ul>
 <?php		foreach($this->data['language_urls'] as $langlink) { ?>
 				<li class="<?php echo htmlspecialchars($langlink['class'])?>"><?php
-				?><a href="<?php echo htmlspecialchars($langlink['href']) ?>"><?php echo $langlink['text'] ?></a></li>
+				?><a href="<?php echo htmlspecialchars($langlink['href']) ?>" title="<?php
+				echo htmlspecialchars($langlink['title']) ?>"><?php echo $langlink['text'] ?></a></li>
 <?php		} ?>
 			</ul>
 		</div>
