@@ -303,7 +303,7 @@ $messages = array(
 'tog-editsection'             => 'Näytä muokkauslinkit jokaisen osion yläpuolella',
 'tog-editsectiononrightclick' => 'Muokkaa osioita napsauttamalla otsikkoa hiiren oikealla painikkeella (JavaScript)',
 'tog-showtoc'                 => 'Näytä sisällysluettelo sivuille, joilla yli 3 otsikkoa',
-'tog-rememberpassword'        => 'Muista kirjautuminen eri istuntojen välillä',
+'tog-rememberpassword'        => 'Muista kirjautumiseni tällä koneella (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'tog-watchcreations'          => 'Lisää luomani sivut tarkkailulistalle',
 'tog-watchdefault'            => 'Lisää muokkaamani sivut tarkkailulistalle',
 'tog-watchmoves'              => 'Lisää siirtämäni sivut tarkkailulistalle',
@@ -694,10 +694,10 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'welcomecreation'            => '== Tervetuloa $1! ==
 Käyttäjätunnuksesi on luotu.
 Älä unohda virittää {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|asetuksiasi]].',
-'yourname'                   => 'Käyttäjätunnus:',
+'yourname'                   => 'Käyttäjätunnus',
 'yourpassword'               => 'Salasana',
 'yourpasswordagain'          => 'Salasana uudelleen',
-'remembermypassword'         => 'Muista minut',
+'remembermypassword'         => 'Muista minut (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'yourdomainname'             => 'Verkkonimi',
 'externaldberror'            => 'Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.',
 'login'                      => 'Kirjaudu sisään',
@@ -1120,7 +1120,13 @@ Sinulla ei ole oikeutta siihen.',
 [[Special:IPBlockList|Muokkausestolistassa]] on tämänhetkiset muokkausestot.',
 
 # Revision move
-'revmove-reasonfield' => 'Syy',
+'moverevlogentry'              => 'siirsi {{PLURAL:$3|yhden version|$3 versiota}} sivulta $1 sivulle $2',
+'revmove-legend'               => 'Aseta kohdesivu ja yhteenveto',
+'revmove-submit'               => 'Siirrä versiot valitulle sivulle',
+'revisionmoveselectedversions' => 'Siirrä valitut versiot',
+'revmove-reasonfield'          => 'Syy',
+'revmove-titlefield'           => 'Kohdesivu',
+'revmove-nullmove-title'       => 'Virheellinen otsikko',
 
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',
@@ -1309,7 +1315,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'prefs-emailconfirm-label'      => 'Sähköpostin varmistus',
 'prefs-textboxsize'             => 'Muokkauskentän koko',
 'youremail'                     => 'Sähköpostiosoite',
-'username'                      => 'Käyttäjätunnus:',
+'username'                      => 'Käyttäjätunnus',
 'uid'                           => 'Numero',
 'prefs-memberingroups'          => 'Jäsenenä {{PLURAL:$1|ryhmässä|ryhmissä}}',
 'prefs-registration'            => 'Rekisteröintiaika',
@@ -1449,6 +1455,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-reset-passwords'       => 'Alustaa muiden käyttäjien salasanoja',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
+'right-revisionmove'          => 'Siirtää versioita',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -1491,6 +1498,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'action-userrights'           => 'muokata kaikkia käyttöoikeuksia',
 'action-userrights-interwiki' => 'muokata muiden wikien käyttäjien käyttöoikeuksia',
 'action-siteadmin'            => 'lukita tai avata tietokantaa',
+'action-revisionmove'         => 'siirtää versioita',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|muutos|muutosta}}',
@@ -1894,7 +1902,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'usereditcount'           => '$1 {{PLURAL:$1|muokkaus|muokkausta}}',
 'usercreated'             => 'Luotu $1 kello $2',
 'newpages'                => 'Uudet sivut',
-'newpages-username'       => 'Käyttäjätunnus:',
+'newpages-username'       => 'Käyttäjätunnus',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
 'move'                    => 'Siirrä',
 'movethispage'            => 'Siirrä tämä sivu',
@@ -2158,7 +2166,8 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'rollback-success'  => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja sivu palautettiin käyttäjän $2 versioon.',
 
 # Edit tokens
-'sessionfailure' => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena istuntokaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
+'sessionfailure-title' => 'Istuntovirhe',
+'sessionfailure'       => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena istuntokaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
 
 # Protect
 'protectlogpage'              => 'Suojausloki',

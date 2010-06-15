@@ -231,6 +231,9 @@ $messages = array(
 # Miscellaneous special pages
 'move' => 'Qillqaraña',
 
+# Book sources
+'booksources-go' => 'Saraña',
+
 # Special:Log
 'specialloguserlabel'  => 'Apnaqiri:',
 'speciallogtitlelabel' => 'Titulu:',

@@ -230,7 +230,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Podkreślenie linków:',
+'tog-underline'               => 'Podkreślenie linków',
 'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa – dołączany znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu stron',
 'tog-hideminor'               => 'Ukryj drobne zmiany w ostatnich zmianach',
@@ -244,7 +244,7 @@ $messages = array(
 'tog-editsection'             => 'Możliwość edycji poszczególnych sekcji strony (link [edytuj])',
 'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji rozpoczyna jej edycję (JavaScript)',
 'tog-showtoc'                 => 'Pokazuj spis treści (na stronach z więcej niż 3 nagłówkami)',
-'tog-rememberpassword'        => 'Zapamiętaj hasło na tym komputerze',
+'tog-rememberpassword'        => 'Zapamiętaj moje hasło na tym komputerze (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
 'tog-watchcreations'          => 'Dodaj do obserwowanych strony tworzone przeze mnie',
 'tog-watchdefault'            => 'Dodaj do obserwowanych strony, które edytuję',
 'tog-watchmoves'              => 'Dodaj do obserwowanych strony, które przenoszę',
@@ -283,11 +283,11 @@ $messages = array(
 'underline-default' => 'według ustawień przeglądarki',
 
 # Font style option in Special:Preferences
-'editfont-style'     => 'Styl czcionki w polu edycyjnym:',
-'editfont-default'   => 'Domyślna przeglądarki',
-'editfont-monospace' => 'Czcionka o stałej szerokości',
-'editfont-sansserif' => 'Czcionka bezszeryfowa',
-'editfont-serif'     => 'Czcionka szeryfowa',
+'editfont-style'     => 'Styl czcionki w polu edycyjnym',
+'editfont-default'   => 'domyślny przeglądarki',
+'editfont-monospace' => 'czcionka o stałej szerokości',
+'editfont-sansserif' => 'czcionka bezszeryfowa',
+'editfont-serif'     => 'czcionka szeryfowa',
 
 # Dates
 'sunday'        => 'niedziela',
@@ -639,7 +639,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'yourname'                   => 'Nazwa {{GENDER:|użytkownika|użytkowniczki}}',
 'yourpassword'               => 'Hasło',
 'yourpasswordagain'          => 'Powtórz hasło',
-'remembermypassword'         => 'Zapamiętaj moje hasło na tym komputerze',
+'remembermypassword'         => 'Zapamiętaj moje hasło na tym komputerze (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
 'yourdomainname'             => 'Twoja domena',
 'externaldberror'            => 'Wystąpił błąd zewnętrznej bazy autentyfikacyjnej lub nie posiadasz uprawnień koniecznych do aktualizacji zewnętrznego konta.',
 'login'                      => 'Zaloguj się',
@@ -1304,7 +1304,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'timezoneregion-europe'         => 'Europa',
 'timezoneregion-indian'         => 'Ocean Indyjski',
 'timezoneregion-pacific'        => 'Ocean Spokojny',
-'allowemail'                    => 'Zgadzam się, by inni użytkownicy mogli przesyłać mi e‐maile',
+'allowemail'                    => 'Zgadzam się, by inni użytkownicy mogli przesyłać do mnie e‐maile',
 'prefs-searchoptions'           => 'Opcje wyszukiwania',
 'prefs-namespaces'              => 'Przestrzenie nazw',
 'defaultns'                     => 'Albo przeszukuj przestrzenie nazw:',
@@ -1645,7 +1645,7 @@ Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'uploadwarning-text'          => 'Zmień poniższy opis pliku i spróbuj ponownie.',
 'savefile'                    => 'Zapisz plik',
 'uploadedimage'               => 'przesłał [[$1]]',
-'overwroteimage'              => 'przesłano nową wersję pliku "[[$1]]"',
+'overwroteimage'              => 'przesłano nową wersję pliku „[[$1]]“',
 'uploaddisabled'              => 'Przesyłanie plików wyłączone',
 'copyuploaddisabled'          => 'Przesyłanie poprzez podanie adres URL jest wyłączone.',
 'uploadfromurl-queued'        => 'Żądanie przesłania pliku zostało dołączone do kolejki.',
@@ -1684,8 +1684,8 @@ MGP # Pentax
 PICT # wiele różnych
   #</pre> <!-- nie modyfikuj tej linii -->',
 'upload-successful-msg'       => 'Przesłany plik jest dostępny tutaj – $1',
-'upload-failure-subj'         => 'Problem z przesyłaniem pliku',
-'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu twojego pliku:
+'upload-failure-subj'         => 'Problem z przesłaniem pliku',
+'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu Twojego pliku:
 
 $1',
 
@@ -2358,7 +2358,7 @@ $1',
 'sp-contributions-logs'                => 'rejestry',
 'sp-contributions-talk'                => 'dyskusja',
 'sp-contributions-userrights'          => 'zarządzanie uprawnieniami użytkownika',
-'sp-contributions-blocked-notice'      => 'Ta osoba jest obecnie zablokowana. Ostatni wpis rejestru blokad jest pokazany poniżej.',
+'sp-contributions-blocked-notice'      => 'To konto użytkownika jest obecnie zablokowane. Ostatni wpis rejestru blokad jest pokazany poniżej.',
 'sp-contributions-blocked-notice-anon' => 'Ten adres IP jest obecnie zablokowany.
 Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'sp-contributions-search'              => 'Szukaj wkładu',
@@ -3366,9 +3366,9 @@ Możesz także skorzystać z [[Special:Watchlist/raw|tekstowego edytora listy ob
 'watchlistedit-normal-done'    => 'Z Twojej listy obserwowanych {{PLURAL:$1|została usunięta 1 strona|zostały usunięte $1 strony|zostało usuniętych $1 stron}}:',
 'watchlistedit-raw-title'      => 'Tekstowy edytor listy obserwowanych',
 'watchlistedit-raw-legend'     => 'Tekstowy edytor listy obserwowanych',
-'watchlistedit-raw-explain'    => 'Poniżej wypisane zostały tytuły stron znajdujących się na twojej liście obserwowanych. Możesz dodać lub usunąć dowolny tytuł z tej listy – jeden wiersz to jeden tytuł.
+'watchlistedit-raw-explain'    => 'Poniżej wypisane zostały tytuły stron znajdujących się na Twojej liście obserwowanych. Możesz dodać lub usunąć dowolny tytuł z tej listy – jeden wiersz to jeden tytuł.
 Aby zatwierdzić zmiany kliknij „{{int:Watchlistedit-raw-submit}}”.
-Możesz także użyć [[Special:Watchlist/edit|standardowego edytora obserwowanych]].',
+Możesz także użyć [[Special:Watchlist/edit|standardowego edytora obserwowanych stron]].',
 'watchlistedit-raw-titles'     => 'Obserwowane strony:',
 'watchlistedit-raw-submit'     => 'Uaktualnij listę',
 'watchlistedit-raw-done'       => 'Lista obserwowanych stron została uaktualniona.',

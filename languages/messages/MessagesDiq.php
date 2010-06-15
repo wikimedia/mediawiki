@@ -861,6 +861,10 @@ rocaneyan kontrol bıkere.',
 'suppressionlog'     => 'qeydê pinani kerdışi',
 'suppressionlogtext' => 'qey listeya qedexan bıewne: [[Special:IPBlockList|IP listeya vergırewteyan]]',
 
+# Revision move
+'revmove-reasonfield'    => 'Sebeb:',
+'revmove-nullmove-title' => 'Sernameo xırabın',
+
 # History merging
 'mergehistory'                     => 'vere cûye pelan bıhewelın',
 'mergehistory-header'              => 'No pel, reviyonê yew peli eşkeno yewna pelo newe de piyawano.
