@@ -2233,9 +2233,9 @@ class OutputPage {
 						NS_USER,
 						$userpage->getDBkey() . '/' . $name . '.js'
 					);
-					if ( $scriptpage && $scriptpage->exists() ) {
+					if ( $scriptpage && $scriptpage->exists() && ( $scriptpage->getLength() > 0 ) ) {
 						$userjs = $scriptpage->getLocalURL( 'action=raw&ctype=' . $wgJsMimeType );
-						$this->addScriptFile( $userjs );
+						$this->addScriptFile( $userjs, $scriptpage->getLatestRevID() );
 					}
 				}
 			}
