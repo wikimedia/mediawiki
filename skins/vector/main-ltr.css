@@ -71,7 +71,7 @@ div#mw-head h5 {
 	#p-personal {
 		position: absolute;
 		top: 0;
-		margin-left: 10em;
+		padding-left: 10em;
 		right: 0.75em;
 	}
 	#p-personal h5 {
@@ -87,10 +87,12 @@ div#mw-head h5 {
 		line-height: 1.125em;
 		float: left;
 	}
+	/* This one flips! */
 	#p-personal li {
 		margin-left: 0.75em;
 		margin-top: 0.5em;
 		font-size: 0.75em;
+		white-space: nowrap;
 	}
 	/* Navigation Containers */
 	#left-navigation {
