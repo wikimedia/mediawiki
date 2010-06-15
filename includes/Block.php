@@ -283,7 +283,7 @@ class Block {
 	 *
 	 * @param $address String: IP address range
 	 * @param $killExpired Boolean: whether to delete expired rows while loading
-	 * @param $userid Integer: if not 0, then sets ipb_anon_only
+	 * @param $user Integer: if not 0, then sets ipb_anon_only
 	 * @return Boolean
 	 */
 	public function loadRange( $address, $killExpired = true, $user = 0 ) {
