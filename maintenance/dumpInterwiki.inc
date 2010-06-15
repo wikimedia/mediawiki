@@ -29,7 +29,7 @@ class Site {
 }
 
 function getRebuildInterwikiDump() {
-	global $langlist, $languageAliases, $prefixRewrites;
+	global $langlist, $languageAliases, $prefixRewrites, $wgContLang;
 
 	# Multi-language sites
 	# db suffix => db suffix, iw prefix, hostname
@@ -102,6 +102,8 @@ function getRebuildInterwikiDump() {
 	# Global iterwiki map
 	foreach ( $lines as $line ) {
 		if ( preg_match( '/^\|\s*(.*?)\s*\|\|\s*(.*?)\s*$/', $line, $matches ) ) {
+			$prefix = $wgContLang->lc( $matches[1] );
+			$prefix = str_replace( ' ', '_', $prefix );
 			$prefix = strtolower( $matches[1] );
 			$url = $matches[2];
 			if ( preg_match( '/(wikipedia|wiktionary|wikisource|wikiquote|wikibooks|wikimedia)\.org/', $url ) ) {
