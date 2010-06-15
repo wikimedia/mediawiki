@@ -97,7 +97,7 @@ class LinkBatch {
 		$remaining = $this->data;
 		while ( $row = $res->fetchObject() ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$cache->addGoodLinkObj( $row->page_id, $title, $row->page_len, $row->page_is_redirect );
+			$cache->addGoodLinkObj( $row->page_id, $title, $row->page_len, $row->page_is_redirect, $row->page_latest );
 			$ids[$title->getPrefixedDBkey()] = $row->page_id;
 			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
@@ -131,7 +131,7 @@ class LinkBatch {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		$sql = "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect FROM $page WHERE $set";
+		$sql = "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect, page_latest FROM $page WHERE $set";
 
 		// Do query
 		$res = $dbr->query( $sql, __METHOD__ );

@@ -174,7 +174,7 @@ class LinkHolderArray {
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {
 						$current = $ns;
-						$query =  "SELECT page_id, page_namespace, page_title, page_is_redirect, page_len";
+						$query =  "SELECT page_id, page_namespace, page_title, page_is_redirect, page_len, page_latest";
 						$query .= " FROM $page WHERE (page_namespace=$ns AND page_title IN(";
 					} elseif ( $current != $ns ) {
 						$current = $ns;
@@ -197,7 +197,7 @@ class LinkHolderArray {
 			while ( $s = $dbr->fetchObject($res) ) {
 				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				$pdbk = $title->getPrefixedDBkey();
-				$linkCache->addGoodLinkObj( $s->page_id, $title, $s->page_len, $s->page_is_redirect );
+				$linkCache->addGoodLinkObj( $s->page_id, $title, $s->page_len, $s->page_is_redirect, $s->page_latest );
 				$output->addLink( $title, $s->page_id );
 				# FIXME: convoluted data flow
 				# The redirect status and length is passed to getLinkColour via the LinkCache
