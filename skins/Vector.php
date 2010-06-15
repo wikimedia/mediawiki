@@ -448,8 +448,8 @@ class VectorTemplate extends QuickTemplate {
 		// Output HTML Page
 		$this->html( 'headelement' );
 ?>
-		<div id="page-base" class="noprint"></div>
-		<div id="head-base" class="noprint"></div>
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
 		<!-- content -->
 		<div id="content" <?php $this->html('specialpageattributes') ?>>
 			<a id="top"></a>
@@ -483,7 +483,7 @@ class VectorTemplate extends QuickTemplate {
 				<?php if ( $this->data['showjumplinks'] ): ?>
 				<!-- jumpto -->
 				<div id="jump-to-nav">
-					<?php $this->msg( 'jumpto' ) ?><a href="#head"><?php $this->msg( 'jumptonavigation' ) ?></a>,
+					<?php $this->msg( 'jumpto' ) ?> <a href="#mw-head"><?php $this->msg( 'jumptonavigation' ) ?></a>,
 					<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
 				</div>
 				<!-- /jumpto -->
@@ -507,7 +507,7 @@ class VectorTemplate extends QuickTemplate {
 		</div>
 		<!-- /content -->
 		<!-- header -->
-		<div id="head" class="noprint">
+		<div id="mw-head" class="noprint">
 			<?php $this->renderNavigation( 'PERSONAL' ); ?>
 			<div id="left-navigation">
 				<?php $this->renderNavigation( array( 'NAMESPACES', 'VARIANTS' ) ); ?>
@@ -518,7 +518,7 @@ class VectorTemplate extends QuickTemplate {
 		</div>
 		<!-- /header -->
 		<!-- panel -->
-			<div id="panel" class="noprint">
+			<div id="mw-panel" class="noprint">
 				<!-- logo -->
 					<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey( 'p-logo' ) ?>></a></div>
 				<!-- /logo -->

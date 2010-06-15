@@ -1,7 +1,7 @@
 /* Babaco Color Scheme C */
 
 /* ridding ourselves of the gradient */
-#page-base {
+#mw-page-base {
 	background-color: inherit !important;
 	background-image: none !important;
 }
@@ -53,7 +53,7 @@ h2 .editsection,
 #toc h2, .toc h2 {
 	font-weight:normal;
 }
-body #panel div.portal div.body {
+body #mw-panel div.portal div.body {
 	background-image:url(images/new-portal-break-ltr.png);
 }
 
@@ -77,7 +77,7 @@ div.thumbinner {
 	border: 1px solid #cccccc;
 	background-color: #f7f7f7;
 }
-#panel div.portal h5 {
+#mw-panel div.portal h5 {
 	font-weight:bold;
 	margin-bottom:0;
 	padding-bottom:0.05em;

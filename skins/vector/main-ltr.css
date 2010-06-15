@@ -385,17 +385,17 @@ body {
 		background-color: silver;
 	}
 /* Panel */
-#panel {
+#mw-panel {
 	position: absolute;
 	top: 160px;
 	padding-top: 1em;
 	width: 10em;
 	left: 0;
 }
-	#panel div.portal {
+	#mw-panel div.portal {
 		padding-bottom: 1.5em;
 	}
-	#panel div.portal h5 {
+	#mw-panel div.portal h5 {
 		font-weight: normal;
 		color: #444444;
 		padding: 0.25em;
@@ -405,7 +405,7 @@ body {
 		border: none;
 		font-size: 0.75em;
 	}
-	#panel div.portal div.body {
+	#mw-panel div.portal div.body {
 		margin: 0;
 		padding-top: 0.5em;
 		margin-left: 1.25em;
@@ -413,14 +413,14 @@ body {
 		background-repeat: no-repeat;
 		background-position: top left;
 	}
-	#panel div.portal div.body ul {
+	#mw-panel div.portal div.body ul {
 		list-style: none;
 		list-style-image: none;
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
 	}
-	#panel div.portal div.body ul li {
+	#mw-panel div.portal div.body ul li {
 		line-height: 1.125em;
 		padding: 0;
 		padding-bottom: 0.5em;
@@ -428,10 +428,10 @@ body {
 		overflow: hidden;
 		font-size: 0.75em;
 	}
-	#panel div.portal div.body ul li a {
+	#mw-panel div.portal div.body ul li a {
 		color: #0645ad;
 	}
-	#panel div.portal div.body ul li a:visited {
+	#mw-panel div.portal div.body ul li a:visited {
 		color: #0b0080;
 	}
 /* Footer */

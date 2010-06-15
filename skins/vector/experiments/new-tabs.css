@@ -191,7 +191,7 @@
 		direction: rtl;
 	}
 	/* @noflip */
-	body #head div.vectorMenu h5 {
+	body #mw-head div.vectorMenu h5 {
 		background-image: url(../images/arrow-down-icon.png);
 		background-position: center center;
 		background-repeat: no-repeat;
