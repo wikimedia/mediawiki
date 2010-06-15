@@ -369,7 +369,7 @@ div#mw-head h5 {
 		margin: 0;
 		border-width: 0;
 		padding: 3px;
-		line-height: 1em;
+		vertical-align: top;
 		/*
 		 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
 		 * this from ever being shown anyways.
