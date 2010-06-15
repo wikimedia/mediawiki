@@ -2043,6 +2043,7 @@ class Article {
 	 * @param $baseRevId the revision ID this edit was based off, if any
 	 * @param $user Optional user object, $wgUser will be used if not passed
 	 * @param $watchthis Watch the page if true, unwatch the page if false, do nothing if null
+	 * @param $comment Boolean: whether the edit is a new section
 	 * @param $sectionanchor The section anchor for the page; used for redirecting the user back to the page
 	 *              after the edit is successfully committed
 	 * @param $redirect If true, redirect the user back to the page after the edit is successfully committed

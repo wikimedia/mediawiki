@@ -515,7 +515,7 @@ class Cookie {
 	 * Sets a cookie.  Used before a request to set up any individual
 	 * cookies.	 Used internally after a request to parse the
 	 * Set-Cookie headers.
-	 * @param $name string the name of the cookie
+	 *
 	 * @param $value string the value of the cookie
 	 * @param $attr array possible key/values:
 	 *		expires	 A date string
@@ -679,7 +679,9 @@ class CookieJar {
 
 	/**
 	 * Parse the content of an Set-Cookie HTTP Response header.
-	 * @param $cookie string
+	 *
+	 * @param $cookie String
+	 * @param $domain String: cookie's domain
 	 */
 	public function parseCookieResponseHeader ( $cookie, $domain ) {
 		$len = strlen( "Set-Cookie:" );
