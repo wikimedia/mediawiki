@@ -2979,6 +2979,7 @@ $wgMessageStructure = array(
 		'table_pager_first',
 		'table_pager_last',
 		'table_pager_limit',
+		'table_pager_limit_label',
 		'table_pager_limit_submit',
 		'table_pager_empty',
 	),
