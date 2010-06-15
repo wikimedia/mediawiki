@@ -72,12 +72,13 @@ class LinkCache {
 	 * @param $len Integer
 	 * @param $redir Integer
 	 */
-	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null ) {
+	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null, $revision = false ) {
 		$dbkey = $title->getPrefixedDbKey();
 		$this->mGoodLinks[$dbkey] = intval( $id );
 		$this->mGoodLinkFields[$dbkey] = array(
 			'length' => intval( $len ),
-			'redirect' => intval( $redir ) );
+			'redirect' => intval( $redir ),
+			'revision' => intval( $revision ) );
 	}
 
 	public function addBadLinkObj( $title ) {
@@ -164,7 +165,7 @@ class LinkCache {
 		}
 
 		$s = $db->selectRow( 'page', 
-			array( 'page_id', 'page_len', 'page_is_redirect' ),
+			array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
 			array( 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ),
 			__METHOD__, $options );
 		# Set fields...
@@ -172,15 +173,17 @@ class LinkCache {
 			$id = intval( $s->page_id );
 			$len = intval( $s->page_len );
 			$redirect = intval( $s->page_is_redirect );
+			$revision = intval( $s->page_latest );
 		} else {
 			$len = -1;
 			$redirect = 0;
+			$revision = 0;
 		}
 
 		if ( $id == 0 ) {
 			$this->addBadLinkObj( $nt );
 		} else {
-			$this->addGoodLinkObj( $id, $nt, $len, $redirect );
+			$this->addGoodLinkObj( $id, $nt, $len, $redirect, $revision );
 		}
 		wfProfileOut( __METHOD__ );
 		return $id;
