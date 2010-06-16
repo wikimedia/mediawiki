@@ -26,9 +26,6 @@
  * @ingroup Search
  */
 class SearchSqlite extends SearchEngine {
-	// Cached because SearchUpdate keeps recreating our class
-	private static $fulltextSupported = null;
-
 	/**
 	 * Creates an instance of this class
 	 * @param $db DatabaseSqlite: database object
@@ -42,18 +39,11 @@ class SearchSqlite extends SearchEngine {
 	 * @return Boolean
 	 */
 	function fulltextSearchSupported() {
-		if ( self::$fulltextSupported === null ) {
-			self::$fulltextSupported = $this->db->selectField( 
-				'updatelog', 
-				'ul_key', 
-				array( 'ul_key' => 'fts3' ), 
-				__METHOD__ ) !== false;
-		}
-		return self::$fulltextSupported;
+		return $this->db->checkForEnabledSearch();
 	}
 
-	/** 
-	 * Parse the user's query and transform it into an SQL fragment which will 
+	/**
+	 * Parse the user's query and transform it into an SQL fragment which will
 	 * become part of a WHERE clause
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
@@ -67,7 +57,7 @@ class SearchSqlite extends SearchEngine {
 			  $filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $bits ) {
 				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
-				
+
 				if( $nonQuoted != '' ) {
 					$term = $nonQuoted;
 					$quote = '';
@@ -86,7 +76,7 @@ class SearchSqlite extends SearchEngine {
 				} else {
 					$variants = array( $term );
 				}
-				
+
 				// The low-level search index does some processing on input to work
 				// around problems with minimum lengths and encoding in MySQL's
 				// fulltext engine.
@@ -94,12 +84,12 @@ class SearchSqlite extends SearchEngine {
 				$strippedVariants = array_map(
 					array( $wgContLang, 'normalizeForSearch' ),
 					$variants );
-				
+
 				// Some languages such as Chinese force all variants to a canonical
 				// form when stripping to the low-level search index, so to be sure
 				// let's check our variants list for unique items after stripping.
 				$strippedVariants = array_unique( $strippedVariants );
-				
+
 				$searchon .= $modifier;
 				if( count( $strippedVariants) > 1 )
 					$searchon .= '(';
@@ -114,7 +104,7 @@ class SearchSqlite extends SearchEngine {
 				}
 				if( count( $strippedVariants) > 1 )
 					$searchon .= ')';
-				
+
 				// Match individual terms or quoted phrase in result highlighting...
 				// Note that variants will be introduced in a later stage for highlighting!
 				$regexp = $this->regexTerm( $term, $wildcard );
@@ -129,10 +119,10 @@ class SearchSqlite extends SearchEngine {
 		$field = $this->getIndexField( $fulltext );
 		return " $field MATCH '$searchon' ";
 	}
-	
+
 	function regexTerm( $string, $wildcard ) {
 		global $wgContLang;
-		
+
 		$regex = preg_quote( $string, '/' );
 		if( $wgContLang->hasWordBreaks() ) {
 			if( $wildcard ) {
@@ -172,7 +162,7 @@ class SearchSqlite extends SearchEngine {
 	function searchTitle( $term ) {
 		return $this->searchInternal( $term, false );
 	}
-	
+
 	protected function searchInternal( $term, $fulltext ) {
 		global $wgCountTotalSearchHits, $wgContLang;
 
@@ -182,7 +172,7 @@ class SearchSqlite extends SearchEngine {
 
 		$filteredTerm = $this->filter( $wgContLang->lc( $term ) );
 		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
-		
+
 		$total = null;
 		if( $wgCountTotalSearchHits ) {
 			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
@@ -192,7 +182,7 @@ class SearchSqlite extends SearchEngine {
 			}
 			$totalResult->free();
 		}
-		
+
 		return new SqliteSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
@@ -226,7 +216,7 @@ class SearchSqlite extends SearchEngine {
 
 	/**
 	 * Returns a query with limit for number of results set.
-	 * @param $sql String: 
+	 * @param $sql String:
 	 * @return String
 	 */
 	function limitResult( $sql ) {
@@ -246,7 +236,7 @@ class SearchSqlite extends SearchEngine {
 			$this->queryNamespaces()
 		);
 	}
-	
+
 	/**
 	 * Picks which field to index on, depending on what type of query.
 	 * @param $fulltext Boolean
@@ -300,7 +290,7 @@ class SearchSqlite extends SearchEngine {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->delete( 'searchindex', array( 'rowid' => $id ), __METHOD__ );
-		
+
 		$dbw->insert( 'searchindex',
 			array(
 				'rowid' => $id,
