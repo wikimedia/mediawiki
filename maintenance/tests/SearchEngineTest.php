@@ -14,7 +14,7 @@ class SearchEngineTest extends MediaWiki_Setup {
 
 	function insertSearchData() {
 	    if ( $this->pageExists( 'Not_Main_Page' ) ) {
-		return;
+			return;
 	    }
 	    $this->insertPage( "Not_Main_Page",	"This is not a main page", 0 );
 	    $this->insertPage( 'Talk:Not_Main_Page',	'This is not a talk page to the main page, see [[smithee]]', 1 );
@@ -45,7 +45,11 @@ class SearchEngineTest extends MediaWiki_Setup {
  	}
 
 	function fetchIds( $results ) {
-		if ( $this->db->getType() !== 'mysql' ) $this->markTestSkipped( "MySQL only" );
+		$this->assertTrue( is_object( $results ) );
+
+		if ( $this->db->getType() !== 'mysql' && $this->db->getType() !== 'sqlite' ) {
+			$this->markTestSkipped( "MySQL or SQLite only" );
+		}
 		$matches = array();
 		while ( $row = $results->next() ) {
 			$matches[] = $row->getTitle()->getPrefixedText();

@@ -257,6 +257,9 @@ Change its permissions so that the webserver can write to it, and try again.',
 Check the data directory and database name below and try again.',
 	'config-sqlite-readonly'          => 'File <code>$1</code> is not writeable.',
 	'config-sqlite-cant-create-db'    => 'Could not create database file <code>$1</code>.',
+	'config-sqlite-fts3-downgrade'    => 'PHP is missing FTS3 support, downgrading tables',
+	'config-sqlite-fts3-add'          => 'Adding FTS3 search capabilities',
+	'config-sqlite-fts3-ok'           => 'Fulltext search table appears to be in order',
 	'config-can-upgrade'              => "There are MediaWiki tables in this database.
 To upgrade them to MediaWiki $1, click '''Continue'''.",
 	'config-upgrade-done'             => "Upgrade complete.

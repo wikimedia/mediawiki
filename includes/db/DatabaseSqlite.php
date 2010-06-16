@@ -12,6 +12,8 @@
  */
 class DatabaseSqlite extends DatabaseBase {
 
+	private static $fulltextEnabled = null;
+
 	var $mAffectedRows;
 	var $mLastResult;
 	var $mDatabaseFile;
@@ -112,12 +114,29 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
+	 * Check if the searchindext table is FTS enabled.
+	 * @returns false if not enabled.
+	 */
+	function checkForEnabledSearch() {
+		if ( self::$fulltextEnabled === null ) {
+			self::$fulltextEnabled = false;
+			$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name = 'searchindex'", __METHOD__ );
+			if ( $res ) {
+				$row = $res->fetchRow();
+				self::$fulltextEnabled = stristr($row['sql'], 'fts' ) !== false;
+			}
+		}
+		return self::$fulltextEnabled;
+	}
+
+	/**
 	 * Returns version of currently supported SQLite fulltext search module or false if none present.
 	 * @return String
 	 */
 	function getFulltextSearchModule() {
 		$table = 'dummy_search_test';
 		$this->query( "DROP TABLE IF EXISTS $table", __METHOD__ );
+
 		if ( $this->query( "CREATE VIRTUAL TABLE $table USING FTS3(dummy_field)", __METHOD__, true ) ) {
 			$this->query( "DROP TABLE IF EXISTS $table", __METHOD__ );
 			return 'FTS3';
@@ -332,7 +351,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseSqlite::replace' ) {
 		if ( !count( $rows ) ) return true;
-	
+
 		# SQLite can't handle multi-row replaces, so divide up into multiple single-row queries
 		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
 			$ret = true;
@@ -498,7 +517,7 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( !$f ) {
 			dieout( "Could not find the interwiki.sql file." );
 		}
-		
+
 		$sql = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
 		while ( !feof( $f ) ) {
 			$line = fgets( $f, 1024 );
@@ -507,7 +526,7 @@ class DatabaseSqlite extends DatabaseBase {
 			$this->query( "$sql $matches[1],$matches[2])" );
 		}
 	}
-	
+
 	public function getSearchEngine() {
 		return "SearchSqlite";
 	}
@@ -627,7 +646,7 @@ class SQLiteField {
 		return true;
 	}
 
-	# isKey(),  isMultipleKey() not implemented, MySQL-specific concept. 
+	# isKey(),  isMultipleKey() not implemented, MySQL-specific concept.
 	# Suggest removal from base class [TS]
 
 	function type() {

@@ -16,10 +16,10 @@ class SqliteInstaller extends InstallerDBType {
 
 	function getGlobalDefaults() {
 		if ( isset( $_SERVER['DOCUMENT_ROOT'] ) ) {
-			$path = str_replace( 
-				array( '/', '\\' ), 
-				DIRECTORY_SEPARATOR, 
-				dirname( $_SERVER['DOCUMENT_ROOT'] ) . '/data' 
+			$path = str_replace(
+				array( '/', '\\' ),
+				DIRECTORY_SEPARATOR,
+				dirname( $_SERVER['DOCUMENT_ROOT'] ) . '/data'
 			);
 			return array( 'wgSQLiteDataDir' => $path );
 		} else {
@@ -159,8 +159,31 @@ class SqliteInstaller extends InstallerDBType {
 			$this->db->reportQueryError( $err, 0, $sql, __FUNCTION__ );
 		}
 		//@todo set up searchindex
+		$this->setupSearchIndex();
 		// Create default interwikis
 		return Status::newGood();
+	}
+
+	function setupSearchIndex() {
+		global $IP;
+
+		$module = $this->db->getFulltextSearchModule();
+		$fts3tTable = $this->db->checkForEnabledSearch();
+		if ( $fts3tTable &&  !$module ) {
+			$this->parent->output->addHtml
+				( wfMsgHtml( 'word-separator' ) . wfMsgHtml( 'config-sqlite-fts3-downgrade' ) . wfMsgHtml( 'ellipsis' ) );
+			$this->parent->output->flush();
+			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-no-fts.sql" );
+		} elseif ( !$fts3tTable && $module == 'FTS3' ) {
+			$this->parent->output->addHtml
+				( wfMsgHtml( 'word-separator' ) . wfMsgHtml( 'config-sqlite-fts3-add' ) . wfMsg( 'ellipsis' ) );
+			$this->parent->output->flush();
+			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-fts3.sql" );
+		} else {
+			$this->parent->output->addHtml
+				( wfMsgHtml( 'word-separator' ) . wfMsgHtml( 'config-sqlite-fts3-ok' ) . wfMsgHtml( 'ellipsis' ) );
+			$this->parent->output->flush();
+		}
 	}
 
 	function doUpgrade() {
