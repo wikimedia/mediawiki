@@ -84,22 +84,6 @@ function code2utf( $num ) {
 
 /**
  * Called in some places (currently just extensions)
- * to get the thumbnail URL for a given file at a given resolution.
- */
-function wfAjaxGetThumbnailUrl( $file, $width, $height ) {
-	$file = wfFindFile( $file );
-
-	if ( !$file || !$file->exists() ) {
-		return null;
-	}
-
-	$url = $file->getThumbnail( $width, $height )->url;
-
-	return $url;
-}
-
-/**
- * Called in some places (currently just extensions)
  * to get the URL for a given file.
  */
 function wfAjaxGetFileUrl( $file ) {
