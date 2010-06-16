@@ -3230,6 +3230,7 @@ $1',
 'table_pager_first'        => 'ആദ്യത്തെ താൾ',
 'table_pager_last'         => 'അവസാനത്തെ താൾ',
 'table_pager_limit'        => 'ഓരോ താളിലും $1 ഇനങ്ങൾ വീതം പ്രദർശിപ്പിക്കുക',
+'table_pager_limit_label'  => 'ഓരോ താളിലുമുള്ള ഇനങ്ങൾ:',
 'table_pager_limit_submit' => 'പോകൂ',
 'table_pager_empty'        => 'ഫലങ്ങൾ ഒന്നുമില്ല',
 

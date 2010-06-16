@@ -3072,6 +3072,7 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'table_pager_first'        => 'prěnja strona',
 'table_pager_last'         => 'poslednja strona',
 'table_pager_limit'        => '$1 {{PLURAL:$1|wuslědk|wuslědkaj|wuslědki|wuslědkow}} na stronu pokazać',
+'table_pager_limit_label'  => 'Zapiski na stronu:',
 'table_pager_limit_submit' => 'Wotpósłać',
 'table_pager_empty'        => 'Žane wuslědki',
 

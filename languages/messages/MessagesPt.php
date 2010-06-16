@@ -3388,6 +3388,7 @@ Confirme que deseja realmente recriar esta página, por favor.",
 'table_pager_first'        => 'Primeira página',
 'table_pager_last'         => 'Última página',
 'table_pager_limit'        => 'Mostrar $1 por página',
+'table_pager_limit_label'  => 'Entradas por página:',
 'table_pager_limit_submit' => 'Ir',
 'table_pager_empty'        => 'Sem resultados',
 

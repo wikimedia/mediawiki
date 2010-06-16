@@ -3092,6 +3092,7 @@ Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 'table_pager_first'        => 'Tudalen gyntaf',
 'table_pager_last'         => 'Tudalen olaf',
 'table_pager_limit'        => 'Dangos $1 eitem y dudalen',
+'table_pager_limit_label'  => 'Eitemau ar bob tudalen:',
 'table_pager_limit_submit' => 'Eler',
 'table_pager_empty'        => 'Dim canlyniadau',
 

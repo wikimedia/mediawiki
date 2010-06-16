@@ -137,7 +137,7 @@ $messages = array(
 'tog-editsection'             => 'Atalak [aldatu] loturen bitartez aldatzeko aukera gaitu',
 'tog-editsectiononrightclick' => 'Atalen izenburuetan klik eginez atala<br />aldatzea gaitu (JavaScript)',
 'tog-showtoc'                 => 'Edukien taula erakutsi (3 goiburukotik gorako orrialdeentzako)',
-'tog-rememberpassword'        => 'Nire saioa ordenagailu honetan gogoratu (gomendatua)',
+'tog-rememberpassword'        => 'Nire saioa ordenagailu honetan gogoratu ({{PLURAL:$1|egun baterako| $1 egunako}} gehienez)',
 'tog-watchcreations'          => 'Sortzen ditudan orrialdeak nire segimendu zerrendara gehitu',
 'tog-watchdefault'            => 'Aldatzen ditudan orrialdeak nire segimendu zerrendara gehitu',
 'tog-watchmoves'              => 'Izena aldatutako orrialdeak segimendu zerrendan erakutsi',
@@ -531,7 +531,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 'yourname'                   => 'Erabiltzaile izena',
 'yourpassword'               => 'Pasahitza',
 'yourpasswordagain'          => 'Pasahitza berriz',
-'remembermypassword'         => 'Nire saioa ordenagailu honetan gogoratu (gomendaturikoa)',
+'remembermypassword'         => 'Nire saioa ordenagailu honetan gogoratu ({{PLURAL:$1|egun baterako|$1 egunetarako }} gehienez)',
 'yourdomainname'             => 'Zure domeinua',
 'externaldberror'            => 'Kanpoko datu-base autentifikazio errorea gertatu da edo ez duzu zure kanpo kontua eguneratzeko baimenik.',
 'login'                      => 'Saioa hasi',
@@ -729,8 +729,8 @@ edo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Erabiltzaile hau blokeatuta dago une honetan.
 Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'clearyourcache'                   => "'''Oharra - Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.''' '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''Internet Explorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
-'usercssyoucanpreview'             => "'''Laguntza:''' Zure CSS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
-'userjsyoucanpreview'              => "'''Laguntza:''' Zure JS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
+'usercssyoucanpreview'             => "'''Laguntza:''' Zure CSS berria gorde aurretik probatzeko \"{{int:showpreview}}\" botoia erabili.",
+'userjsyoucanpreview'              => "'''Laguntza:''' Zure JS berria gorde aurretik probatzeko \"{{int:showpreview}}\" botoia erabili.",
 'usercsspreview'                   => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala.'''
 '''Oraindik gorde gabe dago!'''",
 'userjspreview'                    => "'''Gogoratu zure JavaScript kodea probatu/aurreikusten zabiltzala, oraindik ez da gorde!'''",
@@ -972,6 +972,9 @@ Begira itzazu erregistroak.',
 'suppressionlog'     => 'Ezabatze loga',
 'suppressionlogtext' => 'Azpian administratzaileek ezkutatutako edukia duten ezabaketa eta blokeoen zerrenda dago.
 Ikusi [[Special:IPBlockList|IP blokeoen zerrenda]] orain dauden blokeoak ikusi ahal izateko.',
+
+# Revision move
+'revmove-reasonfield' => 'Arrazoia:',
 
 # History merging
 'mergehistory'                     => 'Orrialdeen historiak bateratu',
@@ -1594,7 +1597,7 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'filerevert'                => '$1 leheneratu',
 'filerevert-legend'         => 'Fitxategia leheneratu',
 'filerevert-intro'          => "'''[[Media:$1|$1]]''' berrezartzen ari zara [$4 $3(e)ko, $2(e)tako bertsiora].",
-'filerevert-comment'        => 'Iruzkina:',
+'filerevert-comment'        => 'Arrazoia:',
 'filerevert-defaultcomment' => '$2, $1 bertsiora leheneratu da',
 'filerevert-submit'         => 'Leheneratu',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' [$4 $3(e)ko, $2(e)tako bertsiora] lehenratua izan da.",
@@ -2084,7 +2087,7 @@ In such cases, you must uncheck or unhide the newest deleted revision.',
 'undeleteviewlink'             => 'ikusi',
 'undeletereset'                => 'Hasieratu',
 'undeleteinvert'               => 'Aukeraketa alderanztu',
-'undeletecomment'              => 'Iruzkina:',
+'undeletecomment'              => 'Arrazoia:',
 'undeletedarticle'             => '"[[$1]]" leheneratu da',
 'undeletedrevisions'           => '{{PLURAL:$1|Berrikuspen 1 leheneratu da|$1 berrikuspen leheneratu dira}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|berrikuspen|berrikuspen}} eta {{PLURAL:$2|fitxategi|fitxategi}} leheneratu dira',
@@ -3068,16 +3071,16 @@ $1',
 'watchlistedit-noitems'        => 'Zure jarraitze-zerrendak ez du izenbururik.',
 'watchlistedit-normal-title'   => 'Jarraitze zerrenda aldatu',
 'watchlistedit-normal-legend'  => 'Jarraipen-zerrendatik izenburuak kendu',
-'watchlistedit-normal-explain' => 'Zure jarraipen-zerrendako izenburuak azpian daude.
-Titulu bat kentzeko ondoan dagoen kutxa marka ezazu eta Kendu Izenburua gainean klik egin.
-Gainera [[Special:Watchlist/raw|raw zerrenda aldatu]] dezakezu.',
+'watchlistedit-normal-explain' => 'Zure jarraipen zerrendako izenburuak azpian daude.
+Titulu bat kentzeko ondoan dagoen kutxa marka ezazu eta "{{int:Watchlistedit-normal-submit}}" gainean klik egin.
+Gainera [[Special:Watchlist/raw|zerrenda gordina aldatu]] dezakezu.',
 'watchlistedit-normal-submit'  => 'Izenburuak kendu',
 'watchlistedit-normal-done'    => 'Zure jarraipen-zerrendatik {{PLURAL:$1|izenburu bat kendu da|$1 izenburu kendu dira}}.',
 'watchlistedit-raw-title'      => 'Jarraitze zerrenda gordina aldatu',
 'watchlistedit-raw-legend'     => 'Jarraitze zerrenda gordina aldatu',
 'watchlistedit-raw-explain'    => 'Azpian zure jarraipen zerrendako izenburuak daude, eta aldatuak izan daitezke zerrendatik gehitu edo ezabatzean;
 lerroko izenburu bat.
-Bukatzean, klikatu Jarraitze-zerrenda Eguneratu botoian.
+Bukatzean, klikatu "{{int:Watchlistedit-raw-submit}}" botoian.
 Halaber [[Special:Watchlist/edit|aldatzaile estandarra]] erabil dezakezu.',
 'watchlistedit-raw-titles'     => 'Izenburuak:',
 'watchlistedit-raw-submit'     => 'Jarraitze-zerrenda eguneratu',

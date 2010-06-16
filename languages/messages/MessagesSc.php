@@ -70,7 +70,7 @@ $messages = array(
 'tog-editsection'             => 'Acontza setziones dae su butone [acontza]',
 'tog-editsectiononrightclick' => "Abilita s'acontzu de is setziones cun dòpiu click in is tìtulos de is setziones (esigit JavaScript)",
 'tog-showtoc'                 => "Ammustra s'ìndixe de is cuntènnidos (pro pàginas cun prus de 3 setziones)",
-'tog-rememberpassword'        => 'Ammenta sa password in custu computer',
+'tog-rememberpassword'        => 'Ammenta sa password in custu carculadore (pro unu màssimu de $1 {{PLURAL:$1|die|dies}})',
 'tog-watchcreations'          => 'Aciungi is pàginas chi apo creadu a sa watchlist mea',
 'tog-watchdefault'            => 'Aciungi is pàginas chi apo acontzadu a sa watchlist mea',
 'tog-watchmoves'              => 'Aciungi is pàginas chi apo mòvidu a sa watchlist mea',
@@ -412,7 +412,7 @@ No iscaressa de personalizare sas [[Special:Preferences|preferèntzias de {{SITE
 'yourname'                => 'Nùmene usuàriu',
 'yourpassword'            => 'Password:',
 'yourpasswordagain'       => 'Repite sa password:',
-'remembermypassword'      => 'Ammenta sa password in custu computer',
+'remembermypassword'      => 'Ammenta sa password in custu carculadore (pro unu màssimu de $1 {{PLURAL:$1|die|dies}})',
 'yourdomainname'          => 'Spetzificare su domìniu',
 'login'                   => 'Intra',
 'nav-login-createaccount' => 'Intra / crea account',
@@ -523,7 +523,7 @@ Su bloccu est stadu postu dae $1. Su motivu de su bloccu est: ''$2''
 * Su bloccu scadit: $6
 * Intervallu de bloccu: $7
 
-Ki boles, podes cuntatare $1 o un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro faeddare de su bloccu.
+Si boles, podes tzerriare $1 o un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro faeddare de su bloccu.
 
 Nota ca sa funtzione 'Ispedi un'e-mail a custu usuàriu' no est ativa ki no est stadu registradu un'indiritzu e-mail vàlidu in is [[Special:Preferences|preferèntzias]] tuas o ki s'usu de custa funtzione est stadu bloccadu.
 

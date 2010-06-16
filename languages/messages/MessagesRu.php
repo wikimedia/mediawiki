@@ -18,6 +18,7 @@
  * @author EugeneZelenko
  * @author Ferrer
  * @author Flrn
+ * @author G0rn
  * @author Gazeb
  * @author Grigol
  * @author HalanTul
@@ -2765,7 +2766,7 @@ $1',
 'tooltip-preview'                 => 'Предварительный просмотр страницы, пожалуйста, используйте перед сохранением!',
 'tooltip-diff'                    => 'Показать изменения, сделанные по отношению к исходному тексту.',
 'tooltip-compareselectedversions' => 'Посмотреть разницу между двумя выбранными версиями этой страницы.',
-'tooltip-watch'                   => 'Добавить текущую страницу в список наблюдения',
+'tooltip-watch'                   => 'Добавить эту страницу в свой список наблюдения',
 'tooltip-recreate'                => 'Восстановить страницу несмотря на то, что она была удалена',
 'tooltip-upload'                  => 'Начать загрузку',
 'tooltip-rollback'                => 'Одним нажатием убрать изменения, сделанные последним редактором',
@@ -3312,6 +3313,7 @@ $1',
 'table_pager_first'        => 'Первая страница',
 'table_pager_last'         => 'Последняя страница',
 'table_pager_limit'        => 'Показать $1 элементов на странице',
+'table_pager_limit_label'  => 'Записей на страницу:',
 'table_pager_limit_submit' => 'Выполнить',
 'table_pager_empty'        => 'Не найдено',
 
