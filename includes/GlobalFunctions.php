@@ -2878,11 +2878,19 @@ function wfGetCaller( $level = 2 ) {
 }
 
 /**
- * Return a string consisting all callers in stack, somewhat useful sometimes
- * for profiling specific points
+ * Return a string consisting of callers in the stack. Useful sometimes
+ * for profiling specific points.
+ *
+ * @param $limit The maximum depth of the stack frame to return, or false for
+ *               the entire stack.
  */
-function wfGetAllCallers() {
-	return implode('/', array_map('wfFormatStackFrame',array_reverse(wfDebugBacktrace())));
+function wfGetAllCallers( $limit = 3 ) {
+	$trace = array_reverse( wfDebugBacktrace() );
+	if ( !$limit || $limit > count( $trace ) - 1 ) {
+		$limit = count( $trace ) - 1;
+	}
+	$trace = array_slice( $trace, -$limit - 1, $limit );
+	return implode( '/', array_map( 'wfFormatStackFrame', $trace ) );
 }
 
 /**
