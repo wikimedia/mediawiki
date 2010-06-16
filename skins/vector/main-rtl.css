@@ -37,14 +37,14 @@ body {
 	background-color: white;
 }
 /* Head */
-#page-base {
+#mw-page-base {
 	height: 5em;
 	background-color: white;
 	background-image: url(images/page-fade.png);
 	background-position: bottom right;
 	background-repeat: repeat-x;
 }
-#head-base {
+#mw-head-base {
 	margin-top: -5em;
 	margin-right: 10em;
 	height: 5em;
@@ -52,13 +52,13 @@ body {
 	background-position: bottom right;
 	background-repeat: repeat-x;
 }
-#head {
+#mw-head {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 }
-#head h5 {
+#mw-head h5 {
 	margin: 0;
 	padding: 0;
 }
@@ -212,16 +212,16 @@ body {
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	/* @noflip */
-	#head div.vectorMenu h5 {
+	#mw-head div.vectorMenu h5 {
 		float: left;
 		background-image: url(images/tab-break.png);
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	#head div.vectorMenu > h5 {
+	#mw-head div.vectorMenu > h5 {
 		background-image: none;
 	}
-	#head div.vectorMenu h5 {
+	#mw-head div.vectorMenu h5 {
 		background-position: bottom right;
 		margin-right: -1px;
 	}
