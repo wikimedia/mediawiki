@@ -38,7 +38,9 @@ class TextPassDumper extends BackupDumper {
 	var $prefetchCount = 0;
 	
 	var $failures = 0;
-	var $maxFailures = 200;
+	var $maxFailures = 5;
+    var $failedTextRetrievals = 0;
+	var $maxConsecutiveFailedTextRetrievals = 200;
 	var $failureTimeout = 5; // Seconds to sleep after db failure
 
 	var $php = "php";
@@ -203,11 +205,50 @@ class TextPassDumper extends BackupDumper {
 	}
 	
 	private function doGetText( $id ) {
-		if ( $this->spawn ) {
-			return $this->getTextSpawned( $id );
-		} else {
-			return $this->getTextDbSafe( $id );
+
+		$this->failures = 0;
+		$ex = new MWException( "Graceful storage failure" );
+		while (true) {
+			if ( $this->spawn ) {
+				if ($this->failures) {
+					// we don't know why it failed, could be the child process 
+					// borked, could be db entry busted, could be db server out to lunch, 
+					// so cover all bases
+					$this->closeSpawn();
+					$this->openSpawn();
+				}
+				$text =  $this->getTextSpawned( $id );
+			} else {
+				$text =  $this->getTextDbSafe( $id );
+			}
+			if ( $text === false ) {
+				$this->failures++;
+				if ( $this->failures > $this->maxFailures) {
+					$this->progress( "Failed to retrieve revision text for text id ".
+									 "$id after $this->maxFailures tries, giving up" );
+					// were there so many bad retrievals in a row we want to bail?
+				    // at some point we have to declare the dump irretrievably broken
+					$this->failedTextRetrievals++;
+					if ($this->failedTextRetrievals > $this->maxConsecutiveFailedTextRetrievals) {
+						throw $ex;
+					}
+					else {
+						// would be nice to return something better to the caller someday,
+						// log what we know about the failure and about the revision
+						return("");
+					}
+				} else {
+					$this->progress( "Error $this->failures " .
+								 "of allowed $this->maxFailures retrieving revision text for text id $id! " .
+								 "Pausing $this->failureTimeout seconds before retry..." );
+					sleep( $this->failureTimeout );
+				}
+			} else {
+				$this->failedTextRetrievals= 0;
+				return( $text );
+			}
 		}
+
 	}
 	
 	/**
@@ -223,19 +264,7 @@ class TextPassDumper extends BackupDumper {
 			} catch ( DBQueryError $ex ) {
 				$text = false;
 			}
-			if ( $text === false ) {
-				$this->failures++;
-				if ( $this->failures > $this->maxFailures ) {
-					throw $ex;
-				} else {
-					$this->progress( "Database failure $this->failures " .
-						"of allowed $this->maxFailures for revision $id! " .
-						"Pausing $this->failureTimeout seconds..." );
-					sleep( $this->failureTimeout );
-				}
-			} else {
-				return $text;
-			}
+			return $text;
 		}
 	}
 	
@@ -264,21 +293,9 @@ class TextPassDumper extends BackupDumper {
 			// First time?
 			$this->openSpawn();
 		}
-		while ( true ) {
-			
-			$text = $this->getTextSpawnedOnce( $id );
-			if ( !is_string( $text ) ) {
-				$this->progress( "Database subprocess failed. Respawning..." );
-				
-				$this->closeSpawn();
-				sleep( $this->failureTimeout );
-				$this->openSpawn();
-				
-				continue;
-			}
-			wfRestoreWarnings();
-			return $text;
-		}
+		$text = $this->getTextSpawnedOnce( $id );
+		wfRestoreWarnings();
+		return $text;
 	}
 	
 	function openSpawn() {
@@ -354,6 +371,9 @@ class TextPassDumper extends BackupDumper {
 		if ( $len === false ) return false;
 		
 		$nbytes = intval( $len );
+		// actual error, not zero-length text
+		if ($nbytes < 0 ) return false;
+
 		$text = "";
 		
 		// Subprocess may not send everything at once, we have to loop.
