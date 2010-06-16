@@ -171,7 +171,7 @@ class SpecialPage {
 		# Page tools
 		'Export'                    => 'SpecialExport',
 		'Import'                    => 'SpecialImport',
-		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
+		'Undelete'                  => 'UndeleteForm',
 		'Whatlinkshere'             => 'SpecialWhatlinkshere',
 		'MergeHistory'              => 'SpecialMergeHistory',
 
