@@ -1153,10 +1153,20 @@ Molimo provjerite zapise.',
 'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
 
 # Revision move
+'moverevlogentry'              => '{{PLURAL:$3|Premještena jedna revizija|Premještene $3 revizije|Premješteno $3 revizija}} iz $1 na $2',
+'revisionmove'                 => 'Premještanje revizija sa "$1"',
+'revmove-explain'              => 'Slijedeće revizije će biti premještene sa $1 na određenu ciljnu stranicu. Ako ciljna stranica ne postoji, bit će napravljenja. U suprotnom, ove revizije će biti spojene u historiji ciljne stranice.',
+'revmove-legend'               => 'Postavite ciljnu stranicu i sažetak',
+'revmove-submit'               => 'Premjestite revizije na odabranu stranicu',
 'revisionmoveselectedversions' => 'Premjesti označene revizije',
 'revmove-reasonfield'          => 'Razlog:',
 'revmove-titlefield'           => 'Ciljna stranica:',
+'revmove-badparam-title'       => 'Loši parametri',
+'revmove-badparam'             => '<span class="error">Vaš zahtjev sadrži nevaljane ili nedovoljne parametre. Molimo pritisnite "natrag" i pokušajte ponovo.</span>',
+'revmove-norevisions-title'    => 'Nevaljana ciljna revizija',
+'revmove-norevisions'          => '<span class="error">Niste odredili jednu ili više ciljnih revizija radi izvršenja ove funkcije ili navedena revizija ne postoji.</span>',
 'revmove-nullmove-title'       => 'Loš naslov',
+'revmove-nullmove'             => '<span class="error">Izvorna i ciljna stranica su iste. Molimo pritisnite "nazad" i unesite drugo ime stranice koje nije isto kao "$1".</span>',
 
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
@@ -1230,6 +1240,7 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'searchprofile-everything-tooltip' => 'Pretraži sve sadržaje (ukljujući i stranice za razgovor)',
 'searchprofile-advanced-tooltip'   => 'Traži u ostalim imenskim prostorima',
 'search-result-size'               => '$1 ({{PLURAL:$2|$2 riječ|$2 riječi}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 član|$1 člana|$1 članova}} ({{PLURAL:$2|1 podkategorija|$2 podkategorije|$2 podkategorija}}, {{PLURAL:$3|1 datoteka|$3 datoteke|$3 datoteka}})',
 'search-result-score'              => 'Relevantnost: $1%',
 'search-redirect'                  => '(preusmjeravanje $1)',
 'search-section'                   => '(sekcija $1)',
@@ -1464,6 +1475,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-hideuser'              => 'Blokiranje korisničkog imena, i njegovo sakrivanje od javnosti',
 'right-ipblock-exempt'        => 'Zaobilaženje IP blokada, autoblokada i blokada IP grupe',
 'right-proxyunbannable'       => 'Zaobilaženje automatskih blokada proxy-ja',
+'right-unblockself'           => 'Deblokiranje samog sebe',
 'right-protect'               => 'Promjena nivoa zaštite i uređivanje zaštićenih stranica',
 'right-editprotected'         => 'Uređivanje zaštićenih stranica (bez povezanih zaštita)',
 'right-editinterface'         => 'Uređivanje korisničkog interfejsa',
@@ -1626,6 +1638,12 @@ Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 'filetype-banned-type'        => "'''\".\$1\"''' nije dopuštena vrsta datoteke.
 {{PLURAL:\$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} \$2.",
 'filetype-missing'            => 'Datoteka nema ekstenziju (poput ".jpg").',
+'empty-file'                  => 'Datoteka koju ste poslali je bila prazna.',
+'file-too-large'              => 'Datoteka koju ste poslali je bila prevelika.',
+'filename-tooshort'           => 'Ime datoteke je prekratko.',
+'filetype-banned'             => 'Ova vrsta datoteke je zabranjena.',
+'verification-error'          => 'Ova datoteka nije prošla provjeru.',
+'illegal-filename'            => 'Ime datoteke nije dopušteno.',
 'large-file'                  => 'Preporučeno je da datoteke nisu veće od $1;
 Ova datoteka je velika $2.',
 'largefileserver'             => 'Ova datoteka je veća nego što server dopušta.',
@@ -1659,6 +1677,8 @@ Ako i dalje želite da postavite ovu datoteku, molimo Vas da se vratite i pošal
 'uploadedimage'               => 'poslato "[[$1]]"',
 'overwroteimage'              => 'postavljena nova verzija datoteke "[[$1]]"',
 'uploaddisabled'              => 'Slanje fajlova je isključeno',
+'copyuploaddisabled'          => 'Postavljanje putem URL nije omogućeno.',
+'uploadfromurl-queued'        => 'Vaše postavljanje je na čekanju.',
 'uploaddisabledtext'          => 'Postavljanje datoteka je onemogućeno.',
 'php-uploaddisabledtext'      => 'Postavljanje datoteka preko PHP je onemogućeno. Molimo provjerite postavku file_uploads.',
 'uploadscripted'              => 'Ova datoteka sadrži HTML ili skriptni kod koji može izazvati grešku kod internet preglednika.',
@@ -1693,6 +1713,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # razni
  #</pre> <!-- ostavite ovu liniju onakvom kakva jeste -->',
+'upload-successful-msg'       => 'Vaša datoteka je dostupna ovdje: $1',
+'upload-failure-subj'         => 'Problem pri postavljanju',
 'upload-failure-msg'          => 'Nastao je problem s Vašim postavljanjem:
 
 $1',

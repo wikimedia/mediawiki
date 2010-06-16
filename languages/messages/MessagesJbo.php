@@ -11,6 +11,7 @@
  * @author Homo logos
  * @author Malafaya
  * @author OldakQuill
+ * @author PierreAbbat
  */
 
 $messages = array(
@@ -25,18 +26,18 @@ $messages = array(
 'thursday'      => 'la vodjed.',
 'friday'        => 'la mudjed.',
 'saturday'      => 'la xadjed.',
-'january'       => "pavma'i",
-'february'      => "relma'i",
-'march'         => "cibma'i",
-'april'         => 'la vomast.',
-'may_long'      => 'Myabuyy',
-'june'          => "xavma'i",
-'july'          => "zelma'i",
-'august'        => "bivma'i",
-'september'     => "sozma'i",
-'october'       => "pavnonma'i",
-'november'      => "pavypavma'i",
-'december'      => "pavrelma'i",
+'january'       => 'ianvari',
+'february'      => 'frebruari',
+'march'         => 'martio',
+'april'         => 'prilio',
+'may_long'      => 'madjio',
+'june'          => 'djunio',
+'july'          => 'djulio',
+'august'        => 'avgusto',
+'september'     => 'septembero',
+'october'       => 'oktobero',
+'november'      => 'novmbero',
+'december'      => 'decmbero',
 'january-gen'   => 'la pamast.',
 'february-gen'  => 'la remast.',
 'march-gen'     => 'la cimast.',
@@ -49,18 +50,18 @@ $messages = array(
 'october-gen'   => 'la daumast.',
 'november-gen'  => 'la feimast.',
 'december-gen'  => 'la gaimast.',
-'jan'           => "pavma'i",
-'feb'           => "relma'i",
-'mar'           => "cibma'i",
-'apr'           => "vonma'i",
-'may'           => "mumyma'i",
-'jun'           => "xavma'i",
-'jul'           => "zelma'i",
-'aug'           => "bivma'i",
-'sep'           => "sozma'i",
-'oct'           => "pavnonma'i",
-'nov'           => "pavypavma'i",
-'dec'           => "pavrelma'i",
+'jan'           => 'ian',
+'feb'           => 'fre',
+'mar'           => 'mar',
+'apr'           => 'pri',
+'may'           => 'mad',
+'jun'           => 'jun',
+'jul'           => 'jul',
+'aug'           => 'avg',
+'sep'           => 'sep',
+'oct'           => 'okt',
+'nov'           => 'nov',
+'dec'           => 'dec',
 
 # Categories related messages
 'pagecategories'  => '{{PLURAL:$1|klesi|klesi}}',
@@ -86,7 +87,7 @@ $messages = array(
 'printableversion' => 'plepri simsa',
 'permalink'        => "vitno terjo'e",
 'edit'             => 'stika',
-'create'           => "Fi'i",
+'create'           => 'ninzba',
 'delete'           => 'daspo',
 'protect'          => 'bandu',
 'protect_change'   => 'binxo',
@@ -120,7 +121,7 @@ $messages = array(
 'privacy'              => "javni be sera'a lo sivni",
 'privacypage'          => "Project:i'inai zukselpla",
 
-'retrievedfrom'        => 'Ryebutyryibuebuvyebudy fyryobumy "$1"',
+'retrievedfrom'        => 'cpacu fi la\'o .url. "$1" .url.',
 'editsection'          => 'stika ti',
 'editsection-brackets' => '[$1]',
 'editold'              => 'stika',
@@ -176,6 +177,7 @@ $messages = array(
 'editingcomment' => 'ca galfi le selcmene be zoi $1 (comment)',
 
 # History pages
+'cur'        => 'cab',
 'last'       => "prula'i",
 'page_first' => 'pamoi',
 'page_last'  => 'fanmo',
@@ -190,7 +192,8 @@ $messages = array(
 # Search results
 'searchresults'             => "tu'a le se sisku",
 'searchresults-title'       => 'Sisku pruce for "$1"',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 vybu.oyrydy|$2 vybu.oyrydysy}})',
+'search-result-size'        => '$1 .i $2 valsi',
+'search-suggest'            => "xu do sisydji lu $1 li'u",
 'search-mwsuggest-enabled'  => 'kansa stidiiyobunysy',
 'search-mwsuggest-disabled' => 'no stidiiyobunysy',
 
@@ -204,6 +207,8 @@ $messages = array(
 # Recent changes
 'recentchanges'     => 'puzi nunstika',
 'recentchangestext' => 'liste loi nu puzi galfi la .uikis.',
+'rcshowhidebots'    => '$1 lo zmiku',
+'rcshowhideliu'     => '$1 lo samyzva',
 'diff'              => 'te frica',
 'hist'              => 'galfi plivei',
 'hide'              => 'Toljarco',
@@ -242,7 +247,7 @@ $messages = array(
 'deletionlog'    => 'plivei fi loi nu daspo',
 
 # Rollback
-'rollbacklink' => 'gurrix',
+'rollbacklink' => 'lamxru',
 
 # Restrictions (nouns)
 'restriction-edit' => 'stika',
@@ -277,6 +282,7 @@ $messages = array(
 'tooltip-ca-watch'              => 'jmive le vi kibypapri le do selzgaste',
 'tooltip-search'                => 'Sisku {{SITENAME}}',
 'tooltip-search-go'             => "Litru tyobu abu kibypapri kansa tyy'y.buibusy satci cmene ibufy zasti",
+'tooltip-search-fulltext'       => "sisku do'i lei ckupau",
 'tooltip-n-mainpage'            => 'vitke le ralju ckupau',
 'tooltip-n-randompage'          => 'jarco lo cunso ckupau',
 'tooltip-n-help'                => 'sidju kibypapri',

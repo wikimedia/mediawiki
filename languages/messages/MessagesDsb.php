@@ -3104,6 +3104,7 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 'table_pager_first'        => 'Prědny bok',
 'table_pager_last'         => 'Slědny bok',
 'table_pager_limit'        => 'Pokazaś {{PLURAL:$1|$1 objekt|$1 objekta|$1 objekty}} na bok',
+'table_pager_limit_label'  => 'Zapiski na bok:',
 'table_pager_limit_submit' => 'Start',
 'table_pager_empty'        => 'Žedne wuslědki',
 

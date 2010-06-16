@@ -3463,6 +3463,7 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.",
 'table_pager_first'        => 'Eerste pagina',
 'table_pager_last'         => 'Laatste pagina',
 'table_pager_limit'        => '$1 resultaten per pagina bekijken',
+'table_pager_limit_label'  => 'Items per pagina:',
 'table_pager_limit_submit' => 'OK',
 'table_pager_empty'        => 'Geen resultaten',
 

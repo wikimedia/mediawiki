@@ -159,6 +159,12 @@ $messages = array(
 'qbmyoptions'    => 'моꙗ́ страни́цѧ',
 'qbspecialpages' => 'наро́чьнꙑ страни́цѧ',
 
+# Vector skin
+'vector-action-move'        => 'прѣимєнова́ниѥ',
+'vector-namespace-category' => 'катигорі́ꙗ',
+'vector-view-edit'          => 'испра́ви',
+'vector-view-viewsource'    => 'страни́цѧ исто́чьнъ о́браꙁъ',
+
 'errorpagetitle'   => 'блаꙁна',
 'tagline'          => '{{grammar:genitive|{{SITENAME}}}} страни́ца',
 'help'             => 'по́мощь',
@@ -383,6 +389,7 @@ $messages = array(
 'file-anchor-link'   => 'ви́дъ',
 'filehist-deleteone' => 'поничьжє́ниѥ',
 'filehist-current'   => 'нꙑнѣщьн҄ь о́браꙁъ',
+'filehist-datetime'  => 'дьнь / врѣ́мѧ',
 'filehist-user'      => 'по́льꙃєватєл҄ь',
 'imagelinks'         => 'дѣ́ла съвѧ́ꙁи',
 
@@ -616,5 +623,8 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'наро́чьнꙑ страни́цѧ',
+
+# Special:Tags
+'tags-edit' => 'испра́ви',
 
 );

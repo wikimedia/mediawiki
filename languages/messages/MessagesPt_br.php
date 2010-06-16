@@ -3313,6 +3313,7 @@ Por favor, confirme que realmente deseja recriar esta página.",
 'table_pager_first'        => 'Primeira página',
 'table_pager_last'         => 'Última página',
 'table_pager_limit'        => 'Mostrar $1 items por página',
+'table_pager_limit_label'  => 'Itens por página:',
 'table_pager_limit_submit' => 'Ir',
 'table_pager_empty'        => 'Sem resultados',
 

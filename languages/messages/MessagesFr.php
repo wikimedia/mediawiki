@@ -3400,6 +3400,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'table_pager_first'        => 'Première page',
 'table_pager_last'         => 'Dernière page',
 'table_pager_limit'        => 'Montrer $1 élément{{PLURAL:$1||s}} par page',
+'table_pager_limit_label'  => 'Résultats par page :',
 'table_pager_limit_submit' => 'Accéder',
 'table_pager_empty'        => 'Aucun résultat',
 

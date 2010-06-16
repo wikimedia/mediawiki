@@ -3370,6 +3370,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'table_pager_first'        => 'Erste Seite',
 'table_pager_last'         => 'Letzte Seite',
 'table_pager_limit'        => 'Zeige $1 Einträge pro Seite',
+'table_pager_limit_label'  => 'Positionen pro Seite:',
 'table_pager_limit_submit' => 'Los',
 'table_pager_empty'        => 'Keine Ergebnisse',
 

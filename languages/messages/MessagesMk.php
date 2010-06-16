@@ -3434,6 +3434,7 @@ $1',
 'table_pager_first'        => 'Прва страница',
 'table_pager_last'         => 'Последна страница',
 'table_pager_limit'        => 'Прикажи $1 записи по страница',
+'table_pager_limit_label'  => 'Ставки по страница:',
 'table_pager_limit_submit' => 'Оди',
 'table_pager_empty'        => 'Нема резултати',
 

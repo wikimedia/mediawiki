@@ -1180,7 +1180,7 @@ No tiene acceso a él.',
 Mire [[Special:IPBlockList|la lista de bloqueos activos]] para ver una lista de bloqueos actualmente operativos.',
 
 # Revision move
-'moverevlogentry'              => 'movida{{PLURAL:$3||s}} {{PLURAL:$3|una revisión|$3 revisiones}} del $1 al $2',
+'moverevlogentry'              => ' {{PLURAL:$3|una revisión|$3 revisiones}} trasladada{{PLURAL:$3||s}} de $1 a $2',
 'revisionmove'                 => 'Mover revisiones de "$1"',
 'revmove-explain'              => 'Las siguientes revisiones serán movidas de $1 a la página especificada. Si la página especificada no existe, será creada. De otra forma, serán unidas al historial de la página.',
 'revmove-legend'               => 'Establecer página de destino y resumen',
@@ -1191,7 +1191,7 @@ Mire [[Special:IPBlockList|la lista de bloqueos activos]] para ver una lista de 
 'revmove-badparam-title'       => 'Parámetros inadecuados.',
 'revmove-badparam'             => '<span class="error">Su solicitud contiene parámetros ilegales o insuficientes. Por favor, presione "atrás" e intente nuevamente.</span>',
 'revmove-norevisions-title'    => 'Revisión especificada inválida',
-'revmove-norevisions'          => '<span class="error">No haz especificado una o más revisiones para realizar ésta función o la revisión especificada no existe.</span>',
+'revmove-norevisions'          => '<span class="error">No has especificado una o más revisiones para realizar esta función o la revisión especificada no existe.</span>',
 'revmove-nullmove-title'       => 'Título incorrecto',
 'revmove-nullmove'             => '<span class="error">Las páginas fuente y destino son idénticas. Por favor presione "atrás" e ingrese un nombre de página diferente a "$1".</span>',
 'revmove-success-existing'     => '{{PLURAL:$1|Una revisión de [[$2]] ha|$1 revisiones de [[$2]] han}} sido movida{{PLURAL:$1||s}} a la página existente [[$3]].',
