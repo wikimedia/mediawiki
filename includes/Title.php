@@ -3704,7 +3704,7 @@ class Title {
 		switch( $this->mNamespace ) {
 		case NS_MEDIA:
 		case NS_FILE:
-			return wfFindFile( $this );  // file exists, possibly in a foreign repo
+			return (bool)wfFindFile( $this );  // file exists, possibly in a foreign repo
 		case NS_SPECIAL:
 			return SpecialPage::exists( $this->getDBkey() );  // valid special page
 		case NS_MAIN:
