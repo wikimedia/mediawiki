@@ -68,7 +68,6 @@ class LinksUpdate {
 		}
 
 		$this->mRecursive = $recursive;
-		$this->mTouchTmplLinks = false;
 
 		wfRunHooks( 'LinksUpdateConstructed', array( &$this ) );
 	}
