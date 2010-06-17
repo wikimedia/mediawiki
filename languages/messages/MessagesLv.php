@@ -505,7 +505,7 @@ Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis
 
 # Edit page toolbar
 'bold_sample'     => 'Teksts boldā',
-'bold_tip'        => 'Teksts boldā',
+'bold_tip'        => 'Teksts treknrakstā',
 'italic_sample'   => 'Teksts kursīvā',
 'italic_tip'      => 'Teksts kursīvā',
 'link_sample'     => 'Lapas nosaukums',

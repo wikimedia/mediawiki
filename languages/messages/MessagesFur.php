@@ -416,7 +416,7 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'yourname'                => 'Non utent',
 'yourpassword'            => 'Peraule clâf',
 'yourpasswordagain'       => 'Torne a scrivile',
-'remembermypassword'      => 'Visiti di me',
+'remembermypassword'      => 'Visiti di me di une session a chê altre (fin a $1 {{PLURAL:$1|zornade|zornadis}})',
 'yourdomainname'          => 'Il to domini',
 'login'                   => 'Jentre',
 'nav-login-createaccount' => 'Regjistriti o jentre',

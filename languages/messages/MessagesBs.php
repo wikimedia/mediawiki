@@ -1167,6 +1167,8 @@ Molimo provjerite zapise.',
 'revmove-norevisions'          => '<span class="error">Niste odredili jednu ili više ciljnih revizija radi izvršenja ove funkcije ili navedena revizija ne postoji.</span>',
 'revmove-nullmove-title'       => 'Loš naslov',
 'revmove-nullmove'             => '<span class="error">Izvorna i ciljna stranica su iste. Molimo pritisnite "nazad" i unesite drugo ime stranice koje nije isto kao "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} postojeće stranice [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} na novonapravljenu stranicu [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
@@ -1604,6 +1606,8 @@ Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podeblja
 'upload_directory_missing'    => 'Folder za postavljanje ($1) nedostaje i webserver ga ne može napraviti.',
 'upload_directory_read_only'  => 'Folder za postavljanje ($1) na webserveru je postavljen samo za čitanje.',
 'uploaderror'                 => 'Greška pri slanju',
+'upload-recreate-warning'     => "'''Upozorenje: Datoteka s tim imenom je obrisana ili premještena.'''
+Zapisnik brisanja i premještanja za ovu stranicu je dostupan ovdje na uvid:",
 'uploadtext'                  => "Koristite formu ispod za postavljanje datoteka.
 Da bi ste vidjeli ili pretražili ranije postavljene datoteke, pogledajte [[Special:FileList|spisak postavljenih datoteka]], ponovna postavljanja su također zapisana u [[Special:Log/upload|zapisnik postavljanja]], a brisanja u [[Special:Log/delete|zapisnik brisanja]].
 
@@ -1643,7 +1647,12 @@ Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 'filename-tooshort'           => 'Ime datoteke je prekratko.',
 'filetype-banned'             => 'Ova vrsta datoteke je zabranjena.',
 'verification-error'          => 'Ova datoteka nije prošla provjeru.',
+'hookaborted'                 => 'Izmjena koji ste pokušali načiniti je obustavljena preko kuke proširenja.',
 'illegal-filename'            => 'Ime datoteke nije dopušteno.',
+'overwrite'                   => 'Pisanje preko postojeće datoteke nije dopušteno.',
+'unknown-error'               => 'Desila se nepoznata greška.',
+'tmp-create-error'            => 'Nije moguće napraviti privremenu datoteku.',
+'tmp-write-error'             => 'Greška pri pisanju privremene datoteke.',
 'large-file'                  => 'Preporučeno je da datoteke nisu veće od $1;
 Ova datoteka je velika $2.',
 'largefileserver'             => 'Ova datoteka je veća nego što server dopušta.',
@@ -2093,31 +2102,37 @@ O svakoj od njih postoje i [[{{MediaWiki:Listgrouprights-helppage}}|dodatne info
 'listgrouprights-removegroup-self-all' => 'Može ukloniti sve grupe sa svog računa',
 
 # E-mail user
-'mailnologin'      => 'Nema adrese za slanje',
-'mailnologintext'  => 'Morate biti [[Special:UserLogin|prijavljeni]]
+'mailnologin'          => 'Nema adrese za slanje',
+'mailnologintext'      => 'Morate biti [[Special:UserLogin|prijavljeni]]
 i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]]
 da biste slali e-poštu drugim korisnicima.',
-'emailuser'        => 'Pošalji e-poštu ovom korisniku',
-'emailpage'        => 'Pošalji e-mail korisniku',
-'emailpagetext'    => 'Možete korisiti formu ispod za slanje e-mail poruka ovom korisniku.
+'emailuser'            => 'Pošalji e-poštu ovom korisniku',
+'emailpage'            => 'Pošalji e-mail korisniku',
+'emailpagetext'        => 'Možete korisiti formu ispod za slanje e-mail poruka ovom korisniku.
 E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim postavkama]] će biti prikazana kao adresa pošiljaoca, tako da će primaoc poruke moći da Vam odgovori.',
-'usermailererror'  => 'Objekat pošte je vratio grešku:',
-'defemailsubject'  => '{{SITENAME}} e-pošta',
-'noemailtitle'     => 'Nema adrese e-pošte',
-'noemailtext'      => 'Ovaj korisnik nije naveo ispravnu adresu e-pošte.',
-'nowikiemailtitle' => 'E-mail nije dopušten',
-'nowikiemailtext'  => 'Ovaj korisnik je odabrao da ne prima e-mail poštu od drugih korisnika.',
-'email-legend'     => 'Slanje e-maila drugom {{SITENAME}} korisniku',
-'emailfrom'        => 'Od:',
-'emailto'          => 'Za:',
-'emailsubject'     => 'Tema:',
-'emailmessage'     => 'Poruka:',
-'emailsend'        => 'Pošalji',
-'emailccme'        => 'Pošalji mi kopiju moje poruke.',
-'emailccsubject'   => 'Kopiraj Vašu poruku za $1: $2',
-'emailsent'        => 'Poruka poslata',
-'emailsenttext'    => 'Vaša poruka je poslata e-poštom.',
-'emailuserfooter'  => 'Ovaj e-mail je poslao $1 korisniku $2 putem funkcije "Pošalji e-mail korisniku" sa {{SITENAME}}.',
+'usermailererror'      => 'Objekat pošte je vratio grešku:',
+'defemailsubject'      => '{{SITENAME}} e-pošta',
+'usermaildisabled'     => 'Korisnički e-mail onemogućen',
+'usermaildisabledtext' => 'Ne možete poslati e-mail drugim korisnicima na ovoj wiki',
+'noemailtitle'         => 'Nema adrese e-pošte',
+'noemailtext'          => 'Ovaj korisnik nije naveo ispravnu adresu e-pošte.',
+'nowikiemailtitle'     => 'E-mail nije dopušten',
+'nowikiemailtext'      => 'Ovaj korisnik je odabrao da ne prima e-mail poštu od drugih korisnika.',
+'email-legend'         => 'Slanje e-maila drugom {{SITENAME}} korisniku',
+'emailfrom'            => 'Od:',
+'emailto'              => 'Za:',
+'emailsubject'         => 'Tema:',
+'emailmessage'         => 'Poruka:',
+'emailsend'            => 'Pošalji',
+'emailccme'            => 'Pošalji mi kopiju moje poruke.',
+'emailccsubject'       => 'Kopiraj Vašu poruku za $1: $2',
+'emailsent'            => 'Poruka poslata',
+'emailsenttext'        => 'Vaša poruka je poslata e-poštom.',
+'emailuserfooter'      => 'Ovaj e-mail je poslao $1 korisniku $2 putem funkcije "Pošalji e-mail korisniku" sa {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Ostavljanje sistemske poruke.',
+'usermessage-editor'  => 'Sistem za poruke',
 
 # Watchlist
 'watchlist'            => 'Moji praćeni članci',
@@ -2245,7 +2260,8 @@ Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]
 vraćeno na posljednju verziju koju je sačuvao $2.',
 
 # Edit tokens
-'sessionfailure' => "Izgleda da postoji problem sa vašom sesijom; ova akcija je otkazana kao prevencija protiv napadanja sesija. Kliknite \"back\" (''nazad'') i osvježite stranicu sa koje ste došli, i opet pokušajte.",
+'sessionfailure-title' => 'Greška u sesiji',
+'sessionfailure'       => "Izgleda da postoji problem sa vašom sesijom; ova akcija je otkazana kao prevencija protiv napadanja sesija. Kliknite \"back\" (''nazad'') i osvježite stranicu sa koje ste došli, i opet pokušajte.",
 
 # Protect
 'protectlogpage'              => 'Protokol zaključavanja',
@@ -2377,18 +2393,20 @@ $1',
 'month'               => 'Od mjeseca (i ranije):',
 'year'                => 'Od godine (i ranije):',
 
-'sp-contributions-newbies'        => 'Prikaži samo doprinose novih korisnika',
-'sp-contributions-newbies-sub'    => 'Za nove korisnike',
-'sp-contributions-newbies-title'  => 'Doprinosi novih korisnika',
-'sp-contributions-blocklog'       => 'Evidencija blokiranja',
-'sp-contributions-deleted'        => 'obrisani doprinosi korisnika',
-'sp-contributions-logs'           => 'zapisnici',
-'sp-contributions-talk'           => 'razgovor',
-'sp-contributions-userrights'     => 'postavke korisničkih prava',
-'sp-contributions-blocked-notice' => 'Ovaj korisnik je trenutno blokiran. Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
-'sp-contributions-search'         => 'Pretraga doprinosa',
-'sp-contributions-username'       => 'IP adresa ili korisničko ime:',
-'sp-contributions-submit'         => 'Traži',
+'sp-contributions-newbies'             => 'Prikaži samo doprinose novih korisnika',
+'sp-contributions-newbies-sub'         => 'Za nove korisnike',
+'sp-contributions-newbies-title'       => 'Doprinosi novih korisnika',
+'sp-contributions-blocklog'            => 'Evidencija blokiranja',
+'sp-contributions-deleted'             => 'obrisani doprinosi korisnika',
+'sp-contributions-logs'                => 'zapisnici',
+'sp-contributions-talk'                => 'razgovor',
+'sp-contributions-userrights'          => 'postavke korisničkih prava',
+'sp-contributions-blocked-notice'      => 'Ovaj korisnik je trenutno blokiran. Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
+'sp-contributions-blocked-notice-anon' => 'Ova IP adresa je trenutno blokirana.
+Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
+'sp-contributions-search'              => 'Pretraga doprinosa',
+'sp-contributions-username'            => 'IP adresa ili korisničko ime:',
+'sp-contributions-submit'              => 'Traži',
 
 # What links here
 'whatlinkshere'            => 'Šta je povezano ovdje',
@@ -2522,6 +2540,8 @@ Međutim, možda je blokirana kao dio bloka $2, koji se ne može deblokirati.',
 Ne možete napraviti račun',
 'cant-block-while-blocked'        => 'Ne možete blokirati druge korisnike dok ste blokirani.',
 'cant-see-hidden-user'            => 'Korisnik kojeg pokušavate blokirati je već blokiran i sakriven. Pošto nemate prava hideuser (sakrivanje korisnika), ne možete vidjeti ni urediti korisnikovu blokadu.',
+'ipbblocked'                      => 'Ne možete blokirati ili deblokirati druge korisnike, jer ste i sami blokirani',
+'ipbnounblockself'                => 'Nije Vam dopušteno da deblokirate samog sebe',
 
 # Developer tools
 'lockdb'              => 'Zaključajte bazu',
@@ -2704,6 +2724,7 @@ Sačuvajte je na Vašem računaru i pošaljite ovdje.',
 'importstart'                => 'Uvoz stranica...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
 'importnopages'              => 'Nema stranica za uvoz.',
+'imported-log-entries'       => '{{PLURAL:$1|Uvezena $1 stavka zapisnika|Uvezene $1 stavke zapisnika|Uvezeno $1 stavki zapisnika}}.',
 'importfailed'               => 'Uvoz nije uspjeo: $1',
 'importunknownsource'        => 'Nepoznat izvorni tip uvoza',
 'importcantopen'             => 'Ne može se otvoriti uvozna datoteka',
@@ -3337,6 +3358,7 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'table_pager_first'        => 'Prva stranica',
 'table_pager_last'         => 'Zadnja stranica',
 'table_pager_limit'        => 'Pokaži $1 stavki po stranici',
+'table_pager_limit_label'  => 'Stavke po stranici:',
 'table_pager_limit_submit' => 'Idi',
 'table_pager_empty'        => 'Bez rezultata',
 

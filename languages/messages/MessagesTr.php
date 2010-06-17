@@ -300,7 +300,7 @@ $messages = array(
 'tog-editsection'             => 'Bölümleri [değiştir] bağlantıları ile değiştirebilme olanağı ver',
 'tog-editsectiononrightclick' => 'Bölümleri bölüm başlığına sağ tıklayarak değiştirebilme olanağı ver (JavaScript)',
 'tog-showtoc'                 => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
-'tog-rememberpassword'        => 'Parolayı hatırla',
+'tog-rememberpassword'        => 'Girişimi bu bilgisayarda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'tog-watchcreations'          => 'Yaratmış olduğum sayfaları izleme listeme ekle',
 'tog-watchdefault'            => 'Değişiklik yapılan sayfayı izleme listesine ekle',
 'tog-watchmoves'              => 'Taşıdığım sayfaları izleme listeme ekle',
@@ -691,7 +691,7 @@ Hesabınız açıldı.
 'yourname'                   => 'Kullanıcı adınız:',
 'yourpassword'               => 'Parolanız',
 'yourpasswordagain'          => 'Parolayı yeniden yaz',
-'remembermypassword'         => 'Parolayı hatırla.',
+'remembermypassword'         => 'Girişimi bu bilgisayarda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'yourdomainname'             => 'Alan adınız',
 'externaldberror'            => 'Ya doğrulama vertiabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.',
 'login'                      => 'Oturum aç',
@@ -1138,6 +1138,16 @@ Lütfen günlükleri kontrol edin.',
 'suppressionlogtext' => 'Aşağıdaki, hizmetlilerden gizlenen içerik içeren silinmelerin ve engellemelerin listesidir. 
 Şu anda işlevsel olan yasak ve engellemelerin listesi için [[Special:IPBlockList|IP engelleme listesine]] bakın.',
 
+# Revision move
+'revmove-legend'               => 'Hedef sayfa ve özet ayarla',
+'revmove-submit'               => 'Revizyonları seçilen sayfaya taşı',
+'revisionmoveselectedversions' => 'Seçili revizyonları taşı',
+'revmove-reasonfield'          => 'Sebep:',
+'revmove-titlefield'           => 'Hedef sayfa:',
+'revmove-badparam-title'       => 'Kötü parametreler',
+'revmove-norevisions-title'    => 'Geçersiz hedef revizyonu',
+'revmove-nullmove-title'       => 'Kötü başlık',
+
 # History merging
 'mergehistory'                     => 'Sayfa geçmişlerini takas et.',
 'mergehistory-header'              => 'Bu sayfa, bir kaynak sayfanın geçmiş revizyonlarını yeni bir sayfaya birleştirmenize olanak sağlar.
@@ -1467,6 +1477,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-reset-passwords'       => 'Diğer kullanıcıların parolalarını sıfırla',
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
+'right-revisionmove'          => 'Revizyonları taşı',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
@@ -1509,6 +1520,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'action-userrights'           => 'tüm kullanıcıların haklarını değiştirmeye',
 'action-userrights-interwiki' => 'diğer vikilerde kullanıcıların, kullanıcı haklarını değiştirmeye',
 'action-siteadmin'            => 'veritabanını kilitleyip açmaya',
+'action-revisionmove'         => 'revizyonları taşıma',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',

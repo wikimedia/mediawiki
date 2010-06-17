@@ -91,7 +91,13 @@ $messages = array(
 'qbspecialpages' => 'Axa tɔxewo',
 
 # Vector skin
-'vector-view-view' => 'Xlẽ',
+'vector-action-delete'   => 'Tutui',
+'vector-action-move'     => 'Ɖɔli eƒe nɔƒe',
+'vector-namespace-main'  => 'Axa',
+'vector-view-edit'       => 'Trɔ asi le eŋu',
+'vector-view-history'    => 'Kpɔ xoxoawo',
+'vector-view-view'       => 'Xlẽ',
+'vector-view-viewsource' => 'Kpɔ alesi woŋlɔe',
 
 'errorpagetitle'   => 'Vodada',
 'returnto'         => 'Gbugbɔ yi $1.',
@@ -168,6 +174,8 @@ $messages = array(
 # General errors
 'error'           => 'Vodada',
 'badarticleerror' => 'Wòmateŋu awɔ nusia le axa sia dzi o.',
+'cannotdelete'    => 'Womateŋu atutu axa sia alo axa "$1" o.
+Ɖewomahĩ ame aɖe tutui xoxo.',
 'badtitle'        => 'Tanya gbegblẽ',
 'viewsource'      => 'Kpɔ alesi wowɔe',
 'viewsourcefor'   => '$1 tɔwo',

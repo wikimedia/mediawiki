@@ -3329,6 +3329,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'table_pager_first'        => 'Pierwsza strona',
 'table_pager_last'         => 'Ostatnia strona',
 'table_pager_limit'        => 'Pokaż $1 pozycji na stronie',
+'table_pager_limit_label'  => 'Pozycji na stronie',
 'table_pager_limit_submit' => 'Pokaż',
 'table_pager_empty'        => 'Brak wyników',
 
