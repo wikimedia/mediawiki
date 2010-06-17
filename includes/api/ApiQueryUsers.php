@@ -220,6 +220,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		return $this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'user' );
 	}
 	
+	/**
+	* Gets all the groups that a user is automatically a member of
+	* @return array
+	*/
 	public static function getAutoGroups( $user ) {
 		$autolist = array();
 		$autolist[] = "*";
@@ -228,7 +232,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		foreach( Autopromote::getAutopromoteGroups( $user ) as $group ) {
 			$autolist[] = $group;
 		}
-		
+
 		return $autolist;
 	}
 
