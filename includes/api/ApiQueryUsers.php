@@ -201,11 +201,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				}
 			} else {
 				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) ) {
-					$autolist = array();
-					$autolist[] = "*";
-					foreach( Autopromote::getAutopromoteGroups( User::newFromName( $u ) ) as $group ) {
-						$autolist[] = $group;
-					}
+					$autolist = ApiQueryUsers::getAutoGroups( User::newFromName( $u ) );
 					
 					$data[$u]['groups'] = array_merge( $autolist, $data[$u]['groups'] );
 				
@@ -222,6 +218,18 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 			$done[] = $u;
 		}
 		return $this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'user' );
+	}
+	
+	public static function getAutoGroups( $user ) {
+		$autolist = array();
+		$autolist[] = "*";
+		$autolist[] = "user";
+
+		foreach( Autopromote::getAutopromoteGroups( $user ) as $group ) {
+			$autolist[] = $group;
+		}
+		
+		return $autolist;
 	}
 
 	public function getAllowedParams() {

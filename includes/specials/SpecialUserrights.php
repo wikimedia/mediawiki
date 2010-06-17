@@ -402,8 +402,9 @@ class UserrightsPage extends SpecialPage {
 		global $wgOut, $wgUser, $wgLang;
 
 		$list = array();
-		foreach( $groups as $group )
+		foreach( $groups as $group ) {
 			$list[] = self::buildGroupLink( $group );
+		}
 
 		$autolist = array();
 		if ( $user instanceof User ) {

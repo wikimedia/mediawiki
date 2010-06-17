@@ -76,7 +76,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {
-			$vals['groups'] = $wgUser->getGroups();
+			$autolist = ApiQueryUsers::getAutoGroups( $wgUser );
+		
+			$vals['groups'] = array_merge( $autolist, $wgUser->getGroups() );
 			$result->setIndexedTagName( $vals['groups'], 'g' );	// even if empty
 		}
 
