@@ -772,7 +772,7 @@ abstract class Maintenance {
 	 * @param $delete Boolean: whether or not to actually delete the records
 	 * @author Rob Church <robchur@gmail.com>
 	 */
-	protected function purgeRedundantText( $delete = true ) {
+	public function purgeRedundantText( $delete = true ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
