@@ -277,7 +277,7 @@ $messages = array(
 'tog-editsection'             => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc'                 => 'Montri liston de enhavoj (por paĝojn kun pli ol 3 sekciojn)',
-'tog-rememberpassword'        => 'Memori mian pasvorton por ĉi tiu komputilo',
+'tog-rememberpassword'        => 'Memori mian ensalutadon ĉe ĉi tiu komputilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',
 'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
 'tog-watchdefault'            => 'Priatenti redaktintajn paĝojn de vi',
 'tog-watchmoves'              => 'Aldoni paĝojn, kiujn mi movas, al mia atentaro',
@@ -677,7 +677,7 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'yourname'                   => 'Salutnomo:',
 'yourpassword'               => 'Pasvorto:',
 'yourpasswordagain'          => 'Retajpu pasvorton',
-'remembermypassword'         => 'Rememori mian pasvorton',
+'remembermypassword'         => 'Memori mian ensalutadon ĉe ĉi tiu komputilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',
 'yourdomainname'             => 'Via domajno',
 'externaldberror'            => 'Aŭ estis datenbaza eraro rilate al ekstera aŭtentikigado, aŭ vi ne rajtas ĝisdatigi vian eksteran konton.',
 'login'                      => 'Ensaluti',
@@ -1138,15 +1138,19 @@ Bonvolu kontroli la protokolojn.',
 Rigardu la [[Special:IPBlockList|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
 
 # Revision move
-'revmove-legend'            => 'Aldoni celan paĝon kaj resumon',
-'revmove-reasonfield'       => 'Kialo:',
-'revmove-titlefield'        => 'Cela paĝo:',
-'revmove-badparam-title'    => 'Malbonaj parametroj',
-'revmove-badparam'          => '<span class="error">Via peto enhavas kontraŭleĝajn aŭ nesufiĉajn parametrojn. Bonvolu premi "malantaŭen" kaj provi denove.</span>',
-'revmove-norevisions-title' => 'Nevalida cela revizio',
-'revmove-norevisions'       => '<span class="error">Vi ne specifis unu aŭ pliajn reviziojn por apliki ĉi tiun funkcion aŭ la specifita revizio ne ekzistas.</span>',
-'revmove-nullmove-title'    => 'Fuŝa titolo',
-'revmove-nullmove'          => '<span class="error">Origina kaj cela paĝoj samas. Bonvolu malantaŭeniri kaj tajpi paĝon malsaman de "$1".</span>',
+'moverevlogentry'              => 'movis {{PLURAL:$3|unu revizion|$3 reviziojn}} de $1 al $2',
+'revisionmove'                 => 'Movi reviziojn de "$1"',
+'revmove-explain'              => 'La jenaj revizioj estos movita de $1 al la donita cela paĝo. Se la celo ne ekzistas, ĝi estos kreita. Alie, ĉi tiuj revizioj estos kunigita en la paĝa historio.',
+'revmove-legend'               => 'Aldoni celan paĝon kaj resumon',
+'revisionmoveselectedversions' => 'Movi elektitaj reviziojn',
+'revmove-reasonfield'          => 'Kialo:',
+'revmove-titlefield'           => 'Cela paĝo:',
+'revmove-badparam-title'       => 'Malbonaj parametroj',
+'revmove-badparam'             => '<span class="error">Via peto enhavas kontraŭleĝajn aŭ nesufiĉajn parametrojn. Bonvolu premi "malantaŭen" kaj provi denove.</span>',
+'revmove-norevisions-title'    => 'Nevalida cela revizio',
+'revmove-norevisions'          => '<span class="error">Vi ne specifis unu aŭ pliajn reviziojn por apliki ĉi tiun funkcion aŭ la specifita revizio ne ekzistas.</span>',
+'revmove-nullmove-title'       => 'Fuŝa titolo',
+'revmove-nullmove'             => '<span class="error">Origina kaj cela paĝoj samas. Bonvolu malantaŭeniri kaj tajpi paĝon malsaman de "$1".</span>',
 
 # History merging
 'mergehistory'                     => 'Kunfandigi historiojn de paĝoj',
@@ -1681,6 +1685,9 @@ jen la protokolo pri forigado por ĉi tiu dosiero por via oportuneco:",
 'filename-bad-prefix'         => "La nomo de la dosiero kiun vi alŝutas komencas kun '''\"\$1\"''', kiu estas nepriskriba nomo ofte aŭtomate donata de ciferecaj fotiloj. Bonvolu elekti pli priskriban nomon por via bildo.",
 'upload-successful-msg'       => 'Via alŝutdosiero estas disponebla ĉi tie: $1',
 'upload-failure-subj'         => 'Alŝuta problemo',
+'upload-failure-msg'          => 'Estis problemo kun via alŝuto:
+
+$1',
 
 'upload-proto-error'        => 'Malvalida protokolo',
 'upload-proto-error-text'   => 'Fora alŝuto devas URL-on komence de <code>http://</code> aŭ <code>ftp://</code>.',
@@ -2199,7 +2206,8 @@ La lasta redaktinto estis [[User:$3|$3]] ([[User talk:$3|diskuto]]{{int:pipe-sep
 'rollback-success'  => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
 
 # Edit tokens
-'sessionfailure' => 'Ŝajnas ke estas problemo kun via ensalutado;
+'sessionfailure-title' => 'Seanco malsukcesis',
+'sessionfailure'       => 'Ŝajnas ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
 Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
 

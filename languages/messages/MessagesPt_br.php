@@ -2487,7 +2487,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'autoblocker'                     => 'Você foi automaticamente bloqueado, pois partilha um endereço de IP com "[[User:$1|$1]]". O motivo apresentado foi: "$2".',
 'blocklogpage'                    => 'Registro de bloqueio',
 'blocklog-showlog'                => 'Este usuário foi já bloqueado anteriormente.
-O registo de bloqueio é mostrado abaixo para referência:',
+O registro de bloqueio é fornecido abaixo para referência:',
 'blocklog-showsuppresslog'        => 'O usuário foi bloqueado e ocultado anteriormente.
 O registro de supressão é fornecido abaixo para referência:',
 'blocklogentry'                   => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',

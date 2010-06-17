@@ -3253,6 +3253,7 @@ $1',
 'table_pager_first'        => 'Першая старонка',
 'table_pager_last'         => 'Апошняя старонка',
 'table_pager_limit'        => 'Паказваць $1 элемэнтаў на старонцы',
+'table_pager_limit_label'  => 'Запісаў на старонку:',
 'table_pager_limit_submit' => 'Перайсьці',
 'table_pager_empty'        => 'Ня знойдзена',
 

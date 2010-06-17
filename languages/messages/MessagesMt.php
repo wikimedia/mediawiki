@@ -284,7 +284,7 @@ $messages = array(
 'tog-editsection'             => 'L-immodifikar tas-sezzjonijiet permezz tal-ħolqa [editja]',
 'tog-editsectiononrightclick' => "L-immodifikar ta' sezzjonijiet bi klikk lemini fuq it-titli tas-sezzjonijiet (bżonn tal-JavaScript)",
 'tog-showtoc'                 => "Uri l-werrej (għal paġni b'iktar minn 3 sezzjonijiet)",
-'tog-rememberpassword'        => 'Ftakar il-password fuq dan il-kompjuter',
+'tog-rememberpassword'        => "Ftakar il-login tiegħi fuq dan il-kompjuter (għal massimu ta' {{PLURAL:$1|ġurnata|$1 ġurnata}})",
 'tog-watchcreations'          => "Żid il-paġni li noħloq fil-lista ta' osservazzjoni tiegħi",
 'tog-watchdefault'            => "Żid il-paġni li nimmodifika fil-lista ta' osservazzjoni personali",
 'tog-watchmoves'              => "Żid il-paġni li mmexxi fil-lista ta' osservazzjoni tiegħi",
@@ -668,7 +668,7 @@ Tinsiex tippersonalizza l-[[Special:Preferences|preferenzi]] ta' {{SITENAME}}.",
 'yourname'                   => 'Isem tal-utent:',
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => "Erġa' ikteb il-password:",
-'remembermypassword'         => 'Ftakar il-login tiegħi fuq dan il-kompjuter',
+'remembermypassword'         => "Ftakar il-login tiegħi fuq dan il-kompjuter (għal massimu ta' {{PLURAL:$1|ġurnata|$1 ġurnata}})",
 'yourdomainname'             => 'Id-dominju tiegħek:',
 'externaldberror'            => "Kien hemm problema esterna ta' awtentiċitá jew m'għandhekx permess neċċessarju sabiex tagħmel aġġornamenti fuq l-aċċess estern.",
 'login'                      => 'Idħol',
@@ -1464,13 +1464,13 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'upload_directory_missing'    => "Id-Direttorju tal-''upload'' ($1) huwa nieqes u ma jistax jiġi maħluq mill-''webserver''.",
 'upload_directory_read_only'  => "Il-''Webserver'' m'għandux il-mezzi sabiex jikteb fil-direttorju tal-''upload'' ($1).",
 'uploaderror'                 => "Problema fl-''upload''",
-'uploadtext'                  => "Uża l-formula t'hawn taħt sabiex ittella' fajl.
-Biex tara jew tfittex fajls li ġew mtellgħin mur fil-[[Special:FileList|lista ta' fajls mtellgħin]]. Fajls imtellgħin u verżjonijiet ġodda tal-fajls huma reġistrati fir-[[Special:Log/upload|reġistru ta' l-''uploads'']], u dawk li tħassru huma fir-[[Special:Log/upload|reġistru tat-tħassir]].
+'uploadtext'                  => "Uża l-formula t'hawn taħt sabiex ittella' fajls ġodda.
+Biex tara jew tfittex fajls li ġew mtellgħin qabel mur fil-[[Special:FileList|lista ta' fajls mtellgħin]]. Fajls imtellgħin u verżjonijiet ġodda tal-fajls huma reġistrati fir-[[Special:Log/upload|reġistru tat-tlugħ tal-fajls]], u dawk li tħassru huma fir-[[Special:Log/delete|reġistru tat-tħassir]].
 
-Biex tinkludi fajl f'paġna, uża l-link fil-forma
-* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.jpg]]</nowiki>''',
-* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki>''' jew
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' biex toħloq link dirett għal fajl.",
+Biex tinkludi fajl f'paġna, uża ħolqa taħt waħda minn dawn il-forom:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.jpg]]</nowiki></tt>''' sabiex tuża' l-verżjoni sħiħa tal-fajl
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.png|200px|thumb|left|test alternattiv]]</nowiki></tt>''' sabiex tpoġġi l-istampa fuq ix-xellug ġo kaxxa ta' 200px b'\"test alternattiv\" tkun id-deskrizzjoni
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fajl.ogg]]</nowiki></tt>''' biex toħloq ħolqa diretta lejn il-fajl, mingħajr ma turih.",
 'upload-permitted'            => "Tipi ta' fajls permessi: $1.",
 'upload-preferred'            => "Tipi ta' fajls preferuti: $1.",
 'upload-prohibited'           => "Tipi ta' fajls projibiti: $1.",
@@ -1519,6 +1519,7 @@ Jekk għandek din l-istampa ta' riżoluzzjoni sħiħa, jekk jogħġbok, tella' d
 Jekk jogħġbok mur lura u tella' dan il-fajl b'isem ġdid. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Fajl b'dan l-isem diġà jeżisti fl-arkivju tar-riżorsi multimedjali maqsuma. Jekk tixtieq xorta waħda li ttella' l-fajl, mur lura u tella' fajl b'isem ġdid. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dan il-fajl huwa duplikat ta' {{PLURAL:$1|dan il-fajl|dawn il-fajls}} segwenti:",
+'file-deleted-duplicate'      => "Fajl identiku għal dan ([[$1]]) ġie mħassar fil-passat. Iċċekja qabel xejn il-kronoloġija tat-tħassir qabel ma tkompli ttella' l-fajl.",
 'successfulupload'            => "Mtella' b'suċċess",
 'uploadwarning'               => 'Twissija dwar it-tlugħ tal-fajls',
 'savefile'                    => 'Salva l-fajl',
@@ -1528,9 +1529,13 @@ Jekk jogħġbok mur lura u tella' dan il-fajl b'isem ġdid. [[File:$1|thumb|cent
 'uploaddisabledtext'          => "It-tlugħ ta' fajls mhuwiex attiv.",
 'uploadscripted'              => "Dan il-fajl fih kodiċi ta' ''HTML'' u ''script'' li jista' jkun interpretat hażin mill-''web browser''.",
 'uploadvirus'                 => "Dan il-fajl huwa infettat b'virus! Dettalji: $1",
+'upload-source'               => 'Sors tal-fajl',
 'sourcefilename'              => 'L-isem tal-fajl tal-oriġini:',
+'sourceurl'                   => 'Sors tal-URL:',
 'destfilename'                => 'L-Isem tal-fajl tad-destinazzjoni:',
 'upload-maxfilesize'          => 'Daqs massimu tal-fajl: $1',
+'upload-description'          => 'Deskrizzjoni tal-fajl',
+'upload-options'              => 'Opzjonijiet għat-tlugħ tal-fajl',
 'watchthisupload'             => 'Segwi dan il-fajl',
 'filewasdeleted'              => "Fajl b'dan l-isem kien itella' diġa u wara ġie mħassar.
 Inti għandek tiverifika ir-$1 qabel ma tkompli bl-''upload'' mill-ġdid.",
@@ -1553,6 +1558,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- ħalli din il-linja eżattament kif inhi -->',
+'upload-successful-msg'       => 'Il-fajl tiegħek huwa disponibbli hawnhekk: $1',
+'upload-failure-subj'         => 'Problem fit-tlugħ tal-fajl',
 
 'upload-proto-error'      => 'Protocol ħażin',
 'upload-proto-error-text' => "Għal upload remote huwa neċessarju tispeċifika l-URL li jibda' b'<code>http://</code> jew <code>ftp://</code>.",
@@ -1563,6 +1570,10 @@ Jekk jogħġbok ikkuntatja lil xi [[Special:ListUsers/sysop|amministratur]].",
 'upload-misc-error-text'  => "Waqt li l-fajl kien qed jittella', ġiet verifikata problema mhux magħrufha.<br />
 Ivverifika li l-URL huwa validu u aċċessibbli, u erġa' pprova.<br />
 Jekk il-problema tkompli tippersisti, ikkuntatja lil xi [[Special:ListUsers/sysop|amministratur]].",
+'upload-unknown-size'     => 'Dimensjoni mhux magħrufa',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Aċċess miċħud',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL mhux tajjeb',

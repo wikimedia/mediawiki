@@ -27,6 +27,7 @@
  * @author Shizhao
  * @author Wmr89502270
  * @author Wong128hk
+ * @author Yfdyh000
  */
 
 $fallback8bitEncoding = 'windows-936';
@@ -3197,6 +3198,7 @@ $1',
 'table_pager_first'        => '第一页',
 'table_pager_last'         => '末一页',
 'table_pager_limit'        => '每页显示$1项',
+'table_pager_limit_label'  => '每页项目：',
 'table_pager_limit_submit' => '到',
 'table_pager_empty'        => '没有结果',
 

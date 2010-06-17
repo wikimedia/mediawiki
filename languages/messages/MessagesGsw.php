@@ -3062,6 +3062,7 @@ Bitte bstätig, ass Du die Syte wirkli wit nej aalege.",
 'table_pager_first'        => 'Erschti Syte',
 'table_pager_last'         => 'Letschti Syte',
 'table_pager_limit'        => 'Zeig $1 Yträg pro Syte aa',
+'table_pager_limit_label'  => 'Yyträg pro Syte:',
 'table_pager_limit_submit' => 'Gang',
 'table_pager_empty'        => 'Kei Ergebniss',
 

@@ -3300,6 +3300,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'table_pager_first'        => 'Trang đầu',
 'table_pager_last'         => 'Trang cuối',
 'table_pager_limit'        => 'Xem $1 kết quả mỗi trang',
+'table_pager_limit_label'  => 'Số khoản mỗi trang:',
 'table_pager_limit_submit' => 'Xem',
 'table_pager_empty'        => 'Không có kết quả nào.',
 
