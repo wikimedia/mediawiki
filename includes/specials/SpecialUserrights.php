@@ -32,10 +32,10 @@ class UserrightsPage extends SpecialPage {
 	public function userCanChangeRights( $user, $checkIfSelf = true ) {
 		$available = $this->changeableGroups();
 		return !empty( $available['add'] )
-			or !empty( $available['remove'] )
-			or ( ( $this->isself || !$checkIfSelf ) and
+			|| !empty( $available['remove'] )
+			|| ( ( $this->isself || !$checkIfSelf ) &&
 				( !empty( $available['add-self'] )
-				 or !empty( $available['remove-self'] ) ) );
+				 || !empty( $available['remove-self'] ) ) );
 	}
 
 	/**
@@ -77,8 +77,9 @@ class UserrightsPage extends SpecialPage {
 				$this->mTarget = $wgUser->getName();
 		}
 
-		if ( User::getCanonicalName( $this->mTarget ) == $wgUser->getName() )
+		if ( User::getCanonicalName( $this->mTarget ) == $wgUser->getName() ) {
 			$this->isself = true;
+		}
 
 		if( !$this->userCanChangeRights( $wgUser, true ) ) {
 			// fixme... there may be intermediate groups we can mention.
@@ -99,8 +100,9 @@ class UserrightsPage extends SpecialPage {
 		$this->setHeaders();
 
 		// show the general form
-		if ( count( $available['add'] ) || count( $available['remove'] ) )
+		if ( count( $available['add'] ) || count( $available['remove'] ) ) {
 			$this->switchForm();
+		}
 
 		if( $wgRequest->wasPosted() ) {
 			// save settings
