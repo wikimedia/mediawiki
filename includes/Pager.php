@@ -986,7 +986,14 @@ abstract class TablePager extends IndexPager {
 	 */
 	function getLimitSelect() {
 		global $wgLang;
-		$s = "<select name=\"limit\">";
+		
+		# Add the current limit from the query string
+		# to avoid that the limit is lost after clicking Go next time
+		if ( !in_array( $this->mLimit, $this->mLimitsShown ) ) {
+			$this->mLimitsShown[] = $this->mLimit;
+			sort( $this->mLimitsShown );
+		}
+		$s = Html::openElement( 'select', array( 'name' => 'limit' ) ) . "\n";
 		foreach ( $this->mLimitsShown as $key => $value ) {
 			# The pair is either $index => $limit, in which case the $value
 			# will be numeric, or $limit => $text, in which case the $value
@@ -998,10 +1005,9 @@ abstract class TablePager extends IndexPager {
 				$limit = $key;
 				$text = $value;
 			}
-			$selected = ( $limit == $this->mLimit ? 'selected="selected"' : '' );
-			$s .= "<option value=\"$limit\" $selected>$text</option>\n";
+			$s .= Xml::option( $text, $limit, $limit == $this->mLimit ) . "\n";
 		}
-		$s .= "</select>";
+		$s .= Html::closeElement( 'select' );
 		return $s;
 	}
 
