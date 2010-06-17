@@ -675,7 +675,7 @@ class VectorTemplate extends QuickTemplate {
 	 * when UI is in RTL mode
 	 */
 	private function renderNavigation( $elements ) {
-		global $wgContLang, $wgVectorUseSimpleSearch, $wgVectorShowVariantName;
+		global $wgContLang, $wgVectorUseSimpleSearch, $wgVectorShowVariantName, $wgUser;
 
 		// If only one element was given, wrap it in an array, allowing more
 		// flexible arguments
@@ -768,7 +768,7 @@ class VectorTemplate extends QuickTemplate {
 	<h5<?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
 	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 		<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
-		<?php if ( $wgVectorUseSimpleSearch ): ?>
+		<?php if ( $wgVectorUseSimpleSearch && $wgUser->getOption( 'vector-simplesearch' ) ): ?>
 		<div id="simpleSearch">
 			<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
 			<button id="searchButton" type='submit' name='button' <?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?>>&#160;</button>
