@@ -225,15 +225,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	* @return array
 	*/
 	public static function getAutoGroups( $user ) {
-		$autolist = array();
-		$autolist[] = "*";
-		$autolist[] = "user";
-
-		foreach( Autopromote::getAutopromoteGroups( $user ) as $group ) {
-			$autolist[] = $group;
-		}
-
-		return $autolist;
+		return array_merge( array( '*', 'user' ), Autopromote::getAutopromoteGroups( $user ) );
 	}
 
 	public function getAllowedParams() {
