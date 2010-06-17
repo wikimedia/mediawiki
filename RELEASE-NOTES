@@ -222,6 +222,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   thumbnailing larger than original image
 * (bug 23835) Need "thumbmime" result in "imageinfo" query
 * (bug 23851) Repair diff for file redirect pages
+* (bug 24009) Include implicit groups in action=query&list=users&usprop=groups
 
 === Languages updated in 1.17 ===
 

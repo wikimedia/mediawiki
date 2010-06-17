@@ -130,20 +130,25 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				$user = User::newFromRow( $r );
 				$name = $user->getName();
 				$data[$name]['name'] = $name;
+
 				if ( isset( $this->prop['editcount'] ) ) {
 					$data[$name]['editcount'] = intval( $user->getEditCount() );
 				}
+
 				if ( isset( $this->prop['registration'] ) ) {
 					$data[$name]['registration'] = wfTimestampOrNull( TS_ISO_8601, $user->getRegistration() );
 				}
+
 				if ( isset( $this->prop['groups'] ) && !is_null( $r->ug_group ) ) {
 					// This row contains only one group, others will be added from other rows
 					$data[$name]['groups'][] = $r->ug_group;
 				}
+
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $r->blocker_name ) ) {
 					$data[$name]['blockedby'] = $r->blocker_name;
 					$data[$name]['blockreason'] = $r->ipb_reason;
 				}
+
 				if ( isset( $this->prop['emailable'] ) && $user->canReceiveEmail() ) {
 					$data[$name]['emailable'] = '';
 				}
@@ -175,10 +180,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				$data[$u] = array( 'name' => $u );
 				$urPage = new UserrightsPage;
 				$iwUser = $urPage->fetchUser( $u );
+
 				if ( $iwUser instanceof UserRightsProxy ) {
 					$data[$u]['interwiki'] = '';
+
 					if ( !is_null( $params['token'] ) ) {
 						$tokenFunctions = $this->getTokenFunctions();
+
 						foreach ( $params['token'] as $t ) {
 							$val = call_user_func( $tokenFunctions[$t], $iwUser );
 							if ( $val === false ) {
@@ -192,8 +200,15 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 					$data[$u]['missing'] = '';
 				}
 			} else {
-				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) )
-				{
+				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) ) {
+					$autolist = array();
+					$autolist[] = "*";
+					foreach( Autopromote::getAutopromoteGroups( User::newFromName( $u ) ) as $group ) {
+						$autolist[] = $group;
+					}
+					
+					$data[$u]['groups'] = array_merge( $autolist, $data[$u]['groups'] );
+				
 					$this->getResult()->setIndexedTagName( $data[$u]['groups'], 'g' );
 				}
 			}
