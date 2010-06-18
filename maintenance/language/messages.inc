@@ -191,6 +191,7 @@ $wgMessageStructure = array(
 		'vector-namespace-talk',
 		'vector-namespace-template',
 		'vector-namespace-user',
+		'vector-simplesearch-preference',
 		'vector-view-create',
 		'vector-view-edit',
 		'vector-view-history',
