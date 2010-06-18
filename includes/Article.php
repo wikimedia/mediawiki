@@ -4048,8 +4048,9 @@ class Article {
 		$pageTable = $dbw->tableName( 'page' );
 		$hitcounterTable = $dbw->tableName( 'hitcounter' );
 		$acchitsTable = $dbw->tableName( 'acchits' );
+		$dbType = $dbw->getType();
 
-		if ( $wgHitcounterUpdateFreq <= 1 ) {
+		if ( $wgHitcounterUpdateFreq <= 1 || $dbType == 'sqlite' ) {
 			$dbw->query( "UPDATE $pageTable SET page_counter = page_counter + 1 WHERE page_id = $id" );
 
 			return;
@@ -4076,7 +4077,6 @@ class Article {
 			wfProfileIn( 'Article::incViewCount-collect' );
 			$old_user_abort = ignore_user_abort( true );
 
-			$dbType = $dbw->getType();
 			$dbw->lockTables( array(), array( 'hitcounter' ), __METHOD__, false );
 			$tabletype = $dbType == 'mysql' ? "ENGINE=HEAP " : '';
 			$dbw->query( "CREATE TEMPORARY TABLE $acchitsTable $tabletype AS " .
