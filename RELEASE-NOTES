@@ -200,6 +200,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16356) Repair dumpInterwiki.inc to use proper normalization.
 * (bug 24006) deleteArchivedRevisions.php maintenance script now longer throws
   a fatal error
+* (bug 23465) Don't ignore the predefined destination filename on 
+  Special:Upload after following a red link
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
