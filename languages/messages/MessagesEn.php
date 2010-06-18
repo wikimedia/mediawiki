@@ -796,6 +796,7 @@ XHTML id names.
 'vector-namespace-talk'      => 'Discussion',
 'vector-namespace-template'  => 'Template',
 'vector-namespace-user'      => 'User page',
+'vector-simplesearch-preference' => 'Enable enhanced search suggestions (Vector skin only)',
 'vector-view-create'         => 'Create',
 'vector-view-edit'           => 'Edit',
 'vector-view-history'        => 'View history',

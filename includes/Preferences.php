@@ -923,6 +923,15 @@ class Preferences {
 				'section' => 'searchoptions/display',
 			);
 		}
+		
+		global $wgVectorUseSimpleSearch;
+		if ( $wgVectorUseSimpleSearch ) {
+			$defaultPreferences['vector-simplesearch'] = array(
+				'type' => 'toggle',
+				'label-message' => 'vector-simplesearch-preference',
+				'section' => 'searchoptions/display'
+			);
+		}
 
 		$defaultPreferences['searcheverything'] = array(
 			'type' => 'toggle',
