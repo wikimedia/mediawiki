@@ -2066,7 +2066,7 @@ $UNWATCHURL
 'confirm'                => '確認',
 'excontent'              => '內容為: "$1"',
 'excontentauthor'        => '內容為：「$1」（而且唯一貢獻者為[[Special:Contributions/$2|$2]]）',
-'exbeforeblank'          => '被清空前的內容為: "$1"',
+'exbeforeblank'          => '被清空前的內容為：“$1”',
 'exblank'                => '頁面為空',
 'delete-confirm'         => '刪除「$1」',
 'delete-legend'          => '刪除',

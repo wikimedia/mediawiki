@@ -515,6 +515,7 @@ No glömolöd ad votükön [[Special:Preferences|buükamis olik in {{SITENAME}}]
 'badretype'                  => 'Letavöds fa ol pepenöls no leigons.',
 'userexists'                 => 'Gebananem at ya dabinon. Välolös, begö! nemik votik.',
 'loginerror'                 => 'Nunädamapöl',
+'createaccounterror'         => 'Kal no pejafon: $1',
 'nocookiesnew'               => 'Gebanakal pejafon, ab no enunädol oli. {{SITENAME}} gebon „kekilis“ pö nunädam gebanas. Pö bevüresodanaföm olik ye geb kekilas penemogükon. Mogükolös oni e nunädolös oli me gebananem e letavöd nuliks ola.',
 'nocookieslogin'             => '{{SITENAME}} gebon „kekilis“ ad nunädön gebanis. Anu geb kekilas nemögon. Mögükolös onis e steifülolös nogna.',
 'noname'                     => 'No egivol gebananemi lonöföl.',
@@ -861,6 +862,9 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}
 'suppressionlog'     => 'Lovelogam-jenotalised',
 'suppressionlogtext' => 'Is palisedons moükams e blokams lätik, kels ätefons ninädi de guvans peklänedöli. Logolös [[Special:IPBlockList|lisedi ladetas-IP pebloköl]], kö pajonons blokams anu lonöföls.',
 
+# Revision move
+'revmove-reasonfield' => 'Kod:',
+
 # History merging
 'mergehistory'                     => 'Balön padajenotemis',
 'mergehistory-header'              => 'Pad at mogükon balami fomamis se jenotem fonätapada ad fomön padi nulik.
@@ -891,12 +895,13 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'mergelogpagetext'   => 'Is palisedon balamis brefabüikün jenotema pada bal ini votik.',
 
 # Diffs
-'history-title'           => 'Revidajenotem pada: "$1"',
-'difference'              => '(dif vü revids)',
-'lineno'                  => 'Lien $1:',
-'compareselectedversions' => 'Leigodolöd fomamis pevälöl',
-'editundo'                => 'sädunön',
-'diff-multi'              => '({{PLURAL:$1|Revid vüik bal no pejonon|Revids vüik $1 no pejonons}}.)',
+'history-title'            => 'Revidajenotem pada: "$1"',
+'difference'               => '(dif vü revids)',
+'lineno'                   => 'Lien $1:',
+'compareselectedversions'  => 'Leigodolöd fomamis pevälöl',
+'showhideselectedversions' => 'Jonön/klänedön fomamis pevälöl',
+'editundo'                 => 'sädunön',
+'diff-multi'               => '({{PLURAL:$1|Revid vüik bal no pejonon|Revids vüik $1 no pejonons}}.)',
 
 # Search results
 'searchresults'                    => 'Sukaseks',
@@ -1500,7 +1505,7 @@ Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWi
 'lonelypagestext'         => 'Pads nonik in vük at peyümons ad pads sököl in {{SITENAME}}.',
 'uncategorizedpages'      => 'Pads nen klad',
 'uncategorizedcategories' => 'Klads nen klad löpikum',
-'uncategorizedimages'     => 'Magods nen klad',
+'uncategorizedimages'     => 'Ragivs nen klad',
 'uncategorizedtemplates'  => 'Samafomots nen klad',
 'unusedcategories'        => 'Klads no pageböls',
 'unusedimages'            => 'Ragivs no pageböls',

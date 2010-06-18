@@ -13,6 +13,7 @@
  * @author Rotem Liss (March 2006 on)
  * @author Rotemliss
  * @author YaronSh
+ * @author ערן
  */
 
 $rtl = true;
@@ -3352,6 +3353,7 @@ $1',
 'table_pager_first'        => 'הדף הראשון',
 'table_pager_last'         => 'הדף האחרון',
 'table_pager_limit'        => 'הצגת $1 פריטים בדף',
+'table_pager_limit_label'  => 'מספר פריטים בדף:',
 'table_pager_limit_submit' => 'הצגה',
 'table_pager_empty'        => 'ללא תוצאות',
 
