@@ -225,6 +225,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23835) Need "thumbmime" result in "imageinfo" query
 * (bug 23851) Repair diff for file redirect pages
 * (bug 24009) Include implicit groups in action=query&list=users&usprop=groups
+* (bug 24016) API: Handle parameters specified in simple string syntax 
+  ( 'paramname' => 'defaultval' ) correctly when outputting help
 
 === Languages updated in 1.17 ===
 
