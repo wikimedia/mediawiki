@@ -3146,6 +3146,7 @@ $1",
 'table_pager_first'        => 'Éischt Säit',
 'table_pager_last'         => 'Lescht Säit',
 'table_pager_limit'        => '$1 Objete pro Säit weisen',
+'table_pager_limit_label'  => 'Objete pro Säit:',
 'table_pager_limit_submit' => 'Lass',
 'table_pager_empty'        => 'Keng Resultater',
 

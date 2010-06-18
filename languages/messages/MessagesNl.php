@@ -27,6 +27,7 @@
  * @author Servien
  * @author Siebrand
  * @author Slomox
+ * @author Tedjuh10
  * @author Troefkaart
  * @author Tvdm
  * @author לערי ריינהארט
@@ -474,31 +475,32 @@ $messages = array(
 'faqpage'        => 'Project:Veelgestelde vragen',
 
 # Vector skin
-'vector-action-addsection'   => 'Kopje toevoegen',
-'vector-action-delete'       => 'Verwijderen',
-'vector-action-move'         => 'Hernoemen',
-'vector-action-protect'      => 'Beveiligen',
-'vector-action-undelete'     => 'Terugplaatsen',
-'vector-action-unprotect'    => 'Beveiliging opheffen',
-'vector-namespace-category'  => 'Categorie',
-'vector-namespace-help'      => 'Hulppagina',
-'vector-namespace-image'     => 'Bestand',
-'vector-namespace-main'      => 'Pagina',
-'vector-namespace-media'     => 'Mediapagina',
-'vector-namespace-mediawiki' => 'Bericht',
-'vector-namespace-project'   => 'Projectpagina',
-'vector-namespace-special'   => 'Speciale pagina',
-'vector-namespace-talk'      => 'Overleg',
-'vector-namespace-template'  => 'Sjabloon',
-'vector-namespace-user'      => 'Gebruikerspagina',
-'vector-view-create'         => 'Aanmaken',
-'vector-view-edit'           => 'Bewerken',
-'vector-view-history'        => 'Geschiedenis bekijken',
-'vector-view-view'           => 'Lezen',
-'vector-view-viewsource'     => 'Brontekst bekijken',
-'actions'                    => 'Handelingen',
-'namespaces'                 => 'Naamruimten',
-'variants'                   => 'Varianten',
+'vector-action-addsection'       => 'Kopje toevoegen',
+'vector-action-delete'           => 'Verwijderen',
+'vector-action-move'             => 'Hernoemen',
+'vector-action-protect'          => 'Beveiligen',
+'vector-action-undelete'         => 'Terugplaatsen',
+'vector-action-unprotect'        => 'Beveiliging opheffen',
+'vector-namespace-category'      => 'Categorie',
+'vector-namespace-help'          => 'Hulppagina',
+'vector-namespace-image'         => 'Bestand',
+'vector-namespace-main'          => 'Pagina',
+'vector-namespace-media'         => 'Mediapagina',
+'vector-namespace-mediawiki'     => 'Bericht',
+'vector-namespace-project'       => 'Projectpagina',
+'vector-namespace-special'       => 'Speciale pagina',
+'vector-namespace-talk'          => 'Overleg',
+'vector-namespace-template'      => 'Sjabloon',
+'vector-namespace-user'          => 'Gebruikerspagina',
+'vector-simplesearch-preference' => 'Verbeterde zoeksuggesties inschakelen (alleen voor het uiterlijk Vector)',
+'vector-view-create'             => 'Aanmaken',
+'vector-view-edit'               => 'Bewerken',
+'vector-view-history'            => 'Geschiedenis bekijken',
+'vector-view-view'               => 'Lezen',
+'vector-view-viewsource'         => 'Brontekst bekijken',
+'actions'                        => 'Handelingen',
+'namespaces'                     => 'Naamruimten',
+'variants'                       => 'Varianten',
 
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Ga naar $1.',
@@ -1210,7 +1212,8 @@ Controleer de logboeken.',
 'revdelete-only-restricted'   => 'Er is een fout opgetreden bij het verbergen van het item van $1, $2: u kunt geen items onderdrukken uit het zicht van beheerders zonder ook een van de andere zichtbaarheidsopties te selecteren.',
 'revdelete-reason-dropdown'   => '* Veel voorkomende redenen voor verwijderen
 ** Auteursrechtenschending
-* Onbetamelijke persoonlijke informatie',
+** Onbetamelijke persoonlijke informatie
+** Potentieel lasterlijke informatie',
 'revdelete-otherreason'       => 'Andere reden:',
 'revdelete-reasonotherlist'   => 'Andere reden',
 'revdelete-edit-reasonlist'   => 'Redenen voor verwijderen bewerken',

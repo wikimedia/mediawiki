@@ -79,6 +79,7 @@
  * @author Slomox
  * @author Sp5uhe
  * @author Srhat
+ * @author Tedjuh10
  * @author Tgr
  * @author The Evil IP address
  * @author UV
@@ -1164,7 +1165,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'searchprofile-project'          => 'An option in the [[Special:Search]] page.',
 'searchprofile-images'           => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
 'searchprofile-everything'       => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.
+'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:Search] page.
 
 {{Identical|Advanced}}',
 'searchprofile-articles-tooltip' => '{{Identical|Search in $1}}',
