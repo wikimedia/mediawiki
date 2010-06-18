@@ -33,7 +33,7 @@ if ( file_exists( 'selenium/LocalSeleniumSettings.php' ) ) {
 	die( -1 );
 }
 
-// Command line only
+// Command line only 
 if ( $wgSeleniumTestsRunMode == 'cli' && php_sapi_name() != 'cli' ) {
 	echo "Must be run from the command line.\n";
 	die( -1 );
@@ -97,3 +97,4 @@ if ( is_array( $wgSeleniumTestIncludes ) ) {
 foreach ( $wgSeleniumTestSuites as $suite ) {
 	$suite->run( $result );
 }
+
