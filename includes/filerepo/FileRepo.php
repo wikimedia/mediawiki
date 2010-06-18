@@ -621,7 +621,7 @@ abstract class FileRepo {
 	 */
 	public function getDisplayName() {
 		// We don't name our own repo, return nothing
-		if ( $this->name == 'local' ) {
+		if ( $this->isLocal() ) {
 			return null;
 		}
 		// 'shared-repo-name-wikimediacommons' is used when $wgUseInstantCommons = true
@@ -631,6 +631,16 @@ abstract class FileRepo {
 		}
 		return wfMsg( 'shared-repo' );
 	}
+
+	/**
+	 * Returns true if this the local file repository.
+	 *
+	 * @return bool
+	 */
+	function isLocal() {
+		return $this->getName() == 'local';
+	}
+
 
 	/**
 	 * Get a key on the primary cache for this repository.

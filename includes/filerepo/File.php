@@ -911,7 +911,8 @@ abstract class File {
 	 * @return bool
 	 */
 	function isLocal() {
-		return $this->getRepoName() == 'local';
+		$repo = $this->getRepo();
+		return $repo && $repo->isLocal();
 	}
 
 	/**
