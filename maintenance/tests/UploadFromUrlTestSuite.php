@@ -67,6 +67,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 
 	private $uploadDir;
 	private $keepUploads;
+
 	/**
 	 * Remove the dummy uploads directory
 	 */
@@ -110,7 +111,8 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 
 	/**
 	 * Delete the specified files, if they exist.
-	 * @param array $files full paths to files to delete.
+	 *
+	 * @param $files Array: full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
 		foreach ( $files as $file ) {
@@ -119,9 +121,11 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 			}
 		}
 	}
+
 	/**
 	 * Delete the specified directories, if they exist. Must be empty.
-	 * @param array $dirs full paths to directories to delete.
+	 *
+	 * @param $dirs Array: full paths to directories to delete.
 	 */
 	private static function deleteDirs( $dirs ) {
 		foreach ( $dirs as $dir ) {
@@ -134,7 +138,8 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 	/**
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
-	 * @return string The directory
+	 *
+	 * @return String: the directory
 	 */
 	private function setupUploadDir() {
 		global $IP;
