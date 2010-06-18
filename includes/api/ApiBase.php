@@ -294,6 +294,12 @@ abstract class ApiBase {
 					$desc = implode( $paramPrefix, $desc );
 				}
 
+				if ( !is_array( $paramSettings ) ) {
+					$paramSettings = array(
+						self::PARAM_DFLT => $paramSettings,
+					);
+				}
+
 				$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] ) ?
 					$paramSettings[self::PARAM_DEPRECATED] : false;
 				if ( $deprecated ) {
