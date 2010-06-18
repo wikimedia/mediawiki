@@ -795,6 +795,18 @@ class Parser {
 		$has_opened_tr = array(); # Did this table open a <tr> element?
 		$indent_level = 0; # indent level of the table
 
+		$table_tag = 'table';
+		$tr_tag = 'tr';
+		$th_tag = 'th';
+		$td_tag = 'td';
+		$caption_tag = 'caption';
+
+		$extra_table_attribs = null;
+		$extra_tr_attribs = null;
+		$extra_td_attribs = null;
+
+		$convert_style = false;
+
 		foreach ( $lines as $outLine ) {
 			$line = trim( $outLine );
 
@@ -811,9 +823,31 @@ class Parser {
 				$indent_level = strlen( $matches[1] );
 
 				$attributes = $this->mStripState->unstripBoth( $matches[2] );
-				$attributes = Sanitizer::fixTagAttributes( $attributes , 'table' );
 
-				$outLine = str_repeat( '<dl><dd>' , $indent_level ) . "<table{$attributes}>";
+				$attr = Sanitizer::decodeTagAttributes( $attributes );
+
+				$mode = @$attr['mode'];
+				if ( !$mode ) $mode = 'data';
+
+				if ( $mode == 'grid' || $mode == 'layout' ) {
+					$table_tag = 'div';
+					$tr_tag = 'div';
+					$th_tag = 'div';
+					$td_tag = 'div';
+					$caption_tag = 'div';
+
+					$extra_table_attribs = array( 'class' => 'grid-table', 'style' => 'display:table;' );
+					$extra_tr_attribs = array( 'class' => 'grid-row', 'style' => 'display:table-row;' );
+					$extra_td_attribs = array( 'class' => 'grid-cell', 'style' => 'display:table-cell;' );
+
+					$convert_style = true;
+				} 
+
+				if ($convert_style) $attr['style'] = Sanitizer::styleFromAttributes( $attr );
+				$attr = Sanitizer::validateTagAttributes( $attr, $table_tag );
+				$attributes = Sanitizer::collapseTagAttributes( $attr, $extra_table_attribs );
+
+				$outLine = str_repeat( '<dl><dd>' , $indent_level ) . "<$table_tag{$attributes}>";
 				array_push( $td_history , false );
 				array_push( $last_tag_history , '' );
 				array_push( $tr_history , false );
@@ -825,15 +859,15 @@ class Parser {
 				continue;
 			} elseif ( substr( $line , 0 , 2 ) === '|}' ) {
 				# We are ending a table
-				$line = '</table>' . substr( $line , 2 );
+				$line = "</$table_tag>" . substr( $line , 2 );
 				$last_tag = array_pop( $last_tag_history );
 
 				if ( !array_pop( $has_opened_tr ) ) {
-					$line = "<tr><td></td></tr>{$line}";
+					$line = "<$tr_tag><$td_tag></$td_tag></$tr_tag>{$line}";
 				}
 
 				if ( array_pop( $tr_history ) ) {
-					$line = "</tr>{$line}";
+					$line = "</$tr_tag>{$line}";
 				}
 
 				if ( array_pop( $td_history ) ) {
@@ -847,7 +881,12 @@ class Parser {
 
 				# Whats after the tag is now only attributes
 				$attributes = $this->mStripState->unstripBoth( $line );
-				$attributes = Sanitizer::fixTagAttributes( $attributes, 'tr' );
+
+				$attr = Sanitizer::decodeTagAttributes( $attributes );
+				if ($convert_style) $attr['style'] = Sanitizer::styleFromAttributes( $attr );
+				$attr = Sanitizer::validateTagAttributes( $attr, $tr_tag );
+				$attributes = Sanitizer::collapseTagAttributes( $attr, $extra_tr_attribs );
+
 				array_pop( $tr_attributes );
 				array_push( $tr_attributes, $attributes );
 
@@ -857,7 +896,7 @@ class Parser {
 				array_push( $has_opened_tr , true );
 
 				if ( array_pop( $tr_history ) ) {
-					$line = '</tr>';
+					$line = "</$tr_tag>";
 				}
 
 				if ( array_pop( $td_history ) ) {
@@ -895,7 +934,7 @@ class Parser {
 					if ( $first_character !== '+' ) {
 						$tr_after = array_pop( $tr_attributes );
 						if ( !array_pop( $tr_history ) ) {
-							$previous = "<tr{$tr_after}>\n";
+							$previous = "<$tr_tag{$tr_after}>\n";
 						}
 						array_push( $tr_history , true );
 						array_push( $tr_attributes , '' );
@@ -910,11 +949,11 @@ class Parser {
 					}
 
 					if ( $first_character === '|' ) {
-						$last_tag = 'td';
+						$last_tag = $td_tag;
 					} elseif ( $first_character === '!' ) {
-						$last_tag = 'th';
+						$last_tag = $th_tag;
 					} elseif ( $first_character === '+' ) {
-						$last_tag = 'caption';
+						$last_tag = $caption_tag;
 					} else {
 						$last_tag = '';
 					}
@@ -924,15 +963,24 @@ class Parser {
 					# A cell could contain both parameters and data
 					$cell_data = explode( '|' , $cell , 2 );
 
+					$attributes = '';
+
 					# Bug 553: Note that a '|' inside an invalid link should not
 					# be mistaken as delimiting cell parameters
 					if ( strpos( $cell_data[0], '[[' ) !== false ) {
-						$cell = "{$previous}<{$last_tag}>{$cell}";
+						if ($extra_td_attribs) $attributes = Sanitizer::collapseTagAttributes( $extra_td_attribs );
+						$cell = "{$previous}<{$last_tag}{$attributes}>{$cell}";
 					} elseif ( count( $cell_data ) == 1 ) {
-						$cell = "{$previous}<{$last_tag}>{$cell_data[0]}";
+						if ($extra_td_attribs) $attributes = Sanitizer::collapseTagAttributes( $extra_td_attribs );
+						$cell = "{$previous}<{$last_tag}{$attributes}>{$cell_data[0]}";
 					} else {
 						$attributes = $this->mStripState->unstripBoth( $cell_data[0] );
-						$attributes = Sanitizer::fixTagAttributes( $attributes , $last_tag );
+
+						$attr = Sanitizer::decodeTagAttributes( $attributes );
+						if ($convert_style) $attr['style'] = Sanitizer::styleFromAttributes( $attr );
+						$attr = Sanitizer::validateTagAttributes( $attr, $last_tag );
+						$attributes = Sanitizer::collapseTagAttributes( $attr, $extra_td_attribs );
+
 						$cell = "{$previous}<{$last_tag}{$attributes}>{$cell_data[1]}";
 					}
 
@@ -946,16 +994,16 @@ class Parser {
 		# Closing open td, tr && table
 		while ( count( $td_history ) > 0 ) {
 			if ( array_pop( $td_history ) ) {
-				$out .= "</td>\n";
+				$out .= "</$td_tag>\n";
 			}
 			if ( array_pop( $tr_history ) ) {
-				$out .= "</tr>\n";
+				$out .= "</$tr_tag>\n";
 			}
 			if ( !array_pop( $has_opened_tr ) ) {
-				$out .= "<tr><td></td></tr>\n" ;
+				$out .= "<$tr_tag><$td_tag></$td_tag></$tr_tag>\n" ;
 			}
 
-			$out .= "</table>\n";
+			$out .= "</$table_tag>\n";
 		}
 
 		# Remove trailing line-ending (b/c)
@@ -964,7 +1012,7 @@ class Parser {
 		}
 
 		# special case: don't return empty table
-		if ( $out === "<table>\n<tr><td></td></tr>\n</table>" ) {
+		if ( $out === "<$table_tag>\n<$tr_tag><$td_tag></$td_tag></$tr_tag>\n</$table_tag>" ) {
 			$out = '';
 		}
 
