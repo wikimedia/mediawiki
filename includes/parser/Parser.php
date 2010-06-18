@@ -836,9 +836,9 @@ class Parser {
 					$td_tag = 'div';
 					$caption_tag = 'div';
 
-					$extra_table_attribs = array( 'class' => 'grid-table', 'style' => 'display:table;' );
-					$extra_tr_attribs = array( 'class' => 'grid-row', 'style' => 'display:table-row;' );
-					$extra_td_attribs = array( 'class' => 'grid-cell', 'style' => 'display:table-cell;' );
+					$extra_table_attribs = array( 'class' => 'grid-table' );
+					$extra_tr_attribs = array( 'class' => 'grid-row' );
+					$extra_td_attribs = array( 'class' => 'grid-cell' );
 
 					$convert_style = true;
 				} 

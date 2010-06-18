@@ -877,3 +877,16 @@ td.mw-enhanced-rc {
 a.sortheader {
 	margin: 0 0.3em;
 }
+
+.grid-table {
+	display: table;
+}
+
+.grid-row {
+	display: table-row;
+}
+
+.grid-cell {
+	display: table-cell;
+	padding: 0.33ex;
+}
