@@ -1026,6 +1026,9 @@ class Linker {
 			$section = str_replace( '[[:', '', $section );
 			$section = str_replace( '[[', '', $section );
 			$section = str_replace( ']]', '', $section );
+
+			# Most of Title:: expects fragments to be escaped
+			$section = Title::escapeFragmentForURL( $section );
 			if ( $local ) {
 				$sectionTitle = Title::newFromText( '#' . $section );
 			} else {
