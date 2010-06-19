@@ -202,6 +202,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a fatal error
 * (bug 23465) Don't ignore the predefined destination filename on 
   Special:Upload after following a red link
+* Correct the escaping of the autosummary URI fragments.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
