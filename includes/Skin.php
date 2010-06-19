@@ -388,7 +388,7 @@ class Skin extends Linker {
 			implode( "\t", $digitTransTable ),
 		);
 
-		$mainPage = Title::newFromText( wfMsgForContent( 'mainpage' ) );
+		$mainPage = Title::newMainPage();
 		$vars = array(
 			'skin' => $skinName,
 			'stylepath' => $wgStylePath,
