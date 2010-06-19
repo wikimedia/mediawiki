@@ -4635,6 +4635,7 @@ $wgSpecialPageGroups = array(
 	'Search'                    => 'redirects',
 	'LinkSearch'                => 'redirects',
 
+	'ComparePages'              => 'pagetools',
 	'Movepage'                  => 'pagetools',
 	'MergeHistory'              => 'pagetools',
 	'Revisiondelete'            => 'pagetools',
