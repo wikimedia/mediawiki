@@ -2226,7 +2226,7 @@ Le archivo pote esser vacuate periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar versiones',
 'undeleteextrahelp'            => "Pro restaurar le historia integre del pagina, lassa tote le quadratos dismarcate e clicca '''''Restaurar'''''.
 Pro executar un restauration selective, marca le quadratos correspondente al versiones pro restaurar, e clicca '''''Restaurar'''''.
-Le button '''''Reinitiar''''' face rader le campo de commento e tote le quadratos.",
+Le button '''''Reinitialisar''''' face rader le campo de commento e tote le quadratos.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versiones}} archivate',
 'undeletehistory'              => 'Si tu restaura un pagina, tote le versiones essera restaurate al historia.
 Si un nove pagina con le mesme nomine ha essite create post le deletion, le versiones
