@@ -2184,7 +2184,7 @@ $1',
 'sp-contributions-submit'              => 'ძიება',
 
 # What links here
-'whatlinkshere'            => 'სადაა მითითებული ეს გვერდი',
+'whatlinkshere'            => 'ბმული გვერდზე',
 'whatlinkshere-title'      => 'გვერდები, რომლებიც შეიცავენ ბმულებს "$1"-ზე',
 'whatlinkshere-page'       => 'გვერდი:',
 'linkshere'                => "მომდევნო გვერდები შეიცავენ ბმულებს '''[[:$1]]'''-ზე:",

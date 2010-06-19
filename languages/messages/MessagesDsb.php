@@ -681,7 +681,7 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'anonpreviewwarning'               => "''Njejsy pśizjawjony. Składowanje pśenosujo twóju IP-adresu do wobźěłowańskeje historije toś togo boka.''",
 'missingsummary'                   => "'''Pokazka:''' Njejsy žedno zespominanje zapódał. Gaž kliknjoš na \"Składowaś\" składujo se bok bźez zespominanja.",
 'missingcommenttext'               => 'Pšosym zespominanje zapódaś.',
-'missingcommentheader'             => "'''WARNOWANJE:''' Njejsy žedno nadpismo zapódał. Gaž kliknjoš na \"Składowaś\", składujo se twójo wobźěłanje mimo nadpisma.",
+'missingcommentheader'             => "'''Glědaj:''' Njejsy temu/ nadpismo za toś ten komentar pódał. Gaž kliknjoš na \"{{int:savearticle}}\" znowego, składujo se twójo wobźěłanje mimo temy/nadpisma.",
 'summary-preview'                  => 'Pśeglěd zespominanja:',
 'subject-preview'                  => 'Pśeglěd nadpisma:',
 'blockedtitle'                     => 'Wužywaŕ jo se blokěrował',
