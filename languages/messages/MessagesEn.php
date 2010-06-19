@@ -4318,19 +4318,4 @@ This site is experiencing technical difficulties.',
 'htmlform-reset'               => 'Undo changes',
 'htmlform-selectorother-other' => 'Other',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Add category',
-'ajax-add-category-submit'     => 'Add',
-'ajax-confirm-title'           => 'Confirm action',
-'ajax-confirm-prompt'          => 'You can provide an edit summary below.
-Click "Save" to save your edit.',
-'ajax-confirm-save'            => 'Save',
-'ajax-add-category-summary'    => 'Add category "$1"',
-'ajax-remove-category-summary' => 'Remove category "$1"',
-'ajax-confirm-actionsummary'   => 'Action to take:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'It was not possible to remove this category.
-This usually occurs when the category has been added to the page in a template.',
-
 );
