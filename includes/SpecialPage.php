@@ -169,6 +169,7 @@ class SpecialPage {
 		'Mostrevisions'             => array( 'SpecialPage', 'Mostrevisions' ),
 
 		# Page tools
+		'ComparePages'              => 'SpecialComparePages',
 		'Export'                    => 'SpecialExport',
 		'Import'                    => 'SpecialImport',
 		'Undelete'                  => 'UndeleteForm',

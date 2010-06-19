@@ -3207,6 +3207,15 @@ $wgMessageStructure = array(
 		'ajax-error-dismiss',
 		'ajax-remove-category-error',
 	),
+	'comparepages' => array(
+		'comparepages'.
+		'compare-selector',
+		'compare-page1',
+		'compare-page2',
+		'compare-rev1',
+		'compare-rev2',
+		'compare-submit',
+	),
 );
 
 /** Comments for each block */
@@ -3417,4 +3426,5 @@ Variants for Chinese language",
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
 	'ajax-category'         => 'Add categories per AJAX',
+	'comparepages'		=> 'Special:ComparePages',
 );

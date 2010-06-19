@@ -3613,6 +3613,15 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 
 * <code>$1</code> is the number of changes marked with the tag',
 
+# Special:ComparePages
+'comparepages'            => 'The title of [[Special:ComparePages]]',
+'compare-selector'        => 'Header of the form on [[Special:ComparePages]]',
+'compare-page1'           => 'Label for the field of the 1st page in the comparison for [[Special:ComparePages]]',
+'compare-page2'           => 'Label for the field of the 2nd page in the comparison for [[Special:ComparePages]]',
+'compare-rev1'            => 'Label for the field of the 1st revision in the comparison for [[Special:ComparePages]]',
+'compare-rev2'            => 'Label for the field of the 2nd revision in the comparison for [[Special:ComparePages]]',
+'compare-submit'          => 'Submit button on [[Special:ComparePages]]',
+
 # Database error messages
 'dberr-header'    => 'This message does not allow any wiki nor html markup.',
 'dberr-problems'  => 'This message does not allow any wiki nor html markup.',
