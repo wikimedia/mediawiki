@@ -548,7 +548,7 @@ class MimeMagic {
 		// Check for ZIP (before getimagesize)
 		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
 			wfDebug( __METHOD__.": ZIP header present at end of $file\n" );
-			return $this->detectZipType( $head );
+			return $this->detectZipType( $head, $ext );
 		}
 
 		wfSuppressWarnings();
@@ -577,9 +577,13 @@ class MimeMagic {
 	 * If can't tell, returns 'application/zip'.
 	 *
 	 * @param $header String: some reasonably-sized chunk of file header
+	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
+	 *             Set it to false to ignore the extension.
+	 *
 	 * @return string
 	 */
-	function detectZipType( $header ) {
+	function detectZipType( $header, $ext = false ) {
+		$mime = 'application/zip';
 		$opendocTypes = array(
 			'chart-template',
 			'chart',
@@ -602,15 +606,33 @@ class MimeMagic {
 		$types = '(?:' . implode( '|', $opendocTypes ) . ')';
 		$opendocRegex = "/^mimetype(application\/vnd\.oasis\.opendocument\.$types)/";
 		wfDebug( __METHOD__.": $opendocRegex\n" );
+
+		$openxmlRegex = "/^\[Content_Types\].xml/";
 		
 		if( preg_match( $opendocRegex, substr( $header, 30 ), $matches ) ) {
 			$mime = $matches[1];
 			wfDebug( __METHOD__.": detected $mime from ZIP archive\n" );
-			return $mime;
+		} elseif( preg_match( $openxmlRegex, substr( $header, 30 ), $matches ) ) {
+			$mime = "application/x-opc+zip";
+			if( $ext !== true && $ext !== false ) {
+				/** This is the mode used by getPropsFromPath
+				* These mime's are stored in the database, where we don't really want
+				* x-opc+zip, because we use it only for internal purposes
+				*/
+				if( $this->isMatchingExtension( $ext, $mime) ) {
+					/* A known file extension for an OPC file,
+					* find the proper mime type for that file extension */
+					$mime = $this->guessTypesForExtension( $ext );
+				} else {
+					$mime = 'application/zip';
+				}
+				
+			}
+			wfDebug( __METHOD__.": detected an Open Packaging Conventions archive: $mime\n" );
 		} else {
 			wfDebug( __METHOD__.": unable to identify type of ZIP archive\n" );
-			return 'application/zip';
 		}
+		return $mime;
 	}
 
 	/** Internal mime type detection, please use guessMimeType() for application code instead.

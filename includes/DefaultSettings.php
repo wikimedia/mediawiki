@@ -520,6 +520,9 @@ $wgMimeTypeBlacklist = array(
 	# A ZIP file may be a valid Java archive containing an applet which exploits the
 	# same-origin policy to steal cookies
 	'application/zip',
+	# MS Office OpenXML and other Open Package Conventions files are zip files
+	# and thus blacklisted just as other zip files
+	'application/x-opc+zip',
 );
 
 /** This is a flag to determine whether or not to check file extensions on upload. */
