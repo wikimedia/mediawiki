@@ -203,6 +203,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23465) Don't ignore the predefined destination filename on 
   Special:Upload after following a red link
 * Correct the escaping of the autosummary URI fragments.
+* (bug 23642) Recognize mime types of MS OpenXML documents.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
