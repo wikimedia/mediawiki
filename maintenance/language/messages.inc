@@ -3332,5 +3332,4 @@ Variants for Chinese language",
 	'special-tags'          => 'Special:Tags',
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
-	'ajax-category'         => 'Add categories per AJAX',
 );
