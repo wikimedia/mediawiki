@@ -717,7 +717,7 @@ $2',
 'anonpreviewwarning'               => "''您沒有登入，您的IP位址將記錄在此頁的編輯歷史中。''",
 'missingsummary'                   => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊儲存，您的編輯將不帶編輯摘要儲存。",
 'missingcommenttext'               => '請在下面輸入評論。',
-'missingcommentheader'             => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊儲存，您的編輯將不帶標題儲存。",
+'missingcommentheader'             => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊「{{int:savearticle}}」，您的編輯將不帶標題儲存。",
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '主題/標題預覽:',
 'blockedtitle'                     => '用戶被查封',
@@ -2249,6 +2249,7 @@ $1',
 最近的封鎖日誌項目在下面提供以便參考：',
 'sp-contributions-search'              => '搜尋貢獻記錄',
 'sp-contributions-username'            => 'IP位址或用戶名稱：',
+'sp-contributions-toponly'             => '只顯示最新的修訂版本',
 'sp-contributions-submit'              => '搜尋',
 
 # What links here
@@ -3340,6 +3341,15 @@ $1',
 'tags-edit'               => '編輯',
 'tags-hitcount'           => '$1次更改',
 
+# Special:ComparePages
+'comparepages'     => '比較頁面',
+'compare-selector' => '比較頁面的修訂',
+'compare-page1'    => '第1頁',
+'compare-page2'    => '第2頁',
+'compare-rev1'     => '修訂版本1',
+'compare-rev2'     => '修訂版本2',
+'compare-submit'   => '比較',
+
 # Database error messages
 'dberr-header'      => '這個 wiki 出現了問題',
 'dberr-problems'    => '抱歉！
@@ -3361,20 +3371,5 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '撤銷更改',
 'htmlform-selectorother-other' => '其它',
-
-# Add categories per AJAX
-'ajax-add-category'            => '加入分類',
-'ajax-add-category-submit'     => '加入',
-'ajax-confirm-title'           => '確認動作',
-'ajax-confirm-prompt'          => '您可以在下面提供一個編輯摘要。
-點擊「保存」去保存您的編輯。',
-'ajax-confirm-save'            => '保存',
-'ajax-add-category-summary'    => '加入分類「$1」',
-'ajax-remove-category-summary' => '移除分類「$1」',
-'ajax-confirm-actionsummary'   => '已進行的動作：',
-'ajax-error-title'             => '錯誤',
-'ajax-error-dismiss'           => '好',
-'ajax-remove-category-error'   => '不能移除這個分類。
-通常是發生在一個模板中加入該分類。',
 
 );
