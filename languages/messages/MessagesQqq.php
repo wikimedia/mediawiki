@@ -2932,7 +2932,7 @@ The message appears after the name of the patroller.',
 'show-big-image'       => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-thumb' => 'File info displayed on file description page.',
 'file-info-gif-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page. Looped means repeating in the context of an animated gif. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop. For example of message in use see [[:File:Mouse10.gif]].',
-'file-info-gif-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page.
+'file-info-gif-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page.',
 'file-info-png-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/APNG .apng file] on its file description page. Looped means repeating indefinetly in the context of an animated png. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop.',
 'file-info-png-repeat' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/APNG .apng file] on its file description page. The sequence of images is repeating a limited amount of time. It is a sequence of images, each displayed after the other, and the first one displayed after the last, for $1 times.',
 'file-info-png-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/APNG .apng file] on its file description page.
