@@ -204,7 +204,10 @@ class ForeignAPIRepo extends FileRepo {
 			$fileName = rawurldecode( pathinfo( $foreignUrl, PATHINFO_BASENAME ) );
 			$path = 'thumb/' . $this->getHashPath( $name ) . $name . "/";
 			if ( !is_dir($wgUploadDirectory . '/' . $path) ) {
-				wfMkdirParents($wgUploadDirectory . '/' . $path);
+				if( !wfMkdirParents($wgUploadDirectory . '/' . $path) ) {
+					wfDebug(  __METHOD__ . " could not create directory for thumb\n" );
+					return $foreignUrl;
+				}
 			}
 			$localUrl =  $wgServer . $wgUploadPath . '/' . $path . $fileName;
 			# FIXME: Delete old thumbs that aren't being used. Maintenance script?
