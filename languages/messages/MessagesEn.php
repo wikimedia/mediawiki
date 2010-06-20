@@ -3552,6 +3552,9 @@ By executing it, your system may be compromised.<hr />",
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'looped',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frames}}',
+'file-info-png-looped' => 'looped',
+'file-info-png-repeat' => 'played $1 times',
+'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frames}}',
 
 # Special:NewFiles
 'newimages'             => 'Gallery of new files',

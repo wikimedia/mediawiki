@@ -78,7 +78,7 @@ image/cgm cgm
 image/gif gif
 image/ief ief
 image/jpeg jpeg jpg jpe
-image/png png
+image/png png apng
 image/svg+xml svg
 image/tiff tiff tif
 image/vnd.djvu djvu djv
