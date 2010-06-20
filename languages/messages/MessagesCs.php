@@ -2392,6 +2392,7 @@ $1',
 Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'sp-contributions-search'              => 'Zobrazení příspěvků',
 'sp-contributions-username'            => 'IP adresa nebo uživatelské jméno:',
+'sp-contributions-toponly'             => 'Zobrazit pouze aktuální revize',
 'sp-contributions-submit'              => 'Zobrazit',
 
 # What links here

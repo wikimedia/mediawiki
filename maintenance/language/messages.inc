@@ -1943,6 +1943,7 @@ $wgMessageStructure = array(
 		'sp-contributions-blocked-notice-anon',
 		'sp-contributions-search',
 		'sp-contributions-username',
+		'sp-contributions-toponly',
 		'sp-contributions-submit',
 		'sp-contributions-explain',
 		'sp-contributions-footer',
