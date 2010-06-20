@@ -265,7 +265,7 @@ class SkinStandard extends Skin {
 		}
 
 		if( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
-			$s .= $this->uploadLink() . $sep;
+			$s .= $this->getUploadLink() . $sep;
 		}
 
 		$s .= $this->specialLink( 'specialpages' );
