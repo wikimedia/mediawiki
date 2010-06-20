@@ -86,6 +86,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23621) New Special:ComparePages to compare (diff) two articles.
 * (bug 4597) Provide support in Special:Contributions to show only "current"
   contributions
+* (bug 17857) {{anchorencode}} acts more like how the parser creates section ids.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

@@ -6920,6 +6920,44 @@ anchorencode
 </p>
 !! end
 
+!! test
+anchorencode trims spaces
+!! input
+{{anchorencode: __pretty__please__}}
+!! result
+<p>pretty_please
+</p>
+!! end
+
+!! test
+anchorencode deals with links
+!! input
+{{anchorencode: [[hello|world]] [[hi]]}}
+!! result
+<p>world_hi
+</p>
+!! end
+
+!! test
+anchorencode deals with templates
+!! input
+{{anchorencode: {{Foo}} }}
+!! result
+<p>FOO
+</p>
+!! end
+
+!! test
+anchorencode encodes like the TOC generator: (bug 18431)
+!! input
+=== _ +:.3A%3A&&amp;]] ===
+{{anchorencode: _ +:.3A%3A&&amp;]] }}
+__NOEDITSECTION__
+!! result
+<h3> <span class="mw-headline" id=".2B:.3A.253A.26.26.5D.5D"> _ +:.3A%3A&amp;&amp;]] </span></h3>
+<p>.2B:.3A.253A.26.26.5D.5D
+</p>
+!! end
 
 !! test
 Bug 8293: Use of center tag ruins paragraph formatting
