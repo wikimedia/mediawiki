@@ -1694,10 +1694,4 @@ Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şə
 'htmlform-reset'               => 'Dəyişiklikləri qaytar',
 'htmlform-selectorother-other' => 'Digər',
 
-# Add categories per AJAX
-'ajax-add-category-submit' => 'Əlavə et',
-'ajax-confirm-save'        => 'Qeyd et',
-'ajax-error-title'         => 'Xəta',
-'ajax-error-dismiss'       => 'OK',
-
 );

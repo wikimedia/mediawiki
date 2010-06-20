@@ -3141,6 +3141,7 @@ Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 'table_pager_first'        => 'Pajenn gentañ',
 'table_pager_last'         => 'Pajenn ziwezhañ',
 'table_pager_limit'        => 'Diskouez $1 elfenn dre bajenn',
+'table_pager_limit_label'  => "Disoc'hoù dre bajenn :",
 'table_pager_limit_submit' => 'Mont',
 'table_pager_empty'        => "Disoc'h ebet",
 
@@ -3297,6 +3298,12 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'tags-edit'               => 'aozañ',
 'tags-hitcount'           => '$1 {{PLURAL:$1|kemm|kemm}}',
 
+# Special:ComparePages
+'comparepages'   => 'Keñveriañ pajennoù',
+'compare-page1'  => 'Pajenn 1',
+'compare-page2'  => 'Pajenn 2',
+'compare-submit' => 'Keñveriañ',
+
 # Database error messages
 'dberr-header'      => 'ur gudenn zo gant ar viki-mañ',
 'dberr-problems'    => "Ho tigarez ! Kudennoù teknikel zo gant al lec'hienn-mañ.",
@@ -3317,20 +3324,5 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'htmlform-submit'              => 'Kas',
 'htmlform-reset'               => "Dizober ar c'hemmoù",
 'htmlform-selectorother-other' => 'Unan all',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Ouzhpennañ ur rummad',
-'ajax-add-category-submit'     => 'Ouzhpennañ',
-'ajax-confirm-title'           => 'Kadarnaat an oberiadenn',
-'ajax-confirm-prompt'          => 'Gallout a rit merkañ a-is un diverrañ eus ar c\'hemmoù degaset.
-Klikit war "Enrollañ da enrollañ ho degasadenn.',
-'ajax-confirm-save'            => 'Enrollañ',
-'ajax-add-category-summary'    => 'Ouzhpennañ ar rummad "$1"',
-'ajax-remove-category-summary' => 'Diverkañ ar rummad "$1"',
-'ajax-confirm-actionsummary'   => 'Tra da ober :',
-'ajax-error-title'             => 'Fazi',
-'ajax-error-dismiss'           => 'Mat eo',
-'ajax-remove-category-error'   => "N'eus ket bet gallet diverkañ ar rummad-mañ. 
-C'hoarvezout a ra p'eo bet ouzhpennet ar rummad er bajenn dre ur patrom",
 
 );

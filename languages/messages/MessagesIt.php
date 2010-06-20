@@ -3365,19 +3365,4 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'htmlform-reset'               => 'Annulla modifiche',
 'htmlform-selectorother-other' => 'Altro',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Aggiungi categoria',
-'ajax-add-category-submit'     => 'Aggiungi',
-'ajax-confirm-title'           => "Conferma l'azione",
-'ajax-confirm-prompt'          => 'È possibile fornire di seguito un oggetto per la modifica. 
-Fare clic su "Salva" per salvare la modifica.',
-'ajax-confirm-save'            => 'Salva',
-'ajax-add-category-summary'    => 'Aggiungere categoria "$1"',
-'ajax-remove-category-summary' => 'Rimuovere categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Azione da intraprendere:',
-'ajax-error-title'             => 'Errore',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Non è stato possibile rimuovere questa categoria.
-Ciò si verifica in genere quando la categoria è stata aggiunta alla pagina in un template.',
-
 );

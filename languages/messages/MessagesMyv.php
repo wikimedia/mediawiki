@@ -2051,13 +2051,4 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 # HTML forms
 'htmlform-selectorother-other' => 'Лия',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Поладомс категория',
-'ajax-add-category-submit'     => 'Поладомс',
-'ajax-confirm-save'            => 'Ванстомс',
-'ajax-add-category-summary'    => 'Поладомс категориянть "$1"',
-'ajax-remove-category-summary' => 'Нардамс категориянть "$1"',
-'ajax-confirm-actionsummary'   => 'Мезе теемс:',
-'ajax-error-title'             => 'Ильведевкс',
-
 );

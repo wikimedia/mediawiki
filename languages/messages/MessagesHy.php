@@ -2476,19 +2476,4 @@ $1',
 'dberr-problems' => 'Այս կայքում առաջացել են տեխնիկական խնդիրներ։ Հայցում ենք ձեր ներողությունը։',
 'dberr-again'    => 'Փորձեք մի քանի րոպե սպասել և վերաբեռնել էջը։',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Ավելացնել կատեգորիա',
-'ajax-add-category-submit'     => 'Ավելացնել',
-'ajax-confirm-title'           => 'Հաստատել գործողությունը',
-'ajax-confirm-prompt'          => 'Դուք կարող եք նշել խմբագրման ամփոփումը, ստորև։
-Սղմեք «Հիշել» ձեր փոփոխությունները հիշելու համար։',
-'ajax-confirm-save'            => 'Հիշել',
-'ajax-add-category-summary'    => 'Ավելացնել «$1» կատեգորիան',
-'ajax-remove-category-summary' => 'Հեռացնել «$1» կատեգորիան',
-'ajax-confirm-actionsummary'   => 'Կատարվող գործողությունը․',
-'ajax-error-title'             => 'Սխալ',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Չհաջողվեց հեռացնել այս կատեգորիան։
-Դա սովորաբար պատահում է, երբ կատեգորիան ավելացվում է կաղապարի միջից։',
-
 );

@@ -1303,11 +1303,4 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'htmlform-reset'               => 'Сольлһиг уга кех',
 'htmlform-selectorother-other' => 'Талдан',
 
-# Add categories per AJAX
-'ajax-add-category'        => 'Әәшлиг немх',
-'ajax-add-category-submit' => 'Немх',
-'ajax-confirm-save'        => 'Хадһлх',
-'ajax-error-title'         => 'Эндү',
-'ajax-error-dismiss'       => 'Тиим',
-
 );

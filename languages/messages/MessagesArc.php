@@ -1337,12 +1337,4 @@ Do you want to change the settings?',
 'htmlform-reset'               => 'ܠܐ ܥܒܘܕ ܫܘܚܠܦ̈ܐ',
 'htmlform-selectorother-other' => 'ܐܚܪܢܐ',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'ܐܘܣܦ ܣܕܪܐ',
-'ajax-add-category-submit'     => 'ܐܘܣܦ',
-'ajax-confirm-save'            => 'ܢܛܘܪ',
-'ajax-remove-category-summary' => 'ܠܚܝ ܣܕܪܐ "$1"',
-'ajax-error-title'             => 'ܦܘܕܐ',
-'ajax-error-dismiss'           => 'ܛܒ',
-
 );

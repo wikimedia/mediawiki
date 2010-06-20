@@ -3511,19 +3511,4 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'htmlform-reset'               => 'Ogör ändringar',
 'htmlform-selectorother-other' => 'Andra',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Lägg till kategori',
-'ajax-add-category-submit'     => 'Lägg till',
-'ajax-confirm-title'           => 'Bekräfta handling',
-'ajax-confirm-prompt'          => 'Du kan skriva en redigeringssammanfattning nedanför.
-Klicka på "Spara" för att spara din redigering.',
-'ajax-confirm-save'            => 'Spara',
-'ajax-add-category-summary'    => 'Lägg till kategorin "$1"',
-'ajax-remove-category-summary' => 'Tag bort kategorin "$1"',
-'ajax-confirm-actionsummary'   => 'Handling att utföra:',
-'ajax-error-title'             => 'Fel',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Det var inte möjligt att ta bort den här kategorin.
-Oftast beror det på att kategorin har lagts till genom användande av en mall.',
-
 );

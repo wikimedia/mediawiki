@@ -928,15 +928,4 @@ Biko meríáríá ozor.',
 'htmlform-reset'               => 'Emekwàlà gbanwere',
 'htmlform-selectorother-other' => 'Nke ozor',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Tinyé ébéonọr',
-'ajax-add-category-submit'     => 'Tinyé kwa',
-'ajax-confirm-title'           => 'Me mmèmé inábata',
-'ajax-confirm-save'            => 'Donyéré',
-'ajax-add-category-summary'    => "Tonyé ébéanọr ''$1''",
-'ajax-remove-category-summary' => "Wefu ébéanọr ''$1''",
-'ajax-confirm-actionsummary'   => 'Ihe I gi me:',
-'ajax-error-title'             => 'Nsogbú',
-'ajax-error-dismiss'           => 'Ngwanu',
-
 );

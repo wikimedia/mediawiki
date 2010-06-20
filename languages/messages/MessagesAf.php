@@ -3392,19 +3392,4 @@ Verskaf die lêernaam sonder die "{{ns:file}}:" voorvoegsel.',
 'htmlform-reset'               => 'Maak wysigings ongedaan',
 'htmlform-selectorother-other' => 'Ander',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Voeg kategorie by',
-'ajax-add-category-submit'     => 'Byvoeg',
-'ajax-confirm-title'           => 'Bevestig aksie',
-'ajax-confirm-prompt'          => 'U kan \'n wysigingsopsomming hier onder verskaf.
-Kliek "Stoor" om u wysiging te bêre.',
-'ajax-confirm-save'            => 'Stoor',
-'ajax-add-category-summary'    => 'Voeg kategorie "$1" by',
-'ajax-remove-category-summary' => 'Verwyder kategorie "$1"',
-'ajax-confirm-actionsummary'   => 'Aksie om uit te voer:',
-'ajax-error-title'             => 'Fout',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "Ongelukkig was nie moontlik om die kategorie te verwyder nie.
-Dit gebeur gewoonlik as die kategorie via 'n sjabloon by die bladsy bygevoeg is.",
-
 );

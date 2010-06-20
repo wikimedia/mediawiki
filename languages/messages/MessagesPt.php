@@ -840,7 +840,8 @@ O seu endereço IP será registado no histórico de edições desta página.",
 'missingsummary'                   => "'''Atenção:''' Não introduziu um resumo da edição.
 Se clicar novamente \"Gravar página\" a sua edição será gravada sem resumo.",
 'missingcommenttext'               => 'Introduza um comentário abaixo, por favor.',
-'missingcommentheader'             => "'''Atenção:''' Não introduziu um assunto ou cabeçalho para este comentário. Se clicar novamente \"Gravar página\" a sua edição será gravada sem assunto ou cabeçalho.",
+'missingcommentheader'             => "'''Atenção:''' Não introduziu um assunto ou cabeçalho para este comentário.
+Se clicar novamente \"{{int:savearticle}}\", a sua edição será gravada sem assunto ou cabeçalho.",
 'summary-preview'                  => 'Antevisão do resumo:',
 'subject-preview'                  => 'Antevisão do assunto/cabeçalho:',
 'blockedtitle'                     => 'O utilizador está bloqueado',
@@ -2212,7 +2213,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'enotif_subject'               => '{{SITENAME}}: A página $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
 'enotif_lastdiff'              => 'Consulte $1 para ver esta alteração.',
-'enotif_anon_editor'           => 'utilizador anonimo $1',
+'enotif_anon_editor'           => 'utilizador anónimo $1',
 'enotif_body'                  => 'Caro(a) $WATCHINGUSERNAME,
 
 
@@ -3530,6 +3531,15 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 'tags-edit'               => 'editar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|modificação|modificações}}',
 
+# Special:ComparePages
+'comparepages'     => 'Comparar páginas',
+'compare-selector' => 'Comparar edições da página',
+'compare-page1'    => 'Página 1',
+'compare-page2'    => 'Página 2',
+'compare-rev1'     => 'Edição 1',
+'compare-rev2'     => 'Edição 2',
+'compare-submit'   => 'Comparar',
+
 # Database error messages
 'dberr-header'      => 'Esta wiki tem um problema',
 'dberr-problems'    => 'Desculpe! Este site está a experienciar dificuldades técnicas.',
@@ -3550,20 +3560,5 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Adicionar categoria',
-'ajax-add-category-submit'     => 'Adicionar',
-'ajax-confirm-title'           => 'Confirme a operação',
-'ajax-confirm-prompt'          => 'Pode colocar abaixo um resumo da edição.
-Clique "Gravar página" para gravar a sua edição.',
-'ajax-confirm-save'            => 'Gravar',
-'ajax-add-category-summary'    => 'Adicionar categoria "$1"',
-'ajax-remove-category-summary' => 'Remover categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Operação a executar:',
-'ajax-error-title'             => 'Erro',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Não foi possível remover esta categoria.
-Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
 
 );

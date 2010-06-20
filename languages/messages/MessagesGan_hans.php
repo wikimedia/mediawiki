@@ -2279,16 +2279,4 @@ $1',
 'specialpages'                 => '特殊页',
 'specialpages-group-redirects' => '重定向特殊页面',
 
-# Add categories per AJAX
-'ajax-confirm-prompt'          => '倷到底下提供得正一只编辑摘要。
-捺下「存到」去保存倷𠮶编辑。',
-'ajax-confirm-save'            => '存到',
-'ajax-add-category-summary'    => '添进分类「$1」',
-'ajax-remove-category-summary' => '搦开分类「$1」',
-'ajax-confirm-actionsummary'   => '舞正𠮶动作：',
-'ajax-error-title'             => '错误',
-'ajax-error-dismiss'           => '做得',
-'ajax-remove-category-error'   => '搦个只分类不开。
-通常发生嘚一只拕包入分类𠮶模板。',
-
 );

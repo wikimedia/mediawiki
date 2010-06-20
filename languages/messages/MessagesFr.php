@@ -880,7 +880,7 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 Si vous cliquez de nouveau sur le bouton « {{MediaWiki:Savearticle}} », la publication sera faite sans nouvel avertissement.",
 'missingcommenttext'               => 'Veuillez entrer un commentaire ci-dessous.',
 'missingcommentheader'             => "'''Rappel :''' vous n’avez pas fourni de sujet ou de titre à ce commentaire.
-Si vous cliquez de nouveau sur « {{MediaWiki:Savearticle}} », votre modification sera enregistrée sans titre.",
+Si vous cliquez de nouveau sur « {{int:Savearticle}} », votre modification sera enregistrée sans titre.",
 'summary-preview'                  => 'Aperçu du résumé :',
 'subject-preview'                  => 'Prévisualisation du sujet/titre :',
 'blockedtitle'                     => 'L’utilisateur est bloqué.',
@@ -3552,6 +3552,15 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'tags-edit'               => 'modifier',
 'tags-hitcount'           => '$1 modification{{PLURAL:$1||s}}',
 
+# Special:ComparePages
+'comparepages'     => 'Comparer des pages',
+'compare-selector' => 'Comparer les versions des pages',
+'compare-page1'    => 'Page 1',
+'compare-page2'    => 'Page 2',
+'compare-rev1'     => 'Version 1',
+'compare-rev2'     => 'Version 2',
+'compare-submit'   => 'Comparer',
+
 # Database error messages
 'dberr-header'      => 'Ce wiki a un problème',
 'dberr-problems'    => 'Désolé ! Ce site rencontre des difficultés techniques.',
@@ -3572,20 +3581,5 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'htmlform-submit'              => 'Soumettre',
 'htmlform-reset'               => 'Défaire les modifications',
 'htmlform-selectorother-other' => 'Autre',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Ajouter une catégorie',
-'ajax-add-category-submit'     => 'Ajouter',
-'ajax-confirm-title'           => 'Confirmer l’action',
-'ajax-confirm-prompt'          => 'Vous pouvez fournir un résumé de la modification ci-dessous.
-Cliquez sur « Publier » pour enregistrer votre modification.',
-'ajax-confirm-save'            => 'Publier',
-'ajax-add-category-summary'    => 'Ajouter la catégorie « $1 »',
-'ajax-remove-category-summary' => 'Enlever la catégorie « $1 »',
-'ajax-confirm-actionsummary'   => 'Action à mener :',
-'ajax-error-title'             => 'Erreur',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Il n’a pas été possible de retirer cette catégorie.
-Ceci survient généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
 
 );

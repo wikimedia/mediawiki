@@ -3287,19 +3287,4 @@ $1',
 'htmlform-reset'               => 'Врати измене',
 'htmlform-selectorother-other' => 'Друго',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Додај категорију',
-'ajax-add-category-submit'     => 'Додај',
-'ajax-confirm-title'           => 'Потврди акцију',
-'ajax-confirm-prompt'          => 'Испод можете да додате опис измене.
-Притисните "Сними" да бисте снимили своју измену.',
-'ajax-confirm-save'            => 'Сачувај',
-'ajax-add-category-summary'    => 'Додај категорију "$1"',
-'ajax-remove-category-summary' => 'Уклони категорију "$1"',
-'ajax-confirm-actionsummary'   => 'Акција за извршење:',
-'ajax-error-title'             => 'Грешка',
-'ajax-error-dismiss'           => 'У реду',
-'ajax-remove-category-error'   => 'Није било могуће уклонити ову категорију.
-То се обично дешава када је категорија додата страници преко шаблона.',
-
 );

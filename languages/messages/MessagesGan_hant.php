@@ -2305,16 +2305,4 @@ $1',
 'specialpages'                 => '特殊頁',
 'specialpages-group-redirects' => '重定向特殊頁面',
 
-# Add categories per AJAX
-'ajax-confirm-prompt'          => '倷到底下提供得正一隻編輯摘要。
-捺下「存到」去保存倷嗰編輯。',
-'ajax-confirm-save'            => '存到',
-'ajax-add-category-summary'    => '添進分類「$1」',
-'ajax-remove-category-summary' => '搦開分類「$1」',
-'ajax-confirm-actionsummary'   => '舞正嗰動作：',
-'ajax-error-title'             => '錯誤',
-'ajax-error-dismiss'           => '做得',
-'ajax-remove-category-error'   => '搦箇隻分類不開。
-通常發生嘚一隻拕包入分類嗰模板。',
-
 );

@@ -166,7 +166,7 @@ $messages = array(
 'tog-editsection'             => 'Sinere paginarum partes recensere per nexus [recensere]',
 'tog-editsectiononrightclick' => 'Sinere paginarum partes recenseri cum dexter muris buto premitur in titulis partum (JavaScript)',
 'tog-showtoc'                 => 'Indicem contenta monstrare (paginis in quibus sunt plus quam 3 partes)',
-'tog-rememberpassword'        => 'Memorare tesserae meae inter conventa (utere cookies)',
+'tog-rememberpassword'        => 'Memorare tesserae meae inter conventa ({{PLURAL:$1|die|diebus}} $1 tenus)',
 'tog-watchcreations'          => 'Paginas quas creo in paginarum custoditarum indicem addere',
 'tog-watchdefault'            => 'Paginas quas recenseo in paginarum custoditarum indicem addere',
 'tog-watchmoves'              => 'Paginas quas moveo in paginarum custoditarum indicem addere',
@@ -502,7 +502,7 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'yourname'                   => 'Nomen usoris:',
 'yourpassword'               => 'Tessera:',
 'yourpasswordagain'          => 'Tesseram adfirmare:',
-'remembermypassword'         => 'Tesseram meam inter conventa memento',
+'remembermypassword'         => 'Tesseram meam inter conventa memento ({{PLURAL:$1|die|diebus}} $1 tenus)',
 'yourdomainname'             => 'Regnum tuum:',
 'login'                      => 'Conventum aperire',
 'nav-login-createaccount'    => 'Conventum aperire / conventum creare',
@@ -2410,6 +2410,12 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'tags-title'        => 'Affixa',
 'tags-edit'         => 'mutatum',
 'tags-hitcount'     => '$1 {{PLURAL:$1|mutatum|mutata}}',
+
+# Special:ComparePages
+'compare-page1' => 'Pagina 1',
+'compare-page2' => 'Pagina 2',
+'compare-rev1'  => 'Emendatio 1',
+'compare-rev2'  => 'Emendatio 2',
 
 # HTML forms
 'htmlform-submit'              => 'Submittere',

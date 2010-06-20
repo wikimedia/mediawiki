@@ -2824,18 +2824,4 @@ $1',
 'htmlform-reset'               => 'Адкаціць змяненні',
 'htmlform-selectorother-other' => 'Рознае',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Дадаць катэгорыю',
-'ajax-add-category-submit'     => 'Дадаць',
-'ajax-confirm-title'           => 'Пацверджанне',
-'ajax-confirm-prompt'          => 'Ніжэй можна даць кароткае апісанне змяненняў. Націсніце кнопку "Запісаць", каб замацаваць праўку.',
-'ajax-confirm-save'            => 'Запісаць',
-'ajax-add-category-summary'    => 'Дадаць катэгорыю "$1"',
-'ajax-remove-category-summary' => 'Сцерці катэгорыю "$1"',
-'ajax-confirm-actionsummary'   => 'Што зрабіць:',
-'ajax-error-title'             => 'Памылка',
-'ajax-error-dismiss'           => 'ОК',
-'ajax-remove-category-error'   => 'Не ўдалося сцерці катэгорыю.
-Так звычайна бывае, калі катэгорыя дададзеная ў старонку праз шаблон.',
-
 );

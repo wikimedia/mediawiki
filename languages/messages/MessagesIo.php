@@ -1580,12 +1580,4 @@ Vu darfos adjuntar kauso en la rezumo.',
 'htmlform-reset'               => 'Desfacar chanji',
 'htmlform-selectorother-other' => 'Altra',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Adjuntar kategorio',
-'ajax-add-category-submit'     => 'Adjuntar',
-'ajax-confirm-save'            => 'Registragar',
-'ajax-add-category-summary'    => 'Adjuntar kategorio "$1"',
-'ajax-remove-category-summary' => 'Forigar kategorio "$1"',
-'ajax-error-title'             => 'Eroro',
-
 );

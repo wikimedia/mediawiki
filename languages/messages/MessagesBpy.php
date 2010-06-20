@@ -1675,19 +1675,4 @@ $2',
 'htmlform-reset'               => 'পতানিহান আলকর',
 'htmlform-selectorother-other' => 'আরাক',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'বিষয়রথাক তিলকর',
-'ajax-add-category-submit'     => 'তিলকর',
-'ajax-confirm-title'           => 'কামহান লেপকর',
-'ajax-confirm-prompt'          => 'তি পতাসি অতার সারসংক্ষেপ তলে দেনা পারর।
-"ইতু" খুথামগত যাতা ইতু করানির কা।',
-'ajax-confirm-save'            => 'ইতুকর',
-'ajax-add-category-summary'    => 'বিষয়থাক  "$1" থাক',
-'ajax-remove-category-summary' => 'বিষয়থাক "$1" পুস',
-'ajax-confirm-actionsummary'   => 'থকিসে কাম:',
-'ajax-error-title'             => 'লালুইসে',
-'ajax-error-dismiss'           => 'চুমিল',
-'ajax-remove-category-error'   => 'বিষয়রথাক এহান পুসানি নাইব।
-এহান অরতা সাধারণত বিষয়রথাকহান পাতাহানর মডেলর মা মিহিলে।',
-
 );

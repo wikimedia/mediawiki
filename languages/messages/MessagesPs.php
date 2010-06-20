@@ -1949,13 +1949,4 @@ $5
 'htmlform-reset'               => 'بدلونونه ناکړل',
 'htmlform-selectorother-other' => 'بل',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'وېشنيزه ورګډول',
-'ajax-add-category-submit'     => 'ورګډول',
-'ajax-confirm-save'            => 'خوندي کول',
-'ajax-add-category-summary'    => 'د "$1" وېشنيزه ورګډول',
-'ajax-remove-category-summary' => 'د "$1" وېشنيزه ليرې کول',
-'ajax-error-title'             => 'ستونزه',
-'ajax-error-dismiss'           => 'ښه',
-
 );

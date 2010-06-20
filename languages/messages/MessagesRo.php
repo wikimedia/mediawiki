@@ -3392,19 +3392,4 @@ Introdu numele fișierului fără prefixul "{{ns:file}}:".',
 'htmlform-reset'               => 'Anulează modificările',
 'htmlform-selectorother-other' => 'Altul',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Adaugă categorie',
-'ajax-add-category-submit'     => 'Adaugă',
-'ajax-confirm-title'           => 'Confirmați acțiunea',
-'ajax-confirm-prompt'          => 'Puteți trimite o descriere a modificărilor mai jos.
-Apăsați "Salvează pagina" pentru a salva modificarea.',
-'ajax-confirm-save'            => 'Salvare',
-'ajax-add-category-summary'    => 'Adaugă categoria "$1"',
-'ajax-remove-category-summary' => 'Elimină categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Acțiune de făcut:',
-'ajax-error-title'             => 'Eroare',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Eliminarea categoriei nu a fost posibilă.
-Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagină printr-un format.',
-
 );

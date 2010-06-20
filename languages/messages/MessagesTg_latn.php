@@ -2414,19 +2414,4 @@ Nomi parvandaro be peşvandi "{{ns:file}}:" vorid kuned.',
 'htmlform-reset'               => 'Botili taƣjirot',
 'htmlform-selectorother-other' => 'Digar',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Ilova kardani gurūh',
-'ajax-add-category-submit'     => 'Ilova kardan',
-'ajax-confirm-title'           => "Ta'jidi amal",
-'ajax-confirm-prompt'          => 'Şumo metavoned xulosai viroişro dar zer vorid kuned.
-Tugmai "Zaxira"-ro paxş kuned to viroişaton zaxira şavad.',
-'ajax-confirm-save'            => 'Zaxira',
-'ajax-add-category-summary'    => 'Ilova kardani gurūhi "$1"',
-'ajax-remove-category-summary' => 'Hazvi gurūhī "$1"',
-'ajax-confirm-actionsummary'   => 'Amali peşrav:',
-'ajax-error-title'             => 'Xato',
-'ajax-error-dismiss'           => "Ta'jid",
-'ajax-remove-category-error'   => "Imkoni hazvi in gurūh vuçud nadoşt.
-In ittifoq ma'mulan zamone meaftad, ki gurūh az tariqi jak şablon ba sahifa izofa şuda boşad.",
-
 );

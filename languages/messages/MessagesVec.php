@@ -3190,19 +3190,4 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'htmlform-reset'               => 'Scancèla modifiche',
 'htmlform-selectorother-other' => 'Altro',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Zonta categoria',
-'ajax-add-category-submit'     => 'Zonta',
-'ajax-confirm-title'           => "Conferma l'azion",
-'ajax-confirm-prompt'          => 'Qua soto te pol inserir un comento par la modìfega.
-Struca "Salva" par salvar la to modìfega.',
-'ajax-confirm-save'            => 'Salva',
-'ajax-add-category-summary'    => 'Zonta categoria "$1"',
-'ajax-remove-category-summary' => 'Cava categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Azion da far:',
-'ajax-error-title'             => 'Eròr',
-'ajax-error-dismiss'           => 'Va ben',
-'ajax-remove-category-error'   => 'No se gà podesto cavar sta categoria.
-De solito questo el càpita co che la categoria la xe stà zontà a la pagina par via de un modèl.',
-
 );

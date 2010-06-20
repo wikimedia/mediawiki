@@ -3325,19 +3325,4 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'htmlform-reset'               => 'Tühista muudatused',
 'htmlform-selectorother-other' => 'Muu',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Lisa kategooria',
-'ajax-add-category-submit'     => 'Lisa',
-'ajax-confirm-title'           => 'Toimingu kinnitamine',
-'ajax-confirm-prompt'          => 'Saad allpool muudatuse resümeega varustada.
-Muudatuse salvestamiseks klõpsa nuppu "Salvesta".',
-'ajax-confirm-save'            => 'Salvesta',
-'ajax-add-category-summary'    => 'Kategooria "$1" lisamine',
-'ajax-remove-category-summary' => 'Kategooria "$1" eemaldamine',
-'ajax-confirm-actionsummary'   => 'Sooritatav toiming:',
-'ajax-error-title'             => 'Tõrge',
-'ajax-error-dismiss'           => 'Sobib',
-'ajax-remove-category-error'   => 'Seda kategooriat pole võimalik eemaldada.
-Tõrge ilmneb harilikult siis, kui kategooria on lisatud malliga.',
-
 );

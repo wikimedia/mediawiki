@@ -3544,19 +3544,4 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'htmlform-reset'               => 'Änderunge retuur nämme',
 'htmlform-selectorother-other' => 'Annder',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Saachjropp dobei donn',
-'ajax-add-category-submit'     => 'Lohß jonn!',
-'ajax-confirm-title'           => 'Akßjuhn beschtähtejje',
-'ajax-confirm-prompt'          => 'Do kanns ene Enndraach för „{{int:summary}}“ maache, onge.
-Donn op „{{int:savearticle}}“ kleke, öm Ding Ändernug faßzehallde.',
-'ajax-confirm-save'            => 'Avshpeishere',
-'ajax-add-category-summary'    => 'Donn de Saachjropp „$1“ derbei.',
-'ajax-remove-category-summary' => 'Saachjropp „$1“ eruß nämme',
-'ajax-confirm-actionsummary'   => 'Wat jedonn wääde sull:',
-'ajax-error-title'             => 'Fähler',
-'ajax-error-dismiss'           => 'Han esch jelässe',
-'ajax-remove-category-error'   => 'Et wohr nit müjjelesch, di Saachjropp eruß ze nämme.
-Dat es fö jewöhnlej_esu, wann di Saachjropp övver en Schabloon en di Sigg jekumme es.',
-
 );

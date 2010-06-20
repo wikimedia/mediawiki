@@ -606,8 +606,8 @@ Per favor initia un session post reciper lo.',
 'blocked-mailpassword'       => 'Tu adresse IP es blocate de facer modificationes, e pro impedir le abuso, le uso del function pro recuperar contrasignos es equalmente blocate.',
 'eauthentsent'               => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail nominate.
 Ante que alcun altere e-mail se invia al conto, tu debera sequer le instructiones in le e-mail, pro confirmar que le conto es de facto tue.',
-'throttled-mailpassword'     => 'Un memento del contrasigno jam esseva inviate durante le ultime {{PLURAL:$1|hora|$1 horas}}.
-Pro impedir le abuso, nos invia solmente un memento de contrasigno per {{PLURAL:$1|hora|$1 horas}}.',
+'throttled-mailpassword'     => 'Un rememoration del contrasigno ha jam essite inviate intra le ultime {{PLURAL:$1|hora|$1 horas}}.
+Pro prevenir le abuso, solmente un rememoration de contrasigno essera inviate per {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error de inviar e-mail: $1',
 'acct_creation_throttle_hit' => 'Le visitatores de iste wiki usante tu adresse IP ha create {{PLURAL:$1|1 conto|$1 contos}} durante le ultime die, e isto es le maximo permittite in iste periodo de tempore.
 A causa de isto, le visitatores usante iste adresse IP non pote crear nove contos al momento.',
@@ -685,11 +685,11 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'anoneditwarning'                  => "'''Attention:''' Tu non te ha identificate.
 Tu adresse IP essera registrate in le historia de modificationes de iste pagina.",
 'anonpreviewwarning'               => "''Tu non te ha identificate. Si tu publica iste pagina, tu adresse IP essera registrate in le historia de modificationes.''",
-'missingsummary'                   => "'''Memento:''' Tu non entrava alcun summario del modification.
-Si tu clicca super Publicar de novo, le modification essera publicate sin summario.",
+'missingsummary'                   => "'''Rememoration:''' Tu non ha specificate un summario del modification.
+Si tu clicca super \"{{int:savearticle}}\" de novo, le modification essera publicate sin summario.",
 'missingcommenttext'               => 'Per favor entra un commento infra.',
-'missingcommentheader'             => "'''Memento:''' Tu non entrava un subjecto/titulo pro iste commento.
-Si tu clicca super Publicar de novo, tu commento essera publicate sin subjecto/titulo.",
+'missingcommentheader'             => "'''Rememoration:''' Tu non ha specificate un subjecto/titulo pro iste commento.
+Si tu clicca super \"{{int:savearticle}}\" de novo, le modification essera publicate sin titulo.",
 'summary-preview'                  => 'Previsualisation del summario:',
 'subject-preview'                  => 'Previsualisation del subjecto/titulo:',
 'blockedtitle'                     => 'Le usator es blocate',
@@ -2300,6 +2300,7 @@ $1',
 Le ultime entrata del registro de blocadas es reproducite hic infra pro information:',
 'sp-contributions-search'              => 'Cercar contributiones',
 'sp-contributions-username'            => 'Adresse IP o nomine de usator:',
+'sp-contributions-toponly'             => 'Monstrar solmente le prime versiones',
 'sp-contributions-submit'              => 'Cercar',
 
 # What links here
@@ -3398,6 +3399,15 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'tags-edit'               => 'modificar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|modification|modificationes}}',
 
+# Special:ComparePages
+'comparepages'     => 'Comparar paginas',
+'compare-selector' => 'Comparar versiones de pagina',
+'compare-page1'    => 'Pagina 1',
+'compare-page2'    => 'Pagina 2',
+'compare-rev1'     => 'Version 1',
+'compare-rev2'     => 'Version 2',
+'compare-submit'   => 'Comparar',
+
 # Database error messages
 'dberr-header'      => 'Iste wiki ha un problema',
 'dberr-problems'    => 'Pardono! Iste sito ha incontrate difficultates technic.',
@@ -3418,20 +3428,5 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Submitter',
 'htmlform-reset'               => 'Disfacer modificationes',
 'htmlform-selectorother-other' => 'Altere',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Adder categoria',
-'ajax-add-category-submit'     => 'Adder',
-'ajax-confirm-title'           => 'Confirmar action',
-'ajax-confirm-prompt'          => 'Tu pote fornir un summario del modification ci infra.
-Clicca super "Publicar" pro confirmar le modification.',
-'ajax-confirm-save'            => 'Publicar',
-'ajax-add-category-summary'    => 'Adder categoria "$1"',
-'ajax-remove-category-summary' => 'Remover categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Action a prender:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Il non esseva possibile remover iste categoria.
-Isto occurre generalmente quando le categoria ha essite addite al pagina per un patrono.',
 
 );

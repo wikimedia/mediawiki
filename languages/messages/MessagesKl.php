@@ -555,7 +555,4 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 # Special:SpecialPages
 'specialpages' => 'Quppernerit immikkut ittut',
 
-# Add categories per AJAX
-'ajax-confirm-save' => 'Toqqoruk',
-
 );

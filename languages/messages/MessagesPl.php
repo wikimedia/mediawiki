@@ -3532,19 +3532,4 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'htmlform-reset'               => 'Cofnij zmiany',
 'htmlform-selectorother-other' => 'Inne',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Dodaj kategorię',
-'ajax-add-category-submit'     => 'Dodaj',
-'ajax-confirm-title'           => 'Potwierdź',
-'ajax-confirm-prompt'          => 'Możesz podać poniżej opis edycji.
-Kliknij „Zapisz”, aby zapisać zmiany.',
-'ajax-confirm-save'            => 'Zapisz',
-'ajax-add-category-summary'    => 'Dodaj kategorię „$1”',
-'ajax-remove-category-summary' => 'Usuń kategorię „$1”',
-'ajax-confirm-actionsummary'   => 'Cel działania',
-'ajax-error-title'             => 'Błąd',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Usunięcie strony z tej kategorii nie jest możliwe.
-Problem zazwyczaj występuje, jeśli kategoria została dodana do strony przez szablon.',
-
 );

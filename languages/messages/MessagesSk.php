@@ -3491,19 +3491,4 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'htmlform-reset'               => 'Vrátiť zmeny',
 'htmlform-selectorother-other' => 'Iné',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Pridať kategóriu',
-'ajax-add-category-submit'     => 'Pridať',
-'ajax-confirm-title'           => 'Potvrdiť operáciu',
-'ajax-confirm-prompt'          => 'Dolu môžete napísať zhrnutie úprav.
-Svoje úpravy uložíte kliknutím na „Uložiť“.',
-'ajax-confirm-save'            => 'Uložiť',
-'ajax-add-category-summary'    => 'Pridať kategóriu „$1“',
-'ajax-remove-category-summary' => 'Odstrániť kategóriu „$1“',
-'ajax-confirm-actionsummary'   => 'Vykonať operáciu:',
-'ajax-error-title'             => 'Chyba',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Nebolo možné odstrániť túto kategóriu.
-To sa zvyčajne stane, keď bola kategória pridaná na stránku v pomocou šablóny.',
-
 );

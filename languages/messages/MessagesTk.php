@@ -3147,19 +3147,4 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'htmlform-reset'               => 'Üýtgeşmeleri yzyna al',
 'htmlform-selectorother-other' => 'Başga',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategoriýa goş',
-'ajax-add-category-submit'     => 'Goş',
-'ajax-confirm-title'           => 'Işi tassykla',
-'ajax-confirm-prompt'          => 'Aşakda özgerdiş mazmunyny ýazyp bilersiňiz.
-Özgerdişi ýazdyrmak üçin "Ýazdyr"-a basyň.',
-'ajax-confirm-save'            => 'Ýazdyr',
-'ajax-add-category-summary'    => '"$1" kategoriýasyny goş',
-'ajax-remove-category-summary' => '"$1" kategoriýasyny aýyr',
-'ajax-confirm-actionsummary'   => 'Edilmeli iş:',
-'ajax-error-title'             => 'Säwlik',
-'ajax-error-dismiss'           => 'Bolýar',
-'ajax-remove-category-error'   => 'Bu kategoriýany aýyryp bolmady.
-Bu adatça kategoriýa sahypanyň içindäki bir şablona goşulgy bolsa ýüze çykýar.',
-
 );

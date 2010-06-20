@@ -3426,17 +3426,4 @@ $1',
 'htmlform-reset'               => '変更を取り消す',
 'htmlform-selectorother-other' => 'その他',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'カテゴリー追加',
-'ajax-add-category-submit'     => '追加',
-'ajax-confirm-title'           => '操作確認',
-'ajax-confirm-prompt'          => '編集内容の要約を以下に述べることができます。「保存」をクリックすると編集が保存されます。',
-'ajax-confirm-save'            => '保存',
-'ajax-add-category-summary'    => 'カテゴリー「$1」を追加',
-'ajax-remove-category-summary' => 'カテゴリー「$1」を除去',
-'ajax-confirm-actionsummary'   => '実行する操作:',
-'ajax-error-title'             => 'エラー',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'このカテゴリーを除去することができませんでした。これは通常、カテゴリーがテンプレートによってページに追加されている場合に起こります。',
-
 );

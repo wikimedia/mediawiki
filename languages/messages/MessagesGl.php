@@ -756,8 +756,8 @@ O seu enderezo IP quedará rexistrado no historial de revisións desta páxina."
 'missingsummary'                   => "'''Aviso:''' esqueceu incluír o texto do campo resumo.
 Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrición da edición.",
 'missingcommenttext'               => 'Por favor, escriba un comentario a continuación.',
-'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/cabeceira deste comentario.
-Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
+'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/título deste comentario.
+Se preme sobre \"{{int:savearticle}}\", a súa edición gardarase sen el.",
 'summary-preview'                  => 'Vista previa do resumo:',
 'subject-preview'                  => 'Vista previa do asunto/título:',
 'blockedtitle'                     => 'O usuario está bloqueado',
@@ -3408,6 +3408,15 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'tags-edit'               => 'editar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambio|cambios}}',
 
+# Special:ComparePages
+'comparepages'     => 'Comparar páxinas',
+'compare-selector' => 'Comparar as revisións de dúas páxinas',
+'compare-page1'    => 'Páxina 1',
+'compare-page2'    => 'Páxina 2',
+'compare-rev1'     => 'Revisión 1',
+'compare-rev2'     => 'Revisión 2',
+'compare-submit'   => 'Comparar',
+
 # Database error messages
 'dberr-header'      => 'Este wiki ten un problema',
 'dberr-problems'    => 'Sentímolo! Este sitio está experimentando dificultades técnicas.',
@@ -3428,20 +3437,5 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfacer os cambios',
 'htmlform-selectorother-other' => 'Outra',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Engadir unha categoría',
-'ajax-add-category-submit'     => 'Engadir',
-'ajax-confirm-title'           => 'Confirmar a acción',
-'ajax-confirm-prompt'          => 'Pode proporcionar un resumo de edición a continuación.
-Prema sobre o botón "Gardar" para gardar a súa edición.',
-'ajax-confirm-save'            => 'Gardar',
-'ajax-add-category-summary'    => 'Engadir a categoría "$1"',
-'ajax-remove-category-summary' => 'Eliminar a categoría "$1"',
-'ajax-confirm-actionsummary'   => 'Acción a levar a cabo:',
-'ajax-error-title'             => 'Erro',
-'ajax-error-dismiss'           => 'De acordo',
-'ajax-remove-category-error'   => 'Non se puido eliminar esta categoría.
-Normalmente isto ocorre cando a categoría foi engadida á páxina a través dun modelo.',
 
 );

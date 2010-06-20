@@ -3493,19 +3493,4 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'htmlform-reset'               => 'Deshacer cambios',
 'htmlform-selectorother-other' => 'Otro',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Agregar categoría',
-'ajax-add-category-submit'     => 'Agregar',
-'ajax-confirm-title'           => 'Confirmar acción',
-'ajax-confirm-prompt'          => 'Puedes proveer un resumen de edición abajo.
-Haz click en "Grabar" para grabar tu edición.',
-'ajax-confirm-save'            => 'Guardar',
-'ajax-add-category-summary'    => 'Agregar categoría "$1"',
-'ajax-remove-category-summary' => 'Eliminar categoría "$1"',
-'ajax-confirm-actionsummary'   => 'Acción a tomar:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'No fue posible eliminar esta categoría.
-Esto usualmente ocurre cuando la categoría ha sido agregada a la página por una plantilla.',
-
 );

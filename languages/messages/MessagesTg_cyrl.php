@@ -2642,19 +2642,4 @@ $1',
 'htmlform-reset'               => 'Ботили тағйирот',
 'htmlform-selectorother-other' => 'Дигар',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Илова кардани гурӯҳ',
-'ajax-add-category-submit'     => 'Илова кардан',
-'ajax-confirm-title'           => 'Таъйиди амал',
-'ajax-confirm-prompt'          => 'Шумо метавонед хулосаи вироишро дар зер ворид кунед.
-Тугмаи "Захира"-ро пахш кунед то вироишатон захира шавад.',
-'ajax-confirm-save'            => 'Захира',
-'ajax-add-category-summary'    => 'Илова кардани гурӯҳи "$1"',
-'ajax-remove-category-summary' => 'Ҳазви гурӯҳӣ "$1"',
-'ajax-confirm-actionsummary'   => 'Амали пешрав:',
-'ajax-error-title'             => 'Хато',
-'ajax-error-dismiss'           => 'Таъйид',
-'ajax-remove-category-error'   => 'Имкони ҳазви ин гурӯҳ вуҷуд надошт.
-Ин иттифоқ маъмулан замоне меафтад, ки гурӯҳ аз тариқи як шаблон ба саҳифа изофа шуда бошад.',
-
 );

@@ -1195,6 +1195,24 @@ Prohlédněte si protokolovací záznamy.',
 'suppressionlog'     => 'Záznam utajení',
 'suppressionlogtext' => 'Toto je záznam činností dohlížitelů – mazání a blokování zahrnující skrytí obsahu i před správci. Vizte též [[Special:IPBlockList|seznam všech probíhajících bloků]].',
 
+# Revision move
+'moverevlogentry'              => 'přesunul {{PLURAL:$3|jednu revizi|$3 revize|$3 revizí}} z $1 do $2',
+'revisionmove'                 => 'Přesunout revize z „$1“',
+'revmove-explain'              => 'Následující revize budou přesunuty z $1 do uvedené cílové stránky. Pokud cílová stránka neexistuje, bude vytvořena. Jinak budou tyto revize začleněny do historie stránky.',
+'revmove-legend'               => 'Nastavit cílovou stránku a shrnutí',
+'revmove-submit'               => 'Přesunout revize do vybrané stránky',
+'revisionmoveselectedversions' => 'Přesunout vybrané revize',
+'revmove-reasonfield'          => 'Důvod:',
+'revmove-titlefield'           => 'Cílová stránka:',
+'revmove-badparam-title'       => 'Chybné parametry',
+'revmove-badparam'             => '<span class="error">Váš požadavek obsahuje neplatné nebo nedostatečné parametry. Stiskněte prosím tlačítko „zpět“ a zkuste to znovu.</span>',
+'revmove-norevisions-title'    => 'Neplatná cílová revize',
+'revmove-norevisions'          => '<span class="error">Neuvedli jste jednu nebo více cílových revizí nebo uvedená revize neexistuje.</span>',
+'revmove-nullmove-title'       => 'Chybný název',
+'revmove-nullmove'             => '<span class="error">Zdrojová stránka je stejná jako cílová. Stiskněte prosím tlačítko „zpět“ a zadejte jiný název stránky než „$1“.</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do existující stránky [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do nově vytvořené stránky [[$3]].',
+
 # History merging
 'mergehistory'                     => 'Slučování historií stránek',
 'mergehistory-header'              => 'Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
@@ -3509,6 +3527,15 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'tags-edit'               => 'editovat',
 'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změny|změn}}',
 
+# Special:ComparePages
+'comparepages'     => 'Porovnání stránek',
+'compare-selector' => 'Porovnání revizí stránek',
+'compare-page1'    => 'Stránka 1',
+'compare-page2'    => 'Stránka 2',
+'compare-rev1'     => 'Revize 1',
+'compare-rev2'     => 'Revize 2',
+'compare-submit'   => 'Porovnat',
+
 # Database error messages
 'dberr-header'      => 'Tato wiki má nějaké potíže',
 'dberr-problems'    => 'Promiňte! Tento server má v tuto chvíli technické problémy.',
@@ -3529,20 +3556,5 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'htmlform-submit'              => 'Odeslat',
 'htmlform-reset'               => 'Vrátit změny',
 'htmlform-selectorother-other' => 'Jiná hodnota',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Přidat kategorii',
-'ajax-add-category-submit'     => 'Přidat',
-'ajax-confirm-title'           => 'Potvrdit změnu',
-'ajax-confirm-prompt'          => 'Níže můžete vyplnit shrnutí editace.
-Kliknutím na „Uložit“ se vaše změna uloží.',
-'ajax-confirm-save'            => 'Uložit',
-'ajax-add-category-summary'    => 'Přidání kategorie „$1“',
-'ajax-remove-category-summary' => 'Odebrání kategorie „$1“',
-'ajax-confirm-actionsummary'   => 'Zamýšlená změna:',
-'ajax-error-title'             => 'Chyba',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Tuto kategorii se nepodařilo odstranit.
-To se obvykle stává v případě, že byla stránka do kategorie přidána prostřednictvím šablony.',
 
 );

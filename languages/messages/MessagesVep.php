@@ -2874,19 +2874,4 @@ Kirjutagat failan nimi «{{ns:file}}:»-pkefiksata.',
 'htmlform-reset'               => 'Tühjitada toižetused',
 'htmlform-selectorother-other' => 'Toine',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Ližata kategorii',
-'ajax-add-category-submit'     => 'Ližata',
-'ajax-confirm-title'           => 'Vahvištoitta tegend',
-'ajax-confirm-prompt'          => 'Alemba sab ümbrikirjutada toižetused.
-Paigat "Panda muštho"-kingitim, miše panda muštho teiden toižetused.',
-'ajax-confirm-save'            => 'Panda muštho',
-'ajax-add-category-summary'    => 'Ližata "$1"-kategorii',
-'ajax-remove-category-summary' => 'Čuta poiš "$1"-kategorii',
-'ajax-confirm-actionsummary'   => 'Tarbhaižed tegendad:',
-'ajax-error-title'             => 'Petuz',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Ei voi čuta kategorijad poiš.
-Nece voib olda, ku kategorii om ližatud šablonan turbiš.',
-
 );

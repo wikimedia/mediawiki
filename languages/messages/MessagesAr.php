@@ -3769,19 +3769,4 @@ $1',
 'htmlform-reset'               => 'الرجوع عن التغييرات',
 'htmlform-selectorother-other' => 'أخرى',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'أضف تصنيفا',
-'ajax-add-category-submit'     => 'أضف',
-'ajax-confirm-title'           => 'أكد الإجراء',
-'ajax-confirm-prompt'          => 'بإمكانك تقديم ملخص تعديل أدناه.
-انقر "احفظ" لحفظ تعديلك.',
-'ajax-confirm-save'            => 'احفظ',
-'ajax-add-category-summary'    => 'إضافة التصنيف "$1"',
-'ajax-remove-category-summary' => 'إزالة التصنيف "$1"',
-'ajax-confirm-actionsummary'   => 'الإجراء المتخذ:',
-'ajax-error-title'             => 'خطأ',
-'ajax-error-dismiss'           => 'موافق',
-'ajax-remove-category-error'   => 'لا يمكن إزالة هذا التصنيف.
-يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
-
 );

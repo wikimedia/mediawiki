@@ -3591,19 +3591,4 @@ $1',
 'htmlform-reset'               => 'වෙනස්කිරීම් අහෝසිකරන්න',
 'htmlform-selectorother-other' => 'වෙනත්',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'වර්ගයක් එකතු කරන්න',
-'ajax-add-category-submit'     => 'එකතු කරන්න',
-'ajax-confirm-title'           => 'ක්‍රියාව තහවුරු කරන්න',
-'ajax-confirm-prompt'          => 'ඔබට පහතින් සංස්කරණ සාරාංශයක් සැපයිය හැක.
-ඔබේ සංස්කරණය සුරැකීම සඳහා "සුරකින්න" ක්ලික් කරන්න.',
-'ajax-confirm-save'            => 'සුරකින්න',
-'ajax-add-category-summary'    => '"$1" වර්ගය ඇතුළත් කරන්න',
-'ajax-remove-category-summary' => '"$1" වර්ගය ඉවත් කරන්න',
-'ajax-confirm-actionsummary'   => 'ගැනීමට තිබෙන ක්‍රියා මාර්ගය:',
-'ajax-error-title'             => 'දෝෂය',
-'ajax-error-dismiss'           => 'හරි',
-'ajax-remove-category-error'   => 'මෙම වර්ගය ඉවත් කිරීම කළ නොහැකි විය.
-මෙය සාමාන්‍යයෙන් සිදු වන්නේ වර්ගය සැකිල්ලක ඇති පිටුවකට එකතු කර ඇති විටය.',
-
 );

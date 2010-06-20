@@ -3412,19 +3412,4 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'htmlform-reset'               => 'Wiezigingen ongedaonmaken',
 'htmlform-selectorother-other' => 'Aanders',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kattegerie derbie doon',
-'ajax-add-category-submit'     => 'Derbie doon',
-'ajax-confirm-title'           => 'Haandeling bevestigen',
-'ajax-confirm-prompt'          => 'Je kunnen hieronder een bewarkingsamenvatting opgeven.
-Klik "Pagina opslaon" um joew bewarking op te slaon.',
-'ajax-confirm-save'            => 'Opslaon',
-'ajax-add-category-summary'    => 'Kattegerie "$1" derbie doon',
-'ajax-remove-category-summary' => 'Kattegerie "$1" vortdoon',
-'ajax-confirm-actionsummary'   => 'Haandeling dee uut-evoerd mut wonnen:',
-'ajax-error-title'             => 'Fout',
-'ajax-error-dismiss'           => 'Oké',
-'ajax-remove-category-error'   => 'Kon disse kattegerie neet vortdoon.
-Dit gebeurt meestentieds as de kattegerie via een mal op de pagina ezet is.',
-
 );

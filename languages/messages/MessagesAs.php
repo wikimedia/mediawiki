@@ -1444,13 +1444,4 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'htmlform-reset'               => 'সাল-সলনি পণ্ড কৰক',
 'htmlform-selectorother-other' => 'অন্য',
 
-# Add categories per AJAX
-'ajax-add-category'         => 'শ্ৰেণী সংযুগ কৰক',
-'ajax-add-category-submit'  => 'যোগ',
-'ajax-confirm-title'        => 'কায্য নিশ্চিত কৰক:',
-'ajax-confirm-save'         => 'সাঁচি থওঁক',
-'ajax-add-category-summary' => 'শ্ৰেণী "$1" সংযুগ কৰক',
-'ajax-error-title'          => 'ভুল',
-'ajax-error-dismiss'        => "অ'কে",
-
 );

@@ -2795,15 +2795,4 @@ Andramo ny topi-maso tsotra',
 'htmlform-reset'               => 'Hanala ny fanovana',
 'htmlform-selectorother-other' => 'Hafa',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Hanampy sokajy',
-'ajax-add-category-submit'     => 'Hanampy',
-'ajax-confirm-title'           => 'Hanohy ilay tao',
-'ajax-confirm-save'            => 'Tehirizo',
-'ajax-add-category-summary'    => 'Hanampy ny sokajy « $1 »',
-'ajax-remove-category-summary' => 'Hanala ilay sokajy « $1 »',
-'ajax-confirm-actionsummary'   => 'Tao hatao :',
-'ajax-error-title'             => 'Tsy fetezana',
-'ajax-error-dismiss'           => 'Eka',
-
 );
