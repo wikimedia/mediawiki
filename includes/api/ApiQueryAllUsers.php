@@ -128,9 +128,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		// Otherwise, the group of the new row is appended to the last entry.
 		// The setContinue... is more complex because of this, and takes into account the higher sql limit
 		// to make sure all rows that belong to the same user are received.
-		//
-		while ( true ) {
-			$row = $db->fetchObject( $res );
+
+		$row = $db->fetchObject( $res );
+		foreach ( $res as $row ) {
 			$count++;
 
 			if ( !$row || $lastUser !== $row->user_name ) {
@@ -143,11 +143,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 								$this->keyToTitle( $lastUserData['name'] ) );
 						break;
 					}
-				}
-
-				// No more rows left
-				if ( !$row ) {
-					break;
 				}
 
 				if ( $count > $limit ) {
