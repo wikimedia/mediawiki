@@ -225,7 +225,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	* @return array
 	*/
 	public static function getAutoGroups( $user ) {
-		return array_merge( array( '*', 'user' ), Autopromote::getAutopromoteGroups( $user ) );
+		$groups = array( '*' );
+
+		if ( !$user->isAnon() ) {
+			$groups[] = 'user';
+		}
+
+		return array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) );
 	}
 
 	public function getAllowedParams() {
