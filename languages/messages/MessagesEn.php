@@ -4287,14 +4287,14 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'tags-edit'               => 'edit',
 'tags-hitcount'           => '$1 {{PLURAL:$1|change|changes}}',
 
-# Special:ComparePAges
-'comparepages'      => 'Compare pages',
-'compare-selector'  => 'Compare page revisions',
-'compare-page1'     => 'Page 1',
-'compare-page2'     => 'Page 2',
-'compare-rev1'      => 'Revision 1',
-'compare-rev2'      => 'Revision 2',
-'compare-submit'    => 'Compare',
+# Special:ComparePages
+'comparepages'     => 'Compare pages',
+'compare-selector' => 'Compare page revisions',
+'compare-page1'    => 'Page 1',
+'compare-page2'    => 'Page 2',
+'compare-rev1'     => 'Revision 1',
+'compare-rev2'     => 'Revision 2',
+'compare-submit'   => 'Compare',
 
 # Database error messages
 'dberr-header'      => 'This wiki has a problem',

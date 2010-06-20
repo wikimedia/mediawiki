@@ -3173,6 +3173,15 @@ $wgMessageStructure = array(
 		'tags-edit',
 		'tags-hitcount',
 	),
+	'comparepages' => array(
+		'comparepages',
+		'compare-selector',
+		'compare-page1',
+		'compare-page2',
+		'compare-rev1',
+		'compare-rev2',
+		'compare-submit',
+	),
 	'db-error-messages' => array(
 		'dberr-header',
 		'dberr-problems',
@@ -3193,15 +3202,6 @@ $wgMessageStructure = array(
 		'htmlform-submit',
 		'htmlform-reset',
 		'htmlform-selectorother-other',
-	),
-	'comparepages' => array(
-		'comparepages'.
-		'compare-selector',
-		'compare-page1',
-		'compare-page2',
-		'compare-rev1',
-		'compare-rev2',
-		'compare-submit',
 	),
 );
 
@@ -3410,7 +3410,7 @@ Variants for Chinese language",
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
 	'special-tags'          => 'Special:Tags',
+	'comparepages'          => 'Special:ComparePages',
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
-	'comparepages'		=> 'Special:ComparePages',
 );
