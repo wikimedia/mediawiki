@@ -2144,7 +2144,11 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	if ( is_null( $mode ) )
 		$mode = $wgDirectoryMode;
 
+	// Turn off the normal warning, we're doing our own below
+	wfSuppressWarnings();
 	$ok = mkdir( $dir, $mode, true );  // PHP5 <3
+	wfRestoreWarnings();
+
 	if( !$ok ) {
 		// PHP doesn't report the path in its warning message, so add our own to aid in diagnosis.
 		trigger_error( __FUNCTION__ . ": failed to mkdir \"$dir\" mode $mode", E_USER_WARNING );
