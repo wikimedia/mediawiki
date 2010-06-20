@@ -121,7 +121,6 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		if ( !is_null( $resultPageSet ) ) {
 			$resultPageSet->populateFromTitles( $titles );
 		}
-		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams() {

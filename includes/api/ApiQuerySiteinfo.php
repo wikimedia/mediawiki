@@ -271,7 +271,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 			$data[] = $val;
 		}
-		$db->freeResult( $res );
 
 		$this->getResult()->setIndexedTagName( $data, 'iw' );
 		return $this->getResult()->addValue( 'query', $property, $data );

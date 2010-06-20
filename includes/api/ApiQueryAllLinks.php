@@ -145,7 +145,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$pageids[] = $row->pl_from;
 			}
 		}
-		$db->freeResult( $res );
 
 		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'l' );

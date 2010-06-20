@@ -187,8 +187,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
-		$db->freeResult( $res );
-
 		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'u' );
 	}
 

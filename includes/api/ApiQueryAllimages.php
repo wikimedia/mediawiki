@@ -134,7 +134,6 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 				$titles[] = Title::makeTitle( NS_IMAGE, $row->img_name );
 			}
 		}
-		$db->freeResult( $res );
 
 		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'img' );

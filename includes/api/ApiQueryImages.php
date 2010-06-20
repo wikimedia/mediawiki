@@ -120,8 +120,6 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			}
 			$resultPageSet->populateFromTitles( $titles );
 		}
-
-		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams() {

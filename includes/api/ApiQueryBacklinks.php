@@ -232,7 +232,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$resultPageSet->processDbRow( $row );
 			}
 		}
-		$db->freeResult( $res );
 
 		if ( $this->redirect && count( $this->redirTitles ) ) {
 			$this->resetQueryParams();
@@ -258,7 +257,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					$resultPageSet->processDbRow( $row );
 				}
 			}
-			$db->freeResult( $res );
 		}
 		if ( is_null( $resultPageSet ) ) {
 			// Try to add the result data in one go and pray that it fits

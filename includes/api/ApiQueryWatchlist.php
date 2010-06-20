@@ -202,8 +202,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$db->freeResult( $res );
-
 		if ( is_null( $resultPageSet ) ) {
 			$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
 		} elseif ( $params['allrev'] ) {
