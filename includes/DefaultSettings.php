@@ -562,7 +562,7 @@ $wgTrustedMediaFormats = array(
  */
 $wgMediaHandlers = array(
 	'image/jpeg' => 'BitmapHandler',
-	'image/png' => 'BitmapHandler',
+	'image/png' => 'PNGHandler',
 	'image/gif' => 'GIFHandler',
 	'image/tiff' => 'TiffHandler',
 	'image/x-ms-bmp' => 'BmpHandler',

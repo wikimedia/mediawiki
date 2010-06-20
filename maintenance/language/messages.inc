@@ -2510,6 +2510,9 @@ $wgMessageStructure = array(
 		'show-big-image-thumb',
 		'file-info-gif-looped',
 		'file-info-gif-frames',
+		'file-info-png-looped',
+		'file-info-png-repeat',
+		'file-info-png-frames',
 	),
 	'newfiles' => array(
 		'newimages',
