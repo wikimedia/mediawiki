@@ -257,7 +257,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data = array();
 		$langNames = Language::getLanguageNames();
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$val = array();
 			$val['prefix'] = $row->iw_prefix;
 			if ( $row->iw_local == '1' ) {

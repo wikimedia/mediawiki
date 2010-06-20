@@ -369,7 +369,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addWhereFld( 'pr_page', array_keys( $this->titles ) );
 
 			$res = $this->select( __METHOD__ );
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$a = array(
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
@@ -426,7 +426,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addFields( array( 'pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry' ) );
 			$this->addWhere( $lb->constructSet( 'pt', $db ) );
 			$res = $this->select( __METHOD__ );
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$this->protections[$row->pt_namespace][$row->pt_title][] = array(
 					'type' => 'create',
 					'level' => $row->pt_create_perm,
@@ -459,7 +459,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addWhereFld( 'pr_cascade', 1 );
 
 			$res = $this->select( __METHOD__ );
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$source = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$this->protections[$row->tl_namespace][$row->tl_title][] = array(
 					'type' => $row->pr_type,
@@ -482,7 +482,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addWhereFld( 'il_to', $images );
 
 			$res = $this->select( __METHOD__ );
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$source = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$this->protections[NS_FILE][$row->il_to][] = array(
 					'type' => $row->pr_type,
@@ -522,7 +522,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addFields( array( 'page_title', 'page_namespace', 'page_id' ) );
 		$this->addWhere( $lb->constructSet( 'page', $db ) );
 		$res = $this->select( __METHOD__ );
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
 				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
 						intval( $row->page_id );
@@ -560,7 +560,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$res = $this->select( __METHOD__ );
 
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$this->watched[$row->page_namespace][$row->page_title] = true;
 		}
 	}

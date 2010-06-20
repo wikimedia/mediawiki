@@ -322,7 +322,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$count = 0;
 		$res = $this->select( __METHOD__ );
 
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if ( !$enumRevMode ) {

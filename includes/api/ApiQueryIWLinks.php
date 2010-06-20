@@ -84,7 +84,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 		$count = 0;
 		$db = $this->getDB();
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...

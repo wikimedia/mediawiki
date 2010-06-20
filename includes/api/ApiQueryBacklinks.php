@@ -213,7 +213,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->pageMap = array(); // Maps ns and title to pageid
 		$this->continueStr = null;
 		$this->redirTitles = array();
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++ $count > $this->params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// Continue string preserved in case the redirect query doesn't pass the limit
@@ -238,7 +238,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->prepareSecondQuery( $resultPageSet );
 			$res = $this->select( __METHOD__ . '::secondQuery' );
 			$count = 0;
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				if ( ++$count > $this->params['limit'] ) {
 					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 					// We need to keep the parent page of this redir in

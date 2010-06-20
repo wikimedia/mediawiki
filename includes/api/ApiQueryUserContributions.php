@@ -91,7 +91,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$limit = $this->params['limit'];
 
 		// Fetch each row
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if ( $this->multiUserMode ) {

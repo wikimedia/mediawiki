@@ -252,7 +252,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		/* Iterate through the rows, adding data extracted from them to our query result. */
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++ $count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );

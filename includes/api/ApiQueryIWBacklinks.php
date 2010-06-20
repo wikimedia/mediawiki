@@ -87,7 +87,7 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 
 		$count = 0;
 		$result = $this->getResult();
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++ $count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// Continue string preserved in case the redirect query doesn't pass the limit

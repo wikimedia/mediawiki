@@ -143,7 +143,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			$count = 0;
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
@@ -165,7 +165,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		} else {
 			$titles = array();
 			$count = 0;
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...

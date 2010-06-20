@@ -150,7 +150,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 		$count = 0;
 		$result = $this->getResult();
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
