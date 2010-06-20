@@ -2211,7 +2211,4 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 # Special:BlankPage
 'blankpage' => 'Leathanach bán',
 
-# Add categories per AJAX
-'ajax-confirm-save' => 'Sábháil',
-
 );

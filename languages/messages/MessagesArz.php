@@ -3566,19 +3566,4 @@ $1',
 'htmlform-reset'               => 'الرجوع فى التغييرات',
 'htmlform-selectorother-other' => 'تانيين',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'ضيف تصنيف',
-'ajax-add-category-submit'     => 'ضيف',
-'ajax-confirm-title'           => 'تأكيد العمليه',
-'ajax-confirm-prompt'          => 'ممكن تضيف ملخص للتعديل تحت.
-دوس على "تسييف" علشان تسيف التعديل بتاعك.',
-'ajax-confirm-save'            => 'سييف',
-'ajax-add-category-summary'    => 'حط التصنيف "$1"',
-'ajax-remove-category-summary' => 'شيل التصنيف "$1"',
-'ajax-confirm-actionsummary'   => 'العمل المطلوب:',
-'ajax-error-title'             => 'غلط',
-'ajax-error-dismiss'           => 'طيب',
-'ajax-remove-category-error'   => 'مانفعش نشيل التصنيف دا.
-دا بيحصل عادة لما التصنيف بيتحط فى الصفحه عن طريق القالب',
-
 );

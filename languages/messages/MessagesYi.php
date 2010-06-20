@@ -2891,13 +2891,4 @@ $5
 'htmlform-reset'               => 'צוריקשטעלן ענדערונגען',
 'htmlform-selectorother-other' => 'אנדער',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'צולייגן קאַטעגאריע',
-'ajax-add-category-submit'     => 'צולייגן',
-'ajax-confirm-save'            => 'אויפֿהיטן',
-'ajax-add-category-summary'    => 'צולייגן קאַטעגאריע "$1"',
-'ajax-remove-category-summary' => 'אַוועקנעמען קאַטעגאריע "$1"',
-'ajax-error-title'             => 'גרײַז',
-'ajax-error-dismiss'           => 'אויספֿירן',
-
 );

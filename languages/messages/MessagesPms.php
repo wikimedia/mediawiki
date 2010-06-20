@@ -3249,19 +3249,4 @@ Ch'a bata 'l nòm dl'archivi sensa pa bute-ie 'l prefiss \"{{ns:file}}:\".",
 'htmlform-reset'               => 'Scansela ij cambiament',
 'htmlform-selectorother-other' => 'Àutr',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Gionta categorìa',
-'ajax-add-category-submit'     => 'Gionta',
-'ajax-confirm-title'           => 'Conferma assion',
-'ajax-confirm-prompt'          => 'It peule dé sì sota un resumé dla modìfica.
-Sgnaca "Salva" për salvé la modìfica.',
-'ajax-confirm-save'            => 'Salva',
-'ajax-add-category-summary'    => 'Gionta la categorìa "$1"',
-'ajax-remove-category-summary' => 'Gava la categorìa "$1"',
-'ajax-confirm-actionsummary'   => 'Assion da fé:',
-'ajax-error-title'             => 'Eror',
-'ajax-error-dismiss'           => 'Va bin',
-'ajax-remove-category-error'   => "A l'era pa possìbil gavé sta categorìa-sì.
-Sòn-sì a càpita normalment quand la categorìa a l'é stàita giontà a la pàgina ant në stamp.",
-
 );

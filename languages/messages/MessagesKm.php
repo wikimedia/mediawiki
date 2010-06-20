@@ -3215,18 +3215,4 @@ $1',
 'htmlform-reset'               => 'ធ្វើដូចដើមវិញ',
 'htmlform-selectorother-other' => 'ផ្សេងទៀត',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'បន្ថែម​ចំណាត់ថ្នាក់​ក្រុម​',
-'ajax-add-category-submit'     => 'បន្ថែម​',
-'ajax-confirm-title'           => 'បញ្ជាក់​សកម្មភាព​',
-'ajax-confirm-prompt'          => 'អ្នកអាចដាក់ចំណារពន្យល់ខាងក្រោម។
-
-សូមចុចលើប៊ូតុង "រក្សាទុក" ដើម្បីធ្វើការរក្សាទុកកំណែប្រែរបស់អ្នក។',
-'ajax-confirm-save'            => 'រក្សាទុក',
-'ajax-add-category-summary'    => 'បន្ថែម​ចំណាត់ថ្នាក់​ក្រុម​ "$1"',
-'ajax-remove-category-summary' => 'ដកចេញ​​ចំណាត់ថ្នាក់​ក្រុម​ "$1"',
-'ajax-confirm-actionsummary'   => 'សកម្មភាព​ត្រូវ​អនុវត្ត៖',
-'ajax-error-title'             => 'កំហុស​',
-'ajax-error-dismiss'           => 'យល់ព្រម​',
-
 );

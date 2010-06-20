@@ -2021,7 +2021,4 @@ $5
 # HTML forms
 'htmlform-selectorother-other' => 'ಇತರ',
 
-# Add categories per AJAX
-'ajax-confirm-save' => 'ಉಳಿಸಿ',
-
 );

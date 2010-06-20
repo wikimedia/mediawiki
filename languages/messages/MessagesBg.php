@@ -3310,19 +3310,4 @@ $1',
 'htmlform-reset'               => 'Отказване на промените',
 'htmlform-selectorother-other' => 'Друга',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Добавяне на категория',
-'ajax-add-category-submit'     => 'Добавяне',
-'ajax-confirm-title'           => 'Потвърждаване на действието',
-'ajax-confirm-prompt'          => 'По-долу можете да добавите резюме към редакцията си.
-За да я запазите, шракнете върху бутон „Съхранение“.',
-'ajax-confirm-save'            => 'Съхраняване',
-'ajax-add-category-summary'    => 'Добавяне на категория „$1“',
-'ajax-remove-category-summary' => 'Премахване на категория „$1“',
-'ajax-confirm-actionsummary'   => 'Действие за предприемане:',
-'ajax-error-title'             => 'Грешка',
-'ajax-error-dismiss'           => 'Добре',
-'ajax-remove-category-error'   => 'Тази категория не можа да бъде премахната. 
-Това обикновено се случва, когато категорията е била добавена в страницата индиректно чрез шаблон.',
-
 );

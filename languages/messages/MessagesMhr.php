@@ -1104,7 +1104,4 @@ $messages = array(
 'specialpages-group-pagetools' => 'Лаштык ӱзгар-влак',
 'specialpages-group-redirects' => 'Вес верек колтышо лӱмын ыштыме лаштык-влак',
 
-# Add categories per AJAX
-'ajax-error-dismiss' => 'Йӧра',
-
 );

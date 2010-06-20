@@ -1118,13 +1118,4 @@ $1',
 'tags-edit'            => 'нисйé',
 'tags-hitcount'        => '$1 {{PLURAL:$1|хийцам|хийцамаш|хийцамаш}}',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Тlетоха кадегар',
-'ajax-confirm-title'           => 'Тlечlагlде дийриг',
-'ajax-confirm-save'            => 'lалашдан',
-'ajax-add-category-summary'    => 'Тlетоьхна кадегар «$1»',
-'ajax-remove-category-summary' => 'ДIайакхина кадегар «$1»',
-'ajax-error-title'             => 'Гlалат',
-'ajax-error-dismiss'           => 'Хlаъ',
-
 );

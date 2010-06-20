@@ -737,7 +737,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'სპეციალურ ხასილეფ',
 
-# Add categories per AJAX
-'ajax-error-dismiss' => 'OK',
-
 );

@@ -3483,19 +3483,4 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'htmlform-reset'               => 'Változtatások visszavonása',
 'htmlform-selectorother-other' => 'egyéb',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategória hozzáadása',
-'ajax-add-category-submit'     => 'Hozzáadás',
-'ajax-confirm-title'           => 'Művelet megerősítése',
-'ajax-confirm-prompt'          => 'Alább megadhatsz egy szerkesztési összefoglalót.
-Kattints a „Mentés” gombra a szerkesztés elmentéséhez.',
-'ajax-confirm-save'            => 'Mentés',
-'ajax-add-category-summary'    => '„$1” kategória hozzáadása',
-'ajax-remove-category-summary' => '„$1” kategória eltávolítása',
-'ajax-confirm-actionsummary'   => 'Elvégzendő művelet:',
-'ajax-error-title'             => 'Hiba',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Nem sikerült eltávolítani a kategóriát.
-Ez általában akkor fordul elő, ha a kategóriát egy sablon adja hozzá a laphoz.',
-
 );

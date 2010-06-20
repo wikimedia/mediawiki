@@ -707,7 +707,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'missingsummary'                   => "'''Opozorilo:''' Niste napisali povzetka urejanja. Ob ponovnem kliku gumba ''Shrani'' se bo vaše urejanje shranilo brez njega.",
 'missingcommenttext'               => 'Prosimo, vpišite v spodnje polje komentar.',
 'missingcommentheader'             => "'''Opozorilo:''' Niste vnesli zadeve/naslova za ta komentar.
-Če boste ponovno kliknili Shrani stran, bo vaše urejanje shranjeno brez le-tega.",
+Če boste ponovno kliknili »{{int:savearticle}}«, bo vaše urejanje shranjeno brez le-tega.",
 'summary-preview'                  => 'Predogled povzetka',
 'subject-preview'                  => 'Predogled zadeve/naslova:',
 'blockedtitle'                     => 'Uporabnik je blokiran',
@@ -3356,6 +3356,15 @@ Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 'tags-edit'               => 'uredi',
 'tags-hitcount'           => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
 
+# Special:ComparePages
+'comparepages'     => 'Primerjaj strani',
+'compare-selector' => 'Primerjaj redakcije strani',
+'compare-page1'    => 'Stran 1',
+'compare-page2'    => 'Stran 2',
+'compare-rev1'     => 'Redakcija 1',
+'compare-rev2'     => 'Redakcija 2',
+'compare-submit'   => 'Primerjaj',
+
 # Database error messages
 'dberr-header'      => 'Ta wiki ima težavo',
 'dberr-problems'    => 'Oprostite!
@@ -3377,20 +3386,5 @@ Ta stran se sooča s tehničnimi težavami.',
 'htmlform-submit'              => 'Pošlji',
 'htmlform-reset'               => 'Razveljavi spremembe',
 'htmlform-selectorother-other' => 'Drugo',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Dodaj kategorijo',
-'ajax-add-category-submit'     => 'Dodaj',
-'ajax-confirm-title'           => 'Potrdi dejanje',
-'ajax-confirm-prompt'          => 'Spodaj lahko navedete povzetek urejanja.
-Kliknite »Shrani«, da shranite svoje urejanje.',
-'ajax-confirm-save'            => 'Shrani',
-'ajax-add-category-summary'    => 'Dodaj kategorijo »$1«',
-'ajax-remove-category-summary' => 'Odstrani kategorijo »$1«',
-'ajax-confirm-actionsummary'   => 'Izvedi dejanje:',
-'ajax-error-title'             => 'Napaka',
-'ajax-error-dismiss'           => 'V redu',
-'ajax-remove-category-error'   => 'Kategorije ni bilo mogoče odstraniti.
-To se po navadi zgodi, ko je kategorija dodana strani v predlogi.',
 
 );

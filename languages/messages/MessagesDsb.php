@@ -3253,6 +3253,15 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'tags-edit'               => 'wobźěłaś',
 'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
 
+# Special:ComparePages
+'comparepages'     => 'Boki pśirownaś',
+'compare-selector' => 'Wersije boka pśirownaś',
+'compare-page1'    => 'Bok 1',
+'compare-page2'    => 'Bok 2',
+'compare-rev1'     => 'Wersija 1',
+'compare-rev2'     => 'Wersija 2',
+'compare-submit'   => 'Pśirownaś',
+
 # Database error messages
 'dberr-header'      => 'Toś ten wiki ma problem',
 'dberr-problems'    => 'Wódaj! Toś to sedło ma techniske śěžkosći.',
@@ -3273,20 +3282,5 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'htmlform-submit'              => 'Wótpósłaś',
 'htmlform-reset'               => 'Změny anulěrowaś',
 'htmlform-selectorother-other' => 'Druge',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategoriju pśidaś',
-'ajax-add-category-submit'     => 'Pśidaś',
-'ajax-confirm-title'           => 'Akciju wobkšuśiś',
-'ajax-confirm-prompt'          => 'Móžoš dołojce wobźěłowańske zespominanje pódaś.
-Klikni na "Składowaś", aby swójo wobźěłanje składował.',
-'ajax-confirm-save'            => 'Składowaś',
-'ajax-add-category-summary'    => 'Kategoriju "$1" pśidaś',
-'ajax-remove-category-summary' => 'Kategoriju "$1" wótpóraś',
-'ajax-confirm-actionsummary'   => 'Akcija, kótaraž ma se wuwjasć:',
-'ajax-error-title'             => 'Zmólka',
-'ajax-error-dismiss'           => 'W pórědku',
-'ajax-remove-category-error'   => 'Njejo móžno było toś tu kategoriju wótpóraś.
-To se zwětšego stawa, gaž kategorija jo se pśidała bokoju w pśedłoze.',
 
 );

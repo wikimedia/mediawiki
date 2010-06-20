@@ -3168,15 +3168,4 @@ Daħħal l-isem tal-fajl mingħajr il-prefiss \"{{ns:file}}:\".",
 'htmlform-reset'               => 'Annulla l-modifiki',
 'htmlform-selectorother-other' => 'Oħrajn',
 
-# Add categories per AJAX
-'ajax-add-category-submit'     => 'Żid',
-'ajax-confirm-title'           => 'Ikkonferma l-azzjoni',
-'ajax-confirm-prompt'          => 'Inti tista\' tipprovdi taqsira hawn taħt għall-modifika tiegħek. Agħfas "Salva" sabiex tissejvja l-modifika tiegħek.',
-'ajax-confirm-save'            => 'Salva',
-'ajax-add-category-summary'    => 'Żid il-kategorija "$1"',
-'ajax-remove-category-summary' => 'Neħħi l-kategorija "$1"',
-'ajax-confirm-actionsummary'   => 'Azzjoni li għandha tittieħed:',
-'ajax-error-title'             => 'Żball',
-'ajax-error-dismiss'           => 'OK',
-
 );

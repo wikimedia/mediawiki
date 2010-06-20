@@ -2428,6 +2428,7 @@ $1',
 Zur Information folgt der aktuelle Auszug aus dem Sperr-Logbuch:',
 'sp-contributions-search'              => 'Suche nach Benutzerbeiträgen',
 'sp-contributions-username'            => 'IP-Adresse oder Benutzername:',
+'sp-contributions-toponly'             => 'Nur aktuelle Versionen zeigen',
 'sp-contributions-submit'              => 'Suchen',
 
 # What links here
@@ -3510,6 +3511,15 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'tags-edit'               => 'bearbeiten',
 'tags-hitcount'           => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
 
+# Special:ComparePages
+'comparepages'     => 'Seiten vergleichen',
+'compare-selector' => 'Seitenversionen vergleichen',
+'compare-page1'    => 'Seite 1',
+'compare-page2'    => 'Seite 2',
+'compare-rev1'     => 'Version 1',
+'compare-rev2'     => 'Version 2',
+'compare-submit'   => 'Vergleichen',
+
 # Database error messages
 'dberr-header'      => 'Dieses Wiki hat ein Problem',
 'dberr-problems'    => 'Entschuldigung. Diese Seite hat momentan technische Schwierigkeiten.',
@@ -3530,20 +3540,5 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'htmlform-submit'              => 'Übertragen',
 'htmlform-reset'               => 'Änderungen rückgängig machen',
 'htmlform-selectorother-other' => 'Andere',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategorie hinzufügen',
-'ajax-add-category-submit'     => 'Hinzufügen',
-'ajax-confirm-title'           => 'Aktion bestätigen',
-'ajax-confirm-prompt'          => 'Du kannst unten eine Zusammenfassung eingeben.
-Klicke „Speichern“ um die Bearbeitung zu speichern.',
-'ajax-confirm-save'            => 'Speichern',
-'ajax-add-category-summary'    => 'Kategorie „$1“ hinzufügen',
-'ajax-remove-category-summary' => 'Kategorie „$1“ entfernen',
-'ajax-confirm-actionsummary'   => 'Auszuführende Aktion:',
-'ajax-error-title'             => 'Fehler',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Es war nicht möglich, die Kategorie zu entfernen.
-Dies passiert normalerweise, wenn die Kategorie über eine Vorlage eingebunden ist.',
 
 );

@@ -3216,6 +3216,15 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'tags-edit'               => 'změnić',
 'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
 
+# Special:ComparePages
+'comparepages'     => 'Strony přirunać',
+'compare-selector' => 'Wersije strony přirunać',
+'compare-page1'    => 'Strona 1',
+'compare-page2'    => 'Strona 2',
+'compare-rev1'     => 'Wersija 1',
+'compare-rev2'     => 'Wersija 2',
+'compare-submit'   => 'Přirunać',
+
 # Database error messages
 'dberr-header'      => 'Tutón wiki ma problem',
 'dberr-problems'    => 'Wodaj! Tute sydło ma techniske ćežkosće.',
@@ -3236,20 +3245,5 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Wotpósłać',
 'htmlform-reset'               => 'Změny cofnyć',
 'htmlform-selectorother-other' => 'Druhe',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategoriju přidać',
-'ajax-add-category-submit'     => 'Přidać',
-'ajax-confirm-title'           => 'Akciju wobkrućić',
-'ajax-confirm-prompt'          => 'Móžeš deleka wobdźěłanske zjeće podać.
-Klikń na "Składować", zo by swoje wobdźěłanje składował.',
-'ajax-confirm-save'            => 'Składować',
-'ajax-add-category-summary'    => 'Kategoriju "$1" přidać',
-'ajax-remove-category-summary' => 'Kategoriju "$1" wotstronić',
-'ajax-confirm-actionsummary'   => 'Akcija, kotraž ma so wuwjesć:',
-'ajax-error-title'             => 'Zmylk',
-'ajax-error-dismiss'           => 'W porjadku',
-'ajax-remove-category-error'   => 'Njebě móžno tutu kategoriju wotstronić.
-To so zwjetša stawa, hdyž kategorija je so stronje w předłoze přidała.',
 
 );

@@ -455,6 +455,7 @@ $2',
 'passwordremindertitle'   => 'Нове дочасне гесло на {{grammar:4sg|{{SITENAME}}}}',
 'noemail'                 => 'Хоснователь "$1" не має реґістровану адресу електронічной пошты.',
 'noemailcreate'           => 'Мусите задати правилну адресу електронічной пошты',
+'mailerror'               => 'Хыба засыланя ел. пошты: $1',
 'accountcreated'          => 'Конто вытворене',
 'accountcreatedtext'      => 'Конто хоснователя $1 было вытворене.',
 'createaccount-title'     => 'Вытвориня конта про  {{SITENAME}}',
@@ -553,6 +554,7 @@ $2',
 'template-protected'               => '(хранена)',
 'template-semiprotected'           => '(частково хранено)',
 'hiddencategories'                 => 'Тота сторінка належыть до $1 {{PLURAL:$1|схованa катеґорія|схованы катеґорії|схованы катеґорії}}:',
+'nocreate-loggedin'                => 'Не маєте права створёвати новы сторінкы.',
 'permissionserrors'                => 'Хыба оправнїня',
 'permissionserrorstext-withaction' => 'Немаєте поволїня на $2 з {{PLURAL:$1|такой причіны|такых причін}}:',
 
@@ -1024,40 +1026,51 @@ $2',
 'recentchangeslinked-to'      => 'Вказати зміны на сторінках, одказуючіх на задану сторінку',
 
 # Upload
-'upload'              => 'Награти файл',
-'uploadbtn'           => 'Начітати файл',
-'reuploaddesc'        => 'Зрушыти начітаня а вернути ся до формы начітаня',
-'upload-tryagain'     => 'Уложыти зміненый попис файлу',
-'uploadnologin'       => 'Не сьте приголошеный(а)',
-'upload-permitted'    => 'Доволены тіпы  файлів: $1.',
-'upload-preferred'    => 'Преферованы тіпы файлів: $1',
-'upload-prohibited'   => 'Заказаны тіпы файлів: $1.',
-'uploadlog'           => 'книга награваня',
-'uploadlogpage'       => 'Лоґ награных файлів',
-'filename'            => 'Назва файлу:',
-'filedesc'            => 'Попис',
-'fileuploadsummary'   => 'Попис:',
-'filereuploadsummary' => 'Зміны у файлі:',
-'filestatus'          => 'Авторьскы права:',
-'filesource'          => 'Джерело:',
-'uploadedfiles'       => 'Начітаны файлы',
-'ignorewarning'       => 'Іґноровати варованя тай начітати файл.',
-'ignorewarnings'      => 'Іґноровати вшыткы варованя',
-'minlength1'          => 'Назва файлу мусить мати холем єдну літеру.',
-'filetype-missing'    => 'Файл не має росшыріня (наприклад, «.jpg»).',
-'empty-file'          => 'Начітаный файл є порожнїй.',
-'file-too-large'      => 'Начітаный файл є барз великый.',
-'filename-tooshort'   => 'Назва файлу є барз коротка.',
-'filetype-banned'     => 'Тот тіп файлу є заказаный.',
-'verification-error'  => 'Тот файл не перешов овіринём файлів.',
-'savefile'            => 'Уложыти файл',
-'uploadedimage'       => 'награв "[[$1]]"',
-'uploadvirus'         => 'Файл обсягує вірус! Детайлы: $1',
+'upload'                => 'Награти файл',
+'uploadbtn'             => 'Начітати файл',
+'reuploaddesc'          => 'Зрушыти начітаня а вернути ся до формы начітаня',
+'upload-tryagain'       => 'Уложыти зміненый попис файлу',
+'uploadnologin'         => 'Не сьте приголошеный(а)',
+'upload-permitted'      => 'Доволены тіпы  файлів: $1.',
+'upload-preferred'      => 'Преферованы тіпы файлів: $1',
+'upload-prohibited'     => 'Заказаны тіпы файлів: $1.',
+'uploadlog'             => 'книга награваня',
+'uploadlogpage'         => 'Лоґ награных файлів',
+'filename'              => 'Назва файлу:',
+'filedesc'              => 'Попис',
+'fileuploadsummary'     => 'Попис:',
+'filereuploadsummary'   => 'Зміны у файлі:',
+'filestatus'            => 'Авторьскы права:',
+'filesource'            => 'Джерело:',
+'uploadedfiles'         => 'Начітаны файлы',
+'ignorewarning'         => 'Іґноровати варованя тай начітати файл.',
+'ignorewarnings'        => 'Іґноровати вшыткы варованя',
+'minlength1'            => 'Назва файлу мусить мати холем єдну літеру.',
+'filetype-missing'      => 'Файл не має росшыріня (наприклад, «.jpg»).',
+'empty-file'            => 'Начітаный файл є порожнїй.',
+'file-too-large'        => 'Начітаный файл є барз великый.',
+'filename-tooshort'     => 'Назва файлу є барз коротка.',
+'filetype-banned'       => 'Тот тіп файлу є заказаный.',
+'verification-error'    => 'Тот файл не перешов овіринём файлів.',
+'savefile'              => 'Уложыти файл',
+'uploadedimage'         => 'награв "[[$1]]"',
+'uploadvirus'           => 'Файл обсягує вірус! Детайлы: $1',
+'upload-successful-msg' => 'Вами начітаный файл є доступный гев: $1',
+'upload-failure-subj'   => 'Проблем з начітаным файлом',
+'upload-failure-msg'    => 'У вами начітаного файлу взникнув проблем:
 
-'upload-file-error' => 'Інтерна хыба',
+$1',
+
+'upload-file-error'         => 'Інтерна хыба',
+'upload-misc-error'         => 'Незнама хыба',
+'upload-too-many-redirects' => 'URL обсягує барз велё напрямлінь',
+'upload-unknown-size'       => 'Незнамый розмір',
+'upload-http-error'         => 'Дішло ку хыбі HTTP: $1',
 
 # img_auth script messages
-'img-auth-nofile' => 'Файл «$1» не екзістує.',
+'img-auth-accessdenied' => 'Приступ одопертый',
+'img-auth-nofile'       => 'Файл «$1» не екзістує.',
+'img-auth-streaming'    => 'Переношать ся „$1“.',
 
 'license'            => 'Ліценцованя:',
 'license-header'     => 'Ліценцованя',
@@ -1260,6 +1273,7 @@ $2',
 'watchlist'         => 'Слїдованы сторінкы',
 'mywatchlist'       => 'Слїдованы сторінкы',
 'watchlistfor'      => "(хоснователя '''$1''')",
+'watchnologin'      => 'Не сьте приголошеный(а)',
 'addedwatch'        => 'Придана до списку слїдованых сторінок',
 'addedwatchtext'    => "Сторінка «[[:$1]]» была придана до вашого [[Special:Watchlist|списку слїдованых]].
 Будучі зміны той статї і з нёв повязаной сторінков діскузії будуть зображены у тім списку, а тыж будуть выдїлены '''тучнї''' на сторінцї із [[Special:RecentChanges|списком послїднїх змін]], жебы їх было легше вшимнути.",
@@ -1284,9 +1298,13 @@ $2',
 # Delete
 'deletepage'            => 'Змазати сторінку',
 'confirm'               => 'Підтверджіня',
+'exblank'               => 'сторінка была порожня',
+'delete-confirm'        => 'Змазаня  $1',
+'delete-legend'         => 'Вымазати',
 'confirmdeletetext'     => 'Рыхтуєте ся вымазати сторінку і вшыткы єй лоґы едітовань.
 Просиме Вас, потвердьте, же справды тото хочете зробити, повнї розумієте наслыдкы і же робите тото в одповідности з [[{{MediaWiki:Policy-url}}|правилами]].',
 'actioncomplete'        => 'Дїя выконана',
+'actionfailed'          => 'Операція ся не подарила',
 'deletedtext'           => '"<nowiki>$1</nowiki>" было змазане.
 Смоть $2 про список послїднїх змазань.',
 'deletedarticle'        => 'змазаный "[[$1]]"',
@@ -1626,12 +1644,21 @@ $2',
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'  => 'Шырька',
-'exif-imagelength' => 'Вышка',
-'exif-orientation' => 'Орієнтація',
-'exif-artist'      => 'Автор',
-'exif-copyright'   => 'Властник авторьскых прав',
-'exif-exifversion' => 'Верзія Exif',
+'exif-imagewidth'              => 'Шырька',
+'exif-imagelength'             => 'Вышка',
+'exif-orientation'             => 'Орієнтація',
+'exif-datetime'                => 'Датум і час вытворїня файлу',
+'exif-imagedescription'        => 'Назва образку',
+'exif-make'                    => 'Выробник фотоапарату',
+'exif-model'                   => 'Модел фотоапарату',
+'exif-software'                => 'Проґрамове забезпечіня',
+'exif-artist'                  => 'Автор',
+'exif-copyright'               => 'Властник авторьскых прав',
+'exif-exifversion'             => 'Верзія Exif',
+'exif-flashpixversion'         => 'Підпорована верзія Flashpix',
+'exif-colorspace'              => 'Фаребный простор',
+'exif-componentsconfiguration' => 'Конфіґурація компонентів фарбы',
+'exif-flash'                   => 'Блеск',
 
 'exif-meteringmode-1' => 'Середнїй',
 
@@ -1647,8 +1674,52 @@ $2',
 'exif-lightsource-19'  => 'Штандартне світло тіпу C',
 'exif-lightsource-255' => 'Інше джерело світла',
 
+'exif-scenecapturetype-0' => 'Штандартный',
+'exif-scenecapturetype-1' => 'На шырку',
+'exif-scenecapturetype-2' => 'На вышку',
+'exif-scenecapturetype-3' => 'Ночна сцена',
+
+'exif-gaincontrol-0' => 'Жадна',
+'exif-gaincontrol-1' => 'Невелике звышіня',
+'exif-gaincontrol-2' => 'Велике звышіня',
+'exif-gaincontrol-3' => 'Невелике зменшіня',
+'exif-gaincontrol-4' => 'Силне зменшіня',
+
+'exif-contrast-0' => 'Нормалне',
+'exif-contrast-1' => 'Мягке',
+'exif-contrast-2' => 'Тверде',
+
+'exif-saturation-0' => 'Нормалне',
+'exif-saturation-1' => 'Невелика насыченость',
+'exif-saturation-2' => 'Велика насыченость',
+
+'exif-sharpness-0' => 'Нормалне',
+'exif-sharpness-1' => 'Мягке',
+'exif-sharpness-2' => 'Тверде',
+
+'exif-subjectdistancerange-0' => 'Не є знаме',
+'exif-subjectdistancerange-1' => 'Макро',
+'exif-subjectdistancerange-2' => 'Детайл',
+'exif-subjectdistancerange-3' => 'Погляд здалека',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Северна шырка',
+'exif-gpslatitude-s' => 'Южна шырка',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Выходна довжка',
+'exif-gpslongitude-w' => 'Западна довжка',
+
+'exif-gpsstatus-a' => 'Вымірёваня не є закінчене',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'км/год',
+'exif-gpsspeed-m' => 'міль/год',
+'exif-gpsspeed-n' => 'узлів',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Справный курз',
+'exif-gpsdirection-m' => 'Маґнетічный курз',
 
 # External editor support
 'edit-externally'      => 'Едітовати тот файл хоснувчі екстерну аплікацію',
@@ -1662,6 +1733,12 @@ $2',
 'monthsall'        => 'вшыткы',
 'limitall'         => 'вшыткы',
 
+# E-mail address confirmation
+'confirmemail' => 'Підтверджіня адресы ел. пошты',
+
+# Trackbacks
+'trackbackremove' => '([$1 Змазати])',
+
 # action=purge
 'confirm_purge_button' => 'OK',
 
@@ -1672,14 +1749,20 @@ $2',
 'imgmultigoto'     => 'Перейти на сторінку $1',
 
 # Table pager
+'ascending_abbrev'         => 'зрост',
+'descending_abbrev'        => 'спад',
 'table_pager_next'         => 'Далша сторінка',
 'table_pager_prev'         => 'Попередня сторінка',
 'table_pager_first'        => 'Перша сторінка',
 'table_pager_last'         => 'Послїдня сторінка',
+'table_pager_limit'        => 'Вказовати $1 елементів на сторінцї',
+'table_pager_limit_label'  => 'Записів на сторінку:',
 'table_pager_limit_submit' => 'Выконати',
+'table_pager_empty'        => 'Ніч не было найджене',
 
 # Auto-summaries
-'autosumm-new' => 'Створена сторінка: $1',
+'autosumm-blank' => 'Сторінка очіщена',
+'autosumm-new'   => 'Створена сторінка: $1',
 
 # Live preview
 'livepreview-loading' => 'Награваня...',
@@ -1693,6 +1776,8 @@ $2',
 # Special:Version
 'version'                  => 'Верзія',
 'version-specialpages'     => 'Шпеціалны сторінкы',
+'version-other'            => 'Інше',
+'version-version'          => '(Верзія $1)',
 'version-license'          => 'Ліценція',
 'version-software'         => 'Іншталованый софтвер',
 'version-software-product' => 'Продукт',
@@ -1732,25 +1817,22 @@ $2',
 'tags-edit'         => 'едітовати',
 'tags-hitcount'     => '$1 {{PLURAL:$1|зміна|зміны|змін}}',
 
+# Special:ComparePages
+'compare-page1'  => 'Сторінка 1',
+'compare-page2'  => 'Сторінка 2',
+'compare-rev1'   => 'Ревізія 1',
+'compare-rev2'   => 'Ревізія 2',
+'compare-submit' => 'Порівнати',
+
 # Database error messages
-'dberr-header' => 'Тота вікі має даякы проблемы',
+'dberr-header'    => 'Тота вікі має даякы проблемы',
+'dberr-problems'  => 'Перебачте! Тот сервер має теперь технічны проблемы.',
+'dberr-again'     => 'Спробуйте обновити сторінку за пару мінут.',
+'dberr-usegoogle' => 'Можете спробовати поглядати за допомогов Google.',
 
 # HTML forms
 'htmlform-submit'              => 'Одослати',
 'htmlform-reset'               => 'Вернути зміны',
 'htmlform-selectorother-other' => 'Інше',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Придати катеґорію',
-'ajax-add-category-submit'     => 'Придати',
-'ajax-confirm-title'           => 'Підтвердити дїю',
-'ajax-confirm-save'            => 'Уложыти',
-'ajax-add-category-summary'    => 'Придати катеґорію „$1“',
-'ajax-remove-category-summary' => 'Одобрати катеґорію „$1“',
-'ajax-confirm-actionsummary'   => 'Мета дїї:',
-'ajax-error-title'             => 'Хыба',
-'ajax-error-dismiss'           => 'ОК',
-'ajax-remove-category-error'   => 'Не подарило ся одстранити дану катеґорію.
-Таке ся трафляє звычайнї тогды, коли катеґорія была придана до сторінкы через шаблону.',
 
 );

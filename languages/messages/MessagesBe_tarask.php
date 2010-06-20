@@ -3420,19 +3420,4 @@ $1',
 'htmlform-reset'               => 'Адмяніць зьмены',
 'htmlform-selectorother-other' => 'Іншае',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Дадаць катэгорыю',
-'ajax-add-category-submit'     => 'Дадаць',
-'ajax-confirm-title'           => 'Пацьвердзіць дзеяньне',
-'ajax-confirm-prompt'          => 'Ніжэй Вы можаце ўвесьці кароткае апісаньне зьменаў.
-Націсьніце «Захаваць», каб захаваць Вашае рэдагаваньне.',
-'ajax-confirm-save'            => 'Захаваць',
-'ajax-add-category-summary'    => 'Дададзеная катэгорыя «$1»',
-'ajax-remove-category-summary' => 'Выдаленая катэгорыя «$1»',
-'ajax-confirm-actionsummary'   => 'Дзеяньне да выкананьня:',
-'ajax-error-title'             => 'Памылка',
-'ajax-error-dismiss'           => 'Добра',
-'ajax-remove-category-error'   => 'Немагчыма выдаліць гэтую катэгорыю.
-Звычайна гэта здараецца, калі катэгорыя была дададзеная на старонку праз шаблён.',
-
 );

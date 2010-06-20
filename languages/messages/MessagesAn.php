@@ -3226,18 +3226,4 @@ Escriba o nombre d\'o fichero sin o prefixo "{{ns:file}}:".',
 'htmlform-reset'               => 'Desfer cambios',
 'htmlform-selectorother-other' => 'Atros',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Adhibir categoría',
-'ajax-add-category-submit'     => 'Adhibir',
-'ajax-confirm-title'           => 'Confirmar acción',
-'ajax-confirm-prompt'          => 'Puet furnir debaixo un resumen d\'edición.
-Punche en "Grabar" ta grabar a suya edición.',
-'ajax-confirm-save'            => 'Alzar',
-'ajax-add-category-summary'    => 'Adhibir categoría "$1"',
-'ajax-remove-category-summary' => 'Sacar a categoría "$1"',
-'ajax-confirm-actionsummary'   => 'Acción a prener:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => "D'alcuerdo",
-'ajax-remove-category-error'   => "No s'ha puesto eliminar ista categoría. Isto gosa pasar, por un regular, quan a categoría ha estau adhibida por una plantilla.",
-
 );

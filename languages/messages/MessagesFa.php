@@ -3656,19 +3656,4 @@ $1',
 'htmlform-reset'               => 'خنثی کردن تغییرات',
 'htmlform-selectorother-other' => 'دیگر',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'افزودن رده',
-'ajax-add-category-submit'     => 'افزودن',
-'ajax-confirm-title'           => 'تایید عمل',
-'ajax-confirm-prompt'          => 'شما می‌توانید خلاصهٔ ویرایش را در زیر وارد کنید.
-دکمه «ذخیره» را بزنید تا ویرایش‌تان ذخیره شود.',
-'ajax-confirm-save'            => 'ذخیره',
-'ajax-add-category-summary'    => 'افزودن رده «$1»',
-'ajax-remove-category-summary' => 'حذف رده «$1»',
-'ajax-confirm-actionsummary'   => 'عمل پیش رو:',
-'ajax-error-title'             => 'خطا',
-'ajax-error-dismiss'           => 'تایید',
-'ajax-remove-category-error'   => 'امکان حذف این رده وجود نداشت.
-این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
-
 );

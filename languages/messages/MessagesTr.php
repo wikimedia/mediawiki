@@ -3486,19 +3486,4 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'htmlform-reset'               => 'Değişiklikleri geri al',
 'htmlform-selectorother-other' => 'Diğer',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategori ekle',
-'ajax-add-category-submit'     => 'Ekle',
-'ajax-confirm-title'           => 'İşlemi onayla',
-'ajax-confirm-prompt'          => 'Aşağıya bir değişiklik özeti yazabilirsiniz. 
-Değişikliğinizi kaydetmek için "Kaydet"e basın.',
-'ajax-confirm-save'            => 'Kaydet',
-'ajax-add-category-summary'    => '"$1" kategorisini ekle',
-'ajax-remove-category-summary' => '"$1" kategorisini kaldır',
-'ajax-confirm-actionsummary'   => 'Yapılacak işlem:',
-'ajax-error-title'             => 'Hata',
-'ajax-error-dismiss'           => 'Tamam',
-'ajax-remove-category-error'   => 'Kategori silinemiyor. 
-Bu genelde kategori sayfaya bir şablon aracılığıyla eklendiğinde meydana gelir.',
-
 );

@@ -3205,19 +3205,4 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'htmlform-reset'               => 'Aldaketak desegin',
 'htmlform-selectorother-other' => 'Beste bat',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategoria gehitu',
-'ajax-add-category-submit'     => 'Gehitu',
-'ajax-confirm-title'           => 'Ekintza egiaztatu',
-'ajax-confirm-prompt'          => 'Aldaketaren azalpena gehitu dezakezu behean.
-Aldaketa gordetzeko, sakatu "Gorde".',
-'ajax-confirm-save'            => 'Gorde',
-'ajax-add-category-summary'    => '"$1" kategoria gehitu',
-'ajax-remove-category-summary' => '"$1" kategoria ezabatu',
-'ajax-confirm-actionsummary'   => 'Egin beharrekoa:',
-'ajax-error-title'             => 'Akatsa',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Ezin izan da kategoria ezabatu.
-Arrazoia izan ohi da kategoria hori txantiloi batek erantsi diola orrialdera.',
-
 );

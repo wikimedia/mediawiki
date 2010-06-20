@@ -3350,19 +3350,4 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'htmlform-reset'               => 'Hukchasqakunata kutichiy',
 'htmlform-selectorother-other' => 'Wakin',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Katiguriyata yapay',
-'ajax-add-category-submit'     => 'Yapay',
-'ajax-confirm-title'           => 'Rurayta takyachiy',
-'ajax-confirm-prompt'          => "Qhipaqpiqa llamk'apuy pisichayta qillqaykiman.
-\"Waqaychay\" ñit'iy llamk'apusqaykita waqaychanaykipaq.",
-'ajax-confirm-save'            => 'Waqaychay',
-'ajax-add-category-summary'    => '"$1" sutiyuq katiguriyata yapay',
-'ajax-remove-category-summary' => '"$1" sutiyuq katiguriyata qichuy',
-'ajax-confirm-actionsummary'   => 'Rurana:',
-'ajax-error-title'             => 'Pantasqa',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "Manam atinichu kay katiguriyata qichuyta.
-Kay hina kanqaqa katiguriya plantillapi p'anqaman yapasqa kaptinchá.",
-
 );

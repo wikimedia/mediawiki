@@ -2437,19 +2437,4 @@ Tovuti hii inapata matatatizo wakati huu.',
 'htmlform-reset'               => 'Tengua mabadiliko',
 'htmlform-selectorother-other' => 'Nyingine',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Ongeza jamii',
-'ajax-add-category-submit'     => 'Ongeza',
-'ajax-confirm-title'           => 'Uthibitishe kitendo',
-'ajax-confirm-prompt'          => 'Unaweza kuandika muhtasari wa sahihisho chini. 
-Bonyeza "Hifadhi" ili kuhifadhi sahihisho yako.',
-'ajax-confirm-save'            => 'Hifadhi',
-'ajax-add-category-summary'    => 'Ongeza jamii ya "$1"',
-'ajax-remove-category-summary' => 'Ondoa jamii ya "$1"',
-'ajax-confirm-actionsummary'   => 'Chagua kitendo:',
-'ajax-error-title'             => 'Hitilafu',
-'ajax-error-dismiss'           => 'Sawa',
-'ajax-remove-category-error'   => ' Jamii hii haikuweza kuondolewa.
-Huwa jamii haiwezi kuondolewa kwenye ukurasa wakati jamii imeingizwa ndani ya kigezo fulani.',
-
 );

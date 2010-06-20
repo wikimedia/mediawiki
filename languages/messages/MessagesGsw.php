@@ -3217,18 +3217,4 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'htmlform-reset'               => 'Änderige ruckgängig mache',
 'htmlform-selectorother-other' => 'Anderi',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategorii zuefiege',
-'ajax-add-category-submit'     => 'Zuefiege',
-'ajax-confirm-title'           => 'Aktion bstetige',
-'ajax-confirm-prompt'          => 'Du chasch unte ne Zämmefassig yygee.
-Druck uf „Spychere“ go d Bearbeitig spychere.',
-'ajax-confirm-save'            => 'Spychere',
-'ajax-add-category-summary'    => 'Kategorii „$1“ zuefiege',
-'ajax-remove-category-summary' => 'Kategorii „$1“ uuseneh',
-'ajax-confirm-actionsummary'   => 'Aktion, wu soll uusgfiert wäre:',
-'ajax-error-title'             => 'Fähler',
-'ajax-error-dismiss'           => 'In Ornig',
-'ajax-remove-category-error'   => 'S isch nit megli gsi, die Kategorii uusezneh. Normalerwys git s des, wänn d Kategorii iber e Vorlag yybunden isch.',
-
 );

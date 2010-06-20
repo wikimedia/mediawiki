@@ -3268,19 +3268,4 @@ $1',
 'htmlform-reset'               => 'Тюрлендириулени ызына сал',
 'htmlform-selectorother-other' => 'Башха',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Категория къош',
-'ajax-add-category-submit'     => 'Къош',
-'ajax-confirm-title'           => 'Ишлеуню мюкюл эт',
-'ajax-confirm-prompt'          => 'Тюбюнде тюрлендириуню ангылатыуун джазаргъа боллукъсуз.
-Тюрлендириуюгюзню сакълар ючюн "Сакъла" дегеннге басыгъыз.',
-'ajax-confirm-save'            => 'Сакълат',
-'ajax-add-category-summary'    => '«$1» категория къошулду',
-'ajax-remove-category-summary' => '«$1» категория кетерилди',
-'ajax-confirm-actionsummary'   => 'Этиллик ишлеу:',
-'ajax-error-title'             => 'Халат',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Категория кетерилмейди.
-Бу проблема кёбюсюне, категория шаблонну юсю бла бетге къошулса, болады.',
-
 );

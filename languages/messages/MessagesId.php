@@ -3475,19 +3475,4 @@ Keterangan tampilan:
 'htmlform-reset'               => 'Batalkan perubahan',
 'htmlform-selectorother-other' => 'Lain-lain',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Tambah kategori',
-'ajax-add-category-submit'     => 'Tambah',
-'ajax-confirm-title'           => 'Konfirmasi aksi',
-'ajax-confirm-prompt'          => 'Anda dapat menambahkan ringkasan suntingan dibawah.
-Click "Simpan" untuk menyimpan suntingan anda.',
-'ajax-confirm-save'            => 'Simpan',
-'ajax-add-category-summary'    => 'Tambah kategori "$1"',
-'ajax-remove-category-summary' => 'Hapus kategori "$1"',
-'ajax-confirm-actionsummary'   => 'Aksi yang dilakukan:',
-'ajax-error-title'             => 'Kesalahan',
-'ajax-error-dismiss'           => 'Baik',
-'ajax-remove-category-error'   => 'Tidak mungkin menghapus kategori ini.
-Biasanya karena kategori di tambahkan kehalaman melalui templat.',
-
 );

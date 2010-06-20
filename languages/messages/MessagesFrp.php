@@ -3633,19 +3633,4 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'htmlform-reset'               => 'Dèfâre los changements',
 'htmlform-selectorother-other' => 'Ôtro',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Apondre una catègorie',
-'ajax-add-category-submit'     => 'Apondre',
-'ajax-confirm-title'           => 'Confirmar l’accion',
-'ajax-confirm-prompt'          => 'Vos pouede balyér un rèsumâ du changement ce-desot.
-Clicâd dessus « Sôvar » por encartar voutron changement.',
-'ajax-confirm-save'            => 'Sôvar',
-'ajax-add-category-summary'    => 'Apondre la catègorie « $1 »',
-'ajax-remove-category-summary' => 'Enlevar la catègorie « $1 »',
-'ajax-confirm-actionsummary'   => 'Accion a menar :',
-'ajax-error-title'             => 'Èrror',
-'ajax-error-dismiss'           => 'D’acôrd',
-'ajax-remove-category-error'   => 'O at pas étâ possiblo d’enlevar ceta catègorie.
-En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge avouéc un modèlo.',
-
 );

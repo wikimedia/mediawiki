@@ -743,11 +743,4 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 # Special:SpecialPages
 'specialpages' => 'Specialuos puslopys',
 
-# Add categories per AJAX
-'ajax-add-category'         => 'Dalikt kategoreju',
-'ajax-add-category-submit'  => 'Dalikt',
-'ajax-confirm-save'         => 'Izglobuot',
-'ajax-add-category-summary' => 'Dalikt kategoreju "$1"',
-'ajax-error-title'          => 'Klaida',
-
 );

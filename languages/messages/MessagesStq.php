@@ -3099,19 +3099,4 @@ Ju Iengoawe mout sunner dän Tousats „{{ns:file}}:“ geböäre.',
 'htmlform-reset'               => 'Annerengen touräächtraale',
 'htmlform-selectorother-other' => 'Uur',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategorie bietouföigje',
-'ajax-add-category-submit'     => 'Bietouföigje',
-'ajax-confirm-title'           => 'Aktion bestäätigje',
-'ajax-confirm-prompt'          => 'Du koast hier unner ne Touhoopefoatenge ienreeke.
-Klik „Spiekerje“ uum ju Beoarbaidenge tou spiekerjen.',
-'ajax-confirm-save'            => 'Spiekerje',
-'ajax-add-category-summary'    => 'Kategorie „$1“ bietouföigje',
-'ajax-remove-category-summary' => 'Kategorie „$1“ wächhoalje',
-'ajax-confirm-actionsummary'   => 'Uuttoufierende Aktion:',
-'ajax-error-title'             => 'Failer',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Dät waas nit muugelk, ju Kategorie wächtouhoaljen.
-Dät passiert normoalerwiese, wan ju Kategorie uur ne Foarloage an ju Siede bietouföiged is',
-
 );

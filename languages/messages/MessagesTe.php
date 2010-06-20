@@ -3240,6 +3240,15 @@ $1',
 'tags-edit'               => 'మార్చు',
 'tags-hitcount'           => '$1 {{PLURAL:$1|మార్పు|మార్పులు}}',
 
+# Special:ComparePages
+'comparepages'     => 'పుటల పోలిక',
+'compare-selector' => 'పుట కూర్పుల పోలిక',
+'compare-page1'    => 'పుట 1',
+'compare-page2'    => 'పుట 2',
+'compare-rev1'     => 'కూర్పు 1',
+'compare-rev2'     => 'కూర్పు 2',
+'compare-submit'   => 'పోల్చిచూడు',
+
 # Database error messages
 'dberr-header'      => 'ఈ వికీ సమస్యాత్మకంగా ఉంది',
 'dberr-problems'    => 'క్షమించండి! ఈ సైటు సాంకేతిక సమస్యలని ఎదుర్కొంటుంది.',
@@ -3260,20 +3269,5 @@ $1',
 'htmlform-submit'              => 'సమర్పించు',
 'htmlform-reset'               => 'మార్పులను రద్దుచెయ్యి',
 'htmlform-selectorother-other' => 'ఇతర',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'వర్గాన్ని చేర్చండి',
-'ajax-add-category-submit'     => 'చేర్చు',
-'ajax-confirm-title'           => 'చర్యని నిర్ధారించండి',
-'ajax-confirm-prompt'          => 'ఈ క్రింద మీరు మార్పు సారాంశాన్ని ఇవ్వవచ్చు.
-మీ మార్పుని భద్రపరచడానికి "భద్రపరచు"ని నొక్కండి.',
-'ajax-confirm-save'            => 'భద్రపరచు',
-'ajax-add-category-summary'    => '"$1" వర్గాన్ని చేర్చండి',
-'ajax-remove-category-summary' => '"$1" వర్గాన్ని తొలగించండి',
-'ajax-confirm-actionsummary'   => 'తీసుకోవాల్సిన చర్య:',
-'ajax-error-title'             => 'పొరపాటు',
-'ajax-error-dismiss'           => 'సరే',
-'ajax-remove-category-error'   => 'ఈ వర్గాన్ని తొలగించడం సాధ్యం కాలేదు.
-పేజీకి ఆ వర్గం ఒక మూస ద్వారా చేరినప్పుడు సాధారణంగా ఇలా జరుగుతుంది.',
 
 );

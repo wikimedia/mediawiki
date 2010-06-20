@@ -3416,19 +3416,4 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'htmlform-reset'               => 'Malfari ŝanĝojn',
 'htmlform-selectorother-other' => 'Alia',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Aldoni kategorion',
-'ajax-add-category-submit'     => 'Aldoni',
-'ajax-confirm-title'           => 'Konfirmi agon',
-'ajax-confirm-prompt'          => 'Vi povas provizi redaktan resumon suben.
-Klaku butonon "Konservi" por konservi vian redakton.',
-'ajax-confirm-save'            => 'Konservi',
-'ajax-add-category-summary'    => 'Aldoni kategorion "$1"',
-'ajax-remove-category-summary' => 'Forigi kategorion "$1"',
-'ajax-confirm-actionsummary'   => 'Ago por fari:',
-'ajax-error-title'             => 'Eraro',
-'ajax-error-dismiss'           => 'Ek!',
-'ajax-remove-category-error'   => 'Ne eblas forigi ĉi tiun kategorion.
-Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
-
 );

@@ -3442,19 +3442,4 @@ $1',
 'htmlform-reset'               => '변경한 것을 되돌리기',
 'htmlform-selectorother-other' => '기타',
 
-# Add categories per AJAX
-'ajax-add-category'            => '분류 추가',
-'ajax-add-category-submit'     => '추가',
-'ajax-confirm-title'           => '편집 확인',
-'ajax-confirm-prompt'          => '아래에 편집 요약을 쓸 수 있습니다.
-저장하려면 "저장"을 누르세요.',
-'ajax-confirm-save'            => '저장',
-'ajax-add-category-summary'    => '"$1" 분류 더하기',
-'ajax-remove-category-summary' => '"$1" 분류 지우기',
-'ajax-confirm-actionsummary'   => '할 일:',
-'ajax-error-title'             => '오류',
-'ajax-error-dismiss'           => '확인',
-'ajax-remove-category-error'   => '이 분류를 지울 수 없습니다.
-분류가 틀로 추가되었을 수 있습니다.',
-
 );

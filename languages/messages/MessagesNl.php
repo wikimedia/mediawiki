@@ -3625,6 +3625,15 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'tags-edit'               => 'bewerken',
 'tags-hitcount'           => '$1 {{PLURAL:$1|wijziging|wijzigingen}}',
 
+# Special:ComparePages
+'comparepages'     => "Pagina's vergelijken",
+'compare-selector' => 'Paginaversies vergelijken',
+'compare-page1'    => 'Pagina 1',
+'compare-page2'    => 'Pagina 2',
+'compare-rev1'     => 'Versie 1',
+'compare-rev2'     => 'Versie 2',
+'compare-submit'   => 'Vergelijken',
+
 # Database error messages
 'dberr-header'      => 'Deze wiki heeft een probleem',
 'dberr-problems'    => 'Onze excuses. Deze site ondervindt op het moment technische problemen.',
@@ -3645,20 +3654,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'htmlform-submit'              => 'Opslaan',
 'htmlform-reset'               => 'Wijzigingen ongedaan maken',
 'htmlform-selectorother-other' => 'Anders',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Categorie toevoegen',
-'ajax-add-category-submit'     => 'Toevoegen',
-'ajax-confirm-title'           => 'Handeling bevestigen',
-'ajax-confirm-prompt'          => 'U kunt hieronder een bewerkingssamenvatting opgeven.
-Klik "Opslaan" om uw bewerking op te slaan.',
-'ajax-confirm-save'            => 'Opslaan',
-'ajax-add-category-summary'    => 'Categorie "$1" toevoegen',
-'ajax-remove-category-summary' => 'Categorie "$1" verwijderen',
-'ajax-confirm-actionsummary'   => 'Uit te voeren handeling:',
-'ajax-error-title'             => 'Fout',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Het was niet mogelijk deze categorie te verwijderen.
-Dit gebeurt meestal als de categorie via een sjabloon aan de pagina is toegevoegd.',
 
 );

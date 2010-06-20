@@ -3281,19 +3281,4 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'htmlform-reset'               => 'Annuller ændringer',
 'htmlform-selectorother-other' => 'Anden',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Tilføj kategori',
-'ajax-add-category-submit'     => 'Tilføj',
-'ajax-confirm-title'           => 'Bekræft handling',
-'ajax-confirm-prompt'          => 'Du kan lave en redigeringsbeskrivelse nedenfor.
-Klik på "Gem" for at gemme redigeringen.',
-'ajax-confirm-save'            => 'Gem',
-'ajax-add-category-summary'    => 'Tilføj kategorien "$1"',
-'ajax-remove-category-summary' => 'Fjern kategorien "$1"',
-'ajax-confirm-actionsummary'   => 'Handling:',
-'ajax-error-title'             => 'Fejl',
-'ajax-error-dismiss'           => 'O.k.',
-'ajax-remove-category-error'   => 'Det var ikke muligt af fjerne kategorien.
-Det skyldes oftest at kategorien er blevet tilføjet til siden i en skabelon.',
-
 );

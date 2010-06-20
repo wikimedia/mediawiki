@@ -2444,9 +2444,4 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 # Database error messages
 'dberr-usegoogle' => 'Þú getur notað Google til að leita á meðan.',
 
-# Add categories per AJAX
-'ajax-confirm-save'  => 'Vista',
-'ajax-error-title'   => 'Villa',
-'ajax-error-dismiss' => 'Í lagi',
-
 );

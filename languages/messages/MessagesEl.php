@@ -3441,19 +3441,4 @@ $1',
 'htmlform-reset'               => 'Αναστροφή αλλαγών',
 'htmlform-selectorother-other' => 'Άλλο',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Προσθήκη κατηγορίας',
-'ajax-add-category-submit'     => 'Προσθήκη',
-'ajax-confirm-title'           => 'Επιβεβαίωση ενέργειας',
-'ajax-confirm-prompt'          => 'Μπορείτε να παραχωρήσετε μια σύνοψη της επεξεργασίας παρακάτω.
-Πατήστε "Αποθήκευση" για να αποθηκεύσετε την επεξεργασίας σας.',
-'ajax-confirm-save'            => 'Αποθήκευση',
-'ajax-add-category-summary'    => 'Προσθήκη κατηγορίας "$1"',
-'ajax-remove-category-summary' => 'Αφαίρεση κατηγορίας "$1"',
-'ajax-confirm-actionsummary'   => 'Ενέργεια που είναι να παρθεί:',
-'ajax-error-title'             => 'Σφάλμα',
-'ajax-error-dismiss'           => 'Εντάξει',
-'ajax-remove-category-error'   => 'Δεν ήταν δυνατό να αφαιρεθεί αυτή η κατηγορία. 
-Αυτό συνήθως συμβαίνει όταν η κατηγορία έχει προστεθεί στη σελίδα από ένα πρότυπο.',
-
 );

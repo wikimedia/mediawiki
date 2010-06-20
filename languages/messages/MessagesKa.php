@@ -3247,19 +3247,4 @@ $1',
 'htmlform-reset'               => 'ცვლილებების გაუქმება',
 'htmlform-selectorother-other' => 'სხვა',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'კატეგორიის ჩამატება',
-'ajax-add-category-submit'     => 'ჩამატება',
-'ajax-confirm-title'           => 'მოქმედების დადასტურება',
-'ajax-confirm-prompt'          => 'ქვემოთ თქვენ შეგიძიათ ცვლილებბეის აღწერის ჩამატება.
-დააჭირეთ "შენახვას" ცვლილების შესანახად.',
-'ajax-confirm-save'            => 'შენახვა',
-'ajax-add-category-summary'    => 'ჩაემატა კატეგორია "$1".',
-'ajax-remove-category-summary' => 'წაიშალა კატეგორია "$1".',
-'ajax-confirm-actionsummary'   => 'მისაღები ზომები:',
-'ajax-error-title'             => 'შეცდომა',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'ამ კატეგორიის შეკრება შეუძლებელია.
-ხშირედ ეს ხდება მაშინ, როდესაც კატეგორია ჩამატებულია თარგიდან.',
-
 );

@@ -3456,19 +3456,4 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'htmlform-reset'               => 'Desfar las modificacions',
 'htmlform-selectorother-other' => 'Autre',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Apondre una categoria',
-'ajax-add-category-submit'     => 'Apondre',
-'ajax-confirm-title'           => "Confirmar l'accion",
-'ajax-confirm-prompt'          => 'Podètz provesir un resumit de la modificacion çaijós.
-Clicatz sus « Publicar » per enregistrar vòstra modificacion.',
-'ajax-confirm-save'            => 'Publicar',
-'ajax-add-category-summary'    => 'Apondre la categoria « $1 »',
-'ajax-remove-category-summary' => 'Levar la categoria « $1 »',
-'ajax-confirm-actionsummary'   => 'Accion de menar :',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Es pas estat possible de levar aquesta categoria.
-Aquò se produsís generalament quand la categoria es estada aponduda a la pagina via un modèl.',
-
 );

@@ -831,10 +831,4 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'htmlform-reset'               => 'Enneringe zerick nemme',
 'htmlform-selectorother-other' => 'Annere',
 
-# Add categories per AJAX
-'ajax-add-category'         => 'Abdeeling dezu duh',
-'ajax-add-category-submit'  => 'Dezu duh',
-'ajax-add-category-summary' => 'Abdeeling „$1“ dezu duh',
-'ajax-error-dismiss'        => 'OK',
-
 );

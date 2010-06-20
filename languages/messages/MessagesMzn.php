@@ -672,7 +672,4 @@ $5
 # Special:SpecialPages
 'specialpages' => 'شـا ولـگ‌ئون',
 
-# Add categories per AJAX
-'ajax-error-dismiss' => 'خا',
-
 );

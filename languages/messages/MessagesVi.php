@@ -790,7 +790,8 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'anonpreviewwarning'               => "''Bạn chưa đăng nhập. Lúc khi lưu trang này, địa chỉ IP của bạn sẽ được ghi vào lịch sử trang.''",
 'missingsummary'                   => "'''Nhắc nhở:''' Bạn đã không ghi lại tóm lược sửa đổi. Nếu bạn nhấn Lưu trang một lần nữa, sửa đổi của bạn sẽ được lưu mà không có tóm lược.",
 'missingcommenttext'               => 'Xin hãy gõ vào lời bàn luận ở dưới.',
-'missingcommentheader'             => "'''Nhắc nhở:''' Bạn chưa cung cấp đề mục cho bàn luận này. Nếu bạn nhấn nút Lưu trang lần nữa, sửa đổi của bạn sẽ được lưu mà không có đề mục.",
+'missingcommentheader'             => "'''Nhắc nhở:''' Bạn chưa ghi chủ đề/tiêu đề cho bàn luận này. 
+Nếu bạn nhấn nút \"{{int:savearticle}}\" lần nữa, sửa đổi của bạn sẽ được lưu mà không có đề mục.",
 'summary-preview'                  => 'Xem trước dòng tóm lược:',
 'subject-preview'                  => 'Xem trước đề mục:',
 'blockedtitle'                     => 'Thành viên bị cấm',
@@ -3501,20 +3502,5 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'htmlform-submit'              => 'Đăng',
 'htmlform-reset'               => 'Hủy các thay đổi',
 'htmlform-selectorother-other' => 'Khác',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Thêm thể loại',
-'ajax-add-category-submit'     => 'Thêm',
-'ajax-confirm-title'           => 'Xác nhận tác vụ',
-'ajax-confirm-prompt'          => 'Bạn có thể thêm tóm lược sửa đổi vào bên dưới.
-Nhấn “Lưu” để lưu sửa đổi của bạn.',
-'ajax-confirm-save'            => 'Lưu',
-'ajax-add-category-summary'    => 'Thêm thể loại “$1”',
-'ajax-remove-category-summary' => 'Bỏ thể loại “$1”',
-'ajax-confirm-actionsummary'   => 'Tác vụ thực hiện:',
-'ajax-error-title'             => 'Lỗi',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Không thể bỏ thể loại này.
-Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
 
 );

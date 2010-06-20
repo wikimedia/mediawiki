@@ -3456,19 +3456,4 @@ $1',
 'htmlform-reset'               => 'Відкотити зміни',
 'htmlform-selectorother-other' => 'Інше',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Додати категорію',
-'ajax-add-category-submit'     => 'Додати',
-'ajax-confirm-title'           => 'Підтвердити дію',
-'ajax-confirm-prompt'          => 'Нижче ви можете вказати опис зроблених змін.
-Натисніть "Зберегти", щоб зберегти ваші редагування.',
-'ajax-confirm-save'            => 'Зберегти',
-'ajax-add-category-summary'    => 'Додати категорію „$1“',
-'ajax-remove-category-summary' => 'Вилучити категорію „$1“',
-'ajax-confirm-actionsummary'   => 'Мета дії:',
-'ajax-error-title'             => 'Помилка',
-'ajax-error-dismiss'           => 'Гаразд',
-'ajax-remove-category-error'   => 'Не вдалося прибрати дану категорію.
-Таке трапляється зазвичай тоді, коли категорія додається в статтю через шаблон.',
-
 );

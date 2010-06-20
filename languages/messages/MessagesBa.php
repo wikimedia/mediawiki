@@ -1912,12 +1912,4 @@ $NEWPAGE
 # HTML forms
 'htmlform-selectorother-other' => 'Башҡа',
 
-# Add categories per AJAX
-'ajax-add-category-submit'     => 'Өҫтәргә',
-'ajax-confirm-save'            => 'Һаҡларға',
-'ajax-add-category-summary'    => 'Өҫтәлгән категориялар "$1"',
-'ajax-remove-category-summary' => 'Категория «$1» юйылған',
-'ajax-error-title'             => 'Хата',
-'ajax-error-dismiss'           => 'Тамам',
-
 );

@@ -2175,14 +2175,4 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 # HTML forms
 'htmlform-reset' => 'Atcelt izmaiņas',
 
-# Add categories per AJAX
-'ajax-add-category'         => 'Pievienot kategoriju',
-'ajax-add-category-submit'  => 'Pievienot',
-'ajax-confirm-prompt'       => 'Te apakšā var norādīt izmaiņu kopsavilkumu.
-Uzspied uz "Saglabāt" lai saglabātu izmaiņas.',
-'ajax-confirm-save'         => 'Saglabāt',
-'ajax-add-category-summary' => 'Pievienot kategoriju "$1"',
-'ajax-error-title'          => 'Kļūda (Error)',
-'ajax-error-dismiss'        => 'OK',
-
 );

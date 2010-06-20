@@ -819,7 +819,7 @@ IP-osoitteesi kirjataan tämän sivun muutoshistoriaan.",
 'anonpreviewwarning'               => "''Et ole kirjautunut sisään. Tallentaminen kirjaa IP-osoitteesi tämän sivun muutoshistoriaan.''",
 'missingsummary'                   => 'Et ole antanut yhteenvetoa. Jos valitset Tallenna uudelleen, niin muokkauksesi tallennetaan ilman yhteenvetoa.',
 'missingcommenttext'               => 'Kirjoita viesti alle.',
-'missingcommentheader'             => 'Et ole antanut otsikkoa kommentillesi. Valitse <em>Tallenna</em>, jos et halua antaa otsikkoa.',
+'missingcommentheader'             => 'Et ole antanut otsikkoa kommentillesi. Napsauta ”{{int:savearticle}}”, jos et halua antaa otsikkoa.',
 'summary-preview'                  => 'Yhteenvedon esikatselu:',
 'subject-preview'                  => 'Otsikon esikatselu:',
 'blockedtitle'                     => 'Pääsy estetty',
@@ -3342,6 +3342,10 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'tags-edit'               => 'muokkaa',
 'tags-hitcount'           => '$1 {{PLURAL:$1|muutos|muutosta}}',
 
+# Special:ComparePages
+'compare-page1' => 'Sivu 1',
+'compare-page2' => 'Sivu 2',
+
 # Database error messages
 'dberr-header'      => 'Wikissä on tietokantaongelma',
 'dberr-problems'    => 'Tällä sivustolla on teknisiä ongelmia.',
@@ -3362,20 +3366,5 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'htmlform-submit'              => 'Lähetä',
 'htmlform-reset'               => 'Kumoa muutokset',
 'htmlform-selectorother-other' => 'Muu',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Lisää luokka',
-'ajax-add-category-submit'     => 'Lisää',
-'ajax-confirm-title'           => 'Vahvista toiminto',
-'ajax-confirm-prompt'          => 'Voit kirjoittaa alle muokkausyhteenvedon.
-Napsauta ”Tallenna” tallentaaksesi muokkauksesi.',
-'ajax-confirm-save'            => 'Tallenna',
-'ajax-add-category-summary'    => 'Lisää luokka ”$1”',
-'ajax-remove-category-summary' => 'Poista luokka ”$1”',
-'ajax-confirm-actionsummary'   => 'Suoritettava toiminto:',
-'ajax-error-title'             => 'Virhe',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Luokan poistaminen ei onnistunut.
-Yleensä näin käy, kun luokka on lisätty sivulle mallineessa.',
 
 );
