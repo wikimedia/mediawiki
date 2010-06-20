@@ -1989,7 +1989,7 @@ CSS;
 		);
 	}
 
-	function uploadLink() {
+	function getUploadLink() {
 		global $wgUploadNavigationUrl;
 
 		if( $wgUploadNavigationUrl ) {
