@@ -96,7 +96,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 		$titles = array();
 		$count = 0;
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' .

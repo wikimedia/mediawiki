@@ -67,7 +67,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		$db = $this->getDB();
 		$res = $this->select( __METHOD__ );
 		$count = 0;
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$count++;
 			if ( is_null( $resultPageSet ) ) {
 				// Prevent duplicates

@@ -126,8 +126,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 			$data = array();
 			$res = $this->select( __METHOD__ );
-			while ( ( $r = $db->fetchObject( $res ) ) ) {
-				$user = User::newFromRow( $r );
+			foreach ( $rowes as $row ) {
+				$user = User::newFromRow( $row );
 				$name = $user->getName();
 				$data[$name]['name'] = $name;
 
@@ -139,14 +139,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 					$data[$name]['registration'] = wfTimestampOrNull( TS_ISO_8601, $user->getRegistration() );
 				}
 
-				if ( isset( $this->prop['groups'] ) && !is_null( $r->ug_group ) ) {
+				if ( isset( $this->prop['groups'] ) && !is_null( $row->ug_group ) ) {
 					// This row contains only one group, others will be added from other rows
-					$data[$name]['groups'][] = $r->ug_group;
+					$data[$name]['groups'][] = $row->ug_group;
 				}
 
-				if ( isset( $this->prop['blockinfo'] ) && !is_null( $r->blocker_name ) ) {
-					$data[$name]['blockedby'] = $r->blocker_name;
-					$data[$name]['blockreason'] = $r->ipb_reason;
+				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->blocker_name ) ) {
+					$data[$name]['blockedby'] = $row->blocker_name;
+					$data[$name]['blockreason'] = $row->ipb_reason;
 				}
 
 				if ( isset( $this->prop['emailable'] ) && $user->canReceiveEmail() ) {

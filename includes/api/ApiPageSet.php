@@ -457,7 +457,7 @@ class ApiPageSet extends ApiQueryBase {
 			ApiBase::dieDebug( __METHOD__, 'Missing $processTitles parameter when $remaining is provided' );
 		}
 
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$pageId = intval( $row->page_id );
 
 			// Remove found page from the list of remaining items
@@ -519,7 +519,7 @@ class ApiPageSet extends ApiQueryBase {
 		// Get pageIDs data from the `page` table
 		$this->profileDBIn();
 		$res = $db->select( $tables, $fields, $where,  __METHOD__ );
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$revid = intval( $row->rev_id );
 			$pageid = intval( $row->rev_page );
 			$this->mGoodRevIDs[$revid] = $pageid;
@@ -594,7 +594,7 @@ class ApiPageSet extends ApiQueryBase {
 		);
 		$this->profileDBOut();
 
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$rdfrom = intval( $row->rd_from );
 			$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
 			$to = Title::makeTitle( $row->rd_namespace, $row->rd_title )->getPrefixedText();
