@@ -58,7 +58,7 @@ class PNGHandler extends BitmapHandler {
 		$metadata = unserialize($image->getMetadata());
 		wfRestoreWarnings();
 
-		if( !metadata || $metadata['frameCount'] == 0 )
+		if( !$metadata || $metadata['frameCount'] <= 0 )
 			return $original;
 
 		$info = array();
