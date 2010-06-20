@@ -94,7 +94,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				break;
 			}
 		}
-		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams() {

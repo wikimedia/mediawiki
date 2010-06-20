@@ -273,8 +273,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			}
 		}
 
-		$db->freeResult( $res );
-
 		/* Format the result */
 		$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'rc' );
 	}

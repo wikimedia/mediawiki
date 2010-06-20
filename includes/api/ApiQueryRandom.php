@@ -87,7 +87,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				$resultPageSet->processDbRow( $row );
 			}
 		}
-		$db->freeResult( $res );
+
 		return $count;
 	}
 

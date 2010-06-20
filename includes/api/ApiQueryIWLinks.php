@@ -107,7 +107,6 @@ class ApiQueryIWLinks extends ApiQueryBase {
 				break;
 			}
 		}
-		$db->freeResult( $res );
 	}
 
 	public function getAllowedParams() {

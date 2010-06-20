@@ -345,7 +345,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 				break;
 			}
 		}
-		$db->freeResult( $res );
 	}
 
 	private function extractRowInfo( $row ) {

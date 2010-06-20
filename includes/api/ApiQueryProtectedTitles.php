@@ -123,7 +123,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				$titles[] = $title;
 			}
 		}
-		$db->freeResult( $res );
+
 		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), $this->getModulePrefix() );
 		} else {

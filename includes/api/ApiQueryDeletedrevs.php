@@ -248,7 +248,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				break;
 			}
 		}
-		$db->freeResult( $res );
 		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
 	}
 

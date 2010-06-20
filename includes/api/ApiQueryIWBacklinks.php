@@ -111,7 +111,6 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 				break;
 			}
 		}
-		$db->freeResult( $res );
 
 		$this->getResult()->setIndexedTagName_internal(
 			array( 'query', $this->getModuleName() ),

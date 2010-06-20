@@ -160,7 +160,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			}
 			$lastSortKey = $row->cl_sortkey; // detect duplicate sortkeys
 		}
-		$db->freeResult( $res );
 
 		if ( is_null( $resultPageSet ) ) {
 			$this->getResult()->setIndexedTagName_internal(

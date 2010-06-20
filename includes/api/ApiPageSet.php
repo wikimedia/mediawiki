@@ -472,7 +472,6 @@ class ApiPageSet extends ApiQueryBase {
 			// Store any extra fields requested by modules
 			$this->processDbRow( $row );
 		}
-		$db->freeResult( $res );
 
 		if ( isset( $remaining ) ) {
 			// Any items left in the $remaining list are added as missing
@@ -527,7 +526,6 @@ class ApiPageSet extends ApiQueryBase {
 			$pageids[$pageid] = '';
 			unset( $remaining[$revid] );
 		}
-		$db->freeResult( $res );
 		$this->profileDBOut();
 
 		$this->mMissingRevIDs = array_keys( $remaining );
@@ -606,7 +604,7 @@ class ApiPageSet extends ApiQueryBase {
 			}
 			$this->mRedirectTitles[$from] = $to;
 		}
-		$db->freeResult( $res );
+
 		if ( $this->mPendingRedirectIDs ) {
 			// We found pages that aren't in the redirect table
 			// Add them

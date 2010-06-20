@@ -141,7 +141,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				$resultPageSet->processDbRow( $row );
 			}
 		}
-		$db->freeResult( $res );
 
 		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ),

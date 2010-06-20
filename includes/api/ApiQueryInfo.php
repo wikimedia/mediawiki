@@ -416,7 +416,6 @@ class ApiQueryInfo extends ApiQueryBase {
 					}
 				}
 			}
-			$db->freeResult( $res );
 		}
 
 		// Get protections for missing titles
@@ -434,7 +433,6 @@ class ApiQueryInfo extends ApiQueryBase {
 					'expiry' => Block::decodeExpiry( $row->pt_expiry, TS_ISO_8601 )
 				);
 			}
-			$db->freeResult( $res );
 		}
 
 		// Cascading protections
@@ -470,7 +468,6 @@ class ApiQueryInfo extends ApiQueryBase {
 					'source' => $source->getPrefixedText()
 				);
 			}
-			$db->freeResult( $res );
 		}
 
 		if ( count( $images ) ) {
@@ -494,7 +491,6 @@ class ApiQueryInfo extends ApiQueryBase {
 					'source' => $source->getPrefixedText()
 				);
 			}
-			$db->freeResult( $res );
 		}
 	}
 
