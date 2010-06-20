@@ -61,6 +61,7 @@ class PNGHandler extends BitmapHandler {
 		if( !metadata || $metadata['frameCount'] == 0 )
 			return $original;
 
+		$info = array();
 		$info[] = substr( $original, 1, strlen( $original )-2 );
 		
 		if ($metadata['loopCount'] == 0)
