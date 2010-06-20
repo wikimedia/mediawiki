@@ -2424,6 +2424,7 @@ $1',
 הפעולה האחרונה ביומן החסימות מוצגת להלן:',
 'sp-contributions-search'              => 'חיפוש תרומות',
 'sp-contributions-username'            => 'שם משתמש או כתובת IP:',
+'sp-contributions-toponly'             => 'הצגת הגרסאות העליונות בלבד',
 'sp-contributions-submit'              => 'חיפוש',
 
 # What links here
