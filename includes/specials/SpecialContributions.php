@@ -67,7 +67,7 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['namespace'] = '';
 		}
 
-		$this->opts['tagfilter'] = (string) $wgRequest->getVal( 'tagfilter' );
+		$this->opts['tagFilter'] = (string) $wgRequest->getVal( 'tagFilter' );
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
@@ -96,8 +96,14 @@ class SpecialContributions extends SpecialPage {
 
 			$wgOut->addHTML( $this->getForm() );
 
-			$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'],
-				$this->opts['month'], false, $this->opts['deletedOnly'], $this->opts['topOnly'] );
+			$pager = new ContribsPager( array(
+				'target' => $target,
+				'namespace' => $this->opts['namespace'],
+				'year' => $this->opts['year'],
+				'month' => $this->opts['month'],
+				'deletedOnly' => $this->opts['deletedOnly'],
+				'topOnly' => $this->opts['topOnly'],
+			) );
 			if( !$pager->getNumRows() ) {
 				$wgOut->addWikiMsg( 'nocontribs', $target );
 			} else {
@@ -295,8 +301,8 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['target'] = '';
 		}
 
-		if( !isset( $this->opts['tagfilter'] ) ) {
-			$this->opts['tagfilter'] = '';
+		if( !isset( $this->opts['tagFilter'] ) ) {
+			$this->opts['tagFilter'] = '';
 		}
 
 		if( !isset( $this->opts['topOnly'] ) ) {
@@ -314,7 +320,7 @@ class SpecialContributions extends SpecialPage {
 			$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagFilter'] );
 
 		$f .= '<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
@@ -380,8 +386,15 @@ class SpecialContributions extends SpecialPage {
 		$nt = Title::makeTitleSafe( NS_USER, $this->opts['target'] );
 		$target = $this->opts['target'] == 'newbies' ? 'newbies' : $nt->getText();
 
-		$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'],
-			$this->opts['month'], $this->opts['tagfilter'], $this->opts['deletedOnly'], $this->opts['topOnly'] );
+		$pager = new ContribsPager( array(
+			'target' => $target,
+			'namespace' => $this->opts['namespace'],
+			'year' => $this->opts['year'],
+			'month' => $this->opts['month'],
+			'tagFilter' => $this->opts['tagFilter'],
+			'deletedOnly' => $this->opts['deletedOnly'],
+			'topOnly' => $this->opts['topOnly'],
+		) );
 
 		$pager->mLimit = min( $this->opts['limit'], $wgFeedLimit );
 
@@ -445,7 +458,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	var $messages, $target;
 	var $namespace = '', $mDb;
 
-	function __construct( $target, $namespace = false, $year = false, $month = false, $tagFilter = false, $deletedOnly = false, $topOnly = false ) {
+	function __construct( $options ) {
 		parent::__construct();
 
 		$msgs = array( 'uctop', 'diff', 'newarticle', 'rollbacklink', 'diff', 'hist', 'rev-delundel', 'pipe-separator' );
@@ -454,12 +467,15 @@ class ContribsPager extends ReverseChronologicalPager {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
 		}
 
-		$this->target = $target;
-		$this->namespace = $namespace;
-		$this->tagFilter = $tagFilter;
-		$this->deletedOnly = $deletedOnly;
-		$this->topOnly = $topOnly;
+		$this->target = isset( $options['target'] ) ? $options['target'] : '';
+		$this->namespace = isset( $options['namespace'] ) ? $options['namespace'] : '';
+		$this->tagFilter = isset( $options['tagFilter'] ) ? $options['tagFilter'] : false;
 
+		$this->deletedOnly = !empty( $options['deletedOnly'] );
+		$this->topOnly = !empty( $options['topOnly'] );
+
+		$year = isset( $options['year'] ) ? $options['year'] : false;
+		$month = isset( $options['month'] ) ? $options['month'] : false;
 		$this->getDateCond( $year, $month );
 
 		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
