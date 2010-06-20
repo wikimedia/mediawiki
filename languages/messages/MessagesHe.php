@@ -305,6 +305,7 @@ $specialPageAliases = array(
 	'Tags'                      => array( 'תגיות' ),
 	'Activeusers'               => array( 'משתמשים_פעילים' ),
 	'RevisionMove'              => array( 'העברת_גרסאות' ),
+	'ComparePages'              => array( 'השוואת_דפים' ),
 );
 
 $namespaceNames = array(
@@ -862,9 +863,11 @@ $2',
 'showdiff'                         => 'הצגת שינויים',
 'anoneditwarning'                  => "'''אזהרה:''' אינכם מחוברים לחשבון. כתובת ה־IP שלכם תירשם בהיסטוריית העריכות של הדף.",
 'anonpreviewwarning'               => "''אינכם מחוברים לחשבון. שמירה תגרום לכתובת ה־IP שלכם להירשם בהיסטוריית העריכות של הדף.''",
-'missingsummary'                   => "'''תזכורת:''' לא הזנתם תקציר עריכה. אם תלחצו שוב על כפתור השמירה, עריכתכם תישמר בלעדיו.",
+'missingsummary'                   => "'''תזכורת:''' לא הזנתם תקציר עריכה.
+אם תלחצו שוב על כפתור השמירה, עריכתכם תישמר בלעדיו.",
 'missingcommenttext'               => 'אנא הקלידו את ההודעה למטה.',
-'missingcommentheader'             => "'''תזכורת:''' לא הזנתם נושא/כותרת להודעה זו. אם תלחצו שוב על כפתור השמירה, עריכתכם תישמר בלעדיו.",
+'missingcommentheader'             => "'''תזכורת:''' לא הזנתם נושא/כותרת להודעה זו.
+אם תלחצו שוב על הכפתור \"{{int:savearticle}}\", עריכתכם תישמר בלעדיו.",
 'summary-preview'                  => 'תצוגה מקדימה של התקציר:',
 'subject-preview'                  => 'תצוגה מקדימה של הנושא/הכותרת:',
 'blockedtitle'                     => 'המשתמש חסום',
@@ -3556,6 +3559,15 @@ $1',
 'tags-edit'               => 'עריכה',
 'tags-hitcount'           => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
 
+# Special:ComparePages
+'comparepages'     => 'השוואת דפים',
+'compare-selector' => 'השוואת גרסאות של דפים',
+'compare-page1'    => 'דף 1',
+'compare-page2'    => 'דף 2',
+'compare-rev1'     => 'גרסה 1',
+'compare-rev2'     => 'גרסה 2',
+'compare-submit'   => 'השוואה',
+
 # Database error messages
 'dberr-header'      => 'בעיה בוויקי',
 'dberr-problems'    => 'מצטערים! קיימת בעיה טכנית באתר זה.',
@@ -3576,20 +3588,5 @@ $1',
 'htmlform-submit'              => 'שליחה',
 'htmlform-reset'               => 'ביטול השינויים',
 'htmlform-selectorother-other' => 'אחר',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'הוספת קטגוריה',
-'ajax-add-category-submit'     => 'הוספה',
-'ajax-confirm-title'           => 'אישור הפעולה',
-'ajax-confirm-prompt'          => 'באפשרותכם לכתוב תקציר עריכה למטה.
-לחצו על "{{int:ajax-confirm-save}}" כדי לשמור את העריכה.',
-'ajax-confirm-save'            => 'שמירה',
-'ajax-add-category-summary'    => 'הוספת הקטגוריה "$1"',
-'ajax-remove-category-summary' => 'הסרת הקטגוריה "$1"',
-'ajax-confirm-actionsummary'   => 'הפעולה לביצוע:',
-'ajax-error-title'             => 'שגיאה',
-'ajax-error-dismiss'           => 'אישור',
-'ajax-remove-category-error'   => 'לא ניתן היה להסיר קטגוריה זו.
-הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
 
 );
