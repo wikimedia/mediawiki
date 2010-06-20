@@ -582,11 +582,7 @@ class CoreParserFunctions {
 	}
 
 	static function anchorencode( $parser, $text ) {
-		$a = urlencode( $text );
-		$a = strtr( $a, array( '%' => '.', '+' => '_' ) );
-		# leave colons alone, however
-		$a = str_replace( '.3A', ':', $a );
-		return $a;
+		return substr( $parser->guessSectionNameFromWikiText( $text ), 1);
 	}
 
 	static function special( $parser, $text ) {
