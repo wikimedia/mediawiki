@@ -1979,6 +1979,7 @@ $1',
 近誌禁之項如下示之：',
 'sp-contributions-search'              => '問勛',
 'sp-contributions-username'            => '簿名或IP址',
+'sp-contributions-toponly'             => '僅示至頂之審',
 'sp-contributions-submit'              => '問',
 
 # What links here
@@ -2767,6 +2768,15 @@ $1',
 'tags-tag'  => '標名',
 'tags-edit' => '纂',
 
+# Special:ComparePages
+'comparepages'     => '較頁',
+'compare-selector' => '較頁之審',
+'compare-page1'    => '頁一',
+'compare-page2'    => '頁二',
+'compare-rev1'     => '審一',
+'compare-rev2'     => '審二',
+'compare-submit'   => '較',
+
 # HTML forms
 'htmlform-invalid-input'       => '爾之輸問也',
 'htmlform-select-badoption'    => '爾之值為非效之。',
@@ -2778,20 +2788,5 @@ $1',
 'htmlform-submit'              => '呈',
 'htmlform-reset'               => '復',
 'htmlform-selectorother-other' => '他',
-
-# Add categories per AJAX
-'ajax-add-category'            => '加類',
-'ajax-add-category-submit'     => '加',
-'ajax-confirm-title'           => '確',
-'ajax-confirm-prompt'          => '爾能給纂要。
-按「存」以存爾纂也。',
-'ajax-confirm-save'            => '存',
-'ajax-add-category-summary'    => '加類「$1」',
-'ajax-remove-category-summary' => '取類「$1」',
-'ajax-confirm-actionsummary'   => '已成之作：',
-'ajax-error-title'             => '錯',
-'ajax-error-dismiss'           => '好',
-'ajax-remove-category-error'   => '無取此類也。
-常於一模入類。',
 
 );

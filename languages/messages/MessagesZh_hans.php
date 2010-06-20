@@ -726,7 +726,7 @@ $2',
 'anonpreviewwarning'               => "''您没有登录。您的IP位址将记录在此页的编辑历史中。''",
 'missingsummary'                   => "'''提示：''' 您没有提供一个编辑摘要。如果您再次单击保存，您的编辑将不带编辑摘要保存。",
 'missingcommenttext'               => '请在下面输入评论。',
-'missingcommentheader'             => "'''提示：''' 您没有为此评论提供一个标题。如果您再次单击保存，您的编辑将不带标题保存。",
+'missingcommentheader'             => "'''提示：''' 您没有为此评论提供一个标题。如果您再次单击“{{int:savearticle}}”，您的编辑将不带标题保存。",
 'summary-preview'                  => '摘要预览：',
 'subject-preview'                  => '标题预览：',
 'blockedtitle'                     => '用户被查封',
@@ -2246,6 +2246,7 @@ $1',
 最近的封锁日志项目在下面提供以便参考：',
 'sp-contributions-search'              => '搜索贡献记录',
 'sp-contributions-username'            => 'IP地址或用户名称：',
+'sp-contributions-toponly'             => '只显示最新的修订版本',
 'sp-contributions-submit'              => '搜索',
 
 # What links here
@@ -3338,6 +3339,15 @@ $1',
 'tags-edit'               => '编辑',
 'tags-hitcount'           => '$1次更改',
 
+# Special:ComparePages
+'comparepages'     => '比较页面',
+'compare-selector' => '比较页面的修订',
+'compare-page1'    => '第1页',
+'compare-page2'    => '第2页',
+'compare-rev1'     => '修订版本1',
+'compare-rev2'     => '修订版本2',
+'compare-submit'   => '比较',
+
 # Database error messages
 'dberr-header'      => '此wiki出现了问题',
 'dberr-problems'    => '抱歉！
@@ -3359,20 +3369,5 @@ $1',
 'htmlform-submit'              => '提交',
 'htmlform-reset'               => '撤销更改',
 'htmlform-selectorother-other' => '其他',
-
-# Add categories per AJAX
-'ajax-add-category'            => '加入分类',
-'ajax-add-category-submit'     => '加入',
-'ajax-confirm-title'           => '确认动作',
-'ajax-confirm-prompt'          => '您可以在下面提供一个编辑摘要。
-点击“保存”去保存您的编辑。',
-'ajax-confirm-save'            => '保存',
-'ajax-add-category-summary'    => '加入分类“$1”',
-'ajax-remove-category-summary' => '移除分类“$1”',
-'ajax-confirm-actionsummary'   => '已进行的动作：',
-'ajax-error-title'             => '错误',
-'ajax-error-dismiss'           => '好',
-'ajax-remove-category-error'   => '不能移除这个分类。
-通常是发生在一个模板中加入该分类。',
 
 );

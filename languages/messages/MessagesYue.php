@@ -674,7 +674,7 @@ $1',
 'anonpreviewwarning'               => "''你重未登入，你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。''",
 'missingsummary'                   => "'''提醒：''' 你未提供編輯摘要。如果你再撳多一下儲存嘅話，咁你儲存嘅編輯就會無摘要。",
 'missingcommenttext'               => '請輸入一個註解。',
-'missingcommentheader'             => "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就會無題。",
+'missingcommentheader'             => "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次「{{int:savearticle}}」，你嘅編輯就會無題。",
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '標題／頭條預覽:',
 'blockedtitle'                     => '用戶已經封鎖',
@@ -2194,6 +2194,7 @@ $1',
 最近嘅封鎖日誌項目響下面提供以便參考：',
 'sp-contributions-search'              => '搵貢獻',
 'sp-contributions-username'            => 'IP地址或用戶名：',
+'sp-contributions-toponly'             => '只顯示最新嘅修訂',
 'sp-contributions-submit'              => '搵',
 
 # What links here
@@ -3286,6 +3287,15 @@ $1',
 'tags-edit'               => '編輯',
 'tags-hitcount'           => '$1次更改',
 
+# Special:ComparePages
+'comparepages'     => '比較版',
+'compare-selector' => '比較版修訂',
+'compare-page1'    => '第1版',
+'compare-page2'    => '第2版',
+'compare-rev1'     => '修訂1',
+'compare-rev2'     => '修訂2',
+'compare-submit'   => '比較',
+
 # Database error messages
 'dberr-header'      => '呢個 wiki 出咗問題',
 'dberr-problems'    => '對唔住！
@@ -3307,20 +3317,5 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '復原更改',
 'htmlform-selectorother-other' => '其它',
-
-# Add categories per AJAX
-'ajax-add-category'            => '加分類',
-'ajax-add-category-submit'     => '加',
-'ajax-confirm-title'           => '確認動作',
-'ajax-confirm-prompt'          => '你可以響下面提供一個編輯摘要。
-撳『儲存』去保存你嘅編輯。',
-'ajax-confirm-save'            => '儲存',
-'ajax-add-category-summary'    => '加入分類「$1」',
-'ajax-remove-category-summary' => '拎走分類「$1」',
-'ajax-confirm-actionsummary'   => '做咗嘅動作：',
-'ajax-error-title'             => '錯誤',
-'ajax-error-dismiss'           => '好',
-'ajax-remove-category-error'   => '唔能夠拎走呢個分類。
-通常係發生響一個模度加入咗嗰個分類。',
 
 );
