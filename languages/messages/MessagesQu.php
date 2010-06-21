@@ -766,8 +766,8 @@ Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata
 'headline_tip'    => "Iskay ñiqi hanaq siq'i qillqa",
 'math_sample'     => 'Kayman minuywata qillqamuy',
 'math_tip'        => 'Yupana minuywa (LaTeX)',
-'nowiki_sample'   => 'Kayman mana sumaqchasqa qillqata yapamuy',
-'nowiki_tip'      => 'Wiki sumaqchayta qhawarpariy',
+'nowiki_sample'   => "Kayman mana wiki rikch'akuyniyuq qillqata yapamuy",
+'nowiki_tip'      => "Wiki rikch'akuy ama kachunchu",
 'image_sample'    => 'Qhawarichiy.jpg',
 'image_tip'       => "Ch'aqtasqa rikcha",
 'media_tip'       => "Multimidya willañiqiman t'inki",
@@ -2291,6 +2291,7 @@ $1',
 Qhipaq hark'ay hallch'a yaykuchisqatam kay qatiqpi rikunki:",
 'sp-contributions-search'              => "Llamk'apusqakunata maskay",
 'sp-contributions-username'            => 'IP huchha icha ruraqpa sutin:',
+'sp-contributions-toponly'             => 'Pata musuqchasqakunallata rikuchiy',
 'sp-contributions-submit'              => 'Maskay',
 
 # What links here
@@ -2805,6 +2806,9 @@ Payta rurachiyqa antañiqiqniykita llikaykitapas waqllinqachá.<hr />",
 'show-big-image-thumb' => '<small>Kay ñawpaq qhawariypa chhikan kaynin: $1 × $2 iñu</small>',
 'file-info-gif-looped' => 'muyupayachisqa',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|inchu|inchukuna}}',
+'file-info-png-looped' => 'muyupayachisqa',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|kuti|kuti}} pukllasqa',
+'file-info-png-frames' => '$1 {{PLURAL:$1|inchu|inchukuna}}',
 
 # Special:NewFiles
 'newimages'             => 'Musuq rikchakunap suyu-suyun',
@@ -3328,6 +3332,15 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'tags-hitcount-header'    => 'Unanchasqa hukchasqakuna',
 'tags-edit'               => "llamk'apuy",
 'tags-hitcount'           => '$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}}',
+
+# Special:ComparePages
+'comparepages'     => "P'anqakunata wakichay",
+'compare-selector' => 'Musuqchasqakunata wakichay',
+'compare-page1'    => "P'anqa 1",
+'compare-page2'    => "P'anqa 2",
+'compare-rev1'     => 'Musuqchasqa 1',
+'compare-rev2'     => 'Musuqchasqa 2',
+'compare-submit'   => 'Wakichay',
 
 # Database error messages
 'dberr-header'      => 'Kay wikiqa sasachakuyniyuqmi',

@@ -256,7 +256,7 @@ $messages = array(
 'personaltools'     => 'Шәхси ҡоралдар',
 'postcomment'       => 'Яңы бүлек',
 'articlepage'       => 'Мәҡәләне ҡарап сығырға',
-'talk'              => 'Фекер алышыу',
+'talk'              => 'Фекерләшеү',
 'views'             => 'Ҡарауҙар',
 'toolbox'           => 'Ҡоралдар',
 'userpage'          => 'Ҡулланыусы битен ҡарарға',
@@ -632,6 +632,7 @@ $2',
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ.</span>',
 'userpage-userdoesnotexist'        => '«$1» иҫәп яҙыуы юҡ. Һеҙ бындай бит яһарға йәки битте үҙгәртергә теләһәгеҙ яңынан тикшерегеҙ.',
 'userpage-userdoesnotexist-view'   => '«$1» исемле иҫәп яҙыуы юҡ.',
+'blocked-notice-logextract'        => 'Хәҙергә был ҡатнашыусы ябылған. Һуңғы ҡулланыусы ябыу яҙмаһы:',
 'clearyourcache'                   => "'''Иҫкәрмә:''' Битте һаҡлағандан һуң үҙгәртеүҙерегеҙ күренһен өсөн браузерығыҙҙың кэшын таҙартығыҙ.
 Быны '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''Safari''': ''Cmd+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Konqueror''': ''F5'', '''Opera''': ''Tools→Preferences'' аша эшләп була.",
 'usercssyoucanpreview'             => "'''Кәңәш:''' Яңы CSS-файлды һаҡларҙан алда тикшерер өсөн \"алдан ҡарау\" төймәһенә баҫығыҙ.",
@@ -853,6 +854,8 @@ $1",
 'logdelete-failure'           => "'''Яҙма күренеүсәнлеге көйләнмәгән:'''
 $1",
 'revdel-restore'              => 'Күренеүсәнлекте үҙгәртергә',
+'revdel-restore-deleted'      => 'юйылған өлгөләр',
+'revdel-restore-visible'      => 'ҡара алған өлгөләр',
 'pagehist'                    => 'Бит тарихы',
 'deletedhist'                 => 'Юйылған тарих',
 'revdelete-content'           => 'эстәлек',
@@ -887,6 +890,9 @@ $1",
 'suppressionlog'     => 'Йәшереү яҙмалары',
 'suppressionlogtext' => 'Түбәндә, хәкимдәрҙән йәшерелгән материалдар булған һуңғы юйыуҙыр һәм блоклауҙар исемлеге килтерелгән.
 Ағымдағы блоклауҙарҙы күрер өсөн [[Special:IPBlockList|IP-блоклауҙар исемлеген]] ҡарағыҙ.',
+
+# Revision move
+'revmove-reasonfield' => 'Сәбәп:',
 
 # History merging
 'mergehistory'                     => 'Үҙгәртеүҙәр тарихын берләштерергә',
