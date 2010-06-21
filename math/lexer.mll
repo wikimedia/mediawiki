@@ -69,6 +69,7 @@ rule token = parse
   | "\\#" 			{ LITERAL (HTMLABLE (FONT_UFH,"\\#","#")) }
   | "\\%"			{ LITERAL (HTMLABLE (FONT_UFH,"\\%","%")) }
   | "\\$"			{ LITERAL (HTMLABLE (FONT_UFH,"\\$","$")) }
+  | "\\&"			{ LITERAL (HTMLABLEC (FONT_RM,"\\&","&amp;")) }
   | "&"				{ NEXT_CELL }
   | "\\\\"			{ NEXT_ROW }
   | "\\begin{matrix}"		{ Texutil.tex_use_ams(); BEGIN__MATRIX }

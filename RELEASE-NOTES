@@ -87,6 +87,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4597) Provide support in Special:Contributions to show only "current"
   contributions
 * (bug 17857) {{anchorencode}} acts more like how the parser creates section ids.
+* (bug 21477) \& can now be used in <math>
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
