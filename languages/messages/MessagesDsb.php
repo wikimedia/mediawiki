@@ -2205,6 +2205,7 @@ $1',
 Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'sp-contributions-search'              => 'Pśinoski pytaś',
 'sp-contributions-username'            => 'IP-adresa abo wužywarske mě:',
+'sp-contributions-toponly'             => 'Jano wuše wersije pokazaś',
 'sp-contributions-submit'              => 'Pytaś',
 
 # What links here
@@ -2714,6 +2715,9 @@ $1',
 'show-big-image-thumb' => '<small>wjelikosć pśeglěda: $1 × $2 pikselow</small>',
 'file-info-gif-looped' => 'bźezkóńcna šlejfa',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|wobłuk|wobłuka|wobłuki|wobłukow}}',
+'file-info-png-looped' => 'šlejfa',
+'file-info-png-repeat' => '{{PLURAL:$1|$1 raz|dwójcy|$1 raze|$1 razow}} wótegrata',
+'file-info-png-frames' => '$1 {{PLURAL:$1|wobłuk|wobłuka|wobłuki|wobłukow}}',
 
 # Special:NewFiles
 'newimages'             => 'Nowe dataje',

@@ -645,7 +645,7 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 'missingsummary'                   => "'''Sylwer:''' Nid ydych wedi gosod nodyn yn y blwch 'Crynodeb'.
 Os y pwyswch eto ar 'Cadw'r dudalen' caiff y golygiad ei gadw heb nodyn.",
 'missingcommenttext'               => 'Rhowch eich sylwadau isod.',
-'missingcommentheader'             => "'''Nodyn:''' Nid ydych wedi cynnig unrhywbeth yn y blwch 'Pwnc/Pennawd:'. Os y cliciwch 'Cadw'r dudalen' eto fe gedwir y golygiad heb bennawd.",
+'missingcommentheader'             => "'''Nodyn:''' Nid ydych wedi cynnig unrhywbeth yn y blwch 'Pwnc/Pennawd:'. Os y cliciwch \"{{int:savearticle}}\" eto fe gedwir y golygiad heb bennawd.",
 'summary-preview'                  => "Rhagolwg o'r crynodeb:",
 'subject-preview'                  => 'Rhagolwg pwnc/pennawd:',
 'blockedtitle'                     => "Mae'r defnyddiwr hwn wedi cael ei flocio",
@@ -2186,6 +2186,7 @@ $1',
 Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'sp-contributions-search'              => 'Chwilio am gyfraniadau',
 'sp-contributions-username'            => 'Cyfeiriad IP neu enw defnyddiwr:',
+'sp-contributions-toponly'             => 'Dangos y diwygiadau diweddaraf yn unig',
 'sp-contributions-submit'              => 'Chwilier',
 
 # What links here
@@ -2695,6 +2696,8 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'show-big-image-thumb' => '<small>Maint y rhagolwg: $1 × $2 picsel</small>',
 'file-info-gif-looped' => 'dolennog',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|ffrâm}}',
+'file-info-png-repeat' => 'yn cael eu dangos {{PLURAL:$1||unwaith|ddwywaith|deirgwaith|$1 gwaith|$1 gwaith}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|ffrâm}}',
 
 # Special:NewFiles
 'newimages'             => 'Oriel y ffeiliau newydd',
@@ -3228,6 +3231,15 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Nifer wedi tagio',
 'tags-edit'               => 'golygu',
 'tags-hitcount'           => '$1 {{PLURAL:$1|newid}}',
+
+# Special:ComparePages
+'comparepages'     => 'Cymharu tudalennau',
+'compare-selector' => "Cymharu diwygiadau gwahanol o'r dudalen",
+'compare-page1'    => 'Tudalen 1',
+'compare-page2'    => 'Tudalen 2',
+'compare-rev1'     => 'Diwygiad 1',
+'compare-rev2'     => 'Diwygiad 2',
+'compare-submit'   => 'Cymharer',
 
 # Database error messages
 'dberr-header'      => 'Mae problem gan y wici hwn',

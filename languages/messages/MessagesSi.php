@@ -3570,6 +3570,12 @@ $1',
 'tags-edit'               => 'සංස්කරණය',
 'tags-hitcount'           => '{{PLURAL:$1|වෙනස්කම|වෙනස්කම් $1 }}',
 
+# Special:ComparePages
+'comparepages'   => 'පිටු සසඳන්න',
+'compare-page1'  => 'පිටුව 1',
+'compare-page2'  => 'පිටුව 2',
+'compare-submit' => 'සසඳන්න',
+
 # Database error messages
 'dberr-header'      => 'මෙම විකියෙහි ගැටළුවක් පවතියි',
 'dberr-problems'    => 'සමාවන්න! මෙම අඩවිය තාක්ෂණික ගැටළු අත්දකියි.',

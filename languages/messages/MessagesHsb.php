@@ -2185,6 +2185,7 @@ $1',
 Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'sp-contributions-search'              => 'Přinoški pytać',
 'sp-contributions-username'            => 'IP-adresa abo wužiwarske mjeno:',
+'sp-contributions-toponly'             => 'Jenož wyše wersije pokazać',
 'sp-contributions-submit'              => 'OK',
 
 # What links here
@@ -2685,6 +2686,9 @@ $1',
 'show-big-image-thumb' => '<small>Wulkosć miniaturki: $1 × $2 pikselow</small>',
 'file-info-gif-looped' => 'Bjezkónčna sekla',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|wobłuk|wobłukaj|wobłuki|wobłukow}}',
+'file-info-png-looped' => 'Sekla',
+'file-info-png-repeat' => '{{PLURAL:$1|$1 raz|dwójce|$1 razy|$1 razow}} wotehrata',
+'file-info-png-frames' => '$1 {{PLURAL:$1|wobłuk|wobłukaj|wobłuki|wobłukow}}',
 
 # Special:NewFiles
 'newimages'             => 'Nowe dataje',

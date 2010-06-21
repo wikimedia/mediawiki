@@ -2344,6 +2344,7 @@ $1',
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
 'sp-contributions-search'              => 'Busca de contribucións',
 'sp-contributions-username'            => 'Enderezo IP ou nome de usuario:',
+'sp-contributions-toponly'             => 'Mostrar só as últimas revisións',
 'sp-contributions-submit'              => 'Procurar',
 
 # What links here
@@ -2865,6 +2866,9 @@ O seu sistema pode quedar comprometido se o executa.<hr />",
 'show-big-image-thumb' => '<small>Tamaño desta presentación da imaxe: $1 × $2 píxeles</small>',
 'file-info-gif-looped' => 'en bucle',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|fotograma|fotogramas}}',
+'file-info-png-looped' => 'en bucle',
+'file-info-png-repeat' => 'reproducido $1 {{PLURAL:$1|vez|veces}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogramas}}',
 
 # Special:NewFiles
 'newimages'             => 'Galería de imaxes novas',
