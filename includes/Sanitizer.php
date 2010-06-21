@@ -1167,6 +1167,18 @@ class Sanitizer {
 	}
 
 	/**
+	 * Normalizes whitespace in a section name, such as might be returned
+	 * by Parser::stripSectionName(), for use in the id's that are used for
+	 * section links.
+	 *
+	 * @param $section String
+	 * @return String
+	 */
+	static function normalizeSectionNameWhitespace( $section ) {
+		return trim( preg_replace( '/[ _]+/', ' ', $section ) );
+	}
+
+	/**
 	 * Ensure that any entities and character references are legal
 	 * for XML and XHTML specifically. Any stray bits will be
 	 * &amp;-escaped to result in a valid text fragment.

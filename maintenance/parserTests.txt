@@ -7816,6 +7816,17 @@ title=[[Main Page]]
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
 !! end
 
+!! test
+Space normalisation on autocomment (bug 22784)
+!! options
+comment
+title=[[Main Page]]
+!!input
+/* __hello__world__ */
+!! result
+<span class="autocomment"><a href="/wiki/Main_Page#hello_world" title="Main Page">→</a>__hello__world__</span>
+!! end
+
 !!article
 MediaWiki:bad image list
 !!text

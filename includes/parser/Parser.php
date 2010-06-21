@@ -3859,8 +3859,7 @@ class Parser {
 
 			# For the anchor, strip out HTML-y stuff period
 			$safeHeadline = preg_replace( '/<.*?'.'>/', '', $safeHeadline );
-			$safeHeadline = preg_replace( '/[ _]+/', ' ', $safeHeadline );
-			$safeHeadline = trim( $safeHeadline );
+			$safeHeadline = Sanitizer::normalizeSectionNameWhitespace( $safeHeadline );
 
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
@@ -5172,7 +5171,7 @@ class Parser {
 	public function guessSectionNameFromWikiText( $text ) {
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
-		$text = trim( preg_replace( '/[ _]+/', ' ', $text ) );
+		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
 		return '#' . Sanitizer::escapeId( $text, 'noninitial' );
 	}
 
