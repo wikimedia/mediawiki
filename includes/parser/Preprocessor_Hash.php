@@ -428,7 +428,7 @@ class Preprocessor_Hash implements Preprocessor {
 				$count = $piece->count;
 				$equalsLength = strspn( $revText, '=', strlen( $text ) - $searchStart );
 				if ( $equalsLength > 0 ) {
-					if ( $i - $equalsLength == $piece->startPos ) {
+					if ( $searchStart - $equalsLength == $piece->startPos ) {
 						// This is just a single string of equals signs on its own line
 						// Replicate the doHeadings behaviour /={count}(.+)={count}/
 						// First find out how many equals signs there really are (don't stop at 6)

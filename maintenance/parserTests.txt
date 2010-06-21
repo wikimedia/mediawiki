@@ -3903,6 +3903,23 @@ http://example.com [[Image:foobar.jpg]]
 !!end
 
 !! test
+Short headings with trailing space should match behaviour of Parser::doHeadings (bug 19910)
+!! input
+=== 
+The line above must have a trailing space!
+=== <!--
+--> <!-- -->
+But just in case it doesn't...
+!! result
+<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: =">edit</a>]</span> <span class="mw-headline" id=".3D">=</span></h1>
+<p>The line above must have a trailing space!
+</p>
+<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: =">edit</a>]</span> <span class="mw-headline" id=".3D_2">=</span></h1>
+<p>But just in case it doesn't...
+</p>
+!! end
+
+!! test
 BUG 1219 URL next to image (broken)
 !! input
 http://example.com[[Image:foobar.jpg]]
@@ -5849,6 +5866,22 @@ section=1
 ==marked==
 !!end
 
+# Test behaviour of bug 19910
+!! test
+Sectiion with all-equals
+!! options
+section=2
+!! input
+=== 
+The line above must have a trailing space
+=== <!--
+--> <!-- -->
+But just in case it doesn't...
+!! result
+=== <!--
+--> <!-- -->
+But just in case it doesn't...
+!! end
 
 !! test
 Section replacement test (section 0)
