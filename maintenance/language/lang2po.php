@@ -73,7 +73,8 @@ class Lang2Po extends Maintenance {
 
 	/**
 	 * Return a dummy header for later edition.
-	 * @return string A dummy header
+	 *
+	 * @return String: a dummy header
 	 */
 	private function poHeader() {
 		return '# SOME DESCRIPTIVE TITLE.
@@ -99,8 +100,8 @@ msgstr ""
 	/**
 	 * generate and write a file in .po format.
 	 *
-	 * @param string $langcode Code of a language it will process.
-	 * @param array &$messages Array containing the various messages.
+	 * @param $langcode String: code of a language it will process.
+	 * @param $messages Array containing the various messages.
 	 * @return string Filename where stuff got saved or false.
 	 */
 	private function generatePo( $langcode, $messages ) {
