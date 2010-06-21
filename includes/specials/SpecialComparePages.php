@@ -1,5 +1,6 @@
 <?php
 /**
+ * Copyright (C) 2010 Derk-Jan Hartman <hartman@videolan.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
