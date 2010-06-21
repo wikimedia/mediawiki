@@ -3553,7 +3553,7 @@ By executing it, your system may be compromised.<hr />",
 'file-info-gif-looped' => 'looped',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frames}}',
 'file-info-png-looped' => 'looped',
-'file-info-png-repeat' => 'played $1 times',
+'file-info-png-repeat' => 'played $1 {{PLURAL:$1|time|times}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frames}}',
 
 # Special:NewFiles
