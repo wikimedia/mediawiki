@@ -208,6 +208,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Upload after following a red link
 * Correct the escaping of the autosummary URI fragments.
 * (bug 23642) Recognize mime types of MS OpenXML documents.
+* (bug 22784) Normalise underscores and spaces in autocomments.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

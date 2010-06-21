@@ -1018,17 +1018,13 @@ class Linker {
 		if ( $title ) {
 			$section = $auto;
 
-			# Generate a valid anchor name from the section title.
-			# Hackish, but should generally work - we strip wiki
-			# syntax, including the magic [[: that is used to
-			# "link rather than show" in case of images and
-			# interlanguage links.
+			# Remove links that a user may have manually put in the autosummary
+			# This could be improved by copying as much of Parser::stripSectionName as desired.
 			$section = str_replace( '[[:', '', $section );
 			$section = str_replace( '[[', '', $section );
 			$section = str_replace( ']]', '', $section );
 
-			# Most of Title:: expects fragments to be escaped
-			$section = Title::escapeFragmentForURL( $section );
+			$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # bug 22784
 			if ( $local ) {
 				$sectionTitle = Title::newFromText( '#' . $section );
 			} else {
