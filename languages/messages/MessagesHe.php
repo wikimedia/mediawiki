@@ -2965,7 +2965,10 @@ $1',
 'show-big-image'       => 'תמונה ברזולוציה גבוהה יותר',
 'show-big-image-thumb' => '<small>גודל התצוגה הזו: $1 × $2 פיקסלים</small>',
 'file-info-gif-looped' => 'בלולאה',
-'file-info-gif-frames' => '{{PLURAL:$1|מסגרת אחת|$1 מסגרות}}',
+'file-info-gif-frames' => '{{PLURAL:$1|תמונה אחת|$1 תמונות}}',
+'file-info-png-looped' => 'בלולאה',
+'file-info-png-repeat' => 'הוצג {{PLURAL:$1|פעם אחת|$1 פעמים|פעמיים}}',
+'file-info-png-frames' => '{{PLURAL:$1|תמונה אחת|$1 תמונות}}',
 
 # Special:NewFiles
 'newimages'             => 'גלריית קבצים חדשים',
