@@ -88,6 +88,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   contributions
 * (bug 17857) {{anchorencode}} acts more like how the parser creates section ids.
 * (bug 21477) \& can now be used in <math>
+* (bug 11641) \dotsc \dotsm \dotsi \dotso can now be used in <math>
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
