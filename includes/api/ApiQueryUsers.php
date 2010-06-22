@@ -126,7 +126,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 			$data = array();
 			$res = $this->select( __METHOD__ );
-			foreach ( $rowes as $row ) {
+			foreach ( $res as $row ) {
 				$user = User::newFromRow( $row );
 				$name = $user->getName();
 				$data[$name]['name'] = $name;
