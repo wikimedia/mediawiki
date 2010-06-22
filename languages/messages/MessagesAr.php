@@ -41,6 +41,7 @@
  * @author Uwe a
  * @author ترجمان05
  * @author عصام بايزيدي
+ * @author عمرو
  * @author نصوح
  */
 
@@ -1279,6 +1280,8 @@ $1",
 'logdelete-failure'           => "'''تعذر ضبط رؤية السجل:'''
 $1",
 'revdel-restore'              => 'تغيير الرؤية',
+'revdel-restore-deleted'      => 'مراجعات محذوفة',
+'revdel-restore-visible'      => 'مراجعات مرئية',
 'pagehist'                    => 'تاريخ الصفحة',
 'deletedhist'                 => 'التاريخ المحذوف',
 'revdelete-content'           => 'محتوى',
@@ -3747,6 +3750,15 @@ $1',
 'tags-hitcount-header'    => 'تغييرات موسومة',
 'tags-edit'               => 'عدل',
 'tags-hitcount'           => '$1 {{PLURAL:$1|تغيير|تغيير}}',
+
+# Special:ComparePages
+'comparepages'     => 'قارن صفحات',
+'compare-selector' => 'قارن مراجعات الصفحة',
+'compare-page1'    => 'صفحة 1',
+'compare-page2'    => 'صفحة 2',
+'compare-rev1'     => 'مراجعة 1',
+'compare-rev2'     => 'مراجعة 2',
+'compare-submit'   => 'قارن',
 
 # Database error messages
 'dberr-header'      => 'هذا الويكي به مشكلة',

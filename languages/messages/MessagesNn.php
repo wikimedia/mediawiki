@@ -3283,6 +3283,15 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'tags-edit'               => 'endra',
 'tags-hitcount'           => '{{PLURAL:$1|éi endring|$1 endringar}}',
 
+# Special:ComparePages
+'comparepages'     => 'Samanlikna sider',
+'compare-selector' => 'Samanlikn sideversjonar',
+'compare-page1'    => 'Side 1',
+'compare-page2'    => 'Side 2',
+'compare-rev1'     => 'Versjon 1',
+'compare-rev2'     => 'Versjon 2',
+'compare-submit'   => 'Samanlikna',
+
 # Database error messages
 'dberr-header'      => 'Denne wikien har eit problem',
 'dberr-problems'    => 'Denne nettstaden har tekniske problem.',
@@ -3299,6 +3308,7 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'htmlform-float-invalid'       => 'Verdien du valde er ikkje eit tal.',
 'htmlform-int-toolow'          => 'Verdien du valde er under minstetalet på $1',
 'htmlform-int-toohigh'         => 'Verdien du valde er over høgste moglege tal $1',
+'htmlform-required'            => 'Denne verdien vert kravd',
 'htmlform-submit'              => 'Lagre',
 'htmlform-reset'               => 'Gjer om endringar',
 'htmlform-selectorother-other' => 'Andre',
