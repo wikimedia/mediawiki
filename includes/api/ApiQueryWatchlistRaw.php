@@ -53,7 +53,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		
 		$params = $this->extractRequestParams();
 
-		$user = ApiQueryWatchlist::getWatchlistUser( $params );
+		$user = $this->getWatchlistUser( $params );
 
 		$prop = array_flip( (array)$params['prop'] );
 		$show = array_flip( (array)$params['show'] );
