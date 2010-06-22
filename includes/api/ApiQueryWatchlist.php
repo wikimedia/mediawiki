@@ -57,7 +57,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 		
-		$user = ApiQueryWatchlist::getWatchlistUser( $params );
+		$user = $this->getWatchlistUser( $params );
 
 		if ( !is_null( $params['prop'] ) && is_null( $resultPageSet ) ) {
 			$prop = array_flip( $params['prop'] );
@@ -258,7 +258,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_notificationtimestamp ) {
-			$vals['notificationtimestamp'] = ( $row->wl_notificationtimestamp == null ) ? '' : wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
+			$vals['notificationtimestamp'] = ( $row->wl_notificationtimestamp == null ) 
+				? '' 
+				: wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
 		}
 
 		if ( $this->fld_comment && isset( $row->rc_comment ) ) {
@@ -271,30 +273,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		return $vals;
-	}
-
-	/**
-	* Gets the user for whom to get the watchlist
-	*  
-	* @returns User
-	*/
-	public static function getWatchlistUser( $params ) {
-		global $wgUser;
-		if ( !is_null( $params['owner'] ) && !is_null( $params['token'] ) ) {
-			$user = User::newFromName( $params['owner'], false );
-			if ( !$user->getId() ) {
-				$this->dieUsage( 'Specified user does not exist', 'bad_wlowner' );
-			}
-			$token = $user->getOption( 'watchlisttoken' );
-			if ( $token == '' || $token != $params['token'] ) {
-				$this->dieUsage( 'Incorrect watchlist token provided -- please set a correct token in Special:Preferences', 'bad_wltoken' );
-			}
-		} elseif ( !$wgUser->isLoggedIn() ) {
-			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
-		} else {
-			$user = $wgUser;
-		}
-		return $user;
 	}
 
 	public function getAllowedParams() {

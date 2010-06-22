@@ -1083,6 +1083,30 @@ abstract class ApiBase {
 	}
 
 	/**
+	* Gets the user for whom to get the watchlist
+	*  
+	* @returns User
+	*/
+	public function getWatchlistUser( $params ) {
+		global $wgUser;
+		if ( !is_null( $params['owner'] ) && !is_null( $params['token'] ) ) {
+			$user = User::newFromName( $params['owner'], false );
+			if ( !$user->getId() ) {
+				$this->dieUsage( 'Specified user does not exist', 'bad_wlowner' );
+			}
+			$token = $user->getOption( 'watchlisttoken' );
+			if ( $token == '' || $token != $params['token'] ) {
+				$this->dieUsage( 'Incorrect watchlist token provided -- please set a correct token in Special:Preferences', 'bad_wltoken' );
+			}
+		} elseif ( !$wgUser->isLoggedIn() ) {
+			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
+		} else {
+			$user = $wgUser;
+		}
+		return $user;
+	}
+
+	/**
 	 * Returns a list of all possible errors returned by the module
 	 * @return array in the format of array( key, param1, param2, ... ) or array( 'code' => ..., 'info' => ... )
 	 */
