@@ -518,6 +518,7 @@ let find = function
     | "\\emph"             -> FUN_AR1 "\\emph "
     | "\\texttt"           -> FUN_AR1 "\\texttt "
     | "\\textbf"           -> FUN_AR1 "\\textbf "
+    | "\\textsf"           -> FUN_AR1 "\\textsf "
     | "\\textit"           -> FUN_AR1hf ("\\textit ", FONTFORCE_IT)
     | "\\textrm"           -> FUN_AR1hf ("\\textrm ", FONTFORCE_RM)
     | "\\rm"               -> DECLh ("\\rm ", FONTFORCE_RM)
@@ -730,6 +731,7 @@ let find = function
     | "\\mathsf"           -> (tex_use_ams (); FUN_AR1 "\\mathsf ")
     | "\\mathcal"          -> (tex_use_ams (); FUN_AR1 "\\mathcal ")
     | "\\mathbb"           -> (tex_use_ams (); FUN_AR1 "\\mathbb ")
+    | "\\mathtt"           -> (tex_use_ams (); FUN_AR1 "\\mathtt ")
     | "\\mathfrak"         -> (tex_use_ams (); FUN_AR1 "\\mathfrak ")
     | "\\operatorname"     -> (tex_use_ams (); FUN_AR1 "\\operatorname ")
     | "\\text"             -> raise (Failure "malformatted \\text")
