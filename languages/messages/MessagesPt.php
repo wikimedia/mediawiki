@@ -2441,6 +2441,7 @@ Para referência, o último registo de bloqueio é apresentado abaixo:',
 Para sua referência, encontra abaixo a entrada mais recente no registo de bloqueios:',
 'sp-contributions-search'              => 'Pesquisar contribuições',
 'sp-contributions-username'            => 'Endereço IP ou utilizador:',
+'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
 
 # What links here
@@ -2985,6 +2986,9 @@ Executá-lo poderá comprometer a segurança do seu sistema.<hr />",
 'show-big-image-thumb' => '<small>Dimensões desta antevisão: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'cíclico',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|quadro|quadros}}',
+'file-info-png-looped' => 'ciclo infinito',
+'file-info-png-repeat' => 'reproduzido $1 {{PLURAL:$1|vez|vezes}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogramas}}',
 
 # Special:NewFiles
 'newimages'             => 'Galeria de novos ficheiros',

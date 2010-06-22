@@ -2442,6 +2442,7 @@ $1',
 La dernière entrée du journal des blocages est indiquée ci-dessous à titre d’information :',
 'sp-contributions-search'              => 'Rechercher les contributions',
 'sp-contributions-username'            => 'Adresse IP ou nom d’utilisateur :',
+'sp-contributions-toponly'             => 'Ne montrer que les révisions récentes',
 'sp-contributions-submit'              => 'Rechercher',
 
 # What links here
@@ -2982,6 +2983,9 @@ Si vous l’exécutez, votre système peut être compromis.<hr />",
 'show-big-image-thumb' => '<small>Taille de cet aperçu : $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'en boucle',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|image|images}}',
+'file-info-png-looped' => 'en boucle',
+'file-info-png-repeat' => 'joué $1 {{PLURAL:$1|fois|fois}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|image|images}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerie des nouveaux fichiers',

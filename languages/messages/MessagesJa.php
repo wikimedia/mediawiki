@@ -2272,6 +2272,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'このIPアドレスは現在ブロックされています。参考のために最新のブロック記録を以下に表示します。',
 'sp-contributions-search'              => '投稿履歴の検索',
 'sp-contributions-username'            => 'IPアドレスまたは利用者名:',
+'sp-contributions-toponly'             => '最新の版のみを表示する',
 'sp-contributions-submit'              => '検索',
 
 # What links here
@@ -2792,6 +2793,9 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'ループします',
 'file-info-gif-frames' => '$1フレーム',
+'file-info-png-looped' => '繰り返しあり',
+'file-info-png-repeat' => '$1回再生しました',
+'file-info-png-frames' => '$1フレーム',
 
 # Special:NewFiles
 'newimages'             => '新規ファイルギャラリー',
@@ -3405,6 +3409,15 @@ $1',
 'tags-hitcount-header'    => 'タグが付与された変更',
 'tags-edit'               => '編集',
 'tags-hitcount'           => '$1{{PLURAL:$1|件}}の変更',
+
+# Special:ComparePages
+'comparepages'     => 'ページの比較',
+'compare-selector' => 'ページの版を比較',
+'compare-page1'    => 'ページ1',
+'compare-page2'    => 'ページ2',
+'compare-rev1'     => '版1',
+'compare-rev2'     => '版2',
+'compare-submit'   => '比較する',
 
 # Database error messages
 'dberr-header'      => '問題発生中です',

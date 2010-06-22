@@ -2452,6 +2452,7 @@ The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}
 'sp-contributions-username'            => 'This message appears whenever someone requests [[Special:Contributions]].
 
 {{Identical/IP address or username}}',
+'sp-contributions-toponly'             => '"top revision" means the "latest revision"',
 'sp-contributions-submit'              => '{{Identical|Search}}',
 
 # What links here

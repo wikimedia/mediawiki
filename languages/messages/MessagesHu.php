@@ -2925,6 +2925,8 @@ A futtatása során kárt tehet a számítógépedben.<hr />",
 'show-big-image-thumb' => '<small>Az előnézet mérete: $1 × $2 képpont</small>',
 'file-info-gif-looped' => 'ismétlődik',
 'file-info-gif-frames' => '{{PLURAL:$1|egy|$1}} képkocka',
+'file-info-png-repeat' => 'lejátszva {{PLURAL:$1|egy|$1}} alkalommal',
+'file-info-png-frames' => '{{PLURAL:$1|egy|$1}} képkocka',
 
 # Special:NewFiles
 'newimages'             => 'Új fájlok galériája',
@@ -3461,6 +3463,15 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'tags-hitcount-header'    => 'Címkézett változtatások',
 'tags-edit'               => 'szerkesztés',
 'tags-hitcount'           => '{{PLURAL:$1|Egy|$1}} változtatás',
+
+# Special:ComparePages
+'comparepages'     => 'Lapok összehasonlítása',
+'compare-selector' => 'Lapváltozatok összehasonlítása',
+'compare-page1'    => '1. lap',
+'compare-page2'    => '2. lap',
+'compare-rev1'     => '1. változat',
+'compare-rev2'     => '2. változat',
+'compare-submit'   => 'Összehasonlítás',
 
 # Database error messages
 'dberr-header'      => 'A wikivel problémák vannak',

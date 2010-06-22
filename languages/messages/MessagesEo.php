@@ -498,7 +498,7 @@ $messages = array(
 'otherlanguages'    => 'Aliaj lingvoj',
 'redirectedfrom'    => '(Alidirektita el $1)',
 'redirectpagesub'   => 'Alidirektilo',
-'lastmodifiedat'    => 'Laste redaktita je $2, $1.',
+'lastmodifiedat'    => 'Ĉi tiu paĝo estis lastafoje redaktita je $2, $1.',
 'viewcount'         => 'Montrita {{PLURAL:$1|unufoje|$1 fojojn}}.',
 'protectedpage'     => 'Protektita paĝo',
 'jumpto'            => 'Iri al:',
@@ -1142,7 +1142,7 @@ Rigardu la [[Special:IPBlockList|IP-forbarliston]] por la listo de nune operacia
 'revisionmove'                 => 'Movi reviziojn de "$1"',
 'revmove-explain'              => 'La jenaj revizioj estos movita de $1 al la donita cela paĝo. Se la celo ne ekzistas, ĝi estos kreita. Alie, ĉi tiuj revizioj estos kunigita en la paĝa historio.',
 'revmove-legend'               => 'Aldoni celan paĝon kaj resumon',
-'revisionmoveselectedversions' => 'Movi elektitaj reviziojn',
+'revisionmoveselectedversions' => 'Movi elektitajn reviziojn',
 'revmove-reasonfield'          => 'Kialo:',
 'revmove-titlefield'           => 'Cela paĝo:',
 'revmove-badparam-title'       => 'Malbonaj parametroj',
@@ -1326,7 +1326,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'timezoneregion-indian'         => 'Hinda Oceano',
 'timezoneregion-pacific'        => 'Pacifiko',
 'allowemail'                    => 'Rajtigi retmesaĝojn de aliaj uzantoj',
-'prefs-searchoptions'           => 'Serĉi opciojn',
+'prefs-searchoptions'           => 'Serĉaj opcioj',
 'prefs-namespaces'              => 'Nomspacoj',
 'defaultns'                     => 'Alimaniere, traserĉi la jenajn nomspacojn:',
 'default'                       => 'defaŭlte',
@@ -3336,7 +3336,10 @@ Vi povas ankaŭ [[Special:Watchlist/edit|redakti norme]].',
 'filepath'         => 'Vojo al dosiero',
 'filepath-page'    => 'Dosiero:',
 'filepath-submit'  => 'Vojo',
-'filepath-summary' => 'Ĉi tiu speciala paĝo redonas la kompletan padon por dosiero. Bildoj estas montrataj en alta distingivo, aliaj dosieraj tipoj estas rekte startataj per ties asociita programo.',
+'filepath-summary' => 'Ĉi tiu speciala paĝo liveras kompletan vojon al dosiero.
+Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte per ties asociita programo.
+
+Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Serĉu duplikatajn dosierojn',

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2787,6 +2787,9 @@ $1',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 'file-info-gif-looped' => '循環',
 'file-info-gif-frames' => '$1幀',
+'file-info-png-looped' => '循環',
+'file-info-png-repeat' => '已播放$1 {{PLURAL:$1|次|次}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|幀|幀}}',
 
 # Special:NewFiles
 'newimages'             => '新建圖片畫廊',

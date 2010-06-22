@@ -10,6 +10,7 @@
  * @author Albamhandae
  * @author Devunt
  * @author Ficell
+ * @author IRTC1015
  * @author ITurtle
  * @author Klutzy
  * @author Kwj2772
@@ -444,31 +445,32 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'   => '새 주제',
-'vector-action-delete'       => '삭제',
-'vector-action-move'         => '이동',
-'vector-action-protect'      => '보호',
-'vector-action-undelete'     => '되살리기',
-'vector-action-unprotect'    => '보호 해제',
-'vector-namespace-category'  => '분류',
-'vector-namespace-help'      => '도움말',
-'vector-namespace-image'     => '파일',
-'vector-namespace-main'      => '문서',
-'vector-namespace-media'     => '미디어 문서',
-'vector-namespace-mediawiki' => '메시지',
-'vector-namespace-project'   => '프로젝트 문서',
-'vector-namespace-special'   => '특수 문서',
-'vector-namespace-talk'      => '토론',
-'vector-namespace-template'  => '틀',
-'vector-namespace-user'      => '사용자 문서',
-'vector-view-create'         => '생성',
-'vector-view-edit'           => '편집',
-'vector-view-history'        => '역사',
-'vector-view-view'           => '읽기',
-'vector-view-viewsource'     => '내용 보기',
-'actions'                    => '행위',
-'namespaces'                 => '이름공간',
-'variants'                   => '변수',
+'vector-action-addsection'       => '새 주제',
+'vector-action-delete'           => '삭제',
+'vector-action-move'             => '이동',
+'vector-action-protect'          => '보호',
+'vector-action-undelete'         => '되살리기',
+'vector-action-unprotect'        => '보호 해제',
+'vector-namespace-category'      => '분류',
+'vector-namespace-help'          => '도움말',
+'vector-namespace-image'         => '파일',
+'vector-namespace-main'          => '문서',
+'vector-namespace-media'         => '미디어 문서',
+'vector-namespace-mediawiki'     => '메시지',
+'vector-namespace-project'       => '프로젝트 문서',
+'vector-namespace-special'       => '특수 문서',
+'vector-namespace-talk'          => '토론',
+'vector-namespace-template'      => '틀',
+'vector-namespace-user'          => '사용자 문서',
+'vector-simplesearch-preference' => '향상된 검색어 제안 사용하기 (벡터 스킨 전용)',
+'vector-view-create'             => '생성',
+'vector-view-edit'               => '편집',
+'vector-view-history'            => '역사',
+'vector-view-view'               => '읽기',
+'vector-view-viewsource'         => '내용 보기',
+'actions'                        => '행위',
+'namespaces'                     => '이름공간',
+'variants'                       => '변수',
 
 'errorpagetitle'    => '오류',
 'returnto'          => '$1(으)로 돌아갑니다.',
@@ -812,7 +814,7 @@ $2',
 'missingsummary'                   => "'''알림:''' 편집 요약을 적지 않았습니다. 그대로 저장하면 편집 요약 없이 저장됩니다.",
 'missingcommenttext'               => '아래에 내용을 채워 넣어 주세요.',
 'missingcommentheader'             => "'''알림:''' 글의 제목을 입력하지 않았습니다.
-다시 저장 버튼을 클릭하면, 글이 제목 없이 저장될 것입니다.",
+다시 {{int:savearticle}} 버튼을 클릭하면 글이 제목 없이 저장됩니다.",
 'summary-preview'                  => '편집 요약 미리 보기:',
 'subject-preview'                  => '주제/제목 미리 보기:',
 'blockedtitle'                     => '차단됨',
@@ -2359,6 +2361,7 @@ $1',
 아래의 최근 차단 기록을 참고하십시오.',
 'sp-contributions-search'              => '기여 검색',
 'sp-contributions-username'            => 'IP 주소 혹은 계정 이름:',
+'sp-contributions-toponly'             => '최신판만 보기',
 'sp-contributions-submit'              => '찾기',
 
 # What links here
@@ -2881,6 +2884,9 @@ $1',
 'show-big-image-thumb' => '<small>미리보기 크기: $1 × $2 픽셀</small>',
 'file-info-gif-looped' => '반복됨',
 'file-info-gif-frames' => '$1 프레임',
+'file-info-png-looped' => '반복됨',
+'file-info-png-repeat' => '$1번 재생됨',
+'file-info-png-frames' => '$1 프레임',
 
 # Special:NewFiles
 'newimages'             => '새 파일 목록',
@@ -3420,6 +3426,15 @@ $1',
 'tags-hitcount-header'    => '태그된 바뀜',
 'tags-edit'               => '편집',
 'tags-hitcount'           => '$1개 바뀜',
+
+# Special:ComparePages
+'comparepages'     => '문서 비교',
+'compare-selector' => '문서의 특정판 비교',
+'compare-page1'    => '첫 번째 문서',
+'compare-page2'    => '두 번째 문서',
+'compare-rev1'     => '첫 번째 판',
+'compare-rev2'     => '두 번째 판',
+'compare-submit'   => '비교하기',
 
 # Database error messages
 'dberr-header'      => '이 위키에 문제가 있습니다.',

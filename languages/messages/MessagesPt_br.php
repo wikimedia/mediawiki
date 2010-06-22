@@ -2395,6 +2395,7 @@ $1',
 Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'sp-contributions-search'              => 'Pesquisar contribuições',
 'sp-contributions-username'            => 'Endereço de IP ou usuário:',
+'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
 
 # What links here

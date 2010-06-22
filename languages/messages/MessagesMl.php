@@ -2880,7 +2880,7 @@ $1',
 'file-info-gif-looped' => 'പുനരാവർത്തിതം',
 'file-info-gif-frames' => '{{PLURAL:$1|ഒരു ചട്ടം|$1 ചട്ടങ്ങൾ}}',
 'file-info-png-looped' => 'പുനരാവർത്തിതം',
-'file-info-png-repeat' => '$1 തവണ പ്രവർത്തിപ്പിച്ചു',
+'file-info-png-repeat' => '{{PLURAL:$1|ഒരു തവണ|$1 തവണ}} പ്രവർത്തിപ്പിച്ചു',
 'file-info-png-frames' => '{{PLURAL:$1|ഒരു ഫ്രെയിം|$1 ഫ്രെയിം}}',
 
 # Special:NewFiles
