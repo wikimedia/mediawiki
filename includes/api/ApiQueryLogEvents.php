@@ -85,8 +85,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf( 'page_id', $this->fld_ids );
 		$this->addFieldsIf( 'log_user', $this->fld_user );
 		$this->addFieldsIf( 'user_name', $this->fld_user );
-		$this->addFieldsIf( 'log_namespace', $this->fld_title );
-		$this->addFieldsIf( 'log_title', $this->fld_title );
+		$this->addFieldsIf( 'log_namespace', $this->fld_title || $this->fld_parsedcomment );
+		$this->addFieldsIf( 'log_title', $this->fld_title || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_params', $this->fld_details );
 
@@ -231,7 +231,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['pageid'] = intval( $row->page_id );
 		}
 
-		$title = Title::makeTitle( $row->log_namespace, $row->log_title );
+		if( $this->fld_title || $this->fld_parsedcomment ) {
+			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
+		}
 
 		if ( $this->fld_title ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
@@ -263,8 +265,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$vals['userhidden'] = '';
 			} else {
 				$vals['user'] = $row->user_name;
-				if ( !$row->log_user )
+				if ( !$row->log_user ) {
 					$vals['anon'] = '';
+				}
 			}
 		}
 		if ( $this->fld_timestamp ) {
