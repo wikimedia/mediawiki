@@ -158,7 +158,6 @@ class SqliteInstaller extends InstallerDBType {
 			//@todo or...?
 			$this->db->reportQueryError( $err, 0, $sql, __FUNCTION__ );
 		}
-		//@todo set up searchindex
 		$this->setupSearchIndex();
 		// Create default interwikis
 		return Status::newGood();
