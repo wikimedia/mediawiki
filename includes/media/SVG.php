@@ -106,7 +106,7 @@ class SvgHandler extends ImageHandler {
 		return wfGetSVGsize( $path );
 	}
 
-	function getThumbType( $ext, $mime ) {
+	function getThumbType( $ext, $mime, $params = null ) {
 		return array( 'png', 'image/png' );
 	}
 

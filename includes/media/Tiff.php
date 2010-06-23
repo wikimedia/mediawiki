@@ -26,7 +26,7 @@ class TiffHandler extends BitmapHandler {
 		return true;
 	}
 
-	function getThumbType( $ext, $mime ) {
+	function getThumbType( $ext, $mime, $params = null ) {
 		global $wgTiffThumbnailType;
 		return $wgTiffThumbnailType;
 	}
