@@ -413,6 +413,7 @@ $wgAutoloadLocalClasses = array(
 	'UnregisteredLocalFile' => 'includes/filerepo/UnregisteredLocalFile.php',
 
 	# includes/installer
+	'CliInstaller' => 'includes/installer/CliInstaller.php',
 	'Installer' => 'includes/installer/Installer.php',
 	'InstallerDBType' => 'includes/installer/InstallerDBType.php',
 	'LBFactory_InstallerFake' => 'includes/installer/Installer.php',
