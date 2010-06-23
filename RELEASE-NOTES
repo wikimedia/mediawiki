@@ -212,6 +212,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Correct the escaping of the autosummary URI fragments.
 * (bug 23642) Recognize mime types of MS OpenXML documents.
 * (bug 22784) Normalise underscores and spaces in autocomments.
+* (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
@@ -239,7 +240,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24009) Include implicit groups in action=query&list=users&usprop=groups
 * (bug 24016) API: Handle parameters specified in simple string syntax 
   ( 'paramname' => 'defaultval' ) correctly when outputting help
-* (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings
 * (bug 24089) Logevents causes PHP Notice if leprop=title isn't supplied
 
 === Languages updated in 1.17 ===
