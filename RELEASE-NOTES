@@ -240,6 +240,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24016) API: Handle parameters specified in simple string syntax 
   ( 'paramname' => 'defaultval' ) correctly when outputting help
 * (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings
+* (bug 24089) Logevents causes PHP Notice if leprop=title isn't supplied
 
 === Languages updated in 1.17 ===
 
