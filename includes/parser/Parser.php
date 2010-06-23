@@ -1072,9 +1072,9 @@ class Parser {
 			$df = DateFormatter::getInstance();
 			$text = $df->reformat( $this->mOptions->getDateFormat(), $text );
 		}
-		$text = $this->doAllQuotes( $text );
 		$text = $this->replaceInternalLinks( $text );
 		$text = $this->replaceExternalLinks( $text );
+		$text = $this->doAllQuotes( $text );
 
 		# replaceInternalLinks may sometimes leave behind
 		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
@@ -1841,6 +1841,11 @@ class Parser {
 			$wasblank = ( $text  == '' );
 			if ( $wasblank ) {
 				$text = $link;
+			} else {
+				# Bug 4598 madness. Handle the quotes only if they come from the alternate part
+				# [[Lista d''e paise d''o munno]] -> <a href="">Lista d''e paise d''o munno</a>
+				# [[Criticism of Harry Potter|Criticism of ''Harry Potter'']] -> <a href="Criticism of Harry Potter">Criticism of <i>Harry Potter</i></a>
+				$text = $this->doQuotes($text);
 			}
 
 			# Link not escaped by : , create the various objects

@@ -1462,12 +1462,10 @@ Link containing "<#" and ">#" as a hex sequences
 
 !! test
 Link containing double-single-quotes '' (bug 4598)
-!! options
-disabled
 !! input
 [[Lista d''e paise d''o munno]]
 !! result
-<p><a href="/index.php?title=Lista_d%27%27e_paise_d%27%27o_munno&amp;action=edit" class="new" title="Lista d''e paise d''o munno">Lista d''e paise d''o munno</a>
+<p><a href="/index.php?title=Lista_d%27%27e_paise_d%27%27o_munno&amp;action=edit&amp;redlink=1" class="new" title="Lista d''e paise d''o munno (page does not exist)">Lista d''e paise d''o munno</a>
 </p>
 !! end
 
@@ -1485,7 +1483,25 @@ Link containing double-single-quotes '' in text embedded in italics (bug 4598 sa
 !! input
 ''Some [[Link|pretty ''italics'' and stuff]]!
 !! result
-<p><i>Some </i><a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)"><i>pretty </i>italics<i> and stuff</i></a><i>!</i>
+<p><i>Some <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty <i>italics</i> and stuff</a>!</i>
+</p>
+!! end
+
+!! test
+Link with double quotes in title part (literal) and alternate part (interpreted)
+!! input
+[[File:Denys Savchenko ''Pentecoste''.jpg]]
+
+[[''Pentecoste'']]
+
+[[''Pentecoste''|Pentecoste]]
+
+[[''Pentecoste''|''Pentecoste'']]
+!! result
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg">File:Denys Savchenko <i>Pentecoste</i>.jpg</a>
+</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">''Pentecoste''</a>
+</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">Pentecoste</a>
+</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
 </p>
 !! end
 
