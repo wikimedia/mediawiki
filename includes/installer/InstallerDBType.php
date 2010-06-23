@@ -350,7 +350,8 @@ abstract class InstallerDBType {
 			return Status::newFatal( 'config-install-interwiki-sql' );
 		}
 		foreach( $rows as $row ) {
-			if( substr( $row, 0, 2 ) == '--' ) continue; // skip comments -- Whee
+			$row = preg_replace( '/^\s*([^#]*?)\s*(#.*)?$/', '\\1', $row ); // strip comments - whee
+			if ( $row == "" ) continue;
 			$interwikis[] = array_combine(
 				array( 'iw_prefix', 'iw_url', 'iw_local' ),
 				explode( '|', $row )

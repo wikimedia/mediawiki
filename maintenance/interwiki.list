@@ -1,5 +1,5 @@
--- Based more or less on the public interwiki map from MeatballWiki
--- Default interwiki prefixes...
+# Based more or less on the public interwiki map from MeatballWiki
+# Default interwiki prefixes...
 acronym|http://www.acronymfinder.com/af-query.asp?String=exact&Acronym=$1|0
 advogato|http://www.advogato.org/$1|0
 annotationwiki|http://www.seedwiki.com/page.cfm?wikiid=368&doc=$1|0
@@ -48,7 +48,7 @@ mw|http://www.mediawiki.org/wiki/$1|0
 oeis|http://www.research.att.com/cgi-bin/access.cgi/as/njas/sequences/eisA.cgi?Anum=$1|0
 openfacts|http://openfacts.berlios.de/index.phtml?title=$1|0
 openwiki|http://openwiki.com/?$1|0
--- patwiki|http://gauss.ffii.org/$1|0), # 2008-02-27: lots of spambots
+# patwiki|http://gauss.ffii.org/$1|0 # 2008-02-27: lots of spambots
 pmeg|http://www.bertilow.com/pmeg/$1.php|0
 ppr|http://c2.com/cgi/wiki?$1|0
 pythoninfo|http://wiki.python.org/moin/$1|0
@@ -57,7 +57,7 @@ s23wiki|http://is-root.de/wiki/index.php/$1|0
 seattlewiki|http://seattle.wikia.com/wiki/$1|0
 seattlewireless|http://seattlewireless.net/?$1|0
 senseislibrary|http://senseis.xmp.net/?$1|0
--- slashdot|http://slashdot.org/article.pl?sid=$1|0), # 2008-02-27: update me
+# slashdot|http://slashdot.org/article.pl?sid=$1|0 # 2008-02-27: update me
 sourceforge|http://sourceforge.net/$1|0
 squeak|http://wiki.squeak.org/squeak/$1|0
 susning|http://www.susning.nu/$1|0
