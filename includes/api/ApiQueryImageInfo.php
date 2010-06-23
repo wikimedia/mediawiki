@@ -334,7 +334,21 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'prop' => 'What image information to get',
+			'prop' => array(
+				'What image information to get:',
+				' timestamp    - Adds timestamp for the uploaded version',
+				' user         - Adds user for uploaded the image version',
+				' comment      - Comment on the version',
+				' url          - Gives URL to the image and the description page',
+				' size         - Adds the size of the image in bytes and the height and width',
+				' dimensions   - Alias for size',
+				' sha1         - Adds sha1 hash for the image',
+				' mime         - Adds MIME of the image',
+				' thumbmime    - Adss MIME of the image thumbnail (requires url)',
+				' metadata     - Lists EXIF metadata for the version of the image',
+				' archivename  - Adds the file name of the archive version for non-latest versions',
+				' bitdepth     - Adds the bit depth of the version',
+            ),
 			'limit' => 'How many image revisions to return',
 			'start' => 'Timestamp to start listing from',
 			'end' => 'Timestamp to stop listing at',

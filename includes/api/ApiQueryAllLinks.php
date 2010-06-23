@@ -182,11 +182,16 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'from' => 'The page title to start enumerating from',
 			'prefix' => 'Search for all page titles that begin with this value',
-			'unique' => "Only show unique links. Cannot be used with generator or {$this->getModulePrefix()}prop=ids",
-			'prop' => 'What pieces of information to include',
+			'unique' => "Only show unique links. Cannot be used with generator or {p}prop=ids",
+			'prop' => array(
+				'What pieces of information to include',
+				" ids    - Adds pageid of where the link is from (Cannot be used with {p}unique)",
+				' title  - Adds the title of the link',
+			),
 			'namespace' => 'The namespace to enumerate',
 			'limit' => 'How many total links to return',
 			'continue' => 'When more results are available, use this to continue',

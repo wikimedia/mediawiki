@@ -260,7 +260,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$p = $this->getModulePrefix();
 		$desc = array(
 			'title' => 'Which category to enumerate (required). Must include Category: prefix',
-			'prop' => 'What pieces of information to include',
+			'prop' => array(
+				'What pieces of information to include',
+				' ids        - Adds the page id',
+				' title      - Adds the title and namespace id of the page',
+				' sortkey    - Adds the sortkey used for the category',
+				' timestamp  - Adds the timestamp of when the page was included',
+			),
 			'namespace' => 'Only include pages in these namespaces',
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',

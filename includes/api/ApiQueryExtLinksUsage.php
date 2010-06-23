@@ -190,7 +190,12 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'prop' => 'What pieces of information to include',
+			'prop' => array(
+				'What pieces of information to include',
+				' ids    - Adds the id of page',
+				' title  - Adds the title and namespace id of the page',
+				' url    - Adds the URL used in the page',
+			),
 			'offset' => 'Used for paging. Use the value returned for "continue"',
 			'protocol' => array(
 				"Protocol of the url. If empty and {$p}query set, the protocol is http.",

@@ -170,7 +170,10 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			'continue' => 'When more results are available, use this to continue',
 			'namespace' => 'Only list pages in the given namespace(s)',
 			'limit' => 'How many total results to return per request',
-			'prop' => 'Which additional properties to get (non-generator mode only)',
+			'prop' => array(
+				'Which additional properties to get (non-generator mode only)',
+				' changed  - Adds timestamp of when the user was last notified about the edit',
+			),
 			'show' => 'Only list items that meet these criteria',
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
 			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist',

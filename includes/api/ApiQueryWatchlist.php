@@ -356,7 +356,19 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'excludeuser' => 'Don\'t list changes by this user',
 			'dir' => 'In which direction to enumerate pages',
 			'limit' => 'How many total results to return per request',
-			'prop' => 'Which additional items to get (non-generator mode only).',
+			'prop' => array(
+				'Which additional items to get (non-generator mode only).',
+				' ids                    - Adds revision ids and page ids',
+				' title                  - Adds title of the page',
+				' flags                  - Adds flags for the edit',
+				' user                   - Adds user who made the edit',
+				' comment                - Adds comment of the edit',
+				' parsedcomment          - Adds parsed comment of the edit',
+				' timestamp              - Adds timestamp of the edit',
+				' patrol                 - Tags edits that are patrolled',
+				' size                   - Adds the old and new lengths of the page',
+				' notificationtimestamp  - Adds timestamp of when the user was last notified about the edit',
+			),
 			'show' => array(
 				'Show only items that meet this criteria.',
 				"For example, to see only minor edits done by logged-in users, set {$this->getModulePrefix()}show=minor|!anon"
