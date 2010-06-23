@@ -2300,7 +2300,7 @@ $1',
 Le ultime entrata del registro de blocadas es reproducite hic infra pro information:',
 'sp-contributions-search'              => 'Cercar contributiones',
 'sp-contributions-username'            => 'Adresse IP o nomine de usator:',
-'sp-contributions-toponly'             => 'Monstrar solmente le prime versiones',
+'sp-contributions-toponly'             => 'Monstrar solmente le versiones recente',
 'sp-contributions-submit'              => 'Cercar',
 
 # What links here

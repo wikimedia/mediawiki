@@ -1769,7 +1769,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 Mērķa lapa "[[:$1]]" jau eksistē.
 Vai tu to gribi izdzēst, lai atbrīvotu vietu pārvietošanai?',
 'delete_and_move_confirm' => 'Jā, dzēst lapu',
-'delete_and_move_reason'  => 'Izdzēsts, lai atbrīvotu vietu parvietošanai',
+'delete_and_move_reason'  => 'Izdzēsts, lai atbrīvotu vietu pārvietošanai',
 'selfmove'                => 'Izejas un mērķa lapu nosaukumi ir vienādi;
 nevar pārvietot lapu uz sevi.',
 'fix-double-redirects'    => 'Automātiski izmainīt visas pāradresācijas, kas ved uz sākotnējo nosaukumu',

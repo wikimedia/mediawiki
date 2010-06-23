@@ -1094,7 +1094,7 @@ $1",
 'logdelete-success'           => 'Видимость события изменена.',
 'logdelete-failure'           => "'''Видимость журнала не установлена:'''
 $1",
-'revdel-restore'              => 'Изменить видимость',
+'revdel-restore'              => 'изменить видимость',
 'revdel-restore-deleted'      => 'удалённые версии',
 'revdel-restore-visible'      => 'видимые версии',
 'pagehist'                    => 'История страницы',
@@ -2899,6 +2899,9 @@ $1',
 'show-big-image-thumb' => '<small>Размер при предпросмотре: $1 × $2 пикселов</small>',
 'file-info-gif-looped' => 'закольцованный',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|фрейм|фрейма|фреймов}}',
+'file-info-png-looped' => 'закольцованный',
+'file-info-png-repeat' => 'проигрывается $1 {{PLURAL:$1|раз|раза|раз}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|кадр|кадра|кадров}}',
 
 # Special:NewFiles
 'newimages'             => 'Галерея новых файлов',
