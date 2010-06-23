@@ -49,7 +49,11 @@ class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 			$this->replaceVars( "CREATE TABLE text ( text_foo tinytext );" ),
 			'Table name changed'
 			);
-		
+
+		$this->assertEquals( "CREATE TABLE enums( enum1 TEXT, myenum TEXT)",
+			$this->replaceVars( "CREATE TABLE enums( enum1 ENUM('A', 'B'), myenum ENUM ('X', 'Y'))" )
+			);
+
 		$this->assertEquals( "ALTER TABLE foo ADD COLUMN foo_bar INTEGER DEFAULT 42",
 			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42" )
 			);

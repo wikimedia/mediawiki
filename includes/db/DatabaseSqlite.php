@@ -562,7 +562,7 @@ class DatabaseSqlite extends DatabaseBase {
 			// DATETIME -> TEXT
 			$s = preg_replace( '/\b(datetime|timestamp)\b/i', 'TEXT', $s );
 			// No ENUM type
-			$s = preg_replace( '/enum\([^)]*\)/i', 'BLOB', $s );
+			$s = preg_replace( '/\benum\s*\([^)]*\)/i', 'TEXT', $s );
 			// binary collation type -> nothing
 			$s = preg_replace( '/\bbinary\b/i', '', $s );
 			// auto_increment -> autoincrement
