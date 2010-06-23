@@ -17,7 +17,7 @@ class BmpHandler extends BitmapHandler {
 	}
 
 	// Render files as PNG
-	function getThumbType( $text, $mime ) {
+	function getThumbType( $text, $mime, $params = null ) {
 		return array( 'png', 'image/png' );
 	}
 

@@ -181,7 +181,7 @@ class DjVuHandler extends ImageHandler {
 		return $this->getDjVuImage( $image, $path )->getImageSize();
 	}
 
-	function getThumbType( $ext, $mime ) {
+	function getThumbType( $ext, $mime, $params = null ) {
 		global $wgDjvuOutputExtension;
 		static $mime;
 		if ( !isset( $mime ) ) {
