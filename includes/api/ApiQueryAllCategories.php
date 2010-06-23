@@ -157,7 +157,11 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			'prefix' => 'Search for all category titles that begin with this value',
 			'dir' => 'Direction to sort in',
 			'limit' => 'How many categories to return',
-			'prop' => 'Which properties to get',
+			'prop' => array(
+				'Which properties to get',
+				' size    - Adds number of pages in the category',
+				' hidden  - Tags categories that are hidden with __HIDDENCAT__',
+			),
 		);
 	}
 

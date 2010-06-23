@@ -209,7 +209,12 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		return array(
-			'prop' => 'Which additional properties to get for each category',
+			'prop' => array(
+				'Which additional properties to get for each category',
+				' sortkey    - Adds the sortkey for the category',
+				' timestamp  - Adds timestamp of when the category was added',
+				' hidden     - Tags categories that are hidden with __HIDDENCAT__',
+			),
 			'limit' => 'How many categories to return',
 			'show' => 'Which kind of categories to show',
 			'continue' => 'When more results are available, use this to continue',

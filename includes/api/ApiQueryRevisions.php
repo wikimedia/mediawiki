@@ -548,7 +548,18 @@ class ApiQueryRevisions extends ApiQueryBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'prop' => 'Which properties to get for each revision',
+			'prop' => array(
+				'Which properties to get for each revision:',
+				' ids            - The ID of the revision',
+				' flags          - Revision flags (minor)',
+				' timestamp      - The timestamp of the revision',
+				' user           - Gives user to make the revision',
+				' size           - Length of the revision',
+				' comment        - Comment by the user for revision',
+				' parsedcomment  - Parsed comment by the user for the revision',
+				' content        - Text of the revision',
+				' tags           - Tags for the revision',
+			),
 			'limit' => 'Limit how many revisions will be returned (enum)',
 			'startid' => 'From which revision id to start enumeration (enum)',
 			'endid' => 'Stop revision enumeration on this revid (enum)',

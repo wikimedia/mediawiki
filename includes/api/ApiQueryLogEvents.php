@@ -354,7 +354,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getParamDescription() {
 		return array(
-			'prop' => 'Which properties to get',
+			'prop' => array(
+				'Which properties to get',
+				' ids            - Adds the id of the log event',
+				' title          - Adds the title of the page for the log event',
+				' type           - Adds the type of log event',
+				' user           - Adds the user responsible for the log event',
+				' timestamp      - Adds the timestamp for the event',
+				' comment        - Adds the comment of the event',
+				' parsedcomment  - Adds the parsed comment of the event',
+				' details        - Lists addtional details about the event',
+				' tags           - Lists tags for the event',
+			),
 			'type' => 'Filter log entries to only this type(s)',
 			'action' => "Filter log actions to only this type. Overrides {$this->getModulePrefix()}type",
 			'start' => 'The timestamp to start enumerating from',

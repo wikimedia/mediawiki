@@ -271,7 +271,17 @@ class ApiQueryBlocks extends ApiQueryBase {
 			'ip' => array(	'Get all blocks applying to this IP or CIDR range, including range blocks.',
 					'Cannot be used together with bkusers. CIDR ranges broader than /16 are not accepted' ),
 			'limit' => 'The maximum amount of blocks to list',
-			'prop' => 'Which properties to get',
+			'prop' => array(
+				'Which properties to get',
+				' id         - Adds the id of the block',
+				' user       - Adds the username of the blocked user',
+				' by         - Adds the username of the blocking admin',
+				' timestamp  - Adds the timestamp of when the block was given',
+				' expiry     - Adds the timestamp of when the block expires',
+				' reason     - Adds the reason given for the block',
+				' range      - Adds the range of IPs affected by the block',
+				' flags      - Tags the ban with (autoblock, anononly, etc)',
+			),
 		);
 	}
 

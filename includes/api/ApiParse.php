@@ -62,7 +62,7 @@ class ApiParse extends ApiBase {
 		// $title parameter in Parser::parse isn't enough *sigh*
 		global $wgParser, $wgUser, $wgTitle, $wgEnableParserCache, $wgLang;
 
-		// Currently unncessary, code to act as a safeguard against any change in current behaviour of uselang breaks
+		// Currently unnecessary, code to act as a safeguard against any change in current behaviour of uselang breaks
 		$oldLang = null;
 		if ( isset( $params['uselang'] ) && $params['uselang'] != $wgLang->getCode() ) {
 			$oldLang = $wgLang; // Backup wgLang
@@ -412,14 +412,30 @@ class ApiParse extends ApiBase {
 			'page' => "Parse the content of this page. Cannot be used together with {$p}text and {$p}title",
 			'pageid' => "Parse the content of this page. Overrides {$p}page",
 			'oldid' => "Parse the content of this revision. Overrides {$p}page and {$p}pageid",
-			'prop' => array( 'Which pieces of information to get',
-					'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present'
+			'prop' => array(
+				'Which pieces of information to get',
+				' text           - Gives the parsed text of the wikitext',
+				' langlinks      - Gives the langlinks the parsed wikitext',
+				' categories     - Gives the categories of the parsed wikitext',
+				' links          - Gives the internal links in the parsed wikitext',
+				' templates      - Gives the templates in the parsed wikitext',
+				' images         - Gives the images in the parsed wikitext',
+				' externallinks  - Gives the external links in the parsed wikitext',
+				' sections       - Gives the sections in the parsed wikitext',
+				' revid          - Adds the revision id of the parsed page',
+				' displaytitle   - Adds the title of the parsed wikitext',
+				' headitems      - Gives items to put in the <head> of the page',
+				' headhtml       - Gives parsed <head> of the page',
+				' iwlinks        - Gives interwiki links in the parsed wikitext',
+				'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present'
 			),
-			'pst' => array(	'Do a pre-save transform on the input before parsing it',
-					'Ignored if page, pageid or oldid is used'
+			'pst' => array(
+				'Do a pre-save transform on the input before parsing it',
+				'Ignored if page, pageid or oldid is used'
 			),
-			'onlypst' => array( 'Do a pre-save transform (PST) on the input, but don\'t parse it',
-					'Returns the same wikitext, after a PST has been applied. Ignored if page, pageid or oldid is used'
+			'onlypst' => array(
+				'Do a pre-save transform (PST) on the input, but don\'t parse it',
+				'Returns the same wikitext, after a PST has been applied. Ignored if page, pageid or oldid is used'
 			),
 			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
