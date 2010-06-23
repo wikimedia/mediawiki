@@ -3399,6 +3399,15 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'tags-edit'               => 'uredi',
 'tags-hitcount'           => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',
 
+# Special:ComparePages
+'comparepages'     => 'Usporedite stranice',
+'compare-selector' => 'Usporedite inačice stranice',
+'compare-page1'    => 'Stranica 1',
+'compare-page2'    => 'Stranica 2',
+'compare-rev1'     => 'Izmjena 1',
+'compare-rev2'     => 'Izmjena 2',
+'compare-submit'   => 'Usporedite',
+
 # Database error messages
 'dberr-header'      => 'Ovaj wiki ima problem',
 'dberr-problems'    => 'Ispričavamo se! Ova stranica ima tehničkih poteškoća.',

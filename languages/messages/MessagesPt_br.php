@@ -2237,7 +2237,7 @@ prossiga com cuidado.',
 
 # Rollback
 'rollback'          => 'Reverter edições',
-'rollback_short'    => 'Voltar',
+'rollback_short'    => 'Reverter',
 'rollbacklink'      => 'voltar',
 'rollbackfailed'    => 'A reversão falhou',
 'cantrollback'      => 'Não foi possível reverter a edição; o último contribuidor é o único autor desta página',

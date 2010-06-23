@@ -833,7 +833,7 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'missingsummary'                   => "'''Emlékeztető:''' Nem adtál meg szerkesztési összefoglalót. Ha összefoglaló nélkül akarod elküldeni a szöveget, kattints újra a mentésre.",
 'missingcommenttext'               => 'Kérjük, hogy írj összefoglalót szerkesztésedhez.',
 'missingcommentheader'             => "'''Emlékeztető:''' Nem adtad meg a megjegyzés tárgyát vagy címét.
-Ha ismét a Mentés gombra kattintasz, akkor a szerkesztésed nélküle kerül mentésre.",
+Ha ismét a „{{int:savearticle}}” gombra kattintasz, akkor a szerkesztésed nélküle kerül mentésre.",
 'summary-preview'                  => 'A szerkesztési összefoglaló előnézete:',
 'subject-preview'                  => 'A téma/főcím előnézete:',
 'blockedtitle'                     => 'A szerkesztő blokkolva van',
@@ -2393,6 +2393,7 @@ $1',
 A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'sp-contributions-search'              => 'Közreműködések szűrése',
 'sp-contributions-username'            => 'IP-cím vagy felhasználónév:',
+'sp-contributions-toponly'             => 'Csak a jelenleg utolsónak számító változtatásokat mutassa',
 'sp-contributions-submit'              => 'Keresés',
 
 # What links here
@@ -2925,6 +2926,7 @@ A futtatása során kárt tehet a számítógépedben.<hr />",
 'show-big-image-thumb' => '<small>Az előnézet mérete: $1 × $2 képpont</small>',
 'file-info-gif-looped' => 'ismétlődik',
 'file-info-gif-frames' => '{{PLURAL:$1|egy|$1}} képkocka',
+'file-info-png-looped' => 'ismétlődik',
 'file-info-png-repeat' => 'lejátszva {{PLURAL:$1|egy|$1}} alkalommal',
 'file-info-png-frames' => '{{PLURAL:$1|egy|$1}} képkocka',
 

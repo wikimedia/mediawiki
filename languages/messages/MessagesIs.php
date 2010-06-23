@@ -378,6 +378,7 @@ $messages = array(
 'vector-namespace-main'      => 'Síða',
 'vector-namespace-mediawiki' => 'Melding',
 'vector-namespace-project'   => 'Verkefnissíða',
+'vector-namespace-special'   => 'Kerfissíða',
 'vector-namespace-talk'      => 'Umræða',
 'vector-namespace-template'  => 'Snið',
 'vector-namespace-user'      => 'Notandasíða',

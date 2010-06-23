@@ -1495,7 +1495,7 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'right-purge'                 => "Purgar a ''cache'' de uma página no servidor sem confirmação",
 'right-autoconfirmed'         => 'Editar páginas semi-protegidas',
 'right-bot'                   => 'Ser tratado como um processo automatizado',
-'right-nominornewtalk'        => 'Não despoletar o aviso de novas mensagens ao fazer edições menores a páginas de discussão',
+'right-nominornewtalk'        => 'Não despoletar o aviso de mensagens novas ao fazer edições menores a páginas de discussão',
 'right-apihighlimits'         => "Usar limites superiores nas consultas ''(queries)'' via API",
 'right-writeapi'              => 'Usar a API de escrita',
 'right-delete'                => 'Eliminar páginas',
