@@ -4514,14 +4514,15 @@ $wgLogActions = array(
 	'suppress/file'     => 'revdelete-logentry',
 	'suppress/event'    => 'logdelete-logentry',
 	'suppress/delete'   => 'suppressedarticle',
-	'suppress/block'	=> 'blocklogentry',
+	'suppress/block'    => 'blocklogentry',
 	'suppress/reblock'  => 'reblock-logentry',
-	'patrol/patrol' 	=> 'patrol-log-line',
+	'patrol/patrol'     => 'patrol-log-line',
 );
 
 /**
  * The same as above, but here values are names of functions,
- * not messages
+ * not messages.
+ * @see LogPage::actionText
  */
 $wgLogActionsHandlers = array();
 
