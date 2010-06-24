@@ -660,17 +660,17 @@ class UploadSourceAdapter {
 		$leave = false;
 		
 		while ( !$leave && !$this->mSource->atEnd() &&
-				count($this->mBuffer) < $count ) {
+				strlen($this->mBuffer) < $count ) {
 			$read = $this->mSource->readChunk();
 			
-			if ( !count($read) ) {
+			if ( !strlen($read) ) {
 		 		$leave = true;
 			}
 			
 			$this->mBuffer .= $read;
 		}
 	
-		if ( count($this->mBuffer) ) {
+		if ( strlen($this->mBuffer) ) {
 			$return = substr( $this->mBuffer, 0, $count );
 			$this->mBuffer = substr( $this->mBuffer, $count );
 		}
