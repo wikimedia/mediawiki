@@ -1014,6 +1014,15 @@ External link containing double-single-quotes in text embedded in italics (bug 4
 !! end
 
 !! test
+External link containing double-single-quotes with no space separating the url from text in italics
+!! input
+[http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm''La muerte de Casagemas'' (1901) en el sitio de [[Museo Picasso (París)|Museo Picasso]].]
+!! result
+<p><a href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm" class="external text" rel="nofollow"><i>La muerte de Casagemas</i> (1901) en el sitio de <a href="/index.php?title=Museo_Picasso_(Par%C3%ADs)&amp;action=edit&amp;redlink=1" class="new" title="Museo Picasso (París) (page does not exist)">Museo Picasso</a>.</a>
+</p>
+!! end
+
+!! test
 URL-encoding in URL functions (single parameter)
 !! input
 {{localurl:Some page|amp=&}}
