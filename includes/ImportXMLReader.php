@@ -191,7 +191,7 @@ class WikiImporter {
 	 * @param $title Title
 	 */
 	function pageCallback( $title ) {
-		if( is_callable( $this->mPageCallback ) ) {
+		if( isset( $this->mPageCallback ) ) {
 			call_user_func( $this->mPageCallback, $title );
 		}
 	}
@@ -204,7 +204,7 @@ class WikiImporter {
 	 * @param $successCount Int: number of revisions for which callback returned true
 	 */
 	private function pageOutCallback( $title, $origTitle, $revisionCount, $successCount ) {
-		if( is_callable( $this->mPageOutCallback ) ) {
+		if( isset( $this->mPageOutCallback ) ) {
 			call_user_func_array( $this->mPageOutCallback,
 				array( $title, $origTitle, $revisionCount, $successCount ) );
 		}
@@ -215,7 +215,7 @@ class WikiImporter {
 	 * @param $revision A WikiRevision object
 	 */
 	private function revisionCallback( $revision ) {
-		if ( is_callable( $this->mRevisionCallback ) ) {
+		if ( isset( $this->mRevisionCallback ) ) {
 			return call_user_func_array( $this->mRevisionCallback,
 					array( $revision, $this ) );
 		} else {
@@ -228,7 +228,7 @@ class WikiImporter {
 	 * @param $revision A WikiRevision object
 	 */
 	private function logItemCallback( $revision ) {
-		if ( is_callable( $this->mLogItemCallback ) ) {
+		if ( isset( $this->mLogItemCallback ) ) {
 			return call_user_func_array( $this->mLogItemCallback,
 					array( $revision, $this ) );
 		} else {

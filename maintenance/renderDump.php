@@ -58,7 +58,7 @@ class DumpRenderer extends Maintenance {
 	 * Callback function for each revision, turn into HTML and save
 	 * @param $rev Revision
 	 */
-	private function handleRevision( $rev ) {
+	public function handleRevision( $rev ) {
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->error( "Got bogus revision with null title!" );
@@ -73,7 +73,7 @@ class DumpRenderer extends Maintenance {
 			$this->outputDirectory,
 			$this->count,
 			$sanitized );
-		$this->output( sprintf( $this->stderr, "%s\n", $filename, $display ) );
+		$this->output( sprintf( "%s\n", $filename, $display ) );
 
 		// fixme (what?)
 		$user = new User();
