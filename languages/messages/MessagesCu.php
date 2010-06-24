@@ -325,6 +325,7 @@ $messages = array(
 # Search results
 'searchresults'            => 'иска́ниꙗ ито́гъ',
 'searchresults-title'      => 'иска́ниꙗ ⁖ $1 ⁖ ито́гъ',
+'searchhelp-url'           => 'Help:Ката́логъ',
 'searchprofile-images'     => 'дѣ́ла',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
 'search-redirect'          => '(прѣнаправлє́ниѥ $1)',

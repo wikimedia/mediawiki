@@ -2136,7 +2136,7 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de páginas vigiadas.',
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
-Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
+Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, e a página aparecerá em '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que você possa encontrá-la com maior facilidade.",
 'removedwatch'         => 'Removida da lista de páginas vigiadas',
 'removedwatchtext'     => 'A página "[[:$1]]" foi removida de sua [[Special:Watchlist|lista de páginas vigiadas]].',
 'watch'                => 'Vigiar',
@@ -3346,7 +3346,7 @@ Tente a previsão comum.',
 'watchlistedit-noitems'        => 'A sua lista de páginas vigiadas não possui títulos.',
 'watchlistedit-normal-title'   => 'Editar lista de páginas vigiadas',
 'watchlistedit-normal-legend'  => 'Remover títulos da lista de páginas vigiadas',
-'watchlistedit-normal-explain' => 'Os títulos das páginas de sua lista de vigiados são exibidos abaixo.
+'watchlistedit-normal-explain' => 'Os títulos das páginas de sua lista de vigiadas são exibidos abaixo.
 Para remover um título, marque a caixa ao lado do mesmo e clique "{{int:Watchlistedit-normal-submit}}".
 Você pode também [[Special:Watchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
 'watchlistedit-normal-submit'  => 'Remover Títulos',

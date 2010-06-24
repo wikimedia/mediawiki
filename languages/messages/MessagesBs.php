@@ -12,6 +12,7 @@
  * @author Fulup
  * @author Kal-El
  * @author Malafaya
+ * @author Palapa
  * @author Seha
  * @author Smooth O
  * @author לערי ריינהארט
@@ -3562,6 +3563,15 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'tags-hitcount-header'    => 'Označene izmjene',
 'tags-edit'               => 'uređivanje',
 'tags-hitcount'           => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
+
+# Special:ComparePages
+'comparepages'     => 'Usporedi stranice',
+'compare-selector' => 'Usporedi ispravljanje stranica',
+'compare-page1'    => 'Stranica 1',
+'compare-page2'    => 'Stranica 2',
+'compare-rev1'     => 'Ispravljanje 1',
+'compare-rev2'     => 'Ispravljanje 2',
+'compare-submit'   => 'Usporedi',
 
 # Database error messages
 'dberr-header'      => 'Ovaj wiki ima problem',

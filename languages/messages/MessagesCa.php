@@ -2783,7 +2783,7 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.<hr />",
 'file-info-gif-looped' => 'embuclat',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|fotograma|fotogrames}}',
 'file-info-png-looped' => 'embuclat',
-'file-info-png-repeat' => 'mostrada $1 vegades',
+'file-info-png-repeat' => "s'ha reproduït $1 {{PLURAL:$1|vegada|vegades}}",
 'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogrames}}',
 
 # Special:NewFiles

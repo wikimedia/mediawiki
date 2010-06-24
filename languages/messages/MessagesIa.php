@@ -2855,7 +2855,10 @@ Le execution de illo pote compromitter le securitate de tu systema.<hr />",
 'show-big-image'       => 'Plen resolution',
 'show-big-image-thumb' => '<small>Dimensiones de iste previsualisation: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'repetente',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|imagine|imagines}}',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|photogramma|photogrammas}}',
+'file-info-png-looped' => 'repetente',
+'file-info-png-repeat' => 'repetite $1 {{PLURAL:$1|vice|vices}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|photogramma|photogrammas}}',
 
 # Special:NewFiles
 'newimages'             => 'Galeria de nove files',

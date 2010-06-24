@@ -1320,9 +1320,22 @@ $1",
 انظر [[Special:IPBlockList|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
 
 # Revision move
-'revmove-reasonfield'    => 'السبب:',
-'revmove-titlefield'     => 'الصفحة الهدف:',
-'revmove-nullmove-title' => 'عنوان سيء',
+'moverevlogentry'              => 'نقل {{PLURAL:$3|مراجعة واحدة|مراجعتين|$3 مراجعات|$3 مراجعة}} من $1 إلى $2',
+'revisionmove'                 => 'مزيد من المراجعات من "$1"',
+'revmove-explain'              => 'سوف تنقل المراجعات التالية من $1 إلى الصفحة الهدف المُحدّدة. إذا لم تكن الصفحة الهدف موجودة، فسوف تُنشأ. إذا كانت موجودة فستدمج المراجعات مع تاريخ الصفحة.',
+'revmove-legend'               => 'اضبط الصفحة الهدف والملخص',
+'revmove-submit'               => 'انقل المراجعات إلى الصفحة المُحدّدة',
+'revisionmoveselectedversions' => 'انقل المراجعات المُحدّدة',
+'revmove-reasonfield'          => 'السبب:',
+'revmove-titlefield'           => 'الصفحة الهدف:',
+'revmove-badparam-title'       => 'محدادات سيئة',
+'revmove-badparam'             => '<span class="error">يحتوي طلبك على محددات غير نظامية أو غير كافية. من فضلك انقر "للخلف" وحاول مرة أخرى.</span>',
+'revmove-norevisions-title'    => 'مراجعة مستهدفة غير صالحة',
+'revmove-norevisions'          => '<span class="error">لم تحدد مراجعة هدفًا أو أكثر لتنفيذ الدالة أو أن المراجعة المحددة غير موجودة.</span>',
+'revmove-nullmove-title'       => 'عنوان سيء',
+'revmove-nullmove'             => '<span class="error">الصفحة المصدر والصفحة الهدف متطابقتان. من فضلك انقر "للخلف" وأدخل اسم صفحة غير "$1".</span>',
+'revmove-success-existing'     => 'تم نقل {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}} من [[$2]] إلى الصفحة الموجودة [[$3]]',
+'revmove-success-created'      => 'تم نقل {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}} من [[$2]] إلى الصفحة المنشأة حديثًا [[$3]]',
 
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',
@@ -1397,6 +1410,7 @@ $1",
 'searchprofile-everything-tooltip' => 'ابحث في كل المحتوى (شاملا صفحات النقاش)',
 'searchprofile-advanced-tooltip'   => 'ابحث في النطاقات المخصصة',
 'search-result-size'               => '$1 ({{PLURAL:$2|لا كلمات|كلمة واحدة|كلمتان|$2 كلمات|$2 كلمة}})',
+'search-result-category-size'      => '{{PLURAL:$1|لا أعضاء|عضو واحد|عضوان|$1 أعضاء|$1 عضوًا|$1 عضو}} ({{PLURAL:$2|لا تصانيف فرعية|تصنيف فرعي واحد|تصنيفان فرعيان|$2 تصنيفات فرعية|$2 تصنيفًا فرعيًا|$2 تصنيف فرعي}} و{{PLURAL:$3|لا ملفات|ملف واحد|ملفان|$3 ملفات|$3 ملفًا|$3 ملف}})',
 'search-result-score'              => 'الارتباط: $1%',
 'search-redirect'                  => '(تحويلة $1)',
 'search-section'                   => '(قسم $1)',
@@ -1656,6 +1670,7 @@ $1",
 'right-reset-passwords'       => 'إعادة ضبط كلمة السر للمستخدمين الآخرين',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
+'right-revisionmove'          => 'نقل المراجعات',
 
 # User rights log
 'rightslog'      => 'سجل صلاحيات المستخدمين',
@@ -1698,6 +1713,7 @@ $1",
 'action-userrights'           => 'تعديل كل صلاحيات المستخدم',
 'action-userrights-interwiki' => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
 'action-siteadmin'            => 'غلق أو رفع غلق قاعدة البيانات',
+'action-revisionmove'         => 'نقل المراجعات',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
@@ -1878,6 +1894,11 @@ JD # جينوبتيك
 MGP # بينتاكس
 PICT # متنوع
  #</pre> <!-- اترك هذا السطر تماما كما هو -->',
+'upload-successful-msg'       => 'مرفوعك متوفر هنا: $1',
+'upload-failure-subj'         => 'مشكلة رفع',
+'upload-failure-msg'          => 'توجد مشكلة في رفعك:
+
+$1',
 
 'upload-proto-error'        => 'بروتوكول غير صحيح',
 'upload-proto-error-text'   => 'الرفع عن بعد يتطلب مسارا يبدأ بـ <code>http://</code> أو <code>ftp://</code>.',
@@ -2281,6 +2302,10 @@ PICT # متنوع
 'emailsenttext'        => 'تم إرسال رسالتك الإلكترونية.',
 'emailuserfooter'      => 'هذا البريد الإلكتروني تم إرساله بواسطة $1 إلى $2 بواسطة وظيفة "مراسلة المستخدم" في {{SITENAME}}.',
 
+# User Messenger
+'usermessage-summary' => 'ترك رسالة نظام.',
+'usermessage-editor'  => 'مراسل النظام',
+
 # Watchlist
 'watchlist'            => 'قائمة مراقبتي',
 'mywatchlist'          => 'قائمة مراقبتي',
@@ -2407,7 +2432,8 @@ $UNWATCHURL
 استرجع حتى آخر نسخة بواسطة $2.',
 
 # Edit tokens
-'sessionfailure' => 'يبدو أنه هناك مشكلة في هذه جلسة الدخول الخاصة بك؛
+'sessionfailure-title' => 'فشل في الجلسة',
+'sessionfailure'       => 'يبدو أنه هناك مشكلة في هذه جلسة الدخول الخاصة بك؛
 لذلك فقد ألغيت هذه العملية كإجراء احترازي ضد الاختراق.
 من فضلك اضغط على مفتاح "رجوع" لتحميل الصفحة التي جئت منها، ثم حاول مرة أخرى.',
 
@@ -2558,6 +2584,7 @@ $1',
 آخر مدخلة لسجل المنع معروضة هنا كمرجع:',
 'sp-contributions-search'              => 'بحث عن مساهمات',
 'sp-contributions-username'            => 'عنوان أيبي أو اسم مستخدم:',
+'sp-contributions-toponly'             => 'أظهر أعلى المراجعات فقط',
 'sp-contributions-submit'              => 'ابحث',
 
 # What links here
@@ -2872,6 +2899,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'importstart'                => 'استيراد صفحات...',
 'import-revision-count'      => '{{PLURAL:$1|لا مراجعات|مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}',
 'importnopages'              => 'لا صفحات للاستيراد',
+'imported-log-entries'       => 'استورد {{PLURAL:$1||مدخلة سجل واحدة|مدخلتي سجل|$1 مدخلات سجل|$1 مدخل سجل}}.',
 'importfailed'               => 'فشل الاستيراد: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'نوع مصدر استيراد مجهول',
 'importcantopen'             => 'لم يمكن فتح ملف الاستيراد',
@@ -3110,6 +3138,8 @@ $1',
 'show-big-image-thumb' => '<small>حجم هذا العرض: $1 × $2 بكسل</small>',
 'file-info-gif-looped' => 'ملفوف',
 'file-info-gif-frames' => '{{PLURAL:$1||إطار واحد|إطاران|$1 إطارات|$1 إطارا|$1 إطار}}',
+'file-info-png-repeat' => 'عرضت {{PLURAL:$1||مرة واحدة|مرتين|$1 مرات|$1 مرة}}',
+'file-info-png-frames' => '{{PLURAL:$1||إطار واحد|إطاران|$1 إطارات|$1 إطارًا|$1 إطار}}',
 
 # Special:NewFiles
 'newimages'             => 'معرض الملفات الجديدة',
@@ -3551,6 +3581,7 @@ $1',
 'table_pager_first'        => 'الصفحة الأولى',
 'table_pager_last'         => 'الصفحة الأخيرة',
 'table_pager_limit'        => 'اعرض $1 مدخلة في الصفحة',
+'table_pager_limit_label'  => 'العناصر لكل صفحة:',
 'table_pager_limit_submit' => 'اذهب',
 'table_pager_empty'        => 'لا نتائج',
 
@@ -3584,14 +3615,14 @@ $1',
 'watchlistedit-normal-title'   => 'تعديل قائمة المراقبة',
 'watchlistedit-normal-legend'  => 'إزالة عناوين من قائمة المراقبة',
 'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل.
-لإزالة عنوان، اضغط على الصندوق بجواره، واضغط أزل العناوين.
+لإزالة عنوان، اضغط على الصندوق بجواره، واضغط "{{int:Watchlistedit-normal-submit}}".
 يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة الخام]].',
 'watchlistedit-normal-submit'  => 'أزل العناوين',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته من قائمة مراقبتك:',
 'watchlistedit-raw-title'      => 'تعديل قائمة المراقبة الخام',
 'watchlistedit-raw-legend'     => 'عدل قائمة المراقبة الخام',
 'watchlistedit-raw-explain'    => 'العناوين في قائمة مراقبتك معروضة بالأسفل، ويمكن تعديلها عن طريق الإضافة والإزالة من القائمة؛ عنوان واحد لكل سطر.
-عند الانتهاء، اضغط حدّث قائمة المراقبة.
+عند الانتهاء، اضغط "{{int:Watchlistedit-raw-submit}}".
 يمكنك أيضا [[Special:Watchlist/edit|استخدام المحرر القياسي]].',
 'watchlistedit-raw-titles'     => 'العناوين:',
 'watchlistedit-raw-submit'     => 'حدث قائمة المراقبة',

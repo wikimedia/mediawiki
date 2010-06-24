@@ -1170,6 +1170,13 @@ $1',
 # Unused templates
 'unusedtemplateswlh' => 'іншы одказы',
 
+# Random page
+'randompage'         => 'Нагодна статя',
+'randompage-nopages' => 'Не є сторінок в {{PLURAL:$2|просторі назв|просторах назв}} $1.',
+
+# Random redirect
+'randomredirect' => 'Нагодне напрямлїня',
+
 # Statistics
 'statistics'              => 'Штатістіка',
 'statistics-header-pages' => 'Штатістіка сторінок',
@@ -1180,6 +1187,7 @@ $1',
 'statistics-articles'     => 'Обсяговы сторінкы',
 'statistics-pages'        => 'Сторінкы',
 'statistics-files'        => 'Начітаны файлы',
+'statistics-views-total'  => 'Вшыткых переглядів',
 'statistics-users'        => 'Реґістрованы [[Special:ListUsers|хоснователї]]',
 'statistics-users-active' => 'Аківны хоснователї',
 'statistics-mostpopular'  => 'Найчітанїшы сторінкы',
@@ -1187,8 +1195,12 @@ $1',
 'brokenredirects-edit'   => 'едітовати',
 'brokenredirects-delete' => 'змазати',
 
-'withoutinterwiki-legend' => 'Префікс',
-'withoutinterwiki-submit' => 'Вказати',
+'withoutinterwiki'         => 'Сторінкы без міджіязыковых одказів',
+'withoutinterwiki-summary' => 'Тоты сторінкы не мають міджіязыковый одказ:',
+'withoutinterwiki-legend'  => 'Префікс',
+'withoutinterwiki-submit'  => 'Вказати',
+
+'fewestrevisions' => 'Сторінкы з найменєй ревізіями',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт|байты|байтів}}',
@@ -1197,6 +1209,7 @@ $1',
 'nmembers'                => '$1 {{PLURAL:$1|обєкт|обєкты|обєктів}}',
 'nrevisions'              => '$1 {{PLURAL:$1|ревізія|ревізії|ревізій}}',
 'nviews'                  => '$1 {{PLURAL:$1|навщіва|навщівы|навщів}}',
+'lonelypages'             => 'Статї-сыроты',
 'uncategorizedpages'      => 'Некатеґоризованы сторінкы',
 'uncategorizedcategories' => 'Некатеґоризованы катеґорії',
 'uncategorizedimages'     => 'Некатеґоризованы файлы',
@@ -1207,11 +1220,15 @@ $1',
 'wantedcategories'        => 'Жаданы катеґорії',
 'wantedpages'             => 'Пожадованы статї',
 'wantedfiles'             => 'Жаданы файлы',
+'mostlinkedtemplates'     => 'Найужыванїшы шаблоны',
+'mostimages'              => 'Найужыванїшы файлы',
+'mostrevisions'           => 'Сторінкы з найвеце ревізіями',
 'prefixindex'             => 'Вшыткы сторінкы з початком назв',
 'shortpages'              => 'Курты статї',
 'longpages'               => 'Найдовшы статті',
 'deadendpages'            => 'Слїпы сторінкы',
 'protectedpages'          => 'Замкнуты сторінкы',
+'protectedtitles'         => 'Замкнуты назвы сторінок',
 'listusers'               => 'Список хоснователїв',
 'usercreated'             => 'Створеный $1 о $2',
 'newpages'                => 'Новы сторінкы',
@@ -1220,6 +1237,8 @@ $1',
 'move'                    => 'Переменовати',
 'movethispage'            => 'Переменовати тоту сторінку',
 'notargettitle'           => 'Без цілёвой сторінкы',
+'nopagetitle'             => 'Не екзістує така цілёва сторінка',
+'nopagetext'              => 'Задана цілёва сторінка не екзістує',
 'pager-newer-n'           => '{{PLURAL:$1|новша|новшы|новшых}} $1',
 'pager-older-n'           => '{{PLURAL:$1|старша|старшы|старшых}} $1',
 'suppress'                => 'Ревізор',
@@ -1498,12 +1517,15 @@ $1',
 'proxyblocksuccess'            => 'Готово.',
 
 # Developer tools
-'lockdb'        => 'Замкнути датабазу',
-'unlockdb'      => 'Одомкнути датабазу',
-'lockconfirm'   => 'Гей, справды хочу замкнути датабазу.',
-'unlockconfirm' => 'Гей, справды хочу одомкнути датабазу.',
-'lockbtn'       => 'Замкнути датабазу',
-'unlockbtn'     => 'Одомкнути датабазу',
+'lockdb'             => 'Замкнути датабазу',
+'unlockdb'           => 'Одомкнути датабазу',
+'lockconfirm'        => 'Гей, справды хочу замкнути датабазу.',
+'unlockconfirm'      => 'Гей, справды хочу одомкнути датабазу.',
+'lockbtn'            => 'Замкнути датабазу',
+'unlockbtn'          => 'Одомкнути датабазу',
+'lockdbsuccesssub'   => 'Датабаза замкнута',
+'unlockdbsuccesssub' => 'Датабаза одомкнута',
+'databasenotlocked'  => 'Датабаза не є замкнута.',
 
 # Move page
 'move-page'               => 'Переменовати „$1“',
@@ -1558,13 +1580,17 @@ $1',
 'export-download'   => 'Уложыти як файл',
 
 # Namespace 8 related
-'allmessagesname'           => 'Назва',
-'allmessagesdefault'        => 'Штандартный текст',
-'allmessagescurrent'        => 'Актуалный текст',
-'allmessages-filter-legend' => 'Філтер',
-'allmessages-filter-all'    => 'Вшыткы',
-'allmessages-language'      => 'Язык:',
-'allmessages-filter-submit' => 'Выконати',
+'allmessagesname'               => 'Назва',
+'allmessagesdefault'            => 'Штандартный текст',
+'allmessagescurrent'            => 'Актуалный текст',
+'allmessages-filter-legend'     => 'Філтер',
+'allmessages-filter'            => 'Філтер подля ставу:',
+'allmessages-filter-unmodified' => 'Незмінено',
+'allmessages-filter-all'        => 'Вшыткы',
+'allmessages-filter-modified'   => 'Змінено',
+'allmessages-prefix'            => 'Філтер подля префіксу:',
+'allmessages-language'          => 'Язык:',
+'allmessages-filter-submit'     => 'Выконати',
 
 # Thumbnails
 'thumbnail-more' => 'Звекшыти',
@@ -1615,6 +1641,7 @@ $1',
 'tooltip-search'                  => 'Глядати {{SITENAME}}',
 'tooltip-search-go'               => 'Перейти до сторінкы, што має точно таку назву (кідь екзістує)',
 'tooltip-search-fulltext'         => 'Найти сторінкы про тот текст',
+'tooltip-p-logo'                  => 'Головна сторінка',
 'tooltip-n-mainpage'              => 'Перейти на Головну сторінку',
 'tooltip-n-mainpage-description'  => 'Перейти на головну сторінку',
 'tooltip-n-portal'                => 'О проєкті, што можете зробити, де ся што находить',
@@ -1634,10 +1661,12 @@ $1',
 'tooltip-t-permalink'             => 'Перманентный одказ на тоту верзію сторінкы',
 'tooltip-ca-nstab-main'           => 'Обсяг сторінкы',
 'tooltip-ca-nstab-user'           => 'Відїти сторінку хоснователя',
+'tooltip-ca-nstab-media'          => 'Вказати сторінку файлу',
 'tooltip-ca-nstab-special'        => 'Шпеціална сторінка, она недоступна про едітованя',
 'tooltip-ca-nstab-project'        => 'Сторінка проєкту',
 'tooltip-ca-nstab-image'          => 'Відїти код сторінкы',
 'tooltip-ca-nstab-template'       => 'Відїти шаблону',
+'tooltip-ca-nstab-help'           => 'Відїти сторінку помочі',
 'tooltip-ca-nstab-category'       => 'Сторінка катеґорії',
 'tooltip-minoredit'               => 'Позначіти тото як незначне едітованя',
 'tooltip-save'                    => 'Уложыти вашы зміны',
@@ -1648,14 +1677,27 @@ $1',
 'tooltip-upload'                  => 'Почати одосыланя',
 'tooltip-rollback'                => 'Єдным кликом вернути зміны, зроблены послїдным приспівателём',
 'tooltip-undo'                    => 'Зрушыти зміны і вказати попереднїй перегляд. Доволяє придати причіну до ресуме.',
+'tooltip-preferences-save'        => 'Уложыти наставлїня',
 
 # Attribution
-'others'    => 'іншы',
-'siteusers' => '{{PLURAL:$2|Хоснователь|Хоснователї}} {{grammar:genitive|{{SITENAME}}}} $1',
-'anonusers' => '{{PLURAL:$2|анонімный хоснователь|анонімны хоснователї}} {{grammar:genitive|{{SITENAME}}}} $1',
+'anonymous'        => 'анонімный {{PLURAL:$1|хоснователь|хоснователя|хоснователї}} {{GRAMMAR:2sg|{{SITENAME}}}}',
+'siteuser'         => 'хоснователь {{grammar:2sg|{{SITENAME}}}} $1',
+'anonuser'         => 'анонімный хоснователь {{grammar:2sg|{{SITENAME}}}} $1',
+'lastmodifiedatby' => 'Остатня зміна $2, $1 хоснователём $3.',
+'othercontribs'    => 'На базї роботы $1.',
+'others'           => 'іншы',
+'siteusers'        => '{{PLURAL:$2|Хоснователь|Хоснователї}} {{grammar:genitive|{{SITENAME}}}} $1',
+'anonusers'        => '{{PLURAL:$2|анонімный хоснователь|анонімны хоснователї}} {{grammar:genitive|{{SITENAME}}}} $1',
+'creditspage'      => 'Заслугы за сторінку',
+
+# Spam protection
+'spamprotectiontitle' => 'Спам філтер',
 
 # Info page
 'infosubtitle' => 'Інформація про сторінку',
+
+# Math errors
+'math_unknown_error' => 'незнама хыба',
 
 # Patrol log
 'patrol-log-auto' => '(автоматічно)',
@@ -1706,26 +1748,84 @@ $1',
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'              => 'Шырька',
-'exif-imagelength'             => 'Вышка',
-'exif-orientation'             => 'Орієнтація',
-'exif-datetime'                => 'Датум і час вытворїня файлу',
-'exif-imagedescription'        => 'Назва образку',
-'exif-make'                    => 'Выробник фотоапарату',
-'exif-model'                   => 'Модел фотоапарату',
-'exif-software'                => 'Проґрамове забезпечіня',
-'exif-artist'                  => 'Автор',
-'exif-copyright'               => 'Властник авторьскых прав',
-'exif-exifversion'             => 'Верзія Exif',
-'exif-flashpixversion'         => 'Підпорована верзія Flashpix',
-'exif-colorspace'              => 'Фаребный простор',
-'exif-componentsconfiguration' => 'Конфіґурація компонентів фарбы',
-'exif-usercomment'             => 'Додатковый коментарь',
-'exif-flash'                   => 'Блеск',
-'exif-contrast'                => 'Контраст',
+'exif-imagewidth'               => 'Шырька',
+'exif-imagelength'              => 'Вышка',
+'exif-orientation'              => 'Орієнтація',
+'exif-datetime'                 => 'Датум і час вытворїня файлу',
+'exif-imagedescription'         => 'Назва образку',
+'exif-make'                     => 'Выробник фотоапарату',
+'exif-model'                    => 'Модел фотоапарату',
+'exif-software'                 => 'Проґрамове забезпечіня',
+'exif-artist'                   => 'Автор',
+'exif-copyright'                => 'Властник авторьскых прав',
+'exif-exifversion'              => 'Верзія Exif',
+'exif-flashpixversion'          => 'Підпорована верзія Flashpix',
+'exif-colorspace'               => 'Фаребный простор',
+'exif-componentsconfiguration'  => 'Конфіґурація компонентів фарбы',
+'exif-usercomment'              => 'Додатковый коментарь',
+'exif-fnumber'                  => 'Цлона',
+'exif-exposureprogram'          => 'Експозічный проґрам',
+'exif-spectralsensitivity'      => 'Спектрална чутливость',
+'exif-isospeedratings'          => 'Світлочутливость ISO',
+'exif-oecf'                     => 'OECF (коефіцієнт оптікоелектрічного перетворїня)',
+'exif-aperturevalue'            => 'Цлона',
+'exif-brightnessvalue'          => 'Світлость',
+'exif-exposurebiasvalue'        => 'Компензація експозіції',
+'exif-maxaperturevalue'         => 'Найменша цлона',
+'exif-lightsource'              => 'Джерело світла',
+'exif-flash'                    => 'Блеск',
+'exif-subjectarea'              => 'Положіня обєкту',
+'exif-flashenergy'              => 'Енерґія блеску',
+'exif-subjectlocation'          => 'Положіня обєкту',
+'exif-exposureindex'            => 'Індекс експозіції',
+'exif-sensingmethod'            => 'Тіп сензора',
+'exif-filesource'               => 'Джерело файлу',
+'exif-scenetype'                => 'Тіп сцены',
+'exif-exposuremode'             => 'Режім експозіції',
+'exif-whitebalance'             => 'Баланс білого',
+'exif-digitalzoomratio'         => 'Діґіталный зум',
+'exif-scenecapturetype'         => 'Тіп сцены',
+'exif-contrast'                 => 'Контраст',
+'exif-saturation'               => 'Насыченость',
+'exif-sharpness'                => 'Острость',
+'exif-devicesettingdescription' => 'Попис наштелёваня заряджіня',
+'exif-gpsversionid'             => 'Верзія блоку GPS-інформації',
+'exif-gpstimestamp'             => 'GPS час (подля атомовых годин)',
+'exif-gpsstatus'                => 'Статус приїмача',
+'exif-gpsareainformation'       => 'Назва области GPS',
+'exif-gpsdatestamp'             => 'GPS датум',
 
-'exif-meteringmode-1' => 'Середнїй',
+# EXIF attributes
+'exif-compression-1' => 'Нестиснутый',
 
+'exif-unknowndate' => 'Незнамый датум',
+
+'exif-orientation-1' => 'Нормална',
+
+'exif-planarconfiguration-1' => 'формат «chunky»',
+'exif-planarconfiguration-2' => 'формат «planar»',
+
+'exif-componentsconfiguration-0' => 'не екзістує',
+
+'exif-exposureprogram-1' => 'Ручный режім',
+'exif-exposureprogram-2' => 'Нормалный режім',
+'exif-exposureprogram-3' => 'Пріоріта цлоны',
+
+'exif-subjectdistance-value' => '$1 метрів',
+
+'exif-meteringmode-0'   => 'Не є знаме',
+'exif-meteringmode-1'   => 'Середнїй',
+'exif-meteringmode-3'   => 'Бодове',
+'exif-meteringmode-4'   => 'Зонове',
+'exif-meteringmode-5'   => 'Матрічный',
+'exif-meteringmode-6'   => 'Частковый',
+'exif-meteringmode-255' => 'Інше',
+
+'exif-lightsource-0'   => 'Не є знаме',
+'exif-lightsource-1'   => 'Денне світло',
+'exif-lightsource-2'   => 'Лампа денного світла',
+'exif-lightsource-3'   => 'Лампа розжарёваня',
+'exif-lightsource-4'   => 'Блеск',
 'exif-lightsource-9'   => 'Ясно',
 'exif-lightsource-10'  => 'Захмарено',
 'exif-lightsource-11'  => 'Тїнь',
@@ -1736,7 +1836,22 @@ $1',
 'exif-lightsource-17'  => 'Штандартне світло тіпу A',
 'exif-lightsource-18'  => 'Штандартне світло тіпу B',
 'exif-lightsource-19'  => 'Штандартне світло тіпу C',
+'exif-lightsource-24'  => 'Штудіова лампа штандарду ISO',
 'exif-lightsource-255' => 'Інше джерело світла',
+
+# Flash modes
+'exif-flash-fired-0' => 'Блеск не працовав',
+'exif-flash-fired-1' => 'Блеск працовав',
+'exif-flash-mode-3'  => 'автоматічный режім',
+
+'exif-customrendered-0' => 'Нормалне спрацованя',
+'exif-customrendered-1' => 'Нештандартне спрацованя',
+
+'exif-exposuremode-0' => 'Автоматічна експозіція',
+'exif-exposuremode-1' => 'Ручне наштелёваня експозіції',
+
+'exif-whitebalance-0' => 'Автоматічный баланс білого',
+'exif-whitebalance-1' => 'Ручне наштелёваня балансу білого',
 
 'exif-scenecapturetype-0' => 'Штандартный',
 'exif-scenecapturetype-1' => 'На шырку',
@@ -1800,11 +1915,15 @@ $1',
 # E-mail address confirmation
 'confirmemail' => 'Підтверджіня адресы ел. пошты',
 
+# Scary transclusion
+'scarytranscludetoolong' => '[URL дуже довгый]',
+
 # Trackbacks
 'trackbackremove' => '([$1 Змазати])',
 
 # action=purge
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Очістити кеш той сторінкы?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← попередня сторінка',
@@ -1825,12 +1944,17 @@ $1',
 'table_pager_empty'        => 'Ніч не было найджене',
 
 # Auto-summaries
-'autosumm-blank' => 'Сторінка очіщена',
-'autosumm-new'   => 'Створена сторінка: $1',
+'autosumm-blank'   => 'Сторінка очіщена',
+'autosumm-replace' => 'Обсяг сторінкы нагородженый текстом „$1“',
+'autoredircomment' => 'Напрямлїня на [[$1]]',
+'autosumm-new'     => 'Створена сторінка: $1',
 
 # Live preview
 'livepreview-loading' => 'Награваня...',
 'livepreview-ready'   => 'Награваня… Готово!',
+
+# Watchlist editor
+'watchlistedit-normal-title' => 'Едітованя списку слїдованых сторінок',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Зміны на сторінках зо списку',
@@ -1838,16 +1962,21 @@ $1',
 'watchlisttools-raw'  => 'Едітовати як текст',
 
 # Special:Version
-'version'                  => 'Верзія',
-'version-specialpages'     => 'Шпеціалны сторінкы',
-'version-other'            => 'Інше',
-'version-version'          => '(Верзія $1)',
-'version-license'          => 'Ліценція',
-'version-software'         => 'Іншталованый софтвер',
-'version-software-product' => 'Продукт',
-'version-software-version' => 'Верзія',
+'version'                     => 'Верзія',
+'version-extensions'          => 'Наіншталованы росшыріня',
+'version-specialpages'        => 'Шпеціалны сторінкы',
+'version-variables'           => 'Перемінны',
+'version-other'               => 'Інше',
+'version-extension-functions' => 'Функції розшыриня',
+'version-hook-subscribedby'   => 'Підписаный на',
+'version-version'             => '(Верзія $1)',
+'version-license'             => 'Ліценція',
+'version-software'            => 'Іншталованый софтвер',
+'version-software-product'    => 'Продукт',
+'version-software-version'    => 'Верзія',
 
 # Special:FilePath
+'filepath'        => 'Стежка ку файлу',
 'filepath-page'   => 'Файл:',
 'filepath-submit' => 'Выконати',
 
@@ -1861,6 +1990,9 @@ $1',
 
 # Special:SpecialPages
 'specialpages'                   => 'Шпеціалны сторінкы',
+'specialpages-note'              => '----
+* Нормалны шпеціалны сторінкы.
+* <strong class="mw-specialpagerestricted">Шпеціалны сторінкы з&nbsp;обмедженым приступом</strong>',
 'specialpages-group-maintenance' => 'Технічны репорты',
 'specialpages-group-other'       => 'Іншы',
 'specialpages-group-login'       => 'Приголошіня / реґістрація',
@@ -1870,11 +2002,13 @@ $1',
 'specialpages-group-highuse'     => 'Часто поужываны сторінкы',
 'specialpages-group-pages'       => 'Спискы сторінок',
 'specialpages-group-pagetools'   => 'Інштрументы сторінок',
+'specialpages-group-wiki'        => 'Вікі дата і інштрументы',
 'specialpages-group-redirects'   => 'Перенапрамлиня',
 'specialpages-group-spam'        => 'Протиспамовы інштрументы',
 
 # Special:BlankPage
-'blankpage' => 'Порожня сторінка',
+'blankpage'              => 'Порожня сторінка',
+'intentionallyblankpage' => 'Тота сторінка є порожня нароком.',
 
 # Special:Tags
 'tag-filter-submit' => 'Філтровати',

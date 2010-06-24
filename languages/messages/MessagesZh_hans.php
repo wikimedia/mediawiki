@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -9,6 +9,7 @@
  *
  * @author Bencmq
  * @author Biŋhai
+ * @author Chinalace
  * @author Fantasticfears
  * @author Franklsf95
  * @author Gaoxuewei
@@ -2783,6 +2784,9 @@ $1',
 'show-big-image-thumb' => '<small>这幅缩略图的分辨率：$1×$2像素</small>',
 'file-info-gif-looped' => '循环',
 'file-info-gif-frames' => '$1帧',
+'file-info-png-looped' => '循环',
+'file-info-png-repeat' => '播放$1遍{{PLURAL:$1|time|times}}',
+'file-info-png-frames' => '$1帧 {{PLURAL:$1|frame|frames}}',
 
 # Special:NewFiles
 'newimages'             => '新建图像画廊',

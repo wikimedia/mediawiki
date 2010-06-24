@@ -452,7 +452,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection'       => 'വിഷയം ചേർക്കുക',
 'vector-action-delete'           => 'മായ്ക്കുക',
-'vector-action-move'             => 'തലക്കെട്ടു്‌ മാറ്റുക',
+'vector-action-move'             => 'തലക്കെട്ട് മാറ്റുക',
 'vector-action-protect'          => 'സം‌രക്ഷിക്കുക',
 'vector-action-undelete'         => 'മായ്ക്കപ്പെട്ടത് പുനഃസ്ഥാപിക്കുക',
 'vector-action-unprotect'        => 'സം‌രക്ഷണം നീക്കുക',
