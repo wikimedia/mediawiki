@@ -32,7 +32,7 @@ class Http {
 	 */
 	public static function request( $method, $url, $options = array() ) {
 		$url = wfExpandUrl( $url );
-		wfDebug( "HTTP: $method: $url" );
+		wfDebug( "HTTP: $method: $url\n" );
 		$options['method'] = strtoupper( $method );
 		if ( !isset( $options['timeout'] ) ) {
 			$options['timeout'] = 'default';
