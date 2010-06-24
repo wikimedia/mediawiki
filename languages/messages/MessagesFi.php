@@ -2812,6 +2812,8 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />",
 'show-big-image-thumb' => '<small>Esikatselun koko: $1×$2 px</small>',
 'file-info-gif-looped' => 'toistuva',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kehys|kehystä}}',
+'file-info-png-looped' => 'toistuva',
+'file-info-png-frames' => '$1 {{PLURAL:$1|kehys|kehystä}}',
 
 # Special:NewFiles
 'newimages'             => 'Uudet tiedostot',
@@ -3343,8 +3345,10 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|muutos|muutosta}}',
 
 # Special:ComparePages
-'compare-page1' => 'Sivu 1',
-'compare-page2' => 'Sivu 2',
+'comparepages'   => 'Vertaile sivuja',
+'compare-page1'  => 'Sivu 1',
+'compare-page2'  => 'Sivu 2',
+'compare-submit' => 'Vertaile',
 
 # Database error messages
 'dberr-header'      => 'Wikissä on tietokantaongelma',
