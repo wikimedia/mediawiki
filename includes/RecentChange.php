@@ -208,24 +208,27 @@ class RecentChange {
 	}
 
 	/**
-	 * Send some text to UDP
+	 * Send some text to UDP.
+	 * @see RecentChange::cleanupForIRC
 	 * @param $line String: text to send
-	 * @param $prefix String
-	 * @param $address String: address
+	 * @param $address String: defaults to $wgRC2UDPAddress.
+	 * @param $prefix String: defaults to $wgRC2UDPPrefix.
+	 * @param $port Int: defaults to $wgRC2UDPPort. (Since 1.17)
 	 * @return Boolean: success
 	 */
-	public static function sendToUDP( $line, $address = '', $prefix = '' ) {
+	public static function sendToUDP( $line, $address = '', $prefix = '', $port = '' ) {
 		global $wgRC2UDPAddress, $wgRC2UDPPrefix, $wgRC2UDPPort;
 		# Assume default for standard RC case
 		$address = $address ? $address : $wgRC2UDPAddress;
 		$prefix = $prefix ? $prefix : $wgRC2UDPPrefix;
+		$port = $port ? $port : $wgRC2UDPPort;
 		# Notify external application via UDP
 		if( $address ) {
 			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 			if( $conn ) {
 				$line = $prefix . $line;
 				wfDebug( __METHOD__ . ": sending UDP line: $line\n" );
-				socket_sendto( $conn, $line, strlen($line), 0, $address, $wgRC2UDPPort );
+				socket_sendto( $conn, $line, strlen($line), 0, $address, $port );
 				socket_close( $conn );
 				return true;
 			} else {
