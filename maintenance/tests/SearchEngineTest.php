@@ -1,11 +1,9 @@
 <?php
 
-require_once( 'MediaWiki_Setup.php' );
-
 /**
  * @group Stub
  */
-class SearchEngineTest extends MediaWiki_Setup {
+class SearchEngineTest extends MediaWikiTestSetup {
 	var $db, $search, $pageList;
 
 	function pageExists( $title ) {

@@ -1,6 +1,6 @@
 <?php
 
-abstract class ApiSetup extends PHPUnit_Framework_TestCase {
+abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 	protected static $userName;
 	protected static $passWord;
 	protected static $user;

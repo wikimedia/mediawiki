@@ -1,6 +1,6 @@
 <?php
 
-abstract class MediaWiki_Setup extends PHPUnit_Framework_TestCase {
+abstract class MediaWikiTestSetup extends PHPUnit_Framework_TestCase {
 
 	protected function buildTestDatabase( $tables ) {
 		global $wgDBprefix;

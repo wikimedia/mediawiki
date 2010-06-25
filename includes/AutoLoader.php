@@ -636,13 +636,31 @@ $wgAutoloadLocalClasses = array(
 	'FakeConverter' => 'languages/Language.php',
 	'LanguageConverter' => 'languages/LanguageConverter.php',
 
-	# maintenance/language
-	'statsOutput' => 'maintenance/language/StatOutputs.php',
-	'wikiStatsOutput' => 'maintenance/language/StatOutputs.php',
-	'textStatsOutput' => 'maintenance/language/StatOutputs.php',
-	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
+	# maintenance
+	'AnsiTermColorer' => 'maintenance/parserTests.inc',
+	'ApiTestSetup' => 'maintenance/tests/ApiSetup.php',
+	'DbTestPreviewer' => 'maintenance/parserTests.inc',
+	'DbTestRecorder' => 'maintenance/parserTests.inc',
+	'DeleteArchivedFilesImplementation' => 'maintenance/deleteArchivedFiles.inc',
+	'DeleteArchivedRevisionsImplementation' => 'maintenance/deleteArchivedRevisions.inc',
+	'DummyTermColorer' => 'maintenance/parserTests.inc',
+	'MediaWikiTestSetup' => 'maintenance/tests/MediaWiki_Setup.php',
+	'PHPUnitTestRecorder' => 'maintenance/tests/ParserHelpers.php',
+	'ParserTest' => 'maintenance/parserTests.inc',
+	'ParserTestParserHook' => 'maintenance/parserTestsParserHook.php',
+	'ParserTestStaticParserHook' => 'maintenance/parserTestsStaticParserHook.php',
+	'ParserTestSuiteBackend' => 'maintenance/tests/ParserHelpers.php',
+	'ParserUnitTest' => 'maintenance/tests/ParserHelpers.php',
+	'RemoteTestRecorder' => 'maintenance/parserTests.inc',
+	'SearchEngineTest' => 'maintenance/tests/SearchEngineTest.php',
 	'SevenZipStream' => 'maintenance/7zip.inc',
-
+	'TestFileIterator' => 'maintenance/parserTests.inc',
+	'TestRecorder' => 'maintenance/parserTests.inc',
+	'UploadFromUrlTest' => 'maintenance/tests/UploadFromUrlTest.php',
+	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
+	'statsOutput' => 'maintenance/language/StatOutputs.php',
+	'textStatsOutput' => 'maintenance/language/StatOutputs.php',
+	'wikiStatsOutput' => 'maintenance/language/StatOutputs.php',
 );
 
 class AutoLoader {

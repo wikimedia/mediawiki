@@ -1,6 +1,4 @@
 <?php
-if ( ! defined( 'MEDIAWIKI' ) )
-	die( -1 );
 /**
  * A basic extension that's used by the parser tests to test whether input and
  * arguments are passed to extensions properly.
@@ -13,22 +11,22 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-$wgHooks['ParserTestParser'][] = 'wfParserTestParserHookSetup';
+class ParserTestParserHook {
 
-function wfParserTestParserHookSetup( &$parser ) {
-	$parser->setHook( 'tag', 'wfParserTestParserHookHook' );
+	static function setup( &$parser ) {
+		$parser->setHook( 'tag', array( __CLASS__, 'hook' ) );
 
-	return true;
+		return true;
+	}
+
+	function hook( $in, $argv ) {
+		ob_start();
+		var_dump(
+			$in,
+			$argv
+		);
+		$ret = ob_get_clean();
+
+		return "<pre>\n$ret</pre>";
+	}
 }
-
-function wfParserTestParserHookHook( $in, $argv ) {
-	ob_start();
-	var_dump(
-		$in,
-		$argv
-	);
-	$ret = ob_get_clean();
-
-	return "<pre>\n$ret</pre>";
-}
-
