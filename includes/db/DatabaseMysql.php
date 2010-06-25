@@ -114,8 +114,10 @@ class DatabaseMysql extends DatabaseBase {
 					$this->query( 'SET NAMES utf8', __METHOD__ );
 				}
 				// Set SQL mode, default is turning them all off, can be overridden or skipped with null
-				if (is_string($wgSQLMode)) {
-					$this->query( "SET sql_mode = '$wgSQLMode'", __METHOD__ );
+				global $wgSQLMode;
+				if ( is_string( $wgSQLMode ) ) {
+					$mode = $this->addQuotes( $wgSQLMode );
+					$this->query( "SET sql_mode = $mode", __METHOD__ );
 				}
 			}
 
