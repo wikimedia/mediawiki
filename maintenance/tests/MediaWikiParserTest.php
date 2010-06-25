@@ -11,6 +11,7 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 	public function __construct() {
 		$this->backend = new ParserTestSuiteBackend;
 		parent::__construct();
+		$this->setName( 'Parser tests' );
 	}
 
 	public function run( PHPUnit_Framework_TestResult $result = null, $filter = false, 

@@ -48,6 +48,7 @@ class SpecialSelenium extends SpecialPage {
 		$result = new PHPUnit_Framework_TestResult;
 		$logger = new SeleniumTestHTMLLogger;
 		$result->addListener( new SeleniumTestListener( $logger ) );
+		$logger->setHeaders();
 
 		// run tests
 		$suite = new SeleniumTestSuite;

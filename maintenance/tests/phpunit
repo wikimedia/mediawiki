@@ -24,6 +24,18 @@ of PHPUnit do not properly implement dependencies.
 EOF;
 }
 
-$command = new PHPUnit_TextUI_Command;
+class MWPHPUnitCommand extends PHPUnit_TextUI_Command {
+	protected function handleCustomTestSuite() {
+		require( dirname( __FILE__ ) . '/TestFileList.php' );
+		$suite = new PHPUnit_Framework_TestSuite;
+		foreach ( $testFiles as $file ) {
+			$suite->addTestFile( $file );
+		}
+		$suite->setName( 'MediaWiki test suite' );
+		$this->arguments['test'] = $suite;
+	}
+}
+
+$command = new MWPHPUnitCommand;
 $command->run( $argv );
 
