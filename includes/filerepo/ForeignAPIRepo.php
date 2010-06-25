@@ -211,10 +211,13 @@ class ForeignAPIRepo extends FileRepo {
 			}
 			$localUrl =  $wgServer . $wgUploadPath . '/' . $path . $fileName;
 			# FIXME: Delete old thumbs that aren't being used. Maintenance script?
+			wfSuppressWarnings();
 			if( !file_put_contents($wgUploadDirectory . '/' . $path . $fileName, $thumb ) ) {
+				wfRestoreWarnings();
 				wfDebug( __METHOD__ . " could not write to thumb path\n" );
 				return $foreignUrl;
 			}
+			wfRestoreWarnings();
 			$wgMemc->set( $key, $localUrl, $this->apiThumbCacheExpiry );
 			wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
 			return $localUrl;
