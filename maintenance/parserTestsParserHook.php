@@ -19,7 +19,7 @@ class ParserTestParserHook {
 		return true;
 	}
 
-	function hook( $in, $argv ) {
+	static function hook( $in, $argv ) {
 		ob_start();
 		var_dump(
 			$in,

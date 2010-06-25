@@ -1143,7 +1143,7 @@ class ParserTest {
 		return "$display\n$caret";
 	}
 
-	function getFakeTimestamp( &$parser, &$ts ) {
+	static function getFakeTimestamp( &$parser, &$ts ) {
 		$ts = 123;
 		return true;
 	}
