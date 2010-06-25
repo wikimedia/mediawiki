@@ -150,6 +150,10 @@ class BackupReader {
 			array( &$this, 'handleUpload' ) );
 		$this->logItemCallback = $importer->setLogItemCallback(
 			array( &$this, 'handleLogItem' ) );
+			
+		if ( $this->dryRun ) {
+			$importer->setPageOutCallback( null );
+		}
 
 		return $importer->doImport();
 	}

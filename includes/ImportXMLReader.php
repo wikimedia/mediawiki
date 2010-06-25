@@ -13,7 +13,7 @@ class WikiImporter {
 	 * Creates an ImportXMLReader drawing from the source provided
 	*/
 	function __construct( $source ) {
-		$this->reader = new XMLReader();
+		$this->reader = new XMLReader2();
 		
 		stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
 		$id = UploadSourceAdapter::registerSource( $source );
@@ -23,6 +23,7 @@ class WikiImporter {
 		$this->setRevisionCallback( array( $this, "importRevision" ) );
 		$this->setUploadCallback( array( $this, 'importUpload' ) );
 		$this->setLogItemCallback( array( $this, 'importLogItem' ) );
+		$this->setPageOutCallback( array( $this, 'finishImportPage' ) );
 	}
 
 	private function throwXmlError( $err ) {
@@ -168,6 +169,13 @@ class WikiImporter {
 		//return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 		return false;
 	}
+	
+	/**
+	 * Mostly for hook use
+	 */
+	public function finishImportPage( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) {
+		return wfRunHooks( 'AfterImportPage', func_get_args() );
+	}
 
 	/**
 	 * Alternate per-revision callback, for debugging.
@@ -203,10 +211,9 @@ class WikiImporter {
 	 * @param $revisionCount int
 	 * @param $successCount Int: number of revisions for which callback returned true
 	 */
-	private function pageOutCallback( $title, $origTitle, $revisionCount, $successCount ) {
+	private function pageOutCallback( $title, $origTitle, $revCount, $sucCount, $pageInfo ) {
 		if( isset( $this->mPageOutCallback ) ) {
-			call_user_func_array( $this->mPageOutCallback,
-				array( $title, $origTitle, $revisionCount, $successCount ) );
+			call_user_func_array( $this->mPageOutCallback, func_get_args() );
 		}
 	}
 	
@@ -244,21 +251,7 @@ class WikiImporter {
 	 * @access private
 	 */
 	private function nodeContents() {
-		if( $this->reader->isEmptyElement ) {
-			return "";
-		}
-		$buffer = "";
-		while( $this->reader->read() ) {
-			switch( $this->reader->nodeType ) {
-			case XmlReader::TEXT:
-			case XmlReader::SIGNIFICANT_WHITESPACE:
-				$buffer .= $this->reader->value;
-				break;
-			case XmlReader::END_ELEMENT:
-				return $buffer;
-			}
-		}
-		return $this->close();
+		return $this->reader->nodeContents();
 	}
 
 	# --------------
@@ -378,7 +371,7 @@ class WikiImporter {
 			if ( !wfRunHooks( 'ImportHandleLogItemXMLTag',
 						$this->reader, $logInfo ) ) {
 				// Do nothing
-			} if ( in_array( $tag, $normalFields ) ) {
+			} elseif ( in_array( $tag, $normalFields ) ) {
 				$logInfo[$tag] = $this->nodeContents();
 			} elseif ( $tag == 'contributor' ) {
 				$logInfo['contributor'] = $this->handleContributor();
@@ -436,10 +429,10 @@ class WikiImporter {
 			if ( $badTitle ) {
 				// The title is invalid, bail out of this page
 				$skip = true;
-			} elseif ( !wfRunHooks( 'ImportHandlePageXMLTag', $this->reader,
-						$pageInfo ) ) {
+			} elseif ( !wfRunHooks( 'ImportHandlePageXMLTag', array( $this->reader,
+						&$pageInfo ) ) ) {
 				// Do nothing
-			} if ( in_array( $tag, $normalFields ) ) {
+			} elseif ( in_array( $tag, $normalFields ) ) {
 				$pageInfo[$tag] = $this->nodeContents();
 				if ( $tag == 'title' ) {
 					$title = $this->processTitle( $pageInfo['title'] );
@@ -464,7 +457,8 @@ class WikiImporter {
 		
 		$this->pageOutCallback( $pageInfo['_title'], $origTitle,
 					$pageInfo['revisionCount'],
-					$pageInfo['successfulRevisionCount'] );
+					$pageInfo['successfulRevisionCount'],
+					$pageInfo );
 	}
 	
 	private function handleRevision( &$pageInfo ) {
@@ -486,7 +480,7 @@ class WikiImporter {
 			if ( !wfRunHooks( 'ImportHandleRevisionXMLTag', $this->reader,
 						$pageInfo, $revisionInfo ) ) {
 				// Do nothing
-			} if ( in_array( $tag, $normalFields ) ) {
+			} elseif ( in_array( $tag, $normalFields ) ) {
 				$revisionInfo[$tag] = $this->nodeContents();
 			} elseif ( $tag == 'contributor' ) {
 				$revisionInfo['contributor'] = $this->handleContributor();
@@ -547,7 +541,7 @@ class WikiImporter {
 			if ( !wfRunHooks( 'ImportHandleUploadXMLTag', $this->reader,
 						$pageInfo, $revisionInfo ) ) {
 				// Do nothing
-			} if ( in_array( $tag, $normalFields ) ) {
+			} elseif ( in_array( $tag, $normalFields ) ) {
 				$uploadInfo[$tag] = $this->nodeContents();
 			} elseif ( $tag == 'contributor' ) {
 				$uploadInfo['contributor'] = $this->handleContributor();
@@ -710,5 +704,25 @@ class UploadSourceAdapter {
 		$result['blocks'] = $result[12] = 0;
 		
 		return $result;
+	}
+}
+
+class XMLReader2 extends XMLReader {
+	function nodeContents() {
+		if( $this->isEmptyElement ) {
+			return "";
+		}
+		$buffer = "";
+		while( $this->read() ) {
+			switch( $this->nodeType ) {
+			case XmlReader::TEXT:
+			case XmlReader::SIGNIFICANT_WHITESPACE:
+				$buffer .= $this->value;
+				break;
+			case XmlReader::END_ELEMENT:
+				return $buffer;
+			}
+		}
+		return $this->close();
 	}
 }
