@@ -6,7 +6,7 @@
 all test: tap
 
 tap:
-	prove -e 'phpunit --tap' *Test*.php
+	prove -e 'php phpunit.php --tap' *Test*.php
 
 phpunit:
 	phpunit

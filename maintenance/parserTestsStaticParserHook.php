@@ -1,6 +1,4 @@
 <?php
-if ( ! defined( 'MEDIAWIKI' ) )
-	die( -1 );
 /**
  * A basic extension that's used by the parser tests to test whether the parser
  * calls extensions when they're called inside comments, it shouldn't do that
@@ -13,35 +11,34 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-$wgHooks['ParserTestParser'][] = 'wfParserTestStaticParserHookSetup';
+class ParserTestStaticParserHook {
+	static function setup( &$parser ) {
+		$parser->setHook( 'statictag', array( __CLASS__, 'hook' ) );
 
-function wfParserTestStaticParserHookSetup( &$parser ) {
-	$parser->setHook( 'statictag', 'wfParserTestStaticParserHookHook' );
+		return true;
+	}
 
-	return true;
+	static function hook( $in, $argv, $parser ) {
+		if ( ! count( $argv ) ) {
+			$parser->static_tag_buf = $in;
+			return '';
+		} else if ( count( $argv ) === 1 && isset( $argv['action'] )
+			&& $argv['action'] === 'flush' && $in === null )
+		{
+			// Clear the buffer, we probably don't need to
+			if ( isset( $parser->static_tag_buf ) ) {
+				$tmp = $parser->static_tag_buf;
+			} else {
+				$tmp = '';
+			}
+			$parser->static_tag_buf = null;
+			return $tmp;
+		} else
+			// wtf?
+			return
+				"\nCall this extension as <statictag>string</statictag> or as" .
+				" <statictag action=flush/>, not in any other way.\n" .
+				"text: " . var_export( $in, true ) . "\n" .
+				"argv: " . var_export( $argv, true ) . "\n";
+	}
 }
-
-function wfParserTestStaticParserHookHook( $in, $argv, $parser ) {
-	if ( ! count( $argv ) ) {
-		$parser->static_tag_buf = $in;
-		return '';
-	} else if ( count( $argv ) === 1 && isset( $argv['action'] )
-		&& $argv['action'] === 'flush' && $in === null )
-	{
-		// Clear the buffer, we probably don't need to
-		if ( isset( $parser->static_tag_buf ) ) {
-			$tmp = $parser->static_tag_buf;
-		} else {
-			$tmp = '';
-		}
-		$parser->static_tag_buf = null;
-		return $tmp;
-	} else
-		// wtf?
-		return
-			"\nCall this extension as <statictag>string</statictag> or as" .
-			" <statictag action=flush/>, not in any other way.\n" .
-			"text: " . var_export( $in, true ) . "\n" .
-			"argv: " . var_export( $argv, true ) . "\n";
-}
-

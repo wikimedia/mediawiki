@@ -24,17 +24,6 @@
  * @ingroup Maintenance
  */
 
-/** */
-$options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled' );
-$optionsWithArgs = array( 'regex', 'seed', 'setversion' );
-
-if ( !defined( "NO_COMMAND_LINE" ) ) {
-	require_once( dirname( __FILE__ ) . '/commandLine.inc' );
-}
-require_once( "$IP/maintenance/parserTestsParserHook.php" );
-require_once( "$IP/maintenance/parserTestsStaticParserHook.php" );
-require_once( "$IP/maintenance/parserTestsParserTime.php" );
-
 /**
  * @ingroup Maintenance
  */
@@ -114,17 +103,7 @@ class ParserTest {
 			$this->regex = '';
 		}
 
-		if ( isset( $options['record'] ) ) {
-			$this->recorder = new DbTestRecorder( $this );
-		} elseif ( isset( $options['compare'] ) ) {
-			$this->recorder = new DbTestPreviewer( $this );
-		} elseif ( isset( $options['upload'] ) ) {
-			$this->recorder = new RemoteTestRecorder( $this );
-		} elseif ( class_exists( 'PHPUnitTestRecorder' ) ) {
-			$this->recorder = new PHPUnitTestRecorder( $this );
-		} else {
-			$this->recorder = new TestRecorder( $this );
-		}
+		$this->setupRecorder();
 		$this->keepUploads = isset( $options['keep-uploads'] );
 
 		if ( isset( $options['seed'] ) ) {
@@ -135,6 +114,18 @@ class ParserTest {
 
 		$this->hooks = array();
 		$this->functionHooks = array();
+	}
+
+	public function setupRecorder() {
+		if ( isset( $options['record'] ) ) {
+			$this->recorder = new DbTestRecorder( $this );
+		} elseif ( isset( $options['compare'] ) ) {
+			$this->recorder = new DbTestPreviewer( $this );
+		} elseif ( isset( $options['upload'] ) ) {
+			$this->recorder = new RemoteTestRecorder( $this );
+		} else {
+			$this->recorder = new TestRecorder( $this );
+		}
 	}
 
 	/**
@@ -589,6 +580,11 @@ class ParserTest {
 		$GLOBALS['wgMemc'] = new FakeMemCachedClient;
 		$GLOBALS['wgOut'] = new OutputPage;
 
+		global $wgHooks;
+		$wgHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
+		$wgHooks['ParserTestParser'][] = 'ParserTestStaticParserHook::setup';
+		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
+
 		MagicWord::clearCache();
 
 		global $wgUser;
@@ -626,7 +622,7 @@ class ParserTest {
 	 * Currently this will only be done once per run, and any changes to
 	 * the db will be visible to later tests in the run.
 	 */
-	function setupDatabase() {
+	public function setupDatabase() {
 		global $wgDBprefix, $wgDBtype;
 		if ( $this->databaseSetupDone ) {
 			return;
@@ -771,7 +767,7 @@ class ParserTest {
 		$db->tablePrefix( $prefix );
 	}
 
-	private function teardownDatabase() {
+	public function teardownDatabase() {
 		global $wgDBtype;
 		if ( !$this->databaseSetupDone ) {
 			return;
@@ -1145,6 +1141,11 @@ class ParserTest {
 			'^' .
 			$this->term->color( 0 );
 		return "$display\n$caret";
+	}
+
+	function getFakeTimestamp( &$parser, &$ts ) {
+		$ts = 123;
+		return true;
 	}
 }
 
@@ -1733,3 +1734,4 @@ class TestFileIterator implements Iterator {
 		return false;
 	}
 }
+

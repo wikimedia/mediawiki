@@ -1995,15 +1995,6 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
-Magic Word: {{NUMBEROFARTICLES}}
-!! input
-{{NUMBEROFARTICLES}}
-!! result
-<p>2
-</p>
-!! end
-
-!! test
 Magic Word: {{NUMBEROFFILES}}
 !! input
 {{NUMBEROFFILES}}

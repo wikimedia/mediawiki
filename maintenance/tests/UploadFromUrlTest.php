@@ -1,16 +1,11 @@
 <?php
 
-global $IP;
-require_once( "ApiSetup.php" );
-require_once( dirname( dirname( __FILE__ ) ) . "/deleteArchivedFiles.inc" );
-require_once( dirname( dirname( __FILE__ ) ) . "/deleteArchivedRevisions.inc" );
-
 class nullClass {
 	public function handleOutput() { }
 	public function purgeRedundantText() { }
 }
 
-class UploadFromUrlTest extends ApiSetup {
+class UploadFromUrlTest extends ApiTestSetup {
 
 	function setUp() {
 		global $wgEnableUploads, $wgLocalFileRepo, $wgAllowCopyUploads;

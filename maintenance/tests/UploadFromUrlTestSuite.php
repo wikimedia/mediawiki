@@ -1,7 +1,5 @@
 <?php
 
-require_once( 'UploadFromUrlTest.php' );
-
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 {
 	public static function addTables( &$tables ) {

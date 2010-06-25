@@ -14,7 +14,7 @@
     <file>DatabaseSqliteTest.php</file>
     <file>DatabaseTest.php</file>
     <file>GlobalTest.php</file>
-    <file>HttpTest.php</file>
+	<!--<file>HttpTest.php</file>-->
     <file>IPTest.php</file>
     <file>ImageFunctionsTest.php</file>
     <file>LanguageConverterTest.php</file>

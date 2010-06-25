@@ -1,9 +1,6 @@
 <?php
 
-global $IP;
-require_once( "$IP/maintenance/tests/ApiSetup.php" );
-
-class ApiWatchTest extends ApiSetup {
+class ApiWatchTest extends ApiTestSetup {
 
 	function setUp() {
 		ini_set( 'log_errors', 1 );
