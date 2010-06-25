@@ -1123,6 +1123,14 @@ $wgDBprefix         = '';
 /** MySQL table options to use during installation or update */
 $wgDBTableOptions   = 'ENGINE=InnoDB';
 
+/**
+ * SQL Mode - default is turning off all modes, including strict, if set.
+ * null can be used to skip the setting for performance reasons and assume 
+ * DBA has done his best job.
+ * String override can be used for some additional fun :-)
+ */
+$wgSQLMode = ''; 
+
 /** Mediawiki schema */
 $wgDBmwschema       = 'mediawiki';
 /** Tsearch2 schema */
