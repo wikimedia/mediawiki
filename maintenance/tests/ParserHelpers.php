@@ -49,6 +49,10 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 		return $result;
 	}
 
+	public function toString() {
+		return $this->test['test'];
+	}
+
 }
 
 class ParserTestSuiteBackend extends ParserTest {

@@ -1,23 +1,32 @@
-# See
-# http://lists.wikimedia.org/pipermail/wikitech-l/2010-February/046657.html
-# for why prove(1) is the default target and not phpunit(1)
+# If you have problems with excessive memory usage, use the "tap" or "separate" targets.
 
-.PHONY: help test
-all test: tap
+TEST_FILES=$(shell php -r 'include( "./TestFileList.php" ); echo implode( " ", $$testFiles );')
+TEST_FILE_TARGETS=$(subst .php,.target,$(TEST_FILES))
 
-tap:
-	prove -e 'php phpunit.php --tap' *Test*.php
+.PHONY: help test phpunit tap separate install $(TEST_FILE_TARGETS)
+
+all test: phpunit
 
 phpunit:
-	phpunit
+	php phpunit
+
+tap:
+	prove -e 'php phpunit --tap' *Test*.php
+
+separate: $(TEST_FILE_TARGETS)
+
+# Need --tap because without it, the target specification doesn't work
+$(TEST_FILE_TARGETS) : %.target : %.php
+	php phpunit --tap $<
 
 install:
 	pear channel-discover pear.phpunit.de
 	pear install phpunit/PHPUnit
 
 help:
-	# Options:
-	# 	test (default)		Run the tests individually through Test::Harness's prove(1)
-	#	phpunit			Run all the tests with phpunit
-	#	install			Install PHPUnit from phpunit.de
-	#	help			You're looking at it!
+	# Targets:
+	#   phpunit (default)   Run all the tests with phpunit
+	#   separate            Run each test file in a separate process
+	#   tap                 Run the tests individually through Test::Harness's prove(1)
+	#   install             Install PHPUnit from phpunit.de
+	#   help                You're looking at it!

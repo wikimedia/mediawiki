@@ -5,36 +5,8 @@
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         stopOnFailure="false">
-  <testsuite name="MediaWiki Test Suite">
-    <!-- <directory>.</directory> -->
-    <!-- <file>ApiTest.php</file> -->
-    <!-- <file>ApiWatchTest.php</file> -->
-    <file>CdbTest.php</file>
-    <file>DatabaseSqliteTest.php</file>
-    <file>DatabaseTest.php</file>
-    <file>GlobalTest.php</file>
-	<!--<file>HttpTest.php</file>-->
-    <file>IPTest.php</file>
-    <file>ImageFunctionsTest.php</file>
-    <file>LanguageConverterTest.php</file>
-    <file>LicensesTest.php</file>
-    <file>LocalFileTest.php</file>
-    <file>MediaWikiParserTest.php</file>
-    <file>MessageTest.php</file>
-    <file>RevisionTest.php</file>
-    <file>SanitizerTest.php</file>
-    <file>SearchDbTest.php</file>
-    <file>SearchEngineTest.php</file>
-    <file>SearchUpdateTest.php</file>
-    <file>SiteConfigurationTest.php</file>
-    <file>TimeAdjustTest.php</file>
-    <file>TitlePermissionTest.php</file>
-    <file>TitleTest.php</file>
-    <file>UploadTest.php</file>
-    <file>UploadFromUrlTestSuite.php</file>
-    <file>XmlTest.php</file>
-  </testsuite>
+		 stopOnFailure="false">
+  <!-- for the test file list, see TestFileList.php -->
   <groups>
     <exclude>
       <group>Broken</group>
