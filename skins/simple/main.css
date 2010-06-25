@@ -245,11 +245,8 @@ td.diff-deletedline {
 }
 
 .diffchange { background-color: #FFCDF3; text-decoration: none; }
-#pagehistory li { border: none; }
 
-span.urlexpansion {
-  display: none;
-}
+#pagehistory li { border: none; }
 
 div.tocindent {
   margin-left: 2em;
@@ -372,7 +369,6 @@ div.htmlform-tip {
 
 #mw_trackbacks {
 	border-style: groove;
-	padding: 0.2em;
 }
 
 #jump-to-nav {
@@ -381,11 +377,6 @@ div.htmlform-tip {
 
 table.collapsed tr.collapsable {
 	display: none;
-}
-
-.editsection {
-	float: right;
-	margin-left: 5px;
 }
 
 .templatesUsed { margin-top: 1.5em; }
