@@ -1490,6 +1490,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
 'right-revisionmove'          => 'Pindah revisi',
+'right-selenium'              => 'Jalankan uji Selenium',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',

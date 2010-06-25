@@ -1280,8 +1280,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'powersearch-toggleall'            => 'Todos',
 'powersearch-togglenone'           => 'Nenhum',
 'search-external'                  => 'Pesquisa externa',
-'searchdisabled'                   => 'O motor de pesquisa na {{SITENAME}} foi desativado por motivos de desempenho. Enquanto isso pode fazer a sua pesquisa através do Google ou do Yahoo!.<br />
-Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desatualizados.',
+'searchdisabled'                   => 'A busca em {{SITENAME}} se encontra desativada.
+Você poderá pesquisar através do Google enquanto isso.
+Note que os índices do sistema de busca externo poderão conter referências desatualizadas a {{SITENAME}}.',
 
 # Quickbar
 'qbsettings'               => 'Configurações da Barra Rápida',
@@ -1978,7 +1979,7 @@ Entradas <s>riscadas</s> foram resolvidas.',
 'listusers-editsonly'     => 'Mostrar apenas usuários com edições',
 'listusers-creationsort'  => 'Ordenar por data de criação',
 'usereditcount'           => '$1 {{PLURAL:$1|edição|edições}}',
-'usercreated'             => 'Criado em $1 às $2',
+'usercreated'             => 'Registrado em $1 às $2',
 'newpages'                => 'Páginas recentes',
 'newpages-username'       => 'Nome de usuário:',
 'ancientpages'            => 'Páginas mais antigas',

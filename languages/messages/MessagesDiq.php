@@ -832,6 +832,7 @@ $1",
 'logdelete-failure'           => "'''Esayişê rocaneyi eyar nêbı:'''
 $1",
 'revdel-restore'              => 'asayışi bıvurne',
+'revdel-restore-deleted'      => 'revizyonê wedariyaye',
 'pagehist'                    => 'vere cûyê peli',
 'deletedhist'                 => 'tarixê hewna şiyaye',
 'revdelete-content'           => 'mebhes',
@@ -867,6 +868,9 @@ rocaneyan kontrol bıkere.',
 
 # Revision move
 'revmove-reasonfield'    => 'Sebeb:',
+'revmove-titlefield'     => 'Pelê hedefi:',
+'revmove-badparam-title' => 'Parametreyê xeleti',
+'revmove-badparam'       => '<span class="error">Waştişê tu de cikek ke illegal ya zi kem est ê. Ma rica keni "peyser" şo u reyna deneme bike.</span>',
 'revmove-nullmove-title' => 'Sernameo xırabın',
 
 # History merging

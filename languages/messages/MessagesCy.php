@@ -971,16 +971,18 @@ Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:IPBlo
 # Revision move
 'moverevlogentry'              => 'wedi symud {{PLURAL:$3||un diwygiad|$3 ddiwygiad|$3 diwygiad|$3 diwygiad|$3 diwygiad}} o $1 i $2',
 'revisionmove'                 => 'Symud diwygiadau oddi wrth "$1"',
-'revmove-explain'              => "Caiff y diwygiadau hyn eu symud o $1 i'r tudalen targed dan sylw. Os nid yw'r targed yn bodoli, fe gaiff ei greu. Fel arall, caiff y diwygiadau eu cyfuno gyda hanes y tudalen.",
-'revmove-legend'               => 'Gosod crynodeb a thudalen targed',
+'revmove-explain'              => "Caiff y diwygiadau hyn eu symud o $1 i dudalen y cyrchfan a benwyd. Os nad yw'r cyrchfan yn bodoli, fe gaiff ei greu. Fel arall, caiff y diwygiadau eu cyfuno gyda hanes y dudalen.",
+'revmove-legend'               => 'Gosod crynodeb a thudalen y cyrchfan',
 'revmove-submit'               => "Symud y diwygiadau i'r dudalen dewisedig",
 'revisionmoveselectedversions' => 'Symud y diwygiadau dewisedig',
 'revmove-reasonfield'          => 'Rheswm:',
-'revmove-titlefield'           => 'Tudalen targed:',
+'revmove-titlefield'           => 'Tudalen y cyrchfan:',
 'revmove-badparam-title'       => 'Paramedrau gwallus',
-'revmove-badparam'             => '<span class="error">Mae eich cais yn cynnwys paramedrau annigonol neu anghyfreithlon. Pwyso\'r botwm "Nôl" a rhoi cynnig arall arni.</span>',
-'revmove-norevisions-title'    => 'Diwygiad targed annilys',
+'revmove-badparam'             => '<span class="error">Mae eich cais yn cynnwys paramedrau annigonol neu anghyfreithlon. Pwyswch y botwm "Nôl" a rhowch gynnig arall arni.</span>',
+'revmove-norevisions-title'    => 'Penwyd cyrchfan annilys',
+'revmove-norevisions'          => "<span class=\"error\">Rydych chi heb enwi un neu ragor o ddiwygiadau'r cyrchfan i wneud y swyddogaeth hon neu nad yw'r diwygiad dan sylw'n bodoli.</span>",
 'revmove-nullmove-title'       => 'Teitl gwallus',
+'revmove-nullmove'             => '<span class="error">Mae\'r ffynhonnell a thudalen y cyrchfan yn unfath. Pwyswch y botwm "Nôl" a rhowch enw tudalen sy\'n wahanol i "$1".</span>',
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
@@ -2706,7 +2708,7 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'file-info-gif-looped' => 'dolennog',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|ffrâm}}',
 'file-info-png-looped' => 'dolennog',
-'file-info-png-repeat' => "wedi'i chwarae yn {{PLURAL:$1||unwaith|ddwywaith|deirgwaith|$1 gwaith|$1 gwaith}}",
+'file-info-png-repeat' => "wedi'i chwarae {{PLURAL:$1||unwaith|ddwywaith|deirgwaith|$1 gwaith|$1 gwaith}}",
 'file-info-png-frames' => '$1 {{PLURAL:$1|ffrâm}}',
 
 # Special:NewFiles
