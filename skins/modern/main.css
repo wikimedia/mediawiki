@@ -695,30 +695,6 @@ input#wpSave, input#wpDiff {
 	font-weight: bold;
 }
 
-/* Classes for article validation */
-
-table.revisionform_default {
-	border: 1px solid #000000;
-}
-
-table.revisionform_focus {
-	border: 1px solid #000000;
-	background-color:#00BBFF;
-}
-
-tr.revision_tr_default {
-	background-color:#EEEEEE;
-}
-
-tr.revision_tr_first {
-	background-color:#DDDDDD;
-}
-
-p.revision_saved {
-	color: green;
-	font-weight:bold;
-}
-
 /* noarticletext */
 div.noarticletext {
 	border: 1px solid #ccc;
