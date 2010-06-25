@@ -1103,6 +1103,7 @@ $wgMessageStructure = array(
 		'right-override-export-depth',
 		'right-sendemail',
 		'right-revisionmove',
+		'right-selenium',
 	),
 	'rightslog' => array(
 		'rightslog',
