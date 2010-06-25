@@ -26,9 +26,14 @@ EOF;
 
 class MWPHPUnitCommand extends PHPUnit_TextUI_Command {
 	protected function handleCustomTestSuite() {
-		require( dirname( __FILE__ ) . '/TestFileList.php' );
 		$suite = new PHPUnit_Framework_TestSuite;
-		foreach ( $testFiles as $file ) {
+		if ( !empty( $this->options[1] ) ) {
+			$files = $this->options[1];
+		} else {
+			require( dirname( __FILE__ ) . '/TestFileList.php' );
+			$files = $testFiles;
+		}
+		foreach ( $files as $file ) {
 			$suite->addTestFile( $file );
 		}
 		$suite->setName( 'MediaWiki test suite' );
