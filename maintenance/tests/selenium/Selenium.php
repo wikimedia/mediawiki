@@ -4,21 +4,16 @@
  * This is implemented as a singleton.
  */
 
-if ( !defined( 'MEDIAWIKI' ) || !defined( 'SELENIUMTEST' ) ) {
-	echo "This script cannot be run standalone";
-	exit( 1 );
-}
-
 class Selenium extends Testing_Selenium {
 	protected static $_instance = null;
 	public $isStarted = false;
 
 	public static function getInstance() {
 		global $wgSeleniumTestsBrowsers, $wgSeleniumTestsSeleniumHost, $wgSeleniumTestsUseBrowser;
-		global $wgSeleniumTestsWikiUrl, $wgSeleniumServerPort;
+		global $wgSeleniumServerPort;
 		if ( null === self::$_instance ) {
 			self::$_instance = new self( $wgSeleniumTestsBrowsers[$wgSeleniumTestsUseBrowser],
-							$wgSeleniumTestsWikiUrl,
+							self::getBaseUrl(),
 							$wgSeleniumTestsSeleniumHost,
 							$wgSeleniumServerPort );
  		}
@@ -36,23 +31,27 @@ class Selenium extends Testing_Selenium {
 		$this->isStarted = false;
 	}
 
-	public function login() {
-		global $wgSeleniumTestsWikiUser, $wgSeleniumTestsWikiPassword, $wgSeleniumTestsWikiUrl, $wgVersion;
+	static function getBaseUrl() {
+		global $wgSeleniumTestsWikiUrl, $wgServer, $wgScriptPath;
+		if ( $wgSeleniumTestsWikiUrl ) {
+			return $wgSeleniumTestsWikiUrl;
+		} else {
+			return $wgServer . $wgScriptPath;
+		}
+	}
 
-		$this->open( $wgSeleniumTestsWikiUrl . '/index.php?title=Special:Userlogin' );
+	public function login() {
+		global $wgSeleniumTestsWikiUser, $wgSeleniumTestsWikiPassword;
+
+		$this->open( self::getBaseUrl() . '/index.php?title=Special:Userlogin' );
 		$this->type( 'wpName1', $wgSeleniumTestsWikiUser );
 		$this->type( 'wpPassword1', $wgSeleniumTestsWikiPassword );
-		if (version_compare($wgVersion, '1.15.2', '>=')) {
-			$this->click( "//input[@id='wpLoginAttempt']" );
-		} else {
-			$this->click( "//input[@id='wpLoginattempt']" );
-		}
+		$this->click( "//input[@id='wpLoginAttempt']" );
 		$value = $this->doCommand( 'assertTitle', array( 'Login successful*' ) );
 	}
 
 	public function loadPage( $title, $action ) {
-		global $wgSeleniumTestsWikiUrl;
-		$this->open( $wgSeleniumTestsWikiUrl . '/index.php?title=' . $title . '&action=' . $action );
+		$this->open( self::getBaseUrl() . '/index.php?title=' . $title . '&action=' . $action );
 	}
 
 	// Prevent external cloning

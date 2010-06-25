@@ -1,9 +1,4 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) || !defined( 'SELENIUMTEST' ) ) {
-	echo "This script cannot be run standalone";
-	exit( 1 );
-}
-
 class SeleniumTestCase extends PHPUnit_Framework_TestCase { // PHPUnit_Extensions_SeleniumTestCase
 	protected $selenium;
 

@@ -1,16 +1,12 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) || !defined( 'SELENIUMTEST' ) ) {
-	echo "This script cannot be run standalone";
-	exit( 1 );
-}
-
-// Do not add line break after test output
-define( 'MW_TESTLOGGER_CONTINUE_LINE', 1 );
-define( 'MW_TESTLOGGER_RESULT_OK', 2 );
-define( 'MW_TESTLOGGER_RESULT_ERROR', 3 );
 
 class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 	private $selenium;
+
+	// Do not add line break after test output
+	const CONTINUE_LINE = 1;
+	const RESULT_OK = 2;
+	const RESULT_ERROR = 3;
 
 	public function setUp() {
 		$this->selenium = Selenium::getInstance();
