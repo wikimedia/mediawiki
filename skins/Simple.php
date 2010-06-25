@@ -22,6 +22,8 @@ class SkinSimple extends SkinTemplate {
 		$template = 'MonoBookTemplate', $useHeadElement = true;
 
 	function setupSkinUserCss( OutputPage $out ){
+		parent::setupSkinUserCss( $out );
+
 		$out->addStyle( 'simple/main.css', 'screen' );
 		$out->addStyle( 'simple/rtl.css', '', '', 'rtl' );
 	}
