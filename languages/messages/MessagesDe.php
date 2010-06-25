@@ -1546,6 +1546,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
 'right-revisionmove'          => 'Versionen verschieben',
+'right-selenium'              => 'Tests mit Selenium durchführen',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
@@ -2969,6 +2970,9 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'show-big-image-thumb' => '<small>Größe der Voransicht: $1 × $2 Pixel</small>',
 'file-info-gif-looped' => 'Endlosschleife',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|Bild|Bilder}}',
+'file-info-png-looped' => 'Endlosschleife',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|mal|mal}} abgespielt',
+'file-info-png-frames' => '$1 {{PLURAL:$1|Bild|Bilder}}',
 
 # Special:NewFiles
 'newimages'             => 'Neue Dateien',

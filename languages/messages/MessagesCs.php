@@ -1200,7 +1200,7 @@ Prohlédněte si protokolovací záznamy.',
 'moverevlogentry'              => 'přesunul {{PLURAL:$3|jednu revizi|$3 revize|$3 revizí}} z $1 do $2',
 'revisionmove'                 => 'Přesunout revize z „$1“',
 'revmove-explain'              => 'Následující revize budou přesunuty z $1 do uvedené cílové stránky. Pokud cílová stránka neexistuje, bude vytvořena. Jinak budou tyto revize začleněny do historie stránky.',
-'revmove-legend'               => 'Nastavit cílovou stránku a shrnutí',
+'revmove-legend'               => 'Nastavte cílovou stránku a shrnutí',
 'revmove-submit'               => 'Přesunout revize do vybrané stránky',
 'revisionmoveselectedversions' => 'Přesunout vybrané revize',
 'revmove-reasonfield'          => 'Důvod:',
@@ -1542,6 +1542,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
 'right-revisionmove'          => 'Přesouvání verzí',
+'right-selenium'              => 'Spouštění testů v Seleniu',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',

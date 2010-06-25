@@ -2722,7 +2722,7 @@ $1',
 'file-info-gif-looped' => 'دەۋرىيلەنگەن',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|كاندۇك|كاندۇك}}',
 'file-info-png-looped' => 'دەۋرىيلەنگەن',
-'file-info-png-repeat' => '$1 قېتىم قويۇلدى',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|قېتىم|قېتىم}} قويۇلدى',
 'file-info-png-frames' => '$1 {{PLURAL:$1|كاندۇك|كاندۇك}}',
 
 # Special:NewFiles

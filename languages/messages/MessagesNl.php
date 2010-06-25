@@ -1238,7 +1238,7 @@ Als deze wel bestaat, worden de versies ingevoegd in de paginageschiedenis.',
 'revmove-badparam-title'       => 'Onjuiste parameters',
 'revmove-badparam'             => '<span class="error">Uw verzoek bevat ongeldige of onvoldoende parameters.
 Klik "Terug" en probeer het opnieuw.</span>',
-'revmove-norevisions-title'    => 'Ongeldige doelversie',
+'revmove-norevisions-title'    => 'De te verplaatsen versie is ongeldig',
 'revmove-norevisions'          => '<span class="error">U hebt geen versies aangegeven om deze handeling op uit te voeren of de aangegeven versie bestaat niet.</span>',
 'revmove-nullmove-title'       => 'Ongeldige paginanaam',
 'revmove-nullmove'             => '<span class="error">De bronpagina en doelpagina zijn hetzelfde.
@@ -1583,6 +1583,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
 'right-revisionmove'          => 'Versies verplaatsen',
+'right-selenium'              => 'Selenium-tests uitvoeren',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -2505,6 +2506,7 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'sp-contributions-search'              => 'Zoeken naar bijdragen',
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
+'sp-contributions-toponly'             => 'Alleen nieuwste versies weergeven',
 'sp-contributions-submit'              => 'Bekijken',
 
 # What links here
@@ -3060,6 +3062,9 @@ $1',
 'show-big-image-thumb' => '<small>Afmetingen van deze weergave: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'herhalend',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frames}}',
+'file-info-png-looped' => 'herhalend',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|keer|keer}} afgespeeld',
+'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frames}}',
 
 # Special:NewFiles
 'newimages'             => 'Nieuwe bestanden',

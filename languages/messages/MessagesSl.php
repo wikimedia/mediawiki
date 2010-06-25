@@ -1389,6 +1389,7 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'right-override-export-depth' => 'Izvoz strani, vključno s povezaimi straneh do globine 5',
 'right-sendemail'             => 'Pošiljanje e-pošte drugim uporabnikom',
 'right-revisionmove'          => 'Prestavi redakcije',
+'right-selenium'              => 'Zaganjanje preverjanj Selenium',
 
 # User rights log
 'rightslog'      => 'Dnevnik uporabniških pravic',
