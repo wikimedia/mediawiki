@@ -1,8 +1,4 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) || !defined( 'SELENIUMTEST' ) ) {
-	echo "This script cannot be run standalone";
-	exit( 1 );
-}
 
 class SeleniumTestListener implements PHPUnit_Framework_TestListener {
 	private $logger;
@@ -39,13 +35,13 @@ class SeleniumTestListener implements PHPUnit_Framework_TestListener {
 	public function startTest( PHPUnit_Framework_Test $test ) {
 		$this->logger->write(
 			'Testing ' . $test->getName() . ' ... ',
-			MW_TESTLOGGER_CONTINUE_LINE
+			SeleniumTestSuite::CONTINUE_LINE
 		);
 	}
 
 	public function endTest( PHPUnit_Framework_Test $test, $time ) {
 		if ( !$test->hasFailed() ) {
-			$this->logger->write( 'OK', MW_TESTLOGGER_RESULT_OK );
+			$this->logger->write( 'OK', SeleniumTestSuite::RESULT_OK );
 			$this->tests_ok++;
 		}
 	}

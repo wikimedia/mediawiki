@@ -22,79 +22,33 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-define( 'MEDIAWIKI', true );
 define( 'SELENIUMTEST', true );
 
-// Here, you can override standard setting
-if ( file_exists( 'selenium/LocalSeleniumSettings.php' ) ) {
-	include_once 'selenium/LocalSeleniumSettings.php';
-} else {
-	echo "You must provide local settings in LocalSeleniumSettings.php\n";
-	die( -1 );
-}
-
-// Command line only 
-if ( $wgSeleniumTestsRunMode == 'cli' && php_sapi_name() != 'cli' ) {
-	echo "Must be run from the command line.\n";
-	die( -1 );
-}
-
-// Get command line parameters
-if ( $wgSeleniumTestsRunMode == 'cli' ) {
-	require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
-	if ( isset( $options['help'] ) ) {
-		echo <<<ENDS
+require( dirname( __FILE__ ) . "/../commandLine.inc" );
+if ( isset( $options['help'] ) ) {
+	echo <<<ENDS
 MediaWiki $wgVersion Selenium Framework tester
 Usage: php RunSeleniumTests.php [options...]
 Options:
-  --port=<TCP port> Port used by selenium server to accept commands
-  --help            Show this help message
+--port=<TCP port> Port used by selenium server to accept commands
+--help            Show this help message
 ENDS;
-		exit( 0 );
-	}
-
-	if ( isset( $options['port'] ) ) {
-		$wgSeleniumServerPort = (int) $options['port'];
-	}
+	exit( 1 );
 }
 
-// requires PHPUnit 3.4
-require_once 'Testing/Selenium.php';
-require_once 'PHPUnit/Framework.php';
-require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
+if ( isset( $options['port'] ) ) {
+	$wgSeleniumServerPort = (int) $options['port'];
+}
 
-// include seleniumTestsuite
-require_once 'selenium/SeleniumTestHTMLLogger.php';
-require_once 'selenium/SeleniumTestConsoleLogger.php';
-require_once 'selenium/SeleniumTestListener.php';
-require_once 'selenium/Selenium.php';
-require_once 'selenium/SeleniumTestSuite.php';
-require_once 'selenium/SeleniumTestCase.php';
+SeleniumLoader::load();
 
 $result = new PHPUnit_Framework_TestResult;
-switch ( $wgSeleniumTestsRunMode ) {
-	case 'html':
-		$logger = new SeleniumTestHTMLLogger;
-		break;
-	case 'cli':
-		$logger = new SeleniumTestConsoleLogger;
-		break;
-}
-
+$logger = new SeleniumTestConsoleLogger;
 $result->addListener( new SeleniumTestListener( $logger ) );
 
-$wgSeleniumTestSuites = array();
-
-// include tests
-// Todo: include automatically
-if ( is_array( $wgSeleniumTestIncludes ) ) {
-	foreach ( $wgSeleniumTestIncludes as $include ) {
-		include_once $include;
-	}
+$suite = new SeleniumTestSuite;
+foreach ( $wgSeleniumTests as $testClass ) {
+	$suite->addTest( new $testClass );
 }
-
-// run tests
-foreach ( $wgSeleniumTestSuites as $suite ) {
-	$suite->run( $result );
-}
+$suite->run( $result );
 
