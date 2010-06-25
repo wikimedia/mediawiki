@@ -102,7 +102,9 @@ class PrefixSearch {
 		$srchres = array();
 		foreach( $keys as $pageKey => $page ) {
 			if( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
+				wfSuppressWarnings();
 				$srchres[] = SpecialPage::getTitleFor( $page )->getPrefixedText();
+				wfRestoreWarnings();
 			}
 
 			if( count( $srchres ) >= $limit ) {
