@@ -275,10 +275,12 @@ class SpecialImport extends SpecialPage {
 class ImportReporter {
 	private $reason=false;
 	private $mOriginalLogCallback = null;
+	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
 
 	function __construct( $importer, $upload, $interwiki , $reason=false ) {
-		$importer->setPageOutCallback( array( $this, 'reportPage' ) );
+		$this->mOriginalPageOutCallback = 
+		        $importer->setPageOutCallback( array( $this, 'reportPage' ) );
 		$this->mOriginalLogCallback =
 			$importer->setLogItemCallback( array( $this, 'reportLogItem' ) );
 		$this->mPageCount = 0;
@@ -301,6 +303,8 @@ class ImportReporter {
 
 	function reportPage( $title, $origTitle, $revisionCount, $successCount ) {
 		global $wgOut, $wgUser, $wgLang, $wgContLang;
+		
+		call_user_func_array( $this->mOriginalPageOutCallback, func_get_args() );
 
 		$skin = $wgUser->getSkin();
 
