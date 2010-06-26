@@ -649,7 +649,7 @@ $2',
 結果利用這個IP地址的訪客在這段時間中不能創建更多的賬戶。',
 'emailauthenticated'         => '您的電子郵件地址已經於$2 $3確認有效。',
 'emailnotauthenticated'      => '您的郵箱位址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
-'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能',
+'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能。',
 'emailconfirmlink'           => '確認您的郵箱地址',
 'invalidemailaddress'        => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
 'accountcreated'             => '已建立帳戶',
@@ -2080,7 +2080,7 @@ $UNWATCHURL
 'deletedarticle'         => '已刪除「[[$1]]」',
 'suppressedarticle'      => '已廢止「[[$1]]」',
 'dellogpage'             => '刪除紀錄',
-'dellogpagetext'         => '以下是最近刪除的紀錄列表。',
+'dellogpagetext'         => '以下是最近的刪除的列表。',
 'deletionlog'            => '刪除紀錄',
 'reverted'               => '恢復到早期版本',
 'deletecomment'          => '刪除理由:',
@@ -2110,7 +2110,9 @@ $UNWATCHURL
 
 # Edit tokens
 'sessionfailure-title' => '登入資訊失敗',
-'sessionfailure'       => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
+'sessionfailure'       => '似乎您的登錄會話有問題；
+為了防止會話劫持，這個操作已經被取消。
+請點擊“後退”並重新載入頁面，然後重試。',
 
 # Protect
 'protectlogpage'              => '保護日誌',

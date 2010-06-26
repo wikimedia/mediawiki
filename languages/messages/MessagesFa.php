@@ -1632,6 +1632,7 @@ $1",
 'right-override-export-depth' => 'برون‌ریزی صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵',
 'right-sendemail'             => 'ارسال پست الکترونیک به دیگر کاربران',
 'right-revisionmove'          => 'ادغام نسخه‌ها',
+'right-selenium'              => 'اجرای آزمون سلنیوم',
 
 # User rights log
 'rightslog'      => 'سیاههٔ اختیارات کاربر',

@@ -52,7 +52,7 @@ $messages = array(
 'tog-editsection'             => 'Jọ̀wọ́ àtúnṣe abala láti inú àwọn ìjápọ̀',
 'tog-editsectiononrightclick' => 'Ìgbàláyè àtúnṣe abala nípa klííkì ọ̀tún lórí àkọlé abala (JavaScript pọndandan)',
 'tog-showtoc'                 => 'Àfihàn tábìlì àkóónú (fún àwọn ojúewé tó ní ju orí ọ̀rọ̀ 3 lọ)',
-'tog-rememberpassword'        => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
+'tog-rememberpassword'        => "Ṣè'rántí ìwọlé mi lórí kọ̀mpútà yìí (fún ó pẹ́ jù {{PLURAL:$1|ọjọ́|ọjọ́}} $1)",
 'tog-watchcreations'          => "Ṣ'àfikún ojúewé tí mo dá mọ́ ìmójútó mi",
 'tog-watchdefault'            => "S'àfikún ojúewé tí mo s'àtúnse mọ́ ìmójútó mi",
 'tog-watchmoves'              => "S'àfikún ojúewé tí mo yípò mọ́ ìmójútó mi",
@@ -404,7 +404,7 @@ A ti ṣ'èdá àpamọ́ yín.
 'yourname'                => 'Orúkọ oníṣe (username):',
 'yourpassword'            => 'Ọ̀rọ̀ìpamọ́:',
 'yourpasswordagain'       => 'Kọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
-'remembermypassword'      => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
+'remembermypassword'      => "Ṣè'rántí ìwọlé mi lórí kọ̀mpútà yìí (fún ó pẹ́ jù {{PLURAL:$1|ọjọ́|ọjọ́}} $1)",
 'yourdomainname'          => 'Domain yín:',
 'login'                   => 'Ìwọlé',
 'nav-login-createaccount' => 'Ìwọlé / Ìforúkọ sílẹ̀',
@@ -520,8 +520,8 @@ Kí á tó fi e-mail mìíràn ránṣẹ́ sí àkópamọ́ yìí, ẹ gbọ́
 'missingsummary'                   => "'''Ìránlétí:''' Ẹ kò pèsè àkótán fún àtúnṣe yìí
 Tí ẹ bá tẹ Ìmúpamọ́ lẹ́ẹ̀kansi, àtúnṣe yín yíò jẹ̀ mímúpamọ́ láìní kankan.",
 'missingcommenttext'               => 'Ẹjọ̀wọ́ ẹ ṣe áríwí ní ìsàlẹ̀',
-'missingcommentheader'             => "'''Ìránlétí:''' Ẹ kò pèsè àkọlé kankan fún àríwí yìí.
-Tí ẹ bá tẹ Ìmúpamọ́ lẹ́ẹ̀kansi, àtúnṣe yín yíò jẹ́ mímúpamọ́ láìní kankan.",
+'missingcommentheader'             => "'''Ìránlétí:''' Ẹ kò pèsè àkọlé/oríọ̀rọ̀ kankan fún àríwí yìí.
+Tí ẹ bá tẹ \"{{int:savearticle}}\" lẹ́ẹ̀kansi, àtúnṣe yín yíò jẹ́ mímúpamọ́ láìní kankan.",
 'summary-preview'                  => 'Àkọ́kọ́yẹ̀wò àkótán:',
 'subject-preview'                  => 'Àyẹ̀wò àkọlé',
 'blockedtitle'                     => 'Ìdínà oníṣe',
@@ -565,7 +565,7 @@ T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́y
 'userpage-userdoesnotexist'        => 'Àkópamọ́ oníṣe "$1" kò tíì jẹ́ fíforúkọsílẹ̀.
 Ẹjọ̀wọ́ ẹ ṣ\'àgbéyẹ̀wò bóyá ẹ fẹ́ dá/ṣàtúnṣe ojúewé yìí.',
 'userpage-userdoesnotexist-view'   => 'Àpamọ́ oníṣe "$1" kò jẹ́ fíforúkọsílẹ̀.',
-'usercssyoucanpreview'             => "'''Ìrànlọ́wọ́:''' Ẹ lo bọ́tìnì 'Àyẹ̀wò' fún dídánwò CSS tuntun yín kí ẹ tó múupamọ́.",
+'usercssyoucanpreview'             => "'''Ìrànlọ́wọ́:''' Ẹ lo bọ́tìnì \"{{int:showpreview}}\" fún dídánwò CSS tuntun yín kí ẹ tó múupamọ́.",
 'updated'                          => '(Títúnṣe)',
 'note'                             => "'''Àkíyèsí:'''",
 'previewnote'                      => "'''Ẹ rántí pé àyẹ̀wò lásán nì yí.'''
@@ -1069,7 +1069,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'shared-repo-from'          => 'láti $1',
 
 # File reversion
-'filerevert-comment' => 'Àríwí:',
+'filerevert-comment' => 'Ìdíẹ̀:',
 
 # File deletion
 'filedelete'                  => 'Paarẹ́ $1',
@@ -1342,7 +1342,7 @@ Bí a ṣe to ojúewé '''$1''' nì yí:",
 'undeletelink'              => 'wò/dápadà',
 'undeleteviewlink'          => 'wo',
 'undeletereset'             => 'Ìtúnṣètò',
-'undeletecomment'           => 'Àríwí:',
+'undeletecomment'           => 'Ìdíẹ̀:',
 'undeletedarticle'          => 'a ti dá "[[$1]]" padà',
 'undelete-search-prefix'    => 'Ìfihàn ojúewé tó bẹ̀rẹ̀ pẹ̀lú:',
 'undelete-search-submit'    => 'Àwáàrí',

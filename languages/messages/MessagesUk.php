@@ -18,6 +18,7 @@
  * @author Ickis
  * @author Ilyaroz
  * @author Innv
+ * @author KEL
  * @author Kalan
  * @author NickK
  * @author Prima klasy4na
@@ -2091,8 +2092,8 @@ $1',
 'emailuserfooter'      => 'Цей лист був надісланий користувачеві $2 від користувача $1 за допомогою функції «Надіслати листа» проекту {{SITENAME}}.',
 
 # User Messenger
-'usermessage-summary' => 'Leaving system message.',
-'usermessage-editor'  => 'System messenger',
+'usermessage-summary' => 'Залишити системне повыдомлення.',
+'usermessage-editor'  => 'Системний вісник',
 
 # Watchlist
 'watchlist'            => 'Список спостереження',
