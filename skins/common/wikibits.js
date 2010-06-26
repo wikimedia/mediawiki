@@ -5,9 +5,9 @@ var is_gecko = /gecko/.test( clientPC ) &&
 	!/khtml|spoofer|netscape\/7\.0/.test(clientPC);
 var webkit_match = clientPC.match(/applewebkit\/(\d+)/);
 if (webkit_match) {
-	var is_safari = clientPC.indexOf('applewebkit') !== -1 &&
-		clientPC.indexOf('spoofer') === -1;
-	var is_safari_win = is_safari && clientPC.indexOf('windows') !== -1;
+	var is_safari = clientPC.indexOf('applewebkit') != -1 &&
+		clientPC.indexOf('spoofer') == -1;
+	var is_safari_win = is_safari && clientPC.indexOf('windows') != -1;
 	var webkit_version = parseInt(webkit_match[1]);
 	// Tests for chrome here, to avoid breaking old scripts safari left alone
 	// This is here for accesskeys
@@ -19,9 +19,9 @@ if (webkit_match) {
 var is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
 var ff2_bugs = /firefox\/2/.test( clientPC );
 // These aren't used here, but some custom scripts rely on them
-var is_ff2_win = is_ff2 && clientPC.indexOf('windows') !== -1;
-var is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') !== -1;
-if (clientPC.indexOf('opera') !== -1) {
+var is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
+var is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
+if (clientPC.indexOf('opera') != -1) {
 	var is_opera = true;
 	var is_opera_preseven = window.opera && !document.childNodes;
 	var is_opera_seven = window.opera && document.childNodes;
@@ -33,7 +33,11 @@ if (clientPC.indexOf('opera') !== -1) {
 // As recommended by <http://msdn.microsoft.com/en-us/library/ms537509.aspx>,
 // avoiding false positives from moronic extensions that append to the IE UA
 // string (bug 23171)
-var ie6_bugs = /MSIE ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) && parseFloat( RegExp.$1 ) <= 6.0 );
+var ie6_bugs = false;
+if ( /MSIE ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
+&& parseFloat( RegExp.$1 ) <= 6.0 ) {
+	ie6_bugs = true;
+}
 
 // Global external objects used by this script.
 /*extern ta, stylepath, skin */
@@ -69,7 +73,7 @@ function importScript( page ) {
 var loadedScripts = {}; // included-scripts tracker
 function importScriptURI( url ) {
 	if ( loadedScripts[url] ) {
-		return;
+		return null;
 	}
 	loadedScripts[url] = true;
 	var s = document.createElement( 'script' );
@@ -109,7 +113,7 @@ function appendCSS( text ) {
 }
 
 // Special stylesheet links for Monobook only (see bug 14717)
-if ( typeof stylepath !== 'undefined' && skin === 'monobook' ) {
+if ( typeof stylepath != 'undefined' && skin == 'monobook' ) {
 	if ( opera6_bugs ) {
 		importStylesheetURI( stylepath + '/' + skin + '/Opera6Fixes.css' );
 	} else if ( opera7_bugs ) {
@@ -159,7 +163,7 @@ function showTocToggle() {
 		linkHolder.appendChild( outerSpan );
 
 		var cookiePos = document.cookie.indexOf( "hidetoc=" );
-		if ( cookiePos > -1 && document.cookie.charAt( cookiePos + 8 ) === 1 ) {
+		if ( cookiePos > -1 && document.cookie.charAt( cookiePos + 8 ) == 1 ) {
 			toggleToc();
 		}
 	}
@@ -176,7 +180,7 @@ function changeText( el, newText ) {
 
 function killEvt( evt ) {
 	evt = evt || window.event || window.Event; // W3C, IE, Netscape
-	if ( typeof ( evt.preventDefault ) !== 'undefined' ) {
+	if ( typeof ( evt.preventDefault ) != 'undefined' ) {
 		evt.preventDefault(); // Don't follow the link
 		evt.stopPropagation();
 	} else {
@@ -190,7 +194,7 @@ function toggleToc() {
 	var toc = document.getElementById('toc').getElementsByTagName('ul')[0];
 	var toggleLink = document.getElementById( 'togglelink' );
 
-	if ( toc && toggleLink && toc.style.display === 'none' ) {
+	if ( toc && toggleLink && toc.style.display == 'none' ) {
 		changeText( toggleLink, tocHideText );
 		toc.style.display = 'block';
 		document.cookie = "hidetoc=0";
@@ -238,8 +242,8 @@ if ( is_opera ) {
 } else if ( !is_safari_win && is_safari && webkit_version > 526 ) {
 	tooltipAccessKeyPrefix = 'ctrl-alt-';
 } else if ( !is_safari_win && ( is_safari
-		|| clientPC.indexOf('mac') !== -1
-		|| clientPC.indexOf('konqueror') !== -1 ) ) {
+		|| clientPC.indexOf('mac') != -1
+		|| clientPC.indexOf('konqueror') != -1 ) ) {
 	tooltipAccessKeyPrefix = 'ctrl-';
 } else if ( is_ff2 ) {
 	tooltipAccessKeyPrefix = 'alt-shift-';
@@ -317,11 +321,11 @@ function updateTooltipAccessKeys( nodeList ) {
 function addPortletLink( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 	var root = document.getElementById( portlet );
 	if ( !root ) {
-		return;
+		return null;
 	}
 	var node = root.getElementsByTagName( 'ul' )[0];
 	if ( !node ) {
-		return;
+		return null;
 	}
 
 	// unhide portlet if it was hidden before
@@ -351,7 +355,7 @@ function addPortletLink( portlet, href, text, id, tooltip, accesskey, nextnode )
 		updateTooltipAccessKeys( new Array( link ) );
 	}
 
-	if ( nextnode && nextnode.parentNode === node ) {
+	if ( nextnode && nextnode.parentNode == node ) {
 		node.insertBefore( item, nextnode );
 	} else {
 		node.appendChild( item );  // IE compatibility (?)
@@ -361,10 +365,10 @@ function addPortletLink( portlet, href, text, id, tooltip, accesskey, nextnode )
 }
 
 function getInnerText( el ) {
-	if ( typeof el === 'string' ) {
+	if ( typeof el == 'string' ) {
 		return el;
 	}
-	if ( typeof el === 'undefined' ) {
+	if ( typeof el == 'undefined' ) {
 		return el;
 	}
 	if ( el.textContent ) {
@@ -400,7 +404,7 @@ var lastCheckbox;
 
 function setupCheckboxShiftClick() {
 	checkboxes = [];
-	lastCheckbox = undefined;
+	lastCheckbox = null;
 	var inputs = document.getElementsByTagName( 'input' );
 	addCheckboxClickHandlers( inputs );
 }
@@ -417,7 +421,7 @@ function addCheckboxClickHandlers( inputs, start ) {
 
 	for ( var i = start; i < finish; i++ ) {
 		var cb = inputs[i];
-		if ( !cb.type || cb.type.toLowerCase() !== 'checkbox' ) {
+		if ( !cb.type || cb.type.toLowerCase() != 'checkbox' ) {
 			continue;
 		}
 		var end = checkboxes.length;
@@ -434,10 +438,10 @@ function addCheckboxClickHandlers( inputs, start ) {
 }
 
 function checkboxClickHandler( e ) {
-	if ( typeof e === 'undefined' ) {
+	if ( typeof e == 'undefined' ) {
 		e = window.event;
 	}
-	if ( !e.shiftKey || lastCheckbox === undefined ) {
+	if ( !e.shiftKey || lastCheckbox === null ) {
 		lastCheckbox = this.index;
 		return true;
 	}
@@ -452,7 +456,7 @@ function checkboxClickHandler( e ) {
 	}
 	for ( var i = start; i <= finish; ++i ) {
 		checkboxes[i].checked = endState;
-		if( i > start && typeof checkboxes[i].onchange === 'function' ) {
+		if( i > start && typeof checkboxes[i].onchange == 'function' ) {
 			checkboxes[i].onchange(); // fire triggers
 		}
 	}
@@ -469,22 +473,22 @@ function checkboxClickHandler( e ) {
 */
 function getElementsByClassName( oElm, strTagName, oClassNames ) {
 	var arrReturnElements = new Array();
-	if ( typeof( oElm.getElementsByClassName ) === 'function' ) {
+	if ( typeof( oElm.getElementsByClassName ) == 'function' ) {
 		/* Use a native implementation where possible FF3, Saf3.2, Opera 9.5 */
 		var arrNativeReturn = oElm.getElementsByClassName( oClassNames );
-		if ( strTagName === '*' ) {
+		if ( strTagName == '*' ) {
 			return arrNativeReturn;
 		}
 		for ( var h = 0; h < arrNativeReturn.length; h++ ) {
-			if( arrNativeReturn[h].tagName.toLowerCase() === strTagName.toLowerCase() ) {
+			if( arrNativeReturn[h].tagName.toLowerCase() == strTagName.toLowerCase() ) {
 				arrReturnElements[arrReturnElements.length] = arrNativeReturn[h];
 			}
 		}
 		return arrReturnElements;
 	}
-	var arrElements = ( strTagName === '*' && oElm.all ) ? oElm.all : oElm.getElementsByTagName( strTagName );
+	var arrElements = ( strTagName == '*' && oElm.all ) ? oElm.all : oElm.getElementsByTagName( strTagName );
 	var arrRegExpClassNames = new Array();
-	if( typeof oClassNames === 'object' ) {
+	if( typeof oClassNames == 'object' ) {
 		for( var i = 0; i < oClassNames.length; i++ ) {
 			arrRegExpClassNames[arrRegExpClassNames.length] =
 				new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)");
@@ -521,7 +525,7 @@ function redirectToFragment( fragment ) {
 			return;
 		}
 	}
-	if ( window.location.hash === '' ) {
+	if ( window.location.hash == '' ) {
 		window.location.hash = fragment;
 
 		// Mozilla needs to wait until after load, otherwise the window doesn't
@@ -532,7 +536,7 @@ function redirectToFragment( fragment ) {
 		// well.
 		if ( is_gecko ) {
 			addOnloadHook(function() {
-				if ( window.location.hash === fragment ) {
+				if ( window.location.hash == fragment ) {
 					window.location.hash = fragment;
 				}
 			});
@@ -555,10 +559,10 @@ var ts_image_path = stylepath + '/common/images/';
 var ts_image_up = 'sort_up.gif';
 var ts_image_down = 'sort_down.gif';
 var ts_image_none = 'sort_none.gif';
-var ts_europeandate = wgContentLanguage !== 'en'; // The non-American-inclined can change to "true"
+var ts_europeandate = wgContentLanguage != 'en'; // The non-American-inclined can change to "true"
 var ts_alternate_row_colors = false;
-var ts_number_transform_table;
-var ts_number_regex;
+var ts_number_transform_table = null;
+var ts_number_regex = null;
 
 function sortables_init() {
 	var idnum = 0;
@@ -589,7 +593,7 @@ function ts_makeSortable( table ) {
 	// We have a first row: assume it's the header, and make its contents clickable links
 	for ( var i = 0; i < firstRow.cells.length; i++ ) {
 		var cell = firstRow.cells[i];
-		if ( (' ' + cell.className + ' ').indexOf(' unsortable ') === -1 ) {
+		if ( (' ' + cell.className + ' ').indexOf(' unsortable ') == -1 ) {
 			cell.innerHTML += '<a href="#" class="sortheader" '
 				+ 'onclick="ts_resortTable(this);return false;">'
 				+ '<span class="sortarrow">'
@@ -617,7 +621,7 @@ function ts_resortTable( lnk ) {
 	var column = td.cellIndex;
 
 	var table = tr.parentNode;
-	while ( table && !( table.tagName && table.tagName.toLowerCase() === 'table' ) ) {
+	while ( table && !( table.tagName && table.tagName.toLowerCase() == 'table' ) ) {
 		table = table.parentNode;
 	}
 	if ( !table ) {
@@ -629,7 +633,7 @@ function ts_resortTable( lnk ) {
 	}
 
 	// Generate the number transform table if it's not done already
-	if ( ts_number_transform_table === undefined ) {
+	if ( ts_number_transform_table === null ) {
 		ts_initTransformTable();
 	}
 
@@ -637,7 +641,7 @@ function ts_resortTable( lnk ) {
 	// Skip the first row if that's where the headings are
 	var rowStart = ( table.tHead && table.tHead.rows.length > 0 ? 0 : 1 );
 	var bodyRows = 0;
-	if (rowStart === 0 && table.tBodies) {
+	if (rowStart == 0 && table.tBodies) {
 		for (var i=0; i < table.tBodies.length; i++ ) {
 			bodyRows += table.tBodies[i].rows.length;
 		}
@@ -650,7 +654,7 @@ function ts_resortTable( lnk ) {
 		if ( table.rows[i].cells.length > column ) {
 			itm = ts_getInnerText(table.rows[i].cells[column]);
 			itm = itm.replace(/^[\s\xa0]+/, '').replace(/[\s\xa0]+$/, '');
-			if ( itm !== '' ) {
+			if ( itm != '' ) {
 				break;
 			}
 		}
@@ -672,7 +676,7 @@ function ts_resortTable( lnk ) {
 		preprocessor = ts_parseFloat;
 	}
 
-	var reverse = ( span.getAttribute( 'sortdir' ) === 'down' );
+	var reverse = ( span.getAttribute( 'sortdir' ) == 'down' );
 
 	var newRows = new Array();
 	var staticRows = new Array();
@@ -712,13 +716,13 @@ function ts_resortTable( lnk ) {
 	// We appendChild rows that already exist to the tbody, so it moves them rather than creating new ones
 	// don't do sortbottom rows
 	for ( var i = 0; i < newRows.length; i++ ) {
-		if ( ( ' ' + newRows[i][0].className + ' ').indexOf(' sortbottom ') === -1 ) {
+		if ( ( ' ' + newRows[i][0].className + ' ').indexOf(' sortbottom ') == -1 ) {
 			table.tBodies[0].appendChild( newRows[i][0] );
 		}
 	}
 	// do sortbottom rows only
 	for ( var i = 0; i < newRows.length; i++ ) {
-		if ( ( ' ' + newRows[i][0].className + ' ').indexOf(' sortbottom ') !== -1 ) {
+		if ( ( ' ' + newRows[i][0].className + ' ').indexOf(' sortbottom ') != -1 ) {
 			table.tBodies[0].appendChild( newRows[i][0] );
 		}
 	}
@@ -736,8 +740,8 @@ function ts_resortTable( lnk ) {
 }
 
 function ts_initTransformTable() {
-	if ( typeof wgSeparatorTransformTable === 'undefined'
-			|| ( wgSeparatorTransformTable[0] === '' && wgDigitTransformTable[2] === '' ) )
+	if ( typeof wgSeparatorTransformTable == 'undefined'
+			|| ( wgSeparatorTransformTable[0] == '' && wgDigitTransformTable[2] == '' ) )
 	{
 		var digitClass = "[0-9,.]";
 		ts_number_transform_table = false;
@@ -794,7 +798,7 @@ function ts_toLowerCase( s ) {
 
 function ts_dateToSortKey( date ) {
 	// y2k notes: two digit years less than 50 are treated as 20XX, greater than 50 are treated as 19XX
-	if ( date.length === 11 ) {
+	if ( date.length == 11 ) {
 		switch ( date.substr( 3, 3 ).toLowerCase() ) {
 			case 'jan':
 				var month = '01';
@@ -835,20 +839,20 @@ function ts_dateToSortKey( date ) {
 			// default: var month = '00';
 		}
 		return date.substr( 7, 4 ) + month + date.substr( 0, 2 );
-	} else if ( date.length === 10 ) {
-		if ( ts_europeandate === false ) {
+	} else if ( date.length == 10 ) {
+		if ( ts_europeandate == false ) {
 			return date.substr( 6, 4 ) + date.substr( 0, 2 ) + date.substr( 3, 2 );
 		} else {
 			return date.substr( 6, 4 ) + date.substr( 3, 2 ) + date.substr( 0, 2 );
 		}
-	} else if ( date.length === 8 ) {
+	} else if ( date.length == 8 ) {
 		var yr = date.substr( 6, 2 );
 		if ( parseInt( yr ) < 50 ) {
 			yr = '20' + yr;
 		} else {
 			yr = '19' + yr;
 		}
-		if ( ts_europeandate === true ) {
+		if ( ts_europeandate == true ) {
 			return yr + date.substr( 3, 2 ) + date.substr( 0, 2 );
 		} else {
 			return yr + date.substr( 0, 2 ) + date.substr( 3, 2 );
@@ -861,7 +865,7 @@ function ts_parseFloat( s ) {
 	if ( !s ) {
 		return 0;
 	}
-	if ( ts_number_transform_table !== false ) {
+	if ( ts_number_transform_table != false ) {
 		var newNum = '', c;
 
 		for ( var p = 0; p < s.length; p++ ) {
@@ -900,11 +904,11 @@ function ts_alternate( table ) {
 			var oldClasses = tableRows[j].className.split(' ');
 			var newClassName = '';
 			for ( var k = 0; k < oldClasses.length; k++ ) {
-				if ( oldClasses[k] !== '' && oldClasses[k] !== 'even' && oldClasses[k] !== 'odd' ) {
+				if ( oldClasses[k] != '' && oldClasses[k] != 'even' && oldClasses[k] != 'odd' ) {
 					newClassName += oldClasses[k] + ' ';
 				}
 			}
-			tableRows[j].className = newClassName + ( j % 2 === 0 ? 'even' : 'odd' );
+			tableRows[j].className = newClassName + ( j % 2 == 0 ? 'even' : 'odd' );
 		}
 	}
 }
