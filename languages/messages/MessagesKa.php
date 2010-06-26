@@ -127,7 +127,7 @@ $messages = array(
 'tog-editsection'             => 'სექციის რედაქტირების ნებართვა [რედაქტირებული] ბმულების გავლით',
 'tog-editsectiononrightclick' => 'სექციის რედაქტირების ნებართვა მარჯვენა ღილაკზე დაჭერით<br />სექციის სათაურებზე (ჯავასკრიპტი)',
 'tog-showtoc'                 => 'აჩვენე სარჩევი (სამ ქვესათაურზე მეტის მქონე გვერდებისთვის)',
-'tog-rememberpassword'        => 'სესიებს შორის პაროლის დამახსოვრება',
+'tog-rememberpassword'        => 'დამიმახსოვრე ამ კომპიუტერზე (მაქსიმუმ $1 {{PLURAL:$1|დღე}})',
 'tog-watchcreations'          => 'დაამატე ჩემი კონტროლის სიას ჩემს მიერ შექმნილი გვერდები',
 'tog-watchdefault'            => 'დაამატე ჩემი კონტროლის სიას ჩემს მიერ რედაქტირებული გვერდები',
 'tog-watchmoves'              => 'ჩასვი გვერდები, რომლებიც მე გადამაქვს, ჩემს კონტროლის სიაში',
@@ -522,7 +522,7 @@ $2',
 'yourname'                   => 'მომხმარებელი:',
 'yourpassword'               => 'პაროლი:',
 'yourpasswordagain'          => 'ხელმეორედ შეიყვანეთ პაროლი',
-'remembermypassword'         => 'დამიმახსოვრე',
+'remembermypassword'         => 'დამიმახსოვრე ამ კომპიუტერზე (მაქსიმუმ $1 {{PLURAL:$1|დღე}})',
 'yourdomainname'             => 'თქვენი დომენი',
 'externaldberror'            => 'საგარეო მონაცემთა ბაზაში აუტენტიფიკაციის შეცდომაა, ან თქვენ არ გაქვთ საკმარისი უფლებები საგარეო ანგარიშში ცვლილებების შესატანად.',
 'login'                      => 'შესვლა',
@@ -976,7 +976,8 @@ $1",
 'suppressionlogtext' => 'ეს არის მომხმარებლების დაბლოკვის და განბლოკვის ჟურნალი. ავტომატურად დაბლოკილი IP მისამართები არაა ჩამოთვლილი. იხილეთ [[Special:IPBlockList|IP ბლოკირების სია]] მიმდინარე დაბლოკვებისთვის.',
 
 # Revision move
-'revmove-reasonfield' => 'მიზეზი:',
+'revmove-reasonfield'    => 'მიზეზი:',
+'revmove-badparam-title' => 'ცუდი პარამეტრები',
 
 # History merging
 'mergehistory'                     => 'გვერდების ისტორიის შერწყმა',
@@ -3086,6 +3087,7 @@ $1',
 'table_pager_first'        => 'პირველი გვერდი',
 'table_pager_last'         => 'ბოლო გვერდი',
 'table_pager_limit'        => 'აჩვენეთ $1 ელემნტი გვერდზე',
+'table_pager_limit_label'  => 'ჩანაწერი გვერდზე:',
 'table_pager_limit_submit' => 'აჩვენე',
 'table_pager_empty'        => 'შედეგები არაა',
 
@@ -3225,6 +3227,15 @@ $1',
 'tags-hitcount-header'    => 'აღნიშნული ცვლილებები',
 'tags-edit'               => 'რედაქტირება',
 'tags-hitcount'           => '$1 ცვლილება',
+
+# Special:ComparePages
+'comparepages'     => 'გვერდების შედარება',
+'compare-selector' => 'გვერდების ვერსიების შედარება',
+'compare-page1'    => '1 გვერდი',
+'compare-page2'    => '2 გვერდი',
+'compare-rev1'     => 'პირველი ვერსია',
+'compare-rev2'     => 'მეორე ვერსია',
+'compare-submit'   => 'შედარება',
 
 # Database error messages
 'dberr-header'      => 'ეს ვიკი განიცდის პრობლემას',

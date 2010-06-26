@@ -1086,8 +1086,42 @@ Parameters:
 'suppressionlogtext' => 'Description text of the suppression log. Shown at top of [[Special:log/suppress]].',
 
 # Revision move
-'revisionmove'        => 'Title for a special page. $1 is the title of a page.',
-'revmove-reasonfield' => '{{Identical|Reason}}',
+'moverevlogentry'              => "Description of action in a log. The name of the user who did this action appears before this message.
+
+Refers to an action using the Revmove feature. The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.",
+'revisionmove'                 => 'Title for a special page. $1 is the title of a page.',
+'revmove-legend'               => 'The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don\'t change, only their associated page is changed.
+
+This message appears to be the legend of a fieldset. I guess that "Target page" should be the destination page of the move.',
+'revmove-submit'               => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.",
+'revisionmoveselectedversions' => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.",
+'revmove-reasonfield'          => '{{Identical|Reason}}',
+'revmove-titlefield'           => 'The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don\'t change, only their associated page is changed.
+
+This message appears to be a field legend. I guess that "Target page" is the destination page of the move.',
+'revmove-norevisions-title'    => 'This is the title of the page which contains the body text [[MediaWiki:Revmove-norevisions]].
+
+"Target revision" refers to one or more revisions which should be moved from one page to another. The revisions themselves don\'t change, only their associated page is changed.
+
+This text is for an error page of an error that normally should not happen (or only very rarely). A rough translation should suffice.',
+'revmove-norevisions'          => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.
+
+This message appears to be an error message. The word 'target' appears to be redundant (that means you can leave it out when translating).",
+'revmove-nullmove'             => 'The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don\'t change, only their associated page is changed.
+
+It appears that "Target page" is the destination page of the move.',
+'revmove-success-existing'     => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.
+
+Variables:
+* $1 is the number of revisions moved
+* $2 is the name of the source page
+* $3 is the name of the destination page",
+'revmove-success-created'      => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.
+
+Variables:
+* $1 is the number of revisions moved
+* $2 is the name of the source page
+* $3 is the name of the destination page",
 
 # History merging
 'mergehistory-autocomment'      => 'This message is used as an edit summary when a redirect is automatically created after an entire page history is merged into another page history, and the user who did the merge wrote no comment.
@@ -3621,10 +3655,14 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 # Special:ComparePages
 'comparepages'     => 'The title of [[Special:ComparePages]]',
 'compare-selector' => 'Header of the form on [[Special:ComparePages]]',
-'compare-page1'    => 'Label for the field of the 1st page in the comparison for [[Special:ComparePages]]',
-'compare-page2'    => 'Label for the field of the 2nd page in the comparison for [[Special:ComparePages]]',
-'compare-rev1'     => 'Label for the field of the 1st revision in the comparison for [[Special:ComparePages]]',
-'compare-rev2'     => 'Label for the field of the 2nd revision in the comparison for [[Special:ComparePages]]',
+'compare-page1'    => 'Label for the field of the 1st page in the comparison for [[Special:ComparePages]]
+{{Identical|Page}}',
+'compare-page2'    => 'Label for the field of the 2nd page in the comparison for [[Special:ComparePages]]
+{{Identical|Page}}',
+'compare-rev1'     => 'Label for the field of the 1st revision in the comparison for [[Special:ComparePages]]
+{{Identical|Revision}}',
+'compare-rev2'     => 'Label for the field of the 2nd revision in the comparison for [[Special:ComparePages]]
+{{Identical|Revision}}',
 'compare-submit'   => 'Submit button on [[Special:ComparePages]]',
 
 # Database error messages

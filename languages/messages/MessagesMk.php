@@ -1504,6 +1504,7 @@ $1",
 'right-override-export-depth' => 'Извезување на страници вклучително и поврзани страници со длабочина 5',
 'right-sendemail'             => 'Испраќање на е-пошта до други корисници',
 'right-revisionmove'          => 'Преместување на ревизии',
+'right-selenium'              => 'Вршење на Selenium проби',
 
 # User rights log
 'rightslog'      => 'Дневник на менувања на кориснички права',

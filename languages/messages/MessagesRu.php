@@ -1480,6 +1480,7 @@ $1",
 'right-override-export-depth' => 'экспортирование страниц, включая связанные страницы с глубиной до 5',
 'right-sendemail'             => 'отправлять электронную почту другим участникам',
 'right-revisionmove'          => 'перенос версий страниц',
+'right-selenium'              => 'запуск проверок Selenium',
 
 # User rights log
 'rightslog'      => 'Журнал прав участника',

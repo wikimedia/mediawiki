@@ -1380,6 +1380,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
 'right-revisionmove'          => 'Displaciar versiones',
+'right-selenium'              => 'Executar tests de Selenium',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',

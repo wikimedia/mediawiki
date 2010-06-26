@@ -2971,7 +2971,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-info-gif-looped' => 'Endlosschleife',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|Bild|Bilder}}',
 'file-info-png-looped' => 'Endlosschleife',
-'file-info-png-repeat' => '$1 {{PLURAL:$1|mal|mal}} abgespielt',
+'file-info-png-repeat' => '$1-{{PLURAL:$1|mal|mal}} abgespielt',
 'file-info-png-frames' => '$1 {{PLURAL:$1|Bild|Bilder}}',
 
 # Special:NewFiles

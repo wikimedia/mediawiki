@@ -1459,6 +1459,7 @@ $1",
 'right-override-export-depth' => 'экспартаваньне старонак, уключаючы зьвязаныя старонкі з глыбінёй да 5',
 'right-sendemail'             => 'адпраўка электронных лістоў іншым удзельнікам',
 'right-revisionmove'          => 'перанос вэрсіяў',
+'right-selenium'              => 'выкананьне тэстаў Selenium',
 
 # User rights log
 'rightslog'      => 'Журнал правоў удзельнікаў',
@@ -1556,7 +1557,7 @@ $1",
 # Upload
 'upload'                      => 'Загрузіць файл',
 'uploadbtn'                   => 'Загрузіць файл',
-'reuploaddesc'                => 'Адмяніць загрузку і вярнуцца да формы загрузкі',
+'reuploaddesc'                => 'Скасаваць загрузку і вярнуцца да формы загрузкі',
 'upload-tryagain'             => 'Даслаць зьмененае апісаньне файла',
 'uploadnologin'               => 'Вы не ўвайшлі ў сыстэму',
 'uploadnologintext'           => 'Вам трэба [[Special:UserLogin|ўвайсьці ў сыстэму]] для загрузкі файлаў.',
@@ -2858,6 +2859,9 @@ $1',
 'show-big-image-thumb' => '<small>Памер пры папярэднім праглядзе: $1 × $2 {{PLURAL:$2|піксэль|піксэлі|піксэляў}}</small>',
 'file-info-gif-looped' => 'паўтараючыся',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|кадар|кадры|кадраў}}',
+'file-info-png-looped' => 'паўтараючыся',
+'file-info-png-repeat' => 'паўтораны $1 {{PLURAL:$1|раз|разы|разоў}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|кадар|кадры|кадраў}}',
 
 # Special:NewFiles
 'newimages'             => 'Галерэя новых файлаў',
@@ -3398,6 +3402,15 @@ $1',
 'tags-hitcount-header'    => 'Пазначаныя зьмены',
 'tags-edit'               => 'рэдагаваць',
 'tags-hitcount'           => '$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}',
+
+# Special:ComparePages
+'comparepages'     => 'Параўнаньне старонак',
+'compare-selector' => 'Параўнаньне вэрсіяў старонак',
+'compare-page1'    => 'Старонка 1',
+'compare-page2'    => 'Старонка 2',
+'compare-rev1'     => 'Вэрсія 1',
+'compare-rev2'     => 'Вэрсія 2',
+'compare-submit'   => 'Параўнаць',
 
 # Database error messages
 'dberr-header'      => '{{SITENAME}} мае праблемы',

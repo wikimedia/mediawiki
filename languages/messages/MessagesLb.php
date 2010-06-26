@@ -1365,6 +1365,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
 'right-revisionmove'          => 'Versioune réckelen',
+'right-selenium'              => 'Selenium-Tester maachen',
 
 # User rights log
 'rightslog'      => 'Logbuch vun de Benotzerrechter',
@@ -2765,6 +2766,9 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.<hr />",
 'show-big-image-thumb' => '<small>Gréisst vun der Miniatur: $1 × $2 Pixel</small>',
 'file-info-gif-looped' => 'Endloosschleef',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|Bild|Biller}}',
+'file-info-png-looped' => 'Endlossschleef',
+'file-info-png-repeat' => 'gouf $1 {{PLURAL:$1|mol|mol}} gespillt',
+'file-info-png-frames' => '$1 {{PLURAL:$1|Frame|Framen}}',
 
 # Special:NewFiles
 'newimages'             => 'Gallerie vun den neie Biller',

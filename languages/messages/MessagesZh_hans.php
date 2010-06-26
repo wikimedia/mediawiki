@@ -659,7 +659,7 @@ $2',
 'acct_creation_throttle_hit' => '抱歉！您已经创建了$1个账号。你不能再创建了。',
 'emailauthenticated'         => '您的电子邮箱地址已经于$2 $3确认有效。',
 'emailnotauthenticated'      => '您的邮箱地址<strong>还没被认证</strong>。以下功能将不会发送任何邮件。',
-'noemailprefs'               => '指定一个电子邮箱地址以使用此功能',
+'noemailprefs'               => '指定一个电子邮箱地址以使用此功能。',
 'emailconfirmlink'           => '确认您的邮箱地址',
 'invalidemailaddress'        => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
 'accountcreated'             => '已建立账户',
@@ -2078,7 +2078,7 @@ $UNWATCHURL
 'deletedarticle'         => '已删除“[[$1]]”',
 'suppressedarticle'      => '已废止"[[$1]]"',
 'dellogpage'             => '删除日志',
-'dellogpagetext'         => '以下是最近删除的纪录列表：',
+'dellogpagetext'         => '以下是最近的删除的列表。',
 'deletionlog'            => '删除日志',
 'reverted'               => '恢复到早期版本',
 'deletecomment'          => '删除原因：',
@@ -2108,7 +2108,9 @@ $UNWATCHURL
 
 # Edit tokens
 'sessionfailure-title' => '登录信息失败',
-'sessionfailure'       => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
+'sessionfailure'       => '似乎您的登录会话有问题；
+为了防止会话劫持，这个操作已经被取消。
+请点击“后退”并重新载入页面，然后重试。',
 
 # Protect
 'protectlogpage'              => '保护日志',

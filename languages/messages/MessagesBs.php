@@ -2688,7 +2688,7 @@ Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MediaWiki lokalizac
 'allmessagesnotsupportedDB'     => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter po stanju podešavanja:',
-'allmessages-filter-unmodified' => 'Neizmijeneno',
+'allmessages-filter-unmodified' => 'Neizmijenjeno',
 'allmessages-filter-all'        => 'Sve',
 'allmessages-filter-modified'   => 'Izmijenjeno',
 'allmessages-prefix'            => 'Filter po prefiksu:',

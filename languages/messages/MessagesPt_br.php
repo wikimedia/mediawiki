@@ -1509,6 +1509,7 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar email a outros usuários',
 'right-revisionmove'          => 'Mover revisões',
+'right-selenium'              => 'Executar os testes do Selenium',
 
 # User rights log
 'rightslog'      => 'Registro de privilégios de usuário',
