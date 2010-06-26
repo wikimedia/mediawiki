@@ -130,7 +130,8 @@ class AddWiki extends Maintenance {
 		$wgArticle = new Article( $wgTitle );
 		$ucsite = ucfirst( $site );
 
-		$wgArticle->insertNewArticle( $this->getFirstArticle( $ucsite, $name ), '', false, false );
+		$wgArticle->doEdit( $this->getFirstArticle( $ucsite, $name ), '', EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY,
+			false, null, false, false, '', true );
 
 		$this->output( "Adding to dblists\n" );
 

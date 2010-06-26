@@ -1040,7 +1040,8 @@ class ParserTest {
 		}
 
 		$art = new Article( $title );
-		$art->insertNewArticle( $text, '', false, false );
+		$art->doEdit( $text, '', EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY,
+			false, null, false, false, '', true );
 
 		$this->teardownGlobals();
 	}

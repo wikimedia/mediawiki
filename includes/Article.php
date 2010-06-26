@@ -1965,6 +1965,7 @@ class Article {
 	 * it. Nevertheless, use Article::doEdit() instead.
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC = false, $comment = false, $bot = false ) {
+		wfDeprecated( __METHOD__ );
 		$flags = EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $isminor ? EDIT_MINOR : 0 ) |
 			( $suppressRC ? EDIT_SUPPRESS_RC : 0 ) |

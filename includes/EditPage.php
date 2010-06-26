@@ -905,10 +905,11 @@ class EditPage {
 
 			$isComment = ( $this->section == 'new' );
 
-			# FIXME: paste contents from Article::insertNewArticle here and 
-			# actually handle errors it may return
-			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
-				$this->minoredit, $this->watchthis, false, $isComment, $bot );
+			$flags = EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
+				( $this->minoredit ? EDIT_MINOR : 0 ) |
+				( $bot ? EDIT_FORCE_BOT : 0 );
+			$this->mArticle->doEdit( $this->textbox1, $this->summary, $flags,
+				false, null, $this->watchthis, $isComment, '', true );
 
 			wfProfileOut( __METHOD__ );
 			return self::AS_SUCCESS_NEW_ARTICLE;
