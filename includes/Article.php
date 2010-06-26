@@ -1961,8 +1961,7 @@ class Article {
 	}
 
 	/**
-	 * This function is not deprecated until somebody fixes the core not to use
-	 * it. Nevertheless, use Article::doEdit() instead.
+	 * @deprecated use Article::doEdit()
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC = false, $comment = false, $bot = false ) {
 		wfDeprecated( __METHOD__ );
