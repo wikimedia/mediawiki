@@ -1529,6 +1529,7 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
 'right-revisionmove'          => 'Mover revisiones',
+'right-selenium'              => 'Ejecutar tests de Selenium',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',

@@ -1521,6 +1521,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-sendemail'             => 'Skicka e-post till andra användare',
 'right-revisionmove'          => 'Flytta versioner',
+'right-selenium'              => 'Köra Selenium-tester',
 
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',

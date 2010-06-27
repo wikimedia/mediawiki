@@ -437,7 +437,7 @@ $messages = array(
 'otherlanguages'    => 'Á öðrum tungumálum',
 'redirectedfrom'    => '(Tilvísað frá $1)',
 'redirectpagesub'   => 'Tilvísunarsíða',
-'lastmodifiedat'    => 'Þessari síðu var síðast breytt $2, klukkan $1.',
+'lastmodifiedat'    => 'Þessari síðu var síðast breytt $1 klukkan $2.',
 'viewcount'         => 'Þessi síða hefur verið skoðuð {{PLURAL:$1|einu sinni|$1 sinnum}}.',
 'protectedpage'     => 'Vernduð síða',
 'jumpto'            => 'Stökkva á:',
@@ -2117,7 +2117,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Óþekktur notandi|Óþekktir notendur}} á {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} notandi $1',
-'lastmodifiedatby' => 'Þessari síðu var síðast breytt $2, $1 af $3.',
+'lastmodifiedatby' => 'Þessari síðu var síðast breytt $1 klukkan $2 af $3.',
 'othercontribs'    => 'Byggt á verkum $1.',
 'others'           => 'aðrir',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|notandi|notendur}} $1',

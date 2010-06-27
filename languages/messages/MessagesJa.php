@@ -1434,6 +1434,7 @@ $1",
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
 'right-sendemail'             => '他の利用者へ電子メールを送る',
 'right-revisionmove'          => '版の移動',
+'right-selenium'              => 'Selenium テストを実行する',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',

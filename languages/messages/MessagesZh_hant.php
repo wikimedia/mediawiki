@@ -1379,6 +1379,7 @@ $1",
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
 'right-revisionmove'          => '移動修訂版本',
+'right-selenium'              => '運行Selenium測試',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',

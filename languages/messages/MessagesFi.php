@@ -1122,12 +1122,21 @@ Sinulla ei ole oikeutta siihen.',
 
 # Revision move
 'moverevlogentry'              => 'siirsi {{PLURAL:$3|yhden version|$3 versiota}} sivulta $1 sivulle $2',
+'revisionmove'                 => 'Siirrä versiot sivulta ”$1”',
+'revmove-explain'              => 'Seuraavat versiot siirretään sivulta $1 kohdesivulle. Jos kohdetta ei ole olemassa, se luodaan. Muussa tapauksessa nämä versiot yhdistetään muutoshistoriaan.',
 'revmove-legend'               => 'Aseta kohdesivu ja yhteenveto',
 'revmove-submit'               => 'Siirrä versiot valitulle sivulle',
 'revisionmoveselectedversions' => 'Siirrä valitut versiot',
 'revmove-reasonfield'          => 'Syy',
 'revmove-titlefield'           => 'Kohdesivu',
+'revmove-badparam-title'       => 'Virheelliset parametrit',
+'revmove-badparam'             => '<span class="error">Pyyntösi sisältää virheellisiä tai riittämättömiä parametreja. Napauta "takaisin" ja yritä uudelleen.</span>',
+'revmove-norevisions-title'    => 'Virheellinen kohdeversio',
+'revmove-norevisions'          => '<span class="error">Et ole määritellyt yhtä tai useampaa kohdeversiota tämän funktion suoritettavaksi tai määritetty versio ei ole olemassa.</span>',
 'revmove-nullmove-title'       => 'Virheellinen otsikko',
+'revmove-nullmove'             => '<span class="error">Lähde- ja kohdesivu ovat identtiset. Napsauta "takaisin" ja kirjoita sivunimi, joka on erilainen kuin "$1".</span>',
+'revmove-success-existing'     => '{{PLURAL:$1|Yksi versio|$1 versiota}} sivulta [[$2]] on siirretty olemassa olevalle sivulle [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Yksi versio|$1 versiota}} sivulta [[$2]] on siirretty juuri luodulle sivulle [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',
@@ -1457,6 +1466,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
 'right-revisionmove'          => 'Siirtää versioita',
+'right-selenium'              => 'Suorittaa Selenium-testit',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -2301,6 +2311,7 @@ $1',
 Alla on viimeisin estolokin tapahtuma:',
 'sp-contributions-search'              => 'Etsi muokkauksia',
 'sp-contributions-username'            => 'IP-osoite tai käyttäjätunnus',
+'sp-contributions-toponly'             => 'Näytä vain muokkaukset, jotka ovat viimeisimpiä versioita',
 'sp-contributions-submit'              => 'Hae',
 
 # What links here
@@ -2813,6 +2824,7 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />",
 'file-info-gif-looped' => 'toistuva',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kehys|kehystä}}',
 'file-info-png-looped' => 'toistuva',
+'file-info-png-repeat' => 'toistettu $1 {{PLURAL:$1|kertaa|kertaa}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|kehys|kehystä}}',
 
 # Special:NewFiles
@@ -3206,6 +3218,7 @@ Varmista, että haluat luoda sivun uudelleen.",
 'table_pager_first'        => 'Ensimmäinen sivu',
 'table_pager_last'         => 'Viimeinen sivu',
 'table_pager_limit'        => 'Näytä $1 nimikettä sivulla',
+'table_pager_limit_label'  => 'Kohteita sivua kohden:',
 'table_pager_limit_submit' => 'Hae',
 'table_pager_empty'        => 'Ei tuloksia',
 
@@ -3345,10 +3358,13 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|muutos|muutosta}}',
 
 # Special:ComparePages
-'comparepages'   => 'Vertaile sivuja',
-'compare-page1'  => 'Sivu 1',
-'compare-page2'  => 'Sivu 2',
-'compare-submit' => 'Vertaile',
+'comparepages'     => 'Vertaile sivuja',
+'compare-selector' => 'Vertaile sivuversioita',
+'compare-page1'    => 'Sivu 1',
+'compare-page2'    => 'Sivu 2',
+'compare-rev1'     => 'Versio 1',
+'compare-rev2'     => 'Versio 2',
+'compare-submit'   => 'Vertaile',
 
 # Database error messages
 'dberr-header'      => 'Wikissä on tietokantaongelma',
