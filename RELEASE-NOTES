@@ -245,7 +245,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24016) API: Handle parameters specified in simple string syntax 
   ( 'paramname' => 'defaultval' ) correctly when outputting help
 * (bug 24089) Logevents causes PHP Notice if leprop=title isn't supplied
-* (bug 23473) - Give description of properties on all modules
+* (bug 23473) Give description of properties on all modules
+* (bug 24136) unknownerror when adding new section without summary, but forceditsummary
 
 === Languages updated in 1.17 ===
 

@@ -928,6 +928,7 @@ abstract class ApiBase {
 		'userrights-nodatabase' => array( 'code' => 'nosuchdatabase', 'info' => "Database ``\$1'' does not exist or is not local" ),
 		'nouserspecified' => array( 'code' => 'invaliduser', 'info' => "Invalid username ``\$1''" ),
 		'noname' => array( 'code' => 'invaliduser', 'info' => "Invalid username ``\$1''" ),
+		'summaryrequired' => array( 'code' => 'summaryrequired', 'info' => 'Summary required'),
 
 		// API-specific messages
 		'readrequired' => array( 'code' => 'readapidenied', 'info' => "You need read permission to use this module" ),
