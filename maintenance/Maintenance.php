@@ -217,7 +217,8 @@ abstract class Maintenance {
 	 * Throw some output to the user. Scripts can call this with no fears,
 	 * as we handle all --quiet stuff here
 	 * @param $out String: the text to show to the user
-	 * @param $channel Mixed: unique identifier for the channel. See function outputChanneled.
+	 * @param $channel Mixed: unique identifier for the channel. See
+	 *     function outputChanneled.
 	 */
 	protected function output( $out, $channel = null ) {
 		if ( $this->mQuiet ) {
@@ -256,13 +257,14 @@ abstract class Maintenance {
 
 	private $atLineStart = true;
 	private $lastChannel = null;
-	
+
 	/**
 	 * Message outputter with channeled message support. Messages on the
 	 * same channel are concatenated, but any intervening messages in another
 	 * channel start a new line.
 	 * @param $msg String: the message without trailing newline
-	 * @param $channel Channel identifier or null for no channel. Channel comparison uses ===.
+	 * @param $channel Channel identifier or null for no
+	 *     channel. Channel comparison uses ===.
 	 */
 	public function outputChanneled( $msg, $channel = null ) {
 		$handle = fopen( 'php://stdout', 'w' );
@@ -556,7 +558,7 @@ abstract class Maintenance {
 				$die = true;
 			}
 		}
-		
+
 		if ( $die ) {
 			$this->maybeHelp( true );
 		}
@@ -588,7 +590,7 @@ abstract class Maintenance {
 		$screenWidth = 80; // TODO: Caculate this!
 		$tab = "    ";
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
-		
+
 		ksort( $this->mParams );
 		if ( $this->hasOption( 'help' ) || $force ) {
 			$this->mQuiet = false;
