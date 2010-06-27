@@ -1440,6 +1440,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 'right-revisionmove'          => 'Mover revisións',
+'right-selenium'              => 'Realizar probas de selenio',
 
 # User rights log
 'rightslog'      => 'Rexistro de dereitos de usuario',

@@ -13,6 +13,7 @@
  * @author Firilacroco
  * @author KlaudiuMihaila
  * @author Laurap
+ * @author Memo18
  * @author Mihai
  * @author Minisarm
  * @author Misterr
@@ -1493,6 +1494,7 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-sendemail'             => 'Trimite e-mail altor utilizatori',
 'right-revisionmove'          => 'Mută versiuni',
+'right-selenium'              => 'Rulează testele Selenium',
 
 # User rights log
 'rightslog'      => 'Jurnal permisiuni de utilizator',
@@ -1570,9 +1572,12 @@ $3',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
+'unpatrolledletter'                 => '!',
+'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|utilizator|utilizatori}} care urmăresc]',
 'rc_categories'                     => 'Limitează la categoriile (separate prin "|")',
 'rc_categories_any'                 => 'Oricare',
+'rc-change-size'                    => '$1',
 'newsectionsummary'                 => '/* $1 */ secțiune nouă',
 'rc-enhanced-expand'                => 'Arată detalii (necesită JavaScript)',
 'rc-enhanced-hide'                  => 'Ascunde detaliile',
@@ -1581,7 +1586,8 @@ $3',
 'recentchangeslinked'          => 'Modificări corelate',
 'recentchangeslinked-feed'     => 'Modificări corelate',
 'recentchangeslinked-toolbox'  => 'Modificări corelate',
-'recentchangeslinked-title'    => 'Modificări legate de "$1"',
+'recentchangeslinked-title'    => 'Modificări legate de „$1”',
+'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Nici o schimbare la paginile legate în perioada dată.',
 'recentchangeslinked-summary'  => "Aceasta este o listă a schimbărilor efectuate recent asupra paginilor cu legături de la o anumită pagină (sau asupra membrilor unei anumite categorii).
 Paginile pe care le [[Special:Watchlist|urmăriți]] apar în '''aldine'''.",

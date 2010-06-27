@@ -1031,6 +1031,7 @@ Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
 'moverevlogentry'              => 'flyttede ((plural: $ 3 | én revision | $ 3 revisioner)) fra $ 1 til $ 2',
 'revisionmove'                 => 'Flyt ændringer fra "$1"',
 'revmove-explain'              => 'Følgende ændringer vil blive flyttet fra $ 1 til den angivne målside. Hvis målsiden ikke findes, vil den blive oprettet. Ellers vil disse revisioner blive flettet ind i sidens historik.',
+'revmove-legend'               => 'Sæt målside og opsummering',
 'revisionmoveselectedversions' => 'Flyt valgte revisioner',
 'revmove-reasonfield'          => 'Begrundelse:',
 'revmove-titlefield'           => 'Målside:',
@@ -3263,9 +3264,10 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'tags-hitcount'           => '{{PLURAL:$1|en ændring|$1 ændringer}}',
 
 # Special:ComparePages
-'comparepages'  => 'Sammenlign sider',
-'compare-page1' => 'Side 1',
-'compare-page2' => 'Side 2',
+'comparepages'   => 'Sammenlign sider',
+'compare-page1'  => 'Side 1',
+'compare-page2'  => 'Side 2',
+'compare-submit' => 'Sammenlign',
 
 # Database error messages
 'dberr-header'      => 'Wikien har et problem',

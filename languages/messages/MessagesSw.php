@@ -282,11 +282,11 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection'   => 'Weka mada',
-'vector-action-delete'       => 'Kufuta',
-'vector-action-move'         => 'Kusogeza',
-'vector-action-protect'      => 'Kulinda',
-'vector-action-undelete'     => 'Kurudisha',
-'vector-action-unprotect'    => 'Kuondoa tunzo',
+'vector-action-delete'       => 'Futa',
+'vector-action-move'         => 'Hamisha',
+'vector-action-protect'      => 'Linda',
+'vector-action-undelete'     => 'Rudisha',
+'vector-action-unprotect'    => 'Ondoa tunzo',
 'vector-namespace-category'  => 'Jamii',
 'vector-namespace-help'      => 'Ukurasa wa msaada',
 'vector-namespace-image'     => 'Faili',
@@ -298,10 +298,10 @@ $messages = array(
 'vector-namespace-talk'      => 'Majadiliano',
 'vector-namespace-template'  => 'Kigezo',
 'vector-namespace-user'      => 'Ukurasa wa mtumiaji',
-'vector-view-create'         => 'Kuanzisha',
-'vector-view-edit'           => 'Kuhariri',
-'vector-view-history'        => 'Kufungua historia',
-'vector-view-view'           => 'Kusoma',
+'vector-view-create'         => 'Anzisha',
+'vector-view-edit'           => 'Hariri',
+'vector-view-history'        => 'Fungua historia',
+'vector-view-view'           => 'Soma',
 'vector-view-viewsource'     => 'Kuonyesha kodi',
 'actions'                    => 'Vitendo',
 'namespaces'                 => 'Maeneo ya wiki',
@@ -1224,9 +1224,9 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-createtalk'           => 'Kuanzisha kurasa za majadiliano',
 'right-createaccount'        => 'Kufungua akaunti mpya za watumiaji',
 'right-minoredit'            => 'Kutia alama kwamba badiliko ni dogo',
-'right-move'                 => 'Kusogeza kurasa',
-'right-move-subpages'        => 'Kusogeza kurasa pamoja na kurasa zake ndogo',
-'right-movefile'             => 'Kusogeza mafaili',
+'right-move'                 => 'Kuhamisha kurasa',
+'right-move-subpages'        => 'Kuhamisha kurasa pamoja na kurasa zake ndogo',
+'right-movefile'             => 'Kuhamisha mafaili',
 'right-upload'               => 'Kupakia mafaili',
 'right-reupload'             => 'Kuandikiza mafaili yaliyopo tayari',
 'right-reupload-own'         => 'Kuandikiza mafaili yaliyopakizwa na mimi mwenyewe',
@@ -1248,7 +1248,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-userrights-interwiki' => 'Kuhariri wezo za watumiaji kwenye wiki zingine',
 'right-siteadmin'            => 'Kufunga na kufungua hifadhidata',
 'right-sendemail'            => 'Kutuma barua-pepe kwa watumiaji wengine',
-'right-revisionmove'         => 'Kusogeza mapitio',
+'right-revisionmove'         => 'Kuhamisha mapitio',
 
 # User rights log
 'rightslog'      => 'Kumbukumbu za vyeo vya watumiaji',
@@ -1263,9 +1263,9 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-createtalk'           => 'kuanzisha kurasa za majadiliano',
 'action-createaccount'        => 'kusajili akaunti hii ya mtumiaji',
 'action-minoredit'            => 'kutia alama ya badiliko dogo',
-'action-move'                 => 'kusogeza ukurasa huu',
-'action-move-subpages'        => 'kusogeza ukurasa huu, pamoja na kurasa zake ndogo',
-'action-movefile'             => 'kusogeza faili hili',
+'action-move'                 => 'kuhamisha ukurasa huu',
+'action-move-subpages'        => 'kuhamisha ukurasa huu, pamoja na kurasa zake ndogo',
+'action-movefile'             => 'kuhamisha faili hili',
 'action-upload'               => 'kupakia faili hili',
 'action-reupload'             => 'kuandikiza faili lililopo tayari',
 'action-upload_by_url'        => 'kupakia faili hili kutoka kwa gombo wavu',
@@ -1282,7 +1282,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-userrights'           => 'kubadilisha wezo zote za watumiaji',
 'action-userrights-interwiki' => 'kuhariri wezo za watumiaji kwenye wiki zingine',
 'action-siteadmin'            => 'kufunga na kufungua hifadhidata',
-'action-revisionmove'         => 'kusogeza mapitio',
+'action-revisionmove'         => 'kuhamisha mapitio',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
@@ -1341,7 +1341,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'uploaderror'             => 'Hitilafu ya kupia',
 'upload-recreate-warning' => "'''Ilani: Faili lenye jina hilo limeshafutwa au limeshasogezwa.'''
 
-Rejea kumbukumbu za kufuta au kusogeza ukurasa huu zinazotolewa chini:",
+Rejea kumbukumbu za kufuta au kuhamisha ukurasa huu zinazotolewa chini:",
 'uploadtext'              => "Tumia fomu hapo chini kwa kupakizia mafaili.
 Kwa kutazama au kutafuta faili zilizopakiwa awali, tafadhali nenda kwenye [[Special:FileList|orodha ya mafaili yaliyopakiwa]]. Kwa zile faili ambazo zishapitiwa, basi angalia [[Special:Log/upload|kumbukumbu ya mafaili]]. Kwa mafaili yaliyofutwa, tafadhali [[Special:Log/delete|tazama hapa]].
 
@@ -1838,7 +1838,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Kuhariri',
-'restriction-move'   => 'Kusogeza',
+'restriction-move'   => 'Kuhamisha',
 'restriction-create' => 'Kuanzisha',
 'restriction-upload' => 'Kupakia',
 
@@ -1980,7 +1980,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'newtitle'                => 'Kuelekeza jina jipya:',
 'move-watch'              => 'Fuatilia ukurasa huu',
 'movepagebtn'             => 'Sogeza ukurasa',
-'pagemovedsub'            => 'Umefaulu kusogeza ukurasa',
+'pagemovedsub'            => 'Umefaulu kuhamisha ukurasa',
 'movepage-moved'          => '\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'',
 'articleexists'           => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
@@ -1993,7 +1993,7 @@ Chagua jina lengine.',
 'movelogpage'             => 'Kumbukumbu ya uhamiaji',
 'movereason'              => 'Sababu:',
 'revertmove'              => 'rejesha',
-'delete_and_move'         => 'Kufuta na kusogeza',
+'delete_and_move'         => 'Kufuta na kuhamisha',
 'delete_and_move_confirm' => 'Ndiyo, ukurasa ufutwe',
 
 # Export

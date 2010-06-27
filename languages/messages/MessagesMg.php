@@ -319,8 +319,8 @@ $messages = array(
 'vector-namespace-user'      => 'pejy ny mpikambana',
 'vector-view-create'         => 'amboary',
 'vector-view-edit'           => 'Hanova',
-'vector-view-history'        => 'ampiseho ny tantarany',
-'vector-view-view'           => 'vakio',
+'vector-view-history'        => 'Hijery ny tantara',
+'vector-view-view'           => 'Hamaky',
 'vector-view-viewsource'     => 'hijery fango',
 'actions'                    => 'Tao',
 'namespaces'                 => 'Namespace',
@@ -2367,6 +2367,9 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 # Special:Import
 'import'                     => 'Hampidi-pejy',
 'importinterwiki'            => 'fampidirana interwiki',
+'import-interwiki-text'      => "Safidio ny wiki loharano ary ny lohatenin'ilay pejy tianao ampidirina eto.
+Ho voatazona ao amin'ny tantara ny datin'ny santiôna sy ny anaran'ny mpandray anjara.
+Ho voasoratra ao amin'ny [[Special:Log/import|tatitr'asa momban'ny fampidirana]] ny tao rehetra mikasika ny fampidirana pejy interwiki",
 'import-interwiki-source'    => 'Wiki sy pejy fango :',
 'import-interwiki-history'   => "Handika ny santiônan'ny tantaran'ity pejy ity",
 'import-interwiki-templates' => 'Ataovy ao ny endrika rehetra',
