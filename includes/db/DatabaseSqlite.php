@@ -164,6 +164,13 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
+	 * @see DatabaseBase::isWriteQuery()
+	 */
+	function isWriteQuery( $sql ) {
+		return parent::isWriteQuery( $sql ) && !preg_match( '/^ATTACH\b/i', $sql );
+	}
+
+	/**
 	 * SQLite doesn't allow buffered results or data seeking etc, so we'll use fetchAll as the result
 	 */
 	function doQuery( $sql ) {
