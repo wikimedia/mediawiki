@@ -215,6 +215,16 @@ abstract class Installer {
 	 * Constructor, always call this from child classes
 	 */
 	function __construct() {
+		// Disable the i18n cache and LoadBalancer
+		Language::getLocalisationCache()->disableBackend();
+		LBFactory::disableBackend();
+
+		// Load the installer's i18n file
+		global $wgExtensionMessagesFiles;
+		$wgExtensionMessagesFiles['MediawikiInstaller'] =
+			'./includes/installer/Installer.i18n.php';
+
+
 		$this->settings = $this->internalDefaults;
 		foreach ( $this->defaultVarNames as $var ) {
 			$this->settings[$var] = $GLOBALS[$var];
@@ -909,7 +919,7 @@ abstract class Installer {
 		}
 	}
 
-	/*
+	/**
 	 * On POSIX systems return the primary group of the webserver we're running under.
 	 * On other systems just returns null.
 	 *
@@ -933,5 +943,23 @@ abstract class Installer {
 		$group = $getpwuid["name"];
 
 		return $group;
+	}
+
+	/**
+	 * Override the necessary bits of the config to run an installation
+	 */
+	public static function overrideConfig() {
+		define( 'MW_NO_SESSION', 1 );
+
+		// Don't access the database
+		$GLOBALS['wgUseDatabaseMessages'] = false;
+		// Debug-friendly
+		$GLOBALS['wgShowExceptionDetails'] = true;
+		// Don't break forms
+		$GLOBALS['wgExternalLinkTarget'] = '_blank';
+
+		// Extended debugging. Maybe disable before release?
+		$GLOBALS['wgShowSQLErrors'] = true;
+		$GLOBALS['wgShowDBErrorBacktrace'] = true;
 	}
 }

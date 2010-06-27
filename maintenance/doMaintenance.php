@@ -61,9 +61,13 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 require_once( "$IP/includes/AutoLoader.php" );
 require_once( "$IP/includes/Defines.php" );
 
-// Load settings, using wikimedia-mode if needed
-// Fixme: replace this hack with general farm-friendly code
-if ( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
+if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
+	# Use a callback function to configure MediaWiki
+	require_once( "$IP/includes/DefaultSettings.php" );
+	call_user_func( MW_CONFIG_CALLBACK );
+} elseif ( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
+	// Load settings, using wikimedia-mode if needed
+	// Fixme: replace this hack with general farm-friendly code
 	# TODO FIXME! Wikimedia-specific stuff needs to go away to an ext
 	# Maybe a hook?
 	global $cluster;
@@ -76,6 +80,7 @@ if ( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
 } else {
 	require_once( $maintenance->loadSettings() );
 }
+
 if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 		is_readable( "$IP/AdminSettings.php" ) )
 {
