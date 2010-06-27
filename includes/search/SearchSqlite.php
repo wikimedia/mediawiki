@@ -313,8 +313,8 @@ class SearchSqlite extends SearchEngine {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->update( 'searchindex',
-			array( 'rowid'  => $id ),
 			array( 'si_title' => $title ),
+			array( 'rowid'  => $id ),
 			__METHOD__ );
 	}
 }
