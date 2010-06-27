@@ -367,6 +367,7 @@ class ApiEditPage extends ApiBase {
 			array( 'noimageredirect-anon' ),
 			array( 'noimageredirect-logged' ),
 			array( 'spamdetected', 'spam' ),
+			array( 'summaryrequired' ),
 			array( 'filtered' ),
 			array( 'blockedtext' ),
 			array( 'contenttoobig', $wgMaxArticleSize ),
