@@ -900,16 +900,18 @@ div.magnify a, div.magnify img {
 	border: none !important;
 	background: none !important;
 }
+/* @noflip */
 div.tright {
-	clear: left;
-	float: left;
-	border-width: .5em 1.4em .8em 0;
-}
-div.tleft {
-	float: right;
 	clear: right;
-	margin-left: .5em;
+	float: right;
 	border-width: .5em 0 .8em 1.4em;
+}
+/* @noflip */
+div.tleft {
+	float: left;
+	clear: left;
+	margin-right: .5em;
+	border-width: .5em 1.4em .8em 0;
 }
 img.thumbborder {
 	border: 1px solid #dddddd;
