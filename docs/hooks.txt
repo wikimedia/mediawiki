@@ -1595,6 +1595,9 @@ $rev: revision (object) that will be viewed
 $action: action name
 $article: article "acted on"
 
+'UnitTestsList': Called when building a list of files with PHPUnit tests
+&$files: list of files
+
 'UnwatchArticle': before a watch is removed from an article
 $user: user watching
 $article: article object to be removed
