@@ -434,7 +434,7 @@ function do_watchlist_update() {
 	global $wgDatabase;
 	$fname = 'do_watchlist_update';
 	if ( $wgDatabase->fieldExists( 'watchlist', 'wl_notificationtimestamp' ) ) {
-		wfOut( "The watchlist table is already set up for email notification.\n" );
+		wfOut( "...the watchlist table is already set up for email notification.\n" );
 	} else {
 		wfOut( "Adding wl_notificationtimestamp field for email notification management." );
 		/* ALTER TABLE watchlist ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0'); */
@@ -525,7 +525,7 @@ function check_bin( $table, $field, $patchFile ) {
 	$wgDatabase->freeResult( $res );
 
 	if ( in_array( 'binary', $flags ) ) {
-		wfOut( "$table table has correct $field encoding.\n" );
+		wfOut( "...$table table has correct $field encoding.\n" );
 	} else {
 		wfOut( "Fixing $field encoding on $table table... " );
 		$wgDatabase->sourceFile( archive( $patchFile ) );
@@ -706,7 +706,7 @@ function do_inverse_timestamp() {
 		$wgDatabase->sourceFile( archive( 'patch-inverse_timestamp.sql' ) );
 		wfOut( "ok\n" );
 	} else {
-		wfOut( "revision timestamp indexes already up to 2005-03-13\n" );
+		wfOut( "...revision timestamp indexes already up to 2005-03-13\n" );
 	}
 }
 
@@ -807,14 +807,14 @@ function do_drop_img_type() {
 		$wgDatabase->sourceFile( archive( 'patch-drop_img_type.sql' ) );
 		wfOut( "ok\n" );
 	} else {
-		wfOut( "No img_type field in image table; Good.\n" );
+		wfOut( "...no img_type field in image table; Good.\n" );
 	}
 }
 
 function do_old_links_update() {
 	global $wgDatabase;
 	if ( $wgDatabase->tableExists( 'pagelinks' ) ) {
-		wfOut( "Already have pagelinks; skipping old links table updates.\n" );
+		wfOut( "...have pagelinks; skipping old links table updates.\n" );
 	} else {
 		convertLinks(); flush();
 	}
@@ -837,7 +837,7 @@ function do_user_unique_update() {
 	global $wgDatabase;
 	$duper = new UserDupes( $wgDatabase );
 	if ( $duper->hasUniqueIndex() ) {
-		wfOut( "Already have unique user_name index.\n" );
+		wfOut( "...already have unique user_name index.\n" );
 	} else {
 		if ( !$duper->clearDupes() ) {
 			wfOut( "WARNING: This next step will probably fail due to unfixed duplicates...\n" );
@@ -1081,7 +1081,7 @@ function maybe_do_profiling_memory_update() {
 	if ( !$wgDatabase->tableExists( 'profiling' ) ) {
 		// Simply ignore
 	} elseif ( $wgDatabase->fieldExists( 'profiling', 'pf_memory' ) ) {
-		wfOut( "profiling table has pf_memory field.\n" );
+		wfOut( "...profiling table has pf_memory field.\n" );
 	} else {
 		wfOut( "Adding pf_memory field to table profiling..." );
 		$wgDatabase->sourceFile( archive( 'patch-profiling-memory.sql' ) );
@@ -1373,11 +1373,11 @@ function do_log_search_population() {
 
 function rename_eu_wiki_id() {
 	global $wgDatabase;
-	wfOut( "Renaming eu_wiki_id -> eu_local_id... " );
 	if ( $wgDatabase->fieldExists( 'external_user', 'eu_local_id' ) ) {
-		wfOut( "already done.\n" );
+		wfOut( "...eu_wiki_id already renamed to eu_local_id.\n" );
 		return;
 	}
+	wfOut( "Renaming eu_wiki_id -> eu_local_id... " );
 	$wgDatabase->sourceFile( archive( 'patch-eu_local_id.sql' ) );
 	wfOut( "ok\n" );
 }
@@ -1396,7 +1396,7 @@ function do_update_transcache_field() {
 
 function do_update_mime_minor_field() {
 	if ( update_row_exists( 'mime_minor_length' ) ) {
-		wfOut( "*_mime_minor fields are already long enough.\n" );
+		wfOut( "...*_mime_minor fields are already long enough.\n" );
 	} else {
 		global $wgDatabase;
 		wfOut( "Altering all *_mime_minor fields to 100 bytes in size ... " );
