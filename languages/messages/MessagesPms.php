@@ -918,6 +918,9 @@ Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi 
 'revisionmoveselectedversions' => 'Tramudé le revision selessionà',
 'revmove-reasonfield'          => 'Rason:',
 'revmove-titlefield'           => 'Pàgina bërsaj:',
+'revmove-badparam-title'       => 'Paràmeter nen bon',
+'revmove-badparam'             => "<span class=\"error\">Soa arcesta a conten ëd paràmeter nen bon o ch'a basto pa. Për piasì, ch'a sgnaca «andaré» e ch'a preuva torna.</span>",
+'revmove-norevisions-title'    => 'Revision bërsaj nen vàlida',
 
 # History merging
 'mergehistory'                     => 'Buté ansema je stòrie',
@@ -1250,10 +1253,12 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-siteadmin'             => 'Bloché e dësbloché la base ëd dàit',
 'right-reset-passwords'       => "Modifiché le ciav d'àutri utent",
 'right-override-export-depth' => 'Esporté le pàgine ancludend le pàgine colegà fin-a a na profondeur ëd 5',
-'right-sendemail'             => "Manda e-mail a j'àutri utent",
+'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
+'right-revisionmove'          => 'Tramudé le revision',
+'right-selenium'              => 'Fé marcé le preuve Selenium',
 
 # User rights log
-'rightslog'      => "Drit dj'utent",
+'rightslog'      => "Argistr dij drit ëd j'utent",
 'rightslogtext'  => "Sòn a l'é na lista dij cambiament aj drit dj'utent.",
 'rightslogentry' => "a l'ha tramudà $1 da 'nt la partìa $2 a la partìa $3",
 'rightsnone'     => '(gnun)',

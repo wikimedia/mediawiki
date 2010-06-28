@@ -744,9 +744,9 @@ Ma ne'z a ket en-dro c'hoazh, klaskit [[Special:UserLogout|digevreañ]] hag adke
 Mar ned a ket en-dro, klaskit [[Special:UserLogout|digevreañ]] ha kevreañ en-dro.",
 'token_suffix_mismatch'            => "'''Distaolet eo bet ar c'hemmoù degaset ganeoc'h abalamour ma oa bet kemmesket an arouezennoù poentadur gant ho merdeer en daveer kemmañ. Distaolet eo bet ar c'hemmoù kuit na vije breinet ar bajennad skrid.
 C'hoarvezout a ra a-wechoù pa implijit ur servijer proksi dreinek dizanav.'''",
-'editing'                          => "oc'h aozañ $1",
-'editingsection'                   => "oc'h aozañ $1 (rann)",
-'editingcomment'                   => "Oc'h kemmañ $1 (rann nevez)",
+'editing'                          => "Oc'h aozañ $1",
+'editingsection'                   => "Oc'h aozañ $1 (rann)",
+'editingcomment'                   => "Oc'h aozañ $1 (rann nevez)",
 'editconflict'                     => 'tabut kemmañ : $1',
 'explainconflict'                  => "<b>Enrollet eo bet ar bajenn-mañ war-lerc'h m'ho pefe kroget d'he c'hemmañ.
 E-krec'h an takad aozañ emañ an destenn evel m'emañ enrollet bremañ er bank roadennoù. Ho kemmoù deoc'h a zeu war wel en takad aozañ traoñ. Ret e vo deoc'h degas ho kemmoù d'an destenn zo evit poent. N'eus nemet an destenn zo en takad krec'h a vo saveteet.</b><br />",
@@ -1316,6 +1316,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 'right-revisionmove'          => "Dilec'hiañ an adweladennoù",
+'right-selenium'              => 'Seveniñ an testoù seleniom',
 
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',
@@ -2210,6 +2211,7 @@ $1',
 Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'sp-contributions-search'              => 'Klask degasadennoù',
 'sp-contributions-username'            => "Anv implijer pe chomlec'h IP :",
+'sp-contributions-toponly'             => 'Na ziskouez nemet an adweladennoù diwezhañ',
 'sp-contributions-submit'              => 'Klask',
 
 # What links here
@@ -2745,6 +2747,9 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.<hr />",
 'show-big-image-thumb' => '<small>Ment ar rakweled-mañ : $1 × $2 piksel</small>',
 'file-info-gif-looped' => "e kelc'h",
 'file-info-gif-frames' => '$1 {{PLURAL:$1|skeudenn|skeudenn}}',
+'file-info-png-looped' => "e kelc'h",
+'file-info-png-repeat' => 'lennet $1 {{PLURAL:$1|wezh|gwezh}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|skeudenn|skeudenn}}',
 
 # Special:NewFiles
 'newimages'             => 'Roll ar restroù nevez',
@@ -3300,10 +3305,13 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'tags-hitcount'           => '$1 {{PLURAL:$1|kemm|kemm}}',
 
 # Special:ComparePages
-'comparepages'   => 'Keñveriañ pajennoù',
-'compare-page1'  => 'Pajenn 1',
-'compare-page2'  => 'Pajenn 2',
-'compare-submit' => 'Keñveriañ',
+'comparepages'     => 'Keñveriañ pajennoù',
+'compare-selector' => 'Keñveriañ stummoù ar pajennoù',
+'compare-page1'    => 'Pajenn 1',
+'compare-page2'    => 'Pajenn 2',
+'compare-rev1'     => 'Adweladenn 1',
+'compare-rev2'     => 'Adweladenn 2',
+'compare-submit'   => 'Keñveriañ',
 
 # Database error messages
 'dberr-header'      => 'ur gudenn zo gant ar viki-mañ',

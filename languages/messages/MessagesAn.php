@@ -1309,6 +1309,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-override-export-depth' => 'Exporta pachinas que incluigan as enlazadas dica un fundaria de 5',
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
 'right-revisionmove'          => 'Tresladar versions',
+'right-selenium'              => 'Executar os tests Selenium',
 
 # User rights log
 'rightslog'      => "Rechistro de cambios en os dreitos d'os usuarios",
@@ -1622,8 +1623,8 @@ Tamién puetz consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'sharedupload'              => 'Iste fichero provién de $1 y talment siga emplegato en atros prochectos.',
 'sharedupload-desc-there'   => "Iste fichero ye de $1 y puet estar emplegau por atros prochectos.
 Por favor mire-se a [$2 pachina de descripción d'o fichero] ta trobar más información.",
-'sharedupload-desc-here'    => "Iste ficchero ye de $1 y pueden emplegar-lo atros prochectos.
-Debaixo d'amuestra a descripción d'a suya [$2 pachina de descripción].",
+'sharedupload-desc-here'    => "Iste fichero ye de $1 y pueden emplegar-lo atros prochectos.
+Debaixo s'amuestra a descripción d'a suya [$2 pachina de descripción].",
 'filepage-nofile'           => 'No existe garra fichero con ixe nombre.',
 'filepage-nofile-link'      => 'No existe garra fichero con ixe nombre, pero puet [$1 puyar-lo].',
 'uploadnewversion-linktext' => "Cargar una nueva versión d'iste fichero",
