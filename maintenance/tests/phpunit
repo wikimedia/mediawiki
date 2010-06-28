@@ -32,6 +32,7 @@ class MWPHPUnitCommand extends PHPUnit_TextUI_Command {
 		} else {
 			require( dirname( __FILE__ ) . '/TestFileList.php' );
 			$files = $testFiles;
+			wfRunHooks( 'UnitTestsList', array( &$files ) );
 		}
 		foreach ( $files as $file ) {
 			$suite->addTestFile( $file );
