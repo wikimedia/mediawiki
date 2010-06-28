@@ -240,7 +240,7 @@ class Title {
 		$t->mArticleID = isset( $row->page_id ) ? intval( $row->page_id ) : -1;
 		$t->mLength = isset( $row->page_len ) ? intval( $row->page_len ) : -1;
 		$t->mRedirect = isset( $row->page_is_redirect ) ? (bool)$row->page_is_redirect : null;
-		$t->mLatestID = isset( $row->page_latest ) ? $row->page_latest : false;
+		$t->mLatestID = isset( $row->page_latest ) ? intval( $row->page_latest ) : false;
 
 		return $t;
 	}
@@ -2330,7 +2330,7 @@ class Title {
 	 */
 	public function getLatestRevID( $flags = 0 ) {
 		if ( $this->mLatestID !== false )
-			return $this->mLatestID;
+			return intval( $this->mLatestID );
 		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->getArticleID( $flags ) ) {
 			return $this->mLatestID = 0;
