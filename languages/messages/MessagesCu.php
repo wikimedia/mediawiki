@@ -179,6 +179,7 @@ $messages = array(
 'vector-view-create'         => 'сътворѥ́ниѥ',
 'vector-view-edit'           => 'испра́ви',
 'vector-view-history'        => 'їсторі́ꙗ',
+'vector-view-view'           => 'чьтѥ́ниѥ',
 'vector-view-viewsource'     => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'actions'                    => 'дѣ́иства',
 'namespaces'                 => 'имє́нъ просто́рꙑ',
