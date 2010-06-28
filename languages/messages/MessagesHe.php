@@ -306,6 +306,7 @@ $specialPageAliases = array(
 	'Activeusers'               => array( 'משתמשים_פעילים' ),
 	'RevisionMove'              => array( 'העברת_גרסאות' ),
 	'ComparePages'              => array( 'השוואת_דפים' ),
+	'Selenium'                  => array( 'סלניום' ),
 );
 
 $namespaceNames = array(
@@ -1537,6 +1538,7 @@ $1",
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
 'right-revisionmove'          => 'העברת גרסאות',
+'right-selenium'              => 'הרצת מבחני סלניום',
 
 # User rights log
 'rightslog'      => 'יומן תפקידים',
@@ -2424,7 +2426,7 @@ $1',
 הפעולה האחרונה ביומן החסימות מוצגת להלן:',
 'sp-contributions-search'              => 'חיפוש תרומות',
 'sp-contributions-username'            => 'שם משתמש או כתובת IP:',
-'sp-contributions-toponly'             => 'הצגת הגרסאות העליונות בלבד',
+'sp-contributions-toponly'             => 'הצגת עריכות שהן הגרסאות האחרונות בלבד',
 'sp-contributions-submit'              => 'חיפוש',
 
 # What links here
