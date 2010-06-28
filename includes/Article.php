@@ -51,12 +51,13 @@ class Article {
 	 * @param $oldId Integer revision ID, null to fetch from request, zero for current
 	 */
 	public function __construct( Title $title, $oldId = null ) {
+		// FIXME: does the reference play any role here?
 		$this->mTitle =& $title;
 		$this->mOldId = $oldId;
 	}
 
 	/**
-	 * Constructor from an article article
+	 * Constructor from an page id
 	 * @param $id The article ID to load
 	 */
 	public static function newFromID( $id ) {
@@ -83,11 +84,11 @@ class Article {
 	 * @return mixed Title object, or null if this page is not a redirect
 	 */
 	public function getRedirectTarget() {
-		if ( !$this->mTitle || !$this->mTitle->isRedirect() ) {
+		if ( !$this->mTitle->isRedirect() ) {
 			return null;
 		}
 
-		if ( !is_null( $this->mRedirectTarget ) ) {
+		if ( $this->mRedirectTarget !== null ) {
 			return $this->mRedirectTarget;
 		}
 
@@ -140,7 +141,6 @@ class Article {
 	 */
 	public function followRedirect() {
 		$text = $this->getContent();
-
 		return $this->followRedirectText( $text );
 	}
 
@@ -151,8 +151,8 @@ class Article {
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirectText( $text ) {
-		$rt = Title::newFromRedirectRecurse( $text ); // recurse through to only get the final target
-		# process if title object is valid and not special:userlogout
+		// recurse through to only get the final target
+		$rt = Title::newFromRedirectRecurse( $text );
 
 		if ( $rt ) {
 			if ( $rt->getInterwiki() != '' ) {
@@ -187,8 +187,8 @@ class Article {
 	}
 
 	/**
-	 * get the title object of the article
-	 * @return Title object of current title
+	 * Get the title object of the article
+	 * @return Title object of this page
 	 */
 	public function getTitle() {
 		return $this->mTitle;
@@ -196,6 +196,7 @@ class Article {
 
 	/**
 	 * Clear the object
+	 * FIXME: shouldn't this be public?
 	 * @private
 	 */
 	public function clear() {
@@ -221,6 +222,9 @@ class Article {
 	 * Note that getContent/loadContent do not follow redirects anymore.
 	 * If you need to fetch redirectable content easily, try
 	 * the shortcut in Article::followRedirect()
+	 *
+	 * This function has side effects! Do not use this function if you
+	 * only want the real revision text if any.
 	 *
 	 * @return Return the text of this revision
 	 */
@@ -285,7 +289,6 @@ class Article {
 	 */
 	public function getSection( $text, $section ) {
 		global $wgParser;
-
 		return $wgParser->getSection( $text, $section );
 	}
 
@@ -374,10 +377,7 @@ class Article {
 
 		wfProfileIn( __METHOD__ );
 
-		# Query variables :P
 		$oldid = $this->getOldID();
-		# Pre-fill content with error message so that if something
-		# fails we'll have something telling us what we intended.
 		$this->mOldId = $oldid;
 		$this->fetchContent( $oldid );
 
@@ -407,16 +407,11 @@ class Article {
 
 		wfRunHooks( 'ArticlePageDataBefore', array( &$this, &$fields ) );
 
-		$row = $dbr->selectRow(
-			'page',
-			$fields,
-			$conditions,
-			__METHOD__
-		);
+		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__ );
 
 		wfRunHooks( 'ArticlePageDataAfter', array( &$this, &$row ) );
 
-		return $row ;
+		return $row;
 	}
 
 	/**
@@ -470,9 +465,7 @@ class Article {
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );
 		} else {
-			if ( is_object( $this->mTitle ) ) {
-				$lc->addBadLinkObj( $this->mTitle );
-			}
+			$lc->addBadLinkObj( $this->mTitle );
 			$this->mTitle->mArticleID = 0;
 		}
 
@@ -501,7 +494,7 @@ class Article {
 
 		if ( $oldid ) {
 			$revision = Revision::newFromId( $oldid );
-			if ( is_null( $revision ) ) {
+			if ( $revision === null ) {
 				wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
 				return false;
 			}
@@ -527,7 +520,7 @@ class Article {
 				$this->loadPageData( $data );
 			}
 			$revision = Revision::newFromId( $this->mLatest );
-			if ( is_null( $revision ) ) {
+			if (  $revision === null ) {
 				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id {$this->mLatest}\n" );
 				return false;
 			}
@@ -562,17 +555,6 @@ class Article {
 	}
 
 	/**
-	 * Get the database which should be used for reads
-	 *
-	 * @return Database
-	 * @deprecated - just call wfGetDB( DB_MASTER ) instead
-	 */
-	function getDB() {
-		wfDeprecated( __METHOD__ );
-		return wfGetDB( DB_MASTER );
-	}
-
-	/**
 	 * Get options for all SELECT statements
 	 *
 	 * @param $options Array: an optional options array which'll be appended to
@@ -595,11 +577,7 @@ class Article {
 	 * @return int Page ID
 	 */
 	public function getID() {
-		if ( $this->mTitle ) {
-			return $this->mTitle->getArticleID();
-		} else {
-			return 0;
-		}
+		return $this->mTitle->getArticleID();
 	}
 
 	/**
@@ -739,7 +717,6 @@ class Article {
 	 */
 	public function getUser() {
 		$this->loadLastEdit();
-
 		return $this->mUser;
 	}
 
@@ -748,7 +725,6 @@ class Article {
 	 */
 	public function getUserText() {
 		$this->loadLastEdit();
-
 		return $this->mUserText;
 	}
 
@@ -757,7 +733,6 @@ class Article {
 	 */
 	public function getComment() {
 		$this->loadLastEdit();
-
 		return $this->mComment;
 	}
 
@@ -768,7 +743,6 @@ class Article {
 	 */
 	public function getMinorEdit() {
 		$this->loadLastEdit();
-
 		return $this->mMinorEdit;
 	}
 
@@ -779,11 +753,11 @@ class Article {
 	 */
 	public function getRevIdFetched() {
 		$this->loadLastEdit();
-
 		return $this->mRevIdFetched;
 	}
 
 	/**
+	 * FIXME: this does what?
 	 * @param $limit Integer: default 0.
 	 * @param $offset Integer: default 0.
 	 * @return UserArrayFromResult object with User objects of article contributors for requested range
@@ -887,7 +861,7 @@ class Article {
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
 		# If we got diff in the query, we want to see a diff page instead of the article.
-		if ( !is_null( $wgRequest->getVal( 'diff' ) ) ) {
+		if ( $wgRequest->getCheck( 'diff' ) ) {
 			wfDebug( __METHOD__ . ": showing diff page\n" );
 			$this->showDiffPage();
 			wfProfileOut( __METHOD__ );
@@ -1030,6 +1004,7 @@ class Article {
 		# For the main page, overwrite the <title> element with the con-
 		# tents of 'pagetitle-view-mainpage' instead of the default (if
 		# that's not empty).
+		# This message always exists because it is in the i18n files
 		if ( $this->mTitle->equals( Title::newMainPage() )
 			&& ( $m = wfMsgForContent( 'pagetitle-view-mainpage' ) ) !== '' )
 		{
@@ -1316,7 +1291,7 @@ class Article {
 
 		$rcid = $wgRequest->getVal( 'rcid' );
 
-		if ( !$rcid || !$this->mTitle->exists() || !$this->mTitle->quickUserCan( 'patrol' ) ) {
+		if ( !$rcid || !$this->mTitle->quickUserCan( 'patrol' ) ) {
 			return;
 		}
 
@@ -1554,15 +1529,11 @@ class Article {
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		global $wgOut, $wgContLang, $wgStylePath, $wgUser;
 
-		# Display redirect
 		if ( !is_array( $target ) ) {
 			$target = array( $target );
 		}
 
 		$imageDir = $wgContLang->getDir();
-		$imageUrl = $wgStylePath . '/common/images/redirect' . $imageDir . '.png';
-		$imageUrl2 = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
-		$alt2 = $wgContLang->isRTL() ? '←' : '→'; // should -> and <- be used instead of Unicode?
 
 		if ( $appendSubtitle ) {
 			$wgOut->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );
@@ -1573,35 +1544,26 @@ class Article {
 		$title = array_shift( $target );
 
 		if ( $forceKnown ) {
-			$link = $sk->link(
-				$title,
-				htmlspecialchars( $title->getFullText() ),
-				array(),
-				array(),
-				array( 'known', 'noclasses' )
-			);
+			$link = $sk->linkKnown( $title, htmlspecialchars( $title->getFullText() ) );
 		} else {
 			$link = $sk->link( $title, htmlspecialchars( $title->getFullText() ) );
 		}
 
+		$nextRedirect = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
+		$alt = $wgContLang->isRTL() ? '←' : '→';
 		// Automatically append redirect=no to each link, since most of them are redirect pages themselves.
+		// FIXME: where this happens?
 		foreach ( $target as $rt ) {
+			$link .= Html::element( 'img', array( 'src' => $nextRedirect, 'alt' => $alt ) );
 			if ( $forceKnown ) {
-				$link .= '<img src="' . $imageUrl2 . '" alt="' . $alt2 . ' " />'
-					. $sk->link(
-						$rt,
-						htmlspecialchars( $rt->getFullText() ),
-						array(),
-						array(),
-						array( 'known', 'noclasses' )
-					);
+				$link .= $sk->linkKnown( $rt, htmlspecialchars( $rt->getFullText() ) );
 			} else {
-				$link .= '<img src="' . $imageUrl2 . '" alt="' . $alt2 . ' " />'
-					. $sk->link( $rt, htmlspecialchars( $rt->getFullText() ) );
+				$link .= $sk->link( $rt, htmlspecialchars( $rt->getFullText() ) );
 			}
 		}
 
-		return '<img src="' . $imageUrl . '" alt="#REDIRECT " />' .
+		$imageUrl = $wgStylePath . '/common/images/redirect' . $imageDir . '.png';		
+		return Html::element( 'img', array( 'src' => $imageUrl, 'alt' => '#REDIRECT' ) ) .
 			'<span class="redirectText">' . $link . '</span>';
 	}
 
@@ -1632,7 +1594,7 @@ class Article {
 			}
 
 			$tbtext .= "\n";
-			$tbtext .= wfMsg( strlen( $o->tb_ex ) ? 'trackbackexcerpt' : 'trackback',
+			$tbtext .= wfMsgNoTrans( strlen( $o->tb_ex ) ? 'trackbackexcerpt' : 'trackback',
 					$o->tb_title,
 					$o->tb_url,
 					$o->tb_ex,
@@ -1688,21 +1650,28 @@ class Article {
 		global $wgUser, $wgRequest, $wgOut;
 
 		if ( $wgUser->isAllowed( 'purge' ) || $wgRequest->wasPosted() ) {
+			//FIXME: shouldn't this be in doPurge()?
 			if ( wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
 				$this->doPurge();
 				$this->view();
 			}
 		} else {
-			$action = htmlspecialchars( $wgRequest->getRequestURL() );
-			$button = wfMsgExt( 'confirm_purge_button', array( 'escapenoentities' ) );
-			$form = "<form method=\"post\" action=\"$action\">\n" .
-					"<input type=\"submit\" name=\"submit\" value=\"$button\" />\n" .
-					"</form>\n";
-			$top = wfMsgExt( 'confirm-purge-top', array( 'parse' ) );
-			$bottom = wfMsgExt( 'confirm-purge-bottom', array( 'parse' ) );
+			$formParams = array(
+				'method' => 'post',
+				'action' =>  $wgRequest->getRequestURL(),
+			);
+
+			$wgOut->addWikiMsg( 'confirm-purge-top' );
+
+			$form  = Html::openElement( 'form', $formParams );
+			$form .= Xml::submitButton( wfMsg( 'confirm_purge_button' ) );
+			$form .= Html::closeElement( 'form' );
+			
+			$wgOut->addHTML( $form );
+			$wgOut->addWikiMsg( 'confirm-purge-bottom' );
+
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->addHTML( $top . $form . $bottom );
 		}
 	}
 
@@ -2068,7 +2037,7 @@ class Article {
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
 
 		# Low-level sanity check
-		if ( $this->mTitle->getText() == '' ) {
+		if ( $this->mTitle->getText() === '' ) {
 			throw new MWException( 'Something is trying to edit an article with an empty title' );
 		}
 
@@ -2935,6 +2904,7 @@ class Article {
 
 			$skin = $wgUser->getSkin();
 			$revisions = $this->estimateRevisionCount();
+			//FIXME: lego
 			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .
 				wfMsgHtml( 'word-separator' ) . $skin->historyLink() .
@@ -3033,6 +3003,7 @@ class Article {
 
 	/**
 	 * Output deletion confirmation dialog
+	 * FIXME: Move to another file?
 	 * @param $reason String: prefilled reason
 	 */
 	public function confirmDelete( $reason ) {
@@ -3040,13 +3011,7 @@ class Article {
 
 		wfDebug( "Article::confirmDelete\n" );
 
-		$deleteBackLink = $wgUser->getSkin()->link(
-			$this->mTitle,
-			null,
-			array(),
-			array(),
-			array( 'known', 'noclasses' )
-		);
+		$deleteBackLink = $wgUser->getSkin()->linkKnown( $this->mTitle );
 		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $deleteBackLink ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
@@ -3136,9 +3101,7 @@ class Article {
 
 		$wgOut->addHTML( $form );
 		$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
-		LogEventsList::showLogExtract(
-			$wgOut,
-			'delete',
+		LogEventsList::showLogExtract( $wgOut, 'delete',
 			$this->mTitle->getPrefixedText()
 		);
 	}
@@ -3213,7 +3176,7 @@ class Article {
 		$t = $this->mTitle->getDBkey();
 		$id = $id ? $id : $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 
-		if ( $t == '' || $id == 0 ) {
+		if ( $t === '' || $id == 0 ) {
 			return false;
 		}
 
@@ -3987,7 +3950,6 @@ class Article {
 	 * @return string containing GMT timestamp
 	 */
 	public function getTouched() {
-		# Ensure that page data has been loaded
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
@@ -4201,7 +4163,6 @@ class Article {
 	 */
 	public function revert() {
 		global $wgOut;
-
 		$wgOut->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 	}
 
@@ -4252,6 +4213,8 @@ class Article {
 			$pageInfo = $this->pageCountInfo( $page );
 			$talkInfo = $this->pageCountInfo( $page->getTalkPage() );
 
+
+			//FIXME: unescaped messages
 			$wgOut->addHTML( "<ul><li>" . wfMsg( "numwatchers", $wgLang->formatNum( $numwatchers ) ) . '</li>' );
 			$wgOut->addHTML( "<li>" . wfMsg( 'numedits', $wgLang->formatNum( $pageInfo['edits'] ) ) . '</li>' );
 
@@ -4646,4 +4609,17 @@ class Article {
 			return $parserOutput;
 		}
 	}
+
+	// Deprecated methods
+	/**
+	 * Get the database which should be used for reads
+	 *
+	 * @return Database
+	 * @deprecated - just call wfGetDB( DB_MASTER ) instead
+	 */
+	function getDB() {
+		wfDeprecated( __METHOD__ );
+		return wfGetDB( DB_MASTER );
+	}
+
 }

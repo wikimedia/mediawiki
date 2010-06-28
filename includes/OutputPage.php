@@ -1919,16 +1919,7 @@ class OutputPage {
 			if( $source ) {
 				$this->setPageTitle( wfMsg( 'viewsource' ) );
 				$this->setSubtitle(
-					wfMsg(
-						'viewsourcefor',
-						$skin->link(
-							$this->getTitle(),
-							null,
-							array(),
-							array(),
-							array( 'known', 'noclasses' )
-						)
-					)
+					wfMsg( 'viewsourcefor', $skin->linkKnown( $this->getTitle() ) )
 				);
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
