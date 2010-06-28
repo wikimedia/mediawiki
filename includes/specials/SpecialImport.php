@@ -304,7 +304,8 @@ class ImportReporter {
 	function reportPage( $title, $origTitle, $revisionCount, $successCount ) {
 		global $wgOut, $wgUser, $wgLang, $wgContLang;
 		
-		call_user_func_array( $this->mOriginalPageOutCallback, func_get_args() );
+		$args = func_get_args();
+		call_user_func_array( $this->mOriginalPageOutCallback, $args );
 
 		$skin = $wgUser->getSkin();
 
