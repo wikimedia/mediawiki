@@ -174,7 +174,8 @@ class WikiImporter {
 	 * Mostly for hook use
 	 */
 	public function finishImportPage( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) {
-		return wfRunHooks( 'AfterImportPage', func_get_args() );
+		$args = func_get_args();
+		return wfRunHooks( 'AfterImportPage', $args );
 	}
 
 	/**
@@ -213,7 +214,8 @@ class WikiImporter {
 	 */
 	private function pageOutCallback( $title, $origTitle, $revCount, $sucCount, $pageInfo ) {
 		if( isset( $this->mPageOutCallback ) ) {
-			call_user_func_array( $this->mPageOutCallback, func_get_args() );
+			$args = func_get_args();
+			call_user_func_array( $this->mPageOutCallback, $args );
 		}
 	}
 	
