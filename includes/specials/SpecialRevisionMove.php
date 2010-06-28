@@ -20,7 +20,7 @@
 /**
  * Special page allowing users with the appropriate permissions to
  * move revisions of a page to a new target (either an existing page or not)
- * 
+ *
  * The user selects revisions in the page history (HistoryPage.php),
  * clicks on the submit button and gets this special page.
  * A form is shown (showForm()) where the user has to enter a target page
@@ -29,10 +29,10 @@
  * If the target doesn't exist, a new page gets created. rev_page of the
  * selected revisions is updated, after that it is determined whether page_latest
  * of the target page and the source page require an update.
- * 
+ *
  * **** NOTE: This feature is EXPERIMENTAL.  ****
  * **** Do not use on any productive system. ****
- * 
+ *
  * @file
  * @ingroup SpecialPage
  */
@@ -45,7 +45,6 @@
 */
 
 class SpecialRevisionMove extends UnlistedSpecialPage {
-
 	# common objects
 	var $mOldTitle; # Title object.
 	var $mNewTitle; # Title object. Desired new title
@@ -66,7 +65,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 
 	/**
 	 * @param $par subpage part, standard special page parameter, is ignored here
-	 * 
+	 *
 	 * Mostly initializes variables and calls either showForm() or submit()
 	 */
 	public function execute( $par ) {
@@ -78,6 +77,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		$this->mIsAllowedRevisionMove = $wgUser->isAllowed( 'revisionmove' );
 		$this->user = $wgUser;
 		$this->skin = $wgUser->getSkin();
+
 		if ( !$this->request instanceof WebRequest ) {
 			$this->request = $GLOBALS['wgRequest'];
 		}
@@ -125,7 +125,6 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		} else {
 			$this->showForm();
 		}
-
 	}
 
 	/**
@@ -147,14 +146,14 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		}
 
 		$out = Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ), 
+				'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ),
 				'id' => 'mw-revmove-form' ) ) .
 			Xml::fieldset( wfMsg( 'revmove-legend' ) ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
 			Xml::hidden( 'oldTitle', $this->mOldTitle->getPrefixedText() ) .
 			'<div>' . Xml::inputLabel( wfMsg( 'revmove-reasonfield' ), 'wpReason', 'revmove-reasonfield', 60 ) . '</div>' .
 			Xml::inputLabel( wfMsg( 'revmove-titlefield' ), 'newTitle', 'revmove-titlefield', 20, $this->mOldTitle->getPrefixedText() ) .
-			Xml::hidden( 'ids', implode( ',', $this->mIds ) ) . 
+			Xml::hidden( 'ids', implode( ',', $this->mIds ) ) .
 			Xml::submitButton( wfMsg( 'revmove-submit' ),
 							array( 'name' => 'wpSubmit' ) ) .
 			Xml::closeElement( 'fieldset' ) . "\n" .
@@ -185,18 +184,19 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		}
 
 		# No valid revisions specified (e.g. only revs belonging to another page)
-		if( $numRevisions == 0 ) {
+		if ( $numRevisions == 0 ) {
 			$wgOut->showErrorPage( 'revmove-norevisions-title', 'revmove-norevisions' );
 			return false;
 		}
-		
+
 		$wgOut->addHTML( "</ul>" );
+
 		return true;
 	}
 
 	/**
 	 * Submit the posted changes (in $this->request).
-	 * 
+	 *
 	 * This function does some checks and then calls moveRevisions(), which does the real work
 	 */
 	public function submit() {
@@ -208,8 +208,9 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 			$wgOut->showPermissionsErrorPage( $permErrors, 'revisionmove' );
 			return false;
 		}
+
 		# Confirm Token
-		if( !$wgUser->matchEditToken( $this->request->getVal( 'wpEditToken' ) ) ) {
+		if ( !$wgUser->matchEditToken( $this->request->getVal( 'wpEditToken' ) ) ) {
 			$wgOut->showErrorPage( 'sessionfailure-title', 'sessionfailure' );
 			return false;
 		}
@@ -256,7 +257,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		# Update revision table
 		$dbw->update( 'revision',
 			array( 'rev_page' => $this->mNewTitle->getArticleID() ),
-			array( 
+			array(
 				'rev_id IN (' . $idstring . ')',
 				'rev_page' => $this->mOldTitle->getArticleID(),
 			),
@@ -266,7 +267,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 
 		# Check if we need to update page_latest
 		# Get the latest version of the revisions we are moving
-		$timestampNewPage = $this->queryLatestTimestamp( 
+		$timestampNewPage = $this->queryLatestTimestamp(
 			$dbw,
 			$this->mNewTitle->getArticleID(),
 			array( 'rev_id IN (' . $idstring . ')' )
@@ -278,17 +279,17 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		$currentNewPageRev = Revision::newFromId( $this->mNewTitle->getLatestRevID() );
 		if ( $this->createArticle || $timestampNewPage > $currentNewPageRev->getTimestamp() ) {
 			# we have to set page_latest to $timestampNewPage's revid
-			$this->updatePageLatest( 
-				$dbw, 
+			$this->updatePageLatest(
+				$dbw,
 				$this->mNewTitle,
 				$newArticle,
-				$timestampNewPage, 
+				$timestampNewPage,
 				array( 'rev_id IN (' . $idstring . ')' )
 			);
 		}
 
 		# Update the old page's page_latest field
-		$timestampOldPage = $this->queryLatestTimestamp( 
+		$timestampOldPage = $this->queryLatestTimestamp(
 			$dbw,
 			$this->mOldTitle->getArticleID()
 		);
@@ -307,8 +308,8 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 			# page_latest has to be updated
 			$currentOldPageRev = Revision::newFromId( $this->mOldTitle->getLatestRevID() );
 			if ( $timestampOldPage < $currentOldPageRev->getTimestamp() ) {
-				$this->updatePageLatest( 
-					$dbw, 
+				$this->updatePageLatest(
+					$dbw,
 					$this->mOldTitle,
 					$oldArticle,
 					$timestampOldPage
@@ -336,12 +337,12 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	 * @param &$dbw Database object (Master)
 	 * @param $articleId Integer page_id
 	 * @param $conds array database conditions
-	 * 
+	 *
 	 * @return String timestamp
 	 */
 	protected function queryLatestTimestamp( &$dbw, $articleId, $conds = array() ) {
-		$timestampNewRow = $dbw->selectRow( 
-			'revision', 
+		$timestampNewRow = $dbw->selectRow(
+			'revision',
 			'max(rev_timestamp) as maxtime',
 			array_merge( array( 'rev_page' => $articleId ), $conds ),
 			__METHOD__
@@ -352,19 +353,19 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	/**
 	 * Updates page_latest and similar database fields (see Article::updateRevisionOn).
 	 * Called two times, for the new and the old page
-	 * 
+	 *
 	 * @param &$dbw Database object (Master)
 	 * @param $articleTitle Title object of the page
 	 * @param $articleObj Article object of the page
 	 * @param $timestamp to search for (use queryLatestTimestamp to get the latest)
 	 * @param $conds array database conditions
-	 * 
+	 *
 	 * @return boolean indicating success
 	 */
 	protected function updatePageLatest( &$dbw, $articleTitle, &$articleObj, $timestamp, $conds = array() ) {
 		# Query to find out the rev_id
-		$revisionRow = $dbw->selectRow( 
-			'revision', 
+		$revisionRow = $dbw->selectRow(
+			'revision',
 			'rev_id',
 			array_merge( array(
 				'rev_timestamp' => $timestamp,
@@ -372,6 +373,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 			), $conds ),
 			__METHOD__
 		);
+
 		# Update page_latest
 		$latestRev = Revision::newFromId( $revisionRow->rev_id );
 		return $articleObj->updateRevisionOn( $dbw, $latestRev, $articleTitle->getLatestRevID(), null, /* set new page flag */  true );
@@ -385,19 +387,19 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 			$this->mNewTitle->getPrefixedText(),
 			$modifiedRevsNum
 		);
+
 		$log = new LogPage( 'move' );
 		$log->addEntry( 'move_rev', $this->mOldTitle, $this->mReason, $paramArray, $this->user );
-
 	}
 
 	protected function showSuccess( $modifiedRevsNum ) {
 		global $wgOut;
 
 		if ( $this->createArticle ) {
-			$wgOut->addWikiMsg( 'revmove-success-created', $modifiedRevsNum, 
+			$wgOut->addWikiMsg( 'revmove-success-created', $modifiedRevsNum,
 				$this->mOldTitle->getPrefixedText(), $this->mNewTitle->getPrefixedText() );
 		} else {
-			$wgOut->addWikiMsg( 'revmove-success-existing', $modifiedRevsNum, 
+			$wgOut->addWikiMsg( 'revmove-success-existing', $modifiedRevsNum,
 				$this->mOldTitle->getPrefixedText(), $this->mNewTitle->getPrefixedText() );
 		}
 	}
