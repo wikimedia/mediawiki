@@ -27,7 +27,7 @@
  *
  * @file
  * @author Brion Vibber <brion at pobox.com>
- * @ingrouo maintenance
+ * @ingroup maintenance
  */
 
 $options = array( 'missing', 'dry-run' );
