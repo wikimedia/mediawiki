@@ -2107,7 +2107,7 @@ CSS;
 		}
 
 		$bar = array();
-		$this->addToSidebar( $bar, wfMsgForContentNoTrans( 'sidebar' ) );
+		$this->addToSidebar( $bar, 'sidebar' );
 
 		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) {
@@ -2116,16 +2116,26 @@ CSS;
 		wfProfileOut( __METHOD__ );
 		return $bar;
 	}
+	/**
+	 * Add content from a sidebar system message
+	 * Currently only used for MediaWiki:Sidebar (but may be used by Extensions)
+	 *
+	 * This is just a wrapper around addToSidebarPlain() for backwards compatibility
+	 * 
+	 * @param &$bar array
+	 * @param $message String
+	 */
+	function addToSidebar( &$bar, $message ) {
+		$this->addToSidebarPlain( $bar, wfMsgForContent( $message ) );
+	}
 	
 	/**
-	 * Add content to the sidebar from text
-	 * @since 1.16
+	 * Add content from plain text
+	 * @since 1.17
 	 * @param &$bar array
 	 * @param $text string
-	 * 
-	 * @return array
 	 */
-	function addToSidebar( &$bar, $text ) {
+	function addToSidebarPlain( &$bar, $text ) {
 		$lines = explode( "\n", $text );
 		$wikiBar = array(); # We need to handle the wikitext on a different variable, to avoid trying to do an array operation on text, which would be a fatal error.
 
@@ -2142,9 +2152,6 @@ CSS;
 			} else {
 				$line = trim( $line, '* ' );
 				if( strpos( $line, '|' ) !== false ) { // sanity check
-					global $wgMessageCache;
-					$line = $wgMessageCache->transform( $line );
-					
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					$link = wfMsgForContent( $line[0] );
 					if( $link == '-' ) {
