@@ -1169,11 +1169,11 @@ Ellenőrizd a naplókat.',
 'revmove-reasonfield'          => 'Ok:',
 'revmove-titlefield'           => 'Céllap:',
 'revmove-badparam-title'       => 'Hibás paraméterek',
-'revmove-badparam'             => '<span class="error">A kérésed érvénytelen vagy nem elegendő paramétert tartalmaz. Kattints a „Vissza” gombra, majd próbáld újra.</span>',
+'revmove-badparam'             => 'A kérésed érvénytelen vagy nem elegendő paramétert tartalmaz. Kattints a „Vissza” gombra, majd próbáld újra.',
 'revmove-norevisions-title'    => 'Érvénytelen célváltozat',
-'revmove-norevisions'          => '<span class="error">Nem adtad meg az(oka)t a lapváltozato(ka)t, mely(ek)en végre akarod hajtani ezt a műveletet, vagy a kiválasztott lapváltozat nem létezik.</span>',
+'revmove-norevisions'          => 'Nem adtad meg az(oka)t a lapváltozato(ka)t, mely(ek)en végre akarod hajtani ezt a műveletet, vagy a kiválasztott lapváltozat nem létezik.',
 'revmove-nullmove-title'       => 'Hibás cím',
-'revmove-nullmove'             => '<span class="error">A forrás és a céllap megegyezik. Kattints a „Vissza” gombra, majd adj meg a jelenlegi, „$1” címtől különbözőt.</span>',
+'revmove-nullmove'             => 'A forrás és a céllap megegyezik. Kattints a „Vissza” gombra, majd adj meg a jelenlegi, „$1” címtől különbözőt.',
 'revmove-success-existing'     => '{{PLURAL:$1|Egy|$1}} lapváltozat át lett helyezve a(z) [[$2]] lapról a már létező [[$3]] lapra.',
 'revmove-success-created'      => '{{PLURAL:$1|Egy|$1}} lapváltozat át lett helyezve a(z) [[$2]] lapról az újonnan létrehozott [[$3]] lapra.',
 
@@ -1504,6 +1504,7 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
 'right-revisionmove'          => 'lapváltozatok áthelyezése',
+'right-selenium'              => 'Selenium-tesztek futtatása',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',

@@ -1146,11 +1146,11 @@ Rigardu la [[Special:IPBlockList|IP-forbarliston]] por la listo de nune operacia
 'revmove-reasonfield'          => 'Kialo:',
 'revmove-titlefield'           => 'Cela paĝo:',
 'revmove-badparam-title'       => 'Malbonaj parametroj',
-'revmove-badparam'             => '<span class="error">Via peto enhavas kontraŭleĝajn aŭ nesufiĉajn parametrojn. Bonvolu premi "malantaŭen" kaj provi denove.</span>',
+'revmove-badparam'             => 'Via peto enhavas kontraŭleĝajn aŭ nesufiĉajn parametrojn. Bonvolu premi "malantaŭen" kaj provi denove.',
 'revmove-norevisions-title'    => 'Nevalida cela revizio',
-'revmove-norevisions'          => '<span class="error">Vi ne specifis unu aŭ pliajn reviziojn por apliki ĉi tiun funkcion aŭ la specifita revizio ne ekzistas.</span>',
+'revmove-norevisions'          => 'Vi ne specifis unu aŭ pliajn reviziojn por apliki ĉi tiun funkcion aŭ la specifita revizio ne ekzistas.',
 'revmove-nullmove-title'       => 'Fuŝa titolo',
-'revmove-nullmove'             => '<span class="error">Origina kaj cela paĝoj samas. Bonvolu malantaŭeniri kaj tajpi paĝon malsaman de "$1".</span>',
+'revmove-nullmove'             => 'Origina kaj cela paĝoj samas. Bonvolu malantaŭeniri kaj tajpi paĝon malsaman de "$1".',
 
 # History merging
 'mergehistory'                     => 'Kunfandigi historiojn de paĝoj',

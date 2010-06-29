@@ -10,6 +10,7 @@
  * @author Albamhandae
  * @author Devunt
  * @author Ficell
+ * @author Gapo
  * @author IRTC1015
  * @author ITurtle
  * @author Klutzy
@@ -1139,11 +1140,11 @@ $1",
 'revmove-reasonfield'          => '이유:',
 'revmove-titlefield'           => '대상 문서:',
 'revmove-badparam-title'       => '잘못된 변수',
-'revmove-badparam'             => '<span class="error">당신의 요청이 잘못된 변수를 갖고 있거나 변수 내용이 부족합니다. "뒤로"를 클릭하여 다시 시도해 보십시오.</span>',
+'revmove-badparam'             => '당신의 요청이 잘못된 변수를 갖고 있거나 변수 내용이 부족합니다. "뒤로"를 클릭하여 다시 시도해 보십시오.',
 'revmove-norevisions-title'    => '대상 판 선택이 잘못됨',
-'revmove-norevisions'          => '<span class="error">당신은 이 기능을 수행할 대상 판을 설정하지 않았거나 존재하지 않는 판을 선택하였습니다.</span>',
+'revmove-norevisions'          => '당신은 이 기능을 수행할 대상 판을 설정하지 않았거나 존재하지 않는 판을 선택하였습니다.',
 'revmove-nullmove-title'       => '제목이 잘못됨',
-'revmove-nullmove'             => '<span class="error">옮기기 전 문서와 대상 문서의 제목이 같습니다. "뒤로"를 클릭하여 "$1"과 다른 문서 이름을 입력해주세요.</span>',
+'revmove-nullmove'             => '옮기기 전 문서와 대상 문서의 제목이 같습니다. "뒤로"를 클릭하여 "$1"과 다른 문서 이름을 입력해주세요.',
 'revmove-success-existing'     => '[[$2]] 문서의 편집 $1개가 [[$3]] 문서로 옮겨졌습니다.',
 'revmove-success-created'      => '[[$2]] 문서의 편집 $1개가 [[$3]] 문서로 옮기면서 새 문서를 생성했습니다.',
 
@@ -1475,6 +1476,7 @@ $1",
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
 'right-revisionmove'          => '특정 판 옮기기',
+'right-selenium'              => '셀레늄 테스트 실행',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',
