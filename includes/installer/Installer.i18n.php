@@ -430,7 +430,11 @@ Consider changing it manually.",
 	'config-install-sysop'            => 'Creating administrator user account',
 	'config-install-localsettings'    => 'Creating LocalSettings.php',
 	'config-install-localsettings-unwritable' => 'Warning: Could not write <code>LocalSettings.php</code>.
-Create it yourself, using the following text:',
+Create it yourself, using the following text:
+<textarea name="LocalSettings" id="LocalSettings" cols="80" rows="25" readonly="readonly">
+$1
+</textarea>
+',
 	'config-install-done'             => "'''Congratulations!'''
 You have successfully installed MediaWiki.
 

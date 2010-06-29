@@ -45,14 +45,13 @@ class CliInstallerOutput {
 
 	function output() {
 		$this->flush();
-		$this->outputFooter();
 	}
 
 	function useShortHeader( $use = true ) {
 	}
 
 	function flush() {
-		echo $this->contents;
+		echo html_entity_decode( strip_tags( $this->contents ), ENT_QUOTES );
 		flush();
 		$this->contents = '';
 	}
@@ -77,7 +76,4 @@ class CliInstallerOutput {
 		$this->addHTML( $this->warnings );
 		$this->warnings = '';
 	}
-
-	function outputFooter() {}
-
 }
