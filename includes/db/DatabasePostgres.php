@@ -309,7 +309,7 @@ class DatabasePostgres extends DatabaseBase {
 				$connectVars['password'] = $password;
 
 				@$this->mConn = pg_connect( $this->makeConnectionString( $connectVars ) );
-				if ( $this->mConn ) {
+				if ( !$this->mConn ) {
 					print "<b>FAILED TO CONNECT!</b></li>";
 					dieout("</ul>");
 				}
