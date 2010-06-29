@@ -560,9 +560,6 @@ class Cookie {
 
 		$dc = explode(".", $domain);
 
-		// Don't allow cookies for "localhost", "ls" or other dot-less hosts
-		if( count($dc) < 2 ) return false;
-
 		// Only allow full, valid IP addresses
 		if( preg_match( '/^[0-9.]+$/', $domain ) ) {
 			if( count( $dc ) != 4 ) return false;
@@ -707,7 +704,6 @@ class CookieJar {
 			} elseif ( !Cookie::validateCookieDomain( $attr['domain'], $domain ) ) {
 				return null;
 			}
-
 			$this->setCookie( $name, $value, $attr );
 		}
 	}
