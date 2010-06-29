@@ -15,7 +15,7 @@ class LocalSettingsGenerator {
 		$this->configPath = $installer->getVar( 'IP' ) . '/config';
 		$this->extensions = $installer->getVar( '_Extensions' );
 		$db = $installer->getDBInstaller( $installer->getVar( 'wgDBtype' ) );
-		
+
 		$confItems = array_merge( array( 'wgScriptPath', 'wgScriptExtension',
 			'wgPasswordSender', 'wgImageMagickConvertCommand', 'wgShellLocale',
 			'wgLanguageCode', 'wgEnableEmail', 'wgEnableUserEmail', 'wgDiff3',
@@ -58,11 +58,11 @@ class LocalSettingsGenerator {
 	}
 
 	/**
-	 * Write the file
-	 * @param $secretKey String A random string to
-	 * @return boolean On successful file write
+	 * Return the full text of the generated LocalSettings.php file,
+	 * including the extensions
+	 * @returns String
 	 */
-	public function writeLocalSettings() {
+	public function getText() {
 		$localSettings = $this->getDefaultText();
 		if( count( $this->extensions ) ) {
 			$localSettings .= "\n# The following extensions were automatically enabled:\n";
@@ -70,18 +70,30 @@ class LocalSettingsGenerator {
 				$localSettings .= "require( 'extensions/$ext/$ext.php' );\n";
 			}
 		}
+
+		return $localSettings;
+	}
+
+	/**
+	 * Write the file
+	 * @param $secretKey String A random string to
+	 * @return boolean On successful file write
+	 */
+	public function writeLocalSettings() {
+		$localSettings = $this->getText();
 		wfSuppressWarnings();
 		$ret = file_put_contents( $this->configPath . '/LocalSettings.php', $localSettings );
 		wfRestoreWarnings();
+
+		$status = Status::newGood();
+
 		if ( !$ret ) {
-			$warn = wfMsg( 'config-install-localsettings-unwritable' ) . '
-<textarea name="LocalSettings" id="LocalSettings" cols="80" rows="25" readonly="readonly">'
-				. htmlspecialchars( $localSettings ) . '</textarea>';
-			$this->installer->output->addWarning( $warn );
+			$status->fatal( 'config-install-localsettings-unwritable', $localSettings );
 		}
-		return $ret;
+
+ 		return $status;
 	}
-	
+
 	private function buildMemcachedServerList() {
 		$servers = $this->values['_MemCachedServers'];
 		if( !$servers ) {

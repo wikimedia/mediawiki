@@ -908,15 +908,7 @@ abstract class Installer {
 
 	public function installLocalsettings() {
 		$localSettings = new LocalSettingsGenerator( $this );
-		$ok = $localSettings->writeLocalSettings();
-
-		# TODO: Make writeLocalSettings() itself not warn, but instead return
-		# a Status object to us to pass along.
-		if ( $ok ) {
-			return Status::newGood();
-		} else {
-			return Status::newFatal();
-		}
+		return $localSettings->writeLocalSettings();
 	}
 
 	/**
