@@ -380,20 +380,16 @@ div#mw-head h5 {
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#simpleSearch button#searchButton {
-		margin: 0;
 		padding: 0;
-		width: 1.75em;
-		height: 16px;
+		margin: 5px 5px 0 5px;
+		height: 13px;
+		width: 12px;
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
 		background-image: url(images/search-rtl.png?1);
 		background-position: center center;
 		background-repeat: no-repeat;
-	}
-	/* IGNORED BY IE6 */
-	div#simpleSearch > button#searchButton {
-		height: 100%;
 	}
 /* Panel */
 div#mw-panel {
