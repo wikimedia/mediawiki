@@ -2082,7 +2082,7 @@ CSS;
 		}
 
 		$bar = array();
-		$this->addToSidebar( $bar, wfMsgForContentNoTrans( 'sidebar' ) );
+		$this->addToSidebar( $bar, 'sidebar' );
 
 		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) {
@@ -2091,17 +2091,15 @@ CSS;
 		wfProfileOut( __METHOD__ );
 		return $bar;
 	}
-	
 	/**
-	 * Add content to the sidebar from text
-	 * @since 1.16
+	 * Add content from a sidebar system message
+	 * Currently only used for MediaWiki:Sidebar (but may be used by Extensions)
+	 *
 	 * @param &$bar array
-	 * @param $text string
-	 * 
-	 * @return array
+	 * @param $message String
 	 */
-	function addToSidebar( &$bar, $text ) {
-		$lines = explode( "\n", $text );
+	function addToSidebar( &$bar, $message ) {
+		$lines = explode( "\n", wfMsgForContent( $message ) );
 		$heading = '';
 		foreach( $lines as $line ) {
 			if( strpos( $line, '*' ) !== 0 ) {
@@ -2114,9 +2112,6 @@ CSS;
 				}
 			} else {
 				if( strpos( $line, '|' ) !== false ) { // sanity check
-					global $wgMessageCache;
-					$line = $wgMessageCache->transform( $line );
-					
 					$line = array_map( 'trim', explode( '|', trim( $line, '* ' ), 2 ) );
 					$link = wfMsgForContent( $line[0] );
 					if( $link == '-' ) {
