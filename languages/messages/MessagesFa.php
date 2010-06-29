@@ -22,7 +22,7 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'مدیا',
+	NS_MEDIA            => 'رسانه',
 	NS_SPECIAL          => 'ویژه',
 	NS_MAIN	            => '',
 	NS_TALK             => 'بحث',
@@ -44,6 +44,8 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'تصویر' => NS_FILE,
 	'بحث_تصویر' => NS_FILE_TALK,
+	'مدیا' => NS_MEDIA,
+	'رسانه‌ای' => NS_MEDIA,
 );
 
 $specialPageAliases = array(
