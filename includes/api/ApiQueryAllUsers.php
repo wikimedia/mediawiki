@@ -133,7 +133,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		foreach ( $res as $row ) {
 			$count++;
 
-			if ( !$row || $lastUser !== $row->user_name ) {
+			if ( $lastUser !== $row->user_name ) {
 				// Save the last pass's user data
 				if ( is_array( $lastUserData ) ) {
 					$fit = $result->addValue( array( 'query', $this->getModuleName() ),
