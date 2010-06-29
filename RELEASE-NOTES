@@ -54,6 +54,8 @@ further.
 * For Oracle DB backend: fixed parser tests and table prefix feature.
 * (bug 23767) Fixed PHP warning when REQUEST_URI is blank (IIS issue).
 * Fixed plural function for Northern Sami (se)
+* (bug 23597) Fixed conflicts between ID attributes in the Vector skin and 
+  parser-generated heading IDs. Renamed head, panel, head-base and page-base.
 
 == Changes since 1.16 beta 2 ==
 
@@ -93,6 +95,7 @@ further.
   causing large numbers of images to be scaled in response to a single request.
   The fix for this involves breaking the scaling of such image filenames until
   ImageMagick 6.6.1-5 or later is deployed, see bug 23361 for more details.
+* (bug 23608) Fixed invalid HTML in diff pages.
 
 === Changes since 1.16 beta 1 ===
 
