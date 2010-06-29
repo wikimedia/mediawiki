@@ -978,11 +978,11 @@ Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:IPBlo
 'revmove-reasonfield'          => 'Rheswm:',
 'revmove-titlefield'           => 'Tudalen y cyrchfan:',
 'revmove-badparam-title'       => 'Paramedrau gwallus',
-'revmove-badparam'             => '<span class="error">Mae eich cais yn cynnwys paramedrau annigonol neu anghyfreithlon. Pwyswch y botwm "Nôl" a rhowch gynnig arall arni.</span>',
+'revmove-badparam'             => 'Mae eich cais yn cynnwys paramedrau annigonol neu anghyfreithlon. Pwyswch y botwm "Nôl" a rhowch gynnig arall arni.',
 'revmove-norevisions-title'    => 'Penwyd diwygiad annilys',
-'revmove-norevisions'          => "<span class=\"error\">Rydych chi heb enwi un neu ragor o ddiwygiadau'r cyrchfan i wneud y swyddogaeth hon neu nad yw'r diwygiad dan sylw'n bodoli.</span>",
+'revmove-norevisions'          => "Rydych chi heb enwi un neu ragor o ddiwygiadau'r cyrchfan i wneud y swyddogaeth hon neu nad yw'r diwygiad dan sylw'n bodoli.",
 'revmove-nullmove-title'       => 'Teitl gwallus',
-'revmove-nullmove'             => '<span class="error">Mae\'r un enw ar dudalennau\'r ffynhonnell a\'r cyrchfan. Pwyswch y botwm "Nôl" a phennwch enw tudalen heblaw "$1".</span>',
+'revmove-nullmove'             => 'Mae\'r un enw ar dudalennau\'r ffynhonnell a\'r cyrchfan. Pwyswch y botwm "Nôl" a phennwch enw tudalen heblaw "$1".',
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',

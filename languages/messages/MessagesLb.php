@@ -1027,9 +1027,9 @@ Kuckt [[Special:IPBlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Sp
 'revmove-titlefield'           => 'Zilsäit:',
 'revmove-badparam-title'       => 'Falsch Parameter',
 'revmove-norevisions-title'    => 'Net-valabel Zilversioun',
-'revmove-norevisions'          => '<span class="error">Dir hutt keng Zilversioun uginn, fir dës Fonctionalitéit ze benotzen oder déi Versioun déi Dir uginn hutt gëtt et net.</span>',
+'revmove-norevisions'          => 'Dir hutt keng Zilversioun uginn, fir dës Fonctionalitéit ze benotzen oder déi Versioun déi Dir uginn hutt gëtt et net.',
 'revmove-nullmove-title'       => 'Schlechten Titel',
-'revmove-nullmove'             => '<span class="error">D\'Quell- an d\'Zilsäit sinn déi selwëscht. Klickt w.e.g. op „zréck“ a gitt en anere Säitennumm wéi "$1" un.</span>',
+'revmove-nullmove'             => 'D\'Quell- an d\'Zilsäit sinn déi selwëscht. Klickt w.e.g. op „zréck“ a gitt en anere Säitennumm wéi "$1" un.',
 'revmove-success-existing'     => "{{PLURAL:$1|Eng Versioun vu(n) [[$2]] gouf|$1 Versioune vu(n) [[$2]] goufen}} op d'Säit [[$3]] geréckelt.",
 'revmove-success-created'      => '{{PLURAL:$1|Eng Versioun vu(n) [[$2]] gouf|$1 Versioune vu(n) [[$2]] goufen}} op déi nei Säit [[$3]] geréckelt.',
 
@@ -2242,6 +2242,7 @@ $1',
 Ënnendrënner steet déi lescht Androung an d'Spärlëscht:",
 'sp-contributions-search'              => 'No Kontributioune sichen',
 'sp-contributions-username'            => 'IP-Adress oder Benotzernumm:',
+'sp-contributions-toponly'             => 'Nëmmen Ännerunge weisen déi déi lescht Versioun sinn',
 'sp-contributions-submit'              => 'Sichen',
 
 # What links here

@@ -870,7 +870,7 @@ rocaneyan kontrol bıkere.',
 'revmove-reasonfield'    => 'Sebeb:',
 'revmove-titlefield'     => 'Pelê hedefi:',
 'revmove-badparam-title' => 'Parametreyê xeleti',
-'revmove-badparam'       => '<span class="error">Waştişê tu de cikek ke illegal ya zi kem est ê. Ma rica keni "peyser" şo u reyna deneme bike.</span>',
+'revmove-badparam'       => 'Waştişê tu de cikek ke illegal ya zi kem est ê. Ma rica keni "peyser" şo u reyna deneme bike.',
 'revmove-nullmove-title' => 'Sernameo xırabın',
 
 # History merging

@@ -435,7 +435,7 @@ Tähelepandmisõs: niikavva, ku sa olõ-i tühäs tennüq uma võrgokaeja vaihõ
 'yourname'                   => 'Pruukjanimi',
 'yourpassword'               => 'Salasõna',
 'yourpasswordagain'          => 'Kirodaq viilkõrd salasõna',
-'remembermypassword'         => 'Salasõna miildejätmine järgmäidsis kõrros',
+'remembermypassword'         => 'Jätäq salasõna miilde (kooniq $1 {{PLURAL:$1|pääväs|pääväs}})',
 'yourdomainname'             => 'Võrgonimi',
 'externaldberror'            => 'Välitsen kimmästegemisteedüskogon om viga vai olõ-i sul lubat umma pruukjanimme muutaq.',
 'login'                      => 'Nimega sisseminek',

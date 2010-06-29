@@ -11,6 +11,7 @@
  * @author D.de.loinsigh
  * @author Kwekubo
  * @author Moilleadóir
+ * @author Moydow
  * @author Spacebirdy
  * @author Stifle
  * @author Tameamseo
@@ -243,6 +244,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'vector-namespace-image'     => 'Comhad',
 'vector-namespace-main'      => 'Leathanach',
 'vector-namespace-mediawiki' => 'Teachtaireacht',
+'vector-namespace-special'   => 'Leathanach speisialta',
 'vector-view-view'           => 'Léigh',
 
 'errorpagetitle'    => 'Earráid',
@@ -459,13 +461,14 @@ Cruthaíodh do chuntas. Ná déan dearmad athrú a dhéanamh ar do chuid [[Speci
 'yourname'                   => "D'ainm úsáideora",
 'yourpassword'               => "D'fhocal faire",
 'yourpasswordagain'          => "Athiontráil d'fhocal faire",
-'remembermypassword'         => 'Cuimhnigh orm',
+'remembermypassword'         => "Cuimhnigh ar m'fhocal faire ar an ríomhaire seo",
 'yourdomainname'             => "D'fhearann",
 'externaldberror'            => 'Bhí earráid bhunachair sonraí ann maidir le fíordheimhniú seachtrach, nóThere was either an external authentication database error or you are not allowed to update your external account.',
 'login'                      => 'Logáil isteach',
 'nav-login-createaccount'    => 'Logáil isteach',
 'loginprompt'                => 'Tá sé riachtanach fianáin a chur i ngníomh chun logáil isteach a dhéanamh ag {{SITENAME}}.',
 'userlogin'                  => 'Logáil isteach / cruthaigh cuntas',
+'userloginnocreate'          => 'Logáil isteach',
 'logout'                     => 'Logáil amach',
 'userlogout'                 => 'Logáil amach',
 'notloggedin'                => 'Níl tú logáilte isteach',

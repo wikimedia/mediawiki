@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Cantonese (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1005,11 +1005,11 @@ $1",
 'revmove-reasonfield'          => '原因:',
 'revmove-titlefield'           => '目標頁:',
 'revmove-badparam-title'       => '壞參數',
-'revmove-badparam'             => '<span class="error">你嘅請求有唔合法嘅或者唔夠嘅參數。請撳「返轉頭」再試過。</span>',
+'revmove-badparam'             => '你嘅請求有唔合法嘅或者唔夠嘅參數。請撳「返轉頭」再試過。',
 'revmove-norevisions-title'    => '無效嘅目標修訂',
-'revmove-norevisions'          => '<span class="error">你未指定一個或者多個目標修訂去做呢項功能或者所指定嘅修訂唔存在。</span>',
+'revmove-norevisions'          => '你未指定一個或者多個目標修訂去做呢項功能或者所指定嘅修訂唔存在。',
 'revmove-nullmove-title'       => '壞標題',
-'revmove-nullmove'             => '<span class="error">來源同埋目標頁係一模一樣嘅。請撳「返轉頭」再輸入同 "$1" 唔同嘅名。</span>',
+'revmove-nullmove'             => '來源同埋目標頁係一模一樣嘅。請撳「返轉頭」再輸入同 "$1" 唔同嘅名。',
 'revmove-success-existing'     => '由[[$2]]嘅{{PLURAL:$1|一次修訂|$1次修訂}}已經搬到去現有嘅頁[[$3]]。',
 'revmove-success-created'      => '由[[$2]]嘅{{PLURAL:$1|一次修訂|$1次修訂}}已經搬到去新開嘅頁[[$3]]。',
 

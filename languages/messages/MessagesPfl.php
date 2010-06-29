@@ -175,7 +175,7 @@ S kann sai, dass es ää orrer meh Zaiche drin hot, wu in Sairetitel nid därfe 
 # Login and logout pages
 'yourname'                => 'Benutzername:',
 'yourpassword'            => 'Passwort:',
-'remembermypassword'      => 'Mai Passwort uff dem Computer merke',
+'remembermypassword'      => 'Mai Passwort uff dem Computer merke (hechschtens fer $1 {{PLURAL:$1|Dach|Dach}})',
 'login'                   => 'Omelde',
 'nav-login-createaccount' => 'Aamelde / Benutzerkonto aaleche',
 'userlogin'               => 'Omelde / Benutzerkonto anleche',

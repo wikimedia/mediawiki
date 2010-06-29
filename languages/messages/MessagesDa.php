@@ -704,7 +704,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'anonpreviewwarning'               => "''Du er ikke logget ind. Hvis du gemmer, registreres din IP-adresse i versionshistorikken.''",
 'missingsummary'                   => "'''Påmindelse:''' Du har ikke angivet en redigeringsbeskrivelse. Hvis du igen trykker på \"Gem\", gemmes ændringerne uden en beskrivelse.",
 'missingcommenttext'               => 'Indtast venligst et resume.',
-'missingcommentheader'             => "'''BEMÆRK:''' du har ikke angivet en overskrift i feltet „Emne:“. Hvis du igen trykker på „Gem side“, gemmes bearbejdningen uden overskrift.",
+'missingcommentheader'             => "'''Bemærk:''' Du har ikke angivet en overskrift i feltet „Emne:“ for denne kommentar. Hvis du trykker „Gem side“ én gang til, gemmes dine ændringer uden overskrift.",
 'summary-preview'                  => 'Forhåndsvisning af beskrivelsen:',
 'subject-preview'                  => 'Forhåndsvisning af emnet:',
 'blockedtitle'                     => 'Brugeren er blokeret',
@@ -1032,11 +1032,16 @@ Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
 'revisionmove'                 => 'Flyt ændringer fra "$1"',
 'revmove-explain'              => 'Følgende ændringer vil blive flyttet fra $ 1 til den angivne målside. Hvis målsiden ikke findes, vil den blive oprettet. Ellers vil disse revisioner blive flettet ind i sidens historik.',
 'revmove-legend'               => 'Sæt målside og opsummering',
+'revmove-submit'               => 'Flyt revisioner til den valgte side',
 'revisionmoveselectedversions' => 'Flyt valgte revisioner',
 'revmove-reasonfield'          => 'Begrundelse:',
 'revmove-titlefield'           => 'Målside:',
 'revmove-badparam-title'       => 'Forkerte parametre',
+'revmove-badparam'             => 'Din forespørgsel indeholder ugyldige eller utilstrækkelige parametre.
+Vend tilbage til forrige side og prøv igen.',
 'revmove-nullmove-title'       => 'Forkert titel',
+'revmove-nullmove'             => 'Slutsiden kan ikke være identisk med startsiden.
+Vend tilbage til forrige side og vælg et andet navn fra "$1".',
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
@@ -3127,6 +3132,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'table_pager_first'        => 'Første side',
 'table_pager_last'         => 'Sidste side',
 'table_pager_limit'        => 'Vis $1 indførsler pr. side',
+'table_pager_limit_label'  => 'Elementer pr. side:',
 'table_pager_limit_submit' => 'Start',
 'table_pager_empty'        => 'Ingen resultater',
 

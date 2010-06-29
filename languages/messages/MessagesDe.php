@@ -1210,11 +1210,11 @@ Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernam
 'revmove-reasonfield'          => 'Begründung:',
 'revmove-titlefield'           => 'Zielseite:',
 'revmove-badparam-title'       => 'Falsche Parameter',
-'revmove-badparam'             => '<span class="error">Deine Anfrage enthält unerlaubte oder mangelhafte Parameter. Bitte klicke auf „zurück“ und versuche es erneut.</span>',
+'revmove-badparam'             => 'Deine Anfrage enthält unerlaubte oder mangelhafte Parameter. Bitte klicke auf „zurück“ und versuche es erneut.',
 'revmove-norevisions-title'    => 'Ungültige Zielversion',
-'revmove-norevisions'          => '<span class="error">Du hast keine Zielversion angegeben, um diese Aktion durchzuführen oder die angegebene Version existiert nicht.</span>',
+'revmove-norevisions'          => 'Du hast keine Zielversion angegeben, um diese Aktion durchzuführen oder die angegebene Version existiert nicht.',
 'revmove-nullmove-title'       => 'Ungültiger Titel',
-'revmove-nullmove'             => '<span class="error">Quell- und Zielseite sind identisch. Bitte klicke auf „zurück“ und gib einen anderen Seitennamen als „$1“ ein.</span>',
+'revmove-nullmove'             => 'Quell- und Zielseite sind identisch. Bitte klicke auf „zurück“ und gib einen anderen Seitennamen als „$1“ ein.',
 'revmove-success-existing'     => '{{PLURAL:$1|Eine Version von [[$2]] wurde|$1 Versionen von [[$2]] wurden}} zur existierenden Seite [[$3]] verschoben.',
 'revmove-success-created'      => '{{PLURAL:$1|Eine Version von [[$2]] wurde|$1 Versionen von [[$2]] wurden}} zur neu angelegten Seite [[$3]] verschoben.',
 
@@ -3008,7 +3008,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breite',
-'exif-imagelength'                 => 'Länge',
+'exif-imagelength'                 => 'Höhe',
 'exif-bitspersample'               => 'Bits pro Farbkomponente',
 'exif-compression'                 => 'Art der Kompression',
 'exif-photometricinterpretation'   => 'Pixelzusammensetzung',

@@ -919,8 +919,12 @@ Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi 
 'revmove-reasonfield'          => 'Rason:',
 'revmove-titlefield'           => 'Pàgina bërsaj:',
 'revmove-badparam-title'       => 'Paràmeter nen bon',
-'revmove-badparam'             => "<span class=\"error\">Soa arcesta a conten ëd paràmeter nen bon o ch'a basto pa. Për piasì, ch'a sgnaca «andaré» e ch'a preuva torna.</span>",
+'revmove-badparam'             => "Soa arcesta a conten ëd paràmeter nen bon o ch'a basto pa. Për piasì, ch'a sgnaca «andaré» e ch'a preuva torna.",
 'revmove-norevisions-title'    => 'Revision bërsaj nen vàlida',
+'revmove-norevisions'          => "A l'ha pa spessificà un-a o vàire revision bërsaj për dovré costa fonsionalità opura la revision ëspessificà a esist nen.",
+'revmove-nullmove-title'       => 'Tìtol nen bon',
+'revmove-nullmove'             => "La pàgina bërsaj a peul pa esse la pàgina sorgiss.
+Ch'a torna andré a la pàgina precedenta e ch'a serna un nòm diferent da «$1».",
 
 # History merging
 'mergehistory'                     => 'Buté ansema je stòrie',
@@ -1259,12 +1263,12 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 
 # User rights log
 'rightslog'      => "Argistr dij drit ëd j'utent",
-'rightslogtext'  => "Sòn a l'é na lista dij cambiament aj drit dj'utent.",
+'rightslogtext'  => "Costa a l'é na lista dij cambiament aj drit ëd j'utent.",
 'rightslogentry' => "a l'ha tramudà $1 da 'nt la partìa $2 a la partìa $3",
 'rightsnone'     => '(gnun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'                 => 'les sta pàgina-sì',
+'action-read'                 => 'lese sta pàgina-sì',
 'action-edit'                 => 'modìfica costa pàgina',
 'action-createpage'           => 'Creé pàgine',
 'action-createtalk'           => 'Creé pàgine ëd discussion',
