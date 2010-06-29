@@ -1355,7 +1355,7 @@ SQL;
 		echo "<li>Populating interwiki table... ";
 		## Avoid the non-standard "REPLACE INTO" syntax
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
-		if ( $f ) {
+		if ( !$f ) {
 			print "<b>FAILED</b></li>";
 			dieout( "Could not find the interwiki.sql file" );
 		}
