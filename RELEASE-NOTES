@@ -94,6 +94,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21475) \mathtt and \textsf can now be used in <math>
 * texvc is now run via ulimit4.sh, to limit execution time.
 * SQLite now supports $wgSharedDB.
+* (bug 8507) Group file links by namespace:title on image pages
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
