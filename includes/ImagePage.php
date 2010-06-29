@@ -629,8 +629,7 @@ EOT
 		);
 		$count = $dbr->numRows( $res );
 		if ( $count == 0 ) {
-			$wgOut->addHTML( Html::rawElement( 'div', array ( 'id' => 'mw-imagepage-nolinkstoimage' ),
-					wfMsg( 'nolinkstoimage' ) ) ) . "\n";
+			$wgOut->wrapWikiMsg( Html::rawElement( 'div', array ( 'id' => 'mw-imagepage-nolinkstoimage' ), "\n$1\n" ), 'nolinkstoimage' );
 			return;
 		}
 		
@@ -662,13 +661,7 @@ EOT
 
 		// Create links for every element
 		foreach( $elements as $element ) {    
-			$link = $sk->link(
-				Title::makeTitle( $element->page_namespace, $element->page_title ),
-				null,
-				array(),
-				array(),
-				array( 'known', 'noclasses' )
-			);
+			$link = $sk->linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
 			$wgOut->addHTML( Html::rawElement(
 						'li',
 						array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
