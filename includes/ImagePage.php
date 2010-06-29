@@ -629,9 +629,8 @@ EOT
 		);
 		$count = $dbr->numRows( $res );
 		if ( $count == 0 ) {
-			$wgOut->addHTML( "<div id='mw-imagepage-nolinkstoimage'>\n" );
-			$wgOut->addWikiMsg( 'nolinkstoimage' );
-			$wgOut->addHTML( "</div>\n" );
+			$wgOut->addHTML( Html::rawElement( 'div', array ( 'id' => 'mw-imagepage-nolinkstoimage' ),
+					wfMsg( 'nolinkstoimage' ) ) ) . "\n";
 			return;
 		}
 		
@@ -646,30 +645,46 @@ EOT
 			);
 		}
 
-		$wgOut->addHTML( "<ul class='mw-imagepage-linkstoimage'>\n" );
+		$wgOut->addHTML( Html::openElement( 'ul', array( 'class' => 'mw-imagepage-linkstoimage' ) ) . "\n" );
 		$sk = $wgUser->getSkin();
 		$count = 0;
+		$elements = array();
 		while ( $s = $res->fetchObject() ) {
 			$count++;
 			if ( $count <= $limit ) {
 				// We have not yet reached the extra one that tells us there is more to fetch
-				$link = $sk->link(
-					Title::makeTitle( $s->page_namespace, $s->page_title ),
-					null,
-					array(),
-					array(),
-					array( 'known', 'noclasses' )
-				);
-				$wgOut->addHTML( "<li>{$link}</li>\n" );
+				$elements[] =  $s;
 			}
 		}
-		$wgOut->addHTML( "</ul>\n" );
+
+		// Sort the list by namespace:title
+		usort ( $elements, array( $this, 'compare' ) );
+
+		// Create links for every element
+		foreach( $elements as $element ) {    
+			$link = $sk->link(
+				Title::makeTitle( $element->page_namespace, $element->page_title ),
+				null,
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			);
+			$wgOut->addHTML( Html::rawElement(
+						'li',
+						array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
+						$link
+					) . "\n"
+			);
+
+		};
+		$wgOut->addHTML( Html::closeElement( 'ul' ) . "\n" );
 		$res->free();
 
 		// Add a links to [[Special:Whatlinkshere]]
-		if ( $count > $limit )
+		if ( $count > $limit ) {
 			$wgOut->addWikiMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() );
-		$wgOut->addHTML( "</div>\n" );
+		}
+		$wgOut->addHTML( Html::closeElement( 'div' ) . "\n" );
 	}
 	
 	protected function imageRedirects() {
@@ -796,6 +811,22 @@ EOT
 		$wgOut->addWikiText( $description );
 	}
 
+
+	/**
+	 * Callback for usort() to do link sorts by (namespace, title)
+	 * Function copied from Title::compare()
+	 * 
+	 * @param $a object page to compare with
+	 * @param $b object page to compare with
+	 * @return Integer: result of string comparison, or namespace comparison
+	 */
+	protected function compare( $a, $b ) {
+		if ( $a->page_namespace == $b->page_namespace ) {
+			return strcmp( $a->page_title, $b->page_title );
+		} else {
+			return $a->page_namespace - $b->page_namespace;
+		}
+	}
 }
 
 /**
