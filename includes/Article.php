@@ -539,7 +539,7 @@ class Article {
 		$this->mContentLoaded = true;
 		$this->mRevision =& $revision;
 
-		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ) ;
+		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
 
 		return $this->mContent;
 	}
