@@ -351,6 +351,7 @@ div#mw-head h5 {
 	div#simpleSearch {
 		margin-top: 0.65em;
 		position: relative;
+		min-height: 1px; /* Gotta trigger hasLayout for IE7 */
 		border: solid 1px #AAAAAA;
 		background-color: white;
 		background-image: url(images/search-fade.png?1);
