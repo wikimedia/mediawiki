@@ -224,6 +224,9 @@ abstract class Installer {
 		$wgExtensionMessagesFiles['MediawikiInstaller'] =
 			'./includes/installer/Installer.i18n.php';
 
+		// Set our custom <doclink> hook
+		global $wgHooks;
+		$wgHooks['ParserFirstCallInit'][] = array( $this, 'registerDocLink' );
 
 		$this->settings = $this->internalDefaults;
 		foreach ( $this->defaultVarNames as $var ) {
@@ -794,6 +797,14 @@ abstract class Installer {
 			}
 		}
 		return $html;
+	}
+
+	/**
+	 * Register tag hook below
+	 */
+	function registerDocLink( &$parser ) {
+		$parser->setHook( 'doclink', array( $this, 'docLink' ) );
+		return true;
 	}
 
 	/**
