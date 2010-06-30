@@ -1063,7 +1063,7 @@ class Sanitizer {
 		# hurt.
 		$html = htmlspecialchars( $html, ENT_QUOTES );
 		$html = str_replace( '&amp;', '&', $html );
-		$html = Sanitizer::normalizeCharReferences( $html );
+		$html = Sanitizer::decodeCharReferences( $html );
 		return $html;
 	}
 
