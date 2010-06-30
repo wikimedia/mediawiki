@@ -238,7 +238,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get the value of session.save_path
 	 *
-	 * Per http://www.php.net/manual/en/ref.session.php#ini.session.save-path,
+	 * Per http://www.php.net/manual/en/session.configuration.php#ini.session.save-path,
 	 * this might have some additional preceding parts which need to be
 	 * ditched
 	 *
@@ -803,7 +803,7 @@ class WebInstaller extends Installer {
 	}
 }
 
-class WebInstallerPage {
+abstract class WebInstallerPage {
 	function __construct( $parent ) {
 		$this->parent = $parent;
 	}
@@ -863,15 +863,7 @@ class WebInstallerPage {
 		return array_search( $this->getName(), $this->parent->pageSequence );
 	}
 
-	function execute() {
-		if ( $this->parent->request->wasPosted() ) {
-			return 'continue';
-		} else {
-			$this->startForm();
-			$this->addHTML( 'Mockup' );
-			$this->endForm();
-		}
-	}
+	abstract function execute();
 
 	function getVar( $var ) {
 		return $this->parent->getVar( $var );
