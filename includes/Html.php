@@ -598,19 +598,7 @@ class Html {
 		global $wgHtml5, $wgHtml5Version, $wgWellFormedXml, $wgDocType, $wgDTD;
 		global $wgXhtmlNamespaces, $wgXhtmlDefaultNamespace;
 		if ( $wgHtml5 ) {
-			if ( $wgWellFormedXml ) {
-				# Unknown elements and attributes are okay in XML, but unknown
-				# named entities are well-formedness errors and will break XML
-				# parsers.  Thus we need a doctype that gives us appropriate
-				# entity definitions.  The HTML5 spec permits four legacy
-				# doctypes as obsolete but conforming, so let's pick one of
-				# those, although it makes our pages look like XHTML1 Strict.
-				# Isn't compatibility great?
-				$ret .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
-			} else {
-				# Much saner.
-				$ret .= "<!doctype html>\n";
-			}
+			$ret .= "<!DOCTYPE html>\n";
 			if ( $wgHtml5Version ) {
 				$attribs['version'] = $wgHtml5Version;
 			}
