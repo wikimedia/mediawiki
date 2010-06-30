@@ -30,7 +30,7 @@ class ProfilerSimpleText extends ProfilerSimple {
 			if ($this->visible) {
 				print '<pre>'.self::$out.'</pre>';
 			} else {
-				print '<!--\n'.self::$out.'\n-->\n';
+				print "<!--\n".self::$out."\n-->\n";
 			}
 		}
 	}
