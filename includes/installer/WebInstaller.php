@@ -1397,12 +1397,12 @@ class WebInstaller_Options extends WebInstallerPage {
 				'label' => 'config-upload-deleted',
 			) ) .
 			$this->parent->getHelpBox( 'config-upload-deleted-help' ) .
+			'</div>' .
 			$this->parent->getTextBox( array(
 				'var' => 'wgLogo',
 				'label' => 'config-logo'
 			) ) .
 			$this->parent->getHelpBox( 'config-logo-help' ) .
-			'</div>' .
 			$this->parent->getFieldsetEnd()
 		);
 
