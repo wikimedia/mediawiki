@@ -7,7 +7,7 @@ class LocalSettingsGenerator {
 	private $installer;
 
 	/**
-	 * Construtor.
+	 * Constructor.
 	 * @param $installer Installer subclass
 	 */
 	public function __construct( Installer $installer ) {
