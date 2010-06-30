@@ -3067,6 +3067,7 @@ $1',
 'table_pager_first'        => 'Бастакы сирэй',
 'table_pager_last'         => 'Бүтэһик сирэй',
 'table_pager_limit'        => 'Сирэйгэ бачча $1 пууну көрдөр',
+'table_pager_limit_label'  => 'Сирэйгэ суруллуу ахсаана:',
 'table_pager_limit_submit' => 'Толор',
 'table_pager_empty'        => 'Туох да көстүбэтэ',
 
@@ -3204,6 +3205,15 @@ $1',
 'tags-hitcount-header'    => 'Бэлиэтэммит бэлиэлэр',
 'tags-edit'               => 'уларытыы',
 'tags-hitcount'           => '$1 {{PLURAL:$1|уларытыы|уларытыылар}}',
+
+# Special:ComparePages
+'comparepages'     => 'Сирэйдэри тэҥнииргэ',
+'compare-selector' => 'Сирэйдэр барылларын тэҥнииргэ',
+'compare-page1'    => 'Бастакы сирэй',
+'compare-page2'    => 'Иккис сирэй',
+'compare-rev1'     => 'Бастакы барыл',
+'compare-rev2'     => 'Иккис барыл',
+'compare-submit'   => 'Тэҥнииргэ',
 
 # Database error messages
 'dberr-header'      => 'Бу биики туга эрэ сатаммата',

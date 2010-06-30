@@ -472,7 +472,7 @@ $1',
 'nosuchactiontext'  => 'Dejanje, ki ga označuje spletni naslov, je napačno.
 Morda ste se pri naslovu zatipkali ali pa ste sledili napačni povezavi.
 Morda ste odkrili hrošča v programski opremi {{GRAMMAR:genitive|{{SITENAME}}}}.',
-'nosuchspecialpage' => 'Posebna stran, ki ste jo zahtevali, ne obstaja',
+'nosuchspecialpage' => 'Zahtevana posebna stran ne obstaja',
 'nospecialpagetext' => '<strong>Zahtevali ste neveljavno posebno stran.</strong>
 
 Seznam vseh prepoznanih posebnih strani je na razpolago na strani [[Special:SpecialPages|{{int:specialpages}}]].',

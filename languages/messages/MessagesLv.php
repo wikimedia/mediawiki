@@ -480,7 +480,7 @@ Ja paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies sa
 Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt tikai vienu paroles atgādinājumu, {{PLURAL:$1|katru stundu|katras $1 stundas}}.',
 'mailerror'                  => 'E-pasta sūtīšanas kļūda: $1',
 'acct_creation_throttle_hit' => 'Lietotāji no tavas IP adreses šajā viki pēdējo 24 stundu laikā jau ir izveidojuši {{PLURAL:$1|1 kontu|$1 kontus}}, kas ir maksimālais atļautais skaits šajā laika periodā.
-Šī iemesla dēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
+Tādēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
 'emailauthenticated'         => 'Tava e-pasta adrese tika apstiprināta $2, $3.',
 'emailnotauthenticated'      => 'Tava e-pasta adrese <strong>vēl nav apstiprināta</strong> un zemāk norādītās iespējas nav pieejamas.',
 'noemailprefs'               => 'Norādi e-pasta adresi, lai lietotu šīs iespējas.',
@@ -583,7 +583,7 @@ Norādi un apstiprini e-pasta adresi savos [[Special:Preferences|lietotāja uzst
 Tā var būt pārvietota vai dzēsta, kamēr jūs apskatījāt lapu.',
 'loginreqtitle'                    => 'Nepieciešama ieiešana',
 'loginreqlink'                     => 'login',
-'accmailtitle'                     => 'Parole izsūtīta.',
+'accmailtitle'                     => 'Parole nosūtīta.',
 'accmailtext'                      => "Nejauši ģenerēta parole lietotājam [[User talk:$1|$1]] tika nosūtīta uz $2.
 
 Šī konta paroli pēc ielogošanās varēs nomainīt ''[[Special:ChangePassword|šeit]]''.",
