@@ -881,7 +881,13 @@ abstract class Installer {
 	}
 
 	public function installSecretKey() {
-		$file = wfIsWindows() ? null : @fopen( "/dev/urandom", "r" );
+		if ( wfIsWindows() ) {
+			$file = null;
+		} else {
+			wfSuppressWarnings();
+			$file = fopen( "/dev/urandom", "r" );
+			wfRestoreWarnings();
+		}
 		if ( $file ) {
 			$secretKey = bin2hex( fread( $file, 32 ) );
 			fclose( $file );
