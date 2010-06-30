@@ -101,7 +101,12 @@ require_once( "$IP/includes/AutoLoader.php" );
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	require_once( "$IP/includes/DefaultSettings.php" );
-	call_user_func( MW_CONFIG_CALLBACK );
+
+	$callback = MW_CONFIG_CALLBACK;
+	if ( strpos( $callback, '::' ) !== false ) {
+		$callback = explode( '::', $callback, 2);
+	}
+	call_user_func( $callback );
 } else {
 	# LocalSettings.php is the per site customization file. If it does not exit
 	# the wiki installer need to be launched or the generated file moved from

@@ -2,7 +2,7 @@
 /**
  * We want to make this whole thing as seamless as possible to the
  * end-user. Unfortunately, we can't do _all_ of the work in the class
- * because A) included files are not in global scope, but in the scope 
+ * because A) included files are not in global scope, but in the scope
  * of their caller, and B) MediaWiki has way too many globals. So instead
  * we'll kinda fake it, and do the requires() inline. <3 PHP
  *
@@ -64,7 +64,12 @@ require_once( "$IP/includes/Defines.php" );
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	require_once( "$IP/includes/DefaultSettings.php" );
-	call_user_func( MW_CONFIG_CALLBACK );
+
+	$callback = MW_CONFIG_CALLBACK;
+	if ( strpos( $callback, '::' ) !== false ) {
+		$callback = explode( '::', $callback, 2);
+	}
+	call_user_func( $callback );
 } elseif ( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
 	// Load settings, using wikimedia-mode if needed
 	// Fixme: replace this hack with general farm-friendly code
