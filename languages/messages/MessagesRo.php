@@ -456,7 +456,7 @@ pe titlul secțiunii (JavaScript)',
 
 # Vector skin
 'vector-action-addsection'       => 'Adaugă subiect',
-'vector-action-delete'           => 'Şterge',
+'vector-action-delete'           => 'Șterge',
 'vector-action-move'             => 'Redenumește',
 'vector-action-protect'          => 'Protejează',
 'vector-action-undelete'         => 'Recuperare',
@@ -1068,7 +1068,7 @@ Ca administrator puteți vedea în continuare acest diff; s-ar putea să existe 
 Ca administrator puteți vedea în continuare acest diff; s-ar putea să existe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-delundel'                => 'arată/ascunde',
 'rev-showdeleted'             => 'arată',
-'revisiondelete'              => 'Şterge/recuperează revizii',
+'revisiondelete'              => 'Șterge/recuperează revizii',
 'revdelete-nooldid-title'     => 'Versiune invalidă',
 'revdelete-nooldid-text'      => 'Nu ai specificat revizie pentru a efectua această
 funcție, revizia specificată nu există, sau ești pe cale să ascunzi revizia curentă.',
@@ -1829,7 +1829,7 @@ Descrierea de mai jos poate fi consultată la [$2 pagina de descriere a fișieru
 'filerevert-badversion'     => 'Nu există o versiune mai veche a fișierului care să corespundă cu data introdusă.',
 
 # File deletion
-'filedelete'                  => 'Şterge $1',
+'filedelete'                  => 'Șterge $1',
 'filedelete-legend'           => 'Șterge fișierul',
 'filedelete-intro'            => "Sunteți pe cale să ștergeți fișierul '''[[Media:$1|$1]]''' cu tot istoricul acestuia.",
 'filedelete-intro-old'        => "Ştergi versiunea fișierului '''[[Media:$1|$1]]''' din [$4 $3, $2].",
@@ -2196,7 +2196,7 @@ Asistență și suport:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'             => 'Şterge pagina',
+'deletepage'             => 'Șterge pagina',
 'confirm'                => 'Confirmă',
 'excontent'              => "conținutul era: '$1'",
 'excontentauthor'        => 'conținutul era: „$1” (unicul contribuitor: [[Special:Contributions/$2|$2]])',

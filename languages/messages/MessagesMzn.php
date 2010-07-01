@@ -231,6 +231,7 @@ $messages = array(
 'create-this-page' => 'ای وألگ ره وا هأکه‌نین',
 'delete'           => 'وربـأئـیـتـه‌ن',
 'protect_change'   => 'ده‌گـه‌ره‌سـه‌ن',
+'unprotect'        => 'دیگه محافظت نکان',
 'newpage'          => 'نـه ولـگ',
 'talkpage'         => 'ای ولـگ پـألـی گـب بـأزوئـه‌ن',
 'talkpagelinktext' => 'گپ',
@@ -258,14 +259,20 @@ $2، $1',
 'disclaimers'          => 'خواهان فه‌رو نیشته‌نه‌ن',
 'disclaimerpage'       => 'Project:تکذیب‌نومهٔ همه‌گونی',
 'edithelp'             => 'دأچـیه‌ن ره رانـه‌ما',
-'edithelppage'         => 'رانه‌ما:دَچی‌ین',
+'edithelppage'         => 'رونما:دَچی‌ین',
 'helppage'             => 'Help:رونما',
 'mainpage'             => 'گت ولگ',
 'mainpage-description' => 'گت ولگ',
 'policy-url'           => 'Project:سیاستون',
 'portal'               => 'مازرون دأروازه',
+'portal-url'           => 'Project:کارورون لوش',
 'privacy'              => 'کاری رول',
 'privacypage'          => 'Project:Privacy_policy',
+
+'badaccess'        => 'نتوندی هچی ره هارشی',
+'badaccess-group0' => 'شما این کار ره نتونی هاکنین.',
+
+'versionrequired' => 'نوسخهٔ $1 نرم‌افزار مدیاویکی جه لازم هسّه',
 
 'ok'                      => 'خا',
 'retrievedfrom'           => '"$1" جـه بأئـیـتـه بـأیـه',
@@ -295,15 +302,30 @@ $2، $1',
 'red-link-title'          => '$1 (ای ولـگ دأنـیـه)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'ولـگ',
-'nstab-user'     => 'کارور گپ',
-'nstab-special'  => 'شـاء ولـگ',
-'nstab-project'  => 'پروژه',
-'nstab-image'    => 'فایل',
-'nstab-template' => 'شابلون',
-'nstab-category' => 'رج',
+'nstab-main'      => 'ولـگ',
+'nstab-user'      => 'کارور گپ',
+'nstab-media'     => 'رسانه',
+'nstab-special'   => 'شـاء ولـگ',
+'nstab-project'   => 'پروژه',
+'nstab-image'     => 'فایل',
+'nstab-mediawiki' => 'پیغوم',
+'nstab-template'  => 'شابلون',
+'nstab-help'      => 'رونما',
+'nstab-category'  => 'رج',
+
+# Main script and global functions
+'nosuchaction'      => 'نونه اینتی هاکردن',
+'nosuchactiontext'  => 'اینتا کار اینترنتی ِنشونی دله غیرموجازه
+شما احتمالا اینترنتی آدرس ره ایشتباه بنویشنی یا لینک ایشتبا ره کلیک هاکردنی
+همینتی ممکن هسته ایرادی {{SITENAME}} دله داره.',
+'nosuchspecialpage' => 'اینتا شاء ولگ وجود ندانه',
+'nospecialpagetext' => '<strong>شما اتا غیرموجاز صفحه ره بخاسنی.</strong>
+
+اینان شاء صفحه‌ئون هستنه: [[Special:SpecialPages|{{int:specialpages}}]]',
 
 # General errors
+'error'         => 'خِطا',
+'databaseerror' => 'خطای داده‌ئون پایگا',
 'badtitle'      => 'نخش عونوان',
 'viewsource'    => 'چـه‌شـمـه بـأویـنـه‌ن',
 'viewsourcefor' => '$1 ره وسه',

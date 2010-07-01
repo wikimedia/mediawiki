@@ -121,7 +121,7 @@ $messages = array(
 'tog-editsection'             => 'Kapabligez redakto di secioni per [redaktar]-ligamini',
 'tog-editsectiononrightclick' => 'Kapabligez redakto di secioni kande on dextra-klikus tituli di secioni (JavaScript bezonesas)',
 'tog-showtoc'                 => 'Montrez indexo (por pagini havanta plu multa kam 3 tituli)',
-'tog-rememberpassword'        => 'Memorez mea pasovorto en ica komputoro',
+'tog-rememberpassword'        => 'Memorez mea pasovorto en ica komputoro (maxime $1 {{PLURAL:$1|dio|dii}})',
 'tog-watchcreations'          => 'Adjuntez pagini kreota da me ad mea surveyaji',
 'tog-watchdefault'            => 'Adjuntez pagini redaktota da me ad mea surveyaji',
 'tog-watchmoves'              => 'Adjuntez pagini movota da me ad mea surveyaji',
@@ -643,6 +643,10 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'revdelete-otherreason'      => 'Altra/suplementala motivo:',
 'revdelete-reasonotherlist'  => 'Altra motivo',
 
+# Revision move
+'revmove-reasonfield'    => 'Motivo:',
+'revmove-nullmove-title' => 'Nekorekta titulo',
+
 # History merging
 'mergehistory-reason' => 'Motivo:',
 
@@ -774,6 +778,7 @@ Ol mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.',
 'prefs-help-email-required'     => 'E-postala adreso es bezonata.',
 'prefs-info'                    => 'Bazala informeso',
 'prefs-signature'               => 'Signaturo',
+'prefs-diffs'                   => 'Diferi',
 
 # User rights
 'userrights-user-editname' => 'Skribez uzantonomo:',
@@ -902,6 +907,8 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'file-anchor-link'          => 'Failo',
 'filehist'                  => 'Historio dil arkivo',
 'filehist-help'             => 'Kliktez sur la dato/horo por vidar arkivo quale ol aparis ye ta tempo.',
+'filehist-deleteall'        => 'efacar omno',
+'filehist-deleteone'        => 'efacar',
 'filehist-current'          => 'aktuala',
 'filehist-datetime'         => 'Dato/Horo',
 'filehist-thumb'            => 'Imajeto',
@@ -991,6 +998,7 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'protectedtitles'         => 'Protektita tituli',
 'listusers'               => 'Uzanto-listo',
 'usereditcount'           => '$1 {{PLURAL:$1|redakto|redakti}}',
+'usercreated'             => 'Kreita ye $1 $2',
 'newpages'                => 'Nova pagini',
 'newpages-username'       => 'Uzantonomo:',
 'ancientpages'            => 'Maxim anciena artikli',
@@ -1042,6 +1050,9 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 
 # Special:ListUsers
 'listusers-submit' => 'Montrez',
+
+# Special:ActiveUsers
+'activeusers-noresult' => 'Nula uzanto trovesis.',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Uzanto-kreo-registro',
@@ -1142,28 +1153,29 @@ La lasta chanjo a la pagino esis da [[User:$3|$3]] ([[User talk:$3|Diskutez]]{{i
 restauris ad lasta versiono da $2.',
 
 # Protect
-'protectlogpage'          => 'Protekto-registraro',
-'protectedarticle'        => 'protektita "[[$1]]"',
-'unprotectedarticle'      => 'desprotektita [[$1]]',
-'protect-title'           => 'Protektante "$1"',
-'prot_1movedto2'          => '[[$1]] movita a [[$2]]',
-'protect-legend'          => 'Konfirmar protekto',
-'protectcomment'          => 'Motivo:',
-'protectexpiry'           => 'Expiras:',
-'protect_expiry_invalid'  => 'Expirotempo es ne-valida.',
-'protect_expiry_old'      => 'Expirotempo es in pasinta.',
-'protect-default'         => 'Permisar omna uzanti',
-'protect-fallback'        => 'Bezonar permiso "$1"',
-'protect-level-sysop'     => 'Nur administranti',
-'protect-summary-cascade' => 'kaskade',
-'protect-expiring'        => 'expiras ye $1 (UTC)',
-'protect-othertime'       => 'Altra tempo:',
-'protect-othertime-op'    => 'altra tempo',
-'protect-otherreason'     => 'Altra/suplementala motivo:',
-'protect-otherreason-op'  => 'Altra motivo',
-'protect-expiry-options'  => '1 horo:1 hour,1 dio:1 day,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite',
-'restriction-type'        => 'Permiso:',
-'pagesize'                => '(bicoki)',
+'protectlogpage'            => 'Protekto-registraro',
+'protectedarticle'          => 'protektita "[[$1]]"',
+'unprotectedarticle'        => 'desprotektita [[$1]]',
+'protect-title'             => 'Protektante "$1"',
+'prot_1movedto2'            => '[[$1]] movita a [[$2]]',
+'protect-legend'            => 'Konfirmar protekto',
+'protectcomment'            => 'Motivo:',
+'protectexpiry'             => 'Expiras:',
+'protect_expiry_invalid'    => 'Expirotempo es ne-valida.',
+'protect_expiry_old'        => 'Expirotempo es in pasinta.',
+'protect-default'           => 'Permisar omna uzanti',
+'protect-fallback'          => 'Bezonar permiso "$1"',
+'protect-level-sysop'       => 'Nur administranti',
+'protect-summary-cascade'   => 'kaskade',
+'protect-expiring'          => 'expiras ye $1 (UTC)',
+'protect-expiry-indefinite' => 'nefinita',
+'protect-othertime'         => 'Altra tempo:',
+'protect-othertime-op'      => 'altra tempo',
+'protect-otherreason'       => 'Altra/suplementala motivo:',
+'protect-otherreason-op'    => 'Altra motivo',
+'protect-expiry-options'    => '1 horo:1 hour,1 dio:1 day,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite',
+'restriction-type'          => 'Permiso:',
+'pagesize'                  => '(bicoki)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Redaktar',
