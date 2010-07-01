@@ -250,6 +250,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24089) Logevents causes PHP Notice if leprop=title isn't supplied
 * (bug 23473) Give description of properties on all modules
 * (bug 24136) unknownerror when adding new section without summary, but forceditsummary
+* (bug 16886) Sister projects box moves down the extract of the first result in IE 7.
 
 === Languages updated in 1.17 ===
 
