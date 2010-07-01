@@ -242,7 +242,7 @@ function fillDestFilename(id) {
 	// Clear the filename if it does not have a valid extension.
 	// URLs are less likely to have a useful extension, so don't include them in the 
 	// extension check.
-	if( wgFileExtensions && id != 'wpUploadFileURL' ) {
+	if( $wgStrictFileExtensions && wgFileExtensions && id != 'wpUploadFileURL' ) {
 		var found = false;
 		if( fname.lastIndexOf( '.' ) != -1 ) {
 			var ext = fname.substr( fname.lastIndexOf( '.' ) + 1 );
