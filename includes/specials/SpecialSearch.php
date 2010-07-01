@@ -368,6 +368,9 @@ class SpecialSearch {
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		// add javascript specific to special:search
 		$wgOut->addScriptFile( 'search.js' );
+
+		// Bug #16886: Sister projects box moves down the first extract on IE7  
+		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 7' );
 	}
 
 	/**
@@ -608,7 +611,7 @@ class SpecialSearch {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return "<li>{$link} {$redirect} {$section} {$extract}\n" .
+		return "<li><div class='mw-search-result-heading'>{$link} {$redirect} {$section}</div> {$extract}\n" .
 			"<div class='mw-search-result-data'>{$score}{$size} - {$date}{$related}</div>" .
 			"</li>\n";
 
