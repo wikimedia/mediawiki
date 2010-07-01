@@ -308,8 +308,10 @@ class SpecialPage {
 	 * an associative record to $wgSpecialPages. This avoids autoloading SpecialPage.
 	 *
 	 * @param $page SpecialPage
+	 * Deprecated in 1.7, warnings in 1.17, might be removed in 1.20
 	 */
 	static function addPage( &$page ) {
+		wfDeprecated( __METHOD__ );
 		if ( !self::$mListInitialised ) {
 			self::initList();
 		}
@@ -624,16 +626,16 @@ class SpecialPage {
 			$found = false;
 			foreach ( $aliases as $n => $values ) {
 				if ( strcasecmp( $name, $n ) === 0 ) {
-					wfWarn( "Found alias defined for $n when searching for special page aliases
-for $name. Case mismatch?" );
+					wfWarn( "Found alias defined for $n when searching for" .
+						"special page aliases for $name. Case mismatch?" );
 					$name = $values[0];
 					$found = true;
 					break;
 				}
 			}
 			if ( !$found ) {
-				wfWarn( "Did not find alias for special page '$name'.
-Perhaps no page aliases are defined for it?" );
+				wfWarn( "Did not find alias for special page '$name'." . 
+					"Perhaps no aliases are defined for it?" );
 			}
 		}
 		if ( $subpage !== false && !is_null( $subpage ) ) {
