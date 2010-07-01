@@ -925,6 +925,8 @@ Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi 
 'revmove-nullmove-title'       => 'Tìtol nen bon',
 'revmove-nullmove'             => "La pàgina bërsaj a peul pa esse la pàgina sorgiss.
 Ch'a torna andré a la pàgina precedenta e ch'a serna un nòm diferent da «$1».",
+'revmove-success-existing'     => "{{PLURAL:$1|Na revision da [[$2]] a l'é stàita|$1 revision da [[$2]] a son ëstàite}} tramudà a la pàgina esistenta [[$3]].",
+'revmove-success-created'      => "{{PLURAL:$1|Na revision da [[$2]] a l'é stàita|$1 revision da [[$2]] a son ëstàite}} tramudà a la pàgina [[$3]] pen-a creà.",
 
 # History merging
 'mergehistory'                     => 'Buté ansema je stòrie',
@@ -1269,13 +1271,13 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'lese sta pàgina-sì',
-'action-edit'                 => 'modìfica costa pàgina',
-'action-createpage'           => 'Creé pàgine',
-'action-createtalk'           => 'Creé pàgine ëd discussion',
-'action-createaccount'        => 'creé sto cont utent-sì',
+'action-edit'                 => 'modifiché costa pàgina',
+'action-createpage'           => 'creé dle pàgine',
+'action-createtalk'           => 'creé dle pàgine ëd discussion',
+'action-createaccount'        => 'creé ës cont utent',
 'action-minoredit'            => 'marché sta modìfica-sì com minor',
 'action-move'                 => 'tramudé sta pàgina-sì',
-'action-move-subpages'        => 'tramudé sta pàgina-sì e soe sotpàgine',
+'action-move-subpages'        => 'tramudé sta pàgina-sì e soe sot-pàgine',
 'action-move-rootuserpages'   => "tramudé le pàgine prinsipaj dj'utent",
 'action-movefile'             => 'tramudé sto file-sì',
 'action-upload'               => 'carié sto file-sì',
@@ -1302,6 +1304,7 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'action-userrights'           => 'modifiché tùit ij drit utent',
 'action-userrights-interwiki' => "modifiché ij drit utent d'utent ans àutre wiki",
 'action-siteadmin'            => 'bloché o dësbloché ël database',
+'action-revisionmove'         => 'tramudé dle revision',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modìfica|modìfiche}}',
@@ -2013,7 +2016,8 @@ L'ùltima modìfica a la pàgina a l'é staita faita da [[User:$3|$3]] ([[User t
 'rollback-success'  => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
 
 # Edit tokens
-'sessionfailure' => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
+'sessionfailure-title' => 'Eror ëd session',
+'sessionfailure'       => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
 
 # Protect
 'protectlogpage'              => 'Registr dle protession',
@@ -2156,6 +2160,7 @@ $1",
 L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment:",
 'sp-contributions-search'              => 'Arsërca contribussion',
 'sp-contributions-username'            => 'Adrëssa IP ò nòm utent:',
+'sp-contributions-toponly'             => "Mostré mach le modìfiche ch'a son j'ùltime revision",
 'sp-contributions-submit'              => 'Arsërca',
 
 # What links here
@@ -2673,6 +2678,9 @@ An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a 
 'show-big-image-thumb' => '<small>Amzure dë sta figurin-a: $1 × $2 pixel</small>',
 'file-info-gif-looped' => 'ciclà',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|fnesta|fneste}}',
+'file-info-png-looped' => 'an sìrcol',
+'file-info-png-repeat' => 'sonà $1 {{PLURAL:$1|vira|vire}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|quàder|quàder}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerìa ëd figure e son neuv',
@@ -3084,6 +3092,7 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'table_pager_first'        => 'Prima pàgina',
 'table_pager_last'         => 'Ùltima pàgina',
 'table_pager_limit'        => 'Smon-me $1 archivi për pàgina',
+'table_pager_limit_label'  => 'Oget për pàgina:',
 'table_pager_limit_submit' => 'Va',
 'table_pager_empty'        => 'Pa gnun arsultà',
 
