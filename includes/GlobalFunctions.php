@@ -2093,6 +2093,7 @@ function wfGetSiteNotice() {
  * @deprecated
  */
 function &wfGetMimeMagic() {
+	wfDeprecated( __FUNCTION__ );
 	return MimeMagic::singleton();
 }
 
