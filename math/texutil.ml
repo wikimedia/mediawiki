@@ -512,6 +512,8 @@ let find = function
     | "\\over"             -> FUN_INFIXh ("\\over ", fun num den -> Html.html_render num, "<hr style=\"{background: black}\"/>", Html.html_render den)
     | "\\sqrt"             -> FUN_AR1 "\\sqrt "
     | "\\cancel"           -> FUN_AR1 "\\cancel "
+    | "\\bcancel"           -> FUN_AR1 "\\bcancel "
+    | "\\xcancel"           -> FUN_AR1 "\\xcancel "
     | "\\cancelto"         -> FUN_AR2 "\\cancelto "
     | "\\pmod"             -> FUN_AR1hl ("\\pmod ", ("(mod ", ")"))
     | "\\bmod"             -> FUN_AR1hl ("\\bmod ", ("mod ", ""))

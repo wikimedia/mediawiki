@@ -97,6 +97,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8507) Group file links by namespace:title on image pages
 * Stop emitting named entities, so we can use <!DOCTYPE html> while still being
   well-formed XML
+* texvc now supports \bcancel and \xcancel in addition to \cancel and \cancelto
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
