@@ -1406,8 +1406,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->parent->getFieldsetEnd()
 		);
 
-		$caches = array( 'none', 'anything', 'db' );
-		$selected = 'db';
+		$caches = array( 'none' );
 		if( count( $this->getVar( '_Caches' ) ) ) {
 			$caches[] = 'accel';
 			$selected = 'accel';
