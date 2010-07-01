@@ -1044,7 +1044,7 @@ class UploadForm extends HTMLForm {
 	 * Add upload JS to $wgOut
 	 */
 	protected function addUploadJS() {
-		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview, $wgEnableAPI;
+		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview, $wgEnableAPI, $wgStrictFileExtensions;
 		global $wgOut;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
@@ -1058,6 +1058,7 @@ class UploadForm extends HTMLForm {
 				// the wpDestFile textbox
 				$this->mDestFile === '',
 			'wgUploadSourceIds' => $this->mSourceIds,
+			'wgStrictFileExtensions' => $wgStrictFileExtensions,
 		);
 
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );
