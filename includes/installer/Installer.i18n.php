@@ -406,8 +406,6 @@ Medium to large sites are highly encouraged to enable this, and small sites will
 No functionality is removed, but speed may be impacted.',
 	'config-cache-accel'              => 'PHP object caching (APC, eAccelerator, XCache or WinCache)',
 	'config-cache-memcached'          => 'Use Memcached (requires additional setup and configuration)',
-	'config-cache-db'                 => 'Cache data into the database',
-	'config-cache-anything'           => 'MediaWiki will attempt to cache data anywhere possible, except in Memcached, unless indicated explicitely',
 	'config-memcached-servers'        => 'Memcached servers:',
 	'config-memcached-help'           => 'List of IP addresses to use for Memcached.
 Should be separated with commas and specify the port to be used (for example: 1.2.3.4:56, 7.8.9.10:11).',
