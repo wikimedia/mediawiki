@@ -631,8 +631,10 @@ for $name. Case mismatch?" );
 					break;
 				}
 			}
-			if ( !$found ) wfWarn( "Did not find alias for special page '$name'.
+			if ( !$found ) {
+				wfWarn( "Did not find alias for special page '$name'.
 Perhaps no page aliases are defined for it?" );
+			}
 		}
 		if ( $subpage !== false && !is_null( $subpage ) ) {
 			$name = "$name/$subpage";
