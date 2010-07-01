@@ -996,8 +996,8 @@ class Preferences {
 	}
 
 	/**
-	 * @param object $user The user object
-	 * @return array Text/links to display as key; $skinkey as value
+	 * @param $user The User object
+	 * @return Array: text/links to display as key; $skinkey as value
 	 */
 	static function generateSkinOptions( $user ) {
 		global $wgDefaultSkin, $wgLang, $wgAllowUserCss, $wgAllowUserJs;
