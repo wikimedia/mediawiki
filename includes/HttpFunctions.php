@@ -12,9 +12,10 @@ class Http {
 
 	/**
 	 * Perform an HTTP request
-	 * @param $method string HTTP method. Usually GET/POST
-	 * @param $url string Full URL to act on
-	 * @param $options options to pass to HttpRequest object.
+	 *
+	 * @param $method String: HTTP method. Usually GET/POST
+	 * @param $url String: full URL to act on
+	 * @param $options Array: options to pass to HttpRequest object.
 	 *	Possible keys for the array:
 	 *    - timeout             Timeout length in seconds
 	 *    - postData            An array of key-value pairs or a url-encoded form data
@@ -28,7 +29,7 @@ class Http {
 	 *    - followRedirects     Whether to follow redirects (defaults to false). 
 	 *		                    Note: this should only be used when the target URL is trusted,
 	 *		                    to avoid attacks on intranet services accessible by HTTP.
-	 * @returns mixed (bool)false on failure or a string on success
+	 * @return Mixed: (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $options = array() ) {
 		$url = wfExpandUrl( $url );
@@ -65,8 +66,9 @@ class Http {
 
 	/**
 	 * Check if the URL can be served by localhost
-	 * @param $url string Full url to check
-	 * @return bool
+	 *
+	 * @param $url String: full url to check
+	 * @return Boolean
 	 */
 	public static function isLocalURL( $url ) {
 		global $wgCommandLineMode, $wgConf;
@@ -99,7 +101,7 @@ class Http {
 
 	/**
 	 * A standard user-agent we can use for external requests.
-	 * @returns string
+	 * @return String
 	 */
 	public static function userAgent() {
 		global $wgVersion;
@@ -108,8 +110,9 @@ class Http {
 
 	/**
 	 * Checks that the given URI is a valid one
+	 *
 	 * @param $uri Mixed: URI to check for validity
-	 * @returns bool
+	 * @returns Boolean
 	 */
 	public static function isValidURI( $uri ) {
 		return preg_match(
@@ -152,8 +155,8 @@ class HttpRequest {
 	public $status;
 
 	/**
-	 * @param $url	 string url to use
-	 * @param $options array (optional) extra params to pass (see Http::request())
+	 * @param $url String: url to use
+	 * @param $options Array: (optional) extra params to pass (see Http::request())
 	 */
 	function __construct( $url, $options = array() ) {
 		global $wgHTTPTimeout;
@@ -210,7 +213,8 @@ class HttpRequest {
 
 	/**
 	 * Get the body, or content, of the response to the request
-	 * @return string
+	 *
+	 * @return String
 	 */
 	public function getContent() {
 		return $this->content;
@@ -218,7 +222,8 @@ class HttpRequest {
 
 	/**
 	 * Set the parameters of the request
-	 * @param $params array
+	 
+	 * @param $args Array
 	 * @todo overload the args param
 	 */
 	public function setData($args) {
@@ -228,7 +233,8 @@ class HttpRequest {
 	/**
 	 * Take care of setting up the proxy
 	 * (override in subclass)
-	 * @return string
+	 *
+	 * @return String
 	 */
 	public function proxySetup() {
 		global $wgHTTPProxy;
@@ -286,7 +292,8 @@ class HttpRequest {
 
 	/**
 	 * Set the callback
-	 * @param $callback callback
+	 *
+	 * @param $callback Callback
 	 */
 	public function setCallback( $callback ) {
 		$this->callback = $callback;
@@ -295,8 +302,9 @@ class HttpRequest {
 	/**
 	 * A generic callback to read the body of the response from a remote
 	 * server.
+	 *
 	 * @param $fh handle
-	 * @param $content string
+	 * @param $content String
 	 */
 	public function read( $fh, $content ) {
 		$this->content .= $content;
@@ -305,6 +313,7 @@ class HttpRequest {
 
 	/**
 	 * Take care of whatever is necessary to perform the URI request.
+	 *
 	 * @return Status
 	 */
 	public function execute() {
@@ -341,7 +350,8 @@ class HttpRequest {
 	 * Parses the headers, including the HTTP status code and any
 	 * Set-Cookie headers.  This function expectes the headers to be
 	 * found in an array in the member variable headerList.
-	 * @returns nothing
+	 *
+	 * @return nothing
 	 */
 	protected function parseHeader() {
 		$lastname = "";
@@ -364,7 +374,8 @@ class HttpRequest {
 	/**
 	 * Sets the member variable status to a fatal status if the HTTP
 	 * status code was not 200.
-	 * @returns nothing
+	 *
+	 * @return nothing
 	 */
 	protected function setStatus() {
 		if( !$this->respHeaders ) {
@@ -380,7 +391,8 @@ class HttpRequest {
 
 	/**
 	 * Returns true if the last status code was a redirect.
-	 * @return bool
+	 *
+	 * @return Boolean
 	 */
 	public function isRedirect() {
 		if( !$this->respHeaders ) {
@@ -399,7 +411,8 @@ class HttpRequest {
 	 * request has been executed.  Because some headers
 	 * (e.g. Set-Cookie) can appear more than once the, each value of
 	 * the associative array is an array of the values given.
-	 * @return array
+	 *
+	 * @return Array
 	 */
 	public function getResponseHeaders() {
 		if( !$this->respHeaders ) {
@@ -410,8 +423,9 @@ class HttpRequest {
 
 	/**
 	 * Returns the value of the given response header.
-	 * @param $header string
-	 * @return string
+	 *
+	 * @param $header String
+	 * @return String
 	 */
 	public function getResponseHeader($header) {
 		if( !$this->respHeaders ) {
@@ -426,6 +440,7 @@ class HttpRequest {
 
 	/**
 	 * Tells the HttpRequest object to use this pre-loaded CookieJar.
+	 *
 	 * @param $jar CookieJar
 	 */
 	public function setCookieJar( $jar ) {
@@ -434,6 +449,7 @@ class HttpRequest {
 
 	/**
 	 * Returns the cookie jar in use.
+	 *
 	 * @returns CookieJar
 	 */
 	public function getCookieJar() {
@@ -473,7 +489,8 @@ class HttpRequest {
 
 	/**
 	 * Returns the final URL after all redirections.
-	 * @returns string
+	 *
+	 * @return String
 	 */
 	public function getFinalUrl() {
 		$location = $this->getResponseHeader("Location");
@@ -516,8 +533,8 @@ class Cookie {
 	 * cookies.	 Used internally after a request to parse the
 	 * Set-Cookie headers.
 	 *
-	 * @param $value string the value of the cookie
-	 * @param $attr array possible key/values:
+	 * @param $value String: the value of the cookie
+	 * @param $attr Array: possible key/values:
 	 *		expires	 A date string
 	 *		path	 The path this cookie is used on
 	 *		domain	 Domain this cookie is used on
@@ -550,9 +567,9 @@ class Cookie {
 	 * A better method might be to use a blacklist like
 	 * http://publicsuffix.org/
 	 *
-	 * @param $domain string the domain to validate
-	 * @param $originDomain string (optional) the domain the cookie originates from
-	 * @return bool
+	 * @param $domain String: the domain to validate
+	 * @param $originDomain String: (optional) the domain the cookie originates from
+	 * @return Boolean
 	 */
 	public static function validateCookieDomain( $domain, $originDomain = null) {
 		// Don't allow a trailing dot
@@ -598,9 +615,10 @@ class Cookie {
 
 	/**
 	 * Serialize the cookie jar into a format useful for HTTP Request headers.
-	 * @param $path string the path that will be used. Required.
-	 * @param $domain string the domain that will be used. Required.
-	 * @return string
+	 *
+	 * @param $path String: the path that will be used. Required.
+	 * @param $domain String: the domain that will be used. Required.
+	 * @return String
 	 */
 	public function serializeToHttpRequest( $path, $domain ) {
 		$ret = "";
