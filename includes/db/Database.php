@@ -2098,41 +2098,11 @@ abstract class DatabaseBase {
 
 	/**
 	 * Get slave lag.
-	 * At the moment, this will only work if the DB user has the PROCESS privilege
+	 * Currently supported only by MySQL
+	 * @return Database replication lag in seconds
 	 */
 	function getLag() {
-		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			wfDebug( "getLag: fake slave lagged {$this->mFakeSlaveLag} seconds\n" );
-			return $this->mFakeSlaveLag;
-		}
-		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
-		# Find slave SQL thread
-		while ( $row = $this->fetchObject( $res ) ) {
-			/* This should work for most situations - when default db
-			 * for thread is not specified, it had no events executed,
-			 * and therefore it doesn't know yet how lagged it is.
-			 *
-			 * Relay log I/O thread does not select databases.
-			 */
-			if ( $row->User == 'system user' &&
-				$row->State != 'Waiting for master to send event' &&
-				$row->State != 'Connecting to master' &&
-				$row->State != 'Queueing master event to the relay log' &&
-				$row->State != 'Waiting for master update' &&
-				$row->State != 'Requesting binlog dump' &&
-				$row->State != 'Waiting to reconnect after a failed master event read' &&
-				$row->State != 'Reconnecting after a failed master event read' &&
-				$row->State != 'Registering slave on master'
-				) {
-				# This is it, return the time (except -ve)
-				if ( $row->Time > 0x7fffffff ) {
-					return false;
-				} else {
-					return $row->Time;
-				}
-			}
-		}
-		return false;
+		return $this->mFakeSlaveLag;		
 	}
 
 	/**
