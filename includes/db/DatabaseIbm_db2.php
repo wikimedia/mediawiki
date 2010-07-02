@@ -291,8 +291,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * setFakeSlaveLag [Done]
 	 * setFakeMaster [Done]
 	 * 
-	 * Reflection: 6 / 6
-	 * fieldExists [Done]
+	 * Reflection: 5 / 5
 	 * indexInfo [Done]
 	 * fieldInfo [Done]
 	 * fieldType [Done]
@@ -1533,30 +1532,6 @@ EOF;
 	######################################
 	# Reflection
 	######################################
-	
-	/**
-	 * Query whether a given column exists in the mediawiki schema
-	 * @param $table String: name of the table
-	 * @param $field String: name of the column
-	 * @param $fname String: function name for logging and profiling
-	 */
-	public function fieldExists( $table, $field, $fname = 'DatabaseIbm_db2::fieldExists' ) {
-		$table = $this->tableName( $table );
-		$schema = $this->mSchema;
-		$etable = preg_replace("/'/", "''", $table);
-		$eschema = preg_replace("/'/", "''", $schema);
-		$ecol = preg_replace("/'/", "''", $field);
-		$sql = <<<SQL
-SELECT 1 as fieldexists
-FROM sysibm.syscolumns sc
-WHERE sc.name='$ecol' AND sc.tbname='$etable' AND sc.tbcreator='$eschema'
-SQL;
-		$res = $this->query( $sql, $fname );
-		$count = $res ? $this->numRows($res) : 0;
-		if ($res)
-			$this->freeResult( $res );
-		return $count;
-	}
 	
 	/**
 	 * Returns information about an index

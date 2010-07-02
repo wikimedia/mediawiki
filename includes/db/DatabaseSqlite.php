@@ -436,14 +436,6 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * Query whether a given column exists in the mediawiki schema
-	 */
-	function fieldExists( $table, $field, $fname = '' ) {
-		$info = $this->fieldInfo( $table, $field );
-		return (bool)$info;
-	}
-
-	/**
 	 * Get information about a given field
 	 * Returns false if the field does not exist.
 	 */

@@ -262,7 +262,10 @@ class DatabaseMysql extends DatabaseBase {
 
 	function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
-		$res = $this->query( "SELECT * FROM $table LIMIT 1" );
+		$res = $this->query( "SELECT * FROM $table LIMIT 1", __METHOD__, true );
+		if ( !$res ) {
+			return false;
+		}
 		$n = mysql_num_fields( $res->result );
 		for( $i = 0; $i < $n; $i++ ) {
 			$meta = mysql_fetch_field( $res->result, $i );

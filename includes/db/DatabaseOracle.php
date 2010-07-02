@@ -905,10 +905,6 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->fieldInfoMulti ($table, $field);
 	}
 
-	function fieldExists( $table, $field, $fname = 'DatabaseOracle::fieldExists' ) {
-		return (bool)$this->fieldInfo( $table, $field, $fname );
-	}
-
 	function begin( $fname = '' ) {
 		$this->mTrxLevel = 1;
 	}
