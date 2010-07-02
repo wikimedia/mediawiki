@@ -23,7 +23,7 @@
  *				   through HTMLForm::$typeMappings to get the class name.
  *	 'default'  -- default value when the form is displayed
  *	 'id'	    -- HTML id attribute
- *   'cssclass' -- CSS class
+ *   	 'cssclass' -- CSS class
  *	 'options'  -- varies according to the specific object.
  *	 'label-message' -- message key for a message to use as the label.
  *				   can be an array of msg key and then parameters to
@@ -812,6 +812,14 @@ abstract class HTMLFormField {
 		global $wgRequest;
 
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
+		
+		$cellAttributes = array();
+		$verticalLabel = false;
+		
+		if ( !empty($this->mParams['vertical-label']) ) {
+			$cellAttributes['colspan'] = 2;
+			$verticalLabel = true;
+		}
 
 		if ( $errors === true || !$wgRequest->wasPosted() ) {
 			$errors = '';
@@ -819,18 +827,30 @@ abstract class HTMLFormField {
 			$errors = Html::rawElement( 'span', array( 'class' => 'error' ), $errors );
 		}
 
-		$html = $this->getLabelHtml();
-		$html .= Html::rawElement(
+		$label = $this->getLabelHtml( $cellAttributes );
+		$field = Html::rawElement(
 			'td',
-			array( 'class' => 'mw-input' ),
+			array( 'class' => 'mw-input' ) + $cellAttributes,
 			$this->getInputHTML( $value ) . "\n$errors"
 		);
-
+		
 		$fieldType = get_class( $this );
+		
+		if ($verticalLabel) {
+			$html = Html::rawElement( 'tr',
+				array( 'class' => 'mw-htmlform-vertical-label' ), $label );
+			$html .= Html::rawElement( 'tr',
+				array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass}" ),
+				$field );
+		} else {
+			$html = Html::rawElement( 'tr',
+				array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass}" ),
+				$label . $field );
+		}
 
 		$html = Html::rawElement(
 			'tr',
-			array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass}" ),
+			array(  ),
 			$html
 		) . "\n";
 
@@ -860,7 +880,7 @@ abstract class HTMLFormField {
 	function getLabel() {
 		return $this->mLabel;
 	}
-	function getLabelHtml() {
+	function getLabelHtml( $cellAttributes = array() ) {
 		# Don't output a for= attribute for labels with no associated input.
 		# Kind of hacky here, possibly we don't want these to be <label>s at all.
 		$for = array();
@@ -869,7 +889,7 @@ abstract class HTMLFormField {
 			$for['for'] = $this->mID;
 		}
 
-		return Html::rawElement( 'td', array( 'class' => 'mw-label' ),
+		return Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes,
 			Html::rawElement( 'label', $for, $this->getLabel() )
 		);
 	}

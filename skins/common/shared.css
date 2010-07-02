@@ -116,6 +116,10 @@ table.mw-htmlform-nolabel td.mw-label {
 	width: 0 !important;
 }
 
+tr.mw-htmlform-vertical-label td.mw-label {
+	text-align: left !important;
+}
+
 input#wpSummary {
 	width: 80%;
 }
