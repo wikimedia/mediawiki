@@ -344,7 +344,9 @@ $wgImgAuthPublicTest = true;
  * for local repositories:
  *   - descBaseUrl       URL of image description pages, e.g. http://en.wikipedia.org/wiki/Image:
  *   - scriptDirUrl      URL of the MediaWiki installation, equivalent to $wgScriptPath, e.g.
- *                      http://en.wikipedia.org/w
+ *                       http://en.wikipedia.org/w
+ *   - scriptExtension   Script extension of the MediaWiki installation, equivalent to 
+ *                       $wgScriptExtension, e.g. .php5 defaults to .php
  *
  *   - articleUrl        Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1
  *   - fetchDescription  Fetch the text of the remote file description page. Equivalent to
