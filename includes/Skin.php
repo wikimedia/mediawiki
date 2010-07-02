@@ -616,11 +616,7 @@ CSS;
 		// Per-site custom styles
 		if( $wgUseSiteCss ) {
 			global $wgHandheldStyle;
-			$query = wfArrayToCGI( array(
-				'usemsgcache' => 'yes',
-				'ctype' => 'text/css',
-				'smaxage' => $wgSquidMaxage
-			) + $siteargs );
+			$query = wfArrayToCGI( self::getDynamicStylesheetQuery() );
 			# Site settings must override extension css! (bug 15025)
 			$out->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) );
 			$out->addStyle( self::makeNSUrl( 'Print.css', $query, NS_MEDIAWIKI ), 'print' );
@@ -665,6 +661,22 @@ CSS;
 		}
 
 		wfProfileOut( __METHOD__ );
+	}
+	
+	/**
+	 * Get the query to generate a dynamic stylesheet
+	 * 
+	 * @return array
+	 */
+	public static function getDynamicStylesheetQuery() {
+		global $wgSquidMaxage;
+		return array(
+				'action' => 'raw',
+				'maxage' => $wgSquidMaxage,
+				'usemsgcache' => 'yes',
+				'ctype' => 'text/css',
+				'smaxage' => $wgSquidMaxage,
+			);
 	}
 
 	/**

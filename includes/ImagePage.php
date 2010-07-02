@@ -152,6 +152,11 @@ class ImagePage extends Article {
 			$wgOut->addHTML(
 				"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
 		}
+		
+		$css = $this->repo->getDescriptionStylesheetUrl();
+		if ( $css ) {
+			$wgOut->addStyle( $css );
+		}
 	}
 	
 	public function getRedirectTarget() {
