@@ -1017,25 +1017,14 @@ abstract class DatabaseBase {
 
 	/**
 	 * Determines whether a field exists in a table
-	 * Usually aborts on failure
-	 * If errors are explicitly ignored, returns NULL on failure
+	 * @param $table: table name
+	 * @param $filed: filed to check on that table
+	 * @param $fname: calling function name (optional)
+	 * @return bool: whether $table has filed $field
 	 */
 	function fieldExists( $table, $field, $fname = 'Database::fieldExists' ) {
-		$table = $this->tableName( $table );
-		$res = $this->query( 'DESCRIBE '.$table, $fname );
-		if ( !$res ) {
-			return null;
-		}
-
-		$found = false;
-
-		while ( $row = $this->fetchObject( $res ) ) {
-			if ( $row->Field == $field ) {
-				$found = true;
-				break;
-			}
-		}
-		return $found;
+		$info = $this->fieldInfo( $table, $field );
+		return (bool)$info;
 	}
 
 	/**
