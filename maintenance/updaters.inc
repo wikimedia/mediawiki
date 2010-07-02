@@ -1963,7 +1963,7 @@ function do_postgres_updates() {
 	# Fix iwlinks index
 	if ( pg_index_exists( 'iwlinks', 'iwl_prefix' ) ) {
 		wfOut( "Replacing index 'iwl_prefix' with 'iwl_prefix_from_title'...\n" );
-		$wgDatabase->sourceFile( archive( 'patch-ipb_address_unique.sql' ) );
+		$wgDatabase->sourceFile( archive( 'patch-rename-iwl_prefix.sql' ) );
 	}
 
 	global $wgExtNewTables, $wgExtPGNewFields, $wgExtPGAlteredFields, $wgExtNewIndexes;
