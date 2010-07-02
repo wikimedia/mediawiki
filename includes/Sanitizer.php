@@ -1059,11 +1059,10 @@ class Sanitizer {
 	 * @return String: escaped input
 	 */
 	static function escapeHtmlAllowEntities( $html ) {
+		$html = Sanitizer::decodeCharReferences( $html );
 		# It seems wise to escape ' as well as ", as a matter of course.  Can't
 		# hurt.
 		$html = htmlspecialchars( $html, ENT_QUOTES );
-		$html = str_replace( '&amp;', '&', $html );
-		$html = Sanitizer::decodeCharReferences( $html );
 		return $html;
 	}
 
