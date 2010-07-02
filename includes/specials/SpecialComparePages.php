@@ -92,11 +92,12 @@ class SpecialComparePages extends SpecialPage {
 		$this->form();
 
 		if( $this->opts->getValue( 'rev1' ) && $this->opts->getValue( 'rev2' ) ) {
-			$de = new DifferenceEngine( null, 
+			$title = Title::newFromText( $this->opts->getValue( 'page2' ) );
+			$de = new DifferenceEngine( $title,
 				$this->opts->getValue( 'rev1' ),
 				$this->opts->getValue( 'rev2' ),
 				null, // rcid
-				($this->opts->getValue( 'action') == "purge" ? true : false ),
+				( $this->opts->getValue( 'action' ) == 'purge' ),
 				false );
 			$de->showDiffPage( (bool)$this->opts->getValue( 'diffonly' ) );
 		}
