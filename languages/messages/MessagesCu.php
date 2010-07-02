@@ -292,6 +292,7 @@ $messages = array(
 'link_sample'    => 'съвѧ́ꙁи и́мѧ',
 'extlink_sample' => 'http://www.example.com съвѧ́ꙁи и́мѧ',
 'math_tip'       => 'маѳиматїчьна формоула (LaTeX)',
+'sig_tip'        => 'твои аѵто́графъ и нꙑ́нѣшьна врѣ́мѧ и дьнь',
 
 # Edit pages
 'summary'            => 'опьса́ниѥ :',
@@ -417,6 +418,7 @@ $messages = array(
 
 # File description page
 'file-anchor-link'   => 'ви́дъ',
+'filehist'           => 'дѣ́ла їсторі́ꙗ',
 'filehist-deleteone' => 'поничьжє́ниѥ',
 'filehist-current'   => 'нꙑнѣщьн҄ь о́браꙁъ',
 'filehist-datetime'  => 'дьнь / врѣ́мѧ',
@@ -556,12 +558,13 @@ $messages = array(
 'sp-contributions-submit'   => 'ищи́',
 
 # What links here
-'whatlinkshere'           => 'дос̑ьдє́щьнѩ съвѧ́ꙁи',
-'whatlinkshere-title'     => 'страни́цѧ ижє съ ⁖ $1 ⁖ съвѧ́ꙁи имѫтъ',
-'whatlinkshere-page'      => 'страни́ца :',
-'isredirect'              => 'прѣнаправлѥ́ниѥ',
-'whatlinkshere-links'     => '← съвѧ́ꙁи',
-'whatlinkshere-hidelinks' => '$1 съвѧ́ꙁи',
+'whatlinkshere'            => 'дос̑ьдє́щьнѩ съвѧ́ꙁи',
+'whatlinkshere-title'      => 'страни́цѧ ижє съ ⁖ $1 ⁖ съвѧ́ꙁи имѫтъ',
+'whatlinkshere-page'       => 'страни́ца :',
+'isredirect'               => 'прѣнаправлѥ́ниѥ',
+'whatlinkshere-links'      => '← съвѧ́ꙁи',
+'whatlinkshere-hideredirs' => '$1 прѣнаправлѥ́ниꙗ',
+'whatlinkshere-hidelinks'  => '$1 съвѧ́ꙁи',
 
 # Block/unblock
 'blockip'            => 'ꙁагради́ по́льꙃєватєл҄ь',
@@ -607,6 +610,7 @@ $messages = array(
 'tooltip-n-recentchanges'        => 'послѣ́дьнъ мѣ́нъ ката́логъ',
 'tooltip-t-upload'               => 'положє́ниѥ дѣ́лъ',
 'tooltip-t-specialpages'         => 'вьсѣѩ наро́чьнъ страни́цѧ ката́логъ',
+'tooltip-ca-nstab-special'       => 'си наро́чьна страни́ца ѥ́стъ · ѥѩжє иꙁмѣнꙗ́ти нє можєши',
 'tooltip-watch'                  => 'си страни́цѧ блюдє́ниѥ',
 
 # Media information

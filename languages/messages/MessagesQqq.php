@@ -987,7 +987,7 @@ There are three radio buttons in each row, and the captions above each column re
 {{Identical|No}}',
 'revdelete-suppress'          => 'Option for oversight',
 'revdelete-unsuppress'        => '{{RevisionDelete}}',
-'revdelete-log'               => '{{Identical|Reason for deletion}}
+'revdelete-log'               => '{{Identical|Reason}}
 Log comment text for oversight. {{RevisionDelete}}
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-submit'            => '{{RevisionDelete}}
@@ -1901,7 +1901,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $2 is a date
 * $3 is a hour
 * $4 is an URL and must follow square bracket: [$4',
-'filedelete-comment'          => '{{Identical|Reason for deletion}}',
+'filedelete-comment'          => '{{Identical|Reason}}',
 'filedelete-submit'           => 'Delete button when deleting a file for admins
 
 {{Identical|Delete}}',
@@ -2311,7 +2311,7 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 
 {{Identical|Deletion log}}',
 'reverted'               => '{{Identical|Revert}}',
-'deletecomment'          => '{{Identical|Reason for deletion}}',
+'deletecomment'          => '{{Identical|Reason}}',
 'deleteotherreason'      => '{{Identical|Other/additional reason}}',
 'deletereasonotherlist'  => '{{Identical|Other reason}}',
 'deletereason-dropdown'  => 'Default reasons for deletion. Displayed as a drop-down list. Format:
@@ -2670,7 +2670,9 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'move-page-legend'             => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
 
 {{Identical|Move page}}',
-'movepagetext'                 => 'Introduction shown when moving a page ([[Special:MovePage]]).',
+'movepagetext'                 => 'Introduction shown when moving a page ([[Special:MovePage]]).
+
+Special pages mentioned: {{msg-mw|Doubleredirects}}, {{msg-mw|Brokenredirects}}',
 'movepagetalktext'             => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
 'movearticle'                  => 'The text before the name of the page that you are moving.
 

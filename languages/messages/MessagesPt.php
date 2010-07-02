@@ -2601,17 +2601,17 @@ Para bloquear ou desbloquear a base de dados, este precisa de poder ser escrito 
 # Move page
 'move-page'                    => 'Mover $1',
 'move-page-legend'             => 'Mover página',
-'movepagetext'                 => "Usando o formulário abaixo pode mover esta página e todo o seu histórico de edições para uma nova página com outro nome.
-A página original será transformada num redireccionamento para a nova página.
+'movepagetext'                 => "Usando o formulário abaixo pode mover esta página e todo o seu histórico de edições para uma página nova com outro nome.
+A página original será transformada num redireccionamento para a página nova.
 Pode corrigir de forma automática os redireccionamentos existentes que apontam para a página original.
-Caso escolha não o fazer, certifique-se de que não existem [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
+Caso escolha não o fazer, após a operação certifique-se de que dela não resultaram  [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
 É da sua responsabilidade verificar que os links continuam a apontar para onde é suposto que apontem.
 
 Note que a página '''não''' será movida se já existir uma página com o novo nome, a menos que esta esteja vazia ou seja um redireccionamento sem qualquer histórico de edições.
-Isto significa que pode mover uma página de volta para o seu nome original se cometeu algum engano e que não pode mover uma página para cima de outra já existente.
+Isto significa que pode mover uma página de volta para o seu nome original se a tiver movido por engano e que não pode mover uma página para cima de outra já existente.
 
 '''CUIDADO!'''
-Para uma página popular esta operação pode representar uma mudança drástica e inesperada;
+Numa página popular esta operação pode representar uma mudança drástica e inesperada;
 certifique-se de que compreende as consequências da mudança antes de prosseguir, por favor.",
 'movepagetalktext'             => "Se existir uma página de discussão associada, ela será automaticamente movida, '''a não ser que:'''
 *já exista uma página de discussão com o novo título que não esteja vazia, ou
