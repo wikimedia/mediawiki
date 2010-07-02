@@ -32,11 +32,10 @@ class SpecialComparePages extends SpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'ComparePages' );
-		$this->includable( false );	
 	}
 
 	protected function setup( $par ) {
-		global $wgRequest, $wgUser, $wgEnableNewpagesUserFilter;
+		global $wgRequest, $wgUser;
 
 		// Options
 		$opts = new FormOptions();
@@ -57,8 +56,8 @@ class SpecialComparePages extends SpecialPage {
 		if( $title1 && $title1->exists() && $opts->getValue( 'rev1' ) == '' ) {
 			$pda = new Article( $title1 );
 			$pdi = $pda->getID();
-               		$pdLastRevision = Revision::loadFromPageId( wfGetDB( DB_SLAVE ), $pdi );
-			$opts->setValue('rev1', $pdLastRevision->getId() );
+			$pdLastRevision = Revision::loadFromPageId( wfGetDB( DB_SLAVE ), $pdi );
+			$opts->setValue( 'rev1', $pdLastRevision->getId() );
 		} elseif ( $opts->getValue( 'rev1' ) != '' ) {
 			$pdrev = Revision::newFromId( $opts->getValue( 'rev1' ) );
 			if( $pdrev ) $opts->setValue( 'page1', $pdrev->getTitle()->getPrefixedText() );
@@ -66,7 +65,7 @@ class SpecialComparePages extends SpecialPage {
 		if( $title2 && $title2->exists() && $opts->getValue( 'rev2' ) == '' ) {
 			$pda = new Article( $title2 );
 			$pdi = $pda->getID();
-               		$pdLastRevision = Revision::loadFromPageId( wfGetDB( DB_SLAVE ), $pdi );
+			$pdLastRevision = Revision::loadFromPageId( wfGetDB( DB_SLAVE ), $pdi );
 			$opts->setValue('rev2', $pdLastRevision->getId() );
 		} elseif ( $opts->getValue( 'rev2' ) != '' ) {
 			$pdrev = Revision::newFromId( $opts->getValue( 'rev2' ) );
@@ -84,8 +83,6 @@ class SpecialComparePages extends SpecialPage {
 	 * @return String
 	 */
 	public function execute( $par ) {
-		global $wgLang, $wgOut;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -121,47 +118,47 @@ class SpecialComparePages extends SpecialPage {
 		}
 		$hidden = implode( "\n", $hidden );
 
-		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
-			Xml::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-			Xml::fieldset( wfMsg( 'compare-selector') ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-diff-table', 'width' => '100%' ) ) .
+		$form = Html::openElement( 'form', array( 'action' => $wgScript ) ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
+			Xml::fieldset( wfMsg( 'compare-selector' ) ) .
+			Html::openElement( 'table', array( 'id' => 'mw-diff-table', 'style' => 'width:100%' ) ) .
 			"<tr>
-				<td class='mw-label' width='10%'>" .
-					Xml::label( wfMsg( 'compare-page1' ), 'page1' ) .
+				<td class='mw-label' style='width:10%'>" .
+					Html::element( 'label', array( 'for' => 'page1' ), wfMsg( 'compare-page1' ) ) .
 				"</td>
-				<td class='mw-input' width='40%'>" .
-					Xml::input( 'page1', 40, $page1, array( 'type' => 'text' ) ) .
+				<td class='mw-input' style='width:40%'>" .
+					Html::input( 'page1', $page1, 'text', array( 'size' => 40, 'id' => 'page1' ) ) .
 				"</td>
-				<td class='mw-label' width='10%'>" .
-					Xml::label( wfMsg( 'compare-page2' ), 'page2' ) .
+				<td class='mw-label' style='width:10%'>" .
+					Html::element( 'label', array( 'for' => 'page2' ), wfMsg( 'compare-page2' ) ) .
 				"</td>
-				<td class='mw-input' width='40%'>" .
-					Xml::input( 'page2', 40, $page2, array( 'type' => 'text' ) ) .
+				<td class='mw-input' style='width:40%'>" .
+					Html::input( 'page2', $page2, 'text', array( 'size' => 40, 'id' => 'page2' ) ) .
 				"</td>
 			</tr>" . 
 			"<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'compare-rev1' ), 'rev1' ) .
+					Html::element( 'label', array( 'for' => 'rev1' ), wfMsg( 'compare-rev1' ) ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'rev1', 8, $rev1, array( 'type' => 'text' ) ) .
+					Html::input( 'rev1', $rev1, 'text', array( 'size' => 8, 'id' => 'rev1' ) ) .
 				"</td>
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'compare-rev2' ), 'rev2' ) .
+					Html::element( 'label', array( 'for' => 'rev2' ), wfMsg( 'compare-rev2' ) ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'rev2', 8, $rev2, array( 'type' => 'text' ) ) .
+					Html::input( 'rev2', $rev2, 'text', array( 'size' => 8, 'id' => 'rev2' ) ) .
 				"</td>
 			</tr>" . 
 			"<tr> <td></td>
 				<td class='mw-submit' colspan='3'>" .
-					Xml::submitButton( wfMsg( 'compare-submit') ) .
+					Xml::submitButton( wfMsg( 'compare-submit' ) ) .
 				"</td>
 			</tr>" .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
+			Html::closeElement( 'table' ) .
+			Html::closeElement( 'fieldset' ) .
 			$hidden .
-			Xml::closeElement( 'form' );
+			Html::closeElement( 'form' );
 
 		$wgOut->addHTML( $form );
 	}
