@@ -12,7 +12,8 @@ abstract class FileRepo {
 	const OVERWRITE_SAME = 4;
 
 	var $thumbScriptUrl, $transformVia404;
-	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
+	var $descBaseUrl, $scriptDirUrl, $scriptExtension, $articleUrl;
+	var $fetchDescription, $initialCapital;
 	var $pathDisclosureProtection = 'paranoid';
 	var $descriptionCacheExpiry, $hashLevels, $url, $thumbUrl;
 
@@ -31,7 +32,8 @@ abstract class FileRepo {
 		$this->initialCapital = MWNamespace::isCapitalized( NS_FILE );
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection',
-			'descriptionCacheExpiry', 'hashLevels', 'url', 'thumbUrl' ) as $var )
+			'descriptionCacheExpiry', 'hashLevels', 'url', 'thumbUrl', 'scriptExtension' ) 
+			as $var )
 		{
 			if ( isset( $info[$var] ) ) {
 				$this->$var = $info[$var];
@@ -296,6 +298,18 @@ abstract class FileRepo {
 	function getName() {
 		return $this->name;
 	}
+	
+	/**
+	 * Make an url to this repo
+	 * 
+	 * @param $query mixed Query string to append
+	 * @param $entry string Entry point; defaults to index
+	 * @return string
+	 */
+	function makeUrl( $query = '', $entry = 'index' ) {
+		$ext = isset( $this->scriptExtension ) ? $this->scriptExtension : '.php';
+		return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}?", $query ); 
+	} 
 
 	/**
 	 * Get the URL of an image description page. May return false if it is
@@ -326,8 +340,7 @@ abstract class FileRepo {
 			# We use "Image:" as the canonical namespace for
 			# compatibility across all MediaWiki versions,
 			# and just sort of hope index.php is right. ;)
-			return $this->scriptDirUrl .
-				"/index.php?title=Image:$encName";
+			return $this->makeUrl( "title=Image:$encName" );
 		}
 		return false;
 	}
@@ -346,9 +359,10 @@ abstract class FileRepo {
 			$query .= '&uselang=' . $lang;
 		}
 		if ( isset( $this->scriptDirUrl ) ) {
-			return $this->scriptDirUrl . '/index.php?title=' .
+			return $this->makeUrl( 
+				'title=' .
 				wfUrlencode( 'Image:' . $name ) .
-				"&$query";
+				"&$query" );
 		} else {
 			$descUrl = $this->getDescriptionUrl( $name );
 			if ( $descUrl ) {

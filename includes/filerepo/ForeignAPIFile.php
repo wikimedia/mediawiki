@@ -19,7 +19,7 @@ class ForeignAPIFile extends File {
 	static function newFromTitle( $title, $repo ) {
 		$data = $repo->fetchImageQuery( array(
                         'titles' => 'File:' . $title->getText(),
-                        'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime',
+                        'iiprop' => self::getProps(),
                         'prop' => 'imageinfo' ) );
 
 		$info = $repo->getImageInfo( $data );
@@ -36,6 +36,13 @@ class ForeignAPIFile extends File {
 		} else {
 			return null;
 		}
+	}
+	
+	/**
+	 * Get the property string for iiprop and aiprop
+	 */
+	static function getProps() {
+		return 'timestamp|user|comment|url|size|sha1|metadata|mime';
 	}
 	
 	// Dummy functions...
@@ -87,27 +94,33 @@ class ForeignAPIFile extends File {
 	}
 	
 	public function getSize() {
-		return intval( @$this->mInfo['size'] );
+		return isset( $this->mInfo['size'] ) ? intval( $this->mInfo['size'] ) : null;
 	}
 	
 	public function getUrl() {
-		return strval( @$this->mInfo['url'] );
+		return isset( $this->mInfo['url'] ) ? strval( $this->mInfo['url'] ) : null;
 	}
 
 	public function getUser( $method='text' ) {
-		return strval( @$this->mInfo['user'] );
+		return isset( $this->mInfo['user'] ) ? strval( $this->mInfo['user'] ) : null;
 	}
 	
 	public function getDescription() {
-		return strval( @$this->mInfo['comment'] );
+		return isset( $this->mInfo['comment'] ) ? strval( $this->mInfo['comment'] ) : null;
 	}
 
 	function getSha1() {
-		return wfBaseConvert( strval( @$this->mInfo['sha1'] ), 16, 36, 31 );
+		return isset( $this->mInfo['sha1'] ) ? 
+			wfBaseConvert( strval( $this->mInfo['sha1'] ), 16, 36, 31 ) : 
+			null;
 	}
 	
 	function getTimestamp() {
-		return wfTimestamp( TS_MW, strval( @$this->mInfo['timestamp'] ) );
+		return wfTimestamp( TS_MW, 
+			isset( $this->mInfo['timestamp'] ) ?
+			strval( $this->mInfo['timestamp'] ) : 
+			null
+		);
 	}
 	
 	function getMimeType() {
