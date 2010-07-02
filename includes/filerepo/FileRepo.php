@@ -372,6 +372,17 @@ abstract class FileRepo {
 			}
 		}
 	}
+	
+	/**
+	 * Get the URL of the stylesheet to apply to description pages
+	 * @return string
+	 */
+	function getDescriptionStylesheetUrl() {
+		if ( $this->scriptDirUrl ) {
+			return self::makeUrl( 'title=MediaWiki:ImagePage.css&' .
+				wfArrayToCGI( Skin::getDynamicStylesheetQuery() ) );
+		}
+	}
 
 	/**
 	 * Store a file to a given destination.

@@ -84,6 +84,8 @@ if ( !$wgLocalFileRepo ) {
 		'class' => 'LocalRepo',
 		'name' => 'local',
 		'directory' => $wgUploadDirectory,
+		'scriptDirUrl' => $wgScriptPath,
+		'scriptExtension' => $wgScriptExtension,
 		'url' => $wgUploadBaseUrl ? $wgUploadBaseUrl . $wgUploadPath : $wgUploadPath,
 		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
