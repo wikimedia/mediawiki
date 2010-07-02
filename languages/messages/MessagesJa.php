@@ -22,6 +22,7 @@
  * @author Joe Elkins
  * @author JtFuruhata
  * @author Kahusi
+ * @author Kanon und wikipedia
  * @author Kkkdc
  * @author Klutzy
  * @author Koba-chan

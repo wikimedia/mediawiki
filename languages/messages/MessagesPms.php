@@ -862,7 +862,7 @@ J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé �
 'revdelete-radio-unset'       => 'Nò',
 'revdelete-suppress'          => "Smon-je pa ij dat gnanca a j'aministrator",
 'revdelete-unsuppress'        => "Gava le limitassion da 'nt le version ciapà andaré",
-'revdelete-log'               => 'Rason për la scancelassion:',
+'revdelete-log'               => 'Rason:',
 'revdelete-submit'            => 'Bùtejlo a {{PLURAL:$1|la version|le version}} selessionà',
 'revdelete-logentry'          => 'visibilità dla revision cangià për [[$1]]',
 'logdelete-logentry'          => "a l'ha cangiaje visibilità a l'event [[$1]]",
@@ -1986,7 +1986,7 @@ Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
 Ij temp a son conforma a l'ora dël server.",
 'deletionlog'            => 'Registr djë scancelament',
 'reverted'               => 'Version prima butà torna sù',
-'deletecomment'          => 'Rason dlë scancelament:',
+'deletecomment'          => 'Rason:',
 'deleteotherreason'      => 'Rason àutra/adissional:',
 'deletereasonotherlist'  => 'Àutra rason',
 'deletereason-dropdown'  => "*Rason sòlite ch'as ëscancela la ròba
@@ -3249,6 +3249,15 @@ Ch'a bata 'l nòm dl'archivi sensa pa bute-ie 'l prefiss \"{{ns:file}}:\".",
 'tags-hitcount-header'    => 'Modìfiche con tag',
 'tags-edit'               => 'modìfica',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambiament|cambiament}}',
+
+# Special:ComparePages
+'comparepages'     => 'Confronta pàgine',
+'compare-selector' => 'Confronta revision dla pàgina',
+'compare-page1'    => 'Pàgina 1',
+'compare-page2'    => 'Pàgina 2',
+'compare-rev1'     => 'Revision 1',
+'compare-rev2'     => 'Revision 2',
+'compare-submit'   => 'Confronta',
 
 # Database error messages
 'dberr-header'      => "Sta wiki-sì a l'ha un problema",

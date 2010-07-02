@@ -1503,7 +1503,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'recentchangeslinked'          => 'Relaterte endringar',
 'recentchangeslinked-feed'     => 'Relaterte endringar',
 'recentchangeslinked-toolbox'  => 'Relaterte endringar',
-'recentchangeslinked-title'    => 'Endringar relaterte til "$1"',
+'recentchangeslinked-title'    => 'Endringar relaterte til «$1»',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Det er ikkje gjort endringar på sidene som var lenkja hit i den oppgjevne perioden.',
 'recentchangeslinked-summary'  => "Denne spesialsida inneheld alle endringane som er gjort på sider som vert ''lenkja til'' frå denne (eller på sider i ein viss kategori). Dei av sidene du har på [[Special:Watchlist|overvakingslista]] di er '''utheva'''.",
