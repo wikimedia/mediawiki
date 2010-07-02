@@ -13,7 +13,7 @@ class SpecialSelenium extends SpecialPage {
 		return 'Selenium';
 	}
 
-	function execute() {
+	function execute( $par ) {
 		global $wgUser, $wgOut, $wgEnableSelenium, $wgRequest;
 
 		if ( !$wgEnableSelenium ) {
