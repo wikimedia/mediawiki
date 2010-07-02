@@ -32,10 +32,17 @@ class ExternalStore {
 		if( !$wgExternalStores )
 			return false;
 
-		@list( $proto, $path ) = explode( '://', $url, 2 );
-		/* Bad URL */
-		if( $path == '' )
+		$parts = explode( '://', $url, 2 );
+
+		if ( count( $parts ) != 2 ) {
 			return false;
+		}
+
+		list( $proto, $path ) = $parts;
+
+		if ( $path == '' ) { // Bad URL
+			return false;
+		}
 
 		$store = self::getStoreObject( $proto, $params );
 		if ( $store === false )
