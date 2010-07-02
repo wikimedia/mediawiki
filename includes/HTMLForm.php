@@ -848,12 +848,6 @@ abstract class HTMLFormField {
 				$label . $field );
 		}
 
-		$html = Html::rawElement(
-			'tr',
-			array(  ),
-			$html
-		) . "\n";
-
 		$helptext = null;
 
 		if ( isset( $this->mParams['help-message'] ) ) {
