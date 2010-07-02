@@ -283,8 +283,6 @@ function modify_field( $table, $field, $patch, $fullpath = false ) {
 	}
 }
 
-
-
 function add_field( $table, $field, $patch, $fullpath = false ) {
 	global $wgDatabase;
 	if ( !$wgDatabase->tableExists( $table ) ) {
@@ -498,7 +496,6 @@ function do_copy_newtalk_to_watchlist() {
 	}
 	wfOut( "Done.\n" );
 }
-
 
 function do_user_update() {
 	global $wgDatabase;
@@ -1177,7 +1174,6 @@ function do_all_updates( $shared = false, $purge = true ) {
 		flush();
 	}
 
-
 	wfOut( "Deleting old default messages (this may take a long time!)..." );
 	if ( !defined( 'MW_NO_SETUP' ) ) {
 		define( 'MW_NO_SETUP', true );
@@ -1405,8 +1401,6 @@ function do_update_mime_minor_field() {
 	}
 }
 
-
-
 /***********************************************************************
  * Start PG stuff
  * TODO: merge with above
@@ -1423,8 +1417,9 @@ END;
 	$res = $wgDatabase->query( sprintf( $q,
 			$wgDatabase->addQuotes( $table ),
 			$wgDatabase->addQuotes( $wgDBmwschema ) ) );
-	if ( !$res )
+	if ( !$res ) {
 		return null;
+	}
 
 	$cols = array();
 	while ( $r = $wgDatabase->fetchRow( $res ) ) {
@@ -1451,8 +1446,9 @@ END;
 	$res = $wgDatabase->query( sprintf( $q,
 			$wgDatabase->addQuotes( $wgDBmwschema ),
 			$wgDatabase->addQuotes( $idx ) ) );
-	if ( !$res )
+	if ( !$res ) {
 		return null;
+	}
 	if ( !( $r = $wgDatabase->fetchRow( $res ) ) ) {
 		$wgDatabase->freeResult( $res );
 		return null;
@@ -1472,8 +1468,9 @@ SELECT attname FROM pg_class, pg_attribute
 	  AND attrelid=pg_class.oid
 END;
 		$r2 = $wgDatabase->query( sprintf( $query, $rid ) );
-		if ( !$r2 )
+		if ( !$r2 ) {
 			return null;
+		}
 		if ( !( $row2 = $wgDatabase->fetchRow( $r2 ) ) ) {
 			$wgDatabase->freeResult( $r2 );
 			return null;
@@ -1505,8 +1502,9 @@ END;
 	$r = $wgDatabase->query( sprintf( $q,
 		$wgDatabase->addQuotes( $wgDBmwschema ),
 		$wgDatabase->addQuotes( $fkey ) ) );
-	if ( !( $row = $wgDatabase->fetchRow( $r ) ) )
+	if ( !( $row = $wgDatabase->fetchRow( $r ) ) ) {
 		return null;
+	}
 	return $row[0];
 }
 
@@ -1523,8 +1521,9 @@ END;
 			$wgDatabase->addQuotes( $table ),
 			$wgDatabase->addQuotes( $rule ) ) );
 	$row = $wgDatabase->fetchRow( $r );
-	if ( !$row )
+	if ( !$row ) {
 		return null;
+	}
 	$d = $row[0];
 	$wgDatabase->freeResult( $r );
 	return $d;
@@ -1540,8 +1539,9 @@ function do_postgres_updates() {
 	$wgShowExceptionDetails = 1;
 
 	# Just in case their LocalSettings.php does not have this:
-	if ( !isset( $wgDBmwschema ) )
+	if ( !isset( $wgDBmwschema ) ) {
 		$wgDBmwschema = 'mediawiki';
+	}
 
 	# Verify that this user is configured correctly
 	$safeuser = $wgDatabase->addQuotes( $wgDBuser );
@@ -1554,8 +1554,7 @@ function do_postgres_updates() {
 	}
 	if ( !array_key_exists( 'search_path', $conf ) ) {
 		$search_path = '';
-	}
-	else {
+	} else {
 		$search_path = $conf['search_path'];
 	}
 	if ( strpos( $search_path, $wgDBmwschema ) === false ) {
@@ -1570,8 +1569,7 @@ function do_postgres_updates() {
 	if ( array_key_exists( 'search_path', $conf ) === false || $search_path != $conf['search_path'] ) {
 		$wgDatabase->doQuery( "ALTER USER $wgDBuser SET search_path = $search_path" );
 		$wgDatabase->doQuery( "SET search_path = $search_path" );
-	}
-	else {
+	} else {
 		$path = $conf['search_path'];
 		wfOut( "... search_path for user \"$wgDBuser\" looks correct ($path)\n" );
 	}
@@ -1586,8 +1584,7 @@ function do_postgres_updates() {
 			wfOut( "Setting $key to '$value' for user \"$wgDBuser\"\n" );
 			$wgDatabase->doQuery( "ALTER USER $wgDBuser SET $key = '$value'" );
 			$wgDatabase->doQuery( "SET $key = '$value'" );
-		}
-		else {
+		} else {
 			wfOut( "... default value of \"$key\" is correctly set to \"$value\" for user \"$wgDBuser\"\n" );
 		}
 	}
@@ -1857,12 +1854,10 @@ function do_postgres_updates() {
 			if ( 'NOT NULL' === $nc[2] ) {
 				wfOut( "Changing \"$nc[0].$nc[1]\" to not allow NULLs\n" );
 				$wgDatabase->query( "ALTER TABLE $nc[0] ALTER $nc[1] SET NOT NULL" );
-			}
-			else {
+			} else {
 				wfOut( "... column \"$nc[0].$nc[1]\" is already set as NULL\n" );
 			}
-		}
-		else {
+		} else {
 			# # It's NOT NULL - does it need to be NULL?
 			if ( 'NULL' === $nc[2] ) {
 				wfOut( "Changing \"$nc[0].$nc[1]\" to allow NULLs\n" );
@@ -1879,10 +1874,9 @@ function do_postgres_updates() {
 		$wgDatabase->query( "ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT" );
 		$wgDatabase->query( "ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)" );
 		$wgDatabase->query( "ALTER TABLE oldimage ALTER oi_deleted SET DEFAULT 0" );
-	}
-	else
+	} else {
 		wfOut( "... column \"oldimage.oi_deleted\" is already of type \"smallint\"\n" );
-
+	}
 
 	foreach ( $newindexes as $ni ) {
 		if ( pg_index_exists( $ni[0], $ni[1] ) ) {
@@ -1904,8 +1898,7 @@ function do_postgres_updates() {
 
 	if ( $wgDatabase->hasConstraint( "oldimage_oi_name_fkey_cascaded" ) ) {
 		wfOut( "... table \"oldimage\" has correct cascading delete/update foreign key to image\n" );
-	}
-	else {
+	} else {
 		if ( $wgDatabase->hasConstraint( "oldimage_oi_name_fkey" ) ) {
 			$wgDatabase->query( "ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey" );
 		}
@@ -1920,38 +1913,37 @@ function do_postgres_updates() {
 	if ( !$wgDatabase->triggerExists( "page", "page_deleted" ) ) {
 		wfOut( "Adding function and trigger \"page_deleted\" to table \"page\"\n" );
 		$wgDatabase->sourceFile( archive( 'patch-page_deleted.sql' ) );
-	}
-	else
+	} else {
 		wfOut( "... table \"page\" has \"page_deleted\" trigger\n" );
+	}
 
 	$fi = $wgDatabase->fieldInfo( "recentchanges", "rc_cur_id" );
 	if ( !$fi->nullable() ) {
 		wfOut( "Removing NOT NULL constraint from \"recentchanges.rc_cur_id\"\n" );
 		$wgDatabase->sourceFile( archive( 'patch-rc_cur_id-not-null.sql' ) );
-	}
-	else
+	} else {
 		wfOut( "... column \"recentchanges.rc_cur_id\" has a NOT NULL constraint\n" );
+	}
 
 	$pu = pg_describe_index( "pagelink_unique" );
 	if ( !is_null( $pu ) && ( $pu[0] != "pl_from" || $pu[1] != "pl_namespace" || $pu[2] != "pl_title" ) ) {
 		wfOut( "Dropping obsolete version of index \"pagelink_unique index\"\n" );
 		$wgDatabase->query( "DROP INDEX pagelink_unique" );
 		$pu = null;
-	}
-	else
+	} else {
 		wfOut( "... obsolete version of index \"pagelink_unique index\" does not exist\n" );
+	}
 
 	if ( is_null( $pu ) ) {
 		wfOut( "Creating index \"pagelink_unique index\"\n" );
 		$wgDatabase->query( "CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title)" );
-	}
-	else
+	} else {
 		wfOut( "... index \"pagelink_unique_index\" already exists\n" );
+	}
 
 	if ( pg_fkey_deltype( "revision_rev_user_fkey" ) == 'r' ) {
 		wfOut( "... constraint \"revision_rev_user_fkey\" is ON DELETE RESTRICT\n" );
-	}
-	else {
+	} else {
 		wfOut( "Changing constraint \"revision_rev_user_fkey\" to ON DELETE RESTRICT\n" );
 		$wgDatabase->sourceFile( archive( 'patch-revision_rev_user_fkey.sql' ) );
 	}
@@ -1963,8 +1955,7 @@ function do_postgres_updates() {
 	}
 	if ( pg_index_exists( 'ipblocks', 'ipb_address_unique' ) ) {
 		wfOut( "... have ipb_address_unique\n" );
-	}
-	else {
+	} else {
 		wfOut( "Adding ipb_address_unique index\n" );
 		$wgDatabase->sourceFile( archive( 'patch-ipb_address_unique.sql' ) );
 	}
@@ -2039,7 +2030,7 @@ function do_postgres_updates() {
 		if ( $fi->is_deferred() && $fi->is_deferrable() ) {
 			continue;
 		}
-		wfOut( "Altering column \"$dc[0].$dc[1]\" to be DEFERRABLE INITTALLY DEFERRED\n" );
+		wfOut( "Altering column \"$dc[0].$dc[1]\" to be DEFERRABLE INITIALLY DEFERRED\n" );
 		$conname = $fi->conname();
 		$clause = $dc[2];
 		$command = "ALTER TABLE $dc[0] DROP CONSTRAINT $conname";
@@ -2054,7 +2045,8 @@ function do_postgres_updates() {
 
 	# # If the server is 8.3 or higher, rewrite the tsearch2 triggers
 	# # in case they have the old 'default' versions
-	if ( $numver >= 8.3 )
+	if ( $numver >= 8.3 ) {
 		$wgDatabase->sourceFile( archive( 'patch-tsearch2funcs.sql' ) );
+	}
 	return;
 }
