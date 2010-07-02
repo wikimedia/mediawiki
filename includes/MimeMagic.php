@@ -545,10 +545,10 @@ class MimeMagic {
 			}
 		}
 
-		// Check for ZIP (before getimagesize)
+		// Check for ZIP variants (before getimagesize)
 		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
-			wfDebug( __METHOD__.": ZIP header present at end of $file\n" );
-			return $this->detectZipType( $head, $ext );
+			wfDebug( __METHOD__.": ZIP header present in $file\n" );
+			return $this->detectZipType( $head, $tail, $ext );
 		}
 
 		wfSuppressWarnings();
@@ -573,16 +573,17 @@ class MimeMagic {
 	
 	/**
 	 * Detect application-specific file type of a given ZIP file from its
-	 * header data.  Currently works for OpenDocument types...
+	 * header data.  Currently works for OpenDocument and OpenXML types...
 	 * If can't tell, returns 'application/zip'.
 	 *
 	 * @param $header String: some reasonably-sized chunk of file header
+	 * @param $tail   String: the tail of the file
 	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
 	 *
 	 * @return string
 	 */
-	function detectZipType( $header, $ext = false ) {
+	function detectZipType( $header, $tail = null, $ext = false ) {
 		$mime = 'application/zip';
 		$opendocTypes = array(
 			'chart-template',
@@ -605,14 +606,13 @@ class MimeMagic {
 		// http://lists.oasis-open.org/archives/office/200505/msg00006.html
 		$types = '(?:' . implode( '|', $opendocTypes ) . ')';
 		$opendocRegex = "/^mimetype(application\/vnd\.oasis\.opendocument\.$types)/";
-		wfDebug( __METHOD__.": $opendocRegex\n" );
 
 		$openxmlRegex = "/^\[Content_Types\].xml/";
-		
+
 		if( preg_match( $opendocRegex, substr( $header, 30 ), $matches ) ) {
 			$mime = $matches[1];
 			wfDebug( __METHOD__.": detected $mime from ZIP archive\n" );
-		} elseif( preg_match( $openxmlRegex, substr( $header, 30 ), $matches ) ) {
+		} elseif( preg_match( $openxmlRegex, substr( $header, 30 ) ) ) {
 			$mime = "application/x-opc+zip";
 			if( $ext !== true && $ext !== false ) {
 				/** This is the mode used by getPropsFromPath
@@ -624,11 +624,39 @@ class MimeMagic {
 					* find the proper mime type for that file extension */
 					$mime = $this->guessTypesForExtension( $ext );
 				} else {
-					$mime = 'application/zip';
+					$mime = "application/zip";
 				}
-				
 			}
 			wfDebug( __METHOD__.": detected an Open Packaging Conventions archive: $mime\n" );
+		} else if( substr( $header, 0, 8 ) == "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" && 
+				($headerpos = strpos( $tail, "PK\x03\x04" ) ) !== false &&
+				preg_match( $openxmlRegex, substr( $tail, $headerpos + 30 ) ) ) {
+			if( substr( $header, 512, 4) == "\xEC\xA5\xC1\x00" ) {
+				$mime = "application/msword";
+			} 
+			switch( substr( $header, 512, 6) ) {
+				case "\xEC\xA5\xC1\x00\x0E\x00":
+				case "\xEC\xA5\xC1\x00\x1C\x00":
+				case "\xEC\xA5\xC1\x00\x43\x00":
+					$mime = "application/vnd.ms-powerpoint";
+					break;
+				case "\xFD\xFF\xFF\xFF\x10\x00":
+				case "\xFD\xFF\xFF\xFF\x1F\x00":
+				case "\xFD\xFF\xFF\xFF\x22\x00":
+				case "\xFD\xFF\xFF\xFF\x23\x00":
+				case "\xFD\xFF\xFF\xFF\x28\x00":
+				case "\xFD\xFF\xFF\xFF\x29\x00":
+				case "\xFD\xFF\xFF\xFF\x10\x02":
+				case "\xFD\xFF\xFF\xFF\x1F\x02":
+				case "\xFD\xFF\xFF\xFF\x22\x02":
+				case "\xFD\xFF\xFF\xFF\x23\x02":
+				case "\xFD\xFF\xFF\xFF\x28\x02":
+				case "\xFD\xFF\xFF\xFF\x29\x02":
+					$mime = "application/vnd.msexcel";
+					break;
+			}
+
+			wfDebug( __METHOD__.": detected a MS Office document with OPC trailer\n");
 		} else {
 			wfDebug( __METHOD__.": unable to identify type of ZIP archive\n" );
 		}

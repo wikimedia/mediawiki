@@ -222,6 +222,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22784) Normalise underscores and spaces in autocomments.
 * (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings
 * (bug 24022) Only check file extensions on the uploadpage when needed.
+* (bug 24076) Recognize Office 2003 files with OpenXML trailers
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
