@@ -158,31 +158,27 @@ class SqliteInstaller extends InstallerDBType {
 			//@todo or...?
 			$this->db->reportQueryError( $err, 0, $sql, __FUNCTION__ );
 		}
-		$this->setupSearchIndex();
-		// Create default interwikis
-		return Status::newGood();
+		return $this->setupSearchIndex();
 	}
 
 	function setupSearchIndex() {
 		global $IP;
 
+		$status = Status::newGood();
+
 		$module = $this->db->getFulltextSearchModule();
 		$fts3tTable = $this->db->checkForEnabledSearch();
 		if ( $fts3tTable &&  !$module ) {
-			$this->parent->output->addHtml
-				( wfMsgHtml( 'word-separator' ) . wfMsgHtml( 'config-sqlite-fts3-downgrade' ) . wfMsgHtml( 'ellipsis' ) );
-			$this->parent->output->flush();
+			$status->warning( 'config-sqlite-fts3-downgrade' );
 			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-no-fts.sql" );
 		} elseif ( !$fts3tTable && $module == 'FTS3' ) {
-			$this->parent->output->addHtml
-				( wfMsgHtml( 'word-separator' ) . wfMsgHtml( 'config-sqlite-fts3-add' ) . wfMsg( 'ellipsis' ) );
-			$this->parent->output->flush();
+			$status->warning( 'config-sqlite-fts3-add' );
 			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-fts3.sql" );
 		} else {
-			$this->parent->output->addHtml
-				( wfMsgHtml( 'word-separator' ) . wfMsgHtml( 'config-sqlite-fts3-ok' ) . wfMsgHtml( 'ellipsis' ) );
-			$this->parent->output->flush();
+			$status->warning( 'config-sqlite-fts3-ok' );
 		}
+
+		return $status;
 	}
 
 	function doUpgrade() {
