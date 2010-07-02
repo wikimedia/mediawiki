@@ -62,8 +62,6 @@ class CliInstaller extends Installer {
 		if ( isset( $option['pass'] ) ) {
 			$this->setVar( '_AdminPassword', $option['pass'] );
 		}
-
-		$this->output = new CliInstallerOutput( $this );
 	}
 
 	/**
@@ -74,22 +72,23 @@ class CliInstaller extends Installer {
 			$this->showMessage("Installing $step... ");
 			$func = 'install' . ucfirst( $step );
 			$status = $this->{$func}();
-			$ok = $status->isGood();
-			if ( !$ok ) {
-				$this->showStatusError( $status );
+			if ( !$status->isOk() ) {
+				$this->showStatusMessage( $status );
 				exit;
+			} elseif ( !$status->isGood() ) {
+				$this->showStatusMessage( $status );
 			}
 			$this->showMessage("done\n");
 		}
 	}
 
 	function showMessage( $msg /*, ... */ ) {
-		$this->output->addHTML($msg);
-		$this->output->output();
+		echo html_entity_decode( strip_tags( $msg ), ENT_QUOTES );
+		flush();
 	}
 
-	function showStatusError( $status ) {
-		$this->output->addHTML($status->getWikiText()."\n");
-		$this->output->flush();
+	function showStatusMessage( $status ) {
+		$this->showMessage( $status->getWikiText() );
 	}
+
 }

@@ -739,7 +739,7 @@ class WebInstaller extends Installer {
 		$this->output->addHTML( $this->getErrorBox( $text ) );
 	}
 
-	function showStatusError( $status ) {
+	function showStatusMessage( $status ) {
 		$text = $status->getWikiText();
 		$this->output->addWikiText(
 			"<div class=\"config-message\">\n" .

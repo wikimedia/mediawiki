@@ -260,7 +260,7 @@ abstract class Installer {
 	 */
 	abstract function showMessage( $msg /*, ... */ );
 
-	abstract function showStatusError( $status );
+	abstract function showStatusMessage( $status );
 
 	/**
 	 * Get a list of known DB types
@@ -869,7 +869,7 @@ abstract class Installer {
 	public function installTables() {
 		$installer = $this->getDBInstaller();
 		$status = $installer->createTables();
-		if( $status->isGood() ) {
+		if( $status->isOK() ) {
 			LBFactory::enableBackend();
 		}
 		return $status;
@@ -888,6 +888,9 @@ abstract class Installer {
 			$file = fopen( "/dev/urandom", "r" );
 			wfRestoreWarnings();
 		}
+
+		$status = Status::newGood();
+
 		if ( $file ) {
 			$secretKey = bin2hex( fread( $file, 32 ) );
 			fclose( $file );
@@ -896,10 +899,11 @@ abstract class Installer {
 			for ( $i=0; $i<8; $i++ ) {
 				$secretKey .= dechex(mt_rand(0, 0x7fffffff));
 			}
-			$this->output->addWarningMsg( 'config-insecure-secretkey' );
+			$status->warning( 'config-insecure-secretkey' );
 		}
 		$this->setVar( 'wgSecretKey', $secretKey );
-		return Status::newGood();
+
+		return $status;
 	}
 
 	public function installSysop() {

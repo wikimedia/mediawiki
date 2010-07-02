@@ -414,7 +414,6 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/installer
 	'CliInstaller' => 'includes/installer/CliInstaller.php',
-	'CliInstallerOutput' => 'includes/installer/CliInstallerOutput.php',
 	'Installer' => 'includes/installer/Installer.php',
 	'InstallerDBType' => 'includes/installer/InstallerDBType.php',
 	'LBFactory_InstallerFake' => 'includes/installer/Installer.php',
