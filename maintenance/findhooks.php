@@ -66,6 +66,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/upload/',
 			$IP . '/languages/',
 			$IP . '/maintenance/',
+			$IP . '/maintenance/tests/',
 			$IP . '/skins/',
 		);
 
