@@ -1148,17 +1148,6 @@ class DatabaseOracle extends DatabaseBase {
 		return 'BITOR(' . $fieldLeft . ', ' . $fieldRight . ')';
 	}
 
-	/**
-	 * How lagged is this slave?
-	 *
-	 * @return int
-	 */
-	public function getLag() {
-		# Not implemented for Oracle
-		return 0;
-	}
-
-	function setFakeSlaveLag( $lag ) { }
 	function setFakeMaster( $enabled = true ) { }
 
 	function getDBname() {

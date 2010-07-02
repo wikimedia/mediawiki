@@ -1503,16 +1503,6 @@ EOF;
 	public function getStatus( $which="%" ) { $this->installPrint('Not implemented for DB2: getStatus()'); return ''; }
 	/**
 	 * Not implemented
-	 * TODO
-	 * @return bool true
-	 */
-	/**
-	 * Not implemented
-	 * @deprecated
-	 */
-	public function setFakeSlaveLag( $lag ) { $this->installPrint('Not implemented for DB2: setFakeSlaveLag()'); }
-	/**
-	 * Not implemented
 	 * @deprecated
 	 */
 	public function setFakeMaster( $enabled = true ) { $this->installPrint('Not implemented for DB2: setFakeMaster()'); }

@@ -1451,16 +1451,6 @@ SQL;
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
-	/**
-	 * How lagged is this slave?
-	 *
-	 */
-	public function getLag() {
-		# Not implemented for PostgreSQL
-		return false;
-	}
-
-	function setFakeSlaveLag( $lag ) {}
 	function setFakeMaster( $enabled = true ) {}
 
 	function getDBname() {
