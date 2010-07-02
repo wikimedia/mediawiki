@@ -61,7 +61,7 @@ class SpecialComparePages extends SpecialPage {
 			$opts->setValue('rev1', $pdLastRevision->getId() );
 		} elseif ( $opts->getValue( 'rev1' ) != '' ) {
 			$pdrev = Revision::newFromId( $opts->getValue( 'rev1' ) );
-			if( $pdrev ) $opts->setValue( 'page1', $pdrev->getTitle()->getPrefixedDBkey() );
+			if( $pdrev ) $opts->setValue( 'page1', $pdrev->getTitle()->getPrefixedText() );
 		}
 		if( $title2 && $title2->exists() && $opts->getValue( 'rev2' ) == '' ) {
 			$pda = new Article( $title2 );
@@ -70,7 +70,7 @@ class SpecialComparePages extends SpecialPage {
 			$opts->setValue('rev2', $pdLastRevision->getId() );
 		} elseif ( $opts->getValue( 'rev2' ) != '' ) {
 			$pdrev = Revision::newFromId( $opts->getValue( 'rev2' ) );
-			if( $pdrev ) $opts->setValue( 'page2', $pdrev->getTitle()->getPrefixedDBkey() );
+			if( $pdrev ) $opts->setValue( 'page2', $pdrev->getTitle()->getPrefixedText() );
 		}
 
 		// Store some objects
