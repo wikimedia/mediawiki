@@ -1083,7 +1083,7 @@ class UploadForm extends HTMLForm {
  * A form field that contains a radio box in the label
  */
 class UploadSourceField extends HTMLTextField {
-	function getLabelHtml() {
+	function getLabelHtml( $cellAttributes = array() ) {
 		$id = "wpSourceType{$this->mParams['upload-type']}";
 		$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
 
@@ -1100,7 +1100,7 @@ class UploadSourceField extends HTMLTextField {
 			$label .= Html::element( 'input', $attribs );
 		}
 
-		return Html::rawElement( 'td', array( 'class' => 'mw-label' ), $label );
+		return Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes, $label );
 	}
 
 	function getSize() {
