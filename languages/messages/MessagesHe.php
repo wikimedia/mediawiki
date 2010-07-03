@@ -1868,6 +1868,7 @@ $1',
 'shared-repo-from'                  => 'מתוך $1',
 'shared-repo'                       => 'מקום איחסון משותף',
 'shared-repo-name-wikimediacommons' => 'ויקישיתוף',
+'filepage.css'                      => '/* הסגנונות הנכתבים כאן יוכללו בדף תיאור הקובץ, כולל באתרי ויקי זרים */',
 
 # File reversion
 'filerevert'                => 'שחזור $1',
