@@ -143,7 +143,7 @@ class SpecialPage {
 
 		# Media reports and uploads
 		'Listfiles'                 => array( 'SpecialPage', 'Listfiles' ),
-		'Filepath'                  => array( 'SpecialPage', 'Filepath' ),
+		'Filepath'                  => 'SpecialFilepath',
 		'MIMEsearch'                => array( 'SpecialPage', 'MIMEsearch' ),
 		'FileDuplicateSearch'       => array( 'SpecialPage', 'FileDuplicateSearch' ),
 		'Upload'                    => 'SpecialUpload',
