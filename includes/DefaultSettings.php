@@ -342,7 +342,7 @@ $wgImgAuthPublicTest = true;
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:
- *   - descBaseUrl       URL of image description pages, e.g. http://en.wikipedia.org/wiki/Image:
+ *   - descBaseUrl       URL of image description pages, e.g. http://en.wikipedia.org/wiki/File:
  *   - scriptDirUrl      URL of the MediaWiki installation, equivalent to $wgScriptPath, e.g.
  *                       http://en.wikipedia.org/w
  *   - scriptExtension   Script extension of the MediaWiki installation, equivalent to 
@@ -402,7 +402,7 @@ $wgRemoteUploads = false;
  * Uploads to this wiki will NOT be put there - they will be put into
  * $wgUploadDirectory.
  * If $wgUseSharedUploads is set, the wiki will look in the shared repository if
- * no file of the given name is found in the local repository (for [[Image:..]],
+ * no file of the given name is found in the local repository (for [[File:..]],
  * [[Media:..]] links). Thumbnails will also be looked for and generated in this
  * directory.
  *
@@ -485,7 +485,7 @@ $wgHashedSharedUploadDirectory = true;
  *
  * Please specify the namespace, as in the example below.
  */
-$wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/Image:";
+$wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/File:";
 
 /**
  * This is the list of preferred extensions for uploading files. Uploading files
@@ -542,7 +542,7 @@ $wgUploadSizeWarning = false;
 /**
  * list of trusted media-types and mime types.
  * Use the MEDIATYPE_xxx constants to represent media types.
- * This list is used by Image::isSafeFile
+ * This list is used by File::isSafeFile
  *
  * Types not listed here will have a warning about unsafe content
  * displayed on the images description page. It would also be possible
