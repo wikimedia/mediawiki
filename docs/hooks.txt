@@ -263,7 +263,14 @@ $message: out parameter: error message to display on abort
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
 
-‘AfterUserMessage': After a user message has been left, this hook is
+'AfterImportPage': When a page import is completed
+$title: Title under which the revisions were imported
+$origTitle: Title provided by the XML file
+$revCount: Number of revisions in the XML file
+$sRevCount: Number of sucessfully imported revisions
+$pageInfo: associative array of page information
+
+'AfterUserMessage': After a user message has been left, this hook is
 called to take care of any cleanup.
 $user: The user who we left the message for.
 $article: The article the message was left on.
@@ -898,6 +905,29 @@ $page: ImagePage object
 	$result[2 through n]=Parameters passed to body text message. Please note the
 	header message cannot receive/use parameters.
 
+'ImportHandleLogItemXMLTag': When parsing a XML tag in a log item
+$reader: XMLReader object
+$logInfo: Array of information
+Return false to stop further processing of the tag
+
+'ImportHandlePageXMLTag': When parsing a XML tag in a page
+$reader: XMLReader object
+$pageInfo: Array of information
+Return false to stop further processing of the tag
+
+'ImportHandleRevisionXMLTag': When parsing a XML tag in a page revision
+$reader: XMLReader object
+$revInfo: Array of information
+Return false to stop further processing of the tag
+
+'ImportHandleToplevelXMLTag': When parsing a top level XML tag
+$reader: XMLReader object
+Return false to stop further processing of the tag
+
+'ImportHandleUploadXMLTag': When parsing a XML tag in a file upload
+$reader: XMLReader object
+$revisionInfo: Array of information
+Return false to stop further processing of the tag
 
 'InitializeArticleMaybeRedirect': MediaWiki check to see if title is a redirect
 $title: Title object ($wgTitle)
@@ -1115,7 +1145,7 @@ been rendered (useful for adding more)
 Note: this is only run for the Monobook skin. This hook is deprecated and
 may be removed in the future. To add items to the toolbox you should use 
 the SkinTemplateToolboxEnd hook instead, which works for all 
-'SkinTemplate'-type skins.
+"SkinTemplate"-type skins.
 $tools: array of tools
 
 'NewRevisionFromEditComplete': called when a revision was inserted
@@ -1344,7 +1374,7 @@ $query : Original query.
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
-‘SetupUserMessageArticle': Called in User::leaveUserMessage() before
+'SetupUserMessageArticle': Called in User::leaveUserMessage() before
 anything has been posted to the article.
 $user: The user who we left the message for.
 &$article: The article that will be posted to.
