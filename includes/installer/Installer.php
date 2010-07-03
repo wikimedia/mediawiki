@@ -224,6 +224,10 @@ abstract class Installer {
 		$wgExtensionMessagesFiles['MediawikiInstaller'] =
 			'./includes/installer/Installer.i18n.php';
 
+		global $wgUser;
+		$wgUser = User::newFromId( 0 );
+		// Having a user with id = 0 safeguards us from DB access via User::loadOptions()
+
 		// Set our custom <doclink> hook
 		global $wgHooks;
 		$wgHooks['ParserFirstCallInit'][] = array( $this, 'registerDocLink' );
