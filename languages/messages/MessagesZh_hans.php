@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -996,7 +996,7 @@ $2',
 'revdelete-radio-unset'       => '否',
 'revdelete-suppress'          => '同时阻止管理员与其他用户查看数据',
 'revdelete-unsuppress'        => '在已恢复的修订中移除限制',
-'revdelete-log'               => '删除原因：',
+'revdelete-log'               => '理由：',
 'revdelete-submit'            => '应用于选中的{{PLURAL:$1|修订}}',
 'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
@@ -1050,11 +1050,13 @@ $1",
 'revmove-reasonfield'          => '理由：',
 'revmove-titlefield'           => '目标页面：',
 'revmove-badparam-title'       => '坏的参数',
-'revmove-badparam'             => '您的请求含有不合法的者不足的参数。请点击「返回」再试。',
+'revmove-badparam'             => '您的请求含有不合法的者不足的参数。
+请返回先前的页面再试。',
 'revmove-norevisions-title'    => '无效的目标修订版本',
 'revmove-norevisions'          => '您尚未指定一个或者多个目标修订版本去做这项功能或者所指定的修订版本不存在。',
 'revmove-nullmove-title'       => '坏的标题',
-'revmove-nullmove'             => '来源和目标页面相同。请点击「返回」再输入跟 "$1" 不相同的名字。',
+'revmove-nullmove'             => '目标页面不可以跟来源页面相同。
+请返回先前的页面再输入跟 "$1" 不相同的名字。',
 'revmove-success-existing'     => '由[[$2]]中的{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至现有的页面[[$3]]。',
 'revmove-success-created'      => '由[[$2]]中的{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至新建的页面[[$3]]。',
 
@@ -1707,7 +1709,7 @@ $1',
 'filedelete-legend'           => '删除文件',
 'filedelete-intro'            => "您现正删除文件'''[[Media:$1|$1]]'''。",
 'filedelete-intro-old'        => "你现正删除'''[[Media:$1|$1]]'''于[$4 $2 $3]的版本。",
-'filedelete-comment'          => '删除理由：',
+'filedelete-comment'          => '理由：',
 'filedelete-submit'           => '删除',
 'filedelete-success'          => "'''$1'''已经删除。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。",
@@ -2082,7 +2084,7 @@ $UNWATCHURL
 'dellogpagetext'         => '以下是最近的删除的列表。',
 'deletionlog'            => '删除日志',
 'reverted'               => '恢复到早期版本',
-'deletecomment'          => '删除原因：',
+'deletecomment'          => '理由：',
 'deleteotherreason'      => '其它／附加的理由：',
 'deletereasonotherlist'  => '其他原因',
 'deletereason-dropdown'  => '*常用删除理由
@@ -2111,7 +2113,7 @@ $UNWATCHURL
 'sessionfailure-title' => '登录信息失败',
 'sessionfailure'       => '似乎您的登录会话有问题；
 为了防止会话劫持，这个操作已经被取消。
-请点击“后退”并重新载入页面，然后重试。',
+请返回先前的页面，重新载入该页面，然后重试。',
 
 # Protect
 'protectlogpage'              => '保护日志',
@@ -2250,7 +2252,7 @@ $1',
 最近的封锁日志项目在下面提供以便参考：',
 'sp-contributions-search'              => '搜索贡献记录',
 'sp-contributions-username'            => 'IP地址或用户名称：',
-'sp-contributions-toponly'             => '只显示最新的修订版本',
+'sp-contributions-toponly'             => '只显示最新修订版本的编辑',
 'sp-contributions-submit'              => '搜索',
 
 # What links here
@@ -2788,8 +2790,8 @@ $1',
 'file-info-gif-looped' => '循环',
 'file-info-gif-frames' => '$1帧',
 'file-info-png-looped' => '循环',
-'file-info-png-repeat' => '播放$1遍{{PLURAL:$1|time|times}}',
-'file-info-png-frames' => '$1帧 {{PLURAL:$1|frame|frames}}',
+'file-info-png-repeat' => '已播放$1遍',
+'file-info-png-frames' => '$1帧',
 
 # Special:NewFiles
 'newimages'             => '新建图像画廊',
