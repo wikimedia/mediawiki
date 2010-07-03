@@ -103,7 +103,8 @@ class MovePageForm {
 
 	/**
 	 * Show the form
-	 * @param mixed $err Error message. May either be a string message name or 
+	 *
+	 * @param $err Mixed: error message. May either be a string message name or 
 	 *    array message name and parameters, like the second argument to 
 	 *    OutputPage::wrapWikiMsg(). 
 	 */

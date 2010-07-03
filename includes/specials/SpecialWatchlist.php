@@ -466,8 +466,9 @@ function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
 /**
  * Count the number of items on a user's watchlist
  *
- * @param $talk Include talk pages
- * @return integer
+ * @param $user User object
+ * @param $talk Boolean: include talk pages
+ * @return Integer
  */
 function wlCountItems( &$user, $talk = true ) {
 	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
