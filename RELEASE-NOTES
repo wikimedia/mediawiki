@@ -100,7 +100,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * texvc now supports \bcancel and \xcancel in addition to \cancel and \cancelto
 * Added scriptExtension setting to $wgForeignFileRepos
 * ForeignApiRepo uses scriptDirUrl if apiBase not set
-* (bug 24212) Added MediaWiki:ImagePage.css which is also included on foreign
+* (bug 24212) Added MediaWiki:Filepage.css which is also included on foreign
   client wikis.
 
 === Bug fixes in 1.17 ===

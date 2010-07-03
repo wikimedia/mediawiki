@@ -379,7 +379,7 @@ abstract class FileRepo {
 	 */
 	function getDescriptionStylesheetUrl() {
 		if ( $this->scriptDirUrl ) {
-			return self::makeUrl( 'title=MediaWiki:ImagePage.css&' .
+			return self::makeUrl( 'title=MediaWiki:Filepage.css&' .
 				wfArrayToCGI( Skin::getDynamicStylesheetQuery() ) );
 		}
 	}
