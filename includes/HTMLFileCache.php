@@ -209,11 +209,21 @@ class HTMLFileCache {
 
 	public static function clearFileCache( $title ) {
 		global $wgUseFileCache;
-		if( !$wgUseFileCache ) return false;
+
+		if ( !$wgUseFileCache ) {
+			return false;
+		}
+
+		wfSuppressWarnings();
+
 		$fc = new self( $title, 'view' );
-		@unlink( $fc->fileCacheName() );
+		unlink( $fc->fileCacheName() );
+
 		$fc = new self( $title, 'raw' );
-		@unlink( $fc->fileCacheName() );
+		unlink( $fc->fileCacheName() );
+
+		wfRestoreWarnings();
+
 		return true;
 	}
 }
