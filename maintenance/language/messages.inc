@@ -1391,6 +1391,7 @@ $wgMessageStructure = array(
 		'shared-repo-from',
 		'shared-repo',
 		'shared-repo-name-wikimediacommons',
+		'filepage.css',
 	),
 	'filerevert' => array(
 		'filerevert',
