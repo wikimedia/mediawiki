@@ -1480,7 +1480,7 @@ e-mail адреси: $PAGEEDITOR_EMAIL
 'dellogpagetext'        => 'Ашагъыдаки джедвель сонъки ёкъ этюв журналыдыр.',
 'deletionlog'           => 'ёкъ этюв журналы',
 'reverted'              => 'Эвельки версия кери кетирильди',
-'deletecomment'         => 'Ёкъ этюв себеби',
+'deletecomment'         => 'Себеп:',
 'deleteotherreason'     => 'Дигер/илявели себеп:',
 'deletereasonotherlist' => 'Дигер себеп',
 

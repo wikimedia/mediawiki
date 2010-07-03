@@ -1139,7 +1139,7 @@ Conferma per plaschair che ti ta es conscient da las consequenzas e che ti agesc
 Sin $2 chattas ti ina glista dals davos artitgels stizzads.',
 'deletedarticle'        => '"[[$1]]" è stizzà',
 'dellogpage'            => 'log dal stizzar',
-'deletecomment'         => 'Motiv per il stizzar',
+'deletecomment'         => 'Motiv:',
 'deleteotherreason'     => 'Autra / supplementara raschun:',
 'deletereasonotherlist' => 'Autra raschun:',
 

@@ -846,7 +846,7 @@ $messages = array(
 'filerevert-submit'  => 'Επαναφορά',
 
 # File deletion
-'filedelete-comment'          => 'Αιτία για το σβήσεμαν:',
+'filedelete-comment'          => 'Αιτία:',
 'filedelete-submit'           => 'Σβήσον',
 'filedelete-reason-otherlist' => 'Άλλον αιτία',
 'filedelete-edit-reasonlist'  => "Άλλαξον τ' αιτίας σβησεματί",
@@ -1020,7 +1020,7 @@ $messages = array(
 'deletedarticle'        => 'ενεσβύεν η "[[$1]]"',
 'dellogpage'            => "Κατάλογον με τ' ατά ντ' ενεσβύγαν",
 'deletionlog'           => 'αρχείον ασπαλιγματίων',
-'deletecomment'         => 'Λόγον για το σβήσιμο:',
+'deletecomment'         => 'Αιτία:',
 'deleteotherreason'     => 'Άλλον/αλλομίαν λόγον:',
 'deletereasonotherlist' => 'Άλλον λόγον',
 

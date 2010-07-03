@@ -660,7 +660,7 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'revdelete-radio-same'        => '(mevurne)',
 'revdelete-radio-set'         => 'Heya',
 'revdelete-radio-unset'       => 'Nê',
-'revdelete-log'               => 'Serba esteriyaene sebeb:',
+'revdelete-log'               => 'Sebeb:',
 'revdelete-submit'            => '{{PLURAL:$1|Çımraviarnaiso ke çiniyo|Çımraviarnaisê ke çiniyê}} we tetbiq ke',
 'revdel-restore'              => 'asaişi bıvurne',
 'pagehist'                    => 'Tarixê pele',
@@ -1074,7 +1074,7 @@ Eke ferqê neticê na kerdene de bena u no kar be gorê [[{{MediaWiki:Policy-url
 Serba diyaena esterıteyunê peyênu $2 bıvêne.',
 'deletedarticle'        => '"[[$1]]" esterıt',
 'dellogpage'            => 'Qeydê esterıtene',
-'deletecomment'         => 'Sebebê esterıtene:',
+'deletecomment'         => 'Sebeb:',
 'deleteotherreason'     => 'Sebebo bin/ilaweki:',
 'deletereasonotherlist' => 'Sebebo bin',
 

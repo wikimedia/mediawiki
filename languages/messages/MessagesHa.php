@@ -483,7 +483,7 @@ A nan ne kuma za a yi rajistan dukkan sauye-sauye ga shafin ko shafinsa na muhaw
 Ku duba $2 ku ga rajistan soke-soke na baya-bayan nan.',
 'deletedarticle'        => 'an soke "[[$1]]"',
 'dellogpage'            => 'Rajistan sauye-sauye',
-'deletecomment'         => 'Dalilin sokewa:',
+'deletecomment'         => 'Dalili:',
 'deleteotherreason'     => 'Wani dalilin:',
 'deletereasonotherlist' => 'Wani dalili',
 

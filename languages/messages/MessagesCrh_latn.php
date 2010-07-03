@@ -1476,7 +1476,7 @@ yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 'dellogpagetext'        => 'Aşağıdaki cedvel soñki yoq etüv jurnalıdır.',
 'deletionlog'           => 'yoq etüv jurnalı',
 'reverted'              => 'Evelki versiya keri ketirildi',
-'deletecomment'         => 'Yoq etüv sebebi',
+'deletecomment'         => 'Sebep:',
 'deleteotherreason'     => 'Diger/ilâveli sebep:',
 'deletereasonotherlist' => 'Diger sebep',
 

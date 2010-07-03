@@ -839,7 +839,7 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'deletedtext'           => '„<nowiki>$1</nowiki>“ wörd tunintemååged. In e $2 fanst dü en list foon da tuleest tunintemåågede side.',
 'deletedarticle'        => 'heet "[[$1]]" tunintemååged',
 'dellogpage'            => 'Tunintemååg-Logbök',
-'deletecomment'         => 'Grün foon dåt tunintemåågen:',
+'deletecomment'         => 'Grün:',
 'deleteotherreason'     => 'Ouderen/tubaikaamenden grün:',
 'deletereasonotherlist' => 'Ouderen grün',
 

@@ -783,7 +783,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'deletedtext'           => '"<nowiki>$1</nowiki>" ka geusampôh. Eu $2 keu log paléng barô bak ôn nyang ka geusampôh.',
 'deletedarticle'        => 'sampôh "[[$1]]"',
 'dellogpage'            => 'Log seunampoh',
-'deletecomment'         => 'Choë sampôh',
+'deletecomment'         => 'Choë:',
 'deleteotherreason'     => 'Nyang la’én/choë la’én:',
 'deletereasonotherlist' => 'Choë la’én',
 

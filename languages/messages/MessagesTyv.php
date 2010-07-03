@@ -478,7 +478,7 @@ $messages = array(
 # File deletion
 'filedelete'         => '$1 деп файлды ап каар',
 'filedelete-legend'  => 'Файлды ап каар',
-'filedelete-comment' => 'Комментарий:',
+'filedelete-comment' => 'Чылдагаан:',
 'filedelete-submit'  => 'Ап каар',
 
 # MIME search

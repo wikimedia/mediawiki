@@ -922,7 +922,7 @@ Wakabidhi (vilevile wengine) wasiweze kuona data',
 Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-unsuppress'        => '
 Uzuio wa kuona mapitio uondolewe, mapitio yanaporudishwa',
-'revdelete-log'               => 'Sababu ya kufuta',
+'revdelete-log'               => 'Sababu:',
 'revdelete-submit'            => '
 {{PLURAL:$1|Pitio lililochaguliwa lifanyiwe|Mapitio yaliyochaguliwa yafanyiwe}} kazi.',
 'revdelete-logentry'          => '
@@ -1473,7 +1473,7 @@ Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 'filedelete'                  => 'Futa $1',
 'filedelete-legend'           => 'Futa faili',
 'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
-'filedelete-comment'          => 'Sababu ya kufuta:',
+'filedelete-comment'          => 'Sababu:',
 'filedelete-submit'           => 'Futa',
 'filedelete-success'          => "'''$1''' limefutwa.",
 'filedelete-success-old'      => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
@@ -1779,7 +1779,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'dellogpage'             => 'Kumbukumbu ya ufutaji',
 'deletionlog'            => 'kumbukumbu za kufuta',
 'reverted'               => 'Ilirejeshwa hadi pitio la zamani',
-'deletecomment'          => 'Sababu ya kufuta',
+'deletecomment'          => 'Sababu:',
 'deleteotherreason'      => 'Sababu nyingine:',
 'deletereasonotherlist'  => 'Sababu nyingine',
 'deletereason-dropdown'  => '*Sababu za kawaida za ufutaji

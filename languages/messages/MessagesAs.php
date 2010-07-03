@@ -1119,7 +1119,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 সাম্প্রতিক বিলোপনসমূহৰ তালিকা চাবলৈ $2 চাঁওক।',
 'deletedarticle'        => '"[[$1]]" ক বাতিল কৰা হৈছে।',
 'dellogpage'            => 'বাতিল কৰা সুচী',
-'deletecomment'         => 'বিলোপনৰ কাৰণ।',
+'deletecomment'         => 'কাৰণ:',
 'deleteotherreason'     => 'আন/অতিৰিক্ত কাৰণ:',
 'deletereasonotherlist' => 'আন কাৰণ:',
 
@@ -1199,7 +1199,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Block/unblock
 'blockip'                  => 'সদস্য বাৰণ কৰক',
-'ipbreason'                => 'কাৰণ',
+'ipbreason'                => 'কাৰণ:',
 'ipbreasonotherlist'       => 'অন্য কাৰণ',
 'ipboptions'               => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite',
 'ipblocklist'              => 'বাৰণ কৰা আই-পি ঠিকনা আৰু সদস্যৰ তালিকা',

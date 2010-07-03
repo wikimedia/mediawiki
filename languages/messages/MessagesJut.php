@@ -655,7 +655,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'deletedtext'           => '"<nowiki>$1</nowiki>" er slettet. Sæg $2 før en førtegnelse åver de nyeste sletnenger.',
 'deletedarticle'        => 'slettede "[[$1]]"',
 'dellogpage'            => 'Sletnengslog',
-'deletecomment'         => 'Begrundelse før sletnenge:',
+'deletecomment'         => 'Begrundelse:',
 'deleteotherreason'     => 'Anden/uddybende begrundelse:',
 'deletereasonotherlist' => 'Anden begrundelse',
 
@@ -665,7 +665,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Protect
 'protectlogpage'              => 'Liste åver beskyttede sider',
 'prot_1movedto2'              => '[[$1]] flyttet til [[$2]]',
-'protectcomment'              => 'Begrundelse før beskyttelse',
+'protectcomment'              => 'Begrundelse:',
 'protectexpiry'               => 'Udløb:',
 'protect_expiry_invalid'      => 'Æ udløbstiid er ugyldeg.',
 'protect_expiry_old'          => "Æ udløbstiid legger i'n førtiid.",

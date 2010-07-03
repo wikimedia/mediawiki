@@ -499,7 +499,7 @@ Palihog lang nga sigurado nga kinagusto mo ini nga himuon, nga na-intindihan mo 
 Lantawa $2 para sa mga lista sang mga bag-o lang ginkakas.',
 'deletedarticle'        => 'ginkakas "[[$1]]"',
 'dellogpage'            => 'Ginkakas na log',
-'deletecomment'         => 'Rason kun nga panason:',
+'deletecomment'         => 'Rason:',
 'deleteotherreason'     => 'Iban/dugang nga rason:',
 'deletereasonotherlist' => 'Iban nga rason',
 

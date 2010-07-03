@@ -1334,7 +1334,7 @@ $NEWPAGE
 'deletedarticle'        => '«[[$1]]» бетерелде',
 'dellogpage'            => 'Бетерү көндәлеге',
 'deletionlog'           => 'бетерү көндәлеге',
-'deletecomment'         => 'Бетерү сәбәбе:',
+'deletecomment'         => 'Сәбәп:',
 'deleteotherreason'     => 'Башка/өстәмә сәбәп:',
 'deletereasonotherlist' => 'Башка сәбәп',
 

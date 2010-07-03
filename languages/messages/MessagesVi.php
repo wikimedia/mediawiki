@@ -1065,7 +1065,7 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'revdelete-radio-unset'       => 'Không',
 'revdelete-suppress'          => 'Che dữ liệu đối với người quản lý cũng như các thành viên khác',
 'revdelete-unsuppress'        => 'Bỏ các hạn chế trên các phiên bản được phục hồi',
-'revdelete-log'               => 'Lý do xóa:',
+'revdelete-log'               => 'Lý do:',
 'revdelete-submit'            => 'Áp dụng vào {{PLURAL:$1|phiên bản|các phiên bản}} được chọn',
 'revdelete-logentry'          => 'đã thay đổi khả năng nhìn thấy phiên bản của [[$1]]',
 'logdelete-logentry'          => 'đã thay đổi khả năng nhìn thấy sự kiện của [[$1]]',
@@ -2177,7 +2177,7 @@ Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy c�
 'dellogpagetext'         => 'Dưới đây là danh sách các trang bị xóa gần đây nhất.',
 'deletionlog'            => 'nhật trình xóa',
 'reverted'               => 'Đã hồi phục một phiên bản cũ',
-'deletecomment'          => 'Lý do',
+'deletecomment'          => 'Lý do:',
 'deleteotherreason'      => 'Lý do khác/bổ sung:',
 'deletereasonotherlist'  => 'Lý do khác',
 'deletereason-dropdown'  => '*Các lý do xóa phổ biến

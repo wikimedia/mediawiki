@@ -867,7 +867,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'deletedarticle'        => 'āfeorsode "[[$1]]"',
 'dellogpage'            => 'Āfeorsunge_wisbōc',
 'deletionlog'           => 'āfeorsunge wisbōc',
-'deletecomment'         => 'Racu for āfeorsunge',
+'deletecomment'         => 'Racu:',
 'deleteotherreason'     => 'Ōðra/ēaca racu:',
 'deletereasonotherlist' => 'Ōðru racu',
 
@@ -955,7 +955,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 # Block/unblock
 'blockip'                  => 'Brūcend fortȳnan',
-'ipbreason'                => 'Racu',
+'ipbreason'                => 'Racu:',
 'ipbreasonotherlist'       => 'Ōðeru racu',
 'ipbreason-dropdown'       => '*Gemǣna gǣlungraca
 ** Insettung falses gefrǣges

@@ -1129,7 +1129,7 @@ Videz $2 por obtenar registro di recenta efaci.',
 'dellogpagetext'        => 'Infre esas listo di la plu recenta efaci.',
 'deletionlog'           => 'registro di efaciti',
 'reverted'              => 'Rekuperita ad antea versiono',
-'deletecomment'         => "Motivo por l'efaco:",
+'deletecomment'         => 'Motivo:',
 'deleteotherreason'     => 'Altra/suplementala motivo:',
 'deletereasonotherlist' => 'Altra motivo',
 'deletereason-dropdown' => '*Ordinara motivi por efaco

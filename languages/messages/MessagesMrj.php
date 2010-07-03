@@ -494,7 +494,7 @@ $messages = array(
 Анжы: $2 тидӹ мам карангдымы тӹ списокым анжыкта',
 'deletedarticle'        => '«[[$1]]» карангдымы',
 'dellogpage'            => 'Мам карангдымы анжыктышы сирмӓш',
-'deletecomment'         => 'Карангдымы ӓмӓл:',
+'deletecomment'         => 'Ӓмӓлжӹ:',
 'deleteotherreason'     => 'Вес ӓмӓл/ынгылдарал:',
 'deletereasonotherlist' => 'Вес ӓмӓл',
 
@@ -600,7 +600,7 @@ $messages = array(
 '1movedto2'        => 'лӹмӹм вашталтымы «[[$1]]» в «[[$2]]»',
 '1movedto2_redir'  => '«[[$1]]» у лӹмӹм пумы «[[$2]]» вес вӓрыш колтымы вӹлец',
 'movelogpage'      => 'Лӹмвлӓм вашталтымы журнал',
-'movereason'       => 'Ӓмӓлжӹ',
+'movereason'       => 'Ӓмӓлжӹ:',
 'revertmove'       => 'лишӹц колтымаш',
 
 # Export
