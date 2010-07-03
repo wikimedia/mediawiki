@@ -725,7 +725,7 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 * Un quader marcaa 'l vör dì che 'l druvadur al fà part de quel grüp lì.
 * Un quader mia marcaa 'l vör dì che 'l druvadur el fà mia part de quel grüp lì.
 * L'asterisch (*) el vör dì che se pö mia tö via un druvadur dal grüp dop d'avèghel giuntaa, o vice versa.",
-'userrights-reason'           => 'Resón per al cambiament:',
+'userrights-reason'           => 'Reson:',
 'userrights-no-interwiki'     => "Te gh'hee mía i permiss necessari per pudè mudifegà i dirit di druvadur di olter wiki.",
 'userrights-nodatabase'       => "La base dat $1 a gh'é mia, o pura a l'é mia locala.",
 'userrights-nologin'          => "Al gh'a da [[Special:UserLogin|rintrà ent el sistema]] con un cunt d'administrator par podé dà di drecc ai dovracc.",
@@ -848,7 +848,7 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'filedelete'                  => 'Scancela $1',
 'filedelete-legend'           => "Scancela 'l file",
 'filedelete-intro-old'        => "Te seet adree a scancelà la versión de '''[[Media:$1|$1]]''' del [$4 $2, $3].",
-'filedelete-comment'          => 'Mutiv del scancelament:',
+'filedelete-comment'          => 'Reson:',
 'filedelete-otherreason'      => 'Alter resón/spiegazión:',
 'filedelete-reason-otherlist' => 'Óltra resón',
 'filedelete-reason-dropdown'  => '*I sòlit resón per i scancelament
@@ -1047,7 +1047,7 @@ Per piasè, dà la cunferma che te gh'hee intenzión de andà inanz cun 'l scanc
 'dellogpage'             => 'Register di scancelament',
 'deletionlog'            => 'log di scancelament',
 'reverted'               => 'Bütada sü turna la versión de prima.',
-'deletecomment'          => 'Mutiv del scancelament',
+'deletecomment'          => 'Reson:',
 'deleteotherreason'      => 'Alter mutiv:',
 'deletereasonotherlist'  => 'Altra resón',
 'deletereason-dropdown'  => "*Mutiv cumün de scancelaziun
@@ -1072,7 +1072,7 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 'protect-title'               => 'Prutezziún da "$1"',
 'prot_1movedto2'              => '[[$1]] spustaa in [[$2]]',
 'protect-legend'              => 'Cunferma de blocch',
-'protectcomment'              => 'Resón de la prutezión:',
+'protectcomment'              => 'Reson:',
 'protectexpiry'               => 'Scadenza:',
 'protect_expiry_invalid'      => 'Scadenza pü bona',
 'protect_expiry_old'          => 'Scadenza giamò passada',

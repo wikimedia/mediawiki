@@ -720,7 +720,7 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 Vide $2 per un catalogo de sutraes resente.',
 'deletedarticle'        => 'sutraeda "[[$1]]"',
 'dellogpage'            => 'catalogo de sutraes',
-'deletecomment'         => 'Razona per esta sutrae:',
+'deletecomment'         => 'Razona:',
 'deleteotherreason'     => 'Otra/plu razona:',
 'deletereasonotherlist' => 'Otra razona',
 
@@ -845,7 +845,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 '1movedto2_redir'  => '[[$1]] es moveda a [[$2]] tra redirije',
 'movelogpage'      => 'Move arcive',
 'movelogpagetext'  => 'A su es un lista de pajes moveda',
-'movereason'       => 'Razona',
+'movereason'       => 'Razona:',
 'revertmove'       => 'retro',
 
 # Export

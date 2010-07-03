@@ -364,7 +364,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'dellogpage'      => 'Loge de ekartos',
 'dellogpagetext'  => 'Subu es liste del maxim resenti ekartos.',
 'deletionlog'     => 'registre de ekartos',
-'deletecomment'   => 'Resone de ekarto',
+'deletecomment'   => 'Resone:',
 
 # Rollback
 'revertpage' => 'Riverted modifikos da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); restaurad lasti versione da [[User:$1|$1]]',

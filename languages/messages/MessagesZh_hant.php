@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2327,9 +2327,9 @@ $1',
 'ipblocklist'                     => '被封IP地址列表',
 'ipblocklist-legend'              => '搜尋一位已經被查封的用戶',
 'ipblocklist-username'            => '用戶名稱或IP地址:',
-'ipblocklist-sh-userblocks'       => '$1次賬戶封鎖',
-'ipblocklist-sh-tempblocks'       => '$1次臨時封鎖',
-'ipblocklist-sh-addressblocks'    => '$1次單IP封鎖',
+'ipblocklist-sh-userblocks'       => '$1賬戶封鎖',
+'ipblocklist-sh-tempblocks'       => '$1臨時封鎖',
+'ipblocklist-sh-addressblocks'    => '$1單IP封鎖',
 'ipblocklist-submit'              => '搜尋',
 'ipblocklist-localblock'          => '本地封鎖',
 'ipblocklist-otherblocks'         => '其它{{PLURAL:$1|封鎖|封鎖}}',

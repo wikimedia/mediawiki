@@ -1111,7 +1111,7 @@ Càstia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 'dellogpage'            => 'Burraduras',
 'dellogpagetext'        => 'A sighire una lista de is prus reghentes burraduras.',
 'reverted'              => 'Torrada a sa versione in antis',
-'deletecomment'         => 'Motivu de sa burradura:',
+'deletecomment'         => 'Motivu:',
 'deleteotherreason'     => 'Àteru motivu o motivu agiuntivu:',
 'deletereasonotherlist' => 'Àteru motivu',
 

@@ -580,7 +580,7 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'revdelete-hide-restricted'   => 'Appliquer ces restrictions aux administrateurs et les autres useurs',
 'revdelete-suppress'          => "Ôter de l'information des administrateurs et les autres useurs",
 'revdelete-unsuppress'        => 'Ôter les restrictions des versions rétablies',
-'revdelete-log'               => 'Remarque de notes:',
+'revdelete-log'               => 'Raison:',
 'revdelete-submit'            => 'Appliquer à la version choisie',
 'revdelete-logentry'          => 'La visibilité pour la version a été changée pour [[$1]]',
 'logdelete-logentry'          => "La visibilité de l'événement a été changée pour [[$1]]",

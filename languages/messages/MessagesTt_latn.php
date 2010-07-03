@@ -554,7 +554,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'dellogpage'            => 'Beterü_köndälege',
 'deletionlog'           => 'beterü köndälege',
 'reverted'              => 'Aldağı yuramanı qaytart',
-'deletecomment'         => 'Beterü säbäbe',
+'deletecomment'         => 'Säbäp',
 'deleteotherreason'     => 'Başqa/üstämä säbäp:',
 'deletereasonotherlist' => 'Başqa säbäp',
 'deletereason-dropdown' => '*Beterergä tüp säbäp
@@ -572,7 +572,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'protect-title'      => '«$1» yaqlaw',
 'prot_1movedto2'     => '$1 moña küçte: $2',
 'protect-legend'     => 'Yaqlawnı raslaw',
-'protectcomment'     => 'Yaqlaw säbäbe',
+'protectcomment'     => 'Säbäp',
 'protectexpiry'      => 'İske bulaçaq:',
 
 # Undelete

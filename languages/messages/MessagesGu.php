@@ -979,7 +979,7 @@ Please log in again after you receive it.
 'filedelete-legend'           => 'ફાઇલ ભુસી નાખો.',
 'filedelete-intro'            => "તમે '''[[Media:$1|$1]]'' ફાઇલ અને તેની સાથે સંલગ્ન ઇતિહાસ ભુંસી રહ્યા છો.",
 'filedelete-intro-old'        => "તમે '''[[Media:$1|$1]]'''નું આ [$4 $3, $2] વર્ઝન ભુસી રહ્યા છો.",
-'filedelete-comment'          => 'દૂર કરવાનું કારણ:',
+'filedelete-comment'          => 'કારણ:',
 'filedelete-submit'           => 'ભુંસો',
 'filedelete-success'          => "'''$1'''ને ભુસી નાંખવામાં આવ્યું છે.",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''નું $3, $2ના રોજનું  સંસ્કરણ ભુંસી નાખ્યું છે.",
@@ -1137,7 +1137,7 @@ Please log in again after you receive it.
 તાજેતરમાં દૂર કરેલા લેખોની વિગત માટે $2 જુઓ.',
 'deletedarticle'        => 'હટાવવામાં આવેલા "[[$1]]"',
 'dellogpage'            => 'હટાવેલાઓનું માહિતિ પત્રક (ડિલિશન લૉગ)',
-'deletecomment'         => 'હટાવવા માટેનું કારણ:',
+'deletecomment'         => 'કારણ:',
 'deleteotherreason'     => 'અન્ય/વધારાનું કારણ:',
 'deletereasonotherlist' => 'અન્ય કારણ',
 
@@ -1221,7 +1221,7 @@ Please log in again after you receive it.
 
 # Block/unblock
 'blockip'                  => 'સભ્ય પર પ્રતિબંધ મુકો',
-'ipbreason'                => 'કારણ',
+'ipbreason'                => 'કારણ:',
 'ipbreasonotherlist'       => 'બીજું કારણ',
 'ipbother'                 => 'અન્ય સમય',
 'ipboptions'               => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
@@ -1271,7 +1271,7 @@ Please log in again after you receive it.
 '1movedto2'               => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
 '1movedto2_redir'         => 'નામ બદલતા [[$1]] ને [[$2]] બનાવ્યું',
 'movelogpage'             => 'નામ ફેર માહિતિ પત્રક',
-'movereason'              => 'કારણ',
+'movereason'              => 'કારણ:',
 'revertmove'              => 'પૂર્વવત',
 'delete_and_move'         => 'હટાવો અને નામ બદલો',
 'delete_and_move_confirm' => 'હા, આ પાનું હટાવો',

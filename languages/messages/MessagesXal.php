@@ -954,7 +954,7 @@ e-mail\'ар $PAGEEDITOR_EMAIL
 $2 шидрә һарһлһна төлә хәләтн.',
 'deletedarticle'        => '«[[$1]]» халхиг һарһв',
 'dellogpage'            => 'Һарһллһна сеткүл',
-'deletecomment'         => 'Һарһллһна учр:',
+'deletecomment'         => 'Учр:',
 'deleteotherreason'     => 'Талдан аль дәкәд учр:',
 'deletereasonotherlist' => 'Талдан учр',
 

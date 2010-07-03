@@ -1105,7 +1105,7 @@ Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummep
 'revdelete-radio-unset'       => 'Nee',
 'revdelete-suppress'          => 'Gegevens veur beheerders en aander volk onderdrokken',
 'revdelete-unsuppress'        => 'Beparkingen veur weerummezetten versies vortdoon',
-'revdelete-log'               => "Reden veur 't vortdoon:",
+'revdelete-log'               => 'Reden:',
 'revdelete-submit'            => 'Toepassen op de ekeuzen {{PLURAL:$1|bewarking|bewarkingen}}',
 'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
@@ -1154,9 +1154,10 @@ Kiek de logboeken nao.",
 'suppressionlogtext' => 'De onderstaande lieste bevat de pagina dee vort-edaon bin en blokkeringen dee veur beheerders verbörgen bin. In de [[Special:IPBlockList|IP-blokkeerlieste]] bin de blokkeringen dee noen van toepassing bin te bekieken.',
 
 # Revision move
-'revmove-reasonfield'    => 'Reden',
+'revmove-reasonfield'    => 'Reden:',
 'revmove-titlefield'     => 'Doelpagina:',
 'revmove-badparam-title' => 'Verkeerde parameters',
+'revmove-nullmove-title' => 'Ongeldige paginanaam',
 
 # History merging
 'mergehistory'                     => "Geschiedenisse van pagina's bie mekaar doon",
@@ -1485,6 +1486,8 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-reset-passwords'       => 'Wachwoorden van aandere gebrukers opniej instellen',
 'right-override-export-depth' => "Pagina's uutvoeren, oek de pagina's waor naor verwezen wonnen, tot een diepte van 5",
 'right-sendemail'             => 'Berich versturen naor aandere gebrukers',
+'right-revisionmove'          => 'Versies herneumen',
+'right-selenium'              => 'Seleniumtests uutvoeren',
 
 # User rights log
 'rightslog'      => 'Gebrukersrechenlogboek',
@@ -1527,6 +1530,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'action-userrights'           => 'alle gebrukersrechen bewarken',
 'action-userrights-interwiki' => "de rechen van gebrukers op aandere wiki's bewarken",
 'action-siteadmin'            => 'de databanke blokkeren of vriegeven',
+'action-revisionmove'         => 'versies herneumen',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
@@ -1812,7 +1816,7 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'filedelete-legend'           => 'Bestaand vortdoon',
 'filedelete-intro'            => "Je doon 't bestaand '''[[Media:$1|$1]]''' noen vort samen mit de geschiedenisse dervan.",
 'filedelete-intro-old'        => "Je bin de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] vort an 't doon.",
-'filedelete-comment'          => 'Opmarking:',
+'filedelete-comment'          => 'Reden:',
 'filedelete-submit'           => 'Vortdoon',
 'filedelete-success'          => "'''$1''' is vort-edaon.",
 'filedelete-success-old'      => "De versie van '''[[Media:$1|$1]]''' van $3, $2 is vort-edaon.",
@@ -2187,7 +2191,7 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da-j de gevolgen begriepen
 'dellogpagetext'         => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
 'deletionlog'            => 'Vortdologboek',
 'reverted'               => 'Eerdere versie hersteld',
-'deletecomment'          => 'Reden',
+'deletecomment'          => 'Reden:',
 'deleteotherreason'      => 'Aandere/extra reden:',
 'deletereasonotherlist'  => 'Aandere reden',
 'deletereason-dropdown'  => "*Redens veur 't vortdoon van pagina's
@@ -2217,7 +2221,8 @@ De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|
 'rollback-success'  => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',
 
 # Edit tokens
-'sessionfailure' => 'Der is een prebleem mit joew anmeldsessie. De actie is stop-ezet uut veurzörg tegen een beveiligingsrisico (dat besteet uut \'t meugelijke "kraken" van disse sessie). Gao weerumme naor de veurige pagina, laoj disse pagina opniej en prebeer \'t nog es.',
+'sessionfailure-title' => 'Sessiefout',
+'sessionfailure'       => 'Der is een prebleem mit joew anmeldsessie. De actie is stop-ezet uut veurzörg tegen een beveiligingsrisico (dat besteet uut \'t meugelijke "kraken" van disse sessie). Gao weerumme naor de veurige pagina, laoj disse pagina opniej en prebeer \'t nog es.',
 
 # Protect
 'protectlogpage'              => 'Beveiligingslogboek',
@@ -2359,6 +2364,7 @@ De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 De leste regel uut 't blokkeerlogboek steet as rifferentie",
 'sp-contributions-search'              => 'Zeuken naor biedragen',
 'sp-contributions-username'            => 'IP-adres of gebrukersnaam:',
+'sp-contributions-toponly'             => 'Allinnig de niejste versie laoten zien',
 'sp-contributions-submit'              => 'Zeuk',
 
 # What links here
@@ -2388,7 +2394,7 @@ De leste regel uut 't blokkeerlogboek steet as rifferentie",
 'ipaddress'                       => 'IP-adres:',
 'ipadressorusername'              => 'IP-adres of gebrukersnaam',
 'ipbexpiry'                       => 'Verlöp nao',
-'ipbreason'                       => 'Reden',
+'ipbreason'                       => 'Reden:',
 'ipbreasonotherlist'              => 'aandere reden',
 'ipbreason-dropdown'              => "*Algemene redens veur 't blokkeren
 ** valse infermasie invoeren
@@ -2868,6 +2874,7 @@ $1",
 'show-big-image-thumb' => '<small>Grootte van disse weergave: $1 × $2 beeldpunten</small>',
 'file-info-gif-looped' => 'herhaolend',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|umraming|umramingen}}',
+'file-info-png-looped' => 'herhaolend',
 
 # Special:NewFiles
 'newimages'             => 'Nieje ofbeeldingen',
@@ -3258,6 +3265,7 @@ $1',
 'table_pager_first'        => 'Eerste pagina',
 'table_pager_last'         => 'Leste pagina',
 'table_pager_limit'        => 'Laot $1 onderwarpen per pagina zien',
+'table_pager_limit_label'  => 'Onderwarpen per pagina:',
 'table_pager_limit_submit' => 'Zeuk',
 'table_pager_empty'        => 'Gien risseltaoten',
 
@@ -3395,6 +3403,15 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Bewarkingen mit etiket',
 'tags-edit'               => 'bewarking',
 'tags-hitcount'           => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
+
+# Special:ComparePages
+'comparepages'     => "Pagina's vergelieken",
+'compare-selector' => 'Paginaversies vergelieken',
+'compare-page1'    => 'Pagina 1',
+'compare-page2'    => 'Pagina 2',
+'compare-rev1'     => 'Versie 1',
+'compare-rev2'     => 'Versie 2',
+'compare-submit'   => 'Vergelieken',
 
 # Database error messages
 'dberr-header'      => 'Disse wiki hef een prebleem',

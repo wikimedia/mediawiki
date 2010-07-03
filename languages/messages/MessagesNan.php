@@ -643,7 +643,7 @@ Template:Khu-pia̍t-ia̍h',
 'deletedtext'       => '"<nowiki>$1</nowiki>" í-keng thâi tiāu. Tùi $2 khoàⁿ-ē-tio̍h chòe-kīn thâi ê kì-lo̍k.',
 'deletedarticle'    => 'Thâi tiāu "[[$1]]"',
 'dellogpagetext'    => 'Í-hā lia̍t chhut chòe-kīn thâi tiāu ê hāng-bo̍k.',
-'deletecomment'     => 'Thâi ê lí-iû',
+'deletecomment'     => 'Lí-iû:',
 
 # Rollback
 'rollback'       => 'Kā siu-kái ká tńg khì',
@@ -659,7 +659,7 @@ Template:Khu-pia̍t-ia̍h',
 'protect-title'    => 'Pó-hō· "$1"',
 'prot_1movedto2'   => '[[$1]] sóa khì tī [[$2]]',
 'protect-legend'   => 'Khak-tēng beh pó-hō·',
-'protectcomment'   => 'Pó-hō· ê lí-iû:',
+'protectcomment'   => 'Lí-iû:',
 'protect-cascade'  => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',
 
 # Restrictions (nouns)
@@ -702,7 +702,7 @@ Template:Khu-pia̍t-ia̍h',
 
 # Block/unblock
 'blockip'            => 'Hong-só iōng-chiá',
-'ipbreason'          => 'Lí-iû',
+'ipbreason'          => 'Lí-iû:',
 'ipbsubmit'          => 'Hong-só chit ūi iōng-chiá',
 'badipaddress'       => 'Bô-hāu ê IP chū-chí',
 'blockipsuccesssub'  => 'Hong-só sêng-kong',

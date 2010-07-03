@@ -424,7 +424,7 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'rev-delundel'              => 'ʻasi/toi',
 'revdelete-hide-comment'    => 'Toi he fakamatala maʻa e tohinoa',
 'revdelete-hide-restricted' => 'ʻAi ʻa e ngaahi fakangatangatá ni maʻa e kau pule fakafounga mo e kau kotoa',
-'revdelete-log'             => 'Fakamatala maʻa e tohinoa:',
+'revdelete-log'             => 'ʻUhinga',
 
 # Merge log
 'revertmerge' => 'Vete ʻa e fakataha',
@@ -814,7 +814,7 @@ Vakai ki he $2 maʻa e fakamatala ʻo e ngaahi toki tāmateʻi.',
 'dellogpagetext'    => 'ʻOku ʻasi ʻi lalo ha hokohoko ʻo e ngaahi tāmateʻi fakamuimui taha.',
 'deletionlog'       => 'tohinoa ʻo e tāmateʻi',
 'reverted'          => 'Kuo foki ki he paaki mui',
-'deletecomment'     => 'Ko e ʻuhinga ʻo e tāmateʻi',
+'deletecomment'     => 'ʻUhinga',
 
 # Rollback
 'rollback'       => 'Ngaahi fatu he teka hifo',
@@ -835,7 +835,7 @@ Ko e fatu fakamuimui naʻe fatu ʻe [[User:$3|$3]] ([[User talk:$3|Alea]]).',
 'protect-title'       => 'ʻOku maluʻi "$1"',
 'prot_1movedto2'      => 'Kuo ʻunu ʻa e [[$1]] ki he [[$2]]',
 'protect-legend'      => 'Fakamoʻoniʻi e maluʻi',
-'protectcomment'      => 'ʻUhingha maʻa e maluʻi',
+'protectcomment'      => 'ʻUhinga',
 'protect-level-sysop' => 'Kau pule fakafounga pē',
 
 # Restrictions (nouns)

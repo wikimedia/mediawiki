@@ -989,7 +989,7 @@ There are three radio buttons in each row, and the captions above each column re
 'revdelete-unsuppress'        => '{{RevisionDelete}}',
 'revdelete-log'               => '{{Identical|Reason}}
 Log comment text for oversight. {{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+[[File:RevDelete Special-RevisionDelete (r60428).png|thumb|331px||Screenshot of the interface]]',
 'revdelete-submit'            => '{{RevisionDelete}}
 This is the submit button on [[Special:RevisionDelete]].
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',

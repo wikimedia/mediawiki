@@ -1098,7 +1098,7 @@ Kjo informatë del publike.',
 * Kutia e zgjedhur shënon që përdoruesi është anëtar në atë grup
 * Kutia e pazgjedhur shënon që përdoruesi nuk është anëtar në atë grup
 * Një * shënon që nuk mund ta hiqni grupin pasi ta keni shtuar (dhe anasjelltas).',
-'userrights-reason'           => 'Arsyeja për ndryshimin:',
+'userrights-reason'           => 'Arsyeja:',
 'userrights-no-interwiki'     => 'Nuk keni leje për të ndryshuar privilegjet e përdoruesve në wiki të tjera.',
 'userrights-nodatabase'       => 'Regjistri $1 nuk ekziston ose nuk është vendor.',
 'userrights-nologin'          => 'Duhet të [[Special:UserLogin|hyni brenda]] me një llogari administrative për të ndryshuar privilegjet e përdoruesve.',
@@ -1742,7 +1742,7 @@ Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 Të gjitha kohët janë sipas orës së shërbyesit.',
 'deletionlog'            => 'regjistrin e grisjeve',
 'reverted'               => 'Kthehu tek një version i vjetër',
-'deletecomment'          => 'Arsyeja',
+'deletecomment'          => 'Arsyeja:',
 'deleteotherreason'      => 'Arsye tjetër:',
 'deletereasonotherlist'  => 'Arsyeja tjetër',
 'deletereason-dropdown'  => '*Arsye për grisje:
@@ -1911,7 +1911,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipaddress'                    => 'IP Adresë/përdorues',
 'ipadressorusername'           => 'Adresë IP ose emër përdoruesi',
 'ipbexpiry'                    => 'Afati',
-'ipbreason'                    => 'Arsyeja',
+'ipbreason'                    => 'Arsyeja:',
 'ipbreasonotherlist'           => 'Arsye tjetër',
 'ipbreason-dropdown'           => '*Arsyet më të shpeshta të bllokimit
 ** Postimi i informacioneve të rreme
@@ -2053,7 +2053,7 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 '1movedto2_redir'           => '[[$1]] u zhvendos tek [[$2]] dhe u krijua një faqe përcjellimi',
 'movelogpage'               => 'Regjistri i zhvendosjeve',
 'movelogpagetext'           => 'Më poshtë është një listë e faqeve të zhvendosura',
-'movereason'                => 'Arsyeja',
+'movereason'                => 'Arsyeja:',
 'revertmove'                => 'ktheje',
 'delete_and_move'           => 'Grise dhe zhvendose',
 'delete_and_move_text'      => '==Nevojitet grisje==

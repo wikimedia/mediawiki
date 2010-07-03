@@ -968,7 +968,7 @@ Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläs
 'revdelete-radio-unset'       => 'Neen',
 'revdelete-suppress'          => 'Grond vum Läschen och fir Administrateure verstoppt',
 'revdelete-unsuppress'        => 'Limitatiounen fir restauréiert Versiounen ophiewen',
-'revdelete-log'               => "Grond fir d'Läschen:",
+'revdelete-log'               => 'Grond:',
 'revdelete-submit'            => 'Op déi gewielte {{PLURAL:$1|Versioun|Versiounen}} uwenden',
 'revdelete-logentry'          => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
 'logdelete-logentry'          => "huet d'Sichtbarkeet vun [[$1]] geännert",
@@ -1026,6 +1026,8 @@ Kuckt [[Special:IPBlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Sp
 'revmove-reasonfield'          => 'Grond:',
 'revmove-titlefield'           => 'Zilsäit:',
 'revmove-badparam-title'       => 'Falsch Parameter',
+'revmove-badparam'             => 'An Ärer Ufro sinn net erlaabten oder net genuch Parameter dran.
+Gitt zréck op déi säit virdrun a probéiert nach emol.',
 'revmove-norevisions-title'    => 'Net-valabel Zilversioun',
 'revmove-norevisions'          => 'Dir hutt keng Zilversioun uginn, fir dës Fonctionalitéit ze benotzen oder déi Versioun déi Dir uginn hutt gëtt et net.',
 'revmove-nullmove-title'       => 'Schlechten Titel',
@@ -2068,7 +2070,7 @@ W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'dellogpagetext'         => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server.',
 'deletionlog'            => 'Läschlëscht',
 'reverted'               => 'Op déi Versioun virdrun zréckgesat',
-'deletecomment'          => "Grond fir d'Läschen:",
+'deletecomment'          => 'Grond:',
 'deleteotherreason'      => 'Aneren/ergänzende Grond:',
 'deletereasonotherlist'  => 'Anere Grond',
 'deletereason-dropdown'  => '* Heefegst Grënn fir eng Säit ze läschen

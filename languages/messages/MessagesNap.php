@@ -376,7 +376,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'deletedarticle'  => 'ha scancellato "[[$1]]"',
 'dellogpage'      => 'Scancellazione',
 'deletionlog'     => 'Log d"e scancellazione',
-'deletecomment'   => 'Mutivo d"a scancellazione',
+'deletecomment'   => 'Raggióne',
 
 # Rollback
 'rollback'   => "Ausa na revizione 'e primma",

@@ -804,7 +804,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'deletedtext'           => 'A paggina "<nowiki>$1</nowiki>" a l\'è stæta scassâa. Consûltâ o $2 pe \'na lista de-e paggine scassæ de reçente.',
 'deletedarticle'        => 'O s\'ha scassòu "[[$1]]"',
 'dellogpage'            => 'Registro de-e cose scassæ',
-'deletecomment'         => 'Raxon pe scassâ',
+'deletecomment'         => 'Raxon:',
 'deleteotherreason'     => 'Ûn âtro motivo',
 'deletereasonotherlist' => "Ûnn'âtra raxon",
 
@@ -822,7 +822,7 @@ L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).
 'protectedarticle'            => 'o s\'ha protezûo "[[$1]]"',
 'prot_1movedto2'              => '[[$1]] mesciòu a [[$2]]',
 'protect-legend'              => 'Confermâ protession',
-'protectcomment'              => 'Motivo da protession:',
+'protectcomment'              => 'Raxon:',
 'protectexpiry'               => 'Scadensa:',
 'protect_expiry_invalid'      => 'Scadensa invalida.',
 'protect_expiry_old'          => 'Data de scadensa into passòu.',
@@ -891,7 +891,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => "Blocca l'ûtente",
-'ipbreason'                   => 'Raxon do blòcco:',
+'ipbreason'                   => 'Raxon:',
 'ipboptions'                  => '2 ôe:2 hours,1 giorno:1 day,3 giorni:3 days,1 settemann-a:1 week,2 settemann-e:2 weeks,1 meise:1 month,3 meixi:3 months,6 meixi:6 months,1 anno:1 year,infinîo:infinite',
 'badipaddress'                => 'Indirisso IP non valido',
 'blockipsuccesssub'           => 'Affermaçion arriescïa',

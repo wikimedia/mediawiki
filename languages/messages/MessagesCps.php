@@ -708,7 +708,7 @@ Palihog kumpirmahon nga intensyon mo nga himu-on mini, nga na-intindihan mo ang 
 Tan-awon ang $2 para sa nalista sang mga bag-o lang napanas.',
 'deletedarticle'        => 'ginpanas ang "[[$1]]"',
 'dellogpage'            => 'Lista sang pagpanas',
-'deletecomment'         => 'Rason sa pagpanas:',
+'deletecomment'         => 'Rason:',
 'deleteotherreason'     => 'Iban pa/dugang nga rason:',
 'deletereasonotherlist' => 'Iban nga rason',
 

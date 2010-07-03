@@ -837,7 +837,7 @@ $1',
 'deletedarticle'        => 'дlадайинарг «[[$1]]»',
 'dellogpage'            => 'Дlадайарш долу тéптар',
 'deletionlog'           => 'дlадайарш долу тéптар',
-'deletecomment'         => 'Бахьан дlадаькхина:',
+'deletecomment'         => 'Бахьан:',
 'deleteotherreason'     => 'Кхин бахьан/тlетохар:',
 'deletereasonotherlist' => 'Кхин бахьан',
 

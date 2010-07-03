@@ -583,7 +583,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'revdelete-hide-comment'      => "Catchî l' comintaire di candjmint",
 'revdelete-hide-user'         => "Catchî l' no d' uzeu/adresse IP do candjeu",
 'revdelete-hide-restricted'   => 'Apliker ces restrictions ossu åzès manaedjeus',
-'revdelete-log'               => 'Comintaire pol djournå:',
+'revdelete-log'               => 'Råjhon',
 'revdelete-submit'            => 'Apliker al modêye tchoezeye',
 'revdelete-logentry'          => 'li veyåvisté des modêyes a stî candjeye po [[$1]]',
 'revdelete-hid'               => 'muchyî $1',
@@ -689,7 +689,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'userrights-editusergroup' => "Candjî groupes d' uzeus",
 'saveusergroups'           => "Schaper des groupes d' uzeus",
 'userrights-groupsmember'  => 'Mimbes di:',
-'userrights-reason'        => 'Råjhon do candjmint:',
+'userrights-reason'        => 'Råjhon',
 
 # Groups
 'group'            => 'Groupe:',
@@ -835,7 +835,7 @@ ou co po les sons
 # File deletion
 'filedelete'         => 'Disfacer $1',
 'filedelete-legend'  => 'Disfacer fitchî',
-'filedelete-comment' => 'Comintaire:',
+'filedelete-comment' => 'Råjhon',
 'filedelete-submit'  => 'Disfacer',
 
 # MIME search
@@ -1058,7 +1058,7 @@ djivêye des dierins disfaçaedjes.',
 'dellogpagetext'    => "Chal pa dzo c' est l' djivêye des dierins disfaçaedjes.",
 'deletionlog'       => 'djournå des disfaçaedjes',
 'reverted'          => 'Rimetou ene modêye di dvant',
-'deletecomment'     => 'Råjhon do disfaçaedje',
+'deletecomment'     => 'Råjhon',
 
 # Rollback
 'cantrollback'  => "Dji n' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.",
@@ -1077,7 +1077,7 @@ Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
 'protect-title'               => 'Protedjant «$1»',
 'prot_1movedto2'              => '[[$1]] displaecî viè [[$2]]',
 'protect-legend'              => "Acertinez l' protedjaedje",
-'protectcomment'              => 'Råjhon po protedjî',
+'protectcomment'              => 'Råjhon',
 'protect-text'                => "Vos ploz droci vey eyet candjî l' livea d' protedjaedje pol pådje '''<nowiki>$1</nowiki>'''.",
 'protect-default'             => '(prémetou)',
 'protect-level-autoconfirmed' => 'Bloker les uzeus nén eredjîstrés',

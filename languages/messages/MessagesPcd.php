@@ -622,7 +622,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 Vir $2 pou eune lisse d'chés darinnes défachons.",
 'deletedarticle'        => 'défacé "[[$1]]"',
 'dellogpage'            => 'jornal éd chés défacions',
-'deletecomment'         => 'Motif del défacion:',
+'deletecomment'         => 'Motif:',
 'deleteotherreason'     => 'Motif eute/suplémintère :',
 'deletereasonotherlist' => 'Eute motif',
 

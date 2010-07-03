@@ -537,7 +537,7 @@ Ma nican txsd a tggd manaya? Ma tssnd min ttggd? Ma ttggd manaya amc teqqaṛ  [
 Xemm $2 i tikkas timaynutin.',
 'deletedarticle'        => 'twakkes "[[$1]]"',
 'dellogpage'            => 'Aɣmis n uṣfaḍ',
-'deletecomment'         => 'Maymmi gha itwakks:',
+'deletecomment'         => 'Ssebba:',
 'deleteotherreason'     => 'Ca n ssebba nniḍn:',
 'deletereasonotherlist' => 'Ssebba nniḍn',
 
@@ -547,7 +547,7 @@ Xemm $2 i tikkas timaynutin.',
 # Protect
 'protectlogpage'              => 'Aghmis n umstn',
 'prot_1movedto2'              => '[[$1]] twaneql ɣa [[$2]]',
-'protectcomment'              => 'Tinit:',
+'protectcomment'              => 'Ssebba:',
 'protectexpiry'               => 'Itsala:',
 'protect_expiry_invalid'      => 'Akud n usali ur illi nican.',
 'protect_expiry_old'          => 'Akud usali izri, idwl d amzruy.',

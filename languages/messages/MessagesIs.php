@@ -927,7 +927,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-radio-set'        => 'Já',
 'revdelete-radio-unset'      => 'Nei',
 'revdelete-suppress'         => 'Dylja gögn frá stjórnendum og öðrum',
-'revdelete-log'              => 'Athugasemd atburðaskráar:',
+'revdelete-log'              => 'Ástæða:',
 'revdelete-submit'           => 'Setja á valda breytingu',
 'revdel-restore'             => 'Breyta sýn',
 'pagehist'                   => 'Breytingaskrá',
@@ -1125,7 +1125,7 @@ Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiðu
 * Valinn reitur þýðir að notandinn er í hópnum.
 * Óvalinn reitur þýðir að notandinn er ekki í hópnum.
 * Stjarnan (*) þýðir að þú getur ekki fært hópinn eftir að þú hefur breytt honum, eða öfugt.',
-'userrights-reason'           => 'Ástæða fyrir breytingunni:',
+'userrights-reason'           => 'Ástæða:',
 'userrights-no-interwiki'     => 'Þú hefur ekki leyfi til að breyta notandaréttindum á öðrum wiki-síðum.',
 'userrights-nodatabase'       => 'Gagnagrunnurinn $1 er ekki til eða ekki staðbundinn.',
 'userrights-nologin'          => 'Þú verður að [[Special:UserLogin|innskrá]] þig á möppudýraaðgang til að geta útdeilt notandaréttindum.',
@@ -1672,7 +1672,7 @@ Sjá lista yfir nýlegar eyðingar í $2.',
 'dellogpagetext'         => 'Að neðan gefur að líta lista yfir síður sem nýlega hefur verið eytt.',
 'deletionlog'            => 'eyðingaskrá',
 'reverted'               => 'Breytt aftur til fyrri útgáfu',
-'deletecomment'          => 'Ástæða fyrir eyðingu:',
+'deletecomment'          => 'Ástæða:',
 'deleteotherreason'      => 'Aðrar/fleiri ástæður:',
 'deletereasonotherlist'  => 'Önnur ástæða',
 'deletereason-dropdown'  => '* Algengar ástæður

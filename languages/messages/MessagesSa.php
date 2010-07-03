@@ -861,7 +861,7 @@ $messages = array(
 सद्यःकृतानां अपाकरणानाम् अभिलेखः $2 इत्यस्मिन् पश्यतु।',
 'deletedarticle'        => '"[[$1]]" अपाकृतमस्ति।',
 'dellogpage'            => 'अपाकरणानां सूचिका',
-'deletecomment'         => 'निराकरणस्य कारणम् :',
+'deletecomment'         => 'कारणम् :',
 'deleteotherreason'     => 'अपरं/अतिरिक्तं कारणम् :',
 'deletereasonotherlist' => 'इतर कारणम्',
 

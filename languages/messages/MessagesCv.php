@@ -638,7 +638,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'userrights-editusergroup' => 'Хутшăнакансен ушкăнĕсене улăштар',
 'saveusergroups'           => 'Хутшăнаканăн ушкăнĕсем астуса юл',
 'userrights-groupsmember'  => 'Çак ушкăнсене кĕрет:',
-'userrights-reason'        => 'Улăштару сăлтавĕ:',
+'userrights-reason'        => 'Сăлтавĕ',
 
 # Groups
 'group'               => 'Ушкăн:',
@@ -930,7 +930,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'dellogpagetext'    => 'Аяларах эсир юлашки кăларса пăрахнă статьясене куратăр.',
 'deletionlog'       => 'кăларса пăрахнисем',
 'reverted'          => 'Малтанхи версине тавăрнă',
-'deletecomment'     => 'Кăларса пăрахнин сăлтавĕ',
+'deletecomment'     => 'Сăлтавĕ',
 
 # Rollback
 'rollback'       => 'Тÿрлетÿсене каялла куçарасси',
@@ -944,7 +944,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'protectedarticle'            => '«[[$1]]» страницăна хӳтĕлерĕмĕр',
 'unprotectedarticle'          => '«[[$1]]» страницăн хӳтĕлевне пăрахăçланă',
 'prot_1movedto2'              => '$1 $2 çине куçарнă',
-'protectcomment'              => 'Страницăна хӳтĕленин сăлтавĕ',
+'protectcomment'              => 'Сăлтавĕ',
 'protectexpiry'               => 'Пĕтет:',
 'protect-level-autoconfirmed' => 'Статьяна çĕнĕрен регистрациленнĕ, е пачах та регистрациленменнисенчен хӳтĕле',
 'protect-level-sysop'         => 'Администраторсем çеç',

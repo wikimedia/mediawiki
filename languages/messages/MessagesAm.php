@@ -658,7 +658,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'revdelete-hide-comment'  => 'ማጠቃለያ ይደበቅ',
 'revdelete-hide-user'     => 'የአዘጋጁ ብዕር ስም ወይም ቁ. አድርሻ ይደበቅ',
 'revdelete-suppress'      => 'መረጃ ከመጋቢዎችና ከሌሎች ይደበቅ።',
-'revdelete-log'           => 'የመዝገቡ ማጠቃለያ፦',
+'revdelete-log'           => 'ምክንያቱ፦',
 'revdelete-submit'        => 'በተመረጠው ዕትም ይደረግ',
 'pagehist'                => 'የገጽ ታሪክ',
 'revdelete-content'       => 'ይዞታ',
@@ -856,7 +856,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 *በሳጥኑ ምልክት ቢኖር፣ አባሉ በዚያ ስብስባ ውስጥ አለ ማለት ነው።
 *በሳጥኑ ምልክት ከሌላ፣ አባሉ በዚያው ስብስባ አይደለም ማለት ነው።
 *ምልክቱ * ቢኖር፣ ስብስባው ከተወገደ በኋላ ሁለተኛ ሊጨምሩት አይችሉም፤ ወይም ከተጨመረ በኋላ ሁለተኛ ሊያስወግዱት አይችሉም ያመለክታል።',
-'userrights-reason'           => 'የመቀየሩ ምክንያት፦',
+'userrights-reason'           => 'ምክንያቱ፦',
 'userrights-no-interwiki'     => 'ማዕረጎችን በሌላ ዊኪ ላይ ለማስተካከል ፈቃድ የለዎም።',
 'userrights-nodatabase'       => 'መረጃ-ቤቱ $1 አይኖርም ወይም የቅርብ አካባቢ አይደለም።',
 'userrights-nologin'          => 'የአባል መብቶች ለመወሰን መጋቢ ሆነው [[Special:UserLogin|መግባት]] ያስፈልግዎታል።',
@@ -1129,7 +1129,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'filedelete-legend'           => 'ፋይልን ለማጥፋት',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' ሊያጥፉ ነው።",
 'filedelete-intro-old'        => "በ[$4 $3፣ $2] እ.ኤ.አ. የነበረው የ'''[[Media:$1|$1]]''' እትም ሊያጥፉ ነው።",
-'filedelete-comment'          => 'የማጥፋቱ ምክንያት፦',
+'filedelete-comment'          => 'ምክንያቱ፦',
 'filedelete-submit'           => 'ይጥፋ',
 'filedelete-success'          => "'''$1''' ጠፍቷል።",
 'filedelete-success-old'      => '<span class="plainlinks">በ$3፣ $2 የነበረው የ\'\'\'[[Media:$1|$1]]\'\'\' ዕትም ጠፍቷል።</span>',
@@ -1430,7 +1430,7 @@ $NEWPAGE
 'dellogpagetext'         => 'በቅርቡ የጠፉት ገጾች ከዚህ ታች የዘረዝራሉ።',
 'deletionlog'            => 'የማጥፋት መዝገብ',
 'reverted'               => 'ወደ ቀድመኛ ዕትም ገለበጠው።',
-'deletecomment'          => 'የማጥፋቱ ምክንያት፦',
+'deletecomment'          => 'ምክንያት:',
 'deleteotherreason'      => 'ሌላ /ተጨማሪ ምክንያት',
 'deletereasonotherlist'  => 'ሌላ ምክንያት',
 'deletereason-dropdown'  => '*ተራ የማጥፋት ምክንያቶች
@@ -1462,7 +1462,7 @@ $NEWPAGE
 'protect-title'               => 'ለ«$1» የመቆለፍ ደረጃ ለማስተካከል',
 'prot_1movedto2'              => '«$1» ወደ «[[$2]]» አዛወረ',
 'protect-legend'              => 'የመቆለፍ ማረጋገጫ',
-'protectcomment'              => 'ማጠቃለያ፦',
+'protectcomment'              => 'ምክንያት:',
 'protectexpiry'               => 'የሚያልቅበት ግዜ፦',
 'protect_expiry_invalid'      => "የተሰጠው 'የሚያልቅበት ጊዜ' ልክ አይደለም።",
 'protect_expiry_old'          => "የተሰጠው 'የሚያልቅበት ጊዜ' ባለፈው ግዜ ነበር።",
@@ -1714,7 +1714,7 @@ $1 አሁን ገና ታግዷል። ዝርዝሩን ማስተካከል ፈለጉ
 'move-redirect-suppressed'  => 'መምሪያ መንገድ ተከለከለ',
 'movelogpage'               => 'የማዛወር መዝገብ',
 'movelogpagetext'           => 'ይህ መዝገብ ገጽ ሲዛወር ይመዝገባል። <ይመለስ> ቢጫኑ ኖሮ መዛወሩን ይገለብጣል!',
-'movereason'                => 'ምክንያት',
+'movereason'                => 'ምክንያት:',
 'revertmove'                => 'ይመለስ',
 'delete_and_move'           => 'ማጥፋትና ማዛወር',
 'delete_and_move_text'      => '==ማጥፋት ያስፈልጋል==

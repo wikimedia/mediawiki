@@ -712,7 +712,7 @@ $1 نے پابندی لگائی تھی.
 'revdelete-radio-set'        => 'ہاں',
 'revdelete-radio-unset'      => 'نہیں',
 'revdelete-unsuppress'       => 'بحال شدہ نظرثانیوں پر پابندیاں ہٹاؤ',
-'revdelete-log'              => 'حذف کرنے کی وجہ:',
+'revdelete-log'              => 'وجہ',
 'revdelete-success'          => "'''رؤیتِ نظرثانی کی تجدید کامیابی سے ہوئی.'''",
 'logdelete-success'          => "'''نوشتۂ رویت کامیابی سے مرتب.'''",
 'logdelete-failure'          => "'''نوشتۂ رویت مرتب نہیں کیا جاسکتا:'''
@@ -1139,7 +1139,7 @@ HTML tags جانچئے.',
 'dellogpage'            => 'نوشتۂ حذف شدگی',
 'dellogpagetext'        => 'حالیہ حذف شدگی کی فہرست درج ذیل ہے۔',
 'deletionlog'           => 'نوشتۂ حذف شدگی',
-'deletecomment'         => 'حذف کرنے کی وجہ',
+'deletecomment'         => 'وجہ:',
 'deleteotherreason'     => 'دوسری/اِضافی وجہ:',
 'deletereasonotherlist' => 'دوسری وجہ',
 

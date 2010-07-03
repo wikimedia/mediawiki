@@ -271,7 +271,7 @@ $messages = array(
 'confirm'        => 'Ырастоо',
 'actioncomplete' => 'Иш-аракет жыйынтыкталды',
 'deletedarticle' => 'өчүрүлдү "[[$1]]"',
-'deletecomment'  => 'Өчүрүү үчүн себептер',
+'deletecomment'  => 'Себеп',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Оңдоо',

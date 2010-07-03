@@ -733,7 +733,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 
 # History merging
 'mergehistory-from'   => 'Leathanach fhoinse:',
-'mergehistory-reason' => 'Fáth',
+'mergehistory-reason' => 'Fáth:',
 
 # Merge log
 'revertmerge' => 'Díchumaisc',
@@ -1331,7 +1331,7 @@ Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
 'dellogpagetext'        => 'Seo é liosta de na scriosaidh is déanaí.',
 'deletionlog'           => 'cuntas scriosaidh',
 'reverted'              => 'Tá eagrán níos luaithe in úsáid anois',
-'deletecomment'         => 'Cúis don scriosadh',
+'deletecomment'         => 'Fáth:',
 'deleteotherreason'     => 'Fáth eile/breise:',
 'deletereasonotherlist' => 'Fáth eile',
 'deletereason-dropdown' => '*Fáthanna coitianta scriosta

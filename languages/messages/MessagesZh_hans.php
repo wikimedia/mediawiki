@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2325,9 +2325,9 @@ $1',
 'ipblocklist'                     => '已封禁IP地址和用户名',
 'ipblocklist-legend'              => '检索一位已经被查封的用户',
 'ipblocklist-username'            => '用户名称或IP地址：',
-'ipblocklist-sh-userblocks'       => '$1次账户封锁',
-'ipblocklist-sh-tempblocks'       => '$1次临时封锁',
-'ipblocklist-sh-addressblocks'    => '$1次单IP封锁',
+'ipblocklist-sh-userblocks'       => '$1账户封锁',
+'ipblocklist-sh-tempblocks'       => '$1临时封锁',
+'ipblocklist-sh-addressblocks'    => '$1单IP封锁',
 'ipblocklist-submit'              => '搜索',
 'ipblocklist-localblock'          => '本地封锁',
 'ipblocklist-otherblocks'         => '其他{{PLURAL:$1|封锁|封锁}}',

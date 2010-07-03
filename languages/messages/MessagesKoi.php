@@ -406,7 +406,7 @@ $messages = array(
 'deletedtext'           => '«<nowiki>$1</nowiki>» чышкöм. Видзöт $2-ись медбöрья чышкöммесö.',
 'deletedarticle'        => 'чышкис "[[$1]]"',
 'dellogpage'            => 'Шупкан чукöр',
-'deletecomment'         => 'Мыля чышкöм:',
+'deletecomment'         => 'Мыля:',
 'deleteotherreason'     => 'Эшö мыля чышкöм:',
 'deletereasonotherlist' => 'Эшö мыля',
 
