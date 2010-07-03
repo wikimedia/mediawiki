@@ -18,54 +18,49 @@
  */
 
 /**
- * @file
  * @ingroup SpecialPage
  */
+class SpecialFilepath extends SpecialPage {
 
-function wfSpecialFilepath( $par ) {
-	global $wgRequest, $wgOut;
+	function __construct() {
+		parent::__construct( 'Filepath' );
+	}
 
-	$file = isset( $par ) ? $par : $wgRequest->getText( 'file' );
+	function execute( $par ) {
+		global $wgRequest, $wgOut;
 
-	$title = Title::makeTitleSafe( NS_FILE, $file );
+		$this->setHeaders();
+		$this->outputHeader();
 
-	if ( ! $title instanceof Title || $title->getNamespace() != NS_FILE ) {
-		$cform = new FilepathForm( $title );
-		$cform->execute();
-	} else {
-		$file = wfFindFile( $title );
-		if ( $file && $file->exists() ) {
-			$wgOut->redirect( $file->getURL() );
+		$file = !is_null( $par ) ? $par : $wgRequest->getText( 'file' );
+
+		$title = Title::makeTitleSafe( NS_FILE, $file );
+
+		if ( ! $title instanceof Title || $title->getNamespace() != NS_FILE ) {
+			$this->showForm( $title );
 		} else {
-			$wgOut->setStatusCode( 404 );
-			$cform = new FilepathForm( $title );
-			$cform->execute();
+			$file = wfFindFile( $title );
+			if ( $file && $file->exists() ) {
+				$wgOut->redirect( $file->getURL() );
+			} else {
+				$wgOut->setStatusCode( 404 );
+				$this->showForm( $title );
+			}
 		}
 	}
-}
 
-/**
- * @ingroup SpecialPage
- */
-class FilepathForm {
-	var $mTitle;
-
-	function FilepathForm( &$title ) {
-		$this->mTitle =& $title;
-	}
-
-	function execute() {
+	function showForm( $title ) {
 		global $wgOut, $wgScript;
 
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'specialfilepath' ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'filepath' ) ) .
-			Xml::hidden( 'title', SpecialPage::getTitleFor( 'Filepath' )->getPrefixedText() ) .
-			Xml::inputLabel( wfMsg( 'filepath-page' ), 'file', 'file', 25, is_object( $this->mTitle ) ? $this->mTitle->getText() : '' ) . ' ' .
+			Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'specialfilepath' ) ) .
+			Html::openElement( 'fieldset' ) .
+			Html::element( 'legend', null, wfMsg( 'filepath' ) ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Xml::inputLabel( wfMsg( 'filepath-page' ), 'file', 'file', 25, is_object( $title ) ? $title->getText() : '' ) . ' ' .
 			Xml::submitButton( wfMsg( 'filepath-submit' ) ) . "\n" .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' )
+			Html::closeElement( 'fieldset' ) .
+			Html::closeElement( 'form' )
 		);
 	}
 }
