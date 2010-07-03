@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -990,7 +990,7 @@ $2',
 'revdelete-radio-unset'       => '否',
 'revdelete-suppress'          => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-unsuppress'        => '在已恢復的修訂中移除限制',
-'revdelete-log'               => '日誌註釋：',
+'revdelete-log'               => '理由：',
 'revdelete-submit'            => '應用於選取的{{PLURAL:$1|修訂}}',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
@@ -1044,11 +1044,13 @@ $1",
 'revmove-reasonfield'          => '理由：',
 'revmove-titlefield'           => '目標頁面：',
 'revmove-badparam-title'       => '壞的參數',
-'revmove-badparam'             => '您的請求含有不合法的者不足的參數。請點擊「返回」再試。',
+'revmove-badparam'             => '您的請求含有不合法的者不足的參數。
+請返回先前的頁面再試。',
 'revmove-norevisions-title'    => '無效的目標修訂版本',
 'revmove-norevisions'          => '您尚未指定一個或者多個目標修訂版本去做這項功能或者所指定的修訂版本不存在。',
 'revmove-nullmove-title'       => '壞的標題',
-'revmove-nullmove'             => '來源和目標頁面相同。請點擊「返回」再輸入跟 "$1" 不相同的名字。',
+'revmove-nullmove'             => '目標頁面不可以跟來源頁面相同。
+請返回先前的頁面再輸入跟 "$1" 不相同的名字。',
 'revmove-success-existing'     => '由[[$2]]中的{{PLURAL:$1|一次修訂版本|$1次修訂版本}}已經移動至現有的頁面[[$3]]。',
 'revmove-success-created'      => '由[[$2]]中的{{PLURAL:$1|一次修訂版本|$1次修訂版本}}已經移動至新建的頁面[[$3]]。',
 
@@ -1708,7 +1710,7 @@ $1',
 'filedelete-legend'           => '刪除檔案',
 'filedelete-intro'            => "您現正刪除檔案'''[[Media:$1|$1]]'''。",
 'filedelete-intro-old'        => "{{GENDER:|你|妳|你}}現正刪除'''[[Media:$1|$1]]'''於[$4 $2 $3]的版本。",
-'filedelete-comment'          => '刪除理由:',
+'filedelete-comment'          => '理由：',
 'filedelete-submit'           => '刪除',
 'filedelete-success'          => "'''$1'''已經刪除。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。",
@@ -2084,7 +2086,7 @@ $UNWATCHURL
 'dellogpagetext'         => '以下是最近的刪除的列表。',
 'deletionlog'            => '刪除紀錄',
 'reverted'               => '恢復到早期版本',
-'deletecomment'          => '刪除理由:',
+'deletecomment'          => '理由：',
 'deleteotherreason'      => '其它／附加的理由:',
 'deletereasonotherlist'  => '其它理由',
 'deletereason-dropdown'  => '*常用刪除理由
@@ -2113,7 +2115,7 @@ $UNWATCHURL
 'sessionfailure-title' => '登入資訊失敗',
 'sessionfailure'       => '似乎您的登錄會話有問題；
 為了防止會話劫持，這個操作已經被取消。
-請點擊“後退”並重新載入頁面，然後重試。',
+請返回先前的頁面，重新載入該頁面，然後重試。',
 
 # Protect
 'protectlogpage'              => '保護日誌',
@@ -2252,7 +2254,7 @@ $1',
 最近的封鎖日誌項目在下面提供以便參考：',
 'sp-contributions-search'              => '搜尋貢獻記錄',
 'sp-contributions-username'            => 'IP位址或用戶名稱：',
-'sp-contributions-toponly'             => '只顯示最新的修訂版本',
+'sp-contributions-toponly'             => '只顯示最新修訂版本的編輯',
 'sp-contributions-submit'              => '搜尋',
 
 # What links here
@@ -2791,8 +2793,8 @@ $1',
 'file-info-gif-looped' => '循環',
 'file-info-gif-frames' => '$1幀',
 'file-info-png-looped' => '循環',
-'file-info-png-repeat' => '已播放$1 {{PLURAL:$1|次|次}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|幀|幀}}',
+'file-info-png-repeat' => '已播放$1次',
+'file-info-png-frames' => '$1幀',
 
 # Special:NewFiles
 'newimages'             => '新建圖片畫廊',
