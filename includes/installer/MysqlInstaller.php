@@ -376,6 +376,28 @@ class MysqlInstaller extends InstallerDBType {
 		return $status;
 	}
 
+	function setupUser() {
+		global $IP;
+
+		if ( !$this->getVar( '_CreateDBAccount' ) ) {
+			return;
+		}
+
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		$db = $this->getVar( 'wgDBname' );
+		$this->db->selectDB( $db );
+		$error = $this->db->sourceFile( "$IP/maintenance/users.sql" );
+		if ( !$error ) {
+			$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $error );
+		}
+
+		return $status;
+	}
+
 	function createTables() {
 		global $IP;
 		$status = $this->getConnection();

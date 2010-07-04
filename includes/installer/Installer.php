@@ -128,6 +128,7 @@ abstract class Installer {
 
 	var $installSteps = array(
 		'database',
+		'user',
 		'tables',
 		'interwiki',
 		'secretkey',
@@ -867,6 +868,12 @@ abstract class Installer {
 	public function installDatabase() {
 		$installer = $this->getDBInstaller( $this->getVar( 'wgDBtype' ) );
 		$status = $installer->setupDatabase();
+		return $status;
+	}
+
+	public function installUser() {
+		$installer = $this->getDBInstaller( $this->getVar( 'wgDBtype' ) );
+		$status = $installer->setupUser();
 		return $status;
 	}
 
