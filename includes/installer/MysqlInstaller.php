@@ -380,7 +380,7 @@ class MysqlInstaller extends InstallerDBType {
 		global $IP;
 
 		if ( !$this->getVar( '_CreateDBAccount' ) ) {
-			return;
+			return Status::newGood();
 		}
 
 		$status = $this->getConnection();
