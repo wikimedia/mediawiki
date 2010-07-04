@@ -191,10 +191,10 @@ if ( \$wgCommandLineMode ) {
 \$wgEnableUserEmail  = {$this->values['wgEnableUserEmail']}; # UPO
 
 \$wgEmergencyContact = \"{$this->values['wgEmergencyContact']}\";
-\$wgPasswordSender = \"{$this->values['wgPasswordSender']}\";
+\$wgPasswordSender   = \"{$this->values['wgPasswordSender']}\";
 
-\$wgEnotifUserTalk = {$this->values['wgEnotifUserTalk']}; # UPO
-\$wgEnotifWatchlist = {$this->values['wgEnotifWatchlist']}; # UPO
+\$wgEnotifUserTalk      = {$this->values['wgEnotifUserTalk']}; # UPO
+\$wgEnotifWatchlist     = {$this->values['wgEnotifWatchlist']}; # UPO
 \$wgEmailAuthentication = {$this->values['wgEmailAuthentication']};
 
 ## Database settings
@@ -207,12 +207,12 @@ if ( \$wgCommandLineMode ) {
 {$this->dbSettings}
 
 ## Shared memory settings
-\$wgMainCacheType = $cacheType;
+\$wgMainCacheType    = $cacheType;
 \$wgMemCachedServers = $mcservers;
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
-\$wgEnableUploads       = {$this->values['wgEnableUploads']};
+\$wgEnableUploads  = {$this->values['wgEnableUploads']};
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$this->values['wgImageMagickConvertCommand']}\";
 
@@ -251,7 +251,7 @@ if ( \$wgCommandLineMode ) {
 ## License and Creative Commons licenses are supported so far.
 {$rights}\$wgEnableCreativeCommonsRdf = true;
 \$wgRightsPage = \"\"; # Set to the title of a wiki page that describes your license/copyright
-\$wgRightsUrl = \"{$this->values['wgRightsUrl']}\";
+\$wgRightsUrl  = \"{$this->values['wgRightsUrl']}\";
 \$wgRightsText = \"{$this->values['wgRightsText']}\";
 \$wgRightsIcon = \"{$this->values['wgRightsIcon']}\";
 # \$wgRightsCode = \"{$this->values['wgRightsCode']}\"; # Not yet used
