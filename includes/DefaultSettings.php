@@ -281,17 +281,14 @@ $wgAllowImageMoving = true;
 $wgIllegalFileChars = ":";
 
 /**
- * New file storage paths; currently used only for deleted files.
- * Set it like this:
- *
- *   $wgFileStore['deleted']['directory'] = '/var/wiki/private/deleted';
+ * @deprecated use $wgDeletedDirectory
  */
 $wgFileStore = array();
-/** @cond file_level_code */
-$wgFileStore['deleted']['directory'] = false; //  Defaults to $wgUploadDirectory/deleted
-$wgFileStore['deleted']['url'] = null;        //  Private
-$wgFileStore['deleted']['hash'] = 3;          //  3-level subdirectory split
-/** @endcond */
+
+/**
+ * What directory to place deleted uploads in
+ */
+$wgDeletedDirectory = false; //  Defaults to $wgUploadDirectory/deleted
 
 /**
  * Set this to true if you use img_auth and want the user to see details on why access failed.
