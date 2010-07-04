@@ -256,6 +256,7 @@ if ( \$wgCommandLineMode ) {
 \$wgRightsIcon = \"{$this->values['wgRightsIcon']}\";
 # \$wgRightsCode = \"{$this->values['wgRightsCode']}\"; # Not yet used
 
+# Path to the GNU diff3 utility. Used for conflict resolution.
 \$wgDiff3 = \"{$this->values['wgDiff3']}\";
 
 # When you make changes to this configuration file, this will make
