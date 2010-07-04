@@ -86,18 +86,6 @@ abstract class InstallerDBType {
 	abstract function setupDatabase();
 
 	/**
-	 * Create a new non-root user for the database and return a Status
-	 * object indicating success or failure. A default implementation
-	 * that returns a good status is supplied for those databases that
-	 * don't need to set up users.
-	 *
-	 * @return Status
-	 */
-	function setupUser() {
-		return Status::newGood();
-	}
-
-	/**
 	 * Create database tables from scratch
 	 * @return \type Status
 	 */
