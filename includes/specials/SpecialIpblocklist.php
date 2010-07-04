@@ -18,116 +18,111 @@
  */
 
 /**
- * @file
+ * Implements Special:ipblocklist
  * @ingroup SpecialPage
  */
+class IPUnblockForm extends SpecialPage {
+	var $ip, $reason, $id;
+	var $hideuserblocks, $hidetempblocks, $hideaddressblocks;
 
-/**
- * @param $ip part of title: Special:Ipblocklist/<ip>.
- * @todo document
- */
-function wfSpecialIpblocklist( $ip = '' ) {
-	global $wgUser, $wgOut, $wgRequest;
-	$ip = $wgRequest->getVal( 'ip', $ip );
-	$ip = trim( $wgRequest->getVal( 'wpUnblockAddress', $ip ) );
-	$id = $wgRequest->getVal( 'id' );
-	$reason = $wgRequest->getText( 'wpUnblockReason' );
-	$action = $wgRequest->getText( 'action' );
-	$successip = $wgRequest->getVal( 'successip' );
-
-	$ipu = new IPUnblockForm( $ip, $id, $reason );
-
-	if( $action == 'unblock' || $action == 'submit' && $wgRequest->wasPosted() ) {
-		# Check permissions
-		if( !$wgUser->isAllowed( 'block' ) ) {
-			$wgOut->permissionRequired( 'block' );
-			return;
-		}
-		# Check for database lock
-		if( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-	
-		# bug 15810: blocked admins should have limited access here
-		if ( $wgUser->isBlocked() ) {
-			if ( $id ) {
-				# This doesn't pick up on autoblocks, but admins
-				# should have the ipblock-exempt permission anyway
-				$block = Block::newFromID( $id );
-				$user = User::newFromName( $block->mAddress );
-			} else {
-				$user = User::newFromName( $ip );
-			}
-			$status = IPBlockForm::checkUnblockSelf( $user );
-			if ( $status !== true ) {
-				throw new ErrorPageError( 'badaccess', $status );
-			}
-		}
-		
-		if( $action == 'unblock' ){
-			# Show unblock form
-			$ipu->showForm( '' );
-		} elseif( $action == 'submit' 
-			&& $wgRequest->wasPosted()
-			&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) 
-		{
-			# Remove blocks and redirect user to success page
-			$ipu->doSubmit();
-		}
-		
-	} elseif( $action == 'success' ) {
-		# Inform the user of a successful unblock
-		# (No need to check permissions or locks here,
-		# if something was done, then it's too late!)
-		if ( substr( $successip, 0, 1) == '#' ) {
-			// A block ID was unblocked
-			$ipu->showList( $wgOut->parse( wfMsg( 'unblocked-id', $successip ) ) );
-		} else {
-			// A username/IP was unblocked
-			$ipu->showList( $wgOut->parse( wfMsg( 'unblocked', $successip ) ) );
-		}
-	} else {
-		# Just show the block list
-		$ipu->showList( '' );
+	function __construct() {
+		parent::__construct( 'Ipblocklist' );
 	}
 
-}
+	/**
+	 * Main execution point
+	 *
+	 * @param $ip part of title: Special:Ipblocklist/<ip>.
+	 */
+	function execute( $ip ) {
+		global $wgUser, $wgOut, $wgRequest;
 
-/**
- * implements Special:ipblocklist GUI
- * @ingroup SpecialPage
- */
-class IPUnblockForm {
-	var $ip, $reason, $id;
+		$this->setHeaders();
+		$this->outputHeader();
 
-	function IPUnblockForm( $ip, $id, $reason ) {
-		global $wgRequest;
-		$this->ip = strtr( $ip, '_', ' ' );
-		$this->id = $id;
-		$this->reason = $reason;
+		$ip = $wgRequest->getVal( 'ip', $ip );
+		$this->ip = trim( $wgRequest->getVal( 'wpUnblockAddress', $ip ) );
+		$this->id = $wgRequest->getVal( 'id' );
+		$this->reason = $wgRequest->getText( 'wpUnblockReason' );
 		$this->hideuserblocks = $wgRequest->getBool( 'hideuserblocks' );
 		$this->hidetempblocks = $wgRequest->getBool( 'hidetempblocks' );
 		$this->hideaddressblocks = $wgRequest->getBool( 'hideaddressblocks' );
+
+		$action = $wgRequest->getText( 'action' );
+		$successip = $wgRequest->getVal( 'successip' );
+
+		if( $action == 'unblock' || $action == 'submit' && $wgRequest->wasPosted() ) {
+			# Check permissions
+			if( !$wgUser->isAllowed( 'block' ) ) {
+				$wgOut->permissionRequired( 'block' );
+				return;
+			}
+			# Check for database lock
+			if( wfReadOnly() ) {
+				$wgOut->readOnlyPage();
+				return;
+			}
+	
+			# bug 15810: blocked admins should have limited access here
+			if ( $wgUser->isBlocked() ) {
+				if ( $id ) {
+					# This doesn't pick up on autoblocks, but admins
+					# should have the ipblock-exempt permission anyway
+					$block = Block::newFromID( $id );
+					$user = User::newFromName( $block->mAddress );
+				} else {
+					$user = User::newFromName( $ip );
+				}
+				$status = self::checkUnblockSelf( $user );
+				if ( $status !== true ) {
+					throw new ErrorPageError( 'badaccess', $status );
+				}
+			}
+
+			if( $action == 'unblock' ){
+				# Show unblock form
+				$this->showForm( '' );
+			} elseif( $action == 'submit' 
+				&& $wgRequest->wasPosted()
+				&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) 
+			{
+				# Remove blocks and redirect user to success page
+				$this->doSubmit();
+			}
+
+		} elseif( $action == 'success' ) {
+			# Inform the user of a successful unblock
+			# (No need to check permissions or locks here,
+			# if something was done, then it's too late!)
+			if ( substr( $successip, 0, 1) == '#' ) {
+				// A block ID was unblocked
+				$this->showList( $wgOut->parse( wfMsg( 'unblocked-id', $successip ) ) );
+			} else {
+				// A username/IP was unblocked
+				$this->showList( $wgOut->parse( wfMsg( 'unblocked', $successip ) ) );
+			}
+		} else {
+			# Just show the block list
+			$this->showList( '' );
+		}
 	}
 
 	/**
 	 * Generates the unblock form
+	 *
 	 * @param $err string: error message
 	 * @return $out string: HTML form
 	 */
 	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgSysopUserBans;
 
-		$wgOut->setPagetitle( wfMsg( 'unblockip' ) );
 		$wgOut->addWikiMsg( 'unblockiptext' );
 
-		$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
-		$action = $titleObj->getLocalURL( "action=submit" );
+		$action = $this->getTitle()->getLocalURL( 'action=submit' );
 
-		if ( $err != "" ) {
-			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addWikiText( Xml::tags( 'span', array( 'class' => 'error' ), $err ) . "\n" );
+		if ( $err != '' ) {
+			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
+			$wgOut->addWikiText( Html::rawElement( 'span', array( 'class' => 'error' ), $err ) . "\n" );
 		}
 
 		$addressPart = false;
@@ -136,7 +131,7 @@ class IPUnblockForm {
 			if ( $block ) {
 				$encName = htmlspecialchars( $block->getRedactedName() );
 				$encId = $this->id;
-				$addressPart = $encName . Xml::hidden( 'id', $encId );
+				$addressPart = $encName . Html::hidden( 'id', $encId );
 				$ipa = wfMsgHtml( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' );
 			}
 		}
@@ -146,10 +141,10 @@ class IPUnblockForm {
 		}
 
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'unblockip' ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'ipb-unblock' ) ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-unblock-table' ) ).
+			Html::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'unblockip' ) ) .
+			Html::openElement( 'fieldset' ) .
+			Html::element( 'legend', null, wfMsg( 'ipb-unblock' ) ) .
+			Html::openElement( 'table', array( 'id' => 'mw-unblock-table' ) ).
 			"<tr>
 				<td class='mw-label'>
 					{$ipa}
@@ -172,10 +167,10 @@ class IPUnblockForm {
 					Xml::submitButton( wfMsg( 'ipusubmit' ), array( 'name' => 'wpBlock', 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>" .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
-			Xml::closeElement( 'form' ) . "\n"
+			Html::closeElement( 'table' ) .
+			Html::closeElement( 'fieldset' ) .
+			Html::hidden( 'wpEditToken', $wgUser->editToken() ) .
+			Html::closeElement( 'form' ) . "\n"
 		);
 
 	}
@@ -192,12 +187,11 @@ class IPUnblockForm {
 	 * case it contains the range $ip is part of.
 	 * @return array array(message key, parameters) on failure, empty array on success
 	 */
-
-	static function doUnblock(&$id, &$ip, &$reason, &$range = null, $blocker=null) {
+	public static function doUnblock( &$id, &$ip, &$reason, &$range = null, $blocker = null ) {
 		if ( $id ) {
 			$block = Block::newFromID( $id );
 			if ( !$block ) {
-				return array('ipb_cant_unblock', htmlspecialchars($id));
+				return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
 			}
 			$ip = $block->getRedactedName();
 		} else {
@@ -207,19 +201,19 @@ class IPUnblockForm {
 				$id = substr( $ip, 1 );
 				$block = Block::newFromID( $id );
 				if( !$block ) {
-					return array('ipb_cant_unblock', htmlspecialchars($id));
+					return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
 				}
 				$ip = $block->getRedactedName();
 			} else {
 				$block = Block::newFromDB( $ip );
 				if ( !$block ) {
-					return array('ipb_cant_unblock', htmlspecialchars($id));
+					return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
 				}
 				if( $block->mRangeStart != $block->mRangeEnd && !strstr( $ip, "/" ) ) {
 					/* If the specified IP is a single address, and the block is
 					 * a range block, don't unblock the range. */
 					 $range = $block->mAddress;
-					 return array('ipb_blocked_as_range', $ip, $range);
+					 return array( 'ipb_blocked_as_range', $ip, $range );
 				}
 			}
 		}
@@ -228,18 +222,18 @@ class IPUnblockForm {
 		
 		# If the name was hidden and the blocking user cannot hide
 		# names, then don't allow any block removals...
-		if( $blocker && $block->mHideName && !$blocker->isAllowed('hideuser') ) {
-			return array('ipb_cant_unblock', htmlspecialchars($id));
+		if( $blocker && $block->mHideName && !$blocker->isAllowed( 'hideuser' ) ) {
+			return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
 		}
 
 		# Delete block
 		if ( !$block->delete() ) {
-			return array('ipb_cant_unblock', htmlspecialchars($id));
+			return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
 		}
 		
 		# Unset _deleted fields as needed
 		if( $block->mHideName ) {
-			IPBlockForm::unsuppressUserName( $block->mAddress, $block->mUser );
+			self::unsuppressUserName( $block->mAddress, $block->mUser );
 		}
 
 		# Make log entry
@@ -250,23 +244,23 @@ class IPUnblockForm {
 
 	function doSubmit() {
 		global $wgOut, $wgUser;
-		$retval = self::doUnblock($this->id, $this->ip, $this->reason, $range, $wgUser);
-		if( !empty($retval) ) {
-			$key = array_shift($retval);
-			$this->showForm(wfMsgReal($key, $retval));
+
+		$retval = self::doUnblock( $this->id, $this->ip, $this->reason, $range, $wgUser );
+		if( !empty( $retval ) ) {
+			$key = array_shift( $retval );
+			$this->showForm( wfMsgReal( $key, $retval ) );
 			return;
 		}
+
 		# Report to the user
-		$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
-		$success = $titleObj->getFullURL( "action=success&successip=" . urlencode( $this->ip ) );
+		$success = $this->getTitle()->getFullURL( 'action=success&successip=' . urlencode( $this->ip ) );
 		$wgOut->redirect( $success );
 	}
 
 	function showList( $msg ) {
 		global $wgOut, $wgUser;
 
-		$wgOut->setPagetitle( wfMsg( "ipblocklist" ) );
-		if ( $msg != "" ) {
+		if ( $msg != '' ) {
 			$wgOut->setSubtitle( $msg );
 		}
 
@@ -285,25 +279,25 @@ class IPUnblockForm {
 		} elseif ( substr( $this->ip, 0, 1 ) == '#' ) {
 			$conds['ipb_id'] = substr( $this->ip, 1 );
 		// Single IPs
-		} elseif ( IP::isIPAddress($this->ip) && strpos($this->ip,'/') === false ) {
-			if( $iaddr = IP::toHex($this->ip) ) {
+		} elseif ( IP::isIPAddress( $this->ip ) && strpos( $this->ip, '/' ) === false ) {
+			if( $iaddr = IP::toHex( $this->ip ) ) {
 				# Only scan ranges which start in this /16, this improves search speed
 				# Blocks should not cross a /16 boundary.
 				$range = substr( $iaddr, 0, 4 );
 				// Fixme -- encapsulate this sort of query-building.
 				$dbr = wfGetDB( DB_SLAVE );
-				$encIp = $dbr->addQuotes( IP::sanitizeIP($this->ip) );
+				$encIp = $dbr->addQuotes( IP::sanitizeIP( $this->ip ) );
 				$encAddr = $dbr->addQuotes( $iaddr );
 				$conds[] = "(ipb_address = $encIp) OR 
 					(ipb_range_start" . $dbr->buildLike( $range, $dbr->anyString() ) . " AND
 					ipb_range_start <= $encAddr
 					AND ipb_range_end >= $encAddr)";
 			} else {
-				$conds['ipb_address'] = IP::sanitizeIP($this->ip);
+				$conds['ipb_address'] = IP::sanitizeIP( $this->ip );
 			}
 			$conds['ipb_auto'] = 0;
 		// IP range
-		} elseif ( IP::isIPAddress($this->ip) ) {
+		} elseif ( IP::isIPAddress( $this->ip ) ) {
 			$conds['ipb_address'] = Block::normaliseRange( $this->ip );
 			$conds['ipb_auto'] = 0;
 		} else {
@@ -345,7 +339,7 @@ class IPUnblockForm {
 		if ( $pager->getNumRows() ) {
 			$wgOut->addHTML(
 				$pager->getNavigationBar() .
-				Xml::tags( 'ul', null, $pager->getBody() ) .
+				Html::rawElement( 'ul', null, $pager->getBody() ) .
 				$pager->getNavigationBar()
 			);
 		} elseif ( $this->ip != '') {
@@ -395,15 +389,15 @@ class IPUnblockForm {
 		$hl = $wgLang->pipeList( $links );
 
 		return
-			Xml::tags( 'form', array( 'action' => $wgScript ),
-				Xml::hidden( 'title', SpecialPage::getTitleFor( 'Ipblocklist' )->getPrefixedDbKey() ) .
-				Xml::openElement( 'fieldset' ) .
-				Xml::element( 'legend', null, wfMsg( 'ipblocklist-legend' ) ) .
+			Html::rawElement( 'form', array( 'action' => $wgScript ),
+				Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
+				Html::openElement( 'fieldset' ) .
+				Html::element( 'legend', null, wfMsg( 'ipblocklist-legend' ) ) .
 				Xml::inputLabel( wfMsg( 'ipblocklist-username' ), 'ip', 'ip', /* size */ false, $this->ip ) .
 				'&#160;' .
 				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) . '<br />' .
 				$hl .
-				Xml::closeElement( 'fieldset' )
+				Html::closeElement( 'fieldset' )
 			);
 	}
 
@@ -417,8 +411,7 @@ class IPUnblockForm {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
 		$params = $override + $options;
-		$ipblocklist = SpecialPage::getTitleFor( 'Ipblocklist' );
-		return $sk->link( $ipblocklist, htmlspecialchars( $title ),
+		return $sk->link( $this->getTitle(), htmlspecialchars( $title ),
 			( $active ? array( 'style'=>'font-weight: bold;' ) : array() ), $params, array( 'known' ) );
 	}
 
@@ -487,7 +480,7 @@ class IPUnblockForm {
 		$changeblocklink = '';
 		$toolLinks = '';
 		if ( $wgUser->isAllowed( 'block' ) ) {
-			$unblocklink = $sk->link( SpecialPage::getTitleFor( 'Ipblocklist' ),
+			$unblocklink = $sk->link( $this->getTitle(),
 					$msg['unblocklink'],
 					array(),
 					array( 'action' => 'unblock', 'id' => $block->mId ),

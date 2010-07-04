@@ -121,7 +121,7 @@ class SpecialPage {
 
 		# Users and rights
 		'Blockip'                   => array( 'SpecialPage', 'Blockip', 'block' ),
-		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
+		'Ipblocklist'               => 'IPUnblockForm',
 		'Unblock'                   => array( 'SpecialRedirectToSpecial', 'Unblock', 'Ipblocklist', false, array( 'uselang', 'ip', 'id' ), array( 'action' => 'unblock' ) ),
 		'Resetpass'                 => 'SpecialResetpass',
 		'DeletedContributions'      => 'DeletedContributionsPage',
