@@ -944,6 +944,31 @@ abstract class Installer {
 	}
 
 	/**
+	 * Determine if LocalSettings exists. If it does, return an appropriate
+	 * status for whether we should can upgrade or not
+	 * @return Status
+	 */
+	function getLocalSettingsStatus() {
+		global $IP;
+
+		$status = Status::newGood();
+
+		wfSuppressWarnings();
+		$ls = file_exists( "$IP/LocalSettings.php" );
+		wfRestoreWarnings();
+		
+		if( $ls ) {
+			if( $this->parent->getDBInstaller()->needsUpgrade() ) {
+				$status->warning( 'config-localsettings-upgrade' );
+			}
+			else {
+				$status->fatal( 'config-localsettings-noupgrade' );
+			}
+		}
+		return $status;
+	}
+
+	/**
 	 * On POSIX systems return the primary group of the webserver we're running under.
 	 * On other systems just returns null.
 	 *
