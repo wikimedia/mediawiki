@@ -971,12 +971,12 @@ abstract class DatabaseBase {
 	 * so use sparingly
 	 * Takes same arguments as Database::select()
 	 *
-	 * @param string $table table name
-	 * @param array $vars unused
-	 * @param array $conds filters on the table
-	 * @param string $fname function name for profiling
-	 * @param array $options options for select
-	 * @return int row count
+	 * @param $table String: table name
+	 * @param $vars Array: unused
+	 * @param $conds Array: filters on the table
+	 * @param $fname String: function name for profiling
+	 * @param $options Array: options for select
+	 * @return Integer: row count
 	 */
 	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
 		$rows = 0;
@@ -1017,10 +1017,11 @@ abstract class DatabaseBase {
 
 	/**
 	 * Determines whether a field exists in a table
-	 * @param $table: table name
-	 * @param $filed: filed to check on that table
-	 * @param $fname: calling function name (optional)
-	 * @return bool: whether $table has filed $field
+	 *
+	 * @param $table String: table name
+	 * @param $field String: filed to check on that table
+	 * @param $fname String: calling function name (optional)
+	 * @return Boolean: whether $table has filed $field
 	 */
 	function fieldExists( $table, $field, $fname = 'Database::fieldExists' ) {
 		$info = $this->fieldInfo( $table, $field );
@@ -1267,10 +1268,10 @@ abstract class DatabaseBase {
 	 * Build a partial where clause from a 2-d array such as used for LinkBatch.
 	 * The keys on each level may be either integers or strings.
 	 *
-	 * @param array $data organized as 2-d array(baseKeyVal => array(subKeyVal => <ignored>, ...), ...)
-	 * @param string $baseKey field name to match the base-level keys to (eg 'pl_namespace')
-	 * @param string $subKey field name to match the sub-level keys to (eg 'pl_title')
-	 * @return mixed string SQL fragment, or false if no items in array.
+	 * @param $data Array: organized as 2-d array(baseKeyVal => array(subKeyVal => <ignored>, ...), ...)
+	 * @param $baseKey String: field name to match the base-level keys to (eg 'pl_namespace')
+	 * @param $subKey String: field name to match the sub-level keys to (eg 'pl_title')
+	 * @return Mixed: string SQL fragment, or false if no items in array.
 	 */
 	function makeWhereFrom2d( $data, $baseKey, $subKey ) {
 		$conds = array();
@@ -2021,6 +2022,7 @@ abstract class DatabaseBase {
 	 * @param $oldName String: name of table whose structure should be copied
 	 * @param $newName String: name of table to be created
 	 * @param $temporary Boolean: whether the new table should be temporary
+	 * @param $fname String: calling function name
 	 * @return Boolean: true if operation was successful
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'Database::duplicateTableStructure' ) {
@@ -2313,9 +2315,10 @@ abstract class DatabaseBase {
 	 * Abstracted from Filestore::lock() so child classes can implement for
 	 * their own needs.
 	 *
-	 * @param $lockName String: Name of lock to aquire
-	 * @param $method String: Name of method calling us
-	 * @return bool
+	 * @param $lockName String: name of lock to aquire
+	 * @param $method String: name of method calling us
+	 * @param $timeout Integer: timeout
+	 * @return Boolean
 	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		return true;
@@ -2373,7 +2376,7 @@ abstract class DatabaseBase {
 	 *
 	 * This is a MySQL-specific feature.
 	 *
-	 * @param mixed $value true for allow, false for deny, or "default" to restore the initial value
+	 * @param $value Mixed: true for allow, false for deny, or "default" to restore the initial value
 	 */
 	public function setBigSelects( $value = true ) {
 		// no-op
@@ -2770,7 +2773,6 @@ class ResultWrapper implements Iterator {
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
 	 *
-	 * @param $res SQL result object as returned from Database::query(), etc.
 	 * @return MySQL row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -2782,7 +2784,6 @@ class ResultWrapper implements Iterator {
 	 * Fetch the next row from the given result object, in associative array
 	 * form.  Fields are retrieved with $row['fieldname'].
 	 *
-	 * @param $res SQL result object as returned from Database::query(), etc.
 	 * @return MySQL row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
