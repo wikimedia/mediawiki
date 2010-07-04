@@ -581,7 +581,9 @@ abstract class Installer {
 					return $command;
 
 				$file = str_replace( '$1', $command, $versionInfo[0] );
-				if ( strstr( wfShellExec( $file ), $versionInfo[1]) !== false )
+				# Should maybe be wfShellExec( $file), but runs into a ulimit, see
+				# http://www.mediawiki.org/w/index.php?title=New-installer_issues&diff=prev&oldid=335456 
+				if ( strstr( `$file`, $versionInfo[1]) !== false )
 					return $command;
 			}
 		}
