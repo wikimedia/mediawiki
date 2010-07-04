@@ -245,11 +245,11 @@ class MWMemcached {
 	 */
 	public function __construct( $args ) {
 		global $wgMemCachedTimeout;
-		$this->set_servers( @$args['servers'] );
-		$this->_debug = @$args['debug'];
+		$this->set_servers( isset( $args['servers'] ) ? $args['servers'] : array() );
+		$this->_debug = isset( $args['debug'] ) ? $args['debug'] : false;
 		$this->stats = array();
-		$this->_compress_threshold = @$args['compress_threshold'];
-		$this->_persistant = array_key_exists( 'persistant', $args ) ? ( @$args['persistant'] ) : false;
+		$this->_compress_threshold = isset( $args['compress_threshold'] ) ? $args['compress_threshold'] : 0;
+		$this->_persistant = isset( $args['persistant'] ) ? $args['persistant'] : false;
 		$this->_compress_enable = true;
 		$this->_have_zlib = function_exists( 'gzcompress' );
 
@@ -318,7 +318,11 @@ class MWMemcached {
 
 		$key = is_array( $key ) ? $key[1] : $key;
 
-		@$this->stats['delete']++;
+		if ( isset( $this->stats['delete'] ) ) {
+			$this->stats['delete']++;
+		} else {
+			$this->stats['delete'] = 1;
+		}
 		$cmd = "delete $key $time\r\n";
 		if( !$this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
 			$this->_dead_sock( $sock );
@@ -401,7 +405,11 @@ class MWMemcached {
 			return false;
 		}
 
-		@$this->stats['get']++;
+		if ( isset( $this->stats['get'] ) ) {
+			$this->stats['get']++;
+		} else {
+			$this->stats['get'] = 1;
+		}
 
 		$cmd = "get $key\r\n";
 		if ( !$this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
@@ -438,7 +446,11 @@ class MWMemcached {
 			return false;
 		}
 
-		@$this->stats['get_multi']++;
+		if ( isset( $this->stats['get_multi'] ) ) {
+			$this->stats['get_multi']++;
+		} else {
+			$this->stats['get_multi'] = 1;
+		}
 		$sock_keys = array();
 
 		foreach ( $keys as $key ) {
@@ -667,11 +679,13 @@ class MWMemcached {
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
 		for( $i = 0; !$sock && $i < $this->_connect_attempts; $i++ ) {
+			wfSuppressWarnings();
 			if ( $this->_persistant == 1 ) {
-				$sock = @pfsockopen( $ip, $port, $errno, $errstr, $timeout );
+				$sock = pfsockopen( $ip, $port, $errno, $errstr, $timeout );
 			} else {
-				$sock = @fsockopen( $ip, $port, $errno, $errstr, $timeout );
+				$sock = fsockopen( $ip, $port, $errno, $errstr, $timeout );
 			}
+			wfRestoreWarnings();
 		}
 		if ( !$sock ) {
 			if ( $this->_debug ) {
@@ -702,7 +716,8 @@ class MWMemcached {
 	}
 
 	function _dead_host( $host ) {
-		@list( $ip, /* $port */) = explode( ':', $host );
+		$parts = explode( ':', $host );
+		$ip = $parts[0];
 		$this->_host_dead[$ip] = time() + 30 + intval( rand( 0, 10 ) );
 		$this->_host_dead[$host] = $this->_host_dead[$ip];
 		unset( $this->_cache_sock[$host] );
@@ -801,7 +816,11 @@ class MWMemcached {
 		}
 
 		$key = is_array( $key ) ? $key[1] : $key;
-		@$this->stats[$cmd]++;
+		if ( isset( $this->stats[$cmd] ) ) {
+			$this->stats[$cmd]++;
+		} else {
+			$this->stats[$cmd] = 1;
+		}
 		if ( !$this->_safe_fwrite( $sock, "$cmd $key $amt\r\n" ) ) {
 			return $this->_dead_sock( $sock );
 		}
@@ -843,7 +862,11 @@ class MWMemcached {
 					}
 					$offset += $n;
 					$bneed -= $n;
-					@$ret[$rkey] .= $data;
+					if ( isset( $ret[$rkey] ) ) {
+						$ret[$rkey] .= $data;
+					} else {
+						$ret[$rkey] = $data;
+					}
 				}
 
 				if ( $offset != $len + 2 ) {
@@ -898,7 +921,11 @@ class MWMemcached {
 			return false;
 		}
 
-		@$this->stats[$cmd]++;
+		if ( isset( $this->stats[$cmd] ) ) {
+			$this->stats[$cmd]++;
+		} else {
+			$this->stats[$cmd] = 1;
+		}
 
 		$flags = 0;
 
