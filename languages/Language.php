@@ -2843,9 +2843,9 @@ class Language {
 
 	function formatTimePeriod( $seconds ) {
 		if ( $seconds < 10 ) {
-			return $this->formatNum( sprintf( "%.1f", $seconds ) ) . ' ' . $this->getMessageFromDB( 'seconds-abbrev' );
+			return $this->formatNum( sprintf( "%.1f", $seconds ) ) . $this->getMessageFromDB( 'seconds-abbrev' );
 		} elseif ( $seconds < 60 ) {
-			return $this->formatNum( round( $seconds ) ) . ' ' . $this->getMessageFromDB( 'seconds-abbrev' );
+			return $this->formatNum( round( $seconds ) ) . $this->getMessageFromDB( 'seconds-abbrev' );
 		} elseif ( $seconds < 3600 ) {
 			$minutes = floor( $seconds / 60 );
 			$secondsPart = round( fmod( $seconds, 60 ) );
@@ -2853,8 +2853,8 @@ class Language {
 				$secondsPart = 0;
 				$minutes++;
 			}
-			return $this->formatNum( $minutes ) . ' ' . $this->getMessageFromDB( 'minutes-abbrev' ) . ' ' .
-				$this->formatNum( $secondsPart ) . ' ' . $this->getMessageFromDB( 'seconds-abbrev' );
+			return $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' ) . ' ' .
+				$this->formatNum( $secondsPart ) . $this->getMessageFromDB( 'seconds-abbrev' );
 		} else {
 			$hours = floor( $seconds / 3600 );
 			$minutes = floor( ( $seconds - $hours * 3600 ) / 60 );
@@ -2867,9 +2867,9 @@ class Language {
 				$minutes = 0;
 				$hours++;
 			}
-			return $this->formatNum( $hours ) . ' ' . $this->getMessageFromDB( 'hours-abbrev' ) . ' ' .
-				$this->formatNum( $minutes ) . ' ' . $this->getMessageFromDB( 'minutes-abbrev' ) . ' ' .
-				$this->formatNum( $secondsPart ) . ' ' . $this->getMessageFromDB( 'seconds-abbrev' );
+			return $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' ) . ' ' .
+				$this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' ) . ' ' .
+				$this->formatNum( $secondsPart ) . $this->getMessageFromDB( 'seconds-abbrev' );
 		}
 	}
 
