@@ -307,6 +307,7 @@ $specialPageAliases = array(
 	'RevisionMove'              => array( 'העברת_גרסאות' ),
 	'ComparePages'              => array( 'השוואת_דפים' ),
 	'Selenium'                  => array( 'סלניום' ),
+	'Badtitle'                  => array( 'כותרת_שגויה' ),
 );
 
 $namespaceNames = array(
