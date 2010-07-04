@@ -1515,8 +1515,8 @@ if( count( $errs ) ) {
 		<label class='column'>E-mail notification about changes:</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Enotif", "Disabled", "radio", "enotif_disabled" ); ?></li>
-		<li><?php aField( $conf, "Enotif", "Enabled for changes to user discussion pages only", "radio", "enotif_usertalk" ); ?></li>
-		<li><?php aField( $conf, "Enotif", "Enabled for changes to user discussion pages, and to pages on watchlists (not recommended for large wikis)", "radio", "enotif_allpages" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Changes to user discussion pages only", "radio", "enotif_usertalk" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Changes to user discussion pages, and to pages on watchlists (not recommended for large wikis)", "radio", "enotif_allpages" ); ?></li>
 		</ul>
 	</div>
 	<div class="config-desc">
