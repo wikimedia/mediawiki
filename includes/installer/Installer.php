@@ -128,7 +128,6 @@ abstract class Installer {
 
 	var $installSteps = array(
 		'database',
-		'user',
 		'tables',
 		'interwiki',
 		'secretkey',

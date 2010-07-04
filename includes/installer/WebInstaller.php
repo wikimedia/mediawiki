@@ -1571,10 +1571,22 @@ class WebInstaller_Install extends WebInstallerPage {
 		}
 		$this->startForm();
 		$this->addHTML("<ul>");
-		foreach( $this->parent->getInstallSteps() as $step ) {
+		foreach( $this->parent->getInstallSteps() as $stepObj ) {
+			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
 			$this->startStage( "config-install-$step" );
-			$func = 'install' . ucfirst( $step );
-			$status = $this->parent->{$func}();
+			$status = null;
+
+			# Call our working function
+			if ( is_array( $step ) ) {
+				# A custom callaback
+				$callback = $stepObj['callback'];
+				$status = call_user_func_array( $callback, array() );
+			} else {
+				# Boring implicitly named callback
+				$func = 'install' . ucfirst( $step );
+				$status = $this->parent->{$func}();
+			}
+
 			$ok = $status->isGood();
 			if ( !$ok ) {
 				$this->parent->showStatusErrorBox( $status );

@@ -31,6 +31,20 @@ class MysqlInstaller extends InstallerDBType {
 	function getName() {
 		return 'mysql';
 	}
+
+	function __construct( $parent ) {
+		parent::__construct( $parent );
+
+		# Add our user callback to installSteps, right before the tables are created.
+		$where_tables = array_search( "tables", $this->parent->installSteps );
+		$callback = array(
+			array(
+				'name' => 'user',
+				'callback' => array( &$this, 'setupUser' ),
+			)
+		);
+		array_splice( $this->parent->installSteps, $where_tables, 0, $callback );
+	}
 	
 	function isCompiled() {
 		return $this->checkExtension( 'mysql' );
