@@ -238,6 +238,7 @@ if ( \$wgCommandLineMode ) {
 
 \$wgLocalInterwiki   = strtolower( \$wgSitename );
 
+# Site language code, should be one of ./languages/Language(.*).php
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 \$wgSecretKey = \"{$this->values['wgSecretKey']}\";
