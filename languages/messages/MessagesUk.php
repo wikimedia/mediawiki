@@ -1468,6 +1468,7 @@ $1",
 'right-override-export-depth' => "експорт сторінок, включаючи пов'язані сторінки з глибиною до 5",
 'right-sendemail'             => 'відправляти пошту іншим користувачам',
 'right-revisionmove'          => 'Перенесення версій',
+'right-selenium'              => 'Запуск перевірок Selenium',
 
 # User rights log
 'rightslog'      => 'Журнал прав користувача',
@@ -2362,6 +2363,7 @@ $1',
 Далі наведено останній запис з журналу блокувань:',
 'sp-contributions-search'              => 'Пошук внеску',
 'sp-contributions-username'            => "IP-адреса або ім'я користувача:",
+'sp-contributions-toponly'             => 'Показувати тільки редагування, що є останніми версіями',
 'sp-contributions-submit'              => 'Знайти',
 
 # What links here
@@ -2893,6 +2895,9 @@ $1',
 'show-big-image-thumb' => '<small>Розмір при попередньому перегляді: $1 × $2 пікселів</small>',
 'file-info-gif-looped' => 'кільцеве',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|кадр|кадри|кадрів}}',
+'file-info-png-looped' => 'закільцьований',
+'file-info-png-repeat' => 'продемонстрований $1 {{PLURAL:$1|раз|рази|разів}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|кадр|кадри|кадрів}}',
 
 # Special:NewFiles
 'newimages'             => 'Галерея нових файлів',
