@@ -419,6 +419,8 @@ They may require additional configuration, but you can enable them now',
 	'config-install-database'         => 'Setting up database',
 	'config-install-pg-schema-failed' => 'Tables creation failed.
 Make sure that the user "$1" can write to the schema "$2".',
+	'config-install-user'             => 'Creating database user',
+	'config-install-user-failed'      => 'Granting permission to user "$1" failed: $2',
 	'config-install-tables'           => 'Creating tables',
 	'config-install-interwiki'        => 'Populating default interwiki table',
 	'config-install-interwiki-sql'    => 'Could not find file <code>interwiki.sql</code>',
