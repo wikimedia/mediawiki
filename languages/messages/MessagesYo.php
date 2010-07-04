@@ -1035,7 +1035,14 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'sourcefilename'      => 'Orísun orúkọ faili:',
 'destfilename'        => 'Ìdópin orúkọ faili:',
 
-'upload-file-error' => 'Àsiṣe ínú',
+'upload-file-error'         => 'Àsiṣe ínú',
+'upload-too-many-redirects' => 'URL náà ní àwọn àtúnjúwe pípọ̀jùlọ',
+
+# img_auth script messages
+'img-auth-nofile' => 'Fáìlì "$1" kò sí.',
+
+# HTTP errors
+'http-read-error' => 'Àṣìṣe kíkà HTTP.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Kò le jámọ́ URL',
@@ -1069,6 +1076,8 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'linkstoimage'              => '{{PLURAL:$1|Ojúewé yí|$1 Àwọn ojúewé yí}} jápọ̀ mọ́ àpò yí:',
 'nolinkstoimage'            => 'Kò sí ojúewé tó jápọ̀ mọ́ faili yìí.',
 'sharedupload'              => 'Faili yìí jẹ́ ìrùsókè láti $1 à ṣì le pin pẹ̀lú àwọn iṣẹ́owọ́ mìíràn tí wọ́n n lòó.',
+'filepage-nofile'           => 'Kò sí fáìlì pẹ̀lú orúkọ yìí.',
+'filepage-nofile-link'      => 'Kò sí fáìlì pẹ̀lú orúkọ yìí, sùgbọ́n ẹ le [$1 rùúsókè].',
 'uploadnewversion-linktext' => 'Ẹ ṣe ìrùsókè àtúnṣe tuntun faili yìí',
 'shared-repo-from'          => 'láti $1',
 
@@ -1078,7 +1087,10 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 # File deletion
 'filedelete'                  => 'Paarẹ́ $1',
 'filedelete-legend'           => 'Ìparẹ́ faili',
+'filedelete-comment'          => 'Ìdíẹ̀:',
 'filedelete-submit'           => 'Paarẹ́',
+'filedelete-success'          => "'''$1''' ti jẹ́ píparẹ́.",
+'filedelete-nofile'           => "'''$1''' kò sí.",
 'filedelete-reason-otherlist' => 'Ìdí mìíràn',
 'filedelete-edit-reasonlist'  => 'Àtúnṣe àwọn ìdí ìparẹ́',
 
@@ -1106,6 +1118,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'statistics-header-users' => 'Àwọn statistiki oníṣe',
 'statistics-articles'     => 'Àwọn ojúewé àkóónú',
 'statistics-pages'        => 'Àwọn ojúewé',
+'statistics-users'        => '[[Special:ListUsers|Àwọn oníṣe]] onífíforukọsílẹ̀',
 
 'disambiguations'     => 'Àwọn ojúewé ìpínsọ́tọ̀',
 'disambiguationspage' => 'Template:ojútùú',
@@ -1139,7 +1152,9 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'unusedimages'            => 'Faili àìlò',
 'popularpages'            => 'Ojúewé tógbajúmọ̀',
 'wantedcategories'        => 'Àwọn ẹ̀ka aláìní',
-'wantedpages'             => 'Àwọn ojúewé fún wíwá',
+'wantedpages'             => 'Àwọn ojúewé àìsí',
+'wantedfiles'             => 'Àwọn fáìlì àìsí',
+'wantedtemplates'         => 'Àwọn àdàkọ àìsí',
 'mostlinked'              => 'Àwọn ojúewé tó ní ìjápọ̀ mọ́ jùlọ',
 'mostlinkedcategories'    => 'Àwọn ẹ̀ka tó ní ìjápọ̀ mọ́ jùlọ',
 'mostlinkedtemplates'     => 'Àwọn àdákọ tó ní ìjápọ̀mọ́ jùlọ',
@@ -1177,7 +1192,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'alphaindexline'    => '$1 dé $2',
 'nextpage'          => 'Ojúewé tókàn ($1)',
 'prevpage'          => 'Ojúewé tókọjá ($1)',
-'allpagesfrom'      => 'Àgbéhàn ojúewé tó bẹ̀rẹ̀ láti:',
+'allpagesfrom'      => 'Ìfihàn àwọn ojúewé nípa bíbẹ̀rẹ̀ láti:',
 'allpagesto'        => 'Ìfihàn àwọn ojúewé tó parí pẹ̀lú:',
 'allarticles'       => 'Gbogbo ojúewé',
 'allinnamespace'    => 'Gbogbo ojúewé ($1 namespace)',
@@ -1188,7 +1203,8 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'allpagesprefix'    => 'Ìgbéhàn àwọn ojúewé tóbẹ̀rẹ̀ pẹ̀lú:',
 
 # Special:Categories
-'categories' => 'Àwọn ẹ̀ka',
+'categories'     => 'Àwọn ẹ̀ka',
+'categoriesfrom' => 'Ìfihàn àwọn ẹ̀ka nípa bíbẹ̀rẹ̀ láti:',
 
 # Special:DeletedContributions
 'deletedcontributions-title'       => 'Àwọn àfikún píparẹ́ oníṣe',
@@ -1201,6 +1217,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'linksearch-line' => '$1 jẹ́ jíjápọ̀ láti $2',
 
 # Special:ListUsers
+'listusersfrom'      => 'Ìfihàn àwọn oníṣe nípa bíbẹ̀rẹ̀ láti',
 'listusers-submit'   => 'Ìfihan',
 'listusers-noresult' => 'Kò rí oníṣe kankan.',
 'listusers-blocked'  => '(dídínà)',
@@ -1332,6 +1349,8 @@ Bí a ṣe to ojúewé '''$1''' nì yí:",
 'protect-expiry-options'      => '1 wákàtí:1 hour,1 ọjọ́:1 day,1 ọ̀ṣẹ̀:1 week,2 ọ̀ṣẹ̀:2 weeks,1 osù:1 month,3 osù:3 months,6 osù:6 months,1 ọdún:1 year,láìlópin:infinite',
 'restriction-type'            => 'Ìyọ̀nda:',
 'restriction-level'           => 'Ibi ìpààlà:',
+'minimum-size'                => 'Ìtóbi kíkéréjúlọ',
+'maximum-size'                => 'Ìtóbi púpọ̀jùlọ:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
@@ -1398,6 +1417,7 @@ Bí a ṣe to ojúewé '''$1''' nì yí:",
 
 # Block/unblock
 'blockip'                    => 'Dínà oníṣe',
+'blockip-title'              => 'Ìdínà oníṣẹ',
 'blockip-legend'             => 'Ìdínà oníṣẹ',
 'ipaddress'                  => 'Àdírẹ́ẹ̀sì IP',
 'ipadressorusername'         => 'Àdírẹ́ẹ̀sì IP tàbí orúkọ oníṣe:',
@@ -1606,12 +1626,15 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 'svg-long-desc'        => '(faili SVG, pẹ̀lú $1 × $2 pixels, ìtòbi faili: $3)',
 'show-big-image'       => 'Pẹ̀lú ìgbéhàn gíga',
 'show-big-image-thumb' => '<small>Ìtóbi àkọ́kọ́yẹ̀wò yìí: $1 × $2 pixels</small>',
+'file-info-gif-looped' => 'lílọ́po',
+'file-info-png-looped' => 'lílọ́po',
 
 # Special:NewFiles
 'newimages'        => 'Ọ̀dẹ̀dẹ̀ àwòrán àwọn faili tuntun',
 'newimages-legend' => 'Ajò',
 'newimages-label'  => 'Orúkọ faili (tàbí apá kan rẹ̀):',
 'showhidebots'     => '(àwọn bot $1)',
+'ilsubmit'         => 'Ṣàwárí',
 
 # Bad image list
 'bad_image_list' => 'Onírú jẹ́ gẹ́gẹ́ bíi àtèlé yìí:
@@ -1636,8 +1659,13 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 * focallength",
 
 # EXIF tags
-'exif-imagewidth'  => 'Fífẹ̀sí',
-'exif-imagelength' => 'Gígasí',
+'exif-imagewidth'       => 'Fífẹ̀sí',
+'exif-imagelength'      => 'Gígasí',
+'exif-imagedescription' => 'Àkọlé àwòrán',
+'exif-make'             => 'Olùṣẹ̀rọ kámẹ́rà',
+'exif-model'            => 'Irú kámẹ́rà',
+'exif-artist'           => 'Olùdá',
+'exif-copyright'        => 'Ẹni tóni ẹ̀tọ́ àwòkọ',
 
 # External editor support
 'edit-externally'      => "Ẹ lo ìmúlò òde láti ṣ'àtúnṣe fáìlì yìí",
@@ -1684,7 +1712,8 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'livepreview-loading' => 'Únrùjáde...',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'Àwọn àkọlé:',
+'watchlistedit-normal-submit' => 'Ìyọkúrò àwọn àkọlé',
+'watchlistedit-raw-titles'    => 'Àwọn àkọlé:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ẹ wo àwon àtúnṣe tóbaamu',
@@ -1692,8 +1721,10 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'watchlisttools-raw'  => "Ẹ ṣ'àtúnṣe àkójọ ìmójútó látìbẹ̀rẹ̀",
 
 # Special:Version
-'version'       => 'Àtúnṣe',
-'version-other' => 'Òmíràn',
+'version'              => 'Àtúnṣe',
+'version-specialpages' => 'Àwọn ojúewé pàtàkì',
+'version-other'        => 'Òmíràn',
+'version-license'      => 'Ìwé àṣẹ',
 
 # Special:FilePath
 'filepath-page'   => 'Faili:',
@@ -1702,10 +1733,12 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Orúkọ fáìlì:',
 'fileduplicatesearch-submit'   => 'Àwárí',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Ìtóbi fáìlì: $3<br />Irú MIME: $4',
 
 # Special:SpecialPages
 'specialpages'                   => 'Àwọn ojúewé pàtàkì',
 'specialpages-group-maintenance' => 'Àwọn ìjábọ̀ ìtọ́jú',
+'specialpages-group-other'       => 'Àwọn ojúewé pàtàkì míràn',
 'specialpages-group-login'       => 'Ìwọlé / ìforúkọsílẹ́',
 'specialpages-group-pages'       => 'Àkójọ àwọn ojúewé',
 'specialpages-group-pagetools'   => 'Àwọn irinṣẹ́ ojúewé',

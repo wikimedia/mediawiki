@@ -1154,10 +1154,14 @@ Kiek de logboeken nao.",
 'suppressionlogtext' => 'De onderstaande lieste bevat de pagina dee vort-edaon bin en blokkeringen dee veur beheerders verbörgen bin. In de [[Special:IPBlockList|IP-blokkeerlieste]] bin de blokkeringen dee noen van toepassing bin te bekieken.',
 
 # Revision move
-'revmove-reasonfield'    => 'Reden:',
-'revmove-titlefield'     => 'Doelpagina:',
-'revmove-badparam-title' => 'Verkeerde parameters',
-'revmove-nullmove-title' => 'Ongeldige paginanaam',
+'revisionmove'                 => 'Verplaos versies van "$1"',
+'revmove-submit'               => 'Versies naor de an-egeven pagina verplaosen',
+'revisionmoveselectedversions' => 'Ekeuzen versies verplaosen',
+'revmove-reasonfield'          => 'Reden:',
+'revmove-titlefield'           => 'Doelpagina:',
+'revmove-badparam-title'       => 'Verkeerde parameters',
+'revmove-norevisions-title'    => 'De te verplaosen versie is ongeldig',
+'revmove-nullmove-title'       => 'Ongeldige paginanaam',
 
 # History merging
 'mergehistory'                     => "Geschiedenisse van pagina's bie mekaar doon",
@@ -1824,9 +1828,9 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'filedelete-nofile-old'       => "Der is gien versie van '''$1''' in 't archief mit de an-egeven eigenschappen.",
 'filedelete-otherreason'      => 'Aandere reden:',
 'filedelete-reason-otherlist' => 'Aandere reden',
-'filedelete-reason-dropdown'  => '*Veulveurkoemende redens
+'filedelete-reason-dropdown'  => "*Veulveurkoemende redens veur 't vortdoon van pagina's
 ** Auteursrechenschending
-** Dit bestaand he-w dubbel',
+** Dit bestaand he-w dubbel",
 'filedelete-edit-reasonlist'  => "Reden veur 't vortdoon bewarken",
 'filedelete-maintenance'      => "'t Vortdoon en weerummeplaosen kan noen effen neet umda-w bezig bin mit onderhoud.",
 
@@ -2875,6 +2879,7 @@ $1",
 'file-info-gif-looped' => 'herhaolend',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|umraming|umramingen}}',
 'file-info-png-looped' => 'herhaolend',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|keer|keer}} of-espeuld',
 
 # Special:NewFiles
 'newimages'             => 'Nieje ofbeeldingen',

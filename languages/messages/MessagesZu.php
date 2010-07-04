@@ -252,7 +252,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'exblank'    => 'ikhasi elize',
 
 # Protect
-'protectcomment' => 'Isizathu ngenxa yalondoloza',
+'protectcomment' => 'Isizathu',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Ukuhlela',

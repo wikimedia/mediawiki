@@ -1474,7 +1474,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 'ipaddress'               => 'Seoladh IP / ainm úsáideora',
 'ipadressorusername'      => 'Seoladh IP nó ainm úsáideora:',
 'ipbexpiry'               => 'Am éaga',
-'ipbreason'               => 'Cúis',
+'ipbreason'               => 'Fáth:',
 'ipbreasonotherlist'      => 'Fáth eile',
 'ipbreason-dropdown'      => '*Fáthanna coitianta
 ** Loitiméaracht
@@ -1595,7 +1595,7 @@ Sna cásanna sin, caithfidh tú an leathanach a aistrigh nó a chumasc tú féin
 '1movedto2_redir'         => 'rinneadh athsheoladh de [[$1]] go [[$2]]',
 'movelogpage'             => 'Log athainmnithe',
 'movelogpagetext'         => 'Liosta is ea seo thíos de leathanaigh athainmnithe.',
-'movereason'              => 'Cúis',
+'movereason'              => 'Fáth:',
 'revertmove'              => 'athúsáid',
 'delete_and_move'         => 'Scrios agus athainmnigh',
 'delete_and_move_text'    => '==Tá scriosadh riachtanach==
