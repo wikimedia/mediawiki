@@ -850,8 +850,8 @@ class DatabaseOracle extends DatabaseBase {
 	 * For internal calls. Use fieldInfo for normal usage.
 	 * Returns false if the field doesn't exist
 	 *
-	 * @param Array $table
-	 * @param String $field
+	 * @param $table Array
+	 * @param $field String
 	 */
 	private function fieldInfoMulti( $table, $field ) {
 		$tableWhere = '';

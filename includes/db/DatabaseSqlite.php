@@ -151,8 +151,9 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * Attaches external database to our connection, see http://sqlite.org/lang_attach.html
 	 * for details.
-	 * @param $name: Database name to be used in queries like SELECT foo FROM dbname.table
-	 * @param $file: Database file name. If omitted, will be generated using $name and $wgSQLiteDataDir
+	 * @param $name String: database name to be used in queries like SELECT foo FROM dbname.table
+	 * @param $file String: database file name. If omitted, will be generated using $name and $wgSQLiteDataDir
+	 * @param $fname String: calling function name
 	 */
 	function attachDatabase( $name, $file = false, $fname = 'DatabaseSqlite::attachDatabase' ) {
 		global $wgSQLiteDataDir;
