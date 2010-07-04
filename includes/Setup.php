@@ -54,9 +54,10 @@ if( $wgTmpDirectory === false ) $wgTmpDirectory = "{$wgUploadDirectory}/tmp";
 
 if( $wgReadOnlyFile === false ) $wgReadOnlyFile = "{$wgUploadDirectory}/lock_yBgMBwiR";
 if( $wgFileCacheDirectory === false ) $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
+if( $wgDeletedDirectory === false ) $wgDeletedDirectory = "{$wgUploadDirectory}/deleted";
 
-if ( empty( $wgFileStore['deleted']['directory'] ) ) {
-	$wgFileStore['deleted']['directory'] = "{$wgUploadDirectory}/deleted";
+if( isset( $wgFileStore['deleted']['directory'] ) ) {
+	$wgDeletedDirectory = $wgFileStore['deleted']['directory'];
 }
 
 /**
@@ -80,6 +81,11 @@ $wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {
+	if( isset( $wgFileStore['deleted']['hash'] ) ) {
+		$deletedHashLevel = $wgFileStore['deleted']['hash'];
+	} else {
+		$deletedHashLevel = $wgHashedUploadDirectory ? 3 : 0;
+	}
 	$wgLocalFileRepo = array(
 		'class' => 'LocalRepo',
 		'name' => 'local',
@@ -90,8 +96,8 @@ if ( !$wgLocalFileRepo ) {
 		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
-		'deletedDir' => $wgFileStore['deleted']['directory'],
-		'deletedHashLevels' => $wgFileStore['deleted']['hash']
+		'deletedDir' => $wgDeletedDirectory,
+		'deletedHashLevels' => $deletedHashLevel
 	);
 }
 /**

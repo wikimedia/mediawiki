@@ -40,6 +40,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * XmlFunctions.php has been removed. Use the Xml or Html classes as appropriate.
 * Added $wgSQLMode for setting database SQL modes - either performance (null)
   or other reasons (such as enabling stricter checks)
+* $wgFileStore has been deprecated. The only usage $wgFileStore['deleted'] has
+  been turned into $wgDeletedDirectory
+* $wgDeletedDirectory has been added to specify what directory to place deleted
+  uploads in
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
