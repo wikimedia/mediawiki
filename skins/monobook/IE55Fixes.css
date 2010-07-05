@@ -1,7 +1,7 @@
 /* IE5.5/win- only fixes */
 
-div#column-content { 
-	float: none; 
+div#column-content {
+	float: none;
 	margin-left: 0;
 	height: 1%;
 }
