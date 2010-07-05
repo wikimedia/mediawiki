@@ -755,29 +755,6 @@ table.multipageimage td {
 	text-align: center;
 }
 
-/*
-	Table pager (e.g. Special:ListFiles)
-	- remove underlines from the navigation link
-	- collapse borders
-	- set the borders to outsets (similar to Special:AllMessages)
-	- remove line wrapping for all td and th, set background color
-	- restore line wrapping for the last two table cells (description and size)
-*/
-.TablePager_nav a { text-decoration: none; }
-.TablePager { border-collapse: collapse; }
-.TablePager, .TablePager td, .TablePager th {
-	border: 1px solid #aaaaaa;
-	padding: 0 0.15em 0 0.15em;
-}
-.TablePager th { background-color: #eeeeff; }
-.TablePager td { background-color: #ffffff; }
-.TablePager tr:hover td { background-color: #eeeeff; }
-
-.imagelist td, .imagelist th { white-space: nowrap; }
-.imagelist .TablePager_col_links { background-color: #eeeeff; }
-.imagelist .TablePager_col_img_description { white-space: normal; }
-.imagelist th.TablePager_sort { background-color: #ccccff; }
-
 .templatesUsed { margin-top: 1.5em; }
 
 .mw-summary-preview {

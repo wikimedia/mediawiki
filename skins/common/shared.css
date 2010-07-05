@@ -669,21 +669,19 @@ table.collapsed tr.collapsable {
 }
 
 /*
-  Table pager (e.g. Special:Imagelist)
-  - remove underlines from the navigation link
-  - collapse borders
-  - set the borders to outsets (similar to Special:Allmessages)
-  - remove line wrapping for all td and th, set background color
-  - restore line wrapping for the last two table cells (description and size)
+	Table pager (e.g. Special:ListFiles)
+	- remove underlines from the navigation link
+	- collapse borders
+	- set the borders to outsets (similar to Special:AllMessages)
+	- remove line wrapping for all td and th, set background color
+	- restore line wrapping for the last two table cells (description and size)
 */
 .TablePager {
 	min-width: 80%;
+	border-collapse: collapse;
 }
 .TablePager_nav a {
 	text-decoration: none;
-}
-.TablePager {
-	border-collapse: collapse;
 }
 .TablePager, .TablePager td, .TablePager th {
 	border: 1px solid #aaaaaa;
