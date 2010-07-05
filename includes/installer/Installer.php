@@ -959,7 +959,7 @@ abstract class Installer {
 		wfRestoreWarnings();
 		
 		if( $ls ) {
-			if( $this->parent->getDBInstaller()->needsUpgrade() ) {
+			if( $this->getDBInstaller()->needsUpgrade() ) {
 				$status->warning( 'config-localsettings-upgrade' );
 			}
 			else {
