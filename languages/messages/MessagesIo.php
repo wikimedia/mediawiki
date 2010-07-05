@@ -456,10 +456,11 @@ Voluntez, elektez ula diferanta uzantonomo.',
 'noname'                     => 'Vu ne donis valida uzantonomo.',
 'loginsuccesstitle'          => 'Eniro sucesoza',
 'loginsuccess'               => "'''Vu eniris a {{SITENAME}} kom \"\$1\".'''",
-'nosuchuser'                 => 'Ne existas uzero "$1".
+'nosuchuser'                 => 'Ne existas uzanto "$1".
 Uzanto-nomi esas mayu/minuskulo-distingenda.
 Kontrolez vua espelado, o [[Special:UserLogin/signup|krear nova konto]].',
-'nosuchusershort'            => 'Esas nula uzero "<nowiki>$1</nowiki>". Kontrolez la espelado.',
+'nosuchusershort'            => 'Esas nula uzanto "<nowiki>$1</nowiki>".
+Kontrolez la espelado.',
 'nouserspecified'            => 'Vu mustas specigar uzantonomo.',
 'wrongpassword'              => 'La skribita pasovorto esis nekorekta. Voluntez probar itere.',
 'wrongpasswordempty'         => 'Vu ne skribis pasovorto. Probez nove.',
@@ -863,7 +864,7 @@ Ol mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.',
 'recentchangeslinked-title'   => 'Chanji pri "$1"',
 'recentchangeslinked-summary' => "Co esas listo di recenta chanji ad pagini ligita da specigita pagino, od pagini en specigita kategorio.
 Pagini en [[Special:Watchlist|vua surveryo-listo]] esas '''dika'''.",
-'recentchangeslinked-page'    => 'Nomo dil pagino:',
+'recentchangeslinked-page'    => 'Nomo di la pagino:',
 'recentchangeslinked-to'      => 'Montrez chanji a pagini ligita a la specigita pagino vice',
 
 # Upload
@@ -1016,7 +1017,7 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'booksources-go'            => 'Irar',
 
 # Special:Log
-'specialloguserlabel'  => 'Uzero:',
+'specialloguserlabel'  => 'Uzanto:',
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Registrari',
 'all-logs-page'        => 'Omna publika registrari',

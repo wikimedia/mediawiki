@@ -9,6 +9,7 @@
  *
  * @author Nkosi ya Cabinda
  * @author Sab
+ * @author Urhixidur
  * @author Wikimistusik
  * @author Zetud
  */
@@ -1889,8 +1890,8 @@ Ise va bazera va lazava ko vildeks nover.',
 'creditspage'      => 'Rostbu',
 
 # Spam protection
-'spamprotectiontitle' => 'Page automatiquement protégée pour cause de spam',
-'spamprotectiontext'  => 'Page automatiquement protégée pour cause de spam',
+'spamprotectiontitle' => 'Filtre de protection anti-polluriels',
+'spamprotectiontext'  => 'La création ou sauvegarde de la page a été automatiquement bloquée par le filtre anti-polluriel. Ceci est probablement causé par l’inclusion d’un lien vers un site externe apparaissant sur la liste noire.',
 'spamprotectionmatch' => 'Le texte suivant a déclenché le détecteur de spam: $1',
 'spambot_username'    => 'Tucuara va MediaWiki "spam"
 MediaWiki spam cleanup',

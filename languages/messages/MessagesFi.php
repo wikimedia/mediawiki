@@ -2575,7 +2575,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'allmessages-filter-all'        => 'Kaikki',
 'allmessages-filter-modified'   => 'Muutettu',
 'allmessages-prefix'            => 'Suodata etuliitteellä',
-'allmessages-language'          => 'Kieli',
+'allmessages-language'          => 'Kieli:',
 'allmessages-filter-submit'     => 'Siirry',
 
 # Thumbnails

@@ -187,6 +187,7 @@ $messages = array(
 'subcategories'          => 'جیر رج‌ئون',
 'category-empty'         => 'ای رج ره ده‌له ئه‌سا هیچی دأنیه',
 'category-article-count' => '{{PLURAL:$2|ای رج هأمـینـتا وألـگ ره داره‌نه.|ای  {{PLURAL:$1ولگ|ولگ|$1 ئون}}، $2 جه ایجه دأره‌نه.}}',
+'listingcontinuesabbrev' => '(دمباله)',
 
 'about'         => 'ده‌لـه‌واره',
 'newwindow'     => '(ته‌رنه‌ روجین ده‌له‌ وا بونه)',

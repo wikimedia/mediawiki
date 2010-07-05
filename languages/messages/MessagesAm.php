@@ -9,6 +9,7 @@
  *
  * @author Codex Sinaiticus
  * @author Elfalem
+ * @author Hinstein
  * @author Romaine
  * @author Solomon
  * @author Teferra
@@ -221,7 +222,7 @@ $messages = array(
 'deletethispage'    => 'ይህን ገጽ ሰርዝ',
 'undelete_short'    => '{{PLURAL:$1|አንድ ዕትም|$1 ዕትሞች}} ለመመልስ',
 'protect'           => 'ጠብቅ',
-'protect_change'    => 'የመቆለፍ ደረጃ ለመቀይር',
+'protect_change'    => 'የመቆለፍ ደረጃን ለመለወጥ',
 'protectthispage'   => 'ይህን ገጽ ለመቆለፍ',
 'unprotect'         => 'አለመቆለፍ',
 'unprotectthispage' => 'ይህን ገጽ ለመፍታት',
@@ -254,7 +255,7 @@ $messages = array(
 'jumptosearch'      => 'ፍለጋ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'ስለ {{SITENAME}} መርሃግብር',
+'aboutsite'            => 'ስለ {{SITENAME}}',
 'aboutpage'            => 'Project:ስለ',
 'copyright'            => 'ይዘቱ በ$1 ሥር ይገኛል።',
 'copyrightpage'        => '{{ns:project}}:የማብዛት መብት ደንብ',
@@ -265,12 +266,12 @@ $messages = array(
 'edithelp'             => 'የማረም መመሪያ',
 'edithelppage'         => 'Help:የማዘጋጀት እርዳታ',
 'helppage'             => 'Help:ይዞታ',
-'mainpage'             => 'ዋና ገጽ',
+'mainpage'             => 'ዋናው ገጽ',
 'mainpage-description' => 'ዋና ገጽ',
 'policy-url'           => 'Project:መርመርያዎች',
 'portal'               => 'የኅብረተሠቡ መረዳጃ',
 'portal-url'           => 'Project:የኅብረተሠብ መረዳጃ',
-'privacy'              => 'የሚስጥር ፖሊሲ',
+'privacy'              => 'የግል ቋሚ መመሪያ',
 'privacypage'          => 'Project:የግልነት ድንጋጌ',
 
 'badaccess'        => 'ያልተፈቀደ - አይቻልም',
@@ -311,7 +312,7 @@ $messages = array(
 'nstab-main'      => 'ገጽ',
 'nstab-user'      => 'የአባል ገጽ',
 'nstab-media'     => 'ፋይል',
-'nstab-special'   => 'ልዩ',
+'nstab-special'   => 'ልዩ ገጾች',
 'nstab-project'   => 'የፕሮጀክት ገጽ',
 'nstab-image'     => 'ፋይል',
 'nstab-mediawiki' => 'መልዕክት',
@@ -495,7 +496,7 @@ $2",
 'showpreview'                      => 'ቅድመ እይታ',
 'showlivepreview'                  => 'የቀጥታ ቅድመ-ዕይታ',
 'showdiff'                         => 'ማነጻጸሪያ',
-'anoneditwarning'                  => "'''ማስታወቂያ:''' እርስዎ አሁን በአባል ስምዎ ያልገቡ ነዎት። ማዘጋጀት ይቻሎታል፤ ነገር ግን ለውጦችዎ በአባል ስም ሳይሆን በቁጥር አድራሻዎ ይመዘገባሉ። ከፈለጉ፥ በአባልነት [[Special:UserLogin|መግባት]] ይችላሉ።",
+'anoneditwarning'                  => "'''ማስታወቂያ:''' እርስዎ አሁን በአባል ስምዎ ያልገቡ ነዎት። ማዘጋጀት ይቻሎታል፤ ነገር ግን ለውጦችዎ በአባል ስም ሳይሆን በቁጥር (IP) አድራሻዎ ይመዘገባሉ። ከፈለጉ፥ በአባልነት [[Special:UserLogin|መግባት]] ይችላሉ።",
 'missingsummary'                   => "'''ማስታወሻ፦''' ማጠቃለያ ገና አላቀረቡም። እንደገና «ገጹን ለማቅረብ» ቢጫኑ፣ ያለ ማጠቃለያ ይላካል።",
 'missingcommenttext'               => 'እባክዎ አስተያየት ከዚህ በታች ያስግቡ።',
 'missingcommentheader'             => "'''ማስታወሻ፦''' ለዚሁ አስተያየት ምንም አርእስት አላቀረቡም። 'ለማቅረብ' እንደገና ቢጫኑ ለውጥዎ ያለ አርዕስት ይሆናል።",
@@ -541,7 +542,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 ወደዚህ በስሕተት ከሆነ የመጡት፣ የቃኝውን «Back» ቁልፍ ይጫኑ።',
 'anontalkpagetext'                 => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:UserLogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",
-'noarticletext'                    => 'በአሁኑ ወቅት በዚህ ገጽ ላይ ምንም ጽሑፍ የለም፤ በሌላ ገጾች [[Special:Search/{{PAGENAME}}|የዚህን ገጽ አርዕስት መፈለግ]] ወይም [{{fullurl:{{FULLPAGENAME}}|action=edit}} አዲስ ገፅ ማዘጋጀት ይችላሉ].',
+'noarticletext'                    => 'በአሁኑ ወቅት በዚህ ገጽ ላይ ጽሑፍ የለም፤ ነገር ግን በሌሎች ገጾች ላይ [[Special:Search/{{PAGENAME}}|ይህን አርዕስት መፈለግ]]፣ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ከርዕሱ ጋር ተመሳሳይ ፍለጋዎች አድርግ] ወይም [{{fullurl:{{FULLPAGENAME}}|action=edit}} አዲስ ገፅ ልታዘጋጅ/ጂ ትችላለህ/ያለሽ ].',
 'userpage-userdoesnotexist'        => 'የብዕር ስም «$1» አልተመዘገበም። እባክዎ ይህን ገጽ ለመፍጠር/ ለማስተካከል የፈለጉ እንደ ሆነ ያረጋግጡ።',
 'usercssyoucanpreview'             => "'''ምክር፦''' ሳይቆጠብ አዲስ CSSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",
 'userjsyoucanpreview'              => "'''ምክር፦''' ሳይቆጠብ አዲስ JSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",
@@ -660,6 +661,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'revdelete-suppress'      => 'መረጃ ከመጋቢዎችና ከሌሎች ይደበቅ።',
 'revdelete-log'           => 'ምክንያቱ፦',
 'revdelete-submit'        => 'በተመረጠው ዕትም ይደረግ',
+'revdel-restore'          => 'እይታን ለማስተካከል',
 'pagehist'                => 'የገጽ ታሪክ',
 'revdelete-content'       => 'ይዞታ',
 'revdelete-summary'       => 'ማጠቃለያ',
@@ -708,7 +710,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'searchresults'                    => 'የፍለጋ ውጤቶች',
 'searchresults-title'              => 'ለ"$1" የፍለጋ ውጤቶች',
 'searchresulttext'                 => 'በተጨማሪ ስለ ፍለጋዎች ለመረዳት፣ [[{{MediaWiki:Helppage}}]] ያንብቡ።',
-'searchsubtitle'                   => "'''ፍለጋ ለ[[:$1]]፦'''",
+'searchsubtitle'                   => 'እየፈለግህ/ሽ ያለሀው/ሽው \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all ከሱጋር የተያያዙ በሙላ "$1"]])',
 'searchsubtitleinvalid'            => "ለ'''$1''' ፈለጉ",
 'toomanymatches'                   => 'ከመጠን በላይ ያሉ ስምምነቶች ተመለሱ፤ እባክዎ ሌላ ጥያቄ ይሞክሩ።',
 'titlematches'                     => 'የሚስማሙ አርዕስቶች',
@@ -736,6 +738,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'search-redirect'                  => '(መምሪያ መንገድ $1)',
 'search-section'                   => '(ክፍል $1)',
 'search-suggest'                   => 'ምናልባት $1 የፈለጉት ይሆን',
+'search-interwiki-caption'         => 'ተዛማጅ ስራዎች',
 'search-interwiki-default'         => '$1 ውጤቶች፦',
 'search-interwiki-more'            => '(ተጨማሪ)',
 'search-mwsuggest-enabled'         => 'ከ አማራጭ ጋር',
@@ -1107,7 +1110,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'filehist-dimensions'       => 'ክልሉ (በpixel)',
 'filehist-filesize'         => 'መጠን',
 'filehist-comment'          => 'ማጠቃለያ',
-'imagelinks'                => 'መያያዣዎች',
+'imagelinks'                => 'ፋይል መያያዣዎች',
 'linkstoimage'              => '{{PLURAL:$1|የሚከተለው ገጽ ወደዚሁ ፋይል ተያይዟል|የሚከተሉ $1 ገጾች ወደዚሁ ፋይል ተያይዘዋል}}፦',
 'nolinkstoimage'            => 'ወዲህ ፋይል የተያያዘ ገጽ የለም።',
 'morelinkstoimage'          => 'ለዚህ ፋይል [[Special:WhatLinksHere/$1|ተጨማሪ መያያዣዎችን]] ለማየት።',
@@ -1205,7 +1208,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'fewestrevisions' => 'ለውጦች ያነሱላቸው መጣጥፎች',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 byte',
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|መደብ|መደቦች}}',
 'nlinks'                  => '$1 መያያዣዎች',
 'nmembers'                => '$1 {{PLURAL:$1|መጣጥፍ|መጣጥፎች}}',
@@ -1514,7 +1517,7 @@ $NEWPAGE
 'undelete-revision'          => 'የ$1 የተደለዘ ዕትም በ$2 በ$3፦',
 'undelete-nodiff'            => 'ቀድመኛ ዕትም አልተገኘም።',
 'undeletebtn'                => 'ይመለስ',
-'undeletelink'               => 'ይመለስ',
+'undeletelink'               => 'አሳይ/ወደ ነበረበት መልስ',
 'undeletereset'              => 'ባዶ ይደረግ',
 'undeletecomment'            => 'ማጠቃልያ፦',
 'undeletedarticle'           => '«[[$1]]»ን መለሰ',
@@ -1571,7 +1574,7 @@ $1',
 'nolinkshere-ns'           => "ባመለከቱት ክፍለ-ዊኪ ወደ '''[[:$1]]''' የተያያዘ ገጽ የለም።",
 'isredirect'               => 'መምሪያ መንገድ',
 'istemplate'               => 'የተሰካ',
-'whatlinkshere-prev'       => 'ፊተኛ $1',
+'whatlinkshere-prev'       => '{{PLURAL:$1|የቀድሞው|የቀድሞው $1}}',
 'whatlinkshere-next'       => 'ቀጥሎ $1',
 'whatlinkshere-links'      => '← ወዲህም የሚያያዝ',
 'whatlinkshere-hideredirs' => 'መምሪያ መንገዶች $1',
@@ -1782,13 +1785,13 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ዕትም|ዕትሞች}} ከ$2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'የርስዎ መኖርያ ገጽ',
+'tooltip-pt-userpage'             => 'መደነኛው ገጽህ/ሽ',
 'tooltip-pt-anonuserpage'         => 'ለቁ. አድራሻዎ የመኖርያ ገጽ',
-'tooltip-pt-mytalk'               => 'የርስዎ መወያያ ገጽ',
+'tooltip-pt-mytalk'               => 'የመወያያ ገፅህ/ሽ',
 'tooltip-pt-anontalk'             => 'ለቁ. አድራሻዎ የውይይት ገጽ',
 'tooltip-pt-preferences'          => 'የድረግጹን መልክ ለመምረጥ',
 'tooltip-pt-watchlist'            => 'እርስዎ ስለ ለውጦች የሚከታተሏቸው ገጾች',
-'tooltip-pt-mycontris'            => 'እርስዎ ያደረጓቸው ለውጦች በሙሉ',
+'tooltip-pt-mycontris'            => 'የተሳተፍክባቸው/ሽባቸው ቦታዎች ዝርዝር',
 'tooltip-pt-login'                => 'በብዕር ስም መግባትዎ ጠቃሚ ቢሆንም አስፈላጊነት አይደለም',
 'tooltip-pt-anonlogin'            => 'በብዕር ስም መግባትዎ ጠቃሚ ቢሆንም አስፈላጊነት አይደለም',
 'tooltip-pt-logout'               => 'ከብዕር ስምዎ ለመውጣት',
@@ -1808,6 +1811,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-search-fulltext'         => 'ይህ ጽሕፈት የሚገኝባቸውን ገጾች ለመፈልግ',
 'tooltip-p-logo'                  => 'ዋና ገጽ',
 'tooltip-n-mainpage'              => 'ወደ ዋናው ገጽ ለመሔድ',
+'tooltip-n-mainpage-description'  => 'ዋናውን ገጽ ተመልከት',
 'tooltip-n-portal'                => 'ስለ መርሃገብሩ አጠቃቀም አለመረዳት',
 'tooltip-n-currentevents'         => 'ስለ ወቅታዊ ጉዳዮች / ዜና መረጃ ለማግኘት',
 'tooltip-n-recentchanges'         => 'በዚሁ ዊኪ ላይ በቅርቡ የተደረጉ ለውጦች',
@@ -1842,6 +1846,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-recreate'                => 'ገጹ የጠፋ ሆኖም እንደገና ለመፍጠር',
 'tooltip-upload'                  => 'ለመጀመር ይጫኑ',
 'tooltip-rollback'                => 'ROLLBACK የመጨረሻውን አዛጋጅ ለውጦች በፍጥነት ይገልበጣል።',
+'tooltip-undo'                    => '"መልስ" ይህን ቅድመ እይታ ወደ ቀድሞው የእርማት ቦታው መልስ። ማጠቃለያው ላይ ምክንያታችንን ለማስገባት ይፈቅድልናል።',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata ለዚህ ሰርቨር እንደማይሠራ ተደርጓል።',
