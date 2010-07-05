@@ -110,7 +110,7 @@ class SkinTemplate extends Skin {
 	 * and eventually it spits out some HTML. Should have interface
 	 * roughly equivalent to PHPTAL 0.7.
 	 *
-	 * @param $callback string (or file)
+	 * @param $classname string (or file)
 	 * @param $repository string: subdirectory where we keep template files
 	 * @param $cache_dir string
 	 * @return object
@@ -487,7 +487,7 @@ class SkinTemplate extends Skin {
 	 * an error object of the appropriate type.
 	 * For the base class, assume strings all around.
 	 *
-	 * @param mixed $str
+	 * @param $str Mixed
 	 * @private
 	 */
 	function printOrError( $str ) {

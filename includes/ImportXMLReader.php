@@ -209,8 +209,9 @@ class WikiImporter {
 	 * Notify the callback function when a </page> is closed.
 	 * @param $title Title
 	 * @param $origTitle Title
-	 * @param $revisionCount int
-	 * @param $successCount Int: number of revisions for which callback returned true
+	 * @param $revCount Integer
+	 * @param $sucCount Int: number of revisions for which callback returned true
+	 * @param $pageInfo Array: associative array of page information
 	 */
 	private function pageOutCallback( $title, $origTitle, $revCount, $sucCount, $pageInfo ) {
 		if( isset( $this->mPageOutCallback ) ) {
