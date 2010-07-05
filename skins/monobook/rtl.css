@@ -169,8 +169,8 @@ div#footer {
 	margin-right: 13.6em;
 	border-left: 0;
 	border-right: 1px solid #fabd23;
-} 
-* html div#column-content { 
+}
+* html div#column-content {
 	float: none;
 	margin-left: 0;
 	margin-right: 0;
@@ -227,13 +227,13 @@ table.filehistory th {
 	text-align: right;
 }
 
-/* Special:Allpages styling */
+/* Special:AllPages styling */
 td.mw-allpages-nav, p.mw-allpages-nav, td.mw-allpages-alphaindexline {
 	text-align: left;
 }
 
-/* Special:Prefixindex styling */
-td#mw-prefixindex-nav-form  {
+/* Special:PrefixIndex styling */
+td#mw-prefixindex-nav-form {
 	text-align: left;
 }
 

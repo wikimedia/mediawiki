@@ -1,8 +1,8 @@
 /* 6.0 - only fixes */
-/* content area */ 
+/* content area */
 /* workaround for various ie float bugs */
-div#column-content { 
-	float: none; 
+div#column-content {
+	float: none;
 	margin-left: 0;
 	height: 1%;
 }

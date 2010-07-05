@@ -135,7 +135,7 @@ h4 { font-size: 116%; }
 h4 .editsection { font-size: 86%; font-weight: normal; }
 h5 { font-size: 100%; }
 h5 .editsection { font-weight: normal; }
-h6 { font-size: 80%;  }
+h6 { font-size: 80%; }
 h6 .editsection { font-size: 125%; font-weight: normal; }
 
 ul {
@@ -990,7 +990,7 @@ div#footer li {
 }
 
 .prefsection legend {
-	font-weight: bold;   
+	font-weight: bold;
 }
 .prefsection table, .prefsection legend {
 	background-color: #F9F9F9;
@@ -1120,7 +1120,6 @@ div#userloginForm .captcha {
 	display: none;
 }
 
-
 div.patrollink {
 	clear: both;
 }
@@ -1205,24 +1204,24 @@ div#searchTargetHide {
 }
 
 div.multipageimagenavbox {
-   border: solid 1px silver;
-   padding: 4px;
-   margin: 1em;
-   background: #f0f0f0;
+	border: solid 1px silver;
+	padding: 4px;
+	margin: 1em;
+	background: #f0f0f0;
 }
 
 div.multipageimagenavbox div.thumb {
-   border: none;
-   margin-left: 2em;
-   margin-right: 2em;
+	border: none;
+	margin-left: 2em;
+	margin-right: 2em;
 }
 
 div.multipageimagenavbox hr {
-   margin: 6px;
+	margin: 6px;
 }
 
 table.multipageimage td {
-   text-align: center;
+	text-align: center;
 }
 
 .templatesUsed { margin-top: 1.5em; }
