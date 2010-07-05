@@ -1793,20 +1793,6 @@ class OutputPage {
 	}
 
 	/**
-	 * @deprecated use permissionRequired()
-	 */
-	public function sysopRequired() {
-		throw new MWException( "Call to deprecated OutputPage::sysopRequired() method\n" );
-	}
-
-	/**
-	 * @deprecated use permissionRequired()
-	 */
-	public function developerRequired() {
-		throw new MWException( "Call to deprecated OutputPage::developerRequired() method\n" );
-	}
-
-	/**
 	 * Produce the stock "please login to use the wiki" page
 	 */
 	public function loginToUse() {
