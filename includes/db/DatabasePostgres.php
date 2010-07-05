@@ -1284,9 +1284,7 @@ SQL;
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
 	}
-	function immediateCommit( $fname = 'DatabasePostgres::immediateCommit' ) {
-		return true;
-	}
+
 	function commit( $fname = 'DatabasePostgres::commit' ) {
 		$this->query( 'COMMIT', $fname );
 		$this->mTrxLevel = 0;

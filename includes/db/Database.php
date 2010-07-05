@@ -2002,6 +2002,7 @@ abstract class DatabaseBase {
 	 * @deprecated use begin()
 	 */
 	function immediateBegin( $fname = 'Database::immediateBegin' ) {
+		wfDeprecated( __METHOD__ );
 		$this->begin();
 	}
 
@@ -2010,6 +2011,7 @@ abstract class DatabaseBase {
 	 * @deprecated use commit()
 	 */
 	function immediateCommit( $fname = 'Database::immediateCommit' ) {
+		wfDeprecated( __METHOD__ );
 		$this->commit();
 	}
 

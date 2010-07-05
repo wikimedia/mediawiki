@@ -909,10 +909,6 @@ class DatabaseOracle extends DatabaseBase {
 		$this->mTrxLevel = 1;
 	}
 
-	function immediateCommit( $fname = '' ) {
-		return true;
-	}
-
 	function commit( $fname = '' ) {
 		oci_commit( $this->mConn );
 		$this->mTrxLevel = 0;
