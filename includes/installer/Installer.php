@@ -11,9 +11,8 @@ abstract class Installer {
 	 * MediaWiki configuration globals that will eventually be passed through 
 	 * to LocalSettings.php. The names only are given here, the defaults 
 	 * typically come from DefaultSettings.php.
-	 * @protected
 	 */
-	var $defaultVarNames = array(
+	protected $defaultVarNames = array(
 		'wgSitename',
 		'wgPasswordSender',
 		'wgLanguageCode', 
@@ -44,9 +43,8 @@ abstract class Installer {
 	 * Variables that are stored alongside globals, and are used for any 
 	 * configuration of the installation process aside from the MediaWiki 
 	 * configuration. Map of names to defaults.
-	 * @protected
 	 */
-	var $internalDefaults = array(
+	protected $internalDefaults = array(
 		'_UserLang' => 'en',
 		'_Environment' => false,
 		'_CompiledDBs' => array(),
@@ -78,9 +76,8 @@ abstract class Installer {
 	 *
 	 * To add a new type, create a <type>Installer class and a Database<type> 
 	 * class, and add a config-type-<type> message to MessagesEn.php.
-	 * @private
 	 */
-	var $dbTypes = array(
+	private $dbTypes = array(
 		'mysql',
 		'postgres',
 		'sqlite',
@@ -94,17 +91,15 @@ abstract class Installer {
 
 	/**
 	 * Cached DB installer instances, access using getDBInstaller()
-	 * @private
 	 */
-	var $dbInstallers = array();
+	private $dbInstallers = array();
 
 	/**
 	 * A list of environment check methods called by doEnvironmentChecks(). 
 	 * These may output warnings using showMessage(), and/or abort the 
 	 * installation process by returning false.
-	 * @protected
 	 */
-	var $envChecks = array( 
+	protected $envChecks = array(
 		'envLatestVersion',
 		'envCheckDB',
 		'envCheckRegisterGlobals',
@@ -126,7 +121,10 @@ abstract class Installer {
 		'envCheckUploadsDirectory',
 	);
 
-	var $installSteps = array(
+	/**
+	 * Steps for installation.
+	 */
+	protected $installSteps = array(
 		'database',
 		'tables',
 		'interwiki',
@@ -137,9 +135,8 @@ abstract class Installer {
 
 	/**
 	 * Known object cache types and the functions used to test for their existence
-	 * @protected
 	 */
-	var $objectCaches = array( 
+	protected $objectCaches = array(
 		'xcache' => 'xcache_get',
 		'apc' => 'apc_fetch',
 		'eaccel' => 'eaccelerator_get',
@@ -207,9 +204,8 @@ abstract class Installer {
 	);
 	/**
 	 * Cached Title and ParserOptions used by parse()
-	 * @private
 	 */
-	var $parserTitle, $parserOptions;
+	private $parserTitle, $parserOptions;
 
 	/**
 	 * Constructor, always call this from child classes
