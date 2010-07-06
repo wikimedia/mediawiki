@@ -844,7 +844,7 @@ abstract class Installer {
 		$dh = opendir( $dir );
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			if( file_exists( "$dir/$file/$file.php" ) ) {
-				$exts[] = $file;
+				$exts[$file] = null;
 			}
 		}
 		$this->setVar( '_Extensions', $exts );
