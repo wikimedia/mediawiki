@@ -81,6 +81,10 @@ class WebInstaller extends Installer {
 		if ( isset( $session['settings'] ) ) {
 			$this->settings = $session['settings'] + $this->settings;
 		}
+
+		/* Must be called after the session setup above */
+		$this->setupDatabaseObjects();
+
 		$this->exportVars();
 		$this->setupLanguage();
 

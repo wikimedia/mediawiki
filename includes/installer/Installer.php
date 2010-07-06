@@ -233,6 +233,18 @@ abstract class Installer {
 		foreach ( $this->defaultVarNames as $var ) {
 			$this->settings[$var] = $GLOBALS[$var];
 		}
+
+		$this->parserTitle = Title::newFromText( 'Installer' );
+		$this->parserOptions = new ParserOptions;
+		$this->parserOptions->setEditSection( false );
+	}
+
+	/*
+	 * Set up our database objects. They need to inject some of their
+	 * own configuration into our global context. Usually this'll just be
+	 * things like the default $wgDBname.
+	 */
+	function setupDatabaseObjects() {
 		foreach ( $this->dbTypes as $type ) {
 			$installer = $this->getDBInstaller( $type );
 			if ( !$installer->isCompiled() ) {
@@ -247,10 +259,6 @@ abstract class Installer {
 				}
 			}
 		}
-
-		$this->parserTitle = Title::newFromText( 'Installer' );
-		$this->parserOptions = new ParserOptions;
-		$this->parserOptions->setEditSection( false );
 	}
 
 	/**
