@@ -7243,6 +7243,20 @@ China
 !! end
 
 !! test
+Bug 24072: more test on conversion rule for title
+!! options
+language=zh variant=zh-tw showtitle
+!! input
+This should be stripped-{T|zh:China;zh-tw:Taiwan}-!
+This won't take interferes with the title rule-{H|zh:Beijing;zh-tw:Taipei}-.
+!! result
+Taiwan
+<p>This should be stripped!
+This won't take interferes with the title rule.
+</p>
+!! end
+
+!! test
 Raw output of variant escape tags (R flag)
 !! options
 language=zh variant=zh-tw
