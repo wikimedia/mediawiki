@@ -452,7 +452,7 @@ class ApiParse extends ApiBase {
 			array( 'code' => 'missingrev', 'info' => 'There is no revision ID oldid' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revisions' ),
 			array( 'code' => 'missingtitle', 'info' => 'The page you specified doesn\'t exist' ),
-			array( 'code' => 'nosuchsection', 'info' => 'There is no section sectionnumber in page'),
+			array( 'code' => 'nosuchsection', 'info' => 'There is no section sectionnumber in page' ),
 			array( 'nosuchpageid' ),
 		) );
 	}
