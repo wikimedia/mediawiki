@@ -13,6 +13,10 @@ $messages = array();
 $messages['en'] = array(
 	'config-title'                    => 'MediaWiki $1 installation',
 	'config-information'              => 'Information',
+	'config-localsettings-upgrade'    => "'''Warning''': Your <code>LocalSettings.php</code> file has been detected.
+Your software is able to upgrade. Please move LocalSettings.php to somewhere safe in then run the installer again.",
+	'config-localsettings-noupgrade'  => "'''Error''': Your <code>LocalSettings.php</code> file has been detected.
+Your software is not able to upgrade at this time. The installer has been disabled for security reasons.",
 	'config-session-error'            => 'Error starting session: $1',
 	'config-session-expired'          => 'Your session data seems to have expired.
 Sessions are configured for a lifetime of $1.

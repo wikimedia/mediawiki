@@ -159,7 +159,13 @@ class WebInstaller extends Installer {
 		# Execute the page
 		$this->currentPageName = $page->getName();
 		$this->startPageWrapper( $pageName );
-		$result = $page->execute();
+		$localSettings = $this->getLocalSettingsStatus();
+		if( !$localSettings->isGood() ) {
+			$this->showStatusBox( $localSettings );
+			$result = 'output';
+		} else {
+			$result = $page->execute();
+		}
 		$this->endPageWrapper();
 
 		if ( $result == 'skip' ) {
