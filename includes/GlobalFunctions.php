@@ -2457,13 +2457,6 @@ function wfUseMW( $req_ver ) {
 }
 
 /**
- * @deprecated use StringUtils::escapeRegexReplacement
- */
-function wfRegexReplacement( $string ) {
-	return StringUtils::escapeRegexReplacement( $string );
-}
-
-/**
  * Return the final portion of a pathname.
  * Reimplemented because PHP5's basename() is buggy with multibyte text.
  * http://bugs.php.net/bug.php?id=33898
@@ -2675,13 +2668,6 @@ function wfDoUpdates()
 }
 
 /**
- * @deprecated use StringUtils::explodeMarkup
- */
-function wfExplodeMarkup( $separator, $text ) {
-	return StringUtils::explodeMarkup( $separator, $text );
-}
-
-/**
  * Convert an arbitrarily-long digit string from one numeric base
  * to another, optionally zero-padding to a minimum column width.
  *
@@ -2793,15 +2779,6 @@ function wfCreateObject( $name, $p ){
 		default:
 			throw new MWException( "Too many arguments to construtor in wfCreateObject" );
 	}
-}
-
-/**
- * Alias for modularized function
- * @deprecated Use Http::isLocalURL() instead
- */
-function wfIsLocalURL( $url ) {
-	wfDeprecated(__FUNCTION__);
-	return Http::isLocalURL( $url );
 }
 
 function wfHttpOnlySafe() {
