@@ -552,8 +552,9 @@ class LanguageConverter {
 		} else {
 			// first let's check if a message has given us a converted name
 			$nsConvKey = 'conversion-ns' . $index;
-			$text = wfMsgForContentNoTrans( $nsConvKey );
-			if ( $text == '&lt;' . htmlspecialchars( $nsConvKey ) . '&gt;' ) {
+			if ( !wfEmptyMsg( $nsConvKey ) ) {
+				$text = wfMsgForContentNoTrans( $nsConvKey );
+			} else {
 				// the message does not exist, try retrieve it from the current
 				// variant's namespace names.
 				$langObj = $this->mLangObj->factory( $variant );
