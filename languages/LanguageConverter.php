@@ -20,7 +20,6 @@ class LanguageConverter {
 	var $mVariants, $mVariantFallbacks, $mVariantNames;
 	var $mTablesLoaded = false;
 	var $mTables;
-	var $mNamespaceTables;
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
 	var $mManualLevel;
 	var $mCacheKey;
@@ -87,7 +86,6 @@ class LanguageConverter {
 			} else {
 				$this->mManualLevel[$v] = 'bidirectional';
 			}
-			$this->mNamespaceTables[$v] = array();
 			$this->mFlags[$v] = $v;
 		}
 	}
@@ -548,12 +546,18 @@ class LanguageConverter {
 	 */
 	public function convertTitle( $title ) {
 		$variant = $this->getPreferredVariant();
-		if ( $title->getNamespace() === NS_MAIN ) {
+		$index = $title->getNamespace();
+		if ( $index === NS_MAIN ) {
 			$text = '';
 		} else {
-			$text = $title->getNsText();
-			if ( isset( $this->mNamespaceTables[$variant][$text] ) ) {
-				$text = $this->mNamespaceTables[$variant][$text];
+			// first let's check if a message has given us a converted name
+			$nsConvKey = 'conversion-ns' . $index;
+			$text = wfMsgForContentNoTrans( $nsConvKey );
+			if ( $text == '&lt;' . htmlspecialchars( $nsConvKey ) . '&gt;' ) {
+				// the message does not exist, try retrieve it from the current
+				// variant's namespace names.
+				$langObj = $this->mLangObj->factory( $variant );
+				$text = $langObj->getFormattedNsText( $index );
 			}
 			$text .= ':';
 		}
