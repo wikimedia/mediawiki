@@ -853,6 +853,35 @@ abstract class Installer {
 		return $this->installSteps;
 	}
 
+	/**
+	 * Actually perform the installation
+	 * @param Array $startCB A callback array for the beginning of each step
+	 * @param Array $endCB A callback array for the end of each step
+	 * @return Array of Status objects
+	 */
+	public function performInstallation( $startCB, $endCB ) {
+		$installResults = array();
+		foreach( $this->getInstallSteps() as $stepObj ) {
+			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
+			call_user_func_array( $startCB, array( $step ) );
+			$status = null;
+
+			# Call our working function
+			if ( is_array( $step ) ) {
+				# A custom callaback
+				$callback = $stepObj['callback'];
+				$status = call_user_func_array( $callback, array() );
+			} else {
+				# Boring implicitly named callback
+				$func = 'install' . ucfirst( $step );
+				$status = $this->{$func}();
+			}
+			call_user_func_array( $endCB, array( $step, $status ) );
+			$installResults[$step] = $status;
+		}
+		return $installResults;
+	}
+
 	public function installExtensions() {
 		global $wgHooks, $wgAutoloadClasses;
 		$exts = $this->getVar( '_Extensions' );
