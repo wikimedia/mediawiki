@@ -32,7 +32,7 @@ abstract class Installer {
 		'wgScriptPath',
 		'wgScriptExtension',
 		'wgMetaNamespace',
-//		'wgDeletedDirectory',
+		'wgDeletedDirectory',
 		'wgEnableUploads',
 		'wgLogo',
 		'wgShellLocale',
