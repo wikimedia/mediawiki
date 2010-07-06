@@ -213,13 +213,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( $mto && !$mto->isError() ) {
 					$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
 
-					//bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
-					//thumbnail sizes for the thumbnail actual size
+					// bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
+					// thumbnail sizes for the thumbnail actual size
 					if ( $mto->getUrl() !== $file->getUrl() ) {
-						$vals['thumbwidth'] = intval( $mto->getWidth() );					
+						$vals['thumbwidth'] = intval( $mto->getWidth() );
 						$vals['thumbheight'] = intval( $mto->getHeight() );
 					} else {
-						$vals['thumbwidth'] = intval( $file->getWidth() );					
+						$vals['thumbwidth'] = intval( $file->getWidth() );
 						$vals['thumbheight'] = intval( $file->getHeight() );
 					}
 					

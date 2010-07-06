@@ -99,7 +99,7 @@ class ApiUpload extends ApiBase {
 						$this->mParams['comment'],
 						$this->mParams['watchlist'],
 						$this->mParams['ignorewarnings'],
-						$async);
+						$async );
 
 				$this->checkPermissions( $wgUser );
 				if ( $async ) {

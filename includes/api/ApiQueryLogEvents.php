@@ -231,7 +231,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['pageid'] = intval( $row->page_id );
 		}
 
-		if( $this->fld_title || $this->fld_parsedcomment ) {
+		if ( $this->fld_title || $this->fld_parsedcomment ) {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		}
 

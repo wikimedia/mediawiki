@@ -299,6 +299,7 @@ class ApiEditPage extends ApiBase {
 
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = '';
+
 			case EditPage::AS_SUCCESS_UPDATE:
 				$r['result'] = 'Success';
 				$r['pageid'] = intval( $titleObj->getArticleID() );
@@ -326,7 +327,7 @@ class ApiEditPage extends ApiBase {
 				// This usually means some kind of race condition
 				// or DB weirdness occurred. 
 				if ( is_array( $result ) && count( $result ) > 0 ) {
-					$this->dieUsageMsg( array( 'unknownerror', $result[0][0] ) );					
+					$this->dieUsageMsg( array( 'unknownerror', $result[0][0] ) );
 				}
 				
 				// Unknown error, but no specific error message
