@@ -123,8 +123,9 @@ abstract class Installer {
 
 	/**
 	 * Steps for installation.
+	 * @TODO Should be protected...
 	 */
-	protected $installSteps = array(
+	var $installSteps = array(
 		'database',
 		'tables',
 		'interwiki',
