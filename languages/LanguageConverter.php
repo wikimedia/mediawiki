@@ -488,9 +488,14 @@ class LanguageConverter {
 	 * @private
 	 */
 	function applyManualConv( $convRule ) {
-		// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom
-		// conversion in title
-		$this->mConvRuleTitle = $convRule->getTitle();
+		// Use syntax -{T|zh-cn:TitleCN; zh-tw:TitleTw}- to custom
+		// title conversion.
+		// Bug 24072: mConvRuleTitle won't work if the title conversion
+		// rule was followed by other manual conversion rule(s).
+		$newConvRuleTitle = $convRule->getTitle();
+		if( $newConvRuleTitle ) {
+			$this->mConvRuleTitle = $newConvRuleTitle;
+		}
 
 		// apply manual conversion table to global table
 		$convTable = $convRule->getConvTable();
