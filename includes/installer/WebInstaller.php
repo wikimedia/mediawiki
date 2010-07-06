@@ -1577,42 +1577,26 @@ class WebInstaller_Install extends WebInstallerPage {
 		}
 		$this->startForm();
 		$this->addHTML("<ul>");
-		foreach( $this->parent->getInstallSteps() as $stepObj ) {
-			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
-			$this->startStage( "config-install-$step" );
-			$status = null;
-
-			# Call our working function
-			if ( is_array( $step ) ) {
-				# A custom callaback
-				$callback = $stepObj['callback'];
-				$status = call_user_func_array( $callback, array() );
-			} else {
-				# Boring implicitly named callback
-				$func = 'install' . ucfirst( $step );
-				$status = $this->parent->{$func}();
-			}
-
-			$ok = $status->isGood();
-			if ( !$ok ) {
-				$this->parent->showStatusBox( $status );
-			}
-			$this->endStage( $ok );
-		}
+		$this->parent->performInstallation(
+			array( $this, 'startStage'), 
+			array( $this, 'endStage' )
+		);
 		$this->addHTML("</ul>");
 		$this->endForm();
 		return true;
 
 	}
 
-	private function startStage( $msg ) {
-		$this->addHTML( "<li>" . wfMsgHtml( $msg ) . wfMsg( 'ellipsis') );
+	public function startStage( $step ) {
+		$this->addHTML( "<li>" . wfMsgHtml( "config-install-$step" ) . wfMsg( 'ellipsis') );
 	}
 
-	private function endStage( $success = true ) {
+	public function endStage( $step, $status ) {
+		$success = $status->isGood();
 		$msg = $success ? 'config-install-step-done' : 'config-install-step-failed';
 		$html = wfMsgHtml( 'word-separator' ) . wfMsgHtml( $msg );
 		if ( !$success ) {
+			$this->parent->showStatusBox( $status );
 			$html = "<span class=\"error\">$html</span>";
 		}
 		$this->addHTML( $html . "</li>\n" );
