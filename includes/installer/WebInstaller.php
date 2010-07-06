@@ -731,11 +731,18 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Output an error box using a Status object
+	 * Output an error or warning box using a Status object
 	 */
-	function showStatusErrorBox( $status ) {
-		$text = $status->getWikiText();
-		$this->output->addHTML( $this->getErrorBox( $text ) );
+	function showStatusBox( $status ) {
+		if( !$status->isGood() ) {
+			$text = $status->getWikiText();
+			if( $status->isOk() ) {
+				$box = $this->getWarningBox( $text );
+			} else {
+				$box = $this->getErrorBox( $text );
+			}
+			$this->output->addHTML( $box );
+		}
 	}
 
 	function showStatusMessage( $status ) {
@@ -985,7 +992,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 				$this->setVar( '_UpgradeDone', false );
 				return 'continue';
 			} else {
-				$this->parent->showStatusErrorBox( $status );
+				$this->parent->showStatusBox( $status );
 			}
 		}
 
@@ -1112,7 +1119,7 @@ class WebInstaller_DBSettings extends WebInstallerPage {
 			} elseif ( $status->isGood() ) {
 				return 'continue';
 			} else {
-				$this->parent->showStatusErrorBox( $status );
+				$this->parent->showStatusBox( $status );
 			}
 		}
 
@@ -1588,7 +1595,7 @@ class WebInstaller_Install extends WebInstallerPage {
 
 			$ok = $status->isGood();
 			if ( !$ok ) {
-				$this->parent->showStatusErrorBox( $status );
+				$this->parent->showStatusBox( $status );
 			}
 			$this->endStage( $ok );
 		}
