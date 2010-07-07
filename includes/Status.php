@@ -179,19 +179,15 @@ class Status {
 			}
 		}
 		if ( count( $this->errors ) == 1 ) {
-			$params = array_map( 'wfEscapeWikiText', $this->cleanParams( $this->errors[0]['params'] ) );
-			$s = wfMsgReal( $this->errors[0]['message'], $params, true, false, false );
+			$s = $this->getWikiTextForError( $this->errors[0], $this->errors[0]  );
 			if ( $shortContext ) {
 				$s = wfMsgNoTrans( $shortContext, $s );
 			} elseif ( $longContext ) {
 				$s = wfMsgNoTrans( $longContext, "* $s\n" );
 			}
 		} else {
-			$s = '';
-			foreach ( $this->errors as $error ) {
-				$params = array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) );
-				$s .= '* ' . wfMsgReal( $error['message'], $params, true, false, false ) . "\n";
-			}
+			$s = '* '. implode("\n* ",
+				$this->getWikiTextArray( $this->errors ) ) . "\n";
 			if ( $longContext ) {
 				$s = wfMsgNoTrans( $longContext, $s );
 			} elseif ( $shortContext ) {
@@ -199,6 +195,41 @@ class Status {
 			}
 		}
 		return $s;
+	}
+
+	/**
+	 * Return the wiki text for a single error.
+	 * @param $error Mixed With an array & two values keyed by
+	 * 'message' and 'params', use those keys-value pairs.
+	 * Otherwise, if its an array, just use the first value as the
+	 * message and the remaining items as the params.
+	 *
+	 * @return String
+	 */
+	protected function getWikiTextForError( $error ) {
+		if ( is_array( $error ) ) {
+			if ( isset( $error['message'] ) && isset( $error['params'] ) ) {
+				return wfMsgReal( $error['message'],
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) ),
+					true, false, false );
+			} else {
+				$message = array_shift($error);
+				return wfMsgReal( $message,
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ),
+					true, false, false );
+			}
+		} else {
+			return wfMsgReal( $error, array(), true, false, false);
+		}
+	}
+
+	/**
+	 * Return an array with the wikitext for each item in the array.
+	 * @param $errors Array
+	 * @return Array
+	 */
+	function getWikiTextArray( $errors ) {
+		return array_map( array( $this, 'getWikiTextForError' ), $errors );
 	}
 
 	/**
@@ -223,17 +254,37 @@ class Status {
 	 * @return Array
 	 */
 	function getErrorsArray() {
+		return $this->getStatArray( "error" );
+	}
+
+	/**
+	 * Get the list of warnings (but not errors)
+	 *
+	 * @return Array
+	 */
+	function getWarningsArray() {
+		return $this->getStatArray( "warning" );
+	}
+
+	/**
+	 * Returns a list of status messages of the given type
+	 * @param $type String
+	 *
+	 * @return Array
+	 */
+	protected function getStatArray( $type ) {
 		$result = array();
 		foreach ( $this->errors as $error ) {
-			if ( $error['type'] == 'error' )
-				if( $error['params'] )
+			if ( $error['type'] === $type ) {
+				if( $error['params'] ) {
 					$result[] = array_merge( array( $error['message'] ), $error['params'] );
-				else
+				} else {
 					$result[] = $error['message'];
+				}
+			}
 		}
 		return $result;
 	}
-
 	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *

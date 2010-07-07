@@ -10,8 +10,8 @@ class SqliteInstaller extends InstallerDBType {
 		return 'sqlite';
 	}
 
-	function isCompiled() {
-		return $this->checkExtension( 'pdo_sqlite' );
+	static function isCompiled() {
+		return self::checkExtension( 'pdo_sqlite' );
 	}
 
 	function getGlobalDefaults() {

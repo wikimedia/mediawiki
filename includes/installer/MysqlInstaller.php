@@ -39,19 +39,24 @@ class MysqlInstaller extends InstallerDBType {
 			return;
 		}
 
+		if ( $this->parent->getVar( 'wgDBtype' ) !== $this->getName() ) {
+			return;
+		}
+
 		# Add our user callback to installSteps, right before the tables are created.
-		$where_tables = array_search( "tables", $this->parent->installSteps );
+
+		debug_print_backtrace();
 		$callback = array(
 			array(
 				'name' => 'user',
 				'callback' => array( &$this, 'setupUser' ),
 			)
 		);
-		array_splice( $this->parent->installSteps, $where_tables, 0, $callback );
+		$this->parent->addInstallStepFollowing( "tables", $callback );
 	}
-	
-	function isCompiled() {
-		return $this->checkExtension( 'mysql' );
+
+	static function isCompiled() {
+		return self::checkExtension( 'mysql' );
 	}
 
 	function getGlobalDefaults() {
