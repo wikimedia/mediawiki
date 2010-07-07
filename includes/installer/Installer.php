@@ -873,7 +873,7 @@ abstract class Installer {
 			if ( is_array( $stepObj ) ) {
 				# A custom callaback
 				$callback = $stepObj['callback'];
-				$status = call_user_func_array( $callback, array() );
+				$status = call_user_func_array( $callback, array( $installer ) );
 			} else {
 				# Boring implicitly named callback
 				$func = 'install' . ucfirst( $step );
