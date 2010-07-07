@@ -235,7 +235,7 @@ abstract class Installer {
 		}
 		foreach ( $this->dbTypes as $type ) {
 			$installer = $this->getDBInstaller( $type );
-			if ( !$installer ) {
+			if ( !$installer->isCompiled() ) {
 				continue;
 			}
 			$defaults = $installer->getGlobalDefaults();
@@ -282,11 +282,7 @@ abstract class Installer {
 
 		if ( !isset( $this->dbInstallers[$type] ) ) {
 			$class = ucfirst( $type ). 'Installer';
-			if ( call_user_func( array( $class, 'isCompiled' ) ) ) {
-				$this->dbInstallers[$type] = new $class( $this );
-			} else {
-				$this->dbInstallers[$type] = false;
-			}
+			$this->dbInstallers[$type] = new $class( $this );
 		}
 		return $this->dbInstallers[$type];
 	}
@@ -867,6 +863,7 @@ abstract class Installer {
 	 */
 	public function performInstallation( $startCB, $endCB ) {
 		$installResults = array();
+		$installer = $this->getDBInstaller();
 		foreach( $this->getInstallSteps() as $stepObj ) {
 			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
 			call_user_func_array( $startCB, array( $step ) );
@@ -880,7 +877,7 @@ abstract class Installer {
 			} else {
 				# Boring implicitly named callback
 				$func = 'install' . ucfirst( $step );
-				$status = $this->{$func}();
+				$status = $this->{$func}( $installer );
 			}
 			call_user_func_array( $endCB, array( $step, $status ) );
 			$installResults[$step] = $status;
@@ -903,10 +900,9 @@ abstract class Installer {
 		return Status::newGood();
 	}
 
-	public function installDatabase() {
-		$type = $this->getVar( 'wgDBtype' );
-		$installer = $this->getDBInstaller( $type );
+	public function installDatabase( &$installer ) {
 		if(!$installer) {
+			$type = $this->getVar( 'wgDBtype' );
 			$status = Status::newFatal( "config-no-db", $type );
 		} else {
 			$status = $installer->setupDatabase();
@@ -914,8 +910,7 @@ abstract class Installer {
 		return $status;
 	}
 
-	public function installTables() {
-		$installer = $this->getDBInstaller();
+	public function installTables( &$installer ) {
 		$status = $installer->createTables();
 		if( $status->isOK() ) {
 			LBFactory::enableBackend();
@@ -923,8 +918,7 @@ abstract class Installer {
 		return $status;
 	}
 
-	public function installInterwiki() {
-		$installer = $this->getDBInstaller();
+	public function installInterwiki( &$installer ) {
 		return $installer->populateInterwikiTable();
 	}
 

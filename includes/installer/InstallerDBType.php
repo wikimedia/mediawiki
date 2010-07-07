@@ -24,7 +24,7 @@ abstract class InstallerDBType {
 	/**
 	 * @return true if the client library is compiled in
 	 */
-	abstract static function isCompiled();
+	abstract public function isCompiled();
 
 	/**
 	 * Get an array of MW configuration globals that will be configured by this class.
@@ -78,6 +78,13 @@ abstract class InstallerDBType {
 	abstract function getConnection();
 
 	/**
+	 * Allow DB installers a chance to make last-minute changes before installation
+	 * occurs. This happens before setupDatabase() or createTables() is called, but
+	 * long after the constructor. Helpful for things like modifying setup steps :)
+	 */
+	public function preInstall() {}
+
+	/**
 	 * Create the database and return a Status object indicating success or
 	 * failure.
 	 *
@@ -126,7 +133,7 @@ abstract class InstallerDBType {
 	 * Convenience function
 	 * Check if a named extension is present
 	 */
-	static function checkExtension( $name ) {
+	protected static function checkExtension( $name ) {
 		wfSuppressWarnings();
 		$compiled = wfDl( $name );
 		wfRestoreWarnings();
