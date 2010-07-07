@@ -371,7 +371,7 @@ class MysqlInstaller extends InstallerDBType {
 		$callback = array(
 			array(
 				'name' => 'user',
-				'callback' => array( &$this, 'setupUser' ),
+				'callback' => array( $this, 'setupUser' ),
 			)
 		);
 		$this->parent->addInstallStepFollowing( "tables", $callback );
