@@ -282,7 +282,7 @@ abstract class Installer {
 
 		if ( !isset( $this->dbInstallers[$type] ) ) {
 			$class = ucfirst( $type ). 'Installer';
-			if ($class::isCompiled()) {
+			if ( call_user_func( array( $class, 'isCompiled' ) ) ) {
 				$this->dbInstallers[$type] = new $class( $this );
 			} else {
 				$this->dbInstallers[$type] = false;
@@ -873,7 +873,7 @@ abstract class Installer {
 			$status = null;
 
 			# Call our working function
-			if ( is_array( $step ) ) {
+			if ( is_array( $stepObj ) ) {
 				# A custom callaback
 				$callback = $stepObj['callback'];
 				$status = call_user_func_array( $callback, array() );
@@ -911,12 +911,6 @@ abstract class Installer {
 		} else {
 			$status = $installer->setupDatabase();
 		}
-		return $status;
-	}
-
-	public function installUser() {
-		$installer = $this->getDBInstaller( $this->getVar( 'wgDBtype' ) );
-		$status = $installer->setupUser();
 		return $status;
 	}
 
