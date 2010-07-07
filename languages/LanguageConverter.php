@@ -318,13 +318,9 @@ class LanguageConverter {
 	 * @return String: the converted text
 	 */
 	public function autoConvert( $text, $toVariant = false ) {
-		$fname = 'LanguageConverter::autoConvert';
+		wfProfileIn( __METHOD__ );
 
-		wfProfileIn( $fname );
-
-		if ( !$this->mTablesLoaded ) {
-			$this->loadTables();
-		}
+		$this->loadTables();
 
 		if ( !$toVariant ) {
 			$toVariant = $this->getPreferredVariant();
@@ -390,7 +386,7 @@ class LanguageConverter {
 			$ret .= array_shift( $notrtext );
 			$ret .= $t;
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -408,9 +404,7 @@ class LanguageConverter {
 		// If $text is empty or only includes spaces, do nothing
 		// Otherwise translate it
 		if ( trim( $text ) ) {
-			if ( !$this->mTablesLoaded ) {
-				$this->loadTables();
-			}
+			$this->loadTables();
 			$text = $this->mTables[$variant]->replace( $text );
 		}
 		wfProfileOut( __METHOD__ );
@@ -424,57 +418,31 @@ class LanguageConverter {
 	 * @return Array: variant => converted text
 	 */
 	public function autoConvertToAllVariants( $text ) {
-		$fname = 'LanguageConverter::autoConvertToAllVariants';
-		wfProfileIn( $fname );
-		if ( !$this->mTablesLoaded ) {
-			$this->loadTables();
-		}
+		wfProfileIn( __METHOD__ );
+		$this->loadTables();
 
 		$ret = array();
 		foreach ( $this->mVariants as $variant ) {
 			$ret[$variant] = $this->translate( $text, $variant );
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
 	/**
-	 * Convert link text to all supported variants.
+	 * Convert link text to all valid variants.
+	 * In the first, this function only convert text outside the
+	 * "-{" "}-" markups. Since the "{" and "}" are not allowed in
+	 * titles, the text will get all converted always.
+	 * So I removed this feature and deprecated the function.
 	 *
 	 * @param $text String: the text to be converted
 	 * @return Array: variant => converted text
+	 * @deprecated Use autoConvertToAllVariants() instead
 	 */
 	public function convertLinkToAllVariants( $text ) {
-		if ( !$this->mTablesLoaded ) {
-			$this->loadTables();
-		}
-
-		$ret = array();
-		$tarray = StringUtils::explode( '-{', $text );
-		$first = true;
-
-		foreach ( $tarray as $txt ) {
-			if ( $first ) {
-				$first = false;
-				foreach ( $this->mVariants as $variant ) {
-					$ret[$variant] = $this->translate( $txt, $variant );
-				}
-				continue;
-			}
-
-			$marked = explode( '}-', $txt, 2 );
-
-			foreach ( $this->mVariants as $variant ) {
-				$ret[$variant] .= '-{' . $marked[0] . '}-';
-				if ( array_key_exists( 1, $marked ) ) {
-					$ret[$variant] .= $this->translate( $marked[1], $variant );
-				}
-			}
-
-		}
-
-		return $ret;
+		return $this->autoConvertToAllVariants( $text );
 	}
 
 	/**
@@ -756,10 +724,10 @@ class LanguageConverter {
 	 * @private
 	 */
 	function loadTables( $fromcache = true ) {
-		global $wgMemc;
 		if ( $this->mTablesLoaded ) {
 			return;
 		}
+		global $wgMemc;
 		wfProfileIn( __METHOD__ );
 		$this->mTablesLoaded = true;
 		$this->mTables = false;
