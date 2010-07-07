@@ -57,6 +57,8 @@ further.
 * (bug 23597) Fixed conflicts between ID attributes in the Vector skin and 
   parser-generated heading IDs. Renamed head, panel, head-base and page-base.
 * Disabled $wgHitcounterUpdateFreq>1 feature on SQLite, does not work yet.
+* (bug 23465) Don't ignore the predefined destination filename on 
+  Special:Upload after following a red link to a file.
 
 == Changes since 1.16 beta 2 ==
 

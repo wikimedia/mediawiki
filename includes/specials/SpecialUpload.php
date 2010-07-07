@@ -1003,7 +1003,10 @@ class UploadForm extends HTMLForm {
 		$scriptVars = array(
 			'wgAjaxUploadDestCheck' => $useAjaxDestCheck,
 			'wgAjaxLicensePreview' => $useAjaxLicensePreview,
-			'wgUploadAutoFill' => !$this->mForReUpload,
+			'wgUploadAutoFill' => !$this->mForReUpload &&
+				// If we received mDestFile from the request, don't autofill
+				// the wpDestFile textbox
+				$this->mDestFile === '',
 			'wgUploadSourceIds' => $this->mSourceIds,
 		);
 
