@@ -44,8 +44,6 @@ class MysqlInstaller extends InstallerDBType {
 		}
 
 		# Add our user callback to installSteps, right before the tables are created.
-
-		debug_print_backtrace();
 		$callback = array(
 			array(
 				'name' => 'user',
