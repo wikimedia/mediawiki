@@ -69,7 +69,7 @@ class LanguageConverter {
 			'D' => 'D',	  // convert description (subclass implement)
 			'-' => '-',	  // remove convert (not implement)
 			'H' => 'H',	  // add rule for convert code
-			              // (but no display in placed code )
+						  // (but no display in placed code )
 			'N' => 'N'	  // current variant name
 		);
 		$this->mFlags = array_merge( $defaultflags, $flags );
@@ -102,7 +102,7 @@ class LanguageConverter {
 	 *
 	 * @param $variant String: the language code of the variant
 	 * @return String: The code of the fallback language or the
-	 *                 main code if there is no fallback
+	 *				 main code if there is no fallback
 	 */
 	public function getVariantFallbacks( $variant ) {
 		if ( isset( $this->mVariantFallbacks[$variant] ) ) {
@@ -446,20 +446,22 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Prepare manual conversion table.
-	 * @private
+	 * Apply manual conversion rules.
+	 * 
+	 * @param $convRule Object: Object of ConverterRule
 	 */
-	function applyManualConv( $convRule ) {
+	protected function applyManualConv( $convRule ) {
 		// Use syntax -{T|zh-cn:TitleCN; zh-tw:TitleTw}- to custom
 		// title conversion.
-		// Bug 24072: mConvRuleTitle won't work if the title conversion
-		// rule was followed by other manual conversion rule(s).
+		// Bug 24072: $mConvRuleTitle was overwritten by other manual
+		// rule(s) not for title, this breaks the title conversion.
 		$newConvRuleTitle = $convRule->getTitle();
 		if( $newConvRuleTitle ) {
+			// So I add an empty check for getTitle()
 			$this->mConvRuleTitle = $newConvRuleTitle;
 		}
 
-		// apply manual conversion table to global table
+		// merge/remove manual conversion rules to/from global table
 		$convTable = $convRule->getConvTable();
 		$action = $convRule->getRulesAction();
 		foreach ( $convTable as $variant => $pair ) {
@@ -483,30 +485,11 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Convert text to different variants of a language. The automatic
-	 * conversion is done in autoConvert(). Here we parse the text
-	 * marked with -{}-, which specifies special conversions of the
-	 * text that can not be accomplished in autoConvert().
+	 * Auto convert a Title object to a readable string in the
+	 * preferred variant.
 	 *
-	 * Syntax of the markup:
-	 * -{code1:text1;code2:text2;...}-  or
-	 * -{flags|code1:text1;code2:text2;...}-  or
-	 * -{text}- in which case no conversion should take place for text
-	 *
-	 * @param $text String: text to be converted
-	 * @return String: converted text
-	 */
-	public function convert( $text ) {
-		global $wgDisableLangConversion;
-		if ( $wgDisableLangConversion ) return $text;
-
-		$variant = $this->getPreferredVariant();
-
-		return $this->recursiveConvertTopLevel( $text, $variant );
-	}
-
-	/**
-	 * Convert a Title object to a readable string in the preferred variant
+	 *@param $title Object: a object of Title
+	 *@return String: converted title text
 	 */
 	public function convertTitle( $title ) {
 		$variant = $this->getPreferredVariant();
@@ -527,10 +510,51 @@ class LanguageConverter {
 			$text .= ':';
 		}
 		$text .= $title->getText();
-		$text = $this->autoConvert( $text, $variant );
+		$text = $this->translate( $text, $variant );
 		return $text;
 	}
 
+	/**
+	 * Convert text to different variants of a language. The automatic
+	 * conversion is done in autoConvert(). Here we parse the text
+	 * marked with -{}-, which specifies special conversions of the
+	 * text that can not be accomplished in autoConvert().
+	 *
+	 * Syntax of the markup:
+	 * -{code1:text1;code2:text2;...}-  or
+	 * -{flags|code1:text1;code2:text2;...}-  or
+	 * -{text}- in which case no conversion should take place for text
+	 *
+	 * @param $text String: text to be converted
+	 * @return String: converted text
+	 */
+	public function convert( $text ) {
+		$variant = $this->getPreferredVariant();
+		return $this->convertTo( $text, $variant );
+	}
+	
+	/**
+	 * Same as convert() except a extra parameter to custom variant.
+	 *
+	 * @param $text String: text to be converted
+	 * @param $variant String: the target variant code
+	 * @return String: converted text
+	 */
+	public function convertTo( $text, $variant ) {
+		global $wgDisableLangConversion;
+		if ( $wgDisableLangConversion ) return $text;
+		return $this->recursiveConvertTopLevel( $text, $variant );
+	}
+
+	/**
+	 * Recursively convert text on the outside. Allow to use nested
+	 * markups to custom rules.
+	 *
+	 * @param $text String: text to be converted
+	 * @param $variant String: the target variant code
+	 * @param $depth Integer: depth of recursion
+	 * @return String: converted text
+	 */
 	protected function recursiveConvertTopLevel( $text, $variant, $depth = 0 ) {
 		$startPos = 0;
 		$out = '';
@@ -560,6 +584,14 @@ class LanguageConverter {
 		return $out;
 	}
 
+	/**
+	 * Recursively convert text on the inside.
+	 *
+	 * @param $text String: text to be converted
+	 * @param $variant String: the target variant code
+	 * @param $depth Integer: depth of recursion
+	 * @return String: converted text
+	 */
 	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
 		// Quick sanity check (no function calls)
 		if ( $text[$startPos] !== '-' || $text[$startPos + 1] !== '{' ) {
@@ -636,7 +668,7 @@ class LanguageConverter {
 	 * @param $link String: the name of the link
 	 * @param $nt Mixed: the title object of the link
 	 * @param $ignoreOtherCond Boolean: to disable other conditions when
-	 *        we need to transclude a template or update a category's link
+	 *		we need to transclude a template or update a category's link
 	 * @return Null, the input parameters may be modified upon return
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
@@ -700,7 +732,7 @@ class LanguageConverter {
 		}
 	}
 
-    /**
+	/**
 	 * Returns language specific hash options.
 	 */
 	public function getExtraHashOptions() {
@@ -757,13 +789,13 @@ class LanguageConverter {
 		wfProfileOut( __METHOD__ );
 	}
 
-    /**
+	/**
 	 * Hook for post processig after conversion tables are loaded.
 	 *
 	 */
 	function postLoadTables() { }
 
-    /**
+	/**
 	 * Reload the conversion tables.
 	 *
 	 * @private
@@ -960,7 +992,7 @@ class LanguageConverter {
 			// text should be splited by ";" only if a valid variant
 			// name exist after the markup, for example:
 			//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
-			//    <span style="font-size:120%;">yyy</span>;}-
+			//	<span style="font-size:120%;">yyy</span>;}-
 			// we should split it as:
 			//  array(
 			//	  [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
@@ -1121,7 +1153,7 @@ class ConverterRule {
 				$bidtable[$v] = $to;
 			} elseif ( count( $u ) == 2 ) {
 				$from = trim( $u[0] );
-				$v    = trim( $u[1] );
+				$v	= trim( $u[1] );
 				if ( array_key_exists( $v, $unidtable )
 					 && !is_array( $unidtable[$v] )
 					 && $to
