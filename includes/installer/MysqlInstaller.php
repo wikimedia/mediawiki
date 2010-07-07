@@ -39,10 +39,6 @@ class MysqlInstaller extends InstallerDBType {
 			return;
 		}
 
-		if ( $this->parent->getVar( 'wgDBtype' ) !== $this->getName() ) {
-			return;
-		}
-
 		# Add our user callback to installSteps, right before the tables are created.
 		$callback = array(
 			array(
