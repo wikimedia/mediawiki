@@ -59,6 +59,8 @@ further.
 * Disabled $wgHitcounterUpdateFreq>1 feature on SQLite, does not work yet.
 * (bug 23465) Don't ignore the predefined destination filename on 
   Special:Upload after following a red link to a file.
+* In SQLite full-text search feature: fixed "move page" feature, was non-
+  functional.
 
 == Changes since 1.16 beta 2 ==
 
