@@ -884,6 +884,11 @@ abstract class Installer {
 			}
 			call_user_func_array( $endCB, array( $step, $status ) );
 			$installResults[$step] = $status;
+
+			// If we've hit some sort of fatal, we need to bail. Callback
+			// already had a chance to do output above.
+			if( !$status->isOk() )
+				break;
 		}
 		return $installResults;
 	}
