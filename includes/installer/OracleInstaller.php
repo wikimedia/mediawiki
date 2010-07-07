@@ -19,7 +19,7 @@ class OracleInstaller extends InstallerDBType {
 		return 'oracle';
 	}
 
-	static function isCompiled() {
+	public function isCompiled() {
 		return self::checkExtension( 'oci8' );
 	}
 

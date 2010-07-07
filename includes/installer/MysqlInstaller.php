@@ -34,22 +34,9 @@ class MysqlInstaller extends InstallerDBType {
 
 	function __construct( $parent ) {
 		parent::__construct( $parent );
-
-		if ( $this->parent->getVar( 'wgDBtype' ) !== $this->getName() ) {
-			return;
-		}
-
-		# Add our user callback to installSteps, right before the tables are created.
-		$callback = array(
-			array(
-				'name' => 'user',
-				'callback' => array( &$this, 'setupUser' ),
-			)
-		);
-		$this->parent->addInstallStepFollowing( "tables", $callback );
 	}
 
-	static function isCompiled() {
+	public function isCompiled() {
 		return self::checkExtension( 'mysql' );
 	}
 
@@ -377,6 +364,17 @@ class MysqlInstaller extends InstallerDBType {
 			$this->setVar( '_MysqlCharset', reset( $charsets ) );
 		}
 		return Status::newGood();
+	}
+
+	public function preInstall() {
+		# Add our user callback to installSteps, right before the tables are created.
+		$callback = array(
+			array(
+				'name' => 'user',
+				'callback' => array( &$this, 'setupUser' ),
+			)
+		);
+		$this->parent->addInstallStepFollowing( "tables", $callback );
 	}
 
 	function setupDatabase() {
