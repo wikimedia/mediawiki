@@ -233,21 +233,9 @@ abstract class Installer {
 		foreach ( $this->defaultVarNames as $var ) {
 			$this->settings[$var] = $GLOBALS[$var];
 		}
-
-		$this->parserTitle = Title::newFromText( 'Installer' );
-		$this->parserOptions = new ParserOptions;
-		$this->parserOptions->setEditSection( false );
-	}
-
-	/*
-	 * Set up our database objects. They need to inject some of their
-	 * own configuration into our global context. Usually this'll just be
-	 * things like the default $wgDBname.
-	 */
-	function setupDatabaseObjects() {
 		foreach ( $this->dbTypes as $type ) {
 			$installer = $this->getDBInstaller( $type );
-			if ( !$installer->isCompiled() ) {
+			if ( !$installer ) {
 				continue;
 			}
 			$defaults = $installer->getGlobalDefaults();
@@ -259,6 +247,10 @@ abstract class Installer {
 				}
 			}
 		}
+
+		$this->parserTitle = Title::newFromText( 'Installer' );
+		$this->parserOptions = new ParserOptions;
+		$this->parserOptions->setEditSection( false );
 	}
 
 	/**
@@ -286,9 +278,15 @@ abstract class Installer {
 		if ( !$type ) {
 			$type = $this->getVar( 'wgDBtype' );
 		}
+		$type = strtolower($type);
+
 		if ( !isset( $this->dbInstallers[$type] ) ) {
 			$class = ucfirst( $type ). 'Installer';
-			$this->dbInstallers[$type] = new $class( $this );
+			if ($class::isCompiled()) {
+				$this->dbInstallers[$type] = new $class( $this );
+			} else {
+				$this->dbInstallers[$type] = false;
+			}
 		}
 		return $this->dbInstallers[$type];
 	}
@@ -410,7 +408,7 @@ abstract class Installer {
 		foreach ( $this->dbTypes as $name ) {
 			$db = $this->getDBInstaller( $name );
 			$readableName = wfMsg( 'config-type-' . $name );
-			if ( $db->isCompiled() ) {
+			if ( $db ) {
 				$compiledDBs[] = $name;
 				$goodNames[] = $readableName;
 			}
@@ -901,8 +899,13 @@ abstract class Installer {
 	}
 
 	public function installDatabase() {
-		$installer = $this->getDBInstaller( $this->getVar( 'wgDBtype' ) );
-		$status = $installer->setupDatabase();
+		$type = $this->getVar( 'wgDBtype' );
+		$installer = $this->getDBInstaller( $type );
+		if(!$installer) {
+			$status = Status::newFatal( "config-no-db", $type );
+		} else {
+			$status = $installer->setupDatabase();
+		}
 		return $status;
 	}
 
@@ -1046,4 +1049,18 @@ abstract class Installer {
 		$GLOBALS['wgShowSQLErrors'] = true;
 		$GLOBALS['wgShowDBErrorBacktrace'] = true;
 	}
+
+	/**
+	 * Add an installation step following the given step. 
+	 * @param $findStep String the step to find.  Use NULL to put the step at the beginning.
+	 * @param $callback array
+	 */
+	function addInstallStepFollowing( $findStep, $callback ) {
+		$where = 0;
+		if( $findStep !== null ) $where = array_search( $findStep, $this->installSteps );
+
+		array_splice( $this->installSteps, $where, 0, $callback );
+	}
+
+
 }

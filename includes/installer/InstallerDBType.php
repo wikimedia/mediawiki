@@ -24,7 +24,7 @@ abstract class InstallerDBType {
 	/**
 	 * @return true if the client library is compiled in
 	 */
-	abstract function isCompiled();
+	abstract static function isCompiled();
 
 	/**
 	 * Get an array of MW configuration globals that will be configured by this class.
@@ -126,7 +126,7 @@ abstract class InstallerDBType {
 	 * Convenience function
 	 * Check if a named extension is present
 	 */
-	function checkExtension( $name ) {
+	static function checkExtension( $name ) {
 		wfSuppressWarnings();
 		$compiled = wfDl( $name );
 		wfRestoreWarnings();

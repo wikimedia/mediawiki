@@ -68,17 +68,24 @@ class CliInstaller extends Installer {
 	 * Main entry point.
 	 */
 	function execute( ) {
-		foreach( $this->getInstallSteps() as $step ) {
-			$this->showMessage("Installing $step... ");
+		foreach( $this->getInstallSteps() as $stepObj ) {
+			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
+			$this->showMessage( wfMsg( "config-install-$step") .
+					wfMsg( 'ellipsis' ) . wfMsg( 'word-separator' ) );
 			$func = 'install' . ucfirst( $step );
 			$status = $this->{$func}();
+			$warnings = $status->getWarningsArray();
 			if ( !$status->isOk() ) {
 				$this->showStatusMessage( $status );
+				echo "\n";
 				exit;
-			} elseif ( !$status->isGood() ) {
-				$this->showStatusMessage( $status );
+			} elseif ( count($warnings) !== 0 ) {
+				foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
+					$this->showMessage( $w . wfMsg( 'ellipsis') .
+						wfMsg( 'word-separator' ) );
+				}
 			}
-			$this->showMessage("done\n");
+			$this->showMessage( wfMsg( 'config-install-step-done' ) ."\n");
 		}
 	}
 
