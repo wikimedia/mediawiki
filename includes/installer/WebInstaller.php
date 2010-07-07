@@ -278,7 +278,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Clean up from execute()
 	 */
-	private function finish() {
+	public function finish() {
 		$this->output->output();
 		$this->session['happyPages'] = $this->happyPages;
 		$this->session['skippedPages'] = $this->skippedPages;
