@@ -51,21 +51,14 @@ class LanguageConverter {
 								$variantfallbacks = array(),
 								$flags = array(),
 								$manualLevel = array() ) {
+		global $wgDisabledVariants, $wgLanguageNames;
 		$this->mLangObj = $langobj;
 		$this->mMainLanguageCode = $maincode;
-
-		global $wgDisabledVariants;
-		$this->mVariants = array();
-		foreach ( $variants as $variant ) {
-			if ( !in_array( $variant, $wgDisabledVariants ) ) {
-				$this->mVariants[] = $variant;
-			}
-		}
+		$this->mVariants = array_diff( $variants, $wgDisabledVariants );
 		$this->mVariantFallbacks = $variantfallbacks;
-		global $wgLanguageNames;
 		$this->mVariantNames = $wgLanguageNames;
 		$this->mCacheKey = wfMemcKey( 'conversiontables', $maincode );
-		$f = array(
+		$defaultflags = array(
 			// 'S' show converted text
 			// '+' add rules for alltext
 			// 'E' the gave flags is error
@@ -79,7 +72,7 @@ class LanguageConverter {
 			              // (but no display in placed code )
 			'N' => 'N'	  // current variant name
 		);
-		$this->mFlags = array_merge( $f, $flags );
+		$this->mFlags = array_merge( $defaultflags, $flags );
 		foreach ( $this->mVariants as $v ) {
 			if ( array_key_exists( $v, $manualLevel ) ) {
 				$this->mManualLevel[$v] = $manualLevel[$v];
@@ -91,9 +84,12 @@ class LanguageConverter {
 	}
 
 	/**
-	 * @public
+	 * Get all valid variants.
+	 * Call this instead of using $this->mVariants directly.
+	 *
+	 * @return Array: contains all valid variants
 	 */
-	function getVariants() {
+	public function getVariants() {
 		return $this->mVariants;
 	}
 
@@ -104,27 +100,27 @@ class LanguageConverter {
 	 * when zh-sg is preferred but not defined, we will pick zh-hans
 	 * in this case. Right now this is only used by zh.
 	 *
-	 * @param $v String: the language code of the variant
-	 * @return string array The code of the fallback language or false if there
-	 *                      is no fallback
+	 * @param $variant String: the language code of the variant
+	 * @return String: The code of the fallback language or the
+	 *                 main code if there is no fallback
 	 */
-	public function getVariantFallbacks( $v ) {
-		if ( isset( $this->mVariantFallbacks[$v] ) ) {
-			return $this->mVariantFallbacks[$v];
+	public function getVariantFallbacks( $variant ) {
+		if ( isset( $this->mVariantFallbacks[$variant] ) ) {
+			return $this->mVariantFallbacks[$variant];
 		}
 		return $this->mMainLanguageCode;
 	}
 
 	/**
 	 * Get the title produced by the conversion rule.
-	 * @returns String
+	 * @return String: The converted title text
 	 */
-	function getConvRuleTitle() {
+	public function getConvRuleTitle() {
 		return $this->mConvRuleTitle;
 	}
 
 	/**
-	 * Get preferred language variants.
+	 * Get preferred language variant.
 	 * @param $fromUser Boolean: get it from $wgUser's preferences
 	 * @param $fromHeader Boolean: get it from Accept-Language
 	 * @return String: the preferred language code
@@ -158,12 +154,13 @@ class LanguageConverter {
 
 	/**
 	 * Validate the variant
-	 * @param $v String: the variant to validate
+	 * @param $variant String: the variant to validate
 	 * @return Mixed: returns the variant if it is valid, null otherwise
 	 */
-	function validateVariant( $v = null ) {
-		if ( $v !== null && in_array( $v, $this->mVariants ) ) {
-			return $v;
+	protected function validateVariant( $variant = null ) {
+		if ( $variant !== null &&
+			 in_array( $variant, $this->mVariants ) ) {
+			return $variant;
 		}
 		return null;
 	}
@@ -173,7 +170,7 @@ class LanguageConverter {
 	 *
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
-	function getURLVariant() {
+	protected function getURLVariant() {
 		global $wgRequest;
 		$ret = null;
 
@@ -196,7 +193,7 @@ class LanguageConverter {
 	 *
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
-	function getUserVariant() {
+	protected function getUserVariant() {
 		global $wgUser;
 		$ret = null;
 
@@ -226,7 +223,7 @@ class LanguageConverter {
 	 *
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
-	function getHeaderVariant() {
+	protected function getHeaderVariant() {
 		global $wgRequest;
 		$ret = null;
 
@@ -236,7 +233,6 @@ class LanguageConverter {
 
 		// see if some supported language variant is set in the
 		// http header.
-
 		$acceptLanguage = $wgRequest->getHeader( 'Accept-Language' );
 		if ( !$acceptLanguage ) {
 			return null;
@@ -299,9 +295,8 @@ class LanguageConverter {
 	 * or '<span title="text" ... '
 	 *
 	 * @return String like ' alt="yyyy"' or ' title="yyyy"'
-	 * @private
 	 */
-	function captionConvert( $matches ) {
+	protected function captionConvert( $matches ) {
 		$toVariant = $this->getPreferredVariant();
 		$title = $matches[1];
 		$text  = $matches[2];
@@ -314,13 +309,15 @@ class LanguageConverter {
 
 	/**
 	 * Dictionary-based conversion.
+	 * This function would not parse the conversion rules.
+	 * If you want to parse rules, try to use convert() or
+	 * convertTo().
 	 *
 	 * @param $text String: the text to be converted
 	 * @param $toVariant String: the target language code
 	 * @return String: the converted text
-	 * @private
 	 */
-	function autoConvert( $text, $toVariant = false ) {
+	public function autoConvert( $text, $toVariant = false ) {
 		$fname = 'LanguageConverter::autoConvert';
 
 		wfProfileIn( $fname );
@@ -399,15 +396,14 @@ class LanguageConverter {
 
 	/**
 	 * Translate a string to a variant.
-	 * Doesn't process markup or do any of that other stuff, for that use
-	 * convert().
+	 * Doesn't parse rules or do any of that other stuff, for that use
+	 * convert() or convertTo().
 	 *
 	 * @param $text String: text to convert
 	 * @param $variant String: variant language code
 	 * @return String: translated text
-	 * @private
 	 */
-	function translate( $text, $variant ) {
+	protected function translate( $text, $variant ) {
 		wfProfileIn( __METHOD__ );
 		// If $text is empty or only includes spaces, do nothing
 		// Otherwise translate it
@@ -422,10 +418,10 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Convert text to all supported variants.
+	 * Call translate() to convert text to all valid variants.
 	 *
 	 * @param $text String: the text to be converted
-	 * @return Array of string
+	 * @return Array: variant => converted text
 	 */
 	public function autoConvertToAllVariants( $text ) {
 		$fname = 'LanguageConverter::autoConvertToAllVariants';
@@ -447,7 +443,7 @@ class LanguageConverter {
 	 * Convert link text to all supported variants.
 	 *
 	 * @param $text String: the text to be converted
-	 * @return Array of string
+	 * @return Array: variant => converted text
 	 */
 	public function convertLinkToAllVariants( $text ) {
 		if ( !$this->mTablesLoaded ) {
