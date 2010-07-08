@@ -53,6 +53,24 @@ deleted file archives, and any custom skins.
 You will need to have $wgDBadminuser and $wgDBadminpassword set in your
 LocalSettings.php, see there for more info.
 
+==== From the web ====
+
+You will need to temporarily remove LocalSettings.php. This is to keep people
+from accessing the installer. Keep a backup copy of LocalSettings.php somewhere
+safe
+
+If you browse to the web-based installation script (usually at /config/index.php)
+from your wiki installation you can follow the script and upgrade your database
+in place.
+
+You may change some settings during the install, but be very careful!
+Changing the encoding in particular will generally leave you with a
+lot of corrupt pages, particularly if your wiki is not in English.
+
+Once you are done, you can move LocalSettings.php back to its proper place.
+
+==== From the command line ====
+
 From the command line, browse to the "maintenance" directory and run the
 update.php script to check and update the schema. This will insert missing
 tables, update existing tables, and move data around as needed. In most cases,
@@ -176,34 +194,6 @@ If using Memcached, you must enabled it differently now:
 should be replaced with:
   $wgMainCacheType = CACHE_MEMCACHED;
 
-
-=== Web installer ===
-
-You can use the web-based installer wizard if you first remove the
-LocalSettings.php file; be sure to give the installer the same 
-information as you did on the original install (language/encoding, 
-database name, password, etc). This will also generate a fresh 
-LocalSettings.php, which you may need to customize.
-
-You may change some settings during the install, but be very careful!
-Changing the encoding in particular will generally leave you with a
-lot of corrupt pages, particularly if your wiki is not in English.
-
-=== Command-line upgrade ===
-
-Additionally, as of 1.4.0 you can run an in-place upgrade script from
-the command line, keeping your existing LocalSettings.php. This requires
-that you set $wgDBadminuser and $wgDBadminpassword with  an appropriate 
-database user and password with privileges to modify the database structure.
-
-Once the new files are in place, go into the maintenance subdirectory and
-run the script:
-
-  php update.php
-
-See caveats below on upgrading from 1.3.x or earlier.
-
-
 == Backups! ==
 
 To upgrade an existing MediaWiki installation, first BACK UP YOUR WIKI!
@@ -227,7 +217,6 @@ option to 'latin1' to avoid the conversion.
 For general help on pg_dump:
 http://www.postgresql.org/docs/current/static/app-pgdump.html
 
-
 == Caveats ==
 
 === Postgres ===
@@ -236,7 +225,6 @@ Postgres support is new, and much of the upgrade instructions may
 not apply. The schema was changed significantly from 1.7 to 1.8, 
 so you will need to at least use the update.php or web installer, 
 as described above.
-
 
 === Upgrading from 1.4.2 or earlier ===
 

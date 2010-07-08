@@ -43,7 +43,7 @@ class Update {
 	protected function loadUpdates() {
 		foreach( $this->updater->getUpdates() as $version => $updates ) {
 			$appliedUpdates = $this->getAppliedUpdates( $version );
-			if( !$appliedUpdates || count( $appliedUpdates ) != count( $updates ) ) {
+			if( !$appliedUpdates || $appliedUpdates != $updates ) {
 				$this->updates[ $version ] = $updates;
 			}
 		}
