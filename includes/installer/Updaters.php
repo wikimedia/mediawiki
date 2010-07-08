@@ -18,7 +18,7 @@ interface Updaters {
 /**
  * Mysql implementation
  */
-class MysqlUpdaters implements Updaters {
+class MysqlUpdater implements Updaters {
 
 	public function getUpdates() {
 		return array(
@@ -175,7 +175,7 @@ class MysqlUpdaters implements Updaters {
 /**
  * Sqlite
  */
-class SqliteUpdaters implements Updaters {
+class SqliteUpdater implements Updaters {
 	public function getUpdates() {
 		return array(
 			'1.14' => array(

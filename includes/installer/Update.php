@@ -16,10 +16,10 @@ class Update {
 		$this->db = $db;
 		switch( $this->db->getType() ) {
 			case 'mysql':
-				$this->updater = new MysqlUpdaters();
+				$this->updater = new MysqlUpdater();
 				break;
 			case 'sqlite':
-				$this->updater = new SqliteUpdaters();
+				$this->updater = new SqliteUpdater();
 				break;
 			default:
 				throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
