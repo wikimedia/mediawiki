@@ -297,9 +297,12 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'scriptpath', $wgScriptPath );
 		$tpl->setRef( 'serverurl', $wgServer );
 		$tpl->setRef( 'logopath', $wgLogo );
-		$tpl->setRef( 'lang', $wgContLanguageCode );
-		$tpl->set( 'dir', $wgContLang->getDir() );
-		$tpl->set( 'rtl', $wgContLang->isRTL() );
+
+		$lang = wfUILang();
+		$tpl->set( 'lang', $lang->getCode() );
+		$tpl->set( 'dir', $lang->getDir() );
+		$tpl->set( 'rtl', $lang->isRTL() );
+
 		$tpl->set( 'capitalizeallnouns', $wgLang->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
 		$tpl->set( 'showjumplinks', $wgUser->getOption( 'showjumplinks' ) );
 		$tpl->set( 'username', $wgUser->isAnon() ? null : $this->username );
@@ -415,6 +418,11 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
+		global $wgBetterDirectionality;
+		if ( $wgBetterDirectionality ) {
+			$realBodyAttribs = array( 'lang' => $wgContLanguageCode, 'dir' => $wgContLang->getDir() );
+			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
+		}
 		$out->mBodytext .= $printfooter . $this->generateDebugHTML();
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 

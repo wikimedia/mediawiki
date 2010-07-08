@@ -2282,6 +2282,12 @@ $wgVectorExtraStyles = null;
  */
 $wgEdititis = false;
 
+/**
+ * Experimental better directionality support.
+ */
+$wgBetterDirectionality = false;
+
+
 /** @} */ # End of output format settings }
 
 /*************************************************************************//**

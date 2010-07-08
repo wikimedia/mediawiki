@@ -2099,9 +2099,7 @@ class OutputPage {
 		}
 		$sk->setupUserCss( $this );
 
-		$dir = $wgContLang->getDir();
-		$htmlAttribs = array( 'lang' => $wgContLanguageCode, 'dir' => $dir );
-		$ret = Html::htmlHeader( $htmlAttribs );
+		$ret = Html::htmlHeader( array( 'lang' => wfUILang()->getCode() ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( wfMsg( 'pagetitle', $this->getPageTitle() ) );
@@ -2156,6 +2154,7 @@ class OutputPage {
 		}
 
 		# Class bloat
+		$dir = wfUILang()->getDir();
 		$bodyAttrs['class'] = "mediawiki $dir";
 
 		if ( $wgLang->capitalizeAllNouns() ) {
@@ -2427,8 +2426,7 @@ class OutputPage {
 	 */
 	protected function styleLink( $style, $options ) {
 		if( isset( $options['dir'] ) ) {
-			global $wgContLang;
-			$siteDir = $wgContLang->getDir();
+			$siteDir = wfUILang()->getDir();
 			if( $siteDir != $options['dir'] ) {
 				return '';
 			}
