@@ -9,7 +9,15 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class OutputPage {
 	var $mMetatags = array(), $mKeywords = array(), $mLinktags = array();
 	var $mExtStyles = array();
-	var $mPagetitle = '', $mBodytext = '', $mDebugtext = '';
+	var $mPagetitle = '', $mBodytext = '';
+
+	/**
+	 * Holds the debug lines that will be outputted as comments in page source if
+	 * $wgDebugComments is enabled. See also $wgShowDebug.
+	 * TODO: make a getter method for this
+	 */
+	public $mDebugtext = '';
+
 	var $mHTMLtitle = '', $mIsarticle = true, $mPrintable = false;
 	var $mSubtitle = '', $mRedirect = '', $mStatusCode;
 	var $mLastModified = '', $mETag = false;
