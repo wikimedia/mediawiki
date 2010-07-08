@@ -561,6 +561,11 @@ function wfGetLangObj( $langcode = false ) {
 	return $wgContLang;
 }
 
+function wfUILang() {
+	global $wgBetterDirectionality;
+	return wfGetLangObj( $wgBetterDirectionality ? false: true );
+}
+
 /**
  * Get a message from anywhere, for the current user language.
  *

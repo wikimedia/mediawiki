@@ -609,7 +609,10 @@ class Html {
 				$attribs["xmlns:$tag"] = $ns;
 			}
 		}
-		return $ret . Html::openElement( 'html', $attribs ) . "\n";
+		$html = Html::openElement( 'html', $attribs );
+		if ( $html ) $html .= "\n";
+		$ret .= $html;
+		return $ret;
 	}
 
 	/**

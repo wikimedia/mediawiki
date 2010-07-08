@@ -682,7 +682,7 @@ class VectorTemplate extends QuickTemplate {
 		if ( !is_array( $elements ) ) {
 			$elements = array( $elements );
 		// If there's a series of elements, reverse them when in RTL mode
-		} else if ( $wgContLang->isRTL() ) {
+		} else if ( wfUILang()->isRTL() ) {
 			$elements = array_reverse( $elements );
 		}
 		// Render elements
