@@ -354,6 +354,7 @@ rc_params         blob           TEXT
 rlc_to_blob       blob           TEXT
 ts_tags           blob           TEXT
 ug_group          varbinary(16)  TEXT
+ul_value          blob           TEXT
 up_property       varbinary(32)  TEXT
 up_value          blob           TEXT
 user_email_token  binary(32)     TEXT

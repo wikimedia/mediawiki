@@ -559,7 +559,8 @@ CREATE UNIQUE INDEX protected_titles_unique ON protected_titles(pt_namespace, pt
 
 
 CREATE TABLE updatelog (
-  ul_key TEXT NOT NULL PRIMARY KEY
+  ul_key TEXT NOT NULL PRIMARY KEY,
+  ul_value TEXT
 );
 
 
