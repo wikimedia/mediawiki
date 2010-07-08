@@ -1777,6 +1777,18 @@ $wgFixArabicUnicode = true;
 $wgFixMalayalamUnicode = true;
 
 /**
+ * Set this to always convert certain Unicode sequences to modern ones
+ * regardless of the content language. This has a small performance
+ * impact.
+ *
+ * See $wgFixArabicUnicode and $wgFixMalayalamUnicode for conversion
+ * details.
+ *
+ * @since 1.17
+ */
+$wgAllUnicodeFixes = false;
+
+/**
  * Set this to eg 'ISO-8859-1' to perform character set conversion when 
  * loading old revisions not marked with "utf-8" flag. Use this when 
  * converting a wiki from MediaWiki 1.4 or earlier to UTF-8 without the 

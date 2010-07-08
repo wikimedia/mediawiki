@@ -1934,7 +1934,14 @@ class Language {
 	 * This is language-specific for performance reasons only.
 	 */
 	function normalize( $s ) {
-		return UtfNormal::cleanUp( $s );
+		global $wgAllUnicodeFixes;
+		$s = UtfNormal::cleanUp( $s );
+		if ( $wgAllUnicodeFixes ) {
+			$s = $this->transformUsingPairFile( 'normalize-ar.ser', $s );
+			$s = $this->transformUsingPairFile( 'normalize-ml.ser', $s );
+		}
+
+		return $s;
 	}
 
 	/**
