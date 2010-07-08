@@ -1311,7 +1311,8 @@ CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propnam
 
 -- A table to log updates, one text key row per update.
 CREATE TABLE /*_*/updatelog (
-  ul_key varchar(255) NOT NULL PRIMARY KEY
+  ul_key varchar(255) NOT NULL PRIMARY KEY,
+  ul_value blob
 ) /*$wgDBTableOptions*/;
 
 
