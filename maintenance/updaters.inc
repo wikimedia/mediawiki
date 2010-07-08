@@ -176,6 +176,7 @@ $wgUpdates = array(
 		// 1.17
 		array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ),
 		array( 'add_index', 'iwlinks', 'iwl_prefix_from_title',  'patch-rename-iwl_prefix.sql' ),
+		array( 'add_field', 'updatelog', 'ul_value',              'patch-ul_value.sql' ),
 	),
 
 	'sqlite' => array(
@@ -205,8 +206,9 @@ $wgUpdates = array(
 		array( 'sqlite_setup_searchindex' ),
 
 		// 1.17
-		array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ),
-		array( 'add_index', 'iwlinks', 'iwl_prefix_from_title',  'patch-rename-iwl_prefix.sql' ),
+		array( 'add_table', 'iwlinks',                            'patch-iwlinks.sql' ),
+		array( 'add_index', 'iwlinks',   'iwl_prefix_from_title', 'patch-rename-iwl_prefix.sql' ),
+		array( 'add_field', 'updatelog', 'ul_value',              'patch-ul_value.sql' ),
 	),
 );
 
