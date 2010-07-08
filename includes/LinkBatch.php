@@ -12,10 +12,24 @@ class LinkBatch {
 	 */
 	var $data = array();
 
+	/**
+	 * For debugging which method is using this class.
+	 */
+	protected $caller;
+
 	function __construct( $arr = array() ) {
 		foreach( $arr as $item ) {
 			$this->addObj( $item );
 		}
+	}
+
+	/**
+	 * Use ->setCaller( __METHOD__ ) to indicate which code is using this
+	 * class. Only used in debugging output.
+	 * @since 1.17
+	 */
+	public function setCaller( $caller ) {
+		$this->caller = $caller;
 	}
 
 	public function addObj( $title ) {
@@ -134,7 +148,8 @@ class LinkBatch {
 		$sql = "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect, page_latest FROM $page WHERE $set";
 
 		// Do query
-		$res = $dbr->query( $sql, __METHOD__ );
+		$caller = $this->caller ? __METHOD__ . " (for {$this->caller})" : __METHOD__;
+		$res = $dbr->query( $sql, $caller );
 		wfProfileOut( __METHOD__ );
 		return $res;
 	}
