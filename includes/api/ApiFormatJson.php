@@ -70,7 +70,7 @@ class ApiFormatJson extends ApiFormatBase {
 		}
 		$this->printText(
 			$prefix .
-			FormatJson::encode( $this->getResultData(),	$this->getIsHtml() ) .
+			FormatJson::encode( $this->getResultData(), $this->getIsHtml() ) .
 			$suffix
 		);
 	}
