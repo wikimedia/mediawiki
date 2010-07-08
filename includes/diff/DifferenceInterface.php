@@ -421,8 +421,10 @@ CONTROL;
 			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
 		}
 
+		$pCache = true;
 		if( !$this->mNewRev->isCurrent() ) {
 			$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
+			$pCache = false;
 		}
 
 		$this->loadNewText();
@@ -440,6 +442,13 @@ CONTROL;
 				$wgOut->addHTML( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
 				$wgOut->addHTML( htmlspecialchars( $this->mNewtext ) );
 				$wgOut->addHTML( "\n</pre>\n" );
+			}
+		} elseif( $pCache ) {
+			$pOutput = ParserCache::singleton()->get( new Article( $this->mTitle ), $wgUser );
+			if( $pOutput ) {
+				$wgOut->addHtml( $pOutput->getText() );
+			} else {
+				$wgOut->addWikiTextTidy( $this->mNewtext );
 			}
 		} else {
 			$wgOut->addWikiTextTidy( $this->mNewtext );
