@@ -35,14 +35,14 @@
  *
  * Use full parsing.
  *     wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
- *     === Message::key( 'key' )->params( 'apple' )->parse();
+ *     === Message::key( 'key', 'apple' )->parse();
  * </pre>
  * Parseinline is used because it is more useful when pre-building html.
  * In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
  *
  * Places where html cannot be used. {{-transformation is done.
  *     wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
- *     === Message::key( 'key' )->params( 'apple', 'pear' )->text();
+ *     === Message::key( 'key', 'apple', 'pear' )->text();
  * </pre>
  *
  * Shortcut for escaping the message too, similar to wfMsgHTML, but
