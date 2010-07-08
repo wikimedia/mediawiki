@@ -95,13 +95,16 @@ class Article {
 		# Query the redirect table
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'redirect',
-			array( 'rd_namespace', 'rd_title' ),
+			array( 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ),
 			array( 'rd_from' => $this->getID() ),
 			__METHOD__
 		);
 
-		if ( $row ) {
-			return $this->mRedirectTarget = Title::makeTitle( $row->rd_namespace, $row->rd_title );
+		// rd_fragment and rd_interwiki were added later, populate them if empty
+		if ( $row && !is_null( $row->rd_fragment ) && !is_null( $row->rd_interwiki ) ) {
+			return $this->mRedirectTarget = Title::makeTitle(
+				$row->rd_namespace, $row->rd_title,
+				$row->rd_fragment, $row->rd_interwiki );
 		}
 
 		# This page doesn't have an entry in the redirect table
@@ -112,36 +115,44 @@ class Article {
 	 * Insert an entry for this page into the redirect table.
 	 *
 	 * Don't call this function directly unless you know what you're doing.
-	 * @return Title object
+	 * @return Title object or null if not a redirect
 	 */
 	public function insertRedirect() {
-		$retval = Title::newFromRedirect( $this->getContent() );
-
+		// recurse through to only get the final target
+		$retval = Title::newFromRedirectRecurse( $this->getContent() );
 		if ( !$retval ) {
 			return null;
 		}
-
+		$this->insertRedirectEntry( $retval );
+		return $retval;
+	}
+	
+	/**
+	 * Insert or update the redirect table entry for this page to indicate
+	 * it redirects to $rt .
+	 * @param $rt Title redirect target
+	 */
+	public function insertRedirectEntry( $rt ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace( 'redirect', array( 'rd_from' ),
 			array(
 				'rd_from' => $this->getID(),
-				'rd_namespace' => $retval->getNamespace(),
-				'rd_title' => $retval->getDBkey()
+				'rd_namespace' => $rt->getNamespace(),
+				'rd_title' => $rt->getDBkey(),
+				'rd_fragment' => $rt->getFragment(),
+				'rd_interwiki' => $rt->getInterwiki(),
 			),
 			__METHOD__
 		);
-
-		return $retval;
 	}
 
 	/**
-	 * Get the Title object this page redirects to
+	 * Get the Title object or URL this page redirects to
 	 *
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirect() {
-		$text = $this->getContent();
-		return $this->followRedirectText( $text );
+		return $this->getRedirectURL( $this->getRedirectTarget() );
 	}
 
 	/**
@@ -149,11 +160,21 @@ class Article {
 	 *
 	 * @param $text string article content containing redirect info
 	 * @return mixed false, Title of in-wiki target, or string with URL
+	 * @deprecated
 	 */
 	public function followRedirectText( $text ) {
 		// recurse through to only get the final target
-		$rt = Title::newFromRedirectRecurse( $text );
-
+		return $this->getRedirectURL( Title::newFromRedirectRecurse( $text ) );
+	}
+	
+	/**
+	 * Get the Title object or URL to use for a redirect. We use Title
+	 * objects for same-wiki, non-special redirects and URLs for everything
+	 * else.
+	 * @param $rt Title Redirect target
+	 * @return mixed false, Title object of local target, or string with URL
+	 */
+	public function getRedirectURL( $rt ) {
 		if ( $rt ) {
 			if ( $rt->getInterwiki() != '' ) {
 				if ( $rt->isLocal() ) {
@@ -1768,7 +1789,7 @@ class Article {
 		wfProfileIn( __METHOD__ );
 
 		$text = $revision->getText();
-		$rt = Title::newFromRedirect( $text );
+		$rt = Title::newFromRedirectRecurse( $text );
 
 		$conditions = array( 'page_id' => $this->getId() );
 
@@ -1821,13 +1842,7 @@ class Article {
 		if ( $isRedirect || is_null( $lastRevIsRedirect ) || $lastRevIsRedirect !== $isRedirect ) {
 			wfProfileIn( __METHOD__ );
 			if ( $isRedirect ) {
-				// This title is a redirect, Add/Update row in the redirect table
-				$set = array( /* SET */
-					'rd_namespace' => $redirectTitle->getNamespace(),
-					'rd_title'     => $redirectTitle->getDBkey(),
-					'rd_from'      => $this->getId(),
-				);
-				$dbw->replace( 'redirect', array( 'rd_from' ), $set, __METHOD__ );
+				$this->insertRedirectEntry( $redirectTitle );
 			} else {
 				// This is not a redirect, remove row from redirect table
 				$where = array( 'rd_from' => $this->getId() );

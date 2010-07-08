@@ -255,11 +255,12 @@ class Title {
 	 * @param $ns \type{\int} the namespace of the article
 	 * @param $title \type{\string} the unprefixed database key form
 	 * @param $fragment \type{\string} The link fragment (after the "#")
+	 * @param $interwiki \type{\string} The interwiki prefix
 	 * @return \type{Title} the new object
 	 */
-	public static function &makeTitle( $ns, $title, $fragment = '' ) {
+	public static function &makeTitle( $ns, $title, $fragment = '', $interwiki = '' ) {
 		$t = new Title();
-		$t->mInterwiki = '';
+		$t->mInterwiki = $interwiki;
 		$t->mFragment = $fragment;
 		$t->mNamespace = $ns = intval( $ns );
 		$t->mDbkeyform = str_replace( ' ', '_', $title );
@@ -277,11 +278,12 @@ class Title {
 	 * @param $ns \type{\int} the namespace of the article
 	 * @param $title \type{\string} the database key form
 	 * @param $fragment \type{\string} The link fragment (after the "#")
+	 * @param $interwiki \type{\string} The interwiki prefix
 	 * @return \type{Title} the new object, or NULL on an error
 	 */
-	public static function makeTitleSafe( $ns, $title, $fragment = '' ) {
+	public static function makeTitleSafe( $ns, $title, $fragment = '', $interwiki = '' ) {
 		$t = new Title();
-		$t->mDbkeyform = Title::makeName( $ns, $title, $fragment );
+		$t->mDbkeyform = Title::makeName( $ns, $title, $fragment, $interwiki );
 		if ( $t->secureAndSplit() ) {
 			return $t;
 		} else {
@@ -473,13 +475,17 @@ class Title {
 	 * @param $ns \type{\int} numerical representation of the namespace
 	 * @param $title \type{\string} the DB key form the title
 	 * @param $fragment \type{\string} The link fragment (after the "#")
+	 * @param $interwiki \type{\string} The interwiki prefix
 	 * @return \type{\string} the prefixed form of the title
 	 */
-	public static function makeName( $ns, $title, $fragment = '' ) {
+	public static function makeName( $ns, $title, $fragment = '', $interwiki = '' ) {
 		global $wgContLang;
 
 		$namespace = $wgContLang->getNsText( $ns );
 		$name = $namespace == '' ? $title : "$namespace:$title";
+		if ( strval( $interwiki ) != '' ) {
+			$name = "$interwiki:$name";
+		}
 		if ( strval( $fragment ) != '' ) {
 			$name .= '#' . $fragment;
 		}
