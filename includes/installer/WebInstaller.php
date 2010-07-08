@@ -1419,6 +1419,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		);
 
 		$caches = array( 'none' );
+                $selected = $caches[0];
 		if( count( $this->getVar( '_Caches' ) ) ) {
 			$caches[] = 'accel';
 			$selected = 'accel';
