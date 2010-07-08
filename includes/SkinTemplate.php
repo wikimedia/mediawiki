@@ -301,7 +301,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'dir', $wgContLang->getDir() );
 		$tpl->set( 'rtl', $wgContLang->isRTL() );
 		$tpl->set( 'capitalizeallnouns', $wgLang->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
-		$tpl->set( 'langname', $wgContLang->getLanguageName( $wgContLanguageCode ) );
 		$tpl->set( 'showjumplinks', $wgUser->getOption( 'showjumplinks' ) );
 		$tpl->set( 'username', $wgUser->isAnon() ? null : $this->username );
 		$tpl->setRef( 'userpage', $this->userpage );
