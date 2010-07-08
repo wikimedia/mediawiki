@@ -697,35 +697,22 @@ function wfMsgWeirdKey( $key ) {
  *                  behaves as a content language switch if it is a boolean.
  * @param $transform Boolean: whether to parse magic words, etc.
  * @return string
- * @private
  */
 function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
 	global $wgContLang, $wgMessageCache;
 
 	wfRunHooks('NormalizeMessageKey', array(&$key, &$useDB, &$langCode, &$transform));
 	
-	# If $wgMessageCache isn't initialised yet, try to return something sensible.
-	if( is_object( $wgMessageCache ) ) {
-		$message = $wgMessageCache->get( $key, $useDB, $langCode );
-		if( $message === false ){
-			$message = '&lt;' . htmlspecialchars( $key ) . '&gt;';
-		} elseif ( $transform ) {
-			$message = $wgMessageCache->transform( $message );
-		}
-	} else {
-		$lang = wfGetLangObj( $langCode );
-
-		# MessageCache::get() does this already, Language::getMessage() doesn't
-		# ISSUE: Should we try to handle "message/lang" here too?
-		$key = str_replace( ' ' , '_' , $wgContLang->lcfirst( $key ) );
-
-		if( is_object( $lang ) ) {
-			$message = $lang->getMessage( $key );
-		} else {
-			$message = false;
-		}
+	if ( !is_object( $wgMessageCache ) ) {
+		throw new MWException( "Trying to get message before message cache is initialised" );
 	}
 
+	$message = $wgMessageCache->get( $key, $useDB, $langCode );
+	if( $message === false ){
+		$message = '&lt;' . htmlspecialchars( $key ) . '&gt;';
+	} elseif ( $transform ) {
+		$message = $wgMessageCache->transform( $message );
+	}
 	return $message;
 }
 
