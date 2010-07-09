@@ -1579,16 +1579,24 @@ class WebInstaller_Install extends WebInstallerPage {
 	function execute() {
 		if( $this->parent->request->wasPosted() ) {
 			return 'continue';
+		} elseif( $this->getVar( '_InstallDone' ) ) {
+			$this->startForm();
+			$status = new Status();
+			$status->warning( 'config-install-alreadydone' );
+			$this->parent->showStatusBox( $status );
+			$this->endForm();
+			return true;
+		} else {
+			$this->startForm();
+			$this->addHTML("<ul>");
+			$this->parent->performInstallation(
+				array( $this, 'startStage'),
+				array( $this, 'endStage' )
+			);
+			$this->addHTML("</ul>");
+			$this->endForm();
+			return true;
 		}
-		$this->startForm();
-		$this->addHTML("<ul>");
-		$this->parent->performInstallation(
-			array( $this, 'startStage'), 
-			array( $this, 'endStage' )
-		);
-		$this->addHTML("</ul>");
-		$this->endForm();
-		return true;
 
 	}
 

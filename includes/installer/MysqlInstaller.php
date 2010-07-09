@@ -406,7 +406,7 @@ class MysqlInstaller extends InstallerDBType {
 		$db = $this->getVar( 'wgDBname' );
 		$this->db->selectDB( $db );
 		$error = $this->db->sourceFile( "$IP/maintenance/users.sql" );
-		if ( !$error ) {
+		if ( $error !== true ) {
 			$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $error );
 		}
 
@@ -420,10 +420,17 @@ class MysqlInstaller extends InstallerDBType {
 			return $status;
 		}
 		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
-		if ( !$this->db->sourceFile( "$IP/maintenance/tables.sql" ) ) {
-			//@todo
+		
+		if( $this->db->tableExists( 'user' ) ) {
+			$status->warning( 'config-install-tables-exist' );
+			return $status;
+		} 
+		
+		$error = $this->db->sourceFile( "$IP/maintenance/tables.sql" );
+		if( $error !== true ) {
+			$status->fatal( 'config-install-tables-failed', $error );
 		}
-		return Status::newGood();
+		return $status;
 	}
 
 	function getTableOptions() {
