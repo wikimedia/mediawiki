@@ -1424,17 +1424,13 @@ function wfEscapeShellArg( ) {
 				}
 				$delim = !$delim;
 			}
-			
 			// Double the backslashes before the end of the string, because
 			// we will soon add a quote
 			$m = array();
 			if ( preg_match( '/^(.*?)(\\\\+)$/', $arg, $m ) ) {
 				$arg = $m[1] . str_replace( '\\', '\\\\', $m[2] );
 			}
-			
-			// The caret is also an special character
-			$arg = str_replace( "^", "^^", $arg );
-			
+
 			// Add surrounding quotes
 			$retVal .= '"' . $arg . '"';
 		} else {
