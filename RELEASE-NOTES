@@ -238,7 +238,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22738) Allow filtering by action type on query=logevent.
 * (bug 22764) uselang parameter for action=parse.
 * (bug 22944) API: watchlist options are inconsistent.
-* (bug 22339) "Go" result should be available through the API.
 * (bug 22868) don't list infinite block expiry date as "now" in API logevents.
 * (bug 22290) prop=revisions now outputs "comment" field even when comment.
   is empty, for consistency with list=recentchanges.
