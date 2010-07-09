@@ -844,6 +844,7 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 * Quttiji alomatxūrda ba in ma'nī ast, ki korbar dar on gurūh qaror dorad.
 * Quttiji alomatnaxūrda ba in ma'nī ast, ki korbar dar on gurūh qaror nadorad.
 * \"*\" ma'noi onro dorad, ki şumo qobili hazf kardani gurūhe nested dar hole ki şumo onro ilova karda boşed, in jo on.",
+'userrights-reason'           => 'Sabab:',
 'userrights-no-interwiki'     => 'Şumo içozati taƣjiri ixtijoroti korbaroni digar vikihoro nadored.',
 'userrights-nodatabase'       => 'Pojgohi doda $1 vuçud nadorad jo mahallī nest.',
 'userrights-nologin'          => "Şumo bojad bo jak hisobi korbarī doroi ixtijoroti mudirijatī [[Special:UserLogin|ba sistem vurud kuned]], to bitavoned ixtijoroti korbaronro ta'jid kuned.",

@@ -1952,6 +1952,13 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'bydate'                => '<b>pēc datuma</b>',
 'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1, $2',
 
+# Bad image list
+'bad_image_list' => 'Formāts: 
+
+Tiek ņemti vērā tikai ieraksti rindiņā kas sākas ar * 
+Pirmajai saitei rindiņā ir jābūt uz attiecīgo failu 
+Jebkuras sekojošas saites tiks uzskatītas par izņēmumiem t.i. lapām kurās fails drīkt tikt izmantots',
+
 # Metadata
 'metadata'          => 'Metadati',
 'metadata-help'     => 'Šis fails satur papildu informāciju, kuru visticamk ir pievienojis digitālais fotoaparāts vai skeneris, kas šo failu izveidoja. Ja šis fails pēc tam ir ticis modificēts, šie dati var neatbilst izmaiņām (var būt novecojuši).',

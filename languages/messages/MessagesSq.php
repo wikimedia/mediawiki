@@ -14,6 +14,7 @@
  * @author Ergon
  * @author Mdupont
  * @author MicroBoy
+ * @author Mikullovci11
  * @author Puntori
  * @author The Evil IP address
  * @author Urhixidur
@@ -324,6 +325,17 @@ $messages = array(
 'qbspecialpages' => 'Faqet speciale',
 'faq'            => 'Pyetje e Përgjigje',
 'faqpage'        => 'Project:Pyetje e Përgjigje',
+
+# Vector skin
+'vector-action-delete'      => 'Grise',
+'vector-action-move'        => 'Zhvendose',
+'vector-namespace-category' => 'Kategoria',
+'vector-namespace-image'    => 'Skeda',
+'vector-namespace-main'     => 'Faqe',
+'vector-namespace-template' => 'Stampa',
+'vector-view-create'        => 'Krijo',
+'vector-view-edit'          => 'Redakto',
+'vector-view-history'       => 'Shiko Historin',
 
 'errorpagetitle'    => 'Gabim',
 'returnto'          => 'Kthehu tek $1.',
