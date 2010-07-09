@@ -55,14 +55,6 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Output page, used for reporting errors
-	 * FALSE means discard output
-	 */
-	function setOutputPage( $out ) {
-		wfDeprecated( __METHOD__ );
-	}
-
-	/**
 	 * Boolean, controls output of large amounts of debug information
 	 */
 	function debug( $debug = null ) {
