@@ -17,42 +17,90 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'             => 'Fo-loidhneadh nan ceanglaichean:',
-'tog-highlightbroken'       => 'An cleachdar am fòrmat <a href="" class="new">seo</a> airson ceanglaichean briste (no am fear seo<a href="" class="internal">?</a>)',
-'tog-justify'               => 'Taobhaich na h-earrannan',
-'tog-hideminor'             => 'Falaich mùthaidhean beaga ann an liosta nam mùthaidhean ùra',
-'tog-hidepatrolled'         => 'Falaich mùthaidhean fo fhaire ann an liosta nam mùthaidhean ùra',
-'tog-newpageshidepatrolled' => 'Falaich duilleagan fo fhaire ann an liosta nan duilleagan ùra',
-'tog-extendwatchlist'       => "Leudaich an clàr-faire gus an seall e gach mùthadh 's chan ann an fheadhainn as ùire a-mhàin",
-'tog-rememberpassword'      => "Cuimhnich gu bheil mi air logadh a-steach air a' choimpiutair seo (suas gu $1 {{PLURAL:$1|latha|làithean}})",
+'tog-underline'               => 'Fo-loidhneadh nan ceanglaichean:',
+'tog-highlightbroken'         => 'An cleachdar am fòrmat <a href="" class="new">seo</a> airson ceanglaichean briste (no am fear seo<a href="" class="internal">?</a>)',
+'tog-justify'                 => 'Taobhaich na h-earrannan',
+'tog-hideminor'               => 'Falaich mùthaidhean beaga ann an liosta nam mùthaidhean ùra',
+'tog-hidepatrolled'           => 'Falaich mùthaidhean fo fhaire ann an liosta nam mùthaidhean ùra',
+'tog-newpageshidepatrolled'   => 'Falaich duilleagan fo fhaire ann an liosta nan duilleagan ùra',
+'tog-extendwatchlist'         => "Leudaich an clàr-faire gus an seall e gach mùthadh 's chan ann an fheadhainn as ùire a-mhàin",
+'tog-usenewrc'                => 'Cleachd mùthaidhean ùra leasaichte (feumaidh seo JavaScript)',
+'tog-numberheadings'          => 'Cuir àireamhan ri ceann-sgrìobhaidhean leis fhèin',
+'tog-showtoolbar'             => 'Seall am bàr-inneil deasachaidh (feumaidh seo JavaScript)',
+'tog-editondblclick'          => 'Tòisich air deasachadh duilleige le briogadh dùbailt (feumaidh seo JavaScript)',
+'tog-editsection'             => 'Cuir am comas deasachadh earainn le ceanglaichean [deasaich]',
+'tog-editsectiononrightclick' => "Cuir an comas deasachadh earainn le briogadh deas air tiotal de dh'earrainn (feumaidh seo JavaScript)",
+'tog-showtoc'                 => 'Seall an clàr-innse (air duilleagan air a bheil barrachd air 3 ceann-sgrìobhaidhean)',
+'tog-rememberpassword'        => "Cuimhnich gu bheil mi air logadh a-steach air a' choimpiutair seo (suas gu $1 {{PLURAL:$1|latha|làithean}})",
+'tog-watchcreations'          => 'Cuir duilleagan a chruthaicheas mi air mo chlàr-faire',
+'tog-watchdefault'            => 'Cuir duilleagan a dheasaicheas mi air mo chlàr-faire',
+'tog-watchmoves'              => 'Cuir duilleagan a ghluaiseas mi air mo chlàr-faire',
+'tog-watchdeletion'           => 'Cuir duilleagan a sguabas mi às air mo chlàr-faire',
+'tog-minordefault'            => 'Comharraich gach mùthadh mar mhùthadh beag a ghnàth',
+'tog-previewontop'            => "Nochd an ro-shealladh os cionn a' bhogsa deasachaidh",
+'tog-previewonfirst'          => "Nochd an ro-shealladh nuair a nithear a' chiad deasachadh",
+'tog-nocache'                 => 'Cuir à comas tasgadh nan duilleagan',
+'tog-enotifwatchlistpages'    => 'Cuir post-dealain thugam nuair a chuirear mùthadh air duilleag a tha air mo chlàr-faire',
+'tog-enotifusertalkpages'     => 'Cuir post-dealain thugam nuair a mhùthaichear duilleag mo chonaltraidh',
+'tog-enotifminoredits'        => 'Cuir post-dealain thugam nuair a chuirear mùthadh beag air duilleagan cuideachd',
+'tog-enotifrevealaddr'        => 'Nochd an seòladh puist-dhealain agam ann am teachdaireachdan fiosrachaidh',
+'tog-shownumberswatching'     => "Nochd àireamh nan cleachdaichean a tha a' cumail sùil air",
+'tog-oldsig'                  => 'Ro-shealladh an earr-sgrìobhaidh làithrich:',
+'tog-fancysig'                => 'Làimhsich an t-earr-sgrìobhadh mar wikitext (gun cheangal leis fhèin)',
+'tog-externaleditor'          => "Cleachd deasaichear on taobh a-muigh a ghnàth (do shàr-eòlaichean a-mhàin, feumaidh seo roghainnean sònraichte air a' choimpiutair agad)",
+'tog-externaldiff'            => "Cleachd diff on taobh a-muigh a ghnàth (do shàr-eòlaichean a-mhàin, feumaidh seo roghainnean sònraichte air a' choimpiutair agad)",
+'tog-showjumplinks'           => 'Cuir an comas ceanglaichean so-inntrigeachd "gearr leum gu"',
+'tog-uselivepreview'          => 'Cleachd an ro-shealladh beò (feumaidh seo JavaScript) (deuchainneach)',
+'tog-forceeditsummary'        => "Cuir ceist nuair a dh'fhàgas mi gearr-chunntas an deasachaidh bàn",
+'tog-watchlisthideown'        => 'Falaich mo mhùthaidhean fhèin air mo chlàr-faire',
+'tog-watchlisthidebots'       => 'Falaich mùthaidhean nam bot air mo chlàr-faire',
+'tog-watchlisthideminor'      => 'Falaich mùthaidhean beaga air mo chlàr-faire',
+'tog-watchlisthideliu'        => 'Falaich mùthaidhean le cleachdaichean a tha air logadh a-steach air mo chlàr-faire',
+'tog-watchlisthideanons'      => 'Falaich mùthaidhean le cleachdaichean gun ainm air mo chlàr-faire',
+'tog-watchlisthidepatrolled'  => 'Falaich mùthaidhean air duilleagan fo fhreiceadan air mo chlàr-faire',
+'tog-ccmeonemails'            => 'Cuir lethbhric de phuist-dhealain a chuireas mi do chleachdaichean eile thugam',
+'tog-diffonly'                => 'Na seall susbaint nan duilleagan fo na diofaichean',
+'tog-showhiddencats'          => 'Seall na roinnean falaichte',
+'tog-norollbackdiff'          => 'Na dèan diof às dèidh roiligeadh air ais',
+
+'underline-always'  => 'An-còmhnaidh',
+'underline-never'   => 'Na dèan seo idir',
+'underline-default' => "Roghainn bhunaiteach a' bhrabhsair",
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Stoidhle cruth-clò an raoin dheasachaidh:',
+'editfont-default'   => "Roghainn bhunaiteach a' bhrabhsair",
+'editfont-monospace' => 'Cruth-clò aon-leud',
+'editfont-sansserif' => 'Cruth-clò gun serif',
+'editfont-serif'     => 'Cruth-clò le serif',
 
 # Dates
-'sunday'        => 'Didòmhnaich',
-'monday'        => 'Diluain',
-'tuesday'       => 'Dimàirt',
-'wednesday'     => 'Diciadain',
-'thursday'      => 'Diardaoin',
-'friday'        => 'Dihaoine',
-'saturday'      => 'Disathairne',
+'sunday'        => 'DiDòmhnaich',
+'monday'        => 'DiLuain',
+'tuesday'       => 'DiMàirt',
+'wednesday'     => 'DiCiadain',
+'thursday'      => 'DiarDaoin',
+'friday'        => 'DihAoine',
+'saturday'      => 'DiSathairne',
 'sun'           => 'DiD',
 'mon'           => 'DiL',
 'tue'           => 'DiM',
 'wed'           => 'DiC',
-'thu'           => 'DiA',
-'fri'           => 'DiH',
+'thu'           => 'Dia',
+'fri'           => 'Dih',
 'sat'           => 'DiS',
-'january'       => 'am Faoilteach',
-'february'      => 'an Gearran',
-'march'         => 'am Màrt',
-'april'         => 'an Giblean',
-'may_long'      => 'An Cèitean',
-'june'          => 'an t-Ògmhios',
-'july'          => 'an t-Iuchar',
-'august'        => 'an Lùnastal',
-'september'     => 'an t-Sultain',
-'october'       => 'an Dàmhair',
-'november'      => 'an t-Samhain',
-'december'      => 'an Dùbhlachd',
+'january'       => 'dhen Fhaoilleach',
+'february'      => 'dhen Ghearrain',
+'march'         => 'dhen Mhàrt',
+'april'         => 'dhen Ghiblean',
+'may_long'      => 'dhen Chèitean',
+'june'          => 'dhen Ògmhios',
+'july'          => 'dhen Iuchar',
+'august'        => 'dhen Lùnastal',
+'september'     => 'dhen t-Sultain',
+'october'       => 'dhen Dàmhair',
+'november'      => 'dhen t-Samhain',
+'december'      => 'dhen Dùbhlachd',
 'january-gen'   => 'dhen Fhaoilleach',
 'february-gen'  => 'dhen Ghearrain',
 'march-gen'     => 'dhen Mhàrt',
@@ -79,26 +127,71 @@ $messages = array(
 'dec'           => 'dùbh',
 
 # Categories related messages
-'category_header'        => 'Duilleagan sa roinn "$1"',
-'subcategories'          => 'Fo-roinnean',
-'listingcontinuesabbrev' => 'leant.',
+'category_header'          => 'Duilleagan sa roinn "$1"',
+'subcategories'            => 'Fo-roinnean',
+'category-media-header'    => 'Meadhanan sa roinn "$1"',
+'category-empty'           => "''Chan eil duilleagan no meadhanan san roinn seo an-dràsta.''",
+'hidden-category-category' => 'Roinnean falaichte',
+'listingcontinuesabbrev'   => 'leant.',
+'index-category'           => "Duilleagan air a' chlàr-innse",
+'noindex-category'         => "Duilleagan nach eil air a' chlàr-innse",
+
+'mainpagetext'      => "'''Chaidh MediaWiki a stàladh gu soirbheachail.'''",
+'mainpagedocfooter' => "Cuir sùil air [http://meta.wikimedia.org/wiki/Help:Contents treòir nan cleachdaichean] airson fiosrachadh mu chleachdadh a' bhathar-bhog wiki.
+
+== Toiseach tòiseachaidh ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liosta suidheachadh nan roghainnean]
+* [http://www.mediawiki.org/wiki/Manual:FAQ CÀBHA MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liosta puist nan sgaoilidhean MediaWiki]",
 
 'about'         => 'Mu',
+'article'       => 'Duilleag susbainte',
 'newwindow'     => "(a' fosgladh ann an uinneag ùr)",
 'cancel'        => 'Sguir dheth',
 'moredotdotdot' => 'Barrachd...',
 'mypage'        => 'Mo dhuilleag',
 'mytalk'        => 'Mo chonaltradh',
-'anontalk'      => 'Labhairt air an IP seo',
+'anontalk'      => 'Conaltradh airson an IP seo',
 'navigation'    => 'Seòladh',
 'and'           => '&#32;agus',
 
 # Cologne Blue skin
 'qbfind'         => 'Lorg',
+'qbbrowse'       => 'Brabhsaich',
 'qbedit'         => 'Deasaich',
 'qbpageoptions'  => 'An duilleag seo',
+'qbpageinfo'     => 'Co-theacs',
 'qbmyoptions'    => 'Na duilleagan agam',
-'qbspecialpages' => 'Duilleagan àraidh',
+'qbspecialpages' => 'Duilleagan sònraichte',
+'faq'            => 'CÀBHA',
+'faqpage'        => 'Project:CÀBHA',
+
+# Vector skin
+'vector-action-addsection'   => 'Cuir ris cuspair',
+'vector-action-delete'       => 'Sguab às',
+'vector-action-move'         => 'Gluais',
+'vector-action-protect'      => 'Dìon',
+'vector-action-undelete'     => 'Neo-dhèan an sguabadh às',
+'vector-action-unprotect'    => 'Neo-dhìon',
+'vector-namespace-category'  => 'Roinn',
+'vector-namespace-help'      => 'An duilleag cobharach',
+'vector-namespace-image'     => 'Faidhle',
+'vector-namespace-main'      => 'Duilleag',
+'vector-namespace-media'     => 'Duilleag mheadhanan',
+'vector-namespace-mediawiki' => 'Teachdaireachd',
+'vector-namespace-project'   => "Duilleag a' phròiseict",
+'vector-namespace-special'   => 'Duilleag shònraichte',
+'vector-namespace-talk'      => 'Deasbaireachd',
+'vector-namespace-template'  => 'Teamplaid',
+'vector-namespace-user'      => "Duilleag a' chleachdaiche",
+'vector-view-create'         => 'Cruthaich',
+'vector-view-edit'           => 'Deasaich',
+'vector-view-history'        => 'Seall an eachdraidh',
+'vector-view-view'           => 'Leugh',
+'vector-view-viewsource'     => 'Seall an tùs',
+'actions'                    => 'Gnìomhan',
+'namespaces'                 => 'Namespaces',
+'variants'                   => 'Tionndaidhean',
 
 'errorpagetitle'    => 'Mearachd',
 'returnto'          => 'Till a $1.',
@@ -110,14 +203,17 @@ $messages = array(
 'searcharticle'     => 'Rach',
 'history'           => 'Eachdraidh na duilleige',
 'history_short'     => 'Eachdraidh',
+'updatedmarker'     => 'air ùrachadh on turas mu dheireadh a thadhail mi air',
 'info_short'        => 'Fiosrachadh',
 'printableversion'  => 'Tionndadh a ghabhas a chlò-bhualadh',
 'permalink'         => 'Ceangal buan',
+'print'             => 'Clò-bhuail',
 'edit'              => 'Deasaich',
 'create'            => 'Cruthaich',
 'editthispage'      => 'Deasaich an duilleag seo',
+'create-this-page'  => 'Cruthaich an duilleag seo',
 'delete'            => 'Sguab às',
-'deletethispage'    => 'Dubh às an duilleag seo',
+'deletethispage'    => 'Sguab às an duilleag seo',
 'protect'           => 'Dìon',
 'protect_change'    => 'mùth',
 'protectthispage'   => 'Dìon an duilleag seo',
@@ -126,21 +222,34 @@ $messages = array(
 'newpage'           => 'Duilleag ùr',
 'talkpage'          => 'Dèan deasbad mun duilleag seo',
 'talkpagelinktext'  => 'Deasbaireachd',
-'specialpage'       => 'Duilleag àraidh',
+'specialpage'       => 'Duilleag shònraichte',
 'personaltools'     => 'Innealan pearsanta',
+'postcomment'       => 'Earrann ùr',
+'articlepage'       => 'Seall duilleag na susbainte',
 'talk'              => 'Deasbaireachd',
 'views'             => 'Tadhalan',
 'toolbox'           => 'Bogsa-innealan',
-'userpage'          => 'Seall duilleag cleachdair',
+'userpage'          => "Seall duilleag a' chleachdaiche",
+'projectpage'       => "Seall duilleag a' phròiseict",
 'imagepage'         => 'Seall duilleag an fhaidhle',
+'mediawikipage'     => 'Seall duilleag na teachdaireachd',
+'templatepage'      => 'Seall duilleag na teamplaide',
+'viewhelppage'      => 'Seall an duilleag cobharach',
+'categorypage'      => 'Seall duilleag na roinne',
+'viewtalkpage'      => 'Seall an deasbaireachd',
 'otherlanguages'    => 'Ann an cànain eile',
 'redirectedfrom'    => '(Air ath-sheòladh o $1)',
 'redirectpagesub'   => 'Ath-sheòl an duilleag',
 'lastmodifiedat'    => 'Chaidh an duilleag seo a mhùthadh $1, aig $2 turas mu dheireadh.',
-'protectedpage'     => 'Duilleag dìonta',
+'protectedpage'     => 'Duilleag fo dhìon',
 'jumpto'            => 'Gearr leum gu:',
 'jumptonavigation'  => 'seòladh',
 'jumptosearch'      => 'lorg',
+'view-pool-error'   => "Duilich, tha na frithealaichean ro thrang an-dràsta.
+Tha cus chleachdaichean a' feuchainn ris an duilleag seo fhaicinn.
+Fuirich ort greis mus feuch thu ris an duilleag seo fhaicinn a-rithist.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Mu dhèidhinn {{SITENAME}}',
@@ -155,14 +264,21 @@ $messages = array(
 'edithelppage'         => 'Help:Deasachadh',
 'helppage'             => 'Help:Susbaint',
 'mainpage'             => 'Prìomh dhuilleag',
-'mainpage-description' => 'Prìomh-Dhuilleag',
+'mainpage-description' => 'Prìomh dhuilleag',
+'policy-url'           => 'Project:Poileasaidh',
 'portal'               => 'Doras na Coimhearsnachd',
 'portal-url'           => 'Project:Doras na coimhearsnachd',
 'privacy'              => 'Am polasaidh prìobhaideachd',
 'privacypage'          => 'Project:Am polasaidh prìobhaideachd',
 
-'badaccess' => 'Meareachd le cead',
+'badaccess'        => 'Meareachd le cead',
+'badaccess-group0' => "Chan eil cead agad an gnìomh a dh'iarr thu a thoirt gu buil.",
 
+'versionrequired'     => 'Feum air tionndadh $1 de MhediaWiki',
+'versionrequiredtext' => 'Tha feum air tionndadh $1 de MhediaWiki mus faicear an duilleag seo.
+Seall air [[Special:Version|duilleag an tionndaidh]].',
+
+'ok'                      => 'Ceart ma-thà',
 'retrievedfrom'           => 'Air a tharraing à "$1"',
 'youhavenewmessages'      => 'Tha $1 ($2) agad.',
 'newmessageslink'         => 'teachdaireachdan ùra',
@@ -170,12 +286,18 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Tha teachdaireachdan ùra agad ann an $1',
 'editsection'             => 'deasaich',
 'editold'                 => 'deasaich',
+'viewsourceold'           => 'seall an tùs',
 'editlink'                => 'deasaich',
 'viewsourcelink'          => 'seall an tùs',
 'editsectionhint'         => 'Deasaich earrann: $1',
 'toc'                     => 'Susbaint',
 'showtoc'                 => 'seall',
 'hidetoc'                 => 'falaich',
+'thisisdeleted'           => 'Seall no aisig $1?',
+'viewdeleted'             => 'Seall $1?',
+'feedlinks'               => 'Inbhir:',
+'feed-invalid'            => "Seòrsa mì-dhligheach de dh'fho-sgrìobhadh inbhir.",
+'feed-unavailable'        => 'Chan eil inbhirean co-bhanntachd ri fhaighinn',
 'site-rss-feed'           => '$1 Inbhir RSS',
 'site-atom-feed'          => '$1 Inbhir Atom',
 'page-rss-feed'           => '"$1" Inbhir RSS',
@@ -184,7 +306,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Duilleag',
-'nstab-user'      => 'Duilleag an neach-chleachdaidh',
+'nstab-user'      => "Duilleag a' chleachdaiche",
 'nstab-media'     => 'Meadhanan',
 'nstab-special'   => 'Duilleag shònraichte',
 'nstab-project'   => "Duilleag a' phròiseict",
@@ -195,26 +317,91 @@ $messages = array(
 'nstab-category'  => 'Roinn',
 
 # Main script and global functions
+'nosuchaction'      => 'Chan eil a leithid de ghnìomh ann',
+'nosuchactiontext'  => "Tha an gnìomh a shònraich an t-URL mì-dhligheach.
+Faodaidh gun do chuir thu a-steach URL mearachdach no gun do lean thu ri ceangal mearachdach.
+Cuideachd, faodaidh gu bheil seo 'na chomharradh air buga sa bhathar-bhog aig {{SITENAME}}",
+'nosuchspecialpage' => "Chan eil duilleag shònraichte d' a leithid ann",
 'nospecialpagetext' => "<strong>Dh'iarr thu duilleag shònraichte mhì-dhligheach.</strong>
 
 Gheibh thu liosta nan duilleagan sònraichte 's dligheach aig [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'              => 'Mearachd',
-'databaseerror'      => 'Mearachd an stor-dàta',
-'readonly'           => 'Stor-dàta glaiste',
-'missing-article'    => 'Cha do lorg an stòr-dàta teacs de dhuilleag a bu chòir a bhith air a lorg aige \'s air a bheil "$1" $2.
+'error'                => 'Mearachd',
+'databaseerror'        => 'Mearachd an stor-dàta',
+'dberrortext'          => 'Thachair mearachd co-chàraidh rè iarrtas an stòir-dhàta.
+Faodaidh gu bheil seo a\' comharrachadh mearachd sa bhathar-bhog.
+Seo iarrtas an stòir-dhàta mu dheireadh a chaidh feuchainn ris:
+<blockquote><tt>$1</tt></blockquote>
+o bhroinn an fhoincsein "<tt>$2</tt>".
+Thill an stòr-dàta a\' mhearachd "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Thachair mearachd co-chàraidh rè iarrtas an stòir-dhàta.
+Seo iarrtas an stòir-dhàta mu dheireadh a chaidh feuchainn ris:
+"$1"
+o bhroinn an fhoincsein "$2".
+Thill an stòr-dàta a\' mhearachd "$3: $4"',
+'laggedslavemode'      => "'''Rabhadh:''' Faodaidh nach eil ùrachaidhean a rinneadh o chionn ghoirid a' nochdadh san duilleag.",
+'readonly'             => 'Stòr-dàta glaiste',
+'enterlockreason'      => "Cuir a-steach adhbhar a' ghlais, a' gabhail a-steach tuairmeas air fuasgladh a' ghlais.",
+'readonlytext'         => "Tha an stòr-dàta glaiste do chlàir ùra 's mùthaidhean eile, ma dh'fhaoidte air sgàth obair-chàraidh chunbhalach an stòir-dhàta 's bidh e mar as àbhaist às dèidh sin.
+
+Chuir an rianadair a ghlas e an cèill na leanas: $1",
+'missing-article'      => 'Cha do lorg an stòr-dàta teacsa de dhuilleag a bu chòir a bhith air a lorg aige \'s air a bheil "$1" $2.
 
 \'S e mùthaidhean no ceangal eachdraidheil ro shean ri duilleag a chaidh a sguabadh às a bhios coireach à seo mar is trice.
 
 Mur eil seo fìor, faodaidh gun do lorg thu buga sa bhathar-bhog.
 An dèan thu aithris air seo do [[Special:ListUsers/sysop|rianadair]], ag innse dhaibh dè an t-URL a bha ann.',
-'missingarticle-rev' => '(mùthadh#: $1)',
-'badarticleerror'    => 'Cha ghabh an gnìomh seo a dhèanamh air an duilleig seo.',
-'badtitle'           => 'Droch thiotal',
-'badtitletext'       => "Bha an duilleag a dh'iarr thu mì-dhligheach, falamh no le tiotal eadar-chànanach no eadar-wiki air a dhroch cheangal.
+'missingarticle-rev'   => '(mùthadh#: $1)',
+'missingarticle-diff'  => '(Diof: $1, $2)',
+'readonly_lag'         => "Chaidh an stòr-dàta a ghlasadh leis fhèin fhad 's a tha frithealaichean nan stòr-dàta tràilleach air dheireadh a' mhaighstir",
+'internalerror'        => 'Ion-mhearachd',
+'internalerror_info'   => 'Ion-mhearachd: $1',
+'fileappenderrorread'  => 'Cha do ghabh "$1" a leughadh fhad \'s a bhathar \'ga chur ris.',
+'fileappenderror'      => 'Cha do ghabh "$1" a chur ri "$2".',
+'filecopyerror'        => 'Cha do ghabh lethbhreac dhen fhaidhle "$1" gu "$2".',
+'filerenameerror'      => 'Cha do ghabh ainm an fhaidhle "$1" atharrachadh gu "$2".',
+'filedeleteerror'      => 'Cha do ghabh am faidhle "$1" a sguabadh às.',
+'directorycreateerror' => 'Cha do ghabh am pasgan "$1" a chruthachadh.',
+'filenotfound'         => 'Cha do ghabh am faidhle "$1" a lorg.',
+'fileexistserror'      => 'Chan urrainnear sgrìobhadh gun fhaidhle "$1": tha am faidhle ann mu thràth',
+'unexpected'           => 'Luach ris nach robh dùil: "$1"="$2".',
+'formerror'            => 'Mearachd: cha do ghabh am foirm a chur a-null',
+'badarticleerror'      => 'Cha ghabh an gnìomh seo a dhèanamh air an duilleag seo.',
+'cannotdelete'         => 'Cha do ghabh an duilleag no am faidhle "$1" a sguabadh às.
+Faodaidh gun deach a sguabadh às le cuideigin eile mu thràth.',
+'badtitle'             => 'Droch thiotal',
+'badtitletext'         => "Bha an duilleag a dh'iarr thu mì-dhligheach, falamh no le tiotal eadar-chànanach no eadar-wiki air a dhroch cheangal.
 Faodaidh gu bheil aon no barrachd charactairean ann nach urrainn dhut a chleachdadh ann an tiotalan.",
-'viewsource'         => 'Seall an tùs',
+'perfcached'           => "Chaidh an dàta a leanas a thasgadh 's faodaidh gu bheil e air dheireadh.",
+'perfcachedts'         => "Chaidh an dàta a leanas a thasgadh 's chaidh ùrachadh $1 turas mu dheireadh.",
+'querypage-no-updates' => 'Tha ùrachadh air a chur à comas air an duilleag seo an-dràsta.
+Cha dèid an dàta an-seo ùrachadh aig an àm seo.',
+'wrong_wfQuery_params' => 'Paramatairean mì-cheart airson wfQuery()<br />
+Foincsean: $1<br />
+Iarrtas: $2',
+'viewsource'           => 'Seall an tùs',
+'viewsourcefor'        => 'airson $1',
+'actionthrottled'      => 'Gnìomh air a mhùchadh',
+'actionthrottledtext'  => "Gus casg a chur air spama, chan urrainn dhut an gnìomh seo a dhèanamh ro thric am broinn ùine ghoirid agus chaidh thu thairis air a' chrìoch seo.
+Feuch ris a-rithist às a dhèidh seo.",
+'protectedpagetext'    => 'Chaidh an duilleag seo a ghlasadh gus casg a chur air deasachadh.',
+'viewsourcetext'       => "'S urrainn dhut coimhead air tùs na duilleige seo 's lethbhreac a dhèanamh dheth:",
+'protectedinterface'   => "Tha an duilleag seo a' solar teacsa eadar-aghaidh airson a' bhathar-bhog is chaidh a ghlaadh gus casg a chur air mì-chleachdadh.",
+'editinginterface'     => "'''Rabhadh:''' Tha thu a' deasachadh duilleag a tha 'ga chleachdadh a chum teacsa eadar-aghaidh a sholar airson a' bhathar-bhog.
+Ma dh'atharraicheas tu an duilleag seo, bidh buaidh ann air coltas na h-eadar-aghaidh mar a chì càch i.
+Ma tha thu airson Gàidhlig a chur air, saoil an cleachd thu [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], am pròiseact ionadailidh aig MediaWiki?",
+'sqlhidden'            => "(Iarrtas SQL 'ga fhalach)",
+'namespaceprotected'   => "Chan eil cead agad duilleagan san namespace '''$1''' a dheasachadh.",
+'customcssjsprotected' => "Chan eil cead agad an duilleag seo a dheasachadh a chionn 's gu bheil na roghainnean pearsanta aig cleachdaiche eile innte.",
+'ns-specialprotected'  => 'Chan ghabh duilleagan sònraichte a dheasachadh.',
+'titleprotected'       => 'Chaidh an duilleag seo a dhìon o chruthachadh le [[User:$1|$1]].
+Seo am mìneachadh: "\'\'$2\'\'".',
+
+# Virus scanner
+'virus-badscanner'     => "Droch cho-dhealbhachd: sganair bhìorasan neo-aithnichte: ''$1''",
+'virus-scanfailed'     => "dh'fhàillig an sganadh (còd $1)",
+'virus-unknownscanner' => 'sganair bhìorasan neo-aithnichte:',
 
 # Login and logout pages
 'yourname'                   => "D' ainm-cleachdaidh:",
@@ -267,7 +454,7 @@ Faodaidh gu bheil aon no barrachd charactairean ann nach urrainn dhut a chleachd
 'summary'                => 'Gearr-chunntas:',
 'subject'                => 'Cuspair/ceann-loidhne:',
 'minoredit'              => 'Seo mùthadh beag',
-'watchthis'              => 'Cùm sùil air an aithris seo',
+'watchthis'              => 'Cum sùil air an duilleag seo',
 'savearticle'            => 'Sàbhail an duilleag',
 'preview'                => 'Ro-shealladh',
 'showpreview'            => 'Seall an ro-shealladh',
@@ -285,7 +472,7 @@ Gabhaidh am facal-faire airson a' chunntais ùir seo atharrachadh air an fo ''[[
 'newarticletext'         => "Lean thu ri ceangal gu duilleag nach eil ann fhathast.
 Cuir teacs sa bhogsa gu h-ìosal gus an duilleag seo a chruthachadh (seall air [[{{MediaWiki:Helppage}}|duilleag na cobharach]] airson barrachd fiosrachaidh).
 Mura robh dùil agad ris an duilleag seo a ruigsinn, briog air a' phutan '''air ais''' 'nad bhrabhsair.",
-'noarticletext'          => 'Chan eil teacsa sam bith anns an duilleag seo an-dràsta
+'noarticletext'          => 'Chan eil teacsa sam bith anns an duilleag seo an-dràsta.
 \'S urrainn dhut [[Special:Search/{{PAGENAME}}|an tiotal seo a lorg]] ann an duilleagan eile,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} na logaichean co-cheangailte a rannsachadh],
 no [{{fullurl:{{FULLPAGENAME}}|action=edit}} an duilleag seo a dheasachadh]</span>.',
@@ -295,10 +482,15 @@ Cha deach na mùthaidhean agad a shàbhaladh fhathast!",
 'editing'                => "A' deasachadh $1",
 'editingsection'         => "A' deasachadh $1 (earrann)",
 'editconflict'           => 'Mì-chòrdadh deasachaidh: $1',
-'explainconflict'        => "Tha cuideigin eile air an duilleig seo a mhùthadh o'n thòisich tu fhèin a dheasaicheadh. Tha am bocsa teacsa shuas a' nochdadh na duilleig mar a tha e an dràsda. Tha na mùthaidhean agadsa anns a' bhocsa shios. Feumaidh tu na mùthaidhean agad a choimeasgachadh leis an teacsa làithreach. Cha tèid <b>ach an teacsa shuas</b> a shàbhaladh an uair a bhriogas tu \"Sàbhail duilleag\".<p>",
+'explainconflict'        => 'Tha cuideigin eile air an duilleag seo a mhùthadh on a thòisich thu fhèin air a dheasachadh.
+Tha am bogsa teacsa gu h-àrd a\' nochdadh na duilleige mar a tha i an-dràsta.
+Tha na mùthaidhean agadsa sa bhogsa gu h-ìosal. 
+Bidh agad ris na mùthaidhean agad fhilleadh a-steach san teacsa làithreach. 
+Cha dèid <b>ach an teacsa gu h-àrd</b> a shàbhaladh nuair a bhriogas tu air "Sàbhail an duilleag".<p>',
 'yourtext'               => 'An teacsa agad',
 'storedversion'          => 'Lethbhreac taisgte',
-'editingold'             => "'''RABHADH: Tha thu a' deasaicheadh lethbhreac sean-aimsireil na duilleig seo. Ma shàbhalas tu e, bithidh uile na mùthaidhean dèanta as dèidh an lethbhreac seo air chall.'''",
+'editingold'             => "'''RABHADH: Tha thu a' deasachadh lethbhreac seann-aimsireil na duilleige seo. 
+Ma shàbhalas tu seo, thèid gach mùthadh air chall a rinneadh a-mach on mhùthadh seo.'''",
 'yourdiff'               => 'Caochlaidhean',
 'copyrightwarning'       => "Thoir an aire gu bheilear a' tuigsinn gu bheil gach rud a chuireas tu ri {{SITENAME}} air a leigeil mu sgaoil fo $2 (see $1 airson mion-fhiosrachadh).
 Mura bi thu toilichte 's daoine eile a' deasachadh gun tròcair na sgrìobh tu 's 'ga sgaoileadh mar a thogras iad, na cuir an-seo e.<br />
@@ -313,7 +505,7 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 
 # History pages
 'viewpagelogs'           => 'Seall logaichean na duilleige seo',
-'nohistory'              => 'Chan eil eachdraidh deasachaidh aig an duilleig seo.',
+'nohistory'              => 'Chan eil eachdraidh deasachaidh aig an duilleag seo.',
 'currentrev'             => 'Lethbhreac làithreach',
 'currentrev-asof'        => 'Am mùthadh mu dheireadh on $1',
 'revisionasof'           => 'Mùthadh on $1',
@@ -378,7 +570,7 @@ Feuch ri ''all:'' a chuir air beulaibh an iarrtais agad gus rannsachadh a dhèan
 'mypreferences'  => 'Mo roghainnean',
 'changepassword' => 'Atharraich facal-faire',
 'prefs-skin'     => 'Bian',
-'skin-preview'   => 'Roi-shealladh',
+'skin-preview'   => 'Ro-shealladh',
 'prefs-personal' => "Dàta a' chleachdair",
 'saveprefs'      => 'Sàbhail roghainnean',
 'resetprefs'     => 'Ath-shuidhich taghaidhean',
@@ -388,7 +580,7 @@ Feuch ri ''all:'' a chuir air beulaibh an iarrtais agad gus rannsachadh a dhèan
 'default'        => 'Gnàth',
 'youremail'      => 'Post dealain:',
 'username'       => 'Ainm-cleachdaidh:',
-'yourrealname'   => "An dearbh ainm a th' ort*",
+'yourrealname'   => "An dearbh ainm a th' ort:",
 'yourlanguage'   => 'Cànan:',
 'yournick'       => 'An leth-ainm agad (a chuirear ri teachdaireachdan)',
 
@@ -549,7 +741,7 @@ Nochdaidh mùthaidhean a nithear air an duilleag seo 's air an duilleag deasbair
 'removedwatch'       => 'Air a thoir air falbh o do chlàr-faire',
 'removedwatchtext'   => 'Chaidh an duilleag "[[:$1]]" a thoirt air falbh o [[Special:Watchlist|do chlàr-faire]].',
 'watch'              => 'Cum sùil air',
-'watchthispage'      => 'Cùm sùil air an duilleag seo',
+'watchthispage'      => 'Cum sùil air an duilleag seo',
 'unwatch'            => 'Na cum sùil tuilleadh',
 'watchnochange'      => "Cha deach na duilleagan air d' fhaire a dheasachadh anns a' chuairt ùine taisbeanta.",
 'watchmethod-recent' => "A' sgrùdadh deasachaidhean ùra airson duilleagan air d' fhaire",
@@ -568,8 +760,8 @@ Nochdaidh mùthaidhean a nithear air an duilleag seo 's air an duilleag deasbair
 'confirm'                => 'Daingnich',
 'excontent'              => "stuth a bh' ann: '$1'",
 'exblank'                => 'bha duilleag falamh',
-'delete-confirm'         => 'Dubh às "$1"',
-'delete-legend'          => 'Dubh às',
+'delete-confirm'         => 'Sguab às "$1"',
+'delete-legend'          => 'Sguab às',
 'confirmdeletetext'      => "Tha thu an impis duilleag a sguabadh às agus a h-eachdraidh uile gu lèir.
 Dearbhaich gu bheil thu airson seo a dhèanamh 's gun tuig thu a' bhuaidh a bhios ann agus gu bheil thu a' dèanamh seo a-rèir [[{{MediaWiki:Policy-url}}|a' phoileasaidh]].",
 'actioncomplete'         => 'Gnìomh deiseil',
@@ -581,7 +773,7 @@ Seall air $2 airson clàr de dhuilleagan a chaidh a sguabadh às o chionn ghoiri
 'deletecomment'          => 'Adhbhar:',
 'deleteotherreason'      => 'Adhbhar eile/a bharrachd:',
 'deletereasonotherlist'  => 'Adhbhar eile',
-'delete-edit-reasonlist' => 'Deasaich adhbharan dubhadh às',
+'delete-edit-reasonlist' => 'Deasaich adhbharan sguabadh às',
 
 # Rollback
 'rollbacklink' => 'roilig air ais',
@@ -800,7 +992,7 @@ Tadhail air [http://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] 
 'others'        => 'eile',
 
 # Info page
-'infosubtitle' => 'Fiosrachadh air duilleig',
+'infosubtitle' => 'Fiosrachadh mun duilleag',
 'numwatchers'  => 'Aireamh luchd-faire: $1',
 
 # Math errors

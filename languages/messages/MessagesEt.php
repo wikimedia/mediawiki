@@ -386,13 +386,13 @@ $messages = array(
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Kategooria|Kategooriad}}',
 'category_header'                => 'Leheküljed kategoorias "$1"',
-'subcategories'                  => 'Allkategooriad',
+'subcategories'                  => 'Alamkategooriad',
 'category-media-header'          => 'Meediafailid kategoorias "$1"',
 'category-empty'                 => "''Selles kategoorias pole ühtegi lehekülge ega meediafaili.''",
 'hidden-categories'              => '{{PLURAL:$1|Peidetud kategooria|Peidetud kategooriad}}',
 'hidden-category-category'       => 'Peidetud kategooriad',
-'category-subcat-count'          => '{{PLURAL:$2|Selles kategoorias on ainult järgmine allkategooria.|{{PLURAL:$1|Järgmine allkategooria|Järgmised $1 allkategooriat}} on selles kategoorias (kokku $2).}}',
-'category-subcat-count-limited'  => '{{PLURAL:$1|Järgmine allkategooria|Järgmised $1 allkategooriat}} on selles kategoorias.',
+'category-subcat-count'          => '{{PLURAL:$2|Selles kategoorias on ainult järgmine alamkategooria.|{{PLURAL:$1|Järgmine alamkategooria|Järgmised $1 alamkategooriat}} on selles kategoorias (kokku $2).}}',
+'category-subcat-count-limited'  => '{{PLURAL:$1|Järgmine alamkategooria|Järgmised $1 alamkategooriat}} on selles kategoorias.',
 'category-article-count'         => '{{PLURAL:$2|Antud kategoorias on ainult järgmine lehekülg.|{{PLURAL:$1|Järgmine lehekülg|Järgmised $1 lehekülge}} on selles kategoorias (kokku $2).}}',
 'category-article-count-limited' => '{{PLURAL:$1|Järgmine lehekülg|Järgmised $1 lehekülge}} on selles kategoorias.',
 'category-file-count'            => '{{PLURAL:$2|Selles kategoorias on ainult järgmine fail.|{{PLURAL:$1|Järgmine fail |Järgmised $1 faili}} on selles kategoorias (kokku $2).}}',
@@ -1209,6 +1209,7 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'searchprofile-everything-tooltip' => 'Otsi kogu sisust (k.a aruteluleheküljed)',
 'searchprofile-advanced-tooltip'   => 'Otsi kohandatud nimeruumidest',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 lehekülg|$1 lehekülge}} ({{PLURAL:$2|1 alamkategooria|$2 alamkategooriat}}, {{PLURAL:$3|1 fail|$3 faili}})',
 'search-result-score'              => 'Vastavus: $1%',
 'search-redirect'                  => '(ümbersuunamine $1)',
 'search-section'                   => '(alaosa $1)',
@@ -2112,7 +2113,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"
 'watchlist-options'    => 'Jälgimisloendi võimalused',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'jälgin...',
+'watching'   => 'Jälgimine...',
 'unwatching' => 'Jälgimise lõpetamine...',
 
 'enotif_mailer'                => '{{GRAMMAR:genitive|{{SITENAME}}}} lehekülje muutmise teavitaja',
@@ -2863,6 +2864,8 @@ Selle avamine võib su arvutit kahjustada.<hr />",
 'show-big-image'       => 'Originaalsuurus',
 'show-big-image-thumb' => '<small>Selle eelvaate suurus on: $1 × $2 pikselit</small>',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kaader|kaadrit}}',
+'file-info-png-repeat' => 'mängitud $1 {{PLURAL:$1|korra|korda}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|kaader|kaadrit}}',
 
 # Special:NewFiles
 'newimages'             => 'Uute meediafailide galerii',

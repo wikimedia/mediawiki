@@ -34,6 +34,7 @@
  * @author Korg
  * @author Korrigan
  * @author Kropotkine 113
+ * @author Litlok
  * @author Louperivois
  * @author McDutchie
  * @author Meithal
@@ -1104,7 +1105,7 @@ Comme administrateur, vous pouvez toujours [$1 voir cette version] si vous le vo
 En tant qu’administrateur, vous pouvez la visualiser ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-suppressed-text-view'    => "Cette version de la page a été '''supprimée'''.
 En tant qu’administrateur, vous pouvez la visualiser ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].",
-'rev-deleted-no-diff'         => "Vous ne pouvez par voir ce diff parce qu’une des versions a été '''effacée'''.
+'rev-deleted-no-diff'         => "Vous ne pouvez pas voir ce diff parce qu’une des versions a été '''effacée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-suppressed-no-diff'      => "Vous ne pouvez pas voir cette différence car une des révisions a été '''supprimée'''.",
 'rev-deleted-unhide-diff'     => "Une des révisions de cette différence a été '''effacée'''.

@@ -117,15 +117,15 @@ $messages = array(
 'tog-underline'               => 'Tanlinellu cysylltiadau:',
 'tog-highlightbroken'         => 'Fformatio cysylltiadau wedi\'u torri <a href="" class="new">fel hyn</a> (dewis arall: fel hyn<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Unioni paragraffau',
-'tog-hideminor'               => 'Cuddiwch olygiadau bach yn newidiadau diweddar',
+'tog-hideminor'               => 'Cuddio golygiadau bychain yn rhestr y newidiadau diweddar',
 'tog-hidepatrolled'           => 'Cuddio golygiadau sydd wedi derbyn ymweliad patrôl rhag y rhestr newidiadau diweddar',
 'tog-newpageshidepatrolled'   => 'Cuddio tudalennau sydd wedi derbyn ymweliad patrôl rhag y rhestr dudalennau newydd',
 'tog-extendwatchlist'         => "Ehangu'r rhestr wylio i ddangos pob golygiad yn hytrach na'r diweddaraf yn unig",
 'tog-usenewrc'                => 'Defnyddio newidiadau diweddar gwell (angen JavaScript)',
 'tog-numberheadings'          => "Rhifo penawdau'n awtomatig",
 'tog-showtoolbar'             => 'Dangos y bar offer golygu (angen JavaScript)',
-'tog-editondblclick'          => 'Golygu tudalennau gyda chlicio ddwywaith (angen JavaScript)',
-'tog-editsection'             => 'Galluogi golygu adran trwy ddolennau [golygu]',
+'tog-editondblclick'          => 'Golygu tudalennau wrth glicio ddwywaith (angen JavaScript)',
+'tog-editsection'             => 'Galluogi golygu adran trwy ddolennau [golygu] uwchben yr adran',
 'tog-editsectiononrightclick' => 'Galluogi golygu adran drwy dde-glicio ar bennawd yr adran (JavaScript)',
 'tog-showtoc'                 => 'Dangos y daflen gynnwys (ar gyfer tudalennau sydd â mwy na 3 pennawd)',
 'tog-rememberpassword'        => "Y cyfrifiadur hwn i gofio'r cyfrinair (am hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})",
@@ -547,7 +547,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'nocookieslogin'             => 'Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Trïwch eto os gwelwch yn dda, ar ôl galluogi cwcis.',
 'noname'                     => 'Dydych chi ddim wedi cynnig enw defnyddiwr dilys.',
 'loginsuccesstitle'          => 'Llwyddodd y mewngofnodi',
-'loginsuccess'               => "'''Yr ydych wedi mewngofnodi i {{SITENAME}} wrth yr enw \"\$1\".'''",
+'loginsuccess'               => "'''Yr ydych wedi mewngofnodi i {{SITENAME}} fel \"\$1\".'''",
 'nosuchuser'                 => "Does yna'r un defnyddiwr â'r enw \"\$1\".
 Mae'r rhaglen yn gwahaniaethu rhwng llythrennau bach a mawr.
 Sicrhewch eich bod chi wedi sillafu'r enw'n gywir, neu [[Special:UserLogin/signup|crëwch gyfrif newydd]].",
@@ -699,7 +699,7 @@ Gellir newid y cyfrinair ar gyfer y cyfrif newydd hwn ar y dudalen ''[[Special:C
 'newarticletext'                   => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
 I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
 Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
-'anontalkpagetext'                 => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:UserLogin/signup|crëwch gyfrif]] neu [[Special:UserLogin|mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys o hyn ymlaen.''",
+'anontalkpagetext'                 => "---- ''Dyma dudalen sgwrs ar gyfer defnyddiwr anhysbys sydd heb greu cyfrif eto, neu nad yw'n ei ddefnyddio. Felly mae'n rhaid inni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'r fath gyfeiriad IP yn gallu cael ei rannu gan sawl defnyddiwr. Os yr ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:UserLogin/signup|crëwch gyfrif]] neu [[Special:UserLogin|fewngofnodi]] i osgoi dryswch gyda defnyddwyr anhysbys eraill o hyn ymlaen.''",
 'noarticletext'                    => "Mae'r dudalen hon yn wag ar hyn o bryd. 
 Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chwilio drwy'r logiau perthnasol], neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen]</span>.",
 'noarticletext-nopermission'       => 'Mae\'r dudalen hon yn wag ar hyn o bryd.
@@ -983,6 +983,8 @@ Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:IPBlo
 'revmove-norevisions'          => "Nid ydych wedi nodi un neu ragor o ddiwygiadau i'w symud, ynteu nid yw'r diwygiad a nodwyd ar gael.",
 'revmove-nullmove-title'       => 'Teitl gwallus',
 'revmove-nullmove'             => 'Mae\'r un enw ar dudalennau\'r ffynhonnell a\'r cyrchfan. Pwyswch y botwm "Nôl" a phennwch enw tudalen heblaw "$1".',
+'revmove-success-existing'     => "{{PLURAL:$1|Cafodd un diwygiad o [[$2]] ei|$1 diwygiad o [[$2]] eu}} symud i'r dudalen [[$3]].",
+'revmove-success-created'      => "{{PLURAL:$1|Cafodd un diwygiad o [[$2]] ei|$1 diwygiad o [[$2]] eu}} symud i'r dudalen sydd newydd gael ei chreu [[$3]].",
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',

@@ -809,8 +809,8 @@ $2',
 'token_suffix_mismatch'            => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。'''
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
 'editing'                          => '正在编辑$1',
-'editingsection'                   => '正在编辑$1 （段落）',
-'editingcomment'                   => '正在编辑$1 （评论）',
+'editingsection'                   => '正在编辑$1（段落）',
+'editingcomment'                   => '正在编辑$1（新段落）',
 'editconflict'                     => '编辑冲突：$1',
 'explainconflict'                  => '有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
@@ -2519,7 +2519,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'allmessagesdefault'            => '默认的信息文字',
 'allmessagescurrent'            => '现时的信息文字',
 'allmessagestext'               => '这里列出所有可定制的系统界面。
-如果想贡献正宗的MediaWiki本地化的话，请参阅[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net translatewiki.net]。',
+如果想贡献通用的MediaWiki本地化的话，请参阅[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB'     => "这个页面无法使用，因为'''\$wgUseDatabaseMessages'''已被设置关闭。",
 'allmessages-filter-legend'     => '过滤',
 'allmessages-filter'            => '以自定状况过滤：',

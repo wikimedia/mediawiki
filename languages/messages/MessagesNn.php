@@ -678,7 +678,7 @@ Ikkje gløym å endre på [[Special:Preferences|innstillingane]] dine.',
 'logout'                     => 'Logg ut',
 'userlogout'                 => 'Logg ut',
 'notloggedin'                => 'Ikkje innlogga',
-'nologin'                    => "Manglar du ein brukarkonto? '''$1'''.",
+'nologin'                    => "Har du ingen brukarkonto? '''$1'''.",
 'nologinlink'                => 'Registrer deg',
 'createaccount'              => 'Opprett ny konto',
 'gotaccount'                 => "Har du ein brukarkonto? '''$1'''.",
@@ -1056,6 +1056,8 @@ $1",
 'logdelete-failure'           => "'''Korleis loggen skal vera synleg kunne ikkje verta stilt inn:'''
 $1",
 'revdel-restore'              => 'endra synlegheita',
+'revdel-restore-deleted'      => 'sletta versjonar',
+'revdel-restore-visible'      => 'synlege versjonar',
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Sletta historikk',
 'revdelete-content'           => 'innhald',
@@ -1065,7 +1067,7 @@ $1",
 'revdelete-unrestricted'      => 'fjerna avgrensingar for administratorar',
 'revdelete-hid'               => 'løynde $1',
 'revdelete-unhid'             => 'gjorde $1 synleg',
-'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisjon|revisjonar}}',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|versjon|versjonar}}',
 'logdelete-log-message'       => '$1 for {{PLURAL:$2|eitt element|$2 element}}',
 'revdelete-hide-current'      => 'Feil under skjuling av objektet datert $2, $1: dette er den gjeldande revisjonen.
 Han kan ikkje skjulast.',
@@ -1093,8 +1095,13 @@ Sjekk gjerne loggføringa.',
 Sjå [[Special:IPBlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
 # Revision move
-'revmove-reasonfield'    => 'Årsak:',
-'revmove-nullmove-title' => 'Feil i tittelen',
+'revisionmove'                 => 'Flytt versjonar frå «$1»',
+'revmove-submit'               => 'Flytt versjonane til den valde sida',
+'revisionmoveselectedversions' => 'Flytt dei valde versjonane',
+'revmove-reasonfield'          => 'Årsak:',
+'revmove-titlefield'           => 'Målsida:',
+'revmove-norevisions-title'    => 'Ugyldig målversjon',
+'revmove-nullmove-title'       => 'Feil i tittelen',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
@@ -1422,6 +1429,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkte sider til ei djupn på 5',
 'right-sendemail'             => 'Senda e-post til andre brukarar',
+'right-revisionmove'          => 'Flytta versjonar',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1464,6 +1472,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'action-userrights'           => 'endre alle brukarrettar',
 'action-userrights-interwiki' => 'endre brukarrettar for brukarar på andre wikiar',
 'action-siteadmin'            => 'låse eller låse opp databasen',
+'action-revisionmove'         => 'flytta versjonar',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Éi endring|$1 endringar}}',
@@ -1558,6 +1567,10 @@ For å bruke ei fil på ei side, bruk ei slik lenkje:
 'filetype-banned-type'        => "«'''.$1'''» er ikkje ein tillaten filtype.
 {{PLURAL:$3|Tillaten filtype er|Tillatne filtypar er}} $2.",
 'filetype-missing'            => 'Fila har inga ending (som t.d. «.jpg»).',
+'filename-tooshort'           => 'Filnamnet er for kort.',
+'illegal-filename'            => 'Filnamnet er ikkje tillate.',
+'overwrite'                   => 'Det er ikkje tillate å skriva over ei eksisterande fil.',
+'unknown-error'               => 'Det oppstod ein ukjend feil.',
 'large-file'                  => 'Det er tilrådd at filene ikkje er større enn $1, denne fila er $2.',
 'largefileserver'             => 'Denne fila er større enn det tenaren tillèt.',
 'emptyfile'                   => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
@@ -2635,6 +2648,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-upload'                  => 'Start opplastinga',
 'tooltip-rollback'                => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar',
 'tooltip-undo'                    => '«Gjer om» attenderullar endringar og opnar endringsvindauga med førehandsvising. Gjer at ein kan leggje til ei årsak samandragsboksen.',
+'tooltip-preferences-save'        => 'Lagra innstillingar',
 
 # Stylesheets
 'common.css'      => '/* CSS plassert i denne fila vil gjelde for alle utsjånader. */',
@@ -2769,6 +2783,7 @@ $1',
 'show-big-image-thumb' => '<small>Storleiken på denne førehandsvisinga: $1 × $2 pikslar</small>',
 'file-info-gif-looped' => 'gjentatt',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|rame|ramer}}',
+'file-info-png-repeat' => 'spela av {{PLURAL:$1|éin gong|$1 gonger}}',
 
 # Special:NewFiles
 'newimages'             => 'Filgalleri',

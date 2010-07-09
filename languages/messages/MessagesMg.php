@@ -504,7 +504,8 @@ Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tomp
 'unexpected'           => 'Tsy nandrasana: "$1"="$2".',
 'formerror'            => 'Tsy mety: tsy lasa ny fisy',
 'badarticleerror'      => "Tsy azo atao eto amin'ity pejy ity io asa io.",
-'cannotdelete'         => 'Tsy voafafa ny pejy na rakitra nomenao. (Angamba efa nisy olon-kafa namafa ilay izy.)',
+'cannotdelete'         => "Tsy afaka fafàna ny pejy na ny rakitra « $1 ».
+Mety efa nataon'ny hafa angamba ny famafàna.",
 'badtitle'             => 'Tsy mety ny lohateny',
 'badtitletext'         => "Tsy mety io anaram-pejy nangatahinao io na tsy misy n'inon'inona na rohy dikan-teny vahiny misy diso tsipelina.",
 'perfcached'           => 'Ireto angona ireto dia nalaina tao anaty cache koa mety ho efa lany daty.:',
@@ -819,7 +820,7 @@ Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 'permissionserrorstext-withaction' => '{{PLURAL:$1|Tsy manana alalàna ianao|Tsy manana alalàna ianao}} $2. Io ny antony ($2):',
 'recreate-moveddeleted-warn'       => "'''Tandremo''' : Mamerina pejy efa voafafa ianareo.''''
 
-Marino raha tsara tohizana ny fanovana eto amin'ity pejy ity. Ny tantaran'asan'ny famafana pejy sy ny fanovan-toerana dia eo ambany :",
+Marino raha tsara tohizana ny fanovana eto amin'ity pejy ity. Ny tatitr'asa momban'ny famafana pejy sy ny fanovan-toerana dia eo ambany :",
 'moveddeleted-notice'              => "Voafafa ity pejy ity.
 Eo ambany eo any tatitr'asa momban'ny famindran-toerana sy ny famafana ho an'ny antsipirihany.",
 'log-fulllog'                      => 'Hijery ny tatitr’asa (log)',
@@ -1414,7 +1415,7 @@ Raha hanisy sary ao anaty pejy, dia mampiasà rohy toy ny iray amin'ireto
 'upload-permitted'            => 'Endriky ny rakitra manan-alalana : $1.',
 'upload-preferred'            => 'Endriky ny rakitra nampidirina : $1',
 'upload-prohibited'           => 'Endriky ny rakitra tsy manan-alalana : $1',
-'uploadlog'                   => "Tantaran'asan'ny fandefasana rakitra",
+'uploadlog'                   => "Tatitr'asa momban'ny fandefasana rakitra",
 'uploadlogpage'               => 'Fampidiran-drakitra',
 'uploadlogpagetext'           => "Ity ny lisitr'ireo rakitra nalefa farany indrindra.",
 'filename'                    => 'Anarana',
@@ -2180,6 +2181,10 @@ mihatra amin'ny adiresy IP na solonanarana iray.",
 'contribslink'                    => "fandraisan'anjara",
 'autoblocker'                     => "Voasakana satria ny adiresy IP-nao dia vao avy nampiasain'i \"[[User:\$1|\$1]]\". Ny anton'ny fanakanana dia: \"'''\$2'''\"",
 'blocklogpage'                    => "Tantaran'ny sakana",
+'blocklog-showlog'                => "Efa voasakana ity mpikambana ity taloha.
+Eo ambany ny tatitr'asa momban'ny fanakanana.",
+'blocklog-showsuppresslog'        => "Efa voasakana sy voasitrika ity mpikambana ity.
+Eo ambany ny tatitr'asa momban'ny famafana.",
 'blocklogentry'                   => 'voasakana i "[[$1]]" mandritra ny $2 ; antony : $3',
 'reblock-logentry'                => "dia nanova ny parametatry ny sakan'i $1, tapitra amin'ny $2 ilay sakana ary ''$3'' ny antony",
 'blocklogtext'                    => "Eto no ahitana ny tantaran'ny hetsika momba ny fisakanana sy ny fanafoanana fisakanana mpandray anjara. 
@@ -2289,7 +2294,7 @@ mifanaraka amin'ilay anarana vaovao. Azafady mba atambaro izay pejin-dresaka iza
 '1movedto2'                    => 'Novana ho [[$2]] ilay takelaka [[$1]]',
 '1movedto2_redir'              => 'Redirection: Novaina ho [[$2]] i [[$1]]',
 'move-redirect-suppressed'     => 'fihodinana voafafa',
-'movelogpage'                  => "Tantaran'asan'ny famindran-toerana",
+'movelogpage'                  => "Tatitr'asa momban'ny famindran-toerana",
 'movelogpagetext'              => 'Lisitry ny pejy nafindra toerana.',
 'movesubpage'                  => 'Zana-pejy{{PLURAL:$1||}} $1',
 'movesubpagetext'              => 'Ity pejy ity dia manana zanapejy $1 miseho eo ambany. {{PLURAL:$1||}}',
@@ -2403,7 +2408,7 @@ Avereno fanindroany.",
 'import-invalid-interwiki'   => "Tsy afaka mampiditra avy any amin'ilay wiki nofidiana.",
 
 # Import log
-'importlogpage'             => "Tantaran'asan'ny fampidirana",
+'importlogpage'             => "Tatitr'asa momban'ny fampidirana",
 'importlogpagetext'         => "Fampidirana ara-pandraharahana ny pejy miaraka amin'ny tantaram-panvany avy any amin'ny wiki hafa.",
 'import-logentry-upload'    => "nampiditra [[$1]] tamin'ny fampidiran-drakitra",
 'import-logentry-interwiki' => "nampiditra $1 tamin'ny transwiki",

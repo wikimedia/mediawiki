@@ -11,6 +11,7 @@
  * @author Bencmq
  * @author FireJackey
  * @author Gaoxuewei
+ * @author Hakka
  * @author Horacewai2
  * @author Jidanni
  * @author KaiesTse
@@ -804,8 +805,8 @@ $2',
 'token_suffix_mismatch'            => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。'''
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
 'editing'                          => '正在編輯$1',
-'editingsection'                   => '正在編輯$1 （段落）',
-'editingcomment'                   => '正在編輯$1 （新段落）',
+'editingsection'                   => '正在編輯$1（段落）',
+'editingcomment'                   => '正在編輯$1（新段落）',
 'editconflict'                     => '編輯衝突：$1',
 'explainconflict'                  => '有人在{{GENDER:|你|妳|你}}開始編輯後更改了頁面。
 上面的文字框內顯示的是目前本頁的內容。
