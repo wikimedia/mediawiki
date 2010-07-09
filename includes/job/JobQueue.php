@@ -35,13 +35,6 @@ abstract class Job {
 	 *------------------------------------------------------------------------*/
 
 	/**
-	 * @deprecated use LinksUpdate::queueRecursiveJobs()
-	 */
-	/**
-	 * static function queueLinksJobs( $titles ) {}
-	 */
-
-	/**
 	 * Pop a job of a certain type.  This tries less hard than pop() to
 	 * actually find a job; it may be adversely affected by concurrent job
 	 * runners.
