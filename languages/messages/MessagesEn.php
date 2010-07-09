@@ -1501,7 +1501,7 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-hide-text'         => 'Hide revision text',
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-hide-name'         => 'Hide action and target',
-'revdelete-hide-comment'      => 'Hide edit comment',
+'revdelete-hide-comment'      => 'Hide edit summary',
 'revdelete-hide-user'         => "Hide editor's username/IP address",
 'revdelete-hide-restricted'   => 'Suppress data from administrators as well as others',
 'revdelete-radio-same'        => '(do not change)',
