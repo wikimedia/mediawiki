@@ -73,6 +73,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$matches = $search->searchText( $query );
 		} elseif ( $what == 'title' ) {
 			$matches = $search->searchTitle( $query );
+		} elseif ( $what == 'nearmatch' ) {
+			$query = str_replace( '_', ' ', $query );
+			$matches = SearchEngine::getNearMatchResultSet( $query );
 		} else {
 			// We default to title searches; this is a terrible legacy
 			// of the way we initially set up the MySQL fulltext-based
@@ -175,6 +178,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => array(
 					'title',
 					'text',
+					'nearmatch',
 				)
 			),
 			'info' => array(

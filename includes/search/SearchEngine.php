@@ -83,6 +83,17 @@ class SearchEngine {
 		wfRunHooks( 'SearchGetNearMatchComplete', array( $searchterm, &$title ) );
 		return $title;
 	}
+	
+	/**
+	 * Do a near match (see SearchEngine::getNearMatch) and wrap it into a 
+	 * SearchResultSet.
+	 * 
+	 * @param $searchterm string
+	 * @return SearchResultSet
+	 */
+	public static function getNearMatchResultSet( $searchterm ) {
+		return new SearchNearMatchResultSet( self::getNearMatch( $searchterm ) );
+	}
 
 	/**
 	 * Really find the title match.
@@ -573,7 +584,8 @@ class SqlSearchResultSet extends SearchResultSet {
 		$row = $this->mResultSet->fetchObject();
 		if ($row === false)
 			return false;
-		return new SearchResult($row);
+			
+		return SearchResult::newFromRow( $row );
 	}
 
 	function free() {
@@ -602,13 +614,59 @@ class SearchResult {
 	var $mRevision = null;
 	var $mImage = null;
 
-	function __construct( $row ) {
-		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
-		if( !is_null($this->mTitle) ){
+	/**
+	 * Return a new SearchResult and initializes it with a title.
+	 * 
+	 * @param $title Title 
+	 * @return SearchResult
+	 */
+	public static function newFromTitle( $title ) {
+		$result = new self();
+		$result->initFromTitle( $title );
+		return $result;
+	}
+	/**
+	 * Return a new SearchResult and initializes it with a row.
+	 * 
+	 * @param $row object
+	 * @return SearchResult
+	 */
+	public static function newFromRow( $row ) {
+		$result = new self();
+		$result->initFromRow( $row );
+		return $result;
+	}
+	
+	public function __construct( $row = null ) {
+		if ( !is_null( $row ) ) {
+			// Backwards compatibility with pre-1.17 callers
+			$this->initFromRow( $row );
+		}
+	}
+	
+	/**
+	 * Initialize from a database row. Makes a Title and passes that to
+	 * initFromTitle.
+	 * 
+	 * @param $row object
+	 */
+	protected function initFromRow( $row ) {
+		$this->initFromTitle( Title::makeTitle( $row->page_namespace, $row->page_title ) );
+	}
+	
+	/**
+	 * Initialize from a Title and if possible initializes a corresponding
+	 * Revision and File.
+	 * 
+	 * @param $title Title
+	 */
+	protected function initFromTitle( $title ) {
+		$this->mTitle = $title;
+		if( !is_null( $this->mTitle ) ){
 			$this->mRevision = Revision::newFromTitle( $this->mTitle );
 			if( $this->mTitle->getNamespace() === NS_FILE )
 				$this->mImage = wfFindFile( $this->mTitle );
-		}
+		}		
 	}
 
 	/**
@@ -749,6 +807,31 @@ class SearchResult {
 	 */
 	function getInterwikiPrefix(){
 		return '';
+	}
+}
+/**
+ * A SearchResultSet wrapper for SearchEngine::getNearMatch
+ */
+class SearchNearMatchResultSet extends SearchResultSet {
+	private $fetched = false;
+	/**
+	 * @param $match mixed Title if matched, else null
+	 */
+	public function __construct( $match ) {
+		$this->result = $match;
+	}
+	public function hasResult() {
+		return (bool)$this->result;
+	}
+	public function numRows() {
+		return $this->hasResults() ? 1 : 0;
+	}
+	public function next() {
+		if ( $this->fetched || !$this->result ) {
+			return false;
+		}
+		$this->fetched = true;
+		return SearchResult::newFromTitle( $this->result );
 	}
 }
 

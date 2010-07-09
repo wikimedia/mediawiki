@@ -263,6 +263,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23473) Give description of properties on all modules
 * (bug 24136) unknownerror when adding new section without summary, but forceditsummary
 * (bug 16886) Sister projects box moves down the extract of the first result in IE 7.
+* (bug 22339) Added srwhat=nearmatch to list=search to get a "go" result
 
 === Languages updated in 1.17 ===
 
