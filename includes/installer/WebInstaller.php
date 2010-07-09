@@ -1601,10 +1601,12 @@ class WebInstaller_Install extends WebInstallerPage {
 		$msg = $success ? 'config-install-step-done' : 'config-install-step-failed';
 		$html = wfMsgHtml( 'word-separator' ) . wfMsgHtml( $msg );
 		if ( !$success ) {
-			$this->parent->showStatusBox( $status );
 			$html = "<span class=\"error\">$html</span>";
 		}
 		$this->addHTML( $html . "</li>\n" );
+		if( !$success ) {
+			$this->parent->showStatusBox( $status );
+		}
 	}
 }
 
