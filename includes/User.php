@@ -2740,13 +2740,6 @@ class User {
 	}
 
 	/**
-	 * @deprecated
-	 */
-	function setLoaded( $loaded ) {
-		wfDeprecated( __METHOD__ );
-	}
-
-	/**
 	 * Get this user's personal page title.
 	 *
 	 * @return \type{Title} User's personal page title
