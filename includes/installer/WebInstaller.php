@@ -1584,8 +1584,6 @@ class WebInstaller_Install extends WebInstallerPage {
 			$status = new Status();
 			$status->warning( 'config-install-alreadydone' );
 			$this->parent->showStatusBox( $status );
-			$this->endForm();
-			return true;
 		} else {
 			$this->startForm();
 			$this->addHTML("<ul>");
@@ -1594,10 +1592,9 @@ class WebInstaller_Install extends WebInstallerPage {
 				array( $this, 'endStage' )
 			);
 			$this->addHTML("</ul>");
-			$this->endForm();
-			return true;
 		}
-
+		$this->endForm();
+		return true;
 	}
 
 	public function startStage( $step ) {
