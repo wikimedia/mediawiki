@@ -165,7 +165,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * 
 	 * Getter/Setter: (18)
 	 * failFunction
-	 * setOutputPage
 	 * bufferResults
 	 * ignoreErrors
 	 * trxLevel
