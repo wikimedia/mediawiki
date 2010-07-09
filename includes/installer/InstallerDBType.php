@@ -349,6 +349,11 @@ abstract class InstallerDBType {
 			return $status;
 		}
 		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
+
+		if( $this->db->selectRow( 'interwiki', '*', array(), __METHOD__ ) ) {
+			$status->warning( 'config-install-interwiki-exists' );
+			return $status;
+		}
 		global $IP;
 		$rows = file( "$IP/maintenance/interwiki.list",
 			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );

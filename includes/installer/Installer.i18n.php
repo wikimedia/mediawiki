@@ -417,8 +417,9 @@ Should be separated with commas and specify the port to be used (for example: 12
 	'config-extensions-help'          => 'The extensions listed above were detected in your <code>./extensions</code> directory.
 
 They may require additional configuration, but you can enable them now',
-	'config-install-step-done'        => 'Done',
-	'config-install-step-failed'      => 'Failed',
+	'config-install-alreadydone'      => "'''Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
+	'config-install-step-done'        => 'done',
+	'config-install-step-failed'      => 'failed',
 	'config-install-extensions'       => 'Including extensions',
 	'config-install-database'         => 'Setting up database',
 	'config-install-pg-schema-failed' => 'Tables creation failed.
@@ -426,8 +427,11 @@ Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-user'             => 'Creating database user',
 	'config-install-user-failed'      => 'Granting permission to user "$1" failed: $2',
 	'config-install-tables'           => 'Creating tables',
+	'config-install-tables-exist'     => "'''Warning''': MediaWiki tables seem to already exist. Skipping creation",
+	'config-install-tables-failed'    => "'''Error''': Table creation failed with the following error $1",
 	'config-install-interwiki'        => 'Populating default interwiki table',
 	'config-install-interwiki-sql'    => 'Could not find file <code>interwiki.sql</code>',
+	'config-install-interwiki-exists' => "'''Warning''': Interwiki table seems to already have entires. Skipping default list",
 	'config-install-secretkey'        => 'Generating secret key',
 	'config-insecure-secretkey'       => "'''Warning:''' Unable to create secure <code>\$wgSecretKey</code>.
 Consider changing it manually.",

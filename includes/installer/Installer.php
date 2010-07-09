@@ -51,6 +51,7 @@ abstract class Installer {
 		'_SafeMode' => false,
 		'_RaiseMemory' => false,
 		'_UpgradeDone' => false,
+		'_InstallDone' => false,
 		'_Caches' => array(),
 		'_InstallUser' => 'root',
 		'_InstallPassword' => '',
@@ -887,6 +888,7 @@ abstract class Installer {
 			if( !$status->isOk() )
 				break;
 		}
+		$this->setVar( '_InstallDone', true );
 		return $installResults;
 	}
 
