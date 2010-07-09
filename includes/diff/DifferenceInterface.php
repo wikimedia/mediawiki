@@ -444,11 +444,12 @@ CONTROL;
 				$wgOut->addHTML( "\n</pre>\n" );
 			}
 		} elseif( $pCache ) {
-			$pOutput = ParserCache::singleton()->get( new Article( $this->mTitle ), $wgUser );
+			$article = new Article( $this->mTitle, 0 );
+			$pOutput = ParserCache::singleton()->get( $article, $wgUser );
 			if( $pOutput ) {
-				$wgOut->addHtml( $pOutput->getText() );
+				$wgOut->addParserOutput( $pOutput );
 			} else {
-				$wgOut->addWikiTextTidy( $this->mNewtext );
+				$article->doViewParse();
 			}
 		} else {
 			$wgOut->addWikiTextTidy( $this->mNewtext );
