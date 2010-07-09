@@ -1049,9 +1049,10 @@ class ParserTest {
 	/**
 	 * Steal a callback function from the primary parser, save it for
 	 * application to our scary parser. If the hook is not installed,
-	 * die a painful dead to warn the others.
+	 * abort processing of this file.
 	 *
 	 * @param $name String
+	 * @return Bool true if tag hook is present
 	 */
 	public function requireHook( $name ) {
 		global $wgParser;
@@ -1059,16 +1060,19 @@ class ParserTest {
 		if ( isset( $wgParser->mTagHooks[$name] ) ) {
 			$this->hooks[$name] = $wgParser->mTagHooks[$name];
 		} else {
-			wfDie( "This test suite requires the '$name' hook extension.\n" );
+			echo "   This test suite requires the '$name' hook extension, skipping.\n";
+			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Steal a callback function from the primary parser, save it for
 	 * application to our scary parser. If the hook is not installed,
-	 * die a painful dead to warn the others.
+	 * abort processing of this file.
 	 *
 	 * @param $name String
+	 * @return Bool true if function hook is present
 	 */
 	public function requireFunctionHook( $name ) {
 		global $wgParser;
@@ -1076,8 +1080,10 @@ class ParserTest {
 		if ( isset( $wgParser->mFunctionHooks[$name] ) ) {
 			$this->functionHooks[$name] = $wgParser->mFunctionHooks[$name];
 		} else {
-			wfDie( "This test suite requires the '$name' function hook extension.\n" );
+			echo "   This test suite requires the '$name' function hook extension, skipping.\n";
+			return false;
 		}
+		return true;
 	}
 
 	/*
@@ -1657,7 +1663,9 @@ class TestFileIterator implements Iterator {
 					foreach ( explode( "\n", $data['hooks'] ) as $line ) {
 						$line = trim( $line );
 						if ( $line ) {
-							if ( $this->parser ) $this->parser->requireHook( $line );
+							if ( $this->parser && !$this->parser->requireHook( $line ) ) {
+								return false;
+							}
 						}
 					}
 					$data = array();
@@ -1671,7 +1679,9 @@ class TestFileIterator implements Iterator {
 					foreach ( explode( "\n", $data['functionhooks'] ) as $line ) {
 						$line = trim( $line );
 						if ( $line ) {
-							if ( $this->parser ) $this->parser->requireFunctionHook( $line );
+							if ( $this->parser && !$this->parser->requireFunctionHook( $line ) ) {
+								return false;
+							}
 						}
 					}
 					$data = array();
