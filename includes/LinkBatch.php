@@ -148,7 +148,10 @@ class LinkBatch {
 		$sql = "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect, page_latest FROM $page WHERE $set";
 
 		// Do query
-		$caller = $this->caller ? __METHOD__ . " (for {$this->caller})" : __METHOD__;
+		$caller = __METHOD__;
+		if ( strval( $this->caller ) !== '' ) {
+			$caller .= " (for {$this->caller})";
+		}
 		$res = $dbr->query( $sql, $caller );
 		wfProfileOut( __METHOD__ );
 		return $res;
