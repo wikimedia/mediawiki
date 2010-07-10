@@ -45,7 +45,7 @@ class ApiPageSet extends ApiQueryBase {
 
 	private $mAllPages; // [ns][dbkey] => page_id or negative when missing
 	private $mTitles, $mGoodTitles, $mMissingTitles, $mInvalidTitles;
-	private $mMissingPageIDs, $mRedirectTitles;
+	private $mMissingPageIDs, $mRedirectTitles, $mSpecialTitles;
 	private $mNormalizedTitles, $mInterwikiTitles;
 	private $mResolveRedirects, $mPendingRedirectIDs;
 	private $mGoodRevIDs, $mMissingRevIDs;
@@ -72,6 +72,7 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mInterwikiTitles = array();
 		$this->mGoodRevIDs = array();
 		$this->mMissingRevIDs = array();
+		$this->mSpecialTitles = array();
 
 		$this->mRequestedPageFields = array();
 		$this->mResolveRedirects = $resolveRedirects;
@@ -244,6 +245,14 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function getMissingRevisionIDs() {
 		return $this->mMissingRevIDs;
+	}
+	
+	/**
+	 * Get the list of titles with negative namespace
+	 * @return array Title
+	 */
+	public function getSpecialTitles() {
+		return $this->mSpecialTitles;
 	}
 
 	/**
@@ -649,9 +658,10 @@ class ApiPageSet extends ApiQueryBase {
 				// This title is an interwiki link.
 				$this->mInterwikiTitles[$titleObj->getPrefixedText()] = $iw;
 			} else {
-				// Validation
 				if ( $titleObj->getNamespace() < 0 ) {
-					$this->setWarning( 'No support for special pages has been implemented' );
+					$titleObj = $titleObj->fixSpecialName();
+					$this->mSpecialTitles[$this->mFakePageId] = $titleObj;
+					$this->mFakePageId--;
 				} else {
 					$linkBatch->addObj( $titleObj );
 				}
