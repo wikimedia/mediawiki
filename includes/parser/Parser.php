@@ -5141,7 +5141,7 @@ class Parser {
 	 */
 	public function setDefaultSort( $sort ) {
 		$this->mDefaultSort = $sort;
-		$this->mOutput->setPropert( 'defaultsort', $sort );
+		$this->mOutput->setProperty( 'defaultsort', $sort );
 	}
 
 	/**
