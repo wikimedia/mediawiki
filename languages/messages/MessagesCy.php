@@ -362,7 +362,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ynglŷn â {{SITENAME}}',
-'aboutpage'            => 'Project:Ynglŷn â {{SITENAME}}',
+'aboutpage'            => 'Project:Amdanom',
 'copyright'            => "Mae'r cynnwys ar gael o dan $1.",
 'copyrightpage'        => '{{ns:project}}:Hawlfraint',
 'currentevents'        => 'Materion cyfoes',
@@ -1829,7 +1829,7 @@ Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 'allpagesprev'      => 'Gynt',
 'allpagesnext'      => 'Nesaf',
 'allpagessubmit'    => 'Eler',
-'allpagesprefix'    => "Dangos pob tudalen gyda'r rhagddodiad:",
+'allpagesprefix'    => 'Dangos pob tudalen mewn parth gan ddechrau o:',
 'allpagesbadtitle'  => 'Roedd y darpar deitl yn annilys oherwydd bod ynddo naill ai:<p> - rhagddodiad rhyngwici neu ryngieithol, neu </p>- nod neu nodau na ellir eu defnyddio mewn teitlau.',
 'allpages-bad-ns'   => 'Nid oes gan {{SITENAME}} barth o\'r enw "$1".',
 
