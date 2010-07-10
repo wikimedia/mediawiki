@@ -399,6 +399,7 @@ $messages = array(
 'searchall'                      => 'oll',
 'powersearch'                    => 'Hwilans avoncys',
 'powersearch-legend'             => 'Hwilans avoncys',
+'powersearch-ns'                 => 'Hwila yn spasys-hanow:',
 'powersearch-field'              => 'Hwila',
 'powersearch-toggleall'          => 'Oll',
 
@@ -484,6 +485,7 @@ $messages = array(
 'nchanges'                     => '$1 {{PLURAL:$1|chanj|chanj}}',
 'recentchanges'                => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend'         => 'Dewisyansow an chanjyow a-dhiwedhes',
+'recentchangestext'            => "Sewya an chanjyow diwettha eus dhe'n wiki war'n folen-ma.",
 'recentchanges-legend-newpage' => '$1 - folen nowyth',
 'recentchanges-legend-minor'   => '$1 - chanj bian',
 'recentchanges-label-minor'    => 'Hemm yw chanj bian',
@@ -508,6 +510,8 @@ $messages = array(
 'recentchangeslinked'         => 'Chanjyow dhe folennow kevahal',
 'recentchangeslinked-feed'    => 'Chanjyow dhe folennow kevahal',
 'recentchangeslinked-toolbox' => 'Chanjyow dhe folennow kevahal',
+'recentchangeslinked-summary' => "↓ Hemm yw rol a janjyow a-dhiwedhes gwres war folennow kevrennys dhyworth unn folen (po dhe eseli unn glass).
+Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'recentchangeslinked-page'    => 'Hanow an folen:',
 
 # Upload
@@ -734,6 +738,7 @@ $messages = array(
 'tooltip-ca-delete'              => 'Dilea an folen-ma',
 'tooltip-ca-move'                => 'Gwaya an folen-ma',
 'tooltip-ca-watch'               => "Keworra an folen-ma dh'agas rol golyas",
+'tooltip-ca-unwatch'             => 'Hedhi golyas an folen-ma',
 'tooltip-search'                 => 'Hwila yn {{SITENAME}}',
 'tooltip-search-fulltext'        => "Hwila an tekst-ma y'n folennow",
 'tooltip-n-mainpage'             => 'Diskwedhes an pennfolen',
@@ -747,6 +752,7 @@ $messages = array(
 'tooltip-t-upload'               => 'Ughkarga restrennow',
 'tooltip-t-specialpages'         => 'Rol a bub folen arbennek',
 'tooltip-t-print'                => 'Versyon pryntyadow an folen-ma',
+'tooltip-t-permalink'            => "Kevren fast dhe'n versyon-ma an folen",
 'tooltip-ca-nstab-main'          => 'Gweles an folen dalgh',
 'tooltip-ca-nstab-user'          => 'Gweles an folen devnydhyer',
 'tooltip-ca-nstab-special'       => 'Hemm yw folen arbennek, ny ellowgh hwi chanjya an folen hy honan.',
