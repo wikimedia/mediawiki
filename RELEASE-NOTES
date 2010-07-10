@@ -272,7 +272,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24185) Titles in the Media and Special namespace are now supported for 
   title normalization in action=query. Special pages have their name resolved
   to the local alias.
- 
+* (bug 24296) Added converttitles parameter to convert titles to their 
+  canonical language variant.
   
 === Languages updated in 1.17 ===
 

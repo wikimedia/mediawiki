@@ -48,6 +48,7 @@ class ApiPageSet extends ApiQueryBase {
 	private $mMissingPageIDs, $mRedirectTitles, $mSpecialTitles;
 	private $mNormalizedTitles, $mInterwikiTitles;
 	private $mResolveRedirects, $mPendingRedirectIDs;
+	private $mConvertTitles, $mConvertedTitles;
 	private $mGoodRevIDs, $mMissingRevIDs;
 	private $mFakePageId;
 
@@ -58,7 +59,7 @@ class ApiPageSet extends ApiQueryBase {
 	 * @param $query ApiQuery
 	 * @param $resolveRedirects bool Whether redirects should be resolved
 	 */
-	public function __construct( $query, $resolveRedirects = false ) {
+	public function __construct( $query, $resolveRedirects = false, $convertTitles = false ) {
 		parent::__construct( $query, 'query' );
 
 		$this->mAllPages = array();
@@ -79,6 +80,9 @@ class ApiPageSet extends ApiQueryBase {
 		if ( $resolveRedirects ) {
 			$this->mPendingRedirectIDs = array();
 		}
+		
+		$this->mConvertTitles = $convertTitles;
+		$this->mConvertedTitles = array();
 
 		$this->mFakePageId = - 1;
 	}
@@ -220,6 +224,15 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function getNormalizedTitles() {
 		return $this->mNormalizedTitles;
+	}
+	
+	/**
+	 * Get a list of title conversions - maps a title to its converted
+	 * version.
+	 * @return array raw_prefixed_title (string) => prefixed_title (string)
+	 */	
+	public function getConvertedTitles() {
+		return $this->mConvertedTitles;
 	}
 
 	/**
@@ -653,16 +666,32 @@ class ApiPageSet extends ApiQueryBase {
 				$this->mFakePageId--;
 				continue; // There's nothing else we can do
 			}
+			$unconvertedTitle = $titleObj->getPrefixedText();
+			$titleWasConverted = false;			
 			$iw = $titleObj->getInterwiki();
 			if ( strval( $iw ) !== '' ) {
 				// This title is an interwiki link.
 				$this->mInterwikiTitles[$titleObj->getPrefixedText()] = $iw;
 			} else {
+				// Variants checking
+				global $wgContLang;
+				if ( $this->mConvertTitles &&
+						count( $wgContLang->getVariants() ) > 1  &&
+						$titleObj->getArticleID() == 0 ) {
+					// Language::findVariantLink will modify titleObj into 
+					// the canonical variant if possible
+					$wgContLang->findVariantLink( $title, $titleObj );
+					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
+				}
+				
+				
 				if ( $titleObj->getNamespace() < 0 ) {
+					// Handle Special and Media pages
 					$titleObj = $titleObj->fixSpecialName();
 					$this->mSpecialTitles[$this->mFakePageId] = $titleObj;
 					$this->mFakePageId--;
 				} else {
+					// Regular page
 					$linkBatch->addObj( $titleObj );
 				}
 			}
@@ -672,7 +701,9 @@ class ApiPageSet extends ApiQueryBase {
 			// titles with the originally requested when e.g. the
 			// namespace is localized or the capitalization is
 			// different
-			if ( is_string( $title ) && $title !== $titleObj->getPrefixedText() ) {
+			if ( $titleWasConverted ) {
+				$this->mConvertedTitles[$title] = $titleObj->getPrefixedText();
+			} elseif ( is_string( $title ) && $title !== $titleObj->getPrefixedText() ) {
 				$this->mNormalizedTitles[$title] = $titleObj->getPrefixedText();
 			}
 		}
