@@ -383,6 +383,9 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * FROM MYSQL DOCS: http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
+	 */
 	public function unlock( $lockName, $method ) {
 		$lockName = $this->addQuotes( $lockName );
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName) as lockstatus", $method );
@@ -408,6 +411,16 @@ class DatabaseMysql extends DatabaseBase {
 
 	public function unlockTables( $method ) {
 		$this->query( "UNLOCK TABLES", $method );
+	}
+
+	/**
+	 * Get search engine class. All subclasses of this
+	 * need to implement this if they wish to use searching.
+	 *
+	 * @return String
+	 */
+	public function getSearchEngine() {
+		return 'SearchMySQL';
 	}
 
 	public function setBigSelects( $value = true ) {

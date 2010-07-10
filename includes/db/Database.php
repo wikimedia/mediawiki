@@ -4,7 +4,7 @@
  *
  * @file
  * @ingroup Database
- * This file deals with MySQL interface functions
+ * This file deals with database interface functions
  * and query specifics/optimisations
  */
 
@@ -2324,7 +2324,6 @@ abstract class DatabaseBase {
 	 * @param $lockName String: Name of lock to release
 	 * @param $method String: Name of method calling us
 	 *
-	 * FROM MYSQL DOCS: http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
 	 * @return Returns 1 if the lock was released, 0 if the lock was not established
 	 * by this thread (in which case the lock is not released), and NULL if the named
 	 * lock did not exist
@@ -2355,14 +2354,12 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Get search engine class. All subclasses of this
-	 * need to implement this if they wish to use searching.
+	 * Get search engine class. Subclasses that don't support a search engine
+	 * should return 'SearchEngineDummy'.
 	 *
 	 * @return String
 	 */
-	public function getSearchEngine() {
-		return "SearchMySQL";
-	}
+	public abstract function getSearchEngine();
 
 	/**
 	 * Allow or deny "big selects" for this session only. This is done by setting
