@@ -402,7 +402,7 @@ class ApiMain extends ApiBase {
 			$this->getResult()->addValue( null, 'requestid', $requestid );
 		}
 		$servedby = $this->getParameter( 'servedby' );
-		if( !is_null( $servedby ) ) {
+		if( $servedby ) {
 			$this->getResult()->addValue( null, 'servedby', wfHostName() );
 		}
 
