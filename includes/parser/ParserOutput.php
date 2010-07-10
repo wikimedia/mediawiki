@@ -259,6 +259,7 @@ class ParserOutput
 	 */
 	public function setDisplayTitle( $text ) {
 		$this->setTitleText( $text );
+		$this->setProperty( 'displaytitle', $text );
 	}
 
 	/**
