@@ -25,6 +25,7 @@ class DatabaseMock extends DatabaseBase {
 	function getSoftwareLink() { }
 	function getServerVersion() { }
 	function getType() { }
+	function getSearchEngine() { }
 }
 
 class MockSearch extends SearchEngine {
