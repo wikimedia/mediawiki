@@ -3634,7 +3634,6 @@ class Parser {
 			$this->mShowToc = false;
 		}
 		if ( isset( $this->mDoubleUnderscores['hiddencat'] ) && $this->mTitle->getNamespace() == NS_CATEGORY ) {
-			$this->mOutput->setProperty( 'hiddencat', 'y' );
 			$this->addTrackingCategory( 'hidden-category-category' );
 		}
 		# (bug 8068) Allow control over whether robots index a page.
@@ -3648,6 +3647,11 @@ class Parser {
 		if ( isset( $this->mDoubleUnderscores['index'] ) && $this->mTitle->canUseNoindex() ) {
 			$this->mOutput->setIndexPolicy( 'index' );
 			$this->addTrackingCategory( 'index-category' );
+		}
+		
+		# Cache all double underscores in the database
+		foreach ( $this->mDoubleUnderscores as $key => $val ) {
+			$this->mOutput->setProperty( $key, '' );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -5137,6 +5141,7 @@ class Parser {
 	 */
 	public function setDefaultSort( $sort ) {
 		$this->mDefaultSort = $sort;
+		$this->mOutput->setPropert( 'defaultsort', $sort );
 	}
 
 	/**

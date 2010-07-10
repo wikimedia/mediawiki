@@ -106,6 +106,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * ForeignApiRepo uses scriptDirUrl if apiBase not set
 * (bug 24212) Added MediaWiki:Filepage.css which is also included on foreign
   client wikis.
+* (bug 14685) Double underscore magic word usage is now tracked in the 
+  page_props table, as well as the behavioral magic words {{DEFAULTSORT}} and 
+  {{DISPLAYTITLE}}
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
