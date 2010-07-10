@@ -981,11 +981,19 @@ class WebInstaller_Welcome extends WebInstallerPage {
 		}
 		$this->parent->output->addWikiText( wfMsgNoTrans( 'config-welcome' ) );
 		$status = $this->parent->doEnvironmentChecks();
-		if ( $status ) {
+		if ( $status->isOk() ) {
 			$this->parent->output->addWikiText( wfMsgNoTrans( 'config-copyright', wfMsg( 'config-authors' ) ) );
 			$this->startForm();
 			$this->endForm();
 		}
+	}
+
+	public function beginEnvCheck( $step ) {
+
+	}
+
+	public function endEnvCheck( $step, $status ) {
+
 	}
 }
 

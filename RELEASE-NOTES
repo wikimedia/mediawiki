@@ -264,6 +264,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24136) unknownerror when adding new section without summary, but forceditsummary
 * (bug 16886) Sister projects box moves down the extract of the first result in IE 7.
 * (bug 22339) Added srwhat=nearmatch to list=search to get a "go" result
+* (bug 24303) Added new &servedby parameter to all actions which adds the hostname
+  that served the request to the result. It is also added unconditionally on error
 
 === Languages updated in 1.17 ===
 
