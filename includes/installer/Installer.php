@@ -298,15 +298,17 @@ abstract class Installer {
 	 * Under the web subclass, it can already be assumed that PHP 5+ is in use 
 	 * and that sessions are working.
 	 */
-	function doEnvironmentChecks() {
+	function doEnvironmentChecks( $beginCB, $endCB ) {
 		$this->showMessage( 'config-env-php', phpversion() );
 
 		$good = true;
 		foreach ( $this->envChecks as $check ) {
+			call_user_func_array( $beginCB, array( $check ) );
 			$status = $this->$check();
 			if ( $status === false ) {
 				$good = false;
 			}
+			call_user_func_array( $endCB, array( $check, $status ) );
 		}
 		$this->setVar( '_Environment', $good );
 		if ( $good ) {

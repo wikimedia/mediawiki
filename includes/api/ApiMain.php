@@ -385,6 +385,8 @@ class ApiMain extends ApiBase {
 		if ( !is_null( $requestid ) ) {
 			$this->getResult()->addValue( null, 'requestid', $requestid );
 		}
+		// servedby is especially useful when debugging errors
+		$this->getResult()->addValue( null, 'servedby', wfHostName() );
 		$this->getResult()->addValue( null, 'error', $errMessage );
 
 		return $errMessage['code'];
@@ -398,6 +400,10 @@ class ApiMain extends ApiBase {
 		$requestid = $this->getParameter( 'requestid' );
 		if ( !is_null( $requestid ) ) {
 			$this->getResult()->addValue( null, 'requestid', $requestid );
+		}
+		$servedby = $this->getParameter( 'servedby' );
+		if( !is_null( $servedby ) ) {
+			$this->getResult()->addValue( null, 'servedby', wfHostName() );
 		}
 
 		$params = $this->extractRequestParams();
@@ -591,6 +597,7 @@ class ApiMain extends ApiBase {
 				ApiBase::PARAM_DFLT => 0
 			),
 			'requestid' => null,
+			'servedby'  => false,
 		);
 	}
 
@@ -606,6 +613,7 @@ class ApiMain extends ApiBase {
 			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',
 			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
 			'requestid' => 'Request ID to distinguish requests. This will just be output back to you',
+			'servedby' => 'Include the hostname that served the request in the results. Unconditionally shown on error',
 		);
 	}
 
