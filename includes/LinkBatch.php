@@ -136,23 +136,19 @@ class LinkBatch {
 		}
 		wfProfileIn( __METHOD__ );
 
-		// Construct query
-		// This is very similar to Parser::replaceLinkHolders
+		// This is similar to LinkHolderArray::replaceInternal
 		$dbr = wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
-		$set = $this->constructSet( 'page', $dbr );
-		if ( $set === false ) {
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-		$sql = "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect, page_latest FROM $page WHERE $set";
+		$table = 'page';
+		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_len',
+			'page_is_redirect', 'page_latest' );
+		$conds = $this->constructSet( 'page', $dbr );
 
 		// Do query
 		$caller = __METHOD__;
 		if ( strval( $this->caller ) !== '' ) {
 			$caller .= " (for {$this->caller})";
 		}
-		$res = $dbr->query( $sql, $caller );
+		$res = $dbr->select( $table, $fields, $conds, $caller );
 		wfProfileOut( __METHOD__ );
 		return $res;
 	}
@@ -165,6 +161,6 @@ class LinkBatch {
 	 * @return mixed string with SQL where clause fragment, or false if no items.
 	 */
 	public function constructSet( $prefix, $db ) {
-	    return $db->makeWhereFrom2d( $this->data, "{$prefix}_namespace", "{$prefix}_title" );
+		return $db->makeWhereFrom2d( $this->data, "{$prefix}_namespace", "{$prefix}_title" );
 	}
 }
