@@ -191,7 +191,7 @@ class SpecialPage {
 		'Mytalk'                    => 'SpecialMytalk',
 		'Revisiondelete'            => 'SpecialRevisionDelete',
 		'RevisionMove'              => 'SpecialRevisionMove',
-		'Specialpages'              => array( 'UnlistedSpecialPage', 'Specialpages' ),
+		'Specialpages'              => 'SpecialSpecialpages',
 		'Userlogout'                => array( 'UnlistedSpecialPage', 'Userlogout' ),
 	);
 
