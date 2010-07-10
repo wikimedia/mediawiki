@@ -374,6 +374,17 @@ class ApiQuery extends ApiBase {
 				'missing' => ''
 			);
 		}
+		// Report special pages
+		foreach ( $pageSet->getSpecialTitles() as $fakeId => $title ) {
+			$vals = array();
+			ApiQueryBase::addTitleInfo( $vals, $title );
+			$vals['special'] = '';
+			if ( $title->getNamespace() == NS_SPECIAL && 
+					!SpecialPage::exists( $title->getText() ) ) {
+				$vals['missing'] = '';			
+			}
+			$pages[$fakeId] = $vals;
+		}
 
 		// Output general page information for found titles
 		foreach ( $pageSet->getGoodTitles() as $pageid => $title ) {
