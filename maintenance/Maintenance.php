@@ -195,7 +195,7 @@ abstract class Maintenance {
 
 	/**
 	 * Return input from stdin.
-	 * @param $length Integer: the number of bytes to read. If null,
+	 * @param $len Integer: the number of bytes to read. If null,
 	 *        just return the handle. Maintenance::STDIN_ALL returns
 	 *        the full length
 	 * @return Mixed
