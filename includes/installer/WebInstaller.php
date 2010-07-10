@@ -1414,7 +1414,16 @@ class WebInstaller_Options extends WebInstallerPage {
 				'var' => 'wgLogo',
 				'label' => 'config-logo'
 			) ) .
-			$this->parent->getHelpBox( 'config-logo-help' ) .
+			$this->parent->getHelpBox( 'config-logo-help' )
+		);
+		$canUse = $this->getVar( '_ExternalHTTP' ) ?
+			'config-instantcommons-good' : 'config-instantcommons-bad';
+		$this->addHTML(
+			$this->parent->getCheckBox( array(
+				'var' => 'wgUseInstantCommons',
+				'label' => 'config-instantcommons',
+			) ) .
+			$this->parent->getHelpBox( 'config-instantcommons-help', wfMsgNoTrans( $canUse ) ) .
 			$this->parent->getFieldsetEnd()
 		);
 
@@ -1533,7 +1542,8 @@ class WebInstaller_Options extends WebInstallerPage {
 		$this->parent->setVarsFromRequest( array( '_RightsProfile', '_LicenseCode',
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUpload', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
-			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers' ) );
+			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
+			'wgUseInstantCommons' ) );
 
 		if ( !in_array( $this->getVar( '_RightsProfile' ),
 			array_keys( $this->parent->rightsProfiles ) ) )

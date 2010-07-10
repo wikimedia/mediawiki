@@ -37,6 +37,7 @@ abstract class Installer {
 		'wgLogo',
 		'wgShellLocale',
 		'wgSecretKey',
+		'wgUseInstantCommons',
 	);
 
 	/**
@@ -69,6 +70,7 @@ abstract class Installer {
 		'_CCDone' => false,
 		'_Extensions' => array(),
 		'_MemCachedServers' => '',
+		'_ExternalHTTP' => false,
 	);
 
 	/**
@@ -376,6 +378,7 @@ abstract class Installer {
 			$this->showMessage( 'config-env-latest-can-not-check', $latestInfoUrl );
 			return;
 		}
+		$this->setVar( '_ExternalHTTP', true );
 		$latestInfo = FormatJson::decode($latestInfo);
 		if ($latestInfo === false || !isset( $latestInfo->mwreleases ) ) {
 			# For when the request is successful but there's e.g. some silly man in
