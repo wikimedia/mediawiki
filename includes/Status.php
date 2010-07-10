@@ -254,7 +254,7 @@ class Status {
 	 * @return Array
 	 */
 	function getErrorsArray() {
-		return $this->getStatArray( "error" );
+		return $this->getStatusArray( "error" );
 	}
 
 	/**
@@ -263,7 +263,7 @@ class Status {
 	 * @return Array
 	 */
 	function getWarningsArray() {
-		return $this->getStatArray( "warning" );
+		return $this->getStatusArray( "warning" );
 	}
 
 	/**
@@ -272,7 +272,7 @@ class Status {
 	 *
 	 * @return Array
 	 */
-	protected function getStatArray( $type ) {
+	protected function getStatusArray( $type ) {
 		$result = array();
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
