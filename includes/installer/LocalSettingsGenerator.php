@@ -23,10 +23,10 @@ class LocalSettingsGenerator {
 			'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
 			'wgRightsText', 'wgRightsCode', 'wgMainCacheType', 'wgEnableUploads',
 			'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
-			'wgDBpassword' ), $db->getGlobalNames() );
+			'wgDBpassword', 'wgUseInstantCommons' ), $db->getGlobalNames() );
 		$unescaped = array( 'wgRightsIcon' );
 		$boolItems = array( 'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
-			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads' );
+			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons' );
 		foreach( $confItems as $c ) {
 			$val = $installer->getVar( $c );
 			if( in_array( $c, $boolItems ) ) {
@@ -215,6 +215,9 @@ if ( \$wgCommandLineMode ) {
 \$wgEnableUploads  = {$this->values['wgEnableUploads']};
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$this->values['wgImageMagickConvertCommand']}\";
+
+# InstantCommons, allows wiki to use images from http://commons.wikimedia.org
+\$wgUseInstantCommons  = {$this->values['wgUseInstantCommons']};
 
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an

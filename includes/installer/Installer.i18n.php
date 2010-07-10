@@ -398,6 +398,15 @@ Ideally, this should not be accessible from the web.',
 Upload an image of the appropriate size, and enter the URL here.
 
 If you do not want a logo, leave this box blank.",
+	'config-instantcommons'           => 'Enable Instant Commons',
+	'config-instantcommons-help'      => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis
+to use images, sounds and other media found on the [http://commons.wikimedia.org/ Wikimedia Commons] site. In order to do this, MediaWiki requires
+access to the Internet. $1
+
+For more information on this feature, including instructions on how to set it up for
+wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual]',
+	'config-instantcommons-good'      => 'We were able to detect internet connectivity during the environment checks, so you should be able to enable this if you want to.',
+	'config-instantcommons-bad'       => '\'\'Unfortunately, we were unable to detect internet connectivity during the environment checks, so you might be unable to use this. If you are behind a proxy, see [http://www.mediawiki.org/wiki/Manual:$wgHTTPProxy this page]\'\'',
 	'config-cc-error'                 => 'The Creative Commons license chooser gave no result.
 Enter the license name manually.',
 	'config-cc-again'                 => 'Pick again...',
@@ -406,8 +415,7 @@ Enter the license name manually.',
 	'config-cache-options'            => 'Settings for object caching:',
 	'config-cache-help'               => 'Object caching is used to improve the speed of MediaWiki by caching frequently used data.
 Medium to large sites are highly encouraged to enable this, and small sites will see benefits as well.',
-	'config-cache-none'               => 'No caching.
-No functionality is removed, but speed may be impacted.',
+	'config-cache-none'               => 'No caching (no functionality is removed, but speed may be impacted on larger wiki sites)',
 	'config-cache-accel'              => 'PHP object caching (APC, eAccelerator, XCache or WinCache)',
 	'config-cache-memcached'          => 'Use Memcached (requires additional setup and configuration)',
 	'config-memcached-servers'        => 'Memcached servers:',
