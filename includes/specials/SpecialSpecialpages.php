@@ -21,78 +21,111 @@
  * @file
  * @ingroup SpecialPage
  */
+class SpecialSpecialpages extends UnlistedSpecialPage {
 
-function wfSpecialSpecialpages() {
-	global $wgOut, $wgUser, $wgMessageCache, $wgSortSpecialPages;
-
-	$wgMessageCache->loadAllMessages();
-
-	$wgOut->setRobotPolicy( 'noindex,nofollow' );  # Is this really needed?
-	$sk = $wgUser->getSkin();
-
-	$pages = SpecialPage::getUsablePages();
-
-	if( count( $pages ) == 0 ) {
-		# Yeah, that was pointless. Thanks for coming.
-		return;
+	function __construct() {
+		parent::__construct( 'Specialpages' );
 	}
 
-	/** Put them into a sortable array */
-	$groups = array();
-	foreach ( $pages as $page ) {
-		if ( $page->isListed() ) {
-			$group = SpecialPage::getGroup( $page );
-			if( !isset($groups[$group]) ) {
-				$groups[$group] = array();
-			}
-			$groups[$group][$page->getDescription()] = array( $page->getTitle(), $page->isRestricted() );
+	function execute( $par ) {
+		$this->setHeaders();
+		$this->outputHeader();
+
+		$groups = $this->getPageGroups();
+
+		if ( $groups === false ) {
+			return;
 		}
+
+		$this->outputPageList( $groups );
 	}
 
-	/** Sort */
-	if ( $wgSortSpecialPages ) {
-		foreach( $groups as $group => $sortedPages ) {
-			ksort( $groups[$group] );
+	private function getPageGroups() {
+		global $wgSortSpecialPages;
+
+		$pages = SpecialPage::getUsablePages();
+
+		if( !count( $pages ) ) {
+			# Yeah, that was pointless. Thanks for coming.
+			return false;
 		}
-	}
 
-	/** Always move "other" to end */
-	if( array_key_exists('other',$groups) ) {
-		$other = $groups['other'];
-		unset( $groups['other'] );
-		$groups['other'] = $other;
-	}
-
-	$includesRestrictedPages = false;
-	/** Now output the HTML */
-	foreach ( $groups as $group => $sortedPages ) {
-		$middle = ceil( count($sortedPages)/2 );
-		$total = count($sortedPages);
-		$count = 0;
-
-		$wgOut->wrapWikiMsg( "<h4 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h4>\n", "specialpages-group-$group" );
-		$wgOut->addHTML( "<table style='width: 100%;' class='mw-specialpages-table'><tr>" );
-		$wgOut->addHTML( "<td width='30%' valign='top'><ul>\n" );
-		foreach( $sortedPages as $desc => $specialpage ) {
-			list( $title, $restricted ) = $specialpage;
-			$link = $sk->linkKnown( $title , htmlspecialchars( $desc ) );
-			if( $restricted ) {
-				$includesRestrictedPages = true;
-				$wgOut->addHTML( "<li class='mw-specialpages-page mw-specialpagerestricted'><strong>{$link}</strong></li>\n" );
-			} else {
-				$wgOut->addHTML( "<li>{$link}</li>\n" );
-			}
-
-			# Split up the larger groups
-			$count++;
-			if( $total > 3 && $count == $middle ) {
-				$wgOut->addHTML( "</ul></td><td width='10%'></td><td width='30%' valign='top'><ul>" );
+		/** Put them into a sortable array */
+		$groups = array();
+		foreach ( $pages as $page ) {
+			if ( $page->isListed() ) {
+				$group = SpecialPage::getGroup( $page );
+				if( !isset( $groups[$group] ) ) {
+					$groups[$group] = array();
+				}
+				$groups[$group][$page->getDescription()] = array( $page->getTitle(), $page->isRestricted() );
 			}
 		}
-		$wgOut->addHTML( "</ul></td><td width='30%' valign='top'></td></tr></table>\n" );
+
+		/** Sort */
+		if ( $wgSortSpecialPages ) {
+			foreach( $groups as $group => $sortedPages ) {
+				ksort( $groups[$group] );
+			}
+		}
+
+		/** Always move "other" to end */
+		if( array_key_exists( 'other', $groups ) ) {
+			$other = $groups['other'];
+			unset( $groups['other'] );
+			$groups['other'] = $other;
+		}
+
+		return $groups;
 	}
 
-	if ( $includesRestrictedPages ) {
-		$wgOut->wrapWikiMsg( "<div class=\"mw-specialpages-notes\">\n$1\n</div>", 'specialpages-note' );
+	private function outputPageList( $groups ) {
+		global $wgUser, $wgOut;
+
+		$sk = $wgUser->getSkin();
+		$includesRestrictedPages = false;
+
+		foreach ( $groups as $group => $sortedPages ) {
+			$middle = ceil( count( $sortedPages )/2 );
+			$total = count( $sortedPages );
+			$count = 0;
+
+			$wgOut->wrapWikiMsg( "<h4 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h4>\n", "specialpages-group-$group" );
+			$wgOut->addHTML(
+				Html::openElement( 'table', array( 'style' => 'width:100%;', 'class' => 'mw-specialpages-table' ) ) ."\n" .
+				Html::openElement( 'tr' ) . "\n" .
+				Html::openElement( 'td', array( 'style' => 'width:30%;vertical-align:top' ) ) . "\n" .
+				Html::openElement( 'ul' ) . "\n"
+			);
+			foreach( $sortedPages as $desc => $specialpage ) {
+				list( $title, $restricted ) = $specialpage;
+				$link = $sk->linkKnown( $title , htmlspecialchars( $desc ) );
+				if( $restricted ) {
+					$includesRestrictedPages = true;
+					$wgOut->addHTML( Html::rawElement( 'li', array( 'class' => 'mw-specialpages-page mw-specialpagerestricted' ), Html::rawElement( 'strong', array(), $link ) ) . "\n" );
+				} else {
+					$wgOut->addHTML( Html::rawElement( 'li', array(), $link ) . "\n" );
+				}
+
+				# Split up the larger groups
+				$count++;
+				if( $total > 3 && $count == $middle ) {
+					$wgOut->addHTML(
+						Html::closeElement( 'ul' ) . Html::closeElement( 'td' ) .
+						Html::element( 'td', array( 'style' => 'width:10%' ), '' ) .
+						Html::openElement( 'td', array( 'style' => 'width:30%' ) ) . Html::openElement( 'ul' ) . "\n"
+					);
+				}
+			}
+			$wgOut->addHTML(
+				Html::closeElement( 'ul' ) . Html::closeElement( 'td' ) .
+				Html::element( 'td', array( 'style' => 'width:30%' ), '' ) .
+				Html::closeElement( 'tr' ) . Html::closeElement( 'table' ) . "\n"
+			);
+		}
+
+		if ( $includesRestrictedPages ) {
+			$wgOut->wrapWikiMsg( "<div class=\"mw-specialpages-notes\">\n$1\n</div>", 'specialpages-note' );
+		}
 	}
 }
