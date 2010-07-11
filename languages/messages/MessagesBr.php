@@ -2351,7 +2351,7 @@ Stanket eo $1 c'hoazh. Kemmañ an arventennoù a fell deoc'h ?",
 'sorbs_create_account_reason'     => "Rollet eo ho chomlec'h IP evel ur proksi digor war an DNSBL implijet gant {{SITENAME}}. N'hallit ket krouiñ ur gont",
 'cant-block-while-blocked'        => "N'hallit ket stankañ implijerien all ma'z oc'h stanket c'hwi hoc'h-unan.",
 'cant-see-hidden-user'            => "Stanket ha kuzhet eo bet dija an implijer emaoc'h o klask stankañ. Dre ma n'emañ ket ganeoc'h ar gwir hideuser, n'hallit ket gwelet pe kemmañ stankadenn an implijer.",
-'ipbblocked'                      => "Ne c'helloc'h ket stankañ pe distankañ implijerien all, dre ma 'z oc'h stanket",
+'ipbblocked'                      => "Ne c'hellit ket stankañ pe distankañ implijerien all, dre ma 'z oc'h stanket",
 'ipbnounblockself'                => "N'oc'h ket aotreet d'en em zistankañ ho unan",
 
 # Developer tools

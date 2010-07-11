@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Avicennasis
  * @author Derek Ross
  * @author Malafaya
  * @author OchAyeTheNoo
@@ -1214,10 +1215,12 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'tooltip-pt-preferences'          => 'Ma preferences',
 'tooltip-pt-login'                => "It's a guid idea tae log i, but ye dinna hae tae.",
 'tooltip-pt-logout'               => 'Log oot',
+'tooltip-ca-move'                 => 'Flit this page',
 'tooltip-search'                  => 'Rake {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Gang tae the Main Page',
 'tooltip-t-contributions'         => "View this uiser's contreibutions",
 'tooltip-t-upload'                => 'Uplaid files',
+'tooltip-t-specialpages'          => 'Leet o byordinar pages',
 'tooltip-minoredit'               => 'Mairk this as a smaa edit',
 'tooltip-save'                    => 'Hain yer chynges',
 'tooltip-preview'                 => 'Scance ower yer chynges, please uise this afore hainin!',

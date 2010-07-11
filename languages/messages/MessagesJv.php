@@ -524,6 +524,7 @@ Tulung nunggu dhisik sadurungé njajal manèh.',
 'resetpass_forbidden'       => 'Tembung sandhi ora bisa diganti',
 'resetpass-no-info'         => 'Panjenengan kudu mlebu log kanggo ngaksès kaca iki sacara langsung.',
 'resetpass-submit-loggedin' => 'Ganti tembung sandi',
+'resetpass-submit-cancel'   => 'Batal',
 'resetpass-wrong-oldpass'   => 'Tembung sandi ora sah. 
 Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi sauntara sing anyar.',
 'resetpass-temp-password'   => 'Tembung sandi sauntara:',
@@ -841,6 +842,10 @@ Mangga priksa cathetan log.',
 # Suppression log
 'suppressionlog'     => "Log barang-barang sing didelikaké (''oversight'')",
 'suppressionlogtext' => "Ing ngisor iki kapacak daftar pambusakan lan pamblokiran pungkasan sing uga nyangkut isi sing didelikaké saka para opsis. Mangga mirsani [[Special:IPBlockList|daftar pamblokiran IP]] kanggo daftar pambuwangan (''ban'') lan pamblokiran sing saiki lagi operasional.",
+
+# Revision move
+'revmove-reasonfield'    => 'Alesan:',
+'revmove-nullmove-title' => 'Judhulé ora sah',
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah kaca',
@@ -1434,7 +1439,7 @@ Dhèskripsi saka [$2 kaca dhèskripsiné] kapacak ing ngisor iki.',
 'filerevert'                => 'Balèkna $1',
 'filerevert-legend'         => 'Balèkna berkas',
 'filerevert-intro'          => "Panjenengan mbalèkaké '''[[Media:$1|$1]]''' menyang [vèrsi $4 ing $3, $2].",
-'filerevert-comment'        => 'Komentar:',
+'filerevert-comment'        => 'Alesan:',
 'filerevert-defaultcomment' => 'Dibalèkaké menyang vèrsi ing $2, $1',
 'filerevert-submit'         => 'Balèkna',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' wis dibalèkaké menyang [vèrsi $4 ing $3, $2].",
@@ -1865,7 +1870,7 @@ Ing ngisor iki kapacak konfigurasi kanggo kaca '''$1''':",
 'protect-othertime-op'        => 'wektu liya',
 'protect-existing-expiry'     => 'Wektu kadaluwarsa saiki: $3, $2',
 'protect-otherreason'         => 'Alesan liya/tambahan:',
-'protect-otherreason-op'      => 'alesan liya/tambahan',
+'protect-otherreason-op'      => 'Alesan liya',
 'protect-dropdown'            => '*Alesan umum pangreksan
 ** Vandalisme makaping-kaping
 ** Spam makaping-kaping
@@ -1918,7 +1923,7 @@ Panjenengan mbokmenawa ngetutaké pranala sing salah, utawa revisi iku wis dipul
 'undeleteviewlink'             => 'pirsani',
 'undeletereset'                => "''Reset''",
 'undeleteinvert'               => 'Walik pilihan',
-'undeletecomment'              => 'Komentar:',
+'undeletecomment'              => 'Alesan:',
 'undeletedarticle'             => '"$1" wis dibalèkaké',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|révisi|révisi}} wis dibalèkaké',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|révisi|révisi}} lan $2 berkas dibalèkaké',
@@ -1993,6 +1998,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Blokir panganggo',
+'blockip-title'                   => 'Blokir panganggo',
 'blockip-legend'                  => 'Blokir panganggo',
 'blockiptext'                     => 'Enggonen formulir ing ngisor iki kanggo mblokir sawijining alamat IP utawa panganggo supaya ora bisa nyunting kaca.
 Prekara iki perlu dilakoni kanggo menggak vandalisme, lan miturut [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].
@@ -2750,6 +2756,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'watchlistall2'    => 'kabèh',
 'namespacesall'    => 'kabèh',
 'monthsall'        => 'kabèh',
+'limitall'         => 'kabèh',
 
 # E-mail address confirmation
 'confirmemail'             => 'Konfirmasi alamat e-mail',
@@ -2898,7 +2905,7 @@ Panjenengan uga bisa [[Special:Watchlist/edit|nganggo éditor standar panjenenga
 # Special:FilePath
 'filepath'         => 'Lokasi berkas',
 'filepath-page'    => 'Berkas:',
-'filepath-submit'  => 'Lokasi',
+'filepath-submit'  => 'Golèk',
 'filepath-summary' => 'Kaca astaméwa utawa kusus iki nuduhaké jalur pepak sawijining berkas.
 Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka langsung mawa program kagandhèng.
 
