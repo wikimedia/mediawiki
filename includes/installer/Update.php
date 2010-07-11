@@ -68,7 +68,6 @@ class Update {
 
 	private function setAppliedUpdates( $version, $updates = array() ) {
 		if( !$this->canUseNewUpdatelog() ) {
-			$this->updates = $this->updater->getUpdates();
 			return;
 		}
 		$key = "updatelist-$version";
