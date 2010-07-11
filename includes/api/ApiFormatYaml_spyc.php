@@ -33,10 +33,10 @@ class Spyc {
 	 * Indent's default is 2 spaces, wordwrap's default is 40 characters.  And
 	 * you can turn off wordwrap by passing in 0.
 	 *
-	 * @return string
 	 * @param $array Array: PHP array
 	 * @param $indent Integer: Pass in false to use the default, which is 2
 	 * @param $wordwrap Integer: Pass in 0 for no wordwrap, false for default (40)
+	 * @return String
 	 */
 	public static function YAMLDump( $array, $indent = false, $wordwrap = false ) {
 		$spyc = new Spyc;
@@ -57,13 +57,12 @@ class Spyc {
 	 * Indent's default is 2 spaces, wordwrap's default is 40 characters.  And
 	 * you can turn off wordwrap by passing in 0.
 	 *
-	 * @public
-	 * @return string
 	 * @param $array Array: PHP array
 	 * @param $indent Integer: Pass in false to use the default, which is 2
 	 * @param $wordwrap Integer: Pass in 0 for no wordwrap, false for default (40)
+	 * @return String
 	 */
-	function dump( $array, $indent = false, $wordwrap = false ) {
+	public function dump( $array, $indent = false, $wordwrap = false ) {
 		// Dumps to some very clean YAML.  We'll have to add some more features
 		// and options soon.  And better support for folding.
 
@@ -105,10 +104,11 @@ class Spyc {
 
 	/**
 	 * Attempts to convert a key / value array item to YAML
-	 * @return string
-	 * @param $key The name of the key
-	 * @param $value The value of the item
-	 * @param $indent The indent of the current node
+	 *
+	 * @param $key Mixed: the name of the key
+	 * @param $value Mixed: the value of the item
+	 * @param $indent Integer: the indent of the current node
+	 * @return String
 	 */
 	private function _yamlize( $key, $value, $indent ) {
 		if ( is_array( $value ) ) {
@@ -128,9 +128,10 @@ class Spyc {
 
 	/**
 	 * Attempts to convert an array to YAML
-	 * @return string
-	 * @param $array The array you want to convert
-	 * @param $indent The indent of the current level
+	 *
+	 * @param $array Array: the array you want to convert
+	 * @param $indent Integer: the indent of the current level
+	 * @return String
 	 */
 	private function _yamlizeArray( $array, $indent ) {
 		if ( is_array( $array ) ) {
@@ -140,15 +141,16 @@ class Spyc {
 			}
 			return $string;
 		} else {
- 			return false;
+			return false;
 		}
     }
 
 	/**
 	 * Find out whether a string needs to be output as a literal rather than in plain style.
 	 * Added by Roan Kattouw 13-03-2008
-	 * @param $value The string to check
-	 * @return bool
+	 *
+	 * @param $value String: the string to check
+	 * @return Boolean
 	 */
 	function _needLiteral( $value ) {
 		// Check whether the string contains # or : or begins with any of:
@@ -163,17 +165,18 @@ class Spyc {
 
 	/**
 	 * Returns YAML from a key and a value
-	 * @return string
-	 * @param $key The name of the key
-	 * @param $value The value of the item
-	 * @param $indent The indent of the current node
+	 *
+	 * @param $key Mixed: the name of the key
+	 * @param $value Mixed: the value of the item
+	 * @param $indent Integer: the indent of the current node
+	 * @return String
 	 */
 	private function _dumpNode( $key, $value, $indent ) {
 		// do some folding here, for blocks
 		if ( $this->_needLiteral( $value ) ) {
 			$value = $this->_doLiteralBlock( $value, $indent );
 		} else {
-			$value  = $this->_doFolding( $value, $indent );
+			$value = $this->_doFolding( $value, $indent );
 		}
 
 		$spaces = str_repeat( ' ', $indent );
@@ -199,9 +202,10 @@ class Spyc {
 
 	/**
 	 * Creates a literal block for dumping
-	 * @return string
-	 * @param $value
-	 * @param $indent int The value of the indent
+	 *
+	 * @param $value String
+	 * @param $indent Integer: the value of the indent
+	 * @return String
 	 */
 	private function _doLiteralBlock( $value, $indent ) {
 		$exploded = explode( "\n", $value );
@@ -216,8 +220,10 @@ class Spyc {
 
 	/**
 	 * Folds a string of text, if necessary
-	 * @return string
-	 * @param $value The string you wish to fold
+	 *
+	 * @param $value String: the string you wish to fold
+	 * @param $indent Integer: the indent of the current node
+	 * @return String
 	 */
 	private function _doFolding( $value, $indent ) {
 		// Don't do anything if wordwrap is set to 0
