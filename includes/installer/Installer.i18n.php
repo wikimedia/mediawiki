@@ -404,9 +404,9 @@ to use images, sounds and other media found on the [http://commons.wikimedia.org
 access to the Internet. $1
 
 For more information on this feature, including instructions on how to set it up for
-wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual]',
-	'config-instantcommons-good'      => 'We were able to detect internet connectivity during the environment checks, so you should be able to enable this if you want to.',
-	'config-instantcommons-bad'       => '\'\'Unfortunately, we were unable to detect internet connectivity during the environment checks, so you might be unable to use this. If you are behind a proxy, see [http://www.mediawiki.org/wiki/Manual:$wgHTTPProxy this page]\'\'',
+wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual].', // $1 is for indicating whether or not we should be able to use the feature
+	'config-instantcommons-good'      => 'We were able to detect internet connectivity during the environment checks. You can enable this feature if you want to.',
+	'config-instantcommons-bad'       => '\'\'Unfortunately, we were unable to detect internet connectivity during the environment checks, so you might be unable to use this feature. If your server is behind a proxy, you may need to do some [http://www.mediawiki.org/wiki/Manual:$wgHTTPProxy additional configuration]\'\'',
 	'config-cc-error'                 => 'The Creative Commons license chooser gave no result.
 Enter the license name manually.',
 	'config-cc-again'                 => 'Pick again...',
