@@ -192,7 +192,7 @@ class SpecialPage {
 		'Revisiondelete'            => 'SpecialRevisionDelete',
 		'RevisionMove'              => 'SpecialRevisionMove',
 		'Specialpages'              => 'SpecialSpecialpages',
-		'Userlogout'                => array( 'UnlistedSpecialPage', 'Userlogout' ),
+		'Userlogout'                => 'SpecialUserlogout',
 	);
 
 	static public $mAliases;
