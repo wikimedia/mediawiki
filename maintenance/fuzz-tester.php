@@ -2621,7 +2621,7 @@ function rerunPreviousTests() {
         // if file is not a test, then skip it. 
         // Note we need to escape any periods or will be treated as "any character".
         $matches = array();
-        if ( !ereg( "(.*)" . str_replace( ".", "\.", DATA_FILE ) . "$", $file, $matches ) ) continue;
+        if ( !preg_match( "/(.*)" . str_replace( ".", "\.", DATA_FILE ) . "$/", $file, $matches ) ) continue;
 
         // reload the test.
         $full_path = DIRECTORY . "/" . $file;
