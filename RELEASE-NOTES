@@ -109,6 +109,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14685) Double underscore magic word usage is now tracked in the 
   page_props table, as well as the behavioral magic words {{DEFAULTSORT}} and 
   {{DISPLAYTITLE}}
+* (bug 24045) MediaWiki:Ipb-needreblock is now wrapped in a div with class
+  "mw-ipd-needreblock"
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
