@@ -919,6 +919,8 @@ $1',
 # Rights
 'right-read'          => 'مخونه لوستل',
 'right-edit'          => 'مخونه سمول',
+'right-createtalk'    => 'د خبرو اترو مخونه جوړول',
+'right-createaccount' => 'نوي کارن حسابونه جوړول',
 'right-move'          => 'مخونه لېږدول',
 'right-movefile'      => 'دوتنې لېږدول',
 'right-upload'        => 'دوتنې پورته کول',

@@ -745,6 +745,8 @@ $1",
 'logdelete-failure'           => "'''Ἡ ὁρατότης τοῦ καταλόγου μὴ ῥυθμίσιμος ἦν:'''
 $1",
 'revdel-restore'              => 'Ἀλλάττειν ὁρατότητα',
+'revdel-restore-deleted'      => 'ἐσβεσμέναι ἀναθεωρήσεις',
+'revdel-restore-visible'      => 'ὁραταὶ ἀναθεωρήσεις',
 'pagehist'                    => 'Ἱστορία δέλτου',
 'deletedhist'                 => 'Ἱστορία διαγεγραμμένη',
 'revdelete-content'           => 'περιεχόμενον',
@@ -766,6 +768,10 @@ $1",
 
 # Suppression log
 'suppressionlog' => 'Κατάλογος διαγραφῶν',
+
+# Revision move
+'revmove-reasonfield'    => 'Αἰτία:',
+'revmove-nullmove-title' => 'Κακὸν τὸ ἐπώνυμον',
 
 # History merging
 'mergehistory'                     => 'Συγχωνεύειν ἱστορίας δέλτων',
