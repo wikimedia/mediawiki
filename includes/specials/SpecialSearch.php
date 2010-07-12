@@ -370,7 +370,7 @@ class SpecialSearch {
 		$wgOut->addScriptFile( 'search.js' );
 
 		// Bug #16886: Sister projects box moves down the first extract on IE7  
-		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 7' );
+		$wgOut->addStyle( 'common/IE70Fixes.css', 'screen', 'IE 7' );
 	}
 
 	/**
