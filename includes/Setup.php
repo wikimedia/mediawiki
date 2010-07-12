@@ -269,9 +269,9 @@ if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 
-$wgMemc =& wfGetMainCache();
-$messageMemc =& wfGetMessageCacheStorage();
-$parserMemc =& wfGetParserCacheStorage();
+$wgMemc = wfGetMainCache();
+$messageMemc = wfGetMessageCacheStorage();
+$parserMemc = wfGetParserCacheStorage();
 
 wfDebug( 'CACHES: ' . get_class( $wgMemc ) . '[main] ' .
 	get_class( $messageMemc ) . '[message] ' .
