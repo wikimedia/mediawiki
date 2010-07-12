@@ -114,14 +114,12 @@ class CleanupSpam extends Maintenance {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "blanking\n" );
 				$article = new Article( $title );
-				$article->updateArticle( '', wfMsg( 'spam_blanking', $domain ),
-					false, false );
-	
+				$article->doEdit( '', wfMsg( 'spam_blanking', $domain ) );
 			} else {
 				// Revert to this revision
 				$this->output( "reverting\n" );
 				$article = new Article( $title );
-				$article->updateArticle( $rev->getText(), wfMsg( 'spam_reverting', $domain ), false, false );
+				$article->doEdit( $rev->getText(), wfMsg( 'spam_reverting', $domain ), EDIT_UPDATE );
 			}
 			$dbw->commit();
 			wfDoUpdates();
