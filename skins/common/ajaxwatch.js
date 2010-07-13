@@ -73,7 +73,7 @@ $j(document).ready( function(){
 	$links.each( function(){
 		var $link = $j(this);
 		$link
-			.data( 'icon', $link.parent().hasClass( 'icon' ) )
+			.data( 'icon', $link.parents( 'li' ).hasClass( 'icon' ) )
 			.data( 'action', $link.attr( 'href' ).match( /[\?\&]action=unwatch/i ) ? 'unwatch' : 'watch' );
 		var title = $link.attr( 'href' ).match( /[\?\&]title=(.*?)&/i )[1];
 		$link.data( 'target', decodeURIComponent( title ).replace( /_/g, ' ' ) );
@@ -117,8 +117,8 @@ $j(document).ready( function(){
 			$link.data( 'action', otheraction );
 			wgAjaxWatch.setLinkText( $link, otheraction );
 			$link.attr( 'href', $link.attr('href').replace( '/&action='+action+'/', '&action='+otheraction ) );
-			if( $link.parent().attr('id') == 'ca-'+action ){
-				$link.parent().attr( 'id', 'ca-'+otheraction );
+			if( $link.parents( 'li' ).attr('id') == 'ca-'+action ){
+				$link.parents( 'li' ).attr( 'id', 'ca-'+otheraction );
 			}
 		};
 		return false;
