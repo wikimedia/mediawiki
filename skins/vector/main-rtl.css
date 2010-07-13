@@ -158,19 +158,18 @@ div#mw-head h5 {
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorTabs li a {
 		display: inline-block;
-		height: 2.5em;
-		padding-right: 0.4em;
-		padding-left: 0.4em;
+		height: 1.9em;
+		padding-right: 0.5em;
+		padding-left: 0.5em;
 		background-image: url(images/tab-break.png?1);
 		background-position: bottom left;
 		background-repeat: no-repeat;
 	}
-	div.vectorTabs li a,
-	div.vectorTabs li a span {
+	div.vectorTabs li a{
 		color: #0645ad;
 		cursor: pointer;
 	}
-	div.vectorTabs li a span {
+	div.vectorTabs li a  {
 		font-size: 0.8em;
 	}
 	/* IGNORED BY IE6 */
@@ -178,27 +177,23 @@ div#mw-head h5 {
 		display: block;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div.vectorTabs a span {
+	div.vectorTabs span a  {
 		display: inline-block;
 		padding-top: 1.25em;
 	}
 	/* IGNORED BY IE6 */
 	/* @noflip */
-	div.vectorTabs a > span {
+	div.vectorTabs span > a {
 		float: left;
 		display: block;
 	}
 	div.vectorTabs li.selected a,
-	div.vectorTabs li.selected a span,
-	div.vectorTabs li.selected a:visited
-	div.vectorTabs li.selected a:visited span {
+	div.vectorTabs li.selected a:visited{
 		color: #333333;
 		text-decoration: none;
 	}
 	div.vectorTabs li.new a,
-	div.vectorTabs li.new a span,
-	div.vectorTabs li.new a:visited,
-	div.vectorTabs li.new a:visited span {
+	div.vectorTabs li.new a:visited{
 		color: #a55858;
 	}
 	/* Variants and Actions */
@@ -1104,7 +1099,8 @@ div#bodyContent {
 	outline: none;
 	display: block;
 	width: 26px;
-	height: 2.5em;
+	height: 3.1em;
+	text-indent: -9999px;
 }
 #ca-unwatch.icon a {
 	background-image: url(images/watch-icons.png?1);
