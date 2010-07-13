@@ -446,7 +446,7 @@ $messages = array(
 'moredotdotdot' => '続き…',
 'mypage'        => '自分のページ',
 'mytalk'        => '自分のトーク',
-'anontalk'      => 'このIP利用者のトーク',
+'anontalk'      => 'この匿名利用者のトーク',
 'navigation'    => '案内',
 'and'           => 'および',
 

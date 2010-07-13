@@ -1152,7 +1152,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'notitlematches'                   => 'Ingen sidetitlar hadde treff på førespurnaden',
 'textmatches'                      => 'Sider med treff på førespurnaden',
 'notextmatches'                    => 'Ingen sider hadde treff på førespurnaden',
-'prevn'                            => 'førre $1 {{PLURAL:$1|$1}}',
+'prevn'                            => 'førre {{PLURAL:$1|$1}}',
 'nextn'                            => 'neste {{PLURAL:$1|$1}}',
 'prevn-title'                      => 'Førre $1 {{PLURAL:$1|resultat|resultat}}',
 'nextn-title'                      => 'Neste $1 {{PLURAL:$1|resultat|resultat}}',
@@ -2088,7 +2088,7 @@ Tilbakemeldingar og anna hjelp:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'             => 'Slett side',
+'deletepage'             => 'Slett sida',
 'confirm'                => 'Stadfest',
 'excontent'              => 'innhaldet var: «$1»',
 'excontentauthor'        => 'innhaldet var: «$1» (og den einaste bidragsytaren var «$2»)',

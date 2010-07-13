@@ -169,7 +169,7 @@ $messages = array(
 'tog-editsection'             => 'Bewirke van secties via [bewirke] links',
 'tog-editsectiononrightclick' => "Secties bewirke mit 'ne rechtermoesklik op sectietitels (JavaScript nudig)",
 'tog-showtoc'                 => "Inhaudsopgaaf veur pazjena's mit mie es 3 köpkes",
-'tog-rememberpassword'        => "Wachwaord ónthauwe bie 't aafmèlde",
+'tog-rememberpassword'        => 'Mien wachwaord onthouwe veur later sessies (hoegstens $1 {{PLURAL:$1|daag|daag}})',
 'tog-watchcreations'          => "Pazjena's die ich aanmaak automatisch volge",
 'tog-watchdefault'            => "Voog pazjena's die se bewirks toe aan dien volglies",
 'tog-watchmoves'              => "Pazjena's die ich verplaats automatisch volge",
@@ -183,6 +183,7 @@ $messages = array(
 'tog-enotifminoredits'        => "'ne E-mail nao mich versjikke bie klein bewirkinge op pazjena's op mien volglies",
 'tog-enotifrevealaddr'        => 'Mien e-mailadres tuine in e-mailberichte',
 'tog-shownumberswatching'     => "'t Aantal gebroekers tuine die dees pazjena volg",
+'tog-oldsig'                  => 'Betrachting vanne bestaondje ongerteikening:',
 'tog-fancysig'                => 'Handjteikening zónger link nao dien gebroekerspazjena',
 'tog-externaleditor'          => "Sjtanderd 'ne externe teksbewirker gebroeke (inkel veur experts, speciaal instellinge zien nudig)",
 'tog-externaldiff'            => "Sjtanderd 'n extern vergeliekingsprogramma gebroeke (inkel veur experts, speciaal instellinge zien nudig)",
@@ -204,6 +205,13 @@ $messages = array(
 'underline-always'  => 'Altied',
 'underline-never'   => 'Noets',
 'underline-default' => 'Sjtanderd van de browser',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Lettertypestielbewèrkingsvènster:',
+'editfont-default'   => 'Standerd browser',
+'editfont-monospace' => 'Monospacefont',
+'editfont-sansserif' => 'Sans-seriffont',
+'editfont-serif'     => 'Seriffont',
 
 # Dates
 'sunday'        => 'zóndig',
@@ -272,6 +280,8 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Dees categorie bevat 't volgende bestandj.|Dees categorie bevat {{PLURAL:$1|'t volgende bestandj|de volgende $1 bestenj}}, van in totaal $2.}}",
 'category-file-count-limited'    => "Dees categorie bevat {{PLURAL:$1|'t volgende bestandj|de volgende $1 bestenj}}.",
 'listingcontinuesabbrev'         => 'wiejer',
+'index-category'                 => 'Geïndexeerde paazjes',
+'noindex-category'               => 'Óngeïndexeerde paazjes',
 
 'mainpagetext'      => "'''MediaWiki software succesvol geïnsjtalleerd.'''",
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.
@@ -303,6 +313,34 @@ $messages = array(
 'qbspecialpages' => "Speciaal pagina's",
 'faq'            => 'FAQ (väölgesjtèlde vraoge)',
 'faqpage'        => 'Project:Väölgestjèlde vraoge',
+
+# Vector skin
+'vector-action-addsection'       => 'Voog köpke toe',
+'vector-action-delete'           => 'Ewegsjaffe',
+'vector-action-move'             => 'Verplaats',
+'vector-action-protect'          => 'Besjirm',
+'vector-action-undelete'         => 'Plaats trök',
+'vector-action-unprotect'        => 'Gaef vrie',
+'vector-namespace-category'      => 'Categorie',
+'vector-namespace-help'          => 'Hölppaasj',
+'vector-namespace-image'         => 'Bestandj',
+'vector-namespace-main'          => 'Paasj',
+'vector-namespace-media'         => 'Mediapaasj',
+'vector-namespace-mediawiki'     => 'Berich',
+'vector-namespace-project'       => 'Projekpaasj',
+'vector-namespace-special'       => 'Speciaal paasj',
+'vector-namespace-talk'          => 'Euverlègk',
+'vector-namespace-template'      => 'Sjabloon',
+'vector-namespace-user'          => 'Gebroeker',
+'vector-simplesearch-preference' => "Sjakel nuuj zeuksuggesties in (allein veur 't vectoroeterlik)",
+'vector-view-create'             => 'Maak aan',
+'vector-view-edit'               => 'Bewirk',
+'vector-view-history'            => 'Bekiek de gesjiedenis',
+'vector-view-view'               => 'Laes',
+'vector-view-viewsource'         => 'Bekiek bróntèks',
+'actions'                        => 'Henjeling',
+'namespaces'                     => 'Naamruumdes',
+'variants'                       => 'Anger vorme',
 
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Truuk nao $1.',
@@ -358,6 +396,11 @@ $messages = array(
 'jumpto'            => 'Gank nao:',
 'jumptonavigation'  => 'navigatie',
 'jumptosearch'      => 'zeuke',
+'view-pool-error'   => "Ós excuses, de servers zeen noe euverbelas.
+Te väöl gebroekers perberen óm dees pazjena te bekieke.
+Wach estebleef nag efkes veudet g'r óppernuuj toegank verzeuk te kriege toet dees pazjena.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Euver {{SITENAME}}',
@@ -443,12 +486,12 @@ Dit kan zien veroorzaak door \'n fout in de software.
 De lètste zeukpoging in de database waor:
 <blockquote><tt>$1</tt></blockquote>
 vanoet de functie "<tt>$2</tt>".
-MySQL gaof de foutmelding "<tt>$3: $4</tt>".',
+Database gaof de foutmelding "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Dao is \'n syntaxfout opgetreje bie \'t zeuke in de database.
 De lèste opgevraogde zeukactie waor:
 "$1"
 vanoet de functie "$2".
-MySQL brach fout "$3" nao veure: "$4"',
+Database brach fout "$3" nao veure: "$4"',
 'laggedslavemode'      => 'Waorsjuwing: De pazjena kin veraajerd zeen.',
 'readonly'             => 'Database geblokkeerd',
 'enterlockreason'      => "Gaef 'n rae veur de blokkering en wie lank 't dinkelik zal dore. De ingegaeve rae zal aan de gebroekers getuind waere.",
@@ -467,6 +510,8 @@ Maak hievan melding bie 'ne [[Special:ListUsers/sysop|systeembeheerder]] van {{S
 'readonly_lag'         => 'De database is autematis vergrendeld terwiel de ongergesjikte databaseservers synchronisere mit de huidserver.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
+'fileappenderrorread'  => '"$1" kós neet gelaeze waere tiejes \'t toevoge.',
+'fileappenderror'      => 'Kós "$1" neet toevogen aan "$2".',
 'filecopyerror'        => 'Besjtand "$1" kós neet nao "$2" gekopieerd waere.',
 'filerenameerror'      => 'Verangere van de titel van \'t besjtand "$1" in "$2" neet mäögelik.',
 'filedeleteerror'      => 'Kós bestjand "$1" neet ewegsjaffe.',
@@ -476,7 +521,8 @@ Maak hievan melding bie 'ne [[Special:ListUsers/sysop|systeembeheerder]] van {{S
 'unexpected'           => 'Ónverwachte waerd: "$1"="$2".',
 'formerror'            => 'Fout: kós formeleer neet versjikke',
 'badarticleerror'      => 'Dees hanjeling kan neet waere oetgeveurd op dees pazjena.',
-'cannotdelete'         => "Kós de pazjena of 't besjtand neet ewegsjaffe.",
+'cannotdelete'         => 'Kós de pazjena of \'t besjtand "$1" neet ewegsjaffe.
+Mesjiens haet emes anges det al gedaon.',
 'badtitle'             => 'Óngeljige pazjenatitel',
 'badtitletext'         => 'De opgevraogde pazjena is neet besjikbaar of laeg.',
 'perfcached'           => "De gegaeves koume oet 'n cache en zeen mäögelik neet actueel:",
@@ -512,17 +558,20 @@ De gegaeve ree is ''$2''.",
 
 De kèns {{SITENAME}} noe anoniem (mit vermeljing van IP-adres) gebroeke, of [[Special:UserLogin|opnuuj aanmelde]] ónger dezelfde of 'ne angere naam.
 Mäögelik waere nog 'n deil pazjena's getuind esofs te nog aangemeld bis pès te de cache van diene browser laeg maaks.",
-'welcomecreation'            => '<h2>Wilkóm, $1!</h2><p>Dien gebroekersprofiel is vaerdig. De kins noe dien persuunlike veurkäöre insjtèlle.',
+'welcomecreation'            => '== Wèlkóm, $1! ==
+Diene gebroeker is noe vaerdig.
+Vergaet neet dien [[Special:Preferences|veurkäöre veur {{SITENAME}}]] aan te passe.',
 'yourname'                   => 'Diene gebroekersnaam',
 'yourpassword'               => 'Die wachwaord',
 'yourpasswordagain'          => 'Wachwaord opnuuj intype',
-'remembermypassword'         => 'Mien wachwaord onthouwe veur later sessies.',
+'remembermypassword'         => 'Mien wachwaord onthouwe veur later sessies (hoegstens $1 {{PLURAL:$1|daag|daag}})',
 'yourdomainname'             => 'Die domein',
 'externaldberror'            => "d'r Is 'n fout opgetraoje biej 't aanmelje biej de database of doe höbs gén toesjtömming diene externe gebroeker biej te wèrke.",
 'login'                      => 'Aanmèlde',
 'nav-login-createaccount'    => 'Aanmelje / registrere',
 'loginprompt'                => "Diene browser mót ''cookies'' acceptere óm in te logge op {{SITENAME}}.",
 'userlogin'                  => 'Aanmelde / registrere',
+'userloginnocreate'          => 'Mèlj aan',
 'logout'                     => 'Aafmèlde',
 'userlogout'                 => 'Aafmèlde',
 'notloggedin'                => 'Neet aangemeld',
@@ -535,6 +584,7 @@ Mäögelik waere nog 'n deil pazjena's getuind esofs te nog aangemeld bis pès t
 'badretype'                  => 'De ingeveurde wachwäörd versjille vanein.',
 'userexists'                 => "De gebroekersnaam dae se höbs ingeveurd weurt al gebroek.<br />Kees estebleef 'ne angere naam.",
 'loginerror'                 => 'Inlogfout',
+'createaccounterror'         => 'Kós gebroeker neet aanmake: $1',
 'nocookiesnew'               => "De gebroeker is aangemaak mèr neet aangemeld. {{SITENAME}} gebroek cookies veur 't aanmelje van gebroekers. Sjakel die a.u.b. in en meld dao nao aan mèt diene nuje gebroekersnaam en wachwaord.",
 'nocookieslogin'             => "{{SITENAME}} gebroek cookies veur 't aanmelje van gebroekers. Doe accepteers gén cookies. Sjakel deze optie a.u.b. in en perbeer 't oppernuuj.",
 'noname'                     => "De mos 'n gebroekersnaam opgaeve.",
@@ -545,15 +595,18 @@ Die seen huidlettegevullig
 Controleer dien spelling, of gebroek ongersjtaond formuleer om \'n [[Special:UserLogin/signup|nuuj]] gebroekersprofiel aan te make.',
 'nosuchusershort'            => 'De gebroeker "<nowiki>$1</nowiki>" besjteit neet. Konterleer de sjriefwieze.',
 'nouserspecified'            => "Doe deens 'ne gebroekersnaam op te gaeve.",
+'login-userblocked'          => 'Deze gebroeker steit geblokkeerd. Aanmèlje is neet toegestange.',
 'wrongpassword'              => "'t Ingegaeve wachwaord is neet zjus. Perbeer 't obbenuujts.",
 'wrongpasswordempty'         => "'t Ingegaeve wachwoord waor laeg. Perbeer 't obbenuujts.",
 'passwordtooshort'           => "Dien wachwaord is te kort. 't Mót minstes oet {{PLURAL:$1|1 teike|$1 teikes}} besjtaon.",
+'password-name-match'        => 'Die wachwaord mót anges zeen es diene gebroekersnaam.',
 'mailmypassword'             => "Sjik mich 'n nuuj wachwaord",
 'passwordremindertitle'      => 'Nuuj tiedelik wachwaord van {{SITENAME}}',
 'passwordremindertext'       => 'Emes (waorsjienlik dich zelf) haet vanaaf IP-adres $1 \'n nuuj wachwoord veur {{SITENAME}} ($4) verzoch. \'t Nuuj wachwoord veur gebroeker "$2" is "$3". Es dat dien bedoeling waor, mèl diech daan noe aan en kees \'n nuuj wachwoord. \'t Tiedelik wachwoord verluip euver {{PLURAL:$5|$5 daag|$5 daag}}.
 
 Es emes anders dit verzeuk heet gedoon, of wens te diech dien wachwoord weer herinners en \'t neet mie wèls wiezige, negeer dan dit berich en blief dien aud wachwoord gebroeke.',
 'noemail'                    => 'D\'r is gein geregistreerd e-mailadres veur "$1".',
+'noemailcreate'              => 'Doe mós e geljig e-mailadres ópgaeve.',
 'passwordsent'               => 'D\'r is \'n nuui wachwaord verzonde nao \'t e-mailadres dat geregistreerd sjtit veur "$1".
 Gelieve na ontvangst opnieuw aan te melden.',
 'blocked-mailpassword'       => "Dien IP-adres is geblokkeerd veur 't make van verangeringe. Om misbroek te veurkomme is 't neet meugelik om 'n nuuj wachwaord aan te vraoge.",
@@ -577,9 +630,11 @@ e-mail óntvange veur alle volgende toepassinge.',
 ($4) mit \'t wachwaord "$3". Meld dich aan en wiezig dien wachwaord.
 
 Negeer dit berich as deze gebroeker zonger dien medewete is aangemaak.',
+'usernamehasherror'          => '\'ne Gebroekersnaam kèn geint hèkske ("#") bevatte.',
 'login-throttled'            => "Doe höbs te huifig geperbeerd aan te melje mèt 'n verkierd wachwaord.
 Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'loginlanguagelabel'         => 'Taol: $1',
+'suspicious-userlogout'      => "Die verzeuk óm aaf te mèlje is genegeerdj gewaoren, ómdet 't liek det 't verzeuk is verzónje dórch 'ne browser of cacheproxy dae kepót is.",
 
 # Password reset dialog
 'resetpass'                 => 'Wachwaord obbenuuts insjtèlle',
@@ -593,6 +648,7 @@ Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'resetpass_forbidden'       => 'Wachwäörd kónne neet verangerd waere',
 'resetpass-no-info'         => 'Doe moos aangemeld zien ierdets doe dees pagina gebroeke kens.',
 'resetpass-submit-loggedin' => 'Wachwaord wiezige',
+'resetpass-submit-cancel'   => 'Aafbraeke',
 'resetpass-wrong-oldpass'   => "'t Hujig of tiedelik wachwaord is ongeljig.
 Meugelik höbs doe dien wachwaord al gewiezig of 'n nuuj tiedelik wachwaord aangevraog.",
 'resetpass-temp-password'   => 'Tiedelik wachwaord:',
@@ -628,9 +684,11 @@ Meugelik höbs doe dien wachwaord al gewiezig of 'n nuuj tiedelik wachwaord aang
 'showlivepreview'                  => 'Bewèrking ter controle tuine',
 'showdiff'                         => 'Toen verangeringe',
 'anoneditwarning'                  => 'Doe bis neet aangemeld. Dien IP adres weurt opgesjlage in de historie van dees pazjena.',
+'anonpreviewwarning'               => "''Doe bös neet aangemeldj.''
+''Door dien bewèrking op te slaon wört dien IP-adres opgeslagen in de paginagesjiedenis.''",
 'missingsummary'                   => "'''Herinnering:''' Doe höbs gén samevatting opgegaeve veur dien bewèrking. Esse nogmaals op ''Pazjena opslaon'' kliks wörd de bewèrking zonger samevatting opgeslage.",
 'missingcommenttext'               => 'Plaats dien opmèrking hiej onger, a.u.b.',
-'missingcommentheader'             => "'''Let op:''' Doe höbs gén ongerwerp/kop veur deze opmèrking opgegaeve. Esse oppernuuj op \"opslaon\" kliks, wörd dien verangering zonger ongerwerp/kop opgeslage.",
+'missingcommentheader'             => "'''Let op:''' Doe höbs gén ongerwerp/kop veur deze opmèrking opgegaeve. Esse oppernuuj op \"{{int:savearticle}}\" kliks, wörd dien verangering zonger ongerwerp/kop opgeslage.",
 'summary-preview'                  => 'Naokieke samevatting:',
 'subject-preview'                  => 'Naokieke ongerwerp/kop:',
 'blockedtitle'                     => 'Gebroeker is geblokkeerd',
@@ -666,7 +724,8 @@ Vermeld det esse örges euver deze blokkaasj reageers.",
 'confirmedittext'                  => "De mós dien e-mailadres bevestige veurdats te kèns bewirke.
 Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäöre]].",
 'nosuchsectiontitle'               => 'Deze subkop bestuit neet',
-'nosuchsectiontext'                => "Doe probeers 'ne subkop te bewirke dae neet besjtuit.",
+'nosuchsectiontext'                => "Doe probeers 'ne subkop te bewirke dae neet besjtuit.
+Meugelikerwies is t'r verplaats of gewösj gewaore wiel se de paasj 'nt bekieke woors.",
 'loginreqtitle'                    => 'Aanmelje verplich',
 'loginreqlink'                     => 'inglogge',
 'loginreqpagetext'                 => "De mos $1 om anger pazjena's te bekieke.",
@@ -684,7 +743,13 @@ Det adres kan waere gedeild door mierdere gebroekers.
 Es te 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r ónrelevante commentare aan dich gerich zeen, kèns te 't bèste [[Special:UserLogin/signup|'n account crëere]] of [[Special:UserLogin|inlogge]] óm toekomstige verwarring mit anger anoniem gebroekers te veurkomme.''",
 'noarticletext'                    => 'Dees pagina bevat gein teks.
 De kèns [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pagina\'s, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logbeuk doorzeuke] of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} dees pagina bewirke]</span>.',
+'noarticletext-nopermission'       => 'Dees pazjena bevat gein teks.
+De kèns [[Special:Search/{{PAGENAME}}|nao dees term zeuken]] in anger pazjena\'s of
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logbeuk derzeuke]</span>.',
 'userpage-userdoesnotexist'        => 'Doe bewirks \'n gebroekerspazjena van \'ne gebroeker dae neet besjteit (gebroeker "$1"). Controlere ofs doe dees pazjena waal wils aanmake/bewirke.',
+'userpage-userdoesnotexist-view'   => 'Gebroeker "$1" is neet geregistreerd.',
+'blocked-notice-logextract'        => "Deze gebroeker is noe geblok.
+De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'clearyourcache'                   => "'''Lèt op:''' Nao 't opsjlaon mós te diene browserbuffer wisse óm de verangeringe te zeen: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''Firefox / IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssyoucanpreview'             => "'''Tip:''' Gebroek de knóp 'Bekiek dees bewirking' om dien nuuj CSS te teste veurdets te opsjleis.",
 'userjsyoucanpreview'              => "'''Tip:''' Gebroek de knóp 'Bekiek dees bewirking' om dien nuuj JS te teste veurdets te opsjleis.",
@@ -727,7 +792,8 @@ groot, wat groter is dan 't maximum van $2 kilobyte. Opslaon is neet meugelik.''
 
 t Is geslaote waenger: $1",
 'protectedpagewarning'             => 'WAARSJUWING:  Dees pazjena is besjermd zoedat ze allein doer gebroekers mit administratorrechte kint weure verangerd.',
-'semiprotectedpagewarning'         => "'''Let op:''' Deze pagina is beveilig en kin allein door geregistreerde gebroekers bewerk waere.",
+'semiprotectedpagewarning'         => "'''Let op:''' Dees pazjena is beveilig en kin allein door geregistreerde gebroekers bewerk waere.
+De lèste logbookregel steit hiejónger:",
 'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveilig en kin allein door beheerders bewerk waere, omdat deze is opgenaome in de volgende {{PLURAL:$1|pagina|pagina's}} {{PLURAL:$1|dae|die}} beveilig {{PLURAL:$1|is|zeen}} met de cascade-optie:",
 'titleprotectedwarning'            => "'''WAORSJUWING: Deze pagina is beveilig zodet allein inkele gebroekers 'm kinne aanmake. De beneuds [[Special:ListGroupRights|speciale rechte]].'''",
 'templatesused'                    => 'Op dees pagina {{PLURAL:$1|gebroek sjabloon|gebroekde sjablone}}:',
@@ -770,6 +836,7 @@ Dees paramaetere zeen eweggelaote.",
 'post-expand-template-argument-category'  => "Pazjena's die missendje sjabloonillemènter bevatte",
 'parser-template-loop-warning'            => "D'r is 'ne krinkloup in sjablone geconstateerd: [[$1]]",
 'parser-template-recursion-depth-warning' => 'De recursiedeepte veur sjablone is euversjrede ($1)',
+'language-converter-depth-warning'        => 'De deepdjelimiet veure spraokómzètter is euversjreje ($1)',
 
 # "Undo" feature
 'undo-success' => "Hiej onger stuit de teks wo in de verangering ongedaon gemaak is. Controleer veur 't opslaon of 't resultaot gewins is.",
@@ -800,6 +867,7 @@ De door $3 opgegaeve reje is ''$2''",
 'page_last'              => 'lèste',
 'histlegend'             => 'Verklaoring aafkortinge: (wijz) = versjil mit actueile versie, (vörrige) = versjil mit vörrige versie, K = kleine verangering',
 'history-fieldset-title' => 'Door de historie blajere',
+'history-show-deleted'   => 'Nör gwösj',
 'histfirst'              => 'Aajste',
 'histlast'               => 'Nuujste',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -838,6 +906,7 @@ Es behieërder kèns se nag [$1 de angering zeen] es se doearch wils gaon.",
 'revdelete-nologtype-text'    => 'De höbs gein logbooktype opgegaeve om deze handeling op oet te voere.',
 'revdelete-nologid-title'     => 'Ongeldige logbookregel',
 'revdelete-nologid-text'      => 'De höbs ofwaal gein doellogbookregel opgegaeve of de aangegaeve logbookregel besteit neet.',
+'revdelete-show-file-submit'  => 'Jao',
 'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkinge}} van '''[[:$1]]''':'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:'''",
 'revdelete-text'              => "'''Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.'''
@@ -852,6 +921,8 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 'revdelete-hide-comment'      => 'De bewerkingssamevatting verberge',
 'revdelete-hide-user'         => 'Verberg gebroekersnaam/IP van de gebroeker',
 'revdelete-hide-restricted'   => 'Pas deze beperkinge toe op zowaal beheerders es angere',
+'revdelete-radio-set'         => 'Jao',
+'revdelete-radio-unset'       => 'Nein',
 'revdelete-suppress'          => 'Ongerdruk gegaeves veur zowaal admins es angere',
 'revdelete-unsuppress'        => 'Verwijder beperkinge op truuk gezatte wieziginge',
 'revdelete-log'               => 'Reeje:',
@@ -879,6 +950,10 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 'suppressionlog'     => 'Verbergingslogbook',
 'suppressionlogtext' => 'De ongerstaonde lies bevat de verwiederinge en blokkades die veur beheerders verborge zeen.
 In de [[Special:IPBlockList|IP-blokkeerlies]] zeen de hudige blokkades te bekieke.',
+
+# Revision move
+'revmove-reasonfield'    => 'Raeje:',
+'revmove-nullmove-title' => 'Óngeljige pazjenatitel',
 
 # History merging
 'mergehistory'                     => "Gesjiedenis van pagina's samevoege",
@@ -941,8 +1016,8 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'searchhelp-url'                   => 'Help:Help',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Paginanaome mit dit veurveugsel weergaeve]]',
 'searchprofile-articles'           => "Contentpazjena's",
-'searchprofile-project'            => "Projekpagina's",
-'searchprofile-images'             => 'Besjtandje',
+'searchprofile-project'            => "Help- en projekpagina's",
+'searchprofile-images'             => 'Bestenj',
 'searchprofile-everything'         => 'Alles',
 'searchprofile-advanced'           => 'Oetgebreid',
 'searchprofile-articles-tooltip'   => 'Zeuke in $1',
@@ -975,6 +1050,9 @@ Doe kans ouch 'n naamruumde es veurvoegsel gebroeke.",
 'powersearch-ns'                   => 'Zeuke in naamruumdes:',
 'powersearch-redir'                => 'Doorverwiezinge waergaeve',
 'powersearch-field'                => 'Zeuk nao',
+'powersearch-togglelabel'          => 'Conterleer:',
+'powersearch-toggleall'            => 'Alle',
+'powersearch-togglenone'           => 'Gein',
 'search-external'                  => 'Extern zeuke',
 'searchdisabled'                   => 'Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit.
 Zoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.
@@ -1007,8 +1085,11 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'prefs-watchlist-days-max'  => '(maximaal 7 daag)',
 'prefs-watchlist-edits'     => 'Maximaal aantal bewirkinge in de oetgebreide volglies:',
 'prefs-watchlist-edits-max' => '(maximaal aantal: 1000)',
+'prefs-watchlist-token'     => 'Volgliessläötel:',
 'prefs-misc'                => 'Anger insjtèllinge',
 'prefs-resetpass'           => 'Wachwaord wiezige',
+'prefs-email'               => 'E-mailopsjes',
+'prefs-rendering'           => 'Oeterlik',
 'saveprefs'                 => 'Veurkäöre opsjlaon',
 'resetprefs'                => 'Sjtandaardveurkäöre hersjtèlle',
 'restoreprefs'              => 'Terug nao standaardinstellinge',
@@ -1023,9 +1104,9 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'stub-threshold'            => 'Drempel veur markering <a href="#" class="stub">begske</a>:',
 'recentchangesdays'         => 'Aantal daag te tuine in de recènte verangeringe:',
 'recentchangesdays-max'     => '(maximaal $1 {{PLURAL:$1|daag|daag}})',
-'recentchangescount'        => 'Aantal titels in lies recènte verangeringe, gesjiedenis en logbook:',
+'recentchangescount'        => 'Standerd aantal waer te gaeve bewèrkinge:',
 'savedprefs'                => 'Dien veurkäöre zint opgesjlage.',
-'timezonelegend'            => 'Tiedzone',
+'timezonelegend'            => 'Tiedzone:',
 'localtime'                 => 'Plaatselike tied',
 'timezoneuseserverdefault'  => 'Gebroek servertied',
 'timezoneuseoffset'         => 'Angers (gaef tiedversjil)',
@@ -1045,7 +1126,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'allowemail'                => 'E-mail van anger gebroekers toesjtaon',
 'prefs-searchoptions'       => 'Zeukinstellinge',
 'prefs-namespaces'          => 'Naamruimte',
-'defaultns'                 => 'Zeuk sjtandaard in dees naomruumdes:',
+'defaultns'                 => 'Zeuk anges in dees naomruumdes:',
 'default'                   => 'sjtandaard',
 'prefs-files'               => 'Bestenj',
 'prefs-custom-css'          => 'Persoonlijke CSS',
@@ -1696,11 +1777,9 @@ Dae kin dös drek reazjere.",
 'watchnologin'         => 'De bis neet aangemèld',
 'watchnologintext'     => "De mós [[Special:UserLogin|aangemèld]] zeen veur 't verangere van dien volglies.",
 'addedwatch'           => 'Aan volglies toegeveug',
-'addedwatchtext'       => 'De pagina "<nowiki>$1</nowiki>" is aan dien [[Special:Watchlist|volglies]] toegevoog.
+'addedwatchtext'       => 'De pagina "[[:$1]]" is aan dien [[Special:Watchlist|volglies]] toegevoog.
 Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weure hie vermèld.
-Ouch versjiene gevolgde pagina\'s in \'t <b>vèt</b> in de [[Special:RecentChanges|lies van recènte verangeringe]]. <!-- zoedat u ze sjneller kint zeen.-->
-
-<!-- huh? Es se ein pazjena van dien volglies wils haole mos e op "sjtop volge"  -- pagina wenst te verwijderen van uw volglies klik dan op "Van volglies verwijderen" in de menubalk. -->',
+Ouch versjiene gevolgde pagina\'s in \'t <b>vèt</b> in de [[Special:RecentChanges|lies van recènte verangeringe]].',
 'removedwatch'         => 'Van volglies aafhoale',
 'removedwatchtext'     => 'De pagina "[[:$1]]" is van dien [[Special:Watchlist|volglies]] eweggesjaf.',
 'watch'                => 'Volg',
@@ -2902,7 +2981,7 @@ Gaef de bestandjsnaam zónger \'t "{{ns:file}}:" veurvoogsel.',
 'tag-filter-submit'       => 'Filtere',
 'tags-title'              => 'Labels',
 'tags-intro'              => 'Op deze pagina staon de labels womit de software edere bewerking kan markere, en häör betekenis.',
-'tags-tag'                => 'Interne labelnaam',
+'tags-tag'                => 'Labelnaam',
 'tags-display-header'     => 'Weergave in wiezigingslieste',
 'tags-description-header' => 'Volledige beschrieving van betekenis',
 'tags-hitcount-header'    => 'Gelabelde bewerkinge',
