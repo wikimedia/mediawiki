@@ -199,6 +199,7 @@ $messages = array(
 'tog-ccmeonemails'            => "Peu'ek keu lon seunalen surat-e nyang lonpeu'ek keu ureueng la'en",
 
 'underline-always' => 'Sabe',
+'underline-never'  => "H'an tom",
 
 # Dates
 'sunday'        => 'Aleuhat',
@@ -311,6 +312,7 @@ $messages = array(
 'help'             => 'Beunantu',
 'search'           => 'Mita',
 'searchbutton'     => 'Mita',
+'go'               => 'Jak u',
 'searcharticle'    => 'Jak u',
 'history'          => 'Riwayat barosa',
 'history_short'    => 'Atra u likôt',
@@ -408,8 +410,8 @@ Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam softwa
 
 # Login and logout pages
 'yourname'                => 'Nan ureuëng nguy:',
-'yourpassword'            => 'Lageuëm rahsia:',
-'remembermypassword'      => 'Ingat lageuëm rahsia lôn bak komputer nyoë',
+'yourpassword'            => 'Lageuëm:',
+'remembermypassword'      => 'Ingat lageuëm lôn bak komputer nyoë (silawet $1 {{PLURAL:$1|uroë|uroë}})',
 'login'                   => 'Tamöng',
 'nav-login-createaccount' => 'Tamöng / dapeuta',
 'loginprompt'             => "Droëneuh payah neupeu’udép ''cookies'' beujeuët neutamong u {{SITENAME}}",
@@ -429,21 +431,20 @@ Tulông neuparéksa keulayi neuija Droëneuh, atawa [[Special:UserLogin/signup|n
 'nosuchusershort'         => 'Hana ureuëng nguy ngön nan "<nowiki>$1</nowiki>". 
 Préksa keulayi neu’ija Droëneuh.',
 'nouserspecified'         => 'Neupasoë nan Droëneuh.',
-'wrongpassword'           => 'Lageuëm rahsia nyang neupasoë salah. Neubaci lom.',
-'wrongpasswordempty'      => 'Droëneuh hana neupasoë lageuëm rahsia. Neubaci lom.',
-'passwordtooshort'        => 'Lageuëm rahsia Droëneuh hana sah atawa paneuk that. 
-Lageuëm rahsia paléng kureung {{PLURAL:$1|1 karakter|$1 karakter}} ngön beubida ngön nan Droëneuh.',
-'mailmypassword'          => 'Kirém lageuëm rahsia barô',
-'passwordremindertitle'   => 'Lageuëm rahsia seumeuntara barô keu {{SITENAME}}',
+'wrongpassword'           => 'Lageuëm nyang neupasoë salah. Neubaci lom.',
+'wrongpasswordempty'      => 'Droëneuh hana neupasoë lageuëm. Neubaci lom.',
+'passwordtooshort'        => "Lageuëm paléng h'an haroh na {{PLURAL:$1|1 karakter|$1 karakter}}.",
+'mailmypassword'          => 'Kirém lageuëm barô',
+'passwordremindertitle'   => 'Lageuëm seumeuntara barô keu {{SITENAME}}',
 'passwordremindertext'    => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë kamoë keu meukirém lageuëm rahsia nyang barô keu {{SITENAME}} ($4). 
 Lageuëm rahsia keu ureuëng nguy "$2" jinoë nakeuh "$3". 
 Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahsia.',
 'noemail'                 => 'Hana alamat surat-e nyang teucatat keu ureuëng nguy "$1".',
-'passwordsent'            => 'Lageuëm rahsia barô ka geukirém u surat-e nyang geupeudapeuta keu "$1". Neutamong teuma lheuëh neuteurimong surat-e nyan.',
+'passwordsent'            => 'Lageuëm barô ka geupeu\'ét u surat-e nyang geupeudapeuta keu "$1". Neutamong teuma lheuëh neuteurimong surat-e nyan.',
 'eauthentsent'            => 'Saboh surat èlèktronik keu peunyoë ka geukirém u alamat surat èlèktronik Droëneuh. Droëneuh beuneuseutöt préntah lam surat nyan keu neupeunyoë meunyo alamat nyan nakeuh beutôy atra Droëneuh. {{SITENAME}} h‘an geupeuudép surat Droëneuh meunyo langkah nyoë hana neupeulaku lom.',
 
 # Password reset dialog
-'retypenew' => 'Pasoë keulayi lageuëm rahsia barô:',
+'retypenew' => 'Pasoë teuma lageuëm barô:',
 
 # Edit page toolbar
 'bold_sample'     => 'Citak teubay naseukah nyoë',

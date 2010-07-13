@@ -1105,7 +1105,7 @@ $1",
 'revdelete-restricted'        => 'ограничения применяются к администраторам',
 'revdelete-unrestricted'      => 'ограничения сняты для администраторов',
 'revdelete-hid'               => 'скрыто $1',
-'revdelete-unhid'             => 'раскрыт $1',
+'revdelete-unhid'             => 'раскрыто $1',
 'revdelete-log-message'       => '$1 для $2 {{PLURAL:$2|версии|версий|версий}}',
 'logdelete-log-message'       => '$1 для $2 {{PLURAL:$2|события|событий|событий}}',
 'revdelete-hide-current'      => 'Ошибка скрытия записи от $2, $1: это текущая версия.

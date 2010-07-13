@@ -431,7 +431,7 @@ $1',
 'nosuchactiontext'  => "Nid yw'r weithred sydd ynghlwm wrth y cyfeiriad URL yn un dilys.
 Efallai eich bod wedi camdeipio'r URL, neu eich bod wedi dilyn cyswllt gwallus.
 Neu efallai fod byg ar {{SITENAME}}.",
-'nosuchspecialpage' => 'Y dudalen arbennig ddim yn bod',
+'nosuchspecialpage' => "Does dim tudalen arbennig o'r fath",
 'nospecialpagetext' => "<strong>Dyw'r wici ddim yn adnabod y dudalen arbennig y gofynnwyd amdani.</strong>
 
 Mae rhestr o'r tudalennau arbennig dilys i'w gael [[Special:SpecialPages|yma]].",
@@ -1874,7 +1874,7 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Lòg creu cyfrifon defnyddwyr newydd',
-'newuserlogpagetext'          => 'Dyma lòg creu cyfrifon defnyddwyr newydd.',
+'newuserlogpagetext'          => "Dyma restr o'r defnyddwyr newydd sydd wedi ymuno â'r wici.",
 'newuserlog-byemail'          => 'anfonwyd y cyfrinair trwy e-bost',
 'newuserlog-create-entry'     => 'Defnyddiwr newydd',
 'newuserlog-create2-entry'    => 'wedi creu cyfrif newydd ar gyfer $1',
@@ -2635,7 +2635,7 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'numedits'       => "Nifer y golygiadau (i'r dudalen): $1",
 'numtalkedits'   => "Nifer y golygiadau (i'r dudalen sgwrs): $1",
 'numwatchers'    => 'Nifer y gwylwyr: $1',
-'numauthors'     => "Nifer yr awduron (o'r dudalen): $1",
+'numauthors'     => 'Nifer y gwahanol awduron a gyfrannodd at y dudalen: $1',
 'numtalkauthors' => "Nifer yr awduron (o'r dudalen sgwrs): $1",
 
 # Skin names

@@ -187,7 +187,7 @@ $messages = array(
 
 # Diffs
 'lineno'   => 'Linji $1',
-'editundo' => 'ubunydyobu',
+'editundo' => 'fatstika',
 
 # Search results
 'searchresults'             => "tu'a le se sisku",
@@ -222,6 +222,10 @@ $messages = array(
 'upload'    => 'benji lo datnyvei',
 'uploadbtn' => 'benji lo datnyvei',
 
+# File description page
+'filehist-current'  => 'cabna',
+'filehist-datetime' => 'detytcika',
+
 # Random page
 'randompage' => 'cunso ckupau',
 
@@ -238,8 +242,12 @@ $messages = array(
 # Watchlist
 'watchlist'     => 'selzgaste',
 'mywatchlist'   => 'selzgaste',
-'watch'         => 'zgana',
+'watch'         => 'jundi',
 'watchthispage' => 'zgana ti',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => "co'a jundi",
+'unwatching' => "co'u jundi",
 
 # Delete
 'deletedarticle' => "pu daspo la'e lu [[$1]] li'u",
@@ -288,6 +296,7 @@ $messages = array(
 'tooltip-n-help'                => 'sidju kibypapri',
 'tooltip-t-whatlinkshere'       => "nu liste lo zifyga'ikibjudri poi ke'a kibjorne le vi ckupau",
 'tooltip-t-recentchangeslinked' => "lo puzi nunga'i pe lo kibypapri poi kibjorne le vi ckupau",
+'tooltip-undo'                  => "fatygau le nunstika gi'e jarco le stika tampapri tai lo nu troci jarco .i kakne jmina lo krinu le torvelski",
 
 # Special:FilePath
 'filepath-page' => 'se datnyvei zoi',

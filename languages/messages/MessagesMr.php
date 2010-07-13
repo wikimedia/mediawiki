@@ -16,6 +16,7 @@
  * @author Sankalpdravid
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
+ * @author कोल्हापुरी
  * @author प्रणव कुलकर्णी
  * @author शࣿरीहरि
  */
@@ -2152,6 +2153,7 @@ $1',
 'tooltip-search-fulltext'         => 'या मजकुराकरिता पान शोधा',
 'tooltip-p-logo'                  => 'मुखपृष्ठ',
 'tooltip-n-mainpage'              => 'मुखपृष्ठाला भेट द्या',
+'tooltip-n-mainpage-description'  => 'मुखपृष्ठाला भेट द्या',
 'tooltip-n-portal'                => 'प्रकल्पाबद्दल, तुम्ही काय करू शकता, कुठे काय सापडेल',
 'tooltip-n-currentevents'         => 'सद्य घटनांबद्दलची माहिती',
 'tooltip-n-recentchanges'         => 'विकिवरील अलीकडील बदलांची यादी',
