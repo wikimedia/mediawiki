@@ -138,7 +138,7 @@ class ApiParse extends ApiBase {
 					$p_result = false;
 					$pcache = ParserCache::singleton();
 					if ( $wgEnableParserCache ) {
-						$p_result = $pcache->get( $articleObj, $wgUser );
+						$p_result = $pcache->get( $articleObj, $popts );
 					}
 					if ( !$p_result ) {
 						$p_result = $wgParser->parse( $articleObj->getContent(), $titleObj, $popts );
@@ -162,6 +162,7 @@ class ApiParse extends ApiBase {
 
 			if ( $params['pst'] || $params['onlypst'] ) {
 				$text = $wgParser->preSaveTransform( $text, $titleObj, $wgUser, $popts );
+				$this->getMain()->setVaryCookie();
 			}
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out

@@ -127,6 +127,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 				'ipb_auto' => 0
 			) );
 		}
+		
+		// Make sure private data (deleted blocks) isn't cached
+		$this->getMain()->setVaryCookie();
 		if ( !$wgUser->isAllowed( 'hideuser' ) ) {
 			$this->addWhereFld( 'ipb_deleted', 0 );
 		}
