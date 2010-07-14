@@ -444,31 +444,14 @@ Make sure that the user "$1" can write to the schema "$2".',
 	'config-insecure-secretkey'       => "'''Warning:''' Unable to create secure <code>\$wgSecretKey</code>.
 Consider changing it manually.",
 	'config-install-sysop'            => 'Creating administrator user account',
-	'config-install-localsettings'    => 'Creating LocalSettings.php',
-	'config-install-localsettings-unwritable' => 'Warning: Could not write <code>LocalSettings.php</code>.
-Create it yourself, using the following text:
-<textarea name="LocalSettings" id="LocalSettings" cols="80" rows="25" readonly="readonly">
-$1
-</textarea>
-',
 	'config-install-done'             => "'''Congratulations!'''
 You have successfully installed MediaWiki.
 
 We have generated a <code>LocalSettings.php</code> file for you. It contains all your configuration.
 
-You will need to move it from <code>./config/LocalSettings.php</code> to <code>./LocalSettings.php</code> in order for MediaWiki to work:
+You will need to [$1 download] it and put it in the base of your wiki installation (the same directory as index.php)
 
-On a Unix/Linux system:
-
-<pre>
-mv ./config/LocalSettings.php ./LocalSettings.php
-</pre>
-
-When that's done, you can [$1 '''enter your wiki''']",
-	'config-install-done-moved'       => "'''Congratulations!'''
-You have successfully installed MediaWiki.
-
-[$1 Enter your wiki]",
+When that's done, you can [$2 '''enter your wiki''']", // $1 is the URL to LocalSettings download, $2 is link to wiki
 );
 
 /** Dutch (Nederlands)

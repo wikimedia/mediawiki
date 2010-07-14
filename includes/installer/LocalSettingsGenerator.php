@@ -74,26 +74,6 @@ class LocalSettingsGenerator {
 		return $localSettings;
 	}
 
-	/**
-	 * Write the file
-	 * @param $secretKey String A random string to
-	 * @return boolean On successful file write
-	 */
-	public function writeLocalSettings() {
-		$localSettings = $this->getText();
-		wfSuppressWarnings();
-		$ret = file_put_contents( $this->configPath . '/LocalSettings.php', $localSettings );
-		wfRestoreWarnings();
-
-		$status = Status::newGood();
-
-		if ( !$ret ) {
-			$status->fatal( 'config-install-localsettings-unwritable', $localSettings );
-		}
-
- 		return $status;
-	}
-
 	private function buildMemcachedServerList() {
 		$servers = $this->values['_MemCachedServers'];
 		if( !$servers ) {
