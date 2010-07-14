@@ -164,7 +164,9 @@ class ApiQueryContributions extends ApiQueryBase {
 					"rev_timestamp $op= '$encTS')" );
 		}
 
-		if ( !$wgUser->isAllowed( 'hideuser' ) )
+		// Make sure private data (deleted revisions) isn't cached
+		$this->getMain()->setVaryCookie();
+		if ( !$wgUser->isAllowed( 'hideuser' ) ) {
 			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		// We only want pages by the specified users.
 		if ( $this->prefixMode )
@@ -210,8 +212,12 @@ class ApiQueryContributions extends ApiQueryBase {
 				 $this->fld_patrolled )
 		{
 			global $wgUser;
-			if ( !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() )
-				$this->dieUsage( "You need the patrol right to request the patrolled flag", 'permissiondenied' );
+			// Don't cache private data
+			$this->getMain()->setVaryCookie();
+			if ( !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() ) {
+				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+			}
+
 			// Use a redundant join condition on both
 			// timestamp and ID so we can use the timestamp
 			// index

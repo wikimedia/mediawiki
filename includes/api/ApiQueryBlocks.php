@@ -121,7 +121,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 				'ipb_auto' => 0
 			) );
 		}
-		if ( !$wgUser->isAllowed( 'hideuser' ) )
+
+		// Make sure private data (deleted blocks) isn't cached
+		$this->getMain()->setVaryCookie();
+		if ( !$wgUser->isAllowed( 'hideuser' ) ) {
 			$this->addWhereFld( 'ipb_deleted', 0 );
 
 		// Purge expired entries on one in every 10 queries

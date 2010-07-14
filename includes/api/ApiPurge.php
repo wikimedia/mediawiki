@@ -42,6 +42,7 @@ class ApiPurge extends ApiBase {
 	 */
 	public function execute() {
 		global $wgUser;
+		$this->getMain()->setCachePrivate();
 		$params = $this->extractRequestParams();
 		if ( !$wgUser->isAllowed( 'purge' ) )
 			$this->dieUsageMsg( array( 'cantpurge' ) );
