@@ -79,9 +79,6 @@ class ApiFeedWatchlist extends ApiBase {
 				$fauxReqArr['wlowner'] = $params['wlowner'];
 			}
 			if ( !is_null( $params['wltoken'] ) ) {
-				// Don't cache tokens
-				$this->getMain()->setCachePrivate();
-
 				$fauxReqArr['wltoken'] = $params['wltoken'];
 			}
 
