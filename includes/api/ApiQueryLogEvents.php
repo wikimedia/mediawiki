@@ -284,6 +284,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 				if ( $this->fld_parsedcomment ) {
 					global $wgUser;
+					$this->getMain()->setVaryCookie();
 					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->log_comment, $title );
 				}
 			}
