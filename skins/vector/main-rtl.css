@@ -721,7 +721,11 @@ blockquote {
 	font-style: italic;
 }*/
 pre, code, tt {
-	font-family: monospace, sans-serif;
+	/*
+	 * It's important for this rule to first reference an actual font name, some browsers will render the monospace text
+	 * too small otherwise, namely Firefox, Chrome and Safari
+	 */
+	font-family: "Courier New", monospace;
 }
 code {
 	background-color: #f9f9f9;
