@@ -111,7 +111,6 @@ $messages = array(
 'tog-watchdefault'            => 'Idúgang an mga pahinang pighíhirá ko sa pigbabantayan ko',
 'tog-watchmoves'              => 'Idúgang an mga pahinang piglilípat ko sa pigbabantayan ko',
 'tog-watchdeletion'           => 'Idúgang an mga pahinang pigpapárà ko sa pigbabantayan ko',
-'tog-minordefault'            => 'Markahán an gabos na paghirá nin sadit na paghirá',
 'tog-previewontop'            => 'Ipahilíng an patànaw bàgo an kahon nin paghirá',
 'tog-previewonfirst'          => 'Ipahilíng an patànaw sa enot na paghirá',
 'tog-nocache'                 => 'Pogólon an pag-abang nin mga pahina',

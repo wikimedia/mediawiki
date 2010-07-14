@@ -121,7 +121,6 @@ $messages = array(
 'tog-watchdefault'            => 'Men deñiştirgen saifelerni közetüv cedvelime kirset',
 'tog-watchmoves'              => 'Menim tarafımdan adı deñiştirilgen saifelerni közetüv cedvelime kirset',
 'tog-watchdeletion'           => 'Men yoq etken saifelerni közetüv cedvelime kirset',
-'tog-minordefault'            => 'Yapqan deñişikliklerimni kiçik deñişiklik olaraq işaretle',
 'tog-previewontop'            => 'Baqıp çıquvnı yazuv pencereniñ üstünde köster',
 'tog-previewonfirst'          => 'Deñiştirmede baqıp çıquvnı köster',
 'tog-nocache'                 => 'Saifelerni hatırlama',

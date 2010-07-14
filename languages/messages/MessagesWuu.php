@@ -35,7 +35,6 @@ $messages = array(
 'tog-watchdefault'            => '拿我编辑个页面添加到我个监控列表里向',
 'tog-watchmoves'              => '拿我移动个页面添加到我个监控列表里向',
 'tog-watchdeletion'           => '拿我删除个页面添加到我个监控列表里向',
-'tog-minordefault'            => '默认拿所有编辑标记成功细编辑',
 'tog-previewontop'            => '来拉编辑框前头显示预览',
 'tog-previewonfirst'          => '来拉首次编辑辰光显示预览',
 'tog-nocache'                 => '禁用页面缓存',

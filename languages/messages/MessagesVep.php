@@ -105,7 +105,6 @@ $messages = array(
 'tog-watchdefault'            => 'Ližata kaik minai toižetadud lehtpoled minun kaclendkirjuteshe',
 'tog-watchmoves'              => 'Ližata kaik minai udesnimitadud lehtpoled minun kaclendkirjuteshe',
 'tog-watchdeletion'           => 'Ližata kaik minai čutud lehtpoled minun kaclendkirjuteshe',
-'tog-minordefault'            => 'Znamoita äugotižjärgendusen mödhe kaik toižetused penikš',
 'tog-previewontop'            => 'Panda ezikacund redaktiruindan iknan edehe',
 'tog-previewonfirst'          => 'Ozutada ezikacund redaktiruindan augotades',
 'tog-nocache'                 => "Kel'ta lehtpoliden keširuind",

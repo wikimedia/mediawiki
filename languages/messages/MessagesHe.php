@@ -355,7 +355,6 @@ $messages = array(
 'tog-watchdefault'            => 'מעקב אחרי דפים שערכתי',
 'tog-watchmoves'              => 'מעקב אחרי דפים שהעברתי',
 'tog-watchdeletion'           => 'מעקב אחרי דפים שמחקתי',
-'tog-minordefault'            => 'הגדרת כל פעולת עריכה כמשנית אם לא צוין אחרת',
 'tog-previewontop'            => 'הצגת תצוגה מקדימה לפני תיבת העריכה (או: אחריה)',
 'tog-previewonfirst'          => 'הצגת תצוגה מקדימה בעריכה ראשונה',
 'tog-nocache'                 => 'ביטול משיכת דפים מזכרון המטמון שבשרת',

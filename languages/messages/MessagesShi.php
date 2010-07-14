@@ -25,7 +25,6 @@ $messages = array(
 'tog-watchdefault'     => 'Zaydn tasniwin lli tżrigɣ i umuɣ n tilli tsaggaɣ',
 'tog-watchmoves'       => 'Zayd tisniwin lli smattayɣ i tilli tsggaɣ.',
 'tog-watchdeletion'    => 'Zaydn tasniwin lli kkesɣ i tilli tsaggaɣ',
-'tog-minordefault'     => 'Rcm kullu iẓṛign li fssusni sɣiklli gan.',
 
 'underline-always' => 'dima',
 'underline-never'  => 'ḥtta manak',

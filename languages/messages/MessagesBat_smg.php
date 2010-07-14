@@ -74,7 +74,6 @@ $messages = array(
 'tog-watchdefault'            => 'Pridietė poslapius, katrūs taisau, i keravuojamu sāraša',
 'tog-watchmoves'              => 'Pridietė poslapius, katrūs parkelio, i keravuojamu sāraša',
 'tog-watchdeletion'           => 'Pridietė poslapius, katrūs ėštrino, i keravuojamu sāraša',
-'tog-minordefault'            => 'Palē nutīliejėma pažīmietė redagavėmus kāp mažus',
 'tog-previewontop'            => 'Ruodītė parvaiza vėrš redagavėma lauka',
 'tog-previewonfirst'          => 'Ruodītė straipsnė parvėiza pėrmu redagavėmu',
 'tog-nocache'                 => "Nenauduotė poslapiu kaupėma (''caching'')",

@@ -2791,7 +2791,6 @@ $wgDefaultUserOptions = array(
 	'imagesize'               => 2,
 	'justify'                 => 0,
 	'math'                    => 1,
-	'minordefault'            => 0,
 	'newpageshidepatrolled'   => 0,
 	'nocache'                 => 0,
 	'noconvertlink'           => 0,

@@ -170,7 +170,6 @@ $messages = array(
 'tog-watchdefault'            => 'Tan luku den papira di mi kenki',
 'tog-watchmoves'              => 'Tan luku den papira di mi froysi',
 'tog-watchdeletion'           => 'Tan luku den papira di mi puru',
-'tog-minordefault'            => "Marki ala mi kenki leki 'pikin'",
 'tog-previewontop'            => 'Fusi hey opo mi kenkibox libi si',
 'tog-previewonfirst'          => 'Sori wan Si-na-fesi na a fosi kenki',
 'tog-nocache'                 => 'No kebroiki cache',

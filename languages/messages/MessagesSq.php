@@ -199,7 +199,6 @@ $messages = array(
 'tog-watchdefault'            => 'Shto faqet që redaktoj tek lista mbikqyrëse',
 'tog-watchmoves'              => 'Shto faqet që zhvendos tek lista mbikqyrëse',
 'tog-watchdeletion'           => 'Shto faqet që gris tek lista mbikqyrëse',
-'tog-minordefault'            => 'Shëno të gjitha redaktimet si të vogla paraprakisht',
 'tog-previewontop'            => 'Trego parapamjen përpara kutisë redaktuese, jo mbas saj',
 'tog-previewonfirst'          => 'Trego parapamje në redaktim të parë',
 'tog-nocache'                 => 'Mos ruaj kopje te faqeve',

@@ -289,7 +289,6 @@ $messages = array(
 'tog-watchdefault'            => 'Legg til sidene eg endrar på overvakingslista mi',
 'tog-watchmoves'              => 'Legg til sidene eg flyttar på overvakingslista mi',
 'tog-watchdeletion'           => 'Legg til sidene eg slettar på overvakingslista mi',
-'tog-minordefault'            => 'Merk endringar som «småplukk» som standard',
 'tog-previewontop'            => 'Vis førehandsvisinga før endringsboksen',
 'tog-previewonfirst'          => 'Førehandsvis første endring',
 'tog-nocache'                 => "Ikkje bruk nettlesaren sitt mellomlager (''cache'')",

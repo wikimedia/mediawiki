@@ -126,7 +126,6 @@ $messages = array(
 'tog-rememberpassword'        => 'Minst til loyniorð næstu ferð',
 'tog-watchcreations'          => 'Legg síður, sum eg stovni, í mítt eftirlit',
 'tog-watchdefault'            => 'Vaka yvur nýggjum og broyttum greinum',
-'tog-minordefault'            => 'Merk sum standard allar broytingar sum smærri',
 'tog-previewontop'            => 'Vís forhondsvísning áðren rættingarkassan',
 'tog-previewonfirst'          => 'Sýn forskoðan við fyrstu broyting',
 'tog-nocache'                 => 'Minst ikki til síðurnar til næstu ferð',

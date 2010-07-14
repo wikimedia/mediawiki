@@ -161,7 +161,6 @@ $messages = array(
 'tog-watchdefault'            => "Sides dy't jo feroare hawwe folgje",
 'tog-watchmoves'              => "Siden dy't jo werneamd hawwe folgje",
 'tog-watchdeletion'           => "Siden dy't jo wiske hawwe folgje",
-'tog-minordefault'            => 'Feroarings yn it earst oanjaan as tekstwizigings.',
 'tog-previewontop'            => 'By it neisjen, bewurkingsfjild ûnderoan sette',
 'tog-previewonfirst'          => 'Lit foarbyld sjen by earste wiziging',
 'tog-nocache'                 => 'Gjin oerslach brûke',

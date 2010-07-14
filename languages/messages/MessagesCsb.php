@@ -53,7 +53,6 @@ $messages = array(
 'tog-watchdefault'            => 'Dodôwôj starnë jaczé editëjã do mòji lëstë ùzérónëch artiklów',
 'tog-watchmoves'              => 'Dodôwôj starnë jaczé przenoszã do mòji lëstë ùzérónëch artiklów',
 'tog-watchdeletion'           => 'Dodôwôj starnë jaczé rëmóm do mòji lëstë ùzérónëch artiklów',
-'tog-minordefault'            => 'Zaznaczë wszëtczé edicëje domëslno jakno môłé',
 'tog-previewontop'            => 'Pòkażë pòdzérk przed kastką edicëji',
 'tog-previewonfirst'          => 'Pòkażë pòdzérk ju przed pierszą edicëją',
 'tog-nocache'                 => 'Wëłączë trzëmanié starnów w pamiãcë (caching)',

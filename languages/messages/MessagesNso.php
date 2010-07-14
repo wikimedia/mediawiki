@@ -56,7 +56,6 @@ $messages = array(
 'tog-watchdefault'            => 'Tsenya matlaka ao ke a fetolago go lenano laka la ditlhapetšo',
 'tog-watchmoves'              => 'Tsenya matlaka ao ke a hudušago go lenano laka la ditlhapetšo',
 'tog-watchdeletion'           => 'Tsenya matlaka ao ke a phumulago go lenano laka la ditlhapetšo',
-'tog-minordefault'            => 'Swaya diphetogo ka moka bjalo ka diphetogo tše nnyenyane',
 'tog-previewontop'            => 'Bontšha Ponopele pele ga lepokisi la diphetogo',
 'tog-previewonfirst'          => 'Bontšha Ponopeleka phetogo ya pele',
 'tog-nocache'                 => "Thibela go tsenya matlakala go segakolodi (''cache'')",

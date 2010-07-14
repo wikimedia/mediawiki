@@ -83,7 +83,6 @@ $messages = array(
 'tog-watchdefault'            => 'Bantayi ang akong giusab nga mga panid',
 'tog-watchmoves'              => 'Bantayi ang akong gibalhin nga mga panid',
 'tog-watchdeletion'           => 'Bantayi ang mga panid nga akong gipapas',
-'tog-minordefault'            => 'Markahi ang tanang pag-usab isip ginagmay',
 'tog-previewontop'            => 'Ipakita ang paunang tan-aw bag-o sa edit box',
 'tog-previewonfirst'          => 'Ipakita ang paunang tan-aw sa unang pag-usab',
 'tog-nocache'                 => 'Ayaw i-cache ang panid',

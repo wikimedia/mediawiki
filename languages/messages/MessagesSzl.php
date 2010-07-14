@@ -41,7 +41,6 @@ $messages = array(
 'tog-watchdefault'            => 'Dowom pozůr na zajty, kere żech sprowjoł',
 'tog-watchmoves'              => 'Dowom pozůr na zajty, kere żech przećepnył',
 'tog-watchdeletion'           => 'Dowom pozůr na zajty, kere żech wyćepnył',
-'tog-minordefault'            => 'Kożde moje sprowjańy je ńywjelge',
 'tog-previewontop'            => 'Pokoż poglůnd przed placym sprowjańo',
 'tog-previewonfirst'          => 'Pokoż poglůnd zajty przi pjyrszym sprowjańu',
 'tog-nocache'                 => 'Wypńij podrynczno pamjyńć',

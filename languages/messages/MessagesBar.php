@@ -34,7 +34,6 @@ $messages = array(
 'tog-watchdefault'           => 'Vu mia söiwa beåabeitete und vu mia nei eigstöide Seitn automatisch beobåchtn',
 'tog-watchmoves'             => 'Vu mia söiwa vaschomne Seitn automatisch beobåchtn',
 'tog-watchdeletion'          => 'Vu mia söiwa glöschte Seitn automatisch beobåchtn',
-'tog-minordefault'           => 'De eigenen Ändarungen standardmäßig åis geringfügig markian',
 'tog-previewonfirst'         => "Beim erstn Beåawatn imma d'Voaschau ãnzoang",
 'tog-nocache'                => 'Seitncache deaktivian',
 'tog-enotifwatchlistpages'   => 'Bei Ändarungen vu beobåchtete Seitn E-Post schicka',

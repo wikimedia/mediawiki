@@ -82,7 +82,6 @@ $messages = array(
 'tog-watchdefault'            => 'Shtoji në listë mbikëqyrëse faqet që i redaktoj',
 'tog-watchmoves'              => 'Shtoji në listë mbikëqyrëse faqet që i zhvendosi',
 'tog-watchdeletion'           => 'Shtoji në listë mbikëqyrëse faqet që i fshij',
-'tog-minordefault'            => 'Shêjoji fillimisht tâna redaktimet si të vogla',
 'tog-previewontop'            => 'Vendose parapamjen përpara kutisë redaktuese',
 'tog-previewonfirst'          => 'Shfaqe parapamjen në redaktimin e parë',
 'tog-nocache'                 => 'Mos ruej kopje të faqeve',

@@ -112,7 +112,6 @@ $messages = array(
 'tog-watchdefault'          => 'Ajusta las hojas que troco, a mi lista de escogidas',
 'tog-watchmoves'            => 'Ajusta las hojas que renombro, a mi lista de escogidas',
 'tog-watchdeletion'         => 'Ajusta las hojas que efasso, a mi lista de escogidas',
-'tog-minordefault'          => 'Va marcando todos los trocamientos como chiquiticos.',
 'tog-previewontop'          => 'Mostra la prevista arriba de la caxa del trocamiento.',
 'tog-previewonfirst'        => 'Mostra la prevista al primer trocamiento.',
 'tog-enotifwatchlistpages'  => 'Émbiame una letra electrónica cuando y ay un trocamiento en una hoja que estó cudiando',

@@ -174,7 +174,6 @@ $messages = array(
 'tog-watchdefault'            => "Voog pazjena's die se bewirks toe aan dien volglies",
 'tog-watchmoves'              => "Pazjena's die ich verplaats automatisch volge",
 'tog-watchdeletion'           => "Pazjena's die ich ewegsjaf automatisch volge",
-'tog-minordefault'            => 'Markeer sjtanderd alle bewirkinge es klein',
 'tog-previewontop'            => 'Veurvertuin baove bewèrkingsveld tuine',
 'tog-previewonfirst'          => 'Preview laote zien bie de ierste bewirking',
 'tog-nocache'                 => 'Pazjena caching oetzètte',

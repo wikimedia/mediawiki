@@ -64,7 +64,6 @@ $messages = array(
 'tog-watchdefault'            => 'Pievienot manis izmainītās lapas uzraugāmo lapu sarakstam',
 'tog-watchmoves'              => 'Pievienot manis pārvietotās lapas uzraugāmo lapu sarakstam',
 'tog-watchdeletion'           => 'Pievienot manis izdzēstās lapas uzraugāmo lapu sarakstam',
-'tog-minordefault'            => 'Atzīmēt visus labojumus jau sākotnēji par maznozīmīgiem',
 'tog-previewontop'            => 'Parādīt priekšskatījumu virs rediģēšanas lauka, nevis zem',
 'tog-previewonfirst'          => 'Parādīt priekšskatījumu jau uzsākot rediģēšanu',
 'tog-nocache'                 => 'Neļaut pārlūkam saglabāt lapas kešatmiņā',

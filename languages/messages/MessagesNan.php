@@ -38,7 +38,6 @@ $messages = array(
 'tog-watchdefault'            => 'Kā goá pian-chi̍p kòe ê ia̍h ka-ji̍p kàm-sī-toaⁿ lāi-té',
 'tog-watchmoves'              => 'Kā goá soá ê ia̍h ka-ji̍p kàm-sī-toaⁿ',
 'tog-watchdeletion'           => 'Kā goá thâi tiāu ê ia̍h ka-ji̍p kàm-sī-toaⁿ',
-'tog-minordefault'            => 'Chiām-tēng bī-lâi ê siu-kái lóng sī sió-siu-ká',
 'tog-previewontop'            => 'Sûn-khoàⁿ ê lōe-iông tī pian-chi̍p keh-á thâu-chêng',
 'tog-previewonfirst'          => 'Thâu-pái pian-chi̍p seng khoàⁿ-māi',
 'tog-nocache'                 => 'Koaiⁿ-tiāu ia̍h ê cache',

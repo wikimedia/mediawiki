@@ -280,7 +280,6 @@ $messages = array(
 'tog-watchdefault'            => "Hukchasqay p'anqakunata watiqay",
 'tog-watchmoves'              => "Astasqay p'anqakunata watiqay",
 'tog-watchdeletion'           => "Qullusqay p'anqakunata watiqay",
-'tog-minordefault'            => 'Tukuy hukchasqakunata kikinmanta aslla nispa sananchay',
 'tog-previewontop'            => "Rikch'ay qhawana ñawpaqman, ama qhipanpi kachunchu",
 'tog-previewonfirst'          => "Manaraq llamk'apuspa rikch'ayta qhaway",
 'tog-nocache'                 => "P'anqakunap ''cache'' nisqa paki hallch'anman ama niy",

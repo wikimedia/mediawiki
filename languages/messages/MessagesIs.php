@@ -236,7 +236,6 @@ $messages = array(
 'tog-watchdefault'            => 'Bæta síðum sem ég breyti á vaktlistann minn',
 'tog-watchmoves'              => 'Bæta síðum sem ég færi á vaktlistann minn',
 'tog-watchdeletion'           => 'Bæta síðum sem ég eyði á vaktlistann minn',
-'tog-minordefault'            => 'Merkja allar breytingar sem minniháttar sjálfgefið',
 'tog-previewontop'            => 'Sýna forskoðun á undan breytingarkassanum',
 'tog-previewonfirst'          => 'Sýna forskoðun með fyrstu breytingu',
 'tog-nocache'                 => 'Óvirkja skyndiminni síðna',

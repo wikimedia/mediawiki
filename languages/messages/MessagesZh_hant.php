@@ -204,7 +204,6 @@ $messages = array(
 'tog-watchdefault'            => '將我更改的頁面添加到我的監視列表中',
 'tog-watchmoves'              => '將我移動的頁面加入我的監視列表',
 'tog-watchdeletion'           => '將我刪除的頁面加入我的監視列表',
-'tog-minordefault'            => '預設將編輯設定為小編輯',
 'tog-previewontop'            => '在編輯框上方顯示預覽',
 'tog-previewonfirst'          => '第一次編輯時顯示原文內容的預覽',
 'tog-nocache'                 => '停用頁面快取',

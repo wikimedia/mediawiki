@@ -42,7 +42,6 @@ $messages = array(
 'tog-watchdefault'         => "Po'lo i påhina siha ni hu tulaika gi iyo-ku listan pinilan.",
 'tog-watchmoves'           => "Po'lo i påhina siha ni hu muebi gi iyo-ku listan pinilan.",
 'tog-watchdeletion'        => "Po'lo i påhina siha ni hu na'suha gi iyo-ku listan pinilan.",
-'tog-minordefault'         => "Matka mamo'lo todu i tinilaika siha dikike'.",
 'tog-previewontop'         => "Na'annok i ripasu gi me'na i kahon tinilaika",
 'tog-previewonfirst'       => "Na'annok i ripasu gi i fine'nena na tinilaika",
 'tog-enotifwatchlistpages' => "E-mail yu' anggen guåha matulaika gi iyo-ku listan pinilan",

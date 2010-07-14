@@ -31,7 +31,6 @@ $wgMessageStructure = array(
 		'tog-watchdefault',
 		'tog-watchmoves',
 		'tog-watchdeletion',
-		'tog-minordefault',
 		'tog-previewontop',
 		'tog-previewonfirst',
 		'tog-nocache',

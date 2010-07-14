@@ -178,7 +178,6 @@ $messages = array(
 'tog-watchdefault'            => 'Dodaj na spisek nadzorov vse članke, ki sem jih ustvaril/-a ali spremenil/-a',
 'tog-watchmoves'              => 'Dodaj strani, ki jih premaknem, na moj spisek nadzorov',
 'tog-watchdeletion'           => 'Dodaj strani, ki jih izbrišem, na moj spisek nadzorov',
-'tog-minordefault'            => 'Vsa urejanja označi kot manjša',
 'tog-previewontop'            => 'Prikaži predogled pred urejevalnim poljem in ne za njim',
 'tog-previewonfirst'          => 'Ob začetku urejanja prikaži predogled',
 'tog-nocache'                 => 'Onemogoči predpomnenje strani',

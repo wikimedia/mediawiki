@@ -54,7 +54,6 @@ $messages = array(
 'tog-watchdefault'            => 'Redaktirlän sahypalarymy gözegçilik sanawyma goş',
 'tog-watchmoves'              => 'Adyny üýtgeden sahypalarymy gözegçilik sanawyma goş',
 'tog-watchdeletion'           => 'Öçüren sahypalarymy gözegçilik sanawyma goş',
-'tog-minordefault'            => 'Ähli özgerdişleri "ujypsyzja" diýip belle',
 'tog-previewontop'            => 'Deslapky syny redaktirleme gutusynyň üstünde görkez',
 'tog-previewonfirst'          => 'Özgerdişde deslapky syny görkez',
 'tog-nocache'                 => '

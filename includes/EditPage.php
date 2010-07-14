@@ -1155,7 +1155,6 @@ class EditPage {
 			# Already watched
 			$this->watchthis = true;
 		}
-		if ( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
 		if ( $this->textbox1 === false ) return false;
 		wfProxyCheck();
 		return true;

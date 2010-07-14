@@ -55,7 +55,6 @@ $messages = array(
 'tog-watchdefault'            => 'Aal do sälwen annerde Sieden beooboachtje',
 'tog-watchmoves'              => 'Aal do sälwen ferschäuwede Sieden beooboachtje',
 'tog-watchdeletion'           => 'Aal do sälwen läskede Sieden beooboachtje',
-'tog-minordefault'            => 'Alle Annerengen as littek markierje',
 'tog-previewontop'            => 'Foarschau buppe dät Beoarbaidengsfinster anwiese',
 'tog-previewonfirst'          => 'Bie dät eerste Beoarbaidjen altied ju Foarschau anwiese',
 'tog-nocache'                 => 'Siedencache deaktivierje',

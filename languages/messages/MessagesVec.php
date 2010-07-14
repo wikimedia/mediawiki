@@ -160,7 +160,6 @@ $messages = array(
 'tog-watchdefault'            => 'Zonta łe pajine modifegae a i oservai spesałi',
 'tog-watchmoves'              => 'Zonta łe pajine spostae a i oservai spesałi',
 'tog-watchdeletion'           => 'Zonta łe pajine scansełae a i oservai spesałi',
-'tog-minordefault'            => 'Indica ogni modifega come minore (soło come predefinio)',
 'tog-previewontop'            => "Mostra l'anteprima sora ła caseła de modifega e no soto",
 'tog-previewonfirst'          => "Mostra l'anteprima par ła prima modifega",
 'tog-nocache'                 => 'Disativa ła "cache" par łe pajine',

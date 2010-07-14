@@ -154,7 +154,6 @@ $messages = array(
 'tog-watchdefault'            => "Agghiunci li pàggini canciati a l'ossirvati spiciali",
 'tog-watchmoves'              => "Agghiunci li pàggini spustati a l'ossirvati spiciali",
 'tog-watchdeletion'           => "Agghiunci li pàggini di mìa cancillati a l'ossirvati spiciali",
-'tog-minordefault'            => 'Ìndica ogni canciamentu comu nicu (sulu comu pridifinitu)',
 'tog-previewontop'            => "Ammustra l'antiprima prima dâ casella di canciamentu e nun doppu",
 'tog-previewonfirst'          => "Ammustra l'antiprima supra lu primu canciamentu",
 'tog-nocache'                 => 'Disabbìlita lu caching dî pàggini',

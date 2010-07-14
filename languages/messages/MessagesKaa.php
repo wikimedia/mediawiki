@@ -168,7 +168,6 @@ $messages = array(
 'tog-watchdefault'            => "Men o'zgeris kiritken betlerdi baqlaw dizimime qos",
 'tog-watchmoves'              => "Men ko'shirgen betlerdi baqlaw dizimime qos",
 'tog-watchdeletion'           => "Men o'shirgen betlerdi baqlaw dizimime qos",
-'tog-minordefault'            => "Defolt boyınsha barlıq o'zgerislerdi kishi dep esaplaw",
 'tog-previewontop'            => "O'zgertiw maydanınan aldın ko'rip shıg'ıw maydanın ko'rset",
 'tog-previewonfirst'          => "Birinshi o'zgertiwdi ko'rip shıq",
 'tog-nocache'                 => "Betti keshte saqlawdı o'shir",

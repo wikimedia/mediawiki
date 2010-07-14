@@ -75,7 +75,6 @@ $messages = array(
 'tog-watchdefault'            => 'Aciungi is pàginas chi apo acontzadu a sa watchlist mea',
 'tog-watchmoves'              => 'Aciungi is pàginas chi apo mòvidu a sa watchlist mea',
 'tog-watchdeletion'           => 'Aciungi is pàginas chi apo fuliadu a sa watchlist mea',
-'tog-minordefault'            => 'Signa totu is acontzos comente minores pro difetu',
 'tog-previewontop'            => "Ammustra s'antiprima a subra sa casella de acontzu e no a suta",
 'tog-previewonfirst'          => "Ammustra s'antiprima pro su primu acontzu",
 'tog-nocache'                 => "Disativa sa ''cache'' pro is pàginas",

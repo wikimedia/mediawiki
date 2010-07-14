@@ -36,7 +36,6 @@ $messages = array(
 'tog-watchdefault'            => 'Cuir duilleagan a dheasaicheas mi air mo chlàr-faire',
 'tog-watchmoves'              => 'Cuir duilleagan a ghluaiseas mi air mo chlàr-faire',
 'tog-watchdeletion'           => 'Cuir duilleagan a sguabas mi às air mo chlàr-faire',
-'tog-minordefault'            => 'Comharraich gach mùthadh mar mhùthadh beag a ghnàth',
 'tog-previewontop'            => "Nochd an ro-shealladh os cionn a' bhogsa deasachaidh",
 'tog-previewonfirst'          => "Nochd an ro-shealladh nuair a nithear a' chiad deasachadh",
 'tog-nocache'                 => 'Cuir à comas tasgadh nan duilleagan',
