@@ -321,9 +321,9 @@ $messages = array(
 'bold_tip'       => 'Text tew',
 'italic_sample'  => 'Text italek',
 'italic_tip'     => 'Text italek',
-'link_sample'    => 'Titel an kevren',
+'link_sample'    => 'Titel an gevren',
 'link_tip'       => 'Kevren bervedhel',
-'extlink_sample' => 'http://www.example.com titel an kevren',
+'extlink_sample' => 'http://www.example.com titel an gevren',
 'image_tip'      => 'Restren neythys',
 'media_tip'      => 'Kevren restren',
 
