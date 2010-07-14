@@ -133,7 +133,6 @@ abstract class Installer {
 		'interwiki',
 		'secretkey',
 		'sysop',
-		'localsettings',
 	);
 
 	/**
@@ -890,7 +889,9 @@ abstract class Installer {
 			if( !$status->isOk() )
 				break;
 		}
-		$this->setVar( '_InstallDone', true );
+		if( $status->isOk() ) {
+			$this->setVar( '_InstallDone', true );
+		}
 		return $installResults;
 	}
 
@@ -971,11 +972,6 @@ abstract class Installer {
 			$user->saveSettings();
 		}
 		return Status::newGood();
-	}
-
-	public function installLocalsettings() {
-		$localSettings = new LocalSettingsGenerator( $this );
-		return $localSettings->writeLocalSettings();
 	}
 
 	/**

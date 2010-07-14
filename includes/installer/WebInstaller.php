@@ -84,6 +84,17 @@ class WebInstaller extends Installer {
 		$this->exportVars();
 		$this->setupLanguage();
 
+		if( $this->getVar( '_InstallDone' ) && $this->request->getVal( 'localsettings' ) )
+		{
+			$ls = new LocalSettingsGenerator( $this );
+			$this->request->response()->header('Content-type: text/plain');
+			$this->request->response()->header(
+				'Content-Disposition: attachment; filename="LocalSettings.php"'
+			);
+			echo $ls->getText();
+			return $this->session;
+		}
+
 		if ( isset( $session['happyPages'] ) ) {
 			$this->happyPages = $session['happyPages'];
 		} else {
@@ -1629,10 +1640,10 @@ class WebInstaller_Complete extends WebInstallerPage {
 	public function execute() {
 		global $IP;
 		$this->startForm();
-		$msg = file_exists( "$IP/LocalSettings.php" ) ? 'config-install-done-moved' : 'config-install-done';
 		$this->addHTML(
 			$this->parent->getInfoBox(
-				wfMsgNoTrans( $msg,
+				wfMsgNoTrans( 'config-install-done',
+					$GLOBALS['wgServer'] . $this->parent->getURL( array( 'localsettings' => 1 ) ),
 					$GLOBALS['wgServer'] .
 						$this->getVar( 'wgScriptPath' ) . '/index' .
 						$this->getVar( 'wgScriptExtension' )
