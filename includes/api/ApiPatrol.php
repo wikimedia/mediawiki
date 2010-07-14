@@ -41,6 +41,7 @@ class ApiPatrol extends ApiBase {
 	 * Patrols the article or provides the reason the patrol failed.
 	 */
 	public function execute() {
+		$this->getMain()->setCachePrivate();
 		$params = $this->extractRequestParams();
 
 		if ( !isset( $params['rcid'] ) ) {

@@ -48,6 +48,9 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		if ( !is_null( $params['lang'] ) && $params['lang'] != $wgLang->getCode() ) {
 			$oldLang = $wgLang; // Keep $wgLang for restore later
 			$wgLang = Language::factory( $params['lang'] );
+		} else if ( is_null( $params['lang'] ) ) {
+			// Language not determined by URL but by user preferences, so don't cache
+			$this->getMain()->setVaryCookie();
 		}
 
 		$prop = array_flip( (array)$params['prop'] );

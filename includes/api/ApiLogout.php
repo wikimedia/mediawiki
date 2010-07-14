@@ -42,6 +42,7 @@ class ApiLogout extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
+		$this->getMain()->setCachePrivate();
 		$oldName = $wgUser->getName();
 		$wgUser->logout();
 

@@ -162,6 +162,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				}
 
 				if ( !is_null( $params['token'] ) ) {
+					// Don't cache tokens
+					$this->getMain()->setCachePrivate();
+					
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $params['token'] as $t ) {
 						$val = call_user_func( $tokenFunctions[$t], $user );
