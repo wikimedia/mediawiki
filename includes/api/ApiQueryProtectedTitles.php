@@ -102,6 +102,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 				if ( isset( $prop['parsedcomment'] ) ) {
 					global $wgUser;
+					$this->getMain()->setVaryCookie();
 					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->pt_reason, $title );
 				}
 
