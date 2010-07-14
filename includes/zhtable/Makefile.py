@@ -5,7 +5,7 @@ import tarfile, zipfile
 import os, re, shutil, sys, platform
 
 pyversion = platform.python_version()
-islinux = platform.system().lower() == 'linux' or False
+islinux = platform.system().lower() == 'linux'
 
 if pyversion[:3] in ['2.5', '2.6', '2.7']:
     import urllib as urllib_request
