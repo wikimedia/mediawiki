@@ -211,6 +211,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 			if ( $fld_parsedcomment ) {
 				global $wgUser;
+				$this->getMain()->setVaryCookie();
 				$rev['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->ar_comment, $title );
 			}
 			if ( $fld_minor && $row->ar_minor_edit == 1 ) {

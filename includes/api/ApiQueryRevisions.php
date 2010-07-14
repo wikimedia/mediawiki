@@ -395,6 +395,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 				if ( $this->fld_parsedcomment ) {
 					global $wgUser;
+					$this->getMain()->setVaryCookie();
 					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $comment, $title );
 				}
 			}

@@ -188,6 +188,7 @@ class ApiParse extends ApiBase {
 
 		if ( !is_null( $params['summary'] ) ) {
 			$result_array['parsedsummary'] = array();
+			$this->getMain()->setVaryCookie();
 			$result->setContent( $result_array['parsedsummary'], $wgUser->getSkin()->formatComment( $params['summary'], $titleObj ) );
 		}
 
@@ -222,6 +223,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
 			$out = new OutputPage;
 			$out->addParserOutputNoText( $p_result );
+			$this->getMain()->setVaryCookie();
 			$userSkin = $wgUser->getSkin();
 		}
 

@@ -378,6 +378,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
 			global $wgUser;
+			$this->getMain()->setVaryCookie();
 			$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->rc_comment, $title );
 		}
 
