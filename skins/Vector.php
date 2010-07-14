@@ -293,7 +293,7 @@ class SkinVector extends SkinTemplate {
 			// Checks if the user is logged in
 			if ( $this->loggedin ) {
 				if ( $wgVectorUseIconWatch ) {
-					$class = 'icon ';
+					$class = 'icon';
 					$place = 'views';
 				} else {
 					$class = '';
