@@ -66,6 +66,7 @@ class WebInstallerOutput {
 		}
 		if ( !$this->redirectTarget && strlen( $this->contents ) ) {
 			echo $this->contents;
+			ob_flush();
 			flush();
 			$this->contents = '';
 		}
