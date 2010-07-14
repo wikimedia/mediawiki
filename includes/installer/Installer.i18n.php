@@ -308,7 +308,6 @@ All page titles in this namespace start with a certain prefix, which you can spe
 Traditionally, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as "#" or ":".',
 	'config-ns-invalid'               => 'The specified namespace "<nowiki>$1</nowiki>" is invalid.
 Specify a different project namespace',
-	'config-admin-default-username'   => 'WikiSysop',
 	'config-admin-box'                => 'Administrator account',
 	'config-admin-name'               => 'Your name:',
 	'config-admin-password'           => 'Password:',
@@ -669,7 +668,6 @@ Alle paginanamen in deze naamruimte beginnen met een bepaald voorvoegsel dat u h
 Dit voorvoegsel wordt meestal afgeleid van de naam van de wiki, maar het kan geen bijzondere tekens bevatten als \"#\" of \":\".",
 	'config-ns-invalid' => 'De aangegeven naamruimte "<nowiki>$1</nowiki>" is ongeldig.
 Geef een andere naamruimte op.',
-	'config-admin-default-username' => 'WikiBeheerder',
 	'config-admin-box' => 'Beheerdersaccount',
 	'config-admin-name' => 'Uw naam:',
 	'config-admin-password' => 'Wachtwoord:',
@@ -777,5 +775,4 @@ U hebt MediaWiki geïnstalleerd.
 $messages['ru'] = array(
 	'config-title'                  => 'Установка MediaWiki $1',
 	'config-page-language'          => 'Язык',
-	'config-admin-default-username' => 'ВикиАдминистратор',
 );

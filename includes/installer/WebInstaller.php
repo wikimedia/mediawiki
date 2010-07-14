@@ -930,10 +930,6 @@ class WebInstaller_Language extends WebInstallerPage {
 				}
 				if ( isset( $languages[$contLang] ) ) {
 					$this->setVar( 'wgLanguageCode', $contLang );
-					if ( $this->getVar( '_AdminName' ) === null ) {
-						// Load localised sysop username in *content* language
-						$this->setVar( '_AdminName', wfMsgForContent( 'config-admin-default-username' ) );
-					}
 				}
 				return 'continue';
 			}

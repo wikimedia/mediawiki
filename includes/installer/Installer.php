@@ -59,7 +59,7 @@ abstract class Installer {
 		'_SameAccount' => true,
 		'_CreateDBAccount' => false,
 		'_NamespaceType' => 'site-name',
-		'_AdminName' => null, // will be set later, when the user selects language
+		'_AdminName' => '', // will be set later, when the user selects language
 		'_AdminPassword' => '',
 		'_AdminPassword2' => '',
 		'_AdminEmail' => '',
