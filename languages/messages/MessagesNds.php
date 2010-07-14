@@ -231,7 +231,6 @@ $messages = array(
 'tog-watchdefault'            => 'Op ne’e un ännerte Sieden oppassen',
 'tog-watchmoves'              => 'Sieden, de ik schuuv, to de Oppasslist todoon',
 'tog-watchdeletion'           => 'Sieden, de ik wegsmiet, to de Oppasslist todoon',
-'tog-minordefault'            => 'Alle Ännern as lütt markeern',
 'tog-previewontop'            => 'Vörschau vör dat Editeerfinster wiesen',
 'tog-previewonfirst'          => "Vörschau bi'n eersten Ännern wiesen",
 'tog-nocache'                 => 'Sietencache deaktiveern',

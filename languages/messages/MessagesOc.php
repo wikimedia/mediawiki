@@ -308,7 +308,6 @@ $messages = array(
 'tog-watchdefault'            => 'Apondre las paginas que modifiqui a ma lista de seguiment',
 'tog-watchmoves'              => 'Apondre las paginas que tòrni nomenar a ma lista de seguiment',
 'tog-watchdeletion'           => 'Apondre las paginas que suprimissi de ma lista de seguiment',
-'tog-minordefault'            => 'Considerar mas modificacions coma menoras per defaut',
 'tog-previewontop'            => 'Far veire la previsualizacion al dessús de la zòna de modificacion',
 'tog-previewonfirst'          => 'Far veire la previsualizacion al moment de la primièra edicion',
 'tog-nocache'                 => "Desactivar l'amagatal de paginas",

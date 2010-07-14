@@ -111,6 +111,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   {{DISPLAYTITLE}}
 * (bug 24045) MediaWiki:Ipb-needreblock is now wrapped in a div with class
   "mw-ipd-needreblock"
+* (bug 24313) The preference to mark edits minor by default was removed,
+  because it encourages edits to be marked minor accidentally and it can be
+  easily replicated by custom user scripts for those who really want it.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

@@ -322,7 +322,6 @@ $messages = array(
 'tog-watchdefault'            => 'Dodaj sve nove i izmijenjene stranice u popis praćenja',
 'tog-watchmoves'              => 'Dodaj sve stranice koje premjestim na popis praćenja',
 'tog-watchdeletion'           => 'Dodaj sve stranice koje izbrišem na popis praćenja',
-'tog-minordefault'            => 'Normalno označavaj sve moje izmjene kao manje',
 'tog-previewontop'            => 'Prikaži kako će stranica izgledati iznad okvira za uređivanje',
 'tog-previewonfirst'          => 'Prikaži kako će stranica izgledati čim otvorim uređivanje',
 'tog-nocache'                 => 'Isključi međuspremnik (cache) stranica.',

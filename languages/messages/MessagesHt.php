@@ -143,7 +143,6 @@ $messages = array(
 'tog-watchdefault'            => 'Mete paj mwen edite yo nan lis veye m',
 'tog-watchmoves'              => 'Mete paj mwen deplase nan lis veye m',
 'tog-watchdeletion'           => 'Mete paj mwen delete nan lis veye m',
-'tog-minordefault'            => 'Make tout edit yo minè pa defo',
 'tog-previewontop'            => 'Montre previzializasyon anvan bwat edite',
 'tog-previewonfirst'          => 'Montre previzializasyon sou premye edit',
 'tog-nocache'                 => 'Dezame paj kapte',

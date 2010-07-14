@@ -35,7 +35,6 @@ $messages = array(
 'tog-watchdefault'            => 'Pelê ke mı vurnayê, lista mına seyrkerdışi ke',
 'tog-watchmoves'              => 'Pelê ke mı kırışnayê, lista mına seyrkerdışi ke',
 'tog-watchdeletion'           => 'Pelê ke mı esterıtê, lista mına seyrkerdışi ke',
-'tog-minordefault'            => "Vurnayışanê xo pêrune ''vurnayışo qıckek'' nışan bıde",
 'tog-previewontop'            => 'Verqayti pela nuştışi ser de bımocne',
 'tog-previewonfirst'          => 'Vurnayışo verên de verqayti tım bımocne',
 'tog-nocache'                 => 'Pelan mia xo viri',

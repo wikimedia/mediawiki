@@ -130,7 +130,6 @@ $messages = array(
 'tog-showtoc'                 => 'Mostre la tabele dai contignûts pes pagjinis cun plui di 3 sezions',
 'tog-rememberpassword'        => 'Visiti tes prossimis sessions',
 'tog-watchdefault'            => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
-'tog-minordefault'            => 'Imposte come opzion predeterminade ducj i cambiaments come piçui',
 'tog-previewontop'            => 'Mostre anteprime parsore dal spazi pe modifiche',
 'tog-previewonfirst'          => 'Mostre anteprime te prime modifiche',
 'tog-nocache'                 => 'No stâ tignî in memorie (caching) lis pagjinis',

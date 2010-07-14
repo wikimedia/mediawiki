@@ -88,7 +88,6 @@ $messages = array(
 'tog-watchdefault'            => "Shuve les årtikes ki dj' fwai ou ki dj' candje",
 'tog-watchmoves'              => "Radjouter a m' djivêye des shuvous les pådjes ki dji displaece",
 'tog-watchdeletion'           => "Radjouter a m' djivêye des shuvous les pådjes ki dji disface",
-'tog-minordefault'            => 'Prémete mes candjmints come mineurs',
 'tog-previewontop'            => "Prévey l' årtike å dzeu del boesse d' aspougnaedje",
 'tog-previewonfirst'          => "Prévey l' årtike å prumî candjmint",
 'tog-nocache'                 => "Èn nén eployî d' muchete pol håynaedje des pådjes",

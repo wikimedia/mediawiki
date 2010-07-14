@@ -34,7 +34,6 @@ $messages = array(
 'tog-watchdefault'            => 'Ham se badla gae panna ke hamaar dhyaan suchi me jorro',
 'tog-watchmoves'              => 'Uu panna jiske naam ham badla hai ke hamaar dhyaan suchi me jorro',
 'tog-watchdeletion'           => 'Uu panna jiske ham mitaya hai ke hamaar dhyaan suchi me jorro',
-'tog-minordefault'            => 'Mamuli badlao ke apne se nishaan lagao',
 'tog-previewontop'            => 'Badlao waala dabba se pahile ek jhalak dekhao',
 'tog-previewonfirst'          => 'Hamaar pahila badlao pe jhalak dekhao',
 'tog-nocache'                 => 'Panna caching ke rok do',

@@ -32,7 +32,6 @@ $messages = array(
 'tog-watchdefault'            => 'Preidāis pāusans kawīdans as redigijja prei majjan listin stēisan nadirītan',
 'tog-watchmoves'              => 'Preidāis pāusans, kawīdans as praskajjina prei majjan listin stēisan nadirītan',
 'tog-watchdeletion'           => 'Preidāis pāusans kawīdans as āupausina prei majjan listin stēisan nadirītan',
-'tog-minordefault'            => 'Ebzentlis auprestaminai wissans kitawidīnsnans kāigi mālkans',
 'tog-previewontop'            => 'Waidinnais pirmādiran pirzdau redigīsnas laūkan',
 'tog-previewonfirst'          => 'Waidinnais pirmādiran prei pirman redigīsenin',
 'tog-nocache'                 => 'Izklaūjais rānkas minīsnan',

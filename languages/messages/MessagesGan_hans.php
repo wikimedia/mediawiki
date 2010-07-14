@@ -48,7 +48,6 @@ $messages = array(
 'tog-watchdefault'            => '拿偶改嘞𠮶页面加到偶𠮶监视列表',
 'tog-watchmoves'              => '拿偶动嘞𠮶页面加到偶𠮶监视列表',
 'tog-watchdeletion'           => '拿偶删撇𠮶页面加到偶𠮶监视列表',
-'tog-minordefault'            => '全部𠮶编辑设成细修改',
 'tog-previewontop'            => '到编辑框𠮶上首显示预览',
 'tog-previewonfirst'          => '头道修改时显示预览',
 'tog-nocache'                 => '停用页面𠮶缓存',

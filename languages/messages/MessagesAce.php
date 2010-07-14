@@ -174,7 +174,6 @@ $messages = array(
 'tog-watchdefault'            => 'Tamah on-on nyang lon-andam u dapeuta kalon',
 'tog-watchmoves'              => 'Tamah on-on nyang lonpeupinah u dapeuta kalon',
 'tog-watchdeletion'           => 'Tamah on-on nyang lonsampoh u dapeuta kalon',
-'tog-minordefault'            => 'Boh tanda mandum neuandam sibagoe neuandam bacut ngon baku',
 'tog-previewontop'            => 'Peuleumah hase yoh goh kutak andam',
 'tog-previewonfirst'          => 'Peuleumah hase bak neuandam phon',
 'tog-nocache'                 => 'Peumate <em>cache</em> on',

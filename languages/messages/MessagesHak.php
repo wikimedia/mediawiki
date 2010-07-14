@@ -30,7 +30,6 @@ $messages = array(
 'tog-watchdefault'            => 'Chiông ngô kiên-kói ke vùn-chông kâ-thiâm to ngô-ke kam-sṳ lie̍t-péu chûng',
 'tog-watchmoves'              => 'Chiông ngô yì-thung ke vùn-chông kâ-ngi̍p ngô-ke kam-sṳ lie̍t-péu',
 'tog-watchdeletion'           => 'Chiông ngô chhù-thet ke vùn-chông kâ-ngi̍p ngô-ke kam-sṳ lie̍t-péu chûng',
-'tog-minordefault'            => 'Yi-siên chiông phiên-chho sat-thin vi séu phiên-cho',
 'tog-previewontop'            => 'Chhai phiên-cho khiông ke song-fông hién-sṳ yi-ko',
 'tog-previewonfirst'          => 'Thi-yit-chhṳ phiên-siá sṳ̀ hién-sṳ ngièn-vùn nui-yùng ke yi-ko',
 'tog-nocache'                 => 'Thìn-chṳ́ yung hong-mien ke khoai-chhí',

@@ -162,7 +162,6 @@ $messages = array(
 'tog-watchdefault'            => '將我修改嘅頁加入監視清單',
 'tog-watchmoves'              => '將我移動嘅頁加入監視清單',
 'tog-watchdeletion'           => '將我刪除嘅頁加入監視清單',
-'tog-minordefault'            => '預設全部編輯做小修改',
 'tog-previewontop'            => '喺修改欄上方顯示預覽',
 'tog-previewonfirst'          => '第一次修改時顯示預覽',
 'tog-nocache'                 => '停用頁面快取',

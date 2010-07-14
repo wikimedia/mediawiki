@@ -70,7 +70,6 @@ $messages = array(
 'tog-watchdefault'           => 'Ale fon miir gändârdnd sajdn soln uf mâj beoobachdungs-lischdn',
 'tog-watchmoves'             => 'Ale fon miir fârschoobnen sajdn soln uf mâj beoobachdungs-lischdn',
 'tog-watchdeletion'          => 'Ale fon miir gleschdn sajdn soln uf mâj beoobachdungs-lischdn',
-'tog-minordefault'           => 'Ale maj ändrungn soln als glaane geldn',
 'tog-previewontop'           => 'Foorschau owârhalb un ned undârhalb fom arbajds-fenschdâr',
 'tog-previewonfirst'         => 'Baj dr ärschdn ändrung imâr ärschd â foorschau ôôdsajchn',
 'tog-nocache'                => 'Sajdn-cache ausschaldn',

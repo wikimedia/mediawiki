@@ -32,7 +32,6 @@ $messages = array(
 'tog-watchdefault'            => "Vehilal las páhinas qu'eiti",
 'tog-watchmoves'              => 'Vehilal las páhinas que rellami',
 'tog-watchdeletion'           => "Vehilal las páhinas qu'esborri",
-'tog-minordefault'            => 'Aseñalal tolas eicionis cumu chiqueninas pol defeutu',
 'tog-previewontop'            => "Previsoreal sobri la caha d'eición, i nu embahu",
 'tog-previewonfirst'          => 'Previsoreal ena primera eición',
 'tog-nocache'                 => 'Desatival "caché" enas páhinas',

@@ -172,7 +172,6 @@ $messages = array(
 'tog-watchdefault'            => 'Tambahkan laman yang saya sunting ke dalam senarai pantau',
 'tog-watchmoves'              => 'Tambahkan laman yang saya pindahkan ke dalam senarai pantau',
 'tog-watchdeletion'           => 'Tambahkan laman yang saya hapuskan ke dalam senarai pantau',
-'tog-minordefault'            => 'Tandakan suntingan kecil secara lalai',
 'tog-previewontop'            => 'Tunjukkan pratonton di atas kotak sunting',
 'tog-previewonfirst'          => 'Tunjukkan pratonton pada suntingan pertama',
 'tog-nocache'                 => 'Lumpuhkan pengagregatan laman',

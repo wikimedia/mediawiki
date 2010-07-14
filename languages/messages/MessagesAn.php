@@ -141,7 +141,6 @@ $messages = array(
 'tog-watchdefault'            => 'Cosirar as pachinas que edite',
 'tog-watchmoves'              => 'Cosirar as pachinas que treslade',
 'tog-watchdeletion'           => 'Cosirar as pachinas que borre',
-'tog-minordefault'            => 'Sinyalar por defecto totas as edicions como menors',
 'tog-previewontop'            => "Amostrar l'anvista previa antes d'o quatrón d'edición",
 'tog-previewonfirst'          => "Amostrar l'anvista previa de l'articlo en a primera edición",
 'tog-nocache'                 => "Desactivar a ''caché'' de pachinas",

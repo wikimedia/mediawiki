@@ -32,7 +32,6 @@ $messages = array(
 'tog-watchdefault'            => 'Idugang sa akon balantayan ang mga pahina nga akon na-islan',
 'tog-watchmoves'              => 'Idugang sa akon balantayan ang mga pahina nga akon ginsaylo',
 'tog-watchdeletion'           => 'Idugang sa akon balantayan ang mga pahina nga akon ginpanas',
-'tog-minordefault'            => 'Markahan ang tanan nga gin-islan nga gamay lang pamaagi sa default',
 'tog-previewontop'            => 'Ipakita ang prebyu antes ang kahon sang pang-ilis',
 'tog-previewonfirst'          => 'Ipakita ang prebyu sa una nga pag-ilis',
 'tog-nocache'                 => 'Pagbawalan ang paglubong sang pahina',

@@ -33,7 +33,6 @@ $messages = array(
 'tog-watchdefault'            => 'Tilføj sider a redigærer til miin åvervågnengsliste',
 'tog-watchmoves'              => 'Tilføj sider a flytter til miin åvervågnengsliste',
 'tog-watchdeletion'           => 'Tilføj sider a sletter til miin åvervågnengsliste',
-'tog-minordefault'            => 'Markær søm standård ål redigærenge søm mendre',
 'tog-previewontop'            => 'Ves førhåndsvesnenge åver æ rædigerengsboks',
 'tog-previewonfirst'          => 'Ves førhåndsvesnenge når du stårtst ve at redigære',
 'tog-nocache'                 => 'Slå caching åf sider frå',

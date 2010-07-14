@@ -66,7 +66,6 @@ class User {
 		'watchdefault',
 		'watchmoves',
 		'watchdeletion',
-		'minordefault',
 		'previewontop',
 		'previewonfirst',
 		'nocache',
