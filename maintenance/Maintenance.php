@@ -226,6 +226,7 @@ abstract class Maintenance {
 		}
 		if ( $channel === null ) {
 			$f = fopen( 'php://stdout', 'w' );
+			if ( $this->lastChannel !== null ) fwrite( $f, "\n" );
 			fwrite( $f, $out );
 			fclose( $f );
 		}
