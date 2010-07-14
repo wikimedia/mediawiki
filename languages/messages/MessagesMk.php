@@ -885,11 +885,11 @@ $2',
 'userpage-userdoesnotexist-view'   => 'Корисничката сметка  "$1" не е регистрирана.',
 'blocked-notice-logextract'        => 'Овој корисник е моментално блокиран.
 Подолу е прикажан последниот дневнички запис:',
-'clearyourcache'                   => "'''Напомена - По зачувувањето морате да го исчистите кешот на прелистувачот за да можете ги видите промените.'''
-'''Mozilla / Firefox / Safari:''' држете ''Shift'' додека кликате на ''Reload'' или одеднаш притиснете ''Ctrl-F5'' или ''Ctrl-R'' (''Command-R'' на Macintosh);
+'clearyourcache'                   => "'''Напомена: По зачувувањето морате да го исчистите кешот на прелистувачот за да можете ги видите промените.'''
+'''Mozilla / Firefox / Safari:''' држете ''Shift'' додека кликате на ''Reload'' или притиснете ''Ctrl+F5'' или ''Ctrl+R'' (''Command+R'' на Macintosh);
 '''Konqueror:''' кликнете на ''Reload'' или притиснете ''F5'';
-'''Opera:''' избришете го кешот во ''Tools → Preferences'';
-'''Internet Explorer:''' држете ''Ctrl'' додека притискате на ''Refresh'' или притиснете ''Ctrl-F5''.",
+'''Opera:''' исчистете го кешот во ''Tools → Preferences'';
+'''Internet Explorer:''' држете ''Ctrl'' додека притискате на ''Refresh'' или притиснете ''Ctrl+F5''.",
 'usercssyoucanpreview'             => "'''Совет:''' Употребете го копчето „{{int:showpreview}}“ за да го испробате вашиот нов CSS пред да зачувате.",
 'userjsyoucanpreview'              => "'''Совет:''' Употребете го копчето „{{int:showpreview}}“ за да ја испробате вашата нова JavaScript  пред да зачувате.",
 'usercsspreview'                   => "'''Запомнете дека ова е само преглед на вашиот кориснички CSS код, страницата сè уште не е зачувана!'''",
@@ -1875,7 +1875,7 @@ $1',
 'filedelete-maintenance'      => 'Бришење и враќање на податотеки е привремено оневозможено поради одржување на базата на податоци.',
 
 # MIME search
-'mimesearch'         => 'MIME пребарување',
+'mimesearch'         => 'Пребарување по MIME',
 'mimesearch-summary' => 'Оваа страница овозможува филтрирање на податотеки врз основа на нивниот MIME-тип.
 Влез: тип на содржина/под тип, т.е. <tt>image/jpeg</tt>.',
 'mimetype'           => 'MIME-тип:',
@@ -3510,14 +3510,14 @@ $1',
 'version'                          => 'Верзија',
 'version-extensions'               => 'Инсталирани додатоци',
 'version-specialpages'             => 'Специјални страници',
-'version-parserhooks'              => 'Парсер куки',
+'version-parserhooks'              => 'Парсерски куки',
 'version-variables'                => 'Променливи',
 'version-other'                    => 'Друго',
 'version-mediahandlers'            => 'Ракувачи со мултимедијални содржини',
 'version-hooks'                    => 'Куки',
 'version-extension-functions'      => 'Функции на додатоците',
 'version-parser-extensiontags'     => 'Ознаки за парсерски додатоци',
-'version-parser-function-hooks'    => 'Куки на парсер функција',
+'version-parser-function-hooks'    => 'Куки на парсерските функции',
 'version-skin-extension-functions' => 'Функции за обогатување на изгледот',
 'version-hook-name'                => 'Име на кука',
 'version-hook-subscribedby'        => 'Претплатено од',

@@ -2647,7 +2647,7 @@ Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
 'notacceptable'     => "N'eo ket ar servijer wiki-mañ evit pourchas stlennoù en ur furmad lennus evit ho arval.",
 
 # Attribution
-'anonymous'        => '{{PLURAL:$1|implijer|implijer}} dianv eus {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Implijer|Implijerien}} dizanv war {{SITENAME}}',
 'siteuser'         => 'Implijer(ez) $1 eus {{SITENAME}}',
 'anonuser'         => 'implijer dizanv $1 eus {{SITENAME}}',
 'lastmodifiedatby' => "Kemmet eo bet ar bajenn-mañ da ziwezhañ da $2, d'an $1 gant $3",
@@ -3188,7 +3188,7 @@ Klaskit rakwelet er mod boutin.',
 'watchlistedit-normal-legend'  => 'Tennañ ar pajennoù a-ziwar ho roll evezhiañ',
 'watchlistedit-normal-explain' => 'Dindan emañ diskouezet titloù ar pajennoù zo war ho roll evezhiañ. 
 Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war "{{int:Watchlistedit-normal-submit}}". 
-Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]].',
+Gellout a reer [[Special:Watchlist/raw|kemmañ ar roll (mod diginkl) ivez]].',
 'watchlistedit-normal-submit'  => 'Tennañ ar pajennoù',
 'watchlistedit-normal-done'    => 'Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ :',
 'watchlistedit-raw-title'      => 'Kemmañ ar roll evezhiañ (mod diginkl)',
