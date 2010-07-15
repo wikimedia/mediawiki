@@ -318,7 +318,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'Фонт кој се користи во прозорецот за уредување:',
 'editfont-default'   => 'Основен прелистувач:',
-'editfont-monospace' => 'Пропорционален фонт',
+'editfont-monospace' => 'Сразмернен фонт',
 'editfont-sansserif' => 'Бессерифен фонт',
 'editfont-serif'     => 'Серифен фонт',
 

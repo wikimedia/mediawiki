@@ -1093,6 +1093,9 @@ $1",
 'suppressionlogtext' => "Il-lista ta' tħassir u blokjar tinsab hawn taħt din tinkludi kontenut li huwa moħbi mill-amministraturi.
 Ara [[Special:IPBlockList|IP lista ta' blokjar]] għal lista ta' ċaħdiet u blokjar kurrenti.",
 
+# Revision move
+'revmove-nullmove-title' => 'Titlu ħażin',
+
 # History merging
 'mergehistory'                     => 'Waħħad l-istorji tal-paġni',
 'mergehistory-header'              => "Din il-paġna tħallik twaħħad reviżjonijiet li jappartjenu lil kronoloġija ta' paġna (magħrufa bħala paġna t'oriġini) mal-kronoloġija ta' paġna aktar riċenti.
@@ -1184,6 +1187,8 @@ Ipprova għamel prefiss għall-inkjesta tiegħek ma' ''all:'' sabiex tfittex il-
 'powersearch-ns'                   => 'Fittex fl-ispazju tal-isem:',
 'powersearch-redir'                => "Lista ta' riindirizzi",
 'powersearch-field'                => 'Fittex',
+'powersearch-toggleall'            => 'Kollha',
+'powersearch-togglenone'           => 'Ebda',
 'search-external'                  => 'Tfittxija esterna',
 'searchdisabled'                   => "It-Tfittxija fil-{{SITENAME}} mhux attiva.
 Sadanittant, tista' tipprova tfittex bil-Google.
@@ -1263,6 +1268,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-custom-css'              => 'CSS personalizzat',
 'prefs-custom-js'               => 'JS personalizzat',
 'prefs-common-css-js'           => 'CSS/JS maqsum għal kull aspett grafiku:',
+'prefs-emailconfirm-label'      => 'Konferma tal-ittra-e:',
 'prefs-textboxsize'             => 'Daqs tat-tieqa tal-modifika',
 'youremail'                     => 'E-mail:',
 'username'                      => 'Isem tal-utent:',

@@ -338,6 +338,7 @@ $messages = array(
 'loginreqlink'       => 'omgelmi',
 'newarticle'         => '(Nowyth)',
 'note'               => "'''Noten:'''",
+'previewnote'        => "'''Gwra remembra, hemm yw bus ragwel.''' Nyns yw dha janjyow gwithys hwath!",
 'editing'            => 'ow chanjya $1',
 'editingsection'     => 'ow chanjya $1 (rann)',
 'editingcomment'     => 'ow chanjya $1 (rann nowyth)',

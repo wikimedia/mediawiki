@@ -2445,6 +2445,16 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'tag-filter-submit' => 'Chuja',
 'tags-title'        => 'Tagi',
 'tags-edit'         => 'hariri',
+'tags-hitcount'     => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
+
+# Special:ComparePages
+'comparepages'     => 'Kulinganisha kurasa',
+'compare-selector' => 'Kulinganisha mapitio',
+'compare-page1'    => 'Ukurasa wa kwanza',
+'compare-page2'    => 'Ukurasa wa pili',
+'compare-rev1'     => 'Pitio la kwanza',
+'compare-rev2'     => 'Pitio la pili',
+'compare-submit'   => 'Linganisha',
 
 # Database error messages
 'dberr-header'    => 'Wiki imekuta tatizo',
