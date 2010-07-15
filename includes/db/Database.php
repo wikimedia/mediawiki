@@ -2835,6 +2835,47 @@ class ResultWrapper implements Iterator {
 	}
 }
 
+/* Overloads the relevant methods of the real ResultsWrapper so it
+ * doesn't go anywhere near an actual database.
+ */
+class FakeResultWrapper extends ResultWrapper {
+
+	var $result     = array();
+	var $db         = null;	// And it's going to stay that way :D
+	var $pos        = 0;
+	var $currentRow = null;
+
+	function __construct( $array ){
+		$this->result = $array;
+	}
+
+	function numRows() {
+		return count( $this->result );
+	}
+
+	function fetchRow() {
+		$this->currentRow = $this->result[$this->pos++];
+		return $this->currentRow;
+	}
+
+	function seek( $row ) {
+		$this->pos = $row;
+	}
+
+	function free() {}
+
+	// Callers want to be able to access fields with $this->fieldName
+	function fetchObject(){
+		$this->currentRow = $this->result[$this->pos++];
+		return (object)$this->currentRow;
+	}
+
+	function rewind() {
+		$this->pos = 0;
+		$this->currentRow = null;
+	}
+}
+
 /**
  * Used by DatabaseBase::buildLike() to represent characters that have special meaning in SQL LIKE clauses
  * and thus need no escaping. Don't instantiate it manually, use Database::anyChar() and anyString() instead.
