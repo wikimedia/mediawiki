@@ -256,7 +256,7 @@ class ApiMain extends ApiBase {
 			header( 'Vary: Cookie' );
 			if ( $wgUseXVO ) {
 				header( $wgOut->getXVO() );
-				if ( $wgOut->hasCacheVaryCookies() ) {
+				if ( $wgOut->haveCacheVaryCookies() ) {
 					$this->setCacheControl( array( 'private' => true ) );
 				}
 			}
