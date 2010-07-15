@@ -225,8 +225,9 @@ abstract class Maintenance {
 			return;
 		}
 		if ( $channel === null ) {
+			$this->cleanupChanneled();
+
 			$f = fopen( 'php://stdout', 'w' );
-			if ( $this->lastChannel !== null ) fwrite( $f, "\n" );
 			fwrite( $f, $out );
 			fclose( $f );
 		}
@@ -260,6 +261,18 @@ abstract class Maintenance {
 	private $lastChannel = null;
 
 	/**
+	 * Clean up channeled output.  Output a newline if necessary.
+	 */
+	public function cleanupChanneled() {
+		if ( !$this->atLineStart ) {
+			$handle = fopen( 'php://stdout', 'w' );
+			fwrite( $handle, "\n" );
+			fclose( $handle );
+			$this->atLineStart = true;
+		}
+	}
+
+	/**
 	 * Message outputter with channeled message support. Messages on the
 	 * same channel are concatenated, but any intervening messages in another
 	 * channel start a new line.
@@ -268,16 +281,12 @@ abstract class Maintenance {
 	 *     channel. Channel comparison uses ===.
 	 */
 	public function outputChanneled( $msg, $channel = null ) {
-		$handle = fopen( 'php://stdout', 'w' );
-
 		if ( $msg === false ) {
-			// For cleanup
-			if ( !$this->atLineStart ) {
-				fwrite( $handle, "\n" );
-			}
-			fclose( $handle );
+			$this->cleanupChanneled();
 			return;
 		}
+
+		$handle = fopen( 'php://stdout', 'w' );
 
 		// End the current line if necessary
 		if ( !$this->atLineStart && $channel !== $this->lastChannel ) {
