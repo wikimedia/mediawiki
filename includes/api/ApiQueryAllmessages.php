@@ -47,8 +47,10 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		{
 			global $wgLang;
 			$wgLang = Language::factory($params['lang']);
+		} else if ( is_null( $params['lang'] ) ) {
+			// Language not determined by URL but by user preferences, so don't cache
+			$this->getMain()->setVaryCookie();
 		}
-
 
 		//Determine which messages should we print
 		$messages_target = array();

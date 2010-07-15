@@ -282,6 +282,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if (!is_null($this->params['token'])) {
+			// Don't cache tokens
+			$this->getMain()->setCachePrivate();
+
 			$tokenFunctions = $this->getTokenFunctions();
 			$pageInfo['starttimestamp'] = wfTimestamp(TS_ISO_8601, time());
 			foreach($this->params['token'] as $t)

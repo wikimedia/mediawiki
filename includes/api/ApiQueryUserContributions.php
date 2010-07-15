@@ -203,6 +203,8 @@ class ApiQueryContributions extends ApiQueryBase {
 				 $this->fld_patrolled)
 		{
 			global $wgUser;
+			// Don't cache private data
+			$this->getMain()->setVaryCookie();
 			if(!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
 				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
 			// Use a redundant join condition on both

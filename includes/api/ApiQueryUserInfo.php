@@ -40,6 +40,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function execute() {
+		$this->getMain()->setCachePrivate();
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
 		$r = array();

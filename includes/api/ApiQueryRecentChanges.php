@@ -116,8 +116,12 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			
 			// Check permissions
 			global $wgUser;
-			if((isset($show['patrolled']) || isset($show['!patrolled'])) && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
-				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
+			if(isset($show['patrolled']) || isset($show['!patrolled'])) {
+				$this->getMain()->setVaryCookie();
+				if(!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol()) {
+					$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
+				}
+			}
 
 			/* Add additional conditions to query depending upon parameters. */
 			$this->addWhereIf('rc_minor = 0', isset ($show['!minor']));
@@ -321,6 +325,9 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		
 		if(!is_null($this->token))
 		{
+			// Don't cache tokens
+			$this->getMain()->setCachePrivate();
+
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach($this->token as $t)
 			{
