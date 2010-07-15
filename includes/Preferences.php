@@ -1145,9 +1145,9 @@ class Preferences {
 		return true;
 	}
 
-	static function getFormObject( $user ) {
+	static function getFormObject( $user, $formClass = 'PreferencesForm' ) {
 		$formDescriptor = Preferences::getPreferences( $user );
-		$htmlForm = new PreferencesForm( $formDescriptor, 'prefs' );
+		$htmlForm = new $formClass( $formDescriptor, 'prefs' );
 
 		$htmlForm->setSubmitText( wfMsg( 'saveprefs' ) );
 		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
