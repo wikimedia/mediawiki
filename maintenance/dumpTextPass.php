@@ -206,6 +206,7 @@ class TextPassDumper extends BackupDumper {
 	
 	private function doGetText( $id ) {
 
+		$id = intval( $id );
 		$this->failures = 0;
 		$ex = new MWException( "Graceful storage failure" );
 		while (true) {
@@ -273,7 +274,6 @@ class TextPassDumper extends BackupDumper {
 	 */
 	private function getTextDb( $id ) {
 		global $wgContLang;
-		$id = intval( $id );
 		$row = $this->db->selectRow( 'text',
 			array( 'old_text', 'old_flags' ),
 			array( 'old_id' => $id ),
