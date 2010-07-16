@@ -118,6 +118,8 @@ $j( document ).ready( function() {
 			$link.attr( 'href', $link.attr( 'href' ).replace( '/&action=' + action + '/', '&action=' + otheraction ) );
 			if( $link.parents( 'li' ).attr( 'id' ) == 'ca-' + action ) {
 				$link.parents( 'li' ).attr( 'id', 'ca-' + otheraction );
+				// update the link text with the new message
+				$link.text( wgAjaxWatch[ otheraction + 'Msg'] );
 			}
 		};
 		return false;
