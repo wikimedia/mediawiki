@@ -1,8 +1,8 @@
 <?php
 /**
  * This class stores an arbitrary value along with its dependencies.
- * Users should typically only use DependencyWrapper::getFromCache(), rather
- * than instantiating one of these objects directly.
+ * Users should typically only use DependencyWrapper::getValueFromCache(),
+ * rather than instantiating one of these objects directly.
  * @ingroup Cache
  */
 
