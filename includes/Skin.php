@@ -152,8 +152,8 @@ class Skin extends Linker {
 				# except by SQL manipulation if a previously valid skin name
 				# is no longer valid.
 				wfDebug( "Skin class does not exist: $className\n" );
-				$className = 'SkinMonobook';
-				require_once( "{$wgStyleDirectory}/MonoBook.php" );
+				$className = 'SkinVector';
+				require_once( "{$wgStyleDirectory}/Vector.php" );
 			}
 		}
 		$skin = new $className;
