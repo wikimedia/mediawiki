@@ -536,7 +536,7 @@ Le motivo specificate es ''$2''.",
 'logouttext'                 => "'''Tu ha claudite le session.'''
 
 Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote [[Special:UserLogin|aperir un nove session]] con le mesme nomine de usator o con un altere.
-Nota que alcun paginas pote continuar a apparer como si tu esserea ancora identificate. Pro remediar isto, tu pote vacuar le cache de tu navigator.",
+Nota que alcun paginas pote continuar a apparer como si tu esserea ancora authenticate. Pro remediar isto, tu pote vacuar le cache de tu navigator.",
 'welcomecreation'            => '== Benvenite, $1! ==
 Tu conto ha essite create.
 Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].',
@@ -548,7 +548,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'externaldberror'            => 'O il occurreva un error in le base de datos de authentication, o tu non ha le autorisation de actualisar tu conto externe.',
 'login'                      => 'Aperir session',
 'nav-login-createaccount'    => 'Aperir session / crear conto',
-'loginprompt'                => 'Tu debe haber activate le cookies pro poter identificar te a {{SITENAME}}.',
+'loginprompt'                => 'Tu debe haber activate le cookies pro poter aperir un session in {{SITENAME}}.',
 'userlogin'                  => 'Aperir session / crear conto',
 'userloginnocreate'          => 'Aperir session',
 'logout'                     => 'Clauder session',
@@ -574,7 +574,7 @@ Tu ha disactivate le functionalitate del ''cookies''.
 Per favor activa lo e reprova.",
 'noname'                     => 'Tu non specificava un nomine de usator valide.',
 'loginsuccesstitle'          => 'Session aperite con successo',
-'loginsuccess'               => "'''Tu es ora identificate in {{SITENAME}} como \"\$1\".'''",
+'loginsuccess'               => "'''Tu es ora authenticate in {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Non existe un usator con le nomine "$1".
 In le nomines de usator se distingue inter majusculas e minusculas.
 Verifica le orthographia, o [[Special:UserLogin/signup|crea un nove conto]].',
@@ -681,9 +681,9 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'showpreview'                      => 'Monstrar previsualisation',
 'showlivepreview'                  => 'Previsualisation directe',
 'showdiff'                         => 'Detaliar modificationes',
-'anoneditwarning'                  => "'''Attention:''' Tu non te ha identificate.
+'anoneditwarning'                  => "'''Attention:''' Tu non ha aperite un session.
 Tu adresse IP essera registrate in le historia de modificationes de iste pagina.",
-'anonpreviewwarning'               => "''Tu non te ha identificate. Si tu publica iste pagina, tu adresse IP essera registrate in le historia de modificationes.''",
+'anonpreviewwarning'               => "''Tu non ha aperite un session. Salveguardar registrara tu adresse IP in le historia de modificationes de iste pagina.''",
 'missingsummary'                   => "'''Rememoration:''' Tu non ha specificate un summario del modification.
 Si tu clicca super \"{{int:savearticle}}\" de novo, le modification essera publicate sin summario.",
 'missingcommenttext'               => 'Per favor entra un commento infra.',
@@ -830,8 +830,8 @@ Le administrator qui lo blocava dava iste explication: $1",
 'hiddencategories'                 => 'Iste pagina es membro de {{PLURAL:$1|1 categoria|$1 categorias}} celate:',
 'edittools'                        => '<!-- Iste texto se monstrara sub le formularios de modificar articulos e de incargar files. -->',
 'nocreatetitle'                    => 'Creation de paginas limitate',
-'nocreatetext'                     => '{{SITENAME}} ha restringite le permission de crear nove paginas.
-Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|identificar te, o crear un conto]].',
+'nocreatetext'                     => '{{SITENAME}} ha restringite le possibilitate de crear nove paginas.
+Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|aperir un session, o crear un conto]].',
 'nocreate-loggedin'                => 'Tu non ha le permission de crear nove paginas.',
 'sectioneditnotsupported-title'    => 'Modification de sectiones non supportate',
 'sectioneditnotsupported-text'     => 'Non es possibile modificar sectiones individual in iste pagina de modification.',
@@ -1165,7 +1165,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'preferences'                   => 'Preferentias',
 'mypreferences'                 => 'Mi preferentias',
 'prefs-edits'                   => 'Numero de modificationes:',
-'prefsnologin'                  => 'Tu non te ha identificate',
+'prefsnologin'                  => 'Tu non ha aperite un session',
 'prefsnologintext'              => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir un session] pro poter configurar tu preferentias.',
 'changepassword'                => 'Cambiar contrasigno',
 'prefs-skin'                    => 'Stilo',
@@ -1479,7 +1479,7 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] appare in litteras 
 'uploadbtn'                   => 'Incargar file',
 'reuploaddesc'                => 'Cancellar e retornar al formulario de incargamento',
 'upload-tryagain'             => 'Submitter description modificate del file',
-'uploadnologin'               => 'Tu non te ha identificate',
+'uploadnologin'               => 'Tu non ha aperite un session',
 'uploadnologintext'           => 'Tu debe [[Special:UserLogin|aperir un session]] pro poter incargar files.',
 'upload_directory_missing'    => 'Le directorio de incargamento ($1) manca, e le servitor de web non poteva crear lo.',
 'upload_directory_read_only'  => 'Le servitor web non ha le permission de scriber in le directorio de incargamento ($1).',
@@ -2655,8 +2655,8 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'tooltip-pt-preferences'          => 'Mi preferentias',
 'tooltip-pt-watchlist'            => 'Le lista de paginas del quales tu seque le modificationes',
 'tooltip-pt-mycontris'            => 'Lista de tu contributiones',
-'tooltip-pt-login'                => 'Nos recommenda que tu te identifica, ma il non es obligatori.',
-'tooltip-pt-anonlogin'            => 'Nos te invita a aperir un session, ma il non es obligatori.',
+'tooltip-pt-login'                => 'Nos recommenda que tu te authentica, ma non es obligatori.',
+'tooltip-pt-anonlogin'            => 'Nos recommenda que tu te authentica, ma non es obligatori.',
 'tooltip-pt-logout'               => 'Clauder session',
 'tooltip-ca-talk'                 => 'Discussiones a proposito del pagina de contento',
 'tooltip-ca-edit'                 => 'Tu pote modificar iste pagina.

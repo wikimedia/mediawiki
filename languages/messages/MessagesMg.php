@@ -155,7 +155,7 @@ $messages = array(
 'tog-editsection'             => "Ataovy mety ny fanovana fizaràna amin'ny alalan'ny rohy [hanova]",
 'tog-editsectiononrightclick' => "Ovay ny fizaràna rehefa manindry ny bokotra havanana amin'ny totozy eo amin'ny lohateny hoe fizaràna (mila JavaScript)",
 'tog-showtoc'                 => "Asehoy ny fanoroan-takila (ho an'ny pejy misy lohateny mihoatra ny 3)",
-'tog-rememberpassword'        => 'Tadidio ny tenimiafiko',
+'tog-rememberpassword'        => "Tadidio ny tenimiafiko eto amin'ity ordinatera ity",
 'tog-watchcreations'          => "Ampina ao anarin'ny pejy fanaraha-maso ny pejy amboariko",
 'tog-watchdefault'            => "Atsofohy ao amin'ny lisitry ny pejy arahinao maso ny pejy izay ovainao na foroninao",
 'tog-watchmoves'              => "Ampina ao anatin'ny pejiko fanaraha-maso ny pejy soloiko anarana",
@@ -723,7 +723,7 @@ Soraty ireo fanoroana ireo anatin'ny fangatahana ataonao.",
 'confirmedittext'                  => "Tsy maintsy marihina ny adiresy imailakao aloha no manova pejy.
 Ampidiro sy Checkeo ny adiresy imailakao amin'ny [[Special:Preferences|safidinao]].",
 'nosuchsectiontitle'               => 'Tsy nahita ilay fizarana',
-'nosuchsectiontext'                => "Nanandrana nanova fizarana « $1 » tsy nisy angamba ianao.
+'nosuchsectiontext'                => "Nanandrana nanova fizarana tsy nisy ianao.
 Mety efa nakisaka angamba izy, na voafafa tamin' ianareo namaky ity pejy ity farany.",
 'loginreqtitle'                    => 'Mila fidirana',
 'loginreqlink'                     => 'miditra',
@@ -815,7 +815,7 @@ Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 'sectioneditnotsupported-title'    => 'Fanovana fizarana tsy zaka',
 'sectioneditnotsupported-text'     => "Ny fanovana fizarana iray dia tsy zaka ao anatin'ity pejy fanovana ity.",
 'permissionserrors'                => 'Tsy azonao atao',
-'permissionserrorstext'            => 'Tsy afaka manao ilay asa nanontanianao ianao satria :',
+'permissionserrorstext'            => 'Tsy afaka manao ilay aza nangatahanao ianao noho ny antony {{PLURAL:$1||maro}} manaraka :',
 'permissionserrorstext-withaction' => '{{PLURAL:$1|Tsy manana alalàna ianao|Tsy manana alalàna ianao}} $2. Io ny antony ($2):',
 'recreate-moveddeleted-warn'       => "'''Tandremo''' : Mamerina pejy efa voafafa ianareo.''''
 
@@ -1152,7 +1152,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'contextchars'                  => 'Isa ny litera isaky ny andalana',
 'recentchangesdays'             => "Isa ny andro ho ampiseho eo amin'ny fanovàna farany",
 'recentchangesdays-max'         => '($1 andro{{PLURAL:$1||}} fara-faha betsany)',
-'recentchangescount'            => "Lohateny amin'ny vao niova:",
+'recentchangescount'            => "Isan'ny fanovana haseho (tsipalotra) :",
 'prefs-help-recentchangescount' => "Misy ny fanovana farany, ny tantaram-pejy ary ny tatitr'asa.",
 'savedprefs'                    => 'Voatahiry ny mombamomba anao.',
 'timezonelegend'                => "Faritr'ora :",
@@ -1687,8 +1687,9 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'disambiguations'     => 'pejina homonimia',
 'disambiguationspage' => 'Template:homonimia',
 
-'doubleredirects'       => 'Fihodinana roa',
-'double-redirect-fixer' => 'Mpanitsy fihodinana',
+'doubleredirects'            => 'Fihodinana roa',
+'double-redirect-fixed-move' => "Ity fihodinana ity, nanana ny tanjona [[$1]] novaina anarana, dia mitondra mankany amin'ny [[$2]].",
+'double-redirect-fixer'      => 'Mpanitsy fihodinana',
 
 'brokenredirects'        => 'Tapaka ny redirection',
 'brokenredirectstext'    => "Mitondra makany amin'ny pejy tsy misy ireo fihodinana ireo :",
