@@ -115,8 +115,10 @@ class Skin extends Linker {
 
 		if( isset( $skinNames[$key] ) ) {
 			return $key;
+		} else if( isset( $skinNames[$wgDefaultSkin] ) ) {
+			return $wgDefaultSkin;
 		} else {
-			return 'monobook';
+			return 'vector';
 		}
 	}
 
