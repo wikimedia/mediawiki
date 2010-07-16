@@ -323,7 +323,25 @@ function addPortletLink( portlet, href, text, id, tooltip, accesskey, nextnode )
 	if ( !root ) {
 		return null;
 	}
-	var node = root.getElementsByTagName( 'ul' )[0];
+	var uls = root.getElementsByTagName( 'ul' );
+	var node;
+	if (uls.length > 0) {
+		node = uls[0];
+	} else {
+		node = document.createElement('ul');
+		var lc = null;
+		for (var i in root.childNodes) { /* get root.lastElementChild */
+			if (root.childNodes[i].nodeType == 1) {
+				lc = root.childNodes[i];
+			}
+		}
+		if (lc && lc.nodeName.match(/div/i)) {
+			/* Insert into the menu divs */
+			lc.appendChild(node);
+		} else {
+			root.appendChild(node);
+		}
+	}
 	if ( !node ) {
 		return null;
 	}
