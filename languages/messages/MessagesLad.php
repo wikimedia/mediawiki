@@ -365,7 +365,7 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 # Login and logout pages
 'yourname'                => 'Su nombre de usuario',
 'yourpassword'            => 'Parola',
-'remembermypassword'      => 'Quero que se me acorden entre sessiones.',
+'remembermypassword'      => 'Acórdate de mi entre sessiones.',
 'login'                   => 'Entrar',
 'nav-login-createaccount' => 'Entrar / Enrejjistrar',
 'userlogin'               => 'Entrar / Registrarse',
