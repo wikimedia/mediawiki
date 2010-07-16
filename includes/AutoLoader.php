@@ -603,6 +603,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialTags' => 'includes/specials/SpecialTags.php',
 	'SpecialUnlockdb' => 'includes/specials/SpecialUnlockdb.php',
 	'SpecialUpload' => 'includes/specials/SpecialUpload.php',
+	'SpecialUserlogout' => 'includes/specials/SpecialUserlogout.php',
 	'SpecialVersion' => 'includes/specials/SpecialVersion.php',
 	'SpecialWhatlinkshere' => 'includes/specials/SpecialWhatlinkshere.php',
 	'SpecialWhatLinksHere' => 'includes/specials/SpecialWhatlinkshere.php',
