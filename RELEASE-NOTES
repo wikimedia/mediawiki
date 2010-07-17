@@ -241,6 +241,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24076) Recognize Office 2003 files with OpenXML trailers
 * (bug 24244) Updated comments in DefaultSettings.php to reflect Image: --> File:
   namespace rename.
+* Make wfTimestamp recognize negative unix timestamp values.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
