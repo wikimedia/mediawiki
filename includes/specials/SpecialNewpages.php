@@ -21,7 +21,7 @@
  * implements Special:Newpages
  * @ingroup SpecialPage
  */
-class SpecialNewpages extends SpecialPage {
+class SpecialNewpages extends IncludableSpecialPage {
 
 	// Stored objects
 	protected $opts, $skin;
@@ -31,7 +31,6 @@ class SpecialNewpages extends SpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'Newpages' );
-		$this->includable( true );	
 	}
 
 	protected function setup( $par ) {
