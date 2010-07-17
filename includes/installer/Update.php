@@ -69,7 +69,7 @@ class Update {
 		}
 	}
 
-	private function setAppliedUpdates( $version, $updates = array() ) {
+	protected function setAppliedUpdates( $version, $updates = array() ) {
 		if( !$this->canUseNewUpdatelog() ) {
 			return;
 		}
