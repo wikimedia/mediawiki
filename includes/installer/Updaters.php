@@ -210,3 +210,12 @@ class SqliteUpdater implements Updaters {
 		);
 	}
 }
+
+/**
+ * Oracle
+ */
+class OracleUpdater implements Updaters {
+	public function getUpdates() {
+		return array();
+	}
+}
