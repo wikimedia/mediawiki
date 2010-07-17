@@ -426,6 +426,7 @@ $wgAutoloadLocalClasses = array(
 	'SqliteInstaller' => 'includes/installer/SqliteInstaller.php',
 	'SqliteUpdater' => 'includes/installer/Updaters.php',
 	'OracleInstaller' => 'includes/installer/OracleInstaller.php',
+	'OracleUpdater' => 'includes/installer/Updaters.php',
 	'Update' => 'includes/installer/Update.php',
 	'Updaters' => 'includes/installer/Updaters.php',
 

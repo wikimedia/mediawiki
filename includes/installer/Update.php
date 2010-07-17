@@ -21,6 +21,9 @@ class Update {
 			case 'sqlite':
 				$this->updater = new SqliteUpdater();
 				break;
+			case 'oracle':
+				$this->updater = new OracleUpdater();
+				break;
 			default:
 				throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
 		}
