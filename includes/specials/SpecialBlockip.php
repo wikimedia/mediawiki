@@ -171,7 +171,7 @@ class IPBlockForm {
 
 		# Username/IP is blocked already locally
 		if( $alreadyBlocked ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-ipd-needreblock'>\n$1\n</div>", array( 'ipb-needreblock', $this->BlockAddress ) );
+			$wgOut->wrapWikiMsg( "<div class='mw-ipb-needreblock'>\n$1\n</div>", array( 'ipb-needreblock', $this->BlockAddress ) );
 		}
 
 		$scBlockExpiryOptions = wfMsgForContent( 'ipboptions' );
