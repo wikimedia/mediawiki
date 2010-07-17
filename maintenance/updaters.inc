@@ -952,41 +952,6 @@ function do_all_updates( $shared = false, $purge = true ) {
 	$up = new Update( $wgDatabase );
 	$up->doUpdates();
 
-	// OpenID is still using this stupid thing, or we could kill this too
-	global $wgUpdates;
-	if ( isset( $wgUpdates[$wgDBtype] ) ) {
-		foreach ( $wgUpdates[$wgDBtype] as $params ) {
-			$func = array_shift( $params );
-			call_user_func_array( $func, $params );
-			flush();
-		}
-	}
-
-	// / @fixme clean up this mess too!
-	global $wgExtNewTables, $wgExtNewFields, $wgExtNewIndexes;
-	# Add missing extension tables
-	foreach ( $wgExtNewTables as $tableRecord ) {
-		add_table( $tableRecord[0], $tableRecord[1], true );
-		flush();
-	}
-	# Add missing extension fields
-	foreach ( $wgExtNewFields as $fieldRecord ) {
-		if ( $fieldRecord[0] != 'user' || $doUser ) {
-			add_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2], true );
-		}
-		flush();
-	}
-	# Add missing extension indexes
-	foreach ( $wgExtNewIndexes as $fieldRecord ) {
-		add_index( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2], true );
-		flush();
-	}
-	# Add modified extension fields
-	foreach ( $wgExtModifiedFields as $fieldRecord ) {
-		modify_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2], true );
-		flush();
-	}
-
 	wfOut( "Deleting old default messages (this may take a long time!)..." );
 	if ( !defined( 'MW_NO_SETUP' ) ) {
 		define( 'MW_NO_SETUP', true );
