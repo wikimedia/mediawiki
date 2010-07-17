@@ -253,6 +253,7 @@ $messages = array(
 'privacypage'          => 'Project:Polici privetter',
 
 'ok'                      => 'Sur',
+'retrievedfrom'           => 'Daskevys dhyworth "$1"',
 'youhavenewmessages'      => 'Yma $1 genowgh ($2).',
 'newmessageslink'         => 'messajys nowyth',
 'newmessagesdifflink'     => 'chanj kens',
@@ -324,6 +325,7 @@ $messages = array(
 'link_sample'    => 'Titel an gevren',
 'link_tip'       => 'Kevren bervedhel',
 'extlink_sample' => 'http://www.example.com titel an gevren',
+'extlink_tip'    => 'Kevren a-mes (remembra an rager http://)',
 'image_tip'      => 'Restren neythys',
 'media_tip'      => 'Kevren restren',
 
@@ -375,6 +377,7 @@ $messages = array(
 # Search results
 'searchresults'                  => 'Sewyansow an hwilans',
 'searchresults-title'            => 'Sewyansow an hwilans rag "$1"',
+'searchresulttext'               => 'Rag derivadow pella war hwila yn {{SITENAME}}, gwra gweles [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                 => 'Hwi a wrug hwilas \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|oll folennow ow talleth gans "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|oll folennow ow kevrenna dhe "$1"]])',
 'prevn'                          => 'kens {{PLURAL:$1|$1}}',
 'nextn'                          => 'nessa {{PLURAL:$1|$1}}',
@@ -598,6 +601,7 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'sp-deletedcontributions-contribs' => 'kevrohow',
 
 # Special:LinkSearch
+'linksearch'    => 'Kevrennow a-mes',
 'linksearch-ok' => 'Hwila',
 
 # Special:ListUsers
@@ -605,6 +609,9 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Devnydhyer nowyth',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(rol an eseli)',
 
 # E-mail user
 'emailuser'       => 'E-bostya an devnydhyer-ma',
@@ -634,6 +641,7 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'delete-confirm'        => 'Dilea "$1"',
 'delete-legend'         => 'Dilea',
 'deletedarticle'        => 'a dhileys "[[$1]]"',
+'deletecomment'         => 'Acheson:',
 'deleteotherreason'     => 'Acheson aral/keworransel:',
 'deletereasonotherlist' => 'Acheson aral',
 
@@ -655,6 +663,7 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'undelete-show-file-submit' => 'Ea',
 
 # Namespace form on various pages
+'namespace'      => 'Spas-hanow:',
 'blanknamespace' => '(Penn)',
 
 # Contributions
@@ -704,6 +713,7 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'newtitle'         => 'Dhe titel nowyth:',
 'move-watch'       => 'Golya an folen-ma',
 'movepagebtn'      => 'Gwaya an folen',
+'movepage-moved'   => '\'\'\'Gways yw "$1" war-tu "$2"\'\'\'',
 'movedto'          => 'gways dhe',
 '1movedto2'        => '[[$1]] gways dhe [[$2]]',
 'movereason'       => 'Acheson:',
@@ -730,11 +740,15 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'tooltip-pt-userpage'            => 'Agas folen devnydhyer',
 'tooltip-pt-mytalk'              => 'Agas folen gows',
 'tooltip-pt-preferences'         => 'Ow dewisyansow',
+'tooltip-pt-watchlist'           => 'An rol a folennow esos jy ow kolyas',
 'tooltip-pt-mycontris'           => "Rol a'gas kevrohow",
+'tooltip-pt-login'               => 'Da via gwell dhis mar teu hag omgelmi, mes nyns yw besi',
 'tooltip-pt-logout'              => 'Omdenna',
 'tooltip-ca-talk'                => "Dadhelva a-dro dhe'n dalgh",
 'tooltip-ca-edit'                => 'Hwi a yll chanjya an folen-ma. Mar pleg, gwrewgh devnydh an boton ragwel kyns gwitha.',
 'tooltip-ca-addsection'          => 'Dalleth rann nowyth',
+'tooltip-ca-viewsource'          => 'Alhwedhys yw an folen-ma.
+Ty a ell gweles hy fennfenten.',
 'tooltip-ca-protect'             => 'Difres an folen-ma',
 'tooltip-ca-delete'              => 'Dilea an folen-ma',
 'tooltip-ca-move'                => 'Gwaya an folen-ma',
@@ -744,10 +758,12 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'tooltip-search-fulltext'        => "Hwila an tekst-ma y'n folennow",
 'tooltip-n-mainpage'             => 'Diskwedhes an pennfolen',
 'tooltip-n-mainpage-description' => 'Godriga an pennfolen',
+'tooltip-n-portal'               => "A-dro dhe'n ragdres, an pyth a ellys gwul, ple kavos an traow",
 'tooltip-n-recentchanges'        => "Rol an chanjyow a-dhiwedhes y'n wiki",
 'tooltip-n-randompage'           => 'Karga folen dre jons',
 'tooltip-n-help'                 => 'Gweres',
 'tooltip-t-whatlinkshere'        => 'Rol a bub folennow wiki ow kevrenna bys omma',
+'tooltip-t-recentchangeslinked'  => 'Chanjyow a-dhiwedhes yn folennow eus kevrennys orth an folen-ma',
 'tooltip-t-contributions'        => 'Gweles rol kevrohow an devnydhyer-ma',
 'tooltip-t-emailuser'            => "Danvon e-bost dhe'n devnydhyer-ma",
 'tooltip-t-upload'               => 'Ughkarga restrennow',
@@ -762,6 +778,8 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'tooltip-ca-nstab-template'      => 'Gweles an skantlyn',
 'tooltip-ca-nstab-category'      => 'Gweles folen an klass',
 'tooltip-save'                   => 'Gwitha agas chanjyow',
+'tooltip-preview'                => 'Ragweles dha janjyow; gwra usya hemma kens gwitha mar pleg!',
+'tooltip-diff'                   => "Diskwedhes an chanjyow eus gwres genes dhe'n tekst",
 
 # Attribution
 'siteuser'         => 'devnydhyer {{SITENAME}} $1',
@@ -811,6 +829,10 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 
 # Auto-summaries
 'autosumm-new' => "Formys folen nowyth gans: '$1'",
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Gweles ha chanjya an rol golyas',
+'watchlisttools-raw'  => 'Chanjya restren an rol golyas',
 
 # Special:Version
 'version'         => 'Versyon',

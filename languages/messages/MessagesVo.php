@@ -667,8 +667,8 @@ Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik, <span 
 '''Konqueror:''' välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klavi: ''F5'';
 '''Opera:''' vagükolöd lölöfiko memi nelaidüpik me ''Tools → Preferences'' (Stumem → Buükams).
 '''Internet Explorer:''' kipolöd klavi: ''Ctrl'' dono e välolöd eli ''Refresh'' (= flifädükön) me mugaparat, u dränolöd klavis: ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Mob:''' Välolös eli „Jonön büologedi“ ad blufön eli CSS nulik olik bü dakip.",
-'userjsyoucanpreview'              => "'''Mob:''' Välolös eli „Jonön büologedi“ ad blufön eli JS nulik olik bü dakip.",
+'usercssyoucanpreview'             => "'''Mob:''' Välolös eli „{{int:showpreview}}“ ad blufön eli CSS nulik olik bü dakip.",
+'userjsyoucanpreview'              => "'''Mob:''' Välolös eli „{{int:showpreview}}“ ad blufön eli JS nulik olik bü dakip.",
 'usercsspreview'                   => "'''Memolös, das anu te büologol eli CSS olik.'''
 '''No nog pedakipon!'''",
 'userjspreview'                    => "'''Memolös, das anu te blufol/büologol eli JavaScript olik, no nog pedakipon!'''",
@@ -1049,6 +1049,7 @@ Muton labön {{PLURAL:$1|malati|malatis}} läs $1.',
 'prefs-help-email'          => 'Ladet leäktronik no peflagon, ab dälon sedi letavöda nulik ole üf glömol letavödi olik.
 Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sävilupol dientifi olik.',
 'prefs-help-email-required' => 'Ladet leäktronik paflagon.',
+'prefs-info'                => 'Nüns stabik',
 'prefs-signature'           => 'Dispenäd',
 'prefs-dateformat'          => 'Dätafomam',
 'prefs-diffs'               => 'Difs',
@@ -1155,6 +1156,7 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'right-userrights-interwiki' => 'Redakön gebanagitätis gebanas vükas votik',
 'right-siteadmin'            => 'Lökofärmükön e maifükön nünodemi',
 'right-sendemail'            => 'Sedön penedis leäktronik lü gebans votik',
+'right-revisionmove'         => 'Topätükön fomamis',
 
 # User rights log
 'rightslog'      => 'Jenotalised gebanagitätas',

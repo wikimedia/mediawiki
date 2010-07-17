@@ -1383,6 +1383,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-override-export-depth' => 'Exporta pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Envia un correu electrònic a altres usuaris.',
 'right-revisionmove'          => 'Moure revisions',
+'right-selenium'              => 'Executar els tests Selenium',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
