@@ -29,7 +29,7 @@ $messages = array(
 'tog-editsection'             => 'Ferbininge tun wisen foon änkelte oufsnaase',
 'tog-editsectiononrightclick' => 'Änkelte stöögne ma ruchts kliken beårbe (brükt JavaScript)',
 'tog-showtoc'                 => 'Wis en inhåltsferteeknis for side ma mäs ås trii ouerschrafte',
-'tog-rememberpassword'        => 'aw diheere komputer foon duur önjmälde',
+'tog-rememberpassword'        => 'Aw diheere komputer foon duur önjmälde (maksimool for {{PLURAL:$1|däi|deege}})',
 'tog-watchcreations'          => 'Seelew måågede side automatisch bekiike',
 'tog-watchdefault'            => 'Seelew änrede side automaatisch bekiike',
 'tog-watchmoves'              => 'Seelew ferschääwene side automaatisch bekiike',
@@ -171,33 +171,35 @@ $messages = array(
 'qbmyoptions'    => 'Min side',
 'qbspecialpages' => ' Spetsjåålside',
 'faq'            => 'FAQ',
+'faqpage'        => ' Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'   => 'Stuk haanetufoue',
-'vector-action-delete'       => 'Sleeke',
-'vector-action-move'         => 'Ferschüwe',
-'vector-action-protect'      => 'Önj ferbading hüülje',
-'vector-action-undelete'     => 'Wi mååge',
-'vector-action-unprotect'    => 'Frijeewe',
-'vector-namespace-category'  => 'Kategorii',
-'vector-namespace-help'      => 'Heelpsid',
-'vector-namespace-image'     => 'Dootäi',
-'vector-namespace-main'      => 'sid',
-'vector-namespace-media'     => 'Meediesid',
-'vector-namespace-mediawiki' => 'Berucht',
-'vector-namespace-project'   => 'Prujäktsid',
-'vector-namespace-special'   => 'Spetsjåålsid',
-'vector-namespace-talk'      => 'Diskusjoon',
-'vector-namespace-template'  => 'Forlååge',
-'vector-namespace-user'      => 'Brükersid',
-'vector-view-create'         => 'Mååge',
-'vector-view-edit'           => 'Beårbe',
-'vector-view-history'        => 'Dootäifärsjoone',
-'vector-view-view'           => 'Lees',
-'vector-view-viewsource'     => 'Kwältäkst önjkiike',
-'actions'                    => 'Aksjoone',
-'namespaces'                 => 'Noomerüme:',
-'variants'                   => 'Fariante',
+'vector-action-addsection'       => 'Stuk haanetufoue',
+'vector-action-delete'           => 'Sleeke',
+'vector-action-move'             => 'Ferschüwe',
+'vector-action-protect'          => 'Önj ferbading hüülje',
+'vector-action-undelete'         => 'Wi mååge',
+'vector-action-unprotect'        => 'Frijeewe',
+'vector-namespace-category'      => 'Kategorii',
+'vector-namespace-help'          => 'Heelpsid',
+'vector-namespace-image'         => 'Dootäi',
+'vector-namespace-main'          => 'sid',
+'vector-namespace-media'         => 'Meediesid',
+'vector-namespace-mediawiki'     => 'Berucht',
+'vector-namespace-project'       => 'Prujäktsid',
+'vector-namespace-special'       => 'Spetsjåålsid',
+'vector-namespace-talk'          => 'Diskusjoon',
+'vector-namespace-template'      => 'Forlååge',
+'vector-namespace-user'          => 'Brükersid',
+'vector-simplesearch-preference' => 'Erwiderde säkforsliike aktiwiire (bloot vector)',
+'vector-view-create'             => 'Mååge',
+'vector-view-edit'               => 'Beårbe',
+'vector-view-history'            => 'Dootäifärsjoone',
+'vector-view-view'               => 'Lees',
+'vector-view-viewsource'         => 'Kwältäkst önjkiike',
+'actions'                        => 'Aksjoone',
+'namespaces'                     => 'Noomerüme:',
+'variants'                       => 'Fariante',
 
 'errorpagetitle'    => 'Fäägel',
 'returnto'          => 'Tubääg tu jü side $1.',
@@ -273,9 +275,9 @@ $1',
 'helppage'             => 'Help:Inhåltsfertiiknis',
 'mainpage'             => 'Hoodsid',
 'mainpage-description' => 'Hoodsid',
-'policy-url'           => 'Prujäkt:Ruchtliinje',
+'policy-url'           => 'Project:Ruchtliinje',
 'portal'               => 'Gemiinschaps-portåål',
-'portal-url'           => 'Prujäkt:Gemiinschaps-portåål',
+'portal-url'           => 'Project:Gemiinschaps-portåål',
 'privacy'              => 'Dootenschuts',
 'privacypage'          => 'Project:Dootenschuts',
 
@@ -351,7 +353,8 @@ Jü leest dootebånk ouffrååg wus:
 üt jü funksjoon „<tt>$2</tt>“.
 Jü dootebank mäldede di fäägel „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Dåt jäif en süntaksfäägel önj e dootebånk-ouffrååch.
-Jü leest dootebånkouffrååch wus  „$1“ üt jü funksjoon „<tt>$2</tt>“.',
+Jü leest dootebånkouffrååch wus  „$1“ üt e funksjoon „<tt>$2</tt>“.
+Jü dootebånk mälded jü fäägel: „<tt>$3: $4</tt>“.',
 'laggedslavemode'      => "''''Woarschauing:''' Jü wised sid köö uner amstånde ai da leeste beåarbinge önjthüülje.",
 'readonly'             => 'Dootebånk späred',
 'enterlockreason'      => 'Wees swü gödj än jeew en grün önj, weeram jü dootebånk späred wårde schal än en schåting ouer e duur foon jü späre',
@@ -399,6 +402,8 @@ Ouffrååch: $2',
 'editinginterface'     => "'''Woorschauing:''' Jüdeer sid önjthålt foon jü MesiaWiki-software bënjüteden takst.
 Änringe wirke jam aw jü brükerouerfläche üt.
 For ouerseetinge tånk deeram, jü önj di  [http://translatewiki.net/wiki/Main_Page?setlang=frr Translatewiki], dåt MediaWiki lokalisiiringsprojekt, döörtufäären.",
+'cascadeprotected'     => 'Jüdeer sid as for beårbing spärd. Jü as önj {{PLURAL:$1|e füliende sid|da füliende side}} 
+önjbünen, {{PLURAL:$1|jü|da}} madels e kaskaadespäropsjoon önj febading hüüljen {{PLURAL:$1|as|san}}:',
 'namespaceprotected'   => "Dü hääst niinj beruchtiging, jü sid önj di '''$1'''-noomerüm tu beårben.",
 'customcssjsprotected' => 'Dü bast ai beruchtiged, jüdeer sid tu beårben, deer jü tu da persöönlike önjstalinge foon en ouderen brüker hiirt.',
 'ns-specialprotected'  => 'Spetsjåålside koone ai beårbed wårde.',
@@ -411,6 +416,10 @@ Jü späre wörd döör [[User:$1|$1]] ma grün "$2" önjruchted.',
 'virus-unknownscanner' => 'Ünbekånde fiirusscanner:',
 
 # Login and logout pages
+'logouttext'              => "'''Dü bast nü oufmäded.'''
+
+Dü koost {{SITENAME}} nü anonüüm widerbrüke, unti de wider uner diseelew unti en oudern benjüternoome [[Special:UserLogin|önjmälde]].
+Påås aw, dåt hu side nuch wide koone, dåt dü önjmälded bast, sülung dü ai dan browsercache lääsimååged heest.",
 'welcomecreation'         => '== Wäljkiimen, $1! ==
 
 Din brükerkonto wörd önjruchted.
@@ -418,7 +427,7 @@ Ferjeet ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'yourname'                => 'Brükernoome:',
 'yourpassword'            => 'Pååsuurd:',
 'yourpasswordagain'       => 'Tip pååsuurd nuch iinjsen:',
-'remembermypassword'      => 'aw diheere komputer foon duur önjmälde',
+'remembermypassword'      => 'Aw diheere komputer foon duur önjmälde (maksimool for {{PLURAL:$1|däi|deege}})',
 'yourdomainname'          => 'Din domain:',
 'externaldberror'         => 'Önjtwider deer läit en fäägel bai jü äkstärn autentifisiiring for, unti dü möist din äkstärn brükerkonto äi aktualisiire.',
 'login'                   => 'Önjmälde',
@@ -439,6 +448,10 @@ Ferjeet ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'userexists'              => 'Dideer brükernoome as ål ferjääwen. Wees sü gödj en ouderen tu kiisen.',
 'loginerror'              => 'Fäägel bai önjmälding',
 'createaccounterror'      => 'Brükerkonto köö ai mååged wårde: $1',
+'nocookiesnew'            => 'Di benjütertugung wörd mååged, ouers dü bast ai önjmälded. {{SITENAME}} brükt for jüdeer funksjoon cookies.
+Wees sü gödj än aktiwiir da än mäld de dan ma dan naien benjüternoome än dåt tuhiirend pååsuurd önj.',
+'nocookieslogin'          => '{{SITENAME}} benjütet cookies tu e önjmälding foon da benjütere. Dü heest Cookis deaktiwiird. 
+Wees sü gödj än aktiwiir da än fersäk dåt wider.',
 'noname'                  => 'Dü möist en gültigen brükernooem önjjeewe.',
 'loginsuccesstitle'       => 'Önjmälding erfolchrik',
 'loginsuccess'            => "'''Dü bast nü ås „$1“ bai {{SITENAME}} önjmälded.'''",
@@ -465,8 +478,20 @@ Mälde wi önj eefter dü jü füngen heest.',
 Iir en E-mail foon oudere brükere ouer jü E-mail-funksjoon emfångd wårde koon, mötj jü adräs än har wörklike tuhiirihäid tu dåtheer brükerkonto jarst bestääsied wårde. Wees sü gödj än befülie da haanewisinge önj di bestääsiings-E-mail.',
 'throttled-mailpassword'  => 'Deer wörd önj da leeste {{PLURAL:$1|stün|$1 stüne}} ål en nai pååsuurd önjfrååged. Am en misbrük foon jüdeer funksjoon tu ferhanren, koon bloot {{PLURAL:$1|iinjsen pro stün|åle $1 stüne}} en nai pååsuurd önjfrååged wårde.',
 'mailerror'               => 'Fäägel bai dåt siinjen foon e E-mail: $1',
+'emailauthenticated'      => 'Din e-mail-adräs word di $2 am e klook $3 bestääsied.',
 'emailnotauthenticated'   => 'Din E-mail-adräs as nuch ai bestääsied. Da füliende E-mail-funksjoone stönje jarst eefter erfolchrike bestääsiing tu ferfäiging.',
 'noemailprefs'            => 'Jeew en E-mail-adräs önj da önjstalinge önj, deerma da füliende funksjoone tu ferfäiging stönje.',
+'emailconfirmlink'        => 'E-mail-adräs bestääsie (autäntifisiire).',
+'invalidemailaddress'     => 'Jü e-mail adräs wörd ai aksäptiird, ouerdåt jü en üngülti formoot (ewentuäl üngültie tiikne) tu heewen scheent. 
+Wees sü gödj än jeef en koräkt adräs önj unti mäág dåt fäalj lääsi.',
+'accountcreated'          => 'Benjüterkonto mååged',
+'accountcreatedtext'      => 'Dåt benjüteraccount for $1 as mååged wörden.',
+'createaccount-title'     => 'Måågen foon en benjüterkonto for {{SITENAME}}',
+'createaccount-text'      => 'Deer wörd for de en benjüterkonto "$2" aw {{SITENAME}} ($4) mååged. Dåt automaatisch generiird pååsuurd for "$2" as "$3".
+Dü schöist de nü önjmälde än dåt pååsuurd änre.
+
+Fåls dåt benjüterkonto üt fersiinj önjläid wörd, koost dü jüdeer tising ignoriire.',
+'usernamehasherror'       => 'Benjüternoome mötje niinj rütetiikne önjthüulje',
 'loginlanguagelabel'      => 'Spräke: $1',
 'suspicious-userlogout'   => 'Dan Oufmäldönjfrååge wörd ferwaigred, deer ja fermouslik foon en defäkte browser unti en cache-proxy sånd wörd.',
 
@@ -484,6 +509,8 @@ Nü wårst dü önjmälded...',
 'resetpass-no-info'         => 'Dü möist önjmälded weese am ju sid diräkt tu tu gripen.',
 'resetpass-submit-loggedin' => 'Pååsuurd änre',
 'resetpass-submit-cancel'   => 'Oufbreege',
+'resetpass-wrong-oldpass'   => 'Üngülti tämporäär unti antuäl pååsuurd.
+Möölikerwise heest dü din pååsuurd ål ma erfolch änred heest unti en nai tämporäär pååsuurd beönjdräägen.',
 'resetpass-temp-password'   => 'Tidwise pååsuurd:',
 
 # Edit page toolbar
