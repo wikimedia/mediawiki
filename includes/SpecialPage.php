@@ -181,7 +181,7 @@ class SpecialPage {
 
 		# Unlisted / redirects
 		'Blankpage'                 => 'SpecialBlankpage',
-		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),
+		'Blockme'                   => 'SpecialBlockme',
 		'Emailuser'                 => 'SpecialEmailUser',
 		'Listadmins'                => array( 'SpecialRedirectToSpecial', 'Listadmins', 'Listusers', 'sysop' ),
 		'Listbots'                  => array( 'SpecialRedirectToSpecial', 'Listbots', 'Listusers', 'bot' ),
