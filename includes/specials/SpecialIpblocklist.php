@@ -73,7 +73,7 @@ class IPUnblockForm extends SpecialPage {
 				} else {
 					$user = User::newFromName( $ip );
 				}
-				$status = self::checkUnblockSelf( $user );
+				$status = IPBlockForm::checkUnblockSelf( $user );
 				if ( $status !== true ) {
 					throw new ErrorPageError( 'badaccess', $status );
 				}
@@ -233,7 +233,7 @@ class IPUnblockForm extends SpecialPage {
 		
 		# Unset _deleted fields as needed
 		if( $block->mHideName ) {
-			self::unsuppressUserName( $block->mAddress, $block->mUser );
+			IPBlockForm::unsuppressUserName( $block->mAddress, $block->mUser );
 		}
 
 		# Make log entry
