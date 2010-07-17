@@ -2753,6 +2753,7 @@ $wgReservedUsernames = array(
 	'Template namespace initialisation script', // Used in 1.2->1.3 upgrade
 	'msg:double-redirect-fixer', // Automatic double redirect fix
 	'msg:usermessage-editor', // Default user for leaving user messages
+	'msg:proxyblocker', // For Special:Blockme
 );
 
 /**
