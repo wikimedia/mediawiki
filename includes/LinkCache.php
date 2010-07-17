@@ -49,7 +49,7 @@ class LinkCache {
 	 * Get a field of a title object from cache.
 	 * If this link is not good, it will return NULL.
 	 * @param $title Title
-	 * @param $field String: ('length','redirect')
+	 * @param $field String: ('length','redirect','revision')
 	 * @return mixed
 	 */
 	public function getGoodLinkFieldObj( $title, $field ) {
@@ -67,10 +67,12 @@ class LinkCache {
 
 	/**
 	 * Add a link for the title to the link cache
-	 * @param $id Integer
-	 * @param $title Title
-	 * @param $len Integer
-	 * @param $redir Integer
+	 *
+	 * @param $id Integer: page's ID
+	 * @param $title Title object
+	 * @param $len Integer: text's length
+	 * @param $redir Integer: whether the page is a redirect
+	 * @param $revision Integer: latest revision's ID
 	 */
 	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null, $revision = false ) {
 		$dbkey = $title->getPrefixedDbKey();
@@ -110,15 +112,14 @@ class LinkCache {
 
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
+	 *
 	 * @param $title String: title to add
-	 * @param $len int, page size
-	 * @param $redir bool, is redirect?
-	 * @return integer
+	 * @return Integer
 	 */
-	public function addLink( $title, $len = -1, $redir = null ) {
+	public function addLink( $title ) {
 		$nt = Title::newFromDBkey( $title );
 		if( $nt ) {
-			return $this->addLinkObj( $nt, $len, $redir );
+			return $this->addLinkObj( $nt );
 		} else {
 			return 0;
 		}
@@ -126,12 +127,11 @@ class LinkCache {
 
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
-	 * @param $nt Title to add.
-	 * @param $len int, page size
-	 * @param $redirect bool, is redirect?
-	 * @return integer
+	 *
+	 * @param $nt Title object to add
+	 * @return Integer
 	 */
-	public function addLinkObj( &$nt, $len = -1, $redirect = null ) {
+	public function addLinkObj( $nt ) {
 		global $wgAntiLockFlags, $wgProfiler;
 		wfProfileIn( __METHOD__ );
 
@@ -175,6 +175,7 @@ class LinkCache {
 			$redirect = intval( $s->page_is_redirect );
 			$revision = intval( $s->page_latest );
 		} else {
+			$id = 0;
 			$len = -1;
 			$redirect = 0;
 			$revision = 0;
