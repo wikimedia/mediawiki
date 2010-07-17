@@ -21,12 +21,11 @@
  * Implements Special:Recentchanges
  * @ingroup SpecialPage
  */
-class SpecialRecentChanges extends SpecialPage {
+class SpecialRecentChanges extends IncludableSpecialPage {
 	var $rcOptions, $rcSubpage;
 
-	public function __construct() {
-  		parent::__construct( 'Recentchanges' );
-		$this->includable( true );
+	public function __construct( $name = 'Recentchanges' ) {
+		parent::__construct( $name );
 	}
 
 	/**

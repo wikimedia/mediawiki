@@ -25,8 +25,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 	var $rclTargetTitle;
 
 	function __construct(){
-		SpecialPage::SpecialPage( 'Recentchangeslinked' );
-		$this->includable( true );
+		parent::__construct( 'Recentchangeslinked' );
 	}
 
 	public function getDefaultOptions() {
