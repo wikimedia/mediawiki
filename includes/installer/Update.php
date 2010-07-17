@@ -39,7 +39,10 @@ class Update {
 				call_user_func_array( $func, $params );
 				flush();
 			}
-			$this->setAppliedUpdates( $version, $updates );
+			// some updates don't get recorded :(
+			if( $version !== 'always' ) {
+				$this->setAppliedUpdates( $version, $updates );
+			}
 		}
 	}
 
@@ -48,14 +51,15 @@ class Update {
 		// style of recording our steps. Run all to be safe
 		if( !$this->canUseNewUpdatelog() ) {
 			$this->updates = $this->updater->getUpdates();
-			return;
-		}
-		foreach( $this->updater->getUpdates() as $version => $updates ) {
-			$appliedUpdates = $this->getAppliedUpdates( $version );
-			if( !$appliedUpdates || $appliedUpdates != $updates ) {
-				$this->updates[ $version ] = $updates;
+		} else {
+			foreach( $this->updater->getUpdates() as $version => $updates ) {
+				$appliedUpdates = $this->getAppliedUpdates( $version );
+				if( !$appliedUpdates || $appliedUpdates != $updates ) {
+					$this->updates[ $version ] = $updates;
+				}
 			}
 		}
+		$this->getOldGlobalUpdates();
 	}
 
 	protected function getAppliedUpdates( $version ) {
@@ -91,5 +95,53 @@ class Update {
 	protected function canUseNewUpdatelog() {
 		return $this->db->tableExists( 'updatelog' ) &&
 			$this->db->fieldExists( 'updatelog', 'ul_value' );
+	}
+
+	/**
+	 * Before 1.17, we used to handle updates via stuff like $wgUpdates,
+	 * $wgExtNewTables/Fields/Indexes. This is nasty :) We refactored a lot
+	 * of this in 1.17 but we want to remain back-compatible for awhile. So
+	 * load up these old global-based things into our update list. We can't
+	 * version these like we do with our core updates, so they have to go
+	 * in 'always'
+	 */
+	private function getOldGlobalUpdates() {
+		global $wgUpdates, $wgExtNewFields, $wgExtNewTables,
+			$wgExtModifiedFields, $wgExtNewIndexes;
+
+		if( isset( $wgUpdates[ $this->db->getType() ] ) ) {
+			foreach( $wgUpdates[ $this->db->getType() ] as $upd ) {
+				$this->updates['always'][] = $upd;
+			}
+		}
+
+		foreach ( $wgExtNewTables as $tableRecord ) {
+			$this->updates['always'][] = array(
+				'add_table', $tableRecord[0], $tableRecord[1], true
+			);
+		}
+
+		foreach ( $wgExtNewFields as $fieldRecord ) {
+			if ( $fieldRecord[0] != 'user' || $doUser ) {
+				$this->updates['always'][] = array(
+					'add_field', $fieldRecord[0], $fieldRecord[1],
+						$fieldRecord[2], true
+				);
+			}
+		}
+
+		foreach ( $wgExtNewIndexes as $fieldRecord ) {
+			$this->updates['always'][] = array(
+				'add_index', $fieldRecord[0], $fieldRecord[1],
+					$fieldRecord[2], true
+			);
+		}
+
+		foreach ( $wgExtModifiedFields as $fieldRecord ) {
+			$this->updates['always'][] = array(
+				'modify_field', $fieldRecord[0], $fieldRecord[1],
+					$fieldRecord[2], true
+			);
+		}
 	}
 }
