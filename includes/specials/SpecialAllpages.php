@@ -336,7 +336,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					if( $n % 3 == 0 ) {
 						$out .= '<tr>';
 					}
-					$out .= "<td width=\"33%\">$link</td>";
+					$out .= "<td style=\"width:33%\">$link</td>";
 					$n++;
 					if( $n % 3 == 0 ) {
 						$out .= "</tr>\n";
