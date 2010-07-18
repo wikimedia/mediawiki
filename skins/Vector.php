@@ -37,7 +37,7 @@ class SkinVector extends SkinTemplate {
 		$out->addScript(
 			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
 				htmlspecialchars( $wgLocalStylePath ) .
-				'/vector/csshover.htc")}</style><![endif]-->'
+				"/{$this->stylename}/csshover.htc\")}</style><![endif]-->"
 		);
 	}
 
@@ -52,14 +52,14 @@ class SkinVector extends SkinTemplate {
 		parent::setupSkinUserCss( $out );
 
 		// Append skin-specific styles
-		$out->addStyle( 'vector/main-rtl.css', 'screen', '', 'rtl' );
-		$out->addStyle( 'vector/main-ltr.css', 'screen', '', 'ltr' );
+		$out->addStyle( "{$this->stylename}/main-rtl.css", 'screen', '', 'rtl' );
+		$out->addStyle( "{$this->stylename}/main-ltr.css", 'screen', '', 'ltr' );
 
 		// Add extra stylesheets
 		// THIS IS ONLY USEFUL FOR EXPERIMENTING WITH DIFFERNT STYLE OPTIONS! THIS WILL BE REMOVED IN THE NEAR FUTURE.
 		if ( is_array( $wgVectorExtraStyles ) ) {
 			foreach ( $wgVectorExtraStyles as $style ) {
-				$out->addStyle( 'vector/' . $style, 'screen' );
+				$out->addStyle( "{$this->stylename}/$style", 'screen' );
 			}
 		}
 	}
