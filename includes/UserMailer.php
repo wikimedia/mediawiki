@@ -31,6 +31,7 @@ class MailAddress {
 	/**
 	 * @param $address Mixed: string with an email address, or a User object
 	 * @param $name String: human-readable name if a string address is given
+	 * @param $realName String: human-readable real name if a string address is given
 	 */
 	function __construct( $address, $name = null, $realName = null ) {
 		if( is_object( $address ) && $address instanceof User ) {
@@ -558,9 +559,8 @@ class EmailNotification {
 	 * timestamp in proper timezone, etc) and sends it out.
 	 * Returns true if the mail was sent successfully.
 	 *
-	 * @param User $watchingUser
-	 * @param object $mail
-	 * @return bool
+	 * @param $watchingUser User object
+	 * @return Boolean
 	 * @private
 	 */
 	function sendPersonalised( $watchingUser ) {
