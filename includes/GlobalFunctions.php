@@ -2095,9 +2095,10 @@ function &wfGetMimeMagic() {
  * we'll use sys_get_temp_dir(). The TMPDIR, TMP, and TEMP environment
  * variables are then checked in sequence, and if none are set /tmp is
  * returned as the generic Unix default.
- *
- * NOTE: When possible, use the tempnam() function to create temporary
- * files to avoid race conditions on file creation, etc.
+ * It is common to call it with tempnam().
+ * 
+ * NOTE: When possible, use instead the tmpfile() function to create 
+ * temporary files to avoid race conditions on file creation, etc.
  *
  * @return String
  */
