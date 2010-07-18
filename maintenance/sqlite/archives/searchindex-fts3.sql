@@ -15,4 +15,4 @@ CREATE VIRTUAL TABLE /*_*/searchindex USING FTS3(
   si_text
 );
 
-INSERT INTO /*_*/updatelog VALUES ('fts3');
+INSERT INTO /*_*/updatelog (ul_key) VALUES ('fts3');
