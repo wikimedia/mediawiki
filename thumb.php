@@ -101,8 +101,8 @@ function wfThumbMain() {
 		// Calculate time
 		wfSuppressWarnings();
 		$imsUnix = strtotime( $imsString );
+		$stat = stat( $sourcePath );
 		wfRestoreWarnings();
-		$stat = @stat( $sourcePath );
 		if ( $stat['mtime'] <= $imsUnix ) {
 			header( 'HTTP/1.1 304 Not Modified' );
 			return;
@@ -164,7 +164,7 @@ function wfThumbError( $status, $msg ) {
 		header( 'HTTP/1.1 500 Internal server error' );
 	}
 	if( $wgShowHostnames ) {
-		$url = htmlspecialchars( @$_SERVER['REQUEST_URI'] );
+		$url = htmlspecialchars( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '' );
 		$hostname = htmlspecialchars( wfHostname() );
 		$debug = "<!-- $url -->\n<!-- $hostname -->\n";
 	} else {
