@@ -117,6 +117,7 @@ class ParserTest {
 	}
 
 	public function setupRecorder() {
+		global $options;
 		if ( isset( $options['record'] ) ) {
 			$this->recorder = new DbTestRecorder( $this );
 		} elseif ( isset( $options['compare'] ) ) {
