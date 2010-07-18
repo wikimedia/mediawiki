@@ -234,6 +234,7 @@ class SiteStatsUpdate {
 	}
 
 	public static function cacheUpdate( $dbw ) {
+		global $wgActiveUserDays;
 		$dbr = wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow' ) );
 		# Get non-bot users than did some recent action other than making accounts.
 		# If account creation is included, the number gets inflated ~20+ fold on enwiki.
@@ -243,7 +244,8 @@ class SiteStatsUpdate {
 			array(
 				'rc_user != 0',
 				'rc_bot' => 0,
-				"rc_log_type != 'newusers' OR rc_log_type IS NULL"
+				"rc_log_type != 'newusers' OR rc_log_type IS NULL",
+				"rc_timestamp >= '{$dbw->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 )}'",
 			),
 			__METHOD__
 		);

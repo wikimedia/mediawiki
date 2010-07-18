@@ -29,9 +29,8 @@
 class ActiveUsersPager extends UsersPager {
 
 	function __construct( $group = null ) {
-		global $wgRequest, $wgRCMaxAge;
-		$this->RCMaxAge = ceil( $wgRCMaxAge / ( 3600 * 24 ) ); // Constant
-
+		global $wgRequest, $wgActiveUserDays;
+		$this->RCMaxAge = $wgActiveUserDays;
 		$un = $wgRequest->getText( 'username' );
 		$this->requestedUser = '';
 		if ( $un != '' ) {
@@ -72,6 +71,7 @@ class ActiveUsersPager extends UsersPager {
 		$conds = array( 'rc_user > 0' ); // Users - no anons
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
 		$conds[] = "rc_log_type IS NULL OR rc_log_type != 'newusers'";
+		$conds[] = "rc_timestamp >= '{$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 )}'";
 		
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
@@ -167,7 +167,7 @@ class SpecialActiveUsers extends SpecialPage {
 	 * @param $par Mixed: parameter passed to the page or null
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgLang, $wgRCMaxAge;
+		global $wgOut, $wgLang, $wgActiveUserDays;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -177,9 +177,9 @@ class SpecialActiveUsers extends SpecialPage {
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
 
-                $s = Html::rawElement( 'div', array( 'class' => 'mw-activeusers-intro' ),
-                        wfMsgExt( 'activeusers-intro', array( 'parsemag', 'escape' ), $wgLang->formatNum( ceil( $wgRCMaxAge / 86400 ) ) )
-                );
+		$s = Html::rawElement( 'div', array( 'class' => 'mw-activeusers-intro' ),
+			wfMsgExt( 'activeusers-intro', array( 'parsemag', 'escape' ), $wgLang->formatNum( $wgActiveUserDays ) )
+		);
 
 		$s .= $up->getPageHeader();
 		if( $usersbody ) {
