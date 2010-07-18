@@ -1148,7 +1148,6 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'prefs-advancedrendering'       => 'Opsion avansà',
 'prefs-advancedsearchoptions'   => 'Opsion avansà',
 'prefs-advancedwatchlist'       => 'Opsion avansà',
-'prefs-display'                 => 'Opsion ëd visualisassion',
 'prefs-diffs'                   => 'Diferense',
 
 # User rights

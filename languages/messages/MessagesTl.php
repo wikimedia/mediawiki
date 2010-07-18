@@ -1265,7 +1265,6 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 'prefs-advancedrendering'       => 'Masulong na mga mapagpipilian',
 'prefs-advancedsearchoptions'   => 'Masulong na mga mapagpipilian',
 'prefs-advancedwatchlist'       => 'Masulong na mga mapagpipilian',
-'prefs-display'                 => 'Ipakita ang mga pagpipilian',
 'prefs-diffs'                   => 'Mga pagkakaiba',
 
 # User rights

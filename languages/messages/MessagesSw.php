@@ -1181,7 +1181,6 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'prefs-advancedrendering'       => 'Hitiari za hali ya juu',
 'prefs-advancedsearchoptions'   => 'Hitiari za hali ya juu',
 'prefs-advancedwatchlist'       => 'Hitiari za hali ya juu',
-'prefs-display'                 => 'Hitiari za kutandaza',
 
 # User rights
 'userrights'                   => 'Usimamizi wa haki za mtumiaji',

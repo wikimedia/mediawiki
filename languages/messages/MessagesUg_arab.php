@@ -1190,7 +1190,6 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'prefs-advancedrendering'       => 'ئالىي تاللانما',
 'prefs-advancedsearchoptions'   => 'ئالىي تاللانما',
 'prefs-advancedwatchlist'       => 'ئالىي تاللانما',
-'prefs-display'                 => 'كۆرسىتىش تاللانما',
 'prefs-diffs'                   => 'پەرقلەر',
 
 # User rights

@@ -963,7 +963,6 @@ $3 мына бу себепни бильдирди: ''$2''",
 'prefs-advancedrendering'       => 'Иляве сазламалар',
 'prefs-advancedsearchoptions'   => 'Иляве сазламалар',
 'prefs-advancedwatchlist'       => 'Иляве сазламалар',
-'prefs-display'                 => 'Косьтерилюв сазламалары',
 'prefs-diffs'                   => 'Фаркълар',
 
 # User rights

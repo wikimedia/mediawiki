@@ -1313,7 +1313,6 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'prefs-advancedrendering'       => 'Avanserte alternativ',
 'prefs-advancedsearchoptions'   => 'Avanserte alternativ',
 'prefs-advancedwatchlist'       => 'Avanserte alternativ',
-'prefs-display'                 => 'Visningsalternativ',
 'prefs-diffs'                   => 'Forskjeller',
 
 # User rights

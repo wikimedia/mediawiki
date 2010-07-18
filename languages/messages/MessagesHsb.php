@@ -1200,7 +1200,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'prefs-advancedrendering'       => 'Rozšěrjene opcije',
 'prefs-advancedsearchoptions'   => 'Rozšěrjene opcije',
 'prefs-advancedwatchlist'       => 'Rozšěrjene opcije',
-'prefs-display'                 => 'Opcije sej wobhladać',
 'prefs-diffs'                   => 'Rozdźěle',
 
 # User rights

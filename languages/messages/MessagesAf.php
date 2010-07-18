@@ -1299,7 +1299,6 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'prefs-advancedrendering'       => 'Gevorderde instellings',
 'prefs-advancedsearchoptions'   => 'Gevorderde instellings',
 'prefs-advancedwatchlist'       => 'Gevorderde instellings',
-'prefs-display'                 => 'Vertoonopsies',
 'prefs-diffs'                   => 'Verskille',
 
 # User rights

@@ -1223,7 +1223,6 @@ $1",
 'prefs-advancedrendering'       => 'אדוואנסירטע אפציעס',
 'prefs-advancedsearchoptions'   => 'אדוואנסירטע אפציעס',
 'prefs-advancedwatchlist'       => 'אדוואנסירטע אפציעס',
-'prefs-display'                 => 'ווייז אפציעס',
 'prefs-diffs'                   => 'צווישנשיידן',
 
 # User rights

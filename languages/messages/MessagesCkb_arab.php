@@ -1188,7 +1188,6 @@ $1",
 'prefs-advancedrendering'       => 'هەڵبژاردە پێشکەوتووەکان',
 'prefs-advancedsearchoptions'   => 'هەڵبژاردە پێشکەوتووەکان',
 'prefs-advancedwatchlist'       => 'هەڵبژاردە پێشکەوتووەکان',
-'prefs-display'                 => 'هەڵبژاردەکانی نیشان‌دان',
 'prefs-diffs'                   => 'جیاوازییەکان',
 
 # User rights

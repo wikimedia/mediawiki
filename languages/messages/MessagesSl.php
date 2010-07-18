@@ -1277,7 +1277,9 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'prefs-advancedrendering'       => 'Napredne možnosti',
 'prefs-advancedsearchoptions'   => 'Napredne možnosti',
 'prefs-advancedwatchlist'       => 'Napredne možnosti',
-'prefs-display'                 => 'Prikaži možnosti',
+'prefs-displayrc'               => 'Možnosti prikaza',
+'prefs-displaysearchoptions'    => 'Možnosti prikaza',
+'prefs-displaywatchlist'        => 'Možnosti prikaza',
 'prefs-diffs'                   => 'Primerjave',
 
 # User rights

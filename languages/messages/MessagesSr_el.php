@@ -1253,7 +1253,6 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'prefs-advancedrendering'     => 'Napredne opcije',
 'prefs-advancedsearchoptions' => 'Napredne opcije',
 'prefs-advancedwatchlist'     => 'Napredne opcije',
-'prefs-display'               => 'Opcije prikaza',
 'prefs-diffs'                 => 'Revizije',
 
 # User rights

@@ -1143,7 +1143,6 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'prefs-advancedrendering'       => 'Дириҥэтиллибит туруоруулар',
 'prefs-advancedsearchoptions'   => 'Дириҥэтиллибит туруоруулар',
 'prefs-advancedwatchlist'       => 'Дириҥэтиллибит туруоруулар',
-'prefs-display'                 => 'Туруоруулары көрдөр',
 'prefs-diffs'                   => 'Уратылара',
 
 # User rights

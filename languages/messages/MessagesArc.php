@@ -604,7 +604,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 'prefs-advancedrendering'     => 'ܓܒܝܬ̈ܐ ܡܬܩܕ̈ܡܢܐ',
 'prefs-advancedsearchoptions' => 'ܓܒܝܬ̈ܐ ܡܬܩܕ̈ܡܢܐ',
 'prefs-advancedwatchlist'     => 'ܓܒܝܬ̈ܐ ܡܬܩܕ̈ܡܢܐ',
-'prefs-display'               => 'ܚܘܝ ܓܒܝܬ̈ܐ',
 'prefs-diffs'                 => 'ܦܪ̈ܝܫܘܝܬܐ',
 
 # User rights

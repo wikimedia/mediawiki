@@ -1369,7 +1369,6 @@ $1",
 'prefs-advancedrendering'       => 'Расширенные настройки',
 'prefs-advancedsearchoptions'   => 'Расширенные настройки',
 'prefs-advancedwatchlist'       => 'Расширенные настройки',
-'prefs-display'                 => 'Настройки отображения',
 'prefs-diffs'                   => 'Разница версий',
 
 # User rights

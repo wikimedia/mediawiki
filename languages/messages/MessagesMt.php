@@ -1302,7 +1302,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-advancedrendering'       => 'Opzjonijiet avvanzati',
 'prefs-advancedsearchoptions'   => 'Opzjonijiet avvanzati',
 'prefs-advancedwatchlist'       => 'Opzjonijiet avvanzati',
-'prefs-display'                 => "Opzjonijiet ta' viżwalizazzjoni",
 
 # User rights
 'userrights'                   => 'Ġestjoni tad-drittijiet tal-utent',

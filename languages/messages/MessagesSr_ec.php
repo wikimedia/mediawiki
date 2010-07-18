@@ -1292,7 +1292,6 @@ $1",
 'prefs-advancedrendering'     => 'Напредне опције',
 'prefs-advancedsearchoptions' => 'Напредне опције',
 'prefs-advancedwatchlist'     => 'Напредне опције',
-'prefs-display'               => 'Опције приказа',
 'prefs-diffs'                 => 'Ревизије',
 
 # User rights

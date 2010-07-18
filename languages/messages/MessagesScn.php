@@ -1135,7 +1135,6 @@ L'operazioni nun pò èssiri annullata.",
 'prefs-advancedrendering'       => 'Opzioni avanzati',
 'prefs-advancedsearchoptions'   => 'Opzioni avanzati',
 'prefs-advancedwatchlist'       => 'Opzioni avanzati',
-'prefs-display'                 => 'Opzioni di visualizzazioni',
 'prefs-diffs'                   => 'Diffirenzi',
 
 # User rights

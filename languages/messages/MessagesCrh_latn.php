@@ -961,7 +961,6 @@ Bundan ğayrı bu vikideki saifeñizden başqa qullanıcılarğa siznen bağlanm
 'prefs-advancedrendering'       => 'İlâve sazlamalar',
 'prefs-advancedsearchoptions'   => 'İlâve sazlamalar',
 'prefs-advancedwatchlist'       => 'İlâve sazlamalar',
-'prefs-display'                 => 'Kösterilüv sazlamaları',
 'prefs-diffs'                   => 'Farqlar',
 
 # User rights

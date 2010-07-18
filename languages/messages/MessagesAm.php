@@ -851,7 +851,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefs-info'                => ' መሰረታዊ መረጃ',
 'prefs-signature'           => 'ፊርማ',
 'prefs-dateformat'          => ' የቀን  ቅርፀት',
-'prefs-display'             => 'የማሳያ አማራጮች',
 
 # User rights
 'userrights'                  => 'የአባል መብቶች ለማስተዳደር',

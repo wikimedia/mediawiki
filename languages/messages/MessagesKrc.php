@@ -193,31 +193,32 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'   => 'Джангы тема къош',
-'vector-action-delete'       => 'Кетер',
-'vector-action-move'         => 'Атын ауушдур',
-'vector-action-protect'      => 'Джакъла',
-'vector-action-undelete'     => 'Къайтар',
-'vector-action-unprotect'    => 'Джакълауну кетер',
-'vector-namespace-category'  => 'Категория',
-'vector-namespace-help'      => 'Болушлукъ бет',
-'vector-namespace-image'     => 'Файл',
-'vector-namespace-main'      => 'Бет',
-'vector-namespace-media'     => 'Медиа-бет',
-'vector-namespace-mediawiki' => 'Билдириу',
-'vector-namespace-project'   => 'Проект бет',
-'vector-namespace-special'   => 'Къуллукъ бет',
-'vector-namespace-talk'      => 'Сюзюу',
-'vector-namespace-template'  => 'Шаблон',
-'vector-namespace-user'      => 'Къошулуучуну бети',
-'vector-view-create'         => 'Къура',
-'vector-view-edit'           => 'Тюрлендир',
-'vector-view-history'        => 'Тарихин кёргюз',
-'vector-view-view'           => 'Окъу',
-'vector-view-viewsource'     => 'Разметкагъа къара',
-'actions'                    => 'Этимле',
-'namespaces'                 => 'Атланы аламы',
-'variants'                   => 'Вариантла',
+'vector-action-addsection'       => 'Джангы тема къош',
+'vector-action-delete'           => 'Кетер',
+'vector-action-move'             => 'Атын ауушдур',
+'vector-action-protect'          => 'Джакъла',
+'vector-action-undelete'         => 'Къайтар',
+'vector-action-unprotect'        => 'Джакълауну кетер',
+'vector-namespace-category'      => 'Категория',
+'vector-namespace-help'          => 'Болушлукъ бет',
+'vector-namespace-image'         => 'Файл',
+'vector-namespace-main'          => 'Бет',
+'vector-namespace-media'         => 'Медиа-бет',
+'vector-namespace-mediawiki'     => 'Билдириу',
+'vector-namespace-project'       => 'Проект бет',
+'vector-namespace-special'       => 'Къуллукъ бет',
+'vector-namespace-talk'          => 'Сюзюу',
+'vector-namespace-template'      => 'Шаблон',
+'vector-namespace-user'          => 'Къошулуучуну бети',
+'vector-simplesearch-preference' => 'Кенглешген излеуде болушлукъланы джандыр (къуру Вектор мотив ючюн)',
+'vector-view-create'             => 'Къура',
+'vector-view-edit'               => 'Тюрлендир',
+'vector-view-history'            => 'Тарихин кёргюз',
+'vector-view-view'               => 'Окъу',
+'vector-view-viewsource'         => 'Разметкагъа къара',
+'actions'                        => 'Этимле',
+'namespaces'                     => 'Атланы аламы',
+'variants'                       => 'Вариантла',
 
 'errorpagetitle'    => 'Халат',
 'returnto'          => '$1 бетге къайт',
@@ -887,6 +888,24 @@ $1",
 'suppressionlogtext' => 'Тюбюндеги, администраторладан джашырылгъан материаллада къошулгъан кёб болмай этилген кетериуле бла тыйылыуланы списогуду.
 Бусагъатдагъы тыйылыуланы списоклары ючюн [[Special:IPBlockList|IP-тыйылыуланы списогуна]] къарагъыз.',
 
+# Revision move
+'moverevlogentry'              => '{{PLURAL:$3|$3 версия|$3 версияла|$3 версияла}} $1-ден $2-ге дери кёчюрлгенди',
+'revisionmove'                 => 'Версияланы $1-ден кёчюр',
+'revmove-explain'              => 'Мындан ары баргъан бетле $1 бетден нюзюр этилген бетге кёчюрюллюкдюле. Нюзюр бет джокъ эсе, къураллыкъды. Алай болмаса, бу версяла бетни тюрлениуюню тарихине къошуллукъдула.',
+'revmove-legend'               => 'Нюзюр бет бла ангылатыуну джараштырыулары',
+'revmove-submit'               => 'Сайланнган бетге версияны кёчюр',
+'revisionmoveselectedversions' => 'Сайланнган версияланы кёчюр',
+'revmove-reasonfield'          => 'Чурум:',
+'revmove-titlefield'           => 'Нюзюр бет',
+'revmove-badparam-title'       => 'Аман параметрле',
+'revmove-badparam'             => 'Излемигиз келишмеген неда джетерли параметрле тутмайды. Тилейбиз, "Ызына" тиекни басыб, джангыдан кёрюгюз.',
+'revmove-norevisions-title'    => 'Джараусуз нюзюр бет',
+'revmove-norevisions'          => 'Бу функцияны тындырыр ючюн бир неда андан да артыкъ нюзюр версияны белгилемегенсиз, неда белгиленнген версияла табылмагъандыла.',
+'revmove-nullmove-title'       => 'Джарамагъан ат',
+'revmove-nullmove'             => 'Тамал эмда нюзюр бетле бирчадыла. Тилейбиз, "Ызына" тиекни басыб $1-ден башха  бет атны джазыгъыз.',
+'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] -ден версия|$1 версия  [[$2]]-ден}} бар болгъан  [[$3]] бетге кёчюрюлгенди.',
+'revmove-success-created'      => '{{PLURAL:$1|[[$2]] -ден версия|$1 версия  [[$2]]-ден}} джангы джаратылгъан  [[$3]] бетге кёчюрюлгенди.',
+
 # History merging
 'mergehistory'                     => 'Бетни тарихлерини бирлештириую.',
 'mergehistory-header'              => 'Бу бет, эки башха бетни тюрлендириулерини тарихин бирлешдирирге мадар береди.
@@ -1110,7 +1129,7 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'prefs-advancedrendering'       => 'Кенгленнген джарашдырыула',
 'prefs-advancedsearchoptions'   => 'Кенгленнген джарашдырыула',
 'prefs-advancedwatchlist'       => 'Кенгленнген джарашдырыула',
-'prefs-display'                 => 'Кёрюнюуню джарашдырыулары',
+'prefs-displayrc'               => 'Кёрюнюуню джарашдырыулары',
 'prefs-diffs'                   => 'Версияланы башхалыкълары',
 
 # User rights
@@ -1221,6 +1240,8 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'right-reset-passwords'       => 'Башха къошулуучуланы паролларын кетер',
 'right-override-export-depth' => 'Бетлени, теренлиги 5-ге дери байламлы бетле бла бирге экспорт эт',
 'right-sendemail'             => 'Башха къошулуучулагъа электрон почта джиберирге',
+'right-revisionmove'          => 'Версияланы кёчюр',
+'right-selenium'              => 'Selenyum тестлени эт',
 
 # User rights log
 'rightslog'      => 'Къошулуучуну хакъларыны журналы',
@@ -1263,6 +1284,7 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'action-userrights'           => 'къошулуучуну бютеу хакъларын тюрлендириу',
 'action-userrights-interwiki' => 'къошулуучуланы башха викиледе хакъларын тюрлендириу',
 'action-siteadmin'            => 'билгилени базасын блокга салыу эм блокдан алыу',
+'action-revisionmove'         => 'Версияланы кёчюрюу',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|тюрлениу|тюрлениу}}',
@@ -1981,7 +2003,8 @@ $UNWATCHURL
 $2 тюрлендирген алгъаракъ версиясына къайтылды.',
 
 # Edit tokens
-'sessionfailure' => 'Ишни бу сеансы бла проблемала болгъаннга ушайды;
+'sessionfailure-title' => 'Сеансны халаты',
+'sessionfailure'       => 'Ишни бу сеансы бла проблемала болгъаннга ушайды;
 бу этим "сеансны гудулаууна" къаршчылыкъ этилир ючюн тохтатылгъанды.
 Тилейбиз, "Ызына" деген тиекни басыгъыз эмда сиз кирген бетни джангыдан джюклегиз.',
 
@@ -2124,6 +2147,7 @@ $1',
 Тюбюнде блокланыуланы журналындан ахыр джазыу бериледи:',
 'sp-contributions-search'              => 'Къошакъны излеу',
 'sp-contributions-username'            => 'Къошулуучуну IP-адреси неда аты:',
+'sp-contributions-toponly'             => 'Къуру ахыр версияланы кёргюз',
 'sp-contributions-submit'              => 'Таб',
 
 # What links here
@@ -2638,6 +2662,9 @@ $1',
 'show-big-image-thumb' => '<small>Ал къарауда ёлчеми: $1 × $2 пиксель</small>',
 'file-info-gif-looped' => 'тогъайланнганды',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|фрейм|фрейм}}',
+'file-info-png-looped' => 'тогъайланнганды',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|кере|кере}} ойнатылды',
+'file-info-png-frames' => '$1 {{PLURAL:$1|фрейм|фрейм}}',
 
 # Special:NewFiles
 'newimages'             => 'Джангы файлланы галереясы',
@@ -3053,6 +3080,7 @@ $1',
 'table_pager_first'        => 'Биринчи бет',
 'table_pager_last'         => 'Ахыр бет',
 'table_pager_limit'        => 'Хар бетде $1 бет кёргюз',
+'table_pager_limit_label'  => 'Бир бетде джазылыу:',
 'table_pager_limit_submit' => 'Тындыр',
 'table_pager_empty'        => 'Табылмагъанды',
 
@@ -3245,6 +3273,15 @@ $1',
 'tags-hitcount-header'    => 'Белгиленнген тюрлендириуле',
 'tags-edit'               => 'тюрлендир',
 'tags-hitcount'           => '$1 {{PLURAL:$1|тюрлениу|тюрлениу}}',
+
+# Special:ComparePages
+'comparepages'     => 'Бетлени тенглешдир',
+'compare-selector' => 'Бет версияланы тенглешдир',
+'compare-page1'    => 'Биринчи бет',
+'compare-page2'    => 'Экинчи бет',
+'compare-rev1'     => 'Биринчи версия',
+'compare-rev2'     => 'Экинчи версия',
+'compare-submit'   => 'Тенглешдир',
 
 # Database error messages
 'dberr-header'      => 'Бу викини проблемасы барды',

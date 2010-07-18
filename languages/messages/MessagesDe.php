@@ -1435,7 +1435,9 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'prefs-advancedrendering'       => 'Erweiterte Optionen',
 'prefs-advancedsearchoptions'   => 'Erweiterte Optionen',
 'prefs-advancedwatchlist'       => 'Erweiterte Optionen',
-'prefs-display'                 => 'Anzeigeoptionen',
+'prefs-displayrc'               => 'Anzeigeoptionen',
+'prefs-displaysearchoptions'    => 'Anzeigeoptionen',
+'prefs-displaywatchlist'        => 'Anzeigeoptionen',
 'prefs-diffs'                   => 'Versionsvergleich',
 
 # User rights

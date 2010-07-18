@@ -1415,7 +1415,7 @@ $1",
 'prefs-advancedrendering'       => 'Προηγμένες επιλογές',
 'prefs-advancedsearchoptions'   => 'Προηγμένες επιλογές',
 'prefs-advancedwatchlist'       => 'Προηγμένες επιλογές',
-'prefs-display'                 => 'Εμφάνιση επιλογών',
+'prefs-displayrc'               => 'Εμφάνιση επιλογών',
 'prefs-diffs'                   => 'Διαφορές',
 
 # User rights
@@ -1840,7 +1840,7 @@ PICT # διάφορα
 'filerevert'                => 'Επαναφορά $1',
 'filerevert-legend'         => 'Επαναφορά αρχείου',
 'filerevert-intro'          => "Επαναφέρετε το '''[[Media:$1|$1]]''' στην [$4 εκδοχή της $3, $2].",
-'filerevert-comment'        => 'Σχόλιο:',
+'filerevert-comment'        => 'Αιτία:',
 'filerevert-defaultcomment' => 'Αναστράφηκε στην εκδοχή της $2, $1',
 'filerevert-submit'         => 'Αναστροφή',
 'filerevert-success'        => "Το '''[[Media:$1|$1]]''' έχει αναστραφεί στην [$4 εκδοχή της $3, $2].",
@@ -2338,7 +2338,7 @@ $UNWATCHURL
 'undeleteviewlink'             => 'εμφάνιση',
 'undeletereset'                => 'Ανανέωση',
 'undeleteinvert'               => 'Ανατροπή επιλογής',
-'undeletecomment'              => 'Σχόλιο:',
+'undeletecomment'              => 'Αιτία:',
 'undeletedarticle'             => 'αποκατάσταση "$1"',
 'undeletedrevisions'           => '{{PLURAL:$1|τροποποίηση|τροποποιήσεις}} αποκαταστάθηκαν',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|αναθεώρηση|αναθεωρήσεις}} και $2 {{PLURAL:$2|αρχείο|αρχεία}} επαναφέρθηκαν',
@@ -3447,6 +3447,10 @@ $1',
 'tags-hitcount-header'    => 'Αλλαγές με ετικέτα',
 'tags-edit'               => 'επεξεργασία',
 'tags-hitcount'           => '$1 {{PLURAL:$1|αλλαγή|αλλαγές}}',
+
+# Special:ComparePages
+'compare-page1' => 'Σελίδα 1',
+'compare-page2' => 'Σελίδα 2',
 
 # Database error messages
 'dberr-header'      => 'Αυτό το βίκι έχει ένα πρόβλημα',

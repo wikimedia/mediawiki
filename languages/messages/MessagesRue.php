@@ -934,7 +934,6 @@ $2',
 'prefs-advancedrendering'     => 'Розшырены можности',
 'prefs-advancedsearchoptions' => 'Розшырены можности',
 'prefs-advancedwatchlist'     => 'Розшырены можности',
-'prefs-display'               => 'Наставлїня  взгляду',
 'prefs-diffs'                 => 'Порівнаня верзії',
 
 # User rights

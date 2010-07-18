@@ -1523,7 +1523,6 @@ $1",
 'prefs-advancedrendering'       => 'گزینه‌های پیشرفته',
 'prefs-advancedsearchoptions'   => 'گزینه‌های پیشرفته',
 'prefs-advancedwatchlist'       => 'گزینه‌های پیشرفته',
-'prefs-display'                 => 'گزینه‌های نمایش',
 'prefs-diffs'                   => 'تفاوت‌ها',
 
 # User rights

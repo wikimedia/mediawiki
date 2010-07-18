@@ -1319,7 +1319,6 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'prefs-advancedrendering'       => 'Avanserte val',
 'prefs-advancedsearchoptions'   => 'Avanserte val',
 'prefs-advancedwatchlist'       => 'Avanserte val',
-'prefs-display'                 => 'Val for vising',
 'prefs-diffs'                   => 'Skilnader',
 
 # User rights

@@ -976,7 +976,6 @@ $1",
 'prefs-advancedrendering'       => 'Προηγμέναι ἐπιλογαί',
 'prefs-advancedsearchoptions'   => 'Προηγμέναι ἐπιλογαί',
 'prefs-advancedwatchlist'       => 'Προηγμέναι ἐπιλογαί',
-'prefs-display'                 => 'Ἐπίδειξις ἐπιλογῶν',
 'prefs-diffs'                   => 'Διαφοραί',
 
 # User rights

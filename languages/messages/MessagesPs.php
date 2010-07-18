@@ -910,7 +910,6 @@ $1',
 'prefs-advancedrendering'     => 'پرمختللې خوښنې',
 'prefs-advancedsearchoptions' => 'پرمختللې خوښنې',
 'prefs-advancedwatchlist'     => 'پرمختللې خوښنې',
-'prefs-display'               => 'د ښکارېدنې خوښنې',
 'prefs-diffs'                 => 'توپيرونه',
 
 # User rights

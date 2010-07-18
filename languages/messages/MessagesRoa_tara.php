@@ -1141,7 +1141,6 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'prefs-advancedrendering'       => 'Opzione avanzate',
 'prefs-advancedsearchoptions'   => 'Opzione avanzate',
 'prefs-advancedwatchlist'       => 'Opzione avanzate',
-'prefs-display'                 => "Fà vedè l'opzione",
 'prefs-diffs'                   => 'Diff',
 
 # User rights

@@ -1222,7 +1222,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'prefs-advancedrendering'       => 'Rozšyrjone opcije',
 'prefs-advancedsearchoptions'   => 'Rozšyrjone opcije',
 'prefs-advancedwatchlist'       => 'Rozšyrjone opcije',
-'prefs-display'                 => 'Opcije se woglědaś',
 'prefs-diffs'                   => 'Rozdźěle',
 
 # User rights

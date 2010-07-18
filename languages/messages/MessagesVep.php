@@ -1060,7 +1060,6 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'prefs-advancedrendering'     => 'Ližaopcijad',
 'prefs-advancedsearchoptions' => 'Ližaopcijad',
 'prefs-advancedwatchlist'     => 'Ližaopcijad',
-'prefs-display'               => 'Nägun opcijad',
 'prefs-diffs'                 => 'Erod',
 
 # User rights

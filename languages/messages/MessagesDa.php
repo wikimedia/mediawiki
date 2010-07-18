@@ -1266,7 +1266,6 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'prefs-advancedrendering'       => 'Avancerede indstillinger',
 'prefs-advancedsearchoptions'   => 'Avancerede indstillinger',
 'prefs-advancedwatchlist'       => 'Avancerede indstillinger',
-'prefs-display'                 => 'Indstillinger for visning',
 'prefs-diffs'                   => 'Forskelle',
 
 # User rights

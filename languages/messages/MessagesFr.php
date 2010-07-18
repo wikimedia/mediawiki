@@ -1433,7 +1433,9 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'prefs-advancedrendering'       => 'Options avancées',
 'prefs-advancedsearchoptions'   => 'Options avancées',
 'prefs-advancedwatchlist'       => 'Options avancées',
-'prefs-display'                 => 'Options d’affichage',
+'prefs-displayrc'               => 'Options d’affichage',
+'prefs-displaysearchoptions'    => 'Options d’affichage',
+'prefs-displaywatchlist'        => 'Options d’affichage',
 'prefs-diffs'                   => 'Différences',
 
 # User rights

@@ -1274,7 +1274,6 @@ $1",
 'prefs-advancedrendering'       => '高级选项',
 'prefs-advancedsearchoptions'   => '高级选项',
 'prefs-advancedwatchlist'       => '高级选项',
-'prefs-display'                 => '显示选项',
 'prefs-diffs'                   => '差异',
 
 # User rights

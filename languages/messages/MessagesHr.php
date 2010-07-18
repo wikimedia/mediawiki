@@ -1363,7 +1363,6 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'prefs-advancedrendering'       => 'Napredne opcije',
 'prefs-advancedsearchoptions'   => 'Napredne opcije',
 'prefs-advancedwatchlist'       => 'Napredne opcije',
-'prefs-display'                 => 'Prikaži opcije',
 'prefs-diffs'                   => 'razl',
 
 # User rights

@@ -1271,7 +1271,6 @@ $1",
 'prefs-advancedrendering'       => '進階選項',
 'prefs-advancedsearchoptions'   => '進階選項',
 'prefs-advancedwatchlist'       => '進階選項',
-'prefs-display'                 => '顯示選項',
 'prefs-diffs'                   => '差異',
 
 # User rights

@@ -1425,7 +1425,6 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'prefs-advancedrendering'       => 'Opções avançadas',
 'prefs-advancedsearchoptions'   => 'Opções avançadas',
 'prefs-advancedwatchlist'       => 'Opções avançadas',
-'prefs-display'                 => 'Opções de visionamento',
 'prefs-diffs'                   => 'Diferenças',
 
 # User rights

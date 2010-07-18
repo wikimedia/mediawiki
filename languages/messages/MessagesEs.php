@@ -1417,7 +1417,6 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'prefs-advancedrendering'       => 'Opciones avanzadas',
 'prefs-advancedsearchoptions'   => 'Opciones avanzadas',
 'prefs-advancedwatchlist'       => 'Opciones avanzadas',
-'prefs-display'                 => 'Opciones de mostrado',
 'prefs-diffs'                   => 'Diferencias',
 
 # User rights

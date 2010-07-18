@@ -1369,9 +1369,20 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Advanced options}}',
 'prefs-advancedwatchlist'       => 'Used in [[Special:Preferences]], tab "Watchlist".
 {{Identical|Advanced options}}',
-'prefs-display'                 => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".
+'prefs-displayrc'               => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".
 
-Used in [[Special:Preferences]], tab "Recent changes".',
+Used in [[Special:Preferences]], tab "Recent changes". The display options refer to:
+* {{msg-mw|Recentchangesdays}}
+* {{msg-mw|Recentchangescount}}',
+'prefs-displaysearchoptions'    => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".
+
+Used in [[Special:Preferences]], tab "Search options". The display options refer to:
+* {{msg-mw|Vector-simplesearch-preference}}',
+'prefs-displaywatchlist'        => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".
+
+Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
+* {{msg-mw|Prefs-watchlist-days}}
+* {{msg-mw|Prefs-watchlist-edits}}',
 'prefs-diffs'                   => 'Used in [[Special:Preferences]], tab "Misc".',
 
 # User rights

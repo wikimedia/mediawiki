@@ -1002,7 +1002,6 @@ Miet andern Nutzern koast du au ieber de Nutzerdischkurseyta Kontakt uffnahma, o
 'prefs-signature'           => 'Underschrift',
 'prefs-dateformat'          => 'Datumsfurmat',
 'prefs-timeoffset'          => 'Zeitunderschied',
-'prefs-display'             => 'Oazeigeoptiona',
 
 # User rights
 'userrights'                  => 'Nutzerrechteverwaltung',

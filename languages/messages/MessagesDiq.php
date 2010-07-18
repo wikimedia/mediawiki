@@ -1106,7 +1106,6 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'prefs-advancedrendering'       => 'Tercihê raverberdey',
 'prefs-advancedsearchoptions'   => 'Tercihê raverberdey',
 'prefs-advancedwatchlist'       => 'Tercihê raverberdey',
-'prefs-display'                 => 'Tercihan bımocne',
 'prefs-diffs'                   => 'Diffs',
 
 # User rights

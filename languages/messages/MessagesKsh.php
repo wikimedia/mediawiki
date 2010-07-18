@@ -1382,7 +1382,6 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'prefs-advancedrendering'       => 'Extra Ußwahle',
 'prefs-advancedsearchoptions'   => 'Extra Ußwahle',
 'prefs-advancedwatchlist'       => 'Extra Ußwahle',
-'prefs-display'                 => 'Ußwahle för et Leßte Aanzeje',
 'prefs-diffs'                   => 'Ongerscheide un Verjliische',
 
 # User rights

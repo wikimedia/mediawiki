@@ -1329,7 +1329,6 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'prefs-advancedrendering'       => 'Ñawparikusqa akllanakuna',
 'prefs-advancedsearchoptions'   => 'Ñawparikusqa akllanakuna',
 'prefs-advancedwatchlist'       => 'Ñawparikusqa akllanakuna',
-'prefs-display'                 => 'Akllanakunata rikuchiy',
 'prefs-diffs'                   => 'Wakin kaykuna',
 
 # User rights

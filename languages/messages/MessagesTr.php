@@ -1376,7 +1376,6 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'prefs-advancedrendering'       => 'Gelişmiş seçenekler',
 'prefs-advancedsearchoptions'   => 'Gelişmiş seçenekler',
 'prefs-advancedwatchlist'       => 'Gelişmiş seçenekler',
-'prefs-display'                 => 'Görüntü seçenekleri',
 'prefs-diffs'                   => 'Farklar',
 
 # User rights

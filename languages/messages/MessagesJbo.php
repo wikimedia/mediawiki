@@ -64,9 +64,11 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|klesi|klesi}}',
-'category_header' => 'fe le kibypapri cu klesi "$1"',
-'subcategories'   => "le'a ti",
+'pagecategories'         => '{{PLURAL:$1|klesi|klesi}}',
+'category_header'        => 'fe le kibypapri cu klesi "$1"',
+'subcategories'          => "le'a ti",
+'category-subcat-count'  => "$2 klesi cu vipsi le vi klesi .i $1 vipkle cu ni'a se jarco",
+'category-article-count' => "$2 kibypapri cu cmima le vi klesi .i $1 kibypapri cu ni'a se jarco",
 
 'mytalk'     => 'casnu mi',
 'navigation' => 'ckupau',
@@ -177,10 +179,11 @@ $messages = array(
 'editingcomment' => 'ca galfi le selcmene be zoi $1 (comment)',
 
 # History pages
-'cur'        => 'cab',
-'last'       => "prula'i",
-'page_first' => 'pamoi',
-'page_last'  => 'fanmo',
+'revisionasof' => "velfarvi de'i",
+'cur'          => 'cab',
+'last'         => "prula'i",
+'page_first'   => 'pamoi',
+'page_last'    => 'fanmo',
 
 # Revision deletion
 'rev-delundel' => 'jarco/mipri',
@@ -214,6 +217,8 @@ $messages = array(
 'hide'              => 'Toljarco',
 'show'              => 'Jarco',
 'minoreditletter'   => 'm',
+'newpageletter'     => 'n',
+'boteditletter'     => 'z',
 
 # Recent changes linked
 'recentchangeslinked' => "srana nunga'i",

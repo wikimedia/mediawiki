@@ -1323,7 +1323,6 @@ $1",
 'prefs-advancedrendering'       => '詳細設定',
 'prefs-advancedsearchoptions'   => '詳細設定',
 'prefs-advancedwatchlist'       => '詳細設定',
-'prefs-display'                 => '表示の設定',
 'prefs-diffs'                   => '差分',
 
 # User rights

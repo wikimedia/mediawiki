@@ -992,7 +992,6 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'prefs-advancedrendering'     => 'Ēmpirsin treppušas opciōnis',
 'prefs-advancedsearchoptions' => 'Ēmpirsin treppušas opciōnis',
 'prefs-advancedwatchlist'     => 'Ēmpirsin treppušas opciōnis',
-'prefs-display'               => 'Waidīnsnas opciōnis',
 
 # User rights
 'userrights'                  => 'Perwāldais enwarīnsenins stēisan tērpautajan',
