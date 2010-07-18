@@ -218,12 +218,13 @@ class Title {
 			return array();
 		}
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ),
-			'page_id IN (' . $dbr->makeList( $ids ) . ')', __METHOD__ );
+		
+		$res = $dbr->select( 'page', array( '*' ),
+			array( 'page_id' => $ids ), __METHOD__ );
 
 		$titles = array();
 		foreach ( $res as $row ) {
-			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$titles[] = Title::newFromRow( $row );
 		}
 		return $titles;
 	}
