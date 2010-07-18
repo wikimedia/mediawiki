@@ -2096,7 +2096,7 @@ function &wfGetMimeMagic() {
  * variables are then checked in sequence, and if none are set /tmp is
  * returned as the generic Unix default.
  *
- * NOTE: When possible, use the tempfile() function to create temporary
+ * NOTE: When possible, use the tempnam() function to create temporary
  * files to avoid race conditions on file creation, etc.
  *
  * @return String
