@@ -1826,7 +1826,9 @@ You can also choose to let others contact you through your user or talk page wit
 'prefs-advancedrendering'       => 'Advanced options',
 'prefs-advancedsearchoptions'   => 'Advanced options',
 'prefs-advancedwatchlist'       => 'Advanced options',
-'prefs-display'                 => 'Display options',
+'prefs-displayrc'               => 'Display options',
+'prefs-displaysearchoptions'    => 'Display options',
+'prefs-displaywatchlist'        => 'Display options',
 'prefs-diffs'                   => 'Diffs',
 
 # User rights
