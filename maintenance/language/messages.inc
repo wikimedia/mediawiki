@@ -990,7 +990,9 @@ $wgMessageStructure = array(
 		'prefs-advancedrendering',
 		'prefs-advancedsearchoptions',
 		'prefs-advancedwatchlist',
-		'prefs-display',
+		'prefs-displayrc',
+		'prefs-displaysearchoptions',
+		'prefs-displaywatchlist',
 		'prefs-diffs',
 	),
 	'userrights' => array(
