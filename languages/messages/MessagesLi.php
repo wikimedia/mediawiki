@@ -750,8 +750,8 @@ De kèns [[Special:Search/{{PAGENAME}}|nao dees term zeuken]] in anger pazjena\'
 'blocked-notice-logextract'        => "Deze gebroeker is noe geblok.
 De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'clearyourcache'                   => "'''Lèt op:''' Nao 't opsjlaon mós te diene browserbuffer wisse óm de verangeringe te zeen: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''Firefox / IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
-'usercssyoucanpreview'             => "'''Tip:''' Gebroek de knóp 'Bekiek dees bewirking' om dien nuuj CSS te teste veurdets te opsjleis.",
-'userjsyoucanpreview'              => "'''Tip:''' Gebroek de knóp 'Bekiek dees bewirking' om dien nuuj JS te teste veurdets te opsjleis.",
+'usercssyoucanpreview'             => "'''Tip:''' Gebroek de knóp '{{int:showpreview}}' om dien nuuj CSS te teste veurdets te opsjleis.",
+'userjsyoucanpreview'              => "'''Tip:''' Gebroek de knóp '{{int:showpreview}}' om dien nuuj JS te teste veurdets te opsjleis.",
 'usercsspreview'                   => "'''Dit is allein 'n veurvertuun van dien perseunlike css, deze is neet opgeslage!'''",
 'userjspreview'                    => "'''Let op: doe tes noe dien perseunlik JavaScript. De pazjena is neet opgeslage!'''",
 'userinvalidcssjstitle'            => "'''Waorsjuwing:''' d'r is geine skin \"\$1\". Let op: dien eige .css- en .js-pazjena's beginne mèt  'ne kleine letter, bijveurbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
@@ -790,11 +790,13 @@ groot, wat groter is dan 't maximum van $2 kilobyte. Opslaon is neet meugelik.''
 'readonlywarning'                  => "WAARSJUWING: De database is vasgezèt veur ongerhoud, dus op 't mement kins e dien verangeringe neet opsjlaon. De kins dien tèks 't biste opsjlaon in 'n tèksbesjtand om 't later hie nog es te prebere.
 
 t Is geslaote waenger: $1",
-'protectedpagewarning'             => 'WAARSJUWING:  Dees pazjena is besjermd zoedat ze allein doer gebroekers mit administratorrechte kint weure verangerd.',
+'protectedpagewarning'             => "'''WAARSJUWING: Dees pazjena is besjermp zoedat ze allein doer gebroekers mit administratorrechte kint weure verangerd.'''
+De lèste logbookregel steit hierónger:",
 'semiprotectedpagewarning'         => "'''Let op:''' Dees pazjena is beveilig en kin allein door geregistreerde gebroekers bewerk waere.
 De lèste logbookregel steit hiejónger:",
 'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveilig en kin allein door beheerders bewerk waere, omdat deze is opgenaome in de volgende {{PLURAL:$1|pagina|pagina's}} {{PLURAL:$1|dae|die}} beveilig {{PLURAL:$1|is|zeen}} met de cascade-optie:",
-'titleprotectedwarning'            => "'''WAORSJUWING: Deze pagina is beveilig zodet allein inkele gebroekers 'm kinne aanmake. De beneuds [[Special:ListGroupRights|speciale rechte]].'''",
+'titleprotectedwarning'            => "'''WAORSJUWING: Deze pagina is beveilig zodet allein inkele gebroekers 'm kinne aanmake. De beneuds [[Special:ListGroupRights|speciale rechte]].'''
+De lèste logbookregel vólg hier:",
 'templatesused'                    => 'Op dees pagina {{PLURAL:$1|gebroek sjabloon|gebroekde sjablone}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablone}} gebroek in dees veurvertuining:',
 'templatesusedsection'             => '{{PLURAL:$1|Sjabloon|Sjablone}} in dees sectie in gebroek:',
@@ -812,7 +814,7 @@ De kèns al besjtaonde pazjena's verangere, of de kèns [[Special:UserLogin|dich
 
 Euverwaeg of 't terech is dets te wiejer wèrks aan dees pazjena. Veur dien gemaak stuit hiejónger 't logbook eweggesjafde pazjena's veur dees pazjena:",
 'moveddeleted-notice'              => "Dees pazjena is eweggesjaf.
-Ter informatie weurt 't verwijderingslogbook van dees pazjena hiejónger weergegeve.",
+Ter informatie weurt 't verwijderingslogbook en 't verplaatsjingslogbook van dees pazjena hiejónger weergegeve.",
 'edit-hook-aborted'                => "De bewèrking is aafgebroke door 'ne 'hook'.
 D'r is gein toelichting besjikbaar.",
 'edit-gone-missing'                => 'De pazjena is neet biegewirk.
@@ -928,11 +930,12 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 'revdelete-suppress'          => 'Ongerdruk gegaeves veur zowaal admins es angere',
 'revdelete-unsuppress'        => 'Verwijder beperkinge op truuk gezatte wieziginge',
 'revdelete-log'               => 'Reeje:',
-'revdelete-submit'            => 'Pas toe op de geselecteerde bewèrking',
+'revdelete-submit'            => 'Pas toe op de geselecteerde {{PLURAL:$1|bewèrking|bewèrkinger}}',
 'revdelete-logentry'          => 'zichbaarheid van bewerkinge is gewiezig veur [[$1]]',
 'logdelete-logentry'          => 'gewiezigde zichbaarheid van gebeurtenis [[$1]]',
 'revdelete-success'           => "'''Wieziging zichbaarheid succesvol ingesteld.'''",
-'revdelete-failure'           => "'''De zichbaarheid veur de versie kos neet ingesteld waere.'''",
+'revdelete-failure'           => "'''De zichbaarheid veur de versie kos neet ingesteld waere.'''
+$1",
 'logdelete-success'           => "'''Zichbaarheid van de gebeurtenis succesvol ingesteld.'''",
 'revdel-restore'              => 'Zichbaarheid wiezige',
 'revdel-restore-deleted'      => 'gwösj versies',
@@ -1168,7 +1171,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'prefs-advancedrendering'     => 'Wiejer instèllinger',
 'prefs-advancedsearchoptions' => 'Wiejer instèllinger',
 'prefs-advancedwatchlist'     => 'Wiejer instèllinger',
-'prefs-display'               => 'Toeaningsinstèllinger',
+'prefs-displayrc'             => 'Toeaningsinstèllinger',
 'prefs-diffs'                 => 'Vers',
 
 # User rights
@@ -1415,7 +1418,8 @@ Aangeweze {{PLURAL:\$3|bestandjstype|bestandjstypes}}zeen \$2.",
 'emptyfile'                   => "'t Besjtand wats re höbs geupload is laeg. Dit kump waorsjienliek door 'n typfout in de besjtandsnaom. Kiek estebleef ofs te dit besjtand wirkelik wils uploade.",
 'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek '''<tt>[[:$1]]</tt>''' of se dat besjtand mesjien wils vervange.
 [[$1|thumb]]",
-'filepageexists'              => "De besjrievingspazjena veur dit bestandj besjteit al op '''<tt>[[:$1]]</tt>''', meh d'r besjteit gein bestandj mit deze naam. De samevatting dies te höbs opgegaeve zal neet op de besjrievingspazjena versjiene. Bewirk de pazjena handjmaotig óm dien besjrieving dao te tuine.",
+'filepageexists'              => "De besjrievingspazjena veur dit bestandj besjteit al op '''<tt>[[:$1]]</tt>''', meh d'r besjteit gein bestandj mit deze naam. De samevatting dies te höbs opgegaeve zal neet op de besjrievingspazjena versjiene. Bewirk de pazjena handjmaotig óm dien besjrieving dao te tuine.
+[[$1|thumb]]",
 'fileexists-extension'        => "'n bestand met dezelfde naam bestuit al: [[$2|thumb]]
 * Naam van 't geüploade bestand: '''<tt>[[:$1]]</tt>'''
 * Naam van 't bestaonde bestand: '''<tt>[[:$2]]</tt>'''
@@ -1446,7 +1450,7 @@ Raodpleeg t verwiederingslogbook veurdet se wiejer geis.',
 'sourcefilename'              => 'Oorspronkelike bestandsnaam:',
 'destfilename'                => 'Doeltitel:',
 'upload-maxfilesize'          => 'Maximale bestandjsgrootte: $1',
-'watchthisupload'             => 'Volg dees pazjena',
+'watchthisupload'             => 'Volg dit bestandj',
 'filewasdeleted'              => "d'r Is eerder 'n bestandj mit deze naam verwiederd. Raodpleeg 't $1 veurdetse 't opnuuj toevoegs.",
 'upload-wasdeleted'           => "'''Waarsjuwing: Doe bös 'n bestand det eerder verwiederd woor aan 't uploade.'''
 

@@ -1043,7 +1043,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 'prefs-advancedrendering'     => 'উচ্চতর অপশন',
 'prefs-advancedsearchoptions' => 'উচ্চতর অপশন',
 'prefs-advancedwatchlist'     => 'উচ্চতর অপশন',
-'prefs-display'               => 'প্রদর্শনী অপশন',
 'prefs-diffs'                 => 'পার্থক্য',
 
 # User rights

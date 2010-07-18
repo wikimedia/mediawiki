@@ -1391,7 +1391,9 @@ $1",
 'prefs-advancedrendering'       => 'Напредни нагодувања',
 'prefs-advancedsearchoptions'   => 'Напредни нагодувања',
 'prefs-advancedwatchlist'       => 'Напредни нагодувања',
-'prefs-display'                 => 'Нагодувања за приказ',
+'prefs-displayrc'               => 'Нагодувања за приказ',
+'prefs-displaysearchoptions'    => 'Нагодувања за приказ',
+'prefs-displaywatchlist'        => 'Нагодувања за приказ',
 'prefs-diffs'                   => 'Разлики',
 
 # User rights

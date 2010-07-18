@@ -1301,7 +1301,6 @@ $1",
 'prefs-advancedrendering'       => 'Разширени настройки',
 'prefs-advancedsearchoptions'   => 'Разширени настройки',
 'prefs-advancedwatchlist'       => 'Разширени настройки',
-'prefs-display'                 => 'Настройки за показване на списъка',
 'prefs-diffs'                   => 'Разлики',
 
 # User rights

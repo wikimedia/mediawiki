@@ -1392,7 +1392,9 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'prefs-advancedrendering'       => 'Aandere instellingen',
 'prefs-advancedsearchoptions'   => 'Aandere instellingen',
 'prefs-advancedwatchlist'       => 'Aandere instellingen',
-'prefs-display'                 => 'Weergave-instellingen',
+'prefs-displayrc'               => 'Weergave-instellingen',
+'prefs-displaysearchoptions'    => 'Weergave-instellingen',
+'prefs-displaywatchlist'        => 'Weergave-instellingen',
 'prefs-diffs'                   => 'Verschillen',
 
 # User rights

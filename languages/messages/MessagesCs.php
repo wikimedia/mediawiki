@@ -472,7 +472,7 @@ $messages = array(
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'Neindexované stránky',
 
-'mainpagetext'      => "'''MediaWiki bylo úspěšně nainstalováno.'''",
+'mainpagetext'      => "'''MediaWiki byla úspěšně nainstalována.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
 
 == Začínáme ==
@@ -1430,7 +1430,9 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'prefs-advancedrendering'       => 'Rozšířené možnosti',
 'prefs-advancedsearchoptions'   => 'Rozšířené možnosti',
 'prefs-advancedwatchlist'       => 'Rozšířené možnosti',
-'prefs-display'                 => 'Nastavení vzhledu',
+'prefs-displayrc'               => 'Možnosti zobrazení',
+'prefs-displaysearchoptions'    => 'Možnosti zobrazení',
+'prefs-displaywatchlist'        => 'Možnosti zobrazení',
 'prefs-diffs'                   => 'Porovnání verzí',
 
 # User rights

@@ -1135,7 +1135,6 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'prefs-advancedrendering'       => 'Uchchaa pasand',
 'prefs-advancedsearchoptions'   => 'Uchchaa pasand',
 'prefs-advancedwatchlist'       => 'Uchchaa pasand',
-'prefs-display'                 => 'Dekhae waala option',
 'prefs-diffs'                   => 'Farka',
 
 # User rights

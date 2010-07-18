@@ -1212,7 +1212,6 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'prefs-advancedrendering'       => 'Antsipirihan-tsafidy',
 'prefs-advancedsearchoptions'   => 'Antsipirihan-tsafidy',
 'prefs-advancedwatchlist'       => 'Antsipirihan-tsafidy',
-'prefs-display'                 => 'safidim-tseho',
 'prefs-diffs'                   => 'Diff',
 
 # User rights

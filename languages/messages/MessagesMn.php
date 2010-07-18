@@ -1061,7 +1061,6 @@ $1 тэмдэгтээс богино байх ёстой.',
 'prefs-advancedrendering'     => 'Ахимаг хэмжээний сонголтууд',
 'prefs-advancedsearchoptions' => 'Ахимаг хэмжээний сонголтууд',
 'prefs-advancedwatchlist'     => 'Ахимаг хэмжээний сонголтууд',
-'prefs-display'               => 'Харагдах байдлын сонголтууд',
 'prefs-diffs'                 => 'Ялгаанууд',
 
 # User rights

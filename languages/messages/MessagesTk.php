@@ -1128,7 +1128,6 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'prefs-advancedrendering'       => 'Giňeldilen opsiýalar',
 'prefs-advancedsearchoptions'   => 'Giňeldilen opsiýalar',
 'prefs-advancedwatchlist'       => 'Giňeldilen opsiýalar',
-'prefs-display'                 => 'Görkeziş opsiýalary',
 'prefs-diffs'                   => 'Tapawutlar',
 
 # User rights

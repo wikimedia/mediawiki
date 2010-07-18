@@ -1354,7 +1354,6 @@ $1",
 'prefs-advancedrendering'       => 'ជំរើសថ្នាក់ខ្ពស់',
 'prefs-advancedsearchoptions'   => 'ជំរើសថ្នាក់ខ្ពស់',
 'prefs-advancedwatchlist'       => 'ជំរើសថ្នាក់ខ្ពស់',
-'prefs-display'                 => 'ជំរើសការបង្ហាញ',
 'prefs-diffs'                   => 'ភាពខុសគ្នា',
 
 # User rights

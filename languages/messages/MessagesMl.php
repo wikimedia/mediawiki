@@ -1377,7 +1377,6 @@ $1",
 'prefs-advancedrendering'       => 'വിപുലമായ ഉപാധികൾ',
 'prefs-advancedsearchoptions'   => 'വിപുലമായ ഉപാധികൾ',
 'prefs-advancedwatchlist'       => 'വിപുലമായ ഉപാധികൾ',
-'prefs-display'                 => 'പ്രദർശന ഐച്ഛികങ്ങൾ',
 'prefs-diffs'                   => 'വ്യത്യാസങ്ങൾ',
 
 # User rights

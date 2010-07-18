@@ -154,7 +154,7 @@ $messages = array(
 'tog-watchlisthideminor'      => "Kuzhat ar c'hemmoù dister er rollad evezhiañ",
 'tog-watchlisthideliu'        => 'Er roll evezhiañ, kuzhat kemmoù an implijerien kevreet.',
 'tog-watchlisthideanons'      => 'Er roll evezhiañ, kuzhat kemmoù an implijerien dianav',
-'tog-watchlisthidepatrolled'  => "Kuzhat ar c'hemmoù evezhiet diouzh ar roll heuliañ",
+'tog-watchlisthidepatrolled'  => "Kuzhat ar c'hemmoù evezhiet diouzh ar roll evezhiañ",
 'tog-nolangconversion'        => 'Diweredekaat amdroadur an adstummoù yezh',
 'tog-ccmeonemails'            => 'Kas din un eilskrid eus ar posteloù a gasan da implijerien all',
 'tog-diffonly'                => "Arabat diskouez danvez ar pennadoù dindan an diforc'hioù",
@@ -1211,7 +1211,9 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'prefs-advancedrendering'       => 'Dibarzhioù araokaet',
 'prefs-advancedsearchoptions'   => 'Dibarzhioù araokaet',
 'prefs-advancedwatchlist'       => 'Dibarzhioù araokaet',
-'prefs-display'                 => 'Dibarzhioù diskwel',
+'prefs-displayrc'               => 'Dibarzhioù diskwel',
+'prefs-displaysearchoptions'    => 'Dibarzhioù diskwel',
+'prefs-displaywatchlist'        => 'Dibarzhioù diskwel',
 'prefs-diffs'                   => "Diforc'hioù",
 
 # User rights

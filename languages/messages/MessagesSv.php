@@ -1409,7 +1409,6 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'prefs-advancedrendering'       => 'Avancerade alternativ',
 'prefs-advancedsearchoptions'   => 'Avancerade alternativ',
 'prefs-advancedwatchlist'       => 'Avancerade alternativ',
-'prefs-display'                 => 'Visningsalternativ',
 'prefs-diffs'                   => 'Skillnader',
 
 # User rights

@@ -1202,7 +1202,6 @@ $1",
 'prefs-advancedrendering'       => 'გაფართოებული პარამეტრები',
 'prefs-advancedsearchoptions'   => 'გაფართოებული პარამეტრები',
 'prefs-advancedwatchlist'       => 'გაფართოებული კონფიგურაციები',
-'prefs-display'                 => 'გამოსახვის კონფიგურაციები',
 'prefs-diffs'                   => 'სხვაობა ვერსიებს შორის',
 
 # User rights

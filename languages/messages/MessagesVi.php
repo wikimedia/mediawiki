@@ -1349,7 +1349,6 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'prefs-advancedrendering'       => 'Tùy chọn nâng cao',
 'prefs-advancedsearchoptions'   => 'Tùy chọn nâng cao',
 'prefs-advancedwatchlist'       => 'Tùy chọn nâng cao',
-'prefs-display'                 => 'Tùy chọn hiển thị',
 'prefs-diffs'                   => 'Khác biệt',
 
 # User rights

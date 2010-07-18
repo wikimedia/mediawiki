@@ -1102,7 +1102,6 @@ Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme,
 'prefs-advancedrendering'       => 'Uutwiedede Optione',
 'prefs-advancedsearchoptions'   => 'Uutwiedede Optione',
 'prefs-advancedwatchlist'       => 'Uutwiedede Optione',
-'prefs-display'                 => 'Anwies-Optione',
 'prefs-diffs'                   => 'Versionsfergliek',
 
 # User rights

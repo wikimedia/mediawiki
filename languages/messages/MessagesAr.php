@@ -1559,7 +1559,6 @@ $1",
 'prefs-advancedrendering'       => 'خيارات متقدمة',
 'prefs-advancedsearchoptions'   => 'خيارات متقدمة',
 'prefs-advancedwatchlist'       => 'خيارات متقدمة',
-'prefs-display'                 => 'خيارات العرض',
 'prefs-diffs'                   => 'فروقات',
 
 # User rights

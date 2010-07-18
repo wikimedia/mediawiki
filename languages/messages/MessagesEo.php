@@ -1374,7 +1374,6 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'prefs-advancedrendering'       => 'Progresaj opcioj',
 'prefs-advancedsearchoptions'   => 'Progresaj opcioj',
 'prefs-advancedwatchlist'       => 'Progresaj opcioj',
-'prefs-display'                 => 'Montraj opcioj',
 'prefs-diffs'                   => 'Diferencoj',
 
 # User rights

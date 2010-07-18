@@ -1154,7 +1154,6 @@ $1",
 'prefs-advancedrendering'       => 'پیشرفتگین گزینه',
 'prefs-advancedsearchoptions'   => 'پیشرفتگین گزینه',
 'prefs-advancedwatchlist'       => 'پیشرفتگین گزینه',
-'prefs-display'                 => 'پیشدارگ گزینه هان',
 'prefs-diffs'                   => 'پرک',
 
 # User rights

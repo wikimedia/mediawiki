@@ -1382,7 +1382,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'prefs-advancedrendering'       => 'Rozšírené možnosti',
 'prefs-advancedsearchoptions'   => 'Rozšírené možnosti',
 'prefs-advancedwatchlist'       => 'Rozšírené možnosti',
-'prefs-display'                 => 'Možnosti zobrazenia',
 'prefs-diffs'                   => 'Rozdiely',
 
 # User rights

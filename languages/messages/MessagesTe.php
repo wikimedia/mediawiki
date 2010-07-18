@@ -1225,7 +1225,6 @@ $1",
 'prefs-advancedrendering'       => 'ఉన్నత ఎంపికలు',
 'prefs-advancedsearchoptions'   => 'ఉన్నత ఎంపికలు',
 'prefs-advancedwatchlist'       => 'ఉన్నత ఎంపికలు',
-'prefs-display'                 => 'ప్రదర్శన ఎంపికలు',
 'prefs-diffs'                   => 'తేడాలు',
 
 # User rights

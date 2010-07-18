@@ -1272,7 +1272,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'prefs-advancedrendering'       => 'Opcions avançades',
 'prefs-advancedsearchoptions'   => 'Opcions avançades',
 'prefs-advancedwatchlist'       => 'Opcions avançades',
-'prefs-display'                 => "Opcions d'aparença",
+'prefs-displayrc'               => "Opcions d'aparença",
 'prefs-diffs'                   => 'Difs',
 
 # User rights

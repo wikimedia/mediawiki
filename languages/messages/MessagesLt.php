@@ -1265,7 +1265,6 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'prefs-advancedrendering'       => 'Papildomi nustatymai',
 'prefs-advancedsearchoptions'   => 'Papildomi nustatymai',
 'prefs-advancedwatchlist'       => 'Papildomi nustatymai',
-'prefs-display'                 => 'Rodymo nustatymai',
 'prefs-diffs'                   => 'Skirtumai',
 
 # User rights

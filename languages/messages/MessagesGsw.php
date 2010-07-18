@@ -1208,7 +1208,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'prefs-advancedrendering'       => 'Erwytereti Optione',
 'prefs-advancedsearchoptions'   => 'Erwytereti Optione',
 'prefs-advancedwatchlist'       => 'Erwytereti Optione',
-'prefs-display'                 => 'Aazeigoptione',
 'prefs-diffs'                   => 'Versionsverglych',
 
 # User rights

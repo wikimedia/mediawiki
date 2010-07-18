@@ -1359,7 +1359,6 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'prefs-advancedrendering'       => 'Opcions avançadas',
 'prefs-advancedsearchoptions'   => 'Opcions avançadas',
 'prefs-advancedwatchlist'       => 'Opcions avançadas',
-'prefs-display'                 => "Opcions d'afichatge",
 'prefs-diffs'                   => 'Diferéncias',
 
 # User rights

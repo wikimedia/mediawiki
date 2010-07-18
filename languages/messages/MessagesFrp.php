@@ -330,8 +330,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Fâre vêre lo nombro d’utilisators que siuvont les pâges',
 'tog-oldsig'                  => 'Prèvisualisacion de la signatura ègzistenta :',
 'tog-fancysig'                => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
-'tog-externaleditor'          => 'Utilisar un èditor de tèxto de defôr per dèfôt (por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator)',
-'tog-externaldiff'            => 'Utilisar un comparator de defôr per dèfôt (por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator)',
+'tog-externaleditor'          => 'Utilisar per dèfôt un èditor de tèxto de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator)',
+'tog-externaldiff'            => 'Utilisar per dèfôt un comparator de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator)',
 'tog-showjumplinks'           => 'Activar los lims « navigacion » et « rechèrche » d’amont la pâge',
 'tog-uselivepreview'          => 'Utilisar l’apèrçu vito fêt (at fôta de JavaScript) (èxpèrimentâl)',
 'tog-forceeditsummary'        => 'M’avèrtir quand j’é pas spècefiâ de rèsumâ de changement',
@@ -354,7 +354,7 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Stilo de la police de la bouèta d’èdicion :',
-'editfont-default'   => 'Celi du navigator per dèfôt',
+'editfont-default'   => 'Celi per dèfôt du navigator',
 'editfont-monospace' => 'Police monoèspâciê',
 'editfont-sansserif' => 'Police sen empiotament',
 'editfont-serif'     => 'Police avouéc empiotaments',
@@ -460,31 +460,32 @@ $messages = array(
 'faqpage'        => 'Project:FDQ',
 
 # Vector skin
-'vector-action-addsection'   => 'Apondre un sujèt',
-'vector-action-delete'       => 'Suprimar',
-'vector-action-move'         => 'Renomar',
-'vector-action-protect'      => 'Protègiér',
-'vector-action-undelete'     => 'Refâre',
-'vector-action-unprotect'    => 'Dèprotègiér',
-'vector-namespace-category'  => 'Catègorie',
-'vector-namespace-help'      => 'Éde',
-'vector-namespace-image'     => 'Fichiér',
-'vector-namespace-main'      => 'Pâge',
-'vector-namespace-media'     => 'Mèdia',
-'vector-namespace-mediawiki' => 'Mèssâjo',
-'vector-namespace-project'   => 'Pâge du projèt',
-'vector-namespace-special'   => 'Pâge spèciâla',
-'vector-namespace-talk'      => 'Discussion',
-'vector-namespace-template'  => 'Modèlo',
-'vector-namespace-user'      => 'Pâge utilisator',
-'vector-view-create'         => 'Fâre',
-'vector-view-edit'           => 'Changiér',
-'vector-view-history'        => 'Fâre vêre l’historico',
-'vector-view-view'           => 'Liére',
-'vector-view-viewsource'     => 'Vêre lo tèxto sôrsa',
-'actions'                    => 'Accions',
-'namespaces'                 => 'Èspâços de noms',
-'variants'                   => 'Variantes',
+'vector-action-addsection'       => 'Apondre un sujèt',
+'vector-action-delete'           => 'Suprimar',
+'vector-action-move'             => 'Renomar',
+'vector-action-protect'          => 'Protègiér',
+'vector-action-undelete'         => 'Refâre',
+'vector-action-unprotect'        => 'Dèprotègiér',
+'vector-namespace-category'      => 'Catègorie',
+'vector-namespace-help'          => 'Éde',
+'vector-namespace-image'         => 'Fichiér',
+'vector-namespace-main'          => 'Pâge',
+'vector-namespace-media'         => 'Mèdia',
+'vector-namespace-mediawiki'     => 'Mèssâjo',
+'vector-namespace-project'       => 'Pâge du projèt',
+'vector-namespace-special'       => 'Pâge spèciâla',
+'vector-namespace-talk'          => 'Discussion',
+'vector-namespace-template'      => 'Modèlo',
+'vector-namespace-user'          => 'Pâge utilisator',
+'vector-simplesearch-preference' => 'Activar los consèlys de rechèrche mèlyorâs (solament por « Vèctor »)',
+'vector-view-create'             => 'Fâre',
+'vector-view-edit'               => 'Changiér',
+'vector-view-history'            => 'Fâre vêre l’historico',
+'vector-view-view'               => 'Liére',
+'vector-view-viewsource'         => 'Vêre lo tèxto sôrsa',
+'actions'                        => 'Accions',
+'namespaces'                     => 'Èspâços de noms',
+'variants'                       => 'Variantes',
 
 'errorpagetitle'    => 'Èrror',
 'returnto'          => 'Tornar a la pâge $1.',
@@ -857,7 +858,7 @@ Voutra adrèce IP serat encartâ dens l’historico de ceta pâge.",
 Se vos tornâd clicar dessus « Sôvar ceta pâge », voutron changement serat sôvâ sen novél avèrtissement.",
 'missingcommenttext'               => 'Volyéd fâre voutron comentèro ce-desot.',
 'missingcommentheader'             => "'''Rapèl :''' vos éd p’oncor balyê de sujèt ou ben de titro a ceti comentèro.
-Se vos tornâd clicar dessus « Sôvar ceta pâge », voutron changement serat sôvâ sen novél avèrtissement.",
+Se vos tornâd clicar dessus « {{int:savearticle}} », voutron changement serat sôvâ sen titro.",
 'summary-preview'                  => 'Prèvisualisacion du rèsumâ :',
 'subject-preview'                  => 'Prèvisualisacion du sujèt / titro :',
 'blockedtitle'                     => 'L’utilisator est blocâ.',
@@ -1200,10 +1201,24 @@ Volyéd controlar los jornals.',
 Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
 
 # Revision move
-'moverevlogentry'        => 'at dèplaciê {{PLURAL:$3|yona vèrsion|$3 vèrsions}} de $1 a $2',
-'revisionmove'           => 'Dèplaciér des vèrsions dês « $1 »',
-'revmove-reasonfield'    => 'Rêson :',
-'revmove-nullmove-title' => 'Crouyo titro',
+'moverevlogentry'              => 'at dèplaciê {{PLURAL:$3|yona vèrsion|$3 vèrsions}} de $1 a $2',
+'revisionmove'                 => 'Dèplaciér des vèrsions dês « $1 »',
+'revmove-explain'              => 'Cetes vèrsions seront dèplaciês de $1 vers la pâge ciba spècefiâ. Se la ciba ègziste pas, serat fêta, ôtrament celes vèrsions seront fusionâs avouéc l’historico de la pâge.',
+'revmove-legend'               => 'Buchiéd la pâge ciba et pués la rêson',
+'revmove-submit'               => 'Dèplaciér les vèrsions vers la pâge chouèsia',
+'revisionmoveselectedversions' => 'Dèplaciér les vèrsions chouèsies',
+'revmove-reasonfield'          => 'Rêson :',
+'revmove-titlefield'           => 'Pâge ciba :',
+'revmove-badparam-title'       => 'Crouyos paramètres',
+'revmove-badparam'             => 'Voutra requéta contint des paramètres ilègâls ou ben ensufisents.
+Volyéd clicar dessus « Devant » et pués tornâd èprovar.',
+'revmove-norevisions-title'    => 'Vèrsion ciba envalida',
+'revmove-norevisions'          => 'Vos éd pas spècefiâ yona ou ben un mouél de vèrsions cibes por fâre cela fonccionalitât ou ben la vèrsion spècefiâ ègziste pas.',
+'revmove-nullmove-title'       => 'Crouyo titro',
+'revmove-nullmove'             => 'Les pâges sôrsa et ciba sont pariéres.
+Volyéd clicar dessus « Devant » et pués buchiéd un nom de pâge difèrent de « $1 ».',
+'revmove-success-existing'     => '{{PLURAL:$1|Yona vèrsion de [[$2]] at étâ dèplaciê|$1 vèrsions de [[$2]] ont étâ dèplaciês}} vers la pâge ègzistenta [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Yona vèrsion de [[$2]] at étâ dèplaciê|$1 vèrsions de [[$2]] ont étâ dèplaciês}} vers la pâge [[$3]] novèlament fêta.',
 
 # History merging
 'mergehistory'                     => 'Fusionar los historicos de les pâges',
@@ -1278,6 +1293,7 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'searchprofile-everything-tooltip' => 'Rechèrchiér dens tot lo seto (les pâges de discussion avouéc)',
 'searchprofile-advanced-tooltip'   => 'Chouèsir los èspâços de noms por la rechèrche',
 'search-result-size'               => '$1 ($2 mot{{PLURAL:$2||s}})',
+'search-result-category-size'      => '$1 membro{{PLURAL:$1||s}} ($2 sot-catègorie{{PLURAL:$2||s}}, $3 fichiér{{PLURAL:$3||s}})',
 'search-result-score'              => 'Rapôrt : $1%',
 'search-redirect'                  => '(redirèccion dês $1)',
 'search-section'                   => '(sèccion $1)',
@@ -1428,7 +1444,9 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'prefs-advancedrendering'       => 'Chouèx avanciês',
 'prefs-advancedsearchoptions'   => 'Chouèx avanciês',
 'prefs-advancedwatchlist'       => 'Chouèx avanciês',
-'prefs-display'                 => 'Chouèx de visualisacion',
+'prefs-displayrc'               => 'Chouèx de visualisacion',
+'prefs-displaysearchoptions'    => 'Chouèx de visualisacion',
+'prefs-displaywatchlist'        => 'Chouèx de visualisacion',
 'prefs-diffs'                   => 'Difèrences',
 
 # User rights
@@ -1539,6 +1557,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
 'right-revisionmove'          => 'Dèplaciér des vèrsions',
+'right-selenium'              => 'Ègzécutar les èprôves « Selenium »',
 
 # User rights log
 'rightslog'      => 'Jornal des changements de statut d’utilisator',
@@ -1643,6 +1662,9 @@ Les pâges de voutra [[Special:Watchlist|lista de survelyence]] sont '''en grâs
 'upload_directory_missing'    => 'Lo rèpèrtouèro de tèlèchargement ($1) est entrovâblo et pués at pas possu étre fêt per lo sèrvor vouèbe.',
 'upload_directory_read_only'  => 'Lo rèpèrtouèro de tèlèchargement ($1) est pas accèssiblo en ècritura dês lo sèrvor vouèbe.',
 'uploaderror'                 => 'Èrror de tèlèchargement',
+'upload-recreate-warning'     => "'''Atencion : un fichiér avouéc cél nom at étâ suprimâ ou ben dèplaciê.'''
+
+Los jornals de les suprèssions et des changements de nom de cela pâge sont montrâs ce-desot :",
 'uploadtext'                  => "Utilisâd ceti formulèro por tèlèchargiér des fichiérs sur lo sèrvor.
 Por vêre ou rechèrchiér des émâges mandâs dês devant, vêde la [[Special:FileList|lista de les émâges]].
 Los tèlèchargements sont asse-ben encartâs dens lo [[Special:Log/upload|jornal des tèlèchargements]], et les suprèssions dens lo [[Special:Log/delete|jornal de les suprèssions]].
@@ -1679,6 +1701,17 @@ Lo volyéd renomar et pués lo tornar tèlèchargiér.',
 'filetype-banned-type'        => "'''« .$1 »''' est un format de fichiér pas ôtorisâ.
 {{PLURAL:$3|Lo tipo de fichiérs accèptâ est|Los tipos de fichiérs accèptâs sont}} $2.",
 'filetype-missing'            => 'Lo fichiér at gins d’èxtension (coment « .jpg » per ègzemplo).',
+'empty-file'                  => 'Lo fichiér que vos éd somês ére vouedo.',
+'file-too-large'              => 'Lo fichiér que vos éd somês ére trop grant.',
+'filename-tooshort'           => 'Lo nom du fichiér est trop côrt.',
+'filetype-banned'             => 'Cél tipo de fichiér est dèfendu.',
+'verification-error'          => 'Cél fichiér pâsse pas lo contrôlo des fichiérs.',
+'hookaborted'                 => 'Lo changement que vos éd tâchiê de fâre at étâ arrètâ per un grèfon d’una èxtension.',
+'illegal-filename'            => 'Lo nom du fichiér est pas ôtorisâ.',
+'overwrite'                   => 'Ècllafar un fichiér ègzistent est pas ôtorisâ.',
+'unknown-error'               => 'Una èrror encognua est arrevâ.',
+'tmp-create-error'            => 'Empossiblo de fâre lo fichiér temporèro.',
+'tmp-write-error'             => 'Èrror d’ècritura du fichiér temporèro.',
 'large-file'                  => 'Los fichiérs tèlèchargiês devriant pas étre ples grant que $1 ;
 cél fichiér fât $2.',
 'largefileserver'             => 'La talye de cél fichiér est d’amont lo nivél lo ples hôt ôtorisâ.',
@@ -1719,6 +1752,8 @@ Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que
 'uploadedimage'               => 'at tèlèchargiê « [[$1]] »',
 'overwroteimage'              => 'at tèlèchargiê una novèla vèrsion de « [[$1]] »',
 'uploaddisabled'              => 'Tèlèchargements dèsactivâs',
+'copyuploaddisabled'          => 'Tèlèchargement de fichiér per URL dèsactivâ.',
+'uploadfromurl-queued'        => 'Voutron tèlèchargement at étâ betâ dens la fela d’atenta.',
 'uploaddisabledtext'          => 'Lo tèlèchargement de fichiérs est dèsactivâ.',
 'php-uploaddisabledtext'      => 'Lo tèlèchargement de fichiérs at étâ dèsactivâ dens PHP.
 Volyéd controlar lo chouèx de configuracion « file_uploads ».',
@@ -1754,6 +1789,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # de totes sôrtes
   #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
+'upload-successful-msg'       => 'Voutron tèlèchargement est disponiblo ique : $1',
+'upload-failure-subj'         => 'Problèmo de tèlèchargement',
+'upload-failure-msg'          => 'Y at avu un problèmo avouéc voutron tèlèchargement :
+
+$1',
 
 'upload-proto-error'        => 'Protocolo fôx',
 'upload-proto-error-text'   => 'Lo tèlèchargement a distance at fôta des URLs que començont per <code>http://</code> ou ben <code>ftp://</code>.',
@@ -1862,6 +1902,7 @@ La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
 'uploadnewversion-linktext' => 'Tèlèchargiér una novèla vèrsion de ceti fichiér',
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'un dèpôt de fichiérs partagiê',
+'filepage.css'              => '/* Lo code CSS betâ ique est encllu dens la pâge de dèscripcion du fichiér, et pués dens los vouiquis cliants ètrangiérs. */',
 
 # File reversion
 'filerevert'                => 'Rètablir $1',
@@ -2130,29 +2171,35 @@ Y pôt avêr [[{{MediaWiki:Listgrouprights-helppage}}|més d’enformacions]] su
 'listgrouprights-removegroup-self-all' => 'Sè pôt enlevar totes les tropes de son prôpro compto',
 
 # E-mail user
-'mailnologin'      => 'Gins d’adrèce d’èxpèdior',
-'mailnologintext'  => 'Vos dête étre [[Special:UserLogin|branchiê]] et avêr endicâ una adrèce èlèctronica valida dens voutres [[Special:Preferences|prèferences]] por povêr mandar des mèssâjos a d’ôtros utilisators.',
-'emailuser'        => 'Lui mandar un mèssâjo',
-'emailpage'        => 'Mandar un mèssâjo a l’utilisator',
-'emailpagetext'    => 'Vos pouede utilisar lo formulèro ce-desot por mandar un mèssâjo a ceti utilisator.
+'mailnologin'          => 'Gins d’adrèce d’èxpèdior',
+'mailnologintext'      => 'Vos dête étre [[Special:UserLogin|branchiê]] et avêr endicâ una adrèce èlèctronica valida dens voutres [[Special:Preferences|prèferences]] por povêr mandar des mèssâjos a d’ôtros utilisators.',
+'emailuser'            => 'Lui mandar un mèssâjo',
+'emailpage'            => 'Mandar un mèssâjo a l’utilisator',
+'emailpagetext'        => 'Vos pouede utilisar lo formulèro ce-desot por mandar un mèssâjo a ceti utilisator.
 L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences|prèferences]] aparètrat dedens lo champ « Èxpèdior » de voutron mèssâjo ; d’ense, lo dèstinatèro vos porrat rèpondre tot drêt.',
-'usermailererror'  => 'Èrror dens lo sujèt du mèssâjo :',
-'defemailsubject'  => 'Mèssâjo de {{SITENAME}}',
-'noemailtitle'     => 'Dèstinatèro sen adrèce èlèctronica',
-'noemailtext'      => 'Ceti utilisator at pas spècefiâ una adrèce èlèctronica valida.',
-'nowikiemailtitle' => 'Gins de mèssageria èlèctronica ôtorisâ',
-'nowikiemailtext'  => 'Ceti utilisator at chouèsi de pas recêvre de mèssâjo de la pârt d’ôtros utilisators.',
-'email-legend'     => 'Mandar un mèssâjo a un ôtro utilisator de {{SITENAME}}',
-'emailfrom'        => 'Èxpèdior :',
-'emailto'          => 'Dèstinatèro :',
-'emailsubject'     => 'Sujèt :',
-'emailmessage'     => 'Mèssâjo :',
-'emailsend'        => 'Mandar',
-'emailccme'        => 'Mè mandar per mèssageria èlèctronica una copia de mon mèssâjo.',
-'emailccsubject'   => 'Copia de voutron mèssâjo a $1 : $2',
-'emailsent'        => 'Mèssâjo mandâ',
-'emailsenttext'    => 'Voutron mèssâjo at étâ mandâ per mèssageria èlèctronica.',
-'emailuserfooter'  => 'Ceti mèssâjo at étâ mandâ per « $1 » a « $2 » per la fonccion « Lui mandar un mèssâjo » de {{SITENAME}}.',
+'usermailererror'      => 'Èrror dens lo sujèt du mèssâjo :',
+'defemailsubject'      => 'Mèssâjo de {{SITENAME}}',
+'usermaildisabled'     => 'L’èxpèdicion de mèssâjos entre-mié utilisators est dèsactivâ',
+'usermaildisabledtext' => 'Vos pouede pas mandar des mèssâjos a d’ôtros utilisators sur ceti vouiqui',
+'noemailtitle'         => 'Dèstinatèro sen adrèce èlèctronica',
+'noemailtext'          => 'Ceti utilisator at pas spècefiâ una adrèce èlèctronica valida.',
+'nowikiemailtitle'     => 'Gins de mèssageria èlèctronica ôtorisâ',
+'nowikiemailtext'      => 'Ceti utilisator at chouèsi de pas recêvre de mèssâjo de la pârt d’ôtros utilisators.',
+'email-legend'         => 'Mandar un mèssâjo a un ôtro utilisator de {{SITENAME}}',
+'emailfrom'            => 'Èxpèdior :',
+'emailto'              => 'Dèstinatèro :',
+'emailsubject'         => 'Sujèt :',
+'emailmessage'         => 'Mèssâjo :',
+'emailsend'            => 'Mandar',
+'emailccme'            => 'Mè mandar per mèssageria èlèctronica una copia de mon mèssâjo.',
+'emailccsubject'       => 'Copia de voutron mèssâjo a $1 : $2',
+'emailsent'            => 'Mèssâjo mandâ',
+'emailsenttext'        => 'Voutron mèssâjo at étâ mandâ per mèssageria èlèctronica.',
+'emailuserfooter'      => 'Ceti mèssâjo at étâ mandâ per « $1 » a « $2 » per la fonccion « Lui mandar un mèssâjo » de {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'At lèssiê un mèssâjo sistèmo.',
+'usermessage-editor'  => 'Mèssagiér du sistèmo',
 
 # Watchlist
 'watchlist'            => 'Lista de survelyence',
@@ -2281,7 +2328,8 @@ Lo dèrriér changement de la pâge at étâ fêt per [[User:$3|$3]] ([[User tal
 rètablissement de la dèrriére vèrsion per $2.',
 
 # Edit tokens
-'sessionfailure' => 'Voutra sèance de branchement semble avêr des problèmos ;
+'sessionfailure-title' => 'Èrror de sèance',
+'sessionfailure'       => 'Voutra sèance de branchement semble avêr des problèmos ;
 cela accion at étâ anulâ en prèvencion d’un piratâjo de sèance.
 Volyéd clicar dessus « Devant », rechargiér la pâge de yô que vos vegnéd, et pués tornar èprovar.',
 
@@ -2432,6 +2480,7 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'sp-contributions-search'              => 'Rechèrchiér les contribucions',
 'sp-contributions-username'            => 'Adrèce IP ou ben nom d’utilisator :',
+'sp-contributions-toponly'             => 'Montrar ren que les novèles vèrsions',
 'sp-contributions-submit'              => 'Rechèrchiér',
 
 # What links here
@@ -2746,6 +2795,7 @@ Sôvâd-lo sur voutron disco dur et pués tèlèchargiéd-lo ique.',
 'importstart'                => 'Importacion de les pâges...',
 'import-revision-count'      => '$1 vèrsion{{PLURAL:$1||s}}',
 'importnopages'              => 'Gins de pâge a importar.',
+'imported-log-entries'       => '$1 entrâ{{PLURAL:$1||s}} du jornal importâ{{PLURAL:$1||s}}.',
 'importfailed'               => 'Falyita de l’importacion : <nowiki>$1</nowiki>',
 'importunknownsource'        => 'Tipo de la sôrsa a importar encognu',
 'importcantopen'             => 'Empossiblo d’uvrir lo fichiér a importar',
@@ -2845,6 +2895,8 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-rollback'                => '« Rèvocar » anule en yon clic lo ou ben los changement(s) de ceta pâge per son dèrriér contributor.',
 'tooltip-undo'                    => '« Dèfâre » rèvoque ceti changement et ôvre la fenétra d’èdicion en fôrma de prèvisualisacion.
 Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la bouèta de rèsumâ.',
+'tooltip-preferences-save'        => 'Encartar les prèferences',
+'tooltip-summary'                 => 'Buchiéd un côrt rèsumâ',
 
 # Stylesheets
 'common.css'      => '/* Lo code CSS betâ ique serat aplicâ a tôs los habelyâjos. */',
@@ -2986,6 +3038,9 @@ Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.<hr />",
 'show-big-image-thumb' => '<small>Talye de ceti apèrçu : $1 × $2 pixèls</small>',
 'file-info-gif-looped' => 'en boclla',
 'file-info-gif-frames' => '$1 émâge{{PLURAL:$1||s}}',
+'file-info-png-looped' => 'en boclla',
+'file-info-png-repeat' => 'jouyê $1 côp{{PLURAL:$1||s}}',
+'file-info-png-frames' => '$1 émâge{{PLURAL:$1||s}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerie des novéls fichiérs',
@@ -3408,6 +3463,7 @@ Volyéd confirmar que vos voléd franc refâre cela pâge.",
 'table_pager_first'        => 'Premiére pâge',
 'table_pager_last'         => 'Dèrriére pâge',
 'table_pager_limit'        => 'Montrar $1 èlèment{{PLURAL:$1||s}} per pâge',
+'table_pager_limit_label'  => 'Rèsultats per pâge :',
 'table_pager_limit_submit' => 'Listar',
 'table_pager_empty'        => 'Gins de rèsultat',
 
@@ -3612,6 +3668,15 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'tags-edit'               => 'changiér',
 'tags-hitcount'           => '$1 changement{{PLURAL:$1||s}}',
 
+# Special:ComparePages
+'comparepages'     => 'Comparar des pâges',
+'compare-selector' => 'Comparar les vèrsions de les pâges',
+'compare-page1'    => 'Pâge 1',
+'compare-page2'    => 'Pâge 2',
+'compare-rev1'     => 'Vèrsion 1',
+'compare-rev2'     => 'Vèrsion 2',
+'compare-submit'   => 'Comparar',
+
 # Database error messages
 'dberr-header'      => 'Ceti vouiqui at un problèmo',
 'dberr-problems'    => 'Dèsolâ ! Ceti seto rencontre des dificultâts tècniques.',
@@ -3628,6 +3693,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'htmlform-float-invalid'       => 'La valor que vos éd spècefiâ est pas un nombro.',
 'htmlform-int-toolow'          => 'La valor que vos éd spècefiâ est en-desot du muens de $1',
 'htmlform-int-toohigh'         => 'La valor que vos éd spècefiâ est en-dessus du més de $1',
+'htmlform-required'            => 'Ceta valor est nècèssèra',
 'htmlform-submit'              => 'Sometre',
 'htmlform-reset'               => 'Dèfâre los changements',
 'htmlform-selectorother-other' => 'Ôtro',

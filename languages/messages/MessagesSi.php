@@ -1310,7 +1310,6 @@ HTML ටැගයන් පිරික්සන්න.',
 'prefs-advancedrendering'       => 'ප්‍රගත විකල්පයන්',
 'prefs-advancedsearchoptions'   => 'ප්‍රගත විකල්පයන්',
 'prefs-advancedwatchlist'       => 'ප්‍රගත විකල්පයන්',
-'prefs-display'                 => 'දර්ශන විකල්පයන්',
 'prefs-diffs'                   => 'වෙනස',
 
 # User rights

@@ -929,7 +929,6 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'prefs-advancedrendering'       => 'Papildus uzstādījumi',
 'prefs-advancedsearchoptions'   => 'Papildus uzstādījumi',
 'prefs-advancedwatchlist'       => 'Papildus uzstādījumi',
-'prefs-display'                 => 'Pamatuzstādījumi',
 'prefs-diffs'                   => 'Izmaiņas',
 
 # User rights

@@ -1066,7 +1066,6 @@ $1",
 'prefs-advancedrendering'       => '進',
 'prefs-advancedsearchoptions'   => '進',
 'prefs-advancedwatchlist'       => '進',
-'prefs-display'                 => '示項',
 'prefs-diffs'                   => '異',
 
 # User rights

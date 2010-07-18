@@ -1195,7 +1195,6 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'prefs-advancedrendering'       => 'Aukera aurreratuak',
 'prefs-advancedsearchoptions'   => 'Aukera aurreratuak',
 'prefs-advancedwatchlist'       => 'Aukera aurreratuak',
-'prefs-display'                 => 'Aukerak erakutsi',
 'prefs-diffs'                   => 'Ezberdintasunak',
 
 # User rights

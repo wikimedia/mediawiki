@@ -1382,7 +1382,6 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'prefs-advancedrendering'       => 'Opțiuni avansate',
 'prefs-advancedsearchoptions'   => 'Opțiuni avansate',
 'prefs-advancedwatchlist'       => 'Opțiuni avansate',
-'prefs-display'                 => 'Opțiuni afișare',
 'prefs-diffs'                   => 'Diferențe',
 
 # User rights

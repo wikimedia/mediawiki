@@ -1123,7 +1123,6 @@ $1",
 'prefs-advancedrendering'       => 'उन्नत विकल्प',
 'prefs-advancedsearchoptions'   => 'उन्नत विकल्प',
 'prefs-advancedwatchlist'       => 'उन्नत विकल्प',
-'prefs-display'                 => 'प्रदर्शन विकल्प',
 'prefs-diffs'                   => 'अंतर',
 
 # User rights

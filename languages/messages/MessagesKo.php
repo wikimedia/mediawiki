@@ -1364,7 +1364,6 @@ $1",
 'prefs-advancedrendering'       => '고급 설정',
 'prefs-advancedsearchoptions'   => '고급 설정',
 'prefs-advancedwatchlist'       => '고급 설정',
-'prefs-display'                 => '보이기 설정',
 'prefs-diffs'                   => '차이',
 
 # User rights

@@ -1355,7 +1355,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'prefs-advancedrendering'       => 'Täpsemad eelistused',
 'prefs-advancedsearchoptions'   => 'Täpsemad eelistused',
 'prefs-advancedwatchlist'       => 'Täpsemad eelistused',
-'prefs-display'                 => 'Kuvasätted',
 'prefs-diffs'                   => 'Erinevused',
 
 # User rights

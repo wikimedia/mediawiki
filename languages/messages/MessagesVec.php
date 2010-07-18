@@ -1201,7 +1201,6 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'prefs-advancedrendering'       => 'Preferense avansade',
 'prefs-advancedsearchoptions'   => 'Preferense avansade',
 'prefs-advancedwatchlist'       => 'Preferense avansade',
-'prefs-display'                 => 'Preferense de visualixassion',
 'prefs-diffs'                   => 'Difarense',
 
 # User rights

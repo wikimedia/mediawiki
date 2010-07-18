@@ -1195,7 +1195,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'prefs-advancedrendering'       => 'Ընդլայնված ընրանքներ',
 'prefs-advancedsearchoptions'   => 'Ընդլայնված ընրանքներ',
 'prefs-advancedwatchlist'       => 'Ընդլայնված ընրանքներ',
-'prefs-display'                 => 'Ցուցադրման ընտրանքներ',
 'prefs-diffs'                   => 'Տարբերություններ',
 
 # User rights

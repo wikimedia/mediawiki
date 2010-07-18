@@ -1205,7 +1205,6 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'prefs-advancedrendering'       => 'Dewisiadau uwch',
 'prefs-advancedsearchoptions'   => 'Dewisiadau uwch',
 'prefs-advancedwatchlist'       => 'Dewisiadau uwch',
-'prefs-display'                 => 'Dangos y dewisiadau',
 'prefs-diffs'                   => "Cymharu golygiadau ('gwahan')",
 
 # User rights

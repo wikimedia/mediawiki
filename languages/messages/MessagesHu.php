@@ -1393,7 +1393,6 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'prefs-advancedrendering'       => 'Haladó beállítások',
 'prefs-advancedsearchoptions'   => 'Haladó beállítások',
 'prefs-advancedwatchlist'       => 'Haladó beállítások',
-'prefs-display'                 => 'Megjelenítési beállítások',
 'prefs-diffs'                   => 'Eltérések (diffek)',
 
 # User rights

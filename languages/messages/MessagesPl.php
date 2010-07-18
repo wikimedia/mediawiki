@@ -1350,7 +1350,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-advancedrendering'       => 'Zaawansowane',
 'prefs-advancedsearchoptions'   => 'Zaawansowane',
 'prefs-advancedwatchlist'       => 'Zaawansowane',
-'prefs-display'                 => 'Opcje wyświetlania',
 'prefs-diffs'                   => 'Zmiany',
 
 # User rights

@@ -1197,7 +1197,6 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'prefs-advancedrendering'       => 'Opcions avanzadas',
 'prefs-advancedsearchoptions'   => 'Opcions avanzadas',
 'prefs-advancedwatchlist'       => 'Opcions avanzadas',
-'prefs-display'                 => 'Opcions de visualización',
 'prefs-diffs'                   => 'Diferencias',
 
 # User rights

@@ -747,7 +747,6 @@ Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar e
 'prefs-advancedrendering'     => 'Opziuns avanzadas',
 'prefs-advancedsearchoptions' => 'Opziuns avanzadas',
 'prefs-advancedwatchlist'     => 'Opziuns avanzadas',
-'prefs-display'               => 'Opziuns da visualisar',
 'prefs-diffs'                 => 'Cumparegliaziun da versiuns',
 
 # User rights

@@ -1306,7 +1306,6 @@ L'operazione non può essere annullata.",
 'prefs-advancedrendering'       => 'Opzioni avanzate',
 'prefs-advancedsearchoptions'   => 'Opzioni avanzate',
 'prefs-advancedwatchlist'       => 'Opzioni avanzate',
-'prefs-display'                 => 'Opzioni di visualizzazione',
 'prefs-diffs'                   => 'Differenze',
 
 # User rights

@@ -1218,7 +1218,6 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'prefs-advancedrendering'       => 'Pilihan maju',
 'prefs-advancedsearchoptions'   => 'Pilihan maju',
 'prefs-advancedwatchlist'       => 'Pilihan maju',
-'prefs-display'                 => 'Papar pilihan',
 'prefs-diffs'                   => 'Beza',
 
 # User rights

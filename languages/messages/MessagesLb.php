@@ -1255,7 +1255,9 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'prefs-advancedrendering'       => 'Méi Optiounen',
 'prefs-advancedsearchoptions'   => 'Méi Optiounen',
 'prefs-advancedwatchlist'       => 'Méi Optiounen',
-'prefs-display'                 => 'Optioune vum Affichage',
+'prefs-displayrc'               => 'Optioune vun deem wat gewise gëtt',
+'prefs-displaysearchoptions'    => 'Optioune vum Affichage',
+'prefs-displaywatchlist'        => 'Optioune vun deem wat gewise gëtt',
 'prefs-diffs'                   => 'Ënnerscheeder',
 
 # User rights

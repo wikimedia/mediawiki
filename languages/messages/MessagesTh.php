@@ -1234,7 +1234,6 @@ $1",
 'prefs-advancedrendering'       => 'การตั้งค่าขั้นสูง',
 'prefs-advancedsearchoptions'   => 'การตั้งค่าขั้นสูง',
 'prefs-advancedwatchlist'       => 'การตั้งค่าขั้นสูง',
-'prefs-display'                 => 'ค่าการแสดงผล',
 'prefs-diffs'                   => 'ส่วนต่างการแก้ไข',
 
 # User rights
