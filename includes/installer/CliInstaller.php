@@ -47,9 +47,6 @@ class CliInstaller extends Installer {
 		$this->setVar( 'wgSitename', $siteName );
 		if ( $admin ) {
 			$this->setVar( '_AdminName', $admin );
-		} else {
-			$this->setVar( '_AdminName',
-				wfMsgForContent( 'config-admin-default-username' ) );
 		}
 
 		if ( !isset( $option['installdbuser'] ) ) {
@@ -67,26 +64,31 @@ class CliInstaller extends Installer {
 	/**
 	 * Main entry point.
 	 */
-	function execute( ) {
-		foreach( $this->getInstallSteps() as $stepObj ) {
-			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
-			$this->showMessage( wfMsg( "config-install-$step") .
-					wfMsg( 'ellipsis' ) . wfMsg( 'word-separator' ) );
-			$func = 'install' . ucfirst( $step );
-			$status = $this->{$func}();
-			$warnings = $status->getWarningsArray();
-			if ( !$status->isOk() ) {
-				$this->showStatusMessage( $status );
-				echo "\n";
-				exit;
-			} elseif ( count($warnings) !== 0 ) {
-				foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
-					$this->showMessage( $w . wfMsg( 'ellipsis') .
-						wfMsg( 'word-separator' ) );
-				}
+	public function execute( ) {
+		$this->performInstallation(
+			array( $this, 'startStage'),
+			array( $this, 'endStage' )
+		);
+	}
+
+	public function startStage( $step ) {
+		$this->showMessage( wfMsg( "config-install-$step") .
+			wfMsg( 'ellipsis' ) . wfMsg( 'word-separator' ) );
+	}
+
+	public function endStage( $step, $status ) {
+		$warnings = $status->getWarningsArray();
+		if ( !$status->isOk() ) {
+			$this->showStatusMessage( $status );
+			echo "\n";
+			exit;
+		} elseif ( count($warnings) !== 0 ) {
+			foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
+				$this->showMessage( $w . wfMsg( 'ellipsis') .
+					wfMsg( 'word-separator' ) );
 			}
-			$this->showMessage( wfMsg( 'config-install-step-done' ) ."\n");
 		}
+		$this->showMessage( wfMsg( 'config-install-step-done' ) ."\n");
 	}
 
 	function showMessage( $msg /*, ... */ ) {

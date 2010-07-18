@@ -413,4 +413,4 @@ CREATE INDEX /*i*/qcc_type ON /*_*/querycachetwo (qcc_type,qcc_value);
 CREATE INDEX /*i*/qcc_title ON /*_*/querycachetwo (qcc_type,qcc_namespace,qcc_title);
 CREATE INDEX /*i*/qcc_titletwo ON /*_*/querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
-INSERT INTO /*_*/updatelog VALUES ('initial_indexes');
+INSERT INTO /*_*/updatelog (ul_key) VALUES ('initial_indexes');

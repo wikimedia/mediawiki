@@ -8,14 +8,14 @@ abstract class Installer {
 	var $settings, $output;
 
 	/**
-	 * MediaWiki configuration globals that will eventually be passed through 
-	 * to LocalSettings.php. The names only are given here, the defaults 
+	 * MediaWiki configuration globals that will eventually be passed through
+	 * to LocalSettings.php. The names only are given here, the defaults
 	 * typically come from DefaultSettings.php.
 	 */
 	protected $defaultVarNames = array(
 		'wgSitename',
 		'wgPasswordSender',
-		'wgLanguageCode', 
+		'wgLanguageCode',
 		'wgRightsIcon',
 		'wgRightsText',
 		'wgRightsUrl',
@@ -41,8 +41,8 @@ abstract class Installer {
 	);
 
 	/**
-	 * Variables that are stored alongside globals, and are used for any 
-	 * configuration of the installation process aside from the MediaWiki 
+	 * Variables that are stored alongside globals, and are used for any
+	 * configuration of the installation process aside from the MediaWiki
 	 * configuration. Map of names to defaults.
 	 */
 	protected $internalDefaults = array(
@@ -77,7 +77,7 @@ abstract class Installer {
 	 * Known database types. These correspond to the class names <type>Installer,
 	 * and are also MediaWiki database types valid for $wgDBtype.
 	 *
-	 * To add a new type, create a <type>Installer class and a Database<type> 
+	 * To add a new type, create a <type>Installer class and a Database<type>
 	 * class, and add a config-type-<type> message to MessagesEn.php.
 	 */
 	private $dbTypes = array(
@@ -98,8 +98,8 @@ abstract class Installer {
 	private $dbInstallers = array();
 
 	/**
-	 * A list of environment check methods called by doEnvironmentChecks(). 
-	 * These may output warnings using showMessage(), and/or abort the 
+	 * A list of environment check methods called by doEnvironmentChecks().
+	 * These may output warnings using showMessage(), and/or abort the
 	 * installation process by returning false.
 	 */
 	protected $envChecks = array(
@@ -154,7 +154,7 @@ abstract class Installer {
 			'*' => array( 'edit' => false )
 		),
 		'fishbowl' => array(
-			'*' => array( 
+			'*' => array(
 				'createaccount' => false,
 				'edit' => false,
 			),
@@ -199,7 +199,7 @@ abstract class Installer {
 		),
 		'cc-choose' => array(
 			// details will be filled in by the selector
-			'url' => '', 
+			'url' => '',
 			'icon' => '',
 			'text' => '',
 		),
@@ -257,7 +257,7 @@ abstract class Installer {
 	/**
 	 * UI interface for displaying a short message
 	 * The parameters are like parameters to wfMsg().
-	 * The messages will be in wikitext format, which will be converted to an 
+	 * The messages will be in wikitext format, which will be converted to an
 	 * output format such as HTML or text before being sent to the user.
 	 */
 	abstract function showMessage( $msg /*, ... */ );
@@ -289,14 +289,14 @@ abstract class Installer {
 	}
 
 	/**
-	 * Do initial checks of the PHP environment. Set variables according to 
+	 * Do initial checks of the PHP environment. Set variables according to
 	 * the observed environment.
 	 *
 	 * It's possible that this may be called under the CLI SAPI, not the SAPI
 	 * that the wiki will primarily run under. In that case, the subclass should
 	 * initialise variables such as wgScriptPath, before calling this function.
 	 *
-	 * Under the web subclass, it can already be assumed that PHP 5+ is in use 
+	 * Under the web subclass, it can already be assumed that PHP 5+ is in use
 	 * and that sessions are working.
 	 */
 	function doEnvironmentChecks() {
@@ -359,7 +359,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Set a variable which stores a password, except if the new value is a 
+	 * Set a variable which stores a password, except if the new value is a
 	 * fake password in which case leave it as it is.
 	 */
 	function setPassword( $name, $value ) {
@@ -367,7 +367,7 @@ abstract class Installer {
 			$this->setVar( $name, $value );
 		}
 	}
-	
+
 	/** Check if we're installing the latest version */
 	function envLatestVersion() {
 		global $wgVersion;
@@ -391,7 +391,7 @@ abstract class Installer {
 		}
 		if( version_compare( $wgVersion, $currentVersion, '<' ) ) {
 			$this->showMessage( 'config-env-latest-old' );
-			$this->showHelpBox( 'config-env-latest-help', $wgVersion, $currentVersion ); 
+			$this->showHelpBox( 'config-env-latest-help', $wgVersion, $currentVersion );
 		} elseif( version_compare( $wgVersion, $currentVersion, '>' ) ) {
 			$this->showMessage( 'config-env-latest-new' );
 		}
@@ -557,17 +557,17 @@ abstract class Installer {
 	}
 
 	/**
-	 * Search a path for any of the given executable names. Returns the 
-	 * executable name if found. Also checks the version string returned 
+	 * Search a path for any of the given executable names. Returns the
+	 * executable name if found. Also checks the version string returned
 	 * by each executable
 	 *
 	 * @param $path String: path to search
 	 * @param $names Array of executable names
 	 * @param $versionInfo Boolean false or array with two members:
-	 *       0 => Command to run for version check, with $1 for the path
-	 *       1 => String to compare the output with
+	 *		 0 => Command to run for version check, with $1 for the path
+	 *		 1 => String to compare the output with
 	 *
-	 * If $versionInfo is not false, only executables with a version 
+	 * If $versionInfo is not false, only executables with a version
 	 * matching $versionInfo[1] will be returned.
 	 */
 	function locateExecutable( $path, $names, $versionInfo = false ) {
@@ -582,7 +582,7 @@ abstract class Installer {
 
 				$file = str_replace( '$1', $command, $versionInfo[0] );
 				# Should maybe be wfShellExec( $file), but runs into a ulimit, see
-				# http://www.mediawiki.org/w/index.php?title=New-installer_issues&diff=prev&oldid=335456 
+				# http://www.mediawiki.org/w/index.php?title=New-installer_issues&diff=prev&oldid=335456
 				if ( strstr( `$file`, $versionInfo[1]) !== false )
 					return $command;
 			}
@@ -732,7 +732,7 @@ abstract class Installer {
 		# Give up
 		return true;
 	}
-	
+
 	function envCheckUploadsDirectory() {
 		global $IP, $wgServer;
 		$dir = $IP . '/images/';
@@ -780,12 +780,12 @@ abstract class Installer {
 	 * Convert wikitext $text to HTML.
 	 *
 	 * This is potentially error prone since many parser features require a complete
-	 * installed MW database. The solution is to just not use those features when you 
+	 * installed MW database. The solution is to just not use those features when you
 	 * write your messages. This appears to work well enough. Basic formatting and
 	 * external links work just fine.
 	 *
-	 * But in case a translator decides to throw in a #ifexist or internal link or 
-	 * whatever, this function is guarded to catch attempted DB access and to present 
+	 * But in case a translator decides to throw in a #ifexist or internal link or
+	 * whatever, this function is guarded to catch attempted DB access and to present
 	 * some fallback text.
 	 *
 	 * @param $text String
@@ -819,8 +819,8 @@ abstract class Installer {
 	 */
 	function docLink( $linkText, $attribs, $parser ) {
 		$url = $this->getDocUrl( $attribs['href'] );
-		return '<a href="' . htmlspecialchars( $url ) . '">' . 
-			htmlspecialchars( $linkText ) . 
+		return '<a href="' . htmlspecialchars( $url ) . '">' .
+			htmlspecialchars( $linkText ) .
 			'</a>';
 	}
 
@@ -987,7 +987,7 @@ abstract class Installer {
 		wfSuppressWarnings();
 		$ls = file_exists( "$IP/LocalSettings.php" );
 		wfRestoreWarnings();
-		
+
 		if( $ls ) {
 			if( $this->getDBInstaller()->needsUpgrade() ) {
 				$status->warning( 'config-localsettings-upgrade' );
@@ -1044,7 +1044,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Add an installation step following the given step. 
+	 * Add an installation step following the given step.
 	 * @param $findStep String the step to find.  Use NULL to put the step at the beginning.
 	 * @param $callback array
 	 */
