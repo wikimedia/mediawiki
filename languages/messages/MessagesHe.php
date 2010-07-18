@@ -1429,7 +1429,9 @@ $1",
 'prefs-advancedrendering'       => 'אפשרויות מתקדמות',
 'prefs-advancedsearchoptions'   => 'אפשרויות מתקדמות',
 'prefs-advancedwatchlist'       => 'אפשרויות מתקדמות',
-'prefs-display'                 => 'אפשרויות תצוגה',
+'prefs-displayrc'               => 'אפשרויות תצוגה',
+'prefs-displaysearchoptions'    => 'אפשרויות תצוגה',
+'prefs-displaywatchlist'        => 'אפשרויות תצוגה',
 'prefs-diffs'                   => 'הבדלים בין גרסאות',
 
 # User rights
