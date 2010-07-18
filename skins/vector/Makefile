@@ -4,12 +4,12 @@
 
 all: main-rtl.css
 
-main-rtl.css: main-ltr.css cssjanus/cssjanus.py
-	python cssjanus/cssjanus.py --swap_ltr_rtl_in_url < main-ltr.css > main-rtl.css 
+main-rtl.css: main-ltr.css ../../maintenance/cssjanus/cssjanus.py
+	python ../../maintenance/cssjanus/cssjanus.py --swap_ltr_rtl_in_url < main-ltr.css > main-rtl.css 
 
 # SVN version is broken; checking in our own.
-#cssjanus/cssjanus.py:
-#	svn co http://cssjanus.googlecode.com/svn/trunk cssjanus
+#../../maintenance/cssjanus/cssjanus.py:
+#	svn co http://cssjanus.googlecode.com/svn/trunk ../maintenance/cssjanus
 
 #distclean: clean
 #	rm -rf cssjanus
