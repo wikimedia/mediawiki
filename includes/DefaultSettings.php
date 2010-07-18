@@ -2715,6 +2715,14 @@ $wgUseCommaCount = false;
  */
 $wgHitcounterUpdateFreq = 1;
 
+/**
+ * How many days user must be idle before he is considered inactive. Will affect
+ * the number shown on Special:Statistics and Special:ActiveUsers special page.
+ * You might want to leave this as the default value, to provide comparable
+ * numbers between different wikis.
+ */
+$wgActiveUserDays = 30;
+
 /** @} */ # End of statistics }
 
 /************************************************************************//**

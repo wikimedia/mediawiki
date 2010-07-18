@@ -174,7 +174,7 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getUserStats() {
-		global $wgLang, $wgUser, $wgRCMaxAge;
+		global $wgLang, $wgUser, $wgActiveUserDays;
 		$sk = $wgUser->getSkin();
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-users', array( 'parseinline' ) ) ) .
@@ -193,7 +193,7 @@ class SpecialStatistics extends SpecialPage {
 						$wgLang->formatNum( $this->activeUsers ),
 						array( 'class' => 'mw-statistics-users-active' ),
 						'statistics-users-active-desc',
-						$wgLang->formatNum( ceil( $wgRCMaxAge / ( 3600 * 24 ) ) ) );
+						$wgLang->formatNum( $wgActiveUserDays ) );
 	}
 	private function getGroupStats() {
 		global $wgGroupPermissions, $wgImplicitGroups, $wgLang, $wgUser;
