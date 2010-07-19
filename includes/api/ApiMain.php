@@ -332,7 +332,7 @@ class ApiMain extends ApiBase {
 		}
 		
 		// If this wiki is private, don't cache anything ever
-		if ( in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
+		if ( ! in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
 			$this->setCachePrivate();
 		}
 
