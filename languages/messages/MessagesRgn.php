@@ -28,7 +28,7 @@ $messages = array(
 'tog-editsection'             => "S't'vù l'abilitaziòn ad'cambié al seziòn cum e' link [mudèfica]",
 'tog-editsectiononrightclick' => "S't'vù l'abilitaziòn ad cambié al seziòn <br />scjazénd e tast a dèstra sora e titul (u j vò JavaScript)",
 'tog-showtoc'                 => "Fam avdé l'indiz (sol par al pàgin cun piò d'3 seziòn)",
-'tog-rememberpassword'        => "Arcurdam la parola d'ordin, par piasé (fèn a un masum d'$1 {{PLURAL:$1|dè|dè}})",
+'tog-rememberpassword'        => "Arcurdam la parola d'ordin, par piasé (fèn a un masum $1 {{PLURAL:$1|dè|dè}})",
 'tog-watchcreations'          => "Mett insèn al pàgin ch't'e' fat adès, intla lèsta da tní sot'occ",
 'tog-watchdefault'            => "Mett insèn al pàgin ch'a j ò lavurè sora int la lèsta dal pàgin da tnì sot'òcc",
 'tog-watchmoves'              => "Mett insèn al pàgin ch'a j ò spustè int la lèsta dal pàgin da tnì sot'òcc",
@@ -47,6 +47,7 @@ $messages = array(
 'tog-externaldiff'            => 'Drova sempar un prugràma comparator esteran (sol par j utent espert)',
 'tog-showjumplinks'           => "Fa' funzionè j leghèm d'acesibilitè tipo \"Va' a\"",
 'tog-uselivepreview'          => 'Drova la funziòn "Anteprèma dal viv" (u j vo Javascript; sperimentêl)',
+'tog-forceeditsummary'        => "Dam la vos quènd l'ugèt dla mudèfica l'è vut",
 
 # Dates
 'january'       => 'Znèr',

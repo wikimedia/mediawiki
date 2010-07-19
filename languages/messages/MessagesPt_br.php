@@ -465,7 +465,7 @@ $messages = array(
 'vector-namespace-talk'          => 'Discussão',
 'vector-namespace-template'      => 'Predefinição',
 'vector-namespace-user'          => 'Página de usuário',
-'vector-simplesearch-preference' => 'Ativar sugestões de busca melhoradas (tema Vector apenas)',
+'vector-simplesearch-preference' => 'Ativar sugestões de busca melhoradas (apenas no tema Vector)',
 'vector-view-create'             => 'Criar',
 'vector-view-edit'               => 'Editar',
 'vector-view-history'            => 'Ver histórico',
@@ -1397,6 +1397,9 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'prefs-advancedrendering'       => 'Opções avançadas',
 'prefs-advancedsearchoptions'   => 'Opções avançadas',
 'prefs-advancedwatchlist'       => 'Opções avançadas',
+'prefs-displayrc'               => 'Opções de exibição',
+'prefs-displaysearchoptions'    => 'Opções de exibição',
+'prefs-displaywatchlist'        => 'Opções de exibição',
 'prefs-diffs'                   => 'Diferenças',
 
 # User rights

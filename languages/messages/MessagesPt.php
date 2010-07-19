@@ -466,7 +466,7 @@ $messages = array(
 'vector-namespace-talk'          => 'Discussão',
 'vector-namespace-template'      => 'Predefinição',
 'vector-namespace-user'          => 'Página de utilizador',
-'vector-simplesearch-preference' => 'Activar sugestões de busca melhoradas (tema Vector apenas)',
+'vector-simplesearch-preference' => 'Activar sugestões de busca melhoradas (apenas no tema Vector)',
 'vector-view-create'             => 'Criar',
 'vector-view-edit'               => 'Editar',
 'vector-view-history'            => 'Ver histórico',
@@ -1425,6 +1425,9 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'prefs-advancedrendering'       => 'Opções avançadas',
 'prefs-advancedsearchoptions'   => 'Opções avançadas',
 'prefs-advancedwatchlist'       => 'Opções avançadas',
+'prefs-displayrc'               => 'Opções de visionamento',
+'prefs-displaysearchoptions'    => 'Opções de apresentação',
+'prefs-displaywatchlist'        => 'Opções de apresentação',
 'prefs-diffs'                   => 'Diferenças',
 
 # User rights

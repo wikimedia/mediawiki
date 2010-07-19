@@ -490,6 +490,7 @@ $messages = array(
 'recentchanges'                => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend'         => 'Dewisyansow an chanjyow a-dhiwedhes',
 'recentchangestext'            => "Sewya an chanjyow diwettha eus dhe'n wiki war'n folen-ma.",
+'recentchanges-label-legend'   => 'Alhwedh: $1.',
 'recentchanges-legend-newpage' => '$1 - folen nowyth',
 'recentchanges-legend-minor'   => '$1 - chanj bian',
 'recentchanges-label-minor'    => 'Hemm yw chanj bian',
@@ -500,6 +501,7 @@ $messages = array(
 'rcshowhideliu'                => '$1 devnydhoryon omgelmys',
 'rcshowhideanons'              => '$1 devnydhyoryon dihanow',
 'rcshowhidemine'               => '$1 ow chanjyow',
+'rclinks'                      => "Diskwedhes an $1 chanj a-dhiwedhes gwres y'n $2 dydh a-dhiwedhes<br />$3",
 'diff'                         => 'dyffrans',
 'hist'                         => 'ist',
 'hide'                         => 'Kudha',
@@ -713,9 +715,9 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'newtitle'         => 'Dhe titel nowyth:',
 'move-watch'       => 'Golya an folen-ma',
 'movepagebtn'      => 'Gwaya an folen',
-'movepage-moved'   => '\'\'\'Gways yw "$1" war-tu "$2"\'\'\'',
-'movedto'          => 'gways dhe',
-'1movedto2'        => '[[$1]] gways dhe [[$2]]',
+'movepage-moved'   => '\'\'\'Gwayes yw "$1" war-tu "$2"\'\'\'',
+'movedto'          => 'gwayes yn',
+'1movedto2'        => '[[$1]] gwayes war-tu [[$2]]',
 'movereason'       => 'Acheson:',
 
 # Export
@@ -828,7 +830,7 @@ Ty a ell gweles hy fennfenten.',
 'table_pager_limit_submit' => 'Ke',
 
 # Auto-summaries
-'autosumm-new' => "Formys folen nowyth gans: '$1'",
+'autosumm-new' => "Formas folen gans: '$1'",
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Gweles ha chanjya an rol golyas',

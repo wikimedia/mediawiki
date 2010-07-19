@@ -2270,7 +2270,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'restriction-edit'   => 'Sunting',
 'restriction-move'   => 'Pindahkan',
 'restriction-create' => 'Buat',
-'restriction-upload' => 'Pemuatan',
+'restriction-upload' => 'Unggah',
 
 # Restriction levels
 'restriction-level-sysop'         => 'perlindungan penuh',
