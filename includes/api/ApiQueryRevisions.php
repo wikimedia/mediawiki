@@ -455,6 +455,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			}
 			if ( $this->expandTemplates ) {
+				global $wgParser;
 				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
 			}
 			ApiResult::setContent( $vals, $text );
