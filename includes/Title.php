@@ -522,6 +522,19 @@ class Title {
 	}
 
 	/**
+	 * Returns the DB name of the distant wiki 
+	 * which owns the object.
+	 *
+	 * @return \type{\string} the DB name
+	 */
+	public function getTransWikiID() {
+		if ( $this->mInterwiki == '' )
+			return false;
+
+		return Interwiki::fetch( $this->mInterwiki )->getWikiID();
+	}
+
+	/**
 	 * Escape a text fragment, say from a link, for a URL
 	 *
 	 * @param $fragment string containing a URL or link fragment (after the "#")

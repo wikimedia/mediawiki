@@ -166,7 +166,8 @@ class MysqlUpdater implements Updaters {
 			'1.17' => array(
 				array( 'add_table', 'iwlinks',                           'patch-iwlinks.sql' ),
 				array( 'add_index', 'iwlinks', 'iwl_prefix_from_title',  'patch-rename-iwl_prefix.sql' ),
-				array( 'add_field', 'updatelog', 'ul_value',              'patch-ul_value.sql' )
+				array( 'add_field', 'updatelog', 'ul_value',              'patch-ul_value.sql' ),
+				array( 'add_field', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
 			),
 		);
 	}
@@ -206,6 +207,7 @@ class SqliteUpdater implements Updaters {
 				array( 'add_table', 'iwlinks',                            'patch-iwlinks.sql' ),
 				array( 'add_index', 'iwlinks',   'iwl_prefix_from_title', 'patch-rename-iwl_prefix.sql' ),
 				array( 'add_field', 'updatelog', 'ul_value',              'patch-ul_value.sql' ),
+				array( 'add_field', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
 			),
 		);
 	}
