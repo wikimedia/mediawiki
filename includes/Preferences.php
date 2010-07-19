@@ -232,7 +232,7 @@ class Preferences {
 
 		// Language
 		global $wgContLanguageCode;
-		$languages = array_reverse( Language::getLanguageNames( false ) );
+		$languages = Language::getLanguageNames( false );
 		if ( !array_key_exists( $wgContLanguageCode, $languages ) ) {
 			$languages[$wgContLanguageCode] = $wgContLanguageCode;
 		}
