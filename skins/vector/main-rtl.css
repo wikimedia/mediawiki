@@ -383,15 +383,17 @@ div#mw-head h5 {
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#simpleSearch button#searchButton {
 		padding: 0;
-		margin: 5px 5px 0 5px;
-		height: 13px;
-		width: 12px;
+		margin: 0 5px;
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
-		background-image: url(images/search-rtl.png?1);
-		background-position: center center;
-		background-repeat: no-repeat;
+		font-size: x-small;
+	}
+	div#simpleSearch button#searchButton img {
+		border: none;
+		margin: 0;
+		padding: 0;
+		vertical-align: middle;
 	}
 /* Panel */
 div#mw-panel {
