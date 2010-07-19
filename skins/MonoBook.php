@@ -76,7 +76,7 @@ class MonoBookTemplate extends QuickTemplate {
 
 	<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>
 	<div id="bodyContent">
-		<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
+		<div id="siteSub"><?php $this->msg('tagline') ?></div>
 		<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
 <?php if($this->data['undelete']) { ?>
 		<div id="contentSub2"><?php $this->html('undelete') ?></div>
