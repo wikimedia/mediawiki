@@ -3021,7 +3021,7 @@ class Parser {
 			if ( $id !== false ) {
 				$text = $this->getVariableValue( $id, $frame );
 				if ( MagicWord::getCacheTTL( $id ) > -1 ) {
-					$this->mOutput->mContainsOldMagic = true;
+					$this->mOutput->updateCacheExpiry( MagicWord::getCacheTTL( $id ) );
 				}
 				$found = true;
 			}
