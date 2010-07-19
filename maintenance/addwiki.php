@@ -149,16 +149,15 @@ class AddWiki extends Maintenance {
 		# Rebuild interwiki tables
 		# passthru( '/home/wikipedia/conf/interwiki/update' );
 		
-		$user = getenv( 'USER' );
 		$time = wfTimestamp( TS_RFC2822 );
-		UserMailer::send( new MailAddress( 'newprojects@list.wikimedia.org' ),
-			new MailAddress( $wgPasswordSender ), "New wiki: $dbName",
-			<<<EOT
-A new wiki was created by $user at $time for a $ucsite in $name ($lang).
-Once the wiki is fully set up, it'll be visible at http://$domain
-EOT;
-		);
-
+		$escDbName = wfEscapeShellArg( $dbname );
+		$escTime = wfEscapeShellArg( $time );
+		$escUcsite = wfEscapeShellArg( $ucsite );
+		$escName = wfEscapeShellArg( $name );
+		$escLang = wfEscapeShellArg( $lang );
+		$escDomain = wfEscapeShellArg( $domain );
+		shell_exec( "echo notifyNewProjects $escDbName $escTime $escUcsite $escName $escLang $escDomain | at now + 15 minutes" );
+		
 		$this->output( "Script ended. You still have to:
 	* Add any required settings in InitialiseSettings.php
 	* Run sync-common-all
