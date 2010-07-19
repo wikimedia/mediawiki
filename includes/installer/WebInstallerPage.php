@@ -78,7 +78,8 @@ abstract class WebInstallerPage {
 }
 
 class WebInstaller_Language extends WebInstallerPage {
-	function execute() {
+	
+	public function execute() {
 		global $wgLang;
 		$r = $this->parent->request;
 		$userLang = $r->getVal( 'UserLang' );
@@ -141,9 +142,9 @@ class WebInstaller_Language extends WebInstallerPage {
 	}
 
 	/**
-	 * Get a <select> for selecting languages
+	 * Get a <select> for selecting languages.
 	 */
-	function getLanguageSelector( $name, $label, $selectedCode ) {
+	public function getLanguageSelector( $name, $label, $selectedCode ) {
 		global $wgDummyLanguageCodes;
 		$s = Xml::openElement( 'select', array( 'id' => $name, 'name' => $name ) ) . "\n";
 
@@ -157,10 +158,12 @@ class WebInstaller_Language extends WebInstallerPage {
 		$s .= "\n</select>\n";
 		return $this->parent->label( $label, $name, $s );
 	}
+	
 }
 
 class WebInstaller_Welcome extends WebInstallerPage {
-	function execute() {
+	
+	public function execute() {
 		if ( $this->parent->request->wasPosted() ) {
 			if ( $this->getVar( '_Environment' ) ) {
 				return 'continue';
@@ -174,10 +177,12 @@ class WebInstaller_Welcome extends WebInstallerPage {
 			$this->endForm();
 		}
 	}
+	
 }
 
 class WebInstaller_DBConnect extends WebInstallerPage {
-	function execute() {
+	
+	public function execute() {
 		$r = $this->parent->request;
 		if ( $r->wasPosted() ) {
 			$status = $this->submit();
@@ -188,7 +193,6 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 				$this->parent->showStatusBox( $status );
 			}
 		}
-
 
 		$this->startForm();
 
@@ -225,7 +229,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		$this->endForm();
 	}
 
-	function submit() {
+	public function submit() {
 		$r = $this->parent->request;
 		$type = $r->getVal( 'DBType' );
 		$this->setVar( 'wgDBtype', $type );
@@ -235,10 +239,12 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		}
 		return $installer->submitConnectForm();
 	}
+	
 }
 
 class WebInstaller_Upgrade extends WebInstallerPage {
-	function execute() {
+	
+	public function execute() {
 		if ( $this->getVar( '_UpgradeDone' ) ) {
 			if ( $this->parent->request->wasPosted() ) {
 				// Done message acknowledged
@@ -285,7 +291,7 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 		$this->endForm();
 	}
 
-	function showDoneMessage() {
+	public function showDoneMessage() {
 		$this->startForm();
 		$this->addHTML(
 			$this->parent->getInfoBox(
@@ -298,10 +304,12 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 		);
 		$this->endForm( 'regenerate' );
 	}
+	
 }
 
 class WebInstaller_DBSettings extends WebInstallerPage {
-	function execute() {
+	
+	public function execute() {
 		$installer = $this->parent->getDBInstaller( $this->getVar( 'wgDBtype' ) );
 
 		$r = $this->parent->request;
@@ -329,7 +337,8 @@ class WebInstaller_DBSettings extends WebInstallerPage {
 }
 
 class WebInstaller_Name extends WebInstallerPage {
-	function execute() {
+	
+	public function execute() {
 		$r = $this->parent->request;
 		if ( $r->wasPosted() ) {
 			if ( $this->submit() ) {
@@ -407,7 +416,7 @@ class WebInstaller_Name extends WebInstallerPage {
 		return 'output';
 	}
 
-	function submit() {
+	public function submit() {
 		$retVal = true;
 		$this->parent->setVarsFromRequest( array( 'wgSitename', '_NamespaceType',
 			'_AdminName', '_AdminPassword', '_AdminPassword2', '_AdminEmail',
@@ -494,10 +503,12 @@ class WebInstaller_Name extends WebInstallerPage {
 		}
 		return $retVal;
 	}
+	
 }
 
 class WebInstaller_Options extends WebInstallerPage {
-	function execute() {
+	
+	public function execute() {
 		if ( $this->getVar( '_SkipOptional' ) == 'skip' ) {
 			return 'skip';
 		}
@@ -643,7 +654,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		$this->endForm();
 	}
 
-	function getCCPartnerUrl() {
+	public function getCCPartnerUrl() {
 		global $wgServer;
 		$exitUrl = $wgServer . $this->parent->getUrl( array(
 			'page' => 'Options',
@@ -665,7 +676,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		return $iframeUrl;
 	}
 
-	function getCCChooser() {
+	public function getCCChooser() {
 		$iframeAttribs = array(
 			'class' => 'config-cc-iframe',
 			'name' => 'config-cc-iframe',
@@ -686,7 +697,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			"</div>\n";
 	}
 
-	function getCCDoneBox() {
+	public function getCCDoneBox() {
 		$js = "parent.document.getElementById('config-cc-wrapper').style.height = '$1';";
 		// If you change this height, also change it in config.css
 		$expandJs = str_replace( '$1', '54em', $js );
@@ -713,8 +724,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			"</script>\n";
 	}
 
-
-	function submitCC() {
+	public function submitCC() {
 		$newValues = $this->parent->setVarsFromRequest(
 			array( 'wgRightsUrl', 'wgRightsText', 'wgRightsIcon' ) );
 		if ( count( $newValues ) != 3 ) {
@@ -725,7 +735,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		$this->addHTML( $this->getCCDoneBox() );
 	}
 
-	function submit() {
+	public function submit() {
 		$this->parent->setVarsFromRequest( array( '_RightsProfile', '_LicenseCode',
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUpload', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
@@ -769,11 +779,12 @@ class WebInstaller_Options extends WebInstallerPage {
 		$this->parent->setVar( '_Extensions', $exts );
 		return true;
 	}
+	
 }
 
 class WebInstaller_Install extends WebInstallerPage {
 
-	function execute() {
+	public function execute() {
 		if( $this->parent->request->wasPosted() ) {
 			return 'continue';
 		} elseif( $this->getVar( '_InstallDone' ) ) {
@@ -810,9 +821,11 @@ class WebInstaller_Install extends WebInstallerPage {
 			$this->parent->showStatusBox( $status );
 		}
 	}
+	
 }
 
 class WebInstaller_Complete extends WebInstallerPage {
+	
 	public function execute() {
 		global $IP;
 		$this->startForm();
@@ -831,7 +844,8 @@ class WebInstaller_Complete extends WebInstallerPage {
 }
 
 class WebInstaller_Restart extends WebInstallerPage {
-	function execute() {
+	
+	public function execute() {
 		$r = $this->parent->request;
 		if ( $r->wasPosted() ) {
 			$really = $r->getVal( 'submit-restart' );
@@ -848,19 +862,21 @@ class WebInstaller_Restart extends WebInstallerPage {
 		$this->addHTML( $s );
 		$this->endForm( 'restart' );
 	}
+	
 }
 
 abstract class WebInstaller_Document extends WebInstallerPage {
-	abstract function getFileName();
+	
+	protected abstract function getFileName();
 
-	function execute() {
+	public  function execute() {
 		$text = $this->getFileContents();
 		$this->parent->output->addWikiText( $text );
 		$this->startForm();
 		$this->endForm( false );
 	}
 
-	function getFileContents() {
+	public  function getFileContents() {
 		return file_get_contents( dirname( __FILE__ ) . '/../../' . $this->getFileName() );
 	}
 
@@ -895,36 +911,44 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 		return '<span class="config-plainlink">[http://www.mediawiki.org/wiki/Manual:' .
 			$matches[1] . ' ' . $matches[1] . ']</span>';
 	}
+	
 }
 
 class WebInstaller_Readme extends WebInstaller_Document {
-	function getFileName() { return 'README'; }
+	
+	protected function getFileName() { return 'README'; }
 
-	function getFileContents() {
+	public function getFileContents() {
 		return $this->formatTextFile( parent::getFileContents() );
 	}
+	
 }
 
 class WebInstaller_ReleaseNotes extends WebInstaller_Document {
-	function getFileName() { return 'RELEASE-NOTES'; }
+	
+	protected function getFileName() { return 'RELEASE-NOTES'; }
 
-	function getFileContents() {
+	public function getFileContents() {
 		return $this->formatTextFile( parent::getFileContents() );
 	}
+	
 }
 
 class WebInstaller_UpgradeDoc extends WebInstaller_Document {
-	function getFileName() { return 'UPGRADE'; }
+	
+	protected function getFileName() { return 'UPGRADE'; }
 
-	function getFileContents() {
+	public function getFileContents() {
 		return $this->formatTextFile( parent::getFileContents() );
 	}
+	
 }
 
 class WebInstaller_Copying extends WebInstaller_Document {
-	function getFileName() { return 'COPYING'; }
+	
+	protected function getFileName() { return 'COPYING'; }
 
-	function getFileContents() {
+	public function getFileContents() {
 		$text = parent::getFileContents();
 		$text = str_replace( "\x0C", '', $text );
 		$text = preg_replace_callback( '/\n[ \t]+/m', array( 'WebInstaller_Copying', 'replaceLeadingSpaces' ), $text );
@@ -935,4 +959,5 @@ class WebInstaller_Copying extends WebInstaller_Document {
 	private static function replaceLeadingSpaces( $matches ) {
 		return "\n" . str_repeat( '&#160;', strlen( $matches[0] ) );
 	}
+	
 }
