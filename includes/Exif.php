@@ -1146,15 +1146,3 @@ class FormatExif {
 		return $a;
 	}
 }
-
-/**
- * MW 1.6 compatibility
- */
-define( 'MW_EXIF_BYTE', Exif::BYTE );
-define( 'MW_EXIF_ASCII', Exif::ASCII );
-define( 'MW_EXIF_SHORT', Exif::SHORT );
-define( 'MW_EXIF_LONG', Exif::LONG );
-define( 'MW_EXIF_RATIONAL', Exif::RATIONAL );
-define( 'MW_EXIF_UNDEFINED', Exif::UNDEFINED );
-define( 'MW_EXIF_SLONG', Exif::SLONG );
-define( 'MW_EXIF_SRATIONAL', Exif::SRATIONAL );
