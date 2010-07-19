@@ -24,9 +24,8 @@ class CliInstaller extends Installer {
 		'dbpath' => 'wgSQLiteDataDir',
 	);
 
-
 	/** Constructor */
-	function __construct( $siteName, $admin = null, $option = array()) {
+	function __construct( $siteName, $admin = null, $option = array() ) {
 		parent::__construct();
 
 		foreach ( $this->optionMap as $opt => $global ) {
@@ -64,7 +63,7 @@ class CliInstaller extends Installer {
 	/**
 	 * Main entry point.
 	 */
-	public function execute( ) {
+	public function execute() {
 		$this->performInstallation(
 			array( $this, 'startStage'),
 			array( $this, 'endStage' )
@@ -91,12 +90,12 @@ class CliInstaller extends Installer {
 		$this->showMessage( wfMsg( 'config-install-step-done' ) ."\n");
 	}
 
-	function showMessage( $msg /*, ... */ ) {
+	public function showMessage( $msg /*, ... */ ) {
 		echo html_entity_decode( strip_tags( $msg ), ENT_QUOTES );
 		flush();
 	}
 
-	function showStatusMessage( $status ) {
+	public function showStatusMessage( $status ) {
 		$this->showMessage( $status->getWikiText() );
 	}
 
