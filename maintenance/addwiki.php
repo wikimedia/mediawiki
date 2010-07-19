@@ -83,7 +83,7 @@ class AddWiki extends Maintenance {
 		$dbw->sourceFile( "$IP/extensions/UsabilityInitiative/ClickTracking/ClickTrackingEvents.sql" );
 		$dbw->sourceFile( "$IP/extensions/UsabilityInitiative/ClickTracking/ClickTracking.sql" );
 		$dbw->sourceFile( "$IP/extensions/UsabilityInitiative/UserDailyContribs/UserDailyContribs.sql" );
-		$dbw->sourceFile( "$IP/extensions/UsabilityInitiative/Optin/OptIn.sql" );
+		$dbw->sourceFile( "$IP/extensions/UsabilityInitiative/OptIn/OptIn.sql" );
 
 		$dbw->query( "INSERT INTO site_stats(ss_row_id) VALUES (1)" );
 
