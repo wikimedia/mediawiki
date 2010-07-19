@@ -328,9 +328,9 @@ class ImagePage extends Article {
 			} else {
 				$params = array( 'page' => $page );
 			}
-			$width_orig = $this->displayImg->getWidth();
+			$width_orig = $this->displayImg->getWidth( $page );
 			$width = $width_orig;
-			$height_orig = $this->displayImg->getHeight();
+			$height_orig = $this->displayImg->getHeight( $page );
 			$height = $height_orig;
 			$mime = $this->displayImg->getMimeType();
 			$showLink = false;
