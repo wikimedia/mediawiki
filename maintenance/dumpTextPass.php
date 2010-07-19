@@ -36,10 +36,10 @@ class TextPassDumper extends BackupDumper {
 	var $history = WikiExporter::FULL;
 	var $fetchCount = 0;
 	var $prefetchCount = 0;
-	
+
 	var $failures = 0;
 	var $maxFailures = 5;
-    var $failedTextRetrievals = 0;
+	var $failedTextRetrievals = 0;
 	var $maxConsecutiveFailedTextRetrievals = 200;
 	var $failureTimeout = 5; // Seconds to sleep after db failure
 
@@ -71,7 +71,7 @@ class TextPassDumper extends BackupDumper {
 		if ( WikiError::isError( $result ) ) {
 			wfDie( $result->getMessage() );
 		}
-		
+
 		if ( $this->spawnProc ) {
 			$this->closeSpawn();
 		}
@@ -81,7 +81,7 @@ class TextPassDumper extends BackupDumper {
 
 	function processOption( $opt, $val, $param ) {
 		$url = $this->processFileOpt( $val, $param );
-		
+
 		switch( $opt ) {
 		case 'prefetch':
 			global $IP;
@@ -105,7 +105,7 @@ class TextPassDumper extends BackupDumper {
 			break;
 		}
 	}
-	
+
 	function processFileOpt( $val, $param ) {
 		switch( $val ) {
 		case "file":
@@ -128,7 +128,7 @@ class TextPassDumper extends BackupDumper {
 		if ( !$this->prefetch ) {
 			return parent::showReport();
 		}
-		
+
 		if ( $this->reporting ) {
 			$delta = wfTime() - $this->startTime;
 			$now = wfTimestamp( TS_DB );
@@ -176,7 +176,7 @@ class TextPassDumper extends BackupDumper {
 			$offset += strlen( $chunk );
 		} while ( $chunk !== false && !feof( $input ) );
 		xml_parser_free( $parser );
-		
+
 		return true;
 	}
 
@@ -194,7 +194,7 @@ class TextPassDumper extends BackupDumper {
 				$revID = intval($this->thisRev);
 				$revLength = $dbr->selectField( 'revision', 'rev_len', array('rev_id' => $revID ) );
 				// if length of rev text in file doesn't match length in db, we reload
-				// this avoids carrying forward broken data from previous xml dumps 
+				// this avoids carrying forward broken data from previous xml dumps
 				if( strlen($text) == $revLength ) {
 					$this->prefetchCount++;
 					return $text;
@@ -203,7 +203,7 @@ class TextPassDumper extends BackupDumper {
 		}
 		return $this->doGetText( $id );
 	}
-	
+
 	private function doGetText( $id ) {
 
 		$id = intval( $id );
@@ -212,15 +212,15 @@ class TextPassDumper extends BackupDumper {
 		while (true) {
 			if ( $this->spawn ) {
 				if ($this->failures) {
-					// we don't know why it failed, could be the child process 
-					// borked, could be db entry busted, could be db server out to lunch, 
+					// we don't know why it failed, could be the child process
+					// borked, could be db entry busted, could be db server out to lunch,
 					// so cover all bases
 					$this->closeSpawn();
 					$this->openSpawn();
 				}
-				$text =  $this->getTextSpawned( $id );
+				$text =	 $this->getTextSpawned( $id );
 			} else {
-				$text =  $this->getTextDbSafe( $id );
+				$text =	 $this->getTextDbSafe( $id );
 			}
 			if ( $text === false ) {
 				$this->failures++;
@@ -228,7 +228,7 @@ class TextPassDumper extends BackupDumper {
 					$this->progress( "Failed to retrieve revision text for text id ".
 									 "$id after $this->maxFailures tries, giving up" );
 					// were there so many bad retrievals in a row we want to bail?
-				    // at some point we have to declare the dump irretrievably broken
+					// at some point we have to declare the dump irretrievably broken
 					$this->failedTextRetrievals++;
 					if ($this->failedTextRetrievals > $this->maxConsecutiveFailedTextRetrievals) {
 						throw $ex;
@@ -251,7 +251,7 @@ class TextPassDumper extends BackupDumper {
 		}
 
 	}
-	
+
 	/**
 	 * Fetch a text revision from the database, retrying in case of failure.
 	 * This may survive some transitory errors by reconnecting, but
@@ -268,7 +268,7 @@ class TextPassDumper extends BackupDumper {
 			return $text;
 		}
 	}
-	
+
 	/**
 	 * May throw a database error if, say, the server dies during query.
 	 */
@@ -286,7 +286,7 @@ class TextPassDumper extends BackupDumper {
 		$normalized = $wgContLang->normalize( $stripped );
 		return $normalized;
 	}
-	
+
 	private function getTextSpawned( $id ) {
 		wfSuppressWarnings();
 		if ( !$this->spawnProc ) {
@@ -297,10 +297,10 @@ class TextPassDumper extends BackupDumper {
 		wfRestoreWarnings();
 		return $text;
 	}
-	
+
 	function openSpawn() {
 		global $IP, $wgDBname;
-		
+
 		$cmd = implode( " ",
 			array_map( 'wfEscapeShellArg',
 				array(
@@ -312,7 +312,7 @@ class TextPassDumper extends BackupDumper {
 			1 => array( "pipe", "w" ),
 			2 => array( "file", "/dev/null", "a" ) );
 		$pipes = array();
-		
+
 		$this->progress( "Spawning database subprocess: $cmd" );
 		$this->spawnProc = proc_open( $cmd, $spec, $pipes );
 		if ( !$this->spawnProc ) {
@@ -324,10 +324,10 @@ class TextPassDumper extends BackupDumper {
 			$this->spawnWrite, // -> stdin
 			$this->spawnRead,  // <- stdout
 		) = $pipes;
-		
+
 		return true;
 	}
-	
+
 	private function closeSpawn() {
 		wfSuppressWarnings();
 		if ( $this->spawnRead )
@@ -344,14 +344,14 @@ class TextPassDumper extends BackupDumper {
 		$this->spawnProc = false;
 		wfRestoreWarnings();
 	}
-	
+
 	private function getTextSpawnedOnce( $id ) {
 		global $wgContLang;
 
 		$ok = fwrite( $this->spawnWrite, "$id\n" );
 		// $this->progress( ">> $id" );
 		if ( !$ok ) return false;
-		
+
 		$ok = fflush( $this->spawnWrite );
 		// $this->progress( ">> [flush]" );
 		if ( !$ok ) return false;
@@ -369,26 +369,26 @@ class TextPassDumper extends BackupDumper {
 		$len = fgets( $this->spawnRead );
 		// $this->progress( "<< " . trim( $len ) );
 		if ( $len === false ) return false;
-		
+
 		$nbytes = intval( $len );
 		// actual error, not zero-length text
 		if ($nbytes < 0 ) return false;
 
 		$text = "";
-		
+
 		// Subprocess may not send everything at once, we have to loop.
 		while ( $nbytes > strlen( $text ) ) {
 			$buffer = fread( $this->spawnRead, $nbytes - strlen( $text ) );
 			if ( $buffer === false ) break;
 			$text .= $buffer;
 		}
-		
+
 		$gotbytes = strlen( $text );
 		if ( $gotbytes != $nbytes ) {
 			$this->progress( "Expected $nbytes bytes from database subprocess, got $gotbytes " );
 			return false;
 		}
-		
+
 		// Do normalization in the dump thread...
 		$stripped = str_replace( "\r", "", $text );
 		$normalized = $wgContLang->normalize( $stripped );
@@ -481,14 +481,14 @@ Usage: php dumpTextPass.php [<options>]
 Options:
   --stub=<type>:<file> To load a compressed stub dump instead of stdin
   --prefetch=<type>:<file> Use a prior dump file as a text source, to save
-              pressure on the database.
-              (Requires PHP 5.0+ and the XMLReader PECL extension)
-  --quiet     Don't dump status reports to stderr.
+			  pressure on the database.
+			  (Requires PHP 5.0+ and the XMLReader PECL extension)
+  --quiet	  Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
-              (Default: 100)
+			  (Default: 100)
   --server=h  Force reading from MySQL server h
-  --current   Base ETA on number of pages in database instead of all revisions
-  --spawn     Spawn a subprocess for loading text records
+  --current	  Base ETA on number of pages in database instead of all revisions
+  --spawn	  Spawn a subprocess for loading text records
 ENDS
 );
 }
