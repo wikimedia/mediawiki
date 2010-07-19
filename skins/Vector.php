@@ -487,7 +487,7 @@ class VectorTemplate extends QuickTemplate {
 			<!-- bodyContent -->
 			<div id="bodyContent">
 				<!-- tagline -->
-				<h3 id="siteSub"><?php $this->msg( 'tagline' ) ?></h3>
+				<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
 				<!-- /tagline -->
 				<!-- subtitle -->
 				<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html( 'subtitle' ) ?></div>
