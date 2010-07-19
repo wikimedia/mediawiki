@@ -1205,6 +1205,9 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'prefs-advancedrendering'       => 'Dewisiadau uwch',
 'prefs-advancedsearchoptions'   => 'Dewisiadau uwch',
 'prefs-advancedwatchlist'       => 'Dewisiadau uwch',
+'prefs-displayrc'               => 'Dewisiadau arddangos',
+'prefs-displaysearchoptions'    => 'Dewisiadau arddangos',
+'prefs-displaywatchlist'        => 'Dewisiadau arddangos',
 'prefs-diffs'                   => "Cymharu golygiadau ('gwahan')",
 
 # User rights
@@ -2172,7 +2175,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Parth:',
-'invert'         => 'Dewiswch pob parth heblaw am hwn',
+'invert'         => 'Dewiswch bob parth heblaw am hwn',
 'blanknamespace' => '(Prif)',
 
 # Contributions

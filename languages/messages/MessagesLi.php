@@ -888,9 +888,9 @@ Wellich is d'r gewis of vernäömp.
 'rev-deleted-event'           => '(actie weggehaold)',
 'rev-deleted-text-permission' => "Dees bewerking is '''gewusj oet de publieke archieve'''.
 Dao kónne details aanwezig zeen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} wusjlogbook].",
-'rev-deleted-text-unhide'     => "Dees versie van de pagina is '''verwijderd'''.
-Achtergrönj zeen meugelik te vinje in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verwijderlogbook].
-As beheerder kins se [$1 dees versie bekieke] as se wils.",
+'rev-deleted-text-unhide'     => "Dees versie van de pazjena is '''eweggesjaf'''.
+Achtergrönj zeen meugelik te vinje in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} wösjlogbook].
+Es beheerder kins se [$1 dees versie bekieke] es se wils.",
 'rev-deleted-text-view'       => "Dees bewèrking is '''gewösj oet de publieke archieve'''.
 Es beheerder kèns te deze zeen;
 dao kónne details aanwezig zeen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} wusjlogbook].",

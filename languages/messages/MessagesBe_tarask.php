@@ -1347,6 +1347,9 @@ $1",
 'prefs-advancedrendering'       => 'Дадатковыя ўстаноўкі',
 'prefs-advancedsearchoptions'   => 'Дадатковыя ўстаноўкі',
 'prefs-advancedwatchlist'       => 'Дадатковыя ўстаноўкі',
+'prefs-displayrc'               => 'Устаноўкі паказу',
+'prefs-displaysearchoptions'    => 'Устаноўкі паказу',
+'prefs-displaywatchlist'        => 'Устаноўкі паказу',
 'prefs-diffs'                   => 'Розьніцы вэрсіяў',
 
 # User rights

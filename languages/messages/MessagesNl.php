@@ -1471,6 +1471,9 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'prefs-advancedrendering'       => 'Gevorderde instellingen',
 'prefs-advancedsearchoptions'   => 'Gevorderde instellingen',
 'prefs-advancedwatchlist'       => 'Gevorderde instellingen',
+'prefs-displayrc'               => 'Weergaveinstellingen',
+'prefs-displaysearchoptions'    => 'Weergaveopties',
+'prefs-displaywatchlist'        => 'Weergaveopties',
 'prefs-diffs'                   => 'Verschillen',
 
 # User rights

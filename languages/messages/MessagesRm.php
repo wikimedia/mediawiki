@@ -9,6 +9,7 @@
  *
  * @author Gion
  * @author Gion-andri
+ * @author Kazu89
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -486,7 +487,7 @@ Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insa
 
 Il pled-clav per quest nov conto po vegnir midà sin la pagina ''[[Special:ChangePassword|midar pled-clav]]'' suenter che ti t'es annunzià.",
 'newarticle'                       => '(Nov)',
-'newarticletext'                   => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
+'newarticletext'                   => "Ti has cliccà in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per t'infurmar).",
 'anontalkpagetext'                 => "----''Quai è la pagina da discussiun per in utilisader anomim che n'ha anc betg creà in conto d'utilisader u che n'al utilisescha betg. 
 Perquai avain nus d'utilisar l'adressa d'IP per l'identifitgar. 
 Ina tala adressa d'IP po vegnir utilisada da differents utilisaders. 
@@ -747,6 +748,7 @@ Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar e
 'prefs-advancedrendering'     => 'Opziuns avanzadas',
 'prefs-advancedsearchoptions' => 'Opziuns avanzadas',
 'prefs-advancedwatchlist'     => 'Opziuns avanzadas',
+'prefs-displayrc'             => 'Opziuns da visualisar',
 'prefs-diffs'                 => 'Cumparegliaziun da versiuns',
 
 # User rights
