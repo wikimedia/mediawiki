@@ -281,7 +281,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to the local alias.
 * (bug 24296) Added converttitles parameter to convert titles to their 
   canonical language variant.
-  
+* Fixed "link" parameter in image links with "thumb" parameter.
+
 === Languages updated in 1.17 ===
 
 MediaWiki supports over 330 languages. Many localisations are updated
