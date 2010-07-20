@@ -1559,6 +1559,7 @@ $1",
 'prefs-advancedrendering'       => 'خيارات متقدمة',
 'prefs-advancedsearchoptions'   => 'خيارات متقدمة',
 'prefs-advancedwatchlist'       => 'خيارات متقدمة',
+'prefs-displayrc'               => 'خيارات العرض',
 'prefs-diffs'                   => 'فروقات',
 
 # User rights
@@ -3124,7 +3125,7 @@ $1',
 'nextdiff'     => 'التعديل اللاحق ←',
 
 # Media information
-'mediawarning'         => "'''تحذير''': قد يحتوي نوع هذا الملف على كود خبيث، يمكن عند تشغيله السيطرة على نظامك.<hr />",
+'mediawarning'         => "'''تحذير''': قد يحتوي نوع هذا الملف على كود خبيث، يمكن عند تشغيله السيطرة على نظامك.",
 'imagemaxsize'         => "حد حجم الصور:<br />''(لصفحات وصف الملفات)''",
 'thumbsize'            => 'حجم العرض المصغر:',
 'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',

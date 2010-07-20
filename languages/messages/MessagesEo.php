@@ -1374,6 +1374,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'prefs-advancedrendering'       => 'Progresaj opcioj',
 'prefs-advancedsearchoptions'   => 'Progresaj opcioj',
 'prefs-advancedwatchlist'       => 'Progresaj opcioj',
+'prefs-displayrc'               => 'Montraj opcioj',
 'prefs-diffs'                   => 'Diferencoj',
 
 # User rights
@@ -2862,7 +2863,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file type may contain malicious code.
-By executing it, your system may be compromised.<hr />",
+By executing it, your system may be compromised.",
 'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',

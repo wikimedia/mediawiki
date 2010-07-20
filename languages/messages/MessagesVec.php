@@ -1201,6 +1201,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'prefs-advancedrendering'       => 'Preferense avansade',
 'prefs-advancedsearchoptions'   => 'Preferense avansade',
 'prefs-advancedwatchlist'       => 'Preferense avansade',
+'prefs-displayrc'               => 'Preferense de visualixassion',
 'prefs-diffs'                   => 'Difarense',
 
 # User rights
@@ -2624,7 +2625,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Ocio''': Sto file qua el podarìa contegner codice cativo.
-La so esecuzion la podarìa danegiar el to computer.<hr />",
+La so esecuzion la podarìa danegiar el to computer.",
 'imagemaxsize'         => "Dimension massima de le imagini:<br />''(su le relative pagine de descrizion)''",
 'thumbsize'            => 'Grandeza de le miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',

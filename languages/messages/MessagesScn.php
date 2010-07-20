@@ -1135,6 +1135,7 @@ L'operazioni nun pò èssiri annullata.",
 'prefs-advancedrendering'       => 'Opzioni avanzati',
 'prefs-advancedsearchoptions'   => 'Opzioni avanzati',
 'prefs-advancedwatchlist'       => 'Opzioni avanzati',
+'prefs-displayrc'               => 'Opzioni di visualizzazioni',
 'prefs-diffs'                   => 'Diffirenzi',
 
 # User rights
@@ -2488,7 +2489,7 @@ $1',
 'nextdiff'     => 'Diffirenza siquenti →',
 
 # Media information
-'mediawarning'         => "'''Accura''': Stu file pò cuntèniri còdici malignu, esiquènnulu lu vostru sistema putisi vèniri cumprumissu. <hr />",
+'mediawarning'         => "'''Accura''': Stu file pò cuntèniri còdici malignu, esiquènnulu lu vostru sistema putisi vèniri cumprumissu.",
 'imagemaxsize'         => "Diminzioni màssima dî mmàggini:<br />''(pi li pàggini di discrizzioni dô file)''",
 'thumbsize'            => 'Grannizza dî miniaturi:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàggina|pàggini}}',

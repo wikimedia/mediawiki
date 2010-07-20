@@ -2266,7 +2266,7 @@ $1",
 'nextdiff'     => 'Diferencia más recién →',
 
 # Media information
-'mediawarning'         => "'''Avisu''': Esti archivu pue contener códigu maliciosu, pue ser comprometío executalu nel to sistema.<hr />",
+'mediawarning'         => "'''Avisu''': Esti archivu pue contener códigu maliciosu, pue ser comprometío executalu nel to sistema.",
 'imagemaxsize'         => 'Llendar les imáxenes nes páxines de descripción a:',
 'thumbsize'            => 'Tamañu de la muestra:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|páxina|páxines}}',

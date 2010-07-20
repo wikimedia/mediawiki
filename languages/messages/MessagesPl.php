@@ -1350,6 +1350,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-advancedrendering'       => 'Zaawansowane',
 'prefs-advancedsearchoptions'   => 'Zaawansowane',
 'prefs-advancedwatchlist'       => 'Zaawansowane',
+'prefs-displayrc'               => 'Opcje wyświetlania',
 'prefs-diffs'                   => 'Zmiany',
 
 # User rights
@@ -2899,7 +2900,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Uwaga!''' Plik w tym formacie może zawierać złośliwy kod.
-Jeśli go otworzysz, możesz zarazić swój system.<hr />",
+Jeśli go otworzysz, możesz zarazić swój system.",
 'imagemaxsize'         => "Ograniczenie wielkości obrazków<br />''(na stronach opisu plików)''",
 'thumbsize'            => 'Rozmiar miniaturki',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|strony|stron}}',

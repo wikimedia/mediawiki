@@ -1355,6 +1355,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'prefs-advancedrendering'       => 'Täpsemad eelistused',
 'prefs-advancedsearchoptions'   => 'Täpsemad eelistused',
 'prefs-advancedwatchlist'       => 'Täpsemad eelistused',
+'prefs-displayrc'               => 'Kuvasätted',
 'prefs-diffs'                   => 'Erinevused',
 
 # User rights
@@ -2851,7 +2852,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Hoiatus''': See failitüüp võib sisaldada pahatahtlikku koodi.
-Selle avamine võib su arvutit kahjustada.<hr />",
+Selle avamine võib su arvutit kahjustada.",
 'imagemaxsize'         => "Pildi suuruse ülemmäär:<br />''(faili kirjeldusleheküljel)''",
 'thumbsize'            => 'Pisipildi suurus:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lehekülg|lehekülge}}',

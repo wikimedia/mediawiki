@@ -1349,6 +1349,9 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'prefs-advancedrendering'       => 'Tùy chọn nâng cao',
 'prefs-advancedsearchoptions'   => 'Tùy chọn nâng cao',
 'prefs-advancedwatchlist'       => 'Tùy chọn nâng cao',
+'prefs-displayrc'               => 'Tùy chọn hiển thị',
+'prefs-displaysearchoptions'    => 'Tùy chọn hiển thị',
+'prefs-displaywatchlist'        => 'Tùy chọn hiển thị',
 'prefs-diffs'                   => 'Khác biệt',
 
 # User rights
@@ -2876,7 +2879,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Cảnh báo''': Kiểu tập tin này có thể chứa mã hiểm độc.
-Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.<hr />",
+Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'imagemaxsize'         => "Giới hạn cỡ hình:<br />''(trên trang miêu tả tập tin)''",
 'thumbsize'            => 'Cỡ hình thu nhỏ:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|trang|trang}}',

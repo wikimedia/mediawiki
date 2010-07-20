@@ -2376,7 +2376,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Nuned''': Ragiv at ba ninükon programi(s) badälik.
-If ojäfidükol oni, nünömasit olik ba podämükon.<hr />",
+If ojäfidükol oni, nünömasit olik ba podämükon.",
 'imagemaxsize'         => 'Miedükön magodis su pads magodis bepenöls ad:',
 'thumbsize'            => 'Gretot magodüla:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|pad|pads}} $3',

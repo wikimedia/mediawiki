@@ -1329,6 +1329,7 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'prefs-advancedrendering'       => 'Ñawparikusqa akllanakuna',
 'prefs-advancedsearchoptions'   => 'Ñawparikusqa akllanakuna',
 'prefs-advancedwatchlist'       => 'Ñawparikusqa akllanakuna',
+'prefs-displayrc'               => 'Akllanakunata rikuchiy',
 'prefs-diffs'                   => 'Wakin kaykuna',
 
 # User rights
@@ -2792,7 +2793,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Paqtataq''': Kay willañiqiqa millay wakichi qillqayuqchá.
-Payta rurachiyqa antañiqiqniykita llikaykitapas waqllinqachá.<hr />",
+Payta rurachiyqa antañiqiqniykita llikaykitapas waqllinqachá.",
 'imagemaxsize'         => "Rikchap chhikan kayninta kaykama saywachay:<br />''(willañiqi ch'uyanchana p'anqakunapaq)''",
 'thumbsize'            => "Ch'iñicha rikchachap chhikan kaynin:",
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|p'anqa|p'anqakuna}}",

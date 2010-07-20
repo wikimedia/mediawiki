@@ -1197,6 +1197,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'prefs-advancedrendering'       => 'Opcions avanzadas',
 'prefs-advancedsearchoptions'   => 'Opcions avanzadas',
 'prefs-advancedwatchlist'       => 'Opcions avanzadas',
+'prefs-displayrc'               => 'Opcions de visualización',
 'prefs-diffs'                   => 'Diferencias',
 
 # User rights
@@ -2669,7 +2670,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Pare cuenta!''': Iste tipo de fichero puet contener codigo endino. 
-En executar-lo, podría meter en un contornillo a seguridat d'o suyo sistema.<hr />",
+En executar-lo, podría meter en un contornillo a seguridat d'o suyo sistema.",
 'imagemaxsize'         => "Limite de grandaria d'as imáchens:<br />''(ta pachinas de descripción de fichers)''",
 'thumbsize'            => "Midas d'a miniatura:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pachina|pachinas}}',

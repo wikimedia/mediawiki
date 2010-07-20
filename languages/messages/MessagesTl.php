@@ -1265,6 +1265,7 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 'prefs-advancedrendering'       => 'Masulong na mga mapagpipilian',
 'prefs-advancedsearchoptions'   => 'Masulong na mga mapagpipilian',
 'prefs-advancedwatchlist'       => 'Masulong na mga mapagpipilian',
+'prefs-displayrc'               => 'Ipakita ang mga pagpipilian',
 'prefs-diffs'                   => 'Mga pagkakaiba',
 
 # User rights
@@ -2785,7 +2786,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Babala''': Maaaring naglalaman ng kodigong malisyoso ang uri ng talaksang ito.
-Maaaring manganib ang iyong sistema kapag ipinagana mo ito. <hr />",
+Maaaring manganib ang iyong sistema kapag ipinagana mo ito.",
 'imagemaxsize'         => "Takdang hangganan sa laki ng larawan: <br />''(para sa mga pahina ng paglalarawan ng talaksan)''",
 'thumbsize'            => 'Maliit na sukat (parang "kuko sa hinlalaki" lamang):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pahina|mga pahina}}',

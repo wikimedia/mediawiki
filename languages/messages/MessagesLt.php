@@ -1265,6 +1265,7 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'prefs-advancedrendering'       => 'Papildomi nustatymai',
 'prefs-advancedsearchoptions'   => 'Papildomi nustatymai',
 'prefs-advancedwatchlist'       => 'Papildomi nustatymai',
+'prefs-displayrc'               => 'Rodymo nustatymai',
 'prefs-diffs'                   => 'Skirtumai',
 
 # User rights
@@ -2767,7 +2768,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą.
-Jį paleidus jūsų sistema gali būti pažeista.<hr />",
+Jį paleidus jūsų sistema gali būti pažeista.",
 'imagemaxsize'         => "Riboti paveikslėlių dydį:<br />''(failų aprašymo puslapiuose)''",
 'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',

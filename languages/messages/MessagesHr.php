@@ -1363,6 +1363,7 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'prefs-advancedrendering'       => 'Napredne opcije',
 'prefs-advancedsearchoptions'   => 'Napredne opcije',
 'prefs-advancedwatchlist'       => 'Napredne opcije',
+'prefs-displayrc'               => 'Prikaži opcije',
 'prefs-diffs'                   => 'razl',
 
 # User rights
@@ -2847,7 +2848,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ova datoteka možda sadrži štetan kod.
-Njegovim izvršavanjem mogli biste oštetiti svoj sustav.<hr />",
+Njegovim izvršavanjem mogli biste oštetiti svoj sustav.",
 'imagemaxsize'         => "Ograniči veličinu slike:<br />''(za stranicu s opisom datoteke)''",
 'thumbsize'            => 'Veličina sličice (umanjene inačice slike):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stranica|stranice}}',

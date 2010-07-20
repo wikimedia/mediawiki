@@ -1909,7 +1909,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Huşdor''': In parvanda mumkin ast ramzhoi badqasdro dar bar girad.
-Bo içroi on, sistemai şumo şojad oseb bubinad.<hr />",
+Bo içroi on, sistemai şumo şojad oseb bubinad.",
 'thumbsize'            => 'Andozai anguştdona (thumbnail):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
 'file-info'            => "(andozai parvanda: $1, nav'i MIME: $2)",

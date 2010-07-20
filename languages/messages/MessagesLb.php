@@ -1912,7 +1912,7 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 # Special:ActiveUsers
 'activeusers'            => 'Lëscht vun den aktive Benotzer',
 'activeusers-intro'      => 'Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.',
-'activeusers-count'      => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLUAL:$3|gëschter|an de leschten $3 Deeg}}',
+'activeusers-count'      => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLURAL:$3|gëschter|an de leschten $3 Deeg}}',
 'activeusers-from'       => 'Benotzer weisen, ugefaang bäi:',
 'activeusers-hidebots'   => 'Botte verstoppen',
 'activeusers-hidesysops' => 'Administrateure verstoppen',
@@ -2758,7 +2758,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier kann e béiswëllege Programmcode enthalen.
-Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.<hr />",
+Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'imagemaxsize'         => "Maximal Gréisst fir Biller:<br />''(fir Billerbeschreiwungssäiten)''",
 'thumbsize'            => 'Gréisst vun der Miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',

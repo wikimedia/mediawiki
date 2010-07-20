@@ -1878,7 +1878,7 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'nextdiff'     => 'Vahtsõmb toimõndus →',
 
 # Media information
-'mediawarning'         => "'''Kaeq ette''': Taan teedüstün või ollaq sisen ohtlik kuud, miä või su programmilõ vika tetäq.<hr />",
+'mediawarning'         => "'''Kaeq ette''': Taan teedüstün või ollaq sisen ohtlik kuud, miä või su programmilõ vika tetäq.",
 'imagemaxsize'         => 'Pildi seletüslehe pääl näütämise suuruspiir:',
 'thumbsize'            => 'Väikupildi suurus:',
 'file-info'            => '$1, MIME-tüüp: $2',

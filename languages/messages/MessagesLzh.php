@@ -1066,6 +1066,7 @@ $1",
 'prefs-advancedrendering'       => '進',
 'prefs-advancedsearchoptions'   => '進',
 'prefs-advancedwatchlist'       => '進',
+'prefs-displayrc'               => '示項',
 'prefs-diffs'                   => '異',
 
 # User rights
@@ -2455,7 +2456,7 @@ $1',
 'nextdiff'     => '後辨→',
 
 # Media information
-'mediawarning'         => "'''警'''：此檔型疑惡。行之恐諜也。<hr />",
+'mediawarning'         => "'''警'''：此檔型疑惡。行之恐諜也。",
 'imagemaxsize'         => "述檔頁惟列：<br />''（用於檔）''",
 'thumbsize'            => '縮圖幅',
 'widthheight'          => '$1矩$2',

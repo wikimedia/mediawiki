@@ -1230,6 +1230,7 @@ $1",
 'prefs-advancedrendering'       => '進階選項',
 'prefs-advancedsearchoptions'   => '進階選項',
 'prefs-advancedwatchlist'       => '進階選項',
+'prefs-displayrc'               => '顯示選項',
 'prefs-diffs'                   => '差異',
 
 # User rights
@@ -2718,7 +2719,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告'''：呢個檔案類型可能有一啲惡意嘅程式編碼。
-如果執行佢嘅話，你嘅系統可能會被波及。<hr />",
+如果執行佢嘅話，你嘅系統可能會被波及。",
 'imagemaxsize'         => "圖像大細限制:<br />''(用響檔案描述頁)''",
 'thumbsize'            => '縮圖大細：',
 'widthheightpage'      => '$1×$2, $3版',

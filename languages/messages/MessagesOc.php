@@ -1359,6 +1359,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'prefs-advancedrendering'       => 'Opcions avançadas',
 'prefs-advancedsearchoptions'   => 'Opcions avançadas',
 'prefs-advancedwatchlist'       => 'Opcions avançadas',
+'prefs-displayrc'               => "Opcions d'afichatge",
 'prefs-diffs'                   => 'Diferéncias',
 
 # User rights
@@ -2870,7 +2871,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Atencion :''' Aqueste fichièr pòt conténer de còde malvolent.
-Se l'executatz, vòstre sistèma pòt èsser compromés.<hr />",
+Se l'executatz, vòstre sistèma pòt èsser compromés.",
 'imagemaxsize'         => "Format maximal dels imatges :<br />''(per las paginas de descripcion d’imatges)''",
 'thumbsize'            => 'Talha de la miniatura :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',

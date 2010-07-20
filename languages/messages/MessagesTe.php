@@ -1225,6 +1225,9 @@ $1",
 'prefs-advancedrendering'       => 'ఉన్నత ఎంపికలు',
 'prefs-advancedsearchoptions'   => 'ఉన్నత ఎంపికలు',
 'prefs-advancedwatchlist'       => 'ఉన్నత ఎంపికలు',
+'prefs-displayrc'               => 'ప్రదర్శన ఎంపికలు',
+'prefs-displaysearchoptions'    => 'ప్రదర్శన ఎంపికలు',
+'prefs-displaywatchlist'        => 'ప్రదర్శన ఎంపికలు',
 'prefs-diffs'                   => 'తేడాలు',
 
 # User rights
@@ -2697,7 +2700,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''హెచ్చరిక''': ఈ రకపు ఫైలులో హానికరమైన కోడ్‌ ఉండవచ్చు.
-దాన్ని నడపడం వల్ల, మీ సిస్టమ్ లొంగిపోవచ్చు.<hr />",
+దాన్ని నడపడం వల్ల, మీ సిస్టమ్ లొంగిపోవచ్చు.",
 'imagemaxsize'         => "బొమ్మ ఉండవలసిన సైజు:<br />''(ఫైలు వివరణ పేజీలో)''",
 'thumbsize'            => 'నఖచిత్రం వైశాల్యం:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|పేజీ|పేజీలు}}',

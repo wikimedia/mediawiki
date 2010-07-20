@@ -992,6 +992,7 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'prefs-advancedrendering'     => 'Ēmpirsin treppušas opciōnis',
 'prefs-advancedsearchoptions' => 'Ēmpirsin treppušas opciōnis',
 'prefs-advancedwatchlist'     => 'Ēmpirsin treppušas opciōnis',
+'prefs-displayrc'             => 'Waidīnsnas opciōnis',
 
 # User rights
 'userrights'                  => 'Perwāldais enwarīnsenins stēisan tērpautajan',
@@ -2325,7 +2326,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Ēmpirssergīsenis:''' Šis zūrbrukes tīps mazzi turītun ēn sin wārgingiskan kōdan.
-Enskattintei din,  tū mazzi ārditun twajjan sistēman.<hr />",
+Enskattintei din,  tū mazzi ārditun twajjan sistēman.",
 'imagemaxsize'         => "Arāikinais bildin debban:<br />''(per zūrbrukes ebpeisāsenes pāusans)''",
 'thumbsize'            => 'Miniatūris debban:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pāusan|pāusai}}',

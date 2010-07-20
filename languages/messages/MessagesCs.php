@@ -2928,7 +2928,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozornění''': Tento typ souboru může obsahovat škodlivý kód.
-Otevřením souboru můžete ohrozit svůj počítač.<hr />",
+Otevřením souboru můžete ohrozit svůj počítač.",
 'imagemaxsize'         => "Maximální velikost obrázku:<br />
 ''(na stránce s popisem souboru)''",
 'thumbsize'            => 'Velikost náhledu:',

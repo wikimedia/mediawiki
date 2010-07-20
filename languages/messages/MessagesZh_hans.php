@@ -1274,6 +1274,7 @@ $1",
 'prefs-advancedrendering'       => '高级选项',
 'prefs-advancedsearchoptions'   => '高级选项',
 'prefs-advancedwatchlist'       => '高级选项',
+'prefs-displayrc'               => '显示选项',
 'prefs-diffs'                   => '差异',
 
 # User rights
@@ -2774,7 +2775,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告'''：该文件类型可能包含恶意代码。
-运行它可能对您的系统带来危险。<hr />",
+运行它可能对您的系统带来危险。",
 'imagemaxsize'         => "图像大小限制：<br />''（用于文件描述页面）''",
 'thumbsize'            => '缩略图大小：',
 'widthheightpage'      => '$1×$2，$3页',

@@ -15,6 +15,7 @@
  * @author Romaine
  * @author Singhalawap
  * @author චතුනි අලහප්පෙරුම
+ * @author තඹරු විජේසේකර
  * @author දසනැබළයෝ
  * @author නන්දිමිතුරු
  * @author බිඟුවා
@@ -1310,6 +1311,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'prefs-advancedrendering'       => 'ප්‍රගත විකල්පයන්',
 'prefs-advancedsearchoptions'   => 'ප්‍රගත විකල්පයන්',
 'prefs-advancedwatchlist'       => 'ප්‍රගත විකල්පයන්',
+'prefs-displayrc'               => 'දර්ශන විකල්පයන්',
 'prefs-diffs'                   => 'වෙනස',
 
 # User rights
@@ -2875,7 +2877,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''අවවාදයයි''': අනිෂ්ට කේතයන් මෙම ගොනුවෙහි අඩංගු විය හැක.
-එය ක්‍රියයානය කිරීමෙන්, ඔබගේ පද්ධතිය අපහසුතාවයට ලක්විය හැක.<hr />",
+එය ක්‍රියාත්මක කිරීමෙන්, ඔබගේ පද්ධතියට හානිවිය හැක.",
 'imagemaxsize'         => "රූප ප්‍රමාණ සීමාව:<br />''(ගොනු විස්තර පිටු සඳහා)''",
 'thumbsize'            => 'සිඟිති-රූපයේ විශාලත්වය:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|පිටුව|පිටු}}',

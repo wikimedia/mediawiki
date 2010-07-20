@@ -1154,6 +1154,7 @@ $1",
 'prefs-advancedrendering'       => 'پیشرفتگین گزینه',
 'prefs-advancedsearchoptions'   => 'پیشرفتگین گزینه',
 'prefs-advancedwatchlist'       => 'پیشرفتگین گزینه',
+'prefs-displayrc'               => 'پیشدارگ گزینه هان',
 'prefs-diffs'                   => 'پرک',
 
 # User rights
@@ -2566,7 +2567,7 @@ $1',
 'nextdiff'     => 'نوکترین اصلاح→',
 
 # Media information
-'mediawarning'         => "''''هوژاری:'''' ای فایل شاید شامل بد واهین کد بوت،اجرای آیی ته وتی سیستم شاید توافقی بیت.<hr />",
+'mediawarning'         => "''''هوژاری:'''' ای فایل شاید شامل بد واهین کد بوت،اجرای آیی ته وتی سیستم شاید توافقی بیت.",
 'imagemaxsize'         => "محدودیت تصاویر: <br />''(په صفحات توضیح فایل)''",
 'thumbsize'            => 'اندازه پیج انگشتی',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|صفحه|صفحات}}',

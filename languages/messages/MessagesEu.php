@@ -1195,6 +1195,7 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'prefs-advancedrendering'       => 'Aukera aurreratuak',
 'prefs-advancedsearchoptions'   => 'Aukera aurreratuak',
 'prefs-advancedwatchlist'       => 'Aukera aurreratuak',
+'prefs-displayrc'               => 'Aukerak erakutsi',
 'prefs-diffs'                   => 'Ezberdintasunak',
 
 # User rights
@@ -2638,7 +2639,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Oharra''': Fitxategi honek kode mingarria izan lezake.
-Zure sisteman exekutatzea arriskutsua izan liteke.<hr />",
+Zure sisteman exekutatzea arriskutsua izan liteke.",
 'imagemaxsize'         => "Irudiaren tamainaren muga:<br />''(fitxategi deskribapen-orrietarako)''",
 'thumbsize'            => 'Irudi txikiaren tamaina:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|orri|orri}}',

@@ -2802,7 +2802,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Opozorilo''': Tovrstni tip datotek lahko vsebuje zlonamerno kodo.
-Z njenim zagonom lahko ogrozite vaš sistem.<hr />",
+Z njenim zagonom lahko ogrozite vaš sistem.",
 'imagemaxsize'         => "Omejitev velikosti slik:<br />''(za opisne strani datotek)''",
 'thumbsize'            => 'Velikost sličice (thumbnail):',
 'widthheight'          => '$1&nbsp;×&nbsp;$2',
