@@ -1,6 +1,6 @@
 <?php
 
-class MysqlInstaller extends InstallerDBType {
+class MysqlInstaller extends DatabaseInstaller {
 	protected $globalNames = array(
 		'wgDBserver',
 		'wgDBname',

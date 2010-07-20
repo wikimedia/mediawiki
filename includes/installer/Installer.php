@@ -273,7 +273,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Get an instance of InstallerDBType for the specified DB type
+	 * Get an instance of DatabaseInstaller for the specified DB type
 	 * @param $type Mixed: DB installer for which is needed, false to use default.
 	 */
 	public function getDBInstaller( $type = false ) {

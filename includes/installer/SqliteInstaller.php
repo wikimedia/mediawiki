@@ -1,6 +1,6 @@
 <?php
 
-class SqliteInstaller extends InstallerDBType {
+class SqliteInstaller extends DatabaseInstaller {
 	protected $globalNames = array(
 		'wgDBname',
 		'wgSQLiteDataDir',
