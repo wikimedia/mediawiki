@@ -325,21 +325,21 @@ function addPortletLink( portlet, href, text, id, tooltip, accesskey, nextnode )
 	}
 	var uls = root.getElementsByTagName( 'ul' );
 	var node;
-	if (uls.length > 0) {
+	if ( uls.length > 0 ) {
 		node = uls[0];
 	} else {
-		node = document.createElement('ul');
-		var lc = null;
-		for (var i in root.childNodes) { /* get root.lastElementChild */
-			if (root.childNodes[i].nodeType == 1) {
-				lc = root.childNodes[i];
+		node = document.createElement( 'ul' );
+		var lastElementChild = null;
+		for ( var i = 0; i < root.childNodes.length; ++i ) { /* get root.lastElementChild */
+			if ( root.childNodes[i].nodeType == 1 ) {
+				lastElementChild = root.childNodes[i];
 			}
 		}
-		if (lc && lc.nodeName.match(/div/i)) {
+		if ( lastElementChild && lastElementChild.nodeName.match( /div/i ) ) {
 			/* Insert into the menu divs */
-			lc.appendChild(node);
+			lastElementChild.appendChild( node );
 		} else {
-			root.appendChild(node);
+			root.appendChild( node );
 		}
 	}
 	if ( !node ) {
