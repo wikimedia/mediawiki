@@ -3289,7 +3289,14 @@ Image with link parameter (URL target) and unnamed parameter
 </p>
 !! end
 
+!! test
+Thumbnail image with link parameter
+!! input
+[[Image:foobar.jpg|thumb|link=http://example.com/|Title]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="http://example.com/"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
 
+!! end
 
 !! test
 Image with frame and link
