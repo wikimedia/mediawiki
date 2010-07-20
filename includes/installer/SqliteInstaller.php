@@ -1,12 +1,13 @@
 <?php
 
 class SqliteInstaller extends DatabaseInstaller {
+	
 	protected $globalNames = array(
 		'wgDBname',
 		'wgSQLiteDataDir',
 	);
 
-	function getName() {
+	public function getName() {
 		return 'sqlite';
 	}
 
@@ -14,7 +15,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		return self::checkExtension( 'pdo_sqlite' );
 	}
 
-	function getGlobalDefaults() {
+	public function getGlobalDefaults() {
 		if ( isset( $_SERVER['DOCUMENT_ROOT'] ) ) {
 			$path = str_replace(
 				array( '/', '\\' ),
@@ -27,14 +28,14 @@ class SqliteInstaller extends DatabaseInstaller {
 		}
 	}
 
-	function getConnectForm() {
+	public function getConnectForm() {
 		return $this->getTextBox( 'wgSQLiteDataDir', 'config-sqlite-dir' ) .
 			$this->parent->getHelpBox( 'config-sqlite-dir-help' ) .
 			$this->getTextBox( 'wgDBname', 'config-db-name' ) .
 			$this->parent->getHelpBox( 'config-sqlite-name-help' );
 	}
 
-	function submitConnectForm() {
+	public function submitConnectForm() {
 		global $wgSQLiteDataDir;
 		$this->setVarsFromRequest( array( 'wgSQLiteDataDir', 'wgDBname' ) );
 
@@ -79,7 +80,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		return Status::newGood();
 	}
 
-	function getConnection() {
+	public function getConnection() {
 		global $wgSQLiteDataDir;
 
 		$status = Status::newGood();
@@ -98,7 +99,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	function needsUpgrade() {
+	public function needsUpgrade() {
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 		$dbName = $this->getVar( 'wgDBname' );
 		// Don't create the data file yet
@@ -110,15 +111,15 @@ class SqliteInstaller extends DatabaseInstaller {
 		return parent::needsUpgrade();
 	}
 
-	function getSettingsForm() {
+	public function getSettingsForm() {
 		return false;
 	}
 
-	function submitSettingsForm() {
+	public function submitSettingsForm() {
 		return Status::newGood();
 	}
 
-	function setupDatabase() {
+	public function setupDatabase() {
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 
 		# Sanity check. We checked this before but maybe someone deleted the
@@ -146,7 +147,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		return $this->getConnection();
 	}
 
-	function createTables() {
+	public function createTables() {
 		global $IP;
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
@@ -161,7 +162,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		return $this->setupSearchIndex();
 	}
 
-	function setupSearchIndex() {
+	public function setupSearchIndex() {
 		global $IP;
 
 		$status = Status::newGood();
@@ -181,7 +182,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	function doUpgrade() {
+	public function doUpgrade() {
 		global $wgDatabase;
 		LBFactory::enableBackend();
 		$wgDatabase = wfGetDB( DB_MASTER );
@@ -191,14 +192,15 @@ class SqliteInstaller extends DatabaseInstaller {
 		return true;
 	}
 
-	static function outputHandler( $string ) {
+	public static function outputHandler( $string ) {
 		return htmlspecialchars( $string );
 	}
 
-	function getLocalSettings() {
+	public function getLocalSettings() {
 		$dir = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgSQLiteDataDir' ) );
 		return
 "# SQLite-specific settings
 \$wgSQLiteDataDir    = \"{$dir}\";";
 	}
+	
 }
