@@ -602,7 +602,7 @@ class ApiQuery extends ApiBase {
 			'generator' => array( 'Use the output of a list as the input for other prop/list/meta items',
 					'NOTE: generator parameter names must be prefixed with a \'g\', see examples' ),
 			'redirects' => 'Automatically resolve redirects',
-			'converttitles' => 'Automatically convert titles to their canonical form',
+			'converttitles' => "Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion.",
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
 			'export' => 'Export the current revisions of all given or generated pages',
 			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
