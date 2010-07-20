@@ -61,7 +61,6 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		if ( isset( $show['changed'] ) && isset( $show['!changed'] ) )
 			$this->dieUsageMsg( array( 'show' ) );
 
-		$this->getMain()->setVaryCookie();
 		$this->addTables( 'watchlist' );
 		$this->addFields( array( 'wl_namespace', 'wl_title' ) );
 		$this->addFieldsIf( 'wl_notificationtimestamp', isset( $prop['changed'] ) );

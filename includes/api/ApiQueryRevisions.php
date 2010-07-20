@@ -396,9 +396,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		
 		if ( !is_null( $this->token ) )
 		{
-			// Don't cache tokens
-			$this->getMain()->setCachePrivate();
-
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach ( $this->token as $t )
 			{
