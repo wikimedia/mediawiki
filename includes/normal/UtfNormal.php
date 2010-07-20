@@ -73,13 +73,6 @@ class UtfNormal {
 	 * @return string a clean, shiny, normalized UTF-8 string
 	 */
 	static function cleanUp( $string ) {
-		if( extension_loaded( 'iconv' ) ) {
-			wfSuppressWarnings();
-			$ret = iconv( "UTF-8","UTF-8//IGNORE", $string );
-			wfRestoreWarnings();
-			return $ret;
-		}
-
 		if( NORMALIZE_ICU || NORMALIZE_INTL ) {
 			# We exclude a few chars that ICU would not.
 			$string = preg_replace(
