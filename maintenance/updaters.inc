@@ -1436,6 +1436,8 @@ function do_postgres_updates() {
 		array( "user_newtalk",  "user_last_timestamp",  "TIMESTAMPTZ" ),
 		array( "logging",       "log_user_text",        "TEXT NOT NULL DEFAULT ''" ),
 		array( "logging",       "log_page",             "INTEGER" ),
+		array( "interwiki",     "iw_api",               "TEXT NOT NULL"),
+		array( "interwiki",     "iw_wikiid",            "TEXT NOT NULL"),
 	);
 
 
