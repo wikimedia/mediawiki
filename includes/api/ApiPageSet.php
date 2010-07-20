@@ -677,8 +677,8 @@ class ApiPageSet extends ApiQueryBase {
 				global $wgContLang;
 				if ( $this->mConvertTitles &&
 						count( $wgContLang->getVariants() ) > 1  &&
-						$titleObj->getArticleID() == 0 ) {
-					// Language::findVariantLink will modify titleObj into 
+						!$titleObj->exists() ) {
+					// Language::findVariantLink will modify titleObj into
 					// the canonical variant if possible
 					$wgContLang->findVariantLink( $title, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
