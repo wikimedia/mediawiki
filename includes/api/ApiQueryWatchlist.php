@@ -56,7 +56,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$this->selectNamedDB('watchlist', DB_SLAVE, 'watchlist');
 
-		$this->getMain()->setVaryCookie();
 		if (!$wgUser->isLoggedIn())
 			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
 
@@ -149,9 +148,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 			
 			// Check permissions
-			global $wgUser
-			$this->getMain()->setVaryCookie();
-
+			global $wgUser;
 			if((isset($show['patrolled']) || isset($show['!patrolled'])) && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
 				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
 

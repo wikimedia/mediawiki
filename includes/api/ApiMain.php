@@ -121,7 +121,7 @@ class ApiMain extends ApiBase {
 
 
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
-	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage, $mVaryCookie;
+	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage;
 
 	/**
 	* Constructs an instance of ApiMain that utilizes the module and format specified by $request.
@@ -166,7 +166,6 @@ class ApiMain extends ApiBase {
 
 		$this->mSquidMaxage = -1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
-		$this->mVaryCookie = false;
 	}
 
 	/**
@@ -204,49 +203,12 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Make sure Vary: Cookie and friends are set. Use this when the output of a request
-	 * may be cached for anons but may not be cached for logged-in users.
-	 *
-	 * WARNING: This function must be called CONSISTENTLY for a given URL. This means that a
-	 * given URL must either always or never call this function; if it sometimes does and
-	 * sometimes doesn't, stuff will break.
-	 */
-	public function setVaryCookie() {
-		$this->mVaryCookie = true;
-	}
-
-	/**
-	 * Actually output the Vary: Cookie header and its friends, if flagged with setVaryCookie().
-	 * Outputs the appropriate X-Vary-Options header and Cache-Control: private if needed.
-	 */
-	private function outputVaryCookieHeader() {
-		global $wgUseXVO, $wgOut;
-		if ( $this->mVaryCookie ) {
-			header( 'Vary: Cookie' );
-			if ( $wgUseXVO ) {
-				header( $wgOut->getXVO() );
-				if ( $wgOut->haveCacheVaryCookies() ) {
-					$this->setCacheControl( array( 'private' => true ) );
-				}
-			}
-		}
-	}
-
-	/**
 	 * Create an instance of an output formatter by its name
 	 */
 	public function createPrinterByName($format) {
 		if( !isset( $this->mFormats[$format] ) )
 			$this->dieUsage( "Unrecognized format: {$format}", 'unknown_format' );
 		return new $this->mFormats[$format] ($this, $format);
-	}
-
-	/**
-	 * Make sure Cache-Control: private is set. Use this when the output of a request
-	 * is for the current recipient only and should not be cached in any shared cache.
-	 */
-	public function setCachePrivate() {
-		$this->setCacheControl( array( 'private' => true ) );
 	}
 
 	/**
@@ -290,7 +252,6 @@ class ApiMain extends ApiBase {
 
 			// Error results should not be cached
 			$this->setCacheMaxAge(0);
-			$this->setCachePrivate();
 
 			$headerStr = 'MediaWiki-API-Error: ' . $errCode;
 			if ($e->getCode() === 0)
@@ -304,11 +265,6 @@ class ApiMain extends ApiBase {
 			// If the error occured during printing, do a printer->profileOut()
 			$this->mPrinter->safeProfileOut();
 			$this->printResult(true);
-		}
-		
-		// If this wiki is private, don't cache anything ever
-		if ( in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
-			$this->setCachePrivate();
 		}
 
 		if($this->mSquidMaxage == -1)
@@ -326,7 +282,6 @@ class ApiMain extends ApiBase {
 		$expires = ($exp == 0 ? 1 : time() + $exp);
 		header('Expires: ' . wfTimestamp(TS_RFC2822, $expires));
 		header('Cache-Control: s-maxage=' . $smaxage . ', must-revalidate, max-age=' . $maxage);
-		$this->outputVaryCookieHeader();
 
 		if($this->mPrinter->getIsHtml())
 			echo wfReportTime();
@@ -433,9 +388,7 @@ class ApiMain extends ApiBase {
 		}
 
 		global $wgUser;
-		if ( $module->isReadMode() &&
-			!in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) &&
-			!$wgUser->isAllowed('read'))
+		if ($module->isReadMode() && !$wgUser->isAllowed('read'))
 			$this->dieUsageMsg(array('readrequired'));
 		if ($module->isWriteMode()) {
 			if (!$this->mEnableWrite)

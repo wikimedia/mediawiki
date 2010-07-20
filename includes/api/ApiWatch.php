@@ -41,7 +41,6 @@ class ApiWatch extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		$this->getMain()->setCachePrivate();
 		if(!$wgUser->isLoggedIn())
 			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
 		$params = $this->extractRequestParams();

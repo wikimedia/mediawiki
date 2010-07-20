@@ -115,10 +115,8 @@ class ApiParse extends ApiBase {
 			if(!$titleObj)
 				$titleObj = Title::newFromText("API");
 			$wgTitle = $titleObj;
-			if($params['pst'] || $params['onlypst']) {
+			if($params['pst'] || $params['onlypst'])
 				$text = $wgParser->preSaveTransform($text, $titleObj, $wgUser, $popts);
-				$this->getMain()->setVaryCookie();
-			}
 			if($params['onlypst'])
 			{
 				// Build a result and bail out

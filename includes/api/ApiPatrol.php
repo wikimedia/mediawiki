@@ -42,7 +42,6 @@ class ApiPatrol extends ApiBase {
 	 */
 	public function execute() {
 		global $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
-		$this->getMain()->setCachePrivate();
 		$params = $this->extractRequestParams();
 		
 		if(!isset($params['token']))
