@@ -150,12 +150,13 @@ class AddWiki extends Maintenance {
 		# passthru( '/home/wikipedia/conf/interwiki/update' );
 		
 		$time = wfTimestamp( TS_RFC2822 );
-		$escDbName = wfEscapeShellArg( $dbname );
-		$escTime = wfEscapeShellArg( $time );
-		$escUcsite = wfEscapeShellArg( $ucsite );
-		$escName = wfEscapeShellArg( $name );
-		$escLang = wfEscapeShellArg( $lang );
-		$escDomain = wfEscapeShellArg( $domain );
+		// These arguments need to be escaped twice: once for echo and once for at
+		$escDbName = wfEscapeShellArg( wfEscapeShellArg( $dbname ) );
+		$escTime = wfEscapeShellArg( wfEscapeShellArg( $time ) );
+		$escUcsite = wfEscapeShellArg( wfEscapeShellArg( $ucsite ) );
+		$escName = wfEscapeShellArg( wfEscapeShellArg( $name ) );
+		$escLang = wfEscapeShellArg( wfEscapeShellArg( $lang ) );
+		$escDomain = wfEscapeShellArg( wfEscapeShellArg( $domain ) );
 		shell_exec( "echo notifyNewProjects $escDbName $escTime $escUcsite $escName $escLang $escDomain | at now + 15 minutes" );
 		
 		$this->output( "Script ended. You still have to:
