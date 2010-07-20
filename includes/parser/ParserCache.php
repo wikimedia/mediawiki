@@ -4,8 +4,6 @@
  * @todo document
  */
 class ParserCache {
-	private $mMemc;
-
 	/**
 	 * Get an instance of this object
 	 */
@@ -25,10 +23,6 @@ class ParserCache {
 	 * @param $memCached Object
 	 */
 	function __construct( $memCached ) {
-		if ( !$memCached ) {
-			global $parserMemc;
-			$parserMemc = $memCached = wfGetParserCacheStorage();
-		}
 		$this->mMemc = $memCached;
 	}
 
