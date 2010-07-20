@@ -129,8 +129,8 @@ class EditPage {
 		wfProfileIn( __METHOD__ );
 		# Get variables from query string :P
 		$section = $wgRequest->getVal( 'section' );
-			
-		$preload = $wgRequest->getVal( 'preload', 
+
+		$preload = $wgRequest->getVal( 'preload',
 			// Custom preload text for new sections
 			$section === 'new' ? 'MediaWiki:addsection-preload' : '' );
 		$undoafter = $wgRequest->getVal( 'undoafter' );
@@ -320,7 +320,7 @@ class EditPage {
 		}
 
 		$wgOut->addScriptFile( 'edit.js' );
-		
+
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->includeJQuery();
 			$wgOut->addScriptFile( 'preview.js' );
@@ -493,7 +493,7 @@ class EditPage {
 	/**
 	 * Does this EditPage class support section editing?
 	 * This is used by EditPage subclasses to indicate their ui cannot handle section edits
-	 * 
+	 *
 	 * @return bool
 	 */
 	protected function isSectionEditSupported() {
@@ -505,7 +505,7 @@ class EditPage {
 	 * This is used by EditPage subclasses when simply customizing the action
 	 * variable in the constructor is not enough. This can be used when the
 	 * EditPage lives inside of a Special page rather than a custom page action.
-	 * 
+	 *
 	 * @param $title Title object for which is being edited (where we go to for &action= links)
 	 * @return string
 	 */
@@ -655,7 +655,7 @@ class EditPage {
 	 * posted form to be placed in $this->textbox1, if using customized input
 	 * this method should be overrided and return the page text that will be used
 	 * for saving, preview parsing and so on...
-	 * 
+	 *
 	 * @param $request WebRequest
 	 */
 	protected function importContentFormData( &$request ) {
@@ -1064,9 +1064,9 @@ class EditPage {
 		$flags = EDIT_UPDATE | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $this->minoredit ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
-		$status = $this->mArticle->doEdit( $text, $this->summary, $flags, 
+		$status = $this->mArticle->doEdit( $text, $this->summary, $flags,
 			false, null, $this->watchthis, false, $sectionanchor, true );
-		
+
 		if ( $status->isOK() )
 		{
 			wfProfileOut( __METHOD__ );
@@ -1303,7 +1303,7 @@ HTML
 		}
 
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
-		
+
 		if ( $this->isConflict ) {
 			// In an edit conflict bypass the overrideable content form method
 			// and fallback to the raw wpTextbox1 since editconflicts can't be
@@ -1340,7 +1340,7 @@ HTML
 
 		if ( $this->isConflict )
 			$this->showConflict();
-		
+
 		$wgOut->addHTML( $this->editFormTextBottom );
 		$wgOut->addHTML( "</form>\n" );
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
@@ -1349,7 +1349,7 @@ HTML
 
 		wfProfileOut( __METHOD__ );
 	}
-	
+
 	protected function showHeader() {
 		global $wgOut, $wgUser, $wgTitle, $wgMaxArticleSize, $wgLang;
 		if ( $this->isConflict ) {
@@ -1490,12 +1490,12 @@ HTML
 	 * Note that you do not need to worry about the label's for=, it will be
 	 * inferred by the id given to the input. You can remove them both by
 	 * passing array( 'id' => false ) to $userInputAttrs.
-	 * 
+	 *
 	 * @param $summary The value of the summary input
 	 * @param $labelText The html to place inside the label
 	 * @param $inputAttrs An array of attrs to use on the input
 	 * @param $spanLabelAttrs An array of attrs to use on the span inside the label
-	 * 
+	 *
 	 * @return array An array in the format array( $label, $input )
 	 */
 	function getSummaryInput($summary = "", $labelText = null, $inputAttrs = null, $spanLabelAttrs = null) {
@@ -1559,10 +1559,10 @@ HTML
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
 		if ( !$summary || ( !$this->preview && !$this->diff ) )
 			return "";
-		
+
 		global $wgParser, $wgUser;
 		$sk = $wgUser->getSkin();
-		
+
 		if ( $isSubjectPreview )
 			$summary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $summary ) );
 
@@ -1586,7 +1586,7 @@ INPUTS
 		if ( !$this->checkUnicodeCompliantBrowser() )
 			$wgOut->addHTML(Xml::hidden( 'safemode', '1' ));
 	}
-	
+
 	protected function showFormAfterText() {
 		global $wgOut, $wgUser;
 		/**
@@ -1611,7 +1611,7 @@ INPUTS
 	 * be it a form, or simply wpTextbox1 with a modified content that will be
 	 * reverse modified when extracted from the post data.
 	 * Note that this is basically the inverse for importContentFormData
-	 * 
+	 *
 	 * @param $request WebRequest
 	 */
 	protected function showContentForm() {
@@ -1622,7 +1622,7 @@ INPUTS
 	 * Method to output wpTextbox1
 	 * The $textoverride method can be used by subclasses overriding showContentForm
 	 * to pass back to this method.
-	 * 
+	 *
 	 * @param $customAttribs An array of html attributes to use in the textarea
 	 * @param $textoverride String: optional text to override $this->textarea1 with
 	 */
@@ -1648,7 +1648,7 @@ INPUTS
 				$classes[] = $attribs['class'];
 			$attribs['class'] = implode( ' ', $classes );
 		}
-		
+
 		$this->showTextbox( isset($textoverride) ? $textoverride : $this->textbox1, 'wpTextbox1', $attribs );
 	}
 
@@ -1671,7 +1671,7 @@ INPUTS
 		$attribs = $customAttribs + array(
 			'accesskey' => ',',
 			'id'   => $name,
-			'cols' => $wgUser->getIntOption( 'cols' ), 
+			'cols' => $wgUser->getIntOption( 'cols' ),
 			'rows' => $wgUser->getIntOption( 'rows' ),
 			'style' => '' // avoid php notices when appending preferences (appending allows customAttribs['style'] to still work
 		);
@@ -1727,7 +1727,7 @@ INPUTS
 	 * Give a chance for site and per-namespace customizations of
 	 * terms of service summary link that might exist separately
 	 * from the copyright notice.
-	 * 
+	 *
 	 * This will display between the save button and the edit tools,
 	 * so should remain short!
 	 */
@@ -1749,7 +1749,7 @@ INPUTS
 		$wgOut->addWikiMsgArray( 'edittools', array(), array( 'content' ) );
 		$wgOut->addHTML( '</div>' );
 	}
-	
+
 	protected function getCopywarn() {
 		global $wgRightsText;
 		if ( $wgRightsText ) {
@@ -1762,10 +1762,10 @@ INPUTS
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		wfRunHooks( 'EditPageCopyrightWarning', array( $this->mTitle, &$copywarnMsg ) );
-		
+
 		return "<div id=\"editpage-copywarn\">\n" . call_user_func_array("wfMsgNoTrans", $copywarnMsg) . "\n</div>";
 	}
-	
+
 	protected function showStandardInputs( &$tabindex = 2 ) {
 		global $wgOut, $wgUser;
 		$wgOut->addHTML( "<div class='editOptions'>\n" );
@@ -2650,5 +2650,5 @@ INPUTS
 		} else {
 			return $this->mBaseRevision;
 		}
-	}	
+	}
 }
