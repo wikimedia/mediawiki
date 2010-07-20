@@ -151,7 +151,7 @@ class AddWiki extends Maintenance {
 		
 		$time = wfTimestamp( TS_RFC2822 );
 		// These arguments need to be escaped twice: once for echo and once for at
-		$escDbName = wfEscapeShellArg( wfEscapeShellArg( $dbname ) );
+		$escDbName = wfEscapeShellArg( wfEscapeShellArg( $dbName ) );
 		$escTime = wfEscapeShellArg( wfEscapeShellArg( $time ) );
 		$escUcsite = wfEscapeShellArg( wfEscapeShellArg( $ucsite ) );
 		$escName = wfEscapeShellArg( wfEscapeShellArg( $name ) );
