@@ -1111,8 +1111,10 @@ div#bodyContent {
 	outline: none;
 	display: block;
 	width: 26px;
-	height: 3.1em;
-	text-indent: -9999px;
+	/* This hides the text but shows the background image */
+	padding-top: 3.1em;
+	height: 0;
+	overflow: hidden;
 }
 #ca-unwatch.icon a {
 	background-image: url(images/watch-icons.png?1);
