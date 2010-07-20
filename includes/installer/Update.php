@@ -1,16 +1,21 @@
 <?php
+
 /*
  * Class for handling database updates. Roughly based off of updaters.inc, with
  * a few improvements :)
  */
-
 class Update {
 
-	// Array of updates to perform on the database
+	/**
+	 * Array of updates to perform on the database
+	 * 
+	 * @var array
+	 */
 	protected $updates = array();
 
-	// Things we'll need
-	protected $db, $updater;
+	protected $db;
+	
+	protected $updater;
 
 	public function __construct( $db ) {
 		$this->db = $db;
@@ -144,4 +149,5 @@ class Update {
 			);
 		}
 	}
+	
 }
