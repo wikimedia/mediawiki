@@ -393,8 +393,8 @@ CREATE TABLE interwiki (
   iw_url     TEXT      NOT NULL,
   iw_local   SMALLINT  NOT NULL,
   iw_trans   SMALLINT  NOT NULL  DEFAULT 0,
-  iw_api     TEXT      NOT NULL,
-  iw_wikiid  TEXT      NOT NULL,
+  iw_api     TEXT      NOT NULL  DEFAULT '',
+  iw_wikiid  TEXT      NOT NULL  DEFAULT '',
 );
 
 
