@@ -8,7 +8,7 @@
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {
 	if ( isset( $_REQUEST['GLOBALS'] ) ) {
-		die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+		die( '<a href="http://www.hardened-php.net/globals-problem">$GLOBALS overwrite vulnerability</a>');
 	}
 	$verboten = array(
 		'GLOBALS',
