@@ -1,9 +1,11 @@
 <?php
+
 /**
  * All DBs supported by MediaWiki need to implement this. Base interface for
  * Updaters, which is replacing updaters.inc
  */
 interface Updaters {
+	
 	/**
 	 * Get an array of updates to perform on the database. Should return a
 	 * mutli-dimensional array. The main key is the MediaWiki version (1.12,
@@ -13,10 +15,11 @@ interface Updaters {
 	 * @return Array
 	 */
 	public function getUpdates();
+	
 }
 
 /**
- * Mysql implementation
+ * Mysql implementation.
  */
 class MysqlUpdater implements Updaters {
 
@@ -171,12 +174,14 @@ class MysqlUpdater implements Updaters {
 			),
 		);
 	}
+	
 }
 
 /**
- * Sqlite
+ * Sqlite implementation.
  */
 class SqliteUpdater implements Updaters {
+	
 	public function getUpdates() {
 		return array(
 			'1.14' => array(
@@ -211,13 +216,16 @@ class SqliteUpdater implements Updaters {
 			),
 		);
 	}
+	
 }
 
 /**
- * Oracle
+ * Oracle implementation.
  */
 class OracleUpdater implements Updaters {
+	
 	public function getUpdates() {
 		return array();
 	}
+	
 }
