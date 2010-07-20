@@ -2770,7 +2770,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Advertència''': Aquest fitxer podria contenir codi maliciós.
-Si l'executeu, podeu comprometre la seguretat del vostre sistema.<hr />",
+Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'imagemaxsize'         => "Límit de mida d'imatges:<br />''(per a pàgines de descripció de fitxers)''",
 'thumbsize'            => 'Mida de la miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgines}}',

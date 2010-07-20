@@ -1148,6 +1148,7 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'prefs-advancedrendering'       => 'Opsion avansà',
 'prefs-advancedsearchoptions'   => 'Opsion avansà',
 'prefs-advancedwatchlist'       => 'Opsion avansà',
+'prefs-displayrc'               => 'Opsion ëd visualisassion',
 'prefs-diffs'                   => 'Diferense',
 
 # User rights
@@ -2664,7 +2665,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Atension!''': st'archivi-sì a podrìa avèj andrinta dël còdes butà-lì da cheidun për fé ëd darmagi.
-An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a sò sistema.<hr />",
+An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a sò sistema.",
 'imagemaxsize'         => "Lìmit ëd la dimension ëd la figura:<br /> ''(për pàgine ëd descrission dij file)''",
 'thumbsize'            => 'Amzura dle figurin-e:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgine}}',

@@ -1123,6 +1123,7 @@ $1",
 'prefs-advancedrendering'       => 'उन्नत विकल्प',
 'prefs-advancedsearchoptions'   => 'उन्नत विकल्प',
 'prefs-advancedwatchlist'       => 'उन्नत विकल्प',
+'prefs-displayrc'               => 'प्रदर्शन विकल्प',
 'prefs-diffs'                   => 'अंतर',
 
 # User rights
@@ -2574,7 +2575,7 @@ $1',
 'nextdiff'     => 'ताज़ा संपादन →',
 
 # Media information
-'mediawarning'         => "'''सूचना''': इस फ़ाईलमें गलत कोड होने की आशंका हैं, इसे चलानेसे आपके सिस्टममें परेशानियां हो सकती हैं।<hr />",
+'mediawarning'         => "'''सूचना''': इस फ़ाईलमें गलत कोड होने की आशंका हैं, इसे चलानेसे आपके सिस्टममें परेशानियां हो सकती हैं।",
 'imagemaxsize'         => "छवि आकार सीमा:<br />''(संचिका वर्णन पन्नों के लिए)''",
 'thumbsize'            => 'थंबनेल का आकार:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|पन्ना|पन्ने}}',

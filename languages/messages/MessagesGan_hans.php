@@ -1834,7 +1834,7 @@ $1',
 'nextdiff'     => '下一只差异→',
 
 # Media information
-'mediawarning'         => "'''警告''': 话伓定个只档案含到恶意代码，执行佢话伓定会损坏倷𠮶系统。<hr />",
+'mediawarning'         => "'''警告''': 话伓定个只档案含到恶意代码，执行佢话伓定会损坏倷𠮶系统。",
 'imagemaxsize'         => '档案解释页𠮶图像大细限制到:',
 'thumbsize'            => '缩略图大细:',
 'widthheightpage'      => '$1×$2,$3页',

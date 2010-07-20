@@ -1128,6 +1128,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'prefs-advancedrendering'       => 'Giňeldilen opsiýalar',
 'prefs-advancedsearchoptions'   => 'Giňeldilen opsiýalar',
 'prefs-advancedwatchlist'       => 'Giňeldilen opsiýalar',
+'prefs-displayrc'               => 'Görkeziş opsiýalary',
 'prefs-diffs'                   => 'Tapawutlar',
 
 # User rights
@@ -2593,7 +2594,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Duýduryş''': Bu faýlda zyýanly kod bar bolmagy ahmal.
-Ony işletseňiz iş ulgamyňyza howp astyna salmagyňyz mümkin />",
+Ony işletseňiz iş ulgamyňyza howp astyna salmagyňyz mümkin.",
 'imagemaxsize'         => "Surat ölçeginiň çägi:<br />''(faýl düşündiriş sahypalary üçin)''",
 'thumbsize'            => 'Miniatýura ölçegi:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahypa|sahypa}}',

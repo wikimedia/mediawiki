@@ -1888,7 +1888,7 @@ $1",
 'nextdiff'     => 'Diffarènzia sighenti →',
 
 # Media information
-'mediawarning'         => "'''Attinzioni''': Chisthu file pó cuntinì còdizi marignu, chi si eseguiddu pó danniggià lu propriu sisthema infuimmatigu.<hr />",
+'mediawarning'         => "'''Attinzioni''': Chisthu file pó cuntinì còdizi marignu, chi si eseguiddu pó danniggià lu propriu sisthema infuimmatigu.",
 'imagemaxsize'         => "Misura màssima di l'immàgini i'li reratibi pàgini di dischussioni:",
 'thumbsize'            => 'Mannària di li miniadduri:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgini}}',

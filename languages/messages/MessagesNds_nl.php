@@ -2880,7 +2880,7 @@ $1",
 'nextdiff'     => 'volgende wieziging →',
 
 # Media information
-'mediawarning'         => "'''Waorschuwing:''' dit bestaand bevat meschien codering dee slich is veur 't systeem. <hr />",
+'mediawarning'         => "'''Waorschuwing:''' dit bestaand bevat meschien codering dee slich is veur 't systeem.",
 'imagemaxsize'         => 'Grootte van ofbeeldingen beteunen:',
 'thumbsize'            => "Grootte van 't ofbeeldingsoverzichte (thumbnail):",
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",

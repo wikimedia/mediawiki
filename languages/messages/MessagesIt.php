@@ -1306,6 +1306,7 @@ L'operazione non può essere annullata.",
 'prefs-advancedrendering'       => 'Opzioni avanzate',
 'prefs-advancedsearchoptions'   => 'Opzioni avanzate',
 'prefs-advancedwatchlist'       => 'Opzioni avanzate',
+'prefs-displayrc'               => 'Opzioni di visualizzazione',
 'prefs-diffs'                   => 'Differenze',
 
 # User rights
@@ -2785,7 +2786,7 @@ $1',
 'nextdiff'     => 'Differenza successiva →',
 
 # Media information
-'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno. La sua esecuzione potrebbe danneggiare il tuo sistema.<hr />",
+'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno. La sua esecuzione potrebbe danneggiare il tuo sistema.",
 'imagemaxsize'         => "Dimensione massima delle immagini:<br />''(per le pagine di descrizione del file)''",
 'thumbsize'            => 'Grandezza delle miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',

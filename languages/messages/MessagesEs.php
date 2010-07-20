@@ -2928,7 +2928,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso.
-Ejecutarlo podría comprometer la seguridad de su equipo.<hr />",
+Ejecutarlo podría comprometer la seguridad de su equipo.",
 'imagemaxsize'         => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize'            => 'Tamaño de las vistas en miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:|página|páginas}}',

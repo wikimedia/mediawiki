@@ -1461,7 +1461,7 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload-proto-error'      => 'Verkeerd protocol',
 'upload-proto-error-text' => "Uploads via deze methode vereise URL's die beginne met <code>http://</code> of <code>ftp://</code>.",
 'upload-file-error'       => 'Interne fout',
-'upload-file-error-text'  => "'n Intern fuitje vonj plaats wie 'n tiedelik besjtandj op de server woort aangemaak. Num aub contac op met 'ne systeembeheerder.",
+'upload-file-error-text'  => "'n Intern fuitje vonj plaats wie 'n tiedelik besjtandj op de server woort aangemaak. Num aub contac op met 'ne [[Special:ListUsers/sysop|systeemwèrker]].",
 'upload-misc-error'       => 'Onbekinde uploadfout',
 'upload-misc-error-text'  => "d'r Is tiedes 't uploade 'ne onbekinde fout opgetraeje. Controleer of de URL correc en besjikbaar is en probeer 't opnuuj. Es 't probleem aanhaojt, nöm dan contac op met 'ne [[Special:ListUsers/sysop|systeembeheerder]].",
 
@@ -1530,7 +1530,7 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 'filerevert'                => '$1 trökdrèjje',
 'filerevert-legend'         => 'Bestandj trökdrejje',
 'filerevert-intro'          => "Doe bös '''[[Media:$1|$1]]''' aan 't trökdrèjje tot de [$4 versie op $2, $3]",
-'filerevert-comment'        => 'Opmèrking:',
+'filerevert-comment'        => 'Raeje:',
 'filerevert-defaultcomment' => 'Trökgedrèjt tot de versie op $1, $2',
 'filerevert-submit'         => 'Trökdrèjje',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' is trökgedrèjt tot de [$4 versie op $2, $3]",
@@ -1605,8 +1605,9 @@ Deze heure waarsjienlik direct nao 't zjuste ongerwerp te verwiezen.<br />
 'ne pagina wörd gezeen es redirect wen d'r 'n sjabloon op stuit det gelink is vanaaf [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Dobbel redirects',
-'doubleredirectstext'        => '<b>Kiek oet:</b> In dees lies kanne redirects sjtaon die neet dao-in toeshure. Dat kump meistal doordat nao de #REDIRECT nog anger links op de pazjena sjtaon.<br />
-Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en de iesjte raegel van de twiede redirectpazjena. Normaal bevat dees litste de pazjena woe de iesjte redirect naotoe zouw mótte verwieze.',
+'doubleredirectstext'        => "Dees lies haet paazjes mit redireks die nao anger redireks gaon.
+Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en de iesjte raegel van de twiede redirectpazjena. Meistes bevat dees litste de pazjena woe de iesjte redirect naotoe zouw mótte verwieze.
+<s>Dórchstreipinge</s> zègke det 't al gedaon is.",
 'double-redirect-fixed-move' => "[[$1]] is verplaats en is noe 'n doorverwiezing nao [[$2]]",
 'double-redirect-fixer'      => 'Doorverwiezinge opsjone',
 
@@ -1674,7 +1675,9 @@ De pafina's zeen ouk neet as sjabloon opgenome.",
 'ancientpages'            => 'Artikele die lank neet bewèrk zeen',
 'move'                    => 'Verplaats',
 'movethispage'            => 'Verplaats dees pazjena',
-'unusedimagestext'        => "<p>Lèt op! 't Zou kinne dat er via een directe link verweze weurt nao 'n aafbeilding, bevoorbild vanoet 'n angesjtalige {{SITENAME}}. Het is daorom meugelijk dat 'n aafbeilding hie vermeld sjtit terwiel e toch gebroek weurt.",
+'unusedimagestext'        => "De vólgende bestenj zeen aanwezig maar óngebroek.
+'t Zou kinne det t'r via 'ne directe link verweze weurt.
+E bestandj kèn hie dös verkieërdj ópgenómme zeen.",
 'unusedcategoriestext'    => 'Hiej onger staon categorië die aangemaak zeen, mèr door geine inkele pagina of angere categorie gebroek waere.',
 'notargettitle'           => 'Gein doelpagina',
 'notargettext'            => 'Ger hubt neet gezag veur welleke pagina ger deze functie wilt bekieke.',
@@ -1696,7 +1699,7 @@ Controleer of se wellich n fout höbs gemaak bie de inveur.',
 'specialloguserlabel'  => 'Gebroeker:',
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbeuk',
-'all-logs-page'        => 'Alle logbeuk',
+'all-logs-page'        => 'Alle aopenbaar logbeuk',
 'alllogstext'          => "Dit is 't gecombineerd logbook ven {{SITENAME}}. De kins ouch 'n bepaald logbook keze, of filtere op gebroekersnaam of  pazjena, beide huidlettergeveulig.",
 'logempty'             => "d'r Zeen gein regels in 't logbook die voldaon aan deze criteria.",
 'log-title-wildcard'   => "Zeuk pagina's die met deze naam beginne",
@@ -1744,6 +1747,9 @@ Zuuch ouch [[Special:WantedCategories|neet-bestaondje categorieë mit verwiezing
 'listusersfrom'      => 'Tuin gebroekers vanaaf:',
 'listusers-submit'   => 'Tuin',
 'listusers-noresult' => 'Gein(e) gebroeker(s) gevonje.',
+
+# Special:ActiveUsers
+'activeusers-count' => '$1 {{PLURAL:$1|bewèrking|bewèrkinger}} inne {{PLURAL:$3|lèsten daag|lès $3 daag}}',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logbook nuuj gebroekers',
@@ -1945,7 +1951,7 @@ Dit zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
 'protect-othertime-op'        => 'angere doer',
 'protect-existing-expiry'     => 'Bestaonde verloupdatum: $2 $3',
 'protect-otherreason'         => 'Euverige/additionele reeje:',
-'protect-otherreason-op'      => 'euverige/additionele reeje',
+'protect-otherreason-op'      => 'anger reeje',
 'protect-dropdown'            => '*Väölveurkómmende reeje veur beveiliging
 ** Vandalisme
 ** Spam
@@ -1992,7 +1998,7 @@ Es d'r 'ne nuuj pagina mit dezelfde naam is aangemaak sins de pagina is eweggesj
 'undeletelink'                 => 'bekieke/trökzètte',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Ómgedriejde selectie',
-'undeletecomment'              => 'Infermasie:',
+'undeletecomment'              => 'Reeje:',
 'undeletedarticle'             => '"$1" is truukgeplaatsj.',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} truukgeplaatsj',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|versie|versies}} en $2 {{PLURAL:$2|bestandj|bestenj}} trökgeplaats',
@@ -2066,7 +2072,7 @@ $1",
 # Block/unblock
 'blockip'                         => 'Blokkeer dit IP-adres',
 'blockip-legend'                  => "'ne Gebroeker of IP-adres blokkere",
-'blockiptext'                     => "Gebroek 't óngerstjaondj formeleer óm sjrieftoegank van e zeker IP-adres te verbeje. Dit maag allein gedaon weure om vandalisme te veurkómme.",
+'blockiptext'                     => "Gebroek 't óngerstjaondj formeleer óm sjrieftoegank van e zeker IP-adres te verbeje. Dit maag allein gedaon weure om vandalisme te veurkómme en in euvereinkóms mitte [[{{MediaWiki:Policy-url}}|beleid]]. Gaef hiejónger de raeje óp (bv. inkel vandaliseerdje paazjes).",
 'ipaddress'                       => 'IP-adres',
 'ipadressorusername'              => 'IP-adres of gebroekersnaam',
 'ipbexpiry'                       => "Verlöp (maak 'n keuze)",
@@ -2129,7 +2135,7 @@ Zuug de [[Special:IPBlockList|lies van geblokkeerde IP-adresse]].',
 'unblocklink'                     => 'óntblók',
 'change-blocklink'                => 'blokkaasj verangere',
 'contribslink'                    => 'biedrages',
-'autoblocker'                     => 'Ómdets te \'n IP-adres deils mit "$1" (geblokkeerd mit raeje "$2") bis te automatisch geblokkeerd.',
+'autoblocker'                     => 'Ómdets te \'n IP-adres deils mit "[[User:$1|$1]]" (geblokkeerd mit raeje "$2") bis te automatisch geblokkeerd.',
 'blocklogpage'                    => 'Blokkeerlogbook',
 'blocklogentry'                   => '"[[$1]]" is geblokkeerd veur d\'n tied van $2 $3',
 'reblock-logentry'                => 'haet de instellinge veur de blokkaasj veur [[$1]] gewiezig. Deze verlöp noe op $2 om $3',
@@ -2482,7 +2488,7 @@ $1",
 'nextdiff'     => 'Volgende bewirking →',
 
 # Media information
-'mediawarning'         => "'''Waorsjuwing''': Dit bestanj kin 'ne angere code höbbe, door 't te doorveure in dien systeem kin 't gecompromiseerde dinger oplevere.<hr />",
+'mediawarning'         => "'''Waorsjuwing''': Dit bestandj kin 'n anger kood höbbe, door 't te doorveure in dien systeem kin 't gecompromeerde dinger oplevere.",
 'imagemaxsize'         => "Bepèrk plaetsjes op de besjrievingspazjena's van aafbeildinge tot:",
 'thumbsize'            => 'Gruutde vanne thumbnail:',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pazjena|pazjena's}}",
@@ -2901,14 +2907,14 @@ Probeer normaal veurvertuin.',
 'watchlistedit-normal-title'   => 'Volglies bewirke',
 'watchlistedit-normal-legend'  => "Pazjena's ewegsjaffe van dien volglies",
 'watchlistedit-normal-explain' => "Pazjena's op dien volglies waere hiejónger getuind.
-Klik op 't veerkentje d'rnaeve óm 'n pazjena eweg te sjaffe. Klik daonao op 'Pazjena's ewegsjaffe'.
+Klik op 't veerkentje d'rnaeve óm 'n pazjena eweg te sjaffe. Klik daonao op '{{int:Watchlistedit-normal-submit}}'.
 De kèns ouch [[Special:Watchlist/raw|de roew lies bewirke]].",
 'watchlistedit-normal-submit'  => "Pazjena's ewegsjaffe",
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 pazjena is|$1 pazjena's zeen}} eweggesjaf van dien volglies:",
 'watchlistedit-raw-title'      => 'Roew volglies bewirke',
 'watchlistedit-raw-legend'     => 'Roew volglies bewirke',
 'watchlistedit-raw-explain'    => "Hiejónger sjtaon pazjena's op dien volglies. De kèns de lies bewirke door pazjena's eweg te sjaffe en d'rbie te doon. Ein pazjena per regel.
-Wens te vaerdig bis, klik dan op 'Volglies biewirke'.
+Wens te vaerdig bis, klik dan op '{{int:Watchlistedit-raw-submit}}'.
 De kèns ouch [[Special:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]].",
 'watchlistedit-raw-titles'     => "Pazjena's:",
 'watchlistedit-raw-submit'     => 'Volglies biewirke',

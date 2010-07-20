@@ -1376,6 +1376,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'prefs-advancedrendering'       => 'Gelişmiş seçenekler',
 'prefs-advancedsearchoptions'   => 'Gelişmiş seçenekler',
 'prefs-advancedwatchlist'       => 'Gelişmiş seçenekler',
+'prefs-displayrc'               => 'Görüntü seçenekleri',
 'prefs-diffs'                   => 'Farklar',
 
 # User rights
@@ -2888,7 +2889,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Uyarı''': Bu dosya türü kötü niyetli kodlar içerebilir.
-Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.<hr />",
+Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
 'imagemaxsize'         => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'            => 'Küçük boyut:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',

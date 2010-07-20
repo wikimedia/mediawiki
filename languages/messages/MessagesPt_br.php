@@ -2907,7 +2907,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este tipo de arquivo pode conter código malicioso.
-Executá-lo poderá comprometer a segurança do seu sistema.<hr />",
+Executá-lo poderá comprometer a segurança do seu sistema.",
 'imagemaxsize'         => "Limite de tamanho de imagem:<br />''(para páginas de descrição de arquivos)''",
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',

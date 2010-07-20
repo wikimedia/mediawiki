@@ -1323,6 +1323,7 @@ $1",
 'prefs-advancedrendering'       => '詳細設定',
 'prefs-advancedsearchoptions'   => '詳細設定',
 'prefs-advancedwatchlist'       => '詳細設定',
+'prefs-displayrc'               => '表示の設定',
 'prefs-diffs'                   => '差分',
 
 # User rights
@@ -2781,7 +2782,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Media information
 'mediawarning'         => "'''警告:''' このファイルは悪意のあるコードを含んでいる可能性があります。
-実行するとコンピューターが危害を被る場合があります。<hr />",
+実行するとコンピューターが危害を被る場合があります。",
 'imagemaxsize'         => "画像の最大サイズ:<br />''(ファイルページに適用)''",
 'thumbsize'            => 'サムネイルの大きさ:',
 'widthheightpage'      => '$1×$2, $3{{PLURAL:$3|ページ}}',

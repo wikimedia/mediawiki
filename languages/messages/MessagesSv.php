@@ -1409,6 +1409,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'prefs-advancedrendering'       => 'Avancerade alternativ',
 'prefs-advancedsearchoptions'   => 'Avancerade alternativ',
 'prefs-advancedwatchlist'       => 'Avancerade alternativ',
+'prefs-displayrc'               => 'Visningsalternativ',
 'prefs-diffs'                   => 'Skillnader',
 
 # User rights
@@ -2938,7 +2939,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varning''': Den här filen kan innehålla elak kod.
-Om du kör den kan din dator skadas.<hr />",
+Om du kör den kan din dator skadas.",
 'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',

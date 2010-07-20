@@ -2810,7 +2810,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varoitus''': Tämä tiedostomuoto saattaa sisältää vahingollista koodia.
-Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />",
+Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'imagemaxsize'         => 'Kuvien enimmäiskoko kuvaussivuilla',
 'thumbsize'            => 'Pikkukuvien koko',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sivu|sivua}}',

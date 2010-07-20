@@ -3049,7 +3049,7 @@ $1',
 'nextdiff'     => 'Nieuwere bewerking →',
 
 # Media information
-'mediawarning'         => "'''Waarschuwing''': dit bestandstype bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",
+'mediawarning'         => "'''Waarschuwing''': dit bestandstype bevat mogelijk programmacode die uw systeem schade kan berokkenen.",
 'imagemaxsize'         => "Maximale afmetingen van afbeeldingen:<br />
 ''(voor op de beschrijvingspagina)''",
 'thumbsize'            => 'Grootte miniatuurafbeelding:',

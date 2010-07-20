@@ -1271,6 +1271,7 @@ $1",
 'prefs-advancedrendering'       => '進階選項',
 'prefs-advancedsearchoptions'   => '進階選項',
 'prefs-advancedwatchlist'       => '進階選項',
+'prefs-displayrc'               => '顯示選項',
 'prefs-diffs'                   => '差異',
 
 # User rights
@@ -2778,7 +2779,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告''': 該檔案類型可能包含惡意代碼。
-執行它可能對您的系統帶來危險。<hr />",
+執行它可能對您的系統帶來危險。",
 'imagemaxsize'         => "影像大小限制:<br />''（用在檔案描述頁面中）''",
 'thumbsize'            => '略圖大小:',
 'widthheightpage'      => '$1×$2, $3頁',

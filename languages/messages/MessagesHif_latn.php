@@ -2647,7 +2647,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Chetauni''': Ii file me saait kharaab code hoi.
-Iske execute kare se aap ke system me garrbarr hoe sake hae.<hr />",
+Iske execute kare se aap ke system me garrbarr hoe sake hae.",
 'imagemaxsize'         => "Chapa jaada se jaada ketnaa barraahoe sake hai:<br />''(file ke baare me panna)''",
 'thumbsize'            => 'Anguutha ke nakkhuun etna barraa:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|panna|panna}}',

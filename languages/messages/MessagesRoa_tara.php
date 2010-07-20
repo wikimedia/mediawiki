@@ -1141,6 +1141,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'prefs-advancedrendering'       => 'Opzione avanzate',
 'prefs-advancedsearchoptions'   => 'Opzione avanzate',
 'prefs-advancedwatchlist'       => 'Opzione avanzate',
+'prefs-displayrc'               => "Fà vedè l'opzione",
 'prefs-diffs'                   => 'Diff',
 
 # User rights
@@ -2639,7 +2640,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Attenziò''': Stu file pò condenè codece viziuse.
-Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.<hr />",
+Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'imagemaxsize'         => "Limite d'a dimenzione e l'immaggine:<br />''(pe le pàggene de descrizione d'u file)''",
 'thumbsize'            => "Dimenziona d'a miniature:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',

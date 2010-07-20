@@ -961,6 +961,7 @@ Bundan ğayrı bu vikideki saifeñizden başqa qullanıcılarğa siznen bağlanm
 'prefs-advancedrendering'       => 'İlâve sazlamalar',
 'prefs-advancedsearchoptions'   => 'İlâve sazlamalar',
 'prefs-advancedwatchlist'       => 'İlâve sazlamalar',
+'prefs-displayrc'               => 'Kösterilüv sazlamaları',
 'prefs-diffs'                   => 'Farqlar',
 
 # User rights
@@ -1848,7 +1849,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 
 # Media information
 'mediawarning'         => "'''İhtar''': Bu fayl türüniñ içinde yaman niyetli kod ola bile.
-Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.<hr />",
+Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.",
 'imagemaxsize'         => "Resim ölçüsi sıñırı:<br />''(fayl malümat saifeleri içün)''",
 'thumbsize'            => 'Kiçik ölçü:',
 'widthheightpage'      => '$1 × $2, {{PLURAL:$3|1|$3}} saife',

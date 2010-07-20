@@ -2910,7 +2910,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Atenție''': Acest tip de fișier poate conține cod periculos.
-Executându-l, sistemul dvs. poate fi compromis.<hr />",
+Executându-l, sistemul dvs. poate fi compromis.",
 'imagemaxsize'         => "Limita mărimii imaginilor:<br />''(pentru paginile de descriere)''",
 'thumbsize'            => 'Dimensiunea miniaturii:',
 'widthheight'          => '$1x$2',

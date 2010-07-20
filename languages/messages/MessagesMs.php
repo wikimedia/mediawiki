@@ -1218,6 +1218,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'prefs-advancedrendering'       => 'Pilihan maju',
 'prefs-advancedsearchoptions'   => 'Pilihan maju',
 'prefs-advancedwatchlist'       => 'Pilihan maju',
+'prefs-displayrc'               => 'Papar pilihan',
 'prefs-diffs'                   => 'Beza',
 
 # User rights
@@ -2576,7 +2577,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Amaran''': Fail jenis ini mungkin mengandungi kod berbahaya.
-Dengan menjalankannya, komputer anda mungkin akan terjejas.<hr />",
+Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'imagemaxsize'         => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
 'thumbsize'            => 'Saiz imej ringkas:',
 'widthheightpage'      => '$1×$2, $3 halaman',

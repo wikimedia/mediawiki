@@ -2919,7 +2919,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód.
-Jeho spustením môžete kompromitovať svoj systém.<hr />",
+Jeho spustením môžete kompromitovať svoj systém.",
 'imagemaxsize'         => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',

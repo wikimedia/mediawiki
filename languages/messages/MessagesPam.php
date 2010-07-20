@@ -2033,7 +2033,7 @@ $1',
 'nextdiff'     => 'Mas bayung edit/pamanalili →',
 
 # Media information
-'mediawarning'         => "'''Kapiadian''': Mapaliaring atin yang code a makarok (malicious) ing simpan (file) a ini, at nung paganan me, maliari yang masira ing kekang system.<hr />",
+'mediawarning'         => "'''Kapiadian''': Mapaliaring atin yang code a makarok (malicious) ing simpan (file) a ini, at nung paganan me, maliari yang masira ing kekang system.",
 'imagemaxsize'         => 'E la dapat migit king bilang a iti deng larawan kareng bulung pamilarawan simpan (file description pages):',
 'thumbsize'            => 'Kasindagul kuku (thumbnail size):',
 'widthheightpage'      => '$1×$2, $3 bulung',

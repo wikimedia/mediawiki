@@ -1102,6 +1102,7 @@ Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme,
 'prefs-advancedrendering'       => 'Uutwiedede Optione',
 'prefs-advancedsearchoptions'   => 'Uutwiedede Optione',
 'prefs-advancedwatchlist'       => 'Uutwiedede Optione',
+'prefs-displayrc'               => 'Anwies-Optione',
 'prefs-diffs'                   => 'Versionsfergliek',
 
 # User rights
@@ -2530,7 +2531,7 @@ $1',
 'nextdiff'     => 'Tou ne näiere Version →',
 
 # Media information
-'mediawarning'         => "'''Woarschauenge:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden un Eepenjen fon disse Doatäi kon dän Computer Schoade toubroacht wäide.<hr />",
+'mediawarning'         => "'''Woarschauenge:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden un Eepenjen fon disse Doatäi kon dän Computer Schoade toubroacht wäide.",
 'imagemaxsize'         => "Maximoale Bieldegrööte:<br />''(foar Doatäibeschrieuwengssieden)''",
 'thumbsize'            => 'Grööte fon do Foarschaubielden (thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Siede|$3 Sieden}}',

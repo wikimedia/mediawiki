@@ -1253,6 +1253,7 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'prefs-advancedrendering'     => 'Napredne opcije',
 'prefs-advancedsearchoptions' => 'Napredne opcije',
 'prefs-advancedwatchlist'     => 'Napredne opcije',
+'prefs-displayrc'             => 'Opcije prikaza',
 'prefs-diffs'                 => 'Revizije',
 
 # User rights
@@ -2692,7 +2693,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ovaj tip fajla bi mogao da sadrži štetan kod.
-Njegovim izvršavanjem biste mogli da oštetite Vaš sistem.<hr />",
+Njegovim izvršavanjem biste mogli da oštetite Vaš sistem.",
 'imagemaxsize'         => "Ograničenje veličine slike:<br />''(za strane opisa fajlova)''",
 'thumbsize'            => 'Veličina umanjenog prikaza :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strana|strane|strana}}',

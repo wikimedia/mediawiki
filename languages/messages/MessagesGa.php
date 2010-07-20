@@ -1798,7 +1798,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 
 # Media information
 'mediawarning'         => "'''Rabhadh''': Tá seans ann go bhfuil cód mailíseach sa chineál comhaid seo.
-B'fheidir go gcuirfear do chóras i gcontúirt dá rithfeá é.<hr />",
+B'fheidir go gcuirfear do chóras i gcontúirt dá rithfeá é.",
 'imagemaxsize'         => "Teorainn mhéid íomhá:<br />''(leathanaigh thuarascáil chomhaid)''",
 'thumbsize'            => 'Méid mionsamhlacha:',
 'file-info'            => '(méid comhad : $1, saghas MIME: $2)',

@@ -1391,6 +1391,7 @@ $1",
 'prefs-advancedrendering'       => 'اختيارات متقدمه',
 'prefs-advancedsearchoptions'   => 'اختيارات متقدمه',
 'prefs-advancedwatchlist'       => 'اختيارات متقدمه',
+'prefs-displayrc'               => 'اختيارات العرض',
 'prefs-diffs'                   => 'التغيير',
 
 # User rights
@@ -2917,7 +2918,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''تحذير''': الملف دا ممكن يكون فيه كود مضر.
-لو شغلته,الكومبيوتر بتاعك ممكن يخرب.<hr />",
+لو شغلته,الكومبيوتر بتاعك ممكن يخرب.",
 'imagemaxsize'         => "حد حجم الصوره:<br />''(لصفحات الوصف بتاع الملفات)''",
 'thumbsize'            => 'حجم العرض المتصغر:',
 'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',

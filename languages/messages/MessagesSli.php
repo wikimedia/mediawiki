@@ -1002,6 +1002,7 @@ Miet andern Nutzern koast du au ieber de Nutzerdischkurseyta Kontakt uffnahma, o
 'prefs-signature'           => 'Underschrift',
 'prefs-dateformat'          => 'Datumsfurmat',
 'prefs-timeoffset'          => 'Zeitunderschied',
+'prefs-displayrc'           => 'Oazeigeoptiona',
 
 # User rights
 'userrights'                  => 'Nutzerrechteverwaltung',
@@ -2317,7 +2318,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Dieser Dateityp koan beswilligen Programmcode enthalta.
-Durch doas Herunderloada und Effna dar Datei koan dei Computer beschädigt waan.<hr />",
+Durch doas Herunderloada und Effna dar Datei koan dei Computer beschädigt waan.",
 'imagemaxsize'         => "Maximale Bildgrieße:<br />''(fier Dateibeschreibungsseyta)''",
 'thumbsize'            => 'Standardgriße dar Vurschaubilder (Thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Seyte|$3 Seyta}}',

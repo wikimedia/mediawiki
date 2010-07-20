@@ -1302,6 +1302,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-advancedrendering'       => 'Opzjonijiet avvanzati',
 'prefs-advancedsearchoptions'   => 'Opzjonijiet avvanzati',
 'prefs-advancedwatchlist'       => 'Opzjonijiet avvanzati',
+'prefs-displayrc'               => "Opzjonijiet ta' viżwalizazzjoni",
 
 # User rights
 'userrights'                   => 'Ġestjoni tad-drittijiet tal-utent',
@@ -2642,7 +2643,7 @@ $1',
 'nextdiff'     => 'Id-differenza suċċessiva →',
 
 # Media information
-'mediawarning'         => "'''Twissija''': Dan il-fajl jista' jinkludi ġo fih kodiċi malizzjuż. L-eżekuzzjoni tiegħu jista' jagħmel ħsara s-sistema informatika tiegħek.<hr />",
+'mediawarning'         => "'''Twissija''': Dan il-fajl jista' jinkludi ġo fih kodiċi malizzjuż. L-eżekuzzjoni tiegħu jista' jagħmel ħsara s-sistema informatika tiegħek.",
 'imagemaxsize'         => "Daqs massimu tal-istampa:<br />''(għall-paġni ta' deskrizzjoni tal-fajl)''",
 'thumbsize'            => 'Daqs tal-minjatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paġna|paġni}}',

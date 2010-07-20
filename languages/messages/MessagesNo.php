@@ -1313,6 +1313,7 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'prefs-advancedrendering'       => 'Avanserte alternativ',
 'prefs-advancedsearchoptions'   => 'Avanserte alternativ',
 'prefs-advancedwatchlist'       => 'Avanserte alternativ',
+'prefs-displayrc'               => 'Visningsalternativ',
 'prefs-diffs'                   => 'Forskjeller',
 
 # User rights
@@ -2822,7 +2823,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne fila kan inneholde farlig kode.
-Ved å åpne den kan systemet ditt kompromitteres.<hr />",
+Ved å åpne den kan systemet ditt kompromitteres.",
 'imagemaxsize'         => "Bildestørrelsesgrense:<br />''(for filbeskrivelsessider)''",
 'thumbsize'            => 'Miniatyrbildestørrelse:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|én side|$3 sider}}',

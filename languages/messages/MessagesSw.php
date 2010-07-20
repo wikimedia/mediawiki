@@ -1181,6 +1181,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'prefs-advancedrendering'       => 'Hitiari za hali ya juu',
 'prefs-advancedsearchoptions'   => 'Hitiari za hali ya juu',
 'prefs-advancedwatchlist'       => 'Hitiari za hali ya juu',
+'prefs-displayrc'               => 'Hitiari za kutandaza',
 
 # User rights
 'userrights'                   => 'Usimamizi wa haki za mtumiaji',
@@ -2159,7 +2160,7 @@ Tafadhali jaribu tena.',
 
 # Media information
 'mediawarning'         => 'Ilani: Huenda faili hili lina msimbo mbaya.
-Ukilitekeleza faili, mashine yako huenda ikawa matatani.<hr />',
+Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'thumbsize'            => 'Ukubwa wa picha ndogo:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
 'file-info'            => '(ukubwa wa faili: $1, aina ya MIME: $2)',

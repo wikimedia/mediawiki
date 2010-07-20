@@ -2183,7 +2183,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'nextdiff'     => 'Nýrri breyting →',
 
 # Media information
-'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.<hr />",
+'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.",
 'imagemaxsize'         => 'Takmarka myndir á skráarlýsingasíðum við:',
 'thumbsize'            => 'Stærð smámynda:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',

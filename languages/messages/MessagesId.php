@@ -2866,7 +2866,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Peringatan''': Berkas ini mungkin mengandung kode berbahaya.
-Jika dijalankan, sistem Anda akan berisiko terserang.<hr />",
+Jika dijalankan, sistem Anda akan berisiko terserang.",
 'imagemaxsize'         => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'            => 'Ukuran miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',

@@ -2846,7 +2846,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attention''': Iste typo de file pote continer codice maligne.
-Le execution de illo pote compromitter le securitate de tu systema.<hr />",
+Le execution de illo pote compromitter le securitate de tu systema.",
 'imagemaxsize'         => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
 'thumbsize'            => 'Grandor del miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',

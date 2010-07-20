@@ -1299,6 +1299,7 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'prefs-advancedrendering'       => 'Gevorderde instellings',
 'prefs-advancedsearchoptions'   => 'Gevorderde instellings',
 'prefs-advancedwatchlist'       => 'Gevorderde instellings',
+'prefs-displayrc'               => 'Vertoonopsies',
 'prefs-diffs'                   => 'Verskille',
 
 # User rights
@@ -2819,7 +2820,7 @@ $1',
 'nextdiff'     => 'Nuwer wysiging →',
 
 # Media information
-'mediawarning'         => "'''Waarskuwing''': hierdie lêertipe bevat moontlik programkode wat u stelsel skade kan berokken.<hr />",
+'mediawarning'         => "'''Waarskuwing''': hierdie lêertipe bevat moontlik programkode wat u stelsel skade kan berokken.",
 'imagemaxsize'         => "Beperk beeldgrootte tot:<br />''(vir lêerbeskrywingsbladsye)''",
 'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',

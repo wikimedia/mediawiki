@@ -1523,6 +1523,9 @@ $1",
 'prefs-advancedrendering'       => 'گزینه‌های پیشرفته',
 'prefs-advancedsearchoptions'   => 'گزینه‌های پیشرفته',
 'prefs-advancedwatchlist'       => 'گزینه‌های پیشرفته',
+'prefs-displayrc'               => 'گزینه‌های نمایش',
+'prefs-displaysearchoptions'    => 'گزینه‌های نمایش',
+'prefs-displaywatchlist'        => 'گزینه‌های نمایش',
 'prefs-diffs'                   => 'تفاوت‌ها',
 
 # User rights
@@ -3025,7 +3028,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''هشدار''': این پرونده ممکن است حاوی کدهای مخرب باشد.
-با اجرای آن رایانهٔ شما ممکن است آسیب ببیند.<hr />",
+با اجرای آن رایانهٔ شما ممکن است آسیب ببیند.",
 'imagemaxsize'         => "محدودیت ابعاد تصویر:<br />''(برای صفحه‌های توصیف پرونده)''",
 'thumbsize'            => 'اندازهٔ Thumbnail:',
 'widthheight'          => '$1 در $2',

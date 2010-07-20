@@ -1319,6 +1319,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'prefs-advancedrendering'       => 'Avanserte val',
 'prefs-advancedsearchoptions'   => 'Avanserte val',
 'prefs-advancedwatchlist'       => 'Avanserte val',
+'prefs-displayrc'               => 'Val for vising',
 'prefs-diffs'                   => 'Skilnader',
 
 # User rights
@@ -2769,7 +2770,7 @@ $1',
 'nextdiff'     => 'Nyare endring →',
 
 # Media information
-'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadeleg programkode, ved å køyra programmet kan systemet ditt ta skade.<hr />",
+'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadeleg programkode, ved å køyra programmet kan systemet ditt ta skade.",
 'imagemaxsize'         => "Avgrens storleiken for bilete:<br />''(for sider som skildrar filer)''",
 'thumbsize'            => 'Miniatyrstørrelse:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',

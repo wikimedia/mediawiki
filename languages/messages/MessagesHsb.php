@@ -2675,7 +2675,7 @@ $1',
 'nextdiff'     => 'Přichodna změna →',
 
 # Media information
-'mediawarning'         => "'''Warnowanje''': Tutón datajowy typ móhł złowólny kod wobsahować. Hdyž so wuwjedźe,  móhło so twój system wobškodźić.<hr />",
+'mediawarning'         => "'''Warnowanje''': Tutón datajowy typ móhł złowólny kod wobsahować. Hdyž so wuwjedźe,  móhł so twój system wobškodźić.",
 'imagemaxsize'         => "Maksimalna wobrazowa wulkosć:<br />''(za strony datajoweho wopisanja)''",
 'thumbsize'            => 'Wulkosć miniaturkow (thumbnails):',
 'widthheight'          => '$1x$2',

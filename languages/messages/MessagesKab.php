@@ -1376,7 +1376,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'nextdiff'     => 'Amgirred ameḍfir →',
 
 # Media information
-'mediawarning'         => "'''Aɣtal''': Waqila afaylu-yagi yesɛa angal aḥraymi, lukan a t-tesseqdceḍ yezmer ad ixesser aselkim inek.<hr />",
+'mediawarning'         => "'''Aɣtal''': Waqila afaylu-yagi yesɛa angal aḥraymi, lukan a t-tesseqdceḍ yezmer ad ixesser aselkim inek.",
 'imagemaxsize'         => 'Ḥedded tiddi n tugniwin deg yiglamen n tugniwim i:',
 'thumbsize'            => 'Tiddi n tugna tamecṭuḥt:',
 'file-info'            => '(tiddi n ufaylu: $1, anaw n MIME: $2)',

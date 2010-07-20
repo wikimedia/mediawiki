@@ -1266,6 +1266,7 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'prefs-advancedrendering'       => 'Avancerede indstillinger',
 'prefs-advancedsearchoptions'   => 'Avancerede indstillinger',
 'prefs-advancedwatchlist'       => 'Avancerede indstillinger',
+'prefs-displayrc'               => 'Indstillinger for visning',
 'prefs-diffs'                   => 'Forskelle',
 
 # User rights
@@ -2736,7 +2737,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne filtype kan muligvis indeholde skadelig kode. 
-Du kan beskadige dit system hvis du udfører den.<hr />",
+Du kan beskadige dit system hvis du udfører den.",
 'imagemaxsize'         => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
 'thumbsize'            => 'Thumbnailstørrelse :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
