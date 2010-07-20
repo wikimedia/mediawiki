@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Base class for DBMS-specific installation helper classes
+ * Base class for DBMS-specific installation helper classes.
  */
-abstract class InstallerDBType {
+abstract class DatabaseInstaller {
 	/** The Installer object */
 	var $parent;
 

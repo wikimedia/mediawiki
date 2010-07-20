@@ -1,6 +1,6 @@
 <?php
 
-class PostgresInstaller extends InstallerDBType {
+class PostgresInstaller extends DatabaseInstaller {
 
 	protected $globalNames = array(
 		'wgDBserver',

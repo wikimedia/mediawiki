@@ -1,6 +1,6 @@
 <?php
 
-class OracleInstaller extends InstallerDBType {
+class OracleInstaller extends DatabaseInstaller {
 
 	protected $globalNames = array(
 		'wgDBport',
