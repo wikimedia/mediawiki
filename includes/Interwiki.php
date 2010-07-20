@@ -170,14 +170,14 @@ class Interwiki {
 	 * @return Boolean: whether everything was there
 	 */
 	protected static function loadFromArray( $mc ) {
-		if( isset( $mc['iw_url'] ) && isset( $mc['iw_api'] ) && isset( $mc['iw_wikiid'] )
-				 && isset( $mc['iw_local'] ) && isset( $mc['iw_trans'] ) ) {
+		if( isset( $mc['iw_url'] ) && isset( $mc['iw_local'] ) && isset( $mc['iw_trans'] ) ) {
 			$iw = new Interwiki();
 			$iw->mURL = $mc['iw_url'];
-			$iw->mAPI = $mc['iw_api'];
-			$iw->mWikiID = $mc['iw_wikiid'];
 			$iw->mLocal = $mc['iw_local'];
 			$iw->mTrans = $mc['iw_trans'];
+			$iw->mAPI = isset( $mc['iw_api'] ) ? $mc['iw_api'] : '';
+			$iw->mWikiID = isset( $mc['iw_wikiid'] ) ? $mc['iw_wikiid'] : '';
+			
 			return $iw;
 		}
 		return false;
