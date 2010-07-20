@@ -4,31 +4,29 @@
  * Class for handling database updates. Roughly based off of updaters.inc, with
  * a few improvements :)
  */
-class Update {
+abstract class DatabaseUpdater {
 
 	/**
 	 * Array of updates to perform on the database
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $updates = array();
 
 	protected $db;
-	
-	protected $updater;
 
-	public function __construct( $db ) {
+	protected function __construct( $db ) {
 		$this->db = $db;
-		switch( $this->db->getType() ) {
+	}
+
+	public static function newForDB( $db ) {
+		switch( $db->getType() ) {
 			case 'mysql':
-				$this->updater = new MysqlUpdater();
-				break;
+				return new MysqlUpdater( $db );
 			case 'sqlite':
-				$this->updater = new SqliteUpdater();
-				break;
+				return new SqliteUpdater( $db );
 			case 'oracle':
-				$this->updater = new OracleUpdater();
-				break;
+				return new OracleUpdater( $db );
 			default:
 				throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
 		}
@@ -55,9 +53,9 @@ class Update {
 		// If the updatelog table hasn't been upgraded, we can't use the new
 		// style of recording our steps. Run all to be safe
 		if( !$this->canUseNewUpdatelog() ) {
-			$this->updates = $this->updater->getUpdates();
+			$this->updates = $this->getCoreUpdateList();
 		} else {
-			foreach( $this->updater->getUpdates() as $version => $updates ) {
+			foreach( $this->getCoreUpdateList() as $version => $updates ) {
 				$appliedUpdates = $this->getAppliedUpdates( $version );
 				if( !$appliedUpdates || $appliedUpdates != $updates ) {
 					$this->updates[ $version ] = $updates;
@@ -149,5 +147,20 @@ class Update {
 			);
 		}
 	}
-	
+
+	/**
+	 * Get an array of updates to perform on the database. Should return a
+	 * mutli-dimensional array. The main key is the MediaWiki version (1.12,
+	 * 1.13...) with the values being arrays of updates, identical to how
+	 * updaters.inc did it (for now)
+	 *
+	 * @return Array
+	 */
+	protected abstract function getCoreUpdateList();
+}
+
+class OracleUpdater extends DatabaseUpdater {
+	protected function getCoreUpdateList() {
+		return array();
+	}
 }

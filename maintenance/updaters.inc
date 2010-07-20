@@ -949,7 +949,7 @@ function do_all_updates( $shared = false, $purge = true ) {
 	}
 
 	global $wgDatabase;
-	$up = new Update( $wgDatabase );
+	$up = DatabaseUpdater::newForDb( $wgDatabase );
 	$up->doUpdates();
 
 	wfOut( "Deleting old default messages (this may take a long time!)..." );
