@@ -41,12 +41,19 @@ $f = fopen($file, "r");
 
 require_once("./UtfNormal.php");
 function normalize_form_c($c)      { return UtfNormal::toNFC($c);  }
-function normalize_form_c_php($c)  { return UtfNormal::toNFC($c, "php");  }
 function normalize_form_d($c)      { return UtfNormal::toNFD($c);  }
-function normalize_form_d_php($c)  { return UtfNormal::toNFD($c, "php");  }
 function normalize_form_kc($c)     { return UtfNormal::toNFKC($c); }
-function normalize_form_kc_php($c) { return UtfNormal::toNFKC($c, "php"); }
 function normalize_form_kd($c)     { return UtfNormal::toNFKD($c); }
+
+/**
+ * This set of functions is only useful if youve added a param to the
+ * following functions to force pure PHP usage.  I decided not to
+ * commit that code since might produce a slowdown in the UTF
+ * normalization code just for the sake of these tests. -- hexmode
+ */
+function normalize_form_c_php($c)  { return UtfNormal::toNFC($c, "php");  }
+function normalize_form_d_php($c)  { return UtfNormal::toNFD($c, "php");  }
+function normalize_form_kc_php($c) { return UtfNormal::toNFKC($c, "php"); }
 function normalize_form_kd_php($c) { return UtfNormal::toNFKD($c, "php"); }
 
 assert_options(ASSERT_ACTIVE, 1);
