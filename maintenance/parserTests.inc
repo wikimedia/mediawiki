@@ -780,7 +780,6 @@ class ParserTest {
 			return;
 		}
 
-		/*
 		$tables = $this->listTables();
 		$db = wfGetDB( DB_MASTER );
 		foreach ( $tables as $table ) {
@@ -789,7 +788,6 @@ class ParserTest {
 		}
 		if ($wgDBtype == 'oracle')
 			$db->query('BEGIN FILL_WIKI_INFO; END;');
-		*/
 	}
 
 	/**
