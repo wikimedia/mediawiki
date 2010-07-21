@@ -654,7 +654,11 @@ abstract class Installer {
 		foreach ( $names as $name ) {
 			$command = "$path/$name";
 			
-			if ( @file_exists( $command ) ) {
+			wfSuppressWarnings();
+			$file_exists = file_exists( $command );
+			wfRestoreWarnings();
+			
+			if ( $file_exists ) {
 				if ( !$versionInfo ) {
 					return $command;
 				}
@@ -677,9 +681,15 @@ abstract class Installer {
 	 */
 	public function envCheckGraphics() {
 		$imcheck = array( "/usr/bin", "/opt/csw/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
+		
 		foreach( $imcheck as $dir ) {
 			$im = "$dir/convert";
-			if( @file_exists( $im ) ) {
+			
+			wfSuppressWarnings();
+			$file_exists = file_exists( $im );
+			wfRestoreWarnings();			
+			
+			if( $file_exists ) {
 				$this->showMessage( 'config-imagemagick', $im );
 				$this->setVar( 'wgImageMagickConvertCommand', $im );
 				return true;
