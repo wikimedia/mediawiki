@@ -695,16 +695,21 @@ abstract class Installer {
 				return true;
 			}
 		}
+		
 		if ( function_exists( 'imagejpeg' ) ) {
 			$this->showMessage( 'config-gd' );
 			return true;
 		}
+		
 		$this->showMessage( 'no-scaling' );
 	}
 
-	/** Environment check for setting $IP and $wgScriptPath */
+	/**
+	 * Environment check for setting $IP and $wgScriptPath.
+	 */
 	public function envCheckPath() {
 		$IP = dirname( dirname( dirname( __FILE__ ) ) );
+		
 		$this->setVar( 'IP', $IP );
 		$this->showMessage( 'config-dir', $IP );
 
@@ -722,27 +727,35 @@ abstract class Installer {
 			$this->showMessage( 'config-no-uri' );
 			return false;
 		}
+		
 		$uri = preg_replace( '{^(.*)/config.*$}', '$1', $path );
 		$this->setVar( 'wgScriptPath', $uri );
 		$this->showMessage( 'config-uri', $uri );
 	}
 
-	/** Environment check for writable config/ directory */
+	/**
+	 * Environment check for writable config/ directory.
+	 */
 	public function envCheckWriteableDir() {
 		$ipDir = $this->getVar( 'IP' );
 		$configDir = $ipDir . '/config';
+		
 		if( !is_writeable( $configDir ) ) {
 			$webserverGroup = self::maybeGetWebserverPrimaryGroup();
+			
 			if ( $webserverGroup !== null ) {
 				$this->showMessage( 'config-dir-not-writable-group', $ipDir, $webserverGroup );
 			} else {
 				$this->showMessage( 'config-dir-not-writable-nogroup', $ipDir, $webserverGroup );
 			}
+			
 			return false;
 		}
 	}
 
-	/** Environment check for setting the preferred PHP file extension */
+	/**
+	 * Environment check for setting the preferred PHP file extension.
+	 */
 	public function envCheckExtension() {
 		// FIXME: detect this properly
 		if ( defined( 'MW_INSTALL_PHP5_EXT' ) ) {
@@ -750,26 +763,29 @@ abstract class Installer {
 		} else {
 			$ext = 'php';
 		}
+		
 		$this->setVar( 'wgScriptExtension', ".$ext" );
 		$this->showMessage( 'config-file-extension', $ext );
 	}
 
 	public function envCheckShellLocale() {
-		# Give up now if we're in safe mode or open_basedir
-		# It's theoretically possible but tricky to work with
+		# Give up now if we're in safe mode or open_basedir.
+		# It's theoretically possible but tricky to work with.
 		if ( wfIniGetBool( "safe_mode" ) || ini_get( 'open_basedir' ) || !function_exists( 'exec' ) ) {
 			return true;
 		}
 
 		$os = php_uname( 's' );
 		$supported = array( 'Linux', 'SunOS', 'HP-UX' ); # Tested these
+		
 		if ( !in_array( $os, $supported ) ) {
 			return true;
 		}
 
-		# Get a list of available locales
+		# Get a list of available locales.
 		$lines = $ret = false;
 		exec( '/usr/bin/locale -a', $lines, $ret );
+		
 		if ( $ret ) {
 			return true;
 		}
@@ -777,26 +793,30 @@ abstract class Installer {
 		$lines = wfArrayMap( 'trim', $lines );
 		$candidatesByLocale = array();
 		$candidatesByLang = array();
+		
 		foreach ( $lines as $line ) {
 			if ( $line === '' ) {
 				continue;
 			}
+			
 			if ( !preg_match( '/^([a-zA-Z]+)(_[a-zA-Z]+|)\.(utf8|UTF-8)(@[a-zA-Z_]*|)$/i', $line, $m ) ) {
 				continue;
 			}
+			
 			list( $all, $lang, $territory, $charset, $modifier ) = $m;
+			
 			$candidatesByLocale[$m[0]] = $m;
 			$candidatesByLang[$lang][] = $m;
 		}
 
-		# Try the current value of LANG
+		# Try the current value of LANG.
 		if ( isset( $candidatesByLocale[ getenv( 'LANG' ) ] ) ) {
 			$this->setVar( 'wgShellLocale', getenv( 'LANG' ) );
 			$this->showMessage( 'config-shell-locale', getenv( 'LANG' ) );
 			return true;
 		}
 
-		# Try the most common ones
+		# Try the most common ones.
 		$commonLocales = array( 'en_US.UTF-8', 'en_US.utf8', 'de_DE.UTF-8', 'de_DE.utf8' );
 		foreach ( $commonLocales as $commonLocale ) {
 			if ( isset( $candidatesByLocale[$commonLocale] ) ) {
@@ -808,6 +828,7 @@ abstract class Installer {
 
 		# Is there an available locale in the Wiki's language?
 		$wikiLang = $this->getVar( 'wgLanguageCode' );
+		
 		if ( isset( $candidatesByLang[$wikiLang] ) ) {
 			$m = reset( $candidatesByLang[$wikiLang] );
 			$this->setVar( 'wgShellLocale', $m[0] );
@@ -823,15 +844,17 @@ abstract class Installer {
 			return true;
 		}
 
-		# Give up
+		# Give up.
 		return true;
 	}
 
 	public function envCheckUploadsDirectory() {
 		global $IP, $wgServer;
+		
 		$dir = $IP . '/images/';
 		$url = $wgServer . $this->getVar( 'wgScriptPath' ) . '/images/';
 		$safe = !$this->dirIsExecutable( $dir, $url );
+		
 		if ( $safe ) {
 			$this->showMessage( 'config-uploads-safe' );
 		} else {
@@ -849,24 +872,31 @@ abstract class Installer {
 				"#!/var/env php5\n<?php echo 'ex' . 'ec';",
 			),
 		);
-		// it would be good to check other popular languages here, but it'll be slow
+		
+		// it would be good to check other popular languages here, but it'll be slow.
 
 		wfSuppressWarnings();
+		
 		foreach ( $scriptTypes as $ext => $contents ) {
 			foreach ( $contents as $source ) {
 				$file = 'exectest.' . $ext;
+				
 				if ( !file_put_contents( $dir . $file, $source ) ) {
 					break;
 				}
+				
 				$text = Http::get( $url . $file );
 				unlink( $dir . $file );
+				
 				if ( $text == 'exec' ) {
 					wfRestoreWarnings();
 					return $ext;
 				}
 			}
 		}
+		
 		wfRestoreWarnings();
+		
 		return false;
 	}
 
@@ -888,15 +918,18 @@ abstract class Installer {
 	 */
 	public function parse( $text, $lineStart = false ) {
 		global $wgParser;
+		
 		try {
 			$out = $wgParser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
 			$html = $out->getText();
 		} catch ( DBAccessError $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
+			
 			if ( !empty( $this->debug ) ) {
 				$html .= "<!--\n" . $e->getTraceAsString() . "\n-->";
 			}
 		}
+		
 		return $html;
 	}
 
@@ -929,15 +962,19 @@ abstract class Installer {
 		if( $this->getVar( 'IP' ) === null ) {
 			return false;
 		}
+		
 		$exts = array();
 		$dir = $this->getVar( 'IP' ) . '/extensions';
 		$dh = opendir( $dir );
+		
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			if( file_exists( "$dir/$file/$file.php" ) ) {
 				$exts[$file] = null;
 			}
 		}
+		
 		$this->setVar( '_Extensions', $exts );
+		
 		return $exts;
 	}
 
@@ -945,21 +982,26 @@ abstract class Installer {
 		if( $this->getVar( '_UpgradeDone' ) ) {
 			$this->installSteps = array( 'localsettings' );
 		}
+		
 		if( count( $this->getVar( '_Extensions' ) ) ) {
 			array_unshift( $this->installSteps, 'extensions' );
 		}
+		
 		return $this->installSteps;
 	}
 
 	/**
 	 * Actually perform the installation.
+	 * 
 	 * @param Array $startCB A callback array for the beginning of each step
 	 * @param Array $endCB A callback array for the end of each step
+	 * 
 	 * @return Array of Status objects
 	 */
 	public function performInstallation( $startCB, $endCB ) {
 		$installResults = array();
 		$installer = $this->getDBInstaller();
+		
 		foreach( $this->getInstallSteps() as $stepObj ) {
 			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
 			call_user_func_array( $startCB, array( $step ) );
@@ -975,45 +1017,56 @@ abstract class Installer {
 				$func = 'install' . ucfirst( $step );
 				$status = $this->{$func}( $installer );
 			}
+			
 			call_user_func_array( $endCB, array( $step, $status ) );
 			$installResults[$step] = $status;
 
-			// If we've hit some sort of fatal, we need to bail. Callback
-			// already had a chance to do output above.
-			if( !$status->isOk() )
+			// If we've hit some sort of fatal, we need to bail. 
+			// Callback already had a chance to do output above.
+			if( !$status->isOk() ) {
 				break;
+			}
+				
 		}
+		
 		if( $status->isOk() ) {
 			$this->setVar( '_InstallDone', true );
 		}
+		
 		return $installResults;
 	}
 
 	public function installExtensions() {
 		global $wgHooks, $wgAutoloadClasses;
+		
 		$exts = $this->getVar( '_Extensions' );
 		$path = $this->getVar( 'IP' ) . '/extensions';
+		
 		foreach( $exts as $e ) {
 			require( "$path/$e/$e.php" );
 		}
+		
 		return Status::newGood();
 	}
 
 	public function installDatabase( &$installer ) {
-		if(!$installer) {
+		if( !$installer ) {
 			$type = $this->getVar( 'wgDBtype' );
 			$status = Status::newFatal( "config-no-db", $type );
 		} else {
 			$status = $installer->setupDatabase();
 		}
+		
 		return $status;
 	}
 
 	public function installTables( &$installer ) {
 		$status = $installer->createTables();
+		
 		if( $status->isOK() ) {
 			LBFactory::enableBackend();
 		}
+		
 		return $status;
 	}
 
@@ -1036,12 +1089,15 @@ abstract class Installer {
 			$secretKey = bin2hex( fread( $file, 32 ) );
 			fclose( $file );
 		} else {
-			$secretKey = "";
+			$secretKey = '';
+			
 			for ( $i=0; $i<8; $i++ ) {
 				$secretKey .= dechex(mt_rand(0, 0x7fffffff));
 			}
+			
 			$status->warning( 'config-insecure-secretkey' );
 		}
+		
 		$this->setVar( 'wgSecretKey', $secretKey );
 
 		return $status;
@@ -1050,21 +1106,26 @@ abstract class Installer {
 	public function installSysop() {
 		$name = $this->getVar( '_AdminName' );
 		$user = User::newFromName( $name );
+		
 		if ( !$user ) {
 			// we should've validated this earlier anyway!
 			return Status::newFatal( 'config-admin-error-user', $name );
 		}
+		
 		if ( $user->idForName() == 0 ) {
 			$user->addToDatabase();
+			
 			try {
 				$user->setPassword( $this->getVar( '_AdminPassword' ) );
 			} catch( PasswordError $pwe ) {
 				return Status::newFatal( 'config-admin-error-password', $name, $pwe->getMessage() );
 			}
+			
 			$user->addGroup( 'sysop' );
 			$user->addGroup( 'bureaucrat' );
 			$user->saveSettings();
 		}
+		
 		return Status::newGood();
 	}
 
@@ -1090,6 +1151,7 @@ abstract class Installer {
 				$status->fatal( 'config-localsettings-noupgrade' );
 			}
 		}
+		
 		return $status;
 	}
 
@@ -1105,8 +1167,8 @@ abstract class Installer {
 	 * @return String
 	 */
 	public static function maybeGetWebserverPrimaryGroup() {
-		if ( ! function_exists('posix_getegid') || ! function_exists('posix_getpwuid') ) {
-			# I don't know this, this isn't UNIX
+		if ( !function_exists( 'posix_getegid' ) || !function_exists( 'posix_getpwuid' ) ) {
+			# I don't know this, this isn't UNIX.
 			return null;
 		}
 
@@ -1114,7 +1176,7 @@ abstract class Installer {
 		# not whoever owns the current script.
 		$gid = posix_getegid();
 		$getpwuid = posix_getpwuid( $gid );
-		$group = $getpwuid["name"];
+		$group = $getpwuid['name'];
 
 		return $group;
 	}
@@ -1139,12 +1201,16 @@ abstract class Installer {
 
 	/**
 	 * Add an installation step following the given step.
+	 * 
 	 * @param $findStep String the step to find.  Use NULL to put the step at the beginning.
 	 * @param $callback array
 	 */
 	public function addInstallStepFollowing( $findStep, $callback ) {
 		$where = 0;
-		if( $findStep !== null ) $where = array_search( $findStep, $this->installSteps );
+		
+		if( $findStep !== null ) {
+			$where = array_search( $findStep, $this->installSteps );
+		}
 
 		array_splice( $this->installSteps, $where, 0, $callback );
 	}
