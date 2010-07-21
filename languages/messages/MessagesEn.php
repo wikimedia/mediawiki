@@ -1510,8 +1510,8 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
 'revdelete-log'               => 'Reason:',
 'revdelete-submit'            => 'Apply to selected {{PLURAL:$1|revision|revisions}}',
-'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
-'logdelete-logentry'          => 'changed event visibility of [[$1]]',
+'revdelete-logentry'          => 'changed revision visibility of "[[$1]]"',
+'logdelete-logentry'          => 'changed event visibility of "[[$1]]"',
 'revdelete-success'           => "'''Revision visibility successfully updated.'''",
 'revdelete-failure'           => "'''Revision visibility could not be updated:'''
 $1",
