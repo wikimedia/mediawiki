@@ -1429,6 +1429,7 @@ $title: displayed page title
 $type: 'normal' or 'history' for old/diff views
 &$msg: overridable message; usually 'copyright' or 'history_copyright'. This message must be in HTML format, not wikitext!
 &$link: overridable HTML link to be passed into the message as $1
+&$forContent: overridable flag if copyright footer is shown in content language. 
 
 'SkinSubPageSubtitle': At the beginning of Skin::subPageSubtitle()
 $skin: Skin object

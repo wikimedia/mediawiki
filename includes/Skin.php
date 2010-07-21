@@ -1525,11 +1525,16 @@ CSS;
 			return $out;
 		}
 		// Allow for site and per-namespace customization of copyright notice.
+		$forContent = true;
 		if( isset( $wgArticle ) ) {
-			wfRunHooks( 'SkinCopyrightFooter', array( $wgArticle->getTitle(), $type, &$msg, &$link ) );
+			wfRunHooks( 'SkinCopyrightFooter', array( $wgArticle->getTitle(), $type, &$msg, &$link, &$forContent ) );
 		}
 
-		$out .= wfMsgForContent( $msg, $link );
+		if ( $forContent ) {
+			$out .= wfMsgForContent( $msg, $link );
+		} else {
+			$out .= wfMsg( $msg, $link );
+		}
 		return $out;
 	}
 
