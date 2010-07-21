@@ -48,6 +48,7 @@ $messages = array(
 'tog-showjumplinks'           => "Fa' funzionè j leghèm d'acesibilitè tipo \"Va' a\"",
 'tog-uselivepreview'          => 'Drova la funziòn "Anteprèma dal viv" (u j vo Javascript; sperimentêl)',
 'tog-forceeditsummary'        => "Dam la vos quènd l'ugèt dla mudèfica l'è vut",
+'tog-watchlisthideown'        => "Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
 
 # Dates
 'january'       => 'Znèr',

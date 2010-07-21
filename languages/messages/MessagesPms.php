@@ -1301,14 +1301,14 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'action-trackback'            => "spedì n'anliura anversa",
 'action-mergehistory'         => 'fonde la stòria dë sta pàgina-sì',
 'action-userrights'           => "modifiché tùit ij drit dj'utent",
-'action-userrights-interwiki' => "modifiché ij drit utent d'utent ans àutre wiki",
-'action-siteadmin'            => 'bloché o dësbloché ël database',
+'action-userrights-interwiki' => "modifiché ij drit ëd j'utent ansima a d'àutre wiki",
+'action-siteadmin'            => 'bloché o dësbloché la base ëd dàit',
 'action-revisionmove'         => 'tramudé dle revision',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modìfica|modìfiche}}',
-'recentchanges'                     => 'Ùltime Modìfiche',
-'recentchanges-legend'              => 'Opsion ùltime modìfiche',
+'recentchanges'                     => 'Ùltime modìfiche',
+'recentchanges-legend'              => "Opsion dj'ùltime modìfiche",
 'recentchangestext'                 => "Costa a l'é la pàgina che a ten ël registr dij cambiament a la wiki pì davsin ant ël temp.",
 'recentchanges-feed-description'    => 'Tracé le modìfiche dla wiki pì davsin ant ël temp ant sta score-sì.',
 'recentchanges-label-legend'        => 'Legenda: $1.',

@@ -2202,7 +2202,8 @@ $1 is a list of internet protocols.',
 'listgrouprights-group'            => "The title of the column in the table, about user groups (like you are in the ''translator'' group).
 
 {{Identical|Group}}",
-'listgrouprights-rights'           => "The title of the column in the table, about user rights (like you can ''edit'' this page).",
+'listgrouprights-rights'           => "The title of the column in the table, about user rights (like you can ''edit'' this page).
+{{Identical|Right}}",
 'listgrouprights-helppage'         => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
 'listgrouprights-members'          => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
 'listgrouprights-right-display'    => "{{optional}}

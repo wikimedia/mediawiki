@@ -445,7 +445,7 @@ Hasabyňyz açyldy.
 'yourname'                   => 'Ulanyjy adyňyz:',
 'yourpassword'               => 'Parolyňyz:',
 'yourpasswordagain'          => 'Paroly gaýtadan ýaz:',
-'remembermypassword'         => 'Parolymy ýatda sakla',
+'remembermypassword'         => 'Sessiýamy şu kompýuterde ýatda sakla  (iň köp $1 {{PLURAL:$1|günläp|günläp}})',
 'yourdomainname'             => 'Siziň domeniňiz:',
 'externaldberror'            => 'Ýa tassyklama maglumat bazasynyň säwligi bar ýa-da öz ulanyjy hasabyňyzy täzelemegiňize rugsat berilmeýär.',
 'login'                      => 'Sessiýa aç',
@@ -1837,7 +1837,7 @@ Goldanylýan protokollar: <tt>$1</tt>',
 'watchnologin'         => 'Sessiýa açmansyňyz',
 'watchnologintext'     => 'Gözegçilik sanawyňyzy üýtgetmek üçin [[Special:UserLogin|sessiýa açmagyňyz]] zerurdyr.',
 'addedwatch'           => 'Gözegçilik sanawyna goşuldy',
-'addedwatchtext'       => "\"<nowiki>\$1</nowiki>\" atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.
+'addedwatchtext'       => "[[:$1]]  atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.
 
 Geljekde, bu sahypada we degişli çekişme sahypasynda ediljek üýtgeşmeler şu ýerde sanawlanjakdyr.
 

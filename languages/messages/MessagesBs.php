@@ -1833,7 +1833,7 @@ Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
 'sharedupload-desc-there'   => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.
 Molimo pogledajte [$2 stranicu opisa datoteke] za ostale informacije.',
 'sharedupload-desc-here'    => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.
-Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
+Opis sa njene [$2 stranice opisa datoteke] je prikazan ispod.',
 'filepage-nofile'           => 'Ne postoji datoteka s ovim nazivom.',
 'filepage-nofile-link'      => 'Ne postoji datoteka s ovim imenom, ali je možete [$1 postaviti].',
 'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',

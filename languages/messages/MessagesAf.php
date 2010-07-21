@@ -1300,6 +1300,8 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'prefs-advancedsearchoptions'   => 'Gevorderde instellings',
 'prefs-advancedwatchlist'       => 'Gevorderde instellings',
 'prefs-displayrc'               => 'Vertoonopsies',
+'prefs-displaysearchoptions'    => 'Weergaweopsies',
+'prefs-displaywatchlist'        => 'Weergaweopsies',
 'prefs-diffs'                   => 'Verskille',
 
 # User rights

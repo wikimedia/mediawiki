@@ -147,7 +147,7 @@ $messages = array(
 'search'            => 'Дилээри',
 'searchbutton'      => 'Дилээри',
 'go'                => 'Чоруур',
-'searcharticle'     => 'Чорууру',
+'searcharticle'     => 'Күүcедири',
 'history'           => 'Арынның Төөгүзү',
 'history_short'     => 'Төөгү',
 'info_short'        => 'Медеглел',
@@ -203,6 +203,7 @@ $messages = array(
 'portal'               => 'Ниитилелдиң хаалгазы',
 'portal-url'           => 'Project:Ниитилелдиң хаалгазы',
 
+'ok'                  => 'Чөп',
 'retrievedfrom'       => '"$1" деп арынында парлаттынган',
 'youhavenewmessages'  => 'Силерде $1 ($2) бар.',
 'newmessageslink'     => 'чаа чагаалар',
@@ -211,7 +212,7 @@ $messages = array(
 'editold'             => 'өскертири',
 'editlink'            => 'өскертири',
 'editsectionhint'     => '$1 бөгүмнү өскертири',
-'toc'                 => 'Допчу',
+'toc'                 => 'Допчузу',
 'showtoc'             => 'көргүзери',
 'hidetoc'             => 'чажырары',
 'viewdeleted'         => '{{grammar:accusative|$1}} көөр?',
@@ -255,6 +256,7 @@ $messages = array(
 'remembermypassword' => 'Адымны сактып алыры',
 'login'              => 'Кирери',
 'userlogin'          => 'Кирери / кирерини чогаадып кылыры',
+'userloginnocreate'  => 'Кирери',
 'logout'             => 'Үнери',
 'userlogout'         => 'Үнери',
 'notloggedin'        => 'Кирери евес',
@@ -289,6 +291,7 @@ $messages = array(
 'extlink_sample'  => 'http://www.example.com холбаа ады',
 'extlink_tip'     => 'Даштыкы холбаа ("http://" чүве сактып алыр)',
 'headline_sample' => 'Кол сөс сөзүглел',
+'math_sample'     => 'Формуланы мынаар киирери',
 'nowiki_sample'   => 'Форматтаваан сөзүглелини бээр салыры',
 'nowiki_tip'      => 'Вики форматтаарын херекке албас',
 'image_sample'    => 'Чижек.jpg',
@@ -438,8 +441,8 @@ $messages = array(
 'recentchangeslinked-page' => 'Арынның ады:',
 
 # Upload
-'upload'            => 'Файлды киирери',
-'uploadbtn'         => 'Файлды киирер',
+'upload'            => 'Файлды салыры',
+'uploadbtn'         => 'Файлды салыры',
 'uploadnologin'     => 'Кирбес',
 'uploaderror'       => 'Кииреринге алдаг',
 'filename'          => 'файлдың ады:',
@@ -447,6 +450,7 @@ $messages = array(
 'fileuploadsummary' => 'Түңнел:',
 'filesource'        => 'Эгези:',
 'savefile'          => 'файлды шыгжаар',
+'uploadedimage'     => '"[[$1]]" деп файлды салган.',
 'watchthisupload'   => 'Бо арынны хайгаараары',
 
 'upload-file-error' => 'Иштики алдаг',
@@ -482,7 +486,7 @@ $messages = array(
 'filedelete-submit'  => 'Ап каар',
 
 # MIME search
-'download' => 'алыр',
+'download' => 'алыры',
 
 # Unwatched pages
 'unwatchedpages' => 'Хайгаарабас арыннар',
@@ -535,7 +539,7 @@ $messages = array(
 'movethispage'            => 'Бо арынны шимчээри',
 
 # Book sources
-'booksources-go' => 'Чорууру',
+'booksources-go' => 'Күүcедири',
 
 # Special:Log
 'specialloguserlabel'  => 'Ажыглакчы:',
@@ -548,7 +552,7 @@ $messages = array(
 'allarticles'    => 'Шупту арыннар',
 'allpagesprev'   => 'Пертинде',
 'allpagesnext'   => 'Соонда',
-'allpagessubmit' => 'Чорууру',
+'allpagessubmit' => 'Күүcедири',
 
 # Special:Categories
 'categories' => 'Бөлүктер',
@@ -584,15 +588,19 @@ $messages = array(
 'enotif_anon_editor'           => 'ат эвес ажыглакчы $1',
 
 # Delete
-'deletepage'     => 'Арынны ап каары',
-'exblank'        => 'Арын куруг турган',
-'actioncomplete' => 'Ажыл доосту',
-'deletedarticle' => '"[[$1]]" деп арынны ап каан',
+'deletepage'            => 'Арынны ап каары',
+'exblank'               => 'Арын куруг турган',
+'actioncomplete'        => 'Ажыл доосту',
+'deletedarticle'        => '"[[$1]]" деп арынны ап каан',
+'deletecomment'         => 'Чылдагаан:',
+'deleteotherreason'     => 'Өске/немелде чылдагаан:',
+'deletereasonotherlist' => 'Өске чылдагаан',
 
 # Protect
 'protectcomment'      => 'Чылдагаан:',
 'protect-default'     => '(ниити)',
 'protect-level-sysop' => 'Чүгле сисоплар',
+'restriction-type'    => 'Чөпшээрел:',
 'pagesize'            => '(байттар)',
 
 # Restrictions (nouns)
@@ -627,6 +635,7 @@ $messages = array(
 'ipbreason'                => 'Чылдагаан:',
 'ipbreasonotherlist'       => 'Өске чылдагаан',
 'ipbother'                 => 'Өске шак:',
+'ipboptions'               => '2 шак:2 hours,1 хүн:1 day,3 хүн:3 days,1 чеди-хонук:1 week,2 чеди-хонук:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 чыл:1 year,төнмес-батпас:infinite',
 'ipbotheroption'           => 'өске',
 'ipbotherreason'           => 'Өске/немелде чылдагаан:',
 'badipaddress'             => 'Багай ИП-адрес',
@@ -667,7 +676,7 @@ $messages = array(
 'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арныңар',
 'tooltip-pt-mycontris'      => 'Силерниң немелделериңерның даңзызы',
 'tooltip-pt-logout'         => 'Үнери',
-'tooltip-ca-talk'           => 'Допчу арны дугайында чыгаалажыры',
+'tooltip-ca-talk'           => 'Бо арынның допчузузу дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаары',
 'tooltip-ca-delete'         => 'Бо арынны ап каары',
 'tooltip-ca-move'           => 'Бо арынны шимчээри',
@@ -679,7 +688,7 @@ $messages = array(
 'tooltip-feed-atom'         => 'Бо арының Атом медээ агымы',
 'tooltip-t-contributions'   => 'Бо ажыглакчының немелделериниң даңзазын көөрү.',
 'tooltip-t-emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаары',
-'tooltip-t-upload'          => 'Файлды киирери',
+'tooltip-t-upload'          => 'Файлдарны салыры',
 'tooltip-t-specialpages'    => 'Шупту тускай арыннар даңзызы',
 'tooltip-ca-nstab-main'     => 'Допчы арынын көөрү',
 'tooltip-ca-nstab-user'     => 'Ажыглакчының арынын көөрү',

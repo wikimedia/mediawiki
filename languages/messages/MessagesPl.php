@@ -1351,6 +1351,8 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-advancedsearchoptions'   => 'Zaawansowane',
 'prefs-advancedwatchlist'       => 'Zaawansowane',
 'prefs-displayrc'               => 'Opcje wyświetlania',
+'prefs-displaysearchoptions'    => 'Opcje wyświetlania',
+'prefs-displaywatchlist'        => 'Opcje wyświetlania',
 'prefs-diffs'                   => 'Zmiany',
 
 # User rights
