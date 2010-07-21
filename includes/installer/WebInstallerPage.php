@@ -14,8 +14,12 @@ abstract class WebInstallerPage {
 	
 	public abstract function execute();
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param WebInstaller $parent
+	 */	
 	public function __construct( WebInstaller $parent ) {
-		// TODO: This field is not defined??
 		$this->parent = $parent;
 	}
 

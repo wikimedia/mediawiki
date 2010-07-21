@@ -128,7 +128,7 @@ class WebInstaller extends Installer {
 		
 		$lowestUnhappy = $this->getLowestUnhappy();
 
-		# Special case for Creative Commons partner chooser box
+		# Special case for Creative Commons partner chooser box.
 		if ( $this->request->getVal( 'SubmitCC' ) ) {
 			$page = $this->getPageByName( 'Options' );
 			$this->output->useShortHeader();
@@ -143,7 +143,7 @@ class WebInstaller extends Installer {
 			return $this->finish();
 		}
 
-		# Get the page name
+		# Get the page name.
 		$pageName = $this->request->getVal( 'page' );
 
 		if ( in_array( $pageName, $this->otherPages ) ) {
@@ -162,7 +162,7 @@ class WebInstaller extends Installer {
 			if ( $pageId > $lowestUnhappy ) {
 				$pageId = $lowestUnhappy;
 				if ( $lowestUnhappy == 0 ) {
-					# Knocked back to start, possible loss of session data
+					# Knocked back to start, possible loss of session data.
 					$this->showSessionWarning = true;
 				}
 			}
@@ -171,7 +171,7 @@ class WebInstaller extends Installer {
 			$page = $this->getPageByName( $pageName );
 		}
 
-		# If a back button was submitted, go back without submitting the form data
+		# If a back button was submitted, go back without submitting the form data.
 		if ( $this->request->wasPosted() && $this->request->getBool( 'submit-back' ) ) {
 			if ( $this->request->getVal( 'lastPage' ) ) {
 				$nextPage = $this->request->getVal( 'lastPage' );
@@ -192,7 +192,7 @@ class WebInstaller extends Installer {
 			return $this->finish();
 		}
 
-		# Execute the page
+		# Execute the page.
 		$this->currentPageName = $page->getName();
 		$this->startPageWrapper( $pageName );
 		$localSettings = $this->getLocalSettingsStatus();
@@ -207,15 +207,15 @@ class WebInstaller extends Installer {
 		$this->endPageWrapper();
 
 		if ( $result == 'skip' ) {
-			# Page skipped without explicit submission
-			# Skip it when we click "back" so that we don't just go forward again
+			# Page skipped without explicit submission.
+			# Skip it when we click "back" so that we don't just go forward again.
 			$this->skippedPages[$pageName] = true;
 			$result = 'continue';
 		} else {
 			unset( $this->skippedPages[$pageName] );
 		}
 
-		# If it was posted, the page can request a continue to the next page
+		# If it was posted, the page can request a continue to the next page.
 		if ( $result === 'continue' && !$this->output->headerDone() ) {
 			if ( $pageId !== false ) {
 				$this->happyPages[$pageId] = true;
