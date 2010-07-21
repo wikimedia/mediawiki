@@ -59,7 +59,7 @@ class SkinVector extends SkinTemplate {
 		// THIS IS ONLY USEFUL FOR EXPERIMENTING WITH DIFFERNT STYLE OPTIONS! THIS WILL BE REMOVED IN THE NEAR FUTURE.
 		if ( is_array( $wgVectorExtraStyles ) ) {
 			foreach ( $wgVectorExtraStyles as $style ) {
-				$out->addStyle( "{$this->stylename}/$style", 'screen' );
+				$out->addStyle( "vector/$style", 'screen' );
 			}
 		}
 	}
