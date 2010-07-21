@@ -397,6 +397,9 @@ class ApiQuery extends ApiBase {
 			if ( $title->getNamespace() == NS_SPECIAL && 
 					!SpecialPage::exists( $title->getText() ) ) {
 				$vals['missing'] = '';			
+			} elseif ( $title->getNamespace() == NS_MEDIA &&
+					!wfFindFile( $title ) ) {
+				$vals['missing'] = '';
 			}
 			$pages[$fakeId] = $vals;
 		}
