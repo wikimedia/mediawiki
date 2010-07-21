@@ -228,9 +228,9 @@ class ApiQuery extends ApiBase {
 
 		// Instantiate requested modules
 		$modules = array();
-		$this->InstantiateModules( $modules, 'prop', $this->mQueryPropModules );
-		$this->InstantiateModules( $modules, 'list', $this->mQueryListModules );
-		$this->InstantiateModules( $modules, 'meta', $this->mQueryMetaModules );
+		$this->instantiateModules( $modules, 'prop', $this->mQueryPropModules );
+		$this->instantiateModules( $modules, 'list', $this->mQueryListModules );
+		$this->instantiateModules( $modules, 'meta', $this->mQueryMetaModules );
 
 		// If given, execute generator to substitute user supplied data with generated data.
 		if ( isset( $this->params['generator'] ) ) {
@@ -273,7 +273,7 @@ class ApiQuery extends ApiBase {
 	 * @param $param string Parameter name to read modules from
 	 * @param $moduleList array(modulename => classname)
 	 */
-	private function InstantiateModules( &$modules, $param, $moduleList ) {
+	private function instantiateModules( &$modules, $param, $moduleList ) {
 		$list = @$this->params[$param];
 		if ( !is_null ( $list ) ) {
 			foreach ( $list as $moduleName ) {
