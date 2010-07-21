@@ -101,21 +101,21 @@ class SearchEngine {
 	private static function getNearMatchInternal( $searchterm ) {
 		global $wgContLang;
 
-		$allSearchTerms = array($searchterm);
+		$allSearchTerms = array( $searchterm );
 
 		if ( $wgContLang->hasVariants() ) {
-			$allSearchTerms = array_merge($allSearchTerms,$wgContLang->convertLinkToAllVariants($searchterm));
+			$allSearchTerms = array_merge( $allSearchTerms, $wgContLang->convertLinkToAllVariants( $searchterm ) );
 		}
 
-		if( !wfRunHooks( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
+		if ( !wfRunHooks( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
 			return $titleResult;
 		}
 
-		foreach($allSearchTerms as $term) {
+		foreach ( $allSearchTerms as $term ) {
 
 			# Exact match? No need to look further.
 			$title = Title::newFromText( $term );
-			if (is_null($title))
+			if ( is_null( $title ) )
 				return null;
 
 			if ( $title->getNamespace() == NS_SPECIAL || $title->isExternal() || $title->exists() ) {
@@ -124,7 +124,7 @@ class SearchEngine {
 
 			# See if it still otherwise has content is some sane sense
 			$article = MediaWiki::articleFromTitle( $title );
-			if( $article->hasViewableContent() ) {
+			if ( $article->hasViewableContent() ) {
 				return $title;
 			}
 
@@ -150,14 +150,14 @@ class SearchEngine {
 			}
 
 			# Now try Word-Caps-Breaking-At-Word-Breaks, for hyphenated names etc
-			$title = Title::newFromText( $wgContLang->ucwordbreaks($term) );
+			$title = Title::newFromText( $wgContLang->ucwordbreaks( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			// Give hooks a chance at better match variants
 			$title = null;
-			if( !wfRunHooks( 'SearchGetNearMatch', array( $term, &$title ) ) ) {
+			if ( !wfRunHooks( 'SearchGetNearMatch', array( $term, &$title ) ) ) {
 				return $title;
 			}
 		}
@@ -165,7 +165,7 @@ class SearchEngine {
 		$title = Title::newFromText( $searchterm );
 
 		# Entering an IP address goes to the contributions page
-		if ( ( $title->getNamespace() == NS_USER && User::isIP($title->getText() ) )
+		if ( ( $title->getNamespace() == NS_USER && User::isIP( $title->getText() ) )
 			|| User::isIP( trim( $searchterm ) ) ) {
 			return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
 		}
@@ -179,22 +179,22 @@ class SearchEngine {
 		# Go to images that exist even if there's no local page.
 		# There may have been a funny upload, or it may be on a shared
 		# file repository such as Wikimedia Commons.
-		if( $title->getNamespace() == NS_FILE ) {
+		if ( $title->getNamespace() == NS_FILE ) {
 			$image = wfFindFile( $title );
-			if( $image ) {
+			if ( $image ) {
 				return $title;
 			}
 		}
 
 		# MediaWiki namespace? Page may be "implied" if not customized.
 		# Just return it, with caps forced as the message system likes it.
-		if( $title->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			return Title::makeTitle( NS_MEDIAWIKI, $wgContLang->ucfirst( $title->getText() ) );
 		}
 
 		# Quoted term? Try without the quotes...
 		$matches = array();
-		if( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
+		if ( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
 			return SearchEngine::getNearMatch( $matches[1] );
 		}
 
@@ -233,28 +233,28 @@ class SearchEngine {
 	 *
 	 * @param $query String
 	 */
-	function replacePrefixes( $query ){
+	function replacePrefixes( $query ) {
 		global $wgContLang;
 
 		$parsed = $query;
-		if( strpos($query,':') === false ) { // nothing to do
+		if ( strpos( $query, ':' ) === false ) { // nothing to do
 			wfRunHooks( 'SearchEngineReplacePrefixesComplete', array( $this, $query, &$parsed ) );
 			return $parsed;
 		}
 
-		$allkeyword = wfMsgForContent('searchall').":";
-		if( strncmp($query, $allkeyword, strlen($allkeyword)) == 0 ){
+		$allkeyword = wfMsgForContent( 'searchall' ) . ":";
+		if ( strncmp( $query, $allkeyword, strlen( $allkeyword ) ) == 0 ) {
 			$this->namespaces = null;
-			$parsed = substr($query,strlen($allkeyword));
-		} else if( strpos($query,':') !== false ) {
-			$prefix = substr($query,0,strpos($query,':'));
-			$index = $wgContLang->getNsIndex($prefix);
-			if($index !== false){
-				$this->namespaces = array($index);
-				$parsed = substr($query,strlen($prefix)+1);
+			$parsed = substr( $query, strlen( $allkeyword ) );
+		} else if ( strpos( $query, ':' ) !== false ) {
+			$prefix = substr( $query, 0, strpos( $query, ':' ) );
+			$index = $wgContLang->getNsIndex( $prefix );
+			if ( $index !== false ) {
+				$this->namespaces = array( $index );
+				$parsed = substr( $query, strlen( $prefix ) + 1 );
 			}
 		}
-		if(trim($parsed) == '')
+		if ( trim( $parsed ) == '' )
 			$parsed = $query; // prefix was the whole query
 
 		wfRunHooks( 'SearchEngineReplacePrefixesComplete', array( $this, $query, &$parsed ) );
@@ -269,8 +269,8 @@ class SearchEngine {
 	public static function searchableNamespaces() {
 		global $wgContLang;
 		$arr = array();
-		foreach( $wgContLang->getNamespaces() as $ns => $name ) {
-			if( $ns >= NS_MAIN ) {
+		foreach ( $wgContLang->getNamespaces() as $ns => $name ) {
+			if ( $ns >= NS_MAIN ) {
 				$arr[$ns] = $name;
 			}
 		}
@@ -291,18 +291,18 @@ class SearchEngine {
 
 		// get search everything preference, that can be set to be read for logged-in users
 		$searcheverything = false;
-		if( ( $wgSearchEverythingOnlyLoggedIn && $user->isLoggedIn() )
+		if ( ( $wgSearchEverythingOnlyLoggedIn && $user->isLoggedIn() )
 		    || !$wgSearchEverythingOnlyLoggedIn )
-			$searcheverything = $user->getOption('searcheverything');
+			$searcheverything = $user->getOption( 'searcheverything' );
 
 		// searcheverything overrides other options
-		if( $searcheverything )
-			return array_keys(SearchEngine::searchableNamespaces());
+		if ( $searcheverything )
+			return array_keys( SearchEngine::searchableNamespaces() );
 
 		$arr = Preferences::loadOldSearchNs( $user );
 		$searchableNamespaces = SearchEngine::searchableNamespaces();
 
-		$arr = array_intersect( $arr, array_keys($searchableNamespaces) ); // Filter
+		$arr = array_intersect( $arr, array_keys( $searchableNamespaces ) ); // Filter
 
 		return $arr;
 	}
@@ -313,12 +313,12 @@ class SearchEngine {
 	 * @param $user User
 	 * @return Array contextlines, contextchars
 	 */
-	public static function userHighlightPrefs( &$user ){
-		//$contextlines = $user->getOption( 'contextlines',  5 );
-		//$contextchars = $user->getOption( 'contextchars', 50 );
+	public static function userHighlightPrefs( &$user ) {
+		// $contextlines = $user->getOption( 'contextlines',  5 );
+		// $contextchars = $user->getOption( 'contextchars', 50 );
 		$contextlines = 2; // Hardcode this. Old defaults sucked. :)
 		$contextchars = 75; // same as above.... :P
-		return array($contextlines, $contextchars);
+		return array( $contextlines, $contextchars );
 	}
 
 	/**
@@ -326,10 +326,10 @@ class SearchEngine {
 	 *
 	 * @return Array
 	 */
-	public static function defaultNamespaces(){
+	public static function defaultNamespaces() {
 		global $wgNamespacesToBeSearchedDefault;
 
-		return array_keys($wgNamespacesToBeSearchedDefault, true);
+		return array_keys( $wgNamespacesToBeSearchedDefault, true );
 	}
 
 	/**
@@ -338,12 +338,12 @@ class SearchEngine {
 	 *
 	 * @param $namespaces Array
 	 */
-	public static function namespacesAsText( $namespaces ){
+	public static function namespacesAsText( $namespaces ) {
 		global $wgContLang;
 
-		$formatted = array_map( array($wgContLang,'getFormattedNsText'), $namespaces );
-		foreach( $formatted as $key => $ns ){
-			if ( empty($ns) )
+		$formatted = array_map( array( $wgContLang, 'getFormattedNsText' ), $namespaces );
+		foreach ( $formatted as $key => $ns ) {
+			if ( empty( $ns ) )
 				$formatted[$key] = wfMsg( 'blanknamespace' );
 		}
 		return $formatted;
@@ -379,13 +379,13 @@ class SearchEngine {
 	public static function create() {
 		global $wgSearchType;
 		$dbr = wfGetDB( DB_SLAVE );
-		if( $wgSearchType ) {
+		if ( $wgSearchType ) {
 			$class = $wgSearchType;
 		} else {
 			$class = $dbr->getSearchEngine();
 		}
 		$search = new $class( $dbr );
-		$search->setLimitOffset(0,0);
+		$search->setLimitOffset( 0, 0 );
 		return $search;
 	}
 
@@ -421,12 +421,12 @@ class SearchEngine {
 	 */
 	public static function getOpenSearchTemplate() {
 		global $wgOpenSearchTemplate, $wgServer, $wgScriptPath;
-		if( $wgOpenSearchTemplate )	{
+		if ( $wgOpenSearchTemplate )	{
 			return $wgOpenSearchTemplate;
 		} else {
 			$ns = implode( '|', SearchEngine::defaultNamespaces() );
-			if( !$ns ) $ns = "0";
-			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace='.$ns;
+			if ( !$ns ) $ns = "0";
+			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace=' . $ns;
 		}
 	}
 
@@ -437,7 +437,7 @@ class SearchEngine {
 	 */
 	public static function getMWSuggestTemplate() {
 		global $wgMWSuggestTemplate, $wgServer, $wgScriptPath;
-		if($wgMWSuggestTemplate)
+		if ( $wgMWSuggestTemplate )
 			return $wgMWSuggestTemplate;
 		else
 			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace={namespaces}&suggest';
@@ -500,14 +500,14 @@ class SearchResultSet {
 	/**
 	 * @return String: suggested query, null if none
 	 */
-	function getSuggestionQuery(){
+	function getSuggestionQuery() {
 		return null;
 	}
 
 	/**
 	 * @return String: HTML highlighted suggested query, '' if none
 	 */
-	function getSuggestionSnippet(){
+	function getSuggestionSnippet() {
 		return '';
 	}
 
@@ -571,25 +571,25 @@ class SqlSearchResultSet extends SearchResultSet {
 	}
 
 	function numRows() {
-		if ($this->mResultSet === false )
+		if ( $this->mResultSet === false )
 			return false;
 
 		return $this->mResultSet->numRows();
 	}
 
 	function next() {
-		if ($this->mResultSet === false )
+		if ( $this->mResultSet === false )
 			return false;
 
 		$row = $this->mResultSet->fetchObject();
-		if ($row === false)
+		if ( $row === false )
 			return false;
 			
 		return SearchResult::newFromRow( $row );
 	}
 
 	function free() {
-		if ($this->mResultSet === false )
+		if ( $this->mResultSet === false )
 			return false;
 
 		$this->mResultSet->free();
@@ -600,7 +600,7 @@ class SqlSearchResultSet extends SearchResultSet {
  * @ingroup Search
  */
 class SearchResultTooMany {
-	## Some search engines may bail out if too many matches are found
+	# # Some search engines may bail out if too many matches are found
 }
 
 
@@ -662,11 +662,11 @@ class SearchResult {
 	 */
 	protected function initFromTitle( $title ) {
 		$this->mTitle = $title;
-		if( !is_null( $this->mTitle ) ){
+		if ( !is_null( $this->mTitle ) ) {
 			$this->mRevision = Revision::newFromTitle( $this->mTitle );
-			if( $this->mTitle->getNamespace() === NS_FILE )
+			if ( $this->mTitle->getNamespace() === NS_FILE )
 				$this->mImage = wfFindFile( $this->mTitle );
-		}		
+		}
 	}
 
 	/**
@@ -674,8 +674,8 @@ class SearchResult {
 	 *
 	 * @return Boolean
 	 */
-	function isBrokenTitle(){
-		if( is_null($this->mTitle) )
+	function isBrokenTitle() {
+		if ( is_null( $this->mTitle ) )
 			return true;
 		return false;
 	}
@@ -685,7 +685,7 @@ class SearchResult {
 	 *
 	 * @return Boolean
 	 */
-	function isMissingRevision(){
+	function isMissingRevision() {
 		return !$this->mRevision && !$this->mImage;
 	}
 
@@ -706,9 +706,9 @@ class SearchResult {
 	/**
 	 * Lazy initialization of article text from DB
 	 */
-	protected function initText(){
-		if( !isset($this->mText) ){
-			if($this->mRevision != null)
+	protected function initText() {
+		if ( !isset( $this->mText ) ) {
+			if ( $this->mRevision != null )
 				$this->mText = $this->mRevision->getText();
 			else // TODO: can we fetch raw wikitext for commons images?
 				$this->mText = '';
@@ -720,12 +720,12 @@ class SearchResult {
 	 * @param $terms Array: terms to highlight
 	 * @return String: highlighted text snippet, null (and not '') if not supported
 	 */
-	function getTextSnippet($terms){
+	function getTextSnippet( $terms ) {
 		global $wgUser, $wgAdvancedSearchHighlighting;
 		$this->initText();
-		list($contextlines,$contextchars) = SearchEngine::userHighlightPrefs($wgUser);
+		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs( $wgUser );
 		$h = new SearchHighlighter();
-		if( $wgAdvancedSearchHighlighting )
+		if ( $wgAdvancedSearchHighlighting )
 			return $h->highlightText( $this->mText, $terms, $contextlines, $contextchars );
 		else
 			return $h->highlightSimple( $this->mText, $terms, $contextlines, $contextchars );
@@ -735,7 +735,7 @@ class SearchResult {
 	 * @param $terms Array: terms to highlight
 	 * @return String: highlighted title, '' if not supported
 	 */
-	function getTitleSnippet($terms){
+	function getTitleSnippet( $terms ) {
 		return '';
 	}
 
@@ -743,38 +743,38 @@ class SearchResult {
 	 * @param $terms Array: terms to highlight
 	 * @return String: highlighted redirect name (redirect to this page), '' if none or not supported
 	 */
-	function getRedirectSnippet($terms){
+	function getRedirectSnippet( $terms ) {
 		return '';
 	}
 
 	/**
 	 * @return Title object for the redirect to this page, null if none or not supported
 	 */
-	function getRedirectTitle(){
+	function getRedirectTitle() {
 		return null;
 	}
 
 	/**
 	 * @return string highlighted relevant section name, null if none or not supported
 	 */
-	function getSectionSnippet(){
+	function getSectionSnippet() {
 		return '';
 	}
 
 	/**
 	 * @return Title object (pagename+fragment) for the section, null if none or not supported
 	 */
-	function getSectionTitle(){
+	function getSectionTitle() {
 		return null;
 	}
 
 	/**
 	 * @return String: timestamp
 	 */
-	function getTimestamp(){
-		if( $this->mRevision )
+	function getTimestamp() {
+		if ( $this->mRevision )
 			return $this->mRevision->getTimestamp();
-		else if( $this->mImage )
+		else if ( $this->mImage )
 			return $this->mImage->getTimestamp();
 		return '';
 	}
@@ -782,7 +782,7 @@ class SearchResult {
 	/**
 	 * @return Integer: number of words
 	 */
-	function getWordCount(){
+	function getWordCount() {
 		$this->initText();
 		return str_word_count( $this->mText );
 	}
@@ -790,7 +790,7 @@ class SearchResult {
 	/**
 	 * @return Integer: size in bytes
 	 */
-	function getByteSize(){
+	function getByteSize() {
 		$this->initText();
 		return strlen( $this->mText );
 	}
@@ -798,14 +798,14 @@ class SearchResult {
 	/**
 	 * @return Boolean if hit has related articles
 	 */
-	function hasRelated(){
+	function hasRelated() {
 		return false;
 	}
 
 	/**
 	 * @return String: interwiki prefix of the title (return iw even if title is broken)
 	 */
-	function getInterwikiPrefix(){
+	function getInterwikiPrefix() {
 		return '';
 	}
 }
@@ -843,7 +843,7 @@ class SearchNearMatchResultSet extends SearchResultSet {
 class SearchHighlighter {
 	var $mCleanWikitext = true;
 
-	function SearchHighlighter($cleanupWikitext = true){
+	function SearchHighlighter( $cleanupWikitext = true ) {
 		$this->mCleanWikitext = $cleanupWikitext;
 	}
 
@@ -861,7 +861,7 @@ class SearchHighlighter {
 		global $wgSearchHighlightBoundaries;
 		$fname = __METHOD__;
 
-		if($text == '')
+		if ( $text == '' )
 			return '';
 
 		// spli text into text + templates/links/tables
@@ -870,10 +870,10 @@ class SearchHighlighter {
 		$endPatterns = array(
 			1 => '/(\{\{)|(\}\})/', // template
 			2 => '/(\[\[)|(\]\])/', // image
-			3 => "/(\n\\{\\|)|(\n\\|\\})/"); // table
+			3 => "/(\n\\{\\|)|(\n\\|\\})/" ); // table
 
 		// FIXME: this should prolly be a hook or something
-		if(function_exists('wfCite')){
+		if ( function_exists( 'wfCite' ) ) {
 			$spat .= '|(<ref>)'; // references via cite extension
 			$endPatterns[4] = '/(<ref>)|(<\/ref>)/';
 		}
@@ -882,18 +882,18 @@ class SearchHighlighter {
 		$otherExt = array();  // other extracts
 		wfProfileIn( "$fname-split" );
 		$start = 0;
-		$textLen = strlen($text);
+		$textLen = strlen( $text );
 		$count = 0; // sequence number to maintain ordering
-		while( $start < $textLen ){
+		while ( $start < $textLen ) {
 			// find start of template/image/table
-			if( preg_match( $spat, $text, $matches, PREG_OFFSET_CAPTURE, $start ) ){
+			if ( preg_match( $spat, $text, $matches, PREG_OFFSET_CAPTURE, $start ) ) {
 				$epat = '';
-				foreach($matches as $key => $val){
-					if($key > 0 && $val[1] != -1){
-						if($key == 2){
+				foreach ( $matches as $key => $val ) {
+					if ( $key > 0 && $val[1] != - 1 ) {
+						if ( $key == 2 ) {
 							// see if this is an image link
-							$ns = substr($val[0],2,-1);
-							if( $wgContLang->getNsIndex($ns) != NS_FILE )
+							$ns = substr( $val[0], 2, - 1 );
+							if ( $wgContLang->getNsIndex( $ns ) != NS_FILE )
 								break;
 
 						}
@@ -903,42 +903,42 @@ class SearchHighlighter {
 						break;
 					}
 				}
-				if( $epat ){
+				if ( $epat ) {
 					// find end (and detect any nested elements)
 					$level = 0;
 					$offset = $start + 1;
 					$found = false;
-					while( preg_match( $epat, $text, $endMatches, PREG_OFFSET_CAPTURE, $offset ) ){
-						if( array_key_exists(2,$endMatches) ){
+					while ( preg_match( $epat, $text, $endMatches, PREG_OFFSET_CAPTURE, $offset ) ) {
+						if ( array_key_exists( 2, $endMatches ) ) {
 							// found end
-							if($level == 0){
-								$len = strlen($endMatches[2][0]);
+							if ( $level == 0 ) {
+								$len = strlen( $endMatches[2][0] );
 								$off = $endMatches[2][1];
 								$this->splitAndAdd( $otherExt, $count,
 									substr( $text, $start, $off + $len  - $start ) );
 								$start = $off + $len;
 								$found = true;
 								break;
-							} else{
+							} else {
 								// end of nested element
 								$level -= 1;
 							}
-						} else{
+						} else {
 							// nested
 							$level += 1;
 						}
-						$offset = $endMatches[0][1] + strlen($endMatches[0][0]);
+						$offset = $endMatches[0][1] + strlen( $endMatches[0][0] );
 					}
-					if( ! $found ){
+					if ( ! $found ) {
 						// couldn't find appropriate closing tag, skip
-						$this->splitAndAdd( $textExt, $count, substr( $text, $start, strlen($matches[0][0]) ) );
-						$start += strlen($matches[0][0]);
+						$this->splitAndAdd( $textExt, $count, substr( $text, $start, strlen( $matches[0][0] ) ) );
+						$start += strlen( $matches[0][0] );
 					}
 					continue;
 				}
 			}
 			// else: add as text extract
-			$this->splitAndAdd( $textExt, $count, substr($text,$start) );
+			$this->splitAndAdd( $textExt, $count, substr( $text, $start ) );
 			break;
 		}
 
@@ -947,29 +947,29 @@ class SearchHighlighter {
 		wfProfileOut( "$fname-split" );
 
 		// prepare regexps
-		foreach( $terms as $index => $term ) {
+		foreach ( $terms as $index => $term ) {
 			// manually do upper/lowercase stuff for utf-8 since PHP won't do it
-			if(preg_match('/[\x80-\xff]/', $term) ){
-				$terms[$index] = preg_replace_callback('/./us',array($this,'caseCallback'),$terms[$index]);
+			if ( preg_match( '/[\x80-\xff]/', $term ) ) {
+				$terms[$index] = preg_replace_callback( '/./us', array( $this, 'caseCallback' ), $terms[$index] );
 			} else {
 				$terms[$index] = $term;
 			}
 		}
 		$anyterm = implode( '|', $terms );
-		$phrase = implode("$wgSearchHighlightBoundaries+", $terms );
+		$phrase = implode( "$wgSearchHighlightBoundaries+", $terms );
 
 		// FIXME: a hack to scale contextchars, a correct solution
 		// would be to have contextchars actually be char and not byte
 		// length, and do proper utf-8 substrings and lengths everywhere,
 		// but PHP is making that very hard and unclean to implement :(
-		$scale = strlen($anyterm) / mb_strlen($anyterm);
+		$scale = strlen( $anyterm ) / mb_strlen( $anyterm );
 		$contextchars = intval( $contextchars * $scale );
 
 		$patPre = "(^|$wgSearchHighlightBoundaries)";
 		$patPost = "($wgSearchHighlightBoundaries|$)";
 
-		$pat1 = "/(".$phrase.")/ui";
-		$pat2 = "/$patPre(".$anyterm.")$patPost/ui";
+		$pat1 = "/(" . $phrase . ")/ui";
+		$pat2 = "/$patPre(" . $anyterm . ")$patPost/ui";
 
 		wfProfileIn( "$fname-extract" );
 
@@ -981,43 +981,43 @@ class SearchHighlighter {
 		// show beginning only if it contains all words
 		$first = 0;
 		$firstText = '';
-		foreach($textExt as $index => $line){
-			if(strlen($line)>0 && $line[0] != ';' && $line[0] != ':'){
+		foreach ( $textExt as $index => $line ) {
+			if ( strlen( $line ) > 0 && $line[0] != ';' && $line[0] != ':' ) {
 				$firstText = $this->extract( $line, 0, $contextchars * $contextlines );
 				$first = $index;
 				break;
 			}
 		}
-		if( $firstText ){
+		if ( $firstText ) {
 			$succ = true;
 			// check if first text contains all terms
-			foreach($terms as $term){
-				if( ! preg_match("/$patPre".$term."$patPost/ui", $firstText) ){
+			foreach ( $terms as $term ) {
+				if ( ! preg_match( "/$patPre" . $term . "$patPost/ui", $firstText ) ) {
 					$succ = false;
 					break;
 				}
 			}
-			if( $succ ){
+			if ( $succ ) {
 				$snippets[$first] = $firstText;
 				$offsets[$first] = 0;
 			}
 		}
-		if( ! $snippets ) {
+		if ( ! $snippets ) {
 			// match whole query on text
-			$this->process($pat1, $textExt, $left, $contextchars, $snippets, $offsets);
+			$this->process( $pat1, $textExt, $left, $contextchars, $snippets, $offsets );
 			// match whole query on templates/tables/images
-			$this->process($pat1, $otherExt, $left, $contextchars, $snippets, $offsets);
+			$this->process( $pat1, $otherExt, $left, $contextchars, $snippets, $offsets );
 			// match any words on text
-			$this->process($pat2, $textExt, $left, $contextchars, $snippets, $offsets);
+			$this->process( $pat2, $textExt, $left, $contextchars, $snippets, $offsets );
 			// match any words on templates/tables/images
-			$this->process($pat2, $otherExt, $left, $contextchars, $snippets, $offsets);
+			$this->process( $pat2, $otherExt, $left, $contextchars, $snippets, $offsets );
 
-			ksort($snippets);
+			ksort( $snippets );
 		}
 
 		// add extra chars to each snippet to make snippets constant size
 		$extended = array();
-		if( count( $snippets ) == 0 ){
+		if ( count( $snippets ) == 0 ) {
 			// couldn't find the target words, just show beginning of article
 			if ( array_key_exists( $first, $all ) ) {
 				$targetchars = $contextchars * $contextlines;
@@ -1026,32 +1026,32 @@ class SearchHighlighter {
 			}
 		} else {
 			// if begin of the article contains the whole phrase, show only that !!
-			if( array_key_exists($first,$snippets) && preg_match($pat1,$snippets[$first])
-			    && $offsets[$first] < $contextchars * 2 ){
-				$snippets = array ($first => $snippets[$first]);
+			if ( array_key_exists( $first, $snippets ) && preg_match( $pat1, $snippets[$first] )
+			    && $offsets[$first] < $contextchars * 2 ) {
+				$snippets = array ( $first => $snippets[$first] );
 			}
 
 			// calc by how much to extend existing snippets
-			$targetchars = intval( ($contextchars * $contextlines) / count ( $snippets ) );
+			$targetchars = intval( ( $contextchars * $contextlines ) / count ( $snippets ) );
 		}
 
-		foreach($snippets as $index => $line){
+		foreach ( $snippets as $index => $line ) {
 			$extended[$index] = $line;
-			$len = strlen($line);
-			if( $len < $targetchars - 20 ){
+			$len = strlen( $line );
+			if ( $len < $targetchars - 20 ) {
 				// complete this line
-				if($len < strlen( $all[$index] )){
-					$extended[$index] = $this->extract( $all[$index], $offsets[$index], $offsets[$index]+$targetchars, $offsets[$index]);
+				if ( $len < strlen( $all[$index] ) ) {
+					$extended[$index] = $this->extract( $all[$index], $offsets[$index], $offsets[$index] + $targetchars, $offsets[$index] );
 					$len = strlen( $extended[$index] );
 				}
 
 				// add more lines
 				$add = $index + 1;
-				while( $len < $targetchars - 20
-				       && array_key_exists($add,$all)
-				       && !array_key_exists($add,$snippets) ){
+				while ( $len < $targetchars - 20
+				       && array_key_exists( $add, $all )
+				       && !array_key_exists( $add, $snippets ) ) {
 				    $offsets[$add] = 0;
-				    $tt = "\n".$this->extract( $all[$add], 0, $targetchars - $len, $offsets[$add] );
+				    $tt = "\n" . $this->extract( $all[$add], 0, $targetchars - $len, $offsets[$add] );
 					$extended[$add] = $tt;
 					$len += strlen( $tt );
 					$add++;
@@ -1059,27 +1059,27 @@ class SearchHighlighter {
 			}
 		}
 
-		//$snippets = array_map('htmlspecialchars', $extended);
+		// $snippets = array_map('htmlspecialchars', $extended);
 		$snippets = $extended;
-		$last = -1;
+		$last = - 1;
 		$extract = '';
-		foreach($snippets as $index => $line){
-			if($last == -1)
+		foreach ( $snippets as $index => $line ) {
+			if ( $last == - 1 )
 				$extract .= $line; // first line
-			elseif($last+1 == $index && $offsets[$last]+strlen($snippets[$last]) >= strlen($all[$last]))
-				$extract .= " ".$line; // continous lines
+			elseif ( $last + 1 == $index && $offsets[$last] + strlen( $snippets[$last] ) >= strlen( $all[$last] ) )
+				$extract .= " " . $line; // continous lines
 			else
 				$extract .= '<b> ... </b>' . $line;
 
 			$last = $index;
 		}
-		if( $extract )
+		if ( $extract )
 			$extract .= '<b> ... </b>';
 
 		$processed = array();
-		foreach($terms as $term){
-			if( ! isset($processed[$term]) ){
-				$pat3 = "/$patPre(".$term.")$patPost/ui"; // highlight word
+		foreach ( $terms as $term ) {
+			if ( ! isset( $processed[$term] ) ) {
+				$pat3 = "/$patPre(" . $term . ")$patPost/ui"; // highlight word
 				$extract = preg_replace( $pat3,
 			  		"\\1<span class='searchmatch'>\\2</span>\\3", $extract );
 				$processed[$term] = true;
@@ -1098,11 +1098,11 @@ class SearchHighlighter {
 	 * @param $count Integer
 	 * @param $text String
 	 */
-	function splitAndAdd(&$extracts, &$count, $text){
-		$split = explode( "\n", $this->mCleanWikitext? $this->removeWiki($text) : $text );
-		foreach($split as $line){
-			$tt = trim($line);
-			if( $tt )
+	function splitAndAdd( &$extracts, &$count, $text ) {
+		$split = explode( "\n", $this->mCleanWikitext ? $this->removeWiki( $text ) : $text );
+		foreach ( $split as $line ) {
+			$tt = trim( $line );
+			if ( $tt )
 				$extracts[$count++] = $tt;
 		}
 	}
@@ -1112,10 +1112,10 @@ class SearchHighlighter {
 	 *
 	 * @param $matches Array
 	 */
-	function caseCallback($matches){
+	function caseCallback( $matches ) {
 		global $wgContLang;
-		if( strlen($matches[0]) > 1 ){
-			return '['.$wgContLang->lc($matches[0]).$wgContLang->uc($matches[0]).']';
+		if ( strlen( $matches[0] ) > 1 ) {
+			return '[' . $wgContLang->lc( $matches[0] ) . $wgContLang->uc( $matches[0] ) . ']';
 		} else
 			return $matches[0];
 	}
@@ -1130,23 +1130,23 @@ class SearchHighlighter {
 	 * @param $posEnd Integer: (out) actual end position
 	 * @return String
 	 */
-	function extract($text, $start, $end, &$posStart = null, &$posEnd = null ){
+	function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {
 		global $wgContLang;
 
-		if( $start != 0)
+		if ( $start != 0 )
 			$start = $this->position( $text, $start, 1 );
-		if( $end >= strlen($text) )
-			$end = strlen($text);
+		if ( $end >= strlen( $text ) )
+			$end = strlen( $text );
 		else
 			$end = $this->position( $text, $end );
 
-		if(!is_null($posStart))
+		if ( !is_null( $posStart ) )
 			$posStart = $start;
-		if(!is_null($posEnd))
+		if ( !is_null( $posEnd ) )
 			$posEnd = $end;
 
-		if($end > $start)
-			return substr($text, $start, $end-$start);
+		if ( $end > $start )
+			return substr( $text, $start, $end - $start );
 		else
 			return '';
 	}
@@ -1159,21 +1159,21 @@ class SearchHighlighter {
 	 * @param $offset Integer: offset to found index
 	 * @return Integer: nearest nonletter index, or beginning of utf8 char if none
 	 */
-	function position($text, $point, $offset=0 ){
+	function position( $text, $point, $offset = 0 ) {
 		$tolerance = 10;
 		$s = max( 0, $point - $tolerance );
-		$l = min( strlen($text), $point + $tolerance ) - $s;
+		$l = min( strlen( $text ), $point + $tolerance ) - $s;
 		$m = array();
-		if( preg_match('/[ ,.!?~!@#$%^&*\(\)+=\-\\\|\[\]"\'<>]/', substr($text,$s,$l), $m, PREG_OFFSET_CAPTURE ) ){
+		if ( preg_match( '/[ ,.!?~!@#$%^&*\(\)+=\-\\\|\[\]"\'<>]/', substr( $text, $s, $l ), $m, PREG_OFFSET_CAPTURE ) ) {
 			return $m[0][1] + $s + $offset;
-		} else{
+		} else {
 			// check if point is on a valid first UTF8 char
 			$char = ord( $text[$point] );
-			while( $char >= 0x80 && $char < 0xc0 ) {
+			while ( $char >= 0x80 && $char < 0xc0 ) {
 				// skip trailing bytes
 				$point++;
-				if($point >= strlen($text))
-					return strlen($text);
+				if ( $point >= strlen( $text ) )
+					return strlen( $text );
 				$char = ord( $text[$point] );
 			}
 			return $point;
@@ -1192,11 +1192,11 @@ class SearchHighlighter {
 	 * @param $offsets Array: map of starting points of snippets
 	 * @protected
 	 */
-	function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ){
-		if($linesleft == 0)
+	function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {
+		if ( $linesleft == 0 )
 			return; // nothing to do
-		foreach($extracts as $index => $line){
-			if( array_key_exists($index,$out) )
+		foreach ( $extracts as $index => $line ) {
+			if ( array_key_exists( $index, $out ) )
 				continue; // this line already highlighted
 
 			$m = array();
@@ -1204,22 +1204,22 @@ class SearchHighlighter {
 				continue;
 
 			$offset = $m[0][1];
-			$len = strlen($m[0][0]);
-			if($offset + $len < $contextchars)
+			$len = strlen( $m[0][0] );
+			if ( $offset + $len < $contextchars )
 				$begin = 0;
-			elseif( $len > $contextchars)
+			elseif ( $len > $contextchars )
 				$begin = $offset;
 			else
-				$begin = $offset + intval( ($len - $contextchars) / 2 );
+				$begin = $offset + intval( ( $len - $contextchars ) / 2 );
 
 			$end = $begin + $contextchars;
 
 			$posBegin = $begin;
 			// basic snippet from this line
-			$out[$index] = $this->extract($line,$begin,$end,$posBegin);
+			$out[$index] = $this->extract( $line, $begin, $end, $posBegin );
 			$offsets[$index] = $posBegin;
 			$linesleft--;
-			if($linesleft == 0)
+			if ( $linesleft == 0 )
 				return;
 		}
 	}
@@ -1228,25 +1228,25 @@ class SearchHighlighter {
 	 * Basic wikitext removal
 	 * @protected
 	 */
-	function removeWiki($text) {
+	function removeWiki( $text ) {
 		$fname = __METHOD__;
 		wfProfileIn( $fname );
 
-		//$text = preg_replace("/'{2,5}/", "", $text);
-		//$text = preg_replace("/\[[a-z]+:\/\/[^ ]+ ([^]]+)\]/", "\\2", $text);
-		//$text = preg_replace("/\[\[([^]|]+)\]\]/", "\\1", $text);
-		//$text = preg_replace("/\[\[([^]]+\|)?([^|]]+)\]\]/", "\\2", $text);
-		//$text = preg_replace("/\\{\\|(.*?)\\|\\}/", "", $text);
-		//$text = preg_replace("/\\[\\[[A-Za-z_-]+:([^|]+?)\\]\\]/", "", $text);
-		$text = preg_replace("/\\{\\{([^|]+?)\\}\\}/", "", $text);
-		$text = preg_replace("/\\{\\{([^|]+\\|)(.*?)\\}\\}/", "\\2", $text);
-		$text = preg_replace("/\\[\\[([^|]+?)\\]\\]/", "\\1", $text);
-		$text = preg_replace_callback("/\\[\\[([^|]+\\|)(.*?)\\]\\]/", array($this,'linkReplace'), $text);
-		//$text = preg_replace("/\\[\\[([^|]+\\|)(.*?)\\]\\]/", "\\2", $text);
-		$text = preg_replace("/<\/?[^>]+>/", "", $text);
-		$text = preg_replace("/'''''/", "", $text);
-		$text = preg_replace("/('''|<\/?[iIuUbB]>)/", "", $text);
-		$text = preg_replace("/''/", "", $text);
+		// $text = preg_replace("/'{2,5}/", "", $text);
+		// $text = preg_replace("/\[[a-z]+:\/\/[^ ]+ ([^]]+)\]/", "\\2", $text);
+		// $text = preg_replace("/\[\[([^]|]+)\]\]/", "\\1", $text);
+		// $text = preg_replace("/\[\[([^]]+\|)?([^|]]+)\]\]/", "\\2", $text);
+		// $text = preg_replace("/\\{\\|(.*?)\\|\\}/", "", $text);
+		// $text = preg_replace("/\\[\\[[A-Za-z_-]+:([^|]+?)\\]\\]/", "", $text);
+		$text = preg_replace( "/\\{\\{([^|]+?)\\}\\}/", "", $text );
+		$text = preg_replace( "/\\{\\{([^|]+\\|)(.*?)\\}\\}/", "\\2", $text );
+		$text = preg_replace( "/\\[\\[([^|]+?)\\]\\]/", "\\1", $text );
+		$text = preg_replace_callback( "/\\[\\[([^|]+\\|)(.*?)\\]\\]/", array( $this, 'linkReplace' ), $text );
+		// $text = preg_replace("/\\[\\[([^|]+\\|)(.*?)\\]\\]/", "\\2", $text);
+		$text = preg_replace( "/<\/?[^>]+>/", "", $text );
+		$text = preg_replace( "/'''''/", "", $text );
+		$text = preg_replace( "/('''|<\/?[iIuUbB]>)/", "", $text );
+		$text = preg_replace( "/''/", "", $text );
 
 		wfProfileOut( $fname );
 		return $text;
@@ -1258,14 +1258,14 @@ class SearchHighlighter {
 	 *
 	 * @param $matches Array
 	 */
-	function linkReplace($matches){
+	function linkReplace( $matches ) {
 		$colon = strpos( $matches[1], ':' );
-		if( $colon === false )
+		if ( $colon === false )
 			return $matches[2]; // replace with caption
 		global $wgContLang;
 		$ns = substr( $matches[1], 0, $colon );
-		$index = $wgContLang->getNsIndex($ns);
-		if( $index !== false && ($index == NS_FILE || $index == NS_CATEGORY) )
+		$index = $wgContLang->getNsIndex( $ns );
+		if ( $index !== false && ( $index == NS_FILE || $index == NS_CATEGORY ) )
 			return $matches[0]; // return the whole thing
 		else
 			return $matches[2];
@@ -1306,7 +1306,7 @@ class SearchHighlighter {
                 continue;
             }
             --$contextlines;
-            $pre = $wgContLang->truncate( $m[1], -$contextchars );
+            $pre = $wgContLang->truncate( $m[1], - $contextchars );
 
             if ( count( $m ) < 3 ) {
                 $post = '';
