@@ -2,10 +2,18 @@
 
 class WebInstaller extends Installer {
 	
-	/** WebRequest object */
+	/**
+	 * WebRequest object.
+	 * 
+	 * @var WebRequest
+	 */
 	public $request;
 
-	/** Cached session array */
+	/**
+	 * Cached session array.
+	 * 
+	 * @var array
+	 */
 	public $session;
 
 	/** Captured PHP error text. Temporary.
@@ -65,8 +73,12 @@ class WebInstaller extends Installer {
 
 	public $currentPageName;
 
-	/** Constructor */
-	public function __construct( $request ) {
+	/** 
+	 * Constructor.
+	 * 
+	 * @param WebRequest $request
+	 */
+	public function __construct( WebRequest $request ) {
 		parent::__construct();
 		$this->output = new WebInstallerOutput( $this );
 		$this->request = $request;
@@ -79,7 +91,7 @@ class WebInstaller extends Installer {
 	 * 
 	 * @return Array: new session array
 	 */
-	public function execute( $session ) {
+	public function execute( array $session ) {
 		$this->session = $session;
 		
 		if ( isset( $session['settings'] ) ) {
@@ -311,17 +323,23 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Clean up from execute()
+	 * 
+	 * @return array
 	 */
 	public function finish() {
 		$this->output->output();
+		
 		$this->session['happyPages'] = $this->happyPages;
 		$this->session['skippedPages'] = $this->skippedPages;
 		$this->session['settings'] = $this->settings;
+		
 		return $this->session;
 	}
 
 	/**
 	 * Get a URL for submission back to the same script.
+	 * 
+	 * @param $query: Array
 	 */
 	public function getUrl( $query = array() ) {
 		$url = $this->request->getRequestURL();
@@ -337,6 +355,10 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get a WebInstallerPage from the main sequence, by ID.
+	 * 
+	 * @param $id Integer
+	 * 
+	 * @return WebInstallerPage
 	 */
 	public function getPageById( $id ) {
 		return $this->getPageByName( $this->pageSequence[$id] );
@@ -344,6 +366,10 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get a WebInstallerPage by name.
+	 * 
+	 * @param $pageName String
+	 * 
+	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
 		// Totally lame way to force autoload of WebInstallerPage.php
@@ -356,6 +382,9 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get a session variable.
+	 * 
+	 * @param $name String
+	 * @param $default
 	 */
 	public function getSession( $name, $default = null ) {
 		if ( !isset( $this->session[$name] ) ) {
@@ -384,6 +413,7 @@ class WebInstaller extends Installer {
 	 */
 	public function setupLanguage() {
 		global $wgLang, $wgContLang, $wgLanguageCode;
+		
 		if ( $this->getSession( 'test' ) === null && !$this->request->wasPosted() ) {
 			$wgLanguageCode = $this->getAcceptLanguage();
 			$wgLang = $wgContLang = Language::factory( $wgLanguageCode );
@@ -398,6 +428,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Retrieves MediaWiki language from Accept-Language HTTP header.
+	 * 
+	 * @return string
 	 */
 	public function getAcceptLanguage() {
 		global $wgLanguageCode;
@@ -430,6 +462,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Called by execute() before page output starts, to show a page list.
+	 * 
+	 * @param $currentPageName String
 	 */
 	public function startPageWrapper( $currentPageName ) {
 		$s = "<div class=\"config-page-wrapper\">\n" .
@@ -462,6 +496,12 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get a list item for the page list.
+	 * 
+	 * @param $pageName String
+	 * @param $enabled Boolean
+	 * @param $currentPageName String
+	 * 
+	 * @return string
 	 */
 	public function getPageListItem( $pageName, $enabled, $currentPageName ) {
 		$s = "<li class=\"config-page-list-item\">";
@@ -500,6 +540,7 @@ class WebInstaller extends Installer {
 		}
 		
 		$s .= "</li>\n";
+		
 		return $s;
 	}
 
@@ -565,6 +606,7 @@ class WebInstaller extends Installer {
 		$args = func_get_args();
 		array_shift( $args );
 		$args = array_map( 'htmlspecialchars', $args );
+		
 		$text = wfMsgReal( $msg, $args, false, false, false );
 		$html = $this->parse( $text, true );
 		$id = $this->helpId++;
