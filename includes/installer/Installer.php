@@ -5,13 +5,21 @@
  * Handles everything that is independent of user interface.
  */
 abstract class Installer {
+	
 	public $settings;
+	
+	/**
+	 * 
+	 * @var unknown_type
+	 */
 	public $output;
 
 	/**
 	 * MediaWiki configuration globals that will eventually be passed through
 	 * to LocalSettings.php. The names only are given here, the defaults
 	 * typically come from DefaultSettings.php.
+	 * 
+	 * @var array
 	 */
 	protected $defaultVarNames = array(
 		'wgSitename',
@@ -45,6 +53,8 @@ abstract class Installer {
 	 * Variables that are stored alongside globals, and are used for any
 	 * configuration of the installation process aside from the MediaWiki
 	 * configuration. Map of names to defaults.
+	 * 
+	 * @var array
 	 */
 	protected $internalDefaults = array(
 		'_UserLang' => 'en',
@@ -80,6 +90,8 @@ abstract class Installer {
 	 *
 	 * To add a new type, create a <type>Installer class and a Database<type>
 	 * class, and add a config-type-<type> message to MessagesEn.php.
+	 * 
+	 * @var array
 	 */
 	private $dbTypes = array(
 		'mysql',
@@ -90,11 +102,25 @@ abstract class Installer {
 
 	/**
 	 * Minimum memory size in MB.
+	 * 
+	 * @var integer
 	 */
 	private $minMemorySize = 50;
 
 	/**
-	 * Cached DB installer instances, access using getDBInstaller()
+	 * Cached Title, used by parse().
+	 */
+	private $parserTitle;
+	
+	/**
+	 * Cached ParserOptions, used by parse().
+	 */	
+	private $parserOptions;	
+	
+	/**
+	 * Cached DB installer instances, access using getDBInstaller().
+	 * 
+	 * @var array
 	 */
 	private $dbInstallers = array();
 
@@ -102,6 +128,8 @@ abstract class Installer {
 	 * A list of environment check methods called by doEnvironmentChecks().
 	 * These may output warnings using showMessage(), and/or abort the
 	 * installation process by returning false.
+	 * 
+	 * @var array
 	 */
 	protected $envChecks = array(
 		'envLatestVersion',
@@ -127,6 +155,8 @@ abstract class Installer {
 
 	/**
 	 * Steps for installation.
+	 * 
+	 * @var array
 	 */
 	protected $installSteps = array(
 		'database',
@@ -138,6 +168,8 @@ abstract class Installer {
 
 	/**
 	 * Known object cache types and the functions used to test for their existence.
+	 * 
+	 * @var array
 	 */
 	protected $objectCaches = array(
 		'xcache' => 'xcache_get',
@@ -148,6 +180,8 @@ abstract class Installer {
 
 	/**
 	 * User rights profiles.
+	 * 
+	 * @var array
 	 */
 	public $rightsProfiles = array(
 		'wiki' => array(),
@@ -171,6 +205,8 @@ abstract class Installer {
 
 	/**
 	 * License types.
+	 * 
+	 * @var array
 	 */
 	public $licenses = array(
 		'none' => array(
@@ -205,10 +241,7 @@ abstract class Installer {
 			'text' => '',
 		),
 	);
-	/**
-	 * Cached Title and ParserOptions used by parse()
-	 */
-	private $parserTitle, $parserOptions;
+
 
 	/**
 	 * Constructor, always call this from child classes
@@ -401,37 +434,47 @@ abstract class Installer {
 
 	/** Environment check for DB types */
 	public function envCheckDB() {
+		global $wgLang;
+		
 		$compiledDBs = array();
 		$goodNames = array();
 		$allNames = array();
+		
 		foreach ( $this->dbTypes as $name ) {
 			$db = $this->getDBInstaller( $name );
 			$readableName = wfMsg( 'config-type-' . $name );
+			
 			if ( $db->isCompiled() ) {
 				$compiledDBs[] = $name;
 				$goodNames[] = $readableName;
 			}
+			
 			$allNames[] = $readableName;
 		}
+		
 		$this->setVar( '_CompiledDBs', $compiledDBs );
-
-		global $wgLang;
+		
 		if ( !$compiledDBs ) {
 			$this->showMessage( 'config-no-db' );
 			$this->showHelpBox( 'config-no-db-help', $wgLang->commaList( $allNames ) );
 			return false;
 		}
+		
 		$this->showMessage( 'config-have-db', $wgLang->commaList( $goodNames ) );
 	}
 
-	/** Environment check for register_globals */
+	/**
+	 * Environment check for register_globals.
+	 */
 	public function envCheckRegisterGlobals() {
 		if( wfIniGetBool( "magic_quotes_runtime" ) ) {
 			$this->showMessage( 'config-register-globals' );
 		}
 	}
 
-	/** Environment check for magic_quotes_runtime */
+	/**
+	 * Environment check for magic_quotes_runtime.
+	 */
 	public function envCheckMagicQuotes() {
 		if( wfIniGetBool( "magic_quotes_runtime" ) ) {
 			$this->showMessage( 'config-magic-quotes-runtime' );
@@ -439,7 +482,9 @@ abstract class Installer {
 		}
 	}
 
-	/** Environment check for magic_quotes_sybase */
+	/**
+	 * Environment check for magic_quotes_sybase.
+	 */
 	public function envCheckMagicSybase() {
 		if ( wfIniGetBool( 'magic_quotes_sybase' ) ) {
 			$this->showMessage( 'config-magic-quotes-sybase' );
@@ -447,7 +492,9 @@ abstract class Installer {
 		}
 	}
 
-	/* Environment check for mbstring.func_overload */
+	/**
+	 * Environment check for mbstring.func_overload.
+	 */
 	public function envCheckMbstring() {
 		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
 			$this->showMessage( 'config-mbstring' );
@@ -455,7 +502,9 @@ abstract class Installer {
 		}
 	}
 
-	/** Environment check for zend.ze1_compatibility_mode */
+	/**
+	 * Environment check for zend.ze1_compatibility_mode.
+	 */
 	public function envCheckZE1() {
 		if ( wfIniGetBool( 'zend.ze1_compatibility_mode' ) ) {
 			$this->showMessage( 'config-ze1' );
@@ -463,7 +512,9 @@ abstract class Installer {
 		}
 	}
 
-	/** Environment check for safe_mode */
+	/**
+	 * Environment check for safe_mode.
+	 */
 	public function envCheckSafeMode() {
 		if ( wfIniGetBool( 'safe_mode' ) ) {
 			$this->setVar( '_SafeMode', true );
@@ -471,7 +522,9 @@ abstract class Installer {
 		}
 	}
 
-	/** Environment check for the XML module */
+	/**
+	 * Environment check for the XML module.
+	 */
 	public function envCheckXML() {
 		if ( !function_exists( "utf8_encode" ) ) {
 			$this->showMessage( 'config-xml-bad' );
@@ -480,7 +533,9 @@ abstract class Installer {
 		$this->showMessage( 'config-xml-good' );
 	}
 
-	/** Environment check for the PCRE module */
+	/**
+	 * Environment check for the PCRE module.
+	 */
 	public function envCheckPCRE() {
 		if ( !function_exists( 'preg_match' ) ) {
 			$this->showMessage( 'config-pcre' );
@@ -488,20 +543,27 @@ abstract class Installer {
 		}
 	}
 
-	/** Environment check for available memory */
+	/**
+	 * Environment check for available memory.
+	 */
 	public function envCheckMemory() {
 		$limit = ini_get( 'memory_limit' );
+		
 		if ( !$limit || $limit == -1 ) {
 			$this->showMessage( 'config-memory-none' );
 			return true;
 		}
+		
 		$n = intval( $limit );
+		
 		if( preg_match( '/^([0-9]+)[Mm]$/', trim( $limit ), $m ) ) {
-			$n = intval( $m[1] * (1024*1024) );
+			$n = intval( $m[1] * ( 1024 * 1024 ) );
 		}
-		if( $n < $this->minMemorySize*1024*1024 ) {
+		
+		if( $n < $this->minMemorySize * 1024 * 1024 ) {
 			$newLimit = "{$this->minMemorySize}M";
-			if( false === ini_set( "memory_limit", $newLimit ) ) {
+			
+			if( ini_set( "memory_limit", $newLimit ) === false ) {
 				$this->showMessage( 'config-memory-bad', $limit );
 			} else {
 				$this->showMessage( 'config-memory-raised', $limit, $newLimit );
@@ -512,22 +574,29 @@ abstract class Installer {
 		}
 	}
 
-	/** Environment check for compiled object cache types */
+	/**
+	 * Environment check for compiled object cache types.
+	 */
 	public function envCheckCache() {
 		$caches = array();
+		
 		foreach ( $this->objectCaches as $name => $function ) {
 			if ( function_exists( $function ) ) {
 				$caches[$name] = true;
 				$this->showMessage( 'config-' . $name );
 			}
 		}
+		
 		if ( !$caches ) {
 			$this->showMessage( 'config-no-cache' );
 		}
+		
 		$this->setVar( '_Caches', $caches );
 	}
 
-	/** Search for GNU diff3 */
+	/**
+	 * Search for GNU diff3.
+	 */
 	public function envCheckDiff3() {
 		$paths = array_merge(
 			array(
@@ -535,20 +604,26 @@ abstract class Installer {
 				"/usr/local/bin",
 				"/opt/csw/bin",
 				"/usr/gnu/bin",
-				"/usr/sfw/bin" ),
-			explode( PATH_SEPARATOR, getenv( "PATH" ) ) );
+				"/usr/sfw/bin"
+			),
+			explode( PATH_SEPARATOR, getenv( "PATH" ) )
+		);
+		
 		$names = array( "gdiff3", "diff3", "diff3.exe" );
-
 		$versionInfo = array( '$1 --version 2>&1', 'diff3 (GNU diffutils)' );
+		
 		$haveDiff3 = false;
+		
 		foreach ( $paths as $path ) {
 			$exe = $this->locateExecutable( $path, $names, $versionInfo );
+			
 			if ($exe !== false) {
 				$this->setVar( 'wgDiff3', $exe );
 				$haveDiff3 = true;
 				break;
 			}
 		}
+		
 		if ( $haveDiff3 ) {
 			$this->showMessage( 'config-diff3-good', $exe );
 		} else {
@@ -572,26 +647,34 @@ abstract class Installer {
 	 * matching $versionInfo[1] will be returned.
 	 */
 	public function locateExecutable( $path, $names, $versionInfo = false ) {
-		if (!is_array($names))
-			$names = array($names);
+		if ( !is_array( $names ) ) {
+			$names = array( $names );
+		}
 
-		foreach ($names as $name) {
+		foreach ( $names as $name ) {
 			$command = "$path/$name";
+			
 			if ( @file_exists( $command ) ) {
-				if ( !$versionInfo )
+				if ( !$versionInfo ) {
 					return $command;
-
+				}
+					
 				$file = str_replace( '$1', $command, $versionInfo[0] );
+				
 				# Should maybe be wfShellExec( $file), but runs into a ulimit, see
 				# http://www.mediawiki.org/w/index.php?title=New-installer_issues&diff=prev&oldid=335456
-				if ( strstr( `$file`, $versionInfo[1]) !== false )
+				if ( strstr( `$file`, $versionInfo[1]) !== false ) {
 					return $command;
+				}
 			}
 		}
+		
 		return false;
 	}
 
-	/** Environment check for ImageMagick and GD */
+	/**
+	 * Environment check for ImageMagick and GD.
+	 */
 	public function envCheckGraphics() {
 		$imcheck = array( "/usr/bin", "/opt/csw/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
 		foreach( $imcheck as $dir ) {
