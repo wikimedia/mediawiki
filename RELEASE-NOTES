@@ -282,6 +282,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24296) Added converttitles parameter to convert titles to their 
   canonical language variant.
 * Fixed "link" parameter in image links with "thumb" parameter.
+* (bug 23936) - Add "displaytitle" to query/info API
 
 === Languages updated in 1.17 ===
 

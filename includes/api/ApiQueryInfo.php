@@ -262,6 +262,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $this->fld_talkid || $this->fld_subjectid ) {
 			$this->getTSIDs();
 		}
+		
+		if ( $this->fld_displaytitle ) {
+			$this->getDisplayTitle();
+		}
 
 		foreach ( $this->everything as $pageid => $title ) {
 			$pageInfo = $this->extractPageInfo( $pageid, $title );
@@ -357,9 +361,13 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 		
 		if ( $this->fld_displaytitle ) {
-		
+			if ( isset( $this->displaytitles[$title->getArticleId()] ) ) {
+				$pageInfo['displaytitle'] = $this->displaytitles[$title->getArticleId()];
+			} else {
+				$pageInfo['displaytitle'] = $title;
+			}
 		}
-		
+
 		return $pageInfo;
 	}
 
@@ -512,7 +520,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function getTSIDs() {
 		$getTitles = $this->talkids = $this->subjectids = array();
-		$db = $this->getDB();
+
 		foreach ( $this->everything as $t ) {
 			if ( MWNamespace::isTalk( $t->getNamespace() ) ) {
 				if ( $this->fld_subjectid ) {
@@ -525,6 +533,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( !count( $getTitles ) ) {
 			return;
 		}
+		
+		$db = $this->getDB();
 
 		// Construct a custom WHERE clause that matches
 		// all titles in $getTitles
@@ -542,6 +552,31 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->subjectids[MWNamespace::getTalk( $row->page_namespace )][$row->page_title] =
 						intval( $row->page_id );
 			}
+		}
+	}
+	
+	private function getDisplayTitle() {
+		$pageIds = $this->displaytitles = array();
+		
+		foreach ( $this->everything as $t ) {
+			$pageIds = $t->getArticleID();
+		}
+	
+		if ( !count( $pageIds ) ) {
+			return;
+		}
+		
+		$db = $this->getDB();
+
+		$this->resetQueryParams();
+		$this->addTables( 'page_props' );
+		$this->addFields( array( 'pp_page', 'pp_value' ) );
+		$this->addWhereFld( 'pp_page', $pageIds );
+		$this->addWhereFld( 'pp_propname', 'displaytitle' );
+		$res = $this->select( __METHOD__ );
+		
+		foreach ( $res as $row ) {
+			$this->displaytitles[$row->pp_page] = $row->pp_value;
 		}
 	}
 
@@ -589,7 +624,8 @@ class ApiQueryInfo extends ApiQueryBase {
 					'subjectid',
 					'url',
 					'readable',
-					'preload'
+					'preload',
+					'displaytitle',
 				) ),
 			'token' => array(
 				ApiBase::PARAM_DFLT => null,
