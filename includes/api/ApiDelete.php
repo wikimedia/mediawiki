@@ -47,8 +47,6 @@ class ApiDelete extends ApiBase {
 	 * result object.
 	 */
 	public function execute() {
-		global $wgUser;
-
 		$params = $this->extractRequestParams();
 
 		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
