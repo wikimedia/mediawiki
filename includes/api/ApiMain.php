@@ -118,7 +118,7 @@ class ApiMain extends ApiBase {
 		),
 		'apihighlimits'	=> array(
 			'msg' => 'Use higher limits in API queries (Slow queries: $1 results; Fast queries: $2 results). The limits for slow queries also apply to multivalue parameters.',
-			'params' => array( ApiMain::LIMIT_SML2, ApiMain::LIMIT_BIG2 )
+			'params' => array( ApiBase::LIMIT_SML2, ApiBase::LIMIT_BIG2 )
 		)
 	);
 
