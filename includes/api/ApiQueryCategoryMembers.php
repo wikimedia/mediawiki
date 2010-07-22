@@ -104,9 +104,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 
-		$db = $this->getDB();
-
-		$data = array();
 		$count = 0;
 		$lastSortKey = null;
 		$res = $this->select( __METHOD__ );

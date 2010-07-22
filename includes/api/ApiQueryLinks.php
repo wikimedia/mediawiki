@@ -138,7 +138,6 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'USE INDEX', "{$this->prefix}_from" );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
-		$db = $this->getDB();
 		$res = $this->select( __METHOD__ );
 
 		if ( is_null( $resultPageSet ) ) {

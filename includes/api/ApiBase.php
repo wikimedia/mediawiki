@@ -843,7 +843,7 @@ abstract class ApiBase {
 	public static function truncateArray( &$arr, $limit ) {
 		$modified = false;
 		while ( count( $arr ) > $limit ) {
-			$junk = array_pop( $arr );
+			array_pop( $arr );
 			$modified = true;
 		}
 		return $modified;

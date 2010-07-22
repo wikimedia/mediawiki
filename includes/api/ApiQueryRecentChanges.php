@@ -116,7 +116,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		 * 		AND rc_timestamp < $end AND rc_namespace = $namespace
 		 * 		AND rc_deleted = '0'
 		 */
-		$db = $this->getDB();
 		$this->addTables( 'recentchanges' );
 		$index = array( 'recentchanges' => 'rc_timestamp' ); // May change
 		$this->addWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
@@ -250,7 +249,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		$count = 0;
 		/* Perform the actual query. */
-		$db = $this->getDB();
 		$res = $this->select( __METHOD__ );
 
 		/* Iterate through the rows, adding data extracted from them to our query result. */

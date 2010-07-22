@@ -56,8 +56,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_details = isset( $prop['details'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
-		list( $tbl_logging, $tbl_page, $tbl_user ) = $db->tableNamesN( 'logging', 'page', 'user' );
-
 		$hideLogs = LogEventsList::getExcludeClause( $db );
 		if ( $hideLogs !== false ) {
 			$this->addWhere( $hideLogs );

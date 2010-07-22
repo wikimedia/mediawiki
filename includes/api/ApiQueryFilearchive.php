@@ -54,7 +54,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		
 		$prop = array_flip( $params['prop'] );
-		$fld_id = isset( $prop['id'] );
 		$fld_sha1 = isset( $prop['sha1'] );
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_user = isset( $prop['user'] );
@@ -118,7 +117,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$res = $this->select( __METHOD__ );
 
-		$titles = array();
 		$count = 0;
 		$result = $this->getResult();
 		foreach ( $res as $row ) {

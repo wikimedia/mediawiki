@@ -247,7 +247,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->pageLatest = $pageSet->getCustomField( 'page_latest' );
 		$this->pageLength = $pageSet->getCustomField( 'page_len' );
 
-		$db = $this->getDB();
 		// Get protection info if requested
 		if ( $this->fld_protection ) {
 			$this->getProtectionInfo();
@@ -563,8 +562,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( !count( $pageIds ) ) {
 			return;
 		}
-		
-		$db = $this->getDB();
 
 		$this->resetQueryParams();
 		$this->addTables( 'page_props' );

@@ -116,7 +116,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$res = $this->select( __METHOD__ );
 
-		$data = array();
 		$count = 0;
 		$lastUserData = false;
 		$lastUser = false;
