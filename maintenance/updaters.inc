@@ -1508,6 +1508,7 @@ function do_postgres_updates() {
 		array( "watchlist",     "wl_user",            "(wl_user)" ),
 		array( "logging",       "logging_user_type_time", "(log_user, log_type, log_timestamp)" ),
 		array( "logging",       "logging_page_id_time",   "(log_page,log_timestamp)" ),
+		array( "iwlinks",       "iwl_prefix_title_from",  "(iwl_prefix, iwl_title, iwl_from)" ),
 	);
 
 	$newrules = array(

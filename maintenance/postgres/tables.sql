@@ -625,4 +625,4 @@ CREATE TABLE iwlinks (
   iwl_title   TEXT     NOT NULL DEFAULT ''
 );
 CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
-CREATE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
+CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
