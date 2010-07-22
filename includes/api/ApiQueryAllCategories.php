@@ -83,7 +83,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ );
 
 		$pages = array();
-		$categories = array();
+
 		$result = $this->getResult();
 		$count = 0;
 		foreach ( $res as $row ) {
