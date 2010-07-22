@@ -1314,6 +1314,8 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'prefs-advancedsearchoptions'   => 'Avanserte alternativ',
 'prefs-advancedwatchlist'       => 'Avanserte alternativ',
 'prefs-displayrc'               => 'Visningsalternativ',
+'prefs-displaysearchoptions'    => 'Visningsalternativer',
+'prefs-displaywatchlist'        => 'Visningsalternativer',
 'prefs-diffs'                   => 'Forskjeller',
 
 # User rights

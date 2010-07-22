@@ -35,6 +35,7 @@
  * @author Omnipaedista
  * @author PaoloRomano
  * @author Pietrodn
+ * @author Pinodd
  * @author Ramac
  * @author Remember the dot
  * @author S.Örvarr.S
@@ -1307,6 +1308,8 @@ L'operazione non può essere annullata.",
 'prefs-advancedsearchoptions'   => 'Opzioni avanzate',
 'prefs-advancedwatchlist'       => 'Opzioni avanzate',
 'prefs-displayrc'               => 'Opzioni di visualizzazione',
+'prefs-displaysearchoptions'    => 'Opzioni di visualizzazione',
+'prefs-displaywatchlist'        => 'Opzioni di visualizzazione',
 'prefs-diffs'                   => 'Differenze',
 
 # User rights

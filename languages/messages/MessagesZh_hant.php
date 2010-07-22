@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author Bencmq
  * @author FireJackey
+ * @author Frankou
  * @author Gaoxuewei
  * @author Hakka
  * @author Horacewai2
@@ -1272,6 +1273,8 @@ $1",
 'prefs-advancedsearchoptions'   => '進階選項',
 'prefs-advancedwatchlist'       => '進階選項',
 'prefs-displayrc'               => '顯示選項',
+'prefs-displaysearchoptions'    => '顯示選項',
+'prefs-displaywatchlist'        => '顯示選項',
 'prefs-diffs'                   => '差異',
 
 # User rights

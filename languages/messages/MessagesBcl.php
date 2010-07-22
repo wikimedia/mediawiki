@@ -1029,7 +1029,7 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'filehist-dimensions'       => 'Mga dimensyón',
 'filehist-filesize'         => 'Sokol nin file',
 'filehist-comment'          => 'Komento',
-'imagelinks'                => 'Mga takod',
+'imagelinks'                => 'Mga takód',
 'linkstoimage'              => 'An mga minasunod na pahina nakatakod sa dokumentong ini:',
 'nolinkstoimage'            => 'Mayong mga pahinang nakatakod sa dokumentong ini.',
 'sharedupload'              => "Ining ''file'' sarong bakas na pagkarga asin pwede ser na gamiton kan ibang mga proyekto.",
@@ -1822,7 +1822,7 @@ $1",
 'filedelete-archive-read-only'    => 'An direktoryong archibo na "$1" dai nasusuratan kan webserver.',
 
 # Browsing diffs
-'previousdiff' => '← Nakaaging kaibhán',
+'previousdiff' => '← Nakaáging kaibhán',
 'nextdiff'     => 'Sunod na kaibhán →',
 
 # Media information
