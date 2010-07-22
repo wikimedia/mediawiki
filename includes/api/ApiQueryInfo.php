@@ -210,6 +210,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_url = isset( $prop['url'] );
 			$this->fld_readable = isset( $prop['readable'] );
 			$this->fld_preload = isset( $prop['preload'] );
+			$this->fld_displaytitle = isset( $prop['displaytitle'] );
 		}
 
 		$pageSet = $this->getPageSet();
@@ -290,6 +291,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['lastrevid'] = intval( $this->pageLatest[$pageid] );
 			$pageInfo['counter'] = intval( $this->pageCounter[$pageid] );
 			$pageInfo['length'] = intval( $this->pageLength[$pageid] );
+
 			if ( $this->pageIsRedir[$pageid] ) {
 				$pageInfo['redirect'] = '';
 			}
@@ -347,11 +349,17 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ( $title->exists() ) {
 				$pageInfo['preload'] = '';
 			} else {
+				$text = null;
 				wfRunHooks( 'EditFormPreloadText', array( &$text, &$title ) );
 
 				$pageInfo['preload'] = $text;
 			}
 		}
+		
+		if ( $this->fld_displaytitle ) {
+		
+		}
+		
 		return $pageInfo;
 	}
 
@@ -602,7 +610,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				' subjectid    - The page ID of the parent page for each talk page',
 				' url          - Gives a full URL to the page, and also an edit URL',
 				' readable     - Whether the user can read this page',
-				' preload      - Gives the text returned by EditFormPreloadText'
+				' preload      - Gives the text returned by EditFormPreloadText',
+				' displaytitle - Gives the way the page title is actually displayed',
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
 			'continue' => 'When more results are available, use this to continue',
