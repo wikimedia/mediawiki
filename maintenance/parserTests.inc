@@ -1514,7 +1514,7 @@ class RemoteTestRecorder extends TestRecorder {
 
 		$remote = $wgParserTestRemote;
 		$revId = SpecialVersion::getSvnRevision( $IP );
-		$jsonResults = json_encode( $results );
+		$jsonResults = FormatJson::encode( $results );
 
 		if ( !$remote ) {
 			print "Can't do remote upload without configuring \$wgParserTestRemote!\n";
