@@ -364,7 +364,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ( isset( $this->displaytitles[$title->getArticleId()] ) ) {
 				$pageInfo['displaytitle'] = $this->displaytitles[$title->getArticleId()];
 			} else {
-				$pageInfo['displaytitle'] = $title;
+				$pageInfo['displaytitle'] = $title->getPrefixedText();
 			}
 		}
 
@@ -556,11 +556,9 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 	
 	private function getDisplayTitle() {
-		$pageIds = $this->displaytitles = array();
+		$this->displaytitles = array();
 		
-		foreach ( $this->everything as $t ) {
-			$pageIds = $t->getArticleID();
-		}
+		$pageIds = array_keys( $this->titles );
 	
 		if ( !count( $pageIds ) ) {
 			return;
