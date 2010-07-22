@@ -1415,14 +1415,19 @@ function wfEscapeShellArg( ) {
 			// Double the backslashes before any double quotes. Escape the double quotes.
 			$tokens = preg_split( '/(\\\\*")/', $arg, -1, PREG_SPLIT_DELIM_CAPTURE );
 			$arg = '';
-			$delim = false;
+			$iteration = 0;
 			foreach ( $tokens as $token ) {
-				if ( $delim ) {
+				if ( $iteration % 2 == 1 ) {
+					// Delimiter, a double quote preceded by zero or more slashes
 					$arg .= str_replace( '\\', '\\\\', substr( $token, 0, -1 ) ) . '\\"';
-				} else {
+				} else if ( $iteration % 4 == 2 ) {
+					// ^ in $token will be outside quotes, need to be escaped
+					$arg .= str_replace( '^', '^^', $token );
+				} else { // $iteration % 4 == 0
+					// ^ in $token will appear inside double quotes, so leave as is
 					$arg .= $token;
 				}
-				$delim = !$delim;
+				$iteration++;
 			}
 			// Double the backslashes before the end of the string, because
 			// we will soon add a quote
