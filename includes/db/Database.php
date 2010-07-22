@@ -2354,12 +2354,14 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Get search engine class. Subclasses that don't support a search engine
-	 * should return 'SearchEngineDummy'.
+	 * Get search engine class. All subclasses of this need to implement this
+	 * if they wish to use searching.
 	 *
 	 * @return String
 	 */
-	public abstract function getSearchEngine();
+	public function getSearchEngine() {
+		return 'SearchEngineDummy';
+	}
 
 	/**
 	 * Allow or deny "big selects" for this session only. This is done by setting
