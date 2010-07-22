@@ -698,8 +698,9 @@ abstract class ApiBase {
 						}
 						break;
 					case 'boolean':
-						if ( $multi )
+						if ( $multi ) {
 							ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+						}
 						break;
 					case 'timestamp':
 						if ( $multi ) {
