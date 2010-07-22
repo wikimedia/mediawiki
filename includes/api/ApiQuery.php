@@ -43,7 +43,7 @@ class ApiQuery extends ApiBase {
 
 	private $mPropModuleNames, $mListModuleNames, $mMetaModuleNames;
 	private $mPageSet;
-	private $params, $redirect;
+	private $params;
 
 	private $mQueryPropModules = array(
 		'info' => 'ApiQueryInfo',

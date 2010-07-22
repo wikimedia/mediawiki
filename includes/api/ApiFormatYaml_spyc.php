@@ -91,12 +91,14 @@ class Spyc {
 
 	/**** Private Properties ****/
 
+	/**
 	private $_haveRefs;
 	private $_allNodes;
 	private $_lastIndent;
 	private $_lastNode;
 	private $_inBlock;
 	private $_isInline;
+	**/
 	private $_dumpIndent;
 	private $_dumpWordWrap;
 
