@@ -521,7 +521,7 @@ class ApiMain extends ApiBase {
 	 * @param $module object An Api module
 	 */
 	protected function checkExecutePermissions( $module ) {
-		global $wgUser, $wgGroupPermissions;
+		global $wgUser;
 		if ( $module->isReadMode() && !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) &&
 			!$wgUser->isAllowed( 'read' ) )
 		{

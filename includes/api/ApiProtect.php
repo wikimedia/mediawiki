@@ -37,7 +37,7 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser, $wgRestrictionTypes, $wgRestrictionLevels;
+		global $wgUser, $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
 		$titleObj = null;
