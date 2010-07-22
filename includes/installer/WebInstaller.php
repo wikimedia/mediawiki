@@ -1,6 +1,16 @@
 <?php
 
-class WebInstaller extends Installer {
+/**
+ * Class for the core installer web interface.
+ * 
+ * @since 1.17
+ */
+class WebInstaller extends CoreInstaller {
+	
+	/**
+	 * @var WebInstallerOutput
+	 */
+	public $output;	
 	
 	/**
 	 * WebRequest object.
@@ -16,7 +26,8 @@ class WebInstaller extends Installer {
 	 */
 	public $session;
 
-	/** Captured PHP error text. Temporary.
+	/** 
+	 * Captured PHP error text. Temporary.
 	 */
 	public $phpErrors;
 
@@ -472,8 +483,11 @@ class WebInstaller extends Installer {
 		
 		foreach ( $this->pageSequence as $id => $pageName ) {
 			$happy = !empty( $this->happyPages[$id] );
-			$s .= $this->getPageListItem( $pageName,
-				$happy || $lastHappy == $id - 1, $currentPageName );
+			$s .= $this->getPageListItem( 
+				$pageName,
+				$happy || $lastHappy == $id - 1,
+				$currentPageName
+			);
 				
 			if ( $happy ) {
 				$lastHappy = $id;
@@ -930,9 +944,11 @@ class WebInstaller extends Installer {
 	 */
 	public function getDocUrl( $page ) {
 		$url = "{$_SERVER['PHP_SELF']}?page=" . urlencode( $page );
+		
 		if ( in_array( $this->currentPageName, $this->pageSequence ) ) {
 			$url .= '&lastPage=' . urlencode( $this->currentPageName );
 		}
+		
 		return $url;
 	}
 	

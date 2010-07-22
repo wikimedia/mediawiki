@@ -595,14 +595,17 @@ class WebInstaller_Options extends WebInstallerPage {
 		);
 
 		$extensions = $this->parent->findExtensions();
+		
 		if( $extensions ) {
 			$extHtml = $this->parent->getFieldsetStart( 'config-extensions' );
-			foreach( array_keys($extensions) as $ext ) {
+			
+			foreach( $extensions as $ext ) {
 				$extHtml .= $this->parent->getCheckBox( array(
 					'var' => "ext-$ext",
 					'rawtext' => $ext,
 				) );
 			}
+			
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
 				$this->parent->getFieldsetEnd();
 			$this->addHTML( $extHtml );

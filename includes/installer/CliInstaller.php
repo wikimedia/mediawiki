@@ -1,6 +1,11 @@
 <?php
 
-class CliInstaller extends Installer {
+/**
+ * Class for the core installer command line interface.
+ * 
+ * @since 1.17
+ */
+class CliInstaller extends CoreInstaller {
 
 	/* The maintenance class in effect */
 	private $maint;

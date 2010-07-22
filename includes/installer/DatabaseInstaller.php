@@ -101,7 +101,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Create database tables from scratch.
 	 * 
-	 * @return \type Status
+	 * @return Status
 	 */
 	public abstract function createTables();
 
