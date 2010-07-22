@@ -33,13 +33,21 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * This gives links pointing to the given interwiki
  * @ingroup API
  */
-class ApiQueryIWBacklinks extends ApiQueryBase {
+class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'iwbl' );
 	}
-
+	
 	public function execute() {
+		$this->run();
+	}
+
+	public function executeGenerator( $resultPageSet ) {
+		$this->run( $resultPageSet );
+	}
+
+	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 		
 		if ( isset( $params['title'] ) && !isset( $params['prefix'] ) ) {
@@ -91,6 +99,8 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 
 		$db = $this->getDB();
 		$res = $this->select( __METHOD__ );
+		
+		$pages = array();
 
 		$count = 0;
 		$result = $this->getResult();
@@ -102,35 +112,40 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 				break;
 			}
 			
-			$entry = array();
-			
-			$entry['pageid'] = intval( $row->page_id );
-			$entry['ns'] = $row->page_namespace;
-			$entry['title'] = $row->page_title;
-			
-			if ( $row->page_is_redirect ) {
-				$entry['redirect'] = '';
-			}
-			
-			if ( $iwprefix ) {
-				$entry['iwprefix'] = $row->iwl_prefix;
-			}
-			
-			if ( $iwtitle ) {
-				$entry['iwtitle'] = $row->iwl_title;
-			}
+			if ( !is_null( $resultPageSet ) ) {
+				$pages[] = Title::makeTitle( $row->page_namespace, $row->page_title )->getPrefixedText();
+			} else {
+				$entry = array();
+				
+				$entry['pageid'] = intval( $row->page_id );
+				$entry['ns'] = $row->page_namespace;
+				$entry['title'] = $row->page_title;
+				
+				if ( $row->page_is_redirect ) {
+					$entry['redirect'] = '';
+				}
+				
+				if ( $iwprefix ) {
+					$entry['iwprefix'] = $row->iwl_prefix;
+				}
+				
+				if ( $iwtitle ) {
+					$entry['iwtitle'] = $row->iwl_title;
+				}
 
-			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $entry );
-			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'continue', "{$row->iwl_prefix}|{$row->iwl_title}|{$row->iwl_from}" );
-				break;
+				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $entry );
+				if ( !$fit ) {
+					$this->setContinueEnumParameter( 'continue', "{$row->iwl_prefix}|{$row->iwl_title}|{$row->iwl_from}" );
+					break;
+				}
 			}
 		}
-
-		$this->getResult()->setIndexedTagName_internal(
-			array( 'query', $this->getModuleName() ),
-			'iw'
-		);
+		
+		if ( is_null( $resultPageSet ) ) {
+			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'iw' );
+		} else {
+			$resultPageSet->populateFromTitles( $pages );
+		}
 	}
 
 	public function getAllowedParams() {
@@ -188,7 +203,7 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 	protected function getExamples() {
 		return array(
 			'api.php?action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks',
-			//'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
+			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
 		);
 	}
 
