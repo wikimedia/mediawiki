@@ -84,21 +84,18 @@ class ApiMove extends ApiBase {
 		}
 
 		// Move the page
-		$hookErr = null;
 		$retval = $fromTitle->moveTo( $toTitle, true, $params['reason'], !$params['noredirect'] );
 		if ( $retval !== true ) {
 			$this->dieUsageMsg( reset( $retval ) );
 		}
 
 		$r = array( 'from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason'] );
-		if ( !$params['noredirect'] || !$wgUser->isAllowed( 'suppressredirect' ) )
-		{
+		if ( !$params['noredirect'] || !$wgUser->isAllowed( 'suppressredirect' ) ) {
 			$r['redirectcreated'] = '';
 		}
 
 		// Move the talk page
-		if ( $params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage() )
-		{
+		if ( $params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
 			$retval = $fromTalk->moveTo( $toTalk, true, $params['reason'], !$params['noredirect'] );
 			if ( $retval === true ) {
 				$r['talkfrom'] = $fromTalk->getPrefixedText();

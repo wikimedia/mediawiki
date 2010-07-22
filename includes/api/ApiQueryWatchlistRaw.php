@@ -93,7 +93,6 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
 
-		$db = $this->getDB();
 		$titles = array();
 		$count = 0;
 		foreach ( $res as $row ) {

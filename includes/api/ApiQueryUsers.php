@@ -73,7 +73,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
-		$r = array();
 
 		if ( !is_null( $params['prop'] ) ) {
 			$this->prop = array_flip( $params['prop'] );
@@ -104,7 +103,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		}
 
 		if ( count( $goodNames ) ) {
-			$db = $this->getDb();
 			$this->addTables( 'user', 'u1' );
 			$this->addFields( 'u1.*' );
 			$this->addWhereFld( 'u1.user_name', $goodNames );

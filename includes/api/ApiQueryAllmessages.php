@@ -78,7 +78,6 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		}
 
 		// Get all requested messages and print the result
-		$messages = array();
 		$skip = !is_null( $params['from'] );
 		$result = $this->getResult();
 		foreach ( $messages_target as $message ) {

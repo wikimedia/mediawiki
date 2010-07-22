@@ -318,7 +318,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$this->addOption( 'USE INDEX', $index );
 
-		$data = array();
 		$count = 0;
 		$res = $this->select( __METHOD__ );
 

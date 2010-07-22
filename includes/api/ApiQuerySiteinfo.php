@@ -252,8 +252,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$this->addOption( 'ORDER BY', 'iw_prefix' );
 
-		$db = $this->getDB();
-		$res = $this->select( __METHOD__ );
+    	$res = $this->select( __METHOD__ );
 
 		$data = array();
 		$langNames = Language::getLanguageNames();

@@ -50,7 +50,6 @@ class ApiParse extends ApiBase {
 			$this->dieUsage( 'The page parameter cannot be used together with the text and title parameters', 'params' );
 		}
 		$prop = array_flip( $params['prop'] );
-		$revid = false;
 
 		if ( isset( $params['section'] ) ) {
 			$this->section = $params['section'];

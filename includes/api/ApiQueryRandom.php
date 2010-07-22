@@ -64,7 +64,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	}
 
 	protected function runQuery( &$resultPageSet ) {
-		$db = $this->getDB();
 		$res = $this->select( __METHOD__ );
 		$count = 0;
 		foreach ( $res as $row ) {

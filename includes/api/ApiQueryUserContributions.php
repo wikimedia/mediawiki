@@ -61,7 +61,6 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_SLAVE, 'contributions' );
-		$db = $this->getDB();
 
 		if ( isset( $this->params['userprefix'] ) ) {
 			$this->prefixMode = true;
