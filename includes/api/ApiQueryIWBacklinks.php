@@ -64,6 +64,10 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 				"iwl_from >= $from)))"
 			);
 		}
+		
+		$prop = array_flip( $params['prop'] );
+		$iwprefix = isset( $prop['iwprefix'] );
+		$iwtitle = isset( $prop['iwtitle'] );
 
 		$this->addTables( array( 'iwlinks', 'page' ) );
 		$this->addWhere( 'iwl_from = page_id' );
@@ -107,6 +111,14 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 			if ( $row->page_is_redirect ) {
 				$entry['redirect'] = '';
 			}
+			
+			if ( $iwprefix ) {
+				$entry['iwprefix'] = $row->iwl_prefix;
+			}
+			
+			if ( $iwtitle ) {
+				$entry['iwtitle'] = $row->iwl_title;
+			}
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $entry );
 			if ( !$fit ) {
@@ -132,7 +144,15 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			)
+			),
+			'prop' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_DFLT => '',
+				ApiBase::PARAM_TYPE => array(
+					'iwprefix',
+					'iwtitle',
+				),
+			),
 		);
 	}
 
@@ -141,6 +161,11 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 			'prefix' => 'Prefix for the interwiki',
 			'title' => "Interwiki link to search for. Must be used with {$this->getModulePrefix()}prefix",
 			'continue' => 'When more results are available, use this to continue',
+			'prop' => array(
+				'Which properties to get',
+				' iwprefix       - Adds the prefix of the interwiki',
+				' iwtitle        - Adds the title of the interwiki',
+			),
 			'limit' => 'How many total pages to return',
 		);
 	}
@@ -163,7 +188,7 @@ class ApiQueryIWBacklinks extends ApiQueryBase {
 	protected function getExamples() {
 		return array(
 			'api.php?action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks',
-			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
+			//'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
 		);
 	}
 
