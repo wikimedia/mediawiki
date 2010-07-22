@@ -38,7 +38,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
 		$fld_readable = false, $fld_watched = false,
-		$fld_preload = false;
+		$fld_preload = false, $fld_displaytitle = false;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'in' );
