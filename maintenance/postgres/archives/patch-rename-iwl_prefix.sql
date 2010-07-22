@@ -1,2 +1,2 @@
 DROP INDEX iwl_prefix;
-CREATE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
+CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_from, iwl_title);
