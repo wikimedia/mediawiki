@@ -244,16 +244,58 @@ class CategoryViewer {
 		$fields = array( 'page_title', 'page_namespace', 'page_len',
 			'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 			'cat_subcats', 'cat_pages', 'cat_files' );
-		$conds = array( $pageCondition, 'cl_to' => $this->title->getDBkey() );
+		$conds = array( 'cl_to' => $this->title->getDBkey() );
 		$opts = array( 'ORDER BY' => $this->flip ? 'cl_sortkey DESC' :
 			'cl_sortkey', 'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ) );
 		$joins = array( 'categorylinks'  => array( 'INNER JOIN', 'cl_from = page_id' ),
 			'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY ) );
 
+		if ( $wgExperimentalCategorySort ) {
+			# Copy-pasted from below, but that's okay, because the stuff below
+			# will be deleted when this becomes the default.
+			$count = 0;
+			$this->nextPage = null;
+
+			foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
+				$res = $dbr->select(
+					$tables,
+					$fields,
+					$conds + array( 'cl_type' => $type ) + ( $type == 'page' ? array( $pageCondition ) : array() ),
+					__METHOD__,
+					$opts + ( $type == 'page' ? array( 'LIMIT' => $this->limit + 1 ) : array() ),
+					$joins
+				);
+
+				foreach ( $res as $row ) {
+					if ( $type == 'page' && ++$count > $this->limit ) {
+						# We've reached the one extra which shows that there
+						# are additional pages to be had. Stop here...
+						$this->nextPage = $row->cl_sortkey;
+						break;
+					}
+
+					$title = Title::newFromRow( $row );
+
+					if ( $title->getNamespace() == NS_CATEGORY ) {
+						$cat = Category::newFromRow( $row, $title );
+						$this->addSubcategoryObject( $cat, $row->cl_sortkey, $row->page_len );
+					} elseif ( $this->showGallery && $title->getNamespace() == NS_FILE ) {
+						$this->addImage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
+					} else {
+						$this->addPage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
+					}
+				}
+			}
+
+			return;
+		}
+
+		# Non-$wgExperimentalCategorySort stuff
+
 		$res = $dbr->select(
 			$tables,
 			$fields,
-			$conds + ( $wgExperimentalCategorySort ? array( 'cl_type' => 'page' ) : array() ),
+			$conds + array( $pageCondition ),
 			__METHOD__,
 			$opts + array( 'LIMIT' => $this->limit + 1 ),
 			$joins
@@ -279,45 +321,6 @@ class CategoryViewer {
 				$this->addImage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
 			} else {
 				$this->addPage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
-			}
-		}
-
-		if ( $wgExperimentalCategorySort ) {
-			# Now add all subcategories and files.  TODO: rewrite to be sane
-			# (this is basically a proof-of-concept, e.g., no pagination here).
-			$subcatsRes = $dbr->select(
-				$tables, $fields,
-				$conds + array( 'cl_type' => 'subcat' ),
-				__METHOD__, $opts, $joins
-			);
-
-			foreach ( $subcatsRes as $row ) {
-				$title = Title::newFromRow( $row );
-
-				if ( $title->getNamespace() == NS_CATEGORY ) {
-					$cat = Category::newFromRow( $row, $title );
-					$this->addSubcategoryObject( $cat, $row->cl_sortkey, $row->page_len );
-				} else {
-					# Will handle this sanely in final code
-					throw new MWException( 'Debug: cl_type = subcat but not category' );
-				}
-			}
-
-			$filesRes = $dbr->select(
-				$tables, $fields,
-				$conds + array( 'cl_type' => 'file' ),
-				__METHOD__, $opts, $joins
-			);
-
-			foreach ( $filesRes as $row ) {
-				$title = Title::newFromRow( $row );
-
-				if ( $this->showGallery && $title->getNamespace() == NS_FILE ) {
-					$this->addImage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
-				} else {
-					# More temporary debugging
-					throw new MWException( 'Debug: cl_type = file but not file' );
-				}
 			}
 		}
 	}
