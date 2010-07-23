@@ -2945,8 +2945,8 @@ class Language {
 	 * @return string Binary sortkey
 	 */
 	public function convertToSortkey( $string ) {
-		# Stub function for now
-		return $string;
+		# Fake function for now
+		return strtoupper( $string );
 	}
 
 	/**
@@ -2986,6 +2986,6 @@ class Language {
 	 * @return string UTF-8 string corresponding to the first letter of input
 	 */
 	public function firstLetterForLists( $string ) {
-		return mb_substr( $string, 0, 1 );
+		return strtoupper( mb_substr( $string, 0, 1 ) );
 	}
 }

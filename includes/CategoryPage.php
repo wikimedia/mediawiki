@@ -172,12 +172,18 @@ class CategoryViewer {
 	* else use sortkey...
 	*/
 	function getSubcategorySortChar( $title, $sortkey ) {
-		global $wgContLang;
+		global $wgContLang, $wgExperimentalCategorySort;
 
 		if ( $title->getPrefixedText() == $sortkey ) {
-			$firstChar = $wgContLang->firstChar( $title->getDBkey() );
+			$word = $title->getDBkey();
 		} else {
-			$firstChar = $wgContLang->firstChar( $sortkey );
+			$word = $sortkey;
+		}
+
+		if ( $wgExperimentalCategorySort ) {
+			$firstChar = $wgContLang->firstLetterForLists( $word );
+		} else {
+			$firstChar = $wgContLang->firstChar( $word );
 		}
 
 		return $wgContLang->convert( $firstChar );
@@ -202,7 +208,7 @@ class CategoryViewer {
 	 * Add a miscellaneous page
 	 */
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
-		global $wgContLang;
+		global $wgContLang, $wgExperimentalCategorySort;
 		$this->articles[] = $isRedirect
 			? '<span class="redirect-in-category">' .
 				$this->getSkin()->link(
@@ -213,7 +219,12 @@ class CategoryViewer {
 					array( 'known', 'noclasses' )
 				) . '</span>'
 			: $this->getSkin()->makeSizeLinkObj( $pageLength, $title );
-		$this->articles_start_char[] = $wgContLang->convert( $wgContLang->firstChar( $sortkey ) );
+
+		if ( $wgExperimentalCategorySort ) {
+			$this->articles_start_char[] = $wgContLang->convert( $wgContLang->firstLetterForLists( $sortkey ) );
+		} else {
+			$this->articles_start_char[] = $wgContLang->convert( $wgContLang->firstChar( $sortkey ) );
+		}
 	}
 
 	function finaliseCategoryState() {
@@ -259,7 +270,7 @@ class CategoryViewer {
 			foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
 				$res = $dbr->select(
 					$tables,
-					$fields,
+					array_merge( $fields, array( 'cl_raw_sortkey' ) ),
 					$conds + array( 'cl_type' => $type ) + ( $type == 'page' ? array( $pageCondition ) : array() ),
 					__METHOD__,
 					$opts + ( $type == 'page' ? array( 'LIMIT' => $this->limit + 1 ) : array() ),
@@ -278,11 +289,11 @@ class CategoryViewer {
 
 					if ( $title->getNamespace() == NS_CATEGORY ) {
 						$cat = Category::newFromRow( $row, $title );
-						$this->addSubcategoryObject( $cat, $row->cl_sortkey, $row->page_len );
+						$this->addSubcategoryObject( $cat, $row->cl_raw_sortkey, $row->page_len );
 					} elseif ( $this->showGallery && $title->getNamespace() == NS_FILE ) {
-						$this->addImage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
+						$this->addImage( $title, $row->cl_raw_sortkey, $row->page_len, $row->page_is_redirect );
 					} else {
-						$this->addPage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
+						$this->addPage( $title, $row->cl_raw_sortkey, $row->page_len, $row->page_is_redirect );
 					}
 				}
 			}

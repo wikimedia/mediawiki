@@ -4474,7 +4474,7 @@ $wgExperimentalCategorySort = false;
  * for all rows where cl_collation < $wgCollationVersion and regenerates
  * cl_sortkey based on cl_raw_sortkey.
  */
-$wgCollationVersion = 0;
+$wgCollationVersion = 1;
 
 /** @} */ # End categories }
 
