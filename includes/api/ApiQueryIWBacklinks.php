@@ -112,12 +112,12 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			}
 
 			if ( !is_null( $resultPageSet ) ) {
-				$pages[] = Title::makeTitle( $row->page_namespace, $row->page_title )->getPrefixedText();
+				$pages[] = Title::newFromRow( $row );
 			} else {
 				$entry = array();
 
 				$entry['pageid'] = intval( $row->page_id );
-				$entry['ns'] = $row->page_namespace;
+				$entry['ns'] = intval( $row->page_namespace );
 				$entry['title'] = $row->page_title;
 
 				if ( $row->page_is_redirect ) {
