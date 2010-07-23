@@ -2942,7 +2942,7 @@ class Title {
 		# (so we can undo bad moves right after they're done).
 
 		if ( 0 != $newid ) { # Target exists; check for validity
-			if ( ! $this->isValidMoveTarget( $nt ) ) {
+			if ( !$this->isValidMoveTarget( $nt ) ) {
 				$errors[] = array( 'articleexists' );
 			}
 		} else {
@@ -3422,7 +3422,7 @@ class Title {
 	 */
 	public function isValidMoveTarget( $nt ) {
 		$dbw = wfGetDB( DB_MASTER );
-		# Is it an existsing file?
+		# Is it an existing file?
 		if ( $nt->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $nt );
 			if ( $file->exists() ) {
