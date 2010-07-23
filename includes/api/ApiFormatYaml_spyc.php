@@ -92,6 +92,8 @@ class Spyc {
 	/**** Private Properties ****/
 
 	/**
+	 * Unused variables, but just commented rather than deleting
+	 * to save altering the library
 	private $_haveRefs;
 	private $_allNodes;
 	private $_lastIndent;
