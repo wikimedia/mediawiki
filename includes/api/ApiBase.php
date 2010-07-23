@@ -479,16 +479,18 @@ abstract class ApiBase {
 	 * @return array
 	 */
 	public function extractRequestParams( $parseLimit = true ) {
-		$params = $this->getFinalParams();
-		$results = array();
+		if ( !isset( $this->mCachedRequestParams ) ) {
+			$params = $this->getFinalParams();
+			$this->mCachedRequestParams = array();
 
-		if ( $params ) { // getFinalParams() can return false
-			foreach ( $params as $paramName => $paramSettings ) {
-				$results[$paramName] = $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
+			if ( $params ) { // getFinalParams() can return false
+				foreach ( $params as $paramName => $paramSettings ) {
+					$this->mCachedRequestParams[$paramName] = $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
+				}
 			}
 		}
 
-		return $results;
+		return $this->mCachedRequestParams;
 	}
 
 	/**
