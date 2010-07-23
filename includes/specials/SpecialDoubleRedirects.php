@@ -89,7 +89,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 			}
 		}
 		if ( !$result ) {
-			return '<s>' . $skin->link( $titleA, null, array(), array( 'redirect' => 'no' ) ) . '</s>';
+			return '<del>' . $skin->link( $titleA, null, array(), array( 'redirect' => 'no' ) ) . '</del>';
 		}
 
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
