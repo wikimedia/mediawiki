@@ -200,7 +200,7 @@ class ApiMain extends ApiBase {
 	public function getModule() {
 		return $this->mModule;
 	}
-	
+
 	/**
 	 * Get the result formatter object. Only works after setupExecuteAction()
 	 */
@@ -222,30 +222,30 @@ class ApiMain extends ApiBase {
 	 * Set the type of caching headers which will be sent.
 	 *
 	 * @param $mode One of:
-	 *    - 'public':     Cache this object in public caches, if the maxage or smaxage 
+	 *    - 'public':     Cache this object in public caches, if the maxage or smaxage
 	 *         parameter is set, or if setCacheMaxAge() was called. If a maximum age is
 	 *         not provided by any of these means, the object will be private.
 	 *    - 'private':    Cache this object only in private client-side caches.
 	 *    - 'anon-public-user-private': Make this object cacheable for logged-out
-	 *         users, but private for logged-in users. IMPORTANT: If this is set, it must be 
-	 *         set consistently for a given URL, it cannot be set differently depending on 
+	 *         users, but private for logged-in users. IMPORTANT: If this is set, it must be
+	 *         set consistently for a given URL, it cannot be set differently depending on
 	 *         things like the contents of the database, or whether the user is logged in.
 	 *
 	 *  If the wiki does not allow anonymous users to read it, the mode set here
-	 *  will be ignored, and private caching headers will always be sent. In other words, 
+	 *  will be ignored, and private caching headers will always be sent. In other words,
 	 *  the "public" mode is equivalent to saying that the data sent is as public as a page
 	 *  view.
 	 *
-	 *  For user-dependent data, the private mode should generally be used. The 
-	 *  anon-public-user-private mode should only be used where there is a particularly 
+	 *  For user-dependent data, the private mode should generally be used. The
+	 *  anon-public-user-private mode should only be used where there is a particularly
 	 *  good performance reason for caching the anonymous response, but where the
-	 *  response to logged-in users may differ, or may contain private data. 
+	 *  response to logged-in users may differ, or may contain private data.
 	 *
 	 *  If this function is never called, then the default will be the private mode.
 	 */
 	public function setCacheMode( $mode ) {
 		if ( !in_array( $mode, array( 'private', 'public', 'anon-public-user-private' ) ) ) {
-			wfDebug( __METHOD__.": unrecognised cache mode \"$mode\"\n" );
+			wfDebug( __METHOD__ . ": unrecognised cache mode \"$mode\"\n" );
 			// Ignore for forwards-compatibility
 			return;
 		}
@@ -253,18 +253,18 @@ class ApiMain extends ApiBase {
 		if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
 			// Private wiki, only private headers
 			if ( $mode !== 'private' ) {
-				wfDebug( __METHOD__.": ignoring request for $mode cache mode, private wiki\n" );
+				wfDebug( __METHOD__ . ": ignoring request for $mode cache mode, private wiki\n" );
 				return;
 			}
 		}
 
-		wfDebug( __METHOD__.": setting cache mode $mode\n" );
+		wfDebug( __METHOD__ . ": setting cache mode $mode\n" );
 		$this->mCacheMode = $mode;
 	}
-	
+
 	/**
-	 * @deprecated Private caching is now the default, so there is usually no 
-	 * need to call this function. If there is a need, you can use 
+	 * @deprecated Private caching is now the default, so there is usually no
+	 * need to call this function. If there is a need, you can use
 	 * $this->setCacheMode('private')
 	 */
 	public function setCachePrivate() {
@@ -276,13 +276,13 @@ class ApiMain extends ApiBase {
 	 * Boolean values will be formatted as such, by including or omitting
 	 * without an equals sign.
 	 *
-	 * Cache control values set here will only be used if the cache mode is not 
+	 * Cache control values set here will only be used if the cache mode is not
 	 * private, see setCacheMode().
 	 */
 	public function setCacheControl( $directives ) {
 		$this->mCacheControl = $directives + $this->mCacheControl;
 	}
-	
+
 	/**
 	 * Make sure Vary: Cookie and friends are set. Use this when the output of a request
 	 * may be cached for anons but may not be cached for logged-in users.
@@ -364,7 +364,7 @@ class ApiMain extends ApiBase {
 			$this->printResult( true );
 		}
 
-		// Send cache headers after any code which might generate an error, to 
+		// Send cache headers after any code which might generate an error, to
 		// avoid sending public cache headers for errors.
 		$this->sendCacheHeaders();
 
@@ -402,7 +402,7 @@ class ApiMain extends ApiBase {
 			// Give a debugging message if the user object is unstubbed on a public request
 			global $wgUser;
 			if ( !( $wgUser instanceof StubUser ) ) {
-				wfDebug( __METHOD__." \$wgUser is unstubbed on a public request!\n" );
+				wfDebug( __METHOD__ . " \$wgUser is unstubbed on a public request!\n" );
 			}
 		}
 
@@ -519,7 +519,7 @@ class ApiMain extends ApiBase {
 			$this->getResult()->addValue( null, 'requestid', $requestid );
 		}
 		$servedby = $this->getParameter( 'servedby' );
-		if( $servedby ) {
+		if ( $servedby ) {
 			$this->getResult()->addValue( null, 'servedby', wfHostName() );
 		}
 

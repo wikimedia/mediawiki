@@ -54,7 +54,7 @@ class ApiUserrights extends ApiBase {
 		$this->getResult()->setIndexedTagName( $r['removed'], 'group' );
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
-	
+
 	private function getUser() {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;

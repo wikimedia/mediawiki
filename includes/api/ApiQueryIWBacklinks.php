@@ -38,7 +38,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'iwbl' );
 	}
-	
+
 	public function execute() {
 		$this->run();
 	}
@@ -49,7 +49,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
-		
+
 		if ( isset( $params['title'] ) && !isset( $params['prefix'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'prefix' ) );
 		}
@@ -72,7 +72,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				"iwl_from >= $from)))"
 			);
 		}
-		
+
 		$prop = array_flip( $params['prop'] );
 		$iwprefix = isset( $prop['iwprefix'] );
 		$iwtitle = isset( $prop['iwtitle'] );
@@ -98,7 +98,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$res = $this->select( __METHOD__ );
-		
+
 		$pages = array();
 
 		$count = 0;
@@ -110,24 +110,24 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				$this->setContinueEnumParameter( 'continue', "{$row->iwl_prefix}|{$row->iwl_title}|{$row->iwl_from}" );
 				break;
 			}
-			
+
 			if ( !is_null( $resultPageSet ) ) {
 				$pages[] = Title::makeTitle( $row->page_namespace, $row->page_title )->getPrefixedText();
 			} else {
 				$entry = array();
-				
+
 				$entry['pageid'] = intval( $row->page_id );
 				$entry['ns'] = $row->page_namespace;
 				$entry['title'] = $row->page_title;
-				
+
 				if ( $row->page_is_redirect ) {
 					$entry['redirect'] = '';
 				}
-				
+
 				if ( $iwprefix ) {
 					$entry['iwprefix'] = $row->iwl_prefix;
 				}
-				
+
 				if ( $iwtitle ) {
 					$entry['iwtitle'] = $row->iwl_title;
 				}
@@ -139,7 +139,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				}
 			}
 		}
-		
+
 		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'iw' );
 		} else {

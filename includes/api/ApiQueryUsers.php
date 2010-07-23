@@ -200,9 +200,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 			} else {
 				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) ) {
 					$autolist = ApiQueryUsers::getAutoGroups( User::newFromName( $u ) );
-					
+
 					$data[$u]['groups'] = array_merge( $autolist, $data[$u]['groups'] );
-				
+
 					$this->getResult()->setIndexedTagName( $data[$u]['groups'], 'g' );
 				}
 			}
@@ -217,7 +217,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		}
 		return $this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'user' );
 	}
-	
+
 	/**
 	* Gets all the groups that a user is automatically a member of
 	* @return array

@@ -228,7 +228,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		return 'List all categories the page(s) belong to';
 	}
-	
+
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'show' ),

@@ -268,8 +268,8 @@ class ApiUpload extends ApiBase {
 
 		$warnings = $this->checkForWarnings();
 		if ( isset( $warnings ) ) {
-            return $warnings;
-        }
+			return $warnings;
+		}
 
 		// Use comment as initial page text by default
 		if ( is_null( $this->mParams['text'] ) ) {

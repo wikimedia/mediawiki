@@ -120,7 +120,7 @@ abstract class ApiFormatBase extends ApiBase {
 	public function disable() {
 		$this->mDisabled = true;
 	}
-	
+
 	public function isDisabled() {
 		return $this->mDisabled;
 	}

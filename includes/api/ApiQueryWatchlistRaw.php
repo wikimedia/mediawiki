@@ -50,7 +50,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
 	private function run( $resultPageSet = null ) {
 		$this->selectNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
-		
+
 		$params = $this->extractRequestParams();
 
 		$user = $this->getWatchlistUser( $params );
