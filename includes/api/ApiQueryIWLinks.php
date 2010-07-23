@@ -108,6 +108,10 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		}
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'url' => null,

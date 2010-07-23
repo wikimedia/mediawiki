@@ -41,7 +41,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	public function execute() {
 		global $wgUser;
-		$this->getMain()->setVaryCookie();
 		// Before doing anything at all, let's check permissions
 		if ( !$wgUser->isAllowed( 'deletedhistory' ) ) {
 			$this->dieUsage( 'You don\'t have permission to view deleted revision information', 'permissiondenied' );
@@ -210,7 +209,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 			if ( $fld_parsedcomment ) {
 				global $wgUser;
-				$this->getMain()->setVaryCookie();
 				$rev['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->ar_comment, $title );
 			}
 			if ( $fld_minor && $row->ar_minor_edit == 1 ) {

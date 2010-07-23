@@ -101,7 +101,6 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 				if ( isset( $prop['parsedcomment'] ) ) {
 					global $wgUser;
-					$this->getMain()->setVaryCookie();
 					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->pt_reason, $title );
 				}
 
@@ -128,6 +127,15 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), $this->getModulePrefix() );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
+		}
+	}
+
+	public function getCacheMode( $params ) {
+		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
+			// formatComment() calls wfMsg() among other things
+			return 'anon-public-user-private';
+		} else {
+			return 'public';
 		}
 	}
 

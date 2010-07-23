@@ -1105,8 +1105,6 @@ abstract class ApiBase {
 				$this->dieUsage( 'Incorrect watchlist token provided -- please set a correct token in Special:Preferences', 'bad_wltoken' );
 			}
 		} else {
-			// User not determined by URL, so don't cache
-			$this->getMain()->setVaryCookie();
 			if ( !$wgUser->isLoggedIn() ) {
 				$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
 			}

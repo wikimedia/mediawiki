@@ -274,6 +274,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return $retval;
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	private function getContinueStr( $img ) {
 		return $img->getOriginalTitle()->getText() .
 			'|' .  $img->getTimestamp();
