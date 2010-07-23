@@ -564,6 +564,7 @@ class DatabasePostgres extends DatabaseBase {
 			$SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
 				"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
 			$rows = $this->numRows($this->doQuery($SQL));
+            global $wgDBname;
 			if ($rows >= 1) {
 			$olde = error_reporting(0);
 				error_reporting($olde - E_WARNING);
