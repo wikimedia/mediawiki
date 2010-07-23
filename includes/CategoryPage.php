@@ -262,23 +262,23 @@ class CategoryViewer {
 		$count = 0;
 		$this->nextPage = null;
 
-		while ( $x = $dbr->fetchObject ( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( ++$count > $this->limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				$this->nextPage = $x->cl_sortkey;
+				$this->nextPage = $row->cl_sortkey;
 				break;
 			}
 
-			$title = Title::makeTitle( $x->page_namespace, $x->page_title );
+			$title = Title::newFromRow( $row );
 
 			if ( $title->getNamespace() == NS_CATEGORY ) {
-				$cat = Category::newFromRow( $x, $title );
-				$this->addSubcategoryObject( $cat, $x->cl_sortkey, $x->page_len );
+				$cat = Category::newFromRow( $row, $title );
+				$this->addSubcategoryObject( $cat, $row->cl_sortkey, $row->page_len );
 			} elseif ( $this->showGallery && $title->getNamespace() == NS_FILE ) {
-				$this->addImage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
+				$this->addImage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
 			} else {
-				$this->addPage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
+				$this->addPage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
 			}
 		}
 
