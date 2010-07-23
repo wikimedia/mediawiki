@@ -2899,11 +2899,11 @@ class Title {
 
 		// Image-specific checks
 		if ( $this->getNamespace() == NS_FILE ) {
+			if ( $nt->getNamespace() != NS_FILE ) {
+				$errors[] = array( 'imagenocrossnamespace' );
+			}
 			$file = wfLocalFile( $this );
 			if ( $file->exists() ) {
-				if ( $nt->getNamespace() != NS_FILE ) {
-					$errors[] = array( 'imagenocrossnamespace' );
-				}
 				if ( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
 					$errors[] = array( 'imageinvalidfilename' );
 				}
@@ -2915,7 +2915,10 @@ class Title {
 			if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destfile->exists() && wfFindFile( $nt ) ) {
 				$errors[] = array( 'file-exists-sharedrepo' );
 			}
+		}
 
+		if ( $nt->getNamespace() == NS_FILE && $this->getNamespace() != NS_FILE ) {
+			$errors[] = array( 'nonfile-cannot-move-to-file' );
 		}
 
 		if ( $auth ) {
