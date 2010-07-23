@@ -90,7 +90,10 @@ function wfGzipHandler( $s ) {
 	}
 	if ( !$foundVary ) {
 		header( 'Vary: Accept-Encoding' );
-		header( 'X-Vary-Options: Accept-Encoding;list-contains=gzip' );
+		global $wgUseXVO;
+		if ( $wgUseXVO ) {
+			header( 'X-Vary-Options: Accept-Encoding;list-contains=gzip' );
+		}
 	}
 	return $s;
 }
