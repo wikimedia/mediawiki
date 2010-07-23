@@ -67,10 +67,10 @@ class ListredirectsPage extends QueryPage {
 				$targetLink = $skin->link( $target );
 				return "$rd_link $arr $targetLink";
 			} else {
-				return "<s>$rd_link</s>";
+				return "<del>$rd_link</del>";
 			}
 		} else {
-			return "<s>$rd_link</s>";
+			return "<del>$rd_link</del>";
 		}
 	}
 }

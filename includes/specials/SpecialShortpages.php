@@ -105,7 +105,7 @@ class ShortPagesPage extends QueryPage {
 
 		return $title->exists()
 				? "({$hlink}) {$dm}{$plink} {$dm}[{$size}]"
-				: "<s>({$hlink}) {$dm}{$plink} {$dm}[{$size}]</s>";
+				: "<del>({$hlink}) {$dm}{$plink} {$dm}[{$size}]</del>";
 	}
 }
 
