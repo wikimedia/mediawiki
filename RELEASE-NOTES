@@ -244,6 +244,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   namespace rename.
 * Make wfTimestamp recognize negative unix timestamp values.
 * (bug 24401) SimpleSearch: No button/text indicating 'Search' if image is disabled
+* (bug 23293) Do not show change tags when special:recentchanges(linked)
+  or special:newpages is transcluded into another page as it messes up the
+  page.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

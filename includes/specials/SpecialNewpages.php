@@ -295,9 +295,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 		if ( $this->patrollable( $result ) )
 			$classes[] = 'not-patrolled';
 
-		# Tags, if any.
-		list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $result->ts_tags, 'newpages' );
-		$classes = array_merge( $classes, $newClasses );
+		# Tags, if any. check for including due to bug 23293
+		if ( !$this->including() ) {
+			list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $result->ts_tags, 'newpages' );
+			$classes = array_merge( $classes, $newClasses );
+		} else {
+			$tagDisplay = '';
+		}
 
 		$css = count($classes) ? ' class="'.implode( " ", $classes).'"' : '';
 
