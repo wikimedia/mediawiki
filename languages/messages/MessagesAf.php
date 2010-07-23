@@ -1831,7 +1831,7 @@ Die bladsye moet gewysig word om eerder direk na die regte onderwerpe te skakel.
 'doubleredirects'            => 'Dubbele aansture',
 'doubleredirectstext'        => 'Hierdie lys bevat bladsye wat aansture na ander aanstuurblaaie is.
 Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuur se teks, wat gewoonlik die "regte" teiken-bladsy gee waarna die eerste aanstuur behoort te wys.
-<s>Doodgekrapte reëls</s> dui aan dat die probleem reeds opgelos is.',
+<del>Doodgekrapte reëls</del> dui aan dat die probleem reeds opgelos is.',
 'double-redirect-fixed-move' => "[[$1]] was geskuif en is nou 'n deurverwysing na [[$2]].",
 'double-redirect-fixer'      => 'Aanstuur hersteller',
 

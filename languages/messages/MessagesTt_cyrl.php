@@ -1063,7 +1063,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'rightsnone'     => '(юк)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit'       => 'бу битне узгәртергә',
+'action-edit'       => 'бу битне үзгәртергә',
 'action-createpage' => 'сәхифәләрне язырга',
 'action-move'       => 'бу битне күчерү',
 
@@ -1101,7 +1101,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'rc-enhanced-hide'                  => 'Ваклыкларны яшерү',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Бәйләнешле үзгәртүәләр',
+'recentchangeslinked'          => 'Бәйләнешле үзгәртүләр',
 'recentchangeslinked-feed'     => 'Бәйләнешле үзгәртүләр',
 'recentchangeslinked-toolbox'  => 'Бәйләнешле үзгәртүәләр',
 'recentchangeslinked-title'    => '"$1" битенә бәйләнешле үзгәртүләр',

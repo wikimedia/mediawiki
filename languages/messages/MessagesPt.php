@@ -1961,7 +1961,7 @@ Considera-se que uma página é de desambiguação se nela for utilizada uma pre
 'doubleredirects'            => 'Redireccionamentos duplos',
 'doubleredirectstext'        => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
 Cada linha contém links para o primeiro e segundo redireccionamentos, bem como o destino do segundo redireccionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redireccionamento.
-<s>Entradas cortadas</s> já foram solucionadas.',
+<del>Entradas cortadas</del> já foram solucionadas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido, passando a redirecionar para [[$2]]',
 'double-redirect-fixer'      => 'Corretor de redirecionamentos',
 

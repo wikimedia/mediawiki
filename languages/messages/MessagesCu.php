@@ -276,11 +276,11 @@ $messages = array(
 'logout'                  => 'ис̾хо́дъ',
 'userlogout'              => 'ис̾хо́дъ',
 'nologinlink'             => 'съꙁи́жди си мѣ́сто',
-'createaccount'           => 'Cъзижди си мѣсто',
+'createaccount'           => 'съꙁи́жди си мѣ́сто',
 'gotaccount'              => "Мѣсто ти ѥстъ ли? '''$1'''.",
 'gotaccountlink'          => 'Въниди',
 'userexists'              => 'сѫщє по́льꙃєватєлꙗ и́мѧ пьса ⁙ ино иꙁобрѧщи',
-'loginerror'              => 'Въхода блазна',
+'loginerror'              => 'въхода блаꙁна',
 'accountcreated'          => 'мѣ́сто сътворєно́ ѥ́стъ',
 'loginlanguagelabel'      => 'ѩꙁꙑ́къ : $1',
 

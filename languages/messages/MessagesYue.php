@@ -1732,7 +1732,7 @@ Template:搞清楚',
 
 'doubleredirects'            => '雙重跳轉',
 'doubleredirectstext'        => '每一行都順次序寫住第一頁名，佢嘅目的頁，同埋目的頁再指去邊度。改嘅時候，應該將第一個跳轉頁轉入第三頁。
-<s>劃咗</s>嘅項目係已經解決咗嘅。',
+<del>劃咗</del>嘅項目係已經解決咗嘅。',
 'double-redirect-fixed-move' => '[[$1]]已經搬好咗，佢而家跳轉過去[[$2]]。',
 'double-redirect-fixer'      => '跳轉修正器',
 

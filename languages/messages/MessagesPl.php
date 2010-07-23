@@ -1883,7 +1883,7 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany p
 'doubleredirects'            => 'Podwójne przekierowania',
 'doubleredirectstext'        => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.
 Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.
-<s>Skreślenie</s> oznacza naprawienie przekierowania.',
+<del>Skreślenie</del> oznacza naprawienie przekierowania.',
 'double-redirect-fixed-move' => 'Naprawa podwójnego przekierowania [[$1]] → [[$2]]',
 'double-redirect-fixer'      => 'Naprawiacz przekierowań',
 

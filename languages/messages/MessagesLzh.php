@@ -1537,7 +1537,7 @@ $1',
 
 'doubleredirects'            => '窮渡',
 'doubleredirectstext'        => '頁下窮渡，迭列以示。首尾宿合，宜正渡之。
-<s>劃</s>已解之。',
+<del>劃</del>已解之。',
 'double-redirect-fixed-move' => '[[$1]]遷畢，現渡至[[$2]]',
 'double-redirect-fixer'      => '修渡',
 

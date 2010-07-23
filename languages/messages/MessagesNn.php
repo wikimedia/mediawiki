@@ -1812,7 +1812,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'disambiguations-text' => "Sidene nedanfor har lenkje til ei '''fleirtydingsside'''. Dei bør ha lenkje til det rette oppslagsordet i staden for.<br />Sider vert handsama som fleirtydingssider dersom dei inneheld ein mal som har lenkje på [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Doble omdirigeringar',
-'doubleredirectstext'        => 'Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den første lina frå den andre omdirigeringsteksten. Det gjev som regel den «rette» målartikkelen, som den første omdirigeringa skulle ha peikt på. <s>Overstrykne</s> liner har vorte retta på.',
+'doubleredirectstext'        => 'Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den første lina frå den andre omdirigeringsteksten. Det gjev som regel den «rette» målartikkelen, som den første omdirigeringa skulle ha peikt på. <del>Overstrykne</del> liner har vorte retta på.',
 'double-redirect-fixed-move' => '[[$1]] har blitt flytta, og er no ei omdirigering til [[$2]]',
 'double-redirect-fixer'      => 'Omdirigeringsfiksar',
 
@@ -1955,7 +1955,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 # Special:ActiveUsers
 'activeusers'            => 'Liste over aktive brukarar',
 'activeusers-intro'      => 'Dette er ei liste over brukarar som har hatt ei eller anna form for aktivitet innanfor {{PLURAL:$1|den siste dagen|dei siste dagane}}.',
-'activeusers-count'      => '{{PLURAL:$1|Éi endring|$1 endringer}} {{PLURAL:$3|det siste dygnet|dei siste $3 dygna}}',
+'activeusers-count'      => '{{PLURAL:$1|Éi endring|$1 endringar}} {{PLURAL:$3|det siste døgeret|dei siste $3 døgra}}',
 'activeusers-from'       => 'Vis brukarar frå og med:',
 'activeusers-hidebots'   => 'Skjul botar',
 'activeusers-hidesysops' => 'Skjul administratorar',

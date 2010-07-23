@@ -1776,7 +1776,7 @@ Una pàgina es tracta com de desambiguació si utilitza una plantilla que està 
 'doubleredirects'            => 'Redireccions dobles',
 'doubleredirectstext'        => 'Aquesta pàgina llista les pàgines que redirigeixen a altres pàgines de redirecció.
 Cada fila conté enllaços a la primera i segona redireccions, així com el destí de la segona redirecció, què generalment és la pàgina destí "real", a la què hauria d\'apuntar la primera redirecció.
-Les entrades <s>ratllades</s> s\'han resolt.',
+Les entrades <del>ratllades</del> s\'han resolt.',
 'double-redirect-fixed-move' => "S'ha reanomenat [[$1]], ara és una redirecció a [[$2]]",
 'double-redirect-fixer'      => 'Supressor de dobles redireccions',
 

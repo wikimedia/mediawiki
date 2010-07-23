@@ -1920,7 +1920,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'doubleredirects'            => 'Redirecionamentos duplos',
 'doubleredirectstext'        => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
 Cada linha contém ligações para o primeiro e o segundo redirecionamentos, juntamente com o alvo do segundo redirecionamento, que é geralmente a verdadeira página de destino, para a qual o primeiro redirecionamento deveria apontar.
-Entradas <s>riscadas</s> foram resolvidas.',
+Entradas <del>riscadas</del> foram resolvidas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido e agora é um redirecionamento para [[$2]]',
 'double-redirect-fixer'      => 'Corretor de redirecionamentos',
 
@@ -2618,6 +2618,7 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 'immobile-source-page'         => 'Esta página não pode ser movida.',
 'immobile-target-page'         => 'Não é possível mover para esse título de destino.',
 'imagenocrossnamespace'        => 'Não é possível mover imagem para espaço nominal que não de imagens',
+'nonfile-cannot-move-to-file'  => 'Não é possível mover não arquivos para espaço nominal de arquivos',
 'imagetypemismatch'            => 'A extensão do novo arquivo não corresponde ao seu tipo',
 'imageinvalidfilename'         => 'O nome do arquivo alvo é inválido',
 'fix-double-redirects'         => 'Atualizar todos os redirecionamentos que apontem para o título original',

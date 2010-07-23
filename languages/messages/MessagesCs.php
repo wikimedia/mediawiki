@@ -1948,7 +1948,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'doubleredirects'            => 'Dvojitá přesměrování',
 'doubleredirectstext'        => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
 Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.
-<s>Přeškrtnuté</s> položky již byly vyřešeny.',
+<del>Přeškrtnuté</del> položky již byly vyřešeny.',
 'double-redirect-fixed-move' => 'Stránka [[$1]] byla přesunuta, nyní přesměrovává na [[$2]]',
 'double-redirect-fixer'      => 'Opravář přesměrování',
 

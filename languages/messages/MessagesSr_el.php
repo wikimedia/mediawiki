@@ -1716,7 +1716,7 @@ Strana se smatra višeznačnom odrednicom ako koristi šablon koji je upućen sa
 'doubleredirects'            => 'Dvostruka preusmerenja',
 'doubleredirectstext'        => 'Ova strana pokazuje spisak strana koje preusmeravaju na druge strane preusmerenja.
 Svaki red sadrži veze prema prvom i drugom redirektu, kao i ciljanu stranu drugog redirekta, koja je obično „pravi“ članak, na koga prvo preusmerenje treba da pokazuje.
-<s>Precrtani unosi</s> su već rešeni.',
+<del>Precrtani unosi</del> su već rešeni.',
 'double-redirect-fixed-move' => '[[$1]] je premešten, sada je preusmerenje na [[$2]]',
 'double-redirect-fixer'      => 'Popravljač preusmerenja',
 

@@ -1517,7 +1517,7 @@ Sawijining kaca dianggep minangka kaca disambiguasi yèn kaca iku nganggo cithak
 'doubleredirects'            => 'Pangalihan dobel',
 'doubleredirectstext'        => 'Kaca iki ngandhut daftar kaca sing ngalih ing kaca pangalihan liyané. 
 Saben baris ngandhut pranala menyang pangalihan kapisan lan kapindho, sarta tujuan saka pangalihan kapindho, sing biasané kaca tujuan sing "sajatiné", yakuwi pangalihan kapisan kuduné dialihaké menyang kaca tujuan iku.
-Jeneng sing wis <s>dicorèk</s> tegesé wis rampung didandani.',
+Jeneng sing wis <del>dicorèk</del> tegesé wis rampung didandani.',
 'double-redirect-fixed-move' => '[[$1]] wis kapindhahaké, saiki dadi kaca peralihan menyang [[$2]]',
 'double-redirect-fixer'      => 'Révisi pangalihan',
 

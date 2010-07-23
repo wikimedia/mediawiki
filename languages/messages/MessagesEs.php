@@ -1930,7 +1930,7 @@ Una página es considerada página de desambiguación si utiliza la plantilla qu
 'doubleredirects'            => 'Redirecciones dobles',
 'doubleredirectstext'        => 'Esta página contiene una lista de páginas que redirigen a otras páginas de redirección.
 Cada fila contiene enlaces a la segunda y tercera redirección, así como la primera línea de la segunda redirección, en la que usualmente se encontrará el artículo "real" al que la primera redirección debería apuntar.
-Las entradas <s>tachadas</s> han sido resueltas.',
+Las entradas <del>tachadas</del> han sido resueltas.',
 'double-redirect-fixed-move' => '[[$1]] ha sido trasladado, ahora es una redirección a [[$2]]',
 'double-redirect-fixer'      => 'Corrector de redirecciones',
 

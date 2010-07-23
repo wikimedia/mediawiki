@@ -1645,7 +1645,7 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'doubleredirects'            => 'Ridirezionaminde a doppie',
 'doubleredirectstext'        => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
 Ogne righe condene 'nu collegamende a 'u prime e a 'u seconde ridirezionamende pe fà vedè addò arrive 'u seconde ridirezionamende, 'u quale jè normalmende 'a pàgena de destinaziona \"rèale\", addò 'u prime ridirezionamende avesse appondà.
-Le situaziune de <s>ingrocie</s> onne state resolte.",
+Le situaziune de <del>ingrocie</del> onne state resolte.",
 'double-redirect-fixed-move' => "[[$1]] ha state spustate.
 Mò s'avène redirette a [[$2]].",
 'double-redirect-fixer'      => 'Correttore de redirezionaminde',

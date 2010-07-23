@@ -1935,7 +1935,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 
 'doubleredirects'            => 'Dubbla omdirigeringar',
 'doubleredirectstext'        => 'Det här är en lista över sidor som dirigerar om till andra omdirigeringssidor. Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.
-<s>Stryk över</s> poster som har åtgärdats.',
+<del>Stryk över</del> poster som har åtgärdats.',
 'double-redirect-fixed-move' => '[[$1]] har flyttats, och är nu en omdirigering till [[$2]]',
 'double-redirect-fixer'      => 'Omdirigeringsrättaren',
 

@@ -1835,7 +1835,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'doubleredirects'            => 'Doble omdirigeringer',
 'doubleredirectstext'        => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
 Hver rad inneholder lenker til første og andre omdirigering, samt målet for den andre omdirigeringen, som vanligvis er den «virkelige» målsiden som den første omdirigeringen burde peke til.
-<s>Gjennomstrøkne</s> sider har blitt fikset.',
+<del>Gjennomstrøkne</del> sider har blitt fikset.',
 'double-redirect-fixed-move' => '[[$1]] har blitt flyttet, og er nå en omdirigering til [[$2]]',
 'double-redirect-fixer'      => 'Omdirigeringsfikser',
 

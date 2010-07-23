@@ -1320,8 +1320,8 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'recentchanges-label-minor'         => "Costa a l'é na modìfica cita",
 'recentchanges-legend-bot'          => '$1 - modìfica ëd trigomiro',
 'recentchanges-label-bot'           => "Sa modìfica a l'é stàita fàita da un trigomiro",
-'recentchanges-legend-unpatrolled'  => '$1 - modìfica pa verificà',
-'recentchanges-label-unpatrolled'   => "Sta modìfica-sì a l'é pa ancó stàita verifià",
+'recentchanges-legend-unpatrolled'  => '$1 - modìfica nen verificà',
+'recentchanges-label-unpatrolled'   => "Sta modìfica-sì a l'é pa ancó stàita verificà",
 'rcnote'                            => "Ambelessì sota a-i {{PLURAL:$1|é '''1''' modìfica|son j'ùltime '''$1''' modìfiche}} ant j'ùltim {{PLURAL:$2|di|'''$2''' di}}, a parte da $5 dël $4.",
 'rcnotefrom'                        => ' Ambelessì sota a-i é la lista dle modìfiche da <b>$2</b> (fin-a a <b>$1</b>).',
 'rclistfrom'                        => 'Most-me le modìfiche a parte da $1',
@@ -1681,7 +1681,7 @@ Na pàgina as trata coma \"pàgina ëd gestion dij sinònim\" se a dòvra në st
 'doubleredirects'            => 'Ridiression dobie',
 'doubleredirectstext'        => "Sta pàgina-sì a a lista dle pàgine ch'a armando a d'àutre pàgine ëd ridiression.
 Vira riga a l'ha andrinta j'anliure a la prima e a la sconda ridiression, ant sël pat ëd la prima riga ëd test dla seconda ridiression, che për sòlit a l'ha andrinta l'artìcol ëd destinassion vèir, col andoa che a dovrìa ëmné ëdcò la prima ridiression.
-Le ridiression <s>sganfà</s> a son stàite arzolvùe.",
+Le ridiression <del>sganfà</del> a son stàite arzolvùe.",
 'double-redirect-fixed-move' => "[[$1]] a l'é stàit spostà.
 Adess a l'é na rediression a [[$2]].",
 'double-redirect-fixer'      => 'Coretor ëd rediression',

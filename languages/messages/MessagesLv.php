@@ -1260,7 +1260,7 @@ Lapu uzskata par nozīmju atdalīšanas lapu, ja tā satur veidni, uz kuru ir sa
 'doubleredirects'            => 'Divkāršas pāradresācijas lapas',
 'doubleredirectstext'        => 'Šajā lapā ir uzskaitītas pāradresācijas lapas, kuras pāradresē uz citām pāradresācijas lapām.
 Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.
-<s>Nosvītrotie</s> ieraksti jau ir tikuši salaboti.',
+<del>Nosvītrotie</del> ieraksti jau ir tikuši salaboti.',
 'double-redirect-fixed-move' => '[[$1]] bija ticis pārvietots, tas tagad ir pāradresācija uz [[$2]]',
 
 'brokenredirects'     => 'Kļūdainas pāradresācijas',

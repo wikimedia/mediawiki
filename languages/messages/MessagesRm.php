@@ -979,7 +979,7 @@ Betg emblida da controllar sche autras colliaziuns mainan als models avant ch'al
 'doubleredirects'            => 'Renviaments dubels',
 'doubleredirectstext'        => "Questa glista mussa renviaments che mainan puspè a renviaments. 
 Mintga colonna cuntegna colliaziuns a l'emprim ed al segund renviaments, sco era la pagina finala dal segund renviament che è probablamain la pagina a la quala duess vegnir renvià. 
-Elements <s>stritgads</s> èn gia eliminads.",
+Elements <del>stritgads</del> èn gia eliminads.",
 'double-redirect-fixed-move' => '[[$1]] è vegnì spustà. 
 I renviescha uss a [[$2]].',
 'double-redirect-fixer'      => 'Bot da renviaments',

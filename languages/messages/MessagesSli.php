@@ -1420,7 +1420,7 @@ Ieberpriefe andere Links zu dann Vurloaga, bevor du diese läscht.',
 'doubleredirects'            => 'Doppelte Weiterleitunga',
 'doubleredirectstext'        => 'Diese Liste enthält Weiterleitunga, de uff wettere Wetterleitunga verlinka.
 Jede Zeile enthält Links zu dar erschta und zweeta Wetterleitung suwie doas Ziel dar zweeta Wetterleitung, welches fier gewehnlich die gewünschte Zielseyte ies, uff de bereits de erschte Wetterleitung zeiga sullte.
-<s>Durchgestrichene</s> Einträge wurden bereits erledigt.',
+<del>Durchgestrichene</del> Einträge wurden bereits erledigt.',
 'double-redirect-fixed-move' => 'doppelte Wetterleitung uffgelest: [[$1]] → [[$2]]',
 'double-redirect-fixer'      => 'RedirectBot',
 

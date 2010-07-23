@@ -1806,7 +1806,7 @@ Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual
 'doubleredirects'            => 'Redirectiones duple',
 'doubleredirectstext'        => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
 Cata linea contine ligamines al prime e al secunde redirection, con le destination del secunde redirection. Iste es normalmente le "ver" pagina de destination, al qual le prime redirection tamben deberea punctar.
-Le entratas <s>cancellate</s> ha essite resolvite.',
+Le entratas <del>cancellate</del> ha essite resolvite.',
 'double-redirect-fixed-move' => '[[$1]] ha essite renominate, illo es ora un redirection verso [[$2]]',
 'double-redirect-fixer'      => 'Corrector de redirectiones',
 
@@ -2541,7 +2541,8 @@ non pote renominar un pagina al mesme titulo.',
 'immobile-target-namespace-iw' => 'Un ligamine interwiki non es un destination valide pro le renomination de un pagina.',
 'immobile-source-page'         => 'Iste pagina non es renominabile.',
 'immobile-target-page'         => 'Non pote renominar a iste titulo de destination.',
-'imagenocrossnamespace'        => 'Non pote renominar file verso un spatio de nomines non-file',
+'imagenocrossnamespace'        => 'Impossibile renominar un file verso un spatio de nomines non-file',
+'nonfile-cannot-move-to-file'  => 'Impossibile renominar un non-file verso le spatio de nomines file',
 'imagetypemismatch'            => 'Le nove extension del nomine del file non corresponde al typo del file',
 'imageinvalidfilename'         => 'Le nomine del file de destination es invalide',
 'fix-double-redirects'         => 'Actualisar tote le redirectiones que puncta verso le titulo original',

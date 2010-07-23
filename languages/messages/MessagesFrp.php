@@ -1989,7 +1989,7 @@ Una pâge est trètâ coment una pâge d’homonimia s’encllut (tot drêt ou b
 'doubleredirects'            => 'Redirèccions dobles',
 'doubleredirectstext'        => 'Vê-que la lista de les pâges que redirijont vers des pâges que sont lor-mémes des pâges de redirèccion.
 Châque entrâ contint des lims de vers la premiére et la seconda redirèccion, et pués la premiére legne de tèxto de la seconda pâge, cen que balye habituèlament la « veré » pâge ciba, de vers laquinta la premiére redirèccion devrêt redirigiér.
-Les entrâs <s>barrâs</s> ont étâ solucionâs.',
+Les entrâs <del>barrâs</del> ont étâ solucionâs.',
 'double-redirect-fixed-move' => 'Cela redirèccion, que la ciba [[$1]] at étâ renomâ, mène ora vers [[$2]].',
 'double-redirect-fixer'      => 'Corrèctor de redirèccion',
 

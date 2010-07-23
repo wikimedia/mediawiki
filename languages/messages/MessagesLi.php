@@ -1607,7 +1607,7 @@ Deze heure waarsjienlik direct nao 't zjuste ongerwerp te verwiezen.<br />
 'doubleredirects'            => 'Dobbel redirects',
 'doubleredirectstext'        => "Dees lies haet paazjes mit redireks die nao anger redireks gaon.
 Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en de iesjte raegel van de twiede redirectpazjena. Meistes bevat dees litste de pazjena woe de iesjte redirect naotoe zouw mótte verwieze.
-<s>Dórchstreipinge</s> zègke det 't al gedaon is.",
+<del>Dórchstreipinge</del> zègke det 't al gedaon is.",
 'double-redirect-fixed-move' => "[[$1]] is verplaats en is noe 'n doorverwiezing nao [[$2]]",
 'double-redirect-fixer'      => 'Doorverwiezinge opsjone',
 

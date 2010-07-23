@@ -1588,7 +1588,7 @@ Ne Siede wäd as Begriepskläärengssiede behonneld, wan [[MediaWiki:Disambiguat
 'doubleredirects'            => 'Dubbelde Fäärelaitengen',
 'doubleredirectstext'        => 'Disse Lieste änthoalt Fääreleedengen, do der ap wiedere Fääreleedengen ferlinkje.
 Älke Riege änthoalt Links tou ju eerste un twäide Fääreleedenge as uk dät Siel fon ju twäide Fääreleedenge, wät foar gewöönelk ju wonskede Sielsiede is, ap ju al ju eerste Fääreleedenge wiese schuul.  
-<s>Truchstriekene</s> Iendraage wuuden al oumoaked.',
+<del>Truchstriekene</del> Iendraage wuuden al oumoaked.',
 'double-redirect-fixed-move' => 'dubbelde Fäärelaitenge aplöösd: [[$1]] → [[$2]]',
 'double-redirect-fixer'      => 'RedirectBot',
 
