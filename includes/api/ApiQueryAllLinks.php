@@ -43,6 +43,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}

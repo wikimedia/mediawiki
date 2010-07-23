@@ -282,7 +282,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 				if ( $this->fld_parsedcomment ) {
 					global $wgUser;
-					$this->getMain()->setVaryCookie();
 					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->log_comment, $title );
 				}
 			}
@@ -299,6 +298,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		return $vals;
+	}
+
+	public function getCacheMode( $params ) {
+		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
+			// formatComment() calls wfMsg() among other things
+			return 'anon-public-user-private';
+		} else {
+			return 'public';
+		}
 	}
 
 	public function getAllowedParams() {

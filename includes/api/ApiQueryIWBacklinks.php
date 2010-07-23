@@ -147,6 +147,10 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		}
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'prefix' => null,

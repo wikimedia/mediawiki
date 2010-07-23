@@ -232,9 +232,15 @@ class ApiQuery extends ApiBase {
 		$this->instantiateModules( $modules, 'list', $this->mQueryListModules );
 		$this->instantiateModules( $modules, 'meta', $this->mQueryMetaModules );
 
+		$cacheMode = 'public';
+
 		// If given, execute generator to substitute user supplied data with generated data.
 		if ( isset( $this->params['generator'] ) ) {
-			$this->executeGeneratorModule( $this->params['generator'], $modules );
+			$generator = $this->newGenerator( $this->params['generator'] );
+			$params = $generator->extractRequestParams();
+			$cacheMode = $this->mergeCacheMode( $cacheMode, 
+				$generator->getCacheMode( $params ) );
+			$this->executeGeneratorModule( $generator, $modules );
 		} else {
 			// Append custom fields and populate page/revision information
 			$this->addCustomFldsToPageSet( $modules, $this->mPageSet );
@@ -246,11 +252,35 @@ class ApiQuery extends ApiBase {
 
 		// Execute all requested modules.
 		foreach ( $modules as $module ) {
+			$params = $module->extractRequestParams();
+			$cacheMode = $this->mergeCacheMode( 
+				$cacheMode, $module->getCacheMode( $params ) );
 			$module->profileIn();
 			$module->execute();
 			wfRunHooks( 'APIQueryAfterExecute', array( &$module ) );
 			$module->profileOut();
 		}
+
+		// Set the cache mode
+		$this->getMain()->setCacheMode( $cacheMode );
+	}
+
+	/**
+	 * Update a cache mode string, applying the cache mode of a new module to it.
+	 * The cache mode may increase in the level of privacy, but public modules 
+	 * added to private data do not decrease the level of privacy.
+	 */
+	protected function mergeCacheMode( $cacheMode, $modCacheMode ) {
+		if ( $modCacheMode === 'anon-public-user-private' ) {
+			if ( $cacheMode !== 'private' ) {
+				$cacheMode = 'anon-public-user-private';
+			}
+		} elseif ( $modCacheMode === 'public' ) {
+			// do nothing, if it's public already it will stay public
+		} else { // private
+			$cacheMode = 'private';
+		}
+		return $cacheMode;
 	}
 
 	/**
@@ -458,12 +488,9 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * For generator mode, execute generator, and use its output as new
-	 * ApiPageSet
-	 * @param $generatorName string Module name
-	 * @param $modules array of module objects
+	 * Create a generator object of the given type and return it
 	 */
-	protected function executeGeneratorModule( $generatorName, $modules ) {
+	public function newGenerator( $generatorName ) {
 		// Find class that implements requested generator
 		if ( isset( $this->mQueryListModules[$generatorName] ) ) {
 			$className = $this->mQueryListModules[$generatorName];
@@ -472,17 +499,23 @@ class ApiQuery extends ApiBase {
 		} else {
 			ApiBase::dieDebug( __METHOD__, "Unknown generator=$generatorName" );
 		}
-
-		// Generator results
-		$resultPageSet = new ApiPageSet( $this, $this->redirects, $this->convertTitles );
-
-		// Create and execute the generator
 		$generator = new $className ( $this, $generatorName );
 		if ( !$generator instanceof ApiQueryGeneratorBase ) {
 			$this->dieUsage( "Module $generatorName cannot be used as a generator", 'badgenerator' );
 		}
-
 		$generator->setGeneratorMode();
+		return $generator;
+	}
+
+	/**
+	 * For generator mode, execute generator, and use its output as new
+	 * ApiPageSet
+	 * @param $generatorName string Module name
+	 * @param $modules array of module objects
+	 */
+	protected function executeGeneratorModule( $generator, $modules ) {
+		// Generator results
+		$resultPageSet = new ApiPageSet( $this, $this->redirects, $this->convertTitles );
 
 		// Add any additional fields modules may need
 		$generator->requestExtraData( $this->mPageSet );

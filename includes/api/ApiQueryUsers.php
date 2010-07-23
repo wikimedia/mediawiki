@@ -160,9 +160,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				}
 
 				if ( !is_null( $params['token'] ) ) {
-					// Don't cache tokens
-					$this->getMain()->setCachePrivate();
-					
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $params['token'] as $t ) {
 						$val = call_user_func( $tokenFunctions[$t], $user );
@@ -233,6 +230,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		}
 
 		return array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) );
+	}
+
+	public function getCacheMode( $params ) {
+		if ( isset( $params['token'] ) ) {
+			return 'private';
+		} else {
+			return 'public';
+		}
 	}
 
 	public function getAllowedParams() {

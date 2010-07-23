@@ -394,7 +394,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 				if ( $this->fld_parsedcomment ) {
 					global $wgUser;
-					$this->getMain()->setVaryCookie();
 					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $comment, $title );
 				}
 			}
@@ -411,9 +410,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( !is_null( $this->token ) ) {
-			// Don't cache tokens
-			$this->getMain()->setCachePrivate();
-			
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach ( $this->token as $t ) {
 				$val = call_user_func( $tokenFunctions[$t], $title->getArticleID(), $title, $revision );
@@ -485,6 +481,17 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 		return $vals;
+	}
+
+	public function getCacheMode( $params ) {
+		if ( isset( $params['token'] ) ) {
+			return 'private';
+		}
+		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
+			// formatComment() calls wfMsg() among other things
+			return 'anon-public-user-private';
+		}		
+		return 'public';
 	}
 
 	public function getAllowedParams() {

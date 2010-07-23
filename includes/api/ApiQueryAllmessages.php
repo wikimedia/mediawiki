@@ -45,12 +45,9 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		global $wgLang;
 		
 		$oldLang = null;
-		if ( !is_null( $params['lang'] ) && $params['lang'] != $wgLang->getCode() ) {
+		if ( !is_null( $params['lang'] ) ) {
 			$oldLang = $wgLang; // Keep $wgLang for restore later
 			$wgLang = Language::factory( $params['lang'] );
-		} else if ( is_null( $params['lang'] ) ) {
-			// Language not determined by URL but by user preferences, so don't cache
-			$this->getMain()->setVaryCookie();
 		}
 
 		$prop = array_flip( (array)$params['prop'] );
@@ -128,6 +125,19 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		
 		if ( !is_null( $oldLang ) ) {
 			$wgLang = $oldLang; // Restore $oldLang
+		}
+	}
+
+	public function getCacheMode( $params ) {
+		if ( is_null( $params['lang'] ) ) {
+			// Language not specified, will be fetched from preferences
+			return 'anon-public-user-private';
+		} elseif ( $params['enableparser'] ) {
+			// User-specific parser options will be used
+			return 'anon-public-user-private';
+		} else {
+			// OK to cache
+			return 'public';
 		}
 	}
 
