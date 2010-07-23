@@ -87,7 +87,7 @@ class ApiLogin extends ApiBase {
 				$result['cookieprefix'] = $wgCookiePrefix;
 				$result['sessionid'] = session_id();
 				break;
-			
+
 			case LoginForm::NEED_TOKEN:
 				global $wgCookiePrefix;
 				$result['result'] = 'NeedToken';
@@ -95,7 +95,7 @@ class ApiLogin extends ApiBase {
 				$result['cookieprefix'] = $wgCookiePrefix;
 				$result['sessionid'] = session_id();
 				break;
-			
+
 			case LoginForm::WRONG_TOKEN:
 				$result['result'] = 'WrongToken';
 				break;

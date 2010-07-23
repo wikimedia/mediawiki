@@ -174,7 +174,7 @@ class ApiQuery extends ApiBase {
 	function getModules() {
 		return array_merge( $this->mQueryPropModules, $this->mQueryListModules, $this->mQueryMetaModules );
 	}
-	
+
 	/**
 	 * Get whether the specified module is a prop, list or a meta query module
 	 * @param $moduleName string Name of the module to find type for
@@ -184,15 +184,15 @@ class ApiQuery extends ApiBase {
 		if ( array_key_exists ( $moduleName, $this->mQueryPropModules ) ) {
 			return 'prop';
 		}
-		
+
 		if ( array_key_exists ( $moduleName, $this->mQueryListModules ) ) {
 			return 'list';
 		}
-		
+
 		if ( array_key_exists ( $moduleName, $this->mQueryMetaModules ) ) {
 			return 'meta';
 		}
-		
+
 		return null;
 	}
 
@@ -238,7 +238,7 @@ class ApiQuery extends ApiBase {
 		if ( isset( $this->params['generator'] ) ) {
 			$generator = $this->newGenerator( $this->params['generator'] );
 			$params = $generator->extractRequestParams();
-			$cacheMode = $this->mergeCacheMode( $cacheMode, 
+			$cacheMode = $this->mergeCacheMode( $cacheMode,
 				$generator->getCacheMode( $params ) );
 			$this->executeGeneratorModule( $generator, $modules );
 		} else {
@@ -253,7 +253,7 @@ class ApiQuery extends ApiBase {
 		// Execute all requested modules.
 		foreach ( $modules as $module ) {
 			$params = $module->extractRequestParams();
-			$cacheMode = $this->mergeCacheMode( 
+			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
 			$module->profileIn();
 			$module->execute();
@@ -267,7 +267,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Update a cache mode string, applying the cache mode of a new module to it.
-	 * The cache mode may increase in the level of privacy, but public modules 
+	 * The cache mode may increase in the level of privacy, but public modules
 	 * added to private data do not decrease the level of privacy.
 	 */
 	protected function mergeCacheMode( $cacheMode, $modCacheMode ) {
@@ -338,7 +338,7 @@ class ApiQuery extends ApiBase {
 			$result->setIndexedTagName( $normValues, 'n' );
 			$result->addValue( 'query', 'normalized', $normValues );
 		}
-		
+
 		// Title conversions
 		$convValues = array();
 		foreach ( $pageSet->getConvertedTitles() as $rawTitleStr => $titleStr ) {
@@ -351,7 +351,7 @@ class ApiQuery extends ApiBase {
 		if ( count( $convValues ) ) {
 			$result->setIndexedTagName( $convValues, 'c' );
 			$result->addValue( 'query', 'converted', $convValues );
-		}		
+		}
 
 		// Interwiki titles
 		$intrwValues = array();
@@ -424,9 +424,9 @@ class ApiQuery extends ApiBase {
 			$vals = array();
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['special'] = '';
-			if ( $title->getNamespace() == NS_SPECIAL && 
+			if ( $title->getNamespace() == NS_SPECIAL &&
 					!SpecialPage::exists( $title->getText() ) ) {
-				$vals['missing'] = '';			
+				$vals['missing'] = '';
 			} elseif ( $title->getNamespace() == NS_MEDIA &&
 					!wfFindFile( $title ) ) {
 				$vals['missing'] = '';

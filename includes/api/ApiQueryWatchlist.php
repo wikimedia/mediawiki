@@ -56,7 +56,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->selectNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
 
 		$params = $this->extractRequestParams();
-		
+
 		$user = $this->getWatchlistUser( $params );
 
 		if ( !is_null( $params['prop'] ) && is_null( $resultPageSet ) ) {

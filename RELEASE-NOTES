@@ -283,7 +283,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   canonical language variant.
 * Fixed "link" parameter in image links with "thumb" parameter.
 * (bug 23936) Add "displaytitle" to query/info API
-* (bug 24485) Make iwbacklinks a generator, display iwprefix and iwtitle optional
+* (bug 24485) Make iwbacklinks a generator, optionally display iwprefix and iwtitle
 
 === Languages updated in 1.17 ===
 

@@ -170,7 +170,7 @@ class ApiBlock extends ApiBase {
 	public function getDescription() {
 		return 'Block a user';
 	}
-	
+
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'user' ),
@@ -181,7 +181,7 @@ class ApiBlock extends ApiBase {
 			array( 'ipbnounblockself' ),
 		) );
 	}
-	
+
 	public function getTokenSalt() {
 		return '';
 	}

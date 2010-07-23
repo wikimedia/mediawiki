@@ -387,7 +387,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['commenthidden'] = '';
 			} else {
 				$comment = $revision->getComment();
-				
+
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
 				}
@@ -490,7 +490,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMsg() among other things
 			return 'anon-public-user-private';
-		}		
+		}
 		return 'public';
 	}
 

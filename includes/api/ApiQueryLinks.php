@@ -89,7 +89,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$this->addTables( $this->table );
 		$this->addWhereFld( $this->prefix . '_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 		$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
-		
+
 		if ( !is_null( $params[$this->titlesParam] ) ) {
 			$lb = new LinkBatch;
 			foreach ( $params[$this->titlesParam] as $t ) {

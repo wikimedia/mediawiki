@@ -241,7 +241,7 @@ class ApiParse extends ApiBase {
 			$result_array['headhtml'] = array();
 			$result->setContent( $result_array['headhtml'], $out->headElement( $userSkin ) );
 		}
-		
+
 		if ( isset( $prop['iwlinks'] ) ) {
 			$result_array['iwlinks'] = $this->formatIWLinks( $p_result->getInterwikiLinks() );
 		}
@@ -324,12 +324,12 @@ class ApiParse extends ApiBase {
 			foreach ( $titles as $title => $id ) {
 				$entry = array();
 				$entry['prefix'] = $prefix;
-				
+
 				$title = Title::newFromText( "{$prefix}:{$title}" );
 				if ( $title ) {
 					$entry['url'] = $title->getFullURL();
 				}
-				
+
 				$this->getResult()->setContent( $entry, $title->getFullText() );
 				$result[] = $entry;
 			}

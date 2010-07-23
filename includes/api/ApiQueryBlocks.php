@@ -124,7 +124,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				'ipb_auto' => 0
 			) );
 		}
-		
+
 		if ( !$wgUser->isAllowed( 'hideuser' ) ) {
 			$this->addWhereFld( 'ipb_deleted', 0 );
 		}

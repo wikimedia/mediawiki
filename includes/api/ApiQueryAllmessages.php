@@ -43,7 +43,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 
 		global $wgLang;
-		
+
 		$oldLang = null;
 		if ( !is_null( $params['lang'] ) ) {
 			$oldLang = $wgLang; // Keep $wgLang for restore later
@@ -122,7 +122,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			}
 		}
 		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'message' );
-		
+
 		if ( !is_null( $oldLang ) ) {
 			$wgLang = $oldLang; // Restore $oldLang
 		}

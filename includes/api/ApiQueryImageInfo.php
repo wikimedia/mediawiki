@@ -222,7 +222,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						$vals['thumbwidth'] = intval( $file->getWidth() );
 						$vals['thumbheight'] = intval( $file->getHeight() );
 					}
-					
+
 					if ( isset( $prop['thumbmime'] ) ) {
 						$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
 						$vals['thumbmime'] = $thumbFile->getMimeType();

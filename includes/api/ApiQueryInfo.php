@@ -260,7 +260,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $this->fld_talkid || $this->fld_subjectid ) {
 			$this->getTSIDs();
 		}
-		
+
 		if ( $this->fld_displaytitle ) {
 			$this->getDisplayTitle();
 		}
@@ -354,7 +354,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['preload'] = $text;
 			}
 		}
-		
+
 		if ( $this->fld_displaytitle ) {
 			if ( isset( $this->displaytitles[$title->getArticleId()] ) ) {
 				$pageInfo['displaytitle'] = $this->displaytitles[$title->getArticleId()];
@@ -528,7 +528,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( !count( $getTitles ) ) {
 			return;
 		}
-		
+
 		$db = $this->getDB();
 
 		// Construct a custom WHERE clause that matches
@@ -549,12 +549,12 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 	}
-	
+
 	private function getDisplayTitle() {
 		$this->displaytitles = array();
-		
+
 		$pageIds = array_keys( $this->titles );
-	
+
 		if ( !count( $pageIds ) ) {
 			return;
 		}
@@ -565,7 +565,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addWhereFld( 'pp_page', $pageIds );
 		$this->addWhereFld( 'pp_propname', 'displaytitle' );
 		$res = $this->select( __METHOD__ );
-		
+
 		foreach ( $res as $row ) {
 			$this->displaytitles[$row->pp_page] = $row->pp_value;
 		}
@@ -639,7 +639,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'readable', # private
 					'preload',
 					'displaytitle',
-					// If you add more properties here, please consider whether they 
+					// If you add more properties here, please consider whether they
 					// need to be added to getCacheMode()
 				) ),
 			'token' => array(

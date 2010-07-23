@@ -319,17 +319,17 @@ class ApiEditPage extends ApiBase {
 						$newArticle->getTimestamp() );
 				}
 				break;
-			
+
 			case EditPage::AS_SUMMARY_NEEDED:
 				$this->dieUsageMsg( array( 'summaryrequired' ) );
 
 			case EditPage::AS_END:
 				// This usually means some kind of race condition
-				// or DB weirdness occurred. 
+				// or DB weirdness occurred.
 				if ( is_array( $result ) && count( $result ) > 0 ) {
 					$this->dieUsageMsg( array( 'unknownerror', $result[0][0] ) );
 				}
-				
+
 				// Unknown error, but no specific error message
 				// Fall through
 			default:

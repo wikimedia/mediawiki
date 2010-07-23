@@ -217,7 +217,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			if ( !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() ) {
 				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 			}
-			
+
 			// Use a redundant join condition on both
 			// timestamp and ID so we can use the timestamp
 			// index
