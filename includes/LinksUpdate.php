@@ -426,18 +426,40 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getCategoryInsertions( $existing = array() ) {
-		global $wgContLang;
+		global $wgContLang, $wgExperimentalCategorySort, $wgCollationVersion;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = array();
 		foreach ( $diffs as $name => $sortkey ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$wgContLang->findVariantLink( $name, $nt, true );
-			$arr[] = array(
-				'cl_from'    => $this->mId,
-				'cl_to'      => $name,
-				'cl_sortkey' => $sortkey,
-				'cl_timestamp' => $this->mDb->timestamp()
-			);
+
+			if ( $wgExperimentalCategorySort ) {
+				if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+					$type = 'subcat';
+				} elseif ( $this->mTitle->getNamespace() == NS_FILE ) {
+					$type = 'file';
+				} else {
+					$type = 'page';
+				}
+				$convertedSortkey = $wgContLang->convertToSortkey( $sortkey );
+				# TODO: Set $sortkey to null if it's redundant
+				$arr[] = array(
+					'cl_from'    => $this->mId,
+					'cl_to'      => $name,
+					'cl_sortkey' => $convertedSortkey,
+					'cl_timestamp' => $this->mDb->timestamp(),
+					'cl_raw_sortkey' => $sortkey,
+					'cl_collation' => $wgCollationVersion,
+					'cl_type' => $type,
+				);
+			} else {
+				$arr[] = array(
+					'cl_from'    => $this->mId,
+					'cl_to'      => $name,
+					'cl_sortkey' => $sortkey,
+					'cl_timestamp' => $this->mDb->timestamp()
+				);
+			}
 		}
 		return $arr;
 	}

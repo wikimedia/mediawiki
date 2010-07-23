@@ -4458,6 +4458,24 @@ $wgCategoryPagingLimit = 200;
  */
 $wgCategoryPrefixedDefaultSortkey = true;
 
+/**
+ * Enable experimental support for non-braindead collation on category pages.
+ * For this to work, you need to alter your categorylinks table by applying
+ * maintenance/archives/patch-categorylinks-better-collation.sql, then keep
+ * up-to-date with changes that are made to that file (they won't be
+ * automatically applied).  You should also set $wgUseDumbLinkUpdate = true and
+ * run maintenance/refreshLinks.php.
+ */
+$wgExperimentalCategorySort = false;
+
+/**
+ * A version indicator for collations that will be stored in cl_collation for
+ * all new rows.  Used when the collation algorithm changes: a script checks
+ * for all rows where cl_collation < $wgCollationVersion and regenerates
+ * cl_sortkey based on cl_raw_sortkey.
+ */
+$wgCollationVersion = 0;
+
 /** @} */ # End categories }
 
 /*************************************************************************//**
