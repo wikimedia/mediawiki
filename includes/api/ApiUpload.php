@@ -156,12 +156,9 @@ class ApiUpload extends ApiBase {
 
 	/**
 	 * Performs file verification, dies on error.
-	 *
-	 * @param $flag integer passed to UploadBase::verifyUpload, set to
-	 * UploadBase::EMPTY_FILE to skip the empty file check.
 	 */
-	public function verifyUpload( $flag ) {
-		$verification = $this->mUpload->verifyUpload( $flag );
+	public function verifyUpload( ) {
+		$verification = $this->mUpload->verifyUpload( );
 		if ( $verification['status'] === UploadBase::OK ) {
 			return $verification;
 		}
