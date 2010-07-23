@@ -1610,7 +1610,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'doubleredirects'            => 'redireksiyonê herdi',
 'doubleredirectstext'        => 'no pel pelê ray motışani liste keno.
 gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
-<s>serê ey nuşteyi</s> safi biye.',
+<del>serê ey nuşteyi</del> safi biye.',
 'double-redirect-fixed-move' => '[[$1]] kırışiya, hıni ray dana [[$2]] no pel',
 'double-redirect-fixer'      => 'Fixerî redirek bike',
 

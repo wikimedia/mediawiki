@@ -1907,7 +1907,7 @@ Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odka
 'doubleredirects'            => 'Dvojité presmerovania',
 'doubleredirectstext'        => 'Táto stránka obsahuje zoznam stránok, ktoré presmerovávajú na iné presmerovacie stránky.
 Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.
-<s>Prečiarknuté</s> položky boli vyriešené.',
+<del>Prečiarknuté</del> položky boli vyriešené.',
 'double-redirect-fixed-move' => 'Stránka [[$1]] bola presunutá, teraz je presmerovaním na [[$2]]',
 'double-redirect-fixer'      => 'Korektor presmerovaní',
 

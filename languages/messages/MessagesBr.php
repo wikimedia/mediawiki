@@ -1737,7 +1737,7 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn disheñvelout ma ra gant ur patr
 'doubleredirects'            => 'Adkasoù doubl',
 'doubleredirectstext'        => 'Rollañ a ra ar bajenn-mañ ar pajennoù a adkas da bajennoù adkas all.
 War bep linenn ez eus liammoù war-du pajennoù an adkas kentañ hag en eil adkas, hag ivez war-du pajenn-dal an eil adkas zo sañset bezañ ar pal "gwirion" a zlefe an adkas kentañ kas di.
-Diskoulmet eo bet an enmontoù <s>barrennet</s>.',
+Diskoulmet eo bet an enmontoù <del>barrennet</del>.',
 'double-redirect-fixed-move' => 'Adanvet eo bet [[$1]], adkaset eo war-du [[$2]] bremañ',
 'double-redirect-fixer'      => 'Reizher adkasoù',
 

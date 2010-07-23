@@ -1817,7 +1817,7 @@ Stran se obravnava kot razločitvena, če uporablja predloge povezane iz [[Media
 'doubleredirects'            => 'Dvojne preusmeritve',
 'doubleredirectstext'        => 'Ta stran navaja strani, ki se preusmerjajo na druge preusmeritvene strani.
 Vsaka vrstica vsebuje povezavo do prve in druge preusmeritve, kakor tudi do cilja druge preusmeritve, ki je po navadi »prava« ciljna stran, na katero naj bi kazala prva preusmeritev.
-<s>Prečrtani</s> vnosi so bili razrešeni.',
+<del>Prečrtani</del> vnosi so bili razrešeni.',
 'double-redirect-fixed-move' => 'Stran [[$1]] je bil premaknjen. 
 Sedaj je preusmeritev na [[$2]].',
 'double-redirect-fixer'      => 'Popravljalec preusmeritev',

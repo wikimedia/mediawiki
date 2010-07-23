@@ -1684,7 +1684,7 @@ Vien considerà pagine de disanbiguazion tute quele che contien i modèi elencà
 'doubleredirects'            => 'Redirect dopi',
 'doubleredirectstext'        => 'Sta pagina le elenca pagine che rimanda a altre pagine de rimando.
 Ogni riga la contien dei colegamenti al primo e al secondo rimando, oltre a la destinassion del secondo rimando, che de solito la xe la "vera" pagina de destinassion, a cui dovarìa pontar el primo rimando.
-Le righe <s>sbarà</s> le xe xà stà sistemà.',
+Le righe <del>sbarà</del> le xe xà stà sistemà.',
 'double-redirect-fixed-move' => '[[$1]] xe stà spostà, desso el xe solo un rimando a [[$2]]',
 'double-redirect-fixer'      => 'Coretòr de redirect',
 

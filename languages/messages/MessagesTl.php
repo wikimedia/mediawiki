@@ -1779,7 +1779,7 @@ Tinuturing ang isang pahina bilang pahinang naglilinaw kung ginagamit nito ang i
 
 'doubleredirects'            => 'Mga dobleng karga',
 'doubleredirectstext'        => 'Nagtatala ang pahinang ito ng mga pahinang pumupunta sa iba pang mga pahinang nililipatan.  Naglalaman ang bawat hanay ng mga kawing sa una ang pangalawang kapupuntahan, maging ng puntiryang pangalawang kapupuntahan, na karaniwang "tunay" na puntiryang pahina, na dapat kinatuturuan ng unang pupuntahan.
-Nasugpo na ang mga ipinasok na <s>inekisan</s>.',
+Nasugpo na ang mga ipinasok na <del>inekisan</del>.',
 'double-redirect-fixed-move' => 'Inilipat na ang [[$1]], isa na ngayon itong panuto/panturo patungo sa [[$2]]',
 'double-redirect-fixer'      => 'Tagapagayos ng panuto/panturo',
 

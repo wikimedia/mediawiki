@@ -1250,7 +1250,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'doubleredirects'            => 'Yollamağa olğan yollamalar',
 'doubleredirectstext'        => 'Bu saifede diger yollama saifelerine yollanma olğan saifeleri kösterile.
 Er satırda birinci ve ekinci yollamağa bağlantılar da, ekinci yollamanıñ maqsat saifesi (adetince o birinci yollamanıñ kerekli maqsadı ola) da bar.
-<s>Üstü sızılğan</s> meseleler endi çezilgen.',
+<del>Üstü sızılğan</del> meseleler endi çezilgen.',
 'double-redirect-fixed-move' => '[[$1]] avuştırıldı, şimdi [[$2]] saifesine yollap tura.',
 
 'brokenredirects'        => 'Bar olmağan saifege yapılğan yollamalar',

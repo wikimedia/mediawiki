@@ -948,7 +948,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'doubleredirects'     => 'Redirects dòpios',
 'doubleredirectstext' => 'Custa pàgina cuntenet una lista de pàginas ki re-indiritzant a àteras pàginas de re-indiritzamentu.
 Ogni lìnia cuntenet ligàmines a su primu e a su de duos re-indiritzamentu, aici comente sa prima lìnia de sa de duos re-indiritzamentos, chi de sòlitu adòbiat s\'artìculu "beru", a sa cale fintzas su primu re-indiritzamentu dia depet puntare.
-Is re-indiritzamentos <s>cantzellados</s> sunt stados curretos.',
+Is re-indiritzamentos <del>cantzellados</del> sunt stados curretos.',
 
 'brokenredirects'        => 'Redirects isballiaus',
 'brokenredirectstext'    => 'Custus redirects ligant cun pàginas chi no esistint.',

@@ -1871,7 +1871,7 @@ Lehekülg loetakse täpsustusleheküljeks, kui see kasutab malli, millele viitab
 'doubleredirects'            => 'Kahekordsed ümbersuunamised',
 'doubleredirectstext'        => 'Käesolev leht esitab loendi lehtedest, mis sisaldavad ümbersuunamisi teistele ümbersuunamislehtedele.
 Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise ümbersuunamislehe sihtmärk, mis tavaliselt on esialgse ümbersuunamise tegelik siht, millele see otse osutama peakski.
-<s>Läbikriipsutatud</s> kirjed on kohendatud.',
+<del>Läbikriipsutatud</del> kirjed on kohendatud.',
 'double-redirect-fixed-move' => '[[$1]] on teisaldatud, see suunab nüüd leheküljele [[$2]].',
 'double-redirect-fixer'      => 'Ümbersuunamiste parandaja',
 

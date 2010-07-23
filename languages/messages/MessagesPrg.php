@@ -1441,7 +1441,7 @@ Pāusan ast laikātan per ainapreslinsnan pāusan ik tennan tērpaui šablōnin 
 'doubleredirects'            => 'Dwiggubai prawessenei',
 'doubleredirectstext'        => 'Zemmais ast listi wisēisan pāusan sen prawessenins en pāusans, kawīdai prawedda en kittan pāusan.
 Erainā rindā turri ēn sen autengīnsenins en pirman be āntran prawessenin, tīt dīgi autengīnsenin kwēi wedda āntars prawessenis. Jāuku panzdaums autengīnsenin wedda en pāusan, en kawīdan prawerru prawestun pirmasmu pāusan.
-<s>Praglaubātai</s> prawessenei ast reparītan.',
+<del>Praglaubātai</del> prawessenei ast reparītan.',
 'double-redirect-fixed-move' => 'pāusan [[$1]] pastāi praskajjintan.
 Teinū tennan prawedda prei [[$2]].',
 'double-redirect-fixer'      => 'Prawessenin tikrintajs',

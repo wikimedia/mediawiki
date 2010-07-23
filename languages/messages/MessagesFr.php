@@ -1961,7 +1961,7 @@ Une page est considérée comme une page d’homonymie si elle inclut (directeme
 'doubleredirects'            => 'Doubles redirections',
 'doubleredirectstext'        => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.
 Chaque entrée contient des liens vers la première et la seconde redirections, ainsi que la première ligne de texte de la seconde page, ce qui fournit habituellement la « vraie » page cible, vers laquelle la première redirection devrait rediriger.
-Les entrées <s>barrées</s> ont été résolues.',
+Les entrées <del>barrées</del> ont été résolues.',
 'double-redirect-fixed-move' => 'Cette redirection, dont la cible [[$1]] a été renommée, mène maintenant vers [[$2]].',
 'double-redirect-fixer'      => 'Correcteur de redirection',
 

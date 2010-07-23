@@ -1624,7 +1624,7 @@ Olar muňa derek degişli anyk sahypa çykgyt bermelidir.<br />
 'doubleredirects'            => 'Jübüt gönükdirmeler',
 'doubleredirectstext'        => 'Bu sahypa başga gönükdirme sahypalaryna gönükdirýän sahypalaryň sanawyny görkezýär.
 Her bir hatar birinji we ikinji gönükdirmeleri, şeýle-de ikinji gönükdirmäniň maksady bolup durýan hem-de şol bir wagtyň özünde birinji gönükdirmäniň adatça barmaly ýeri bolan "hakyky" maksat edinilýän sahypany öz içine alýar.  
-<s>Üsti çyzylan</s> ýazgylar düzedilenlerdir.',
+<del>Üsti çyzylan</del> ýazgylar düzedilenlerdir.',
 'double-redirect-fixed-move' => '[[$1]] sahypasynyň ady üýtgedildi. 
 Ol indi [[$2]] sahypasyna gönükdirýär.',
 'double-redirect-fixer'      => 'Gönükdirme bejeriji',

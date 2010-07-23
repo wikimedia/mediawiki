@@ -1771,7 +1771,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'doubleredirects'            => 'Dobbelte omdirigeringer',
 'doubleredirectstext'        => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.
 Hver linje indeholder henvisninger til den første og den anden omdirigering, såvel som til målet for den anden omdirigering som sædvanligvis er den "rigtige" målside som den første omdirigering burde henvise til.
-<s>Overstregede</s> poster er rettede.',
+<del>Overstregede</del> poster er rettede.',
 'double-redirect-fixed-move' => '[[$1]] blev flyttet og er nu en omdirigering til [[$2]]',
 'double-redirect-fixer'      => 'Omdirigerings-retter',
 

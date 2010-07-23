@@ -1653,7 +1653,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'doubleredirects'            => 'Dugna redirects',
 'doubleredirectstext'        => 'Ii panna uu panna ke suchi de hai jon ki duusra redirect panna pe redirect kare hai. 
 Sab row me pahila aur duusra redirect ke jorr hae, aur isme duusra redirect ke nisana bhi hae, jon ki jaada kar ke "aslii" nisana waala panna, jon ki pahila redirect ke dekhae hae.
-<s>Mitawa gais</s> entires ke solve kar dewa gais hae.',
+<del>Mitawa gais</del> entires ke solve kar dewa gais hae.',
 'double-redirect-fixed-move' => '[[$1]] ke naam badal dewa gais hai, ab ii [[$2]] pe redirect kare hai',
 'double-redirect-fixer'      => 'Redirect ke banae waala',
 

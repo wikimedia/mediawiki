@@ -1915,7 +1915,7 @@ O pagină este considerată o pagină de dezambiguizare dacă folosește formate
 'doubleredirects'            => 'Redirecționări duble',
 'doubleredirectstext'        => 'Această listă conține pagini care redirecționează la alte pagini de redirecționare.
 Fiecare rând conține legături la primele două redirecționări, precum și ținta celei de-a doua redirecționări, care este de obicei pagina țintă "reală", către care ar trebui să redirecționeze prima pagină.
-Intrările <s>tăiate</s> au fost rezolvate.',
+Intrările <del>tăiate</del> au fost rezolvate.',
 'double-redirect-fixed-move' => '[[$1]] a fost mutat, acum este un redirect către [[$2]]',
 'double-redirect-fixer'      => 'Corector de redirecționări',
 

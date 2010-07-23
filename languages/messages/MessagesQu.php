@@ -1824,7 +1824,7 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 
 'doubleredirects'            => 'Iskaylla pusapunakuna',
 'doubleredirectstext'        => "Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. Sapa sinrupiqa ñawpaq ñiqin, iskay ñiqinpas pusapunaman t'inkikunam, iskay ñiqin pusapunap taripananpa qallariyninpas, sapsilla \"chiqap\" allin taripana qillqam, maymanchus ñawpaq ñiqin pusapuna p'anqa pusachun.
-<s>Chakapusqa</s> taripasqakunaqa paskasqañam.",
+<del>Chakapusqa</del> taripasqakunaqa paskasqañam.",
 'double-redirect-fixed-move' => '[[$1]] nisqaqa astasqam, kunantaq [[$2]] nisqaman pusapunam',
 'double-redirect-fixer'      => 'Pusapuna allinchaq',
 
