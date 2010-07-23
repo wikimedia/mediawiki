@@ -489,6 +489,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Create a generator object of the given type and return it
+	 * @param $generatorName string Module name
 	 */
 	public function newGenerator( $generatorName ) {
 		// Find class that implements requested generator
