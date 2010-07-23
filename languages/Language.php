@@ -2934,4 +2934,58 @@ class Language {
 	function getConvRuleTitle() {
 		return $this->mConverter->getConvRuleTitle();
 	}
+
+	/**
+	 * Given a string, convert it to a (hopefully short) key that can be used
+	 * for efficient sorting.  A binary sort according to the sortkeys
+	 * corresponds to a logical sort of the corresponding strings.  Applying
+	 * this to cl_raw_sortkey produces cl_sortkey.
+	 *
+	 * @param string $string UTF-8 string
+	 * @return string Binary sortkey
+	 */
+	public function convertToSortkey( $string ) {
+		# Stub function for now
+		return $string;
+	}
+
+	/**
+	 * Does it make sense for lists to be split up into sections based on their
+	 * first letter?  Logogram-based scripts probably want to return false.
+	 *
+	 * TODO: Use this in CategoryPage.php.
+	 *
+	 * @return boolean
+	 */
+	public function usesFirstLettersInLists() {
+		return true;
+	}
+
+	/**
+	 * Given a string, return the logical "first letter" to be used for
+	 * grouping on category pages and so on.  This has to be coordinated
+	 * carefully with convertToSortkey(), or else the sorted list might jump
+	 * back and forth between the same "initial letters" or other pathological
+	 * behavior.  For instance, if you just return the first character, but "a"
+	 * sorts the same as "A" based on convertToSortkey(), then you might get a
+	 * list like
+	 *
+	 * == A ==
+	 * * [[Aardvark]]
+	 *
+	 * == a ==
+	 * * [[antelope]]
+	 *
+	 * == A ==
+	 * * [[Ape]]
+	 *
+	 * etc., assuming for the sake of argument that $wgCapitalLinks is false.
+	 * Obviously, this is ignored if usesFirstLettersInLists() is false.
+	 *
+	 * @param string $string UTF-8 string
+	 * @return string UTF-8 string corresponding to the first letter of input
+	 */
+	public function firstLetterForLists( $string ) {
+		return mb_substr( $string, 0, 1 );
+	}
 }

@@ -226,6 +226,8 @@ class CategoryViewer {
 	}
 
 	function doCategoryQuery() {
+		global $wgExperimentalCategorySort;
+
 		$dbr = wfGetDB( DB_SLAVE, 'category' );
 		if ( $this->from != '' ) {
 			$pageCondition = 'cl_sortkey >= ' . $dbr->addQuotes( $this->from );
@@ -238,17 +240,23 @@ class CategoryViewer {
 			$this->flip = false;
 		}
 
+		$tables = array( 'page', 'categorylinks', 'category' );
+		$fields = array( 'page_title', 'page_namespace', 'page_len',
+			'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
+			'cat_subcats', 'cat_pages', 'cat_files' );
+		$conds = array( $pageCondition, 'cl_to' => $this->title->getDBkey() );
+		$opts = array( 'ORDER BY' => $this->flip ? 'cl_sortkey DESC' :
+			'cl_sortkey', 'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ) );
+		$joins = array( 'categorylinks'  => array( 'INNER JOIN', 'cl_from = page_id' ),
+			'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY ) );
+
 		$res = $dbr->select(
-			array( 'page', 'categorylinks', 'category' ),
-			array( 'page_title', 'page_namespace', 'page_len', 'page_is_redirect', 'cl_sortkey',
-				'cat_id', 'cat_title', 'cat_subcats', 'cat_pages', 'cat_files' ),
-			array( $pageCondition, 'cl_to' => $this->title->getDBkey() ),
+			$tables,
+			$fields,
+			$conds + ( $wgExperimentalCategorySort ? array( 'cl_type' => 'page' ) : array() ),
 			__METHOD__,
-			array( 'ORDER BY' => $this->flip ? 'cl_sortkey DESC' : 'cl_sortkey',
-				'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
-				'LIMIT'    => $this->limit + 1 ),
-			array( 'categorylinks'  => array( 'INNER JOIN', 'cl_from = page_id' ),
-				'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY ) )
+			$opts + array( 'LIMIT' => $this->limit + 1 ),
+			$joins
 		);
 
 		$count = 0;
@@ -271,6 +279,45 @@ class CategoryViewer {
 				$this->addImage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
 			} else {
 				$this->addPage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
+			}
+		}
+
+		if ( $wgExperimentalCategorySort ) {
+			# Now add all subcategories and files.  TODO: rewrite to be sane
+			# (this is basically a proof-of-concept, e.g., no pagination here).
+			$subcatsRes = $dbr->select(
+				$tables, $fields,
+				$conds + array( 'cl_type' => 'subcat' ),
+				__METHOD__, $opts, $joins
+			);
+
+			foreach ( $subcatsRes as $row ) {
+				$title = Title::newFromRow( $row );
+
+				if ( $title->getNamespace() == NS_CATEGORY ) {
+					$cat = Category::newFromRow( $row, $title );
+					$this->addSubcategoryObject( $cat, $row->cl_sortkey, $row->page_len );
+				} else {
+					# Will handle this sanely in final code
+					throw new MWException( 'Debug: cl_type = subcat but not category' );
+				}
+			}
+
+			$filesRes = $dbr->select(
+				$tables, $fields,
+				$conds + array( 'cl_type' => 'file' ),
+				__METHOD__, $opts, $joins
+			);
+
+			foreach ( $filesRes as $row ) {
+				$title = Title::newFromRow( $row );
+
+				if ( $this->showGallery && $title->getNamespace() == NS_FILE ) {
+					$this->addImage( $title, $row->cl_sortkey, $row->page_len, $row->page_is_redirect );
+				} else {
+					# More temporary debugging
+					throw new MWException( 'Debug: cl_type = file but not file' );
+				}
 			}
 		}
 	}
