@@ -44,7 +44,7 @@ class AddWiki extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgDefaultExternalStore, $wgNoDBParam, $wgPasswordSender;
+		global $IP, $wgDefaultExternalStore, $wgNoDBParam;
 
 		$wgNoDBParam = true;
 		$lang = $this->getArg( 0 );

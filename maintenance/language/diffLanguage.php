@@ -75,7 +75,6 @@ function getMediawikiMessages( $languageCode = 'En' ) {
 
 	$foo = "wgAllMessages$languageCode";
 	global $$foo;
-	global $wgSkinNamesEn; // potentially unused global declaration?
 
 	// it might already be loaded in LocalSettings.php
 	if ( !isset( $$foo ) ) {

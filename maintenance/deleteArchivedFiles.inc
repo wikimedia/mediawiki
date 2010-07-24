@@ -51,7 +51,7 @@ class DeleteArchivedFilesImplementation {
 			} else {
 				$output->handleOutput( "Notice - file '$key' not found in group '$group'\n" );
 				if ( $force ) {
-					$outpu->handleOutput( "Got --force, deleting DB entry\n" );
+					$ouput->handleOutput( "Got --force, deleting DB entry\n" );
 					$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
 				}
 			}

@@ -270,7 +270,6 @@ function do_watchlist_update() {
 
 function do_copy_newtalk_to_watchlist() {
 	global $wgDatabase;
-	global $wgCommandLineMode; # this needs to be saved while getID() and getName() are called
 
 	$res = $wgDatabase->safeQuery( 'SELECT user_id, user_ip FROM !',
 		$wgDatabase->tableName( 'user_newtalk' ) );
@@ -937,7 +936,7 @@ function purge_cache() {
 }
 
 function do_all_updates( $shared = false, $purge = true ) {
-	global $wgNewTables, $wgExtModifiedFields, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgSharedTables, $wgDatabase, $wgDBtype, $IP;
+	global $wgSharedDB, $wgSharedTables, $wgDatabase, $wgDBtype;
 
 	wfRunHooks( 'LoadExtensionSchemaUpdates' );
 
@@ -1130,7 +1129,6 @@ function do_unique_pl_tl_il() {
 }
 
 function do_log_search_population() {
-	global $wgDatabase;
 	if ( update_row_exists( 'populate log_search' ) ) {
 		wfOut( "...log_search table already populated.\n" );
 		return;
@@ -1308,7 +1306,7 @@ END;
 }
 
 function do_postgres_updates() {
-	global $wgDatabase, $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgShowExceptionDetails, $wgDBuser;
+	global $wgDatabase, $wgDBmwschema, $wgDBts2schema, $wgShowExceptionDetails, $wgDBuser;
 
 	# # Gather version numbers in case we need them
 	$version = $wgDatabase->getServerVersion(); # # long string
