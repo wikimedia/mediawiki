@@ -20,7 +20,7 @@
  * @see wfWaitForSlaves()
  */
 
-define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
+define( 'MW_CONFIG_CALLBACK', 'CoreInstaller::overrideConfig' );
 
 require_once( dirname( dirname( __FILE__ ) )."/maintenance/Maintenance.php" );
 
