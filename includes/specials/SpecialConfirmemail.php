@@ -146,6 +146,7 @@ class EmailInvalidation extends UnlistedSpecialPage {
 		$this->setHeaders();
 
 		if ( wfReadOnly() ) {
+			global $wgOut;         
 			$wgOut->readOnlyPage();
 			return;
 		}
