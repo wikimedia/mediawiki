@@ -820,7 +820,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'minoredit'                        => 'Marcar como edição menor',
 'watchthis'                        => 'Vigiar esta página',
 'savearticle'                      => 'Salvar página',
-'preview'                          => 'Prever',
+'preview'                          => 'Previsualização',
 'showpreview'                      => 'Mostrar previsão',
 'showlivepreview'                  => 'Pré-visualização em tempo real',
 'showdiff'                         => 'Mostrar alterações',

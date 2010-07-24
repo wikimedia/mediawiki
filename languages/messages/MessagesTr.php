@@ -1377,6 +1377,8 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'prefs-advancedsearchoptions'   => 'Gelişmiş seçenekler',
 'prefs-advancedwatchlist'       => 'Gelişmiş seçenekler',
 'prefs-displayrc'               => 'Görüntü seçenekleri',
+'prefs-displaysearchoptions'    => 'Görüntüleme seçenekleri',
+'prefs-displaywatchlist'        => 'Görüntüleme seçenekleri',
 'prefs-diffs'                   => 'Farklar',
 
 # User rights
@@ -2606,6 +2608,7 @@ Lütfen başka bir isim deneyiniz.',
 'immobile-source-page'         => 'Bu sayfanın adı değiştirilemez.',
 'immobile-target-page'         => 'Bu hedef başlığına taşınamaz.',
 'imagenocrossnamespace'        => 'Dosya, dosyalar için olmayan ad alanına taşınamaz',
+'nonfile-cannot-move-to-file'  => 'Dosya olmayanlar, dosya ad alanına taşınamaz',
 'imagetypemismatch'            => 'Yeni dosya eklentisi tipiyle eşleşmiyor',
 'imageinvalidfilename'         => 'Hedef dosya adı geçersiz',
 'fix-double-redirects'         => 'Orijinal başlığa işaret eden yönlendirmeleri güncelle',

@@ -145,7 +145,7 @@ $messages = array(
 'tog-nocache'                 => 'Lemaza mabaki ya kurasa',
 'tog-enotifwatchlistpages'    => 'Nitumie barua pepe pale kurasa zilizopo katika maangalizi yangu zikibadilishwa',
 'tog-enotifusertalkpages'     => 'Nitumie barua pepe pale ukurasa wangu wa majadiliano ukiwa na mabadiliko',
-'tog-enotifminoredits'        => 'Pia nitumie barua pale kurasa za mabadiliko madogo zikiwa zimebadilishwa',
+'tog-enotifminoredits'        => 'Pia nitumie barua pale mabadiliko ya ukurasa yanapokuwa madogo tu',
 'tog-enotifrevealaddr'        => 'Onyesha anwani ya barua pepe yangu katika barua pepe za taarifa',
 'tog-shownumberswatching'     => 'Onyesha idadi ya watumiaji waangalizi',
 'tog-oldsig'                  => 'Sahihi jinsi inayoonekana sasa:',
@@ -297,7 +297,7 @@ $messages = array(
 'vector-namespace-talk'          => 'Majadiliano',
 'vector-namespace-template'      => 'Kigezo',
 'vector-namespace-user'          => 'Ukurasa wa mtumiaji',
-'vector-simplesearch-preference' => 'Kuwezesha madokezo imara ya tafutaji (umbo wa Vector tu)',
+'vector-simplesearch-preference' => 'Kuwezesha madokezo imara ya tafutaji (umbo la Vector tu)',
 'vector-view-create'             => 'Anzisha',
 'vector-view-edit'               => 'Hariri',
 'vector-view-history'            => 'Fungua historia',
@@ -499,6 +499,7 @@ Kitenda: $1<br />
 Ulizio: $2',
 'viewsource'           => 'Onyesha kodi za ukurasa',
 'viewsourcefor'        => 'kwa $1',
+'actionthrottled'      => 'Tendo limesimamishwa',
 'actionthrottledtext'  => 'Ikiwa kama hatua ya kupambana na uharibifu, umefika kikomo katika kutenda jambo hili kwa mara nyingi mno tena kwa kipindi cha muda mfupi kama huu, na umevuka kiwango hiki.
 Tafadhali jaribu tena baada ya muda mfupi.',
 'protectedpagetext'    => 'Ukurasa huu umefungwa ili kuepuka uhariri.',
@@ -897,13 +898,10 @@ Kwa sababu u mkabidhi, bado unaweza kulitazama; maelezo mengine yapo kwenye [{{f
 'revdelete-show-file-submit'  => 'Ndiyo',
 'revdelete-selected'          => "'''{{PLURAL:$2|Pitio lililoteuliwa|Mapitio yaliyoteuliwa}} ya [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Tukio la kumbukumbu lililoteuliwa|Matukio ya kumbukumbu yaliyoteuliwa}}:'''",
-'revdelete-text'              => "
-'''Mapitio bado yataonekana kwenye ukurasa wa historia na matukio bado yataonekana kwenye kumbukumbu, lakini baadhi ya yaliyomo haitaonekana mbele ya watu wote.'''
+'revdelete-text'              => "'''Mapitio bado yataonekana kwenye ukurasa wa historia na matukio bado yataonekana kwenye kumbukumbu, lakini baadhi ya yaliyomo haitaonekana mbele ya watu wote.'''
 Wakabidhi wengine wa {{SITENAME}} bado wataweza kuliona lile lililofichwa pamoja na kulirudisha kwa kuutumia ukurasa maalum huu huu, isipowekewa vizuio vingine.",
-'revdelete-confirm'           => '
-Tafadhali uthibitishe kwamba unataka kufanya hivyo, pamoja na kwamba unaelewa matokeo yake, na unafanya hivyo kutokana na [[{{MediaWiki:Policy-url}}|sera yetu]].',
-'revdelete-suppress-text'     => "
-Kuficha kunaruhisiwa '''tu''' wakati hizo:
+'revdelete-confirm'           => 'Tafadhali uthibitishe kwamba unataka kufanya hivyo, pamoja na kwamba unaelewa matokeo yake, na unafanya hivyo kutokana na [[{{MediaWiki:Policy-url}}|sera yetu]].',
+'revdelete-suppress-text'     => "Kuficha kunaruhisiwa '''tu''' wakati hizo:
 * Taarifa zinazowezekana kwamba ni za kukashifu
 * Taarifa za mtu binafsi zisizofaa
 *: ''anwani za nyumbani na namba za simu, namba za vitambulisho, na kadhalika.''",
@@ -913,20 +911,15 @@ Kuficha kunaruhisiwa '''tu''' wakati hizo:
 'revdelete-hide-name'         => 'Ficha tendo na shabaha',
 'revdelete-hide-comment'      => 'Ficha muhtasari wa sahihisho',
 'revdelete-hide-user'         => 'Ficha jina la mhariri/anwani ya IP ya mhariri',
-'revdelete-hide-restricted'   => '
-Wakabidhi (vilevile wengine) wasiweze kuona data',
+'revdelete-hide-restricted'   => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-radio-same'        => '(isibadilishwe)',
 'revdelete-radio-set'         => 'Ndiyo',
 'revdelete-radio-unset'       => 'Siyo',
-'revdelete-suppress'          => '
-Wakabidhi (vilevile wengine) wasiweze kuona data',
-'revdelete-unsuppress'        => '
-Uzuio wa kuona mapitio uondolewe, mapitio yanaporudishwa',
+'revdelete-suppress'          => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
+'revdelete-unsuppress'        => 'Uzuio wa kuona mapitio uondolewe, mapitio yanaporudishwa',
 'revdelete-log'               => 'Sababu:',
-'revdelete-submit'            => '
-{{PLURAL:$1|Pitio lililochaguliwa lifanyiwe|Mapitio yaliyochaguliwa yafanyiwe}} kazi.',
-'revdelete-logentry'          => '
-alibadilisha uwezo wa kuona maelezo ya mapitio ya ukurasa wa [[$1]]',
+'revdelete-submit'            => '{{PLURAL:$1|Pitio lililochaguliwa lifanyiwe|Mapitio yaliyochaguliwa yafanyiwe}} kazi.',
+'revdelete-logentry'          => 'alibadilisha uwezo wa kuona maelezo ya mapitio ya ukurasa wa [[$1]]',
 'logdelete-logentry'          => 'alibadilisha uwezo wa kuona matukio ya ukurasa wa [[$1]]',
 'revdelete-success'           => "'''Kubadilisha uwezo wa kuona pitio ulifaulu.'''",
 'revdelete-failure'           => "'''Kubadilisha uwezo wa kuona pitio hakufaulu:'''
@@ -950,8 +943,7 @@ $1",
 'logdelete-log-message'       => '$1 kwenye {{PLURAL:$2|tukio|matukio}} $2',
 'revdelete-hide-current'      => 'Hitilafu ya kuficha pitio lililotengenezwa saa $2, tarehe $1: hilo ndilo pitio la sasa hivi.
 Haliwezi kufichwa.',
-'revdelete-reason-dropdown'   => '
-*Sababu za kufuta zinazotokea mara kwa mara
+'revdelete-reason-dropdown'   => '*Sababu za kufuta zinazotokea mara kwa mara
 ** Ukiukaji wa hatimiliki
 ** Taarifa za mtu binafsi zisizofaa
 ** Taarifa zinazowezekana kwamba ni za kukashifu',
@@ -983,8 +975,7 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 'mergelog'           => 'Kumbukumbu za kuunganisha',
 'pagemerge-logentry' => 'aliunganisha [[$1]] ndani wa [[$2]] (mapitio hadi $3)',
 'revertmerge'        => 'Usiunganishe',
-'mergelogpagetext'   => '
-Hapo chini yanaorodheshwa matukio ya hivi karibuni ya kuunganisha historia za kurasa mbili.',
+'mergelogpagetext'   => 'Hapo chini yanaorodheshwa matukio ya hivi karibuni ya kuunganisha historia za kurasa mbili.',
 
 # Diffs
 'history-title'            => 'Historia ya mapitio ya "$1"',
@@ -1001,8 +992,7 @@ Hapo chini yanaorodheshwa matukio ya hivi karibuni ya kuunganisha historia za ku
 'searchresulttext'                 => 'Kwa maelezo zaidi kuhusu kutafuta {{SITENAME}}, tazama [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Ulitafuta \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kurasa zote zinazoanza "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kurasa zote zinazoungwa na "$1"]])',
 'searchsubtitleinvalid'            => "Ulitafuta '''$1'''",
-'toomanymatches'                   => '
-Yalipatikana majibu mengi mno, kwa hiyo tafadhali jaribu ulizo mwingine',
+'toomanymatches'                   => 'Yalipatikana majibu mengi mno, kwa hiyo tafadhali jaribu ulizo mwingine',
 'titlematches'                     => 'Kurasa zinazo majina yenye maneno ya ulizo',
 'notitlematches'                   => 'Jina hili la ukurasa halikupatikana',
 'textmatches'                      => 'Kurasa zinazo maandishi yenye maneno ya ulizo',
@@ -1110,8 +1100,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'recentchangesdays'             => 'Ionyeshwe siku ngapi kwenye orodha ya mabadiliko ya karibuni?',
 'recentchangesdays-max'         => 'Isizidi {{PLURAL:$1|siku}} $1',
 'recentchangescount'            => 'Idadi ya masahihisho yatakayoonyeshwa kwa kawaida:',
-'prefs-help-recentchangescount' => '
-Kwenye kurasa za mabadiliko ya karibuni, za historia ya ukurasa, na za kumbukumbu.',
+'prefs-help-recentchangescount' => 'Kwenye kurasa za mabadiliko ya karibuni, za historia ya ukurasa, na za kumbukumbu.',
 'prefs-help-watchlist-token'    => 'Ukiandika ufunguo wa siri kwenye kisanduku hiki, programu itaanzisha tawanyiko la RSS kwa ajili ya maangalizi yako.
 Mtu wowote anayejua ufunguo wa siri huu ataweza kusoma orodha yako ya maangalizi, kwa hiyo chagua ufunguo salama. 
 Hapo kuna ufunguo uliotolewa na programu kwa kubahatisha, ambao unaweza kuutumia: $1',
@@ -1276,7 +1265,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-undelete'             => 'kurudisha ukurasa huu',
 'action-suppressrevision'     => 'kuangalia na kurudisha pitio hilo lililofichwa kwa wakabidhi',
 'action-suppressionlog'       => 'kutazama kumbukumbu za faragha',
-'action-block'                => 'Kumzuia mtumiaji huyu asihariri',
+'action-block'                => 'kumzuia mtumiaji huyu asihariri',
 'action-import'               => 'kuleta ukurasa huu kutoka kwa wiki nyingine',
 'action-mergehistory'         => 'kuunganisha historia ya ukurasa huu',
 'action-userrights'           => 'kubadilisha wezo zote za watumiaji',
@@ -2368,8 +2357,8 @@ Jaribu hakikisho la kawaida.',
 'watchlistedit-normal-title'   => 'Kuhariri orodha ya maangalizi',
 'watchlistedit-normal-legend'  => 'Kuondoa majina kwenye orodha ya maangalizi',
 'watchlistedit-normal-explain' => 'Majina kwenye orodha ya maangalizi yako yapo chini. 
-Ili kuondoa jina, weka alama katiku kisanduku lake, na bonyeza "Ondoa majina." 
-Unaweza pia [[Special:watchlist/raw|kuhariri orodha ya ghafi]].',
+Ili kuondoa jina, weka alama katika kisanduku chake, na bonyeza "{{int:Watchlistedit-normal-submit}}". 
+Unaweza pia [[Special:Watchlist/raw|kuhariri orodha ya ghafi]].',
 'watchlistedit-normal-submit'  => 'Ondoa majina',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Jina 1 iliondolewa|Majina $1 yaliondolewa}} kutoka kwa orodha yako ya maangalizi:',
 'watchlistedit-raw-title'      => 'Kuhariri maangalizi ghafi',
@@ -2394,8 +2383,8 @@ Pia unaweza [[Special:Watchlist/edit|kutumia kihariri cha kawaida]].',
 'version-other'            => 'Zingine',
 'version-version'          => '(Toleo $1)',
 'version-license'          => 'Ruhusa',
-'version-software'         => ' Bidhaa pepe iliyosakinishwa',
-'version-software-product' => ' Bidhaa',
+'version-software'         => 'Bidhaa pepe iliyosakinishwa',
+'version-software-product' => 'Bidhaa',
 'version-software-version' => 'Toleo',
 
 # Special:FilePath
@@ -2425,7 +2414,7 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 * Kurasa maalum ya kawaida.
 * <strong class="mw-specialpagerestricted">Kurasa maalum zisizoonekana na wote.</strong>',
 'specialpages-group-maintenance' => 'Ripoti za kurekebisha na kutunza kurasa',
-'specialpages-group-other'       => ' Kurasa maalum zingine',
+'specialpages-group-other'       => 'Kurasa maalum zingine',
 'specialpages-group-login'       => 'Ingia / sajili akaunti',
 'specialpages-group-changes'     => 'Mabadiliko ya karibuni na kumbukumbu',
 'specialpages-group-media'       => 'Ripoti za mafaili na kuyapakia',
@@ -2434,7 +2423,7 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'specialpages-group-pages'       => 'Orodha za kurasa',
 'specialpages-group-pagetools'   => 'Zana za kuushughulika ukurasa',
 'specialpages-group-wiki'        => 'Zana na data za wiki',
-'specialpages-group-redirects'   => ' Kurasa maalum za kuelekeza',
+'specialpages-group-redirects'   => 'Kurasa maalum za kuelekeza',
 
 # Special:BlankPage
 'blankpage'              => 'Ukurasa tupu',

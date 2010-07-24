@@ -850,7 +850,7 @@ $2',
 'template-protected'               => '（保护）',
 'template-semiprotected'           => '（半保护）',
 'hiddencategories'                 => '这个页面是属于$1个隐藏分类的成员：',
-'edittools'                        => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
+'edittools'                        => '<!-- 此处的文本将被显示在编辑和上传表单以下。 -->',
 'nocreatetitle'                    => '创建页面受限',
 'nocreatetext'                     => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:UserLogin|登录或创建新账户]]。',
 'nocreate-loggedin'                => '您并无权限去创建新页面。',
@@ -1260,9 +1260,9 @@ $1",
 'gender-female'                 => '女',
 'prefs-help-gender'             => '可选：用以软件中的性别指定。此项资料将会被公开。',
 'email'                         => '电子邮箱',
-'prefs-help-realname'           => '真实姓名是可选的。
-如果您选择提供它，那它便用以对您的贡献署名。',
-'prefs-help-email'              => '电子邮件是可选的，但当您忘记您的个密码时需要将新密码重设寄回给您。您亦可以在您没有公开自己的用户身份时通过您的用户页或用户讨论页与您联系。',
+'prefs-help-realname'           => '真实姓名为选填项。
+如果提供，可用于贡献署名。',
+'prefs-help-email'              => '电子邮件为选填项，但是在重设密码时，需要用电子邮件将密码寄给您。你可以选择让别的用户通过用户页或用户讨论页与你联系，这样可不公开您的身份。',
 'prefs-help-email-required'     => '需要电子邮件地址。',
 'prefs-info'                    => '基本资料',
 'prefs-i18n'                    => '国际化',
@@ -1275,6 +1275,8 @@ $1",
 'prefs-advancedsearchoptions'   => '高级选项',
 'prefs-advancedwatchlist'       => '高级选项',
 'prefs-displayrc'               => '显示选项',
+'prefs-displaysearchoptions'    => '显示选项',
+'prefs-displaywatchlist'        => '显示选项',
 'prefs-diffs'                   => '差异',
 
 # User rights
@@ -2478,6 +2480,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'immobile-source-page'         => '此页面不能移动。',
 'immobile-target-page'         => '无法移动至该目标标题。',
 'imagenocrossnamespace'        => '无法将文件移动到非文件名字空间',
+'nonfile-cannot-move-to-file'  => '无法将非文件移动到文件命名空间',
 'imagetypemismatch'            => '该新扩展名与其类型不匹配',
 'imageinvalidfilename'         => '目标文件名称无效',
 'fix-double-redirects'         => '更新所有指向原始标题的重定向',
@@ -3122,10 +3125,10 @@ Variants for Chinese language
 点击以下按钮可向您的邮箱发送一封确认邮件。该邮件包含有一行代码链接；
 请在您的浏览器中加载此链接以确认您的邮箱地址是有效的。',
 'confirmemail_pending'      => '一个确认码已经被发送到您的邮箱，您可能需要等几分钟才能收到。如果无法收到，请再申请一个新的确认码。',
-'confirmemail_send'         => '邮发确认代码',
+'confirmemail_send'         => '邮件发送确认代码',
 'confirmemail_sent'         => '确认邮件已发送。',
-'confirmemail_oncreate'     => '一个确认代码已经被发送到您的邮箱。该代码并不要求您进行登录，
-但若您要启用在此 wiki 上的任何基于电子邮件的功能，您必须先提交此代码。',
+'confirmemail_oncreate'     => '一个确认代码已经被发送到您的邮箱。登录时无需使用该代码，
+但若要启用在此维基的电子邮件相关功能，则必须先提交此代码。',
 'confirmemail_sendfailed'   => '{{SITENAME}}不能发送确认邮件，请检查您的邮箱地址是否包含非法字符。
 
 邮件传送员回应：$1',
