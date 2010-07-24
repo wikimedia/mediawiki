@@ -126,7 +126,7 @@ class ActiveUsersPager extends UsersPager {
 	}
 
 	function getPageHeader() {
-		global $wgScript, $wgRequest;
+		global $wgScript;
 
 		$self = $this->getTitle();
 		$limit = $this->mLimit ? Xml::hidden( 'limit', $this->mLimit ) : '';

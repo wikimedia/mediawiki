@@ -69,7 +69,7 @@ class ProtectedTitlesForm {
 	 * Callback function to output a restriction
 	 */
 	function formatRow( $row ) {
-		global $wgUser, $wgLang, $wgContLang;
+		global $wgUser, $wgLang;
 
 		wfProfileIn( __METHOD__ );
 

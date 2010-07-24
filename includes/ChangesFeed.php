@@ -45,8 +45,7 @@ class ChangesFeed {
 	 * @return null or true
 	 */
 	public function execute( $feed, $rows, $lastmod, $opts ) {
-		global $messageMemc, $wgFeedCacheTimeout;
-		global $wgSitename, $wgLang, $wgRenderHashAppend;
+		global $wgLang, $wgRenderHashAppend;
 
 		if ( !FeedUtils::checkFeedOutput( $this->format ) ) {
 			return;

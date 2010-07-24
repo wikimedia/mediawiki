@@ -109,7 +109,7 @@ class RawPage {
 	}
 
 	function view() {
-		global $wgOut, $wgScript, $wgRequest;
+		global $wgOut, $wgRequest;
 
 		if( $wgRequest->isPathInfoBad() ) {
 			# Internet Explorer will ignore the Content-Type header if it
@@ -158,7 +158,7 @@ class RawPage {
 	}
 
 	function getRawText() {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgUser, $wgOut;
 		if( $this->mGen ) {
 			$sk = $wgUser->getSkin();
 			if( !StubObject::isRealObject( $wgOut ) )

@@ -36,7 +36,6 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	public function submitConnectForm() {
-		global $wgSQLiteDataDir;
 		$this->setVarsFromRequest( array( 'wgSQLiteDataDir', 'wgDBname' ) );
 
 		$dir = realpath( $this->getVar( 'wgSQLiteDataDir' ) );

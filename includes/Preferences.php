@@ -35,8 +35,6 @@ class Preferences {
 		if ( self::$defaultPreferences )
 			return self::$defaultPreferences;
 
-		global $wgRCMaxAge;
-
 		$defaultPreferences = array();
 
 		self::profilePreferences( $user, $defaultPreferences );
@@ -62,7 +60,6 @@ class Preferences {
 		}
 
 		## Prod in defaults from the user
-		global $wgDefaultUserOptions;
 		foreach ( $defaultPreferences as $name => &$info ) {
 			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
 			$field = HTMLForm::loadInputFromParameters( $info ); // For validation

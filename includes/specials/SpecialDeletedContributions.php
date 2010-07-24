@@ -276,7 +276,7 @@ class DeletedContributionsPage extends SpecialPage {
 			return;
 		}
 
-		global $wgOut, $wgLang, $wgRequest;
+		global $wgOut, $wgRequest;
 
 		$wgOut->setPageTitle( wfMsgExt( 'deletedcontributions-title', array( 'parsemag' ) ) );
 
@@ -463,7 +463,7 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @param $options Array: the options to be included.
 	 */
 	function getForm( $options ) {
-		global $wgScript, $wgRequest;
+		global $wgScript;
 
 		$options['title'] = SpecialPage::getTitleFor( 'DeletedContributions' )->getPrefixedText();
 		if ( !isset( $options['target'] ) ) {

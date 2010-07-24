@@ -443,7 +443,7 @@ class SpecialSearch {
 	 * @param $terms Array: terms to highlight
 	 */
 	protected function showHit( $result, $terms ) {
-		global $wgContLang, $wgLang, $wgUser;
+		global $wgLang, $wgUser;
 		wfProfileIn( __METHOD__ );
 
 		if( $result->isBrokenTitle() ) {
@@ -667,7 +667,6 @@ class SpecialSearch {
 	 */
 	protected function showInterwikiHit( $result, $lastInterwiki, $terms, $query, $customCaptions) {
 		wfProfileIn( __METHOD__ );
-		global $wgContLang, $wgLang;
 
 		if( $result->isBrokenTitle() ) {
 			wfProfileOut( __METHOD__ );
@@ -745,8 +744,6 @@ class SpecialSearch {
 	 * @return String: HTML form
 	 */
 	protected function powerSearchBox( $term ) {
-		global $wgScript, $wgContLang;
-		
 		// Groups namespaces into rows according to subject
 		$rows = array();
 		foreach( SearchEngine::searchableNamespaces() as $namespace => $name ) {
@@ -894,7 +891,7 @@ class SpecialSearch {
 	}
 
 	protected function formHeader( $term, $resultsShown, $totalNum ) {
-		global $wgContLang, $wgLang;
+		global $wgLang;
 		
 		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
 		

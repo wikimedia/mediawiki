@@ -194,8 +194,6 @@ class SpecialExport extends SpecialPage {
 	 *                      not returning full history)
 	 */
 	private function doExport( $page, $history, $list_authors ) {
-		global $wgExportMaxHistory;
-
 		$pageSet = array(); // Inverted index of all pages to look up
 
 		// Split up and normalize input
@@ -347,7 +345,7 @@ class SpecialExport extends SpecialPage {
 	 * Validate link depth setting, if available.
 	 */
 	private function validateLinkDepth( $depth ) {
-		global $wgExportMaxLinkDepth, $wgExportMaxLinkDepthLimit;
+		global $wgExportMaxLinkDepth;
 		if( $depth < 0 ) {
 			return 0;
 		}

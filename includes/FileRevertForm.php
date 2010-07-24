@@ -88,7 +88,7 @@ class FileRevertForm {
 	 * Show the confirmation form
 	 */
 	protected function showForm() {
-		global $wgOut, $wgUser, $wgRequest, $wgLang, $wgContLang;
+		global $wgOut, $wgUser, $wgLang, $wgContLang;
 		$timestamp = $this->getTimestamp();
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );

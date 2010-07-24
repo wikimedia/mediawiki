@@ -275,8 +275,6 @@ abstract class CoreInstaller extends Installer {
 	 * @return Status
 	 */
 	public function installExtensions() {
-		global $wgHooks, $wgAutoloadClasses;
-		
 		$exts = $this->getVar( '_Extensions' );
 		$path = $this->getVar( 'IP' ) . '/extensions';
 		

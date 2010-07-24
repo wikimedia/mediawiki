@@ -135,7 +135,7 @@ class SpecialUpload extends SpecialPage {
 	 * Special page entry point
 	 */
 	public function execute( $par ) {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgUser, $wgOut;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -630,7 +630,7 @@ class SpecialUpload extends SpecialPage {
 	 * @return String: empty string if there is no warning or an HTML fragment
 	 */
 	public static function getExistsWarning( $exists ) {
-		global $wgUser, $wgContLang;
+		global $wgUser;
 
 		if ( !$exists ) {
 			return '';
@@ -878,7 +878,6 @@ class UploadForm extends HTMLForm {
 		global $wgLang, $wgCheckFileExtensions, $wgStrictFileExtensions,
 		$wgFileExtensions, $wgFileBlacklist;
 
-		$allowedExtensions = '';
 		if( $wgCheckFileExtensions ) {
 			if( $wgStrictFileExtensions ) {
 				# Everything not permitted is banned

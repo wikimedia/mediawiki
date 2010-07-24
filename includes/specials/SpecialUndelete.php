@@ -721,7 +721,7 @@ class UndeleteForm extends SpecialPage {
 
 	// Generic list of deleted pages
 	private function showList( $result ) {
-		global $wgLang, $wgContLang, $wgUser, $wgOut;
+		global $wgLang, $wgUser, $wgOut;
 
 		if( $result->numRows() == 0 ) {
 			$wgOut->addWikiMsg( 'undelete-no-results' );
@@ -1015,7 +1015,7 @@ class UndeleteForm extends SpecialPage {
 	}
 
 	private function showHistory( ) {
-		global $wgLang, $wgUser, $wgOut;
+		global $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 		if( $this->mAllowed ) {

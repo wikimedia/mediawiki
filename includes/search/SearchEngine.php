@@ -857,7 +857,7 @@ class SearchHighlighter {
 	 * @return String
 	 */
 	public function highlightText( $text, $terms, $contextlines, $contextchars ) {
-		global $wgLang, $wgContLang;
+		global $wgContLang;
 		global $wgSearchHighlightBoundaries;
 		$fname = __METHOD__;
 
@@ -1131,8 +1131,6 @@ class SearchHighlighter {
 	 * @return String
 	 */
 	function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {
-		global $wgContLang;
-
 		if ( $start != 0 )
 			$start = $this->position( $text, $start, 1 );
 		if ( $end >= strlen( $text ) )
@@ -1283,7 +1281,7 @@ class SearchHighlighter {
      * @return String
      */
     public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
-        global $wgLang, $wgContLang;
+        global $wgContLang;
         $fname = __METHOD__;
 
         $lines = explode( "\n", $text );

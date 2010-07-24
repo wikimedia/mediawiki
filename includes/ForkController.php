@@ -126,8 +126,6 @@ class ForkController {
 	 * Fork a number of worker processes.
 	 */
 	protected function forkWorkers( $numProcs ) {
-		global $wgMemc, $wgCaches, $wgMainCacheType;
-
 		$this->prepareEnvironment();
 
 		// Create the child processes

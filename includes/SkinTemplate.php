@@ -875,7 +875,7 @@ class SkinTemplate extends Skin {
 	 */
 	function buildNavUrls() {
 		global $wgUseTrackbacks, $wgOut, $wgUser, $wgRequest;
-		global $wgEnableUploads, $wgUploadNavigationUrl;
+		global $wgUploadNavigationUrl;
 
 		wfProfileIn( __METHOD__ );
 

@@ -30,7 +30,7 @@ class HTMLFileCache {
 
 	public function fileCacheName() {
 		if( !$this->mFileCache ) {
-			global $wgCacheDirectory, $wgFileCacheDirectory, $wgRequest;
+			global $wgCacheDirectory, $wgFileCacheDirectory;
 
 			if ( $wgFileCacheDirectory ) {
 				$dir = $wgFileCacheDirectory;

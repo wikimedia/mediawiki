@@ -22,8 +22,6 @@ class ProfilerSimpleText extends ProfilerSimple {
 	static private $out;
 
 	function getFunctionReport() {
-		global $wgRequest, $wgOut;
-
 		if($this->mTemplated) {
 			uasort($this->mCollated,array('self','sort'));
 			array_walk($this->mCollated,array('self','format'));

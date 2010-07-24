@@ -163,7 +163,6 @@ class UploadFromUrl extends UploadBase {
 		}
 
 		if ( $status->isGood() ) {
-			global $wgLocalFileRepo;
 			$file = $this->getLocalFile();
 
 			$wgUser->leaveUserMessage( wfMsg( 'successfulupload' ),

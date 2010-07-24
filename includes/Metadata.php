@@ -115,8 +115,6 @@ abstract class RdfMetaData {
 	}
 
 	protected function person($name, User $user ){
-		global $wgContLang;
-
 		if( $user->isAnon() ){
 			$this->element( $name, wfMsgExt( 'anonymous', array( 'parsemag' ), 1 ) );
 		} else if( $real = $user->getRealName() ) {

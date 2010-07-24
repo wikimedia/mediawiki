@@ -789,7 +789,7 @@ class Title {
 	 * @return \type{\string} the URL
 	 */
 	public function getFullURL( $query = '', $variant = false ) {
-		global $wgContLang, $wgServer, $wgRequest;
+		global $wgServer, $wgRequest;
 
 		if ( is_array( $query ) ) {
 			$query = wfArrayToCGI( $query );
@@ -3230,7 +3230,7 @@ class Title {
 	 *  Ignored if the user doesn't have the suppressredirect right
 	 */
 	private function moveToNewTitle( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUseSquid, $wgUser, $wgContLang;
+		global $wgUser, $wgContLang;
 
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		if ( $reason ) {
@@ -4042,8 +4042,7 @@ class Title {
 	 * @return Boolean
 	 */
 	public function canUseNoindex() {
-		global $wgArticleRobotPolicies, $wgContentNamespaces,
-		       $wgExemptFromUserRobotsControl;
+		global $wgContentNamespaces,  $wgExemptFromUserRobotsControl;
 
 		$bannedNamespaces = is_null( $wgExemptFromUserRobotsControl )
 			? $wgContentNamespaces

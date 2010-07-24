@@ -89,7 +89,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 }
 
 function wfSpecialWithoutinterwiki() {
-	global $wgRequest, $wgContLang;
+	global $wgRequest;
 	list( $limit, $offset ) = wfCheckLimits();
 	// Only searching the mainspace anyway
 	$prefix = Title::capitalize( $wgRequest->getVal( 'prefix' ), NS_MAIN );

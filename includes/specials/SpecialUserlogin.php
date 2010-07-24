@@ -624,7 +624,7 @@ class LoginForm {
 	}
 
 	function processLogin() {
-		global $wgUser, $wgAuth;
+		global $wgUser;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -803,7 +803,7 @@ class LoginForm {
 	 * @private
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
-		global $wgServer, $wgScript, $wgUser, $wgNewPasswordExpiry;
+		global $wgServer, $wgScript, $wgNewPasswordExpiry;
 
 		if ( $u->getEmail() == '' ) {
 			return new WikiError( wfMsg( 'noemail', $u->getName() ) );
@@ -838,7 +838,7 @@ class LoginForm {
 	 * @private
 	 */
 	function successfulLogin() {
-		global $wgUser, $wgOut;
+		global $wgOut;
 
 		# Run any hooks; display injected HTML if any, else redirect
 		$injected_html = '';
@@ -862,8 +862,7 @@ class LoginForm {
 	 * @private
 	 */
 	function successfulCreation() {
-		global $wgUser, $wgOut;
-
+		global $wgUser;
 		# Run any hooks; display injected HTML
 		$injected_html = '';
 		wfRunHooks('UserLoginComplete', array(&$wgUser, &$injected_html));

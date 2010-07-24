@@ -69,7 +69,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	 * Mostly initializes variables and calls either showForm() or submit()
 	 */
 	public function execute( $par ) {
-		global $wgUser, $wgOut, $wgSkin;
+		global $wgUser, $wgOut;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -234,8 +234,6 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	 * This function actually move the revision. NEVER call this function, call submit()
 	 */
 	protected function moveRevisions() {
-		global $wgOut;
-
 		$oldArticle = new Article( $this->mOldTitle );
 		$newArticle = new Article( $this->mNewTitle );
 

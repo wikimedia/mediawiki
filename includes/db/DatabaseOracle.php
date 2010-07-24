@@ -992,8 +992,6 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function setup_database() {
-		global $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgDBport, $wgDBuser;
-
 		$res = $this->sourceFile( "../maintenance/ora/tables.sql" );
 		if ($res === true) {
 			print " done.</li>\n";

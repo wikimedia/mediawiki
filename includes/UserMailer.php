@@ -359,7 +359,6 @@ class EmailNotification {
 		# we use $wgPasswordSender as sender's address
 		global $wgEnotifWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
-		global $wgEnotifImpersonal;
 
 		wfProfileIn( __METHOD__ );
 
