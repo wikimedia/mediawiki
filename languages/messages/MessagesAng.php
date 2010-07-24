@@ -683,32 +683,53 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'uploadedimage'     => 'forþsendode "[[$1]]"',
 'sourcefilename'    => 'Fruman þrǣdnama:',
 
-'nolicense' => 'Nǣnne gecorenne',
+'license'           => 'Gelēaf:',
+'license-header'    => 'Gelēaf',
+'nolicense'         => 'Nǣnne gecorenne',
+'license-nopreview' => 'Þis gelēaf nis gearu.',
 
 # Special:ListFiles
+'listfiles-summary'     => 'Þes syngriga tramet ēowaþ ealle forþsendede fīlas.
+Æfter gewunelicum wīsum, þā nīwostan fīlas sind ēowod be hēafe þæs getæles.
+Swenge wiþ sweorhēafod andwendeþ þā endebyrdnessa.',
 'listfiles_search_for'  => 'Sēcan biliþnaman:',
+'imgfile'               => 'fīl',
 'listfiles'             => 'Biliþgetalu',
 'listfiles_date'        => 'Tælmearc',
 'listfiles_name'        => 'Nama',
 'listfiles_user'        => 'Brūcend',
+'listfiles_size'        => 'Micelness',
 'listfiles_description' => 'Tōƿritennes',
+'listfiles_count'       => 'Fadunga',
 
 # File description page
 'file-anchor-link'          => 'Fīl',
 'filehist'                  => 'Fīlanstǣr',
 'filehist-help'             => 'Cnæpp on dæȝe/tīde to sēonne þā fīlan sƿā ƿæs hēo on þǣre tīde.',
+'filehist-deleteall'        => 'afeorsian eall',
+'filehist-deleteone'        => 'afeorsian',
+'filehist-revert'           => 'undōn',
 'filehist-current'          => 'nū',
 'filehist-datetime'         => 'Dæȝ/Tīd',
 'filehist-thumb'            => 'Lȳtlbiliþ',
 'filehist-thumbtext'        => 'Lȳtlbiliþ for fadunge sƿā $1',
+'filehist-nothumb'          => 'Nān biliþincel',
 'filehist-user'             => 'Brūcend',
 'filehist-dimensions'       => 'Miċela',
+'filehist-filesize'         => 'Fīlmicelness',
 'filehist-comment'          => 'Ymbsprǣċ',
+'filehist-missing'          => 'Fīl lēas',
 'imagelinks'                => 'Fīlhlenċan',
 'linkstoimage'              => 'Þā folgendan {{PLURAL:$1|sīde hæfþ hlenċe|sīdan habbaþ hlenċan}} for þissum fīle:',
 'nolinkstoimage'            => 'Þǣr sind nāne trametas þe bindaþ tō þissum biliðe.',
+'morelinkstoimage'          => 'Seoh [[Special:WhatLinksHere/$1|mā hlencan]] tō þissum fīle.',
+'redirectstofile'           => '{{PLURAL:$1|Þes fīl edlǣdeþ|$1 Þās fīlas hēr edlǣdaþ}} tō þissum  fīle:',
+'duplicatesoffile'          => '{{PLURAL:$1|Þes fīl hēr is gelīcness|Þās fīlas hēr sind gelīcnessa}} þisses fīles (seoh [[Special:FileDuplicateSearch/$2|mā gewitnesse hērymb]]):',
 'sharedupload'              => 'Þēos fīl is fram $1 and man mæȝ hīe brūcan on ōðrum ƿeorcum.',
 'uploadnewversion-linktext' => 'Nīƿe fadunge þisse fīlan forþsendan',
+
+# File reversion
+'filerevert-legend' => 'Eftdōn fīl',
 
 # File deletion
 'filedelete-submit' => 'āfeorsian',

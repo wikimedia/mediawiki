@@ -471,6 +471,7 @@ $messages = array(
 'filehist-deleteone' => 'мону ап каар',
 'filehist-current'   => 'амгы',
 'filehist-datetime'  => 'Үе/Шак',
+'filehist-thumb'     => 'Бичии чурук',
 'filehist-user'      => 'Ажыглакчы',
 'filehist-filesize'  => 'Файл хемчээли',
 'filehist-comment'   => 'Комментарий',
@@ -497,6 +498,9 @@ $messages = array(
 
 # Random page
 'randompage' => 'Даап арын',
+
+# Statistics
+'statistics' => 'Статистика',
 
 'brokenredirects-edit'   => 'өскертир',
 'brokenredirects-delete' => 'ап каар',
@@ -544,6 +548,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel'  => 'Ажыглакчы:',
 'speciallogtitlelabel' => 'Ат:',
+'log'                  => 'Журналдар',
 
 # Special:AllPages
 'allpages'       => 'Шупту арыннар',
@@ -597,6 +602,7 @@ $messages = array(
 'deletereasonotherlist' => 'Өске чылдагаан',
 
 # Protect
+'protectlogpage'      => 'Камгалал кырында журнал',
 'protectcomment'      => 'Чылдагаан:',
 'protect-default'     => '(ниити)',
 'protect-level-sysop' => 'Чүгле сисоплар',
@@ -626,8 +632,10 @@ $messages = array(
 'sp-contributions-submit'   => 'Дилээри',
 
 # What links here
-'whatlinkshere-page'  => 'Арын:',
-'whatlinkshere-links' => '← холбаалар',
+'whatlinkshere-page'      => 'Арын:',
+'isimage'                 => 'чуруктуң холбаазы',
+'whatlinkshere-links'     => '← холбаалар',
+'whatlinkshere-hidelinks' => 'холбааларны $1',
 
 # Block/unblock
 'ipaddress'                => 'ИП-адрес',
@@ -654,6 +662,7 @@ $messages = array(
 # Move page
 'move-page-legend' => 'Арынны шимчээр',
 'movearticle'      => 'Бо арынны шимчээри:',
+'newtitle'         => 'Чаа ат:',
 'move-watch'       => 'Бо арынны хайгаараары',
 'movepagebtn'      => 'Арынны шимчээри',
 'movereason'       => 'Чылдагаан:',
