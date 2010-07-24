@@ -30,7 +30,6 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 	}
 
 	function profileIn($functionname) {
-		global $wgDebugFunctionEntry;
 		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), microtime(true), $this->getCpuTime());
 		$this->trace .= "         " . sprintf("%6.1f",$this->memoryDiff()) . str_repeat( " ", count($this->mWorkStack)) . " > " . $functionname . "\n";
 	}
@@ -53,7 +52,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 				$this->trace .= $message . "\n";
 			}
 			elseif ($ofname != $functionname) {
-				$self->trace .= "Profiling error: in({$ofname}), out($functionname)";
+				$this->trace .= "Profiling error: in({$ofname}), out($functionname)";
 			}
 			$elapsedcpu = $this->getCpuTime() - $octime;
 			$elapsedreal = microtime(true) - $ortime;
