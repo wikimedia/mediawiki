@@ -57,7 +57,7 @@ class SkinNostalgia extends Skin {
 	}
 
 	function topLinks() {
-		global $wgOut, $wgUser, $wgEnableUploads;
+		global $wgOut, $wgUser;
 		$sep = " |\n";
 
 		$s = $this->mainPageLink() . $sep

@@ -131,7 +131,7 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function sysLinks() {
-		global $wgUser, $wgLang, $wgContLang;
+		global $wgUser, $wgLang;
 		$li = SpecialPage::getTitleFor( 'Userlogin' );
 		$lo = SpecialPage::getTitleFor( 'Userlogout' );
 
@@ -190,7 +190,7 @@ class SkinCologneBlue extends Skin {
 	 * @access private
 	 */
 	function quickBar(){
-		global $wgOut, $wgUser, $wgEnableUploads;
+		global $wgOut, $wgUser;
 
 		$tns = $this->mTitle->getNamespace();
 
