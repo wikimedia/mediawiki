@@ -16,7 +16,7 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $mmfl;
+		global $mmfl;
 		if ( !$this->hasOption( 'list-file' ) ) {
 			$this->error( 'The --list-file option must be specified.' );
 			return;

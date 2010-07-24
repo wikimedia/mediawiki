@@ -69,8 +69,6 @@ class Licenses extends HTMLFormField {
 	}
 
 	protected function trimStars( $str ) {
-		$i = $count = 0;
-
 		$numStars = strspn( $str, '*' );
 		return array( $numStars, ltrim( substr( $str, $numStars ), ' ' ) );
 	}
