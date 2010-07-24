@@ -1,6 +1,6 @@
 <?php
 
-define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
+define( 'MW_CONFIG_CALLBACK', 'CoreInstaller::overrideConfig' );
 
 chdir( ".." );
 require( './includes/WebStart.php' );
