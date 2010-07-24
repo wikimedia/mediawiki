@@ -250,7 +250,7 @@ class Article {
 	 * @return Return the text of this revision
 	 */
 	public function getContent() {
-		global $wgUser, $wgContLang, $wgOut, $wgMessageCache;
+		global $wgUser, $wgContLang, $wgMessageCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -826,9 +826,8 @@ class Article {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUser, $wgOut, $wgRequest, $wgContLang;
-		global $wgEnableParserCache, $wgStylePath, $wgParser;
-		global $wgUseTrackbacks, $wgUseFileCache;
+		global $wgUser, $wgOut, $wgRequest, $wgParser;
+		global $wgUseFileCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1048,7 +1047,7 @@ class Article {
 	 * Article::view() only, other callers should use the DifferenceEngine class.
 	 */
 	public function showDiffPage() {
-		global $wgOut, $wgRequest, $wgUser;
+		global $wgRequest, $wgUser;
 
 		$diff = $wgRequest->getVal( 'diff' );
 		$rcid = $wgRequest->getVal( 'rcid' );
@@ -1285,7 +1284,7 @@ class Article {
 	 * Show the footer section of an ordinary page view
 	 */
 	public function showViewFooter() {
-		global $wgOut, $wgUseTrackbacks, $wgRequest;
+		global $wgOut, $wgUseTrackbacks;
 
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 		if ( $this->mTitle->getNamespace() == NS_USER_TALK && IP::isValid( $this->mTitle->getText() ) ) {
@@ -2359,7 +2358,7 @@ class Article {
 	 * Mark this particular edit/page as patrolled
 	 */
 	public function markpatrolled() {
-		global $wgOut, $wgRequest, $wgUseRCPatrol, $wgUseNPPatrol, $wgUser;
+		global $wgOut, $wgRequest;
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
@@ -3125,7 +3124,7 @@ class Article {
 	 * Perform a deletion and output success or failure messages
 	 */
 	public function doDelete( $reason, $suppress = false ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$id = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 
@@ -3181,8 +3180,7 @@ class Article {
 	 * @return boolean true if successful
 	 */
 	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true ) {
-		global $wgUseSquid, $wgDeferredUpdateList;
-		global $wgUseTrackbacks;
+		global $wgDeferredUpdateList, $wgUseTrackbacks;
 
 		wfDebug( __METHOD__ . "\n" );
 
@@ -3493,7 +3491,7 @@ class Article {
 	 * User interface for rollback operations
 	 */
 	public function rollback() {
-		global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
+		global $wgUser, $wgOut, $wgRequest;
 
 		$details = null;
 
@@ -4006,6 +4004,7 @@ class Article {
 		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
 
+		global $wgUser;
 		wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, false, $wgUser ) );
 
 		wfProfileOut( __METHOD__ );
@@ -4420,7 +4419,7 @@ class Article {
 	 * @return string containing parsed output
 	 */
 	public function getOutputFromWikitext( $text, $cache = true, $parserOptions = false ) {
-		global $wgParser, $wgOut, $wgEnableParserCache, $wgUseFileCache;
+		global $wgParser, $wgEnableParserCache, $wgUseFileCache;
 
 		if ( !$parserOptions ) {
 			$parserOptions = $this->getParserOptions();
@@ -4499,8 +4498,6 @@ class Article {
 			array( 'tl_from' => $id ),
 			__METHOD__
 		);
-
-		global $wgContLang;
 
 		foreach ( $res as $row ) {
 			$tlTemplates["{$row->tl_namespace}:{$row->tl_title}"] = true;
@@ -4596,7 +4593,7 @@ class Article {
 	 * @param $oldid mixed integer Revision ID or null
 	 */
 	public function getParserOutput( $oldid = null ) {
-		global $wgEnableParserCache, $wgUser, $wgOut;
+		global $wgEnableParserCache, $wgUser;
 
 		// Should the parser cache be used?
 		$useParserCache = $wgEnableParserCache &&
