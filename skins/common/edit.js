@@ -1,5 +1,4 @@
-// this function generates the actual toolbar buttons with localized text
-// we use it to avoid creating the toolbar where javascript is not enabled
+// this function adds a toolbar button to the mwEditButtons list
 function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText, imageId) {
 	// Don't generate buttons for browsers which don't fully
 	// support it.
@@ -12,8 +11,7 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText, imageId) 
 		 "sampleText": sampleText};
 }
 
-// this function generates the actual toolbar buttons with localized text
-// we use it to avoid creating the toolbar where javascript is not enabled
+// this function adds one toolbar butto from a mwEditButtons/mwCustomEditButtons item
 function mwInsertEditButton(parent, item) {
 	var image = document.createElement("img");
 	image.width = 23;
@@ -34,6 +32,8 @@ function mwInsertEditButton(parent, item) {
 	return true;
 }
 
+// this function generates the actual toolbar buttons with localized text
+// we use it to avoid creating the toolbar where javascript is not enabled
 function mwSetupToolbar() {
 	var toolbar = document.getElementById('toolbar');
 	if (!toolbar) { return false; }
