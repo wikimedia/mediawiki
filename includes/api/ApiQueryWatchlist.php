@@ -142,6 +142,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			// Check permissions.
 			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
+				global $wgUser;
 				if ( !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() ) {
 					$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 				}
