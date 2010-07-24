@@ -133,7 +133,6 @@ class Orphans extends Maintenance {
 		" );
 		$widows = $dbw->numRows( $result );
 		if ( $widows > 0 ) {
-			global $wgContLang;
 			$this->output( "$widows childless pages...\n" );
 			$this->output( sprintf( "%10s %11s %2s %s\n", 'page_id', 'page_latest', 'ns', 'page_title' ) );
 			foreach ( $result as $row ) {

@@ -141,7 +141,6 @@ class GenerateSitemap extends Maintenance {
 	 * Execute
 	 */
 	public function execute() {
-		global $wgScriptPath;
 		$this->setNamespacePriorities();
 		$this->url_limit = 50000;
 		$this->size_limit = pow( 2, 20 ) * 10;

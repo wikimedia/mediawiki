@@ -34,7 +34,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 	}
 
 	public function execute() {
-		global $IP, $wgUseSharedUploads;
+		global $IP;
 		$this->mAction = 'fetchLocal';
 		$this->mBasePath = $this->getOption( 'base', $IP );
 		$this->mShared = false;
