@@ -176,7 +176,7 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	function getPageHeader( ) {
-		global $wgScript, $wgRequest;
+		global $wgScript;
 		$self = $this->getTitle();
 
 		# Form tag
@@ -270,7 +270,7 @@ class UsersPager extends AlphabeticPager {
  * $par string (optional) A group to list users from
  */
 function wfSpecialListusers( $par = null ) {
-	global $wgRequest, $wgOut;
+	global $wgOut;
 
 	$up = new UsersPager($par);
 

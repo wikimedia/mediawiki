@@ -595,7 +595,7 @@ class Html {
 			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
 		}
 
-		global $wgHtml5, $wgHtml5Version, $wgWellFormedXml, $wgDocType, $wgDTD;
+		global $wgHtml5, $wgHtml5Version, $wgDocType, $wgDTD;
 		global $wgXhtmlNamespaces, $wgXhtmlDefaultNamespace;
 		if ( $wgHtml5 ) {
 			$ret .= "<!DOCTYPE html>\n";

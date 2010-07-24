@@ -38,7 +38,7 @@ class SpecialStatistics extends SpecialPage {
 	}
 	
 	public function execute( $par ) {
-		global $wgOut, $wgRequest, $wgMessageCache, $wgMemc;
+		global $wgOut, $wgRequest, $wgMemc;
 		global $wgDisableCounters, $wgMiserMode;
 		
 		$this->setHeaders();
@@ -123,7 +123,6 @@ class SpecialStatistics extends SpecialPage {
 	 * @return string table row in HTML format
 	 */
 	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '', $descMsgParam = '' ) {
-		global $wgStylePath;
 		if( $descMsg ) {
 			$descriptionText = wfMsgExt( $descMsg, array( 'parseinline' ), $descMsgParam );
 			if ( !wfEmptyMsg( $descMsg, $descriptionText ) ) {

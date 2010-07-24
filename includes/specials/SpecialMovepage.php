@@ -347,7 +347,7 @@ class MovePageForm {
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgRequest, $wgMaximumMovedPages, $wgLang;
+		global $wgOut, $wgUser, $wgMaximumMovedPages, $wgLang;
 		global $wgFixDoubleRedirects;
 
 		if ( $wgUser->pingLimiter( 'move' ) ) {

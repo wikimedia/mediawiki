@@ -12,7 +12,7 @@ class WikiMap {
 	 * @return WikiReference object or null if the wiki was not found
 	 */
 	public static function getWiki( $wikiID ) {
-		global $wgConf, $IP;
+		global $wgConf;
 
 		$wgConf->loadFullData();
 

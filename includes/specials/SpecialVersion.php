@@ -72,8 +72,6 @@ class SpecialVersion extends SpecialPage {
 	 * @return wiki text showing the license information
 	 */
 	static function MediaWikiCredits() {
-		global $wgContLang;
-
 		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMsg( 'version-license' ) );
 
 		// This text is always left-to-right.

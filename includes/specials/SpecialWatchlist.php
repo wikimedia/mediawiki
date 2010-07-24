@@ -36,7 +36,7 @@ function wfSpecialWatchlist( $par ) {
 		$wgUser->saveSettings();
 	}
 	
-	global $wgServer, $wgScriptPath, $wgFeedClasses;
+	global $wgFeedClasses;
 	$apiParams = array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
 						'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken );
 	$feedTemplate = wfScript('api').'?';

@@ -217,7 +217,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return Mixed: True on success, String on error
 	 */
 	public static function submit( $data ) {
-		global $wgUser, $wgUserEmailUseReplyTo, $wgSiteName;
+		global $wgUser, $wgUserEmailUseReplyTo;
 
 		$target = self::getTarget( $data['Target'] );
 		if( !$target instanceof User ){

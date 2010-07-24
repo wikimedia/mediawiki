@@ -372,7 +372,7 @@ class Skin extends Linker {
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
 		global $wgRestrictionTypes;
-		global $wgMWSuggestTemplate, $wgDBname, $wgEnableMWSuggest;
+		global $wgDBname, $wgEnableMWSuggest;
 		global $wgSitename;
 
 		$ns = $wgTitle->getNamespace();
@@ -597,8 +597,8 @@ CSS;
 	 * @private
 	 */
 	function setupUserCss( OutputPage $out ) {
-		global $wgRequest, $wgContLang, $wgUser;
-		global $wgAllowUserCss, $wgUseSiteCss, $wgSquidMaxage, $wgStylePath;
+		global $wgRequest, $wgUser;
+		global $wgAllowUserCss, $wgUseSiteCss, $wgSquidMaxage;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1088,7 +1088,7 @@ CSS;
 	}
 
 	function getUndeleteLink() {
-		global $wgUser, $wgContLang, $wgLang, $wgRequest;
+		global $wgUser, $wgLang, $wgRequest;
 
 		$action = $wgRequest->getVal( 'action', 'view' );
 
@@ -1609,7 +1609,7 @@ CSS;
 	 * Show a drop-down box of special pages
 	 */
 	function specialPagesList() {
-		global $wgUser, $wgContLang, $wgServer, $wgRedirectScript;
+		global $wgContLang, $wgServer, $wgRedirectScript;
 		$pages = array_merge( SpecialPage::getRegularPages(), SpecialPage::getRestrictedPages() );
 		foreach ( $pages as $name => $page ) {
 			$pages[$name] = $page->getDescription();

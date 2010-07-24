@@ -403,7 +403,6 @@ class LoadBalancer {
 	 * @param $wiki String: wiki ID
 	 */
 	public function &getConnection( $i, $groups = array(), $wiki = false ) {
-		global $wgDBtype;
 		wfProfileIn( __METHOD__ );
 
 		if ( $i == DB_LAST ) {

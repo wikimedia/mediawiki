@@ -31,7 +31,7 @@
 function wfSpecialLinkSearch( $par ) {
 
 	list( $limit, $offset ) = wfCheckLimits();
-	global $wgOut, $wgRequest, $wgUrlProtocols, $wgMiserMode, $wgLang;
+	global $wgOut, $wgUrlProtocols, $wgMiserMode, $wgLang;
 	$target = $GLOBALS['wgRequest']->getVal( 'target', $par );
 	$namespace = $GLOBALS['wgRequest']->getIntorNull( 'namespace', null );
 

@@ -765,7 +765,7 @@ class EditPage {
 	 * @return one of the constants describing the result
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgFilterCallback, $wgUser, $wgOut, $wgParser;
+		global $wgFilterCallback, $wgUser, $wgParser;
 		global $wgMaxArticleSize;
 
 		wfProfileIn( __METHOD__  );
@@ -1848,7 +1848,7 @@ INPUTS
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgLang, $wgContLang, $wgMessageCache;
+		global $wgOut, $wgUser, $wgParser, $wgMessageCache;
 
 		wfProfileIn( __METHOD__ );
 

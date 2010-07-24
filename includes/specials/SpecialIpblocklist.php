@@ -362,7 +362,7 @@ class IPUnblockForm extends SpecialPage {
 	}
 
 	function searchForm() {
-		global $wgScript, $wgRequest, $wgLang;
+		global $wgScript, $wgLang;
 
 		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
 		$nondefaults = array();

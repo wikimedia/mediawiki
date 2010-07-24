@@ -197,7 +197,7 @@ class MWException extends Exception {
 	 * $wgOut to output the exception.
 	 */
 	function htmlHeader() {
-		global $wgLogo, $wgSitename, $wgOutputEncoding;
+		global $wgLogo, $wgOutputEncoding;
 
 		if ( !headers_sent() ) {
 			header( 'HTTP/1.0 500 Internal Server Error' );

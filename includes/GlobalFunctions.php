@@ -704,7 +704,7 @@ function wfMsgWeirdKey( $key ) {
  * @return string
  */
 function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
-	global $wgContLang, $wgMessageCache;
+	global $wgMessageCache;
 
 	wfRunHooks('NormalizeMessageKey', array(&$key, &$useDB, &$langCode, &$transform));
 	
@@ -2060,7 +2060,7 @@ function wfGetNamespaceNotice() {
 }
 
 function wfGetSiteNotice() {
-	global $wgUser, $wgSiteNotice;
+	global $wgUser;
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
 	$siteNotice = '';

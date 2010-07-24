@@ -357,7 +357,7 @@ class LogEventsList {
 
 	// @TODO: split up!
 	private function logActionLinks( $row, $title, $paramArray, &$comment ) {
-		global $wgUser, $wgLang;
+		global $wgUser;
 		if( ( $this->flags & self::NO_ACTION_LINK ) // we don't want to see the action
 			|| self::isDeleted( $row, LogPage::DELETED_ACTION ) ) // action is hidden
 		{
@@ -913,7 +913,6 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	public function getQueryInfo() {
-		global $wgOut;
 		$tables = array( 'logging', 'user' );
 		$this->mConds[] = 'user_id = log_user';
 		$index = array();

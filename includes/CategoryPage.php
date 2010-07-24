@@ -85,7 +85,7 @@ class CategoryViewer {
 	 * @private
 	 */
 	function getHTML() {
-		global $wgOut, $wgCategoryMagicGallery, $wgCategoryPagingLimit, $wgContLang;
+		global $wgOut, $wgCategoryMagicGallery, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$this->showGallery = $wgCategoryMagicGallery && !$wgOut->mNoGallery;

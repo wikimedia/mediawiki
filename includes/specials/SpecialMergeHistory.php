@@ -157,7 +157,7 @@ class SpecialMergeHistory extends SpecialPage {
 	}
 
 	private function showHistory() {
-		global $wgLang, $wgUser, $wgOut;
+		global $wgUser, $wgOut;
 
 		$this->sk = $wgUser->getSkin();
 

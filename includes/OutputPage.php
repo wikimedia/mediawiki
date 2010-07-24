@@ -2090,8 +2090,8 @@ class OutputPage {
 	 * @return String: The doctype, opening <html>, and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
-		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5;
+		global $wgOutputEncoding, $wgMimeType;
+		global $wgUseTrackbacks, $wgHtml5;
 		global $wgUser, $wgRequest, $wgLang;
 
 		if ( $sk->commonPrintStylesheet() ) {

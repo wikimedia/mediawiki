@@ -105,7 +105,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @return String
 	 */
 	public function execute( $par ) {
-		global $wgLang, $wgOut;
+		global $wgOut;
 
 		$this->setHeaders();
 		$this->outputHeader();

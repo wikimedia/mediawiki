@@ -91,7 +91,7 @@ function wfGetType( $filename, $safe = true ) {
 	 */
 	if ( $safe ) {
 		global $wgFileBlacklist, $wgCheckFileExtensions, $wgStrictFileExtensions, 
-			$wgFileExtensions, $wgVerifyMimeType, $wgMimeTypeBlacklist, $wgRequest;
+			$wgFileExtensions, $wgVerifyMimeType, $wgMimeTypeBlacklist;
 		list( $partName, $extList ) = UploadBase::splitExtensions( $filename );
 		if ( UploadBase::checkFileExtensionList( $extList, $wgFileBlacklist ) ) {
 			return 'unknown/unknown';

@@ -159,7 +159,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return null
 	 */
 	function saveUserGroups( $username, $reason = '' ) {
-		global $wgRequest, $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
+		global $wgRequest, $wgOut;
 
 		$status = $this->fetchUser( $username );
 		if( !$status->isOK() ) {
