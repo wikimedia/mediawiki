@@ -367,7 +367,7 @@ class VectorTemplate extends QuickTemplate {
 	 * Outputs the entire contents of the XHTML page
 	 */
 	public function execute() {
-		global $wgRequest, $wgOut, $wgContLang;
+		global $wgRequest, $wgContLang;
 
 		$this->skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
@@ -675,7 +675,7 @@ class VectorTemplate extends QuickTemplate {
 	 * when UI is in RTL mode
 	 */
 	private function renderNavigation( $elements ) {
-		global $wgContLang, $wgVectorUseSimpleSearch, $wgVectorShowVariantName, $wgUser;
+		global $wgVectorUseSimpleSearch, $wgVectorShowVariantName, $wgUser;
 
 		// If only one element was given, wrap it in an array, allowing more
 		// flexible arguments

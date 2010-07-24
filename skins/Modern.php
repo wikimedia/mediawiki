@@ -31,8 +31,6 @@ class SkinModern extends SkinTemplate {
 	}
 
 	function setupSkinUserCss( OutputPage $out ){
-		global $wgStyleVersion, $wgJsMimeType, $wgStylePath;
-
 		// Do not call parent::setupSkinUserCss(), we have our own print style
 		$out->addStyle( 'common/shared.css', 'screen' );
 		$out->addStyle( 'modern/main.css', 'screen' );
@@ -56,7 +54,7 @@ class ModernTemplate extends MonoBookTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgRequest, $wgOut;
+		global $wgRequest;
 		$this->skin = $skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
 

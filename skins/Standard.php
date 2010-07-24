@@ -103,7 +103,6 @@ class SkinStandard extends Skin {
 
 	function quickBar() {
 		global $wgOut, $wgUser, $wgRequest, $wgContLang;
-		global $wgEnableUploads, $wgRemoteUploads;
 
 		wfProfileIn( __METHOD__ );
 
