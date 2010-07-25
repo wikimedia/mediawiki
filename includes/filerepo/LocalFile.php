@@ -1125,7 +1125,7 @@ class LocalFile extends File {
 	 * Get the URL of the file description page.
 	 */
 	function getDescriptionUrl() {
-		return $this->title->getLocalUrl();
+		return $this->title->getLocalUrl( $this->getName() );
 	}
 
 	/**
