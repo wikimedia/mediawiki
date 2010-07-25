@@ -296,28 +296,48 @@ class LinkHolderArray {
 		$linkCache = LinkCache::singleton();
 		$sk = $this->parent->getOptions()->getSkin();
 		$threshold = $this->getStubThreshold();
-
-		// Add variants of links to link batch
+		$titlesToBeConverted = '';
+		$titlesAttrs = array();
+		
+		// Concatenate titles to a single string, thus we only need auto convert the
+		// single string to all variants. This would improve parser's performance
+		// significantly.
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $index => $entry ) {
-				$key = "$ns:$index";
 				$pdbk = $entry['pdbk'];
-				$title = $entry['title'];
-				$titleText = $title->getText();
-
-				// generate all variants of the link title text
-				$allTextVariants = $wgContLang->convertLinkToAllVariants($titleText);
-
-				// if link was not found (in first query), add all variants to query
-				if ( !isset($colours[$pdbk]) ){
-					foreach($allTextVariants as $textVariant){
-						if($textVariant != $titleText){
-							$variantTitle = Title::makeTitle( $ns, $textVariant );
-							if(is_null($variantTitle)) continue;
-							$linkBatch->addObj( $variantTitle );
-							$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
-						}
-					}
+				// we only deal with new links (in its first query)
+				if ( !isset( $colours[$pdbk] ) ) {
+					$title = $entry['title'];
+					$titleText = $title->getText();
+					$titlesAttrs[] = array(
+						'ns' => $ns,
+						'key' => "$ns:$index",
+						'titleText' => $titleText,
+					);					
+					// separate titles with \0 because it would never appears
+					// in a valid title
+					$titlesToBeConverted .= $title . '\0';
+				}
+			}
+		}
+		
+		// Now do the conversion and explode string to text of titles
+		$titlesAllVariants = $wgContLang->convertLinkToAllVariants( $titlesToBeConverted );
+		$allVariantsName = array_keys( $titlesAllVariants );
+		foreach ( $titlesAllVariants as &$titlesVariant ) {
+			$titlesVariant = explode( '\0', $titlesVariant );
+		}
+		
+		// Then add variants of links to link batch
+		for ( $i = 0; $l = count( $titlesAttrs ), $i < $l; $i ++ ) {
+			foreach ( $allVariantsName as $variantName ) {
+				$textVariant = $titlesAllVariants[$variantName][$i];
+				extract( $titlesAttrs[$i] );
+				if($textVariant != $titleText){
+					$variantTitle = Title::makeTitle( $ns, $textVariant );
+					if( is_null( $variantTitle ) ) { continue; }
+					$linkBatch->addObj( $variantTitle );
+					$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
 				}
 			}
 		}
@@ -326,7 +346,7 @@ class LinkHolderArray {
 		$categoryMap = array(); // maps $category_variant => $category (dbkeys)
 		$varCategories = array(); // category replacements oldDBkey => newDBkey
 		foreach( $output->getCategoryLinks() as $category ){
-			$variants = $wgContLang->convertLinkToAllVariants($category);
+			$variants = $wgContLang->convertLinkToAllVariants( $category );
 			foreach($variants as $variant){
 				if($variant != $category){
 					$variantTitle = Title::newFromDBkey( Title::makeName(NS_CATEGORY,$variant) );
