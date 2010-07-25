@@ -2913,8 +2913,6 @@ class Article {
 
 		// If the page has a history, insert a warning
 		if ( $hasHistory && !$confirm ) {
-			global $wgLang;
-
 			$skin = $wgUser->getSkin();
 			$revisions = $this->estimateRevisionCount();
 			//FIXME: lego
@@ -2925,8 +2923,6 @@ class Article {
 			);
 
 			if ( $bigHistory ) {
-				global $wgDeleteRevisionsLimit;
-
 				$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 					array( 'delete-warning-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 			}
@@ -3123,7 +3119,7 @@ class Article {
 	 * Perform a deletion and output success or failure messages
 	 */
 	public function doDelete( $reason, $suppress = false ) {
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		$id = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 
@@ -4350,6 +4346,8 @@ class Article {
 	* @return string An appropriate autosummary, or an empty string.
 	*/
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
+		global $wgContLang;
+		
 		# Decide what kind of autosummary is needed.
 
 		# Redirect autosummaries
@@ -4363,7 +4361,6 @@ class Article {
 		# New page autosummaries
 		if ( $flags & EDIT_NEW && strlen( $newtext ) ) {
 			# If they're making a new article, give its text, truncated, in the summary.
-			global $wgContLang;
 
 			$truncatedtext = $wgContLang->truncate(
 				str_replace( "\n", ' ', $newtext ),
@@ -4377,7 +4374,6 @@ class Article {
 			return wfMsgForContent( 'autosumm-blank' );
 		} elseif ( strlen( $oldtext ) > 10 * strlen( $newtext ) && strlen( $newtext ) < 500 ) {
 			# Removing more than 90% of the article
-			global $wgContLang;
 
 			$truncatedtext = $wgContLang->truncate(
 				$newtext,
