@@ -881,7 +881,6 @@ class LanguageConverter {
 			}
 		}
 
-
 		// parse the mappings in this page
 		$blocks = StringUtils::explode( '-{', $txt );
 		$ret = array();
@@ -907,7 +906,6 @@ class LanguageConverter {
 		}
 		$parsed[$key] = true;
 
-
 		// recursively parse the subpages
 		if ( $recursive ) {
 			foreach ( $sublinks as $link ) {
@@ -918,7 +916,7 @@ class LanguageConverter {
 
 		if ( $this->mUcfirst ) {
 			foreach ( $ret as $k => $v ) {
-				$ret[Language::ucfirst( $k )] = Language::ucfirst( $v );
+				$ret[$this->mLangObj->ucfirst( $k )] = $this->mLangObj->ucfirst( $v );
 			}
 		}
 		return $ret;
