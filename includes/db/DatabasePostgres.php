@@ -227,9 +227,9 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 
-	function initial_setup($password, $dbName) {
+	function initial_setup($superuser, $password, $dbName) {
 		// If this is the initial connection, setup the schema stuff and possibly create the user
-		global $wgDBname, $wgDBuser, $wgDBpassword, $wgDBsuperuser, $wgDBmwschema, $wgDBts2schema;
+		global $wgDBname, $wgDBuser, $wgDBpassword, $superuser, $wgDBmwschema, $wgDBts2schema;
 
 		print "<li>Checking the version of Postgres...";
 		$version = $this->getServerVersion();
@@ -242,17 +242,17 @@ class DatabasePostgres extends DatabaseBase {
 
 		$safeuser = $this->quote_ident($wgDBuser);
 		// Are we connecting as a superuser for the first time?
-		if ($wgDBsuperuser) {
+		if ($superuser) {
 			// Are we really a superuser? Check out our rights
 			$SQL = "SELECT
                       CASE WHEN usesuper IS TRUE THEN
                       CASE WHEN usecreatedb IS TRUE THEN 3 ELSE 1 END
                       ELSE CASE WHEN usecreatedb IS TRUE THEN 2 ELSE 0 END
                     END AS rights
-                    FROM pg_catalog.pg_user WHERE usename = " . $this->addQuotes($wgDBsuperuser);
+                    FROM pg_catalog.pg_user WHERE usename = " . $this->addQuotes($superuser);
 			$rows = $this->numRows($res = $this->doQuery($SQL));
 			if (!$rows) {
-				print "<li>ERROR: Could not read permissions for user \"" . htmlspecialchars( $wgDBsuperuser ) . "\"</li>\n";
+				print "<li>ERROR: Could not read permissions for user \"" . htmlspecialchars( $superuser ) . "\"</li>\n";
 				dieout('</ul>');
 			}
 			$perms = pg_fetch_result($res, 0, 0);
@@ -264,7 +264,7 @@ class DatabasePostgres extends DatabaseBase {
 			}
 			else {
 				if ($perms != 1 and $perms != 3) {
-					print "<li>ERROR: the user \"" . htmlspecialchars( $wgDBsuperuser ) . "\" cannot create other users. ";
+					print "<li>ERROR: the user \"" . htmlspecialchars( $superuser ) . "\" cannot create other users. ";
 					print 'Please use a different Postgres user.</li>';
 					dieout('</ul>');
 				}
@@ -283,7 +283,7 @@ class DatabasePostgres extends DatabaseBase {
 				}
 				else {
 					if ($perms < 1) {
-						print "<li>ERROR: the user \"" . htmlspecialchars( $wgDBsuperuser ) . "\" cannot create databases. ";
+						print "<li>ERROR: the user \"" . htmlspecialchars( $superuser ) . "\" cannot create databases. ";
 						print 'Please use a different Postgres user.</li>';
 						dieout('</ul>');
 					}
@@ -297,7 +297,7 @@ class DatabasePostgres extends DatabaseBase {
 
 				// Reconnect to check out tsearch2 rights for this user
 				print "<li>Connecting to \"" . htmlspecialchars( $wgDBname ) . "\" as superuser \"" .
-					htmlspecialchars( $wgDBsuperuser ) . "\" to check rights...";
+					htmlspecialchars( $superuser ) . "\" to check rights...";
 
 				$connectVars = array();
 				if ($this->mServer!=false && $this->mServer!="") {
@@ -307,7 +307,7 @@ class DatabasePostgres extends DatabaseBase {
 					$connectVars['port'] = $this->mPort;
 				}
 				$connectVars['dbname'] = $wgDBname;
-				$connectVars['user'] = $wgDBsuperuser;
+				$connectVars['user'] = $superuser;
 				$connectVars['password'] = $password;
 
 				@$this->mConn = pg_connect( $this->makeConnectionString( $connectVars ) );
@@ -380,7 +380,7 @@ class DatabasePostgres extends DatabaseBase {
 			// Install plpgsql if needed
 			$this->setup_plpgsql();
 
-			$wgDBsuperuser = '';
+			$superuser = '';
 			return true; // Reconnect as regular user
 
 		} // end superuser
