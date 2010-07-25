@@ -650,6 +650,7 @@ abstract class Installer {
 	 * Environment check for setting $IP and $wgScriptPath.
 	 */
 	public function envCheckPath() {
+		global $IP;
 		$IP = dirname( dirname( dirname( __FILE__ ) ) );
 		
 		$this->setVar( 'IP', $IP );
