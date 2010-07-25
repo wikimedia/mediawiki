@@ -471,8 +471,6 @@ class Preferences {
 
 		$selectedSkin = $user->getOption( 'skin' );
 		if ( in_array( $selectedSkin, array( 'cologneblue', 'standard' ) ) ) {
-			global $wgLang;
-
 			$settings = array_flip( $wgLang->getQuickbarSettings() );
 
 			$defaultPreferences['quickbar'] = array(
