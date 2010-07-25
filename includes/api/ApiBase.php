@@ -329,7 +329,7 @@ abstract class ApiBase {
 						switch ( $type ) {
 							case 'namespace':
 								// Special handling because namespaces are type-limited, yet they are not given
-								$desc .= $paramPrefix . $prompt . implode( ', ', ApiBase::getValidNamespaces() );
+								$desc .= $paramPrefix . $prompt . implode( ', ', MWNamespace::getValidNamespaces() );
 								break;
 							case 'limit':
 								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]} ({$paramSettings[self::PARAM_MAX2]} for bots) allowed";
@@ -524,24 +524,10 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Returns an array of the namespaces (by integer id) that exist on the
-	 * wiki. Used primarily in help documentation.
-	 * @return array
+	 * @deprecated use MWNamespace::getValidNamespaces()
 	 */
 	public static function getValidNamespaces() {
-		static $mValidNamespaces = null;
-
-		if ( is_null( $mValidNamespaces ) ) {
-			global $wgCanonicalNamespaceNames;
-			$mValidNamespaces = array( NS_MAIN ); // Doesn't appear in $wgCanonicalNamespaceNames for some reason
-			foreach ( array_keys( $wgCanonicalNamespaceNames ) as $ns ) {
-				if ( $ns > 0 ) {
-					$mValidNamespaces[] = $ns;
-				}
-			}
-		}
-
-		return $mValidNamespaces;
+		return MWNamespace::getValidNamespaces();
 	}
 
 	/**
@@ -649,7 +635,7 @@ abstract class ApiBase {
 			$value = $this->getMain()->getRequest()->getVal( $encParamName, $default );
 
 			if ( isset( $value ) && $type == 'namespace' ) {
-				$type = ApiBase::getValidNamespaces();
+				$type = MWNamespace::getValidNamespaces();
 			}
 		}
 
