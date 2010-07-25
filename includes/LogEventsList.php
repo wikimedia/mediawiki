@@ -1088,6 +1088,7 @@ class LogViewer {
 	 * Take over the whole output page in $wgOut with the log display.
 	 */
 	public function show() {
+		global $wgOut;
 		# Set title and add header
 		$this->list->showHeader( $pager->getType() );
 		# Show form options
