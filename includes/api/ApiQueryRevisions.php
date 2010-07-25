@@ -422,14 +422,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		$text = null;
+		global $wgParser;
 		if ( $this->fld_content || !is_null( $this->difftotext ) ) {
 			$text = $revision->getText();
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
 			// will have less input
 			if ( $this->section !== false ) {
-				global $wgParser;
-
 				$text = $wgParser->getSection( $text, $this->section, false );
 				if ( $text === false ) {
 					$this->dieUsage( "There is no section {$this->section} in r" . $revision->getId(), 'nosuchsection' );
@@ -438,7 +437,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 		if ( $this->fld_content && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
 			if ( $this->generateXML ) {
-				global $wgParser;
 				$wgParser->startExternalParse( $title, new ParserOptions(), OT_PREPROCESS );
 				$dom = $wgParser->preprocessToDom( $text );
 				if ( is_callable( array( $dom, 'saveXML' ) ) ) {
@@ -450,7 +448,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			}
 			if ( $this->expandTemplates ) {
-				global $wgParser;
 				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
 			}
 			ApiResult::setContent( $vals, $text );

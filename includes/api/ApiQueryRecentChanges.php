@@ -108,6 +108,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	 * Generates and outputs the result of this query based upon the provided parameters.
 	 */
 	public function execute() {
+		global $wgUser;
 		/* Get the parameters of the request. */
 		$params = $this->extractRequestParams();
 
@@ -141,7 +142,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			}
 
 			// Check permissions
-			global $wgUser;
 			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
 				if ( !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() ) {
 					$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
@@ -197,7 +197,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			/* Set up internal members based upon params. */
 			$this->initProperties( $prop );
 
-			global $wgUser;
 			if ( $this->fld_patrolled && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() )
 			{
 				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
