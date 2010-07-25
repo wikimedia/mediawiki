@@ -2589,6 +2589,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'immobile-source-page'         => '이 문서는 이동할 수 없습니다.',
 'immobile-target-page'         => '새 이름으로 옮길 수 없습니다.',
 'imagenocrossnamespace'        => '파일을 파일이 아닌 이름공간으로 옮길 수 없습니다.',
+'nonfile-cannot-move-to-file'  => '파일이 아닌 문서를 파일 이름공간으로 옮길 수 없습니다.',
 'imagetypemismatch'            => '새 파일의 확장자가 원래의 확장자와 일치하지 않습니다.',
 'imageinvalidfilename'         => '새 파일 이름이 잘못되었습니다.',
 'fix-double-redirects'         => '기존 이름을 가리키는 넘겨주기를 갱신',

@@ -2425,6 +2425,7 @@ Bok „[[:$1]]“ južo eksistěrujo. Coš jen wulašowaś, aby mógał toś ten
 'immobile-source-page'         => 'Toś ten bok njedajo se pśesunuś.',
 'immobile-target-page'         => 'Njejo móžno na toś ten celowy bok pśesunuś.',
 'imagenocrossnamespace'        => 'Dataja njedajo se pśesunuś do mjenjowego ruma, kótarež njejo za dataje.',
+'nonfile-cannot-move-to-file'  => 'Njedataje njedaje se do datajowego mjenjowego ruma pśesunuś',
 'imagetypemismatch'            => 'Nowy datajowy sufiks swójomu typoju njewótpowědujo',
 'imageinvalidfilename'         => 'Mě celoweje dataje jo njepłaśiwe',
 'fix-double-redirects'         => 'Dalejpósrědnjenja, kótarež wótkazuju na originalny titel, aktualizěrowaś',

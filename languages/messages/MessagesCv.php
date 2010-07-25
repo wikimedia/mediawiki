@@ -181,6 +181,17 @@ $messages = array(
 'faq'            => 'ЫйХу',
 'faqpage'        => 'Project:ЫйХу',
 
+# Vector skin
+'vector-action-delete'      => 'Кăларса пăрах',
+'vector-action-move'        => 'Ятне улăштар',
+'vector-action-protect'     => 'Хӳтĕле',
+'vector-namespace-category' => 'Категори',
+'vector-namespace-help'     => 'Пулăшу страници',
+'vector-namespace-image'    => 'Файл',
+'vector-namespace-main'     => 'Страница',
+'vector-namespace-talk'     => 'Сӳтсе яв',
+'vector-namespace-template' => 'Шаблон',
+
 'errorpagetitle'    => 'Йăнăш',
 'returnto'          => '$1 страницăна таврăн.',
 'tagline'           => '{{GRAMMAR:genitive|{{SITENAME}}}}ри материал',
@@ -756,7 +767,9 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 # File description page
 'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Файл историйĕ',
+'filehist-current'          => 'хальхи',
 'filehist-user'             => 'Хутшăнакан',
+'filehist-comment'          => 'Асăрхав',
 'imagelinks'                => 'Файл çине каçасем',
 'linkstoimage'              => 'Çак страницăсем ку файл çине кăтартаççĕ:',
 'nolinkstoimage'            => 'Ку файл çине кăтартакан страницăсем çук.',
