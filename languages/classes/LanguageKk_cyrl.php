@@ -37,7 +37,7 @@ class LanguageKk_cyrl extends Language {
 		$secondPerson = array( "з" ); // 1st plural, 2nd formal
 		$thirdPerson = array( "ы", "і" ); // 3rd
 
-		$lastLetter = self::lastLetter( $word, $allVowels );
+		$lastLetter = $this->lastLetter( $word, $allVowels );
 		$wordEnding =& $lastLetter[0];
 		$wordLastVowel =& $lastLetter[1];
 

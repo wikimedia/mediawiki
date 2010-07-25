@@ -121,7 +121,7 @@ class CheckSyntax extends Maintenance {
 
 			preg_match_all( '/^\s*[AM].{7}(.*?)\r?$/m', $output, $matches );
 			foreach ( $matches[1] as $file ) {
-				if ( self::isSuitableFile( $file ) && !is_dir( $file ) ) {
+				if ( $this->isSuitableFile( $file ) && !is_dir( $file ) ) {
 					$this->mFiles[] = $file;
 				}
 			}
