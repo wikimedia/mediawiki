@@ -2277,7 +2277,7 @@ class User {
 				$userSkin = $wgDefaultSkin;
 			}
 
-			$this->mSkin =& Skin::newFromKey( $userSkin );
+			$this->mSkin = Skin::newFromKey( $userSkin );
 			wfProfileOut( __METHOD__ );
 		}
 		if( $t || !$this->mSkin->getTitle() ) {
