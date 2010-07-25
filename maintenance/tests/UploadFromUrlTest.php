@@ -180,7 +180,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$job = Job::pop();
 		$this->assertFalse( $job );
 
-		self::deleteFile( 'Test.png' );
+		$this->deleteFile( 'Test.png' );
 
 		$wgUser->addGroup( 'users' );
 		$data = $this->doApiRequest( array(
@@ -207,7 +207,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 
 		$this->assertTrue( $t->exists() );
 
-		self::deleteFile( 'Test.png' );
+		$this->deleteFile( 'Test.png' );
 	 }
 
 	/**

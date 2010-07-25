@@ -60,14 +60,14 @@ class ApiUpload extends ApiBase {
 			 * Upload stashed in a previous request
 			 */
 			// Check the session key
-			if ( !isset( $_SESSION[UploadBase::getSessionKey()][$this->mParams['sessionkey']] ) ) {
+			if ( !isset( $_SESSION[$this->mUpload->getSessionKey()][$this->mParams['sessionkey']] ) ) {
 				$this->dieUsageMsg( array( 'invalid-session-key' ) );
 			}
 
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
 				$this->mParams['sessionkey'],
-				$_SESSION[UploadBase::getSessionKey()][$this->mParams['sessionkey']] );
+				$_SESSION[$this->mUpload->getSessionKey()][$this->mParams['sessionkey']] );
 		} elseif ( isset( $this->mParams['filename'] ) ) {
 			/**
 			 * Upload from URL, etc.
