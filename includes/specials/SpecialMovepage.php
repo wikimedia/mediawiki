@@ -26,7 +26,7 @@
  * Constructor
  */
 function wfSpecialMovepage( $par = null ) {
-	global $wgUser, $wgOut, $wgRequest, $action;
+	global $wgUser, $wgOut, $wgRequest;
 
 	# Check for database lock
 	if ( wfReadOnly() ) {
@@ -61,7 +61,7 @@ function wfSpecialMovepage( $par = null ) {
 
 	$form = new MovePageForm( $oldTitle, $newTitle );
 
-	if ( 'submit' == $action && $wgRequest->wasPosted()
+	if ( 'submit' == $wgRequest->getVal( 'action' ) && $wgRequest->wasPosted()
 		&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		$form->doSubmit();
 	} else {
