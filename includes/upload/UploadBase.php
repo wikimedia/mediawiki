@@ -362,7 +362,7 @@ abstract class UploadBase {
 			return array( 'uploadscripted' );
 		}
 		if( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
-			if( self::detectScriptInSvg( $this->mTempPath ) ) {
+			if( $this->detectScriptInSvg( $this->mTempPath ) ) {
 				return array( 'uploadscripted' );
 			}
 		}
