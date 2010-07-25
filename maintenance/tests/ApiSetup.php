@@ -7,7 +7,7 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 	protected static $apiUrl;
 
 	function setup() {
-		global $wgServerName, $wgServer, $wgContLang, $wgAuth, $wgScriptPath,
+		global $wgServer, $wgContLang, $wgAuth, $wgScriptPath,
 			$wgScriptExtension, $wgMemc, $wgRequest;
 
 		self::$apiUrl = $wgServer . $wgScriptPath . "/api" . $wgScriptExtension;

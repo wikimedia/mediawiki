@@ -17,7 +17,7 @@ class TimeAdjustTest extends PHPUnit_Framework_TestCase {
 
 	# Test offset usage for a given language::userAdjust
 	function testUserAdjust() {
-		global $wgLocalTZoffset, $wgContLang, $wgUser;
+		global $wgLocalTZoffset, $wgContLang;
 
 		$wgContLang = $en = Language::factory( 'en' );
 

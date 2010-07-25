@@ -846,7 +846,6 @@ class WebInstaller_Install extends WebInstallerPage {
 class WebInstaller_Complete extends WebInstallerPage {
 	
 	public function execute() {
-		global $IP;
 		$this->startForm();
 		$this->addHTML(
 			$this->parent->getInfoBox(

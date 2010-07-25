@@ -36,7 +36,7 @@
  * @ingroup ExternalUser
  */
 class ExternalUser_vB extends ExternalUser {
-	private $mDb, $mRow;
+	private $mRow;
 
 	protected function initFromName( $name ) {
 		return $this->initFromCond( array( 'username' => $name ) );

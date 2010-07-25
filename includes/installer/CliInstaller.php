@@ -6,10 +6,6 @@
  * @since 1.17
  */
 class CliInstaller extends CoreInstaller {
-
-	/* The maintenance class in effect */
-	private $maint;
-
 	private $optionMap = array(
 		'dbtype' => 'wgDBtype',
 		'dbserver' => 'wgDBserver',

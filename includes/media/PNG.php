@@ -50,8 +50,7 @@ class PNGHandler extends BitmapHandler {
 		return (boolean) $data;
 	}
 	function getLongDesc( $image ) {
-		global $wgUser, $wgLang;
-		$sk = $wgUser->getSkin();
+		global $wgLang;
 		$original = parent::getLongDesc( $image );
 
 		wfSuppressWarnings();

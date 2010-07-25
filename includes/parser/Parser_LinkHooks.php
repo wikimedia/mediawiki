@@ -128,7 +128,6 @@ class Parser_LinkHooks extends Parser
 			$titleRegex = "/^([{$tc}]+)$/sD";
 		}
 
-		$sk = $this->mOptions->getSkin();
 		$holders = new LinkHolderArray( $this );
 		
 		if( is_null( $this->mTitle ) ) {
