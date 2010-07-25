@@ -1859,7 +1859,7 @@ function writeLocalSettings( $conf ) {
 	} elseif( $conf->DBtype == 'ibm_db2' ) {
 		$dbsettings =
 "# DB2 specific settings
-\$wgDBport_db2       = \"{$slconf['DBport_db2']}\";
+\$wgDBport       = \"{$slconf['DBport_db2']}\";
 \$wgDBmwschema       = \"{$slconf['DBdb2schema']}\";
 \$wgDBcataloged      = \"{$slconf['DBcataloged']}\";";
 	} elseif( $conf->DBtype == 'oracle' ) {

@@ -478,7 +478,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	public function open( $server, $user, $password, $dbName )
 	{
 		// Load the port number
-		global $wgDBport_db2, $wgDBcataloged;
+		global $wgDBport, $wgDBcataloged;
 		wfProfileIn( __METHOD__ );
 		
 		// Load IBM DB2 driver if missing
@@ -499,7 +499,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$this->close();
 		// Cache conn info
 		$this->mServer = $server;
-		$this->mPort = $port = $wgDBport_db2;
+		$this->mPort = $port = $wgDBport;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
