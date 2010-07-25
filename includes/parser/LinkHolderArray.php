@@ -316,7 +316,7 @@ class LinkHolderArray {
 					);					
 					// separate titles with \0 because it would never appears
 					// in a valid title
-					$titlesToBeConverted .= $title . '\0';
+					$titlesToBeConverted .= $titleText . '\0';
 				}
 			}
 		}
