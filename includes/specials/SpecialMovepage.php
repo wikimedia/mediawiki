@@ -365,7 +365,7 @@ class MovePageForm {
 			# Disallow deletions of big articles
 			$bigHistory = $article->isBigDeletion();
 			if( $bigHistory && !$nt->userCan( 'bigdelete' ) ) {
-				global $wgLang, $wgDeleteRevisionsLimit;
+				global $wgDeleteRevisionsLimit;
 				$this->showForm( array('delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 				return;
 			}

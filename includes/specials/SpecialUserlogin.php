@@ -182,7 +182,7 @@ class LoginForm {
 	 * @private
 	 */
 	function addNewAccount() {
-		global $wgUser, $wgEmailAuthentication;
+		global $wgUser, $wgEmailAuthentication, $wgOut;
 
 		# Create the account and abort if there's a problem doing so
 		$u = $this->addNewAccountInternal();
@@ -197,7 +197,6 @@ class LoginForm {
 
 		# Send out an email authentication message if needed
 		if( $wgEmailAuthentication && User::isValidEmailAddr( $u->getEmail() ) ) {
-			global $wgOut;
 			$error = $u->sendConfirmationMail();
 			if( WikiError::isError( $error ) ) {
 				$wgOut->addWikiMsg( 'confirmemail_sendfailed', $error->getMessage() );
@@ -224,7 +223,6 @@ class LoginForm {
 			}
 		} else {
 			# Confirm that the account was created
-			global $wgOut;
 			$self = SpecialPage::getTitleFor( 'Userlogin' );
 			$wgOut->setPageTitle( wfMsgHtml( 'accountcreated' ) );
 			$wgOut->setArticleRelated( false );
