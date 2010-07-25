@@ -18,7 +18,7 @@ class CategoryPage extends Article {
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
 		if ( isset( $diff ) && $diffOnly )
-			return Article::view();
+			return parent::view();
 
 		if ( !wfRunHooks( 'CategoryPageView', array( &$this ) ) )
 			return;
@@ -27,7 +27,7 @@ class CategoryPage extends Article {
 			$this->openShowCategory();
 		}
 
-		Article::view();
+		parent::view();
 
 		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
 			$this->closeShowCategory();
