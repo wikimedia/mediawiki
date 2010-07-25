@@ -89,7 +89,6 @@ class ApiLogin extends ApiBase {
 				break;
 
 			case LoginForm::NEED_TOKEN:
-				global $wgCookiePrefix;
 				$result['result'] = 'NeedToken';
 				$result['token'] = $loginForm->getLoginToken();
 				$result['cookieprefix'] = $wgCookiePrefix;
