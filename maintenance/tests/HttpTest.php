@@ -125,7 +125,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 	function testFailureDefault() {
 		Http::$httpEngine = false;
-		self::runHTTPFailureChecks();
+		$this->runHTTPFailureChecks();
 	}
 
 	function testFailurePhp() {
@@ -134,7 +134,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = "php";
-		self::runHTTPFailureChecks();
+		$this->runHTTPFailureChecks();
 	}
 
 	function testFailureCurl() {
@@ -143,7 +143,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = "curl";
-		self::runHTTPFailureChecks();
+		$this->runHTTPFailureChecks();
 	}
 
 	/* ./phase3/includes/Import.php:1108:		$data = Http::request( $method, $url ); */
@@ -167,7 +167,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 	function testRequestDefault() {
 		Http::$httpEngine = false;
-		self::runHTTPRequests();
+		$this->runHTTPRequests();
 	}
 
 	function testRequestPhp() {
@@ -176,7 +176,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = "php";
-		self::runHTTPRequests();
+		$this->runHTTPRequests();
 	}
 
 	function testRequestCurl() {
@@ -185,7 +185,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = "curl";
-		self::runHTTPRequests();
+		$this->runHTTPRequests();
 	}
 
 	/* ./extensions/SpamBlacklist/SpamBlacklist_body.php:164:			$httpText = Http::get( $fileName ); */
@@ -249,7 +249,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 	function testGetDefault() {
 		Http::$httpEngine = false;
-		self::runHTTPGets();
+		$this->runHTTPGets();
 	}
 
 	function testGetPhp() {
@@ -258,7 +258,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = "php";
-		self::runHTTPGets();
+		$this->runHTTPGets();
 	}
 
 	function testGetCurl() {
@@ -267,7 +267,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = "curl";
-		self::runHTTPGets();
+		$this->runHTTPGets();
 	}
 
 	/* ./phase3/maintenance/parserTests.inc:1618:		return Http::post( $url, array( 'postData' => wfArrayToCGI( $data ) ) ); */
@@ -290,7 +290,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 	function testPostDefault() {
 		Http::$httpEngine = false;
-		self::runHTTPPosts();
+		$this->runHTTPPosts();
 	}
 
 	function testPostPhp() {
@@ -299,7 +299,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = "php";
-		self::runHTTPPosts();
+		$this->runHTTPPosts();
 	}
 
 	function testPostCurl() {
@@ -308,26 +308,26 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = "curl";
-		self::runHTTPPosts();
+		$this->runHTTPPosts();
 	}
 
 	function runProxyRequests() {
 		if ( !self::$has_proxy ) {
 			$this->markTestIncomplete( "This test requires a proxy." );
 		}
-		self::runHTTPGets( self::$proxy );
-		self::runHTTPPosts( self::$proxy );
-		self::runHTTPRequests( self::$proxy );
+		$this->runHTTPGets( self::$proxy );
+		$this->runHTTPPosts( self::$proxy );
+		$this->runHTTPRequests( self::$proxy );
 
 		// Set false here to do noProxy
-		self::runHTTPGets( false );
-		self::runHTTPPosts( false );
-		self::runHTTPRequests( false );
+		$this->runHTTPGets( false );
+		$this->runHTTPPosts( false );
+		$this->runHTTPRequests( false );
 	}
 
 	function testProxyDefault() {
 		Http::$httpEngine = false;
-		self::runProxyRequests();
+		$this->runProxyRequests();
 	}
 
 	function testProxyPhp() {
@@ -336,7 +336,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = 'php';
-		self::runProxyRequests();
+		$this->runProxyRequests();
 	}
 
 	function testProxyCurl() {
@@ -345,7 +345,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = 'curl';
-		self::runProxyRequests();
+		$this->runProxyRequests();
 	}
 
 	function testIsLocalUrl() {
@@ -546,7 +546,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 	function testCookieRequestDefault() {
 		Http::$httpEngine = false;
-		self::runCookieRequests();
+		$this->runCookieRequests();
 	}
 	function testCookieRequestPhp() {
 		if ( !self::$has_fopen ) {
@@ -554,7 +554,7 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = 'php';
-		self::runCookieRequests();
+		$this->runCookieRequests();
 	}
 	function testCookieRequestCurl() {
 		if ( !self::$has_curl ) {
@@ -562,6 +562,6 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 		}
 
 		Http::$httpEngine = 'curl';
-		self::runCookieRequests();
+		$this->runCookieRequests();
 	}
 }
