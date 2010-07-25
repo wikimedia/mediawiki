@@ -123,7 +123,7 @@ class ZhClient {
 		$q = "SEG $len\n$text";
 		$result = $this->query($q);
 		if(!$result) {// fallback to character based segmentation
-			$result = ZhClientFake::segment($text);
+			$result = $this->segment($text);
 		}
 		return $result;
 	}

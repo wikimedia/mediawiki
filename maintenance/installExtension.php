@@ -414,7 +414,7 @@ class ExtensionInstaller {
 
 		foreach ( $ff as $f ) {
 			if ( is_dir( $f ) && !is_link( $f ) ) {
-				$ok = ExtensionInstaller::copyDir( $f, $d );
+				$ok = $this->copyDir( $f, $d );
 				if ( !$ok ) return false;
 			}
 			else {
@@ -444,7 +444,7 @@ class ExtensionInstaller {
 			if ( is_link( $f ) ) continue; # skip link
 
 			if ( is_dir( $f ) ) {
-				ExtensionInstaller::setPermissions( $f, $dirbits, $filebits );
+				$this->setPermissions( $f, $dirbits, $filebits );
 			}
 			else {
 				if ( !chmod( $f, $filebits ) ) ExtensionInstaller::warn( "faield to set permissions for $f" );
