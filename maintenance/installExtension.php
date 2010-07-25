@@ -264,11 +264,13 @@ class InstallerResource {
  */
 class LocalInstallerResource extends InstallerResource {
 	function LocalInstallerResource( $path ) {
-		InstallerResource::InstallerResource( $path, is_dir( $path ), true );
+		parent::InstallerResource( $path, is_dir( $path ), true );
 	}
         
 	function fetch( $target ) {
-		if ( $this->isdir ) return ExtensionInstaller::copyDir( $this->path, dirname( $target ) );
+		if ( $this->isdir ) {
+			return ExtensionInstaller::copyDir( $this->path, dirname( $target ) );
+		}
 		else return $this->extract( $this->path, dirname( $target ) );
 	}
         
@@ -279,7 +281,7 @@ class LocalInstallerResource extends InstallerResource {
  */
 class WebInstallerResource extends InstallerResource {
 	function WebInstallerResource( $path ) {
-		InstallerResource::InstallerResource( $path, false, false );
+		parent::InstallerResource( $path, false, false );
 	}
         
 	function fetch( $target ) {
@@ -305,7 +307,7 @@ class WebInstallerResource extends InstallerResource {
  */
 class SVNInstallerResource extends InstallerResource {
 	function SVNInstallerResource( $path ) {
-		InstallerResource::InstallerResource( $path, true, false );
+		parent::InstallerResource( $path, true, false );
 	}
         
 	function fetch( $target ) {
@@ -333,7 +335,9 @@ class ExtensionInstaller {
 	var $tasks;
 
 	function ExtensionInstaller( $name, $source, $target ) {
-		if ( !is_object( $source ) ) $source = InstallerResource::makeResource( $source );
+		if ( !is_object( $source ) ) {
+			$source = parent::makeResource( $source );
+		}
 
 		$this->name = $name;
 		$this->source = $source;

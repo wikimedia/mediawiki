@@ -760,7 +760,7 @@ EOT
 		$this->loadFile();
 		if ( !$this->img->exists() || !$this->img->isLocal() || $this->img->getRedirected() ) {
 			// Standard article deletion
-			Article::delete();
+			parent::delete();
 			return;
 		}
 		$deleter = new FileDeleteForm( $this->img );
