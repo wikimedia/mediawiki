@@ -351,8 +351,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		$wgOut->addHTML( "<ul>" );
 
-		$where = $revObjs = array();
-		
 		$numRevisions = 0;
 		// Live revisions...
 		$list = $this->getList();

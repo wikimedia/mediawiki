@@ -103,7 +103,6 @@ class SkinVector extends SkinTemplate {
 			} else {
 				$talkId = "{$subjectId}_talk";
 			}
-			$currentId = $isTalk ? $talkId : $subjectId;
 
 			// Adds namespace links
 			$links['namespaces'][$subjectId] = $this->tabAction(

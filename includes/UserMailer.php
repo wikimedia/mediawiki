@@ -367,8 +367,6 @@ class EmailNotification {
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
 
 		$isUserTalkPage = ($title->getNamespace() == NS_USER_TALK);
-		$enotifusertalkpage = ($isUserTalkPage && $wgEnotifUserTalk);
-		$enotifwatchlistpage = $wgEnotifWatchlist;
 
 		$this->title = $title;
 		$this->timestamp = $timestamp;

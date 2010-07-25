@@ -53,8 +53,7 @@ class PopulateSha1 extends Maintenance {
 		}
 		$imageTable = $dbw->tableName( 'image' );
 		$oldimageTable = $dbw->tableName( 'oldimage' );
-		$batch = array();
-	
+
 		if ( $method == 'pipe' ) {
 			// @fixme kill this and replace with a second unbuffered DB connection.
 			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;

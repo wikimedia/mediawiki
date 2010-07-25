@@ -119,7 +119,6 @@ class ChangeTags {
 		}
 
 		// Figure out which conditions can be done.
-		$join_field = '';
 		if ( in_array( 'recentchanges', $tables ) ) {
 			$join_cond = 'rc_id';
 		} elseif( in_array( 'logging', $tables ) ) {

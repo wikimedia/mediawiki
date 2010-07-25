@@ -150,7 +150,7 @@ class RevisionDeleter {
 			$originalKey = $key = $paramArray[0];
 			// $paramArray[1] is a CSV of the IDs
 			$Ids = explode( ',', $paramArray[1] );
-			$query = $paramArray[1];
+
 			$revert = array();
 			
 			// For if undeleted revisions are found amidst deleted ones.
