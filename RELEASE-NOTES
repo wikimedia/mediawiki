@@ -247,6 +247,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23293) Do not show change tags when special:recentchanges(linked)
   or special:newpages is transcluded into another page as it messes up the
   page.
+* (bug 24517) LocalFile::newFromKey() and OldLocalFile::newFromKey() no longer
+  throw fatal errors
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

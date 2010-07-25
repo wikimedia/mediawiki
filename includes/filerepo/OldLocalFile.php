@@ -30,14 +30,12 @@ class OldLocalFile extends LocalFile {
 	}
 	
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
-		# Polymorphic function name to distinguish foreign and local fetches
-		$fname = get_class( $this ) . '::' . __FUNCTION__;
-
 		$conds = array( 'oi_sha1' => $sha1 );
 		if( $timestamp ) {
 			$conds['oi_timestamp'] = $timestamp;
 		}
-		$row = $dbr->selectRow( 'oldimage', $this->getCacheFields( 'oi_' ), $conds, $fname );
+		$dbr = $repo->getSlaveDB();
+		$row = $dbr->selectRow( 'oldimage', self::selectFields(), $conds, __METHOD__ );
 		if( $row ) {
 			return self::newFromRow( $row, $repo );
 		} else {
