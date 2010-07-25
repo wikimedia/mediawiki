@@ -156,6 +156,27 @@ class MWNamespace {
 	}
 
 	/**
+	 * Returns an array of the namespaces (by integer id) that exist on the
+	 * wiki. Used primarily by the api in help documentation.
+	 * @return array
+	 */
+	public static function getValidNamespaces() {
+		static $mValidNamespaces = null;
+
+		if ( is_null( $mValidNamespaces ) ) {
+			global $wgCanonicalNamespaceNames;
+			$mValidNamespaces = array( NS_MAIN ); // Doesn't appear in $wgCanonicalNamespaceNames for some reason
+			foreach ( array_keys( $wgCanonicalNamespaceNames ) as $ns ) {
+				if ( $ns > 0 ) {
+					$mValidNamespaces[] = $ns;
+				}
+			}
+		}
+
+		return $mValidNamespaces;
+	}
+
+	/**
 	 * Can this namespace ever have a talk namespace?
 	 *
 	 * @param $index Int: namespace index
