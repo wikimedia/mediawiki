@@ -39,11 +39,11 @@ class ForeignDBFile extends LocalFile {
 	
 	function getDescriptionUrl() {
 		// Restore remote behaviour
-		return File::getDescriptionUrl();
+		return parent::getDescriptionUrl();
 	}
 
 	function getDescriptionText() {
 		// Restore remote behaviour
-		return File::getDescriptionText();
+		return parent::getDescriptionText();
 	}
 }
