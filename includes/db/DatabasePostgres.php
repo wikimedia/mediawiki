@@ -777,15 +777,13 @@ class DatabasePostgres extends DatabaseBase {
 	 * @return bool Success of insert operation. IGNORE always returns true.
 	 */
 	function insert( $table, $args, $fname = 'DatabasePostgres::insert', $options = array() ) {
-		global $wgDBversion;
-
 		if ( !count( $args ) ) {
 			return true;
 		}
 
 		$table = $this->tableName( $table );
-		if (! isset( $wgDBversion ) ) {
-			$wgDBversion = $this->getServerVersion();
+		if (! isset( $this->numeric_version ) ) {
+			$this->getServerVersion();
 		}
 
 		if ( !is_array( $options ) )
@@ -819,7 +817,7 @@ class DatabasePostgres extends DatabaseBase {
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
-			if ( $wgDBversion >= 8.2 && !$ignore ) {
+			if ( $this->numeric_version >= 8.2 && !$ignore ) {
 				$first = true;
 				foreach ( $args as $row ) {
 					if ( $first ) {
@@ -1156,16 +1154,18 @@ class DatabasePostgres extends DatabaseBase {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		$versionInfo = pg_version( $this->mConn );
-		if ( version_compare( $versionInfo['client'], '7.4.0', 'lt' ) ) {
-			// Old client, abort install
-			$this->numeric_version = '7.3 or earlier';
-		} elseif ( isset( $versionInfo['server'] ) ) {
-			// Normal client
-			$this->numeric_version = $versionInfo['server'];
-		} else {
-			// Bug 16937: broken pgsql extension from PHP<5.3
-			$this->numeric_version = pg_parameter_status( $this->mConn, 'server_version' );
+		if ( ! isset( this->numeric_version ) ) {
+			$versionInfo = pg_version( $this->mConn );
+			if ( version_compare( $versionInfo['client'], '7.4.0', 'lt' ) ) {
+				// Old client, abort install
+				$this->numeric_version = '7.3 or earlier';
+			} elseif ( isset( $versionInfo['server'] ) ) {
+				// Normal client
+				$this->numeric_version = $versionInfo['server'];
+			} else {
+				// Bug 16937: broken pgsql extension from PHP<5.3
+				$this->numeric_version = pg_parameter_status( $this->mConn, 'server_version' );
+			}
 		}
 		return $this->numeric_version;
 	}
