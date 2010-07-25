@@ -1033,10 +1033,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			## Possible connect as a superuser
 			// Changed !mysql to postgres check since it seems to only apply to postgres
 			if( $useRoot && $conf->DBtype == 'postgres' ) {
-				$wgDBsuperuser = $conf->RootUser;
 				echo( "<li>Attempting to connect to database \"postgres\" as superuser \"" .
-					htmlspecialchars( $wgDBsuperuser ) . "\"..." );
-				$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBsuperuser, $conf->RootPW, "postgres", 1);
+					htmlspecialchars( $conf->RootUser ) . "\"..." );
+				$wgDatabase = $dbc->newFromParams($wgDBserver, $conf->RootUser, $conf->RootPW, "postgres", 1);
 				if (!$wgDatabase->isOpen()) {
 					print " error: " . htmlspecialchars( $wgDatabase->lastError() ) . "</li>\n";
 					$errs["DBserver"] = "Could not connect to database as superuser";
@@ -1044,7 +1043,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					$errs["RootPW"] = "and password";
 					continue;
 				}
-				$wgDatabase->initial_setup($conf->RootPW, 'postgres');
+				$wgDatabase->initial_setup($conf->RootUser, $conf->RootPW, 'postgres');
 			}
 			echo( "<li>Attempting to connect to database \"" . htmlspecialchars( $wgDBname ) .
 				"\" as \"" . htmlspecialchars( $wgDBuser ) . "\"..." );
