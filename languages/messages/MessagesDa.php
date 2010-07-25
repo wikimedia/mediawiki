@@ -1267,6 +1267,8 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'prefs-advancedsearchoptions'   => 'Avancerede indstillinger',
 'prefs-advancedwatchlist'       => 'Avancerede indstillinger',
 'prefs-displayrc'               => 'Indstillinger for visning',
+'prefs-displaysearchoptions'    => 'Visningsmuligheder',
+'prefs-displaywatchlist'        => 'Visningsmuligheder',
 'prefs-diffs'                   => 'Forskelle',
 
 # User rights
@@ -2454,6 +2456,7 @@ Artiklen "[[:$1]]" eksisterer allerede. Vil du slette den for at gøre plads til
 'immobile-source-page'         => 'Denne side kan ikke flyttes.',
 'immobile-target-page'         => 'Kan ikke flytte til det navn.',
 'imagenocrossnamespace'        => 'Filer kan ikke flyttes til et navnerum der ikke indeholder filer',
+'nonfile-cannot-move-to-file'  => 'Kan ikke flytte ikke-filer til fil-navnerummet',
 'imagetypemismatch'            => 'Den nye filendelse passer ikke til filtypen',
 'imageinvalidfilename'         => 'Destinationsnavnet er ugyldigt',
 'fix-double-redirects'         => 'Opdater henvisninger til det oprindelige navn',

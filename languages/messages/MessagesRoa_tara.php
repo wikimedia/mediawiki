@@ -581,7 +581,7 @@ L'indirizze IP tue avène reggistrete jndr'à le cangiaminde de sta pàgene.",
 Ce tu cazze Reggistre 'n'otra vote, 'u cangiamende tue avène memorizzete senze une.",
 'missingcommenttext'               => "Pe piacere mitte 'nu commende aqquà sotte.",
 'missingcommentheader'             => "'''Arrecuèrdete:''' Tu non g'è provvedute a 'nu soggette/testate pe stu commende.
-Ce tu cazze Reggistre 'n'otra vote, 'u cangiamende tue avène memorizzete senze une.",
+Ce tu cazze \"{{int:savearticle}}\" 'n'otra vote, 'u cangiamende tune avène memorizzate senze jidde.",
 'summary-preview'                  => "Andeprime d'u riepileghe:",
 'subject-preview'                  => "Andeprime de l'Oggette/Testete:",
 'blockedtitle'                     => "L'utende è blocchete",
@@ -654,8 +654,8 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 *'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
 *'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);
 *'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Conziglie:''' Ause 'u buttone 'Vide l'andeprime' pe condrollà 'u CSS nuève apprime de reggistrà.",
-'userjsyoucanpreview'              => "'''Conziglie:''' Ause 'u buttone 'Vide l'andeprime' pe condrollà 'u JS nuève apprime de reggistrà.",
+'usercssyoucanpreview'             => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u CSS nuève apprime de reggistrà.",
+'userjsyoucanpreview'              => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u JavaScript nuève apprime de reggistrà.",
 'usercsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
 '''Non g'à state angore reggistrete ninde!'''",
 'userjspreview'                    => "'''Arrecuerdete ca tu ste vide/teste sulamende in andeprime 'u JavaScript tue.'''
@@ -3078,16 +3078,16 @@ Prueve l\'andeprima normele.',
 'watchlistedit-noitems'        => "'A lista de le pàggene condrollete toja no tène 'na vosce.",
 'watchlistedit-normal-title'   => 'Vide le pàggene condrollete',
 'watchlistedit-normal-legend'  => "Live le titele da 'a liste de le pàggene condrollete",
-'watchlistedit-normal-explain' => "Le titele sus a liste de le pàggene condrollate sonde fatte vedè aqquà sotte. <br />
-Pe luà 'nu titele, smarche 'a scatele affianghe a jidde e cazze \"Live 'le titele\".<br />
+'watchlistedit-normal-explain' => "Le titele sus a 'a liste de le pàggene condrollate avènene fatte vedè aqquà sotte. <br />
+Pe luà 'nu titele, smarche 'a sckatele affianghe a jidde e cazze \"{{int:Watchlistedit-normal-submit}}\".<br />
 Tu puè pure [[Special:Watchlist/raw|cangià 'a liste a mane]].",
 'watchlistedit-normal-submit'  => 'Live le titele',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 titele ha state|$1 titele onne state}} scangellete da 'a liste de le pàggene condrollete toje:",
 'watchlistedit-raw-title'      => "Cange 'a liste de le pàggene condrollete grezze",
 'watchlistedit-raw-legend'     => "Cange 'a liste de le pàggene condrollete grezze",
-'watchlistedit-raw-explain'    => "Le titele sus a liste de le pàggene condrollate sonde fatte vedè aqquà sotte e ponne essere cangiate aggiunggenne o luannele da 'a liste; <br />
+'watchlistedit-raw-explain'    => "Le titele sus a liste de le pàggene condrollate avènene fatte vedè aqquà sotte e ponne essere cangiate aggiunggenne o luannele da 'a liste; <br />
 'nu titele pe linèe.<br />
-Quanne è spicciate, cazze sus a \"Aggiorne a Liste de le pàggene condrollate\".<br />
+Quanne è spicciate, cazze sus a \"{{int:Watchlistedit-raw-submit}}\".<br />
 Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
 'watchlistedit-raw-titles'     => 'Titele:',
 'watchlistedit-raw-submit'     => "Aggiorne 'a liste de le pàggene condrollete",
