@@ -325,16 +325,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param $type String
 	 */
 	protected function feed( $type ) {
-		global $wgFeed, $wgFeedClasses, $wgFeedLimit;
+		global $wgFeed, $wgFeedClasses, $wgFeedLimit, $wgOut;
 
 		if ( !$wgFeed ) {
-			global $wgOut;
 			$wgOut->addWikiMsg( 'feed-unavailable' );
 			return;
 		}
 
 		if( !isset( $wgFeedClasses[$type] ) ) {
-			global $wgOut;
 			$wgOut->addWikiMsg( 'feed-invalid' );
 			return;
 		}
