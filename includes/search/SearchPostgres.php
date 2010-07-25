@@ -134,13 +134,9 @@ class SearchPostgres extends SearchEngine {
 	 * @param $colname
 	 */
 	function searchQuery( $term, $fulltext, $colname ) {
-		global $wgDBversion;
+		$postgresVersion = $this->db->getServerVersion();
 
-		if ( !isset( $wgDBversion ) ) {
-			$this->db->getServerVersion();
-			$wgDBversion = $this->db->numeric_version;
-		}
-		$prefix = $wgDBversion < 8.3 ? "'default'," : '';
+		$prefix = $postgresVersion < 8.3 ? "'default'," : '';
 
 		# Get the SQL fragment for the given term
 		$searchstring = $this->parseQuery( $term );
@@ -167,8 +163,8 @@ class SearchPostgres extends SearchEngine {
 				}
 			}
 
-			$rankscore = $wgDBversion > 8.2 ? 5 : 1;
-			$rank = $wgDBversion < 8.3 ? 'rank' : 'ts_rank';
+			$rankscore = $postgresVersion > 8.2 ? 5 : 1;
+			$rank = $postgresVersion < 8.3 ? 'rank' : 'ts_rank';
 			$query = "SELECT page_id, page_namespace, page_title, ".
 			"$rank($fulltext, to_tsquery($prefix $searchstring), $rankscore) AS score ".
 			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
