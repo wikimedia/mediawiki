@@ -82,7 +82,7 @@ class MovePageForm {
 
 	function __construct( $oldTitle, $newTitle ) {
 		global $wgRequest, $wgUser;
-		$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
+
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 		$this->reason = $wgRequest->getText( 'wpReason' );

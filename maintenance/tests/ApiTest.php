@@ -13,10 +13,7 @@ class MockApi extends ApiBase {
 			'sessionkey' => null,
 		);
 	}
-
-
 }
-
 
 class ApiTest extends ApiTestSetup {
 

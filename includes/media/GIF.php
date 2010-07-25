@@ -61,8 +61,8 @@ class GIFHandler extends BitmapHandler {
 	}
 
 	function getLongDesc( $image ) {
-		global $wgUser, $wgLang;
-		$sk = $wgUser->getSkin();
+		global $wgLang;
+
 		$original = parent::getLongDesc( $image );
 
 		wfSuppressWarnings();

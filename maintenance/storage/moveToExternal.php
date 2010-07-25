@@ -48,8 +48,7 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 	print "Moving text rows from $minID to $maxID to external storage\n";
 	$ext = new ExternalStoreDB;
 	$numMoved = 0;
-	$numStubs = 0;
-	
+
 	for ( $block = 0; $block < $numBlocks; $block++ ) {
 		$blockStart = $block * $blockSize + $minID;
 		$blockEnd = $blockStart + $blockSize - 1;

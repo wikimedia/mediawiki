@@ -50,7 +50,7 @@ class PopulateLogUsertext extends Maintenance {
 			$cond = "log_id BETWEEN $blockStart AND $blockEnd AND log_user = user_id";
 			$res = $db->select( array( 'logging', 'user' ),
 				array( 'log_id', 'user_name' ), $cond, __METHOD__ );
-			$batch = array();
+
 			$db->begin();
 			foreach ( $res as $row ) {
 				$db->update( 'logging', array( 'log_user_text' => $row->user_name ),
