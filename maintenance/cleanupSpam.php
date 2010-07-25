@@ -31,7 +31,7 @@ class CleanupSpam extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgLocalDatabases;
+		global $wgLocalDatabases, $wgUser;
 
 		$username = wfMsg( 'spambot_username' );
 		$wgUser = User::newFromName( $username );

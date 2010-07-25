@@ -31,11 +31,11 @@ class DumpMessages extends Maintenance {
 	}
 	
 	public function execute() {
+		global $wgVersion;
 		$messages = array();
 		foreach ( array_keys( Language::getMessagesFor( 'en' ) ) as $key ) {
 			$messages[$key] = wfMsg( $key );
 		}
-		global $wgVersion;
 		$this->output( "MediaWiki $wgVersion language file\n" );
 		$this->output( serialize( $messages ) );
 	}
