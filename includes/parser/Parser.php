@@ -212,7 +212,7 @@ class Parser {
 		 */
 		# $this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
 		# Changed to \x7f to allow XML double-parsing -- TS
-		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
+		$this->mUniqPrefix = "\x7fUNIQ" . $this->getRandomString();
 
 
 		# Clear these on every parse, bug 4549

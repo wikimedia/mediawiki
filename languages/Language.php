@@ -1597,23 +1597,23 @@ class Language {
 			return ucfirst( $str );
 		} else {
 			// fall back to more complex logic in case of multibyte strings
-			return self::uc( $str, true );
+			return $this->uc( $str, true );
 		}
 	}
 
 	function uc( $str, $first = false ) {
 		if ( function_exists( 'mb_strtoupper' ) ) {
 			if ( $first ) {
-				if ( self::isMultibyte( $str ) ) {
+				if ( $this->isMultibyte( $str ) ) {
 					return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
 				} else {
 					return ucfirst( $str );
 				}
 			} else {
-				return self::isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
+				return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
 			}
 		} else {
-			if ( self::isMultibyte( $str ) ) {
+			if ( $this->isMultibyte( $str ) ) {
 				list( $wikiUpperChars ) = $this->getCaseMaps();
 				$x = $first ? '^' : '';
 				return preg_replace_callback(
@@ -1632,7 +1632,7 @@ class Language {
 		if ( !$o ) {
 			return strval( $str );
 		} elseif ( $o >= 128 ) {
-			return self::lc( $str, true );
+			return $this->lc( $str, true );
 		} elseif ( $o > 96 ) {
 			return $str;
 		} else {
@@ -1644,16 +1644,16 @@ class Language {
 	function lc( $str, $first = false ) {
 		if ( function_exists( 'mb_strtolower' ) ) {
 			if ( $first ) {
-				if ( self::isMultibyte( $str ) ) {
+				if ( $this->isMultibyte( $str ) ) {
 					return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
 				} else {
 					return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
 				}
 			} else {
-				return self::isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
+				return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
 			}
 		} else {
-			if ( self::isMultibyte( $str ) ) {
+			if ( $this->isMultibyte( $str ) ) {
 				list( , $wikiLowerChars ) = self::getCaseMaps();
 				$x = $first ? '^' : '';
 				return preg_replace_callback(
@@ -1672,8 +1672,8 @@ class Language {
 	}
 
 	function ucwords( $str ) {
-		if ( self::isMultibyte( $str ) ) {
-			$str = self::lc( $str );
+		if ( $this->isMultibyte( $str ) ) {
+			$str = $this->lc( $str );
 
 			// regexp to find first letter in each word (i.e. after each space)
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)| ([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
@@ -1699,8 +1699,8 @@ class Language {
 
 	# capitalize words at word breaks
 	function ucwordbreaks( $str ) {
-		if ( self::isMultibyte( $str ) ) {
-			$str = self::lc( $str );
+		if ( $this->isMultibyte( $str ) ) {
+			$str = $this->lc( $str );
 
 			// since \b doesn't work for UTF-8, we explicitely define word break chars
 			$breaks = "[ \-\(\)\}\{\.,\?!]";
