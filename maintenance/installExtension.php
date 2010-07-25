@@ -74,7 +74,7 @@ class InstallerRepository {
 class LocalInstallerRepository extends InstallerRepository {
 
 	function LocalInstallerRepository ( $path ) {
-		InstallerRepository::InstallerRepository( $path );
+		parent::InstallerRepository( $path );
 	}
 
 	function printListing( ) {
@@ -114,7 +114,7 @@ class LocalInstallerRepository extends InstallerRepository {
 class WebInstallerRepository extends InstallerRepository {
 
 	function WebInstallerRepository ( $path ) {
-		InstallerRepository::InstallerRepository( $path );
+		parent::InstallerRepository( $path );
 	}
 
 	function printListing( ) {
@@ -160,7 +160,7 @@ class WebInstallerRepository extends InstallerRepository {
 class SVNInstallerRepository extends InstallerRepository {
 
 	function SVNInstallerRepository ( $path ) {
-		InstallerRepository::InstallerRepository( $path );
+		parent::InstallerRepository( $path );
 	}
 
 	function printListing( ) {
