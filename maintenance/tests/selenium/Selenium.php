@@ -21,7 +21,6 @@ class Selenium extends Testing_Selenium {
 	}
 
 	public function start() {
-		global $wgSeleniumTestsBrowsers, $wgSeleniumTestsSeleniumHost;
 		parent::start();
 		$this->isStarted = true;
 	}

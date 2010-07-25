@@ -16,7 +16,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
                   $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
                   $wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $parserMemc,
                   $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
-                  $wgNamespacesWithSubpages, $wgThumbnailScriptPath, $wgScriptPath,
+                  $wgThumbnailScriptPath, $wgScriptPath,
                   $wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
 
 		$wgScript = '/index.php';
@@ -45,7 +45,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 		$messageMemc =& wfGetMessageCacheStorage();
 		$parserMemc =& wfGetParserCacheStorage();
 
-		$wgContLang = new StubContLang;
+		//$wgContLang = new StubContLang;
 		$wgUser = new StubUser;
 		$wgLang = new StubUserLang;
 		$wgOut = new StubObject( 'wgOut', 'OutputPage' );

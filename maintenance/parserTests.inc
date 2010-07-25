@@ -1259,7 +1259,6 @@ class DbTestPreviewer extends TestRecorder  {
 	 * and all that fun stuff
 	 */
 	function start() {
-		global $wgDBtype;
 		parent::start();
 
 		if ( ! $this->db->tableExists( 'testrun' )

@@ -27,7 +27,6 @@ class Title {
 	/** @name Static cache variables */
 	// @{
 	static private $titleCache = array();
-	static private $interwikiCache = array();
 	// @}
 
 	/**
@@ -3487,7 +3486,6 @@ class Title {
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function isValidMoveTarget( $nt ) {
-		$dbw = wfGetDB( DB_MASTER );
 		# Is it an existing file?
 		if ( $nt->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $nt );

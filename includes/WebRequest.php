@@ -777,7 +777,6 @@ class WebRequest {
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
 	private $session = array();
-	private $response;
 
 	/**
 	 * @param $data Array of *non*-urlencoded key => value pairs, the

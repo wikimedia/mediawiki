@@ -32,7 +32,6 @@ class ORAResult {
 	private $stmt;
 	private $nrows;
 
-	private $unique;
 	private function array_unique_md( $array_in ) {
 		$array_out = array();
 		$array_hashes = array();

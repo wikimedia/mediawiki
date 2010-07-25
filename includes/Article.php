@@ -2375,7 +2375,6 @@ class Article {
 		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
 		$return = SpecialPage::getTitleFor( $returnto );
 
-		$dbw = wfGetDB( DB_MASTER );
 		$errors = $rc->doMarkPatrolled();
 
 		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {

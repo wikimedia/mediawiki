@@ -3,7 +3,6 @@ class SearchDbTest extends SearchEngineTest {
 	var $db;
 
 	function setUp() {
-		global $wgDBprefix, $wgDBtype;
 		$this->db = wfGetDB( DB_MASTER );
 		if ( !$this->db  ) {
 			$this->markTestIncomplete( "Can't find a database to test with." );

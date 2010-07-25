@@ -8,7 +8,7 @@ class nullClass {
 class UploadFromUrlTest extends ApiTestSetup {
 
 	function setUp() {
-		global $wgEnableUploads, $wgLocalFileRepo, $wgAllowCopyUploads;
+		global $wgEnableUploads, $wgAllowCopyUploads;
 
 		$wgEnableUploads = true;
 		$wgAllowCopyUploads = true;
