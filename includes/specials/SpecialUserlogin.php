@@ -803,7 +803,7 @@ class LoginForm {
 	 * @private
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
-		global $wgServer, $wgScript, $wgNewPasswordExpiry;
+		global $wgServer, $wgScript, $wgUser, $wgNewPasswordExpiry;
 
 		if ( $u->getEmail() == '' ) {
 			return new WikiError( wfMsg( 'noemail', $u->getName() ) );
@@ -838,7 +838,7 @@ class LoginForm {
 	 * @private
 	 */
 	function successfulLogin() {
-		global $wgOut;
+		global $wgUser, $wgOut;
 
 		# Run any hooks; display injected HTML if any, else redirect
 		$injected_html = '';
