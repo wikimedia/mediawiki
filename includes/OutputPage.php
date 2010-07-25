@@ -1848,7 +1848,6 @@ class OutputPage {
 		if ( $action == null ) {
 			$text = wfMsgNoTrans( 'permissionserrorstext', count( $errors ) ) . "\n\n";
 		} else {
-			global $wgLang;
 			$action_desc = wfMsgNoTrans( "action-$action" );
 			$text = wfMsgNoTrans(
 				'permissionserrorstext-withaction',
