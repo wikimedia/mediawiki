@@ -95,7 +95,6 @@ class ApiWatchTest extends ApiTestSetup {
 	 * @depends testWatchEdit
 	 */
 	function testWatchClear( $data ) {
-		global $wgUser;
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'list' => 'watchlist' ), $data );
