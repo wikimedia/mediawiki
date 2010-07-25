@@ -62,7 +62,7 @@ assert_options(ASSERT_QUIET_EVAL, 1);
 assert_options(ASSERT_CALLBACK, 'my_assert');
 
 function my_assert( $file, $line, $code ) {
-	global $col, $count, $lineNo;
+	global $col, $lineNo;
 	echo "Assertion that '$code' failed on line $lineNo ($col[5])\n";
 }
 
