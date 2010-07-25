@@ -35,6 +35,8 @@ class RenameDbPrefix extends Maintenance {
 	}
 
 	public function execute() {
+		global $wgDBname;
+
 		// Allow for no old prefix
 		if ( $this->getOption( 'old', 0 ) === '0' ) {
 			$old = '';
