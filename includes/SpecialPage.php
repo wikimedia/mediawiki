@@ -915,7 +915,7 @@ class SpecialPage {
 class UnlistedSpecialPage extends SpecialPage
 {
 	function UnlistedSpecialPage( $name, $restriction = '', $function = false, $file = 'default' ) {
-		SpecialPage::SpecialPage( $name, $restriction, false, $function, $file );
+		parent::SpecialPage( $name, $restriction, false, $function, $file );
 	}
 }
 
@@ -926,7 +926,7 @@ class UnlistedSpecialPage extends SpecialPage
 class IncludableSpecialPage extends SpecialPage
 {
 	function IncludableSpecialPage( $name, $restriction = '', $listed = true, $function = false, $file = 'default' ) {
-		SpecialPage::SpecialPage( $name, $restriction, $listed, $function, $file, true );
+		parent::SpecialPage( $name, $restriction, $listed, $function, $file, true );
 	}
 }
 

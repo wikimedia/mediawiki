@@ -838,7 +838,7 @@ CSS;
 			$parenttree = $this->mTitle->getParentCategoryTree();
 			# Skin object passed by reference cause it can not be
 			# accessed under the method subfunction drawCategoryBrowser
-			$tempout = explode( "\n", Skin::drawCategoryBrowser( $parenttree, $this ) );
+			$tempout = explode( "\n", $this->drawCategoryBrowser( $parenttree, $this ) );
 			# Clean out bogus first entry and sort them
 			unset( $tempout[0] );
 			asort( $tempout );
@@ -863,7 +863,7 @@ CSS;
 				$return .= "\n";
 			} else {
 				# grab the others elements
-				$return .= Skin::drawCategoryBrowser( $parent, $skin ) . ' &gt; ';
+				$return .= $this->drawCategoryBrowser( $parent, $skin ) . ' &gt; ';
 			}
 			# add our current element to the list
 			$eltitle = Title::newFromText( $element );

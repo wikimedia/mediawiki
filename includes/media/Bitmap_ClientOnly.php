@@ -2,7 +2,7 @@
 
 class BitmapHandler_ClientOnly extends BitmapHandler {
 	function normaliseParams( $image, &$params ) {
-		return ImageHandler::normaliseParams( $image, $params );
+		return parent::normaliseParams( $image, $params );
 	}
 
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
