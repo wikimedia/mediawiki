@@ -477,9 +477,9 @@ class LanguageKk_cyrl extends Language {
 		$secondPerson = array( "ز" ); // 1st plural, 2nd formal
 		$thirdPerson = array( "ى", "ٸ" ); // 3rd
 
-		$lastLetter = self::lastLetter( $word, $allVowels );
-		$wordEnding =& $lastLetter[0];
-		$wordLastVowel =& $lastLetter[1];
+		$lastLetter = $this->lastLetter( $word, $allVowels );
+		$wordEnding = $lastLetter[0];
+		$wordLastVowel = $lastLetter[1];
 
 		// Now convert the word
 		switch ( $case ) {
