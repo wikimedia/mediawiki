@@ -212,7 +212,7 @@ class Parser {
 		 */
 		# $this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
 		# Changed to \x7f to allow XML double-parsing -- TS
-		$this->mUniqPrefix = "\x7fUNIQ" . $this->getRandomString();
+		$this->mUniqPrefix = "\x7fUNIQ" . $self::getRandomString();
 
 
 		# Clear these on every parse, bug 4549
@@ -491,7 +491,7 @@ class Parser {
 	 * @private
 	 * @static
 	 */
-	function getRandomString() {
+	static function getRandomString() {
 		return dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 	}
 
