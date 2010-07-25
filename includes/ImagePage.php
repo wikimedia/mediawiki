@@ -66,7 +66,7 @@ class ImagePage extends Article {
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
 		if ( $this->mTitle->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) ) {
-			return Article::view();
+			return parent::view();
 		}
 			
 		$this->loadFile();
@@ -76,7 +76,7 @@ class ImagePage extends Article {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
 				$wgRequest->setVal( 'diffonly', 'true' );
-				return Article::view();
+				return parent::view();
 			} else {
 				// mTitle is not the same as the redirect target so it is 
 				// probably the redirect page itself. Fake the redirect symbol
@@ -106,7 +106,7 @@ class ImagePage extends Article {
 
 		# No need to display noarticletext, we use our own message, output in openShowImage()
 		if ( $this->getID() ) {
-			Article::view();
+			parent::view();
 		} else {
 			# Just need to set the right headers
 			$wgOut->setArticleFlag( true );
