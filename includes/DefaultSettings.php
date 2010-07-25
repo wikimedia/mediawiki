@@ -2886,7 +2886,7 @@ $wgExternalAuthType = null;
  * info be provided.  Check the file where your auth mechanism is defined for
  * info on what to put here.
  */
-$wgExternalAuthConfig = array();
+$wgExternalAuthConf = array();
 
 /**
  * When should we automatically create local accounts when external accounts
