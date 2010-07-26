@@ -1154,7 +1154,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		if ( ! isset( this->numeric_version ) ) {
+		if ( !isset( $this->numeric_version ) ) {
 			$versionInfo = pg_version( $this->mConn );
 			if ( version_compare( $versionInfo['client'], '7.4.0', 'lt' ) ) {
 				// Old client, abort install
