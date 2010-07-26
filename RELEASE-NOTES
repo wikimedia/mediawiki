@@ -41,9 +41,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgSQLMode for setting database SQL modes - either performance (null)
   or other reasons (such as enabling stricter checks)
 * $wgFileStore has been deprecated. The only usage $wgFileStore['deleted'] has
-  been turned into $wgDeletedDirectory
+  been turned into $wgDeletedDirectory.
 * $wgDeletedDirectory has been added to specify what directory to place deleted
-  uploads in
+  uploads in.
+* IBM DB2 database no longer uses the db specific $wgDBport_db2 variable but the
+  normal $wgDBport.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
