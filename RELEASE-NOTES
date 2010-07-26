@@ -64,6 +64,7 @@ further.
 * (bug xxxxx) Fixed Cache-Control headers sent from API modules, to protect
   user privacy in the case where an attacker can access the wiki through the
   same HTTP proxy as a logged-in user.
+* Fixed XSS in profileinfo.php for users with $wgEnableProfileInfo = true;
 
 == Changes since 1.16 beta 2 ==
 
