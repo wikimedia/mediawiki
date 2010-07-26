@@ -87,7 +87,7 @@ while( false !== ( $line = fgets( $in ) ) ) {
 
 	$testedChars[$columns[1]] = true;
 	$total++;
-	if( testNormals( $normalizer, $columns, $comment ) ) {
+	if( testNormals( $normalizer, $columns, $comment, $verbose ) ) {
 		$success++;
 	} else {
 		$failure++;
@@ -119,7 +119,7 @@ while( false !== ($line = fgets( $in ) ) ) {
 	}
 	if( empty( $testedChars[$char] ) ) {
 		$total++;
-		if( testInvariant( $normalizer, $char, $desc ) ) {
+		if( testInvariant( $normalizer, $char, $desc, $verbose ) ) {
 			$success++;
 		} else {
 			$failure++;
@@ -154,17 +154,16 @@ function reportResults( &$total, &$success, &$failure ) {
 	return $ok;
 }
 
-function testNormals( &$u, $c, $comment, $reportFailure = false ) {
+function testNormals( &$u, $c, $comment, $verbose, $reportFailure = false ) {
 	$result = testNFC( $u, $c, $comment, $reportFailure );
 	$result = testNFD( $u, $c, $comment, $reportFailure ) && $result;
 	$result = testNFKC( $u, $c, $comment, $reportFailure ) && $result;
 	$result = testNFKD( $u, $c, $comment, $reportFailure ) && $result;
 	$result = testCleanUp( $u, $c, $comment, $reportFailure ) && $result;
 
-	global $verbose;
 	if( $verbose && !$result && !$reportFailure ) {
 		print $comment;
-		testNormals( $u, $c, $comment, true );
+		testNormals( $u, $c, $comment, $verbose, true );
 	}
 	return $result;
 }
@@ -232,16 +231,16 @@ function testNFKD( &$u, $c, $comment, $verbose ) {
 	return $result;
 }
 
-function testInvariant( &$u, $char, $desc, $reportFailure = false ) {
+function testInvariant( &$u, $char, $desc, $verbose, $reportFailure = false ) {
 	$result = verbosify( $char, $u->toNFC( $char ), 1, 'NFC', $reportFailure );
 	$result = verbosify( $char, $u->toNFD( $char ), 1, 'NFD', $reportFailure ) && $result;
 	$result = verbosify( $char, $u->toNFKC( $char ), 1, 'NFKC', $reportFailure ) && $result;
 	$result = verbosify( $char, $u->toNFKD( $char ), 1, 'NFKD', $reportFailure ) && $result;
 	$result = verbosify( $char, $u->cleanUp( $char ), 1, 'cleanUp', $reportFailure ) && $result;
-	global $verbose;
+
 	if( $verbose && !$result && !$reportFailure ) {
 		print $desc;
-		testInvariant( $u, $char, $desc, true );
+		testInvariant( $u, $char, $desc, $verbose, true );
 	}
 	return $result;
 }
