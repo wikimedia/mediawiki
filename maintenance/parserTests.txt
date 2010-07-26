@@ -2198,7 +2198,7 @@ Magic links: PMID incorrectly converts space to underscore
 !! input
 PMID 1234
 !! result
-<p><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234" class="external" title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234">PMID 1234</a>
+<p><a href="http://www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" class="external" title="http://www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a>
 </p>
 !! end
 
