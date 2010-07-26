@@ -1277,7 +1277,7 @@ disabled
 !! result
 <table>
 <tr>
-<td><a href="ftp://|x||" class="external autonumber" title="ftp://|x||" rel="nofollow">[1]</a></td><td>" onmouseover="alert(document.cookie)"&gt;test
+<td><a href="ftp://%7Cx" class="external text" rel="nofollow">ftp://%7Cx</a></td><td>" onmouseover="alert(document.cookie)"&gt;test
 </td>
 </tr>
 </table>
