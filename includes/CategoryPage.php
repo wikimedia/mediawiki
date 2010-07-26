@@ -270,7 +270,7 @@ class CategoryViewer {
 			foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
 				$res = $dbr->select(
 					$tables,
-					array_merge( $fields, array( 'cl_raw_sortkey' ) ),
+					array_merge( $fields, array( 'cl_sortkey_prefix' ) ),
 					$conds + array( 'cl_type' => $type ) + ( $type == 'page' ? array( $pageCondition ) : array() ),
 					__METHOD__,
 					$opts + ( $type == 'page' ? array( 'LIMIT' => $this->limit + 1 ) : array() ),
@@ -286,14 +286,15 @@ class CategoryViewer {
 					}
 
 					$title = Title::newFromRow( $row );
+					$rawSortkey = $row->cl_sortkey_prefix . $title->getCategorySortkey();
 
 					if ( $title->getNamespace() == NS_CATEGORY ) {
 						$cat = Category::newFromRow( $row, $title );
-						$this->addSubcategoryObject( $cat, $row->cl_raw_sortkey, $row->page_len );
+						$this->addSubcategoryObject( $cat, $rawSortkey, $row->page_len );
 					} elseif ( $this->showGallery && $title->getNamespace() == NS_FILE ) {
-						$this->addImage( $title, $row->cl_raw_sortkey, $row->page_len, $row->page_is_redirect );
+						$this->addImage( $title, $rawSortkey, $row->page_len, $row->page_is_redirect );
 					} else {
-						$this->addPage( $title, $row->cl_raw_sortkey, $row->page_len, $row->page_is_redirect );
+						$this->addPage( $title, $rawSortkey, $row->page_len, $row->page_is_redirect );
 					}
 				}
 			}

@@ -4137,4 +4137,22 @@ class Title {
 
 		return $types;
 	}
+
+	/**
+	 * Returns what the default sort key for categories would be, if
+	 * {{defaultsort:}} isn't used.  This is the same as getText() for
+	 * categories, and for everything if $wgCategoryPrefixedDefaultSortkey is
+	 * false; otherwise it's the same as getPrefixedText().
+	 *
+	 * @return string
+	 */
+	public function getCategorySortkey() {
+		global $wgCategoryPrefixedDefaultSortkey;
+		if ( $this->getNamespace() == NS_CATEGORY
+		|| !$wgCategoryPrefixedDefaultSortkey ) {
+			return $this->getText();
+		} else {
+			return $this->getPrefixedText();
+		}
+	}
 }

@@ -5056,12 +5056,8 @@ class Parser {
 		global $wgCategoryPrefixedDefaultSortkey;
 		if ( $this->mDefaultSort !== false ) {
 			return $this->mDefaultSort;
-		} elseif ( $this->mTitle->getNamespace() == NS_CATEGORY ||
-			!$wgCategoryPrefixedDefaultSortkey )
-		{
-			return $this->mTitle->getText();
 		} else {
-			return $this->mTitle->getPrefixedText();
+			return $this->mTitle->getCategorySortkey();
 		}
 	}
 

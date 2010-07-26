@@ -4476,8 +4476,8 @@ $wgExperimentalCategorySort = false;
 /**
  * A version indicator for collations that will be stored in cl_collation for
  * all new rows.  Used when the collation algorithm changes: a script checks
- * for all rows where cl_collation < $wgCollationVersion and regenerates
- * cl_sortkey based on cl_raw_sortkey.
+ * for all rows where cl_collation != $wgCollationVersion and regenerates
+ * cl_sortkey based on the page name and cl_sortkey_prefix.
  */
 $wgCollationVersion = 1;
 

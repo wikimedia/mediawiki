@@ -441,14 +441,31 @@ class LinksUpdate {
 				} else {
 					$type = 'page';
 				}
-				$convertedSortkey = $wgContLang->convertToSortkey( $sortkey );
-				# TODO: Set $sortkey to null if it's redundant
+
+				# TODO: This is kind of wrong, because someone might set a sort
+				# key prefix that's the same as the default sortkey for the
+				# title.  This should be fixed by refactoring code to replace
+				# $sortkey in this array by a prefix, but it's basically harmless
+				# (Title::moveTo() has had the same issue for a long time).
+				if ( $this->mTitle->getCategorySortkey() == $sortkey ) {
+					$prefix = '';
+					$sortkey = $wgContLang->convertToSortkey( $sortkey );
+				} else {
+					# Treat custom sortkeys as a prefix, so that if multiple
+					# things are forced to sort as '*' or something, they'll
+					# sort properly in the category rather than in page_id
+					# order or such.
+					$prefix = $sortkey;
+					$sortkey = $wgContLang->convertToSortkey(
+						$prefix . $this->mTitle->getCategorySortkey() );
+				}
+
 				$arr[] = array(
 					'cl_from'    => $this->mId,
 					'cl_to'      => $name,
-					'cl_sortkey' => $convertedSortkey,
+					'cl_sortkey' => $sortkey,
 					'cl_timestamp' => $this->mDb->timestamp(),
-					'cl_raw_sortkey' => $sortkey,
+					'cl_sortkey_prefix' => $prefix,
 					'cl_collation' => $wgCollationVersion,
 					'cl_type' => $type,
 				);
