@@ -316,7 +316,7 @@ class LinkHolderArray {
 					);					
 					// separate titles with \0 because it would never appears
 					// in a valid title
-					$titlesToBeConverted .= $titleText . '\0';
+					$titlesToBeConverted .= $titleText . "\0";
 				}
 			}
 		}
@@ -325,7 +325,7 @@ class LinkHolderArray {
 		$titlesAllVariants = $wgContLang->convertLinkToAllVariants( $titlesToBeConverted );
 		$allVariantsName = array_keys( $titlesAllVariants );
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
-			$titlesVariant = explode( '\0', $titlesVariant );
+			$titlesVariant = explode( "\0", $titlesVariant );
 		}
 		
 		// Then add variants of links to link batch
