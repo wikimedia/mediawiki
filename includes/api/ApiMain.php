@@ -124,7 +124,7 @@ class ApiMain extends ApiBase {
 
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
 	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest;
-	private $mInternalMode, $mSquidMaxage, $mModule, $mVaryCookie;
+	private $mInternalMode, $mSquidMaxage, $mModule;
 
 	private $mCacheMode = 'private';
 	private $mCacheControl = array();
@@ -170,7 +170,6 @@ class ApiMain extends ApiBase {
 
 		$this->mSquidMaxage = - 1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
-		$this->mVaryCookie = false;
 	}
 
 	/**
