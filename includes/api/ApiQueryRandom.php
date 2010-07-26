@@ -121,6 +121,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		return $vals;
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'namespace' => array(

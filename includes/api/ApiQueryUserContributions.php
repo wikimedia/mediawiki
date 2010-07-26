@@ -338,6 +338,12 @@ class ApiQueryContributions extends ApiQueryBase {
 			wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
 	}
 
+	public function getCacheMode( $params ) {
+		// This module provides access to deleted revisions and patrol flags if
+		// the requester is logged in
+		return 'anon-public-user-private';
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'limit' => array (

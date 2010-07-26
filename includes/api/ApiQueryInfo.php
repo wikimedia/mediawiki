@@ -522,7 +522,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	/**
-	 * Get information about watched status and put it in $watched
+	 * Get information about watched status and put it in $this->watched
 	 */
 	private function getWatchedInfo()
 	{
@@ -553,6 +553,27 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
+	public function getCacheMode( $params ) {
+		$publicProps = array(
+			'protection',
+			'talkid',
+			'subjectid',
+			'url',
+			'preload',
+		);
+		if ( !is_null( $params['prop'] ) ) {
+			foreach ( $params['prop'] as $prop ) {
+				if ( !in_array( $prop, $publicProps ) ) {
+					return 'private';
+				}
+			}
+		}
+		if ( !is_null( $params['token'] ) ) {
+			return 'private';
+		}
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'prop' => array (
@@ -561,11 +582,13 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'protection',
 					'talkid',
-					'watched',
+					'watched', # private
 					'subjectid',
 					'url',
-					'readable',
+					'readable', # private
 					'preload'
+					// If you add more properties here, please consider whether they 
+					// need to be added to getCacheMode()
 				) ),
 			'token' => array (
 				ApiBase :: PARAM_DFLT => null,

@@ -207,6 +207,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		return $this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'user' );
 	}
 
+	public function getCacheMode( $params ) {
+		if ( isset( $params['token'] ) ) {
+			return 'private';
+		} else {
+			return 'public';
+		}
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'prop' => array (

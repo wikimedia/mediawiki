@@ -154,7 +154,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$this->dieUsageMsg( array( 'show' ) );
 			}
 			
-			// Check permissions.  FIXME: should this check $user instead of $wgUser?
+			// Check permissions.
 			if ( ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() )
 				$this->dieUsage( "You need the patrol right to request the patrolled flag", 'permissiondenied' );
 

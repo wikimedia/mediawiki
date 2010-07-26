@@ -1,10 +1,10 @@
 = MediaWiki release notes =
 
-== MediaWiki 1.16 beta 3 ==
+== MediaWiki 1.16.0 ==
 
-2010-05-28
+2010-07-26
 
-This is a pre-release beta of the MediaWiki 1.16 branch.
+This is a stable release of the MediaWiki 1.16 branch.
 
 === Summary of selected changes in 1.16 ===
 
@@ -61,6 +61,9 @@ further.
   Special:Upload after following a red link to a file.
 * In SQLite full-text search feature: fixed "move page" feature, was non-
   functional.
+* (bug xxxxx) Fixed Cache-Control headers sent from API modules, to protect
+  user privacy in the case where an attacker can access the wiki through the
+  same HTTP proxy as a logged-in user.
 
 == Changes since 1.16 beta 2 ==
 

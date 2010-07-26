@@ -99,6 +99,10 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		$db->freeResult( $res );
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'continue' => null,

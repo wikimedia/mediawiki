@@ -285,6 +285,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return $vals;
 	}
 	
+	public function getCacheMode( $params ) {
+		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
+			// formatComment() calls wfMsg() among other things
+			return 'anon-public-user-private';
+		} else {
+			return 'public';
+		}
+	}
+
 	public function getAllowedParams() {
 		global $wgLogTypes;
 		return array (

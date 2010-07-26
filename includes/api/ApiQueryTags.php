@@ -129,6 +129,10 @@ class ApiQueryTags extends ApiQueryBase {
 		return true;
 	}
 	
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'continue' => array(
