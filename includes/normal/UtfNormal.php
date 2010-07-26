@@ -24,15 +24,6 @@
 /** */
 require_once dirname(__FILE__).'/UtfNormalUtil.php';
 
-global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp;
-$utfCombiningClass = null;
-$utfCanonicalComp = null;
-$utfCanonicalDecomp = null;
-
-# Load compatibility decompositions on demand if they are needed.
-global $utfCompatibilityDecomp;
-$utfCompatibilityDecomp = null;
-
 /**
  * For using the ICU wrapper
  */
@@ -62,6 +53,15 @@ define( 'NORMALIZE_INTL', function_exists( 'normalizer_normalize' ) );
  * @ingroup UtfNormal
  */
 class UtfNormal {
+	static $utfCombiningClass = null;
+	static $utfCanonicalComp = null;
+	static $utfCanonicalDecomp = null;
+
+	# Load compatibility decompositions on demand if they are needed.
+	static $utfCompatibilityDecomp = null;
+
+	static $utfCheckNFC;
+
 	/**
 	 * The ultimate convenience function! Clean up invalid UTF-8 sequences,
 	 * and convert to normal form C, canonical composition.
@@ -174,8 +174,7 @@ class UtfNormal {
 	 * @private
 	 */
 	static function loadData() {
-		global $utfCombiningClass;
-		if( !isset( $utfCombiningClass ) ) {
+		if( !isset( self::$utfCombiningClass ) ) {
 			require_once( dirname(__FILE__) . '/UtfNormalData.inc' );
 		}
 	}
@@ -192,7 +191,6 @@ class UtfNormal {
 		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
 
 		UtfNormal::loadData();
-		global $utfCheckNFC, $utfCombiningClass;
 		$len = strlen( $string );
 		for( $i = 0; $i < $len; $i++ ) {
 			$c = $string{$i};
@@ -209,11 +207,11 @@ class UtfNormal {
 				$c = substr( $string, $i, 2 );
 				$i++;
 			}
-			if( isset( $utfCheckNFC[$c] ) ) {
+			if( isset( self::$utfCheckNFC[$c] ) ) {
 				# If it's NO or MAYBE, bail and do the slow check.
 				return false;
 			}
-			if( isset( $utfCombiningClass[$c] ) ) {
+			if( isset( self::$utfCombiningClass[$c] ) ) {
 				# Combining character? We might have to do sorting, at least.
 				return false;
 			}
@@ -239,9 +237,8 @@ class UtfNormal {
 		if( !isset( $checkit ) ) {
 			# Load/build some scary lookup tables...
 			UtfNormal::loadData();
-			global $utfCheckNFC, $utfCombiningClass;
 
-			$utfCheckOrCombining = array_merge( $utfCheckNFC, $utfCombiningClass );
+			$utfCheckOrCombining = array_merge( self::$utfCheckNFC, self::$utfCombiningClass );
 
 			# Head bytes for sequences which we should do further validity checks
 			$checkit = array_flip( array_map( 'chr',
@@ -456,9 +453,9 @@ class UtfNormal {
 	 */
 	static function NFD( $string ) {
 		UtfNormal::loadData();
-		global $utfCanonicalDecomp;
+
 		return UtfNormal::fastCombiningSort(
-			UtfNormal::fastDecompose( $string, $utfCanonicalDecomp ) );
+			UtfNormal::fastDecompose( $string, self::$utfCanonicalDecomp ) );
 	}
 
 	/**
@@ -476,12 +473,11 @@ class UtfNormal {
 	 * @private
 	 */
 	static function NFKD( $string ) {
-		global $utfCompatibilityDecomp;
-		if( !isset( $utfCompatibilityDecomp ) ) {
+		if( !isset( self::$utfCompatibilityDecomp ) ) {
 			require_once( 'UtfNormalDataK.inc' );
 		}
-		return UtfNormal::fastCombiningSort(
-			UtfNormal::fastDecompose( $string, $utfCompatibilityDecomp ) );
+		return self::fastCombiningSort(
+			self::fastDecompose( $string, self::$utfCompatibilityDecomp ) );
 	}
 
 
@@ -556,7 +552,6 @@ class UtfNormal {
 	 */
 	static function fastCombiningSort( $string ) {
 		UtfNormal::loadData();
-		global $utfCombiningClass;
 		$len = strlen( $string );
 		$out = '';
 		$combiners = array();
@@ -575,8 +570,8 @@ class UtfNormal {
 					$c = substr( $string, $i, 2 );
 					$i++;
 				}
-				if( isset( $utfCombiningClass[$c] ) ) {
-					$lastClass = $utfCombiningClass[$c];
+				if( isset( self::$utfCombiningClass[$c] ) ) {
+					$lastClass = self::$utfCombiningClass[$c];
 					if( isset( $combiners[$lastClass] ) ) {
 						$combiners[$lastClass] .= $c;
 					} else {
@@ -609,7 +604,6 @@ class UtfNormal {
 	 */
 	static function fastCompose( $string ) {
 		UtfNormal::loadData();
-		global $utfCanonicalComp, $utfCombiningClass;
 		$len = strlen( $string );
 		$out = '';
 		$lastClass = -1;
@@ -641,14 +635,14 @@ class UtfNormal {
 			}
 			$pair = $startChar . $c;
 			if( $n > 0x80 ) {
-				if( isset( $utfCombiningClass[$c] ) ) {
+				if( isset( self::$utfCombiningClass[$c] ) ) {
 					# A combining char; see what we can do with it
-					$class = $utfCombiningClass[$c];
+					$class = self::$utfCombiningClass[$c];
 					if( !empty( $startChar ) &&
 						$lastClass < $class &&
 						$class > 0 &&
-						isset( $utfCanonicalComp[$pair] ) ) {
-						$startChar = $utfCanonicalComp[$pair];
+						isset( self::$utfCanonicalComp[$pair] ) ) {
+						$startChar = self::$utfCanonicalComp[$pair];
 						$class = 0;
 					} else {
 						$combining .= $c;
@@ -660,8 +654,8 @@ class UtfNormal {
 			}
 			# New start char
 			if( $lastClass == 0 ) {
-				if( isset( $utfCanonicalComp[$pair] ) ) {
-					$startChar = $utfCanonicalComp[$pair];
+				if( isset( self::$utfCanonicalComp[$pair] ) ) {
+					$startChar = self::$utfCanonicalComp[$pair];
 					$lastHangul = 0;
 					continue;
 				}

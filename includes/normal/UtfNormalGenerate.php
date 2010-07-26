@@ -177,11 +177,10 @@ if( $out ) {
  * Run UtfNormalGenerate.php to create this file again (make clean && make)
  */
 /** */
-global \$utfCombiningClass, \$utfCanonicalComp, \$utfCanonicalDecomp, \$utfCheckNFC;
-\$utfCombiningClass = unserialize( '$serCombining' );
-\$utfCanonicalComp = unserialize( '$serComp' );
-\$utfCanonicalDecomp = unserialize( '$serCanon' );
-\$utfCheckNFC = unserialize( '$serCheckNFC' );
+UtfNormal::\$utfCombiningClass = unserialize( '$serCombining' );
+UtfNormal::\$utfCanonicalComp = unserialize( '$serComp' );
+UtfNormal::\$utfCanonicalDecomp = unserialize( '$serCanon' );
+UtfNormal::\$utfCheckNFC = unserialize( '$serCheckNFC' );
 \n";
 	fputs( $out, $outdata );
 	fclose( $out );
@@ -201,8 +200,7 @@ if( $out ) {
  * Run UtfNormalGenerate.php to create this file again (make clean && make)
  */
 /** */
-global \$utfCompatibilityDecomp;
-\$utfCompatibilityDecomp = unserialize( '$serCompat' );
+UtfNormal::\$utfCompatibilityDecomp = unserialize( '$serCompat' );
 \n";
 	fputs( $out, $outdata );
 	fclose( $out );
