@@ -457,7 +457,7 @@ class LinksUpdate {
 					# order or such.
 					$prefix = $sortkey;
 					$sortkey = $wgContLang->convertToSortkey(
-						$prefix . $this->mTitle->getCategorySortkey() );
+						$this->mTitle->getCategorySortkey( $prefix ) );
 				}
 
 				$arr[] = array(

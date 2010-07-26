@@ -4139,20 +4139,29 @@ class Title {
 	}
 
 	/**
-	 * Returns what the default sort key for categories would be, if
-	 * {{defaultsort:}} isn't used.  This is the same as getText() for
-	 * categories, and for everything if $wgCategoryPrefixedDefaultSortkey is
-	 * false; otherwise it's the same as getPrefixedText().
+	 * Returns the raw sort key to be used for categories, with the specified
+	 * prefix.  This will be fed to Language::convertToSortkey() to get a
+	 * binary sortkey that can be used for actual sorting.
 	 *
+	 * @param $prefix string The prefix to be used, specified using
+	 *   {{defaultsort:}} or like [[Category:Foo|prefix]].  Empty for no
+	 *   prefix.
 	 * @return string
 	 */
-	public function getCategorySortkey() {
+	public function getCategorySortkey( $prefix = '' ) {
 		global $wgCategoryPrefixedDefaultSortkey;
 		if ( $this->getNamespace() == NS_CATEGORY
 		|| !$wgCategoryPrefixedDefaultSortkey ) {
-			return $this->getText();
+			$unprefixed = $this->getText();
 		} else {
-			return $this->getPrefixedText();
+			$unprefixed = $this->getPrefixedText();
 		}
+		if ( $prefix !== '' ) {
+			# Separate with a null byte, so the unprefixed part is only used as
+			# a tiebreaker when two pages have the exact same prefix -- null
+			# sorts before everything else (hopefully).
+			return "$prefix\0$unprefixed";
+		}
+		return $unprefixed;
 	}
 }
