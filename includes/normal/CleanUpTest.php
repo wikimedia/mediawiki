@@ -85,7 +85,6 @@ class CleanUpTest extends PHPUnit_Framework_TestCase {
 	 */
 	function XtestAllChars() {
 		$rep = UTF8_REPLACEMENT;
-		global $utfCanonicalComp, $utfCanonicalDecomp;
 		for( $i = 0x0; $i < UNICODE_MAX; $i++ ) {
 			$char = codepointToUtf8( $i );
 			$clean = UtfNormal::cleanUp( $char );
@@ -97,7 +96,7 @@ class CleanUpTest extends PHPUnit_Framework_TestCase {
 			    ($i > 0x001f && $i < UNICODE_SURROGATE_FIRST) ||
 			    ($i > UNICODE_SURROGATE_LAST && $i < 0xfffe ) ||
 			    ($i > 0xffff && $i <= UNICODE_MAX ) ) {
-				if( isset( $utfCanonicalComp[$char] ) || isset( $utfCanonicalDecomp[$char] ) ) {
+				if( isset( UtfNormal::$utfCanonicalComp[$char] ) || isset( UtfNormal::$utfCanonicalDecomp[$char] ) ) {
 				    $comp = UtfNormal::NFC( $char );
 					$this->assertEquals(
 						bin2hex( $comp ),

@@ -86,11 +86,10 @@ function benchTime(){
 }
 
 function benchmarkForm( &$u, &$data, $form ) {
-	global $utfCanonicalDecomp;
 	#$start = benchTime();
 	for( $i = 0; $i < BENCH_CYCLES; $i++ ) {
 		$start = benchTime();
-		$out = $u->$form( $data, $utfCanonicalDecomp );
+		$out = $u->$form( $data, UtfNormal::$utfCanonicalDecomp );
 		$deltas[] = (benchTime() - $start);
 	}
 	#$delta = (benchTime() - $start) / BENCH_CYCLES;
