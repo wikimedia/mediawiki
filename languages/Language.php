@@ -2939,7 +2939,9 @@ class Language {
 	 * Given a string, convert it to a (hopefully short) key that can be used
 	 * for efficient sorting.  A binary sort according to the sortkeys
 	 * corresponds to a logical sort of the corresponding strings.  Applying
-	 * this to cl_raw_sortkey produces cl_sortkey.
+	 * this to cl_sortkey_prefix concatenated with the page title (possibly
+	 * with namespace prefix, depending on $wgCategoryPrefixedDefaultSortkey)
+	 * gives you cl_sortkey.
 	 *
 	 * @param string $string UTF-8 string
 	 * @return string Binary sortkey
