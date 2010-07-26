@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Enye Lav
  * @author Yufereff
  */
 
@@ -115,12 +116,17 @@ $messages = array(
 'jumptosearch'     => 'кошшан',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'copyright'   => 'Быдöс этiйö позьö копируйттны $1 сьöртi.',
-'disclaimers' => 'Мийö сöстöмöсь туйдöт одзын',
-'edithelp'    => 'Мöдкодьсьöтiсь понда отсöт',
-'helppage'    => 'Help:Отсöт',
-'mainpage'    => 'Юр листбок',
-'privacy'     => 'Астор дорьян политика',
+'aboutsite'     => '{{SITENAME}} йылiсь',
+'aboutpage'     => 'Project:сы йылiсь',
+'copyright'     => 'Быдöс этiйö позьö копируйттны $1 сьöртi.',
+'copyrightpage' => '{{ns:project}}:Копирайт',
+'disclaimers'   => 'Мийö сöстöмöсь йöз одзын',
+'edithelp'      => 'Мöдкодьсьöтiсь понда отсöт',
+'edithelppage'  => 'Help:Уджкерись понда отсöт',
+'helppage'      => 'Help:Отсöт',
+'mainpage'      => 'Юр листбок',
+'privacy'       => 'Астор дорьян политика',
+'privacypage'   => 'Project:Астор дорьян политика',
 
 'badaccess' => 'Пырикö сорасьöм',
 
@@ -160,12 +166,12 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'Уджкерисьлöн пыран ним:',
 'yourpassword'            => 'Пароль:',
-'remembermypassword'      => 'Видзны менчим пыран ним этiя компьютер тöдвылын',
+'remembermypassword'      => 'Видзны менчим пыран ним этiя компьютер тöдвылын (не дыржык $1 лунся)',
 'login'                   => 'Пырны ним увтын',
 'nav-login-createaccount' => 'Ас нимöн пырны / гижöтчыны',
 'userlogin'               => 'Висьтасьны нето гижöтчыны',
 'logout'                  => 'Сайласьны',
-'userlogout'              => 'Сайлася бы',
+'userlogout'              => 'Петан',
 'nologinlink'             => 'Кер аслыт уджкерисьлiсь ним',
 'mailmypassword'          => 'Ыстыны виль пароль',
 
@@ -265,6 +271,7 @@ $messages = array(
 'search-interwiki-more'     => '(унажык)',
 'search-mwsuggest-enabled'  => 'öтсöттэзöн',
 'search-mwsuggest-disabled' => 'öтсöттэзтöг',
+'nonefound'                 => "'''Пасйöт.''' Он кö нагладь шуан,  кытiсь кошшыны,  шедасö не быдöс тексттэз, кытöн пантасьö колан кылыс. Мед кошшыны быдöс тексттэзiсь (уджкериссез листбоккезiсь,  шаболоннэзiсь дмд.), гиж ''all:'',  нето утлянно мыччав,  кытiсь кошшыны.",
 'powersearch'               => 'Паськытжыка кошшан',
 'powersearch-legend'        => 'Паськытжыка кошшан',
 'powersearch-ns'            => 'Ниммез коласiсь кошшан:',
@@ -528,7 +535,7 @@ $messages = array(
 'tooltip-pt-watchlist'            => 'Менам синмалан листбоккез ним сьöртi',
 'tooltip-pt-mycontris'            => 'Мый тэ мöдкодьсьöтiн, ним сьöртi',
 'tooltip-pt-login'                => 'Татi верман ас нимöн пырны, но туйö и нимтöмöн пыравны',
-'tooltip-pt-logout'               => 'Сайласьыны',
+'tooltip-pt-logout'               => 'Петны',
 'tooltip-ca-talk'                 => 'Этiя листбок йылiсь сёрнитан',
 'tooltip-ca-edit'                 => 'Этiйö листбок позьö мöдкодьсьöтны. Вежсьöммез пыртöм одзын нырышт «нёджöвт» личкöт вылö,  мед видзöтны, мый тэнат аркмö.',
 'tooltip-ca-addsection'           => 'Лöсьöтны виль юкöт',
@@ -605,7 +612,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'Редактируйтны этiйö файлсö мöд программа пыр',
-'edit-externally-help' => '(Унажык видзöт: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] удж кежö лосьöтны туйдöтан)',
+'edit-externally-help' => '(Унажык видзöт: [http://www.mediawiki.org/wiki/Manual:External_editors _editors exactly as it is.])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'быдöс',

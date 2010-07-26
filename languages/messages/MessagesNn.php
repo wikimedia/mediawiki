@@ -785,6 +785,7 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'showlivepreview'                  => 'Levande førehandsvising',
 'showdiff'                         => 'Vis skilnad',
 'anoneditwarning'                  => "'''Åtvaring:''' Du er ikkje innlogga. IP-adressa di vert lagra i historikken for denne sida.",
+'anonpreviewwarning'               => "''Du er ikkje innlogga. Lagrar du vil IP-adressa di verta førd opp i endringshistorikken til denne sida.''",
 'missingsummary'                   => "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
 'missingcommenttext'               => 'Ver venleg og skriv ein kommentar nedanfor.',
 'missingcommentheader'             => "'''Påminning:''' Du har ikkje oppgjeve noko emne/overskrift for denne kommentaren.
@@ -1094,7 +1095,11 @@ Sjekk gjerne loggføringa.',
 Sjå [[Special:IPBlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
 # Revision move
+'moverevlogentry'              => 'flytta {{PLURAL:$3|éin versjon|$3 versjonar}} frå $1 til $2',
 'revisionmove'                 => 'Flytt versjonar frå «$1»',
+'revmove-explain'              => 'Dei fylgjande versjonane vil verta flytta frå $1 til målsida som er gjeven opp. Om målet ikkje finst vil det verta oppretta.
+Elles vil desse versjonane verta fletta inn i sidehistorikken.',
+'revmove-legend'               => 'Set målsida og samandrag',
 'revmove-submit'               => 'Flytt versjonane til den valde sida',
 'revisionmoveselectedversions' => 'Flytt dei valde versjonane',
 'revmove-reasonfield'          => 'Årsak:',
@@ -1283,6 +1288,7 @@ Her er det framlegg til eit tal som kan nyttast, tilfelleleg henta fram: $1',
 'prefs-files'                   => 'Filer',
 'prefs-custom-css'              => 'Eigendefinert CSS',
 'prefs-custom-js'               => 'Eigendefinert JavaScript',
+'prefs-common-css-js'           => 'Delt CSS/JavaScript for alle draktene:',
 'prefs-reset-intro'             => 'Du kan nytta denne sida til å tilbakestilla innstillingane dine til standardinnstillingane.
 Dette kan ikke tilbakestillast.',
 'prefs-emailconfirm-label'      => 'Stadfesting av e-post:',
@@ -1533,6 +1539,9 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'upload_directory_missing'    => 'Opplastingsmappa ($1) manglar og kunne ikkje opprettast av tenaren.',
 'upload_directory_read_only'  => 'Opplastingsmappa ($1) er skriveverna.',
 'uploaderror'                 => 'Feil under opplasting av fil',
+'upload-recreate-warning'     => "'''Åtvaring: Ei fil med dette namnet er vorten sletta eller flytta.'''
+
+Slette- og flytteloggen til sida er gjeven opp her:",
 'uploadtext'                  => "Bruk skjemaet under for å laste opp filer.
 For å sjå eller søkje i eksisterande filer, gå til [[Special:FileList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]].
 
@@ -1566,7 +1575,11 @@ For å bruke ei fil på ei side, bruk ei slik lenkje:
 'filetype-banned-type'        => "«'''.$1'''» er ikkje ein tillaten filtype.
 {{PLURAL:$3|Tillaten filtype er|Tillatne filtypar er}} $2.",
 'filetype-missing'            => 'Fila har inga ending (som t.d. «.jpg»).',
+'empty-file'                  => 'Fila du leverte var tom.',
+'file-too-large'              => 'Fila du leverte var for stor.',
 'filename-tooshort'           => 'Filnamnet er for kort.',
+'filetype-banned'             => 'Denne filtypen er ikkje tillaten.',
+'verification-error'          => 'Denne fila klarde ikkje verifiseringsprossesen.',
 'illegal-filename'            => 'Filnamnet er ikkje tillate.',
 'overwrite'                   => 'Det er ikkje tillate å skriva over ei eksisterande fil.',
 'unknown-error'               => 'Det oppstod ein ukjend feil.',
@@ -1632,6 +1645,11 @@ JD # Jenoptik
 MGP # Pentax
 PICT # div.
   #</pre> <!-- leave this line exactly as it is -->',
+'upload-successful-msg'       => 'Opplastinga di er tilgjengeleg her: $1',
+'upload-failure-subj'         => 'Opplastingsproblem',
+'upload-failure-msg'          => 'Det oppstod eit problem med opplastinga di:
+
+$1',
 
 'upload-proto-error'        => 'Feil protokoll',
 'upload-proto-error-text'   => 'Fjernopplasting krev nettadresser som byrjar med <code>http://</code> eller <code>ftp://</code>.',
@@ -1988,29 +2006,31 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'listgrouprights-removegroup-self-all' => 'Kan ta vekk alle gruppene frå sin eigen konto',
 
 # E-mail user
-'mailnologin'      => 'Inga avsendaradresse',
-'mailnologintext'  => 'Du lyt vera [[Special:UserLogin|innlogga]] og ha ei gyldig e-postadresse sett i [[Special:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
-'emailuser'        => 'Send e-post åt denne brukaren',
-'emailpage'        => 'Send e-post åt brukar',
-'emailpagetext'    => 'Du kan nytte skjemaet nedanfor til å sende ein e-post til denne brukaren.
+'mailnologin'          => 'Inga avsendaradresse',
+'mailnologintext'      => 'Du lyt vera [[Special:UserLogin|innlogga]] og ha ei gyldig e-postadresse sett i [[Special:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
+'emailuser'            => 'Send e-post åt denne brukaren',
+'emailpage'            => 'Send e-post åt brukar',
+'emailpagetext'        => 'Du kan nytte skjemaet nedanfor til å sende ein e-post til denne brukaren.
 E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukke opp i «frå»-feltet på denne e-posten, så mottakaren er i stand til å svare.',
-'usermailererror'  => 'E-post systemet gav feilmelding:',
-'defemailsubject'  => '{{SITENAME}} e-post',
-'noemailtitle'     => 'Inga e-postadresse',
-'noemailtext'      => 'Denne brukaren har ikkje oppgjeve ei gyldig e-postadresse.',
-'nowikiemailtitle' => 'Ingen e-post tillaten',
-'nowikiemailtext'  => 'Denne brukaren har vald å ikkje motta e-postar frå andre brukarar.',
-'email-legend'     => 'Send ein e-post til ein annan {{SITENAME}}-brukar',
-'emailfrom'        => 'Frå:',
-'emailto'          => 'Åt:',
-'emailsubject'     => 'Emne:',
-'emailmessage'     => 'Melding:',
-'emailsend'        => 'Send',
-'emailccme'        => 'Send meg ein kopi av meldinga mi.',
-'emailccsubject'   => 'Kopi av meldinga di til $1: $2',
-'emailsent'        => 'E-posten er sendt',
-'emailsenttext'    => 'E-posten er sendt.',
-'emailuserfooter'  => 'E-posten vart sendt av $1 til $2 via «Send e-post»-funksjonen på {{SITENAME}}.',
+'usermailererror'      => 'E-post systemet gav feilmelding:',
+'defemailsubject'      => '{{SITENAME}} e-post',
+'usermaildisabled'     => 'Brukare-post slegen av',
+'usermaildisabledtext' => 'Du kan ikkje senda e-postar til andre brukarar på wikien',
+'noemailtitle'         => 'Inga e-postadresse',
+'noemailtext'          => 'Denne brukaren har ikkje oppgjeve ei gyldig e-postadresse.',
+'nowikiemailtitle'     => 'Ingen e-post tillaten',
+'nowikiemailtext'      => 'Denne brukaren har vald å ikkje motta e-postar frå andre brukarar.',
+'email-legend'         => 'Send ein e-post til ein annan {{SITENAME}}-brukar',
+'emailfrom'            => 'Frå:',
+'emailto'              => 'Åt:',
+'emailsubject'         => 'Emne:',
+'emailmessage'         => 'Melding:',
+'emailsend'            => 'Send',
+'emailccme'            => 'Send meg ein kopi av meldinga mi.',
+'emailccsubject'       => 'Kopi av meldinga di til $1: $2',
+'emailsent'            => 'E-posten er sendt',
+'emailsenttext'        => 'E-posten er sendt.',
+'emailuserfooter'      => 'E-posten vart sendt av $1 til $2 via «Send e-post»-funksjonen på {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Overvakingsliste',
@@ -3170,6 +3190,7 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'table_pager_first'        => 'Fyrste side',
 'table_pager_last'         => 'Siste side',
 'table_pager_limit'        => 'Vis $1 element per side',
+'table_pager_limit_label'  => 'Element per side:',
 'table_pager_limit_submit' => 'Gå',
 'table_pager_empty'        => 'Ingen resultat',
 
