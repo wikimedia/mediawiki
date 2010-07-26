@@ -80,8 +80,6 @@ class MessageWriter {
 		# Load messages
 		$dir = $prefix ? $prefix : dirname( __FILE__ );
 
-		global $wgMessageStructure, $wgBlockComments, $wgIgnoredMessages, $wgOptionalMessages;
-
 		require( $dir . '/messages.inc' );
 		self::$messageStructure = $wgMessageStructure;
 		self::$blockComments = $wgBlockComments;

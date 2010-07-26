@@ -383,7 +383,7 @@ ENDS;
 	 * @return The checks results as wiki text.
 	 */
 	function outputWiki() {
-		global $wgContLang;
+		global $wgContLang, $IP;
 		$detailText = '';
 		$rows[] = '! Language !! Code !! Total !! ' . implode( ' !! ', array_diff( $this->checks, $this->nonMessageChecks() ) );
 		foreach ( $this->results as $code => $results ) {

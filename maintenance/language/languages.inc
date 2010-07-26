@@ -32,9 +32,6 @@ class languages {
 	 */
 	function __construct( $exif = true ) {
 		require( dirname(__FILE__) . '/messageTypes.inc' );
-
-		global $wgIgnoredMessages, $wgOptionalMessages, $wgEXIFMessages;
-
 		$this->mIgnoredMessages = $wgIgnoredMessages;
 		if ( $exif ) {
 			$this->mOptionalMessages = array_merge( $wgOptionalMessages );
