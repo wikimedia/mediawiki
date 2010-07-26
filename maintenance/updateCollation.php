@@ -57,11 +57,10 @@ TEXT;
 			$dbw->begin();
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
-				$rawSortkey = $title->getCategorySortkey();
 				if ( $row->cl_collation == 0 ) {
 					# This is an old-style row, so the sortkey needs to be
 					# converted.
-					if ( $row->cl_sortkey == $rawSortkey ) {
+					if ( $row->cl_sortkey == $title->getCategorySortkey() ) {
 						$prefix = '';
 					} else {
 						# Custom sortkey, use it as a prefix
@@ -82,7 +81,8 @@ TEXT;
 				$dbw->update(
 					'categorylinks',
 					array(
-						'cl_sortkey' => $wgContLang->convertToSortkey( $prefix . $rawSortkey ),
+						'cl_sortkey' => $wgContLang->convertToSortkey(
+							$title->getCategorySortkey( $prefix ) ),
 						'cl_sortkey_prefix' => $prefix,
 						'cl_collation' => $wgCollationVersion,
 						'cl_type' => $type,

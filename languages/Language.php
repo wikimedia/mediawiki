@@ -2938,10 +2938,10 @@ class Language {
 	/**
 	 * Given a string, convert it to a (hopefully short) key that can be used
 	 * for efficient sorting.  A binary sort according to the sortkeys
-	 * corresponds to a logical sort of the corresponding strings.  Applying
-	 * this to cl_sortkey_prefix concatenated with the page title (possibly
-	 * with namespace prefix, depending on $wgCategoryPrefixedDefaultSortkey)
-	 * gives you cl_sortkey.
+	 * corresponds to a logical sort of the corresponding strings.  Current
+	 * code expects that a null character should sort before all others, but
+	 * has no other particular expectations (and that one can be changed if
+	 * necessary).
 	 *
 	 * @param string $string UTF-8 string
 	 * @return string Binary sortkey
@@ -2988,6 +2988,9 @@ class Language {
 	 * @return string UTF-8 string corresponding to the first letter of input
 	 */
 	public function firstLetterForLists( $string ) {
+		if ( $string[0] == "\0" ) {
+			$string = substr( $string, 1 );
+		}
 		return strtoupper( mb_substr( $string, 0, 1 ) );
 	}
 }
