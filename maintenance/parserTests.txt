@@ -1133,10 +1133,12 @@ Simple table
 !! result
 <table>
 <tr>
-<td> 1 </td><td> 2
+<td> 1 </td>
+<td> 2
 </td></tr>
 <tr>
-<td> 3 </td><td> 4
+<td> 3 </td>
+<td> 4
 </td></tr></table>
 
 !! end
@@ -1169,27 +1171,45 @@ Multiplication table
 <caption>Multiplication table
 </caption>
 <tr>
-<th> &times; </th><th> 1 </th><th> 2 </th><th> 3
+<th> &times; </th>
+<th> 1 </th>
+<th> 2 </th>
+<th> 3
 </th></tr>
 <tr>
 <th> 1
-</th><td> 1 </td><td> 2 </td><td> 3
+</th>
+<td> 1 </td>
+<td> 2 </td>
+<td> 3
 </td></tr>
 <tr>
 <th> 2
-</th><td> 2 </td><td> 4 </td><td> 6
+</th>
+<td> 2 </td>
+<td> 4 </td>
+<td> 6
 </td></tr>
 <tr>
 <th> 3
-</th><td> 3 </td><td> 6 </td><td> 9
+</th>
+<td> 3 </td>
+<td> 6 </td>
+<td> 9
 </td></tr>
 <tr>
 <th> 4
-</th><td> 4 </td><td> 8 </td><td> 12
+</th>
+<td> 4 </td>
+<td> 8 </td>
+<td> 12
 </td></tr>
 <tr>
 <th> 5
-</th><td> 5 </td><td> 10 </td><td> 15
+</th>
+<td> 5 </td>
+<td> 10 </td>
+<td> 15
 </td></tr></table>
 
 !! end
@@ -1209,12 +1229,15 @@ Table rowspan
 <table align="right" border="1">
 <tr>
 <td> Cell 1, row 1
-</td><td rowspan="2"> Cell 2, row 1 (and 2)
-</td><td> Cell 3, row 1
+</td>
+<td rowspan="2"> Cell 2, row 1 (and 2)
+</td>
+<td> Cell 3, row 1
 </td></tr>
 <tr>
 <td> Cell 1, row 2
-</td><td> Cell 3, row 2
+</td>
+<td> Cell 3, row 2
 </td></tr></table>
 
 !! end
@@ -1236,7 +1259,8 @@ Nested table
 <table border="1">
 <tr>
 <td> &alpha;
-</td><td>
+</td>
+<td>
 <table bgcolor="#ABCDEF" border="2">
 <tr>
 <td>nested
@@ -1244,7 +1268,8 @@ Nested table
 <tr>
 <td>table
 </td></tr></table>
-</td><td>the original table again
+</td>
+<td>the original table again
 </td></tr></table>
 
 !! end
@@ -1264,20 +1289,16 @@ Invalid attributes in table cell (bug 1830)
 !! end
 
 
-# FIXME: It's not clear at all that this is the result we want, but the actual
-# output right now is invalid XML, so clearly something is wrong.  The result
-# specified here is now valid XML, which is an improvement . . .
 !! test
 Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
-!! options
-disabled
 !! input
 {|
 | |[ftp://|x||]" onmouseover="alert(document.cookie)">test
 !! result
 <table>
 <tr>
-<td><a href="ftp://%7Cx" class="external text" rel="nofollow">ftp://%7Cx</a></td><td>" onmouseover="alert(document.cookie)"&gt;test
+<td>[<a href="ftp://%7Cx" class="external free" rel="nofollow">ftp://%7Cx</a></td>
+<td>]" onmouseover="alert(document.cookie)"&gt;test
 </td>
 </tr>
 </table>
@@ -2567,10 +2588,12 @@ foo {{table}}
 </p>
 <table>
 <tr>
-<td> 1 </td><td> 2
+<td> 1 </td>
+<td> 2
 </td></tr>
 <tr>
-<td> 3 </td><td> 4
+<td> 3 </td>
+<td> 4
 </td></tr></table>
 
 !! end
@@ -2585,10 +2608,12 @@ foo
 </p>
 <table>
 <tr>
-<td> 1 </td><td> 2
+<td> 1 </td>
+<td> 2
 </td></tr>
 <tr>
-<td> 3 </td><td> 4
+<td> 3 </td>
+<td> 4
 </td></tr></table>
 
 !! end
@@ -5180,7 +5205,10 @@ noxml
 !! result
 <table>
 <tr>
-<th>https://</th><th></th><th></th><th>
+<th>https://</th>
+<th></th>
+<th></th>
+<th>
 </td>
 </tr>
 </table>
@@ -5197,7 +5225,8 @@ Fuzz testing: Parser21
 <table>
 <tr>
 <th> <a href="irc://{{ftp://a" class="external free" rel="nofollow">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
-</th><td>
+</th>
+<td>
 </td>
 </tr>
 </table>
@@ -7347,10 +7376,12 @@ y
 </p>
 <table>
 <tr>
-<td> 1 </td><td> 2
+<td> 1 </td>
+<td> 2
 </td></tr>
 <tr>
-<td> 3 </td><td> 4
+<td> 3 </td>
+<td> 4
 </td></tr></table>
 <p>y
 </p>
