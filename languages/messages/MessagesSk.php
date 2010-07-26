@@ -2619,6 +2619,7 @@ Cieľová stránka „[[:$1]]“ už existuje. Chcete ho vymazať a vytvoriť ta
 'immobile-source-page'         => 'Túto stránku nemožno presunúť.',
 'immobile-target-page'         => 'Nie je možné presunúť na cieľovú stránku z daným názvom.',
 'imagenocrossnamespace'        => 'Obrázok nemožno presunúť mimo menného priestoru obrázkov',
+'nonfile-cannot-move-to-file'  => 'Nie je možné presunúť objekt, ktorý nie je súbor do menného priestoru Súbor',
 'imagetypemismatch'            => 'Nová prípona súboru nezodpovedá jeho typu',
 'imageinvalidfilename'         => 'Cieľový názov obrázka nie je platný',
 'fix-double-redirects'         => 'Aktualizovať všetky presmerovania odkazujúce na pôvodný názov',

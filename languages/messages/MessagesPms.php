@@ -2390,6 +2390,7 @@ L\'artìcol ëd destinassion "[[:$1]]" a-i é già. Veul-lo scancelelo për avej
 'immobile-source-page'         => 'Sta pàgina-sì as peul pa tramudesse.',
 'immobile-target-page'         => 'As peul pa tramudess al tìtol dë sta destinassion-sì.',
 'imagenocrossnamespace'        => 'As peul pa tramudé un file fòra dal sò namespace',
+'nonfile-cannot-move-to-file'  => 'As peul pa tramudé dij nen-file a lë spassi nominal dij file',
 'imagetypemismatch'            => 'La neuva estension dël file a corispond pa a sò tipo',
 'imageinvalidfilename'         => "Ël nòm dël file pontà a l'é pa vàlid",
 'fix-double-redirects'         => 'Modìfica minca rediression che a ponta al tìtol original',

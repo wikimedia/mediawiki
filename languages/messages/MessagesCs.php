@@ -2632,7 +2632,7 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 'immobile-source-page'         => 'Tuto stránku nelze přesouvat.',
 'immobile-target-page'         => 'Stránku nelze přesunout na zadaný název.',
 'imagenocrossnamespace'        => 'Nelze přesunout mimo jmenný prostor Soubor:',
-'nonfile-cannot-move-to-file'  => 'Nelze přesouvat stránky nepřináležející k souboru do jmenného prostoru Soubor:.',
+'nonfile-cannot-move-to-file'  => 'Do jmenného prostoru {{ns:file}} nelze přesouvat stránky nepřináležející k souboru',
 'imagetypemismatch'            => 'Nová přípona souboru neodpovídá jeho typu',
 'imageinvalidfilename'         => 'Název cílového souboru není platný',
 'fix-double-redirects'         => 'Opravit všechna přesměrování směřující na původní název',

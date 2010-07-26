@@ -288,8 +288,12 @@ $1',
 'toc'                     => 'Innoþ',
 'showtoc'                 => 'sēon',
 'hidetoc'                 => 'hȳdan',
+'thisisdeleted'           => 'Wilt þū sēon oþþe nīwian $1?',
 'viewdeleted'             => '$1 sēon?',
+'restorelink'             => '{{PLURAL:$1|ān ahwītod ādihtung}$1 ahwītoda ādihtunga}}',
 'feedlinks'               => 'Flōd:',
+'feed-invalid'            => 'Ungenge underwrītunge inlāde gecynd.',
+'feed-unavailable'        => 'Fruman inlāda ne sind gearwa',
 'site-rss-feed'           => '$1 RSS strēam',
 'site-atom-feed'          => '$1 Atom strēam',
 'page-rss-feed'           => '$1 RSS strēam',
@@ -310,11 +314,23 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => 'Nǣniȝ dǣd',
+'nosuchactiontext'  => 'Þæt weorc þe se nettfrumfinded wile is ungenge.
+Þū meahtlīce miswrite þone nettfrumfindend, oþþe folgode unrihtne hlencan.
+Þis mæg ēac tācnian unrihtnesse on þǣre sōftware þe is gebrocen fram {{SITENAME}}.',
 'nosuchspecialpage' => 'Nǣniȝu syndriȝu sīde',
+'nospecialpagetext' => '<strong>Þū hafast abiden ungenges ānlices trametes.</strong>
+
+Getæl gengra ānlicra trameta cann mann findand be [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'               => 'Ƿōh',
 'databaseerror'       => 'Cȳþþuhordes ƿōh',
+'dberrortext'         => 'Gewitnesshordes bēnes endebyrdnesse unrihtness hæfþ gelumpen.
+Þis mæg gelimpan unrihtnesse on þǣre sōftware.
+Sēo nīwoste gesōhte sōftware bēn wæs:
+<blockquote><tt>$1</tt></blockquote>
+fram innan weorce "<tt>$2</tt>".
+Gewitnesshord edwende unrihtnesse "<tt>$3: $4</tt>"',
 'laggedslavemode'     => "'''Ƿarnung:''' Sīde ne mihteliċ ne hæfþ nīƿa nīƿunga.",
 'enterlockreason'     => 'Wrīt race þǣre forwiernunge and apunsunge be þǣm tīman on þǣm bēo sēo forwiernung forlǣten',
 'missingarticle-rev'  => '(nīƿung#: $1)',
