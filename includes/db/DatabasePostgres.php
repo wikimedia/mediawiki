@@ -229,7 +229,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	function initial_setup($superuser, $password, $dbName) {
 		// If this is the initial connection, setup the schema stuff and possibly create the user
-		global $wgDBname, $wgDBuser, $wgDBpassword, $superuser, $wgDBmwschema, $wgDBts2schema;
+		global $wgDBname, $wgDBuser, $wgDBpassword, $wgDBmwschema, $wgDBts2schema;
 
 		print "<li>Checking the version of Postgres...";
 		$version = $this->getServerVersion();
