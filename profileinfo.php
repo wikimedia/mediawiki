@@ -65,7 +65,8 @@ require_once( './includes/WebStart.php' );
 <?php
 
 if ( !$wgEnableProfileInfo ) {
-	echo "disabled\n";
+	echo "<p>Disabled</p>\n";
+	echo "</body></html>";
 	exit( 1 );
 }
 
@@ -251,8 +252,8 @@ function makeurl( $_filter = false, $_sort = false, $_expand = false ) {
 	if ( $_expand === false )
 		$_expand = $expand;
 
-	$nfilter = $_filter ? $_filter : $filter;
-	$nsort = $_sort ? $_sort : $sort;
+	$nfilter = $_filter ? htmlspecialchars( $_filter ) : htmlspecialchars( $filter );
+	$nsort = $_sort ? htmlspecialchars( $_sort ) : htmlspecialchars( $sort );
 	$exp = urlencode( implode( ',', array_keys( $_expand ) ) );
 	return "?filter=$nfilter&amp;sort=$nsort&amp;expand=$exp";
 }
