@@ -590,7 +590,7 @@ class WebRequest {
 	 * @return string or NULL if no such file.
 	 */
 	public function getFileTempname( $key ) {
-		$file = new WebRequestUpload( $key );
+		$file = new WebRequestUpload( $this, $key );
 		return $file->getTempName();
 	}
 
@@ -602,7 +602,7 @@ class WebRequest {
 	 * @return integer
 	 */
 	public function getFileSize( $key ) {
-		$file = new WebRequestUpload( $key );
+		$file = new WebRequestUpload( $this, $key );
 		return $file->getSize();
 	}
 
@@ -613,7 +613,7 @@ class WebRequest {
 	 * @return integer
 	 */
 	public function getUploadError( $key ) {
-		$file = new WebRequestUpload( $key );
+		$file = new WebRequestUpload( $this, $key );
 		return $file->getError();
 	}
 
@@ -629,7 +629,7 @@ class WebRequest {
 	 * @return string or NULL if no such file.
 	 */
 	public function getFileName( $key ) {
-		$file = new WebRequestUpload( $key );
+		$file = new WebRequestUpload( $this, $key );
 		return $file->getName();
 	}
 	
@@ -640,7 +640,7 @@ class WebRequest {
 	 * @return WebRequestUpload
 	 */
 	public function getUpload( $key ) {
-		return new WebRequestUpload( $key );
+		return new WebRequestUpload( $this, $key );
 	}
 
 	/**
@@ -675,6 +675,9 @@ class WebRequest {
 			}
 		} else {
 			$name = 'HTTP_' . str_replace( '-', '_', $name );
+			if ( $name === 'HTTP_CONTENT_LENGTH' && !isset( $_SERVER[$name] ) ) {
+				$name = 'CONTENT_LENGTH';
+			}
 			if ( isset( $_SERVER[$name] ) ) {
 				return $_SERVER[$name];
 			} else {
@@ -768,15 +771,18 @@ class WebRequest {
  * Object to access the $_FILES array
  */
 class WebRequestUpload {
+	protected $request;
 	protected $doesExist;
 	protected $fileInfo;
 	
 	/**
 	 * Constructor. Should only be called by WebRequest
 	 * 
+	 * @param $request WebRequest The associated request
 	 * @param $key string Key in $_FILES array (name of form field)
 	 */
-	public function __construct( $key ) {
+	public function __construct( $request, $key ) {
+		$this->request = $request;
 		$this->doesExist = isset( $_FILES[$key] );
 		if ( $this->doesExist ) {
 			$this->fileInfo = $_FILES[$key];
@@ -851,6 +857,27 @@ class WebRequestUpload {
 		}
 		
 		return $this->fileInfo['error'];
+	}
+	
+	/**
+	 * Returns whether this upload failed because of overflow of a maximum set
+	 * in php.ini
+	 * 
+	 * @return bool
+	 */
+	public function isIniSizeOverflow() {
+		if ( $this->getError() == UPLOAD_ERR_INI_SIZE ) {
+			# PHP indicated that upload_max_filesize is exceeded
+			return true;
+		}
+
+		$contentLength = $this->request->getHeader( 'CONTENT_LENGTH' );
+		if ( $contentLength > wfShorthandToInteger( ini_get( 'post_max_size' ) ) ) {
+			# post_max_size is exceeded
+			return true;
+		}
+		
+		return false;
 	}
 }
 

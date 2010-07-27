@@ -38,21 +38,14 @@ class UploadFromFile extends UploadBase {
 		# Check for a post_max_size or upload_max_size overflow, so that a 
 		# proper error can be shown to the user
 		if ( is_null( $this->mTempPath ) || $this->isEmptyFile() ) {
-			# Using the Content-length header is not an absolutely fail-safe
-			# method, but the only available option. Otherwise broken uploads
-			# will be handled by the parent method and return empty-file
-			$contentLength = intval( $_SERVER['CONTENT_LENGTH'] );
-			$maxPostSize = wfShorthandToInteger( ini_get( 'post_max_size' ) );
-			if ( $this->mWebUpload->getError() == UPLOAD_ERR_INI_SIZE 
-					|| $contentLength > $maxPostSize ) {
-				
+			if ( $this->mWebUpload->isIniSizeOverflow() ) {
 				global $wgMaxUploadSize;
 				return array( 
 					'status' => self::FILE_TOO_LARGE,
 					'max' => min( 
 						$wgMaxUploadSize, 
 						wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ), 
-						$maxPostSize 
+						wfShorthandToInteger( ini_get( 'post_max_size' ) )
 					),
 				);
 			}
