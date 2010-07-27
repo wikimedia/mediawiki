@@ -301,7 +301,12 @@ MediaWiki supports over 330 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of MediaZilla reports.
 
+* Moroccan Spoken Arabic (ary) (new)
+* Banjar (bjn) (new)
+* Kabardian (kdb) (new, dummy)
+* Kabardian (Cyrillic) (kbd-cyrl) (new)
 * Latgalian (ltg) (new)
+* Dutch (informal) (nl-informal) (new)
 * Rusyn (rue) (new)
 
 * (bug 23156) Commafy and search normalization updated for Belarusian
