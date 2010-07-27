@@ -3409,7 +3409,7 @@ class Article {
 		if ( $s === false ) {
 			# No one else ever edited this page
 			return array( array( 'cantrollback' ) );
-		} else if ( $s->rev_deleted & REVISION::DELETED_TEXT || $s->rev_deleted & REVISION::DELETED_USER ) {
+		} else if ( $s->rev_deleted & Revision::DELETED_TEXT || $s->rev_deleted & Revision::DELETED_USER ) {
 			# Only admins can see this text
 			return array( array( 'notvisiblerev' ) );
 		}

@@ -65,7 +65,7 @@ class ApiPurge extends ApiBase {
 				$result[] = $r;
 				continue;
 			}
-			$article = Mediawiki::articleFromTitle( $title );
+			$article = MediaWiki::articleFromTitle( $title );
 			$article->doPurge(); // Directly purge and skip the UI part of purge().
 			$r['purged'] = '';
 			$result[] = $r;

@@ -1612,10 +1612,10 @@ class pageProtectionForm extends pageTest {
         $this->params = array (
                 "action"               => "protect",
                 'wpEditToken'          => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
-                "mwProtect-level-edit" => wikiFuzz::chooseInput( array( '', 'autoconfirmed', 'sysop', wikifuzz::makeFuzz( 2 ) ) ),
-                "mwProtect-level-move" => wikiFuzz::chooseInput( array( '', 'autoconfirmed', 'sysop', wikifuzz::makeFuzz( 2 ) ) ),
+                "mwProtect-level-edit" => wikiFuzz::chooseInput( array( '', 'autoconfirmed', 'sysop', wikiFuzz::makeFuzz( 2 ) ) ),
+                "mwProtect-level-move" => wikiFuzz::chooseInput( array( '', 'autoconfirmed', 'sysop', wikiFuzz::makeFuzz( 2 ) ) ),
                 "mwProtectUnchained"   => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
-                'mwProtect-reason'     => wikiFuzz::chooseInput( array( "because it was there", wikifuzz::makeFuzz( 2 ) ) )
+                'mwProtect-reason'     => wikiFuzz::chooseInput( array( "because it was there", wikiFuzz::makeFuzz( 2 ) ) )
                 );
 
 
@@ -1644,10 +1644,10 @@ class specialBlockip extends pageTest {
                                       // something like an IP address, sometimes invalid:
                                      ( wikiFuzz::randnum( 300, -20 ) . "." . wikiFuzz::randnum( 300, -20 ) . "."
                                       . wikiFuzz::randnum( 300, -20 ) . "." . wikiFuzz::randnum( 300, -20 ) ) ) ),
-                "wpBlockOther"    => wikiFuzz::chooseInput( array( '', 'Nickj2', wikifuzz::makeFuzz( 2 ) ) ),
+                "wpBlockOther"    => wikiFuzz::chooseInput( array( '', 'Nickj2', wikiFuzz::makeFuzz( 2 ) ) ),
                 "wpBlockExpiry"   => wikiFuzz::chooseInput( array( "other", "2 hours", "1 day", "3 days", "1 week", "2 weeks",
                                           "1 month", "3 months", "6 months", "1 year", "infinite", wikiFuzz::makeFuzz( 2 ) ) ),
-                "wpBlockReason"   => wikiFuzz::chooseInput( array( "because it was there", wikifuzz::makeFuzz( 2 ) ) ),
+                "wpBlockReason"   => wikiFuzz::chooseInput( array( "because it was there", wikiFuzz::makeFuzz( 2 ) ) ),
                 "wpAnonOnly"      => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
                 "wpCreateAccount" => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
                 "wpBlock"         => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) )
@@ -1673,9 +1673,9 @@ class imagepageTest extends pageTest {
         $this->pagePath = "index.php?title=Image:Small-email.png";
 
         $this->params = array (
-                "image"         => wikiFuzz::chooseInput( array( "Small-email.png", wikifuzz::makeFuzz( 2 ) ) ),
-                "wpReason"      => wikifuzz::makeFuzz( 2 ),
-                "oldimage"      => wikiFuzz::chooseInput( array( "Small-email.png", wikifuzz::makeFuzz( 2 ) ) ),
+                "image"         => wikiFuzz::chooseInput( array( "Small-email.png", wikiFuzz::makeFuzz( 2 ) ) ),
+                "wpReason"      => wikiFuzz::makeFuzz( 2 ),
+                "oldimage"      => wikiFuzz::chooseInput( array( "Small-email.png", wikiFuzz::makeFuzz( 2 ) ) ),
                 "wpEditToken"   => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
                 );
 
@@ -1718,9 +1718,9 @@ class specialRevisionDelete extends pageTest {
         $this->pagePath = "index.php?title=Special:Revisiondelete";
 
         $this->params = array (
-                "target"               => wikiFuzz::chooseInput( array( "Main Page", wikifuzz::makeFuzz( 2 ) ) ),
-                "oldid"                => wikifuzz::makeFuzz( 2 ),
-                "oldid[]"              => wikifuzz::makeFuzz( 2 ),
+                "target"               => wikiFuzz::chooseInput( array( "Main Page", wikiFuzz::makeFuzz( 2 ) ) ),
+                "oldid"                => wikiFuzz::makeFuzz( 2 ),
+                "oldid[]"              => wikiFuzz::makeFuzz( 2 ),
                 "wpReason"             => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
                 "revdelete-hide-text"  => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
                 "revdelete-hide-comment" => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
@@ -1750,8 +1750,8 @@ class specialImport extends pageTest {
 
         $this->params = array (
                 "action"         => "submit",
-                "source"         => wikiFuzz::chooseInput( array( "upload", "interwiki", wikifuzz::makeFuzz( 2 ) ) ),
-                "MAX_FILE_SIZE"  => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikifuzz::makeFuzz( 2 ) ) ),
+                "source"         => wikiFuzz::chooseInput( array( "upload", "interwiki", wikiFuzz::makeFuzz( 2 ) ) ),
+                "MAX_FILE_SIZE"  => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
                 "xmlimport"      => wikiFuzz::chooseInput( array( "/var/www/hosts/mediawiki/wiki/AdminSettings.php", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
                 "namespace"      => wikiFuzz::chooseInput( array( wikiFuzz::randnum( 30, -6 ), wikiFuzz::makeFuzz( 2 ) ) ),
                 "interwiki"      => wikiFuzz::makeFuzz( 2 ),
@@ -1781,9 +1781,9 @@ class thumbTest extends pageTest {
         $this->pagePath = "thumb.php";
 
         $this->params = array (
-                "f"  => wikiFuzz::chooseInput( array( "..", "\\", "small-email.png", wikifuzz::makeFuzz( 2 ) ) ),
-                "w"  => wikiFuzz::chooseInput( array( "80", wikiFuzz::randnum( 6000, -200 ), wikifuzz::makeFuzz( 2 ) ) ),
-                "r"  => wikiFuzz::chooseInput( array( "0", wikifuzz::makeFuzz( 2 ) ) ),
+                "f"  => wikiFuzz::chooseInput( array( "..", "\\", "small-email.png", wikiFuzz::makeFuzz( 2 ) ) ),
+                "w"  => wikiFuzz::chooseInput( array( "80", wikiFuzz::randnum( 6000, -200 ), wikiFuzz::makeFuzz( 2 ) ) ),
+                "r"  => wikiFuzz::chooseInput( array( "0", wikiFuzz::makeFuzz( 2 ) ) ),
                 );
 
         // sometimes we don't want to specify certain parameters.
@@ -1802,11 +1802,11 @@ class trackbackTest extends pageTest {
         $this->pagePath = "trackback.php";
 
         $this->params = array (
-                "url"       => wikifuzz::makeFuzz( 2 ),
-                "blog_name" => wikiFuzz::chooseInput( array( "80", wikiFuzz::randnum( 6000, -200 ), wikifuzz::makeFuzz( 2 ) ) ),
-                "article"   => wikiFuzz::chooseInput( array( "Main Page", wikifuzz::makeFuzz( 2 ) ) ),
-                "title"     => wikiFuzz::chooseInput( array( "Main Page", wikifuzz::makeFuzz( 2 ) ) ),
-                "excerpt"   => wikifuzz::makeFuzz( 2 ),
+                "url"       => wikiFuzz::makeFuzz( 2 ),
+                "blog_name" => wikiFuzz::chooseInput( array( "80", wikiFuzz::randnum( 6000, -200 ), wikiFuzz::makeFuzz( 2 ) ) ),
+                "article"   => wikiFuzz::chooseInput( array( "Main Page", wikiFuzz::makeFuzz( 2 ) ) ),
+                "title"     => wikiFuzz::chooseInput( array( "Main Page", wikiFuzz::makeFuzz( 2 ) ) ),
+                "excerpt"   => wikiFuzz::makeFuzz( 2 ),
                 );
 
         // sometimes we don't want to specify certain parameters.
@@ -1827,9 +1827,9 @@ class profileInfo extends pageTest {
         $this->pagePath = "profileinfo.php";
 
         $this->params = array (
-                "expand"  => wikifuzz::makeFuzz( 2 ),
-                "sort"    => wikiFuzz::chooseInput( array( "time", "count", "name", wikifuzz::makeFuzz( 2 ) ) ),
-                "filter"  => wikiFuzz::chooseInput( array( "Main Page", wikifuzz::makeFuzz( 2 ) ) ),
+                "expand"  => wikiFuzz::makeFuzz( 2 ),
+                "sort"    => wikiFuzz::chooseInput( array( "time", "count", "name", wikiFuzz::makeFuzz( 2 ) ) ),
+                "filter"  => wikiFuzz::chooseInput( array( "Main Page", wikiFuzz::makeFuzz( 2 ) ) ),
                 );
 
         // sometimes we don't want to specify certain parameters.
@@ -1847,7 +1847,7 @@ class specialCite extends pageTest {
         $this->pagePath = "index.php?title=Special:Cite";
 
         $this->params = array (
-                "page"    => wikiFuzz::chooseInput( array( "\" onmouseover=\"alert(1);\"", "Main Page", wikifuzz::makeFuzz( 2 ) ) ),
+                "page"    => wikiFuzz::chooseInput( array( "\" onmouseover=\"alert(1);\"", "Main Page", wikiFuzz::makeFuzz( 2 ) ) ),
                 "id"      => wikiFuzz::chooseInput( array( "-1", "0", "------'-------0", "+1", "-9823412312312412435", wikiFuzz::makeFuzz( 2 ) ) ),
                 );
 
@@ -1866,7 +1866,7 @@ class specialFilepath extends pageTest {
         $this->pagePath = "index.php?title=Special:Filepath";
 
         $this->params = array (
-                "file"    => wikiFuzz::chooseInput( array( "Small-email.png", "Small-email.png" . wikifuzz::makeFuzz( 1 ), wikiFuzz::makeFuzz( 2 ) ) ),
+                "file"    => wikiFuzz::chooseInput( array( "Small-email.png", "Small-email.png" . wikiFuzz::makeFuzz( 1 ), wikiFuzz::makeFuzz( 2 ) ) ),
                 );
     }
 }
@@ -1880,9 +1880,9 @@ class specialMakebot extends pageTest {
         $this->pagePath = "index.php?title=Special:Makebot";
 
         $this->params = array (
-                "username" => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikifuzz::makeFuzz( 1 ) ) ),
-                "dosearch" => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikifuzz::makeFuzz( 2 ) ) ),
-                "grant"    => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikifuzz::makeFuzz( 2 ) ) ),
+                "username" => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikiFuzz::makeFuzz( 1 ) ) ),
+                "dosearch" => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
+                "grant"    => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
                 "comment"  => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
                 "token"    => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
                 );
@@ -1903,9 +1903,9 @@ class specialMakesysop extends pageTest {
         $this->pagePath = "index.php?title=Special:Makesysop";
 
         $this->params = array (
-                "wpMakesysopUser"   => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikifuzz::makeFuzz( 1 ) ) ),
-                "action"            => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikifuzz::makeFuzz( 2 ) ) ),
-                "wpMakesysopSubmit" => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikifuzz::makeFuzz( 2 ) ) ),
+                "wpMakesysopUser"   => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikiFuzz::makeFuzz( 1 ) ) ),
+                "action"            => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
+                "wpMakesysopSubmit" => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
                 "wpEditToken"       => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
                 "wpSetBureaucrat"   => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
                 );
@@ -1926,8 +1926,8 @@ class specialRenameuser extends pageTest {
         $this->pagePath = "index.php?title=Special:Renameuser";
 
         $this->params = array (
-                "oldusername"   => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikifuzz::makeFuzz( 1 ) ) ),
-                "newusername"   => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikifuzz::makeFuzz( 1 ) ) ),
+                "oldusername"   => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikiFuzz::makeFuzz( 1 ) ) ),
+                "newusername"   => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikiFuzz::makeFuzz( 1 ) ) ),
                 "token"         => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
                 );
     }
@@ -1942,7 +1942,7 @@ class specialLinksearch extends pageTest {
         $this->pagePath = "index.php?title=Special%3ALinksearch";
 
         $this->params = array (
-                "target" => wikifuzz::makeFuzz( 2 ),
+                "target" => wikiFuzz::makeFuzz( 2 ),
                 );
 
         // sometimes we don't want to specify certain parameters.
@@ -1959,11 +1959,11 @@ class specialCategoryTree extends pageTest {
         $this->pagePath = "index.php?title=Special:CategoryTree";
 
         $this->params = array (
-                "target" => wikifuzz::makeFuzz( 2 ),
-                "from"   => wikifuzz::makeFuzz( 2 ),
-                "until"  => wikifuzz::makeFuzz( 2 ),
-                "showas" => wikifuzz::makeFuzz( 2 ),
-                "mode"   => wikiFuzz::chooseInput( array( "pages", "categories", "all", wikifuzz::makeFuzz( 2 ) ) ),
+                "target" => wikiFuzz::makeFuzz( 2 ),
+                "from"   => wikiFuzz::makeFuzz( 2 ),
+                "until"  => wikiFuzz::makeFuzz( 2 ),
+                "showas" => wikiFuzz::makeFuzz( 2 ),
+                "mode"   => wikiFuzz::chooseInput( array( "pages", "categories", "all", wikiFuzz::makeFuzz( 2 ) ) ),
                 );
 
         // sometimes we do want to specify certain parameters.
@@ -2008,7 +2008,7 @@ class specialChemicalsourcesTest extends pageTest {
         }
 
         // and then we append the fuzz input.
-        $this->params = array ( $format => $value . wikifuzz::makeFuzz( 2 ) );
+        $this->params = array ( $format => $value . wikiFuzz::makeFuzz( 2 ) );
     }
 }
 
@@ -2026,8 +2026,8 @@ class api extends pageTest {
 
     // API login mode.
     private static function loginMode() {
-        $arr =  array ( "lgname"        => wikifuzz::makeFuzz( 2 ),
-                        "lgpassword"    => wikifuzz::makeFuzz( 2 ),
+        $arr =  array ( "lgname"        => wikiFuzz::makeFuzz( 2 ),
+                        "lgpassword"    => wikiFuzz::makeFuzz( 2 ),
                        );
         // sometimes we want to specify the extra "lgdomain" parameter.
         if ( wikiFuzz::randnum( 3 ) == 0 ) {
@@ -2039,18 +2039,18 @@ class api extends pageTest {
 
     // API OpenSearch mode.
     private static function opensearchMode() {
-    	return array ( "search"        => wikifuzz::makeFuzz( 2 ) );
+    	return array ( "search"        => wikiFuzz::makeFuzz( 2 ) );
     }
 
     // API watchlist feed mode.
     private static function feedwatchlistMode() {
-    	// FIXME: add "wikifuzz::makeFuzz(2)" as possible value below?
+    	// FIXME: add "wikiFuzz::makeFuzz(2)" as possible value below?
     	return array ( "feedformat"    => wikiFuzz::chooseInput( array( "rss", "atom" ) ) );
     }
 
     // API query mode.
     private static function queryMode() {
-    	// FIXME: add "wikifuzz::makeFuzz(2)" as possible params for the elements below?
+    	// FIXME: add "wikiFuzz::makeFuzz(2)" as possible params for the elements below?
     	//        Suspect this will stuff up the tests more, but need to check.
     	$params = array (
 	                 // FIXME: More titles.
@@ -2103,16 +2103,16 @@ class api extends pageTest {
     		case 'start'      :
     		case 'end'        :
     		case 'limit'      : return wikiFuzz::chooseInput( array( "0", "-1", "---'----------0", "+1", "8134", "320742734234235", "20060230121212", wikiFuzz::randnum( 9000, -100 ), wikiFuzz::makeFuzz( 2 ) ) );
-    		case 'dir'        : return wikiFuzz::chooseInput( array( "newer", "older", wikifuzz::makeFuzz( 2 ) ) );
-    		case 'user'       : return wikiFuzz::chooseInput( array( USER_ON_WIKI, wikifuzz::makeFuzz( 2 ) ) );
-    		case 'namespace'  : return wikiFuzz::chooseInput( array( -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 200000, wikifuzz::makeFuzz( 2 ) ) );
-    		case 'filterredir': return wikiFuzz::chooseInput( array( "all", "redirects", "nonredirectsallpages", wikifuzz::makeFuzz( 2 ) ) );
+    		case 'dir'        : return wikiFuzz::chooseInput( array( "newer", "older", wikiFuzz::makeFuzz( 2 ) ) );
+    		case 'user'       : return wikiFuzz::chooseInput( array( USER_ON_WIKI, wikiFuzz::makeFuzz( 2 ) ) );
+    		case 'namespace'  : return wikiFuzz::chooseInput( array( -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 200000, wikiFuzz::makeFuzz( 2 ) ) );
+    		case 'filterredir': return wikiFuzz::chooseInput( array( "all", "redirects", "nonredirectsallpages", wikiFuzz::makeFuzz( 2 ) ) );
     		case 'allrev'     : return wikiFuzz::chooseInput( array( "1", 0, "", wikiFuzz::makeFuzz( 2 ) ) );
-    		case 'prop'       : return wikiFuzz::chooseInput( array( "user", "comment", "timestamp", "patrol", "flags", "user|user|comment|flags", wikifuzz::makeFuzz( 2 ) ) );
-    		case 'type'       : return wikiFuzz::chooseInput( array( "block", "protect", "rights", "delete", "upload", "move", "import", "renameuser", "newusers", "makebot", wikifuzz::makeFuzz( 2 ) ) );
-    		case 'hide'       : return wikiFuzz::chooseInput( array( "minor", "bots", "anons", "liu", "liu|bots|", wikifuzz::makeFuzz( 2 ) ) );
-    		case 'show'       : return wikiFuzz::chooseInput( array( 'minor', '!minor', 'bot', '!bot', 'anon', '!anon', wikifuzz::makeFuzz( 2 ) ) );
-    		default           : return wikifuzz::makeFuzz( 2 );
+    		case 'prop'       : return wikiFuzz::chooseInput( array( "user", "comment", "timestamp", "patrol", "flags", "user|user|comment|flags", wikiFuzz::makeFuzz( 2 ) ) );
+    		case 'type'       : return wikiFuzz::chooseInput( array( "block", "protect", "rights", "delete", "upload", "move", "import", "renameuser", "newusers", "makebot", wikiFuzz::makeFuzz( 2 ) ) );
+    		case 'hide'       : return wikiFuzz::chooseInput( array( "minor", "bots", "anons", "liu", "liu|bots|", wikiFuzz::makeFuzz( 2 ) ) );
+    		case 'show'       : return wikiFuzz::chooseInput( array( 'minor', '!minor', 'bot', '!bot', 'anon', '!anon', wikiFuzz::makeFuzz( 2 ) ) );
+    		default           : return wikiFuzz::makeFuzz( 2 );
     	}
     }
 
@@ -2125,7 +2125,7 @@ class api extends pageTest {
                         "opensearch",
                         "feedwatchlist",
                         "query" );
-        $action = wikiFuzz::chooseInput( array_merge ( $modes, array( wikifuzz::makeFuzz( 2 ) ) ) );
+        $action = wikiFuzz::chooseInput( array_merge ( $modes, array( wikiFuzz::makeFuzz( 2 ) ) ) );
         
         switch ( $action ) {
             case "login"         : $this->params = self::loginMode();
@@ -2156,7 +2156,7 @@ class api extends pageTest {
         $this->params["format"] = wikiFuzz::chooseInput( array( "json", "jsonfm", "php", "phpfm",
                                                                "wddx", "wddxfm", "xml", "xmlfm",
                                                                "yaml", "yamlfm", "raw", "rawfm",
-                                                               wikifuzz::makeFuzz( 2 ) ) );
+                                                               wikiFuzz::makeFuzz( 2 ) ) );
 
         // Page does not produce HTML (sometimes).
         $this->tidyValidate = false;
@@ -2173,7 +2173,7 @@ class GeSHi_Test extends pageTest {
         return "<source lang=\"" . $this->getLang() . "\" "
                . ( wikiFuzz::randnum( 2 ) == 0 ? "line " : "" )
                . ( wikiFuzz::randnum( 2 ) == 0 ? "strict " : "" )
-               . "start=" . wikiFuzz::chooseInput( array( wikiFuzz::randnum( -6000, 6000 ), wikifuzz::makeFuzz( 2 ) ) )
+               . "start=" . wikiFuzz::chooseInput( array( wikiFuzz::randnum( -6000, 6000 ), wikiFuzz::makeFuzz( 2 ) ) )
                . ">"
                . wikiFuzz::makeFuzz( 2 )
                . "</source>";
@@ -2184,7 +2184,7 @@ class GeSHi_Test extends pageTest {
                 "cfdg", "cfm", "cpp", "cpp-qt", "csharp", "css", "d", "delphi", "diff", "div", "dos", "eiffel", "fortran", "freebasic", "gml", "groovy", "html4strict", "idl",
                 "ini", "inno", "io", "java", "java5", "javascript", "latex", "lisp", "lua", "matlab", "mirc", "mpasm", "mysql", "nsis", "objc", "ocaml", "ocaml-brief", "oobas",
                 "oracle8", "pascal", "perl", "php", "php-brief", "plsql", "python", "qbasic", "rails", "reg", "robots", "ruby", "sas", "scheme", "sdlbasic", "smalltalk", "smarty",
-                "sql", "tcl", "text", "thinbasic", "tsql", "vb", "vbnet", "vhdl", "visualfoxpro", "winbatch", "xml", "xpp", "z80", wikifuzz::makeFuzz( 1 ) ) );
+                "sql", "tcl", "text", "thinbasic", "tsql", "vb", "vbnet", "vhdl", "visualfoxpro", "winbatch", "xml", "xpp", "z80", wikiFuzz::makeFuzz( 1 ) ) );
     }
 	
     function __construct() {

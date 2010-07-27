@@ -104,13 +104,13 @@ class HttpTest extends PhpUnit_Framework_TestCase {
 
 		$timeout = 1;
 		$start_time = time();
-		$r = HTTP::get( "http://www.example.com:1/", $timeout );
+		$r = Http::get( "http://www.example.com:1/", $timeout );
 		$end_time = time();
 		$this->assertLessThan( $timeout + 2, $end_time - $start_time,
 							  "Request took less than {$timeout}s via " . Http::$httpEngine );
 		$this->assertEquals( $r, false, "false -- what we get on error from Http::get()" );
 
-		$r = HTTP::get( "http://www.example.com/this-file-does-not-exist", $timeout );
+		$r = Http::get( "http://www.example.com/this-file-does-not-exist", $timeout );
 		$this->assertFalse( $r, "False on 404s" );
 
 
