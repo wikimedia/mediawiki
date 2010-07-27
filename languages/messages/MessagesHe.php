@@ -2243,7 +2243,7 @@ $UNWATCHURL
 'deletepage'             => 'מחיקה',
 'confirm'                => 'אישור',
 'excontent'              => 'תוכן היה: "$1"',
-'excontentauthor'        => "תוכן היה: '$1' והתורם היחיד היה [[Special:Contributions/$2|$2]]",
+'excontentauthor'        => 'תוכן היה: "$1" (והתורם היחיד היה "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank'          => 'תוכן לפני שרוקן היה: "$1"',
 'exblank'                => 'הדף היה ריק',
 'delete-confirm'         => 'מחיקת $1',
@@ -3377,9 +3377,9 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'הסרת כל התוכן מדף זה',
-'autosumm-replace' => "החלפת הדף עם '$1'",
+'autosumm-replace' => 'החלפת הדף בתוכן "$1"',
 'autoredircomment' => 'הפניה לדף [[$1]]',
-'autosumm-new'     => 'דף חדש: $1',
+'autosumm-new'     => 'יצירת דף עם התוכן "$1"',
 
 # Size units
 'size-bytes'     => '$1 בייט',
