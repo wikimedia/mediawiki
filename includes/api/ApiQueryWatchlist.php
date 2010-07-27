@@ -311,9 +311,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'prop' => array(
-				APIBase::PARAM_ISMULTI => true,
-				APIBase::PARAM_DFLT => 'ids|title|flags',
-				APIBase::PARAM_TYPE => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_DFLT => 'ids|title|flags',
+				ApiBase::PARAM_TYPE => array(
 					'ids',
 					'title',
 					'flags',

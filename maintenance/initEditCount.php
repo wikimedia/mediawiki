@@ -44,7 +44,7 @@ in $wgDBservers, usually indicating a replication environment.' );
 
 		// Autodetect mode...
 		$backgroundMode = count( $wgDBservers ) > 1 ||
-			( $dbw instanceof DatabaseMySql && version_compare( $dbver, '4.1' ) < 0 );
+			( $dbw instanceof DatabaseMysql && version_compare( $dbver, '4.1' ) < 0 );
 	
 		if ( $this->hasOption( 'background' ) ) {
 			$backgroundMode = true;

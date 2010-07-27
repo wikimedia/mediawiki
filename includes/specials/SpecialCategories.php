@@ -33,13 +33,13 @@ function wfSpecialCategories( $par=null ) {
 	$cap = new CategoryPager( $from );
 	$cap->doQuery();
 	$wgOut->addHTML(
-		XML::openElement( 'div', array('class' => 'mw-spcontent') ) .
+		Xml::openElement( 'div', array('class' => 'mw-spcontent') ) .
 		wfMsgExt( 'categoriespagetext', array( 'parse' ), $cap->getNumRows() ) .
 		$cap->getStartForm( $from ) .
 		$cap->getNavigationBar() .
 		'<ul>' . $cap->getBody() . '</ul>' .
 		$cap->getNavigationBar() .
-		XML::closeElement( 'div' )
+		Xml::closeElement( 'div' )
 	);
 }
 

@@ -50,13 +50,13 @@ class ApiEmailUser extends ApiBase {
 		}
 
 		// Validate target
-		$targetUser = SpecialEmailuser::getTarget( $params['target'] );
+		$targetUser = SpecialEmailUser::getTarget( $params['target'] );
 		if ( !( $targetUser instanceof User ) ) {
 			$this->dieUsageMsg( array( $targetUser ) );
 		}
 
 		// Check permissions and errors
-		$error = SpecialEmailuser::getPermissionsError( $wgUser, $params['token'] );
+		$error = SpecialEmailUser::getPermissionsError( $wgUser, $params['token'] );
 		if ( $error ) {
 			$this->dieUsageMsg( array( $error ) );
 		}
@@ -67,7 +67,7 @@ class ApiEmailUser extends ApiBase {
 			'Subject' => $params['subject'],
 			'CCMe' => $params['ccme'],
 		);
-		$retval = SpecialEmailuser::submit( $data );
+		$retval = SpecialEmailUser::submit( $data );
 		if ( $retval === true ) {
 			$result = array( 'result' => 'Success' );
 		} else {

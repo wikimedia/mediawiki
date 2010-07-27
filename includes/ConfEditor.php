@@ -427,7 +427,7 @@ class ConfEditor {
 	 */
 	function findValueRegion( $pathName ) {
 		if ( !isset( $this->pathInfo[$pathName] ) ) {
-			throw new MWEXception( "Can't find path \"$pathName\"" );
+			throw new MWException( "Can't find path \"$pathName\"" );
 		}
 		$path = $this->pathInfo[$pathName];
 		if ( $path['valueStartByte'] === false || $path['valueEndByte'] === false ) {
