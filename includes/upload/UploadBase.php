@@ -236,7 +236,10 @@ abstract class UploadBase {
 		 */
 		global $wgMaxUploadSize;
 		if( $this->mFileSize > $wgMaxUploadSize ) {
-			return array( 'status' => self::FILE_TOO_LARGE );
+			return array( 
+				'status' => self::FILE_TOO_LARGE,
+				'max' => $wgMaxUploadSize,
+			);
 		}
 
 		/**
