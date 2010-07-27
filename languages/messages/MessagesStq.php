@@ -678,7 +678,7 @@ Föige jädden dien Annerengen in dät buppere Textfäild ien.
 'nonunicodebrowser'                => "<strong style=\"color: #330000; background: #f0e000;\">Oachtenge: Dien Browser kon Unicode-Teekene nit gjucht feroarbaidje. Benutse jädden n uur Browser uum Artikkele tou beoarbaidjen.'''",
 'editingold'                       => "'''OACHTENGE: Jie beoarbaidje ne oolde Version fon disse Artikkel. Wan Jie spiekerje, wäide alle näiere Versione uurschrieuwen.'''",
 'yourdiff'                         => 'Unnerscheede',
-'copyrightwarning'                 => "'''<big>Kopier neen Websieden,</big> do nit dien oaine sunt, benuts neen uurhääbergjuchtelk schutsede Wierke sunner Ferlof fon dän Copyright-Inhääber!'''<br />
+'copyrightwarning'                 => "'''Kopier neen Websieden, do nit dien oaine sunt, benuts neen uurhääbergjuchtelk schutsede Wierke sunner Ferlof fon dän Copyright-Inhääber!'''<br />
 Du toukwäst uus hiermäd, dät du dän Text '''sälwen ferfoated''' hääst, dät dän Text Algemeengoud ('''public domain''') is, of dät die '''Copyright-Inhääber''' sien '''Toustämmenge''' roat häd. In dän Fal dät dissen Text al uurswain publizierd wuude, wies jädden ap ju Diskussionssiede deerap wai. 
 <i>Beoachtje, dät aal {{SITENAME}}-Biedraage automatisk unner ju „$2“ stounde (sjuch $1 foar Details). In dän Fal dät du nit moatest, dät dien Oarbaid hier fon Uurswäkken annerd un fersprat wäd, druk dan '''nit''' ap „Siede spiekerje“.</i>",
 'copyrightwarning2'                => 'Aal Biedraage tou dän {{SITENAME}} konnen fon uur Ljuude ferannerd un fersprat wäide. Fals Jie nit moaten dät Jou Oarbaid hier fon uur Ljuude ferannerd un fersprat wäd, dan drukke Jie nit ap "Spiekerje".

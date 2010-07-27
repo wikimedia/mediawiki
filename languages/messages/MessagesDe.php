@@ -983,7 +983,7 @@ Bitte füge deine Änderungen in das obere Textfeld ein.
 'nonunicodebrowser'                => "'''Achtung:''' Dein Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwende einen anderen Browser um Seiten zu bearbeiten.",
 'editingold'                       => "'''ACHTUNG: Du bearbeitest eine alte Version dieser Seite. Wenn du speicherst, werden alle neueren Versionen überschrieben.'''",
 'yourdiff'                         => 'Unterschiede',
-'copyrightwarning'                 => "'''Bitte <big>kopiere keine Webseiten</big>, die nicht deine eigenen sind, benutze <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Urhebers!'''<br />
+'copyrightwarning'                 => "'''Bitte kopiere keine Webseiten, die nicht deine eigenen sind, benutze keine urheberrechtlich geschützten Werke ohne Erlaubnis des Urhebers!'''<br />
 Du gibst uns hiermit deine Zusage, dass du den Text '''selbst verfasst''' hast, dass der Text Allgemeingut '''(public domain)''' ist, oder dass der '''Urheber''' seine '''Zustimmung''' gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weise bitte auf der Diskussionsseite darauf hin.
 <i>Bitte beachte, dass alle {{SITENAME}}-Beiträge automatisch unter der „$2“ stehen (siehe $1 für Details). Falls du nicht möchtest, dass deine Arbeit hier von anderen verändert und verbreitet wird, dann drücke nicht auf „Seite speichern“.</i>",
 'copyrightwarning2'                => "Bitte beachte, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können.

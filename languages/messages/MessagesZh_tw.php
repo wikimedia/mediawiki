@@ -596,7 +596,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 個版本和 $2 個檔案被復原',
 'undeletedfiles'               => '$1 個檔案被復原',
 'cannotundelete'               => '復原失敗；可能之前已經被其他人復原。',
-'undeletedpage'                => "<big>'''$1已經被復原'''</big> 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及復原記錄。",
+'undeletedpage'                => "'''$1已經被復原''' 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及復原記錄。",
 'undelete-missing-filearchive' => '由於檔案存檔 ID $1 不在資料庫中，不能在檔案存檔中復原。它可能已經反刪除了。',
 
 # Contributions

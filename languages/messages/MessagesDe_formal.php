@@ -131,7 +131,7 @@ Möglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein ne
 'missingsummary'                   => "'''Hinweis:''' Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Änderung ohne Zusammenfassung übernommen.",
 'missingcommenttext'               => 'Bitte geben Sie eine Zusammenfassung ein.',
 'missingcommentheader'             => "'''ACHTUNG:''' Sie haben keine Überschrift im Feld „Betreff:“ eingegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Bearbeitung ohne Überschrift gespeichert.",
-'blockedtext'                      => "<big>'''Ihr Benutzername oder Ihre IP-Adresse wurde gesperrt.'''</big>
+'blockedtext'                      => "'''Ihr Benutzername oder Ihre IP-Adresse wurde gesperrt.'''
 
 Die Sperrung wurde von $1 durchgeführt.
 Als Grund wurde ''$2'' angegeben.
@@ -203,7 +203,7 @@ Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
 'yourtext'                         => 'Ihr Text',
 'nonunicodebrowser'                => "'''Achtung:''' Ihr Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwenden Sie einen anderen Browser um Seiten zu bearbeiten.",
 'editingold'                       => "'''ACHTUNG: Sie bearbeiten eine alte Version dieser Seite. Wenn Sie speichern, werden alle neueren Versionen überschrieben.'''",
-'copyrightwarning'                 => "'''Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!'''<br />
+'copyrightwarning'                 => "'''Bitte kopieren Sie keine Webseiten, die nicht Ihre eigenen sind, benutzen Sie keine urheberrechtlich geschützten Werke ohne Erlaubnis des Copyright-Inhabers!'''<br />
 Sie geben uns hiermit Ihre Zusage, dass Sie den Text '''selbst verfasst''' haben, dass der Text Allgemeingut ('''public domain''') ist, oder dass der '''Copyright-Inhaber''' seine '''Zustimmung''' gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der Diskussionsseite darauf hin.
 <i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der „$2“ stehen (siehe $1 für Details). Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf „Seite speichern“.</i>",
 'copyrightwarning2'                => "Bitte beachten Sie, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können.

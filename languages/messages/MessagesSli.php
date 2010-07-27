@@ -645,7 +645,7 @@ Bitte fiege denne Änderungen ei doas obere Textfeld a.
 'nonunicodebrowser'                => "'''Ochtiche:''' Dei Browser koan Unicode-Zeicha ne richtig veroarbeeta. Bitte verwende a'n andern Browser im Seyta zu beoarbeeta.",
 'editingold'                       => "'''OCHTICHE: Du beoarbeetest anne aale Version dieser Seyte. Wenn du speicherst, waan olle neueren Versionen ieberschrieba.'''",
 'yourdiff'                         => 'Underschiede',
-'copyrightwarning'                 => "'''Bite <big>kopiere kenne Webseita</big>, de nee denne eegena sein, benutze <big>kenne urheberrechtlich geschietzta Werke</big> ohne Erlaubnis des Urhebers!'''<br />
+'copyrightwarning'                 => "'''Bite kopiere kenne Webseita, de nee denne eegena sein, benutze kenne urheberrechtlich geschietzta Werke ohne Erlaubnis des Urhebers!'''<br />
 Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, dass dar Text Allgemeengutt '''(public domain)''' ies, oder dass dar '''Urheber''' senne '''Zustimmung''' gegeben hoot. Foalls dieser Text bereits woanders vereeffentlicht wurde, weise bite uff dar Diskussionsseite darauf hin.
 <i>Bite beachte, dass olle {{SITENAME}}-Beiträge automatisch under dar „$2“ stieha (siehe $1 für Details). Foalls du nee meechtest, dass deine Arbeit hier voo andern verändert on verbreitet wird, doann dricke nee uff „Seite speichern“.</i>",
 'copyrightwarning2'                => "Bitte beachte, doß olle Beiträge zu {{SITENAME}} vu andern Mitwirkenden beoarbeetet, geändert oder geläscht waan kinna.

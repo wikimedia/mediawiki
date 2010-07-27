@@ -404,7 +404,7 @@ Du ken ekke bruge æ funksje 'e-mail til denne bruger' vemendre der er ångevet 
 'previewnote'                => "'''Husk at dette er kun en førhåndsvesnenge, æ side er ekke gemt endnu!'''",
 'editing'                    => 'Redigærer $1',
 'editingsection'             => 'Redigærer $1 (åfsnet)',
-'copyrightwarning'           => "'''Husk: <big>åpskrev engen websider</big>, søm ekke tilhører dig selv, brug <big>engen åphavsretsligt beskyttede værker</big> uden tilladelse frå'n ejer!'''<br />
+'copyrightwarning'           => "'''Husk: åpskrev engen websider, søm ekke tilhører dig selv, brug engen åphavsretsligt beskyttede værker uden tilladelse frå'n ejer!'''<br />
 Du lover os hermed, at du selv '''har skrevet skrevselenger''', at skrevselenger tilhører ålmenheden, er ('''åpværer hus'''), æller at æ '''åphavsrets-endehaver''' har gevet sen '''tilladelse'''. Ves denne skrevselenger ålerede er åfentliggkort andre steder, skrev det venligst på æ diskusjesside.
 <i>Bemærk venligst, at ål {{SITENAME}}-ertikler åtomatisk står under „$2“ (se $1 før lileskrevselenger). Ves du ekke vel, at dit arbejde her ændres og udbredes åf andre, så tryk ekke på „Gem“.</i>",
 'longpagewarning'            => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere ken have pårblæmer ve at redigære sider der nærmer sig æller er større end 32 kb. 

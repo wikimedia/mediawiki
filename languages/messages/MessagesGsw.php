@@ -760,7 +760,7 @@ We du «Syte spychere» drücksch, de wird '''nume''' der Inhalt vom obere Teksc
 'editingold'                       => "'''Obacht: Du bisch en alti Version vo däm Artikel am Bearbeite.
 Alli nöiere Versione wärden überschribe, we du uf «Syte spychere» drücksch.'''",
 'yourdiff'                         => 'Unterschid',
-'copyrightwarning'                 => "'''Bitte <big>kopier kener Internetsyte</big>, wo nid dyner eigete sy, bruuch <big>kener urhäberrächtlech gschützte Wärch</big> ohni Erloubnis vor Copyright-Inhaberschaft!'''<br />
+'copyrightwarning'                 => "'''Bitte kopier kener Internetsyte, wo nid dyner eigete sy, bruuch kener urhäberrächtlech gschützte Wärch ohni Erloubnis vor Copyright-Inhaberschaft!'''<br />
 Hiemit gisch du zue, das du dä Tekscht '''sälber gschribe''' hesch, das der Tekscht Allgmeinguet ('''public domain''') isch, oder das der '''Copyright-Inhaberschaft''' iri '''Zuestimmig''' het 'gä. Falls dä Tekscht scho nöumen anders isch veröffentlecht worde, de schryb das bitte uf d Diskussionssyte.
 <i>Bis dir bewusst, dass alli {{SITENAME}}-Byträg outomatisch under der „$2“ stöh (für Details vgl. $1). We du nid wosch, das anderi dy Bytrag chöu veränderen u wyterverbreite, de drück nid uf „Syte spychere“.</i>",
 'copyrightwarning2'                => "Dängge Si dra, dass alli Änderige {{GRAMMAR:dativ {{SITENAME}}}} vo andere Benutzer wider gänderet oder glöscht chönne wärde. Wenn Si nit wänn, dass ander Lüt an Ihrem Tekscht ummedoktere denn schicke Si ihn jetz nit ab.<br />
