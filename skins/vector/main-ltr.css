@@ -553,7 +553,8 @@ div#footer #footer-places li {
 		background-image: none;
 		font-size: 0.9em;
 	}
-	#preftoc a:hover {
+	#preftoc a:hover,
+	#preftoc a:focus {
 		text-decoration: underline;
 	}
 	#preftoc li.selected a {
@@ -643,7 +644,7 @@ a:visited {
 a:active {
 	color: #faa700;
 }
-a:hover {
+a:hover, a:focus {
 	text-decoration: underline;
 }
 a.stub {
@@ -1124,11 +1125,13 @@ div#bodyContent {
 	background-image: url(images/watch-icons.png?1);
 	background-position: 5px 60%;
 }
-#ca-unwatch.icon a:hover {
+#ca-unwatch.icon a:hover,
+#ca-unwatch.icon a:focus {
 	background-image: url(images/watch-icons.png?1);
 	background-position: -67px 60%;
 }
-#ca-watch.icon a:hover {
+#ca-watch.icon a:hover,
+#ca-watch.icon a:focus {
 	background-image: url(images/watch-icons.png?1);
 	background-position: -19px 60%;
 }
