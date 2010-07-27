@@ -823,7 +823,7 @@ Pe piacere conferme ca tu vuè ccu face sta cose, ca tu è capite le conseguenze
 'revdelete-suppress'             => "Live le date da l'amministrature cumme pe l'otre",
 'revdelete-hide-image'           => "Scunne 'u codenute d'u fail",
 'revdelete-unsuppress'           => 'Live le restriziune sus a le revisiune repristinate',
-'revdelete-log'                  => 'Mutive pu scangellamende:',
+'revdelete-log'                  => 'Mutive:',
 'revdelete-submit'               => 'Applichesce a le revisiune selezionete',
 'revdelete-logentry'             => "ha state cangete 'a visibbilità d'a revisione de [[$1]]",
 'logdelete-logentry'             => "ha state cangete 'a visibbilità de l'evende de [[$1]]",
@@ -1460,7 +1460,7 @@ Ce cazze sus a 'a testate d'a colonne cange l'arrengamende.",
 'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => "'Nvirte 'u file",
 'filerevert-intro'          => "Tu ste converte 'u file '''[[Media:$1|$1]]''' jndr'à [$4 versione cumme $3, $2].",
-'filerevert-comment'        => 'Commende:',
+'filerevert-comment'        => 'Mutive:',
 'filerevert-defaultcomment' => "Convertite a 'a versione a le $2 d'u $1",
 'filerevert-submit'         => "'Nvirte",
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ha state convertite a 'a versiona [$4 de le $3 d'u $2].",
@@ -1472,7 +1472,7 @@ Ce cazze sus a 'a testate d'a colonne cange l'arrengamende.",
 'filedelete-legend'           => "Scangille 'u file",
 'filedelete-intro'            => "Tu ste scangille stu file '''[[Media:$1|$1]]''' cu tutte 'a storia soje apprisse.",
 'filedelete-intro-old'        => "Tu stè scangille 'a versiona de '''[[Media:$1|$1]]''' cumme de [$4 $3, $2].",
-'filedelete-comment'          => "Mutive d'u scangellamende:",
+'filedelete-comment'          => 'Mutive:',
 'filedelete-submit'           => 'Scangille',
 'filedelete-success'          => "'''$1''' ha state scangellete.",
 'filedelete-success-old'      => "'A versione de '''[[Media:$1|$1]]''' de le $3 d'u $2 ha state scangellete.",
@@ -1823,7 +1823,7 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'dellogpagetext'         => "Sotte ste 'na liste de le cchiù recende scangellaziune.",
 'deletionlog'            => 'Archivije de le scangellaminde',
 'reverted'               => "Turnà a 'a revisiona cchiù recende",
-'deletecomment'          => "Mutive p'a scangellazione:",
+'deletecomment'          => 'Mutive:',
 'deleteotherreason'      => 'Otre mutive de cchiù:',
 'deletereasonotherlist'  => 'Otre mutive',
 'deletereason-dropdown'  => "*Mutive comune de scangellaminde
@@ -1947,7 +1947,7 @@ Tu puè avè 'nu collegamende sbagliate o 'a revisione pò essere ca ha state re
 'undeletelink'                 => 'vide/repristine',
 'undeletereset'                => 'Azzere',
 'undeleteinvert'               => 'Selezione a smerse',
-'undeletecomment'              => 'Commende:',
+'undeletecomment'              => 'Mutive:',
 'undeletedarticle'             => 'ripristinete "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revisione|$1 revisiune}} ripristinete',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revisione|$1 revisiune}} e {{PLURAL:$2|1 file|$2 file}} ripristinete',
@@ -2461,7 +2461,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Attenziò''': Stu file pò condenè codece viziuse.
-Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.<hr />",
+Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'imagemaxsize'         => "Limite de l'immaggine sus a le pàggene de descrizione d'u file a:",
 'thumbsize'            => "Dimenziona d'a miniature:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
@@ -2884,16 +2884,16 @@ Prueve l\'andeprima normele.',
 'watchlistedit-noitems'        => "'A lista de le pàggene condrollete toja no tène 'na vosce.",
 'watchlistedit-normal-title'   => 'Vide le pàggene condrollete',
 'watchlistedit-normal-legend'  => "Live le titele da 'a liste de le pàggene condrollete",
-'watchlistedit-normal-explain' => "Le titele sus a liste de le pàggene condrollate sonde fatte vedè aqquà sotte. <br />
-Pe luà 'nu titele, smarche 'a scatele affianghe a jidde e cazze \"Live 'le titele\".<br />
+'watchlistedit-normal-explain' => "Le titele sus a 'a liste de le pàggene condrollate avènene fatte vedè aqquà sotte. <br />
+Pe luà 'nu titele, smarche 'a sckatele affianghe a jidde e cazze \"{{int:Watchlistedit-normal-submit}}\".<br />
 Tu puè pure [[Special:Watchlist/raw|cangià 'a liste a mane]].",
 'watchlistedit-normal-submit'  => 'Live le titele',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 titele ha state|$1 titele onne state}} scangellete da 'a liste de le pàggene condrollete toje:",
 'watchlistedit-raw-title'      => "Cange 'a liste de le pàggene condrollete grezze",
 'watchlistedit-raw-legend'     => "Cange 'a liste de le pàggene condrollete grezze",
-'watchlistedit-raw-explain'    => "Le titele sus a liste de le pàggene condrollate sonde fatte vedè aqquà sotte e ponne essere cangiate aggiunggenne o luannele da 'a liste; <br />
+'watchlistedit-raw-explain'    => "Le titele sus a liste de le pàggene condrollate avènene fatte vedè aqquà sotte e ponne essere cangiate aggiunggenne o luannele da 'a liste; <br />
 'nu titele pe linèe.<br />
-Quanne è spicciate, cazze sus a \"Aggiorne a Liste de le pàggene condrollate\".<br />
+Quanne è spicciate, cazze sus a \"{{int:Watchlistedit-raw-submit}}\".<br />
 Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
 'watchlistedit-raw-titles'     => 'Titele:',
 'watchlistedit-raw-submit'     => "Aggiorne 'a liste de le pàggene condrollete",

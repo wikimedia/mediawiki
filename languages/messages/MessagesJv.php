@@ -762,7 +762,7 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'revdelete-suppress'          => 'Uga dhelikan saka pangurus',
 'revdelete-hide-image'        => 'Dhelikna isi berkas',
 'revdelete-unsuppress'        => 'Busak watesan ing revisi sing dibalèkaké',
-'revdelete-log'               => 'Alesan pambusakan:',
+'revdelete-log'               => 'Alesan:',
 'revdelete-submit'            => 'Trapna ing revisi kapilih',
 'revdelete-logentry'          => 'owahna tampilan revisi kanggo [[$1]]',
 'logdelete-logentry'          => 'owahna aturan pandhelikan saka [[$1]]',
@@ -1374,7 +1374,7 @@ Dhaftar ing ngisor nuduhaké {{PLURAL:$1|kaca pisanan kanthi pranala langsung|$1
 'filerevert'                => 'Balèkna $1',
 'filerevert-legend'         => 'Balèkna berkas',
 'filerevert-intro'          => "Panjenengan mbalèkaké '''[[Media:$1|$1]]''' menyang [vèrsi $4 ing $3, $2].",
-'filerevert-comment'        => 'Komentar:',
+'filerevert-comment'        => 'Alesan:',
 'filerevert-defaultcomment' => 'Dibalèkaké menyang vèrsi ing $2, $1',
 'filerevert-submit'         => 'Balèkna',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' wis dibalèkaké menyang [vèrsi $4 ing $3, $2].",
@@ -1385,7 +1385,7 @@ Dhaftar ing ngisor nuduhaké {{PLURAL:$1|kaca pisanan kanthi pranala langsung|$1
 'filedelete-legend'           => 'Mbusak berkas',
 'filedelete-intro'            => "Panjenengan bakal mbusak berkas '''[[Media:$1|$1]]''' sekaliyan kabèh riwayaté.",
 'filedelete-intro-old'        => "Panjenengan mbusak vèrsi '''[[Media:$1|$1]]''' per [$4 $3, $2].",
-'filedelete-comment'          => 'Alesan mbusak:',
+'filedelete-comment'          => 'Alesan:',
 'filedelete-submit'           => 'Busak',
 'filedelete-success'          => "'''$1''' wis dibusak.",
 'filedelete-success-old'      => "Berkas '''[[Media:$1|$1]]''' vèrsi $3, $2 wis dibusak.",
@@ -1724,7 +1724,7 @@ Umpan balik lan pitulung sabanjuré:
 'dellogpagetext'         => 'Ing ngisor iki kapacak log pambusakan kaca sing anyar dhéwé.',
 'deletionlog'            => 'Cathetan sing dibusak',
 'reverted'               => 'Dibalèkaké ing revisi sadurungé',
-'deletecomment'          => 'Alesan dibusak:',
+'deletecomment'          => 'Alesan:',
 'deleteotherreason'      => 'Alesan liya utawa tambahan:',
 'deletereasonotherlist'  => 'Alesan liya',
 'deletereason-dropdown'  => '*Alesan pambusakan
@@ -1789,7 +1789,7 @@ Ing ngisor iki kapacak konfigurasi kanggo kaca '''$1''':",
 'protect-othertime-op'        => 'wektu liya',
 'protect-existing-expiry'     => 'Wektu kadaluwarsa saiki: $3, $2',
 'protect-otherreason'         => 'Alesan liya/tambahan:',
-'protect-otherreason-op'      => 'alesan liya/tambahan',
+'protect-otherreason-op'      => 'Alesan liya',
 'protect-dropdown'            => '*Alesan umum pangreksan
 ** Vandalisme makaping-kaping
 ** Spam makaping-kaping
@@ -1841,7 +1841,7 @@ Panjenengan mbokmenawa ngetutaké pranala sing salah, utawa revisi iku wis dipul
 'undeletelink'                 => 'pirsani/balèkna',
 'undeletereset'                => "''Reset''",
 'undeleteinvert'               => 'Walik pilihan',
-'undeletecomment'              => 'Komentar:',
+'undeletecomment'              => 'Alesan:',
 'undeletedarticle'             => '"$1" wis dibalèkaké',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|révisi|révisi}} wis dibalèkaké',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|révisi|révisi}} lan $2 berkas dibalèkaké',
@@ -1920,7 +1920,7 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'ipaddress'                       => 'Alamat IP',
 'ipadressorusername'              => 'Alamat IP utawa jeneng panganggo',
 'ipbexpiry'                       => 'Kadaluwarsa',
-'ipbreason'                       => 'Alesan',
+'ipbreason'                       => 'Alesan:',
 'ipbreasonotherlist'              => 'Alesan liya',
 'ipbreason-dropdown'              => '*Alesan umum mblokir panganggo
 ** Mènèhi informasi palsu
@@ -2330,7 +2330,7 @@ $1',
 'visual-comparison' => 'Prabédan kanthi visual',
 
 # Media information
-'mediawarning'         => "'''Pènget:''' Berkas iki mbokmenawa ngandhut kode sing bebayani, yèn dilakokaké sistém panjenengan bisa kena pangaruh ala.<hr />",
+'mediawarning'         => "'''Pènget:''' Berkas iki mbokmenawa ngandhut kode sing bebayani, yèn dilakokaké sistém panjenengan bisa kena pangaruh ala.",
 'imagemaxsize'         => 'Watesana ukuran gambar ing kaca dèskripsi berkas dadi:',
 'thumbsize'            => 'Ukuran gambar cilik (thumbnail):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|kaca|kaca}}',
@@ -2793,7 +2793,7 @@ Panjenengan uga bisa [[Special:Watchlist/edit|nganggo éditor standar panjenenga
 # Special:FilePath
 'filepath'         => 'Lokasi berkas',
 'filepath-page'    => 'Berkas:',
-'filepath-submit'  => 'Lokasi',
+'filepath-submit'  => 'Golèk',
 'filepath-summary' => 'Kaca astaméwa utawa kusus iki nuduhaké jalur pepak sawijining berkas.
 Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka langsung mawa program kagandhèng.
 

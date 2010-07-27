@@ -538,7 +538,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'allowemail'     => 'ٻين يُوزرس کان ايندڙ برق ٽپال بحال ڪريو',
 
 # User rights
-'userrights-reason' => 'تبديليءَ جو سبب:',
+'userrights-reason' => 'سبب:',
 
 # Groups
 'group'      => 'گروپ:',
@@ -724,7 +724,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 تازو ڊاٺل صفحن جي فهرست لاءِ $2 ڏسندا.',
 'deletedarticle'        => '"[[$1]]" ڊهي چڪو',
 'dellogpage'            => 'ڊاٺ لاگ',
-'deletecomment'         => 'ڊاهڻ جو سبب:',
+'deletecomment'         => 'سبب:',
 'deleteotherreason'     => 'اڃا ڪو ٻيو سبب:',
 'deletereasonotherlist' => 'ٻيو سبب',
 
@@ -735,7 +735,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'protectlogpage'              => 'تحفظ لاگ',
 'prot_1movedto2'              => '[[$1]] کي چوري [[$2]] تي رکيو ويو',
 'protect-legend'              => 'تحفظڻ جي پڪ ڪريو',
-'protectcomment'              => 'تاثرات:',
+'protectcomment'              => 'سبب:',
 'protectexpiry'               => 'اختتام:',
 'protect_expiry_invalid'      => 'انجامي مدو ناقابلڪار آهي.',
 'protect_expiry_old'          => 'انجامي مدو ماضيءَ ۾ آهي.',

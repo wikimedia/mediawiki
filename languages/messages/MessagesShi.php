@@ -84,9 +84,11 @@ $messages = array(
 'dec'           => 'Dujanbir',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|amggrd|imggrad}}',
-'category_header' => 'tiwriqin ɣ-omggrd "$1"',
-'subcategories'   => 'imggrad-mzin',
+'pagecategories'         => '{{PLURAL:$1|amggrd|imggrad}}',
+'category_header'        => 'tiwriqin ɣ-omggrd "$1"',
+'subcategories'          => 'imggrad-mzin',
+'hidden-categories'      => '{{PLURAL:$1|taggayt igdln|taggayin gdlnin}}',
+'listingcontinuesabbrev' => 'Aḍfar',
 
 'about'          => 'F',
 'article'        => 'Mayllan ɣ tasna',
@@ -309,30 +311,32 @@ lcont nek  tuyskar .
 'hr_tip'          => 'ⵉⵣⵔⵉⵔⵉ ⵉⵖⵣⵉⴼⵏ (izriri iɣzzifn)',
 
 # Edit pages
-'summary'            => 'Tadusi',
-'subject'            => 'Subject/tansa',
-'minoredit'          => 'Imbddel ad fssusn',
-'watchthis'          => 'Sagg tasna yad',
-'savearticle'        => 'Ḥbu tasna',
-'showpreview'        => 'Iẓṛi amzwaru',
-'showdiff'           => 'Mel imbddeln',
-'anoneditwarning'    => "Balak ''' ur tkcmt ''' rad ibayn IP nk ɣ umzrut n tasna yad, ur sul  iḥba tamagit nk",
-'noarticletext'      => 'ɣilad ur illa walu may ityuran  f tasnatad ad, tzdart at [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
+'summary'                => 'Tadusi',
+'subject'                => 'Subject/tansa',
+'minoredit'              => 'Imbddel ad fssusn',
+'watchthis'              => 'Sagg tasna yad',
+'savearticle'            => 'Ḥbu tasna',
+'showpreview'            => 'Iẓṛi amzwaru',
+'showdiff'               => 'Mel imbddeln',
+'anoneditwarning'        => "Balak ''' ur tkcmt ''' rad ibayn IP nk ɣ umzrut n tasna yad, ur sul  iḥba tamagit nk",
+'noarticletext'          => 'ɣilad ur illa walu may ityuran  f tasnatad ad, tzdart at [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 ulla cabba  [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
-'editing'            => 'taẓṛgt $1',
-'copyrightwarning'   => "ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
+'editing'                => 'taẓṛgt $1',
+'copyrightwarning'       => "ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
 iɣ ortrit ayg ɣayli torit ḥor artisbadal wnna ka-iran, attid ortgt ɣid.<br />
 ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 '''ador tgat ɣid ɣayli origan ḥor iɣzark orilli lidn nbab-ns!'''",
-'template-protected' => 'Agdal',
+'template-protected'     => 'Agdal',
+'template-semiprotected' => 'Azin-ugdal',
 
 # History pages
-'previousrevision' => 'Iẓṛi daɣ aqbur',
-'cur'              => 'Ɣilad',
-'last'             => 'Amzwaru',
-'histfirst'        => 'Amzwaru',
-'histlast'         => 'Amggaru',
+'previousrevision'    => 'Iẓṛi daɣ aqbur',
+'currentrevisionlink' => 'Amcggr amggaṛu',
+'cur'                 => 'Ɣilad',
+'last'                => 'Amzwaru',
+'histfirst'           => 'Amzwaru',
+'histlast'            => 'Amggaru',
 
 # Revision deletion
 'rev-delundel'   => 'Mel/ĥbu',
@@ -342,6 +346,7 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'revertmerge' => 'ḥiyyd tazdayt',
 
 # Diffs
+'history-title'        => 'Asakud n umcggr',
 'difference'           => 'laḥna gr tamzwarut d tamǧarut',
 'lineno'               => 'Izriri $1:',
 'editundo'             => 'Urri',
@@ -483,17 +488,18 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'uploadnologintext' => 'Mel zwar mat git [[Special:UserLogin|Mel mat git]] iɣ trit ad tsrbut isddawn.',
 
 # File description page
-'filehist'            => 'Amzry n usdaw',
-'filehist-help'       => 'Adr i asakud/tizi bac attżrt manik as izwar usddaw ɣ tizi yad',
-'filehist-current'    => 'Ɣilad',
-'filehist-datetime'   => 'Asakud/Tizi',
-'filehist-thumb'      => 'Awlaf imżżin',
-'filehist-user'       => 'Amsqdac',
-'filehist-dimensions' => 'Dimensions',
-'filehist-comment'    => 'Aɣfawal',
-'imagelinks'          => 'Izdayn n usdaw',
-'linkstoimage'        => 'Tasna yad {{PLURAL:$1|izdayn n tasna|$1 azday n tasniwin}} s usdaw:',
-'sharedupload'        => 'Asdawad z $1 tẓḍart at tsxdmt gr iswirn yaḍnin', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'filehist'                  => 'Amzry n usdaw',
+'filehist-help'             => 'Adr i asakud/tizi bac attżrt manik as izwar usddaw ɣ tizi yad',
+'filehist-current'          => 'Ɣilad',
+'filehist-datetime'         => 'Asakud/Tizi',
+'filehist-thumb'            => 'Awlaf imżżin',
+'filehist-user'             => 'Amsqdac',
+'filehist-dimensions'       => 'Dimensions',
+'filehist-comment'          => 'Aɣfawal',
+'imagelinks'                => 'Izdayn n usdaw',
+'linkstoimage'              => 'Tasna yad {{PLURAL:$1|izdayn n tasna|$1 azday n tasniwin}} s usdaw:',
+'sharedupload'              => 'Asdawad z $1 tẓḍart at tsxdmt gr iswirn yaḍnin', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'uploadnewversion-linktext' => 'Srbud tunɣilt tamaynut n usdaw ad',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byt|byt}}',
@@ -533,7 +539,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'allpages'          => 'Tisniwin kullu tnt',
 'alphaindexline'    => '$1 ar $2',
 'nextpage'          => 'Tasna li rad yack ($1)',
-'prevpage'          => 'Tasna li izrin',
+'prevpage'          => 'Tasna li izrin $1',
 'allpagesfrom'      => 'Mel tisniwin li ittizwirn z',
 'allpagesto'        => 'Mel tasniwin li ttgurunin s',
 'allarticles'       => 'Tasniwin kullu tnt',
@@ -547,6 +553,9 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 # Special:Categories
 'categories' => 'imggrad',
 
+# Special:LinkSearch
+'linksearch' => 'Izdayn n brra',
+
 # Watchlist
 'mywatchlist' => 'Umuɣ inu lli tsaggaɣ',
 'watch'       => 'zaydtin i tochwafin-niw',
@@ -557,8 +566,17 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'unwatching' => 'Ur at sul ntsagga',
 
 # Delete
-'deletedarticle' => 'Kkiss "[[$1]]"',
-'dellogpage'     => 'Qqiyd akkas ad',
+'deletepage'            => 'Amḥiyd n tasna',
+'confirmdeletetext'     => 'Ḥan tbidt f attkkist tasna yad kullu d kullu amzruy nes. 
+illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist d is iffaɣ mayad i [[{{MediaWiki:Policy-url}}|tasrtit]].',
+'actioncomplete'        => 'tigawt tummidt',
+'deletedtext'           => '"<nowiki>$1</nowiki>"  ttuykkas.
+Ẓṛ $2 inɣmas imggura n ma ittuykkasn',
+'deletedarticle'        => 'Kkiss "[[$1]]"',
+'dellogpage'            => 'Qqiyd akkas ad',
+'deletecomment'         => 'Maf ittuykkas:',
+'deleteotherreason'     => 'Wayyaḍ/ maf ittuykkas yaḍn',
+'deletereasonotherlist' => 'Maf ittuykkas yaḍn',
 
 # Rollback
 'rollbacklink' => 'Rard',
@@ -594,8 +612,10 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'whatlinkshere-next'       => '{{PLURAL:$1|wali d yuckan|wali d yuckan $1}}',
 'whatlinkshere-links'      => '← izdayn',
 'whatlinkshere-hideredirs' => '$1 Ismmattayn',
+'whatlinkshere-hidetrans'  => '$1 mayllan gis',
 'whatlinkshere-hidelinks'  => '$1 izdayn',
 'whatlinkshere-hideimages' => '$1 izdayn awlaf',
+'whatlinkshere-filters'    => 'Istayn',
 
 # Block/unblock
 'blocklink'        => 'Adur tajt',
@@ -678,7 +698,19 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 
 # Metadata
-'metadata' => 'isfka n mita',
+'metadata'          => 'isfka n mita',
+'metadata-help'     => 'Asdaw ad llan gis inɣmisn yaḍnin lli tfl lkamira tuṭunit niɣd aṣfḍ n uxddam lliɣ ay sgadda asdaw ad',
+'metadata-expand'   => 'Ml ifruriyn lluzzanin',
+'metadata-collapse' => 'Aḥbu n ifruriyn lluzzanin',
+'metadata-fields'   => 'Igran EXIF n isfkan nmita lin illan ɣ tabratad ran ilin ɣ tawlaf n tasna iɣ mzzin tiflut n isfka n mita
+Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn  
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength', # Do not translate list items
 
 'exif-gaincontrol-0' => 'walo',
 

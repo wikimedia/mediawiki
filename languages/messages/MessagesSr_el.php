@@ -783,7 +783,8 @@ Molimo vas navedite ovaj ID broj prilikom pravljenja bilo kakvih upita.',
 'confirmedittext'                  => 'Morate potvrditi vašu adresu e-pošte pre uređivanja strana.
 Molimo postavite i potvrdite adresu vaše e-pošte preko vaših [[Special:Preferences|korisničkih podešavanja]].',
 'nosuchsectiontitle'               => 'Ne postoji takav odeljak',
-'nosuchsectiontext'                => 'Pokušali ste da uredite odeljak koji ne postoji.',
+'nosuchsectiontext'                => 'Pokušali ste da uredite odeljak koji ne postoji.
+Možda je bio premešten ili obrisan dok ste pregledali stranu.',
 'loginreqtitle'                    => 'Potrebno [[{{ns:special}}:Userlogin|prijavljivanje]]',
 'loginreqlink'                     => 'prijava',
 'loginreqpagetext'                 => 'Morate $1 da biste videli ostale strane.',
@@ -972,7 +973,7 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'revdelete-suppress'             => 'Sakrij podatke od sisopa i ostalih.',
 'revdelete-hide-image'           => 'Sakrij sadržaj fajla',
 'revdelete-unsuppress'           => 'Ukloni zabrane nad oporavljenim verzijama.',
-'revdelete-log'                  => 'Razlog za brisanje:',
+'revdelete-log'                  => 'Razlog:',
 'revdelete-submit'               => 'Primeni na izabrane revizije',
 'revdelete-logentry'             => 'promenjen prikaz revizije za [[$1]]',
 'logdelete-logentry'             => 'promenjena vidnost događaja za stranu [[$1]]',
@@ -1350,6 +1351,7 @@ Pokušajte sa prefiksom '''sve:''' da pretražite ceo sadržaj (uključujući st
 'action-reupload'             => 'poništi ovaj postojeći fajl',
 'action-reupload-shared'      => 'piši preko verzije ovog fajla na deljenom skladištu',
 'action-upload_by_url'        => 'pošalji ovaj fajl sa URL adrese',
+'action-writeapi'             => 'koristi API za pisanje',
 'action-delete'               => 'obriši ovu stranicu',
 'action-deleterevision'       => 'obriši ovu reviziju',
 'action-deletedhistory'       => 'pregledaj obrisanu istoriju ove strane',
@@ -1364,6 +1366,7 @@ Pokušajte sa prefiksom '''sve:''' da pretražite ceo sadržaj (uključujući st
 'action-patrol'               => 'označavanje tuđih izmena kao patroliranih',
 'action-autopatrol'           => 'automatsko patroliranje sopstvenih izmena',
 'action-unwatchedpages'       => 'pregled spiska nenadgledanih strana',
+'action-trackback'            => 'pošalji izveštaj',
 'action-mergehistory'         => 'pripoji istoriju ove strane',
 'action-userrights'           => 'izmeni sva korisnička prava',
 'action-userrights-interwiki' => 'izmeni prava korisnika sa drugih Vikija',
@@ -1563,12 +1566,13 @@ Sledeći spisak pokazuje stranice koje se vežu za ovaj fajl
 'noimage-linktext'          => 'poslati',
 'uploadnewversion-linktext' => 'Pošaljite noviju verziju ovog fajla',
 'shared-repo-from'          => 'od $1', # $1 is the repository name
+'shared-repo'               => 'deljeno skladište', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Vrati $1',
 'filerevert-legend'         => 'Vrati fajl',
 'filerevert-intro'          => "Vraćate '''[[Media:$1|$1]]''' na [$4 verziju od $3, $2].",
-'filerevert-comment'        => 'Komentar:',
+'filerevert-comment'        => 'Razlog:',
 'filerevert-defaultcomment' => 'Vraćeno na verziju od $2, $1',
 'filerevert-submit'         => 'Vrati',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' je vraćen na [$4 verziju od $3, $2].",
@@ -1579,7 +1583,7 @@ Sledeći spisak pokazuje stranice koje se vežu za ovaj fajl
 'filedelete-legend'           => 'Obriši fajl',
 'filedelete-intro'            => "Na putu ste da obrišete fajl '''[[Media:$1|$1]]''' zajedno sa njegovom istorijom.",
 'filedelete-intro-old'        => "Brišete verziju fajla '''[[Media:$1|$1]]''' od [$4 $3, $2].",
-'filedelete-comment'          => 'Komentar:',
+'filedelete-comment'          => 'Razlog:',
 'filedelete-submit'           => 'Obriši',
 'filedelete-success'          => "'''$1''' je obrisan.",
 'filedelete-success-old'      => "Verzija fajla '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
@@ -1926,7 +1930,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'dellogpagetext'         => 'Ispod je spisak najskorijih brisanja.',
 'deletionlog'            => 'istorija brisanja',
 'reverted'               => 'Vraćeno na raniju reviziju',
-'deletecomment'          => 'Razlog za brisanje',
+'deletecomment'          => 'Razlog:',
 'deleteotherreason'      => 'Drugi/dodatni razlog:',
 'deletereasonotherlist'  => 'Drugi razlog',
 'deletereason-dropdown'  => '*Najčešći razlozi brisanja
@@ -1993,7 +1997,7 @@ Protect pages included in this page (cascading protection)',
 'protect-othertime-op'        => 'drugo vreme',
 'protect-existing-expiry'     => 'Trenutno vreme isteka: $3, $2',
 'protect-otherreason'         => 'Drugi/dodatni razlog:',
-'protect-otherreason-op'      => 'drugi/dodatni razlog',
+'protect-otherreason-op'      => 'Drugi razlog',
 'protect-dropdown'            => '*Razlozi zaštite
 ** Vandalizam
 ** Neženjene poruke
@@ -2043,7 +2047,7 @@ U ovakvim slučajevima morate skinuti oznaku sa ili ponovo prikazati najnoviju o
 'undeletelink'                 => 'pogledaj/vrati',
 'undeletereset'                => 'Poništi',
 'undeleteinvert'               => 'Invertujte izbor',
-'undeletecomment'              => 'Komentar:',
+'undeletecomment'              => 'Razlog:',
 'undeletedarticle'             => 'vratio "[[$1]]"',
 'undeletedrevisions'           => '$1 revizija vraćeno',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revizija|revizije|revizija}} i $2 {{PLURAL:$2|fajl|fajla|fajlova}} vraćeno',
@@ -2124,7 +2128,7 @@ stranice su vandalizovane).',
 'ipaddress'                       => 'IP adresa',
 'ipadressorusername'              => 'IP adresa ili korisničko ime',
 'ipbexpiry'                       => 'Trajanje',
-'ipbreason'                       => 'Razlog',
+'ipbreason'                       => 'Razlog:',
 'ipbreasonotherlist'              => 'Drugi razlog',
 'ipbreason-dropdown'              => '*Najčešći razlozi blokiranja
 ** Unošenje lažnih informacija
@@ -2306,7 +2310,7 @@ stranica za razgovor nije mogla biti premeštena jer takva već postoji na novom
 'movesubpage'                  => '{{PLURAL:$1|Podstrana|Podstrana}}',
 'movesubpagetext'              => 'Ova strana ima $1 {{PLURAL:$1|podstranu prikazanu|podstrana prikazanih}} ispod.',
 'movenosubpage'                => 'Ova strana nema podstrana.',
-'movereason'                   => 'Razlog',
+'movereason'                   => 'Razlog:',
 'revertmove'                   => 'vrati',
 'delete_and_move'              => 'Obriši i premesti',
 'delete_and_move_text'         => '==Potrebno brisanje==
@@ -2559,7 +2563,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ovaj tip fajla bi mogao da sadrži štetan kod.
-Njegovim izvršavanjem biste mogli da oštetite Vaš sistem.<hr />",
+Njegovim izvršavanjem biste mogli da oštetite Vaš sistem.",
 'imagemaxsize'         => 'Ograniči slike na stranama za razgovor o slikama na:',
 'thumbsize'            => 'Veličina umanjenog prikaza :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strana|strane|strana}}',
@@ -2790,6 +2794,11 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 # Flash modes
 'exif-flash-fired-0'    => 'Blic nije korišćen',
 'exif-flash-fired-1'    => 'Blic je korišćen',
+'exif-flash-return-0'   => 'bez funkcije povratnog svetla',
+'exif-flash-return-2'   => 'povratno svetlo nije uočeno',
+'exif-flash-return-3'   => 'uočeno je povratno svetlo',
+'exif-flash-mode-1'     => 'obavezno fleš ispaljivanje',
+'exif-flash-mode-2'     => 'obavezno fleš suzbijanje',
 'exif-flash-mode-3'     => 'auto mod',
 'exif-flash-function-1' => 'Bez blica',
 'exif-flash-redeye-1'   => 'mod za redukciju crvenih očiju',
@@ -2973,15 +2982,15 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'watchlistedit-normal-title'   => 'Uredi spisak nadgledanja',
 'watchlistedit-normal-legend'  => 'Ukloni naslove sa spiska nadgledanja',
 'watchlistedit-normal-explain' => 'Spisak stranica koje nadgledate je prikazan ispod.
-Da uklonite stranicu, obeležite kvadratić pored, i kliknite na dugme Ukloni naslove.
-Takođe, možete da [[Special:Watchlist/raw|izmenite sirov spisak]].',
+Da uklonite stranicu, obeležite kvadratić pored, i kliknite na dugme "{{int:Watchlistedit-normal-submit}}".
+Takođe možete da [[Special:Watchlist/raw|izmenite spisak u prostom formatu]].',
 'watchlistedit-normal-submit'  => 'Ukloni naslove',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 članak je uklonjen|$1 članka su uklonjena|$1 članaka je uklonjeno}} sa vašeg spiska nadgledanja:',
 'watchlistedit-raw-title'      => 'menjanje sirovog spiska nadgledanja',
 'watchlistedit-raw-legend'     => 'menjanje sirovog spiska nadgledanja',
-'watchlistedit-raw-explain'    => 'Naslovi u vašoj stranici nadgledanja su prikazani ispod, i mogu se menjati dodavanjem ili oduzimanjem sa spiska;
-jedan naslov po liniji.
-Kada završite, kliknite Osveži spisak nadgledanja.
+'watchlistedit-raw-explain'    => 'Naslovi sa Vašeg spiska nadgledanja su prikazani ispod i mogu se menjati dodavanjem ili oduzimanjem;
+Pišite jedan naslov po liniji.
+Kada završite, kliknite "{{int:Watchlistedit-raw-submit}}".
 Takođe, možete [[Special:Watchlist/edit|koristiti standardan uređivač spiska]].',
 'watchlistedit-raw-titles'     => 'Naslovi:',
 'watchlistedit-raw-submit'     => 'Osvežite spisak nadgledanja',
@@ -3021,7 +3030,7 @@ Takođe, možete [[Special:Watchlist/edit|koristiti standardan uređivač spiska
 # Special:FilePath
 'filepath'         => 'Putanja fajla',
 'filepath-page'    => 'Fajl:',
-'filepath-submit'  => 'Putanja',
+'filepath-submit'  => 'Pošalji',
 'filepath-summary' => 'Ova specijalna strana vraća kompletnu putanju za fajl.
 Slike bivaju prikazane u punoj rezoluciji, drugi tipovi fajlova bivaju direktno startovani pomoću njima pridruženih progama.
 

@@ -14,6 +14,7 @@
  * @author Cerasus
  * @author Dani
  * @author Dorgan
+ * @author Enbéká
  * @author Glanthor Reviol
  * @author Gondnok
  * @author Hunyadym
@@ -864,8 +865,8 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 [[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} megtekintheted a kapcsolódó naplókat],
 vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
-'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált szerkesztőnk.
-Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
+'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált felhasználónk.
+Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.',
 'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.''' '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra vagy nyomj ''F5''-öt; '''Opera:''' ürítsd ki a gyorsítótárat az ''Eszközök→Személyes adatok törlése'' / ''Tools→Preferences'' menüben; '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload / Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt.",
 'usercssjsyoucanpreview'           => "'''Tipp:''' Használd az „Előnézet megtekintése” gombot az új CSS/JS teszteléséhez mentés előtt.",
 'usercsspreview'                   => "'''Ne felejtsd el, hogy ez csak a felhasználói CSS-ed előnézete és még nincs elmentve!'''",
@@ -1052,7 +1053,7 @@ Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a köve
 'revdelete-suppress'             => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
 'revdelete-hide-image'           => 'A fájl tartalomának elrejtése',
 'revdelete-unsuppress'           => 'Korlátozások eltávolítása a visszaállított változatokról',
-'revdelete-log'                  => 'A törlés oka:',
+'revdelete-log'                  => 'Ok:',
 'revdelete-submit'               => 'Alkalmazás a kiválasztott változatra',
 'revdelete-logentry'             => 'módosította a(z) [[$1]] lap egy vagy több változatának láthatóságát',
 'logdelete-logentry'             => '[[$1]] eseményének láthatóságának módosítása',
@@ -1673,7 +1674,7 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'filerevert'                => '$1 visszaállítása',
 'filerevert-legend'         => 'Fájl visszaállítása',
 'filerevert-intro'          => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl [$4 verzióját állítod vissza, dátum: $3, $2].</span>',
-'filerevert-comment'        => 'Megjegyzés:',
+'filerevert-comment'        => 'Ok:',
 'filerevert-defaultcomment' => 'A $2, $1-i verzió visszaállítása',
 'filerevert-submit'         => 'Visszaállítás',
 'filerevert-success'        => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl visszaállítása a(z) [$4 verzióra, $3, $2] sikerült.</span>',
@@ -1684,7 +1685,7 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'filedelete-legend'           => 'Fájl törlése',
 'filedelete-intro'            => "Törölni készülsz a(z) '''[[Media:$1|$1]]''' médiafájlt, a teljes fájltörténetével együtt.",
 'filedelete-intro-old'        => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: [$4 $3, $2] változatát törlöd.</span>',
-'filedelete-comment'          => 'Indoklás:',
+'filedelete-comment'          => 'Ok:',
 'filedelete-submit'           => 'Törlés',
 'filedelete-success'          => "A(z) '''$1''' médiafájlt törölted.",
 'filedelete-success-old'      => "A(z) '''[[Media:$1|$1]]''' $3, $2-kori változata sikeresen törölve lett.",
@@ -2029,7 +2030,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'dellogpagetext'         => 'Itt láthatók a legutóbb törölt lapok.',
 'deletionlog'            => 'törlési napló',
 'reverted'               => 'Visszaállítva a korábbi változatra',
-'deletecomment'          => 'A törlés oka',
+'deletecomment'          => 'Ok:',
 'deleteotherreason'      => 'További indoklás:',
 'deletereasonotherlist'  => 'Egyéb indok',
 'deletereason-dropdown'  => '*Gyakori törlési okok
@@ -2067,7 +2068,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'protect-title'               => '„$1” levédése',
 'prot_1movedto2'              => '[[$1]] lapot átneveztem [[$2]] névre',
 'protect-legend'              => 'Levédés megerősítése',
-'protectcomment'              => 'A védelem oka:',
+'protectcomment'              => 'Ok:',
 'protectexpiry'               => 'Időtartam',
 'protect_expiry_invalid'      => 'A lejárati idő érvénytelen.',
 'protect_expiry_old'          => 'A lejárati idő a múltban van.',
@@ -2148,7 +2149,7 @@ változatot visszaállították vagy eltávolították az archívumból.',
 'undeletelink'                 => 'megtekintés/helyreállítás',
 'undeletereset'                => 'Vissza',
 'undeleteinvert'               => 'Kijelölés megfordítása',
-'undeletecomment'              => 'Helyreállítás oka:',
+'undeletecomment'              => 'Ok:',
 'undeletedarticle'             => '„[[$1]]” helyreállítva',
 'undeletedrevisions'           => '{{PLURAL:$1|egy|$1}} változat helyreállítva',
 'undeletedrevisions-files'     => '{{PLURAL:$1|egy|$1}} változat és {{PLURAL:$2|egy|$2}} fájl visszaállítva',
@@ -2225,7 +2226,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipaddress'                       => 'IP-cím',
 'ipadressorusername'              => 'IP-cím vagy felhasználói név',
 'ipbexpiry'                       => 'Lejárat:',
-'ipbreason'                       => 'Indok:',
+'ipbreason'                       => 'Ok:',
 'ipbreasonotherlist'              => 'Más ok',
 'ipbreason-dropdown'              => '*Gyakori blokkolási okok
 ** Téves információ beírása
@@ -2297,7 +2298,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'block-log-flags-noemail'         => 'e-mail blokkolva',
 'block-log-flags-nousertalk'      => 'saját vitalapját sem szerkesztheti',
 'block-log-flags-angry-autoblock' => 'bővített automatikus blokk bekapcsolva',
-'block-log-flags-hiddenname'      => 'szerkesztőnév elrejtve',
+'block-log-flags-hiddenname'      => 'rejtett felhasználónév',
 'range_block_disabled'            => 'A rendszerfelelős tartományblokkolás létrehozási képessége letiltott.',
 'ipb_expiry_invalid'              => 'Hibás lejárati dátum.',
 'ipb_expiry_temp'                 => 'A láthatatlan felhasználóinév-blokkok lehetnek állandóak.',
@@ -2664,7 +2665,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Figyelmeztetés''': Ez a fájltípus kártékony kódot tartalmazhat.
-A futtatása során kárt tehet a számítógépedben.<hr />",
+A futtatása során kárt tehet a számítógépedben.",
 'imagemaxsize'         => 'A kép leírólapján mutatott legnagyobb képméret:',
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
@@ -3085,9 +3086,9 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'watchlistedit-noitems'        => 'A figyelőlistád üres.',
 'watchlistedit-normal-title'   => 'A figyelőlista szerkesztése',
 'watchlistedit-normal-legend'  => 'Lapok eltávolítása a figyelőlistáról',
-'watchlistedit-normal-explain' => 'A figyelőlistádra felvett lapok az alábbi listában találhatók.
-Ha el szeretnél távolítani egy lapot, jelöld be a címe melletti jelölőnégyzetet,
-és kattints rá a lap alján található „A kijelöltek eltávolítása” feliratú gombra. Lehetőség van a [[Special:Watchlist/raw|nyers figyelőlista]] szerkesztésére is.',
+'watchlistedit-normal-explain' => 'A figyelőlistádra felvett lapok címei alább láthatóak.
+Ha el szeretnél távolítani egy címet, pipáld ki a mellette található jelölőnégyzetet, majd kattints „{{int:Watchlistedit-normal-submit}}” gombra.
+Lehetőséged van a [[Special:Watchlist/raw|figyelőlista nyers változatának]] szerkesztésére is.',
 'watchlistedit-normal-submit'  => 'A kijelöltek eltávolítása',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|A következő|A következő $1}} cikket eltávolítottam a figyelőlistádról:',
 'watchlistedit-raw-title'      => 'A nyers figyelőlista szerkesztése',

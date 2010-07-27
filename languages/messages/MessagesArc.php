@@ -642,7 +642,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 # File deletion
 'filedelete'                  => 'ܫܘܦ $1',
 'filedelete-legend'           => 'ܫܘܦ ܠܦܦܐ',
-'filedelete-comment'          => 'ܥܠܬܐ ܕܫܝܦܐ:',
+'filedelete-comment'          => 'ܥܠܬܐ:',
 'filedelete-submit'           => 'ܫܘܦ',
 'filedelete-nofile'           => "'''$1''' ܠܝܬ.",
 'filedelete-otherreason'      => 'ܥܠܬܐ ܐܚܪܬܐ:',
@@ -837,7 +837,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'deletedarticle'         => 'ܫܦ "[[$1]]"',
 'dellogpage'             => 'ܣܓܠܐ ܕܫܝܦܐ',
 'deletionlog'            => 'ܣܓܠܐ ܕܫܝܦܐ',
-'deletecomment'          => 'ܥܠܬܐ ܕܫܝܦܐ:',
+'deletecomment'          => 'ܥܠܬܐ:',
 'deleteotherreason'      => 'ܥܠܬܐ ܐܚܪܬܐ/ܝܬܝܪܬܐ:',
 'deletereasonotherlist'  => 'ܥܠܬܐ ܐܚܪܬܐ',
 'delete-edit-reasonlist' => 'ܫܚܠܦ ܥܠܠܬ̈ܐ ܕܫܝܦܐ',

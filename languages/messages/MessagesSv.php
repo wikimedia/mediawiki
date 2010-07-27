@@ -303,7 +303,7 @@ $messages = array(
 'tog-nocache'                 => 'Stäng av cachning av sidor',
 'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när en sida på min bevakningslista ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
-'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
+'tog-enotifminoredits'        => 'Skicka mig e-post även för mindre ändringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-postmeddelanden om ändringar som skickas till andra',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
 'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
@@ -1045,7 +1045,7 @@ Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekven
 'revdelete-suppress'             => 'Undanhåll data även från administratörer',
 'revdelete-hide-image'           => 'Dölj filinnehåll',
 'revdelete-unsuppress'           => 'Ta bort begränsningar på återställda versioner',
-'revdelete-log'                  => 'Orsak till radering:',
+'revdelete-log'                  => 'Anledning:',
 'revdelete-submit'               => 'Tillämpa på vald version',
 'revdelete-logentry'             => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'             => 'ändrade synlighet för åtgärder i [[$1]]',
@@ -1673,7 +1673,7 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'filerevert'                => 'Återställ $1',
 'filerevert-legend'         => 'Återställ fil',
 'filerevert-intro'          => "Du återställer '''[[Media:$1|$1]]''' till [$4 versionen från $2 kl. $3].",
-'filerevert-comment'        => 'Kommentar:',
+'filerevert-comment'        => 'Anledning:',
 'filerevert-defaultcomment' => 'Återställer till versionen från $1 kl. $2.',
 'filerevert-submit'         => 'Återställ',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' har återställts till [$4 versionen från $2 kl. $3].",
@@ -2026,7 +2026,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 'dellogpagetext'         => 'Nedan listas de senaste raderingarna.',
 'deletionlog'            => 'raderingsloggen',
 'reverted'               => 'Återgått till tidigare version',
-'deletecomment'          => 'Anledning till borttagning:',
+'deletecomment'          => 'Anledning:',
 'deleteotherreason'      => 'Annan/ytterligare anledning:',
 'deletereasonotherlist'  => 'Annan anledning',
 'deletereason-dropdown'  => '*Vanliga anledningar till radering
@@ -2138,7 +2138,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeletelink'                 => 'visa/återställ',
 'undeletereset'                => 'Rensa',
 'undeleteinvert'               => 'Invertera urval',
-'undeletecomment'              => 'Kommentar:',
+'undeletecomment'              => 'Anledning:',
 'undeletedarticle'             => 'återställde "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|en version återställd|$1 versioner återställda}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|version|versioner}} och $2 {{PLURAL:$2|fil|filer}} återställda',
@@ -2667,7 +2667,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varning''': Den här filen kan innehålla elak kod.
-Om du kör den kan din dator skadas.<hr />",
+Om du kör den kan din dator skadas.",
 'imagemaxsize'         => 'Begränsa bilders storlek på filbeskrivningssidor till:',
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
@@ -3092,16 +3092,16 @@ Pröva vanlig förhandsgranskning istället.',
 'watchlistedit-noitems'        => 'Din bevakningslista innehåller inga sidor.',
 'watchlistedit-normal-title'   => 'Redigera bevakningslista',
 'watchlistedit-normal-legend'  => 'Ta bort sidor från bevakningslistan',
-'watchlistedit-normal-explain' => 'Sidorna i din bevakningslista visas nedan.
-För att ta bort en sida, kryssa i rutan intill den, och tryck på "Ta bort sidor".
-Du kan även [[Special:Watchlist/raw|redigera listan i råformat]].',
+'watchlistedit-normal-explain' => 'Titlar på din bevakningslista visas nedan.
+För att ta bort en titel, markera rutan bredvid den och klicka på "{{int:Watchlistedit-normal-submit}}".
+Du kan också [[Special:Watchlist/raw|redigera listan i råformat]].',
 'watchlistedit-normal-submit'  => 'Ta bort sidor',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 sida|$1 sidor}} togs bort från din bevakningslista:',
 'watchlistedit-raw-title'      => 'Redigera bevakningslistan i råformat',
 'watchlistedit-raw-legend'     => 'Redigera bevakningslistan i råformat',
-'watchlistedit-raw-explain'    => 'Sidorna i din bevakningslista visas här nedanför, och kan redigeras genom att lägga till och ta bort från listan;
-en sida per rad.
-Tryck på "Uppdatera bevakningslista", när du är färdig.
+'watchlistedit-raw-explain'    => 'Titlar på din bevakningslista visas nedan, och kan redigeras genom att lägga till och ta bort från listan;
+en titel per rad.
+När du är klar klickar du på "{{int:Watchlistedit-raw-submit}}".
 Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
 'watchlistedit-raw-titles'     => 'Sidor:',
 'watchlistedit-raw-submit'     => 'Uppdatera bevakningslistan',

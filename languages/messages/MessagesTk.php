@@ -797,7 +797,7 @@ Muny ýerine ýetirmek isleýändigiňizi, netijelerine düşünýändigiňiz we
 'revdelete-suppress'             => 'Maglumatlary administratorlardan we beýlekilerden gizläň',
 'revdelete-hide-image'           => 'Faýlyň mazmunyny gizle',
 'revdelete-unsuppress'           => 'Dikeldilen wersiýalardaky çäklendirmeleri aýyr',
-'revdelete-log'                  => 'Öçürmekligiň sebäbi:',
+'revdelete-log'                  => 'Sebäp:',
 'revdelete-submit'               => 'Saýlanylan wersiýa berjaý et',
 'revdelete-logentry'             => '[[$1]] üçin wersiýa görünme derejesini üýtgetdi',
 'logdelete-logentry'             => '[[$1]] üçin waka görünme derejesini üýtgetdi',
@@ -1435,7 +1435,7 @@ Aşakdaky sanaw diňe şu faýla çykgyt berýän {{PLURAL:$1|ilkinji faýly |il
 'filedelete-legend'           => 'Faýly öçür',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' faýlyny tutuş geçmişi bilen bilelikde öçürjek bolup dursuňyz.",
 'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' faýlynyň [$4 $3, $2] seneli wersiýasyny öçürýärsiňiz.",
-'filedelete-comment'          => 'Öçürmekligiň sebäbi:',
+'filedelete-comment'          => 'Sebäp:',
 'filedelete-submit'           => 'Öçür',
 'filedelete-success'          => "'''$1''' öçürildi.",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' faýlynyň $3, $2 seneli wersiýasy öçürildi.",
@@ -1699,7 +1699,7 @@ Goldanylýan protokollar: <tt>$1</tt>',
 'watchnologin'         => 'Sessiýa açmansyňyz',
 'watchnologintext'     => 'Gözegçilik sanawyňyzy üýtgetmek üçin [[Special:UserLogin|sessiýa açmagyňyz]] zerurdyr.',
 'addedwatch'           => 'Gözegçilik sanawyna goşuldy',
-'addedwatchtext'       => "\"<nowiki>\$1</nowiki>\" atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.
+'addedwatchtext'       => "[[:$1]]  atly sahypa [[Special:Watchlist|gözegçilik sanawyňyza]] goşuldy.
 
 Geljekde, bu sahypada we degişli çekişme sahypasynda ediljek üýtgeşmeler şu ýerde sanawlanjakdyr.
 
@@ -1783,7 +1783,7 @@ Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{
 'dellogpagetext'         => 'Aşakdaky sanaw iň soňky öçürmeleriň sanawydyr.',
 'deletionlog'            => 'öçürme gündeligi',
 'reverted'               => 'Irki wersiýasyna yzyna getirildi',
-'deletecomment'          => 'Öçürmäniň sebäbi:',
+'deletecomment'          => 'Sebäp:',
 'deleteotherreason'      => 'Başga/goşmaça sebäp:',
 'deletereasonotherlist'  => 'Başga sebäpler',
 'deletereason-dropdown'  => '*Adaty öçürme sebäpleri
@@ -2403,7 +2403,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Duýduryş''': Bu faýlda zyýanly kod bar bolmagy ahmal.
-Ony işletseňiz iş ulgamyňyza howp astyna salmagyňyz mümkin />",
+Ony işletseňiz iş ulgamyňyza howp astyna salmagyňyz mümkin.",
 'imagemaxsize'         => 'Faýl düşündiriş sahypalaryndaky suratlary şuňa çenli çäklendiriň:',
 'thumbsize'            => 'Miniatýura ölçegi:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahypa|sahypa}}',

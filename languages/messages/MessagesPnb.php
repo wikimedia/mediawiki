@@ -535,7 +535,7 @@ $messages = array(
 
 # User rights
 'userrights-groupsmember' => 'سنگی اے:',
-'userrights-reason'       => 'تبدیلی دی وجہ:',
+'userrights-reason'       => 'وجہ:',
 
 # Groups
 'group'            => 'ٹولی:',
@@ -698,7 +698,7 @@ $messages = array(
 'filedelete'                  => '$1 مٹاؤ',
 'filedelete-legend'           => 'فائل مٹاؤ',
 'filedelete-intro'            => "تسی '''[[Media:$1|$1]]''' مٹا رۓ او۔",
-'filedelete-comment'          => 'مٹان دی وجہ:',
+'filedelete-comment'          => 'وجہ:',
 'filedelete-submit'           => 'مٹاؤ',
 'filedelete-success'          => "'''$1''' مٹایا جا چکیا اے۔",
 'filedelete-otherreason'      => ':دوجی وجہ',
@@ -872,7 +872,7 @@ $messages = array(
 'deletedarticle'         => '"[[$1]]" مٹا دتا گیا',
 'dellogpage'             => 'مٹان آلی لاگ',
 'dellogpagetext'         => 'تھلے نویاں مٹائے گۓ صفحیاں دی لسٹ اے۔',
-'deletecomment'          => 'مٹانے دی وجہ:',
+'deletecomment'          => 'وجہ:',
 'deleteotherreason'      => 'دوجی/ہور وجہ:',
 'deletereasonotherlist'  => 'ہور وجہ',
 'delete-edit-reasonlist' => 'مٹانے دیاں وجہ لکھو',

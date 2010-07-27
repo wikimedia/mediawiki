@@ -7,8 +7,10 @@
  * @ingroup Language
  * @file
  *
+ * @author Cesco
  * @author Jim-by
  * @author Mienski
+ * @author Prima klasy4na
  * @author Urhixidur
  * @author Yury Tarasievich
  * @author לערי ריינהארט
@@ -138,18 +140,18 @@ $messages = array(
 'october'       => 'Кастрычнік',
 'november'      => 'Лістапад',
 'december'      => 'Снежань',
-'january-gen'   => 'Студзень',
-'february-gen'  => 'Люты',
-'march-gen'     => 'Сакавік',
-'april-gen'     => 'Красавік',
-'may-gen'       => 'Травень',
-'june-gen'      => 'Чэрвень',
-'july-gen'      => 'Ліпень',
-'august-gen'    => 'Жнівень',
-'september-gen' => 'Верасень',
-'october-gen'   => 'Кастрычнік',
-'november-gen'  => 'Лістапад',
-'december-gen'  => 'Снежань',
+'january-gen'   => 'студзеня',
+'february-gen'  => 'лютага',
+'march-gen'     => 'сакавіка',
+'april-gen'     => 'красавіка',
+'may-gen'       => 'мая',
+'june-gen'      => 'чэрвеня',
+'july-gen'      => 'ліпеня',
+'august-gen'    => 'жніўня',
+'september-gen' => 'верасня',
+'october-gen'   => 'кастрычніка',
+'november-gen'  => 'лістапада',
+'december-gen'  => 'снежня',
 'jan'           => 'Сту',
 'feb'           => 'Лют',
 'mar'           => 'Сак',
@@ -794,7 +796,7 @@ $2',
 'revdelete-suppress'             => 'Прыпыняць* звесткі ад адміністратараў таксама',
 'revdelete-hide-image'           => 'Схаваць змест файла',
 'revdelete-unsuppress'           => 'Зняць абмежаванні на адноўленыя версіі',
-'revdelete-log'                  => 'Прычына сцірання:',
+'revdelete-log'                  => 'Прычына:',
 'revdelete-submit'               => 'Зрабіць для выбранай версіі',
 'revdelete-logentry'             => 'зменена бачнасць версіі [[$1]]',
 'logdelete-logentry'             => 'зменена бачнасць падзеі* [[$1]]',
@@ -1406,7 +1408,7 @@ $2',
 'filedelete-legend'           => 'Выдаліць файл',
 'filedelete-intro'            => "Вы збіраецеся сцерці файл '''[[Media:$1|$1]]''' разам з усёй яго гісторыяй.",
 'filedelete-intro-old'        => "Вы сціраеце версію '''[[Media:$1|$1]]''' з [$4 $3, $2].",
-'filedelete-comment'          => 'Каментарый:',
+'filedelete-comment'          => 'Прычына:',
 'filedelete-submit'           => 'Выдаліць',
 'filedelete-success'          => "'''$1''' быў выдалены.",
 'filedelete-success-old'      => "Версія '''[[Media:$1|$1]]''' з $3, $2 была сцёртая.",
@@ -1750,7 +1752,7 @@ $NEWPAGE
 'dellogpagetext'         => 'Ніжэй паказаны спіс самых нядаўніх сціранняў.',
 'deletionlog'            => 'журнал сціранняў',
 'reverted'               => 'Адкочана да ранейшай версіі',
-'deletecomment'          => 'Прычына сцірання',
+'deletecomment'          => 'Прычына:',
 'deleteotherreason'      => 'Іншы/дадатковы повад:',
 'deletereasonotherlist'  => 'Іншы повад',
 'deletereason-dropdown'  => '*Звычайныя прычыны сцірання
@@ -1934,7 +1936,7 @@ $1',
 'ipaddress'                       => 'Адрас IP',
 'ipadressorusername'              => 'IP-адрас ці імя ўдзельніка:',
 'ipbexpiry'                       => 'Згасае:',
-'ipbreason'                       => 'Прычына',
+'ipbreason'                       => 'Прычына:',
 'ipbreasonotherlist'              => 'Іншая прычына',
 'ipbreason-dropdown'              => '*Звычайныя прычыны блоку
 ** Упісванне несапраўднай інфармацыі
@@ -2102,7 +2104,7 @@ $1 ужо знаходзіцца пад блокам. Ці жадаеце змя
 'movesubpage'                  => '{{PLURAL:$1|Пад-старонка|Пад-старонкі}}',
 'movesubpagetext'              => 'Старонка мае $1 {{PLURAL:$1|пад-старонку, паказаную ніжэй|пад-старонкі, паказаныя ніжэй}}.',
 'movenosubpage'                => 'Старонка не мае пад-старонак.',
-'movereason'                   => 'Тлумачэнне',
+'movereason'                   => 'Прычына:',
 'revertmove'                   => 'адкат',
 'delete_and_move'              => 'Выдаліць і перанесці',
 'delete_and_move_text'         => '==Патрабуецца сціранне==
@@ -2363,7 +2365,7 @@ $1',
 'visual-comparison' => 'Параўнанне на від',
 
 # Media information
-'mediawarning'         => "'''Увага''': у гэтым тыпе файлаў бывае зламысны код, выкананне якога можа паставіць пад небяспеку вашую сістэму.<hr />",
+'mediawarning'         => "'''Увага''': у гэтым тыпе файлаў бывае зламысны код, выкананне якога можа паставіць пад небяспеку вашую сістэму.",
 'imagemaxsize'         => 'Абмежаваныя памеры выяваў на адпаведных тлумачальных старонках:',
 'thumbsize'            => 'Памеры драбніцы:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|старонка|старонак}}',

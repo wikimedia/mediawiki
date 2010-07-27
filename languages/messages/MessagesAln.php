@@ -289,7 +289,7 @@ Shih [[Special:Version|faqen e verzionit]].',
 'red-link-title'          => '$1 (faqja nuk ekziston)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikulli',
+'nstab-main'      => 'Faqja',
 'nstab-user'      => 'Faqja e përdoruesit',
 'nstab-media'     => 'Faqja e mediave',
 'nstab-special'   => 'Faqja speciale',
@@ -968,7 +968,7 @@ Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të
 * Kutia e zgjedhur shënon që përdoruesi është anëtar në atë grup
 * Kutia e pazgjedhur shënon që përdoruesi nuk është anëtar në atë grup
 * Një * shënon që nuk mund ta hiqni grupin pasi ta keni shtuar (dhe anasjelltas).',
-'userrights-reason'           => 'Arsyeja për ndryshimin:',
+'userrights-reason'           => 'Arsyeja:',
 'userrights-no-interwiki'     => 'Nuk keni leje për të ndryshuar privilegjet e përdoruesve në wiki të tjera.',
 'userrights-nodatabase'       => 'Regjistri $1 nuk ekziston ose nuk është vendor.',
 'userrights-nologin'          => 'Duhet të [[Special:UserLogin|hyni brenda]] me një llogari administrative për të ndryshuar privilegjet e përdoruesve.',
@@ -1211,7 +1211,7 @@ Ju lutemi konfirmoni që kjo âsht ajo që deshtët me bâ, që i keni të njoft
 Shih $2 për regjistrin e fshimjeve të fundit.',
 'deletedarticle'        => 'grisi "$1"',
 'dellogpage'            => 'Regjistri i fshimjeve',
-'deletecomment'         => 'Arsyeja e fshimjes:',
+'deletecomment'         => 'Arsyeja:',
 'deleteotherreason'     => 'Arsyet tjera/shtesë:',
 'deletereasonotherlist' => 'Arsye tjetër',
 
@@ -1329,7 +1329,7 @@ Ju lutemi bashkoni manualisht.'''",
 '1movedto2'        => '[[$1]] u zhvendos në [[$2]]',
 '1movedto2_redir'  => '[[$1]] u zhvendos te [[$2]] përmjet përcjelljes',
 'movelogpage'      => 'Regjistri i zhvendosjeve',
-'movereason'       => 'Arsyja',
+'movereason'       => 'Arsyeja:',
 'revertmove'       => 'kthe mbrapsht',
 
 # Export

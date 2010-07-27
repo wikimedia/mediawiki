@@ -894,7 +894,7 @@ Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu ve
 'revdelete-suppress'             => 'Grond vum Läschen och fir Administrateure verstoppt',
 'revdelete-hide-image'           => 'Bildinhalt verstoppen',
 'revdelete-unsuppress'           => 'Limitatiounen fir restauréiert Versiounen ophiewen',
-'revdelete-log'                  => "Grond fir d'Läschen:",
+'revdelete-log'                  => 'Grond:',
 'revdelete-submit'               => 'Op déi gewielte Versioun uwenden',
 'revdelete-logentry'             => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
 'logdelete-logentry'             => "huet d'Sichtbarkeet vun [[$1]] geännert",
@@ -1865,7 +1865,7 @@ W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'dellogpagetext'         => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server.',
 'deletionlog'            => 'Läschlëscht',
 'reverted'               => 'Op déi Versioun virdrun zréckgesat',
-'deletecomment'          => "Grond fir d'Läschen:",
+'deletecomment'          => 'Grond:',
 'deleteotherreason'      => 'Aneren/ergänzende Grond:',
 'deletereasonotherlist'  => 'Anere Grond',
 'deletereason-dropdown'  => '* Heefegst Grënn fir eng Säit ze läschen
@@ -2500,7 +2500,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier kann e béiswëllege Programmcode enthalen.
-Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.<hr />",
+Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'imagemaxsize'         => 'Biller op de Billerbeschreiwungssäite limitéieren op:',
 'thumbsize'            => 'Gréisst vun der Miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',

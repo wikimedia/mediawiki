@@ -9,6 +9,7 @@
  *
  * @author Bjankuloski06
  * @author CERminator
+ * @author Charmed94
  * @author Kale
  * @author Meno25
  * @author Millosh
@@ -957,6 +958,9 @@ $2',
 Пошто сте администратор, можете је видети; Даље детаље можете наћи у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
 'rev-deleted-no-diff'            => "Не можете видети ову разлику измена зато што је једна од ревизија '''обрисана'''.
 Можде ћете наћи више детаља у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
+'rev-deleted-unhide-diff'        => "Једна од ревизија за овај диф је '''обрисана'''.
+Више информација би се могло наћи у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].
+Пошто сте администратор, још увек можете да [$1 видите овај диф], ако желите да продужите.",
 'rev-delundel'                   => 'покажи/сакриј',
 'revisiondelete'                 => 'Обриши/врати ревизије',
 'revdelete-nooldid-title'        => 'Нема одабране ревизије',
@@ -986,7 +990,7 @@ $2',
 'revdelete-suppress'             => 'Сакриј податке од сисопа и осталих.',
 'revdelete-hide-image'           => 'Сакриј садржај фајла',
 'revdelete-unsuppress'           => 'Уклони забране над опорављеним верзијама.',
-'revdelete-log'                  => 'Разлог за брисање:',
+'revdelete-log'                  => 'Разлог:',
 'revdelete-submit'               => 'Примени на изабране ревизије',
 'revdelete-logentry'             => 'промењен приказ ревизије за [[$1]]',
 'logdelete-logentry'             => 'промењена видност догађаја за страну [[$1]]',
@@ -1068,6 +1072,7 @@ $2',
 'diff-h4'                 => "'''заглавље (ниво 4)'''",
 'diff-h5'                 => "'''заглавље (ниво 5)'''",
 'diff-pre'                => "'''преформатирани блок'''",
+'diff-div'                => 'одељак',
 'diff-ul'                 => "'''неуређени списак'''",
 'diff-ol'                 => "'''уређени списак'''",
 'diff-li'                 => "'''елемент списка'''",
@@ -1085,6 +1090,7 @@ $2',
 'diff-input'              => "'''унос'''",
 'diff-form'               => "'''форма'''",
 'diff-img'                => "'''слика'''",
+'diff-span'               => "''span''",
 'diff-a'                  => "'''веза'''",
 'diff-i'                  => "'''курзив'''",
 'diff-b'                  => "'''подебљано'''",
@@ -1368,6 +1374,7 @@ $2',
 'action-reupload'             => 'поништи овај постојећи фајл',
 'action-reupload-shared'      => 'пиши преко верзије овог фајла на дељеном складишту',
 'action-upload_by_url'        => 'пошаљи овај фајл са URL адресе',
+'action-writeapi'             => 'користи API за писање',
 'action-delete'               => 'обриши ову страницу',
 'action-deleterevision'       => 'обриши ову ревизију',
 'action-deletedhistory'       => 'прегледај обрисану историју ове стране',
@@ -1382,6 +1389,7 @@ $2',
 'action-patrol'               => 'означавање туђих измена као патролираних',
 'action-autopatrol'           => 'аутоматско патролирање сопствених измена',
 'action-unwatchedpages'       => 'преглед списка ненадгледаних страна',
+'action-trackback'            => 'пошаљи извештај',
 'action-mergehistory'         => 'припоји историју ове стране',
 'action-userrights'           => 'измени сва корисничка права',
 'action-userrights-interwiki' => 'измени права корисника са других Викија',
@@ -1584,12 +1592,13 @@ $2',
 'noimage-linktext'          => 'послати један',
 'uploadnewversion-linktext' => 'Пошаљите новију верзију ове датотеке',
 'shared-repo-from'          => 'од $1', # $1 is the repository name
+'shared-repo'               => 'дељено складиште', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Врати $1',
 'filerevert-legend'         => 'Врати фајл',
 'filerevert-intro'          => "Враћате '''[[Media:$1|$1]]''' на [$4 верзију од $3, $2].",
-'filerevert-comment'        => 'Коментар:',
+'filerevert-comment'        => 'Разлог:',
 'filerevert-defaultcomment' => 'Враћено на верзију од $2, $1',
 'filerevert-submit'         => 'Врати',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' је враћен на [$4 верзију од $3, $2].",
@@ -1600,7 +1609,7 @@ $2',
 'filedelete-legend'           => 'Обриши фајл',
 'filedelete-intro'            => "На путу сте да обришете фајл '''[[Media:$1|$1]]''' заједно са његовом историјом.",
 'filedelete-intro-old'        => "Бришете верзију фајла '''[[Media:$1|$1]]''' од [$4 $3, $2].",
-'filedelete-comment'          => 'Коментар:',
+'filedelete-comment'          => 'Разлог:',
 'filedelete-submit'           => 'Обриши',
 'filedelete-success'          => "'''$1''' је обрисан.",
 'filedelete-success-old'      => "Верзија фајла '''[[Media:$1|$1]]''' од $3, $2 је обрисана.",
@@ -1952,7 +1961,7 @@ $NEWPAGE
 'dellogpagetext'         => 'Испод је списак најскоријих брисања.',
 'deletionlog'            => 'историја брисања',
 'reverted'               => 'Враћено на ранију ревизију',
-'deletecomment'          => 'Разлог за брисање',
+'deletecomment'          => 'Разлог:',
 'deleteotherreason'      => 'Други/додатни разлог:',
 'deletereasonotherlist'  => 'Други разлог',
 'deletereason-dropdown'  => '*Најчешћи разлози брисања
@@ -2020,7 +2029,7 @@ Protect pages included in this page (cascading protection)',
 'protect-othertime-op'        => 'друго време',
 'protect-existing-expiry'     => 'Тренутно време истека: $3, $2',
 'protect-otherreason'         => 'Други/додатни разлог:',
-'protect-otherreason-op'      => 'други/додатни разлог',
+'protect-otherreason-op'      => 'Други разлог',
 'protect-dropdown'            => '*Разлози заштите
 ** Вандализам
 ** Нежењене поруке
@@ -2072,7 +2081,7 @@ Protect pages included in this page (cascading protection)',
 'undeletelink'                 => 'погледај/врати',
 'undeletereset'                => 'Поништи',
 'undeleteinvert'               => 'Инвертујте избор',
-'undeletecomment'              => 'Коментар:',
+'undeletecomment'              => 'Разлог:',
 'undeletedarticle'             => 'вратио "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 ревизија враћена|$1 ревизије врећене|$1 ревизија враћено}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|ревизија|ревизије|ревизија}} и $2 {{PLURAL:$2|фајл|фајла|фајлова}} враћено',
@@ -2581,7 +2590,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Упозорење''': Овај тип фајла би могао да садржи штетан код.
-Његовим извршавањем бисте могли да оштетите Ваш систем.<hr />",
+Његовим извршавањем бисте могли да оштетите Ваш систем.",
 'imagemaxsize'         => 'Ограничи слике на странама за разговор о сликама на:',
 'thumbsize'            => 'Величина умањеног приказа :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|страна|стране|страна}}',
@@ -2813,6 +2822,11 @@ $1',
 # Flash modes
 'exif-flash-fired-0'    => 'Блиц није коришћен',
 'exif-flash-fired-1'    => 'Блиц је коришћен',
+'exif-flash-return-0'   => 'без функције повратног светла',
+'exif-flash-return-2'   => 'повратно светло није уочено',
+'exif-flash-return-3'   => 'уочено је повратно светло',
+'exif-flash-mode-1'     => 'обавезно флеш испаљивање',
+'exif-flash-mode-2'     => 'обавезно флеш сузбијање',
 'exif-flash-mode-3'     => 'ауто мод',
 'exif-flash-function-1' => 'Без блица',
 'exif-flash-redeye-1'   => 'мод за редукцију црвених очију',
@@ -3003,15 +3017,15 @@ $1',
 'watchlistedit-normal-title'   => 'Уреди списак надгледања',
 'watchlistedit-normal-legend'  => 'Уклони наслове са списка надгледања',
 'watchlistedit-normal-explain' => 'Списак страница које надгледате је приказан испод.
-Да уклоните страницу, обележите квадратић поред, и кликните на дугме Уклони наслове.
-Такође, можете да [[Special:Watchlist/raw|измените сиров списак]].',
+Да уклоните страницу, обележите квадратић поред, и кликните на дугме "{{int:Watchlistedit-normal-submit}}".
+Такође можете да [[Special:Watchlist/raw|измените списак у простом формату]].',
 'watchlistedit-normal-submit'  => 'Уклони наслове',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 чланак је уклоњен|$1 чланка су уклоњена|$1 чланака је уклоњено}} са вашег списка надгледања:',
 'watchlistedit-raw-title'      => 'мењање сировог списка надгледања',
 'watchlistedit-raw-legend'     => 'мењање сировог списка надгледања',
-'watchlistedit-raw-explain'    => 'Наслови у вашој страници надгледања су приказани испод, и могу се мењати додавањем или одузимањем са списка;
-један наслов по линији.
-Када завршите, кликните Освежи списак надгледања.
+'watchlistedit-raw-explain'    => 'Наслови са Вашег списка надгледања су приказани испод и могу се мењати додавањем или одузимањем;
+Пишите један наслов по линији.
+Када завршите, кликните "{{int:Watchlistedit-raw-submit}}".
 Такође, можете [[Special:Watchlist/edit|користити стандардан уређивач списка]].',
 'watchlistedit-raw-titles'     => 'Наслови:',
 'watchlistedit-raw-submit'     => 'Освежите списак надгледања',
@@ -3052,7 +3066,7 @@ $1',
 # Special:FilePath
 'filepath'         => 'Путања фајла',
 'filepath-page'    => 'Фајл:',
-'filepath-submit'  => 'Путања',
+'filepath-submit'  => 'Пошаљи',
 'filepath-summary' => 'Ова специјална страна враћа комплетну путању за фајл.
 Слике бивају приказане у пуној резолуцији, други типови фајлова бивају директно стартовани помоћу њима придружених прогама.
 

@@ -7,10 +7,12 @@
  * @ingroup Language
  * @file
  *
+ * @author Avicennasis
  * @author Derek Ross
  * @author Malafaya
  * @author OchAyeTheNoo
  * @author Omnipaedista
+ * @author The Evil IP address
  * @author Urhixidur
  * @author Ushanka
  * @author sco.wikipedia.org editors
@@ -1006,7 +1008,7 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'dellogpagetext'        => 'Ablo is a leet o the maist recent deletions.',
 'deletionlog'           => 'deletion log',
 'reverted'              => 'Revertit tae aulder reveision',
-'deletecomment'         => 'Raeson for deletion',
+'deletecomment'         => 'Raeson:',
 'deletereasonotherlist' => 'Ither raeson',
 
 # Rollback
@@ -1025,7 +1027,7 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'unprotectedarticle'     => 'unprotectit "[[$1]]"',
 'protect-title'          => 'Protectin "$1"',
 'prot_1movedto2'         => '[[$1]] flittit til [[$2]]',
-'protectcomment'         => 'Raeson for protectin',
+'protectcomment'         => 'Raeson:',
 'protect-text'           => "Ye can see an chynge the protection level here for the page '''<nowiki>$1</nowiki>'''.",
 'protect-level-sysop'    => 'Juist administrators',
 'protect-othertime'      => 'Ither time:',
@@ -1084,7 +1086,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'blockiptext'                 => 'Uise the form ablo tae block write access frae a specific IP address or uisername. This shuid be duin juist tae prevent vandalism, and in accord wi [[{{MediaWiki:Policy-url}}|policy]]. Fill in a specific raeson ablo (for exemplar, citin parteicular pages that wis damaged).',
 'ipaddress'                   => 'IP Address',
 'ipadressorusername'          => 'IP Address or uisername',
-'ipbreason'                   => 'Raeson',
+'ipbreason'                   => 'Raeson:',
 'ipbsubmit'                   => 'Block this uiser',
 'ipbother'                    => 'Ither time',
 'ipboptions'                  => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
@@ -1157,7 +1159,7 @@ please be siccar ye unnerstaun the consequences o this afore proceedin.",
 '1movedto2_redir'         => '[[$1]] flittit til [[$2]] ower reguidal',
 'movelogpage'             => 'Flit log',
 'movelogpagetext'         => "A leet o pages that's flitted is ablo.",
-'movereason'              => 'Raeson',
+'movereason'              => 'Raeson:',
 'revertmove'              => 'revert',
 'delete_and_move'         => 'Delete an flit',
 'delete_and_move_text'    => '==Deletion caad for==
@@ -1197,10 +1199,12 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'tooltip-pt-preferences'          => 'Ma preferences',
 'tooltip-pt-login'                => "It's a guid idea tae log i, but ye dinna hae tae.",
 'tooltip-pt-logout'               => 'Log oot',
+'tooltip-ca-move'                 => 'Flit this page',
 'tooltip-search'                  => 'Rake {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Gang tae the Main Page',
 'tooltip-t-contributions'         => "View this uiser's contreibutions",
 'tooltip-t-upload'                => 'Uplaid files',
+'tooltip-t-specialpages'          => 'Leet o byordinar pages',
 'tooltip-minoredit'               => 'Mairk this as a smaa edit',
 'tooltip-save'                    => 'Hain yer chynges',
 'tooltip-preview'                 => 'Scance ower yer chynges, please uise this afore hainin!',
@@ -1254,7 +1258,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'nextdiff'     => 'Newer edit →',
 
 # Media information
-'mediawarning'   => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.<hr />",
+'mediawarning'   => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.",
 'imagemaxsize'   => 'Limit eimages on eimage description pages tae:',
 'file-info-size' => '($1 × $2 pixels, file size: $3, MIME type: $4)',
 

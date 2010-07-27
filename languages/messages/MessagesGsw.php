@@ -880,7 +880,7 @@ Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass d
 'revdelete-suppress'             => 'Grund vu dr Leschig au vor dr Ammanne versteckle',
 'revdelete-hide-image'           => 'Bildinhalt versteckle',
 'revdelete-unsuppress'           => 'Yyschränkige fir di widerhergstellte Versione ufhebe',
-'revdelete-log'                  => 'Leschgrund:',
+'revdelete-log'                  => 'Grund:',
 'revdelete-submit'               => 'Uf usgwehlti Version aawände',
 'revdelete-logentry'             => 'het d Versionsaasicht fir „[[$1]]“ gänderet',
 'logdelete-logentry'             => 'het d Sichtbarkeit fir „[[$1]]“ gänderet',
@@ -1839,7 +1839,7 @@ Im $2 het s e Lischt vu dr letschte Leschige.',
 'dellogpagetext'         => 'Des isch s Logbuech vu dr gleschte Syte un Dateie.',
 'deletionlog'            => 'Lösch-Logbuech',
 'reverted'               => 'Uf e alti Version zruckgsetzt',
-'deletecomment'          => 'Löschigsgrund',
+'deletecomment'          => 'Grund:',
 'deleteotherreason'      => 'Andere/zuesätzleche Grund:',
 'deletereasonotherlist'  => 'Andere Grund',
 'deletereason-dropdown'  => '* Allgmeini Leschgrind
@@ -1949,7 +1949,7 @@ In däm Fall darf di neijscht Version nit markiert wäre oder ihre Status muess 
 'undeletelink'                 => 'aaluege/widerhärstelle',
 'undeletereset'                => 'Abbräche',
 'undeleteinvert'               => 'Uswahl umchehre',
-'undeletecomment'              => 'Begrindig:',
+'undeletecomment'              => 'Grund:',
 'undeletedarticle'             => 'hät d Site „[[$1]]“ widderhergstellt',
 'undeletedrevisions'           => '{{PLURAL:$1|ei Revision|$1 Revisione}} wider zruckgholt.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 Version|$1 Versione}} un {{PLURAL:$2|1 Datei|$2 Dateie}} sin widerhärgstellt wore',
@@ -2025,7 +2025,7 @@ Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr 
 'ipaddress'                       => 'IP-Adräss oder Benutzername:',
 'ipadressorusername'              => 'IP-Adräss oder Benutzername:',
 'ipbexpiry'                       => 'Sperrduur:',
-'ipbreason'                       => 'Begrindig:',
+'ipbreason'                       => 'Grund:',
 'ipbreasonotherlist'              => 'Anderi Begrindig',
 'ipbreason-dropdown'              => '* Allgmeini Sperrgrind
 ** Lesche vu Syte
@@ -2179,7 +2179,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'movesubpage'                  => '{{PLURAL:$1|Untersyte|Untersyte}}',
 'movesubpagetext'              => 'Die Syte het $1 {{PLURAL:$1|Untersyte|Untersyte}}.',
 'movenosubpage'                => 'Die Syte het kei Untersyte.',
-'movereason'                   => 'Grund',
+'movereason'                   => 'Grund:',
 'revertmove'                   => 'Zrugg verschiebe',
 'delete_and_move'              => 'Lösche un Verschiebe',
 'delete_and_move_text'         => '== D Ziilsyte isch scho vorhande, lösche?==
@@ -2420,7 +2420,7 @@ $1',
 'visual-comparison' => 'Visuälle Verglyych',
 
 # Media information
-'mediawarning'         => "'''Warnig:''' In däre Art Datei chennt s e beswillige Programmcode din ha. Wänn du die Datei uusfiersch, cha s syy, ass Dyy Syschtem bschädigt wird.<hr />",
+'mediawarning'         => "'''Warnig:''' In däre Art Datei chennt s e beswillige Programmcode din ha. Wänn du die Datei uusfiersch, cha s syy, ass Dyy Syschtem bschädigt wird.",
 'imagemaxsize'         => 'Maximali Gröössi vo de Bilder uf de Bildbeschrybigs-Sytene:',
 'thumbsize'            => 'Bildvorschou-Gröössi:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Syte|$3 Syte}}',

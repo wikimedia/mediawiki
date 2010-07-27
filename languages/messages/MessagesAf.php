@@ -860,6 +860,10 @@ Dit was moontlik geskrap of geskuif.
 'rev-deleted-comment'            => '(opsomming geskrap)',
 'rev-deleted-user'               => '(gebruikersnaam geskrap)',
 'rev-deleted-event'              => '(stawingsaksie verwyder)',
+'rev-deleted-text-permission'    => "Hierdie weergawe van die bladsy was '''geskrap'''.
+Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skrapingslogboek].",
+'rev-deleted-text-view'          => "Hierdie bladsy weergawe was '''geskrap'''.
+As administrateur kan u dit wel sien; daar mag dalk meer besonderhede in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skrapingslogboek] wees.",
 'rev-deleted-no-diff'            => "U kan nie hierdie verandering sien nie, omdat een van die hersienings '''geskrap''' is.<br />
 Daar mag dalk meer inligting in die [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} skraplogboek] beskikbaar wees.",
 'rev-delundel'                   => 'wys/versteek',
@@ -874,6 +878,10 @@ Daar mag dalk meer inligting in die [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nologid-text'         => 'U het óf geen logboeke gespesifiseer nie óf die gevraagde lyn bestaan nie in die logboek nie.',
 'revdelete-selected'             => "'''Geselekteerde {{PLURAL:$2|wysiging|wysigings}} vir [[:$1]]:'''",
 'logdelete-selected'             => "'''Geselekteerde {{PLURAL:$1|logboek aksie|logboek aksies}}:'''",
+'revdelete-text'                 => "'''Geskrapte weergawes en gebeure sal steeds sigbaar wees in die bladsy se geskiedenis en logboeke, maar dele van die huidige inhoud sal ontoeganklik wees vir die publiek.'''
+Ander administrateurs van {{SITENAME}} sal steeds in staat wees om toegang te kry tot die versteekte inhoud en kan dit weer herstel deur gebruik te maak van dieselfde koppelvlak indien daar geen addisionele beperkinge gestel is nie.
+
+Bevestig asseblief u voorneme, dat u die gevolge van u voorneme verstaan en dat u dit doen in ooreenstemming met  [[{{MediaWiki:Policy-url}}|die beleid]].",
 'revdelete-suppress-text'        => "Verberging van weergawes mag '''slegs''' in die volgende gevalle gebruik word:
 * Potensieel lasterlike inligting
 * Ongepaste persoonlike inligting
@@ -887,7 +895,7 @@ Daar mag dalk meer inligting in die [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-suppress'             => 'Onderdruk data van administrateurs en ander.',
 'revdelete-hide-image'           => 'Steek lêer inhoud weg',
 'revdelete-unsuppress'           => 'Verwyder beperkinge op herstelde weergawes',
-'revdelete-log'                  => 'Rede vir skrapping:',
+'revdelete-log'                  => 'Rede:',
 'revdelete-submit'               => 'Pas op gekose weergawe toe',
 'revdelete-logentry'             => 'sigbaarheid van weergawe is gewysig vir [[$1]]',
 'logdelete-logentry'             => 'verander sigbaarheid van gebeurtenis [[$1]]',
@@ -1523,7 +1531,7 @@ Die volgende lys vertoon slegs die eerste {{PLURAL:$1|skakel|$1 skakels}} wat na
 'filerevert'                => 'Maak $1 ongedaan',
 'filerevert-legend'         => 'Maak lêer ongedaan',
 'filerevert-intro'          => "U is besig om die lêer '''[[Media:$1|$1]]''' terug te rol tot die [$4 weergawe op $2, $3]",
-'filerevert-comment'        => 'Opmerking:',
+'filerevert-comment'        => 'Rede:',
 'filerevert-defaultcomment' => 'Teruggerol na die weergawe van $1, $2',
 'filerevert-submit'         => 'Rol terug',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' is teruggerol na die [$4 weergawe op $2, $3].",
@@ -1534,7 +1542,7 @@ Die volgende lys vertoon slegs die eerste {{PLURAL:$1|skakel|$1 skakels}} wat na
 'filedelete-legend'           => 'Skrap lêer',
 'filedelete-intro'            => "U is op die punt om die lêer '''[[Media:$1|$1]]''' te verwyder, inklusief alle ouer weergawes daarvan.",
 'filedelete-intro-old'        => "U is besig om die weergawe van '''[[Media:$1|$1]]''' van [$4 $3, $2] te verwyder.",
-'filedelete-comment'          => 'Rede vir skrapping:',
+'filedelete-comment'          => 'Rede:',
 'filedelete-submit'           => 'Skrap',
 'filedelete-success'          => "'''$1''' is geskrap.",
 'filedelete-success-old'      => "Die weergawe van '''[[Media:$1|$1]]''' op $3, $2 is geskrap.",
@@ -1877,7 +1885,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'dellogpagetext'         => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).",
 'deletionlog'            => 'skrappings-logboek',
 'reverted'               => 'Het terug gegaan na vroeëre weergawe',
-'deletecomment'          => 'Rede vir skrapping:',
+'deletecomment'          => 'Rede:',
 'deleteotherreason'      => 'Ander/ekstra rede:',
 'deletereasonotherlist'  => 'Andere rede',
 'deletereason-dropdown'  => '*Algemene redes vir verwydering
@@ -1996,7 +2004,7 @@ U mag moontlik 'n foutiewe skakel hê, of die weergawe is reeds herstel of uit d
 'undeletelink'                 => 'bekyk/herstel',
 'undeletereset'                => 'Herinstel',
 'undeleteinvert'               => 'Omgekeerde seleksie',
-'undeletecomment'              => 'Opmerking:',
+'undeletecomment'              => 'Rede:',
 'undeletedarticle'             => 'het "$1" herstel',
 'undeletedrevisions'           => '{{PLURAL:$1|1 weergawe|$1 weergawes}} herstel',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 weergawe|$1 weergawes}} en {{PLURAL:$2|1 lêer|$2 lêers}} herstel',
@@ -2040,7 +2048,7 @@ $1',
 'sp-contributions-newbies'       => 'Wys slegs bydraes van nuwe gebruikers',
 'sp-contributions-newbies-sub'   => 'Vir nuwe gebruikers',
 'sp-contributions-newbies-title' => 'Bydraes van nuwe gebruikers',
-'sp-contributions-blocklog'      => 'Blokkeer-logboek',
+'sp-contributions-blocklog'      => 'blokkeer-logboek',
 'sp-contributions-logs'          => 'logboeke',
 'sp-contributions-search'        => 'Soek na bydraes',
 'sp-contributions-username'      => 'IP-adres of gebruikersnaam:',
@@ -2503,7 +2511,7 @@ $1',
 'visual-comparison' => 'Visuele vergelyking',
 
 # Media information
-'mediawarning'         => "'''Waarskuwing''': hierdie lêertipe bevat moontlik programkode wat u stelsel skade kan berokken.<hr />",
+'mediawarning'         => "'''Waarskuwing''': hierdie lêertipe bevat moontlik programkode wat u stelsel skade kan berokken.",
 'imagemaxsize'         => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
 'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',

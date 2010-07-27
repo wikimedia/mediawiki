@@ -414,7 +414,7 @@ Du ken ekke bruge æ funksje 'e-mail til denne bruger' vemendre der er ångevet 
 'previewnote'            => "'''Husk at dette er kun en førhåndsvesnenge, æ side er ekke gemt endnu!'''",
 'editing'                => 'Redigærer $1',
 'editingsection'         => 'Redigærer $1 (åfsnet)',
-'copyrightwarning'       => "'''Husk: <big>åpskrev engen websider</big>, søm ekke tilhører dig selv, brug <big>engen åphavsretsligt beskyttede værker</big> uden tilladelse frå'n ejer!'''<br />
+'copyrightwarning'       => "'''Husk: åpskrev engen websider, søm ekke tilhører dig selv, brug engen åphavsretsligt beskyttede værker uden tilladelse frå'n ejer!'''<br />
 Du lover os hermed, at du selv '''har skrevet skrevselenger''', at skrevselenger tilhører ålmenheden, er ('''åpværer hus'''), æller at æ '''åphavsrets-endehaver''' har gevet sen '''tilladelse'''. Ves denne skrevselenger ålerede er åfentliggkort andre steder, skrev det venligst på æ diskusjesside.
 <i>Bemærk venligst, at ål {{SITENAME}}-ertikler åtomatisk står under „$2“ (se $1 før lileskrevselenger). Ves du ekke vel, at dit arbejde her ændres og udbredes åf andre, så tryk ekke på „Gem“.</i>",
 'longpagewarning'        => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere ken have pårblæmer ve at redigære sider der nærmer sig æller er større end 32 kb. 
@@ -640,7 +640,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'addedwatch'        => 'Tilføjet til din åvervågnengsliste',
 'addedwatchtext'    => "Æ side \"[[:\$1]]\" er blevet tilføjet til din [[Special:Watchlist|åvervågningsliste]]. Fremtidige ændrenger til denne side og den tilhørende diskusjeside hvil bleve listet der, og æ side hvil fremstå '''fremhævet''' i'n [[Special:RecentChanges|liste ve de seneste ændrenger]] før at gøre det lettere at finde den. Hves du senere hvilst fjerne'n side frå din åvervågningsliste, så klik \"Fjern åvervågnenge\".",
 'removedwatch'      => 'Fjernet frå åvervågnengsliste',
-'removedwatchtext'  => 'Æ side "<nowiki>$1</nowiki>" er blevet fjernet frå din åvervågnengsliste.',
+'removedwatchtext'  => 'Æ side "[[:$1]]" er blevet fjernet frå din åvervågnengsliste.',
 'watch'             => 'Åvervåg',
 'watchthispage'     => 'Åvervåg side',
 'unwatch'           => 'Fjern åvervågnenge',
@@ -661,7 +661,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'deletedtext'           => '"<nowiki>$1</nowiki>" er slettet. Sæg $2 før en førtegnelse åver de nyeste sletnenger.',
 'deletedarticle'        => 'slettede "[[$1]]"',
 'dellogpage'            => 'Sletnengslog',
-'deletecomment'         => 'Begrundelse før sletnenge:',
+'deletecomment'         => 'Begrundelse:',
 'deleteotherreason'     => 'Anden/uddybende begrundelse:',
 'deletereasonotherlist' => 'Anden begrundelse',
 
@@ -671,7 +671,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Protect
 'protectlogpage'              => 'Liste åver beskyttede sider',
 'prot_1movedto2'              => '[[$1]] flyttet til [[$2]]',
-'protectcomment'              => 'Begrundelse før beskyttelse',
+'protectcomment'              => 'Begrundelse:',
 'protectexpiry'               => 'Udløb:',
 'protect_expiry_invalid'      => 'Æ udløbstiid er ugyldeg.',
 'protect_expiry_old'          => "Æ udløbstiid legger i'n førtiid.",

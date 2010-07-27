@@ -918,7 +918,7 @@ Por fabor, bei se ye esso que quieres fazer, que antendes las cunsequéncias i s
 Consulte $2 para um registo de eliminações recentes.',
 'deletedarticle'        => 'botado pa la rue "[[$1]]"',
 'dellogpage'            => 'Registro de botado fuora',
-'deletecomment'         => 'Rezon pa botar pa fuora:',
+'deletecomment'         => 'Rezon:',
 'deleteotherreason'     => 'Rezon adicional:',
 'deletereasonotherlist' => 'Outra rezon',
 

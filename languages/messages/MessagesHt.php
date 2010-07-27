@@ -769,7 +769,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'revdelete-suppress'        => 'Kache revizyon yo tou pou administratè yo',
 'revdelete-hide-image'      => 'Kache kontni fichye a',
 'revdelete-unsuppress'      => 'Anlve restriksyon yo sou vèsyon yo ki restore',
-'revdelete-log'             => 'Komantè pou istorik paj sa :',
+'revdelete-log'             => 'Poukisa:',
 'revdelete-submit'          => 'Aplike sou vèsyon ki seleksyone a',
 'revdelete-logentry'        => 'Vizibilite pou vèsyon sa modifye pou [[$1]]',
 'revdel-restore'            => 'Modifye, chanje vizibilite a',
@@ -1038,7 +1038,7 @@ Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <
 Gade $2 pou wè yon lis efasman resan.',
 'deletedarticle'        => 'efase « [[$1]] »',
 'dellogpage'            => 'Istorik efasman yo',
-'deletecomment'         => 'Rezon pou kilès la ou efase :',
+'deletecomment'         => 'Rezon:',
 'deleteotherreason'     => 'Rezon an plis :',
 'deletereasonotherlist' => 'Lòt rezon',
 
@@ -1159,7 +1159,7 @@ Nan pozisyon sa a, ou ke dwèt renonmen oubyen fizyone ou menm menm paj an si ou
 '1movedto2'        => '[[$1]] renonmen, li kounye a [[$2]]',
 '1movedto2_redir'  => 'deplase [[$1]] vè [[$2]], li ekraze nan menm tan sa, redireksyon li',
 'movelogpage'      => 'Istorik renomaj yo',
-'movereason'       => 'Poukisa nou deplase li :',
+'movereason'       => 'Poukisa:',
 'revertmove'       => 'anile',
 
 # Export

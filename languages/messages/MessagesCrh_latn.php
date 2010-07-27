@@ -1413,7 +1413,7 @@ yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 'dellogpagetext'        => 'Aşağıdaki cedvel soñki yoq etüv jurnalıdır.',
 'deletionlog'           => 'yoq etüv jurnalı',
 'reverted'              => 'Evelki versiya keri ketirildi',
-'deletecomment'         => 'Yoq etüv sebebi',
+'deletecomment'         => 'Sebep:',
 'deleteotherreason'     => 'Diger/ilâveli sebep:',
 'deletereasonotherlist' => 'Diger sebep',
 
@@ -1775,7 +1775,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 
 # Media information
 'mediawarning'         => "'''İhtar''': Bu fayl türüniñ içinde yaman niyetli kod ola bile.
-Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.<hr />",
+Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.",
 'imagemaxsize'         => 'Resimlerniñ malümat saifelerindeki resimniñ azamiy (maksimal) ölçüsi:',
 'thumbsize'            => 'Kiçik ölçü:',
 'widthheightpage'      => '$1 × $2, {{PLURAL:$3|1|$3}} saife',

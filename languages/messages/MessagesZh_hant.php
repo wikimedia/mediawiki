@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author Bencmq
  * @author FireJackey
+ * @author Hakka
  * @author Horacewai2
  * @author KaiesTse
  * @author Liangent
@@ -612,7 +613,7 @@ $2',
 結果利用這個IP地址的訪客在這段時間中不能創建更多的賬戶。',
 'emailauthenticated'         => '您的電子郵件地址已經於$2 $3確認有效。',
 'emailnotauthenticated'      => '您的郵箱位址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
-'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能',
+'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能。',
 'emailconfirmlink'           => '確認您的郵箱地址',
 'invalidemailaddress'        => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
 'accountcreated'             => '已建立帳戶',
@@ -679,7 +680,8 @@ $2',
 'showpreview'                      => '顯示預覽',
 'showlivepreview'                  => '即時預覽',
 'showdiff'                         => '顯示差異',
-'anoneditwarning'                  => "'''警告：'''您沒有登錄，您的IP位址將記錄在此頁的編輯歷史中。",
+'anoneditwarning'                  => "'''警告：'''您沒有登入。
+您的IP位址將記錄在此頁的編輯歷史中。",
 'missingsummary'                   => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊儲存，您的編輯將不帶編輯摘要儲存。",
 'missingcommenttext'               => '請在下面輸入評論。',
 'missingcommentheader'             => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊儲存，您的編輯將不帶標題儲存。",
@@ -763,8 +765,8 @@ $2',
 'token_suffix_mismatch'            => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。'''
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
 'editing'                          => '正在編輯$1',
-'editingsection'                   => '正在編輯$1 （段落）',
-'editingcomment'                   => '正在編輯$1 （新段落）',
+'editingsection'                   => '正在編輯$1（段落）',
+'editingcomment'                   => '正在編輯$1（新段落）',
 'editconflict'                     => '編輯衝突：$1',
 'explainconflict'                  => '有人在{{GENDER:|你|妳|你}}開始編輯後更改了頁面。
 上面的文字框內顯示的是目前本頁的內容。
@@ -788,9 +790,9 @@ $2',
 '''不要在未獲授權的情況下發表！'''",
 'longpagewarning'                  => "'''警告''': 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。",
 'longpageerror'                    => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。'''該文本不能被儲存。",
-'readonlywarning'                  => "'''警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。'''您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。
+'readonlywarning'                  => "'''警告: 資料庫被鎖定以進行維護，所以您目前將無法保存您的修改。'''您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。
 
-管理員有如下解釋: $1",
+鎖定資料庫的管理員有如下解釋：$1",
 'protectedpagewarning'             => "'''警告: 本頁已經被保護，只有擁有管理員許可權的用戶才可修改。'''",
 'semiprotectedpagewarning'         => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。",
 'cascadeprotectedwarning'          => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
@@ -801,7 +803,7 @@ $2',
 'template-protected'               => '（保護）',
 'template-semiprotected'           => '（半保護）',
 'hiddencategories'                 => '這個頁面是屬於$1個隱藏分類的成員:',
-'edittools'                        => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
+'edittools'                        => '<!-- 此處的文字將被顯示在編輯和上傳表單以下。 -->',
 'nocreatetitle'                    => '創建頁面受限',
 'nocreatetext'                     => '{{SITENAME}}限制了創建新頁面的功能。{{GENDER:|你|妳|你}}可以返回並編輯已有的頁面，或者[[Special:UserLogin|登錄或創建新賬戶]]。',
 'nocreate-loggedin'                => '您並無許可權去創建新頁面。',
@@ -853,20 +855,20 @@ $2',
 # History pages
 'viewpagelogs'           => '查詢這個頁面的日誌',
 'nohistory'              => '沒有本頁的修訂記錄。',
-'currentrev'             => '目前修訂版本',
+'currentrev'             => '最新修訂版本',
 'currentrev-asof'        => '在$1的當前修訂版本',
 'revisionasof'           => '在$1所做的修訂版本',
 'revision-info'          => '在$1由$2所做的修訂版本', # Additionally available: $3: revision id
 'previousrevision'       => '←上一修訂',
 'nextrevision'           => '下一修訂→',
-'currentrevisionlink'    => '目前修訂',
+'currentrevisionlink'    => '最新修訂',
 'cur'                    => '目前',
 'next'                   => '後繼',
 'last'                   => '先前',
 'page_first'             => '最前',
 'page_last'              => '最後',
 'histlegend'             => "差異選擇: 標記要比較修訂版本的單選按鈕並點擊底部的按鈕進行比較。<br />
-說明: '''（{{int:cur}}）''' 指與目前修訂版本比較，'''（{{int:last}}）''' 指與前一個修訂修訂版本比較，'''{{int:minoreditletter}}''' = 小修改。",
+說明: '''（{{int:cur}}）''' 指與最新修訂版本比較，'''（{{int:last}}）''' 指與前一個修訂修訂版本比較，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '瀏覽歷史',
 'deletedrev'             => '[已刪除]',
 'histfirst'              => '最早版本',
@@ -916,13 +918,13 @@ $2',
 'revdelete-legend'               => '設定可見性之限制',
 'revdelete-hide-text'            => '隱藏修訂文字',
 'revdelete-hide-name'            => '隱藏動作和目標',
-'revdelete-hide-comment'         => '隱藏編輯說明',
+'revdelete-hide-comment'         => '隱藏編輯摘要',
 'revdelete-hide-user'            => '隱藏編輯者的用戶名/IP地址',
 'revdelete-hide-restricted'      => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-suppress'             => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-hide-image'           => '隱藏檔案內容',
 'revdelete-unsuppress'           => '在已恢復的修訂中移除限制',
-'revdelete-log'                  => '日誌註釋：',
+'revdelete-log'                  => '理由：',
 'revdelete-submit'               => '應用於選取的修訂',
 'revdelete-logentry'             => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'             => '[[$1]]的事件可見性已更改',
@@ -1182,7 +1184,7 @@ $2',
 'default'                   => '預設',
 'files'                     => '檔案',
 'prefs-custom-css'          => '自定CSS',
-'prefs-custom-js'           => '自定JS',
+'prefs-custom-js'           => '自定JavaScript',
 
 # User rights
 'userrights'                  => '用戶權限管理', # Not used as normal message but as header for the special page itself
@@ -1268,7 +1270,7 @@ $2',
 'right-protect'               => '更改保護等級以及編輯保護頁面',
 'right-editprotected'         => '編輯保護頁面（無連鎖保護）',
 'right-editinterface'         => '編輯用戶界面',
-'right-editusercssjs'         => '編輯其他用戶的CSS和JS檔案',
+'right-editusercssjs'         => '編輯其他用戶的CSS和JavaScript檔案',
 'right-rollback'              => '快速復原上位用戶對某一頁面之編輯',
 'right-markbotedits'          => '標示復原編輯作機械人編輯',
 'right-noratelimit'           => '沒有使用頻率限制',
@@ -1379,15 +1381,12 @@ $2',
 'upload_directory_read_only'  => '上傳目錄（$1）不存在或無寫權限。',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "使用下面的表單來上傳檔案。
-要檢視或搜索以前上傳的檔案
-可以進入[[Special:FileList|檔案上傳清單]]，
-（重新）上傳將在[[Special:Log/upload|上傳日誌]]中記錄，
-而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
+要檢視或搜索以前上傳的檔案，可以進入[[Special:FileList|檔案上傳清單]]，（重新）上傳也將在[[Special:Log/upload|上傳日誌]]中記錄，而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
-要在頁面中加入檔案，使用以下其中一種形式的連接:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki></tt>'''去用檔案的完整版本
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png|200px|thumb|left|替換文字]]</nowiki></tt>'''去用一個200像素寬，左面盒上有'替換文字'的描述
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki></tt>'''去直接連接到檔案而不顯示檔案",
+要在頁面中加入檔案，使用以下其中一種形式的連接：
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用檔案的完整版本
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></tt>'''使用放置於左側的一個框內的200像素寬的圖片，同時使用“替換文字”作為描述
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接連接到檔案而不顯示檔案",
 'upload-permitted'            => '准許的檔案類型: $1。',
 'upload-preferred'            => '建議的檔案類型: $1。',
 'upload-prohibited'           => '禁止的檔案類型: $1。',
@@ -1529,7 +1528,7 @@ $2',
 'filerevert'                => '恢復$1',
 'filerevert-legend'         => '恢復檔案',
 'filerevert-intro'          => "您現正在恢復檔案'''[[Media:$1|$1]]'''到[$4 於$2 $3的版本]。",
-'filerevert-comment'        => '註解:',
+'filerevert-comment'        => '理由:',
 'filerevert-defaultcomment' => '已經恢復到於$1 $2的版本',
 'filerevert-submit'         => '恢復',
 'filerevert-success'        => "'''[[Media:$1|$1]]'''已經恢復到[$4 於$2 $3的版本]。",
@@ -1540,7 +1539,7 @@ $2',
 'filedelete-legend'           => '刪除檔案',
 'filedelete-intro'            => "您現正刪除檔案'''[[Media:$1|$1]]'''。",
 'filedelete-intro-old'        => "{{GENDER:|你|妳|你}}現正刪除'''[[Media:$1|$1]]'''於[$4 $2 $3]的版本。",
-'filedelete-comment'          => '刪除理由:',
+'filedelete-comment'          => '理由：',
 'filedelete-submit'           => '刪除',
 'filedelete-success'          => "'''$1'''已經刪除。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。",
@@ -1873,7 +1872,7 @@ $NEWPAGE
 'confirm'                => '確認',
 'excontent'              => '內容為: "$1"',
 'excontentauthor'        => '內容為：「$1」（而且唯一貢獻者為[[Special:Contributions/$2|$2]]）',
-'exbeforeblank'          => '被清空前的內容為: "$1"',
+'exbeforeblank'          => '被清空前的內容為：“$1”',
 'exblank'                => '頁面為空',
 'delete-confirm'         => '刪除「$1」',
 'delete-legend'          => '刪除',
@@ -1885,10 +1884,10 @@ $NEWPAGE
 'deletedarticle'         => '已刪除「[[$1]]」',
 'suppressedarticle'      => '已廢止「[[$1]]」',
 'dellogpage'             => '刪除紀錄',
-'dellogpagetext'         => '以下是最近刪除的紀錄列表。',
+'dellogpagetext'         => '以下是最近的刪除的列表。',
 'deletionlog'            => '刪除紀錄',
 'reverted'               => '恢復到早期版本',
-'deletecomment'          => '刪除理由:',
+'deletecomment'          => '理由：',
 'deleteotherreason'      => '其它／附加的理由:',
 'deletereasonotherlist'  => '其它理由',
 'deletereason-dropdown'  => '*常用刪除理由
@@ -1909,9 +1908,12 @@ $NEWPAGE
 
 該頁最後的編輯者是[[User:$3|$3]]（[[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment'      => "編輯摘要: \"''\$1''\"。", # only shown if there is an edit comment
-'revertpage'       => '恢復由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success' => '恢復由$1的編輯；更改回$2的最後一個修訂版本。',
-'sessionfailure'   => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
+'revertpage'       => '已恢復由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '已恢復$1的編輯；
+更改回$2的最後修訂版本。',
+'sessionfailure'   => '似乎您的登錄會話有問題；
+為了防止會話劫持，這個操作已經被取消。
+請返回先前的頁面，重新載入該頁面，然後重試。',
 
 # Protect
 'protectlogpage'              => '保護日誌',
@@ -1997,7 +1999,7 @@ $NEWPAGE
 'undeletelink'                 => '檢視／恢復',
 'undeletereset'                => '重設',
 'undeleteinvert'               => '反向選擇',
-'undeletecomment'              => '原因',
+'undeletecomment'              => '理由：',
 'undeletedarticle'             => '已經恢復「$1」',
 'undeletedrevisions'           => '$1個修訂版本已經恢復',
 'undeletedrevisions-files'     => '$1 個版本和 $2 個檔案被恢復',
@@ -2113,9 +2115,9 @@ $1',
 'ipblocklist'                     => '被封IP地址列表',
 'ipblocklist-legend'              => '搜尋一位已經被查封的用戶',
 'ipblocklist-username'            => '用戶名稱或IP地址:',
-'ipblocklist-sh-userblocks'       => '$1次賬戶封鎖',
-'ipblocklist-sh-tempblocks'       => '$1次臨時封鎖',
-'ipblocklist-sh-addressblocks'    => '$1次單IP封鎖',
+'ipblocklist-sh-userblocks'       => '$1賬戶封鎖',
+'ipblocklist-sh-tempblocks'       => '$1臨時封鎖',
+'ipblocklist-sh-addressblocks'    => '$1單IP封鎖',
 'ipblocklist-submit'              => '搜尋',
 'blocklistline'                   => '$1，$3被$2查封（$4）',
 'infiniteblock'                   => '永久',
@@ -2522,7 +2524,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告''': 該檔案類型可能包含惡意代碼。
-執行它可能對您的系統帶來危險。<hr />",
+執行它可能對您的系統帶來危險。",
 'imagemaxsize'         => '在圖片描述頁對檔案大小限制為:',
 'thumbsize'            => '略圖大小:',
 'widthheightpage'      => '$1×$2, $3頁',
@@ -2968,7 +2970,7 @@ $1',
 'watchlistedit-normal-done'    => '$1個標題已經從您的監視列表中移除:',
 'watchlistedit-raw-title'      => '編輯原始監視列表',
 'watchlistedit-raw-legend'     => '編輯原始監視列表',
-'watchlistedit-raw-explain'    => '您的監視列表中的標題在下面顯示，同時亦都可以透過編輯這個表去加入以及移除標題；一行一個標題。當完成以後，點擊更新監視列表。{{GENDER:|你|妳|你}}亦都可以去用[[Special:Watchlist/edit|標準編輯器]]。',
+'watchlistedit-raw-explain'    => '您的監視列表中的標題在下面顯示，同時亦都可以透過編輯這個表去加入以及移除標題；一行一個標題。當完成以後，點擊{{int:Watchlistedit-raw-submit}}。{{GENDER:|你|妳|你}}亦都可以去用[[Special:Watchlist/edit|標準編輯器]]。',
 'watchlistedit-raw-titles'     => '標題:',
 'watchlistedit-raw-submit'     => '更新監視列表',
 'watchlistedit-raw-done'       => '您的監視列表已經更新。',

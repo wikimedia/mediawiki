@@ -155,7 +155,7 @@ $messages = array(
 'unprotectthispage' => 'Desabriga esta hoja',
 'newpage'           => 'Hoja nueva',
 'talkpage'          => 'Diskute la hoja',
-'talkpagelinktext'  => 'Message',
+'talkpagelinktext'  => 'Messaje',
 'specialpage'       => 'Hoja Especial',
 'personaltools'     => 'Aparatos personales',
 'postcomment'       => 'Ajusta un comentario',
@@ -198,8 +198,8 @@ $messages = array(
 'mainpage-description' => 'La Hoja Primera',
 'policy-url'           => 'Project:Politikas',
 'portal'               => 'Portal de la comunidad',
-'privacy'              => 'Prencipio de particolaridad',
-'privacypage'          => 'Project:Prencipio de particolaridad',
+'privacy'              => 'Prencipio de particůlaridad',
+'privacypage'          => 'Project:Prencipio de particůlaridad',
 
 'badaccess' => 'Yerro de permissión',
 
@@ -235,7 +235,7 @@ $messages = array(
 'nstab-mediawiki' => 'Messaj',
 'nstab-template'  => 'Xabblón',
 'nstab-help'      => 'Ayudo',
-'nstab-category'  => 'Categoría',
+'nstab-category'  => 'Kateggoría',
 
 # Main script and global functions
 'nosuchspecialpage' => 'No ay tala hoja especial',
@@ -362,7 +362,7 @@ Leyenda: (act) = diferencias con la versión actual,
 
 # Revision deletion
 'rev-delundel'      => 'mostra/esconde',
-'revdelete-log'     => 'La razón para efassar:',
+'revdelete-log'     => 'Razón:',
 'revdel-restore'    => 'Troca la viźibbilidad',
 'revdelete-content' => 'contenido',
 
@@ -587,7 +587,7 @@ resultados, i que lo estás haziendo de acorddo con las [[{{MediaWiki:Policy-url
 Mira $2 para un registro de los efassados nuevos.',
 'deletedarticle'        => 'efassó «[[$1]]»',
 'dellogpage'            => 'Registro de efassados',
-'deletecomment'         => 'La razón de efassar:',
+'deletecomment'         => 'Razón:',
 'deleteotherreason'     => 'Otra razón:',
 'deletereasonotherlist' => 'Otra razón',
 'deletereason-dropdown' => '* Motivos generales de efassamientos
@@ -708,7 +708,7 @@ Si puede ser, escoge otro nombre.',
 '1movedto2'        => 'El nuevo nombre de la hoja [[$1]]; agora es [[$2]]',
 '1movedto2_redir'  => 'El títůlo [[$1]] fue reddireksyonado a la hoja [[$2]]',
 'movelogpage'      => 'Registro de traslados',
-'movereason'       => 'Razόn',
+'movereason'       => 'Razón:',
 'revertmove'       => 'abolta',
 
 # Export
@@ -752,7 +752,7 @@ Si puede ser, usa el botón de prēviźualiźasyón antes de enrejjistrarla.',
 'tooltip-n-randompage'            => 'Carga una hoja por ventura',
 'tooltip-n-help'                  => 'El lugar para ambezarse',
 'tooltip-t-whatlinkshere'         => 'La lista de todas las hojas del viki que se atan con ésta',
-'tooltip-t-recentchangeslinked'   => 'Los trocamientos de alcabo de las hojas linkados desde aquí',
+'tooltip-t-recentchangeslinked'   => 'Los trocamientos de alcabo de las hojas linkeados desde aquí',
 'tooltip-feed-rss'                => 'Sindicación RSS de esta hoja',
 'tooltip-feed-atom'               => 'Sindicación Atom de esta hoja',
 'tooltip-t-contributions'         => 'Ver la lista de ajustamientos de este usuario',
@@ -764,7 +764,7 @@ Si puede ser, usa el botón de prēviźualiźasyón antes de enrejjistrarla.',
 'tooltip-ca-nstab-main'           => 'Ve el artículo',
 'tooltip-ca-nstab-user'           => 'Ve la hoja de usuario',
 'tooltip-ca-nstab-special'        => 'Esta es una hoja especial, la hoja ya no se puede trocar',
-'tooltip-ca-nstab-project'        => 'Ver la hoja del proyecto',
+'tooltip-ca-nstab-project'        => 'Ver la hoja del prodjekto',
 'tooltip-ca-nstab-image'          => 'Ver la hoja de la image.',
 'tooltip-ca-nstab-template'       => 'Ver el xabblón',
 'tooltip-ca-nstab-category'       => 'Ve la hoja de categoría',

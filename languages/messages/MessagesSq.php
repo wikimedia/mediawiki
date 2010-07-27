@@ -14,7 +14,9 @@
  * @author Ergon
  * @author Mdupont
  * @author MicroBoy
+ * @author Mikullovci11
  * @author Puntori
+ * @author The Evil IP address
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -757,7 +759,7 @@ apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktue këtë faqe]</span>.',
 Kjo ndodh ndonjëherë kur përdoren shërbime ndërjmetësash anonim.'''",
 'editing'                          => 'Duke redaktuar $1',
 'editingsection'                   => 'Duke redaktuar $1 (seksion)',
-'editingcomment'                   => 'Tue redaktue (sekcionin e ri) $1',
+'editingcomment'                   => 'Duke redaktuar (sekcionin e ri) $1',
 'editconflict'                     => 'Konflikt redaktimi: $1',
 'explainconflict'                  => "Dikush tjetër ka ndryshuar këtë faqe kur ju po e redaktonit.
 Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani.
@@ -1137,7 +1139,7 @@ Ju mund [[:\$1|të e krijoni këtë faqe]].",
 * Kutia e zgjedhur shënon që përdoruesi është anëtar në atë grup
 * Kutia e pazgjedhur shënon që përdoruesi nuk është anëtar në atë grup
 * Një * shënon që nuk mund ta hiqni grupin pasi ta keni shtuar (dhe anasjelltas).',
-'userrights-reason'           => 'Arsyeja për ndryshimin:',
+'userrights-reason'           => 'Arsyeja:',
 'userrights-no-interwiki'     => 'Nuk keni leje për të ndryshuar privilegjet e përdoruesve në wiki të tjera.',
 'userrights-nodatabase'       => 'Regjistri $1 nuk ekziston ose nuk është vendor.',
 'userrights-nologin'          => 'Duhet të [[Special:UserLogin|hyni brenda]] me një llogari administrative për të ndryshuar privilegjet e përdoruesve.',
@@ -1707,7 +1709,7 @@ ose ka vendosur të mos pranojë mesazhe email-i nga përdorues të tjerë.",
 
 Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, shtypni \"çmbikqyre\" në tabelën e sipërme.",
 'removedwatch'         => 'U hoq nga lista mibkqyrëse',
-'removedwatchtext'     => 'Faqja "<nowiki>$1</nowiki>" është hequr nga lista mbikqyrëse e juaj.',
+'removedwatchtext'     => 'Faqja "[[:$1]]" është hequr nga lista mbikqyrëse e juaj.',
 'watch'                => 'Mbikqyre',
 'watchthispage'        => 'Mbikqyre këtë faqe',
 'unwatch'              => 'Çmbikqyre',
@@ -1782,7 +1784,7 @@ Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 Të gjitha kohët janë sipas orës së shërbyesit.',
 'deletionlog'            => 'regjistrin e grisjeve',
 'reverted'               => 'Kthehu tek një version i vjetër',
-'deletecomment'          => 'Arsyeja',
+'deletecomment'          => 'Arsyeja:',
 'deleteotherreason'      => 'Arsye tjetër:',
 'deletereasonotherlist'  => 'Arsyeja tjetër',
 'deletereason-dropdown'  => '*Arsye për grisje:
@@ -1915,6 +1917,7 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'sp-contributions-newbies-sub'   => 'Për newbies',
 'sp-contributions-newbies-title' => 'Kontributet e përdoruesit për kontot e reja',
 'sp-contributions-blocklog'      => 'Regjistri i bllokimeve',
+'sp-contributions-logs'          => 'Regjistrat',
 'sp-contributions-search'        => 'Kërko tek kontributet',
 'sp-contributions-username'      => 'IP Addresa ose Përdoruesi:',
 'sp-contributions-submit'        => 'Kërko',
@@ -1947,7 +1950,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipaddress'                    => 'IP Adresë/përdorues',
 'ipadressorusername'           => 'Adresë IP ose emër përdoruesi',
 'ipbexpiry'                    => 'Afati',
-'ipbreason'                    => 'Arsyeja',
+'ipbreason'                    => 'Arsyeja:',
 'ipbreasonotherlist'           => 'Arsye tjetër',
 'ipbreason-dropdown'           => '*Arsyet më të shpeshta të bllokimit
 ** Postimi i informacioneve të rreme
@@ -2002,6 +2005,7 @@ një përdoruesi ose IP adreseje të bllokuar.",
 'ipblocklist-no-results'       => 'Adresa IP ose përdoruesi i kërkuar nuk është i bllokuar.',
 'blocklink'                    => 'blloko',
 'unblocklink'                  => 'çblloko',
+'change-blocklink'             => 'ndryshoje bllokun',
 'contribslink'                 => 'kontribute',
 'autoblocker'                  => 'I bllokuar automatikisht sepse përdor të njëjtën IP adresë si "$1". Arsye "$2".',
 'blocklogpage'                 => 'Regjistri i bllokimeve',
@@ -2089,7 +2093,7 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 '1movedto2_redir'           => '[[$1]] u zhvendos tek [[$2]] dhe u krijua një faqe përcjellimi',
 'movelogpage'               => 'Regjistri i zhvendosjeve',
 'movelogpagetext'           => 'Më poshtë është një listë e faqeve të zhvendosura',
-'movereason'                => 'Arsyeja',
+'movereason'                => 'Arsyeja:',
 'revertmove'                => 'ktheje',
 'delete_and_move'           => 'Grise dhe zhvendose',
 'delete_and_move_text'      => '==Nevojitet grisje==
@@ -2112,6 +2116,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'export-submit'     => 'Eksporto',
 'export-addcattext' => 'Shto faqe nga kategoria:',
 'export-addcat'     => 'Shto',
+'export-addns'      => 'Shto',
 'export-download'   => 'Ruaje si skedë',
 'export-templates'  => 'Përfshinë stampa',
 
@@ -2135,6 +2140,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'import-interwiki-source'  => 'Burimi wiki/faqe',
 'import-interwiki-history' => 'Kopjo të gjitha versionet e historisë për këtë faqe',
 'import-interwiki-submit'  => 'Importo',
+'import-upload-filename'   => 'Emri i skedës:',
 'import-comment'           => 'Arsyeja:',
 'importtext'               => 'Ju lutem eksportoni këtë skedë nga burimi wiki duke përdorur mjetin Special:Export, ruajeni në diskun tuaj dhe ngarkojeni këtu.',
 'importstart'              => 'Duke importuar faqet...',
@@ -2292,7 +2298,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'visual-comparison' => 'Krahasim vizual',
 
 # Media information
-'mediawarning'         => "'''Kujdes''': Kjo skedë mund të ketë përmbajtje të dëmshme, duke e përdorur sistemi juaj mund të rrezikohet.<hr />",
+'mediawarning'         => "'''Kujdes''': Kjo skedë mund të ketë përmbajtje të dëmshme, duke e përdorur sistemi juaj mund të rrezikohet.",
 'imagemaxsize'         => 'Kufizo pamjen e figurave në faqet përshkruese në rezolucionin:',
 'thumbsize'            => 'Madhësia fotove përmbledhëse:',
 'file-info'            => '(madhësia skedës: $1, lloji MIME: $2)',
@@ -2667,5 +2673,8 @@ Vendosni emrin e skedës pa parashtesën "{{ns:file}}:".',
 # Special:BlankPage
 'blankpage'              => 'Faqe e zbrazët',
 'intentionallyblankpage' => 'Kjo faqe me qëllim është lënë e zbrazët',
+
+# Special:Tags
+'tags-edit' => 'redakto',
 
 );

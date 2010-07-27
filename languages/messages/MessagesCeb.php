@@ -634,7 +634,7 @@ Sulayi og [[Special:Search|pagpangita sa wiki]] para sa mga may kalabotang panid
 'revdelete-suppress'        => 'I-suppress ang data gikan sa mga tagdumala ug sa uban pa',
 'revdelete-hide-image'      => 'Tagoa ang sulod sa payl',
 'revdelete-unsuppress'      => 'Tangtanga ang mga restriksyon sa nabalik nga mga rebisyon',
-'revdelete-log'             => 'Komento sa log:',
+'revdelete-log'             => 'Rason:',
 'revdelete-logentry'        => 'giusab ang bisibilidad sa rebisyon sa [[$1]]',
 'logdelete-logentry'        => 'giusab ang bisibilidad sa event sa [[$1]]',
 'revdelete-success'         => "'''Ang bisibilidad sa rebisyon malamposong na-set.'''",
@@ -942,7 +942,7 @@ Palihog ikompirma nga imo gyud ni buhaton, nga nakasabot ka sa mga puyde idangat
 Tan-awa ang $2 para sa rekord sa mga bag-ong napapas.',
 'deletedarticle'        => 'gitangtang "[[$1]]"',
 'dellogpage'            => 'Log sa pagtangtang',
-'deletecomment'         => 'Rason sa pagpapas:',
+'deletecomment'         => 'Rason:',
 'deleteotherreason'     => 'Uban pa/dugang nga rason:',
 'deletereasonotherlist' => 'Uban pang rason',
 

@@ -526,7 +526,7 @@ Hiki iā ‘oe ke [[:\$1|hoʻokumu i kēia ‘ao‘ao]].",
 'linkstoimage'        => 'Loulou {{PLURAL:$1|kekahi ‘ao‘ao|kēia mau ‘ao‘ao $1}} i kēia waihona:',
 
 # File deletion
-'filedelete-comment' => 'Ke kumu no ke kāpae ʻana:',
+'filedelete-comment' => 'Kumu:',
 
 # Random page
 'randompage' => 'He akikala kaulele',
@@ -618,7 +618,7 @@ E ʻike iā $2 no ka papa o nā kāpae ʻana hou.',
 'dellogpage'             => 'Mo‘olelo kāpae',
 'dellogpagetext'         => 'He helu o nā mea i kāpae ʻia hou i lalo.',
 'deletionlog'            => 'mo‘olelo kāpae',
-'deletecomment'          => 'Ke kumu no ke kāpae ʻana:',
+'deletecomment'          => 'Kumu:',
 'delete-edit-reasonlist' => 'Ho‘opololei i nā kumu no ke kāpae ‘ana',
 
 # Rollback

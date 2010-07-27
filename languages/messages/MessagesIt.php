@@ -23,6 +23,7 @@
  * @author FollowTheMedia
  * @author Gianfranco
  * @author Klutzy
+ * @author Marco 27
  * @author Martorell
  * @author Marzedu
  * @author McDutchie
@@ -439,7 +440,7 @@ I seguenti collegamenti sono in lingua inglese:
 'red-link-title'          => '$1 (la pagina non esiste)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Voce',
+'nstab-main'      => 'Pagina',
 'nstab-user'      => 'Utente',
 'nstab-media'     => 'File multimediale',
 'nstab-special'   => 'Pagina speciale',
@@ -850,13 +851,13 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 # History pages
 'viewpagelogs'           => 'Visualizza i log relativi a questa pagina.',
 'nohistory'              => 'Cronologia delle versioni di questa pagina non reperibile.',
-'currentrev'             => 'Versione corrente',
+'currentrev'             => 'Versione attuale',
 'currentrev-asof'        => 'Versione corrente delle $1',
 'revisionasof'           => 'Versione delle $1',
 'revision-info'          => 'Versione delle $1, autore: $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Versione meno recente',
 'nextrevision'           => 'Versione più recente →',
-'currentrevisionlink'    => 'Versione corrente',
+'currentrevisionlink'    => 'Versione attuale',
 'cur'                    => 'corr',
 'next'                   => 'succ',
 'last'                   => 'prec',
@@ -864,7 +865,7 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 'page_last'              => 'ultima',
 'histlegend'             => "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.
 
-Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
+Legenda: '''({{int:cur}})''' = differenze con la versione attuale, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
 'history-fieldset-title' => 'Scorri nella cronologia',
 'deletedrev'             => '[cancellata]',
 'histfirst'              => 'Prima',
@@ -894,7 +895,7 @@ Agli amministratori è ancora consentito [$1 visualizzare il confronto] se neces
 'rev-delundel'                   => 'mostra/nascondi',
 'revisiondelete'                 => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'        => 'Versione non specificata',
-'revdelete-nooldid-text'         => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione, la versione specificata non esiste oppure si sta tentando di nascondere la versione corrente.',
+'revdelete-nooldid-text'         => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione, la versione specificata non esiste oppure si sta tentando di nascondere la versione attuale.',
 'revdelete-nologtype-title'      => 'Nessun tipo di registro specificato',
 'revdelete-nologtype-text'       => "Non è stato specificato alcun tipo di registro su cui eseguire l'azione.",
 'revdelete-toomanytargets-title' => 'Troppi target',
@@ -919,21 +920,21 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'revdelete-suppress'             => 'Nascondi le informazioni anche agli amministratori',
 'revdelete-hide-image'           => 'Nascondi i contenuti del file',
 'revdelete-unsuppress'           => 'Elimina le limitazioni sulle revisioni ripristinate',
-'revdelete-log'                  => 'Motivo per la cancellazione:',
+'revdelete-log'                  => 'Motivo:',
 'revdelete-submit'               => 'Applica alla revisione selezionata',
-'revdelete-logentry'             => 'ha modificato la visibilità per una revisione di [[$1]]',
+'revdelete-logentry'             => 'ha modificato la visibilità per le revisioni di [[$1]]',
 'logdelete-logentry'             => "ha modificato la visibilità dell'evento [[$1]]",
 'revdelete-success'              => "'''Visibilità della revisione aggiornata correttamente.'''",
 'logdelete-success'              => "'''Visibilità dell'evento impostata correttamente.'''",
-'revdel-restore'                 => 'Cambia la visibilità',
+'revdel-restore'                 => 'cambia la visibilità',
 'pagehist'                       => 'Cronologia della pagina',
 'deletedhist'                    => 'Cronologia cancellata',
 'revdelete-content'              => 'contenuto',
-'revdelete-summary'              => 'riassunto della modifica',
+'revdelete-summary'              => 'oggetto della modifica',
 'revdelete-uname'                => 'nome utente',
 'revdelete-restricted'           => 'limitazioni ai soli amministratori attivate',
 'revdelete-unrestricted'         => 'limitazioni ai soli amministratori rimosse',
-'revdelete-hid'                  => 'nascondi $1',
+'revdelete-hid'                  => 'nascosto $1',
 'revdelete-unhid'                => 'rendi visibile $1',
 'revdelete-log-message'          => '$1 per $2 {{PLURAL:$2|revisione|revisioni}}',
 'logdelete-log-message'          => '$1 per $2 {{PLURAL:$2|evento|eventi}}',
@@ -1203,7 +1204,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 
 # Groups
 'group'               => 'Gruppo:',
-'group-user'          => 'utenti',
+'group-user'          => 'Utenti',
 'group-autoconfirmed' => 'Utenti autoconvalidati',
 'group-bot'           => 'Bot',
 'group-sysop'         => 'Amministratori',
@@ -1532,7 +1533,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'filerevert'                => 'Ripristina $1',
 'filerevert-legend'         => 'Ripristina file',
 'filerevert-intro'          => "Si sta per ripristinare il file '''[[Media:$1|$1]]''' alla [$4 versione del $2, $3].",
-'filerevert-comment'        => 'Oggetto:',
+'filerevert-comment'        => 'Motivo:',
 'filerevert-defaultcomment' => 'Ripristinata la versione delle $2, $1',
 'filerevert-submit'         => 'Ripristina',
 'filerevert-success'        => "'''Il file [[Media:$1|$1]]''' è stato ripristinato alla [$4 versione del $2, $3].",
@@ -1543,7 +1544,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'filedelete-legend'           => 'Cancella il file',
 'filedelete-intro'            => "Stai per cancellare il file '''[[Media:$1|$1]]''' con tutta la sua cronologia.",
 'filedelete-intro-old'        => "Stai cancellando la versione di '''[[Media:$1|$1]]''' del [$4 $2, $3].",
-'filedelete-comment'          => 'Motivo della cancellazione:',
+'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Cancella',
 'filedelete-success'          => "Il file '''$1''' è stato cancellato.",
 'filedelete-success-old'      => "La versione del file '''[[Media:$1|$1]]''' del $2, $3  è stata cancellata.",
@@ -1883,7 +1884,7 @@ Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'dellogpagetext'         => 'Di seguito sono elencate le pagine cancellate di recente.',
 'deletionlog'            => 'cancellazioni',
 'reverted'               => 'Ripristinata la versione precedente',
-'deletecomment'          => 'Motivo della cancellazione:',
+'deletecomment'          => 'Motivo:',
 'deleteotherreason'      => 'Altra motivazione o motivazione aggiuntiva:',
 'deletereasonotherlist'  => 'Altra motivazione',
 'deletereason-dropdown'  => "*Motivazioni più comuni per la cancellazione
@@ -1979,7 +1980,7 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 'undeleteextrahelp'            => "Per recuperare l'intera cronologia della pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reimposta''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',
 'undeletehistory'              => 'Recuperando questa pagina, tutte le sue revisioni verranno ripristinate nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia precedente.',
-'undeleterevdel'               => "Il ripristino non verrà effettuato se determina la cancellazione parziale della versione corrente della pagina o del file interessato. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti.",
+'undeleterevdel'               => "Il ripristino non verrà effettuato se determina la cancellazione parziale della versione attuale della pagina o del file interessato. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti.",
 'undeletehistorynoadmin'       => "Questa pagina è stata cancellata. 
 Il motivo della cancellazione è mostrato qui sotto, assieme ai dettagli dell'utente che ha modificato questa pagina prima della cancellazione. 
 Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.",
@@ -1990,7 +1991,7 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeletelink'                 => 'visualizza/ripristina',
 'undeletereset'                => 'Reimposta',
 'undeleteinvert'               => 'Inverti selezione',
-'undeletecomment'              => 'Commento:',
+'undeletecomment'              => 'Motivo:',
 'undeletedarticle'             => 'ha recuperato "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisione|$1 revisioni}} e $2 file recuperati',
@@ -2251,7 +2252,7 @@ La pagina specificata come destinazione "[[:$1]]" esiste già. Vuoi cancellarla 
 'export'            => 'Esporta pagine',
 'exporttext'        => "È possibile esportare il testo e la cronologia delle modifiche di una pagina o di un gruppo di pagine in formato XML per importarle in altri siti che utilizzano il software MediaWiki, attraverso la [[Special:Import|pagina delle importazioni]].
 
-Per esportare le pagine indicare i titoli nella casella di testo sottostante, uno per riga, e specificare se si desidera ottenere la versione corrente e tutte le versioni precedenti, con i dati della cronologia della pagina, oppure soltanto l'ultima versione e i dati corrispondenti all'ultima modifica.
+Per esportare le pagine indicare i titoli nella casella di testo sottostante, uno per riga, e specificare se si desidera ottenere l'ultima versione e tutte le versioni precedenti, con i dati della cronologia della pagina, oppure soltanto l'ultima versione e i dati corrispondenti all'ultima modifica.
 
 In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] per esportare \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => "Includi solo la revisione attuale, non l'intera cronologia",
@@ -2495,7 +2496,7 @@ $1',
 'visual-comparison' => 'Confronto visuale',
 
 # Media information
-'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno. La sua esecuzione potrebbe danneggiare il tuo sistema.<hr />",
+'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno. La sua esecuzione potrebbe danneggiare il tuo sistema.",
 'imagemaxsize'         => 'Dimensione massima delle immagini sulle relative pagine di discussione:',
 'thumbsize'            => 'Grandezza delle miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',

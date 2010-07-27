@@ -486,7 +486,7 @@ Su bloccu est stadu postu dae $1. Su motivu de su bloccu est: ''$2''
 * Su bloccu scadit: $6
 * Intervallu de bloccu: $7
 
-Ki boles, podes cuntatare $1 o un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro faeddare de su bloccu.
+Si boles, podes tzerriare $1 o un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro faeddare de su bloccu.
 
 Nota ca sa funtzione 'Ispedi un'e-mail a custu usuàriu' no est ativa ki no est stadu registradu un'indiritzu e-mail vàlidu in is [[Special:Preferences|preferèntzias]] tuas o ki s'usu de custa funtzione est stadu bloccadu.
 
@@ -531,7 +531,7 @@ Cun s'imbiu de custu scritu ses garantende, a responsabilidade tua, si su scritu
 'templatesusedsection'             => 'Templates impreaus in custa setzione:',
 'template-protected'               => '(amparadu)',
 'template-semiprotected'           => '(mesu-amparadu)',
-'hiddencategories'                 => 'Custa pàgina faghet parti de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
+'hiddencategories'                 => 'Custa pàgina faghet parte de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
 'nocreatetitle'                    => 'Creatzione de pàginas limitada',
 'permissionserrors'                => 'Faddina de permissos',
 'permissionserrorstext-withaction' => 'Non tenes su permissu de $2, pro {{PLURAL:$1|custu motivu|custus motivus}}:',
@@ -670,7 +670,7 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'contextlines'             => 'Righe di testo da mostrare per ciascun risultato',
 'contextchars'             => 'Caratteri per linea',
 'recentchangescount'       => 'Nùmeru de lìnias ne in ùrtimas mudàntzias (predefinidu):',
-'savedprefs'               => 'Le tue preferenze sono state salvate.',
+'savedprefs'               => 'Is preferèntzias tuas sunt stadas sarbadas.',
 'timezonetext'             => 'Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).',
 'localtime'                => 'Ora locale:',
 'timezoneoffset'           => 'Diferèntzia¹:',
@@ -848,7 +848,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 
 # File reversion
 'filerevert-backlink' => '← $1',
-'filerevert-comment'  => 'Cummentu:',
+'filerevert-comment'  => 'Motivu:',
 
 # File deletion
 'filedelete'                  => 'Cantzella $1',
@@ -1029,7 +1029,7 @@ Càstia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 'dellogpage'            => 'Burraduras',
 'dellogpagetext'        => 'A sighire una lista de is prus reghentes burraduras.',
 'reverted'              => 'Torrada a sa versione in antis',
-'deletecomment'         => 'Motivu de sa burradura:',
+'deletecomment'         => 'Motivu:',
 'deleteotherreason'     => 'Àteru motivu o motivu agiuntivu:',
 'deletereasonotherlist' => 'Àteru motivu',
 
@@ -1091,8 +1091,11 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is revisiones recupera
 'undeletebtn'               => 'Ripristina',
 'undeletelink'              => 'càstia/riprìstina',
 'undeleteinvert'            => 'Fùrria sa seletzione',
-'undeletecomment'           => 'Cummentu:',
+'undeletecomment'           => 'Motivu:',
 'undeletedarticle'          => 'at restauradu "$1"',
+'undeletedrevisions'        => '{{PLURAL:$1|1 revisione restaurada|$1 revisiones restauradas}}',
+'undeletedrevisions-files'  => '{{PLURAL:$1|1 revisione|$1 revisiones}} e {{PLURAL:$2|1 file|$2 files}} restaurados',
+'undeletedfiles'            => '{{PLURAL:$1|1 file restauradu|$1 files restaurados}}',
 'undelete-search-box'       => 'Chirca pàginas fuliadas',
 'undelete-search-prefix'    => 'Ammustra is pàginas ca su tìtulu cumentzat cun:',
 'undelete-search-submit'    => 'Chirca',

@@ -419,7 +419,7 @@ $messages = array(
 'moredotdotdot'  => '続き…',
 'mypage'         => '自分のページ',
 'mytalk'         => '自分のトーク',
-'anontalk'       => 'このIP利用者のトーク',
+'anontalk'       => 'この匿名利用者のトーク',
 'navigation'     => '案内',
 'and'            => 'および',
 
@@ -983,7 +983,7 @@ $3による理由は以下の通りです: ''$2''",
 'revdelete-suppress'             => '他の利用者と同様に管理者からもデータを隠す',
 'revdelete-hide-image'           => 'ファイル内容を隠す',
 'revdelete-unsuppress'           => '復帰版に対する制限を外す',
-'revdelete-log'                  => '削除の理由:',
+'revdelete-log'                  => '理由：',
 'revdelete-submit'               => '選択した版に適用',
 'revdelete-logentry'             => '[[$1]]の版の閲覧レベルを変更しました',
 'logdelete-logentry'             => '[[$1]]の操作の閲覧レベルを変更しました',
@@ -1599,7 +1599,7 @@ PICT # その他
 'filedelete-legend'           => 'ファイルの削除',
 'filedelete-intro'            => "'''[[Media:$1|$1]]'''をすべての履歴とともに削除しようとしています。",
 'filedelete-intro-old'        => "'''[[Media:$1|$1]]'''の[$4 $2$3の版]を削除しようとしています。",
-'filedelete-comment'          => '削除理由:',
+'filedelete-comment'          => '理由:',
 'filedelete-submit'           => '削除',
 'filedelete-success'          => "'''$1''' は削除されました。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' の $2 $3 版は削除されています。",
@@ -1932,7 +1932,7 @@ $NEWPAGE
 'dellogpagetext'         => '以下は最近の削除と復帰の記録です。',
 'deletionlog'            => '削除記録',
 'reverted'               => '以前の版への差し戻し',
-'deletecomment'          => '削除理由:',
+'deletecomment'          => '理由:',
 'deleteotherreason'      => '他の、または追加の理由:',
 'deletereasonotherlist'  => 'その他の理由',
 'deletereason-dropdown'  => '*よくある削除理由
@@ -2272,7 +2272,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'movesubpage'                  => '{{PLURAL:$1|サブページ}}',
 'movesubpagetext'              => 'このページには、以下に示す $1{{PLURAL:$1|個}}のサブページがあります。',
 'movenosubpage'                => 'このページにはサブページがありません。',
-'movereason'                   => '理由',
+'movereason'                   => '理由:',
 'revertmove'                   => '差し戻し',
 'delete_and_move'              => '削除して移動する',
 'delete_and_move_text'         => '== 削除が必要です ==
@@ -2383,7 +2383,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-pt-login'                => 'ログインすることが推奨されますが、しなくても構いません。',
 'tooltip-pt-anonlogin'            => 'ログインすることが推奨されますが、しなくても構いません。',
 'tooltip-pt-logout'               => 'ログアウト',
-'tooltip-ca-talk'                 => '記事についての議論',
+'tooltip-ca-talk'                 => '本文についての議論',
 'tooltip-ca-edit'                 => 'このページを編集できます。投稿の前に「{{int:showpreview}}」ボタンを使ってください。',
 'tooltip-ca-addsection'           => '新しいセクションを開始する',
 'tooltip-ca-viewsource'           => 'このページは保護されています。ページのソースを閲覧できます。',
@@ -2545,7 +2545,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Media information
 'mediawarning'         => "'''警告:''' このファイルは悪意のあるコードを含んでいる可能性があります。
-実行するとコンピューターが危害を被る場合があります。<hr />",
+実行するとコンピューターが危害を被る場合があります。",
 'imagemaxsize'         => 'ファイルページで表示する画像の最大サイズ:',
 'thumbsize'            => 'サムネイルの大きさ:',
 'widthheightpage'      => '$1×$2, $3{{PLURAL:$3|ページ}}',

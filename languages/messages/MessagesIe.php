@@ -229,11 +229,13 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'saveprefs'      => 'Conservar preferenties',
 
 # Groups
-'group-user' => 'Usatores',
+'group-user'  => 'Usatores',
+'group-sysop' => 'Administratores',
 
 'group-user-member' => 'Usator',
 
-'grouppage-user' => '{{ns:project}}:Usatores',
+'grouppage-user'  => '{{ns:project}}:Usatores',
+'grouppage-sysop' => '{{ns:project}}:Administratores',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|change|changes}}',
@@ -248,6 +250,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'hide'              => 'Celar',
 'show'              => 'Monstrar',
 'minoreditletter'   => 'm',
+'newpageletter'     => 'N',
 
 # Recent changes linked
 'recentchangeslinked' => 'Relatet modificationes',
@@ -262,6 +265,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'listfiles' => 'Liste de images',
 
 # File description page
+'filehist-user'    => 'Usator',
 'filehist-comment' => 'Comenta',
 
 # Random page
@@ -311,13 +315,13 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 # Delete
 'deletepage'            => 'Deleter págine',
 'actioncomplete'        => 'Supression efectuat',
-'deletecomment'         => 'Motive de deletion:',
+'deletecomment'         => 'Motive:',
 'deleteotherreason'     => 'Altri/suplementari motive:',
 'deletereasonotherlist' => 'Altri motive',
 
 # Protect
 'prot_1movedto2'   => '[[$1]] moet a [[$2]]',
-'protectcomment'   => 'Comenta:',
+'protectcomment'   => 'Motive:',
 'restriction-type' => 'Permission:',
 
 # Namespace form on various pages

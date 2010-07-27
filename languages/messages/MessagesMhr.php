@@ -574,7 +574,7 @@ $messages = array(
 'uploadnewversion-linktext' => 'Тиде файлын у тӱрлыкшым пурташ',
 
 # File deletion
-'filedelete-comment'          => 'Шӧрымын амалже:',
+'filedelete-comment'          => 'Амал:',
 'filedelete-submit'           => 'Шӧраш',
 'filedelete-otherreason'      => 'Вес/ешартыш амал:',
 'filedelete-reason-otherlist' => 'Вес амал',
@@ -706,7 +706,7 @@ $messages = array(
 'deletedarticle'        => '«[[$1]]» шӧрымӧ',
 'dellogpage'            => 'Шӧрымӧ нерген журнал',
 'deletionlog'           => 'шӧрымӧ нерген журнал',
-'deletecomment'         => 'Шӧрымын амалже:',
+'deletecomment'         => 'Амал:',
 'deleteotherreason'     => 'Вес/ешартыш амал:',
 'deletereasonotherlist' => 'Вес амал',
 

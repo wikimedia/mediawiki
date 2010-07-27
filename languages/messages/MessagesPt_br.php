@@ -627,7 +627,7 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'wrongpasswordempty'         => 'A senha introduzida está em branco. Por favor, tente novamente.',
 'passwordtooshort'           => 'A sua senha é inválida ou muito curta.
 Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do seu nome de usuário.',
-'mailmypassword'             => "Enviar uma nova senha por ''e-mail''",
+'mailmypassword'             => 'Enviar uma nova senha por e-mail',
 'passwordremindertitle'      => 'Nova senha temporária em {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4). Foi criada uma senha temporária para o usuário "$2", sendo ela "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
 A sua senha temporária expirará em {{PLURAL:$5|um dia|$5 dias}}.
@@ -687,8 +687,8 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'italic_sample'   => 'Texto em itálico',
 'italic_tip'      => 'Texto em itálico',
 'link_sample'     => 'Título do link',
-'link_tip'        => 'Ligação interna',
-'extlink_sample'  => 'http://www.example.com ligação externa',
+'link_tip'        => 'Link interno',
+'extlink_sample'  => 'http://www.example.com título do link',
 'extlink_tip'     => 'Link externo (lembre-se do prefixo http://)',
 'headline_sample' => 'Texto do cabeçalho',
 'headline_tip'    => 'Seção de nível 2',
@@ -709,7 +709,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'minoredit'                        => 'Marcar como edição menor',
 'watchthis'                        => 'Vigiar esta página',
 'savearticle'                      => 'Salvar página',
-'preview'                          => 'Prever',
+'preview'                          => 'Previsualização',
 'showpreview'                      => 'Mostrar previsão',
 'showlivepreview'                  => 'Pré-visualização em tempo real',
 'showdiff'                         => 'Mostrar alterações',
@@ -718,7 +718,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'missingcommenttext'               => 'Por favor, introduzida um comentário abaixo.',
 'missingcommentheader'             => "'''Lembrete:''' Você não introduziu um assunto/título para este comentário. Se carregar novamente em Salvar a sua edição será salva sem um título/assunto.",
 'summary-preview'                  => 'Previsão de sumário:',
-'subject-preview'                  => 'Previsão de assunto/título:',
+'subject-preview'                  => 'Previsão do assunto/título:',
 'blockedtitle'                     => 'O usuário está bloqueado',
 'blockedtext'                      => "'''O seu nome de usuário ou endereço de IP foi bloqueado.'''
 
@@ -942,7 +942,7 @@ Como administrador, você pode mesmo assim [$1 ver estas diferenças], se deseja
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Nenhuma revisão selecionada',
 'revdelete-nooldid-text'         => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
-'revdelete-nologtype-title'      => 'Tipo de registo não especificado',
+'revdelete-nologtype-title'      => 'Tipo de registro não especificado',
 'revdelete-nologtype-text'       => 'Você não especificou um tipo de registro sobre o qual executar esta ação.',
 'revdelete-toomanytargets-title' => 'Demasiados alvos',
 'revdelete-toomanytargets-text'  => 'Você especificou demasiados tipos de alvos sobre os quais executar esta ação.',
@@ -966,10 +966,10 @@ Por favor confirme que deseja fazê-lo, que entende as consequências e que est�
 'revdelete-suppress'             => 'Suprimir dados de administradores, bem como de outros',
 'revdelete-hide-image'           => 'Ocultar conteúdos do arquivo',
 'revdelete-unsuppress'           => 'Remover restrições das edições restauradas',
-'revdelete-log'                  => 'Motivo para a eliminação:',
+'revdelete-log'                  => 'Motivo:',
 'revdelete-submit'               => 'Aplicar à edição selecionada',
-'revdelete-logentry'             => 'modificou visibilidade de revisão para [[$1]]',
-'logdelete-logentry'             => 'alterada visibilidade de eventos para [[$1]]',
+'revdelete-logentry'             => 'alterou a visibilidade das revisões de "[[$1]]"',
+'logdelete-logentry'             => 'alterou a visibilidade dos eventos de "[[$1]]"',
 'revdelete-success'              => "'''A visibilidade da revisão foi definida com sucesso.'''",
 'logdelete-success'              => "'''Visibilidade de evento definida com sucesso.'''",
 'revdel-restore'                 => 'Alterar visibilidade',
@@ -1144,8 +1144,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'powersearch-redir'                => 'Listar redirecionamentos',
 'powersearch-field'                => 'Pesquisar',
 'search-external'                  => 'Pesquisa externa',
-'searchdisabled'                   => 'O motor de pesquisa na {{SITENAME}} foi desativado por motivos de desempenho. Enquanto isso pode fazer a sua pesquisa através do Google ou do Yahoo!.<br />
-Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desatualizados.',
+'searchdisabled'                   => 'A busca em {{SITENAME}} se encontra desativada.
+Você poderá pesquisar através do Google enquanto isso.
+Note que os índices do sistema de busca externo poderão conter referências desatualizadas a {{SITENAME}}.',
 
 # Preferences page
 'preferences'               => 'Preferências',
@@ -1162,7 +1163,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'qbsettings-floatingright'  => 'Flutuando à direita',
 'changepassword'            => 'Alterar senha',
 'skin'                      => 'Tema',
-'skin-preview'              => 'Pré-visualizar',
+'skin-preview'              => 'Previsão',
 'math'                      => 'Matemática',
 'dateformat'                => 'Formato da data',
 'datedefault'               => 'Sem preferência',
@@ -1209,7 +1210,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'timezoneuseoffset'         => 'Outro (especifique diferença horária)',
 'timezoneoffset'            => 'Diferença horária¹',
 'servertime'                => 'Horário do servidor:',
-'guesstimezone'             => 'Preencher a partir do navegador (browser)',
+'guesstimezone'             => 'Preencher a partir do navegador',
 'timezoneregion-africa'     => 'África',
 'timezoneregion-america'    => 'América',
 'timezoneregion-antarctica' => 'Antártida',
@@ -1329,7 +1330,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'right-userrights-interwiki'  => 'Editar direitos de usuário de usuários outros sites wiki',
 'right-siteadmin'             => 'Bloquear e desbloquear o banco de dados',
 'right-reset-passwords'       => 'Redefinir a senha de outros usuários',
-'right-override-export-depth' => 'Export páginas incluindo páginas ligadas até uma profundidade de 5 ligações',
+'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 
 # User rights log
 'rightslog'      => 'Registro de privilégios de usuário',
@@ -1407,7 +1408,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'recentchangeslinked'          => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
-'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam uma ligação a outra (ou de membros de uma categoria especificada).
+'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra (ou de membros de uma categoria especificada).
 Páginas que estejam em [[Special:Watchlist|sua lista de páginas vigiadas]] são exibidas em '''negrito'''.",
 'recentchangeslinked-page'     => 'Nome da página:',
 'recentchangeslinked-to'       => 'Mostrar alterações a páginas relacionadas com a página fornecida',
@@ -1566,13 +1567,13 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'filehist-dimensions'       => 'Dimensões',
 'filehist-filesize'         => 'Tamanho do arquivo',
 'filehist-comment'          => 'Comentário',
-'imagelinks'                => 'Ligações de arquivos',
-'linkstoimage'              => '{{PLURAL:$1|A seguinte página aponta|As seguintes $1 páginas apontam}} para este arquivo:',
-'linkstoimage-more'         => 'Mais de $1 {{PLURAL:$1|página tem alguma ligação|páginas têm alguma ligação}} para este arquivo.
-A lista a seguir mostra apenas {{PLURAL:$1|a primeira ligação de página|as primeiras $1 ligações de página}} para este arquivo.
+'imagelinks'                => 'Links para este arquivo',
+'linkstoimage'              => '{{PLURAL:$1|A página|As $1 páginas}} a seguir tem link para este arquivo:',
+'linkstoimage-more'         => 'Mais de $1 {{PLURAL:$1|página|páginas}} tem algum link para este arquivo.
+A lista a seguir mostra apenas {{PLURAL:$1|o primeiro link|os $1 primeiros links}} para este arquivo.
 Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 'nolinkstoimage'            => 'Nenhuma página aponta para este arquivo.',
-'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|mais ligações]] para este arquivo.',
+'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|mais links]] para este arquivo.',
 'redirectstofile'           => '{{PLURAL:$1|O seguinte arquivo redireciona|Os seguintes arquivos redirecionam}} para este arquivo:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte arquivo é duplicado|Os seguintes arquivos são duplicados}} deste arquivo ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
 'sharedupload'              => 'Este arquivo é do $1 e pode ser usado por outros projetos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
@@ -1589,7 +1590,7 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 'filerevert'                => 'Reverter $1',
 'filerevert-legend'         => 'Reverter arquivo',
 'filerevert-intro'          => '<span class="plainlinks">Você está revertendo \'\'\'[[Media:$1|$1]]\'\'\' para a [$4 versão de $2 - $3].</span>',
-'filerevert-comment'        => 'Comentário:',
+'filerevert-comment'        => 'Motivo:',
 'filerevert-defaultcomment' => 'Revertido para a versão de $1 - $2',
 'filerevert-submit'         => 'Reverter',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' foi revertida para a [$4 versão de $2 - $3].</span>',
@@ -1600,7 +1601,7 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 'filedelete-legend'           => 'Eliminar arquivo',
 'filedelete-intro'            => "Você está prestes a eliminar o arquivo '''[[Media:$1|$1]]''' junto com todo o seu histórico.",
 'filedelete-intro-old'        => '<span class="plainlinks">Você se encontra prestes a eliminar a versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como se encontrava em [$4 $3, $2].</span>',
-'filedelete-comment'          => 'Motivo de eliminação:',
+'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' foi eliminado.",
 'filedelete-success-old'      => "A versão de '''[[Media:$1|$1]]''' tal como $3, $2 foi eliminada.",
@@ -1727,7 +1728,7 @@ Entradas <s>riscadas</s> foram resolvidas.',
 'listusers-editsonly'     => 'Mostrar apenas usuários com edições',
 'listusers-creationsort'  => 'Ordenar por data de criação',
 'usereditcount'           => '$1 {{PLURAL:$1|edição|edições}}',
-'usercreated'             => 'Criado em $1 às $2',
+'usercreated'             => 'Registrado em $1 às $2',
 'newpages'                => 'Páginas recentes',
 'newpages-username'       => 'Nome de usuário:',
 'ancientpages'            => 'Páginas mais antigas',
@@ -1862,7 +1863,7 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de páginas vigiadas.',
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
-Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
+Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, e a página aparecerá em '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que você possa encontrá-la com maior facilidade.",
 'removedwatch'         => 'Removida da lista de páginas vigiadas',
 'removedwatchtext'     => 'A página "[[:$1]]" foi removida de sua [[Special:Watchlist|lista de páginas vigiadas]].',
 'watch'                => 'Vigiar',
@@ -1942,7 +1943,7 @@ Consulte $2 para um registro de eliminações recentes.',
 'dellogpagetext'         => 'Abaixo uma lista das eliminações mais recentes.',
 'deletionlog'            => 'registro de eliminação',
 'reverted'               => 'Revertido para versão anterior',
-'deletecomment'          => 'Motivo de eliminação',
+'deletecomment'          => 'Motivo:',
 'deleteotherreason'      => 'Justificativa adicional:',
 'deletereasonotherlist'  => 'Outro motivo',
 'deletereason-dropdown'  => '* Motivos de eliminação comuns
@@ -1958,7 +1959,7 @@ prossiga com cuidado.',
 
 # Rollback
 'rollback'         => 'Reverter edições',
-'rollback_short'   => 'Voltar',
+'rollback_short'   => 'Reverter',
 'rollbacklink'     => 'voltar',
 'rollbackfailed'   => 'A reversão falhou',
 'cantrollback'     => 'Não foi possível reverter a edição; o último contribuidor é o único autor desta página',
@@ -1978,7 +1979,7 @@ Experimente usar o botão "Voltar" e atualizar a página de onde veio e tente no
 'protectlogtext'              => 'Abaixo encontra-se o registro de proteção e desproteção de páginas.
 Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
 'protectedarticle'            => 'protegeu "[[$1]]"',
-'modifiedarticleprotection'   => 'foi alterado o nível de proteção para "[[$1]]"',
+'modifiedarticleprotection'   => 'alterou o nível de proteção para "[[$1]]"',
 'unprotectedarticle'          => 'desprotegeu "[[$1]]"',
 'movedarticleprotection'      => 'moveu as configurações de proteção de "[[$2]]" para "[[$1]]"',
 'protect-title'               => 'Protegendo "$1"',
@@ -2058,7 +2059,7 @@ Em tais casos, deverá desselecionar ou reverter a ocultação da versão apagad
 'undeletelink'                 => 'ver/restaurar',
 'undeletereset'                => 'Limpar',
 'undeleteinvert'               => 'Inverter seleção',
-'undeletecomment'              => 'Comentário:',
+'undeletecomment'              => 'Motivo:',
 'undeletedarticle'             => 'restaurou "[[$1]]"',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|edição restaurada|edições restauradas}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$2|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|arquivo restaurado|arquivos restaurados}}',
@@ -2098,7 +2099,7 @@ $1',
 'month'               => 'Mês (inclusive anteriores):',
 'year'                => 'Ano (inclusive anteriores):',
 
-'sp-contributions-newbies'       => 'Pesquisar apenas nas contribuições de contas recentes',
+'sp-contributions-newbies'       => 'Mostrar só as contribuições das contas recentes',
 'sp-contributions-newbies-sub'   => 'Para contas novas',
 'sp-contributions-newbies-title' => 'Contribuições de contas novas',
 'sp-contributions-blocklog'      => 'Registro de bloqueios',
@@ -2290,13 +2291,13 @@ Por favor, escolha outro nome.',
 'movepage-page-moved'          => 'A página $1 foi movida para $2',
 'movepage-page-unmoved'        => 'A página $1 não pôde ser movida para $2.',
 'movepage-max-pages'           => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
-'1movedto2'                    => '[[$1]] foi movido para [[$2]]',
+'1movedto2'                    => 'moveu [[$1]] para [[$2]]',
 '1movedto2_redir'              => 'moveu [[$1]] para [[$2]] sobre redirecionamento',
 'move-redirect-suppressed'     => 'redirecionamento suprimido',
 'movelogpage'                  => 'Registro de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
-'movesubpage'                  => '{{PLURAL:$1|Sub-página|Sub-páginas}}',
-'movesubpagetext'              => 'Esta página tem $1 {{PLURAL:$1|sub-página mostrada|sub-páginas mostradas}} abaixo.',
+'movesubpage'                  => '{{PLURAL:$1|Subpágina|Subpáginas}}',
+'movesubpagetext'              => 'Esta página tem $1 {{PLURAL:$1|subpágina mostrada|subpáginas mostradas}} abaixo.',
 'movenosubpage'                => 'Esta página não tem subpáginas.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'reverter',
@@ -2486,13 +2487,13 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuário anônimo|Usuários anônimos}} da {{SITENAME}}',
-'siteuser'         => '{{SITENAME}} usuário $1',
+'siteuser'         => '{{GENDER:$2|um utilizador|uma utilizadora|um utilizador}} da {{SITENAME}} ($1)',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
-'siteusers'        => '{{PLURAL:$2|um usuário|$2 usuários}} da {{SITENAME}}: $1',
+'siteusers'        => '{{PLURAL:$2|um usuário|$2 usuários}} da {{SITENAME}} ($1)',
 'creditspage'      => 'Créditos da página',
-'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
+'nocredits'        => 'Não há informações disponíveis sobre os créditos desta página.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de proteção contra spam',
@@ -2500,7 +2501,7 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' externo que conste na lista negra.",
 'spamprotectionmatch' => 'O seguinte texto ativou o filtro de spam: $1',
 'spambot_username'    => 'MediaWiki limpeza de spam',
-'spam_reverting'      => 'Revertendo para a última versão não contendo hiperligações para $1',
+'spam_reverting'      => 'Revertendo para a última versão que não contém links para $1',
 'spam_blanking'       => 'Todas revisões contendo hiperligações para $1, limpando',
 
 # Info page
@@ -2568,7 +2569,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este tipo de arquivo pode conter código malicioso.
-Executá-lo poderá comprometer a segurança do seu sistema.<hr />",
+Executá-lo poderá comprometer a segurança do seu sistema.",
 'imagemaxsize'         => 'Limitar imagens nas páginas de descrição a:',
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
@@ -2665,7 +2666,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-exposureprogram'             => 'Programa de exposição',
 'exif-spectralsensitivity'         => 'Sensibilidade espectral',
 'exif-isospeedratings'             => 'Taxa de velocidade ISO',
-'exif-oecf'                        => 'Fator optoelectrónico de conversão.',
+'exif-oecf'                        => 'Fator de conversão optoeletrônica.',
 'exif-shutterspeedvalue'           => 'Velocidade do obturador',
 'exif-aperturevalue'               => 'Abertura',
 'exif-brightnessvalue'             => 'Brilho',
@@ -2708,7 +2709,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpslongitude'                => 'Longitude',
 'exif-gpsaltituderef'              => 'Referência de altitude',
 'exif-gpsaltitude'                 => 'Altitude',
-'exif-gpstimestamp'                => 'Tempo GPS (relógio atómico)',
+'exif-gpstimestamp'                => 'Tempo GPS (relógio atômico)',
 'exif-gpssatellites'               => 'Satélites utilizados para a medição',
 'exif-gpsstatus'                   => 'Estado do receptor',
 'exif-gpsmeasuremode'              => 'Modo da medição',
@@ -2734,7 +2735,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsdifferential'             => 'Correção do diferencial do GPS',
 
 # EXIF attributes
-'exif-compression-1' => 'Descomprimido',
+'exif-compression-1' => 'Sem compressão',
 
 'exif-unknowndate' => 'Data desconhecida',
 
@@ -2988,7 +2989,7 @@ Tente a previsão comum.',
 'watchlistedit-noitems'        => 'A sua lista de páginas vigiadas não possui títulos.',
 'watchlistedit-normal-title'   => 'Editar lista de páginas vigiadas',
 'watchlistedit-normal-legend'  => 'Remover títulos da lista de páginas vigiadas',
-'watchlistedit-normal-explain' => 'Os títulos das páginas de sua lista de vigiados são exibidos abaixo.
+'watchlistedit-normal-explain' => 'Os títulos das páginas de sua lista de vigiadas são exibidos abaixo.
 Para remover um título, marque a caixa ao lado do mesmo e clique "{{int:Watchlistedit-normal-submit}}".
 Você pode também [[Special:Watchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
 'watchlistedit-normal-submit'  => 'Remover Títulos',

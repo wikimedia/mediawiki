@@ -788,7 +788,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'deletedarticle' => 'rëmniãté przez "[[$1]]"',
 'dellogpage'     => 'Rëmóné',
 'deletionlog'    => 'register rëmaniów',
-'deletecomment'  => 'Przëczëna rëmaniô',
+'deletecomment'  => 'Przëczëna:',
 
 # Rollback
 'rollback'       => 'Copnij edicëjã',
@@ -804,7 +804,7 @@ Slédnym ùsódzcą starnë bëł [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]]{
 'unprotectedarticle'          => 'òdzychrowóny [[$1]]',
 'prot_1movedto2'              => '$1 przeniesłé do $2',
 'protect-legend'              => 'Pòcwierdzë zazychrowanié',
-'protectcomment'              => 'Przëczëna zazychrowóniô',
+'protectcomment'              => 'Przëczëna:',
 'protectexpiry'               => 'Wëgasô pò:',
 'protect_expiry_invalid'      => 'Lëchi czas wëgasniãcô.',
 'protect_expiry_old'          => 'Czas wëgasniãcô leżi w przińdnocë.',
@@ -856,7 +856,7 @@ Slédnym ùsódzcą starnë bëł [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]]{
 # Block/unblock
 'blockip'            => 'Zascëgôj IP-adresã',
 'blockiptext'        => 'Brëkùje formùlarza niżi abë zascëgòwac prawò zapisënkù spòd gwësny adresë IP. To robi sã blós dlôte abë zascëgnąc wandalëznom, a bëc w zgòdze ze [[{{MediaWiki:Policy-url}}|wskôzama]]. Pòdôj przëczënã (np. dając miona starn, na chtërnëch dopùszczono sã wandalëzny).',
-'ipbreason'          => 'Przëczëna',
+'ipbreason'          => 'Przëczëna:',
 'badipaddress'       => 'IP-adresa nie je richtich pòdónô.',
 'blockipsuccesssub'  => 'Zascëgónié dało sã',
 'blockipsuccesstext' => 'Brëkòwnik [[Special:Contributions/$1|$1]] òstał zascëgóny.<br />
@@ -885,7 +885,7 @@ Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbacz�
 'articleexists'           => 'Starna ò taczim mionie ju je abò nie je òno bezzmiłkòwé. Wëbierzë nowé miono.',
 'movedto'                 => 'przeniesłô do',
 'movetalk'                => 'Przeniesë téż starnã <i>Diskùsëje</i>, jeżle je to mòżlëwé.',
-'1movedto2'               => '$1 przeniesłé do $2',
+'1movedto2'               => '[[$1]] przeniesłé do [[$2]]',
 '1movedto2_redir'         => '[[$1]] przeniesłé do [[$2]] nad przeczérowanim',
 'movereason'              => 'Przëczëna:',
 'revertmove'              => 'copnij',

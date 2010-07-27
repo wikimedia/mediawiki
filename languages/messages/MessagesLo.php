@@ -761,7 +761,7 @@ $messages = array(
 'dellogpage'     => 'ບັນທຶກ ການລຶບ',
 'dellogpagetext' => 'ຂ້າງລຸ່ມ ແມ່ນ ລາຍການ ການລຶບຫຼ້າສຸດ.',
 'deletionlog'    => 'ບັນທຶກ ການລຶບ',
-'deletecomment'  => 'ເຫດຜົນໃນການລຶບ',
+'deletecomment'  => 'ເຫດຜົນ:',
 
 # Rollback
 'rollbacklink' => 'ກັບຄືນ',

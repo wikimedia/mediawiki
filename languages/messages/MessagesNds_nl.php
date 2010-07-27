@@ -615,9 +615,9 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'perfcached'           => "Disse gegevens kwammen uut 't tussengeheugen en bin werschienlijk neet actueel:",
 'perfcachedts'         => 'De infermasie dee hieronder steet, is op-esleugen, en is van $1.',
 'querypage-no-updates' => "'''Disse pagina wönnen neet meer bie-ewörken.'''",
-'wrong_wfQuery_params' => 'Parremeters veur wfQuery() wanen verkeerd<br />
+'wrong_wfQuery_params' => 'Parameters veur wfQuery() wanen verkeerd<br />
 Functie: $1<br />
-Zeukopdrachte: $2',
+Zeukopdrach: $2',
 'viewsource'           => 'Brontekse bekieken',
 'viewsourcefor'        => 'veur "$1"',
 'actionthrottled'      => 'Haandeling tegen-ehuilen',
@@ -626,7 +626,7 @@ Zeukopdrachte: $2',
 'viewsourcetext'       => 'Je kunnen de brontekse van disse pagina bewarken en bekieken:',
 'protectedinterface'   => 'Disse pagina bevat een tekse dee gebruuk wönnen veur systeemteksen van de wiki. Allinnig beheerders kunnen disse pagina bewarken.',
 'editinginterface'     => "'''Waorschuwing:''' je bewarken een pagina dee gebruuk wönnen deur de pregrammetuur. Wa-j hier wiezigen, is van invleud op de hele wiki. Overweeg veur vertalingen um [http://translatewiki.net/wiki/Main_Page?setlang=nds-nl translatewiki.net] te gebruken, 't vertalingsprejek veur MediaWiki.",
-'sqlhidden'            => '(SQL-zeukopdrachte verbörgen)',
+'sqlhidden'            => '(SQL-zeukopdrach verbörgen)',
 'cascadeprotected'     => 'Disse pagina is beveilig umdat \'t veurkump in de volgende {{PLURAL:$1|pagina|pagina\'s}}, dee beveilig {{PLURAL:$1|is|bin}} mit de "cascade"-optie:
 $2',
 'namespaceprotected'   => "Je bin neet bevoeg um pagina is de '''$1'''-naamruumte te bewarken.",
@@ -954,7 +954,7 @@ Noen {{PLURAL:$1|is|bin}} 't der $1, terwiel 't der minder as $2 {{PLURAL:$2|mut
 'post-expand-template-inclusion-warning'  => 'Waorschuwing: de grootte van de in-evoegen mal is te groot.
 Sommigen mallen wönnen neet in-evoeg.',
 'post-expand-template-inclusion-category' => "Pagina's dee over de maximumgrootte veur in-evoegen mallen hinne gaon",
-'post-expand-template-argument-warning'   => "Waorschuwing: disse pagina gebruuk tenminsen één parremeter in een mal, dee te groot is, as 't uut-eklap wönnen. Disse parremeters wönnen vort-eleuten.",
+'post-expand-template-argument-warning'   => "Waorschuwing: disse pagina gebruuk tenminsen één parameter in een mal, dee te groot is as 't uut-eklap wönnen. Disse parameters wönnen vort-eleuten.",
 'post-expand-template-argument-category'  => "Pagina's mit ontbrekende malelementen",
 'parser-template-loop-warning'            => 'Der is een kringloop in mallen waor-eneumen: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Der is over de recursiediepte veur mallen is hinne gaon ($1)',
@@ -1042,7 +1042,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'revdelete-suppress'             => 'Gegevens veur beheerders en aander volk onderdrokken',
 'revdelete-hide-image'           => 'Verbarg bestaansinhoud',
 'revdelete-unsuppress'           => 'Beparkingen veur weerummezetten versies vortdoon',
-'revdelete-log'                  => "Reden veur 't vortdoon:",
+'revdelete-log'                  => 'Reden:',
 'revdelete-submit'               => 'De esillecteren versie toepassen',
 'revdelete-logentry'             => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'             => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
@@ -1077,7 +1077,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'mergehistory-submit'              => 'Versies bie mekaar doon',
 'mergehistory-empty'               => 'Der bin gien versies dee samen-evoeg kunnen wönnen.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|versie|versies}} van [[:$1]] bin succesvol samen-evoeg naor [[:$2]].',
-'mergehistory-fail'                => 'Kan gien geschiedenisse samenvoegen, kiek opniej de pagina- en tiedparremeters nao.',
+'mergehistory-fail'                => 'Kan gien geschiedenisse samenvoegen, kiek opniej de pagina- en tiedparameters nao.',
 'mergehistory-no-source'           => 'Bronpagina $1 besteet neet.',
 'mergehistory-no-destination'      => 'Bestemmingspagina $1 besteet neet.',
 'mergehistory-invalid-source'      => 'De bronpagina mut een geldige titel ween.',
@@ -1161,10 +1161,10 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'searchresults-title'              => 'Zeukrisseltaoten veur "$1"',
 'searchresulttext'                 => 'Veur meer infermasie over zeuken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Je zochen naor \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alle pagina\'s dee beginnen mit "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle pagina\'s dee verwiezen naor "$1"]])',
-'searchsubtitleinvalid'            => 'Veur zeukopdrachte "$1"',
+'searchsubtitleinvalid'            => 'Veur zeukopdrach "$1"',
 'noexactmatch'                     => "'''Der besteet gien artikel mit de naam $1.''' Je kunnen disse pagina [[:$1|anmaken]].",
 'noexactmatch-nocreate'            => "'''Der besteet gien pagina mit de naam \"\$1\".'''",
-'toomanymatches'                   => 'Der wanen te veule risseltaoten. Prebeer asjeblief een aandere zeukopdrachte.',
+'toomanymatches'                   => 'Der wanen te veul risseltaoten. Prebeer een aandere zeukopdrach.',
 'titlematches'                     => "Overeenkoms mit 't onderwarp",
 'notitlematches'                   => 'Gien overeenstemming',
 'textmatches'                      => 'Overeenkoms mit teksen',
@@ -1624,7 +1624,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'filehist-thumbtext'        => 'Ofbeeldingsoverzichte veur versie van $1',
 'filehist-nothumb'          => 'Gien ofbeeldingsoverzichte',
 'filehist-user'             => 'Gebruker',
-'filehist-dimensions'       => 'Ofmetingen',
+'filehist-dimensions'       => 'Grootte',
 'filehist-filesize'         => 'Bestaansgrootte',
 'filehist-comment'          => 'Opmarkingen',
 'imagelinks'                => 'Verwiezingen naor dit bestaand',
@@ -1650,7 +1650,7 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'filerevert'                => '$1 weerummedreien',
 'filerevert-legend'         => 'Bestaand weerummezetten',
 'filerevert-intro'          => "Je bin '''[[Media:$1|$1]]''' an 't weerummedreien tot de [$4 versie van $2, $3]",
-'filerevert-comment'        => 'Opmarkingen:',
+'filerevert-comment'        => 'Reden:',
 'filerevert-defaultcomment' => 'Weerummedreid tot de versie van $1, $2',
 'filerevert-submit'         => 'Weerummedreien',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' is weerummedreid naor de [$4 versie op $2, $3]</span>.',
@@ -1661,7 +1661,7 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'filedelete-legend'           => 'Bestaand vortdoon',
 'filedelete-intro'            => "Je doon 't bestaand '''[[Media:$1|$1]]''' noen vort samen mit de geschiedenisse dervan.",
 'filedelete-intro-old'        => "Je bin de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] vort an 't doon.",
-'filedelete-comment'          => 'Opmarking:',
+'filedelete-comment'          => 'Reden:',
 'filedelete-submit'           => 'Vortdoon',
 'filedelete-success'          => "'''$1''' is vort-edaon.",
 'filedelete-success-old'      => "De versie van '''[[Media:$1|$1]]''' van $3, $2 is vort-edaon.",
@@ -1669,9 +1669,9 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'filedelete-nofile-old'       => "Der is gien versie van '''$1''' in 't archief mit de an-egeven eigenschappen.",
 'filedelete-otherreason'      => 'Aandere reden:',
 'filedelete-reason-otherlist' => 'Aandere reden',
-'filedelete-reason-dropdown'  => '*Veulveurkoemende redens
+'filedelete-reason-dropdown'  => "*Veulveurkoemende redens veur 't vortdoon van pagina's
 ** Auteursrechenschending
-** Dit bestaand he-w dubbel',
+** Dit bestaand he-w dubbel",
 'filedelete-edit-reasonlist'  => "Reden veur 't vortdoon bewarken",
 
 # MIME search
@@ -2009,7 +2009,7 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da-j de gevolgen begriepen
 'dellogpagetext'         => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
 'deletionlog'            => 'Vortdologboek',
 'reverted'               => 'Eerdere versie hersteld',
-'deletecomment'          => 'Reden',
+'deletecomment'          => 'Reden:',
 'deleteotherreason'      => 'Aandere/extra reden:',
 'deletereasonotherlist'  => 'Aandere reden',
 'deletereason-dropdown'  => "*Redens veur 't vortdoon van pagina's
@@ -2122,7 +2122,7 @@ In dat geval mu-j de leste versie as zichbaor instellen.",
 'undeletelink'                 => 'bekiek/weerummeplaosen',
 'undeletereset'                => 'Herstel',
 'undeleteinvert'               => 'Selectie ummekeren',
-'undeletecomment'              => 'Opmarking:',
+'undeletecomment'              => 'Reden:',
 'undeletedarticle'             => '"$1" is weerummeplaos',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} weerummeplaos',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestaand|$2 bestanen}} bin weerummeplaos',
@@ -2198,7 +2198,7 @@ $1",
 'ipaddress'                       => 'IP-adres:',
 'ipadressorusername'              => 'IP-adres of gebrukersnaam',
 'ipbexpiry'                       => 'Verlöp nao',
-'ipbreason'                       => 'Reden',
+'ipbreason'                       => 'Reden:',
 'ipbreasonotherlist'              => 'aandere reden',
 'ipbreason-dropdown'              => "*Algemene redens veur 't blokkeren
 ** valse infermasie invoeren
@@ -2420,7 +2420,7 @@ Kiek oek effen bie [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalis
 'thumbnail_error'          => "Fout bie 't laojen van 't ofbeeldingsoverzichte: $1",
 'djvu_page_error'          => 'DjVu-pagina buten bereik',
 'djvu_no_xml'              => "Kon de XML-gegevens veur 't DjVu-bestaand neet oproepen",
-'thumbnail_invalid_params' => 'Ongeldige ofbeeldingsoverzichparremeters',
+'thumbnail_invalid_params' => "Ongeldige parameters veur 't ofbeeldingsoverzichte",
 'thumbnail_dest_directory' => 'De bestemmingsmap kon neet an-emaak wönnen.',
 
 # Special:Import
@@ -2623,7 +2623,7 @@ $1",
 'visual-comparison' => 'Visuele vergelieking',
 
 # Media information
-'mediawarning'         => "'''Waorschuwing:''' dit bestaand bevat meschien codering dee slich is veur 't systeem. <hr />",
+'mediawarning'         => "'''Waorschuwing:''' dit bestaand bevat meschien codering dee slich is veur 't systeem.",
 'imagemaxsize'         => 'Maximumgrootte van ofbeeldingen op de beschrievingspagina:',
 'thumbsize'            => "Grootte van 't ofbeeldingsoverzichte (thumbnail):",
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
@@ -3035,17 +3035,17 @@ Kiek de pagina op de normale meniere nao.',
 'watchlistedit-noitems'        => 'Joew volglieste is leeg.',
 'watchlistedit-normal-title'   => 'Volglieste bewarken',
 'watchlistedit-normal-legend'  => "Disse pagina's van mien volglieste ofhaolen.",
-'watchlistedit-normal-explain' => "Pagina's dee op joew volglieste staon zie-j hieronder.
-Um een pagina van joew volglieste of te haolen mu-j 't vakjen dernaos anklikken, en klik dan op 'Pagina's derof haolen'.
-Je kunnen oek [[Special:Watchlist/raw|de roewe lieste bewarken]].",
+'watchlistedit-normal-explain' => 'Pagina\'s dee op joew volglieste staon, zie-j hieronder.
+Um een pagina van joew volglieste of te haolen mu-j \'t vakjen dernaos anklikken, en klik dan op "{{int:Watchlistedit-normal-submit}}".
+Je kunnen oek [[Special:Watchlist/raw|de roewe lieste bewarken]].',
 'watchlistedit-normal-submit'  => "Pagina's derof haolen",
 'watchlistedit-normal-done'    => "Der {{PLURAL:$1|is 1 pagina|bin $1 pagina's}} vort-edaon uut joew volglieste:",
 'watchlistedit-raw-title'      => 'Roewe volglieste bewarken',
 'watchlistedit-raw-legend'     => 'Roewe volglieste bewarken',
-'watchlistedit-raw-explain'    => "Hieronder staon pagina’s op joew volglieste. Je kunnen de lieste bewarken deur pagina’s deruut vort te haolen en derbie te te doon. 
+'watchlistedit-raw-explain'    => "Pagina's dee op joew volglieste staon, zie-j hieronder. Je kunnen de lieste bewarken deur pagina's deruut vort te haolen en derbie te te zetten. 
 Eén pagina per regel.
-A-j ree bin, klik dan op ‘Volglieste biewarken’.
-Je kunnen oek [[Special:Watchlist/edit|'t standard bewarkingsscharm gebruken]].",
+A-j klaor bin, klik dan op \"{{int:Watchlistedit-raw-submit}}\".
+Je kunnen oek [[Special:Watchlist/edit|'t standardbewarkingsscharm gebruken]].",
 'watchlistedit-raw-titles'     => 'Titels:',
 'watchlistedit-raw-submit'     => 'Volglieste biewarken',
 'watchlistedit-raw-done'       => 'Joew volglieste is bie-ewörken.',

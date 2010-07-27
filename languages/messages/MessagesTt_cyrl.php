@@ -866,7 +866,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'rightsnone'     => '(юк)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit'       => 'бу битне узгәртергә',
+'action-edit'       => 'бу битне үзгәртергә',
 'action-createpage' => 'сәхифәләрне язырга',
 'action-move'       => 'бу битне күчерү',
 
@@ -900,7 +900,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'rc-enhanced-hide'                  => 'Ваклыкларны яшерү',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Бәйләнешле үзгәртүәләр',
+'recentchangeslinked'          => 'Бәйләнешле үзгәртүләр',
 'recentchangeslinked-title'    => '"$1" битенә бәйләнешле үзгәртүләр',
 'recentchangeslinked-noresult' => 'Күрсәтелгән вакытта сылташкан битләрнең үзгәртелмәләре юк иде.',
 'recentchangeslinked-summary'  => "Бу күрсәтелгән бит белән сылталган (йә күрсәтелгән төркемгә керткән) битләрнең үзгәртелмәләре исемлеге.
@@ -1105,7 +1105,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'deletedarticle'        => '«[[$1]]» бетерелде',
 'dellogpage'            => 'Бетерү көндәлеге',
 'deletionlog'           => 'бетерү көндәлеге',
-'deletecomment'         => 'Бетерү сәбәбе:',
+'deletecomment'         => 'Сәбәп:',
 'deleteotherreason'     => 'Башка/өстәмә сәбәп:',
 'deletereasonotherlist' => 'Башка сәбәп',
 
