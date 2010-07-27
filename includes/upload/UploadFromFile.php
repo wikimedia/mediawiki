@@ -8,25 +8,24 @@
  * Implements regular file uploads
  */
 class UploadFromFile extends UploadBase {
-	protected $mWebUpload = null;
+	protected $mUpload = null;
 
 	function initializeFromRequest( &$request ) {
-		$this->mWebUpload = $request->getUpload( 'wpUploadFile' );		
-		
+		$upload = $request->getUpload( 'wpUploadFile' );		
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if( !$desiredDestName )
-			$desiredDestName = $this->mWebUpload->getName();
-		return $this->initializePathInfo(
-			$desiredDestName,
-			$this->mWebUpload->getTempName(),
-			$this->mWebUpload->getSize()
-		);
+			$desiredDestName = $upload->getName();
+			
+		return $this->initialize( $desiredDestName, $upload );
 	}
+	
 	/**
-	 * Entry point for upload from file.
+	 * Initialize from a filename and a WebRequestUpload
 	 */
-	function initialize( $name, $tempPath, $fileSize ) {
-		 return $this->initializePathInfo( $name, $tempPath, $fileSize );
+	function initialize( $name, $webRequestUpload ) {
+		$this->mUpload = $webRequestUpload;
+		return $this->initializePathInfo( $name, 
+			$this->mUpload->getTempName(), $this->mUpload->getSize() );
 	}
 	static function isValidRequest( $request ) {
 		# Allow all requests, even if no file is present, so that an error
@@ -38,7 +37,7 @@ class UploadFromFile extends UploadBase {
 		# Check for a post_max_size or upload_max_size overflow, so that a 
 		# proper error can be shown to the user
 		if ( is_null( $this->mTempPath ) || $this->isEmptyFile() ) {
-			if ( $this->mWebUpload->isIniSizeOverflow() ) {
+			if ( $this->mUpload->isIniSizeOverflow() ) {
 				global $wgMaxUploadSize;
 				return array( 
 					'status' => self::FILE_TOO_LARGE,
