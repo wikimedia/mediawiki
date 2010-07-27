@@ -436,11 +436,15 @@ $wgMaxUploadSize = 1024*1024*100; # 100MB
  * Useful if you want to use a shared repository by default
  * without disabling local uploads (use $wgEnableUploads = false for that)
  * e.g. $wgUploadNavigationUrl = 'http://commons.wikimedia.org/wiki/Special:Upload';
- *
- * This also affects images inline images that do not exist. In that case the URL will get
- * (?|&)wpDestFile=<filename> appended to it as appropriate.
  */
 $wgUploadNavigationUrl = false;
+
+/**
+ * Point the upload link for missing files to an external URL, as with
+ * $wgUploadNavigationUrl. The URL will get (?|&)wpDestFile=<filename> 
+ * appended to it as appropriate.
+ */
+$wgUploadMissingFileUrl = false;
 
 /**
  * Give a path here to use thumb.php for thumbnail generation on client request, instead of
