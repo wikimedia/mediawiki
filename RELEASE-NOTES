@@ -25,6 +25,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   same HTTP proxy as a logged-in user.
 * Fixed a minor cookie header parsing issue causing incorrect Cache-Control 
   headers to be sent.
+* Fixed an XSS vulnerability in profileinfo.php for installations with 
+  $wgEnableProfileInfo = true (false by default)
 
 == Changes since 1.15.3 ==
 
