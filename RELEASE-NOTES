@@ -46,6 +46,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   uploads in.
 * IBM DB2 database no longer uses the db specific $wgDBport_db2 variable but the
   normal $wgDBport.
+* The upload link for missing files can now be set separately from the 
+  navigation link with $wgUploadMissingFileUrl.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
