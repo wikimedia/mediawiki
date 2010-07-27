@@ -5053,7 +5053,6 @@ class Parser {
 	 * @return string
 	 */
 	public function getDefaultSort() {
-		global $wgCategoryPrefixedDefaultSortkey;
 		if ( $this->mDefaultSort !== false ) {
 			return $this->mDefaultSort;
 		} else {
