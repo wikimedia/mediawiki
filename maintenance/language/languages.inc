@@ -547,7 +547,9 @@ class languages {
 	public function getUntranslatedNamespaces( $code ) {
 		$this->loadFile( 'en' );
 		$this->loadFile( $code );
-		return array_flip( array_diff_key( $this->mNamespaceNames['en'], $this->mNamespaceNames[$code] ) );
+		$namespacesDiff = array_diff_key( $this->mNamespaceNames['en'], $this->mNamespaceNames[$code] );
+		if ( isset( $namespacesDiff[NS_MAIN] ) ) unset( $namespacesDiff[NS_MAIN] );
+		return $namespacesDiff;
 	}
 
 	/**
