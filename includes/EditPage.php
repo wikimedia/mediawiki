@@ -2022,7 +2022,7 @@ INPUTS
 	 *
 	 * @param $match Text which triggered one or more filters
 	 */
-	function spamPage( $match = false ) {
+	static function spamPage( $match = false ) {
 		global $wgOut, $wgTitle;
 
 		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
@@ -2031,8 +2031,9 @@ INPUTS
 
 		$wgOut->addHTML( '<div id="spamprotected">' );
 		$wgOut->addWikiMsg( 'spamprotectiontext' );
-		if ( $match )
+		if ( $match ) {
 			$wgOut->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
+		}
 		$wgOut->addHTML( '</div>' );
 
 		$wgOut->returnToMain( false, $wgTitle );
@@ -2603,7 +2604,7 @@ INPUTS
 				return false;
 
 			case self::AS_SPAM_ERROR:
-				$this->spamPage( $resultDetails['spam'] );
+				self::spamPage( $resultDetails['spam'] );
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
