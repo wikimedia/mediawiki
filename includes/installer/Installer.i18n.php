@@ -448,7 +448,8 @@ You have successfully installed MediaWiki.
 
 We have generated a <code>LocalSettings.php</code> file for you. It contains all your configuration.
 
-You will need to [$1 download] it and put it in the base of your wiki installation (the same directory as index.php)
+You will need to [$1 download] it and put it in the base of your wiki installation (the same directory as index.php). '''Note''': If you do not do this now,
+this generated configuration file will not available to you later if you exit the installation without downloading it.
 
 When that's done, you can [$2 '''enter your wiki''']", // $1 is the URL to LocalSettings download, $2 is link to wiki
 );
