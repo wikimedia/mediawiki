@@ -39,11 +39,20 @@ class DumpRenderer extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Take page text out of an XML dump file and render basic HTML out to files";
 		$this->addOption( 'output-dir', 'The directory to output the HTML files to', true, true );
+		$this->addOption( 'prefix', 'Prefix for the rendered files (defaults to wiki)', false, true );
+		$this->addOption( 'parser', 'Use an alternative parser class', false, true );
 	}
 
 	public function execute() {
 		$this->outputDirectory = $this->getOption( 'output-dir' );
+		$this->prefix = $this->getOption( 'prefix', 'wiki' );
 		$this->startTime = wfTime();
+
+		if ( $this->hasOption( 'parser' ) ) {
+			global $wgParserConf;
+			$wgParserConf['class'] = $this->getOption( 'parser' );
+			$this->prefix .= "-{$wgParserConf['class']}";
+		}
 
 		$source = new ImportStreamSource( $this->getStdin() );
 		$importer = new WikiImporter( $source );
@@ -51,7 +60,13 @@ class DumpRenderer extends Maintenance {
 		$importer->setRevisionCallback(
 			array( &$this, 'handleRevision' ) );
 
-		return $importer->doImport();
+		$importer->doImport();		
+		
+		$delta = wfTime() - $this->startTime;
+		$this->error( "Rendered {$this->count} pages in " . round($delta, 2) . " seconds " );
+		if ($delta > 0)
+			$this->error( round($this->count / $delta, 2) . " pages/sec" );
+		$this->error( "\n" );
 	}
 	
 	/**
@@ -59,6 +74,8 @@ class DumpRenderer extends Maintenance {
 	 * @param $rev Revision
 	 */
 	public function handleRevision( $rev ) {
+		global $wgParserConf;
+		
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->error( "Got bogus revision with null title!" );
@@ -69,15 +86,15 @@ class DumpRenderer extends Maintenance {
 		$this->count++;
 
 		$sanitized = rawurlencode( $display );
-		$filename = sprintf( "%s/wiki-%07d-%s.html",
+		$filename = sprintf( "%s/%s-%07d-%s.html",
 			$this->outputDirectory,
+			$this->prefix,
 			$this->count,
 			$sanitized );
 		$this->output( sprintf( "%s\n", $filename, $display ) );
 
-		// fixme (what?)
 		$user = new User();
-		$parser = new Parser();
+		$parser = new $wgParserConf['class']();
 		$options = ParserOptions::newFromUser( $user );
 
 		$output = $parser->parse( $rev->getText(), $title, $options );
