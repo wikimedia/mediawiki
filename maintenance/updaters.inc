@@ -947,7 +947,6 @@ function do_all_updates( $shared = false, $purge = true ) {
 		return;
 	}
 
-	global $wgDatabase;
 	$up = DatabaseUpdater::newForDb( $wgDatabase );
 	$up->doUpdates();
 
