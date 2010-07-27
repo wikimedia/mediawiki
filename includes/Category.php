@@ -25,10 +25,6 @@ class Category {
 	 * @return bool True on success, false on failure.
 	 */
 	protected function initialize() {
-		if ( $this->mName === null && $this->mTitle ) {
-			$this->mName = $this->mTitle->getDBkey();
-		}
-
 		if ( $this->mName === null && $this->mID === null ) {
 			throw new MWException( __METHOD__ . ' has both names and IDs null' );
 		} elseif ( $this->mID === null ) {
