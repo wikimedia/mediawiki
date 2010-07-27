@@ -1194,7 +1194,7 @@ Your IP address will be recorded in this page's edit history.",
 If you click Save again, your edit will be saved without one.",
 'missingcommenttext'               => 'Please enter a comment below.',
 'missingcommentheader'             => "'''Reminder:''' You have not provided a subject/headline for this comment.
-If you click Save again, your edit will be saved without one.",
+If you click \"{{int:savearticle}}\" again, your edit will be saved without one.",
 'summary-preview'                  => 'Summary preview:',
 'subject-preview'                  => 'Subject/headline preview:',
 'blockedtitle'                     => 'User is blocked',
@@ -1491,7 +1491,7 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-hide-text'         => 'Hide revision text',
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-hide-name'         => 'Hide action and target',
-'revdelete-hide-comment'      => 'Hide edit comment',
+'revdelete-hide-comment'      => 'Hide edit summary',
 'revdelete-hide-user'         => "Hide editor's username/IP address",
 'revdelete-hide-restricted'   => 'Suppress data from administrators as well as others',
 'revdelete-radio-same'        => '(do not change)',
@@ -1499,10 +1499,10 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Suppress data from administrators as well as others',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
-'revdelete-log'               => 'Reason for deletion:',
+'revdelete-log'               => 'Reason:',
 'revdelete-submit'            => 'Apply to selected {{PLURAL:$1|revision|revisions}}',
-'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
-'logdelete-logentry'          => 'changed event visibility of [[$1]]',
+'revdelete-logentry'          => 'changed revision visibility of "[[$1]]"',
+'logdelete-logentry'          => 'changed event visibility of "[[$1]]"',
 'revdelete-success'           => "'''Revision visibility successfully updated.'''",
 'revdelete-failure'           => "'''Revision visibility could not be updated:'''
 $1",
@@ -2253,7 +2253,7 @@ The description on its [$2 file description page] there is shown below.',
 'filedelete-legend'           => 'Delete file',
 'filedelete-intro'            => "You are about to delete the file '''[[Media:$1|$1]]''' along with all of its history.",
 'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
-'filedelete-comment'          => 'Reason for deletion:',
+'filedelete-comment'          => 'Reason:',
 'filedelete-submit'           => 'Delete',
 'filedelete-success'          => "'''$1''' has been deleted.",
 'filedelete-success-old'      => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
@@ -2652,9 +2652,9 @@ Feedback and further assistance:
 # Delete
 'deletepage'             => 'Delete page',
 'confirm'                => 'Confirm',
-'excontent'              => "content was: '$1'",
-'excontentauthor'        => "content was: '$1' (and the only contributor was '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'          => "content before blanking was: '$1'",
+'excontent'              => 'content was: "$1"',
+'excontentauthor'        => 'content was: "$1" (and the only contributor was "[[Special:Contributions/$2|$2]]")',
+'exbeforeblank'          => 'content before blanking was: "$1"',
 'exblank'                => 'page was empty',
 'delete-confirm'         => 'Delete "$1"',
 'delete-backlink'        => '← $1', # only translate this message to other languages if you have to change it
@@ -2672,7 +2672,7 @@ See $2 for a record of recent deletions.',
 'dellogpagetext'         => 'Below is a list of the most recent deletions.',
 'deletionlog'            => 'deletion log',
 'reverted'               => 'Reverted to earlier revision',
-'deletecomment'          => 'Reason for deletion:',
+'deletecomment'          => 'Reason:',
 'deleteotherreason'      => 'Other/additional reason:',
 'deletereasonotherlist'  => 'Other reason',
 'deletereason-dropdown'  => '*Common delete reasons
@@ -2704,7 +2704,7 @@ The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe
 changed back to last revision by $2.',
 'sessionfailure'    => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
-Please hit "back" and reload the page you came from, then try again.',
+Go back to the previous page, reload that page and then try again.',
 
 # Protect
 'protectlogpage'              => 'Protection log',
@@ -3461,7 +3461,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file type may contain malicious code.
-By executing it, your system may be compromised.<hr />",
+By executing it, your system may be compromised.",
 'imagemaxsize'         => "Image size limit:<br />''(for file description pages)''",
 'thumbsize'            => 'Thumbnail size:',
 'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
@@ -3966,9 +3966,9 @@ Please confirm that you really want to recreate this page.",
 
 # Auto-summaries
 'autosumm-blank'   => 'Blanked the page',
-'autosumm-replace' => "Replaced content with '$1'",
+'autosumm-replace' => 'Replaced content with "$1"',
 'autoredircomment' => 'Redirected page to [[$1]]',
-'autosumm-new'     => "Created page with '$1'",
+'autosumm-new'     => 'Created page with "$1"',
 
 # Autoblock whitelist
 'autoblock_whitelist' => 'AOL http://webmaster.info.aol.com/proxyinfo.html
