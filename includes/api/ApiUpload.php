@@ -54,72 +54,65 @@ class ApiUpload extends ApiBase {
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
 			'sessionkey', 'file', 'url' );
+		// And this one is needed
+		if ( !isset( $this->mParams['filename'] ) ) {
+			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
+		}
+
 
 		if ( $this->mParams['sessionkey'] ) {
-			/**
-			 * Upload stashed in a previous request
-			 */
-			// Check the session key
-			if ( !isset( $_SESSION[$this->mUpload->getSessionKey()][$this->mParams['sessionkey']] ) ) {
+			// Upload stashed in a previous request
+			$sessionData = $request->getSessionData( UploadBase::SESSION_KEYNAME );
+			if ( !UploadFromStash::isValidSessionKey( $this->mParams['sessionkey'], $sessionData ) ) {
 				$this->dieUsageMsg( array( 'invalid-session-key' ) );
 			}
 
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'],
 				$this->mParams['sessionkey'],
-				$_SESSION[$this->mUpload->getSessionKey()][$this->mParams['sessionkey']] );
-		} elseif ( isset( $this->mParams['filename'] ) ) {
-			/**
-			 * Upload from URL, etc.
-			 * Parameter filename is required
-			 */
-			if ( isset( $this->mParams['file'] ) ) {
-				$this->mUpload = new UploadFromFile();
-				$this->mUpload->initialize(
-					$this->mParams['filename'],
-					$request->getFileTempName( 'file' ),
-					$request->getFileSize( 'file' )
-				);
-			} elseif ( isset( $this->mParams['url'] ) ) {
-				// make sure upload by URL is enabled:
-				if ( !$wgAllowCopyUploads ) {
-					$this->dieUsageMsg( array( 'copyuploaddisabled' ) );
-				}
-
-				// make sure the current user can upload
-				if ( !$wgUser->isAllowed( 'upload_by_url' ) ) {
-					$this->dieUsageMsg( array( 'badaccess-groups' ) );
-				}
-
-				$this->mUpload = new UploadFromUrl;
-				$async = $this->mParams['asyncdownload'] ? 'async' : null;
-
-				$result = $this->mUpload->initialize( $this->mParams['filename'],
-						$this->mParams['url'],
-						$this->mParams['comment'],
-						$this->mParams['watchlist'],
-						$this->mParams['ignorewarnings'],
-						$async );
-
-				$this->checkPermissions( $wgUser );
-				if ( $async ) {
-					$this->getResult()->addValue( null,
-												  $this->getModuleName(),
-												  array( 'queued' => $result ) );
-					return;
-				}
-
-				$status = $this->mUpload->retrieveFileFromUrl();
-				if ( !$status->isGood() ) {
-					$this->getResult()->addValue( null,
-												  $this->getModuleName(),
-												  array( 'error' => $status ) );
-					return;
-				}
+				$sessionData[$this->mParams['sessionkey']] );
+			
+			
+		} elseif ( isset( $this->mParams['file'] ) ) {
+			$this->mUpload = new UploadFromFile();
+			$this->mUpload->initialize(
+				$this->mParams['filename'],
+				$request->getUpload( 'file' )
+			);	
+		} elseif ( isset( $this->mParams['url'] ) ) {
+			// Make sure upload by URL is enabled:
+			if ( !$wgAllowCopyUploads ) {
+				$this->dieUsageMsg( array( 'copyuploaddisabled' ) );
 			}
-		} else {
-			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
+
+			$this->mUpload = new UploadFromUrl;
+			$async = $this->mParams['asyncdownload'] ? 'async' : null;
+			$this->checkPermissions( $wgUser );
+
+			$result = $this->mUpload->initialize( 
+					$this->mParams['filename'],
+					$this->mParams['url'],
+					$this->mParams['comment'],
+					$this->mParams['watchlist'],
+					$this->mParams['ignorewarnings'],
+					$async );
+				
+			if ( $async ) {
+				$this->getResult()->addValue( null,
+											  $this->getModuleName(),
+											  array( 'queued' => $result ) );
+				return;
+			}
+
+			$status = $this->mUpload->retrieveFileFromUrl();
+			if ( !$status->isGood() ) {
+				$this->getResult()->addValue( null,
+											  $this->getModuleName(),
+											  array( 'error' => $status ) );
+				return;
+			}
 		}
+	
 
 		$this->checkPermissions( $wgUser );
 
