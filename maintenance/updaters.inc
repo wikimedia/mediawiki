@@ -760,7 +760,7 @@ function do_page_random_update() {
 }
 
 function do_templatelinks_update() {
-	global $wgDatabase, $wgLoadBalancer;
+	global $wgDatabase;
 	$fname = 'do_templatelinks_update';
 
 	if ( $wgDatabase->tableExists( 'templatelinks' ) ) {
@@ -770,7 +770,7 @@ function do_templatelinks_update() {
 	wfOut( "Creating templatelinks table...\n" );
 	$wgDatabase->sourceFile( archive( 'patch-templatelinks.sql' ) );
 	wfOut( "Populating...\n" );
-	if ( isset( $wgLoadBalancer ) && $wgLoadBalancer->getServerCount() > 1 ) {
+	if ( wfGetLB()->getServerCount() > 1 ) {
 		// Slow, replication-friendly update
 		$res = $wgDatabase->select( 'pagelinks', array( 'pl_from', 'pl_namespace', 'pl_title' ),
 			array( 'pl_namespace' => NS_TEMPLATE ), $fname );
