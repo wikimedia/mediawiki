@@ -27,6 +27,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   headers to be sent.
 * Fixed an XSS vulnerability in profileinfo.php for installations with 
   $wgEnableProfileInfo = true (false by default)
+* For backwards compatibility with extensions from 1.14.x or before, restored 
+  the original function ApiMain::requestWriteMode(). 
+* In API login "need token" responses, added the cookieprefix and sessionid 
+  fields, as in MediaWiki 1.16.x. This is an improvement to the CSRF fix 
+  introduced in 1.15.3.
 
 == Changes since 1.15.3 ==
 
