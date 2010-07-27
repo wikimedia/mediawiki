@@ -253,6 +253,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   page.
 * (bug 24517) LocalFile::newFromKey() and OldLocalFile::newFromKey() no longer
   throw fatal errors
+* (bug 23380) Uploaded files that are larger than allowed by PHP now show a
+  useful error message.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

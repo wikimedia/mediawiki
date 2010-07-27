@@ -590,23 +590,20 @@ class WebRequest {
 	 * @return string or NULL if no such file.
 	 */
 	public function getFileTempname( $key ) {
-		if( !isset( $_FILES[$key] ) ) {
-			return null;
-		}
-		return $_FILES[$key]['tmp_name'];
+		$file = new WebRequestUpload( $key );
+		return $file->getTempName();
 	}
 
 	/**
 	 * Return the size of the upload, or 0.
 	 *
+	 * @deprecated
 	 * @param $key String:
 	 * @return integer
 	 */
 	public function getFileSize( $key ) {
-		if( !isset( $_FILES[$key] ) ) {
-			return 0;
-		}
-		return $_FILES[$key]['size'];
+		$file = new WebRequestUpload( $key );
+		return $file->getSize();
 	}
 
 	/**
@@ -616,10 +613,8 @@ class WebRequest {
 	 * @return integer
 	 */
 	public function getUploadError( $key ) {
-		if( !isset( $_FILES[$key] ) || !isset( $_FILES[$key]['error'] ) ) {
-			return 0/*UPLOAD_ERR_OK*/;
-		}
-		return $_FILES[$key]['error'];
+		$file = new WebRequestUpload( $key );
+		return $file->getError();
 	}
 
 	/**
@@ -634,18 +629,18 @@ class WebRequest {
 	 * @return string or NULL if no such file.
 	 */
 	public function getFileName( $key ) {
-		global $wgContLang;
-		if( !isset( $_FILES[$key] ) ) {
-			return null;
-		}
-		$name = $_FILES[$key]['name'];
-
-		# Safari sends filenames in HTML-encoded Unicode form D...
-		# Horrid and evil! Let's try to make some kind of sense of it.
-		$name = Sanitizer::decodeCharReferences( $name );
-		$name = $wgContLang->normalize( $name );
-		wfDebug( "WebRequest::getFileName() '" . $_FILES[$key]['name'] . "' normalized to '$name'\n" );
-		return $name;
+		$file = new WebRequestUpload( $key );
+		return $file->getName();
+	}
+	
+	/**
+	 * Return a WebRequestUpload object corresponding to the key
+	 * 
+	 * @param @key string
+	 * @return WebRequestUpload
+	 */
+	public function getUpload( $key ) {
+		return new WebRequestUpload( $key );
 	}
 
 	/**
@@ -766,6 +761,96 @@ class WebRequest {
 		// Sort list
 		arsort( $langs, SORT_NUMERIC );
 		return $langs;
+	}
+}
+
+/**
+ * Object to access the $_FILES array
+ */
+class WebRequestUpload {
+	protected $doesExist;
+	protected $fileInfo;
+	
+	/**
+	 * Constructor. Should only be called by WebRequest
+	 * 
+	 * @param $key string Key in $_FILES array (name of form field)
+	 */
+	public function __construct( $key ) {
+		$this->doesExist = isset( $_FILES[$key] );
+		if ( $this->doesExist ) {
+			$this->fileInfo = $_FILES[$key];
+		}
+	}
+	
+	/**
+	 * Return whether a file with this name was uploaded.
+	 * 
+	 * @return bool
+	 */
+	public function exists() {
+		return $this->doesExist;
+	}
+	
+	/**
+	 * Return the original filename of the uploaded file
+	 * 
+	 * @return mixed Filename or null if non-existent
+	 */
+	public function getName() {
+		if ( !$this->exists() ) {
+			return null;
+		}
+		
+		global $wgContLang;
+		$name = $this->fileInfo['name'];
+
+		# Safari sends filenames in HTML-encoded Unicode form D...
+		# Horrid and evil! Let's try to make some kind of sense of it.
+		$name = Sanitizer::decodeCharReferences( $name );
+		$name = $wgContLang->normalize( $name );
+		wfDebug( __METHOD__ . ": {$this->fileInfo['name']} normalized to '$name'\n" );
+		return $name;
+	}
+	
+	/**
+	 * Return the file size of the uploaded file
+	 * 
+	 * @return int File size or zero if non-existent
+	 */
+	public function getSize() {
+		if ( !$this->exists() ) {
+			return 0;
+		}
+		
+		return $this->fileInfo['size'];
+	}
+	
+	/**
+	 * Return the path to the temporary file
+	 * 
+	 * @return mixed Path or null if non-existent
+	 */
+	public function getTempName() {
+		if ( !$this->exists() ) {
+			return null;
+		}
+		
+		return $this->fileInfo['tmp_name'];
+	}
+	
+	/**
+	 * Return the upload error. See link for explanation
+	 * http://www.php.net/manual/en/features.file-upload.errors.php
+	 * 
+	 * @return int One of the UPLOAD_ constants, 0 if non-existent
+	 */
+	public function getError() {
+		if ( !$this->exists() ) {
+			return 0; # UPLOAD_ERR_OK
+		}
+		
+		return $this->fileInfo['error'];
 	}
 }
 
