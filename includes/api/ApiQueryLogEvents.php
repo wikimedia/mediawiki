@@ -251,6 +251,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		global $wgLogTypes;
 		return array (

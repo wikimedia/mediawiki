@@ -122,6 +122,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'search' => null,

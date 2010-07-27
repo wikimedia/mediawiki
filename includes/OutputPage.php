@@ -733,7 +733,7 @@ class OutputPage {
 		$cvCookies = $this->getCacheVaryCookies();
 		foreach ( $cvCookies as $cookieName ) {
 			# Check for a simple string match, like the way squid does it
-			if ( strpos( $cookieHeader, $cookieName ) ) {
+			if ( strpos( $cookieHeader, $cookieName ) !== false ) {
 				wfDebug( __METHOD__.": found $cookieName\n" );
 				return true;
 			}

@@ -121,6 +121,10 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array(
 				'limit' => array(

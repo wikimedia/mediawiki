@@ -118,6 +118,10 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			$resultPageSet->populateFromTitles($titles);
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		global $wgRestrictionLevels;
 		return array (

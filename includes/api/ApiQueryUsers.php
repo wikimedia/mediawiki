@@ -138,6 +138,10 @@ if (!defined('MEDIAWIKI')) {
 		return $this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'user');
 	}
 
+	public function getCacheMode( $params ) {
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'prop' => array (

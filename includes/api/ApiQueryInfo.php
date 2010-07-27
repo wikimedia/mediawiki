@@ -499,6 +499,26 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
+	public function getCacheMode( $params ) {
+		$publicProps = array(
+			'protection',
+			'talkid',
+			'subjectid',
+			'url',
+		);
+		if ( !is_null( $params['prop'] ) ) {
+			foreach ( $params['prop'] as $prop ) {
+				if ( !in_array( $prop, $publicProps ) ) {
+					return 'private';
+				}
+			}
+		}
+		if ( !is_null( $params['token'] ) ) {
+			return 'private';
+		}
+		return 'public';
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'prop' => array (
@@ -509,7 +529,9 @@ class ApiQueryInfo extends ApiQueryBase {
 					'talkid',
 					'subjectid',
 					'url',
-					'readable',
+					'readable', # private
+					// If you add more properties here, please consider whether they 
+					// need to be added to getCacheMode()
 				)),
 			'token' => array (
 				ApiBase :: PARAM_DFLT => NULL,
