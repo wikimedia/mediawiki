@@ -260,7 +260,7 @@ class CategoryViewer {
 	}
 
 	function doCategoryQuery() {
-		global $wgExperimentalCategorySort, $wgRequest, $wgContLang;
+		global $wgExperimentalCategorySort, $wgContLang;
 
 		$dbr = wfGetDB( DB_SLAVE, 'category' );
 
