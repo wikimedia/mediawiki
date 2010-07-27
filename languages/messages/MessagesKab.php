@@ -593,7 +593,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'revdelete-hide-restricted'   => 'Eg icekkilen i inedbalen d yimdanen wiyaḍ',
 'revdelete-suppress'          => 'Kkes talɣut seg inedbalen d yimdanen wiyaḍ',
 'revdelete-unsuppress'        => 'Kkes icekkilen ɣef tisiwal i yuɣalen-d',
-'revdelete-log'               => 'Awennit n uɣmis:',
+'revdelete-log'               => 'Ayɣer',
 'revdelete-submit'            => 'Eg-it i tasiwelt tettwafren',
 'revdelete-logentry'          => 'asekkud n tasiwelt tettubeddel i  [[$1]]',
 'logdelete-logentry'          => 'asekkud n tamirt tettubeddel i [[$1]]',
@@ -694,7 +694,7 @@ i yesɛan akk awalen i banen-d).",
 'userrights-editusergroup' => 'Beddel iderman n wemseqdac',
 'saveusergroups'           => 'Smekti iderman n yimseqdacen',
 'userrights-groupsmember'  => 'Amaslad deg:',
-'userrights-reason'        => 'Ayɣer yettubeddel:',
+'userrights-reason'        => 'Ayɣer',
 
 # Groups
 'group'       => 'Adrum:',
@@ -1073,7 +1073,7 @@ Tadhelt:
 'dellogpagetext'  => 'Deg ukessar, yella wumuɣ n yimḥayin imaynuten.',
 'deletionlog'     => 'Aɣmis n umḥay',
 'reverted'        => 'Asuɣal i tasiwel taqdimt',
-'deletecomment'   => 'Ayɣer tebɣiḍ ad temḥuḍ',
+'deletecomment'   => 'Ayɣer',
 
 # Rollback
 'cantrollback'   => 'Ur yezmir ara ad yessuɣal; yella yiwen kan amseqdac iwumi ibeddel/yexleq asebter-agi.',
@@ -1376,7 +1376,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'nextdiff'     => 'Amgirred ameḍfir →',
 
 # Media information
-'mediawarning'         => "'''Aɣtal''': Waqila afaylu-yagi yesɛa angal aḥraymi, lukan a t-tesseqdceḍ yezmer ad ixesser aselkim inek.<hr />",
+'mediawarning'         => "'''Aɣtal''': Waqila afaylu-yagi yesɛa angal aḥraymi, lukan a t-tesseqdceḍ yezmer ad ixesser aselkim inek.",
 'imagemaxsize'         => 'Ḥedded tiddi n tugniwin deg yiglamen n tugniwim i:',
 'thumbsize'            => 'Tiddi n tugna tamecṭuḥt:',
 'file-info'            => '(tiddi n ufaylu: $1, anaw n MIME: $2)',

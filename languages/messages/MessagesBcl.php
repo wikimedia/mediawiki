@@ -738,7 +738,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'revdelete-hide-restricted'   => 'Ibali sa mga restriksyón na ini an mga sysops asin iba pa',
 'revdelete-suppress'          => 'Dai ipahilíng an mga datos sa mga sysops asin sa mga iba pa',
 'revdelete-unsuppress'        => 'Halîon an mga restriksyón sa mga ibinalík na pagpakarhay',
-'revdelete-log'               => 'Historial na komento:',
+'revdelete-log'               => 'Rason:',
 'revdelete-submit'            => 'Ibílang sa piniling pagpakarhay',
 'revdelete-logentry'          => 'pigribayan an bisibilidad nin panyayari kan $1 [[$1]]',
 'logdelete-logentry'          => 'Pigribayan an bisibilidad nin panyayari kan [[$1]]',
@@ -858,7 +858,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'userrights-editusergroup' => 'Hirahón an mga grupo kan parágamit',
 'saveusergroups'           => 'Itagama an mga Grupo nin Páragamit',
 'userrights-groupsmember'  => 'Myembro kan:',
-'userrights-reason'        => 'Rasón kan pagribay:',
+'userrights-reason'        => 'Rason:',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1031,7 +1031,7 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'filehist-dimensions'       => 'Mga dimensyón',
 'filehist-filesize'         => 'Sokol nin file',
 'filehist-comment'          => 'Komento',
-'imagelinks'                => 'Mga takod',
+'imagelinks'                => 'Mga takód',
 'linkstoimage'              => 'An mga minasunod na pahina nakatakod sa dokumentong ini:',
 'nolinkstoimage'            => 'Mayong mga pahinang nakatakod sa dokumentong ini.',
 'sharedupload'              => "Ining ''file'' sarong bakas na pagkarga asin pwede ser na gamiton kan ibang mga proyekto.",
@@ -1052,7 +1052,7 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'filedelete-legend'      => 'Parâon an dokumento',
 'filedelete-intro'       => "Pigpaparâ mo an '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'   => "Pigpaparâ mo an bersyon kan '''[[Media:$1|$1]]''' sa ngonyan [$4 $3, $2].",
-'filedelete-comment'     => 'Komento:',
+'filedelete-comment'     => 'Rason:',
 'filedelete-submit'      => 'Parâon',
 'filedelete-success'     => "An '''$1''' pinarâ na.",
 'filedelete-success-old' => '<span class="plainlinks">An bersyón kan \'\'\'[[Media:$1|$1]]\'\'\' na ngonyan na $3, pigparâ na an $2.</span>',
@@ -1324,7 +1324,7 @@ Hilingón tabì an $2 para mahiling an lista nin mga kaaagi pa sanang pagparà.'
 'dellogpagetext'        => 'Mahihiling sa babâ an lista kan mga pinakahuring pagparâ.',
 'deletionlog'           => 'Historial nin pagparâ',
 'reverted'              => 'Ibinalik sa mas naenot na pagpakarhay',
-'deletecomment'         => 'Rason sa pagparà',
+'deletecomment'         => 'Rason:',
 'deleteotherreason'     => 'Iba/dugang na rason:',
 'deletereasonotherlist' => 'Ibang rason',
 
@@ -1354,7 +1354,7 @@ Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, danga
 'protect-title'               => 'Pigpupuesta an nibel nin proteksión sa "$1"',
 'prot_1movedto2'              => '[[$1]] piglipat sa [[$2]]',
 'protect-legend'              => 'Kompermaron an proteksyon',
-'protectcomment'              => 'Komento:',
+'protectcomment'              => 'Rason:',
 'protectexpiry'               => 'Mápasó:',
 'protect_expiry_invalid'      => 'Dai pwede ining pahanon nin pagpasó.',
 'protect_expiry_old'          => 'Nakalihis na an panahon nin pagpasó.',
@@ -1822,11 +1822,11 @@ $1",
 'filedelete-archive-read-only'    => 'An direktoryong archibo na "$1" dai nasusuratan kan webserver.',
 
 # Browsing diffs
-'previousdiff' => '← Nakaaging kaibhán',
+'previousdiff' => '← Nakaáging kaibhán',
 'nextdiff'     => 'Sunod na kaibhán →',
 
 # Media information
-'mediawarning'         => "'''Patanid''': May ''malicious code'' sa ''file'' na ini, kun gigibohon ini pwede ser na maraot an saimong ''system''.<hr />",
+'mediawarning'         => "'''Patanid''': May ''malicious code'' sa ''file'' na ini, kun gigibohon ini pwede ser na maraot an saimong ''system''.",
 'imagemaxsize'         => 'Limitaran an mga ladawan sa mga páhinang deskripsyon kan ladawan sa:',
 'thumbsize'            => 'Sokol nin retratito:',
 'widthheightpage'      => '$1×$2, $3 mga pahina',
@@ -2042,12 +2042,5 @@ Pwede mo man [[Special:Watchlist/edit|gamiton an standard editor]].',
 
 # Special:Tags
 'tags-edit' => 'liwatón',
-
-# Add categories per AJAX
-'ajax-add-category-submit'   => 'idúgang',
-'ajax-confirm-save'          => 'Itagáma',
-'ajax-error-title'           => 'Raót',
-'ajax-remove-category-error' => 'Daí mahahálì iníng kategorya.
-Nangyayári iní pag an kategorya ipigdúgang sa pahina sa saróng templato.',
 
 );

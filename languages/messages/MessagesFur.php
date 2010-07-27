@@ -1181,7 +1181,7 @@ Cjale $2 par une liste des ultimis eliminazions.',
 'dellogpage'            => 'Regjistri des eliminazions',
 'deletionlog'           => 'regjistri eliminazions',
 'reverted'              => 'Tornât ae version precedente',
-'deletecomment'         => 'Reson pe eliminazion',
+'deletecomment'         => 'Reson:',
 'deleteotherreason'     => 'Altri motîf o motîf in plui:',
 'deletereasonotherlist' => 'Altri motîf',
 
@@ -1345,7 +1345,7 @@ Sielç par plasê un altri non.',
 '1movedto2_redir'         => 'al à movût [[$1]] a [[$2]] par mieç di un re-indreçament',
 'movelogpage'             => 'Regjistri des pagjinis movudis',
 'movelogpagetext'         => 'Ca sot e je une liste des pagjinis movudis.',
-'movereason'              => 'Reson',
+'movereason'              => 'Reson:',
 'revertmove'              => 'ripristine',
 'delete_and_move'         => 'Elimine e môf',
 'delete_and_move_confirm' => 'Sì, elimine la pagjine',
@@ -1677,16 +1677,5 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 # HTML forms
 'htmlform-submit'              => 'Invie',
 'htmlform-selectorother-other' => 'Altris',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Zonte categorie',
-'ajax-add-category-submit'     => 'Zonte',
-'ajax-confirm-title'           => "Conferme l'azion",
-'ajax-confirm-save'            => 'Salve',
-'ajax-add-category-summary'    => "Zonte la categorie ''$1''",
-'ajax-remove-category-summary' => "Gjave la categorie ''$1''",
-'ajax-confirm-actionsummary'   => 'Azion di cjapâ:',
-'ajax-error-title'             => 'Erôr',
-'ajax-error-dismiss'           => 'Va ben',
 
 );

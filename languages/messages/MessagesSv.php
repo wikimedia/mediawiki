@@ -327,7 +327,7 @@ $messages = array(
 'tog-nocache'                 => 'Stäng av cachning av sidor',
 'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när en sida på min bevakningslista ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
-'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
+'tog-enotifminoredits'        => 'Skicka mig e-post även för mindre ändringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-postmeddelanden om ändringar som skickas till andra',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
 'tog-oldsig'                  => 'Förhandsvisning av nuvarande signatur:',
@@ -1060,7 +1060,7 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'rev-deleted-comment'         => '(kommentar borttagen)',
 'rev-deleted-user'            => '(användarnamn borttaget)',
 'rev-deleted-event'           => '(loggåtgärd borttagen)',
-'rev-deleted-user-contribs'   => '[användarnamn eller IP adress borttagen - editering visas ej bland bidragen]',
+'rev-deleted-user-contribs'   => '[användarnamn eller IP-adress har tagits bort - redigeringen visas ej bland bidragen]',
 'rev-deleted-text-permission' => "Denna version av sidan har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-deleted-text-unhide'     => "Den här versionen av sidan har '''raderats'''.
@@ -1120,7 +1120,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'revdelete-radio-unset'       => 'Nej',
 'revdelete-suppress'          => 'Undanhåll data även från administratörer',
 'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
-'revdelete-log'               => 'Orsak till radering:',
+'revdelete-log'               => 'Anledning:',
 'revdelete-submit'            => 'Tillämpa på {{PLURAL:$1|vald version|valda versioner}}',
 'revdelete-logentry'          => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'          => 'ändrade synlighet för åtgärder i [[$1]]',
@@ -2184,7 +2184,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 'dellogpagetext'         => 'Nedan listas de senaste raderingarna.',
 'deletionlog'            => 'raderingsloggen',
 'reverted'               => 'Återgått till tidigare version',
-'deletecomment'          => 'Anledning till borttagning:',
+'deletecomment'          => 'Anledning:',
 'deleteotherreason'      => 'Annan/ytterligare anledning:',
 'deletereasonotherlist'  => 'Annan anledning',
 'deletereason-dropdown'  => '*Vanliga anledningar till radering
@@ -2874,7 +2874,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varning''': Den här filen kan innehålla elak kod.
-Om du kör den kan din dator skadas.<hr />",
+Om du kör den kan din dator skadas.",
 'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
@@ -3433,20 +3433,5 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'htmlform-submit'              => 'Spara',
 'htmlform-reset'               => 'Ogör ändringar',
 'htmlform-selectorother-other' => 'Andra',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Lägg till kategori',
-'ajax-add-category-submit'     => 'Lägg till',
-'ajax-confirm-title'           => 'Bekräfta handling',
-'ajax-confirm-prompt'          => 'Du kan skriva en redigeringssammanfattning nedanför.
-Klicka på "Spara" för att spara din redigering.',
-'ajax-confirm-save'            => 'Spara',
-'ajax-add-category-summary'    => 'Lägg till kategorin "$1"',
-'ajax-remove-category-summary' => 'Tag bort kategorin "$1"',
-'ajax-confirm-actionsummary'   => 'Handling att utföra:',
-'ajax-error-title'             => 'Fel',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Det var inte möjligt att ta bort den här kategorin.
-Oftast beror det på att kategorin har lagts till genom användande av en mall.',
 
 );

@@ -912,7 +912,7 @@ Atros admenistradors de {{SITENAME}} encara podrán acceder t'o conteniu amagato
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => "Sacar os datos d'os almenistradors igual como os d'a resta d'usuarios",
 'revdelete-unsuppress'        => "Sacar restriccions d'as versions restauradas",
-'revdelete-log'               => 'Razón ta o borrau:',
+'revdelete-log'               => 'Razón:',
 'revdelete-submit'            => 'Aplicar a {{PLURAL:$1|la versión trigata|las versions trigatas}}',
 'revdelete-logentry'          => "S'ha cambiato a visibilidat d'a versión de [[$1]]",
 'logdelete-logentry'          => "S'ha cambiato a visibilidat d'escaicimientos de [[$1]]",
@@ -1572,8 +1572,8 @@ Tamién puetz consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'sharedupload'              => 'Iste fichero provién de $1 y talment siga emplegato en atros prochectos.',
 'sharedupload-desc-there'   => "Iste fichero ye de $1 y puet estar emplegau por atros prochectos.
 Por favor mire-se a [$2 pachina de descripción d'o fichero] ta trobar más información.",
-'sharedupload-desc-here'    => "Iste ficchero ye de $1 y pueden emplegar-lo atros prochectos.
-Debaixo d'amuestra a descripción d'a suya [$2 pachina de descripción].",
+'sharedupload-desc-here'    => "Iste fichero ye de $1 y pueden emplegar-lo atros prochectos.
+Debaixo s'amuestra a descripción d'a suya [$2 pachina de descripción].",
 'filepage-nofile'           => 'No existe garra fichero con ixe nombre.',
 'filepage-nofile-link'      => 'No existe garra fichero con ixe nombre, pero puet [$1 puyar-lo].',
 'uploadnewversion-linktext' => "Cargar una nueva versión d'iste fichero",
@@ -1595,7 +1595,7 @@ Debaixo d'amuestra a descripción d'a suya [$2 pachina de descripción].",
 'filedelete-legend'           => 'Borrar fichero',
 'filedelete-intro'            => "Ye en momentos de borrar o fichero '''[[Media:$1|$1]]''' chunto con toda a suya historia.",
 'filedelete-intro-old'        => "Ye en momentos de borrar a versión de '''[[Media:$1|$1]]''' de [$4 $3, $2].",
-'filedelete-comment'          => 'Causa:',
+'filedelete-comment'          => 'Razón:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "S'ha borrato '''$1'''.",
 'filedelete-success-old'      => "S'ha borrato a versión de '''[[Media:$1|$1]]''' de $2 a las $3.",
@@ -1959,7 +1959,7 @@ Se veiga en $2 un rechistro d\'os borraus recients.',
 'dellogpagetext'         => "Contino se i amuestra una lista d'os borraus más recients.",
 'deletionlog'            => 'rechistro de borraus',
 'reverted'               => "S'ha tornato ta una versión anterior",
-'deletecomment'          => 'Razón ta borrar:',
+'deletecomment'          => 'Razón:',
 'deleteotherreason'      => 'Otras/Más razons:',
 'deletereasonotherlist'  => 'Atra razón',
 'deletereason-dropdown'  => "*Razons comuns de borrau
@@ -1974,8 +1974,8 @@ Se veiga en $2 un rechistro d\'os borraus recients.',
 'rollback'          => 'Revertir edicions',
 'rollback_short'    => 'Revertir',
 'rollbacklink'      => 'revertir',
-'rollbackfailed'    => "No s'ha puesto esfer",
-'cantrollback'      => "No se pueden desfer as edicions; o zaguer colaborador ye o solo autor d'iste articlo.",
+'rollbackfailed'    => "No s'ha puesto revertir",
+'cantrollback'      => "No se pueden revertir as edicions; o zaguer colaborador ye o solo autor d'iste articlo.",
 'alreadyrolled'     => "No se puet desfer a zaguer edición de [[:$1]] feita por [[User:$2|$2]] ([[User talk:$2|descusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u desfeito edicions en ixa pachina. 
 
 A zaguer edición d'a pachina la fació [[User:$3|$3]] ([[User talk:$3|descusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
@@ -2604,7 +2604,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Pare cuenta!''': Iste tipo de fichero puet contener codigo endino. 
-En executar-lo, podría meter en un contornillo a seguridat d'o suyo sistema.<hr />",
+En executar-lo, podría meter en un contornillo a seguridat d'o suyo sistema.",
 'imagemaxsize'         => "Limite de grandaria d'as imáchens:<br />''(ta pachinas de descripción de fichers)''",
 'thumbsize'            => "Midas d'a miniatura:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pachina|pachinas}}',
@@ -3149,19 +3149,5 @@ Escriba o nombre d\'o fichero sin o prefixo "{{ns:file}}:".',
 'htmlform-submit'              => 'Ninviar',
 'htmlform-reset'               => 'Desfer cambios',
 'htmlform-selectorother-other' => 'Atros',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Adhibir categoría',
-'ajax-add-category-submit'     => 'Adhibir',
-'ajax-confirm-title'           => 'Confirmar acción',
-'ajax-confirm-prompt'          => 'Puet furnir debaixo un resumen d\'edición.
-Punche en "Grabar" ta grabar a suya edición.',
-'ajax-confirm-save'            => 'Alzar',
-'ajax-add-category-summary'    => 'Adhibir categoría "$1"',
-'ajax-remove-category-summary' => 'Sacar a categoría "$1"',
-'ajax-confirm-actionsummary'   => 'Acción a prener:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => "D'alcuerdo",
-'ajax-remove-category-error'   => "No s'ha puesto eliminar ista categoría. Isto gosa pasar, por un regular, quan a categoría ha estau adhibida por una plantilla.",
 
 );

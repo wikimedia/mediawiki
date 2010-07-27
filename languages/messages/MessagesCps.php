@@ -709,7 +709,7 @@ Palihog kumpirmahon nga intensyon mo nga himu-on mini, nga na-intindihan mo ang 
 Tan-awon ang $2 para sa nalista sang mga bag-o lang napanas.',
 'deletedarticle'        => 'ginpanas ang "[[$1]]"',
 'dellogpage'            => 'Lista sang pagpanas',
-'deletecomment'         => 'Rason sa pagpanas:',
+'deletecomment'         => 'Rason:',
 'deleteotherreason'     => 'Iban pa/dugang nga rason:',
 'deletereasonotherlist' => 'Iban nga rason',
 
@@ -942,12 +942,5 @@ Ang iban ay pagataguon sang default.
 
 # Special:SpecialPages
 'specialpages' => 'Espesyal nga mga panid',
-
-# Add categories per AJAX
-'ajax-confirm-prompt'          => 'Pwede ka makahatag sang kabilugan sang tanan nga pag-ilis sa idalum.
-Pinduton ang "Save"  para i-save ang imo ginilis.',
-'ajax-confirm-save'            => 'I-save',
-'ajax-add-category-summary'    => 'Dugangan sang kategorya nga "$1"',
-'ajax-remove-category-summary' => 'Kwa-on ang kategorya nga  "$1"',
 
 );

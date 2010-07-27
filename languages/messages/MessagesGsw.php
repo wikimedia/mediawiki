@@ -927,7 +927,7 @@ As Ammann (Administrator) chasch dää Unterschid bschaue; villicht het s Detail
 'revdelete-radio-unset'       => 'Nei',
 'revdelete-suppress'          => 'Grund vu dr Leschig au vor dr Ammanne versteckle',
 'revdelete-unsuppress'        => 'Yyschränkige fir di widerhergstellte Versione ufhebe',
-'revdelete-log'               => 'Leschgrund:',
+'revdelete-log'               => 'Grund:',
 'revdelete-submit'            => 'Uf {{PLURAL:$1|di uusgwehlt Version|usgwehlti Versione}} aawände',
 'revdelete-logentry'          => 'het d Versionsaasicht fir „[[$1]]“ gänderet',
 'logdelete-logentry'          => 'het d Sichtbarkeit fir „[[$1]]“ gänderet',
@@ -1965,7 +1965,7 @@ Im $2 het s e Lischt vu dr letschte Leschige.',
 'dellogpagetext'         => 'Des isch s Logbuech vu dr gleschte Syte un Dateie.',
 'deletionlog'            => 'Lösch-Logbuech',
 'reverted'               => 'Uf e alti Version zruckgsetzt',
-'deletecomment'          => 'Löschigsgrund',
+'deletecomment'          => 'Grund:',
 'deleteotherreason'      => 'Andere/zuesätzleche Grund:',
 'deletereasonotherlist'  => 'Andere Grund',
 'deletereason-dropdown'  => '* Allgmeini Leschgrind
@@ -2158,7 +2158,7 @@ Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr 
 'ipaddress'                       => 'IP-Adräss oder Benutzername:',
 'ipadressorusername'              => 'IP-Adräss oder Benutzername:',
 'ipbexpiry'                       => 'Sperrduur:',
-'ipbreason'                       => 'Begrindig:',
+'ipbreason'                       => 'Grund:',
 'ipbreasonotherlist'              => 'Anderi Begrindig',
 'ipbreason-dropdown'              => '* Allgmeini Sperrgrind
 ** Lesche vu Syte
@@ -2319,7 +2319,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'movesubpage'                  => '{{PLURAL:$1|Untersyte|Untersyte}}',
 'movesubpagetext'              => 'Die Syte het $1 {{PLURAL:$1|Untersyte|Untersyte}}.',
 'movenosubpage'                => 'Die Syte het kei Untersyte.',
-'movereason'                   => 'Grund',
+'movereason'                   => 'Grund:',
 'revertmove'                   => 'Zrugg verschiebe',
 'delete_and_move'              => 'Lösche un Verschiebe',
 'delete_and_move_text'         => '== D Ziilsyte isch scho vorhande, lösche?==
@@ -2590,7 +2590,7 @@ $1',
 'nextdiff'     => 'Nächschti Änderig →',
 
 # Media information
-'mediawarning'         => "'''Warnig:''' In däre Art Datei chennt s e beswillige Programmcode din ha. Wänn du die Datei uusfiersch, cha s syy, ass Dyy Syschtem bschädigt wird.<hr />",
+'mediawarning'         => "'''Warnig:''' In däre Art Datei chennt s e beswillige Programmcode din ha. Wänn du die Datei uusfiersch, cha s syy, ass Dyy Syschtem bschädigt wird.",
 'imagemaxsize'         => "Maximali Gressi vu Bilder :<br />'' (uf Bildbschrybigs-Syte)''",
 'thumbsize'            => 'Bildvorschou-Gröössi:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Syte|$3 Syte}}',
@@ -3140,19 +3140,5 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'htmlform-submit'              => 'Ibertrage',
 'htmlform-reset'               => 'Änderige ruckgängig mache',
 'htmlform-selectorother-other' => 'Anderi',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategorii zuefiege',
-'ajax-add-category-submit'     => 'Zuefiege',
-'ajax-confirm-title'           => 'Aktion bstetige',
-'ajax-confirm-prompt'          => 'Du chasch unte ne Zämmefassig yygee.
-Druck uf „Spychere“ go d Bearbeitig spychere.',
-'ajax-confirm-save'            => 'Spychere',
-'ajax-add-category-summary'    => 'Kategorii „$1“ zuefiege',
-'ajax-remove-category-summary' => 'Kategorii „$1“ uuseneh',
-'ajax-confirm-actionsummary'   => 'Aktion, wu soll uusgfiert wäre:',
-'ajax-error-title'             => 'Fähler',
-'ajax-error-dismiss'           => 'In Ornig',
-'ajax-remove-category-error'   => 'S isch nit megli gsi, die Kategorii uusezneh. Normalerwys git s des, wänn d Kategorii iber e Vorlag yybunden isch.',
 
 );

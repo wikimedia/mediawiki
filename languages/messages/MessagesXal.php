@@ -311,7 +311,7 @@ $1',
 'edithelppage'         => 'Help:Чикллһн',
 'helppage'             => 'Help:Һарг',
 'mainpage'             => 'Нүр халх',
-'mainpage-description' => 'Нүүр халх',
+'mainpage-description' => 'Нүр халх',
 'policy-url'           => 'Project:Бодлһн',
 'portal'               => 'Бүрдәцин хург',
 'portal-url'           => 'Project:Бүрдәцин хург',
@@ -955,7 +955,7 @@ e-mail\'ар $PAGEEDITOR_EMAIL
 $2 шидрә һарһлһна төлә хәләтн.',
 'deletedarticle'        => '«[[$1]]» халхиг һарһв',
 'dellogpage'            => 'Һарһллһна сеткүл',
-'deletecomment'         => 'Һарһллһна учр:',
+'deletecomment'         => 'Учр:',
 'deleteotherreason'     => 'Талдан аль дәкәд учр:',
 'deletereasonotherlist' => 'Талдан учр',
 
@@ -1303,12 +1303,5 @@ $2 шидрә һарһлһна төлә хәләтн.',
 # HTML forms
 'htmlform-reset'               => 'Сольлһиг уга кех',
 'htmlform-selectorother-other' => 'Талдан',
-
-# Add categories per AJAX
-'ajax-add-category'        => 'Әәшлиг немх',
-'ajax-add-category-submit' => 'Немх',
-'ajax-confirm-save'        => 'Хадһлх',
-'ajax-error-title'         => 'Эндү',
-'ajax-error-dismiss'       => 'Тиим',
 
 );

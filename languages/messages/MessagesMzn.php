@@ -89,6 +89,36 @@ $messages = array(
 'tog-editondblclick'          => 'دچی ین ولگون با دتا کلیک (نیازمند جاوااسکریپت)',
 'tog-editsection'             => 'به کار دمبدائن تیکه ئون دچی ین از طریق پیوندون [ویرایش]',
 'tog-editsectiononrightclick' => 'به کار دمبدائن دچیه‌ن قسمت‌ئون با راست کیلیک<br />عناوین قسمت‌ئون ِرو (جاوااسکریپت)',
+'tog-showtoc'                 => 'نیمایش محتوا<br />(برای مقاله‌ئون با بیشته از ۳ سرفصل)',
+'tog-watchcreations'          => 'ایضافه بین صفحه‌ئونی که من دِرِس هاکردمه به پیگیری‌ئون ِرج.',
+'tog-watchdefault'            => 'اضافه هاکردن صفحه‌هایی که چیمبه به منه پیگری ِرج',
+'tog-watchmoves'              => 'صفحه‌ئونی که کشمبه ره منه پِگیری ِرج دله بنویس',
+'tog-watchdeletion'           => 'اضافه هاکردن صفحه‌هایی که پاک کامبه به منه پیگری ِرج',
+'tog-minordefault'            => 'همه صفحه‌ئون دچیه ره جزئی پیش‌گامون دار',
+'tog-previewontop'            => 'نیمایش پیش‌نیمایش قبل از ویرایش ِجعبه(نه قبل از وه).',
+'tog-previewonfirst'          => 'پیش نیمایش زمون اولین دچی‌ین',
+'tog-nocache'                 => 'حافظه نهانی صفحه ره خنثی هاکن',
+'tog-enotifwatchlistpages'    => 'اگه منه پگری‌ئون ره تغییر هدانه مسّه ایمیل بزن',
+'tog-enotifusertalkpages'     => 'هر گادر منه کاروری صفخه‌ی گپ دله ات چی بنویشنه مه سّه ایمیل بزن',
+'tog-enotifminoredits'        => 'هرگادر صحه ها دله اتا خورد چی ره عوض هکردنه مه وسّه ایمیل بزن',
+'tog-enotifrevealaddr'        => 'منه ایمیل نامه ئون ایطیلاع رسونی دله دواشه',
+'tog-shownumberswatching'     => 'نشون هدائن کارورن دمبال کوننده',
+'tog-oldsig'                  => 'پیش نیمایش ایمضای موجود:',
+'tog-fancysig'                => 'ایمضا ره ویکی متن نظر بیرین (بدون لینک هایتن)',
+'tog-externaleditor'          => 'به شیکل پیش فرض خارجی ویرایشگرون جه ایستیفاده بواشه',
+'tog-externaldiff'            => 'ایستیفاده از تفاوت‌گیر جه (diff) خارجی به‌طور پیش‌فرض.',
+'tog-uselivepreview'          => 'ایستیفاده از پیش نیمایش زنده (جاوا اسکریپ) (آزمایشی)',
+'tog-forceeditsummary'        => 'زمونی که خولاصه دچی‌ین ره ننویشتمه مه ره بائو',
+'tog-watchlisthideown'        => 'دپوشنی‌ین کارای من پیگریای ِفهرست دله',
+'tog-watchlisthidebots'       => 'دپوشنی‌ین کارای روبات‌ئون منه پیگیرایای ِفهرست دله',
+'tog-watchlisthideminor'      => 'خورد عوض بیی ها ره منه پیگیری ِرج دله نشون ندده',
+'tog-watchlisthideliu'        => 'کارای کارورنی که حیساب دارنه ره دپوشِن',
+'tog-watchlisthideanons'      => 'کارای کارورونی که حیساب ندارنه ره منه پیگری ِرج دله دپوشن.',
+'tog-watchlisthidepatrolled'  => 'دپوشنی‎ین دچیه‌ئون گشت بخارد منه پیگری ِفهرست دله جه',
+'tog-ccmeonemails'            => 'برسنی‌ین رونوشت نامه‌ئونی که به کارورون رسنمبه مه وسه هم برسنی‌یه بواشه.',
+'tog-diffonly'                => 'محتوای صفحه ، تفاوت بِن نیمایش هدائه نواشه.',
+'tog-showhiddencats'          => 'دپوشونیه رج‌ئون ره نشون هاده',
+'tog-norollbackdiff'          => 'بعد واگردونی تفاوت ره نشون نده',
 
 'underline-default' => 'مه چأرخ‌گأر ده‌لخاء',
 
@@ -99,14 +129,14 @@ $messages = array(
 'editfont-serif'     => 'فونت Serif',
 
 # Dates
-'sunday'        => 'یه‌شه‌مبه',
-'monday'        => 'ده‌شه‌مبه',
-'tuesday'       => 'سه‌شه‌مبه',
-'wednesday'     => 'چؤرشه‌مبه',
-'thursday'      => 'په‌نچ‌شه‌مبه',
+'sunday'        => 'یه‌شنبه',
+'monday'        => 'دِشنبه',
+'tuesday'       => 'سه‌شنبه',
+'wednesday'     => 'چارشنبه',
+'thursday'      => 'پنج‌شنبه',
 'friday'        => 'جومه',
-'saturday'      => 'شه‌مبه',
-'sun'           => 'یه‌شه‌مه',
+'saturday'      => 'شنبه',
+'sun'           => 'یه‌شنبه',
 'mon'           => 'ده‌شه‌مه',
 'tue'           => 'سه‌شه‌مه',
 'wed'           => 'چؤرشه‌مه',
@@ -156,6 +186,7 @@ $messages = array(
 'subcategories'          => 'جیر رج‌ئون',
 'category-empty'         => 'ای رج ره ده‌له ئه‌سا هیچی دأنیه',
 'category-article-count' => '{{PLURAL:$2|ای رج هأمـینـتا وألـگ ره داره‌نه.|ای  {{PLURAL:$1ولگ|ولگ|$1 ئون}}، $2 جه ایجه دأره‌نه.}}',
+'listingcontinuesabbrev' => '(دمباله)',
 
 'about'         => 'ده‌لـه‌واره',
 'newwindow'     => '(ته‌رنه‌ روجین ده‌له‌ وا بونه)',
@@ -163,19 +194,32 @@ $messages = array(
 'moredotdotdot' => 'ویـشـتـه...',
 'mypage'        => 'مه ولگ',
 'mytalk'        => 'مه گپ',
+'anontalk'      => 'گپ بزوئن اینتا آی‌پی وسّه',
 'navigation'    => 'چـأرخـه‌سـه‌ن',
+'and'           => '&#32;و',
 
 # Cologne Blue skin
+'qbfind'         => 'پیدا هکردن',
 'qbbrowse'       => 'چأرخه‌سه‌ن',
 'qbedit'         => 'دأچیه‌ن',
 'qbpageoptions'  => 'ای وألـگ',
+'qbpageinfo'     => 'بافت',
 'qbmyoptions'    => 'مـه وألـگ‌ئون',
 'qbspecialpages' => 'شا ولگ ئون',
+'faq'            => 'معمولی سوالا',
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
+'vector-action-addsection'  => 'ایضافه هکردن عونوان',
+'vector-action-delete'      => 'پاک هاکردن',
+'vector-action-move'        => 'دکش هاکردن',
+'vector-action-protect'     => 'موحافظت',
+'vector-action-undelete'    => 'دباره بنویشته بیّن',
+'vector-action-unprotect'   => 'موحافظت نکاردن',
 'vector-namespace-category' => 'رج',
 'vector-namespace-help'     => 'دأسـگـیری وألـگ',
+'vector-namespace-image'    => 'پرونده',
+'vector-namespace-main'     => 'صحفه',
 'vector-view-history'       => 'چـه‌کوت ئـه‌شـه‌نـه‌ن',
 'vector-view-view'          => 'بأخـونـه‌سـه‌ن',
 'vector-view-viewsource'    => 'چـه‌شــمـه ئـه‌شـه‌نـه‌ن',
@@ -199,6 +243,7 @@ $messages = array(
 'create-this-page' => 'ای وألگ ره وا هأکه‌نین',
 'delete'           => 'وربـأئـیـتـه‌ن',
 'protect_change'   => 'ده‌گـه‌ره‌سـه‌ن',
+'unprotect'        => 'دیگه محافظت نکان',
 'newpage'          => 'نـه ولـگ',
 'talkpage'         => 'ای ولـگ پـألـی گـب بـأزوئـه‌ن',
 'talkpagelinktext' => 'گپ',
@@ -224,14 +269,22 @@ $2، $1',
 'copyrightpage'        => '{{ns:project}}:کـوپـی‌راسـت‌ئون',
 'currentevents'        => 'ئه‌سایی دأکه‌ته‌ئون',
 'disclaimers'          => 'خواهان فه‌رو نیشته‌نه‌ن',
-'disclaimerpage'       => 'Project:General_disclaimer',
+'disclaimerpage'       => 'Project:تکذیب‌نومهٔ همه‌گونی',
 'edithelp'             => 'دأچـیه‌ن ره رانـه‌ما',
-'edithelppage'         => 'رانه‌ما:دأچیه‌ن',
+'edithelppage'         => 'رونما:دَچی‌ین',
+'helppage'             => 'Help:رونما',
 'mainpage'             => 'گت ولگ',
 'mainpage-description' => 'گت ولگ',
+'policy-url'           => 'Project:سیاستون',
 'portal'               => 'مازرون دأروازه',
+'portal-url'           => 'Project:کارورون لوش',
 'privacy'              => 'کاری رول',
 'privacypage'          => 'Project:Privacy_policy',
+
+'badaccess'        => 'نتوندی هچی ره هارشی',
+'badaccess-group0' => 'شما این کار ره نتونی هاکنین.',
+
+'versionrequired' => 'نوسخهٔ $1 نرم‌افزار مدیاویکی جه لازم هسّه',
 
 'ok'                      => 'خا',
 'retrievedfrom'           => '"$1" جـه بأئـیـتـه بـأیـه',
@@ -248,6 +301,12 @@ $2، $1',
 'toc'                     => 'بـه‌تـیـم',
 'showtoc'                 => 'نه‌شون  هـاده',
 'hidetoc'                 => 'فه‌رو  بـور',
+'thisisdeleted'           => 'نیمایش یا دِباره دربیاردنِ $1؟',
+'viewdeleted'             => 'نیمایش $1؟',
+'restorelink'             => '{{PLURAL:$1|$1|$1}} دچی‌ین پاک بیّه',
+'feedlinks'               => 'خَوِرخون:',
+'feed-invalid'            => 'خراب بیّن آبونمان ِخَوِرخون',
+'feed-unavailable'        => 'خَوِرخونا قابل ایستیفاده نینه',
 'site-rss-feed'           => '$1 ره  آراس‌اس خه‌راک',
 'site-atom-feed'          => '$1 ره اتم خه‌راک',
 'page-rss-feed'           => '"$1" RSS خه‌راک',
@@ -255,14 +314,30 @@ $2، $1',
 'red-link-title'          => '$1 (ای ولـگ دأنـیـه)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'ولـگ',
-'nstab-user'     => 'کارور گپ',
-'nstab-special'  => 'شـا ولـگ',
-'nstab-image'    => 'فایل',
-'nstab-template' => 'شابلون',
-'nstab-category' => 'رج',
+'nstab-main'      => 'ولـگ',
+'nstab-user'      => 'کارور گپ',
+'nstab-media'     => 'رسانه',
+'nstab-special'   => 'شـاء ولـگ',
+'nstab-project'   => 'پروژه',
+'nstab-image'     => 'فایل',
+'nstab-mediawiki' => 'پیغوم',
+'nstab-template'  => 'شابلون',
+'nstab-help'      => 'رونما',
+'nstab-category'  => 'رج',
+
+# Main script and global functions
+'nosuchaction'      => 'نونه اینتی هاکردن',
+'nosuchactiontext'  => 'اینتا کار اینترنتی ِنشونی دله غیرموجازه
+شما احتمالا اینترنتی آدرس ره ایشتباه بنویشنی یا لینک ایشتبا ره کلیک هاکردنی
+همینتی ممکن هسته ایرادی {{SITENAME}} دله داره.',
+'nosuchspecialpage' => 'اینتا شاء ولگ وجود ندانه',
+'nospecialpagetext' => '<strong>شما اتا غیرموجاز صفحه ره بخاسنی.</strong>
+
+اینان شاء صفحه‌ئون هستنه: [[Special:SpecialPages|{{int:specialpages}}]]',
 
 # General errors
+'error'         => 'خِطا',
+'databaseerror' => 'خطای داده‌ئون پایگا',
 'badtitle'      => 'نخش عونوان',
 'viewsource'    => 'چـه‌شـمـه بـأویـنـه‌ن',
 'viewsourcefor' => '$1 ره وسه',
@@ -271,7 +346,9 @@ $2، $1',
 'welcomecreation'         => '<h2>$1، خـه‌ش بـه‌مـونـی!</h2><p>شه‌مه حساب/ئـه‌کانت وا بأیه! یاد نه‌کانه‌نین که شه خواسته‌نی ئون ره {{SITENAME}} ده‌له ده‌رست هاکنین.',
 'yourname'                => 'کاروری‌نوم:',
 'yourpassword'            => 'پـأس‌واجـه',
+'yourpasswordagain'       => 'پسورد ره دِباره بنویس',
 'remembermypassword'      => 'مـه کاروری نوم ئو پـأس‌واجه ره، ای کـامـپـیـوتـه‌ر ده‌لـه وه‌سـه، شـه یـاد بیـه‌ل',
+'yourdomainname'          => 'شمه کاروری نوم',
 'login'                   => 'ده‌لـه بـوری',
 'nav-login-createaccount' => 'ده‌لـه‌بـوری / ئـه‌کـانـت بـأئـیـتـه‌ن',
 'loginprompt'             => '{{SITENAME}} ره ده‌لـه بیـه‌موئـه‌ن وه‌سه، وه‌نـه cookieئون  کـارسأر بـوئـه‌ن.',
@@ -316,6 +393,20 @@ $2، $1',
 'savearticle'                      => 'جـا دأکه‌ته‌ن ولـگ',
 'preview'                          => 'پیش نه‌مایه‌ش',
 'showpreview'                      => 'پیش‌هاره‌شا نه‌شون هـه‌دائه‌ن',
+'blockedtext'                      => "'''شمه آی پی دوسته بیّه.'''
+
+این کار ره $1 انجام هدائه.
+اینت وسه که ته این کار ره هکردی: $2''
+
+* شروع دوسته بین: $8
+* زمون پایان این دوسته گی: $6
+* کاوری که خاستمی ونه آی پی ره دوندیم: $7
+
+شما بتونی با $1 با اتا از [[{{MediaWiki:Grouppage-sysop}}|مدیر|مدیرا]] تماس بیرین و ونجه گپ بزنین.
+
+ شمه یاد دواشه که اگه شه ایمیل ره ننوشت بائین نتونی مدیرا وسه ایمیل بزنین اگه ایمیل ره ننوشنی ترجیحات دله بنویسین[[Special:Preferences|اینجه ایمیل ره بنویس]]
+نشونی آی‌پی شما $3 و شماره قطع دسترسی شما $5 هسته. حتما این دِتا شوماره ره گپ بزوئن دله به کار بورین.",
+'blockednoreason'                  => 'معلوم نی‌یه چچی وسه اینتی بیّه!',
 'whitelistedittitle'               => 'جور هکاردن ره وسه ونه سیستم ره دله ئه نین',
 'newarticle'                       => '(ته‌رنه)',
 'blocked-notice-logextract'        => 'دسترسی اینتا کارور الآن دوستوئه.
@@ -328,7 +419,18 @@ $2، $1',
 أگـه نـه‌خـانـه‌نـی شـه‌مـه بـأنـویـشـتـه‌ئون ایـجـه دسـت بـأخـوره ئو أتـا جـا دیـگـه پـخـش بـأوه، بـه‌تـه‌ر هـأسـه کـه وه‌شـون ره ایـجـه نـیـه‌لـیـن.',
 'templatesused'                    => 'شـابـلـون‌ئـونی که ای ولـگ ده‌له کـار بـورده‌نـه:',
 'templatesusedpreview'             => 'شـابـلـون‌ئونی کی ای پـیـش‌نـه‌مـایـه‌ش ده‌لـه کـار بـورده‌نـه:',
-'permissionserrorstext-withaction' => 'شه‌ما نه‌تونده‌نی $2 هاکه‌نی، اینتا وه‌سه که:',
+'permissionserrorstext-withaction' => 'ته اجازهٔ $2 ره به {{PLURAL:$1|دلیل|دلایل}} رو به رو ندانی:',
+'recreate-moveddeleted-warn'       => "'''هشدار: ته دری اتا صفحه ره نویسنی که قبلا پاک بیّه.'''
+
+شه فکر هاکن که اینتا کار که دری کانده درسته یا نا؟
+اینجه توندی پاک بیی صفحه ره هارشی:",
+'moveddeleted-notice'              => 'اینتا صفحه پاک بی بی‌یه
+اینجه بتوندی قبلی صفحه که پاک بیّه ره هارشی',
+'log-fulllog'                      => 'بدی‌ین سیاهه کامل',
+'edit-gone-missing'                => '.شما نتوندی صفحه ره دباره هارشی
+احتمالا صفحه پاک بیه.',
+'edit-conflict'                    => 'دِ نفر با هم درنه نویسنه.
+اتا ته هستی.',
 
 # History pages
 'revisionasof'     => 'دأچـیـه‌نی کـه  $1  ده‌لـه جـا دأکـه‌تـه',
@@ -394,8 +496,19 @@ $2، $1',
 
 'grouppage-sysop' => '{{ns:project}}:کـاره‌ئون',
 
+# User rights log
+'rightslog'     => 'سیاهه اختیارای کاروری',
+'rightslogtext' => 'اینتا سیاهه تغییرای اختیارای کاروری هسته.',
+'rightsnone'    => '(هچّی)',
+
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'ای ولـگ ره دأچـیـه‌ن',
+'action-edit'               => 'ای ولـگ ره دأچـیـه‌ن',
+'action-createtalk'         => 'دِرِس هاکردن اتا صفحه که ونه دله بنشنه گپ بزوئن',
+'action-createaccount'      => 'درِس هکردن این حساب کاروری',
+'action-minoredit'          => 'علامت بزوئن اینتا دچی‌ین به عونوان جوزئی',
+'action-move'               => 'دکشی‌ین اینتا صفحه',
+'action-move-subpages'      => 'دکشی‌ین اینتا صفحه و ونه زیر رج‌ئون',
+'action-move-rootuserpages' => 'دکشی‌ین صفحه‌ئون کاروری سرچله',
 
 # Recent changes
 'recentchanges'   => 'تازه ده‌گـه‌ره‌سـه‌ئون',
@@ -486,18 +599,23 @@ $2، $1',
 'listgrouprights-members' => '(کارورئون ره لیست)',
 
 # E-mail user
-'emailuser' => 'ئـه‌لـه‌کـتـه‌ریـکـی‌ نـومـه ای کـارور وه‌سه',
-'emailpage' => 'ئـی-مه‌یـل ای کـارور وه‌سه',
+'mailnologintext' => 'برای برسنی‌ین پوست الکترونیکی به کارورون دیگه ونه [[Special:UserLogin|بورین سامانه دله]] و نشونی پوست الکترونیکی معتبری تو [[Special:Preferences|ترجیحات]] خادت ره داشته بایی.',
+'emailuser'       => 'ئـه‌لـه‌کـتـه‌ریـکـی‌ نـومـه ای کـارور وه‌سه',
+'emailpage'       => 'ئـی-مه‌یـل ای کـارور وه‌سه',
 
 # Watchlist
-'watchlist'       => 'مـه ده‌مـبـالـه‌ئون ره لـیـسـت',
-'mywatchlist'     => 'مـه ده‌مـبـال‌هـه‌کـاردن لـیـسـت',
-'watchnologin'    => 'سیستم ره دله نی ئه موئین',
-'watch'           => 'ده‌مـبال هـاکه‌ردن',
-'watchthispage'   => 'ای ولـگ ره ده‌مـبـال هـه‌کـارده‌ن',
-'unwatch'         => 'ده‌مـبـال نـه‌کـارده‌ن',
-'unwatchthispage' => 'دیـگـه ای وألـگ ده‌مـبـال نـه‌کـارده‌ن',
-'wlnote'          => "ایجه {{PLURAL:$1|پایانی دأچیه‌ن|پایانی '''$1''' دأچیه‌ن‌ئونی}} هأسه که ای $2 ساعت ده‌له دأکه‌ته.",
+'watchlist'            => 'مـه ده‌مـبـالـه‌ئون ره لـیـسـت',
+'mywatchlist'          => 'مـه ده‌مـبـال‌هـه‌کـاردن لـیـسـت',
+'watchnologin'         => 'سیستم ره دله نی ئه موئین',
+'watch'                => 'ده‌مـبال هـاکه‌ردن',
+'watchthispage'        => 'ای ولـگ ره ده‌مـبـال هـه‌کـارده‌ن',
+'unwatch'              => 'ده‌مـبـال نـه‌کـارده‌ن',
+'unwatchthispage'      => 'دیـگـه ای وألـگ ده‌مـبـال نـه‌کـارده‌ن',
+'watchnochange'        => 'هیچ‌کادوم از چیزایی که شِما دمبال کانـّی چن وقته عوض نینه.',
+'watchlist-details'    => 'بدون حیساب گپ ولگ‌ئون، {{PLURAL:$1|$1 صفحه|$1 صفحه}} شمه دمبال‌هاکردنی‌ئون میون قرار {{PLURAL:$1|دارنه|دانه}}.',
+'wlheader-enotif'      => '*تونی ایمیل جه مطلع بواشین.',
+'wlheader-showupdated' => "*صفحه‌ئونی که بعد از آخرین سربزوئنتون عوض بینه '''پر رنگ''' نشون هدائه بیّه.",
+'wlnote'               => "ایجه {{PLURAL:$1|پایانی دأچیه‌ن|پایانی '''$1''' دأچیه‌ن‌ئونی}} هأسه که ای $2 ساعت ده‌له دأکه‌ته.",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ده‌مـبـال هـه‌کـارده‌ن...',
@@ -629,7 +747,18 @@ $2، $1',
 'file-info-size' => '($1 × $2 پـیـکـسه‌ل, فـایـل گـأتـی: $3, MIME مـونـد: $4)',
 
 # Special:NewFiles
-'ilsubmit' => 'سرک بنک',
+'newimages'             => 'گالری نو عکس‌ئون',
+'imagelisttext'         => 'فهرست بن $1 {{PLURAL:$1|عکسی|عکسی}} که $2 مرتب بیی‌یه بموئه.',
+'newimages-summary'     => 'این ولگ شا آخرین عکس‌ئون بار بی‌یشته ره نیمایش دنه',
+'newimages-label'       => 'ایسم عکس (یا ات تیکه که ونه شه):',
+'showhidebots'          => '(دچی‌یه‌ن روباتا $1)',
+'noimages'              => 'هچی دنی‌یه که هارشی.',
+'ilsubmit'              => 'بگردستن',
+'bydate'                => 'تاریخ رو جه',
+'sp-newimages-showfrom' => 'نشون‌هدائن عکسای نو $2، $1 جه به بعد',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims' => '$1, $2×$3',
 
 # EXIF tags
 'exif-gpsareainformation' => 'جی پی اس ناحیه نوم',
@@ -656,10 +785,11 @@ $2، $1',
 # Multipage image navigation
 'imgmultigo' => 'بور!',
 
+# Auto-summaries
+'autosumm-blank'   => 'صفحه ره اسپه هاکرده',
+'autosumm-replace' => "صفحه ره اینتا جه عوض هاکرد: '$1'",
+
 # Special:SpecialPages
 'specialpages' => 'شـا ولـگ‌ئون',
-
-# Add categories per AJAX
-'ajax-error-dismiss' => 'خا',
 
 );

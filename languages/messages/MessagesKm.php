@@ -1095,7 +1095,7 @@ $2',
 'revdelete-radio-unset'       => 'ទេ',
 'revdelete-suppress'          => 'លាក់ទិន្នន័យពីអ្នកថែទាំប្រព័ន្ធ ព្រមទាំងពីសមាជិកដទៃទៀតផងដែរ',
 'revdelete-unsuppress'        => 'ដកចេញការដាក់កំហិតលើកំណដែលបានស្តារឡើងវិញ',
-'revdelete-log'               => 'មូលហេតុ​ក្នុងការ​លុប​ចោល​៖',
+'revdelete-log'               => 'មូលហេតុ៖',
 'revdelete-submit'            => 'អនុវត្តទៅលើ{{PLURAL:$1|កំណែ|កំណែទាំងឡាយ}}ដែលបានជ្រើសយក',
 'revdelete-logentry'          => 'បានផ្លាស់ប្តូរគំហើញកំណែនៃ[[$1]]',
 'logdelete-logentry'          => 'បានផ្លាស់ប្តូរគំហើញហេតុការនៃ[[$1]]',
@@ -1787,7 +1787,7 @@ PICT # ផ្សេង​ៗ​
 'filedelete-legend'           => 'លុបឯកសារចោល',
 'filedelete-intro'            => "អ្នករៀបនឹងលុបចេញឯកសារ '''[[Media:$1|$1]]''' ព្រមជាមួយប្រវត្តិទាំងអស់របស់វាហើយ។",
 'filedelete-intro-old'        => "អ្នក​កំពុង​លុប​ចោល​កំណែរបស់ '''[[Media:$1|$1]]''' នៅ​ [$4 $3, $2]។",
-'filedelete-comment'          => 'មូលហេតុក្នុងការលុបចោល៖',
+'filedelete-comment'          => 'មូលហេតុ៖',
 'filedelete-submit'           => 'លុបចោល',
 'filedelete-success'          => "'''$1''' ត្រូវបានលុបចោលហើយ",
 'filedelete-success-old'      => "កំណែ​នៃ​'''[[Media:$1|$1]]''' កាលពី​ $3, $2 ត្រូវ​បាន​លុបចោល​។",
@@ -2784,7 +2784,7 @@ $1',
 'nextdiff'     => 'កំណែប្រែបន្ទាប់ →',
 
 # Media information
-'mediawarning'         => "'''ប្រយ័ត្ន''' ៖ ឯកសារនេះអាចមានផ្ទុកកូដពិសពុល។ កុំព្យូទ័ររបស់អ្នកអាចមានគ្រោះថ្នាក់បើឱ្យវាមានដំណើរការ។<hr />",
+'mediawarning'         => "'''ប្រយ័ត្ន''' ៖ ឯកសារនេះអាចមានផ្ទុកកូដពិសពុល។ កុំព្យូទ័ររបស់អ្នកអាចមានគ្រោះថ្នាក់បើឱ្យវាមានដំណើរការ។",
 'imagemaxsize'         => "កំណត់ទំហំរូបភាព៖<br />''(លើទំព័រពិពណ៌នារូបភាព)''",
 'thumbsize'            => 'ទំហំកូនរូបភាព៖',
 'widthheightpage'      => '$1×$2, $3{{PLURAL:$3|ទំព័រ|ទំព័រ}}',
@@ -3216,19 +3216,5 @@ $1',
 'htmlform-submit'              => 'ដាក់ស្នើ',
 'htmlform-reset'               => 'ធ្វើដូចដើមវិញ',
 'htmlform-selectorother-other' => 'ផ្សេងទៀត',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'បន្ថែម​ចំណាត់ថ្នាក់​ក្រុម​',
-'ajax-add-category-submit'     => 'បន្ថែម​',
-'ajax-confirm-title'           => 'បញ្ជាក់​សកម្មភាព​',
-'ajax-confirm-prompt'          => 'អ្នកអាចដាក់ចំណារពន្យល់ខាងក្រោម។
-
-សូមចុចលើប៊ូតុង "រក្សាទុក" ដើម្បីធ្វើការរក្សាទុកកំណែប្រែរបស់អ្នក។',
-'ajax-confirm-save'            => 'រក្សាទុក',
-'ajax-add-category-summary'    => 'បន្ថែម​ចំណាត់ថ្នាក់​ក្រុម​ "$1"',
-'ajax-remove-category-summary' => 'ដកចេញ​​ចំណាត់ថ្នាក់​ក្រុម​ "$1"',
-'ajax-confirm-actionsummary'   => 'សកម្មភាព​ត្រូវ​អនុវត្ត៖',
-'ajax-error-title'             => 'កំហុស​',
-'ajax-error-dismiss'           => 'យល់ព្រម​',
 
 );

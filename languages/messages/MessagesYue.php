@@ -738,8 +738,8 @@ $1',
 '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''；
 '''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取，又或者㩒''Alt-F5''；
 '''Internet Explorer:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣。",
-'usercssyoucanpreview'             => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS。",
-'userjsyoucanpreview'              => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新JS。",
+'usercssyoucanpreview'             => "'''提示：'''響儲存前，用「{{int:showpreview}}」個掣嚟測試你嘅新CSS。",
+'userjsyoucanpreview'              => "'''提示：'''響儲存前，用「{{int:showpreview}}」個掣嚟測試你嘅新JavaScript。",
 'usercsspreview'                   => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表。'''
 '''內容仍未儲存！'''",
 'userjspreview'                    => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript。'''
@@ -950,7 +950,7 @@ $1',
 'revdelete-radio-unset'       => '唔好',
 'revdelete-suppress'          => '同時壓制由操作員以及其他用戶的資料',
 'revdelete-unsuppress'        => '響已經恢復咗嘅修訂度移除限制',
-'revdelete-log'               => '記錄註解：',
+'revdelete-log'               => '原因：',
 'revdelete-submit'            => '應用到已經選取嘅{{PLURAL:$1|修訂}}',
 'revdelete-logentry'          => '已經更改[[$1]]嘅修訂可見性',
 'logdelete-logentry'          => '已經更改[[$1]]嘅事件可見性',
@@ -1169,7 +1169,7 @@ $1",
 'default'                       => '預設',
 'prefs-files'                   => '檔案',
 'prefs-custom-css'              => '自定 CSS',
-'prefs-custom-js'               => '自定 JS',
+'prefs-custom-js'               => '自定 JavaScript',
 'prefs-reset-intro'             => '你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。',
 'prefs-emailconfirm-label'      => '電郵確認:',
 'prefs-textboxsize'             => '編輯窗大細',
@@ -1295,9 +1295,9 @@ $1",
 'right-protect'               => '改保護等級同埋編輯保護版',
 'right-editprotected'         => '編輯保護版（無連串保護）',
 'right-editinterface'         => '編輯用戶界面',
-'right-editusercssjs'         => '編輯其他用戶嘅CSS同埋JS檔',
+'right-editusercssjs'         => '編輯其他用戶嘅CSS同埋JavaScript檔',
 'right-editusercss'           => '編輯其他用戶嘅CSS檔',
-'right-edituserjs'            => '編輯其他用戶嘅JS檔',
+'right-edituserjs'            => '編輯其他用戶嘅JavaScript檔',
 'right-rollback'              => '快速反轉上位用戶對某一版嘅編輯',
 'right-markbotedits'          => '標示反轉編輯做機械人編輯',
 'right-noratelimit'           => '唔受利用率限制影響',
@@ -1617,7 +1617,7 @@ $1",
 'filedelete-legend'           => '刪除檔案',
 'filedelete-intro'            => "你而家刪除緊個檔案'''[[Media:$1|$1]]'''。",
 'filedelete-intro-old'        => "你而家刪除緊'''[[Media:$1|$1]]'''響[$4 $2 $3]嘅版本。",
-'filedelete-comment'          => '刪除原因:',
+'filedelete-comment'          => '原因：',
 'filedelete-submit'           => '刪除',
 'filedelete-success'          => "'''$1'''已經刪除咗。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''響 $2 $3 嘅版本已經刪除咗。",
@@ -1977,7 +1977,7 @@ wiki: $PAGEEDITOR_WIKI
 'dellogpagetext'         => '以下係最近嘅刪除清單。',
 'deletionlog'            => '刪除日誌',
 'reverted'               => '恢復到先前嘅修訂',
-'deletecomment'          => '刪除原因:',
+'deletecomment'          => '原因：',
 'deleteotherreason'      => '其它／附加嘅原因:',
 'deletereasonotherlist'  => '其它原因',
 'deletereason-dropdown'  => '*常用刪除原因
@@ -2001,7 +2001,9 @@ wiki: $PAGEEDITOR_WIKI
 'revertpage'        => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後修訂。',
 'revertpage-nouser' => '已經反轉由（刪咗用戶名）所寫嘅編輯到[[User:$1|$1]]所寫嘅最後修訂。',
 'rollback-success'  => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後修訂。',
-'sessionfailure'    => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
+'sessionfailure'    => '你嘅登入會話 (session) 好似有啲問題；
+為咗防止會話劫持，呢個操作已經取消。
+請返去之前嗰版，重新載入嗰版然後再試。',
 
 # Protect
 'protectlogpage'              => '保護日誌',
@@ -2596,7 +2598,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'skinname-chick'       => '俏',
 'skinname-simple'      => '簡單',
 'skinname-modern'      => '摩登',
-'skinname-vector'      => '域達',
+'skinname-vector'      => 'Vector',
 
 # Math options
 'mw_math_png'    => '全部用PNG表示',
@@ -2653,7 +2655,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告'''：呢個檔案類型可能有一啲惡意嘅程式編碼。
-如果執行佢嘅話，你嘅系統可能會被波及。<hr />",
+如果執行佢嘅話，你嘅系統可能會被波及。",
 'imagemaxsize'         => "圖像大細限制:<br />''(用響檔案描述頁)''",
 'thumbsize'            => '縮圖大細：',
 'widthheightpage'      => '$1×$2, $3版',
@@ -3232,20 +3234,5 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '復原更改',
 'htmlform-selectorother-other' => '其它',
-
-# Add categories per AJAX
-'ajax-add-category'            => '加分類',
-'ajax-add-category-submit'     => '加',
-'ajax-confirm-title'           => '確認動作',
-'ajax-confirm-prompt'          => '你可以響下面提供一個編輯摘要。
-撳『儲存』去保存你嘅編輯。',
-'ajax-confirm-save'            => '儲存',
-'ajax-add-category-summary'    => '加入分類「$1」',
-'ajax-remove-category-summary' => '拎走分類「$1」',
-'ajax-confirm-actionsummary'   => '做咗嘅動作：',
-'ajax-error-title'             => '錯誤',
-'ajax-error-dismiss'           => '好',
-'ajax-remove-category-error'   => '唔能夠拎走呢個分類。
-通常係發生響一個模度加入咗嗰個分類。',
 
 );

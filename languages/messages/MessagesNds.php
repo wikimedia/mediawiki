@@ -9,6 +9,7 @@
  *
  * @author Purodha
  * @author Slomox
+ * @author The Evil IP address
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -943,7 +944,7 @@ As Administrater kannst du [$1 mit dissen Lenk] den Ünnerscheed ankieken.',
 'revdelete-hide-restricted'   => 'Ok för Administraters versteken',
 'revdelete-suppress'          => 'Grund för dat Wegsmieten ok för Administraters versteken',
 'revdelete-unsuppress'        => 'Inschränkungen för wedderhaalte Versionen wegdoon',
-'revdelete-log'               => 'Kommentar:',
+'revdelete-log'               => 'Grund:',
 'revdelete-submit'            => 'Op utwählte Version anwennen',
 'revdelete-logentry'          => 'Sichtborkeit vun Version för [[$1]] ännert',
 'logdelete-logentry'          => 'Sichtborkeit vun Begeevnis för [[$1]] ännert',
@@ -1531,7 +1532,7 @@ De [$2 Bildsied vun dor] warrt ünnen wiest.',
 'filedelete-legend'           => 'Datei wegsmieten',
 'filedelete-intro'            => "Du smittst de Datei '''[[Media:$1|$1]]''' tohoop mit de ganze Versionsgeschicht weg.",
 'filedelete-intro-old'        => "Du smittst vun de Datei '''„[[Media:$1|$1]]“''' de [$4 Version vun $2, $3] weg.",
-'filedelete-comment'          => 'Kommentar:',
+'filedelete-comment'          => 'Grund:',
 'filedelete-submit'           => 'Wegsmieten',
 'filedelete-success'          => "'''$1''' wegsmeten.",
 'filedelete-success-old'      => "De Version vun de Datei '''„[[Media:$1|$1]]“''' vun $2, $3 is wegsmeten worrn.",
@@ -1874,7 +1875,7 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 'dellogpagetext'         => 'Hier is en List vun de letzten Löschen.',
 'deletionlog'            => 'Lösch-Logbook',
 'reverted'               => 'Op en ole Version trüchsett',
-'deletecomment'          => 'Grund för dat Wegsmieten:',
+'deletecomment'          => 'Grund:',
 'deleteotherreason'      => 'Annere/tosätzliche Grünn:',
 'deletereasonotherlist'  => 'Annern Grund',
 'deletereason-dropdown'  => '* Grünn för dat Wegsmieten
@@ -1911,7 +1912,7 @@ Gah een Sied trüch un versöök dat noch wedder.',
 'protect-title'               => 'Sparren vun „$1“',
 'prot_1movedto2'              => '[[$1]] is nu na [[$2]] verschaven.',
 'protect-legend'              => 'Sparr bestätigen',
-'protectcomment'              => 'Grund för de Sparr',
+'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Löppt ut:',
 'protect_expiry_invalid'      => 'Utlooptiet ungüllig',
 'protect_expiry_old'          => 'Utlooptiet al vörbi.',
@@ -2066,7 +2067,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipaddress'                       => 'IP-Adress',
 'ipadressorusername'              => 'IP-Adress oder Brukernaam:',
 'ipbexpiry'                       => 'Aflooptiet',
-'ipbreason'                       => 'Grund',
+'ipbreason'                       => 'Grund:',
 'ipbreasonotherlist'              => 'Annern Grund',
 'ipbreason-dropdown'              => '* Allgemene Sperrgrünn
 ** Tofögen vun verkehrte Infos
@@ -2234,7 +2235,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'movesubpage'                  => '{{PLURAL:$1|Ünnersiede|Ünnersieden}}',
 'movesubpagetext'              => 'Disse Sied hett $1 {{PLURAL:$1|Ünnersied|Ünnersieden}}, de ünnen wiest warrt.',
 'movenosubpage'                => 'Disse Sied hett keen Ünnersieden.',
-'movereason'                   => 'Grund',
+'movereason'                   => 'Grund:',
 'revertmove'                   => 'trüchschuven',
 'delete_and_move'              => 'Wegsmieten un Schuven',
 'delete_and_move_text'         => '== Siet gifft dat al, wegsmieten? ==
@@ -2497,7 +2498,7 @@ $1',
 'nextdiff'     => 'Gah to den tokamen Ünnerscheed →',
 
 # Media information
-'mediawarning'         => "'''Wohrschau:''' Disse Soort Datein kann bööswilligen Programmkood bargen. Dör dat Rünnerladen un Opmaken vun de Datei kann dien Reekner Schaden nehmen.<hr />",
+'mediawarning'         => "'''Wohrschau:''' Disse Soort Datein kann bööswilligen Programmkood bargen. Dör dat Rünnerladen un Opmaken vun de Datei kann dien Reekner Schaden nehmen.",
 'imagemaxsize'         => 'Biller op de Bildsied begrenzen op:',
 'thumbsize'            => 'Grött vun dat Duumnagel-Bild:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|Ene Siet|$3 Sieden}}',

@@ -253,6 +253,7 @@ $messages = array(
 'privacypage'          => 'Project:Polici privetter',
 
 'ok'                      => 'Sur',
+'retrievedfrom'           => 'Daskevys dhyworth "$1"',
 'youhavenewmessages'      => 'Yma $1 genowgh ($2).',
 'newmessageslink'         => 'messajys nowyth',
 'newmessagesdifflink'     => 'chanj kens',
@@ -321,9 +322,10 @@ $messages = array(
 'bold_tip'       => 'Text tew',
 'italic_sample'  => 'Text italek',
 'italic_tip'     => 'Text italek',
-'link_sample'    => 'Titel an kevren',
+'link_sample'    => 'Titel an gevren',
 'link_tip'       => 'Kevren bervedhel',
-'extlink_sample' => 'http://www.example.com titel an kevren',
+'extlink_sample' => 'http://www.example.com titel an gevren',
+'extlink_tip'    => 'Kevren a-mes (remembra an rager http://)',
 'image_tip'      => 'Restren neythys',
 'media_tip'      => 'Kevren restren',
 
@@ -338,6 +340,7 @@ $messages = array(
 'loginreqlink'       => 'omgelmi',
 'newarticle'         => '(Nowyth)',
 'note'               => "'''Noten:'''",
+'previewnote'        => "'''Gwra remembra, hemm yw bus ragwel.''' Nyns yw dha janjyow gwithys hwath!",
 'editing'            => 'ow chanjya $1',
 'editingsection'     => 'ow chanjya $1 (rann)',
 'editingcomment'     => 'ow chanjya $1 (rann nowyth)',
@@ -374,6 +377,7 @@ $messages = array(
 # Search results
 'searchresults'                  => 'Sewyansow an hwilans',
 'searchresults-title'            => 'Sewyansow an hwilans rag "$1"',
+'searchresulttext'               => 'Rag derivadow pella war hwila yn {{SITENAME}}, gwra gweles [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                 => 'Hwi a wrug hwilas \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|oll folennow ow talleth gans "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|oll folennow ow kevrenna dhe "$1"]])',
 'prevn'                          => 'kens {{PLURAL:$1|$1}}',
 'nextn'                          => 'nessa {{PLURAL:$1|$1}}',
@@ -399,6 +403,7 @@ $messages = array(
 'searchall'                      => 'oll',
 'powersearch'                    => 'Hwilans avoncys',
 'powersearch-legend'             => 'Hwilans avoncys',
+'powersearch-ns'                 => 'Hwila yn spasys-hanow:',
 'powersearch-field'              => 'Hwila',
 'powersearch-toggleall'          => 'Oll',
 
@@ -484,6 +489,8 @@ $messages = array(
 'nchanges'                     => '$1 {{PLURAL:$1|chanj|chanj}}',
 'recentchanges'                => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend'         => 'Dewisyansow an chanjyow a-dhiwedhes',
+'recentchangestext'            => "Sewya an chanjyow diwettha eus dhe'n wiki war'n folen-ma.",
+'recentchanges-label-legend'   => 'Alhwedh: $1.',
 'recentchanges-legend-newpage' => '$1 - folen nowyth',
 'recentchanges-legend-minor'   => '$1 - chanj bian',
 'recentchanges-label-minor'    => 'Hemm yw chanj bian',
@@ -494,6 +501,7 @@ $messages = array(
 'rcshowhideliu'                => '$1 devnydhoryon omgelmys',
 'rcshowhideanons'              => '$1 devnydhyoryon dihanow',
 'rcshowhidemine'               => '$1 ow chanjyow',
+'rclinks'                      => "Diskwedhes an $1 chanj a-dhiwedhes gwres y'n $2 dydh a-dhiwedhes<br />$3",
 'diff'                         => 'dyffrans',
 'hist'                         => 'ist',
 'hide'                         => 'Kudha',
@@ -508,6 +516,8 @@ $messages = array(
 'recentchangeslinked'         => 'Chanjyow dhe folennow kevahal',
 'recentchangeslinked-feed'    => 'Chanjyow dhe folennow kevahal',
 'recentchangeslinked-toolbox' => 'Chanjyow dhe folennow kevahal',
+'recentchangeslinked-summary' => "↓ Hemm yw rol a janjyow a-dhiwedhes gwres war folennow kevrennys dhyworth unn folen (po dhe eseli unn glass).
+Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 'recentchangeslinked-page'    => 'Hanow an folen:',
 
 # Upload
@@ -593,6 +603,7 @@ $messages = array(
 'sp-deletedcontributions-contribs' => 'kevrohow',
 
 # Special:LinkSearch
+'linksearch'    => 'Kevrennow a-mes',
 'linksearch-ok' => 'Hwila',
 
 # Special:ListUsers
@@ -600,6 +611,9 @@ $messages = array(
 
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Devnydhyer nowyth',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(rol an eseli)',
 
 # E-mail user
 'emailuser'       => 'E-bostya an devnydhyer-ma',
@@ -629,6 +643,7 @@ $messages = array(
 'delete-confirm'        => 'Dilea "$1"',
 'delete-legend'         => 'Dilea',
 'deletedarticle'        => 'a dhileys "[[$1]]"',
+'deletecomment'         => 'Acheson:',
 'deleteotherreason'     => 'Acheson aral/keworransel:',
 'deletereasonotherlist' => 'Acheson aral',
 
@@ -650,6 +665,7 @@ $messages = array(
 'undelete-show-file-submit' => 'Ea',
 
 # Namespace form on various pages
+'namespace'      => 'Spas-hanow:',
 'blanknamespace' => '(Penn)',
 
 # Contributions
@@ -699,8 +715,9 @@ $messages = array(
 'newtitle'         => 'Dhe titel nowyth:',
 'move-watch'       => 'Golya an folen-ma',
 'movepagebtn'      => 'Gwaya an folen',
-'movedto'          => 'gways dhe',
-'1movedto2'        => '[[$1]] gways dhe [[$2]]',
+'movepage-moved'   => '\'\'\'Gwayes yw "$1" war-tu "$2"\'\'\'',
+'movedto'          => 'gwayes yn',
+'1movedto2'        => '[[$1]] gwayes war-tu [[$2]]',
 'movereason'       => 'Acheson:',
 
 # Export
@@ -725,28 +742,36 @@ $messages = array(
 'tooltip-pt-userpage'            => 'Agas folen devnydhyer',
 'tooltip-pt-mytalk'              => 'Agas folen gows',
 'tooltip-pt-preferences'         => 'Ow dewisyansow',
+'tooltip-pt-watchlist'           => 'An rol a folennow esos jy ow kolyas',
 'tooltip-pt-mycontris'           => "Rol a'gas kevrohow",
+'tooltip-pt-login'               => 'Da via gwell dhis mar teu hag omgelmi, mes nyns yw besi',
 'tooltip-pt-logout'              => 'Omdenna',
 'tooltip-ca-talk'                => "Dadhelva a-dro dhe'n dalgh",
 'tooltip-ca-edit'                => 'Hwi a yll chanjya an folen-ma. Mar pleg, gwrewgh devnydh an boton ragwel kyns gwitha.',
 'tooltip-ca-addsection'          => 'Dalleth rann nowyth',
+'tooltip-ca-viewsource'          => 'Alhwedhys yw an folen-ma.
+Ty a ell gweles hy fennfenten.',
 'tooltip-ca-protect'             => 'Difres an folen-ma',
 'tooltip-ca-delete'              => 'Dilea an folen-ma',
 'tooltip-ca-move'                => 'Gwaya an folen-ma',
 'tooltip-ca-watch'               => "Keworra an folen-ma dh'agas rol golyas",
+'tooltip-ca-unwatch'             => 'Hedhi golyas an folen-ma',
 'tooltip-search'                 => 'Hwila yn {{SITENAME}}',
 'tooltip-search-fulltext'        => "Hwila an tekst-ma y'n folennow",
 'tooltip-n-mainpage'             => 'Diskwedhes an pennfolen',
 'tooltip-n-mainpage-description' => 'Godriga an pennfolen',
+'tooltip-n-portal'               => "A-dro dhe'n ragdres, an pyth a ellys gwul, ple kavos an traow",
 'tooltip-n-recentchanges'        => "Rol an chanjyow a-dhiwedhes y'n wiki",
 'tooltip-n-randompage'           => 'Karga folen dre jons',
 'tooltip-n-help'                 => 'Gweres',
 'tooltip-t-whatlinkshere'        => 'Rol a bub folennow wiki ow kevrenna bys omma',
+'tooltip-t-recentchangeslinked'  => 'Chanjyow a-dhiwedhes yn folennow eus kevrennys orth an folen-ma',
 'tooltip-t-contributions'        => 'Gweles rol kevrohow an devnydhyer-ma',
 'tooltip-t-emailuser'            => "Danvon e-bost dhe'n devnydhyer-ma",
 'tooltip-t-upload'               => 'Ughkarga restrennow',
 'tooltip-t-specialpages'         => 'Rol a bub folen arbennek',
 'tooltip-t-print'                => 'Versyon pryntyadow an folen-ma',
+'tooltip-t-permalink'            => "Kevren fast dhe'n versyon-ma an folen",
 'tooltip-ca-nstab-main'          => 'Gweles an folen dalgh',
 'tooltip-ca-nstab-user'          => 'Gweles an folen devnydhyer',
 'tooltip-ca-nstab-special'       => 'Hemm yw folen arbennek, ny ellowgh hwi chanjya an folen hy honan.',
@@ -755,6 +780,8 @@ $messages = array(
 'tooltip-ca-nstab-template'      => 'Gweles an skantlyn',
 'tooltip-ca-nstab-category'      => 'Gweles folen an klass',
 'tooltip-save'                   => 'Gwitha agas chanjyow',
+'tooltip-preview'                => 'Ragweles dha janjyow; gwra usya hemma kens gwitha mar pleg!',
+'tooltip-diff'                   => "Diskwedhes an chanjyow eus gwres genes dhe'n tekst",
 
 # Attribution
 'siteuser'         => 'devnydhyer {{SITENAME}} $1',
@@ -803,7 +830,11 @@ $messages = array(
 'table_pager_limit_submit' => 'Ke',
 
 # Auto-summaries
-'autosumm-new' => "Formys folen nowyth gans: '$1'",
+'autosumm-new' => "Formas folen gans: '$1'",
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Gweles ha chanjya an rol golyas',
+'watchlisttools-raw'  => 'Chanjya restren an rol golyas',
 
 # Special:Version
 'version'         => 'Versyon',

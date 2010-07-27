@@ -893,7 +893,7 @@ Kuncén séjén bakalan bisa ngakses eusi nu nyumput sarta bisa ngabolaykeun hap
 'revdelete-radio-unset'       => 'Ulah',
 'revdelete-suppress'          => 'Sumputkeun ogé ti kuncén',
 'revdelete-unsuppress'        => 'Hapus watesan kana révisi anu geus dipulangkeun',
-'revdelete-log'               => 'Alesan ngahapus:',
+'revdelete-log'               => 'Alesan:',
 'revdelete-submit'            => 'Larapkeun kana {{PLURAL:$1|révisi|révisi}} nu dipilih',
 'revdelete-logentry'          => 'robah tampilan révisi pikeun [[$1]]',
 'logdelete-logentry'          => 'Robah pangatur nyumputkeun tina [[$1]]',
@@ -1437,7 +1437,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'filedelete-legend'           => 'Ngahapus gambar',
 'filedelete-intro'            => "Anjeun rék ngahapus koropak '''[[Media:$1|$1]]''' katut sagala jujutanana.",
 'filedelete-intro-old'        => "Anjeun keur ngahapus vérsi '''[[Media:$1|$1]]''', [$4 $3, $2].",
-'filedelete-comment'          => 'koméntar:',
+'filedelete-comment'          => 'Alesan:',
 'filedelete-submit'           => 'Hapus',
 'filedelete-success'          => "'''$1''' geus dihapus.",
 'filedelete-success-old'      => "Vérsi '''[[Media:$1|$1]]''' $3, $2 geus dihapus.",
@@ -1759,7 +1759,7 @@ Asupan jeung bantuan salajengna:
 'dellogpagetext'         => 'Di handap ieu daptar hapusan nu ahir-ahir, sakabéh wanci dumasar wanci server.',
 'deletionlog'            => 'log hapusan',
 'reverted'               => 'Malikkeun ka révisi nu ti heula',
-'deletecomment'          => 'Alesan ngahapus',
+'deletecomment'          => 'Alesan:',
 'deleteotherreason'      => 'Alesan séjén/panambih:',
 'deletereasonotherlist'  => 'Alesan séjén',
 'deletereason-dropdown'  => '*Alesan ilahar
@@ -2711,18 +2711,5 @@ Coba ku sawangan normal.',
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Bolaykeun parobahan',
 'htmlform-selectorother-other' => 'Lianna',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Tambah kategori',
-'ajax-add-category-submit'     => 'Tambah',
-'ajax-confirm-prompt'          => 'Di handap ieu, Anjeun bisa nuliskeun iber ngeunaan naon anu robah.
-Klik "Simpen" pikeun nyimpen parobahanana.',
-'ajax-confirm-save'            => 'Simpen',
-'ajax-add-category-summary'    => 'Tambah kategori "$1"',
-'ajax-remove-category-summary' => 'Hapus kategori "$1"',
-'ajax-error-title'             => 'Éror',
-'ajax-error-dismiss'           => 'Heug',
-'ajax-remove-category-error'   => 'Ieu kategori teu mungkin dihapus.
-Hal ieu ilaharna dilarapkeun kana kategori anu ditambahkeun kana citakan.',
 
 );

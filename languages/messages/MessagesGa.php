@@ -11,6 +11,7 @@
  * @author D.de.loinsigh
  * @author Kwekubo
  * @author Moilleadóir
+ * @author Moydow
  * @author Spacebirdy
  * @author Stifle
  * @author Tameamseo
@@ -241,9 +242,15 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 
 # Vector skin
 'vector-action-delete'       => 'Scrios',
+'vector-action-move'         => 'Athainmnigh',
+'vector-action-protect'      => 'Glasáil',
+'vector-namespace-category'  => 'Catagóir',
 'vector-namespace-image'     => 'Comhad',
 'vector-namespace-main'      => 'Leathanach',
 'vector-namespace-mediawiki' => 'Teachtaireacht',
+'vector-namespace-special'   => 'Leathanach speisialta',
+'vector-view-create'         => 'Cruthaigh',
+'vector-view-edit'           => 'Athraigh an lch seo',
 'vector-view-view'           => 'Léigh',
 
 'errorpagetitle'    => 'Earráid',
@@ -467,6 +474,7 @@ Cruthaíodh do chuntas. Ná déan dearmad athrú a dhéanamh ar do chuid [[Speci
 'nav-login-createaccount'    => 'Logáil isteach',
 'loginprompt'                => 'Tá sé riachtanach fianáin a chur i ngníomh chun logáil isteach a dhéanamh ag {{SITENAME}}.',
 'userlogin'                  => 'Logáil isteach / cruthaigh cuntas',
+'userloginnocreate'          => 'Logáil isteach',
 'logout'                     => 'Logáil amach',
 'userlogout'                 => 'Logáil amach',
 'notloggedin'                => 'Níl tú logáilte isteach',
@@ -726,7 +734,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 
 # History merging
 'mergehistory-from'   => 'Leathanach fhoinse:',
-'mergehistory-reason' => 'Fáth',
+'mergehistory-reason' => 'Fáth:',
 
 # Merge log
 'revertmerge' => 'Díchumaisc',
@@ -1031,6 +1039,7 @@ Má theastáilann uait do chomhad a uaslódáil fós, téigh ar ais agus úsáid
 'filehist-deleteone'                => 'scrios',
 'filehist-current'                  => 'reatha',
 'filehist-datetime'                 => 'Dáta/Am',
+'filehist-thumb'                    => 'Mionsamhail',
 'filehist-thumbtext'                => 'Mionsamhail do leagan ó $1',
 'filehist-user'                     => 'Úsáideoir',
 'filehist-dimensions'               => 'Toisí',
@@ -1323,7 +1332,7 @@ Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
 'dellogpagetext'        => 'Seo é liosta de na scriosaidh is déanaí.',
 'deletionlog'           => 'cuntas scriosaidh',
 'reverted'              => 'Tá eagrán níos luaithe in úsáid anois',
-'deletecomment'         => 'Cúis don scriosadh',
+'deletecomment'         => 'Fáth:',
 'deleteotherreason'     => 'Fáth eile/breise:',
 'deletereasonotherlist' => 'Fáth eile',
 'deletereason-dropdown' => '*Fáthanna coitianta scriosta
@@ -1466,7 +1475,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 'ipaddress'               => 'Seoladh IP / ainm úsáideora',
 'ipadressorusername'      => 'Seoladh IP nó ainm úsáideora:',
 'ipbexpiry'               => 'Am éaga',
-'ipbreason'               => 'Cúis',
+'ipbreason'               => 'Fáth:',
 'ipbreasonotherlist'      => 'Fáth eile',
 'ipbreason-dropdown'      => '*Fáthanna coitianta
 ** Loitiméaracht
@@ -1587,7 +1596,7 @@ Sna cásanna sin, caithfidh tú an leathanach a aistrigh nó a chumasc tú féin
 '1movedto2_redir'         => 'rinneadh athsheoladh de [[$1]] go [[$2]]',
 'movelogpage'             => 'Log athainmnithe',
 'movelogpagetext'         => 'Liosta is ea seo thíos de leathanaigh athainmnithe.',
-'movereason'              => 'Cúis',
+'movereason'              => 'Fáth:',
 'revertmove'              => 'athúsáid',
 'delete_and_move'         => 'Scrios agus athainmnigh',
 'delete_and_move_text'    => '==Tá scriosadh riachtanach==
@@ -1791,7 +1800,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 
 # Media information
 'mediawarning'         => "'''Rabhadh''': Tá seans ann go bhfuil cód mailíseach sa chineál comhaid seo.
-B'fheidir go gcuirfear do chóras i gcontúirt dá rithfeá é.<hr />",
+B'fheidir go gcuirfear do chóras i gcontúirt dá rithfeá é.",
 'imagemaxsize'         => "Teorainn mhéid íomhá:<br />''(leathanaigh thuarascáil chomhaid)''",
 'thumbsize'            => 'Méid mionsamhlacha:',
 'file-info'            => '(méid comhad : $1, saghas MIME: $2)',
@@ -2211,8 +2220,5 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 
 # Special:BlankPage
 'blankpage' => 'Leathanach bán',
-
-# Add categories per AJAX
-'ajax-confirm-save' => 'Sábháil',
 
 );

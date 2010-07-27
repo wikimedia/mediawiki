@@ -503,7 +503,7 @@ Ka vāluok puordūmuosi i nagribiesi vairs puorraudzeit itū lopu, spīd iz sait
 Ite var apsavērt pādejūs iztreitūs: "$2".',
 'deletedarticle'        => 'dzāsts "[[$1]]"',
 'dellogpage'            => 'Dziesšonys registrs',
-'deletecomment'         => 'Iztreišonys pamats:',
+'deletecomment'         => 'Īmesle:',
 'deleteotherreason'     => 'Cyts/papyldu pamats:',
 'deletereasonotherlist' => 'Cyts pamats',
 
@@ -514,7 +514,7 @@ Ite var apsavērt pādejūs iztreitūs: "$2".',
 'protectlogpage'              => 'Aizsorguošonys registrs',
 'protectedarticle'            => 'Aizsorgova [[$1]]',
 'modifiedarticleprotection'   => 'imaineja aizsardzeibys leimini "[[$1]]"',
-'protectcomment'              => 'Deļ kuo tai?',
+'protectcomment'              => 'Īmesle:',
 'protectexpiry'               => 'Izabeidz:',
 'protect_expiry_invalid'      => 'Beigu termiņš ir nadereigs.',
 'protect_expiry_old'          => 'Beigu termiņš jau paguojs.',
@@ -742,12 +742,5 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 
 # Special:SpecialPages
 'specialpages' => 'Specialuos puslopys',
-
-# Add categories per AJAX
-'ajax-add-category'         => 'Dalikt kategoreju',
-'ajax-add-category-submit'  => 'Dalikt',
-'ajax-confirm-save'         => 'Izglobuot',
-'ajax-add-category-summary' => 'Dalikt kategoreju "$1"',
-'ajax-error-title'          => 'Klaida',
 
 );

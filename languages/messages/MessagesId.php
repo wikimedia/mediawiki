@@ -804,7 +804,7 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'headline_tip'    => 'Subbagian tingkat 1',
 'math_sample'     => 'Masukkan rumus di sini',
 'math_tip'        => 'Rumus matematika (LaTeX)',
-'nowiki_sample'   => 'Teks ini tidak akan diformat',
+'nowiki_sample'   => 'Masukkan teks yang tidak akan diformat di sini',
 'nowiki_tip'      => 'Abaikan pemformatan wiki',
 'image_sample'    => 'Contoh.jpg',
 'image_tip'       => 'Cantumkan berkas',
@@ -1093,7 +1093,7 @@ Pengurus {{SITENAME}} lain akan tetap dapat mengakses isi yang tersembunyi ini d
 'revdelete-radio-unset'       => 'Tidak',
 'revdelete-suppress'          => 'Sembunyikan juga dari pengurus',
 'revdelete-unsuppress'        => 'Hapus batasan pada revisi yang dikembalikan',
-'revdelete-log'               => 'Alasan penghapusan:',
+'revdelete-log'               => 'Alasan:',
 'revdelete-submit'            => 'Terapkan pada {{PLURAL:$1|revisi|revisi}} terpilih',
 'revdelete-logentry'          => 'ubah tampilan revisi untuk [[$1]]',
 'logdelete-logentry'          => 'mengubah aturan penyembunyian dari [[$1]]',
@@ -1356,7 +1356,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'prefs-advancedrendering'       => 'Opsi lanjutan',
 'prefs-advancedsearchoptions'   => 'Opsi lanjutan',
 'prefs-advancedwatchlist'       => 'Opsi lanjutan',
-'prefs-display'                 => 'Opsi tampilan',
+'prefs-display'                 => 'Pilihan tampilan',
 'prefs-diffs'                   => 'Beda',
 
 # User rights
@@ -1769,7 +1769,7 @@ Deskripsi dari [$2 halaman deskripsinya] ditunjukkan di bawah ini.',
 'filedelete-legend'           => 'Menghapus berkas',
 'filedelete-intro'            => "Anda akan menghapus berkas '''[[Media:$1|$1]]''' berikut semua riwayatnya.",
 'filedelete-intro-old'        => '<span class="plainlinks">Anda menghapus versi \'\'\'[[Media:$1|$1]]\'\'\' hingga [$4 $3, $2].</span>',
-'filedelete-comment'          => 'Alasan penghapusan:',
+'filedelete-comment'          => 'Alasan:',
 'filedelete-submit'           => 'Hapus',
 'filedelete-success'          => "'''$1''' telah dihapus.",
 'filedelete-success-old'      => "Berkas '''[[Media:$1|$1]]''' versi $3, $2 telah dihapus.",
@@ -2133,7 +2133,7 @@ Umpan balik dan bantuan lebih lanjut:
 'dellogpagetext'         => 'Di bawah ini adalah log penghapusan halaman. Semua waktu yang ditunjukkan adalah waktu server.',
 'deletionlog'            => 'log penghapusan',
 'reverted'               => 'Dikembalikan ke revisi sebelumnya',
-'deletecomment'          => 'Alasan penghapusan:',
+'deletecomment'          => 'Alasan:',
 'deleteotherreason'      => 'Alasan lain/tambahan:',
 'deletereasonotherlist'  => 'Alasan lain',
 'deletereason-dropdown'  => '*Alasan penghapusan
@@ -2214,7 +2214,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'restriction-edit'   => 'Sunting',
 'restriction-move'   => 'Pindahkan',
 'restriction-create' => 'Buat',
-'restriction-upload' => 'Pemuatan',
+'restriction-upload' => 'Unggah',
 
 # Restriction levels
 'restriction-level-sysop'         => 'perlindungan penuh',
@@ -2802,7 +2802,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Peringatan''': Berkas ini mungkin mengandung kode berbahaya.
-Jika dijalankan, sistem Anda akan berisiko terserang.<hr />",
+Jika dijalankan, sistem Anda akan berisiko terserang.",
 'imagemaxsize'         => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'            => 'Ukuran miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
@@ -3227,8 +3227,8 @@ Coba dengan pratayang normal.',
 'watchlistedit-noitems'        => 'Daftar pantauan Anda kosong.',
 'watchlistedit-normal-title'   => 'Sunting daftar pantauan',
 'watchlistedit-normal-legend'  => 'Hapus judul dari daftar pantauan',
-'watchlistedit-normal-explain' => 'Judul-judul pada daftar pantauan Anda ditampilkan di bawah ini.
-Untuk menghapus suatu judul, berikan tanda cek pada kotak di sampingnya, dan klik Hapus Judul.
+'watchlistedit-normal-explain' => 'Judul pada daftar pantauan Anda ditampilkan di bawah ini.
+Untuk menghapus judul, berikan tanda cek pada kotak di sampingnya, dan klik "{{int:Watchlistedit-normal-submit}}".
 Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
 'watchlistedit-normal-submit'  => 'Hapus judul',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|satu|$1}} judul telah dihapus dari daftar pantauan Anda:',
@@ -3399,20 +3399,5 @@ Keterangan tampilan:
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Batalkan perubahan',
 'htmlform-selectorother-other' => 'Lain-lain',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Tambah kategori',
-'ajax-add-category-submit'     => 'Tambah',
-'ajax-confirm-title'           => 'Konfirmasi aksi',
-'ajax-confirm-prompt'          => 'Anda dapat menambahkan ringkasan suntingan dibawah.
-Click "Simpan" untuk menyimpan suntingan anda.',
-'ajax-confirm-save'            => 'Simpan',
-'ajax-add-category-summary'    => 'Tambah kategori "$1"',
-'ajax-remove-category-summary' => 'Hapus kategori "$1"',
-'ajax-confirm-actionsummary'   => 'Aksi yang dilakukan:',
-'ajax-error-title'             => 'Kesalahan',
-'ajax-error-dismiss'           => 'Baik',
-'ajax-remove-category-error'   => 'Tidak mungkin menghapus kategori ini.
-Biasanya karena kategori di tambahkan kehalaman melalui templat.',
 
 );

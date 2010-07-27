@@ -854,7 +854,8 @@ $2',
 'showlivepreview'                  => 'תצוגה מקדימה מהירה',
 'showdiff'                         => 'הצגת שינויים',
 'anoneditwarning'                  => "'''אזהרה:''' אינכם מחוברים לחשבון. כתובת ה־IP שלכם תירשם בהיסטוריית העריכות של הדף.",
-'missingsummary'                   => "'''תזכורת:''' לא הזנתם תקציר עריכה. אם תלחצו שוב על כפתור השמירה, עריכתכם תישמר בלעדיו.",
+'missingsummary'                   => "'''תזכורת:''' לא הזנתם תקציר עריכה.
+אם תלחצו שוב על כפתור השמירה, עריכתכם תישמר בלעדיו.",
 'missingcommenttext'               => 'אנא הקלידו את ההודעה למטה.',
 'missingcommentheader'             => "'''תזכורת:''' לא הזנתם נושא/כותרת להודעה זו. אם תלחצו שוב על כפתור השמירה, עריכתכם תישמר בלעדיו.",
 'summary-preview'                  => 'תצוגה מקדימה של התקציר:',
@@ -925,8 +926,8 @@ $2',
 * '''Konqueror:''' לחצו על '''העלה מחדש''' (Reload), או הקישו על ''F5''.
 * '''אופרה''': נקו את המטמון ב'''כלים''' (Tools) > '''העדפות''' (Preferences).
 * '''אינטרנט אקספלורר:''' לחצו על מקש ה־Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl+F5''.",
-'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"תצוגה מקדימה\" כדי לבחון את גליון ה־CSS החדש שלכם לפני השמירה.",
-'userjsyoucanpreview'              => "'''עצה:''' השתמשו בלחצן \"תצוגה מקדימה\" כדי לבחון את סקריפט ה־JavaScript החדש שלכם לפני השמירה.",
+'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את גליון ה־CSS החדש שלכם לפני השמירה.",
+'userjsyoucanpreview'              => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את סקריפט ה־JavaScript החדש שלכם לפני השמירה.",
 'usercsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גליון ה־CSS שלכם.'''
 '''הוא טרם נשמר!'''",
 'userjspreview'                    => "'''זכרו שזו רק בדיקה/תצוגה מקדימה של סקריפט ה־JavaScript שלכם.'''
@@ -1127,10 +1128,10 @@ $2',
 'revdelete-radio-unset'       => 'לא',
 'revdelete-suppress'          => 'הסתרת המידע גם ממפעילי המערכת',
 'revdelete-unsuppress'        => 'הסרת הגבלות בגרסאות המשוחזרות',
-'revdelete-log'               => 'סיבה למחיקה:',
+'revdelete-log'               => 'סיבה:',
 'revdelete-submit'            => 'ביצוע על {{PLURAL:$1|הגרסה שנבחרה|הגרסאות שנבחרו}}',
-'revdelete-logentry'          => 'שינה את הסתרת הגרסה של [[$1]]',
-'logdelete-logentry'          => 'שינה את הסתרת פעולת היומן של [[$1]]',
+'revdelete-logentry'          => 'שינה את הסתרת הגרסה של "[[$1]]"',
+'logdelete-logentry'          => 'שינה את הסתרת פעולת היומן של "[[$1]]"',
 'revdelete-success'           => "'''מצב הסתרת הגרסה עודכן בהצלחה.'''",
 'revdelete-failure'           => "'''לא ניתן היה לעדכן את מצב הסתרת הגרסה:'''
 $1",
@@ -1352,7 +1353,7 @@ $1",
 'default'                       => 'ברירת מחדל',
 'prefs-files'                   => 'קבצים',
 'prefs-custom-css'              => 'קובץ CSS מותאם אישית',
-'prefs-custom-js'               => 'קובץ JS מותאם אישית',
+'prefs-custom-js'               => 'קובץ JavaScript מותאם אישית',
 'prefs-reset-intro'             => 'באפשרותכם להשתמש בדף זה כדי להחזיר את ההעדפות שלכם להגדרות ברירת המחדל של האתר.
 לא ניתן לבטל פעולה זו.',
 'prefs-emailconfirm-label'      => 'אימות כתובת דוא"ל:',
@@ -1481,7 +1482,7 @@ $1",
 'right-protect'               => 'שינוי רמות הגנה ועריכת דפים מוגנים',
 'right-editprotected'         => 'עריכת דפים מוגנים (ללא הגנה מדורגת)',
 'right-editinterface'         => 'עריכת ממשק המשתמש',
-'right-editusercssjs'         => 'עריכת דפי CSS ו־JS של משתמשים אחרים',
+'right-editusercssjs'         => 'עריכת דפי CSS ו־JavaScript של משתמשים אחרים',
 'right-editusercss'           => 'עריכת דפי CSS של משתמשים אחרים',
 'right-edituserjs'            => 'עריכת דפי JavaScript של משתמשים אחרים',
 'right-rollback'              => 'שחזור מהיר של עריכות המשתמש האחרון שערך דף מסוים',
@@ -1825,7 +1826,7 @@ PICT # שונות
 'filedelete-legend'           => 'מחיקת קובץ',
 'filedelete-intro'            => "אתם עומדים למחוק את הקובץ '''[[Media:$1|$1]]''' יחד עם כל ההיסטוריה שלו.",
 'filedelete-intro-old'        => "אתם מוחקים את הגרסה של '''[[Media:$1|$1]]''' מ־[$4 $3, $2].",
-'filedelete-comment'          => 'סיבה למחיקה:',
+'filedelete-comment'          => 'סיבה:',
 'filedelete-submit'           => 'מחיקה',
 'filedelete-success'          => "'''$1''' נמחק.",
 'filedelete-success-old'      => "הגרסה של '''[[Media:$1|$1]]''' מ־$3, $2 נמחקה.",
@@ -2193,7 +2194,7 @@ $UNWATCHURL
 'dellogpagetext'         => 'להלן רשימה של המחיקות האחרונות שבוצעו.',
 'deletionlog'            => 'יומן מחיקות',
 'reverted'               => 'שוחזר לגרסה קודמת',
-'deletecomment'          => 'סיבת המחיקה:',
+'deletecomment'          => 'סיבה:',
 'deleteotherreason'      => 'סיבה נוספת/אחרת:',
 'deletereasonotherlist'  => 'סיבה אחרת',
 'deletereason-dropdown'  => '* סיבות מחיקה נפוצות
@@ -2217,7 +2218,9 @@ $UNWATCHURL
 'revertpage'        => 'שוחזר מעריכות של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]',
 'revertpage-nouser' => 'שוחזר מעריכות של (שם המשתמש הוסר) לעריכה האחרונה של [[User:$1|$1]]',
 'rollback-success'  => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
-'sessionfailure'    => 'נראה שיש בעיה בחיבורכם לאתר. פעולתכם בוטלה כאמצעי זהירות כנגד התחזות לתקשורת ממחשבכם. אנא חיזרו לדף הקודם ונסו שוב.',
+'sessionfailure'    => 'נראה שיש בעיה בחיבורכם לאתר;
+פעולתכם בוטלה כאמצעי זהירות נגד התחזות לתקשורת ממחשבכם.
+אנא חזרו לדף הקודם, העלו אותו מחדש ונסו שוב.',
 
 # Protect
 'protectlogpage'              => 'יומן הגנות',
@@ -2881,7 +2884,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''אזהרה:''' סוג קובץ זה עלול להכיל קוד זדוני.
-הרצת הקוד עלולה לסכן את המערכת שלכם.<hr />",
+הרצת הקוד עלולה לסכן את המערכת שלכם.",
 'imagemaxsize'         => 'גודל תמונה מירבי:<br />(לדפי תיאור קובץ)',
 'thumbsize'            => 'הקטנה לגודל של:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|דף אחד|$3 דפים}}',
@@ -2892,7 +2895,7 @@ $1',
 'show-big-image'       => 'תמונה ברזולוציה גבוהה יותר',
 'show-big-image-thumb' => '<small>גודל התצוגה הזו: $1 × $2 פיקסלים</small>',
 'file-info-gif-looped' => 'בלולאה',
-'file-info-gif-frames' => '{{PLURAL:$1|מסגרת אחת|$1 מסגרות}}',
+'file-info-gif-frames' => '{{PLURAL:$1|תמונה אחת|$1 תמונות}}',
 
 # Special:NewFiles
 'newimages'             => 'גלריית קבצים חדשים',
@@ -3494,20 +3497,5 @@ $1',
 'htmlform-submit'              => 'שליחה',
 'htmlform-reset'               => 'ביטול השינויים',
 'htmlform-selectorother-other' => 'אחר',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'הוספת קטגוריה',
-'ajax-add-category-submit'     => 'הוספה',
-'ajax-confirm-title'           => 'אישור הפעולה',
-'ajax-confirm-prompt'          => 'באפשרותכם לכתוב תקציר עריכה למטה.
-לחצו על "{{int:ajax-confirm-save}}" כדי לשמור את העריכה.',
-'ajax-confirm-save'            => 'שמירה',
-'ajax-add-category-summary'    => 'הוספת הקטגוריה "$1"',
-'ajax-remove-category-summary' => 'הסרת הקטגוריה "$1"',
-'ajax-confirm-actionsummary'   => 'הפעולה לביצוע:',
-'ajax-error-title'             => 'שגיאה',
-'ajax-error-dismiss'           => 'אישור',
-'ajax-remove-category-error'   => 'לא ניתן היה להסיר קטגוריה זו.
-הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
 
 );

@@ -1040,8 +1040,8 @@ $2',
 'blocked-notice-logextract'        => 'هذا المستخدم ممنوع حاليا.
 آخر مدخلة في سجل المنع موفرة بالأسفل كمرجع:',
 'clearyourcache'                   => "'''ملاحظة - بعد الحفظ, ربما ينبغي عليك إفراغ كاش متصفحك لرؤية التغييرات.''' '''موزيللا / فايرفوكس / سافاري:''' اضغط ''Shift'' أثناء ضغط ''Reload,'' أو اضغط أيا من ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''اضغط ''Reload'' أو اضغط ''F5;'' '''أوبرا:''' أفرغ الكاش في ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' اضغط ''Ctrl'' أثناء ضغط ''Refresh,'' أو اضغط ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''ملاحظة:''' استعمل زر 'أظهر معاينة' لتجربة CSS الجديد قبل حفظ الصفحة.",
-'userjsyoucanpreview'              => "'''ملاحظة:''' استعمل زر 'أظهر معاينة' لتجربة جافاسكربت الجديدة قبل حفظ الصفحة.",
+'usercssyoucanpreview'             => "'''ملاحظة:''' استعمل زر \"{{int:showpreview}}\" لتجربة CSS الجديد قبل حفظ الصفحة.",
+'userjsyoucanpreview'              => "'''ملاحظة:''' استعمل زر \"{{int:showpreview}}\" لتجربة جافاسكربت الجديدة قبل حفظ الصفحة.",
 'usercsspreview'                   => "'''تذكر أنك تقوم بعرض الأنماط المتراصة (CSS) الخاصة بك فقط
 لم يتم حفظها بعد!'''",
 'userjspreview'                    => "'''تذكر أنك فقط تجرب/تعاين جافاسكربت.'''
@@ -1261,7 +1261,7 @@ $2',
 'revdelete-radio-unset'       => 'لا',
 'revdelete-suppress'          => 'أخف البيانات عن مديري النظام والبقية',
 'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
-'revdelete-log'               => 'سبب الحذف:',
+'revdelete-log'               => 'السبب:',
 'revdelete-submit'            => 'طبق على {{PLURAL:$1||المراجعة المختارة|المراجعتين المختارتين|المراجعات المختارة}}',
 'revdelete-logentry'          => 'غير رؤية المراجعة ل[[$1]]',
 'logdelete-logentry'          => 'غير رؤية الحدث ل[[$1]]',
@@ -1498,7 +1498,7 @@ $1",
 'youremail'                     => 'البريد:',
 'username'                      => 'اسم المستخدم:',
 'uid'                           => 'رقم المستخدم:',
-'prefs-memberingroups'          => 'عضو في {{PLURAL:$1|مجموعة|مجموعة}}:',
+'prefs-memberingroups'          => 'عضو في {{PLURAL:$1|مجموعة|مجموعة|مجموعتي|مجموعات}}:',
 'prefs-registration'            => 'وقت التسجيل:',
 'yourrealname'                  => 'الاسم الحقيقي:',
 'yourlanguage'                  => 'اللغة:',
@@ -1962,7 +1962,7 @@ PICT # متنوع
 'filerevert'                => 'استرجع $1',
 'filerevert-legend'         => 'استرجع الملف',
 'filerevert-intro'          => "أنت تسترجع '''[[Media:$1|$1]]''' [$4 لنسخة بتاريخ $2، $3].",
-'filerevert-comment'        => 'تعليق:',
+'filerevert-comment'        => 'السبب:',
 'filerevert-defaultcomment' => 'استرجع للنسخة بتاريخ $2، $1',
 'filerevert-submit'         => 'استرجع',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' تم استرجاعها [$4 للنسخة بتاريخ $3، $2].",
@@ -1973,7 +1973,7 @@ PICT # متنوع
 'filedelete-legend'           => 'احذف الملف',
 'filedelete-intro'            => "أنت على وشك حذف الملف '''[[Media:$1|$1]]''' مع كل تاريخه.",
 'filedelete-intro-old'        => "أنت تحذف نسخة '''[[Media:$1|$1]]''' بتاريخ [$4 $3، $2].",
-'filedelete-comment'          => 'السبب للحذف:',
+'filedelete-comment'          => 'السبب:',
 'filedelete-submit'           => 'حذف',
 'filedelete-success'          => "'''$1''' تم حذفه.",
 'filedelete-success-old'      => "نسخة '''[[Media:$1|$1]]''' بتاريخ $3، $2 تم حذفها.",
@@ -2343,7 +2343,7 @@ $UNWATCHURL
 'dellogpagetext'         => 'بالأسفل قائمة بأحدث عمليات الحذف.',
 'deletionlog'            => 'سجل الحذف',
 'reverted'               => 'استرجع لنسخة أقدم',
-'deletecomment'          => 'سبب الحذف:',
+'deletecomment'          => 'السبب:',
 'deleteotherreason'      => 'سبب آخر/إضافي:',
 'deletereasonotherlist'  => 'سبب آخر',
 'deletereason-dropdown'  => '*أسباب الحذف الشائعة
@@ -2468,7 +2468,7 @@ $UNWATCHURL
 'undeleteviewlink'             => 'اعرض',
 'undeletereset'                => 'أعد الضبط',
 'undeleteinvert'               => 'اعكس الاختيار',
-'undeletecomment'              => 'تعليق:',
+'undeletecomment'              => 'السبب:',
 'undeletedarticle'             => 'استرجع "[[$1]]"',
 'undeletedrevisions'           => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 مراجعة|$1 مراجعة}} و {{PLURAL:$2|1 ملف|$2 ملف}} تم استرجاعها',
@@ -3058,7 +3058,7 @@ $1',
 'nextdiff'     => 'التعديل اللاحق ←',
 
 # Media information
-'mediawarning'         => "'''تحذير''': قد يحتوي نوع هذا الملف على كود خبيث، يمكن عند تشغيله السيطرة على نظامك.<hr />",
+'mediawarning'         => "'''تحذير''': قد يحتوي نوع هذا الملف على كود خبيث، يمكن عند تشغيله السيطرة على نظامك.",
 'imagemaxsize'         => "حد حجم الصور:<br />''(لصفحات وصف الملفات)''",
 'thumbsize'            => 'حجم العرض المصغر:',
 'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',
@@ -3529,14 +3529,14 @@ $1',
 'watchlistedit-normal-title'   => 'تعديل قائمة المراقبة',
 'watchlistedit-normal-legend'  => 'إزالة عناوين من قائمة المراقبة',
 'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل.
-لإزالة عنوان، اضغط على الصندوق بجواره، واضغط أزل العناوين.
+لإزالة عنوان، اضغط على الصندوق بجواره، واضغط "{{int:Watchlistedit-normal-submit}}".
 يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة الخام]].',
 'watchlistedit-normal-submit'  => 'أزل العناوين',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته من قائمة مراقبتك:',
 'watchlistedit-raw-title'      => 'تعديل قائمة المراقبة الخام',
 'watchlistedit-raw-legend'     => 'عدل قائمة المراقبة الخام',
 'watchlistedit-raw-explain'    => 'العناوين في قائمة مراقبتك معروضة بالأسفل، ويمكن تعديلها عن طريق الإضافة والإزالة من القائمة؛ عنوان واحد لكل سطر.
-عند الانتهاء، اضغط حدّث قائمة المراقبة.
+عند الانتهاء، اضغط "{{int:Watchlistedit-raw-submit}}".
 يمكنك أيضا [[Special:Watchlist/edit|استخدام المحرر القياسي]].',
 'watchlistedit-raw-titles'     => 'العناوين:',
 'watchlistedit-raw-submit'     => 'حدث قائمة المراقبة',
@@ -3721,20 +3721,5 @@ $1',
 'htmlform-submit'              => 'أرسل',
 'htmlform-reset'               => 'الرجوع عن التغييرات',
 'htmlform-selectorother-other' => 'أخرى',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'أضف تصنيفا',
-'ajax-add-category-submit'     => 'أضف',
-'ajax-confirm-title'           => 'أكد الإجراء',
-'ajax-confirm-prompt'          => 'بإمكانك تقديم ملخص تعديل أدناه.
-انقر "احفظ" لحفظ تعديلك.',
-'ajax-confirm-save'            => 'احفظ',
-'ajax-add-category-summary'    => 'إضافة التصنيف "$1"',
-'ajax-remove-category-summary' => 'إزالة التصنيف "$1"',
-'ajax-confirm-actionsummary'   => 'الإجراء المتخذ:',
-'ajax-error-title'             => 'خطأ',
-'ajax-error-dismiss'           => 'موافق',
-'ajax-remove-category-error'   => 'لا يمكن إزالة هذا التصنيف.
-يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
 
 );

@@ -523,7 +523,7 @@ Su bloccu est stadu postu dae $1. Su motivu de su bloccu est: ''$2''
 * Su bloccu scadit: $6
 * Intervallu de bloccu: $7
 
-Ki boles, podes cuntatare $1 o un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro faeddare de su bloccu.
+Si boles, podes tzerriare $1 o un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro faeddare de su bloccu.
 
 Nota ca sa funtzione 'Ispedi un'e-mail a custu usuàriu' no est ativa ki no est stadu registradu un'indiritzu e-mail vàlidu in is [[Special:Preferences|preferèntzias]] tuas o ki s'usu de custa funtzione est stadu bloccadu.
 
@@ -564,12 +564,12 @@ Si dda sarbas de aici, totu is acontzos fatos a pustis de custa revisione ant a 
 'yourdiff'                         => 'Diferèntzias',
 'copyrightwarning'                 => "Abbàida, pro praxere, ki totu is contributziones a {{SITENAME}} sunt cunsideradas lassadas a suta permissu de tipu $2 (càstia $1 pro nde schire de prus). Si non keris ki su scritu tuo potzat èsser acontzadu e re-distribuidu dae kie si siat sena piedade e sena àteros lìmites, non ddu imbies a {{SITENAME}}.<br />
 Cun s'imbiu de custu scritu ses garantende, a responsabilidade tua, si su scritu ddu as cumpostu tue de persona e in originale, o puru si est stadu copiadu dae una fonte de domìniu pùblicu, o una fonte de gasi, o puru si as otentu permissu craru de impreare custu scritu e si ddu podes dimustrare. '''NO IMPREARE MATERIALE COBERTU DAE DERETU DE AUTORE SENA PERMISSU CRARU!'''",
-'templatesused'                    => '{{PLURAL:$1|Template|Templates}} impreados in custa pàgina:',
-'templatesusedpreview'             => '{{PLURAL:$1|Template|Templates}} impreados in custa antiprima:',
-'templatesusedsection'             => '{{PLURAL:$1|Template|Templates}} impreados in custa setzione:',
+'templatesused'                    => '{{PLURAL:$1|Template impreadu|Templates impreados}} in custa pàgina:',
+'templatesusedpreview'             => '{{PLURAL:$1|Template impreadu|Templates impreados}} in custa antiprima:',
+'templatesusedsection'             => '{{PLURAL:$1|Template impreadu|Templates impreados}} in custa setzione:',
 'template-protected'               => '(amparadu)',
 'template-semiprotected'           => '(mesu-amparadu)',
-'hiddencategories'                 => 'Custa pàgina faghet parti de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
+'hiddencategories'                 => 'Custa pàgina faghet parte de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
 'nocreatetitle'                    => 'Creatzione de pàginas limitada',
 'permissionserrors'                => 'Faddina de permissos',
 'permissionserrorstext-withaction' => 'Non tenes su permissu de $2, pro {{PLURAL:$1|custu motivu|custus motivus}}:',
@@ -1108,7 +1108,7 @@ Càstia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 'dellogpage'            => 'Burraduras',
 'dellogpagetext'        => 'A sighire una lista de is prus reghentes burraduras.',
 'reverted'              => 'Torrada a sa versione in antis',
-'deletecomment'         => 'Motivu de sa burradura:',
+'deletecomment'         => 'Motivu:',
 'deleteotherreason'     => 'Àteru motivu o motivu agiuntivu:',
 'deletereasonotherlist' => 'Àteru motivu',
 
@@ -1172,6 +1172,9 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is revisiones recupera
 'undeleteinvert'            => 'Fùrria sa seletzione',
 'undeletecomment'           => 'Motivu:',
 'undeletedarticle'          => 'at restauradu "$1"',
+'undeletedrevisions'        => '{{PLURAL:$1|1 revisione restaurada|$1 revisiones restauradas}}',
+'undeletedrevisions-files'  => '{{PLURAL:$1|1 revisione|$1 revisiones}} e {{PLURAL:$2|1 file|$2 files}} restaurados',
+'undeletedfiles'            => '{{PLURAL:$1|1 file restauradu|$1 files restaurados}}',
 'undelete-search-box'       => 'Chirca pàginas fuliadas',
 'undelete-search-prefix'    => 'Ammustra is pàginas ca su tìtulu cumentzat cun:',
 'undelete-search-submit'    => 'Chirca',
@@ -1584,9 +1587,5 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # HTML forms
 'htmlform-selectorother-other' => 'Àteru',
-
-# Add categories per AJAX
-'ajax-confirm-save' => 'Sarba',
-'ajax-error-title'  => 'Faddina',
 
 );

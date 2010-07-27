@@ -1094,7 +1094,7 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'revdelete-radio-unset'       => 'Non',
 'revdelete-suppress'          => 'Suprimir las donadas dels administrators e tanben dels autres utilizaires',
 'revdelete-unsuppress'        => 'Levar las restriccions sus las versions restablidas',
-'revdelete-log'               => 'Rason de la supression :',
+'revdelete-log'               => 'Motiu :',
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|a la version seleccionada|a las versions seleccionadas}}',
 'revdelete-logentry'          => 'La visibilitat de la version es estada modificada per [[$1]]',
 'logdelete-logentry'          => 'La visibilitat de l’eveniment es estada modificada per [[$1]]',
@@ -1784,7 +1784,7 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'filedelete-legend'           => 'Suprimir lo fichièr',
 'filedelete-intro'            => "Sètz a suprimir '''[[Media:$1|$1]]''' amb tot son istoric.",
 'filedelete-intro-old'        => "Sètz a escafar la version de '''[[Media:$1|$1]]''' del [$4 $2 a $3].",
-'filedelete-comment'          => "Motiu de l'escafament :",
+'filedelete-comment'          => 'Motiu :',
 'filedelete-submit'           => 'Suprimir',
 'filedelete-success'          => "'''$1''' es estat suprimit.",
 'filedelete-success-old'      => "La version de '''[[Media:$1|$1]]''' del $2 a $3 es estada suprimida.",
@@ -2154,7 +2154,7 @@ Vejatz $2 per una lista de las supressions recentas.',
 'dellogpagetext'         => 'Vaquí çaijós la lista de las supressions recentas.',
 'deletionlog'            => 'istoric dels escafaments',
 'reverted'               => 'Restabliment de la version precedenta',
-'deletecomment'          => 'Motiu de la supression :',
+'deletecomment'          => 'Motiu :',
 'deleteotherreason'      => 'Motius suplementaris o autres :',
 'deletereasonotherlist'  => 'Autre motiu',
 'deletereason-dropdown'  => "*Motius de supression mai corrents
@@ -2835,7 +2835,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Atencion :''' Aqueste fichièr pòt conténer de còde malvolent.
-Se l'executatz, vòstre sistèma pòt èsser compromés.<hr />",
+Se l'executatz, vòstre sistèma pòt èsser compromés.",
 'imagemaxsize'         => "Format maximal dels imatges :<br />''(per las paginas de descripcion d’imatges)''",
 'thumbsize'            => 'Talha de la miniatura :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
@@ -3400,20 +3400,5 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'htmlform-submit'              => 'Sometre',
 'htmlform-reset'               => 'Desfar las modificacions',
 'htmlform-selectorother-other' => 'Autre',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Apondre una categoria',
-'ajax-add-category-submit'     => 'Apondre',
-'ajax-confirm-title'           => "Confirmar l'accion",
-'ajax-confirm-prompt'          => 'Podètz provesir un resumit de la modificacion çaijós.
-Clicatz sus « Publicar » per enregistrar vòstra modificacion.',
-'ajax-confirm-save'            => 'Publicar',
-'ajax-add-category-summary'    => 'Apondre la categoria « $1 »',
-'ajax-remove-category-summary' => 'Levar la categoria « $1 »',
-'ajax-confirm-actionsummary'   => 'Accion de menar :',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Es pas estat possible de levar aquesta categoria.
-Aquò se produsís generalament quand la categoria es estada aponduda a la pagina via un modèl.',
 
 );

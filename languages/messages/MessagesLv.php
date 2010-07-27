@@ -369,8 +369,9 @@ palaists funkcijā "$2".
 Izdotā MySQL kļūda: "$3: $4"',
 'laggedslavemode'      => 'Uzmanību: Iespējams, šajā lapā nav redzami nesen izdarītie papildinājumi.',
 'readonly'             => 'Datubāze bloķēta',
-'readonlytext'         => 'Datubāze šobrīd ir bloķēta pret jauniem ierakstiem un citām izmaiņām. Visdrīzāk iemesls ir parasts datubāzes uzturēšanas pasākums, pēc kura tā tiks atjaunota normālā stāvoklī. Administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu:
-<p>$1',
+'readonlytext'         => 'Datubāze šobrīd ir bloķēta pret jaunu ierakstu izveidošanu un citām izmaiņām, visticamāk, dēļ kārtējā datubāzes uzturēšanas pasākuma, pēc kura tā tiks atjaunota normālā stāvoklī.
+
+Administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu: $1',
 'missing-article'      => 'Teksts lapai ar nosaukumu "$1" $2 datubāzē nav atrodams.
 
 Tas parasti notiek novecojušu saišu gadījumā: pieprasot izmaiņas vai hronoloģiju lapai, kas ir izdzēsta.
@@ -435,6 +436,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'nav-login-createaccount'    => 'Izveidot jaunu lietotāju vai doties iekšā',
 'loginprompt'                => 'Lai ieietu {{grammar:lokatīvs|{{SITENAME}}}}, tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
 'userlogin'                  => 'Izveidot jaunu lietotāju vai doties iekšā',
+'userloginnocreate'          => 'Ieiet',
 'logout'                     => 'Iziet',
 'userlogout'                 => 'Iziet',
 'notloggedin'                => 'Neesi iegājis',
@@ -480,7 +482,7 @@ Ja paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies sa
 Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt tikai vienu paroles atgādinājumu, {{PLURAL:$1|katru stundu|katras $1 stundas}}.',
 'mailerror'                  => 'E-pasta sūtīšanas kļūda: $1',
 'acct_creation_throttle_hit' => 'Lietotāji no tavas IP adreses šajā viki pēdējo 24 stundu laikā jau ir izveidojuši {{PLURAL:$1|1 kontu|$1 kontus}}, kas ir maksimālais atļautais skaits šajā laika periodā.
-Šī iemesla dēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
+Tādēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
 'emailauthenticated'         => 'Tava e-pasta adrese tika apstiprināta $2, $3.',
 'emailnotauthenticated'      => 'Tava e-pasta adrese <strong>vēl nav apstiprināta</strong> un zemāk norādītās iespējas nav pieejamas.',
 'noemailprefs'               => 'Norādi e-pasta adresi, lai lietotu šīs iespējas.',
@@ -506,7 +508,7 @@ Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis
 
 # Edit page toolbar
 'bold_sample'     => 'Teksts boldā',
-'bold_tip'        => 'Teksts boldā',
+'bold_tip'        => 'Teksts treknrakstā',
 'italic_sample'   => 'Teksts kursīvā',
 'italic_tip'      => 'Teksts kursīvā',
 'link_sample'     => 'Lapas nosaukums',
@@ -551,11 +553,11 @@ Bloķējot norādītais iemesls bija: ''\$2''.
 
 *Bloka sākums: \$8
 *Bloka beigas: \$6
-*Ar šo mēģināja nobloķēt: \$7
+*Bija domāts nobloķēt: \$7
 
 Tu vari sazināties ar \$1 vai kādu citu [[{{MediaWiki:Grouppage-sysop}}|administratoru]] lai apspriestu šo bloku.
 
-Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi ''[[Special:Preferences|manās izvēlēs]]'', tev nedarbosies \"sūtīt e-pastu\" iespēja.
+Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi ''[[Special:Preferences|savās izvēlēs]]'', tev nedarbosies \"sūtīt e-pastu\" iespēja.
 
 Tava IP adrese ir \$3 un bloka identifikators ir #\$5. Lūdzu iekļauj vienu no tiem, vai abus, visos turpmākajos pieprasījumos.",
 'autoblockedtext'                  => 'Tava IP adrese ir tikusi automātiski nobloķēta, tāpēc, ka to (nupat kā) ir lietojis cits lietotājs, kuru nobloķēja $1.
@@ -583,7 +585,7 @@ Norādi un apstiprini e-pasta adresi savos [[Special:Preferences|lietotāja uzst
 Tā var būt pārvietota vai dzēsta, kamēr jūs apskatījāt lapu.',
 'loginreqtitle'                    => 'Nepieciešama ieiešana',
 'loginreqlink'                     => 'login',
-'accmailtitle'                     => 'Parole izsūtīta.',
+'accmailtitle'                     => 'Parole nosūtīta.',
 'accmailtext'                      => "Nejauši ģenerēta parole lietotājam [[User talk:$1|$1]] tika nosūtīta uz $2.
 
 Šī konta paroli pēc ielogošanās varēs nomainīt ''[[Special:ChangePassword|šeit]]''.",
@@ -682,8 +684,8 @@ Izskatās, ka lapa ir dzēsta.',
 Tā jau eksistē.',
 
 # "Undo" feature
-'undo-success' => 'Šo izmaiņu var atcellt.
-Lūdzu, pārbaudi zemāk redzamajā salīdzinājumā vai tu to tiešām vēlies darīt un pēc tam saglabā izmaiņas, lai to atceltu.',
+'undo-success' => 'Šo izmaiņu ir iespējams atcelt.
+Lūdzu, pārbaudi zemāk redzamajā salīdzinājumā, vai tu to tiešām vēlies darīt, un pēc tam saglabā lapu, lai pabeigtu izmaiņas atcelšanu.',
 'undo-failure' => 'Šo labojumu nevar atcelt, jo ir veikti nozīmīgi labojumi vēl pēc šī labojuma izdarīšanas.',
 'undo-norev'   => 'Šo izmaiņu nevar atcelt, jo tādas nav vai tā ir izdzēsta.',
 'undo-summary' => 'Atcēlu [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) izdarīto izmaiņu $1',
@@ -744,7 +746,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'revdelete-radio-same'       => '(nemainīt)',
 'revdelete-radio-set'        => 'Jā',
 'revdelete-radio-unset'      => 'Nē',
-'revdelete-log'              => 'Dzēšanas iemesls:',
+'revdelete-log'              => 'Iemesls:',
 'revdel-restore'             => 'mainīt redzamību',
 'pagehist'                   => 'Lapas vēsture',
 'revdelete-content'          => 'saturs',
@@ -1095,7 +1097,8 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'upload-prohibited'      => 'Aizliegtie failu tipi: $1.',
 'uploadlog'              => 'augšupielādes reģistrs',
 'uploadlogpage'          => 'Augšupielādes reģistrs',
-'uploadlogpagetext'      => 'Failu augšupielādes reģistrs.',
+'uploadlogpagetext'      => 'Zemāk ir redzams jaunāko augšuplādēto failu saraksts.
+Pārskatāmāka versija ir pieejama [[Special:NewFiles|jauno attēlu galerijā]].',
 'filename'               => 'Faila nosaukums',
 'filedesc'               => 'Kopsavilkums',
 'fileuploadsummary'      => 'Informācija par failu:',
@@ -1202,7 +1205,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'filedelete-legend'           => 'Dzēst failu',
 'filedelete-intro'            => "Tu taisies izdzēst '''[[Media:$1|$1]]''', kopā ar visu tā hronoloģiju.",
 'filedelete-intro-old'        => "Tu tagad taisies izdzēst faila '''[[Media:$1|$1]]''' versiju, kas tika augšuplādēta [$4 $3, $2].",
-'filedelete-comment'          => 'Dzēšanas iemesls:',
+'filedelete-comment'          => 'Iemesls:',
 'filedelete-submit'           => 'Izdzēst',
 'filedelete-success'          => "'''$1''' tika veiksmīgi izdzēsts.",
 'filedelete-success-old'      => "Faila '''[[Media:$1|$1]]''' versija $3, $2 tika izdzēsta.",
@@ -1476,7 +1479,7 @@ iepriekšējas versijas.",
 'dellogpagetext'         => 'Šajā lapā ir pēdējo dzēsto lapu saraksts.',
 'deletionlog'            => 'dzēšanas reģistrs',
 'reverted'               => 'Atjaunots uz iepriekšējo versiju',
-'deletecomment'          => 'Dzēšanas iemesls',
+'deletecomment'          => 'Iemesls:',
 'deleteotherreason'      => 'Cits/papildu iemesls:',
 'deletereasonotherlist'  => 'Cits iemesls',
 'deletereason-dropdown'  => '*Izplatīti dzēšanas iemesli
@@ -1512,7 +1515,7 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protect-title'               => 'Izmainīt "$1" aizsargāšanas līmeni?',
 'prot_1movedto2'              => '"[[$1]]" pārdēvēju par "[[$2]]"',
 'protect-legend'              => 'Apstiprināt aizsargāšanu',
-'protectcomment'              => 'Aizsargāšanas iemesls:',
+'protectcomment'              => 'Iemesls:',
 'protectexpiry'               => 'Beidzas:',
 'protect_expiry_invalid'      => 'Beigu termiņš ir nederīgs.',
 'protect_expiry_old'          => 'Beigu termiņs ir pagātnē.',
@@ -1623,6 +1626,7 @@ kāds cits iespējams to ir atjaunojis ātrāk.',
 'whatlinkshere-next'       => '{{PLURAL:$1|nākamo|nākamos $1}}',
 'whatlinkshere-links'      => '← saites',
 'whatlinkshere-hideredirs' => '$1 pāradresācijas',
+'whatlinkshere-hidetrans'  => '$1 lapas, kurās šī lapa izmantota kā veidne',
 'whatlinkshere-hidelinks'  => '$1 saites',
 'whatlinkshere-filters'    => 'Filtri',
 
@@ -1634,7 +1638,7 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'ipaddress'                    => 'IP adrese/lietotājvārds',
 'ipadressorusername'           => 'IP adrese vai lietotājvārds',
 'ipbexpiry'                    => 'Termiņš',
-'ipbreason'                    => 'Iemesls',
+'ipbreason'                    => 'Iemesls:',
 'ipbreasonotherlist'           => 'Cits iemesls',
 'ipbreason-dropdown'           => '*Biežākie bloķēšanas iemesli
 ** Ievieto nepatiesu informāciju
@@ -1760,14 +1764,14 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'movesubpage'             => '{{PLURAL:$1|Apakšlapa|Apakšlapas}}',
 'movesubpagetext'         => 'Šai lapai ir $1 {{PLURAL:$1|apakšlapa|apakšlapas}}, kas redzamas zemāk.',
 'movenosubpage'           => 'Šai lapai nav apakšlapu.',
-'movereason'              => 'Iemesls',
+'movereason'              => 'Iemesls:',
 'revertmove'              => 'atcelt',
 'delete_and_move'         => 'Dzēst un pārvietot',
 'delete_and_move_text'    => '==Nepieciešama dzēšana==
 Mērķa lapa "[[:$1]]" jau eksistē.
 Vai tu to gribi izdzēst, lai atbrīvotu vietu pārvietošanai?',
 'delete_and_move_confirm' => 'Jā, dzēst lapu',
-'delete_and_move_reason'  => 'Izdzēsts, lai atbrīvotu vietu parvietošanai',
+'delete_and_move_reason'  => 'Izdzēsts, lai atbrīvotu vietu pārvietošanai',
 'selfmove'                => 'Izejas un mērķa lapu nosaukumi ir vienādi;
 nevar pārvietot lapu uz sevi.',
 'fix-double-redirects'    => 'Automātiski izmainīt visas pāradresācijas, kas ved uz sākotnējo nosaukumu',
@@ -1881,6 +1885,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'tooltip-watch'                   => 'Pievienot šo lapu uzraugāmo lapu sarakstam',
 'tooltip-recreate'                => 'Atjaunot lapu, lai arī tā ir bijusi izdzēsta',
 'tooltip-upload'                  => 'Sākt augšuplādi',
+'tooltip-rollback'                => '"Novērst" atceļ visas šī lietotāja izmaiņas vienā piegājienā',
 'tooltip-undo'                    => '"Atgriezt" atgriež šīs izmaiņas un atver labošanas formu priekšskatījuma veidā.
 Tas atļauj pievienot iemeslu kopsavilkumā.',
 
@@ -1925,7 +1930,7 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'nextdiff'     => 'Jaunāka versija →',
 
 # Media information
-'mediawarning'         => "'''Brīdinājums''': Šis fails var saturēt kaitīgu kodu, kuru izpildot tavā datorā var salīst vīrusi (un citas nejaucības).<hr />",
+'mediawarning'         => "'''Brīdinājums''': Šis faila tips var saturēt ļaunprātīgu kodu, kuru izpildot, tava datora darbība var tikt traucēta.",
 'imagemaxsize'         => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
 'thumbsize'            => 'Sīkbildes izmērs:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lapa|lapas}}',
@@ -1945,6 +1950,13 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'ilsubmit'              => 'Meklēt',
 'bydate'                => '<b>pēc datuma</b>',
 'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1, $2',
+
+# Bad image list
+'bad_image_list' => 'Formāts: 
+
+Tiek ņemti vērā tikai ieraksti rindiņā kas sākas ar * 
+Pirmajai saitei rindiņā ir jābūt uz attiecīgo failu 
+Jebkuras sekojošas saites tiks uzskatītas par izņēmumiem t.i. lapām kurās fails drīkt tikt izmantots',
 
 # Metadata
 'metadata'          => 'Metadati',
@@ -2172,15 +2184,5 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 
 # HTML forms
 'htmlform-reset' => 'Atcelt izmaiņas',
-
-# Add categories per AJAX
-'ajax-add-category'         => 'Pievienot kategoriju',
-'ajax-add-category-submit'  => 'Pievienot',
-'ajax-confirm-prompt'       => 'Te apakšā var norādīt izmaiņu kopsavilkumu.
-Uzspied uz "Saglabāt" lai saglabātu izmaiņas.',
-'ajax-confirm-save'         => 'Saglabāt',
-'ajax-add-category-summary' => 'Pievienot kategoriju "$1"',
-'ajax-error-title'          => 'Kļūda (Error)',
-'ajax-error-dismiss'        => 'OK',
 
 );

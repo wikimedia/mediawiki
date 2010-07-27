@@ -461,7 +461,7 @@ $messages = array(
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'Neindexované stránky',
 
-'mainpagetext'      => "'''MediaWiki bylo úspěšně nainstalováno.'''",
+'mainpagetext'      => "'''MediaWiki byla úspěšně nainstalována.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
 
 == Začínáme ==
@@ -1133,7 +1133,7 @@ pokud nebyla nastavena další omezení.",
 'revdelete-radio-unset'       => 'Ne',
 'revdelete-suppress'          => 'Utajit data i před správci',
 'revdelete-unsuppress'        => 'Odstranit omezení na vrácené verze',
-'revdelete-log'               => 'Zdůvodnění smazání:',
+'revdelete-log'               => 'Důvod:',
 'revdelete-submit'            => 'Aplikovat na {{PLURAL:$1|zvolenou revizi|zvolené revize}}',
 'revdelete-logentry'          => 'změnil viditelnost revizí u [[$1]]',
 'logdelete-logentry'          => 'mění viditelnost události [[$1]]',
@@ -1819,7 +1819,7 @@ Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s 
 'filedelete-legend'           => 'Smazat soubor',
 'filedelete-intro'            => "Chystáte se smazat soubor '''[[Media:$1|$1]]''' i s celou historií.",
 'filedelete-intro-old'        => "Chystáte se smazat verzi souboru '''[[Media:$1|$1]]''' z [$4 $3 $2].",
-'filedelete-comment'          => 'Důvod smazání:',
+'filedelete-comment'          => 'Důvod:',
 'filedelete-submit'           => 'Smazat',
 'filedelete-success'          => "Soubor '''$1''' byl smazán.",
 'filedelete-success-old'      => "Verze souboru '''[[Media:$1|$1]]''' z $3 $2 byla smazána.",
@@ -2181,7 +2181,7 @@ Rady a kontakt:
 'dellogpagetext'         => 'Zde je seznam posledních smazaných stránek.',
 'deletionlog'            => 'Kniha smazaných stránek',
 'reverted'               => 'Obnovení předchozí verze',
-'deletecomment'          => 'Důvod smazání:',
+'deletecomment'          => 'Důvod:',
 'deleteotherreason'      => 'Jiný/další důvod:',
 'deletereasonotherlist'  => 'Jiný důvod',
 'deletereason-dropdown'  => '*Obvyklé důvody smazání
@@ -2213,7 +2213,7 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'protectlogpage'              => 'Kniha zamčení',
 'protectlogtext'              => 'Níže je uveden seznam všech zamčení a odemčení stránek.',
 'protectedarticle'            => 'zamyká „[[$1]]“',
-'modifiedarticleprotection'   => 'mění zámek stránky "[[$1]]"',
+'modifiedarticleprotection'   => 'mění zámek stránky „[[$1]]“',
 'unprotectedarticle'          => 'odemyká „[[$1]]“',
 'movedarticleprotection'      => 'nastavení zámků přesunuto z „[[$2]]“ na „[[$1]]“',
 'protect-title'               => 'Zamyká se „$1“',
@@ -2850,7 +2850,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozornění''': Tento typ souboru může obsahovat škodlivý kód.
-Otevřením souboru můžete ohrozit svůj počítač.<hr />",
+Otevřením souboru můžete ohrozit svůj počítač.",
 'imagemaxsize'         => "Maximální velikost obrázku:<br />
 ''(na stránce s popisem souboru)''",
 'thumbsize'            => 'Velikost náhledu:',
@@ -3455,20 +3455,5 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'htmlform-submit'              => 'Odeslat',
 'htmlform-reset'               => 'Vrátit změny',
 'htmlform-selectorother-other' => 'Jiná hodnota',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Přidat kategorii',
-'ajax-add-category-submit'     => 'Přidat',
-'ajax-confirm-title'           => 'Potvrdit změnu',
-'ajax-confirm-prompt'          => 'Níže můžete vyplnit shrnutí editace.
-Kliknutím na „Uložit“ se vaše změna uloží.',
-'ajax-confirm-save'            => 'Uložit',
-'ajax-add-category-summary'    => 'Přidání kategorie „$1“',
-'ajax-remove-category-summary' => 'Odebrání kategorie „$1“',
-'ajax-confirm-actionsummary'   => 'Zamýšlená změna:',
-'ajax-error-title'             => 'Chyba',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Tuto kategorii se nepodařilo odstranit.
-To se obvykle stává v případě, že byla stránka do kategorie přidána prostřednictvím šablony.',
 
 );

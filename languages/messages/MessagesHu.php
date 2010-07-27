@@ -10,10 +10,12 @@
  * @author Balasyum
  * @author Bdamokos
  * @author Bennó
+ * @author BáthoryPéter
  * @author CERminator
  * @author Cerasus
  * @author Dani
  * @author Dorgan
+ * @author Enbéká
  * @author Glanthor Reviol
  * @author Gondnok
  * @author Hunyadym
@@ -894,8 +896,8 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
 'noarticletext-nopermission'       => 'Ez a lap jelenleg nem tartalmaz szöveget.
 [[Special:Search/{{PAGENAME}}|Rákereshetsz a lap címére]] más lapok tartalmában, vagy <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} megtekintheted a kapcsolódó naplófájlokat]</span>.',
-'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált szerkesztőnk.
-Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
+'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált felhasználónk.
+Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.',
 'userpage-userdoesnotexist-view'   => 'Nincs regisztrálva „$1” szerkesztői azonosító.',
 'blocked-notice-logextract'        => 'A felhasználó jelenleg blokkolva van.
 A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
@@ -953,7 +955,7 @@ A lap szöveget kimásolhatod egy szövegfájlba, amit elmenthetsz későbbre.''
 Az adatbázist lezáró adminisztrátor az alábbi magyarázatot adta: $1",
 'protectedpagewarning'             => "'''Figyelem: Ez a lap le van védve, így csak adminisztrátori jogosultságokkal rendelkező szerkesztők módosíthatják.'''
 A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
-'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált szerkesztők nem módosíthatják.",
+'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, így regisztrálatlan, vagy újonnan regisztrált szerkesztők nem módosíthatják.",
 'cascadeprotectedwarning'          => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
 'titleprotectedwarning'            => "'''Figyelem: Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogosultságokkal]] rendelkező szerkesztők hozhatják létre.'''
 A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
@@ -1112,7 +1114,7 @@ A(z) {{SITENAME}} adminisztrátorai továbbra is meg tudják tekinteni az elrejt
 'revdelete-radio-unset'       => 'Nem',
 'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
 'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
-'revdelete-log'               => 'A törlés oka:',
+'revdelete-log'               => 'Ok:',
 'revdelete-submit'            => 'Alkalmazás a kiválasztott {{PLURAL:$1|változatra|változatokra}}',
 'revdelete-logentry'          => 'módosította a(z) [[$1]] lap egy vagy több változatának láthatóságát',
 'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
@@ -1796,7 +1798,7 @@ A [$2 fájl ottani leírólapjának] másolata alább látható.',
 'filedelete-legend'           => 'Fájl törlése',
 'filedelete-intro'            => "Törölni készülsz a(z) '''[[Media:$1|$1]]''' médiafájlt, a teljes fájltörténetével együtt.",
 'filedelete-intro-old'        => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: [$4 $3, $2] változatát törlöd.</span>',
-'filedelete-comment'          => 'Indoklás:',
+'filedelete-comment'          => 'Ok:',
 'filedelete-submit'           => 'Törlés',
 'filedelete-success'          => "A(z) '''$1''' médiafájlt törölted.",
 'filedelete-success-old'      => "A(z) '''[[Media:$1|$1]]''' $3, $2-kori változata sikeresen törölve lett.",
@@ -2164,7 +2166,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'dellogpagetext'         => 'Itt láthatók a legutóbb törölt lapok.',
 'deletionlog'            => 'törlési napló',
 'reverted'               => 'Visszaállítva a korábbi változatra',
-'deletecomment'          => 'A törlés oka',
+'deletecomment'          => 'Ok:',
 'deleteotherreason'      => 'További indoklás:',
 'deletereasonotherlist'  => 'Egyéb indok',
 'deletereason-dropdown'  => '*Gyakori törlési okok
@@ -2203,7 +2205,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'protect-title'               => '„$1” levédése',
 'prot_1movedto2'              => '[[$1]] lapot átneveztem [[$2]] névre',
 'protect-legend'              => 'Levédés megerősítése',
-'protectcomment'              => 'A védelem oka:',
+'protectcomment'              => 'Ok:',
 'protectexpiry'               => 'Időtartam',
 'protect_expiry_invalid'      => 'A lejárati idő érvénytelen.',
 'protect_expiry_old'          => 'A lejárati idő a múltban van.',
@@ -2367,7 +2369,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipaddress'                       => 'IP-cím',
 'ipadressorusername'              => 'IP-cím vagy felhasználói név',
 'ipbexpiry'                       => 'Lejárat:',
-'ipbreason'                       => 'Indok:',
+'ipbreason'                       => 'Ok:',
 'ipbreasonotherlist'              => 'Más ok',
 'ipbreason-dropdown'              => '*Gyakori blokkolási okok
 ** Téves információ beírása
@@ -2442,7 +2444,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'block-log-flags-noemail'         => 'e-mail blokkolva',
 'block-log-flags-nousertalk'      => 'saját vitalapját sem szerkesztheti',
 'block-log-flags-angry-autoblock' => 'bővített automatikus blokk bekapcsolva',
-'block-log-flags-hiddenname'      => 'szerkesztőnév elrejtve',
+'block-log-flags-hiddenname'      => 'rejtett felhasználónév',
 'range_block_disabled'            => 'A rendszerfelelős tartományblokkolás létrehozási képessége letiltott.',
 'ipb_expiry_invalid'              => 'Hibás lejárati dátum.',
 'ipb_expiry_temp'                 => 'A láthatatlan felhasználóinév-blokkok lehetnek állandóak.',
@@ -2851,7 +2853,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Figyelmeztetés''': Ez a fájltípus kártékony kódot tartalmazhat.
-A futtatása során kárt tehet a számítógépedben.<hr />",
+A futtatása során kárt tehet a számítógépedben.",
 'imagemaxsize'         => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
@@ -3405,20 +3407,5 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'htmlform-submit'              => 'Elküldés',
 'htmlform-reset'               => 'Változtatások visszavonása',
 'htmlform-selectorother-other' => 'egyéb',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategória hozzáadása',
-'ajax-add-category-submit'     => 'Hozzáadás',
-'ajax-confirm-title'           => 'Művelet megerősítése',
-'ajax-confirm-prompt'          => 'Alább megadhatsz egy szerkesztési összefoglalót.
-Kattints a „Mentés” gombra a szerkesztés elmentéséhez.',
-'ajax-confirm-save'            => 'Mentés',
-'ajax-add-category-summary'    => '„$1” kategória hozzáadása',
-'ajax-remove-category-summary' => '„$1” kategória eltávolítása',
-'ajax-confirm-actionsummary'   => 'Elvégzendő művelet:',
-'ajax-error-title'             => 'Hiba',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Nem sikerült eltávolítani a kategóriát.
-Ez általában akkor fordul elő, ha a kategóriát egy sablon adja hozzá a laphoz.',
 
 );

@@ -34,6 +34,7 @@
  * @author Korg
  * @author Korrigan
  * @author Kropotkine 113
+ * @author Litlok
  * @author Louperivois
  * @author McDutchie
  * @author Meithal
@@ -360,7 +361,7 @@ $messages = array(
 'tog-previewontop'            => 'Montrer la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst'          => 'Montrer la prévisualisation lors de la première modification',
 'tog-nocache'                 => 'Désactiver le cache des pages',
-'tog-enotifwatchlistpages'    => 'M’avertir par courriel lorsqu’une page de ma liste de suivi est modifiée',
+'tog-enotifwatchlistpages'    => 'M’avertir par courrier électronique lorsqu’une page de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel si ma page de discussion est modifiée',
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modifications mineures des pages',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
@@ -721,7 +722,7 @@ Veuillez essayer de nouveau dans quelques minutes.',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
 'editinginterface'     => "'''Attention :''' vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d’internationalisation des messages [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
 'sqlhidden'            => '(Requête SQL cachée)',
-'cascadeprotected'     => 'Cette page est actuellement protégée car elle est incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée{{PLURAL:$1||s}} avec l’option « protection en cascade » activée :
+'cascadeprotected'     => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected'   => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
 'customcssjsprotected' => 'Vous n’avez pas la permission de modifier cette page, car elle contient les préférences d’un autre utilisateur.',
@@ -997,7 +998,7 @@ L’administrateur ayant verrouillé la base de données a donné l’explicatio
 />$1",
 'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
-'cascadeprotectedwarning'          => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l’éditer. Cette protection a été faite car cette page est incluse dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la « protection en cascade » activée.",
+'cascadeprotectedwarning'          => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l’éditer. Cette protection est héritée par son inclusion par {{PLURAL:$1|la page protégée suivante, qui a|les pages protégées suivantes, qui ont}} la « protection en cascade » activée :",
 'titleprotectedwarning'            => "'''ATTENTION : Cette page a été protégée de telle manière que des [[Special:ListGroupRights|droits spécifiques]] sont requis pour pouvoir la créer.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
 'templatesused'                    => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} par cette page :',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :',
@@ -1102,7 +1103,7 @@ Comme administrateur, vous pouvez toujours [$1 voir cette version] si vous le vo
 En tant qu’administrateur, vous pouvez la visualiser ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-suppressed-text-view'    => "Cette version de la page a été '''supprimée'''.
 En tant qu’administrateur, vous pouvez la visualiser ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].",
-'rev-deleted-no-diff'         => "Vous ne pouvez par voir ce diff parce qu’une des versions a été '''effacée'''.
+'rev-deleted-no-diff'         => "Vous ne pouvez pas voir ce diff parce qu’une des versions a été '''effacée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-suppressed-no-diff'      => "Vous ne pouvez pas voir cette différence car une des révisions a été '''supprimée'''.",
 'rev-deleted-unhide-diff'     => "Une des révisions de cette différence a été '''effacée'''.
@@ -1147,7 +1148,7 @@ Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-radio-unset'       => 'Non',
 'revdelete-suppress'          => 'Cacher les données également pour les administrateurs',
 'revdelete-unsuppress'        => 'Enlever les restrictions sur les versions restaurées',
-'revdelete-log'               => 'Raison de la suppression :',
+'revdelete-log'               => 'Motif :',
 'revdelete-submit'            => 'Appliquer {{PLURAL:$1|à la révision sélectionnée|aux révisions sélectionnées}}',
 'revdelete-logentry'          => 'a modifié la visibilité de la version de [[$1]]',
 'logdelete-logentry'          => 'a modifié la visibilité de l’événement de [[$1]]',
@@ -1426,7 +1427,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
 * Une case non cochée signifie qu’il ne s’y trouve pas.
 * Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté.',
-'userrights-reason'            => 'Raison du changement :',
+'userrights-reason'            => 'Motif :',
 'userrights-no-interwiki'      => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
 'userrights-nodatabase'        => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
 'userrights-nologin'           => 'Vous devez vous [[Special:UserLogin|connecter]] avec un compte d’administrateur pour modifier des droits d’utilisateur.',
@@ -1841,7 +1842,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'filedelete-legend'           => 'Supprimer le fichier',
 'filedelete-intro'            => "Vous êtes sur le point de supprimer '''[[Media:$1|$1]]''' ainsi que tout son historique.",
 'filedelete-intro-old'        => "Vous êtes en train d’effacer la version de '''[[Media:$1|$1]]''' du [$4 $2 à $3].",
-'filedelete-comment'          => 'Motif de suppression :',
+'filedelete-comment'          => 'Motif :',
 'filedelete-submit'           => 'Supprimer',
 'filedelete-success'          => "'''$1''' a été supprimé.",
 'filedelete-success-old'      => "La version de '''[[Media:$1|$1]]''' du $2 à $3 a été supprimée.",
@@ -1965,7 +1966,7 @@ Les entrées <s>barrées</s> ont été résolues.',
 'protectedpages-indef'    => 'Uniquement les protections permanentes',
 'protectedpages-cascade'  => 'Uniquement les protections en cascade',
 'protectedpagestext'      => 'Les pages suivantes sont protégées contre les modifications ou le déplacement.',
-'protectedpagesempty'     => 'Aucune page n’est protégée actuellement.',
+'protectedpagesempty'     => 'Aucune page n’est protégée de cette façon.',
 'protectedtitles'         => 'Titres protégés',
 'protectedtitlestext'     => 'Les titres suivants sont protégés à la création',
 'protectedtitlesempty'    => 'Aucun titre n’est actuellement protégé avec ces paramètres.',
@@ -1975,7 +1976,7 @@ Les entrées <s>barrées</s> ont été résolues.',
 'usereditcount'           => '$1 modification{{PLURAL:$1||s}}',
 'usercreated'             => 'Créé le $1 à $2',
 'newpages'                => 'Nouvelles pages',
-'newpages-username'       => 'Utilisateur :',
+'newpages-username'       => 'Nom d’utilisateur :',
 'ancientpages'            => 'Pages les plus anciennement modifiées',
 'move'                    => 'Renommer',
 'movethispage'            => 'Renommer cette page',
@@ -2208,7 +2209,7 @@ Voir $2 pour une liste des suppressions récentes.',
 'dellogpagetext'         => 'Voici la liste des suppressions les plus récentes.',
 'deletionlog'            => 'journal des suppressions',
 'reverted'               => 'Version précédente rétablie',
-'deletecomment'          => 'Motif de suppression :',
+'deletecomment'          => 'Motif :',
 'deleteotherreason'      => 'Motif autre ou supplémentaire :',
 'deletereasonotherlist'  => 'Autre motif',
 'deletereason-dropdown'  => '* Motifs de suppression les plus courants
@@ -2253,7 +2254,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protect-title'               => 'Changer le niveau de protection pour « $1 »',
 'prot_1movedto2'              => '[[$1]] renommé en [[$2]]',
 'protect-legend'              => 'Confirmer la protection',
-'protectcomment'              => 'Raison :',
+'protectcomment'              => 'Motif :',
 'protectexpiry'               => 'Date d’expiration :',
 'protect_expiry_invalid'      => 'La date d’expiration est invalide.',
 'protect_expiry_old'          => 'La date d’expiration est déjà passée.',
@@ -2265,7 +2266,7 @@ Voici les réglages actuels de la page '''$1''' :",
 Voici les réglages actuels de la page '''$1''' :",
 'protect-locked-access'       => "Vous n’avez pas les droits nécessaires pour modifier les niveaux de protection de pages.
 Voici les réglages actuels de la page '''$1''' :",
-'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
+'protect-cascadeon'           => 'Cette page est protégée car incluse dans {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
 'protect-default'             => 'Autoriser tous les utilisateurs',
 'protect-fallback'            => 'Nécessite la permission « $1 »',
 'protect-level-autoconfirmed' => 'Bloquer les nouveaux utilisateurs et les utilisateurs anonymes',
@@ -2592,7 +2593,7 @@ Veuillez en choisir un autre.',
 'movesubpage'                  => 'Sous-page{{PLURAL:$1||s}}',
 'movesubpagetext'              => 'Cette page a $1 {{PLURAL:$1|sous-page affichée|sous-pages affichées}} ci-dessous.',
 'movenosubpage'                => 'Cette page n’a aucune sous-page.',
-'movereason'                   => 'Motif du déplacement :',
+'movereason'                   => 'Motif :',
 'revertmove'                   => 'rétablir',
 'delete_and_move'              => 'Supprimer et déplacer',
 'delete_and_move_text'         => '== Suppression nécessaire ==
@@ -2908,7 +2909,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attention :''' ce type de fichier peut contenir du code malveillant.
-Si vous l’exécutez, votre système peut être compromis.<hr />",
+Si vous l’exécutez, votre système peut être compromis.",
 'imagemaxsize'         => "Format maximal des images :<br />''(pour les pages de description d’images)''",
 'thumbsize'            => 'Taille de la miniature :',
 'widthheightpage'      => '$1 × $2, $3 page{{PLURAL:$3||s}}',
@@ -3491,20 +3492,5 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'htmlform-submit'              => 'Soumettre',
 'htmlform-reset'               => 'Défaire les modifications',
 'htmlform-selectorother-other' => 'Autre',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Ajouter une catégorie',
-'ajax-add-category-submit'     => 'Ajouter',
-'ajax-confirm-title'           => 'Confirmer l’action',
-'ajax-confirm-prompt'          => 'Vous pouvez fournir un résumé de la modification ci-dessous.
-Cliquez sur « Publier » pour enregistrer votre modification.',
-'ajax-confirm-save'            => 'Publier',
-'ajax-add-category-summary'    => 'Ajouter la catégorie « $1 »',
-'ajax-remove-category-summary' => 'Enlever la catégorie « $1 »',
-'ajax-confirm-actionsummary'   => 'Action à mener :',
-'ajax-error-title'             => 'Erreur',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Il n’a pas été possible de retirer cette catégorie.
-Ceci survient généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
 
 );

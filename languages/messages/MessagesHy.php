@@ -8,6 +8,7 @@
  * @file
  *
  * @author Chaojoker
+ * @author Pandukht
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
@@ -685,6 +686,7 @@ $2',
 'nav-login-createaccount'    => 'Մտնել / Գրանցվել',
 'loginprompt'                => '{{SITENAME}} մուտք գործելու համար հարկավոր է քուքիները թույլատրել։',
 'userlogin'                  => 'Մտնել / Գրանցվել',
+'userloginnocreate'          => 'Մտնել',
 'logout'                     => 'Ելնել',
 'userlogout'                 => 'Ելնել',
 'notloggedin'                => 'Դուք չեք մտել համակարգ',
@@ -708,6 +710,7 @@ $2',
 Ստուգեք ձեր ուղղագրությունը կամ [[Special:UserLogin/signup|ստեղծեք նոր մասնակցի հաշիվ]]։',
 'nosuchusershort'            => '<nowiki>$1</nowiki> անունով մասնակից գոյություն չունի։ Ստուգեք ձեր ուղղագրությունը։',
 'nouserspecified'            => 'Հարկավոր է նշել մասնակցային անուն։',
+'login-userblocked'          => 'Այս մասնակիցը արգելափակված է: Մուտքը արգելված է:',
 'wrongpassword'              => 'Մուտքագրված գաղտնաբառը սխալ էր։ Խնդրում ենք կրկին փորձել։',
 'wrongpasswordempty'         => 'Մուտքագրված գաղտնաբառը դատարկ էր։ Խնդրում ենք կրկին փորձել։',
 'passwordtooshort'           => 'Գաղտնաբառը պետք է պարունակի առնվազն {{PLURAL:$1|1 սիմվոլ|$1 սիմվոլ}}։',
@@ -999,9 +1002,11 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'revdelete-hide-comment'      => 'Թաքցնել մեկնաբանությունը',
 'revdelete-hide-user'         => 'Թաքցնել հեղինակի մասնակցի անունը/IP',
 'revdelete-hide-restricted'   => 'Թաքցնել տվյալները և՛ ադմինիստրատորներից, և՛ այլ մասնակիցներից',
+'revdelete-radio-set'         => 'Այո',
+'revdelete-radio-unset'       => 'Ոչ',
 'revdelete-suppress'          => 'Թաքցնել տվյալները ադմինիստրատորներից և մյուսներից նոյնպես',
 'revdelete-unsuppress'        => 'Հանել սահմանափակումները վերականգնված տարբերակներից',
-'revdelete-log'               => 'Ջնջման պատճառը.',
+'revdelete-log'               => 'Պատճառ.',
 'revdelete-submit'            => 'Կիրառել ընտրված տարբերակի վրա',
 'revdelete-logentry'          => '«[[$1]]»-ի տարբերակների տեսանելիությունը փոփոխված է',
 'logdelete-logentry'          => '«[[$1]]»-ի իրադարձությունների տեսանելիությունը փոփոխված է',
@@ -1013,6 +1018,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'revdelete-otherreason'       => 'Ուրիշ/հավելյալ պատճառ՝',
 'revdelete-reasonotherlist'   => 'Ուրիշ պատճառ',
 'revdelete-edit-reasonlist'   => 'Խմբագրել ջնջման պատճառների ցանկը',
+'revdelete-offender'          => 'Էջի տարբերակի հեղինակ՝',
 
 # Merge log
 'revertmerge' => 'Անջատել',
@@ -1201,15 +1207,16 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'prefs-diffs'                   => 'Տարբերություններ',
 
 # User rights
-'userrights'               => 'Մասնակիցների իրավունքների կառավարում',
-'userrights-lookup-user'   => 'Մասնակիցների խմբերի կառավարում',
-'userrights-user-editname' => 'Մուտքագրեք մասնակցի անուն.',
-'editusergroup'            => 'Խմբագրել մասնակիցների խմբերը',
-'editinguser'              => '<b>$1</b> մասնակցի համար ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
-'userrights-editusergroup' => 'Խմբագրել մասնակցի խմբերը',
-'saveusergroups'           => 'Հիշել մասնակցի խմբերը',
-'userrights-groupsmember'  => 'Անդամ է.',
-'userrights-reason'        => 'Փոփոխության պատճառը.',
+'userrights'                => 'Մասնակիցների իրավունքների կառավարում',
+'userrights-lookup-user'    => 'Մասնակիցների խմբերի կառավարում',
+'userrights-user-editname'  => 'Մուտքագրեք մասնակցի անուն.',
+'editusergroup'             => 'Խմբագրել մասնակիցների խմբերը',
+'editinguser'               => '<b>$1</b> մասնակցի համար ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
+'userrights-editusergroup'  => 'Խմբագրել մասնակցի խմբերը',
+'saveusergroups'            => 'Հիշել մասնակցի խմբերը',
+'userrights-groupsmember'   => 'Անդամ է.',
+'userrights-reason'         => 'Պատճառ.',
+'userrights-changeable-col' => 'Խմբեր, որոնք դուք կարող եք ձևափոխել',
 
 # Groups
 'group'               => 'Խումբ.',
@@ -1236,6 +1243,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'grouppage-suppress'      => '{{ns:project}}:Հսկիչ',
 
 # Rights
+'right-edit'   => 'էջերի խմբագրում',
+'right-upload' => 'ֆայլերի բեռնում',
 'right-delete' => 'Էջերի ջնջում',
 
 # User rights log
@@ -1430,7 +1439,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'filedelete-legend'           => 'Ջնջել ֆայլը',
 'filedelete-intro'            => "Դուք պատրաստվում եք ջնջել '''[[Media:$1|$1]]''' ֆայլը իր ամբողջ պատմությամբ։",
 'filedelete-intro-old'        => "Դուք ջնջում եք '''[[Media:$1|$1]]''' ֆայլի [$4 $3, $2 պահով] տարբերակը։",
-'filedelete-comment'          => 'Մեկնաբանություն.',
+'filedelete-comment'          => 'Պատճառ.',
 'filedelete-submit'           => 'Ջնջել',
 'filedelete-success'          => "'''$1''' ֆայլը ջնջված է։",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' ֆայլի $3, $2 պահով տարբերակը ջնջված է։",
@@ -1732,7 +1741,7 @@ $NEWPAGE
 'dellogpagetext'        => 'Ստորև բերված է ամենավերջին ջնջումների ցանկը։',
 'deletionlog'           => 'ջնջման տեղեկամատյան',
 'reverted'              => 'Հետ է շրջվել նախորդ տարբերակի',
-'deletecomment'         => 'Ջնջման պատճառը',
+'deletecomment'         => 'Պատճառ.',
 'deleteotherreason'     => 'Լրացուցիչ պատճառ',
 'deletereasonotherlist' => 'Ուրիշ պատճառ',
 
@@ -1761,7 +1770,7 @@ $NEWPAGE
 'protect-title'               => '«$1» էջի պաշտպանման մակարդակի հաստատում',
 'prot_1movedto2'              => '«[[$1]]» վերանվանված է «[[$2]]»',
 'protect-legend'              => 'Հաստատել պաշտպանումը',
-'protectcomment'              => 'Պատճառը.',
+'protectcomment'              => 'Պատճառ.',
 'protectexpiry'               => 'Մարում.',
 'protect_expiry_invalid'      => 'Անթույլատրելի մարման ժամկետ։',
 'protect_expiry_old'          => 'Մարման ժամկետը անցյալում է։',
@@ -2263,7 +2272,7 @@ $1',
 'nextdiff'     => 'Հաջորդ խմբագրում →',
 
 # Media information
-'mediawarning'         => "'''Զգուշացում'''. այս ֆայլը կարող է պարունակել վնասակար ծրագրային կոդ, որի կատարումը կարող է վտանգել ձեր համակարգը։<hr />",
+'mediawarning'         => "'''Զգուշացում'''. այս ֆայլը կարող է պարունակել վնասակար ծրագրային կոդ, որի կատարումը կարող է վտանգել ձեր համակարգը։",
 'imagemaxsize'         => 'Պատկերի էջում պատկերի չափի սահմանափակում.',
 'thumbsize'            => 'Պատկերների փոքրացված չափ.',
 'widthheightpage'      => '$1 × $2, $3 էջեր',
@@ -2475,20 +2484,5 @@ $1',
 'dberr-header'   => 'Այս վիքիում խնդիրներ են առաջացել',
 'dberr-problems' => 'Այս կայքում առաջացել են տեխնիկական խնդիրներ։ Հայցում ենք ձեր ներողությունը։',
 'dberr-again'    => 'Փորձեք մի քանի րոպե սպասել և վերաբեռնել էջը։',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Ավելացնել կատեգորիա',
-'ajax-add-category-submit'     => 'Ավելացնել',
-'ajax-confirm-title'           => 'Հաստատել գործողությունը',
-'ajax-confirm-prompt'          => 'Դուք կարող եք նշել խմբագրման ամփոփումը, ստորև։
-Սղմեք «Հիշել» ձեր փոփոխությունները հիշելու համար։',
-'ajax-confirm-save'            => 'Հիշել',
-'ajax-add-category-summary'    => 'Ավելացնել «$1» կատեգորիան',
-'ajax-remove-category-summary' => 'Հեռացնել «$1» կատեգորիան',
-'ajax-confirm-actionsummary'   => 'Կատարվող գործողությունը․',
-'ajax-error-title'             => 'Սխալ',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Չհաջողվեց հեռացնել այս կատեգորիան։
-Դա սովորաբար պատահում է, երբ կատեգորիան ավելացվում է կաղապարի միջից։',
 
 );

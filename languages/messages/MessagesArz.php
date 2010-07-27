@@ -911,8 +911,8 @@ $2',
 'blocked-notice-logextract'        => 'اليوزر ده معمول له بلوك دلوقتى.
 اخر بلوك فى السجل موجود تحت للمراجعه:',
 'clearyourcache'                   => "'''ملاحظة - بعد التسييف,  يمكن لازم تفرغ كاش متصفحك علشان تشوف التغييرات.''' '''موزيللا / فايرفوكس / سافارى:''' دوس على ''Shift'' فى نفس الوقت دوس على ''Reload,'' أو دوس على اما ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''دوس على ''Reload'' أو دوس على ''F5;'' '''أوبرا:''' فرغ الكاش فى ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' دوس على ''Ctrl'' فى نفس الوقت دوس على ''Refresh,'' أو دوس على ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''ملاحظة:''' استعمل زرار ' عرض بروفة' علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل تسييڤ الصفحه.",
-'userjsyoucanpreview'              => "'''ملاحظة:''' استعمل زرار ' عرض بروفة' علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل تسييڤ الصفحه.",
+'usercssyoucanpreview'             => "'''ملاحظة:''' استعمل زرار \"{{int:showpreview}}\" علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل تسييڤ الصفحه.",
+'userjsyoucanpreview'              => "'''ملاحظة:''' استعمل زرار \"{{int:showpreview}}\" علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل تسييڤ الصفحه.",
 'usercsspreview'                   => "'''افتكر انك  بتعرض  (CSS) بتاع اليوزر بس.
 هى لسه ماتسييڤتش!'''",
 'userjspreview'                    => "'''أفتكر أنك بس بتجرب/بتعرض الجافا سكريبت بتاع اليوزر بتاعك، و انها لسة ماتحفظتش!'''",
@@ -1122,7 +1122,7 @@ $2',
 'revdelete-radio-unset'       => 'لأ',
 'revdelete-suppress'          => 'تخبية البيانات عن السيسوبات و اليوزرز التانيين',
 'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
-'revdelete-log'               => 'سبب المسح:',
+'revdelete-log'               => 'السبب:',
 'revdelete-submit'            => 'طبق على {{PLURAL:$1|المراجعه|المراجعه}} المختارة',
 'revdelete-logentry'          => 'غير رؤية المراجعة ل[[$1]]',
 'logdelete-logentry'          => 'غير رؤية الحدث ل[[$1]]',
@@ -1295,10 +1295,10 @@ $1",
 'prefs-math'                    => 'رياضة',
 'datedefault'                   => 'مافبش تفضيل',
 'prefs-datetime'                => 'وقت وتاريخ',
-'prefs-personal'                => 'البروفيل بتاع اليوزر',
+'prefs-personal'                => 'الپروفيل بتاع اليوزر',
 'prefs-rc'                      => 'اخر التغييرات',
-'prefs-watchlist'               => 'لستة المراقبة',
-'prefs-watchlist-days'          => 'عدد الأيام للعرض فى لستة المراقبة:',
+'prefs-watchlist'               => 'ليستة المراقبه',
+'prefs-watchlist-days'          => 'الايام اللى تتعرض فى ليستة المراقبه:',
 'prefs-watchlist-days-max'      => '(الحد الاقصى 7 ايام)',
 'prefs-watchlist-edits'         => 'عدد التعديلات اللى بتتعرض فى لستةالمراقبة المتوسعة:',
 'prefs-watchlist-edits-max'     => '(الرقم الاقصى: 1000)',
@@ -1377,9 +1377,9 @@ $1",
 'prefs-help-gender'             => 'اختياري: بيستعملوه فى  المخاطبة المعتمدة على النوع بالسوفتوير. المعلومه دى ح تكون علنيه.',
 'email'                         => 'الإيميل',
 'prefs-help-realname'           => 'الاسم الحقيقى اختيارى.
-ولو اخترت تعرض اسمك هنا هايستخدم فى الإشارة لتعديلاتك.',
-'prefs-help-email'              => 'عنوان البريد الإلكترونى اختيارى، لكن يسمح بأن يتم إرسال كلمة السر الخاصة بك إليك لو نسيتها.
-ممكن كمان تخلى اليوزرز التانيين يقدروا يتصلوا بيك  فى صفحتك او صفة المناقشة بتاعتك من غير ما يعرفو  انت مين.',
+لو إخترت تكتبه, حيستعمل بس علشان شغلك يتنسب لإسمك.',
+'prefs-help-email'              => 'الإيميل اختيارى, بس لازم علشان لو نسيت الپاسوورد.
+ممكن بردو تختار انك تخلّى اليوزرات تبعتلك إيميل من صفحة اليوزر او المناقشه بتاعتك من غير ما تبقى شخصيتك معروفه.',
 'prefs-help-email-required'     => 'عنوان الإيميل مطلوب.',
 'prefs-info'                    => 'معلومات اساسيه',
 'prefs-i18n'                    => 'التدويل',
@@ -1823,7 +1823,7 @@ PICT # misc.
 'filerevert'                => 'استرجع $1',
 'filerevert-legend'         => 'استرجع الملف',
 'filerevert-intro'          => "أنت بترجع '''[[Media:$1|$1]]''' [$4 للنسخةاللى بتاريخ $2، $3].",
-'filerevert-comment'        => 'تعليق:',
+'filerevert-comment'        => 'السبب:',
 'filerevert-defaultcomment' => 'رجع النسخة اللى بتاريخ $2، $1',
 'filerevert-submit'         => 'استرجع',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' اترجعت [$4 للنسخةاللى بتاريخ $2، $3].",
@@ -1834,7 +1834,7 @@ PICT # misc.
 'filedelete-legend'           => 'امسح الملف',
 'filedelete-intro'            => "انتا على وشك تمسح الملف'''[[Media:$1|$1]]'''معا كل التاريخ بتاعه.",
 'filedelete-intro-old'        => '<span class="plainlinks">أنت بتمسح نسخة \'\'\'[[Media:$1|$1]]\'\'\'اللى  بتاريخ [$4 $3، $2].</span>',
-'filedelete-comment'          => 'سبب المسح:',
+'filedelete-comment'          => 'السبب:',
 'filedelete-submit'           => 'مسح',
 'filedelete-success'          => "'''$1''' خلاص اتمسح.",
 'filedelete-success-old'      => "نسخة الـ'''[[Media:$1|$1]]''' اللى بتاريخ $3، $2 اتمسحت.",
@@ -2206,7 +2206,7 @@ $UNWATCHURL
 'dellogpagetext'         => 'لسته بأحدث عمليات المسح.',
 'deletionlog'            => 'سجل المسح',
 'reverted'               => 'استرجع لنسخة أقدم',
-'deletecomment'          => 'سبب المسح:',
+'deletecomment'          => 'السبب:',
 'deleteotherreason'      => 'سبب تانى/اضافي:',
 'deletereasonotherlist'  => 'سبب تانى',
 'deletereason-dropdown'  => '*أسباب المسح المشهوره
@@ -2332,7 +2332,7 @@ $UNWATCHURL
 'undeleteviewlink'             => 'عرض',
 'undeletereset'                => 'ابتدى من الأول',
 'undeleteinvert'               => 'اعكس الاختيار',
-'undeletecomment'              => 'تعليق:',
+'undeletecomment'              => 'السبب:',
 'undeletedarticle'             => 'رجع  "[[$1]]" تاني',
 'undeletedrevisions'           => 'رجع تانى {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 نسخة|$1 نسخة}} و {{PLURAL:$2|1 ملف|$2 ملف}} رجعو تاني',
@@ -2918,7 +2918,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''تحذير''': الملف دا ممكن يكون فيه كود مضر.
-لو شغلته,الكومبيوتر بتاعك ممكن يخرب.<hr />",
+لو شغلته,الكومبيوتر بتاعك ممكن يخرب.",
 'imagemaxsize'         => "حد حجم الصوره:<br />''(لصفحات الوصف بتاع الملفات)''",
 'thumbsize'            => 'حجم العرض المتصغر:',
 'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',
@@ -3377,15 +3377,15 @@ $1',
 'watchlistedit-normal-title'   => 'تعديل لستة المراقبة',
 'watchlistedit-normal-legend'  => 'شيل العناوين من لستة المراقبة',
 'watchlistedit-normal-explain' => 'العناوين فى لستة المراقبة بتاعتك معروضة تحت.
-علشان تشيل عنوان، دوس على الصندوق اللى جنبه، ودوس على شيل العناوين.
+علشان تشيل عنوان، دوس على الصندوق اللى جنبه، ودوس على شيل العناوين"{{int:Watchlistedit-normal-submit}}".
 ممكن كمان [[Special:Watchlist/raw|تعديل اللستة الخام]].',
 'watchlistedit-normal-submit'  => 'شيل العناوين',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} اتشال من لستة المراقبة بتاعتك:',
 'watchlistedit-raw-title'      => 'تعديل لستة المراقبة الخام',
 'watchlistedit-raw-legend'     => 'تعديل لستة المراقبة الخام',
-'watchlistedit-raw-explain'    => 'العناوين فى لستة مراقبتك معروضة تحت، وممكن تعدلها لما تزود او تشيل من اللستة؛
+'watchlistedit-raw-explain'    => 'العناوين فى لستة مراقبتك معروضه تحت، وممكن تعدلها لما تزود او تشيل من اللستة؛
 عنوان واحد فى السطر.
-لما تخلص، دوس تحديث لستة المراقبة.
+لما تخلص، دوس تحديث لستة المراقبه "{{int:Watchlistedit-raw-submit}}".
 ممكن كمان [[Special:Watchlist/edit|تستعمل المحرر القياسي]].',
 'watchlistedit-raw-titles'     => 'العناوين:',
 'watchlistedit-raw-submit'     => 'تحديث لستة المراقبة',
@@ -3568,20 +3568,5 @@ $1',
 'htmlform-submit'              => 'تقديم',
 'htmlform-reset'               => 'الرجوع فى التغييرات',
 'htmlform-selectorother-other' => 'تانيين',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'ضيف تصنيف',
-'ajax-add-category-submit'     => 'ضيف',
-'ajax-confirm-title'           => 'تأكيد العمليه',
-'ajax-confirm-prompt'          => 'ممكن تضيف ملخص للتعديل تحت.
-دوس على "تسييف" علشان تسيف التعديل بتاعك.',
-'ajax-confirm-save'            => 'سييف',
-'ajax-add-category-summary'    => 'حط التصنيف "$1"',
-'ajax-remove-category-summary' => 'شيل التصنيف "$1"',
-'ajax-confirm-actionsummary'   => 'العمل المطلوب:',
-'ajax-error-title'             => 'غلط',
-'ajax-error-dismiss'           => 'طيب',
-'ajax-remove-category-error'   => 'مانفعش نشيل التصنيف دا.
-دا بيحصل عادة لما التصنيف بيتحط فى الصفحه عن طريق القالب',
 
 );

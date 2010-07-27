@@ -538,7 +538,7 @@ $messages = array(
 'protectlogpage'              => 'თხილუაშ ისტორია',
 'protectedarticle'            => 'თხილერი რე "[[$1]]"',
 'prot_1movedto2'              => '[[$1]] გინოღალირიე ხასილაშა [[$2]]',
-'protectcomment'              => 'კომენტარ:',
+'protectcomment'              => 'საბაბი',
 'protectexpiry'               => 'ვადა',
 'protect-default'             => '(სტანდარტულ)',
 'protect-fallback'            => 'საჭიროე "$1"-იშ ულაფა',
@@ -736,8 +736,5 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'სპეციალურ ხასილეფ',
-
-# Add categories per AJAX
-'ajax-error-dismiss' => 'OK',
 
 );

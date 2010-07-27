@@ -506,7 +506,7 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'deletedarticle'        => '"[[$1]]" yoʻqotildi',
 'dellogpage'            => 'Yoʻqotish qaydlari',
-'deletecomment'         => "O'chirish sababi",
+'deletecomment'         => 'Sabab:',
 'deleteotherreason'     => 'Boshqa/qoʻshimcha sabab:',
 'deletereasonotherlist' => 'Boshqa sabab',
 

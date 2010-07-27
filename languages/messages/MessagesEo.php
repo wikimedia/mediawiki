@@ -219,7 +219,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
 'tog-diffonly'                => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats'          => 'Montri kaŝitajn kategoriojn',
-'tog-norollbackdiff'          => 'Mankigi ŝanĝojn post farante malfaron',
+'tog-norollbackdiff'          => 'Preterlasi ŝanĝoelmontron post malfaro',
 
 'underline-always'  => 'Ĉiam',
 'underline-never'   => 'Neniam',
@@ -302,7 +302,7 @@ $messages = array(
 'index-category'                 => 'Indeksitaj paĝoj',
 'noindex-category'               => 'Neindeksitaj paĝoj',
 
-'mainpagetext'      => "'''MediaViki softvaro sukcese instaliĝis.'''",
+'mainpagetext'      => "'''MediaWiki estis sukcese instalita.'''",
 'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
 
 ==Kiel komenci==
@@ -408,7 +408,7 @@ $messages = array(
 'otherlanguages'    => 'Aliaj lingvoj',
 'redirectedfrom'    => '(Alidirektita el $1)',
 'redirectpagesub'   => 'Alidirektilo',
-'lastmodifiedat'    => 'Laste redaktita je $2, $1.',
+'lastmodifiedat'    => 'Ĉi tiu paĝo estis lastafoje redaktita je $2, $1.',
 'viewcount'         => 'Montrita {{PLURAL:$1|unufoje|$1 fojojn}}.',
 'protectedpage'     => 'Protektita paĝo',
 'jumpto'            => 'Iri al:',
@@ -423,7 +423,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Pri {{SITENAME}}',
 'aboutpage'            => 'Project:Enkonduko',
-'copyright'            => 'La enhavo estas havebla sub $1.',
+'copyright'            => 'La enhavo estas disponebla laŭ $1.',
 'copyrightpage'        => '{{ns:project}}:Kopirajto',
 'currentevents'        => 'Aktualaĵoj',
 'currentevents-url'    => 'Project:Aktualaĵoj',
@@ -998,7 +998,7 @@ Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj re
 'revdelete-radio-unset'       => 'Ne',
 'revdelete-suppress'          => 'Subpremi datenojn de kaj administrantoj kaj aliaj',
 'revdelete-unsuppress'        => 'Forigi limigojn al restarigitaj versioj',
-'revdelete-log'               => 'Kialo por forigado:',
+'revdelete-log'               => 'Kialo:',
 'revdelete-submit'            => 'Apliki al {{PLURAL:$1|elektita revizio|elektitaj revizioj}}',
 'revdelete-logentry'          => 'ŝanĝis videblecon de versio por [[$1]]',
 'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
@@ -1217,7 +1217,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'timezoneregion-indian'         => 'Hinda Oceano',
 'timezoneregion-pacific'        => 'Pacifiko',
 'allowemail'                    => 'Rajtigi retmesaĝojn de aliaj uzantoj',
-'prefs-searchoptions'           => 'Serĉi opciojn',
+'prefs-searchoptions'           => 'Serĉaj opcioj',
 'prefs-namespaces'              => 'Nomspacoj',
 'defaultns'                     => 'Alimaniere, traserĉi la jenajn nomspacojn:',
 'default'                       => 'defaŭlte',
@@ -1474,14 +1474,14 @@ Paĝoj en [[Special:Watchlist|via atentaro]] estas '''grasaj'''.",
 'upload_directory_missing'    => 'La alŝuta dosierujo ($1) estas nek trovebla nek kreebla de la retservilo.',
 'upload_directory_read_only'  => 'La TTT-servilo ne povas alskribi la alŝuto-dosierujon ($1).',
 'uploaderror'                 => 'Eraro okazis dum alŝuto',
-'uploadtext'                  => "Uzu la jenan formon por alŝuti dosierojn.
-Vidi aŭ serĉi antaŭe alŝutitajn bildojn, iru la [[Special:FileList|Listo de alŝutitaj dosieroj]]; (re)alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Protokolo de alŝutoj]], forigoj en la [[Special:Log/delete|protokolo de forigoj]].
+'uploadtext'                  => "Uzu la jenan formularon por alŝuti dosierojn.
+Vidi aŭ serĉi antaŭe alŝutitajn bildojn, iru al [[Special:FileList|Listo de alŝutitaj dosieroj]]; (re)alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Protokolo de alŝutoj]], forigoj en la [[Special:Log/delete|protokolo de forigoj]].
 
 Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 
-* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bildo.jpg]]</nowiki>''' por uzi la plena versio de la dosiero
-* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bildo.png|200px|thumb|left|alternativa teksto]]</nowiki>''' por uzi 200-rastrumera versio en kesto al la maldekstro (\"left\") kun \"alternativa teksto\" kiel la priskribo.
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>''' por ligi rekte al la dosiero ne montranta la dosieron.",
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bildo.jpg]]</nowiki>''' por uzi la plenan version de la dosiero
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bildo.png|200px|thumb|left|alternativa teksto]]</nowiki>''' por uzi 200-rastrumeran version en kesto maldekstre (\"left\") kun \"alternativa teksto\" kiel priskribo.
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>''' por ligi rekte al la dosiero ne montrante la dosieron.",
 'upload-permitted'            => 'Permesitaj dosiertipoj: $1.',
 'upload-preferred'            => 'Preferitaj dosiertipoj: $1.',
 'upload-prohibited'           => 'Malpermesitaj dosiero-tipoj: $1.',
@@ -1680,7 +1680,7 @@ Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
 'filedelete-legend'           => 'Forigi dosieron.',
 'filedelete-intro'            => "Vi preskaŭ forigos dosieron '''[[Media:$1|$1]]''' kune kun ĉiom da ĝia historio.",
 'filedelete-intro-old'        => "Vi forigas version de '''[[Media:$1|$1]]''' ekde [$4 $3, $2].",
-'filedelete-comment'          => 'Kialo por forigo:',
+'filedelete-comment'          => 'Kialo:',
 'filedelete-submit'           => 'Forigi',
 'filedelete-success'          => "'''$1''' estas forigita.",
 'filedelete-success-old'      => "La versio de '''[[Media:$1|$1]]''' ekde $3, $2 estas forigita.",
@@ -2047,7 +2047,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 Ĉiuj tempoj sekvas la horzonon UTC.',
 'deletionlog'            => 'protokolo pri forigoj',
 'reverted'               => 'Malfaris al antaŭa revisio',
-'deletecomment'          => 'Kialo por forigo:',
+'deletecomment'          => 'Kialo:',
 'deleteotherreason'      => 'Alia/plua kialo:',
 'deletereasonotherlist'  => 'Alia kialo',
 'deletereason-dropdown'  => '*Oftaj kialoj por forigo
@@ -2710,7 +2710,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file type may contain malicious code.
-By executing it, your system may be compromised.<hr />",
+By executing it, your system may be compromised.",
 'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
@@ -3180,7 +3180,10 @@ Vi povas ankaŭ [[Special:Watchlist/edit|redakti norme]].',
 'filepath'         => 'Vojo al dosiero',
 'filepath-page'    => 'Dosiero:',
 'filepath-submit'  => 'Vojo',
-'filepath-summary' => 'Ĉi tiu speciala paĝo redonas la kompletan padon por dosiero. Bildoj estas montrataj en alta distingivo, aliaj dosieraj tipoj estas rekte startataj per ties asociita programo.',
+'filepath-summary' => 'Ĉi tiu speciala paĝo liveras kompletan vojon al dosiero.
+Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte per ties asociita programo.
+
+Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Serĉu duplikatajn dosierojn',
@@ -3258,20 +3261,5 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'htmlform-submit'              => 'Ek!',
 'htmlform-reset'               => 'Malfari ŝanĝojn',
 'htmlform-selectorother-other' => 'Alia',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Aldoni kategorion',
-'ajax-add-category-submit'     => 'Aldoni',
-'ajax-confirm-title'           => 'Konfirmi agon',
-'ajax-confirm-prompt'          => 'Vi povas provizi redaktan resumon suben.
-Klaku butonon "Konservi" por konservi vian redakton.',
-'ajax-confirm-save'            => 'Konservi',
-'ajax-add-category-summary'    => 'Aldoni kategorion "$1"',
-'ajax-remove-category-summary' => 'Forigi kategorion "$1"',
-'ajax-confirm-actionsummary'   => 'Ago por fari:',
-'ajax-error-title'             => 'Eraro',
-'ajax-error-dismiss'           => 'Ek!',
-'ajax-remove-category-error'   => 'Ne eblas forigi ĉi tiun kategorion.
-Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
 
 );

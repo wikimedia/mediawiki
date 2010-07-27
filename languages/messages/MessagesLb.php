@@ -949,7 +949,7 @@ Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläs
 'revdelete-radio-unset'       => 'Neen',
 'revdelete-suppress'          => 'Grond vum Läschen och fir Administrateure verstoppt',
 'revdelete-unsuppress'        => 'Limitatiounen fir restauréiert Versiounen ophiewen',
-'revdelete-log'               => "Grond fir d'Läschen:",
+'revdelete-log'               => 'Grond:',
 'revdelete-submit'            => 'Op déi gewielte {{PLURAL:$1|Versioun|Versiounen}} uwenden',
 'revdelete-logentry'          => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
 'logdelete-logentry'          => "huet d'Sichtbarkeet vun [[$1]] geännert",
@@ -1846,7 +1846,7 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 # Special:ActiveUsers
 'activeusers'            => 'Lëscht vun den aktive Benotzer',
 'activeusers-intro'      => 'Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.',
-'activeusers-count'      => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLUAL:$3|gëschter|an de leschten $3 Deeg}}',
+'activeusers-count'      => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLURAL:$3|gëschter|an de leschten $3 Deeg}}',
 'activeusers-from'       => 'Benotzer weisen, ugefaang bäi:',
 'activeusers-hidebots'   => 'Botte verstoppen',
 'activeusers-hidesysops' => 'Administrateure verstoppen',
@@ -1999,7 +1999,7 @@ W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'dellogpagetext'         => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server.',
 'deletionlog'            => 'Läschlëscht',
 'reverted'               => 'Op déi Versioun virdrun zréckgesat',
-'deletecomment'          => "Grond fir d'Läschen:",
+'deletecomment'          => 'Grond:',
 'deleteotherreason'      => 'Aneren/ergänzende Grond:',
 'deletereasonotherlist'  => 'Anere Grond',
 'deletereason-dropdown'  => '* Heefegst Grënn fir eng Säit ze läschen
@@ -2675,7 +2675,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier kann e béiswëllege Programmcode enthalen.
-Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.<hr />",
+Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'imagemaxsize'         => "Maximal Gréisst fir Biller:<br />''(fir Billerbeschreiwungssäiten)''",
 'thumbsize'            => 'Gréisst vun der Miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',
@@ -3213,20 +3213,5 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'htmlform-submit'              => 'Späicheren',
 'htmlform-reset'               => 'Ännerungen zrécksetzen',
 'htmlform-selectorother-other' => 'Anerer',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategorie derbäisetzen',
-'ajax-add-category-submit'     => 'Derbäisetzen',
-'ajax-confirm-title'           => 'Aktioun confirméieren',
-'ajax-confirm-prompt'          => 'Dir kënnt e Resumé vun der Ännerung ënnedrënner uginn.
-Klickt "Späicheren" fir Är Ännerung ze späicheren.',
-'ajax-confirm-save'            => 'Späicheren',
-'ajax-add-category-summary'    => 'Kategorie "$1" derbäisetzen',
-'ajax-remove-category-summary' => 'Kategorie "$1" ewechhuelen',
-'ajax-confirm-actionsummary'   => 'Wat soll gemaach ginn:',
-'ajax-error-title'             => 'Feeler',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "Et war net méiglech dës Kategorie ewechzehuelen.
-Dëst geschitt gewéinlech da wann eng Kategorie duerch eng Schabloun op d'Säit derbäi gesat gouf.",
 
 );

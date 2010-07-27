@@ -554,7 +554,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'dellogpage'            => 'Beterü_köndälege',
 'deletionlog'           => 'beterü köndälege',
 'reverted'              => 'Aldağı yuramanı qaytart',
-'deletecomment'         => 'Beterü säbäbe',
+'deletecomment'         => 'Säbäp',
 'deleteotherreason'     => 'Başqa/üstämä säbäp:',
 'deletereasonotherlist' => 'Başqa säbäp',
 'deletereason-dropdown' => '*Beterergä tüp säbäp
@@ -572,7 +572,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'protect-title'      => '«$1» yaqlaw',
 'prot_1movedto2'     => '$1 moña küçte: $2',
 'protect-legend'     => 'Yaqlawnı raslaw',
-'protectcomment'     => 'Yaqlaw säbäbe',
+'protectcomment'     => 'Säbäp',
 'protectexpiry'      => 'İske bulaçaq:',
 
 # Undelete
@@ -637,8 +637,8 @@ Soñğı beterülär $2 bitendä terkälenä.',
 yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'movedto'          => 'küçerelde:',
 'movetalk'         => 'Mömkin bulsa, «bäxäs» biten dä küçer.',
-'1movedto2'        => '$1 moña küçte: $2',
-'1movedto2_redir'  => '$1 moña küçte: $2 (yünältü aşa)',
+'1movedto2'        => '[[$1]] moña küçte: [[$2]]',
+'1movedto2_redir'  => '[[$1]] moña küçte: [[$2]] (yünältü aşa)',
 
 # Namespace 8 related
 'allmessages'        => 'Säxifäneñ bar sätirläre',

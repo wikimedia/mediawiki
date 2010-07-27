@@ -1053,7 +1053,7 @@ El motivo dado por $3 es ''$2''",
 Leyenda: (act) = diferencias con la versión actual,
 (prev) = diferencias con la versión previa, M = edición menor",
 'history-fieldset-title' => 'Buscar en el historial',
-'history-show-deleted'   => 'Sólamente borrado',
+'history-show-deleted'   => 'Solamente borrado',
 'histfirst'              => 'Primeras',
 'histlast'               => 'Últimas',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -1130,7 +1130,7 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Suprimir datos a los administradores así como al resto',
 'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
-'revdelete-log'               => 'Razón para el borrado:',
+'revdelete-log'               => 'Motivo:',
 'revdelete-submit'            => 'Aplicar a {{PLURAL:$1|la revisión seleccionada|las revisiones seleccionadas}}',
 'revdelete-logentry'          => 'cambió la visibilidad de revisiones de [[$1]]',
 'logdelete-logentry'          => 'cambió la visibilidad de eventos de [[$1]]',
@@ -2184,7 +2184,7 @@ Véase $2 para un registro de los borrados recientes.',
 'dellogpagetext'         => 'A continuación se muestra una lista de los borrados más recientes.',
 'deletionlog'            => 'registro de borrados',
 'reverted'               => 'Recuperar una revisión anterior',
-'deletecomment'          => 'Motivo del borrado',
+'deletecomment'          => 'Motivo:',
 'deleteotherreason'      => 'Otra razón:',
 'deletereasonotherlist'  => 'Otra razón',
 'deletereason-dropdown'  => '*Razones comunes de borrado
@@ -2863,7 +2863,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso.
-Ejecutarlo podría comprometer la seguridad de su equipo.<hr />",
+Ejecutarlo podría comprometer la seguridad de su equipo.",
 'imagemaxsize'         => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize'            => 'Tamaño de las vistas en miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:|página|páginas}}',
@@ -3416,20 +3416,5 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Deshacer cambios',
 'htmlform-selectorother-other' => 'Otro',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Agregar categoría',
-'ajax-add-category-submit'     => 'Agregar',
-'ajax-confirm-title'           => 'Confirmar acción',
-'ajax-confirm-prompt'          => 'Puedes proveer un resumen de edición abajo.
-Haz click en "Grabar" para grabar tu edición.',
-'ajax-confirm-save'            => 'Guardar',
-'ajax-add-category-summary'    => 'Agregar categoría "$1"',
-'ajax-remove-category-summary' => 'Eliminar categoría "$1"',
-'ajax-confirm-actionsummary'   => 'Acción a tomar:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'No fue posible eliminar esta categoría.
-Esto usualmente ocurre cuando la categoría ha sido agregada a la página por una plantilla.',
 
 );

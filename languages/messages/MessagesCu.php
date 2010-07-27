@@ -147,17 +147,42 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
 
-'about'      => 'опьса́ниѥ',
-'mypage'     => 'моꙗ́ страни́ца',
-'mytalk'     => 'моꙗ́ бєсѣ́да',
-'navigation' => 'пла́ваниѥ',
-'and'        => '&#32;и',
+'about'         => 'опьса́ниѥ',
+'moredotdotdot' => 'вѧ́щє ···',
+'mypage'        => 'моꙗ́ страни́ца',
+'mytalk'        => 'моꙗ́ бєсѣ́да',
+'navigation'    => 'пла́ваниѥ',
+'and'           => '&#32;и',
 
 # Cologne Blue skin
 'qbedit'         => 'испра́ви',
 'qbpageoptions'  => 'си страни́ца',
 'qbmyoptions'    => 'моꙗ́ страни́цѧ',
 'qbspecialpages' => 'наро́чьнꙑ страни́цѧ',
+
+# Vector skin
+'vector-action-delete'       => 'поничьжє́ниѥ',
+'vector-action-move'         => 'прѣимєнова́ниѥ',
+'vector-action-protect'      => 'ꙁабранѥ́ниѥ',
+'vector-action-unprotect'    => 'поущє́ниѥ',
+'vector-namespace-category'  => 'катигорі́ꙗ',
+'vector-namespace-help'      => 'по́мощь',
+'vector-namespace-image'     => 'дѣ́ло',
+'vector-namespace-main'      => 'члѣ́нъ',
+'vector-namespace-media'     => 'срѣ́дьства',
+'vector-namespace-mediawiki' => 'напьса́ниѥ',
+'vector-namespace-project'   => 'съвѣ́тъ',
+'vector-namespace-special'   => 'наро́чьна',
+'vector-namespace-talk'      => 'бєсѣ́да',
+'vector-namespace-template'  => 'обраꙁь́ць',
+'vector-namespace-user'      => 'по́льꙃєватєл҄ь',
+'vector-view-create'         => 'сътворѥ́ниѥ',
+'vector-view-edit'           => 'испра́ви',
+'vector-view-history'        => 'їсторі́ꙗ',
+'vector-view-view'           => 'чьтѥ́ниѥ',
+'vector-view-viewsource'     => 'страни́цѧ исто́чьнъ о́браꙁъ',
+'actions'                    => 'дѣ́иства',
+'namespaces'                 => 'имє́нъ просто́рꙑ',
 
 'errorpagetitle'   => 'блаꙁна',
 'tagline'          => '{{grammar:genitive|{{SITENAME}}}} страни́ца',
@@ -170,6 +195,7 @@ $messages = array(
 'history_short'    => 'їсторі́ꙗ',
 'printableversion' => 'пєча́тьнъ о́браꙁъ',
 'permalink'        => 'въи́ньна съвѧ́ꙁь',
+'print'            => 'пєча́таниѥ',
 'edit'             => 'испра́ви',
 'create'           => 'сътворѥ́ниѥ',
 'editthispage'     => 'си страни́цѧ исправлѥ́ниѥ',
@@ -202,6 +228,7 @@ $messages = array(
 'currentevents-url'    => 'Project:Сѫ́щѧѩ вѣ́щи',
 'edithelp'             => 'по́мощь по исправлѥ́ниѭ',
 'edithelppage'         => 'Help:Исправлѥ́ниѥ страни́цѧ',
+'helppage'             => 'Help:Ката́логъ',
 'mainpage'             => 'гла́вьна страни́ца',
 'mainpage-description' => 'гла́вьна страни́ца',
 'portal'               => 'обьщє́ниꙗ съвѣ́тъ',
@@ -215,6 +242,7 @@ $messages = array(
 'editlink'            => 'испра́ви',
 'viewsourcelink'      => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'editsectionhint'     => 'исправлѥ́ниѥ чѧ́сти : $1',
+'toc'                 => 'ката́логъ',
 'showtoc'             => 'ви́ждь',
 'hidetoc'             => 'съкрꙑи',
 'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
@@ -233,6 +261,7 @@ $messages = array(
 'nstab-category'  => 'катигорі́ꙗ',
 
 # General errors
+'error'         => 'блаꙁна',
 'viewsource'    => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'viewsourcefor' => '$1 дѣлꙗ',
 
@@ -243,20 +272,27 @@ $messages = array(
 'login'                   => 'Въниди',
 'nav-login-createaccount' => 'въниди / съꙁи́жди си мѣ́сто',
 'userlogin'               => 'въниди / съꙁи́жди си мѣ́сто',
+'userloginnocreate'       => 'въниди',
 'logout'                  => 'ис̾хо́дъ',
 'userlogout'              => 'ис̾хо́дъ',
-'createaccount'           => 'Cъзижди си мѣсто',
+'nologinlink'             => 'съꙁи́жди си мѣ́сто',
+'createaccount'           => 'съꙁи́жди си мѣ́сто',
 'gotaccount'              => "Мѣсто ти ѥстъ ли? '''$1'''.",
 'gotaccountlink'          => 'Въниди',
 'userexists'              => 'сѫщє по́льꙃєватєлꙗ и́мѧ пьса ⁙ ино иꙁобрѧщи',
-'loginerror'              => 'Въхода блазна',
+'loginerror'              => 'въхода блаꙁна',
 'accountcreated'          => 'мѣ́сто сътворєно́ ѥ́стъ',
 'loginlanguagelabel'      => 'ѩꙁꙑ́къ : $1',
+
+# Password reset dialog
+'oldpassword' => 'старо таино слово :',
+'newpassword' => 'ново таино слово :',
 
 # Edit page toolbar
 'link_sample'    => 'съвѧ́ꙁи и́мѧ',
 'extlink_sample' => 'http://www.example.com съвѧ́ꙁи и́мѧ',
 'math_tip'       => 'маѳиматїчьна формоула (LaTeX)',
+'sig_tip'        => 'твои аѵто́графъ и нꙑ́нѣшьна врѣ́мѧ и дьнь',
 
 # Edit pages
 'summary'            => 'опьса́ниѥ :',
@@ -265,7 +301,7 @@ $messages = array(
 'savearticle'        => 'съхранѥ́ниѥ',
 'loginreqlink'       => 'Въниди',
 'newarticle'         => '(но́въ)',
-'clearyourcache'     => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
+'clearyourcache'     => 'НАРОЧИ́ТО: По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
 'note'               => "'''НАРОЧИ́ТО:'''",
 'editing'            => 'исправлѥ́ниѥ: $1',
 'editingsection'     => 'исправлѥ́ниѥ ⁖ $1 ⁖ (чѧ́сть)',
@@ -289,15 +325,20 @@ $messages = array(
 'revdelete-uname' => 'по́льꙃєватєлꙗ и́мѧ',
 
 # Search results
-'searchresults'            => 'иска́ниꙗ ито́гъ',
-'searchresults-title'      => 'иска́ниꙗ ⁖ $1 ⁖ ито́гъ',
-'searchprofile-images'     => 'дѣ́ла',
-'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
-'search-redirect'          => '(прѣнаправлє́ниѥ $1)',
-'search-section'           => '(чѧ́сть $1)',
-'search-interwiki-caption' => 'ро́дьствьна опꙑтьствова́ниꙗ',
-'searchall'                => 'вьсꙗ́',
-'powersearch'              => 'ищи́',
+'searchresults'                  => 'иска́ниꙗ ито́гъ',
+'searchresults-title'            => 'иска́ниꙗ ⁖ $1 ⁖ ито́гъ',
+'searchmenu-new'                 => "'''страни́цѫ ⁖ [[:$1]] ⁖ сътвори́ти мо́жєши'''",
+'searchhelp-url'                 => 'Help:Ката́логъ',
+'searchprofile-articles'         => 'члѣ́ни',
+'searchprofile-images'           => 'дѣла́',
+'searchprofile-everything'       => 'вьсѩ́ страни́цѧ',
+'searchprofile-articles-tooltip' => 'ищи въ $1',
+'search-result-size'             => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
+'search-redirect'                => '(прѣнаправлє́ниѥ $1)',
+'search-section'                 => '(чѧ́сть $1)',
+'search-interwiki-caption'       => 'ро́дьствьна опꙑтьствова́ниꙗ',
+'searchall'                      => 'вьсꙗ́',
+'powersearch'                    => 'ищи́',
 
 # Preferences page
 'preferences'         => 'строи',
@@ -381,8 +422,10 @@ $messages = array(
 
 # File description page
 'file-anchor-link'   => 'ви́дъ',
+'filehist'           => 'дѣ́ла їсторі́ꙗ',
 'filehist-deleteone' => 'поничьжє́ниѥ',
 'filehist-current'   => 'нꙑнѣщьн҄ь о́браꙁъ',
+'filehist-datetime'  => 'дьнь / врѣ́мѧ',
 'filehist-user'      => 'по́льꙃєватєл҄ь',
 'imagelinks'         => 'дѣ́ла съвѧ́ꙁи',
 
@@ -520,12 +563,13 @@ $messages = array(
 'sp-contributions-submit'   => 'ищи́',
 
 # What links here
-'whatlinkshere'           => 'дос̑ьдє́щьнѩ съвѧ́ꙁи',
-'whatlinkshere-title'     => 'страни́цѧ ижє съ ⁖ $1 ⁖ съвѧ́ꙁи имѫтъ',
-'whatlinkshere-page'      => 'страни́ца :',
-'isredirect'              => 'прѣнаправлѥ́ниѥ',
-'whatlinkshere-links'     => '← съвѧ́ꙁи',
-'whatlinkshere-hidelinks' => '$1 съвѧ́ꙁи',
+'whatlinkshere'            => 'дос̑ьдє́щьнѩ съвѧ́ꙁи',
+'whatlinkshere-title'      => 'страни́цѧ ижє съ ⁖ $1 ⁖ съвѧ́ꙁи имѫтъ',
+'whatlinkshere-page'       => 'страни́ца :',
+'isredirect'               => 'прѣнаправлѥ́ниѥ',
+'whatlinkshere-links'      => '← съвѧ́ꙁи',
+'whatlinkshere-hideredirs' => '$1 прѣнаправлѥ́ниꙗ',
+'whatlinkshere-hidelinks'  => '$1 съвѧ́ꙁи',
 
 # Block/unblock
 'blockip'            => 'ꙁагради́ по́льꙃєватєл҄ь',
@@ -571,6 +615,7 @@ $messages = array(
 'tooltip-n-recentchanges'        => 'послѣ́дьнъ мѣ́нъ ката́логъ',
 'tooltip-t-upload'               => 'положє́ниѥ дѣ́лъ',
 'tooltip-t-specialpages'         => 'вьсѣѩ наро́чьнъ страни́цѧ ката́логъ',
+'tooltip-ca-nstab-special'       => 'си наро́чьна страни́ца ѥ́стъ · ѥѩжє иꙁмѣнꙗ́ти нє можєши',
 'tooltip-watch'                  => 'си страни́цѧ блюдє́ниѥ',
 
 # Media information
@@ -617,5 +662,8 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'наро́чьнꙑ страни́цѧ',
+
+# Special:Tags
+'tags-edit' => 'испра́ви',
 
 );

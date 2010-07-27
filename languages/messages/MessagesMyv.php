@@ -737,7 +737,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'revdelete-hide-name'       => 'Кекшемс тев тееманть ды норовамо тарканзо',
 'revdelete-hide-comment'    => 'Кекшемс витнемадо-петнемадо арсематнень',
 'revdelete-hide-user'       => 'Кекшемс витницянть-петницянть теиця лемензэ/IP-нзэ',
-'revdelete-log'             => 'Нардамонть тувталозо:',
+'revdelete-log'             => 'Тувталось:',
 'revdelete-submit'          => 'Аравтомс кочказь {{PLURAL:$1|лиякстомтомантень|лиякстомтоматненень}}',
 'revdelete-logentry'        => '[[$1]]-нть лиякстомтоманть неявомазо полавтовсь',
 'revdel-restore'            => 'Полавтомс неявомачынзэ',
@@ -1123,7 +1123,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'filedelete'                  => 'Нардамс $1',
 'filedelete-legend'           => 'Нардамс файланть',
 'filedelete-intro'            => "Пурнат нардамо '''[[Media:$1|$1]]''' файланть путовкснэк-йурнэк.",
-'filedelete-comment'          => 'Мейс нардамс:',
+'filedelete-comment'          => 'Тувталось:',
 'filedelete-submit'           => 'Нардамс',
 'filedelete-success'          => "'''$1'''-сь нардазь.",
 'filedelete-nofile'           => "'''$1''' арась.",
@@ -1368,7 +1368,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'dellogpage'             => 'Нардомань совама-кемекстома',
 'deletionlog'            => 'нардамонь сёрмалема',
 'reverted'               => 'Вельмевтезь лопань седе икелень лиякстомтома',
-'deletecomment'          => 'Тувтал печкеме:',
+'deletecomment'          => 'Тувталось:',
 'deleteotherreason'      => 'Лия/топавтозь тувтал:',
 'deletereasonotherlist'  => 'Лия тувтал',
 'delete-edit-reasonlist' => 'Витнемс-петнемс нардамонь тувталтнэнь',
@@ -2051,14 +2051,5 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # HTML forms
 'htmlform-selectorother-other' => 'Лия',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Поладомс категория',
-'ajax-add-category-submit'     => 'Поладомс',
-'ajax-confirm-save'            => 'Ванстомс',
-'ajax-add-category-summary'    => 'Поладомс категориянть "$1"',
-'ajax-remove-category-summary' => 'Нардамс категориянть "$1"',
-'ajax-confirm-actionsummary'   => 'Мезе теемс:',
-'ajax-error-title'             => 'Ильведевкс',
 
 );

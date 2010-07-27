@@ -980,7 +980,7 @@ Makikita pa rin ng iba pang mga tagapangasiwang nasa {{SITENAME}} ang mga tinago
 'revdelete-radio-unset'       => 'Hindi',
 'revdelete-suppress'          => 'Supilin ang datos mula sa mga tagapangasiwa gayon din sa iba',
 'revdelete-unsuppress'        => 'Tanggalin ang mga pagbabawal sa naibalik na mga pagbabago',
-'revdelete-log'               => 'Dahilan sa pagbubura:',
+'revdelete-log'               => 'Dahilan:',
 'revdelete-submit'            => 'Pairalin para sa napiling {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'revdelete-logentry'          => 'binago ang antas ng pagpapakita ng pagbabago kay [[$1]]',
 'logdelete-logentry'          => 'binago ang antas ng pagpapakita ng kaganapan kay [[$1]]',
@@ -1666,7 +1666,7 @@ Ang paglalarawang nasa ibabaw ng [$2 pahina ng paglalarawan ng talaksan] nito do
 'filedelete-legend'           => 'Burahin ang talaksan',
 'filedelete-intro'            => "Buburahin mo na ang talaksang '''[[Media:$1|$1]]''' na kasama ang lahat ng kasaysayan nito.",
 'filedelete-intro-old'        => '<span class="plainlinks">Binubura mo ang bersyon ng \'\'\'[[Media:$1|$1]]\'\'\' mula noong [$4 $3, $2].</span>',
-'filedelete-comment'          => 'Dahilan ng pagkakabura:',
+'filedelete-comment'          => 'Dahilan:',
 'filedelete-submit'           => 'Burahin',
 'filedelete-success'          => "Nabura na ang '''$1'''.",
 'filedelete-success-old'      => "Nabura ang bersyon ng '''[[Media:$1|$1]]''' mula noong $2, $3.",
@@ -2028,7 +2028,7 @@ Pakitiyak lamang na ito ang nais mong gawin, na nauunawaan mo ang mga kahihinatn
 'dellogpagetext'         => 'Nasa ibaba ang isang talaan ng pinakakamailan lamang na mga pagbubura.',
 'deletionlog'            => 'tala ng pagbubura',
 'reverted'               => 'Ibinalik sa mas sinaunang pagbabago',
-'deletecomment'          => 'Dahilan ng pagbubura:',
+'deletecomment'          => 'Dahilan:',
 'deleteotherreason'      => 'Iba pa/karagdagang dahilan:',
 'deletereasonotherlist'  => 'Ibang dahilan',
 'deletereason-dropdown'  => '*Pangkaraniwang mga dahilan ng pagbura
@@ -2724,7 +2724,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Babala''': Maaaring naglalaman ng kodigong malisyoso ang uri ng talaksang ito.
-Maaaring manganib ang iyong sistema kapag ipinagana mo ito. <hr />",
+Maaaring manganib ang iyong sistema kapag ipinagana mo ito.",
 'imagemaxsize'         => "Takdang hangganan sa laki ng larawan: <br />''(para sa mga pahina ng paglalarawan ng talaksan)''",
 'thumbsize'            => 'Maliit na sukat (parang "kuko sa hinlalaki" lamang):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pahina|mga pahina}}',
@@ -3329,20 +3329,5 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'htmlform-submit'              => 'Ipasa',
 'htmlform-reset'               => 'Bawiin ang mga pagbabago',
 'htmlform-selectorother-other' => 'Iba pa',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Magdagdag ng kategorya',
-'ajax-add-category-submit'     => 'Idagdag',
-'ajax-confirm-title'           => 'Tiyakin ang galaw',
-'ajax-confirm-prompt'          => 'Maaari kang magbigay ng buod ng pagbabago sa ibaba.
-Pindutin ang "Itala"upang maitala ang iyong pagbabago.',
-'ajax-confirm-save'            => 'Sagipin',
-'ajax-add-category-summary'    => 'Idagdag ang kategoryang "$1"',
-'ajax-remove-category-summary' => 'Tanggalin ang kategoryang "$1"',
-'ajax-confirm-actionsummary'   => 'Ang gagawing galaw:',
-'ajax-error-title'             => 'Kamalian',
-'ajax-error-dismiss'           => 'Okey',
-'ajax-remove-category-error'   => 'Hindi naging maaari ang pagtanggal ng ganitong kategorya.
-Karaniwang nagaganap ito kapag nadaragdag ang kategorya sa pahinang nasa loob ng isang suleras.',
 
 );

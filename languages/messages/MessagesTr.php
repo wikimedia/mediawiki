@@ -885,8 +885,8 @@ ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Bu kullancı şuanda engellenmiş.
 Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
-'usercssyoucanpreview'             => "'''İpucu:''' Sayfayı kaydetmeden önce '''önizlemeyi göster''''e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
-'userjsyoucanpreview'              => "'''İpucu:''' Sayfayı kaydetmeden önce '''önizlemeyi göster''''e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
+'usercssyoucanpreview'             => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni CSSinizi test edin.",
+'userjsyoucanpreview'              => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni JavaScript'inizi test edin.",
 'usercsspreview'                   => "'''Sadece kullanıcı CSS dosyanızın önizlemesini görüyorsun.''' '''Kullanıcı CSS dosyası henüz kaydolmadı!'''",
 'userjspreview'                    => "'''Sadece test ediyorsun ya da önizleme görüyorsun - kullanıcı JavaScript'i henüz kaydolmadı.'''",
 'userinvalidcssjstitle'            => "''Uyarı:''' \"\$1\" adıyla bir tema yoktur. tema-adı.css ve .js dosyalarının adları küçük harf ile yazması gerek, yani {{ns:user}}:Temel/'''M'''onobook.css değil, {{ns:user}}:Temel/'''m'''onobook.css.",
@@ -1090,7 +1090,7 @@ Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log
 'revdelete-radio-unset'       => 'Hayır',
 'revdelete-suppress'          => 'Verileri hem diğerlerinden hem de hizmetlilerden gizle',
 'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
-'revdelete-log'               => 'Silinme için sebep:',
+'revdelete-log'               => 'Neden:',
 'revdelete-submit'            => 'Seçilen {{PLURAL:$1|sürüme|sürümlere}} uygula',
 'revdelete-logentry'          => '[[$1]] için revizyon görünürlüğü değişti',
 'logdelete-logentry'          => '[[$1]] için olay görünürlüğü değişti',
@@ -1370,7 +1370,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 * Seçili bir kutu, kullanıcının o gruba dahil olduğu anlamına gelir
 * Seçilmemiş bir kutu, kullanıcının o grupta olmadığı anlamına gelir.
 * *, grubu bir kez oluşturduktan sonra silemeceğinizi belirtir, ya da karşılıklı olarak.',
-'userrights-reason'            => 'Sebep:',
+'userrights-reason'            => 'Neden:',
 'userrights-no-interwiki'      => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
 'userrights-nodatabase'        => '$1 veritabanı mevcut veya bölgesel değil',
 'userrights-nologin'           => 'Kullanıcı haklarını atamak için hizmetli hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
@@ -1786,7 +1786,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'filedelete-legend'           => 'Dosya sil',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' dosyasını tüm geçmişiyle birlikte silmek üzeresiniz.",
 'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' dosyasının [$4 $3, $2] tarihli sürümünü siliyorsunuz.",
-'filedelete-comment'          => 'Silinme sebebi:',
+'filedelete-comment'          => 'Neden:',
 'filedelete-submit'           => 'sil',
 'filedelete-success'          => "'''$1''' silindi.",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' dosyasının $3, $2 tarihli sürümü silindi.",
@@ -1982,7 +1982,7 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 # Special:LinkSearch
 'linksearch'       => 'Dış bağlantılar',
 'linksearch-pat'   => 'Motif ara:',
-'linksearch-ns'    => 'Alan adı:',
+'linksearch-ns'    => 'Ad boşluğu:',
 'linksearch-ok'    => 'Ara',
 'linksearch-text'  => '"*.wikipedia.org" gibi jokerler kullanılabilir.<br />
 Desteklenen iletişim kuralları: <tt>$1</tt>',
@@ -2154,7 +2154,7 @@ Yakın zamanda silinenleri görmek için: $2.',
 'dellogpagetext'         => 'Aşağıdaki liste son silme kayıtlarıdır.',
 'deletionlog'            => 'silme kayıtları',
 'reverted'               => 'Önceki sürüm geri getirildi',
-'deletecomment'          => 'Silme nedeni',
+'deletecomment'          => 'Neden:',
 'deleteotherreason'      => 'Diğer/ilave neden:',
 'deletereasonotherlist'  => 'Diğer nedenler',
 'deletereason-dropdown'  => '*Genel silme gerekçeleri
@@ -2301,7 +2301,7 @@ $1',
 'undelete-show-file-submit'    => 'Evet',
 
 # Namespace form on various pages
-'namespace'      => 'Alan adı:',
+'namespace'      => 'Ad boşluğu:',
 'invert'         => 'Seçili haricindekileri göster',
 'blanknamespace' => '(Ana)',
 
@@ -2826,7 +2826,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Uyarı''': Bu dosya türü kötü niyetli kodlar içerebilir.
-Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.<hr />",
+Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
 'imagemaxsize'         => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'            => 'Küçük boyut:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
@@ -3419,20 +3419,5 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'htmlform-submit'              => 'Gönder',
 'htmlform-reset'               => 'Değişiklikleri geri al',
 'htmlform-selectorother-other' => 'Diğer',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategori ekle',
-'ajax-add-category-submit'     => 'Ekle',
-'ajax-confirm-title'           => 'İşlemi onayla',
-'ajax-confirm-prompt'          => 'Aşağıya bir değişiklik özeti yazabilirsiniz. 
-Değişikliğinizi kaydetmek için "Kaydet"e basın.',
-'ajax-confirm-save'            => 'Kaydet',
-'ajax-add-category-summary'    => '"$1" kategorisini ekle',
-'ajax-remove-category-summary' => '"$1" kategorisini kaldır',
-'ajax-confirm-actionsummary'   => 'Yapılacak işlem:',
-'ajax-error-title'             => 'Hata',
-'ajax-error-dismiss'           => 'Tamam',
-'ajax-remove-category-error'   => 'Kategori silinemiyor. 
-Bu genelde kategori sayfaya bir şablon aracılığıyla eklendiğinde meydana gelir.',
 
 );

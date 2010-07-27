@@ -173,6 +173,7 @@ $messages = array(
 'qbmyoptions'    => 'Min side',
 'qbspecialpages' => ' Spetsjåålside',
 'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Vector skin
 'vector-action-addsection'   => 'Stuk haanetufoue',
@@ -275,9 +276,9 @@ $1',
 'helppage'             => 'Help:Inhåltsfertiiknis',
 'mainpage'             => 'Hoodsid',
 'mainpage-description' => 'Hoodsid',
-'policy-url'           => 'Prujäkt:Ruchtliinje',
+'policy-url'           => 'Project:Ruchtliinje',
 'portal'               => 'Gemiinschaps-portåål',
-'portal-url'           => 'Prujäkt:Gemiinschaps-portåål',
+'portal-url'           => 'Project:Gemiinschaps-portåål',
 'privacy'              => 'Dootenschuts',
 'privacypage'          => 'Project:Dootenschuts',
 
@@ -353,7 +354,8 @@ Jü leest dootebånk ouffrååg wus:
 üt jü funksjoon „<tt>$2</tt>“.
 Jü dootebank mäldede di fäägel „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Dåt jäif en süntaksfäägel önj e dootebånk-ouffrååch.
-Jü leest dootebånkouffrååch wus  „$1“ üt jü funksjoon „<tt>$2</tt>“.',
+Jü leest dootebånkouffrååch wus  „$1“ üt e funksjoon „<tt>$2</tt>“.
+Jü dootebånk mälded jü fäägel: „<tt>$3: $4</tt>“.',
 'laggedslavemode'      => "''''Woarschauing:''' Jü wised sid köö uner amstånde ai da leeste beåarbinge önjthüülje.",
 'readonly'             => 'Dootebånk späred',
 'enterlockreason'      => 'Wees swü gödj än jeew en grün önj, weeram jü dootebånk späred wårde schal än en schåting ouer e duur foon jü späre',
@@ -401,6 +403,10 @@ Ouffrååch: $2',
 'editinginterface'     => "'''Woorschauing:''' Jüdeer sid önjthålt foon jü MesiaWiki-software bënjüteden takst.
 Änringe wirke jam aw jü brükerouerfläche üt.
 For ouerseetinge tånk deeram, jü önj di  [http://translatewiki.net/wiki/Main_Page?setlang=frr Translatewiki], dåt MediaWiki lokalisiiringsprojekt, döörtufäären.",
+'sqlhidden'            => 'SCL-ouffrååg ferstäägen',
+'cascadeprotected'     => 'Jüdeer sid as for beårbing spärd. Jü as önj {{PLURAL:$1|e füliende sid|da füliende side}} 
+önjbünen, {{PLURAL:$1|jü|da}} madels e kaskaadespäropsjoon önj febading hüüljen {{PLURAL:$1|as|san}}:
+$2',
 'namespaceprotected'   => "Dü hääst niinj beruchtiging, jü sid önj di '''$1'''-noomerüm tu beårben.",
 'customcssjsprotected' => 'Dü bast ai beruchtiged, jüdeer sid tu beårben, deer jü tu da persöönlike önjstalinge foon en ouderen brüker hiirt.',
 'ns-specialprotected'  => 'Spetsjåålside koone ai beårbed wårde.',
@@ -413,6 +419,10 @@ Jü späre wörd döör [[User:$1|$1]] ma grün "$2" önjruchted.',
 'virus-unknownscanner' => 'Ünbekånde fiirusscanner:',
 
 # Login and logout pages
+'logouttext'              => "'''Dü bast nü oufmäded.'''
+
+Dü koost {{SITENAME}} nü anonüüm widerbrüke, unti de wider uner diseelew unti en oudern benjüternoome [[Special:UserLogin|önjmälde]].
+Påås aw, dåt hu side nuch wide koone, dåt dü önjmälded bast, sülung dü ai dan browsercache lääsimååged heest.",
 'welcomecreation'         => '== Wäljkiimen, $1! ==
 
 Din brükerkonto wörd önjruchted.
@@ -441,6 +451,10 @@ Ferjeet ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'userexists'              => 'Dideer brükernoome as ål ferjääwen. Wees sü gödj en ouderen tu kiisen.',
 'loginerror'              => 'Fäägel bai önjmälding',
 'createaccounterror'      => 'Brükerkonto köö ai mååged wårde: $1',
+'nocookiesnew'            => 'Di benjütertugung wörd mååged, ouers dü bast ai önjmälded. {{SITENAME}} brükt for jüdeer funksjoon cookies.
+Wees sü gödj än aktiwiir da än mäld de dan ma dan naien benjüternoome än dåt tuhiirend pååsuurd önj.',
+'nocookieslogin'          => '{{SITENAME}} benjütet cookies tu e önjmälding foon da benjütere. Dü heest Cookis deaktiwiird. 
+Wees sü gödj än aktiwiir da än fersäk dåt wider.',
 'noname'                  => 'Dü möist en gültigen brükernooem önjjeewe.',
 'loginsuccesstitle'       => 'Önjmälding erfolchrik',
 'loginsuccess'            => "'''Dü bast nü ås „$1“ bai {{SITENAME}} önjmälded.'''",
@@ -467,8 +481,22 @@ Mälde wi önj eefter dü jü füngen heest.',
 Iir en E-mail foon oudere brükere ouer jü E-mail-funksjoon emfångd wårde koon, mötj jü adräs än har wörklike tuhiirihäid tu dåtheer brükerkonto jarst bestääsied wårde. Wees sü gödj än befülie da haanewisinge önj di bestääsiings-E-mail.',
 'throttled-mailpassword'  => 'Deer wörd önj da leeste {{PLURAL:$1|stün|$1 stüne}} ål en nai pååsuurd önjfrååged. Am en misbrük foon jüdeer funksjoon tu ferhanren, koon bloot {{PLURAL:$1|iinjsen pro stün|åle $1 stüne}} en nai pååsuurd önjfrååged wårde.',
 'mailerror'               => 'Fäägel bai dåt siinjen foon e E-mail: $1',
+'emailauthenticated'      => 'Din e-mail-adräs word di $2 am e klook $3 bestääsied.',
 'emailnotauthenticated'   => 'Din E-mail-adräs as nuch ai bestääsied. Da füliende E-mail-funksjoone stönje jarst eefter erfolchrike bestääsiing tu ferfäiging.',
 'noemailprefs'            => 'Jeew en E-mail-adräs önj da önjstalinge önj, deerma da füliende funksjoone tu ferfäiging stönje.',
+'emailconfirmlink'        => 'E-mail-adräs bestääsie (autäntifisiire).',
+'invalidemailaddress'     => 'Jü e-mail adräs wörd ai aksäptiird, ouerdåt jü en üngülti formoot (ewentuäl üngültie tiikne) tu heewen scheent. 
+Wees sü gödj än jeef en koräkt adräs önj unti mäág dåt fäalj lääsi.',
+'accountcreated'          => 'Benjüterkonto mååged',
+'accountcreatedtext'      => 'Dåt benjüteraccount for $1 as mååged wörden.',
+'createaccount-title'     => 'Måågen foon en benjüterkonto for {{SITENAME}}',
+'createaccount-text'      => 'Deer wörd for de en benjüterkonto "$2" aw {{SITENAME}} ($4) mååged. Dåt automaatisch generiird pååsuurd for "$2" as "$3".
+Dü schöist de nü önjmälde än dåt pååsuurd änre.
+
+Fåls dåt benjüterkonto üt fersiinj önjläid wörd, koost dü jüdeer tising ignoriire.',
+'usernamehasherror'       => 'Benjüternoome mötje niinj rütetiikne önjthüulje',
+'login-throttled'         => 'Dü heest tu oofding fersoocht, di önjtumälden.
+Wees sü gödj än täif, bit dü wider ferseechst.',
 'loginlanguagelabel'      => 'Spräke: $1',
 'suspicious-userlogout'   => 'Dan Oufmäldönjfrååge wörd ferwaigred, deer ja fermouslik foon en defäkte browser unti en cache-proxy sånd wörd.',
 
@@ -486,6 +514,8 @@ Nü wårst dü önjmälded...',
 'resetpass-no-info'         => 'Dü möist önjmälded weese am ju sid diräkt tu tu gripen.',
 'resetpass-submit-loggedin' => 'Pååsuurd änre',
 'resetpass-submit-cancel'   => 'Oufbreege',
+'resetpass-wrong-oldpass'   => 'Üngülti tämporäär unti antuäl pååsuurd.
+Möölikerwise heest dü din pååsuurd ål ma erfolch änred heest unti en nai tämporäär pååsuurd beönjdräägen.',
 'resetpass-temp-password'   => 'Tidwise pååsuurd:',
 
 # Edit page toolbar
@@ -519,6 +549,8 @@ Nü wårst dü önjmälded...',
 'showlivepreview'                  => 'Live-forkiik',
 'showdiff'                         => 'Änringe wise',
 'anoneditwarning'                  => "Dü beårbest jüdeer sid ünönjmälded. Wan dü spikerst, wård din aktuäle IP-adräs önj e fesjoonshistoori aptiikned än as deerma for åltens '''ålgemiin''' sichtboor.",
+'missingsummary'                   => "'''Haanewising:\"' Dü heest niinj tuhuupefooting önjjääwen.
+Wan dü wider aw \"Sid spiikre\" klikst, wårt din änring suner tuhuupefooting ouernümen.",
 'missingcommenttext'               => 'Jeew en tuhuupefooting önj.',
 'summary-preview'                  => 'Forlök foon jü tuhuupfootingssid:',
 'subject-preview'                  => 'Forkiik foon dåt subjäkt:',
@@ -526,6 +558,8 @@ Nü wårst dü önjmälded...',
 'blockednoreason'                  => 'niinj grün önjjääwen',
 'blockedoriginalsource'            => "Di kwältakst foon '''$1''' wårt heer wised:",
 'blockededitsource'                => "Di takst foon '''din änringe''' bit '''$1'''wårt heer wised:",
+'whitelistedittitle'               => 'Tu t beårben as dåt ferplächted, önjmälde tu weesen.',
+'whitelistedittext'                => 'Dü möist de $1, am side beårbe tu koonen.',
 'confirmedittext'                  => 'Dü möist din E-mail-adräs jarst bestääsie, iir dü beårbinge döörfääre koost. Mååg din årbe radi än bestääsie din E-mail önj da  [[Special:Preferences|önjstalinge]].',
 'nosuchsectiontitle'               => 'Stuk ai fünen',
 'nosuchsectiontext'                => 'Dü fersoochst en stuk tu änren, dåt dåt ai jeeft.
@@ -534,6 +568,9 @@ Dåt koon ferschääwen unti wächhååld weese, wilt dü jü sid bekiikedest.',
 'loginreqlink'                     => 'Önjmälde',
 'loginreqpagetext'                 => 'Dü möist $1 am oudere side tu bekiiken.',
 'accmailtitle'                     => 'Pååsuurd sånd.',
+'accmailtext'                      => "En tufäli generiird pååsuurd for [[User talk:$1|$1]] wörd tu $2 fersånd.
+
+Dåt pååsuurd for jüdeer nai benjüterkonto koon aw e spetsjoolsid ''[[Special:ChangePassword|Pååsuurd änre]]'' änred wårde.",
 'newarticle'                       => '(Nai)',
 'newarticletext'                   => "Dü bast en link tu en sid fülied, jü nuch ai bestoont.
 Am jü sid tu måågen, dreeg dan täkst önj e unerstönjene box in (sii jü
@@ -542,57 +579,136 @@ Bast üt fersiien heer, klik di '''tubääg'''-klänkfläche foon dan browser.",
 'noarticletext'                    => 'Jüdeer sid önjhålt uugenblaklik nuch nån täkst.
 Dü koost dideere tiitel aw da ouder side [[Special:Search/{{PAGENAME}}|säke]],
 <span class="plainlinks">önj da deertuhiirende [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logböke säke] unti jüdeer sid [{{fullurl:{{FULLPAGENAME}}|action=edit}} beårbe]</span>.',
-'userjsyoucanpreview'              => "'''Tip:''' Brük di forkiik-knoop, am din nai JS for dåt spiikern tu tästen.",
+'noarticletext-nopermission'       => 'Jüdeer sid önjhålt uugenblaklik nuch nån täkst.
+Dü koost dideere tiitel aw da oudre side [[Special:Search/{{PAGENAME}}|säke]],
+unti<span class="plainlinks">önj da deertuhiirende [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logböke säke] </span>.',
+'userpage-userdoesnotexist'        => 'Dåt benjüterkonto "$1" as ai deer.
+Wees sü gödj än präif, weer dü jüdeer sid wörklik mååge/beårbe wååt.',
+'userpage-userdoesnotexist-view'   => 'Benjüterkonto "$1" bestoont ai.',
+'blocked-notice-logextract'        => 'Dideer benjüter as tutids spärd.
+For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
+'usercssyoucanpreview'             => "'''Tip:''' Brük di „{{int:showpreview}}“-knoop, am din nai CSS for dåt spiikern tu tästen.",
+'userjsyoucanpreview'              => "'''Tip:''' Brük di „{{int:showpreview}}“-knoop, am din nai JavaScript for dåt spiikern tu tästen.",
+'usercsspreview'                   => "'''Påås aw dåt dü bloot din brüker CSS forbekiikest.'''
+'''Dåt as nuch ai spiikerd!'''",
 'userjspreview'                    => "'''Påås aw dåt dü bloot din brüker JavaScript präiwest/forbekiikest.'''
 '''Dåt as nuch ai spiikerd!'''",
 'userinvalidcssjstitle'            => "''Woorschauing:''' Skin \"\$1\"jeeft dåt ai. Betånk, dåt brükerspetsiifische .css- än .js-side ma en latj bökstääw önjfånge mönje, ålsü biispelswise ''{{ns:user}}:Münsterkjarl/monobook.css'' önj stää foon ''{{ns:user}}:Münsterkjarl/Monobook.css''.",
+'updated'                          => '(Änred)',
+'note'                             => "'''Påås aw:'''",
 'previewnote'                      => "'''Dåtheer as bloot en forlök, jü sid wörd nuch ai spikred!'''",
 'previewconflict'                  => 'Dideer forbekiik jeeft di inhålt foon dåt boowerst takstfälj wider. Sü wårt jü sid ütsiinj, wan dü nü spiikerst.',
 'editing'                          => 'Beårbe foon $1',
 'editingsection'                   => 'Beårben foon $1 (oufsnaas)',
+'editingcomment'                   => 'Beårben foon $1 (naien oufsnaas)',
+'editconflict'                     => 'Beårbingskonflikt: $1',
+'yourtext'                         => 'Din täkst',
+'storedversion'                    => 'Spiikerd färsjoon',
+'editingold'                       => "'''PÅÅS AW: Dü beårbest en üülj färsjoon foon jüdeer sid. \"
+Wan dü spiikerst, wårde åle naiere färsjoone ouerschraawen.",
+'yourdiff'                         => 'Ferschääle',
 'copyrightwarning'                 => "''' Hål <big>kopiir niinj webside</big>, da ai din äine san, brük <big>niinj uurhääwerruchtlik schütsede wärke</big> suner ferloof foon di uurhääwer!'''<br />
 Dü jeefst üs heerma dan tusååge, dåt dü di täkst '''seelew ferfooted''' hääst, dåt di täkst ålgemiingödj '''(public domain)''' as, unti dåt di '''uurhääwer''' sin '''tustiming''' jääwen heet. For di fål jüdeer täkst ål ouersweer ütdänj wörd, wis hål aw jü diskusjoonssid deeraw haane. <i>Beåcht hål, dåt åle {{SITENAME}}-tujeefte automaatisch uner jü „$2“ stönje (sii $1 for detaile). For di fål dü ai mååst, dåt diin årbe heer foon oudere feränred än språåt wårt, dan kröög ai aw „sid spikre“.</i>",
+'longpageerror'                    => "'''FÄÄGEL: Di täkst, di dü tu spiikren ferseechst, as $11 KB grut. Dåt as gruter ås dåt tuleet maksimum foon $2 KB - spiikren ai möölik.'''",
+'readonlywarning'                  => "'''PÅÅS AW: Jü dootenbånk wörd for unerhult spärd, sü dåt din änringe tutids ai spiikerd wårde koone.
+Wees sü gödj än sääkre di täkst lokool aw din kompjuuter än fersäk tu n lääsern tidpunkt, da änringe tu ouerdreegen.'''.
+
+Grün for jü späre: $1",
+'protectedpagewarning'             => "'''PÅÅS AW: Jüheer sid wörd spärd. Bloot benjütere ma adminstrasjoonsruchte koone jü sid beårbe.'''
+For informasjoon füliet di aktuäle logbökönjdråch:",
+'semiprotectedpagewarning'         => "'''PÅÅS AW: Jüheer sid wörd spärd. Bloot benjütere ma adminstrasjoonsruchte koone jü sid beårbe.'''
+For informasjoon füliet di aktuäle logbökönjdråch:",
+'titleprotectedwarning'            => "'''PÅÅS AW: \"Dåt måågen foon side wörd spärd. Bloot benjütere ma [[Special:ListGroupRights|spetsjäle ruchte]] koone da side mååge.'''
+For informasjoon füliet jü leest logbök-önjdråch:",
 'templatesused'                    => '{{PLURAL:$1|Jü füliend forlååg wårt|Da füliende forlååge wårde}} foon jüdeer sid ferwånd:',
 'templatesusedpreview'             => '{{PLURAL:$1|Jü füliend forlååg wårt|Da füliende forlååge wårde}} foon diheere sideforlök ferwånd:',
+'templatesusedsection'             => '{{PLURAL:$1|Jü füliend forlååg wårt|Da füliende forlååge wårde}} foon dideer oufsnaas ferwånd:',
 'template-protected'               => '(önj ferbading hülen iinj schriwen)',
 'template-semiprotected'           => '(schriwschütsed for ünönjmäldede än naie brükere)',
 'hiddencategories'                 => 'Jüdeer sid as lasmoot foon {{PLURAL:$1|1 ferstäägen kategorii|$1 ferstäägene kategoriie}}:',
+'nocreatetitle'                    => 'Dåt måågeb foon naie side as begränsed.',
+'nocreatetext'                     => 'Aw {{SITENAME}} wörd dåt måågen foon naie side begränsed.
+Dü koost bestönjene side änre unti de [[Special|:UserLogin|önjmälde unti mååg en account]].',
+'nocreate-loggedin'                => 'Dü heest niinj beruchtiging, naie side tu måågen.',
+'sectioneditnotsupported-title'    => 'Jü beårbing foon oufsnaase wårt ai unerstüted',
+'sectioneditnotsupported-text'     => 'Jü beårbing foon oufsnaase wårt aw jüdeer beårbingssid ai stiped.',
+'permissionserrors'                => 'Beruchtigingsfäägel',
+'permissionserrorstext'            => 'Dü bast ai beruchted, jü aksjoon üttufäären. {{PLURAL:$1|grün|grüne}}:',
 'permissionserrorstext-withaction' => 'Dü bast ai beruchtit, $2.
 {{PLURAL:$1|grün|grüne}}:',
+'moveddeleted-notice'              => 'Jüheer sid wörd sleeked. Deer füliet en üttooch üt dåt sleek- än ferschüwingslogbök for jüheer sid.',
+'log-fulllog'                      => 'Åle logbük-önjdrååge önjkiike',
+'edit-gone-missing'                => 'Jü sid köö ai aktualisiird wårde.
+Jü wörd önjscheened sleeked.',
+'edit-conflict'                    => 'Beårbingskonflikt.',
+'edit-no-change'                   => 'Din beårbing wörd ignoriird, deer niinj änring an e täkst fornümen wörd.',
+'edit-already-exists'              => 'Köö niinj nai sid mååge.
+Dåt bestöö ål.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Woorschauing: Jüdeer sid önjthålt tu fool apteele foon widluftie parserfunksjoone.
+'expensive-parserfunction-warning'        => 'Woorschauing: Jüdeer sid önjthålt tu fool apteele foon widluftie parserfunksjoone.
 
 Deer {{PLURAL:$2|mötj ai mör ås 1 apteel|mönje ai mör ås $1 apteele}} weese.',
-'expensive-parserfunction-category' => 'Side, da widluftie parserfunksjoone tu oofding apteele',
+'expensive-parserfunction-category'       => 'Side, da widluftie parserfunksjoone tu oofding apteele',
+'post-expand-template-inclusion-category' => 'Side, önj da jü maksimoole grutelse foon önjbünene forlååge ouerschran as',
+'post-expand-template-argument-warning'   => 'Påås aw: Jüdeer sid enthålt tumanst en argumänt önj en forlååge, dåt äkspandiird tu grut as. Dadeere argumänte wårde ignoriird.',
+'post-expand-template-argument-category'  => 'Side, da ignoriirde forlååge-argumänte önjthüülje',
+'parser-template-loop-warning'            => 'Forlåågesloif önjtdäkt: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Forloagerekursjoonsdiipgränse ouerschran ($1)',
+'language-converter-depth-warning'        => 'Spräkekonwärsjoonsdiipdegränse ouerschren ($1)',
+
+# "Undo" feature
+'undo-failure' => 'Jü änring köö ai tunintemååged wårde, deer di bedrååwede oufsnaas intwasche feränred wörd.',
+'undo-norev'   => 'Jü beårbing köö ai tunintemååged wårde, deer jü ai bestoont unti sleeked wörd.',
+'undo-summary' => 'Änring $1 foon [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusjoon]]) tunintemååged.',
 
 # Account creation failure
+'cantcreateaccounttitle' => 'Benjüterkonto köö ai mååged wårde',
 'cantcreateaccount-text' => "Dår måågen foon en brükerkonto foon jü IP-adräs '''($1)''' üt wörd döör [[User:$3|$3]] späred.
 
 Grün foon jü späre: ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Logböke for jüdeer sid wise',
+'nohistory'              => 'Deer as niinj beårbingshistoori for jüdeer sid.',
+'currentrev'             => 'Aktäle Färsjoon.',
 'currentrev-asof'        => 'Aktuäl färsjoon foon $2 am e klook $3',
 'revisionasof'           => 'Färsjoon foon e klook $2, $3',
+'revision-info'          => 'Färsjoon foon di $4 am e klook $5 foon $2',
 'previousrevision'       => '← Näistålere Färsjoon',
 'nextrevision'           => 'Näistjunger färsjoon →',
 'currentrevisionlink'    => 'Aktuäle färsjoon',
 'cur'                    => 'aktuäl',
+'next'                   => 'näist',
 'last'                   => 'leest',
+'page_first'             => 'Began',
+'page_last'              => 'Iinje',
 'histlegend'             => 'Tu wising foon da änringe iinjfåch da tu ferglikene Färsjoone ütwääle än di klänkfläche „{{int:compareselectedversions}}“ klikke.<br />
 * (Aktuäl) = unerschiis tu e aktuäle färsjoon, (Leeste) = unerschiis tu e leeste färsjoon
 * Klook/dootem = färsjoon tu jüdeer tid, brükernoome/IP-adräs foon di beårber, L = latje änring.',
 'history-fieldset-title' => 'Säk önj e färsjoonshistoori',
+'history-show-deleted'   => 'bloot sleekede färsjoone',
 'histfirst'              => 'Ålste',
 'histlast'               => 'Naiste',
+'historysize'            => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
+'historyempty'           => '(lääsi)',
+
+# Revision feed
+'history-feed-title'          => 'Färsjoonshistoori',
+'history-feed-description'    => 'Färsjoonshistoori for jüdeer sid önj {{SITENAME}}',
+'history-feed-item-nocomment' => '$1 bit $2',
 
 # Revision deletion
 'rev-deleted-user'            => '(Brükernoome wächhååld)',
+'rev-deleted-event'           => '(Logbökaksjoon wächhååld)',
+'rev-deleted-user-contribs'   => '[Benjüternoome unti IP-adräs wächhååld - beårbing üt baidråge ferstäägen]',
 'rev-deleted-text-permission' => "Judeer Färsjoon wörd '''sleeked'''.
 Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
 'rev-deleted-text-unhide'     => "Jüdeer färsjoon wörd '''sleeked'''.
 Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].
+Ås en administraator koost dü  nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
+'rev-suppressed-text-unhide'  => " Jüdeer färsjoon wörd '''unerdrükt'''.
+Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sleek-logbök].
 Ås en administraator koost dü  nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
 'rev-deleted-text-view'       => "Jüdeer Färsjoon wörd '''sleeked'''.
 Ås administraator koost dü da wider önjkiike.
@@ -607,7 +723,15 @@ Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULL
 'rev-suppressed-unhide-diff'  => "Iinj foon da färsjoone foon dåtdeer ferschääl wörd '''unerdruked'''.
 Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} unerdruk-logbök].
 Ås en administraator koost dü  nuch [$1 dåtdeer ferschääl bekiike], wan dü wider gunge mååst.",
+'rev-deleted-diff-view'       => "En Färsjoon foon dåtdeer färsjoonsferschääl wörd '''sleeked'''.
+Ås administraator koost dü dåt färsjoonsferschääl siinj.
+Näre önjgoowen fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
+'rev-suppressed-diff-view'    => "Iinj foon da färsjoone foon dåtdeer färsjoonsferschääl wörd '''unerdruked'''.
+Administratoore koone dåtheer färsjoonsferschääl siinj; ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
 'rev-delundel'                => 'wis/fersteeg',
+'rev-showdeleted'             => 'wise',
+'revisiondelete'              => 'Färsjoone sleeke/widermååge',
+'revdelete-nologtype-title'   => 'Niinj logtyp önjjääwen',
 'revdel-restore'              => 'sichtboorhäid änre',
 'revdelete-otherreason'       => 'Ouderen/tubaikaamenden grün:',
 'revdelete-reasonotherlist'   => 'Ouderen grün',
@@ -840,7 +964,7 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'deletedtext'           => '„<nowiki>$1</nowiki>“ wörd tunintemååged. In e $2 fanst dü en list foon da tuleest tunintemåågede side.',
 'deletedarticle'        => 'heet "[[$1]]" tunintemååged',
 'dellogpage'            => 'Tunintemååg-Logbök',
-'deletecomment'         => 'Grün foon dåt tunintemåågen:',
+'deletecomment'         => 'Grün:',
 'deleteotherreason'     => 'Ouderen/tubaikaamenden grün:',
 'deletereasonotherlist' => 'Ouderen grün',
 

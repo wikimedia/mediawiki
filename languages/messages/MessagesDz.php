@@ -494,7 +494,7 @@ $messages = array(
 འཕྲལ་ཁམས་ལུ་བཏོན་བཀོག་མི་ཐོ་གི་དོན་ལུ་ $2 ལུ་བལྟ།',
 'deletedarticle'        => '"[[$1]]" བཏོན་གཏང་ཡོདཔ།',
 'dellogpage'            => 'བཏོན་གཏང་ཡོད་པའི་ལོག།',
-'deletecomment'         => 'བཏོན་བཏང་དགོ་པའི་རྒྱུ་མཚན་:',
+'deletecomment'         => 'རྒྱུ་མཚན:',
 'deleteotherreason'     => 'གཞན་/ཁ་སྐོང་ཅན་གྱི་རྒྱུ་མཚན།',
 'deletereasonotherlist' => 'རྒྱུ་མཚན་གཞན།',
 

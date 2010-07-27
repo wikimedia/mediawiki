@@ -11,6 +11,7 @@
  * @author Bencmq
  * @author FireJackey
  * @author Gaoxuewei
+ * @author Hakka
  * @author Horacewai2
  * @author Jidanni
  * @author KaiesTse
@@ -649,7 +650,7 @@ $2',
 結果利用這個IP地址的訪客在這段時間中不能創建更多的賬戶。',
 'emailauthenticated'         => '您的電子郵件地址已經於$2 $3確認有效。',
 'emailnotauthenticated'      => '您的郵箱位址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
-'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能',
+'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能。',
 'emailconfirmlink'           => '確認您的郵箱地址',
 'invalidemailaddress'        => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
 'accountcreated'             => '已建立帳戶',
@@ -713,7 +714,8 @@ $2',
 'showpreview'                      => '顯示預覽',
 'showlivepreview'                  => '即時預覽',
 'showdiff'                         => '顯示差異',
-'anoneditwarning'                  => "'''警告：'''您沒有登錄，您的IP位址將記錄在此頁的編輯歷史中。",
+'anoneditwarning'                  => "'''警告：'''您沒有登入。
+您的IP位址將記錄在此頁的編輯歷史中。",
 'missingsummary'                   => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊儲存，您的編輯將不帶編輯摘要儲存。",
 'missingcommenttext'               => '請在下面輸入評論。',
 'missingcommentheader'             => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊儲存，您的編輯將不帶標題儲存。",
@@ -780,8 +782,8 @@ $2',
 '''Konqueror''': 只需點擊 ''重新整理''或按下''F5''；
 '''Opera''': 在 ''工具→設定'' 中完整地清除它們的快取，或按下''Alt-F5''；
 '''Internet Explorer''': 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
-'usercssyoucanpreview'             => "'''提示:''' 在保存前請用'顯示預覽'按鈕來測試您新的 CSS 。",
-'userjsyoucanpreview'              => "'''提示:''' 在保存前請用'顯示預覽'按鈕來測試您新的 JS 。",
+'usercssyoucanpreview'             => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 CSS 。",
+'userjsyoucanpreview'              => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 JavaScript 。",
 'usercsspreview'                   => "'''注意您只是在預覽您的個人 CSS。'''
 '''還沒有儲存﹗'''",
 'userjspreview'                    => "'''注意您只是在測試／預覽您的個人 JavaScript。'''
@@ -802,8 +804,8 @@ $2',
 'token_suffix_mismatch'            => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。'''
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
 'editing'                          => '正在編輯$1',
-'editingsection'                   => '正在編輯$1 （段落）',
-'editingcomment'                   => '正在編輯$1 （新段落）',
+'editingsection'                   => '正在編輯$1（段落）',
+'editingcomment'                   => '正在編輯$1（新段落）',
 'editconflict'                     => '編輯衝突：$1',
 'explainconflict'                  => '有人在{{GENDER:|你|妳|你}}開始編輯後更改了頁面。
 上面的文字框內顯示的是目前本頁的內容。
@@ -827,9 +829,9 @@ $2',
 '''不要在未獲授權的情況下發表！'''",
 'longpagewarning'                  => "'''警告''': 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。",
 'longpageerror'                    => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。'''該文本不能被儲存。",
-'readonlywarning'                  => "'''警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。'''您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。
+'readonlywarning'                  => "'''警告: 資料庫被鎖定以進行維護，所以您目前將無法保存您的修改。'''您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。
 
-管理員有如下解釋: $1",
+鎖定資料庫的管理員有如下解釋：$1",
 'protectedpagewarning'             => "'''警告: 本頁已經被保護，只有擁有管理員許可權的用戶才可修改。'''
 最近的日誌在下面提供以便參考：",
 'semiprotectedpagewarning'         => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。
@@ -843,7 +845,7 @@ $2',
 'template-protected'               => '（保護）',
 'template-semiprotected'           => '（半保護）',
 'hiddencategories'                 => '這個頁面是屬於$1個隱藏分類的成員:',
-'edittools'                        => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
+'edittools'                        => '<!-- 此處的文字將被顯示在編輯和上傳表單以下。 -->',
 'nocreatetitle'                    => '創建頁面受限',
 'nocreatetext'                     => '{{SITENAME}}限制了創建新頁面的功能。{{GENDER:|你|妳|你}}可以返回並編輯已有的頁面，或者[[Special:UserLogin|登錄或創建新賬戶]]。',
 'nocreate-loggedin'                => '您並無許可權去創建新頁面。',
@@ -981,7 +983,7 @@ $2',
 'revdelete-hide-text'         => '隱藏修訂文字',
 'revdelete-hide-image'        => '隱藏檔案內容',
 'revdelete-hide-name'         => '隱藏動作和目標',
-'revdelete-hide-comment'      => '隱藏編輯說明',
+'revdelete-hide-comment'      => '隱藏編輯摘要',
 'revdelete-hide-user'         => '隱藏編輯者的用戶名/IP地址',
 'revdelete-hide-restricted'   => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-radio-same'        => '(勿更改)',
@@ -989,7 +991,7 @@ $2',
 'revdelete-radio-unset'       => '否',
 'revdelete-suppress'          => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-unsuppress'        => '在已恢復的修訂中移除限制',
-'revdelete-log'               => '日誌註釋：',
+'revdelete-log'               => '理由：',
 'revdelete-submit'            => '應用於選取的{{PLURAL:$1|修訂}}',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
@@ -1208,7 +1210,7 @@ $1",
 'default'                       => '預設',
 'prefs-files'                   => '檔案',
 'prefs-custom-css'              => '自定CSS',
-'prefs-custom-js'               => '自定JS',
+'prefs-custom-js'               => '自定JavaScript',
 'prefs-reset-intro'             => '您可以利用這個頁面去重設您的參數設置到網站預設值。這個動作無法復原。',
 'prefs-emailconfirm-label'      => '電子郵件確認：',
 'prefs-textboxsize'             => '編輯框大小',
@@ -1334,9 +1336,9 @@ $1",
 'right-protect'               => '更改保護等級以及編輯保護頁面',
 'right-editprotected'         => '編輯保護頁面（無連鎖保護）',
 'right-editinterface'         => '編輯用戶界面',
-'right-editusercssjs'         => '編輯其他用戶的CSS和JS檔案',
+'right-editusercssjs'         => '編輯其他用戶的CSS和JavaScript檔案',
 'right-editusercss'           => '編輯其他用戶的CSS檔案',
-'right-edituserjs'            => '編輯其他用戶的JS檔案',
+'right-edituserjs'            => '編輯其他用戶的JavaScript檔案',
 'right-rollback'              => '快速復原上位用戶對某一頁面之編輯',
 'right-markbotedits'          => '標示復原編輯作機械人編輯',
 'right-noratelimit'           => '沒有使用頻率限制',
@@ -1460,15 +1462,12 @@ $1",
 'upload_directory_read_only'  => '上傳目錄（$1）不存在或無寫權限。',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "使用下面的表單來上傳檔案。
-要檢視或搜索以前上傳的檔案
-可以進入[[Special:FileList|檔案上傳清單]]，
-（重新）上傳將在[[Special:Log/upload|上傳日誌]]中記錄，
-而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
+要檢視或搜索以前上傳的檔案，可以進入[[Special:FileList|檔案上傳清單]]，（重新）上傳也將在[[Special:Log/upload|上傳日誌]]中記錄，而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
-要在頁面中加入檔案，使用以下其中一種形式的連接:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki></tt>'''去用檔案的完整版本
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png|200px|thumb|left|替換文字]]</nowiki></tt>'''去用一個200像素寬，左面盒上有'替換文字'的描述
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki></tt>'''去直接連接到檔案而不顯示檔案",
+要在頁面中加入檔案，使用以下其中一種形式的連接：
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用檔案的完整版本
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></tt>'''使用放置於左側的一個框內的200像素寬的圖片，同時使用“替換文字”作為描述
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接連接到檔案而不顯示檔案",
 'upload-permitted'            => '准許的檔案類型: $1。',
 'upload-preferred'            => '建議的檔案類型: $1。',
 'upload-prohibited'           => '禁止的檔案類型: $1。',
@@ -1661,7 +1660,7 @@ $1",
 'filedelete-legend'           => '刪除檔案',
 'filedelete-intro'            => "您現正刪除檔案'''[[Media:$1|$1]]'''。",
 'filedelete-intro-old'        => "{{GENDER:|你|妳|你}}現正刪除'''[[Media:$1|$1]]'''於[$4 $2 $3]的版本。",
-'filedelete-comment'          => '刪除理由:',
+'filedelete-comment'          => '理由：',
 'filedelete-submit'           => '刪除',
 'filedelete-success'          => "'''$1'''已經刪除。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。",
@@ -2016,7 +2015,7 @@ $UNWATCHURL
 'confirm'                => '確認',
 'excontent'              => '內容為: "$1"',
 'excontentauthor'        => '內容為：「$1」（而且唯一貢獻者為[[Special:Contributions/$2|$2]]）',
-'exbeforeblank'          => '被清空前的內容為: "$1"',
+'exbeforeblank'          => '被清空前的內容為：“$1”',
 'exblank'                => '頁面為空',
 'delete-confirm'         => '刪除「$1」',
 'delete-legend'          => '刪除',
@@ -2029,10 +2028,10 @@ $UNWATCHURL
 'deletedarticle'         => '已刪除「[[$1]]」',
 'suppressedarticle'      => '已廢止「[[$1]]」',
 'dellogpage'             => '刪除紀錄',
-'dellogpagetext'         => '以下是最近刪除的紀錄列表。',
+'dellogpagetext'         => '以下是最近的刪除的列表。',
 'deletionlog'            => '刪除紀錄',
 'reverted'               => '恢復到早期版本',
-'deletecomment'          => '刪除理由:',
+'deletecomment'          => '理由：',
 'deleteotherreason'      => '其它／附加的理由:',
 'deletereasonotherlist'  => '其它理由',
 'deletereason-dropdown'  => '*常用刪除理由
@@ -2053,10 +2052,13 @@ $UNWATCHURL
 
 該頁最後的編輯者是[[User:$3|$3]]（[[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment'       => "編輯摘要: \"''\$1''\"。",
-'revertpage'        => '恢復由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本',
+'revertpage'        => '已恢復由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本',
 'revertpage-nouser' => '恢復由（移除了的用戶名）的編輯到[[User:$1|$1]]的最後一個修訂版本',
-'rollback-success'  => '恢復由$1的編輯；更改回$2的最後一個修訂版本。',
-'sessionfailure'    => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
+'rollback-success'  => '已恢復$1的編輯；
+更改回$2的最後修訂版本。',
+'sessionfailure'    => '似乎您的登錄會話有問題；
+為了防止會話劫持，這個操作已經被取消。
+請返回先前的頁面，重新載入該頁面，然後重試。',
 
 # Protect
 'protectlogpage'              => '保護日誌',
@@ -2265,9 +2267,9 @@ $1',
 'ipblocklist'                     => '被封IP地址列表',
 'ipblocklist-legend'              => '搜尋一位已經被查封的用戶',
 'ipblocklist-username'            => '用戶名稱或IP地址:',
-'ipblocklist-sh-userblocks'       => '$1次賬戶封鎖',
-'ipblocklist-sh-tempblocks'       => '$1次臨時封鎖',
-'ipblocklist-sh-addressblocks'    => '$1次單IP封鎖',
+'ipblocklist-sh-userblocks'       => '$1賬戶封鎖',
+'ipblocklist-sh-tempblocks'       => '$1臨時封鎖',
+'ipblocklist-sh-addressblocks'    => '$1單IP封鎖',
 'ipblocklist-submit'              => '搜尋',
 'ipblocklist-localblock'          => '本地封鎖',
 'ipblocklist-otherblocks'         => '其它{{PLURAL:$1|封鎖|封鎖}}',
@@ -2713,7 +2715,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告''': 該檔案類型可能包含惡意代碼。
-執行它可能對您的系統帶來危險。<hr />",
+執行它可能對您的系統帶來危險。",
 'imagemaxsize'         => "影像大小限制:<br />''（用在檔案描述頁面中）''",
 'thumbsize'            => '略圖大小:',
 'widthheightpage'      => '$1×$2, $3頁',
@@ -3285,20 +3287,5 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '撤銷更改',
 'htmlform-selectorother-other' => '其它',
-
-# Add categories per AJAX
-'ajax-add-category'            => '加入分類',
-'ajax-add-category-submit'     => '加入',
-'ajax-confirm-title'           => '確認動作',
-'ajax-confirm-prompt'          => '您可以在下面提供一個編輯摘要。
-點擊「保存」去保存您的編輯。',
-'ajax-confirm-save'            => '保存',
-'ajax-add-category-summary'    => '加入分類「$1」',
-'ajax-remove-category-summary' => '移除分類「$1」',
-'ajax-confirm-actionsummary'   => '已進行的動作：',
-'ajax-error-title'             => '錯誤',
-'ajax-error-dismiss'           => '好',
-'ajax-remove-category-error'   => '不能移除這個分類。
-通常是發生在一個模板中加入該分類。',
 
 );

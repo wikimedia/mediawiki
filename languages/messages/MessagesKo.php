@@ -9,6 +9,7 @@
  *
  * @author Albamhandae
  * @author Ficell
+ * @author IRTC1015
  * @author ITurtle
  * @author Klutzy
  * @author Kwj2772
@@ -1061,7 +1062,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'revdelete-radio-unset'       => '아니오',
 'revdelete-suppress'          => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-unsuppress'        => '복구된 판에 대한 제한을 해제',
-'revdelete-log'               => '삭제 이유:',
+'revdelete-log'               => '이유:',
 'revdelete-submit'            => '선택한 {{PLURAL:$1|판}}에 적용',
 'revdelete-logentry'          => '[[$1]]의 판의 보이기 설정을 변경함',
 'logdelete-logentry'          => '[[$1]]의 로그 보이기 설정을 변경함',
@@ -1299,7 +1300,7 @@ $1",
 'yourrealname'                  => '실명:',
 'yourlanguage'                  => '언어:',
 'yournick'                      => '서명:',
-'prefs-help-signature'          => '토론 문서의 글은 "<nowiki>~~~~</nowiki>"를 표시해야 합니다. 이것은 서명과 시간으로 바뀔 것입니다.',
+'prefs-help-signature'          => '토론 문서에 글을 남기실 때는 서명을 해 주세요. “<nowiki>~~~~</nowiki>”를 입력하시면 서명과 시간이 자동으로 입력됩니다.',
 'badsig'                        => '서명이 잘못되었습니다. HTML 태그를 확인해주세요.',
 'badsiglength'                  => '서명이 너무 깁니다.
 서명은 $1자보다 짧아야 합니다.',
@@ -1753,7 +1754,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filedelete-legend'           => '파일 삭제하기',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' 파일과 모든 역사를 삭제합니다.",
 'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' 파일의 [$4 $2 $3] 버전을 삭제합니다.",
-'filedelete-comment'          => '삭제 이유:',
+'filedelete-comment'          => '이유:',
 'filedelete-submit'           => '삭제',
 'filedelete-success'          => "'''$1''' 파일을 삭제했습니다.",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' 파일의 $2 $3 버전을 삭제했습니다.",
@@ -2119,7 +2120,7 @@ $UNWATCHURL
 'dellogpagetext'         => '아래의 목록은 최근에 삭제된 문서들입니다.',
 'deletionlog'            => '삭제 기록',
 'reverted'               => '이전 버전으로 되돌렸습니다.',
-'deletecomment'          => '삭제 이유:',
+'deletecomment'          => '이유:',
 'deleteotherreason'      => '다른 이유/추가적인 이유:',
 'deletereasonotherlist'  => '다른 이유',
 'deletereason-dropdown'  => '*일반적인 삭제 이유
@@ -2471,7 +2472,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'pagemovedsub'                 => '문서 이동함',
 'movepage-moved'               => '\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'',
 'movepage-moved-redirect'      => '넘겨주기 문서를 만들었습니다.',
-'movepage-moved-noredirect'    => '넘겨주기 문서를 만들지 못했습니다.',
+'movepage-moved-noredirect'    => '넘겨주기 문서를 남기지 않았습니다.',
 'articleexists'                => '문서가 이미 존재하거나 이름이 올바르지 않습니다.
 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected'      => '새로운 제목으로 문서를 만드는 것이 금지되어 있어 문서를 이동할 수 없습니다.',
@@ -2492,7 +2493,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'movesubpage'                  => '{{PLURAL:$1}}하위 문서',
 'movesubpagetext'              => '이 문서에는 다음 $1개의 하위 문서가 있습니다.',
 'movenosubpage'                => '이 문서에는 하위 문서가 존재하지 않습니다.',
-'movereason'                   => '이유',
+'movereason'                   => '이유:',
 'revertmove'                   => '되돌리기',
 'delete_and_move'              => '삭제하고 이동',
 'delete_and_move_text'         => '== 삭제 필요 ==
@@ -2791,7 +2792,7 @@ $1',
 'nextdiff'     => '다음 편집 →',
 
 # Media information
-'mediawarning'         => "'''경고''': 이 파일에 악성 코드가 포함되어 있을 수 있습니다. 파일을 실행하면 컴퓨터에 문제가 생길 가능성이 있습니다.<hr />",
+'mediawarning'         => "'''경고''': 이 파일에 악성 코드가 포함되어 있을 수 있습니다. 파일을 실행하면 컴퓨터에 문제가 생길 가능성이 있습니다.",
 'imagemaxsize'         => "그림 최대 크기:<br />''(파일 문서에 적용되는 기능)''",
 'thumbsize'            => '섬네일 크기:',
 'widthheightpage'      => '$1×$2, $3페이지',
@@ -3350,20 +3351,5 @@ $1',
 'htmlform-submit'              => '저장',
 'htmlform-reset'               => '변경한 것을 되돌리기',
 'htmlform-selectorother-other' => '기타',
-
-# Add categories per AJAX
-'ajax-add-category'            => '분류 추가',
-'ajax-add-category-submit'     => '추가',
-'ajax-confirm-title'           => '편집 확인',
-'ajax-confirm-prompt'          => '아래에 편집 요약을 쓸 수 있습니다.
-저장하려면 "저장"을 누르세요.',
-'ajax-confirm-save'            => '저장',
-'ajax-add-category-summary'    => '"$1" 분류 더하기',
-'ajax-remove-category-summary' => '"$1" 분류 지우기',
-'ajax-confirm-actionsummary'   => '할 일:',
-'ajax-error-title'             => '오류',
-'ajax-error-dismiss'           => '확인',
-'ajax-remove-category-error'   => '이 분류를 지울 수 없습니다.
-분류가 틀로 추가되었을 수 있습니다.',
 
 );

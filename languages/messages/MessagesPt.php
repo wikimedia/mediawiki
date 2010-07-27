@@ -425,7 +425,7 @@ $messages = array(
 
 'about'         => 'Sobre',
 'article'       => 'Página de conteúdo',
-'newwindow'     => '(abre numa nova janela)',
+'newwindow'     => '(abre numa janela nova)',
 'cancel'        => 'Cancelar',
 'moredotdotdot' => 'Mais...',
 'mypage'        => 'Utilizador',
@@ -1128,10 +1128,10 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-radio-unset'       => 'Não',
 'revdelete-suppress'          => 'Ocultar dados dos administradores e de todos os outros',
 'revdelete-unsuppress'        => 'Remover restrições das revisões restauradas',
-'revdelete-log'               => 'Motivo da eliminação:',
+'revdelete-log'               => 'Motivo:',
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|à revisão seleccionada|às revisões seleccionadas}}',
-'revdelete-logentry'          => 'modificou visibilidade das revisões de [[$1]]',
-'logdelete-logentry'          => 'alterou visibilidade de eventos do [[$1]]',
+'revdelete-logentry'          => 'alterou a visibilidade das revisões de "[[$1]]"',
+'logdelete-logentry'          => 'alterou a visibilidade dos eventos de "[[$1]]"',
 'revdelete-success'           => "'''A visibilidade da revisão foi actualizada com sucesso.'''",
 'revdelete-failure'           => "'''A visibilidade da revisão não foi actualizada:'''
 $1",
@@ -1304,7 +1304,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-personal'                => 'Perfil de utilizador',
 'prefs-rc'                      => 'Mudanças recentes',
 'prefs-watchlist'               => 'Páginas vigiadas',
-'prefs-watchlist-days'          => 'Dias a mostrar, ao listar mudanças às páginas vigiadas:',
+'prefs-watchlist-days'          => 'Dias a mostrar nas mudanças às páginas vigiadas:',
 'prefs-watchlist-days-max'      => '(máximo: 7 dias)',
 'prefs-watchlist-edits'         => 'Número de edições a mostrar na listagem expandida:',
 'prefs-watchlist-edits-max'     => '(máximo: 1000)',
@@ -1466,7 +1466,7 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'right-purge'                 => "Purgar a ''cache'' de uma página no servidor sem confirmação",
 'right-autoconfirmed'         => 'Editar páginas semi-protegidas',
 'right-bot'                   => 'Ser tratado como um processo automatizado',
-'right-nominornewtalk'        => 'Não despoletar o aviso de novas mensagens ao fazer edições menores a páginas de discussão',
+'right-nominornewtalk'        => 'Não despoletar o aviso de mensagens novas ao fazer edições menores a páginas de discussão',
 'right-apihighlimits'         => "Usar limites superiores nas consultas ''(queries)'' via API",
 'right-writeapi'              => 'Usar a API de escrita',
 'right-delete'                => 'Eliminar páginas',
@@ -1839,7 +1839,7 @@ A descrição na [$2 página de descrição] é mostrada abaixo.',
 'filedelete-legend'           => 'Eliminar ficheiro',
 'filedelete-intro'            => "Está prestes a eliminar o ficheiro '''[[Media:$1|$1]]''' e todo o seu histórico.",
 'filedelete-intro-old'        => "Está prestes a eliminar a versão de '''[[Media:$1|$1]]''' tal como se encontrava em [$4 $3, $2].",
-'filedelete-comment'          => 'Motivo de eliminação:',
+'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' foi eliminado.",
 'filedelete-success-old'      => "A versão de '''[[Media:$1|$1]]''' tal como $3, $2 foi eliminada.",
@@ -2045,7 +2045,7 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'linksearch-error' => "Caracteres de substituição ''(wildcards)'' só podem ser usados no início do endereço.",
 
 # Special:ListUsers
-'listusersfrom'      => 'Mostrar utilizadores começando em:',
+'listusersfrom'      => 'Mostrar utilizadores começando por:',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'Não foram encontrados utilizadores.',
 'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
@@ -2054,7 +2054,7 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'activeusers'            => 'Utilizadores activos',
 'activeusers-intro'      => 'Esta é uma lista dos utilizadores com qualquer tipo de actividade {{PLURAL:$1|no último dia|nos últimos $1 dias}}.',
 'activeusers-count'      => '$1 {{PLURAL:$1|edição recente|edições recentes}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
-'activeusers-from'       => 'Mostrar utilizadores começando em:',
+'activeusers-from'       => 'Mostrar utilizadores começando por:',
 'activeusers-hidebots'   => 'Esconder robôs',
 'activeusers-hidesysops' => 'Esconder administradores',
 'activeusers-noresult'   => 'Nenhum utilizador encontrado.',
@@ -2156,7 +2156,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'enotif_subject'               => '{{SITENAME}}: A página $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
 'enotif_lastdiff'              => 'Consulte $1 para ver esta alteração.',
-'enotif_anon_editor'           => 'utilizador anonimo $1',
+'enotif_anon_editor'           => 'utilizador anónimo $1',
 'enotif_body'                  => 'Caro(a) $WATCHINGUSERNAME,
 
 
@@ -2207,7 +2207,7 @@ Consulte $2 para um registo de eliminações recentes.',
 'dellogpagetext'         => 'Abaixo uma lista das eliminações mais recentes.',
 'deletionlog'            => 'registo de eliminações',
 'reverted'               => 'Revertido para versão anterior',
-'deletecomment'          => 'Motivo de eliminação:',
+'deletecomment'          => 'Motivo:',
 'deleteotherreason'      => 'Outro/motivo adicional:',
 'deletereasonotherlist'  => 'Outro motivo',
 'deletereason-dropdown'  => '* Motivos de eliminação comuns
@@ -2247,7 +2247,7 @@ Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as p
 'modifiedarticleprotection'   => 'alterou o nível de protecção para "[[$1]]"',
 'unprotectedarticle'          => 'desprotegeu "[[$1]]"',
 'movedarticleprotection'      => 'moveu as configurações de protecção de "[[$2]]" para "[[$1]]"',
-'protect-title'               => 'Protegendo "$1"',
+'protect-title'               => 'Alterar o nível de protecção de "$1"',
 'prot_1movedto2'              => 'moveu [[$1]] para [[$2]]',
 'protect-legend'              => 'Confirmar protecção',
 'protectcomment'              => 'Motivo:',
@@ -2364,10 +2364,10 @@ $1',
 'contribsub2'         => 'Para $1 ($2)',
 'nocontribs'          => 'Não foram encontradas alterações com este critério.',
 'uctop'               => ' (edição actual)',
-'month'               => 'Mês (inclusive anteriores):',
-'year'                => 'Ano (inclusive anteriores):',
+'month'               => 'Até ao mês:',
+'year'                => 'Até ao ano:',
 
-'sp-contributions-newbies'        => 'Pesquisar apenas nas contribuições de contas recentes',
+'sp-contributions-newbies'        => 'Mostrar só as contribuições das contas recentes',
 'sp-contributions-newbies-sub'    => 'Para contas novas',
 'sp-contributions-newbies-title'  => 'Contribuições de contas novas',
 'sp-contributions-blocklog'       => 'registo de bloqueios',
@@ -2535,17 +2535,17 @@ Para bloquear ou desbloquear a base de dados, este precisa de poder ser escrito 
 # Move page
 'move-page'                    => 'Mover $1',
 'move-page-legend'             => 'Mover página',
-'movepagetext'                 => "Usando o formulário abaixo pode mover esta página e todo o seu histórico de edições para uma nova página com outro nome.
-A página original será transformada num redireccionamento para a nova página.
+'movepagetext'                 => "Usando o formulário abaixo pode mover esta página e todo o seu histórico de edições para uma página nova com outro nome.
+A página original será transformada num redireccionamento para a página nova.
 Pode corrigir de forma automática os redireccionamentos existentes que apontam para a página original.
-Caso escolha não o fazer, certifique-se de que não existem [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
+Caso escolha não o fazer, após a operação certifique-se de que dela não resultaram  [[Special:DoubleRedirects|redireccionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
 É da sua responsabilidade verificar que os links continuam a apontar para onde é suposto que apontem.
 
 Note que a página '''não''' será movida se já existir uma página com o novo nome, a menos que esta esteja vazia ou seja um redireccionamento sem qualquer histórico de edições.
-Isto significa que pode mover uma página de volta para o seu nome original se cometeu algum engano e que não pode mover uma página para cima de outra já existente.
+Isto significa que pode mover uma página de volta para o seu nome original se a tiver movido por engano e que não pode mover uma página para cima de outra já existente.
 
 '''CUIDADO!'''
-Para uma página popular esta operação pode representar uma mudança drástica e inesperada;
+Numa página popular esta operação pode representar uma mudança drástica e inesperada;
 certifique-se de que compreende as consequências da mudança antes de prosseguir, por favor.",
 'movepagetalktext'             => "Se existir uma página de discussão associada, ela será automaticamente movida, '''a não ser que:'''
 *já exista uma página de discussão com o novo título que não esteja vazia, ou
@@ -2581,7 +2581,7 @@ Faça a fusão manual das páginas de discussão, por favor.'''",
 'movepage-page-unmoved'        => 'Não foi possível mover a página $1 para $2.',
 'movepage-max-pages'           => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'                    => 'moveu [[$1]] para [[$2]]',
-'1movedto2_redir'              => 'moveu [[$1]] para [[$2]] sobre redirecionamento',
+'1movedto2_redir'              => 'moveu [[$1]] para [[$2]] com redireccionamento',
 'move-redirect-suppressed'     => 'redirecionamento suprimido',
 'movelogpage'                  => 'Registo de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
@@ -2813,13 +2813,13 @@ Permite colocar uma justificação no resumo da edição.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizador anónimo|Utilizadores anónimos}} da {{SITENAME}}',
-'siteuser'         => '{{GENDER:$2|um utilizador|uma utilizadora|um utilizador}} da {{SITENAME}}: $1',
+'siteuser'         => '{{GENDER:$2|um utilizador|uma utilizadora|um utilizador}} da {{SITENAME}} ($1)',
 'anonuser'         => 'utilizador anónimo $1 da {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.',
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
-'siteusers'        => '{{PLURAL:$2|um utilizador|$2 utilizadores}} da {{SITENAME}}: $1',
-'anonusers'        => '{{PLURAL:$2|utilizador anónimo|utilizadores anónimos}} da {{SITENAME}}: $1',
+'siteusers'        => '{{PLURAL:$2|um utilizador|$2 utilizadores}} da {{SITENAME}} ($1)',
+'anonusers'        => '{{PLURAL:$2|utilizador anónimo|utilizadores anónimos}} da {{SITENAME}} ($1)',
 'creditspage'      => 'Créditos da página',
 'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
 
@@ -2906,7 +2906,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este tipo de ficheiro pode conter código malicioso.
-Executá-lo poderá comprometer a segurança do seu sistema.<hr />",
+Executá-lo poderá comprometer a segurança do seu sistema.",
 'imagemaxsize'         => "Limite de tamanho de imagens:<br />''(para páginas de descrição)''",
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
@@ -3467,20 +3467,5 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Adicionar categoria',
-'ajax-add-category-submit'     => 'Adicionar',
-'ajax-confirm-title'           => 'Confirme a operação',
-'ajax-confirm-prompt'          => 'Pode colocar abaixo um resumo da edição.
-Clique "Gravar página" para gravar a sua edição.',
-'ajax-confirm-save'            => 'Gravar',
-'ajax-add-category-summary'    => 'Adicionar categoria "$1"',
-'ajax-remove-category-summary' => 'Remover categoria "$1"',
-'ajax-confirm-actionsummary'   => 'Operação a executar:',
-'ajax-error-title'             => 'Erro',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Não foi possível remover esta categoria.
-Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
 
 );

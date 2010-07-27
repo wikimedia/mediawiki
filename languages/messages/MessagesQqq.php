@@ -79,6 +79,7 @@
  * @author Slomox
  * @author Sp5uhe
  * @author Srhat
+ * @author Tedjuh10
  * @author Tgr
  * @author The Evil IP address
  * @author UV
@@ -476,13 +477,13 @@ Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedi
 'retrievedfrom'           => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
 'youhavenewmessages'      => 'The orange message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
-'newmessageslink'         => 'Ini adalah pranala pertama yang tampak pada pita oranye saat pengguna mendapat pesan pada pembicaraan_penggunanya. Tampak pada pesan {{msg-mw|youhavenewmessages}} (sebagai parameter $1).
+'newmessageslink'         => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
 
 {{Identical|New messages}}',
-'newmessagesdifflink'     => 'Ini adalah pranala kedua yang tampak pada pita oranye saat pengguna mendapat pesan pada pembicaraan_penggunanya. Tampak pada pesan {{msg-mw|youhavenewmessages}} (sebagai parameter $2).',
-'youhavenewmessagesmulti' => 'Alternatif dari {{msg|youhavenewmessages}} yang di pakai pada wikis dengan konfigurasi khusus sehingga dapat menerima pemberitahuan "pesan baru" pada wikis yang lain dengan baik. Digunakan pada [http://www.wikia.com/ Wikia].
-Format penggunaannya adalah : "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
-'editsection'             => 'Menunjukkan nama dari pranala untuk menyunting bagian dari isi halaman. Contoh: [{{MediaWiki:Editsection}}].
+'newmessagesdifflink'     => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
+'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
+The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
+'editsection'             => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
 
 {{Identical|Edit}}',
 'editsection-brackets'    => '{{optional}}',
@@ -605,6 +606,7 @@ $1 is a filename, I think.',
 'viewsourcefor'        => 'Subtitle shown when trying to edit a protected page.
 
 {{Identical|For $1}}',
+'actionthrottled'      => 'This is the title of an error page. Read it in combination with {{msg-mw|actionthrottledtext}}.',
 'protectedpagetext'    => 'This message is displayed when trying to edit a page you can\'t edit because it has been protected.
 
 * $1: the protection type, e.g. "protect" for fully protected pages',
@@ -986,9 +988,9 @@ There are three radio buttons in each row, and the captions above each column re
 {{Identical|No}}',
 'revdelete-suppress'          => 'Option for oversight',
 'revdelete-unsuppress'        => '{{RevisionDelete}}',
-'revdelete-log'               => '{{Identical|Reason for deletion}}
+'revdelete-log'               => '{{Identical|Reason}}
 Log comment text for oversight. {{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+[[File:RevDelete Special-RevisionDelete (r60428).png|thumb|331px||Screenshot of the interface]]',
 'revdelete-submit'            => '{{RevisionDelete}}
 This is the submit button on [[Special:RevisionDelete]].
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
@@ -1160,7 +1162,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'searchprofile-project'          => 'An option in the [[Special:Search]] page.',
 'searchprofile-images'           => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
 'searchprofile-everything'       => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.
+'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:Search] page.
 
 {{Identical|Advanced}}',
 'searchprofile-articles-tooltip' => '{{Identical|Search in $1}}',
@@ -1352,7 +1354,8 @@ Used in [[Special:Preferences]], tab "Recent changes".',
 
 {{Identical|Reason}}',
 'userrights-no-interwiki'        => 'Error message when editing user groups',
-'userrights-nodatabase'          => 'Error message when editing user groups',
+'userrights-nodatabase'          => 'Error message when editing user groups. "Local" means databases/wikis of the same farm/cluster; that is, meta, enwiki, dewiki, commons, etc are all local databases of the Wikimedia Foundation.
+See http://meta.wikimedia.org/w/index.php?title=Special%3ALog&type=rights for a usage of local databases: username@barwiki',
 'userrights-nologin'             => "Error displayed on [[Special:UserRights]] when you aren't logged in. If you are logged in, but don't have the correct permission, you see {{msg|userrights-notallowed|pl=yes}}.",
 'userrights-notallowed'          => "Error displayed on [[Special:UserRights]] when you don't have the permission.",
 'userrights-changeable-col'      => 'Used in [[Special:UserRights]].',
@@ -1730,7 +1733,7 @@ Extensions making use of it:
 Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and in that not allowing anything but "http://" request. So if this for example is "irc://" or "https://", $1 would be "irc" or "https" respectively.
 
 If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.',
-'http-bad-status'     => '$1 ini adalah kode kesalahan HTTP (contoh 404), $2 ini adalah pesan kesalahan HTTP (contoh File Not Found)',
+'http-bad-status'     => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
 
 'license'           => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense'         => '{{Identical|None selected}}',
@@ -1859,7 +1862,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $2 is a date
 * $3 is a hour
 * $4 is an URL and must follow square bracket: [$4',
-'filedelete-comment'          => '{{Identical|Reason for deletion}}',
+'filedelete-comment'          => '{{Identical|Reason}}',
 'filedelete-submit'           => 'Delete button when deleting a file for admins
 
 {{Identical|Delete}}',
@@ -2077,7 +2080,7 @@ $1 is a page title",
 'allpagessubmit'    => 'Text on submit button in [[Special:AllPages]], [[Special:RecentChanges]], [[Special:RecentChangesLinked]], [[Special:NewPages]], [[Special:Log]], [[Special:ListUsers]], [[Special:ProtectedPages]], [[Special:ProtectedTitles]], [[Special:WhatLinksHere]] and [[Special:Watchlist]].
 
 {{Identical|Go}}',
-'allpagesprefix'    => 'Used for the label of the input box of [[Special:PrefixIndex]].',
+'allpagesprefix'    => "Used for the label of the input box of [[Special:PrefixIndex]]. On this page you can either write 'Name of namespace:string from which to begin display in alphabetical order' in the top box, or you can choose a namespace in the bottom box and put 'string from which to begin display in alphabetical order' in the top box. The result will be the same.",
 
 # Special:Categories
 'categories'                    => 'The page name of [[Special:Categories]].
@@ -2137,35 +2140,44 @@ $1 is a list of internet protocols.',
 'newuserlogpage'              => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
 'newuserlogpagetext'          => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
 'newuserlog-create-entry'     => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]].',
-'newuserlog-create2-entry'    => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1"). The name of the user doing this task appears before this message.',
+'newuserlog-create2-entry'    => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1" - a link). The name of the user doing this task appears before this message.
+
+* $2 - the user id of the user $1',
 'newuserlog-autocreate-entry' => 'This message is used in the [[:mw:Extension:Newuserlog|new user log]] to mark an account that was created by MediaWiki as part of a [[:mw:Extension:CentralAuth|CentralAuth]] global account.',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'The name of the special page [[Special:ListGroupRights]].',
-'listgrouprights-summary'         => 'The description used on [[Special:ListGroupRights]].',
-'listgrouprights-key'             => 'Footer note for the [[Special:ListGroupRights]] page',
-'listgrouprights-group'           => "The title of the column in the table, about user groups (like you are in the ''translator'' group).
+'listgrouprights'                  => 'The name of the special page [[Special:ListGroupRights]].',
+'listgrouprights-summary'          => 'The description used on [[Special:ListGroupRights]].',
+'listgrouprights-key'              => 'Footer note for the [[Special:ListGroupRights]] page',
+'listgrouprights-group'            => "The title of the column in the table, about user groups (like you are in the ''translator'' group).
 
 {{Identical|Group}}",
-'listgrouprights-rights'          => "The title of the column in the table, about user rights (like you can ''edit'' this page).",
-'listgrouprights-helppage'        => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
-'listgrouprights-members'         => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
-'listgrouprights-right-display'   => "{{optional}}
+'listgrouprights-rights'           => "The title of the column in the table, about user rights (like you can ''edit'' this page).
+{{Identical|Right}}",
+'listgrouprights-helppage'         => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
+'listgrouprights-members'          => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
+'listgrouprights-right-display'    => "{{optional}}
 * $1 is the text from the 'right-...' messages, i.e. [[MediaWiki:right-edit]] = {{int:right-edit}}
 * $2 is the codename of this right",
-'listgrouprights-right-revoked'   => "{{optional}}
+'listgrouprights-right-revoked'    => "{{optional}}
 * $1 is the text from the 'right-...' messages, i.e. [[MediaWiki:right-edit]] = {{int:right-edit}}
 * $2 is the codename of this right",
-'listgrouprights-addgroup'        => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
+'listgrouprights-addgroup'         => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 is an enumeration of group names.
 * $2 is the number of group names in $1.
 See also {{msg|listgrouprights-removegroup}}.',
-'listgrouprights-removegroup'     => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
+'listgrouprights-removegroup'      => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 is an enumeration of group names.
 * $2 is the number of group names in $1.
 See also {{msg|listgrouprights-addgroup}}.',
-'listgrouprights-addgroup-all'    => '{{doc-right}}',
-'listgrouprights-removegroup-all' => '{{doc-right}}',
+'listgrouprights-addgroup-all'     => '{{doc-right}}',
+'listgrouprights-removegroup-all'  => '{{doc-right}}',
+'listgrouprights-addgroup-self'    => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
+* $1 are the group names.
+* $2 is the number of group names in $1.',
+'listgrouprights-removegroup-self' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
+* $1 are the group names.
+* $2 is the number of group names in $1.',
 
 # E-mail user
 'emailuser'       => 'Link in the sidebar',
@@ -2263,7 +2275,7 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 
 {{Identical|Deletion log}}',
 'reverted'               => '{{Identical|Revert}}',
-'deletecomment'          => '{{Identical|Reason for deletion}}',
+'deletecomment'          => '{{Identical|Reason}}',
 'deleteotherreason'      => '{{Identical|Other/additional reason}}',
 'deletereasonotherlist'  => '{{Identical|Other reason}}',
 'deletereason-dropdown'  => 'Default reasons for deletion. Displayed as a drop-down list. Format:
@@ -2618,7 +2630,9 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'move-page-legend'             => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
 
 {{Identical|Move page}}',
-'movepagetext'                 => 'Introduction shown when moving a page ([[Special:MovePage]]).',
+'movepagetext'                 => 'Introduction shown when moving a page ([[Special:MovePage]]).
+
+Special pages mentioned: {{msg-mw|Doubleredirects}}, {{msg-mw|Brokenredirects}}',
 'movepagetalktext'             => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
 'movearticle'                  => 'The text before the name of the page that you are moving.
 
@@ -2916,11 +2930,7 @@ The message appears after the name of the patroller.',
 'show-big-image'       => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-thumb' => 'File info displayed on file description page.',
 'file-info-gif-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page. Looped means repeating in the context of an animated gif. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop. For example of message in use see [[:File:Mouse10.gif]].',
-'file-info-gif-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page.
-
-The variable $1 is the number of individual frames in an animated gif file.
-
-For example of message in use see [[:File:Mouse10.gif]].',
+'file-info-gif-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page.',
 
 # Special:NewFiles
 'newimages'             => 'Page title of [[Special:NewImages]].',
@@ -3613,12 +3623,5 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 * stub threshold (appearance tab)
 
 {{Identical|Other}}',
-
-# Add categories per AJAX
-'ajax-add-category-submit'   => '{{Identical|Add}}',
-'ajax-confirm-save'          => '{{Identical|Save}}',
-'ajax-confirm-actionsummary' => 'This message is followed by one of the following messages; {{msg-mw|ajax-add-category-summary}}, {{msg-mw|ajax-remove-category-summary}}.',
-'ajax-error-title'           => '{{Identical|Error}}',
-'ajax-error-dismiss'         => '{{Identical|OK}}',
 
 );

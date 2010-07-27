@@ -645,8 +645,8 @@ IP-аадырыһа эрэ көстөр.
 Манна бобуу сурунаалын бүтэһик суруга көстөр:',
 'clearyourcache'                   => "'''Болҕой - Уларыппыт сирэйгин сөпкө көрөргө интэриниэт бырагыраамматын кээһин ыраастаа.''' '''Mozilla / Firefox / Safari:''' ''Shift'' кнопканы тутан туран ''Reload'' баттаа, эбэтэр ''Ctrl-F5'', ''Ctrl-R'' дуу (Macintosh-ка ''Command-R'') баттаа; '''Konqueror: ''' ''Reload'' ''F5'' эбэтэр баттаа;
 '''Opera:''' кээһин ыраастыырга манна ''Tools → Preferences'' киир; '''Internet Explorer:''' ''Ctrl'' тутан туран ''Refresh'' баттаа, эбэтэр ''Ctrl-F5'' баттаа.",
-'usercssyoucanpreview'             => "'''Көмө:''' Саҥа css- эбэтэр js-билэни тургутуоххун баҕардаххына эрдэ көрөр тимэҕи баттаа.",
-'userjsyoucanpreview'              => "'''Көмө:''' Саҥа css- эбэтэр js-билэни тургутуоххун баҕардаххына эрдэ көрөр тимэҕи баттаа.",
+'usercssyoucanpreview'             => "'''Көмө.''' CSS-билэ саҥа барылын бигэргэтиэҥ иннинэ бу тимэҕи «{{int:showpreview}}»  баттаан тургутан көр.",
+'userjsyoucanpreview'              => "'''Көмө.''' JS-билэ саҥа барылын бигэргэтиэҥ иннинэ бу тимэҕи «{{int:showpreview}}»  баттаан тургутан көр.",
 'usercsspreview'                   => "'''Умнума: бу CSS тургутуута эрэ.
 Билигин оҥорбутуҥ бигэргэтиллэ илик!'''",
 'userjspreview'                    => "'''Умнума: бу JavaScript тургутуутэ эрэ, уларыппытыҥ бигэргэтиллэ илик!'''",
@@ -860,7 +860,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'revdelete-radio-unset'       => 'Суох',
 'revdelete-suppress'          => 'Бу суругу администратордартан эмиэ кистээ',
 'revdelete-unsuppress'        => 'Төннөрүллүбүт торумнартан хааччахтааһыны ылан кэбиһэргэ',
-'revdelete-log'               => 'Сотуу төрүөтэ:',
+'revdelete-log'               => 'Төрүөтэ:',
 'revdelete-submit'            => 'Маны талбыт {{PLURAL:$1|барылбар|барылларбар}} тутун',
 'revdelete-logentry'          => '[[$1]] сирэй торумун көстүүтэ уларыйда',
 'logdelete-logentry'          => '[[$1]] дьайыы көстүүтэ уларыйда',
@@ -1542,7 +1542,7 @@ PICT # misc.
 'filerevert'                => 'Төннөр $1',
 'filerevert-legend'         => 'Билэни төннөр',
 'filerevert-intro'          => "Эн бу билэни  '''[[Media:$1|$1]]'''  [$4 торумҥа от $3, $2] төннөрөҕүн.",
-'filerevert-comment'        => 'Хос быһаарыы:',
+'filerevert-comment'        => 'Төрүөтэ:',
 'filerevert-defaultcomment' => 'Торумҥа төннүү $2, $1',
 'filerevert-submit'         => 'Төннөрүү',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' бу торумҥа төннөрүлүннэ [$4 торум Filetype-missingот $3, $2].",
@@ -1553,7 +1553,7 @@ PICT # misc.
 'filedelete-legend'           => 'Билэни сот',
 'filedelete-intro'            => "Бу билэни '''[[Media:$1|$1]]''' туох баар суруллубут историятын кытта сотон эрэҕин.",
 'filedelete-intro-old'        => "Манна баар [$4 $3, $2]  '''[[Media:$1|$1]]''' торумнара сотулуннулар.",
-'filedelete-comment'          => 'Быһаарыыта:',
+'filedelete-comment'          => 'Төрүөтэ:',
 'filedelete-submit'           => 'Сотуу',
 'filedelete-success'          => "'''$1''' сотулунна.",
 'filedelete-success-old'      => "$3-ҕа баар '''[[Media:$1|$1]]''' торуму (версияны)  $2 соппут.",
@@ -1921,7 +1921,7 @@ $UNWATCHURL
 'dellogpagetext'         => 'Манна кэнники сотуулар испииһэктэрэ көстөр.',
 'deletionlog'            => 'сотуу испииһэгэ',
 'reverted'               => 'Урукку торумугар төннөрүлүннэ',
-'deletecomment'          => 'Сотуу төрүөтэ:',
+'deletecomment'          => 'Төрүөтэ:',
 'deleteotherreason'      => 'Атын/эбии биричиинэлэр:',
 'deletereasonotherlist'  => 'Атын биричиинэ',
 'deletereason-dropdown'  => '*Common сотуу биричиинэтэ
@@ -2038,7 +2038,7 @@ $UNWATCHURL
 'undeleteviewlink'             => 'көрүү',
 'undeletereset'                => 'Саҥаттан',
 'undeleteinvert'               => 'Хараардыллыбыты инверсиялаа',
-'undeletecomment'              => 'Хос быһаарыы:',
+'undeletecomment'              => 'Төрүөтэ:',
 'undeletedarticle'             => '"[[$1]]" төннөрүлүннэ',
 'undeletedrevisions'           => '{{PLURAL:$1|1 уларытыы|$1 уларытыы}} төннөрүлүннэ',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 уларытыы|$1 уларытыы}}  уонна {{PLURAL:$2|1 билэ|$2 билэ}} төннөрүлүннэ',
@@ -2122,7 +2122,7 @@ $1',
 'ipaddress'                       => 'IP аадырыһа:',
 'ipadressorusername'              => 'IP аадырыһа эбэтэр кыттааччы аата:',
 'ipbexpiry'                       => 'Түмүктэниэ:',
-'ipbreason'                       => 'Төрүөт (тоҕо):',
+'ipbreason'                       => 'Төрүөтэ:',
 'ipbreasonotherlist'              => 'Атын биричиинэ',
 'ipbreason-dropdown'              => '* Бобуу сүрүн биричиинэлэрэ
 ** Сымыйаны суруйуу
@@ -2595,7 +2595,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Сэрэтии''': Бу билэ иһигэр бырагыраамма куода баар.  
-Куһаҕан буоллаҕына систиэмэни алдьатыан сөп.<hr />",
+Куһаҕан буоллаҕына систиэмэни алдьатыан сөп.",
 'imagemaxsize'         => "Ойуу улаханын хааччахтааһын:<br />''(билэ туһунан сирэйгэ аналлаах)''",
 'thumbsize'            => 'Кыра ойуу (миниатюра) кээмэйэ:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|сирэй|сирэй}}',
@@ -3150,20 +3150,5 @@ $1',
 'htmlform-submit'              => 'Ыыт',
 'htmlform-reset'               => 'Уларытыыны төннөр',
 'htmlform-selectorother-other' => 'Атын',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Категория эбии',
-'ajax-add-category-submit'     => 'Эп',
-'ajax-confirm-title'           => 'Дьайыыны бигэргэт',
-'ajax-confirm-prompt'          => 'Аллара уларытыыҥ туһунан суруйуоххун сөп.
-"Бигэргэт" диэни баттаан уларытыыгын бигэргэт.',
-'ajax-confirm-save'            => 'Бигэргэт',
-'ajax-add-category-summary'    => '«$1» категория эбилиннэ',
-'ajax-remove-category-summary' => '«$1» категория сотулунна',
-'ajax-confirm-actionsummary'   => 'Оҥоһуллар дьайыылар:',
-'ajax-error-title'             => 'Алҕас',
-'ajax-error-dismiss'           => 'Сөп',
-'ajax-remove-category-error'   => 'Бу категорияны сотор табыллыбата.
-Үксүгэр категория халыып нөҥүө эбиллибит түгэнигэр итинник буолар.',
 
 );

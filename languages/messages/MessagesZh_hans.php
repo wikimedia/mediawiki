@@ -348,7 +348,7 @@ $messages = array(
 'cancel'        => '取消',
 'moredotdotdot' => '更多……',
 'mypage'        => '我的页面',
-'mytalk'        => '我的讨论页',
+'mytalk'        => '讨论页',
 'anontalk'      => '该IP的对话页',
 'navigation'    => '导航',
 'and'           => '和',
@@ -620,7 +620,7 @@ $2',
 'gotaccountlink'             => '登录',
 'createaccountmail'          => '通过电子邮件',
 'badretype'                  => '您所输入的密码并不相同。',
-'userexists'                 => '您所输入的用户名已有人使用。请另选一个名。',
+'userexists'                 => '您所输入的用户名称已经存在，请另选一个名称。',
 'loginerror'                 => '登录错误',
 'createaccounterror'         => '无法建立账户：$1',
 'nocookiesnew'               => '已成功创建新账户！侦测到您已关闭Cookies，请开启它并登录。',
@@ -656,7 +656,7 @@ $2',
 'acct_creation_throttle_hit' => '抱歉！您已经创建了$1个账号。你不能再创建了。',
 'emailauthenticated'         => '您的电子邮箱地址已经于$2 $3确认有效。',
 'emailnotauthenticated'      => '您的邮箱地址<strong>还没被认证</strong>。以下功能将不会发送任何邮件。',
-'noemailprefs'               => '指定一个电子邮箱地址以使用此功能',
+'noemailprefs'               => '指定一个电子邮箱地址以使用此功能。',
 'emailconfirmlink'           => '确认您的邮箱地址',
 'invalidemailaddress'        => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
 'accountcreated'             => '已建立账户',
@@ -720,7 +720,8 @@ $2',
 'showpreview'                      => '显示预览',
 'showlivepreview'                  => '实时预览',
 'showdiff'                         => '显示差异',
-'anoneditwarning'                  => "'''警告：'''您没有登录，您的IP位址将记录在此页的编辑历史中。",
+'anoneditwarning'                  => "'''警告：'''您没有登录。
+您的IP地址将记录在此页的编辑历史中。",
 'missingsummary'                   => "'''提示：''' 您没有提供一个编辑摘要。如果您再次单击保存，您的编辑将不带编辑摘要保存。",
 'missingcommenttext'               => '请在下面输入评论。',
 'missingcommentheader'             => "'''提示：''' 您没有为此评论提供一个标题。如果您再次单击保存，您的编辑将不带标题保存。",
@@ -784,8 +785,8 @@ $2',
 '''Konqueror'''：只需点击''刷新''或按下''F5''；
 '''Opera'''：在''工具→首选项''中完整清除它们的缓存，或按下''Alt-F5''；
 '''Internet Explorer'''：按住''Ctrl''再点击''刷新''，或按下''Ctrl-F5''。",
-'usercssyoucanpreview'             => "'''提示：''' 在保存前请用“显示预览”按钮来测试您新的 CSS 。",
-'userjsyoucanpreview'              => "'''提示：''' 在保存前请用“显示预览”按钮来测试您新的 JS 。",
+'usercssyoucanpreview'             => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 CSS 。",
+'userjsyoucanpreview'              => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 JavaScript 。",
 'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS。'''
 '''还没有保存！'''",
 'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript。'''
@@ -804,8 +805,8 @@ $2',
 'token_suffix_mismatch'            => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。'''
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
 'editing'                          => '正在编辑$1',
-'editingsection'                   => '正在编辑$1 （段落）',
-'editingcomment'                   => '正在编辑$1 （评论）',
+'editingsection'                   => '正在编辑$1（段落）',
+'editingcomment'                   => '正在编辑$1（新段落）',
 'editconflict'                     => '编辑冲突：$1',
 'explainconflict'                  => '有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
@@ -830,9 +831,9 @@ $2',
 'longpagewarning'                  => "'''警告'''：该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
 您应该考虑将此页面分成更小的章节。",
 'longpageerror'                    => "'''错误：您所提交的文本长度有$1KB，这大于$2KB的最大值。'''该文本不能被保存。",
-'readonlywarning'                  => "'''警告：数据库被锁以进行维护，所以您目前将无法保存您的修改。'''您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。
+'readonlywarning'                  => "'''警告：数据库被锁定以进行维护，所以您目前将无法保存您的修改。'''您或许希望将本段文字先复制并保存到文本文件，并在稍后进行修改。
 
-管理员有如下解释：$1",
+锁定数据库的管理员有如下解释：$1",
 'protectedpagewarning'             => "'''警告：此页已经被保护，只有拥有管理员权限的用户才可修改。'''
 最近的日志在下面提供以便参考：",
 'semiprotectedpagewarning'         => "'''注意：''' 本页面被锁定，仅限注册用户编辑。
@@ -846,7 +847,7 @@ $2',
 'template-protected'               => '（保护）',
 'template-semiprotected'           => '（半保护）',
 'hiddencategories'                 => '这个页面是属于$1个隐藏分类的成员：',
-'edittools'                        => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
+'edittools'                        => '<!-- 此处的文本将被显示在编辑和上传表单以下。 -->',
 'nocreatetitle'                    => '创建页面受限',
 'nocreatetext'                     => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:UserLogin|登录或创建新账户]]。',
 'nocreate-loggedin'                => '您并无权限去创建新页面。',
@@ -984,7 +985,7 @@ $2',
 'revdelete-hide-text'         => '隐藏修订文本',
 'revdelete-hide-image'        => '隐藏文件内容',
 'revdelete-hide-name'         => '隐藏动作和目标',
-'revdelete-hide-comment'      => '隐藏编辑说明',
+'revdelete-hide-comment'      => '隐藏编辑摘要',
 'revdelete-hide-user'         => '隐藏编辑者的用户名/IP地址',
 'revdelete-hide-restricted'   => '同时阻止管理员与其他用户查看数据',
 'revdelete-radio-same'        => '(勿更改)',
@@ -992,7 +993,7 @@ $2',
 'revdelete-radio-unset'       => '否',
 'revdelete-suppress'          => '同时阻止管理员与其他用户查看数据',
 'revdelete-unsuppress'        => '在已恢复的修订中移除限制',
-'revdelete-log'               => '删除原因：',
+'revdelete-log'               => '理由：',
 'revdelete-submit'            => '应用于选中的{{PLURAL:$1|修订}}',
 'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
@@ -1145,7 +1146,7 @@ $1",
 
 # Preferences page
 'preferences'                   => '参数设置',
-'mypreferences'                 => '我的参数设置',
+'mypreferences'                 => '设置',
 'prefs-edits'                   => '编辑数量：',
 'prefsnologin'                  => '尚未登录',
 'prefsnologintext'              => '您必须先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登录]</span>才能设置个人参数。',
@@ -1209,7 +1210,7 @@ $1",
 'default'                       => '默认',
 'prefs-files'                   => '文件',
 'prefs-custom-css'              => '自定义CSS',
-'prefs-custom-js'               => '自定义JS',
+'prefs-custom-js'               => '自定义JavaScript',
 'prefs-reset-intro'             => '您可以利用这个页面去重设您的参数设置到网站默认值。这个动作无法复原。',
 'prefs-emailconfirm-label'      => '电子邮件确认：',
 'prefs-textboxsize'             => '编辑框大小',
@@ -1232,9 +1233,9 @@ $1",
 'gender-female'                 => '女',
 'prefs-help-gender'             => '可选：用以软件中的性别指定。此项资料将会被公开。',
 'email'                         => '电子邮箱',
-'prefs-help-realname'           => '真实姓名是可选的。
-如果您选择提供它，那它便用以对您的贡献署名。',
-'prefs-help-email'              => '电子邮件是可选的，但当您忘记您的个密码时需要将新密码重设寄回给您。您亦可以在您没有公开自己的用户身份时通过您的用户页或用户讨论页与您联系。',
+'prefs-help-realname'           => '真实姓名为选填项。
+如果提供，可用于贡献署名。',
+'prefs-help-email'              => '电子邮件为选填项，但是在重设密码时，需要用电子邮件将密码寄给您。你可以选择让别的用户通过用户页或用户讨论页与你联系，这样可不公开您的身份。',
 'prefs-help-email-required'     => '需要电子邮件地址。',
 'prefs-info'                    => '基本资料',
 'prefs-i18n'                    => '国际化',
@@ -1335,9 +1336,9 @@ $1",
 'right-protect'               => '更改保护等级以及编辑保护页面',
 'right-editprotected'         => '编辑保护页面（无连锁保护）',
 'right-editinterface'         => '编辑用户接口',
-'right-editusercssjs'         => '编辑其他用户的CSS和JS文件',
+'right-editusercssjs'         => '编辑其他用户的CSS和JavaScript文件',
 'right-editusercss'           => '编辑其他用户的CSS文件',
-'right-edituserjs'            => '编辑其他用户的JS文件',
+'right-edituserjs'            => '编辑其他用户的JavaScript文件',
 'right-rollback'              => '快速回退上一位用户对特定页面的编辑',
 'right-markbotedits'          => '标示复原编辑作机械人编辑',
 'right-noratelimit'           => '没有使用频率限制',
@@ -1460,15 +1461,12 @@ $1",
 'upload_directory_read_only'  => '上传目录（$1）不存在或无写权限。',
 'uploaderror'                 => '上传错误',
 'uploadtext'                  => "使用下面的表单来上传文件。
-要查看或搜索以前上传的文件
-可以进入[[Special:FileList|文件上传列表]]，
-（重新）上传将在[[Special:Log/upload|上传日志]]中记录，
-而删除将在[[Special:Log/delete|删除日志]]中记录。
+要查看或搜索以前上传的文件，可以进入[[Special:FileList|文件上传列表]]，（重新）上传也将在[[Special:Log/upload|上传日志]]中记录，而删除将在[[Special:Log/delete|删除日志]]中记录。
 
-要在页面中加入文件，使用以下其中一种形式的连接:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki></tt>'''去用文件的完整版本
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png|200px|thumb|left|替换文字]]</nowiki></tt>'''去用一个200像素宽，左面盒上有'替换文字'的描述
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki></tt>'''去直接连接到文件而不显示文件",
+要在页面中加入文件，使用以下其中一种形式的链接：
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用文件的完整版本
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替换文字]]</nowiki></tt>'''使用放置于左侧的一个框内的200像素宽的图片，同时使用“替换文字”作为描述
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接链接到文件而不显示文件",
 'upload-permitted'            => '允许的文件类型：$1。',
 'upload-preferred'            => '建议的文件类型：$1。',
 'upload-prohibited'           => '禁止的文件类型：$1。',
@@ -1657,7 +1655,7 @@ $1",
 'filedelete-legend'           => '删除文件',
 'filedelete-intro'            => "您现正删除文件'''[[Media:$1|$1]]'''。",
 'filedelete-intro-old'        => "你现正删除'''[[Media:$1|$1]]'''于[$4 $2 $3]的版本。",
-'filedelete-comment'          => '删除理由：',
+'filedelete-comment'          => '理由：',
 'filedelete-submit'           => '删除',
 'filedelete-success'          => "'''$1'''已经删除。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。",
@@ -1873,10 +1871,10 @@ Template:消除歧義',
 
 # Special:ActiveUsers
 'activeusers'            => '活跃用户列表',
-'activeusers-intro'      => '这个是在最近$1天之内有一些动作的用户列表。',
-'activeusers-count'      => '最近$3天内的$1次编辑',
+'activeusers-intro'      => '这个列表列出了最近$1天进行过操作的用户。',
+'activeusers-count'      => '最近$3天编辑了$1次',
 'activeusers-from'       => '显示用户开始于：',
-'activeusers-hidebots'   => '隱藏機器人',
+'activeusers-hidebots'   => '隐藏机器人',
 'activeusers-hidesysops' => '隐藏管理员',
 'activeusers-noresult'   => '找不到用户。',
 
@@ -1936,14 +1934,14 @@ Template:消除歧義',
 
 # Watchlist
 'watchlist'            => '监视列表',
-'mywatchlist'          => '我的监视列表',
+'mywatchlist'          => '监视列表',
 'watchlistfor'         => "（'''$1'''的监视列表'）",
 'nowatchlist'          => '您的监视列表为空。',
 'watchlistanontext'    => '请$1以查看或编辑您的监视列表。',
 'watchnologin'         => '未登录',
 'watchnologintext'     => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
 'addedwatch'           => '已添加至监视列表',
-'addedwatchtext'       => "页面“[[:$1]]”已经被加入到您的[[Special:Watchlist|监视列表]]中。将来有关此页面及其讨论页的任何修改将会在那里列出，而且还会在[[Special:RecentChanges|最近更改]]中以'''粗体'''形式列出以使其更容易识别。",
+'addedwatchtext'       => "页面“[[:$1]]”已经被加入到您的[[Special:Watchlist|监视列表]]中。将来有关此页面及其讨论页的任何修改将会该列表中列出，且会在[[Special:RecentChanges|最近更改]]中以'''粗体'''形式列出以便识别。",
 'removedwatch'         => '已停止监视',
 'removedwatchtext'     => '页面[[:$1]]已经从[[Special:Watchlist|您的监视页面]]中移除。',
 'watch'                => '监视',
@@ -2024,10 +2022,10 @@ $UNWATCHURL
 'deletedarticle'         => '已删除“[[$1]]”',
 'suppressedarticle'      => '已废止"[[$1]]"',
 'dellogpage'             => '删除日志',
-'dellogpagetext'         => '以下是最近删除的纪录列表：',
+'dellogpagetext'         => '以下是最近的删除的列表。',
 'deletionlog'            => '删除日志',
 'reverted'               => '恢复到早期版本',
-'deletecomment'          => '删除原因：',
+'deletecomment'          => '理由：',
 'deleteotherreason'      => '其它／附加的理由：',
 'deletereasonotherlist'  => '其他原因',
 'deletereason-dropdown'  => '*常用删除理由
@@ -2050,8 +2048,11 @@ $UNWATCHURL
 'editcomment'       => '编辑摘要："<i>$1</i>"。',
 'revertpage'        => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后一个修订版本',
 'revertpage-nouser' => '恢复由（移除了的用户名）的编辑到[[User:$1|$1]]的最后一个修订版本',
-'rollback-success'  => '已恢复$1的编辑；更改回$2的最后修订版本。',
-'sessionfailure'    => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
+'rollback-success'  => '已恢复$1的编辑；
+更改回$2的最后修订版本。',
+'sessionfailure'    => '似乎您的登录会话有问题；
+为了防止会话劫持，这个操作已经被取消。
+请返回先前的页面，重新载入该页面，然后重试。',
 
 # Protect
 'protectlogpage'              => '保护日志',
@@ -2169,7 +2170,7 @@ $1',
 # Contributions
 'contributions'       => '用户贡献',
 'contributions-title' => '$1的用户贡献',
-'mycontris'           => '我的贡献',
+'mycontris'           => '贡献',
 'contribsub2'         => '$1的贡献 （$2）',
 'nocontribs'          => '没有找到符合特征的更改。',
 'uctop'               => '（最新修改）',
@@ -2260,9 +2261,9 @@ $1',
 'ipblocklist'                     => '已封禁IP地址和用户名',
 'ipblocklist-legend'              => '检索一位已经被查封的用户',
 'ipblocklist-username'            => '用户名称或IP地址：',
-'ipblocklist-sh-userblocks'       => '$1次账户封锁',
-'ipblocklist-sh-tempblocks'       => '$1次临时封锁',
-'ipblocklist-sh-addressblocks'    => '$1次单IP封锁',
+'ipblocklist-sh-userblocks'       => '$1账户封锁',
+'ipblocklist-sh-tempblocks'       => '$1临时封锁',
+'ipblocklist-sh-addressblocks'    => '$1单IP封锁',
 'ipblocklist-submit'              => '搜索',
 'ipblocklist-localblock'          => '本地封锁',
 'ipblocklist-otherblocks'         => '其他{{PLURAL:$1|封锁|封锁}}',
@@ -2453,7 +2454,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'allmessagesdefault'            => '默认的信息文字',
 'allmessagescurrent'            => '现时的信息文字',
 'allmessagestext'               => '这里列出所有可定制的系统界面。
-如果想贡献正宗的MediaWiki本地化的话，请参阅[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net translatewiki.net]。',
+如果想贡献通用的MediaWiki本地化的话，请参阅[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB'     => "这个页面无法使用，因为'''\$wgUseDatabaseMessages'''已被设置关闭。",
 'allmessages-filter-legend'     => '过滤',
 'allmessages-filter'            => '以自定状况过滤：',
@@ -2707,7 +2708,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告'''：该文件类型可能包含恶意代码。
-运行它可能对您的系统带来危险。<hr />",
+运行它可能对您的系统带来危险。",
 'imagemaxsize'         => "图像大小限制：<br />''（用于文件描述页面）''",
 'thumbsize'            => '缩略图大小：',
 'widthheightpage'      => '$1×$2，$3页',
@@ -3051,10 +3052,10 @@ Variants for Chinese language
 点击以下按钮可向您的邮箱发送一封确认邮件。该邮件包含有一行代码链接；
 请在您的浏览器中加载此链接以确认您的邮箱地址是有效的。',
 'confirmemail_pending'     => '一个确认码已经被发送到您的邮箱，您可能需要等几分钟才能收到。如果无法收到，请再申请一个新的确认码。',
-'confirmemail_send'        => '邮发确认代码',
+'confirmemail_send'        => '邮件发送确认代码',
 'confirmemail_sent'        => '确认邮件已发送。',
-'confirmemail_oncreate'    => '一个确认代码已经被发送到您的邮箱。该代码并不要求您进行登录，
-但若您要启用在此 wiki 上的任何基于电子邮件的功能，您必须先提交此代码。',
+'confirmemail_oncreate'    => '一个确认代码已经被发送到您的邮箱。登录时无需使用该代码，
+但若要启用在此维基的电子邮件相关功能，则必须先提交此代码。',
 'confirmemail_sendfailed'  => '{{SITENAME}}不能发送确认邮件，请检查您的邮箱地址是否包含非法字符。
 
 邮件传送员回应：$1',
@@ -3281,20 +3282,5 @@ $1',
 'htmlform-submit'              => '提交',
 'htmlform-reset'               => '撤销更改',
 'htmlform-selectorother-other' => '其他',
-
-# Add categories per AJAX
-'ajax-add-category'            => '加入分类',
-'ajax-add-category-submit'     => '加入',
-'ajax-confirm-title'           => '确认动作',
-'ajax-confirm-prompt'          => '您可以在下面提供一个编辑摘要。
-点击“保存”去保存您的编辑。',
-'ajax-confirm-save'            => '保存',
-'ajax-add-category-summary'    => '加入分类“$1”',
-'ajax-remove-category-summary' => '移除分类“$1”',
-'ajax-confirm-actionsummary'   => '已进行的动作：',
-'ajax-error-title'             => '错误',
-'ajax-error-dismiss'           => '好',
-'ajax-remove-category-error'   => '不能移除这个分类。
-通常是发生在一个模板中加入该分类。',
 
 );

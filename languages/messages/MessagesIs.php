@@ -379,6 +379,7 @@ $messages = array(
 'vector-namespace-main'      => 'Síða',
 'vector-namespace-mediawiki' => 'Melding',
 'vector-namespace-project'   => 'Verkefnissíða',
+'vector-namespace-special'   => 'Kerfissíða',
 'vector-namespace-talk'      => 'Umræða',
 'vector-namespace-template'  => 'Snið',
 'vector-namespace-user'      => 'Notandasíða',
@@ -437,7 +438,7 @@ $messages = array(
 'otherlanguages'    => 'Á öðrum tungumálum',
 'redirectedfrom'    => '(Tilvísað frá $1)',
 'redirectpagesub'   => 'Tilvísunarsíða',
-'lastmodifiedat'    => 'Þessari síðu var síðast breytt $2, klukkan $1.',
+'lastmodifiedat'    => 'Þessari síðu var síðast breytt $1 klukkan $2.',
 'viewcount'         => 'Þessi síða hefur verið skoðuð {{PLURAL:$1|einu sinni|$1 sinnum}}.',
 'protectedpage'     => 'Vernduð síða',
 'jumpto'            => 'Stökkva á:',
@@ -927,7 +928,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-radio-set'        => 'Já',
 'revdelete-radio-unset'      => 'Nei',
 'revdelete-suppress'         => 'Dylja gögn frá stjórnendum og öðrum',
-'revdelete-log'              => 'Athugasemd atburðaskráar:',
+'revdelete-log'              => 'Ástæða:',
 'revdelete-submit'           => 'Setja á valda breytingu',
 'revdel-restore'             => 'Breyta sýn',
 'pagehist'                   => 'Breytingaskrá',
@@ -1125,7 +1126,7 @@ Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiðu
 * Valinn reitur þýðir að notandinn er í hópnum.
 * Óvalinn reitur þýðir að notandinn er ekki í hópnum.
 * Stjarnan (*) þýðir að þú getur ekki fært hópinn eftir að þú hefur breytt honum, eða öfugt.',
-'userrights-reason'           => 'Ástæða fyrir breytingunni:',
+'userrights-reason'           => 'Ástæða:',
 'userrights-no-interwiki'     => 'Þú hefur ekki leyfi til að breyta notandaréttindum á öðrum wiki-síðum.',
 'userrights-nodatabase'       => 'Gagnagrunnurinn $1 er ekki til eða ekki staðbundinn.',
 'userrights-nologin'          => 'Þú verður að [[Special:UserLogin|innskrá]] þig á möppudýraaðgang til að geta útdeilt notandaréttindum.',
@@ -1673,7 +1674,7 @@ Sjá lista yfir nýlegar eyðingar í $2.',
 'dellogpagetext'         => 'Að neðan gefur að líta lista yfir síður sem nýlega hefur verið eytt.',
 'deletionlog'            => 'eyðingaskrá',
 'reverted'               => 'Breytt aftur til fyrri útgáfu',
-'deletecomment'          => 'Ástæða fyrir eyðingu:',
+'deletecomment'          => 'Ástæða:',
 'deleteotherreason'      => 'Aðrar/fleiri ástæður:',
 'deletereasonotherlist'  => 'Önnur ástæða',
 'deletereason-dropdown'  => '* Algengar ástæður
@@ -2118,7 +2119,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Óþekktur notandi|Óþekktir notendur}} á {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} notandi $1',
-'lastmodifiedatby' => 'Þessari síðu var síðast breytt $2, $1 af $3.',
+'lastmodifiedatby' => 'Þessari síðu var síðast breytt $1 klukkan $2 af $3.',
 'othercontribs'    => 'Byggt á verkum $1.',
 'others'           => 'aðrir',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|notandi|notendur}} $1',
@@ -2185,7 +2186,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'nextdiff'     => 'Nýrri breyting →',
 
 # Media information
-'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.<hr />",
+'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.",
 'imagemaxsize'         => 'Takmarka myndir á skráarlýsingasíðum við:',
 'thumbsize'            => 'Stærð smámynda:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',
@@ -2445,10 +2446,5 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 
 # Database error messages
 'dberr-usegoogle' => 'Þú getur notað Google til að leita á meðan.',
-
-# Add categories per AJAX
-'ajax-confirm-save'  => 'Vista',
-'ajax-error-title'   => 'Villa',
-'ajax-error-dismiss' => 'Í lagi',
 
 );

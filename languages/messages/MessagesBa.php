@@ -257,7 +257,7 @@ $messages = array(
 'personaltools'     => 'Шәхси ҡоралдар',
 'postcomment'       => 'Яңы бүлек',
 'articlepage'       => 'Мәҡәләне ҡарап сығырға',
-'talk'              => 'Фекер алышыу',
+'talk'              => 'Фекерләшеү',
 'views'             => 'Ҡарауҙар',
 'toolbox'           => 'Ҡоралдар',
 'userpage'          => 'Ҡулланыусы битен ҡарарға',
@@ -633,6 +633,7 @@ $2',
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ.</span>',
 'userpage-userdoesnotexist'        => '«$1» иҫәп яҙыуы юҡ. Һеҙ бындай бит яһарға йәки битте үҙгәртергә теләһәгеҙ яңынан тикшерегеҙ.',
 'userpage-userdoesnotexist-view'   => '«$1» исемле иҫәп яҙыуы юҡ.',
+'blocked-notice-logextract'        => 'Хәҙергә был ҡатнашыусы ябылған. Һуңғы ҡулланыусы ябыу яҙмаһы:',
 'clearyourcache'                   => "'''Иҫкәрмә:''' Битте һаҡлағандан һуң үҙгәртеүҙерегеҙ күренһен өсөн браузерығыҙҙың кэшын таҙартығыҙ.
 Быны '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''Safari''': ''Cmd+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Konqueror''': ''F5'', '''Opera''': ''Tools→Preferences'' аша эшләп була.",
 'usercssyoucanpreview'             => "'''Кәңәш:''' Яңы CSS-файлды һаҡларҙан алда тикшерер өсөн \"алдан ҡарау\" төймәһенә баҫығыҙ.",
@@ -843,7 +844,7 @@ $3 белдергән сәбәп: ''$2''",
 'revdelete-radio-unset'       => 'Юҡ',
 'revdelete-suppress'          => 'Мәғлүмәттәрҙе шулай уҡ хәкимдәрҙән дә йәшерергә',
 'revdelete-unsuppress'        => 'Тергеҙелгән версияларҙан бар сикләүҙәрҙе алырға',
-'revdelete-log'               => 'Юйыу сәбәбе:',
+'revdelete-log'               => 'Сәбәп:',
 'revdelete-submit'            => 'Һайланған {{PLURAL:$1|версия|версиялар}} өсөн ҡулланырға',
 'revdelete-logentry'          => '[[$1]] бит версияһының күренеүсәнлеге үҙгәрҙе',
 'logdelete-logentry'          => '[[$1]] ваҡиғаһының күренеүсәнлеге үҙгәртелде',
@@ -1316,7 +1317,7 @@ $1",
 # File deletion
 'filedelete'                  => '$1 юйырға',
 'filedelete-legend'           => 'Файлды юйырға',
-'filedelete-comment'          => 'Юйыу сәбәбе:',
+'filedelete-comment'          => 'Сәбәп:',
 'filedelete-submit'           => 'Юйырға',
 'filedelete-otherreason'      => 'Башҡа/өҫтәмә сәбәп:',
 'filedelete-reason-otherlist' => 'Башҡа сәбәп',
@@ -1533,7 +1534,7 @@ $NEWPAGE
 'deletedarticle'         => '«[[$1]]» юйылды',
 'dellogpage'             => 'Юйыуҙар журналы',
 'deletionlog'            => 'Юйыуҙар журналы',
-'deletecomment'          => 'Юйыу сәбәбе:',
+'deletecomment'          => 'Сәбәп:',
 'deleteotherreason'      => 'Башҡа сәбәп/өҫтәмә:',
 'deletereasonotherlist'  => 'Башҡа сәбәп',
 'delete-edit-reasonlist' => 'Сәбәптәр исемлеген мөхәррирләргә',
@@ -1912,13 +1913,5 @@ $NEWPAGE
 
 # HTML forms
 'htmlform-selectorother-other' => 'Башҡа',
-
-# Add categories per AJAX
-'ajax-add-category-submit'     => 'Өҫтәргә',
-'ajax-confirm-save'            => 'Һаҡларға',
-'ajax-add-category-summary'    => 'Өҫтәлгән категориялар "$1"',
-'ajax-remove-category-summary' => 'Категория «$1» юйылған',
-'ajax-error-title'             => 'Хата',
-'ajax-error-dismiss'           => 'Тамам',
 
 );

@@ -1056,7 +1056,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'rightsnone'     => '(юк)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit'       => 'бу битне узгәртергә',
+'action-edit'       => 'бу битне үзгәртергә',
 'action-createpage' => 'сәхифәләрне язырга',
 'action-move'       => 'бу битне күчерү',
 
@@ -1094,7 +1094,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'rc-enhanced-hide'                  => 'Ваклыкларны яшерү',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Бәйләнешле үзгәртүәләр',
+'recentchangeslinked'          => 'Бәйләнешле үзгәртүләр',
 'recentchangeslinked-feed'     => 'Бәйләнешле үзгәртүләр',
 'recentchangeslinked-toolbox'  => 'Бәйләнешле үзгәртүәләр',
 'recentchangeslinked-title'    => '"$1" битенә бәйләнешле үзгәртүләр',
@@ -1326,7 +1326,7 @@ $NEWPAGE
 'deletedarticle'        => '«[[$1]]» бетерелде',
 'dellogpage'            => 'Бетерү көндәлеге',
 'deletionlog'           => 'бетерү көндәлеге',
-'deletecomment'         => 'Бетерү сәбәбе:',
+'deletecomment'         => 'Сәбәп:',
 'deleteotherreason'     => 'Башка/өстәмә сәбәп:',
 'deletereasonotherlist' => 'Башка сәбәп',
 
@@ -1664,14 +1664,5 @@ $1',
 'htmlform-submit'              => 'Җибәрү',
 'htmlform-reset'               => 'Үзгәртүләрне кире кайтару',
 'htmlform-selectorother-other' => 'Башка',
-
-# Add categories per AJAX
-'ajax-add-category'          => 'Бүлек өстәргә',
-'ajax-add-category-submit'   => 'Өстәргә',
-'ajax-confirm-save'          => 'Саклау',
-'ajax-error-title'           => 'Хата',
-'ajax-error-dismiss'         => 'ОК',
-'ajax-remove-category-error' => 'Бу бүлекне алып ташлап булмады.
-Гадәттә шаблон аша өстәлгән бүлекләрдә шушындый хаталар чыга.',
 
 );

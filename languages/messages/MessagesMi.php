@@ -8,6 +8,7 @@
  * @file
  *
  * @author Kiharoa
+ * @author Sonia
  */
 
 $messages = array(
@@ -49,6 +50,7 @@ $messages = array(
 'edit'             => 'Whakatika',
 'delete'           => 'tangohia',
 'protect'          => 'Whakangungua',
+'talkpagelinktext' => 'Kōrerohia',
 'talk'             => 'Kōrerorero',
 'toolbox'          => 'Pouaka utauta',
 

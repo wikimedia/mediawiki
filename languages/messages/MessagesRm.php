@@ -9,6 +9,7 @@
  *
  * @author Gion
  * @author Gion-andri
+ * @author Kazu89
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -467,7 +468,7 @@ Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insa
 
 Il pled-clav per quest nov conto po vegnir midà sin la pagina ''[[Special:ChangePassword|midar pled-clav]]'' suenter che ti t'es annunzià.",
 'newarticle'                       => '(Nov)',
-'newarticletext'                   => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
+'newarticletext'                   => "Ti has cliccà in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per t'infurmar).",
 'anontalkpagetext'                 => "----''Quai è la pagina da discussiun per in utilisader anomim che n'ha anc betg creà in conto d'utilisader u che n'al utilisescha betg. 
 Perquai avain nus d'utilisar l'adressa d'IP per l'identifitgar. 
 Ina tala adressa d'IP po vegnir utilisada da differents utilisaders. 
@@ -1120,7 +1121,7 @@ Conferma per plaschair che ti ta es conscient da las consequenzas e che ti agesc
 Sin $2 chattas ti ina glista dals davos artitgels stizzads.',
 'deletedarticle'        => '"[[$1]]" è stizzà',
 'dellogpage'            => 'log dal stizzar',
-'deletecomment'         => 'Motiv per il stizzar',
+'deletecomment'         => 'Motiv:',
 'deleteotherreason'     => 'Autra / supplementara raschun:',
 'deletereasonotherlist' => 'Autra raschun:',
 
@@ -1561,18 +1562,5 @@ Questa pagina ha actualmain difficultads tecnicas.',
 # HTML forms
 'htmlform-submit'              => 'Trametter',
 'htmlform-selectorother-other' => 'Auters',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Agiuntar categoria',
-'ajax-add-category-submit'     => 'Agiuntar',
-'ajax-confirm-prompt'          => 'Ti pos inditgar sutvart ina resumaziun da la midada. 
-Clicca sin "memorisar" per memorisar tias modificaziuns.',
-'ajax-confirm-save'            => 'Memorisar',
-'ajax-add-category-summary'    => 'Agiuntar la categoria "$1"',
-'ajax-remove-category-summary' => 'Allontanar la categoria "$1"',
-'ajax-error-title'             => 'Errur',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "I n'era betg pussaivel da stizzar questa categoria. 
-Quai capita normalmain sche la categoria è vegnida integrada en in model.",
 
 );

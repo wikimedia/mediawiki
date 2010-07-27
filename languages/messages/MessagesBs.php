@@ -887,8 +887,8 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 '''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
 '''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences'';
 '''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Pažnja:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS prije nego što sačuvate.",
-'userjsyoucanpreview'              => "'''Pažnja:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi JS prije nego što sačuvate.",
+'usercssyoucanpreview'             => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi CSS prije nego što sačuvate.",
+'userjsyoucanpreview'              => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi JavaScript prije nego što sačuvate.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
 '''Ovaj pregled još uvijek nije sačuvan!'''",
 'userjspreview'                    => "'''Zapamtite ovo je samo izgled vaše JavaScript-e, još uvijek nije sačuvan!'''",
@@ -1105,7 +1105,7 @@ Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakriven
 'revdelete-radio-unset'       => 'Ne',
 'revdelete-suppress'          => 'Sakrij podatke od administratora kao i od drugih',
 'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim revizijama',
-'revdelete-log'               => 'Razlog za brisanje:',
+'revdelete-log'               => 'Razlog:',
 'revdelete-submit'            => 'Primijeni na odabrane {{PLURAL:$1|reviziju|revizije}}',
 'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
 'logdelete-logentry'          => 'promijenjena vidljivost događaja [[$1]]',
@@ -1785,7 +1785,7 @@ Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
 'sharedupload-desc-there'   => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.
 Molimo pogledajte [$2 stranicu opisa datoteke] za ostale informacije.',
 'sharedupload-desc-here'    => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.
-Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
+Opis sa njene [$2 stranice opisa datoteke] je prikazan ispod.',
 'filepage-nofile'           => 'Ne postoji datoteka s ovim nazivom.',
 'filepage-nofile-link'      => 'Ne postoji datoteka s ovim imenom, ali je možete [$1 postaviti].',
 'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',
@@ -1796,7 +1796,7 @@ Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
 'filerevert'                => 'Vrati $1',
 'filerevert-legend'         => 'Vraćanje datoteke',
 'filerevert-intro'          => "Vraćate datoteku '''[[Media:$1|$1]]''' na [$4 verziju od $3, $2].",
-'filerevert-comment'        => 'Komentar:',
+'filerevert-comment'        => 'Razlog:',
 'filerevert-defaultcomment' => 'Vraćeno na verziju od $2, $1',
 'filerevert-submit'         => 'Vrati',
 'filerevert-success'        => "'''Datoteka [[Media:$1|$1]]''' je vraćena na [$4 verziju od $3, $2].",
@@ -1807,7 +1807,7 @@ Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
 'filedelete-legend'           => 'Obriši datoteku',
 'filedelete-intro'            => "Brišete datoteku '''[[Media:$1|$1]]''' zajedno sa svom njenom historijom.",
 'filedelete-intro-old'        => "Brišete verziju datoteke '''[[Media:$1|$1]]''' od [$4 $3, $2].",
-'filedelete-comment'          => 'Razlog za brisanje:',
+'filedelete-comment'          => 'Razlog:',
 'filedelete-submit'           => 'Obriši',
 'filedelete-success'          => "'''$1''' je obrisano.",
 'filedelete-success-old'      => "Verzija datoteke '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
@@ -2181,7 +2181,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'dellogpagetext'         => 'Ispod je spisak najskorijih brisanja.',
 'deletionlog'            => 'zapis brisanja',
 'reverted'               => 'Vraćeno na prijašnju reviziju',
-'deletecomment'          => 'Razlog brisanja:',
+'deletecomment'          => 'Razlog:',
 'deleteotherreason'      => 'Ostali/dodatni razlozi:',
 'deletereasonotherlist'  => 'Ostali razlozi',
 'deletereason-dropdown'  => '*Uobičajeni razlozi brisanja
@@ -2289,7 +2289,7 @@ Klikom na '''''Očisti''''' ćete očistiti polje za komentar i sve kutijice.",
 Ako je nova stranica istog imena napravljena od brisanja, vraćene revizije će se pojaviti u njenoj ranijoj historiji.',
 'undeleterevdel'               => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelimično obrisano.
 U takvim slučajevima, morate ukloniti označene ili otkriti sakrivene najskorije obrisane revizije.',
-'undeletehistorynoadmin'       => 'Ova stranica je izbrisana.  Ispod se nalazi dio istorije brisanja i istorija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
+'undeletehistorynoadmin'       => 'Ova stranica je izbrisana.  Ispod se nalazi dio historije brisanja i historija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
 'undelete-revision'            => 'Obrisana revizija stranice $1 (dana $4, u $5) od strane $3:',
 'undeleterevision-missing'     => 'Nepoznata ili nedostajuća revizija.
 Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arhive.',
@@ -2299,7 +2299,7 @@ Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arh
 'undeleteviewlink'             => 'pogledaj',
 'undeletereset'                => 'Očisti',
 'undeleteinvert'               => 'Izmijeni odabir',
-'undeletecomment'              => 'Komentar:',
+'undeletecomment'              => 'Razlog:',
 'undeletedarticle'             => 'vraćeno "$1"',
 'undeletedrevisions'           => '{{PLURAL:$1|$1 revizija vraćena|$1 revizije vraćene|$1 revizija vraćeno}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revizija|$1 revizije|$1 revizija}} i {{PLURAL:$2|1 datoteka|$2 datoteke|$2 datoteka}} vraćeno',
@@ -2381,7 +2381,7 @@ $1',
 'ipaddress'                       => 'IP adresa:',
 'ipadressorusername'              => 'IP adresa ili korisničko ime:',
 'ipbexpiry'                       => 'Ističe:',
-'ipbreason'                       => 'Razlog',
+'ipbreason'                       => 'Razlog:',
 'ipbreasonotherlist'              => 'Ostali razlozi',
 'ipbreason-dropdown'              => '*Najčešći razlozi blokiranja
 **Netačne informacije
@@ -2631,7 +2631,7 @@ Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MediaWiki lokalizac
 'allmessagesnotsupportedDB'     => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter po stanju podešavanja:',
-'allmessages-filter-unmodified' => 'Neizmijeneno',
+'allmessages-filter-unmodified' => 'Neizmijenjeno',
 'allmessages-filter-all'        => 'Sve',
 'allmessages-filter-modified'   => 'Izmijenjeno',
 'allmessages-prefix'            => 'Filter po prefiksu:',
@@ -2887,7 +2887,7 @@ $1',
 'nextdiff'     => 'Novija izmjena →',
 
 # Media information
-'mediawarning'         => "'''Upozorenje''': Ova datoteka sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.<hr />",
+'mediawarning'         => "'''Upozorenje''': Ova datoteka sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.",
 'imagemaxsize'         => "Ograničenje veličine slike:<br />''(za stranice opisa datoteke)''",
 'thumbsize'            => 'Veličina umanjenog prikaza:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
@@ -3319,14 +3319,14 @@ Pokušajte normalni pregled.',
 'watchlistedit-normal-title'   => 'Uredi spisak praćenja',
 'watchlistedit-normal-legend'  => 'Ukloni naslove iz spiska praćenja',
 'watchlistedit-normal-explain' => 'Naslovi na Vašem spisku praćenja su prikazani ispod.
-Da bi ste uklonili naslov, označite kutiju pored naslova, i kliknite Ukloni naslove.
+Da bi ste uklonili naslov, označite kutiju pored naslova, i kliknite "{{int:Watchlistedit-normal-submit}}".
 Također možete [[Special:Watchlist/raw|napredno urediti spisak]].',
 'watchlistedit-normal-submit'  => 'Ukloni naslove',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 naslov|$1 naslova}} je uklonjeno iz Vašeg spiska praćenja:',
 'watchlistedit-raw-title'      => 'Napredno uređivanje spiska praćenja',
 'watchlistedit-raw-legend'     => 'Napredno uređivanje spiska praćenja',
-'watchlistedit-raw-explain'    => 'Naslovi u Vašem spisku praćenja su prikazani ispod, i mogu biti uređeni dodavanje ili brisanjem sa spiska; jedan naslov u svakom redu.
-Kada završite, kliknite Ažuriraj spisak praćenja.
+'watchlistedit-raw-explain'    => 'Naslovi u Vašem spisku praćenja su prikazani ispod, i mogu biti uređeni dodavanjem ili brisanjem sa spiska; jedan naslov u svakom redu.
+Kada završite, kliknite "{{int:Watchlistedit-raw-submit}}".
 Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
 'watchlistedit-raw-titles'     => 'Naslovi:',
 'watchlistedit-raw-submit'     => 'Ažuriraj spisak praćenja',
@@ -3428,7 +3428,7 @@ Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
 # Special:FilePath
 'filepath'         => 'Putanja datoteke',
 'filepath-page'    => 'Datoteka:',
-'filepath-submit'  => 'Putanja',
+'filepath-submit'  => 'Idi',
 'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju za datoteku.
 Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktno sa, s njima povezanim, programom.
 
@@ -3510,20 +3510,5 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'htmlform-submit'              => 'Pošalji',
 'htmlform-reset'               => 'Vrati izmjene',
 'htmlform-selectorother-other' => 'Ostalo',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Dodaj kategoriju',
-'ajax-add-category-submit'     => 'Dodaj',
-'ajax-confirm-title'           => 'Potvrdi akciju',
-'ajax-confirm-prompt'          => 'Možete navesti sažetak izmjene ispod.
-Kliknite na "Spremi" da biste sačuvali Vašu izmjenu.',
-'ajax-confirm-save'            => 'Spremi',
-'ajax-add-category-summary'    => 'Dodaj kategoriju "$1"',
-'ajax-remove-category-summary' => 'Ukloni kategoriju "$1"',
-'ajax-confirm-actionsummary'   => 'Akcija koja se izvodi:',
-'ajax-error-title'             => 'Greška',
-'ajax-error-dismiss'           => 'U redu',
-'ajax-remove-category-error'   => 'Nije bilo moguće ukloniti ovu kategoriju.
-Ovo se obično dešava kada je kategorija dodana na stranicu preko šablona.',
 
 );

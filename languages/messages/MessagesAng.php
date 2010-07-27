@@ -290,8 +290,12 @@ $1',
 'toc'                     => 'Innoþ',
 'showtoc'                 => 'sēon',
 'hidetoc'                 => 'hȳdan',
+'thisisdeleted'           => 'Wilt þū sēon oþþe nīwian $1?',
 'viewdeleted'             => '$1 sēon?',
+'restorelink'             => '{{PLURAL:$1|ān ahwītod ādihtung}$1 ahwītoda ādihtunga}}',
 'feedlinks'               => 'Flōd:',
+'feed-invalid'            => 'Ungenge underwrītunge inlāde gecynd.',
+'feed-unavailable'        => 'Fruman inlāda ne sind gearwa',
 'site-rss-feed'           => '$1 RSS strēam',
 'site-atom-feed'          => '$1 Atom strēam',
 'page-rss-feed'           => '$1 RSS strēam',
@@ -312,11 +316,23 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => 'Nǣniȝ dǣd',
+'nosuchactiontext'  => 'Þæt weorc þe se nettfrumfinded wile is ungenge.
+Þū meahtlīce miswrite þone nettfrumfindend, oþþe folgode unrihtne hlencan.
+Þis mæg ēac tācnian unrihtnesse on þǣre sōftware þe is gebrocen fram {{SITENAME}}.',
 'nosuchspecialpage' => 'Nǣniȝu syndriȝu sīde',
+'nospecialpagetext' => '<strong>Þū hafast abiden ungenges ānlices trametes.</strong>
+
+Getæl gengra ānlicra trameta cann mann findand be [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'               => 'Ƿōh',
 'databaseerror'       => 'Cȳþþuhordes ƿōh',
+'dberrortext'         => 'Gewitnesshordes bēnes endebyrdnesse unrihtness hæfþ gelumpen.
+Þis mæg gelimpan unrihtnesse on þǣre sōftware.
+Sēo nīwoste gesōhte sōftware bēn wæs:
+<blockquote><tt>$1</tt></blockquote>
+fram innan weorce "<tt>$2</tt>".
+Gewitnesshord edwende unrihtnesse "<tt>$3: $4</tt>"',
 'laggedslavemode'     => "'''Ƿarnung:''' Sīde ne mihteliċ ne hæfþ nīƿa nīƿunga.",
 'enterlockreason'     => 'Wrīt race þǣre forwiernunge and apunsunge be þǣm tīman on þǣm bēo sēo forwiernung forlǣten',
 'missingarticle-rev'  => '(nīƿung#: $1)',
@@ -330,6 +346,7 @@ $1',
 'badarticleerror'     => 'Þēos dǣd ne cann bēon gefremed on þissum tramete.',
 'badtitle'            => 'Unandfenge títul',
 'viewsource'          => 'Fruman sēon',
+'cascadeprotected'    => 'Þis trament hafaþ geworden gebeorgod wiþ ādihtunge, for þǣm þe hē is geinnod in þissum trament {{PLURAL:$1|tramente, þe is| tramentum, þe sind}} geborgod mid þǣre "cascading" cyre gesett wyrcende: $2',
 
 # Login and logout pages
 'logouttext'                 => "'''Þū eart nū ūtmeldod.'''
@@ -366,9 +383,11 @@ Bidde ōðer brūcendnama ċēosan.',
 Bidde þē, lǣt hīe tō twyrcenne, and þǣræfter inmelda þurh þīnne nīwan brūcendnaman and gelēafnessword.',
 'loginsuccesstitle'          => 'Inmeldung gesǣlde',
 'loginsuccess'               => "'''Þu eart nū inmeldod tō {{SITENAME}} swā \"\$1\".'''",
-'nosuchuser'                 => 'Þǣr is nān brūcere be þǣm naman "$1".
-Edscēawa þīne wrītunge, oþþe brūc þone form under tō [[Special:UserLogin/signup|settene nīwne brūcendhordcleofan]].',
+'nosuchuser'                 => 'Þǣr nis nān brūcere þe hæfþ þone naman "$1".
+Stafena micelnesse sind hefige and ānlica on brūcendnamum. 
+Scēawa þīne wrītunge eft, oþþe brūc þā cartan þe is hērunder tō [[Special:UserLogin/signup|settene nīwne brūcendreccend]].',
 'nosuchusershort'            => 'Þǣr is nān brūcend mid þǣm naman "<nowiki>$1</nowiki>".  Edscēawa on þīne wrītunge.',
+'passwordtooshort'           => 'Gelēafword sculon habban læst {{PLURAL:$1|1 stafan|$1 stafan}}.',
 'mailmypassword'             => 'Nīƿe þafungƿord bȳ e-mail sendan',
 'acct_creation_throttle_hit' => 'Hwæt, þu hæfst gēo geseted {{PLURAL:$1|1 hordcleofan|$1 -}}. Þu ne canst settan ǣnige māran.',
 'accountcreated'             => 'Hordcleofan ȝescapen',
@@ -682,32 +701,53 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'uploadedimage'     => 'forþsendode "[[$1]]"',
 'sourcefilename'    => 'Fruman þrǣdnama:',
 
-'nolicense' => 'Nǣnne gecorenne',
+'license'           => 'Gelēaf:',
+'license-header'    => 'Gelēaf',
+'nolicense'         => 'Nǣnne gecorenne',
+'license-nopreview' => 'Þis gelēaf nis gearu.',
 
 # Special:ListFiles
+'listfiles-summary'     => 'Þes syngriga tramet ēowaþ ealle forþsendede fīlas.
+Æfter gewunelicum wīsum, þā nīwostan fīlas sind ēowod be hēafe þæs getæles.
+Swenge wiþ sweorhēafod andwendeþ þā endebyrdnessa.',
 'listfiles_search_for'  => 'Sēcan biliþnaman:',
+'imgfile'               => 'fīl',
 'listfiles'             => 'Biliþgetalu',
 'listfiles_date'        => 'Tælmearc',
 'listfiles_name'        => 'Nama',
 'listfiles_user'        => 'Brūcend',
+'listfiles_size'        => 'Micelness',
 'listfiles_description' => 'Tōƿritennes',
+'listfiles_count'       => 'Fadunga',
 
 # File description page
 'file-anchor-link'          => 'Fīl',
 'filehist'                  => 'Fīlanstǣr',
 'filehist-help'             => 'Cnæpp on dæȝe/tīde to sēonne þā fīlan sƿā ƿæs hēo on þǣre tīde.',
+'filehist-deleteall'        => 'afeorsian eall',
+'filehist-deleteone'        => 'afeorsian',
+'filehist-revert'           => 'undōn',
 'filehist-current'          => 'nū',
 'filehist-datetime'         => 'Dæȝ/Tīd',
 'filehist-thumb'            => 'Lȳtlbiliþ',
 'filehist-thumbtext'        => 'Lȳtlbiliþ for fadunge sƿā $1',
+'filehist-nothumb'          => 'Nān biliþincel',
 'filehist-user'             => 'Brūcend',
 'filehist-dimensions'       => 'Miċela',
+'filehist-filesize'         => 'Fīlmicelness',
 'filehist-comment'          => 'Ymbsprǣċ',
+'filehist-missing'          => 'Fīl lēas',
 'imagelinks'                => 'Fīlhlenċan',
 'linkstoimage'              => 'Þā folgendan {{PLURAL:$1|sīde hæfþ hlenċe|sīdan habbaþ hlenċan}} for þissum fīle:',
 'nolinkstoimage'            => 'Þǣr sind nāne trametas þe bindaþ tō þissum biliðe.',
+'morelinkstoimage'          => 'Seoh [[Special:WhatLinksHere/$1|mā hlencan]] tō þissum fīle.',
+'redirectstofile'           => '{{PLURAL:$1|Þes fīl edlǣdeþ|$1 Þās fīlas hēr edlǣdaþ}} tō þissum  fīle:',
+'duplicatesoffile'          => '{{PLURAL:$1|Þes fīl hēr is gelīcness|Þās fīlas hēr sind gelīcnessa}} þisses fīles (seoh [[Special:FileDuplicateSearch/$2|mā gewitnesse hērymb]]):',
 'sharedupload'              => 'Þēos fīl is fram $1 and man mæȝ hīe brūcan on ōðrum ƿeorcum.',
 'uploadnewversion-linktext' => 'Nīƿe fadunge þisse fīlan forþsendan',
+
+# File reversion
+'filerevert-legend' => 'Eftdōn fīl',
 
 # File deletion
 'filedelete-submit' => 'āfeorsian',
@@ -865,7 +905,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'deletedarticle'        => 'āfeorsode "[[$1]]"',
 'dellogpage'            => 'Āfeorsunge_wisbōc',
 'deletionlog'           => 'āfeorsunge wisbōc',
-'deletecomment'         => 'Racu for āfeorsunge',
+'deletecomment'         => 'Racu:',
 'deleteotherreason'     => 'Ōðra/ēaca racu:',
 'deletereasonotherlist' => 'Ōðru racu',
 
@@ -953,7 +993,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 # Block/unblock
 'blockip'                  => 'Brūcend fortȳnan',
-'ipbreason'                => 'Racu',
+'ipbreason'                => 'Racu:',
 'ipbreasonotherlist'       => 'Ōðeru racu',
 'ipbreason-dropdown'       => '*Gemǣna gǣlungraca
 ** Insettung falses gefrǣges
@@ -1274,14 +1314,5 @@ $5
 'htmlform-submit'              => 'Forþsendan',
 'htmlform-reset'               => 'Hƿearfas undōn',
 'htmlform-selectorother-other' => 'Ōðer',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Flocc ēacian',
-'ajax-add-category-submit'     => 'Ēacian',
-'ajax-confirm-save'            => 'Sparian',
-'ajax-add-category-summary'    => 'Flocc "$1" ēacian',
-'ajax-remove-category-summary' => 'Flocc "$1" forniman',
-'ajax-confirm-actionsummary'   => 'Dǣd to dōnne:',
-'ajax-error-title'             => 'Ƿōh',
 
 );

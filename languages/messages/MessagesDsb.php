@@ -472,9 +472,9 @@ $1',
 Sy se snaź zapisał pśi zapódaśu URL abo sy slědował wopacnemu wótkazoju.
 To by mógło teke programěrowańska zmólka w {{GRAMMAR:lokatiw|{{SITENAME}}}} byś.',
 'nosuchspecialpage' => 'Toś ten specialny bok njeeksistěrujo',
-'nospecialpagetext' => '<strong>Toś ten specialny bok w toś tom wikiju njeeksistěrujo</strong>
+'nospecialpagetext' => '<strong>Toś ten specialny bok njeeksistěrujo</strong>
 
-Lisćina płaśecych specialnych bokow namakajo se pód [[Special:SpecialPages|{{int:specialpages}}]].',
+Płaśece specialne boki namakaju se pód [[Special:SpecialPages|lisćinu specialnych bokow]].',
 
 # General errors
 'error'                => 'Zmólka',
@@ -563,7 +563,7 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'externaldberror'            => 'Abo jo wustupiła eksterna zmólka awtentifikacije datoweje banki, abo njesmějoš swójo eksterne wužywarske konto aktualizěrowaś.',
 'login'                      => 'Pśizjawiś se',
 'nav-login-createaccount'    => 'Pśizjawiś se/Konto załožyś',
-'loginprompt'                => 'Za pśizjawjenje do boka {{SITENAME}} muse se cookije dopušćiś.',
+'loginprompt'                => 'Za pśizjawjenje do boka {{SITENAME}} muse cookije dowólone byś.',
 'userlogin'                  => 'Pśizjawiś se/Konto załožyś',
 'userloginnocreate'          => 'Pśizjawiś',
 'logout'                     => 'wótzjawiś se',
@@ -942,7 +942,7 @@ Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'revdelete-radio-unset'       => 'Ně',
 'revdelete-suppress'          => 'Pśicynu wulašowanja teke za administratorow schowaś',
 'revdelete-unsuppress'        => 'Wobgranicowanja za wótnowjone wersije zasej zwignuś.',
-'revdelete-log'               => 'Pśicyna za wulašowanje:',
+'revdelete-log'               => 'Pśicyna:',
 'revdelete-submit'            => 'Na {{PLURAL:$1|wubranu wersiju|wubranej wersiji|wubrane wersije|wubrane wersije}} nałožyś',
 'revdelete-logentry'          => 'Woglědanje wersije změnjone za [[$1]]',
 'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
@@ -1041,7 +1041,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'prevn-title'                      => '{{PLURAL:$1|Pjerwjejšny wuslědk|Pjerwjejšnej $1 wuslědka|Pjerwjejšne $1 wuslědki|Pjerwjejšnych $1 wuslědkow}}',
 'nextn-title'                      => '{{PLURAL:$1|Pśiducy wuslědk|Pśiducej $1 wuslědka|Pśiduce $1 wuslědki|Pśiducych $1 wuslědkow}}',
 'shown-title'                      => '$1 {{PLURAL:$1|wuslědk|wuslědka|wuslědki|wuslědkow}} na bok pokazaś',
-'viewprevnext'                     => 'Pokazaś ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) pokazaś',
 'searchmenu-legend'                => 'Pytańske opcije',
 'searchmenu-exists'                => "'''Jo bok z mjenim \"[[\$1]]\" na toś tom wikiju'''",
 'searchmenu-new'                   => "'''Napóraj bok \"[[:\$1|\$1]]\" na toś tom wikiju!'''",
@@ -1061,7 +1061,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'search-result-score'              => 'Relewanca: $1 %',
 'search-redirect'                  => '(pśesměrowanje $1)',
 'search-section'                   => '(sekcija $1)',
-'search-suggest'                   => 'Měnijašo: $1?',
+'search-suggest'                   => 'Měnjašo $1?',
 'search-interwiki-caption'         => 'Sotšine projekty',
 'search-interwiki-default'         => '$1 wuslědki:',
 'search-interwiki-more'            => '(wěcej)',
@@ -1624,7 +1624,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'filedelete-legend'           => 'Wulašowaś dataje',
 'filedelete-intro'            => "Lašujoš dataju '''[[Media:$1|$1]]''' gromaźe z jeje cełymi stawiznami.",
 'filedelete-intro-old'        => "Wulašujoš [$4 wersiju wót $2, $3 góź.] dataje '''„[[Media:$1|$1]]“'''.",
-'filedelete-comment'          => 'Komentar:',
+'filedelete-comment'          => 'Pśicyna:',
 'filedelete-submit'           => 'Wulašowaś',
 'filedelete-success'          => "'''$1''' jo se wulašował.",
 'filedelete-success-old'      => "Wersija wót $2, $3 góź. dataje '''[[Media:$1|$1]]''' jo se wulašowała.",
@@ -1986,7 +1986,7 @@ Pšašanja a dalšna pomoc:
 'dellogpagetext'         => 'How jo protokol wulašowanych bokow a datajow.',
 'deletionlog'            => 'protokol wulašowanjow',
 'reverted'               => 'Nawrośone na staršu wersiju',
-'deletecomment'          => 'Pśicyna wulašowanja:',
+'deletecomment'          => 'Pśicyna:',
 'deleteotherreason'      => 'Druga/pśidatna pśicyna:',
 'deletereasonotherlist'  => 'Druga pśicyna',
 'deletereason-dropdown'  => '* Powšykne pśicyny za lašowanja
@@ -2178,7 +2178,7 @@ $1',
 'ipaddress'                       => 'IP-adresa',
 'ipadressorusername'              => 'IP-adresa abo wužywarske mě',
 'ipbexpiry'                       => 'Cas blokěrowanja:',
-'ipbreason'                       => 'Pśicyna',
+'ipbreason'                       => 'Pśicyna:',
 'ipbreasonotherlist'              => 'Druga pśicyna',
 'ipbreason-dropdown'              => '*powšykne pśicyny blokěrowanja
 ** pódawanje njepšawych informacijow
@@ -2349,7 +2349,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movesubpage'                  => '{{PLURAL:$1|Pódbok|Pódboka|Pódboki|Pódbokow}}',
 'movesubpagetext'              => 'Bok ma {{PLURAL:$1|slědujucy pódbok|slědujucej $1 pódboka|slědujuce $1 pódboki|slědujucych $1 pódbokow}}.',
 'movenosubpage'                => 'Toś ten bok njama pódboki.',
-'movereason'                   => 'Pśicyna',
+'movereason'                   => 'Pśicyna:',
 'revertmove'                   => 'nawrośiś',
 'delete_and_move'              => 'Wulašowaś a pśesunuś',
 'delete_and_move_text'         => '==Celowy bok eksistěrujo - wulašowaś??==
@@ -2641,7 +2641,7 @@ $1',
 'nextdiff'     => 'Pśiduca změna →',
 
 # Media information
-'mediawarning'         => "'''Warnowanje''': Toś ten datajowy typ móžo wopśimjeś złosny programowy kod. Gaž toś ten kod se wuwjeźo, twój system móžo se wobškóźeś.<hr />",
+'mediawarning'         => "'''Warnowanje''': Toś ten datajowy typ móžo wopśimjeś złosny programowy kod. Gaž toś ten kod se wuwjeźo, twój system móžo se wobškóźeś.",
 'imagemaxsize'         => "Maksimalna wobrazowa wjelikosć:<br />'' (za boki datajowego wopisanja)''",
 'thumbsize'            => 'Rozměra miniaturow:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bok|boka|boki|bokow}}',
@@ -3199,20 +3199,5 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'htmlform-submit'              => 'Wótpósłaś',
 'htmlform-reset'               => 'Změny anulěrowaś',
 'htmlform-selectorother-other' => 'Druge',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategoriju pśidaś',
-'ajax-add-category-submit'     => 'Pśidaś',
-'ajax-confirm-title'           => 'Akciju wobkšuśiś',
-'ajax-confirm-prompt'          => 'Móžoš dołojce wobźěłowańske zespominanje pódaś.
-Klikni na "Składowaś", aby swójo wobźěłanje składował.',
-'ajax-confirm-save'            => 'Składowaś',
-'ajax-add-category-summary'    => 'Kategoriju "$1" pśidaś',
-'ajax-remove-category-summary' => 'Kategoriju "$1" wótpóraś',
-'ajax-confirm-actionsummary'   => 'Akcija, kótaraž ma se wuwjasć:',
-'ajax-error-title'             => 'Zmólka',
-'ajax-error-dismiss'           => 'W pórědku',
-'ajax-remove-category-error'   => 'Njejo móžno było toś tu kategoriju wótpóraś.
-To se zwětšego stawa, gaž kategorija jo se pśidała bokoju w pśedłoze.',
 
 );

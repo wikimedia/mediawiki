@@ -14,6 +14,7 @@
  * @author Christian List
  * @author EPO
  * @author Emilkris33
+ * @author Froztbyte
  * @author H92
  * @author Hylle
  * @author Jan Friberg
@@ -776,8 +777,8 @@ Loggen over den seneste blokering ses nedenfor:',
 '''Konqueror''': Klik på ''reload'' eller tryk på ''F5'';
 '''Opera''': Tøm cachen i ''Tools → Preferences'';
 '''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''.",
-'usercssyoucanpreview'             => "'''Tip:''' Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
-'userjsyoucanpreview'              => "'''Tip:''' Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
+'usercssyoucanpreview'             => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye CSS inden du gemmer.",
+'userjsyoucanpreview'              => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye JavaScript inden du gemmer.",
 'usercsspreview'                   => "'''Husk at dette kun er en forhåndsvisning af dit eget css.
 '''Det er ikke gemt endnu!'''",
 'userjspreview'                    => "'''Husk at du kun tester/forhåndsviser dit eget javascript, det er ikke gemt endnu!'''",
@@ -977,7 +978,7 @@ Andre administratorer på {{SITENAME}} vil fortsat være i stand til at se det s
 'revdelete-radio-unset'       => 'Nej',
 'revdelete-suppress'          => 'Skjul også informationen for administratorer',
 'revdelete-unsuppress'        => 'Ophæv begrænsninger for gendannede versioner',
-'revdelete-log'               => 'Sletningsårsag:',
+'revdelete-log'               => 'Begrundelse:',
 'revdelete-submit'            => 'Udfør på {{PLURAL:$1|den udvalgte version|de udvalgte versioner}}',
 'revdelete-logentry'          => 'Versionsvisning ændret for [[$1]]',
 'logdelete-logentry'          => "ændrede [[$1]]'s synlighed",
@@ -1654,7 +1655,7 @@ Indholdet på dens [$2 filbeskrivelsesside] er vist herunder.',
 'filedelete-legend'           => 'Slet fil',
 'filedelete-intro'            => "Du er ved at slette filen '''[[Media:$1|$1]]''' sammen med hele dens historik.",
 'filedelete-intro-old'        => '<span class="plainlinks">Du er ved at slette en tidligere version af \'\'\'[[Media:$1|$1]]\'\'\' fra [$4 $2, $3].</span>',
-'filedelete-comment'          => 'Kommentar:',
+'filedelete-comment'          => 'Begrundelse:',
 'filedelete-submit'           => 'Slet',
 'filedelete-success'          => "'''$1''' er blevet slettet.",
 'filedelete-success-old'      => "Versionen af '''[[Media:$1|$1]]''' fra $2 $3 er blevet slettet.",
@@ -1982,13 +1983,17 @@ Kontakt bidragyderen:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du vil ikke modtage flere beskeder om yderligere ændringer med mindre du besøger denne side.
+Du vil ikke modtage flere beskeder om yderligere ændringer medmindre du besøger denne side.
 På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
 
              Med venlig hilsen {{SITENAME}}s informationssystem
 
 -- 
-Besøg {{fullurl:Special:Watchlist/edit}} for at ændre indstillingerne for din overvågningsliste
+For at ændre indstillingerne for din overvågningsliste, besøg
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+For at slette siden fra din overvågningsliste, besøg
+$UNWATCHURL
 
 Tilbagemelding og yderligere hjælp:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2014,7 +2019,7 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 'dellogpagetext'         => 'Herunder vises de nyeste sletninger. Alle tider er serverens tid.',
 'deletionlog'            => 'sletningslog',
 'reverted'               => 'Gendannet en tidligere version',
-'deletecomment'          => 'Begrundelse for sletning',
+'deletecomment'          => 'Begrundelse:',
 'deleteotherreason'      => 'Anden/uddybende begrundelse:',
 'deletereasonotherlist'  => 'Anden begrundelse',
 'deletereason-dropdown'  => '
@@ -2211,7 +2216,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'ipaddress'                       => 'IP-adresse/brugernavn',
 'ipadressorusername'              => 'IP-adresse eller brugernavn',
 'ipbexpiry'                       => 'varighed',
-'ipbreason'                       => 'Begrundelse',
+'ipbreason'                       => 'Begrundelse:',
 'ipbreasonotherlist'              => 'Anden begrundelse',
 'ipbreason-dropdown'              => '*Generelle begrundelser
 ** Indsættelse af forkerte oplysninger
@@ -2668,7 +2673,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne filtype kan muligvis indeholde skadelig kode. 
-Du kan beskadige dit system hvis du udfører den.<hr />",
+Du kan beskadige dit system hvis du udfører den.",
 'imagemaxsize'         => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
 'thumbsize'            => 'Thumbnailstørrelse :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
@@ -3086,7 +3091,9 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlistedit-noitems'        => 'Din overvågningsliste er tom.',
 'watchlistedit-normal-title'   => 'Rediger overvågningsliste',
 'watchlistedit-normal-legend'  => 'Slet sider fra overvågningslisten',
-'watchlistedit-normal-explain' => 'Siderne på din overvågningsliste er vist nedenfor. Hvis du vil fjerne en side, skal du markere feltet ud for den, og klik på "((int: Watchlistedit-normal-submit))". Du kan også [[Special: Watchlist / raw | redigere siden direkte]].',
+'watchlistedit-normal-explain' => 'Siderne på din overvågningsliste er vist nedenfor.
+For at fjerne en side, skal boksen ud for den markeres, og klik på "{{int:Watchlistedit-normal-submit}}".
+Du kan også [[Special:Watchlist/raw|redigere siden direkte]].',
 'watchlistedit-normal-submit'  => 'Fjern valgte',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
 'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',
@@ -3217,20 +3224,5 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'htmlform-submit'              => 'Gem',
 'htmlform-reset'               => 'Annuller ændringer',
 'htmlform-selectorother-other' => 'Anden',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Tilføj kategori',
-'ajax-add-category-submit'     => 'Tilføj',
-'ajax-confirm-title'           => 'Bekræft handling',
-'ajax-confirm-prompt'          => 'Du kan lave en redigeringsbeskrivelse nedenfor.
-Klik på "Gem" for at gemme redigeringen.',
-'ajax-confirm-save'            => 'Gem',
-'ajax-add-category-summary'    => 'Tilføj kategorien "$1"',
-'ajax-remove-category-summary' => 'Fjern kategorien "$1"',
-'ajax-confirm-actionsummary'   => 'Handling:',
-'ajax-error-title'             => 'Fejl',
-'ajax-error-dismiss'           => 'O.k.',
-'ajax-remove-category-error'   => 'Det var ikke muligt af fjerne kategorien.
-Det skyldes oftest at kategorien er blevet tilføjet til siden i en skabelon.',
 
 );

@@ -988,7 +988,7 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 'revdelete-radio-unset'       => 'No',
 'revdelete-suppress'          => 'Suprimeix també les dades dels administradors',
 'revdelete-unsuppress'        => 'Suprimir les restriccions de les revisions restaurades',
-'revdelete-log'               => "Motiu d'esborrat:",
+'revdelete-log'               => 'Motiu:',
 'revdelete-submit'            => 'Aplica a {{PLURAL:$1|la revisió seleccionada|les revisions seleccionades}}',
 'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
 'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
@@ -1662,7 +1662,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 'filedelete-legend'           => 'Suprimeix el fitxer',
 'filedelete-intro'            => "Esteu eliminant el fitxer '''[[Media:$1|$1]]''' juntament amb el seu historial.",
 'filedelete-intro-old'        => "Esteu eliminant la versió de '''[[Media:$1|$1]]''' com de [$4 $3, $2].",
-'filedelete-comment'          => 'Comentari:',
+'filedelete-comment'          => 'Motiu:',
 'filedelete-submit'           => 'Suprimeix',
 'filedelete-success'          => "'''$1''' s'ha eliminat.",
 'filedelete-success-old'      => "<span class=\"plainlinks\">La versió de '''[[Media:\$1|\$1]]''' s'ha eliminat el \$2 a les \$3.</span>",
@@ -2033,7 +2033,7 @@ Vegeu $2 per a un registre dels esborrats més recents.',
 'dellogpagetext'         => 'Davall hi ha una llista dels esborraments més recents.',
 'deletionlog'            => "Registre d'esborrats",
 'reverted'               => 'Invertit amb una revisió anterior',
-'deletecomment'          => 'Motiu per a ser esborrat:',
+'deletecomment'          => 'Motiu:',
 'deleteotherreason'      => 'Motius diferents o addicionals:',
 'deletereasonotherlist'  => 'Altres motius',
 'deletereason-dropdown'  => "*Motius freqüents d'esborrat
@@ -2421,7 +2421,7 @@ Incorporeu-les manualment, si us plau.",
 'movesubpage'                  => '{{PLURAL:$1|Subpàgina|Subpàgines}}',
 'movesubpagetext'              => 'Aquesta pàgina té {{PLURAL:$1|una subpàgina|$1 subpàgines}} que es mostren a continuació.',
 'movenosubpage'                => 'Aquesta pàgina no té subpàgines.',
-'movereason'                   => 'Motiu',
+'movereason'                   => 'Motiu:',
 'revertmove'                   => 'reverteix',
 'delete_and_move'              => 'Elimina i trasllada',
 'delete_and_move_text'         => "==Cal l'eliminació==
@@ -2708,7 +2708,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Advertència''': Aquest fitxer podria contenir codi maliciós.
-Si l'executeu, podeu comprometre la seguretat del vostre sistema.<hr />",
+Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'imagemaxsize'         => "Límit de mida d'imatges:<br />''(per a pàgines de descripció de fitxers)''",
 'thumbsize'            => 'Mida de la miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgines}}',
@@ -2719,7 +2719,7 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.<hr />",
 'show-big-image'       => 'Imatge en màxima resolució',
 'show-big-image-thumb' => "<small>Mida d'aquesta previsualització: $1 × $2 píxels</small>",
 'file-info-gif-looped' => 'embuclat',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|marc|marcs}}',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|fotograma|fotogrames}}',
 
 # Special:NewFiles
 'newimages'             => 'Galeria de nous fitxers',
@@ -3271,20 +3271,5 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'htmlform-submit'              => 'Tramet',
 'htmlform-reset'               => 'Desfés els canvis',
 'htmlform-selectorother-other' => 'Altres',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Afegeix categoria',
-'ajax-add-category-submit'     => 'Afegeir',
-'ajax-confirm-title'           => "Confirma l'acció",
-'ajax-confirm-prompt'          => "Pots incloure un sumari d'edició a sota.
-Clica a ''Desa'' per desar l'edició.",
-'ajax-confirm-save'            => 'Desa',
-'ajax-add-category-summary'    => "Afageix la categoria ''$1''",
-'ajax-remove-category-summary' => "Elimina la categoria ''$1''",
-'ajax-confirm-actionsummary'   => 'Mesura a prendre:',
-'ajax-error-title'             => 'Error',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "No ha estat possible eliminar aquesta categoria.
-Això sol passar quan la categoria s'ha afegit a la pàgina en una plantilla.",
 
 );

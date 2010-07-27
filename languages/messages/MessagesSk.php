@@ -1101,7 +1101,7 @@ Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupov
 'revdelete-radio-unset'       => 'Nie',
 'revdelete-suppress'          => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
 'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
-'revdelete-log'               => 'Dôvod zmazania:',
+'revdelete-log'               => 'Dôvod:',
 'revdelete-submit'            => 'Použiť na {{PLURAL:$1|zvolenú revíziu|zvolené revízie}}',
 'revdelete-logentry'          => 'viditeľnosť revízie bola zmenená pre [[$1]]',
 'logdelete-logentry'          => 'viditeľnosť udalosti [[$1]] bola zmenená',
@@ -1790,7 +1790,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'filedelete-legend'           => 'Zmazať súbor',
 'filedelete-intro'            => "Chystáte sa zmazať súbor '''[[Media:$1|$1]]''' spolu s celou jeho históriou.",
 'filedelete-intro-old'        => "Mažete verziu súboru '''[[Media:$1|$1]]''' z [$4 $3, $2].",
-'filedelete-comment'          => 'Komentár:',
+'filedelete-comment'          => 'Dôvod:',
 'filedelete-submit'           => 'Zmazať',
 'filedelete-success'          => "'''$1''' bol zmazaný.",
 'filedelete-success-old'      => "Verzia súboru '''[[Media:$1|$1]]''' z $3, $2 bola zmazaná.",
@@ -2156,7 +2156,7 @@ Na $2 nájdete zoznam posledných zmazaní.',
 'dellogpagetext'         => 'Tu je zoznam posledných zmazaní.',
 'deletionlog'            => 'záznam zmazaní',
 'reverted'               => 'Obnovené na skoršiu verziu',
-'deletecomment'          => 'Dôvod na zmazanie',
+'deletecomment'          => 'Dôvod:',
 'deleteotherreason'      => 'Iný/ďalší dôvod:',
 'deletereasonotherlist'  => 'Iný dôvod',
 'deletereason-dropdown'  => '*Bežné dôvody zmazania
@@ -2520,7 +2520,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'movepage-moved-noredirect'    => 'Vytvorenie presmerovania bolo potlačené.',
 'articleexists'                => 'Stránka s týmto názvom už existuje alebo
 vami zadaný názov je neplatný.
-Prosím vyberte si iný názov.',
+Prosím, vyberte si iný názov.',
 'cantmove-titleprotected'      => 'Nemôžete sem presunúť stránku, pretože nový názov bol zamknutý proti vytvoreniu.',
 'talkexists'                   => "'''Samotná stránka bola úspešne premiestnená,
 ale diskusná stránka sa nedala premiestniť,
@@ -2854,7 +2854,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód.
-Jeho spustením môžete kompromitovať svoj systém.<hr />",
+Jeho spustením môžete kompromitovať svoj systém.",
 'imagemaxsize'         => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
@@ -3414,20 +3414,5 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'htmlform-submit'              => 'Odoslať',
 'htmlform-reset'               => 'Vrátiť zmeny',
 'htmlform-selectorother-other' => 'Iné',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Pridať kategóriu',
-'ajax-add-category-submit'     => 'Pridať',
-'ajax-confirm-title'           => 'Potvrdiť operáciu',
-'ajax-confirm-prompt'          => 'Dolu môžete napísať zhrnutie úprav.
-Svoje úpravy uložíte kliknutím na „Uložiť“.',
-'ajax-confirm-save'            => 'Uložiť',
-'ajax-add-category-summary'    => 'Pridať kategóriu „$1“',
-'ajax-remove-category-summary' => 'Odstrániť kategóriu „$1“',
-'ajax-confirm-actionsummary'   => 'Vykonať operáciu:',
-'ajax-error-title'             => 'Chyba',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Nebolo možné odstrániť túto kategóriu.
-To sa zvyčajne stane, keď bola kategória pridaná na stránku v pomocou šablóny.',
 
 );

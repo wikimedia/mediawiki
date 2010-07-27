@@ -658,7 +658,7 @@ Sahifahoi çadidī aloqamandro metavoned [[Special:Search|dar viki]] çustuçū 
 'revdelete-hide-user'       => 'Nomi korbar/nişonai IP pinhon şavad',
 'revdelete-suppress'        => 'Az dastrasiji mudiron ba dodaho niz monandi sajri korbaron çilavgirī ba amal ojad',
 'revdelete-unsuppress'      => 'Xotimai mahdudijatho dar mavridi nusxahoi intixobşuda',
-'revdelete-log'             => 'Daleli hazf:',
+'revdelete-log'             => 'Sabab:',
 'revdelete-logentry'        => 'taƣjiri namoiji nusxa dar [[$1]]',
 'logdelete-logentry'        => 'taƣjiri namoiji mavrid dar [[$1]]',
 'logdelete-success'         => "'''Taƣjiri namojoniji mavrid bo muvaffaqijat ançom şud.'''",
@@ -845,6 +845,7 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 * Quttiji alomatxūrda ba in ma'nī ast, ki korbar dar on gurūh qaror dorad.
 * Quttiji alomatnaxūrda ba in ma'nī ast, ki korbar dar on gurūh qaror nadorad.
 * \"*\" ma'noi onro dorad, ki şumo qobili hazf kardani gurūhe nested dar hole ki şumo onro ilova karda boşed, in jo on.",
+'userrights-reason'           => 'Sabab:',
 'userrights-no-interwiki'     => 'Şumo içozati taƣjiri ixtijoroti korbaroni digar vikihoro nadored.',
 'userrights-nodatabase'       => 'Pojgohi doda $1 vuçud nadorad jo mahallī nest.',
 'userrights-nologin'          => "Şumo bojad bo jak hisobi korbarī doroi ixtijoroti mudirijatī [[Special:UserLogin|ba sistem vurud kuned]], to bitavoned ixtijoroti korbaronro ta'jid kuned.",
@@ -1090,7 +1091,7 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 'filedelete'                  => 'Hazfi $1',
 'filedelete-legend'           => 'Hazfi parvanda',
 'filedelete-intro-old'        => "Şumo dar holi hazfi nusxai '''[[Media:$1|$1]]''' az ta'rixi [$4 $3, $2] hasted.",
-'filedelete-comment'          => 'Sababi hazf:',
+'filedelete-comment'          => 'Sabab:',
 'filedelete-submit'           => 'Hazf',
 'filedelete-success'          => "'''$1''' hazf şud.",
 'filedelete-nofile'           => "'''$1''' vuçud nadorad.",
@@ -1363,7 +1364,7 @@ Nigared ba $2 baroi guzorişi hazfi oxirin.',
 'dellogpagetext'         => 'Fehristi zer fehristi az oxirin hazfhost. Hamai vaqthoi nişon dodaşuda, vaqti Çahonī (vaqti Grinvic) ast.',
 'deletionlog'            => 'guzorişhoi hazf',
 'reverted'               => 'Ba nusxai peştara vogardonida şud',
-'deletecomment'          => 'Sababi hazfkunī',
+'deletecomment'          => 'Sabab:',
 'deleteotherreason'      => 'Daleli digar/ilovagī:',
 'deletereasonotherlist'  => 'Digar sabab',
 'deletereason-dropdown'  => '*Dalelhoi umumiji hazf
@@ -1665,7 +1666,7 @@ Lutfan nomi digarero intixob namoed.",
 'movelogpage'               => 'Kūconidani guzoriş',
 'movelogpagetext'           => 'Dar zer fehristi sahifahoi kūconidaşud omada ast.',
 'movesubpage'               => '{{PLURAL:$1|Zersahifa|Zersahifaho}}',
-'movereason'                => 'Sababi kūconidan:',
+'movereason'                => 'Sabab:',
 'revertmove'                => 'vogardonī',
 'delete_and_move'           => 'Hazf va kūconidan',
 'delete_and_move_text'      => '==Nijoz ba hazf==
@@ -1908,7 +1909,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Huşdor''': In parvanda mumkin ast ramzhoi badqasdro dar bar girad.
-Bo içroi on, sistemai şumo şojad oseb bubinad.<hr />",
+Bo içroi on, sistemai şumo şojad oseb bubinad.",
 'thumbsize'            => 'Andozai anguştdona (thumbnail):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
 'file-info'            => "(andozai parvanda: $1, nav'i MIME: $2)",
@@ -2412,20 +2413,5 @@ Nomi parvandaro be peşvandi "{{ns:file}}:" vorid kuned.',
 'htmlform-submit'              => 'Irsol',
 'htmlform-reset'               => 'Botili taƣjirot',
 'htmlform-selectorother-other' => 'Digar',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Ilova kardani gurūh',
-'ajax-add-category-submit'     => 'Ilova kardan',
-'ajax-confirm-title'           => "Ta'jidi amal",
-'ajax-confirm-prompt'          => 'Şumo metavoned xulosai viroişro dar zer vorid kuned.
-Tugmai "Zaxira"-ro paxş kuned to viroişaton zaxira şavad.',
-'ajax-confirm-save'            => 'Zaxira',
-'ajax-add-category-summary'    => 'Ilova kardani gurūhi "$1"',
-'ajax-remove-category-summary' => 'Hazvi gurūhī "$1"',
-'ajax-confirm-actionsummary'   => 'Amali peşrav:',
-'ajax-error-title'             => 'Xato',
-'ajax-error-dismiss'           => "Ta'jid",
-'ajax-remove-category-error'   => "Imkoni hazvi in gurūh vuçud nadoşt.
-In ittifoq ma'mulan zamone meaftad, ki gurūh az tariqi jak şablon ba sahifa izofa şuda boşad.",
 
 );

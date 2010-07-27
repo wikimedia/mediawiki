@@ -680,7 +680,7 @@ Föige jädden dien Annerengen in dät buppere Textfäild ien.
 'nonunicodebrowser'                => "<strong style=\"color: #330000; background: #f0e000;\">Oachtenge: Dien Browser kon Unicode-Teekene nit gjucht feroarbaidje. Benutse jädden n uur Browser uum Artikkele tou beoarbaidjen.'''",
 'editingold'                       => "'''OACHTENGE: Jie beoarbaidje ne oolde Version fon disse Artikkel. Wan Jie spiekerje, wäide alle näiere Versione uurschrieuwen.'''",
 'yourdiff'                         => 'Unnerscheede',
-'copyrightwarning'                 => "'''<big>Kopier neen Websieden,</big> do nit dien oaine sunt, benuts neen uurhääbergjuchtelk schutsede Wierke sunner Ferlof fon dän Copyright-Inhääber!'''<br />
+'copyrightwarning'                 => "'''Kopier neen Websieden, do nit dien oaine sunt, benuts neen uurhääbergjuchtelk schutsede Wierke sunner Ferlof fon dän Copyright-Inhääber!'''<br />
 Du toukwäst uus hiermäd, dät du dän Text '''sälwen ferfoated''' hääst, dät dän Text Algemeengoud ('''public domain''') is, of dät die '''Copyright-Inhääber''' sien '''Toustämmenge''' roat häd. In dän Fal dät dissen Text al uurswain publizierd wuude, wies jädden ap ju Diskussionssiede deerap wai. 
 <i>Beoachtje, dät aal {{SITENAME}}-Biedraage automatisk unner ju „$2“ stounde (sjuch $1 foar Details). In dän Fal dät du nit moatest, dät dien Oarbaid hier fon Uurswäkken annerd un fersprat wäd, druk dan '''nit''' ap „Siede spiekerje“.</i>",
 'copyrightwarning2'                => 'Aal Biedraage tou dän {{SITENAME}} konnen fon uur Ljuude ferannerd un fersprat wäide. Fals Jie nit moaten dät Jou Oarbaid hier fon uur Ljuude ferannerd un fersprat wäd, dan drukke Jie nit ap "Spiekerje".
@@ -842,7 +842,7 @@ Uur Administratore ap {{SITENAME}} hääbe Tougriep ap dän ferstatte Inhoold un
 'revdelete-radio-unset'       => 'Noa',
 'revdelete-suppress'          => 'Gruund fon ju Läskenge uk foar Administratore ferstopped',
 'revdelete-unsuppress'        => 'Ienschränkengen foar wier häärstoalde Versione aphieuwje',
-'revdelete-log'               => 'Gruund foar läskjen:',
+'revdelete-log'               => 'Gruund:',
 'revdelete-submit'            => 'Ap uutwäälde  {{PLURAL:$1|Version|Versione}} anweende',
 'revdelete-logentry'          => 'Versionsansicht annerd foar [[$1]]',
 'logdelete-logentry'          => 'annerde ju Sichtboarkaid foar [[$1]]',
@@ -1889,7 +1889,7 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'dellogpagetext'         => 'Hier is ne Lieste fon do lääste Läskengen.',
 'deletionlog'            => 'Läsk-Logbouk',
 'reverted'               => 'Ap ne oolde Version touräächsät',
-'deletecomment'          => 'Gruund foar ju Läskenge:',
+'deletecomment'          => 'Gruund:',
 'deleteotherreason'      => 'Uur/additionoalen Gruund:',
 'deletereasonotherlist'  => 'Uur Gruund',
 'deletereason-dropdown'  => '* Algemeene Läskgruunde
@@ -2252,7 +2252,7 @@ Fersäik jädden n uur Noome.',
 'movesubpage'                  => '{{PLURAL:$1|Unnersiede|Unnersieden}}',
 'movesubpagetext'              => 'Disse Siede häd $1 {{PLURAL:$1|Unnersiede|Unnersieden}}.',
 'movenosubpage'                => 'Disse Siede häd neen Unnersieden.',
-'movereason'                   => 'Kuute Begründenge:',
+'movereason'                   => 'Gruund:',
 'revertmove'                   => 'tourääch ferschuuwe',
 'delete_and_move'              => 'Läskje un ferschuuwe',
 'delete_and_move_text'         => '==Sielartikkel is al deer, läskje?==
@@ -2532,7 +2532,7 @@ $1',
 'nextdiff'     => 'Tou ne näiere Version →',
 
 # Media information
-'mediawarning'         => "'''Woarschauenge:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden un Eepenjen fon disse Doatäi kon dän Computer Schoade toubroacht wäide.<hr />",
+'mediawarning'         => "'''Woarschauenge:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden un Eepenjen fon disse Doatäi kon dän Computer Schoade toubroacht wäide.",
 'imagemaxsize'         => "Maximoale Bieldegrööte:<br />''(foar Doatäibeschrieuwengssieden)''",
 'thumbsize'            => 'Grööte fon do Foarschaubielden (thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Siede|$3 Sieden}}',
@@ -3084,20 +3084,5 @@ Ju Iengoawe mout sunner dän Tousats „{{ns:file}}:“ geböäre.',
 'htmlform-submit'              => 'Uurdreege',
 'htmlform-reset'               => 'Annerengen touräächtraale',
 'htmlform-selectorother-other' => 'Uur',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategorie bietouföigje',
-'ajax-add-category-submit'     => 'Bietouföigje',
-'ajax-confirm-title'           => 'Aktion bestäätigje',
-'ajax-confirm-prompt'          => 'Du koast hier unner ne Touhoopefoatenge ienreeke.
-Klik „Spiekerje“ uum ju Beoarbaidenge tou spiekerjen.',
-'ajax-confirm-save'            => 'Spiekerje',
-'ajax-add-category-summary'    => 'Kategorie „$1“ bietouföigje',
-'ajax-remove-category-summary' => 'Kategorie „$1“ wächhoalje',
-'ajax-confirm-actionsummary'   => 'Uuttoufierende Aktion:',
-'ajax-error-title'             => 'Failer',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => 'Dät waas nit muugelk, ju Kategorie wächtouhoaljen.
-Dät passiert normoalerwiese, wan ju Kategorie uur ne Foarloage an ju Siede bietouföiged is',
 
 );

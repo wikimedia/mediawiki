@@ -579,7 +579,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'revdelete-hide-name'     => 'Camaát accion öjaim',
 'revdelete-hide-comment'  => 'Camaát commentuade ticpatlöx',
 'revdelete-hide-user'     => 'Camaát IDde caitom/IDde IP',
-'revdelete-log'           => 'Commentuade log:',
+'revdelete-log'           => 'Ra:',
 'revdelete-logentry'      => 'quiixöx revicion visibilitiitde [[$1]]',
 'logdelete-logentry'      => 'quiixöx eventua visibilitiitde [[$1]]',
 
@@ -658,7 +658,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'userrights-editusergroup' => 'Ticpatlöx polám caitóm',
 'saveusergroups'           => 'Xuniim Polámde Caitom',
 'userrights-groupsmember'  => 'Ctamde:',
-'userrights-reason'        => "Rade'reset:",
+'userrights-reason'        => 'Ra:',
 
 # Groups
 'group'               => 'Polám:',
@@ -784,7 +784,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 # File deletion
 'filedelete'         => 'Delatom $1',
 'filedelete-legend'  => 'Ciúchan delatan',
-'filedelete-comment' => 'Commentua:',
+'filedelete-comment' => 'Ra:',
 'filedelete-submit'  => 'Delatom',
 'filedelete-success' => "'''$1''' coccebj delatomöx.",
 

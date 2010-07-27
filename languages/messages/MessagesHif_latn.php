@@ -503,6 +503,7 @@ Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
 'login-throttled'            => 'Aap bahut jaada dafe ii account ke password ke enter kare ke kosis karaa hai. 
 Thora deri baad fir se kosis karna.',
 'loginlanguagelabel'         => 'Bhasa: $1',
+'suspicious-userlogout'      => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
 
 # Password reset dialog
 'resetpass'                 => 'Password ke badlo',
@@ -518,6 +519,7 @@ Login khatam kare khatir, aap ke nawaa password set kare ke parri hian:',
 'resetpass_forbidden'       => 'Password nai badlaa jaae sake hai',
 'resetpass-no-info'         => 'Ii panna ke sidha access kare ke khatir aap ke logged in rahe ke parri.',
 'resetpass-submit-loggedin' => 'Password ke badlo',
+'resetpass-submit-cancel'   => 'Nai karo',
 'resetpass-wrong-oldpass'   => 'Temporary nai to abhi ke password valid nai hai. 
 Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password ke maang karaa hoga.',
 'resetpass-temp-password'   => 'Kachcha password:',
@@ -626,9 +628,11 @@ nai to <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'userpage-userdoesnotexist'        => 'User account "$1" abi registered nai hai.
 Check karo ki Ii panna ke aap banae/badle mangta hai.',
 'userpage-userdoesnotexist-view'   => 'User account "$1" abhi register nai karaa gais hae',
+'blocked-notice-logextract'        => 'Ii sadasya ke abhi rok dewa gais hae.
+Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:',
 'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Tip:''' Save kare se pahile 'Show preview' button ke use kar ke aapan nawaa  CSS ke test karo.",
-'userjsyoucanpreview'              => "'''Tip:''' Save kare se pahile 'Show preview' button ke use kar ke aapan nawaa  JS ke test karo.",
+'usercssyoucanpreview'             => "'''Salah:''' Bachae se pahile \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa CSS ke test karo.",
+'userjsyoucanpreview'              => "'''Salah:''' Bachae se pahile  \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa JavaScript ke test karo.",
 'usercsspreview'                   => "'''Yaad rakhna ki aap khali aapan CSS ke jhalak dekhta hai. 
 Iske abhi save nai karaa gais hai!'''",
 'userjspreview'                    => "'''Yaad rakhna ki aap khali aapan JavaScript ke testing/previewing  karta hai, iske abhi save nai karaa gais hai!'''",
@@ -842,7 +846,7 @@ Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae 
 'revdelete-radio-unset'       => 'Nai',
 'revdelete-suppress'          => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
 'revdelete-unsuppress'        => 'Pahile jaise karaa gais badlao me se rukawat hatao',
-'revdelete-log'               => 'Mitae ke kaaran:',
+'revdelete-log'               => 'Kaaran:',
 'revdelete-submit'            => 'Chuna gae badlao ke apply karo {{PLURAL:$1|revision|revisions}}',
 'revdelete-logentry'          => '[[$1]] ke badlao ke visibility ke badal dewa gais hai',
 'logdelete-logentry'          => '[[$1]] keevent visibility ke badal dewa gais hae',
@@ -1348,6 +1352,7 @@ Visual overview ke khatir [[Special:NewFiles|nawaa file ke gallery]] ke dekho.',
 'illegalfilename'             => 'Filename "$1" me uu akchhar hai jiske panna ke title me allowed nai hai.
 Maharbaani kar ke file ke naam ke badal ke fir se upload kare ke kosis karo.',
 'badfilename'                 => 'File ke naam badak ke "$1" kar dewa gais hai.',
+'filetype-mime-mismatch'      => 'File ke extension, jon rakam ke MIME hae, se nai mile hae.',
 'filetype-badmime'            => 'MIME rakam "$1" ke upload kare ke ijajat nai hai.',
 'filetype-bad-ie-mime'        => 'Ii file ke upload nai kare sakta hai kahe ki Internet Explorer iske "$1" ke rakam dekhi, jon ki allowed nai hai aur khatarnaat rakam ke file jaana jaae hai.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' rakam ke file ke hian nai maaga jaae hai.
@@ -1522,7 +1527,7 @@ Iske baare me aur jaankari [$2 file description page] ke niche dekhawa jaae hai.
 'filerevert'                => '$1 ke pahile jaise karo',
 'filerevert-legend'         => 'File ke pahile jaise karo',
 'filerevert-intro'          => "Aap '''[[Media:$1|$1]]''' ke [$4 version as of $3, $2] jaise kartaa hai.",
-'filerevert-comment'        => 'Vichar:',
+'filerevert-comment'        => 'Kaaran:',
 'filerevert-defaultcomment' => 'Version as of $2, $1 pe revert kar dewa gais hai',
 'filerevert-submit'         => 'Pahile jaise karo',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ke [$4 version as of $3, $2] pe revert kar dewa gais hai.",
@@ -1533,7 +1538,7 @@ Iske baare me aur jaankari [$2 file description page] ke niche dekhawa jaae hai.
 'filedelete-legend'           => 'File ke mitao',
 'filedelete-intro'            => "Aap file '''[[Media:$1|$1]]''' ke delete kare waala hai iske itihaas ke saathe.",
 'filedelete-intro-old'        => "Aap '''[[Media:$1|$1]]''' ke version as of [$4 $3, $2] ke delete kartaa hai.",
-'filedelete-comment'          => 'Mitae ke kaaran:',
+'filedelete-comment'          => 'Kaaran:',
 'filedelete-submit'           => 'Mitao',
 'filedelete-success'          => "'''$1''' ke mitae dewa gais hai.",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' ke version as of $3, $2 ke delete kar dewa gais hai.",
@@ -1903,7 +1908,7 @@ Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, au
 'dellogpagetext'         => 'Niche nawaa mitawa gais panna ke suchi hai.',
 'deletionlog'            => 'Mitae waala suchi',
 'reverted'               => 'Pahile ke revision pe lautae dewa gais hai',
-'deletecomment'          => 'Delete kare ke kaaran:',
+'deletecomment'          => 'Kaaran:',
 'deleteotherreason'      => 'Aur/duusra kaaran:',
 'deletereasonotherlist'  => 'Duusra kaaran',
 'deletereason-dropdown'  => '*Sadharan mitae ke kaaran
@@ -1977,7 +1982,7 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 'protect-othertime-op'        => 'duusra time',
 'protect-existing-expiry'     => 'Abhi ke khatam hoe waala time: $3, $2',
 'protect-otherreason'         => 'Duusra/aur kaaran:',
-'protect-otherreason-op'      => 'duusra/aur kaaran:',
+'protect-otherreason-op'      => 'Duusra kaaran:',
 'protect-dropdown'            => '*Bachae ke sadharan kaaran
 ** Jaada vandalism
 ** Jaada spamming
@@ -2030,7 +2035,7 @@ Sait aap ke kharaab link hoi, nai to badlao ke sait pahile jaise kar dewa gais h
 'undeleteviewlink'             => 'dekho',
 'undeletereset'                => 'Pahile jaise karo',
 'undeleteinvert'               => 'Selection ke ulta karo',
-'undeletecomment'              => 'Aapan bichar do:',
+'undeletecomment'              => 'Kaaran::',
 'undeletedarticle'             => '"[[$1]]" ke pahile jaise kar dewa gais hai',
 'undeletedrevisions'           => '{{PLURAL:$1|1 badlao|$1 badlao}} ke pahile jaise kar dewa gais hai',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 badlao|$1 badlao}} aur {{PLURAL:$2|1 file|$2 files}} ke pahile jaise kar dewa gais hai',
@@ -2265,6 +2270,7 @@ meharbaani kar ke aap aapan karya ke natiija ke baare me socho aage kuch kare se
 * Aap nivhe waala box ke uncheck karo
 Ii prastithi me, aap ke manually move yah merge kare ke parri.",
 'movearticle'                  => 'Panna ke naam badli karo:',
+'moveuserpage-warning'         => " '''Chetauni:'''  Aap ek sadasya ke panna ke naam badle waala hae. Ii yaad rakhna ki khaali panna ke naam badla jaai, sadasya ke naam ''nai'' badlaa jaai.",
 'movenologin'                  => 'Logged in nai hai',
 'movenologintext'              => 'Panna ke naam badle ke khatir aap ke ek registered sadasya rahe ke parri aur  [[Special:UserLogin|logged in]].',
 'movenotallowed'               => 'Aap ke panna ke naam badle ke ijajat nai hai.',
@@ -2583,7 +2589,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Chetauni''': Ii file me saait kharaab code hoi.
-Iske execute kare se aap ke system me garrbarr hoe sake hae.<hr />",
+Iske execute kare se aap ke system me garrbarr hoe sake hae.",
 'imagemaxsize'         => "Chapa jaada se jaada ketnaa barraahoe sake hai:<br />''(file ke baare me panna)''",
 'thumbsize'            => 'Anguutha ke nakkhuun etna barraa:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|panna|panna}}',
@@ -2676,6 +2682,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-subsectimedigitized'         => 'Digitized tarik aur time subseconds me',
 'exif-shutterspeedvalue'           => 'Shutter ke raftaar',
 'exif-aperturevalue'               => 'Aperture',
+'exif-brightnessvalue'             => 'Chamak',
 'exif-focallength'                 => 'Lens ke focal length',
 'exif-gpsaltitude'                 => 'Uunchai',
 'exif-gpsspeedref'                 => 'Raftar ke unit',
@@ -2721,8 +2728,12 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # E-mail address confirmation
 'confirmemail' => 'E-mail address ke pakka karo',
 
+# Delete conflict
+'recreate' => 'Fir se banao',
+
 # action=purge
 'confirm_purge_button' => 'Thik hae',
+'confirm-purge-top'    => 'Ii panna ke cache ke mitao',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pahile waala panna',
@@ -2742,6 +2753,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'autosumm-blank' => 'Panna ke mitae dia hae',
 
 # Watchlist editor
+'watchlistedit-noitems'      => 'Aap ke dhyan suchi me koi naam nai hae',
 'watchlistedit-normal-title' => 'Dhyan suchi ke badlo',
 
 # Watchlist editing tools
@@ -2778,15 +2790,5 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 
 # HTML forms
 'htmlform-selectorother-other' => 'Duusra',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Vibhag jorro',
-'ajax-add-category-submit'     => 'Jorro',
-'ajax-confirm-save'            => 'Bachao',
-'ajax-add-category-summary'    => 'Vibhag "$1" ke jorro',
-'ajax-remove-category-summary' => 'Vibhag "$1" ke hatao',
-'ajax-confirm-actionsummary'   => 'Kon chij kare ke hae:',
-'ajax-error-title'             => 'Galti',
-'ajax-error-dismiss'           => 'Thik hae',
 
 );

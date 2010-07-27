@@ -134,7 +134,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Wotkazy podšmórnić:',
-'tog-highlightbroken'         => 'Wotkazy na prózdne strony wuzběhnyć',
+'tog-highlightbroken'         => 'Wotkazy na njeeksistowace strony formatować <a href="" class="new">tak</a> (alternatiwa: tak<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Tekst w blokowej sadźbje',
 'tog-hideminor'               => 'Snadne změny w aktualnych změnach schować',
 'tog-hidepatrolled'           => 'Dohladawane změny w aktualnych změnach schować',
@@ -452,9 +452,9 @@ $1',
 Sy so snano při zapodaću URL zapisał abo sy wopačnemu wotkazej slědował.
 To móhło tež programowanski zmylk w {{GRAMMAR:lokatiw|{{SITENAME}}}} być.',
 'nosuchspecialpage' => 'Tuta specialna strona njeeksistuje.',
-'nospecialpagetext' => '<strong>Tuta specialna strona wikiju njeeksistuje.</strong>
+'nospecialpagetext' => '<strong>Tuta specialna strona njeeksistuje.</strong>
 
-Lisćina płaćiwych specialnych stronow hodźi so pod [[Special:SpecialPages|Lis´cina specialnych stronow]] namakać.',
+Płaćiwe specialne strony hodźa so pod [[Special:SpecialPages|lisćinu specialnych stronow]] namakać.',
 
 # General errors
 'error'                => 'Zmylk',
@@ -547,7 +547,7 @@ Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|
 'externaldberror'            => 'Běše pak eksterny zmylk awtentifikacije datoweje banki, pak njesměš swoje eksterne konto aktualizować.',
 'login'                      => 'Přizjewić',
 'nav-login-createaccount'    => 'Konto wutworić abo so přizjewić',
-'loginprompt'                => 'Zo by so pola {{GRAMMAR:genitiw|{{SITENAME}}}} přizjewić móhł, dyrbja so placki (cookies) zmóžnić.',
+'loginprompt'                => 'Za přizjewjenje do {{GRAMMAR:genitiw|{{SITENAME}}}} dyrbja placki zmóžnjene być.',
 'userlogin'                  => 'Załožće konto abo přizjewće so',
 'userloginnocreate'          => 'Přizjewić',
 'logout'                     => 'wotzjewić',
@@ -917,7 +917,7 @@ Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na sch
 'revdelete-radio-unset'       => 'Ně',
 'revdelete-suppress'          => 'Přičinu wušmórnjenja tež za administratorow schować',
 'revdelete-unsuppress'        => 'Wobmjezowanja za wobnowjene wersije zběhnyć',
-'revdelete-log'               => 'Přičina za wušmórnjenje:',
+'revdelete-log'               => 'Přičina:',
 'revdelete-submit'            => 'Na {{PLURAL:$1|wubranu wersiju|wubranej wersiji|wubrane wersije|wubrane wersije}} nałožować',
 'revdelete-logentry'          => 'Widźomnosć wersije změnjena za [[$1]]',
 'logdelete-logentry'          => 'je widźomnosć za [[$1]] změnił',
@@ -1969,7 +1969,7 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'dellogpagetext'         => 'Deleka je lisćina najaktualnišich wušmórnjenjow.',
 'deletionlog'            => 'Protokol wušmórnjenjow',
 'reverted'               => 'Na staršu wersiju cofnjene',
-'deletecomment'          => 'Přičina wušmórnjenja:',
+'deletecomment'          => 'Přičina:',
 'deleteotherreason'      => 'Druha/přidatna přičina:',
 'deletereasonotherlist'  => 'Druha přičina',
 'deletereason-dropdown'  => '*Zwučene přičiny za wušmórnjenje
@@ -2157,7 +2157,7 @@ $1',
 'ipaddress'                       => 'IP-adresa',
 'ipadressorusername'              => 'IP-adresa abo wužiwarske mjeno',
 'ipbexpiry'                       => 'Spadnjenje',
-'ipbreason'                       => 'Přičina',
+'ipbreason'                       => 'Přičina:',
 'ipbreasonotherlist'              => 'Druha přičina',
 'ipbreason-dropdown'              => '*powšitkowne přičiny
 ** wandalizm
@@ -2322,7 +2322,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'movesubpage'                  => '{{PLURAL:$1|Podstrona|Podstronje|Podstrony|Podstronow}}',
 'movesubpagetext'              => 'Strona ma {{PLURAL:$1|slědowacu podstronu|slědowacej $1 podstronje|slědowace $1 podstrony|slědowacych $1 podstronow}}.',
 'movenosubpage'                => 'Tuta strona podstrony nima.',
-'movereason'                   => 'Přičina',
+'movereason'                   => 'Přičina:',
 'revertmove'                   => 'wróćo přesunyć',
 'delete_and_move'              => 'wušmórnyć a přesunyć',
 'delete_and_move_text'         => '== Wušmórnjenje trěbne ==
@@ -2610,7 +2610,7 @@ $1',
 'nextdiff'     => 'Přichodna změna →',
 
 # Media information
-'mediawarning'         => "'''Warnowanje''': Tutón datajowy typ móhł złowólny kod wobsahować. Hdyž so wuwjedźe,  móhło so twój system wobškodźić.<hr />",
+'mediawarning'         => "'''Warnowanje''': Tutón datajowy typ móhł złowólny kod wobsahować. Hdyž so wuwjedźe,  móhł so twój system wobškodźić.",
 'imagemaxsize'         => "Maksimalna wobrazowa wulkosć:<br />''(za strony datajoweho wopisanja)''",
 'thumbsize'            => 'Wulkosć miniaturkow (thumbnails):',
 'widthheight'          => '$1x$2',
@@ -3161,20 +3161,5 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Wotpósłać',
 'htmlform-reset'               => 'Změny cofnyć',
 'htmlform-selectorother-other' => 'Druhe',
-
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategoriju přidać',
-'ajax-add-category-submit'     => 'Přidać',
-'ajax-confirm-title'           => 'Akciju wobkrućić',
-'ajax-confirm-prompt'          => 'Móžeš deleka wobdźěłanske zjeće podać.
-Klikń na "Składować", zo by swoje wobdźěłanje składował.',
-'ajax-confirm-save'            => 'Składować',
-'ajax-add-category-summary'    => 'Kategoriju "$1" přidać',
-'ajax-remove-category-summary' => 'Kategoriju "$1" wotstronić',
-'ajax-confirm-actionsummary'   => 'Akcija, kotraž ma so wuwjesć:',
-'ajax-error-title'             => 'Zmylk',
-'ajax-error-dismiss'           => 'W porjadku',
-'ajax-remove-category-error'   => 'Njebě móžno tutu kategoriju wotstronić.
-To so zwjetša stawa, hdyž kategorija je so stronje w předłoze přidała.',
 
 );

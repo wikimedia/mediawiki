@@ -1120,7 +1120,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 সাম্প্রতিক বিলোপনসমূহৰ তালিকা চাবলৈ $2 চাঁওক।',
 'deletedarticle'        => '"[[$1]]" ক বাতিল কৰা হৈছে।',
 'dellogpage'            => 'বাতিল কৰা সুচী',
-'deletecomment'         => 'বিলোপনৰ কাৰণ।',
+'deletecomment'         => 'কাৰণ:',
 'deleteotherreason'     => 'আন/অতিৰিক্ত কাৰণ:',
 'deletereasonotherlist' => 'আন কাৰণ:',
 
@@ -1200,7 +1200,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Block/unblock
 'blockip'                  => 'সদস্য বাৰণ কৰক',
-'ipbreason'                => 'কাৰণ',
+'ipbreason'                => 'কাৰণ:',
 'ipbreasonotherlist'       => 'অন্য কাৰণ',
 'ipboptions'               => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite',
 'ipblocklist'              => 'বাৰণ কৰা আই-পি ঠিকনা আৰু সদস্যৰ তালিকা',
@@ -1444,14 +1444,5 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'htmlform-submit'              => 'দাখিল কৰক',
 'htmlform-reset'               => 'সাল-সলনি পণ্ড কৰক',
 'htmlform-selectorother-other' => 'অন্য',
-
-# Add categories per AJAX
-'ajax-add-category'         => 'শ্ৰেণী সংযুগ কৰক',
-'ajax-add-category-submit'  => 'যোগ',
-'ajax-confirm-title'        => 'কায্য নিশ্চিত কৰক:',
-'ajax-confirm-save'         => 'সাঁচি থওঁক',
-'ajax-add-category-summary' => 'শ্ৰেণী "$1" সংযুগ কৰক',
-'ajax-error-title'          => 'ভুল',
-'ajax-error-dismiss'        => "অ'কে",
 
 );

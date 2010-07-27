@@ -655,8 +655,8 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 *'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
 *'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);
 *'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.",
-'usercssyoucanpreview'             => "'''Conziglie:''' Ause 'u buttone 'Vide l'andeprime' pe condrollà 'u CSS nuève apprime de reggistrà.",
-'userjsyoucanpreview'              => "'''Conziglie:''' Ause 'u buttone 'Vide l'andeprime' pe condrollà 'u JS nuève apprime de reggistrà.",
+'usercssyoucanpreview'             => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u CSS nuève apprime de reggistrà.",
+'userjsyoucanpreview'              => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u JavaScript nuève apprime de reggistrà.",
 'usercsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
 '''Non g'à state angore reggistrete ninde!'''",
 'userjspreview'                    => "'''Arrecuerdete ca tu ste vide/teste sulamende in andeprime 'u JavaScript tue.'''
@@ -873,7 +873,7 @@ Otre amministrature sus a {{SITENAME}}ponne angore trasè jndr'à 'u condenute s
 'revdelete-radio-unset'       => 'None',
 'revdelete-suppress'          => "Live le date da l'amministrature cumme pe l'otre",
 'revdelete-unsuppress'        => 'Live le restriziune sus a le revisiune repristinate',
-'revdelete-log'               => 'Mutive pu scangellamende:',
+'revdelete-log'               => 'Mutive:',
 'revdelete-submit'            => "Applichesce a {{PLURAL:$1|'a revisione|le revisiune}} selezionate",
 'revdelete-logentry'          => "ha state cangete 'a visibbilità d'a revisione de [[$1]]",
 'logdelete-logentry'          => "ha state cangete 'a visibbilità de l'evende de [[$1]]",
@@ -1563,7 +1563,7 @@ Pe piacere vide 'a [$2 pàgene de descrizione d'u file] pe maggiore 'mbormaziune
 'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => "'Nvirte 'u file",
 'filerevert-intro'          => "Tu ste converte 'u file '''[[Media:$1|$1]]''' jndr'à [$4 versione cumme $3, $2].",
-'filerevert-comment'        => 'Commende:',
+'filerevert-comment'        => 'Mutive:',
 'filerevert-defaultcomment' => "Convertite a 'a versione a le $2 d'u $1",
 'filerevert-submit'         => "'Nvirte",
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ha state convertite a 'a versiona [$4 de le $3 d'u $2].",
@@ -1575,7 +1575,7 @@ Pe piacere vide 'a [$2 pàgene de descrizione d'u file] pe maggiore 'mbormaziune
 'filedelete-legend'           => "Scangille 'u file",
 'filedelete-intro'            => "Tu ste scangille stu file '''[[Media:$1|$1]]''' cu tutte 'a storia soje apprisse.",
 'filedelete-intro-old'        => "Tu stè scangille 'a versiona de '''[[Media:$1|$1]]''' cumme de [$4 $3, $2].",
-'filedelete-comment'          => "Mutive d'u scangellamende:",
+'filedelete-comment'          => 'Mutive:',
 'filedelete-submit'           => 'Scangille',
 'filedelete-success'          => "'''$1''' ha state scangellete.",
 'filedelete-success-old'      => "'A versione de '''[[Media:$1|$1]]''' de le $3 d'u $2 ha state scangellete.",
@@ -1948,7 +1948,7 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'dellogpagetext'         => "Sotte ste 'na liste de le cchiù recende scangellaziune.",
 'deletionlog'            => 'Archivije de le scangellaminde',
 'reverted'               => "Turnà a 'a revisiona cchiù recende",
-'deletecomment'          => "Mutive p'a scangellazione:",
+'deletecomment'          => 'Mutive:',
 'deleteotherreason'      => 'Otre mutive de cchiù:',
 'deletereasonotherlist'  => 'Otre mutive',
 'deletereason-dropdown'  => "*Mutive comune de scangellaminde
@@ -2074,7 +2074,7 @@ Tu puè avè 'nu collegamende sbagliate o 'a revisione pò essere ca ha state re
 'undeleteviewlink'             => 'vide',
 'undeletereset'                => 'Azzere',
 'undeleteinvert'               => 'Selezione a smerse',
-'undeletecomment'              => 'Commende:',
+'undeletecomment'              => 'Mutive:',
 'undeletedarticle'             => 'ripristinete "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revisione|$1 revisiune}} ripristinete',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revisione|$1 revisiune}} e {{PLURAL:$2|1 file|$2 file}} ripristinete',
@@ -2633,7 +2633,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Attenziò''': Stu file pò condenè codece viziuse.
-Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.<hr />",
+Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'imagemaxsize'         => "Limite d'a dimenzione e l'immaggine:<br />''(pe le pàggene de descrizione d'u file)''",
 'thumbsize'            => "Dimenziona d'a miniature:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
@@ -3059,16 +3059,16 @@ Prueve l\'andeprima normele.',
 'watchlistedit-noitems'        => "'A lista de le pàggene condrollete toja no tène 'na vosce.",
 'watchlistedit-normal-title'   => 'Vide le pàggene condrollete',
 'watchlistedit-normal-legend'  => "Live le titele da 'a liste de le pàggene condrollete",
-'watchlistedit-normal-explain' => "Le titele sus a liste de le pàggene condrollate sonde fatte vedè aqquà sotte. <br />
-Pe luà 'nu titele, smarche 'a scatele affianghe a jidde e cazze \"Live 'le titele\".<br />
+'watchlistedit-normal-explain' => "Le titele sus a 'a liste de le pàggene condrollate avènene fatte vedè aqquà sotte. <br />
+Pe luà 'nu titele, smarche 'a sckatele affianghe a jidde e cazze \"{{int:Watchlistedit-normal-submit}}\".<br />
 Tu puè pure [[Special:Watchlist/raw|cangià 'a liste a mane]].",
 'watchlistedit-normal-submit'  => 'Live le titele',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 titele ha state|$1 titele onne state}} scangellete da 'a liste de le pàggene condrollete toje:",
 'watchlistedit-raw-title'      => "Cange 'a liste de le pàggene condrollete grezze",
 'watchlistedit-raw-legend'     => "Cange 'a liste de le pàggene condrollete grezze",
-'watchlistedit-raw-explain'    => "Le titele sus a liste de le pàggene condrollate sonde fatte vedè aqquà sotte e ponne essere cangiate aggiunggenne o luannele da 'a liste; <br />
+'watchlistedit-raw-explain'    => "Le titele sus a liste de le pàggene condrollate avènene fatte vedè aqquà sotte e ponne essere cangiate aggiunggenne o luannele da 'a liste; <br />
 'nu titele pe linèe.<br />
-Quanne è spicciate, cazze sus a \"Aggiorne a Liste de le pàggene condrollate\".<br />
+Quanne è spicciate, cazze sus a \"{{int:Watchlistedit-raw-submit}}\".<br />
 Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
 'watchlistedit-raw-titles'     => 'Titele:',
 'watchlistedit-raw-submit'     => "Aggiorne 'a liste de le pàggene condrollete",
@@ -3191,20 +3191,5 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'htmlform-submit'              => 'Conferme',
 'htmlform-reset'               => 'Annulle le cangiaminde',
 'htmlform-selectorother-other' => 'Otre',
-
-# Add categories per AJAX
-'ajax-add-category'            => "Aggiunge 'a categorije",
-'ajax-add-category-submit'     => 'Aggiunge',
-'ajax-confirm-title'           => "Conferme l'azione",
-'ajax-confirm-prompt'          => 'Tu puè fà \'nu riepileghe de le cangiaminde aqquà sotte.
-Cazze "Reggistre" pe reggistrà \'u cangiamende tue.',
-'ajax-confirm-save'            => 'Reggistre',
-'ajax-add-category-summary'    => 'Aggiunge \'a categorije "$1"',
-'ajax-remove-category-summary' => 'Live \'a categorije "$1"',
-'ajax-confirm-actionsummary'   => 'Azione da fà:',
-'ajax-error-title'             => 'Errore',
-'ajax-error-dismiss'           => 'OK',
-'ajax-remove-category-error'   => "Non g'è possibbele luà sta categorije.
-Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
 
 );
