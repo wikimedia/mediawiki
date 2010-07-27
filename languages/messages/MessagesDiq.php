@@ -142,7 +142,7 @@ $messages = array(
 'index-category'                 => 'Pelê endeksıni',
 'noindex-category'               => 'Pelê ke endeksıni niyê',
 
-'linkprefix'        => "<big>'''MediaWiki niya ro.'''</big>",
+'linkprefix'        => "'''MediaWiki niya ro.'''",
 'mainpagetext'      => "'''MediaWiki vıst ra ser, vıraziya.'''",
 'mainpagedocfooter' => "Gurenayış u eyarkerdena Wiki-Software sero etıya de yardım vênenê: [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
 

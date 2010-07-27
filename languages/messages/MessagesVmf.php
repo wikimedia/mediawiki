@@ -418,7 +418,7 @@ Duu ghâusch nach däm ausdrug aa [[Special:Search/{{PAGENAME}}|in alle sajdn su
 'previewnote'                      => "'''Hiir siggsd bloos, wii's wärn dääd, dii sajdn is ôbâr no ned gschbaichärd!'''",
 'editing'                          => 'Beärbâdn fon $1',
 'editingsection'                   => 'Beärwâdn fo $1 (bloos abschnid)',
-'copyrightwarning'                 => "''<big>Ghobhiir jôô ghâ web-sajdn</big>, dii där ned ghärn, un benuds <big>ghâ uurheewarrechdlich gschidsde wärgghe</big> oone geneemichung fom uurheewâr!'''<br />
+'copyrightwarning'                 => "''Ghobhiir jôô ghâ web-sajdn, dii där ned ghärn, un benuds ghâ uurheewarrechdlich gschidsde wärgghe oone geneemichung fom uurheewâr!'''<br />
 Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd algemajnguud is '''(public domain)''' odâr das där '''uurheewâr'' dâmid '''ajfârschdandn''' is. Wen där dhägsd scho woanärsch fârefendlichd wôrn is, dan schrajb des bidde uf där disghusjoonssajdn.
 <i>Achdung, ale {{SITENAME}}-bajdreech faln audomaadisch undâr di „$2“ (ajndslhajdn dâdsuu baj $1). Wen'd awâr doch ned wilsd, das des waas'd hiir gschriim hasd, fo annäre g'ändârd odär fârbrajded wäd, dan däfsd ned  „Sajdn schbajchârn“ glign.</i>",
 'templatesused'                    => 'Af däär sajdn {{PLURAL:$1|wärd|wärn}} dii folchnde foorlach benudsd:',

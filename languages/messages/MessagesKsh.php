@@ -808,7 +808,7 @@ Dun en Ding Aanfroge nenne:
 * Di Sperr es wäje odde jäje: \$7
 
 Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}\$5 Logboch met de Sperre]</span> loore.",
-'autoblockedtext'                  => "<big>'''Ding IP Adress es automattesch jesperrt woode.'''</big>
+'autoblockedtext'                  => "'''Ding IP Adress es automattesch jesperrt woode.'''
 <br />
 '''Se wor vun enem Metmaacher jebruch woode, dä vun „\$1“ jesperrt woode es.'''
 <br />
@@ -953,7 +953,7 @@ Bes De secher, watte mähs?
 oder fottjeschmesse wääde. Wann Der dat nit rääch es, schriev nix. Et es och nüdich, dat et vun Dir selvs es, oder dat Do dat Rääch häs, et hee öffentlich wigger ze jevve. Süch $1. Wann et nit stemmp, oder Do kanns et nit nohwiese, künnt Dich dat en dr Bau bränge!',
 'longpagewarning'                  => "'''Oppjepass:''' Dä Tex, dä De heh jescheck häs, dä es '''$1''' 
 Kilobyte jroß. Manch Brauser kütt nit domet klor, wann et mieh wie '''32''' Kilobyte sin. Do künnts De drüvver nohdenke, dat Dinge en kleiner Stöckche ze zerkloppe.",
-'longpageerror'                    => "<big>'''Janz schlemme Fähler:'''</big>
+'longpageerror'                    => "'''Janz schlemme Fähler:'''
 Dä Tex, dä De heh jescheck häs, dä es '''$1''' Kilobyte jroß. 
 Dat sin mieh wie '''$2''' Kilobyte. Dat künne mer nit speichere!
 '''Maach kleiner Stöcke drus.'''<br />",

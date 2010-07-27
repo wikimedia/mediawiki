@@ -553,7 +553,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'userinvalidcssjstitle'            => "'''ማስጠንቀቂያ፦''' «$1» የሚባል መልክ የለም። ልዩ .css እና .js ገጾች በትንንሽ እንግሊዝኛ ፊደል መጀመር እንዳለባቸው ያስታውሱ። ለምሳሌ፦  {{ns:user}}:Foo/monobook.css ልክ ነው እንጂ {{ns:user}}:Foo/Monobook.css አይደለም።",
 'updated'                          => '(የታደሰ)',
 'note'                             => "'''ማሳሰቢያ፦'''",
-'previewnote'                      => "ማስታወቂያ፦ '''<big>ይህ ለሙከራው ብቻ ነው የሚታየው -- ምንም ለውጦች ገና አልተላኩም!</big>'''",
+'previewnote'                      => "ማስታወቂያ፦ '''ይህ ለሙከራው ብቻ ነው የሚታየው -- ምንም ለውጦች ገና አልተላኩም!'''",
 'previewconflict'                  => 'ለማስቀምጥ የመረጡ እንደ ሆነ እንደሚታይ፣ ይህ ቅድመ-ዕይታ በላይኛ ጽሕፈት ማዘጋጀት ክፍል ያለውን ጽሕፈት ያንጸባርቃል።',
 'session_fail_preview'             => "'''ይቅርታ! ገጹን ለማቅረብ ስንሂድ፣ አንድ ትንሽ ችግር በመረቡ መረጃ ውስጥ ድንገት ገብቶበታል። እባክዎ፣ እንደገና ገጹን ለማቅረብ አንዴ ይሞክሩ። ከዚያ ገና ካልሠራ፣ ምናልባት ከአባል ስምዎ መውጣትና እንደገና መግባት ይሞክሩ።'''",
 'editing'                          => '«$1» ማዘጋጀት / ማስተካከል',
@@ -594,7 +594,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'permissionserrors'                => 'የፈቃድ ስሕተቶች',
 'permissionserrorstext'            => 'ያ አድራጎት አይቻልም - {{PLURAL:$1|ምክንያቱም|ምክንያቶቹም}}፦',
 'permissionserrorstext-withaction' => '$2 አልተፈቀዱም፤ {{PLURAL:$1|ምክንያቱም|ምክንያቱም}}:',
-'recreate-moveddeleted-warn'       => ":<strong><big>'''ማስጠንቀቂያ፦ ይኸው አርእስት ከዚህ በፊት የጠፋ ገጽ ነው!'''</big></strong>
+'recreate-moveddeleted-warn'       => ":<strong>'''ማስጠንቀቂያ፦ ይኸው አርእስት ከዚህ በፊት የጠፋ ገጽ ነው!'''</strong>
 
 *እባክዎ፥ ገጹ እንደገና እንዲፈጠር የሚገባ መሆኑን ያረጋግጡ።
 
