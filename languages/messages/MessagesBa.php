@@ -1092,6 +1092,7 @@ $1",
 'prefs-advancedrendering'     => 'Киңәйтелгән көйләүҙәр',
 'prefs-advancedsearchoptions' => 'Киңәйтелгән көйләүҙәр',
 'prefs-advancedwatchlist'     => 'Киңәйтелгән көйләүҙәр',
+'prefs-displayrc'             => 'Күренеш көйләүҙәре',
 'prefs-diffs'                 => 'Айырмалар',
 
 # User rights

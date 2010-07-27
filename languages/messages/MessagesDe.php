@@ -494,7 +494,7 @@ $messages = array(
 # Cologne Blue skin
 'qbfind'         => 'Finden',
 'qbbrowse'       => 'Blättern',
-'qbedit'         => 'Ändern',
+'qbedit'         => 'Bearbeiten',
 'qbpageoptions'  => 'Seitenoptionen',
 'qbpageinfo'     => 'Seitendaten',
 'qbmyoptions'    => 'Meine Seiten',

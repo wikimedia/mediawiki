@@ -8,6 +8,7 @@
  * @file
  *
  * @author Chaojoker
+ * @author Pandukht
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
@@ -683,6 +684,7 @@ $2',
 'nav-login-createaccount'    => 'Մտնել / Գրանցվել',
 'loginprompt'                => '{{SITENAME}} մուտք գործելու համար հարկավոր է քուքիները թույլատրել։',
 'userlogin'                  => 'Մտնել / Գրանցվել',
+'userloginnocreate'          => 'Մտնել',
 'logout'                     => 'Ելնել',
 'userlogout'                 => 'Ելնել',
 'notloggedin'                => 'Դուք չեք մտել համակարգ',
@@ -706,6 +708,7 @@ $2',
 Ստուգեք ձեր ուղղագրությունը կամ [[Special:UserLogin/signup|ստեղծեք նոր մասնակցի հաշիվ]]։',
 'nosuchusershort'            => '<nowiki>$1</nowiki> անունով մասնակից գոյություն չունի։ Ստուգեք ձեր ուղղագրությունը։',
 'nouserspecified'            => 'Հարկավոր է նշել մասնակցային անուն։',
+'login-userblocked'          => 'Այս մասնակիցը արգելափակված է: Մուտքը արգելված է:',
 'wrongpassword'              => 'Մուտքագրված գաղտնաբառը սխալ էր։ Խնդրում ենք կրկին փորձել։',
 'wrongpasswordempty'         => 'Մուտքագրված գաղտնաբառը դատարկ էր։ Խնդրում ենք կրկին փորձել։',
 'passwordtooshort'           => 'Գաղտնաբառը պետք է պարունակի առնվազն {{PLURAL:$1|1 սիմվոլ|$1 սիմվոլ}}։',
@@ -997,6 +1000,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'revdelete-hide-comment'      => 'Թաքցնել մեկնաբանությունը',
 'revdelete-hide-user'         => 'Թաքցնել հեղինակի մասնակցի անունը/IP',
 'revdelete-hide-restricted'   => 'Թաքցնել տվյալները և՛ ադմինիստրատորներից, և՛ այլ մասնակիցներից',
+'revdelete-radio-set'         => 'Այո',
+'revdelete-radio-unset'       => 'Ոչ',
 'revdelete-suppress'          => 'Թաքցնել տվյալները ադմինիստրատորներից և մյուսներից նոյնպես',
 'revdelete-unsuppress'        => 'Հանել սահմանափակումները վերականգնված տարբերակներից',
 'revdelete-log'               => 'Պատճառ.',
@@ -1011,6 +1016,12 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'revdelete-otherreason'       => 'Ուրիշ/հավելյալ պատճառ՝',
 'revdelete-reasonotherlist'   => 'Ուրիշ պատճառ',
 'revdelete-edit-reasonlist'   => 'Խմբագրել ջնջման պատճառների ցանկը',
+'revdelete-offender'          => 'Էջի տարբերակի հեղինակ՝',
+
+# Revision move
+'revmove-reasonfield'    => 'Պատճառ՝',
+'revmove-badparam-title' => 'Վատ պարամետրներ',
+'revmove-nullmove-title' => 'Վատ անվանում',
 
 # Merge log
 'revertmerge' => 'Անջատել',
@@ -1199,15 +1210,16 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'prefs-diffs'                   => 'Տարբերություններ',
 
 # User rights
-'userrights'               => 'Մասնակիցների իրավունքների կառավարում',
-'userrights-lookup-user'   => 'Մասնակիցների խմբերի կառավարում',
-'userrights-user-editname' => 'Մուտքագրեք մասնակցի անուն.',
-'editusergroup'            => 'Խմբագրել մասնակիցների խմբերը',
-'editinguser'              => '<b>$1</b> մասնակցի համար ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
-'userrights-editusergroup' => 'Խմբագրել մասնակցի խմբերը',
-'saveusergroups'           => 'Հիշել մասնակցի խմբերը',
-'userrights-groupsmember'  => 'Անդամ է.',
-'userrights-reason'        => 'Պատճառ.',
+'userrights'                => 'Մասնակիցների իրավունքների կառավարում',
+'userrights-lookup-user'    => 'Մասնակիցների խմբերի կառավարում',
+'userrights-user-editname'  => 'Մուտքագրեք մասնակցի անուն.',
+'editusergroup'             => 'Խմբագրել մասնակիցների խմբերը',
+'editinguser'               => '<b>$1</b> մասնակցի համար ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
+'userrights-editusergroup'  => 'Խմբագրել մասնակցի խմբերը',
+'saveusergroups'            => 'Հիշել մասնակցի խմբերը',
+'userrights-groupsmember'   => 'Անդամ է.',
+'userrights-reason'         => 'Պատճառ.',
+'userrights-changeable-col' => 'Խմբեր, որոնք դուք կարող եք ձևափոխել',
 
 # Groups
 'group'               => 'Խումբ.',
@@ -1234,6 +1246,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'grouppage-suppress'      => '{{ns:project}}:Հսկիչ',
 
 # Rights
+'right-edit'   => 'էջերի խմբագրում',
+'right-upload' => 'ֆայլերի բեռնում',
 'right-delete' => 'Էջերի ջնջում',
 
 # User rights log

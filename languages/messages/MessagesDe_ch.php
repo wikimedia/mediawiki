@@ -76,7 +76,7 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 'importuploaderrorsize' => 'Das Hochladen der Importdatei ist fehlgeschlagen. Die Datei ist grösser als die maximal erlaubte Dateigrösse.',
 
 # Media information
-'imagemaxsize'   => 'Maximale Bildgrösse auf Bildbeschreibungsseiten:',
+'imagemaxsize'   => "Maximale Bildgrösse:<br />''(für Dateibeschreibungsseiten)''",
 'file-info'      => '(Dateigrösse: $1, MIME-Typ: $2)',
 'file-info-size' => '($1 × $2 Pixel, Dateigrösse: $3, MIME-Typ: $4)',
 

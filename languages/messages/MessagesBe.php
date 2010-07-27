@@ -7,8 +7,10 @@
  * @ingroup Language
  * @file
  *
+ * @author Cesco
  * @author Jim-by
  * @author Mienski
+ * @author Prima klasy4na
  * @author Urhixidur
  * @author Yury Tarasievich
  * @author לערי ריינהארט
@@ -141,18 +143,18 @@ $messages = array(
 'october'       => 'Кастрычнік',
 'november'      => 'Лістапад',
 'december'      => 'Снежань',
-'january-gen'   => 'Студзень',
-'february-gen'  => 'Люты',
-'march-gen'     => 'Сакавік',
-'april-gen'     => 'Красавік',
-'may-gen'       => 'Травень',
-'june-gen'      => 'Чэрвень',
-'july-gen'      => 'Ліпень',
-'august-gen'    => 'Жнівень',
-'september-gen' => 'Верасень',
-'october-gen'   => 'Кастрычнік',
-'november-gen'  => 'Лістапад',
-'december-gen'  => 'Снежань',
+'january-gen'   => 'студзеня',
+'february-gen'  => 'лютага',
+'march-gen'     => 'сакавіка',
+'april-gen'     => 'красавіка',
+'may-gen'       => 'мая',
+'june-gen'      => 'чэрвеня',
+'july-gen'      => 'ліпеня',
+'august-gen'    => 'жніўня',
+'september-gen' => 'верасня',
+'october-gen'   => 'кастрычніка',
+'november-gen'  => 'лістапада',
+'december-gen'  => 'снежня',
 'jan'           => 'Сту',
 'feb'           => 'Лют',
 'mar'           => 'Сак',

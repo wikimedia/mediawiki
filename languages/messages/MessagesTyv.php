@@ -61,7 +61,7 @@ $messages = array(
 'tog-hideminor'        => 'Сөөлгү өскерлиишкиннер арында бичии өскерлиишкиннерни чажырар',
 'tog-showtoolbar'      => 'Өскертир херекселдерни көргүзер (JavaScript)',
 'tog-editondblclick'   => 'Арынны өскертирде ийи катап базар (JavaScript)',
-'tog-rememberpassword' => 'Мени сактып алыр',
+'tog-rememberpassword' => '',
 
 'underline-always'  => 'Кезээде',
 'underline-never'   => 'Кажан-даа',
@@ -133,12 +133,15 @@ $messages = array(
 'and'           => '&#32;болгаш',
 
 # Cologne Blue skin
-'qbfind'         => 'Тывар',
-'qbbrowse'       => 'Ажыдар',
+'qbfind'         => 'Тывары',
+'qbbrowse'       => 'Каралаары',
 'qbedit'         => 'Өскертир',
 'qbpageoptions'  => 'Бо арын',
 'qbmyoptions'    => 'Мээң арыннарым',
 'qbspecialpages' => 'Тускай арыннар',
+
+# Vector skin
+'vector-namespace-category' => 'Бөлүк',
 
 'errorpagetitle'    => 'Алдаг',
 'returnto'          => '$1 деп арынже эглири.',
@@ -146,7 +149,7 @@ $messages = array(
 'help'              => 'Дуза',
 'search'            => 'Дилээри',
 'searchbutton'      => 'Дилээри',
-'go'                => 'Чоруур',
+'go'                => 'Баары',
 'searcharticle'     => 'Күүcедири',
 'history'           => 'Арынның Төөгүзү',
 'history_short'     => 'Төөгү',
@@ -168,9 +171,9 @@ $messages = array(
 'newpage'           => 'Чаа арын',
 'talkpage'          => 'Бо арын дугайында чугаалажыры',
 'talkpagelinktext'  => 'Чугаалажыры',
-'specialpage'       => 'Тускай Арын',
+'specialpage'       => 'Тускай арын',
 'personaltools'     => 'Хууда херекселдер',
-'postcomment'       => 'Комментарийни чогаадыр',
+'postcomment'       => 'Чаа салбыр',
 'articlepage'       => 'Допчу арынны көөр',
 'talk'              => 'Чугаалажыры',
 'views'             => 'Көрүштер',
@@ -181,7 +184,7 @@ $messages = array(
 'mediawikipage'     => 'Чагаа арынын көөр',
 'templatepage'      => 'Хээ арынын көөр',
 'viewhelppage'      => 'Дуза арынын көөр',
-'categorypage'      => 'Бөлүк арынын көөр',
+'categorypage'      => 'Бөлүктүң арынын көөрү',
 'viewtalkpage'      => 'Чугаалажырыны көөр',
 'otherlanguages'    => 'Өске дылдарга',
 'lastmodifiedat'    => 'Бо арын сөөлгү каттап $2, $1 өскерилген.',
@@ -211,7 +214,7 @@ $messages = array(
 'editsection'         => 'өскертири',
 'editold'             => 'өскертири',
 'editlink'            => 'өскертири',
-'editsectionhint'     => '$1 бөгүмнү өскертири',
+'editsectionhint'     => '$1 деп салбырны өскертири',
 'toc'                 => 'Допчузу',
 'showtoc'             => 'көргүзери',
 'hidetoc'             => 'чажырары',
@@ -253,7 +256,7 @@ $messages = array(
 # Login and logout pages
 'yourname'           => 'Aжыглакчының ады',
 'yourpassword'       => 'Чажыт сөс',
-'remembermypassword' => 'Адымны сактып алыры',
+'remembermypassword' => '',
 'login'              => 'Кирери',
 'userlogin'          => 'Кирери / кирерини чогаадып кылыры',
 'userloginnocreate'  => 'Кирери',
@@ -275,20 +278,20 @@ $messages = array(
 
 # Password reset dialog
 'resetpass'                 => 'Чажыт сөзү өскертир',
-'resetpass_header'          => 'Чажыт сөстү катап чогаадып кылыр',
+'resetpass_header'          => 'Чажыт сөстү катап чогаадып кылыры',
 'oldpassword'               => 'Эгри чажыт сөс:',
 'newpassword'               => 'Чаа чажыт сөс:',
 'resetpass_submit'          => 'Чажыт сөстү чоогадып кылыр база кирер.',
 'resetpass_forbidden'       => 'Чажыт сөстү өскертивейн болбас',
-'resetpass-submit-loggedin' => 'Чажыт сөзү өскертир',
+'resetpass-submit-loggedin' => 'Чажыт сөзү өскертири',
 'resetpass-submit-cancel'   => 'Соксаары',
 
 # Edit page toolbar
 'bold_sample'     => 'Карартыр',
 'italic_sample'   => 'Ийлендирер',
-'link_sample'     => 'Холбаа ады',
+'link_sample'     => 'Холбаадың ады',
 'link_tip'        => 'Иштики холбаа',
-'extlink_sample'  => 'http://www.example.com холбаа ады',
+'extlink_sample'  => 'http://www.example.com холбаадың ады',
 'extlink_tip'     => 'Даштыкы холбаа ("http://" чүве сактып алыр)',
 'headline_sample' => 'Кол сөс сөзүглел',
 'math_sample'     => 'Формуланы мынаар киирери',
@@ -296,7 +299,7 @@ $messages = array(
 'nowiki_tip'      => 'Вики форматтаарын херекке албас',
 'image_sample'    => 'Чижек.jpg',
 'media_sample'    => 'Чижек.ogg',
-'media_tip'       => 'Файл холбаазы',
+'media_tip'       => 'Файлдың холбаазы',
 
 # Edit pages
 'summary'            => 'Түңнел:',
@@ -310,45 +313,57 @@ $messages = array(
 'missingcommenttext' => 'Комментарийни адаанда чогаадыңар.',
 'summary-preview'    => 'Түңнелдү чижеглей көөрү:',
 'subject-preview'    => 'Кол сөс чижеглей көөр:',
-'nosuchsectiontitle' => 'Ындыг бөлгүм чок',
+'nosuchsectiontitle' => 'Бо салбыр чок',
 'loginreqlink'       => 'кирер',
 'accmailtitle'       => 'Чажыт сөс чоргустунган.',
-'accmailtext'        => '"{{grammar:genitive|$1}}" чажыт сөстү {{grammar:directive1|$2}} чоргузуптувус.',
+'accmailtext'        => '',
 'newarticle'         => '(Чаа)',
 'editing'            => '$1 деп арынны өскертип турар',
-'editingsection'     => '$1 деп арынның бөлгүмүн өскертип турар',
-'editingcomment'     => '$1 (комментарий) өскертип турар',
+'editingsection'     => '$1 деп арынның салбырын өскертип турар',
+'editingcomment'     => '$1 деп арынны өскертип турар (чаа салбыр)',
 'yourtext'           => 'Силерниң сөзүглелиңер',
 'yourdiff'           => 'Ылгалдар',
 'template-protected' => '(камгалаан)',
 
 # History pages
-'nohistory'           => 'Бо арынның өскерлиишкин төөгүзү чок.',
-'currentrev'          => 'Амгы үе үндүрери',
-'previousrevision'    => '←Артык эрги үндүрери',
-'nextrevision'        => 'Артык чаа үндүрери→',
-'currentrevisionlink' => 'Амгы үе үндүрери',
-'cur'                 => 'амгы',
-'next'                => 'соонда',
-'last'                => 'бурунгу',
-'page_first'          => 'бирги',
-'page_last'           => 'сөөлгү',
-'histfirst'           => 'Эң эрте',
-'histlast'            => 'Эң дээм чаагы',
-'historysize'         => '({{PLURAL:$1|$1 байт}})',
-'historyempty'        => '(куруг)',
+'nohistory'              => 'Бо арынның өскерлиишкин төөгүзү чок.',
+'currentrev'             => 'Амгы үе үндүрери',
+'previousrevision'       => '←Артык эрги үндүрери',
+'nextrevision'           => 'Артык чаа үндүрери→',
+'currentrevisionlink'    => 'Амгы үе үндүрери',
+'cur'                    => 'амгы',
+'next'                   => 'соонда',
+'last'                   => 'бурунгу',
+'page_first'             => 'бирги',
+'page_last'              => 'сөөлгү',
+'history-fieldset-title' => 'Каралаары төөгүзү',
+'histfirst'              => 'Эң эрте',
+'histlast'               => 'Эң дээм чаагы',
+'historysize'            => '({{PLURAL:$1|$1 байт}})',
+'historyempty'           => '(куруг)',
 
 # Revision feed
 'history-feed-title' => 'Үндүрериниң төөгүзү',
 
 # Revision deletion
-'rev-deleted-comment'    => '(комментарийни ап каан)',
-'rev-deleted-user'       => '(ажыглакчының адын ап каан)',
-'rev-deleted-event'      => '(болуушкунну ап каан)',
-'rev-delundel'           => 'көргүзери/чажырары',
-'revisiondelete'         => 'Үндүрерилерни ап каар/диргисир',
-'revdelete-hide-comment' => 'Өскерлиишкинниң комментарийн чажырар',
-'revdelete-hide-user'    => 'Чогаалчының адын/ИП-адресин чажырар',
+'rev-deleted-comment'        => '(комментарийни ап каан)',
+'rev-deleted-user'           => '(ажыглакчының адын ап каан)',
+'rev-deleted-event'          => '',
+'rev-delundel'               => 'көргүзери/чажырары',
+'rev-showdeleted'            => 'көргүзери',
+'revisiondelete'             => 'Үндүрерилерни ап каар/диргисир',
+'revdelete-show-file-submit' => 'Ийе',
+'revdelete-hide-comment'     => 'Өскерлиишкинниң комментарийн чажырар',
+'revdelete-hide-user'        => 'Чогаалчының адын/ИП-адресин чажырар',
+'revdelete-radio-set'        => 'Ийе',
+'revdelete-radio-unset'      => 'Чок',
+'revdelete-log'              => 'Чылдагаан:',
+'pagehist'                   => 'Арынның төөгүзү',
+'revdelete-otherreason'      => 'Өске/немелде чылдагаан:',
+'revdelete-reasonotherlist'  => 'Өске чылдагаан',
+
+# Revision move
+'revmove-reasonfield' => 'Чылдагаан:',
 
 # History merging
 'mergehistory-reason' => 'Чылдагаан:',
@@ -364,10 +379,12 @@ $messages = array(
 'nextn'                    => 'соонда {{PLURAL:$1|$1}}',
 'viewprevnext'             => '($1 {{int:pipe-separator}} $2) ($3) көөрү',
 'searchhelp-url'           => 'Help:Допчузу',
+'searchprofile-images'     => 'Мультимедиа',
 'searchprofile-everything' => 'Бүгүде',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сөс}})',
+'search-section'           => '("$1" деп салбыр)',
 'searchall'                => 'шупту',
-'powersearch'              => 'Дилээр',
+'powersearch'              => '',
 'powersearch-toggleall'    => 'Шупту',
 
 # Preferences page
@@ -404,29 +421,45 @@ $messages = array(
 'email'                     => 'Э-чагаа',
 
 # User rights
-'editinguser' => '<b>$1</b> деп ажыглакчыны өскертип турар ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
+'editinguser'       => '',
+'userrights-reason' => 'Чылдагаан:',
 
 # Groups
-'group'       => 'Бөлүк:',
-'group-bot'   => 'Боттар',
-'group-sysop' => 'Администраторлар',
-'group-all'   => '(шупту)',
+'group'          => 'Бөлүк кижилер:',
+'group-user'     => 'Ажыглакчылар',
+'group-bot'      => 'Роботтар',
+'group-sysop'    => 'Эргелекчилер',
+'group-suppress' => 'Хынакчылар',
+'group-all'      => '(шупту)',
 
-'group-user-member'  => 'ажыглакчы',
-'group-bot-member'   => 'Бот',
-'group-sysop-member' => 'администратор',
+'group-user-member'       => 'ажыглакчы',
+'group-bot-member'        => 'робот',
+'group-sysop-member'      => 'эргелекчи',
+'group-bureaucrat-member' => 'бюрократ',
+'group-suppress-member'   => 'хынакчы',
 
-'grouppage-sysop' => '{{ns:project}}:Администраторлар',
+'grouppage-user'       => '{{ns:project}}:Ажыглакчылар',
+'grouppage-bot'        => '{{ns:project}}:Роботтар',
+'grouppage-sysop'      => '{{ns:project}}:Эргелекчилер',
+'grouppage-bureaucrat' => '{{ns:project}}:Бюрократтар',
+'grouppage-suppress'   => '{{ns:project}}:Хынакчы',
+
+# User rights log
+'rightsnone' => '(чок)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'бо арынны өскертир',
+'action-read' => 'бо арынны номчууру',
+'action-edit' => 'бо арынны өскертири',
+'action-move' => 'бо арынны шимчээри',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|өскерлиишкин}}',
 'recentchanges'                     => 'Амгы өскерлиишкиннер',
-'recentchanges-legend-newpage'      => '$1 - чаа арын',
+'recentchanges-legend-newpage'      => '$1 — чаа арын',
+'recentchanges-legend-minor'        => '$1 — бичии өскерлиишкин',
+'recentchanges-label-minor'         => 'Бо өскерлиишкин биче-дир',
 'rcshowhideminor'                   => 'Бичии өскерлиишкиннерни $1',
-'rcshowhidebots'                    => 'Боттарну $1',
+'rcshowhidebots'                    => 'Роботтарну $1',
 'rcshowhideliu'                     => 'Кирер ажыглакчыларны $1',
 'rcshowhideanons'                   => 'Ат эвес ажыглакчыларны $1',
 'rcshowhidemine'                    => 'Мээң өскерлиишкинимни $1',
@@ -434,8 +467,11 @@ $messages = array(
 'hist'                              => 'төөгү',
 'hide'                              => 'чажырары',
 'show'                              => 'көргүзери',
+'minoreditletter'                   => 'б',
+'newpageletter'                     => 'Ч',
+'boteditletter'                     => 'р',
 'number_of_watching_users_pageview' => '[$1 хайгаараар {{PLURAL:$1|ажыглакчы}}]',
-'newsectionsummary'                 => '/* $1 */ чаа бөлгүм',
+'newsectionsummary'                 => '/* $1 */ чаа салбыр',
 
 # Recent changes linked
 'recentchangeslinked-page' => 'Арынның ады:',
@@ -468,7 +504,7 @@ $messages = array(
 'file-anchor-link'   => 'Файл',
 'filehist'           => 'Файлдың төөгүзү',
 'filehist-deleteall' => 'шуптуну ап каар',
-'filehist-deleteone' => 'мону ап каар',
+'filehist-deleteone' => 'ап каары',
 'filehist-current'   => 'амгы',
 'filehist-datetime'  => 'Үе/Шак',
 'filehist-thumb'     => 'Бичии чурук',
@@ -478,13 +514,15 @@ $messages = array(
 'imagelinks'         => 'Файлдың xолбаалары',
 
 # File reversion
-'filerevert-comment' => 'Комментарий:',
+'filerevert-comment' => 'Чылдагаан:',
 
 # File deletion
-'filedelete'         => '$1 деп файлды ап каар',
-'filedelete-legend'  => 'Файлды ап каар',
-'filedelete-comment' => 'Чылдагаан:',
-'filedelete-submit'  => 'Ап каар',
+'filedelete'                  => '$1 деп файлды ап каар',
+'filedelete-legend'           => 'Файлды ап каар',
+'filedelete-comment'          => 'Чылдагаан:',
+'filedelete-submit'           => 'Ап каары',
+'filedelete-otherreason'      => 'Өске/немелде чылдагаан:',
+'filedelete-reason-otherlist' => 'Өске чылдагаан',
 
 # MIME search
 'download' => 'алыры',
@@ -502,8 +540,8 @@ $messages = array(
 # Statistics
 'statistics' => 'Статистика',
 
-'brokenredirects-edit'   => 'өскертир',
-'brokenredirects-delete' => 'ап каар',
+'brokenredirects-edit'   => 'өскертири',
+'brokenredirects-delete' => 'ап каары',
 
 'withoutinterwiki' => 'Дыл холбаалар эвес арыннар',
 
@@ -535,7 +573,7 @@ $messages = array(
 'shortpages'              => 'Чолдак арыннар',
 'longpages'               => 'Узун арыннар',
 'protectedpages'          => 'Камгалаган арыннар',
-'listusers'               => 'Ажыглакчы даңзызы',
+'listusers'               => 'Ажыглакчылар даңзызы',
 'newpages'                => 'Чаа арыннар',
 'newpages-username'       => 'Ажыглакчының ады:',
 'ancientpages'            => 'Эң эрги арыннар',
@@ -563,16 +601,20 @@ $messages = array(
 'categories' => 'Бөлүктер',
 
 # Special:ListUsers
-'listusers-submit' => 'Көргүзер',
+'listusers-submit' => 'Көргүзери',
+
+# Special:ActiveUsers
+'activeusers-hidebots'   => 'Роботтарны чажырары',
+'activeusers-hidesysops' => 'Эргелекчыларны чажырары',
 
 # E-mail user
 'emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаары',
 'defemailsubject' => '{{grammar:ablative|{{SITENAME}}}} э-чагаа',
-'emailfrom'       => 'Кайыын:',
-'emailto'         => 'Каяа:',
+'emailfrom'       => 'Кымдан:',
+'emailto'         => 'Кымга:',
 'emailsubject'    => 'Кол сөс:',
 'emailmessage'    => 'Чагаа:',
-'emailsend'       => 'Чорудар',
+'emailsend'       => 'Чорудары',
 
 # Watchlist
 'watchlist'       => 'Мээң хайгаарылга даңзызым',
@@ -602,20 +644,22 @@ $messages = array(
 'deletereasonotherlist' => 'Өске чылдагаан',
 
 # Protect
-'protectlogpage'      => 'Камгалал кырында журнал',
-'protectcomment'      => 'Чылдагаан:',
-'protect-default'     => '(ниити)',
-'protect-level-sysop' => 'Чүгле сисоплар',
-'restriction-type'    => 'Чөпшээрел:',
-'pagesize'            => '(байттар)',
+'protectlogpage'         => 'Камгалал кырында журнал',
+'protectcomment'         => 'Чылдагаан:',
+'protect-default'        => '',
+'protect-level-sysop'    => 'Чүгле эргелекчылар',
+'protect-otherreason'    => 'Өске/немелде чылдагаан:',
+'protect-otherreason-op' => 'Өске чылдагаан',
+'restriction-type'       => 'Чөпшээрел:',
+'pagesize'               => '(байттар)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Өскертир',
-'restriction-move' => 'Шимчээр',
+'restriction-edit' => 'Өскертири',
+'restriction-move' => 'Шимчээри',
 
 # Undelete
 'undeletebtn'            => 'Диргисир',
-'undeletecomment'        => 'Комментарий:',
+'undeletecomment'        => 'Чылдагаан:',
 'undelete-search-submit' => 'Дилээр',
 
 # Namespace form on various pages
@@ -627,6 +671,7 @@ $messages = array(
 'uctop'         => '(баш)',
 
 'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң немелделерин көргүзерн',
+'sp-contributions-logs'     => 'журналдар',
 'sp-contributions-talk'     => 'чугаалажыр',
 'sp-contributions-username' => 'ИП-адрес азы ажыглачының ады:',
 'sp-contributions-submit'   => 'Дилээри',
@@ -669,10 +714,13 @@ $messages = array(
 'delete_and_move'  => 'Ап каар болгаш шимчээр',
 
 # Namespace 8 related
-'allmessages'        => 'Системниң дыңнадыглары',
-'allmessagesname'    => 'Ат',
-'allmessagesdefault' => 'Ниити сөзүглел',
-'allmessagescurrent' => 'Амгы сөзүглел',
+'allmessages'               => 'Системниң дыңнадыглары',
+'allmessagesname'           => 'Ат',
+'allmessagesdefault'        => 'Ниити сөзүглел',
+'allmessagescurrent'        => 'Амгы сөзүглел',
+'allmessages-filter-all'    => 'Шупту',
+'allmessages-language'      => 'Дыл:',
+'allmessages-filter-submit' => 'Күүcедири',
 
 # Special:Import
 'import-comment' => 'Комментарий:',
@@ -701,12 +749,12 @@ $messages = array(
 'tooltip-t-specialpages'    => 'Шупту тускай арыннар даңзызы',
 'tooltip-ca-nstab-main'     => 'Допчы арынын көөрү',
 'tooltip-ca-nstab-user'     => 'Ажыглакчының арынын көөрү',
-'tooltip-ca-nstab-media'    => 'Медиа арынын көөр',
+'tooltip-ca-nstab-media'    => 'Медиа арынын көөрү',
 'tooltip-ca-nstab-project'  => 'Проект арнызын көөрү',
 'tooltip-ca-nstab-image'    => 'Файлдың арынын көөрү',
 'tooltip-ca-nstab-template' => 'Хээни көөрү',
-'tooltip-ca-nstab-help'     => 'Дуза арынын көөр',
-'tooltip-ca-nstab-category' => 'Бөлүк арынын көөрү',
+'tooltip-ca-nstab-help'     => 'Дуза арынын көөрү',
+'tooltip-ca-nstab-category' => 'Бөлүктүң арынын көөрү',
 'tooltip-save'              => 'Силерниң өскерлиишкиннериңерни шыгжаары',
 
 # Attribution
@@ -735,7 +783,7 @@ $messages = array(
 
 # Special:NewFiles
 'showhidebots' => '(боцду $1)',
-'noimages'     => 'Чуруклар чок.',
+'noimages'     => '',
 'ilsubmit'     => 'Дилээр',
 
 # EXIF tags
@@ -759,22 +807,22 @@ $messages = array(
 # Multipage image navigation
 'imgmultipageprev' => '← бүрүнгү арын',
 'imgmultipagenext' => 'соонда арын →',
-'imgmultigo'       => 'Чоруур',
+'imgmultigo'       => '',
 
 # Table pager
 'table_pager_next'         => 'Соонда арын',
 'table_pager_prev'         => 'Бүрүнгү арын',
 'table_pager_first'        => 'Бирги арын',
 'table_pager_last'         => 'Сөөлгү арын',
-'table_pager_limit_submit' => 'Чоруур',
+'table_pager_limit_submit' => 'Күүcедири',
 'table_pager_empty'        => 'Түңнеллер чок',
 
 # Auto-summaries
-'autosumm-new' => 'Чаа арын: $1',
+'autosumm-new' => '',
 
 # Watchlist editor
-'watchlistedit-normal-title'  => 'Хайгаарылга даңзын өскертир',
-'watchlistedit-normal-submit' => 'Адарны ап каар',
+'watchlistedit-normal-title'  => 'Хайгаарылга даңзызын өскертири',
+'watchlistedit-normal-submit' => 'Адарны ап каары',
 'watchlistedit-raw-title'     => 'Чиг хайгаарылга даңзын өскертир',
 'watchlistedit-raw-legend'    => 'Чиг хайгаарылга даңзын өскертир',
 'watchlistedit-raw-titles'    => 'Адар:',
@@ -786,7 +834,23 @@ $messages = array(
 # Special:Version
 'version' => 'Үндүрери',
 
+# Special:FilePath
+'filepath-page'   => 'Файл:',
+'filepath-submit' => 'Күүcедири',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Файлдың ады:',
+
 # Special:SpecialPages
 'specialpages' => 'Тускай арыннар',
+
+# Special:BlankPage
+'blankpage' => 'Куруг арын',
+
+# Special:Tags
+'tags-edit' => 'өскертири',
+
+# HTML forms
+'htmlform-submit' => 'Күүcедири',
 
 );

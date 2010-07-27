@@ -1070,6 +1070,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'prefs-advancedrendering'       => 'Tànneef yu xóot',
 'prefs-advancedsearchoptions'   => 'Tànneef yu xóot',
 'prefs-advancedwatchlist'       => 'Tànneef yu xóot',
+'prefs-displayrc'               => 'Tànneefi wonewiin',
 'prefs-diffs'                   => 'Wuute',
 
 # User rights
