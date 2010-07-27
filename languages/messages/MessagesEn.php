@@ -2720,9 +2720,9 @@ Feedback and further assistance:
 # Delete
 'deletepage'             => 'Delete page',
 'confirm'                => 'Confirm',
-'excontent'              => "content was: '$1'",
-'excontentauthor'        => "content was: '$1' (and the only contributor was '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'          => "content before blanking was: '$1'",
+'excontent'              => "content was: \"$1\"",
+'excontentauthor'        => "content was: \"$1\" (and the only contributor was \"[[Special:Contributions/$2|$2]]\")",
+'exbeforeblank'          => "content before blanking was: \"$1\"",
 'exblank'                => 'page was empty',
 'delete-confirm'         => 'Delete "$1"',
 'delete-backlink'        => '← $1', # only translate this message to other languages if you have to change it
@@ -4070,9 +4070,9 @@ Please confirm that you really want to recreate this page.",
 
 # Auto-summaries
 'autosumm-blank'   => 'Blanked the page',
-'autosumm-replace' => "Replaced content with '$1'",
+'autosumm-replace' => "Replaced content with \"$1\"",
 'autoredircomment' => 'Redirected page to [[$1]]',
-'autosumm-new'     => "Created page with '$1'",
+'autosumm-new'     => "Created page with \"$1\"",
 
 # Autoblock whitelist
 'autoblock_whitelist' => 'AOL http://webmaster.info.aol.com/proxyinfo.html
