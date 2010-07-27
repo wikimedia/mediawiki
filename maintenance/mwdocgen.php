@@ -37,9 +37,6 @@ if ( php_sapi_name() != 'cli' ) {
 /** Figure out the base directory for MediaWiki location */
 $mwPath = dirname( dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR;
 
-/** Global variable: temporary directory */
-$tmpPath = '/tmp/';
-
 /** doxygen binary script */
 $doxygenBin = 'doxygen';
 
@@ -66,6 +63,9 @@ $exclude = '';
 #
 # Functions
 #
+
+define( 'MEDIAWIKI', true );
+require_once( "$mwPath/includes/GlobalFunctions.php" );
 
 /**
  * Read a line from the shell
@@ -133,7 +133,6 @@ function getSvnRevision( $dir ) {
  *                 (LocalSettings.php, AdminSettings.php and .svn directories are always excluded)
  */
 function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude ) {
-	global $tmpPath;
 
 	$template = file_get_contents( $doxygenTemplate );
 
@@ -147,7 +146,7 @@ function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath,
 		'{{EXCLUDE}}'          => $exclude,
 	);
 	$tmpCfg = str_replace( array_keys( $replacements ), array_values( $replacements ), $template );
-	$tmpFileName = $tmpPath . 'mwdocgen' . rand() . '.tmp';
+	$tmpFileName = tempnam( wfTempDir(), 'mwdocgen-' );
 	file_put_contents( $tmpFileName , $tmpCfg ) or die( "Could not write doxygen configuration to file $tmpFileName\n" );
 
 	return $tmpFileName;
