@@ -2913,6 +2913,8 @@ class Article {
 
 		// If the page has a history, insert a warning
 		if ( $hasHistory && !$confirm ) {
+			global $wgLang;
+
 			$skin = $wgUser->getSkin();
 			$revisions = $this->estimateRevisionCount();
 			//FIXME: lego
