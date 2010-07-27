@@ -429,7 +429,8 @@ class LoginForm {
 	 * creation.
 	 */
 	public function authenticateUserData() {
-		global $wgUser, $wgAuth;
+		global $wgUser, $wgAuth, $wgMemc;
+		
 		if ( $this->mName == '' ) {
 			return self::NO_NAME;
 		}
@@ -457,7 +458,6 @@ class LoginForm {
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 			
-			global $wgMemc;
 			$throttleCount = $wgMemc->get( $throttleKey );
 			if ( !$throttleCount ) {
 				$wgMemc->add( $throttleKey, 1, $period ); // start counter
