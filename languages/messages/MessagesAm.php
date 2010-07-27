@@ -74,6 +74,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'ለአነስተኛ የገጽ እርማቶችም ኤመልዕክት ይላክልኝ',
 'tog-enotifrevealaddr'        => 'ኤመልዕክት አድራሻዬን በማሳወቂያ መልዕክቶች ውስጥ አሳይ',
 'tog-shownumberswatching'     => 'የሚከታተሉ ተጠቃሚዎችን ቁጥር አሳይ',
+'tog-oldsig'                  => ' የቀድሞው ፊርማ ቅደመ እይታ',
 'tog-fancysig'                => 'ጥሬ ፊርማ (ያለራስገዝ ማያያዣ)',
 'tog-externaleditor'          => 'በቀዳሚነት ውጪያዊ አራሚን ተጠቀም',
 'tog-externaldiff'            => 'በቀዳሚነት የውጭ ልዩነት-ማሳያን ተጠቀም',
@@ -199,6 +200,11 @@ $messages = array(
 'vector-namespace-category' => 'መደብ',
 'vector-namespace-image'    => 'ፋይል',
 'vector-namespace-talk'     => 'ውይይት',
+'vector-namespace-user'     => 'የተጠቃሚው ገጽ',
+'vector-view-create'        => 'አዲስ ፍጠር',
+'vector-view-edit'          => 'አርም',
+'vector-view-history'       => ' ታሪኩን አሳይ',
+'vector-view-view'          => ' የተነበበ',
 
 'errorpagetitle'    => 'ስህተት',
 'returnto'          => '(ወደ $1 ለመመለስ)',
@@ -254,6 +260,10 @@ $messages = array(
 'jumpto'            => 'ዘልለው ለመሔድ፦',
 'jumptonavigation'  => 'የማውጫ ቁልፎች',
 'jumptosearch'      => 'ፍለጋ',
+'view-pool-error'   => 'ይቅቅርታ፣ በአሁኑ ወቅት ብዙ ተጠቃሚዎች ገፁን ለማየት እየሞከሩ ስለሆነ ሰርቨሩ ላይ መጨናነቅ ተፈጥሯል
+ስለዚህ እባክዎን ትንሽ ቆይተው በድጋሚ ይዎክሩ።
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'ስለ {{SITENAME}}',
@@ -277,7 +287,7 @@ $messages = array(
 
 'badaccess'        => 'ያልተፈቀደ - አይቻልም',
 'badaccess-group0' => 'የጠየቁት አድራጎት እንዲፈጸም ፈቃድ የለዎም።',
-'badaccess-groups' => 'የጠየቁት አድራጎት ለ$1 ማዕረጎች ላሏቸው አባላት ብቻ ይፈቀዳል።',
+'badaccess-groups' => ' ጥያቂዎት ለሚተሉት ተጥቃሚዎች የተገደበ ነው  {{PLURAL:$2|ማህበር|ከማህበራት ላንዱ}}: $1.',
 
 'versionrequired'     => 'የMediaWiki ዝርያ $1 ያስፈልጋል።',
 'versionrequiredtext' => 'ይህንን ገጽ ለመጠቀም የMediaWiki ዝርያ $1 ያስፈልጋል። [[Special:Version|የዝርያውን ገጽ]] ይዩ።',

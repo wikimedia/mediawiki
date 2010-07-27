@@ -922,6 +922,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'prefs-advancedrendering'       => 'उन्नत विकल्पहरु',
 'prefs-advancedsearchoptions'   => 'उन्नत विकल्पहरू',
 'prefs-advancedwatchlist'       => 'उन्नत विकल्पहरू',
+'prefs-displayrc'               => 'प्रदर्शन विकल्पहरू',
 'prefs-diffs'                   => 'diffs(भिन्नता)',
 
 # User rights

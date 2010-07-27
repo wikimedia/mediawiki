@@ -917,6 +917,7 @@ $2',
 'prefs-advancedrc'         => 'উচ্চতর অপশন',
 'prefs-advancedrendering'  => 'উচ্চতর অপশন',
 'prefs-advancedwatchlist'  => 'উচ্চতর অপশন',
+'prefs-displayrc'          => 'দেহাদেনার অপশন',
 'prefs-diffs'              => 'ফারাক',
 
 # Groups

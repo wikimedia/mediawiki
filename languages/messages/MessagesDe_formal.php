@@ -10,12 +10,15 @@
  * @author ChrisiPK
  * @author Imre
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Kghbln
  * @author Leithian
  * @author MichaelFrey
  * @author Michawiki
  * @author Pill
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
+ * @author The Evil IP address
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
+ * @author Tischbeinahe
  * @author Umherirrender
  * @author Urhixidur
  */
@@ -54,24 +57,26 @@ Grund der Sperrung: $1',
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
 Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software gefunden. Bitte melden Sie dies einem [[Special:ListUsers/sysop|Administrator]] unter Nennung der URL.',
-'actionthrottledtext'  => 'Sie haben diese Aktion zu oft innerhalb eines kurzen Zeitraums ausgeführt. Bitte warten Sie ein paar Minuten und probieren Sie es dann erneut.',
+'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze haben Sie überschritten.
+Bitte versuchen Sie es in ein paar Minuten erneut.',
+'viewsourcetext'       => 'Sie können den Quelltext dieser Seite betrachten und kopieren:',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text.
 Änderungen wirken sich auf die Benutzeroberfläche aus.
-Für Übersetzungen ziehen Sie bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
-'namespaceprotected'   => "Sie haben keine Berechtigung, die Seite im '''$1'''-Namensraum zu bearbeiten.",
+Für Übersetzungen ziehen Sie bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de-formal Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
+'namespaceprotected'   => "Sie haben keine Berechtigung, Seiten im '''$1'''-Namensraum zu bearbeiten.",
 'customcssjsprotected' => 'Sie sind nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 
 # Login and logout pages
 'logouttext'                 => "'''Sie sind nun abgemeldet.'''
 
-Sie können {{SITENAME}} jetzt anonym weiter benutzen, oder sich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
-Beachten Sie, das einige Seiten noch anzeigen können, das Sie angemeldet sind, solange Sie nicht Ihren Browsercache geleert haben.",
+Sie können {{SITENAME}} jetzt anonym weiternutzen, oder sich erneut unter demselben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
+Beachten Sie, dass einige Seiten noch anzeigen können, dass Sie angemeldet sind, solange Sie nicht Ihren Browsercache geleert haben.",
 'welcomecreation'            => '== Willkommen, $1! ==
 
 Ihr Benutzerkonto wurde eingerichtet.
 Vergessen Sie nicht, Ihre [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupassen.',
 'yourdomainname'             => 'Ihre Domain:',
-'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
+'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
 'nologin'                    => "Sie haben kein Benutzerkonto? '''$1'''.",
 'gotaccount'                 => "Haben Sie bereits ein Benutzerkonto? '''$1'''.",
 'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.',
@@ -85,7 +90,7 @@ Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen Sie es e
 Überprüfen Sie die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melden Sie sich als neuer Benutzer an]].',
 'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 'nouserspecified'            => 'Bitte geben Sie einen Benutzernamen an.',
-'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.',
+'wrongpassword'              => 'Das Passwort ist falsch. Bitte versuchen Sie es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuchen Sie es erneut.',
 'password-name-match'        => 'Ihr Passwort muss sich von Ihrem Benutzernamen unterscheiden.',
 'passwordremindertext'       => 'Jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
@@ -118,6 +123,7 @@ Bitte warten Sie, bevor Sie es erneut probierst.',
 
 # Password reset dialog
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, müssen Sie jetzt ein neues Passwort wählen.',
+'resetpass_text'          => '<!-- Ergänzen Sie den Text hier -->',
 'resetpass_success'       => 'Ihr Passwort wurde erfolgreich geändert. Es folgt die Anmeldung …',
 'resetpass-no-info'       => 'Sie müssen sich anmelden, um auf diese Seite direkt zuzugreifen.',
 'resetpass-wrong-oldpass' => 'Ungültiges temporäres oder aktuelles Passwort.
@@ -129,8 +135,8 @@ Möglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein ne
 # Edit pages
 'anoneditwarning'                  => "Sie bearbeiten diese Seite unangemeldet. Wenn Sie speichern, wird Ihre aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
 'missingsummary'                   => "'''Hinweis:''' Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Änderung ohne Zusammenfassung übernommen.",
-'missingcommenttext'               => 'Bitte geben Sie eine Zusammenfassung ein.',
-'missingcommentheader'             => "'''ACHTUNG:''' Sie haben keine Überschrift im Feld „Betreff:“ eingegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Bearbeitung ohne Überschrift gespeichert.",
+'missingcommenttext'               => 'Ihr Abschnitt enthält keinen Text.',
+'missingcommentheader'             => "'''Achtung:''' Sie haben kein Betreff/Überschrift eingegeben. Wenn Sie erneut auf „{{int:savearticle}}“ klicken, wird Ihre Bearbeitung ohne Überschrift gespeichert.",
 'blockedtext'                      => "'''Ihr Benutzername oder Ihre IP-Adresse wurde gesperrt.'''
 
 Die Sperrung wurde von $1 durchgeführt.
@@ -162,7 +168,8 @@ Bitte fügen Sie alle Informationen jeder Anfrage hinzu, die Sie stellen.",
 'blockededitsource'                => "Der Quelltext '''Ihrer Änderungen''' an '''$1''':",
 'whitelistedittext'                => 'Sie müssen sich $1, um Seiten bearbeiten zu können.',
 'confirmedittext'                  => 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie Bearbeitungen vornehmen können. Bitte ergänzen und bestätigen Sie Ihre E-Mail in den [[Special:Preferences|Einstellungen]].',
-'nosuchsectiontext'                => 'Sie versuchen den nicht vorhandenen Abschnitt $1 zu bearbeiten. Es können jedoch nur bereits vorhandene Abschnitte bearbeitet werden.',
+'nosuchsectiontext'                => 'Sie haben versucht, einen Abschnitt zu bearbeiten, der nicht existiert.
+Vermutlich wurde er verschoben oder gelöscht, nachdem Sie die Seite aufgerufen haben.',
 'loginreqpagetext'                 => 'Sie müssen sich $1, um Seiten lesen zu können.',
 'newarticletext'                   => "Sie sind einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
 Um die Seite anzulegen, tragen Sie Ihren Text in die untenstehende Box ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für mehr Informationen).
@@ -175,9 +182,9 @@ Sie können diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|su
 Sie können diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
 oder in den zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen]</span>.',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfen Sie, ob Sie diese Seite wirklich erstellen/bearbeiten möchten.',
-'clearyourcache'                   => "'''Hinweis - Leeren Sie nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei auf ''Aktualisieren'' klicken.",
-'usercssyoucanpreview'             => "'''Tipp:''' Benutzen Sie den Vorschau-Button, um Ihr neues CSS vor dem Speichern zu testen.",
-'userjsyoucanpreview'              => "'''Tipp:''' Benutzen Sie den Vorschau-Button, um Ihr neues JS vor dem Speichern zu testen.",
+'clearyourcache'                   => "'''Hinweis - Leeren Sie nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' auf dem Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei auf ''Aktualisieren'' klicken.",
+'usercssyoucanpreview'             => "'''Tipp:''' Benutzen Sie den „{{int:showpreview}}“-Button, um Ihr neues CSS vor dem Speichern zu testen.",
+'userjsyoucanpreview'              => "'''Tipp:''' Benutzen Sie den „{{int:showpreview}}“-Button, um Ihr neues JavaScript vor dem Speichern zu testen.",
 'usercsspreview'                   => "== Vorschau Ihres Benutzer-CSS ==
 '''Hinweis:''' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview'                    => "== Vorschau Ihres Benutzer-JavaScript ==
@@ -203,7 +210,7 @@ Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
 'yourtext'                         => 'Ihr Text',
 'nonunicodebrowser'                => "'''Achtung:''' Ihr Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwenden Sie einen anderen Browser um Seiten zu bearbeiten.",
 'editingold'                       => "'''ACHTUNG: Sie bearbeiten eine alte Version dieser Seite. Wenn Sie speichern, werden alle neueren Versionen überschrieben.'''",
-'copyrightwarning'                 => "'''Bitte kopieren Sie keine Webseiten, die nicht Ihre eigenen sind, benutzen Sie keine urheberrechtlich geschützten Werke ohne Erlaubnis des Copyright-Inhabers!'''<br />
+'copyrightwarning'                 => "'''Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!'''<br />
 Sie geben uns hiermit Ihre Zusage, dass Sie den Text '''selbst verfasst''' haben, dass der Text Allgemeingut ('''public domain''') ist, oder dass der '''Copyright-Inhaber''' seine '''Zustimmung''' gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der Diskussionsseite darauf hin.
 <i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der „$2“ stehen (siehe $1 für Details). Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf „Seite speichern“.</i>",
 'copyrightwarning2'                => "Bitte beachten Sie, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können.
@@ -228,6 +235,10 @@ Grund für die Sperre: $1",
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu Ihrer Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'edit-no-change'                   => 'Ihre Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenomme wurde.',
+
+# "Undo" feature
+'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
+Bitte prüfen Sie den Vergleich unten um sicherzustellen, dass Sie dies tun möchten, und speicheren Sie dann unten Ihre Änderungen, um die Bearbeitung rückgängig zu machen.',
 
 # Revision deletion
 'rev-deleted-text-unhide'     => "Diese Version wurde '''gelöscht'''.
@@ -259,6 +270,11 @@ Sie haben darauf keinen Zugriff.',
 Bitte prüfen Sie die Logbücher.',
 'revdelete-only-restricted'   => 'Fehler beim Verstecken des Eintrags vom $1, $2 Uhr: Sie können keinen Eintrag vor Administratoren verstecken, ohne eine der anderen Ansichtsoptionen gewählt zu haben.',
 
+# Revision move
+'revmove-badparam'    => 'Ihre Anfrage enthält unerlaubte oder mangelhafte Parameter. Bitte klicken Sie auf „zurück“ und versuchen Sie es erneut.',
+'revmove-norevisions' => 'Sie haben keine Zielversion angegeben, um diese Aktion durchzuführen oder die angegebene Version existiert nicht.',
+'revmove-nullmove'    => 'Quell- und Zielseite sind identisch. Bitte klicken Sie auf „zurück“ und geben Sie einen anderen Seitennamen als „$1“ ein.',
+
 # History merging
 'mergehistory-header' => 'Mit dieser Spezialseite können Sie die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
 Stellen Sie sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
@@ -266,7 +282,7 @@ Stellen Sie sicher, dass die Versionsgeschichte einer Seite historisch korrekt i
 'mergehistory-fail'   => 'Versionsvereinigung nicht möglich, bitte prüfen Sie die Seite und die Zeitangaben.',
 
 # Search results
-'searchsubtitle'        => 'Ihre Suchanfrage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
+'searchsubtitle'        => 'Ihre Suchanfrage: „[[:$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid' => 'Ihre Suchanfrage: „$1“.',
 'toomanymatches'        => 'Es Anzahl der Suchergnisse ist zu groß, bitte versuchen Sie eine andere Abfrage.',
 'search-suggest'        => 'Meinten Sie „$1“?',
@@ -282,7 +298,7 @@ Hier ein zufällig generierter Wert, den Sie verwenden können: $1',
 'savedprefs'                 => 'Ihre Einstellungen wurden gespeichert.',
 'prefs-reset-intro'          => 'Sie können diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.
 Dies kann nicht mehr rückgängig gemacht werden.',
-'prefs-help-realname'        => 'Optional. Ihr echter Name wird Ihren Beiträgen zugeordnet.',
+'prefs-help-realname'        => 'Optional. Damit kann Ihr bürgerlicher Name Ihren Beiträgen zugeordnet werden.',
 'prefs-help-email'           => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn Sie Ihr Passwort vergessen haben.
 Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass Sie Ihre Identität offenlegen müssen.',
 
@@ -339,6 +355,7 @@ Wenn Sie diese Datei trotzdem hochladen möchten, gehen Sie bitte zurück und ä
 [[File:$1|thumb|center|$1]]',
 'file-deleted-duplicate'      => 'Eine identische Datei dieser Datei ([[$1]]) wurde früher gelöscht. Überprüfen Sie das Lösch-Logbuch, bevor Sie sie hochladen.',
 'uploadwarning-text'          => 'Bitte ändern Sie unten die Dateibeschreibung und versuchen Sie es erneut.',
+'uploadfromurl-queued'        => 'Ihr Upload befindet sich nun in der Warteschlange.',
 'php-uploaddisabledtext'      => 'Das Hochladen von Dateien wurde in PHP deaktiviert.
 Bitte überprüfen Sie die <code>file_uploads</code>-Einstellung.',
 'filewasdeleted'              => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfen Sie zuerst den Eintrag im $1, bevor Sie die Datei wirklich speichern.',
@@ -386,7 +403,7 @@ Nur Dateizugriff ist erlaubt.',
 Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 
 # Miscellaneous special pages
-'unusedimagestext' => 'Bitte beachten Sie, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.',
+'unusedimagestext' => 'Bitte beachten Sie, dass andere Webseiten eine Datei mit einer direkten URL verlinken können. Sie könnte daher hier aufgelistet sein, obwohl sie in aktiver Verwendung ist.',
 'notargettext'     => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 
 # Book sources
@@ -408,15 +425,13 @@ Als Absender wird die E-Mail-Adresse aus ihren [[Special:Preferences|Einstellung
 'addedwatchtext'    => 'Die Seite „[[:$1]]“ wurde zu Ihrer [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
-in der Übersicht der [[Special:RecentChanges|letzten Änderungen]] in Fettschrift dargestellt.
-
-Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicken Sie auf der jeweiligen Seite auf „{{int:Unwatch}}“.',
+in der Übersicht der [[Special:RecentChanges|letzten Änderungen]] in Fettschrift dargestellt.',
 'removedwatchtext'  => 'Die Seite „[[:$1]]“ wurde von Ihrer [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watchnochange'     => 'Keine der von Ihnen beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
 'watchlist-details' => 'Sie beobachten {{PLURAL:$1|1 Seite|$1 Seiten}}.',
 'watchlistcontains' => 'Ihre Beobachtungsliste enthält $1 {{PLURAL:$1|Seite|Seiten}}.',
 
-'enotif_body' => 'Hallo $WATCHINGUSERNAME,
+'enotif_body' => 'Werter $WATCHINGUSERNAME,
 
 die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE um $PAGEEDITTIME Uhr $CHANGEDORCREATED.
 
@@ -437,10 +452,12 @@ Es werden solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis Sie die
 --
 Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie: {{fullurl:{{#special:Watchlist}}/edit}}
 
+Um die Seite von Ihrer Beobachtungsliste zu entfernen, besuchen Sie $UNWATCHURL
+
 Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'historywarning'    => "'''Achtung:''' Die Seite, die Sie löschen möchten, hat eine Versionsgeschichte mit $1 {{PLURAL:$1|Version|Versionen}}:",
+'historywarning'    => "'''Achtung:''' Die Seite, die Sie löschen möchten, hat eine Versionsgeschichte mit etwa $1 {{PLURAL:$1|Version|Versionen}}:",
 'confirmdeletetext' => 'Sie sind dabei, eine Seite mit allen zugehörigen älteren Versionen zu löschen. Bitte bestätigen Sie, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handeln.',
 'deletedtext'       => '„<nowiki>$1</nowiki>“ wurde gelöscht. Im $2 finden Sie eine Liste der letzten Löschungen.',
 
@@ -480,6 +497,8 @@ Bitte geben Sie den Grund für die Sperre an.',
 'proxyblockreason'         => 'Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Internet-Provider oder Ihre Systemadministratoren und informieren Sie sie über dieses mögliche Sicherheitsproblem.',
 'cant-block-while-blocked' => 'Sie können keine anderen Benutzer sperren, während Sie selbst gesperrt sind.',
 'cant-see-hidden-user'     => 'Der Benutzer, den Sie versuchen zu sperren, wurde bereits gesperrt und verborgen. Da Sie das „hideuser“-Recht nicht haben, können Sie die Benutzersperre nicht sehen und nicht bearbeiten.',
+'ipbblocked'               => 'Sie können keine anderen Benutzer sperren oder entsperren, da Sie selbst gesperrt sind',
+'ipbnounblockself'         => 'Sie haben nicht die Berechtigung, sich selbst zu entsperren',
 
 # Developer tools
 'locknoconfirm'     => 'Sie haben das Bestätigungsfeld nicht markiert.',
@@ -504,6 +523,7 @@ Sie sollten daher die Konsequenzen verstanden haben, bevor Sie fortfahren.",
 In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.
 
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
+'moveuserpage-warning'   => "'''Warnung:''' Sie sind dabei, eine Benutzerseite zu verschieben. Bitte bedenken Sie, dass dadurch nur die Benutzerseite verschoben, '''nicht''' aber der Benutzer umbenannt wird.",
 'movenologin'            => 'Sie sind nicht angemeldet',
 'movenologintext'        => 'Sie müssen ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
 'movenotallowed'         => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
@@ -537,13 +557,14 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuchen Sie es erneut.',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'Ihre Benutzerseite',
-'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
-'tooltip-pt-mytalk'       => 'Ihre Diskussionsseite',
-'tooltip-pt-mycontris'    => 'Liste Ihrer Beiträge',
-'tooltip-n-mainpage'      => 'Besuchen Sie die Hauptseite',
-'tooltip-n-portal'        => 'Über das Portal, was Sie tun können, wo was zu finden ist',
-'tooltip-watch'           => 'Fügt diese Seite Ihrer Beobachtungsliste hinzu',
+'tooltip-pt-userpage'            => 'Ihre Benutzerseite',
+'tooltip-pt-anonuserpage'        => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
+'tooltip-pt-mytalk'              => 'Ihre Diskussionsseite',
+'tooltip-pt-mycontris'           => 'Liste Ihrer Beiträge',
+'tooltip-n-mainpage'             => 'Besuchen Sie die Hauptseite',
+'tooltip-n-mainpage-description' => 'Besuchen Sie die Hauptseite',
+'tooltip-n-portal'               => 'Über das Projekt, was Sie tun können, wo was zu finden ist',
+'tooltip-watch'                  => 'Fügt diese Seite Ihrer Beobachtungsliste hinzu',
 
 # Metadata
 'notacceptable' => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',
@@ -556,7 +577,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 
 # Media information
 'mediawarning' => "'''Warnung:''' Dieser Dateityp kann böswilligen Programmcode enthalten.
-Durch das Herunterladen und Öffnen der Datei kann Ihr Computer beschädigt werden.<hr />",
+Durch das Herunterladen und Öffnen der Datei kann Ihr Computer beschädigt werden.",
 
 # E-mail address confirmation
 'confirmemail_noemail'    => 'Sie haben keine gültige E-Mail-Adresse in Ihren [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
@@ -601,10 +622,10 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ihre Beobachtungsliste enthält {{PLURAL:$1|1 Eintrag |$1 Einträge}}, Diskussionsseiten werden nicht gezählt.',
 'watchlistedit-noitems'        => 'Ihre Beobachtungsliste ist leer.',
-'watchlistedit-normal-explain' => 'Dies sind die Einträge Ihrer Beobachtungsliste. Um Einträge zu entfernen, markieren Sie die Kästchen neben den Einträgen und klicken Sie am Ende der Seite auf „Einträge entfernen“. Sie können Ihre Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]].',
+'watchlistedit-normal-explain' => 'Dies sind die Einträge Ihrer Beobachtungsliste. Um Einträge zu entfernen, markieren Sie die Kästchen neben den Einträgen und klicken Sie am Ende der Seite auf „{{int:Watchlistedit-normal-submit}}“. Sie können Ihre Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]].',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} von Ihrer Beobachtungsliste entfernt:',
 'watchlistedit-raw-explain'    => 'Dies sind die Einträge Ihrer Beobachtungsliste im Listenformat. Die Einträge können zeilenweise gelöscht oder hinzugefügt werden.
-Pro Zeile ist ein Eintrag erlaubt. Wenn Sie fertig sind, klicken Sie auf „Beobachtungsliste speichern“.
+Pro Zeile ist ein Eintrag erlaubt. Wenn Sie fertig sind, klicken Sie auf „{{int:Watchlistedit-raw-submit}}“.
 Sie können auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutzen.',
 'watchlistedit-raw-done'       => 'Ihre Beobachtungsliste wurde gespeichert.',
 

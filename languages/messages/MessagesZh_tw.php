@@ -511,7 +511,7 @@ $messages = array(
 將來有關此頁面及其討論頁的任何修改將會在那裡列出，
 而且還會在[[Special:RecentChanges|近期變動]]中
 以'''粗體'''形式列出以使起更容易識別。",
-'removedwatchtext'  => '頁面「<nowiki>$1</nowiki>」已經從您的監視頁面中移除。',
+'removedwatchtext'  => '頁面「[[:$1]]」已經從您的監視頁面中移除。',
 'watchlist-details' => '不包含討論頁，您的監視列表共有 $1 頁。',
 
 'enotif_impersonal_salutation' => '{{SITENAME}}使用者',
@@ -550,7 +550,7 @@ $NEWPAGE
 'dellogpagetext'    => '以下是最近刪除的紀錄列表。
 所有的時間都是使用伺服器時間。',
 'reverted'          => '復原到早期版本',
-'deletecomment'     => '刪除理由',
+'deletecomment'     => '原因：',
 
 # Rollback
 'rollback'         => '復原',

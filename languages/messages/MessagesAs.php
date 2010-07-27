@@ -899,6 +899,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'prefs-advancedrendering'     => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
 'prefs-advancedsearchoptions' => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
 'prefs-advancedwatchlist'     => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
+'prefs-displayrc'             => 'প্ৰদৰ্শনী উপায়ান্তৰ সমূহ',
 'prefs-diffs'                 => 'পাৰ্থক্য',
 
 # User rights
