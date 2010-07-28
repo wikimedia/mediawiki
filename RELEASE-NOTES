@@ -5,6 +5,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.15.5 ==
 
+2010-07-28
+
 This is a security and maintenance release.
 
 MediaWiki is now using a "continuous integration" development model with
@@ -20,7 +22,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Changes since 1.15.4 ==
 
-* (bug xxxxx) Fixed Cache-Control headers sent from API modules, to protect
+* (bug 24565) Fixed Cache-Control headers sent from API modules, to protect
   user privacy in the case where an attacker can access the wiki through the
   same HTTP proxy as a logged-in user.
 * Fixed a minor cookie header parsing issue causing incorrect Cache-Control 
