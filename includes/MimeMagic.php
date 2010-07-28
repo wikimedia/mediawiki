@@ -396,7 +396,8 @@ class MimeMagic {
 			'xbm',
 
 			// Formats we recognize magic numbers for
-			'djvu', 'ogx', 'ogg', 'ogv', 'oga', 'spx', 'mid', 'pdf', 'wmf', 'xcf',
+			'djvu', 'ogx', 'ogg', 'ogv', 'oga', 'spx',
+			'mid', 'pdf', 'wmf', 'xcf', 'webm', 'mkv', 'mka',
 
 			// XML formats we sure hope we recognize reliably
 			'svg',
@@ -466,6 +467,24 @@ class MimeMagic {
 				wfDebug( __METHOD__ . ": magic header in $file recognized as $candidate\n" );
 				return $candidate;
 			}
+		}
+
+		/* Look for WebM and Matroska files */
+		if( strncmp( $head, pack( "C4", 0x1a, 0x45, 0xdf, 0xa3 ), 4 ) == 0 ) {
+			$doctype = strpos( $head, "\x42\x82" );
+			if( $doctype ) {
+				// Next byte is datasize, then data (sizes larger than 1 byte are very stupid muxers)
+				$data = substr($head, $doctype+3, 8);
+				if( strncmp( $data, "matroska", 8 ) == 0 ) {
+					wfDebug( __METHOD__ . ": recognized file as video/x-matroska\n" );
+					return "video/x-matroska";
+				} else if ( strncmp( $data, "webm", 4 ) == 0 ) {
+					wfDebug( __METHOD__ . ": recognized file as video/webm\n" );
+					return "video/webm";
+				}
+			}
+			wfDebug( __METHOD__ . ": unknown EBML file\n" );
+			return "unknown/unknown";
 		}
 
 		/*
