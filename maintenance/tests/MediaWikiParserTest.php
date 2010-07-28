@@ -1,5 +1,9 @@
 <?php
 
+if ( !defined( 'MEDIAWIKI' ) ) {
+	exit;
+}
+
 global $IP;
 define( "NO_COMMAND_LINE", 1 );
 define( "PARSER_TESTS", "$IP/maintenance/parserTests.txt" );

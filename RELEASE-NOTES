@@ -64,9 +64,12 @@ further.
 * (bug xxxxx) Fixed Cache-Control headers sent from API modules, to protect
   user privacy in the case where an attacker can access the wiki through the
   same HTTP proxy as a logged-in user.
-* Fixed XSS in profileinfo.php for users with $wgEnableProfileInfo = true;
+* Fixed an XSS vulnerability in profileinfo.php for installations with 
+  $wgEnableProfileInfo = true (false by default)
 * Fixed a case where an X-Vary-Options header was sent despite $wgUseXVO being
   false. Fixed a minor header parsing issue when $wgUseXVO = true.
+* Fixed a register_globals arbitrary inclusion vulnerability in 
+  MediaWikiParserTest.php, introduced in 1.16 beta 1.
 
 == Changes since 1.16 beta 2 ==
 
