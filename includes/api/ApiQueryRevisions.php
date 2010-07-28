@@ -204,7 +204,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$limit = $params['limit'];
 		if ( $limit == 'max' ) {
 			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$this->getResult()->addValue( 'limits', $this->getModuleName(), $limit );
+			$this->getResult()->setParsedLimit( $this->getModuleName(), $limit );
 		}
 
 		if ( $enumRevMode ) {
