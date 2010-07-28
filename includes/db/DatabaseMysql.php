@@ -112,6 +112,8 @@ class DatabaseMysql extends DatabaseBase {
 				global $wgDBmysql5;
 				if( $wgDBmysql5 ) {
 					$this->query( 'SET NAMES utf8', __METHOD__ );
+				} else {
+					$this->query( 'SET NAMES binary', __METHOD__ );
 				}
 				// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 				global $wgSQLMode;
