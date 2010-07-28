@@ -268,7 +268,7 @@ $messages = array(
 'showtoc'                 => 'diskwedhes',
 'hidetoc'                 => 'kudha',
 'viewdeleted'             => 'Gweles $1?',
-'red-link-title'          => '$1 (nag eus folen henwys yndelma na hwath)',
+'red-link-title'          => '$1 (nyns eus folen henwys yndelma na hwath)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Erthygel',

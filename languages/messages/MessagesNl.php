@@ -2325,7 +2325,7 @@ Zie het $2 voor een overzicht van recente verwijderingen.',
 'dellogpagetext'         => "Hieronder is een lijst van recent verwijderde pagina's en bestanden weergegeven.",
 'deletionlog'            => 'verwijderingslogboek',
 'reverted'               => 'Eerdere versie hersteld',
-'deletecomment'          => 'Reason:',
+'deletecomment'          => 'Reden:',
 'deleteotherreason'      => 'Andere reden:',
 'deletereasonotherlist'  => 'Andere reden',
 'deletereason-dropdown'  => '*Veel voorkomende verwijderredenen

@@ -2247,9 +2247,9 @@ Contacto e assistência:
 # Delete
 'deletepage'             => 'Eliminar página',
 'confirm'                => 'Confirmar',
-'excontent'              => "o conteúdo era: '$1'",
-'excontentauthor'        => "o conteúdo era: '$1' (e o único editor era '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'          => "o conteúdo antes de esvaziar era: '$1'",
+'excontent'              => 'o conteúdo era: "$1"',
+'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[Special:Contributions/$2|$2]]")',
+'exbeforeblank'          => 'o conteúdo antes de esvaziar era: "$1"',
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',
 'delete-legend'          => 'Eliminar',

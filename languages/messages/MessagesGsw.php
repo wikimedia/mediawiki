@@ -760,7 +760,7 @@ We du «Syte spychere» drücksch, de wird '''nume''' der Inhalt vom obere Teksc
 'editingold'                       => "'''Obacht: Du bisch en alti Version vo däm Artikel am Bearbeite.
 Alli nöiere Versione wärden überschribe, we du uf «Syte spychere» drücksch.'''",
 'yourdiff'                         => 'Unterschid',
-'copyrightwarning'                 => "'''Bitte kopier kener Internetsyte, wo nid dyner eigete sy, bruuch kener urhäberrächtlech gschützte Wärch ohni Erloubnis vor Copyright-Inhaberschaft!'''<br />
+'copyrightwarning'                 => "'''Bitte <big>kopier kener Internetsyte</big>, wo nid dyner eigete sy, bruuch <big>kener urhäberrächtlech gschützte Wärch</big> ohni Erloubnis vor Copyright-Inhaberschaft!'''<br />
 Hiemit gisch du zue, das du dä Tekscht '''sälber gschribe''' hesch, das der Tekscht Allgmeinguet ('''public domain''') isch, oder das der '''Copyright-Inhaberschaft''' iri '''Zuestimmig''' het 'gä. Falls dä Tekscht scho nöumen anders isch veröffentlecht worde, de schryb das bitte uf d Diskussionssyte.
 <i>Bis dir bewusst, dass alli {{SITENAME}}-Byträg outomatisch under der „$2“ stöh (für Details vgl. $1). We du nid wosch, das anderi dy Bytrag chöu veränderen u wyterverbreite, de drück nid uf „Syte spychere“.</i>",
 'copyrightwarning2'                => "Dängge Si dra, dass alli Änderige {{GRAMMAR:dativ {{SITENAME}}}} vo andere Benutzer wider gänderet oder glöscht chönne wärde. Wenn Si nit wänn, dass ander Lüt an Ihrem Tekscht ummedoktere denn schicke Si ihn jetz nit ab.<br />
@@ -1209,6 +1209,8 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'prefs-advancedsearchoptions'   => 'Erwytereti Optione',
 'prefs-advancedwatchlist'       => 'Erwytereti Optione',
 'prefs-displayrc'               => 'Aazeigoptione',
+'prefs-displaysearchoptions'    => 'Aazeigoptione',
+'prefs-displaywatchlist'        => 'Aazeigoptione',
 'prefs-diffs'                   => 'Versionsverglych',
 
 # User rights
@@ -2393,6 +2395,7 @@ D Syte „[[:$1]]“ gits scho. Wottsch du si lösche, zume Platz zum verschiebe
 'immobile-source-page'         => 'Die Syte cha nüt verschobe werde.',
 'immobile-target-page'         => 'Uf die Ziilsyte cha nüt verschobe werde.',
 'imagenocrossnamespace'        => 'Dateie chönne nüt ussem {{ns:file}}-Namensruum use verschobe werde',
+'nonfile-cannot-move-to-file'  => 'Nit-Dateie chenne nit in dr Datei-Namensruum verschobe wäre',
 'imagetypemismatch'            => 'D nöii Dateierwiiterig passt nüt zu sym Typ',
 'imageinvalidfilename'         => 'De Name vo dr Ziildatei isch ungültig',
 'fix-double-redirects'         => 'Alli Wyterleitige, wo uf de alte Titel zeige, aktualisiere',
