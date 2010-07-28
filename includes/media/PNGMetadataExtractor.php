@@ -1,7 +1,7 @@
 <?php
 /**
   * PNG frame counter.
-  * Based on 
+  * Slightly derived from GIFMetadataExtractor.php
   * Deliberately not using MWExceptions to avoid external dependencies, encouraging
   * redistribution.
   */
@@ -19,41 +19,41 @@ class PNGMetadataExtractor {
 		$duration = 0.0;
 
 		if (!$filename)
-			throw new Exception( __METHOD__ . "No file name specified" );
+			throw new Exception( __METHOD__ . ": No file name specified" );
 		elseif ( !file_exists($filename) || is_dir($filename) )
-			throw new Exception( __METHOD__ . "File $filename does not exist" );
+			throw new Exception( __METHOD__ . ": File $filename does not exist" );
 		
 		$fh = fopen( $filename, 'r' );
 		
 		if (!$fh)
-			throw new Exception( __METHOD__ . "Unable to open file $filename" );
+			throw new Exception( __METHOD__ . ": Unable to open file $filename" );
 		
 		// Check for the PNG header
 		$buf = fread( $fh, 8 );
 		if ( !($buf == self::$png_sig) ) {
-			throw new Exception( __METHOD__ . "Not a valid PNG file; header: $buf" );
+			throw new Exception( __METHOD__ . ": Not a valid PNG file; header: $buf" );
 		}
 
 		// Read chunks
 		while( !feof( $fh ) ) {
 			$buf = fread( $fh, 4 );
-			if( !$buf ) { throw new Exception( __METHOD__ . "Read error" ); return; }
+			if( !$buf ) { throw new Exception( __METHOD__ . ": Read error" ); return; }
 			$chunk_size = unpack( "N", $buf);
 			$chunk_size = $chunk_size[1];
 
 			$chunk_type = fread( $fh, 4 );
-			if( !$chunk_type ) { throw new Exception( __METHOD__ . "Read error" ); return; }
+			if( !$chunk_type ) { throw new Exception( __METHOD__ . ": Read error" ); return; }
 
 			if ( $chunk_type == "acTL" ) {
 				$buf = fread( $fh, $chunk_size );
-				if( !$buf ) { throw new Exception( __METHOD__ . "Read error" ); return; }
+				if( !$buf ) { throw new Exception( __METHOD__ . ": Read error" ); return; }
 
 				$actl = unpack( "Nframes/Nplays", $buf );
 				$frameCount = $actl['frames'];
 				$loopCount = $actl['plays'];
 			} elseif ( $chunk_type == "fcTL" ) {
 				$buf = fread( $fh, $chunk_size );
-				if( !$buf ) { throw new Exception( __METHOD__ . "Read error" ); return; }
+				if( !$buf ) { throw new Exception( __METHOD__ . ": Read error" ); return; }
 				$buf = substr( $buf, 20 );	
 
 				$fctldur = unpack( "ndelay_num/ndelay_den", $buf );
