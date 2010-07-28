@@ -18,6 +18,7 @@
  * @author Mvrban
  * @author Roberta F.
  * @author SpeedyGonsales
+ * @author Tivek
  * @author Treecko
  * @author לערי ריינהארט
  */
@@ -1145,8 +1146,14 @@ Provjerite evidencije.',
 Vidi [[Special:IPBlockList|Popis blokiranih IP adresa]] za popis trenutačno aktivnih blokiranih adresa.',
 
 # Revision move
-'revmove-reasonfield'    => 'Razlog:',
-'revmove-nullmove-title' => 'Loš naslov',
+'moverevlogentry'              => 'premjestio {{PLURAL:$3|jednu inačicu|$3 inačice}} iz $1 u $2',
+'revisionmove'                 => 'Premjesti inačice iz "$1"',
+'revmove-legend'               => 'Postavi odredišnu stranicu i sažetak',
+'revmove-submit'               => 'Premjesti inačice u odabranu stranicu',
+'revisionmoveselectedversions' => 'Premjesti odabrane inačice',
+'revmove-reasonfield'          => 'Razlog:',
+'revmove-badparam'             => 'Vaš zahtjev sadrži nedopuštene parametre, ili nedovoljan broj parametara. Vratite se na prethodnu stranicu i pokušajte ponovo.',
+'revmove-nullmove-title'       => 'Loš naslov',
 
 # History merging
 'mergehistory'                     => 'Spoji povijesti starih izmjena stranice',
@@ -1364,6 +1371,8 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'prefs-advancedsearchoptions'   => 'Napredne opcije',
 'prefs-advancedwatchlist'       => 'Napredne opcije',
 'prefs-displayrc'               => 'Prikaži opcije',
+'prefs-displaysearchoptions'    => 'Opcije prikaza',
+'prefs-displaywatchlist'        => 'Opcije prikaza',
 'prefs-diffs'                   => 'razl',
 
 # User rights
@@ -1474,6 +1483,7 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 'right-revisionmove'          => 'Premjesti izmjene',
+'right-selenium'              => 'Pokreni testove Selenium',
 
 # User rights log
 'rightslog'      => 'Evidencija suradničkih prava',
@@ -1607,7 +1617,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'badfilename'                 => 'Ime slike automatski je promijenjeno u "$1".',
 'filetype-mime-mismatch'      => 'Proširenje datoteke ne odgovara MIME tipu.',
 'filetype-badmime'            => 'Datoteke MIME tipa "$1" ne mogu se snimati.',
-'filetype-bad-ie-mime'        => 'Nemogu postaviti ovu datoteku zato što ju Internet Explorer prepoznaje kao "$1", koji nije dopušten i potencijalno je opasan tip datoteke.',
+'filetype-bad-ie-mime'        => 'Ne mogu postaviti ovu datoteku jer je Internet Explorer prepoznaje kao "$1", koji nije dopušten i potencijalno je opasan tip datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je neželjena vrsta datoteke. {{PLURAL:\$3|Preporučena vrsta je|Preporučene vrste su}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' je nedopuštena vrsta datoteke. {{PLURAL:\$3|Dopuštena vrsta je|Dopuštene vrste su}} \$2.",
 'filetype-missing'            => 'Datoteka nema nastavak koji određuje tip (poput ".jpg").',
@@ -2346,6 +2356,7 @@ $1',
 Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 'sp-contributions-search'              => 'Pretraži doprinose',
 'sp-contributions-username'            => 'IP adresa ili suradnik:',
+'sp-contributions-toponly'             => 'Prikaži samo najnovije izmjene',
 'sp-contributions-submit'              => 'Traži',
 
 # What links here
@@ -2566,11 +2577,12 @@ Odredišni članak "[[:$1]]" već postoji. Želite li ga obrisati da biste napra
 'delete_and_move_reason'       => 'Obrisano kako bi se napravilo mjesta za premještaj.',
 'selfmove'                     => 'Izvorni i odredišni naslov su isti; ne mogu premjestiti stranicu na nju samu.',
 'immobile-source-namespace'    => 'Ne mogu premjestiti stranice u imenski prostor "$1"',
-'immobile-target-namespace'    => 'Nemogu premjestiti stranice u imenski prostor "$1"',
+'immobile-target-namespace'    => 'Ne mogu premjestiti stranice u imenski prostor "$1"',
 'immobile-target-namespace-iw' => 'Međuwiki poveznica nije valjano odredište za premještanje stranice.',
 'immobile-source-page'         => 'Ova stranica je se ne može premjestiti.',
-'immobile-target-page'         => 'Nemogu premjestiti na željeni naslov.',
+'immobile-target-page'         => 'Ne mogu premjestiti na željeni naslov.',
 'imagenocrossnamespace'        => 'Datoteka ne može biti premještena u imenski prostor koji nije za datoteke',
+'nonfile-cannot-move-to-file'  => 'Ne mogu premjestiti nešto što nije datoteka u imenski prostor za datoteke',
 'imagetypemismatch'            => 'Ekstenzija nove datoteke se ne poklapa sa svojim tipom.',
 'imageinvalidfilename'         => 'Ciljano ime datoteke je nevaljano',
 'fix-double-redirects'         => 'Ažuriraj sva preusmjeravanja koja vode na originalni naslov',
@@ -2648,6 +2660,7 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'importstart'                => 'Uvozim stranice...',
 'import-revision-count'      => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 'importnopages'              => 'Nema stranica za uvoz.',
+'imported-log-entries'       => '{{PLURAL:$1|Uvezen $1 unos u evidenciju|Uvezena $1 unosa u evidenciju|Uvezeno $1 unosa u evidenciju}}.',
 'importfailed'               => 'Uvoz nije uspio: $1',
 'importunknownsource'        => 'Nepoznat tip stranica za uvoz',
 'importcantopen'             => 'Ne mogu otvoriti datoteku za uvoz',
@@ -2666,7 +2679,7 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'xml-error-string'           => '$1 u retku $2, stupac $3 (bajt $4): $5',
 'import-upload'              => 'Postavljanje XML datoteka',
 'import-token-mismatch'      => 'Izgubljeni su podaci o sesiji. Molimo pokušajte ponovno.',
-'import-invalid-interwiki'   => 'Nemogu uvesti iz navedene wiki.',
+'import-invalid-interwiki'   => 'Ne mogu uvesti iz navedene wiki.',
 
 # Import log
 'importlogpage'                    => 'Evidencija uvoza članaka',

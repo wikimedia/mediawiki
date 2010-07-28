@@ -2151,7 +2151,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'defemailsubject'      => 'Courriel de {{SITENAME}}',
 'usermaildisabled'     => "L'envoi de courriels entre utilisateurs est désactivé",
 'usermaildisabledtext' => "Vous ne pouvez pas envoyer de courriels à d'autres utilisateurs sur ce wiki",
-'noemailtitle'         => 'Destinataire sans adresse de courriel',
+'noemailtitle'         => 'Aucune adresse électronique',
 'noemailtext'          => 'Cet utilisateur n’a pas spécifié une adresse de courriel valide.',
 'nowikiemailtitle'     => 'Pas de courriel autorisé',
 'nowikiemailtext'      => 'Cet utilisateur a choisi de ne pas recevoir de courriel de la part d’autre utilisateurs.',

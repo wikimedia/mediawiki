@@ -1355,6 +1355,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'prefs-advancedsearchoptions'   => 'Lisäasetukset',
 'prefs-advancedwatchlist'       => 'Lisäasetukset',
 'prefs-displayrc'               => 'Perusasetukset',
+'prefs-displaysearchoptions'    => 'Näyttö asetukset',
 'prefs-diffs'                   => 'Erot',
 
 # User rights

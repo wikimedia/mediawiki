@@ -554,7 +554,7 @@ Tū mazzi kōntaktitwei si sen $1 anga kittan [[{{MediaWiki:Grouppage-sysop}}|pe
 Tū ni mazzi tērpautun "tenginnais e-mailin tērpautaju" mazīngiskwan, ik tikrōmiska e-mail adressi ni ast padātan en twajāmans [[Special:Preferences|rekkenas pirminiskwans]] anga ik šī mazīngisku ast blōkitan.
 Twajā bigānta IP adressi ast $3 be blōkisenes ID nummeri ast #$5.
 Madli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin.',
-'autoblockedtext'                  => '\'\'Twajā tērpautajas pabilisnā anga IP adressi pastāi blōkitan.\'\'\'
+'autoblockedtext'                  => '<big>\'\'Twajā tērpautajas pabilisnā anga IP adressi pastāi blōkitan.\'\'\'</big>
 
 Blōkisenis pastāi segītan pra $1.
 Brewīnsli ast \'\'$2\'\'.

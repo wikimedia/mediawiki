@@ -1808,8 +1808,7 @@ Următoarea listă arată {{PLURAL:$1|prima legătură|primele $1 legături}} c�
 O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'nolinkstoimage'            => 'Nici o pagină nu utilizează această imagine.',
 'morelinkstoimage'          => 'Vedeți [[Special:WhatLinksHere/$1|mai multe legături]] către acest fișier.',
-'redirectstofile'           => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:
-{{PLURAL:$1|Fișierul următor|Următoarele $1 fișiere}} redirectează la acest fișier:',
+'redirectstofile'           => '{{PLURAL:$1|Următorul fișier|Următoarele $1 fișiere}} redirecționează către acest fișier:',
 'duplicatesoffile'          => '{{PLURAL:$1|Fișierul următor este duplicat|Următoarele $1 fișiere sunt duplicate}} ale acestui fișier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):',
 'sharedupload'              => 'Acest fișier provine de la $1 și poate fi folosit și de alte proiecte.',
 'sharedupload-desc-there'   => 'Fișierul acesta este de la $1 și poate fi folosit de alte proiecte.

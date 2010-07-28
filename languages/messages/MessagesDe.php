@@ -981,7 +981,7 @@ Bitte füge deine Änderungen in das obere Textfeld ein.
 'yourtext'                         => 'Dein Text',
 'storedversion'                    => 'Gespeicherte Version',
 'nonunicodebrowser'                => "'''Achtung:''' Dein Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwende einen anderen Browser um Seiten zu bearbeiten.",
-'editingold'                       => "'''ACHTUNG: Du bearbeitest eine alte Version dieser Seite. Wenn du speicherst, werden alle neueren Versionen überschrieben.'''",
+'editingold'                       => "'''Achtung: Du bearbeitest eine alte Version dieser Seite. Wenn du speicherst, werden alle neueren Versionen überschrieben.'''",
 'yourdiff'                         => 'Unterschiede',
 'copyrightwarning'                 => "'''Bitte kopiere keine Webseiten, die nicht deine eigenen sind, benutze keine urheberrechtlich geschützten Werke ohne Erlaubnis des Urhebers!'''<br />
 Du gibst uns hiermit deine Zusage, dass du den Text '''selbst verfasst''' hast, dass der Text Allgemeingut '''(public domain)''' ist, oder dass der '''Urheber''' seine '''Zustimmung''' gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weise bitte auf der Diskussionsseite darauf hin.
@@ -994,14 +994,14 @@ Du bestätigst hiermit auch, dass du diese Texte selbst geschrieben hast oder di
 'longpagewarning'                  => "'''WARNUNG: Diese Seite ist $1 KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32 KB sind.
 Überlege bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.'''",
 'longpageerror'                    => "'''FEHLER: Der Text, den du zu speichern versuchst, ist $1 KB groß. Das ist größer als das erlaubte Maximum von $2 KB – Speicherung nicht möglich.'''",
-'readonlywarning'                  => "'''ACHTUNG: Die Datenbank wurde für Wartungsarbeiten gesperrt, so dass deine Änderungen derzeit nicht gespeichert werden können.
+'readonlywarning'                  => "'''Achtung: Die Datenbank wurde für Wartungsarbeiten gesperrt, so dass deine Änderungen derzeit nicht gespeichert werden können.
 Sichere den Text bitte lokal auf deinem Computer und versuche zu einem späteren Zeitpunkt, die Änderungen zu übertragen.'''
 
 Grund für die Sperre: $1",
-'protectedpagewarning'             => "'''ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.''' Zur Information folgt der aktuelle Logbucheintrag:",
+'protectedpagewarning'             => "'''Achtung: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.''' Zur Information folgt der aktuelle Logbucheintrag:",
 'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können. Zur Information folgt der aktuelle Logbucheintrag:",
-'cascadeprotectedwarning'          => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:'''",
-'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] können die Seite erstellen.''' Zur Information folgt der aktuelle Logbucheintrag:",
+'cascadeprotectedwarning'          => "'''Achtung:''' Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:",
+'titleprotectedwarning'            => "'''Achtung: Die Seitenerstellung wurde gesperrt. Nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] können die Seite erstellen.''' Zur Information folgt der aktuelle Logbucheintrag:",
 'templatesused'                    => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seite verwendet:',
 'templatesusedpreview'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seitenvorschau verwendet:',
 'templatesusedsection'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von diesem Abschnitt verwendet:',

@@ -1324,6 +1324,8 @@ $1",
 'prefs-advancedsearchoptions'   => '詳細設定',
 'prefs-advancedwatchlist'       => '詳細設定',
 'prefs-displayrc'               => '表示の設定',
+'prefs-displaysearchoptions'    => '表示の設定',
+'prefs-displaywatchlist'        => '表示の設定',
 'prefs-diffs'                   => '差分',
 
 # User rights
@@ -2489,6 +2491,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'immobile-source-page'         => 'このページを移動させることはできません。',
 'immobile-target-page'         => '目的のページ名へは移動させることができません。',
 'imagenocrossnamespace'        => 'ファイル用の名前空間以外にはファイルを移動することはできません。',
+'nonfile-cannot-move-to-file'  => 'ファイルでないものを、ファイル名前空間に移動することはできません',
 'imagetypemismatch'            => '新しいファイルの拡張子がファイルのタイプと一致していません。',
 'imageinvalidfilename'         => '指定したファイル名が無効です',
 'fix-double-redirects'         => 'このページへのリダイレクトがあればそのリダイレクトを修正する',

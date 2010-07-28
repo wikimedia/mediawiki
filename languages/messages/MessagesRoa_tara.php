@@ -919,6 +919,9 @@ Pe piacere condrolle l'archivije.",
 'suppressionlogtext' => "Sotte stè 'na liste de scangellaminde e blocche sus a le condenute scunnute da l'amministrature.
 Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
 
+# Revision move
+'revmove-reasonfield' => 'Mutive:',
+
 # History merging
 'mergehistory'                     => "Scuagghie 'a storie de le pàggene",
 'mergehistory-header'              => "Sta pàgene te face squagghia le revisiune d'a storie de 'na pàgena sorgende jndr'à 'na pàgena nove.
@@ -1142,6 +1145,8 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'prefs-advancedsearchoptions'   => 'Opzione avanzate',
 'prefs-advancedwatchlist'       => 'Opzione avanzate',
 'prefs-displayrc'               => "Fà vedè l'opzione",
+'prefs-displaysearchoptions'    => "Fà vedè l'opzione",
+'prefs-displaywatchlist'        => "Fà vedè l'opzione",
 'prefs-diffs'                   => 'Diff',
 
 # User rights
@@ -1252,6 +1257,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-reset-passwords'       => "Azzere l'otre password de l'utinde",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
+'right-revisionmove'          => 'Spuèste le revisiune',
 
 # User rights log
 'rightslog'      => "Archivie de le diritte de l'utende",
@@ -1449,6 +1455,7 @@ Tu avissa considerà ce è  proprie utile carecà stu file.
 L'archivije de le scangellaminde pe stu file 'u iacchije aqquà pe convenienze:",
 'filename-bad-prefix'         => "'U nome d'u file ca tu ste careche accumenze pe '''\"\$1\"''', ca normalmende jè 'u nome ca assegne a machena fotografeche e non 'nu nome descrittive d'u file ca vuè ccu careche.
 Pe piacere scacchie 'n'otre nome ca jè cchiù descrittive.",
+'upload-failure-subj'         => 'Careche le probbleme',
 
 'upload-proto-error'        => 'Protocolle scorrette',
 'upload-proto-error-text'   => "Le carecaminde remote onne abbesogne de le URL ca accumenzene cu 'a parole <code>http://</code> o <code>ftp://</code>.",
@@ -3190,6 +3197,13 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'tags-hitcount-header'    => 'Cangiaminde taggate',
 'tags-edit'               => 'cange',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
+
+# Special:ComparePages
+'compare-page1'  => 'Pàgene 1',
+'compare-page2'  => 'Pàgene 2',
+'compare-rev1'   => 'Revisione 1',
+'compare-rev2'   => 'Revisione 2',
+'compare-submit' => 'Combronde',
 
 # Database error messages
 'dberr-header'      => "Sta Uicchi tène 'nu probbleme",
