@@ -45,58 +45,14 @@ class ApiUpload extends ApiBase {
 			$this->dieUsageMsg( array( 'uploaddisabled' ) );
 		}
 
+		// Parameter handling
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
-
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 
-		// One and only one of the following parameters is needed
-		$this->requireOnlyOneParameter( $this->mParams,
-			'sessionkey', 'file', 'url' );
-		// And this one is needed
-		if ( !isset( $this->mParams['filename'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
-		}
-
-		if ( $this->mParams['sessionkey'] ) {
-			// Upload stashed in a previous request
-			$sessionData = $request->getSessionData( UploadBase::SESSION_KEYNAME );
-			if ( !UploadFromStash::isValidSessionKey( $this->mParams['sessionkey'], $sessionData ) ) {
-				$this->dieUsageMsg( array( 'invalid-session-key' ) );
-			}
-
-			$this->mUpload = new UploadFromStash();
-			$this->mUpload->initialize( $this->mParams['filename'],
-				$this->mParams['sessionkey'],
-				$sessionData[$this->mParams['sessionkey']] );
-			
-			
-		} elseif ( isset( $this->mParams['file'] ) ) {
-			$this->mUpload = new UploadFromFile();
-			$this->mUpload->initialize(
-				$this->mParams['filename'],
-				$request->getUpload( 'file' )
-			);	
-		} elseif ( isset( $this->mParams['url'] ) ) {
-			// Make sure upload by URL is enabled:
-			if ( !UploadFromUrl::isEnabled() ) {
-				$this->dieUsageMsg( array( 'copyuploaddisabled' ) );
-			}
-			
-			$async = false;
-			if ( $this->mParams['asyncdownload'] ) {
-				if ( $this->mParams['leavemessage'] ) {
-					$async = 'async-leavemessage';
-				} else {
-					$async = 'async';
-				}
-			}
-			$this->mUpload = new UploadFromUrl;
-			$this->mUpload->initialize( $this->mParams['filename'],
-				$this->mParams['url'], $async );
-
-		}
+		// Select an upload module
+		$this->selectUploadModule();
 		if ( !isset( $this->mUpload ) ) {
 			$this->dieUsage( 'No upload module set', 'nomodule' );
 		}
@@ -134,6 +90,60 @@ class ApiUpload extends ApiBase {
 		// Cleanup any temporary mess
 		$this->mUpload->cleanupTempFile();
 	}
+	
+	/**
+	 * Select an upload module and set it to mUpload. Dies on failure.
+	 */
+	protected function selectUploadModule() {
+		$request = $this->getMain()->getRequest();
+		
+		// One and only one of the following parameters is needed
+		$this->requireOnlyOneParameter( $this->mParams,
+			'sessionkey', 'file', 'url' );
+		// And this one is needed
+		if ( !isset( $this->mParams['filename'] ) ) {
+			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
+		}
+
+		if ( $this->mParams['sessionkey'] ) {
+			// Upload stashed in a previous request
+			$sessionData = $request->getSessionData( UploadBase::getSessionKeyName() );
+			if ( !UploadFromStash::isValidSessionKey( $this->mParams['sessionkey'], $sessionData ) ) {
+				$this->dieUsageMsg( array( 'invalid-session-key' ) );
+			}
+
+			$this->mUpload = new UploadFromStash();
+			$this->mUpload->initialize( $this->mParams['filename'],
+				$this->mParams['sessionkey'],
+				$sessionData[$this->mParams['sessionkey']] );
+			
+			
+		} elseif ( isset( $this->mParams['file'] ) ) {
+			$this->mUpload = new UploadFromFile();
+			$this->mUpload->initialize(
+				$this->mParams['filename'],
+				$request->getUpload( 'file' )
+			);	
+		} elseif ( isset( $this->mParams['url'] ) ) {
+			// Make sure upload by URL is enabled:
+			if ( !UploadFromUrl::isEnabled() ) {
+				$this->dieUsageMsg( array( 'copyuploaddisabled' ) );
+			}
+			
+			$async = false;
+			if ( $this->mParams['asyncdownload'] ) {
+				if ( $this->mParams['leavemessage'] ) {
+					$async = 'async-leavemessage';
+				} else {
+					$async = 'async';
+				}
+			}
+			$this->mUpload = new UploadFromUrl;
+			$this->mUpload->initialize( $this->mParams['filename'],
+				$this->mParams['url'], $async );
+
+		}
+	}
 
 	/**
 	 * Checks that the user has permissions to perform this upload.
@@ -156,22 +166,12 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Performs file verification, dies on error.
 	 */
-	public function verifyUpload( ) {
+	protected function verifyUpload( ) {
 		$verification = $this->mUpload->verifyUpload( );
 		if ( $verification['status'] === UploadBase::OK ) {
-			return $verification;
+			return;		
 		}
 
-		$this->getVerificationError( $verification );
-	}
-
-	/**
-	 * Produce the usage error
-	 *
-	 * @param $verification array an associative array with the status
-	 * key
-	 */
-	public function getVerificationError( $verification ) {
 		// TODO: Move them to ApiBase's message map
 		switch( $verification['status'] ) {
 			case UploadBase::EMPTY_FILE:
@@ -217,6 +217,10 @@ class ApiUpload extends ApiBase {
 		}
 	}
 
+	/**
+	 * Check warnings if ignorewarnings is not set. 
+	 * Returns a suitable result array if there were warnings
+	 */
 	protected function checkForWarnings() {
 		$result = array();
 
@@ -256,6 +260,10 @@ class ApiUpload extends ApiBase {
 		return;
 	}
 
+	/**
+	 * Perform the actual upload. Returns a suitable result array on success;
+	 * dies on failure.
+	 */
 	protected function performUpload() {
 		global $wgUser;
 		
@@ -278,7 +286,7 @@ class ApiUpload extends ApiBase {
 
 		if ( !$status->isGood() ) {
 			$error = $status->getErrorsArray();
-			$this->getResult()->setIndexedTagName( $result['details'], 'error' );
+			$this->getResult()->setIndexedTagName( $error, 'error' );
 
 			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 		}
