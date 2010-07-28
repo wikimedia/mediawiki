@@ -296,6 +296,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed "link" parameter in image links with "thumb" parameter.
 * (bug 23936) Add "displaytitle" to query/info API
 * (bug 24485) Make iwbacklinks a generator, optionally display iwprefix and iwtitle
+* (bug 24564) Fix fatal errors when using list=deletedrevs, prop=revisions or 
+  one of the backlinks generators with limit=max.
 
 === Languages updated in 1.17 ===
 
