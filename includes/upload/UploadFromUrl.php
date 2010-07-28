@@ -17,7 +17,7 @@ class UploadFromUrl extends UploadBase {
 	 * user is allowed, pass on permissions checking to the parent.
 	 */
 	public static function isAllowed( $user ) {
-		if( !$user->isAllowed( 'upload_by_url' ) )
+		if ( !$user->isAllowed( 'upload_by_url' ) )
 			return 'upload_by_url';
 		return parent::isAllowed( $user );
 	}
@@ -35,28 +35,27 @@ class UploadFromUrl extends UploadBase {
 	 * Entry point for API upload
 	 * @return bool true on success
 	 */
-	public function initialize( $name, $url, $comment, $watchList = null, $ignoreWarn = null, $async = 'async') {
+	public function initialize( $name, $url, $comment, $watchList = null, $ignoreWarn = null, $async = 'async' ) {
 		global $wgUser;
 
-		if( !Http::isValidURI( $url ) ) {
+		if ( !Http::isValidURI( $url ) ) {
 			return Status::newFatal( 'http-invalid-url' );
 		}
 		$params = array(
-			"userName" => $wgUser->getName(),
-			"userID" => $wgUser->getID(),
-			"url" => trim( $url ),
-			"timestamp" => wfTimestampNow(),
-			"comment" => $comment,
-			"watchlist" => $watchList,
-			"ignorewarnings" => $ignoreWarn);
+			'userName' => $wgUser->getName(),
+			'userID' => $wgUser->getID(),
+			'url' => trim( $url ),
+			'timestamp' => wfTimestampNow(),
+			'comment' => $comment,
+			'watchlist' => $watchList,
+			'ignorewarnings' => $ignoreWarn );
 
 		$title = Title::newFromText( $name );
 
 		if ( $async == 'async' ) {
 			$job = new UploadFromUrlJob( $title, $params );
 			return $job->insert();
-		}
-		else {
+		} else {
 			$this->mUrl = trim( $url );
 			$this->comment = $comment;
 			$this->watchList = $watchList;
@@ -90,7 +89,7 @@ class UploadFromUrl extends UploadBase {
 	 */
 	public function initializeFromRequest( &$request ) {
 		$desiredDestName = $request->getText( 'wpDestFile' );
-		if( !$desiredDestName )
+		if ( !$desiredDestName )
 			$desiredDestName = $request->getText( 'wpUploadFileURL' );
 		return $this->initialize(
 			$desiredDestName,
@@ -105,7 +104,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * @param $request Object: WebRequest object
 	 */
-	public static function isValidRequest( $request ){
+	public static function isValidRequest( $request ) {
 		global $wgUser;
 
 		$url = $request->getVal( 'wpUploadFileURL' );
@@ -130,10 +129,10 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	public function retrieveFileFromUrl() {
-		$req = HttpRequest::factory($this->mUrl);
+		$req = HttpRequest::factory( $this->mUrl );
 		$status = $req->execute();
 
-		if( !$status->isOk() ) {
+		if ( !$status->isOk() ) {
 			return $status;
 		}
 
@@ -154,7 +153,7 @@ class UploadFromUrl extends UploadBase {
 		if ( $status->isGood() ) {
 
 			$v = $this->verifyUpload();
-			if( $v['status'] !== UploadBase::OK ) {
+			if ( $v['status'] !== UploadBase::OK ) {
 				return $this->convertVerifyErrorToStatus( $v['status'], $v['details'] );
 			}
 
