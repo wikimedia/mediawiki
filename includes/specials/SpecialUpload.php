@@ -422,10 +422,6 @@ class SpecialUpload extends SpecialPage {
 			return;
 		}
 
-		if( $this->mUpload instanceOf UploadFromUrl ) {
-			return $this->showUploadError( wfMsg( 'uploadfromurl-queued' ) );
-		}
-
 		// Fetch the file if required
 		$status = $this->mUpload->fetchFile();
 		if( !$status->isOK() ) {

@@ -606,14 +606,16 @@ abstract class UploadBase {
 	 *
 	 * @return Integer: session key
 	 */
-	public function stashSession() {
+	public function stashSession( $key = null ) {
 		$status = $this->saveTempUploadedFile( $this->mDestName, $this->mTempPath );
 		if( !$status->isOK() ) {
 			# Couldn't save the file.
 			return false;
 		}
 
-		$key = $this->getSessionKey();
+		if ( is_null( $key ) ) {
+			$key = $this->getSessionKey();
+		}
 		$_SESSION[self::SESSION_KEYNAME][$key] = array(
 			'mTempPath'       => $status->value,
 			'mFileSize'       => $this->mFileSize,
