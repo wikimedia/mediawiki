@@ -29,8 +29,8 @@ class AllTrans extends Maintenance {
 	}
 
 	public function execute() {
-		$wgEnglishMessages = array_keys( Language::getMessagesFor( 'en' ) );
-		foreach ( $wgEnglishMessages as $key ) {
+		$englishMessages = array_keys( Language::getMessagesFor( 'en' ) );
+		foreach ( $englishMessages as $key ) {
 			$this->output( "$key\n" );
 		}
 	}
