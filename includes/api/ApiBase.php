@@ -57,6 +57,7 @@ abstract class ApiBase {
 	const LIMIT_SML2 = 500; // Slow query, bot/sysop limit
 
 	private $mMainModule, $mModuleName, $mModulePrefix;
+	private $mParamCache = array();
 
 	/**
 	 * Constructor
@@ -479,16 +480,20 @@ abstract class ApiBase {
 	 * @return array
 	 */
 	public function extractRequestParams( $parseLimit = true ) {
-		$params = $this->getFinalParams();
-		$results = array();
+		// Cache parameters, for performance and to avoid bug 24564.
+		if ( !isset( $this->mParamCache[$parseLimit] ) ) {
+			$params = $this->getFinalParams();
+			$results = array();
 
-		if ( $params ) { // getFinalParams() can return false
-			foreach ( $params as $paramName => $paramSettings ) {
-				$results[$paramName] = $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
+			if ( $params ) { // getFinalParams() can return false
+				foreach ( $params as $paramName => $paramSettings ) {
+					$results[$paramName] = $this->getParameterFromSettings( 
+						$paramName, $paramSettings, $parseLimit );
+				}
 			}
+			$this->mParamCache[$parseLimit] = $results;
 		}
-
-		return $results;
+		return $this->mParamCache[$parseLimit];
 	}
 
 	/**
