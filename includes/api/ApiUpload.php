@@ -59,7 +59,6 @@ class ApiUpload extends ApiBase {
 			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
 		}
 
-
 		if ( $this->mParams['sessionkey'] ) {
 			// Upload stashed in a previous request
 			$sessionData = $request->getSessionData( UploadBase::SESSION_KEYNAME );
@@ -81,52 +80,59 @@ class ApiUpload extends ApiBase {
 			);	
 		} elseif ( isset( $this->mParams['url'] ) ) {
 			// Make sure upload by URL is enabled:
-			if ( !$wgAllowCopyUploads ) {
+			if ( !UploadFromUrl::isEnabled() ) {
 				$this->dieUsageMsg( array( 'copyuploaddisabled' ) );
 			}
-
+			
+			$async = false;
+			if ( $this->mParams['asyncdownload'] ) {
+				if ( $this->mParams['leavemessage'] ) {
+					$async = 'async-leavemessage';
+				} else {
+					$async = 'async';
+				}
+			}
 			$this->mUpload = new UploadFromUrl;
-			$async = $this->mParams['asyncdownload'] ? 'async' : null;
-			$this->checkPermissions( $wgUser );
+			$this->mUpload->initialize( $this->mParams['filename'],
+				$this->mParams['url'], $async );
 
-			$result = $this->mUpload->initialize( 
-					$this->mParams['filename'],
-					$this->mParams['url'],
-					$this->mParams['comment'],
-					$this->mParams['watchlist'],
-					$this->mParams['ignorewarnings'],
-					$async );
-				
-			if ( $async ) {
-				$this->getResult()->addValue( null,
-											  $this->getModuleName(),
-											  array( 'queued' => $result ) );
-				return;
-			}
-
-			$status = $this->mUpload->retrieveFileFromUrl();
-			if ( !$status->isGood() ) {
-				$this->getResult()->addValue( null,
-											  $this->getModuleName(),
-											  array( 'error' => $status ) );
-				return;
-			}
 		}
-	
-
-		$this->checkPermissions( $wgUser );
-
 		if ( !isset( $this->mUpload ) ) {
 			$this->dieUsage( 'No upload module set', 'nomodule' );
 		}
+		
+		// First check permission to upload
+		$this->checkPermissions( $wgUser );
+		// Check permission to upload this file
+		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
+		if ( $permErrors !== true ) {
+			// Todo: more specific error message
+			$this->dieUsageMsg( array( 'badaccess-groups' ) );
+		}
+		
+		// Fetch the file
+		$status = $this->mUpload->fetchFile();
+		if ( !$status->isGood() ) {
+			$errors = $status->getErrorsArray();
+			$error = array_shift( $errors[0] );
+			$this->dieUsage( 'Error fetching file from remote source', $error, 0, $errors[0] );
+		}
 
-		// Perform the upload
-		$result = $this->performUpload();
+		// Check if the uploaded file is sane
+		$this->verifyUpload();
+
+		// Check warnings if necessary
+		$warnings = $this->checkForWarnings();
+		if ( $warnings ) {
+			$this->getResult()->addValue( null, $this->getModuleName(), $warnings );
+		} else {
+			// Perform the upload
+			$result = $this->performUpload();
+			$this->getResult()->addValue( null, $this->getModuleName(), $result );
+		}
 
 		// Cleanup any temporary mess
 		$this->mUpload->cleanupTempFile();
-
-		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
 	/**
@@ -252,18 +258,7 @@ class ApiUpload extends ApiBase {
 
 	protected function performUpload() {
 		global $wgUser;
-		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
-		if ( $permErrors !== true ) {
-			$this->dieUsageMsg( array( 'badaccess-groups' ) );
-		}
-
-		$this->verifyUpload();
-
-		$warnings = $this->checkForWarnings();
-		if ( isset( $warnings ) ) {
-			return $warnings;
-		}
-
+		
 		// Use comment as initial page text by default
 		if ( is_null( $this->mParams['text'] ) ) {
 			$this->mParams['text'] = $this->mParams['comment'];
@@ -329,6 +324,7 @@ class ApiUpload extends ApiBase {
 			'file' => null,
 			'url' => null,
 			'asyncdownload' => false,
+			'leavemessage' => false,
 			'sessionkey' => null,
 		);
 		return $params;
@@ -346,9 +342,8 @@ class ApiUpload extends ApiBase {
 			'file' => 'File contents',
 			'url' => 'Url to fetch the file from',
 			'asyncdownload' => 'Make fetching a URL asyncronous',
-			'sessionkey' => array(
-				'Session key returned by a previous upload that failed due to warnings',
-			),
+			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
+			'sessionkey' => 'Session key returned by a previous upload that failed due to warnings',
 		);
 	}
 
