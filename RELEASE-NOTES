@@ -2,7 +2,7 @@
 
 == MediaWiki 1.16.0 ==
 
-2010-07-26
+2010-07-28
 
 This is a stable release of the MediaWiki 1.16 branch.
 
@@ -61,7 +61,7 @@ further.
   Special:Upload after following a red link to a file.
 * In SQLite full-text search feature: fixed "move page" feature, was non-
   functional.
-* (bug xxxxx) Fixed Cache-Control headers sent from API modules, to protect
+* (bug 24565) Fixed Cache-Control headers sent from API modules, to protect
   user privacy in the case where an attacker can access the wiki through the
   same HTTP proxy as a logged-in user.
 * Fixed an XSS vulnerability in profileinfo.php for installations with 
