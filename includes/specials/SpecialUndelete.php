@@ -540,7 +540,8 @@ class PageArchive {
 			}
 		} else {
 			// Revision couldn't be created. This is very weird
-			return self::UNDELETE_UNKNOWNERR;
+			wfDebug( "Undelete: unknown error...\n" );
+			return false;
 		}
 
 		return $restored;
