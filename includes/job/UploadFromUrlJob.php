@@ -18,6 +18,14 @@ class UploadFromUrlJob extends Job {
 	}
 
 	public function run() {
+		# Until we find a way to store data in sessions, set leaveMessage to
+		# true unconditionally
+		$this->params['leaveMessage'] = true;
+		# Similar for ignorewarnings. This is not really a good fallback, but
+		# there is no easy way to get a wikitext formatted warning message to
+		# show to the user
+		$this->params['ignoreWarnings'] = true;
+		
 		# Initialize this object and the upload object
 		$this->upload = new UploadFromUrl();
 		$this->upload->initialize( 
@@ -31,7 +39,7 @@ class UploadFromUrlJob extends Job {
 		$status = $this->upload->fetchFile();
 		if ( !$status->isOk() ) {
 			$this->leaveMessage( $status );
-			return;
+			return true;
 		}
 		
 		# Verify upload
@@ -39,13 +47,13 @@ class UploadFromUrlJob extends Job {
 		if ( $result['status'] != UploadBase::OK ) {
 			$status = $this->upload->convertVerifyErrorToStatus( $result );
 			$this->leaveMessage( $status );
-			return;
+			return true;
 		}
 		
 		# Check warnings
 		if ( !$this->params['ignoreWarnings'] ) {
 			$warnings = $this->upload->checkWarnings();
-			if ( $warnings ) {
+			if ( $warnings ) {		
 				if ( $this->params['leaveMessage'] ) {
 					$this->user->leaveUserMessage( 
 						wfMsg( 'upload-warning-subj' ),
@@ -59,7 +67,7 @@ class UploadFromUrlJob extends Job {
 				}
 				
 				// FIXME: stash in session
-				return;
+				return true;
 			}
 		}
 		
@@ -71,6 +79,8 @@ class UploadFromUrlJob extends Job {
 			$this->user
 		);
 		$this->leaveMessage( $status );
+		return true;
+		
 	}
 	
 	/**

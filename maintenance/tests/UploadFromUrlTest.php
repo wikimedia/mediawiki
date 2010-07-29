@@ -112,7 +112,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 			$this->doApiRequest( array(
 				'action' => 'upload',
 				'url' => 'http://www.example.com/test.png',
-				'filename' => 'Test.png',
+				'filename' => 'UploadFromUrlTest.png',
 				'token' => $token,
 			), $data );
 		} catch ( UsageException $e ) {
@@ -128,18 +128,14 @@ class UploadFromUrlTest extends ApiTestSetup {
 			'action' => 'upload',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
 			'asyncdownload' => 1,
-			'filename' => 'Test.png',
+			'filename' => 'UploadFromUrlTest.png',
 			'token' => $token,
 		), $data );
 
-		$this->assertTrue( $data[0]['upload']['queued'], 'Job added' );
-
+		$this->assertEquals( $data[0]['upload']['result'], 'Queued', 'Queued upload' );
+		
 		$job = Job::pop();
-		$this->assertThat( $job, $this->isInstanceOf( 'UploadFromUrlJob' ),
-			"Got Job Object" );
-
-		$job = Job::pop_type( 'upload' );
-		$this->assertFalse( $job );
+		$this->assertThat( $job, $this->isInstanceOf( 'UploadFromUrlJob' ), 'Queued upload inserted' );
 	}
 
 	/**
@@ -153,7 +149,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$wgUser->addGroup( 'users' );
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
-			'filename' => 'Test.png',
+			'filename' => 'UploadFromUrlTest.png',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
 			'asyncdownload' => 1,
 			'token' => $token,
@@ -164,7 +160,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 
  		$status = $job->run();
 
-		$this->assertTrue( $status->isOk() );
+		$this->assertTrue( $status );
 
 		return $data;
 	}
@@ -178,14 +174,14 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$token = md5( $data[2]['wsToken'] ) . EDIT_TOKEN_SUFFIX;
 
 		$job = Job::pop();
-		$this->assertFalse( $job );
+		$this->assertFalse( $job, 'Starting with an empty jobqueue' );
 
-		$this->deleteFile( 'Test.png' );
+		//$this->deleteFile( 'UploadFromUrlTest.png' );
 
 		$wgUser->addGroup( 'users' );
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
-			'filename' => 'Test.png',
+			'filename' => 'UploadFromUrlTest.png',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
 			'ignorewarnings' => true,
 			'token' => $token,
@@ -203,18 +199,17 @@ class UploadFromUrlTest extends ApiTestSetup {
 	 * @depends testDoDownload
 	 */
 	function testVerifyDownload( $data ) {
-		$t = Title::newFromText( "Test.png", NS_FILE );
+		$t = Title::newFromText( "UploadFromUrlTest.png", NS_FILE );
 
 		$this->assertTrue( $t->exists() );
 
-		$this->deleteFile( 'Test.png' );
+		$this->deleteFile( 'UploadFromUrlTest.png' );
 	 }
 
 	/**
 	 *
 	 */
 	function deleteFile( $name ) {
-
 		$t = Title::newFromText( $name, NS_FILE );
 		$this->assertTrue($t->exists(), "File '$name' exists");
 
