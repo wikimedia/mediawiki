@@ -1578,7 +1578,7 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 Šio failo šalinimų istorija yra pateikta dėl patogumo:",
 'filename-bad-prefix'         => "Jūsų įkeliamas failas prasideda su '''„$1“''', bet tai yra neapibūdinantis pavadinimas, dažniausiai priskirtas skaitmeninių kamerų. Prašome suteikti labiau apibūdinantį pavadinimą savo failui.",
 'upload-success-subj'         => 'Įkelta sėkmingai',
-'upload-success-msg'          => 'Jūsų įkėlimą galima rasti čia: $1',
+'upload-success-msg'          => 'Jūsų įkėlimą galima rasti čia: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Įkėlimo problema',
 'upload-failure-msg'          => 'Įvyko įkėlimo problema:
 

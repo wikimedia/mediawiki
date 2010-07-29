@@ -1542,7 +1542,7 @@ $1",
 為咗方便起見，呢個檔案嘅刪除記錄已經響下面提供:",
 'filename-bad-prefix'         => "你上載嘅檔名係以'''\"\$1\"'''做開頭，通常呢種無含意嘅檔名係響數碼相機度自動編排。請響你個檔案度揀過一個更加有意義嘅檔名。",
 'upload-success-subj'         => '成功嘅上載',
-'upload-success-msg'          => '你嘅上載可以喺呢度搵到：$1。',
+'upload-success-msg'          => '你嘅上載可以喺呢度搵到：[[:{{ns:file}}:$1]]。',
 'upload-failure-subj'         => '上載出咗問題',
 'upload-failure-msg'          => '你嘅上載出現咗問題：
 

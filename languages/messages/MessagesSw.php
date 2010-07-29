@@ -1393,7 +1393,7 @@ Kumbukumbu ya kufuta faili hili inapatikana hapa kukusaidia:",
 'filename-bad-prefix'     => "Jina la faili unalolipakia huanza na '''\"\$1\"''', ambalo ni jina lisilo na maana yanayoeleweka kirahisi, ya aina inayotolewa huwa na kamera dijiti. 
 Tafadhali chagua jina linaloeleweka kirahisi kwa ajili ya faili lako.",
 'upload-success-subj'     => 'Upakiaji ulifaulu',
-'upload-success-msg'      => 'Faili ulilolipakia linapatikana hapa: $1',
+'upload-success-msg'      => 'Faili ulilolipakia linapatikana hapa: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'     => 'Hitilafu ya kupakia',
 'upload-failure-msg'      => 'Kulikuwa na tatizo ulipopakia faili yako:
 

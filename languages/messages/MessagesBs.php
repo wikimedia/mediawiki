@@ -1726,7 +1726,7 @@ MGP # Pentax
 PICT # razni
  #</pre> <!-- ostavite ovu liniju onakvom kakva jeste -->',
 'upload-success-subj'         => 'Uspješno slanje',
-'upload-success-msg'          => 'Vaša datoteka je dostupna ovdje: $1',
+'upload-success-msg'          => 'Vaša datoteka je dostupna ovdje: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem pri postavljanju',
 'upload-failure-msg'          => 'Nastao je problem s Vašim postavljanjem:
 

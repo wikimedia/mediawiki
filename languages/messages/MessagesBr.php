@@ -1543,7 +1543,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->",
 'upload-success-subj'         => 'Eiladenn kaset da benn vat',
-'upload-success-msg'          => "Ho kargadenn a c'heller kavout amañ : $1",
+'upload-success-msg'          => "Ho kargadenn a c'heller kavout amañ : [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => 'Kudenn kargañ',
 'upload-failure-msg'          => "Ur gudenn 'zo bet e-pad ho kargadenn :
 

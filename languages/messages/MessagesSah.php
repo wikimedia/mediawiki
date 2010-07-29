@@ -1476,7 +1476,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Бу строканы оннунан хааллар -->',
 'upload-success-subj'         => 'Сатанна',
-'upload-success-msg'          => 'Хачайдааһыныҥ манна баар: $1',
+'upload-success-msg'          => 'Хачайдааһыныҥ манна баар: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Хачайдааһын моһуога',
 'upload-failure-msg'          => 'Эн хачайдааһыныҥ моһуога билиннэ:
 

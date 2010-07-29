@@ -1576,7 +1576,7 @@ Kuckt w.e.g. genee no, ob dat neit Eroplueden de Richtlinnen entsprécht.
 Zu Ärer Informatioun steet an der Läsch-Lëscht de Grond vum virege Läschen:",
 'filename-bad-prefix'         => "Den Numm vum Fichier fänkt mat '''„$1“''' un. Dësen Numm krut en automatesch vun der Kamera a seet näischt iwwer dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.",
 'upload-success-subj'         => 'Eroplueden erfollegräich',
-'upload-success-msg'          => 'De Fichier deen Dir eropgelueden hutt ass hei disponibel: $1',
+'upload-success-msg'          => 'De Fichier deen Dir eropgelueden hutt ass hei disponibel: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem beim Eroplueden',
 'upload-failure-msg'          => 'Et gouf e Problem mat dem Fichier deen Dir eropgelueden hutt:
 

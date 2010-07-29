@@ -1713,7 +1713,7 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand toe-evoeg wönnen.
 't Logboek mit alle vort-edaone infermasie ku-j hier vienen:",
 'filename-bad-prefix'         => "De naam van 't bestaand da-j toevoegen, begint mit '''\"\$1\"''', dit is een neet-beschrievende naam dee meestentieds autematisch deur een digitale camera egeven wonnen. Kies een dudelijke naam veur 't bestaand.",
 'upload-success-subj'         => 'Bestaanstoevoeging was succesvol',
-'upload-success-msg'          => "'t Bestaand da-j toe-evoeg hemmen, is hier beschikbaor: $1",
+'upload-success-msg'          => "'t Bestaand da-j toe-evoeg hemmen, is hier beschikbaor: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => "Prebleem bie 't toevoegen van 't bestaand",
 'upload-failure-msg'          => "Der was een prebleem bie 't toevoegen van 't bestaand:
 

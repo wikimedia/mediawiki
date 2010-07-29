@@ -1526,7 +1526,7 @@ Zue Dyynere Information chunnt do s Lesch-Logbuech mit dr Begrindig fir di friej
 'filename-bad-prefix'         => "Dr Dateiname fangt mit '''„$1“''' aa. Des isch isch normalerwyys dr Dateiname, wu vun ere Digitalkamera vorgee wird un d Datei nit bschryybt.
 Bitte gib dr Datei e Name, wu dr Inhalt besser bschryybt.",
 'upload-success-subj'         => 'Erfolgryych uffegelade',
-'upload-success-msg'          => 'Dyyni uffeglade Datei isch do verfiegbar: $1',
+'upload-success-msg'          => 'Dyyni uffeglade Datei isch do verfiegbar: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Fähler bim Uffelade',
 'upload-failure-msg'          => 'S het e Probläm gee mit Dyyre uffegladene Datei:
 

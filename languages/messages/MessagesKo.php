@@ -1699,7 +1699,7 @@ MGP # 펜탁스
 PICT # 기타
  #</pre> <!-- 이 줄은 그대로 두십시오. -->',
 'upload-success-subj'         => '올리기 성공',
-'upload-success-msg'          => '당신이 올린 파일이 여기 있습니다: $1',
+'upload-success-msg'          => '당신이 올린 파일이 여기 있습니다: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '올리기 실패',
 'upload-failure-msg'          => '파일을 올리는 중 문제가 발생했습니다:
 

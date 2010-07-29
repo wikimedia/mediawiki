@@ -1693,7 +1693,7 @@ Anda harus mempertimbangkan apakah perlu untuk melanjutkan pemuatan berkas ini.
 Log penghapusan berkas adalah sebagai berikut:",
 'filename-bad-prefix'         => "Nama berkas yang Anda muat diawali dengan '''\"\$1\"''', yang merupakan nama non-deskriptif yang biasanya diberikan secara otomatis oleh kamera digital. Harap pilih nama lain yang lebih deskriptif untuk berkas Anda.",
 'upload-success-subj'         => 'Berhasil dimuat',
-'upload-success-msg'          => 'Unggahan Anda tersedia di sini: $1',
+'upload-success-msg'          => 'Unggahan Anda tersedia di sini: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Masalah pengunggahan',
 'upload-failure-msg'          => 'Ada masalah pada unggahan Anda:
 

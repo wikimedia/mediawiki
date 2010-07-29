@@ -1590,7 +1590,7 @@ $1",
 为方便起见，这一个文件的删除记录已经在下面提供:",
 'filename-bad-prefix'         => '您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。',
 'upload-success-subj'         => '上传成功',
-'upload-success-msg'          => '你的上传可以在这里找到：$1',
+'upload-success-msg'          => '你的上传可以在这里找到：[[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '上传错误',
 'upload-failure-msg'          => '有一个问题与您的上传有关：
 

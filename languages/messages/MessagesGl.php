@@ -566,7 +566,7 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'formerror'            => 'Erro: non se pode enviar o formulario',
 'badarticleerror'      => 'Non pode efectuarse esta acción nesta páxina.',
 'cannotdelete'         => 'Non se puido borrar a páxina ou imaxe "$1".
-Se cadra, xa foi borrada por alguén.',
+Se cadra, xa a borrou alguén.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
 Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
@@ -1667,11 +1667,13 @@ MGP # Pentax
 PICT # varias
  #</pre> <!-- deixe esta liña exactamente como está -->',
 'upload-success-subj'         => 'A carga realizouse correctamente',
-'upload-success-msg'          => 'O ficheiro cargado está dispoñible aquí: $1',
+'upload-success-msg'          => 'A súa carga desde [$2] rematou correctamente e está dispoñible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema ao cargar',
 'upload-failure-msg'          => 'Houbo un problema durante a carga:
 
 $1',
+'upload-warning-subj'         => 'Advertencia ao cargar',
+'upload-warning-msg'          => 'Houbo un problema durante a carga desde [$2]. Pode volver ao [[Special:Upload/stash/$1|formulario de subidas]] para corrixilo.',
 
 'upload-proto-error'        => 'Protocolo erróneo',
 'upload-proto-error-text'   => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',

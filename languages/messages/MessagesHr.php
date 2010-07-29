@@ -1147,6 +1147,7 @@ Vidi [[Special:IPBlockList|Popis blokiranih IP adresa]] za popis trenutačno akt
 # Revision move
 'moverevlogentry'              => 'premjestio {{PLURAL:$3|jednu inačicu|$3 inačice}} iz $1 u $2',
 'revisionmove'                 => 'Premjesti inačice iz "$1"',
+'revmove-explain'              => 'Sljedeće inačice bit će premještene iz $1 u navedenu ciljnu stranicu i spojene u njenu povijest izmjena. Ako ciljna stranica ne postoji, bit će stvorena.',
 'revmove-legend'               => 'Postavi odredišnu stranicu i sažetak',
 'revmove-submit'               => 'Premjesti inačice u odabranu stranicu',
 'revisionmoveselectedversions' => 'Premjesti odabrane inačice',
@@ -1691,11 +1692,13 @@ Razmislite je li prigodno nastaviti s postavljanjem ove datoteke.
 Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'filename-bad-prefix'         => "Ime datoteke koju snimate počinje s '''\"\$1\"''', što je ime koje slikama tipično dodjeljuju digitalni fotoaparati. Molimo izaberite bolje ime (neko koje bolje opisuje sliku nego \$1).",
 'upload-success-subj'         => 'Postavljanje uspješno.',
-'upload-success-msg'          => 'Vaše postavljanje je dostupno ovdje: $1',
+'upload-success-msg'          => 'Vaše postavljanje je dostupno ovdje: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Greška pri postavljanju',
 'upload-failure-msg'          => 'Došlo je do problema s Vašim postavljanjem:
 
 $1',
+'upload-warning-subj'         => 'Upozorenje kod postavljanja',
+'upload-warning-msg'          => 'Došlo je do problema s Vašim postavljanjem datoteke iz [$2]. Možete se vratiti u [[Special:Upload/stash/$1|obrazac za postavljanje]] i ispraviti problem.',
 
 'upload-proto-error'        => 'Protokol nije valjan',
 'upload-proto-error-text'   => 'Udaljeno snimanje zahtijeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',

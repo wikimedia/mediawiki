@@ -1527,7 +1527,7 @@ Marino raha tsara tohizana ny fanovana eto amin'ity pejy ity. Ny tantaran'asan'n
 'filename-bad-prefix'         => "Ny anaran-drakitra ho ampidirinareo dia manomboka amin'ny '''« $1 »''', anarana omena an'ny fakan-tsary elektirônika.
 Misafidia anaran-drakitra mambangovango.",
 'upload-success-subj'         => 'Voaray soa aman-tsara ny rakitra',
-'upload-success-msg'          => 'Eto ny rakitra nalefanao : $1',
+'upload-success-msg'          => 'Eto ny rakitra nalefanao : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Olana nitranga teo am-pandefasana',
 
 'upload-proto-error'        => 'Protokolina diso',

@@ -1634,7 +1634,7 @@ Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'filename-bad-prefix'         => "Die naam van die lêer wat u besig is om op te laai begin met '''\"\$1\"''', wat 'n nie-beskrywende term is, gewoonlik outomaties toegedien deur digitale kameras.
 Kies asseblief 'n meer beskrywende naam vir die lêer.",
 'upload-success-subj'         => 'Laai suksesvol',
-'upload-success-msg'          => 'U oplaai is hier beskikbaar: $1',
+'upload-success-msg'          => 'U oplaai is hier beskikbaar: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Oplaaiprobleem',
 'upload-failure-msg'          => "Daar was 'n probleem met u oplaai:
 

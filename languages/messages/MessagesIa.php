@@ -1607,7 +1607,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- non modificar de alcun modo iste linea -->',
 'upload-success-subj'         => 'Incargamento succedite',
-'upload-success-msg'          => 'Tu file incargate es disponibile a: $1',
+'upload-success-msg'          => 'Tu file incargate es disponibile a: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema de incargamento',
 'upload-failure-msg'          => 'Il ha occurrite un problema con tu incargamento:
 

@@ -1582,7 +1582,7 @@ Ikunsidera mo kung nararapat ba na ipagpatuloy ang pagkarga ng talaksang ito.
 Ibinigay ang tala ng pagbura ng talaksang ito para konbinyente:",
 'filename-bad-prefix'         => "Ang talaksan na ikakarga mo ay nagsisimula sa '''\"\$1\"''', na isang hindi naglalarawang pangalan na karaniwang tinatakda ng mga kamerang digital. Paki pili ang isang mas naglalarawang pangalan para sa iyong talaksan.",
 'upload-success-subj'         => 'Matagumpay na pagkakarga',
-'upload-success-msg'          => 'Makukuha ang ikinarga mo rito: $1',
+'upload-success-msg'          => 'Makukuha ang ikinarga mo rito: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema sa pagkarga',
 'upload-failure-msg'          => 'Nagkaroon ng problema sa iyong karga:
 

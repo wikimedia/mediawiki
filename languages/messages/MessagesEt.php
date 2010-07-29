@@ -1676,7 +1676,7 @@ Selle faili kustutamislogi on toodud siinsamas:",
 'filename-bad-prefix'         => "Üleslaaditava faili nimi algab eesliitega '''\"\$1\"''', mis on omane digikaamera antud ebamäärastele nimedele.
 Palun vali oma failile kirjeldavam nimi.",
 'upload-success-subj'         => 'Üleslaadimine õnnestus',
-'upload-success-msg'          => 'Üleslaaditu on kättesaadav siin: $1',
+'upload-success-msg'          => 'Üleslaaditu on kättesaadav siin: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Üleslaadimisprobleem',
 'upload-failure-msg'          => 'Üleslaadimisega oli probleem:
 

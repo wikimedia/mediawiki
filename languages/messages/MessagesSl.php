@@ -1617,7 +1617,7 @@ MGP # Pentax
 PICT # mešano
  #</pre> <!-- pustite to vrstico takšno, kot je -->',
 'upload-success-subj'         => 'Datoteka je bila uspešno naložena',
-'upload-success-msg'          => 'Vaša naložena datoteka je na voljo tukaj: $1',
+'upload-success-msg'          => 'Vaša naložena datoteka je na voljo tukaj: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Težava pri nalaganju',
 'upload-failure-msg'          => 'Prišlo je do težave z vašo naloženo datoteko:
 

@@ -1681,7 +1681,7 @@ MGP # Pentax
 PICT # khác
  #</pre> <!-- xin để nguyên hàng này -->',
 'upload-success-subj'         => 'Đã tải xong',
-'upload-success-msg'          => 'Tập tin tải lên có sẵn tại: $1',
+'upload-success-msg'          => 'Tập tin tải lên có sẵn tại: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Vấn đề tải lên',
 'upload-failure-msg'          => 'Tập tin bạn tải lên có một vấn đề:
 

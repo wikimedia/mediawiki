@@ -1663,7 +1663,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki näkyy tässä:",
 'filename-bad-prefix'         => "Tallentamasi tiedoston nimi alkaa merkkijonolla '''$1''', joka on yleensä digitaalikameroiden automaattisesti antama nimi, joka ei kuvaa tiedoston sisältöä. Anna tiedostolle kuvaavampi nimi.",
 'upload-success-subj'         => 'Tallennus onnistui',
-'upload-success-msg'          => 'Tallennuksesi on saatavilla täällä: $1',
+'upload-success-msg'          => 'Tallennuksesi on saatavilla täällä: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Tallennusongelma',
 'upload-failure-msg'          => 'Tallennuksessasi esiintyi ongelma:
 

@@ -1585,7 +1585,7 @@ Hauríeu de considerar si és realment adequat continuar carregant aquest fitxer
 A continuació teniu el registre d'eliminació per a que pugueu comprovar els motius que van portar a la seua eliminació:",
 'filename-bad-prefix'         => "El nom del fitxer que esteu penjant comença amb '''«$1»''', que és un nom no descriptiu que les càmeres digitals normalment assignen de forma automàtica. Trieu un de més descriptiu per al vostre fitxer.",
 'upload-success-subj'         => "El fitxer s'ha carregat amb èxit",
-'upload-success-msg'          => 'El material carregat està disponible ací: $1',
+'upload-success-msg'          => 'El material carregat està disponible ací: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en la càrrega',
 'upload-failure-msg'          => 'Hi ha hagut un problema amb la vostra càrrega:
 
