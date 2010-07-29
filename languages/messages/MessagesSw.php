@@ -1370,7 +1370,7 @@ Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'tmp-write-error'         => 'Hitilafu ya kuandika faili la muda.',
 'large-file'              => 'Tunashauri mafaili yasizidi $1;
 faili hili lina $2.',
-'successfulupload'        => 'Upakiaji ulifaulu',
+'upload-success-subj'        => 'Upakiaji ulifaulu',
 'uploadwarning'           => 'Ilani kuhusu kupakia',
 'savefile'                => 'Hifadhi faili',
 'uploadedimage'           => 'ameipakia "[[$1]]"',
@@ -1393,7 +1393,7 @@ Fikiria kama inafaa kuendelea kupakia faili hili.
 Kumbukumbu ya kufuta faili hili inapatikana hapa kukusaidia:",
 'filename-bad-prefix'     => "Jina la faili unalolipakia huanza na '''\"\$1\"''', ambalo ni jina lisilo na maana yanayoeleweka kirahisi, ya aina inayotolewa huwa na kamera dijiti. 
 Tafadhali chagua jina linaloeleweka kirahisi kwa ajili ya faili lako.",
-'upload-successful-msg'   => 'Faili ulilolipakia linapatikana hapa: $1',
+'upload-success-msg'   => 'Faili ulilolipakia linapatikana hapa: $1',
 'upload-failure-subj'     => 'Hitilafu ya kupakia',
 'upload-failure-msg'      => 'Kulikuwa na tatizo ulipopakia faili yako:
 

@@ -888,7 +888,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'fileexists'        => "Arkivo kun ica nomo ja existas.
 Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 [[$1|thumb]]",
-'successfulupload'  => 'Adcharjo sucesoza',
+'upload-success-subj'  => 'Adcharjo sucesoza',
 'uploadwarning'     => 'Averto pri la adkargo di arkivo',
 'savefile'          => 'Registragar arkivo',
 'uploadedimage'     => 'adkargita "[[$1]]"',

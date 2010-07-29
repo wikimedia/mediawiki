@@ -1549,7 +1549,7 @@ Wann Dir de Fichier nach ëmmer eropluede wëllt, da gitt w.e.g. zréck a benotz
 Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet dëse Fichier ënner engem aneren Numm erop. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dëse Fichier schéngt een Doublon vun {{PLURAL:$1|dësem Fichier|dëse Fichieren}} ze sinn:',
 'file-deleted-duplicate'      => 'En identesche Fichier ([[$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läsche no, Ier Dir en nach emol eropluet.',
-'successfulupload'            => 'Eroplueden erfollegräich',
+'upload-success-subj'            => 'Eroplueden erfollegräich',
 'uploadwarning'               => 'Opgepasst',
 'uploadwarning-text'          => "Ännert d'Beschreiwung hei ënnedrënner w.e.g. a versicht et nach eng Kéier.",
 'savefile'                    => 'Fichier späicheren',
@@ -1576,7 +1576,7 @@ Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet d
 Kuckt w.e.g. genee no, ob dat neit Eroplueden de Richtlinnen entsprécht.
 Zu Ärer Informatioun steet an der Läsch-Lëscht de Grond vum virege Läschen:",
 'filename-bad-prefix'         => "Den Numm vum Fichier fänkt mat '''„$1“''' un. Dësen Numm krut en automatesch vun der Kamera a seet näischt iwwer dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.",
-'upload-successful-msg'       => 'De Fichier deen Dir eropgelueden hutt ass hei disponibel: $1',
+'upload-success-msg'       => 'De Fichier deen Dir eropgelueden hutt ass hei disponibel: $1',
 'upload-failure-subj'         => 'Problem beim Eroplueden',
 'upload-failure-msg'          => 'Et gouf e Problem mat dem Fichier deen Dir eropgelueden hutt:
 

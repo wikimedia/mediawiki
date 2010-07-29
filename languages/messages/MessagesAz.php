@@ -951,7 +951,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'fileexists'        => "Yükləmək istədiyiniz adda fayl mövcutdur.
 Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.
 [[$1|thumb]]",
-'successfulupload'  => 'Yükləmə tamamlandı',
+'upload-success-subj'  => 'Yükləmə tamamlandı',
 'uploadwarning'     => 'Yükləyiş xəbərdarlıqı',
 'savefile'          => 'Faylı qeyd et',
 'uploadedimage'     => 'yükləndi "[[$1]]"',

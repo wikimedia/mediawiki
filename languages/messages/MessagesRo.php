@@ -1679,7 +1679,7 @@ Mergeți înapoi și încărcați acest fișier sub un nume nou. [[File:$1|thumb
 'fileexists-shared-forbidden' => 'Un fișier cu acest nume există deja în magazia de imagini comune; mergeți înapoi și încărcați fișierul sub un nou nume. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Acest fișier este dublura {{PLURAL:$1|fișierului|fișierelor}}:',
 'file-deleted-duplicate'      => 'Un fișier identic cu acesta ([[$1]]) a fost șters anterior. Verificați istoricul ștergerilor fișierului înainte de a-l reîncărca.',
-'successfulupload'            => 'Fișierul a fost trimis',
+'upload-success-subj'            => 'Fișierul a fost trimis',
 'uploadwarning'               => 'Avertizare la trimiterea fișierului',
 'uploadwarning-text'          => 'Vă rugăm să modificați descrierea fișierului mai jos și să încercați din nou.',
 'savefile'                    => 'Salvează fișierul',
@@ -1708,7 +1708,7 @@ Vă rugăm să aveți în vedere dacă este utilă reîncărcarea acestuia.
 Jurnalul pentru această ștergere este disponibil aici:",
 'filename-bad-prefix'         => "Numele fișierului pe care îl încărcați începe cu '''\"\$1\"''', care este un nume non-descriptiv alocat automat în general de camerele digitale.
 Vă rugăm, alegeți un nume mai descriptiv pentru fișerul dumneavoastră.",
-'upload-successful-msg'       => 'Fișierul trimis este disponibil aici: $1',
+'upload-success-msg'       => 'Fișierul trimis este disponibil aici: $1',
 'upload-failure-subj'         => 'Problemă la trimitere',
 'upload-failure-msg'          => 'E o problemă cu fișierul trimis:
 $1',

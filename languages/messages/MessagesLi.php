@@ -1437,7 +1437,7 @@ Esse deze afbeelding in volledige resolutie höbs, upload dae afbeelding den. Wi
 'file-exists-duplicate'       => "Dit besjtandj is identiek aon {{PLURAL:$1|'t volgende besjtandj|de volgende besjtande}}:",
 'file-deleted-duplicate'      => 'n Bestandj det identiek is aan dit bestandj ([[$1]]) is veurhaer verwiederd.
 Raodpleeg t verwiederingslogbook veurdet se wiejer geis.',
-'successfulupload'            => 'De upload is geluk',
+'upload-success-subj'            => 'De upload is geluk',
 'uploadwarning'               => 'Upload waarsjuwing',
 'savefile'                    => 'Bestand opsjlaon',
 'uploadedimage'               => 'haet ge-upload: [[$1]]',

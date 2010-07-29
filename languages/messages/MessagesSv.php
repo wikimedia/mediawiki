@@ -1700,7 +1700,7 @@ Om du fortfarande vill ladda upp din fil, var god gå tillbaka och välj ett nyt
 Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Den här filen är en dubblett till följande {{PLURAL:$1|fil|filer}}:',
 'file-deleted-duplicate'      => 'En identisk fil till den här filen ([[$1]]) har tidigare raderats. Du bör kontrollera den filens raderingshistorik innan du fortsätter att återuppladda den.',
-'successfulupload'            => 'Uppladdningen lyckades',
+'upload-success-subj'            => 'Uppladdningen lyckades',
 'uploadwarning'               => 'Uppladdningsvarning',
 'uploadwarning-text'          => 'Var god och ändra filbeskrivningen nedanför och försök igen.',
 'savefile'                    => 'Spara fil',
@@ -1742,7 +1742,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # allmänt bildprefix
  #</pre> <!-- ändra inte den här raden -->',
-'upload-successful-msg'       => 'Din uppladdade fil finns tillgänglig här: $1',
+'upload-success-msg'       => 'Din uppladdade fil finns tillgänglig här: $1',
 'upload-failure-subj'         => 'Uppladdningsproblem',
 'upload-failure-msg'          => 'Det uppstod ett problem med din uppladdning:
 

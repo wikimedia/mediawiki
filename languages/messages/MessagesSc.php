@@ -868,7 +868,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'filesource'          => 'Orìgine:',
 'uploadedfiles'       => 'Files carrigadus',
 'badfilename'         => 'Su nùmene de su file est stadu cunvertidu in "$1".',
-'successfulupload'    => 'Carrigamentu acabau',
+'upload-success-subj'    => 'Carrigamentu acabau',
 'uploadwarning'       => 'Avvisu de carrigamentu',
 'savefile'            => 'Sarva file',
 'uploadedimage'       => 'carrigadu "[[$1]]"',

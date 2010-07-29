@@ -1604,7 +1604,7 @@ Indien u die lêer nog wil oplaai, gaan asseblief terug en kies 'n ander naam.
 'file-exists-duplicate'       => "Die lêer is 'n duplikaat van die volgende {{PLURAL:$1|lêer|lêers}}:",
 'file-deleted-duplicate'      => "'n Lêer identies aan dié een ([[$1]]) was al voorheen geskrap. <br />
 Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om dit weer op te laai.",
-'successfulupload'            => 'Laai suksesvol',
+'upload-success-subj'            => 'Laai suksesvol',
 'uploadwarning'               => 'Laaiwaarskuwing',
 'uploadwarning-text'          => 'Verander die onderstaande lêerbeskrywing en probeer dan weer.',
 'savefile'                    => 'Stoor lêer',
@@ -1634,7 +1634,7 @@ Dink twee keer na of dit wel gepas is om die lêer hier op te laai.
 Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'filename-bad-prefix'         => "Die naam van die lêer wat u besig is om op te laai begin met '''\"\$1\"''', wat 'n nie-beskrywende term is, gewoonlik outomaties toegedien deur digitale kameras.
 Kies asseblief 'n meer beskrywende naam vir die lêer.",
-'upload-successful-msg'       => 'U oplaai is hier beskikbaar: $1',
+'upload-success-msg'       => 'U oplaai is hier beskikbaar: $1',
 'upload-failure-subj'         => 'Oplaaiprobleem',
 'upload-failure-msg'          => "Daar was 'n probleem met u oplaai:
 

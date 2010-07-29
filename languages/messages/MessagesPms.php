@@ -1444,7 +1444,7 @@ Se it veule ancó carié tò file, për piasì torna andré e dòvra un nòm dif
 'file-exists-duplicate'       => "Sto file-sì a l'é un duplicà ëd cost {{PLURAL:$1|file|file}}:",
 'file-deleted-duplicate'      => "N'archivi idéntich a cost-sì ([[$1]]) a l'é scàit ëscancelà an passà.
 A dovrìa controlé la stòria djë scancelament ëd l'archivi prima ëd carielo torna.",
-'successfulupload'            => 'Carià complet',
+'upload-success-subj'            => 'Carià complet',
 'uploadwarning'               => 'Avis che i soma dapress a carié',
 'uploadwarning-text'          => 'Për piasì modìfica la descrission dël file sota e preuva torna.',
 'savefile'                    => "Salva l'archivi",
@@ -1486,7 +1486,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # vàire marche diferente
  #</pre> <!-- ch'a lassa sta riga-sì tanme ch'a l'é -->",
-'upload-successful-msg'       => "Lòn ch'a l'ha carià a l'é disponìbil ambelessì: $1",
+'upload-success-msg'       => "Lòn ch'a l'ha carià a l'é disponìbil ambelessì: $1",
 'upload-failure-subj'         => 'Problema a carié',
 'upload-failure-msg'          => "A-i é staje un problema con lòn ch'a l'ha carià:
 

@@ -731,7 +731,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'filetype-badmime'   => '"$1" MIME-тĕслĕ файлсене кĕртейместпĕр.',
 'filetype-missing'   => 'Файлăн хушма ячĕ тупăнмарĕ (тĕслĕхрен, «.jpg»).',
 'largefileserver'    => 'Файл пысăкăшĕ юрăхлинчен пысăкрах (пĕчĕклетĕр).',
-'successfulupload'   => 'Файла ăнăçлă тултартăмăр',
+'upload-success-subj'   => 'Файла ăнăçлă тултартăмăр',
 'uploadwarning'      => 'Асăрхаттару',
 'savefile'           => 'Файла çырса хур',
 'uploadedimage'      => '«[[$1]]» кĕртрĕмĕр',

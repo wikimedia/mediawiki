@@ -1666,7 +1666,7 @@ Dosyanızı yinede yüklemek istiyorsanız, lütfen geri dönüp yeni bir isim k
 Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kullanın. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bu dosya aşağıdaki {{PLURAL:$1|dosyanın|dosyaların}} kopyasıdır:',
 'file-deleted-duplicate'      => 'Bu dosyanın özdeşi olan başka bir dosya ([[$1]]) daha önceden silindi. Bu dosyayı yeniden yüklemeden önce diğer dosyanın silme kayıtlarını kontrol etmelisiniz.',
-'successfulupload'            => 'Yükleme başarılı',
+'upload-success-subj'            => 'Yükleme başarılı',
 'uploadwarning'               => 'Yükleme uyarısı',
 'uploadwarning-text'          => 'Lütfen aşağıdaki dosya açıklamasını değiştirin ve tekrar deneyin.',
 'savefile'                    => 'Dosyayı kaydet',
@@ -1708,7 +1708,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
-'upload-successful-msg'       => 'Yüklemeniz burada mevcut: $1',
+'upload-success-msg'       => 'Yüklemeniz burada mevcut: $1',
 'upload-failure-subj'         => 'Yükleme sorunu',
 'upload-failure-msg'          => 'Yüklemenizle ilgili bir sorun var:
 

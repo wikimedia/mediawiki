@@ -1590,7 +1590,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Se si desidera ancora caricare il file, tornare indietro e modificare il nome con il quale caricare il file. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Questo file è un duplicato {{PLURAL:$1|del seguente|dei seguenti}} file:',
 'file-deleted-duplicate'      => 'Un file identico a questo ([[$1]]) è stato cancellato in passato. Verificare la cronologia delle cancellazioni prima di caricarlo di nuovo.',
-'successfulupload'            => 'Caricamento completato',
+'upload-success-subj'            => 'Caricamento completato',
 'uploadwarning'               => 'Avviso di caricamento',
 'uploadwarning-text'          => 'Per favore modifica qui sotto la descrizione del file e prova di nuovo.',
 'savefile'                    => 'Salva file',
@@ -1631,7 +1631,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- lascia questa riga esattamente com\'è -->',
-'upload-successful-msg'       => 'Il tuo upload è disponibile qui: $1',
+'upload-success-msg'       => 'Il tuo upload è disponibile qui: $1',
 'upload-failure-subj'         => "Problema nell'upload",
 'upload-failure-msg'          => 'Si è verificato un problema con il caricamento:
 

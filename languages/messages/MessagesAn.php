@@ -1481,7 +1481,7 @@ Si encara quiere cargar ixe fichero, torne y faiga servir un nuevo nombre. [[Fil
 'fileexists-shared-forbidden' => 'Ya bi ha un fichero con ixe nombre en o reposte compartito. Si encara quiere cargar o fichero, por favor, torne entazaga y faiga servir un nuevo nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => "Iste fichero ye un duplicau {{PLURAL:$1|d'o siguient fichero|d'os siguients fichers}}:",
 'file-deleted-duplicate'      => "Un fichero igual que iste ([[$1]]) s'ha borrato enantes. Debería mirar-se o historial de borraus d'o fichero antes de continar cargando-lo atra vegada.",
-'successfulupload'            => 'Cargata correctament',
+'upload-success-subj'            => 'Cargata correctament',
 'uploadwarning'               => 'Alvertencia de carga de fichero',
 'uploadwarning-text'          => "Por favor, modifique a descripción d'o fichero d'abaixo y torne a intentar-lo.",
 'savefile'                    => 'Alzar fichero',
@@ -1521,7 +1521,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misz.
  #</pre> <!-- dixe ista linia esautament igual como ye -->',
-'upload-successful-msg'       => 'O fichero cargau ye disponible aquí: $1',
+'upload-success-msg'       => 'O fichero cargau ye disponible aquí: $1',
 'upload-failure-subj'         => 'Problema en a carga',
 'upload-failure-msg'          => 'I ha habiu bell problema con a suya carga:
 

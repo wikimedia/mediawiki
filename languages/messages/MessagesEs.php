@@ -1707,7 +1707,7 @@ Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nomb
 Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este archivo es un duplicado {{PLURAL:$1|del siguiente|de los siguientes}}:',
 'file-deleted-duplicate'      => 'Un archivo idéntico a este ([[$1]]) ha sido borrado con anterioridad. Debes comprobar el historial de borrado del archivo ante de volver a subirlo.',
-'successfulupload'            => 'Subida con éxito',
+'upload-success-subj'            => 'Subida con éxito',
 'uploadwarning'               => 'Advertencia de subida de archivo',
 'uploadwarning-text'          => 'Por favor, modifique la descripción del archivo abajo indicada e inténtelo de nuevo.',
 'savefile'                    => 'Guardar archivo',
@@ -1736,7 +1736,7 @@ A continuación se muestra el registro de borrado de este archivo:",
 'filename-bad-prefix'         => "El nombre del archivo que estás subiendo comienza por '''«$1»''', un nombre nada descriptivo de su contenido. Es un típico nombre de los que asignan automáticamente las cámaras digitales.
 
 Por favor, elige un nombre más descriptivo.",
-'upload-successful-msg'       => 'Tu carga está disponible aquí: $1',
+'upload-success-msg'       => 'Tu carga está disponible aquí: $1',
 'upload-failure-subj'         => 'Problema en la carga',
 'upload-failure-msg'          => 'Hubo un problema con tu carga:
 

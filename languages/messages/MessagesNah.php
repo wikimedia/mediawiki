@@ -772,7 +772,7 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 * Tlahcuilōlli moquetzacah: '''<tt>[[:$1]]</tt>'''
 * Tlahcuilōlli tlein ia ītōca: '''<tt>[[:$2]]</tt>'''
 Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
-'successfulupload'       => 'Cualli quetzaliztli',
+'upload-success-subj'       => 'Cualli quetzaliztli',
 'savefile'               => 'Quipiyāz tlahcuilōlli',
 'uploadedimage'          => 'ōmoquetz "[[$1]]"',
 'overwroteimage'         => 'ōmoquetz yancuīc "[[$1]]" iuhcāyōtl',

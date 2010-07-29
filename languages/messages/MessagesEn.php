@@ -2135,7 +2135,6 @@ If you still want to upload your file, please go back and use a new name.
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => "A file identical to this file ([[$1]]) has previously been deleted.
 You should check that file's deletion history before proceeding to re-upload it.",
-'successfulupload'            => 'Successful upload',
 'uploadwarning'               => 'Upload warning',
 'uploadwarning-text'          => 'Please modify the file description below and try again.',
 'savefile'                    => 'Save file',
@@ -2180,11 +2179,14 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->', # only translate this message to other languages if you have to change it
-'upload-successful-msg'       => 'Your upload is available here: $1',
-'upload-failure-subj'         => 'Upload problem',
-'upload-failure-msg'          => 'There was a problem with your upload:
+'upload-success-subj'       => 'Successful upload',
+'upload-success-msg'        => 'Your upload from [$2] was successful. It is available here: [[:File:$1]]',
+'upload-failure-subj'       => 'Upload problem',
+'upload-failure-msg'        => 'There was a problem with your upload from [$2]:
 
 $1',
+'upload-warning-subj'       => 'Upload warning',
+'upload-warning-msg'        => 'There was a problem with your upload from [$2]. You may return to the [[Special:Upload/stash/$1|upload form]] to correct this problem.',
 
 'upload-proto-error'        => 'Incorrect protocol',
 'upload-proto-error-text'   => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',

@@ -1426,7 +1426,7 @@ Agar jo aap fir bhi aapan file ke upload kare mangta hai, tab pichhe jaae ke naw
 Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa naam use karo. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ii file following file ke duplicate hai {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => 'Yahii rakam ke ek aur file ([[$1]]) ke pahile delete karaa gais hai. Aap ke file ke deletion history ke check kare ke chaahi, upload kare se pahile.',
-'successfulupload'            => 'Upload safal bhais',
+'upload-success-subj'            => 'Upload safal bhais',
 'uploadwarning'               => 'Upload ke baare me chetauni',
 'uploadwarning-text'          => 'Meharbani kar ke file ke baaare me aur jankari ke niche badal ke aur fir se kosis karo.',
 'savefile'                    => 'File ke save karo',
@@ -1454,7 +1454,7 @@ Aap ke ii soche ke chaahi ki ii file ke upload karna appropriate hai ki nai.
 Aap ke subidha khatir deletion log hian pe hai:",
 'filename-bad-prefix'         => "Jon file aap upload kartaa hai uske naam '''\"\$1\"''' se suruu hoe hai, jon ki non-descriptive naam hai jiske jaada kar ke digital camera automatically assign kare hai.
 Meharbaani kar ke aur jaada descriptive filename chose karo.",
-'upload-successful-msg'       => 'Aap aapan upload ke hian pe dekhe saktaa hae: $1',
+'upload-success-msg'       => 'Aap aapan upload ke hian pe dekhe saktaa hae: $1',
 'upload-failure-subj'         => 'Upload kare me kuchh karrbarr hoe gais hae',
 'upload-failure-msg'          => 'Aap ke upload me kuchh garrbarr hoe gais hae:
 

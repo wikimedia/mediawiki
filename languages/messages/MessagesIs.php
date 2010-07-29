@@ -1313,7 +1313,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'large-file'             => 'Það er mælt með að skrár séu ekki stærri en $1; þessi skrá er $2.',
 'fileexists'             => "Skrá með þessu nafni er þegar til, skoðaðu '''<tt>[[:$1]]</tt>''' ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.
 [[$1|thumb]]",
-'successfulupload'       => 'Innhlaðning tókst',
+'upload-success-subj'       => 'Innhlaðning tókst',
 'uploadwarning'          => 'Aðvörun',
 'savefile'               => 'Vista',
 'uploadedimage'          => 'hlóð inn „[[$1]]“',

@@ -1477,7 +1477,7 @@ Oraindik fitxategia igo nahi baduzu, mesedez atzera itzuli eta igo fitxategia iz
 Oraindik ere fitxategia igo nahi baduzu atzera itzuli eta izen berri bat erabili, mesedez. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Fitxategi hau beste fitxategi {{PLURAL:$1|honen|hauen}} kopia bat da:',
 'file-deleted-duplicate'      => 'Fitxategi honen ([[$1]]) fitxategi berbera aldez aurretik ezabatua izan da. Fitxategi horren ezabaketa-erregistroa begiratu beharko zenuke berriz igo baino lehen.',
-'successfulupload'            => 'Igoera arrakastatsua',
+'upload-success-subj'            => 'Igoera arrakastatsua',
 'uploadwarning'               => 'Igotzeko oharra',
 'uploadwarning-text'          => 'Aldatu beheko fitxategiaren deskribapena, mesedez, eta saiatu berriz.',
 'savefile'                    => 'Fitxategia gorde',
@@ -1505,7 +1505,7 @@ Kontuan izan fitxategia igotzea egokia ote den.
 Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'filename-bad-prefix'         => "Igotzen ari zaren fitxategiaren izena '''\"\$1\"'''ekin hasten da, normalki kamera digitalek automatikoki ezartzen duten izen ez deskriptibo bat.
 Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
-'upload-successful-msg'       => 'Igotakoa hemen duzu eskuragarri: $1',
+'upload-success-msg'       => 'Igotakoa hemen duzu eskuragarri: $1',
 'upload-failure-subj'         => 'Igoera-arazoa',
 'upload-failure-msg'          => 'Hurrengo arazoa egon da zure igoerarekin:
 

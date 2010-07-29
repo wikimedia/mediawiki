@@ -1025,7 +1025,7 @@ Bitte priefe '''<tt>[[:$1]]</tt>''', wenn du dir ne secher biest, ob du se ände
 Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade dieses under damm Originalnoama huch.",
 'file-exists-duplicate'      => 'Diese Datei ies a Duplikat dar fulgenda {{PLURAL:$1|Datei|$1 Dateien}}:',
 'file-deleted-duplicate'     => 'Anne identische Datei dieser Datei ([[$1]]) wurde frieher geläscht. Ieberpriefe doas Läsch-Logbuch, bevor du se huchlädst.',
-'successfulupload'           => 'Erfolgreich huchgeloada',
+'upload-success-subj'           => 'Erfolgreich huchgeloada',
 'uploadedimage'              => 'hoot „[[$1]]“ huchgeloada',
 'overwroteimage'             => 'hoot anne neue Version vu „[[$1]]“ huchgeloada',
 'uploaddisabled'             => 'Huchlada deaktiviert',

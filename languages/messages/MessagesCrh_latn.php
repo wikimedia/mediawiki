@@ -1122,7 +1122,7 @@ Faylıñıznı yañıdan yüklemege isteseñiz, lütfen, keri qaytıp yañı bir
 Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini deñiştirip yañıdan yükleñiz.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bu fayl aşağıdaki {{PLURAL:$1|faylnıñ|fayllarnıñ}} dublikatı ola:',
-'successfulupload'            => 'Yüklenüv becerildi',
+'upload-success-subj'            => 'Yüklenüv becerildi',
 'uploadwarning'               => 'Tenbi',
 'savefile'                    => 'Faylnı saqla',
 'uploadedimage'               => 'Yüklengen: "[[$1]]"',

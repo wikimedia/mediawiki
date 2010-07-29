@@ -1674,7 +1674,7 @@ Ak si aj tak želáte nahrať svoj súbor, choďte prosím späť a nahrajte ten
 Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný názov. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento súbor je duplikátom {{PLURAL:$1|nasledovného súboru|nasledovných súborov}}:',
 'file-deleted-duplicate'      => 'Súbor zhodný s týmto súborom ([[$1]]) už bol v minulosti zmazaný. Mali by ste skontrolovať históriu nahrávania tohto súboru predtým, než budete pokračovať v jeho nahrávaní.',
-'successfulupload'            => 'Nahranie bolo úspešné',
+'upload-success-subj'            => 'Nahranie bolo úspešné',
 'uploadwarning'               => 'Varovanie pri nahrávaní',
 'uploadwarning-text'          => 'Prosím, zmeňte popis súboru nižšie a skúste to znova.',
 'savefile'                    => 'Uložiť súbor',
@@ -1715,7 +1715,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # rôzne
   #</pre> <!-- tento riadok ponechajte bez zmeny -->',
-'upload-successful-msg'       => 'Váš súbor je dostupný tu: $1',
+'upload-success-msg'       => 'Váš súbor je dostupný tu: $1',
 'upload-failure-subj'         => 'Problém s nahrávaním',
 'upload-failure-msg'          => 'Vyskytol sa problém s vašim nahrávaním:
 

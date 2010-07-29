@@ -942,7 +942,7 @@ Nuoriedamė panauduotė ikelta faila poslapī, nauduokėt tuokės nūoruodas:
 * Jau esontė faila pavadinėms: '''<tt>[[:$2]]</tt>'''
 Prašuom ėšsėrėnktė kėta varda.",
 'file-exists-duplicate'      => 'Tas fails īr {{PLURAL:$1|šėta faila|šėtū failu}} doblėkats:',
-'successfulupload'           => 'Ikelt siekmėngā',
+'upload-success-subj'           => 'Ikelt siekmėngā',
 'uploadwarning'              => 'Diemesė',
 'savefile'                   => 'Ėšsauguotė faila',
 'uploadedimage'              => 'ikielė „[[$1]]“',

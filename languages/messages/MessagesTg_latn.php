@@ -1006,7 +1006,7 @@ Lutfan jak nomi digarero intixob kuned.",
 'fileexists-thumbnail-yes'   => "Az aks ba nazar merasad, ki aksi andozaaş xurd ''(anguştdona)''. [[$1|thumb]]
 Lutan parvandaro '''<tt>[[:$1]]</tt>''' barrasī kuned.
 Agar parvandai barrasişuda aksi xurd karda şudai on parvandai aslī ast, nijoze ba borguzoriji aksi xurd nest.",
-'successfulupload'           => 'Firistodan bomuvaffaqijat',
+'upload-success-subj'           => 'Firistodan bomuvaffaqijat',
 'uploadwarning'              => 'Ogohiji firistodan',
 'savefile'                   => 'Zaxirai parvanda',
 'uploadedimage'              => 'borşuda "[[$1]]"',

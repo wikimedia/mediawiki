@@ -1498,7 +1498,7 @@ Wänn Du die Datei einewäg wit uffelade, gang bitte zruck un ändere dr Name.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Die Datei isch e Duplikat vu {{PLURAL:$1|däre Datei|däne $1 Dateie}}:',
 'file-deleted-duplicate'      => 'E identischi Version vu däre Datei ([[$1]]) isch friejer scho mol glescht wore. Iberprief s Leschlogbuech, voreb Du si uffeladesch.',
-'successfulupload'            => 'Erfolgryych uffegelade',
+'upload-success-subj'            => 'Erfolgryych uffegelade',
 'uploadwarning'               => 'Warnig',
 'uploadwarning-text'          => 'Bitte tue unte d Dateibsschryybig ändere un versuech s nomol.',
 'savefile'                    => 'Datei spychere',
@@ -1526,7 +1526,7 @@ Bitte prief, eb s dr Richtlinie entspricht, wänn Du die Datei no mol uffeladesc
 Zue Dyynere Information chunnt do s Lesch-Logbuech mit dr Begrindig fir di friejer Leschig:",
 'filename-bad-prefix'         => "Dr Dateiname fangt mit '''„$1“''' aa. Des isch isch normalerwyys dr Dateiname, wu vun ere Digitalkamera vorgee wird un d Datei nit bschryybt.
 Bitte gib dr Datei e Name, wu dr Inhalt besser bschryybt.",
-'upload-successful-msg'       => 'Dyyni uffeglade Datei isch do verfiegbar: $1',
+'upload-success-msg'       => 'Dyyni uffeglade Datei isch do verfiegbar: $1',
 'upload-failure-subj'         => 'Fähler bim Uffelade',
 'upload-failure-msg'          => 'S het e Probläm gee mit Dyyre uffegladene Datei:
 

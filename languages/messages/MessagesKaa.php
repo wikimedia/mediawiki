@@ -1130,7 +1130,7 @@ Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda)
 'filetype-badmime'   => '"$1" MIME tu\'rli fayllardı aploud qılıw ruxsat etilmeydi.',
 'filetype-missing'   => 'Bul faildın ken\'eytpesi (mısalı ".jpg") joq.',
 'largefileserver'    => "Bul faildın mo'lsheri serverdin' ruxsatınan u'lken.",
-'successfulupload'   => 'Tabıslı aploud',
+'upload-success-subj'   => 'Tabıslı aploud',
 'uploadwarning'      => 'Aploud eskertiwi',
 'savefile'           => 'Fayldı saqla',
 'uploadedimage'      => '«[[$1]]» faylı aploud qılındı',

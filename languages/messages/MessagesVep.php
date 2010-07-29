@@ -1291,7 +1291,7 @@ Lasktud {{PLURAL:\$3|failan tip om|failoiden tipad oma}} \$2.",
 Voib olda, necen sü om vär failannimen kirjutamine.
 Olgat hüväd, kodvgat, todeks-ik tö tahtoit jügutoitta nece fail.",
 'file-exists-duplicate'      => 'Nece fail om {{PLURAL:$1|necen failan|neniden failoiden}} dublikat:',
-'successfulupload'           => 'Jügutoitand lopihe satusekahas',
+'upload-success-subj'           => 'Jügutoitand lopihe satusekahas',
 'uploadwarning'              => 'Varutuz jügutoitmižes',
 'savefile'                   => 'Kirjutada fail',
 'uploadedimage'              => 'om jügutoitnu "[[$1]]"',

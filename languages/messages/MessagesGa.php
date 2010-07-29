@@ -999,7 +999,7 @@ an comhad agus déan athiarracht, más é do thoil é.',
 míchruinneas é seo san ainm chomhaid. Seiceáil más é an comhad seo atá le huaslódáil agat.",
 'fileexists-forbidden' => 'Tá comhad eile leis an ainm seo ann fós, agus ní féidie é a forscríobh.
 Má theastáilann uait do chomhad a uaslódáil fós, téigh ar ais agus úsáid ainm nua, le do thoil. [[File:$1|thumb|center|$1]]',
-'successfulupload'     => "D'éirigh leis an uaslódáil",
+'upload-success-subj'     => "D'éirigh leis an uaslódáil",
 'uploadwarning'        => 'Rabhadh suaslódála',
 'savefile'             => 'Sábháil comhad',
 'uploadedimage'        => 'uaslódáladh "[[$1]]"',
