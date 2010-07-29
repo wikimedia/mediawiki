@@ -88,6 +88,7 @@ abstract class Installer {
 		'envCheckExtension',
 		'envCheckShellLocale',
 		'envCheckUploadsDirectory',
+		'envCheckLibicu'
 	);	
 	
 	/**
@@ -811,6 +812,69 @@ abstract class Installer {
 		}
 	}	
 	
+	/**
+	 * Convert a hex string representing a Unicode code point to that code point.
+	 * @param string $c
+	 * @return string
+	 */
+	protected function unicodeChar( $c ) {
+		$c = hexdec($c);
+		if ($c <= 0x7F) {
+			return chr($c);
+		} else if ($c <= 0x7FF) {
+			return chr(0xC0 | $c >> 6) . chr(0x80 | $c & 0x3F);
+		} else if ($c <= 0xFFFF) {
+			return chr(0xE0 | $c >> 12) . chr(0x80 | $c >> 6 & 0x3F)
+				. chr(0x80 | $c & 0x3F);
+		} else if ($c <= 0x10FFFF) {
+			return chr(0xF0 | $c >> 18) . chr(0x80 | $c >> 12 & 0x3F)
+				. chr(0x80 | $c >> 6 & 0x3F)
+				. chr(0x80 | $c & 0x3F);
+		} else {
+			return false;
+		}
+	}
+
+
+	/**
+	 * Check the libicu version
+	 */
+	public function envCheckLibicu() {
+		$utf8 = function_exists( 'utf8_normalize' );
+		$intl = function_exists( 'normalizer_normalize' );
+
+		/**
+		 * This needs to be updated something that the latest libicu
+		 * will properly normalize.  This normalization was found at
+		 * http://www.unicode.org/versions/Unicode5.2.0/#Character_Additions
+		 * Note that we use the hex representation to create the code
+		 * points in order to avoid any Unicode-destroying during transite.
+		 */
+		$not_normal_c = $this->unicodeChar("FA6C");
+		$normal_c = $this->unicodeChar("242EE");
+
+		$useNormalizer = 'config-unicode-php';
+
+		/**
+		 * We're going to prefer the pecl extension here unless
+		 * utf8_normalize is more up to date.
+		 */
+		if( $utf8 ) {
+			$utf8 = utf8_normalize( $not_normal_c, UNORM_NFC );
+			$useNormalizer = 'config-unicode-utf8';
+		}
+		if( $intl ) {
+			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
+			$useNormalizer = 'config-unicode-intl';
+		}
+
+		$this->showMessage( $useNormalizer );
+		if( $useNormalizer === 'config-unicode-php' ) {
+			$this->showMessage( 'config-unicode-pure-php-warning' );
+		}
+	}
+
+
 	/**
 	 * Search a path for any of the given executable names. Returns the
 	 * executable name if found. Also checks the version string returned
