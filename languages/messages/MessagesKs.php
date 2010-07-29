@@ -9,7 +9,7 @@
  *
  */
 
-#FIXME: inherit almost everything for now
+# FIXME: inherit almost everything for now
 $rtl = true;
 
 $digitTransformTable = array(

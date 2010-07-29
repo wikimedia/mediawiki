@@ -244,9 +244,11 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'loginlanguagelabel'      => 'Schprooch: $1',
 
 # Password reset dialog
-'resetpass'   => 'Paesswatt ennere',
-'oldpassword' => 'Aldes Paesswatt:',
-'newpassword' => 'Neies Paesswatt:',
+'resetpass'                 => 'Paesswatt ennere',
+'oldpassword'               => 'Aldes Paesswatt:',
+'newpassword'               => 'Neies Paesswatt:',
+'resetpass_forbidden'       => 'Paesswatt iss net zu ennere',
+'resetpass-submit-loggedin' => 'Paesswatt ennere',
 
 # Edit page toolbar
 'bold_sample'    => 'Wadde fett gmarrickt',
@@ -272,6 +274,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'editingcomment'         => 'Ennere vun $1 (Neier Abschnitt)',
 'editconflict'           => 'Druwwel beim Ennere: $1',
 'yourdiff'               => 'Unnerschidde',
+'templatesused'          => '{{PLURAL:$1|Sell Moddel iss|Selle Moddle sinn}} gyuust vun dem Blatt:',
 'template-protected'     => '(geschitzt)',
 'template-semiprotected' => '(geschitzt fer neie Yuuser)',
 
@@ -303,6 +306,9 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'revdelete-edit-reasonlist'  => "Grind fer's Loesche ennere",
 'revdelete-offender'         => 'Schreiwer fun daer Version:',
 
+# Revision move
+'revmove-reasonfield' => 'Grund:',
+
 # History merging
 'mergehistory-reason' => 'Grund:',
 
@@ -316,6 +322,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'nextn'                          => 'neegschte {{PLURAL:$1|$1}}',
 'viewprevnext'                   => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'                 => 'Help:Hilf',
+'searchprofile-everything'       => 'Alles',
 'searchprofile-articles-tooltip' => 'Uffgucke in $1',
 'searchprofile-project-tooltip'  => 'Uffgucke in $1',
 'searchprofile-images-tooltip'   => 'Nooch Feils uffgucke',
@@ -357,6 +364,8 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'timezoneregion-europe'    => 'Eiropaa',
 'prefs-namespaces'         => 'Blatznaame',
 'prefs-files'              => 'Feils',
+'prefs-custom-css'         => 'CSS vum Yuuser',
+'prefs-custom-js'          => 'JavaScript vum Yuuser',
 'youremail'                => 'E-Poschde:',
 'username'                 => 'Yuuser-Naame:',
 'uid'                      => 'Yuuser-ID:',
@@ -577,6 +586,8 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'defemailsubject' => '{{SITENAME}}-E-Poschde',
 'emailfrom'       => 'Vun:',
 'emailto'         => 'Fer:',
+'emailsend'       => 'Schicke',
+'emailsent'       => 'E-Poscht naus gschickt',
 
 # Watchlist
 'watchlist'         => 'Mei Watsch-Lischt',
@@ -777,6 +788,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'watchlistall2'    => 'all',
 'namespacesall'    => 'all',
 'monthsall'        => 'all',
+'limitall'         => 'all',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL iss zu lang]',
@@ -835,6 +847,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'specialpages-group-users'     => 'Yuuser unn Rechte',
 'specialpages-group-pages'     => 'Lischde vun Bledder',
 'specialpages-group-pagetools' => 'Gscharr fer Bledder',
+'specialpages-group-redirects' => 'Besunnere Bledder wu weiderleide',
 'specialpages-group-spam'      => 'Spam-Gscharr',
 
 # Special:BlankPage
@@ -843,6 +856,10 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # Special:Tags
 'tags-edit'     => 'ennere',
 'tags-hitcount' => '$1 {{PLURAL:$1|Ennering|Enneringe}}',
+
+# Special:ComparePages
+'compare-page1' => 'Blatt 1',
+'compare-page2' => 'Blatt 2',
 
 # HTML forms
 'htmlform-reset'               => 'Enneringe zerick nemme',
