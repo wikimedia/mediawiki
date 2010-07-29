@@ -432,7 +432,10 @@ class SpecialUpload extends SpecialPage {
 		// Deprecated backwards compatibility hook
 		if( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ) ) ) {
 			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
-			return array( 'status' => UploadBase::BEFORE_PROCESSING );
+			// Return without notifying the user of an error. This sucks, but 
+			// this was the previous behaviour as well, and as this hook is
+			// deprecated we're not going to do anything about it.
+			return;
 		}
 
 
