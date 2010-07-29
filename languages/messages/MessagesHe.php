@@ -1760,12 +1760,14 @@ JD # Jenoptik
 MGP # Pentax
 PICT # שונות
  #</pre> <!-- נא להשאיר שורה זו בדיוק כפי שהיא -->',
-'upload-success-subj'         => 'העלאת הקובץ הושלמה בהצלחה',
-'upload-success-msg'          => 'הקובץ שהעלית זמין כאן: $1',
+'upload-success-subj'         => 'ההעלאה הושלמה בהצלחה',
+'upload-success-msg'          => 'ההעלאה מהכתובת [$2] הושלמה בהצלחה. הקובץ שהעליתם זמין כאן: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'בעיה בהעלאה',
-'upload-failure-msg'          => 'הייתה בעיה עם הקובץ שהעלית:
+'upload-failure-msg'          => 'הייתה בעיה עם הקובץ שהעליתם מהכתובת [$2]:
 
 $1',
+'upload-warning-subj'         => 'אזהרה בהעלאה',
+'upload-warning-msg'          => 'הייתה בעיה עם הקובץ שהעליתם מהכתובת [$2]. באפשרותכם לחזור ל[[Special:Upload/stash/$1|טופס ההעלאה]] כדי לתקן בעיה זו.',
 
 'upload-proto-error'        => 'פרוטוקול שגוי',
 'upload-proto-error-text'   => 'בהעלאה מרוחקת, יש להשתמש בכתובות URL המתחילות עם <code>http://</code> או <code>ftp://</code>.',
