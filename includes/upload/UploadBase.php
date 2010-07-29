@@ -25,7 +25,7 @@ abstract class UploadBase {
 	const EMPTY_FILE = 3;
 	const MIN_LENGTH_PARTNAME = 4;
 	const ILLEGAL_FILENAME = 5;
-	const OVERWRITE_EXISTING_FILE = 7;
+	const OVERWRITE_EXISTING_FILE = 7; # Not used anymore; handled by verifyPermissions()
 	const FILETYPE_MISSING = 8;
 	const FILETYPE_BADTYPE = 9;
 	const VERIFICATION_ERROR = 10;
@@ -223,7 +223,7 @@ abstract class UploadBase {
 	 * Verify whether the upload is sane.
 	 * @return mixed self::OK or else an array with error information
 	 */
-	public function verifyUpload( ) {
+	public function verifyUpload() {
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
@@ -258,7 +258,7 @@ abstract class UploadBase {
 		/**
 		 * Make sure this file can be created
 		 */
-		$result = $this->validateNameAndOverwrite();
+		$result = $this->validateName();
 		if( $result !== true ) {
 			return $result;
 		}
@@ -279,7 +279,7 @@ abstract class UploadBase {
 	 * @return mixed true if valid, otherwise and array with 'status'
 	 * and other keys
 	 **/
-	public function validateNameAndOverwrite() {
+	protected function validateName() {
 		$nt = $this->getTitle();
 		if( is_null( $nt ) ) {
 			$result = array( 'status' => $this->mTitleError );
@@ -293,16 +293,6 @@ abstract class UploadBase {
 		}
 		$this->mDestName = $this->getLocalFile()->getName();
 
-		/**
-		 * In some cases we may forbid overwriting of existing files.
-		 */
-		$overwrite = $this->checkOverwrite();
-		if( $overwrite !== true ) {
-			return array(
-				'status' => self::OVERWRITE_EXISTING_FILE,
-				'overwrite' => $overwrite
-			);
-		}
 		return true;
 	}
 
@@ -347,6 +337,10 @@ abstract class UploadBase {
 	 * @return mixed true of the file is verified, array otherwise.
 	 */
 	protected function verifyFile() {
+		# get the title, even though we are doing nothing with it, because
+		# we need to populate mFinalExtension 
+		$nt = $this->getTitle();
+		
 		$this->mFileProps = File::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 		$this->checkMacBinary();
 
@@ -382,7 +376,11 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Check whether the user can edit, upload and create the image.
+	 * Check whether the user can edit, upload and create the image. This
+	 * checks only against the current title; if it returns errors, it may
+	 * very well be that another title will not give errors. Therefore
+	 * isAllowed() should be called as well for generic is-user-blocked or
+	 * can-user-upload checking.
 	 *
 	 * @param $user the User object to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
@@ -409,6 +407,12 @@ abstract class UploadBase {
 			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsCreate, $permErrors ) );
 			return $permErrors;
 		}
+		
+		$overwriteError = $this->checkOverwrite( $user );
+		if ( $overwriteError !== true ) {
+			return array( array( $overwriteError ) );
+		}
+		
 		return true;
 	}
 
@@ -1007,12 +1011,11 @@ abstract class UploadBase {
 	 *
 	 * @return mixed true on success, error string on failure
 	 */
-	private function checkOverwrite() {
-		global $wgUser;
+	private function checkOverwrite( $user ) {
 		// First check whether the local file can be overwritten
 		$file = $this->getLocalFile();
 		if( $file->exists() ) {
-			if( !self::userCanReUpload( $wgUser, $file ) ) {
+			if( !self::userCanReUpload( $user, $file ) ) {
 				return 'fileexists-forbidden';
 			} else {
 				return true;
@@ -1023,7 +1026,7 @@ abstract class UploadBase {
 		 * wfFindFile finds a file, it exists in a shared repository.
 		 */
 		$file = wfFindFile( $this->getTitle() );
-		if ( $file && !$wgUser->isAllowed( 'reupload-shared' ) ) {
+		if ( $file && !$user->isAllowed( 'reupload-shared' ) ) {
 			return 'fileexists-shared-forbidden';
 		}
 
@@ -1187,8 +1190,8 @@ abstract class UploadBase {
 	}
 
 	public function convertVerifyErrorToStatus( $error ) {
-		$args = func_get_args();
-		array_shift($args);
-		return Status::newFatal( $this->getVerificationErrorCode( $error ), $args );
+		$code = $error['status'];
+		unset( $code['status'] );
+		return Status::newFatal( $this->getVerificationErrorCode( $code ), $error );
 	}
 }
