@@ -1507,8 +1507,14 @@ abstract class DatabaseBase {
 	 * Escape string for safe LIKE usage.
 	 * WARNING: you should almost never use this function directly,
 	 * instead use buildLike() that escapes everything automatically
+	 * Deprecated in 1.17, warnings in 1.17, removed in ???
 	 */
-	function escapeLike( $s ) {
+	public function escapeLike( $s ) {
+		wfDeprecated( __METHOD__ );
+		return $this->escapeLikeInternal( $s );
+	}
+
+	protected function escapeLikeInternal( $s ) {
 		$s = str_replace( '\\', '\\\\', $s );
 		$s = $this->strencode( $s );
 		$s = str_replace( array( '%', '_' ), array( '\%', '\_' ), $s );
@@ -1524,7 +1530,7 @@ abstract class DatabaseBase {
 	 * for subpages of 'My page title'.
 	 * Alternatively: $pattern = array( 'My_page_title/', $dbr->anyString() ); $query .= $dbr->buildLike( $pattern );
 	 *
-	 * @ return String: fully built LIKE statement
+	 * @return String: fully built LIKE statement
 	 */
 	function buildLike() {
 		$params = func_get_args();
@@ -1537,7 +1543,7 @@ abstract class DatabaseBase {
 			if( $value instanceof LikeMatch ) {
 				$s .= $value->toString();
 			} else {
-				$s .= $this->escapeLike( $value );
+				$s .= $this->escapeLikeInternal( $value );
 			}
 		}
 		return " LIKE '" . $s . "' ";
