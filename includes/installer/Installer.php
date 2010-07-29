@@ -848,29 +848,34 @@ abstract class Installer {
 		 * will properly normalize.  This normalization was found at
 		 * http://www.unicode.org/versions/Unicode5.2.0/#Character_Additions
 		 * Note that we use the hex representation to create the code
-		 * points in order to avoid any Unicode-destroying during transite.
+		 * points in order to avoid any Unicode-destroying during transit.
 		 */
 		$not_normal_c = $this->unicodeChar("FA6C");
 		$normal_c = $this->unicodeChar("242EE");
 
 		$useNormalizer = 'config-unicode-php';
+		$needsUpdate = false;
 
 		/**
 		 * We're going to prefer the pecl extension here unless
 		 * utf8_normalize is more up to date.
 		 */
 		if( $utf8 ) {
-			$utf8 = utf8_normalize( $not_normal_c, UNORM_NFC );
 			$useNormalizer = 'config-unicode-utf8';
+			$utf8 = utf8_normalize( $not_normal_c, UNORM_NFC );
+			if ( $utf8 !== $normal_c ) $needsUpdate = true;
 		}
 		if( $intl ) {
-			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
 			$useNormalizer = 'config-unicode-intl';
+			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
+			if ( $intl !== $normal_c ) $needsUpdate = true;
 		}
 
-		$this->showMessage( $useNormalizer );
+		$this->showMessage( 'config-unicode-using', wfMsg( $useNormalizer ) );
 		if( $useNormalizer === 'config-unicode-php' ) {
 			$this->showMessage( 'config-unicode-pure-php-warning' );
+		} elseif( $needsUpdate ) {
+			$this->showMessage( 'config-unicode-update-warning' );
 		}
 	}
 
