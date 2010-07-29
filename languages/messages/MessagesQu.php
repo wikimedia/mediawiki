@@ -1636,7 +1636,7 @@ Hamut'arinaykim tiyanman, kay willañiqita musuqmanta churkuyqa allinchu mana al
 Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'filename-bad-prefix'         => "Churkunayasqayki willañiqip sutinqa '''\"\$1\"''' nisqawanmi qallarin. Chay sutinqa iliktruniku rikcha hap'inap kamasqanmanmi rikch'akun. Ama hina kaspa, willañiqiykita astawan t'iktuq sutinta akllay.",
 'upload-success-subj'         => 'Aypalla churkusqañam',
-'upload-success-msg'          => 'Churkusqaykiqa kaypim tarinalla: $1',
+'upload-success-msg'          => 'Churkusqaykiqa kaypim tarinalla: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Churkuy sasachakuy',
 'upload-failure-msg'          => 'Churkuyniykiwanqa sasachakuymi karqan:
 

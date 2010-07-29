@@ -352,7 +352,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
 'tog-usenewrc'                => 'Erweiterte Darstellung der „Letzten Änderungen“ (benötigt JavaScript)',
 'tog-numberheadings'          => 'Überschriften automatisch nummerieren',
-'tog-showtoolbar'             => 'Bearbeiten-Werkzeugleiste anzeigen',
+'tog-showtoolbar'             => 'Bearbeiten-Werkzeugleiste anzeigen (erfordert JavaScript)',
 'tog-editondblclick'          => 'Seiten mit Doppelklick bearbeiten (benötigt JavaScript)',
 'tog-editsection'             => 'Links zum Bearbeiten einzelner Abschnitte anzeigen',
 'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten (benötigt JavaScript)',
@@ -1767,11 +1767,13 @@ MGP # Pentax
 PICT # verschiedene
  #</pre> <!-- Diese Zeile darf nicht verändert werden!-->',
 'upload-success-subj'         => 'Erfolgreich hochgeladen',
-'upload-success-msg'          => 'Deine hochgeladene Datei ist hier verfügbar: $1',
+'upload-success-msg'          => 'Das Hochladen von [$2] war erfolgreich. Deine hochgeladene Datei ist hier verfügbar: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Hochladefehler',
 'upload-failure-msg'          => 'Es gab ein Problem mit deiner hochgeladenen Datei:
 
 $1',
+'upload-warning-subj'         => 'Hochladewarnung',
+'upload-warning-msg'          => 'Es gab ein Problem beim Hochladen von [$2]. Bitte zum [[Special:Upload/stash/$1|Hochladeformular]] zurückkehren, um dieses Problem zu beheben.',
 
 'upload-proto-error'        => 'Falsches Protokoll',
 'upload-proto-error-text'   => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',

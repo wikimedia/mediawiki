@@ -1525,7 +1525,7 @@ Ail-feddyliwch a ddylech barhau i uwchlwytho'r ffel hon.
 Dyma'r lòg dileu ar gyfer y ffeil i chi gael gweld:",
 'filename-bad-prefix'         => "Mae'r enw ar y ffeil yr ydych yn ei uwchlwytho yn dechrau gyda '''\"\$1\"'''. Mae'r math hwn o enw diystyr fel arfer yn cael ei osod yn awtomatig gan gamerâu digidol. Mae'n well gosod enw sy'n disgrifio'r ffeil arno.",
 'upload-success-subj'         => 'Wedi llwyddo uwchlwytho',
-'upload-success-msg'          => "Mae'r ffeil a wnaethoch uwchlwytho ar gael yma: $1",
+'upload-success-msg'          => "Mae'r ffeil a wnaethoch uwchlwytho ar gael yma: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => 'Cafwyd problem wrth uwchlwytho',
 'upload-failure-msg'          => 'Cafwyd problem with uwchlwytho:
 

@@ -1486,7 +1486,7 @@ MGP # Pentax
 PICT # vàire marche diferente
  #</pre> <!-- ch'a lassa sta riga-sì tanme ch'a l'é -->",
 'upload-success-subj'         => 'Carià complet',
-'upload-success-msg'          => "Lòn ch'a l'ha carià a l'é disponìbil ambelessì: $1",
+'upload-success-msg'          => "Lòn ch'a l'ha carià a l'é disponìbil ambelessì: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => 'Problema a carié',
 'upload-failure-msg'          => "A-i é staje un problema con lòn ch'a l'ha carià:
 

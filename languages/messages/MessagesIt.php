@@ -1631,7 +1631,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- lascia questa riga esattamente com\'è -->',
 'upload-success-subj'         => 'Caricamento completato',
-'upload-success-msg'          => 'Il tuo upload è disponibile qui: $1',
+'upload-success-msg'          => 'Il tuo upload è disponibile qui: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => "Problema nell'upload",
 'upload-failure-msg'          => 'Si è verificato un problema con il caricamento:
 

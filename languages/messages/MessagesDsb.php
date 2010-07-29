@@ -1553,7 +1553,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń nic na toś tej rědce! -->',
 'upload-success-subj'         => 'Nagraśe jo było wuspěšne.',
-'upload-success-msg'          => 'Twójo nagraśe stoj how k dispoziciji: $1',
+'upload-success-msg'          => 'Twójo nagraśe stoj how k dispoziciji: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Nagrawański problem',
 'upload-failure-msg'          => 'Jo był problem z twójim nagraśim:
 

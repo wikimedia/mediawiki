@@ -1757,7 +1757,7 @@ MGP # Pentax
 PICT # různé
  #</pre> <!-- tuto řádku ponechte beze změny -->',
 'upload-success-subj'         => 'Načtení úspěšně provedeno!',
-'upload-success-msg'          => 'Vámi načtený soubor je dostupný na $1',
+'upload-success-msg'          => 'Vámi načtený soubor je dostupný na [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problém s načítaným souborem',
 'upload-failure-msg'          => 'U vámi načítaného souboru se vyskytl problém:
 

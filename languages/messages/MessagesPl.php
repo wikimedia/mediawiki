@@ -1686,7 +1686,7 @@ MGP # Pentax
 PICT # wiele różnych
   #</pre> <!-- nie modyfikuj tej linii -->',
 'upload-success-subj'         => 'Przesłanie pliku powiodło się',
-'upload-success-msg'          => 'Przesłany plik jest dostępny tutaj – $1',
+'upload-success-msg'          => 'Przesłany plik jest dostępny tutaj – [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem z przesłaniem pliku',
 'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu Twojego pliku:
 

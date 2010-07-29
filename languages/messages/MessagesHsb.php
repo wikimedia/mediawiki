@@ -1536,7 +1536,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń tutu linku! -->',
 'upload-success-subj'         => 'Dataja bu wuspěšnje nahrata',
-'upload-success-msg'          => 'Twoje nahraće steji tu k dispoziciji: $1',
+'upload-success-msg'          => 'Twoje nahraće steji tu k dispoziciji: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Nahrawanski problem',
 'upload-failure-msg'          => 'Bě problem z twojim nahraćom:
 

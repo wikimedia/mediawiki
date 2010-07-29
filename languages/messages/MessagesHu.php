@@ -1724,7 +1724,7 @@ MGP # Pentax
 PICT # ált.
  #</pre> <!-- ezt a sort hagyd így -->',
 'upload-success-subj'         => 'A feltöltés sikerült',
-'upload-success-msg'          => 'A feltöltésed itt érhető el: $1',
+'upload-success-msg'          => 'A feltöltésed itt érhető el: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Feltöltési hiba',
 'upload-failure-msg'          => 'Probléma történt a feltöltéseddel:
 

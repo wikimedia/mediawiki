@@ -1730,7 +1730,7 @@ MGP # Pentax
 PICT # - diverse -
  #</pre> <!-- Lohß di Reih jenou esu wie se es! -->',
 'upload-success-subj'         => 'Et Huhlade hät jeflupp',
-'upload-success-msg'          => 'Ding huhjelaade Dattei es jäz hee: $1',
+'upload-success-msg'          => 'Ding huhjelaade Dattei es jäz hee: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Probleem bem Huhlaade',
 'upload-failure-msg'          => 'Mer hatte e Probleem met Dinge huhjelaade Dattei:
 

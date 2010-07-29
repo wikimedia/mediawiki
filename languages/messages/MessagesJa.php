@@ -1644,7 +1644,7 @@ MGP # ペンタックス
 PICT # その他
  #</pre> <!-- この行はそのままにしておいてください -->',
 'upload-success-subj'         => 'アップロード成功',
-'upload-success-msg'          => 'あなたのアップロードが利用可能です: $1',
+'upload-success-msg'          => 'あなたのアップロードが利用可能です: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'アップロードで発生した問題',
 'upload-failure-msg'          => 'ファイルのアップロード中に問題が発生しました:
 

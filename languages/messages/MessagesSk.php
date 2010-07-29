@@ -1715,7 +1715,7 @@ MGP # Pentax
 PICT # rôzne
   #</pre> <!-- tento riadok ponechajte bez zmeny -->',
 'upload-success-subj'         => 'Nahranie bolo úspešné',
-'upload-success-msg'          => 'Váš súbor je dostupný tu: $1',
+'upload-success-msg'          => 'Váš súbor je dostupný tu: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problém s nahrávaním',
 'upload-failure-msg'          => 'Vyskytol sa problém s vašim nahrávaním:
 

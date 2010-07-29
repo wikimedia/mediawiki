@@ -1645,7 +1645,7 @@ MGP # Pentax
 PICT # div.
   #</pre> <!-- leave this line exactly as it is -->',
 'upload-success-subj'         => 'Opplastinga er ferdig',
-'upload-success-msg'          => 'Opplastinga di er tilgjengeleg her: $1',
+'upload-success-msg'          => 'Opplastinga di er tilgjengeleg her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Opplastingsproblem',
 'upload-failure-msg'          => 'Det oppstod eit problem med opplastinga di:
 

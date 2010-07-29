@@ -1742,7 +1742,7 @@ MGP # Pentax
 PICT # allmänt bildprefix
  #</pre> <!-- ändra inte den här raden -->',
 'upload-success-subj'         => 'Uppladdningen lyckades',
-'upload-success-msg'          => 'Din uppladdade fil finns tillgänglig här: $1',
+'upload-success-msg'          => 'Din uppladdade fil finns tillgänglig här: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Uppladdningsproblem',
 'upload-failure-msg'          => 'Det uppstod ett problem med din uppladdning:
 

@@ -1736,7 +1736,7 @@ A continuación se muestra el registro de borrado de este archivo:",
 
 Por favor, elige un nombre más descriptivo.",
 'upload-success-subj'         => 'Subida con éxito',
-'upload-success-msg'          => 'Tu carga está disponible aquí: $1',
+'upload-success-msg'          => 'Tu carga está disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en la carga',
 'upload-failure-msg'          => 'Hubo un problema con tu carga:
 

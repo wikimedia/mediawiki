@@ -1583,7 +1583,7 @@ Overvej om det er passende at fortsætte med uploadet.
 Sletningsloggen for denne fil er gengivet herunder.",
 'filename-bad-prefix'         => "Navnet på filen du er ved at lægge op begynder med '''\"\$1\"'''. Dette er et ikkebeskrivende navn, der typisk er skabt automatisk af et digitalkamera. Vær venlig at vælge et mere beskrivende navn på dit billede.",
 'upload-success-subj'         => 'Oplægningen er gennemført',
-'upload-success-msg'          => 'Din upload er tilgængelig her: $1',
+'upload-success-msg'          => 'Din upload er tilgængelig her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Upload problem',
 'upload-failure-msg'          => 'Der var et problem med din upload:
 

@@ -1454,7 +1454,7 @@ Aap ke subidha khatir deletion log hian pe hai:",
 'filename-bad-prefix'         => "Jon file aap upload kartaa hai uske naam '''\"\$1\"''' se suruu hoe hai, jon ki non-descriptive naam hai jiske jaada kar ke digital camera automatically assign kare hai.
 Meharbaani kar ke aur jaada descriptive filename chose karo.",
 'upload-success-subj'         => 'Upload safal bhais',
-'upload-success-msg'          => 'Aap aapan upload ke hian pe dekhe saktaa hae: $1',
+'upload-success-msg'          => 'Aap aapan upload ke hian pe dekhe saktaa hae: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Upload kare me kuchh karrbarr hoe gais hae',
 'upload-failure-msg'          => 'Aap ke upload me kuchh garrbarr hoe gais hae:
 

@@ -1587,7 +1587,7 @@ $1",
 為方便起見，這一個檔案的刪除記錄已經在下面提供:",
 'filename-bad-prefix'         => "您上傳的檔案名稱是以'''「$1」'''作為開頭，通常這種沒有含意的檔案名稱是由數碼相機中自動編排。請在您的檔案中重新選擇一個更加有意義的檔案名稱。",
 'upload-success-subj'         => '上傳成功',
-'upload-success-msg'          => '你可以在這裡找到你的上傳：$1',
+'upload-success-msg'          => '你可以在這裡找到你的上傳：[[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '上傳問題',
 'upload-failure-msg'          => '有一個問題與您的上傳有關：
 

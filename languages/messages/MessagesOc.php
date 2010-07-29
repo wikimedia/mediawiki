@@ -1685,7 +1685,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- daissatz aquesta linha coma es -->',
 'upload-success-subj'         => 'Importacion capitada',
-'upload-success-msg'          => 'Çò mandat es disponible aicí : $1',
+'upload-success-msg'          => 'Çò mandat es disponible aicí : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèma de mandadís',
 'upload-failure-msg'          => 'I a agut un problèma amb vòstre mandadís :$1',
 

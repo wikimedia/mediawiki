@@ -1729,7 +1729,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- deixe esta linha exatamente como está -->',
 'upload-success-subj'         => 'Envio efetuado com sucesso',
-'upload-success-msg'          => 'Seu arquivo carregado está disponível aqui: $1',
+'upload-success-msg'          => 'Seu arquivo carregado está disponível aqui: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema no upload',
 'upload-failure-msg'          => 'Ocorreu um problema com o seu upload:
 

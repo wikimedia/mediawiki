@@ -1419,7 +1419,7 @@ qaydê hewna biyayeyan tiya de pêşkeş biya:",
 'filename-bad-prefix'         => "name yo ke şıma bar keni zey nameyê kamerayê dijital î, pê ney '''\"\$1\"''' destpêkeno .
 kerem kere yewna nameyo eşkera bıvicinê.",
 'upload-success-subj'         => 'bar biyo',
-'upload-success-msg'          => 'Bar kerdişê tu itiya de esta: $1',
+'upload-success-msg'          => 'Bar kerdişê tu itiya de esta: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem bar bike',
 'upload-failure-msg'          => 'Bar kerdişê tu de yew problem esta:
 

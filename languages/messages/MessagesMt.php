@@ -1586,7 +1586,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- ħalli din il-linja eżattament kif inhi -->',
 'upload-success-subj'         => "Mtella' b'suċċess",
-'upload-success-msg'          => 'Il-fajl tiegħek huwa disponibbli hawnhekk: $1',
+'upload-success-msg'          => 'Il-fajl tiegħek huwa disponibbli hawnhekk: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem fit-tlugħ tal-fajl',
 
 'upload-proto-error'      => 'Protocol ħażin',

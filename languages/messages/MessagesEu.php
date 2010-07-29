@@ -1505,7 +1505,7 @@ Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'filename-bad-prefix'         => "Igotzen ari zaren fitxategiaren izena '''\"\$1\"'''ekin hasten da, normalki kamera digitalek automatikoki ezartzen duten izen ez deskriptibo bat.
 Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'upload-success-subj'         => 'Igoera arrakastatsua',
-'upload-success-msg'          => 'Igotakoa hemen duzu eskuragarri: $1',
+'upload-success-msg'          => 'Igotakoa hemen duzu eskuragarri: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Igoera-arazoa',
 'upload-failure-msg'          => 'Hurrengo arazoa egon da zure igoerarekin:
 

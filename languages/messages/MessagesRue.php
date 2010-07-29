@@ -1161,7 +1161,7 @@ $2',
 'upload-description'  => 'Попис файлу',
 'upload-options'      => 'Параметры начітаня',
 'watchthisupload'     => 'Слїдовати тот файл',
-'upload-success-msg'  => 'Вами начітаный файл є доступный гев: $1',
+'upload-success-msg'  => 'Вами начітаный файл є доступный гев: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Проблем з начітаным файлом',
 'upload-failure-msg'  => 'У вами начітаного файлу взникнув проблем:
 

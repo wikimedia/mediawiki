@@ -38,6 +38,9 @@ $fallback8bitEncoding = 'windows-1251';
 $separatorTransformTable = array( ',' => ' ', '.' => ',' );
 
 $messages = array(
+# Categories related messages
+'hidden-category-category' => 'Ватэм категориос',
+
 'linkprefix' => '/^(.*?)(„|«)$/sDu',
 
 'article' => 'Статья',

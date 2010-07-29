@@ -1789,7 +1789,7 @@ MGP # Pentax
 PICT # de totes sôrtes
   #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 'upload-success-subj'         => 'Tèlèchargement fêt avouéc reusséta',
-'upload-success-msg'          => 'Voutron tèlèchargement est disponiblo ique : $1',
+'upload-success-msg'          => 'Voutron tèlèchargement est disponiblo ique : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèmo de tèlèchargement',
 'upload-failure-msg'          => 'Y at avu un problèmo avouéc voutron tèlèchargement :
 

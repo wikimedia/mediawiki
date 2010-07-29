@@ -1356,7 +1356,7 @@ $1",
 誌刪如下：",
 'filename-bad-prefix'        => "獻檔以'''「$1」'''首，常由相機瞎造，惠更述之。",
 'upload-success-subj'        => '檔案安矣',
-'upload-success-msg'         => '爾之貢見於此：$1',
+'upload-success-msg'         => '爾之貢見於此：[[:{{ns:file}}:$1]]',
 'upload-failure-subj'        => '貢問',
 'upload-failure-msg'         => '爾之貢現問也：
 

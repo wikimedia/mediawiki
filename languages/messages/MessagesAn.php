@@ -1521,7 +1521,7 @@ MGP # Pentax
 PICT # misz.
  #</pre> <!-- dixe ista linia esautament igual como ye -->',
 'upload-success-subj'         => 'Cargata correctament',
-'upload-success-msg'          => 'O fichero cargau ye disponible aquí: $1',
+'upload-success-msg'          => 'O fichero cargau ye disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en a carga',
 'upload-failure-msg'          => 'I ha habiu bell problema con a suya carga:
 

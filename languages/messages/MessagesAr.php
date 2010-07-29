@@ -1893,7 +1893,7 @@ MGP # بينتاكس
 PICT # متنوع
  #</pre> <!-- اترك هذا السطر تماما كما هو -->',
 'upload-success-subj'         => 'تم رفع الملف بنجاح',
-'upload-success-msg'          => 'مرفوعك متوفر هنا: $1',
+'upload-success-msg'          => 'مرفوعك متوفر هنا: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'مشكلة رفع',
 'upload-failure-msg'          => 'توجد مشكلة في رفعك:
 

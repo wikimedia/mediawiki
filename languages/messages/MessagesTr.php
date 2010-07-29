@@ -1708,7 +1708,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
 'upload-success-subj'         => 'Yükleme başarılı',
-'upload-success-msg'          => 'Yüklemeniz burada mevcut: $1',
+'upload-success-msg'          => 'Yüklemeniz burada mevcut: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Yükleme sorunu',
 'upload-failure-msg'          => 'Yüklemenizle ilgili bir sorun var:
 

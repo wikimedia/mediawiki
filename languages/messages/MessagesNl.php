@@ -1817,11 +1817,14 @@ MGP # Pentax
 PICT # overig
  #</pre> <!-- leave this line exactly as it is -->',
 'upload-success-subj'         => 'Het bestand is toegevoegd',
-'upload-success-msg'          => 'Uw upload is hier beschikbaar: $1',
+'upload-success-msg'          => 'Uw uploaden van [$2] is geslaagd en is beschikbaar: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Uploadprobleem',
 'upload-failure-msg'          => 'Er was een probleem met uw upload:
 
 $1',
+'upload-warning-subj'         => 'Uploadwaarschuwing',
+'upload-warning-msg'          => 'Er was een probleem met uw upload van [$2].
+Ga terug naar het [[Special:Upload/stash/$1|uploadformulier]] om dit probleem te verhelpen.',
 
 'upload-proto-error'        => 'Verkeerd protocol',
 'upload-proto-error-text'   => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",

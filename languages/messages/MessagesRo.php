@@ -1708,10 +1708,12 @@ Jurnalul pentru această ștergere este disponibil aici:",
 'filename-bad-prefix'         => "Numele fișierului pe care îl încărcați începe cu '''\"\$1\"''', care este un nume non-descriptiv alocat automat în general de camerele digitale.
 Vă rugăm, alegeți un nume mai descriptiv pentru fișerul dumneavoastră.",
 'upload-success-subj'         => 'Fișierul a fost trimis',
-'upload-success-msg'          => 'Fișierul trimis este disponibil aici: $1',
+'upload-success-msg'          => 'Încărcarea de la [$2] s-a încheiat cu succes. Rezultatul este disponibil aici: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problemă la trimitere',
 'upload-failure-msg'          => 'E o problemă cu fișierul trimis:
 $1',
+'upload-warning-subj'         => 'Avertizare la încărcare',
+'upload-warning-msg'          => 'A apărut o problemă în timpul încărcării de la [$2]. Vă puteți întoarce la [[Special:Upload/stash/$1|formularul de trimitere]]pentru a corecta această problemă.',
 
 'upload-proto-error'        => 'Protocol incorect',
 'upload-proto-error-text'   => 'Importul de la distanță necesită adrese URL care încep cu <code>http://</code> sau <code>ftp://</code>.',
