@@ -79,6 +79,10 @@ You cannot install MediaWiki.',
 	'config-env-latest-old'           => "'''Warning:''' You are installing an outdated version of Mediawiki.",
 	'config-env-latest-help'          => 'You are installing version $1, but the latest version is $2.
 You are advised to use the latest release, which can be downloaded from [http://www.mediawiki.org/wiki/Download mediawiki.org]',
+	'config-unicode-php'              => "Using pure PHP to normalize Unicode characters.",
+	'config-unicode-pure-php-warning' => "'''Warning''': Either the PECL Intl extension is not available, or it uses an older version of [http://site.icu-project.org/ the ICU project's] library for handling Unicode normalization.  If you run a high-traffic site, you should read a little on [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
+	'config-unicode-utf8'             => "Using Brion Vibber's utf8_normalize.so for UTF",
+	'config-unicode-intl'             => "Using the [http://pecl.php.net/intl intl PECL extension] for UTF-8 normalization.",
 	'config-no-db'                    => 'Could not find a suitable database driver!',
 	'config-no-db-help'               => 'You need to install a database driver for PHP.
 The following database types are supported: $1.
