@@ -103,7 +103,6 @@ $messages = array(
 'dec'          => 'Dez.',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'                => 'Seitn in da Kategorie „$1“',
 'subcategories'                  => 'Untakategorien',
 'category-media-header'          => 'Medien in da Kategorie „$1“',
@@ -131,14 +130,12 @@ $messages = array(
 'mytalk'        => 'Eigne Diskussion',
 'anontalk'      => 'Diskussionsseitn vo dera IP',
 'navigation'    => 'Navigazion',
-'and'           => '&#32;und',
 
 # Cologne Blue skin
 'qbfind'         => 'Findn',
 'qbedit'         => 'werkln',
 'qbmyoptions'    => 'Meine Seitn',
 'qbspecialpages' => 'Spezialseitn',
-'faq'            => 'FAQ',
 
 # Vector skin
 'vector-action-delete'    => 'Löschn',
@@ -150,12 +147,10 @@ $messages = array(
 
 'errorpagetitle'    => 'Fehla',
 'returnto'          => 'Zruck zur Seitn $1.',
-'tagline'           => 'Aus {{SITENAME}}',
 'help'              => 'Fragen?',
 'search'            => 'Suach',
 'searchbutton'      => 'Suach',
 'searcharticle'     => 'Artikl',
-'history'           => 'Versionen',
 'history_short'     => 'Veasionen/Autorn',
 'updatedmarker'     => '(gändat)',
 'printableversion'  => 'Version zum Ausdruckn',
@@ -197,8 +192,6 @@ $messages = array(
 'aboutpage'            => 'Project:Üba_{{SITENAME}}',
 'copyright'            => 'Da Inhåit is unta da $1 vafügbåa.',
 'copyrightpage'        => '{{ns:project}}:Uahebarechte',
-'disclaimers'          => 'Impressum',
-'disclaimerpage'       => 'Project:Impressum',
 'edithelp'             => 'Bearbeitungshuifn',
 'edithelppage'         => 'Help:Bearbeitungshuifn',
 'helppage'             => 'Help:Inhåitsvazeichnis',
@@ -330,9 +323,7 @@ Vagiss bittschee ned, deine [[Special:Preferences|{{SITENAME}}-Eistellungen]] ã
 'bold_tip'        => 'Fetta Text',
 'italic_sample'   => 'Kuasiva Text',
 'italic_tip'      => 'Kuasiva Text',
-'link_sample'     => 'Link-Text',
 'link_tip'        => 'Inteana Link',
-'extlink_sample'  => 'http://www.example.com Link-Text',
 'extlink_tip'     => "Exteana Link (pass auf's http:// auf)",
 'headline_sample' => 'Üwaschrift auf da zweitn Ebene',
 'headline_tip'    => 'Üwaschrift auf da 2. Emn',
@@ -340,14 +331,12 @@ Vagiss bittschee ned, deine [[Special:Preferences|{{SITENAME}}-Eistellungen]] ã
 'math_tip'        => 'Mathematische Foaml (LaTeX)',
 'nowiki_sample'   => 'Ned foamatiadn Text då eifüng',
 'nowiki_tip'      => 'Unfoamatiada Text',
-'image_tip'       => 'Dateilink',
 'media_tip'       => 'Datei-Link',
 'sig_tip'         => 'Dei Signatur mit Zeitstempe',
 'hr_tip'          => 'Wåågrechte Linie (spåasãm vawendn)',
 
 # Edit pages
 'summary'                          => 'Zsammafassung',
-'subject'                          => 'Betreff:',
 'minoredit'                        => 'Nur Kloanigkeitn san verändert worn',
 'watchthis'                        => 'De Seitn beobachtn',
 'savearticle'                      => 'Seitn speichern',
@@ -376,7 +365,6 @@ Wennst a anonymer Benutzer bist und dengst, daß irrelevante Kommentare an di gr
 Du kãnnst in Titl vu dea Seitn auf de ãndan Seitn [[Special:Search/{{PAGENAME}}|suacha]],
 <span class="plainlinks"> in de dazuaghearadn [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbiache suachn] oda de Seitn [{{fullurl:{{FULLPAGENAME}}|action=edit}} beåabeitn]</span>.',
 'updated'                          => '(Gändat)',
-'note'                             => "'''Hinweis:'''",
 'previewnote'                      => "'''Des is netta a Voaschau, d'Seitn is nu ned gspeichat woan!'''",
 'previewconflict'                  => "De Vorschau gibt an Inhalt vom obern Textfeld wieda; so werd de Seite ausschaun, wenn S' iatzat speichern.",
 'session_fail_preview'             => '<strong>Dei Bearbeitung is net gspeichert worn, wei deine Sitzungsdaten valorn ganga san.
@@ -511,17 +499,11 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 
 'group-user-member'          => 'Benutza',
 'group-autoconfirmed-member' => 'Bestätigta Benutza',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Bürokrat',
-'group-suppress-member'      => 'Oversighter',
 
 'grouppage-user'          => '{{ns:project}}:Benutza',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bestätigte Benutza',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administratoan',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokratn',
-'grouppage-suppress'      => '{{ns:project}}:Oversighter',
 
 # Rights
 'right-read'  => 'Seitn lesn',
@@ -594,16 +576,13 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'upload_source_file' => ' (a Datei auf deim Computa)',
 
 # File description page
-'file-anchor-link'          => 'Datei',
 'filehist'                  => 'Dateiveasionen',
 'filehist-help'             => 'Klick auf an Zeitpunkt, damid de Veasion glånd wiad.',
-'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Version vum',
 'filehist-thumb'            => 'Voaschaubüidl',
 'filehist-thumbtext'        => "Vorschaubüidl fia'd Veasion vum $1",
 'filehist-user'             => 'Benutza',
 'filehist-dimensions'       => 'Måße',
-'filehist-comment'          => 'Kommentar',
 'imagelinks'                => 'Dateivawendungen',
 'linkstoimage'              => "{{PLURAL:$1|D'foignde Seitn vawendt|De foigndn $1 Seitn vawendn}} de Datei:",
 'linkstoimage-more'         => "Es {{PLURAL:$1|valinkt|valinkn}} mea wia {{PLURAL:$1|oa Seitn |$1 Seitn}} auf de Datei.
@@ -639,7 +618,6 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'statistics'             => 'Statistik',
 'statistics-mostpopular' => 'Am meistn bsuachte Seitn',
 
-'disambiguationspage'  => 'Template:Begriffsklärung',
 'disambiguations-text' => 'De folgenden Seitn valinkn auf a Seitn zur Begriffsklärung.
 Sie solltn stattdessn auf de eigentlich gemoante Seitn valinkn.<br />A Seitn werd ois Begriffsklärungsseitn behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie valinkt.<br />
 Links aus Namensräume wern da net aufglistet.',
@@ -677,7 +655,6 @@ Links aus Namensräume wern da net aufglistet.',
 
 # Special:AllPages
 'allpages'          => 'Alle Seitn',
-'alphaindexline'    => '$1 bis $2',
 'prevpage'          => 'Voaherige Seitn ($1)',
 'allpagesfrom'      => 'Seitn zoang ab:',
 'allpagesto'        => 'Seitn ãnzoang bis:',
@@ -780,7 +757,6 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 'protectedarticle'            => 'håd „[[$1]]“ gschützt',
 'modifiedarticleprotection'   => 'håd in Schutz vu „[[$1]]“ gändat',
 'prot_1movedto2'              => 'håt [[$1]] nåch [[$2]] verschom',
-'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Sperrdaua:',
 'protect_expiry_invalid'      => "D'eigemne Daua is ungüitig.",
 'protect_expiry_old'          => "D'Sperrzeid liegt in da Vagãngnheid",
@@ -793,7 +769,6 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 'protect-expiring'            => 'bis zum $2 um $3 Uhr (UTC)',
 'protect-cascade'             => 'Kaskadiarade Sperr – ålle Voalång, de in dea Seitn eibundn han, wean emfåis gspead.',
 'protect-cantedit'            => "Du kãnnst de Spea vu dea Seitn ned ändan, weu'st dafia ned de passnde Berechtigung håst.",
-'restriction-type'            => 'Schutzstatus:',
 'restriction-level'           => 'Schutzhechn:',
 
 # Restrictions (nouns)
@@ -822,8 +797,6 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'contributions-title' => 'Benutzabeiträg vu „$1“',
 'mycontris'           => 'Eigene Beiträg',
 'contribsub2'         => 'Fia $1 ($2)',
-'uctop'               => '(aktuell)',
-'month'               => 'und Monat:',
 'year'                => 'bis zum Joa:',
 
 'sp-contributions-newbies'     => 'Netta de Beiträg vu de neichn Benutza ãnzoang',
@@ -840,13 +813,11 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'whatlinkshere-page'       => 'Seitn:',
 'isredirect'               => 'Weiterleitungsseitn',
 'istemplate'               => 'Voalãngeibindung',
-'isimage'                  => 'Dateilink',
 'whatlinkshere-prev'       => "{{PLURAL:$1|vorige|d'voring $1}}",
 'whatlinkshere-next'       => "{{PLURAL:$1|nexde|d'nexdn $1}}",
 'whatlinkshere-links'      => '← Vaweise',
 'whatlinkshere-hideredirs' => 'Weidaleitungen $1',
 'whatlinkshere-hidetrans'  => 'Voalãngeibindungen $1',
-'whatlinkshere-hidelinks'  => 'Links $1',
 'whatlinkshere-filters'    => 'Füita',
 
 # Block/unblock
