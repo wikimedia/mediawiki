@@ -1632,7 +1632,6 @@ $1",
 'file-deleted-duplicate'      => 'ឯកសារមួយដែលដូចគ្នាបេះបិតជាមួយឯកសារនេះ ([[$1]]) ត្រូវបានលុបចោលម្ដងហើយ។
 
 អ្នកគួរតែចូលទៅពិនិត្យមើលនៅក្នុងប្រវត្តិនៃការលុបចោលរបស់ឯកសារនេះមុននឹងបន្តផ្ទុកវាឡើងវិញ។',
-'upload-success-subj'            => 'ផ្ទុកឯកសារឡើងបានសំរេច',
 'uploadwarning'               => 'ប្រយ័ត្ន',
 'savefile'                    => 'រក្សាឯកសារទុក',
 'uploadedimage'               => 'បានផ្ទុកឡើង "[[$1]]"',
@@ -1676,6 +1675,7 @@ JD # Jenoptik
 MGP # ម៉ាក Pentax
 PICT # ផ្សេង​ៗ​
   #</pre> <!-- leave this line exactly as it is -->',
+'upload-success-subj'         => 'ផ្ទុកឯកសារឡើងបានសំរេច',
 
 'upload-proto-error'        => 'ប្រូតូខូលមិនត្រឹមត្រូវ',
 'upload-proto-error-text'   => 'ការផ្ទុកឡើងពីចម្ងាយត្រូវការ URL ដែលចាប់ផ្ដើមដោយ <code>http://</code> ឬ <code>ftp://</code>។',

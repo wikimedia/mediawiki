@@ -59,7 +59,7 @@ $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktivİstifadəçilər' ),
 );
 
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
 
 $messages = array(
 # User preference toggles
@@ -402,7 +402,7 @@ Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhif
 'unexpected'           => 'Uyğunsuzluq: "$1"="$2".',
 'formerror'            => 'Xəta: Formanın məlumatlarını əks etdirmək qeydi-mümkündür',
 'badarticleerror'      => 'Yerinə yetirmək istədiyiniz fəaliyyətin icrası bu səhifədə mümkün deyil.',
-'cannotdelete'         => 'İstədiyiniz "$1" səhifə və ya faylını silmək mümkün deyil. 
+'cannotdelete'         => 'İstədiyiniz "$1" səhifə və ya faylını silmək mümkün deyil.
 Bu səhifə və ya fayl başqa bir istifadəçi tərəfindən silinmiş ola bilər.',
 'badtitle'             => 'Yanlış başlıq',
 'wrong_wfQuery_params' => 'wfQuery() funksiyası üçün qəbuledilməz parametrlər <br />
@@ -424,8 +424,8 @@ Göstərilən səbəb odur ki, "\'\'$2\'\'".',
 'logouttext'                 => "'''Sistemdən çıxdınız.'''
 
 {{Vikipediya}}nı anonim olaraq istifadə etməyə davam edəbilər, və ya eyni yaxud başqa istifadəçi adı ilə [[Special:UserLogin|yenidən daxil ol]]a bilərsiniz. Diqqətinizə çatdırırıq ki, ön yaddaşı (browser cache) təmizləyənə qədər bə'zi səhifələr sistemdən çıxdığınız halda da göstərilə bilər.",
-'welcomecreation'            => '== $1, xoş gəlmişsiniz! == 
-Hesabınız yaradıldı. 
+'welcomecreation'            => '== $1, xoş gəlmişsiniz! ==
+Hesabınız yaradıldı.
 [[Special:Preferences|{{SITENAME}} nizamlamalarınızı]] dəyişdirməyi unutmayın.',
 'yourname'                   => 'İstifadəçi adı',
 'yourpassword'               => 'Parol',
@@ -477,7 +477,7 @@ Xahiş edirik, e-məktubu aldıqdan sonra yenidən daxil olasınız.',
 Aşağıdakğı xidmətlərin heç biri üçün sizə e-məktub göndərilməyəcək.',
 'noemailprefs'               => 'Bu xidmətlərdən yararlanmaq üçün nizamlamalarında E-məktub ünvanını göstər.',
 'emailconfirmlink'           => 'E-məktub ünvanını təsdiq et',
-'invalidemailaddress'        => 'E-məktub ünvanını qeyri düzgün formatda olduğu üçün qəbul edə bilmirik. 
+'invalidemailaddress'        => 'E-məktub ünvanını qeyri düzgün formatda olduğu üçün qəbul edə bilmirik.
 Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.',
 'accountcreated'             => 'Hesab yaradıldı',
 'accountcreatedtext'         => '$1 üçün istifadəçi hesabı yaradıldı.',
@@ -553,11 +553,11 @@ Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 Hesabınıza daxil olduqdan sonra, parolunuzu ''[[Special:ChangePassword|parolu dəyiş]]'' səhifəsində dəyişdirə bilərsiniz.",
 'newarticle'                       => '(Yeni)',
 'newarticletext'                   => "Mövcud olmayan səhifəyə olan keçidi izlədiniz. Aşağıdakı sahəyə məzmununu yazaraq bu səhifəni '''siz''' yarada bilərsiniz. (əlavə məlumat üçün [[{{MediaWiki:Helppage}}|kömək səhifəsinə]] baxın). Əgər bu səhifəyə səhvən gəlmisinizsə sadəcə olaraq brauzerin '''geri''' düyməsinə vurun.",
-'anontalkpagetext'                 => "----''Bu səhifə qeydiyyatdan keçməmiş və ya daxil olmamış anonim istifadəçiyə aid müzakirə səhifəsidir. 
+'anontalkpagetext'                 => "----''Bu səhifə qeydiyyatdan keçməmiş və ya daxil olmamış anonim istifadəçiyə aid müzakirə səhifəsidir.
 Ona görə bu istifadəçini rəqəmlərdən ibarət IP ünvanı ilə müəyyən etmək məcburiyyətindəyik.
 Belə IP ünvan bir neçə fərd tərəfindən istifadədə ola bilər.
 Əgər siz anonim istifadəçisinizsə və bu mesajın sizə aid olmadığını düşünürsünüzsə, onda  [[Special:UserLogin/signup|qeydiyyatdan keçin]] və ya [[Special:UserLogin|daxi olun]].''",
-'noarticletext'                    => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə 
+'noarticletext'                    => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} baxa],
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
 'note'                             => "'''Qeyd:'''",
@@ -800,9 +800,9 @@ HTML kodu yoxla.',
 'gender-male'                  => 'Kişi',
 'gender-female'                => 'Qadın',
 'email'                        => 'E-məktub',
-'prefs-help-realname'          => 'Həqiqi adınızı daxil etmək qeyri-məcburidir. 
+'prefs-help-realname'          => 'Həqiqi adınızı daxil etmək qeyri-məcburidir.
 Bu seçimi etdiyiniz halda, adınız işinizə görə müəlliflik hüququnuzu tanımaq üçün istifadə ediləcək.',
-'prefs-help-email'             => 'E-məktub ünvanınızı daxil etmək qeyri-məcburidir. 
+'prefs-help-email'             => 'E-məktub ünvanınızı daxil etmək qeyri-məcburidir.
 Bu parolunuzu unutduğunuz halda sizə yeni parol göndərməyə imkan verir.
 Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadəçi və ya istifadəçi müzakirəsi səhifələriniz vasitəsi ilə əlaqə yaratmalarını seçə bilərsiniz.',
 'prefs-help-email-required'    => 'Elektron ünvan tələb olunur.',
@@ -931,37 +931,37 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'recentchangeslinked-to'      => 'Qeyd olunan səhifədəki deyil, ona daxili keçid verən səhifələrdəki dəyişiklikləri göstər',
 
 # Upload
-'upload'            => 'Qarşıya yüklə',
-'uploadbtn'         => 'Sənəd yüklə',
-'reuploaddesc'      => 'Return to the upload form.',
-'uploadnologintext' => 'Fayl yükləmək üçün [[Special:UserLogin|daxil olmalısınız]].',
-'uploaderror'       => 'Yükləmə xətası',
-'uploadlog'         => 'yükləmə qeydi',
-'uploadlogpage'     => 'Yükləmə qeydi',
-'uploadlogpagetext' => 'Aşağıda ən yeni yükləmə jurnal qeydləri verilmişdir.',
-'filename'          => 'Fayl adı',
-'filedesc'          => 'Xülasə',
-'fileuploadsummary' => 'İzahat:',
-'filestatus'        => 'Müəllif statusu:',
-'filesource'        => 'Mənbə:',
-'uploadedfiles'     => 'Yüklənmiş fayllar',
-'ignorewarning'     => 'Xəbərdarlıqlara əhəmiyyət vermə və faylı saxla',
-'badfilename'       => 'Faylın adı dəyişildi. Yeni adı: "$1".',
-'emptyfile'         => 'Yüklədiyiniz fayl boşdur. Bu faylın adında olan hərf səhvi ilə bağlı ola bilər. Xahiş olunur ki, doğurdan da bu faylı yükləmək istədiyinizi yoxlayasınız.',
-'fileexists'        => "Yükləmək istədiyiniz adda fayl mövcutdur.
+'upload'              => 'Qarşıya yüklə',
+'uploadbtn'           => 'Sənəd yüklə',
+'reuploaddesc'        => 'Return to the upload form.',
+'uploadnologintext'   => 'Fayl yükləmək üçün [[Special:UserLogin|daxil olmalısınız]].',
+'uploaderror'         => 'Yükləmə xətası',
+'uploadlog'           => 'yükləmə qeydi',
+'uploadlogpage'       => 'Yükləmə qeydi',
+'uploadlogpagetext'   => 'Aşağıda ən yeni yükləmə jurnal qeydləri verilmişdir.',
+'filename'            => 'Fayl adı',
+'filedesc'            => 'Xülasə',
+'fileuploadsummary'   => 'İzahat:',
+'filestatus'          => 'Müəllif statusu:',
+'filesource'          => 'Mənbə:',
+'uploadedfiles'       => 'Yüklənmiş fayllar',
+'ignorewarning'       => 'Xəbərdarlıqlara əhəmiyyət vermə və faylı saxla',
+'badfilename'         => 'Faylın adı dəyişildi. Yeni adı: "$1".',
+'emptyfile'           => 'Yüklədiyiniz fayl boşdur. Bu faylın adında olan hərf səhvi ilə bağlı ola bilər. Xahiş olunur ki, doğurdan da bu faylı yükləmək istədiyinizi yoxlayasınız.',
+'fileexists'          => "Yükləmək istədiyiniz adda fayl mövcutdur.
 Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.
 [[$1|thumb]]",
-'upload-success-subj'  => 'Yükləmə tamamlandı',
-'uploadwarning'     => 'Yükləyiş xəbərdarlıqı',
-'savefile'          => 'Faylı qeyd et',
-'uploadedimage'     => 'yükləndi "[[$1]]"',
-'sourcefilename'    => 'Fayl adı mənbələri',
-'destfilename'      => 'Fayl adı',
-'watchthisupload'   => 'Bu faylı izlə',
-'upload-wasdeleted' => "'''Diqqət:Siz əvvəl bu ad altında mövcud olmuş və silinmiş faylı yenidən yükləməkdəsiniz'''
+'uploadwarning'       => 'Yükləyiş xəbərdarlıqı',
+'savefile'            => 'Faylı qeyd et',
+'uploadedimage'       => 'yükləndi "[[$1]]"',
+'sourcefilename'      => 'Fayl adı mənbələri',
+'destfilename'        => 'Fayl adı',
+'watchthisupload'     => 'Bu faylı izlə',
+'upload-wasdeleted'   => "'''Diqqət:Siz əvvəl bu ad altında mövcud olmuş və silinmiş faylı yenidən yükləməkdəsiniz'''
 
 Əvvəlcədən bu faylı yenidən yükləməyin nə dərəcədə lazımlı olduğunu müəyyənləşdirməniz məsləhətdir.
 Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
+'upload-success-subj' => 'Yükləmə tamamlandı',
 
 'license'        => 'Lisenziya',
 'license-header' => 'Lisenziya',
@@ -1099,7 +1099,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'speciallogtitlelabel' => 'Başlıq:',
 'log'                  => 'Loglar',
 'all-logs-page'        => 'Bütün ictimai qeydlər',
-'alllogstext'          => '{{SITENAME}} üçün bütün mövcud qeydlərin birgə göstərişi. 
+'alllogstext'          => '{{SITENAME}} üçün bütün mövcud qeydlərin birgə göstərişi.
 Qeyd növü, istifadəçi adı və ya təsir edilmiş səhifəni seçməklə daha spesifik ola bilərsiniz.',
 'logempty'             => 'Jurnalda uyğun qeyd tapılmadı.',
 
@@ -1405,10 +1405,10 @@ Bloklama şərtlərini dəyişmək istəyirsiniz?',
 
 # Move page
 'move-page-legend'         => 'Səhifənin adını dəyiş',
-'movepagetext'             => "Aşağıdakı formadan istifədə etmə səhifənin adını, bütün tarixçəsini də köçürməklə yeni başlığa dəyişəcək. 
+'movepagetext'             => "Aşağıdakı formadan istifədə etmə səhifənin adını, bütün tarixçəsini də köçürməklə yeni başlığa dəyişəcək.
 Əvvəlki başlıq yeni başlığa istiqamətləndirmə səhifəsinə çevriləcək.
 Köhnə səhifəyə keçidləri avtomatik olaraq dəyişə bilərsiniz.
-Bu seçimi etmədiyiniz halda, [[Special:DoubleRedirects|təkrarlanan]] və ya [[Special:BrokenRedirects|qırıq istiqamətləndirmələri]] yoxlamağı yaddan çıxarmayın. 
+Bu seçimi etmədiyiniz halda, [[Special:DoubleRedirects|təkrarlanan]] və ya [[Special:BrokenRedirects|qırıq istiqamətləndirmələri]] yoxlamağı yaddan çıxarmayın.
 Keçidlərin lazımi yerə istiqamətləndirilməsini təmin etmək sizin məsuliyyətinizdədir.
 
 Nəzərə alın ki, hədəf başlığı altında bir səhifə mövcuddursa yerdəyişmə '''baş tutmayacaq'''. Buna həmin səhifənin boş olması və ya istiqamətləndirmə səhifəsi olması və keçmişdə redaktə edilməməsi halları istisnadır. Bu o deməkdir ki, səhvən adını dəyişdiyiniz səhifələri geri qaytara bilər, bununla yanaşı artıq mövcud olan səhifənin üzərinə başqa səhifə yaza bilməzsiniz.

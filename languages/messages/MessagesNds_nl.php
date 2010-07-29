@@ -1686,7 +1686,6 @@ A-j 't bestaand asnog toevoegen willen, gao dan weerumme en kies een aandere naa
 'file-exists-duplicate'       => "Dit bestaand is liekeleens as {{PLURAL:$1|'t volgende bestaand|de volgende bestanen}}:",
 'file-deleted-duplicate'      => "Een bestaand dat liekeleens is an dit bestaand ([[$1]]) is eerder al vort-edaon.
 Bekiek 't vortdologboek veurda-j veurdan gaon.",
-'upload-success-subj'            => 'Bestaanstoevoeging was succesvol',
 'uploadwarning'               => 'Waorschuwing',
 'uploadwarning-text'          => "Pas de bestaansbeschrieving hieronder an en prebeer 't opniej",
 'savefile'                    => 'Bestaand opslaon',
@@ -1713,7 +1712,8 @@ Bekiek 't vortdologboek veurda-j veurdan gaon.",
 Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand toe-evoeg wönnen.
 't Logboek mit alle vort-edaone infermasie ku-j hier vienen:",
 'filename-bad-prefix'         => "De naam van 't bestaand da-j toevoegen, begint mit '''\"\$1\"''', dit is een neet-beschrievende naam dee meestentieds autematisch deur een digitale camera egeven wonnen. Kies een dudelijke naam veur 't bestaand.",
-'upload-success-msg'       => "'t Bestaand da-j toe-evoeg hemmen, is hier beschikbaor: $1",
+'upload-success-subj'         => 'Bestaanstoevoeging was succesvol',
+'upload-success-msg'          => "'t Bestaand da-j toe-evoeg hemmen, is hier beschikbaor: $1",
 'upload-failure-subj'         => "Prebleem bie 't toevoegen van 't bestaand",
 'upload-failure-msg'          => "Der was een prebleem bie 't toevoegen van 't bestaand:
 

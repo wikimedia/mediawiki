@@ -1723,7 +1723,6 @@ Caso deseje, mesmo assim, carregar o seu ficheiro, volte atrás e envie-o com um
 'file-exists-duplicate'       => 'Este ficheiro é um duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate'      => 'Um ficheiro idêntico a este ([[$1]]) foi eliminado anteriormente.
 Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envio.',
-'upload-success-subj'            => 'Envio efectuado com sucesso',
 'uploadwarning'               => 'Aviso de envio',
 'uploadwarning-text'          => 'Modifique a descrição do ficheiro abaixo e tente novamente, por favor.',
 'savefile'                    => 'Gravar ficheiro',
@@ -1766,7 +1765,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- deixe esta linha exactamente como está -->',
-'upload-success-msg'       => 'O ficheiro carregado está disponível aqui: $1',
+'upload-success-subj'         => 'Envio efectuado com sucesso',
+'upload-success-msg'          => 'O ficheiro carregado está disponível aqui: $1',
 'upload-failure-subj'         => 'Problema no upload',
 'upload-failure-msg'          => 'Ocorreu um problema com o seu upload:
 

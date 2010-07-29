@@ -1624,7 +1624,6 @@ Se aínda quere cargar o seu ficheiro, volva atrás e use outro nome.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate'      => 'Un ficheiro idéntico a este ("[[$1]]") foi borrado previamente. Debería comprobar o historial de borrados do ficheiro antes de proceder a cargalo de novo.',
-'upload-success-subj'            => 'A carga realizouse correctamente',
 'uploadwarning'               => 'Advertencia ao cargar o ficheiro',
 'uploadwarning-text'          => 'Por favor, modifique a descrición do ficheiro e inténteo de novo.',
 'savefile'                    => 'Gardar o ficheiro',
@@ -1667,7 +1666,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # varias
  #</pre> <!-- deixe esta liña exactamente como está -->',
-'upload-success-msg'       => 'O ficheiro cargado está dispoñible aquí: $1',
+'upload-success-subj'         => 'A carga realizouse correctamente',
+'upload-success-msg'          => 'O ficheiro cargado está dispoñible aquí: $1',
 'upload-failure-subj'         => 'Problema ao cargar',
 'upload-failure-msg'          => 'Houbo un problema durante a carga:
 

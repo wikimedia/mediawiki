@@ -1646,7 +1646,6 @@ Kui soovid siiski oma faili üles laadida, siis palun mine tagasi ja kasuta teis
 'file-exists-duplicate'       => 'See fail on {{PLURAL:$1|järgneva faili|järgnevate failide}} duplikaat:',
 'file-deleted-duplicate'      => 'Selle failiga ([[$1]]) identne fail on hiljuti kustutatud.
 Vaata selle faili kustutamise ajalugu enne jätkamist.',
-'upload-success-subj'            => 'Üleslaadimine õnnestus',
 'uploadwarning'               => 'Üleslaadimise hoiatus',
 'uploadwarning-text'          => 'Muuda allpool olevat faili kirjeldust ning proovi uuesti.',
 'savefile'                    => 'Salvesta fail',
@@ -1676,7 +1675,8 @@ Peaksid kaaluma, kas selle faili üleslaadimise jätkamine on sobilik.
 Selle faili kustutamislogi on toodud siinsamas:",
 'filename-bad-prefix'         => "Üleslaaditava faili nimi algab eesliitega '''\"\$1\"''', mis on omane digikaamera antud ebamäärastele nimedele.
 Palun vali oma failile kirjeldavam nimi.",
-'upload-success-msg'       => 'Üleslaaditu on kättesaadav siin: $1',
+'upload-success-subj'         => 'Üleslaadimine õnnestus',
+'upload-success-msg'          => 'Üleslaaditu on kättesaadav siin: $1',
 'upload-failure-subj'         => 'Üleslaadimisprobleem',
 'upload-failure-msg'          => 'Üleslaadimisega oli probleem:
 

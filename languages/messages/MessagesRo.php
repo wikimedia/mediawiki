@@ -743,8 +743,8 @@ a cerut să vi se trimită o nouă parolă pentru {{SITENAME}} ($4).
 O parolă temporară pentru utilizatorul "$2" este acum "$3".
 Parola temporară va expirs {{PLURAL:$5|într-o zi|în $5 zile}}.
 
-Dacă această cerere a fost efectuată de altcineva sau dacă v-ați amintit 
-parola și nu doriți să o schimbați, ignorați acest mesaj și continuați 
+Dacă această cerere a fost efectuată de altcineva sau dacă v-ați amintit
+parola și nu doriți să o schimbați, ignorați acest mesaj și continuați
 să folosiți vechea parolă.',
 'noemail'                    => 'Nu este nici o adresă de e-mail înregistrată pentru utilizatorul „$1”.',
 'noemailcreate'              => 'Trebuie oferită o adresă e e-mail validă.',
@@ -787,7 +787,7 @@ Vă rugăm să așteptați până să mai încercați.',
 'resetpass-no-info'         => 'Trebuie să fiți autentificat pentru a accesa această pagină direct.',
 'resetpass-submit-loggedin' => 'Modifică parola',
 'resetpass-submit-cancel'   => 'Revocare',
-'resetpass-wrong-oldpass'   => 'Parolă curentă sau temporară incorectă. 
+'resetpass-wrong-oldpass'   => 'Parolă curentă sau temporară incorectă.
 Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă temporară nouă.',
 'resetpass-temp-password'   => 'Parolă temporară:',
 
@@ -904,7 +904,7 @@ Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referinț�
 'session_fail_preview'             => "'''Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercați din nou.
 Dacă tot nu funcționează, încercați să [[Special:UserLogout|închideți sesiunea]] și să vă autentificați din nou.'''",
-'session_fail_preview_html'        => "'''Ne pare rău! Modificările dvs. nu au putut fi procesate din cauza pierderii datelor sesiunii.''' 
+'session_fail_preview_html'        => "'''Ne pare rău! Modificările dvs. nu au putut fi procesate din cauza pierderii datelor sesiunii.'''
 
 ''Deoarece {{SITENAME}} are activat HTML brut, previzualizarea este ascunsă ca măsură de precauție împotriva atacurilor JavaScript.''
 
@@ -1610,7 +1610,7 @@ Paginile pe care le [[Special:Watchlist|urmăriți]] apar în '''aldine'''.",
 'uploaderror'                 => 'Eroare la trimitere fișier',
 'upload-recreate-warning'     => "'''Atenție, un fișier cu același nume a fost șters sau redenumit.'''
 Iată aici înregistrările relevante din jurnalul de ștergeri și redenumiri:",
-'uploadtext'                  => "Folosește formularul de mai jos pentru a trimite fișiere. 
+'uploadtext'                  => "Folosește formularul de mai jos pentru a trimite fișiere.
 Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:FileList|lista de imagini]], încărcările și ștergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fișierelor trimise]], ștergerile în [[Special:Log/delete|jurnalul fișierelor șterse]].
 
 Pentru a include un fișier de sunet într-un articol, folosești o legătură de forma:
@@ -1641,7 +1641,7 @@ Vezi [[Special:NewFiles|galeria fișierelor noi]] pentru o mai bună vizualizare
 'filetype-bad-ie-mime'        => 'Nu puteți încărca acest fișier deoarece Internet Explorer îl va detecta ca și "$1", care este nepermis și poate fi un format periculos.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fișier nedorit.
 {{PLURAL:\$3|Tipul de fișier preferat este|Tipurile de fișiere preferate sunt}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' este un tip de fișier nepermis. 
+'filetype-banned-type'        => "'''\".\$1\"''' este un tip de fișier nepermis.
 {{PLURAL:\$3|Tip de fișier permis:|Tipuri de fișiere permise:}} \$2.",
 'filetype-missing'            => 'Fișierul nu are extensie (precum ".jpg").',
 'empty-file'                  => 'Fișierul pe care l-ați trimis este gol.',
@@ -1679,7 +1679,6 @@ Mergeți înapoi și încărcați acest fișier sub un nume nou. [[File:$1|thumb
 'fileexists-shared-forbidden' => 'Un fișier cu acest nume există deja în magazia de imagini comune; mergeți înapoi și încărcați fișierul sub un nou nume. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Acest fișier este dublura {{PLURAL:$1|fișierului|fișierelor}}:',
 'file-deleted-duplicate'      => 'Un fișier identic cu acesta ([[$1]]) a fost șters anterior. Verificați istoricul ștergerilor fișierului înainte de a-l reîncărca.',
-'upload-success-subj'            => 'Fișierul a fost trimis',
 'uploadwarning'               => 'Avertizare la trimiterea fișierului',
 'uploadwarning-text'          => 'Vă rugăm să modificați descrierea fișierului mai jos și să încercați din nou.',
 'savefile'                    => 'Salvează fișierul',
@@ -1708,7 +1707,8 @@ Vă rugăm să aveți în vedere dacă este utilă reîncărcarea acestuia.
 Jurnalul pentru această ștergere este disponibil aici:",
 'filename-bad-prefix'         => "Numele fișierului pe care îl încărcați începe cu '''\"\$1\"''', care este un nume non-descriptiv alocat automat în general de camerele digitale.
 Vă rugăm, alegeți un nume mai descriptiv pentru fișerul dumneavoastră.",
-'upload-success-msg'       => 'Fișierul trimis este disponibil aici: $1',
+'upload-success-subj'         => 'Fișierul a fost trimis',
+'upload-success-msg'          => 'Fișierul trimis este disponibil aici: $1',
 'upload-failure-subj'         => 'Problemă la trimitere',
 'upload-failure-msg'          => 'E o problemă cu fișierul trimis:
 $1',
@@ -1857,11 +1857,11 @@ Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.
 
 
 Această pagină specială permite căutarea fișierelor în funcție de tipul MIME (Multipurpose Internet Mail Extensions). Cele mai des întâlnite sunt:
-* Imagini : <code>image/jpeg</code> 
-* Diagrame : <code>image/png</code>, <code>image/svg+xml</code> 
-* Imagini animate : <code>image/gif</code> 
-* Fișiere sunet : <code>audio/ogg</code>, <code>audio/x-ogg</code> 
-* Fișiere video : <code>video/ogg</code>, <code>video/x-ogg</code> 
+* Imagini : <code>image/jpeg</code>
+* Diagrame : <code>image/png</code>, <code>image/svg+xml</code>
+* Imagini animate : <code>image/gif</code>
+* Fișiere sunet : <code>audio/ogg</code>, <code>audio/x-ogg</code>
+* Fișiere video : <code>video/ogg</code>, <code>video/x-ogg</code>
 * Fișiere PDF : <code>application/pdf</code>
 
 Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup fișiere mime.types].',
@@ -2192,7 +2192,7 @@ Nu veți mai primi notificări în cazul unor viitoare modificări în afara caz
 Pentru a modifica preferințele listei de urmărire vizitați
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Pentru a nu mai urmări pagina vizitați 
+Pentru a nu mai urmări pagina vizitați
 $UNWATCHURL
 
 Asistență și suport:
@@ -2641,7 +2641,7 @@ Alegeți un alt nume.',
 
 # Export
 'export'            => 'Exportă pagini',
-'exporttext'        => 'Puteți exporta textul și istoricul unei pagini anume sau ale unui grup de pagini în XML. 
+'exporttext'        => 'Puteți exporta textul și istoricul unei pagini anume sau ale unui grup de pagini în XML.
 Acesta poate fi apoi importate în alt wiki care rulează software MediaWiki prin [[Special:Import|pagina de importare]].
 
 Pentru a exporta, introduceți titlurile în căsuța de mai jos, unul pe linie, și alegeți dacă doriți să exportați doar această versiune sau și cele mai vechi, cu istoricul lor, sau versiunea curentă cu informații despre ultima modificare.
@@ -2955,7 +2955,7 @@ Orice legături ce urmează pe aceeași linie sunt considerate excepții, adică
 
 # Metadata
 'metadata'          => 'Informații',
-'metadata-help'     => 'Acest fișier conține informații suplimentare, introduse probabil de aparatul fotografic digital sau scanerul care l-a generat. 
+'metadata-help'     => 'Acest fișier conține informații suplimentare, introduse probabil de aparatul fotografic digital sau scanerul care l-a generat.
 Dacă fișierul a fost modificat între timp, este posibil ca unele detalii să nu mai fie valabile.',
 'metadata-expand'   => 'Afișează detalii suplimentare',
 'metadata-collapse' => 'Ascunde detalii suplimentare',
@@ -3247,9 +3247,9 @@ Altele vor fi ascunse implicit.
 # E-mail address confirmation
 'confirmemail'              => 'Confirmă adresa de email',
 'confirmemail_noemail'      => 'Nu aveți o adresă de email validă setată la [[Special:Preferences|preferințe]].',
-'confirmemail_text'         => '{{SITENAME}} necesită validarea adresei de e-mail înaintea folosirii funcțiilor e-mail. 
-Apăsați butonul de dedesupt pentru a trimite un e-mail de confirmare către adresa dvs. 
-Acesta va include o legătură care va conține codul; 
+'confirmemail_text'         => '{{SITENAME}} necesită validarea adresei de e-mail înaintea folosirii funcțiilor e-mail.
+Apăsați butonul de dedesupt pentru a trimite un e-mail de confirmare către adresa dvs.
+Acesta va include o legătură care va conține codul;
 încărcați legătura în browser pentru a valida adresa de e-mail.',
 'confirmemail_pending'      => 'Un cod de confirmare a fost trimis deja la adresa de e-mail indicată;
 dacă ai creat recent contul, ar fi bine să aștepți câteva minute e-mailul de confirmare, înainte de a cere un nou cod.',

@@ -1688,7 +1688,6 @@ Se ainda pretende carregar o seu arquivo, por favor, volte e use um novo nome. [
 Se você ainda quer carregar o seu arquivo, por favor volte e use um novo nome. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Esta imagem é uma duplicata do seguinte {{PLURAL:$1|arquivo|arquivos}}:',
 'file-deleted-duplicate'      => 'Um arquivo idêntico a este ([[$1]]) foi eliminado anteriormente. Verifique o motivo da eliminação de tal arquivo antes de prosseguir com o re-envio.',
-'upload-success-subj'            => 'Envio efetuado com sucesso',
 'uploadwarning'               => 'Aviso',
 'uploadwarning-text'          => 'Por favor modifique a descrição do arquivo abaixo e tente novamente',
 'savefile'                    => 'Salvar arquivo',
@@ -1729,7 +1728,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- deixe esta linha exatamente como está -->',
-'upload-success-msg'       => 'Seu arquivo carregado está disponível aqui: $1',
+'upload-success-subj'         => 'Envio efetuado com sucesso',
+'upload-success-msg'          => 'Seu arquivo carregado está disponível aqui: $1',
 'upload-failure-subj'         => 'Problema no upload',
 'upload-failure-msg'          => 'Ocorreu um problema com o seu upload:
 

@@ -1664,7 +1664,6 @@ Ako i dalje želite postaviti svoju datoteku, molimo vratite se i odaberite novo
 Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod drugim imenom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ova datoteka je duplikat {{PLURAL:$1|sljedeće datoteke|sljedećih datoteka}}:',
 'file-deleted-duplicate'      => 'Datoteka istovjetna ovoj datoteci ([[$1]]) prethodno je obrisana. Provjerite evidenciju brisanja za tu datoteke datoteku prije nego što nastavite s ponovnim postavljanjem.',
-'upload-success-subj'            => 'Postavljanje uspješno.',
 'uploadwarning'               => 'Upozorenje kod postavljanja',
 'uploadwarning-text'          => 'Molimo izmijenite opis datoteke ispod i pokušajte kasnije.',
 'savefile'                    => 'Sačuvaj datoteku',
@@ -1691,7 +1690,8 @@ Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod
 Razmislite je li prigodno nastaviti s postavljanjem ove datoteke.
 Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'filename-bad-prefix'         => "Ime datoteke koju snimate počinje s '''\"\$1\"''', što je ime koje slikama tipično dodjeljuju digitalni fotoaparati. Molimo izaberite bolje ime (neko koje bolje opisuje sliku nego \$1).",
-'upload-success-msg'       => 'Vaše postavljanje je dostupno ovdje: $1',
+'upload-success-subj'         => 'Postavljanje uspješno.',
+'upload-success-msg'          => 'Vaše postavljanje je dostupno ovdje: $1',
 'upload-failure-subj'         => 'Greška pri postavljanju',
 'upload-failure-msg'          => 'Došlo je do problema s Vašim postavljanjem:
 

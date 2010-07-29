@@ -505,7 +505,7 @@ Se prega de segnałare l\'acaduo a on [[Special:ListUsers/sysop|aministradore]] 
 'unexpected'           => 'Vałore inprevisto: "$1"="$2".',
 'formerror'            => 'Erore: inposibiłe inviare el moduło',
 'badarticleerror'      => 'Operasion no consentia par sta pajina.',
-'cannotdelete'         => 'No xè sta posibiłe scansełare el file "$1". 
+'cannotdelete'         => 'No xè sta posibiłe scansełare el file "$1".
 Podaria esare sta zà scansełà da qualcun altro.',
 'badtitle'             => 'Titoło no coreto',
 'badtitletext'         => "El titoło de ła pajina richiesta xè vodo, erà o con carateri no amesi opure el deriva da n'erore ne i cołegamenti tra siti wiki diversi o version en łengue diverse de ło steso sito.",
@@ -522,7 +522,7 @@ Query: $2',
 'protectedpagetext'    => 'Sta pajina xè sta proteta par inpedirne ła modifega.',
 'viewsourcetext'       => 'Xè posibiłe visuałizare e copiare el codexe sorzente de sta pajina:',
 'protectedinterface'   => "Sta pajina contien on elemento che fa parte de l'interfacia utente del software; xè quindi proteta par evitare posibiłi abusi.",
-'editinginterface'     => "'''Ocio:''' El testo de sta pajina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałizà par tuti i utenti. 
+'editinginterface'     => "'''Ocio:''' El testo de sta pajina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałizà par tuti i utenti.
 Par łe tradusion, considera ła posibiłità de usare [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el projeto MediaWiki par ła localizasion.",
 'sqlhidden'            => '(ła query SQL ła xè sta sconta)',
 'cascadeprotected'     => 'So sta pajina no xè posibiłe efetuare modifeghe parché xè sta inclusa {{PLURAL:$1|ne ła pajina indicà de seguito, che xè sta proteta|ne łe pajine indicae de seguito, che e xè sta protete}} sełesionando ła protesion "ricorsiva":',
@@ -540,7 +540,7 @@ Par łe tradusion, considera ła posibiłità de usare [http://translatewiki.net
 # Login and logout pages
 'logouttext'                 => "'''Logout efetuà.'''
 
-Se poe continuare ad usare {{SITENAME}} come utente anonimo opure [[Special:UserLogin|eseguire on novo aceso]], con ło steso nome utente o on nome difarente. 
+Se poe continuare ad usare {{SITENAME}} come utente anonimo opure [[Special:UserLogin|eseguire on novo aceso]], con ło steso nome utente o on nome difarente.
 Nota che alcune pajine e potrebe continuare ad aparire come se el logout no el fosse avegnù finché no a vien pułia la cache del proprio browser.",
 'welcomecreation'            => "== Benvegnù, $1! ==
 
@@ -614,7 +614,7 @@ La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un ace
 
 Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'usernamehasherror'          => "El nome utente no'l pode contegner caràteri hash",
-'login-throttled'            => 'Te ghè fato massa tentativi de autenticarte. 
+'login-throttled'            => 'Te ghè fato massa tentativi de autenticarte.
 Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 'suspicious-userlogout'      => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
@@ -749,7 +749,7 @@ Le modifiche no le xe gnancora stà salvà!'''",
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Sta qua xè soło n'anteprima; łe modifeghe a ła pajina NO xè gnancora sta salvae!'''",
 'previewconflict'                  => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
-'session_fail_preview'             => "No xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi. 
+'session_fail_preview'             => "No xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi.
 Par piaser, riproa da novo.
 Se no funsiona gnancora, proa a [[Special:UserLogout|scołegarte]] e a cołegarte de novo.'''",
 'session_fail_preview_html'        => "'''No xe mìa stà possibile elaborar la modifica parché xe 'ndà persi i dati relativi a la session.'''
@@ -774,14 +774,14 @@ Te dovarè inserire, se te vołi, le to modifiche nel testo esistente, e perciò
 'editingold'                       => "'''Ocio: Te stè modificando na version de ła voxe non agiornà. Se te la salvi cussì, tuti i canbiamenti apportai dopo sta version i vegnarà persi.'''",
 'yourdiff'                         => 'Difarense',
 'copyrightwarning'                 => "Nota: tuti i contribui a {{SITENAME}} se considera riłassai ne i termini de ła licensa d'uso $2 (varda $1 par majori detaji). Se no te desidari che i to testi i posa esare modifegai e redistribuii da chiunque sensa alcuna limitasion, no sta inviarli a {{SITENAME}}.<br/>
-Con l'invio del testo te dichiari inoltre, soto ła to responsabiłità, che el testo xè sta scrito da ti parsonalmente opure che xè sta copià da na fonte de publico dominio o anałogamente libara. 
+Con l'invio del testo te dichiari inoltre, soto ła to responsabiłità, che el testo xè sta scrito da ti parsonalmente opure che xè sta copià da na fonte de publico dominio o anałogamente libara.
 '''NO STA INVIARE MATERIAŁE COPERTO DA DIRITO D'AUTORE SENSA AUTORIZASION!'''",
 'copyrightwarning2'                => "Ocio che tuti i contributi a {{SITENAME}} i pode èssar editai, alterai, o rimossi da altri contributori.
 Se no te voli che i to scriti i vegna modificà sensa pietà, alora no sta inserirli qua.<br />
 Sapi che te stè prometendo che te stè inserendo un testo scrito de to pugno, o copià da na fonte de publico dominio o similarmente lìbara (varda $1 par i detagli).
 '''NO STA INSERIR OPERE PROTETE DA COPYRIGHT SENSA PERMESSO!'''",
 'longpagewarning'                  => "'''OCIO: Sta pàxena la xè longa $1 kilobyte; serti browser i podarìa verghe dei problemi ne ła modifega de pàxene che se avisina o supera i 32 kB. Valuta l'oportunità de sudivìdar ła pàxena in sezion pìassè picenine.'''",
-'longpageerror'                    => "'''ERROR: The text you have submitted is $1 kilobytes 
+'longpageerror'                    => "'''ERROR: The text you have submitted is $1 kilobytes
 long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''",
 'readonlywarning'                  => "'''OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento.
 Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.'''
@@ -1415,7 +1415,7 @@ par poder cargar dei file.',
 'upload_directory_missing'    => 'La cartèla de caricamento ($1) no la esiste mìa e no la pode vegner creàda dal browser web.',
 'upload_directory_read_only'  => "El server web no l'è bon de scrìvar ne la directory de caricamento ($1).",
 'uploaderror'                 => 'Eror nel caricamento',
-'uploadtext'                  => "Par cargar novi file, dopara el modulo qua soto. 
+'uploadtext'                  => "Par cargar novi file, dopara el modulo qua soto.
 Par védar o sercar i file zà caricà, consulta la [[Special:FileList|lista dei file caricà]]. I caricamenti de file te pol védarli nel [[Special:Log/upload|registro dei caricamenti]], le scancelasion nel [[Special:Log/delete|registro de le scancelasion]].
 
 Par métar un file drento de na pagina, te ghè da inserir un colegamento fato come uno de sti qua:
@@ -1452,8 +1452,8 @@ Varda la [[Special:NewFiles|galerìa dei file nóvi]] par na vision de insieme.'
 'emptyfile'                   => 'El file che te ghè caricà el xè aparentemente vodo. Podarìa èssar par un eror nel nome del file. Par piaser controla se te vol dal bon caricar sto file.',
 'fileexists'                  => "Un file co sto nome el esiste de xà, par piaser controła '''<tt>[[:$1]]</tt>''' se no te sì sicuro de volerlo sovrascrìvar.
 [[$1|thumb]]",
-'filepageexists'              => "La pagina de descrizion de sto file la xe zà stà creà a '''<tt>[[:$1]]</tt>''', anca se no ghe xe gnancora un file co sto nome. 
-La descrizion de l'ogeto inserìa in fase de caricamento no la vegnarà mìa fora su la pagina de discussion. 
+'filepageexists'              => "La pagina de descrizion de sto file la xe zà stà creà a '''<tt>[[:$1]]</tt>''', anca se no ghe xe gnancora un file co sto nome.
+La descrizion de l'ogeto inserìa in fase de caricamento no la vegnarà mìa fora su la pagina de discussion.
 Par far sì che l'ogeto el conpaja su la pagina de discussion, sarà necessario modificarla a man. [[$1|thumb]]",
 'fileexists-extension'        => "Ghe xe zà un file co un nome che ghe someja a quel lì: [[$2|thumb]]
 * Nome del file cargà: '''<tt>[[:$1]]</tt>'''
@@ -1471,7 +1471,6 @@ Se te vol cargar istesso el to file, par piaser torna indrio e cànbia el nome d
 Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che te vol darghe al file. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Sto file el xe un duplicato {{PLURAL:$1|del seguente file|dei seguenti file}}:',
 'file-deleted-duplicate'      => "Un file preciso identico de sto file ([[$1]]) el xe stà zà scancelà in precedensa. Te dovaressi darghe n'ociada a la cronologia scancelà prima de cargarlo de novo.",
-'upload-success-subj'            => 'Caricamento conpletà',
 'uploadwarning'               => 'Avixo de caricamento',
 'uploadwarning-text'          => 'Par piaser, cànbia la descrission del file qua de soto e próa da novo.',
 'savefile'                    => 'Salva file',
@@ -1496,6 +1495,7 @@ Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che t
 Verifica par piaser se xe el caso de continuare col caricamento de sto file.
 Par to comodità qua ghe xe la registrazion de la scancelazion:",
 'filename-bad-prefix'         => "El nome del file che te sì drio cargar el scuminsia con '''\"\$1\"''', che el xe un nome non-descritivo tipicamente assegnà automaticamente da le fotocàmare digitali. Par piaser siegli un nome piassè descritivo par el to file.",
+'upload-success-subj'         => 'Caricamento conpletà',
 
 'upload-proto-error'        => 'Protocòl mìa giusto',
 'upload-proto-error-text'   => 'Par el caricamento remoto bisogna specificar URL che scuminsia con <code>http://</code> opure <code>ftp://</code>.',
@@ -1774,7 +1774,7 @@ Par piaser tien conto che altri siti web i podarìa realizar colegamenti ai file
 'speciallogtitlelabel' => 'Titolo:',
 'log'                  => 'Rejistro',
 'all-logs-page'        => 'Tuti i registri pùblici',
-'alllogstext'          => 'Vixualixazion unificà de tuti i registri disponibili de {{SITENAME}}. 
+'alllogstext'          => 'Vixualixazion unificà de tuti i registri disponibili de {{SITENAME}}.
 Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, el nome utente, o la pàxena interessà (ocio che sti ultimi du i distingue tra majuscolo e minuscolo).',
 'logempty'             => "El registro no'l contien mìa elementi corispondenti a la riçerca.",
 'log-title-wildcard'   => 'Riçerca dei titoli che scuminsia con',
@@ -1946,7 +1946,7 @@ Contatta el redator:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-No ghe sarà altre notifiche in caso de ulteriori canbiamenti, a manco che ti no te visiti sta pàxena. 
+No ghe sarà altre notifiche in caso de ulteriori canbiamenti, a manco che ti no te visiti sta pàxena.
 Te podi anca reinpostar l\'avixo de notifica par tuti i osservati speciałi de ła to łista.
 
              El to amichevole sistema de notifica de {{SITENAME}}
@@ -2079,7 +2079,7 @@ Le impostazion atuali par la pagina le xe '''$1''':",
 'undeletepagetext'             => "{{PLURAL:$1|La pàxena qua de sèvito la xe stà scancelà, ma la ghe xe 'ncora in archivio e pertanto se pole 'ncora recuperarla|Le $1 pàxene qua de sèvito le xe stà scancelè, ma le ghe xe 'ncora in archivio e pertanto se pole 'ncora recuperarle}}.
 L'archivio el vien svodà periodicamente.",
 'undelete-fieldset-title'      => 'Recupera version',
-'undeleteextrahelp'            => "Par recuperar la storia de la pàxena par intiero, lassa tute łe casełe desełezionàe e struca '''''Ripristina'''''. 
+'undeleteextrahelp'            => "Par recuperar la storia de la pàxena par intiero, lassa tute łe casełe desełezionàe e struca '''''Ripristina'''''.
 Par efetuar un ripristino sełetivo, seleziona łe casełe corispondenti a łe revixion da ripristinar e struca '''''Ripristina'''''. Strucando '''''Reset''''' vegnarà deselezionàe tute łe casełe e svodà el posto par el comento.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revision|$1 revision}} in archivio',
 'undeletehistory'              => 'Recuperando sta pàxena, tute łe so revixion le vegnarà inserìe da novo ne ła rełativa cronołogia.
@@ -2555,7 +2555,7 @@ Salvalo sul to computer e càrghelo qua.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro anti-spam',
-'spamprotectiontext'  => 'La pagina che te voléi salvar la xe stà blocà dal filtro anti-spam. 
+'spamprotectiontext'  => 'La pagina che te voléi salvar la xe stà blocà dal filtro anti-spam.
 Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto che el se cata su la lista nera.',
 'spamprotectionmatch' => 'El filtro anti-spam el xe stà ativà dal seguente testo: $1',
 'spambot_username'    => 'MediaWiki - sistema de rimozion del spam',
@@ -2966,7 +2966,7 @@ creà de reçente, par piaser speta par qualche minuto che riva el codice prima 
 'confirmemail_oncreate'     => "Un codice de conferma el xe stà spedìo a l'indirizo
 de posta eletronica indicà. El codice no'l xe necessario par entrar nel sito,
 ma bisogna fornirlo par poder abilitar tute le funzion del sito che dòpara la posta eletronica.",
-'confirmemail_sendfailed'   => "{{SITENAME}} no l'è stà bon da inviar el messagio e-mail de conferma. 
+'confirmemail_sendfailed'   => "{{SITENAME}} no l'è stà bon da inviar el messagio e-mail de conferma.
 Controla che l'indirizo no'l contegna carateri mìa validi.
 
 El messagio de eror el xe: $1",
@@ -2976,11 +2976,11 @@ El messagio de eror el xe: $1",
 'confirmemail_loggedin'     => 'El to indirisso email el xè stà confermà.',
 'confirmemail_error'        => "Qualcossa l'è andà storto nel salvar la to conferma.",
 'confirmemail_subject'      => "{{SITENAME}}: e-mail par la conferma de l'indirisso",
-'confirmemail_body'         => 'Qualcheduni, probabilmente ti stesso da l\'indirizo IP $1, el ga registrà n\'account "$2" con sto indirizo e-mail su {{SITENAME}}. 
+'confirmemail_body'         => 'Qualcheduni, probabilmente ti stesso da l\'indirizo IP $1, el ga registrà n\'account "$2" con sto indirizo e-mail su {{SITENAME}}.
 
-Par confermar che sto account el xe veramente tuo e poder ativar le funzion relative a l\'e-mail su {{SITENAME}}, verzi sto colegamento col to browser: 
+Par confermar che sto account el xe veramente tuo e poder ativar le funzion relative a l\'e-mail su {{SITENAME}}, verzi sto colegamento col to browser:
 
-$3 
+$3
 
 Se l\'account *no* te lo ghè registrà ti, verzi st\'altro colegamento par anular la conferma de l\'indirizo:
 

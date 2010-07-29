@@ -495,7 +495,7 @@ Nexajvon. Jan necoccebj naxajvon poop, cuípo ö caápo.'''",
 ''Jan wiki coccebj HTML raw enablenom, cuáxiit zo coccebj camaátde precaucion JavaScripts caniim.''
 
 '''Jan coccebj ticpatlöx legimatöx poop, reprocessom. Jan necoccebj processom poop, cuípo ö caápo.'''",
-'token_suffix_mismatch'     => "'''Meticpatlöx coccebj rejectöx meclient cahöx characteromde punctacion zo ticpatlöx zo iti. TicpatlÖx zo coccebj rejectöxde preventua corrupcionde textuade páhina zo. 
+'token_suffix_mismatch'     => "'''Meticpatlöx coccebj rejectöx meclient cahöx characteromde punctacion zo ticpatlöx zo iti. TicpatlÖx zo coccebj rejectöxde preventua corrupcionde textuade páhina zo.
 Jan lajxepe occuram me usadad proxy service anon web-based buggy.'''",
 'editing'                   => 'Ticpatlöx $1',
 'editingsection'            => 'Ticpatlöx $1 (seccion)',

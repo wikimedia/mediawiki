@@ -1725,7 +1725,6 @@ Si vous voulez toujours téléverser votre fichier, merci de retourner en arriè
 Si vous voulez toujours téléverser votre fichier, veuillez revenir en arrière et utiliser un autre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ce fichier est un doublon {{PLURAL:$1|du fichier suivant|des fichiers suivants}} :',
 'file-deleted-duplicate'      => 'Un fichier identique à celui-ci ([[$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de le téléverser à nouveau.',
-'upload-success-subj'            => 'Téléversement effectué avec succès',
 'uploadwarning'               => 'Attention !',
 'uploadwarning-text'          => 'Modifiez la description du fichier et essayez de nouveau.',
 'savefile'                    => 'Sauvegarder le fichier',
@@ -1767,7 +1766,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # divers
  #</pre><!-- laisser cette ligne telle quelle -->',
-'upload-success-msg'       => 'Votre téléversement est disponible ici : $1',
+'upload-success-subj'         => 'Téléversement effectué avec succès',
+'upload-success-msg'          => 'Votre téléversement est disponible ici : $1',
 'upload-failure-subj'         => 'Problème de téléversement',
 'upload-failure-msg'          => 'Il y a eu un problème avec votre téléversement :
 

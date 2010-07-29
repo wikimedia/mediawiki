@@ -61,7 +61,7 @@ $namespaceAliases = array(
 	'用户对话' => NS_USER_TALK,
 	'用户讨论' => NS_USER_TALK,
 	# This has never worked so it's unlikely to annoy anyone if I disable it -- TS
-	#'{{SITENAME}}_对话' => NS_PROJECT_TALK
+	# '{{SITENAME}}_对话' => NS_PROJECT_TALK
 	'图像' => NS_FILE,
 	'档案' => NS_FILE,
 	'文件' => NS_FILE,
@@ -74,14 +74,14 @@ $namespaceAliases = array(
 	'文件对话' => NS_FILE_TALK,
 	'文件讨论' => NS_FILE_TALK,
 	'模板'	=> NS_TEMPLATE,
-	'模板对话'=> NS_TEMPLATE_TALK,
-	'模板讨论'=> NS_TEMPLATE_TALK,
+	'模板对话' => NS_TEMPLATE_TALK,
+	'模板讨论' => NS_TEMPLATE_TALK,
 	'帮助'	=> NS_HELP,
-	'帮助对话'=> NS_HELP_TALK,
-	'帮助讨论'=> NS_HELP_TALK,
+	'帮助对话' => NS_HELP_TALK,
+	'帮助讨论' => NS_HELP_TALK,
 	'分类'	=> NS_CATEGORY,
-	'分类对话'=> NS_CATEGORY_TALK,
-	'分类讨论'=> NS_CATEGORY_TALK,
+	'分类对话' => NS_CATEGORY_TALK,
+	'分类讨论' => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
@@ -1562,7 +1562,6 @@ $1",
 如果你仍然想去上传它的话，请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '这个文件与以下{{PLURAL:$1|一|多}}个文件重复：',
 'file-deleted-duplicate'      => '一个相同名称的文件 （[[$1]]） 在先前删除过。您应该在重新上传之前检查一下该文件之删除纪录。',
-'upload-success-subj'            => '上传成功',
 'uploadwarning'               => '上传警告',
 'uploadwarning-text'          => '请修改以下的文件描述并重试。',
 'savefile'                    => '保存文件',
@@ -1590,7 +1589,8 @@ $1",
 您应该要考虑一下继续上传一个文件页面是否合适。
 为方便起见，这一个文件的删除记录已经在下面提供:",
 'filename-bad-prefix'         => '您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。',
-'upload-success-msg'       => '你的上传可以在这里找到：$1',
+'upload-success-subj'         => '上传成功',
+'upload-success-msg'          => '你的上传可以在这里找到：$1',
 'upload-failure-subj'         => '上传错误',
 'upload-failure-msg'          => '有一个问题与您的上传有关：
 

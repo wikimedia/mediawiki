@@ -875,7 +875,6 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'badfilename'           => 'File non gambiât in "$1".',
 'filetype-missing'      => 'Il file nol à une estension (par esempli ".jpg").',
 'file-exists-duplicate' => 'Chest file al è un duplicât {{PLURAL:$1|dal file |dai files ca sot:}}',
-'upload-success-subj'      => 'Cjamât sù cun sucès',
 'savefile'              => 'Salve file',
 'uploadedimage'         => 'cjamât sù "$1"',
 'overwroteimage'        => 'al à cjamât une gnove version di «[[$1]]»',
@@ -884,6 +883,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'sourcefilename'        => 'Non dal file origjinâl:',
 'destfilename'          => 'Non dal file di destinazion:',
 'watchthisupload'       => 'Ten di voli',
+'upload-success-subj'   => 'Cjamât sù cun sucès',
 
 'upload-unknown-size' => 'Dimension no cognossude',
 

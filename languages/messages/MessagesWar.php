@@ -344,10 +344,10 @@ An kataposan nga ginsari nga database nga kweri amo in:
 <blockquote><tt>$1</tt></blockquote>
 tikang ha sakob han funsyon nga "<tt>$2</tt>".
 Nagbalik an database hin sayop nga "<tt>$3: $4</tt>".',
-'dberrortextcl'      => 'Mayda nahitabo nga sayop hin syntax ha database nga kwery. 
+'dberrortextcl'      => 'Mayda nahitabo nga sayop hin syntax ha database nga kwery.
 An kataposan nga ginsari nga kweri han database amo an:
 "$1"
-tikang ha sakob han funsyon nga "$2". 
+tikang ha sakob han funsyon nga "$2".
 Nagbalik hin sayop an database nga "$3: $4"',
 'laggedslavemode'    => 'Bantay: It pakli bangin waray mga kabag-ohan nga bag-o.',
 'readonly'           => 'Gintrankahan an database',

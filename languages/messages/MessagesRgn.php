@@ -467,7 +467,7 @@ Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
 'protect-text'                => "Cun ste mudèl u s'pò guardè e u s'pò cambié ê livèl d'pruteziòn dla pàgina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Oci! Ta n'ê miga i parmess par cambié i livel d'pruteziòn dla pàgina.
 S't'vù vdë in dô ch'j è i parmess, guèrda '''$1''':",
-'protect-cascadeon'           => "Sta pàgina pr'adès l'è bluchëda parchè l'è stra l'{{PLURAL:$1|la pàgina aquè sota, ch'l'à|al pàgin aquè sota, ch'j'à}} la pruteziòn ricursiva. 
+'protect-cascadeon'           => "Sta pàgina pr'adès l'è bluchëda parchè l'è stra l'{{PLURAL:$1|la pàgina aquè sota, ch'l'à|al pàgin aquè sota, ch'j'à}} la pruteziòn ricursiva.
 T'pù cambié ê livel d'pruteziòn d'sta pàgina, mo la pruteziòn ricursiva la resta a lè.",
 'protect-default'             => 'Dà ê parmess a tòt j navigadur',
 'protect-fallback'            => 'A què u j vô ê parmess "$1"',
@@ -649,7 +649,7 @@ Tot i culegamént ch'j ven dop, sora la stèsa riga, j conta cumpagna d'j ecezi�
 
 # Metadata
 'metadata'          => 'Dèd sora i dèd',
-'metadata-help'     => "Ste file l'à d'l'infurmaziòn in piò. Forsi parchè al figur j è stedi cjapèdi con la machina digitèla o cun e' scàner. 
+'metadata-help'     => "Ste file l'à d'l'infurmaziòn in piò. Forsi parchè al figur j è stedi cjapèdi con la machina digitèla o cun e' scàner.
 Se parò un qvelcadon à lavurè sora sta figura, zerti infurmaziòn j n' curespòn piò cun l'uriginel.",
 'metadata-expand'   => 'Fam avdé i particulèr',
 'metadata-collapse' => 'Nascond i particulèr',

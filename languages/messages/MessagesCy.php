@@ -1496,7 +1496,6 @@ Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
 'file-exists-duplicate'       => "Dyblgeb yw'r ffeil hwn o'r {{PLURAL:$1|ffeil|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} sy'n dilyn:",
 'file-deleted-duplicate'      => "Mae ffeil union debyg i hon ([[$1]]) eisoes wedi cael ei dileu.
 Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.",
-'upload-success-subj'            => 'Wedi llwyddo uwchlwytho',
 'uploadwarning'               => 'Rhybudd uwchlwytho',
 'uploadwarning-text'          => 'Newidiwch ddisgrifiad y ffeil isod ac yna ceisiwch ei huwchlwytho eto, os gwelwch yn dda.',
 'savefile'                    => "Cadw'r ffeil",
@@ -1525,7 +1524,8 @@ Dylech ddarllen y $1 cyn bwrw ati i'w uwchlwytho unwaith eto.",
 Ail-feddyliwch a ddylech barhau i uwchlwytho'r ffel hon.
 Dyma'r lòg dileu ar gyfer y ffeil i chi gael gweld:",
 'filename-bad-prefix'         => "Mae'r enw ar y ffeil yr ydych yn ei uwchlwytho yn dechrau gyda '''\"\$1\"'''. Mae'r math hwn o enw diystyr fel arfer yn cael ei osod yn awtomatig gan gamerâu digidol. Mae'n well gosod enw sy'n disgrifio'r ffeil arno.",
-'upload-success-msg'       => "Mae'r ffeil a wnaethoch uwchlwytho ar gael yma: $1",
+'upload-success-subj'         => 'Wedi llwyddo uwchlwytho',
+'upload-success-msg'          => "Mae'r ffeil a wnaethoch uwchlwytho ar gael yma: $1",
 'upload-failure-subj'         => 'Cafwyd problem wrth uwchlwytho',
 'upload-failure-msg'          => 'Cafwyd problem with uwchlwytho:
 

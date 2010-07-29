@@ -392,13 +392,13 @@ Lista e faqeve speciale valide gjindet te [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error'                => 'Gabim',
 'databaseerror'        => 'Gabim në databazë',
-'dberrortext'          => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë. 
+'dberrortext'          => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë.
 Kjo mundet me tregue gabim në software.
 Kërkesa e fundit në databazë ishte:
 <blockquote><tt>$1</tt></blockquote>
 mbrenda funksionit "<tt>$2</tt>".
 Databaza ktheu gabimin "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë. 
+'dberrortextcl'        => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë.
 Kërkesa e fundit në databazë ishte:
 "$1"
 mbrenda funksionit "$2".
@@ -430,7 +430,7 @@ Nëse nuk âsht kështu, mund ta keni gjetë nji gabim në software. Ju lutemi, 
 'unexpected'           => 'Vlerë e papritun: "$1"="$2".',
 'formerror'            => 'Gabim: nuk mujta me dërgue formularin',
 'badarticleerror'      => 'Ky veprim nuk mundet me u ekzekutue në këtë faqe.',
-'cannotdelete'         => 'Nuk mujta me fshi faqen apo skedën e dhânë. 
+'cannotdelete'         => 'Nuk mujta me fshi faqen apo skedën e dhânë.
 Ndodh që âsht fshi prej dikujt tjetër.',
 'badtitle'             => 'Titull i keq',
 'badtitletext'         => 'Titulli i faqes që kërkuet ishte jovalid, bosh, apo ishte nji vegëz gabim e lidhun ndërgjuhesisht apo ndër-wiki.
@@ -450,7 +450,7 @@ Ju lutemi provoni prap mbas disa minutave.',
 'protectedpagetext'    => 'Kjo faqe âsht mbyllë për redaktim.',
 'viewsourcetext'       => 'Mundeni me pâ dhe kopjue kodin burimor të kësaj faqeje:',
 'protectedinterface'   => 'Kjo faqe përmban tekst të interfaceit të softwareit dhe âsht e mbrojtun për me pengue keqpërdorimin.',
-'editinginterface'     => "'''Kujdes:''' Po redaktoni nji faqe që përdoret për me ofrue tekst të interfaceit të softwareit. 
+'editinginterface'     => "'''Kujdes:''' Po redaktoni nji faqe që përdoret për me ofrue tekst të interfaceit të softwareit.
 Ndryshimet në këtë faqe do të prekin pamjen e interfaceit për të gjithë përdoruesit tjerë.
 Për përkthim, konsideroni ju lutem përdorimin e [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projektin e MediaWiki për përshtatje gjuhësore.",
 'sqlhidden'            => '(Kërkesa SQL e msheftë)',
@@ -474,7 +474,7 @@ Mundeni me vazhdue me shfrytëzue {{SITENAME}} në mënyrë anonime, apo mundeni
 Disa faqe mujnë me u paraqitë prap si t'kishit qenë t'kyçun, derisa ta pastroni memorizimin e shfletuesit.",
 'welcomecreation'            => '== Mirësevini, $1! ==
 
-Llogaria juej âsht krijue. 
+Llogaria juej âsht krijue.
 Mos harroni me i ndryshue [[Special:Preferences|parapëlqimet për {{SITENAME}}]].',
 'yourname'                   => 'Nofka:',
 'yourpassword'               => 'Fjalëkalimi:',
@@ -497,7 +497,7 @@ Mos harroni me i ndryshue [[Special:Preferences|parapëlqimet për {{SITENAME}}]
 'gotaccountlink'             => 'Kyçu',
 'createaccountmail'          => 'me email',
 'badretype'                  => 'Fjalëkalimet nuk janë të njêjta.',
-'userexists'                 => 'Nofka keni zgjedhë âsht në përdorim. 
+'userexists'                 => 'Nofka keni zgjedhë âsht në përdorim.
 Zgjedh nji emën tjetër.',
 'loginerror'                 => 'Gabim në kyçje',
 'createaccounterror'         => 'Nuk mund të hapni një llogari $1',
@@ -505,7 +505,7 @@ Zgjedh nji emën tjetër.',
 {{SITENAME}} përdor keksa (cookies) për kyçje.
 Keksat i ke jasht funksionit.
 Futi keksat në funksion, mandej kyçu me nofkën dhe fjalëkalimin tând të ri.',
-'nocookieslogin'             => '{{SITENAME}} përdor keksa (cookies) për kyçje. 
+'nocookieslogin'             => '{{SITENAME}} përdor keksa (cookies) për kyçje.
 Keksat i ke jasht funksionit.
 Të lutem aktivizoji dhe provo prap.',
 'noname'                     => 'Nuk ke dhânë nofkë valide.',
@@ -527,8 +527,8 @@ Provo prap.',
 'mailmypassword'             => 'Dërgo fjalëkalimin me email',
 'passwordremindertitle'      => 'Fjalëkalim i ri i përkohshëm për {{SITENAME}}',
 'passwordremindertext'       => 'Dikush (me giasë ju vetë, nga adresa IP $1) ka lypë nji
-fjalëkalim për {{SITENAME}} ($4). Nji fjalëkalim i përkohshëm për 
-"$2" âsht krijue si vijon "$3". Nëse kjo ka qenë qëllimi juej 
+fjalëkalim për {{SITENAME}} ($4). Nji fjalëkalim i përkohshëm për
+"$2" âsht krijue si vijon "$3". Nëse kjo ka qenë qëllimi juej
 atëhere duheni me u kyçë tash dhe me zgjedhë nji fjalëkalim të ri.
 Fjalëkalimi juej i përkohshëm skadon për {{PLURAL:$5|nji ditë|$5 ditë}}.
 
@@ -618,7 +618,7 @@ Ndoshta tashmâ e keni ndryshue fjalëkalimin me sukses, apo keni kërkue nji fj
 'showpreview'                      => 'Trego parapâmjen',
 'showlivepreview'                  => 'Parapâmje e menjiherëshme',
 'showdiff'                         => 'Trego ndryshimet',
-'anoneditwarning'                  => "'''Kujdes:''' Ju nuk jeni i kyçun. 
+'anoneditwarning'                  => "'''Kujdes:''' Ju nuk jeni i kyçun.
 Adresa juej IP do të regjistrohet në historikun e redaktimit të kësaj faqeje.",
 'missingsummary'                   => "'''Vini re:''' Nuk keni specifikue përmbledhje të redaktimit.
 Nëse klikoni prap në regjistro, redaktimi do të ruhet pa tê.",
@@ -838,7 +838,7 @@ Legjenda: '''({{int:cur}})''' = dallimi me verzionin aktual,
 'rev-deleted-event'           => '(veprimi në regjistër është hequr)',
 'rev-deleted-text-permission' => 'Ky version i faqes është shlyer nga arkivi publik i faqes.
 Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjendet atje më shumë informacion rreth kësaj faqeje.',
-'rev-deleted-text-view'       => 'Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë. 
+'rev-deleted-text-view'       => 'Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë.
 Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjenden atje më shumë informacione rreth kësaj.',
 'rev-delundel'                => 'trego/mshef',
 'rev-showdeleted'             => 'Trego',
@@ -1452,7 +1452,7 @@ Kjo don me thânë që mundeni me ndërrue titullin e faqes mbrapsht që me e kt
 Kjo mundet me qenë ndryshim drastik dhe i papritun për nji faqe të popullarizueme;
 ju lutemi sigurohuni që i keni parasysh konsekuencat para se të vazhdoni.",
 'movepagetalktext' => "Faqja e diskutimit që lidhet me këtë faqe do të zhvendoset automatikisht '''përveç:'''
-*Nëse ekziston nji faqe e diskutimit nën titullin e ri, apo 
+*Nëse ekziston nji faqe e diskutimit nën titullin e ri, apo
 *E shêjoni të pazgjedhun kutinë e mâposhtme.
 
 Në këto raste, duheni me i bashkue manualisht këto faqe nëse dëshironi.",

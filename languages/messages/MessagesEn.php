@@ -2179,14 +2179,14 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->', # only translate this message to other languages if you have to change it
-'upload-success-subj'       => 'Successful upload',
-'upload-success-msg'        => 'Your upload from [$2] was successful. It is available here: [[:File:$1]]',
-'upload-failure-subj'       => 'Upload problem',
-'upload-failure-msg'        => 'There was a problem with your upload from [$2]:
+'upload-success-subj'         => 'Successful upload',
+'upload-success-msg'          => 'Your upload from [$2] was successful. It is available here: [[:File:$1]]',
+'upload-failure-subj'         => 'Upload problem',
+'upload-failure-msg'          => 'There was a problem with your upload from [$2]:
 
 $1',
-'upload-warning-subj'       => 'Upload warning',
-'upload-warning-msg'        => 'There was a problem with your upload from [$2]. You may return to the [[Special:Upload/stash/$1|upload form]] to correct this problem.',
+'upload-warning-subj'         => 'Upload warning',
+'upload-warning-msg'          => 'There was a problem with your upload from [$2]. You may return to the [[Special:Upload/stash/$1|upload form]] to correct this problem.',
 
 'upload-proto-error'        => 'Incorrect protocol',
 'upload-proto-error-text'   => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',

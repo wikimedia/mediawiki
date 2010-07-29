@@ -287,7 +287,7 @@ laffut d yurrin ɣ database "<tt>$3: $4</tt>".',
 
 # Login and logout pages
 'welcomecreation'         => '== Brrkat,  $1! ==
-lcont nek  tuyskar . 
+lcont nek  tuyskar .
  Adur tut atbaddlt [[Special:Preferences|{{SITENAME}} issusmen]]',
 'yourname'                => 'smiyt o-msxdam:',
 'yourpassword'            => 'awal iḥdan:',
@@ -429,7 +429,7 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'powersearch-togglenone'           => 'Walu',
 'search-external'                  => 'Acnubc b brra',
 'searchdisabled'                   => '{{SITENAME}} Acnubc ibid.
-Tzdar at cabbat ɣilad ɣ Google. 
+Tzdar at cabbat ɣilad ɣ Google.
 Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
 # Quickbar
@@ -576,7 +576,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Delete
 'deletepage'            => 'Amḥiyd n tasna',
-'confirmdeletetext'     => 'Ḥan tbidt f attkkist tasna yad kullu d kullu amzruy nes. 
+'confirmdeletetext'     => 'Ḥan tbidt f attkkist tasna yad kullu d kullu amzruy nes.
 illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist d is iffaɣ mayad i [[{{MediaWiki:Policy-url}}|tasrtit]].',
 'actioncomplete'        => 'tigawt tummidt',
 'deletedtext'           => '"<nowiki>$1</nowiki>"  ttuykkas.
@@ -716,7 +716,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'metadata-expand'   => 'Ml ifruriyn lluzzanin',
 'metadata-collapse' => 'Aḥbu n ifruriyn lluzzanin',
 'metadata-fields'   => 'Igran EXIF n isfkan nmita lin illan ɣ tabratad ran ilin ɣ tawlaf n tasna iɣ mzzin tiflut n isfka n mita
-Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn  
+Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn
 * make
 * model
 * datetimeoriginal

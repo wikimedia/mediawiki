@@ -1123,7 +1123,6 @@ Izskatās, ka šis ir samazināts attēls ''(thumbnail)''.
 Ja tev ir šis pats attēls pilnā izmērā, augšuplādē to, ja nav, tad nomaini faila vārdu.",
 'fileexists-forbidden'   => 'Fails ar šādu nosaukumu jau eksistē un to nevar aizvietot ar jaunu.
 Ja tu joprojām gribi augšuplādēt šo failu, tad mēģini vēlreiz, ar citu faila vārdu. [[File:$1|thumb|center|$1]]',
-'upload-success-subj'       => 'Augšupielāde veiksmīga',
 'uploadwarning'          => 'Augšupielādes brīdinājums',
 'savefile'               => 'Saglabāt failu',
 'uploadedimage'          => 'augšupielādēju "$1"',
@@ -1147,6 +1146,7 @@ Apdomā labi, vai tiešām ir lietderīgi turpināt šī faila augšuplādi.
 Te var apskatīties dzēšanas reģistru, lai noskaidrotu kāpēc šo failu toreiz izdzēsa:",
 'filename-bad-prefix'    => "Faila vārds failam, kuru tu mēģini augšpulādēt, sākas ar '''\"\$1\"''', kas ir neaprakstošs vārds, kādu parasti uzģenerē digitālais fotoaparāts.
 Lūdzu izvēlies aprakstošāku vārdu šim failam.",
+'upload-success-subj'    => 'Augšupielāde veiksmīga',
 
 'license'            => 'Licence:',
 'license-header'     => 'Licence',

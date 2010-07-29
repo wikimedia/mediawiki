@@ -1251,7 +1251,6 @@ Ik tū ainatīngi kwaitēi enkraūtun šin zūrbrukin, ettreppais be tērpaus n�
 'file-exists-duplicate'       => 'Šis zūrbrukis ast kōpija {{PLURAL:$1|šisse zūrbrukin|šēisan zūrbrukin}}:',
 'file-deleted-duplicate'      => 'Zūrbrukis idēntiskas sen šin zūrbrukin ([[$1]]) pastāi ankstāis āupausintan.
 Pirzdau tālis ēisnan, tebbei prawerru izbandātun šisse zūrbrukes āupausinsenin istōrijan.',
-'upload-success-subj'            => 'Zūrbrukes enkraūsenis izpalla',
 'uploadwarning'               => 'Ēmpirssergīsenis ezze enkraūsnan',
 'uploadwarning-text'          => 'Madli kitawīdinais zūrbukes ebpeisāsenis be bandais etkūmps',
 'savefile'                    => 'Enpeisāis zūrbrukin',
@@ -1279,6 +1278,7 @@ Tebbei prawerru prestun, anga ast tikrōmiskan ēmpirsin sadīntun enkraūtun š
 Šisse zūrbrukes āupausisnas registerin ast waidīntan zemmais.",
 'filename-bad-prefix'         => "Enkraūtas zūrbrukes pabilisnā pagaūne si sen '''\"\$1\"'''. Sta ast nidekskriptīwa pabilisnā kawīda ast preipeisātan autōmatiskai pra digitālins kāmerans.
 Madli etrīnkais swajasmu zūrbrukin spārtais deskriptīwan pabilīsnan.",
+'upload-success-subj'         => 'Zūrbrukes enkraūsenis izpalla',
 
 'upload-proto-error'      => 'Nitikrōmiskan prōtokulin',
 'upload-proto-error-text' => 'Iztāliska enkraūsna izkinina, kāi URL adressi pagaūlai si sen <code>http://</code> anga <code>ftp://</code>.',

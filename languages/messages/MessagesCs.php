@@ -1716,7 +1716,6 @@ Pokud chcete přesto soubor načíst, vraťte se a zvolte jiný název.
 'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti. Pokud přesto chcete váš soubor načíst, vraťte se a zvolte jiný název. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento soubor je duplikát {{PLURAL:$1|následujícího souboru|následujících souborů}}:',
 'file-deleted-duplicate'      => 'Identický soubor k tomuto ([[$1]]) byl již dříve smazán. Před tím, než soubor znovu nahrajete, byste měli zkontrolovat záznamy o předchozím smazání.',
-'upload-success-subj'            => 'Načtení úspěšně provedeno!',
 'uploadwarning'               => 'Varování',
 'uploadwarning-text'          => 'Prosíme, upravte popis souboru níže a zkuste to znovu.',
 'savefile'                    => 'Uložit soubor',
@@ -1757,7 +1756,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # různé
  #</pre> <!-- tuto řádku ponechte beze změny -->',
-'upload-success-msg'       => 'Vámi načtený soubor je dostupný na $1',
+'upload-success-subj'         => 'Načtení úspěšně provedeno!',
+'upload-success-msg'          => 'Vámi načtený soubor je dostupný na $1',
 'upload-failure-subj'         => 'Problém s načítaným souborem',
 'upload-failure-msg'          => 'U vámi načítaného souboru se vyskytl problém:
 

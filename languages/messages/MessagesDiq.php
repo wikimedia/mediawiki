@@ -1391,7 +1391,6 @@ eke şıma qayile dosyaya xo bar keri tepiya agerê u yew nameyo newe bınusi. [
 eke şıma hhene zi qayili dosyaya xo bar keri ager3e u newe yew name bışuxulnê. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ena pel yew kopyayê ena {{PLURAL:$1|pel|pelan}} o:',
 'file-deleted-duplicate'      => 'hemzeyê na dosyayi ([[$1]]) cuwa ver battal biya.',
-'upload-success-subj'            => 'bar biyo',
 'uploadwarning'               => 'Îkazê bar kerdişî',
 'uploadwarning-text'          => 'Bînê de deskripyonê dosyayî bivurne u reyna qeyd bike.',
 'savefile'                    => 'Dosya qeyd ke',
@@ -1419,7 +1418,8 @@ bar kerdış munasibo munasib niyo diqqet bıkerê.
 qaydê hewna biyayeyan tiya de pêşkeş biya:",
 'filename-bad-prefix'         => "name yo ke şıma bar keni zey nameyê kamerayê dijital î, pê ney '''\"\$1\"''' destpêkeno .
 kerem kere yewna nameyo eşkera bıvicinê.",
-'upload-success-msg'       => 'Bar kerdişê tu itiya de esta: $1',
+'upload-success-subj'         => 'bar biyo',
+'upload-success-msg'          => 'Bar kerdişê tu itiya de esta: $1',
 'upload-failure-subj'         => 'Problem bar bike',
 'upload-failure-msg'          => 'Bar kerdişê tu de yew problem esta:
 

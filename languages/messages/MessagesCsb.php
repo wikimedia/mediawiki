@@ -622,31 +622,31 @@ Starnë z [[Special:Watchlist|lëstë ùzérónëch artiklów]] są '''pògrëbi
 'recentchangeslinked-to'       => 'Wëskrzëni zjinaczi nié na lënkòwónëch starnach, blós na starnach lënkùjącëch do pòdóny starnë',
 
 # Upload
-'upload'            => 'Wladënk lopka',
-'uploadbtn'         => 'Wladëjë lopk',
-'uploadnologin'     => 'Felënk logòwaniô',
-'uploadtext'        => "Brëkùjë negò fòrmùlara do wladënkù lopków.
+'upload'              => 'Wladënk lopka',
+'uploadbtn'           => 'Wladëjë lopk',
+'uploadnologin'       => 'Felënk logòwaniô',
+'uploadtext'          => "Brëkùjë negò fòrmùlara do wladënkù lopków.
 Jeżlë chcesz przezdrzec abò szëkac w dotenczas wladowónëch lopkach, biéj do [[Special:FileList|lësta lopków]]. Kòżdi wladënk je registrowóny w [[Special:Log/upload|registrze wladënkù]], a rëmniãcé w [[Special:Log/delete|registrze rëmaniô]].
 
 Abë dodac lopk do starnë, ùżëjë ùniższegò lënka wedle nôslédnëch mùstrów:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Lopk.jpg]]</nowiki></tt>''' wëskrzëni całi lopk
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Lopk.png|200px|thumb|left|pòdpisënk òbrôzka]]</nowiki></tt>''' wëskrzëni z lewi starnë, przë ùbrzégù, miniaturkã w szérzë 200 pikslów w ramie, z nôdpisã 'pòdpisënk òbrôzka'
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Lopk.ogg]]</nowiki></tt>''' òtemknie prosti lënk do lopka bez wëskrzënianiô sómegò lopka",
-'uploadlog'         => 'Lësta wladënków',
-'uploadlogpage'     => 'Dołączoné',
-'uploadlogpagetext' => 'Hewò je lësta slédno wladowónëch lopków.
+'uploadlog'           => 'Lësta wladënków',
+'uploadlogpage'       => 'Dołączoné',
+'uploadlogpagetext'   => 'Hewò je lësta slédno wladowónëch lopków.
 Wszëtczé gòdzënë tikają conë ùniwersalnégò czasë.',
-'filename'          => 'Miono lopka',
-'filedesc'          => 'Òpisënk',
-'fileuploadsummary' => 'Pòdrechòwanié:',
-'filesource'        => 'Zdrój:',
-'uploadedfiles'     => 'Wladowóné lopczi',
-'badfilename'       => 'Miono òbrôzka zmienioné na "$1".',
-'upload-success-subj'  => 'Wladënk darzëł sã',
-'uploadwarning'     => 'Òstrzega ò wladënkù',
-'savefile'          => 'Zapiszë lôpk',
-'uploadedimage'     => 'wladënk: "$1"',
-'uploaddisabled'    => 'Przeprôszómë! Mòżlëwòta wladënkù lopków na nen serwer òsta wëłączonô.',
+'filename'            => 'Miono lopka',
+'filedesc'            => 'Òpisënk',
+'fileuploadsummary'   => 'Pòdrechòwanié:',
+'filesource'          => 'Zdrój:',
+'uploadedfiles'       => 'Wladowóné lopczi',
+'badfilename'         => 'Miono òbrôzka zmienioné na "$1".',
+'uploadwarning'       => 'Òstrzega ò wladënkù',
+'savefile'            => 'Zapiszë lôpk',
+'uploadedimage'       => 'wladënk: "$1"',
+'uploaddisabled'      => 'Przeprôszómë! Mòżlëwòta wladënkù lopków na nen serwer òsta wëłączonô.',
+'upload-success-subj' => 'Wladënk darzëł sã',
 
 # Special:ListFiles
 'listfiles'      => 'Lësta òbrôzków',

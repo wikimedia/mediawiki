@@ -1656,7 +1656,6 @@ $1",
 파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '{{PLURAL:$1}}현재 올리고 있는 파일이 아래 파일과 중복됩니다:',
 'file-deleted-duplicate'      => '이 파일과 같은 파일 ([[$1]])이 이전에 삭제된 적이 있습니다. 파일을 다시 올리기 전에 문서의 삭제 기록을 확인해 주시기 바랍니다.',
-'upload-success-subj'            => '올리기 성공',
 'uploadwarning'               => '올리기 경고',
 'uploadwarning-text'          => '아래의 파일 설명을 수정하고 다시 시도해 주세요.',
 'savefile'                    => '파일 저장',
@@ -1699,7 +1698,8 @@ JD # 제놉틱
 MGP # 펜탁스
 PICT # 기타
  #</pre> <!-- 이 줄은 그대로 두십시오. -->',
-'upload-success-msg'       => '당신이 올린 파일이 여기 있습니다: $1',
+'upload-success-subj'         => '올리기 성공',
+'upload-success-msg'          => '당신이 올린 파일이 여기 있습니다: $1',
 'upload-failure-subj'         => '올리기 실패',
 'upload-failure-msg'          => '파일을 올리는 중 문제가 발생했습니다:
 

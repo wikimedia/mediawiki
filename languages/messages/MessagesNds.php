@@ -1423,7 +1423,6 @@ Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en anne
 'fileexists-shared-forbidden' => 'Dat gifft al en Datei mit dissen Naam. Gah trüch un laad de Datei ünner en annern Naam hooch. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'De Datei is desülve as disse {{PLURAL:$1|Datei|$1 Datein}}:',
 'file-deleted-duplicate'      => 'Jüst disse Datei ([[$1]]) is al mal löscht worrn. Kiek man eerst, wat in dat Löschlogbook steiht, ehrdat du ehr noch wedder hoochlaadst.',
-'upload-success-subj'            => 'Datei hoochladen hett Spood',
 'uploadwarning'               => 'Wohrschau',
 'savefile'                    => 'Datei spiekern',
 'uploadedimage'               => '„$1“ hoochladen',
@@ -1443,6 +1442,7 @@ Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en anne
 Bedenk di eerst, wat dat ok passt, dat du de Datei noch wedder hoochladen deist.
 Hier dat Logbook, wo insteiht, worüm de Sied wegsmeten worrn is:",
 'filename-bad-prefix'         => "De Naam vun de Datei fangt mit '''„$1“''' an. Dat is normalerwies en Naam, den de Datei automaatsch vun de Digitalkamera kriggt. De Naam beschrievt de Datei nich un seggt dor ok nix över ut. Söök di doch en Naam för de Datei ut, de ok wat över den Inholt seggt.",
+'upload-success-subj'         => 'Datei hoochladen hett Spood',
 
 'upload-proto-error'      => 'Verkehrt Protokoll',
 'upload-proto-error-text' => 'De URL mutt mit <code>http://</code> oder <code>ftp://</code> anfangen.',
