@@ -6,6 +6,7 @@
  * @since 1.17
  */
 class CliInstaller extends CoreInstaller {
+	
 	private $optionMap = array(
 		'dbtype' => 'wgDBtype',
 		'dbserver' => 'wgDBserver',
@@ -25,8 +26,14 @@ class CliInstaller extends CoreInstaller {
 		'dbpath' => 'wgSQLiteDataDir',
 	);
 
-	/** Constructor */
-	function __construct( $siteName, $admin = null, $option = array() ) {
+	/**
+	 * Constructor.
+	 * 
+	 * @param $siteName
+	 * @param $admin
+	 * @param $option Array
+	 */
+	function __construct( $siteName, $admin = null, array $option = array() ) {
 		parent::__construct();
 
 		foreach ( $this->optionMap as $opt => $global ) {
@@ -45,6 +52,7 @@ class CliInstaller extends CoreInstaller {
 		}
 
 		$this->setVar( 'wgSitename', $siteName );
+		
 		if ( $admin ) {
 			$this->setVar( '_AdminName', $admin );
 		}
@@ -66,28 +74,30 @@ class CliInstaller extends CoreInstaller {
 	 */
 	public function execute() {
 		$this->performInstallation(
-			array( $this, 'startStage'),
+			array( $this, 'startStage' ),
 			array( $this, 'endStage' )
 		);
 	}
 
 	public function startStage( $step ) {
-		$this->showMessage( wfMsg( "config-install-$step") .
+		$this->showMessage( wfMsg( "config-install-$step" ) .
 			wfMsg( 'ellipsis' ) . wfMsg( 'word-separator' ) );
 	}
 
 	public function endStage( $step, $status ) {
 		$warnings = $status->getWarningsArray();
+		
 		if ( !$status->isOk() ) {
 			$this->showStatusMessage( $status );
 			echo "\n";
 			exit;
 		} elseif ( count($warnings) !== 0 ) {
 			foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
-				$this->showMessage( $w . wfMsg( 'ellipsis') .
+				$this->showMessage( $w . wfMsg( 'ellipsis' ) .
 					wfMsg( 'word-separator' ) );
 			}
 		}
+		
 		$this->showMessage( wfMsg( 'config-install-step-done' ) ."\n");
 	}
 
