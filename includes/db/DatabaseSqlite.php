@@ -34,6 +34,16 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * Serialization handler, see http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.sleep
+	 * for details. Instances of this class sometimes get serialized, e.g. with Title and its BacklinkCache
+	 * Because attempts to serialize mConn end in "can't serialize PDO objects" exceptions, we simply disallow
+	 * to serialize anything in this class.
+	 */
+	function __sleep() {
+		return array();
+	}
+
 	function getType() {
 		return 'sqlite';
 	}
