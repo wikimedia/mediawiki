@@ -1079,7 +1079,7 @@ Nung atyu keka ining larawan king bersion a pekamalino (full resolution), ilulan
 mibalik ka at ilulan (upload) me king lalam ning bayung lagyu. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Atin nang simpan (file) a maki lagyung anti kaniti king abe-abeng simpanan (shared file repository);
 mibalik ka at ilulan (upload) me king lalam ning bayung lagyu. [[File:$1|thumb|center|$1]]',
-'successfulupload'            => 'Melaus ing pamaglulan',
+'upload-success-subj'            => 'Melaus ing pamaglulan',
 'uploadwarning'               => 'Babala king pamaglulan',
 'savefile'                    => 'I-save ya ing simpan (file)',
 'uploadedimage'               => 'milulan ya ing "[[$1]]"',

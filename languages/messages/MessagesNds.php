@@ -1423,7 +1423,7 @@ Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en anne
 'fileexists-shared-forbidden' => 'Dat gifft al en Datei mit dissen Naam. Gah trüch un laad de Datei ünner en annern Naam hooch. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'De Datei is desülve as disse {{PLURAL:$1|Datei|$1 Datein}}:',
 'file-deleted-duplicate'      => 'Jüst disse Datei ([[$1]]) is al mal löscht worrn. Kiek man eerst, wat in dat Löschlogbook steiht, ehrdat du ehr noch wedder hoochlaadst.',
-'successfulupload'            => 'Datei hoochladen hett Spood',
+'upload-success-subj'            => 'Datei hoochladen hett Spood',
 'uploadwarning'               => 'Wohrschau',
 'savefile'                    => 'Datei spiekern',
 'uploadedimage'               => '„$1“ hoochladen',

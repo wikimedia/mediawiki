@@ -1119,7 +1119,7 @@ Si entovia quieris empuntal el archivu, pol favol, güervi atrás i empuntalu co
 Si acontinas queriendu empuntal el archivu, vai alatrás i escambia el nombri el archivu.
  [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Esti archivu es un dupricau {{PLURAL:$1|el siguienti archivu|los siguientis archivus}}:',
-'successfulupload'            => 'Empuntu satisfatoriu',
+'upload-success-subj'            => 'Empuntu satisfatoriu',
 'uploadwarning'               => 'Avisu d´empuntu',
 'savefile'                    => 'Emburacal archivu',
 'uploadedimage'               => 'emputau "[[$1]]"',

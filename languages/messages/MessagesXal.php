@@ -792,7 +792,7 @@ $1',
 'filename'          => 'Боомгна нернь',
 'filedesc'          => 'Учр-утх',
 'fileuploadsummary' => 'Учр-утх:',
-'successfulupload'  => 'Йовудта тәвллһн',
+'upload-success-subj'  => 'Йовудта тәвллһн',
 'savefile'          => 'Хадһлх',
 'uploadedimage'     => '«[[$1]]» тәвв',
 

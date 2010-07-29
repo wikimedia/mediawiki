@@ -1050,7 +1050,7 @@ S'è la matessi immàgina, i' li misuri originari, nò è nezzessàriu carriggà
 Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla. A l'invessu, pa piazeri ciambà l'innòmmu di lu file.",
 'fileexists-forbidden'        => "Un file cun chisthu innòmmu isisthi già. Turrà indareddu e mudìfiggà l'innòmmu cu' lu quari carriggà lu file. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Un file cun chisthu innòmmu isisthi già i l'archìbiu di li risuzzi mùrthimediari cundibisi. Turrà indareddu e mudìfiggà l'innòmmu cu' lu quari carriggà lu file. [[File:$1|thumb|center|$1]]",
-'successfulupload'            => 'Carriggamentu cumpritaddu',
+'upload-success-subj'            => 'Carriggamentu cumpritaddu',
 'uploadwarning'               => 'Avvisu di carriggamentu',
 'savefile'                    => 'Saivva file',
 'uploadedimage'               => 'ha carriggaddu "[[$1]]"',

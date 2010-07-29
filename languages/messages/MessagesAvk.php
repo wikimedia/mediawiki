@@ -1072,7 +1072,7 @@ Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel.
 'fileexists-shared-forbidden' => 'Koe pakano iyeltakxo milyoltaf iyeltak ixam tir.
 Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bat iyeltak tir jontolaca ke {{PLURAL:$1|iyeltak|iyeltak}}:',
-'successfulupload'            => 'Ksudanhara',
+'upload-success-subj'            => 'Ksudanhara',
 'uploadwarning'               => 'Obral !',
 'savefile'                    => 'Giwara va iyeltak',
 'uploadedimage'               => '« [[$1]] » ksudayan mo zanisiko',

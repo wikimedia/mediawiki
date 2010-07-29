@@ -1525,7 +1525,7 @@ Molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|cente
 'file-exists-duplicate'       => 'Ovaj fajl je duplikat {{PLURAL:$1|sledećeg fajla|sledeđih fajlova}}:',
 'file-deleted-duplicate'      => 'Fajl identičan ovom ([[$1]]) je već bio obrisan.
 Trebalo bi da proverite istoriju brisanja fajla pre ponovnog slanja.',
-'successfulupload'            => 'Uspešno slanje',
+'upload-success-subj'            => 'Uspešno slanje',
 'uploadwarning'               => 'Upozorenje pri slanju',
 'uploadwarning-text'          => 'Molimo Vas da izmenite opis fajla ispod i pokušate ponovo.',
 'savefile'                    => 'Snimi fajl',

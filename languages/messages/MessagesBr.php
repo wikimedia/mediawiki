@@ -1502,7 +1502,7 @@ Mar fell deoc'h enporzhiañ ho restr memes tra, kit war ho kiz ha grit gant un a
 Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit anezhi adarre dindan un anv all. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Un eil eus ar {{PLURAL:$1|restr|restroù}} da-heul eo ar restr-mañ :',
 'file-deleted-duplicate'      => "Diverket ez eus bet c'hoazh ur restr heñvel-poch ouzh ar restr-mañ ([[$1]]). Gwelloc'h e vefe deoc'h teuler ur sell war istor diverkadenn ar bajenn-se a-raok hec'h enporzhiañ en-dro.",
-'successfulupload'            => 'Eiladenn kaset da benn vat',
+'upload-success-subj'            => 'Eiladenn kaset da benn vat',
 'uploadwarning'               => 'Diwallit!',
 'uploadwarning-text'          => 'Cheñchit deskrivadur ar restr a-is ha klaskit en-dro.',
 'savefile'                    => 'Enrollañ ar restr',
@@ -1543,7 +1543,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->",
-'upload-successful-msg'       => "Ho kargadenn a c'heller kavout amañ : $1",
+'upload-success-msg'       => "Ho kargadenn a c'heller kavout amañ : $1",
 'upload-failure-subj'         => 'Kudenn kargañ',
 'upload-failure-msg'          => "Ur gudenn 'zo bet e-pad ho kargadenn :
 

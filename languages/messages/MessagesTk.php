@@ -1405,7 +1405,7 @@ Faýlyňyzy şonda-da ýüklemek isleýän bolsaňyz, onda yza gaýdyp täze bir
 Faýlyňyzy şonda-da ýüklemek isleýän bolsaňyz, onda yza gaýdyp täze bir at ulanmagyňyzy haýyş edýäris. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bu faýl aşakdaky {{PLURAL:$1|faýlyň|faýllaryň}} dublikatydyr:',
 'file-deleted-duplicate'      => 'Şu faýl bilen birmeňzeş bir faýl ([[$1]]) ozal öçürilipdir. Bu faýly gaýtadan ýüklemänkäňiz şol faýlyň öçürme geçmişini barlaň.',
-'successfulupload'            => 'Şowly ýükleme',
+'upload-success-subj'            => 'Şowly ýükleme',
 'uploadwarning'               => 'Ýükleme duýduryşy',
 'uploadwarning-text'          => 'Aşakdaky faýl düşündirişini üýtgediň we gaýtadan synanyşyň.',
 'savefile'                    => 'Faýly ýazdyr',

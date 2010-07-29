@@ -1641,7 +1641,7 @@ Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại v
 Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại và dùng một tên khác. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tập tin này có vẻ là bản sao của {{PLURAL:$1|tập tin|các  tập tin}} sau:',
 'file-deleted-duplicate'      => 'Một tập tin giống hệt như tập tin này ([[$1]]) đã từng bị xóa trước đây. Bạn nên xem lại lịch sử xóa tập tin trước khi tiếp tục tải nó lên lại.',
-'successfulupload'            => 'Đã tải xong',
+'upload-success-subj'            => 'Đã tải xong',
 'uploadwarning'               => 'Cảnh báo!',
 'uploadwarning-text'          => 'Xin hãy chỉnh sửa miêu tả tập tin ở dưới và thử lại.',
 'savefile'                    => 'Lưu tập tin',
@@ -1681,7 +1681,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # khác
  #</pre> <!-- xin để nguyên hàng này -->',
-'upload-successful-msg'       => 'Tập tin tải lên có sẵn tại: $1',
+'upload-success-msg'       => 'Tập tin tải lên có sẵn tại: $1',
 'upload-failure-subj'         => 'Vấn đề tải lên',
 'upload-failure-msg'          => 'Tập tin bạn tải lên có một vấn đề:
 

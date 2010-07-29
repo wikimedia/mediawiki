@@ -1042,7 +1042,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'minlength1'          => 'Ó kéréjù àwọn orúkọ fáìlì gbọdọ̀ jẹ́ lẹ́tà kan.',
 'badfilename'         => 'Orúkọ fáìlì ti yípadà sí "$1".',
 'filetype-badmime'    => 'Àwọn fáìlì MIME irú "$1" kò jẹ́ gbígbà láyè láti rù wọ́n sókè.',
-'successfulupload'    => 'Ìjásírere ìrùsókè',
+'upload-success-subj'    => 'Ìjásírere ìrùsókè',
 'uploadwarning'       => 'Ìkìlọ̀ ìrùsókè',
 'savefile'            => 'Ìmúpamọ́ fáìlì',
 'uploadedimage'       => '"[[$1]]" ti jẹ́rírùsókè',

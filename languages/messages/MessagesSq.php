@@ -1356,7 +1356,7 @@ Nëse keni këtë figurë me madhësi të plotë ju lutem të ngarkoni atë, pë
 'fileexists-forbidden'        => 'Ekziston një skedë me të njëjtin emër. Ju lutemi kthehuni mbrapsh dhe ngarkoni këtë skedë me një emër të ri. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ekziston një skedë me të njëjtin emër në magazinën e përbashkët. Ju lutem kthehuni mbrapsh dhe ngarkojeni këtë skedë me një emër të ri. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Kjo skedë është dyfish i {{PLURAL:$1|skedës|skedave}} në vijim:',
-'successfulupload'            => 'Dhënie e sukseshme',
+'upload-success-subj'            => 'Dhënie e sukseshme',
 'uploadwarning'               => 'Kujdes dhënie',
 'savefile'                    => 'Ruaj skedën',
 'uploadedimage'               => 'dha "[[$1]]"',

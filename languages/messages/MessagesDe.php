@@ -1724,7 +1724,7 @@ Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Diese Datei ist ein Duplikat der folgenden {{PLURAL:$1|Datei|$1 Dateien}}:',
 'file-deleted-duplicate'      => 'Eine identische Datei dieser Datei ([[$1]]) wurde früher gelöscht. Überprüfe das Lösch-Logbuch, bevor du sie hochlädst.',
-'successfulupload'            => 'Erfolgreich hochgeladen',
+'upload-success-subj'            => 'Erfolgreich hochgeladen',
 'uploadwarning'               => 'Warnung',
 'uploadwarning-text'          => 'Bitte ändere unten die Dateibeschreibung und versuche es erneut.',
 'savefile'                    => 'Datei speichern',
@@ -1767,7 +1767,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # verschiedene
  #</pre> <!-- Diese Zeile darf nicht verändert werden!-->',
-'upload-successful-msg'       => 'Deine hochgeladene Datei ist hier verfügbar: $1',
+'upload-success-msg'       => 'Deine hochgeladene Datei ist hier verfügbar: $1',
 'upload-failure-subj'         => 'Hochladefehler',
 'upload-failure-msg'          => 'Es gab ein Problem mit deiner hochgeladenen Datei:
 

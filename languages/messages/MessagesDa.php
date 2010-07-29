@@ -1556,7 +1556,7 @@ Hvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne fil er en bublet af {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}:',
 'file-deleted-duplicate'      => 'En fil identisk med denne fil ([[$1]]) er tidligere blevet slettet. Du bør tjekke den fils sletningshistorik før du prøver at genoplægge den.',
-'successfulupload'            => 'Oplægningen er gennemført',
+'upload-success-subj'            => 'Oplægningen er gennemført',
 'uploadwarning'               => 'Advarsel',
 'uploadwarning-text'          => 'Vær venlig at ændre filbeskrivelsen nedenfor og prøv igen.',
 'savefile'                    => 'Gem fil',
@@ -1583,7 +1583,7 @@ Hvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.
 Overvej om det er passende at fortsætte med uploadet.
 Sletningsloggen for denne fil er gengivet herunder.",
 'filename-bad-prefix'         => "Navnet på filen du er ved at lægge op begynder med '''\"\$1\"'''. Dette er et ikkebeskrivende navn, der typisk er skabt automatisk af et digitalkamera. Vær venlig at vælge et mere beskrivende navn på dit billede.",
-'upload-successful-msg'       => 'Din upload er tilgængelig her: $1',
+'upload-success-msg'       => 'Din upload er tilgængelig her: $1',
 'upload-failure-subj'         => 'Upload problem',
 'upload-failure-msg'          => 'Der var et problem med din upload:
 

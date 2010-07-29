@@ -1851,7 +1851,7 @@ $1",
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'هذا الملف مكرر  {{PLURAL:$1|للملف|للملفات}} التالية:',
 'file-deleted-duplicate'      => 'ملف مطابق لهذه الملف ([[$1]]) تم حذفه من قبل. ينبغي أن تتحقق من تاريخ الحذف لهذا الملف قبل المتابعة بإعادة رفعه.',
-'successfulupload'            => 'تم رفع الملف بنجاح',
+'upload-success-subj'            => 'تم رفع الملف بنجاح',
 'uploadwarning'               => 'تحذير الرفع',
 'uploadwarning-text'          => 'من فضلك عدل وصف الملف أدناه وحاول مرة أخرى.',
 'savefile'                    => 'احفظ الملف',
@@ -1893,7 +1893,7 @@ JD # جينوبتيك
 MGP # بينتاكس
 PICT # متنوع
  #</pre> <!-- اترك هذا السطر تماما كما هو -->',
-'upload-successful-msg'       => 'مرفوعك متوفر هنا: $1',
+'upload-success-msg'       => 'مرفوعك متوفر هنا: $1',
 'upload-failure-subj'         => 'مشكلة رفع',
 'upload-failure-msg'          => 'توجد مشكلة في رفعك:
 

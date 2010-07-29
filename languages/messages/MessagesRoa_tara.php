@@ -1427,7 +1427,7 @@ ce tu vuè angore carecà stu file, pe piacere tuèrne rrete e ause 'nu nome nu�
 'file-exists-duplicate'       => "Stu file jè 'na copie {{PLURAL:$1|d'u seguende file|de le seguende file}}:",
 'file-deleted-duplicate'      => "'Nu file uguale a stu file ([[$1]]) ha state scangellate precedendemende.<br />
 Avissa verificà 'a storie d'a scangellazzione d'u file apprime de condinuà a carecarle.",
-'successfulupload'            => 'Carecamende sciute apposte',
+'upload-success-subj'            => 'Carecamende sciute apposte',
 'uploadwarning'               => 'Avvise de carecamende',
 'uploadwarning-text'          => "Pe piacere cange 'a descrizione d'u file sotte e pruève 'notra vote.",
 'savefile'                    => "Reggistre 'u file",

@@ -1555,7 +1555,7 @@ Kung nais mo pa ring ikarga pataas ang iyong talaksan, paki bumalik lamang at gu
 bumalik at ikarga ang talaksan na ito sa bagong pangalan. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ang talaksang ito ay isang kakambal ng sumusunod na {{PLURAL:$1|talaksan|mga talaksan}}:',
 'file-deleted-duplicate'      => 'Dating nabura ang isang talaksang katulad ng talaksang ito ([[$1]]).  Dapat mong suriin ang kasaysayan ng pagbubura ng talaksang iyon bago magpatuloy sa muling pagkarga nito.',
-'successfulupload'            => 'Matagumpay na pagkakarga',
+'upload-success-subj'            => 'Matagumpay na pagkakarga',
 'uploadwarning'               => 'Babala sa pagkakarga',
 'uploadwarning-text'          => 'Pakibago ang nasa ibabang paglalarawan ng talaksan at subukan muli.',
 'savefile'                    => 'Sagipin ang talaksan',
@@ -1582,7 +1582,7 @@ bumalik at ikarga ang talaksan na ito sa bagong pangalan. [[File:$1|thumb|center
 Ikunsidera mo kung nararapat ba na ipagpatuloy ang pagkarga ng talaksang ito.
 Ibinigay ang tala ng pagbura ng talaksang ito para konbinyente:",
 'filename-bad-prefix'         => "Ang talaksan na ikakarga mo ay nagsisimula sa '''\"\$1\"''', na isang hindi naglalarawang pangalan na karaniwang tinatakda ng mga kamerang digital. Paki pili ang isang mas naglalarawang pangalan para sa iyong talaksan.",
-'upload-successful-msg'       => 'Makukuha ang ikinarga mo rito: $1',
+'upload-success-msg'       => 'Makukuha ang ikinarga mo rito: $1',
 'upload-failure-subj'         => 'Problema sa pagkarga',
 'upload-failure-msg'          => 'Nagkaroon ng problema sa iyong karga:
 

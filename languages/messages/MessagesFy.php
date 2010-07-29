@@ -1365,7 +1365,7 @@ As jo de triem dochs noch oanbiede wolle, gean dan werom en kies in oare namme.
 'file-exists-duplicate'       => 'Dizze triem is idintyk oan {{PLURAL:$1|de folgjende triem|de folgjende triemmen}}:',
 'file-deleted-duplicate'      => "In bestân idintyk oan dit bestân ([[$1]]) is foarhinne fuorthelle.
 Rieplachtsje it fuorthel-logboek foar't jo fierder geane.",
-'successfulupload'            => 'Oanbieden slagge.',
+'upload-success-subj'            => 'Oanbieden slagge.',
 'uploadwarning'               => 'Oanbied-warskôging',
 'savefile'                    => 'Lis triem fêst',
 'uploadedimage'               => ' "[[$1]]" oanbean',

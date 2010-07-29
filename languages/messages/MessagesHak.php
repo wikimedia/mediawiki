@@ -822,7 +822,7 @@ Hó-chhiong yit-puk thù-hìn ke suk-thù pán-pún ''（thù-hìn）''.
 Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 'fileexists-forbidden'        => 'Yí-kîn chhùn-chhai ke siông-thùng miàng-chhṳ̂n ke tóng-on; chhiáng fì-chón pin yung yit-ke sîn-ke  miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on.[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Chhai khiung-hióng tóng-on-khu chûng yí-kîn chhùn-chhai chhṳ́ miàng-chhṳ̂n ke tóng-on; Chhiáng fì-chón pin yung yit-ke sîn-ke miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on. [[File:$1|thumb|center|$1]]',
-'successfulupload'            => 'Sông-chhòn sṳ̀n-kûng',
+'upload-success-subj'            => 'Sông-chhòn sṳ̀n-kûng',
 'uploadwarning'               => 'Sông-chai kín-ko',
 'savefile'                    => 'Pó-chhùn vùn-khien',
 'uploadedimage'               => 'yí-kîn song-chhòn "[[$1]]"',

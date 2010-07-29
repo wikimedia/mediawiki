@@ -1512,7 +1512,7 @@ Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosy
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Toś ta dataja jo duplikat {{PLURAL:$1|slědujuceje dataje|slědujuceju datajow|slědujucych datajow|slědujucych datajow}}:',
 'file-deleted-duplicate'      => 'Dataja, kótaraž jo identiska z toś teju dataju ([[$1]]) jo se pjerwjej wulašowała. Ty měł stawizny wulašowanja toś teje dataje pśeglědaś, pjerwjej až pokšacujoš z jeje zasejnagrawanjom.',
-'successfulupload'            => 'Nagraśe jo było wuspěšne.',
+'upload-success-subj'            => 'Nagraśe jo było wuspěšne.',
 'uploadwarning'               => 'Warnowanje',
 'uploadwarning-text'          => 'Pšosym změń slědujuce datajowe wopisanje a wopytaj hyšći raz.',
 'savefile'                    => 'Dataju składowaś',
@@ -1553,7 +1553,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń nic na toś tej rědce! -->',
-'upload-successful-msg'       => 'Twójo nagraśe stoj how k dispoziciji: $1',
+'upload-success-msg'       => 'Twójo nagraśe stoj how k dispoziciji: $1',
 'upload-failure-subj'         => 'Nagrawański problem',
 'upload-failure-msg'          => 'Jo był problem z twójim nagraśim:
 

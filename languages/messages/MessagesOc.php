@@ -1645,7 +1645,7 @@ Se volètz totjorn importar aquel fichièr, mercé de tornar en arrièr e d'util
 S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Aqueste fichièr es un doble {{PLURAL:$1|del fichièr seguent|dels fichièrs seguents}} :',
 'file-deleted-duplicate'      => "Un fichièr identic a aqueste ([[$1]]) ja es estat suprimit. Vos caldriá verificar lo jornal de las supressions d'aqueste fichièr abans de la tornar telecargar.",
-'successfulupload'            => 'Importacion capitada',
+'upload-success-subj'            => 'Importacion capitada',
 'uploadwarning'               => 'Atencion !',
 'uploadwarning-text'          => 'Modificatz la descripcion del fichièr e ensajatz tornarmai.',
 'savefile'                    => 'Salvar lo fichièr',
@@ -1685,7 +1685,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- daissatz aquesta linha coma es -->',
-'upload-successful-msg'       => 'Çò mandat es disponible aicí : $1',
+'upload-success-msg'       => 'Çò mandat es disponible aicí : $1',
 'upload-failure-subj'         => 'Problèma de mandadís',
 'upload-failure-msg'          => 'I a agut un problèma amb vòstre mandadís :$1',
 

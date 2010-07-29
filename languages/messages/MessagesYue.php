@@ -1514,7 +1514,7 @@ $1",
 如果你仍然想去上載佢嘅話，麻煩返轉去用第二個名嚟上載呢個檔案。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '呢個檔案係同下面嘅{{PLURAL:$1|一|幾}}個檔案重覆:',
 'file-deleted-duplicate'      => '一個同名嘅檔案 ([[$1]]) 響之前刪除過。你應該響重新上載之前檢查一下嗰個檔案嘅刪除紀錄。',
-'successfulupload'            => '成功嘅上載',
+'upload-success-subj'            => '成功嘅上載',
 'uploadwarning'               => '上載警告',
 'uploadwarning-text'          => '請修改下面嘅檔案描述再重試。',
 'savefile'                    => '儲存檔案',
@@ -1542,7 +1542,7 @@ $1",
 你應該要考慮吓繼續上載呢個檔案係唔係適合嘅。
 為咗方便起見，呢個檔案嘅刪除記錄已經響下面提供:",
 'filename-bad-prefix'         => "你上載嘅檔名係以'''\"\$1\"'''做開頭，通常呢種無含意嘅檔名係響數碼相機度自動編排。請響你個檔案度揀過一個更加有意義嘅檔名。",
-'upload-successful-msg'       => '你嘅上載可以喺呢度搵到：$1。',
+'upload-success-msg'       => '你嘅上載可以喺呢度搵到：$1。',
 'upload-failure-subj'         => '上載出咗問題',
 'upload-failure-msg'          => '你嘅上載出現咗問題：
 

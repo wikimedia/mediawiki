@@ -1745,7 +1745,7 @@ Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et 
 'file-exists-duplicate'       => 'Cél fichiér est un doblo {{PLURAL:$1|de ceti fichiér|de cetos fichiérs}} :',
 'file-deleted-duplicate'      => 'Un fichiér pariér a ceti ([[$1]]) at ja étâ suprimâ.
 Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que lo tornar tèlèchargiér.',
-'successfulupload'            => 'Tèlèchargement fêt avouéc reusséta',
+'upload-success-subj'            => 'Tèlèchargement fêt avouéc reusséta',
 'uploadwarning'               => 'Atencion !',
 'uploadwarning-text'          => 'Changiéd la dèscripcion du fichiér et pués tornâd èprovar.',
 'savefile'                    => 'Sôvar lo fichiér',
@@ -1789,7 +1789,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # de totes sôrtes
   #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
-'upload-successful-msg'       => 'Voutron tèlèchargement est disponiblo ique : $1',
+'upload-success-msg'       => 'Voutron tèlèchargement est disponiblo ique : $1',
 'upload-failure-subj'         => 'Problèmo de tèlèchargement',
 'upload-failure-msg'          => 'Y at avu un problèmo avouéc voutron tèlèchargement :
 

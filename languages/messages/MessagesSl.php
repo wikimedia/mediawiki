@@ -1573,7 +1573,7 @@ Prosimo, vrnite se in naložite svojo datoteko pod drugim imenom.
 'file-exists-duplicate'       => 'Ta datoteka je dvojnik {{PLURAL:$1|naslednje datoteke|naslednjih datotek}}:',
 'file-deleted-duplicate'      => 'Datoteka je identična tej ([[$1]]), ki je bila predhodno izbrisana.
 Preverite zgodovino brisanja datoteke, preden jo ponovno naložite.',
-'successfulupload'            => 'Datoteka je bila uspešno naložena',
+'upload-success-subj'            => 'Datoteka je bila uspešno naložena',
 'uploadwarning'               => 'Opozorilo!',
 'uploadwarning-text'          => 'Prosimo, spremenite opis datoteke spodaj in poskusite ponovno.',
 'savefile'                    => 'Shrani datoteko',
@@ -1617,7 +1617,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # mešano
  #</pre> <!-- pustite to vrstico takšno, kot je -->',
-'upload-successful-msg'       => 'Vaša naložena datoteka je na voljo tukaj: $1',
+'upload-success-msg'       => 'Vaša naložena datoteka je na voljo tukaj: $1',
 'upload-failure-subj'         => 'Težava pri nalaganju',
 'upload-failure-msg'          => 'Prišlo je do težave z vašo naloženo datoteko:
 

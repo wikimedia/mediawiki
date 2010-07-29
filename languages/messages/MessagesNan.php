@@ -462,7 +462,7 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'ignorewarning'     => 'Mài chhap kéng-kò, kā tóng-àn pó-chûn khí lâi.',
 'ignorewarnings'    => 'Mài chhap kéng-kò',
 'badfilename'       => 'Iáⁿ-siōng ê miâ í-keng kái chò "$1".',
-'successfulupload'  => 'Sàng-chiūⁿ-bāng sêng-kong',
+'upload-success-subj'  => 'Sàng-chiūⁿ-bāng sêng-kong',
 'uploadwarning'     => 'Upload kéng-kò',
 'savefile'          => 'Pó-chûn tóng-àn',
 'uploadedimage'     => 'thoân "[[$1]]" chiūⁿ-bāng',

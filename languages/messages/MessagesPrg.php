@@ -1251,7 +1251,7 @@ Ik tū ainatīngi kwaitēi enkraūtun šin zūrbrukin, ettreppais be tērpaus n�
 'file-exists-duplicate'       => 'Šis zūrbrukis ast kōpija {{PLURAL:$1|šisse zūrbrukin|šēisan zūrbrukin}}:',
 'file-deleted-duplicate'      => 'Zūrbrukis idēntiskas sen šin zūrbrukin ([[$1]]) pastāi ankstāis āupausintan.
 Pirzdau tālis ēisnan, tebbei prawerru izbandātun šisse zūrbrukes āupausinsenin istōrijan.',
-'successfulupload'            => 'Zūrbrukes enkraūsenis izpalla',
+'upload-success-subj'            => 'Zūrbrukes enkraūsenis izpalla',
 'uploadwarning'               => 'Ēmpirssergīsenis ezze enkraūsnan',
 'uploadwarning-text'          => 'Madli kitawīdinais zūrbukes ebpeisāsenis be bandais etkūmps',
 'savefile'                    => 'Enpeisāis zūrbrukin',

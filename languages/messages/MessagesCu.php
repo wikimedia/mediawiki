@@ -409,7 +409,7 @@ $messages = array(
 'filename'          => 'дѣ́ла и́мѧ',
 'filedesc'          => 'опьса́ниѥ',
 'fileuploadsummary' => 'опьса́ниѥ:',
-'successfulupload'  => 'дѣ́ло положєно ѥ́стъ',
+'upload-success-subj'  => 'дѣ́ло положєно ѥ́стъ',
 'uploadedimage'     => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
 'watchthisupload'   => 'си дѣ́ла блюдє́ниѥ',
 

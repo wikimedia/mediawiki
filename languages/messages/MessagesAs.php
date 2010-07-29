@@ -972,7 +972,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'upload'           => "ফাইল আপল'ড",
 'uploadbtn'        => 'ফাইল আপলোড কৰক',
 'uploadlogpage'    => 'আপলোড সুচী',
-'successfulupload' => "আপলোড সফল হ'ল",
+'upload-success-subj' => "আপলোড সফল হ'ল",
 'uploadwarning'    => 'আপলোড সতৰ্কবাণী',
 'savefile'         => 'সংৰক্ষণ',
 'uploadedimage'    => '"[[$1]]" আপলোড কৰা হ’ল',

@@ -1333,7 +1333,7 @@ $1",
 'filepageexists'             => "此檔之述於'''<tt>[[:$1]]</tt>'''存矣，檔未存也。爾入述無存也。要現之，爾需纂之。",
 'file-exists-duplicate'      => '此檔乃重檔{{PLURAL:$1|一|數}}：',
 'file-deleted-duplicate'     => '此檔（[[$1]]）前刪。爾需查刪錄再貢之。',
-'successfulupload'           => '檔案安矣',
+'upload-success-subj'           => '檔案安矣',
 'uploadwarning'              => '慎焉！',
 'uploadwarning-text'         => '改下檔述再試之。',
 'savefile'                   => '存之',
@@ -1356,7 +1356,7 @@ $1",
 'upload-wasdeleted'          => "'''警示：復獻棄檔，慎續之。'''
 誌刪如下：",
 'filename-bad-prefix'        => "獻檔以'''「$1」'''首，常由相機瞎造，惠更述之。",
-'upload-successful-msg'      => '爾之貢見於此：$1',
+'upload-success-msg'      => '爾之貢見於此：$1',
 'upload-failure-subj'        => '貢問',
 'upload-failure-msg'         => '爾之貢現問也：
 

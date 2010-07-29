@@ -1310,7 +1310,7 @@ If nog vilol lopükön ragivi olik, geikolös e gebolös nemi votik. [[File:$1|t
 'fileexists-shared-forbidden' => 'Ragiv labü nem at ya dabinon in ragivastok kobädik. If nog vilol löpükön ragivi olik, geikolös e löpükolös ragivi at me nem votik. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ragiv at leigon ko {{PLURAL:$1|ragiv|ragivs}} fovik:',
 'file-deleted-duplicate'      => 'Ragiv votik, kel leigon ko ragiv at ([[$1]]), pemoükon büo. Sötol kontrolön moükamajenotemi ragiva et büä odönulöpükol oni.',
-'successfulupload'            => 'Löpükam eplöpon',
+'upload-success-subj'            => 'Löpükam eplöpon',
 'uploadwarning'               => 'Löpükamanuned',
 'savefile'                    => 'Dakipolöd ragivi',
 'uploadedimage'               => '"[[$1]]" pelöpüköl',

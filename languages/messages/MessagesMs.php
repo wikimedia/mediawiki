@@ -1476,7 +1476,7 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. S
 'fileexists-shared-forbidden' => 'Sebuah fail dengan nama ini telah pun wujud dalam gedung fail kongsi. Jika anda masih mahu memuat naik fail ini, sila kembali ke borang muat naik dan gunakan nama lain. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Fail ini adalah salinan bagi {{PLURAL:$1|fail|fail-fail}} berikut:',
 'file-deleted-duplicate'      => 'Sebuah fail yang serupa dengan fail ini ([[$1]]) telah pun dihapuskan sebelum ini. Anda seharusnya memeriksa sejarah penghapusan fail itu terlebih dahulu sebelum memuat naiknya sekali lagi.',
-'successfulupload'            => 'Muat naik berjaya',
+'upload-success-subj'            => 'Muat naik berjaya',
 'uploadwarning'               => 'Amaran muat naik',
 'savefile'                    => 'Simpan fail',
 'uploadedimage'               => 'memuat naik "[[$1]]"',

@@ -1035,7 +1035,7 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'file-thumbnail-no'           => "Teedüstü nimi nakkas pääle '''<tt>$1</tt>'''. Taa paistus ollõv vähändet pilt ''(thumbnail)''. Ku sul om olõman taa pilt tävven suurusõn, sis laadiq üles tuu, ku olõ-i, sis muudaq teedüstü nimi ärq.",
 'fileexists-forbidden'        => 'Sääntse nimega teedüstü om jo olõman. Pästäq teedüstü tõõsõ nimega. Parhillanõ teedüstü: [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Sama nimega teedüstü om jo olõman jaetuidõ teedüstüide hulgan. Pästäq teedüstü mõnõ tõõsõ nime ala. Parhillanõ teedüstü: [[File:$1|thumb|center|$1]]',
-'successfulupload'            => "Üleslaatminõ läts' kõrda",
+'upload-success-subj'            => "Üleslaatminõ läts' kõrda",
 'uploadwarning'               => 'Üleslaatmishoiatus',
 'savefile'                    => 'Pästäq teedüstü ärq',
 'uploadedimage'               => 'laadõ üles "$1"',

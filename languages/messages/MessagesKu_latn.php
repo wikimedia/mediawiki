@@ -855,7 +855,7 @@ Xêra xwe navekî din bibîne.",
 'file-thumbnail-no'      => "Navî vê datayê bi '''<tt>$1</tt>''' destpêdike. Ev dibêje ku ev wêneyekî çûçik e ''(thumbnail)''. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.",
 'fileexists-forbidden'   => 'Medyayek bi vê navî heye; xêra xwe şonda here û vê medyayê bi navekî din barbike.
 [[File:$1|thumb|center|$1]]',
-'successfulupload'       => 'Barkirin serkeftî',
+'upload-success-subj'       => 'Barkirin serkeftî',
 'uploadwarning'          => 'Hişyara barkirinê',
 'savefile'               => 'Dosyayê tomar bike',
 'uploadedimage'          => '"$1" barkirî',

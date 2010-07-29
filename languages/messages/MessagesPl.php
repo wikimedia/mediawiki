@@ -1643,7 +1643,7 @@ Jeśli chcesz przesłać plik cofnij się i prześlij go pod inną nazwą. [[Fil
 Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ten plik jest kopią {{PLURAL:$1|pliku|następujących plików:}}',
 'file-deleted-duplicate'      => 'Identyczny do tego plik ([[$1]]) został wcześniej usunięty. Sprawdź historię usunięć tamtego pliku zanim prześlesz go ponownie.',
-'successfulupload'            => 'Przesłanie pliku powiodło się',
+'upload-success-subj'            => 'Przesłanie pliku powiodło się',
 'uploadwarning'               => 'Ostrzeżenie o przesyłaniu',
 'uploadwarning-text'          => 'Zmień poniższy opis pliku i spróbuj ponownie.',
 'savefile'                    => 'Zapisz plik',
@@ -1686,7 +1686,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # wiele różnych
   #</pre> <!-- nie modyfikuj tej linii -->',
-'upload-successful-msg'       => 'Przesłany plik jest dostępny tutaj – $1',
+'upload-success-msg'       => 'Przesłany plik jest dostępny tutaj – $1',
 'upload-failure-subj'         => 'Problem z przesłaniem pliku',
 'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu Twojego pliku:
 

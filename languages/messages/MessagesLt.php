@@ -1550,7 +1550,7 @@ prašome eiti atgal ir įkelti šį failą kitu vardu. [[File:$1|thumb|center|$1
 Jei visvien norite įkelti savo failą, prašome eiti atgal ir įkelti šį failą kitu vardu. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Šis failas yra {{PLURAL:$1|šio failo|šių failų}} dublikatas:',
 'file-deleted-duplicate'      => 'Failas, identiškas šiam failui ([[$1]]), seniau buvo ištrintas. Prieš įkeldami jį vėl patikrinkite šio failo ištrynimo istoriją.',
-'successfulupload'            => 'Įkelta sėkmingai',
+'upload-success-subj'            => 'Įkelta sėkmingai',
 'uploadwarning'               => 'Dėmesio',
 'uploadwarning-text'          => 'Prašome pakeisti failo aprašymą ir bandykite dar kartą.',
 'savefile'                    => 'Išsaugoti failą',
@@ -1578,7 +1578,7 @@ Patikrinkite ''file_uploads'' nustatą.",
 Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 Šio failo šalinimų istorija yra pateikta dėl patogumo:",
 'filename-bad-prefix'         => "Jūsų įkeliamas failas prasideda su '''„$1“''', bet tai yra neapibūdinantis pavadinimas, dažniausiai priskirtas skaitmeninių kamerų. Prašome suteikti labiau apibūdinantį pavadinimą savo failui.",
-'upload-successful-msg'       => 'Jūsų įkėlimą galima rasti čia: $1',
+'upload-success-msg'       => 'Jūsų įkėlimą galima rasti čia: $1',
 'upload-failure-subj'         => 'Įkėlimo problema',
 'upload-failure-msg'          => 'Įvyko įkėlimo problema:
 
