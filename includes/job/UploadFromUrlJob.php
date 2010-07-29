@@ -10,6 +10,8 @@
  * @ingroup JobQueue
  */
 class UploadFromUrlJob extends Job {
+	public $upload;
+	protected $user;
 
 	public function __construct( $title, $params, $id = 0 ) {
 		parent::__construct( 'uploadFromUrl', $title, $params, $id );
@@ -17,8 +19,8 @@ class UploadFromUrlJob extends Job {
 
 	public function run() {
 		# Initialize this object and the upload object
-		$upload = new UploadFromUrl();
-		$upload->initialize( 
+		$this->upload = new UploadFromUrl();
+		$this->upload->initialize( 
 			$this->title->getText(), 
 			$this->params['url'],
 			false
@@ -26,34 +28,47 @@ class UploadFromUrlJob extends Job {
 		$this->user = User::newFromName( $this->params['userName'] );
 		
 		# Fetch the file
-		$status = $upload->fetchFile();
+		$status = $this->upload->fetchFile();
 		if ( !$status->isOk() ) {
+			$this->leaveMessage( $status );
+			return;
+		}
+		
+		# Verify upload
+		$result = $this->upload->verifyUpload();
+		if ( $result['status'] != UploadBase::OK ) {
+			$status = $this->upload->convertVerifyErrorToStatus( $result );
 			$this->leaveMessage( $status );
 			return;
 		}
 		
 		# Check warnings
 		if ( !$this->params['ignoreWarnings'] ) {
-			$warnings = $this->checkWarnings();
+			$warnings = $this->upload->checkWarnings();
 			if ( $warnings ) {
 				if ( $this->params['leaveMessage'] ) {
 					$this->user->leaveUserMessage( 
 						wfMsg( 'upload-warning-subj' ),
-						wfMsg( 'upload-warning-msg', $this->params['sessionKey'] )
+						wfMsg( 'upload-warning-msg', 
+							$this->params['sessionKey'],
+							$this->params['url'] )
 					);
 				} else {
 					$this->storeResultInSession( 'Warning',
 						'warnings', $warnings );
 				}
+				
+				// FIXME: stash in session
 				return;
 			}
 		}
 		
 		# Perform the upload
-		$status = $upload->performUpload( 
+		$status = $this->upload->performUpload( 
 			$this->params['comment'],
 			$this->params['pageText'],
-			$this->params['watch']
+			$this->params['watch'],
+			$this->user
 		);
 		$this->leaveMessage( $status );
 	}
@@ -67,13 +82,17 @@ class UploadFromUrlJob extends Job {
 	protected function leaveMessage( $status ) {
 		if ( $this->params['leaveMessage'] ) {
 			if ( $status->isGood() ) {
-				$file = $this->getLocalFile();
-	
-				$this->user->leaveUserMessage( wfMsg( 'successfulupload' ),
-					wfMsg( 'upload-success-msg', $file->getDescriptionUrl() ) );
+				$this->user->leaveUserMessage( wfMsg( 'upload-success-subj' ),
+					wfMsg( 'upload-success-msg', 
+						$this->upload->getTitle()->getText(),
+						$this->params['url'] 
+					) );
 			} else {
 				$this->user->leaveUserMessage( wfMsg( 'upload-failure-subj' ),
-					wfMsg( 'upload-failure-msg', $status->getWikiText() ) );
+					wfMsg( 'upload-failure-msg', 
+						$status->getWikiText(),
+						$this->params['url']
+					) );
 			}
 		} else {
 			if ( $status->isOk() ) {
@@ -89,6 +108,7 @@ class UploadFromUrlJob extends Job {
 
 	/**
 	 * Store a result in the session data
+	 * THIS IS BROKEN. $_SESSION does not exist when using runJobs.php
 	 * 
 	 * @param $result string The result (Success|Warning|Failure)
 	 * @param $dataKey string The key of the extra data

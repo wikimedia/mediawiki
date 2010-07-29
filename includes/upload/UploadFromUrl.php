@@ -10,6 +10,7 @@
  */
 class UploadFromUrl extends UploadBase {
 	protected $mAsync, $mUrl;
+	protected $mIgnoreWarnings = true;
 
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
@@ -40,12 +41,12 @@ class UploadFromUrl extends UploadBase {
 	 * asynchronous download.
 	 */
 	public function initialize( $name, $url, $async = false ) {
-		global $wgUser;
+		global $wgAllowAsyncCopyUploads;
 		
 		$this->mUrl = $url;
-		$this->mAsync = $async;
+		$this->mAsync = $wgAllowAsyncCopyUploads ? $async : false;
 		
-		$tempPath = $async ? null : $this->makeTemporaryFile();
+		$tempPath = $this->mAsync ? null : $this->makeTemporaryFile();
 		# File size and removeTempFile will be filled in later
 		$this->initializePathInfo( $name, $tempPath, 0, false );
 	}
@@ -88,9 +89,20 @@ class UploadFromUrl extends UploadBase {
 		}
 		return Status::newGood();
 	}
+	/**
+	 * Create a new temporary file in the URL subdirectory of wfTempDir().
+	 * 
+	 * @return string Path to the file
+	 */
 	protected function makeTemporaryFile() {
 		return tempnam( wfTempDir(), 'URL' );
 	}
+	/**
+	 * Save the result of a HTTP request to the temporary file
+	 * 
+	 * @param $req HttpRequest 
+	 * @return Status
+	 */
 	private function saveTempFile( $req ) {
 		if ( $this->mTempPath === false ) {
 			return Status::newFatal( 'tmp-create-error' );
@@ -103,6 +115,10 @@ class UploadFromUrl extends UploadBase {
 
 		return Status::newGood();
 	}
+	/**
+	 * Download the file, save it to the temporary file and update the file
+	 * size and set $mRemoveTempFile to true.
+	 */
 	protected function reallyFetchFile() {
 		$req = HttpRequest::factory( $this->mUrl );
 		$status = $req->execute();
@@ -120,6 +136,44 @@ class UploadFromUrl extends UploadBase {
 		return $status;
 	}
 
+	/**
+	 * Wrapper around the parent function in order to defer verifying the 
+	 * upload until the file really has been fetched.
+	 */
+	public function verifyUpload() {
+		if ( $this->mAsync ) {
+			return array( 'status' => self::OK );
+		}
+		return parent::verifyUpload();
+	}
+
+	/**
+	 * Wrapper around the parent function in order to defer checking warnings
+	 * until the file really has been fetched.
+	 */
+	public function checkWarnings() {
+		if ( $this->mAsync ) {
+			$this->mIgnoreWarnings = false;
+			return array();
+		}
+		return parent::checkWarnings();
+	}
+	
+	/**
+	 * Wrapper around the parent function in order to defer checking protection
+	 * until we are sure that the file can actually be uploaded
+	 */
+	public function verifyPermissions( $user ) {
+		if ( $this->mAsync ) {
+			return true;
+		}
+		return parent::verifyPermissions( $user );
+	}
+	
+	/**
+	 * Wrapper around the parent function in order to defer uploading to the
+	 * job queue for asynchronous uploads
+	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		if ( $this->mAsync ) {
 			$sessionKey = $this->insertJob( $comment, $pageText, $watch, $user );
