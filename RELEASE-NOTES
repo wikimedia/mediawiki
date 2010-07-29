@@ -10,6 +10,8 @@ This is a stable release of the MediaWiki 1.16 branch.
 
 Selected changes since MediaWiki 1.15 that may be of interest:
 
+* A new skin called Vector was added
+
 * Watchlists now have RSS/Atom feeds. RSS feeds generally are now hidden, 
   since Atom is a better protocol and is supported by virtually all clients.
 
@@ -206,6 +208,7 @@ further.
 
 === New features in 1.16 ===
 
+* A new skin called Vector was added
 * Add CSS defintion of the 'wikitable' class to shared.css
 * (bug 17163) Added MediaWiki:Talkpageheader which will be displayed when
   viewing talk pages
