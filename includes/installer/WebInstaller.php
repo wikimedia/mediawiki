@@ -3,6 +3,7 @@
 /**
  * Class for the core installer web interface.
  * 
+ * @ingroup Deployment
  * @since 1.17
  */
 class WebInstaller extends CoreInstaller {

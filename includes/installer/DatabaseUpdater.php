@@ -3,6 +3,9 @@
 /*
  * Class for handling database updates. Roughly based off of updaters.inc, with
  * a few improvements :)
+ * 
+ * @ingroup Deployment
+ * @since 1.17
  */
 abstract class DatabaseUpdater {
 

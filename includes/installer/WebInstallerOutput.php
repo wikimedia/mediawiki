@@ -7,6 +7,9 @@
  * the interests of separation of concerns: if we used a subclass, there would be 
  * quite a lot of things you could do in OutputPage that would break the installer, 
  * that wouldn't be immediately obvious. 
+ * 
+ * @ingroup Deployment
+ * @since 1.17
  */
 class WebInstallerOutput {
 	

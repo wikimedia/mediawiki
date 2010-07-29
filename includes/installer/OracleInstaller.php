@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Class for setting up the MediaWiki database using Oracle.
+ * 
+ * @ingroup Deployment
+ * @since 1.17
+ */
 class OracleInstaller extends DatabaseInstaller {
 
 	protected $globalNames = array(
