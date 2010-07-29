@@ -160,7 +160,7 @@ abstract class CoreInstaller extends Installer {
 			'icon' => '{$wgStylePath}/common/images/gnu-fdl.png',
 		),
 		'cc-choose' => array(
-			// details will be filled in by the selector
+			// Details will be filled in by the selector.
 			'url' => '',
 			'icon' => '',
 			'text' => '',

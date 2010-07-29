@@ -1,6 +1,7 @@
 <?php
 
 class LocalSettingsGenerator {
+	
 	private $extensions = array();
 	private $values = array();
 	private $configPath = '';
@@ -64,6 +65,13 @@ class LocalSettingsGenerator {
 		$this->values['wgEmergencyContact'] = $this->values['wgPasswordSender'];
 	}
 
+	/**
+	 * Returns the escaped version of a string of php code.
+	 * 
+	 * @param $string String
+	 * 
+	 * @return String
+	 */
 	public static function escapePhpString( $string ) {
 		if ( is_array( $string ) || is_object( $string ) ) {
 			return false;
@@ -85,7 +93,8 @@ class LocalSettingsGenerator {
 	/**
 	 * Return the full text of the generated LocalSettings.php file,
 	 * including the extensions
-	 * @returns String
+	 * 
+	 * @return String
 	 */
 	public function getText() {
 		$localSettings = $this->getDefaultText();
@@ -101,6 +110,9 @@ class LocalSettingsGenerator {
 		return $localSettings;
 	}
 
+	/**
+	 * @return String
+	 */
 	private function buildMemcachedServerList() {
 		$servers = $this->values['_MemCachedServers'];
 		
@@ -119,6 +131,9 @@ class LocalSettingsGenerator {
 		}
 	}
 
+	/**
+	 * @return String
+	 */	
 	private function getDefaultText() {
 		if( !$this->values['wgImageMagickConvertCommand'] ) {
 			$this->values['wgImageMagickConvertCommand'] = '/usr/bin/convert';
